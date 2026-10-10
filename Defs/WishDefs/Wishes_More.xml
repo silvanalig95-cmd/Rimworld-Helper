@@ -177,7 +177,7 @@
       <plain>
         <li>{OTHER_nameDef} snores, mutters, and steals blankets. I'd forgive one. Not all three.</li>
         <li>I lie awake every night listening to {OTHER_nameDef} breathe. Hatefully. Move one of us.</li>
-        <li>[trigger:barracks] Sharing a room is bad enough. Sharing it with {OTHER_nameDef} is a punishment.</li>
+        <li>Sharing a room is bad enough. Sharing it with {OTHER_nameDef} is a punishment.</li>
       </plain>
       <warm>
         <li>I'm trying with {OTHER_nameDef}, I really am. It'd be easier if we didn't share a room.</li>
