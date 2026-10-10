@@ -74,6 +74,8 @@ namespace ColonyCouncil
         public float minMood = 0f;
         public float maxMood = 1f;
         public bool adult = true;
+        /// <summary>Must be a child (Biotech). Overrides <see cref="adult"/>.</summary>
+        public bool child;
         /// <summary>Role B only: opinion of A at most this (and A of B), for feuds.</summary>
         public int maxOpinionOfA = 100;
         /// <summary>Role B only: opinion of A at least this.</summary>
@@ -84,7 +86,8 @@ namespace ColonyCouncil
         {
             if (p == null || p == a || !p.Spawned || p.Downed || p.InMentalState || p.IsQuestLodger()) return false;
             var traits = p.story?.traits;
-            if (adult && p.DevelopmentalStage.Juvenile()) return false;
+            if (child) { if (!p.DevelopmentalStage.Child()) return false; }
+            else if (adult && p.DevelopmentalStage.Juvenile()) return false;
             if (!anyTrait.NullOrEmpty() && (traits == null || !anyTrait.Any(traits.HasTrait))) return false;
             if (!notTrait.NullOrEmpty() && traits != null && notTrait.Any(traits.HasTrait)) return false;
             if (passion != null)
