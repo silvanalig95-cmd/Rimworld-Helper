@@ -46,6 +46,13 @@ namespace ColonyCouncil
         /// <summary>Grief memories already written about (memory def + other pawn), so each loss is written once.</summary>
         private HashSet<string> griefSeen = new HashSet<string>();
 
+        /// <summary>Journals of people no longer with the colony (dead, gone, walked out).</summary>
+        public IEnumerable<PawnJournal> Departed()
+        {
+            var here = new HashSet<string>(PawnsFinder.AllMapsCaravansAndTravellingTransporters_Alive_FreeColonists.Select(p => p.ThingID));
+            return journals.Where(j => j.entries.Count > 0 && !here.Contains(j.pawnId));
+        }
+
         public PawnJournal For(Pawn p, bool create = false)
         {
             if (p == null) return null;

@@ -649,8 +649,17 @@ namespace ColonyCouncil
             Text.Font = GameFont.Medium;
             Widgets.Label(new Rect(rect.x, rect.y, rect.width, 32f), "CC_Chronicle_Header".Translate());
             Text.Font = GameFont.Small;
-            // The yearly annals, newest first, as buttons along the header.
+            // The yearly annals, newest first, as buttons along the header; the journals of the departed before them.
             float bx = rect.xMax;
+            var departed = comp.journals.Departed().ToList();
+            if (departed.Count > 0)
+            {
+                string dl = "CC_Journal_Departed".Translate();
+                float dw = Text.CalcSize(dl).x + 20f;
+                bx -= dw + 6f;
+                if (Widgets.ButtonText(new Rect(bx, rect.y + 2f, dw, 28f), dl))
+                    Find.WindowStack.Add(new FloatMenu(departed.Select(j => new FloatMenuOption(j.name, () => Find.WindowStack.Add(new Dialog_Journal(j)))).ToList()));
+            }
             foreach (var a in comp.annals.written.AsEnumerable().Reverse().Take(6))
             {
                 string label = "CC_Annals_Button".Translate(a.year);
