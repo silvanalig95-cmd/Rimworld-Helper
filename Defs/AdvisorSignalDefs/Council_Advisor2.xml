@@ -69,7 +69,7 @@
     <defName>Council_Adv_Corpses</defName>
     <label>the dead</label>
     <workerClass>ColonyCouncil.AdvisorWorker_Corpses</workerClass>
-    <article>Council_Alm_9_18_Crypt</article>
+    <article>Council_Alm_2_20_CorpsesAndFilth</article>
     <category>Comfort</category>
     <importance>1</importance>
     <template>Council_Crypt</template>
@@ -102,6 +102,7 @@
     <defName>Council_Adv_Expectations</defName>
     <label>expectations</label>
     <workerClass>ColonyCouncil.AdvisorWorker_Expectations</workerClass>
+    <article>Council_Alm_2_14_Expectations</article>
     <category>Comfort</category>
     <importance>0.7</importance>
     <tips>
@@ -132,6 +133,7 @@
     <defName>Council_Adv_Darkness</defName>
     <label>light</label>
     <workerClass>ColonyCouncil.AdvisorWorker_Darkness</workerClass>
+    <article>Council_Alm_2_17_Light</article>
     <category>Comfort</category>
     <importance>0.7</importance>
     <tips>

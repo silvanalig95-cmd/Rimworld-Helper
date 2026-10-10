@@ -62,7 +62,7 @@
     <defName>Council_Adv_Temperature</defName>
     <label>temperature</label>
     <workerClass>ColonyCouncil.AdvisorWorker_Temperature</workerClass>
-    <article>Council_Alm_3_18_HeatWaveColdSnap</article>
+    <article>Council_Alm_2_19_TemperatureComfort</article>
     <category>Temperature</category>
     <importance>1</importance>
     <tips>
@@ -130,7 +130,7 @@
     <defName>Council_Adv_Recreation</defName>
     <label>recreation</label>
     <workerClass>ColonyCouncil.AdvisorWorker_Recreation</workerClass>
-    <article>Council_Alm_9_04_RecRoom</article>
+    <article>Council_Alm_2_13_Recreation</article>
     <category>Comfort</category>
     <importance>0.8</importance>
     <template>Council_RecRoom</template>
@@ -163,6 +163,7 @@
     <defName>Council_Adv_Mood</defName>
     <label>mood</label>
     <workerClass>ColonyCouncil.AdvisorWorker_Mood</workerClass>
+    <article>Council_Alm_2_15_MentalBreaks</article>
     <category>Comfort</category>
     <importance>1.2</importance>
     <tips>
