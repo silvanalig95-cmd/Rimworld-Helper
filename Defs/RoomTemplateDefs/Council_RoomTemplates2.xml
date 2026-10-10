@@ -1,0 +1,401 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- More room templates. Same rules as Council_RoomTemplates.xml. Workbenches face north: the worker stands south of them. -->
+
+  <ColonyCouncil.RoomTemplateDef>
+    <defName>Council_SmallBedroom</defName>
+    <label>small bedroom</label>
+    <description>A snug bedroom for one: bed, bedside table, a light and a plant. Cheap enough to build several.</description>
+    <order>9</order>
+    <group>Living</group>
+    <size>(3,4)</size>
+    <floors><li>WoodPlankFloor</li></floors>
+    <tips>
+      <li>Even a small private room beats a bed in the barracks: no snoring neighbours, no shared-bedroom penalty.</li>
+      <li>A cramped room drags impressiveness down. Build these early, then replace them with bigger rooms when you can.</li>
+    </tips>
+    <things>
+      <li><defs><li>Bed</li><li>Bedroll</li></defs><role>bed</role><pos>(0,2)</pos><optional>false</optional></li>
+      <li><defs><li>EndTable</li></defs><role>endtable</role><pos>(1,3)</pos></li>
+      <li><defs><li>PlantPot</li></defs><role>plantpot</role><pos>(2,3)</pos></li>
+      <li><defs><li>StandingLamp</li><li>TorchLamp</li></defs><role>light</role><pos>(2,0)</pos></li>
+    </things>
+  </ColonyCouncil.RoomTemplateDef>
+
+  <ColonyCouncil.RoomTemplateDef>
+    <defName>Council_Barracks</defName>
+    <label>barracks</label>
+    <description>Shared sleeping quarters for up to eight. Quick and cheap: the classic first home.</description>
+    <order>8</order>
+    <group>Living</group>
+    <size>(7,5)</size>
+    <floors><li>WoodPlankFloor</li></floors>
+    <near><li>DiningRoom</li></near>
+    <tips>
+      <li>Barracks are a fine start. As the colony grows richer, everyone expects more, and the shared-bedroom penalty starts to hurt.</li>
+      <li>People walking past sleepers wake them. Keep the barracks off the main corridors.</li>
+      <li>Couples want a double bed; two singles side by side don't count.</li>
+    </tips>
+    <things>
+      <li><defs><li>Bed</li><li>Bedroll</li></defs><role>bed</role><pos>(0,3)</pos><optional>false</optional></li>
+      <li><defs><li>Bed</li><li>Bedroll</li></defs><role>bed</role><pos>(1,3)</pos></li>
+      <li><defs><li>Bed</li><li>Bedroll</li></defs><role>bed</role><pos>(2,3)</pos></li>
+      <li><defs><li>Bed</li><li>Bedroll</li></defs><role>bed</role><pos>(4,3)</pos></li>
+      <li><defs><li>Bed</li><li>Bedroll</li></defs><role>bed</role><pos>(5,3)</pos></li>
+      <li><defs><li>Bed</li><li>Bedroll</li></defs><role>bed</role><pos>(6,3)</pos></li>
+      <li><defs><li>Bed</li><li>Bedroll</li></defs><role>bed</role><pos>(0,1)</pos><rot>South</rot></li>
+      <li><defs><li>Bed</li><li>Bedroll</li></defs><role>bed</role><pos>(6,1)</pos><rot>South</rot></li>
+      <li><defs><li>StandingLamp</li><li>TorchLamp</li></defs><role>light</role><pos>(3,4)</pos></li>
+    </things>
+  </ColonyCouncil.RoomTemplateDef>
+
+  <ColonyCouncil.RoomTemplateDef>
+    <defName>Council_PrisonCell</defName>
+    <label>prison cell</label>
+    <description>A cell for one prisoner: a bed, a light, one door. Mark the bed "for prisoners" once it's built.</description>
+    <order>80</order>
+    <group>Security</group>
+    <size>(3,4)</size>
+    <avoid><li>Bedroom</li></avoid>
+    <tips>
+      <li>Every extra door into a cell is another way out. One cell, one door, solid walls.</li>
+      <li>After it's built, select the bed and set it "for prisoners", or nobody will be taken there.</li>
+      <li>Fed, comfortable prisoners are easier to recruit. A light and a decent bed cost little.</li>
+    </tips>
+    <things>
+      <li><defs><li>Bed</li><li>Bedroll</li></defs><role>bed</role><pos>(2,2)</pos><optional>false</optional></li>
+      <li><defs><li>StandingLamp</li><li>TorchLamp</li></defs><role>light</role><pos>(0,3)</pos></li>
+    </things>
+  </ColonyCouncil.RoomTemplateDef>
+
+  <ColonyCouncil.RoomTemplateDef>
+    <defName>Council_PrisonBarracks</defName>
+    <label>prison barracks</label>
+    <description>A shared cell for up to four prisoners. Mark the beds "for prisoners" once they're built.</description>
+    <order>81</order>
+    <group>Security</group>
+    <size>(5,5)</size>
+    <avoid><li>Bedroom</li></avoid>
+    <tips>
+      <li>When one prisoner breaks out, everyone in the same cell joins in. Several small cells are safer than one big one.</li>
+      <li>Keep prison cells away from your weapons and the storeroom.</li>
+    </tips>
+    <things>
+      <li><defs><li>Bed</li><li>Bedroll</li></defs><role>bed</role><pos>(0,3)</pos><optional>false</optional></li>
+      <li><defs><li>Bed</li><li>Bedroll</li></defs><role>bed</role><pos>(1,3)</pos></li>
+      <li><defs><li>Bed</li><li>Bedroll</li></defs><role>bed</role><pos>(3,3)</pos></li>
+      <li><defs><li>Bed</li><li>Bedroll</li></defs><role>bed</role><pos>(4,3)</pos></li>
+      <li><defs><li>StandingLamp</li><li>TorchLamp</li></defs><role>light</role><pos>(2,4)</pos></li>
+    </things>
+  </ColonyCouncil.RoomTemplateDef>
+
+  <ColonyCouncil.RoomTemplateDef>
+    <defName>Council_ButcherRoom</defName>
+    <label>butcher's room</label>
+    <description>Butchering away from the stove: a butcher table and a light, ideally between the freezer and the kitchen.</description>
+    <order>33</order>
+    <group>Food</group>
+    <size>(4,3)</size>
+    <floors><li>SterileTile</li><li>TileSandstone</li><li>TileGranite</li><li>TileLimestone</li><li>TileSlate</li><li>TileMarble</li><li>WoodPlankFloor</li></floors>
+    <near><li>Kitchen</li></near>
+    <tips>
+      <li>Butchering sprays blood. In its own room, the mess stays out of the kitchen and out of your colonists' stomachs.</li>
+      <li>Put it right next to the freezer and the kitchen: carcasses in, meat out, as few steps as possible.</li>
+    </tips>
+    <things>
+      <li><defs><li>TableButcher</li></defs><role>butcher</role><pos>(1,2)</pos><optional>false</optional></li>
+      <li><defs><li>StandingLamp</li><li>TorchLamp</li></defs><role>light</role><pos>(3,2)</pos></li>
+    </things>
+  </ColonyCouncil.RoomTemplateDef>
+
+  <ColonyCouncil.RoomTemplateDef>
+    <defName>Council_Brewery</defName>
+    <label>brewery</label>
+    <description>A brewing bench and fermenting barrels for beer. Keep it mild: barrels dislike freezing and heat.</description>
+    <order>34</order>
+    <group>Food</group>
+    <size>(5,4)</size>
+    <near><li>Storeroom</li><li>RecRoom</li></near>
+    <tips>
+      <li>Fermenting barrels stop working when it gets too cold or too hot. An indoor room with a heater or cooler keeps them steady.</li>
+      <li>Beer counts as recreation and cheers people up, but too much leads to hangovers and, for some, alcohol addiction. Set a drug policy.</li>
+    </tips>
+    <things>
+      <li><defs><li>Brewery</li></defs><role>craft</role><pos>(1,3)</pos></li>
+      <li><defs><li>FermentingBarrel</li></defs><role>fermenter</role><pos>(4,3)</pos><optional>false</optional></li>
+      <li><defs><li>FermentingBarrel</li></defs><role>fermenter</role><pos>(4,2)</pos></li>
+      <li><defs><li>FermentingBarrel</li></defs><role>fermenter</role><pos>(4,1)</pos></li>
+      <li><defs><li>FermentingBarrel</li></defs><role>fermenter</role><pos>(4,0)</pos></li>
+      <li><defs><li>FermentingBarrel</li></defs><role>fermenter</role><pos>(3,3)</pos></li>
+      <li><defs><li>StandingLamp</li><li>TorchLamp</li></defs><role>light</role><pos>(0,0)</pos></li>
+    </things>
+  </ColonyCouncil.RoomTemplateDef>
+
+  <ColonyCouncil.RoomTemplateDef>
+    <defName>Council_CoolCellar</defName>
+    <label>cool cellar</label>
+    <description>Storage kept cool without electricity: passive coolers and a shelf. Slows rot, though it can't freeze.</description>
+    <order>52</order>
+    <group>Food</group>
+    <size>(5,5)</size>
+    <near><li>Kitchen</li></near>
+    <tips>
+      <li>Passive coolers burn wood to keep a room noticeably cooler, but not freezing. That slows rot; food still spoils eventually, so preserve what you can.</li>
+      <li>No torches in here: they heat the room you're trying to keep cool.</li>
+      <li>Dig it into a hillside if you can. Rock walls and an overhead mountain keep temperatures steadier.</li>
+    </tips>
+    <things>
+      <li><defs><li>PassiveCooler</li></defs><role>cooler</role><pos>(0,4)</pos><optional>false</optional></li>
+      <li><defs><li>PassiveCooler</li></defs><role>cooler</role><pos>(4,4)</pos></li>
+      <li><defs><li>Shelf</li></defs><role>storage</role><pos>(1,4)</pos></li>
+    </things>
+  </ColonyCouncil.RoomTemplateDef>
+
+  <ColonyCouncil.RoomTemplateDef>
+    <defName>Council_Smithy</defName>
+    <label>smithy</label>
+    <description>Two workbenches for weapons, armor and tools, and a light to work by.</description>
+    <order>35</order>
+    <group>Work</group>
+    <size>(5,4)</size>
+    <floors><li>WoodPlankFloor</li></floors>
+    <near><li>Storeroom</li></near>
+    <tips>
+      <li>Workers walk for every ingredient. A shelf or stockpile right next to the bench saves hours every day.</li>
+      <li>A good floor and a light speed up work and keep the crafter happier.</li>
+    </tips>
+    <things>
+      <li><defs><li>ElectricSmithy</li><li>FueledSmithy</li></defs><role>craft</role><pos>(1,3)</pos><optional>false</optional></li>
+      <li><defs><li>TableMachining</li><li>ElectricTailoringBench</li><li>HandTailoringBench</li></defs><role>craft</role><pos>(4,2)</pos><rot>East</rot></li>
+      <li><defs><li>StandingLamp</li><li>TorchLamp</li></defs><role>light</role><pos>(0,0)</pos></li>
+    </things>
+  </ColonyCouncil.RoomTemplateDef>
+
+  <ColonyCouncil.RoomTemplateDef>
+    <defName>Council_TailorShop</defName>
+    <label>tailor's shop</label>
+    <description>A tailoring bench, a shelf for cloth and leather, a light and a plant.</description>
+    <order>36</order>
+    <group>Work</group>
+    <size>(5,4)</size>
+    <floors><li>WoodPlankFloor</li></floors>
+    <tips>
+      <li>Warm clothes widen the temperatures colonists can work in. Before winter, make parkas or tribalwear for everyone who goes outside.</li>
+      <li>Tattered clothes and clothes taken from the dead both sour moods. A tailor keeps everyone decent.</li>
+    </tips>
+    <things>
+      <li><defs><li>ElectricTailoringBench</li><li>HandTailoringBench</li></defs><role>tailor</role><pos>(1,3)</pos><optional>false</optional></li>
+      <li><defs><li>Shelf</li></defs><role>storage</role><pos>(3,0)</pos></li>
+      <li><defs><li>StandingLamp</li><li>TorchLamp</li></defs><role>light</role><pos>(4,3)</pos></li>
+      <li><defs><li>PlantPot</li></defs><role>plantpot</role><pos>(0,0)</pos></li>
+    </things>
+  </ColonyCouncil.RoomTemplateDef>
+
+  <ColonyCouncil.RoomTemplateDef>
+    <defName>Council_ArtStudio</defName>
+    <label>art studio</label>
+    <description>A sculpting table, a light and a plant: somewhere for artists to make the colony beautiful.</description>
+    <order>37</order>
+    <group>Work</group>
+    <size>(5,4)</size>
+    <floors><li>WoodPlankFloor</li></floors>
+    <tips>
+      <li>Art is beauty you can carry. A few good sculptures lift dining halls, rec rooms and bedrooms alike, and they sell well.</li>
+      <li>Inspired artists make masterpieces. Keep an artist happy and give them time at the table.</li>
+    </tips>
+    <things>
+      <li><defs><li>TableSculpting</li></defs><role>art</role><pos>(1,3)</pos><optional>false</optional></li>
+      <li><defs><li>StandingLamp</li><li>TorchLamp</li></defs><role>light</role><pos>(4,3)</pos></li>
+      <li><defs><li>PlantPot</li></defs><role>plantpot</role><pos>(0,0)</pos></li>
+    </things>
+  </ColonyCouncil.RoomTemplateDef>
+
+  <ColonyCouncil.RoomTemplateDef>
+    <defName>Council_DrugLab</defName>
+    <label>drug lab</label>
+    <description>A drug lab bench and a light: medicine, beer's stronger cousins, or trade goods.</description>
+    <order>38</order>
+    <group>Work</group>
+    <size>(4,3)</size>
+    <tips>
+      <li>Drugs sell well and some are useful, but every colonist on them is a risk. Set drug policies before you start production.</li>
+      <li>Penoxycyline prevents several diseases. Worth making if your doctors keep fighting plague and malaria.</li>
+    </tips>
+    <things>
+      <li><defs><li>DrugLab</li></defs><role>drugs</role><pos>(1,2)</pos><optional>false</optional></li>
+      <li><defs><li>StandingLamp</li><li>TorchLamp</li></defs><role>light</role><pos>(3,2)</pos></li>
+    </things>
+  </ColonyCouncil.RoomTemplateDef>
+
+  <ColonyCouncil.RoomTemplateDef>
+    <defName>Council_LargeHospital</defName>
+    <label>large hospital</label>
+    <description>Four sickbeds with monitors, a medicine shelf, a light and clean floors.</description>
+    <order>41</order>
+    <group>Care</group>
+    <size>(7,5)</size>
+    <floors><li>SterileTile</li><li>TileSandstone</li><li>TileGranite</li><li>TileLimestone</li><li>TileSlate</li><li>TileMarble</li><li>WoodPlankFloor</li></floors>
+    <tips>
+      <li>Hospital beds and vitals monitors improve treatment and recovery. Sterile floors cut the risk of infection.</li>
+      <li>Build the hospital near the main entrance: the wounded shouldn't be carried across the whole base after a raid.</li>
+      <li>Keep medicine on a shelf inside the hospital so doctors don't walk to the storeroom mid-surgery.</li>
+    </tips>
+    <things>
+      <li><defs><li>HospitalBed</li><li>Bed</li><li>Bedroll</li></defs><role>bed</role><pos>(0,3)</pos><optional>false</optional></li>
+      <li><defs><li>HospitalBed</li><li>Bed</li><li>Bedroll</li></defs><role>bed</role><pos>(2,3)</pos></li>
+      <li><defs><li>HospitalBed</li><li>Bed</li><li>Bedroll</li></defs><role>bed</role><pos>(4,3)</pos></li>
+      <li><defs><li>HospitalBed</li><li>Bed</li><li>Bedroll</li></defs><role>bed</role><pos>(6,3)</pos></li>
+      <li><defs><li>VitalsMonitor</li></defs><role>monitor</role><pos>(1,4)</pos></li>
+      <li><defs><li>VitalsMonitor</li></defs><role>monitor</role><pos>(5,4)</pos></li>
+      <li><defs><li>StandingLamp</li><li>TorchLamp</li></defs><role>light</role><pos>(3,4)</pos></li>
+      <li><defs><li>Shelf</li></defs><role>storage</role><pos>(0,0)</pos></li>
+    </things>
+  </ColonyCouncil.RoomTemplateDef>
+
+  <ColonyCouncil.RoomTemplateDef>
+    <defName>Council_Crematorium</defName>
+    <label>crematorium</label>
+    <description>A crematorium and a light: a quiet way to deal with the dead you won't bury.</description>
+    <order>71</order>
+    <group>Care</group>
+    <size>(4,3)</size>
+    <avoid><li>DiningRoom</li><li>Bedroom</li></avoid>
+    <tips>
+      <li>Raiders' bodies lying around sour everyone's mood. Burn them, or at least drag them far away.</li>
+      <li>Put a corpse stockpile right outside, set to accept only corpses, so haulers bring the dead straight here.</li>
+    </tips>
+    <things>
+      <li><defs><li>ElectricCrematorium</li></defs><role>crematorium</role><pos>(1,2)</pos><optional>false</optional></li>
+      <li><defs><li>StandingLamp</li><li>TorchLamp</li></defs><role>light</role><pos>(3,2)</pos></li>
+    </things>
+  </ColonyCouncil.RoomTemplateDef>
+
+  <ColonyCouncil.RoomTemplateDef>
+    <defName>Council_BatteryRoom</defName>
+    <label>battery room</label>
+    <description>Three batteries under one roof, away from anything that burns.</description>
+    <order>90</order>
+    <group>Security</group>
+    <size>(4,3)</size>
+    <avoid><li>Bedroom</li><li>Storeroom</li></avoid>
+    <tips>
+      <li>Batteries can short-circuit and start fires, especially when rain gets in. A roofed stone room keeps both problems contained.</li>
+      <li>Store enough to get through the night. Solar panels give nothing after dark.</li>
+    </tips>
+    <things>
+      <li><defs><li>Battery</li></defs><role>battery</role><pos>(0,1)</pos><optional>false</optional></li>
+      <li><defs><li>Battery</li></defs><role>battery</role><pos>(1,1)</pos></li>
+      <li><defs><li>Battery</li></defs><role>battery</role><pos>(3,1)</pos></li>
+    </things>
+  </ColonyCouncil.RoomTemplateDef>
+
+  <ColonyCouncil.RoomTemplateDef>
+    <defName>Council_Armory</defName>
+    <label>armory</label>
+    <description>Shelves for weapons and armor, close to where the fighting happens.</description>
+    <order>91</order>
+    <group>Security</group>
+    <size>(5,4)</size>
+    <avoid><li>PrisonCell</li><li>PrisonBarracks</li></avoid>
+    <tips>
+      <li>Keep weapons near your defensive line, not across the base: seconds matter when raiders arrive.</li>
+      <li>Never store weapons next to the prison. Escaped prisoners know where to look.</li>
+    </tips>
+    <things>
+      <li><defs><li>Shelf</li></defs><role>storage</role><pos>(0,3)</pos><optional>false</optional></li>
+      <li><defs><li>Shelf</li></defs><role>storage</role><pos>(3,3)</pos></li>
+      <li><defs><li>Shelf</li></defs><role>storage</role><pos>(0,0)</pos></li>
+      <li><defs><li>Shelf</li></defs><role>storage</role><pos>(3,0)</pos></li>
+      <li><defs><li>StandingLamp</li><li>TorchLamp</li></defs><role>light</role><pos>(2,3)</pos></li>
+    </things>
+  </ColonyCouncil.RoomTemplateDef>
+
+  <ColonyCouncil.RoomTemplateDef>
+    <defName>Council_MeditationRoom</defName>
+    <label>meditation room</label>
+    <description>A quiet room with a meditation spot, plants and soft light. Needs Royalty.</description>
+    <order>25</order>
+    <group>Leisure</group>
+    <size>(4,4)</size>
+    <floors><li>WoodPlankFloor</li></floors>
+    <tips>
+      <li>Psycasters regain focus by meditating. Their focus types decide what helps: plants for natural, art for artistic, and so on.</li>
+      <li>Meditation also counts as recreation for everyone else.</li>
+    </tips>
+    <things>
+      <li><defs><li>MeditationSpot</li></defs><role>meditation</role><pos>(1,2)</pos><optional>false</optional></li>
+      <li><defs><li>PlantPot</li></defs><role>plantpot</role><pos>(0,3)</pos></li>
+      <li><defs><li>PlantPot</li></defs><role>plantpot</role><pos>(3,3)</pos></li>
+      <li><defs><li>StandingLamp</li><li>TorchLamp</li></defs><role>light</role><pos>(3,0)</pos></li>
+    </things>
+  </ColonyCouncil.RoomTemplateDef>
+
+  <ColonyCouncil.RoomTemplateDef>
+    <defName>Council_ThroneRoom</defName>
+    <label>throne room</label>
+    <description>A throne facing the door, braziers on either side, music and space. Needs Royalty and a title.</description>
+    <order>26</order>
+    <group>Leisure</group>
+    <size>(7,7)</size>
+    <floors><li>CarpetRed</li><li>CarpetDark</li><li>WoodPlankFloor</li></floors>
+    <tips>
+      <li>Nobles need a throne room that grows with their title: bigger, more impressive, and with more furnishings at every rank. Check the title's requirements in their info card.</li>
+      <li>A throne room only counts if nothing else is in it: no beds, no workbenches.</li>
+    </tips>
+    <things>
+      <li><defs><li>GrandThrone</li><li>Throne</li></defs><role>throne</role><pos>(3,6)</pos><rot>South</rot><optional>false</optional></li>
+      <li><defs><li>Brazier</li><li>StandingLamp</li><li>TorchLamp</li></defs><role>light</role><pos>(1,6)</pos></li>
+      <li><defs><li>Brazier</li><li>StandingLamp</li><li>TorchLamp</li></defs><role>light</role><pos>(5,6)</pos></li>
+      <li><defs><li>Harpsichord</li><li>Harp</li></defs><role>music</role><pos>(0,3)</pos><rot>East</rot></li>
+      <li><defs><li>PlantPot</li></defs><role>plantpot</role><pos>(6,3)</pos></li>
+      <li><defs><li>PlantPot</li></defs><role>plantpot</role><pos>(0,0)</pos></li>
+      <li><defs><li>PlantPot</li></defs><role>plantpot</role><pos>(6,0)</pos></li>
+    </things>
+  </ColonyCouncil.RoomTemplateDef>
+
+  <ColonyCouncil.RoomTemplateDef>
+    <defName>Council_Classroom</defName>
+    <label>classroom</label>
+    <description>School desks facing a blackboard, a toy box and a light. Needs Biotech and children.</description>
+    <order>42</order>
+    <group>Care</group>
+    <size>(5,4)</size>
+    <floors><li>WoodPlankFloor</li></floors>
+    <tips>
+      <li>Children learn faster at school desks, and a blackboard in the same room helps more.</li>
+      <li>Kids need play too. A toy box nearby keeps them happy and learning.</li>
+    </tips>
+    <things>
+      <li><defs><li>SchoolDesk</li></defs><role>school</role><pos>(0,2)</pos><optional>false</optional></li>
+      <li><defs><li>SchoolDesk</li></defs><role>school</role><pos>(2,2)</pos></li>
+      <li><defs><li>SchoolDesk</li></defs><role>school</role><pos>(4,2)</pos></li>
+      <li><defs><li>Blackboard</li></defs><role>school</role><pos>(2,3)</pos></li>
+      <li><defs><li>ToyBox</li></defs><role>toybox</role><pos>(0,0)</pos></li>
+      <li><defs><li>StandingLamp</li><li>TorchLamp</li></defs><role>light</role><pos>(4,0)</pos></li>
+    </things>
+  </ColonyCouncil.RoomTemplateDef>
+
+  <ColonyCouncil.RoomTemplateDef>
+    <defName>Council_Nursery</defName>
+    <label>nursery</label>
+    <description>Cribs, a toy box, a light and a soft floor for the colony's youngest. Needs Biotech.</description>
+    <order>43</order>
+    <group>Care</group>
+    <size>(5,4)</size>
+    <floors><li>CarpetCream</li><li>WoodPlankFloor</li></floors>
+    <near><li>Bedroom</li></near>
+    <tips>
+      <li>Babies sleep a lot and cry when hungry. A nursery near the parents' rooms saves a lot of walking at night.</li>
+      <li>Keep the nursery warm and away from the entrance: raiders don't check who's in a room.</li>
+    </tips>
+    <things>
+      <li><defs><li>Crib</li></defs><role>crib</role><pos>(0,3)</pos><optional>false</optional></li>
+      <li><defs><li>Crib</li></defs><role>crib</role><pos>(2,3)</pos></li>
+      <li><defs><li>ToyBox</li></defs><role>toybox</role><pos>(4,3)</pos></li>
+      <li><defs><li>StandingLamp</li><li>TorchLamp</li></defs><role>light</role><pos>(4,0)</pos></li>
+      <li><defs><li>PlantPot</li></defs><role>plantpot</role><pos>(0,0)</pos></li>
+    </things>
+  </ColonyCouncil.RoomTemplateDef>
+
+</Defs>

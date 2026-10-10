@@ -278,6 +278,7 @@ var dynamic = new Dictionary<string, string[]>
     ["CC_Stock_"] = new[] { "medicine", "meals", "finemeals", "silver" },
     ["CC_DefKind_"] = new[] { "turret", "trap", "cover" },
     ["CC_ButtonPos_"] = new[] { "BeforeMenu", "AfterResearch", "AfterHistory", "AfterWork" },
+    ["CC_BuildGroup_"] = new[] { "Living", "Food", "Work", "Care", "Leisure", "Security" },
     ["CC_AlmanacCat_"] = new[] { "Basics", "Food", "Rooms", "Mood", "Defense", "Health", "Management", "LowTech", "RoomDesign", "Mistakes", "Royalty", "Ideology", "Biotech", "Anomaly", "Odyssey", "Numbers" },
 };
 // Roles: everything RolePredicate knows plus Goal_Build extras, and every role used in XML.

@@ -375,6 +375,17 @@
   <CC_Role_cover>pieces of cover (sandbags, barricades)</CC_Role_cover>
   <CC_Role_fermenter>fermenting barrels</CC_Role_fermenter>
   <CC_Role_battery>batteries</CC_Role_battery>
+  <CC_Role_butcher>butcher tables</CC_Role_butcher>
+  <CC_Role_tailor>tailoring benches</CC_Role_tailor>
+  <CC_Role_drugs>drug labs</CC_Role_drugs>
+  <CC_Role_monitor>vitals monitors</CC_Role_monitor>
+  <CC_Role_crematorium>crematoriums</CC_Role_crematorium>
+  <CC_Role_meditation>meditation spots</CC_Role_meditation>
+  <CC_Role_throne>thrones</CC_Role_throne>
+  <CC_Role_music>musical instruments</CC_Role_music>
+  <CC_Role_school>school desks</CC_Role_school>
+  <CC_Role_toybox>toy boxes</CC_Role_toybox>
+  <CC_Role_crib>cribs</CC_Role_crib>
 
   <!-- Ambition chronicle -->
   <CC_Chronicle_Meeting>The council met. Proposals: {0}.</CC_Chronicle_Meeting>
@@ -390,6 +401,14 @@
   <CC_Build_Header>Room plans</CC_Build_Header>
   <CC_Build_Sub>Templates adapt to your tech and materials. Click "Plan": a panel lets you turn and mirror the room, move the door, pick materials and furniture. The same rooms are in the architect menu under "rooms".</CC_Build_Sub>
   <CC_Build_Plan>Plan</CC_Build_Plan>
+  <CC_Build_OnlyAvailable>Only rooms we can build now</CC_Build_OnlyAvailable>
+  <CC_Build_Hidden>{0} more room plan(s) need research, a DLC or materials the colony can't use yet. Untick the box above to see them.</CC_Build_Hidden>
+  <CC_BuildGroup_Living>Living</CC_BuildGroup_Living>
+  <CC_BuildGroup_Food>Food</CC_BuildGroup_Food>
+  <CC_BuildGroup_Work>Work</CC_BuildGroup_Work>
+  <CC_BuildGroup_Care>Care</CC_BuildGroup_Care>
+  <CC_BuildGroup_Leisure>Leisure and status</CC_BuildGroup_Leisure>
+  <CC_BuildGroup_Security>Security and power</CC_BuildGroup_Security>
   <CC_Build_Contains>Contains: {0}</CC_Build_Contains>
   <CC_Template_NoWalls>The colony can't build walls yet.</CC_Template_NoWalls>
   <CC_Template_Missing>Not yet possible: the colony can't build {0}.</CC_Template_Missing>

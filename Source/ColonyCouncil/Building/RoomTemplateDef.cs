@@ -120,6 +120,20 @@ namespace ColonyCouncil
                 case "plantpot": return Avail.IsPlantPot;
                 case "storage": return d => d.thingClass != null && typeof(Building_Storage).IsAssignableFrom(d.thingClass) && d.building?.fixedStorageSettings == null;
                 case "grave": return Avail.IsGrave;
+                case "butcher": return AdvisorWorker_Kitchen.IsButcherTable;
+                case "fermenter": return Avail.IsFermenter;
+                case "battery": return d => d.comps != null && d.comps.Any(c => c is CompProperties_Battery);
+                case "throne": return d => d.thingClass != null && typeof(Building_Throne).IsAssignableFrom(d.thingClass);
+                case "meditation": return d => d.comps != null && d.comps.Any(c => c is CompProperties_MeditationFocus);
+                case "music": return d => d.thingClass != null && typeof(Building_MusicalInstrument).IsAssignableFrom(d.thingClass);
+                case "medical": return d => Avail.IsSingleBed(d) && d.building != null && d.statBases != null && d.statBases.Any(sm => sm.stat == StatDefOf.MedicalTendQualityOffset && sm.value > 0f);
+                case "monitor": return d => d.defName.Contains("VitalsMonitor");
+                case "crematorium": return d => d.AllRecipes != null && d.AllRecipes.Any(r => r.defName.Contains("Cremat"));
+                case "tailor": return d => d.AllRecipes != null && d.AllRecipes.Any(r => r.ProducedThingDef != null && r.ProducedThingDef.IsApparel && !r.ProducedThingDef.IsWeapon) && d.building != null && !Avail.IsWorkstationFor(d, SkillDefOf.Cooking);
+                case "drugs": return d => d.AllRecipes != null && d.AllRecipes.Any(r => r.ProducedThingDef != null && r.ProducedThingDef.IsDrug);
+                case "school": return d => d.defName.Contains("SchoolDesk") || d.defName.Contains("Blackboard");
+                case "toybox": return d => d.defName.Contains("ToyBox");
+                case "crib": return d => Avail.IsHumanBed(d) && d.building.bed_maxBodySize > 0f && d.building.bed_maxBodySize < 0.5f;
                 default: return null;
             }
         }

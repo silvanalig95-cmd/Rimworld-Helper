@@ -14,6 +14,11 @@
 
   <ColonyCouncil.RoomTemplateDef>
     <defName>Council_Bedroom</defName>
+    <group>Living</group>
+    <tips>
+      <li>A 5x5 bedroom is the comfortable size: big enough to feel spacious, small enough to make impressive cheaply.</li>
+      <li>A bedroom's impressiveness gives a mood bonus every morning. Floor, light and a bit of art go a long way.</li>
+    </tips>
     <label>bedroom</label>
     <description>A private bedroom for one: bed, bedside table, dresser, a light and a plant.</description>
     <order>10</order>
@@ -53,6 +58,11 @@
 
   <ColonyCouncil.RoomTemplateDef>
     <defName>Council_CoupleBedroom</defName>
+    <group>Living</group>
+    <tips>
+      <li>Lovers sleeping apart grumble about it. A double bed in a shared room keeps couples happy.</li>
+      <li>Two end tables, one each side, and the room counts as properly furnished for both.</li>
+    </tips>
     <label>couple's bedroom</label>
     <description>A bedroom for two: a double bed with a table on each side, a dresser, a light and a plant.</description>
     <order>11</order>
@@ -97,6 +107,13 @@
 
   <ColonyCouncil.RoomTemplateDef>
     <defName>Council_DiningRoom</defName>
+    <group>Food</group>
+    <near><li>Kitchen</li></near>
+    <tips>
+      <li>Eating without a table costs mood at every meal. One chair per colonist, or at least one per two if meals are staggered.</li>
+      <li>An impressive dining room gives a mood bonus with every meal. It's the room everyone sees most: make it nice.</li>
+      <li>Put it next to the kitchen and freezer so meals travel a few steps, not across the base.</li>
+    </tips>
     <label>dining room</label>
     <description>A table for eight with chairs all round, lights and plants. Everyone eats three times a day, so this pays off fast.</description>
     <order>20</order>
@@ -128,6 +145,12 @@
 
   <ColonyCouncil.RoomTemplateDef>
     <defName>Council_RecRoom</defName>
+    <group>Leisure</group>
+    <near><li>DiningRoom</li></near>
+    <tips>
+      <li>Colonists tire of doing the same fun thing. Different kinds of recreation keep the need full.</li>
+      <li>A rec room next to the dining room means colonists relax right after eating instead of walking across the map.</li>
+    </tips>
     <label>recreation room</label>
     <description>Somewhere to unwind: a game table with seats, horseshoes, a light and a plant. Add more kinds of games over time for variety.</description>
     <order>21</order>
@@ -152,6 +175,12 @@
 
   <ColonyCouncil.RoomTemplateDef>
     <defName>Council_Workshop</defName>
+    <group>Work</group>
+    <near><li>Storeroom</li></near>
+    <tips>
+      <li>Workbenches near a stockpile save hours of walking every day.</li>
+      <li>A floor and a light make work faster and colonists happier.</li>
+    </tips>
     <label>workshop</label>
     <description>Two crafting stations along the back wall and a sculpting table by the door, with room to work at each.</description>
     <order>30</order>
@@ -180,6 +209,12 @@
 
   <ColonyCouncil.RoomTemplateDef>
     <defName>Council_Kitchen</defName>
+    <group>Food</group>
+    <near><li>DiningRoom</li></near>
+    <tips>
+      <li>A clean kitchen means fewer food poisonings. Lay tiles, keep a cleaner busy, and keep the butcher table in another room.</li>
+      <li>Kitchen, freezer and dining room side by side: the cook walks a few steps, and meals arrive hot.</li>
+    </tips>
     <label>kitchen</label>
     <description>A cooking station, a shelf for ingredients and a clean floor. Keep butchering in a separate room: blood and guts make kitchens filthy and meals risky.</description>
     <order>31</order>
@@ -205,6 +240,11 @@
 
   <ColonyCouncil.RoomTemplateDef>
     <defName>Council_Laboratory</defName>
+    <group>Work</group>
+    <tips>
+      <li>Researchers work faster in clean, tidy rooms. A floor and a light help.</li>
+      <li>A hi-tech research bench with a multi-analyzer is much faster, once you can build them.</li>
+    </tips>
     <label>laboratory</label>
     <description>A quiet room with a research bench and good light. A clean floor speeds up research.</description>
     <order>32</order>
@@ -225,6 +265,12 @@
 
   <ColonyCouncil.RoomTemplateDef>
     <defName>Council_Hospital</defName>
+    <group>Care</group>
+    <avoid><li>Kitchen</li></avoid>
+    <tips>
+      <li>Hospital beds and sterile floors improve treatment and reduce infections.</li>
+      <li>Build the hospital near the entrance: the wounded shouldn't be carried across the base.</li>
+    </tips>
     <label>hospital</label>
     <description>Three beds along the back wall and a shelf for medicine. Set the beds to "medical" once built. A clean floor lowers infection risk.</description>
     <order>40</order>
@@ -260,6 +306,13 @@
 
   <ColonyCouncil.RoomTemplateDef>
     <defName>Council_Freezer</defName>
+    <group>Food</group>
+    <near><li>Kitchen</li></near>
+    <tips>
+      <li>Set coolers to -10 °C so open doors and short power cuts don't thaw anything.</li>
+      <li>Coolers blow hot air out the back. Make sure that side faces outside or an open space, not another room.</li>
+      <li>A double door (airlock) keeps the cold in when people walk in and out.</li>
+    </tips>
     <label>freezer</label>
     <description>Cold storage: two coolers built into the back wall and shelves inside. The coolers' hot side should face outside; if a blueprint faces the wrong way, rotate it before it's built. A double door (an airlock) keeps the cold in even better.</description>
     <order>50</order>
@@ -287,6 +340,11 @@
 
   <ColonyCouncil.RoomTemplateDef>
     <defName>Council_Storeroom</defName>
+    <group>Food</group>
+    <tips>
+      <li>Items left outside deteriorate. A roofed storeroom keeps them in good condition.</li>
+      <li>Shelves hold more per tile and items on them don't count as clutter.</li>
+    </tips>
     <label>storeroom</label>
     <description>A roofed room lined with shelves, so materials stop rotting in the rain.</description>
     <order>51</order>
@@ -307,6 +365,12 @@
 
   <ColonyCouncil.RoomTemplateDef>
     <defName>Council_Barn</defName>
+    <group>Food</group>
+    <avoid><li>Bedroom</li></avoid>
+    <tips>
+      <li>Animals sleep better in a barn and are protected from the weather.</li>
+      <li>Haul hay and kibble into the barn so animals don't wander off to graze in winter.</li>
+    </tips>
     <label>barn</label>
     <description>A sheltered room with sleeping places for the colony's animals.</description>
     <order>60</order>
@@ -327,6 +391,12 @@
 
   <ColonyCouncil.RoomTemplateDef>
     <defName>Council_Greenhouse</defName>
+    <group>Food</group>
+    <tips>
+      <li>Hydroponic basins grow fast but die quickly when the power fails. Keep batteries or a generator in reserve.</li>
+      <li>Sun lamps switch off at night, when plants rest. One lamp covers a large area.</li>
+    </tips>
+    <keepPlants>true</keepPlants>
     <label>greenhouse</label>
     <description>Four hydroponics basins under a sun lamp, with a heat source for the cold months. Grows food whatever the season.</description>
     <order>61</order>
@@ -356,6 +426,12 @@
 
   <ColonyCouncil.RoomTemplateDef>
     <defName>Council_Crypt</defName>
+    <group>Care</group>
+    <avoid><li>DiningRoom</li><li>Kitchen</li></avoid>
+    <tips>
+      <li>A proper grave lets friends and family stop grieving.</li>
+      <li>Sarcophagi are beautiful and count as art in a crypt; graves outside are cheaper.</li>
+    </tips>
     <label>crypt</label>
     <description>A quiet room with three graves, so the dead rest indoors and their friends can visit.</description>
     <order>70</order>

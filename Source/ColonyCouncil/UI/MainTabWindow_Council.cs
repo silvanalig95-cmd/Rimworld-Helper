@@ -572,12 +572,30 @@ namespace ColonyCouncil
             GUI.color = Faint;
             Widgets.Label(new Rect(rect.x, rect.y + 28f, rect.width, 22f), "CC_Build_Sub".Translate());
             GUI.color = Color.white;
+            Widgets.CheckboxLabeled(new Rect(rect.xMax - 260f, rect.y + 4f, 260f, 24f), "CC_Build_OnlyAvailable".Translate(), ref buildOnlyAvailable);
             var outRect = new Rect(rect.x, rect.y + 56f, rect.width, rect.height - 56f);
             float width = BeginScroll(outRect);
             float y = 0f;
-            foreach (var t in DefDatabase<RoomTemplateDef>.AllDefsListForReading.OrderBy(d => d.order))
+            string lastGroup = null;
+            int hidden = 0;
+            foreach (var t in DefDatabase<RoomTemplateDef>.AllDefsListForReading.OrderBy(d => GroupOrder(d.group)).ThenBy(d => d.order))
             {
                 var furniture = t.ResolveCached(map, out string reason);
+                if (buildOnlyAvailable && reason != null)
+                {
+                    hidden++;
+                    continue;
+                }
+                if (t.group != lastGroup)
+                {
+                    lastGroup = t.group;
+                    y += 4f;
+                    string key = "CC_BuildGroup_" + t.group;
+                    Text.Font = GameFont.Medium;
+                    Widgets.Label(new Rect(0f, y, width, 30f), key.CanTranslate() ? key.Translate().ToString() : t.group);
+                    Text.Font = GameFont.Small;
+                    y += 32f;
+                }
                 string furnitureText = furniture.Count == 0 ? "" : "CC_Build_Contains".Translate(string.Join(", ", furniture.GroupBy(f => f.def).Select(g => g.Count() > 1 ? g.Count() + "× " + g.Key.label : g.Key.label)));
                 float textW = width - 330f;
                 string title = t.LabelCap + "  (" + t.size.x + "×" + t.size.z + ")";
@@ -598,7 +616,24 @@ namespace ColonyCouncil
                 }
                 y += h + 6f;
             }
+            if (hidden > 0) y += WrappedLabel(0f, y + 6f, width, "CC_Build_Hidden".Translate(hidden), Faint) + 10f;
             EndScroll(y);
+        }
+
+        private static bool buildOnlyAvailable = true;
+
+        private static int GroupOrder(string group)
+        {
+            switch (group)
+            {
+                case "Living": return 0;
+                case "Food": return 1;
+                case "Work": return 2;
+                case "Care": return 3;
+                case "Leisure": return 4;
+                case "Security": return 5;
+                default: return 6;
+            }
         }
 
         // ---------------- Chronicle ----------------
