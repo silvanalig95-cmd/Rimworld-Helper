@@ -13,6 +13,15 @@ namespace ColonyCouncil
         AdvisorOnly
     }
 
+    /// <summary>Where the council button sits in the bottom bar.</summary>
+    public enum ButtonPosition
+    {
+        BeforeMenu,
+        AfterResearch,
+        AfterHistory,
+        AfterWork
+    }
+
     public class CouncilSettings : ModSettings
     {
         // Layers
@@ -44,6 +53,14 @@ namespace ColonyCouncil
         public bool advisorAlert = true;
         public bool wishAlert = true;
 
+        // Room planner (the clearing options are remembered between games)
+        public bool planCutPlants = true;
+        public bool planMineRock = true;
+        public bool planReplaceOwn = false;
+        public bool planSmoothStone = false;
+        public bool planFurniture = true;
+        public ButtonPosition buttonPosition = ButtonPosition.BeforeMenu;
+
         private static Vector2 scroll;
         private static float viewHeight = 1200f;
 
@@ -69,6 +86,25 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref daysBetweenPersonalTouches, "daysBetweenPersonalTouches", 6f);
             Scribe_Values.Look(ref advisorAlert, "advisorAlert", true);
             Scribe_Values.Look(ref wishAlert, "wishAlert", true);
+            Scribe_Values.Look(ref planCutPlants, "planCutPlants", true);
+            Scribe_Values.Look(ref planMineRock, "planMineRock", true);
+            Scribe_Values.Look(ref planReplaceOwn, "planReplaceOwn", false);
+            Scribe_Values.Look(ref planSmoothStone, "planSmoothStone", false);
+            Scribe_Values.Look(ref planFurniture, "planFurniture", true);
+            Scribe_Values.Look(ref buttonPosition, "buttonPosition", ButtonPosition.BeforeMenu);
+        }
+
+        /// <summary>Saves the settings file right away (used by the planner's checkboxes).</summary>
+        public static void SaveNow()
+        {
+            try
+            {
+                LoadedModManager.GetMod<ColonyCouncilMod>()?.WriteSettings();
+            }
+            catch (System.Exception e)
+            {
+                CouncilLog.ErrorOnce("saving settings", e);
+            }
         }
 
         public bool MoodEffects => stakes != StakesMode.AdvisorOnly;
@@ -123,6 +159,23 @@ namespace ColonyCouncil
             l.CheckboxLabeled("CC_Settings_AdvisorAlert".Translate(), ref advisorAlert, "CC_Settings_AdvisorAlert_Tip".Translate());
             l.CheckboxLabeled("CC_Settings_WishAlert".Translate(), ref wishAlert, "CC_Settings_WishAlert_Tip".Translate());
 
+            Header(l, "CC_Settings_Interface".Translate());
+            if (l.ButtonTextLabeled("CC_Settings_ButtonPosition".Translate(), ("CC_ButtonPos_" + buttonPosition).Translate()))
+            {
+                var options = new System.Collections.Generic.List<FloatMenuOption>();
+                foreach (ButtonPosition pos in System.Enum.GetValues(typeof(ButtonPosition)))
+                {
+                    var local = pos;
+                    options.Add(new FloatMenuOption(("CC_ButtonPos_" + pos).Translate(), () =>
+                    {
+                        buttonPosition = local;
+                        CouncilStartup.ApplyButtonPosition(true);
+                    }));
+                }
+                Find.WindowStack.Add(new FloatMenu(options));
+            }
+            l.Label("CC_Settings_ButtonPosition_Note".Translate(), -1f);
+
             l.Gap();
             if (l.ButtonText("CC_Settings_Reset".Translate(), null, 0.4f))
             {
@@ -165,6 +218,16 @@ namespace ColonyCouncil
             daysBetweenPersonalTouches = d.daysBetweenPersonalTouches;
             advisorAlert = d.advisorAlert;
             wishAlert = d.wishAlert;
+            planCutPlants = d.planCutPlants;
+            planMineRock = d.planMineRock;
+            planReplaceOwn = d.planReplaceOwn;
+            planSmoothStone = d.planSmoothStone;
+            planFurniture = d.planFurniture;
+            if (buttonPosition != d.buttonPosition)
+            {
+                buttonPosition = d.buttonPosition;
+                CouncilStartup.ApplyButtonPosition(true);
+            }
         }
     }
 }

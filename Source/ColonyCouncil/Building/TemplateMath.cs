@@ -56,5 +56,25 @@ namespace ColonyCouncil
 
         /// <summary>Rotation of a facing (0=N,1=E,2=S,3=W) after turning the template clockwise.</summary>
         public static int RotateFacing(int facing, int rot) => Norm(facing + rot);
+
+        /// <summary>A facing seen in a mirror that flips west and east.</summary>
+        public static int MirrorFacing(int facing) => Norm(facing) == 1 ? 3 : Norm(facing) == 3 ? 1 : Norm(facing);
+
+        /// <summary>Optional west-east mirror (in template space), then <paramref name="rot"/> clockwise turns.</summary>
+        public static void Transform(int x, int z, int w, int h, bool mirror, int rot, out int rx, out int rz)
+        {
+            if (mirror) x = w - 1 - x;
+            RotatePoint(x, z, w, h, rot, out rx, out rz);
+        }
+
+        /// <summary><see cref="Transform"/> for an axis-aligned rect.</summary>
+        public static void TransformRect(int minX, int minZ, int sizeX, int sizeZ, int w, int h, bool mirror, int rot,
+            out int rMinX, out int rMinZ, out int rSizeX, out int rSizeZ)
+        {
+            if (mirror) minX = w - (minX + sizeX);
+            RotateRect(minX, minZ, sizeX, sizeZ, w, h, rot, out rMinX, out rMinZ, out rSizeX, out rSizeZ);
+        }
+
+        public static int TransformFacing(int facing, bool mirror, int rot) => RotateFacing(mirror ? MirrorFacing(facing) : facing, rot);
     }
 }

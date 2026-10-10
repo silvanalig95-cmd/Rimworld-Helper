@@ -269,6 +269,7 @@ var dynamic = new Dictionary<string, string[]>
     ["CC_SkillSpace_"] = new[] { "Crafting", "Artistic", "Cooking", "Intellectual", "Medicine", "Plants", "Animals" },
     ["CC_Stock_"] = new[] { "medicine", "meals", "finemeals", "silver" },
     ["CC_DefKind_"] = new[] { "turret", "trap", "cover" },
+    ["CC_ButtonPos_"] = new[] { "BeforeMenu", "AfterResearch", "AfterHistory", "AfterWork" },
 };
 // Roles: everything RolePredicate knows plus Goal_Build extras, and every role used in XML.
 var roles = new HashSet<string> { "bed", "doublebed", "light", "heater", "cooler", "table", "chair", "endtable", "dresser", "joy", "research", "cook", "craft", "art", "animalbed", "hydroponics", "plantpot", "storage", "grave", "turret", "trap", "cover", "fermenter", "battery" };

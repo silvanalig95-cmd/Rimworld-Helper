@@ -19,6 +19,21 @@ namespace ColonyCouncil
             public Func<Map, ThingDef> suggest;
             public string templateDefName;
             public string inspiration;
+            /// <summary>Extra condition for the wish to make sense at all (e.g. a greenhouse only with frost ahead).</summary>
+            public Func<Map, bool> needed;
+        }
+
+        /// <summary>
+        /// A greenhouse only matters when the fields are about to freeze or already have: frost within about
+        /// two weeks, or now, with enough of it left to matter. Never on maps that grow all year.
+        /// </summary>
+        public static bool GreenhouseSeason(Map map)
+        {
+            if (!SeasonUtil.HasSeasons(map)) return false;
+            SeasonUtil.Winter(map, out float daysUntil, out float length, out bool now);
+            if (daysUntil < 0f) return false;
+            if (now) return length >= 6f;
+            return daysUntil <= 12f && length >= 10f;
         }
 
         private static List<Spec> specs;
@@ -76,7 +91,8 @@ namespace ColonyCouncil
                         satisfied = m => RoomUtil.HasGreenhouse(m),
                         suggest = m => Avail.BestBuildable(m, Avail.IsHydroponics, "HydroponicsBasin") ?? Avail.BestBuildable(m, Avail.IsSunLamp, "SunLamp"),
                         templateDefName = "Council_Greenhouse",
-                        inspiration = null
+                        inspiration = null,
+                        needed = GreenhouseSeason
                     },
                     new Spec
                     {
@@ -110,6 +126,7 @@ namespace ColonyCouncil
                 var rec = pawn.skills.GetSkill(spec.skill);
                 if (rec == null || rec.TotallyDisabled || rec.passion == Passion.None) continue;
                 if (spec.satisfied(map)) continue;
+                if (spec.needed != null && !spec.needed(map)) continue;
                 // Animals: only once the colony actually keeps animals.
                 if (spec.skill == SkillDefOf.Animals && RoomUtil.ColonyAnimalCount(map) < 2) continue;
                 // Medicine: a hospital needs at least two people to look after.
@@ -134,6 +151,13 @@ namespace ColonyCouncil
         {
             var spec = SpecFor(wish);
             return spec == null || spec.satisfied(wish.Beneficiary.MapHeld);
+        }
+
+        public override bool StillValid(Wish wish)
+        {
+            var spec = SpecFor(wish);
+            var map = wish.Beneficiary?.MapHeld;
+            return spec == null || map == null || spec.needed == null || spec.needed(map);
         }
 
         public override RoomTemplateDef SuggestedTemplate(Wish wish)

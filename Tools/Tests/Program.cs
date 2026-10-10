@@ -64,5 +64,38 @@ for (int r = 0; r < 4; r++)
     Check(cells.Count == sx * sz && cells.All(c => c.Item1 >= mx && c.Item1 < mx + sx && c.Item2 >= mz && c.Item2 < mz + sz), $"rect r={r}");
 }
 
+// Mirroring flips west and east, keeps the rect inside, and mirroring twice is the identity.
+for (int x = 0; x < 7; x++)
+for (int z = 0; z < 5; z++)
+{
+    TemplateMath.Transform(x, z, 7, 5, true, 0, out int mx, out int mz);
+    Check(mx == 6 - x && mz == z, $"mirror ({x},{z})");
+    TemplateMath.Transform(mx, mz, 7, 5, true, 0, out int bx2, out int bz2);
+    Check(bx2 == x && bz2 == z, $"mirror twice ({x},{z})");
+}
+Check(TemplateMath.MirrorFacing(1) == 3 && TemplateMath.MirrorFacing(3) == 1 && TemplateMath.MirrorFacing(0) == 0 && TemplateMath.MirrorFacing(2) == 2, "mirror facing");
+
+// Transformed rects match transforming every cell, for every rotation, mirrored or not.
+foreach (bool mirror in new[] { false, true })
+for (int r = 0; r < 4; r++)
+{
+    TemplateMath.TransformRect(1, 2, 3, 2, 7, 6, mirror, r, out int mx, out int mz, out int sx, out int sz);
+    var cells = new HashSet<(int, int)>();
+    for (int x = 1; x < 4; x++)
+    for (int z = 2; z < 4; z++)
+    {
+        TemplateMath.Transform(x, z, 7, 6, mirror, r, out int rx, out int rz);
+        cells.Add((rx, rz));
+    }
+    Check(cells.Count == sx * sz && cells.All(c => c.Item1 >= mx && c.Item1 < mx + sx && c.Item2 >= mz && c.Item2 < mz + sz), $"transform rect m={mirror} r={r}");
+}
+
+// A facing vector transforms like the cells do: an east-pointing vector, mirrored, points west.
+{
+    TemplateMath.Transform(2, 2, 5, 5, true, 0, out int ax2, out int az2);
+    TemplateMath.Transform(3, 2, 5, 5, true, 0, out int bx3, out int bz3);
+    Check(bx3 - ax2 == -1 && bz3 - az2 == 0 && TemplateMath.TransformFacing(1, true, 0) == 3, "mirrored east vector points west");
+}
+
 Console.WriteLine(failures == 0 ? "All template math tests passed." : failures + " failure(s).");
 return failures == 0 ? 0 : 1;

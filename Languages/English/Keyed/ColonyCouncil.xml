@@ -370,7 +370,7 @@
 
   <!-- ===================== Room plans ===================== -->
   <CC_Build_Header>Room plans</CC_Build_Header>
-  <CC_Build_Sub>Templates adapt to your tech and materials. Click "Plan" and place the ghost (Q / E to rotate), or let the council find a spot.</CC_Build_Sub>
+  <CC_Build_Sub>Templates adapt to your tech and materials. Click "Plan": a panel lets you turn and mirror the room, move the door, pick materials and furniture. The same rooms are in the architect menu under "rooms".</CC_Build_Sub>
   <CC_Build_Plan>Plan</CC_Build_Plan>
   <CC_Build_Contains>Contains: {0}</CC_Build_Contains>
   <CC_Template_NoWalls>The colony can't build walls yet.</CC_Template_NoWalls>
@@ -379,18 +379,68 @@
   <CC_Plan_Blocked>Something is in the way (red cells).</CC_Plan_Blocked>
   <CC_Plan_DoorBlocked>The door can't go there.</CC_Plan_DoorBlocked>
   <CC_Plan_WillMine>{0} rock cell(s) will be mined out.</CC_Plan_WillMine>
-  <CC_Plan_Material>Walls: {0}</CC_Plan_Material>
-  <CC_Plan_NoMaterials>No wall materials in stock</CC_Plan_NoMaterials>
+  <CC_Plan_NoMaterials>None in stock</CC_Plan_NoMaterials>
   <CC_Plan_RotateLeft>Rotate left (Q)</CC_Plan_RotateLeft>
   <CC_Plan_RotateRight>Rotate right (E)</CC_Plan_RotateRight>
   <CC_Plan_FindSpot>Find a good spot</CC_Plan_FindSpot>
-  <CC_Plan_Floor>Lay floor: {0}</CC_Plan_Floor>
-  <CC_Plan_SpotFound>The council suggests a spot for the {0} (yellow outline). Click to place it there or anywhere you like.</CC_Plan_SpotFound>
+  <CC_Plan_SpotFound>The council suggests a spot for the {0} (yellow outline). Use "Place it there" in the panel, or click anywhere you like.</CC_Plan_SpotFound>
   <CC_Plan_NoSpot>The council couldn't find a good spot for the {0} near the colony. Place it by hand.</CC_Plan_NoSpot>
   <CC_Plan_Done>Planned {0}: {1} wall segment(s) and {2} piece(s) of furniture, walls in {3}.</CC_Plan_Done>
   <CC_Plan_Mined>{0} rock cell(s) marked for mining.</CC_Plan_Mined>
   <CC_Plan_Floors>{0} floor tile(s) of {1}.</CC_Plan_Floors>
-  <CC_Plan_Skipped>{0} piece(s) of furniture didn't fit and were skipped.</CC_Plan_Skipped>
+  <CC_Plan_Cut>{0} plant(s) marked for cutting.</CC_Plan_Cut>
+  <CC_Plan_Removed>{0} building(s) of yours marked for deconstruction.</CC_Plan_Removed>
+  <CC_Plan_Smoothed>{0} stone surface(s) marked for smoothing.</CC_Plan_Smoothed>
+  <CC_Plan_Queued>{0} piece(s) will be planned as soon as the way is clear.</CC_Plan_Queued>
+  <CC_Plan_QueueGaveUp>{0} waiting room-plan piece(s) dropped: what was in the way is staying put.</CC_Plan_QueueGaveUp>
+  <CC_Plan_Block_Edge>Too close to the map edge or unexplored ground.</CC_Plan_Block_Edge>
+  <CC_Plan_Block_Rock>Rock is in the way. Tick "mine rock" to dig it out.</CC_Plan_Block_Rock>
+  <CC_Plan_Block_Own>Your own buildings are in the way. Tick "replace my buildings" to take them down first.</CC_Plan_Block_Own>
+  <CC_Plan_Block_Ground>The ground can't carry walls here (water, marsh, mud?).</CC_Plan_Block_Ground>
+  <CC_Plan_Block_Other>Something you can't remove is in the way.</CC_Plan_Block_Other>
+  <CC_Plan_Block_DoorRock>Rock where the door goes. Tick "mine rock".</CC_Plan_Block_DoorRock>
+  <CC_Plan_Block_DoorOwn>One of your buildings sits where the door goes. Tick "replace my buildings", or move the door.</CC_Plan_Block_DoorOwn>
+  <CC_Plan_Block_Thing>{0} is in the way.</CC_Plan_Block_Thing>
+  <CC_Plan_Warn_Mountain>Under overhead mountain: insects can dig in here.</CC_Plan_Warn_Mountain>
+  <CC_Plan_Warn_Zone>{0} growing-zone cell(s) will be removed from the field.</CC_Plan_Warn_Zone>
+  <CC_Plan_Warn_Mine>{0} cell(s) to mine first.</CC_Plan_Warn_Mine>
+  <CC_Plan_Warn_Deconstruct>{0} of your buildings will be taken down.</CC_Plan_Warn_Deconstruct>
+  <CC_Plan_Warn_Waiting>{0} piece(s) wait until the way is clear, then go down by themselves.</CC_Plan_Warn_Waiting>
+  <CC_Plan_Warn_FurnitureBlocked>{0} piece(s) of furniture don't fit here and will be left out.</CC_Plan_Warn_FurnitureBlocked>
+  <CC_Plan_Warn_DoorFacesWall>The door opens onto a wall. Move the door or turn the room.</CC_Plan_Warn_DoorFacesWall>
+  <CC_Planner_Size>{0} x {1} inside, walls around it</CC_Planner_Size>
+  <CC_Planner_Mirror>Mirror</CC_Planner_Mirror>
+  <CC_Planner_Mirrored>Mirrored</CC_Planner_Mirrored>
+  <CC_Planner_DoorLeft>&lt; Door</CC_Planner_DoorLeft>
+  <CC_Planner_DoorRight>Door &gt;</CC_Planner_DoorRight>
+  <CC_Planner_PlaceThere>Place it there</CC_Planner_PlaceThere>
+  <CC_Planner_Materials>MATERIALS</CC_Planner_Materials>
+  <CC_Planner_Walls>Walls</CC_Planner_Walls>
+  <CC_Planner_Door>Door</CC_Planner_Door>
+  <CC_Planner_Floor>Floor</CC_Planner_Floor>
+  <CC_Planner_NoFloor>No floor</CC_Planner_NoFloor>
+  <CC_Planner_Furniture>Furniture (click a piece to swap it)</CC_Planner_Furniture>
+  <CC_Planner_NoVariants>Nothing else the colony can build fits there.</CC_Planner_NoVariants>
+  <CC_Planner_Clearing>CLEARING THE SITE</CC_Planner_Clearing>
+  <CC_Planner_CutPlants>Cut plants and trees</CC_Planner_CutPlants>
+  <CC_Planner_CutPlants_Tip>Marks plants in the walls, under furniture and inside the room for cutting (ripe crops and trees are harvested). Fields inside the room are taken out of the growing zone.</CC_Planner_CutPlants_Tip>
+  <CC_Planner_MineRock>Mine rock</CC_Planner_MineRock>
+  <CC_Planner_MineRock_Tip>Rock inside the room, in the doorway and right outside the door is marked for mining. Rock in the walls is kept as wall. Furniture on mined cells is planned once the rock is gone.</CC_Planner_MineRock_Tip>
+  <CC_Planner_ReplaceOwn>Replace my buildings in the way</CC_Planner_ReplaceOwn>
+  <CC_Planner_ReplaceOwn_Tip>Your own buildings inside the room or in its walls are marked for deconstruction, and the plan follows once they're gone. Off by default for a reason.</CC_Planner_ReplaceOwn_Tip>
+  <CC_Planner_Smooth>Smooth the stone</CC_Planner_Smooth>
+  <CC_Planner_Smooth_Tip>Natural rock walls and rough stone floors are marked for smoothing. Smooth stone is pretty and costs nothing but time.</CC_Planner_Smooth_Tip>
+  <CC_Planner_Cost>COST HERE (NEEDED / IN STOCK)</CC_Planner_Cost>
+  <CC_Planner_Free>Nothing to buy: it's all there already.</CC_Planner_Free>
+  <CC_Planner_CostLine>{0}: {1} / {2}</CC_Planner_CostLine>
+  <CC_Settings_Interface>Interface</CC_Settings_Interface>
+  <CC_Settings_ButtonPosition>Council button in the bottom bar</CC_Settings_ButtonPosition>
+  <CC_Settings_ButtonPosition_Note>Moves straight away in a running game.</CC_Settings_ButtonPosition_Note>
+  <CC_ButtonPos_BeforeMenu>At the right end (before Menu)</CC_ButtonPos_BeforeMenu>
+  <CC_ButtonPos_AfterResearch>After Research</CC_ButtonPos_AfterResearch>
+  <CC_ButtonPos_AfterHistory>After History</CC_ButtonPos_AfterHistory>
+  <CC_ButtonPos_AfterWork>After Work</CC_ButtonPos_AfterWork>
+  <CC_Plan_Skipped>{0} piece(s) of furniture didn't fit and were left out.</CC_Plan_Skipped>
 
   <!-- ===================== Personal touches ===================== -->
   <CC_Touch_Message>{PAWN_labelShort} planned {THING} for {PAWN_possessive} bedroom (cancel the blueprint if you'd rather not).</CC_Touch_Message>

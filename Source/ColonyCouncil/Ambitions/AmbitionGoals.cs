@@ -165,6 +165,15 @@ namespace ColonyCouncil
 
     public class Goal_Greenhouse : AmbitionGoal
     {
+        /// <summary>Only where winter actually stops the fields, and only with hydroponics or sun lamps.</summary>
+        public override bool Possible(Map map)
+        {
+            if (!SeasonUtil.HasSeasons(map)) return false;
+            SeasonUtil.Winter(map, out float daysUntil, out float length, out _);
+            if (daysUntil < 0f || length < 10f) return false;
+            return Avail.AnyBuildable(map, Avail.IsHydroponics) || Avail.AnyBuildable(map, Avail.IsSunLamp);
+        }
+
         public override float Progress(Map map, float baseline) => RoomUtil.HasGreenhouse(map, 20) ? 1f : 0f;
 
         public override string Describe(Map map, float baseline) => "CC_Goal_Greenhouse".Translate();

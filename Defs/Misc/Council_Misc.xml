@@ -6,9 +6,55 @@
     <label>council</label>
     <description>The colony council: what the colony needs most, what your colonists are wishing for, the ambition you are working towards, room plans, and the chronicle of it all.</description>
     <tabWindowClass>ColonyCouncil.MainTabWindow_Council</tabWindowClass>
-    <order>45</order>
+    <order>1000</order>
     <iconPath>ColonyCouncil/UI/MainButton</iconPath>
   </MainButtonDef>
+
+  <!-- Whole-room plans in the architect menu. The order is set at startup to sit right after Structure. -->
+  <DesignationCategoryDef>
+    <defName>Council_Rooms</defName>
+    <label>rooms</label>
+    <description>Whole rooms planned by the colony council: walls, door, furniture and floor in one go, adapted to what your colony can build. Pick one to open the planner.</description>
+    <order>650</order>
+    <specialDesignatorClasses>
+      <li>ColonyCouncil.Designator_RoomSlot0</li>
+      <li>ColonyCouncil.Designator_RoomSlot1</li>
+      <li>ColonyCouncil.Designator_RoomSlot2</li>
+      <li>ColonyCouncil.Designator_RoomSlot3</li>
+      <li>ColonyCouncil.Designator_RoomSlot4</li>
+      <li>ColonyCouncil.Designator_RoomSlot5</li>
+      <li>ColonyCouncil.Designator_RoomSlot6</li>
+      <li>ColonyCouncil.Designator_RoomSlot7</li>
+      <li>ColonyCouncil.Designator_RoomSlot8</li>
+      <li>ColonyCouncil.Designator_RoomSlot9</li>
+      <li>ColonyCouncil.Designator_RoomSlot10</li>
+      <li>ColonyCouncil.Designator_RoomSlot11</li>
+      <li>ColonyCouncil.Designator_RoomSlot12</li>
+      <li>ColonyCouncil.Designator_RoomSlot13</li>
+      <li>ColonyCouncil.Designator_RoomSlot14</li>
+      <li>ColonyCouncil.Designator_RoomSlot15</li>
+      <li>ColonyCouncil.Designator_RoomSlot16</li>
+      <li>ColonyCouncil.Designator_RoomSlot17</li>
+      <li>ColonyCouncil.Designator_RoomSlot18</li>
+      <li>ColonyCouncil.Designator_RoomSlot19</li>
+      <li>ColonyCouncil.Designator_RoomSlot20</li>
+      <li>ColonyCouncil.Designator_RoomSlot21</li>
+      <li>ColonyCouncil.Designator_RoomSlot22</li>
+      <li>ColonyCouncil.Designator_RoomSlot23</li>
+      <li>ColonyCouncil.Designator_RoomSlot24</li>
+      <li>ColonyCouncil.Designator_RoomSlot25</li>
+      <li>ColonyCouncil.Designator_RoomSlot26</li>
+      <li>ColonyCouncil.Designator_RoomSlot27</li>
+      <li>ColonyCouncil.Designator_RoomSlot28</li>
+      <li>ColonyCouncil.Designator_RoomSlot29</li>
+      <li>ColonyCouncil.Designator_RoomSlot30</li>
+      <li>ColonyCouncil.Designator_RoomSlot31</li>
+      <li>ColonyCouncil.Designator_RoomSlot32</li>
+      <li>ColonyCouncil.Designator_RoomSlot33</li>
+      <li>ColonyCouncil.Designator_RoomSlot34</li>
+      <li>ColonyCouncil.Designator_RoomSlot35</li>
+    </specialDesignatorClasses>
+  </DesignationCategoryDef>
 
   <LetterDef>
     <defName>Council_MeetingLetter</defName>
