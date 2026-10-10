@@ -627,4 +627,65 @@
   <CC_AlmanacCat_Odyssey>Odyssey</CC_AlmanacCat_Odyssey>
   <CC_AlmanacCat_Numbers>Numbers to know</CC_AlmanacCat_Numbers>
 
+  <!-- Advisor: research-based checks -->
+  <CC_Adv_ButcherInKitchen_Title>Butchering in the kitchen</CC_Adv_ButcherInKitchen_Title>
+  <CC_Adv_ButcherInKitchen_Detail>The {0} shares a room with the stove. Butchering spatters blood and makes the kitchen filthy, and filthy kitchens make food poisoning far more likely. Move it to its own room next door.</CC_Adv_ButcherInKitchen_Detail>
+  <CC_Adv_DirtyKitchen_Title>The kitchen is dirty</CC_Adv_DirtyKitchen_Title>
+  <CC_Adv_DirtyKitchen_Detail>Kitchen cleanliness is {0}. Dirty kitchens poison people. Have someone clean it, and lay a proper floor if it's bare ground.</CC_Adv_DirtyKitchen_Detail>
+  <CC_Adv_NoCleaner_Title>Nobody is cleaning</CC_Adv_NoCleaner_Title>
+  <CC_Adv_NoCleaner_Detail>No colonist has Cleaning switched on. Filth will pile up in the kitchen, hospital and dining room, dragging down mood and health. Give it to someone in the Work tab.</CC_Adv_NoCleaner_Detail>
+  <CC_Adv_DirtyHospital_Title>The hospital is dirty</CC_Adv_DirtyHospital_Title>
+  <CC_Adv_DirtyHospital_Detail>Hospital cleanliness is {0}. Dirt raises the chance of infections and failed surgery.</CC_Adv_DirtyHospital_Detail>
+  <CC_Adv_Fire_Title>Fire risk</CC_Adv_Fire_Title>
+  <CC_Adv_Fire_Rooms>{0} room(s) have an open flame inside wooden walls.</CC_Adv_Fire_Rooms>
+  <CC_Adv_Fire_Walls>{0} of the colony's walls are wooden.</CC_Adv_Fire_Walls>
+  <CC_Adv_Fire_Detail>One stray spark and it all goes up. Rebuild the walls around fires, storerooms and bedrooms in {0}.</CC_Adv_Fire_Detail>
+  <CC_StoneGeneric>stone blocks</CC_StoneGeneric>
+  <CC_Adv_Infestation_Title>Insects could dig in</CC_Adv_Infestation_Title>
+  <CC_Adv_Infestation_Detail>{0} cells of the home area lie under thick overhead mountain, where insect hives can appear when it's warm.</CC_Adv_Infestation_Detail>
+  <CC_Adv_Infestation_Turret>A {0} or two covering the deep rooms would help when they come.</CC_Adv_Infestation_Turret>
+  <CC_Adv_Infestation_LowTech>Keep fighters with good melee weapons near the deep rooms, and don't store anything precious there.</CC_Adv_Infestation_LowTech>
+  <CC_Adv_Corpses_Title>{0} bodies lying around the colony</CC_Adv_Corpses_Title>
+  <CC_Adv_Corpses_Detail>Seeing the dead sours everyone's mood, and the smell of rot is worse.</CC_Adv_Corpses_Detail>
+  <CC_Adv_Corpses_GraveOrBurn>Bury colonists in a {0}; burn strangers in a {1} or dump them far away.</CC_Adv_Corpses_GraveOrBurn>
+  <CC_Adv_Corpses_Grave>Bury them in a {0}, or set up a dumping stockpile far from the base.</CC_Adv_Corpses_Grave>
+  <CC_Adv_Corpses_Dump>Set up a dumping stockpile far from the base, out of sight.</CC_Adv_Corpses_Dump>
+  <CC_Adv_Blight_Title>Blight in the fields ({0} plants)</CC_Adv_Blight_Title>
+  <CC_Adv_Blight_Detail>Blight spreads to nearby crops. Cut the blighted plants now, before it takes the whole field.</CC_Adv_Blight_Detail>
+  <CC_Adv_HarvestFrost_Title>Harvest before the frost</CC_Adv_HarvestFrost_Title>
+  <CC_Adv_HarvestFrost_Detail>It's {1} outside and getting colder, and {0} plants are ripe enough to harvest. Frost kills crops; harvest them now.</CC_Adv_HarvestFrost_Detail>
+  <CC_Adv_Expectations_Title>Expectations are about to rise ({0})</CC_Adv_Expectations_Title>
+  <CC_Adv_Expectations_Detail>About {0} more wealth and everyone's expectations rise to "{1}": their mood cushion shrinks, and they'll want {2} kinds of recreation. Make sure moods can take it, or spend wealth on things that make people happy.</CC_Adv_Expectations_Detail>
+  <CC_Adv_NoWarden_Title>Nobody is guarding the prisoners</CC_Adv_NoWarden_Title>
+  <CC_Adv_NoWarden_Detail>{0} prisoner(s), and no colonist has Warden work switched on. They won't be fed, talked to or recruited.</CC_Adv_NoWarden_Detail>
+  <CC_Adv_HungryPrisoner_Title>A prisoner is starving</CC_Adv_HungryPrisoner_Title>
+  <CC_Adv_HungryPrisoner_Detail>{0} is close to starving. Check that a warden can reach the cell and there's food to bring.</CC_Adv_HungryPrisoner_Detail>
+  <CC_Adv_PrisonerBed_Title>A prisoner has no bed</CC_Adv_PrisonerBed_Title>
+  <CC_Adv_PrisonerBed_Detail>Prisoners need a prisoner bed in a cell. Without one they sleep on the floor and grow harder to recruit.</CC_Adv_PrisonerBed_Detail>
+  <CC_Adv_Dark_Title>{0} room(s) with no light</CC_Adv_Dark_Title>
+  <CC_Adv_Dark_Detail>Colonists in the dark work slower and get a mood penalty. {0} in each would fix it.</CC_Adv_Dark_Detail>
+  <CC_Adv_Cond_Unknown>an unknown time</CC_Adv_Cond_Unknown>
+  <CC_Adv_Cond_ToxicFallout_Title>Toxic fallout</CC_Adv_Cond_ToxicFallout_Title>
+  <CC_Adv_Cond_ToxicFallout_Detail>Poison is falling from the sky ({0} left). Everyone outdoors slowly builds up toxic buildup. Restrict colonists to roofed areas, bring animals inside if you can, and expect outdoor plants to die.</CC_Adv_Cond_ToxicFallout_Detail>
+  <CC_Adv_Cond_VolcanicWinter_Title>Volcanic winter</CC_Adv_Cond_VolcanicWinter_Title>
+  <CC_Adv_Cond_VolcanicWinter_Detail>Ash dims the sun for a long while ({0} left): it's colder and crops grow slower. Stock extra food and fuel.</CC_Adv_Cond_VolcanicWinter_Detail>
+  <CC_Adv_Cond_SolarFlare_Title>Solar flare</CC_Adv_Cond_SolarFlare_Title>
+  <CC_Adv_Cond_SolarFlare_Detail>Electrical devices are dead ({0} left). Freezers warm up, hydroponics wither and turrets fall silent. Keep the freezer door shut and fighters ready.</CC_Adv_Cond_SolarFlare_Detail>
+  <CC_Adv_Cond_HeatWave_Title>Heat wave</CC_Adv_Cond_HeatWave_Title>
+  <CC_Adv_Cond_HeatWave_Detail>Dangerous heat ({0} left). Keep colonists indoors in cooled rooms during the hottest hours, watch for heatstroke, and keep the freezer closed.</CC_Adv_Cond_HeatWave_Detail>
+  <CC_Adv_Cond_ColdSnap_Title>Cold snap</CC_Adv_Cond_ColdSnap_Title>
+  <CC_Adv_Cond_ColdSnap_Detail>A sudden freeze ({0} left). Harvest what's ripe, warm the bedrooms, and dress people properly before they go out.</CC_Adv_Cond_ColdSnap_Detail>
+  <CC_Adv_Cond_Flashstorm_Title>Flashstorm</CC_Adv_Cond_Flashstorm_Title>
+  <CC_Adv_Cond_Flashstorm_Detail>Lightning without rain ({0} left): fires will start. Keep firefighters at home and stay clear of dry brush.</CC_Adv_Cond_Flashstorm_Detail>
+  <CC_Adv_Cond_PsychicDrone_Title>Psychic drone</CC_Adv_Cond_PsychicDrone_Title>
+  <CC_Adv_Cond_PsychicDrone_Detail>A drone grinds on the minds of one gender ({0} left). Watch moods: give recreation time, good food and rest to those affected.</CC_Adv_Cond_PsychicDrone_Detail>
+  <CC_Adv_Cond_NoxiousHaze_Title>Noxious haze</CC_Adv_Cond_NoxiousHaze_Title>
+  <CC_Adv_Cond_NoxiousHaze_Detail>Polluted haze ({0} left). Keep people indoors where you can; it harms lungs over time.</CC_Adv_Cond_NoxiousHaze_Detail>
+  <CC_Adv_Cond_Drought_Title>Drought</CC_Adv_Cond_Drought_Title>
+  <CC_Adv_Cond_Drought_Detail>The land is parched ({0} left). Crops grow poorly; lean on stores, hunting and trade.</CC_Adv_Cond_Drought_Detail>
+  <CC_Adv_Cond_Eclipse_Title>Eclipse</CC_Adv_Cond_Eclipse_Title>
+  <CC_Adv_Cond_Eclipse_Detail>The sun is gone for a while ({0} left). Solar panels are useless and outdoor crops stall; lean on batteries and other power.</CC_Adv_Cond_Eclipse_Detail>
+  <CC_Adv_Cond_Aurora_Title>Aurora</CC_Adv_Cond_Aurora_Title>
+  <CC_Adv_Cond_Aurora_Detail>Lights dance across the sky ({0} left). Colonists who see it feel better; a good night for a walk outside.</CC_Adv_Cond_Aurora_Detail>
+
 </LanguageData>
