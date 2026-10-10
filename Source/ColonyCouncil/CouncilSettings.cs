@@ -43,6 +43,8 @@ namespace ColonyCouncil
         public bool selfHelp = true;
         public bool allowQuitting = true;
         public bool risingStandards = true;
+        public bool enableDilemmas = true;
+        public float daysBetweenDilemmas = 8f;
         public bool eventWishes = true;
         public bool reminders = true;
         public bool wishesForOthers = true;
@@ -91,6 +93,8 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref selfHelp, "selfHelp", true);
             Scribe_Values.Look(ref allowQuitting, "allowQuitting", true);
             Scribe_Values.Look(ref risingStandards, "risingStandards", true);
+            Scribe_Values.Look(ref enableDilemmas, "enableDilemmas", true);
+            Scribe_Values.Look(ref daysBetweenDilemmas, "daysBetweenDilemmas", 8f);
             Scribe_Values.Look(ref eventWishes, "eventWishes", true);
             Scribe_Values.Look(ref reminders, "reminders", true);
             Scribe_Values.Look(ref wishesForOthers, "wishesForOthers", true);
@@ -179,6 +183,12 @@ namespace ColonyCouncil
             l.CheckboxLabeled("CC_Settings_SelfHelp".Translate(), ref selfHelp, "CC_Settings_SelfHelp_Tip".Translate());
             l.CheckboxLabeled("CC_Settings_Quitting".Translate(), ref allowQuitting, "CC_Settings_Quitting_Tip".Translate());
             l.CheckboxLabeled("CC_Settings_Standards".Translate(), ref risingStandards, "CC_Settings_Standards_Tip".Translate());
+            l.CheckboxLabeled("CC_Settings_Dilemmas".Translate(), ref enableDilemmas, "CC_Settings_Dilemmas_Tip".Translate());
+            if (enableDilemmas)
+            {
+                daysBetweenDilemmas = l.SliderLabeled("CC_Settings_DaysBetweenDilemmas".Translate(daysBetweenDilemmas.ToString("0")), daysBetweenDilemmas, 3f, 30f, 0.6f);
+                daysBetweenDilemmas = Mathf.Round(daysBetweenDilemmas);
+            }
             l.CheckboxLabeled("CC_Settings_ForOthers".Translate(), ref wishesForOthers, "CC_Settings_ForOthers_Tip".Translate());
             l.CheckboxLabeled("CC_Settings_Petitions".Translate(), ref petitions, "CC_Settings_Petitions_Tip".Translate());
             l.CheckboxLabeled("CC_Settings_WishLetters".Translate(), ref wishLetters, "CC_Settings_WishLetters_Tip".Translate());
@@ -260,6 +270,8 @@ namespace ColonyCouncil
             selfHelp = d.selfHelp;
             allowQuitting = d.allowQuitting;
             risingStandards = d.risingStandards;
+            enableDilemmas = d.enableDilemmas;
+            daysBetweenDilemmas = d.daysBetweenDilemmas;
             eventWishes = d.eventWishes;
             reminders = d.reminders;
             wishesForOthers = d.wishesForOthers;

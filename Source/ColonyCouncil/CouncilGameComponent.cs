@@ -20,6 +20,7 @@ namespace ColonyCouncil
         public PersonalTouchTracker touches = new PersonalTouchTracker();
         public StandingTracker standings = new StandingTracker();
         public DecreeTracker decrees = new DecreeTracker();
+        public DilemmaTracker dilemmas = new DilemmaTracker();
         public int nextWishId = 1;
 
         private Dictionary<string, int> cooldowns = new Dictionary<string, int>();
@@ -47,6 +48,7 @@ namespace ColonyCouncil
             Scribe_Deep.Look(ref touches, "touches");
             Scribe_Deep.Look(ref standings, "standings");
             Scribe_Deep.Look(ref decrees, "decrees");
+            Scribe_Deep.Look(ref dilemmas, "dilemmas");
             Scribe_Values.Look(ref nextWishId, "nextWishId", 1);
             Scribe_Collections.Look(ref cooldowns, "cooldowns", LookMode.Value, LookMode.Value, ref tmpKeys, ref tmpValues);
             if (Scribe.mode == LoadSaveMode.PostLoadInit)
@@ -58,6 +60,7 @@ namespace ColonyCouncil
                 if (touches == null) touches = new PersonalTouchTracker();
                 if (standings == null) standings = new StandingTracker();
                 if (decrees == null) decrees = new DecreeTracker();
+                if (dilemmas == null) dilemmas = new DilemmaTracker();
                 wishes.RemoveAll(w => w == null || w.def == null || w.pawn == null);
             }
         }
@@ -78,6 +81,7 @@ namespace ColonyCouncil
             if (Find.TickManager.TicksGame % GenDate.TicksPerDay < HourTicks) Safe("daily", Daily);
             if (Settings.enableAmbitions) Safe("ambitions", () => ambitions.HourlyTick(this));
             if (Settings.enablePersonalTouches) Safe("personal touches", () => touches.HourlyTick(this));
+            Safe("dilemmas", dilemmas.Hourly);
         }
 
         private static void Safe(string context, Action action)

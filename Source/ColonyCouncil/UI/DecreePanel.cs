@@ -21,6 +21,10 @@ namespace ColonyCouncil
             Text.Font = GameFont.Medium;
             Widgets.Label(new Rect(rect.x, rect.y, rect.width, 32f), "CC_Decrees_Header".Translate());
             Text.Font = GameFont.Small;
+            if (Prefs.DevMode && Widgets.ButtonText(new Rect(rect.xMax - 180f, rect.y, 180f, 28f), "CC_Dev_Dilemma".Translate()))
+            {
+                if (!comp.dilemmas.TryFire(true)) Messages.Message("No dilemma could happen right now.", MessageTypeDefOf.RejectInput, false);
+            }
             float y = rect.y + 34f;
             y += Label(rect.x, y, rect.width, "CC_Decrees_Sub".Translate(DecreeTracker.MaxActive), Faint) + 4f;
 

@@ -841,4 +841,18 @@ Granting one of {PAWN_possessive} wishes, or keeping a promise, can win {PAWN_ob
   <CC_Chronicle_DecreeExpired>{0} came to an end.</CC_Chronicle_DecreeExpired>
   <CC_Log_Decree>living under {0}</CC_Log_Decree>
 
+  <!-- Dilemmas -->
+  <CC_Dilemma_Title>Dilemma: {0}</CC_Dilemma_Title>
+  <CC_Dilemma_Deadline>The council has {0} to decide. If nobody does: "{1}".</CC_Dilemma_Deadline>
+  <CC_Dilemma_NoAnswer>The council never answered.</CC_Dilemma_NoAnswer>
+  <CC_Chronicle_Dilemma>{0}: the council chose "{1}".</CC_Chronicle_Dilemma>
+  <CC_Log_Dilemma>{0}</CC_Log_Dilemma>
+  <CC_Dilemma_NotEnough>Needs {0} {1}</CC_Dilemma_NotEnough>
+  <CC_Dilemma_RawFood>raw food</CC_Dilemma_RawFood>
+  <CC_Dilemma_BreakReason>The council's answer was too much.</CC_Dilemma_BreakReason>
+  <CC_Settings_Dilemmas>Council dilemmas: hard choices now and then</CC_Settings_Dilemmas>
+  <CC_Settings_Dilemmas_Tip>Every so often the council has to settle something: a thief, a feud, a forgotten stash, a confession. Every answer costs someone something. They come more often while everyone is happy.</CC_Settings_Dilemmas_Tip>
+  <CC_Settings_DaysBetweenDilemmas>Days between dilemmas: about {0}</CC_Settings_DaysBetweenDilemmas>
+  <CC_Dev_Dilemma>Dev: dilemma now</CC_Dev_Dilemma>
+
 </LanguageData>

@@ -44,4 +44,14 @@
     <bounce>true</bounce>
   </LetterDef>
 
+  <LetterDef>
+    <defName>Council_DilemmaLetter</defName>
+    <letterClass>ColonyCouncil.ChoiceLetter_Dilemma</letterClass>
+    <color>(215, 170, 90)</color>
+    <flashColor>(240, 200, 120)</flashColor>
+    <flashInterval>90</flashInterval>
+    <arriveSound>LetterArrive</arriveSound>
+    <bounce>true</bounce>
+  </LetterDef>
+
 </Defs>

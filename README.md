@@ -96,6 +96,14 @@ to their nature: the industrious like long hours and the lazy hate them, ascetic
 love drills, gourmands suffer under rationing. The tab shows who will love or hate each one before you decide, and
 living under a decree you hate wears down your trust in the council.
 
+### Dilemmas: hard choices
+Every week or so (sooner while everyone is content) the council has to settle something, and every answer costs
+someone. A thief caught in the stores: forgive, make them work it off, or make an example of them? Two colonists
+at each other's throats: take a side, force them to work together, or stay out of it and risk a brawl? A forgotten
+stash of beer, a cook who wants to spend the stores on one magnificent feast, a colonist who quietly admits they
+can't cope. Kind, greedy, industrious and teetotal colonists all react differently. Leave a dilemma unanswered and
+the council's silence decides for you.
+
 ### Ambition: council meetings
 About once a quadrum, in the evening, the council actually **meets**: colonists gather around the dining
 table, in the rec room, by the campfire or in the open. Three of them pitch an ambition out loud, others back
