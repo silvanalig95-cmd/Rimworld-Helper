@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ModMetaData>
+  <packageId>silvanalig.colonycouncil</packageId>
+  <name>Colony Council: Wishes &amp; Plans</name>
+  <author>silvanalig</author>
+  <modVersion>0.1.0</modVersion>
+  <supportedVersions>
+    <li>1.6</li>
+  </supportedVersions>
+  <description>The colony tells you what it needs. Your colonists tell you what they want. You decide.
+
+[b]Advisor[/b]
+A "Council" tab that ranks what your colony needs next: food before winter, defences against your growing wealth, bedrooms, heat, medicine, recreation and more. Every point explains why it matters, so you learn the game while you play.
+
+[b]Wishes[/b]
+Colonists occasionally voice wishes driven by their traits, passions, relationships and mood: "I want my own room", "let me have a proper workshop", "bury my friend", "my partner and I would like to share a bed". Grant them for a mood boost and maybe an inspiration. Kind colonists ask on behalf of others, abrasive ones demand, ascetics turn down luxury. Several colonists wanting the same thing turn into a petition.
+
+[b]Council meetings[/b]
+About once a season the council meets and three colonists each pitch an ambition: a real hospital, a winter larder, a stronger gate. Pick one, work towards it, and the whole colony celebrates when it's done.
+
+[b]Build help[/b]
+Room templates with a ghost preview (bedroom, workshop, kitchen, hospital, freezer, dining hall and more). Click a wish or advice item to plan the matching room, or let the council find a spot. Colonists sometimes add personal touches to their own bedrooms.
+
+[b]Fits your world[/b]
+Everything adapts to your tech level, research, materials and DLCs. A medieval colony gets asked for torches, campfires and spike traps, never turrets or heaters. Works with modded furniture by checking what a building does rather than its name.
+
+[b]RimTalk[/b]
+Optional. If RimTalk is active, colonists know about their wishes and the colony's ambition and talk about them in AI-generated dialogue.
+
+Everything is optional and configurable. By default, ignoring a wish costs nothing.</description>
+  <loadAfter>
+    <li>Ludeon.RimWorld</li>
+    <li>Ludeon.RimWorld.Royalty</li>
+    <li>Ludeon.RimWorld.Ideology</li>
+    <li>Ludeon.RimWorld.Biotech</li>
+    <li>Ludeon.RimWorld.Anomaly</li>
+    <li>Ludeon.RimWorld.Odyssey</li>
+    <li>brrainz.harmony</li>
+    <li>cj.rimtalk</li>
+  </loadAfter>
+</ModMetaData>

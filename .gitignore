@@ -1,0 +1,8 @@
+Source/**/bin/
+Source/**/obj/
+Tools/**/bin/
+Tools/**/obj/
+*.pdb
+*.user
+.vs/
+.idea/

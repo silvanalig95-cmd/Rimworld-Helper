@@ -1,0 +1,414 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using RimWorld;
+using Verse;
+
+namespace ColonyCouncil
+{
+    /// <summary>
+    /// "What can this colony actually do right now?"
+    ///
+    /// Every suggestion the mod makes goes through here, so that a medieval colony is never asked for
+    /// a turret and a tribe is never told to build a heater. Buildings are recognised by what they do
+    /// (they heat, they glow, they hold patients) rather than by vanilla defNames, so modded content
+    /// such as Medieval Overhaul furniture counts automatically.
+    /// </summary>
+    public static class Avail
+    {
+        // ---------- Tech & research ----------
+
+        public static TechLevel PlayerTech
+        {
+            get
+            {
+                var tech = Faction.OfPlayerSilentFail?.def?.techLevel ?? TechLevel.Industrial;
+                return tech == TechLevel.Undefined ? TechLevel.Industrial : tech;
+            }
+        }
+
+        /// <summary>The most advanced tech level the colony has actually researched something in.</summary>
+        public static TechLevel ResearchedTech
+        {
+            get
+            {
+                RefreshCache();
+                return researchedTech;
+            }
+        }
+
+        /// <summary>The era the colony "lives in": its faction level or what it has researched, whichever is higher.</summary>
+        public static TechLevel EffectiveTech => PlayerTech > ResearchedTech ? PlayerTech : ResearchedTech;
+
+        public static bool IsPreIndustrial => EffectiveTech <= TechLevel.Medieval && !HasElectricity;
+
+        public static bool ResearchDone(string defName)
+        {
+            var r = DefDatabase<ResearchProjectDef>.GetNamedSilentFail(defName);
+            return r != null && r.IsFinished;
+        }
+
+        public static bool HasElectricity
+        {
+            get
+            {
+                RefreshCache();
+                return hasElectricity;
+            }
+        }
+
+        // ---------- Buildability ----------
+
+        /// <summary>
+        /// Can the player place this right now? Research done, shows up in the build menu, building
+        /// prerequisites met, and if it needs power the colony at least knows electricity.
+        /// </summary>
+        public static bool CanBuild(BuildableDef def, Map map = null)
+        {
+            if (def == null) return false;
+            if (!def.BuildableByPlayer) return false;
+            if (!def.IsResearchFinished) return false;
+            if (map != null && def.buildingPrerequisites != null)
+            {
+                foreach (var pre in def.buildingPrerequisites)
+                {
+                    if (!map.listerBuildings.ColonistsHaveBuilding(pre)) return false;
+                }
+            }
+            if (def is ThingDef td && NeedsPower(td) && !HasElectricity) return false;
+            return true;
+        }
+
+        public static bool NeedsPower(ThingDef td)
+        {
+            if (td?.comps == null) return false;
+            foreach (var c in td.comps)
+            {
+                if (c is CompProperties_Power p && p.compClass != null && typeof(CompPowerTrader).IsAssignableFrom(p.compClass)
+                    && !typeof(CompPowerPlant).IsAssignableFrom(p.compClass) && p.PowerConsumption > 0f)
+                    return true;
+            }
+            return false;
+        }
+
+        /// <summary>Picks the stuff the colony has the most of (and enough of, if possible) for a buildable.</summary>
+        public static ThingDef BestStuff(BuildableDef def, Map map, int needed = -1)
+        {
+            if (def == null || !def.MadeFromStuff) return null;
+            if (needed < 0) needed = def.CostStuffCount;
+            ThingDef best = null;
+            int bestCount = -1;
+            ThingDef bestEnough = null;
+            int bestEnoughCount = -1;
+            foreach (var stuff in GenStuff.AllowedStuffsFor(def))
+            {
+                int count = map != null ? map.resourceCounter.GetCount(stuff) : 0;
+                if (count > bestCount)
+                {
+                    best = stuff;
+                    bestCount = count;
+                }
+                if (count >= needed && count > bestEnoughCount)
+                {
+                    bestEnough = stuff;
+                    bestEnoughCount = count;
+                }
+            }
+            if (bestEnough != null) return bestEnough;
+            if (best != null && bestCount > 0) return best;
+            return GenStuff.DefaultStuffFor(def);
+        }
+
+        /// <summary>
+        /// Does the colony have (or can it easily get) the materials for one of these? Wood counts as
+        /// obtainable when there are trees on the map; stone blocks count when there are chunks.
+        /// </summary>
+        public static bool MaterialsWithinReach(BuildableDef def, Map map, ThingDef stuff = null)
+        {
+            if (def == null || map == null) return false;
+            if (def.MadeFromStuff)
+            {
+                stuff = stuff ?? BestStuff(def, map);
+                if (stuff == null) return false;
+                if (!HaveOrCanGet(stuff, def.CostStuffCount, map)) return false;
+            }
+            if (def.CostList != null)
+            {
+                foreach (var cost in def.CostList)
+                {
+                    if (!HaveOrCanGet(cost.thingDef, cost.count, map)) return false;
+                }
+            }
+            return true;
+        }
+
+        private static bool HaveOrCanGet(ThingDef thing, int count, Map map)
+        {
+            if (thing == null) return true;
+            int have = map.resourceCounter.GetCount(thing);
+            if (have >= count) return true;
+            if (thing == ThingDefOf.WoodLog && map.listerThings.ThingsInGroup(ThingRequestGroup.HarvestablePlant).Count > 0)
+                return true;
+            if (thing.stuffProps != null && thing.stuffProps.categories != null
+                && thing.stuffProps.categories.Contains(StuffCategoryDefOf.Stony)
+                && map.listerThings.ThingsInGroup(ThingRequestGroup.Chunk).Count > 0)
+                return true;
+            return false;
+        }
+
+        // ---------- Finding the right building for a job ----------
+
+        /// <summary>
+        /// The best buildable for a purpose: preferred vanilla defNames first (if buildable), otherwise
+        /// any buildable def matching the predicate, cheapest first. Null if the colony can't build one.
+        /// </summary>
+        public static ThingDef BestBuildable(Map map, Func<ThingDef, bool> pred, params string[] preferred)
+        {
+            if (preferred != null)
+            {
+                foreach (var name in preferred)
+                {
+                    var d = DefDatabase<ThingDef>.GetNamedSilentFail(name);
+                    if (d != null && pred(d) && CanBuild(d, map)) return d;
+                }
+            }
+            ThingDef best = null;
+            float bestCost = float.MaxValue;
+            foreach (var d in AllBuildings)
+            {
+                if (!pred(d) || !CanBuild(d, map)) continue;
+                float cost = d.GetStatValueAbstract(StatDefOf.WorkToBuild);
+                if (cost < bestCost)
+                {
+                    best = d;
+                    bestCost = cost;
+                }
+            }
+            return best;
+        }
+
+        public static bool AnyBuildable(Map map, Func<ThingDef, bool> pred)
+        {
+            foreach (var d in AllBuildings)
+            {
+                if (pred(d) && CanBuild(d, map)) return true;
+            }
+            return false;
+        }
+
+        private static List<ThingDef> allBuildings;
+
+        public static List<ThingDef> AllBuildings
+        {
+            get
+            {
+                if (allBuildings == null)
+                {
+                    allBuildings = DefDatabase<ThingDef>.AllDefsListForReading
+                        .Where(d => d.category == ThingCategory.Building && d.BuildableByPlayer && !d.IsFrame && !d.IsBlueprint)
+                        .ToList();
+                }
+                return allBuildings;
+            }
+        }
+
+        // ---------- What a building is for ----------
+
+        public static bool IsHeater(ThingDef d)
+        {
+            if (d == null) return false;
+            if (d.thingClass != null && typeof(Building_Heater).IsAssignableFrom(d.thingClass)) return true;
+            var hp = d.GetCompProperties<CompProperties_HeatPusher>();
+            return hp != null && hp.heatPerSecond >= 10f && !IsCooler(d);
+        }
+
+        public static bool IsCooler(ThingDef d)
+        {
+            if (d == null) return false;
+            if (d.thingClass != null && typeof(Building_Cooler).IsAssignableFrom(d.thingClass)) return true;
+            var hp = d.GetCompProperties<CompProperties_HeatPusher>();
+            return hp != null && hp.heatPerSecond < 0f;
+        }
+
+        public static bool IsLight(ThingDef d)
+        {
+            if (d == null || d.building == null) return false;
+            var g = d.GetCompProperties<CompProperties_Glower>();
+            return g != null && g.glowRadius >= 4f && !d.IsWorkTable;
+        }
+
+        public static bool IsSunLamp(ThingDef d)
+        {
+            var g = d?.GetCompProperties<CompProperties_Glower>();
+            return g != null && g.overlightRadius > 0f;
+        }
+
+        public static bool IsHumanBed(ThingDef d) =>
+            d != null && d.IsBed && d.building != null && d.building.bed_humanlike && !d.building.bed_slabBed
+            && (d.building.bed_humanlike && d.size.z >= 2);
+
+        public static bool IsDoubleBed(ThingDef d) => IsHumanBed(d) && d.size.x >= 2;
+
+        public static bool IsSingleBed(ThingDef d) => IsHumanBed(d) && d.size.x == 1;
+
+        public static bool IsAnimalBed(ThingDef d) => d != null && d.IsBed && d.building != null && !d.building.bed_humanlike;
+
+        public static bool IsEatingTable(ThingDef d) => d != null && d.surfaceType == SurfaceType.Eat && d.building != null;
+
+        public static bool IsChair(ThingDef d) => d != null && d.building != null && d.building.isSittable;
+
+        public static bool IsJoyGiver(ThingDef d) => d?.building?.joyKind != null;
+
+        public static bool IsResearchBench(ThingDef d) =>
+            d?.thingClass != null && typeof(Building_ResearchBench).IsAssignableFrom(d.thingClass);
+
+        public static bool IsAutoTurret(ThingDef d) =>
+            d?.thingClass != null && typeof(Building_Turret).IsAssignableFrom(d.thingClass)
+            && d.GetCompProperties<CompProperties_Mannable>() == null;
+
+        public static bool IsTrap(ThingDef d) =>
+            d?.thingClass != null && typeof(Building_Trap).IsAssignableFrom(d.thingClass);
+
+        public static bool IsCover(ThingDef d) =>
+            d?.building != null && d.passability == Traversability.PassThroughOnly && d.fillPercent >= 0.45f
+            && !d.IsDoor && d.size.x == 1 && d.size.z == 1 && !d.IsBed && d.surfaceType == SurfaceType.None
+            && !d.building.isSittable && !IsJoyGiver(d) && d.thingClass != null && !typeof(Building_Turret).IsAssignableFrom(d.thingClass);
+
+        public static bool IsGrave(ThingDef d) =>
+            d?.thingClass != null && typeof(Building_Grave).IsAssignableFrom(d.thingClass);
+
+        public static bool IsFermenter(ThingDef d) =>
+            d?.thingClass != null && typeof(Building_FermentingBarrel).IsAssignableFrom(d.thingClass);
+
+        public static bool IsHydroponics(ThingDef d) =>
+            d?.thingClass != null && typeof(Building_PlantGrower).IsAssignableFrom(d.thingClass)
+            && d.building != null && d.building.sowTag != "DecorativePlant";
+
+        public static bool IsPlantPot(ThingDef d) =>
+            d?.thingClass != null && typeof(Building_PlantGrower).IsAssignableFrom(d.thingClass)
+            && d.building != null && d.building.sowTag == "DecorativePlant";
+
+        public static bool IsWorkstationFor(ThingDef d, SkillDef skill)
+        {
+            if (d == null || skill == null || !d.IsWorkTable) return false;
+            var recipes = d.AllRecipes;
+            if (recipes == null) return false;
+            for (int i = 0; i < recipes.Count; i++)
+            {
+                if (recipes[i].workSkill == skill) return true;
+            }
+            return false;
+        }
+
+        public static bool IsCookingStation(ThingDef d)
+        {
+            if (d == null || !d.IsWorkTable) return false;
+            var recipes = d.AllRecipes;
+            if (recipes == null) return false;
+            foreach (var r in recipes)
+            {
+                if (r.workSkill == SkillDefOf.Cooking && r.ProducedThingDef != null && r.ProducedThingDef.IsNutritionGivingIngestible
+                    && r.ProducedThingDef.ingestible != null && r.ProducedThingDef.ingestible.preferability >= FoodPreferability.MealSimple)
+                    return true;
+            }
+            return false;
+        }
+
+        public static bool IsStorage(ThingDef d) =>
+            d?.building != null && d.building.fixedStorageSettings == null && d.building.defaultStorageSettings != null
+            && d.thingClass != null && typeof(Building_Storage).IsAssignableFrom(d.thingClass);
+
+        /// <summary>Bedside furniture: a facility that must sit next to the bed's head (end tables and the like).</summary>
+        public static bool IsEndTable(ThingDef d)
+        {
+            if (d?.building == null) return false;
+            if (d.defName == "EndTable") return true;
+            var f = d.GetCompProperties<CompProperties_Facility>();
+            return f != null && (f.mustBePlacedAdjacentCardinalToBedHead || f.mustBePlacedAdjacentCardinalToAndFacingBedHead)
+                   && d.size.x == 1 && d.size.z == 1 && d.surfaceType == SurfaceType.Item;
+        }
+
+        /// <summary>Bedroom storage furniture linked to beds from a distance (dressers and the like).</summary>
+        public static bool IsDresser(ThingDef d)
+        {
+            if (d?.building == null) return false;
+            if (d.defName == "Dresser") return true;
+            var f = d.GetCompProperties<CompProperties_Facility>();
+            return f != null && !f.mustBePlacedAdjacent && !f.mustBePlacedAdjacentCardinalToBedHead && !f.canLinkToMedBedsOnly
+                   && f.maxDistance > 0f && d.size.x == 2 && d.size.z == 1 && !IsLight(d);
+        }
+
+        // ---------- Map state ----------
+
+        public static int JoyKindsOnMap(Map map)
+        {
+            try
+            {
+                return JoyUtility.JoyKindsOnMapCount(map);
+            }
+            catch
+            {
+                return map.listerBuildings.allBuildingsColonist.Where(b => b.def.building?.joyKind != null)
+                    .Select(b => b.def.building.joyKind).Distinct().Count();
+            }
+        }
+
+        public static bool ColonyHas(Map map, Func<ThingDef, bool> pred)
+        {
+            var list = map.listerBuildings.allBuildingsColonist;
+            for (int i = 0; i < list.Count; i++)
+            {
+                if (pred(list[i].def)) return true;
+            }
+            return false;
+        }
+
+        public static int ColonyCount(Map map, Func<ThingDef, bool> pred)
+        {
+            int n = 0;
+            var list = map.listerBuildings.allBuildingsColonist;
+            for (int i = 0; i < list.Count; i++)
+            {
+                if (pred(list[i].def)) n++;
+            }
+            return n;
+        }
+
+        public static IEnumerable<Building> ColonyBuildings(Map map, Func<ThingDef, bool> pred)
+        {
+            var list = map.listerBuildings.allBuildingsColonist;
+            for (int i = 0; i < list.Count; i++)
+            {
+                if (pred(list[i].def)) yield return list[i];
+            }
+        }
+
+        /// <summary>Label for a def that reads naturally in a sentence ("a torch lamp", "a heater").</summary>
+        public static string Indefinite(ThingDef d) => d == null ? "" : Find.ActiveLanguageWorker.WithIndefiniteArticle(d.label);
+
+        // ---------- Cache ----------
+
+        private static int cacheTick = -99999;
+        private static bool hasElectricity;
+        private static TechLevel researchedTech = TechLevel.Neolithic;
+
+        private static void RefreshCache()
+        {
+            int now = Find.TickManager?.TicksGame ?? 0;
+            if (now - cacheTick < 2500 && cacheTick >= 0) return;
+            cacheTick = now;
+            hasElectricity = ResearchDone("Electricity");
+            var best = TechLevel.Neolithic;
+            foreach (var r in DefDatabase<ResearchProjectDef>.AllDefsListForReading)
+            {
+                if (r.techLevel > best && r.IsFinished) best = r.techLevel;
+            }
+            researchedTech = best;
+        }
+
+        public static void ResetCache()
+        {
+            cacheTick = -99999;
+        }
+    }
+}
