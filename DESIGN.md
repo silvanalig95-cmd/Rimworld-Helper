@@ -152,11 +152,37 @@ merge into one bigger request with a bigger, shared reward.
 
 ### Stakes setting
 
-| Mode | Fulfilled | Ignored or expired |
+| Mode | Fulfilled | Ignored, refused, broken promises |
 |---|---|---|
-| **Gentle** (default) | Mood bonus | Nothing |
-| **Demanding** | Mood bonus | Small, short mood penalty ("My request was ignored", −2, 3 days) |
+| **Gentle** | Mood bonus, motivation, trust | Nothing (trust is tracked but only its good side has effects) |
+| **Balanced** (default) | Mood bonus, motivation, trust | Disappointment scaled by how spoiled someone is, disgruntlement (slower work), jealousy and feeling passed over, lower trust |
+| **Demanding** | As Balanced | As Balanced, 50% stronger; bitter, unhappy colonists may sulk or go on an insulting spree |
 | **Advisor only** | No mood effects at all, pure suggestions | Nothing |
+
+### Trust, promises and consequences (0.2)
+
+Every colonist has a standing with the council, from bitter to devoted. It changes with how their wishes are
+handled and fades slowly back to neutral. It feeds a situational mood thought, how patient they are (wish
+duration), how often they ask (bitter colonists mostly stop asking and grumble instead) and flavour tags.
+
+- **Promise / Refuse / Not now** give the player three honest answers besides granting.
+- **Reminders and last calls** at 50% and 82% of a wish's time. At the last call, industrious and handy
+  colonists may help themselves through the wish worker's `TrySelfHelp` (plan furniture in their room, switch
+  their work on, mark a grave, designate an animal to tame, move into their partner's double bed).
+- **Ripples when granting**: friends are happy for them; the jealous, greedy, rivals and anyone with an older
+  open wish may feel passed over (social memory, trust loss); greedy or jealous onlookers may ask for the same.
+- **Effects** are data-driven per wish (`grantEffects`, `ignoreEffects`): hediffs (motivated, disgruntled),
+  thoughts, skill XP, needs, trust, grief relief, petition bonds, mental states.
+- **Event triggers** (`triggers` on a wish): fresh memories, hediffs, game conditions or a recent big threat
+  make the matching wish come up within hours.
+
+### Context-aware writing (0.2)
+
+Lines may begin with tags, e.g. `[winter,night]` or `[trigger:raid,lowtech]`. A tagged line is only used when
+all its tags match the moment; matching lines win over generic ones, in the speaker's own tone first. Tags cover
+season, time, weather, temperature, mood, trust, tech level, wealth, colony size, age, injuries, traits,
+passions, grief, recent raids, repeats, promises, petitions and triggers. Wish letters open with a scene drawn
+from tagged scene pools.
 
 ### Example letter
 
@@ -341,6 +367,17 @@ Things the game exposes that this relies on (all available to mods):
 - Room templates with ghost placement, rotation, material choice and "find a good spot".
 - Personal touches in colonists' own bedrooms.
 - Royalty (noble room requirements), Biotech (children) and Odyssey (space maps) handled.
+
+**Done in 0.2**
+- Room planner panel (works from the council tab and the new architect "rooms" category): rotate, mirror,
+  move the door, per-element materials, furniture variants, cost against stock, site clearing (cut, mine,
+  replace own buildings, smooth stone) with queued blueprints. 32 templates with good-practice tips.
+- Trust, promises, refusals, reminders, self-help, jealousy, event-triggered wishes, data-driven effects,
+  tagged context-aware lines and scenes.
+- Physical council meetings: a gathering lord job at a fitting venue, pitches and banter above heads, votes,
+  and a decision letter at the end.
+- Ten more advisor checks from good-practice research; 31 ambitions.
+- The Almanac tab (framework; content being written from wiki-checked research).
 
 **Ideas for later**
 - Ambition chains (multi-step goals across seasons).
