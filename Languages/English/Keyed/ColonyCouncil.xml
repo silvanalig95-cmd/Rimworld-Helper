@@ -320,6 +320,8 @@
   <CC_Log_VoteWon>their side won: {0}</CC_Log_VoteWon>
   <CC_Log_Overruled>outvoted the council, yet {0} was overruled</CC_Log_Overruled>
   <CC_Log_IdeaChosen>their idea was chosen: {0}</CC_Log_IdeaChosen>
+  <CC_Log_AmbitionHelped>a wish helped {0}</CC_Log_AmbitionHelped>
+  <CC_Ambition_WishHelped>That gets us closer to {0}!</CC_Ambition_WishHelped>
   <CC_Log_NoneChosen>the council chose nothing</CC_Log_NoneChosen>
   <CC_Heckle_Plain>{PAWN_nameDef} wondered aloud whether {OTHER_nameDef}'s "{AMBITION}" was really the priority.</CC_Heckle_Plain>
   <CC_Heckle_Warm>{PAWN_nameDef} thanked everyone for coming, and said {OTHER_nameDef}'s idea ("{AMBITION}") sounded lovely.</CC_Heckle_Warm>

@@ -580,8 +580,21 @@ namespace ColonyCouncil
             nextMeetingTick = Find.TickManager.TicksGame + GenDate.TicksPerDay * 3;
         }
 
+        /// <summary>A granted wish that serves the colony's current ambition pleases whoever proposed it.</summary>
         public void Notify_WishGranted(Wish w)
         {
+            if (active?.def?.template == null || w == null) return;
+            RoomTemplateDef wishTemplate = null;
+            try
+            {
+                wishTemplate = w.Worker.SuggestedTemplate(w);
+            }
+            catch
+            {
+            }
+            if (wishTemplate != active.def.template || active.proposer == null || active.proposer.Dead) return;
+            CouncilGameComponent.Instance?.standings.Change(active.proposer, 3f, "CC_Log_AmbitionHelped".Translate(active.def.label));
+            CouncilGameComponent.Speak(active.proposer, "CC_Ambition_WishHelped".Translate(active.def.label), new Color(0.6f, 1f, 0.6f));
         }
     }
 

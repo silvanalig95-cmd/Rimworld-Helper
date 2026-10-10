@@ -185,9 +185,12 @@ namespace ColonyCouncil
             var speaker = here.RandomElement();
             var target = pitches.Where(p => p.proposer != speaker).RandomElementWithFallback(pitches.RandomElement());
             int opinion = speaker.relations != null && target.proposer != null ? speaker.relations.OpinionOf(target.proposer) : 0;
+            // Bitter colonists heckle; devoted ones rally behind whoever is speaking.
+            var trust = CouncilGameComponent.Instance?.standings.LevelOf(speaker) ?? TrustLevel.Neutral;
+            float doubt = trust == TrustLevel.Bitter ? 0.7f : trust == TrustLevel.Doubtful ? 0.5f : trust == TrustLevel.Devoted ? 0.1f : 0.35f;
             string pool;
             if (target.proposer == speaker) pool = "Council_Pool_MeetingSupport";
-            else if (opinion <= -15 || (opinion < 10 && Rand.Chance(0.35f))) pool = "Council_Pool_MeetingDoubt";
+            else if (opinion <= -15 || (opinion < 10 && Rand.Chance(doubt))) pool = "Council_Pool_MeetingDoubt";
             else if (Rand.Chance(0.3f)) pool = "Council_Pool_MeetingAside";
             else pool = "Council_Pool_MeetingSupport";
             string line = Line(pool, speaker, target.proposer, target.def);
@@ -319,6 +322,14 @@ namespace ColonyCouncil
         }
 
         public override string GetReport(Pawn pawn) => "CC_Meeting_Report".Translate();
+
+        /// <summary>Bitter colonists mostly don't bother turning up.</summary>
+        public override float VoluntaryJoinPriorityFor(Pawn p)
+        {
+            var comp = CouncilGameComponent.Instance;
+            if (comp != null && comp.standings.LevelOf(p) == TrustLevel.Bitter && (p.thingIDNumber + durationTicks) % 3 != 0) return 0f;
+            return base.VoluntaryJoinPriorityFor(p);
+        }
     }
 
     /// <summary>Required by the gathering def; council meetings are only ever started by the council.</summary>
