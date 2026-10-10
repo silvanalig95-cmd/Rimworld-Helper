@@ -825,6 +825,7 @@ Granting one of {PAWN_possessive} wishes, or keeping a promise, can win {PAWN_ob
   <CC_Decree_InForce>(in force, {0} left)</CC_Decree_InForce>
   <CC_Decree_Enact>Enact for {0}</CC_Decree_Enact>
   <CC_Decree_Repeal>Repeal now</CC_Decree_Repeal>
+  <CC_Decree_NoMood>Not in Advisor-only mode</CC_Decree_NoMood>
   <CC_Decree_Cooldown>Possible again in {0}</CC_Decree_Cooldown>
   <CC_Decree_TooMany>{0} decrees already in force</CC_Decree_TooMany>
   <CC_Decree_Loves>Loves it: {0}</CC_Decree_Loves>

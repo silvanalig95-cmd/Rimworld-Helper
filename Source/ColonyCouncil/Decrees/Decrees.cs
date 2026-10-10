@@ -170,6 +170,7 @@ namespace ColonyCouncil
         {
             if (IsActive(def)) return null;
             int now = Find.TickManager.TicksGame;
+            if (!ColonyCouncilMod.Settings.MoodEffects) return "CC_Decree_NoMood".Translate();
             if (ReadyAt(def) > now) return "CC_Decree_Cooldown".Translate(TextUtil.DaysString(ReadyAt(def) - now));
             if (active.Count >= MaxActive) return "CC_Decree_TooMany".Translate(MaxActive);
             if (def.needsGrief && !PawnsFinder.AllMaps_FreeColonists.Any(Flavor.IsGrieving)) return "CC_Decree_NeedsGrief".Translate();
@@ -346,7 +347,7 @@ namespace ColonyCouncil
                 var h = def.hediff;
                 if (h == null) continue;
                 bool on = wanted.Contains(h);
-                foreach (var p in PawnsFinder.AllMaps_FreeColonists)
+                foreach (var p in PawnsFinder.AllMapsCaravansAndTravellingTransporters_Alive_FreeColonists)
                 {
                     var set = p.health?.hediffSet;
                     if (set == null) continue;
@@ -383,7 +384,7 @@ namespace ColonyCouncil
         protected override ThoughtState CurrentStateInternal(Pawn p)
         {
             var s = ColonyCouncilMod.Settings;
-            if (!s.MoodEffects || !p.IsFreeNonSlaveColonist) return ThoughtState.Inactive;
+            if (!s.MoodEffects || !p.IsFreeNonSlaveColonist || p.DevelopmentalStage.Baby()) return ThoughtState.Inactive;
             var comp = CouncilGameComponent.Instance;
             if (comp == null) return ThoughtState.Inactive;
             if (decree == null) decree = DefDatabase<DecreeDef>.AllDefsListForReading.FirstOrDefault(d => d.thought == def);

@@ -61,6 +61,8 @@ namespace ColonyCouncil
         public bool meToo;
         /// <summary>Chance that someone speaks up against it when it's voiced (if anyone has a reason to).</summary>
         public float objectionChance = 0.35f;
+        /// <summary>The deadline isn't shortened by low trust or high standards (long wishes like getting clean or a rescue).</summary>
+        public bool fixedPatience;
         /// <summary>Colonists with these traits object to it (a kind soul against an execution).</summary>
         public List<TraitDef> objectorTraits;
         /// <summary>+1: whoever is fond of the wish's other pawn objects; -1: whoever can't stand them.</summary>

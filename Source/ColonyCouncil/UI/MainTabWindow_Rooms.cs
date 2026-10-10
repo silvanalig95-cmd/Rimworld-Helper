@@ -41,7 +41,7 @@ namespace ColonyCouncil
             get
             {
                 float h = Layout(Find.CurrentMap, out _).Max();
-                return new Vector2(Columns * ColW + (Columns - 1) * Gap + Margin * 2f, Mathf.Clamp(TopH + h + BottomH + Margin * 2f, 200f, UI.screenHeight - 35f - 80f));
+                return new Vector2(Columns * ColW + (Columns - 1) * Gap + Margin * 2f + 16f, Mathf.Clamp(TopH + h + BottomH + Margin * 2f, 200f, UI.screenHeight - 35f - 80f));
             }
         }
 

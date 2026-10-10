@@ -435,7 +435,8 @@ namespace ColonyCouncil
     {
         public override void Apply(DilemmaContext ctx)
         {
-            if (ctx.a == null || ctx.b == null || !ctx.a.Spawned || !ctx.b.Spawned || ctx.a.Downed || ctx.b.Downed) return;
+            if (ctx.a == null || ctx.b == null || !ctx.a.Spawned || !ctx.b.Spawned || ctx.a.Downed || ctx.b.Downed || ctx.a.Map != ctx.b.Map) return;
+            if (ctx.a.WorkTagIsDisabled(WorkTags.Violent) && ctx.b.WorkTagIsDisabled(WorkTags.Violent)) return;
             if (chance < 1f && !Rand.Chance(chance)) return;
             if (ctx.a.WorkTagIsDisabled(WorkTags.Violent)) ctx.b.interactions?.StartSocialFight(ctx.a);
             else ctx.a.interactions?.StartSocialFight(ctx.b);
@@ -581,7 +582,8 @@ namespace ColonyCouncil
                     int index = i;
                     var o = ctx.def.options[i];
                     var opt = new DiaOption(ctx.Format(o.label));
-                    string why = o.effects.Select(e => e.Unavailable(ctx)).FirstOrDefault(r => r != null);
+                    // The default answer is always possible, so the letter can never trap the player.
+                    string why = i == ctx.def.defaultOption ? null : o.effects.Select(e => e.Unavailable(ctx)).FirstOrDefault(r => r != null);
                     if (why != null) opt.Disable(why);
                     opt.action = () =>
                     {
@@ -714,6 +716,10 @@ namespace ColonyCouncil
                 Messages.Message(told, new LookTargets(new[] { ctx.a, ctx.b }.Where(p => p != null && p.Spawned)), MessageTypeDefOf.NeutralEvent, false);
             CouncilGameComponent.Instance?.AddChronicle(new ChronicleEntry(ChronicleKind.Note,
                 "CC_Chronicle_Dilemma".Translate(ctx.def.label, ctx.Format(option.label)).Resolve(), ctx.a));
+            // The letter's text is already written; let go of the people and places so old saves don't hold them.
+            ctx.a = ctx.b = ctx.pet = null;
+            ctx.map = null;
+            ctx.faction = null;
         }
 
         private static void Safe(DilemmaEffect e, DilemmaContext ctx)

@@ -35,6 +35,8 @@ namespace ColonyCouncil
 
         public void Daily(CouncilGameComponent comp)
         {
+            foreach (var k in holders.Where(kv => kv.Value == null || kv.Value.Dead || !kv.Value.IsColonist).Select(kv => kv.Key).ToList())
+                holders.Remove(k);
             if (!ColonyCouncilMod.Settings.epithets) return;
             var pawns = PawnsFinder.AllMaps_FreeColonists.Where(p => p.records != null && !p.IsQuestLodger()).ToList();
             bool quiet = !initialized;

@@ -53,13 +53,13 @@
     <thought>Council_Decree_Rationing</thought>
     <defaultReaction>Dislike</defaultReaction>
     <reactions>
-      <li><trait>Ascetic</trait><reaction>Neutral</reaction></li>
+      <li><trait>Ascetic</trait><reaction>Like</reaction></li>
       <li><trait>Gourmand</trait><reaction>Hate</reaction></li>
       <li><trait>Greedy</trait><reaction>Hate</reaction></li>
     </reactions>
     <effects>
       <li>Everyone gets hungry 25% more slowly, so food lasts longer.</li>
-      <li>Everyone except ascetics minds; gourmands and the greedy hate it.</li>
+      <li>Ascetics approve; most others mind, and gourmands and the greedy hate it.</li>
     </effects>
     <support>
       <plain><li>Better hungry now than starving in winter.</li></plain>

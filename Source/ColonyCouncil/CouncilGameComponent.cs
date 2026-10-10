@@ -331,7 +331,7 @@ namespace ColonyCouncil
         {
             var standing = standings.For(beneficiary ?? requester);
             // Trusting colonists are patient; bitter ones aren't.
-            float patience = Mathf.Clamp(1f + standing.trust / 200f, 0.6f, 1.4f) * Standards.PatienceFactor(beneficiary ?? requester);
+            float patience = def.fixedPatience ? 1f : Mathf.Clamp(1f + standing.trust / 200f, 0.6f, 1.4f) * Standards.PatienceFactor(beneficiary ?? requester);
             var w = new Wish
             {
                 id = nextWishId++,
@@ -508,8 +508,9 @@ namespace ColonyCouncil
             if (def.IsSocial && (otherPawn == null || otherPawn == p)) return;
             var thought = ThoughtMaker.MakeThought(def) as Thought_Memory;
             if (thought == null) return;
-            float factor = scale >= 0f ? scale : ColonyCouncilMod.Settings.rewardFactor;
-            bool positive = def.stages != null && def.stages.Count > 0 && def.stages[0] != null && def.stages[0].baseMoodEffect > 0f;
+            bool positive = def.stages != null && def.stages.Count > 0 && def.stages[0] != null && def.stages[0].baseMoodEffect >= 0f;
+            float factor = scale >= 0f ? scale : positive ? ColonyCouncilMod.Settings.rewardFactor : ColonyCouncilMod.Settings.PenaltyScale;
+            if (factor <= 0f) return;
             thought.moodPowerFactor = factor * Standards.MoodFactor(p, positive);
             p.needs.mood.thoughts.memories.TryGainMemory(thought, otherPawn);
         }

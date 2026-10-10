@@ -62,7 +62,7 @@ namespace ColonyCouncil
             if (!S.risingStandards) return;
             foreach (var p in PawnsFinder.AllMaps_FreeColonists)
             {
-                if (p.IsQuestLodger() || p.needs?.mood == null) continue;
+                if (p.IsQuestLodger() || p.needs?.mood == null || p.DevelopmentalStage.Baby()) continue;
                 var st = tracker.For(p);
                 float mood = p.needs.mood.CurLevelPercentage;
                 float rate;

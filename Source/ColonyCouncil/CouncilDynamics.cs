@@ -443,7 +443,7 @@ namespace ColonyCouncil
             if (envious != null && OpenWishes.Count() < s.maxOpenWishes && !OnCooldown(envious, w.def) && CanVoiceWishes(envious))
             {
                 var c = SafeCandidates(w.def, envious).FirstOrDefault();
-                if (c != null) CreateWish(w.def, envious, envious, c, "envy", who);
+                if (c != null && !decrees.SuspendsWishes) CreateWish(w.def, envious, envious, c, "envy", who);
             }
         }
 
@@ -561,7 +561,7 @@ namespace ColonyCouncil
         private void CheckTriggers()
         {
             var s = Settings;
-            if (!s.eventWishes) return;
+            if (!s.eventWishes || decrees.SuspendsWishes) return;
             int now = Find.TickManager.TicksGame;
             if (now < GenDate.TicksPerDay * 2) return;
             if (OpenWishes.Count() >= s.maxOpenWishes + 1) return;
@@ -597,18 +597,22 @@ namespace ColonyCouncil
         {
             standings.Daily();
             var s = Settings;
-            Standards.Daily(standings, decrees.active.Sum(a => a.def.standardsPerDay));
-            DecreeDaily();
-            if (s.enableWishes) decrees.DailyRequests(this);
-            if (s.anniversaries) Anniversaries();
-            epithets.Daily(this);
-            journals.Daily();
-            foreach (var p in PawnsFinder.AllMaps_FreeColonists.ToList())
+            // Each step on its own, so one failure doesn't take the rest of the day with it.
+            Safe("standards", () => Standards.Daily(standings, decrees.active.Sum(a => a.def.standardsPerDay)));
+            Safe("decree trust", DecreeDaily);
+            if (s.enableWishes) Safe("decree petitions", () => decrees.DailyRequests(this));
+            if (s.anniversaries) Safe("anniversaries", Anniversaries);
+            Safe("epithets", () => epithets.Daily(this));
+            Safe("journals", journals.Daily);
+            Safe("trust effects", () =>
             {
-                var st = standings.For(p, false);
-                TrustEffects.Sync(p, st);
-                if (st != null && s.enableWishes) CheckQuitting(p, st);
-            }
+                foreach (var p in PawnsFinder.AllMaps_FreeColonists.ToList())
+                {
+                    var st = standings.For(p, false);
+                    TrustEffects.Sync(p, st);
+                    if (st != null && s.enableWishes) CheckQuitting(p, st);
+                }
+            });
             if (!s.enableWishes) return;
             // Bitter colonists grumble, and in Demanding mode they may sulk even without a fresh slight.
             foreach (var p in PawnsFinder.AllMaps_FreeColonistsSpawned.ToList())
@@ -644,7 +648,8 @@ namespace ColonyCouncil
 
             if (st.leavingTick > 0)
             {
-                if (!bitter || !Settings.Harsh || !Settings.allowQuitting)
+                // Natural drift alone shouldn't call it off: they stay only if trust really recovers.
+                if (st.trust > -35f || !Settings.Harsh || !Settings.allowQuitting)
                 {
                     st.leavingTick = 0;
                     string line = Scene("Council_Pool_Staying", p, null);
@@ -695,6 +700,7 @@ namespace ColonyCouncil
                 "CC_QuitText".Translate(p.Named("PAWN")).Resolve() + (line != null ? "\n\n\"" + line + "\"" : ""), LetterDefOf.NegativeEvent, new LookTargets(p));
             AddChronicle(new ChronicleEntry(ChronicleKind.Note, "CC_Chronicle_Quit".Translate(p.LabelShort).Resolve(), p));
             annals.Notify_Quit(p);
+            TrustEffects.StripAll(p);
             PawnBanishUtility.Banish(p, false);
         }
 
@@ -752,7 +758,7 @@ namespace ColonyCouncil
             decrees.Daily();
             foreach (var p in PawnsFinder.AllMaps_FreeColonists.ToList())
             {
-                if (p.IsQuestLodger()) continue;
+                if (p.IsQuestLodger() || p.DevelopmentalStage.Baby()) continue;
                 foreach (var a in decrees.active)
                 {
                     float delta;

@@ -75,9 +75,20 @@ namespace ColonyCouncil
             }
         }
 
-        public override bool IsFulfilled(Wish wish) => wish.other != null && !wish.other.Dead && !wish.other.IsPrisoner && !wish.other.IsSlaveOfColony;
+        /// <summary>Recruited, or being released. Sold or escaped doesn't count.</summary>
+        public override bool IsFulfilled(Wish wish)
+        {
+            var o = wish.other;
+            if (o == null || o.Dead) return false;
+            if (o.Faction == Faction.OfPlayer && !o.IsPrisoner && !o.IsSlaveOfColony) return true;
+            return o.guest != null && o.guest.Released;
+        }
 
-        public override bool StillValid(Wish wish) => wish.other != null && !wish.other.Dead;
+        public override bool StillValid(Wish wish)
+        {
+            var o = wish.other;
+            return o != null && !o.Dead && (o.IsPrisonerOfColony || o.Faction == Faction.OfPlayer || (o.guest != null && o.guest.Released));
+        }
 
         public override string ProgressText(Wish wish) => "CC_Progress_Mercy".Translate(wish.other.Named("OTHER"));
 
@@ -123,7 +134,7 @@ namespace ColonyCouncil
         }
 
         public override string ProgressText(Wish wish) =>
-            (HasSpot(wish.Beneficiary.MapHeld) ? "CC_Progress_Party" : "CC_Progress_NoGatherSpot").Translate();
+            (wish.Beneficiary.MapHeld == null || HasSpot(wish.Beneficiary.MapHeld) ? "CC_Progress_Party" : "CC_Progress_NoGatherSpot").Translate();
 
         public override string OnPromised(Wish wish) => Throw(wish) ? "CC_Promise_Party" : null;
 
@@ -189,9 +200,11 @@ namespace ColonyCouncil
     /// <summary>A hunter, or someone with blood on the brain, wants to go out and bring something down.</summary>
     public class WishWorker_Hunt : WishWorker
     {
+        /// <summary>Huntable game that won't usually turn on the hunter: no predators, nothing that goes manhunter easily.</summary>
         private static IEnumerable<Pawn> Game(Map map) => map.mapPawns.AllPawnsSpawned.Where(a =>
             a.RaceProps.Animal && a.Faction == null && !a.Downed && !a.RaceProps.predator && !a.InMentalState
-            && !map.fogGrid.IsFogged(a.Position) && a.RaceProps.baseBodySize >= 0.4f);
+            && !map.fogGrid.IsFogged(a.Position) && a.RaceProps.baseBodySize >= 0.4f
+            && PawnUtility.GetManhunterOnDamageChance(a.def) <= 0.05f);
 
         public override IEnumerable<WishCandidate> CandidatesFor(Pawn pawn)
         {
@@ -223,7 +236,7 @@ namespace ColonyCouncil
             var map = pawn.MapHeld;
             if (map == null) return false;
             var prey = Game(map).Where(a => map.designationManager.DesignationOn(a) == null)
-                .OrderByDescending(a => a.RaceProps.baseBodySize)
+                .OrderBy(a => UnityEngine.Mathf.Abs(a.RaceProps.baseBodySize - 1f))
                 .ThenBy(a => a.Position.DistanceTo(pawn.PositionHeld))
                 .FirstOrDefault();
             if (prey == null) return false;

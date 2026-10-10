@@ -223,6 +223,7 @@
     <category>Social</category>
     <weight>3</weight>
     <expiryDays>60</expiryDays>
+    <fixedPatience>true</fixedPatience>
     <cooldownDays>30</cooldownDays>
     <grantedThought>Council_Granted_Rescue</grantedThought>
     <allowPetition>true</allowPetition>

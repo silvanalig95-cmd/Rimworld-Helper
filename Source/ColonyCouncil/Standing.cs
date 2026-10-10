@@ -149,6 +149,8 @@ namespace ColonyCouncil
         public void Daily()
         {
             int now = Find.TickManager.TicksGame;
+            foreach (var gone in standings.Where(s => s.pawn != null && !s.pawn.Dead && !s.pawn.Destroyed && !s.pawn.IsColonist && !s.pawn.IsPrisonerOfColony).ToList())
+                TrustEffects.StripAll(gone.pawn);
             standings.RemoveAll(s => s.pawn == null || s.pawn.Dead || s.pawn.Destroyed || (!s.pawn.IsColonist && !s.pawn.IsPrisonerOfColony));
             foreach (var s in standings)
             {
@@ -175,6 +177,17 @@ namespace ColonyCouncil
     /// </summary>
     public static class TrustEffects
     {
+        /// <summary>Takes every council condition off someone leaving the colony: trust and decree effects.</summary>
+        public static void StripAll(Pawn p)
+        {
+            var set = p?.health?.hediffSet;
+            if (set == null) return;
+            var ours = new HashSet<HediffDef> { CouncilDefOf.Council_Loyalty, CouncilDefOf.Council_Grudge };
+            foreach (var d in DefDatabase<DecreeDef>.AllDefsListForReading)
+                if (d.hediff != null) ours.Add(d.hediff);
+            foreach (var h in set.hediffs.Where(h => ours.Contains(h.def)).ToList()) p.health.RemoveHediff(h);
+        }
+
         public static void Sync(Pawn p, PawnStanding st)
         {
             if (p?.health?.hediffSet == null || p.Dead) return;

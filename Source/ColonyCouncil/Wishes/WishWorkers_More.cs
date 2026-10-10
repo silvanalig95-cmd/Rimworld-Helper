@@ -71,6 +71,8 @@ namespace ColonyCouncil
         {
             var addiction = WishWorker_Fix.Addiction(pawn);
             if (addiction == null || HomeMap(pawn) == null || TraitDegree(pawn, TraitDefOf.DrugDesire) > 0) yield break;
+            // Some addictions never fade (luciferium): quitting those isn't something the colony can grant.
+            if (!(addiction.def.comps?.OfType<HediffCompProperties_SeverityPerDay>().Any(c => c.severityPerDay < 0f) ?? false)) yield break;
             var c = Candidate(TraitDegree(pawn, TraitDefOf.DrugDesire) < 0 ? 2f : 1f, "CC_Reason_Quit".Translate(pawn.Named("PAWN"), addiction.Chemical.label.Named("DRUG")));
             c.subjectKey = addiction.Chemical.defName;
             c.subjectLabel = addiction.Chemical.label;
@@ -112,7 +114,7 @@ namespace ColonyCouncil
         public override bool IsFulfilled(Wish wish)
         {
             var mine = BedRoom(wish.Beneficiary);
-            return wish.other == null || mine == null || BedRoom(wish.other) != mine;
+            return wish.other == null || (mine != null && BedRoom(wish.other) != mine);
         }
 
         public override bool StillValid(Wish wish) => wish.other != null && !wish.other.Dead && wish.other.IsColonist;
@@ -150,11 +152,13 @@ namespace ColonyCouncil
             yield return c;
         }
 
-        public override bool IsFulfilled(Wish wish) => Medicine(wish.Beneficiary.MapHeld) >= wish.targetValue;
+        private static int MedicineAt(Wish wish) => wish.Beneficiary.MapHeld is Map m ? Medicine(m) : 0;
 
-        public override float Progress(Wish wish) => UnityEngine.Mathf.Clamp01(Medicine(wish.Beneficiary.MapHeld) / UnityEngine.Mathf.Max(1f, wish.targetValue));
+        public override bool IsFulfilled(Wish wish) => wish.Beneficiary.MapHeld != null && MedicineAt(wish) >= wish.targetValue;
 
-        public override string ProgressText(Wish wish) => "CC_Progress_Infirmary".Translate(Medicine(wish.Beneficiary.MapHeld), wish.targetValue.ToString("0"));
+        public override float Progress(Wish wish) => UnityEngine.Mathf.Clamp01(MedicineAt(wish) / UnityEngine.Mathf.Max(1f, wish.targetValue));
+
+        public override string ProgressText(Wish wish) => "CC_Progress_Infirmary".Translate(MedicineAt(wish), wish.targetValue.ToString("0"));
 
         public override InspirationDef InspirationFor(Wish wish) => DefDatabase<InspirationDef>.GetNamedSilentFail("Inspired_Surgery");
     }

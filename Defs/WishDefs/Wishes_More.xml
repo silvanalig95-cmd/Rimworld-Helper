@@ -109,7 +109,8 @@
     <workerClass>ColonyCouncil.WishWorker_Quit</workerClass>
     <category>Health</category>
     <weight>1.2</weight>
-    <expiryDays>40</expiryDays>
+    <expiryDays>50</expiryDays>
+    <fixedPatience>true</fixedPatience>
     <cooldownDays>20</cooldownDays>
     <grantedThought>Council_Granted_Quit</grantedThought>
     <inspirationChance>0.2</inspirationChance>
