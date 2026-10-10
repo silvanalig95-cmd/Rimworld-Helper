@@ -233,4 +233,20 @@
     </lines>
   </ColonyCouncil.FlavorPoolDef>
 
+  <!-- {TRADITION}: lowercase name, e.g. "the midsummer bonfire". -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Journal_TraditionBorn</defName>
+    <lines>
+      <plain>
+        <li>We did it again, so now it's tradition: {TRADITION}. A colony with traditions is a colony that plans on being around.</li>
+        <li>Someone said "like every year" about {TRADITION} today. I think that makes it ours.</li>
+      </plain>
+      <warm><li>A tradition of our own: {TRADITION}. I hope the children remember it long after we're gone.</li></warm>
+      <blunt><li>Apparently {TRADITION} is a tradition now. Fine by me, as long as there's food.</li></blunt>
+      <cheerful><li>We have a TRADITION! It's {TRADITION}! I've already started planning next year's!</li></cheerful>
+      <gloomy><li>Traditions are how the dead keep a vote. Ours now includes {TRADITION}.</li></gloomy>
+      <cold><li>Ritual stabilizes morale. Formalizing {TRADITION} is sensible.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
 </Defs>

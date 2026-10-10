@@ -33,6 +33,11 @@ namespace ColonyCouncil
         public float withinDaysOfThreat;
         /// <summary>Only while someone is grieving.</summary>
         public bool needsGrief;
+        /// <summary>Choosing this option often enough makes it a tradition (index; -1 = never).</summary>
+        public int traditionOption = -1;
+        public int traditionAfter = 2;
+        /// <summary>The tradition's name: "the midsummer bonfire".</summary>
+        [MustTranslate] public string traditionLabel;
         /// <summary>What happens if the council doesn't answer in time.</summary>
         public int defaultOption;
         public float answerDays = 2f;
@@ -618,6 +623,14 @@ namespace ColonyCouncil
     {
         public int nextTick = -1;
         private Dictionary<string, int> lastTick = new Dictionary<string, int>();
+        /// <summary>Traditions: how often the tradition answer was chosen, which are established, and breaks in a row.</summary>
+        private Dictionary<string, int> traditionCount = new Dictionary<string, int>();
+        private Dictionary<string, int> traditionBreaks = new Dictionary<string, int>();
+        public List<string> traditions = new List<string>();
+
+        public bool IsTradition(DilemmaDef def) => def != null && traditions.Contains(def.defName);
+
+        public IEnumerable<DilemmaDef> Traditions => traditions.Select(n => DefDatabase<DilemmaDef>.GetNamedSilentFail(n)).Where(d => d != null);
 
         private static CouncilSettings S => ColonyCouncilMod.Settings;
 
@@ -635,6 +648,14 @@ namespace ColonyCouncil
                 && now - lastFiredTick > GenDate.TicksPerDay * 3 && Rand.Chance(0.08f))
             {
                 if (TryFire(false, d => d.withinDaysOfThreat > 0f)) return;
+            }
+            // An established tradition comes round when its time does, whatever the schedule says.
+            foreach (var t in Traditions.ToList())
+            {
+                if (lastTick.TryGetValue(t.defName, out int last) && now - last < GenDate.TicksPerDay * 30) continue;
+                var home = Find.Maps.Where(m => m.IsPlayerHome).OrderByDescending(m => m.mapPawns.FreeColonistsSpawnedCount).FirstOrDefault();
+                if (home == null || !t.Worker.CanHappenNow(home)) continue;
+                if (TryFire(true, d => d == t)) return;
             }
             if (now < nextTick) return;
             if (TryFire(false)) nextTick = now + Interval();
@@ -685,7 +706,10 @@ namespace ColonyCouncil
             ctx.text = ctx.def.texts.RandomElement();
             var letterDef = DefDatabase<LetterDef>.GetNamedSilentFail("Council_DilemmaLetter");
             var look = new LookTargets(new[] { ctx.a, ctx.b }.Where(p => p != null));
-            var letter = (ChoiceLetter_Dilemma)LetterMaker.MakeLetter("CC_Dilemma_Title".Translate(ctx.def.LabelCap), ctx.Format(ctx.text) + "\n\n" + "CC_Dilemma_Deadline".Translate(TextUtil.DaysString(Mathf.RoundToInt(ctx.def.answerDays * GenDate.TicksPerDay)), ctx.Format(ctx.def.options[ctx.def.defaultOption].label)), letterDef, look);
+            string tradition = IsTradition(ctx.def)
+                ? "\n\n" + "CC_Tradition_Note".Translate(ctx.def.traditionLabel, ctx.Format(ctx.def.options[ctx.def.traditionOption].label)).Resolve()
+                : "";
+            var letter = (ChoiceLetter_Dilemma)LetterMaker.MakeLetter("CC_Dilemma_Title".Translate(ctx.def.LabelCap), ctx.Format(ctx.text) + tradition + "\n\n" + "CC_Dilemma_Deadline".Translate(TextUtil.DaysString(Mathf.RoundToInt(ctx.def.answerDays * GenDate.TicksPerDay)), ctx.Format(ctx.def.options[ctx.def.defaultOption].label)), letterDef, look);
             letter.ctx = ctx;
             letter.StartTimeout(Mathf.RoundToInt(ctx.def.answerDays * GenDate.TicksPerDay));
             Find.LetterStack.ReceiveLetter(letter);
@@ -701,6 +725,7 @@ namespace ColonyCouncil
             var option = ctx.def.options[Mathf.Clamp(index, 0, ctx.def.options.Count - 1)];
             // Someone may have left or died in the meantime; the dilemma happens to whoever is still here.
             if (ctx.a == null || ctx.a.Dead) return;
+            if (ctx.def.traditionOption >= 0 && comp != null) Tradition(ctx, index == ctx.def.traditionOption, comp);
             bool risk = option.riskChance > 0f && Rand.Chance(option.riskChance);
             if (!risk || !option.riskReplaces)
                 foreach (var e in option.effects) Safe(e, ctx);
@@ -722,6 +747,59 @@ namespace ColonyCouncil
             ctx.faction = null;
         }
 
+        /// <summary>Keeping, founding or breaking a tradition.</summary>
+        private void Tradition(DilemmaContext ctx, bool kept, CouncilGameComponent comp)
+        {
+            var def = ctx.def;
+            string key = def.defName;
+            var colonists = ctx.Colonists.ToList();
+            if (kept)
+            {
+                traditionBreaks[key] = 0;
+                traditionCount[key] = (traditionCount.TryGetValue(key, out int n) ? n : 0) + 1;
+                if (IsTradition(def))
+                {
+                    foreach (var p in colonists) CouncilGameComponent.GiveThought(p, CouncilDefOf.Council_TraditionKept);
+                    comp.annals.Notify_Tradition(def.traditionLabel, true);
+                }
+                else if (traditionCount[key] >= def.traditionAfter)
+                {
+                    traditions.Add(key);
+                    foreach (var p in colonists) CouncilGameComponent.GiveThought(p, CouncilDefOf.Council_TraditionKept);
+                    Find.LetterStack.ReceiveLetter("CC_Tradition_BornTitle".Translate(def.traditionLabel.CapitalizeFirst()).Resolve(),
+                        "CC_Tradition_BornText".Translate(def.traditionLabel).Resolve(), LetterDefOf.PositiveEvent);
+                    comp.AddChronicle(new ChronicleEntry(ChronicleKind.Note, "CC_Chronicle_TraditionBorn".Translate(def.traditionLabel).Resolve(), null));
+                    comp.annals.Notify_TraditionBorn(def.traditionLabel);
+                    foreach (var p in colonists.InRandomOrder().Take(2))
+                        comp.journals.Write(p, "Council_Journal_TraditionBorn", null, def.traditionLabel.Named("TRADITION"));
+                }
+                return;
+            }
+            if (!IsTradition(def)) return;
+            int breaks = (traditionBreaks.TryGetValue(key, out int b) ? b : 0) + 1;
+            traditionBreaks[key] = breaks;
+            foreach (var p in colonists)
+            {
+                if (p.story?.traits?.HasTrait(TraitDefOf.Ascetic) ?? false) continue;
+                CouncilGameComponent.GiveThought(p, CouncilDefOf.Council_TraditionBroken);
+                comp.standings.Change(p, -2f, null);
+            }
+            comp.annals.Notify_Tradition(def.traditionLabel, false);
+            if (breaks >= 2)
+            {
+                traditions.Remove(key);
+                traditionCount[key] = 0;
+                traditionBreaks[key] = 0;
+                Messages.Message("CC_Tradition_Lapsed".Translate(def.traditionLabel).Resolve(), MessageTypeDefOf.NegativeEvent, false);
+                comp.AddChronicle(new ChronicleEntry(ChronicleKind.Note, "CC_Chronicle_TraditionLapsed".Translate(def.traditionLabel).Resolve(), null));
+            }
+            else
+            {
+                Messages.Message("CC_Tradition_Broken".Translate(def.traditionLabel).Resolve(), MessageTypeDefOf.NegativeEvent, false);
+                comp.AddChronicle(new ChronicleEntry(ChronicleKind.Note, "CC_Chronicle_TraditionBroken".Translate(def.traditionLabel).Resolve(), null));
+            }
+        }
+
         private static void Safe(DilemmaEffect e, DilemmaContext ctx)
         {
             try
@@ -738,8 +816,17 @@ namespace ColonyCouncil
         {
             Scribe_Values.Look(ref nextTick, "nextTick", -1);
             Scribe_Values.Look(ref lastFiredTick, "lastFiredTick", -999999);
+            Scribe_Collections.Look(ref traditionCount, "traditionCount", LookMode.Value, LookMode.Value);
+            Scribe_Collections.Look(ref traditionBreaks, "traditionBreaks", LookMode.Value, LookMode.Value);
+            Scribe_Collections.Look(ref traditions, "traditions", LookMode.Value);
             Scribe_Collections.Look(ref lastTick, "lastTick", LookMode.Value, LookMode.Value);
-            if (Scribe.mode == LoadSaveMode.PostLoadInit && lastTick == null) lastTick = new Dictionary<string, int>();
+            if (Scribe.mode == LoadSaveMode.PostLoadInit)
+            {
+                if (lastTick == null) lastTick = new Dictionary<string, int>();
+                if (traditionCount == null) traditionCount = new Dictionary<string, int>();
+                if (traditionBreaks == null) traditionBreaks = new Dictionary<string, int>();
+                if (traditions == null) traditions = new List<string>();
+            }
         }
     }
 }

@@ -43,6 +43,13 @@ namespace ColonyCouncil
         public int dilemmas;
         public List<string> quit = new List<string>();
         public List<AnnalsEntry> written = new List<AnnalsEntry>();
+        public List<string> traditionsKept = new List<string>();
+        public List<string> traditionsBroken = new List<string>();
+        public List<string> traditionsBorn = new List<string>();
+
+        public void Notify_Tradition(string label, bool kept) => (kept ? traditionsKept : traditionsBroken).Add(label);
+
+        public void Notify_TraditionBorn(string label) => traditionsBorn.Add(label);
 
         private static List<Pawn> Colonists() =>
             PawnsFinder.AllMapsCaravansAndTravellingTransporters_Alive_FreeColonists_NoLodgers.Where(p => !p.IsQuestLodger()).ToList();
@@ -100,6 +107,9 @@ namespace ColonyCouncil
             decrees.Clear();
             dilemmas = 0;
             quit.Clear();
+            traditionsKept.Clear();
+            traditionsBroken.Clear();
+            traditionsBorn.Clear();
         }
 
         private void Write(CouncilGameComponent comp, Map map)
@@ -151,6 +161,9 @@ namespace ColonyCouncil
                 Para("CC_Annals_Decrees".Translate(TextUtil.JoinAnd(named)).Resolve());
             }
             if (dilemmas > 0) Para("CC_Annals_Dilemmas".Translate(dilemmas).Resolve());
+            if (traditionsBorn.Count > 0) Para("CC_Annals_TraditionsBorn".Translate(TextUtil.JoinAnd(traditionsBorn.Distinct().ToList())).Resolve());
+            if (traditionsKept.Count > 0) Para("CC_Annals_TraditionsKept".Translate(TextUtil.JoinAnd(traditionsKept.Distinct().ToList())).Resolve());
+            if (traditionsBroken.Count > 0) Para("CC_Annals_TraditionsBroken".Translate(TextUtil.JoinAnd(traditionsBroken.Distinct().ToList())).Resolve());
 
             // People and their feelings
             var adults = now.Where(p => p.relations != null && p.Spawned).ToList();
@@ -232,6 +245,9 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref dilemmas, "dilemmas");
             Scribe_Collections.Look(ref quit, "quit", LookMode.Value);
             Scribe_Collections.Look(ref written, "written", LookMode.Deep);
+            Scribe_Collections.Look(ref traditionsKept, "traditionsKept", LookMode.Value);
+            Scribe_Collections.Look(ref traditionsBroken, "traditionsBroken", LookMode.Value);
+            Scribe_Collections.Look(ref traditionsBorn, "traditionsBorn", LookMode.Value);
             if (Scribe.mode == LoadSaveMode.PostLoadInit)
             {
                 if (present == null) present = new List<Pawn>();
@@ -242,6 +258,9 @@ namespace ColonyCouncil
                 if (decrees == null) decrees = new List<string>();
                 if (quit == null) quit = new List<string>();
                 if (written == null) written = new List<AnnalsEntry>();
+                if (traditionsKept == null) traditionsKept = new List<string>();
+                if (traditionsBroken == null) traditionsBroken = new List<string>();
+                if (traditionsBorn == null) traditionsBorn = new List<string>();
             }
         }
     }

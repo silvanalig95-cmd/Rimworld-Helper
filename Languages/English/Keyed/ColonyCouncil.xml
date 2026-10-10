@@ -959,4 +959,17 @@ Granting one of {PAWN_possessive} wishes, or keeping a promise, can win {PAWN_ob
   <CC_Settings_Journals>Colonists keep journals</CC_Settings_Journals>
   <CC_Settings_Journals_Tip>Each colonist writes a line in their own voice when something happens to them: wishes granted or ignored, promises, decrees, raids, losses, names earned. Click a name in the Wishes tab's trust list to read it.</CC_Settings_Journals_Tip>
 
+  <!-- Traditions -->
+  <CC_Tradition_Note>It's tradition now: {0}. Everyone expects "{1}", and skipping it will be felt.</CC_Tradition_Note>
+  <CC_Tradition_BornTitle>A new tradition: {0}</CC_Tradition_BornTitle>
+  <CC_Tradition_BornText>The colony has done it often enough that it's become a tradition: {0}.\n\nFrom now on it will come round every time its moment does. Keeping it lifts everyone's spirits; skipping it disappoints them, and skipping it twice in a row lets it die out.</CC_Tradition_BornText>
+  <CC_Tradition_Broken>A tradition broken: {0}. People noticed.</CC_Tradition_Broken>
+  <CC_Tradition_Lapsed>{0} is no longer a tradition. The colony let it go.</CC_Tradition_Lapsed>
+  <CC_Chronicle_TraditionBorn>{0} became a tradition.</CC_Chronicle_TraditionBorn>
+  <CC_Chronicle_TraditionBroken>The council broke a tradition: {0}.</CC_Chronicle_TraditionBroken>
+  <CC_Chronicle_TraditionLapsed>{0} faded from the colony's traditions.</CC_Chronicle_TraditionLapsed>
+  <CC_Annals_TraditionsBorn>New traditions: {0}.</CC_Annals_TraditionsBorn>
+  <CC_Annals_TraditionsKept>Traditions kept: {0}.</CC_Annals_TraditionsKept>
+  <CC_Annals_TraditionsBroken>Traditions broken: {0}.</CC_Annals_TraditionsBroken>
+
 </LanguageData>

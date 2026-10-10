@@ -109,4 +109,16 @@
     <stages><li><label>hair in the stew</label><description>There's animal hair in everything I eat now. The council decided that was fine.</description><baseMoodEffect>-2</baseMoodEffect></li></stages>
   </ThoughtDef>
 
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_TraditionKept</defName>
+    <durationDays>4</durationDays>
+    <stages><li><label>a tradition kept</label><description>We did it the way we always do. Some things out here stay the same, and that's a comfort.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_TraditionBroken</defName>
+    <durationDays>5</durationDays>
+    <stages><li><label>a tradition broken</label><description>We've always done it. This year we didn't. It feels like something slipped.</description><baseMoodEffect>-5</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
 </Defs>
