@@ -1,0 +1,344 @@
+# RimWorld Helper: design draft
+
+> Working title. Status: idea and design exploration, no code yet.
+
+## The problem
+
+Mid-game, it's easy to stall: the colony survives, but you don't know what to build
+next, where to put it, or what actually matters right now. RimWorld already tracks
+a lot of this (mood thoughts, traits, passions, wealth, threat points, food,
+temperature), but it's spread over a dozen tabs and alerts, and nothing ties it
+into a direction.
+
+## The idea in one sentence
+
+**The colony tells you what it needs. Your colonists tell you what they want. You decide.**
+
+This splits into three layers. Each one works on its own, so we can build them in order:
+
+| Layer | Voice | Purpose | Feels like |
+|---|---|---|---|
+| **1. Advisor** | Neutral, out of character | "What does my colony objectively need next, and why?" | A smart checklist |
+| **2. Pawn wishes** | Each colonist, in character | Personal requests driven by traits, passions, relationships and mood | The Sims 2 wants and fears, Dwarf Fortress noble demands |
+| **3. Colony meetings** | The colony as a group | Every so often, pick one bigger ambition to work toward | Frostpunk promises, a light quest system |
+
+All of it is **advice, never obligation**. By default, ignoring a wish or a priority
+costs nothing; following one gives a small reward. That keeps it a helper and a source
+of fresh situations rather than a chore list.
+
+---
+
+## Layer 1: The Advisor
+
+A panel (its own main tab button, e.g. "Plans") that shows the **top 3 priorities** right
+now. Each one has a reason and an optional "show me" button that jumps the camera there.
+
+### What it reads and what it says
+
+| Area | What it checks | Example suggestion |
+|---|---|---|
+| Shelter | Pawns without beds, barracks vs. own bedrooms, unroofed beds | "2 colonists sleep in barracks (−4 mood each). Next: 2 small bedrooms." |
+| Food | Days of food left vs. days until the growing season ends; freezer present? | "Winter starts in 9 days. You have 14 days of food for 5 people; you need ~40." |
+| Temperature | Forecast temperature for the next season vs. heaters, coolers and warm clothes | "Next quadrum averages −18 °C. Only 1 heater, 3 pawns lack parkas." |
+| Defense | Raid threat points (which grow with wealth) vs. defense: turrets, cover, armed pawns, shooting skill | "Wealth rose 40% this season and defenses didn't. Expect bigger raids." |
+| Health | Is a doctor assigned? Medicine stock, hospital beds, clean floors | "No hospital beds. One bad raid and patients will lie on the floor." |
+| Power | Generation vs. use, battery storage, solar-only grids | "Solar-only grid with no batteries: an eclipse takes everything down." |
+| Comfort | Average mood, recreation variety, dining room, beauty, light | "3 pawns have only one kind of recreation. A chess table would help." |
+| Progress | Research gaps against what's blocking you (no electricity yet, no components) | "Research Electricity next: it unlocks most of what's above." |
+
+### How it ranks things
+
+Each check produces a **signal**: `severity × urgency × confidence`.
+
+- *Severity*: how bad is it if ignored (starvation beats ugly floors).
+- *Urgency*: how soon (winter in 3 days beats winter in 30).
+- *Confidence*: how sure we are (the heuristics are rough; say so).
+
+Show the top 3, with the rest collapsible. Each signal also carries a one-line
+**"why this matters"** tip, e.g. *"Raids scale with colony wealth, so getting richer
+without getting stronger is the classic mid-game trap."* This is the part that
+teaches *you*, the player, not just the colony.
+
+---
+
+## Layer 2: Pawn wishes
+
+This is the fun part. Every so often, a colonist voices a **wish**: a concrete,
+checkable request that comes from *who they are* and *what they're experiencing*.
+
+### Where wishes come from
+
+A wish is only generated if there's a real reason in the game state, and the
+reason is always shown. Sources:
+
+1. **Current bad thoughts.** "Slept in barracks", "Ate without table", cramped room,
+   ugly or dark environment, tattered clothes, low recreation, slept in the cold.
+2. **Traits.**
+   - *Greedy*: wants a more impressive bedroom.
+   - *Jealous*: wants a bedroom as nice as the best one.
+   - *Ascetic*: wishes are humble (and might *refuse* a fancy room!).
+   - *Gourmand*: wants fine meals.
+   - *Chemical interest*: wants a brewery.
+   - *Night owl*: wants lights in their workplace.
+   - *Brawler*: wants a good melee weapon.
+   - *Kind*: makes wishes **for other people**.
+   - *Abrasive*: makes wishes as demands.
+3. **Passions** (the flames on skills).
+   - Crafting: a workshop.
+   - Art: a sculpting table and somewhere to show the work.
+   - Cooking: a proper kitchen next to the freezer.
+   - Medicine: a hospital.
+   - Plants: a greenhouse.
+   - Animals: a barn.
+   - Intellectual: a better research bench.
+   - Also: "let me actually *do* crafting", when a passion's work type is turned off for them.
+4. **Relationships.** Lovers or spouses in separate beds want a shared double bed.
+   A pawn whose friend died wants a grave or memorial.
+5. **Expectations.** RimWorld already raises colonists' expectations as the colony
+   gets richer. Use that to scale wishes: at low expectations, "a bed of my own"; at
+   high ones, "a bedroom worth bragging about".
+6. **DLC hooks (later).** Ideology precepts and roles, Royalty titles (which already
+   list explicit throne room and bedroom requirements), Biotech children and genes.
+
+### Example wish catalogue (first version)
+
+| Wish | Who tends to want it | Fulfilled when | Reward |
+|---|---|---|---|
+| A room of my own | Anyone in barracks or sharing a bed with a non-partner | Owns a bed in a room they alone use | +5 mood, 5 days |
+| A nicer bedroom | Greedy, Jealous, high expectations | Bedroom impressiveness ≥ target | +6 mood, 6 days |
+| Share a bed with my partner | Lovers or spouses in separate beds | Both assigned to the same double bed | +6 mood each |
+| A place to do what I love | Major passion with no dedicated room or bench | A bench for that skill stands in a room with the right role | +5 mood, chance of an inspiration |
+| Let me do my thing | Passion work type is off for them | Work type enabled (priority ≤ 2) | +3 mood |
+| Eat at a table | Has "Ate without table" | Dining table and chairs reachable from the food | +3 mood |
+| Something new to do | Low recreation variety | One new recreation type available | +4 mood |
+| New clothes | Wearing tattered or dead man's apparel | Replaced | +3 mood |
+| Make it warmer or cooler | Slept in the cold or heat | Bedroom temperature in comfort range | +3 mood |
+
+The numbers are placeholders. Balance comes later.
+
+### Lifecycle
+
+```
+ game state ──► candidate wishes ──► weighted pick ──► letter + listed in "Plans" tab
+                                                          │
+                       checked every in-game hour ◄───────┘
+                          │                │
+                     fulfilled          expired (default ~10 days)
+                          │                │
+               mood memory + thanks    quietly fades
+               (+ maybe inspiration)   (optional small penalty in "Demanding" mode)
+```
+
+### Rules that keep it from being annoying
+
+- At most **one new wish every 2–3 days** colony-wide, and **one open wish per pawn**.
+- Never wish for something the colony **can't build yet** (not researched or no materials anywhere).
+- Never wish for something **already satisfied**.
+- "Not now" button: dismisses it, and the pawn won't ask again for a while.
+- Wishes **expire**. A missed wish is just a missed opportunity.
+- Pawns in a mental break, downed, or in a crisis (raid underway) don't wish.
+
+### Personality in the delivery
+
+Same wish, different voice:
+
+- **Kind** pawn: *"Ann has been sleeping in the barracks for weeks. Could she get her own room?"*
+- **Abrasive** pawn: *"I'm done sleeping next to Rocco's snoring. I want my own room."*
+- **Ascetic** pawn, offered an impressive room: *"This is too much. Give it to someone who needs it."*
+
+**Petitions:** when several pawns want the same thing (e.g. 3 want a rec room), the wishes
+merge into one bigger request with a bigger, shared reward.
+
+### Stakes setting
+
+| Mode | Fulfilled | Ignored or expired |
+|---|---|---|
+| **Gentle** (default) | Mood bonus | Nothing |
+| **Demanding** | Mood bonus | Small, short mood penalty ("My request was ignored", −2, 3 days) |
+| **Advisor only** | No mood effects at all, pure suggestions | Nothing |
+
+### Example letter
+
+> **Engie wants a proper workshop**
+>
+> *"I've been sewing on a bench in the corner of the dining room. A real workshop,
+> just a room for the benches, would make my day."*
+>
+> **Why:** Crafting is Engie's major passion. Their tailoring bench is in a dining room.
+> **Fulfilled when:** A crafting bench stands in a room that counts as a workshop.
+> **Reward:** +5 mood for 5 days; may become inspired.
+> **Expires:** in 10 days.  [Jump to Engie] [Not now]
+
+---
+
+## Layer 3: Colony meetings (direction)
+
+This answers "where am I heading?". About once a season, a **colony meeting** letter
+proposes **3 ambitions**, drawn from the Advisor's top signals and the most common
+open wishes. Each one is "pitched" by the pawn who cares most about it:
+
+> 1. **"Survive the winter in comfort"**, proposed by Mira (Cooking):
+>    60 days of food stored, freezer, heaters in every bedroom.
+> 2. **"A real hospital"**, proposed by Doc (Medicine):
+>    a room with 3 hospital beds, sterile tiles and a vitals monitor.
+> 3. **"Never again"**, proposed by Rex (Shooting):
+>    a defensive line with sandbags and 2 turrets covering the main approach.
+
+You pick one (or none). It shows as a checklist with progress. Completing it gives a
+colony-wide mood boost ("We built this together") and the proposer gets a bigger one.
+The pitch is the hook: it gives the plan a *face* and a story beat.
+
+---
+
+## Building help: how far should the mod build things itself?
+
+Think of it as a ladder. Each rung is optional and builds on the one below:
+
+| Rung | What happens | Difficulty | Recommendation |
+|---|---|---|---|
+| 0. Tell | Text suggestion ("build a 5×6 bedroom") | Easy | Yes, MVP |
+| 1. Point | Highlights a candidate spot on the map and jumps the camera there | Medium | Yes, phase 2 |
+| 2. Propose | Ready-made room templates (bedroom, workshop, hospital, freezer). Click "Plan it" and a ghost preview follows your mouse; you place, rotate and confirm, and it lays down normal blueprints | Medium to hard | Yes, phase 3. This is the sweet spot |
+| 3. Personal touches | A pawn places a small blueprint *inside their own room* (end table, plant pot, sculpture). You can cancel it like any blueprint | Medium | Fun and safe, phase 3 |
+| 4. Full auto-planning | The mod picks sites and lays out whole rooms on its own | Very hard | No, or opt-in experiment only |
+
+**Why not full auto-build?** Placing a blueprint is trivial technically. Choosing a
+*good* place is the hard part: terrain, mountains, roofs, temperature, traffic, how
+it connects to existing walls, fire risk, raid approach, how it looks. An algorithm can
+find "a free rectangle next to an existing wall near the colony center" reasonably
+well, but not a base you'd be proud of. Rungs 2 and 3 give most of the benefit while
+the base layout stays yours.
+
+---
+
+## Algorithms or AI?
+
+**Core logic: plain algorithms (rules and weights).** It's deterministic, needs no API
+key, works offline, costs nothing, is fast, and can be balanced. Every wish and signal
+is a small rule: "if this condition is true, propose X, satisfied when Y."
+
+**Optional later: an LLM for flavor text only.** It could write the pawn's line in
+their voice from the wish and their traits, but must never decide what's true about
+the game. Mods like [RimTalk](https://steamcommunity.com/sharedfiles/filedetails/comments/3551203752)
+already do LLM pawn dialogue with player-supplied API keys, so it's proven technically.
+It just shouldn't be a dependency. Hand-written templates with trait variants get
+~80% of the charm.
+
+**"Random but sensible"** comes from *weighted* random picks: every candidate wish gets
+a weight (how bad the related thought is, how strong the passion, trait multipliers),
+and the generator rolls among them. Same colony, different stories each playthrough.
+
+---
+
+## Limits and risks
+
+- **Heuristics are approximate.** Defense strength in particular is hard to compute
+  (a killbox with 2 turrets beats 6 turrets in the open). Present it as "rough
+  read" with confidence, not as truth.
+- **Room-quality judgments.** We can read RimWorld's own room stats (impressiveness,
+  space, beauty, cleanliness, role), which keeps us honest and in line with the game's
+  own mood logic.
+- **Modded content.** Avoid hard-coding specific buildings. Detect by category
+  instead, e.g. "a bench whose recipes use the Crafting skill", or "a building that
+  provides recreation". Modded benches and furniture then work automatically.
+- **Performance.** Run checks every in-game hour (or less often), never every tick. Cache results.
+- **Exploits.** Rewards must not be farmable: cooldowns, no repeat wishes, rewards scale with effort.
+- **Nagging.** The biggest design risk. Rate limits and "Not now" are essential, and
+  the default is Gentle.
+- **Overlap with vanilla alerts.** RimWorld already warns about some basics (e.g. no
+  beds, low food). The Advisor should go beyond those (forecasts, trade-offs, *why*)
+  rather than repeat them.
+
+---
+
+## Technical sketch
+
+Standard RimWorld mod: XML defs plus a C# assembly. Harmony patches are probably not even
+needed for the MVP; everything hooks in through game and map components.
+
+```
+About/About.xml
+1.6/Assemblies/RimworldHelper.dll
+Defs/
+  WishDefs/            # data-driven wishes (add new ones in XML)
+  AdvisorSignalDefs/   # data-driven advisor checks
+  ThoughtDefs/         # "Wish fulfilled", "Request ignored", "We built this together"
+  MainButtonDefs/      # the "Plans" tab
+Languages/English/Keyed/
+Source/RimworldHelper/ # C#; builds against the Krafs.Rimworld.Ref NuGet package
+```
+
+Core types:
+
+- `WishDef : Def` holds worker class, base weight, reward, expiry, cooldown and text templates.
+- `WishWorker` answers three questions: `Desire(pawn)` (0 means never), `IsSatisfied(pawn)`,
+  and `Explain(pawn)`. One small class per wish type.
+- `Wish : IExposable` is the live instance (pawn, def, created and expiry ticks, state), saved with the game.
+- `WishTracker : GameComponent` generates, tracks and expires wishes.
+- `AdvisorSignalDef` / `AdvisorSignalWorker` evaluate a map and return
+  severity, urgency, explanation and look targets.
+- `ColonyAdvisor : MapComponent` caches signals and refreshes hourly.
+- `MainTabWindow_Plans` is the UI: priorities, open wishes, current ambition.
+- Mod settings: frequency, stakes mode, max open wishes, per-layer toggles.
+
+Things the game exposes that this relies on (all available to mods):
+
+| Need | Game data |
+|---|---|
+| Pawn's bad thoughts | Mood thought list per pawn |
+| Bedroom and room quality | Owned bed and room, room role, room stats (impressiveness, space, beauty) |
+| Traits, passions, skills | Trait set, skill records with passion level |
+| Work assignments | Work priorities per work type |
+| Partners | Direct relations (lover, spouse, fiancé) |
+| Raid strength | Storyteller threat points, colony wealth |
+| Food | Total human-edible nutrition on the map |
+| Seasons | Average temperature per twelfth for the map's tile, growing-season check |
+| Power | Power net gain rate and stored energy |
+| Building | Placing standard blueprints (so pawns build them normally) |
+| Rewards | Mood memories, inspirations |
+
+---
+
+## Roadmap
+
+**MVP: "it talks to me"**
+- Advisor with ~6 signals: beds, food vs. winter, defense vs. wealth, recreation variety, power, doctor/medicine.
+- ~8 wish types from the catalogue above.
+- "Plans" tab, wish letters, fulfilled-wish mood memory, Gentle mode only.
+- Settings: on/off per layer, wish frequency.
+
+**Phase 2: "it has personality"**
+- Trait-flavored text variants, petitions, Kind and Abrasive behaviors, Ascetic refusals.
+- Demanding mode. "Show me where" highlighting.
+- Colony meetings and ambitions.
+
+**Phase 3: "it helps me build"**
+- Room templates with ghost placement ("Plan it").
+- Pawn personal touches in their own rooms.
+- Ideology, Royalty and Biotech wish sources.
+
+**Phase 4: optional extras**
+- LLM flavor text provider (bring your own key).
+- Ambition chains (multi-step goals across seasons).
+
+---
+
+## Open questions
+
+1. Which RimWorld version and DLCs do you play with? (This draft assumes 1.6.)
+2. Gentle by default, or should ignored wishes sting a little?
+3. Which layer excites you most to start with: Advisor, Wishes, or Meetings?
+4. How much auto-building do you actually want: up to "Propose" (templates), or more?
+5. Have you written C# or RimWorld mods before? (This decides how much scaffolding and explanation the code needs.)
+
+## References and prior art
+
+No existing mod was found that does pawn-driven building requests or a colony advisor
+in this form. Closest:
+
+- ["Dream and Desire" idea thread](https://steamcommunity.com/workshop/filedetails/discussion/2697015438/3199243752762917307):
+  pawns wanting specific apparel and equipment based on traits and backstory (concept only, as far as we could tell).
+- [RimTalk](https://steamcommunity.com/sharedfiles/filedetails/comments/3551203752): LLM-generated pawn dialogue from thoughts and actions.
+- [RimWorld Wiki: Expectations](https://rimworldwiki.com/wiki/Expectations) and [Thoughts list](https://rimworldwiki.com/wiki/Thoughts_list): the vanilla systems the wishes build on.
+- [RimWorld Wiki: Colony Building Guide](https://rimworldwiki.com/wiki/Colony_Building_Guide): its "current plan and next plan" advice is what the Advisor tries to automate.
+- Design inspirations: The Sims 2 wants and fears, Dwarf Fortress noble mandates, Frostpunk promises.
