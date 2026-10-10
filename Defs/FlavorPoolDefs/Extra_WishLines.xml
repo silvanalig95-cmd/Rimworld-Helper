@@ -152,7 +152,7 @@
       <cheerful>
         <li>What if, hear me out, my room had a statue of me in it? Too much? A statue of anything, then!</li>
         <li>[highmood] I'm in such a good mood, I want my room to match. Let's make it fancy!</li>
-        <li>[trait:Beauty] A face like mine deserves a room like... well, not like this one!</li>
+        <li>[trait:Beautiful|trait:Pretty] A face like mine deserves a room like... well, not like this one!</li>
       </cheerful>
       <gloomy>
         <li>I don't need a beautiful room. I just want one that doesn't remind me where I am.</li>
@@ -763,7 +763,7 @@
       <blunt>
         <li>[trigger:floor] I've eaten off cleaner rocks in a raider camp. Build a table.</li>
         <li>My back's bent from eating hunched over a crate. Get {THING} built before it sets that way.</li>
-        <li>[trait:Ugly] People already don't like looking at me. Watching me eat off the floor isn't helping.</li>
+        <li>[trait:Ugly|trait:StaggeringlyUgly] People already don't like looking at me. Watching me eat off the floor isn't helping.</li>
       </blunt>
       <cheerful>
         <li>A table means table manners! I've been practicing mine on the floor!</li>
@@ -1052,7 +1052,7 @@
       <plain>
         <li>There's a hole in my shirt right over the heart, and I'm fairly sure it came with the shirt.</li>
         <li>[trigger:naked] These pants have the last owner's name stitched inside. I'd rather not think about the last owner.</li>
-        <li>[trait:Beauty] Look at me. Now look at these rags. One of us doesn't belong.</li>
+        <li>[trait:Beautiful|trait:Pretty] Look at me. Now look at these rags. One of us doesn't belong.</li>
       </plain>
       <warm>
         <li>I patch these every night. The patches have patches now. Could the tailor spare a little cloth?</li>
@@ -1857,7 +1857,7 @@
     <request>
       <plain>
         <li>I watched someone do {SUBJECT} today. They were doing it wrong. I didn't say anything. Let me do it.</li>
-        <li>[trait:Industriousness] My hands don't know what to do with themselves when they're not doing {SUBJECT}.</li>
+        <li>[trait:Industrious|trait:HardWorker] My hands don't know what to do with themselves when they're not doing {SUBJECT}.</li>
         <li>[newcomer] Back home, {SUBJECT} was what I did. I'd like it to be what I do here too.</li>
         <li>[repeat] Me again. Still about {SUBJECT}. Still more polite than I feel.</li>
       </plain>
@@ -2148,7 +2148,7 @@
     <request>
       <plain>
         <li>We grow food, we make clothes, we bury our dead. We don't brew. Feels like we skipped a step.</li>
-        <li>[trait:DrugDesire] It's been a long time since I had anything at all. Beer is the gentle option. Think about it.</li>
+        <li>[trait:ChemicalInterest|trait:ChemicalFascination] It's been a long time since I had anything at all. Beer is the gentle option. Think about it.</li>
         <li>[fall] The harvest's in. It'd be a shame not to turn some of it into something worth drinking.</li>
         <li>[repeat] The harvests keep coming in and none of it is becoming beer. I'm bringing it up again.</li>
       </plain>
@@ -2173,7 +2173,7 @@
       <cold>
         <li>Traders pay well for beer. So do colonists, in good behavior. Two returns on one barrel.</li>
         <li>[trait:Psychopath] Drunk people are easier to read. I like a colony I can read. Let's brew.</li>
-        <li>[trait:DrugDesire] I can control myself. A barrel here at home keeps me from looking elsewhere.</li>
+        <li>[trait:ChemicalInterest|trait:ChemicalFascination] I can control myself. A barrel here at home keeps me from looking elsewhere.</li>
       </cold>
     </request>
     <thanks>
@@ -2757,7 +2757,7 @@
       <cold>
         <li>I've worked more hours this month than anyone here. I'd like that balanced. With rest, preferably.</li>
         <li>[trait:Psychopath] I don't need rest. My temper does. You'd prefer my temper rested.</li>
-        <li>[trait:Industriousness] Rest is wasted time, normally. My hands have started shaking, so call it maintenance.</li>
+        <li>[trait:Industrious|trait:HardWorker] Rest is wasted time, normally. My hands have started shaking, so call it maintenance.</li>
       </cold>
     </request>
     <thanks>
@@ -2829,7 +2829,7 @@
     <request>
       <plain>
         <li>A joint, a beer, anything. Something to sit with at the end of the day.</li>
-        <li>[trait:DrugDesire] I'm not going to do anything stupid. I'd just like the option of something mild in the stockpile.</li>
+        <li>[trait:ChemicalInterest|trait:ChemicalFascination] I'm not going to do anything stupid. I'd just like the option of something mild in the stockpile.</li>
         <li>[storm] Thunder all night and nothing to settle the nerves. Some smokeleaf, maybe? A beer?</li>
         <li>[repeat] Back again about the stockpile. It's still dry. So am I.</li>
       </plain>
@@ -2854,7 +2854,7 @@
       <cold>
         <li>Mild intoxicants keep people compliant through bad weeks. This is a bad week.</li>
         <li>[trait:Psychopath] I don't need it. The others do, and I have to live with the others.</li>
-        <li>[trait:DrugDesire] A small, controlled supply now prevents a large, uncontrolled one later. Think about it.</li>
+        <li>[trait:ChemicalInterest|trait:ChemicalFascination] A small, controlled supply now prevents a large, uncontrolled one later. Think about it.</li>
       </cold>
     </request>
     <thanks>
@@ -2889,7 +2889,7 @@
         <li>We'll sit around the fire anyway. Good company does most of the work.</li>
       </warm>
       <blunt>
-        <li>[trait:DrugDesire] Fine. I know where the traders camp. Don't ask what I'll trade.</li>
+        <li>[trait:ChemicalInterest|trait:ChemicalFascination] Fine. I know where the traders camp. Don't ask what I'll trade.</li>
       </blunt>
       <cheerful>
         <li>I'll toast with water! Cheers, water! You're very wet!</li>

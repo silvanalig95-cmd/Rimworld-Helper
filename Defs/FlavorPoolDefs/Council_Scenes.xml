@@ -53,10 +53,10 @@
         <li>[trait:Jealous] {PAWN_nameDef} has been keeping count. It shows.</li>
         <li>[trait:Psychopath] {PAWN_nameDef} states it the way one might state the weather.</li>
         <li>[trait:Ascetic] For once, {PAWN_nameDef} wants something. People actually stop to listen.</li>
-        <li>[trait:Industriousness] {PAWN_nameDef} asks without stopping work, which is either efficient or rude.</li>
+        <li>[trait:Industrious|trait:HardWorker] {PAWN_nameDef} asks without stopping work, which is either efficient or rude.</li>
         <li>[trait:Bloodlust] {PAWN_nameDef} is cleaning a blade while asking. It may not be deliberate.</li>
         <li>[trait:Pyromaniac] {PAWN_nameDef} is fiddling with a tinderbox the entire time. Nobody comments.</li>
-        <li>[trait:Nerves] {PAWN_nameDef}'s voice cracks halfway through, but {PAWN_pronoun} gets there.</li>
+        <li>[trait:Nervous|trait:Volatile] {PAWN_nameDef}'s voice cracks halfway through, but {PAWN_pronoun} gets there.</li>
         <li>[old] With the creak of old knees, {PAWN_nameDef} lowers into a chair and says "Now listen."</li>
         <li>[old] {PAWN_nameDef} has outlived worse than this colony, and is not shy about mentioning it.</li>
         <li>[child] {PAWN_nameDef} tugs at the nearest sleeve until someone listens.</li>
@@ -319,7 +319,7 @@
       <plain>
         <li>If you want something done around here, apparently you do it yourself.</li>
         <li>Nobody else was going to. So.</li>
-        <li>[trait:Industriousness] Waiting is worse than working. Done.</li>
+        <li>[trait:Industrious|trait:HardWorker] Waiting is worse than working. Done.</li>
       </plain>
       <warm>
         <li>I didn't want to bother anyone. I hope that's all right.</li>

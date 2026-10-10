@@ -16,7 +16,7 @@
         <li>[trait:Ascetic] We don't need it. Nobody needs it. That's rather the point.</li>
         <li>[trait:Ascetic] Every luxury is one more thing to lose when the raiders come.</li>
         <li>[trait:Jealous] Funny how {OTHER_nameDef} always gets asked about first.</li>
-        <li>[trait:Industriousness] That's a lot of hours for something nobody needs. I'd rather spend them on work that matters.</li>
+        <li>[trait:Industrious|trait:HardWorker] That's a lot of hours for something nobody needs. I'd rather spend them on work that matters.</li>
       </plain>
       <warm>
         <li>I don't want to be unkind, {OTHER_nameDef}. But others need help first.</li>

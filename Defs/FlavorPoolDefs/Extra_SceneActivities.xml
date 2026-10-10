@@ -43,8 +43,8 @@
         <li>[outside,night,clear] Under a sky full of stars, {PAWN_nameDef} says something that has nothing to do with the stars.</li>
         <li>[inownroom] {PAWN_nameDef} calls someone into {PAWN_possessive} room to show them exactly what the problem is.</li>
         <li>[indoors,storm] The walls shudder with thunder. {PAWN_nameDef} uses the moment of quiet after it.</li>
-        <li>[working,trait:Industriousness] {PAWN_nameDef} raises it without breaking stride. Work doesn't stop for wishes.</li>
-        <li>[working,trait:Industriousness] {PAWN_nameDef} asks while working, so nobody can say {PAWN_pronoun} slacked off to ask.</li>
+        <li>[working,trait:Industrious|trait:HardWorker] {PAWN_nameDef} raises it without breaking stride. Work doesn't stop for wishes.</li>
+        <li>[working,trait:Industrious|trait:HardWorker] {PAWN_nameDef} asks while working, so nobody can say {PAWN_pronoun} slacked off to ask.</li>
       </plain>
     </lines>
   </ColonyCouncil.FlavorExtensionDef>

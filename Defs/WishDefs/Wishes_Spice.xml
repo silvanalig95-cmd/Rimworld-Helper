@@ -188,7 +188,7 @@
       <cheerful>
         <li>Party! Party party party! Okay, I'm calm. But a party!</li>
         <li>I've been saving a joke for weeks. It needs an audience and a little alcohol!</li>
-        <li>[trait:Industriousness] I'll even work double tomorrow to make up for it! Probably!</li>
+        <li>[trait:Industrious|trait:HardWorker] I'll even work double tomorrow to make up for it! Probably!</li>
       </cheerful>
       <gloomy>
         <li>We'll all be dead eventually. Might as well have one nice evening first.</li>

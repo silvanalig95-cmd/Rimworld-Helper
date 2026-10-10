@@ -82,7 +82,16 @@ namespace ColonyCouncil
                     if (p.health?.hediffSet != null && p.health.summaryHealth.SummaryHealthPercent < 0.85f) tags.Add("hurt");
                     if (p.story?.traits != null)
                     {
-                        foreach (var t in p.story.traits.allTraits) tags.Add("trait:" + t.def.defName);
+                        foreach (var t in p.story.traits.allTraits)
+                        {
+                            tags.Add("trait:" + t.def.defName);
+                            // Degree traits also get their degree's name: trait:Lazy, trait:Teetotaler, trait:IronWilled.
+                            if (t.def.degreeDatas != null && t.def.degreeDatas.Count > 1)
+                            {
+                                string name = DegreeTag(t.CurrentData);
+                                if (name != null) tags.Add("trait:" + name);
+                            }
+                        }
                     }
                     if (p.skills != null)
                     {
@@ -150,6 +159,26 @@ namespace ColonyCouncil
             "MySonDied", "MyDaughterDied", "MyHusbandDied", "MyWifeDied", "MyFianceDied", "MyFianceeDied",
             "MyLoverDied", "MyBrotherDied", "MySisterDied", "MyFatherDied", "MyMotherDied", "MyFriendDied"
         };
+
+        /// <summary>"hard worker" -> "HardWorker", "iron-willed" -> "IronWilled", from the untranslated label so tags work in any language.</summary>
+        private static string DegreeTag(TraitDegreeData d)
+        {
+            string label = d?.untranslatedLabel.NullOrEmpty() == false ? d.untranslatedLabel : d?.label;
+            if (label.NullOrEmpty()) return null;
+            var sb = new System.Text.StringBuilder();
+            bool upper = true;
+            foreach (char c in label)
+            {
+                if (!char.IsLetter(c))
+                {
+                    upper = true;
+                    continue;
+                }
+                sb.Append(upper ? char.ToUpperInvariant(c) : c);
+                upper = false;
+            }
+            return sb.Length == 0 ? null : sb.ToString();
+        }
 
         public static bool IsGrieving(Pawn p)
         {

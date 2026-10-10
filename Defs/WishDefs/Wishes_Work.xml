@@ -112,7 +112,7 @@
       <plain>
         <li>I'd really like to do some {SUBJECT}. It's what I'm good at, and nobody's letting me.</li>
         <li>Could you put me on {SUBJECT}? I miss it.</li>
-        <li>[trait:Industriousness] I'm going mad doing nothing I'm good at.</li>
+        <li>[trait:Industrious|trait:HardWorker] I'm going mad doing nothing I'm good at.</li>
         <li>[lowmood] The one thing that ever makes me feel better is {SUBJECT}. And it's been taken away.</li>
       </plain>
       <warm>

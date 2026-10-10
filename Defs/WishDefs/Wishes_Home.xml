@@ -230,7 +230,7 @@
         <li>My room is so small my thoughts echo. A little more space would help.</li>
         <li>[old] My knees need room to turn around in.</li>
         <li>I keep bumping into the furniture. The furniture is winning.</li>
-        <li>[trait:Nerves] Small rooms make my chest tight. A bit more space, please.</li>
+        <li>[trait:Nervous|trait:Volatile] Small rooms make my chest tight. A bit more space, please.</li>
       </plain>
       <warm>
         <li>I don't need a palace, just a little more room to move around. Would that be possible someday?</li>
@@ -664,7 +664,7 @@
         <li>We need something to do in the evenings that isn't staring at the wall. Maybe {THING}?</li>
         <li>[trigger:cabin] If I spend one more day staring at these walls, I'll start talking to them.</li>
         <li>[winter] Long winter, nothing to do. Something new, please, before we all go mad.</li>
-        <li>[trait:Industriousness] Even I need a break. A different break from the one we've got.</li>
+        <li>[trait:Industrious|trait:HardWorker] Even I need a break. A different break from the one we've got.</li>
         <li>[lowmood] Same games, same faces, same nothing. Something new.</li>
         <li>[child] I'm bored. I'm SO bored. Everything here is boring.</li>
       </plain>
