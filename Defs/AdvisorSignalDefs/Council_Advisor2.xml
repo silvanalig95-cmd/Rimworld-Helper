@@ -15,6 +15,7 @@
       <li>Butchering sprays blood and drags the room's cleanliness down. Give the butcher table its own room next door, not a corner of the kitchen.</li>
       <li>Floors matter in a kitchen. Bare ground collects filth; tiles are easy to keep clean, and sterile tiles are the best of all.</li>
       <li>Once a cook reaches Cooking 6 and you have both meat and vegetables, fine meals cost no more food than simple ones and lift everyone's mood.</li>
+      <li>A butcher table counts as -15 cleanliness on its own tile, and every spatter of blood is another -10.</li>
     </tips>
   </ColonyCouncil.AdvisorSignalDef>
 
@@ -29,6 +30,7 @@
       <li>Cleaning only happens inside the Home area, and only by colonists who have Cleaning switched on in the Work tab.</li>
       <li>A dirty hospital raises the chance of infection and botched surgery. Keep it clean before you need it.</li>
       <li>Entrances collect dirt from boots. A doormat of hard floor near the door and a dedicated cleaner keep it under control.</li>
+      <li>Blood is -10 cleanliness per tile, vomit -15, ordinary filth -5. One fight in the hospital undoes a day of sweeping.</li>
     </tips>
   </ColonyCouncil.AdvisorSignalDef>
 
@@ -44,6 +46,7 @@
       <li>Fire spreads across wooden floors and through stockpiles of cloth and wood. Store flammables in a separate stone room.</li>
       <li>Keep a firefighter on high priority and the Home area covering your buildings: colonists only fight fires inside it.</li>
       <li>Batteries can short-circuit and set rooms alight, especially when rain gets in. Keep them under a roof, away from anything that burns.</li>
+      <li>Short circuits come from ordinary power conduits and unroofed batteries. Hidden conduits and roofed batteries can't short out.</li>
     </tips>
   </ColonyCouncil.AdvisorSignalDef>
 
@@ -74,6 +77,7 @@
       <li>Seeing a body, fresh or rotting, ruins a colonist's mood. Rotting ones are worse and smell for days.</li>
       <li>A dumping stockpile far from the base, set to accept corpses, keeps the dead out of sight until you can bury or burn them.</li>
       <li>Colonists who died deserve graves. Friends and family carry that grief until they're laid to rest.</li>
+      <li>Seeing a body costs 4 mood, a rotting one 6, and it happens again every time someone walks past.</li>
     </tips>
   </ColonyCouncil.AdvisorSignalDef>
 
@@ -89,6 +93,8 @@
       <li>Frost kills crops. When the cold comes, harvest everything that's ripe enough rather than gambling on another week.</li>
       <li>Rich soil is the best farmland on most maps. Don't build on it.</li>
       <li>Plants rest at night, so real growing time is close to twice what the crop's info card says.</li>
+      <li>Leave about 4 tiles between fields: blight jumps up to 4 tiles from plant to plant.</li>
+      <li>Raiders love setting fields alight. Keep wild brush and piles of wood a couple of tiles away from crops.</li>
     </tips>
   </ColonyCouncil.AdvisorSignalDef>
 
@@ -102,6 +108,7 @@
       <li>A poor colony is easily pleased. As wealth grows, everyone expects more, and the free mood bonus from low expectations shrinks step by step.</li>
       <li>Higher expectations also mean colonists need more kinds of recreation and tire of the same fun faster.</li>
       <li>Wealth also decides how big raids get. Hoarding silver and art you don't use is a double cost.</li>
+      <li>Expectations by colony wealth: +30 mood below 15,000, +24 below 31,000, +18 below 81,000, +12 below 182,000, +6 below 308,000, and nothing above.</li>
     </tips>
   </ColonyCouncil.AdvisorSignalDef>
 
@@ -116,6 +123,8 @@
       <li>Wardens feed, talk to and recruit prisoners. Without one, prisoners go hungry and recruitment stalls.</li>
       <li>Every door into a prison cell is another chance for a breakout. One cell, one door, solid walls.</li>
       <li>Happy, well-fed prisoners are easier to recruit. A decent cell costs little and saves a lot of beatings later.</li>
+      <li>Prisoners can only be recruited once their resistance reaches 0. A warden they like and a prisoner in a good mood wear it down much faster.</li>
+      <li>Executing a guilty prisoner costs your colonists a little mood; an innocent one costs more.</li>
     </tips>
   </ColonyCouncil.AdvisorSignalDef>
 
@@ -128,6 +137,7 @@
     <tips>
       <li>Colonists in the dark get a mood penalty and work more slowly. Every room people use at night needs a light.</li>
       <li>Torches and lamps on walls save floor space, and one good light covers a fair-sized room.</li>
+      <li>Surgery under a dim light is less likely to succeed. Light the hospital before you need it.</li>
     </tips>
   </ColonyCouncil.AdvisorSignalDef>
 
@@ -141,6 +151,7 @@
     <tips>
       <li>Most weather disasters end. Stay indoors, keep the food cold and the colonists warm, and wait it out.</li>
       <li>A restricted area that keeps everyone under a roof is the fastest way to protect them from toxic fallout.</li>
+      <li>A solar flare lasts 0.15 to 0.5 days. A heat wave or cold snap lasts 1.5 to 3.5 days. None of them lasts forever.</li>
     </tips>
   </ColonyCouncil.AdvisorSignalDef>
 

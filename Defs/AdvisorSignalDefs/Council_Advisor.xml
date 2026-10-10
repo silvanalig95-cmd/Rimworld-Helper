@@ -15,6 +15,9 @@
       <li>Barracks are fine early on, but each colonist in one gets a mood penalty. Small private bedrooms, even 3×4, beat a big shared room.</li>
       <li>A bedroom's impressiveness gives a mood bonus or penalty every morning. Floors, a bit of art and good furniture add up quickly.</li>
       <li>Assign beds yourself in the bed's Owner tab, so couples share and loners get their own rooms.</li>
+      <li>Everyone in a barracks shares one impressiveness score, so one big, clean, decorated barracks can beat several plain bedrooms.</li>
+      <li>A bedroom stops counting as one if it holds a medical or prisoner bed, or more than one bed nobody owns.</li>
+      <li>Aim for a bedroom space of 25 or more: a 5x5 room with a bed, dresser and end table comes to about 31.</li>
     </tips>
   </ColonyCouncil.AdvisorSignalDef>
 
@@ -30,6 +33,10 @@
       <li>A colonist eats about 1.6 nutrition a day. Rice grows fastest, potatoes tolerate poor soil, and corn stores well but grows slowly.</li>
       <li>Hunting, trading and fishing all fill gaps. Wild animals often leave the map in winter, so hunt before the cold sets in.</li>
       <li>Food in a cold room lasts much longer. Below 0°C most food stops rotting entirely.</li>
+      <li>A simple meal rots in 4 days without cold storage; pemmican keeps 70 days, corn 60, rice 40, potatoes 30.</li>
+      <li>Plants rest at night, so real growing time is about 1.85 times what a crop's info card says.</li>
+      <li>A colonist eats about 1.8 simple meals a day: a 15-day winter needs roughly 27 meals each.</li>
+      <li>Plants start dying below -10 °C. When frost is coming, harvest anything ripe enough to give a yield.</li>
     </tips>
   </ColonyCouncil.AdvisorSignalDef>
 
@@ -45,6 +52,9 @@
       <li>Rotting food is wasted work. A freezer (a closed room cooled below 0°C) stops most spoilage cold.</li>
       <li>Coolers push heat out one side and cold in the other. Put them in a wall with the hot side facing outside, and use a double door to keep the cold in.</li>
       <li>Without cooling you can still preserve food: pemmican and other preserved foods last far longer than raw crops or meat.</li>
+      <li>Food stops rotting at 0 °C and below. Between 0 and 10 °C it only rots more slowly.</li>
+      <li>Set two coolers a little apart, for example -5 °C and -10 °C, so a door left open doesn't thaw the room.</li>
+      <li>Passive coolers can't go below 17 °C. They keep people comfortable but can't keep food fresh.</li>
     </tips>
   </ColonyCouncil.AdvisorSignalDef>
 
@@ -60,6 +70,8 @@
       <li>Thick walls and closed doors hold heat. A heat source in a small room goes much further than one in a big hall.</li>
       <li>Warm clothes count: parkas and tribalwear widen the range a colonist can work in comfortably.</li>
       <li>In heat waves, an unroofed area or a room dug into a mountain can be noticeably cooler.</li>
+      <li>A cold snap drops temperatures by about 20 °C for 1.5 to 3.5 days; a heat wave adds up to 17 °C. Both pass, if you're ready.</li>
+      <li>Workbenches in rooms colder than 10 °C or hotter than 35 °C work noticeably slower.</li>
     </tips>
   </ColonyCouncil.AdvisorSignalDef>
 
@@ -76,6 +88,9 @@
       <li>Funnel attackers through a narrow approach covered by your shooters (and traps), so you choose where the fight happens.</li>
       <li>Wealth includes everything: stockpiles, buildings, even art. Selling or using up surplus items lowers raid size.</li>
       <li>This is a rough estimate: it counts fighters, weapons, turrets, traps and cover, not how clever your layout is.</li>
+      <li>Cover matters: walls, rock and doors give up to 75% cover, sandbags and barricades 55%, trees only 25%.</li>
+      <li>Traps trigger every time for raiders and manhunters, and only about once in 200 crossings for your own people.</li>
+      <li>Raids grow with your wealth and your colonists. Silver and art in a box count against you just as much as anything else.</li>
     </tips>
   </ColonyCouncil.AdvisorSignalDef>
 
@@ -91,6 +106,8 @@
       <li>Untreated wounds get infected. A doctor and some medicine turn a deadly wound into a few days of bed rest.</li>
       <li>Medical beds in a clean room improve tend quality and lower infection chance. Clean floors matter more than you'd think.</li>
       <li>Healroot can be grown for herbal medicine. It's weaker than industrial medicine, but far better than nothing.</li>
+      <li>Medicine potency: herbal 60%, industrial 100%, glitterworld 160%. Treating with no medicine at all is only 30%.</li>
+      <li>Hospital beds improve tend quality and immunity gain; a vitals monitor raises surgery success further.</li>
     </tips>
   </ColonyCouncil.AdvisorSignalDef>
 
@@ -104,6 +121,8 @@
       <li>Solar and wind are free but unreliable: night, calm days and eclipses all happen. Batteries smooth it out.</li>
       <li>Solar flares shut down all electricity for a while. Keep important things (like freezers) well insulated so they ride it out.</li>
       <li>Batteries can explode during rain, or catch fire from zzzt events. Keep them roofed, and away from things that burn.</li>
+      <li>Ordinary conduits and unroofed batteries can short out and start fires; hidden conduits and roofed batteries can't.</li>
+      <li>A solar flare lasts only a few hours but kills everything electric. Wood-fueled stoves and smithies keep working through it.</li>
     </tips>
   </ColonyCouncil.AdvisorSignalDef>
 
@@ -119,6 +138,8 @@
       <li>Colonists get bored of the same recreation. Several different kinds (social, gaming, cerebral and so on) keep their recreation need full.</li>
       <li>As the colony gets richer, expectations rise and colonists want more variety.</li>
       <li>A dedicated rec room with a few different games is one of the best long-term mood investments.</li>
+      <li>A full recreation need gives up to +10 mood; below 30% it starts to hurt, and below 15% it hurts a lot.</li>
+      <li>Every kind of recreation wears thin with use. Variety keeps it working.</li>
     </tips>
   </ColonyCouncil.AdvisorSignalDef>
 
@@ -133,6 +154,8 @@
     <tips>
       <li>Eating without a table gives a mood penalty at every meal. A table and chairs pay for themselves almost immediately.</li>
       <li>An impressive dining room gives a mood bonus after every meal, and everyone eats three times a day.</li>
+      <li>Eating without a table costs 3 mood, every meal, for everyone.</li>
+      <li>Fine meals give +5 mood and lavish meals +12, from the same ingredients a good cook already has.</li>
     </tips>
   </ColonyCouncil.AdvisorSignalDef>
 
@@ -146,6 +169,9 @@
       <li>Below the break threshold colonists can snap: binges, sad wanders, or worse. Fix the biggest negative thought first.</li>
       <li>Quick mood fixes: a good meal, recreation time, a nicer bedroom, a party, or simply giving someone a break from hard work.</li>
       <li>Check the Needs tab: each thought shows exactly how much it moves mood, so you can see what matters most.</li>
+      <li>After a mental break a colonist gets Catharsis, a big mood boost for 3 days. It's a safety net, not a plan.</li>
+      <li>A body lying where people walk costs 4 mood each time someone sees it, 6 if it's rotting.</li>
+      <li>Low expectations are free mood: +30 in a poor colony, shrinking in steps as wealth grows.</li>
     </tips>
   </ColonyCouncil.AdvisorSignalDef>
 
@@ -158,6 +184,7 @@
     <tips>
       <li>A job nobody is assigned to never happens. Check the Work tab after every new recruit or loss.</li>
       <li>Colonists with a passion for a skill learn it faster and enjoy the work. Put people where their flames are.</li>
+      <li>One or two hours of recreation in the schedule each day keeps tempers in check.</li>
     </tips>
   </ColonyCouncil.AdvisorSignalDef>
 
@@ -184,6 +211,7 @@
     <tips>
       <li>An idle research bench is wasted time. Even a slow project moves the colony forward.</li>
       <li>The council suggests projects that fit your colony's era first. You can always choose your own on the Research tab.</li>
+      <li>Electricity costs 1,600 research (3,200 for a tribal start). It opens batteries, coolers, hydroponics and firefoam.</li>
     </tips>
   </ColonyCouncil.AdvisorSignalDef>
 
