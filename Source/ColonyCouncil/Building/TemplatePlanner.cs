@@ -162,7 +162,8 @@ namespace ColonyCouncil
             int w = t.FullWidth, h = t.FullHeight;
             int doorFx = cfg.DoorX(t) + 1;
             var reservedWall = new HashSet<long>();
-            if (furniture != null)
+            // In-wall pieces (coolers) replace a wall segment, but only if furniture is being planned at all.
+            if (furniture != null && S.planFurniture)
             {
                 foreach (var f in furniture)
                 {

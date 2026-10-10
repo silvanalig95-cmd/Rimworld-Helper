@@ -1,0 +1,310 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <ColonyCouncil.WishDef>
+    <defName>Council_Wish_Wedding</defName>
+    <label>a wedding with {OTHER_nameDef}</label>
+    <description>Engaged colonists want to get married. The ceremony happens on its own once there's somewhere suitable and a calm day; a marriage spot helps.</description>
+    <workerClass>ColonyCouncil.WishWorker_Wedding</workerClass>
+    <category>Social</category>
+    <weight>1</weight>
+    <expiryDays>20</expiryDays>
+    <cooldownDays>20</cooldownDays>
+    <grantedThought>Council_Granted_Wedding</grantedThought>
+    <envy>0</envy>
+    <talkInteraction>Council_Talk_Love</talkInteraction>
+    <fulfilledWhen>{PAWN_nameDef} and {OTHER_nameDef} are married.</fulfilledWhen>
+    <request>
+      <plain>
+        <li>{OTHER_nameDef} and I want to get married. Properly. With everyone there.</li>
+        <li>We've been engaged long enough. Let's have a wedding before something else happens.</li>
+        <li>[afterraid] After today, I don't want to wait any longer to marry {OTHER_nameDef}.</li>
+        <li>[spring] Spring's a good time for a wedding. Everything's starting over.</li>
+        <li>[winter] A winter wedding. Everyone in their warmest clothes. I can picture it.</li>
+      </plain>
+      <warm>
+        <li>I want to stand up in front of all of you and promise {OTHER_nameDef} the rest of my life.</li>
+      </warm>
+      <blunt>
+        <li>We're getting married. Somebody make it happen.</li>
+      </blunt>
+      <cheerful>
+        <li>A wedding! Flowers! Speeches! Somebody crying in the corner! I can't wait!</li>
+      </cheerful>
+      <gloomy>
+        <li>Out here, you never know how long you've got. I'd rather be married when it ends.</li>
+      </gloomy>
+      <cold>
+        <li>{OTHER_nameDef} and I wish to formalize the arrangement.</li>
+      </cold>
+    </request>
+    <thanks>
+      <plain>
+        <li>Married. Actually married. Out here, of all places.</li>
+        <li>[spring] Best day I've had since we landed.</li>
+      </plain>
+      <cheerful>
+        <li>I'm MARRIED! Did everyone see? Did everyone see?!</li>
+      </cheerful>
+    </thanks>
+    <expired>
+      <plain>
+        <li>We'll keep waiting, then. We're good at waiting.</li>
+      </plain>
+    </expired>
+  </ColonyCouncil.WishDef>
+
+  <ColonyCouncil.WishDef>
+    <defName>Council_Wish_Birthday</defName>
+    <label>a {SUBJECT}</label>
+    <description>A birthday is coming. A fine meal, a lavish one, or a party would make it a day to remember.</description>
+    <workerClass>ColonyCouncil.WishWorker_Birthday</workerClass>
+    <category>Social</category>
+    <weight>1</weight>
+    <expiryDays>4</expiryDays>
+    <cooldownDays>40</cooldownDays>
+    <grantedThought>Council_Granted_Birthday</grantedThought>
+    <inspirationChance>0.1</inspirationChance>
+    <envy>0</envy>
+    <talkInteraction>Council_Talk_Food</talkInteraction>
+    <fulfilledWhen>{PAWN_nameDef} eats a fine or lavish meal, eats in an impressive dining room, or attends a party in the next few days.</fulfilledWhen>
+    <request>
+      <plain>
+        <li>It's my birthday soon. I'm not asking for much. A good meal. Maybe a little celebration.</li>
+        <li>Another year older out here. That's worth something, isn't it? A proper meal, at least.</li>
+        <li>[old] At my age every birthday is a small miracle. Let's eat well.</li>
+        <li>[child] It's my BIRTHDAY! Can we have a party? Please? Everyone has to come!</li>
+        <li>[winter] Born in the middle of winter. Always cold, always hungry. Make this one different.</li>
+        <li>[lowmood] I'd like one day this season that feels good. My birthday would do.</li>
+      </plain>
+      <warm>
+        <li>I don't need presents. Just everyone together, and something nice to eat.</li>
+      </warm>
+      <blunt>
+        <li>Birthday. Feast. You know what to do.</li>
+      </blunt>
+      <cheerful>
+        <li>Guess whose birthday it is! Mine! Party! Cake! Or whatever passes for cake out here!</li>
+      </cheerful>
+      <gloomy>
+        <li>Another year gone. Might as well mark it with something better than paste.</li>
+      </gloomy>
+      <cold>
+        <li>My birthday approaches. A celebratory meal would be appropriate.</li>
+      </cold>
+    </request>
+    <thanks>
+      <plain>
+        <li>Best birthday in years. Maybe ever.</li>
+        <li>[old] I'll remember this one. Hopefully.</li>
+      </plain>
+      <cheerful>
+        <li>Thank you, thank you, thank you! I'm doing this again next year!</li>
+      </cheerful>
+      <cold>
+        <li>Adequate. Enjoyable, even.</li>
+      </cold>
+    </thanks>
+    <expired>
+      <plain>
+        <li>Just another day, then.</li>
+        <li>[child] Nobody even remembered.</li>
+      </plain>
+    </expired>
+  </ColonyCouncil.WishDef>
+
+  <ColonyCouncil.WishDef>
+    <defName>Council_Wish_ArtInRoom</defName>
+    <label>art for their bedroom</label>
+    <description>A sculpture or other piece of art in their own room: something beautiful to wake up to.</description>
+    <workerClass>ColonyCouncil.WishWorker_ArtInRoom</workerClass>
+    <category>Comfort</category>
+    <weight>0.7</weight>
+    <expiryDays>15</expiryDays>
+    <cooldownDays>25</cooldownDays>
+    <grantedThought>Council_Granted_Art</grantedThought>
+    <luxury>true</luxury>
+    <envy>0.6</envy>
+    <meToo>true</meToo>
+    <talkInteraction>Council_Talk_Status</talkInteraction>
+    <fulfilledWhen>A piece of art stands in {PAWN_nameDef}'s bedroom.</fulfilledWhen>
+    <request>
+      <plain>
+        <li>I'd like something beautiful in my room. A sculpture. Anything that isn't a wall.</li>
+        <li>[skill:Artistic] I make art all day for everyone else. I'd like one piece for me.</li>
+        <li>[trait:Greedy] A room without art is just a box with a bed in it.</li>
+        <li>[rich] We've got sculptures in the storeroom gathering dust. One of them could gather dust in my room.</li>
+      </plain>
+      <warm>
+        <li>Something small and lovely to look at in the morning. It would mean so much.</li>
+      </warm>
+      <blunt>
+        <li>My walls are ugly. Fix that.</li>
+      </blunt>
+      <cheerful>
+        <li>Art! In my room! I'll name it and talk to it every morning!</li>
+      </cheerful>
+      <gloomy>
+        <li>I'd like one beautiful thing in my life. It might as well be in my room.</li>
+      </gloomy>
+      <cold>
+        <li>Art increases room impressiveness. I would like mine increased.</li>
+      </cold>
+    </request>
+    <thanks>
+      <plain>
+        <li>I keep looking at it. I'm going to be late to everything now.</li>
+      </plain>
+      <cheerful>
+        <li>I named it! It's called Gerald!</li>
+      </cheerful>
+    </thanks>
+  </ColonyCouncil.WishDef>
+
+  <ColonyCouncil.WishDef>
+    <defName>Council_Wish_DayOff</defName>
+    <label>more time to rest</label>
+    <description>More recreation hours in their schedule. Tired people work badly; rested people work well.</description>
+    <workerClass>ColonyCouncil.WishWorker_DayOff</workerClass>
+    <category>Comfort</category>
+    <weight>0.8</weight>
+    <expiryDays>6</expiryDays>
+    <cooldownDays>20</cooldownDays>
+    <grantedThought>Council_Granted_DayOff</grantedThought>
+    <envy>0.5</envy>
+    <meToo>true</meToo>
+    <talkInteraction>Council_Talk_Fun</talkInteraction>
+    <fulfilledWhen>{PAWN_nameDef}'s schedule has at least {TARGET} hours of recreation.</fulfilledWhen>
+    <request>
+      <plain>
+        <li>I haven't had a moment to myself in days. A few hours off. That's all.</li>
+        <li>Work, sleep, work. I need something in between.</li>
+        <li>[trait:Industriousness] I know. I know. Just let me have an afternoon.</li>
+        <li>[winter] Long winter. I'd like to spend a little of it not working.</li>
+        <li>[afterraid] We just survived another attack. Let me breathe for an hour.</li>
+      </plain>
+      <warm>
+        <li>I'll work harder afterwards, I promise. I just need a little rest.</li>
+      </warm>
+      <blunt>
+        <li>I'm tired. Give me time off or watch me fall asleep on the job.</li>
+      </blunt>
+      <cheerful>
+        <li>A whole afternoon of doing nothing! Wouldn't that be lovely?</li>
+      </cheerful>
+      <gloomy>
+        <li>I'm running on empty. Something's going to give.</li>
+      </gloomy>
+      <cold>
+        <li>Productivity declines without rest. I am requesting rest.</li>
+      </cold>
+    </request>
+    <thanks>
+      <plain>
+        <li>Time to myself. I forgot what that felt like.</li>
+      </plain>
+      <cheerful>
+        <li>Free time! I'm going to waste it magnificently.</li>
+      </cheerful>
+    </thanks>
+    <expired>
+      <plain>
+        <li>Back to it, then. As always.</li>
+      </plain>
+    </expired>
+  </ColonyCouncil.WishDef>
+
+  <ColonyCouncil.WishDef>
+    <defName>Council_Wish_LittleSomething</defName>
+    <label>a little something</label>
+    <description>Colonists with a taste for chemicals want some beer, smokeleaf or similar in stock. Handle with care.</description>
+    <workerClass>ColonyCouncil.WishWorker_LittleSomething</workerClass>
+    <category>Comfort</category>
+    <weight>0.8</weight>
+    <expiryDays>10</expiryDays>
+    <cooldownDays>20</cooldownDays>
+    <grantedThought>Council_Granted_LittleSomething</grantedThought>
+    <envy>0</envy>
+    <talkInteraction>Council_Talk_Fun</talkInteraction>
+    <fulfilledWhen>The colony has at least {TARGET} social drugs (beer, smokeleaf joints and the like) in stock.</fulfilledWhen>
+    <request>
+      <plain>
+        <li>We're out of anything to drink. Or smoke. Or anything at all, really.</li>
+        <li>A barrel of something. For morale. Mostly mine.</li>
+        <li>[afterraid] After a day like today, a drink isn't a luxury.</li>
+        <li>[winter] Long cold nights with nothing to take the edge off. Please.</li>
+      </plain>
+      <warm>
+        <li>Just a little something to share around the fire. That's all.</li>
+      </warm>
+      <blunt>
+        <li>I need a drink. The colony needs a drink. Make drinks.</li>
+      </blunt>
+      <cheerful>
+        <li>Who's up for brewing? I'll help! I'll help drink it, mostly!</li>
+      </cheerful>
+      <gloomy>
+        <li>Everything's easier with a drink. Not better. Easier.</li>
+      </gloomy>
+      <cold>
+        <li>Recreational substances reduce stress. Ours are depleted.</li>
+      </cold>
+    </request>
+    <thanks>
+      <plain>
+        <li>Ah. Now that's more like it.</li>
+      </plain>
+      <cheerful>
+        <li>To the brewers! And the growers! And me!</li>
+      </cheerful>
+    </thanks>
+  </ColonyCouncil.WishDef>
+
+  <ColonyCouncil.WishDef>
+    <defName>Council_Wish_Recruit</defName>
+    <label>{OTHER_nameDef} joining the colony</label>
+    <description>A colonist has taken a liking to a prisoner and wants them to become one of you.</description>
+    <workerClass>ColonyCouncil.WishWorker_Recruit</workerClass>
+    <category>Social</category>
+    <weight>0.8</weight>
+    <expiryDays>15</expiryDays>
+    <cooldownDays>15</cooldownDays>
+    <grantedThought>Council_Granted_Recruit</grantedThought>
+    <envy>0</envy>
+    <talkInteraction>Council_Talk_Comfort</talkInteraction>
+    <fulfilledWhen>{OTHER_nameDef} joins the colony.</fulfilledWhen>
+    <request>
+      <plain>
+        <li>I've been talking with {OTHER_nameDef}. They're not so different from us. Let's bring them in.</li>
+        <li>{OTHER_nameDef} could be one of us. We could use the hands, and I could use the company.</li>
+        <li>[small] There are only a few of us. {OTHER_nameDef} would make a difference.</li>
+      </plain>
+      <warm>
+        <li>Everyone deserves a second chance. Let's give {OTHER_nameDef} one.</li>
+      </warm>
+      <blunt>
+        <li>Recruit {OTHER_nameDef} already. Stop wasting good food on a prisoner.</li>
+      </blunt>
+      <cheerful>
+        <li>{OTHER_nameDef} told me the funniest story through the bars. We need more people like that!</li>
+      </cheerful>
+      <gloomy>
+        <li>We need everyone we can get. Even someone who shot at us last week.</li>
+      </gloomy>
+      <cold>
+        <li>{OTHER_nameDef} has useful skills. Recruitment is the efficient outcome.</li>
+      </cold>
+    </request>
+    <thanks>
+      <plain>
+        <li>Welcome, {OTHER_nameDef}. Told you they'd fit in.</li>
+      </plain>
+    </thanks>
+    <expired>
+      <plain>
+        <li>I suppose {OTHER_nameDef} stays where they are.</li>
+      </plain>
+    </expired>
+  </ColonyCouncil.WishDef>
+
+</Defs>
