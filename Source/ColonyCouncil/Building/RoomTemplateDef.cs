@@ -65,12 +65,12 @@ namespace ColonyCouncil
         public string group = "Living";
         /// <summary>Leave the plants inside alone (only those in the way of walls or furniture are cut).</summary>
         public bool keepPlants;
-        /// <summary>Building whose icon stands for this template in the architect menu. First one that exists is used.</summary>
+        /// <summary>Building whose icon stands for this template in menus. First one that exists is used.</summary>
         public List<string> iconDefs;
         /// <summary>Room roles (RoomRoleDef defNames) this room likes to be near / far from, used by "find a good spot".</summary>
         public List<string> near;
         public List<string> avoid;
-        /// <summary>Show in the architect's "rooms" category.</summary>
+        /// <summary>Show in the rooms menu (the "rooms" button in the bottom bar).</summary>
         public bool architect = true;
 
         public int FullWidth => size.x + 2;

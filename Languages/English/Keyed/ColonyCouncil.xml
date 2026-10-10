@@ -414,7 +414,7 @@
 
   <!-- ===================== Room plans ===================== -->
   <CC_Build_Header>Room plans</CC_Build_Header>
-  <CC_Build_Sub>Templates adapt to your tech and materials. Click "Plan": a panel lets you turn and mirror the room, move the door, pick materials and furniture. The same rooms are in the architect menu under "rooms".</CC_Build_Sub>
+  <CC_Build_Sub>Templates adapt to your tech and materials. Click "Plan": a panel lets you turn and mirror the room, move the door, pick materials and furniture. The same rooms are one click away under the "rooms" button in the bottom bar.</CC_Build_Sub>
   <CC_Build_Plan>Plan</CC_Build_Plan>
   <CC_Build_OnlyAvailable>Only rooms we can build now</CC_Build_OnlyAvailable>
   <CC_Build_Hidden>{0} more room plan(s) need research, a DLC or materials the colony can't use yet. Untick the box above to see them.</CC_Build_Hidden>
@@ -741,5 +741,49 @@
   <CC_Reason_Music>{PAWN_nameDef} has music in {PAWN_objective} and nothing to play it on.</CC_Reason_Music>
   <CC_Reason_Armor>{PAWN_nameDef} fights for the colony with no real armor, and the colony could make some.</CC_Reason_Armor>
   <CC_SelfHelp_Wedding>{PAWN_nameDef} marked out a marriage spot for {PAWN_objective} and {OTHER_nameDef}. Once it's built, the wedding can happen.</CC_SelfHelp_Wedding>
+
+  <!-- Rooms button and floor picker -->
+  <CC_Rooms_Title>Room plans</CC_Rooms_Title>
+  <CC_Rooms_Hint>Click a room to plan it. Right-click to plan it at a good spot. Highlighted rooms are what the council is asking for.</CC_Rooms_Hint>
+  <CC_Rooms_Suggested>The council suggests this: {0}</CC_Rooms_Suggested>
+  <CC_Settings_RoomsButton>Show the "rooms" button in the bottom bar</CC_Settings_RoomsButton>
+  <CC_Settings_RoomsButton_Tip>A shortcut to all room plans. The same plans are always in the council's Build tab.</CC_Settings_RoomsButton_Tip>
+  <CC_Floor_Title>Floor for the {0}</CC_Floor_Title>
+  <CC_Floor_Suggested>Suggested: {0}</CC_Floor_Suggested>
+  <CC_Floor_OnlyAffordable>Only floors we have the materials for ({0} tiles)</CC_Floor_OnlyAffordable>
+  <CC_Floor_Hidden>{0} more floor type(s) hidden: not enough materials for the whole room.</CC_Floor_Hidden>
+  <CC_Floor_Hint>Hover for costs. Floors are laid after the walls go up.</CC_Floor_Hint>
+  <CC_Floor_Short>not enough</CC_Floor_Short>
+  <CC_Floor_Beauty>beauty {0}</CC_Floor_Beauty>
+  <CC_Floor_Clean>cleanliness {0}</CC_Floor_Clean>
+  <CC_Floor_Quick>quick to lay</CC_Floor_Quick>
+  <CC_Floor_Medium>takes a while</CC_Floor_Medium>
+  <CC_Floor_Slow>slow to lay</CC_Floor_Slow>
+  <CC_Floor_CostLine>{0} {1} for the room (have {2})</CC_Floor_CostLine>
+
+  <!-- Justice, mercy, parties, rescues, hunts -->
+  <CC_Reason_Justice>{PAWN_nameDef} hasn't forgiven the raid, and {OTHER_nameDef} is the only raider still breathing.</CC_Reason_Justice>
+  <CC_Reason_JusticeBlood>{PAWN_nameDef} is bloodthirsty, and {OTHER_nameDef} is sitting in a cell doing nothing about it.</CC_Reason_JusticeBlood>
+  <CC_Reason_JusticeGrief>{PAWN_nameDef} is grieving, and blames {OTHER_nameDef}'s people for it.</CC_Reason_JusticeGrief>
+  <CC_Reason_JusticeCold>{PAWN_nameDef} sees no use in feeding {OTHER_nameDef} any longer.</CC_Reason_JusticeCold>
+  <CC_Progress_Justice>Set {OTHER_nameDef} to be executed in the prisoner tab, or leave it.</CC_Progress_Justice>
+  <CC_Reason_Mercy>{PAWN_nameDef} is kind, and thinks keeping {OTHER_nameDef} locked up has gone on long enough.</CC_Reason_Mercy>
+  <CC_Reason_MercyChild>{PAWN_nameDef} can't stand seeing a child like {OTHER_nameDef} behind bars.</CC_Reason_MercyChild>
+  <CC_Reason_MercyHurt>{PAWN_nameDef} has seen the state {OTHER_nameDef} is in, and wants them let go.</CC_Reason_MercyHurt>
+  <CC_Reason_MercyFriend>{PAWN_nameDef} has become friends with the prisoner {OTHER_nameDef}.</CC_Reason_MercyFriend>
+  <CC_Progress_Mercy>Release {OTHER_nameDef} (or recruit them) from the prisoner tab.</CC_Progress_Mercy>
+  <CC_Reason_Party>{PAWN_nameDef} thinks the colony is overdue for some fun.</CC_Reason_Party>
+  <CC_Reason_PartyGloom>The whole colony is miserable, and {PAWN_nameDef} thinks a party would help.</CC_Reason_PartyGloom>
+  <CC_Progress_Party>Promise it and the council calls a party right away. Otherwise, wait for one.</CC_Progress_Party>
+  <CC_Progress_NoGatherSpot>A party needs somewhere to gather: build a party spot, or a table people can sit at.</CC_Progress_NoGatherSpot>
+  <CC_Promise_Party>The council calls a party, and {PAWN_nameDef} is throwing it.</CC_Promise_Party>
+  <CC_SelfHelp_Party>{PAWN_nameDef} got tired of waiting and started a party {PAWN_objective}self.</CC_SelfHelp_Party>
+  <CC_Reason_Rescue>{OTHER_nameDef} was carried off by {FACTION}, and {PAWN_nameDef} can't stop thinking about it.</CC_Reason_Rescue>
+  <CC_Progress_Rescue>{OTHER_nameDef} is held by {FACTION}. Bring them home: a rescue, a ransom, or a trade.</CC_Progress_Rescue>
+  <CC_Reason_Hunt>{PAWN_nameDef} loves to shoot and has been eyeing the wildlife.</CC_Reason_Hunt>
+  <CC_Reason_HuntBlood>{PAWN_nameDef} is bloodthirsty and wants something to kill. Better an animal than a colonist.</CC_Reason_HuntBlood>
+  <CC_Progress_Hunt>Mark an animal for hunting and let {PAWN_nameDef} do the Hunting work.</CC_Progress_Hunt>
+  <CC_Promise_Hunt>The council marks a {SUBJECT} for {PAWN_nameDef} to hunt. Make sure {PAWN_pronoun} is allowed to hunt in the Work tab.</CC_Promise_Hunt>
+  <CC_SelfHelp_Hunt>{PAWN_nameDef} picked out a {SUBJECT}, marked it for hunting and grabbed {PAWN_possessive} gun.</CC_SelfHelp_Hunt>
 
 </LanguageData>

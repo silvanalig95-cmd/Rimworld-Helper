@@ -62,6 +62,17 @@ namespace ColonyCouncil
                 new LookTargets(w.pawn), MessageTypeDefOf.NeutralEvent, false);
             Speak(w.pawn, line, SpeechGood);
             AddChronicle(new ChronicleEntry(ChronicleKind.Note, "CC_Chronicle_Promised".Translate(w.pawn.LabelShort, w.Label).Resolve(), w.pawn));
+            string act = null;
+            try
+            {
+                act = w.Worker.OnPromised(w);
+            }
+            catch (Exception e)
+            {
+                CouncilLog.ErrorOnce("promise " + w.def.defName, e);
+            }
+            if (!act.NullOrEmpty())
+                Messages.Message(w.Format(act.CanTranslate() ? act.Translate().ToString() : act), w.Worker.LookAt(w), MessageTypeDefOf.PositiveEvent, false);
         }
 
         /// <summary>An honest no. Stings now, but it's over: no reminders, no slow souring.</summary>

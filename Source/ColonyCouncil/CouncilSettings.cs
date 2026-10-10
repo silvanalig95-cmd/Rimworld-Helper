@@ -67,6 +67,7 @@ namespace ColonyCouncil
         public bool planSmoothStone = false;
         public bool planFurniture = true;
         public ButtonPosition buttonPosition = ButtonPosition.BeforeMenu;
+        public bool roomsButton = true;
 
         private static Vector2 scroll;
         private static float viewHeight = 1200f;
@@ -104,6 +105,7 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref planSmoothStone, "planSmoothStone", false);
             Scribe_Values.Look(ref planFurniture, "planFurniture", true);
             Scribe_Values.Look(ref buttonPosition, "buttonPosition", ButtonPosition.BeforeMenu);
+            Scribe_Values.Look(ref roomsButton, "roomsButton", true);
         }
 
         /// <summary>Saves the settings file right away (used by the planner's checkboxes).</summary>
@@ -207,6 +209,13 @@ namespace ColonyCouncil
                 Find.WindowStack.Add(new FloatMenu(options));
             }
             l.Label("CC_Settings_ButtonPosition_Note".Translate(), -1f);
+            bool rooms = roomsButton;
+            l.CheckboxLabeled("CC_Settings_RoomsButton".Translate(), ref rooms, "CC_Settings_RoomsButton_Tip".Translate());
+            if (rooms != roomsButton)
+            {
+                roomsButton = rooms;
+                CouncilStartup.ApplyButtonPosition(true);
+            }
 
             l.Gap();
             if (l.ButtonText("CC_Settings_Reset".Translate(), null, 0.4f))
@@ -260,9 +269,10 @@ namespace ColonyCouncil
             planReplaceOwn = d.planReplaceOwn;
             planSmoothStone = d.planSmoothStone;
             planFurniture = d.planFurniture;
-            if (buttonPosition != d.buttonPosition)
+            if (buttonPosition != d.buttonPosition || roomsButton != d.roomsButton)
             {
                 buttonPosition = d.buttonPosition;
+                roomsButton = d.roomsButton;
                 CouncilStartup.ApplyButtonPosition(true);
             }
         }

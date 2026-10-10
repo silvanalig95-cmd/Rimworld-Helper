@@ -28,6 +28,7 @@ namespace ColonyCouncil
         public static HediffDef Council_Disgruntled;
 
         public static MainButtonDef Council_MainButton;
+        public static MainButtonDef Council_RoomsButton;
 
         static CouncilDefOf()
         {

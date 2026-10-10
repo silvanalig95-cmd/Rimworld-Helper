@@ -44,12 +44,6 @@ namespace ColonyCouncil
             Init();
         }
 
-        /// <summary>For the architect slots, which find their template later.</summary>
-        protected Designator_PlanRoom()
-        {
-            Init();
-        }
-
         private void Init()
         {
             useMouseIcon = true;
@@ -57,6 +51,23 @@ namespace ColonyCouncil
         }
 
         public virtual RoomTemplateDef Template => template;
+
+        /// <summary>Starts planning a room: closes any open tab and selects the plan, optionally at a suggested spot.</summary>
+        public static void Begin(RoomTemplateDef t, bool findSpot)
+        {
+            var map = Find.CurrentMap;
+            if (t == null || map == null) return;
+            string reason = t.UnavailableReason(map);
+            if (reason != null)
+            {
+                Messages.Message(reason, MessageTypeDefOf.RejectInput, false);
+                return;
+            }
+            var des = new Designator_PlanRoom(t);
+            Find.MainTabsRoot.EscapeCurrentTab(false);
+            Find.DesignatorManager.Select(des);
+            if (findSpot) des.SuggestSpot();
+        }
         public RoomPlanConfig Config => RoomPlanConfig.For(Template);
 
         public override string Label => Template != null ? Template.label : "?";
@@ -300,82 +311,4 @@ namespace ColonyCouncil
             GenUI.DrawMouseAttachment(icon, text);
         }
     }
-
-    /// <summary>
-    /// One button in the architect's "rooms" category. The category lists a fixed set of these classes
-    /// (the game creates designators from class names); each slot shows the n-th room template.
-    /// </summary>
-    public abstract class Designator_RoomSlot : Designator_PlanRoom
-    {
-        private readonly int slot;
-        private static List<RoomTemplateDef> ordered;
-
-        protected Designator_RoomSlot(int slot)
-        {
-            this.slot = slot;
-        }
-
-        public static List<RoomTemplateDef> Ordered
-        {
-            get
-            {
-                if (ordered == null || ordered.Count == 0)
-                {
-                    ordered = DefDatabase<RoomTemplateDef>.AllDefsListForReading
-                        .Where(t => t.architect)
-                        .OrderBy(t => t.order).ThenBy(t => t.defName)
-                        .ToList();
-                }
-                return ordered;
-            }
-        }
-
-        public override RoomTemplateDef Template
-        {
-            get
-            {
-                if (template == null && slot < Ordered.Count) template = Ordered[slot];
-                return template;
-            }
-        }
-
-        public override bool Visible => Template != null && Find.CurrentMap != null;
-    }
-
-    public class Designator_RoomSlot0 : Designator_RoomSlot { public Designator_RoomSlot0() : base(0) { } }
-    public class Designator_RoomSlot1 : Designator_RoomSlot { public Designator_RoomSlot1() : base(1) { } }
-    public class Designator_RoomSlot2 : Designator_RoomSlot { public Designator_RoomSlot2() : base(2) { } }
-    public class Designator_RoomSlot3 : Designator_RoomSlot { public Designator_RoomSlot3() : base(3) { } }
-    public class Designator_RoomSlot4 : Designator_RoomSlot { public Designator_RoomSlot4() : base(4) { } }
-    public class Designator_RoomSlot5 : Designator_RoomSlot { public Designator_RoomSlot5() : base(5) { } }
-    public class Designator_RoomSlot6 : Designator_RoomSlot { public Designator_RoomSlot6() : base(6) { } }
-    public class Designator_RoomSlot7 : Designator_RoomSlot { public Designator_RoomSlot7() : base(7) { } }
-    public class Designator_RoomSlot8 : Designator_RoomSlot { public Designator_RoomSlot8() : base(8) { } }
-    public class Designator_RoomSlot9 : Designator_RoomSlot { public Designator_RoomSlot9() : base(9) { } }
-    public class Designator_RoomSlot10 : Designator_RoomSlot { public Designator_RoomSlot10() : base(10) { } }
-    public class Designator_RoomSlot11 : Designator_RoomSlot { public Designator_RoomSlot11() : base(11) { } }
-    public class Designator_RoomSlot12 : Designator_RoomSlot { public Designator_RoomSlot12() : base(12) { } }
-    public class Designator_RoomSlot13 : Designator_RoomSlot { public Designator_RoomSlot13() : base(13) { } }
-    public class Designator_RoomSlot14 : Designator_RoomSlot { public Designator_RoomSlot14() : base(14) { } }
-    public class Designator_RoomSlot15 : Designator_RoomSlot { public Designator_RoomSlot15() : base(15) { } }
-    public class Designator_RoomSlot16 : Designator_RoomSlot { public Designator_RoomSlot16() : base(16) { } }
-    public class Designator_RoomSlot17 : Designator_RoomSlot { public Designator_RoomSlot17() : base(17) { } }
-    public class Designator_RoomSlot18 : Designator_RoomSlot { public Designator_RoomSlot18() : base(18) { } }
-    public class Designator_RoomSlot19 : Designator_RoomSlot { public Designator_RoomSlot19() : base(19) { } }
-    public class Designator_RoomSlot20 : Designator_RoomSlot { public Designator_RoomSlot20() : base(20) { } }
-    public class Designator_RoomSlot21 : Designator_RoomSlot { public Designator_RoomSlot21() : base(21) { } }
-    public class Designator_RoomSlot22 : Designator_RoomSlot { public Designator_RoomSlot22() : base(22) { } }
-    public class Designator_RoomSlot23 : Designator_RoomSlot { public Designator_RoomSlot23() : base(23) { } }
-    public class Designator_RoomSlot24 : Designator_RoomSlot { public Designator_RoomSlot24() : base(24) { } }
-    public class Designator_RoomSlot25 : Designator_RoomSlot { public Designator_RoomSlot25() : base(25) { } }
-    public class Designator_RoomSlot26 : Designator_RoomSlot { public Designator_RoomSlot26() : base(26) { } }
-    public class Designator_RoomSlot27 : Designator_RoomSlot { public Designator_RoomSlot27() : base(27) { } }
-    public class Designator_RoomSlot28 : Designator_RoomSlot { public Designator_RoomSlot28() : base(28) { } }
-    public class Designator_RoomSlot29 : Designator_RoomSlot { public Designator_RoomSlot29() : base(29) { } }
-    public class Designator_RoomSlot30 : Designator_RoomSlot { public Designator_RoomSlot30() : base(30) { } }
-    public class Designator_RoomSlot31 : Designator_RoomSlot { public Designator_RoomSlot31() : base(31) { } }
-    public class Designator_RoomSlot32 : Designator_RoomSlot { public Designator_RoomSlot32() : base(32) { } }
-    public class Designator_RoomSlot33 : Designator_RoomSlot { public Designator_RoomSlot33() : base(33) { } }
-    public class Designator_RoomSlot34 : Designator_RoomSlot { public Designator_RoomSlot34() : base(34) { } }
-    public class Designator_RoomSlot35 : Designator_RoomSlot { public Designator_RoomSlot35() : base(35) { } }
 }

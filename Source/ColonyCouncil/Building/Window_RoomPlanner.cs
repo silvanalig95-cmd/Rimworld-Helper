@@ -58,6 +58,12 @@ namespace ColonyCouncil
             if (existing != null && existing.des == des) existing.Close(false);
         }
 
+        public override void PostClose()
+        {
+            base.PostClose();
+            Find.WindowStack.WindowOfType<Window_FloorPicker>()?.Close(false);
+        }
+
         protected override float Margin => 8f;
 
         public override Vector2 InitialSize => new Vector2(Width, 420f);
@@ -171,30 +177,8 @@ namespace ColonyCouncil
                 cfg.Changed();
             }));
             var floor = cfg.Floor(t, map);
-            y = PickRow(y, w, "CC_Planner_Floor".Translate(), floor != null ? floor.LabelCap.ToString() : "CC_Planner_NoFloor".Translate().ToString(), null, () =>
-            {
-                var opts = new List<FloatMenuOption>
-                {
-                    new FloatMenuOption("CC_Planner_NoFloor".Translate(), () =>
-                    {
-                        cfg.floorChosen = true;
-                        cfg.floor = null;
-                        cfg.Changed();
-                    })
-                };
-                foreach (var f in RoomPlanConfig.FloorOptions(map))
-                {
-                    var local = f;
-                    string cost = string.Join(", ", f.CostListAdjusted(null, false).Select(c => c.count + " " + c.thingDef.label));
-                    opts.Add(new FloatMenuOption(f.LabelCap + (cost.NullOrEmpty() ? "" : " (" + cost + ")"), () =>
-                    {
-                        cfg.floorChosen = true;
-                        cfg.floor = local;
-                        cfg.Changed();
-                    }));
-                }
-                Find.WindowStack.Add(new FloatMenu(opts));
-            });
+            y = PickRow(y, w, "CC_Planner_Floor".Translate(), floor != null ? floor.LabelCap.ToString() : "CC_Planner_NoFloor".Translate().ToString(), null,
+                () => Window_FloorPicker.Open(t, cfg, map, windowRect));
 
             // Furniture
             y += 4f;

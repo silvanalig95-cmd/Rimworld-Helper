@@ -93,7 +93,7 @@ butcher's room, freezer, heat shelter (no power needed), storeroom, brewery, gre
 tailor's shop, art studio, laboratory, drug lab, hospitals, crypt, crematorium, prison cell and barracks,
 armory, battery room, meditation and throne rooms (Royalty), classroom and nursery (Biotech).
 
-Pick one from this tab or from the new **"rooms"** category in the architect menu. A color-coded preview
+Pick one from this tab or from the **"rooms"** button in the bottom bar. A color-coded preview
 follows the mouse, and a planner panel lets you:
 - **turn** the room (Q / E or buttons), **mirror** it and **move the door**
 - pick the **material** for walls, door, floor and each kind of furniture, or **swap** furniture for another

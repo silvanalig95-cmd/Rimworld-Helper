@@ -369,7 +369,7 @@ Things the game exposes that this relies on (all available to mods):
 - Royalty (noble room requirements), Biotech (children) and Odyssey (space maps) handled.
 
 **Done in 0.2**
-- Room planner panel (works from the council tab and the new architect "rooms" category): rotate, mirror,
+- Room planner panel (works from the council tab and the "rooms" button in the bottom bar): rotate, mirror,
   move the door, per-element materials, furniture variants, cost against stock, site clearing (cut, mine,
   replace own buildings, smooth stone) with queued blueprints. 32 templates with good-practice tips.
 - Trust, promises, refusals, reminders, self-help, jealousy, event-triggered wishes, data-driven effects,

@@ -41,6 +41,12 @@ namespace ColonyCouncil
         /// </summary>
         public virtual string TrySelfHelp(Wish wish) => null;
 
+        /// <summary>
+        /// The player promised it: some wishes can be set in motion right away (call the party, mark the prey).
+        /// Returns a message key or text ({PAWN}, {SUBJECT}...), or null if a promise is all it gets.
+        /// </summary>
+        public virtual string OnPromised(Wish wish) => null;
+
         /// <summary>Plans <paramref name="thing"/> in the colonist's own room. Shared by the furniture-like wishes.</summary>
         protected static bool PlanInOwnRoom(Pawn p, ThingDef thing) => PlanInRoom(RoomUtil.PrivateRoom(p), p, thing);
 

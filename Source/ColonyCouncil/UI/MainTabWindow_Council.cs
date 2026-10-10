@@ -137,20 +137,7 @@ namespace ColonyCouncil
             }
         }
 
-        private void StartPlanning(RoomTemplateDef template, bool findSpot)
-        {
-            if (template == null || Find.CurrentMap == null) return;
-            string reason = template.UnavailableReason(Find.CurrentMap);
-            if (reason != null)
-            {
-                Messages.Message(reason, MessageTypeDefOf.RejectInput, false);
-                return;
-            }
-            var des = new Designator_PlanRoom(template);
-            Find.MainTabsRoot.EscapeCurrentTab(false);
-            Find.DesignatorManager.Select(des);
-            if (findSpot) des.SuggestSpot();
-        }
+        private static void StartPlanning(RoomTemplateDef template, bool findSpot) => Designator_PlanRoom.Begin(template, findSpot);
 
         private static void Jump(LookTargets look)
         {
@@ -624,19 +611,7 @@ namespace ColonyCouncil
 
         private static bool buildOnlyAvailable = true;
 
-        private static int GroupOrder(string group)
-        {
-            switch (group)
-            {
-                case "Living": return 0;
-                case "Food": return 1;
-                case "Work": return 2;
-                case "Care": return 3;
-                case "Leisure": return 4;
-                case "Security": return 5;
-                default: return 6;
-            }
-        }
+        private static int GroupOrder(string group) => MainTabWindow_Rooms.GroupOrder(group);
 
         // ---------------- Chronicle ----------------
 

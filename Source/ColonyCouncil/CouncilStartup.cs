@@ -5,7 +5,7 @@ using Verse;
 
 namespace ColonyCouncil
 {
-    /// <summary>Runs once after all defs are loaded: places the council button and the architect "rooms" category.</summary>
+    /// <summary>Runs once after all defs are loaded: places the council and rooms buttons, merges flavor extensions.</summary>
     [StaticConstructorOnStartup]
     public static class CouncilStartup
     {
@@ -14,7 +14,6 @@ namespace ColonyCouncil
             try
             {
                 ApplyButtonPosition(false);
-                PlaceArchitectCategory();
                 FlavorExtensions.Apply();
             }
             catch (System.Exception e)
@@ -49,6 +48,13 @@ namespace ColonyCouncil
                 after = menuIndex > 0 ? others[menuIndex - 1] : others.Last();
             }
             ours.order = after.order;
+            // The rooms button sits right after the council button (same order, defined after it).
+            var rooms = CouncilDefOf.Council_RoomsButton;
+            if (rooms != null)
+            {
+                rooms.order = ours.order;
+                rooms.buttonVisible = ColonyCouncilMod.Settings.roomsButton;
+            }
             if (rebuildBar && Current.ProgramState == ProgramState.Playing && Find.UIRoot is UIRoot_Play play)
             {
                 play.mainButtonsRoot = new MainButtonsRoot();
@@ -56,18 +62,5 @@ namespace ColonyCouncil
         }
 
         private static MainButtonDef Named(string defName) => DefDatabase<MainButtonDef>.GetNamedSilentFail(defName);
-
-        /// <summary>Slots the "rooms" architect category in right after Structure.</summary>
-        private static void PlaceArchitectCategory()
-        {
-            var ours = DefDatabase<DesignationCategoryDef>.GetNamedSilentFail("Council_Rooms");
-            var structure = DefDatabase<DesignationCategoryDef>.GetNamedSilentFail("Structure");
-            if (ours == null || structure == null) return;
-            var sorted = DefDatabase<DesignationCategoryDef>.AllDefsListForReading.Where(d => d != ours).OrderBy(d => d.order).ToList();
-            int i = sorted.IndexOf(structure);
-            // Halfway between Structure and its neighbor on either side works whichever way the menu sorts.
-            var next = i + 1 < sorted.Count ? sorted[i + 1] : null;
-            ours.order = next != null && next.order - structure.order >= 2 ? (structure.order + next.order) / 2 : structure.order;
-        }
     }
 }
