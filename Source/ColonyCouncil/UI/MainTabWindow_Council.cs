@@ -507,7 +507,15 @@ namespace ColonyCouncil
                 Text.Font = GameFont.Small;
                 y += 34f;
                 int ticks = tracker.TicksUntilMeeting;
-                y += WrappedLabel(0f, y, width, ticks >= 0 ? "CC_Ambition_NextMeeting".Translate(TextUtil.DaysString(ticks)).Resolve() : "CC_Ambition_SoonMeeting".Translate().Resolve(), Faint) + 8f;
+                var m = tracker.meeting;
+                string status;
+                if (m != null && m.Started)
+                    status = "CC_Meeting_InSession".Translate(m.venue ?? "?", m.attendees.Count, TextUtil.JoinAnd(m.pitches.Select(p => p.def.label).ToList())).Resolve();
+                else if (m != null)
+                    status = "CC_Meeting_Called".Translate(TextUtil.JoinAnd(m.pitches.Select(p => p.def.label).ToList())).Resolve();
+                else
+                    status = ticks >= 0 ? "CC_Ambition_NextMeeting".Translate(TextUtil.DaysString(ticks)).Resolve() : "CC_Ambition_SoonMeeting".Translate().Resolve();
+                y += WrappedLabel(0f, y, width, status, Faint) + 8f;
                 bool can = tracker.CanCallMeetingNow(out string reason);
                 var btn = new Rect(0f, y, 240f, 32f);
                 if (Widgets.ButtonText(btn, "CC_Ambition_CallMeeting".Translate(), true, true, can) && can) tracker.HoldMeeting(comp, true);

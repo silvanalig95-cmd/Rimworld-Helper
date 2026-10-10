@@ -56,6 +56,20 @@
     </specialDesignatorClasses>
   </DesignationCategoryDef>
 
+  <!-- The gathering behind a council meeting. Never picked at random: only the council calls it. -->
+  <GatheringDef>
+    <defName>Council_MeetingGathering</defName>
+    <label>council meeting</label>
+    <randomSelectionWeight>0</randomSelectionWeight>
+    <letterTitle>Council meeting</letterTitle>
+    <letterText>The colony council is meeting.</letterText>
+    <calledOffMessage>The council meeting broke up early.</calledOffMessage>
+    <finishedMessage>The council meeting is over.</finishedMessage>
+    <duty>Party</duty>
+    <respectTimetable>false</respectTimetable>
+    <workerClass>ColonyCouncil.GatheringWorker_CouncilMeeting</workerClass>
+  </GatheringDef>
+
   <LetterDef>
     <defName>Council_MeetingLetter</defName>
     <letterClass>ColonyCouncil.ChoiceLetter_CouncilMeeting</letterClass>

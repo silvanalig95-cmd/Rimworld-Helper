@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    What gets said at a council meeting, shown above heads while colonists are gathered.
+    {PAWN} is the speaker, {OTHER} the one who proposed {AMBITION} (an ambition's label, used as a slogan in
+    quotes), {VENUE} where they are. Tags as in Council_Scenes.xml.
+  -->
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Pool_MeetingOpen</defName>
+    <lines>
+      <plain>
+        <li>Right. Everyone sit down. Or stand. Just stop eating for a moment.</li>
+        <li>This council is now in session. Somebody find a chair for the old ones.</li>
+        <li>We've got a few ideas to argue about. Let's argue about them properly.</li>
+        <li>[evening] Last thing before bed: where do we go from here?</li>
+        <li>[afterraid] We nearly died. Let's at least decide what to do about it.</li>
+        <li>[winter] Long nights ahead. Let's spend this one planning.</li>
+        <li>[tribal|medieval] The fire's lit. Speak, and be heard.</li>
+      </plain>
+      <warm>
+        <li>Thanks for coming, everyone. Every voice counts here.</li>
+      </warm>
+      <blunt>
+        <li>Short meeting. Ideas, arguments, decision. Go.</li>
+      </blunt>
+      <cheerful>
+        <li>Welcome, welcome! Snacks are at the back. Dreams are at the front.</li>
+      </cheerful>
+      <gloomy>
+        <li>Let's get this over with before something else goes wrong.</li>
+      </gloomy>
+      <cold>
+        <li>Agenda: three proposals. Discussion: brief. Begin.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Pool_MeetingSupport</defName>
+    <lines>
+      <plain>
+        <li>I'm with {OTHER_nameDef}. "{AMBITION}". Makes sense to me.</li>
+        <li>"{AMBITION}" gets my vote. We need it.</li>
+        <li>Say what you like about {OTHER_nameDef}, the idea's sound.</li>
+        <li>If we're doing anything this season, let it be "{AMBITION}".</li>
+        <li>[afterraid] After what just happened? "{AMBITION}", obviously.</li>
+        <li>[winter] Winter makes the decision for us, I think.</li>
+        <li>[poor] We can't afford much. We can afford that.</li>
+      </plain>
+      <warm>
+        <li>{OTHER_nameDef} has thought this through. Let's trust that.</li>
+        <li>I like it. It's good for all of us, not just the loud ones.</li>
+      </warm>
+      <blunt>
+        <li>Stop talking. "{AMBITION}". Done.</li>
+        <li>For once {OTHER_nameDef} said something useful.</li>
+      </blunt>
+      <cheerful>
+        <li>Ooh, "{AMBITION}"! Yes! Let's do it!</li>
+        <li>I can already picture it. It's beautiful. Vote yes.</li>
+      </cheerful>
+      <gloomy>
+        <li>It might even work. Stranger things have happened. Not many.</li>
+        <li>Fine. Better than waiting for the end.</li>
+      </gloomy>
+      <cold>
+        <li>"{AMBITION}" has the best return on effort. I support it.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Pool_MeetingDoubt</defName>
+    <lines>
+      <plain>
+        <li>"{AMBITION}"? With what materials, exactly?</li>
+        <li>Who's going to do all that work? Not {OTHER_nameDef}, I bet.</li>
+        <li>Nice idea. Wrong season.</li>
+        <li>[poor] We can barely feed ourselves and {OTHER_nameDef} wants "{AMBITION}".</li>
+        <li>[afterraid] We just got shot at and we're talking about "{AMBITION}"?</li>
+        <li>[winter] Ask me again when I can feel my toes.</li>
+      </plain>
+      <warm>
+        <li>I don't want to dismiss it, but are we sure it's the most important thing?</li>
+      </warm>
+      <blunt>
+        <li>That's the dumbest thing I've heard since the last meeting.</li>
+        <li>{OTHER_nameDef} wants a lot of things. Most of them are stupid.</li>
+        <li>No. Next.</li>
+      </blunt>
+      <cheerful>
+        <li>Love the energy, {OTHER_nameDef}! Hate the plan!</li>
+      </cheerful>
+      <gloomy>
+        <li>We'll start it, get halfway, and then something will eat us.</li>
+        <li>Plans. Ha.</li>
+      </gloomy>
+      <cold>
+        <li>The cost outweighs the benefit. Vote it down.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- Side remarks: nothing to do with the vote, everything to do with the people. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Pool_MeetingAside</defName>
+    <lines>
+      <plain>
+        <li>Are we nearly done? Something's burning in the kitchen.</li>
+        <li>Who brought the snacks? Never mind. I don't want to know.</li>
+        <li>Can we vote on whoever keeps tracking mud in?</li>
+        <li>I had a point. It was a good point. It's gone.</li>
+        <li>[night] Some of us have to be up early.</li>
+        <li>[rain] At least it's dry in here.</li>
+        <li>[hot] Can we open a door? Any door?</li>
+        <li>[cold] Shuffle closer, everyone. For warmth. Only for warmth.</li>
+        <li>[large] Too many people talking at once. Can we get a stick? Whoever holds the stick talks.</li>
+        <li>[small] Four of us and we still can't agree on anything.</li>
+        <li>[trait:Gourmand] Is there going to be food at these things from now on?</li>
+        <li>[trait:Pyromaniac] What if we just burned it all down and started over? Joking. Mostly.</li>
+        <li>[trait:Ascetic] We have too much as it is.</li>
+        <li>[trait:Greedy] And what do I get out of it?</li>
+        <li>[trait:Industriousness] We could have built half of it by now, instead of talking.</li>
+        <li>[child] Can I vote? Why not? That's not fair.</li>
+        <li>[old] When I was young we didn't have councils. We had shouting.</li>
+      </plain>
+      <cheerful>
+        <li>Best meeting yet! Nobody's cried!</li>
+      </cheerful>
+      <gloomy>
+        <li>We'll all be dead before any of this matters.</li>
+      </gloomy>
+      <blunt>
+        <li>{OTHER_nameDef}, you're standing on my foot.</li>
+      </blunt>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+</Defs>

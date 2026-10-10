@@ -294,16 +294,33 @@
   <CC_Meeting_NoOne>Nobody is free to attend a meeting right now.</CC_Meeting_NoOne>
   <CC_Meeting_NothingToPropose>The council met, but nobody had anything new to propose. Things must be going well.</CC_Meeting_NothingToPropose>
   <CC_Meeting_Title>The council has met</CC_Meeting_Title>
-  <CC_Meeting_Intro>The colonists gathered {0} to talk about where the colony is heading. Three proposals stood out:</CC_Meeting_Intro>
+  <CC_Meeting_Intro>The colonists talked it over {0}, in between other things. These proposals stood out:</CC_Meeting_Intro>
+  <CC_Meeting_IntroGathered>The council met {VENUE}, with {CHAIR} keeping order. {COUNT} turned up: {NAMES}. They argued, they joked, somebody brought snacks. These proposals stood out:</CC_Meeting_IntroGathered>
+  <CC_Meeting_Votes>Backed by {0}: {1}</CC_Meeting_Votes>
+  <CC_Meeting_Leans>The room leans towards {AMBITION}, {PAWN_nameDef}'s idea. Go with it and its backers will be pleased; overrule a clear majority and they'll remember.</CC_Meeting_Leans>
+  <CC_Meeting_Split>The room is split. Nobody will hold the decision against you.</CC_Meeting_Split>
+  <CC_Meeting_Remark>{0}: "{1}"</CC_Meeting_Remark>
+  <CC_Meeting_Report>attending a council meeting.</CC_Meeting_Report>
+  <CC_Meeting_AlreadyCalled>A meeting has already been called.</CC_Meeting_AlreadyCalled>
+  <CC_Meeting_Gathering>{PAWN_nameDef} calls the council together {VENUE}. On the table: {TOPICS}. Colonists will drift over to have their say; the decision comes when the meeting ends.</CC_Meeting_Gathering>
+  <CC_Meeting_BrokenUp>The council meeting broke up early. They'll try again when things calm down.</CC_Meeting_BrokenUp>
+  <CC_Meeting_InSession>The council is meeting {0} right now ({1} so far). On the table: {2}.</CC_Meeting_InSession>
+  <CC_Meeting_Called>A meeting has been called (about {0}). It starts when the colony is calm, preferably in the evening.</CC_Meeting_Called>
   <CC_Meeting_ProposedBy>proposed by {0}</CC_Meeting_ProposedBy>
   <CC_Meeting_Deadline>Time: about {0} days</CC_Meeting_Deadline>
-  <CC_Meeting_Outro>Which should the colony commit to? Achieving it lifts everyone's mood. Choosing none costs nothing.</CC_Meeting_Outro>
+  <CC_Meeting_Outro>Which should the colony commit to? Achieving it lifts everyone's mood and their trust in the council. Choosing none costs little.</CC_Meeting_Outro>
   <CC_Meeting_Choose>Commit to: {0} ({1})</CC_Meeting_Choose>
   <CC_Meeting_None>None of these, for now</CC_Meeting_None>
   <CC_Meeting_Unavailable>The colony is already working on another ambition.</CC_Meeting_Unavailable>
-  <CC_Venue_Dining>around the dining table after supper</CC_Venue_Dining>
-  <CC_Venue_Campfire>around the campfire as the sun went down</CC_Venue_Campfire>
-  <CC_Venue_Outside>in the open, sitting on crates and rocks</CC_Venue_Outside>
+  <CC_Venue_Dining>around the dining table</CC_Venue_Dining>
+  <CC_Venue_RecRoom>in the rec room</CC_Venue_RecRoom>
+  <CC_Venue_Campfire>around the campfire</CC_Venue_Campfire>
+  <CC_Venue_GatherSpot>by the {0}</CC_Venue_GatherSpot>
+  <CC_Venue_Outside>in the open, on crates and rocks</CC_Venue_Outside>
+  <CC_Log_VoteWon>their side won: {0}</CC_Log_VoteWon>
+  <CC_Log_Overruled>outvoted the council, yet {0} was overruled</CC_Log_Overruled>
+  <CC_Log_IdeaChosen>their idea was chosen: {0}</CC_Log_IdeaChosen>
+  <CC_Log_NoneChosen>the council chose nothing</CC_Log_NoneChosen>
   <CC_Heckle_Plain>{PAWN_nameDef} wondered aloud whether {OTHER_nameDef}'s "{AMBITION}" was really the priority.</CC_Heckle_Plain>
   <CC_Heckle_Warm>{PAWN_nameDef} thanked everyone for coming, and said {OTHER_nameDef}'s idea ("{AMBITION}") sounded lovely.</CC_Heckle_Warm>
   <CC_Heckle_Blunt>{PAWN_nameDef} snorted at {OTHER_nameDef}'s "{AMBITION}" and asked who was going to do the actual work.</CC_Heckle_Blunt>

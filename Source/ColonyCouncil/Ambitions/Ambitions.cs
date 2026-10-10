@@ -4,6 +4,7 @@ using System.Text;
 using RimWorld;
 using UnityEngine;
 using Verse;
+using Verse.AI.Group;
 
 namespace ColonyCouncil
 {
@@ -85,6 +86,9 @@ namespace ColonyCouncil
     public class AmbitionTracker : IExposable
     {
         public AmbitionState active;
+        /// <summary>A meeting that has been called and hasn't ended yet.</summary>
+        public CouncilMeeting meeting;
+        private int interruptions;
         public int nextMeetingTick = -1;
         public int lastMeetingTick = -999999;
         public int meetingsHeld;
@@ -95,6 +99,8 @@ namespace ColonyCouncil
         public void ExposeData()
         {
             Scribe_Deep.Look(ref active, "active");
+            Scribe_Deep.Look(ref meeting, "meeting");
+            Scribe_Values.Look(ref interruptions, "interruptions");
             Scribe_Values.Look(ref nextMeetingTick, "nextMeetingTick", -1);
             Scribe_Values.Look(ref lastMeetingTick, "lastMeetingTick", -999999);
             Scribe_Values.Look(ref meetingsHeld, "meetingsHeld");
@@ -103,6 +109,7 @@ namespace ColonyCouncil
             {
                 if (lastOffered == null) lastOffered = new Dictionary<string, int>();
                 if (active != null && (active.def == null || active.map == null)) active = null;
+                if (meeting != null && (meeting.map == null || meeting.pitches.Count == 0)) meeting = null;
             }
         }
 
@@ -116,6 +123,11 @@ namespace ColonyCouncil
             if (active != null)
             {
                 reason = "CC_Meeting_BusyAmbition".Translate();
+                return false;
+            }
+            if (meeting != null)
+            {
+                reason = "CC_Meeting_AlreadyCalled".Translate();
                 return false;
             }
             int since = Find.TickManager.TicksGame - lastMeetingTick;
@@ -156,6 +168,11 @@ namespace ColonyCouncil
                 return;
             }
 
+            if (meeting != null)
+            {
+                MeetingUpkeep(comp);
+                return;
+            }
             if (now >= nextMeetingTick) HoldMeeting(comp, false);
         }
 
@@ -234,8 +251,119 @@ namespace ColonyCouncil
             if (pitches.Count == 0) return;
 
             lastMeetingTick = now;
+            interruptions = 0;
+            meeting = new CouncilMeeting
+            {
+                map = map,
+                calledTick = now,
+                calledByPlayer = calledByPlayer,
+                chair = PickChair(speakers, comp),
+                pitches = pitches.Select(p => new MeetingPitch
+                {
+                    def = p.def,
+                    proposer = p.proposer,
+                    line = (p.def.pitch.Pick(ToneUtility.ToneFor(p.proposer), Flavor.TagsFor(p.proposer)) ?? p.def.LabelCap.ToString()).Formatted(p.proposer.Named("PAWN")).Resolve()
+                }).ToList()
+            };
+            // Too few people, or no way to gather: the council meets "in passing" and the letter comes at once.
+            if (speakers.Count < 2 || CouncilMeeting.GatheringDef == null)
+            {
+                meeting.attendees.AddRange(speakers);
+                Conclude(comp, true);
+                return;
+            }
+            TryStartMeeting(comp);
+        }
+
+        /// <summary>Who runs the meeting: the best talker, helped by how much the others trust them.</summary>
+        private static Pawn PickChair(List<Pawn> speakers, CouncilGameComponent comp)
+        {
+            return speakers.OrderByDescending(p => (p.skills?.GetSkill(SkillDefOf.Social)?.Level ?? 0) + comp.standings.TrustOf(p) / 20f + Rand.Value).FirstOrDefault();
+        }
+
+        private void MeetingUpkeep(CouncilGameComponent comp)
+        {
+            var m = meeting;
+            int now = Find.TickManager.TicksGame;
+            if (m.map == null || !Find.Maps.Contains(m.map))
+            {
+                meeting = null;
+                return;
+            }
+            if (!m.Started)
+            {
+                // Waited too long for a calm evening: hold it over supper instead.
+                if (now - m.calledTick > GenDate.TicksPerDay * 1.5f)
+                {
+                    m.attendees.AddRange(m.map.mapPawns.FreeColonistsSpawned.Where(CouncilGameComponent.CanVoiceWishes).Except(m.attendees));
+                    Conclude(comp, true);
+                }
+                else TryStartMeeting(comp);
+                return;
+            }
+            // Started but the gathering has vanished (lord lost): wrap up with what was said.
+            bool lordAlive = m.map.lordManager.lords.Any(l => l.LordJob is LordJob_CouncilMeeting);
+            if (!lordAlive && now - m.startedTick > 2500) Conclude(comp, false);
+        }
+
+        private void TryStartMeeting(CouncilGameComponent comp)
+        {
+            var m = meeting;
+            var map = m.map;
+            var gd = CouncilMeeting.GatheringDef;
+            int now = Find.TickManager.TicksGame;
+            int hour = GenLocalDate.HourOfDay(map);
+            bool overdue = now - m.calledTick > GenDate.TicksPerDay * 0.75f;
+            if (!m.calledByPlayer && !overdue && (hour < 16 || hour > 21)) return;
+            if (!GatheringsUtility.AcceptableGameConditionsToStartGathering(map, gd)) return;
+            if (m.chair == null || !GatheringsUtility.PawnCanStartOrContinueGathering(m.chair) || m.chair.Map != map)
+            {
+                m.chair = PickChair(map.mapPawns.FreeColonistsSpawned.Where(p => CouncilGameComponent.CanVoiceWishes(p) && GatheringsUtility.PawnCanStartOrContinueGathering(p)).ToList(), comp);
+                if (m.chair == null) return;
+            }
+            if (!CouncilMeeting.FindVenue(map, m.chair, out var spot, out var venue)) return;
+            m.spot = spot;
+            m.venue = venue;
+            m.startedTick = now;
+            m.talkCount = 0;
+            LordMaker.MakeNewLord(Faction.OfPlayer, new LordJob_CouncilMeeting(spot, m.chair, gd), map, new[] { m.chair });
+            string text = "CC_Meeting_Gathering".Translate(m.chair.Named("PAWN"), venue.Named("VENUE"), TextUtil.JoinAnd(m.pitches.Select(p => p.def.label).ToList()).Named("TOPICS")).Resolve();
+            Messages.Message(text, new LookTargets(new TargetInfo(spot, map)), MessageTypeDefOf.PositiveEvent, false);
             meetingsHeld++;
-            SendMeetingLetter(comp, map, pitches, speakers);
+        }
+
+        /// <summary>Called by the gathering when it ends: finished, or broken up early.</summary>
+        public void EndMeeting(bool finished)
+        {
+            var comp = CouncilGameComponent.Instance;
+            var m = meeting;
+            if (comp == null || m == null) return;
+            float elapsed = m.Started ? (Find.TickManager.TicksGame - m.startedTick) / (float)LordJob_CouncilMeeting.MeetingTicks : 1f;
+            if (!finished && elapsed < 0.5f && interruptions < 2)
+            {
+                interruptions++;
+                m.startedTick = -1;
+                m.calledTick = Find.TickManager.TicksGame - GenDate.TicksPerDay / 2;
+                Messages.Message("CC_Meeting_BrokenUp".Translate(), MessageTypeDefOf.NeutralEvent, false);
+                return;
+            }
+            Conclude(comp, false);
+        }
+
+        private void Conclude(CouncilGameComponent comp, bool inPassing)
+        {
+            var m = meeting;
+            meeting = null;
+            if (m == null || m.map == null) return;
+            m.attendees.RemoveAll(p => p == null || p.Dead);
+            if (m.attendees.Count == 0) m.attendees.AddRange(m.pitches.Select(p => p.proposer).Where(p => p != null && !p.Dead));
+            m.Vote();
+            foreach (var p in m.attendees)
+            {
+                if (p.needs?.mood != null && Rand.Chance(0.8f)) CouncilGameComponent.GiveThought(p, CouncilDefOf.Council_HeardAtMeeting);
+                comp.standings.Change(p, 1f, null);
+            }
+            SendMeetingLetter(comp, m, inPassing);
         }
 
         private static Pawn BestProposer(AmbitionDef def, List<Pawn> speakers, HashSet<Pawn> used)
@@ -263,57 +391,74 @@ namespace ColonyCouncil
             return best;
         }
 
-        private void SendMeetingLetter(CouncilGameComponent comp, Map map, List<Pitch> pitches, List<Pawn> speakers)
+        private void SendMeetingLetter(CouncilGameComponent comp, CouncilMeeting m, bool inPassing)
         {
+            var map = m.map;
             var sb = new StringBuilder();
-            string venue = MeetingVenue(map);
-            sb.AppendLine("CC_Meeting_Intro".Translate(venue).Resolve());
+            string venue = m.venue ?? MeetingVenue(map);
+            if (inPassing || !m.Started && m.attendees.Count <= 1)
+                sb.AppendLine("CC_Meeting_Intro".Translate(venue).Resolve());
+            else
+                sb.AppendLine("CC_Meeting_IntroGathered".Translate(venue.Named("VENUE"), m.attendees.Count.Named("COUNT"),
+                    TextUtil.JoinAnd(m.attendees.Select(p => p.LabelShort).ToList()).Named("NAMES"), (m.chair?.LabelShort ?? "?").Named("CHAIR")).Resolve());
             sb.AppendLine();
             int i = 1;
-            foreach (var p in pitches)
+            foreach (var p in m.pitches)
             {
-                var tone = ToneUtility.ToneFor(p.proposer);
-                string line = p.def.pitch.Pick(tone) ?? "";
-                line = line.Formatted(p.proposer.Named("PAWN")).Resolve();
                 sb.AppendLine("<b>" + i + ". " + p.def.LabelCap + "</b> (" + "CC_Meeting_ProposedBy".Translate(p.proposer.LabelShort) + ")");
-                sb.AppendLine("\"" + line + "\"");
+                sb.AppendLine("\"" + p.line + "\"");
                 foreach (var g in p.def.goals) sb.AppendLine("  - " + g.Describe(map, g.Baseline(map)));
                 sb.AppendLine("  " + "CC_Meeting_Deadline".Translate((p.def.days * Settings.ambitionDeadlineFactor).ToString("0")));
+                if (m.attendees.Count > 1)
+                    sb.AppendLine("  " + "CC_Meeting_Votes".Translate(p.voters.Count, TextUtil.JoinAnd(p.voters.Select(v => v.LabelShort).ToList())));
                 sb.AppendLine();
                 i++;
             }
-            string heckle = Heckle(speakers, pitches);
-            if (!heckle.NullOrEmpty())
+            foreach (var r in m.remarks) sb.AppendLine(r);
+            if (m.remarks.Count == 0)
             {
-                sb.AppendLine(heckle);
-                sb.AppendLine();
+                string heckle = Heckle(m.attendees, m.pitches);
+                if (!heckle.NullOrEmpty()) sb.AppendLine(heckle);
             }
+            sb.AppendLine();
+            var fav = m.Favourite;
+            if (m.attendees.Count > 1 && fav != null)
+                sb.AppendLine(m.Tied ? "CC_Meeting_Split".Translate().Resolve() : "CC_Meeting_Leans".Translate(fav.def.label.Named("AMBITION"), fav.proposer.Named("PAWN")).Resolve());
             sb.Append("CC_Meeting_Outro".Translate());
 
             var letterDef = DefDatabase<LetterDef>.GetNamedSilentFail("Council_MeetingLetter");
             if (letterDef == null) return;
-            var letter = (ChoiceLetter_CouncilMeeting)LetterMaker.MakeLetter("CC_Meeting_Title".Translate(), sb.ToString().TrimEnd(), letterDef, new LookTargets(pitches.Select(p => p.proposer)));
+            var letter = (ChoiceLetter_CouncilMeeting)LetterMaker.MakeLetter("CC_Meeting_Title".Translate(), sb.ToString().TrimEnd(), letterDef, new LookTargets(m.pitches.Select(p => p.proposer)));
             letter.map = map;
-            letter.options = pitches.Select(p => p.def).ToList();
-            letter.proposers = pitches.Select(p => p.proposer).ToList();
+            letter.options = m.pitches.Select(p => p.def).ToList();
+            letter.proposers = m.pitches.Select(p => p.proposer).ToList();
+            letter.voterPawns = new List<Pawn>();
+            letter.voterChoice = new List<int>();
+            for (int k = 0; k < m.pitches.Count; k++)
+            {
+                foreach (var v in m.pitches[k].voters)
+                {
+                    letter.voterPawns.Add(v);
+                    letter.voterChoice.Add(k);
+                }
+            }
             Find.LetterStack.ReceiveLetter(letter);
 
-            foreach (var p in pitches)
-                CouncilGameComponent.Speak(p.proposer, p.def.LabelCap, new Color(0.7f, 0.85f, 1f));
             comp.AddChronicle(new ChronicleEntry(ChronicleKind.Meeting,
-                "CC_Chronicle_Meeting".Translate(TextUtil.JoinAnd(pitches.Select(p => p.def.label + " (" + p.proposer.LabelShort + ")").ToList())).Resolve(),
+                "CC_Chronicle_Meeting".Translate(TextUtil.JoinAnd(m.pitches.Select(p => p.def.label + " (" + p.proposer.LabelShort + ")").ToList())).Resolve(),
                 null));
         }
 
         private static string MeetingVenue(Map map)
         {
+            if (map == null) return "CC_Venue_Outside".Translate();
             if (RoomUtil.ColonyRooms(map).Any(r => r.Role == RoomUtil.DiningRoom)) return "CC_Venue_Dining".Translate();
             if (Avail.ColonyHas(map, d => d.defName == "Campfire")) return "CC_Venue_Campfire".Translate();
             return "CC_Venue_Outside".Translate();
         }
 
         /// <summary>Someone always has an opinion.</summary>
-        private static string Heckle(List<Pawn> speakers, List<Pitch> pitches)
+        private static string Heckle(List<Pawn> speakers, List<MeetingPitch> pitches)
         {
             var proposers = new HashSet<Pawn>(pitches.Select(p => p.proposer));
             var others = speakers.Where(p => !proposers.Contains(p)).ToList();
@@ -326,10 +471,31 @@ namespace ColonyCouncil
             return key.Translate(p.Named("PAWN"), target.proposer.Named("OTHER"), target.def.label.Named("AMBITION")).Resolve();
         }
 
-        public void Choose(AmbitionDef def, Pawn proposer, Map map)
+        /// <summary>
+        /// The decision. Backing the colony's favourite pleases its voters; overruling a clear majority costs a
+        /// little trust with them (when downsides are on). The proposer of the chosen idea is delighted either way.
+        /// </summary>
+        public void Choose(AmbitionDef def, Pawn proposer, Map map, ChoiceLetter_CouncilMeeting letter = null)
         {
             var comp = CouncilGameComponent.Instance;
             if (comp == null || def == null || map == null) return;
+            if (letter != null && letter.voterPawns != null)
+            {
+                int chosen = letter.options.IndexOf(def);
+                var counts = letter.options.Select((o, k) => letter.voterChoice.Count(c => c == k)).ToList();
+                int max = counts.Count > 0 ? counts.Max() : 0;
+                bool clearMajority = counts.Count(c => c == max) == 1 && max >= 2;
+                int favourite = counts.IndexOf(max);
+                for (int k = 0; k < letter.voterPawns.Count; k++)
+                {
+                    var v = letter.voterPawns[k];
+                    if (v == null || v.Dead) continue;
+                    if (letter.voterChoice[k] == chosen) comp.standings.Change(v, 2f, "CC_Log_VoteWon".Translate(def.label));
+                    else if (clearMajority && letter.voterChoice[k] == favourite && Settings.Negatives)
+                        comp.standings.Change(v, -2f, "CC_Log_Overruled".Translate(letter.options[favourite].label));
+                }
+            }
+            if (proposer != null) comp.standings.Change(proposer, 5f, "CC_Log_IdeaChosen".Translate(def.label));
             int now = Find.TickManager.TicksGame;
             active = new AmbitionState
             {
@@ -351,8 +517,14 @@ namespace ColonyCouncil
                 "CC_Chronicle_AmbitionChosen".Translate(def.label, proposer?.LabelShort ?? "?").Resolve(), proposer));
         }
 
-        public void Postpone()
+        public void Postpone(ChoiceLetter_CouncilMeeting letter = null)
         {
+            if (letter != null && Settings.Negatives)
+            {
+                var comp = CouncilGameComponent.Instance;
+                foreach (var p in letter.proposers)
+                    if (p != null && !p.Dead) comp?.standings.Change(p, -1f, "CC_Log_NoneChosen".Translate());
+            }
             nextMeetingTick = Find.TickManager.TicksGame + GenDate.TicksPerDay * 5;
             CouncilGameComponent.Instance?.AddChronicle(new ChronicleEntry(ChronicleKind.Note, "CC_Chronicle_MeetingPostponed".Translate().Resolve()));
         }
@@ -419,6 +591,8 @@ namespace ColonyCouncil
         public Map map;
         public List<AmbitionDef> options = new List<AmbitionDef>();
         public List<Pawn> proposers = new List<Pawn>();
+        public List<Pawn> voterPawns = new List<Pawn>();
+        public List<int> voterChoice = new List<int>();
 
         public override bool CanDismissWithRightClick => false;
 
@@ -440,7 +614,7 @@ namespace ColonyCouncil
                     if (def == null || map == null || tracker == null || tracker.active != null) opt.Disable("CC_Meeting_Unavailable".Translate());
                     opt.action = () =>
                     {
-                        tracker?.Choose(def, proposer, map);
+                        tracker?.Choose(def, proposer, map, this);
                         Find.LetterStack.RemoveLetter(this);
                     };
                     opt.resolveTree = true;
@@ -449,7 +623,7 @@ namespace ColonyCouncil
                 var none = new DiaOption("CC_Meeting_None".Translate());
                 none.action = () =>
                 {
-                    tracker?.Postpone();
+                    tracker?.Postpone(this);
                     Find.LetterStack.RemoveLetter(this);
                 };
                 none.resolveTree = true;
@@ -464,10 +638,17 @@ namespace ColonyCouncil
             Scribe_References.Look(ref map, "map");
             Scribe_Collections.Look(ref options, "options", LookMode.Def);
             Scribe_Collections.Look(ref proposers, "proposers", LookMode.Reference);
+            Scribe_Collections.Look(ref voterPawns, "voterPawns", LookMode.Reference);
+            Scribe_Collections.Look(ref voterChoice, "voterChoice", LookMode.Value);
             if (Scribe.mode == LoadSaveMode.PostLoadInit)
             {
                 if (options == null) options = new List<AmbitionDef>();
                 if (proposers == null) proposers = new List<Pawn>();
+                if (voterPawns == null || voterChoice == null || voterPawns.Count != voterChoice.Count)
+                {
+                    voterPawns = new List<Pawn>();
+                    voterChoice = new List<int>();
+                }
             }
         }
     }
