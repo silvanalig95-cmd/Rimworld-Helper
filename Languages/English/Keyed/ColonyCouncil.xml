@@ -919,4 +919,13 @@ Granting one of {PAWN_possessive} wishes, or keeping a promise, can win {PAWN_ob
   <CC_Goal_ColonyTrust>The colony's trust in the council at {0} or more (now {1})</CC_Goal_ColonyTrust>
   <CC_Goal_NoAddictions>Nobody addicted to anything ({0} addicted now)</CC_Goal_NoAddictions>
 
+  <!-- Epithets -->
+  <CC_Epithet_Taken>{OTHER_nameDef} was {TITLE} until now.</CC_Epithet_Taken>
+  <CC_Epithet_FirstRound>The colony already has names for some of its people: {0}.</CC_Epithet_FirstRound>
+  <CC_Epithet_Known>{0} is known as {1}.</CC_Epithet_Known>
+  <CC_Chronicle_Epithet>{0} became known as {1}.</CC_Chronicle_Epithet>
+  <CC_Annals_Epithets>Known by name: {0}.</CC_Annals_Epithets>
+  <CC_Settings_Epithets>Colonists earn names for what they do (the Healer, the Kindling...)</CC_Settings_Epithets>
+  <CC_Settings_Epithets_Tip>Whoever has done the most of something (tended wounds, killed raiders, cleaned messes, caught fire) earns a name for it, until someone overtakes them.</CC_Settings_Epithets_Tip>
+
 </LanguageData>

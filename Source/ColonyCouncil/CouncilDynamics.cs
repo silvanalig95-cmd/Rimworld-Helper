@@ -598,6 +598,7 @@ namespace ColonyCouncil
             DecreeDaily();
             if (s.enableWishes) decrees.DailyRequests(this);
             if (s.anniversaries) Anniversaries();
+            epithets.Daily(this);
             foreach (var p in PawnsFinder.AllMaps_FreeColonists.ToList())
             {
                 var st = standings.For(p, false);

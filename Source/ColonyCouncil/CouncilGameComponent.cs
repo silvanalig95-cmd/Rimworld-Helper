@@ -22,6 +22,7 @@ namespace ColonyCouncil
         public DecreeTracker decrees = new DecreeTracker();
         public DilemmaTracker dilemmas = new DilemmaTracker();
         public AnnalsTracker annals = new AnnalsTracker();
+        public EpithetTracker epithets = new EpithetTracker();
         public int nextWishId = 1;
 
         private Dictionary<string, int> cooldowns = new Dictionary<string, int>();
@@ -51,6 +52,7 @@ namespace ColonyCouncil
             Scribe_Deep.Look(ref decrees, "decrees");
             Scribe_Deep.Look(ref dilemmas, "dilemmas");
             Scribe_Deep.Look(ref annals, "annals");
+            Scribe_Deep.Look(ref epithets, "epithets");
             Scribe_Values.Look(ref nextWishId, "nextWishId", 1);
             Scribe_Collections.Look(ref cooldowns, "cooldowns", LookMode.Value, LookMode.Value, ref tmpKeys, ref tmpValues);
             if (Scribe.mode == LoadSaveMode.PostLoadInit)
@@ -64,6 +66,7 @@ namespace ColonyCouncil
                 if (decrees == null) decrees = new DecreeTracker();
                 if (dilemmas == null) dilemmas = new DilemmaTracker();
                 if (annals == null) annals = new AnnalsTracker();
+                if (epithets == null) epithets = new EpithetTracker();
                 wishes.RemoveAll(w => w == null || w.def == null || w.pawn == null);
             }
         }

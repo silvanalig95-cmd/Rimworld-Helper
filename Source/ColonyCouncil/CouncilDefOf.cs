@@ -27,6 +27,9 @@ namespace ColonyCouncil
         public static ThoughtDef Council_DecreeHeeded;
         public static ThoughtDef Council_Anniversary;
         public static ThoughtDef Council_FriendAnniversary;
+        public static ThoughtDef Council_Epithet;
+        public static ThoughtDef Council_EpithetDubious;
+        public static ThoughtDef Council_EpithetLost;
 
         public static HediffDef Council_Motivated;
         public static HediffDef Council_Loyalty;

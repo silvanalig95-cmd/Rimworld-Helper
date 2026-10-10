@@ -138,6 +138,14 @@ bedroom.
 An in-game knowledge base: good practice and the numbers behind it, by topic, searchable, linked from the
 advisor's warnings and to room plans. (Being filled with wiki-checked content.)
 
+### Names, anniversaries and petitions
+Whoever has done the most of something earns a name for it, until someone overtakes them: *the Healer*, *the
+Surgeon*, *Deadeye*, *the Builder*, *Beastfriend*, *Silver-Tongue*, and some less flattering ones (*the Broom*,
+*the Mule*, *the Kindling* for whoever keeps catching fire, *the Storm*). Each year since a colonist joined, they
+mark the anniversary in their own words, and their friends share it. And when the moment fits (food running low,
+right after a raid, while people grieve, when everyone has grown spoiled) a colonist may petition the council for
+the decree they'd like.
+
 ### Annals
 When a new year begins, the colony's best reader or talker writes up the year that ended: how many you were and
 are, who joined, who died and who walked out, how often trouble came, whether you grew richer or poorer, what the

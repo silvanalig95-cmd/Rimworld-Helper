@@ -186,6 +186,9 @@ namespace ColonyCouncil
             var bitter = now.Where(p => comp.standings.TrustOf(p) <= -15f).OrderBy(p => comp.standings.TrustOf(p)).FirstOrDefault();
             if (devoted != null) Para("CC_Annals_Devoted".Translate(devoted.Named("PAWN")).Resolve());
             if (bitter != null) Para("CC_Annals_Bitter".Translate(bitter.Named("PAWN")).Resolve());
+            var titled = now.Select(p => (p, titles: comp.epithets.TitlesOf(p))).Where(x => !x.titles.NullOrEmpty())
+                .Select(x => x.p.LabelShort + " " + x.titles).ToList();
+            if (titled.Count > 0) Para("CC_Annals_Epithets".Translate(TextUtil.JoinAnd(titled)).Resolve());
             var spoiled = now.Where(p => Standards.LevelOf(p) == StandardsLevel.Spoiled).ToList();
             if (spoiled.Count > 0) Para("CC_Annals_Spoiled".Translate(Names(spoiled)).Resolve());
 
