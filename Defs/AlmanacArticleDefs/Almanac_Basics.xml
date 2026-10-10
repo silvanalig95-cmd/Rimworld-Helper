@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    The council's almanac. One def per page. Fields:
+      label (page title), summary (one line for the list), tip (a line from the colony's old hands),
+      description (a short paragraph), facts (numbers), advice (steps), keywords (search),
+      seeAlso (other pages), template (a room plan), dlc (Royalty/Ideology/Biotech/Anomaly/Odyssey),
+      approximate (true when numbers come from community testing or sources disagree), order (sort).
+  -->
+
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Council_Alm_HowToUse</defName>
+    <label>how to use this almanac</label>
+    <category>Basics</category>
+    <order>0</order>
+    <summary>What's in here, and how the council uses it.</summary>
+    <tip>Most colonies don't die of raiders. They die of small things nobody wrote down.</tip>
+    <description>This almanac collects what experienced colonists know: the numbers behind food, mood, defence and health, how to lay out each kind of room, and the mistakes that end colonies. When the council warns you about something on the Priorities tab, "Read more" opens the matching page here.</description>
+    <facts>
+      <li>Pages marked "some numbers are approximate" use figures from community testing or sources that disagree. Treat them as good guides, not law.</li>
+      <li>Pages for DLCs you don't have are hidden unless you tick the box under the categories.</li>
+      <li>Game time: an hour is 2,500 ticks, a day 60,000 ticks, a quadrum 15 days and a year 60 days.</li>
+    </facts>
+    <advice>
+      <li>Skim "Hard lessons" once: it's the cheapest way to avoid the classic colony-enders.</li>
+      <li>Use the search box: it looks through titles, text and numbers.</li>
+    </advice>
+    <keywords>
+      <li>help</li>
+      <li>guide</li>
+      <li>wiki</li>
+    </keywords>
+  </ColonyCouncil.AlmanacArticleDef>
+
+</Defs>

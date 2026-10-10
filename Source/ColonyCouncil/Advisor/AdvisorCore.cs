@@ -33,6 +33,8 @@ namespace ColonyCouncil
     public class AdvisorSignalDef : Def
     {
         public Type workerClass;
+        /// <summary>The almanac page explaining this problem in depth ("read more").</summary>
+        public AlmanacArticleDef article;
         public AdvisorCategory category;
         public float importance = 1f;
         [MustTranslate] public List<string> tips = new List<string>();

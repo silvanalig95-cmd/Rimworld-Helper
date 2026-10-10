@@ -596,4 +596,35 @@
   <CC_Chronicle_PromiseBroken>The promise to {0} ({1}) was broken.</CC_Chronicle_PromiseBroken>
   <CC_Chronicle_Sulk>{0} stormed off to sulk.</CC_Chronicle_Sulk>
 
+  <!-- Almanac -->
+  <CC_Tab_Almanac>Almanac</CC_Tab_Almanac>
+  <CC_ReadMore>Read more</CC_ReadMore>
+  <CC_Almanac_Search>Search the almanac...</CC_Almanac_Search>
+  <CC_Almanac_All>Everything</CC_Almanac_All>
+  <CC_Almanac_AllDlc>Show pages for DLCs I don't have</CC_Almanac_AllDlc>
+  <CC_Almanac_NothingFound>Nothing written about that. Yet.</CC_Almanac_NothingFound>
+  <CC_Almanac_Pick>Pick a page.</CC_Almanac_Pick>
+  <CC_Almanac_NotActive>not active</CC_Almanac_NotActive>
+  <CC_Almanac_Approximate>some numbers are approximate</CC_Almanac_Approximate>
+  <CC_Almanac_Facts>The facts</CC_Almanac_Facts>
+  <CC_Almanac_Advice>What to do</CC_Almanac_Advice>
+  <CC_Almanac_PlanRoom>Plan a {0}</CC_Almanac_PlanRoom>
+  <CC_Almanac_SeeAlso>See also</CC_Almanac_SeeAlso>
+  <CC_AlmanacCat_Basics>First steps</CC_AlmanacCat_Basics>
+  <CC_AlmanacCat_Food>Food and farming</CC_AlmanacCat_Food>
+  <CC_AlmanacCat_Rooms>Rooms</CC_AlmanacCat_Rooms>
+  <CC_AlmanacCat_Mood>Mood and minds</CC_AlmanacCat_Mood>
+  <CC_AlmanacCat_Defense>Defence</CC_AlmanacCat_Defense>
+  <CC_AlmanacCat_Health>Health and medicine</CC_AlmanacCat_Health>
+  <CC_AlmanacCat_Management>Running the colony</CC_AlmanacCat_Management>
+  <CC_AlmanacCat_LowTech>Tribal and medieval</CC_AlmanacCat_LowTech>
+  <CC_AlmanacCat_RoomDesign>Room by room</CC_AlmanacCat_RoomDesign>
+  <CC_AlmanacCat_Mistakes>Hard lessons</CC_AlmanacCat_Mistakes>
+  <CC_AlmanacCat_Royalty>Royalty</CC_AlmanacCat_Royalty>
+  <CC_AlmanacCat_Ideology>Ideology</CC_AlmanacCat_Ideology>
+  <CC_AlmanacCat_Biotech>Biotech</CC_AlmanacCat_Biotech>
+  <CC_AlmanacCat_Anomaly>Anomaly</CC_AlmanacCat_Anomaly>
+  <CC_AlmanacCat_Odyssey>Odyssey</CC_AlmanacCat_Odyssey>
+  <CC_AlmanacCat_Numbers>Numbers to know</CC_AlmanacCat_Numbers>
+
 </LanguageData>

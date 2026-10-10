@@ -1,0 +1,98 @@
+using System.Collections.Generic;
+using System.Linq;
+using Verse;
+
+namespace ColonyCouncil
+{
+    public enum AlmanacCategory
+    {
+        Basics,
+        Food,
+        Rooms,
+        Mood,
+        Defense,
+        Health,
+        Management,
+        LowTech,
+        RoomDesign,
+        Mistakes,
+        Royalty,
+        Ideology,
+        Biotech,
+        Anomaly,
+        Odyssey,
+        Numbers
+    }
+
+    /// <summary>
+    /// One page of the council's almanac: good practice, the numbers behind it, and what to do. Written in the
+    /// game's voice, linked to the advisor's warnings and to room plans.
+    /// </summary>
+    public class AlmanacArticleDef : Def
+    {
+        public AlmanacCategory category = AlmanacCategory.Basics;
+        public int order = 100;
+        /// <summary>One line shown in the article list.</summary>
+        [MustTranslate] public string summary;
+        /// <summary>A line from the colony's old hands, shown as a quote.</summary>
+        [MustTranslate] public string tip;
+        /// <summary>The hard facts, with numbers.</summary>
+        [MustTranslate] public List<string> facts;
+        /// <summary>Practical steps.</summary>
+        [MustTranslate] public List<string> advice;
+        /// <summary>Extra words the search should find this by.</summary>
+        public List<string> keywords;
+        public List<AlmanacArticleDef> seeAlso;
+        /// <summary>A room plan that puts this advice into practice.</summary>
+        public RoomTemplateDef template;
+        /// <summary>Only relevant with this DLC: Royalty, Ideology, Biotech, Anomaly or Odyssey.</summary>
+        public string dlc;
+        /// <summary>Some numbers come from community testing or differ between sources.</summary>
+        public bool approximate;
+
+        public bool DlcActive
+        {
+            get
+            {
+                switch (dlc)
+                {
+                    case null:
+                    case "": return true;
+                    case "Royalty": return ModsConfig.RoyaltyActive;
+                    case "Ideology": return ModsConfig.IdeologyActive;
+                    case "Biotech": return ModsConfig.BiotechActive;
+                    case "Anomaly": return ModsConfig.AnomalyActive;
+                    case "Odyssey": return ModsConfig.OdysseyActive;
+                    default: return true;
+                }
+            }
+        }
+
+        [Unsaved] private string searchText;
+
+        public bool Matches(string query)
+        {
+            if (query.NullOrEmpty()) return true;
+            if (searchText == null)
+            {
+                var parts = new List<string> { label, summary, description, tip };
+                if (facts != null) parts.AddRange(facts);
+                if (advice != null) parts.AddRange(advice);
+                if (keywords != null) parts.AddRange(keywords);
+                searchText = string.Join(" ", parts.Where(p => !p.NullOrEmpty())).ToLowerInvariant();
+            }
+            foreach (var word in query.ToLowerInvariant().Split(' '))
+            {
+                if (word.Length > 0 && !searchText.Contains(word)) return false;
+            }
+            return true;
+        }
+
+        public override IEnumerable<string> ConfigErrors()
+        {
+            foreach (var e in base.ConfigErrors()) yield return e;
+            if (description.NullOrEmpty() && (facts == null || facts.Count == 0)) yield return "almanac article has no text";
+            if (!dlc.NullOrEmpty() && !new[] { "Royalty", "Ideology", "Biotech", "Anomaly", "Odyssey" }.Contains(dlc)) yield return "unknown dlc " + dlc;
+        }
+    }
+}

@@ -16,6 +16,7 @@ namespace ColonyCouncil
             Wishes,
             Ambition,
             Build,
+            Almanac,
             Chronicle
         }
 
@@ -48,11 +49,12 @@ namespace ColonyCouncil
                 new TabRecord("CC_Tab_Wishes".Translate(OpenWishCount()), () => SetTab(Tab.Wishes), tab == Tab.Wishes),
                 new TabRecord("CC_Tab_Ambition".Translate(), () => SetTab(Tab.Ambition), tab == Tab.Ambition),
                 new TabRecord("CC_Tab_Build".Translate(), () => SetTab(Tab.Build), tab == Tab.Build),
+                new TabRecord("CC_Tab_Almanac".Translate(), () => SetTab(Tab.Almanac), tab == Tab.Almanac),
                 new TabRecord("CC_Tab_Chronicle".Translate(), () => SetTab(Tab.Chronicle), tab == Tab.Chronicle)
             };
             var body = new Rect(inRect.x, inRect.y + 32f, inRect.width, inRect.height - 32f);
             Widgets.DrawMenuSection(body);
-            TabDrawer.DrawTabs(body, tabs, 190f);
+            TabDrawer.DrawTabs(body, tabs, 170f);
             var content = body.ContractedBy(12f);
 
             var map = Find.CurrentMap;
@@ -71,6 +73,7 @@ namespace ColonyCouncil
                 case Tab.Wishes: DrawWishes(content, comp); break;
                 case Tab.Ambition: DrawAmbition(content, comp, map); break;
                 case Tab.Build: DrawBuild(content, map); break;
+                case Tab.Almanac: AlmanacPanel.Draw(content); break;
                 case Tab.Chronicle: DrawChronicle(content, comp); break;
             }
             Text.Font = GameFont.Small;
@@ -82,6 +85,15 @@ namespace ColonyCouncil
         {
             tab = t;
             scroll = Vector2.zero;
+        }
+
+        /// <summary>Opens the council window on an almanac page.</summary>
+        public static void OpenAlmanac(AlmanacArticleDef article)
+        {
+            tab = Tab.Almanac;
+            AlmanacPanel.Show(article);
+            var button = CouncilDefOf.Council_MainButton;
+            if (Find.MainTabsRoot.OpenTab != button) Find.MainTabsRoot.SetCurrentTab(button, false);
         }
 
         private static int OpenWishCount() => CouncilGameComponent.Instance?.OpenWishes.Count() ?? 0;
@@ -245,6 +257,11 @@ namespace ColonyCouncil
                 {
                     if (Widgets.ButtonText(new Rect(bx, by, 128f, 26f), "CC_PlanIt".Translate())) StartPlanning(s.template, true);
                 }
+                by += 30f;
+            }
+            if (s.def.article != null)
+            {
+                if (Widgets.ButtonText(new Rect(bx, by, 128f, 26f), "CC_ReadMore".Translate())) OpenAlmanac(s.def.article);
                 by += 30f;
             }
             if (s.suggestThing != null)
