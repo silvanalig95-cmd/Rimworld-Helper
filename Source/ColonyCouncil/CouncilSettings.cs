@@ -191,18 +191,20 @@ namespace ColonyCouncil
             l.CheckboxLabeled("CC_Settings_SelfHelp".Translate(), ref selfHelp, "CC_Settings_SelfHelp_Tip".Translate());
             l.CheckboxLabeled("CC_Settings_Quitting".Translate(), ref allowQuitting, "CC_Settings_Quitting_Tip".Translate());
             l.CheckboxLabeled("CC_Settings_Standards".Translate(), ref risingStandards, "CC_Settings_Standards_Tip".Translate());
-            l.CheckboxLabeled("CC_Settings_Annals".Translate(), ref annals, "CC_Settings_Annals_Tip".Translate());
-            l.CheckboxLabeled("CC_Settings_DecreeRequests".Translate(), ref decreeRequests, "CC_Settings_DecreeRequests_Tip".Translate());
-            l.CheckboxLabeled("CC_Settings_Anniversaries".Translate(), ref anniversaries, "CC_Settings_Anniversaries_Tip".Translate());
-            l.CheckboxLabeled("CC_Settings_Epithets".Translate(), ref epithets, "CC_Settings_Epithets_Tip".Translate());
+            l.CheckboxLabeled("CC_Settings_ForOthers".Translate(), ref wishesForOthers, "CC_Settings_ForOthers_Tip".Translate());
+            l.CheckboxLabeled("CC_Settings_Petitions".Translate(), ref petitions, "CC_Settings_Petitions_Tip".Translate());
+
+            Header(l, "CC_Settings_CouncilLife".Translate());
             l.CheckboxLabeled("CC_Settings_Dilemmas".Translate(), ref enableDilemmas, "CC_Settings_Dilemmas_Tip".Translate());
             if (enableDilemmas)
             {
                 daysBetweenDilemmas = l.SliderLabeled("CC_Settings_DaysBetweenDilemmas".Translate(daysBetweenDilemmas.ToString("0")), daysBetweenDilemmas, 3f, 30f, 0.6f);
                 daysBetweenDilemmas = Mathf.Round(daysBetweenDilemmas);
             }
-            l.CheckboxLabeled("CC_Settings_ForOthers".Translate(), ref wishesForOthers, "CC_Settings_ForOthers_Tip".Translate());
-            l.CheckboxLabeled("CC_Settings_Petitions".Translate(), ref petitions, "CC_Settings_Petitions_Tip".Translate());
+            l.CheckboxLabeled("CC_Settings_DecreeRequests".Translate(), ref decreeRequests, "CC_Settings_DecreeRequests_Tip".Translate());
+            l.CheckboxLabeled("CC_Settings_Annals".Translate(), ref annals, "CC_Settings_Annals_Tip".Translate());
+            l.CheckboxLabeled("CC_Settings_Anniversaries".Translate(), ref anniversaries, "CC_Settings_Anniversaries_Tip".Translate());
+            l.CheckboxLabeled("CC_Settings_Epithets".Translate(), ref epithets, "CC_Settings_Epithets_Tip".Translate());
             l.CheckboxLabeled("CC_Settings_WishLetters".Translate(), ref wishLetters, "CC_Settings_WishLetters_Tip".Translate());
             l.CheckboxLabeled("CC_Settings_GrantedLetters".Translate(), ref grantedLetters, "CC_Settings_GrantedLetters_Tip".Translate());
             l.CheckboxLabeled("CC_Settings_SpeechText".Translate(), ref speechText, "CC_Settings_SpeechText_Tip".Translate());

@@ -805,6 +805,7 @@ Granting one of {PAWN_possessive} wishes, or keeping a promise, can win {PAWN_ob
   <CC_Trust_Leaving>leaving in {0}</CC_Trust_Leaving>
 
   <!-- Rising standards -->
+  <CC_Settings_CouncilLife>Council life</CC_Settings_CouncilLife>
   <CC_Settings_Standards>Rising standards: the happy grow harder to please</CC_Settings_Standards>
   <CC_Settings_Standards_Tip>While colonists are happy, their standards creep up: the council's mood rewards shrink, letdowns sting more, and wishes come more often and ask for more. Hard times, and the austerity decree, bring standards back down.</CC_Settings_Standards_Tip>
   <CC_Reason_Standards>{PAWN_nameDef} has grown used to comfort, and the bedroom doesn't feel good enough any more.</CC_Reason_Standards>
