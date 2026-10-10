@@ -1,0 +1,1272 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- Almanac: DLC good practice (Royalty, Ideology, Biotech, Anomaly, Odyssey). -->
+
+  <!-- ===================== Royalty ===================== -->
+
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Council_Alm_7_01_TitlesAndHonor</defName>
+    <label>titles and honor</label>
+    <category>Royalty</category>
+    <order>10</order>
+    <summary>How much honor each Imperial title needs, and what a promotion brings with it</summary>
+    <tip>Honor is a number. The carpet is a bigger number.</tip>
+    <description>With Royalty, your colonists can earn honor with the Empire and climb a ladder of titles. Every step up brings new demands: a throne room, a better bedroom, proper clothes and better food. Know what the next rank will ask of you before you accept it, because an unhappy noble is a very expensive colonist.</description>
+    <facts>
+      <li>Total honor needed: Freeholder 1, Novice 7, Acolyte 13.</li>
+      <li>Higher titles: Knight or Dame 21, Praetor 31, Baron or Baroness 45, Archon 65.</li>
+      <li>Freeholder and Novice need no throne room. From Acolyte up, every title has rules for its throne room and its bedroom.</li>
+      <li>Dominus has the same requirements as Archon, but it can't be reached through honor.</li>
+      <li>Conceited nobles also raise their own expectations as they climb, costing up to -12 mood at Archon.</li>
+    </facts>
+    <advice>
+      <li>Before you accept a promotion, open the Royalty tab and read the next title's room and apparel rules.</li>
+      <li>Build the throne room and the noble's bedroom with space to spare, so a promotion means new furniture, not new walls.</li>
+      <li>Stock fine meals and the right apparel before the ceremony, not after the first complaint.</li>
+      <li>Pick your noble with care: every requirement follows that pawn for the rest of the game.</li>
+    </advice>
+    <keywords>
+      <li>title</li>
+      <li>honor</li>
+      <li>empire</li>
+      <li>noble</li>
+      <li>knight</li>
+      <li>praetor</li>
+      <li>baron</li>
+      <li>archon</li>
+    </keywords>
+    <seeAlso>
+      <li>Council_Alm_7_02_ThroneRoomRequirements</li>
+      <li>Council_Alm_7_03_NobleBedrooms</li>
+      <li>Council_Alm_7_04_NobleApparelAndMeals</li>
+      <li>Council_Alm_7_05_BestowingAndThroneSpeech</li>
+      <li>Council_Alm_7_06_PsycastsAndMeditation</li>
+    </seeAlso>
+    <dlc>Royalty</dlc>
+  </ColonyCouncil.AlmanacArticleDef>
+
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Council_Alm_7_02_ThroneRoomRequirements</defName>
+    <label>throne room requirements</label>
+    <category>Royalty</category>
+    <order>20</order>
+    <summary>The area, impressiveness and furniture each title wants in its throne room</summary>
+    <tip>The throne room is bigger than the problem it was built to ignore.</tip>
+    <description>Every titled noble from Acolyte up needs a throne room, and the rules grow with each promotion: more area, more impressiveness, more columns and finer furnishings. Miss one and your noble sulks. Build it once with room to grow and each promotion becomes a shopping trip instead of a rebuild.</description>
+    <facts>
+      <li>Acolyte: area 24; a throne, every tile floored, 2 lit braziers and a roof. No impressiveness rule is listed.</li>
+      <li>Knight or Dame: area 30, impressiveness 60; add 2 columns and a harp (a harpsichord or piano also counts).</li>
+      <li>Praetor: area 40, impressiveness 90; 4 columns and a harp (or better).</li>
+      <li>Baron or Baroness: area 60, impressiveness 120; a grand throne, fine floors throughout, 4 columns, 2 drapes and a harpsichord (a piano also counts).</li>
+      <li>Archon: area 80, impressiveness 160; a grand throne, fine floors, 6 columns, 2 drapes and a piano.</li>
+      <li>Every rank needs 2 lit braziers and a full roof. Freeholder and Novice need no throne room at all.</li>
+    </facts>
+    <advice>
+      <li>Build for the title after the next one. Walls are much harder to move than columns.</li>
+      <li>Keep the braziers fueled and lit, and the room clean and well decorated: impressiveness counts.</li>
+      <li>Keep beds, workbenches and dining tables out of the throne room.</li>
+      <li>After every promotion, check the Royalty tab for unmet requirements.</li>
+    </advice>
+    <keywords>
+      <li>throne room</li>
+      <li>throne</li>
+      <li>grand throne</li>
+      <li>brazier</li>
+      <li>column</li>
+      <li>harp</li>
+      <li>piano</li>
+      <li>drape</li>
+    </keywords>
+    <seeAlso>
+      <li>Council_Alm_7_01_TitlesAndHonor</li>
+      <li>Council_Alm_7_03_NobleBedrooms</li>
+      <li>Council_Alm_7_05_BestowingAndThroneSpeech</li>
+      <li>Council_Alm_9_19_ThroneRoom</li>
+    </seeAlso>
+    <template>Council_ThroneRoom</template>
+    <dlc>Royalty</dlc>
+  </ColonyCouncil.AlmanacArticleDef>
+
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Council_Alm_7_03_NobleBedrooms</defName>
+    <label>noble bedrooms</label>
+    <category>Royalty</category>
+    <order>30</order>
+    <summary>The bedroom each title expects: area, impressiveness, bed and furniture</summary>
+    <tip>A knight won't sleep in a shed. Give her a dresser, an end table and a room you're not ashamed of.</tip>
+    <description>Titled nobles won't settle for an ordinary bedroom. From Acolyte up, each title asks for a minimum area, a minimum impressiveness and particular furniture, ending with a royal bed and fine floors. A room built big enough at the start only needs new furniture as the noble climbs.</description>
+    <facts>
+      <li>Acolyte: area 16; every tile floored and a double bed.</li>
+      <li>Knight or Dame: area 24, impressiveness 40; floored, a double bed, an end table and a dresser.</li>
+      <li>Praetor: area 24, impressiveness 50; the same furniture.</li>
+      <li>Baron or Baroness: area 30, impressiveness 70; floored, a royal bed, an end table, a dresser and a drape.</li>
+      <li>Archon: area 30, impressiveness 80; fine floors throughout, a royal bed, an end table, a dresser and a drape.</li>
+      <li>Area counts the room's floor tiles. It is a different number from the Space stat in the room panel.</li>
+    </facts>
+    <advice>
+      <li>Build a room with at least 30 floor tiles inside, such as 5x6. That covers the area rule for every title.</li>
+      <li>Start with a double bed, so the first promotion doesn't mean new furniture straight away.</li>
+      <li>Raise impressiveness with a good-quality bed, a sculpture, clean floors and good light.</li>
+      <li>Check the Royalty tab after each promotion: it lists exactly what's missing.</li>
+    </advice>
+    <keywords>
+      <li>noble bedroom</li>
+      <li>royal bed</li>
+      <li>double bed</li>
+      <li>dresser</li>
+      <li>end table</li>
+      <li>drape</li>
+      <li>bedroom requirements</li>
+    </keywords>
+    <seeAlso>
+      <li>Council_Alm_7_01_TitlesAndHonor</li>
+      <li>Council_Alm_7_02_ThroneRoomRequirements</li>
+      <li>Council_Alm_7_04_NobleApparelAndMeals</li>
+      <li>Council_Alm_9_01_Bedroom</li>
+    </seeAlso>
+    <template>Council_CoupleBedroom</template>
+    <dlc>Royalty</dlc>
+  </ColonyCouncil.AlmanacArticleDef>
+
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Council_Alm_7_04_NobleApparelAndMeals</defName>
+    <label>noble apparel and meals</label>
+    <category>Royalty</category>
+    <order>40</order>
+    <summary>Nobles want proper clothes and better food, and they sulk without them</summary>
+    <tip>A fine meal is a small mutiny, prevented. Serve a baron a simple one and you've scheduled a large one.</tip>
+    <description>Titled pawns expect to look and eat the part. Each title names the headgear and body apparel it wants, and conceited nobles turn their noses up at low-class food. These are small mood hits on their own, but they stack with the higher expectations that come with rank.</description>
+    <facts>
+      <li>Missing title apparel costs -4 mood, and missing quality apparel another -4.</li>
+      <li>A conceited noble eating low-class food gets -8.</li>
+      <li>Acolyte and Knight or Dame need one headgear and one body item from their title's list. From Praetor, all apparel must also be at least Normal quality.</li>
+      <li>Conceited nobles bring their own expectations: at least Moderate at Acolyte, Noble at Baron or Baroness (-6) and Royal at Archon (-12).</li>
+      <li>With Biotech, a prestige robe also gives +20% toxic environment resistance.</li>
+    </facts>
+    <advice>
+      <li>Read the title's apparel list in the Royalty tab, and buy or craft the pieces before the bestowing.</li>
+      <li>Set a food restriction in the Assign tab so nobles eat fine or lavish meals, and keep a stock of them.</li>
+      <li>From Praetor on, replace any apparel below Normal quality straight away.</li>
+      <li>Keep a spare set of title apparel: raids put holes in robes, and a noble in rags complains all week.</li>
+    </advice>
+    <keywords>
+      <li>title apparel</li>
+      <li>noble clothes</li>
+      <li>prestige robe</li>
+      <li>crown</li>
+      <li>low-class food</li>
+      <li>conceited</li>
+      <li>fine meal</li>
+    </keywords>
+    <seeAlso>
+      <li>Council_Alm_7_01_TitlesAndHonor</li>
+      <li>Council_Alm_7_03_NobleBedrooms</li>
+      <li>Council_Alm_1_26_MealMoods</li>
+      <li>Council_Alm_7_21_ToxicResistance</li>
+    </seeAlso>
+    <dlc>Royalty</dlc>
+  </ColonyCouncil.AlmanacArticleDef>
+
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Council_Alm_7_05_BestowingAndThroneSpeech</defName>
+    <label>bestowing and throne speech</label>
+    <category>Royalty</category>
+    <order>50</order>
+    <summary>Getting the most out of a bestowing ceremony and the noble's throne speech</summary>
+    <tip>The Empire's envoy says a few words, pins on a title, and leaves you with a knight and a much longer list of demands.</tip>
+    <description>A new title arrives in a bestowing ceremony, which comes with a quest. A big crowd and an impressive room raise its quality and earn a little extra honor. Once titled, a noble can also give a throne speech every so often, which can inspire the listeners.</description>
+    <facts>
+      <li>Bestowing quality: 17 participants give +60%, and a room of impressiveness 170 gives +40%.</li>
+      <li>The ceremony grants 1 honor at 30% quality, 2 at 60% and 3 at 90%. At 0% it grants none.</li>
+      <li>A throne speech takes about 2 hours and has a 10-day cooldown.</li>
+      <li>A speech can give a listener an inspiration (5% chance) or convert them (2%).</li>
+    </facts>
+    <advice>
+      <li>Hold the bestowing in your best room, freshly cleaned and lit, usually the throne room.</li>
+      <li>Pull everyone you can spare off work for it. Every participant adds quality.</li>
+      <li>Give a throne speech whenever the cooldown allows and the noble is free. It's short and cheap.</li>
+    </advice>
+    <keywords>
+      <li>bestowing</li>
+      <li>ceremony</li>
+      <li>throne speech</li>
+      <li>speech</li>
+      <li>inspiration</li>
+      <li>honor</li>
+    </keywords>
+    <seeAlso>
+      <li>Council_Alm_7_01_TitlesAndHonor</li>
+      <li>Council_Alm_7_02_ThroneRoomRequirements</li>
+      <li>Council_Alm_7_07_RitualQuality</li>
+    </seeAlso>
+    <template>Council_ThroneRoom</template>
+    <dlc>Royalty</dlc>
+  </ColonyCouncil.AlmanacArticleDef>
+
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Council_Alm_7_06_PsycastsAndMeditation</defName>
+    <label>psycasts and meditation</label>
+    <category>Royalty</category>
+    <order>60</order>
+    <summary>Psycasters run on psyfocus, and psyfocus comes from meditation</summary>
+    <tip>Meditate daily, cast sparingly. Fry your brain once and you'll learn what "neural heat" means.</tip>
+    <description>Psycasters spend psyfocus to cast and refill it by meditating, so a psycaster with no meditation spot and no time for it slowly becomes a very ordinary colonist. A few drugs and rituals help, and some psycasts are handy well outside of combat.</description>
+    <facts>
+      <li>Royal meditation also fills recreation, with a multiplier of 1.</li>
+      <li>Go-juice gives +15% psyfocus. Wake-up gives +20% psyfocus meditation rate.</li>
+      <li>Word of Trust lowers a prisoner's resistance by 12 times their psychic sensitivity.</li>
+      <li>With Ideology, a good ritual can carry a psyfocus recharge as its reward.</li>
+    </facts>
+    <advice>
+      <li>Give every psycaster a meditation spot in a quiet room, and time to use it in their schedule.</li>
+      <li>Watch the psyfocus bar. Go into a raid with it full, not half-spent on chores.</li>
+      <li>Keep go-juice and wake-up for emergencies: both carry an addiction risk (2.6% and 2%).</li>
+      <li>Use Word of Trust on stubborn prisoners to speed up recruitment.</li>
+    </advice>
+    <keywords>
+      <li>psycast</li>
+      <li>psyfocus</li>
+      <li>meditation</li>
+      <li>psylink</li>
+      <li>word of trust</li>
+      <li>go-juice</li>
+    </keywords>
+    <seeAlso>
+      <li>Council_Alm_7_01_TitlesAndHonor</li>
+      <li>Council_Alm_7_09_RitualLimitsAndRewards</li>
+      <li>Council_Alm_9_28_MeditationRoom</li>
+    </seeAlso>
+    <template>Council_MeditationRoom</template>
+    <dlc>Royalty</dlc>
+  </ColonyCouncil.AlmanacArticleDef>
+
+  <!-- ===================== Ideology ===================== -->
+
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Council_Alm_7_07_RitualQuality</defName>
+    <label>ritual quality</label>
+    <category>Ideology</category>
+    <order>10</order>
+    <summary>Quality isn't the chance of success: it shifts the odds between four outcomes</summary>
+    <tip>Even a perfect ritual leaves one guest in five yawning. Plan for the yawners.</tip>
+    <description>Every ritual ends as terrible, boring, fun or unforgettable, and the quality bar only moves the odds between them. Low quality makes a bad outcome likely; high quality makes a good one likely but never certain. The ritual dialog shows the chances, so read it before you start.</description>
+    <facts>
+      <li>At 0% quality, the outcome is about 25% terrible and 75% boring.</li>
+      <li>At 50% quality: about 8% terrible, 25% boring, 50% fun and 17% unforgettable.</li>
+      <li>At 100% quality: 60% fun and 20% unforgettable. The other 20% is still terrible (5%) or boring (15%).</li>
+      <li>Quality comes from the number of participants, the moral guide, an altar, a lectern and the room's impressiveness.</li>
+      <li>Any pawn can watch any ritual, whatever their ideoligion.</li>
+    </facts>
+    <advice>
+      <li>Hold rituals in an impressive room with an altar and a lectern, led by the role the ritual asks for.</li>
+      <li>Invite everyone who can come: more participants means more quality.</li>
+      <li>Read the outcome chances in the ritual dialog, and fix the cheapest missing factor first.</li>
+      <li>Skip a low-quality ritual during a mood crisis: a terrible result costs mood you don't have.</li>
+    </advice>
+    <keywords>
+      <li>ritual</li>
+      <li>ritual quality</li>
+      <li>outcome</li>
+      <li>altar</li>
+      <li>lectern</li>
+      <li>moral guide</li>
+    </keywords>
+    <seeAlso>
+      <li>Council_Alm_7_08_RitualMoods</li>
+      <li>Council_Alm_7_09_RitualLimitsAndRewards</li>
+      <li>Council_Alm_7_10_PreceptsAndRoles</li>
+      <li>Council_Alm_9_20_Temple</li>
+    </seeAlso>
+    <approximate>true</approximate>
+    <dlc>Ideology</dlc>
+  </ColonyCouncil.AlmanacArticleDef>
+
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Council_Alm_7_08_RitualMoods</defName>
+    <label>ritual moods at a glance</label>
+    <category>Ideology</category>
+    <order>20</order>
+    <summary>What each common ritual needs, and the mood it gives for each outcome</summary>
+    <tip>Drums for the tribe, speakers for everyone else, and a funeral for whoever mixes them up.</tip>
+    <description>Each ritual has its own quality factors and its own mood payout. Moods below are listed as terrible / boring / fun / unforgettable. Parties pay the best, while a bad leader speech hurts more than anything else on the list.</description>
+    <facts>
+      <li>Funeral: -3 / -1 / +5 / +8. 10 participants give +70% quality and a moral guide +30%. The corpse must be in a grave.</li>
+      <li>Social festival: -3 / -1 / +5 / +8. Participants +25%, leader +25%, altar +20%, lectern +20%, seats +20%.</li>
+      <li>Dance party (non-tribal) and drum party (tribal): -3 / -1 / +8 / +16. Participants +30%, 6 speakers or 6 drums +30%, a lightball or campfire +20%, room impressiveness 120 +20%.</li>
+      <li>Skylantern festival: -3 / -1 / +6 / +10. 10 participants give +100%; each participant uses 4 wood.</li>
+      <li>Leader speech: -8 / -4 / +5 / +8. Participants +40%, the leader's social impact +40%, room impressiveness 120 +20%.</li>
+      <li>Smaller rites: scarification and blinding -2 / -1 / +1 / +3; animal sacrifice -3 / -1 / +5 / +8; conversion 0 / 0 / +3 / +6.</li>
+      <li>A fun or unforgettable dance or drum party has a 10% chance of +20% global work speed for 24 hours.</li>
+    </facts>
+    <advice>
+      <li>For a mood boost, hold a party: build 6 speakers or 6 drums and use a room of impressiveness 120.</li>
+      <li>Only give a leader speech when quality is high. A terrible one costs -8.</li>
+      <li>Stock 4 wood per participant before a skylantern festival.</li>
+      <li>Put the body in a grave or sarcophagus before you schedule the funeral.</li>
+    </advice>
+    <keywords>
+      <li>funeral</li>
+      <li>festival</li>
+      <li>dance party</li>
+      <li>drum party</li>
+      <li>skylantern</li>
+      <li>leader speech</li>
+      <li>animal sacrifice</li>
+      <li>ritual mood</li>
+    </keywords>
+    <seeAlso>
+      <li>Council_Alm_7_07_RitualQuality</li>
+      <li>Council_Alm_7_09_RitualLimitsAndRewards</li>
+      <li>Council_Alm_9_20_Temple</li>
+    </seeAlso>
+    <dlc>Ideology</dlc>
+  </ColonyCouncil.AlmanacArticleDef>
+
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Council_Alm_7_09_RitualLimitsAndRewards</defName>
+    <label>ritual limits and rewards</label>
+    <category>Ideology</category>
+    <order>40</order>
+    <summary>Six rituals per faith, one bonus reward each, and the rules that stop them running</summary>
+    <tip>No corpse, no funeral. The colony has tried improvising. The colony was asked to stop.</tip>
+    <description>An ideoligion can only hold so many rituals, so choose ones your colony will actually use. A ritual can also carry an extra reward that pays out only on a good outcome. Most failed rituals fail for a simple reason: a missing body, a missing role, or a speaker who can't speak.</description>
+    <facts>
+      <li>An ideoligion can hold up to 6 rituals. The Raider or Supremacist meme adds a gladiator duel on top of that cap.</li>
+      <li>One extra reward can be attached to a ritual, and it only triggers on a fun or unforgettable outcome.</li>
+      <li>Rewards include faction goodwill, a 50% chance of a recruit, an ancient complex, farm animals, a Gauranlen pod, insect jelly, or a psyfocus recharge with Royalty.</li>
+      <li>A funeral needs the corpse in a grave or sarcophagus and a moral guide of the dead pawn's faith.</li>
+      <li>A gladiator duel ends at a pain-shock down or a mental break. Child slaves and child prisoners can't fight.</li>
+      <li>A defendant convicted in a trial stays guilty for 15 days.</li>
+      <li>A moral guide who can't speak can't run a conversion.</li>
+    </facts>
+    <advice>
+      <li>Pick your 6 rituals for what the colony needs most: mood, recruits or converts.</li>
+      <li>Attach a reward you actually want, then push quality high so a good outcome is likely.</li>
+      <li>Before you start, check the requirements: a body in the grave, the right role assigned, a guide who can talk.</li>
+    </advice>
+    <keywords>
+      <li>ritual limit</li>
+      <li>ritual reward</li>
+      <li>gladiator duel</li>
+      <li>trial</li>
+      <li>conversion</li>
+      <li>funeral</li>
+    </keywords>
+    <seeAlso>
+      <li>Council_Alm_7_07_RitualQuality</li>
+      <li>Council_Alm_7_08_RitualMoods</li>
+      <li>Council_Alm_7_10_PreceptsAndRoles</li>
+      <li>Council_Alm_7_13_GauranlenDryads</li>
+    </seeAlso>
+    <dlc>Ideology</dlc>
+  </ColonyCouncil.AlmanacArticleDef>
+
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Council_Alm_7_10_PreceptsAndRoles</defName>
+    <label>precepts and roles</label>
+    <category>Ideology</category>
+    <order>30</order>
+    <summary>Fill the leader and moral guide first, and read each precept's mood rules</summary>
+    <tip>Every faith needs a leader and a preacher. Empty chairs at the altar make for sour faces.</tip>
+    <description>Precepts decide what your colonists find pleasing or offensive, from diet to executions to eclipses. Roles such as the leader and the moral guide run rituals and lift their quality, but they also expect more from the colony. A faith that bans everything you own is a faith with a lot of unhappy believers.</description>
+    <facts>
+      <li>Leaders and moral guides have expectations two levels higher than ordinary colonists. The extra Elite and Supreme tiers cost -6 and -12.</li>
+      <li>The Gauranlen Connection precept gives +25% pruning speed and +3 mood while connected.</li>
+      <li>Respected if Guilty gives +3 for executing a guilty pawn, and +10 to the executioner.</li>
+      <li>The Eclipse precept makes eclipses affect mood.</li>
+      <li>The Rough Living precept turns off some expectation effects.</li>
+      <li>The Slavery precept decides whether colonists see slavery as abhorrent or honorable.</li>
+    </facts>
+    <advice>
+      <li>Fill the leader and moral guide roles first: they raise ritual quality and the guide does the conversion work.</li>
+      <li>Give role holders a bedroom and food that match their higher expectations.</li>
+      <li>Read every precept's mood effects before adopting it, and don't stack restrictive ones early.</li>
+      <li>Don't break your own taboos for convenience. The thoughts last longer than the convenience.</li>
+    </advice>
+    <keywords>
+      <li>precept</li>
+      <li>role</li>
+      <li>leader</li>
+      <li>moral guide</li>
+      <li>ideoligion</li>
+      <li>meme</li>
+      <li>taboo</li>
+    </keywords>
+    <seeAlso>
+      <li>Council_Alm_7_07_RitualQuality</li>
+      <li>Council_Alm_7_11_SlaveryInPractice</li>
+      <li>Council_Alm_7_12_GauranlenConnection</li>
+      <li>Council_Alm_3_19_EclipseVolcanicWinter</li>
+    </seeAlso>
+    <dlc>Ideology</dlc>
+  </ColonyCouncil.AlmanacArticleDef>
+
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Council_Alm_7_11_SlaveryInPractice</defName>
+    <label>slavery in practice</label>
+    <category>Ideology</category>
+    <order>50</order>
+    <summary>Slaves work, but suppression slips daily and weapons nearby invite a rebellion</summary>
+    <tip>Keep the slaves busy, watched and nowhere near the rifles. Two out of three is how rebellions start.</tip>
+    <description>Slaves are cheap labor with strings attached. Their suppression drains every day, and the odds of a rebellion climb with weapons nearby, poor suppression, or nobody free at home. Keep them suppressed, unarmed and away from the map edge, and they stay workers instead of a problem.</description>
+    <facts>
+      <li>Slaves work at 85% speed and have no recreation need. They can't do Warden, Hunting, Art or Research work.</li>
+      <li>Suppression falls 20% a day while above 30%.</li>
+      <li>Rebellion has a base mean time of 45 days. A usable weapon within 7 tiles makes it 4 times as likely, and no free colonist on the map 20 times.</li>
+      <li>Suppression changes the odds too: 5 times as likely at 0% suppression, and a quarter as likely at 100%.</li>
+      <li>A slave's room touching the map edge makes a rebellion 1.7 times as likely.</li>
+      <li>A slave collar or slave body strap adds +15% suppression each.</li>
+      <li>A colonist sharing a bedroom with a slave gets -3, unless they're in a relationship.</li>
+    </facts>
+    <advice>
+      <li>Keep weapons at least 7 tiles from where slaves work and sleep, and haul dropped guns away after raids.</li>
+      <li>Assign a warden with good Social to suppress them, and keep suppression above 50%.</li>
+      <li>House slaves in rooms that don't touch the map edge, and give them collars or body straps.</li>
+      <li>Always leave at least one free colonist at home.</li>
+    </advice>
+    <keywords>
+      <li>slave</li>
+      <li>slavery</li>
+      <li>suppression</li>
+      <li>rebellion</li>
+      <li>slave collar</li>
+      <li>warden</li>
+    </keywords>
+    <seeAlso>
+      <li>Council_Alm_8_31_SlavesNearWeapons</li>
+      <li>Council_Alm_7_10_PreceptsAndRoles</li>
+      <li>Council_Alm_9_23_Armory</li>
+      <li>Council_Alm_9_13_PrisonCell</li>
+    </seeAlso>
+    <dlc>Ideology</dlc>
+  </ColonyCouncil.AlmanacArticleDef>
+
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Council_Alm_7_12_GauranlenConnection</defName>
+    <label>gauranlen tree connection</label>
+    <category>Ideology</category>
+    <order>60</order>
+    <summary>Linking a Gauranlen tree, keeping the connection up, and what buildings do to it</summary>
+    <tip>The tree hates walls. Keep the workshop eight paces off, or it sulks, and the dryads sulk with it.</tip>
+    <description>A Gauranlen tree is linked to one colonist in a ritual, and the strength of that connection decides how many dryads it supports. The connection drains every day, faster when it's high and faster still with buildings nearby, so the connected colonist has to keep pruning. Plan the tree's surroundings before you link it.</description>
+    <facts>
+      <li>Linking starts the connection at 25% to 45% depending on ritual quality; each spectator adds 10% quality. The connector needs Plant Cutting and psychic sensitivity above 0%.</li>
+      <li>Daily loss: none below 0.1%, then rising from 2% to 4% by 33%, to 6% by 66%, and 6% a day above that.</li>
+      <li>Artificial structures nearby add to the daily loss: 6.24% at 1 tile, 3.96% at 4 tiles, 1.68% at 7 tiles, none from 8 tiles.</li>
+      <li>Pruning at Plants 8 restores 1% connection per hour. Holding 4 dryads takes about 6 hours of pruning a day, or about 3.6 hours at Plants 20 with the Gauranlen Connection precept.</li>
+      <li>After unlinking there is a 30-day cooldown. Destroying a connected tree gives -15 mood for 10 days.</li>
+    </facts>
+    <advice>
+      <li>Keep every building, wall and floor at least 8 tiles from the tree.</li>
+      <li>Choose a connector with decent Plants skill and time to spare in their schedule.</li>
+      <li>Fill the linking ritual with spectators to start as high as possible.</li>
+      <li>Aim for the connection you need for your dryad count, not 100%: higher connection drains faster.</li>
+    </advice>
+    <keywords>
+      <li>gauranlen</li>
+      <li>tree</li>
+      <li>connection</li>
+      <li>pruning</li>
+      <li>dryad</li>
+      <li>tree connection</li>
+    </keywords>
+    <seeAlso>
+      <li>Council_Alm_7_13_GauranlenDryads</li>
+      <li>Council_Alm_7_10_PreceptsAndRoles</li>
+      <li>Council_Alm_7_07_RitualQuality</li>
+    </seeAlso>
+    <dlc>Ideology</dlc>
+  </ColonyCouncil.AlmanacArticleDef>
+
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Council_Alm_7_13_GauranlenDryads</defName>
+    <label>dryads and gauranlen pods</label>
+    <category>Ideology</category>
+    <order>70</order>
+    <summary>How many dryads a tree supports, their castes, and where to plant a pod</summary>
+    <tip>A tree that grows its own soldiers and refuses to be moved. Plant it where you'll never want a barn.</tip>
+    <description>A connected Gauranlen tree grows dryads, and the connection level decides how many. Each tree picks one caste, from wood and berry gatherers to fighters. Pods appear now and then; plant them with care, because a tree can never be moved.</description>
+    <facts>
+      <li>Dryads supported: 1 at 5% connection, 2 at 25%, 3 at 50%, 4 at 75%.</li>
+      <li>Each tree supports one caste: woodmaker, berrymaker, medicinemaker, barkskin, clawer, carrier or gaumaker. Changing caste takes 5 days, and a new dryad spawns every 6 days.</li>
+      <li>An unlinked tree spawns up to 2 immature dryads.</li>
+      <li>A pod needs ground with at least 5% fertility, 4 or more tiles from another Gauranlen tree, and at least 1 tile from any other tree, cactus or growing zone.</li>
+      <li>The tree grows in 10 days (18.46 counting rest time), dies on polluted ground and is immune to blight. It can't be moved.</li>
+      <li>Pods turn up about every 60 days, or every 30 with the Tree Connection meme.</li>
+    </facts>
+    <advice>
+      <li>Plant the pod well away from your buildings, so the connection doesn't drain faster than you can prune.</li>
+      <li>Keep it off polluted ground.</li>
+      <li>Pick the caste for what you lack and stick with it: each switch costs 5 days.</li>
+      <li>Don't cut down a connected tree for its wood.</li>
+    </advice>
+    <keywords>
+      <li>dryad</li>
+      <li>gauranlen pod</li>
+      <li>woodmaker</li>
+      <li>berrymaker</li>
+      <li>medicinemaker</li>
+      <li>clawer</li>
+      <li>barkskin</li>
+    </keywords>
+    <seeAlso>
+      <li>Council_Alm_7_12_GauranlenConnection</li>
+      <li>Council_Alm_7_20_Pollution</li>
+      <li>Council_Alm_7_09_RitualLimitsAndRewards</li>
+    </seeAlso>
+    <dlc>Ideology</dlc>
+  </ColonyCouncil.AlmanacArticleDef>
+
+  <!-- ===================== Biotech ===================== -->
+
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Council_Alm_7_14_RaisingChildren</defName>
+    <label>raising children</label>
+    <category>Biotech</category>
+    <order>10</order>
+    <summary>Babies eat twice a day, children learn from adults, and neither counts much for raids</summary>
+    <tip>A child counts for nothing in a raid, which is about how much help they are in one.</tip>
+    <description>With Biotech, colonists can have babies, and babies grow into children who need feeding, a proper bedroom and lessons. Children barely raise raid strength until their teens, so a growing family is cheap in raid terms. They do need adults around: to feed them, to teach them, and to share a room with them.</description>
+    <facts>
+      <li>Babies need less food per feeding, but must be fed twice a day.</li>
+      <li>For raid strength, babies count 0%. Children count 0% at age 3, 50% at 13 and 100% at 18.</li>
+      <li>A room with an assigned child isn't a valid bedroom unless a parent is also assigned.</li>
+      <li>Children learn at school desks and in growth vats.</li>
+      <li>Child slaves and child prisoners can't fight in gladiator duels. Children are easier to suppress as slaves: +50% at age 3, +30% at 13, nothing from 16.</li>
+    </facts>
+    <advice>
+      <li>Put a baby's crib in the parents' bedroom, or build a warm nursery nearby.</li>
+      <li>Make baby food from vegetables at a campfire or stove when no one can breastfeed.</li>
+      <li>Build a school desk with blackboards before the first child is old enough to learn.</li>
+      <li>Keep an adult working near the children so feeding and lessons happen.</li>
+    </advice>
+    <keywords>
+      <li>child</li>
+      <li>children</li>
+      <li>baby</li>
+      <li>crib</li>
+      <li>baby food</li>
+      <li>nursery</li>
+      <li>family</li>
+    </keywords>
+    <seeAlso>
+      <li>Council_Alm_7_15_SchoolDesks</li>
+      <li>Council_Alm_7_16_GrowthVats</li>
+      <li>Council_Alm_1_02_ChildrenAndBabies</li>
+      <li>Council_Alm_9_21_Nursery</li>
+      <li>Council_Alm_9_21_Classroom</li>
+    </seeAlso>
+    <template>Council_Nursery</template>
+    <dlc>Biotech</dlc>
+  </ColonyCouncil.AlmanacArticleDef>
+
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Council_Alm_7_15_SchoolDesks</defName>
+    <label>school desks and blackboards</label>
+    <category>Biotech</category>
+    <order>20</order>
+    <summary>A school desk with three blackboards and an adult nearby makes children learn faster</summary>
+    <tip>Kids learn best at a desk with three blackboards and a teacher who isn't also the cook.</tip>
+    <description>A school desk is where children do their lessons, and blackboards nearby make those lessons count for more. The desk is cheap and quick to build, so there's no reason to raise a child without one. Lessons only start when an adult who can teach is awake and nearby.</description>
+    <facts>
+      <li>A school desk costs 30 wood, stone or metal and 750 ticks of work, and needs Complex furniture research.</li>
+      <li>A desk links to up to 3 nearby blackboards, each adding 20% to the learning rate (up to +60%).</li>
+      <li>With 3 blackboards, children taught by adults learn skill XP at 160%.</li>
+      <li>One blackboard can serve several desks, and facing doesn't matter.</li>
+      <li>An awake adult able to teach must be present for lessons to start. Adults working beside the children also boost XP in a random skill.</li>
+      <li>The desk is 2x1 with 75 HP, and the room counts as a classroom.</li>
+    </facts>
+    <advice>
+      <li>Place three blackboards so each one reaches every desk; they can be shared.</li>
+      <li>Build the classroom next to where adults work, so a teacher is always close by.</li>
+      <li>Build the desk as soon as you have a child. It's cheap and the gain is large.</li>
+    </advice>
+    <keywords>
+      <li>school desk</li>
+      <li>blackboard</li>
+      <li>classroom</li>
+      <li>learning</li>
+      <li>lessons</li>
+      <li>teacher</li>
+    </keywords>
+    <seeAlso>
+      <li>Council_Alm_7_14_RaisingChildren</li>
+      <li>Council_Alm_7_16_GrowthVats</li>
+      <li>Council_Alm_9_21_Classroom</li>
+    </seeAlso>
+    <template>Council_Classroom</template>
+    <dlc>Biotech</dlc>
+  </ColonyCouncil.AlmanacArticleDef>
+
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Council_Alm_7_16_GrowthVats</defName>
+    <label>growth vats</label>
+    <category>Biotech</category>
+    <order>30</order>
+    <summary>Growth vats need steady power and a lot of food to age a child or grow an embryo</summary>
+    <tip>The vat makes adults fast and dull. Fine if you need hands. Sad if you wanted a person.</tip>
+    <description>A growth vat ages a child or gestates an embryo, but only while it has power and food. It eats far more than a child at the table would, and a power cut or solar flare stops it until power returns. Plan the food and power before you fill one.</description>
+    <facts>
+      <li>A growth vat draws 200 W.</li>
+      <li>It uses 3 nutrition a day to age a child, about as much as two adults eat.</li>
+      <li>Gestating an embryo uses 6 nutrition a day, nearly as much as four adults.</li>
+      <li>A power cut or a solar flare stops the vat until power returns.</li>
+    </facts>
+    <advice>
+      <li>Count each busy vat as two to four extra mouths when you plan crops and stock.</li>
+      <li>Put vats on your most reliable grid. Nothing keeps them running through a solar flare, so expect pauses.</li>
+      <li>Check the vats whenever one shows "needs power" or "needs food".</li>
+      <li>A child raised at a school desk gets lessons and company too; use the vat when you need hands quickly.</li>
+    </advice>
+    <keywords>
+      <li>growth vat</li>
+      <li>vat</li>
+      <li>embryo</li>
+      <li>gestation</li>
+      <li>child</li>
+      <li>nutrition</li>
+    </keywords>
+    <seeAlso>
+      <li>Council_Alm_7_14_RaisingChildren</li>
+      <li>Council_Alm_7_15_SchoolDesks</li>
+      <li>Council_Alm_3_17_SolarFlare</li>
+      <li>Council_Alm_1_01_DailyNutrition</li>
+    </seeAlso>
+    <dlc>Biotech</dlc>
+  </ColonyCouncil.AlmanacArticleDef>
+
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Council_Alm_7_17_MechanitorBandwidth</defName>
+    <label>mechanitor bandwidth</label>
+    <category>Biotech</category>
+    <order>40</order>
+    <summary>Bandwidth caps how many mechs you control; go over and the extras turn uncontrolled</summary>
+    <tip>Every mech wants a slice of the mechanitor's head. Hand out more slices than there are, and the extras start making plans of their own.</tip>
+    <description>A mechanitor can control mechs up to their bandwidth, and each mech costs some of it. Gear and band nodes raise bandwidth, but band nodes only count while powered. If bandwidth drops below what your mechs cost, the extras go uncontrolled and may turn feral.</description>
+    <facts>
+      <li>The mechlink gives 6 bandwidth.</li>
+      <li>Without band nodes the maximum is 39: mechlink 6, bandwidth pack 9, mechlord helmet 12, mechlord suit 12.</li>
+      <li>With Odyssey the maximum is 45, because the cerebrex node (+15) replaces the bandwidth pack.</li>
+      <li>Band nodes add 1 each, but only while powered and tuned. The first tuning takes 5 seconds; retuning takes 3 days.</li>
+      <li>Mechs beyond your bandwidth go uncontrolled. After 1 game day they can turn feral, with a mean time of about 10 days.</li>
+      <li>Uncontrolled mechs within 25 tiles can also turn feral.</li>
+    </facts>
+    <advice>
+      <li>Keep a point or two of bandwidth spare before gestating another mech.</li>
+      <li>Put band nodes on a reliable power line: a power cut quietly lowers your bandwidth.</li>
+      <li>If bandwidth drops, fix it within a day: restore power, or re-equip the mechanitor's gear.</li>
+      <li>Keep the mechanitor behind the line. When the mechanitor dies, every mech goes uncontrolled.</li>
+    </advice>
+    <keywords>
+      <li>mechanitor</li>
+      <li>bandwidth</li>
+      <li>band node</li>
+      <li>mechlink</li>
+      <li>uncontrolled</li>
+      <li>feral mech</li>
+    </keywords>
+    <seeAlso>
+      <li>Council_Alm_7_18_MechBandwidthCosts</li>
+      <li>Council_Alm_7_19_MechPowerAndRepair</li>
+      <li>Council_Alm_7_20_Pollution</li>
+    </seeAlso>
+    <dlc>Biotech</dlc>
+  </ColonyCouncil.AlmanacArticleDef>
+
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Council_Alm_7_18_MechBandwidthCosts</defName>
+    <label>mech bandwidth costs</label>
+    <category>Biotech</category>
+    <order>50</order>
+    <summary>What each mech costs in bandwidth, and how many wastepacks it makes per recharge</summary>
+    <tip>A mech never complains about the wastepacks. That's left to the neighbors.</tip>
+    <description>Every mech costs bandwidth, and the bigger ones cost more. Each one also leaves toxic wastepacks behind every time it recharges, five for every point of bandwidth. Choose your roster with both numbers in mind.</description>
+    <facts>
+      <li>1 bandwidth, 5 wastepacks per recharge: agrihand, cleansweeper, constructoid, fabricor, lifter, militor, paramedic, scorcher.</li>
+      <li>2 bandwidth, 10 wastepacks: cyclops, legionary, pikeman, scyther.</li>
+      <li>3 bandwidth, 15 wastepacks: lancer, tesseron, tunneler.</li>
+      <li>4 bandwidth, 20 wastepacks: centipede blaster, burner, gunner.</li>
+      <li>5 bandwidth, 25 wastepacks: centurion, diabolus, war queen.</li>
+      <li>You start with 2 control groups. Each control sublink adds 1 more (up to +6), and each sublink adds +6% work speed (up to +36%).</li>
+    </facts>
+    <advice>
+      <li>Start with cheap 1-bandwidth labor mechs such as lifters and constructoids.</li>
+      <li>Plan wastepack disposal before you build big: a heavy roster fills a stockpile quickly.</li>
+      <li>Use control groups to keep fighters and workers on separate orders.</li>
+    </advice>
+    <keywords>
+      <li>mech</li>
+      <li>bandwidth cost</li>
+      <li>wastepack</li>
+      <li>control group</li>
+      <li>sublink</li>
+      <li>lifter</li>
+      <li>scyther</li>
+    </keywords>
+    <seeAlso>
+      <li>Council_Alm_7_17_MechanitorBandwidth</li>
+      <li>Council_Alm_7_19_MechPowerAndRepair</li>
+      <li>Council_Alm_7_20_Pollution</li>
+    </seeAlso>
+    <dlc>Biotech</dlc>
+  </ColonyCouncil.AlmanacArticleDef>
+
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Council_Alm_7_19_MechPowerAndRepair</defName>
+    <label>mech power, repair and gestation</label>
+    <category>Biotech</category>
+    <order>60</order>
+    <summary>How fast mechs drain and recharge, what repairs cost, and how long gestation takes</summary>
+    <tip>Mechs work five days and sleep one. That's a better schedule than the colonists keep.</tip>
+    <description>Mechs run on their own power bar and recharge at a recharger, which is where the wastepacks come from. Damaged mechs are repaired by the mechanitor, and dead ones can be brought back for steel. New mechs are gestated over a few days of the mechanitor's work.</description>
+    <facts>
+      <li>A recharger gives +50% power per day. A mech runs about 5 days for every 1 day charging, about 83.3% uptime.</li>
+      <li>Idle labor mechs use 3% power a day, active mechs 10%; downed or caravan mechs use none. A dormant self-charging mech gains 1% a day and wakes at 15%.</li>
+      <li>Repair energy per 100 damage: light 66, medium 33, heavy 20, ultraheavy 33. Steel to resurrect: 25, 50, 100 and 150.</li>
+      <li>Repair speed starts at 80% at Crafting 0 and rises 10% per level, up to 280% at 20.</li>
+      <li>Gestation takes 64 hours at Crafting 0 with no processors, down to 14.77 hours at Crafting 20 with 6 processors. Each processor adds 33.3%.</li>
+      <li>Losing power pauses gestation without harm.</li>
+      <li>Psychically deaf pawns can't become mechanitors. A pawn who can't do Smithing can't gestate or repair mechs.</li>
+    </facts>
+    <advice>
+      <li>Put rechargers close to where the mechs work, so they don't waste charge walking.</li>
+      <li>Pick a mechanitor with decent Crafting, and add gestation processors if you build mechs often.</li>
+      <li>Haul dead mechs home: bringing one back costs only steel.</li>
+    </advice>
+    <keywords>
+      <li>mech recharger</li>
+      <li>recharge</li>
+      <li>mech repair</li>
+      <li>resurrect mech</li>
+      <li>gestation</li>
+      <li>gestation processor</li>
+    </keywords>
+    <seeAlso>
+      <li>Council_Alm_7_17_MechanitorBandwidth</li>
+      <li>Council_Alm_7_18_MechBandwidthCosts</li>
+      <li>Council_Alm_7_20_Pollution</li>
+    </seeAlso>
+    <dlc>Biotech</dlc>
+  </ColonyCouncil.AlmanacArticleDef>
+
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Council_Alm_7_20_Pollution</defName>
+    <label>pollution and wastepacks</label>
+    <category>Biotech</category>
+    <order>70</order>
+    <summary>Each lost wastepack pollutes 6 tiles, and polluted ground poisons pawns and halves crops</summary>
+    <tip>Toxic waste never goes away. It just goes somewhere. Make sure that somewhere isn't the vegetable patch.</tip>
+    <description>Toxic wastepacks come from mech recharging and some industry. Destroy one carelessly, or let one rot away, and it spreads pollution that poisons the people standing on it and halves the soil's fertility. Pollution is far easier to prevent than to clean up.</description>
+    <facts>
+      <li>Each wastepack destroyed or disintegrated pollutes 6 tiles; the wastepack atomizer is the exception. A toxifier generator pollutes 6 tiles every 3 days.</li>
+      <li>Pollution spreads in a widening circle. Natural rock walls stop it; walls you build don't.</li>
+      <li>Pawns on polluted tiles gain toxic buildup at 40% a day, and a roof doesn't help.</li>
+      <li>Polluted soil has 50% fertility. Toxipotato, devilstrand, psychoid and gray pine still grow on it.</li>
+      <li>Dumping wastepacks by transport pod raises world pollution 0.05% each (1.3% per full pod). Settlements within 15 tiles take offense, and the raid chance matches the penalty.</li>
+      <li>Destroying a wastepack can spawn insect cocoons.</li>
+    </facts>
+    <advice>
+      <li>Build a wastepack atomizer: it's the only way to destroy packs without polluting.</li>
+      <li>Store wastepacks under a roof, far from farms and bedrooms, so they don't rot away into pollution.</li>
+      <li>Never fight, burn or shoot near the wastepack store.</li>
+      <li>Clean polluted ground with pollution pumps or a pollution removal area, and dispose of the extra packs they make.</li>
+    </advice>
+    <keywords>
+      <li>pollution</li>
+      <li>wastepack</li>
+      <li>toxic</li>
+      <li>atomizer</li>
+      <li>toxic buildup</li>
+      <li>polluted soil</li>
+    </keywords>
+    <seeAlso>
+      <li>Council_Alm_7_21_ToxicResistance</li>
+      <li>Council_Alm_7_18_MechBandwidthCosts</li>
+      <li>Council_Alm_3_15_Infestations</li>
+      <li>Council_Alm_7_13_GauranlenDryads</li>
+    </seeAlso>
+    <dlc>Biotech</dlc>
+  </ColonyCouncil.AlmanacArticleDef>
+
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Council_Alm_7_21_ToxicResistance</defName>
+    <label>toxic resistance and genes</label>
+    <category>Biotech</category>
+    <order>80</order>
+    <summary>Masks, organs and genes that keep toxic buildup down, and how they stack</summary>
+    <tip>A gas mask is cheaper than new lungs. Ask anyone who went for the lungs.</tip>
+    <description>Pawns working on polluted ground build up toxins, but gear, implants and genes can slow or stop it. Two different stats are involved: toxic resistance and toxic environment resistance. They stack differently, so some combinations give full protection and others don't.</description>
+    <facts>
+      <li>Toxic environment resistance: face mask +50%, gas mask +80%, prestige robe +20%, detoxifier lung +60%.</li>
+      <li>Toxic resistance: detoxifier kidney +50%, tox resistance gene +50%.</li>
+      <li>Bonuses of the same kind add up, while the two kinds multiply. A face mask plus a detoxifier lung (both environmental) reaches 100%; a face mask plus a detoxifier kidney reaches 75%.</li>
+      <li>The pollution stimulus gene gives moving 110%, 115% or 120% by tier, and +5% consciousness.</li>
+      <li>With Odyssey, the vacuum resistant and breathless genes help in orbit.</li>
+    </facts>
+    <advice>
+      <li>Hand a gas mask, or at least a face mask, to anyone working on polluted ground.</li>
+      <li>For a pawn who lives on polluted ground, pair a face mask with a detoxifier lung.</li>
+      <li>Don't count on a roof: buildup keeps rising indoors on polluted tiles.</li>
+    </advice>
+    <keywords>
+      <li>toxic resistance</li>
+      <li>gas mask</li>
+      <li>face mask</li>
+      <li>detoxifier lung</li>
+      <li>detoxifier kidney</li>
+      <li>genes</li>
+      <li>tox resistance</li>
+    </keywords>
+    <seeAlso>
+      <li>Council_Alm_7_20_Pollution</li>
+      <li>Council_Alm_7_32_VacuumProtection</li>
+      <li>Council_Alm_7_04_NobleApparelAndMeals</li>
+    </seeAlso>
+    <dlc>Biotech</dlc>
+  </ColonyCouncil.AlmanacArticleDef>
+
+  <!-- ===================== Anomaly ===================== -->
+
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Council_Alm_7_22_ContainmentStrength</defName>
+    <label>containment strength</label>
+    <category>Anomaly</category>
+    <order>10</order>
+    <summary>What makes a holding cell strong enough to keep an entity in</summary>
+    <tip>Containment is the art of being politely wrong about a wall.</tip>
+    <description>Captured entities sit in holding cells, and containment strength is how well that cell holds them. Strong walls and doors, good light and an entity with the room to itself all help. Harvesting devices make you money but cost you strength.</description>
+    <facts>
+      <li>Strength rises with stronger walls and doors, more light, fewer other entities in the room, and special containment devices.</li>
+      <li>Damaged walls and doors lower it.</li>
+      <li>A bioferrite harvester lowers it by 15, an electroharvester by 25.</li>
+      <li>Some entities are easier to hold in the cold.</li>
+      <li>Strength never drops below 0.</li>
+    </facts>
+    <advice>
+      <li>Build cells from stone or better, and repair any damage straight away.</li>
+      <li>Light every cell well.</li>
+      <li>Hold one entity per cell.</li>
+      <li>Check the strength in the cell's inspect pane after adding a harvester or anything else.</li>
+    </advice>
+    <keywords>
+      <li>containment</li>
+      <li>entity</li>
+      <li>holding cell</li>
+      <li>escape</li>
+      <li>bioferrite harvester</li>
+      <li>electroharvester</li>
+    </keywords>
+    <seeAlso>
+      <li>Council_Alm_7_23_HoldingPlatform</li>
+      <li>Council_Alm_7_24_EntityEscapeAndStudy</li>
+      <li>Council_Alm_7_25_AnomalyEffects</li>
+    </seeAlso>
+    <dlc>Anomaly</dlc>
+  </ColonyCouncil.AlmanacArticleDef>
+
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Council_Alm_7_23_HoldingPlatform</defName>
+    <label>holding platform</label>
+    <category>Anomaly</category>
+    <order>20</order>
+    <summary>The platform that holds entities, and the room it needs around it</summary>
+    <tip>Thick walls, bright lights, one horror per cell. The things in there are very patient.</tip>
+    <description>A holding platform keeps a captured entity in place while you study or harvest it. Its containment depends mostly on the room: the hit points of its walls and doors, plus light. A platform holds far better than a holding spot.</description>
+    <facts>
+      <li>Costs 40 steel and 2,000 ticks of work, and needs Entity containment research (which needs dark study).</li>
+      <li>It is 3x3 with 500 HP, and can be uninstalled and moved.</li>
+      <li>Containment adds the room's average door hit points and average wall hit points, plus a bonus for light.</li>
+      <li>A platform has no containment penalty, unlike a holding spot, and gives roughly 142% more containment than one.</li>
+      <li>A bioferrite harvester lowers containment by 15 and an electroharvester by 25. More entities in one room weaken it.</li>
+    </facts>
+    <advice>
+      <li>Build the cell from stone or better. A cell carved into a mountain is a cheap boost.</li>
+      <li>Use a platform, not a spot, for anything dangerous.</li>
+      <li>Repair doors and walls after every breakout or raid.</li>
+      <li>Check the containment number in the game after building; the exact formula is hard to pin down.</li>
+    </advice>
+    <keywords>
+      <li>holding platform</li>
+      <li>holding spot</li>
+      <li>entity</li>
+      <li>containment</li>
+      <li>cell</li>
+      <li>dark study</li>
+    </keywords>
+    <seeAlso>
+      <li>Council_Alm_7_22_ContainmentStrength</li>
+      <li>Council_Alm_7_24_EntityEscapeAndStudy</li>
+    </seeAlso>
+    <approximate>true</approximate>
+    <dlc>Anomaly</dlc>
+  </ColonyCouncil.AlmanacArticleDef>
+
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Council_Alm_7_24_EntityEscapeAndStudy</defName>
+    <label>entity escapes and study</label>
+    <category>Anomaly</category>
+    <order>30</order>
+    <summary>Better containment means fewer escapes and faster study</summary>
+    <tip>A fleshbeast with no legs is the best research assistant you'll ever have. Never give it the legs back.</tip>
+    <description>Captured entities can be studied for Anomaly knowledge, and some yield bioferrite or power. Good containment cuts escapes and speeds up study. Some entities can be disabled for good, which turns them into a safe, endless source of research.</description>
+    <facts>
+      <li>Containment lowers the escape chance and raises the study rate.</li>
+      <li>An entity that is permanently downed (severe brain damage, all moving limbs lost, or permanent unconsciousness) and can't regenerate never escapes. This doesn't work on ghouls.</li>
+      <li>Fleshbeasts, sightstealers and noctols are suitable for this. A permanently downed entity gives effectively unlimited research, bioferrite and sometimes power.</li>
+      <li>Some entities die in an electroharvester.</li>
+      <li>Cold slows fleshbeasts, shamblers and ghouls without raising the escape chance of other entities.</li>
+    </facts>
+    <advice>
+      <li>Study held entities regularly.</li>
+      <li>Keep cells cold when they hold fleshbeasts, shamblers or ghouls.</li>
+      <li>For a long-term research source, keep a permanently downed fleshbeast, sightstealer or noctol.</li>
+    </advice>
+    <keywords>
+      <li>entity</li>
+      <li>escape</li>
+      <li>study</li>
+      <li>fleshbeast</li>
+      <li>sightstealer</li>
+      <li>noctol</li>
+      <li>ghoul</li>
+    </keywords>
+    <seeAlso>
+      <li>Council_Alm_7_22_ContainmentStrength</li>
+      <li>Council_Alm_7_23_HoldingPlatform</li>
+      <li>Council_Alm_7_25_AnomalyEffects</li>
+    </seeAlso>
+    <dlc>Anomaly</dlc>
+  </ColonyCouncil.AlmanacArticleDef>
+
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Council_Alm_7_25_AnomalyEffects</defName>
+    <label>gray pall and void catharsis</label>
+    <category>Anomaly</category>
+    <order>40</order>
+    <summary>The gray pall, void catharsis and other Anomaly effects on mood</summary>
+    <tip>Gray pall: the sky's way of saying it's disappointed in you. Stay under a roof and let it sulk alone.</tip>
+    <description>Anomaly brings a few strange effects that touch mood and prisoners. The gray pall is a short, gloomy mood hit that a roof softens. Anomalous mental breaks leave a powerful catharsis behind, which is a safety net rather than a plan.</description>
+    <facts>
+      <li>Void catharsis after an anomalous break gives +30 mood per stack, up to 5 stacks (150), for 3 days.</li>
+      <li>The gray pall lowers mood for 1 to 2 days: -6 outdoors, half that under a roof.</li>
+      <li>The gray pall is rarely dangerous unless a pawn is already unhappy.</li>
+      <li>Solar flares can't happen during unnatural darkness.</li>
+      <li>A bliss lobotomy makes a prisoner try to escape less often, but the pawn can no longer do skilled work.</li>
+    </facts>
+    <advice>
+      <li>During a gray pall, keep colonists under roofs and watch anyone already near a break.</li>
+      <li>Treat a pawn with void catharsis as a warning: whatever pushed them to break is still there.</li>
+    </advice>
+    <keywords>
+      <li>gray pall</li>
+      <li>void catharsis</li>
+      <li>catharsis</li>
+      <li>unnatural darkness</li>
+      <li>bliss lobotomy</li>
+    </keywords>
+    <seeAlso>
+      <li>Council_Alm_7_22_ContainmentStrength</li>
+      <li>Council_Alm_7_24_EntityEscapeAndStudy</li>
+      <li>Council_Alm_3_17_SolarFlare</li>
+    </seeAlso>
+    <dlc>Anomaly</dlc>
+  </ColonyCouncil.AlmanacArticleDef>
+
+  <!-- ===================== Odyssey ===================== -->
+
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Council_Alm_7_26_GravshipParts</defName>
+    <label>gravship parts</label>
+    <category>Odyssey</category>
+    <order>10</order>
+    <summary>What a gravship needs: engine, substructure, thrusters, fuel tanks and a pilot console</summary>
+    <tip>A grav engine will lift five hundred tiles of deck and not one ounce of good judgment.</tip>
+    <description>A gravship is a piece of your base that can fly. The grav engine sets how much substructure you can carry and how far from the engine it can reach; thrusters set the range. Extenders, optimizers and subpersona cores improve it once the basics work.</description>
+    <facts>
+      <li>Grav engine: up to 500 substructure tiles, all within 19 tiles of the engine's center.</li>
+      <li>Grav field extenders: +250 tiles each, up to 2,000 with 6, in a 17-tile radius.</li>
+      <li>Small thrusters: up to 4, 10 tiles of range each. Large thrusters: up to 6, 16 tiles each. Combined maximum: 136 tiles.</li>
+      <li>Required: a pilot console and chemfuel tanks (small or large).</li>
+      <li>Fuel optimizers: up to 2, each -30% fuel (they add up).</li>
+      <li>Pilot subpersona cores: up to 2, each +15% launch ritual quality.</li>
+      <li>Optional modules include a gravcore power cell, signal jammer, shield generator, oxygen pump, vac barrier and heaters.</li>
+    </facts>
+    <advice>
+      <li>Lay out substructure around the engine first, and keep everything within its range.</li>
+      <li>Fit thrusters for the distance you'll actually fly; large ones also raise launch quality.</li>
+      <li>Add fuel optimizers early if you fly often.</li>
+    </advice>
+    <keywords>
+      <li>gravship</li>
+      <li>grav engine</li>
+      <li>substructure</li>
+      <li>thruster</li>
+      <li>pilot console</li>
+      <li>grav field extender</li>
+      <li>fuel optimizer</li>
+    </keywords>
+    <seeAlso>
+      <li>Council_Alm_7_27_GravshipFuel</li>
+      <li>Council_Alm_7_28_GravshipLanding</li>
+      <li>Council_Alm_7_29_GravshipWealth</li>
+    </seeAlso>
+    <approximate>true</approximate>
+    <dlc>Odyssey</dlc>
+  </ColonyCouncil.AlmanacArticleDef>
+
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Council_Alm_7_27_GravshipFuel</defName>
+    <label>gravship fuel and takeoff</label>
+    <category>Odyssey</category>
+    <order>20</order>
+    <summary>Chemfuel per tile, the minimum per trip, and the smallest ship that can fly</summary>
+    <tip>Fifty chemfuel to leave the ground and ten for every tile after. Space is free. Getting there isn't.</tip>
+    <description>A gravship burns chemfuel for every world tile it crosses, with a minimum per trip however short. There's no weight limit, so the question is fuel, not cargo. For quick trading runs, a shuttle is often the better tool.</description>
+    <facts>
+      <li>A gravship uses 10 chemfuel per tile traveled, with a minimum of 50 chemfuel per trip.</li>
+      <li>Fuel optimizers cut the per-tile cost (about 3 chemfuel per tile each), but not the 50 minimum.</li>
+      <li>The smallest flightworthy ship: a grav engine, substructure joining every part, one small thruster, one small chemfuel tank and one pilot console.</li>
+      <li>There is no weight limit, and any number of pawns can ride along.</li>
+      <li>For short trips and trading, a passenger shuttle is often cheaper and faster.</li>
+    </facts>
+    <advice>
+      <li>Compare the fuel cost in the launch dialog with what's in your tanks, and carry enough to get home.</li>
+      <li>Pack chemfuel, food, medicine and components before you go.</li>
+      <li>Use a shuttle for quick trading runs and save the gravship for moving house.</li>
+    </advice>
+    <keywords>
+      <li>gravship fuel</li>
+      <li>chemfuel</li>
+      <li>launch</li>
+      <li>takeoff</li>
+      <li>shuttle</li>
+      <li>travel</li>
+    </keywords>
+    <seeAlso>
+      <li>Council_Alm_7_26_GravshipParts</li>
+      <li>Council_Alm_7_28_GravshipLanding</li>
+    </seeAlso>
+    <approximate>true</approximate>
+    <dlc>Odyssey</dlc>
+  </ColonyCouncil.AlmanacArticleDef>
+
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Council_Alm_7_28_GravshipLanding</defName>
+    <label>landing, launch quality and mishaps</label>
+    <category>Odyssey</category>
+    <order>30</order>
+    <summary>Where a gravship can land, what launch quality depends on, and what goes wrong</summary>
+    <tip>Everything off the deck stays behind when she lifts: the dogs, the crops, and the fool who went to check the traps.</tip>
+    <description>Where you land decides what happens next: a new colony, a quest site, or an attack. Leaving a map without an anchor deletes it, along with anyone you forgot. Each launch is a ritual whose quality decides how likely a mishap is.</description>
+    <facts>
+      <li>Landing on an ordinary tile starts a new colony; a quest site opens its own temporary map; landing on a faction base starts an attack, with no trade.</li>
+      <li>You can't land on peace-talk or impassable tiles. The landing spot can't hold walls, deep water, steles, roofs, steam geysers or toxic wastepacks.</li>
+      <li>Leaving a tile without a grav anchor deletes that map for good. Pawns left behind are lost.</li>
+      <li>Launch quality (up to 100%): crew 2% each up to 5, small thrusters 1% each up to 4, large thrusters 3% each up to 6, pilot subpersona cores 15% each up to 2.</li>
+      <li>There are four equally likely mishaps: a minor crash, a thruster breakdown, an overheated engine (longer cooldown) or grav nausea (2 to 5 hours). Higher quality makes a mishap less likely.</li>
+      <li>You can only have one gravship.</li>
+    </facts>
+    <advice>
+      <li>Count heads and animals on the deck before every launch.</li>
+      <li>Leave a grav anchor on any map you want to come back to.</li>
+      <li>Fly with at least 5 crew and fit large thrusters to push launch quality up.</li>
+    </advice>
+    <keywords>
+      <li>landing</li>
+      <li>launch ritual</li>
+      <li>mishap</li>
+      <li>grav anchor</li>
+      <li>grav nausea</li>
+      <li>crash</li>
+    </keywords>
+    <seeAlso>
+      <li>Council_Alm_7_26_GravshipParts</li>
+      <li>Council_Alm_7_27_GravshipFuel</li>
+      <li>Council_Alm_7_29_GravshipWealth</li>
+    </seeAlso>
+    <approximate>true</approximate>
+    <dlc>Odyssey</dlc>
+  </ColonyCouncil.AlmanacArticleDef>
+
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Council_Alm_7_29_GravshipWealth</defName>
+    <label>gravship wealth and raids</label>
+    <category>Odyssey</category>
+    <order>70</order>
+    <summary>A big gravship is a lot of wealth, and wealth draws bigger raids</summary>
+    <tip>A flying colony is still a colony with silver in it. The raiders have checked.</tip>
+    <description>Every tile of substructure and every module counts toward your colony's wealth, so a growing gravship quietly grows your raids. The ship can also carry you into a fight. Protect its vital parts, and move it out of harm's way before big events.</description>
+    <facts>
+      <li>Gravship colonies build up wealth from their tile materials, which can bring larger raids.</li>
+      <li>Buildings count half toward the wealth raids are scaled on.</li>
+      <li>When you raid by gravship you can bring most of your resources, but a mishap can give your crew grav nausea.</li>
+    </facts>
+    <advice>
+      <li>Watch the Wealth tab as the ship grows, especially on higher difficulties.</li>
+      <li>Wall in power cells and modules so a raid can't knock them out.</li>
+      <li>Pair a vac barrier with a regular door to keep the ship pressurized.</li>
+      <li>Park the ship somewhere safe, such as an asteroid, before a major event like the Anomaly ending.</li>
+    </advice>
+    <keywords>
+      <li>gravship</li>
+      <li>wealth</li>
+      <li>raid</li>
+      <li>raid points</li>
+      <li>substructure</li>
+    </keywords>
+    <seeAlso>
+      <li>Council_Alm_7_26_GravshipParts</li>
+      <li>Council_Alm_7_28_GravshipLanding</li>
+      <li>Council_Alm_3_02_WealthAndRaids</li>
+      <li>Council_Alm_8_30_HoardingWealth</li>
+    </seeAlso>
+    <dlc>Odyssey</dlc>
+  </ColonyCouncil.AlmanacArticleDef>
+
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Council_Alm_7_30_SealingRooms</defName>
+    <label>vacuum and sealed rooms</label>
+    <category>Odyssey</category>
+    <order>40</order>
+    <summary>How vacuum works in orbit, and what makes a room airtight</summary>
+    <tip>Space is very quiet and very fast. Seal the room, run the pump and wear the suit.</tip>
+    <description>In orbit, every tile has a vacuum level, and only sealed rooms hold air. A room is sealed when metal walls and doors surround it, a roof covers it, and no open space shows through the floor. Every door you open trades air with the room next door.</description>
+    <facts>
+      <li>Vacuum is a percentage per tile: 100% is fully depressurized, 0% fully pressurized. All tiles in a room share one level.</li>
+      <li>Outdoor tiles in orbit are always at 100%. Maps on a planet are always pressurized.</li>
+      <li>A sealed room needs airtight walls and doors all round, a full roof, and no Space tiles on the ground.</li>
+      <li>Walls and doors are airtight when made of metal. Bioferrite counts; obsidian doesn't.</li>
+      <li>Opening a door or vent mixes vacuum between rooms. Powered vac barriers let people pass and keep the pressure in.</li>
+      <li>Oxygen pumps and archean trees pressurize a room. Airtight rooms at 50% vacuum or more show an overlay.</li>
+    </facts>
+    <advice>
+      <li>Build orbital rooms from steel or another metal, roof them fully, and check the vacuum overlay afterwards.</li>
+      <li>Use two doors in sequence, or a powered vac barrier, wherever people pass to the outside.</li>
+      <li>Keep vac barriers and oxygen pumps on reliable power.</li>
+    </advice>
+    <keywords>
+      <li>vacuum</li>
+      <li>airtight</li>
+      <li>sealed room</li>
+      <li>oxygen pump</li>
+      <li>vac barrier</li>
+      <li>pressure</li>
+      <li>orbit</li>
+    </keywords>
+    <seeAlso>
+      <li>Council_Alm_7_31_VacuumExposure</li>
+      <li>Council_Alm_7_32_VacuumProtection</li>
+      <li>Council_Alm_7_26_GravshipParts</li>
+    </seeAlso>
+    <dlc>Odyssey</dlc>
+  </ColonyCouncil.AlmanacArticleDef>
+
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Council_Alm_7_31_VacuumExposure</defName>
+    <label>vacuum exposure</label>
+    <category>Odyssey</category>
+    <order>50</order>
+    <summary>An unprotected pawn in full vacuum passes out in under a minute and dies soon after</summary>
+    <tip>The vacuum doesn't hate you. It's just thorough.</tip>
+    <description>A pawn standing in heavy vacuum builds up exposure fast, and without protection that ends in unconsciousness and death within a minute at normal speed. Vacuum also burns skin and kills most plants. A downed pawn can still be carried to safety if you move quickly.</description>
+    <facts>
+      <li>Exposure starts at 50% vacuum or more, and builds faster in harder vacuum and slower with vacuum resistance.</li>
+      <li>Unprotected on a 100% tile, a pawn falls unconscious after 2,550 ticks (42.5 seconds) and dies at 3,000 ticks (50 seconds).</li>
+      <li>Unconsciousness comes at 85% exposure, death at 100%.</li>
+      <li>Vacuum burns hit at 50% vacuum or more: one every 1,200 ticks at 50%, down to one every 300 ticks at 100%. Each deals 1 to 2 damage and never scars or infects.</li>
+      <li>Plants other than archean trees die within about an hour at 50% vacuum or more.</li>
+    </facts>
+    <advice>
+      <li>When a seal breaks, pull everyone out at once: you have well under a minute.</li>
+      <li>Send a suited rescuer to carry downed pawns into a sealed room.</li>
+      <li>Grow food in orbit only inside a sealed, pressurized room.</li>
+    </advice>
+    <keywords>
+      <li>vacuum exposure</li>
+      <li>suffocation</li>
+      <li>vacuum burn</li>
+      <li>decompression</li>
+      <li>orbit</li>
+    </keywords>
+    <seeAlso>
+      <li>Council_Alm_7_30_SealingRooms</li>
+      <li>Council_Alm_7_32_VacuumProtection</li>
+    </seeAlso>
+    <dlc>Odyssey</dlc>
+  </ColonyCouncil.AlmanacArticleDef>
+
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Council_Alm_7_32_VacuumProtection</defName>
+    <label>vacuum protection</label>
+    <category>Odyssey</category>
+    <order>60</order>
+    <summary>Vacsuits, power armor and genes: how long each keeps a pawn alive in vacuum</summary>
+    <tip>The breathless gene saves you from the vacuum. It does nothing about the minus seventy-five.</tip>
+    <description>Pawns who work outside a sealed room need protection. A vacsuit is cheap but slow; power armor with the right helmet lasts much longer; a few genes go further still. Orbit is also bitterly cold, so vacuum gear alone isn't the whole answer.</description>
+    <facts>
+      <li>The vacsuit and helmet are the cheapest and easiest vacuum gear to research, but carry a big move speed penalty.</li>
+      <li>Power armor with a recon helmet lasts about 51,000 ticks (0.85 days) before unconsciousness.</li>
+      <li>Power armor with a cataphract helmet (Royalty) lasts about 127,500 ticks (2.13 days).</li>
+      <li>The vacuum resistant gene covers short exposures and brings power armor to 100% resistance. The breathless gene gives full vacuum immunity.</li>
+      <li>Orbit is about -75 °C, so even immune pawns need protection from the cold.</li>
+      <li>Pawns in vacuum gear can eat and sleep without extra exposure. The vacuum resistant or breathless gene, or a vacskin gland, prevents vacuum burns.</li>
+    </facts>
+    <advice>
+      <li>Use vacsuits for short jobs outside, and power armor for long shifts or fighting.</li>
+      <li>Give breathless pawns warm clothes or heated rooms: the cold still kills.</li>
+      <li>Keep spare suits by every airlock.</li>
+    </advice>
+    <keywords>
+      <li>vacsuit</li>
+      <li>power armor</li>
+      <li>breathless</li>
+      <li>vacuum resistant</li>
+      <li>cataphract</li>
+      <li>vacskin</li>
+    </keywords>
+    <seeAlso>
+      <li>Council_Alm_7_31_VacuumExposure</li>
+      <li>Council_Alm_7_30_SealingRooms</li>
+      <li>Council_Alm_7_21_ToxicResistance</li>
+    </seeAlso>
+    <dlc>Odyssey</dlc>
+  </ColonyCouncil.AlmanacArticleDef>
+
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Council_Alm_7_33_FishingAndBiomes</defName>
+    <label>fishing and new biomes</label>
+    <category>Odyssey</category>
+    <order>80</order>
+    <summary>How fishing works, where it doesn't, and what a rare catch can be</summary>
+    <tip>A fishing zone on clean water is a pantry that refills itself. Slowly. Don't mistake it for a farm.</tip>
+    <description>Fishing gives you food from shallow water with nothing but a zone and a patient colonist. Every pond or river has a shared stock of fish that regrows slowly, so one body of water feeds only so many. The odd catch isn't a fish at all.</description>
+    <facts>
+      <li>A fishing zone is 1x1 on shallow, non-toxic water that holds fish, and uses the Animals skill.</li>
+      <li>The fish in a body of water regrow by 2.5% of the maximum per day.</li>
+      <li>A catch is rolled roughly every 7,500 ticks, about every 3 hours.</li>
+      <li>Fish lists cover hot, cold, temperate and tropical biomes, with a separate list for the glowforest. You can't fish in the scarlands.</li>
+      <li>A rare catch can be a map (20%), a book (10%), a drug (10%), a human corpse (6%), vacstone blocks (6%) or obsidian (6%).</li>
+    </facts>
+    <advice>
+      <li>Put fishing zones on the biggest body of water you have.</li>
+      <li>Freeze the catch: raw fish rot in 2 days.</li>
+      <li>Spread zones over several ponds rather than emptying one.</li>
+    </advice>
+    <keywords>
+      <li>fishing</li>
+      <li>fish</li>
+      <li>fishing zone</li>
+      <li>biome</li>
+      <li>glowforest</li>
+      <li>scarlands</li>
+    </keywords>
+    <seeAlso>
+      <li>Council_Alm_1_31_Fishing</li>
+      <li>Council_Alm_1_27_Freezer</li>
+    </seeAlso>
+    <approximate>true</approximate>
+    <dlc>Odyssey</dlc>
+  </ColonyCouncil.AlmanacArticleDef>
+
+</Defs>

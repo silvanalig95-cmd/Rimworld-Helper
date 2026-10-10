@@ -1,0 +1,337 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- Almanac: quick-reference number pages. Food numbers live in Council_Alm_10_FoodNumbers and defense
+       numbers in Council_Alm_10_DefenseQuickReference; these cover the rest. -->
+
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Council_Alm_10_TimeUnits</defName>
+    <label>time and ticks</label>
+    <category>Numbers</category>
+    <order>10</order>
+    <summary>Ticks, hours, days, quadrums and years, and how to convert them</summary>
+    <tip>A day is sixty thousand ticks. It only takes one of them for a boomalope to wander into the kitchen.</tip>
+    <description>Many numbers in the game, and in this almanac, are given in ticks or days. Here are the conversions, plus the durations worth knowing by heart.</description>
+    <facts>
+      <li>1 hour is 2,500 ticks. 1 day is 24 hours, or 60,000 ticks.</li>
+      <li>1 quadrum (a season) is 15 days. 1 year is 4 quadrums, or 60 days.</li>
+      <li>Plants rest from hour 19 to hour 5 and grow the other 13 hours, so real growth takes about 1.846 times the listed grow days.</li>
+      <li>15,000 ticks is 6 hours and 45,000 ticks is 18 hours, so a wound's infection roll comes 6 to 18 hours after it can become infected.</li>
+      <li>Short thoughts: the sleep penalties and eating without a table last 1 day, seeing a corpse half a day, catharsis 3 days.</li>
+      <li>Long timers: luciferium every 6 days, penoxycyline lasts about 5.5 days, random infestations come at most every 20 days, and slaves rebel on a 45-day average.</li>
+    </facts>
+    <advice>
+      <li>To turn ticks into hours, divide by 2,500; into days, divide by 60,000.</li>
+      <li>Plan seasons in 15-day blocks: a winter quadrum needs 15 days of food in store before it starts.</li>
+    </advice>
+    <keywords>
+      <li>ticks</li>
+      <li>time</li>
+      <li>hours</li>
+      <li>days</li>
+      <li>quadrum</li>
+      <li>season</li>
+      <li>year</li>
+      <li>conversion</li>
+    </keywords>
+    <seeAlso>
+      <li>Council_Alm_HowToUse</li>
+      <li>Council_Alm_10_Temperatures</li>
+      <li>Council_Alm_1_05_GrowingSeason</li>
+      <li>Council_Alm_10_FoodNumbers</li>
+    </seeAlso>
+  </ColonyCouncil.AlmanacArticleDef>
+
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Council_Alm_10_Temperatures</defName>
+    <label>temperatures</label>
+    <category>Numbers</category>
+    <order>20</order>
+    <summary>The temperatures that matter for crops, food, work, comfort, bugs and fire</summary>
+    <tip>Cold snap: nature's way of auditing your insulation.</tip>
+    <description>Temperature decides whether crops grow, whether food rots, how fast people work and whether the mountain starts breeding insects. These are the lines worth remembering.</description>
+    <facts>
+      <li>Crops grow normally at 6-42 °C, stop outside 0-58 °C, and most start dying below -10 °C.</li>
+      <li>Food stops spoiling at 0 °C or below and starts again above it.</li>
+      <li>A passive cooler can't bring a room below 17 °C, so it can't keep food.</li>
+      <li>Many workbenches, the electric stove and stonecutter's table among them, are comfortable at 10-35 °C and work at 70% speed outside that range.</li>
+      <li>About 16-26 °C indoors keeps most colonists comfortable, by common advice.</li>
+      <li>Heat waves add up to 17 °C and cold snaps take 20 °C away, each for 1.5-3.5 days.</li>
+      <li>Infestations need overhead mountain warmer than -17 °C and grow less likely below -8 °C. Things catch fire above 235 °C.</li>
+    </facts>
+    <advice>
+      <li>Keep the freezer well below 0 °C, for example with coolers set to -5 °C and -10 °C.</li>
+      <li>Heat workrooms in winter and cool them in summer so benches stay between 10 and 35 °C.</li>
+      <li>Harvest anything at least 65% grown before a cold snap or the first hard frost.</li>
+    </advice>
+    <keywords>
+      <li>temperature</li>
+      <li>cold</li>
+      <li>heat</li>
+      <li>frost</li>
+      <li>comfort</li>
+      <li>celsius</li>
+      <li>freezer</li>
+    </keywords>
+    <seeAlso>
+      <li>Council_Alm_1_04_GrowingTemperature</li>
+      <li>Council_Alm_1_27_Freezer</li>
+      <li>Council_Alm_3_18_HeatWaveColdSnap</li>
+      <li>Council_Alm_3_15_Infestations</li>
+      <li>Council_Alm_10_TimeUnits</li>
+      <li>Council_Alm_2_19_TemperatureComfort</li>
+      <li>Council_Alm_6_02_PassiveCoolers</li>
+    </seeAlso>
+    <approximate>true</approximate>
+  </ColonyCouncil.AlmanacArticleDef>
+
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Council_Alm_10_MoodThresholds</defName>
+    <label>mood and break thresholds</label>
+    <category>Numbers</category>
+    <order>30</order>
+    <summary>Break points, expectations, recreation and the everyday thoughts that add up</summary>
+    <tip>Mood is a ledger. The bill arrives at the worst possible hour.</tip>
+    <description>Mood is the sum of many small thoughts, and the break thresholds decide when it turns into trouble. These numbers show where the danger lines are and which everyday things push colonists toward them or away.</description>
+    <facts>
+      <li>Mental breaks: minor below 35% mood, major below 20%, extreme below 5%. Traits move the minor line, but never below 1% or above 50%.</li>
+      <li>Average time between breaks once under the line: minor 4 days, major 0.8 days, extreme 0.5 days.</li>
+      <li>Catharsis after a break: +40 per stack, up to 5 stacks (122 at most), for 3 days.</li>
+      <li>Expectations by colony wealth: +30 below 15,000, +24 up to 31,000, +18 up to 81,000, +12 up to 182,000, +6 up to 308,000, 0 above.</li>
+      <li>Recreation: +10 at 85-100%, +5 at 70-85%, -5 at 15-30%, -10 below 15%, -20 when empty. It falls 2.5% an hour while above 30%.</li>
+      <li>Surroundings: beauty 6 or more gives +15, 4.5 gives +10, 2.5 gives +5, nothing from -0.5, then -5, -10, and -15 at -4.</li>
+      <li>Everyday thoughts: slept on the ground, outside, cold or hot -4 each; ate without a table -3; disturbed sleep -1; saw a corpse -4, a rotting one -6; raw food -7, nutrient paste -4, fine meal +5, lavish meal +12.</li>
+    </facts>
+    <advice>
+      <li>Keep everyone well above 35%: a colonist hovering there will break within days.</li>
+      <li>Fix the cheap thoughts first. Tables, beds, roofs and buried bodies are worth 3 to 6 mood each.</li>
+      <li>Raise comfort as wealth grows: each expectations step takes 6 mood from everyone.</li>
+    </advice>
+    <keywords>
+      <li>mood</li>
+      <li>mental break</li>
+      <li>threshold</li>
+      <li>expectations</li>
+      <li>catharsis</li>
+      <li>thoughts</li>
+      <li>stress</li>
+    </keywords>
+    <seeAlso>
+      <li>Council_Alm_10_RoomStatBands</li>
+      <li>Council_Alm_10_WealthAndRaids</li>
+      <li>Council_Alm_1_26_MealMoods</li>
+      <li>Council_Alm_5_02_Schedules</li>
+      <li>Council_Alm_5_03_Sleep</li>
+      <li>Council_Alm_Basics_BadDays</li>
+      <li>Council_Alm_2_15_MentalBreaks</li>
+      <li>Council_Alm_2_14_Expectations</li>
+      <li>Council_Alm_2_13_Recreation</li>
+    </seeAlso>
+  </ColonyCouncil.AlmanacArticleDef>
+
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Council_Alm_10_RoomStatBands</defName>
+    <label>room stat bands</label>
+    <category>Numbers</category>
+    <order>40</order>
+    <summary>Impressiveness, space, cleanliness, beauty and wealth bands, and room roles</summary>
+    <tip>A room is walls and the agreement not to scream in it.</tip>
+    <description>Every room has four stats that combine into impressiveness, and impressiveness sets the mood bonus for bedrooms, dining rooms and rec rooms. The weakest stat drags the score down hardest, so always fix the lowest one first.</description>
+    <facts>
+      <li>Impressiveness = 65 x the average of four factors + 35 x the smallest. The factors: wealth / 1,500, beauty / 3, space / 125, and 1 + cleanliness / 2.5.</li>
+      <li>Mood from impressiveness: under 20 -2 and 30-39 +1 (bedrooms only), 40-49 +2, 50-64 +3, 65-84 +4, 85-119 +5, 120-169 +6, 170-239 +7, 240 or more +8.</li>
+      <li>Space is 1.4 per tile, minus 0.9 for each tile furniture blocks. Under 12.5 is cramped, 12.5 rather tight, 29 average-sized, 55 somewhat spacious, 70 quite spacious, 130 very spacious.</li>
+      <li>Cleanliness: 0.4 or more sterile, -0.05 to 0.39 clean, below -1.1 very dirty. Per tile: sterile tile +0.6, filth -5, blood -10, vomit -15.</li>
+      <li>Beauty: below -3.5 hideous, below 0 ugly, 0-2.39 neutral, 2.4 pretty, 5 beautiful, 15 very beautiful, 50 extremely beautiful.</li>
+      <li>Wealth: under 500 impoverished, 700 mediocre, 2,000 somewhat rich, 4,000 rich, 10,000 luxurious, 40,000 very luxurious.</li>
+      <li>Room roles, highest score wins: prison cell 170,000; barracks 100,100 per bed; bedroom and hospital 100,000; lab 60 per item; kitchen 28 per stove; workshop 27 per bench; dining room 12 per table; rec room 7 per item; storeroom 1 per shelf.</li>
+    </facts>
+    <advice>
+      <li>Read the room panel and fix the lowest of the four stats first.</li>
+      <li>Keep beds out of kitchens and workshops: a bed's 100,000 beats any bench and turns the room into a bedroom.</li>
+      <li>Count Space after the furniture goes in: a furnished 5x5 bedroom comes to about 31.</li>
+    </advice>
+    <keywords>
+      <li>impressiveness</li>
+      <li>room stats</li>
+      <li>space</li>
+      <li>beauty</li>
+      <li>cleanliness</li>
+      <li>room wealth</li>
+      <li>room role</li>
+    </keywords>
+    <seeAlso>
+      <li>Council_Alm_9_01_Bedroom</li>
+      <li>Council_Alm_9_02_Barracks</li>
+      <li>Council_Alm_9_03_DiningRoom</li>
+      <li>Council_Alm_10_MoodThresholds</li>
+      <li>Council_Alm_2_01_Impressiveness</li>
+      <li>Council_Alm_2_08_RoomRoles</li>
+    </seeAlso>
+  </ColonyCouncil.AlmanacArticleDef>
+
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Council_Alm_10_WealthAndRaids</defName>
+    <label>wealth and raid numbers</label>
+    <category>Numbers</category>
+    <order>50</order>
+    <summary>How your wealth and your people turn into raid points</summary>
+    <tip>You're not rich, you're a target with a savings account.</tip>
+    <description>Raid size is priced from your wealth and your people, then scaled by difficulty and by how the colony has been doing. These are the anchor numbers as they stand in recent versions; treat them as close guides rather than exact law.</description>
+    <facts>
+      <li>Raid points = (wealth points + pawn points) x difficulty x starting factor x adaptation, never below 35 or above 10,000.</li>
+      <li>Wealth counted for raids = items + creatures + half of buildings.</li>
+      <li>Wealth points: 0 up to 14,000 wealth, 2,400 at 400,000, 3,600 at 700,000, 4,200 at 1,000,000.</li>
+      <li>Pawn points per colonist: 15 up to 10,000 wealth, 140 at 400,000, 200 at 1,000,000.</li>
+      <li>Difficulty: peaceful 0.1, community builder 0.3, adventure story 0.6, strive to survive 1.0, blood and dust 1.55, losing is fun 2.2.</li>
+      <li>Starting factor: 0.7 up to day 10, 1.0 from day 40. Adaptation starts at 0.8, can reach about 1.47 while things go well, and drops after colonists die.</li>
+      <li>Slaves count 75% of a colonist, babies 0%, children from 0% at age 3 to 100% at 18.</li>
+    </facts>
+    <advice>
+      <li>Think about the next raid before a big trade or loot haul.</li>
+      <li>Put wealth into defenders and defenses first; they earn their own points back.</li>
+      <li>Sell or use idle silver, gold and art: they count in full and fight for nobody.</li>
+    </advice>
+    <keywords>
+      <li>raid points</li>
+      <li>wealth</li>
+      <li>raid size</li>
+      <li>difficulty</li>
+      <li>storyteller</li>
+      <li>threat scale</li>
+    </keywords>
+    <seeAlso>
+      <li>Council_Alm_3_01_RaidPoints</li>
+      <li>Council_Alm_3_02_WealthAndRaids</li>
+      <li>Council_Alm_10_DefenseQuickReference</li>
+      <li>Council_Alm_5_22_Wealth</li>
+      <li>Council_Alm_10_MoodThresholds</li>
+      <li>Council_Alm_2_14_Expectations</li>
+    </seeAlso>
+    <approximate>true</approximate>
+  </ColonyCouncil.AlmanacArticleDef>
+
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Council_Alm_10_MedicineNumbers</defName>
+    <label>medicine numbers</label>
+    <category>Numbers</category>
+    <order>60</order>
+    <summary>Medicine potency, hospital beds, infection, surgery and disease at a glance</summary>
+    <tip>A full medicine cabinet is a sentence that ends "and we never needed it." It never ends that way.</tip>
+    <description>The numbers behind tending, infection and surgery. Most of them come down to the same three things: a decent doctor, real medicine, and a clean, lit room with a hospital bed.</description>
+    <facts>
+      <li>Medicine potency: none 0.3, herbal 0.6, industrial 1.0, glitterworld 1.6. It multiplies both tend quality and surgery success.</li>
+      <li>Hospital bed: +10% tend quality and 1.11x immunity gain; with a vitals monitor, +17% and 1.13x.</li>
+      <li>Infection chance per wound: bites and burns 30%, frostbite 25%, shredding 20%, most other wounds 15%. Tending cuts it to between 85% and 5% of that; a clean, floored room halves it and a sterile one takes it to 32%.</li>
+      <li>An untreated infection grows +0.84 severity a day. Amputate before 90%; past 97% the operation rarely succeeds.</li>
+      <li>Surgery success = surgeon x bed x medicine x operation x inspiration, capped at 98%. Industrial medicine can reach the cap in a good room.</li>
+      <li>Disease severity per day: flu +0.249, plague +0.666, malaria +0.370, sleeping sickness +0.12. Gut worms and muscle parasites are cured at 300% total tend quality.</li>
+      <li>Luciferium always causes addiction and must then be taken every 6 days.</li>
+    </facts>
+    <advice>
+      <li>Use industrial medicine for serious wounds and surgery, herbal for the rest, and glitterworld only when conditions are bad.</li>
+      <li>Tend infections and diseases about every 12 hours.</li>
+      <li>Clean the hospital floor and light the beds before any operation.</li>
+    </advice>
+    <keywords>
+      <li>medicine</li>
+      <li>infection</li>
+      <li>surgery</li>
+      <li>hospital bed</li>
+      <li>vitals monitor</li>
+      <li>disease</li>
+      <li>tend quality</li>
+    </keywords>
+    <seeAlso>
+      <li>Council_Alm_9_12_Hospital</li>
+      <li>Council_Alm_1_14_Healroot</li>
+      <li>Council_Alm_Basics_BadDays</li>
+      <li>Council_Alm_10_TimeUnits</li>
+      <li>Council_Alm_4_01_MedicinePotency</li>
+      <li>Council_Alm_4_07_InfectionChance</li>
+      <li>Council_Alm_4_09_SurgerySuccess</li>
+    </seeAlso>
+    <template>Council_Hospital</template>
+    <approximate>true</approximate>
+  </ColonyCouncil.AlmanacArticleDef>
+
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Council_Alm_10_PowerNumbers</defName>
+    <label>power numbers</label>
+    <category>Numbers</category>
+    <order>70</order>
+    <summary>Generator output, battery storage, reach, and the big power draws</summary>
+    <tip>There are two kinds of power grid: switched, and smoking.</tip>
+    <description>The figures to check when you plan a power grid. They cover what each generator gives, what batteries hold, how far appliances reach, and the big draws that drain a grid.</description>
+    <facts>
+      <li>Generators: wood-fired 1,000 W (22 wood a day), chemfuel 1,000 W (4.5 chemfuel a day), solar up to 1,700 W by day, wind up to 2,300 W, geothermal 3,600 W, watermill 1,100 W.</li>
+      <li>Battery: stores 600 Wd, charges at 50% efficiency and loses 5 Wd a day.</li>
+      <li>Appliances connect from up to 6 tiles away; conduits, switches, batteries and generators must touch.</li>
+      <li>Big draws: sun lamp 2,900 W, autocannon turret 150 W, hydroponics basin 70 W, mech recharger 200 W (large 400 W).</li>
+      <li>A solar flare lasts 0.15-0.5 days and shuts down every powered device. An eclipse lasts 0.75-1.25 days and starves solar panels.</li>
+      <li>Random short circuits have an 8-day cooldown. In recent versions, roofed batteries and hidden conduits prevent them.</li>
+    </facts>
+    <advice>
+      <li>Add up your draw and compare it with what you generate at night, not at noon.</li>
+      <li>Keep a mix of sources and a few batteries to cover the gaps.</li>
+    </advice>
+    <keywords>
+      <li>power</li>
+      <li>watts</li>
+      <li>generator</li>
+      <li>battery</li>
+      <li>solar</li>
+      <li>wind</li>
+      <li>geothermal</li>
+    </keywords>
+    <seeAlso>
+      <li>Council_Alm_5_16_PowerGenerators</li>
+      <li>Council_Alm_5_17_Batteries</li>
+      <li>Council_Alm_5_18_PowerConnections</li>
+      <li>Council_Alm_3_17_SolarFlare</li>
+      <li>Council_Alm_9_24_BatteryRoom</li>
+    </seeAlso>
+    <template>Council_BatteryRoom</template>
+  </ColonyCouncil.AlmanacArticleDef>
+
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Council_Alm_10_ColonyNumbers</defName>
+    <label>colony numbers</label>
+    <category>Numbers</category>
+    <order>80</order>
+    <summary>Work priorities, research costs, prisoners and slaves at a glance</summary>
+    <tip>Research is paid in hours, prisoners in meals and slaves in watchfulness. All three come due eventually.</tip>
+    <description>The quick figures for running the colony day to day. They cover how work priorities count, what key research costs, how prisoners are won over and what keeps slaves in line.</description>
+    <facts>
+      <li>Work priorities run from 1 (first) to 4 (last); a blank box means never.</li>
+      <li>Research, base / tribal: Electricity 1,600 / 3,200; Battery 400 / 800; Smithing 700 / 1,050; Machining 1,000 / 2,000; Hydroponics 700 / 1,400; Mortar 2,000 / 4,000.</li>
+      <li>Prisoner recruitment: each chat removes 1.0 resistance x warden opinion (50-150%) x prisoner mood (20-150%).</li>
+      <li>Restraints slow a prisoner by 65%. A prison break can spread to rooms within 20 tiles.</li>
+      <li>Slaves (Ideology): suppression falls 20% a day at 30-100%, 10% at 15-30% and 5% below 15%.</li>
+      <li>Slave rebellions: a 45-day base average, 5x as often at 0% suppression, 4x with a weapon within 7 tiles, 20x with no free colonist on the map.</li>
+      <li>Slaves work at 85% speed, and their own expectations give +28 to +46 mood.</li>
+    </facts>
+    <advice>
+      <li>Open the matching Management page for what to do about each number.</li>
+      <li>On a tribal start, read research costs from the research tab: they already include the tribal increase.</li>
+    </advice>
+    <keywords>
+      <li>research cost</li>
+      <li>prisoner</li>
+      <li>resistance</li>
+      <li>slave</li>
+      <li>suppression</li>
+      <li>rebellion</li>
+      <li>work priorities</li>
+    </keywords>
+    <seeAlso>
+      <li>Council_Alm_5_01_WorkPriorities</li>
+      <li>Council_Alm_5_14_ResearchCosts</li>
+      <li>Council_Alm_5_05_PrisonerRecruitment</li>
+      <li>Council_Alm_5_10_Suppression</li>
+      <li>Council_Alm_5_11_SlaveRebellion</li>
+      <li>Council_Alm_7_11_SlaveryInPractice</li>
+    </seeAlso>
+  </ColonyCouncil.AlmanacArticleDef>
+
+</Defs>

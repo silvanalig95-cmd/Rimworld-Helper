@@ -115,6 +115,7 @@
     <defName>Council_Adv_Power</defName>
     <label>power</label>
     <workerClass>ColonyCouncil.AdvisorWorker_Power</workerClass>
+    <article>Council_Alm_5_16_PowerGenerators</article>
     <category>Power</category>
     <importance>0.9</importance>
     <tips>
@@ -180,6 +181,7 @@
     <defName>Council_Adv_Work</defName>
     <label>work coverage</label>
     <workerClass>ColonyCouncil.AdvisorWorker_WorkCoverage</workerClass>
+    <article>Council_Alm_5_01_WorkPriorities</article>
     <category>Work</category>
     <importance>1</importance>
     <tips>
@@ -207,6 +209,7 @@
     <defName>Council_Adv_Research</defName>
     <label>research</label>
     <workerClass>ColonyCouncil.AdvisorWorker_Research</workerClass>
+    <article>Council_Alm_5_15_ResearchOrder</article>
     <category>Progress</category>
     <importance>0.8</importance>
     <tips>
