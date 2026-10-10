@@ -1,0 +1,947 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- Almanac: medicine, doctors, surgery, disease and drugs. -->
+
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Council_Alm_4_01_MedicinePotency</defName>
+    <label>medicine</label>
+    <category>Health</category>
+    <order>10</order>
+    <summary>Herbal, industrial and glitterworld medicine, and how much each one helps</summary>
+    <tip>Herbal for scrapes, industrial for holes, glitterworld for when the doctor starts praying.</tip>
+    <description>Medicine makes every tend and every surgery work better: the better the medicine, the bigger the multiplier. A doctor can tend without any, but at a fraction of the effect. Herbal medicine is the one kind any colony can make from day one, so even a tribe should never be without it.</description>
+    <facts>
+      <li>Potency: no medicine 0.30, herbal medicine 0.60, industrial medicine 1.00, glitterworld medicine 1.60.</li>
+      <li>Potency multiplies both tend quality and surgery success. At 1.00 the multiplier is a straight ×1.</li>
+      <li>Each kind also caps tend quality: herbal at 70%, industrial at 100%, glitterworld at 130%.</li>
+      <li>Herbal medicine comes from healroot and needs no research.</li>
+      <li>Industrial medicine is made from herbal medicine, neutroamine and cloth after the Medicine production research: 1,500, or 3,000 on a tribal start. A bulk recipe exists.</li>
+    </facts>
+    <advice>
+      <li>Set medical care for each pawn: the best for colonists, herbal or none for prisoners and animals with minor wounds.</li>
+      <li>Keep a few doses per colonist in reserve, and buy industrial medicine whenever a trader has it.</li>
+      <li>Grow healroot early, especially on a tribal start: it needs Plants 8 to sow, and it's your only medicine without research.</li>
+      <li>Save glitterworld medicine for surgery in poor conditions and for desperate cases.</li>
+    </advice>
+    <keywords>
+      <li>medicine</li>
+      <li>herbal medicine</li>
+      <li>glitterworld medicine</li>
+      <li>healroot</li>
+      <li>potency</li>
+      <li>neutroamine</li>
+    </keywords>
+    <seeAlso>
+      <li>Council_Alm_4_06_ChoosingMedicine</li>
+      <li>Council_Alm_4_02_DoctorSkill</li>
+      <li>Council_Alm_4_09_SurgerySuccess</li>
+      <li>Council_Alm_4_07_InfectionChance</li>
+      <li>Council_Alm_10_HealthQuickReference</li>
+    </seeAlso>
+  </ColonyCouncil.AlmanacArticleDef>
+
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Council_Alm_4_02_DoctorSkill</defName>
+    <label>doctors and surgery skill</label>
+    <category>Health</category>
+    <order>60</order>
+    <summary>How much Medical skill your surgeon needs, and why you want two doctors</summary>
+    <tip>A good doctor is worth three good shooters. A bad doctor is worth a shovel.</tip>
+    <description>Medical skill sets your surgeon's base chance before the bed, medicine and room are counted. A skilled doctor in a clean, lit room with a decent hospital bed reaches the success cap for most operations. Tending raises the skill quickly, so give the work to the same people every time, and never rely on just one.</description>
+    <facts>
+      <li>The surgery base chance rises with Medical skill from 10% at level 0 to 110% at level 20, with 90% at level 10 and 100% at level 15.</li>
+      <li>Sources disagree on that curve: another table gives 93% at level 10 and 99% at level 20.</li>
+      <li>Manipulation multiplies the chance directly (115% manipulation gives ×1.15). Sight multiplies it up to 100%, with no bonus above.</li>
+      <li>Medical 8 reaches the 98% cap for most operations in a lit, clean room with a normal-quality hospital bed. Without a hospital bed or sterile floor it takes Medical 11.</li>
+      <li>Tending a human earns 250 XP with no medicine or herbal medicine, 350 with industrial and 500 with glitterworld.</li>
+      <li>A doctor tending their own wounds works at 70% effectiveness.</li>
+    </facts>
+    <advice>
+      <li>Keep your best doctor's Doctor work at priority 1.</li>
+      <li>Train a second doctor: the plague always seems to find the only one first.</li>
+      <li>Give surgery to your highest Medical pawn, and keep the cook away from bionic installs.</li>
+      <li>Without hospital beds, aim for Medical 11 or better before attempting risky surgery.</li>
+    </advice>
+    <keywords>
+      <li>doctor</li>
+      <li>medical skill</li>
+      <li>surgeon</li>
+      <li>surgery chance</li>
+      <li>tending</li>
+      <li>XP</li>
+    </keywords>
+    <seeAlso>
+      <li>Council_Alm_4_09_SurgerySuccess</li>
+      <li>Council_Alm_4_10_SurgeryRoom</li>
+      <li>Council_Alm_4_03_HospitalBeds</li>
+      <li>Council_Alm_4_01_MedicinePotency</li>
+    </seeAlso>
+    <approximate>true</approximate>
+  </ColonyCouncil.AlmanacArticleDef>
+
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Council_Alm_4_03_HospitalBeds</defName>
+    <label>hospital beds</label>
+    <category>Health</category>
+    <order>50</order>
+    <summary>Better tends, faster immunity and safer surgery</summary>
+    <tip>A hospital bed won't stitch anyone up, but it makes the stitches hold.</tip>
+    <description>A hospital bed improves tend quality, speeds up immunity and raises surgery success. Its quality matters: a masterwork bed adds far more than an awful one. Set a few beds to "medical" in a clean, lit room and the sick and wounded will be carried there.</description>
+    <facts>
+      <li>Tend quality +10%, immunity gain speed ×1.11.</li>
+      <li>Surgery factor by quality, without / with a vitals monitor: awful 99% / 104%, poor 105% / 109%, normal 110% / 115%, good 116% / 121%, excellent 121% / 127%, masterwork 127% / 132%, legendary 143% / 150%. Success is still capped at 98%.</li>
+      <li>Rest effectiveness: normal 100%, good 108%, excellent 114%, masterwork 125%, legendary 160%. A sleep accelerator lifts normal to 135%.</li>
+      <li>Ordinary beds and bedrolls have a surgery factor of 1.0; quality multiplies it and material doesn't matter.</li>
+      <li>Sources disagree on the base factor: one gives 1.15 for a hospital bed, another 1.10 (and 1.15 only with a monitor).</li>
+    </facts>
+    <advice>
+      <li>Mark your hospital beds as medical so the wounded go straight to them.</li>
+      <li>Put them in a clean, well-lit room near the main entrance, so nobody is carried across the base after a raid.</li>
+      <li>Upgrade to good or better quality when you can: the surgery factor climbs with every step.</li>
+      <li>Before you can build hospital beds, set ordinary beds to medical in a clean, lit room. The room still counts.</li>
+    </advice>
+    <keywords>
+      <li>hospital bed</li>
+      <li>medical bed</li>
+      <li>sickbed</li>
+      <li>infirmary</li>
+      <li>immunity</li>
+      <li>rest</li>
+    </keywords>
+    <seeAlso>
+      <li>Council_Alm_4_04_VitalsMonitor</li>
+      <li>Council_Alm_4_10_SurgeryRoom</li>
+      <li>Council_Alm_4_09_SurgerySuccess</li>
+      <li>Council_Alm_4_07_InfectionChance</li>
+      <li>Council_Alm_3_04_Killbox</li>
+    </seeAlso>
+    <template>Council_Hospital</template>
+    <approximate>true</approximate>
+  </ColonyCouncil.AlmanacArticleDef>
+
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Council_Alm_4_04_VitalsMonitor</defName>
+    <label>vitals monitor</label>
+    <category>Health</category>
+    <order>100</order>
+    <summary>A powered add-on that makes a hospital bed better at everything</summary>
+    <tip>The monitor beeps so the doctor doesn't have to guess. Unplugged, it's a very expensive lamp stand.</tip>
+    <description>A vitals monitor placed next to a hospital bed links to it and boosts everything the bed already does. It needs power, so it stops in a solar flare and a colony without electricity can't use one. Put one beside every bed you use for surgery or serious illness.</description>
+    <facts>
+      <li>Immunity gain speed rises from ×1.11 to ×1.13.</li>
+      <li>The tend quality bonus rises from +10% to +17%.</li>
+      <li>Surgery factors rise too: a normal-quality bed goes from 110% to 115%.</li>
+      <li>It draws 80 W.</li>
+    </facts>
+    <advice>
+      <li>Place one beside every bed used for surgery or serious illness, then select the bed to check the link line.</li>
+      <li>Keep the hospital on a grid with battery backup so monitors keep running at night.</li>
+      <li>Without power, a better-quality bed, a clean room and a skilled doctor have to do the monitor's job.</li>
+    </advice>
+    <keywords>
+      <li>vitals monitor</li>
+      <li>monitor</li>
+      <li>hospital</li>
+      <li>immunity</li>
+      <li>tend quality</li>
+    </keywords>
+    <seeAlso>
+      <li>Council_Alm_4_03_HospitalBeds</li>
+      <li>Council_Alm_4_09_SurgerySuccess</li>
+      <li>Council_Alm_4_12_Plague</li>
+      <li>Council_Alm_3_17_SolarFlare</li>
+    </seeAlso>
+    <template>Council_LargeHospital</template>
+  </ColonyCouncil.AlmanacArticleDef>
+
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Council_Alm_4_05_BleedingAndPain</defName>
+    <label>bleeding and pain</label>
+    <category>Health</category>
+    <order>40</order>
+    <summary>Tend the bleeder first; pain alone can drop a fighter</summary>
+    <tip>Bleeding out is slow right up until it isn't. Tend the bleeder before the bruise.</tip>
+    <description>Open wounds bleed, and a pawn who loses too much blood dies. Tending stops the bleeding, so after a fight the bleeders come first and the bruises can wait. Pain is the other drain on a fighter: high pain lowers consciousness and can put a pawn down even when no wound is fatal.</description>
+    <facts>
+      <li>The Health tab shows bleeding with an estimate of the time until death.</li>
+      <li>Tending stops bleeding.</li>
+      <li>Blood on the floor lowers a room's cleanliness and beauty.</li>
+      <li>Infection adds pain as it worsens: +5%, then +8%, +12% and finally +85%.</li>
+      <li>Drugs that cut pain: smokeleaf -20%, psychite tea ×0.9, luciferium ×0.8, flake and yayo ×0.5. Go-juice cuts it strongly.</li>
+    </facts>
+    <advice>
+      <li>After every fight, tend the bleeding wounds first and check the time-to-death estimate.</li>
+      <li>Rescue downed colonists quickly: they keep bleeding while you finish the fight.</li>
+      <li>Even a tend with no medicine stops bleeding, so never wait for medicine to arrive.</li>
+      <li>Clean blood out of the hospital before it raises the infection risk for the next patient.</li>
+      <li>Painkillers can keep a fighter standing, but they come with addiction risk.</li>
+    </advice>
+    <keywords>
+      <li>bleeding</li>
+      <li>blood loss</li>
+      <li>pain</li>
+      <li>shock</li>
+      <li>downed</li>
+      <li>wounds</li>
+      <li>painkiller</li>
+    </keywords>
+    <seeAlso>
+      <li>Council_Alm_4_07_InfectionChance</li>
+      <li>Council_Alm_4_01_MedicinePotency</li>
+      <li>Council_Alm_4_20_SocialDrugs</li>
+      <li>Council_Alm_4_23_GoJuiceWakeUp</li>
+      <li>Council_Alm_3_04_Killbox</li>
+    </seeAlso>
+  </ColonyCouncil.AlmanacArticleDef>
+
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Council_Alm_4_06_ChoosingMedicine</defName>
+    <label>choosing medicine</label>
+    <category>Health</category>
+    <order>70</order>
+    <summary>When herbal is enough, and when to spend the good stuff</summary>
+    <tip>A full medicine cabinet is a sentence that ends "and we never needed it." It never ends that way.</tip>
+    <description>Better medicine helps, but the surgery cap means the best stuff is often wasted. Use glitterworld medicine where conditions are poor, industrial for routine surgery, and herbal for infections and minor wounds. For infections, how soon and how often you tend matters as much as what you tend with.</description>
+    <facts>
+      <li>Industrial medicine can already reach the 98% surgery cap. Glitterworld is only needed in poor conditions: a dirty room, a weak bed or a low-skill doctor.</li>
+      <li>For infections, a competent doctor with herbal medicine or better is enough.</li>
+      <li>A resting colonist with normal immunity gain, treated at once, needs at least 15% average tend quality to survive an infection.</li>
+      <li>Infections need tending about every 12 hours.</li>
+      <li>For harvesting organs from someone you don't care to save, herbal medicine is enough.</li>
+    </facts>
+    <advice>
+      <li>Check each patient's medical care setting: patients dying while industrial medicine sits unused is a common mistake.</li>
+      <li>Use herbal medicine for prisoners and animals with minor wounds.</li>
+      <li>Save glitterworld for high-risk surgery in a poor room or with a weak surgeon.</li>
+      <li>On a tribal start, herbal medicine handles infections fine if the tends come on time. Your healroot field is your pharmacy.</li>
+    </advice>
+    <keywords>
+      <li>medical care</li>
+      <li>medicine choice</li>
+      <li>herbal</li>
+      <li>glitterworld</li>
+      <li>infection</li>
+      <li>surgery</li>
+    </keywords>
+    <seeAlso>
+      <li>Council_Alm_4_01_MedicinePotency</li>
+      <li>Council_Alm_4_07_InfectionChance</li>
+      <li>Council_Alm_4_08_InfectionAmputation</li>
+      <li>Council_Alm_4_09_SurgerySuccess</li>
+    </seeAlso>
+  </ColonyCouncil.AlmanacArticleDef>
+
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Council_Alm_4_07_InfectionChance</defName>
+    <label>infection risk</label>
+    <category>Health</category>
+    <order>20</order>
+    <summary>Which wounds get infected, and how fast tends and clean rooms prevent it</summary>
+    <tip>An untended wound is a signed contract with infection. Patch them fast and patch them indoors.</tip>
+    <description>Many wounds can become infected, and an infection can kill in about a day. The risk depends on the kind of wound, how soon and how well it was tended, and how clean the room is. A quick tend in a clean hospital is the cheapest insurance in the game.</description>
+    <facts>
+      <li>Base chance by wound: bites, burns and chemical burns 30%; frostbite 25%; shredding 20%; most other bleeding wounds 15%.</li>
+      <li>Missing parts and blunt trauma such as bruises and cracks can't become infected.</li>
+      <li>Tending multiplies the chance: ×85% at 0% tend quality, falling evenly to ×5% at 100%.</li>
+      <li>The room multiplies it too: a floored room with no filth ×50%, a clean room with sterile tiles ×32%, outdoors and in caravans ×100%.</li>
+      <li>The infection roll comes after a random delay of 15,000 to 45,000 ticks (6 to 18 hours).</li>
+      <li>Animals are less likely to get infected, but sources disagree on how much: 20% or 10% of a colonist's chance.</li>
+    </facts>
+    <advice>
+      <li>Tend every wound fast, ideally in the hospital, and keep its floor clean.</li>
+      <li>Lay sterile tiles in the hospital when you can afford them.</li>
+      <li>Expect infections after animal bites and burns, and check those patients daily.</li>
+      <li>On a tribal start, a clean stone floor still halves the risk compared with tending outdoors.</li>
+    </advice>
+    <keywords>
+      <li>infection</li>
+      <li>wound</li>
+      <li>sterile tile</li>
+      <li>cleanliness</li>
+      <li>bite</li>
+      <li>burn</li>
+    </keywords>
+    <seeAlso>
+      <li>Council_Alm_4_08_InfectionAmputation</li>
+      <li>Council_Alm_4_10_SurgeryRoom</li>
+      <li>Council_Alm_4_06_ChoosingMedicine</li>
+      <li>Council_Alm_3_13_ManhunterPacks</li>
+      <li>Council_Alm_3_15_Infestations</li>
+      <li>Council_Alm_3_20_FireSafety</li>
+    </seeAlso>
+    <template>Council_Hospital</template>
+    <approximate>true</approximate>
+  </ColonyCouncil.AlmanacArticleDef>
+
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Council_Alm_4_08_InfectionAmputation</defName>
+    <label>infection and amputation</label>
+    <category>Health</category>
+    <order>30</order>
+    <summary>The race between infection and immunity, and when to cut</summary>
+    <tip>She called the infection minor, right up until the amputation.</tip>
+    <description>Once a wound is infected, its severity climbs while the patient builds immunity. If immunity reaches 100% first the patient lives; if severity gets there first, they die. Treatment slows the infection, and amputation is the last resort when a limb is losing the race.</description>
+    <facts>
+      <li>Stages: 0-32% minor (pain +5%); 33-77% major (pain +8%); 78-86% extreme (pain +12%, consciousness -5%); 87-99% extreme (consciousness capped at 10%, pain +85%, breathing -5%); 100% death.</li>
+      <li>Untreated, severity climbs +0.84 a day. Treatment slows it by up to 0.53, so at 100% treatment it still climbs +0.31 a day.</li>
+      <li>Immunity grows +0.6441 a day while sick. Once immune, severity falls 0.7 a day.</li>
+      <li>Death can come less than 1.19 days after the first symptoms.</li>
+      <li>Immunity takes about 1.55 days at 100% immunity gain speed: too slow without treatment unless that speed is 130.4% or more. Pawns with base immunity gain speed of 39% or less are very vulnerable.</li>
+      <li>Amputate before 90% severity. Past 97%, success is very unlikely.</li>
+    </facts>
+    <advice>
+      <li>Compare the severity and immunity bars on the Health tab every few hours.</li>
+      <li>Tend about every 12 hours, with the patient resting in a hospital bed.</li>
+      <li>If severity is clearly winning on a limb, amputate before 90%.</li>
+      <li>Herbal medicine and bed rest still win most races on a tribal start, as long as the tends come on time.</li>
+    </advice>
+    <keywords>
+      <li>infection</li>
+      <li>amputation</li>
+      <li>amputate</li>
+      <li>severity</li>
+      <li>immunity</li>
+      <li>limb</li>
+    </keywords>
+    <seeAlso>
+      <li>Council_Alm_4_07_InfectionChance</li>
+      <li>Council_Alm_4_06_ChoosingMedicine</li>
+      <li>Council_Alm_4_09_SurgerySuccess</li>
+      <li>Council_Alm_4_17_Bionics</li>
+    </seeAlso>
+  </ColonyCouncil.AlmanacArticleDef>
+
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Council_Alm_4_09_SurgerySuccess</defName>
+    <label>surgery success</label>
+    <category>Health</category>
+    <order>80</order>
+    <summary>The formula behind the success chance on every surgery bill</summary>
+    <tip>Don't let the cook install bionic legs, whatever he says about steady hands.</tip>
+    <description>Every surgery's success chance multiplies the surgeon, the bed, the medicine and how hard the operation is. Whatever you do, the result is capped at 98%. A failure hurts the patient and wastes the part, so set it up properly before you start.</description>
+    <facts>
+      <li>Success = surgeon chance × bed factor × medicine potency × operation multiplier × inspiration, capped at 98%.</li>
+      <li>Inspiration is ×1 normally and ×2 with an Inspired Surgery.</li>
+      <li>Operation multipliers: anesthetize 200%; excise carcinoma 100%; harvest a body part 120%; install a part or implant 100%; remove a part or implant 120%; surgical inspection 150%; terminate pregnancy 200%; implant embryo or extract ovum 500%; euthanize 500%.</li>
+      <li>Administering a drug can't fail.</li>
+      <li>A failed surgery damages the patient and wastes materials; failures range from minor to catastrophic or even ridiculous.</li>
+      <li>Every surgery that can fail has at least a 2% chance of failure.</li>
+    </facts>
+    <advice>
+      <li>Check the success chance on the surgery bill before starting.</li>
+      <li>Use your best doctor, best bed and industrial medicine; save an inspired surgeon for the riskiest install.</li>
+      <li>Operate in a clean, lit room. Installs are the most sensitive to poor conditions.</li>
+      <li>Herbal medicine multiplies the chance by 0.6, so on a tribal start save surgery for when it's truly needed.</li>
+    </advice>
+    <keywords>
+      <li>surgery</li>
+      <li>operation</li>
+      <li>success chance</li>
+      <li>bionic install</li>
+      <li>failure</li>
+      <li>inspiration</li>
+      <li>carcinoma</li>
+    </keywords>
+    <seeAlso>
+      <li>Council_Alm_4_02_DoctorSkill</li>
+      <li>Council_Alm_4_10_SurgeryRoom</li>
+      <li>Council_Alm_4_03_HospitalBeds</li>
+      <li>Council_Alm_4_01_MedicinePotency</li>
+      <li>Council_Alm_4_17_Bionics</li>
+      <li>Council_Alm_3_16_ToxicFallout</li>
+    </seeAlso>
+    <template>Council_LargeHospital</template>
+    <approximate>true</approximate>
+  </ColonyCouncil.AlmanacArticleDef>
+
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Council_Alm_4_10_SurgeryRoom</defName>
+    <label>operating room conditions</label>
+    <category>Health</category>
+    <order>90</order>
+    <summary>Clean, lit and indoors: what the room does to surgery odds</summary>
+    <tip>The doctor's hands were steady. The lights were not. The patient has views.</tip>
+    <description>The room multiplies the bed's surgery factor. Dirt, darkness and open sky all cut the chance, and the penalties stack. A clean, well-lit room with light at the head of the bed is enough; a sterile floor adds little to surgery but a lot against infection.</description>
+    <facts>
+      <li>Cleanliness: ×1.0 at cleanliness 0, about ×1.018 in a clean room with sterile flooring, down to ×0.6 at cleanliness -5.</li>
+      <li>Outdoor surgery always gets the 0.6 floor plus an extra ×0.85.</li>
+      <li>If the head of the bed has under 50% light, a penalty applies, reaching ×0.75 in complete darkness.</li>
+      <li>Beds and bedrolls have a base factor of 1.0; quality multiplies it and material doesn't matter.</li>
+      <li>Bionic installs feel these penalties the most.</li>
+    </facts>
+    <advice>
+      <li>Clean the hospital before surgery and keep a lamp near the head of each bed.</li>
+      <li>Never operate outdoors.</li>
+      <li>Lay sterile tiles to cut infection risk, even though they add little to surgery itself.</li>
+      <li>On a tribal start, a torch lamp by the bed, a clean stone floor and walls around it do most of the job.</li>
+    </advice>
+    <keywords>
+      <li>operating room</li>
+      <li>sterile</li>
+      <li>light</li>
+      <li>cleanliness</li>
+      <li>hospital</li>
+      <li>surgery room</li>
+    </keywords>
+    <seeAlso>
+      <li>Council_Alm_4_09_SurgerySuccess</li>
+      <li>Council_Alm_4_03_HospitalBeds</li>
+      <li>Council_Alm_4_07_InfectionChance</li>
+      <li>Council_Alm_4_02_DoctorSkill</li>
+    </seeAlso>
+    <template>Council_Hospital</template>
+  </ColonyCouncil.AlmanacArticleDef>
+
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Council_Alm_4_11_Flu</defName>
+    <label>flu</label>
+    <category>Health</category>
+    <order>120</order>
+    <summary>The mild disease: bed rest and a tend usually do it</summary>
+    <tip>Flu is the Rim's way of making you take a day off. Take it in bed.</tip>
+    <description>Flu is the mildest of the common diseases. Immunity grows almost as fast as severity, so healthy adults often recover with bed rest alone. Tending and a good bed tip the balance for the old and the frail.</description>
+    <facts>
+      <li>Per day: severity +0.249, immunity +0.239. Treatment at 100% tend quality slows severity by 0.077.</li>
+      <li>It lowers consciousness, manipulation and breathing by 5% to 20%.</li>
+      <li>Immunity builds faster when the patient's food is above 12.5%, they rest in a bed (better still a hospital bed or one with a vitals monitor) and their blood filtration is good.</li>
+    </facts>
+    <advice>
+      <li>Send the patient to bed and keep them fed.</li>
+      <li>Tend daily with herbal medicine or better.</li>
+      <li>Keep a closer eye on elders and anyone with poor blood filtration.</li>
+    </advice>
+    <keywords>
+      <li>flu</li>
+      <li>influenza</li>
+      <li>disease</li>
+      <li>fever</li>
+      <li>sick</li>
+    </keywords>
+    <seeAlso>
+      <li>Council_Alm_4_16_DiseasePenoxycyline</li>
+      <li>Council_Alm_4_12_Plague</li>
+      <li>Council_Alm_4_03_HospitalBeds</li>
+      <li>Council_Alm_4_04_VitalsMonitor</li>
+    </seeAlso>
+    <template>Council_Hospital</template>
+  </ColonyCouncil.AlmanacArticleDef>
+
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Council_Alm_4_12_Plague</defName>
+    <label>plague</label>
+    <category>Health</category>
+    <order>110</order>
+    <summary>Fast and deadly: tend at once and keep the patient in bed</summary>
+    <tip>Plague moves fast. Bed, medicine, and a doctor who isn't out hauling rocks.</tip>
+    <description>Plague is the fastest killer among the common diseases. Untreated, it kills in about a day and a half, so every patient needs a bed and regular tends from the first hour. Penoxycyline prevents it entirely.</description>
+    <facts>
+      <li>Per day: severity +0.666, immunity +0.522. Treatment slows severity by 0.362.</li>
+      <li>Lethal in about 1.5 days untreated.</li>
+      <li>Constant pain of +20% to +85%, and consciousness and manipulation drop by up to 30%.</li>
+      <li>Penoxycyline prevents plague.</li>
+    </facts>
+    <advice>
+      <li>Tend immediately with the best medicine you can spare, and keep the patient in a hospital bed.</li>
+      <li>Have a second doctor ready in case the first one catches it.</li>
+      <li>Keep penoxycyline in stock if you can buy or make it.</li>
+      <li>Without industrial medicine, herbal and tends exactly on time are your chance. Don't let the doctor wander off.</li>
+    </advice>
+    <keywords>
+      <li>plague</li>
+      <li>disease</li>
+      <li>epidemic</li>
+      <li>sick</li>
+      <li>penoxycyline</li>
+    </keywords>
+    <seeAlso>
+      <li>Council_Alm_4_16_DiseasePenoxycyline</li>
+      <li>Council_Alm_4_11_Flu</li>
+      <li>Council_Alm_4_06_ChoosingMedicine</li>
+      <li>Council_Alm_4_04_VitalsMonitor</li>
+    </seeAlso>
+    <template>Council_LargeHospital</template>
+  </ColonyCouncil.AlmanacArticleDef>
+
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Council_Alm_4_13_Malaria</defName>
+    <label>malaria</label>
+    <category>Health</category>
+    <order>130</order>
+    <summary>The tropical disease that weakens the immune system itself</summary>
+    <tip>Swamp air comes with a bill. Pay it in medicine or pay it in shovels.</tip>
+    <description>Malaria is common in tropical biomes. It attacks blood filtration, which slows the very immunity your patient is racing to build. Later stages add pain and dull consciousness.</description>
+    <facts>
+      <li>Per day: severity +0.370, immunity +0.314. Treatment slows severity by 0.232.</li>
+      <li>In tropical rainforest and swamp it is the most frequent disease, at 17.2% of cases.</li>
+      <li>It slows immunity gain by attacking blood filtration; later stages add pain and reduce consciousness.</li>
+      <li>Penoxycyline prevents it.</li>
+    </facts>
+    <advice>
+      <li>Bed rest and regular tends from the first day.</li>
+      <li>On jungle and swamp maps, put penoxycyline in the drug policy.</li>
+      <li>Keep a bigger medicine stock in the tropics than you would elsewhere.</li>
+    </advice>
+    <keywords>
+      <li>malaria</li>
+      <li>tropical</li>
+      <li>jungle</li>
+      <li>swamp</li>
+      <li>disease</li>
+      <li>blood filtration</li>
+    </keywords>
+    <seeAlso>
+      <li>Council_Alm_4_16_DiseasePenoxycyline</li>
+      <li>Council_Alm_4_14_SleepingSickness</li>
+      <li>Council_Alm_4_06_ChoosingMedicine</li>
+    </seeAlso>
+  </ColonyCouncil.AlmanacArticleDef>
+
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Council_Alm_4_14_SleepingSickness</defName>
+    <label>sleeping sickness</label>
+    <category>Health</category>
+    <order>140</order>
+    <summary>Slow and treatable, as long as the patient actually rests</summary>
+    <tip>A sick man hauling steel is a corpse with a hobby. Put him to bed.</tip>
+    <description>Sleeping sickness moves slowly and is found only in rainforests and swamps. It is relatively easy to beat if the patient rests, because immunity keeps pace with severity. Ignore it, and consciousness slowly slides away.</description>
+    <facts>
+      <li>Per day: severity +0.12, immunity +0.11. Treatment slows severity by 0.07.</li>
+      <li>Native only to rainforests and swamps, where it makes up 15.1% of diseases.</li>
+      <li>Consciousness and manipulation drop by 2% to 20%.</li>
+      <li>Penoxycyline prevents it.</li>
+    </facts>
+    <advice>
+      <li>Put the patient to bed and keep them there.</li>
+      <li>Keep the Patient and Bed rest work types at priority 1 for everyone, so the sick actually lie down.</li>
+      <li>Tend regularly; herbal medicine is fine.</li>
+    </advice>
+    <keywords>
+      <li>sleeping sickness</li>
+      <li>disease</li>
+      <li>rainforest</li>
+      <li>swamp</li>
+      <li>consciousness</li>
+    </keywords>
+    <seeAlso>
+      <li>Council_Alm_4_16_DiseasePenoxycyline</li>
+      <li>Council_Alm_4_13_Malaria</li>
+      <li>Council_Alm_4_11_Flu</li>
+    </seeAlso>
+  </ColonyCouncil.AlmanacArticleDef>
+
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Council_Alm_4_15_GutWormsParasites</defName>
+    <label>gut worms and muscle parasites</label>
+    <category>Health</category>
+    <order>150</order>
+    <summary>Chronic pests that need repeated tends, not bed rest</summary>
+    <tip>Gut worms: the only guest who eats more than the colonist hosting him.</tip>
+    <description>Gut worms and muscle parasites won't kill anyone, but they won't leave on their own either. There is no immunity race: they are cured by piling up enough tend quality over several tends. Until then they cost food, speed and comfort.</description>
+    <facts>
+      <li>Both are cured at 300% total tend quality, for example four tends at 80%.</li>
+      <li>Each tend lasts 48 hours, so a cure takes days of steady tending.</li>
+      <li>Gut worms double the hunger rate and add 20% pain. Replacing the stomach is an alternative cure.</li>
+      <li>Muscle parasites cut manipulation and movement speed by 30% and add 20% pain.</li>
+      <li>Neither is fatal, and bed rest doesn't help because there is no immunity to build.</li>
+    </facts>
+    <advice>
+      <li>Tend on schedule with the best medicine you can spare: higher quality means fewer tends.</li>
+      <li>Let the patient keep working between tends.</li>
+      <li>Budget extra food for anyone with gut worms.</li>
+      <li>Herbal medicine caps tend quality at 70%, so on a tribal start expect at least five tends.</li>
+    </advice>
+    <keywords>
+      <li>gut worms</li>
+      <li>muscle parasites</li>
+      <li>parasites</li>
+      <li>worms</li>
+      <li>chronic</li>
+      <li>hunger</li>
+    </keywords>
+    <seeAlso>
+      <li>Council_Alm_4_01_MedicinePotency</li>
+      <li>Council_Alm_4_16_DiseasePenoxycyline</li>
+      <li>Council_Alm_4_06_ChoosingMedicine</li>
+    </seeAlso>
+  </ColonyCouncil.AlmanacArticleDef>
+
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Council_Alm_4_16_DiseasePenoxycyline</defName>
+    <label>disease risk and penoxycyline</label>
+    <category>Health</category>
+    <order>160</order>
+    <summary>Which biomes breed which diseases, and the drug that blocks three of them</summary>
+    <tip>Penoxycyline every five days is cheaper than a funeral every fifty.</tip>
+    <description>Diseases arrive as random events, and your biome decides how often and which ones. Tropical maps get them most, deserts and ice the least. Penoxycyline, a cheap drug that never addicts, makes colonists immune to malaria, plague and sleeping sickness while it lasts.</description>
+    <facts>
+      <li>Average days between diseases: swamp 30, tropical rainforest 35, temperate forest 50, tundra 80, desert and ice sheet 90.</li>
+      <li>Temperate forest: flu, plague and malaria 14.9% each; gut worms and muscle parasites 7.5% each.</li>
+      <li>Rainforest and swamp: malaria 17.2%, sleeping sickness 15.1%, flu and plague 10.8% each. Desert: flu 18.2%, plague 14.5%, and no malaria.</li>
+      <li>Difficulty scales the gap between diseases: ×3 on peaceful, ×0.9 on losing is fun.</li>
+      <li>Penoxycyline prevents malaria, plague and sleeping sickness for about 5.5 days. The disease event still happens, but protected pawns are unaffected.</li>
+      <li>Recipe: 2 neutroamine and 600 ticks of work; worth 18 silver. It never causes addiction.</li>
+    </facts>
+    <advice>
+      <li>In the tropics, schedule penoxycyline every 5 days for everyone; a 6-day schedule leaves a gap.</li>
+      <li>Buy neutroamine from traders whenever you can: colonies can't produce it.</li>
+      <li>Keep medicine and a free hospital bed ready, especially on swamp and jungle maps.</li>
+      <li>Penoxycyline needs a drug lab, which a tribe has to research first. Until then, buy it from traders.</li>
+    </advice>
+    <keywords>
+      <li>disease</li>
+      <li>penoxycyline</li>
+      <li>biome</li>
+      <li>epidemic</li>
+      <li>prevention</li>
+      <li>neutroamine</li>
+    </keywords>
+    <seeAlso>
+      <li>Council_Alm_4_11_Flu</li>
+      <li>Council_Alm_4_12_Plague</li>
+      <li>Council_Alm_4_13_Malaria</li>
+      <li>Council_Alm_4_14_SleepingSickness</li>
+      <li>Council_Alm_4_15_GutWormsParasites</li>
+      <li>Council_Alm_4_18_DrugPolicies</li>
+    </seeAlso>
+  </ColonyCouncil.AlmanacArticleDef>
+
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Council_Alm_4_17_Bionics</defName>
+    <label>prosthetics and bionics</label>
+    <category>Health</category>
+    <order>170</order>
+    <summary>Replacing lost limbs, and who should do the installing</summary>
+    <tip>Lose a leg, gain a better one. The Rim gives, mostly right after it takes.</tip>
+    <description>A lost leg, hand or eye doesn't have to end a colonist's career. Prosthetics bring back some function, bionics can beat the original, and both need a surgeon. Installing one is a full-difficulty operation, so the doctor, bed and room all count.</description>
+    <facts>
+      <li>The Prosthetics research costs 600, or 1,200 on a tribal start, and needs Machining first.</li>
+      <li>Installing a part uses the 100% operation multiplier, so surgeon skill, bed and room count in full.</li>
+      <li>Bionic arms on the surgeon can lift the chance for excising a carcinoma to roughly 90% with normal medicine.</li>
+      <li>Bionics add to colony wealth, and so to the size of future raids.</li>
+    </facts>
+    <advice>
+      <li>Fix movement first: legs and feet. Even a peg leg beats crawling.</li>
+      <li>Next, eyes for shooters and arms for crafters and surgeons.</li>
+      <li>Let a doctor with Medical 8 or more do the installs, in a clean, lit room with a hospital bed.</li>
+      <li>On a tribal start the research costs double, so buy parts from traders when they turn up.</li>
+    </advice>
+    <keywords>
+      <li>bionics</li>
+      <li>prosthetics</li>
+      <li>peg leg</li>
+      <li>implant</li>
+      <li>missing limb</li>
+      <li>bionic arm</li>
+    </keywords>
+    <seeAlso>
+      <li>Council_Alm_4_09_SurgerySuccess</li>
+      <li>Council_Alm_4_10_SurgeryRoom</li>
+      <li>Council_Alm_4_08_InfectionAmputation</li>
+      <li>Council_Alm_3_02_WealthAndRaids</li>
+    </seeAlso>
+    <template>Council_LargeHospital</template>
+  </ColonyCouncil.AlmanacArticleDef>
+
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Council_Alm_4_18_DrugPolicies</defName>
+    <label>drug policies</label>
+    <category>Health</category>
+    <order>180</order>
+    <summary>Schedule drugs on your terms, not your colonists'</summary>
+    <tip>Beer on the seventh day keeps the peace. Beer every day keeps the liver doctor busy.</tip>
+    <description>A drug policy decides what each colonist may take, when and why. Turning off "for recreation" and scheduling doses instead keeps the mood boost without the slide into addiction. Set it up once and hand it out in the Assign tab.</description>
+    <facts>
+      <li>A schedule has a frequency, a maximum mood and a maximum recreation, and all conditions must be met.</li>
+      <li>Most pawns break near 35% mood, so set the mood limit a little above that: walking to the drug takes time.</li>
+      <li>Common starting points from experienced players: beer every day below 32% mood, smokeleaf every 2 days below 30%, ambrosia every 2 days below 35%, psychite tea every 2 days below 34%.</li>
+      <li>Pawns with chemical interest or chemical fascination ignore drug policy.</li>
+      <li>Addicted pawns take their drug to satisfy the need by default, even under "No drugs", unless you turn that off in the Assign tab.</li>
+    </facts>
+    <advice>
+      <li>In the Assign tab, open the drug policies, turn off "For recreation" and turn on "Scheduled" for drugs you want used.</li>
+      <li>Add penoxycyline every 5 days in disease-heavy biomes.</li>
+      <li>Keep hard drugs off every policy, except perhaps a separate combat policy for go-juice.</li>
+      <li>On a tribal start, beer and smokeleaf are the drugs you'll have; schedule them the same way.</li>
+    </advice>
+    <keywords>
+      <li>drug policy</li>
+      <li>schedule</li>
+      <li>beer</li>
+      <li>smokeleaf</li>
+      <li>recreation</li>
+      <li>assign</li>
+    </keywords>
+    <seeAlso>
+      <li>Council_Alm_4_19_AddictionTolerance</li>
+      <li>Council_Alm_4_20_SocialDrugs</li>
+      <li>Council_Alm_4_22_Luciferium</li>
+      <li>Council_Alm_4_16_DiseasePenoxycyline</li>
+      <li>Council_Alm_4_23_GoJuiceWakeUp</li>
+    </seeAlso>
+    <approximate>true</approximate>
+  </ColonyCouncil.AlmanacArticleDef>
+
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Council_Alm_4_19_AddictionTolerance</defName>
+    <label>addiction and tolerance</label>
+    <category>Health</category>
+    <order>190</order>
+    <summary>Every dose is a small roll of the dice, and tolerance builds quietly</summary>
+    <tip>Smoke the leaf in moderation, then watch what moderation does to the leaf.</tip>
+    <description>Each dose of a drug can start an addiction, and each one builds tolerance that weakens the effect and, past certain levels, damages organs. Addiction brings withdrawal: a big mood penalty and stat drops that can tip a pawn into a break. Spaced, scheduled doses keep the risk small.</description>
+    <facts>
+      <li>Addiction chance per dose: beer, ambrosia and yayo 1%; smokeleaf, psychite tea and wake-up 2%; go-juice 2.6%; flake 5%. Luciferium always addicts.</li>
+      <li>Tolerance needed before an addiction can start: psychite tea 10%, smokeleaf and ambrosia 15%, beer 25%.</li>
+      <li>Long-term damage: smokeleaf tolerance above 36% can cause lung carcinoma and above 45% asthma; beer above 45% cirrhosis and carcinoma; psychite drugs above 45% kidney damage.</li>
+      <li>A psychite addiction brings an immediate 15% chance of kidney damage.</li>
+      <li>Withdrawal: -10 mood for ambrosia, at least -20 for the others, plus stat drops and a higher break risk.</li>
+      <li>Tolerance gain is divided by body size, so big pawns build it more slowly.</li>
+      <li>Some tolerance figures differ between sources, so treat them as close guides.</li>
+    </facts>
+    <advice>
+      <li>Schedule recreational drugs with gaps instead of allowing them any time.</li>
+      <li>If a pawn's tolerance climbs, take that drug off their policy for a while.</li>
+      <li>If someone does get addicted, decide early: keep a steady supply, or ride out withdrawal while the rest of their mood is high.</li>
+      <li>Beer and smokeleaf are the easiest to overuse on a tribal start. Space them like any other drug.</li>
+    </advice>
+    <keywords>
+      <li>addiction</li>
+      <li>tolerance</li>
+      <li>withdrawal</li>
+      <li>carcinoma</li>
+      <li>cirrhosis</li>
+      <li>kidney</li>
+      <li>chemical</li>
+    </keywords>
+    <seeAlso>
+      <li>Council_Alm_4_18_DrugPolicies</li>
+      <li>Council_Alm_4_20_SocialDrugs</li>
+      <li>Council_Alm_4_21_FlakeYayo</li>
+      <li>Council_Alm_4_22_Luciferium</li>
+      <li>Council_Alm_4_24_Overdose</li>
+    </seeAlso>
+    <approximate>true</approximate>
+  </ColonyCouncil.AlmanacArticleDef>
+
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Council_Alm_4_20_SocialDrugs</defName>
+    <label>beer, smokeleaf, tea and ambrosia</label>
+    <category>Health</category>
+    <order>200</order>
+    <summary>The soft drugs: what each one does and what it costs to make</summary>
+    <tip>Medicine's for the living. Silver's for the traders. Beer's for everyone else, on a schedule.</tip>
+    <description>The soft drugs give a quick boost to mood and recreation and are easy to make. Used on a schedule, they carry a colony through a bad week. A colony that needs them every day has a bedroom, food or recreation problem that the drugs are hiding.</description>
+    <facts>
+      <li>Beer: +10 mood (tipsy) or +26 (hammered), +17% recreation, 5 hours. Made from 1 wort in 200 ticks; worth 12 silver.</li>
+      <li>Smokeleaf joint: +13 mood, +80% recreation, 12 hours; also -30% consciousness, -10% moving, +30% hunger and -20% pain. Made from 4 smokeleaf leaves in 450 ticks; worth 11 silver.</li>
+      <li>Psychite tea: +12 mood, +40% recreation, 6 hours; rest falls 20% slower and pain ×0.9. Made from 4 psychoid leaves in 400 ticks at Cooking 2; worth 10 silver.</li>
+      <li>Ambrosia: +5 mood, +50% recreation, 16 hours, and it's food too (0.20 nutrition).</li>
+    </facts>
+    <advice>
+      <li>Use them on a schedule, not as the colony's main source of fun.</li>
+      <li>Don't hand a joint to anyone about to work or fight: -30% consciousness shows.</li>
+      <li>Beer is tribal-friendly: the brewery and fermenting barrel need no electricity.</li>
+      <li>If you need drugs to hold mood up, fix the bedrooms, meals and recreation first.</li>
+    </advice>
+    <keywords>
+      <li>beer</li>
+      <li>smokeleaf</li>
+      <li>joint</li>
+      <li>psychite tea</li>
+      <li>ambrosia</li>
+      <li>social drug</li>
+      <li>recreation</li>
+    </keywords>
+    <seeAlso>
+      <li>Council_Alm_4_18_DrugPolicies</li>
+      <li>Council_Alm_4_19_AddictionTolerance</li>
+      <li>Council_Alm_4_05_BleedingAndPain</li>
+    </seeAlso>
+  </ColonyCouncil.AlmanacArticleDef>
+
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Council_Alm_4_21_FlakeYayo</defName>
+    <label>flake and yayo</label>
+    <category>Health</category>
+    <order>210</order>
+    <summary>Hard drugs: huge mood, high risk, and no safe dose</summary>
+    <tip>Flake is cheap, quick to make and the most expensive thing your colony will ever buy.</tip>
+    <description>Flake and yayo give an enormous mood boost and fill recreation, which is exactly why they're dangerous. Any dose can cause an overdose, and flake addicts fast. Grow and make them for trade, or not at all.</description>
+    <facts>
+      <li>Flake: mood +35, recreation +70%, rest +20%, 6 hours. Made from 4 psychoid leaves in 250 ticks; worth 14 silver. 5% addiction chance per dose.</li>
+      <li>Yayo: recreation +80%, rest +40%, +15% moving, 12 hours; listed at the same +35 mood as flake, which may not be right. Made from 8 psychoid leaves in 350 ticks; worth 21 silver. 1% addiction chance.</li>
+      <li>Every dose of a hard drug carries a 0.5-1.5% chance of an immediate major overdose and adds 0.18-0.35 to overdose severity.</li>
+      <li>Both cut pain to ×0.5.</li>
+      <li>There is no safe interval for either.</li>
+    </facts>
+    <advice>
+      <li>Keep them off every drug policy.</li>
+      <li>If you grow psychoid, sell the flake and yayo rather than keeping a stockpile at home.</li>
+      <li>If a pawn binges, get a doctor ready for an overdose.</li>
+    </advice>
+    <keywords>
+      <li>flake</li>
+      <li>yayo</li>
+      <li>hard drugs</li>
+      <li>psychite</li>
+      <li>psychoid</li>
+      <li>binge</li>
+    </keywords>
+    <seeAlso>
+      <li>Council_Alm_4_24_Overdose</li>
+      <li>Council_Alm_4_19_AddictionTolerance</li>
+      <li>Council_Alm_4_18_DrugPolicies</li>
+    </seeAlso>
+    <approximate>true</approximate>
+  </ColonyCouncil.AlmanacArticleDef>
+
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Council_Alm_4_22_Luciferium</defName>
+    <label>luciferium</label>
+    <category>Health</category>
+    <order>240</order>
+    <summary>Superhuman for exactly as long as the supply lasts</summary>
+    <tip>Lucy makes you better than human for exactly as long as you can keep paying her. Count your doses before you swallow the first.</tip>
+    <description>Luciferium makes anyone better: sharper, faster, healthier, and it slowly cures scars and chronic illness. It also addicts on the first dose, forever, and you can't make it yourself. Only start if you can guarantee a dose every 6 days for the rest of that colonist's life.</description>
+    <facts>
+      <li>Always causes addiction. The need falls 15% a day, so a dose is needed every 6 days.</li>
+      <li>Withdrawal can eventually be fatal.</li>
+      <li>Effects: +10% consciousness, +5% moving, +15% sight, pain ×0.8, +70% blood filtration, +20% digestion, +15% blood pumping.</li>
+      <li>It cures one scar or chronic illness every 15 to 30 days.</li>
+      <li>The colony can't produce it: supply comes only from trade and quests.</li>
+    </facts>
+    <advice>
+      <li>Count before the first dose: doses in stock ÷ number of users × 6 = days of supply.</li>
+      <li>Schedule it every 6 days in the drug policy instead of waiting for the need to bite.</li>
+      <li>Send a spare dose with any user who leaves in a caravan.</li>
+      <li>Use it on colonists with scars or chronic illnesses you can't fix any other way.</li>
+    </advice>
+    <keywords>
+      <li>luciferium</li>
+      <li>addiction</li>
+      <li>scar</li>
+      <li>chronic illness</li>
+      <li>cure</li>
+      <li>withdrawal</li>
+    </keywords>
+    <seeAlso>
+      <li>Council_Alm_4_19_AddictionTolerance</li>
+      <li>Council_Alm_4_18_DrugPolicies</li>
+      <li>Council_Alm_4_17_Bionics</li>
+    </seeAlso>
+  </ColonyCouncil.AlmanacArticleDef>
+
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Council_Alm_4_23_GoJuiceWakeUp</defName>
+    <label>go-juice and wake-up</label>
+    <category>Health</category>
+    <order>230</order>
+    <summary>Combat and work drugs for the days that decide everything</summary>
+    <tip>Go-juice turns a farmer into a hero for an afternoon. Don't make it a breakfast drink.</tip>
+    <description>Go-juice makes a fighter much better for most of a day; wake-up makes workers faster and keeps them on their feet. Both are made from neutroamine, which colonies can't produce, and both carry an addiction risk. Save them for raids, sieges and emergencies.</description>
+    <facts>
+      <li>Go-juice: +20% consciousness, +50% moving, +35% sight and greatly reduced pain; mood +5, recreation +40%, rest +40%; 16 hours. With Royalty it also gives +15% psyfocus.</li>
+      <li>Go-juice recipe: 2 neutroamine and 1 yayo, 600 ticks; worth 53 silver. 2.6% addiction chance.</li>
+      <li>Wake-up: +50% global work speed, +10% consciousness, +10% moving, rest +100%, recreation +40%; 12 hours.</li>
+      <li>Wake-up recipe: 2 neutroamine, 900 ticks; worth 35 silver. 2% addiction chance, and it brings a heart attack risk (mean time between 120 days).</li>
+      <li>Neutroamine can't be produced by colonies.</li>
+    </facts>
+    <advice>
+      <li>Dose your fighters at the start of a big raid or a siege assault, not every day.</li>
+      <li>Keep both off recreation in every drug policy.</li>
+      <li>Keep a doctor nearby after heavy wake-up use, in case the heart gives out.</li>
+      <li>A tribe can't make either; buy a few doses from traders for the fights you can't afford to lose.</li>
+    </advice>
+    <keywords>
+      <li>go-juice</li>
+      <li>wake-up</li>
+      <li>combat drug</li>
+      <li>neutroamine</li>
+      <li>raid</li>
+      <li>work speed</li>
+    </keywords>
+    <seeAlso>
+      <li>Council_Alm_4_19_AddictionTolerance</li>
+      <li>Council_Alm_4_24_Overdose</li>
+      <li>Council_Alm_4_18_DrugPolicies</li>
+      <li>Council_Alm_3_04_Killbox</li>
+      <li>Council_Alm_3_10_Sieges</li>
+    </seeAlso>
+  </ColonyCouncil.AlmanacArticleDef>
+
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Council_Alm_4_24_Overdose</defName>
+    <label>overdose</label>
+    <category>Health</category>
+    <order>220</order>
+    <summary>Stacked doses can put a pawn down, or kill them</summary>
+    <tip>"One more for the road" is how most roads end out here.</tip>
+    <description>Overdose builds when a pawn takes too many doses close together, and hard drugs can cause one in a single dose. Below half severity it stays hidden; above it the pawn vomits, then goes down and risks brain damage and death. Severity falls with time, so a bed and patience are the treatment.</description>
+    <facts>
+      <li>Below 0.50 severity it is hidden.</li>
+      <li>0.50 to 0.749 is minor: consciousness ×50% and vomiting about every 4.8 hours.</li>
+      <li>0.75 to 0.999 is major: consciousness is capped at 10% and the pawn goes down, with brain chemical damage after about 2.5 days and death after about 3 days on average.</li>
+      <li>1.0 is fatal.</li>
+      <li>Severity drops by 1 per game day.</li>
+      <li>Hard drugs carry a 0.5-1.5% chance of an immediate major overdose with every dose.</li>
+    </facts>
+    <advice>
+      <li>Never stack doses: space them out in the drug policy.</li>
+      <li>Put an overdosed pawn in bed and watch them; time brings the severity down.</li>
+      <li>Keep pawns prone to binges away from hard drug stockpiles.</li>
+    </advice>
+    <keywords>
+      <li>overdose</li>
+      <li>drugs</li>
+      <li>binge</li>
+      <li>vomiting</li>
+      <li>brain damage</li>
+    </keywords>
+    <seeAlso>
+      <li>Council_Alm_4_21_FlakeYayo</li>
+      <li>Council_Alm_4_19_AddictionTolerance</li>
+      <li>Council_Alm_4_23_GoJuiceWakeUp</li>
+    </seeAlso>
+  </ColonyCouncil.AlmanacArticleDef>
+
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Council_Alm_10_HealthQuickReference</defName>
+    <label>health numbers</label>
+    <category>Health</category>
+    <order>900</order>
+    <summary>The key medical numbers on one page</summary>
+    <tip>Clean floors, clean wounds, clean conscience. Two out of three will do.</tip>
+    <description>The medical numbers you'll want during an emergency, gathered in one place. Each one has its own page with what to do about it.</description>
+    <facts>
+      <li>Medicine potency: none 0.3, herbal 0.6, industrial 1.0, glitterworld 1.6.</li>
+      <li>Hospital bed: tend +10% (+17% with a vitals monitor); immunity ×1.11 (×1.13 with a monitor).</li>
+      <li>Infection: base 15-30% by wound; tending ×85% down to ×5%; clean floored room ×50%, sterile ×32%; rolled after 15,000-45,000 ticks.</li>
+      <li>Infection grows +0.84 a day untreated; amputate before 90%.</li>
+      <li>Surgery: surgeon × bed × medicine × operation × inspiration, capped at 98%.</li>
+      <li>Disease severity per day: flu +0.249, plague +0.666, malaria +0.370, sleeping sickness +0.12. Gut worms and muscle parasites are cured at 300% total tend quality.</li>
+      <li>Addiction per dose: beer 1%, smokeleaf 2%, psychite tea 2%, flake 5%, yayo 1%, go-juice 2.6%, wake-up 2%; luciferium always, with a dose every 6 days.</li>
+    </facts>
+    <advice>
+      <li>Open the matching page for any number to see what to do about it.</li>
+      <li>Check your medicine stock and how many colonists can doctor before winter and before big raids.</li>
+    </advice>
+    <keywords>
+      <li>numbers</li>
+      <li>cheat sheet</li>
+      <li>quick reference</li>
+      <li>medical stats</li>
+      <li>table</li>
+    </keywords>
+    <seeAlso>
+      <li>Council_Alm_4_01_MedicinePotency</li>
+      <li>Council_Alm_4_03_HospitalBeds</li>
+      <li>Council_Alm_4_07_InfectionChance</li>
+      <li>Council_Alm_4_09_SurgerySuccess</li>
+      <li>Council_Alm_4_19_AddictionTolerance</li>
+      <li>Council_Alm_10_DefenseQuickReference</li>
+    </seeAlso>
+    <approximate>true</approximate>
+  </ColonyCouncil.AlmanacArticleDef>
+
+</Defs>
