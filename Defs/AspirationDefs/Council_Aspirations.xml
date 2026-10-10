@@ -401,4 +401,28 @@
     </achieved>
   </ColonyCouncil.AspirationDef>
 
+  <ColonyCouncil.AspirationDef>
+    <defName>Council_Asp_Avenge</defName>
+    <label>vengeance</label>
+    <workerClass>ColonyCouncil.AspirationWorker_Counter</workerClass>
+    <counter>avenged</counter>
+    <amount>1</amount>
+    <weight>3</weight>
+    <goal>avenge the dead</goal>
+    <chosen>
+      <plain>
+        <li>I know what I'm living for now. Not peace. Not comfort. Payment.</li>
+        <li>I sat at the grave until dark and made a promise. I intend to keep it.</li>
+      </plain>
+      <warm><li>I don't want to be the kind of person who lives for revenge. Right now, I am.</li></warm>
+      <cold><li>One objective. It will be met.</li></cold>
+    </chosen>
+    <achieved>
+      <plain>
+        <li>It's done. I went back to the grave and said so out loud. The wind didn't answer. That's fine.</li>
+      </plain>
+      <gloomy><li>Avenged. I waited so long to feel this. It feels like nothing much.</li></gloomy>
+    </achieved>
+  </ColonyCouncil.AspirationDef>
+
 </Defs>

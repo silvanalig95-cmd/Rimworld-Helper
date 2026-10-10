@@ -261,4 +261,28 @@
     <seeAlso><li>Council_Alm_C_Social</li><li>Council_Alm_C_Dreams</li></seeAlso>
   </ColonyCouncil.AlmanacArticleDef>
 
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Council_Alm_C_Secrets</defName>
+    <label>secrets, vendettas and eulogies</label>
+    <category>Council</category>
+    <order>12</order>
+    <summary>What colonists hide, who they can't forgive, and how they say goodbye.</summary>
+    <tip>Everyone out here is running from something. Some of them are still running.</tip>
+    <description>Some colonists carry a secret, often from the life their backstory hints at: a raider's past, noble blood, a deserter's shame, a child left behind, a borrowed name, a hidden kindness. You don't know what it is. You only see, in the Social tab, when they confide in a close friend.</description>
+    <facts>
+      <li>Confiding brings relief and brings them closer. A confidant who later becomes their rival is likely to let it slip; a close friend rarely does. Someone at rock bottom may blurt it out themselves.</li>
+      <li>When a secret comes out, everyone reacts according to their nature: the kind forgive, the hard despise, the greedy envy, the abrasive mock. Betraying a confidence makes enemies.</li>
+      <li>Some secrets put the council on the spot with a dilemma.</li>
+      <li>A secret nobody was told dies with its keeper. One that somebody was told comes out at the funeral.</li>
+      <li>When raiders kill or carry off someone, the people who loved them swear vengeance on that faction. They carry it as a weight, fight harder when those colours show up again, and are avenged after three of the enemy fall to them. Peace with the killers is taken as a betrayal.</li>
+      <li>Half a day or so after someone dies, the person closest to them speaks at the grave. What they say depends on who the dead were: their years here, the name they earned, the goal they never reached, who killed them.</li>
+    </facts>
+    <advice>
+      <li>Think twice before making peace with a faction that killed someone well loved. It may be worth it. It won't be free.</li>
+      <li>Watch who confides in whom. A falling-out between those two is a secret waiting to come out.</li>
+    </advice>
+    <keywords><li>secret</li><li>confide</li><li>vendetta</li><li>revenge</li><li>eulogy</li><li>funeral</li><li>grave</li></keywords>
+    <seeAlso><li>Council_Alm_C_Social</li><li>Council_Alm_C_Goals</li></seeAlso>
+  </ColonyCouncil.AlmanacArticleDef>
+
 </Defs>

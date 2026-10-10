@@ -40,6 +40,8 @@ namespace ColonyCouncil
         [MustTranslate] public string traditionLabel;
         /// <summary>What happens if the council doesn't answer in time.</summary>
         public int defaultOption;
+        /// <summary>For DilemmaWorker_Secret: only after one of these secrets (SecretDef names) comes out; empty = any.</summary>
+        public List<string> secrets;
         public float answerDays = 2f;
 
         [Unsaved] private DilemmaWorker worker;
@@ -199,7 +201,8 @@ namespace ColonyCouncil
                 (faction != null ? faction.Name : "").Named("FACTION"),
                 (pet != null ? pet.Named("PET") : (a != null ? a.Named("PET") : "?".Named("PET"))),
                 (skill != null ? skill.label : "").Named("SKILL"),
-                (CouncilGameComponent.Instance?.aspirations.Active(a)?.Goal ?? "").Named("GOAL")
+                (CouncilGameComponent.Instance?.aspirations.Active(a)?.Goal ?? "").Named("GOAL"),
+                (CouncilGameComponent.Instance?.secrets.Of(a)?.def.label ?? "").Named("SECRET")
             };
             return s.Formatted(args.ToArray()).Resolve();
         }

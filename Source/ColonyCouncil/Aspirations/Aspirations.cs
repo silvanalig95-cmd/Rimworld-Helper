@@ -240,6 +240,7 @@ namespace ColonyCouncil
                 case "peace": return comp.social.ties.Any(t => t.kind == TieKind.Rivals && t.announced && t.Involves(p));
                 case "graduated": return ColonyCouncilMod.Settings.socialWeb && p.skills != null && p.skills.skills.Any(s => s.Level >= 10 && s.passion != Passion.None);
                 case "omen": return ColonyCouncilMod.Settings.dreams && ColonyCouncilMod.Settings.dreamOmens;
+                case "avenged": return ColonyCouncilMod.Settings.vendettas && comp.vendettas.Of(p).Any();
                 default: return true;
             }
         }

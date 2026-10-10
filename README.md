@@ -139,6 +139,20 @@ person (their passions, traits and situation), and the Social tab shows everyone
 moment: a letter, a long good mood, trust, often an inspiration, friends who are glad for them. Dying before it is
 remembered: the chronicle notes what they never got to do, and their friends write about it.
 
+### Secrets, vendettas and eulogies
+Some colonists carry a **secret**, often from the life their backstory hints at: a raider's past, noble blood, a
+deserter's shame, a doctor's fatal mistake, a child left behind, a borrowed name, a pirate's debt, a hidden kindness.
+You don't get told. You only see when they confide in a close friend. A confidant who later falls out with them is
+likely to let it slip; at rock bottom some blurt it out themselves. When it comes out, everyone reacts according to
+their nature, betrayed confidences make enemies, and sometimes the council has to decide what to do about it.
+
+When raiders kill or carry off someone, the people who loved them swear a **vendetta** on that faction: a weight they
+carry, fury when those colours show up again, satisfaction when enough of them fall, outrage if the council makes
+peace with the killers.
+
+When someone dies, the person closest to them speaks a **eulogy** at the grave, about who the dead really were:
+the years they gave, the name they earned, the goal they never reached, who killed them.
+
 ### Dreams
 Colonists who sleep (or lie unconscious) for a few hours sometimes wake from a dream, and tell each other about
 it. Dreams grow out of their lives: the raid two days ago, the friend they buried, the rival who insulted them, the
@@ -243,7 +257,7 @@ The council only suggests what your colony can actually do right now:
 - letters vs. messages, floating speech text, alerts
 - where the council button sits in the bottom bar
 - **council life**: decrees, dilemmas, petitions, annals, names, journals, offices, the social web, social
-  events, life goals, dreams and dream omens, each on its own switch
+  events, life goals, secrets, vendettas, eulogies, dreams and dream omens, each on its own switch
 
 ## Optional mods that go well with it
 

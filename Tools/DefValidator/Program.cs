@@ -318,8 +318,8 @@ foreach (var (k, text) in keyed)
 }
 
 // Placeholders in def flavour text
-var wishPh = new HashSet<string> { "SUBJECT", "THING", "THINGBARE", "TARGET", "WISH", "MINE", "AMBITION", "VENUE", "COUNT", "FACTION", "TITLE", "DECREE", "YEARS", "DILEMMA", "TRADITION", "OFFICE", "SKILL", "LOST", "DREAM", "GOAL" };
-var pawnPrefixes = new HashSet<string> { "PAWN", "FOR", "OTHER", "ENVIED", "ABOUT", "A", "B", "PET" };
+var wishPh = new HashSet<string> { "SUBJECT", "THING", "THINGBARE", "TARGET", "WISH", "MINE", "AMBITION", "VENUE", "COUNT", "FACTION", "TITLE", "DECREE", "YEARS", "DILEMMA", "TRADITION", "OFFICE", "SKILL", "LOST", "DREAM", "GOAL", "SECRET", "LEAKER", "TELLER", "SPEECH" };
+var pawnPrefixes = new HashSet<string> { "PAWN", "FOR", "OTHER", "ENVIED", "ABOUT", "A", "B", "PET", "LEAKER", "TELLER" };
 var pawnSuffixes = new HashSet<string> { "nameDef", "nameFull", "labelShort", "pronoun", "possessive", "objective", "label", "definite", "indefinite", "gender" };
 foreach (var (file, doc) in docs)
 {

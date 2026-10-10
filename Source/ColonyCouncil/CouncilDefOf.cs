@@ -46,6 +46,17 @@ namespace ColonyCouncil
         public static ThoughtDef Council_Dream_CameTrue;
         public static ThoughtDef Council_Dream_Fever;
         public static ThoughtDef Council_Asp_Fulfilled;
+        public static ThoughtDef Council_Secret_Unburdened;
+        public static ThoughtDef Council_Secret_Trusted;
+        public static ThoughtDef Council_Secret_Exposed;
+        public static ThoughtDef Council_Secret_Confessed;
+        public static ThoughtDef Council_Secret_Betrayed;
+        public static ThoughtDef Council_Vendetta_Blood;
+        public static ThoughtDef Council_Vendetta_Avenged;
+        public static ThoughtDef Council_Vendetta_Betrayed;
+        public static ThoughtDef Council_GaveEulogy;
+        public static ThoughtDef Council_EulogyHeard;
+        public static HediffDef Council_Vendetta_Fury;
 
         public static HediffDef Council_Motivated;
         public static HediffDef Council_Loyalty;

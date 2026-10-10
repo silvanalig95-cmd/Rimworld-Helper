@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Spoken at the grave by the person closest to the dead. {PAWN_...}: the speaker. {OTHER_...}: the dead.
+    {TITLE}: the name they earned (with [titled]). {GOAL}: what they never got to do (with [unfinished]).
+    {YEARS}: years with the colony. {FACTION}: who killed them (with [battle]).
+    Extra tags: [stranger] (the speaker barely knew them), [rival], [kin], [partner], [battle], [deadchild],
+    [deadold], [titled], [unfinished], [longtime].
+  -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Eulogy</defName>
+    <lines>
+      <plain>
+        <li>{OTHER_nameDef} worked hard, complained a little, and never once left someone behind. That's more than most of us can say.</li>
+        <li>I don't have the right words. {OTHER_nameDef} would have. That's the problem.</li>
+        <li>Every wall here has a little of {OTHER_nameDef} in it. We'll keep them standing.</li>
+        <li>{OTHER_nameDef} was here, with us. On the rim, that's everything.</li>
+        <li>[longtime] {YEARS} years. {OTHER_nameDef} was here for {YEARS} years. Most of what we have, {OTHER_nameDef} helped build.</li>
+        <li>[titled] We called {OTHER_nameDef} {TITLE}. It wasn't a joke. It was earned, every day.</li>
+        <li>[unfinished] {OTHER_nameDef} wanted to {GOAL}. Didn't get the time. Some of us will try to finish it.</li>
+        <li>[battle] {FACTION} did this. {OTHER_nameDef} stood on the wall so the rest of us didn't have to. We won't forget that, and we won't forget them.</li>
+        <li>[battle] {OTHER_nameDef} died holding the line. Every one of us is alive because the line held.</li>
+        <li>[deadchild] There's nothing to say about a child in the ground. Nothing that helps. We'll remember the laughing.</li>
+        <li>[deadold] {OTHER_nameDef} saw more winters than any of us. Taught us how to get through them, too.</li>
+        <li>[kin] {OTHER_nameDef} was my family. Out here, family is the only thing you can't replace.</li>
+        <li>[partner] I woke up every day next to {OTHER_nameDef}. I don't know how to wake up any other way.</li>
+        <li>[stranger] I didn't know {OTHER_nameDef} well. I wish I had. That's the worst thing I can say, and it's true.</li>
+        <li>[rival] {OTHER_nameDef} and I fought about everything. I'd give a lot for one more argument.</li>
+        <li>[winter] We buried {OTHER_nameDef} in frozen ground. It took all of us. {OTHER_nameDef} would have liked that.</li>
+        <li>[rain] Even the sky is crying for {OTHER_nameDef}. Fitting. {OTHER_nameDef} was always dramatic.</li>
+      </plain>
+      <warm>
+        <li>{OTHER_nameDef} made this place a home. Not a camp, not a fort. A home. Thank you, {OTHER_nameDef}.</li>
+        <li>[partner] I loved {OTHER_nameDef}. I'm going to keep saying it, out loud, so the rim knows.</li>
+        <li>[unfinished] {OTHER_nameDef} wanted to {GOAL}. I'm going to try, for {OTHER_nameDef}.</li>
+      </warm>
+      <blunt>
+        <li>{OTHER_nameDef} was good at the job and good to the people around. Not much more to say. Not much more that matters.</li>
+        <li>[battle] {FACTION} took {OTHER_nameDef}. Next time they come, they'll find out what that cost them.</li>
+      </blunt>
+      <cheerful>
+        <li>{OTHER_nameDef} made me laugh every single day. I'm going to try to keep doing that for all of you. It won't be as good.</li>
+      </cheerful>
+      <gloomy>
+        <li>We're all heading where {OTHER_nameDef} has gone. {OTHER_nameDef} just got there first, and left us the work.</li>
+        <li>[deadchild] We were supposed to keep the children safe. That was the whole point of all of this.</li>
+      </gloomy>
+      <cold>
+        <li>{OTHER_nameDef} was reliable. Competent. Irreplaceable, in the literal sense. We are weaker today.</li>
+        <li>[battle] {OTHER_nameDef} fell to {FACTION}. I've added that to the ledger.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+</Defs>

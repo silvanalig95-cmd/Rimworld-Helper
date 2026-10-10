@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <HediffDef>
+    <defName>Council_Vendetta_Fury</defName>
+    <label>vengeful fury</label>
+    <description>Facing the people who killed someone they loved. Steady hands, no fear, no mercy.</description>
+    <hediffClass>HediffWithComps</hediffClass>
+    <defaultLabelColor>(0.95, 0.45, 0.35)</defaultLabelColor>
+    <isBad>false</isBad>
+    <everCurableByItem>false</everCurableByItem>
+    <comps>
+      <li Class="HediffCompProperties_Disappears">
+        <disappearsAfterTicks>20000~30000</disappearsAfterTicks>
+        <showRemainingTime>true</showRemainingTime>
+      </li>
+    </comps>
+    <stages>
+      <li>
+        <statOffsets>
+          <ShootingAccuracyPawn>0.03</ShootingAccuracyPawn>
+          <MeleeHitChance>0.08</MeleeHitChance>
+          <MentalBreakThreshold>-0.05</MentalBreakThreshold>
+        </statOffsets>
+        <painFactor>0.8</painFactor>
+      </li>
+    </stages>
+  </HediffDef>
+
+</Defs>

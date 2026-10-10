@@ -1076,7 +1076,7 @@ Granting one of {PAWN_possessive} wishes, or keeping a promise, can win {PAWN_ob
   <CC_TieNote_Dream>{0} dreamt about it</CC_TieNote_Dream>
   <CC_TieNote_ToldDream>shared a dream</CC_TieNote_ToldDream>
   <CC_Log_Dream>a dream</CC_Log_Dream>
-  <CC_Annals_OmenLine>{0}'s {1}</CC_Annals_OmenLine>
+  <CC_Annals_OmenLine>{0} ({1})</CC_Annals_OmenLine>
   <CC_Annals_Omens>Dreams that came true: {0}. Some have started asking the dreamers what they saw.</CC_Annals_Omens>
   <CC_Social_Dreams>Recent dreams</CC_Social_Dreams>
   <CC_Social_DreamsNone>Nobody has told of a dream yet.</CC_Social_DreamsNone>
@@ -1105,5 +1105,41 @@ Granting one of {PAWN_possessive} wishes, or keeping a promise, can win {PAWN_ob
   <CC_Social_Goals>Life goals</CC_Social_Goals>
   <CC_Social_GoalTip>{0} wants to {1}.\nSince {2}.\n\nProgress: {3}</CC_Social_GoalTip>
   <CC_Social_GoalDone>{0} did it: {1} ({2})</CC_Social_GoalDone>
+
+  <!-- Secrets, vendettas, eulogies -->
+  <CC_Settings_Secrets>Secrets</CC_Settings_Secrets>
+  <CC_Settings_Secrets_Tip>Some colonists carry a secret, often from their past: a raider's life, noble blood, a child left behind, a debt, a hidden kindness. They may confide in a close friend (you'll only see that they did). Friends can let it slip, rivals will, and when it comes out everyone reacts according to their nature. Sometimes the council has to decide what to do about it.</CC_Settings_Secrets_Tip>
+  <CC_Settings_Vendettas>Vendettas</CC_Settings_Vendettas>
+  <CC_Settings_Vendettas_Tip>When raiders kill or carry off someone, the people who loved them swear vengeance on that faction: a weight they carry, fury when that faction attacks again, satisfaction when enough of them fall, and outrage if the council makes peace with the killers.</CC_Settings_Vendettas_Tip>
+  <CC_Settings_Eulogies>Eulogies</CC_Settings_Eulogies>
+  <CC_Settings_Eulogies_Tip>When a colonist dies, the person closest to them speaks at the grave, in their own voice.</CC_Settings_Eulogies_Tip>
+
+  <CC_Secret_Confided>{A_nameDef} confided something in {B_nameDef}. Whatever it was, {B_nameDef} isn't saying.</CC_Secret_Confided>
+  <CC_Secret_Label>A secret: {0}</CC_Secret_Label>
+  <CC_Secret_Short>A secret about {PAWN_nameDef} is out.</CC_Secret_Short>
+  <CC_Secret_HowConfessed>{PAWN_nameDef} said it out loud at dinner, to everyone, and then went very quiet.</CC_Secret_HowConfessed>
+  <CC_Secret_HowLeaked>{LEAKER_nameDef} let it slip. {PAWN_nameDef} had trusted {LEAKER_objective} with it.</CC_Secret_HowLeaked>
+  <CC_Secret_ToTheGrave>{PAWN_nameDef} took a secret to the grave. Nobody will ever know what it was.</CC_Secret_ToTheGrave>
+  <CC_Secret_Posthumous>{TELLER_nameDef} kept {PAWN_nameDef}'s secret while {PAWN_pronoun} lived. Now {TELLER_pronoun} has told it:</CC_Secret_Posthumous>
+  <CC_TieNote_Confided>shared a secret</CC_TieNote_Confided>
+  <CC_TieNote_Betrayed>a secret betrayed</CC_TieNote_Betrayed>
+  <CC_Annals_SecretLine>{0} ({1})</CC_Annals_SecretLine>
+  <CC_Annals_Secrets>Secrets that came out: {0}.</CC_Annals_Secrets>
+  <CC_Social_Secrets>Secrets</CC_Social_Secrets>
+  <CC_Social_SecretKnown>{0} has confided something in {1}.</CC_Social_SecretKnown>
+  <CC_Social_SecretOut>{0}: {1} (out in the open)</CC_Social_SecretOut>
+
+  <CC_Vendetta_Sworn>{0} swore vengeance on {FACTION} for {LOST_nameDef}.</CC_Vendetta_Sworn>
+  <CC_Vendetta_SwornTaken>{FACTION} carried off {LOST_nameDef}. {0} won't forget it.</CC_Vendetta_SwornTaken>
+  <CC_Vendetta_Fury>{0} recognised the colours of {FACTION}. This fight is personal.</CC_Vendetta_Fury>
+  <CC_Vendetta_Avenged>{PAWN_nameDef} has avenged {LOST} on {FACTION}.</CC_Vendetta_Avenged>
+  <CC_Log_PeaceWithKillers>peace with {0}</CC_Log_PeaceWithKillers>
+  <CC_Social_Vendettas>Vendettas</CC_Social_Vendettas>
+  <CC_Social_Vendetta>{0} has sworn vengeance on {1} for {2} ({3} of {4} paid).</CC_Social_Vendetta>
+  <CC_Social_VendettaTaken>{0} won't forgive {1} for taking {2} ({3} of {4} paid).</CC_Social_VendettaTaken>
+  <CC_Social_VendettaSettled>{0}'s debt with {1} for {2} is settled.</CC_Social_VendettaSettled>
+
+  <CC_Eulogy_Label>Goodbye, {0}</CC_Eulogy_Label>
+  <CC_Eulogy_Text>At {OTHER_nameDef}'s grave, {PAWN_nameDef} spoke:\n\n"{SPEECH}"</CC_Eulogy_Text>
 
 </LanguageData>

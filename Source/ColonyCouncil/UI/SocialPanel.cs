@@ -118,6 +118,8 @@ namespace ColonyCouncil
                 }
                 cy += 10f;
             }
+            if (ColonyCouncilMod.Settings.vendettas) cy += DrawVendettas(comp, view.width, cy);
+            if (ColonyCouncilMod.Settings.secrets) cy += DrawSecrets(comp, view.width, cy);
             if (ColonyCouncilMod.Settings.dreams) cy += DrawDreams(comp, view.width, cy);
             height = Mathf.Max(cy, 100f);
             Widgets.EndScrollView();
@@ -172,6 +174,55 @@ namespace ColonyCouncil
             {
                 return a.Progress.ToStringPercent();
             }
+        }
+
+        private static float DrawVendettas(CouncilGameComponent comp, float width, float y)
+        {
+            var list = comp.vendettas.vendettas.Where(v => v.avenger != null && !v.avenger.Dead && v.avenger.IsColonist && v.faction != null && (focus == null || v.avenger == focus))
+                .OrderBy(v => v.settled).ThenByDescending(v => v.tick).Take(10).ToList();
+            if (list.Count == 0) return 0f;
+            float start = y;
+            y += Header(width, y, "CC_Social_Vendettas".Translate());
+            foreach (var v in list)
+            {
+                string line = (v.settled ? "CC_Social_VendettaSettled" : v.kidnapped ? "CC_Social_VendettaTaken" : "CC_Social_Vendetta")
+                    .Translate(v.avenger.LabelShort, v.faction.Name, v.victim, v.kills, Vendetta.KillsToSettle).Resolve();
+                GUI.color = v.settled ? Faint : new Color(0.9f, 0.55f, 0.45f);
+                Text.Anchor = TextAnchor.MiddleLeft;
+                Widgets.Label(new Rect(6f, y, width - 6f, RowH), line.Truncate(width - 10f));
+                Text.Anchor = TextAnchor.UpperLeft;
+                GUI.color = Color.white;
+                y += RowH + 2f;
+            }
+            return y - start + 10f;
+        }
+
+        /// <summary>Only what the colony could know: who has confided in whom (not what), and secrets that are out.</summary>
+        private static float DrawSecrets(CouncilGameComponent comp, float width, float y)
+        {
+            var list = comp.secrets.secrets.Where(s => s.owner != null && !s.owner.Dead && s.owner.IsColonist && (focus == null || s.owner == focus)
+                                                       && (s.revealed || s.knowers.Count > 0 || Prefs.DevMode)).ToList();
+            if (list.Count == 0) return 0f;
+            float start = y;
+            y += Header(width, y, "CC_Social_Secrets".Translate());
+            foreach (var s in list.OrderBy(s => s.revealed))
+            {
+                string line;
+                if (s.revealed) line = "CC_Social_SecretOut".Translate(s.owner.LabelShort, s.def.label).Resolve();
+                else if (s.knowers.Count > 0) line = "CC_Social_SecretKnown".Translate(s.owner.LabelShort, TextUtil.JoinAnd(s.knowers.Select(k => k.LabelShort).ToList())).Resolve();
+                else line = "(dev) " + s.owner.LabelShort + ": " + s.def.label;
+                var r = new Rect(0f, y, width, RowH);
+                Widgets.DrawHighlightIfMouseover(r);
+                GUI.color = s.revealed ? (s.def.good ? new Color(0.6f, 0.9f, 0.6f) : new Color(0.9f, 0.6f, 0.5f)) : Faint;
+                Text.Anchor = TextAnchor.MiddleLeft;
+                Widgets.Label(new Rect(6f, y, width - 6f, RowH), line.Truncate(width - 10f));
+                Text.Anchor = TextAnchor.UpperLeft;
+                GUI.color = Color.white;
+                if (s.revealed) TooltipHandler.TipRegion(r, s.Truth);
+                else if (Prefs.DevMode) TooltipHandler.TipRegion(r, "(dev) " + s.Truth);
+                y += RowH + 2f;
+            }
+            return y - start + 10f;
         }
 
         private static float DrawDreams(CouncilGameComponent comp, float width, float y)
