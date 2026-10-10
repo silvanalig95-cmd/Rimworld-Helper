@@ -308,4 +308,56 @@
     </logRulesInitiator>
   </InteractionDef>
 
+  <!-- ============ Talking about decrees ============ -->
+
+  <InteractionDef>
+    <defName>Council_Decree_Gripe</defName>
+    <label>grumbled about the decree</label>
+    <workerClass>ColonyCouncil.InteractionWorker_DecreeTalk</workerClass>
+    <symbol>ColonyCouncil/Symbols/Wish</symbol>
+    <initiatorThought>Council_SharedGripe</initiatorThought>
+    <recipientThought>Council_SharedGripe</recipientThought>
+    <logRulesInitiator>
+      <rulesStrings>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] spent a while agreeing that [decree] is [verdict].</li>
+        <li>r_logentry->[INITIATOR_nameDef] muttered to [RECIPIENT_nameDef] about [decree]. [RECIPIENT_nameDef] muttered back.</li>
+        <li>r_logentry->[INITIATOR_nameDef] counted down the days left of [decree] with [RECIPIENT_nameDef].</li>
+        <li>r_logentry->[INITIATOR_nameDef] did an impression of the council announcing [decree]. [RECIPIENT_nameDef] laughed despite [RECIPIENT_objective]self.</li>
+        <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] whether anyone actually voted for [decree].</li>
+        <li>decree->the council's latest decree</li>
+        <li>decree->the new rules</li>
+        <li>decree->this decree business</li>
+        <li>decree->what the council calls policy</li>
+        <li>verdict->a terrible idea</li>
+        <li>verdict->going to get someone killed</li>
+        <li>verdict->the council's worst decision yet</li>
+        <li>verdict->only bearable because it ends</li>
+      </rulesStrings>
+    </logRulesInitiator>
+  </InteractionDef>
+
+  <InteractionDef>
+    <defName>Council_Decree_Argue</defName>
+    <label>argued about the decree</label>
+    <workerClass>ColonyCouncil.InteractionWorker_DecreeTalk</workerClass>
+    <symbol>ColonyCouncil/Symbols/Ambition</symbol>
+    <socialFightBaseChance>0.05</socialFightBaseChance>
+    <initiatorThought>Council_DecreeArgument</initiatorThought>
+    <recipientThought>Council_DecreeArgument</recipientThought>
+    <logRulesInitiator>
+      <rulesStrings>
+        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] that [decree] was [defense]. [RECIPIENT_nameDef] disagreed loudly.</li>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] argued about [decree] until someone told them both to shut up.</li>
+        <li>r_logentry->[INITIATOR_nameDef] suggested [RECIPIENT_nameDef] stop complaining about [decree] and get on with it.</li>
+        <li>r_logentry->[INITIATOR_nameDef] defended [decree] to [RECIPIENT_nameDef], who made it very clear what [RECIPIENT_pronoun] thought of that.</li>
+        <li>decree->the council's decree</li>
+        <li>decree->the new rules</li>
+        <li>decree->the decree</li>
+        <li>defense->the best thing the council has done all year</li>
+        <li>defense->exactly what the colony needed</li>
+        <li>defense->good for everyone, even the complainers</li>
+      </rulesStrings>
+    </logRulesInitiator>
+  </InteractionDef>
+
 </Defs>

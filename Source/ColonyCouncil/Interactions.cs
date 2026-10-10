@@ -73,6 +73,32 @@ namespace ColonyCouncil
         }
     }
 
+    /// <summary>
+    /// Talk about the decrees in force. "Gripe" defs: two people who both dislike a decree grumble together and
+    /// grow closer. "Argue" defs: someone who likes a decree defends it to someone who hates it, which can sour
+    /// things (and occasionally come to blows). Which kind a def is comes from its defName ending.
+    /// </summary>
+    public class InteractionWorker_DecreeTalk : InteractionWorker
+    {
+        private bool Gripe => interaction.defName.EndsWith("Gripe");
+
+        public override float RandomSelectionWeight(Pawn initiator, Pawn recipient)
+        {
+            var comp = CouncilGameComponent.Instance;
+            if (comp == null || comp.decrees.active.Count == 0 || recipient == null || !recipient.IsColonist || !initiator.IsColonist) return 0f;
+            foreach (var a in comp.decrees.active)
+            {
+                var mine = a.def.ReactionOf(initiator);
+                var theirs = a.def.ReactionOf(recipient);
+                if (Gripe && mine <= DecreeReaction.Dislike && theirs <= DecreeReaction.Dislike)
+                    return mine == DecreeReaction.Hate ? 0.08f : 0.04f;
+                if (!Gripe && mine >= DecreeReaction.Like && theirs == DecreeReaction.Hate)
+                    return 0.03f;
+            }
+            return 0f;
+        }
+    }
+
     /// <summary>"The council suggests..." in the alerts column when something is urgent.</summary>
     public class Alert_CouncilAdvice : Alert
     {

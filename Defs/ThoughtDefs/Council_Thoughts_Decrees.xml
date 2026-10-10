@@ -75,4 +75,22 @@
     <stages><li><label>the council heeded me</label><description>I asked for a decree, and the council actually declared it.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
   </ThoughtDef>
 
+  <ThoughtDef>
+    <defName>Council_SharedGripe</defName>
+    <thoughtClass>Thought_MemorySocial</thoughtClass>
+    <durationDays>6</durationDays>
+    <stackLimit>5</stackLimit>
+    <stackLimitForSameOtherPawn>2</stackLimitForSameOtherPawn>
+    <stages><li><label>griped together</label><description>We both hate the decree. Nice to know I'm not the only one.</description><baseMoodEffect>1</baseMoodEffect><baseOpinionOffset>4</baseOpinionOffset></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Council_DecreeArgument</defName>
+    <thoughtClass>Thought_MemorySocial</thoughtClass>
+    <durationDays>6</durationDays>
+    <stackLimit>5</stackLimit>
+    <stackLimitForSameOtherPawn>2</stackLimitForSameOtherPawn>
+    <stages><li><label>argued about the decree</label><description>We disagreed about the council's decree, loudly.</description><baseMoodEffect>-1</baseMoodEffect><baseOpinionOffset>-5</baseOpinionOffset></li></stages>
+  </ThoughtDef>
+
 </Defs>
