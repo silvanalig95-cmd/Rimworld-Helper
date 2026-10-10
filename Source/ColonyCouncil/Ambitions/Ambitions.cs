@@ -466,6 +466,9 @@ namespace ColonyCouncil
             var p = others.RandomElement();
             var target = pitches.RandomElement();
             var tone = ToneUtility.ToneFor(p);
+            string fromPool = Flavor.FromPool("Council_Pool_Heckle", p, null, tone);
+            if (!fromPool.NullOrEmpty())
+                return fromPool.Formatted(p.Named("PAWN"), target.proposer.Named("OTHER"), target.def.label.Named("AMBITION")).Resolve();
             string key = "CC_Heckle_" + tone;
             if (!key.CanTranslate()) key = "CC_Heckle_Plain";
             return key.Translate(p.Named("PAWN"), target.proposer.Named("OTHER"), target.def.label.Named("AMBITION")).Resolve();

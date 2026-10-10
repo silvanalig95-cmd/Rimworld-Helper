@@ -461,9 +461,16 @@ namespace ColonyCouncil
             w.expiresTick += GenDate.TicksPerDay * 2;
             SetCooldown(p, w.def);
             Tone tone = ToneUtility.ToneFor(p);
-            string line = "CC_CoSignLine_" + tone;
-            string speech = line.CanTranslate() ? line.Translate(w.pawn.Named("PAWN"), w.Label.Named("WISH")).Resolve()
-                : "CC_CoSignLine_Plain".Translate(w.pawn.Named("PAWN"), w.Label.Named("WISH")).Resolve();
+            string speech;
+            string fromPool = Flavor.FromPool("Council_Pool_CoSign", p, w, tone);
+            if (!fromPool.NullOrEmpty())
+                speech = fromPool.Formatted(p.Named("PAWN"), w.pawn.Named("OTHER"), w.Label.Named("WISH")).Resolve();
+            else
+            {
+                string line = "CC_CoSignLine_" + tone;
+                speech = line.CanTranslate() ? line.Translate(w.pawn.Named("PAWN"), w.Label.Named("WISH")).Resolve()
+                    : "CC_CoSignLine_Plain".Translate(w.pawn.Named("PAWN"), w.Label.Named("WISH")).Resolve();
+            }
             Messages.Message("CC_PetitionJoined".Translate(p.Named("PAWN"), w.pawn.Named("OTHER"), w.Label.Named("WISH"), (w.coSigners.Count + 1).Named("COUNT")).Resolve(),
                 new LookTargets(p), MessageTypeDefOf.NeutralEvent, false);
             Speak(p, speech, new Color(1f, 0.92f, 0.6f));

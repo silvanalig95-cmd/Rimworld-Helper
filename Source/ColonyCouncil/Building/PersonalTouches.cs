@@ -187,8 +187,21 @@ namespace ColonyCouncil
             return false;
         }
 
+        private static string TouchKind(ThingDef def)
+        {
+            if (Avail.IsPlantPot(def)) return "touch:plantpot";
+            if (Avail.IsLight(def)) return "touch:light";
+            if (Avail.IsEndTable(def)) return "touch:endtable";
+            if (Avail.IsDresser(def)) return "touch:dresser";
+            return "touch:other";
+        }
+
         private static string Line(string prefix, Pawn pawn, ThingDef def)
         {
+            string pool = prefix == "CC_Touch_" ? "Council_Pool_Touch" : "Council_Pool_TouchDone";
+            string fromPool = Flavor.FromPool(pool, pawn, null, null, TouchKind(def));
+            if (!fromPool.NullOrEmpty())
+                return fromPool.Formatted(pawn.Named("PAWN"), Avail.Indefinite(def).Named("THING"), def.label.Named("THINGBARE")).Resolve();
             var tone = ToneUtility.ToneFor(pawn);
             string key = prefix + tone;
             if (!key.CanTranslate()) key = prefix + "Plain";

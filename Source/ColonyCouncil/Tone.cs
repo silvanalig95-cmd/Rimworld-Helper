@@ -44,6 +44,24 @@ namespace ColonyCouncil
 
         public bool Any => AllLines().Any();
 
+        /// <summary>Appends another bundle's lines, tone by tone.</summary>
+        public void AddFrom(ToneLines other)
+        {
+            if (other == null) return;
+            void Add(ref List<string> mine, List<string> theirs)
+            {
+                if (theirs == null || theirs.Count == 0) return;
+                if (mine == null) mine = new List<string>();
+                mine.AddRange(theirs);
+            }
+            Add(ref plain, other.plain);
+            Add(ref warm, other.warm);
+            Add(ref blunt, other.blunt);
+            Add(ref cheerful, other.cheerful);
+            Add(ref gloomy, other.gloomy);
+            Add(ref cold, other.cold);
+        }
+
         public IEnumerable<string> AllLines()
         {
             foreach (var list in new[] { plain, warm, blunt, cheerful, gloomy, cold })

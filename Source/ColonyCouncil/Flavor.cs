@@ -216,11 +216,12 @@ namespace ColonyCouncil
         public static bool AnyFits(IEnumerable<string> lines, HashSet<string> context) => lines != null && lines.Any(l => !l.NullOrEmpty() && Match(l, context) >= 0);
 
         /// <summary>A line from a <see cref="FlavorPoolDef"/>, or null if the pool doesn't exist or nothing fits.</summary>
-        public static string FromPool(string poolDefName, Pawn p, Wish w = null, Tone? tone = null)
+        public static string FromPool(string poolDefName, Pawn p, Wish w = null, Tone? tone = null, params string[] extraTags)
         {
             var pool = DefDatabase<FlavorPoolDef>.GetNamedSilentFail(poolDefName);
             if (pool == null) return null;
             var tags = TagsFor(p, w);
+            if (extraTags != null) foreach (var t in extraTags) if (!t.NullOrEmpty()) tags.Add(t);
             return pool.lines.Pick(tone ?? ToneUtility.ToneFor(p), tags);
         }
     }

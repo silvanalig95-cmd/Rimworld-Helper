@@ -15,6 +15,7 @@ namespace ColonyCouncil
             {
                 ApplyButtonPosition(false);
                 PlaceArchitectCategory();
+                FlavorExtensions.Apply();
             }
             catch (System.Exception e)
             {
