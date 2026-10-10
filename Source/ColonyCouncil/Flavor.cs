@@ -17,6 +17,7 @@ namespace ColonyCouncil
     /// <item>tech: tribal, medieval, industrial, spacer; wealth: poor, rich; colony: small, large</item>
     /// <item>the speaker: child, teen, old, hurt, trait:DefName, skill:DefName (passionate about it)</item>
     /// <item>events: afterraid, grieving, newcomer, repeat (asked before), promised, petition, forother</item>
+    /// <item>right now: eating, inbed, relaxing, working, work:WorkTypeDef (Cooking, Growing, Mining...), outside, indoors, inownroom</item>
     /// </list>
     /// Prefix a tag with ! to negate it, separate alternatives with |, e.g. <c>[night|evening,!child]</c>.
     /// </summary>
@@ -92,6 +93,30 @@ namespace ColonyCouncil
                     }
                     if (p.records != null && p.records.GetAsInt(RecordDefOf.TimeAsColonistOrColonyAnimal) < GenDate.TicksPerDay * 10) tags.Add("newcomer");
                     if (IsGrieving(p)) tags.Add("grieving");
+
+                    // What they're doing and where, so a scene can catch them in the act.
+                    var job = p.CurJob;
+                    if (p.InBed()) tags.Add("inbed");
+                    else if (job != null)
+                    {
+                        if (job.def == JobDefOf.Ingest) tags.Add("eating");
+                        else if (job.def.joyKind != null) tags.Add("relaxing");
+                        else if (job.workGiverDef?.workType != null)
+                        {
+                            tags.Add("working");
+                            tags.Add("work:" + job.workGiverDef.workType.defName);
+                        }
+                    }
+                    if (p.Spawned && p.Map != null)
+                    {
+                        var room = p.GetRoom();
+                        if (room == null || room.PsychologicallyOutdoors) tags.Add("outside");
+                        else
+                        {
+                            tags.Add("indoors");
+                            if (RoomUtil.PrivateRoom(p) == room) tags.Add("inownroom");
+                        }
+                    }
 
                     var standing = CouncilGameComponent.Instance?.standings?.For(p, false);
                     if (standing != null)
