@@ -86,11 +86,18 @@ namespace ColonyCouncil
 
         public bool Involves(Pawn p) => p != null && (p == pawn || p == Beneficiary || coSigners.Contains(p));
 
-        public string Label => Format(def.label).CapitalizeFirst();
+        public string Label => Format(def.label, def.label).CapitalizeFirst();
 
-        public string Format(string template)
+        public string Format(string template) => Format(template, null);
+
+        /// <summary>
+        /// Fills in the placeholders. {WISH} gets the finished label (its own placeholders filled in), except
+        /// while formatting the label itself.
+        /// </summary>
+        private string Format(string template, string wishLabel)
         {
             if (template.NullOrEmpty() || pawn == null) return template ?? "";
+            if (wishLabel == null) wishLabel = template.Contains("{WISH") ? Label : def.label;
             var forPawn = Beneficiary ?? pawn;
             string thing = thingDef != null ? Avail.Indefinite(thingDef) : (subjectLabel ?? "");
             return template.Formatted(
@@ -101,7 +108,7 @@ namespace ColonyCouncil
                 thing.Named("THING"),
                 (thingDef?.label ?? subjectLabel ?? "").Named("THINGBARE"),
                 targetValue.ToString("0").Named("TARGET"),
-                def.label.Named("WISH"),
+                wishLabel.Named("WISH"),
                 (envied ?? other ?? forPawn).Named("ENVIED")).Resolve();
         }
 
