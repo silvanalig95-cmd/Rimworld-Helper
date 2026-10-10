@@ -1,0 +1,538 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Dilemmas about life goals. roleA always has <goal>true</goal>, so {GOAL} is A's goal as a verb phrase
+    ("master cooking", "marry for love", "see five more years with the colony"): every text has to read well
+    with any of them. New thoughts in Council_Thoughts_Goals2.xml.
+  -->
+
+  <!-- ===================== Time off for a dream ===================== -->
+  <ColonyCouncil.DilemmaDef>
+    <defName>Council_Dilemma_Goal_Excused</defName>
+    <label>time for a dream</label>
+    <weight>1</weight>
+    <cooldownDays>40</cooldownDays>
+    <roleA>
+      <goal>true</goal>
+    </roleA>
+    <texts>
+      <li>{A_nameDef} came to the council with a request, rehearsed and a little shaky. {A_nameDef} has set {A_possessive} heart on one thing: to {GOAL}. Between the hauling, the cleaning and every other chore on the roster, there is no time left over for it.\n\n{A_nameDef} is asking to be let off the dull work for a season. Somebody else would have to pick it up, and the somebodies are listening closely.</li>
+      <li>Every evening {A_nameDef} drags in from the day's chores too tired to do anything but sleep, and every morning the dream gets a little further away. The dream, for the record, is to {GOAL}.\n\n{A_nameDef} has asked the council for lighter duties, just for a while, to make some real progress. The roster is already tight, and the people who would take up the slack have opinions.</li>
+    </texts>
+    <defaultOption>2</defaultOption>
+    <options>
+      <li>
+        <label>Let {A_nameDef} off the chores for a season</label>
+        <outcome>{A_nameDef} is off the chore roster for now and has thrown every spare hour at the dream. The others are hauling a little more and grumbling a little louder.</outcome>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_DlmGoal_GivenTime</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>5</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Inspiration"><target>A</target><chance>0.35</chance></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Others</target><thought>Council_DlmSoc_Favorites</thought><onlyTrait><li>Jealous</li></onlyTrait></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Others</target><thought>Council_Dlm_Shirking</thought><degreeTrait>Industriousness</degreeTrait><minDegree>1</minDegree></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Others</target><thought>Council_Dlm_FairsFair</thought><onlyTrait><li>Kind</li></onlyTrait><chance>0.5</chance></li>
+        </effects>
+        <riskChance>0.25</riskChance>
+        <riskOutcome>{A_nameDef} got the season off and spent the first week of it mostly asleep. The dream is still a dream. The roster is still short.</riskOutcome>
+        <riskEffects>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Others</target><thought>Council_Dlm_Shirking</thought><exceptTrait><li>Kind</li></exceptTrait><chance>0.5</chance></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>Others</target><amount>-1</amount></li>
+        </riskEffects>
+      </li>
+      <li>
+        <label>One free afternoon in three</label>
+        <outcome>{A_nameDef} gets every third afternoon off the roster. It's not what {A_nameDef} asked for, but it's a start, and nobody else's week got much worse.</outcome>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_Compromise</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>2</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Inspiration"><target>A</target><chance>0.15</chance></li>
+        </effects>
+      </li>
+      <li>
+        <label>The chores come first</label>
+        <outcome>The roster stays as it is. {A_nameDef} went back to hauling, and the dream went back to waiting.</outcome>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_DlmGoal_DreamDeferred</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>-4</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Others</target><thought>Council_Dlm_FairsFair</thought><degreeTrait>Industriousness</degreeTrait><minDegree>1</minDegree></li>
+        </effects>
+        <riskChance>0.2</riskChance>
+        <riskOutcome>The roster stays as it is. {A_nameDef} said nothing at all, and has been doing every chore at exactly half speed ever since.</riskOutcome>
+        <riskEffects>
+          <li Class="ColonyCouncil.DilemmaEffect_Hediff"><target>A</target><hediff>Council_Disgruntled</hediff><severity>0.4</severity></li>
+        </riskEffects>
+      </li>
+    </options>
+  </ColonyCouncil.DilemmaDef>
+
+  <!-- ===================== A dream on credit ===================== -->
+  <ColonyCouncil.DilemmaDef>
+    <defName>Council_Dilemma_Goal_Purse</defName>
+    <label>a dream on credit</label>
+    <weight>0.9</weight>
+    <cooldownDays>45</cooldownDays>
+    <roleA>
+      <goal>true</goal>
+    </roleA>
+    <texts>
+      <li>{A_nameDef} has a plan to {GOAL}, and for once it's written down, with numbers. The numbers end in a request: 150 silver from the colony's purse, for tools, books and the help of a passing trader or two.\n\n{A_nameDef} swears every coin will go toward the dream. The colony's purse has never been heavy, and everyone knows exactly how light it is.</li>
+      <li>A trader passed through last week, and {A_nameDef} spent the whole visit at the wagons asking questions. Now {A_nameDef} is sure of it: with the right supplies, the dream to {GOAL} is finally within reach.\n\nThe right supplies cost 150 silver. {A_nameDef} has none of it, and has come to the council with an open hand and a very hopeful face.</li>
+    </texts>
+    <defaultOption>2</defaultOption>
+    <options>
+      <li>
+        <label>Give {A_nameDef} 150 silver</label>
+        <outcome>{A_nameDef} got the silver and spent it carefully, with receipts. Whether it gets the dream any closer, time will tell. {A_nameDef} certainly believes it will.</outcome>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>silver</what><count>150</count></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_DlmGoal_Backed</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>6</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Inspiration"><target>A</target><chance>0.5</chance></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Others</target><thought>Council_Dlm_Squandered</thought><onlyTrait><li>Greedy</li></onlyTrait></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Others</target><thought>Council_Dlm_FairsFair</thought><onlyTrait><li>Kind</li></onlyTrait><chance>0.5</chance></li>
+        </effects>
+        <riskChance>0.2</riskChance>
+        <riskReplaces>true</riskReplaces>
+        <riskOutcome>{A_nameDef} took the 150 silver to the next trader and came back with a crate of something that turned out to be mostly packing straw. {A_nameDef} is mortified. The purse is still lighter.</riskOutcome>
+        <riskEffects>
+          <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>silver</what><count>150</count></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_DlmGoal_Swindled</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>2</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Others</target><thought>Council_Dlm_Squandered</thought><exceptTrait><li>Kind</li></exceptTrait><chance>0.5</chance></li>
+        </riskEffects>
+      </li>
+      <li>
+        <label>Give 50 silver and the council's good wishes</label>
+        <outcome>{A_nameDef} got fifty silver and a handshake. It covers a third of the plan. {A_nameDef} is already rewriting the numbers.</outcome>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>silver</what><count>50</count></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_Compromise</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>2</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Inspiration"><target>A</target><chance>0.15</chance></li>
+        </effects>
+      </li>
+      <li>
+        <label>Not from the colony's purse</label>
+        <outcome>The silver stays in the purse. {A_nameDef} folded the plan up very small and put it away, and nobody has seen it since.</outcome>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_DlmGoal_DreamDeferred</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>-4</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Others</target><thought>Council_Dlm_FairsFair</thought><onlyTrait><li>Greedy</li></onlyTrait></li>
+        </effects>
+      </li>
+    </options>
+  </ColonyCouncil.DilemmaDef>
+
+  <!-- ===================== A teacher for a dream ===================== -->
+  <ColonyCouncil.DilemmaDef>
+    <defName>Council_Dilemma_Goal_Mentor</defName>
+    <label>a teacher for a dream</label>
+    <weight>0.9</weight>
+    <cooldownDays>40</cooldownDays>
+    <roleA>
+      <goal>true</goal>
+    </roleA>
+    <roleB>
+      <minOpinionOfA>-10</minOpinionOfA>
+      <notTie>Rivals</notTie>
+    </roleB>
+    <texts>
+      <li>{A_nameDef} has set {A_possessive} heart on one thing: to {GOAL}. {A_nameDef} has also decided that the only person who can help is {B_nameDef}, who has seen more of the rim than most and knows how things get done.\n\n{A_nameDef} wants {B_nameDef}'s evenings, every one of them, for the next season. {B_nameDef} has not been asked yet, and would like to be.</li>
+      <li>For days {A_nameDef} has been following {B_nameDef} around with questions about work, life and how a person goes about trying to {GOAL}. {B_nameDef} has answered some of them and hidden from the rest.\n\nNow {A_nameDef} wants it made official: {B_nameDef} as a mentor, with time set aside for it. {B_nameDef} has opinions about that.</li>
+    </texts>
+    <defaultOption>2</defaultOption>
+    <options>
+      <li>
+        <label>Ask {B_nameDef} to make the time</label>
+        <outcome>{B_nameDef} now spends the evenings with {A_nameDef}, talking through every step of the plan. {B_nameDef} grumbled at first. Lately, less.</outcome>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_DlmGoal_Mentored</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>4</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_Bonded</thought><chance>0.5</chance></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Inspiration"><target>A</target><chance>0.3</chance></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_DlmGoal_Volunteered</thought><exceptTrait><li>Kind</li></exceptTrait></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_Dlm_Helped</thought><onlyTrait><li>Kind</li></onlyTrait></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>B</target><amount>-1</amount><exceptTrait><li>Kind</li></exceptTrait></li>
+        </effects>
+        <riskChance>0.3</riskChance>
+        <riskReplaces>true</riskReplaces>
+        <riskOutcome>{B_nameDef} gave {A_nameDef} exactly two evenings, most of which went on explaining why the whole plan was wrong. Neither will say who stormed out first.</riskOutcome>
+        <riskEffects>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>AAndB</target><thought>Council_Dlm_Grudge</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_DlmGoal_Volunteered</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>AAndB</target><amount>-2</amount></li>
+        </riskEffects>
+      </li>
+      <li>
+        <label>Take chores off {B_nameDef} to free the evenings</label>
+        <outcome>The council shared some of {B_nameDef}'s chores out among the others, so the evenings are free for teaching. {A_nameDef} is delighted, {B_nameDef} is flattered, and everyone else is doing a little more hauling.</outcome>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_DlmGoal_Mentored</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_DlmGoal_AskedToTeach</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_Bonded</thought><chance>0.6</chance></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>AAndB</target><amount>3</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Others</target><thought>Council_DlmSoc_Reshuffled</thought><chance>0.6</chance></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>Others</target><amount>-1</amount></li>
+        </effects>
+      </li>
+      <li>
+        <label>That's between the two of them</label>
+        <outcome>The council left it to {A_nameDef} and {B_nameDef} to sort out. {A_nameDef} still asks questions. {B_nameDef} still hides from some of them.</outcome>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_Ignored</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>-2</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_Dlm_FairsFair</thought><chance>0.5</chance></li>
+        </effects>
+      </li>
+    </options>
+  </ColonyCouncil.DilemmaDef>
+
+  <!-- ===================== A foolish dream ===================== -->
+  <ColonyCouncil.DilemmaDef>
+    <defName>Council_Dilemma_Goal_Foolish</defName>
+    <label>a foolish dream</label>
+    <weight>1</weight>
+    <cooldownDays>40</cooldownDays>
+    <roleA>
+      <goal>true</goal>
+    </roleA>
+    <roleB>
+      <maxOpinionOfA>15</maxOpinionOfA>
+      <notTie>Friends</notTie>
+    </roleB>
+    <texts>
+      <li>At dinner, {B_nameDef} announced to the whole table that {A_nameDef}'s great dream, to {GOAL}, is a waste of everyone's time and food. A few people laughed. {A_nameDef} didn't.\n\n{A_nameDef} wants the council to say, plainly and in public, that it's a fine dream to have. {B_nameDef} wants the council to say what everybody else is thinking.</li>
+      <li>{B_nameDef} has taken to calling {A_nameDef} "the dreamer", and not kindly. It's about {A_nameDef}'s life goal: to {GOAL}. {B_nameDef} thinks it's foolish, says so often, and has started making a little speech about it whenever {A_nameDef} walks into a room.\n\nIt came to shouting this morning. Both of them are at the council's door.</li>
+    </texts>
+    <defaultOption>3</defaultOption>
+    <options>
+      <li>
+        <label>Stand behind {A_nameDef}'s dream</label>
+        <outcome>The council said, in front of everyone, that a person's dream is their own business and a fine thing to have. {A_nameDef} sat up a little straighter. {B_nameDef} chewed very loudly.</outcome>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_Vindicated</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>4</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_Dlm_Overruled</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>B</target><amount>-3</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Others</target><thought>Council_Dlm_FairsFair</thought><onlyTrait><li>Kind</li></onlyTrait></li>
+        </effects>
+        <riskChance>0.25</riskChance>
+        <riskOutcome>The council stood behind {A_nameDef}'s dream, in public. {B_nameDef} took it as a personal insult, and has been telling anyone who'll listen that the council has gone soft.</riskOutcome>
+        <riskEffects>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_Dlm_Grudge</thought></li>
+        </riskEffects>
+      </li>
+      <li>
+        <label>Hear {B_nameDef} out</label>
+        <outcome>The council let {B_nameDef} make the whole case against the dream, start to finish. Some of it was even fair. {A_nameDef} left before the end.</outcome>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_DlmGoal_Doubted</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>-5</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_Dlm_Vindicated</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>B</target><amount>3</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Others</target><thought>Council_Dlm_Harsh</thought><onlyTrait><li>Kind</li></onlyTrait></li>
+        </effects>
+        <riskChance>0.25</riskChance>
+        <riskOutcome>The council let {B_nameDef} make the whole case against the dream. {A_nameDef} left before the end, walked out past the fields, and hasn't come back yet.</riskOutcome>
+        <riskEffects>
+          <li Class="ColonyCouncil.DilemmaEffect_MentalState"><target>A</target><mentalState>Wander_Sad</mentalState></li>
+        </riskEffects>
+      </li>
+      <li>
+        <label>Settle it with a wager</label>
+        <outcome>The council set the terms: if {A_nameDef} pulls it off, {B_nameDef} cooks for a week and says sorry in front of everyone. {A_nameDef} has never been so motivated. {B_nameDef} has started to look a little nervous.</outcome>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_DlmGoal_Wager</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Inspiration"><target>A</target><chance>0.35</chance></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_DlmGoal_Bet</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>AAndB</target><amount>1</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>AAndB</target><thought>Council_Dlm_MadeUp</thought><chance>0.25</chance></li>
+        </effects>
+      </li>
+      <li>
+        <label>Stay out of it</label>
+        <outcome>The council stayed out of it. {B_nameDef} took that as permission to keep the speeches going, and {A_nameDef} has started eating alone.</outcome>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>AAndB</target><thought>Council_Dlm_Ignored</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_DlmGoal_Doubted</thought><chance>0.5</chance></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>-3</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>B</target><amount>-1</amount></li>
+        </effects>
+        <riskChance>0.3</riskChance>
+        <riskOutcome>The council stayed out of it, so {A_nameDef} and {B_nameDef} settled it themselves, behind the storeroom, with fists.</riskOutcome>
+        <riskEffects>
+          <li Class="ColonyCouncil.DilemmaEffect_Fight" />
+        </riskEffects>
+      </li>
+    </options>
+  </ColonyCouncil.DilemmaDef>
+
+  <!-- ===================== Two dreams, one colony ===================== -->
+  <ColonyCouncil.DilemmaDef>
+    <defName>Council_Dilemma_Goal_TwoDreams</defName>
+    <label>two dreams, one colony</label>
+    <weight>0.8</weight>
+    <cooldownDays>45</cooldownDays>
+    <roleA>
+      <goal>true</goal>
+    </roleA>
+    <roleB>
+      <goal>true</goal>
+    </roleB>
+    <texts>
+      <li>{A_nameDef} wants to {GOAL}. {B_nameDef} has a dream of {B_possessive} own. Neither is unreasonable. The trouble is that a colony this size has only so many free hours, so much spare silver and one decent workbench, and each of them needs all of it.\n\nThey've been quietly getting in each other's way for weeks. Now, not quietly at all, they want the council to say whose dream comes first.</li>
+      <li>Both {A_nameDef} and {B_nameDef} have set their hearts on something. {A_nameDef} wants to {GOAL}; {B_nameDef} is chasing a different dream entirely. Both need time off the roster and a share of the stores, and the colony can only really spare one of them.\n\nEach made a speech to the council. Both speeches were good. Both ended with the other one waiting.</li>
+    </texts>
+    <defaultOption>2</defaultOption>
+    <options>
+      <li>
+        <label>{A_nameDef}'s dream comes first</label>
+        <outcome>The council put {A_nameDef}'s dream first, and {A_nameDef} got straight to work. {B_nameDef} has been told to wait, and is waiting very loudly.</outcome>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_Vindicated</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_DlmGoal_GivenTime</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>4</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_Dlm_Overruled</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_DlmGoal_DreamDeferred</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>B</target><amount>-4</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_Dlm_Grudge</thought><chance>0.5</chance></li>
+        </effects>
+      </li>
+      <li>
+        <label>{B_nameDef}'s dream comes first</label>
+        <outcome>The council put {B_nameDef} first. {A_nameDef} has been told that the dream to {GOAL} will have to wait its turn, and has taken it about as well as anyone would.</outcome>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_Dlm_Vindicated</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_DlmGoal_GivenTime</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>B</target><amount>4</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_Overruled</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_DlmGoal_DreamDeferred</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>-4</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_Grudge</thought><chance>0.5</chance></li>
+        </effects>
+      </li>
+      <li>
+        <label>Split everything down the middle</label>
+        <outcome>Each of them ended up with half: half the free hours, half the stores, alternate days at the bench. Neither is satisfied, which the council has decided means it's fair.</outcome>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>AAndB</target><thought>Council_Dlm_Compromise</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>AAndB</target><amount>1</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Others</target><thought>Council_Dlm_FairsFair</thought><chance>0.3</chance></li>
+        </effects>
+      </li>
+      <li>
+        <label>Make them help each other</label>
+        <outcome>The council told {A_nameDef} and {B_nameDef} to pool their time and help each other. It was awkward for about a day. Now they're up late most nights, scheming about both dreams at once.</outcome>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>AAndB</target><thought>Council_DlmGoal_SharedDream</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>AAndB</target><thought>Council_Dlm_Bonded</thought><chance>0.4</chance></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>AAndB</target><amount>2</amount></li>
+        </effects>
+        <riskChance>0.35</riskChance>
+        <riskReplaces>true</riskReplaces>
+        <riskOutcome>The council told them to help each other. It took one afternoon at the shared workbench before {A_nameDef} and {B_nameDef} were rolling around on the floor beneath it.</riskOutcome>
+        <riskEffects>
+          <li Class="ColonyCouncil.DilemmaEffect_Fight" />
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>AAndB</target><thought>Council_Dlm_Grudge</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>AAndB</target><amount>-2</amount></li>
+        </riskEffects>
+      </li>
+    </options>
+  </ColonyCouncil.DilemmaDef>
+
+  <!-- ===================== The road out ===================== -->
+  <ColonyCouncil.DilemmaDef>
+    <defName>Council_Dilemma_Goal_Caravan</defName>
+    <label>the road out</label>
+    <weight>0.7</weight>
+    <cooldownDays>50</cooldownDays>
+    <roleA>
+      <goal>true</goal>
+      <maxMood>0.7</maxMood>
+    </roleA>
+    <texts>
+      <li>{A_nameDef} has been restless for weeks. The dream to {GOAL} feels further away every day, and a trader's stories about the settlements to the east have done the rest. {A_nameDef} wants to leave with the next caravan that passes, to see whether life is kinder somewhere else.\n\n{A_nameDef} has asked for the council's blessing. Everyone suspects {A_nameDef} is also hoping to be talked out of it.</li>
+      <li>A pack has been sitting by {A_nameDef}'s bed for days, half full. Late last night it came out: {A_nameDef} is thinking of leaving with the next caravan. Here, the hope to {GOAL} keeps slipping away. Out there, maybe, it won't.\n\n{A_nameDef} wants to know what the council thinks. It's a question about the colony's future as much as {A_possessive} own.</li>
+    </texts>
+    <defaultOption>3</defaultOption>
+    <options>
+      <li>
+        <label>Ask {A_nameDef} to stay, and mean it</label>
+        <outcome>The council asked {A_nameDef} to stay, and promised real help with the dream. {A_nameDef} unpacked the bag that night, slowly, and seemed relieved to have been asked.</outcome>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_DlmGoal_AskedToStay</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>5</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>FriendsOfA</target><thought>Council_DlmGoal_FriendStayed</thought></li>
+        </effects>
+        <riskChance>0.25</riskChance>
+        <riskOutcome>The council asked {A_nameDef} to stay, and {A_nameDef} agreed. The bag got unpacked, mostly. A few things are still in it, by the door, just in case.</riskOutcome>
+        <riskEffects>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>-2</amount></li>
+        </riskEffects>
+      </li>
+      <li>
+        <label>Give {A_nameDef} the council's blessing</label>
+        <outcome>The council gave {A_nameDef} its blessing and a hug or two. {A_nameDef} walked to the gate, stood there a long while, and came back in for dinner. It seems the blessing was what {A_nameDef} needed, not the road.</outcome>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_Understood</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>6</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Inspiration"><target>A</target><chance>0.35</chance></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>FriendsOfA</target><thought>Council_DlmGoal_FriendStayed</thought><chance>0.6</chance></li>
+        </effects>
+      </li>
+      <li>
+        <label>Nobody leaves: the colony needs every hand</label>
+        <outcome>The council told {A_nameDef} the colony can't spare anyone. {A_nameDef} unpacked the bag without a word and has been staring at the walls ever since.</outcome>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_DlmGoal_Caged</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>-6</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Hediff"><target>A</target><hediff>Council_Disgruntled</hediff><severity>0.4</severity></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Others</target><thought>Council_Dlm_Harsh</thought><onlyTrait><li>Kind</li></onlyTrait></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Others</target><thought>Council_Dlm_FairsFair</thought><degreeTrait>Industriousness</degreeTrait><minDegree>1</minDegree><chance>0.5</chance></li>
+        </effects>
+      </li>
+      <li>
+        <label>Let {A_nameDef} decide alone</label>
+        <outcome>The decision was left to {A_nameDef}. The caravan came and went, and {A_nameDef} watched it go from the wall. The pack is still by the bed.</outcome>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_Ignored</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>-3</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_DlmGoal_DreamDeferred</thought><chance>0.5</chance></li>
+        </effects>
+      </li>
+    </options>
+  </ColonyCouncil.DilemmaDef>
+
+  <!-- ===================== A dream fading ===================== -->
+  <ColonyCouncil.DilemmaDef>
+    <defName>Council_Dilemma_Goal_GivingUp</defName>
+    <label>a dream fading</label>
+    <weight>1</weight>
+    <cooldownDays>40</cooldownDays>
+    <roleA>
+      <goal>true</goal>
+      <maxMood>0.55</maxMood>
+    </roleA>
+    <texts>
+      <li>{A_nameDef} has been trying to {GOAL} for a long time now, and lately the trying has stopped. Last night, staring into the fire, {A_nameDef} said it plainly: maybe it was never going to happen. Maybe it's time to stop pretending.\n\nThe people who care about {A_nameDef} have asked the council to do something. {A_nameDef} hasn't asked for anything at all.</li>
+      <li>Someone found {A_nameDef}'s notes on the trash heap this morning: months of plans to {GOAL}, torn neatly in half. {A_nameDef} says it's fine. It is clearly not fine.\n\nA dream like that is half of what keeps a person going out here. The council can try to light a fire under it, or let {A_nameDef} set it down in peace.</li>
+    </texts>
+    <defaultOption>2</defaultOption>
+    <options>
+      <li>
+        <label>Rally the colony behind {A_nameDef}</label>
+        <outcome>At dinner the council asked everyone to give {A_nameDef} one reason not to give up. It went all the way around the table. {A_nameDef} cried, laughed, and was up before dawn the next morning, back at it.</outcome>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_DlmGoal_Encouraged</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>5</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Inspiration"><target>A</target><chance>0.5</chance></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Others</target><thought>Council_Dlm_Helped</thought><exceptTrait><li>Psychopath</li></exceptTrait><chance>0.3</chance></li>
+        </effects>
+        <riskChance>0.25</riskChance>
+        <riskReplaces>true</riskReplaces>
+        <riskOutcome>At dinner the council asked everyone to give {A_nameDef} one reason not to give up. Halfway around the table it started to feel like a funeral, and {A_nameDef} left before it reached the end.</riskOutcome>
+        <riskEffects>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_DlmGoal_Pitied</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>-1</amount></li>
+        </riskEffects>
+      </li>
+      <li>
+        <label>A few easy days to think it over</label>
+        <outcome>The council gave {A_nameDef} a few quiet days off the roster. {A_nameDef} spent them walking, sleeping and, near the end, sketching something new on the back of an old plan.</outcome>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Hediff"><target>A</target><hediff>Council_Dlm_Rest</hediff></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_Understood</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>3</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Others</target><thought>Council_Dlm_Shirking</thought><degreeTrait>Industriousness</degreeTrait><minDegree>1</minDegree></li>
+        </effects>
+      </li>
+      <li>
+        <label>There's no shame in letting it go</label>
+        <outcome>Nobody pushed. {A_nameDef} was told that a dream set down isn't a failure, nodded, and has stopped talking about it. Whether that means giving up or getting on with it, nobody can tell.</outcome>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_DlmGoal_LetGo</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>1</amount></li>
+        </effects>
+        <riskChance>0.25</riskChance>
+        <riskOutcome>Nobody pushed. {A_nameDef} nodded, said thank you, and walked out past the fields alone. Someone should probably go and find {A_objective}.</riskOutcome>
+        <riskEffects>
+          <li Class="ColonyCouncil.DilemmaEffect_MentalState"><target>A</target><mentalState>Wander_Sad</mentalState></li>
+        </riskEffects>
+      </li>
+      <li>
+        <label>Tell {A_nameDef} to toughen up</label>
+        <outcome>The council told {A_nameDef} that everyone has bad days and the rim doesn't care. {A_nameDef} heard it out and went back to work without a word.</outcome>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_Dismissed</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>-5</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Others</target><thought>Council_Dlm_Harsh</thought><onlyTrait><li>Kind</li></onlyTrait></li>
+        </effects>
+        <riskChance>0.3</riskChance>
+        <riskOutcome>The council told {A_nameDef} to toughen up. Out of pure spite, {A_nameDef} did, and has been at the dream every spare minute since, just to prove a point.</riskOutcome>
+        <riskEffects>
+          <li Class="ColonyCouncil.DilemmaEffect_Inspiration"><target>A</target></li>
+        </riskEffects>
+      </li>
+    </options>
+  </ColonyCouncil.DilemmaDef>
+
+  <!-- ===================== If I don't make it ===================== -->
+  <ColonyCouncil.DilemmaDef>
+    <defName>Council_Dilemma_Goal_Remember</defName>
+    <label>if I don't make it</label>
+    <weight>0.7</weight>
+    <cooldownDays>50</cooldownDays>
+    <roleA>
+      <goal>true</goal>
+    </roleA>
+    <roleB>
+      <minOpinionOfA>10</minOpinionOfA>
+      <notTie>Rivals</notTie>
+    </roleB>
+    <texts>
+      <li>{A_nameDef} came to the council with an odd request. People die on the rim without warning, {A_nameDef} said, and the dream to {GOAL} may not get finished in time. If it isn't, {A_nameDef} wants it written down somewhere, so the colony remembers what it was and maybe takes it up.\n\nThe council has never been asked to keep someone's dream before. {B_nameDef}, who was in the room, has gone very quiet.</li>
+      <li>Lately {A_nameDef} has been putting things in order: mending old clothes, giving away spare odds and ends, writing long journal entries late into the night. Today {A_nameDef} asked the council for one thing more.\n\nIf the rim takes {A_objective} before {A_pronoun} can {GOAL}, {A_nameDef} wants the colony to remember that this was the dream, and not let it die quietly in a drawer. {B_nameDef} has been listening with a very odd look.</li>
+    </texts>
+    <defaultOption>3</defaultOption>
+    <options>
+      <li>
+        <label>Write it into the colony's records, with a ceremony</label>
+        <outcome>The council gathered everyone after dinner, read {A_nameDef}'s dream aloud, and wrote it into the colony's records. {A_nameDef} stood at the back, pretending not to be moved, and failing.</outcome>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_DlmGoal_Remembered</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>5</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Others</target><thought>Council_DlmGoal_Witnessed</thought><exceptTrait><li>Psychopath</li></exceptTrait><chance>0.6</chance></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>Others</target><amount>1</amount><chance>0.5</chance></li>
+        </effects>
+      </li>
+      <li>
+        <label>{B_nameDef} promises to carry it on</label>
+        <outcome>{B_nameDef} stood up and promised: if the worst happens, {B_nameDef} will see the dream through. {A_nameDef} shook {B_possessive} hand for a long time.</outcome>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_DlmGoal_Remembered</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_DlmGoal_Promised</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>AAndB</target><thought>Council_Dlm_Bonded</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>AAndB</target><amount>3</amount></li>
+        </effects>
+      </li>
+      <li>
+        <label>A quiet promise from the council</label>
+        <outcome>The council promised {A_nameDef}, quietly and without fuss, that the dream would not be forgotten. {A_nameDef} seemed satisfied with that, and a little lighter.</outcome>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_Understood</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>3</amount></li>
+        </effects>
+      </li>
+      <li>
+        <label>Don't talk like that</label>
+        <outcome>Nobody wanted to talk about it. {A_nameDef} tried twice more at dinner, was told not to be morbid both times, and stopped trying.</outcome>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_DlmGoal_BrushedOff</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>-3</amount></li>
+        </effects>
+      </li>
+    </options>
+  </ColonyCouncil.DilemmaDef>
+
+</Defs>

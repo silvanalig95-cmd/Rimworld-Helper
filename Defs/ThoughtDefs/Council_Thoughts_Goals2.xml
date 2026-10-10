@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Memories from the life-goal dilemmas (Council_Dilemmas_Goals.xml). Shared dilemma memories
+    (Vindicated, Overruled, Grudge, Bonded, Compromise, Understood...) live in Council_Thoughts_Dilemmas*.xml.
+  -->
+
+  <!-- ===================== Time and silver ===================== -->
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_DlmGoal_GivenTime</defName>
+    <durationDays>6</durationDays>
+    <stages><li><label>time for my dream</label><description>The council took me off the dull work so I can chase what matters to me. I'm not wasting a minute of it.</description><baseMoodEffect>5</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_DlmGoal_DreamDeferred</defName>
+    <durationDays>5</durationDays>
+    <stages><li><label>my dream can wait, apparently</label><description>I asked for a little help with the one thing I really want. The answer was: later. It's always later.</description><baseMoodEffect>-4</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_DlmGoal_Backed</defName>
+    <durationDays>8</durationDays>
+    <stages><li><label>the council backed my dream</label><description>They put the colony's own silver behind what I want to do. Now I have to deserve it.</description><baseMoodEffect>6</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_DlmGoal_Swindled</defName>
+    <durationDays>6</durationDays>
+    <stages><li><label>wasted the colony's silver</label><description>They trusted me with the colony's silver, and I handed it to a smiling trader for a crate of straw. I can't look at the purse.</description><baseMoodEffect>-5</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <!-- ===================== Teachers ===================== -->
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_DlmGoal_Mentored</defName>
+    <durationDays>6</durationDays>
+    <stages><li><label>learning from someone who knows</label><description>Every evening, questions and answers, and slowly the path starts to make sense. I should have asked years ago.</description><baseMoodEffect>4</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_DlmGoal_Volunteered</defName>
+    <durationDays>4</durationDays>
+    <stages><li><label>volunteered as a teacher</label><description>The council promised my evenings to someone else's dream. Nobody asked me first.</description><baseMoodEffect>-3</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_DlmGoal_AskedToTeach</defName>
+    <durationDays>5</durationDays>
+    <stages><li><label>asked to teach</label><description>Somebody thinks I know things worth learning, and the council cleared my evenings so I can pass them on. Flattering.</description><baseMoodEffect>4</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <!-- ===================== Doubters and rivals ===================== -->
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_DlmGoal_Doubted</defName>
+    <durationDays>5</durationDays>
+    <stages><li><label>my dream was called foolish</label><description>Someone said it out loud, in front of everyone: my dream is a joke. I keep hearing it.</description><baseMoodEffect>-5</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_DlmGoal_Wager</defName>
+    <durationDays>8</durationDays>
+    <stages><li><label>a wager on my dream</label><description>There's a bet on me now. I'm going to win it, if only to see the look on their face.</description><baseMoodEffect>4</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_DlmGoal_Bet</defName>
+    <durationDays>6</durationDays>
+    <stages><li><label>an easy bet</label><description>I bet against a daydream. A week of free dinners, whenever reality catches up with it.</description><baseMoodEffect>2</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_DlmGoal_SharedDream</defName>
+    <durationDays>6</durationDays>
+    <stages><li><label>dreaming side by side</label><description>Two dreams, one workbench, and someone to talk it all over with at midnight. It's better this way.</description><baseMoodEffect>4</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <!-- ===================== Leaving ===================== -->
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_DlmGoal_Caged</defName>
+    <durationDays>8</durationDays>
+    <stages><li><label>not allowed to leave</label><description>I asked to go. They said no. The walls are the same walls, but they feel closer now.</description><baseMoodEffect>-6</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_DlmGoal_AskedToStay</defName>
+    <durationDays>6</durationDays>
+    <stages><li><label>asked to stay</label><description>They asked me to stay, and they meant it. Maybe the dream can grow here after all.</description><baseMoodEffect>4</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_DlmGoal_FriendStayed</defName>
+    <durationDays>4</durationDays>
+    <stages><li><label>a friend almost left</label><description>Someone I care about nearly walked out with the next caravan. They're staying. I didn't know how worried I was until it was over.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <!-- ===================== Giving up ===================== -->
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_DlmGoal_Encouraged</defName>
+    <durationDays>6</durationDays>
+    <stages><li><label>the whole colony believes in me</label><description>Everyone at the table gave me a reason not to give up. I wrote them all down. I'm reading them again tonight.</description><baseMoodEffect>7</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_DlmGoal_Pitied</defName>
+    <durationDays>4</durationDays>
+    <stages><li><label>pitied in front of everyone</label><description>They meant well. It still felt like my own funeral, with me sitting in the front row.</description><baseMoodEffect>-3</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_DlmGoal_LetGo</defName>
+    <durationDays>6</durationDays>
+    <stages><li><label>setting a dream down</label><description>There's no shame in letting it go, they said. They're right. It still aches where it used to be.</description><baseMoodEffect>-2</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <!-- ===================== Remembering ===================== -->
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_DlmGoal_Remembered</defName>
+    <durationDays>10</durationDays>
+    <stages><li><label>my dream will be remembered</label><description>Whatever happens to me, the colony knows what I was trying to do. It's written down now. That stays.</description><baseMoodEffect>6</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_DlmGoal_Witnessed</defName>
+    <durationDays>3</durationDays>
+    <stages><li><label>a dream written down</label><description>We all stood together while someone's dream was read out and written into the records. Strange, and a little beautiful.</description><baseMoodEffect>2</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_DlmGoal_Promised</defName>
+    <durationDays>10</durationDays>
+    <stages><li><label>carrying a promise</label><description>I promised to finish someone's dream if they can't. I meant every word. It weighs more than I expected.</description><baseMoodEffect>2</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_DlmGoal_BrushedOff</defName>
+    <durationDays>5</durationDays>
+    <stages><li><label>told not to be morbid</label><description>I tried to talk about what happens if I don't make it. Everyone changed the subject. I'll stop bringing it up.</description><baseMoodEffect>-4</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+</Defs>

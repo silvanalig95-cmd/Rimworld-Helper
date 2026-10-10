@@ -29,26 +29,55 @@
         <li>[rival] {OTHER_nameDef} and I fought about everything. I'd give a lot for one more argument.</li>
         <li>[winter] We buried {OTHER_nameDef} in frozen ground. It took all of us. {OTHER_nameDef} would have liked that.</li>
         <li>[rain] Even the sky is crying for {OTHER_nameDef}. Fitting. {OTHER_nameDef} was always dramatic.</li>
+        <li>{OTHER_nameDef} never asked for much. A warm bed, a hot meal, a little peace. We should have been able to give more than that.</li>
+        <li>Some people make a colony work. {OTHER_nameDef} made it worth working for.</li>
+        <li>[stranger] I'm told {OTHER_nameDef} was good with the animals and hated mornings. That's all I know. I wish I'd asked for more.</li>
+        <li>[stranger] Somebody closer should be standing here, but nobody closer could get the words out. So: {OTHER_nameDef} was one of us, and we're less without {OTHER_objective}.</li>
+        <li>[rival] I never liked {OTHER_nameDef}, and {OTHER_nameDef} never liked me. I'd still have trusted {OTHER_objective} with my life, and I think the feeling was mutual.</li>
+        <li>[rival] Half the arguments in this colony were between {OTHER_nameDef} and me. It's going to be very quiet now. I hate that.</li>
+        <li>[kin] Same blood. Same stubborn chin. I'll see {OTHER_nameDef} every time I catch my reflection in the water.</li>
+        <li>[partner] We had plans. Small ones. A garden, a dog, a quiet old age. I'll keep the garden going.</li>
+        <li>[battle] {OTHER_nameDef} didn't have to be on that wall. {OTHER_nameDef} chose to be. Remember that, when you remember anything.</li>
+        <li>[battle] {FACTION} came at us, and {OTHER_nameDef} met them at the gate. Every breath we take today is owed to that.</li>
+        <li>[deadchild] {OTHER_nameDef} should have grown up here. Should have been bored here, and fallen in love here, and complained about chores. We'll have to carry all of that now.</li>
+        <li>[deadold] {OTHER_nameDef} told the same three stories every winter. I'd give anything to hear them again. I'll tell them myself, badly.</li>
+        <li>[titled] We called {OTHER_nameDef} {TITLE}, and nobody ever had to ask why.</li>
+        <li>[unfinished] {OTHER_nameDef} was going to {GOAL}. Was going to. I'll carry that the rest of the way, if I can.</li>
+        <li>[longtime] {OTHER_nameDef} was here before most of us. {YEARS} years of mornings, and every one of them counted.</li>
+        <li>[night] We're burying {OTHER_nameDef} by torchlight, because none of us could bear to wait for morning. Nobody wanted {OTHER_objective} out there alone tonight.</li>
+        <li>[summer] It's a beautiful day. {OTHER_nameDef} would have been out in the fields in it, complaining about the heat.</li>
+        <li>[old] I've buried too many people younger than me. {OTHER_nameDef} is one more. I'm tired of the arithmetic.</li>
       </plain>
       <warm>
         <li>{OTHER_nameDef} made this place a home. Not a camp, not a fort. A home. Thank you, {OTHER_nameDef}.</li>
         <li>[partner] I loved {OTHER_nameDef}. I'm going to keep saying it, out loud, so the rim knows.</li>
         <li>[unfinished] {OTHER_nameDef} wanted to {GOAL}. I'm going to try, for {OTHER_nameDef}.</li>
+        <li>I hope wherever {OTHER_nameDef} is now, it's warm and the food is good and nobody needs anything. Rest. You earned it.</li>
+        <li>[partner] Every good thing I am, I learned from loving {OTHER_nameDef}. I'll keep being those things. It's all I can do.</li>
+        <li>[deadchild] Little {OTHER_nameDef}. You were the best of us, and you never even knew it.</li>
       </warm>
       <blunt>
         <li>{OTHER_nameDef} was good at the job and good to the people around. Not much more to say. Not much more that matters.</li>
         <li>[battle] {FACTION} took {OTHER_nameDef}. Next time they come, they'll find out what that cost them.</li>
+        <li>[rival] We didn't get on. Everyone knows it. {OTHER_nameDef} was still one of ours, and I'll fight anyone who says different.</li>
+        <li>{OTHER_nameDef} worked. {OTHER_nameDef} fought. {OTHER_nameDef} didn't quit. That's a life.</li>
       </blunt>
       <cheerful>
         <li>{OTHER_nameDef} made me laugh every single day. I'm going to try to keep doing that for all of you. It won't be as good.</li>
+        <li>{OTHER_nameDef} would hate all this crying. So let's tell the one about {OTHER_nameDef} and the muffalo and the latrine instead. Everyone knows the one.</li>
+        <li>[longtime] {YEARS} years of terrible jokes from {OTHER_nameDef}. I'm going to miss every single one. Especially the worst ones.</li>
       </cheerful>
       <gloomy>
         <li>We're all heading where {OTHER_nameDef} has gone. {OTHER_nameDef} just got there first, and left us the work.</li>
         <li>[deadchild] We were supposed to keep the children safe. That was the whole point of all of this.</li>
+        <li>[lowmood] I don't have anything comforting to say. {OTHER_nameDef} is gone, and the rim doesn't care. So we'll have to. That's all.</li>
+        <li>[unfinished] {OTHER_nameDef} wanted to {GOAL}, and the rim said no. It always says no, in the end.</li>
       </gloomy>
       <cold>
         <li>{OTHER_nameDef} was reliable. Competent. Irreplaceable, in the literal sense. We are weaker today.</li>
         <li>[battle] {OTHER_nameDef} fell to {FACTION}. I've added that to the ledger.</li>
+        <li>{OTHER_nameDef}'s duties will be reassigned by morning. {OTHER_nameDef} will not be replaced. Those are different things.</li>
+        <li>[titled] We called {OTHER_nameDef} {TITLE}. The title stays in the annals. The person doesn't. I find that unacceptable.</li>
       </cold>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
