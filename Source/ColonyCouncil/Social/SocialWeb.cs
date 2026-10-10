@@ -62,6 +62,23 @@ namespace ColonyCouncil
         }
     }
 
+    /// <summary>Someone a colonist was bonded to who has died, remembered by name (for dreams and memories).</summary>
+    public class LostBond : IExposable
+    {
+        public Pawn survivor;
+        public string name;
+        public TieKind kind;
+        public int tick;
+
+        public void ExposeData()
+        {
+            Scribe_References.Look(ref survivor, "survivor");
+            Scribe_Values.Look(ref name, "name");
+            Scribe_Values.Look(ref kind, "kind");
+            Scribe_Values.Look(ref tick, "tick");
+        }
+    }
+
     public class Clique
     {
         public string name;
@@ -71,6 +88,7 @@ namespace ColonyCouncil
     public class SocialWeb : IExposable
     {
         public List<SocialTie> ties = new List<SocialTie>();
+        public List<LostBond> lost = new List<LostBond>();
         [Unsaved] public List<Clique> cliques = new List<Clique>();
         private Dictionary<Pawn, float> damageAtThreat = new Dictionary<Pawn, float>();
         private int threatTracked;
@@ -214,8 +232,12 @@ namespace ColonyCouncil
                 {
                     var dead = t.a.Dead ? t.a : t.b;
                     var alive = t.Other(dead);
-                    if (Eligible(alive)) comp.journals.Write(alive, t.kind == TieKind.Rivals ? "Council_Journal_RivalLost" : "Council_Journal_TieLost", null, dead.Named("OTHER"));
+                    if (!Eligible(alive)) continue;
+                    comp.journals.Write(alive, t.kind == TieKind.Rivals ? "Council_Journal_RivalLost" : "Council_Journal_TieLost", null, dead.Named("OTHER"));
+                    lost.Add(new LostBond { survivor = alive, name = dead.LabelShort, kind = t.kind, tick = Find.TickManager.TicksGame });
                 }
+                lost.RemoveAll(l => l.survivor == null || l.survivor.Dead);
+                while (lost.Count > 40) lost.RemoveAt(0);
             }
             ties.RemoveAll(t => t.a == null || t.b == null || t.a.Dead || t.b.Dead || t.a.Destroyed || t.b.Destroyed);
             if (!S.socialWeb) return;
@@ -377,6 +399,7 @@ namespace ColonyCouncil
         public void ExposeData()
         {
             Scribe_Collections.Look(ref ties, "ties", LookMode.Deep);
+            Scribe_Collections.Look(ref lost, "lost", LookMode.Deep);
             Scribe_Collections.Look(ref damageAtThreat, "damageAtThreat", LookMode.Reference, LookMode.Value, ref dmgKeys, ref dmgValues);
             Scribe_Values.Look(ref threatTracked, "threatTracked");
             Scribe_Values.Look(ref threatResolved, "threatResolved");
@@ -384,6 +407,8 @@ namespace ColonyCouncil
             {
                 if (ties == null) ties = new List<SocialTie>();
                 ties.RemoveAll(t => t == null || t.a == null || t.b == null);
+                if (lost == null) lost = new List<LostBond>();
+                lost.RemoveAll(l => l == null || l.survivor == null || l.name == null);
                 if (damageAtThreat == null) damageAtThreat = new Dictionary<Pawn, float>();
                 foreach (var k in damageAtThreat.Keys.Where(k => k == null).ToList()) damageAtThreat.Remove(k);
                 cliques = new List<Clique>();

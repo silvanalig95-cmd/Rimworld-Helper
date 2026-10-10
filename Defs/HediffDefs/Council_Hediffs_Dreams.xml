@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- Lingering effects of a night's dream. -->
+
+  <HediffDef>
+    <defName>Council_Dream_WellRested</defName>
+    <label>slept like a stone</label>
+    <description>Woke from a deep, good dream feeling properly rested for once.</description>
+    <hediffClass>HediffWithComps</hediffClass>
+    <defaultLabelColor>(0.6, 0.85, 0.6)</defaultLabelColor>
+    <isBad>false</isBad>
+    <everCurableByItem>false</everCurableByItem>
+    <comps>
+      <li Class="HediffCompProperties_Disappears">
+        <disappearsAfterTicks>50000~70000</disappearsAfterTicks>
+        <showRemainingTime>true</showRemainingTime>
+      </li>
+    </comps>
+    <stages>
+      <li>
+        <restFallFactor>0.8</restFallFactor>
+        <statOffsets><WorkSpeedGlobal>0.04</WorkSpeedGlobal></statOffsets>
+      </li>
+    </stages>
+  </HediffDef>
+
+  <HediffDef>
+    <defName>Council_Dream_Shaken</defName>
+    <label>shaken by a nightmare</label>
+    <description>A nightmare that won't let go. Jumpy, tired and slow to focus.</description>
+    <hediffClass>HediffWithComps</hediffClass>
+    <defaultLabelColor>(0.85, 0.6, 0.5)</defaultLabelColor>
+    <isBad>true</isBad>
+    <everCurableByItem>false</everCurableByItem>
+    <comps>
+      <li Class="HediffCompProperties_Disappears">
+        <disappearsAfterTicks>30000~50000</disappearsAfterTicks>
+        <showRemainingTime>true</showRemainingTime>
+      </li>
+    </comps>
+    <stages>
+      <li>
+        <restFallFactor>1.2</restFallFactor>
+        <statOffsets><WorkSpeedGlobal>-0.05</WorkSpeedGlobal></statOffsets>
+      </li>
+    </stages>
+  </HediffDef>
+
+  <HediffDef>
+    <defName>Council_Dream_Steeled</defName>
+    <label>steeled by a dream</label>
+    <description>Dreamt of the fight and won it. Woke up calm and ready.</description>
+    <hediffClass>HediffWithComps</hediffClass>
+    <defaultLabelColor>(0.6, 0.75, 0.9)</defaultLabelColor>
+    <isBad>false</isBad>
+    <everCurableByItem>false</everCurableByItem>
+    <comps>
+      <li Class="HediffCompProperties_Disappears">
+        <disappearsAfterTicks>60000~90000</disappearsAfterTicks>
+        <showRemainingTime>true</showRemainingTime>
+      </li>
+    </comps>
+    <stages>
+      <li>
+        <statOffsets>
+          <ShootingAccuracyPawn>0.02</ShootingAccuracyPawn>
+          <MeleeHitChance>0.05</MeleeHitChance>
+          <MentalBreakThreshold>-0.03</MentalBreakThreshold>
+        </statOffsets>
+      </li>
+    </stages>
+  </HediffDef>
+
+</Defs>

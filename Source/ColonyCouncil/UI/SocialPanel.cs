@@ -52,6 +52,11 @@ namespace ColonyCouncil
                 options.AddRange(colonists.Select(p => new FloatMenuOption(p.LabelShort, () => focus = p)));
                 Find.WindowStack.Add(new FloatMenu(options));
             }
+            if (Prefs.DevMode && Find.CurrentMap != null && Widgets.ButtonText(new Rect(filterRect.x - 330f, rect.y, 130f, 28f), "Dev: dream"))
+            {
+                var dreamer = focus ?? Find.CurrentMap.mapPawns.FreeColonistsSpawned.Where(p => !p.DevelopmentalStage.Baby()).RandomElementWithFallback();
+                if (dreamer == null || !comp.dreams.TryDream(comp, dreamer, false)) Messages.Message("No dream fits right now.", MessageTypeDefOf.RejectInput, false);
+            }
             if (Prefs.DevMode && Find.CurrentMap != null && Widgets.ButtonText(new Rect(filterRect.x - 190f, rect.y, 180f, 28f), "Dev: social event"))
             {
                 var pawns = Find.CurrentMap.mapPawns.FreeColonistsSpawned.Where(p => !p.IsQuestLodger() && !p.DevelopmentalStage.Baby()).ToList();
@@ -64,20 +69,15 @@ namespace ColonyCouncil
             GUI.color = Color.white;
             y += introH + 8f;
 
-            if (!ColonyCouncilMod.Settings.socialWeb)
-            {
-                Widgets.Label(new Rect(rect.x, y, rect.width, 60f), "CC_Settings_SocialWeb".Translate() + ": " + "Off".Translate());
-                return;
-            }
             var web = comp.social;
             if (web.cliques.Count == 0 && web.ties.Count > 0) web.RebuildCliques();
-            var ties = web.ties.Where(t => Shown(t.a) && Shown(t.b) && t.announced && (focus == null || t.Involves(focus))).ToList();
+            var ties = !ColonyCouncilMod.Settings.socialWeb ? new List<SocialTie>() : web.ties.Where(t => Shown(t.a) && Shown(t.b) && t.announced && (focus == null || t.Involves(focus))).ToList();
 
             var outRect = new Rect(rect.x, y, rect.width, rect.yMax - y);
             var view = new Rect(0f, 0f, outRect.width - 16f, height);
             Widgets.BeginScrollView(outRect, ref scroll, view);
             float cy = 0f;
-            if (ties.Count == 0)
+            if (ties.Count == 0 && ColonyCouncilMod.Settings.socialWeb)
             {
                 GUI.color = Faint;
                 Widgets.Label(new Rect(0f, cy, view.width, 30f), "CC_Social_None".Translate());
@@ -117,8 +117,41 @@ namespace ColonyCouncil
                 }
                 cy += 10f;
             }
+            if (ColonyCouncilMod.Settings.dreams) cy += DrawDreams(comp, view.width, cy);
             height = Mathf.Max(cy, 100f);
             Widgets.EndScrollView();
+        }
+
+        private static float DrawDreams(CouncilGameComponent comp, float width, float y)
+        {
+            float start = y;
+            var dreams = comp.dreams.recent.AsEnumerable().Reverse().Where(d => focus == null || d.pawn == focus).Take(10).ToList();
+            y += Header(width, y, "CC_Social_Dreams".Translate());
+            if (dreams.Count == 0)
+            {
+                GUI.color = Faint;
+                Widgets.Label(new Rect(6f, y, width, 24f), "CC_Social_DreamsNone".Translate());
+                GUI.color = Color.white;
+                return y + 26f - start;
+            }
+            foreach (var d in dreams)
+            {
+                var r = new Rect(0f, y, width, RowH);
+                Widgets.DrawHighlightIfMouseover(r);
+                string who = (d.pawn?.LabelShort ?? d.name) + " (" + ("CC_DreamKind_" + d.kind).Translate() + ", " + "CC_DayN".Translate(d.tick / GenDate.TicksPerDay + 1) + ")";
+                Text.Anchor = TextAnchor.MiddleLeft;
+                GUI.color = d.cameTrue ? CliqueColor : d.kind == DreamKind.Nightmare ? new Color(0.85f, 0.6f, 0.55f) : Color.white;
+                Widgets.Label(new Rect(6f, y, 230f, RowH), who.Truncate(226f));
+                GUI.color = Faint;
+                string text = d.text + (d.cameTrue ? "  (" + "CC_Social_DreamCameTrue".Translate() + ")" : "");
+                Widgets.Label(new Rect(240f, y, width - 240f, RowH), text.Truncate(width - 244f));
+                GUI.color = Color.white;
+                Text.Anchor = TextAnchor.UpperLeft;
+                TooltipHandler.TipRegion(r, d.text);
+                if (Widgets.ButtonInvisible(r) && d.pawn != null && d.pawn.Spawned) CameraJumper.TryJumpAndSelect(d.pawn);
+                y += RowH + 2f;
+            }
+            return y - start + 10f;
         }
 
         private static float Header(float width, float y, string text)

@@ -52,6 +52,9 @@ namespace ColonyCouncil
         public void Notify_TraditionBorn(string label) => traditionsBorn.Add(label);
 
         public List<string> tiesFormed = new List<string>();
+        public List<string> omens = new List<string>();
+
+        public void Notify_Omen(Pawn dreamer, string what) => omens.Add("CC_Annals_OmenLine".Translate(dreamer.LabelShort, what).Resolve());
 
         public void Notify_Tie(SocialTie t)
         {
@@ -119,6 +122,7 @@ namespace ColonyCouncil
             traditionsBroken.Clear();
             traditionsBorn.Clear();
             tiesFormed.Clear();
+            omens.Clear();
         }
 
         private void Write(CouncilGameComponent comp, Map map)
@@ -173,6 +177,7 @@ namespace ColonyCouncil
             if (traditionsBorn.Count > 0) Para("CC_Annals_TraditionsBorn".Translate(TextUtil.JoinAnd(traditionsBorn.Distinct().ToList())).Resolve());
             if (traditionsKept.Count > 0) Para("CC_Annals_TraditionsKept".Translate(TextUtil.JoinAnd(traditionsKept.Distinct().ToList())).Resolve());
             if (tiesFormed.Count > 0) Para("CC_Annals_Ties".Translate(TextUtil.JoinAnd(tiesFormed.Distinct().Take(8).ToList())).Resolve());
+            if (omens.Count > 0) Para("CC_Annals_Omens".Translate(TextUtil.JoinAnd(omens.Take(6).ToList())).Resolve());
             if (traditionsBroken.Count > 0) Para("CC_Annals_TraditionsBroken".Translate(TextUtil.JoinAnd(traditionsBroken.Distinct().ToList())).Resolve());
 
             // People and their feelings
@@ -261,6 +266,7 @@ namespace ColonyCouncil
             Scribe_Collections.Look(ref traditionsBroken, "traditionsBroken", LookMode.Value);
             Scribe_Collections.Look(ref traditionsBorn, "traditionsBorn", LookMode.Value);
             Scribe_Collections.Look(ref tiesFormed, "tiesFormed", LookMode.Value);
+            Scribe_Collections.Look(ref omens, "omens", LookMode.Value);
             if (Scribe.mode == LoadSaveMode.PostLoadInit)
             {
                 if (present == null) present = new List<Pawn>();
@@ -275,6 +281,7 @@ namespace ColonyCouncil
                 if (traditionsBroken == null) traditionsBroken = new List<string>();
                 if (traditionsBorn == null) traditionsBorn = new List<string>();
                 if (tiesFormed == null) tiesFormed = new List<string>();
+                if (omens == null) omens = new List<string>();
             }
         }
     }

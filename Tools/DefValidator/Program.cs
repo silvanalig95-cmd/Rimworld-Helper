@@ -274,6 +274,7 @@ var dynamic = new Dictionary<string, string[]>
     ["CC_Tie_Formed_"] = new[] { "Friends", "Rivals", "Comrades", "Mentor" },
     ["CC_Tie_Ended_"] = new[] { "Friends", "Rivals", "Comrades", "Mentor" },
     ["CC_TieKind_"] = new[] { "Friends", "Rivals", "Comrades", "Mentor" },
+    ["CC_DreamKind_"] = new[] { "Sweet", "Strange", "Nightmare", "Omen", "Lost" },
     ["CC_CoSignLine_"] = tones,
     ["CC_Heckle_"] = tones,
     ["CC_Touch_"] = tones,
@@ -317,7 +318,7 @@ foreach (var (k, text) in keyed)
 }
 
 // Placeholders in def flavour text
-var wishPh = new HashSet<string> { "SUBJECT", "THING", "THINGBARE", "TARGET", "WISH", "MINE", "AMBITION", "VENUE", "COUNT", "FACTION", "TITLE", "DECREE", "YEARS", "DILEMMA", "TRADITION", "OFFICE", "SKILL" };
+var wishPh = new HashSet<string> { "SUBJECT", "THING", "THINGBARE", "TARGET", "WISH", "MINE", "AMBITION", "VENUE", "COUNT", "FACTION", "TITLE", "DECREE", "YEARS", "DILEMMA", "TRADITION", "OFFICE", "SKILL", "LOST", "DREAM" };
 var pawnPrefixes = new HashSet<string> { "PAWN", "FOR", "OTHER", "ENVIED", "ABOUT", "A", "B", "PET" };
 var pawnSuffixes = new HashSet<string> { "nameDef", "nameFull", "labelShort", "pronoun", "possessive", "objective", "label", "definite", "indefinite", "gender" };
 foreach (var (file, doc) in docs)

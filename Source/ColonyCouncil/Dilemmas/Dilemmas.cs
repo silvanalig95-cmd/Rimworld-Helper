@@ -153,6 +153,8 @@ namespace ColonyCouncil
         /// <summary>The skill being taught, for social events between a mentor and a student.</summary>
         public SkillDef skill;
         public string text;
+        /// <summary>Outside dilemmas (social events, dreams): what to call the cause in trust logs.</summary>
+        [Unsaved] public string why;
 
         public string Format(string s)
         {
@@ -391,7 +393,8 @@ namespace ColonyCouncil
         {
             var comp = CouncilGameComponent.Instance;
             if (comp == null) return;
-            foreach (var p in Targets(ctx)) comp.standings.Change(p, amount, "CC_Log_Dilemma".Translate(ctx.def.label));
+            string why = ctx.def != null ? "CC_Log_Dilemma".Translate(ctx.def.label).ToString() : ctx.why;
+            foreach (var p in Targets(ctx)) comp.standings.Change(p, amount, why);
         }
     }
 

@@ -1063,4 +1063,27 @@ Granting one of {PAWN_possessive} wishes, or keeping a promise, can win {PAWN_ob
   <CC_Social_Describe_Circle>One of {0}.</CC_Social_Describe_Circle>
   <CC_Social_TieTip_Trust>Bonds sway the council: friends back each other's wishes and petitions, rivals object to each other's, and both count in elections.</CC_Social_TieTip_Trust>
 
+  <!-- Dreams -->
+  <CC_Settings_Dreams>Dreams</CC_Settings_Dreams>
+  <CC_Settings_Dreams_Tip>Colonists sometimes wake from a dream: about what happened that day, the people in their lives, the dead they miss, or something still to come. Most are just a mood and a line in their journal (hover the mood to read the dream). Now and then one leaves an inspiration, a lesson, a changed feeling about someone, or a wish.</CC_Settings_Dreams_Tip>
+  <CC_Settings_DreamOmens>Dreams that come true</CC_Settings_DreamOmens>
+  <CC_Settings_DreamOmens_Tip>Rarely, a dream is an omen: a visitor, a trader, a newcomer, a storm or a raid, and a few days later it happens. At most one omen waits at a time.</CC_Settings_DreamOmens_Tip>
+  <CC_Settings_AllDreamMessages>A message for every dream</CC_Settings_AllDreamMessages>
+  <CC_Settings_AllDreamMessages_Tip>Off: only dreams that change something get a message; the rest are in the journals, the mood tooltip and the Social tab. On: every dream.</CC_Settings_AllDreamMessages_Tip>
+  <CC_Dream_Message>{PAWN_nameDef} woke from a dream: "{DREAM}"</CC_Dream_Message>
+  <CC_Dream_CameTrue>{PAWN_nameDef}'s dream came true. Days ago {PAWN_pronoun} woke up saying: "{DREAM}"</CC_Dream_CameTrue>
+  <CC_TieNote_Dream>{0} dreamt about it</CC_TieNote_Dream>
+  <CC_TieNote_ToldDream>shared a dream</CC_TieNote_ToldDream>
+  <CC_Log_Dream>a dream</CC_Log_Dream>
+  <CC_Annals_OmenLine>{0}'s {1}</CC_Annals_OmenLine>
+  <CC_Annals_Omens>Dreams that came true: {0}. Some have started asking the dreamers what they saw.</CC_Annals_Omens>
+  <CC_Social_Dreams>Recent dreams</CC_Social_Dreams>
+  <CC_Social_DreamsNone>Nobody has told of a dream yet.</CC_Social_DreamsNone>
+  <CC_Social_DreamCameTrue>came true</CC_Social_DreamCameTrue>
+  <CC_DreamKind_Sweet>sweet</CC_DreamKind_Sweet>
+  <CC_DreamKind_Strange>strange</CC_DreamKind_Strange>
+  <CC_DreamKind_Nightmare>nightmare</CC_DreamKind_Nightmare>
+  <CC_DreamKind_Omen>omen</CC_DreamKind_Omen>
+  <CC_DreamKind_Lost>the lost</CC_DreamKind_Lost>
+
 </LanguageData>

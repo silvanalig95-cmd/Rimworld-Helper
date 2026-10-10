@@ -213,4 +213,28 @@
     <seeAlso><li>Council_Alm_C_Offices</li><li>Council_Alm_C_Wishes</li><li>Council_Alm_C_Dilemmas</li></seeAlso>
   </ColonyCouncil.AlmanacArticleDef>
 
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Council_Alm_C_Dreams</defName>
+    <label>dreams</label>
+    <category>Council</category>
+    <order>10</order>
+    <summary>What colonists dream about, and the rare dream that changes something or comes true.</summary>
+    <tip>Ask them what they dreamt. You'll learn more than from a month of work reports.</tip>
+    <description>A colonist who sleeps (or lies unconscious) for four hours or more may wake from a dream. Dreams grow out of their life: the battle two days ago, the friend they lost, the rival who insulted them, the wish the council ignored, the leg they no longer have, the skill they're learning. Most dreams are just a passing mood and a line in their journal. Hover the mood in their needs tab to read the dream itself.</description>
+    <facts>
+      <li>Dreams about what really happened (a raid, a death, an insult, a broken promise, an illness, an addiction) are far more likely than others. Unhappy colonists have more nightmares, and volatile ones more still.</li>
+      <li>People in their lives turn up: friends, rivals, partners, family, comrades, teachers and students, bonded animals, and the dead they loved.</li>
+      <li>Now and then a dream changes something: an inspiration, a lesson in a skill, a good night's rest, a nightmare that leaves them shaken, a dream of a won fight that steadies their aim, a softened rivalry, a wish.</li>
+      <li>Rarely, a dream is an omen, and a few days later it comes true: a caravan, a newcomer, falling cargo pods, a cold snap, a raid. Only one omen waits at a time. You can turn omens off in the settings.</li>
+      <li>Colonists tell each other their dreams. Telling someone you dreamt about them makes them like you a little more.</li>
+      <li>Recent dreams are listed at the bottom of the Social tab, and dreams that came true go in the chronicle and the year's annals.</li>
+    </facts>
+    <advice>
+      <li>When a colonist wakes up talking about torches in the dark, check your defenses. It costs nothing.</li>
+      <li>A colonist with recurring nightmares is telling you something about their life. Look at their mood.</li>
+    </advice>
+    <keywords><li>dream</li><li>nightmare</li><li>omen</li><li>prophecy</li><li>sleep</li><li>fever</li></keywords>
+    <seeAlso><li>Council_Alm_C_Social</li><li>Council_Alm_C_Names</li></seeAlso>
+  </ColonyCouncil.AlmanacArticleDef>
+
 </Defs>

@@ -26,6 +26,7 @@ namespace ColonyCouncil
         public JournalTracker journals = new JournalTracker();
         public OfficeTracker offices = new OfficeTracker();
         public SocialWeb social = new SocialWeb();
+        public DreamTracker dreams = new DreamTracker();
         public int nextWishId = 1;
 
         private Dictionary<string, int> cooldowns = new Dictionary<string, int>();
@@ -59,6 +60,7 @@ namespace ColonyCouncil
             Scribe_Deep.Look(ref journals, "journals");
             Scribe_Deep.Look(ref offices, "offices");
             Scribe_Deep.Look(ref social, "social");
+            Scribe_Deep.Look(ref dreams, "dreams");
             Scribe_Values.Look(ref nextWishId, "nextWishId", 1);
             Scribe_Collections.Look(ref cooldowns, "cooldowns", LookMode.Value, LookMode.Value, ref tmpKeys, ref tmpValues);
             if (Scribe.mode == LoadSaveMode.PostLoadInit)
@@ -76,6 +78,7 @@ namespace ColonyCouncil
                 if (journals == null) journals = new JournalTracker();
                 if (offices == null) offices = new OfficeTracker();
                 if (social == null) social = new SocialWeb();
+                if (dreams == null) dreams = new DreamTracker();
                 wishes.RemoveAll(w => w == null || w.def == null || w.pawn == null);
             }
         }
@@ -98,6 +101,20 @@ namespace ColonyCouncil
             if (Settings.enablePersonalTouches) Safe("personal touches", () => touches.HourlyTick(this));
             Safe("dilemmas", dilemmas.Hourly);
             Safe("annals", () => annals.Hourly(this));
+            Safe("dreams", () => dreams.Hourly(this));
+        }
+
+        /// <summary>A dream leaves someone wanting something: raises that wish if it makes sense for them now.</summary>
+        public Wish TryWishFromDream(Pawn p, WishDef def)
+        {
+            if (!Settings.enableWishes || def == null || decrees.SuspendsWishes || OpenWishBy(p) != null || OnCooldown(p, def) || !CanVoiceWishes(p)) return null;
+            if (OpenWishes.Count() >= Settings.maxOpenWishes + 1) return null;
+            var c = SafeCandidates(def, p).OrderByDescending(x => x.weight).FirstOrDefault();
+            if (c == null) return null;
+            var w = CreateWish(def, p, p, c, "dream");
+            string line = Flavor.FromPool("Council_Pool_DreamWish", p, w, w?.tone);
+            if (w != null && !line.NullOrEmpty()) w.quote = w.Format(line) + " " + w.quote;
+            return w;
         }
 
         private static void Safe(string context, Action action)

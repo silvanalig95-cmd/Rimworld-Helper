@@ -38,6 +38,13 @@ namespace ColonyCouncil
         public static ThoughtDef Council_ProudMentor;
         public static ThoughtDef Council_GratefulStudent;
         public static ThoughtDef Council_Soc_LeftOut;
+        public static ThoughtDef Council_Dream_Sweet;
+        public static ThoughtDef Council_Dream_Strange;
+        public static ThoughtDef Council_Dream_Nightmare;
+        public static ThoughtDef Council_Dream_Omen;
+        public static ThoughtDef Council_Dream_Lost;
+        public static ThoughtDef Council_Dream_CameTrue;
+        public static ThoughtDef Council_Dream_Fever;
 
         public static HediffDef Council_Motivated;
         public static HediffDef Council_Loyalty;

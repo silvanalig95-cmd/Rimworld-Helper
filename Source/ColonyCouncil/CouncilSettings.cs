@@ -52,6 +52,9 @@ namespace ColonyCouncil
         public bool offices = true;
         public bool socialWeb = true;
         public bool socialEvents = true;
+        public bool dreams = true;
+        public bool dreamOmens = true;
+        public bool allDreamMessages;
         public float daysBetweenDilemmas = 8f;
         public bool eventWishes = true;
         public bool reminders = true;
@@ -110,6 +113,9 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref offices, "offices", true);
             Scribe_Values.Look(ref socialWeb, "socialWeb", true);
             Scribe_Values.Look(ref socialEvents, "socialEvents", true);
+            Scribe_Values.Look(ref dreams, "dreams", true);
+            Scribe_Values.Look(ref dreamOmens, "dreamOmens", true);
+            Scribe_Values.Look(ref allDreamMessages, "allDreamMessages", false);
             Scribe_Values.Look(ref daysBetweenDilemmas, "daysBetweenDilemmas", 8f);
             Scribe_Values.Look(ref eventWishes, "eventWishes", true);
             Scribe_Values.Look(ref reminders, "reminders", true);
@@ -217,6 +223,12 @@ namespace ColonyCouncil
             l.CheckboxLabeled("CC_Settings_Offices".Translate(), ref offices, "CC_Settings_Offices_Tip".Translate());
             l.CheckboxLabeled("CC_Settings_SocialWeb".Translate(), ref socialWeb, "CC_Settings_SocialWeb_Tip".Translate());
             if (socialWeb) l.CheckboxLabeled("CC_Settings_SocialEvents".Translate(), ref socialEvents, "CC_Settings_SocialEvents_Tip".Translate());
+            l.CheckboxLabeled("CC_Settings_Dreams".Translate(), ref dreams, "CC_Settings_Dreams_Tip".Translate());
+            if (dreams)
+            {
+                l.CheckboxLabeled("CC_Settings_DreamOmens".Translate(), ref dreamOmens, "CC_Settings_DreamOmens_Tip".Translate());
+                l.CheckboxLabeled("CC_Settings_AllDreamMessages".Translate(), ref allDreamMessages, "CC_Settings_AllDreamMessages_Tip".Translate());
+            }
             l.CheckboxLabeled("CC_Settings_WishLetters".Translate(), ref wishLetters, "CC_Settings_WishLetters_Tip".Translate());
             l.CheckboxLabeled("CC_Settings_GrantedLetters".Translate(), ref grantedLetters, "CC_Settings_GrantedLetters_Tip".Translate());
             l.CheckboxLabeled("CC_Settings_SpeechText".Translate(), ref speechText, "CC_Settings_SpeechText_Tip".Translate());
@@ -305,6 +317,9 @@ namespace ColonyCouncil
             offices = d.offices;
             socialWeb = d.socialWeb;
             socialEvents = d.socialEvents;
+            dreams = d.dreams;
+            dreamOmens = d.dreamOmens;
+            allDreamMessages = d.allDreamMessages;
             daysBetweenDilemmas = d.daysBetweenDilemmas;
             eventWishes = d.eventWishes;
             reminders = d.reminders;

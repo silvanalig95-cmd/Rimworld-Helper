@@ -115,7 +115,7 @@ namespace ColonyCouncil
         private static void Fire(SocialEventDef def, CouncilGameComponent comp, Map map, Pawn a, Pawn b)
         {
             var tie = def.tie != TieKind.None ? comp.social.Get(a, b, def.tie) : null;
-            var ctx = new DilemmaContext { map = map, a = a, b = b, skill = tie?.skill };
+            var ctx = new DilemmaContext { map = map, a = a, b = b, skill = tie?.skill, why = def.label };
             foreach (var e in def.effects)
             {
                 try

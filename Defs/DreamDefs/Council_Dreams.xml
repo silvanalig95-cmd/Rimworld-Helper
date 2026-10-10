@@ -1,0 +1,531 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Dreams. A colonist who slept (or lay unconscious) four hours or more may wake from one.
+    kind: Sweet, Strange, Nightmare, Omen, Lost (sets the default mood memory: +3, 0, -4, -1, +2; fever dreams -2).
+    dreamer: dilemma-role requirements (anyTrait, notTrait, passion, minMood, maxMood, child, office). children: kids can have it too.
+    about: None, Friend, Rival, Comrade, Teacher, Student, Lover, Family, Colonist (OTHER), Lost (LOST, a name), Pet (PET).
+    afterThoughts: only after one of these memories (vanilla or this mod's ThoughtDef names), withinDays old (default 2).
+      If the memory is about someone, they become OTHER.
+    afterThreat: within two days of a raid. hediffs: has one of these conditions. unconscious: a fever dream. seasons.
+    Dreams about what really happened are four times as likely as others; low mood favours nightmares.
+    lines: first person, toned and tagged like any flavour lines; [again] = had this dream before, [fever] = was unconscious.
+    effects: dilemma effects, A = the dreamer, B = OTHER. changeTie/change: what it does to their bond.
+    omen: incident (defName), days (range), pointsFactor, good. wish: a WishDef the dream leaves them wanting.
+    notable: always a message and a chronicle line.
+  -->
+
+  <!-- ===== Everyday dreams ===== -->
+
+  <ColonyCouncil.DreamDef>
+    <defName>Council_DreamOf_Home</defName>
+    <label>a dream of home</label>
+    <kind>Sweet</kind>
+    <children>true</children>
+    <lines>
+      <plain>
+        <li>I dreamt I was home. Not here. Before. The door was open and someone was cooking.</li>
+        <li>I dreamt of the place I grew up. Everything was smaller than I remembered, and nobody was afraid.</li>
+        <li>[again] The house again. I always wake up just before I reach the door.</li>
+        <li>[winter] I dreamt of a warm room and a long winter outside it. I didn't want to wake up.</li>
+        <li>[child] I dreamt I had my own room with a window and a cat. The cat could talk. It was polite.</li>
+      </plain>
+      <warm><li>I dreamt everyone I've ever loved was at one table. Nobody was missing. I woke up crying, the good kind.</li></warm>
+      <blunt><li>Dreamt of home. Waste of a night. It's not there anymore.</li></blunt>
+      <cheerful><li>I dreamt we'd built a whole town here, with a bakery! I'm going to tell everyone!</li></cheerful>
+      <gloomy><li>I dreamt of home. I woke up here. Every time.</li></gloomy>
+      <cold><li>A dream of my former residence. Sentimental. Discarded.</li></cold>
+    </lines>
+  </ColonyCouncil.DreamDef>
+
+  <ColonyCouncil.DreamDef>
+    <defName>Council_DreamOf_Odd</defName>
+    <label>an odd dream</label>
+    <kind>Strange</kind>
+    <weight>1.2</weight>
+    <children>true</children>
+    <lines>
+      <plain>
+        <li>I dreamt the walls of the colony were made of bread and nobody thought that was strange.</li>
+        <li>I dreamt every door led back into the same room. I kept walking. So did the room.</li>
+        <li>I dreamt a muffalo was on the council. It had good ideas. I can't remember any of them.</li>
+        <li>I dreamt the stars came down to listen to us talk. Then they got bored and left.</li>
+        <li>[fever] Everything was talking. The bed, the walls, the light. They all had opinions about me.</li>
+        <li>[rain] I dreamt the rain was falling upward and we all had to hold on to the ground.</li>
+        <li>[tribal] I dreamt the spirits were arguing about us, like old people at a fire.</li>
+        <li>[spacer] I dreamt I was back in a cryptosleep pod, but the pod was dreaming me.</li>
+      </plain>
+      <cheerful><li>I dreamt I could breathe underwater and everyone wanted to come swimming! It was great!</li></cheerful>
+      <gloomy><li>I dreamt I was a ghost walking around the colony. Nobody noticed. Nothing changed.</li></gloomy>
+      <cold><li>I dreamt in numbers again. The numbers did not add up. That bothers me more than it should.</li></cold>
+    </lines>
+  </ColonyCouncil.DreamDef>
+
+  <ColonyCouncil.DreamDef>
+    <defName>Council_DreamOf_Dread</defName>
+    <label>a nightmare</label>
+    <kind>Nightmare</kind>
+    <children>true</children>
+    <lines>
+      <plain>
+        <li>I dreamt the stores were empty and everyone was looking at me.</li>
+        <li>I dreamt I was falling for a long time. I'm still not sure I landed.</li>
+        <li>I dreamt something was walking around outside my door all night, waiting for me to open it.</li>
+        <li>[again] That dream again. The corridor. The thing at the end of it. I'm not going back to sleep.</li>
+        <li>[child] I dreamt there was a monster under the bed and it knew my name.</li>
+        <li>[lowmood] I dreamt everyone left in the night and didn't tell me.</li>
+      </plain>
+      <blunt><li>Bad dream. Didn't like it. Moving on.</li></blunt>
+      <gloomy><li>Nightmares again. At least they're honest.</li></gloomy>
+      <cold><li>A nightmare. Elevated heart rate on waking. Irrelevant, but noted.</li></cold>
+    </lines>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Hediff"><target>A</target><hediff>Council_Dream_Shaken</hediff><chance>0.15</chance></li>
+    </effects>
+  </ColonyCouncil.DreamDef>
+
+  <ColonyCouncil.DreamDef>
+    <defName>Council_DreamOf_DeepSleep</defName>
+    <label>a deep, good sleep</label>
+    <kind>Sweet</kind>
+    <weight>0.4</weight>
+    <lines>
+      <plain>
+        <li>I dreamt I was lying in tall grass in the sun. That's all. I feel like I slept for a week.</li>
+        <li>I dreamt of nothing at all, and it was wonderful.</li>
+      </plain>
+      <cheerful><li>I slept like a rock and dreamt of sunshine! Today is going to be GREAT!</li></cheerful>
+      <cold><li>Uninterrupted sleep and a calm dream. Optimal.</li></cold>
+    </lines>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Hediff"><target>A</target><hediff>Council_Dream_WellRested</hediff></li>
+    </effects>
+  </ColonyCouncil.DreamDef>
+
+  <!-- ===== What really happened ===== -->
+
+  <ColonyCouncil.DreamDef>
+    <defName>Council_DreamOf_BattleAgain</defName>
+    <label>the battle, again</label>
+    <kind>Nightmare</kind>
+    <afterThreat>true</afterThreat>
+    <lines>
+      <plain>
+        <li>I dreamt the fight wasn't over. They kept coming over the wall and my gun wouldn't fire.</li>
+        <li>I dreamt I was back behind the sandbags. Everyone else had gone home. I hadn't been told.</li>
+        <li>[again] The same fight, every night. I know every shot by now.</li>
+      </plain>
+      <gloomy><li>I dreamt we lost. It felt more real than the day.</li></gloomy>
+      <cold><li>I replayed the engagement in my sleep. My positioning was poor. I'll correct it.</li></cold>
+    </lines>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Hediff"><target>A</target><hediff>Council_Dream_Shaken</hediff><chance>0.3</chance><exceptTrait><li>Psychopath</li><li>Bloodlust</li></exceptTrait></li>
+    </effects>
+  </ColonyCouncil.DreamDef>
+
+  <ColonyCouncil.DreamDef>
+    <defName>Council_DreamOf_BattleWon</defName>
+    <label>a dream of victory</label>
+    <kind>Sweet</kind>
+    <afterThreat>true</afterThreat>
+    <dreamer><canFight>true</canFight><notTrait><li>Wimp</li></notTrait></dreamer>
+    <lines>
+      <plain>
+        <li>I dreamt the fight again, but this time I saw every move before it came. I woke up calm.</li>
+        <li>I dreamt we held the line and they broke against it like water on rock.</li>
+      </plain>
+      <blunt><li>Dreamt I won the fight on my own. Woke up ready for the next one.</li></blunt>
+      <cold><li>I rehearsed the fight in my sleep. Every angle covered. I'm ready.</li></cold>
+    </lines>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Hediff"><target>A</target><hediff>Council_Dream_Steeled</hediff></li>
+    </effects>
+  </ColonyCouncil.DreamDef>
+
+  <ColonyCouncil.DreamDef>
+    <defName>Council_DreamOf_TheDying</defName>
+    <label>a dream of the dying</label>
+    <kind>Nightmare</kind>
+    <afterThoughts><li>WitnessedDeathAlly</li><li>WitnessedDeathFamily</li><li>KnowColonistDied</li></afterThoughts>
+    <withinDays>4</withinDays>
+    <lines>
+      <plain>
+        <li>I dreamt I was there again, at the end. I kept saying the wrong thing.</li>
+        <li>I dreamt the grave was empty and everyone was looking for the body but me.</li>
+      </plain>
+      <warm><li>I dreamt I held their hand at the end. I didn't, in life. I wish I had.</li></warm>
+      <gloomy><li>I dreamt it was me in the ground. It didn't seem so bad. That scares me.</li></gloomy>
+    </lines>
+  </ColonyCouncil.DreamDef>
+
+  <ColonyCouncil.DreamDef>
+    <defName>Council_DreamOf_Insult</defName>
+    <label>a dream about an insult</label>
+    <kind>Strange</kind>
+    <afterThoughts><li>Insulted</li><li>HadAngeringFight</li></afterThoughts>
+    <lines>
+      <plain>
+        <li>I dreamt I finally said the perfect thing back to {OTHER_nameDef}. I can't remember what it was now.</li>
+        <li>I dreamt {OTHER_nameDef} apologised. Then I woke up and remembered.</li>
+      </plain>
+      <blunt><li>Dreamt I knocked {OTHER_nameDef} flat. Felt good. Still angry.</li></blunt>
+      <warm><li>I dreamt {OTHER_nameDef} and I talked it all out. Maybe I should try that awake.</li></warm>
+    </lines>
+    <changeTie>Rivals</changeTie>
+    <change>3</change>
+  </ColonyCouncil.DreamDef>
+
+  <ColonyCouncil.DreamDef>
+    <defName>Council_DreamOf_Ignored</defName>
+    <label>a dream about the council</label>
+    <kind>Nightmare</kind>
+    <afterThoughts><li>Council_WishIgnored</li><li>Council_BrokenPromise</li><li>Council_Refused</li></afterThoughts>
+    <withinDays>3</withinDays>
+    <lines>
+      <plain>
+        <li>I dreamt I stood in front of the council and spoke, and no sound came out. They nodded anyway.</li>
+        <li>I dreamt I asked for something small and they built a wall around me instead.</li>
+      </plain>
+      <blunt><li>Dreamt about the council ignoring me. Didn't need to dream it. It's true.</li></blunt>
+      <gloomy><li>I dreamt they'd forgotten my name. In the dream I'd forgotten it too.</li></gloomy>
+    </lines>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>-2</amount></li>
+    </effects>
+  </ColonyCouncil.DreamDef>
+
+  <ColonyCouncil.DreamDef>
+    <defName>Council_DreamOf_Kept</defName>
+    <label>a grateful dream</label>
+    <kind>Sweet</kind>
+    <afterThoughts><li>Council_PromiseKept</li><li>Council_AmbitionAchieved</li><li>Council_MyAmbitionAchieved</li></afterThoughts>
+    <withinDays>3</withinDays>
+    <lines>
+      <plain>
+        <li>I dreamt we were all at a long table and someone stood up to thank me. Then I stood up to thank them.</li>
+        <li>I dreamt the colony was a ship and we were all rowing the same way.</li>
+      </plain>
+      <cheerful><li>I dreamt the council gave me a medal made of cake! I ate it! It was a good dream!</li></cheerful>
+    </lines>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>2</amount></li>
+    </effects>
+  </ColonyCouncil.DreamDef>
+
+  <ColonyCouncil.DreamDef>
+    <defName>Council_DreamOf_PhantomLimb</defName>
+    <label>a dream of being whole</label>
+    <kind>Strange</kind>
+    <hediffs><li>MissingBodyPart</li></hediffs>
+    <lines>
+      <plain>
+        <li>I dreamt I was whole again. I reached for my cup with a hand I don't have anymore.</li>
+        <li>[again] Whole again, in the dream. Waking up is like losing it twice.</li>
+      </plain>
+      <blunt><li>Dreamt I had all my parts back. Woke up. Didn't.</li></blunt>
+    </lines>
+  </ColonyCouncil.DreamDef>
+
+  <ColonyCouncil.DreamDef>
+    <defName>Council_DreamOf_Craving</defName>
+    <label>a craving dream</label>
+    <kind>Nightmare</kind>
+    <hediffs><li>AlcoholAddiction</li><li>PsychiteAddiction</li><li>SmokeleafAddiction</li><li>GoJuiceAddiction</li><li>WakeUpAddiction</li><li>LuciferiumAddiction</li></hediffs>
+    <lines>
+      <plain>
+        <li>I dreamt about it all night. Just one more. I woke up with my hands shaking.</li>
+        <li>I dreamt someone had hidden a stash in the walls and I tore the whole colony down looking for it.</li>
+      </plain>
+      <gloomy><li>Even my dreams want it. There's nowhere left to hide from it.</li></gloomy>
+    </lines>
+  </ColonyCouncil.DreamDef>
+
+  <ColonyCouncil.DreamDef>
+    <defName>Council_DreamOf_Fever</defName>
+    <label>a fever dream</label>
+    <kind>Strange</kind>
+    <unconscious>true</unconscious>
+    <weight>2</weight>
+    <children>true</children>
+    <lines>
+      <plain>
+        <li>I was somewhere white and bright, and someone kept asking me my name. I kept getting it wrong.</li>
+        <li>I dreamt I was the colony. Every wall was a bone. Someone was building on me.</li>
+        <li>I dreamt I was walking home across a frozen lake, and the ice kept talking.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.DreamDef>
+
+  <!-- ===== People ===== -->
+
+  <ColonyCouncil.DreamDef>
+    <defName>Council_DreamOf_Friend</defName>
+    <label>a dream about a friend</label>
+    <kind>Sweet</kind>
+    <about>Friend</about>
+    <lines>
+      <plain>
+        <li>I dreamt {OTHER_nameDef} and I were children together, running through a field I've never seen.</li>
+        <li>I dreamt {OTHER_nameDef} and I built a boat and sailed it across the desert.</li>
+        <li>[winter] I dreamt {OTHER_nameDef} brought me soup when I was sick. I'm not even sick.</li>
+      </plain>
+      <warm><li>I dreamt {OTHER_nameDef} was laughing at something I said. I'd like to make that happen today.</li></warm>
+      <blunt><li>Dreamt about {OTHER_nameDef}. We were fishing. It was fine.</li></blunt>
+    </lines>
+    <changeTie>Friends</changeTie>
+    <change>3</change>
+  </ColonyCouncil.DreamDef>
+
+  <ColonyCouncil.DreamDef>
+    <defName>Council_DreamOf_FriendLost</defName>
+    <label>a dream of losing a friend</label>
+    <kind>Nightmare</kind>
+    <about>Friend</about>
+    <weight>0.6</weight>
+    <lines>
+      <plain>
+        <li>I dreamt {OTHER_nameDef} walked out into the snow and didn't look back. I couldn't move.</li>
+        <li>I dreamt I called for {OTHER_nameDef} and {OTHER_pronoun} didn't know who I was.</li>
+      </plain>
+      <warm><li>I dreamt I lost {OTHER_nameDef}. First thing this morning, I went to find {OTHER_objective}. Just to see.</li></warm>
+    </lines>
+    <changeTie>Friends</changeTie>
+    <change>4</change>
+  </ColonyCouncil.DreamDef>
+
+  <ColonyCouncil.DreamDef>
+    <defName>Council_DreamOf_Rival</defName>
+    <label>a dream about a rival</label>
+    <kind>Nightmare</kind>
+    <about>Rival</about>
+    <lines>
+      <plain>
+        <li>I dreamt {OTHER_nameDef} was on the council and the first decree was about me.</li>
+        <li>I dreamt {OTHER_nameDef} was following me around, just watching, all day.</li>
+      </plain>
+      <blunt><li>Even in my sleep, {OTHER_nameDef}. Can't get away from {OTHER_objective}.</li></blunt>
+      <cold><li>{OTHER_nameDef} appeared in my dream. I'll consider that a sign I'm spending too much thought on {OTHER_objective}.</li></cold>
+    </lines>
+    <changeTie>Rivals</changeTie>
+    <change>3</change>
+  </ColonyCouncil.DreamDef>
+
+  <ColonyCouncil.DreamDef>
+    <defName>Council_DreamOf_RivalPeace</defName>
+    <label>a dream of making peace</label>
+    <kind>Strange</kind>
+    <about>Rival</about>
+    <weight>0.4</weight>
+    <dreamer><minMood>0.45</minMood></dreamer>
+    <lines>
+      <plain>
+        <li>I dreamt {OTHER_nameDef} and I were stranded together and had to share the last of the water. We were fine. We were friends, even.</li>
+        <li>I dreamt {OTHER_nameDef} pulled me out of a river. I don't know what to do with that.</li>
+      </plain>
+      <warm><li>I dreamt {OTHER_nameDef} and I made peace. Maybe the dream knows something I don't.</li></warm>
+    </lines>
+    <changeTie>Rivals</changeTie>
+    <change>-10</change>
+    <notable>true</notable>
+  </ColonyCouncil.DreamDef>
+
+  <ColonyCouncil.DreamDef>
+    <defName>Council_DreamOf_Lover</defName>
+    <label>a dream about a partner</label>
+    <kind>Sweet</kind>
+    <about>Lover</about>
+    <lines>
+      <plain>
+        <li>I dreamt {OTHER_nameDef} and I were old, really old, sitting outside a house we'd built.</li>
+        <li>I dreamt {OTHER_nameDef} was singing in another room. I just listened.</li>
+      </plain>
+      <blunt><li>Dreamt about {OTHER_nameDef}. Not telling anyone the details.</li></blunt>
+      <gloomy><li>I dreamt I lost {OTHER_nameDef}. I held on a little tighter this morning.</li></gloomy>
+    </lines>
+  </ColonyCouncil.DreamDef>
+
+  <ColonyCouncil.DreamDef>
+    <defName>Council_DreamOf_Teacher</defName>
+    <label>a dream of a lesson</label>
+    <kind>Strange</kind>
+    <about>Teacher</about>
+    <children>true</children>
+    <lines>
+      <plain>
+        <li>I dreamt {OTHER_nameDef} was showing me {SKILL} again, but slower, and this time I understood all of it.</li>
+        <li>I dreamt I was doing {SKILL} and {OTHER_nameDef} was watching and didn't say a word. I think I got it right.</li>
+      </plain>
+    </lines>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Learn"><target>A</target><xp>600</xp></li>
+    </effects>
+    <changeTie>Mentor</changeTie>
+    <change>2</change>
+  </ColonyCouncil.DreamDef>
+
+  <ColonyCouncil.DreamDef>
+    <defName>Council_DreamOf_Lost</defName>
+    <label>a visit from the dead</label>
+    <kind>Lost</kind>
+    <about>Lost</about>
+    <weight>1.2</weight>
+    <children>true</children>
+    <lines>
+      <plain>
+        <li>{LOST} was sitting at our table when I came in, like nothing had happened. We talked for hours. I don't remember a word.</li>
+        <li>I dreamt {LOST} was waiting for me at the edge of the fields, waving. I woke up before I got there.</li>
+        <li>[again] {LOST} came again last night. Same spot, same smile. I think I'll keep these.</li>
+        <li>[winter] I dreamt {LOST} was building a snowman outside. It looked like me.</li>
+      </plain>
+      <warm><li>{LOST} came to see me last night. Told me not to worry so much. I'll try.</li></warm>
+      <blunt><li>Dreamt about {LOST}. Woke up angry. Not at {LOST}.</li></blunt>
+      <gloomy><li>{LOST} came back in my dream and asked why I let it happen. I didn't have an answer.</li></gloomy>
+      <cold><li>{LOST} appeared in a dream. Grief processing, presumably. It helped, which irritates me.</li></cold>
+    </lines>
+  </ColonyCouncil.DreamDef>
+
+  <ColonyCouncil.DreamDef>
+    <defName>Council_DreamOf_Pet</defName>
+    <label>a dream about an animal</label>
+    <kind>Sweet</kind>
+    <about>Pet</about>
+    <children>true</children>
+    <lines>
+      <plain>
+        <li>I dreamt {PET_nameDef} could talk. {PET_nameDef} mostly wanted to talk about food.</li>
+        <li>I dreamt {PET_nameDef} and I were running across open country with nothing chasing us.</li>
+      </plain>
+      <cheerful><li>{PET_nameDef} was the size of a house in my dream and we went everywhere together!</li></cheerful>
+    </lines>
+  </ColonyCouncil.DreamDef>
+
+  <!-- ===== Dreams that change something ===== -->
+
+  <ColonyCouncil.DreamDef>
+    <defName>Council_DreamOf_Craft</defName>
+    <label>a dream of the work</label>
+    <kind>Strange</kind>
+    <weight>0.5</weight>
+    <lines>
+      <plain>
+        <li>I dreamt about {SKILL} all night. Every step, over and over. I think I see what I've been doing wrong.</li>
+        <li>I dreamt I was teaching {SKILL} to a room full of strangers. I knew more than I thought.</li>
+      </plain>
+      <cold><li>I solved a {SKILL} problem in my sleep. I'll test the solution today.</li></cold>
+    </lines>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Learn"><target>A</target><xp>500</xp></li>
+    </effects>
+  </ColonyCouncil.DreamDef>
+
+  <ColonyCouncil.DreamDef>
+    <defName>Council_DreamOf_Spark</defName>
+    <label>an inspiring dream</label>
+    <kind>Sweet</kind>
+    <weight>0.2</weight>
+    <thought>Council_Dream_Inspiring</thought>
+    <dreamer><minMood>0.4</minMood></dreamer>
+    <lines>
+      <plain>
+        <li>I dreamt the answer. Not to anything in particular. To everything, for a moment. I have to get to work.</li>
+        <li>I dreamt I was doing my work perfectly and it felt like flying. I'm going to try to make that real today.</li>
+      </plain>
+      <cheerful><li>I woke up with the BEST idea! I'm not even going to have breakfast!</li></cheerful>
+    </lines>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Inspiration"><target>A</target></li>
+    </effects>
+    <notable>true</notable>
+  </ColonyCouncil.DreamDef>
+
+  <ColonyCouncil.DreamDef>
+    <defName>Council_DreamOf_Feast</defName>
+    <label>a dream of a feast</label>
+    <kind>Sweet</kind>
+    <weight>0.3</weight>
+    <lines>
+      <plain>
+        <li>I dreamt of a feast. Everyone, every dish, music, nobody on watch. We should do that. Really.</li>
+      </plain>
+      <cheerful><li>I dreamt we had a party that lasted three days! We NEED that!</li></cheerful>
+    </lines>
+    <wish>Council_Wish_Party</wish>
+  </ColonyCouncil.DreamDef>
+
+  <!-- ===== Omens ===== -->
+
+  <ColonyCouncil.DreamDef>
+    <defName>Council_DreamOf_Omen_Trader</defName>
+    <label>the dream of the caravan</label>
+    <kind>Omen</kind>
+    <weight>0.25</weight>
+    <lines>
+      <plain>
+        <li>I dreamt of bells, and animals loaded with packs, coming over the hill from the east. They were smiling.</li>
+        <li>I dreamt strangers came with carts full of things we needed, and asked only for what we had too much of.</li>
+      </plain>
+    </lines>
+    <omen><incident>TraderCaravanArrival</incident><days>1~3</days><good>true</good></omen>
+  </ColonyCouncil.DreamDef>
+
+  <ColonyCouncil.DreamDef>
+    <defName>Council_DreamOf_Omen_Stranger</defName>
+    <label>the dream of the stranger</label>
+    <kind>Omen</kind>
+    <weight>0.2</weight>
+    <lines>
+      <plain>
+        <li>I dreamt someone walked out of the trees and sat down at our fire like they'd always lived here. We gave them a bowl.</li>
+        <li>I dreamt there was one more chair at the table, and soon someone would sit in it.</li>
+      </plain>
+    </lines>
+    <omen><incident>WandererJoin</incident><days>2~4</days><good>true</good></omen>
+  </ColonyCouncil.DreamDef>
+
+  <ColonyCouncil.DreamDef>
+    <defName>Council_DreamOf_Omen_Raid</defName>
+    <label>the dream of the torches</label>
+    <kind>Omen</kind>
+    <weight>0.2</weight>
+    <lines>
+      <plain>
+        <li>I dreamt of torches in the dark, a lot of them, coming closer. Nobody else could see them.</li>
+        <li>I dreamt wolves were circling the colony, but they walked on two legs and carried guns.</li>
+      </plain>
+      <cold><li>I dreamt of an attack, in detail. Probably anxiety. I'd still check the defenses.</li></cold>
+    </lines>
+    <omen><incident>RaidEnemy</incident><days>2~4</days><pointsFactor>0.8</pointsFactor><good>false</good></omen>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Hediff"><target>A</target><hediff>Council_Dream_Shaken</hediff><chance>0.5</chance></li>
+    </effects>
+  </ColonyCouncil.DreamDef>
+
+  <ColonyCouncil.DreamDef>
+    <defName>Council_DreamOf_Omen_Cold</defName>
+    <label>the dream of the white sky</label>
+    <kind>Omen</kind>
+    <weight>0.2</weight>
+    <seasons><li>Fall</li><li>Winter</li></seasons>
+    <lines>
+      <plain>
+        <li>I dreamt the sky turned white and the birds froze where they flew. We should bring the animals in.</li>
+      </plain>
+    </lines>
+    <omen><incident>ColdSnap</incident><days>1~3</days><good>false</good></omen>
+  </ColonyCouncil.DreamDef>
+
+  <ColonyCouncil.DreamDef>
+    <defName>Council_DreamOf_Omen_Pods</defName>
+    <label>the dream of falling stars</label>
+    <kind>Omen</kind>
+    <weight>0.2</weight>
+    <lines>
+      <plain>
+        <li>I dreamt stars fell into the field, and when we went to look, they were full of gifts.</li>
+      </plain>
+    </lines>
+    <omen><incident>ResourcePodCrash</incident><days>1~3</days><good>true</good></omen>
+  </ColonyCouncil.DreamDef>
+
+</Defs>

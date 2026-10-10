@@ -88,6 +88,13 @@ namespace ColonyCouncil
                 CouncilLog.ErrorOnce("journal " + pool, e);
                 return;
             }
+            WriteText(p, line);
+        }
+
+        /// <summary>Adds a line already written in the colonist's voice (a dream, say).</summary>
+        public void WriteText(Pawn p, string line)
+        {
+            if (!ColonyCouncilMod.Settings.journals || p == null || p.Dead || !p.RaceProps.Humanlike || line.NullOrEmpty()) return;
             var j = For(p, true);
             j.entries.Add(new JournalEntry { tick = Find.TickManager.TicksGame, date = DateNow(p), text = line });
             if (j.entries.Count > MaxEntries) j.entries.RemoveAt(0);

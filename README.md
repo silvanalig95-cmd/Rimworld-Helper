@@ -130,6 +130,16 @@ decree can start a rivalry, while backing the same petition or making up after a
 dilemmas only come up between friends, rivals or comrades. When someone dies, the people closest to them (and their
 rivals) write about it. The **Social** tab shows every bond with its strength and history, and every circle.
 
+### Dreams
+Colonists who sleep (or lie unconscious) for a few hours sometimes wake from a dream, and tell each other about
+it. Dreams grow out of their lives: the raid two days ago, the friend they buried, the rival who insulted them, the
+wish the council ignored, the leg they lost, the skill they're learning, the dead they miss, their partner, their
+dog. Most are just a passing mood and a line in their journal (hover the mood to read the dream). Now and then one
+changes something: an inspiration, a lesson, a good night's rest, a nightmare that leaves them shaken, a dream of
+victory that steadies their aim, a softened rivalry, a sudden wish. And rarely a dream is an **omen**: a few days
+after someone wakes up talking about bells and pack animals on the hill, a caravan arrives; after torches in the
+dark, a raid. Recent dreams are listed in the Social tab.
+
 ### Offices and elections
 Five council seats: **speaker** (chairs meetings, everyone's trust rises a little each day), **marshal** (drills
 count for more, better aim), **quartermaster** (dilemmas cost less, better trade), **physician** (faster healing)
@@ -223,8 +233,8 @@ The council only suggests what your colony can actually do right now:
 - meeting interval and ambition deadlines
 - letters vs. messages, floating speech text, alerts
 - where the council button sits in the bottom bar
-- **council life**: decrees, dilemmas, petitions, annals, names, journals, offices, the social web and social
-  events, each on its own switch
+- **council life**: decrees, dilemmas, petitions, annals, names, journals, offices, the social web, social
+  events, dreams and dream omens, each on its own switch
 
 ## Optional mods that go well with it
 
