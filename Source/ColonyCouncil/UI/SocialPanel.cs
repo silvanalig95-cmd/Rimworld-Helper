@@ -71,7 +71,7 @@ namespace ColonyCouncil
             }
             var web = comp.social;
             if (web.cliques.Count == 0 && web.ties.Count > 0) web.RebuildCliques();
-            var ties = web.ties.Where(t => Shown(t.a) && Shown(t.b) && t.strength >= 1f && (focus == null || t.Involves(focus))).ToList();
+            var ties = web.ties.Where(t => Shown(t.a) && Shown(t.b) && t.announced && (focus == null || t.Involves(focus))).ToList();
 
             var outRect = new Rect(rect.x, y, rect.width, rect.yMax - y);
             var view = new Rect(0f, 0f, outRect.width - 16f, height);
@@ -141,7 +141,7 @@ namespace ColonyCouncil
             var barRect = new Rect(r.x + 310f, r.y + 7f, 160f, r.height - 14f);
             Widgets.FillableBar(barRect, Mathf.Clamp01(t.strength / 100f), Bar(t.kind), BaseContent.ClearTex, false);
             Widgets.DrawBox(barRect);
-            string stage = (t.strength >= 70f ? "CC_Social_Deep" : t.strength >= 35f ? "CC_Social_Solid" : "CC_Social_Weak").Translate();
+            string stage = (t.strength >= 70f ? "CC_Social_Deep" : t.strength >= 45f ? "CC_Social_Solid" : "CC_Social_Weak").Translate();
             GUI.color = Faint;
             Widgets.Label(new Rect(r.x + 478f, r.y, 70f, r.height), stage);
             string last = t.history.Count > 0 ? t.history[t.history.Count - 1] : "";

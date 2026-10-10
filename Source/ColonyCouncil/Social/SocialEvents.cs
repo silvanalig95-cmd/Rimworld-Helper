@@ -81,7 +81,7 @@ namespace ColonyCouncil
             a = b = null;
             if (def.tie != TieKind.None)
             {
-                var tie = comp.social.ties.Where(t => t.kind == def.tie && t.strength >= def.minStrength && pawns.Contains(t.a) && pawns.Contains(t.b))
+                var tie = comp.social.ties.Where(t => t.kind == def.tie && t.announced && t.strength >= def.minStrength && pawns.Contains(t.a) && pawns.Contains(t.b))
                     .InRandomOrder().FirstOrDefault(t => Fits(def, t.a, t.b) || (def.tie != TieKind.Mentor && Fits(def, t.b, t.a)));
                 if (tie == null) return false;
                 if (Fits(def, tie.a, tie.b)) { a = tie.a; b = tie.b; }

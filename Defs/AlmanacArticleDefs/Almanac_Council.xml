@@ -136,4 +136,81 @@
     <seeAlso><li>Council_Alm_C_Wishes</li></seeAlso>
   </ColonyCouncil.AlmanacArticleDef>
 
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Council_Alm_C_Offices</defName>
+    <label>offices and elections</label>
+    <category>Council</category>
+    <order>7</order>
+    <summary>Speaker, marshal, quartermaster, physician, steward: who holds them and what they do.</summary>
+    <tip>The colony votes for who it likes. Sometimes that's even who it needs.</tip>
+    <description>The council has five seats. Each gives its holder an edge and does a job for the whole colony. Colonists elect them once a year, voting for whoever is good at the job, has the right nature for it, and is liked. The council can appoint or dismiss anyone from the Decrees tab, but overruling the vote has a price.</description>
+    <facts>
+      <li>Speaker: chairs every council meeting; everyone's trust rises a little each day.</li>
+      <li>Marshal: drills train half again as fast; the colony aims and strikes a little better.</li>
+      <li>Quartermaster: answers to dilemmas that cost food, wood or silver cost a quarter less; better trade prices.</li>
+      <li>Physician: everyone heals and fights off illness a little faster.</li>
+      <li>Steward: standards rise a quarter more slowly; the steward gets more out of recreation.</li>
+      <li>The first election comes after about a week, then one every new year. An empty seat is refilled by a by-election a few days later.</li>
+      <li>Nobody holds two offices. Children, slaves and lodgers can't stand.</li>
+      <li>Votes follow skill, traits and friendship: friends and members of the same circle vote for each other, rivals against.</li>
+      <li>Losing an election or a seat sours the loser on the winner, and can start a rivalry.</li>
+    </facts>
+    <advice>
+      <li>Appoint over the vote only when the difference matters. The one who was elected will remember.</li>
+      <li>A good speaker is the cheapest trust you'll ever buy.</li>
+    </advice>
+    <keywords><li>office</li><li>election</li><li>vote</li><li>speaker</li><li>marshal</li><li>quartermaster</li><li>physician</li><li>steward</li></keywords>
+    <seeAlso><li>Council_Alm_C_Trust</li><li>Council_Alm_C_Social</li></seeAlso>
+  </ColonyCouncil.AlmanacArticleDef>
+
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Council_Alm_C_Traditions</defName>
+    <label>traditions</label>
+    <category>Council</category>
+    <order>8</order>
+    <summary>What the colony keeps doing becomes expected.</summary>
+    <tip>Do something twice and it's a habit. Do it three times and you'll never hear the end of it if you stop.</tip>
+    <description>Some seasonal dilemmas have an answer the colony can make its own: a midsummer feast, a harvest celebration, a vigil on the longest night. Choose the same answer two years running and it becomes a tradition. From then on it comes up first every year, keeping it pleases everyone, and breaking it disappoints them.</description>
+    <facts>
+      <li>The letter says when a choice is a tradition, and when choosing it again will make one.</li>
+      <li>Keeping a tradition gives everyone a good memory; breaking one gives a bad one and resets the count.</li>
+      <li>New, kept and broken traditions are written into the chronicle and the year's annals, and someone usually writes about a new tradition in their journal.</li>
+    </facts>
+    <advice>
+      <li>Traditions cost something every year. Only start the ones you can afford in a bad year too.</li>
+    </advice>
+    <keywords><li>tradition</li><li>festival</li><li>season</li><li>feast</li><li>custom</li></keywords>
+    <seeAlso><li>Council_Alm_C_Dilemmas</li><li>Council_Alm_C_Names</li></seeAlso>
+  </ColonyCouncil.AlmanacArticleDef>
+
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Council_Alm_C_Social</defName>
+    <label>friends, rivals, comrades and mentors</label>
+    <category>Council</category>
+    <order>9</order>
+    <summary>The bonds between colonists: how they form, grow, sour and end, and what they change.</summary>
+    <tip>You can order people to work together. You can't order them to like it.</tip>
+    <description>Colonists form lasting bonds out of how they feel about each other and what they go through. Steady liking turns into friendship, steady loathing into rivalry, fighting side by side into comradeship, and a skilled colonist may take an eager learner under their wing. Every bond has a strength and a short history, shown in the Social tab of the council window.</description>
+    <facts>
+      <li>Friends and rivals form when two colonists' opinions of each other stay high (or low) enough. A bond then drifts with how they feel, and ends when it fades to nothing.</li>
+      <li>Everyone who deals real damage in the same battle becomes comrades. Comradeship slowly fades between battles.</li>
+      <li>A mentor (skill 12+, with a passion) teaches a student (skill 7 or less, with a passion) every day until the student reaches level 11. Both are proud when the student graduates.</li>
+      <li>Bonds give opinion: new, solid and deep bonds count for more each step.</li>
+      <li>Small social events happen most days: late talks, pranks, snubs, squabbles, war stories, lessons, contests, gifts, gossip and the odd truce. Each moves the bond a little.</li>
+      <li>Three or more colonists held together by strong friendships or shared battles form a circle. Colonists outside every circle, with no close friend, sometimes feel left out.</li>
+      <li>The council's decisions feed back: losing an election to someone, having your wish passed over for theirs, a fight, a grudge from a dilemma or arguing over a decree can start rivalries; backing the same petition, making up or going through something together builds friendships.</li>
+      <li>Bonds change how people act: friends and circle members back each other's wishes and petitions and vote for each other; rivals object to each other's wishes and vote against each other.</li>
+      <li>Let someone's wish lapse and their close friends trust the council a little less, the rest of their circle more so.</li>
+      <li>A colonist's bonds and circle are listed in their trust tooltip in the Wishes tab.</li>
+      <li>When a bonded colonist dies, the ones left behind write about it.</li>
+    </facts>
+    <advice>
+      <li>Two rivals on the same work shift is a squabble waiting to happen. Two friends on a raid is a comradeship waiting to happen.</li>
+      <li>Want a skill to survive a death? Look for a mentorship in the Social tab, or make sure a passionate learner works next to your best.</li>
+      <li>A strong circle is a voting bloc. Keep its members happy, or they'll be unhappy together.</li>
+    </advice>
+    <keywords><li>friend</li><li>rival</li><li>comrade</li><li>mentor</li><li>student</li><li>circle</li><li>social</li><li>bond</li><li>relationship</li></keywords>
+    <seeAlso><li>Council_Alm_C_Offices</li><li>Council_Alm_C_Wishes</li><li>Council_Alm_C_Dilemmas</li></seeAlso>
+  </ColonyCouncil.AlmanacArticleDef>
+
 </Defs>

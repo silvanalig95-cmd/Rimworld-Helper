@@ -482,7 +482,9 @@ namespace ColonyCouncil
                 foreach (var f in w.pawn.MapHeld.mapPawns.FreeColonistsSpawned)
                 {
                     if (f == w.pawn || w.Involves(f) || f.relations == null) continue;
-                    if (f.relations.OpinionOf(w.pawn) >= 40) standings.Change(f, -2f, "CC_Log_FriendIgnored".Translate(w.pawn.LabelShort));
+                    // Close friends and the rest of their circle stand together.
+                    if (f.relations.OpinionOf(w.pawn) >= 40 || social.Warmth(f, w.pawn) >= 40f)
+                        standings.Change(f, social.SameClique(f, w.pawn) ? -3f : -2f, "CC_Log_FriendIgnored".Translate(w.pawn.LabelShort));
                 }
             }
             RunEffects(w, w.def.ignoreEffects);

@@ -29,6 +29,8 @@ namespace ColonyCouncil
         public float strength;
         public int formedTick;
         public SkillDef skill;
+        /// <summary>Strong enough to have been announced: a real bond rather than a budding one.</summary>
+        public bool announced;
         public List<string> history = new List<string>();
 
         public bool Involves(Pawn p) => p == a || p == b;
@@ -54,6 +56,7 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref strength, "strength");
             Scribe_Values.Look(ref formedTick, "formedTick");
             Scribe_Defs.Look(ref skill, "skill");
+            Scribe_Values.Look(ref announced, "announced");
             Scribe_Collections.Look(ref history, "history", LookMode.Value);
             if (Scribe.mode == LoadSaveMode.PostLoadInit && history == null) history = new List<string>();
         }
@@ -113,6 +116,24 @@ namespace ColonyCouncil
             return w;
         }
 
+        /// <summary>One line naming someone's bonds, for tooltips: "Friends with Ann and Bo. Rivals with Cy."</summary>
+        public string Describe(Pawn p)
+        {
+            if (!S.socialWeb || p == null) return null;
+            var parts = new List<string>();
+            foreach (var kind in new[] { TieKind.Friends, TieKind.Rivals, TieKind.Comrades })
+            {
+                var names = ties.Where(t => t.kind == kind && t.announced && t.Involves(p) && t.Other(p) != null && !t.Other(p).Dead)
+                    .OrderByDescending(t => t.strength).Select(t => t.Other(p).LabelShort).ToList();
+                if (names.Count > 0) parts.Add(("CC_Social_Describe_" + kind).Translate(TextUtil.JoinAnd(names)).Resolve());
+            }
+            foreach (var t in ties.Where(t => t.kind == TieKind.Mentor && t.Involves(p) && t.skill != null && t.Other(p) != null))
+                parts.Add((t.a == p ? "CC_Social_Describe_Teaching" : "CC_Social_Describe_Learning").Translate(t.Other(p).LabelShort, t.skill.label).Resolve());
+            var circle = CliqueOf(p);
+            if (circle != null) parts.Add("CC_Social_Describe_Circle".Translate(circle.name).Resolve());
+            return parts.Count == 0 ? null : string.Join(" ", parts);
+        }
+
         private static bool Eligible(Pawn p) => p != null && !p.Dead && p.IsColonist && !p.IsQuestLodger() && p.RaceProps.Humanlike && !p.DevelopmentalStage.Baby();
 
         // ---------------- Changes ----------------
@@ -124,7 +145,8 @@ namespace ColonyCouncil
             var t = Get(x, y, kind);
             if (t == null)
             {
-                if (amount <= 0f) return null;
+                // Mentorships only start in TryStartMentorship, where the skill is known.
+                if (amount <= 0f || kind == TieKind.Mentor) return null;
                 t = new SocialTie { a = x, b = y, kind = kind, strength = 0f, formedTick = Find.TickManager.TicksGame };
                 ties.Add(t);
                 t.strength = Mathf.Clamp(amount, 0f, 100f);
@@ -132,10 +154,9 @@ namespace ColonyCouncil
                 if (t.strength >= 20f) Announce(t, true);
                 return t;
             }
-            bool wasWeak = t.strength < 20f;
             t.strength = Mathf.Clamp(t.strength + amount, 0f, 100f);
             t.Note(note);
-            if (wasWeak && t.strength >= 20f) Announce(t, true);
+            if (!t.announced && t.strength >= 20f) Announce(t, true);
             // Friends who keep fighting stop being friends; rivals who make peace stop being rivals.
             if (kind == TieKind.Rivals && amount > 0f) Weaken(x, y, TieKind.Friends, amount * 0.7f, null);
             if (kind == TieKind.Friends && amount > 0f) Weaken(x, y, TieKind.Rivals, amount * 0.7f, null);
@@ -154,7 +175,7 @@ namespace ColonyCouncil
         private void End(SocialTie t, bool graduated)
         {
             ties.Remove(t);
-            if (t.a == null || t.b == null || t.a.Dead || t.b.Dead) return;
+            if (!t.announced || t.a == null || t.b == null || t.a.Dead || t.b.Dead) return;
             string key = graduated ? "CC_Tie_Graduated" : "CC_Tie_Ended_" + t.kind;
             if (!key.CanTranslate()) return;
             var comp = CouncilGameComponent.Instance;
@@ -167,6 +188,7 @@ namespace ColonyCouncil
 
         private void Announce(SocialTie t, bool formed)
         {
+            t.announced = true;
             var comp = CouncilGameComponent.Instance;
             string key = "CC_Tie_Formed_" + t.kind;
             var args = new[] { t.a.Named("A"), t.b.Named("B"), (t.skill?.label ?? "").Named("SKILL") };
@@ -188,7 +210,7 @@ namespace ColonyCouncil
             // Someone died: the ones who were close (or at war with them) write about it.
             if (S.socialWeb)
             {
-                foreach (var t in ties.Where(t => t.a != null && t.b != null && t.a.Dead != t.b.Dead && t.strength >= 25f).ToList())
+                foreach (var t in ties.Where(t => t.a != null && t.b != null && t.a.Dead != t.b.Dead && t.announced).ToList())
                 {
                     var dead = t.a.Dead ? t.a : t.b;
                     var alive = t.Other(dead);
@@ -222,7 +244,7 @@ namespace ColonyCouncil
             // Comrades slowly fade without new battles; mentorships teach and graduate.
             foreach (var t in ties.ToList())
             {
-                if (t.kind == TieKind.Comrades) Drift(t, Mathf.Max(0f, t.strength - 0.5f));
+                if (t.kind == TieKind.Comrades && (t.strength -= 0.5f) <= 1f) End(t, false);
                 if (t.kind == TieKind.Mentor) Mentor(t, comp);
             }
             TryStartMentorship(pawns);
@@ -243,6 +265,7 @@ namespace ColonyCouncil
         {
             t.strength += (Mathf.Clamp(target, 0f, 100f) - t.strength) * 0.1f;
             if (t.strength <= 1f) End(t, false);
+            else if (!t.announced && t.strength >= 20f) Announce(t, true);
         }
 
         private void Mentor(SocialTie t, CouncilGameComponent comp)
@@ -298,21 +321,27 @@ namespace ColonyCouncil
         {
             int threat = Find.Maps.Where(m => m.IsPlayerHome).Select(m => m.storyState.LastThreatBigTick).DefaultIfEmpty(0).Max();
             int now = Find.TickManager.TicksGame;
+            // The snapshot is refreshed every quiet day, so when trouble comes it holds everyone's damage from before it.
             if (threat > threatTracked)
             {
-                // A new threat: remember everyone's damage dealt so far (taken the day after it starts at the latest).
                 threatTracked = threat;
-                damageAtThreat = pawns.Where(p => p.records != null).ToDictionary(p => p, p => p.records.GetValue(RecordDefOf.DamageDealt));
+                if (damageAtThreat.Count == 0) Snapshot(pawns);
                 return;
             }
-            if (threatTracked <= threatResolved || now - threatTracked < GenDate.TicksPerDay) return;
-            threatResolved = threatTracked;
-            var fighters = pawns.Where(p => p.records != null && damageAtThreat.TryGetValue(p, out float before) && p.records.GetValue(RecordDefOf.DamageDealt) - before > 10f).ToList();
-            for (int i = 0; i < fighters.Count; i++)
-                for (int j = i + 1; j < fighters.Count; j++)
-                    Bump(fighters[i], fighters[j], TieKind.Comrades, 25f, "CC_TieNote_Battle".Translate());
-            damageAtThreat.Clear();
+            if (threatTracked > threatResolved)
+            {
+                if (now - threatTracked < GenDate.TicksPerDay) return;
+                threatResolved = threatTracked;
+                var fighters = pawns.Where(p => p.records != null && damageAtThreat.TryGetValue(p, out float before) && p.records.GetValue(RecordDefOf.DamageDealt) - before > 10f).ToList();
+                for (int i = 0; i < fighters.Count; i++)
+                    for (int j = i + 1; j < fighters.Count; j++)
+                        Bump(fighters[i], fighters[j], TieKind.Comrades, 25f, "CC_TieNote_Battle".Translate());
+            }
+            Snapshot(pawns);
         }
+
+        private void Snapshot(List<Pawn> pawns) =>
+            damageAtThreat = pawns.Where(p => p.records != null).ToDictionary(p => p, p => p.records.GetValue(RecordDefOf.DamageDealt));
 
         /// <summary>Groups of three or more held together by strong friendships and shared battles.</summary>
         private void BuildCliques(List<Pawn> pawns)
@@ -362,7 +391,7 @@ namespace ColonyCouncil
         }
     }
 
-    /// <summary>Opinion from a tie, by kind and strength: def name Council_Tie_Friends etc. Stages: weak, solid, deep.</summary>
+    /// <summary>Opinion from an announced tie, by kind and strength: def name Council_Tie_Friends etc. Stages: new, solid (45+), deep (70+).</summary>
     public class ThoughtWorker_SocialTie : ThoughtWorker
     {
         private TieKind? kind;
@@ -377,8 +406,8 @@ namespace ColonyCouncil
                 kind = System.Enum.TryParse(suffix, out TieKind k) ? k : TieKind.Friends;
             }
             var t = comp.social.Get(p, other, kind.Value);
-            if (t == null || t.strength < 10f) return ThoughtState.Inactive;
-            return ThoughtState.ActiveAtStage(t.strength >= 70f ? 2 : t.strength >= 35f ? 1 : 0);
+            if (t == null || !t.announced) return ThoughtState.Inactive;
+            return ThoughtState.ActiveAtStage(t.strength >= 70f ? 2 : t.strength >= 45f ? 1 : 0);
         }
     }
 }

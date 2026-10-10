@@ -25,7 +25,7 @@ one-time errors about missing classes. They're harmless.
 
 ## What you get
 
-A **Council** button at the right end of the bottom bar (you can move it in the settings) opens six tabs.
+A **Council** button at the right end of the bottom bar (you can move it in the settings) opens eight tabs: Priorities, Wishes, Ambition, Room plans, Decrees, Social, Almanac and Chronicle.
 
 ### Priorities: what the colony needs
 A ranked list of concerns, each with a short explanation, a rotating **"why it matters"** tip, and buttons to
@@ -109,6 +109,44 @@ stash of beer, a cook who wants to spend the stores on one magnificent feast, a 
 can't cope. Kind, greedy, industrious and teetotal colonists all react differently. Leave a dilemma unanswered and
 the council's silence decides for you.
 
+### Social: friends, rivals, comrades and mentors
+Colonists form lasting bonds out of how they feel about each other and what they live through, and those bonds
+grow, sour and end over time:
+- **Friends** and **rivals** form when two people keep liking (or loathing) each other, then drift with how
+  they feel.
+- Everyone who fights in the same battle becomes **comrades**. That fades slowly between battles.
+- A skilled, passionate colonist may take a keen learner on as a **student**, teaching them every day until they
+  graduate at level 11.
+
+Most days something small happens between two people: a late talk, a shared joke, a prank that lands badly, a
+snub at dinner, a squabble over chores, war stories, a lesson, a contest between rivals, a handmade gift, gossip
+that gets found out, an unexpected truce. Each one nudges their bond. Three or more people held together by strong
+bonds form a **circle**, and people outside every circle sometimes feel left out.
+
+Bonds change how people act. Friends and circle members back each other's wishes and petitions and vote for each
+other; rivals object to each other's wishes and vote against each other. The council's own decisions feed back
+into them: being passed over for a rival, losing an election, a fight, a grudge from a dilemma or arguing over a
+decree can start a rivalry, while backing the same petition or making up after a quarrel builds a friendship. Some
+dilemmas only come up between friends, rivals or comrades. When someone dies, the people closest to them (and their
+rivals) write about it. The **Social** tab shows every bond with its strength and history, and every circle.
+
+### Offices and elections
+Five council seats: **speaker** (chairs meetings, everyone's trust rises a little each day), **marshal** (drills
+count for more, better aim), **quartermaster** (dilemmas cost less, better trade), **physician** (faster healing)
+and **steward** (standards rise more slowly). Colonists elect them every year, voting for the skilled, the suited
+and the liked, friends and circles voting together. You can appoint and dismiss from the Decrees tab, but whoever
+the colony actually voted for will remember being overruled.
+
+### Traditions
+Choose the same answer to a seasonal dilemma two years running (a midsummer feast, a harvest celebration, a vigil
+on the longest night) and it becomes a tradition. From then on it comes up first every year: keeping it pleases
+everyone, breaking it disappoints them.
+
+### Journals
+Every colonist keeps a journal in their own voice: wishes granted and ignored, promises, decrees, raids, losses,
+names earned, friendships made and lost, lessons learned. Click a name in the Wishes tab's trust list to read it.
+The journals of the dead and departed are kept.
+
 ### Ambition: council meetings
 About once a quadrum, in the evening, the council actually **meets**: colonists gather around the dining
 table, in the rec room, by the campfire or in the open. Three of them pitch an ambition out loud, others back
@@ -185,6 +223,8 @@ The council only suggests what your colony can actually do right now:
 - meeting interval and ambition deadlines
 - letters vs. messages, floating speech text, alerts
 - where the council button sits in the bottom bar
+- **council life**: decrees, dilemmas, petitions, annals, names, journals, offices, the social web and social
+  events, each on its own switch
 
 ## Optional mods that go well with it
 
@@ -193,7 +233,7 @@ The council only suggests what your colony can actually do right now:
 
 ## Status and feedback
 
-Version 0.2. It compiles against RimWorld 1.6, and all XML is checked against the real game types by the
+Version 0.4. It compiles against RimWorld 1.6, and all XML is checked against the real game types by the
 included validator. It has **not been play-tested** in a live game yet. If something misbehaves, open the debug
 log (Options → Development mode, then the log button): lines starting with `[Rimfolk]` are from this mod.
 Please share them so they can be fixed.

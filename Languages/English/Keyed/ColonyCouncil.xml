@@ -1055,6 +1055,12 @@ Granting one of {PAWN_possessive} wishes, or keeping a promise, can win {PAWN_ob
   <CC_Social_Weak>new</CC_Social_Weak>
   <CC_Social_Solid>solid</CC_Social_Solid>
   <CC_Social_Deep>deep</CC_Social_Deep>
+  <CC_Social_Describe_Friends>Friends with {0}.</CC_Social_Describe_Friends>
+  <CC_Social_Describe_Rivals>Rivals of {0}.</CC_Social_Describe_Rivals>
+  <CC_Social_Describe_Comrades>Fought alongside {0}.</CC_Social_Describe_Comrades>
+  <CC_Social_Describe_Teaching>Teaching {0} {1}.</CC_Social_Describe_Teaching>
+  <CC_Social_Describe_Learning>Learning {1} from {0}.</CC_Social_Describe_Learning>
+  <CC_Social_Describe_Circle>One of {0}.</CC_Social_Describe_Circle>
   <CC_Social_TieTip_Trust>Bonds sway the council: friends back each other's wishes and petitions, rivals object to each other's, and both count in elections.</CC_Social_TieTip_Trust>
 
 </LanguageData>

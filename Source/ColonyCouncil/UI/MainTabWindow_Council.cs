@@ -364,6 +364,8 @@ namespace ColonyCouncil
                     string tip = "CC_Trust_Tip".Translate(p.LabelShort, trust.ToString("0"), st.granted, st.ignored, st.refused, st.promisesKept, st.promisesBroken).Resolve();
                     var office = comp.offices.OfficeOf(p);
                     if (office != null) tip = "CC_Office_Holds".Translate(p.LabelShort, office.label) + "\n" + tip;
+                    string bonds = comp.social.Describe(p);
+                    if (!bonds.NullOrEmpty()) tip = bonds + "\n\n" + tip;
                     string titles = comp.epithets.TitlesOf(p);
                     if (!titles.NullOrEmpty()) tip = "CC_Epithet_Known".Translate(p.LabelShort, titles) + "\n\n" + tip;
                     if (st.log.Count > 0) tip += "\n\n" + string.Join("\n", st.log.AsEnumerable().Reverse());
