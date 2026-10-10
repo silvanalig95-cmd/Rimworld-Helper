@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- Someone speaks up against another colonist's wish. {PAWN} objects, {OTHER} asked, {WISH} is what they asked for. -->
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Pool_Objection</defName>
+    <lines>
+      <plain>
+        <li>{WISH}? We're short on everything and {OTHER_nameDef} wants {WISH}.</li>
+        <li>Before anyone runs off to build {WISH}, can we talk about the walls? The ones with holes in them?</li>
+        <li>I'm not saying no. I'm saying not before the things that keep us alive.</li>
+        <li>[poor] We can't afford it. We can barely afford rice.</li>
+        <li>[winter] Winter's here and we're talking about {WISH}. Priorities, people.</li>
+        <li>[afterraid] We nearly died yesterday, and the priority is {WISH}?</li>
+        <li>[trait:Ascetic] We don't need it. Nobody needs it. That's rather the point.</li>
+        <li>[trait:Ascetic] Every luxury is one more thing to lose when the raiders come.</li>
+        <li>[trait:Jealous] Funny how {OTHER_nameDef} always gets asked about first.</li>
+        <li>[trait:Industriousness] That's a lot of hours for something nobody needs. I'd rather spend them on work that matters.</li>
+      </plain>
+      <warm>
+        <li>I don't want to be unkind, {OTHER_nameDef}. But others need help first.</li>
+        <li>Could it wait? Just until everyone has a bed and a meal?</li>
+      </warm>
+      <blunt>
+        <li>No. Absolutely not. Next.</li>
+        <li>{OTHER_nameDef} wants {WISH}. I want a pony. Neither of us is getting one.</li>
+        <li>If {OTHER_nameDef} gets {WISH}, I want one too. That's how this works now, apparently.</li>
+      </blunt>
+      <cheerful>
+        <li>Fun idea! Terrible timing! Let's revisit it when we're not on fire!</li>
+      </cheerful>
+      <gloomy>
+        <li>Sure, build {WISH}. It'll make a lovely ruin.</li>
+        <li>We'll spend everything on it and then the raiders will burn it. Same as always.</li>
+      </gloomy>
+      <cold>
+        <li>The resources for {WISH} would be better spent elsewhere. I object.</li>
+        <li>{OTHER_nameDef}'s comfort is not a colony priority.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+</Defs>

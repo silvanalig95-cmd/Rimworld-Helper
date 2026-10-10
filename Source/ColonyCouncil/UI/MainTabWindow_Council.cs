@@ -367,6 +367,7 @@ namespace ColonyCouncil
             if (w.promised) status += "   ·   " + "CC_PromisedTag".Translate();
             if (w.stage >= 2) status += "   ·   " + "CC_LastCallTag".Translate();
             if (w.envied != null) status += "   ·   " + "CC_EnvyTag".Translate(w.envied.LabelShort);
+            if (w.objector != null) status += "   ·   " + "CC_ObjectorTag".Translate(w.objector.LabelShort);
             lines.Add(status);
             if (!w.reason.NullOrEmpty()) lines.Add("CC_Why".Translate() + ": " + w.reason);
             string when = w.Worker.FulfilledWhen(w);

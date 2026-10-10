@@ -82,6 +82,7 @@ namespace ColonyCouncil
                 new LookTargets(w.pawn), MessageTypeDefOf.NeutralEvent, false);
             Speak(w.pawn, line, SpeechSour);
             AddChronicle(new ChronicleEntry(ChronicleKind.WishDismissed, "CC_Chronicle_Refused".Translate(w.pawn.LabelShort, w.Label).Resolve(), w.pawn));
+            Safe("objection", () => ResolveObjection(w, false));
             w.state = WishState.Refused;
             wishes.Remove(w);
         }
@@ -99,6 +100,63 @@ namespace ColonyCouncil
             foreach (var p in w.Supporters) SetCooldown(p, w.def, 2f);
             w.state = WishState.Dismissed;
             wishes.Remove(w);
+        }
+
+        // ================= Objections =================
+
+        /// <summary>
+        /// Not everyone agrees. When a wish is voiced, an ascetic may object to luxury, a rival to anything their
+        /// rival wants, the jealous to things that stir envy. Granting it then irritates the objector; refusing
+        /// or letting it lapse pleases them.
+        /// </summary>
+        private void MaybeObject(Wish w)
+        {
+            var map = w.pawn.MapHeld;
+            if (map == null || !Rand.Chance(0.35f)) return;
+            Pawn best = null;
+            float bestScore = 0f;
+            foreach (var p in map.mapPawns.FreeColonistsSpawned)
+            {
+                if (w.Involves(p) || !CanVoiceWishes(p) || p.relations == null) continue;
+                var traits = p.story?.traits;
+                float score = 0f;
+                if (w.def.luxury && traits != null && traits.HasTrait(TraitDefOf.Ascetic)) score += 3f;
+                int opinion = p.relations.OpinionOf(w.pawn);
+                if (opinion <= -20) score += 2f + (-opinion - 20) / 20f;
+                if (w.def.envy >= 0.5f && traits != null && (traits.HasTrait(TraitDefOf.Jealous) || traits.HasTrait(TraitDefOf.Greedy))) score += 1.5f;
+                if (w.def.category == WishCategory.Comfort && TraitDegree(p, TraitDefOf.Industriousness) > 0) score += 0.7f;
+                if (traits != null && traits.HasTrait(TraitDefOf.Kind)) score -= 2f;
+                if (score > bestScore)
+                {
+                    best = p;
+                    bestScore = score;
+                }
+            }
+            if (best == null || bestScore < 1.5f) return;
+            w.objector = best;
+            string line = Flavor.FromPool("Council_Pool_Objection", best, w, ToneUtility.ToneFor(best));
+            line = line?.Formatted(best.Named("PAWN"), w.pawn.Named("OTHER"), w.Label.Named("WISH")).Resolve();
+            if (line.NullOrEmpty()) return;
+            Messages.Message("CC_ObjectionMessage".Translate(best.Named("PAWN"), w.pawn.Named("OTHER"), w.Label.Named("WISH")).Resolve() + " \"" + TextUtil.ShortSpeech(line, 120) + "\"",
+                new LookTargets(best), MessageTypeDefOf.SilentInput, false);
+            Speak(best, line, SpeechSour);
+            AddChronicle(new ChronicleEntry(ChronicleKind.Note, "CC_Chronicle_Objection".Translate(best.LabelShort, w.pawn.LabelShort, w.Label).Resolve(), best));
+        }
+
+        private void ResolveObjection(Wish w, bool granted)
+        {
+            var o = w.objector;
+            if (o == null || o.Dead || !o.IsColonist) return;
+            if (granted)
+            {
+                standings.Change(o, -3f * Gentleness(o), "CC_Log_ObjectionOverruled".Translate(w.Label));
+                if (Settings.Negatives) GiveThought(o, CouncilDefOf.Council_ObjectionIgnored, w.pawn, Settings.PenaltyScale);
+            }
+            else
+            {
+                standings.Change(o, 2f, "CC_Log_ObjectionHeard".Translate(w.Label));
+                GiveThought(o, CouncilDefOf.Council_ObjectionHeard);
+            }
         }
 
         // ================= Reminders and last calls =================
@@ -248,6 +306,7 @@ namespace ColonyCouncil
             w.state = WishState.Granted;
             ambitions.Notify_WishGranted(w);
             Safe("ripples", () => GrantRipples(w));
+            Safe("objection", () => ResolveObjection(w, true));
         }
 
         /// <summary>
@@ -362,6 +421,7 @@ namespace ColonyCouncil
                 (w.promised ? "CC_Chronicle_PromiseBroken" : "CC_Chronicle_WishExpired").Translate(w.pawn.LabelShort, w.Label).Resolve(), w.pawn));
             foreach (var p in w.Supporters) SetCooldown(p, w.def, 1.5f);
             w.state = WishState.Expired;
+            Safe("objection", () => ResolveObjection(w, false));
 
             if (s.Harsh) MaybeSulk(w.pawn, w);
         }

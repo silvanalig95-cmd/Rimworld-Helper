@@ -346,6 +346,7 @@ namespace ColonyCouncil
             wishes.Add(w);
 
             AnnounceNewWish(w);
+            Safe("objection", () => MaybeObject(w));
             return w;
         }
 

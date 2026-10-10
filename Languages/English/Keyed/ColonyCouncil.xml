@@ -323,6 +323,11 @@
   <CC_Log_AmbitionHelped>a wish helped {0}</CC_Log_AmbitionHelped>
   <CC_Ambition_WishHelped>That gets us closer to {0}!</CC_Ambition_WishHelped>
   <CC_Log_Gossip>listened to {0} complain about the council</CC_Log_Gossip>
+  <CC_Log_ObjectionOverruled>objected to {0}, and was ignored</CC_Log_ObjectionOverruled>
+  <CC_Log_ObjectionHeard>objected to {0}, and was heard</CC_Log_ObjectionHeard>
+  <CC_ObjectionMessage>{PAWN_nameDef} objects to {OTHER_nameDef}'s wish for {WISH}.</CC_ObjectionMessage>
+  <CC_Chronicle_Objection>{0} objected to {1}'s wish for {2}.</CC_Chronicle_Objection>
+  <CC_ObjectorTag>opposed by {0}</CC_ObjectorTag>
   <CC_Log_NoneChosen>the council chose nothing</CC_Log_NoneChosen>
   <CC_Heckle_Plain>{PAWN_nameDef} wondered aloud whether {OTHER_nameDef}'s "{AMBITION}" was really the priority.</CC_Heckle_Plain>
   <CC_Heckle_Warm>{PAWN_nameDef} thanked everyone for coming, and said {OTHER_nameDef}'s idea ("{AMBITION}") sounded lovely.</CC_Heckle_Warm>

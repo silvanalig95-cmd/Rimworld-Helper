@@ -21,6 +21,8 @@ namespace ColonyCouncil
         public static ThoughtDef Council_StoodTogether;
         public static ThoughtDef Council_Favoritism;
         public static ThoughtDef Council_HappyForThem;
+        public static ThoughtDef Council_ObjectionIgnored;
+        public static ThoughtDef Council_ObjectionHeard;
 
         public static HediffDef Council_Motivated;
         public static HediffDef Council_Disgruntled;

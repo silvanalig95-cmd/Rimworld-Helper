@@ -64,6 +64,8 @@ namespace ColonyCouncil
         public Pawn envied;
         /// <summary>The colonist took matters into their own hands.</summary>
         public bool selfHelped;
+        /// <summary>Someone who spoke up against this wish (an ascetic against luxury, a rival, the jealous).</summary>
+        public Pawn objector;
 
         public float Elapsed => expiresTick <= createdTick ? 1f : (Find.TickManager.TicksGame - createdTick) / (float)(expiresTick - createdTick);
 
@@ -129,6 +131,7 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref trigger, "trigger");
             Scribe_References.Look(ref envied, "envied");
             Scribe_Values.Look(ref selfHelped, "selfHelped");
+            Scribe_References.Look(ref objector, "objector");
             if (Scribe.mode == LoadSaveMode.PostLoadInit)
             {
                 if (coSigners == null) coSigners = new List<Pawn>();

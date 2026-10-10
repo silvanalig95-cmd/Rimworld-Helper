@@ -659,4 +659,32 @@
     </stages>
   </ThoughtDef>
 
+  <ThoughtDef>
+    <defName>Council_ObjectionIgnored</defName>
+    <thoughtClass>Thought_MemorySocial</thoughtClass>
+    <durationDays>6</durationDays>
+    <stackLimit>3</stackLimit>
+    <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
+    <stages>
+      <li>
+        <label>got their way over my objection</label>
+        <description>I said it was a bad idea. They did it anyway, for them.</description>
+        <baseMoodEffect>-2</baseMoodEffect>
+        <baseOpinionOffset>-6</baseOpinionOffset>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_ObjectionHeard</defName>
+    <durationDays>3</durationDays>
+    <stages>
+      <li>
+        <label>common sense prevailed</label>
+        <description>I spoke up, and the council saw sense. Good.</description>
+        <baseMoodEffect>2</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
 </Defs>
