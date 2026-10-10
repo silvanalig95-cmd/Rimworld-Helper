@@ -15,7 +15,7 @@ namespace ColonyCouncil
             Settings = GetSettings<CouncilSettings>();
         }
 
-        public override string SettingsCategory() => "Colony Council";
+        public override string SettingsCategory() => "Rimfolk";
 
         public override void DoSettingsWindowContents(Rect inRect)
         {
@@ -28,12 +28,12 @@ namespace ColonyCouncil
     {
         public static void ErrorOnce(string context, Exception e)
         {
-            Log.ErrorOnce("[Colony Council] " + context + ": " + e, ("ColonyCouncil" + context).GetHashCode());
+            Log.ErrorOnce("[Rimfolk] " + context + ": " + e, ("ColonyCouncil" + context).GetHashCode());
         }
 
         public static void WarnOnce(string text)
         {
-            Log.WarningOnce("[Colony Council] " + text, ("ColonyCouncilW" + text).GetHashCode());
+            Log.WarningOnce("[Rimfolk] " + text, ("ColonyCouncilW" + text).GetHashCode());
         }
     }
 }

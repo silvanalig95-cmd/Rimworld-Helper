@@ -1,30 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ModMetaData>
   <packageId>silvanalig.colonycouncil</packageId>
-  <name>Colony Council: Wishes &amp; Plans</name>
+  <name>Rimfolk</name>
   <author>silvanalig</author>
-  <modVersion>0.3.0</modVersion>
+  <modVersion>0.4.0</modVersion>
   <supportedVersions>
     <li>1.6</li>
   </supportedVersions>
-  <description>The colony tells you what it needs. Your colonists tell you what they want. You decide.
+  <description>Their wishes. Their bonds. Their council. Their story.
 
-[b]Advisor[/b]
-A "Council" tab that ranks what your colony needs next: food before winter, defences against your growing wealth, bedrooms, heat, medicine, recreation and more. Every point explains why it matters, so you learn the game while you play.
+Rimfolk turns your colonists into a society: people who want things, remember things, choose sides, keep traditions and write it all down. You lead them through a council, and they let you know what they think of it.
 
-[b]Wishes[/b]
-Colonists occasionally voice wishes driven by their traits, passions, relationships and mood: "I want my own room", "let me have a proper workshop", "bury my friend", "my partner and I would like to share a bed". Grant them for a mood boost and maybe an inspiration. Kind colonists ask on behalf of others, abrasive ones demand, ascetics turn down luxury. Several colonists wanting the same thing turn into a petition.
+[b]A council that listens (or doesn't)[/b]
+Colonists voice wishes that fit who they are and what the colony can build: a room of their own, a hunt, a party, mercy for a prisoner, justice for one, help getting clean, a loved one rescued. Grant, promise, refuse or ignore them. Trust rises and falls, standards creep up while times are good, and a colonist who stays bitter long enough may walk out.
 
-[b]Council meetings[/b]
-About once a season the council meets and three colonists each pitch an ambition: a real hospital, a winter larder, a stronger gate. Pick one, work towards it, and the whole colony celebrates when it's done.
+[b]Bonds, rivalries and the social web[/b]
+Friendships, rivalries, brothers-in-arms and mentorships form and change from what actually happens: who fought side by side, who griped together about the latest decree, who took whose seat. Small social events happen between them, cliques form, and all of it feeds into votes, petitions and objections.
 
-[b]Build help[/b]
-Room templates with a ghost preview (bedroom, workshop, kitchen, hospital, freezer, dining hall and more). Click a wish or advice item to plan the matching room, or let the council find a spot. Colonists sometimes add personal touches to their own bedrooms.
+[b]Decrees, offices and elections[/b]
+Declare long hours, rationing, drills, austerity or festival days and watch who loves and who hates them. Colonists petition for decrees and to have them lifted. Every year the colony elects a speaker, marshal, quartermaster, physician and steward; overrule the vote at your peril.
 
-[b]Fits your world[/b]
-Everything adapts to your tech level, research, materials and DLCs. A medieval colony gets asked for torches, campfires and spike traps, never turrets or heaters. Works with modded furniture by checking what a building does rather than its name.
+[b]Dilemmas and traditions[/b]
+A thief in the stores, a feud, a pet that ate someone's dinner, the spoils of a raid, a child asking where the dead go: every answer costs someone. What the colony keeps choosing becomes tradition, and traditions are missed when broken.
 
-Everything is optional and configurable. By default, ignoring a wish costs nothing.</description>
+[b]Memory[/b]
+Every colonist keeps a journal in their own voice. People earn names for what they do (the Healer, Deadeye, the Kindling). Anniversaries are marked, and each year someone writes the colony's annals.
+
+[b]And the practical side[/b]
+An advisor that ranks what the colony needs next and explains why, council meetings where colonists pitch ambitions and vote, whole-room plans you can place in one go, and an in-game almanac of the game's numbers and hard lessons.
+
+Adapts to your tech level, research and DLCs (a medieval colony is never asked for turrets). Every part can be switched off or tuned in the settings.</description>
   <loadAfter>
     <li>Ludeon.RimWorld</li>
     <li>Ludeon.RimWorld.Royalty</li>

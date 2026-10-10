@@ -75,7 +75,7 @@ namespace ColonyCouncil
                 }
                 merged++;
             }
-            if (merged > 0 && Prefs.DevMode) Log.Message("[Colony Council] merged " + merged + " flavor extension(s).");
+            if (merged > 0 && Prefs.DevMode) Log.Message("[Rimfolk] merged " + merged + " flavor extension(s).");
         }
     }
 }

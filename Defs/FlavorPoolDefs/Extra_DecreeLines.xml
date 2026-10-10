@@ -1,0 +1,686 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    More lines for the decrees (DecreeDefs/Council_Decrees.xml, Council_Decrees2.xml), merged into the decree defs at
+    startup. <support> is said by a colonist who likes the decree, <oppose> by one who hates it, when it is declared or
+    when they petition for or against it, so the lines don't assume which. Only {PAWN_...} (the speaker) is available.
+    They are also shown as floating speech, where only the first sentence survives: it carries the meaning.
+    Trait tags follow each decree's <reactions>, so the people who actually care are the ones who say them.
+  -->
+
+  <!-- ==================================== LONG HOURS ==================================== -->
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Council_Ext_Decree_LongHours</defName>
+    <decree>Council_Decree_LongHours</decree>
+    <support>
+      <plain>
+        <li>[trait:Industrious] Sleep is for when the walls are finished. I'll catch up after.</li>
+        <li>Half the jobs on the list have been waiting since last season. Let's clear them.</li>
+        <li>[fall] Winter won't wait for us to feel rested. Nothing out here does.</li>
+        <li>[trait:Industrious|trait:HardWorker] I was working late anyway. Now there's company at the bench.</li>
+      </plain>
+      <warm>
+        <li>I'll keep a pot warm for whoever finishes last. It'll probably be me.</li>
+      </warm>
+      <blunt>
+        <li>Some of you have been resting your eyes since the day you got here. Good.</li>
+        <li>[trait:Industrious] Finally, I'm not the only one sweating.</li>
+      </blunt>
+      <cheerful>
+        <li>Long days mean long lists crossed off! I've already written the list!</li>
+        <li>[highmood] I feel like I could dig through a mountain! Point me at one!</li>
+      </cheerful>
+      <gloomy>
+        <li>The work never ends anyway. At least now nobody pretends it does.</li>
+      </gloomy>
+      <cold>
+        <li>Idle hands were costing us. Now they won't.</li>
+        <li>Fatigue passes; a finished wall stays finished.</li>
+      </cold>
+    </support>
+    <oppose>
+      <plain>
+        <li>[trait:Lazy|trait:Slothful] My bed and I had plans. Now my bed waits alone.</li>
+        <li>I'll be asleep on my feet by the second evening. Someone catch me.</li>
+        <li>[night] It's dark, and I'm still hauling stone. The stone doesn't know what time it is.</li>
+        <li>[old] My knees handed in their notice years ago. Nobody read it.</li>
+      </plain>
+      <warm>
+        <li>[hurt] I'll work, but slowly. I'm still stitched together, and the stitches have opinions.</li>
+        <li>I'll keep up. Watch the young ones, though; they won't say when they're done in.</li>
+      </warm>
+      <blunt>
+        <li>Push me longer and you'll get crooked walls. Consider yourselves warned.</li>
+        <li>[trait:Slothful] I've thought about it at length, lying down, and the answer is no.</li>
+      </blunt>
+      <cheerful>
+        <li>I've spent so long with this shovel that I've started to hate it personally!</li>
+      </cheerful>
+      <gloomy>
+        <li>[lowmood] I was running on fumes. Now I'm running on the memory of fumes.</li>
+      </gloomy>
+      <cold>
+        <li>Tired workers make mistakes, and mistakes cost more than the extra hours buy.</li>
+      </cold>
+    </oppose>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <!-- ==================================== RATIONING ==================================== -->
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Council_Ext_Decree_Rationing</defName>
+    <decree>Council_Decree_Rationing</decree>
+    <support>
+      <plain>
+        <li>I've counted the stores twice. Smaller bowls now, or empty ones later.</li>
+        <li>[winter] Count the shelves, then count the days to spring. Then complain about the bowls.</li>
+        <li>[trait:Ascetic] Half a bowl is plenty. The other half was only ever habit.</li>
+        <li>[poor] Nobody's going to sell us food at a price we can pay. So we stretch it.</li>
+      </plain>
+      <warm>
+        <li>If we all take a little less, nobody has to take nothing.</li>
+        <li>I'll serve it on the small plates. Same food, looks like more. Old trick.</li>
+      </warm>
+      <blunt>
+        <li>Stop whining about the bowls. Starving is quieter, but you'd hate it more.</li>
+      </blunt>
+      <cheerful>
+        <li>[trait:Ascetic] Light meals! I feel so clear-headed! A bit dizzy, but mostly clear!</li>
+      </cheerful>
+      <gloomy>
+        <li>Eat less now, so there's something left to serve at the funerals.</li>
+      </gloomy>
+      <cold>
+        <li>Hunger is uncomfortable; starvation is a staffing problem.</li>
+      </cold>
+    </support>
+    <oppose>
+      <plain>
+        <li>[trait:Gourmand] I dreamed about a fine meal last night. Woke up chewing my blanket.</li>
+        <li>My belt's on its last hole, and my bowl's on its last spoonful.</li>
+        <li>[winter] It's freezing, and they've cut the one thing keeping me warm.</li>
+        <li>I'm hauling stone on a breakfast you could fit in a pocket.</li>
+      </plain>
+      <warm>
+        <li>I'll eat less. Just slip the people on the heavy jobs a little extra.</li>
+      </warm>
+      <blunt>
+        <li>[trait:Gourmand] Touch my bowl again and I'll eat the hand.</li>
+        <li>[trait:Greedy] I earned a full bowl. Somebody's going to owe me the other half.</li>
+      </blunt>
+      <cheerful>
+        <li>I've started giving every bite a name! This one was Lunch!</li>
+      </cheerful>
+      <gloomy>
+        <li>Smaller bowls today, kibble with the animals next. I can see where this goes.</li>
+        <li>[lowmood] Smaller meals, smaller hopes. At least they match now.</li>
+      </gloomy>
+      <cold>
+        <li>Hungry workers are slow workers. You've saved food and spent labor.</li>
+        <li>[trait:Greedy] Ration the newcomers. Some of us have been here longer.</li>
+      </cold>
+    </oppose>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <!-- ==================================== DRILLS ==================================== -->
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Council_Ext_Decree_Drills</defName>
+    <decree>Council_Decree_Drills</decree>
+    <support>
+      <plain>
+        <li>[afterraid] We're still digging graves from the last raid. Let's make sure the next ones are theirs.</li>
+        <li>[trait:Tough] I've been hit by worse than any of you. Line up.</li>
+        <li>Muscle memory doesn't care how scared you are. That's the whole point.</li>
+        <li>[trait:Brawler,!lowtech] Guns are fine. Fists never jam and never run out.</li>
+      </plain>
+      <warm>
+        <li>I'd rather everyone sweat out here than bleed out there.</li>
+        <li>I'll partner with the nervous ones. Slow and steady, and nobody gets hurt today.</li>
+      </warm>
+      <blunt>
+        <li>[trait:Bloodlust] Pair me with whoever talks the most. They'll talk less after.</li>
+        <li>Somebody's going to cry at drill, and that's fine. Better here than at the wall.</li>
+      </blunt>
+      <cheerful>
+        <li>Left foot, right foot, stab! Left foot, right foot, stab! I made it a song!</li>
+        <li>[trait:Bloodlust] Real swinging and real shouting! The blood's fake, sadly!</li>
+      </cheerful>
+      <gloomy>
+        <li>We're all dying out here regardless, so we might as well die with decent aim.</li>
+      </gloomy>
+      <cold>
+        <li>Every colonist is a weapon we haven't sharpened yet.</li>
+        <li>[afterraid] Half of us froze during the last raid. Correct that.</li>
+      </cold>
+    </support>
+    <oppose>
+      <plain>
+        <li>[trait:Wimp] I got a splinter from the practice dummy and had to sit down.</li>
+        <li>[skill:Plants] The fields are going wild while I'm out here stabbing straw.</li>
+        <li>My arms are too sore to lift a spoon, never mind a weapon.</li>
+        <li>[hurt] I'm still healing from the last real fight. Now I'm supposed to have a pretend one?</li>
+      </plain>
+      <warm>
+        <li>[trait:Kind] I keep pulling my swings. I'm told that's the opposite of the point.</li>
+        <li>Do the children have to watch? They're watching.</li>
+      </warm>
+      <blunt>
+        <li>Yell "again" at me once more and you'll see my form. Up close.</li>
+        <li>I can already hit things. Usually the right things.</li>
+      </blunt>
+      <cheerful>
+        <li>[trait:Wimp] I've volunteered to carry the bandages! From very far behind!</li>
+      </cheerful>
+      <gloomy>
+        <li>Drill all you like. The first scyther will still take somebody's arm off.</li>
+      </gloomy>
+      <cold>
+        <li>Fatigue before a raid is a gift to the raiders.</li>
+      </cold>
+    </oppose>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <!-- ==================================== STUDY HOURS ==================================== -->
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Council_Ext_Decree_Study</defName>
+    <decree>Council_Decree_Study</decree>
+    <support>
+      <plain>
+        <li>[skill:Intellectual] Finally, an evening where nobody asks me why I'm reading.</li>
+        <li>Half of us can't tell healroot from a weed. A few evenings would fix that.</li>
+        <li>[lowtech] I'll teach letters by the fire. Bring a stick; we'll write in the dirt.</li>
+        <li>[trait:TooSmart] I've been explaining things to the walls. The walls are slow learners.</li>
+      </plain>
+      <warm>
+        <li>Nobody here is stupid. Some of us just never had a quiet evening to learn in.</li>
+      </warm>
+      <blunt>
+        <li>Sit down and read. Maybe someone will finally stop stacking wood next to the fire.</li>
+      </blunt>
+      <cheerful>
+        <li>[skill:Intellectual] I made a quiz! Everyone's going to fail it! Lovingly!</li>
+        <li>Evening lessons! I'll do funny voices for the boring parts!</li>
+      </cheerful>
+      <gloomy>
+        <li>If we're going to die out here, I'd like us to at least understand why.</li>
+      </gloomy>
+      <cold>
+        <li>Ignorance is the most expensive thing in this colony. We pay for it in funerals.</li>
+        <li>[trait:TooSmart] The gap between me and the rest of you is a liability. Let's narrow it.</li>
+      </cold>
+    </support>
+    <oppose>
+      <plain>
+        <li>[trait:Brawler] You can't punch a book. I tried during the first lesson.</li>
+        <li>I read the same page four times and couldn't tell you a word of it.</li>
+        <li>[evening] My brain clocked out at noon. Nobody told the lesson.</li>
+        <li>The crops don't care whether I can do sums.</li>
+      </plain>
+      <warm>
+        <li>I'll sit in. But please go easy on the slow readers; I'm one of them.</li>
+      </warm>
+      <blunt>
+        <li>Teach me something useful, like when lunch is.</li>
+        <li>[trait:Brawler] Quiz me again and I'll quiz your teeth.</li>
+      </blunt>
+      <cheerful>
+        <li>I've learned to sleep with my eyes open! That counts as a skill, right?</li>
+      </cheerful>
+      <gloomy>
+        <li>[old] I'm too old to learn and too tired to argue. So I'll sit there and do neither.</li>
+      </gloomy>
+      <cold>
+        <li>Some people are not worth educating. You're spending the evenings on them anyway.</li>
+      </cold>
+    </oppose>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <!-- ==================================== AUSTERITY ==================================== -->
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Council_Ext_Decree_Austerity</defName>
+    <decree>Council_Decree_Austerity</decree>
+    <support>
+      <plain>
+        <li>[trait:Ascetic] I've never needed more than a bedroll and a bowl. Nice to have company down here.</li>
+        <li>Everyone's wanted everything lately. Let's want nothing for a while and see who copes.</li>
+        <li>[rich] We're sitting on a fortune and still whining about chairs. Enough.</li>
+      </plain>
+      <warm>
+        <li>I'd rather we look after each other than after our furniture.</li>
+        <li>[trait:Ascetic] It's easier than it sounds. Give it a few days and you'll stop noticing.</li>
+      </warm>
+      <blunt>
+        <li>You don't need a nicer chair. You need to stop sitting in it.</li>
+        <li>[trait:Ascetic] Someone asked for a statue last week. A statue. Of what, themselves?</li>
+      </blunt>
+      <cheerful>
+        <li>It's like camping, except nobody gets to go home!</li>
+      </cheerful>
+      <gloomy>
+        <li>Don't get used to nice things. I never did, and look how well I'm taking this.</li>
+      </gloomy>
+      <cold>
+        <li>Appetites grow when they're fed, and this starves them.</li>
+      </cold>
+    </support>
+    <oppose>
+      <plain>
+        <li>[trait:Greedy] I had a list, a good one. Now I just have the list.</li>
+        <li>We bleed for this place, and we can't even ask for a rug.</li>
+        <li>[trait:Jealous] Funny how austerity started right after some people finished their own rooms.</li>
+        <li>[rich] There's a room full of silver back there, and I can't ask for a chair.</li>
+      </plain>
+      <warm>
+        <li>I don't mind for me. I mind for the ones who'd only just started hoping for things.</li>
+      </warm>
+      <blunt>
+        <li>No wishes, fine. I'll keep my complaints instead. I have plenty.</li>
+        <li>[trait:Greedy] If nobody's allowed to want anything, I'll want twice as hard in private.</li>
+      </blunt>
+      <cheerful>
+        <li>No new wishes is fine! I'll just wish quietly, into my pillow!</li>
+      </cheerful>
+      <gloomy>
+        <li>We've lived like this before. We called it the first year.</li>
+      </gloomy>
+      <cold>
+        <li>Deprivation lowers loyalty faster than it lowers expectations. Guess which recovers first.</li>
+      </cold>
+    </oppose>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <!-- ==================================== FESTIVAL DAYS ==================================== -->
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Council_Ext_Decree_Festival</defName>
+    <decree>Council_Decree_Festival</decree>
+    <support>
+      <plain>
+        <li>[trait:Lazy|trait:Slothful] I was born for this. Specifically for the lying-down part.</li>
+        <li>Put the tools away. If something catches fire we'll put it out, and that's all the work we do.</li>
+        <li>[winter] Too cold to work anyway. Might as well be cold together, with music.</li>
+        <li>[afterraid] We lived through the raid. That deserves a party more than anything does.</li>
+      </plain>
+      <warm>
+        <li>Everyone's been holding it together for so long. Let them let go a little.</li>
+        <li>[grieving] I don't feel much like dancing. I'll come anyway; they'd have wanted the music loud.</li>
+      </warm>
+      <blunt>
+        <li>Anyone I catch working during the festival answers to me.</li>
+      </blunt>
+      <cheerful>
+        <li>I've hidden the good beer! I'll tell you where at sunset! Probably!</li>
+        <li>[highmood] I've been happy all week, and now it's official!</li>
+      </cheerful>
+      <gloomy>
+        <li>[lowmood] I'll come. I'll stand near the music and pretend it's reaching me.</li>
+      </gloomy>
+      <cold>
+        <li>A colony that breaks costs more than a few idle days. Consider this maintenance.</li>
+      </cold>
+    </support>
+    <oppose>
+      <plain>
+        <li>[trait:Industrious] Nobody's working, and I can hear the jobs piling up.</li>
+        <li>[poor] We can't afford a party. We can barely afford dinner.</li>
+        <li>Someone has to watch the walls while everyone's drunk. Guess who.</li>
+        <li>[fall] The harvest is standing in the field while we dance around it.</li>
+      </plain>
+      <warm>
+        <li>Go, have fun, really. I'll just quietly keep the fires going.</li>
+      </warm>
+      <blunt>
+        <li>[trait:Industrious] Party all you want. I'll be in the workshop, being useful.</li>
+        <li>[afterraid] There's still blood on the floor and you want to dance on it.</li>
+      </blunt>
+      <cheerful>
+        <li>I'll celebrate the festival by finally finishing that shelf! Wild night!</li>
+      </cheerful>
+      <gloomy>
+        <li>Raiders love a party. They always seem to find out about it.</li>
+      </gloomy>
+      <cold>
+        <li>Pleasure raises expectations. We'll be paying for this festival for a long while.</li>
+      </cold>
+    </oppose>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <!-- ==================================== HARVEST PUSH ==================================== -->
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Council_Ext_Decree_Harvest</defName>
+    <decree>Council_Decree_Harvest</decree>
+    <support>
+      <plain>
+        <li>[skill:Plants] The crops are ready when they're ready, and they're ready now.</li>
+        <li>[fall] First frost is coming. Anything still in the ground after that is compost.</li>
+        <li>[poor] Nobody's going to sell us enough food for the winter. We'll have to grow it.</li>
+        <li>Every row we bring in now is one less night eating raw berries in the dark.</li>
+      </plain>
+      <warm>
+        <li>I'll show the new ones how to cut without losing a finger. It's easy, mostly.</li>
+        <li>[skill:Plants] I love this part. Everyone out in the rows together.</li>
+      </warm>
+      <blunt>
+        <li>Pick faster. The blight isn't waiting for you to finish stretching.</li>
+      </blunt>
+      <cheerful>
+        <li>[skill:Plants] The crops have waited all season for this! So have I!</li>
+        <li>[rain] Mud to the ankles! It's like the field is hugging us!</li>
+      </cheerful>
+      <gloomy>
+        <li>We'd better hurry. The weather always knows when we're nearly done.</li>
+      </gloomy>
+      <cold>
+        <li>Food in the ground belongs to the weather. Food in storage belongs to us.</li>
+      </cold>
+    </support>
+    <oppose>
+      <plain>
+        <li>[trait:Undergrounder] The sky's too big out here. I keep waiting for it to fall on me.</li>
+        <li>[hot] I've been bent double in this heat so long I'm wilting faster than the crops.</li>
+        <li>I don't know a weed from a crop, and the crops can tell.</li>
+        <li>[trait:Lazy|trait:Slothful] Plants grow on their own. Why do they need me?</li>
+      </plain>
+      <warm>
+        <li>I'll do my rows. Could someone bring water out to the far field? People are wilting.</li>
+      </warm>
+      <blunt>
+        <li>Nobody told me surviving out here would involve this much kneeling.</li>
+        <li>[trait:Undergrounder] Open sky, all day. If I go strange, that's on you.</li>
+      </blunt>
+      <cheerful>
+        <li>I've only cut myself twice! The plants have drawn more blood than I have!</li>
+      </cheerful>
+      <gloomy>
+        <li>We'll get it all in just in time for the toxic fallout.</li>
+      </gloomy>
+      <cold>
+        <li>Pulling the miners onto the fields leaves the mountain idle. Poor trade.</li>
+        <li>[hot|summer] Yield is up, and so is heatstroke; count both.</li>
+      </cold>
+    </oppose>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <!-- ==================================== BUILDING SEASON ==================================== -->
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Council_Ext_Decree_Building</defName>
+    <decree>Council_Decree_Building</decree>
+    <support>
+      <plain>
+        <li>[skill:Construction] I've had that wall in my head since the day I got here. Now it gets to exist.</li>
+        <li>[skill:Mining] There's a vein in the north face I've been eyeing for days. Time to say hello.</li>
+        <li>[winter] The cold gets in through every gap. Let's close the gaps.</li>
+        <li>[trait:Undergrounder] More tunnels. Good. The sky has had its chance.</li>
+        <li>Walls first. Then everyone can complain to me from indoors.</li>
+      </plain>
+      <warm>
+        <li>A proper roof over every bed. That's what I'm building toward.</li>
+      </warm>
+      <blunt>
+        <li>[trait:Industrious] Pick up a hammer or get out of the way. Both count as help.</li>
+        <li>If it doesn't have a wall around it, it belongs to the raiders.</li>
+      </blunt>
+      <cheerful>
+        <li>[skill:Mining] Rock! Lots of rock! With something shiny in it! Probably!</li>
+      </cheerful>
+      <gloomy>
+        <li>We build walls, something knocks them down, we build them again. It's almost a religion.</li>
+      </gloomy>
+      <cold>
+        <li>Every wall is one fewer direction to defend.</li>
+      </cold>
+    </support>
+    <oppose>
+      <plain>
+        <li>[trait:Lazy|trait:Slothful] I carried one block. One. I need to lie down near it.</li>
+        <li>My hands are all splinters. The splinters have splinters.</li>
+        <li>[night] Hammering all night. Nobody's slept since the walls started going up.</li>
+        <li>[winter] Laying stone in this cold. We'll lose fingers before we gain rooms.</li>
+      </plain>
+      <warm>
+        <li>Could we finish the beds before the next wing? People are sleeping in the dust.</li>
+      </warm>
+      <blunt>
+        <li>Whoever drew these plans, I'd like a word. With a hammer.</li>
+        <li>[trait:Slothful] I'll supervise. From a chair. In the shade.</li>
+      </blunt>
+      <cheerful>
+        <li>I've hit my thumb so many times it's started to hum!</li>
+      </cheerful>
+      <gloomy>
+        <li>The next raid will knock a hole in it anyway. Usually in the new bit.</li>
+      </gloomy>
+      <cold>
+        <li>Building faster means building worse. I've inspected the east wall.</li>
+      </cold>
+    </oppose>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <!-- ==================================== BEST BEHAVIOR ==================================== -->
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Council_Ext_Decree_Manners</defName>
+    <decree>Council_Decree_Manners</decree>
+    <support>
+      <plain>
+        <li>[skill:Social] Watch me. The next caravan leaves smiling and lighter.</li>
+        <li>Our last trade went so badly the muffalo looked embarrassed.</li>
+        <li>[child] The grown-ups are being polite to each other. It's weird. I like it.</li>
+      </plain>
+      <warm>
+        <li>[trait:Kind] Be gentle with the prisoners. Some of them will be eating at our table soon.</li>
+        <li>Say good morning to people. You'd be amazed what it fixes.</li>
+      </warm>
+      <blunt>
+        <li>Fine, be nice. If it gets us cheaper medicine, I'll be nice to a boomalope.</li>
+      </blunt>
+      <cheerful>
+        <li>[skill:Social] I've been practicing my bow all morning! I've nearly stopped falling over!</li>
+      </cheerful>
+      <gloomy>
+        <li>Being polite won't save us. It might get us a better price on a casket.</li>
+      </gloomy>
+      <cold>
+        <li>[trait:Psychopath] I've practiced the smile. People say it's very convincing now.</li>
+        <li>Be pleasant to the prisoner until they've joined. After that it's optional.</li>
+      </cold>
+    </support>
+    <oppose>
+      <plain>
+        <li>I spent all morning being polite to a prisoner who tried to stab me last week.</li>
+        <li>[trait:Abrasive] I've bitten my tongue so often it's started biting back.</li>
+        <li>[afterraid] Their friends were trying to kill us yesterday. Now I smile at the one in the cell?</li>
+        <li>I've said thank you so many times the words have stopped meaning anything.</li>
+      </plain>
+      <warm>
+        <li>I'll try. I'm just not good at finding the right words when I'm tired.</li>
+      </warm>
+      <blunt>
+        <li>[trait:Abrasive] I said "please" to the trader. I'm still angry about it.</li>
+        <li>Nice is a muscle I never grew.</li>
+      </blunt>
+      <cheerful>
+        <li>I've only called the trader a thief once! Under my breath! Mostly!</li>
+      </cheerful>
+      <gloomy>
+        <li>I can't smile on command. My face doesn't believe me.</li>
+      </gloomy>
+      <cold>
+        <li>Courtesy toward captives is wasted. They remember the cell, not the manners.</li>
+      </cold>
+    </oppose>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <!-- ==================================== DAYS OF MOURNING ==================================== -->
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Council_Ext_Decree_Mourning</defName>
+    <decree>Council_Decree_Mourning</decree>
+    <support>
+      <plain>
+        <li>[grieving] I can't lift anything today. I'm glad nobody's asking me to.</li>
+        <li>Leave the tools where they fell. They'll keep.</li>
+        <li>We never stopped for the last ones. We should stop for these.</li>
+      </plain>
+      <warm>
+        <li>I'll cook. Nobody has to come to the table, but it'll be there.</li>
+        <li>[grieving] I can't think straight yet. A few quiet days is the only thing I want.</li>
+      </warm>
+      <blunt>
+        <li>Anyone who whistles at the graveside gets a grave of their own.</li>
+      </blunt>
+      <cheerful>
+        <li>I'm going to tell all the funny stories about them! They'd want us laughing! Mostly at them!</li>
+      </cheerful>
+      <gloomy>
+        <li>[grieving] The grave's finished. I keep walking out to check it's still there.</li>
+        <li>We've dug more graves than we've built beds. Someone should stop and notice.</li>
+      </gloomy>
+      <cold>
+        <li>Grieving workers make errors. A short pause is cheaper than the errors.</li>
+      </cold>
+    </support>
+    <oppose>
+      <plain>
+        <li>[trait:Industrious] Sitting still makes it worse. Let me fix a fence, at least.</li>
+        <li>[afterraid] The raiders don't take days off for our funerals.</li>
+        <li>[winter] The fires won't feed themselves while we mourn.</li>
+        <li>[!grieving] I hardly knew them. I'll be quiet, but let me be quiet somewhere useful.</li>
+      </plain>
+      <warm>
+        <li>I loved them too. I'd just rather honor them by keeping everyone else alive.</li>
+      </warm>
+      <blunt>
+        <li>Crying won't weed the fields. I've watched it try.</li>
+      </blunt>
+      <cheerful>
+        <li>They'd want the roof fixed, not us moping under it! They hated that leak!</li>
+      </cheerful>
+      <gloomy>
+        <li>We stop to grieve, and then there's more to grieve. It never catches up.</li>
+      </gloomy>
+      <cold>
+        <li>[trait:Psychopath] I've stood by the grave for the expected length of time. May I go now?</li>
+        <li>Grief doesn't need the whole colony. Assign two people to it.</li>
+      </cold>
+    </oppose>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <!-- ==================================== ON GUARD ==================================== -->
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Council_Ext_Decree_OnGuard</defName>
+    <decree>Council_Decree_OnGuard</decree>
+    <support>
+      <plain>
+        <li>[afterraid] They'll be back for whoever they left behind. I'll be waiting.</li>
+        <li>[night] I'll take the night watch. I like the quiet, and I like seeing them first.</li>
+        <li>[trait:Bloodlust] I sharpened everything twice. Now I just need someone to try us.</li>
+        <li>[trait:Tough] Doesn't bother me. I've slept through worse than an alarm.</li>
+      </plain>
+      <warm>
+        <li>Get some sleep; I've got the watch. I'll wake you if anything moves.</li>
+      </warm>
+      <blunt>
+        <li>Weapon by the bed, boots on. Anyone who grumbles can take first watch.</li>
+      </blunt>
+      <cheerful>
+        <li>Night watch! I brought snacks! The snacks are also for throwing!</li>
+        <li>[trait:Bloodlust] Somebody please be a raider! Just a small one!</li>
+      </cheerful>
+      <gloomy>
+        <li>Something's always out there. At least now we're all looking at it.</li>
+      </gloomy>
+      <cold>
+        <li>Raiders pick soft targets. We are going to stop being one.</li>
+      </cold>
+    </support>
+    <oppose>
+      <plain>
+        <li>[trait:Nervous|trait:Volatile] I nearly brained the cook at breakfast. Footsteps. They were just footsteps.</li>
+        <li>[trait:Wimp] I've gripped my weapon so long my hand's gone numb. Is that an injury?</li>
+        <li>Sleeping in shifts means nobody ever quite sleeps.</li>
+        <li>[night] Every noise out there is a raider or a squirrel, and I can't tell which anymore.</li>
+      </plain>
+      <warm>
+        <li>I'll keep watch. But the children shouldn't have to sleep with a knife beside them.</li>
+      </warm>
+      <blunt>
+        <li>If they come, they come. Me glaring at a tree won't change that.</li>
+        <li>[trait:Volatile] One more twig snaps and I'm picking a fight with the forest.</li>
+      </blunt>
+      <cheerful>
+        <li>I've only screamed at the wind three times! It started it!</li>
+      </cheerful>
+      <gloomy>
+        <li>Waiting for the raid is worse than the raid. At least the raid ends.</li>
+      </gloomy>
+      <cold>
+        <li>Tired eyes miss more than they catch. This is theater.</li>
+      </cold>
+    </oppose>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <!-- ==================================== CLEAN SWEEP ==================================== -->
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Council_Ext_Decree_CleanSweep</defName>
+    <decree>Council_Decree_CleanSweep</decree>
+    <support>
+      <plain>
+        <li>[skill:Medicine] I won't stitch anyone up on a floor a raider bled on.</li>
+        <li>There's still blood on the hospital floor from the raid before last. Not the last one. The one before.</li>
+        <li>The last time the kitchen looked like this, half of us threw up all night.</li>
+        <li>[trait:Ascetic] A bare room is easy to clean. You'll all find that out this week.</li>
+        <li>[hurt] I'd like to heal in a room that doesn't smell like the last patient.</li>
+      </plain>
+      <warm>
+        <li>A clean bed for everyone who's sick. That's worth a few blisters.</li>
+      </warm>
+      <blunt>
+        <li>The kitchen's filthier than the prison. Start there.</li>
+      </blunt>
+      <cheerful>
+        <li>[skill:Medicine] I'm going to boil everything! Even things that shouldn't be boiled!</li>
+      </cheerful>
+      <gloomy>
+        <li>Something out here will kill us eventually. Let's make sure it isn't the kitchen.</li>
+      </gloomy>
+      <cold>
+        <li>Food poisoning has cost us more work than any raid. Scrub accordingly.</li>
+      </cold>
+    </support>
+    <oppose>
+      <plain>
+        <li>[trait:Lazy|trait:Slothful] Dirt's natural. It was here before us. Show some respect.</li>
+        <li>I scrubbed the hospital until my knuckles bled. Now it needs scrubbing again.</li>
+        <li>[rain] It's raining. Every pair of boots through that door undoes an hour of my life.</li>
+        <li>[large] With this many people, it's filthy again before the mop's dry.</li>
+      </plain>
+      <warm>
+        <li>I'll mop. I just don't think the animals understand the new rules.</li>
+      </warm>
+      <blunt>
+        <li>I'll clean when the boomalopes stop exploding in the yard.</li>
+        <li>[trait:Slothful] Clean around me. I'm part of the furniture now.</li>
+      </blunt>
+      <cheerful>
+        <li>Everything sparkles for about an hour, and then someone walks in!</li>
+      </cheerful>
+      <gloomy>
+        <li>We scrub it, someone bleeds on it, we scrub it again. That's life out here.</li>
+      </gloomy>
+      <cold>
+        <li>Mopping is low-value work. Give it to the prisoners.</li>
+      </cold>
+    </oppose>
+  </ColonyCouncil.FlavorExtensionDef>
+
+</Defs>

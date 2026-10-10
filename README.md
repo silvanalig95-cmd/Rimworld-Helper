@@ -1,6 +1,10 @@
-# Colony Council: Wishes & Plans
+# Rimfolk
 
-A RimWorld 1.6 mod. **The colony tells you what it needs. Your colonists tell you what they want. You decide, and live with it.**
+*Their wishes. Their bonds. Their council. Their story.*
+
+A RimWorld 1.6 mod that turns your colonists into a society: people who want things, remember things, choose
+sides, keep traditions and write it all down. You lead them through a council, and they let you know what they
+think of it. (Formerly "Colony Council: Wishes & Plans". Existing saves and settings carry over.)
 
 ![preview](About/Preview.png)
 
@@ -9,10 +13,11 @@ No other mods are required, and it works with any combination of DLCs (or none).
 ## Installing
 
 1. Download this repository as a ZIP (green **Code** button → **Download ZIP**) and extract it.
-2. Move the extracted folder into your RimWorld `Mods` folder and name it `ColonyCouncil`:
-   - Steam on Windows: `C:\Program Files (x86)\Steam\steamapps\common\RimWorld\Mods\ColonyCouncil`
-   - Mac: right-click RimWorld.app → Show Package Contents → `Mods/ColonyCouncil`
-3. Start RimWorld, open **Mods**, enable **Colony Council: Wishes & Plans** and restart.
+2. Move the extracted folder into your RimWorld `Mods` folder and name it `Rimfolk` (if you had the old
+   `ColonyCouncil` folder, delete it first):
+   - Steam on Windows: `C:\Program Files (x86)\Steam\steamapps\common\RimWorld\Mods\Rimfolk`
+   - Mac: right-click RimWorld.app → Show Package Contents → `Mods/Rimfolk`
+3. Start RimWorld, open **Mods**, enable **Rimfolk** and restart.
 
 The folder must contain `About/`, `1.6/`, `Defs/`, `Languages/` and `Textures/` directly (not nested
 one level deeper). It is safe to add to an existing save. Removing it from a running save logs some
@@ -168,7 +173,7 @@ The council only suggests what your colony can actually do right now:
 
 ## Settings
 
-**Options → Mod options → Colony Council**:
+**Options → Mod options → Rimfolk**:
 - turn each part (advisor, wishes, meetings, personal touches) on or off
 - **Stakes**:
   - **Gentle**: only upsides
@@ -190,7 +195,7 @@ The council only suggests what your colony can actually do right now:
 
 Version 0.2. It compiles against RimWorld 1.6, and all XML is checked against the real game types by the
 included validator. It has **not been play-tested** in a live game yet. If something misbehaves, open the debug
-log (Options → Development mode, then the log button): lines starting with `[Colony Council]` are from this mod.
+log (Options → Development mode, then the log button): lines starting with `[Rimfolk]` are from this mod.
 Please share them so they can be fixed.
 
 ## For modders

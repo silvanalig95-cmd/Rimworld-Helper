@@ -1,4 +1,4 @@
-# Colony Council: design
+# Rimfolk (formerly Colony Council): design
 
 > Status: version 0.1 is built (all three layers plus room planning). This document explains the
 > thinking behind it. See [README.md](README.md) for installing and playing.
