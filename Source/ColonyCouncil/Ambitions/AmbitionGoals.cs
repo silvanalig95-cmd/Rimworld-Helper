@@ -519,4 +519,52 @@ namespace ColonyCouncil
         private static bool BurnsWood(Building b) =>
             b.TryGetComp<CompRefuelable>() is CompRefuelable r && r.Props.fuelFilter != null && r.Props.fuelFilter.Allows(ThingDefOf.WoodLog);
     }
+
+    /// <summary>No two colonists who loathe each other (both ways at or below the threshold).</summary>
+    public class Goal_NoRivals : AmbitionGoal
+    {
+        public int threshold = -20;
+
+        private int Pairs(Map map)
+        {
+            var pawns = map.mapPawns.FreeColonistsSpawned.Where(p => p.relations != null && !p.IsQuestLodger()).ToList();
+            int n = 0;
+            for (int i = 0; i < pawns.Count; i++)
+                for (int j = i + 1; j < pawns.Count; j++)
+                    if (pawns[i].relations.OpinionOf(pawns[j]) <= threshold || pawns[j].relations.OpinionOf(pawns[i]) <= threshold) n++;
+            return n;
+        }
+
+        public override bool Possible(Map map) => Pairs(map) > 0;
+
+        public override float Progress(Map map, float baseline) => Pairs(map) == 0 ? 1f : 0.3f;
+
+        public override string Describe(Map map, float baseline) => "CC_Goal_NoRivals".Translate(Pairs(map));
+    }
+
+    /// <summary>The colony's average trust in the council at or above a level.</summary>
+    public class Goal_ColonyTrust : AmbitionGoal
+    {
+        public float trust = 30f;
+
+        private static float Now() => CouncilGameComponent.Instance?.standings.ColonyTrust() ?? 0f;
+
+        public override bool Possible(Map map) => ColonyCouncilMod.Settings.enableWishes && Now() < trust - 5f;
+
+        public override float Progress(Map map, float baseline) => Ratio(Now() + 100f, trust + 100f);
+
+        public override string Describe(Map map, float baseline) => "CC_Goal_ColonyTrust".Translate(trust.ToString("0"), Now().ToString("0"));
+    }
+
+    /// <summary>Nobody in the colony addicted to anything.</summary>
+    public class Goal_NoAddictions : AmbitionGoal
+    {
+        private static int Addicts(Map map) => map.mapPawns.FreeColonistsSpawned.Count(p => p.health?.hediffSet?.hediffs.Any(h => h is Hediff_Addiction) ?? false);
+
+        public override bool Possible(Map map) => Addicts(map) > 0;
+
+        public override float Progress(Map map, float baseline) => Addicts(map) == 0 ? 1f : 0.3f;
+
+        public override string Describe(Map map, float baseline) => "CC_Goal_NoAddictions".Translate(Addicts(map));
+    }
 }

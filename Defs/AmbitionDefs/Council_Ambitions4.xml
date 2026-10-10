@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <ColonyCouncil.AmbitionDef>
+    <defName>Council_Amb_Harmony</defName>
+    <label>harmony</label>
+    <description>End the feuds: no two colonists who can't stand each other. Separate rooms, shared shifts, parties, whatever it takes.</description>
+    <days>20</days>
+    <relevantCategories><li>Comfort</li></relevantCategories>
+    <proposerSkills><li>Social</li></proposerSkills>
+    <proposerTraits><li>Kind</li></proposerTraits>
+    <goals>
+      <li Class="ColonyCouncil.Goal_NoRivals" />
+    </goals>
+    <pitch>
+      <plain>
+        <li>Half of us aren't speaking to the other half. Raiders don't need to kill us; we're doing fine on our own.</li>
+        <li>Every dinner is a cold war. Can we fix that before it turns hot?</li>
+        <li>[afterraid] We fought side by side yesterday. Today the same two people won't pass the salt.</li>
+      </plain>
+      <warm>
+        <li>I want us to be a family. Families fight, but they make up. Let's make up.</li>
+      </warm>
+      <blunt>
+        <li>Everyone who hates someone: knock it off. That's the whole ambition.</li>
+      </blunt>
+      <cheerful>
+        <li>Group hug! Mandatory! For everyone! Especially the grumpy ones!</li>
+      </cheerful>
+      <gloomy>
+        <li>We're too few to be enemies. One day it'll come down to one of us saving another, and they'll hesitate.</li>
+      </gloomy>
+      <cold>
+        <li>Feuds cost us fights, breakdowns and wasted hours. Eliminating them is pure gain.</li>
+      </cold>
+    </pitch>
+    <achieved>
+      <plain><li>Nobody's at anybody's throat. I'm almost suspicious.</li></plain>
+      <warm><li>Look at everyone, laughing at the same table. That's what I wanted.</li></warm>
+      <cheerful><li>Peace! Love! Nobody threw a spoon at dinner!</li></cheerful>
+      <cold><li>Interpersonal conflict resolved. Productivity should follow.</li></cold>
+    </achieved>
+  </ColonyCouncil.AmbitionDef>
+
+  <ColonyCouncil.AmbitionDef>
+    <defName>Council_Amb_TrustedCouncil</defName>
+    <label>a council worth trusting</label>
+    <description>Win back the colony's trust: grant wishes, keep promises, heed petitions. Everyone works better for a council they believe in.</description>
+    <days>30</days>
+    <relevantCategories><li>Comfort</li><li>Work</li></relevantCategories>
+    <proposerSkills><li>Social</li></proposerSkills>
+    <goals>
+      <li Class="ColonyCouncil.Goal_ColonyTrust">
+        <trust>30</trust>
+      </li>
+    </goals>
+    <pitch>
+      <plain>
+        <li>People have stopped asking the council for anything. That's not peace. That's giving up.</li>
+        <li>Keep a few promises. Grant a few wishes. Let people believe it's worth speaking up again.</li>
+        <li>[bitter] I'll say it plainly: nobody trusts this council. Change that, or stop calling it one.</li>
+      </plain>
+      <warm>
+        <li>I want everyone to feel heard. That starts with us listening.</li>
+      </warm>
+      <blunt>
+        <li>You want people to follow the council? Earn it.</li>
+      </blunt>
+      <cheerful>
+        <li>A council everyone loves! Imagine the meetings! Short ones, ideally!</li>
+      </cheerful>
+      <gloomy>
+        <li>Trust is the only thing out here that doesn't rot. Unless you let it.</li>
+      </gloomy>
+      <cold>
+        <li>A trusted council gets better work out of everyone. Trust is a resource; we're short of it.</li>
+      </cold>
+    </pitch>
+    <achieved>
+      <plain><li>People bring their problems to the council again. That's the job.</li></plain>
+      <warm><li>Everyone feels heard. I can see it in how they walk.</li></warm>
+      <cold><li>Trust restored. Use it carefully.</li></cold>
+    </achieved>
+  </ColonyCouncil.AmbitionDef>
+
+  <ColonyCouncil.AmbitionDef>
+    <defName>Council_Amb_CleanLiving</defName>
+    <label>clean living</label>
+    <description>Get everyone off whatever they're hooked on. Strict drug policies, a lot of patience, and someone to hold their hand through the shakes.</description>
+    <days>40</days>
+    <relevantCategories><li>Health</li></relevantCategories>
+    <proposerSkills><li>Medicine</li></proposerSkills>
+    <proposerTraits><li>Ascetic</li></proposerTraits>
+    <goals>
+      <li Class="ColonyCouncil.Goal_NoAddictions" />
+    </goals>
+    <pitch>
+      <plain>
+        <li>Some of us start the day shaking. That's not a way to live, and it's not a way to fight a raid.</li>
+        <li>Lock the stuff up. Ride out the withdrawals together. A season from now, nobody needs it.</li>
+        <li>[trait:Teetotaler] I've watched what it does to people. I'd like to stop watching.</li>
+      </plain>
+      <warm>
+        <li>I want everyone free of it. Not judged. Free.</li>
+      </warm>
+      <blunt>
+        <li>Junkies with rifles. That's our defense. Fix it.</li>
+      </blunt>
+      <cheerful>
+        <li>Clean colony! Clear heads! Water for everyone! Lots of water!</li>
+      </cheerful>
+      <gloomy>
+        <li>The withdrawals will be ugly. The alternative is worse, and slower.</li>
+      </gloomy>
+      <cold>
+        <li>Addiction is a supply dependency we can't guarantee. Remove it.</li>
+      </cold>
+    </pitch>
+    <achieved>
+      <plain><li>Nobody shaking at breakfast. Nobody hiding a bottle. Good.</li></plain>
+      <warm><li>Everyone made it through. I'm so proud of them.</li></warm>
+      <gloomy><li>Clean, for now. Keep the cupboard locked.</li></gloomy>
+    </achieved>
+  </ColonyCouncil.AmbitionDef>
+
+</Defs>

@@ -915,4 +915,8 @@ Granting one of {PAWN_possessive} wishes, or keeping a promise, can win {PAWN_ob
   <CC_Settings_Anniversaries>Mark each year a colonist has been with the colony</CC_Settings_Anniversaries>
   <CC_Settings_Anniversaries_Tip>On each anniversary of joining, the colonist says a few words, feels remembered, and their friends share it.</CC_Settings_Anniversaries_Tip>
 
+  <CC_Goal_NoRivals>No two colonists who can't stand each other ({0} pair(s) now)</CC_Goal_NoRivals>
+  <CC_Goal_ColonyTrust>The colony's trust in the council at {0} or more (now {1})</CC_Goal_ColonyTrust>
+  <CC_Goal_NoAddictions>Nobody addicted to anything ({0} addicted now)</CC_Goal_NoAddictions>
+
 </LanguageData>
