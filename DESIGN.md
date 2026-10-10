@@ -217,6 +217,28 @@ The pitch is the hook: it gives the plan a *face* and a story beat.
 
 ---
 
+## Layer 4: Society (the social web)
+
+Vanilla RimWorld tracks opinion between every pair of colonists, but opinion has no memory of *why*. The
+social web adds a small number of named, lasting bonds on top of it, each with a strength and a history:
+
+- **Friends / rivals** form when mutual opinion stays high or low, then drift towards where opinion is now.
+  Their own opinion bonus is small enough that a bond can't hold itself up: without good (or bad) things
+  happening, it settles or fades.
+- **Comrades** come from dealing damage in the same battle, and fade between battles.
+- **Mentorships** pair a skilled, passionate colonist with a keen learner and end in graduation.
+- **Circles** are connected groups of strong bonds, recomputed daily.
+
+Design rules:
+- Everything the council does should be able to touch a bond (elections, overrules, passed-over wishes,
+  dilemmas, decree arguments, petitions), and bonds should touch the council back (votes, objections,
+  petitions, trust after a lapse). That loop is what makes the colony feel like a society rather than a set
+  of mood bars.
+- Bonds are announced once, when they become real; budding ones stay quiet. Endings are announced only for
+  bonds that were.
+- Social events are small and frequent (about one per five colonists per day), mostly worth a few points of
+  opinion; the dramatic ones are rare and go in the chronicle.
+
 ## Building help: how far should the mod build things itself?
 
 Think of it as a ladder. Each rung is optional and builds on the one below:
@@ -378,6 +400,18 @@ Things the game exposes that this relies on (all available to mods):
   and a decision letter at the end.
 - Ten more advisor checks from good-practice research; 31 ambitions.
 - The Almanac tab (framework; content being written from wiki-checked research).
+
+**Done in 0.3**
+- Counterweights to permanent good mood: rising standards, decrees that trade mood for output, dilemmas with
+  real costs, bitter colonists who may walk out.
+- Decree petitions, names (epithets), anniversaries, yearly annals, personal journals.
+
+**Done in 0.4 (Rimfolk)**
+- Traditions: seasonal choices repeated become expected.
+- Council offices with yearly elections.
+- The social web: friends, rivals, comrades, mentors and circles that form and fade from opinion, battles and
+  council decisions, daily social events, social dilemmas, and bonds feeding back into votes, objections,
+  petitions and trust.
 
 **Ideas for later**
 - Ambition chains (multi-step goals across seasons).
