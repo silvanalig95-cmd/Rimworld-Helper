@@ -53,6 +53,7 @@ namespace ColonyCouncil
         public bool socialWeb = true;
         public bool socialEvents = true;
         public bool dreams = true;
+        public bool aspirations = true;
         public bool dreamOmens = true;
         public bool allDreamMessages;
         public float daysBetweenDilemmas = 8f;
@@ -114,6 +115,7 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref socialWeb, "socialWeb", true);
             Scribe_Values.Look(ref socialEvents, "socialEvents", true);
             Scribe_Values.Look(ref dreams, "dreams", true);
+            Scribe_Values.Look(ref aspirations, "aspirations", true);
             Scribe_Values.Look(ref dreamOmens, "dreamOmens", true);
             Scribe_Values.Look(ref allDreamMessages, "allDreamMessages", false);
             Scribe_Values.Look(ref daysBetweenDilemmas, "daysBetweenDilemmas", 8f);
@@ -223,6 +225,7 @@ namespace ColonyCouncil
             l.CheckboxLabeled("CC_Settings_Offices".Translate(), ref offices, "CC_Settings_Offices_Tip".Translate());
             l.CheckboxLabeled("CC_Settings_SocialWeb".Translate(), ref socialWeb, "CC_Settings_SocialWeb_Tip".Translate());
             if (socialWeb) l.CheckboxLabeled("CC_Settings_SocialEvents".Translate(), ref socialEvents, "CC_Settings_SocialEvents_Tip".Translate());
+            l.CheckboxLabeled("CC_Settings_Aspirations".Translate(), ref aspirations, "CC_Settings_Aspirations_Tip".Translate());
             l.CheckboxLabeled("CC_Settings_Dreams".Translate(), ref dreams, "CC_Settings_Dreams_Tip".Translate());
             if (dreams)
             {
@@ -318,6 +321,7 @@ namespace ColonyCouncil
             socialWeb = d.socialWeb;
             socialEvents = d.socialEvents;
             dreams = d.dreams;
+            aspirations = d.aspirations;
             dreamOmens = d.dreamOmens;
             allDreamMessages = d.allDreamMessages;
             daysBetweenDilemmas = d.daysBetweenDilemmas;

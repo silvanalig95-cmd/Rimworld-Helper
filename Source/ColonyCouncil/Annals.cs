@@ -53,6 +53,9 @@ namespace ColonyCouncil
 
         public List<string> tiesFormed = new List<string>();
         public List<string> omens = new List<string>();
+        public List<string> goals = new List<string>();
+
+        public void Notify_Aspiration(Pawn p, string goal) => goals.Add("CC_Annals_GoalLine".Translate(p.LabelShort, goal).Resolve());
 
         public void Notify_Omen(Pawn dreamer, string what) => omens.Add("CC_Annals_OmenLine".Translate(dreamer.LabelShort, what).Resolve());
 
@@ -123,6 +126,7 @@ namespace ColonyCouncil
             traditionsBorn.Clear();
             tiesFormed.Clear();
             omens.Clear();
+            goals.Clear();
         }
 
         private void Write(CouncilGameComponent comp, Map map)
@@ -177,6 +181,7 @@ namespace ColonyCouncil
             if (traditionsBorn.Count > 0) Para("CC_Annals_TraditionsBorn".Translate(TextUtil.JoinAnd(traditionsBorn.Distinct().ToList())).Resolve());
             if (traditionsKept.Count > 0) Para("CC_Annals_TraditionsKept".Translate(TextUtil.JoinAnd(traditionsKept.Distinct().ToList())).Resolve());
             if (tiesFormed.Count > 0) Para("CC_Annals_Ties".Translate(TextUtil.JoinAnd(tiesFormed.Distinct().Take(8).ToList())).Resolve());
+            if (goals.Count > 0) Para("CC_Annals_Goals".Translate(TextUtil.JoinAnd(goals.Take(8).ToList())).Resolve());
             if (omens.Count > 0) Para("CC_Annals_Omens".Translate(TextUtil.JoinAnd(omens.Take(6).ToList())).Resolve());
             if (traditionsBroken.Count > 0) Para("CC_Annals_TraditionsBroken".Translate(TextUtil.JoinAnd(traditionsBroken.Distinct().ToList())).Resolve());
 
@@ -267,6 +272,7 @@ namespace ColonyCouncil
             Scribe_Collections.Look(ref traditionsBorn, "traditionsBorn", LookMode.Value);
             Scribe_Collections.Look(ref tiesFormed, "tiesFormed", LookMode.Value);
             Scribe_Collections.Look(ref omens, "omens", LookMode.Value);
+            Scribe_Collections.Look(ref goals, "goals", LookMode.Value);
             if (Scribe.mode == LoadSaveMode.PostLoadInit)
             {
                 if (present == null) present = new List<Pawn>();
@@ -282,6 +288,7 @@ namespace ColonyCouncil
                 if (traditionsBorn == null) traditionsBorn = new List<string>();
                 if (tiesFormed == null) tiesFormed = new List<string>();
                 if (omens == null) omens = new List<string>();
+                if (goals == null) goals = new List<string>();
             }
         }
     }

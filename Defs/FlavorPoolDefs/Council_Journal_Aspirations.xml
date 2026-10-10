@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- A life goal became impossible. {GOAL}: the goal, a verb phrase ("master cooking"). -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Journal_GoalLost</defName>
+    <lines>
+      <plain>
+        <li>I wanted to {GOAL}. That's not going to happen now. I need a new reason to get up in the morning.</li>
+        <li>Crossed it off the list today, the hard way. I'll never {GOAL}.</li>
+      </plain>
+      <warm><li>I won't {GOAL} after all. Maybe someone else will. I'd like to help them.</li></warm>
+      <blunt><li>Can't {GOAL} anymore. Fine. Next.</li></blunt>
+      <cheerful><li>Okay, so I can't {GOAL}. I'll find something even better!</li></cheerful>
+      <gloomy><li>I was going to {GOAL}. Of course I was.</li></gloomy>
+      <cold><li>Objective abandoned: {GOAL}. Circumstances changed.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- A friend died before reaching their life goal. {OTHER_...}: the dead. {GOAL}: what they wanted. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Journal_DiedDreaming</defName>
+    <lines>
+      <plain>
+        <li>{OTHER_nameDef} always said {OTHER_pronoun} would {GOAL} one day. One day isn't coming now.</li>
+        <li>{OTHER_nameDef} wanted to {GOAL}. I keep thinking about how close {OTHER_pronoun} got.</li>
+        <li>I'm going to {GOAL} for {OTHER_nameDef}. Or try. Someone should.</li>
+      </plain>
+      <warm><li>{OTHER_nameDef} never got to {GOAL}. I hope wherever {OTHER_pronoun} is now, it doesn't matter anymore.</li></warm>
+      <blunt><li>{OTHER_nameDef} wanted to {GOAL}. Didn't get the chance. That's the rim.</li></blunt>
+      <cheerful><li>{OTHER_nameDef} would've loved to {GOAL}. I'm going to tell everyone how hard {OTHER_pronoun} tried.</li></cheerful>
+      <gloomy><li>{OTHER_nameDef} died wanting to {GOAL}. We all die wanting something.</li></gloomy>
+      <cold><li>{OTHER_nameDef}'s goal, to {GOAL}, died with {OTHER_objective}. Unless someone takes it up.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+</Defs>

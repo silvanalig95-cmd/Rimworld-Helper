@@ -93,9 +93,40 @@ namespace ColonyCouncil
         public float minTie = 20f;
         /// <summary>Role B only: must not be bonded to A in this way (no rivals for a favour between friends...).</summary>
         public TieKind notTie = TieKind.None;
+        /// <summary>Must be pursuing a life goal ({GOAL} in texts is A's goal).</summary>
+        public bool goal;
+
+        /// <summary>
+        /// The parts that describe who someone is (traits, passions, mood, age, office, violence), ignoring where they
+        /// are and what they're doing: for dreams, life goals and secrets. <paramref name="childrenOk"/>: children
+        /// qualify unless the role asks for adults explicitly.
+        /// </summary>
+        public static bool Fits(DilemmaRole r, Pawn p, bool childrenOk)
+        {
+            if (p == null) return false;
+            bool juvenile = p.DevelopmentalStage.Juvenile();
+            if (r != null && r.child) { if (!p.DevelopmentalStage.Child()) return false; }
+            else if (juvenile && !childrenOk && (r == null || r.adult)) return false;
+            if (r == null) return true;
+            var traits = p.story?.traits;
+            if (!r.anyTrait.NullOrEmpty() && (traits == null || !r.anyTrait.Any(traits.HasTrait))) return false;
+            if (!r.notTrait.NullOrEmpty() && traits != null && r.notTrait.Any(traits.HasTrait)) return false;
+            if (r.passion != null)
+            {
+                var s = p.skills?.GetSkill(r.passion);
+                if (s == null || s.TotallyDisabled || s.passion == Passion.None) return false;
+            }
+            float mood = p.needs?.mood?.CurLevelPercentage ?? 0.5f;
+            if (mood < r.minMood || mood > r.maxMood) return false;
+            if (r.office != null && (!ColonyCouncilMod.Settings.offices || CouncilGameComponent.Instance?.offices.HolderOf(r.office) != p)) return false;
+            if (r.canFight && p.WorkTagIsDisabled(WorkTags.Violent)) return false;
+            if (r.goal && CouncilGameComponent.Instance?.aspirations.Active(p) == null) return false;
+            return true;
+        }
 
         public bool Allows(Pawn p, Pawn a)
         {
+            if (goal && CouncilGameComponent.Instance?.aspirations.Active(p) == null) return false;
             if (office != null && (!ColonyCouncilMod.Settings.offices || CouncilGameComponent.Instance?.offices.HolderOf(office) != p)) return false;
             if (tie != TieKind.None && (a == null || !ColonyCouncilMod.Settings.socialWeb || (CouncilGameComponent.Instance?.social.Strength(p, a, tie) ?? 0f) < minTie)) return false;
             if (notTie != TieKind.None && a != null && (CouncilGameComponent.Instance?.social.Strength(p, a, notTie) ?? 0f) >= 20f) return false;
@@ -167,7 +198,8 @@ namespace ColonyCouncil
                 count.Named("COUNT"),
                 (faction != null ? faction.Name : "").Named("FACTION"),
                 (pet != null ? pet.Named("PET") : (a != null ? a.Named("PET") : "?".Named("PET"))),
-                (skill != null ? skill.label : "").Named("SKILL")
+                (skill != null ? skill.label : "").Named("SKILL"),
+                (CouncilGameComponent.Instance?.aspirations.Active(a)?.Goal ?? "").Named("GOAL")
             };
             return s.Formatted(args.ToArray()).Resolve();
         }
@@ -358,13 +390,14 @@ namespace ColonyCouncil
 
         public override void Apply(DilemmaContext ctx)
         {
+            var pairs = new HashSet<(Pawn, Pawn)>();
             foreach (var p in Targets(ctx))
             {
                 Pawn other = about == DilemmaAbout.A ? ctx.a : about == DilemmaAbout.B ? ctx.b : (p == ctx.a ? ctx.b : ctx.a);
                 CouncilGameComponent.GiveThought(p, thought, other == p ? null : other);
-                // Some memories are bonds being made or broken.
+                // Some memories are bonds being made or broken (once per pair, even when both get the memory).
                 var social = CouncilGameComponent.Instance?.social;
-                if (social != null && other != null && other != p && thought != null)
+                if (social != null && other != null && other != p && thought != null && pairs.Add(p.thingIDNumber < other.thingIDNumber ? (p, other) : (other, p)))
                 {
                     switch (thought.defName)
                     {

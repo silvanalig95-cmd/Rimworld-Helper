@@ -193,11 +193,11 @@
     <description>Colonists form lasting bonds out of how they feel about each other and what they go through. Steady liking turns into friendship, steady loathing into rivalry, fighting side by side into comradeship, and a skilled colonist may take an eager learner under their wing. Every bond has a strength and a short history, shown in the Social tab of the council window.</description>
     <facts>
       <li>Friends and rivals form when two colonists' opinions of each other stay high (or low) enough. A bond then drifts with how they feel, and ends when it fades to nothing.</li>
-      <li>Everyone who deals real damage in the same battle becomes comrades. Comradeship slowly fades between battles.</li>
+      <li>Everyone who fights in the same battle (drafted, manning a turret or attacking the enemy) becomes comrades. Comradeship slowly fades between battles.</li>
       <li>A mentor (skill 12+, with a passion) teaches a student (skill 7 or less, with a passion) every day until the student reaches level 11. Both are proud when the student graduates.</li>
       <li>Bonds give opinion: new, solid and deep bonds count for more each step.</li>
       <li>Small social events happen most days: late talks, pranks, snubs, squabbles, war stories, lessons, contests, gifts, gossip and the odd truce. Each moves the bond a little.</li>
-      <li>Three or more colonists held together by strong friendships or shared battles form a circle. Colonists outside every circle, with no close friend, sometimes feel left out.</li>
+      <li>Three to six colonists held together by strong friendships form a circle. Colonists outside every circle, with no close friend, sometimes feel left out.</li>
       <li>The council's decisions feed back: losing an election to someone, having your wish passed over for theirs, a fight, a grudge from a dilemma or arguing over a decree can start rivalries; backing the same petition, making up or going through something together builds friendships.</li>
       <li>Bonds change how people act: friends and circle members back each other's wishes and petitions and vote for each other; rivals object to each other's wishes and vote against each other.</li>
       <li>Let someone's wish lapse and their close friends trust the council a little less, the rest of their circle more so.</li>
@@ -235,6 +235,30 @@
     </advice>
     <keywords><li>dream</li><li>nightmare</li><li>omen</li><li>prophecy</li><li>sleep</li><li>fever</li></keywords>
     <seeAlso><li>Council_Alm_C_Social</li><li>Council_Alm_C_Names</li></seeAlso>
+  </ColonyCouncil.AlmanacArticleDef>
+
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Council_Alm_C_Goals</defName>
+    <label>life goals</label>
+    <category>Council</category>
+    <order>11</order>
+    <summary>What each colonist has set their heart on doing before they die.</summary>
+    <tip>Wishes are what they want this week. Life goals are what they'll want written on their grave.</tip>
+    <description>A few days after settling in, each colonist sets their heart on something: master a craft, marry for love, have a child, find three true friends, train a student, make peace with a rival, earn a seat on the council or a name the colony remembers, a bedroom fit for a noble, a warrior's or a builder's record, or simply to live three more years. The Social tab shows everyone's goal and how close they are.</description>
+    <facts>
+      <li>Goals fit the person: passions, traits and situation decide what they want. A psychopath doesn't dream of true friends; an ascetic doesn't want a noble's bedroom.</li>
+      <li>Within reach (three quarters of the way), they feel it: a small, steady lift.</li>
+      <li>Achieving it brings a letter, a long good mood, a big jump in trust, often an inspiration, and gladness among their friends. It goes into the chronicle and the year's annals.</li>
+      <li>After a while they may choose another goal, never the same one twice.</li>
+      <li>A colonist who dies before reaching their goal is remembered for it: the chronicle notes what they never got to do, and their friends write about it.</li>
+      <li>Some dreams are about a colonist's goal, and some dilemmas come up because of one.</li>
+    </facts>
+    <advice>
+      <li>Check the Social tab now and then. A colonist one level short of mastery is worth a few days at their workbench.</li>
+      <li>Goals like marriage, friends or peace with a rival can't be ordered. They can be helped along: shared work, shared rooms, shared battles.</li>
+    </advice>
+    <keywords><li>goal</li><li>aspiration</li><li>dream</li><li>ambition</li><li>mastery</li><li>marriage</li><li>legacy</li></keywords>
+    <seeAlso><li>Council_Alm_C_Social</li><li>Council_Alm_C_Dreams</li></seeAlso>
   </ColonyCouncil.AlmanacArticleDef>
 
 </Defs>

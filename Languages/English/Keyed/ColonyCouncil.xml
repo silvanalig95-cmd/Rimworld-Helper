@@ -1020,6 +1020,7 @@ Granting one of {PAWN_possessive} wishes, or keeping a promise, can win {PAWN_ob
   <CC_Tie_Ended_Rivals>{A_nameDef} and {B_nameDef} have let their rivalry go.</CC_Tie_Ended_Rivals>
   <CC_Tie_Ended_Comrades>The battles {A_nameDef} and {B_nameDef} shared are fading into the past.</CC_Tie_Ended_Comrades>
   <CC_Tie_Ended_Mentor>{A_nameDef} has stopped teaching {B_nameDef} {SKILL}.</CC_Tie_Ended_Mentor>
+  <CC_Tie_Battle>{0} fought side by side. They won't forget it.</CC_Tie_Battle>
   <CC_Tie_Graduated>{B_nameDef} has learned all {A_nameDef} could teach about {SKILL}. The student is ready to stand alone.</CC_Tie_Graduated>
 
   <CC_TieNote_Grew>grew close over time</CC_TieNote_Grew>
@@ -1046,7 +1047,7 @@ Granting one of {PAWN_possessive} wishes, or keeping a promise, can win {PAWN_ob
   <CC_Social_Intro>Who is close to whom, who can't stand whom, and who is teaching whom. Bonds grow out of how people feel about each other and what they go through together. They shape votes, objections, petitions and elections.</CC_Social_Intro>
   <CC_Social_None>No lasting bonds yet. Give them time, and things to live through together.</CC_Social_None>
   <CC_Social_Cliques>Circles</CC_Social_Cliques>
-  <CC_Social_CliqueTip>A circle: people held together by strong friendships and shared battles. They back each other's wishes and petitions and vote together.</CC_Social_CliqueTip>
+  <CC_Social_CliqueTip>A circle: three to six people held together by strong friendships. They back each other's wishes and petitions and vote together.</CC_Social_CliqueTip>
   <CC_Social_Since>Since {0}.</CC_Social_Since>
   <CC_Social_Strength>Strength {0} / 100</CC_Social_Strength>
   <CC_Social_Lessons>Teaching {0}. {1} is at level {2} of 11.</CC_Social_Lessons>
@@ -1085,5 +1086,24 @@ Granting one of {PAWN_possessive} wishes, or keeping a promise, can win {PAWN_ob
   <CC_DreamKind_Nightmare>nightmare</CC_DreamKind_Nightmare>
   <CC_DreamKind_Omen>omen</CC_DreamKind_Omen>
   <CC_DreamKind_Lost>the lost</CC_DreamKind_Lost>
+
+  <!-- Life goals -->
+  <CC_Settings_Aspirations>Life goals</CC_Settings_Aspirations>
+  <CC_Settings_Aspirations_Tip>After settling in, each colonist sets their heart on something to do before they die: master a craft, marry, raise a child, earn a name, teach someone everything they know, see the colony grow. Achieving it is a big moment (a lasting good mood, trust, maybe an inspiration). Dying before it is mourned.</CC_Settings_Aspirations_Tip>
+  <CC_Asp_Chosen>{PAWN_nameDef} has set {PAWN_possessive} heart on something: to {GOAL}.</CC_Asp_Chosen>
+  <CC_Asp_FulfilledLabel>A life goal: {0}</CC_Asp_FulfilledLabel>
+  <CC_Asp_FulfilledText>{PAWN_nameDef} has done what {PAWN_pronoun} set out to do: {GOAL}.</CC_Asp_FulfilledText>
+  <CC_Asp_DiedBefore>{PAWN_nameDef} died before {PAWN_pronoun} could {GOAL}.</CC_Asp_DiedBefore>
+  <CC_Asp_SkillProgress>{0} {1} of {2}</CC_Asp_SkillProgress>
+  <CC_Asp_CountProgress>{0} of {1}</CC_Asp_CountProgress>
+  <CC_Asp_RoomProgress>bedroom impressiveness {0} of {1}</CC_Asp_RoomProgress>
+  <CC_Asp_YearsProgress>{0} of {1} years here</CC_Asp_YearsProgress>
+  <CC_Asp_Tooltip>Life goal: {0} ({1})</CC_Asp_Tooltip>
+  <CC_Log_Aspiration>did it: {0}</CC_Log_Aspiration>
+  <CC_Annals_GoalLine>{0} ({1})</CC_Annals_GoalLine>
+  <CC_Annals_Goals>Lives fulfilled: {0}.</CC_Annals_Goals>
+  <CC_Social_Goals>Life goals</CC_Social_Goals>
+  <CC_Social_GoalTip>{0} wants to {1}.\nSince {2}.\n\nProgress: {3}</CC_Social_GoalTip>
+  <CC_Social_GoalDone>{0} did it: {1} ({2})</CC_Social_GoalDone>
 
 </LanguageData>

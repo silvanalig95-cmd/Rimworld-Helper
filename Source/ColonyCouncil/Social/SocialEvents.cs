@@ -49,7 +49,8 @@ namespace ColonyCouncil
             if (!ColonyCouncilMod.Settings.socialWeb || !ColonyCouncilMod.Settings.socialEvents) return;
             var map = Find.Maps.Where(m => m.IsPlayerHome).OrderByDescending(m => m.mapPawns.FreeColonistsSpawnedCount).FirstOrDefault();
             if (map == null) return;
-            var pawns = map.mapPawns.FreeColonistsSpawned.Where(p => !p.IsQuestLodger() && !p.DevelopmentalStage.Baby() && !p.Downed && !p.InMentalState).ToList();
+            if (comp.social.battleActive || GenHostility.AnyHostileActiveThreatToPlayer(map, false, false)) return;
+            var pawns = map.mapPawns.FreeColonistsSpawned.Where(p => !p.IsQuestLodger() && !p.DevelopmentalStage.Baby() && !p.Downed && !p.InMentalState && !p.Drafted).ToList();
             if (pawns.Count < 2) return;
             float expected = UnityEngine.Mathf.Clamp(pawns.Count / 5f, 0.4f, 2f);
             int count = (int)expected + (Rand.Chance(expected - (int)expected) ? 1 : 0);
@@ -61,29 +62,32 @@ namespace ColonyCouncil
             foreach (var def in DefDatabase<SocialEventDef>.AllDefsListForReading.InRandomOrder().OrderByDescending(d => d.weight * Rand.Value))
             {
                 Pawn a = null, b = null;
+                SocialTie tie = null;
                 try
                 {
-                    if (!Cast(def, comp, pawns, out a, out b)) continue;
+                    if (!Cast(def, comp, pawns, out a, out b, out tie)) continue;
                 }
                 catch (Exception e)
                 {
                     CouncilLog.ErrorOnce("social event " + def.defName, e);
                     continue;
                 }
-                Fire(def, comp, map, a, b);
+                Fire(def, comp, map, a, b, tie);
                 return true;
             }
             return false;
         }
 
-        private static bool Cast(SocialEventDef def, CouncilGameComponent comp, List<Pawn> pawns, out Pawn a, out Pawn b)
+        private static bool Cast(SocialEventDef def, CouncilGameComponent comp, List<Pawn> pawns, out Pawn a, out Pawn b, out SocialTie chosen)
         {
             a = b = null;
+            chosen = null;
             if (def.tie != TieKind.None)
             {
                 var tie = comp.social.ties.Where(t => t.kind == def.tie && t.announced && t.strength >= def.minStrength && pawns.Contains(t.a) && pawns.Contains(t.b))
                     .InRandomOrder().FirstOrDefault(t => Fits(def, t.a, t.b) || (def.tie != TieKind.Mentor && Fits(def, t.b, t.a)));
                 if (tie == null) return false;
+                chosen = tie;
                 if (Fits(def, tie.a, tie.b)) { a = tie.a; b = tie.b; }
                 else { a = tie.b; b = tie.a; }
                 return true;
@@ -112,9 +116,8 @@ namespace ColonyCouncil
             return true;
         }
 
-        private static void Fire(SocialEventDef def, CouncilGameComponent comp, Map map, Pawn a, Pawn b)
+        private static void Fire(SocialEventDef def, CouncilGameComponent comp, Map map, Pawn a, Pawn b, SocialTie tie)
         {
-            var tie = def.tie != TieKind.None ? comp.social.Get(a, b, def.tie) : null;
             var ctx = new DilemmaContext { map = map, a = a, b = b, skill = tie?.skill, why = def.label };
             foreach (var e in def.effects)
             {
@@ -131,7 +134,13 @@ namespace ColonyCouncil
             string note = def.note.NullOrEmpty() ? null : ctx.Format(def.note);
             if (def.changeTie != TieKind.None && def.change != 0f)
             {
-                if (def.change > 0f) comp.social.Bump(a, b, def.changeTie, def.change, note);
+                // The bond the event was about (a mentorship in particular, when there are two between them).
+                if (tie != null && tie.kind == def.changeTie && def.change > 0f)
+                {
+                    tie.strength = UnityEngine.Mathf.Min(100f, tie.strength + def.change);
+                    tie.Note(note);
+                }
+                else if (def.change > 0f) comp.social.Bump(a, b, def.changeTie, def.change, note);
                 else comp.social.Weaken(a, b, def.changeTie, -def.change, note);
             }
             Messages.Message(text, new LookTargets(a, b), MessageTypeDefOf.SilentInput, false);

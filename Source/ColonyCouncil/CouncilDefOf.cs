@@ -45,6 +45,7 @@ namespace ColonyCouncil
         public static ThoughtDef Council_Dream_Lost;
         public static ThoughtDef Council_Dream_CameTrue;
         public static ThoughtDef Council_Dream_Fever;
+        public static ThoughtDef Council_Asp_Fulfilled;
 
         public static HediffDef Council_Motivated;
         public static HediffDef Council_Loyalty;

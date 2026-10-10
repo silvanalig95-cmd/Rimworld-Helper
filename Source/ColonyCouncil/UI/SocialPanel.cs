@@ -70,7 +70,6 @@ namespace ColonyCouncil
             y += introH + 8f;
 
             var web = comp.social;
-            if (web.cliques.Count == 0 && web.ties.Count > 0) web.RebuildCliques();
             var ties = !ColonyCouncilMod.Settings.socialWeb ? new List<SocialTie>() : web.ties.Where(t => Shown(t.a) && Shown(t.b) && t.announced && (focus == null || t.Involves(focus))).ToList();
 
             var outRect = new Rect(rect.x, y, rect.width, rect.yMax - y);
@@ -85,7 +84,9 @@ namespace ColonyCouncil
                 cy += 30f;
             }
 
-            var cliques = web.cliques.Where(c => focus == null || c.members.Contains(focus)).ToList();
+            if (ColonyCouncilMod.Settings.aspirations) cy += DrawGoals(comp, colonists, view.width, cy);
+
+            var cliques = ColonyCouncilMod.Settings.socialWeb ? web.Cliques.Where(c => focus == null || c.members.Contains(focus)).ToList() : new List<Clique>();
             if (cliques.Count > 0)
             {
                 cy += Header(view.width, cy, "CC_Social_Cliques".Translate());
@@ -120,6 +121,57 @@ namespace ColonyCouncil
             if (ColonyCouncilMod.Settings.dreams) cy += DrawDreams(comp, view.width, cy);
             height = Mathf.Max(cy, 100f);
             Widgets.EndScrollView();
+        }
+
+        private static readonly Texture2D GoalBar = SolidColorMaterials.NewSolidColorTexture(new Color(0.75f, 0.6f, 0.85f));
+
+        private static float DrawGoals(CouncilGameComponent comp, List<Pawn> colonists, float width, float y)
+        {
+            var goals = colonists.Where(p => focus == null || p == focus).Select(p => comp.aspirations.Active(p)).Where(a => a != null).ToList();
+            var fulfilled = comp.aspirations.all.Where(a => a.done && a.pawn != null && (focus == null || a.pawn == focus)).OrderByDescending(a => a.doneTick).Take(4).ToList();
+            if (goals.Count == 0 && fulfilled.Count == 0) return 0f;
+            float start = y;
+            y += Header(width, y, "CC_Social_Goals".Translate());
+            foreach (var a in goals.OrderByDescending(a => a.Progress))
+            {
+                var r = new Rect(0f, y, width, RowH);
+                Widgets.DrawHighlightIfMouseover(r);
+                Text.Anchor = TextAnchor.MiddleLeft;
+                Widgets.Label(new Rect(6f, y, 300f, RowH), (a.pawn.LabelShort + ": " + a.Goal).Truncate(296f));
+                var bar = new Rect(310f, y + 7f, 160f, RowH - 14f);
+                Widgets.FillableBar(bar, a.Progress, GoalBar, BaseContent.ClearTex, false);
+                Widgets.DrawBox(bar);
+                GUI.color = Faint;
+                string progress = SafeProgress(a);
+                Widgets.Label(new Rect(478f, y, width - 478f, RowH), progress.Truncate(width - 482f));
+                GUI.color = Color.white;
+                Text.Anchor = TextAnchor.UpperLeft;
+                TooltipHandler.TipRegion(r, () => "CC_Social_GoalTip".Translate(a.pawn.LabelShort, a.Goal, "CC_DayN".Translate(a.startedTick / GenDate.TicksPerDay + 1), progress).Resolve(), a.GetHashCode());
+                if (Widgets.ButtonInvisible(r) && a.pawn.Spawned) CameraJumper.TryJumpAndSelect(a.pawn);
+                y += RowH + 2f;
+            }
+            foreach (var a in fulfilled)
+            {
+                GUI.color = CliqueColor;
+                Text.Anchor = TextAnchor.MiddleLeft;
+                Widgets.Label(new Rect(6f, y, width - 6f, RowH), ("CC_Social_GoalDone".Translate(a.pawn.LabelShort, a.Goal, "CC_DayN".Translate(a.doneTick / GenDate.TicksPerDay + 1)).Resolve()).Truncate(width - 10f));
+                Text.Anchor = TextAnchor.UpperLeft;
+                GUI.color = Color.white;
+                y += RowH + 2f;
+            }
+            return y - start + 10f;
+        }
+
+        private static string SafeProgress(Aspiration a)
+        {
+            try
+            {
+                return a.def.Worker.ProgressText(a);
+            }
+            catch
+            {
+                return a.Progress.ToStringPercent();
+            }
         }
 
         private static float DrawDreams(CouncilGameComponent comp, float width, float y)

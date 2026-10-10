@@ -614,6 +614,7 @@ namespace ColonyCouncil
             Safe("offices", () => offices.Daily(this));
             Safe("social web", () => social.Daily(this));
             Safe("social events", () => SocialEvents.Daily(this));
+            Safe("life goals", () => aspirations.Daily(this));
             if (Settings.offices && offices.Speaker != null)
                 Safe("speaker", () =>
                 {

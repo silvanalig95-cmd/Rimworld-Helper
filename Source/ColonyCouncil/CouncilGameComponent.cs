@@ -27,6 +27,7 @@ namespace ColonyCouncil
         public OfficeTracker offices = new OfficeTracker();
         public SocialWeb social = new SocialWeb();
         public DreamTracker dreams = new DreamTracker();
+        public AspirationTracker aspirations = new AspirationTracker();
         public int nextWishId = 1;
 
         private Dictionary<string, int> cooldowns = new Dictionary<string, int>();
@@ -61,6 +62,7 @@ namespace ColonyCouncil
             Scribe_Deep.Look(ref offices, "offices");
             Scribe_Deep.Look(ref social, "social");
             Scribe_Deep.Look(ref dreams, "dreams");
+            Scribe_Deep.Look(ref aspirations, "aspirations");
             Scribe_Values.Look(ref nextWishId, "nextWishId", 1);
             Scribe_Collections.Look(ref cooldowns, "cooldowns", LookMode.Value, LookMode.Value, ref tmpKeys, ref tmpValues);
             if (Scribe.mode == LoadSaveMode.PostLoadInit)
@@ -79,6 +81,7 @@ namespace ColonyCouncil
                 if (offices == null) offices = new OfficeTracker();
                 if (social == null) social = new SocialWeb();
                 if (dreams == null) dreams = new DreamTracker();
+                if (aspirations == null) aspirations = new AspirationTracker();
                 wishes.RemoveAll(w => w == null || w.def == null || w.pawn == null);
             }
         }
@@ -102,6 +105,7 @@ namespace ColonyCouncil
             Safe("dilemmas", dilemmas.Hourly);
             Safe("annals", () => annals.Hourly(this));
             Safe("dreams", () => dreams.Hourly(this));
+            Safe("battles", () => social.Hourly(this));
         }
 
         /// <summary>A dream leaves someone wanting something: raises that wish if it makes sense for them now.</summary>

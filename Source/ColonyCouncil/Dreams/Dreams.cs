@@ -36,7 +36,9 @@ namespace ColonyCouncil
         /// <summary>A dead family member, partner or close bond, by name: {LOST}.</summary>
         Lost,
         /// <summary>Their bonded animal: {PET}.</summary>
-        Pet
+        Pet,
+        /// <summary>Their life goal: {GOAL}.</summary>
+        Goal
     }
 
     /// <summary>A dream that comes true: the incident happens a few days later.</summary>
@@ -317,27 +319,7 @@ namespace ColonyCouncil
             return nerves != null && p.story?.traits != null && p.story.traits.HasTrait(nerves) ? p.story.traits.DegreeOfTrait(nerves) : 0;
         }
 
-        private static bool Fits(DreamDef def, Pawn p)
-        {
-            var r = def.dreamer;
-            bool juvenile = p.DevelopmentalStage.Juvenile();
-            if (r != null && r.child) { if (!p.DevelopmentalStage.Child()) return false; }
-            else if (juvenile && !def.children && (r == null || r.adult)) return false;
-            if (r == null) return true;
-            var traits = p.story?.traits;
-            if (!r.anyTrait.NullOrEmpty() && (traits == null || !r.anyTrait.Any(traits.HasTrait))) return false;
-            if (!r.notTrait.NullOrEmpty() && traits != null && r.notTrait.Any(traits.HasTrait)) return false;
-            if (r.passion != null)
-            {
-                var s = p.skills?.GetSkill(r.passion);
-                if (s == null || s.TotallyDisabled || s.passion == Passion.None) return false;
-            }
-            float mood = p.needs?.mood?.CurLevelPercentage ?? 0.5f;
-            if (mood < r.minMood || mood > r.maxMood) return false;
-            if (r.office != null && (!S.offices || CouncilGameComponent.Instance?.offices.HolderOf(r.office) != p)) return false;
-            if (r.canFight && p.WorkTagIsDisabled(WorkTags.Violent)) return false;
-            return true;
-        }
+        private static bool Fits(DreamDef def, Pawn p) => DilemmaRole.Fits(def.dreamer, p, def.children);
 
         private static bool About(CouncilGameComponent comp, DreamAbout about, Pawn p, Cast c)
         {
@@ -380,6 +362,8 @@ namespace ColonyCouncil
                 case DreamAbout.Lost:
                     c.lost = LostOnes(comp, p).RandomElementWithFallback();
                     return c.lost != null;
+                case DreamAbout.Goal:
+                    return ColonyCouncilMod.Settings.aspirations && comp.aspirations.Active(p) != null;
                 case DreamAbout.Pet:
                     c.pet = p.relations?.DirectRelations.Where(r => r.def == PawnRelationDefOf.Bond && r.otherPawn != null && !r.otherPawn.Dead).Select(r => r.otherPawn).RandomElementWithFallback();
                     return c.pet != null;
@@ -430,7 +414,8 @@ namespace ColonyCouncil
             if (fever) tags.Add("fever");
             string raw = def.lines.Pick(ToneUtility.ToneFor(p), tags);
             if (raw.NullOrEmpty()) return;
-            string text = raw.Formatted(p.Named("PAWN"), (c.other ?? p).Named("OTHER"), (c.pet ?? p).Named("PET"), (c.lost ?? "").Named("LOST"), (c.skill?.label ?? "").Named("SKILL")).Resolve();
+            string text = raw.Formatted(p.Named("PAWN"), (c.other ?? p).Named("OTHER"), (c.pet ?? p).Named("PET"), (c.lost ?? "").Named("LOST"), (c.skill?.label ?? "").Named("SKILL"),
+                (comp.aspirations.Active(p)?.Goal ?? "").Named("GOAL")).Resolve();
 
             var ctx = new DilemmaContext { map = p.MapHeld, a = p, b = c.other, pet = c.pet, skill = c.skill, why = "CC_Log_Dream".Translate().ToString() };
             foreach (var e in def.effects)
@@ -540,6 +525,7 @@ namespace ColonyCouncil
             Messages.Message(text, p.Spawned ? new LookTargets(p) : LookTargets.Invalid, o.def.omen.good ? MessageTypeDefOf.PositiveEvent : MessageTypeDefOf.NegativeEvent, false);
             comp.AddChronicle(new ChronicleEntry(ChronicleKind.Note, text, p));
             comp.annals.Notify_Omen(p, o.def.label);
+            comp.aspirations.Notify(p, "omen");
             if (S.MoodEffects) CouncilGameComponent.GiveThought(p, CouncilDefOf.Council_Dream_CameTrue);
             comp.journals.Write(p, "Council_Journal_DreamCameTrue", null, o.def.label.Named("DREAM"));
             var rec = recent.LastOrDefault(r => r.pawn == p && r.text == o.text);

@@ -361,19 +361,31 @@ namespace ColonyCouncil
                 }
                 if (st != null)
                 {
-                    string tip = "CC_Trust_Tip".Translate(p.LabelShort, trust.ToString("0"), st.granted, st.ignored, st.refused, st.promisesKept, st.promisesBroken).Resolve();
-                    var office = comp.offices.OfficeOf(p);
-                    if (office != null) tip = "CC_Office_Holds".Translate(p.LabelShort, office.label) + "\n" + tip;
-                    string bonds = comp.social.Describe(p);
-                    if (!bonds.NullOrEmpty()) tip = bonds + "\n\n" + tip;
-                    string titles = comp.epithets.TitlesOf(p);
-                    if (!titles.NullOrEmpty()) tip = "CC_Epithet_Known".Translate(p.LabelShort, titles) + "\n\n" + tip;
-                    if (st.log.Count > 0) tip += "\n\n" + string.Join("\n", st.log.AsEnumerable().Reverse());
-                    TooltipHandler.TipRegion(row, tip);
+                    var tipPawn = p;
+                    TooltipHandler.TipRegion(row, () => TrustTip(comp, tipPawn), p.thingIDNumber ^ 0x5A17);
                 }
                 y += 27f;
             }
             EndScroll(y);
+        }
+
+        /// <summary>Built only when the tooltip shows, not every frame.</summary>
+        private static string TrustTip(CouncilGameComponent comp, Pawn p)
+        {
+            var st = comp.standings.For(p, false);
+            if (st == null) return "";
+            float trust = st.trust;
+            string tip = "CC_Trust_Tip".Translate(p.LabelShort, trust.ToString("0"), st.granted, st.ignored, st.refused, st.promisesKept, st.promisesBroken).Resolve();
+            var office = comp.offices.OfficeOf(p);
+            if (office != null) tip = "CC_Office_Holds".Translate(p.LabelShort, office.label) + "\n" + tip;
+            var goal = comp.aspirations.Active(p);
+            if (goal != null && Settings.aspirations) tip = "CC_Asp_Tooltip".Translate(goal.Goal, goal.Progress.ToStringPercent()) + "\n" + tip;
+            string bonds = comp.social.Describe(p);
+            if (!bonds.NullOrEmpty()) tip = bonds + "\n\n" + tip;
+            string titles = comp.epithets.TitlesOf(p);
+            if (!titles.NullOrEmpty()) tip = "CC_Epithet_Known".Translate(p.LabelShort, titles) + "\n\n" + tip;
+            if (st.log.Count > 0) tip += "\n\n" + string.Join("\n", st.log.AsEnumerable().Reverse());
+            return tip;
         }
 
         private float DrawWish(CouncilGameComponent comp, Wish w, float x, float y, float width)

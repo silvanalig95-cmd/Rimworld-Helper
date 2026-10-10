@@ -120,8 +120,8 @@ grow, sour and end over time:
 
 Most days something small happens between two people: a late talk, a shared joke, a prank that lands badly, a
 snub at dinner, a squabble over chores, war stories, a lesson, a contest between rivals, a handmade gift, gossip
-that gets found out, an unexpected truce. Each one nudges their bond. Three or more people held together by strong
-bonds form a **circle**, and people outside every circle sometimes feel left out.
+that gets found out, an unexpected truce. Each one nudges their bond. Three to six people held together by strong
+friendships form a **circle**, and people outside every circle sometimes feel left out.
 
 Bonds change how people act. Friends and circle members back each other's wishes and petitions and vote for each
 other; rivals object to each other's wishes and vote against each other. The council's own decisions feed back
@@ -129,6 +129,15 @@ into them: being passed over for a rival, losing an election, a fight, a grudge 
 decree can start a rivalry, while backing the same petition or making up after a quarrel builds a friendship. Some
 dilemmas only come up between friends, rivals or comrades. When someone dies, the people closest to them (and their
 rivals) write about it. The **Social** tab shows every bond with its strength and history, and every circle.
+
+### Life goals
+A few days after settling in, each colonist sets their heart on something to do before they die: master a craft,
+marry for love, have a child, find three true friends, train a student until they can stand alone, make peace with
+a rival, earn a seat on the council or a name the colony remembers, a bedroom fit for a noble, bring down twenty-five
+enemies, raise a hundred and fifty structures, tend a hundred wounds, or simply live three more years. Goals fit the
+person (their passions, traits and situation), and the Social tab shows everyone's progress. Achieving one is a big
+moment: a letter, a long good mood, trust, often an inspiration, friends who are glad for them. Dying before it is
+remembered: the chronicle notes what they never got to do, and their friends write about it.
 
 ### Dreams
 Colonists who sleep (or lie unconscious) for a few hours sometimes wake from a dream, and tell each other about
@@ -234,7 +243,7 @@ The council only suggests what your colony can actually do right now:
 - letters vs. messages, floating speech text, alerts
 - where the council button sits in the bottom bar
 - **council life**: decrees, dilemmas, petitions, annals, names, journals, offices, the social web, social
-  events, dreams and dream omens, each on its own switch
+  events, life goals, dreams and dream omens, each on its own switch
 
 ## Optional mods that go well with it
 

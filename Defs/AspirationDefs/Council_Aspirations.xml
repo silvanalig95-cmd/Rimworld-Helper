@@ -1,0 +1,404 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Life goals. A colonist who has settled in (3+ days) may set their heart on one; when it's done, after a while,
+    they may choose another (never the same one twice).
+    workerClass: ColonyCouncil.AspirationWorker_Skill (skill / level / gain), _Record (record, amount), _Spouse,
+      _Child (Biotech), _Friends (amount), _Counter (counter: graduated, peace, omen; amount), _Office (office or any),
+      _Room (amount = bedroom impressiveness), _Epithet, _Years (amount), _ColonySize (amount).
+    who: dilemma-role requirements. goal: a verb phrase ("master {SKILL}"); {COUNT} is the target number.
+    chosen / achieved: first-person journal lines ({GOAL}, {SKILL}); the achieved line is quoted in the letter.
+  -->
+
+  <ColonyCouncil.AspirationDef>
+    <defName>Council_Asp_Mastery</defName>
+    <label>mastery</label>
+    <workerClass>ColonyCouncil.AspirationWorker_Skill</workerClass>
+    <weight>2</weight>
+    <level>15</level>
+    <gain>4</gain>
+    <goal>master {SKILL}</goal>
+    <chosen>
+      <plain>
+        <li>I've decided. Before I die, I'm going to be truly good at {SKILL}. Not decent. Good.</li>
+        <li>Everyone here is good at something. I want {SKILL} to be my something.</li>
+      </plain>
+      <blunt><li>I'm going to master {SKILL}. Anyone who wants to laugh can watch me do it.</li></blunt>
+      <cheerful><li>New life plan: become AMAZING at {SKILL}! Starting today! Starting after breakfast!</li></cheerful>
+      <cold><li>Objective: mastery of {SKILL}. Estimated time: long. Acceptable.</li></cold>
+    </chosen>
+    <achieved>
+      <plain>
+        <li>Someone asked me today how I do it, and I realised I didn't have to think about the answer. I've mastered {SKILL}.</li>
+        <li>Years of practice. Today it all came together. I'm a master of {SKILL}. I keep saying it out loud.</li>
+      </plain>
+      <warm><li>I've mastered {SKILL}. Now I want to teach it to anyone who'll listen.</li></warm>
+      <gloomy><li>I'm a master of {SKILL} now. I expected to feel different. I do, a little.</li></gloomy>
+    </achieved>
+  </ColonyCouncil.AspirationDef>
+
+  <ColonyCouncil.AspirationDef>
+    <defName>Council_Asp_Marry</defName>
+    <label>marriage</label>
+    <workerClass>ColonyCouncil.AspirationWorker_Spouse</workerClass>
+    <weight>1.2</weight>
+    <goal>marry for love</goal>
+    <chosen>
+      <plain>
+        <li>I want to get married. Here. Out on the rim, of all places. I want someone to promise to stay.</li>
+        <li>I want a wedding. Flowers, bad food, everyone crying. All of it.</li>
+      </plain>
+      <blunt><li>I want to marry. Don't make it weird.</li></blunt>
+      <gloomy><li>I'd like to marry someone before the rim takes everything. Is that so much to ask?</li></gloomy>
+    </chosen>
+    <achieved>
+      <plain>
+        <li>I'm married. I keep looking at my hand. I'm married.</li>
+        <li>We did it. In front of everyone. Whatever comes next, we're in it together now.</li>
+      </plain>
+      <cheerful><li>MARRIED! I'm going to tell every single trader who comes through!</li></cheerful>
+      <cold><li>Married. A contract I intend to honour completely.</li></cold>
+    </achieved>
+  </ColonyCouncil.AspirationDef>
+
+  <ColonyCouncil.AspirationDef>
+    <defName>Council_Asp_Child</defName>
+    <label>a child</label>
+    <workerClass>ColonyCouncil.AspirationWorker_Child</workerClass>
+    <goal>have a child</goal>
+    <who><notTrait><li>Psychopath</li></notTrait></who>
+    <chosen>
+      <plain>
+        <li>I want a child. Someone to carry on after me. Someone to teach.</li>
+        <li>I want to hear a baby crying in this colony and know it's mine.</li>
+      </plain>
+      <gloomy><li>I want a child, even here. Especially here. Something should outlast us.</li></gloomy>
+    </chosen>
+    <achieved>
+      <plain>
+        <li>I held my child today. Everything I've ever worried about rearranged itself in one second.</li>
+        <li>I'm a parent. I don't know what I'm doing. Nobody does, apparently.</li>
+      </plain>
+      <warm><li>My child is here. I'll spend the rest of my life making this place good enough for them.</li></warm>
+    </achieved>
+  </ColonyCouncil.AspirationDef>
+
+  <ColonyCouncil.AspirationDef>
+    <defName>Council_Asp_Friends</defName>
+    <label>true friends</label>
+    <workerClass>ColonyCouncil.AspirationWorker_Friends</workerClass>
+    <amount>3</amount>
+    <goal>find three true friends</goal>
+    <who><notTrait><li>Psychopath</li></notTrait></who>
+    <chosen>
+      <plain>
+        <li>I want real friends here. The kind you'd run back into a fire for.</li>
+      </plain>
+      <blunt><li>I'm told I'm hard to like. I'm going to prove that wrong. Three people. That's the goal.</li></blunt>
+      <gloomy><li>I'm lonely. There, I wrote it. I'm going to do something about it.</li></gloomy>
+    </chosen>
+    <achieved>
+      <plain>
+        <li>Three people I'd trust with my life, and who'd trust me with theirs. I'm rich.</li>
+      </plain>
+      <warm><li>I have true friends here. I didn't have that before. I'll never take it for granted.</li></warm>
+      <cheerful><li>I have THREE best friends now! That's allowed! I checked!</li></cheerful>
+    </achieved>
+  </ColonyCouncil.AspirationDef>
+
+  <ColonyCouncil.AspirationDef>
+    <defName>Council_Asp_Teach</defName>
+    <label>a student</label>
+    <workerClass>ColonyCouncil.AspirationWorker_Counter</workerClass>
+    <counter>graduated</counter>
+    <amount>1</amount>
+    <goal>train a student until they can stand alone</goal>
+    <chosen>
+      <plain>
+        <li>Someone taught me. I want to do the same for someone here, all the way.</li>
+        <li>What I know shouldn't die with me. I want a student.</li>
+      </plain>
+      <cold><li>Knowledge held by one person is a single point of failure. I'll train a successor.</li></cold>
+    </chosen>
+    <achieved>
+      <plain>
+        <li>My student doesn't need me anymore. That's the whole point, and it still stings a little. Mostly it doesn't.</li>
+      </plain>
+      <warm><li>My student is ready. Whatever I've done wrong in my life, I did this right.</li></warm>
+    </achieved>
+  </ColonyCouncil.AspirationDef>
+
+  <ColonyCouncil.AspirationDef>
+    <defName>Council_Asp_Peace</defName>
+    <label>peace with a rival</label>
+    <workerClass>ColonyCouncil.AspirationWorker_Counter</workerClass>
+    <counter>peace</counter>
+    <amount>1</amount>
+    <weight>0.8</weight>
+    <goal>make peace with a rival</goal>
+    <who><notTrait><li>Psychopath</li><li>Abrasive</li></notTrait></who>
+    <chosen>
+      <plain>
+        <li>I'm tired of being angry. I want to end at least one of my feuds before it ends me.</li>
+      </plain>
+      <warm><li>Someone here hates me and I hate them back. I want to fix that. I don't know how yet.</li></warm>
+    </chosen>
+    <achieved>
+      <plain>
+        <li>We're done fighting. Just like that. I didn't realise how heavy it was until I put it down.</li>
+      </plain>
+      <blunt><li>The feud's over. I won't say I miss it.</li></blunt>
+    </achieved>
+  </ColonyCouncil.AspirationDef>
+
+  <ColonyCouncil.AspirationDef>
+    <defName>Council_Asp_Seat</defName>
+    <label>a seat on the council</label>
+    <workerClass>ColonyCouncil.AspirationWorker_Office</workerClass>
+    <goal>earn a seat on the council</goal>
+    <who><notTrait><li>Psychopath</li></notTrait></who>
+    <chosen>
+      <plain>
+        <li>I want a seat on the council. I have ideas. Somebody should listen to them.</li>
+      </plain>
+      <cold><li>Influence requires office. I'll be elected.</li></cold>
+      <cheerful><li>I'm going to run for the council! I've already got a slogan! It's not good yet!</li></cheerful>
+    </chosen>
+    <achieved>
+      <plain>
+        <li>They chose me. I have a seat on the council now. I'm going to try very hard not to waste it.</li>
+      </plain>
+      <blunt><li>Got the seat. About time.</li></blunt>
+    </achieved>
+  </ColonyCouncil.AspirationDef>
+
+  <ColonyCouncil.AspirationDef>
+    <defName>Council_Asp_Room</defName>
+    <label>a room worth living in</label>
+    <workerClass>ColonyCouncil.AspirationWorker_Room</workerClass>
+    <amount>85</amount>
+    <weight>0.8</weight>
+    <goal>have a bedroom fit for a noble</goal>
+    <who><notTrait><li>Ascetic</li></notTrait></who>
+    <chosen>
+      <plain>
+        <li>I've slept in holes my whole life. Before I die, I want a room so fine people stop at the door.</li>
+      </plain>
+      <cheerful><li>One day my room will have a chandelier. I don't know what a chandelier costs. I don't care!</li></cheerful>
+    </chosen>
+    <achieved>
+      <plain>
+        <li>I stood in my doorway tonight just looking at it. My room. The finest one I've ever had.</li>
+      </plain>
+      <gloomy><li>A beautiful room. If I die tomorrow, at least it'll be in comfort.</li></gloomy>
+    </achieved>
+  </ColonyCouncil.AspirationDef>
+
+  <ColonyCouncil.AspirationDef>
+    <defName>Council_Asp_Name</defName>
+    <label>a name to remember</label>
+    <workerClass>ColonyCouncil.AspirationWorker_Epithet</workerClass>
+    <goal>earn a name the colony remembers</goal>
+    <chosen>
+      <plain>
+        <li>The others have names. "The Healer." "Deadeye." I want one. A good one, ideally.</li>
+      </plain>
+      <blunt><li>I want a title. I'll earn it.</li></blunt>
+    </chosen>
+    <achieved>
+      <plain>
+        <li>They have a name for me now. I heard someone use it when they didn't know I was listening.</li>
+      </plain>
+      <cheerful><li>I HAVE A NAME! A title! I'm going to sign everything with it!</li></cheerful>
+    </achieved>
+  </ColonyCouncil.AspirationDef>
+
+  <ColonyCouncil.AspirationDef>
+    <defName>Council_Asp_Endure</defName>
+    <label>to endure</label>
+    <workerClass>ColonyCouncil.AspirationWorker_Years</workerClass>
+    <amount>3</amount>
+    <weight>0.6</weight>
+    <goal>live to see three more years here</goal>
+    <chosen>
+      <plain>
+        <li>People don't last long out here. I want to be the exception. Three more years. Then we'll see.</li>
+      </plain>
+      <gloomy><li>My goal is simple: don't die. Three more years. Let's see if I can manage that.</li></gloomy>
+    </chosen>
+    <achieved>
+      <plain>
+        <li>Three more years. Still here. Still breathing. Some days that's the whole victory.</li>
+      </plain>
+      <cold><li>Survival objective met. Setting a new one.</li></cold>
+    </achieved>
+  </ColonyCouncil.AspirationDef>
+
+  <ColonyCouncil.AspirationDef>
+    <defName>Council_Asp_Grow</defName>
+    <label>a growing colony</label>
+    <workerClass>ColonyCouncil.AspirationWorker_ColonySize</workerClass>
+    <amount>12</amount>
+    <weight>0.7</weight>
+    <goal>see the colony grow to {COUNT} people</goal>
+    <chosen>
+      <plain>
+        <li>I want to see this place full. Noise at dinner, arguments over chores. A real town.</li>
+      </plain>
+      <warm><li>I want so many people here I forget some of their names. Then I'll learn them all again.</li></warm>
+    </chosen>
+    <achieved>
+      <plain>
+        <li>I counted heads at dinner. We're a real colony now. I remember when we were three tired people and a campfire.</li>
+      </plain>
+    </achieved>
+  </ColonyCouncil.AspirationDef>
+
+  <ColonyCouncil.AspirationDef>
+    <defName>Council_Asp_Warrior</defName>
+    <label>a warrior's record</label>
+    <workerClass>ColonyCouncil.AspirationWorker_Record</workerClass>
+    <record>KillsHumanlikes</record>
+    <amount>25</amount>
+    <goal>bring down twenty-five enemies</goal>
+    <who><canFight>true</canFight><anyTrait><li>Bloodlust</li><li>Tough</li><li>Brawler</li><li>Psychopath</li></anyTrait></who>
+    <chosen>
+      <plain>
+        <li>The raiders keep coming. Fine. I'm going to be the reason they stop.</li>
+      </plain>
+      <cold><li>Target: twenty-five hostiles neutralised. I'll keep count.</li></cold>
+    </chosen>
+    <achieved>
+      <plain>
+        <li>Twenty-five. I've stopped counting faces. I haven't stopped counting.</li>
+      </plain>
+      <blunt><li>Twenty-five down. They can keep sending more.</li></blunt>
+    </achieved>
+  </ColonyCouncil.AspirationDef>
+
+  <ColonyCouncil.AspirationDef>
+    <defName>Council_Asp_Builder</defName>
+    <label>a builder's legacy</label>
+    <workerClass>ColonyCouncil.AspirationWorker_Record</workerClass>
+    <record>ThingsConstructed</record>
+    <amount>150</amount>
+    <goal>raise a hundred and fifty structures</goal>
+    <who><passion>Construction</passion></who>
+    <chosen>
+      <plain>
+        <li>I want to look at this colony one day and see my hands everywhere. Walls, doors, roofs. Mine.</li>
+      </plain>
+    </chosen>
+    <achieved>
+      <plain>
+        <li>I walked the whole colony today and touched everything I built. It took hours.</li>
+      </plain>
+    </achieved>
+  </ColonyCouncil.AspirationDef>
+
+  <ColonyCouncil.AspirationDef>
+    <defName>Council_Asp_Healer</defName>
+    <label>a healer's work</label>
+    <workerClass>ColonyCouncil.AspirationWorker_Record</workerClass>
+    <record>TimesTendedOther</record>
+    <amount>100</amount>
+    <goal>tend a hundred wounds</goal>
+    <who><passion>Medicine</passion></who>
+    <chosen>
+      <plain>
+        <li>Every scar in this colony should have my stitches in it. A hundred wounds. Then I'll call myself a healer.</li>
+      </plain>
+      <warm><li>Nobody should bleed alone out here. I'm going to make sure of it.</li></warm>
+    </chosen>
+    <achieved>
+      <plain>
+        <li>A hundred wounds closed. I remember most of them. I remember all of the ones I lost.</li>
+      </plain>
+    </achieved>
+  </ColonyCouncil.AspirationDef>
+
+  <ColonyCouncil.AspirationDef>
+    <defName>Council_Asp_Cook</defName>
+    <label>a cook's five hundred meals</label>
+    <workerClass>ColonyCouncil.AspirationWorker_Record</workerClass>
+    <record>MealsCooked</record>
+    <amount>500</amount>
+    <goal>cook five hundred meals</goal>
+    <who><passion>Cooking</passion></who>
+    <chosen>
+      <plain>
+        <li>Food is how people know they're cared for. Five hundred meals. Then I'll believe I'm a cook.</li>
+      </plain>
+      <cheerful><li>Five hundred meals! That's so many happy stomachs!</li></cheerful>
+    </chosen>
+    <achieved>
+      <plain>
+        <li>Five hundred meals. Someone asked for seconds tonight. Still the best part.</li>
+      </plain>
+    </achieved>
+  </ColonyCouncil.AspirationDef>
+
+  <ColonyCouncil.AspirationDef>
+    <defName>Council_Asp_Tamer</defName>
+    <label>a tamer's patience</label>
+    <workerClass>ColonyCouncil.AspirationWorker_Record</workerClass>
+    <record>AnimalsTamed</record>
+    <amount>5</amount>
+    <goal>tame five wild animals</goal>
+    <who><passion>Animals</passion></who>
+    <chosen>
+      <plain>
+        <li>Wild things trust nobody. I want five of them to trust me.</li>
+      </plain>
+    </chosen>
+    <achieved>
+      <plain>
+        <li>Five wild animals that would follow me anywhere now. Better company than most people.</li>
+      </plain>
+    </achieved>
+  </ColonyCouncil.AspirationDef>
+
+  <ColonyCouncil.AspirationDef>
+    <defName>Council_Asp_Persuader</defName>
+    <label>a voice that wins people over</label>
+    <workerClass>ColonyCouncil.AspirationWorker_Record</workerClass>
+    <record>PrisonersRecruited</record>
+    <amount>3</amount>
+    <weight>0.7</weight>
+    <goal>win three prisoners over to the colony</goal>
+    <who><passion>Social</passion></who>
+    <chosen>
+      <plain>
+        <li>Everyone we lock up was someone once. I want to talk three of them into being someone here.</li>
+      </plain>
+    </chosen>
+    <achieved>
+      <plain>
+        <li>Three people who came here in chains now eat at our table. I talked them into it. I'm proud of that.</li>
+      </plain>
+    </achieved>
+  </ColonyCouncil.AspirationDef>
+
+  <ColonyCouncil.AspirationDef>
+    <defName>Council_Asp_Seer</defName>
+    <label>a seer's gift</label>
+    <workerClass>ColonyCouncil.AspirationWorker_Counter</workerClass>
+    <counter>omen</counter>
+    <amount>1</amount>
+    <weight>0.3</weight>
+    <goal>dream something that comes true</goal>
+    <chosen>
+      <plain>
+        <li>My grandmother dreamt things before they happened. I want to know if I can too.</li>
+      </plain>
+      <cold><li>I'll keep a record of my dreams and test them against events. For science.</li></cold>
+    </chosen>
+    <achieved>
+      <plain>
+        <li>It came true. My dream came true. I don't know whether to be proud or frightened.</li>
+      </plain>
+    </achieved>
+  </ColonyCouncil.AspirationDef>
+
+</Defs>
