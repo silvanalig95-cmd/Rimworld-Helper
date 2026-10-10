@@ -7,6 +7,7 @@
     <defName>Council_Adv_Beds</defName>
     <label>beds and bedrooms</label>
     <workerClass>ColonyCouncil.AdvisorWorker_Beds</workerClass>
+    <article>Council_Alm_9_01_Bedroom</article>
     <category>Shelter</category>
     <importance>1.1</importance>
     <tips>
@@ -21,6 +22,7 @@
     <defName>Council_Adv_Food</defName>
     <label>food supply</label>
     <workerClass>ColonyCouncil.AdvisorWorker_Food</workerClass>
+    <article>Council_Alm_1_03_WinterStockpile</article>
     <category>Food</category>
     <importance>1.3</importance>
     <tips>
@@ -35,6 +37,7 @@
     <defName>Council_Adv_Freezer</defName>
     <label>food storage</label>
     <workerClass>ColonyCouncil.AdvisorWorker_Freezer</workerClass>
+    <article>Council_Alm_1_27_Freezer</article>
     <category>Food</category>
     <importance>0.9</importance>
     <template>Council_Freezer</template>
@@ -49,6 +52,7 @@
     <defName>Council_Adv_Temperature</defName>
     <label>temperature</label>
     <workerClass>ColonyCouncil.AdvisorWorker_Temperature</workerClass>
+    <article>Council_Alm_3_18_HeatWaveColdSnap</article>
     <category>Temperature</category>
     <importance>1</importance>
     <tips>
@@ -63,6 +67,7 @@
     <defName>Council_Adv_Defense</defName>
     <label>defenses</label>
     <workerClass>ColonyCouncil.AdvisorWorker_Defense</workerClass>
+    <article>Council_Alm_3_02_WealthAndRaids</article>
     <category>Defense</category>
     <importance>1.2</importance>
     <tips>
@@ -78,6 +83,7 @@
     <defName>Council_Adv_Medical</defName>
     <label>medical care</label>
     <workerClass>ColonyCouncil.AdvisorWorker_Medical</workerClass>
+    <article>Council_Alm_9_12_Hospital</article>
     <category>Health</category>
     <importance>1</importance>
     <template>Council_Hospital</template>
@@ -105,6 +111,7 @@
     <defName>Council_Adv_Recreation</defName>
     <label>recreation</label>
     <workerClass>ColonyCouncil.AdvisorWorker_Recreation</workerClass>
+    <article>Council_Alm_9_04_RecRoom</article>
     <category>Comfort</category>
     <importance>0.8</importance>
     <template>Council_RecRoom</template>
@@ -119,6 +126,7 @@
     <defName>Council_Adv_Dining</defName>
     <label>dining</label>
     <workerClass>ColonyCouncil.AdvisorWorker_Dining</workerClass>
+    <article>Council_Alm_9_03_DiningRoom</article>
     <category>Comfort</category>
     <importance>0.8</importance>
     <template>Council_DiningRoom</template>
@@ -157,6 +165,7 @@
     <defName>Council_Adv_Deterioration</defName>
     <label>storage</label>
     <workerClass>ColonyCouncil.AdvisorWorker_Deterioration</workerClass>
+    <article>Council_Alm_1_28_SpoilageAndDeterioration</article>
     <category>Work</category>
     <importance>0.6</importance>
     <template>Council_Storeroom</template>

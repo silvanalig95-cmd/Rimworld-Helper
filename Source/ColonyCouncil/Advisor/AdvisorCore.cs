@@ -89,6 +89,8 @@ namespace ColonyCouncil
         public LookTargets look;
         public RoomTemplateDef template;
         public ThingDef suggestThing;
+        /// <summary>A more specific almanac page than the def's (e.g. for the event actually happening).</summary>
+        public AlmanacArticleDef article;
         public string key = "";
 
         public float Score => severity * (0.5f + 0.5f * urgency) * (0.6f + 0.4f * confidence) * (def?.importance ?? 1f);

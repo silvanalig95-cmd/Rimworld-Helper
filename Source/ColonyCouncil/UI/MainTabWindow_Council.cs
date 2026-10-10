@@ -259,9 +259,10 @@ namespace ColonyCouncil
                 }
                 by += 30f;
             }
-            if (s.def.article != null)
+            var article = s.article ?? s.def.article;
+            if (article != null)
             {
-                if (Widgets.ButtonText(new Rect(bx, by, 128f, 26f), "CC_ReadMore".Translate())) OpenAlmanac(s.def.article);
+                if (Widgets.ButtonText(new Rect(bx, by, 128f, 26f), "CC_ReadMore".Translate())) OpenAlmanac(article);
                 by += 30f;
             }
             if (s.suggestThing != null)

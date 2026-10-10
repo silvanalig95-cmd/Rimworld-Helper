@@ -292,6 +292,16 @@ namespace ColonyCouncil
             { "Aurora", 0.05f }
         };
 
+        private static readonly Dictionary<string, string> ConditionArticles = new Dictionary<string, string>
+        {
+            { "ToxicFallout", "Council_Alm_3_16_ToxicFallout" },
+            { "SolarFlare", "Council_Alm_3_17_SolarFlare" },
+            { "HeatWave", "Council_Alm_3_18_HeatWaveColdSnap" },
+            { "ColdSnap", "Council_Alm_3_18_HeatWaveColdSnap" },
+            { "Eclipse", "Council_Alm_3_19_EclipseVolcanicWinter" },
+            { "VolcanicWinter", "Council_Alm_3_19_EclipseVolcanicWinter" }
+        };
+
         public override IEnumerable<AdvisorSignal> Evaluate(Map map)
         {
             foreach (var cond in map.gameConditionManager.ActiveConditions)
@@ -305,6 +315,7 @@ namespace ColonyCouncil
                 string time = cond.Permanent || left <= 0 ? "CC_Adv_Cond_Unknown".Translate().ToString() : TextUtil.DaysString(left);
                 var s = Signal(sev, titleKey.Translate(), detailKey.Translate(time), 1f);
                 s.key = key;
+                if (ConditionArticles.TryGetValue(key, out string article)) s.article = DefDatabase<AlmanacArticleDef>.GetNamedSilentFail(article);
                 yield return s;
             }
         }

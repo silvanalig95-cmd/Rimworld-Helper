@@ -5,6 +5,7 @@
     <defName>Council_Adv_Kitchen</defName>
     <label>kitchen hygiene</label>
     <workerClass>ColonyCouncil.AdvisorWorker_Kitchen</workerClass>
+    <article>Council_Alm_1_25_FoodPoisoning</article>
     <category>Food</category>
     <importance>1</importance>
     <template>Council_Kitchen</template>
@@ -21,6 +22,7 @@
     <defName>Council_Adv_Hygiene</defName>
     <label>cleaning</label>
     <workerClass>ColonyCouncil.AdvisorWorker_Hygiene</workerClass>
+    <article>Council_Alm_4_07_InfectionChance</article>
     <category>Health</category>
     <importance>0.9</importance>
     <tips>
@@ -34,6 +36,7 @@
     <defName>Council_Adv_Fire</defName>
     <label>fire safety</label>
     <workerClass>ColonyCouncil.AdvisorWorker_Fire</workerClass>
+    <article>Council_Alm_3_20_FireSafety</article>
     <category>Defense</category>
     <importance>0.8</importance>
     <tips>
@@ -48,6 +51,7 @@
     <defName>Council_Adv_Infestation</defName>
     <label>insects under the mountain</label>
     <workerClass>ColonyCouncil.AdvisorWorker_Infestation</workerClass>
+    <article>Council_Alm_3_15_Infestations</article>
     <category>Defense</category>
     <importance>0.8</importance>
     <tips>
@@ -62,6 +66,7 @@
     <defName>Council_Adv_Corpses</defName>
     <label>the dead</label>
     <workerClass>ColonyCouncil.AdvisorWorker_Corpses</workerClass>
+    <article>Council_Alm_9_18_Crypt</article>
     <category>Comfort</category>
     <importance>1</importance>
     <template>Council_Crypt</template>
@@ -76,6 +81,7 @@
     <defName>Council_Adv_Crops</defName>
     <label>the fields</label>
     <workerClass>ColonyCouncil.AdvisorWorker_Crops</workerClass>
+    <article>Council_Alm_1_32_BlightAndFire</article>
     <category>Food</category>
     <importance>1.1</importance>
     <tips>
@@ -103,6 +109,7 @@
     <defName>Council_Adv_Prisoners</defName>
     <label>prisoners</label>
     <workerClass>ColonyCouncil.AdvisorWorker_Prisoners</workerClass>
+    <article>Council_Alm_9_13_PrisonCell</article>
     <category>Work</category>
     <importance>1</importance>
     <tips>
@@ -128,6 +135,7 @@
     <defName>Council_Adv_Conditions</defName>
     <label>what's happening now</label>
     <workerClass>ColonyCouncil.AdvisorWorker_Conditions</workerClass>
+    <article>Council_Alm_3_18_HeatWaveColdSnap</article>
     <category>Health</category>
     <importance>1.1</importance>
     <tips>
