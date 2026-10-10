@@ -329,6 +329,10 @@
   <CC_Heckle_Cold>{PAWN_nameDef} calmly pointed out every flaw in {OTHER_nameDef}'s "{AMBITION}". Twice.</CC_Heckle_Cold>
 
   <!-- Goals -->
+  <CC_Goal_CleanKitchens>Every kitchen at cleanliness {0} or better, with no butcher table inside</CC_Goal_CleanKitchens>
+  <CC_Goal_SafeWalls>At least {0} of walls stone or metal (now {1})</CC_Goal_SafeWalls>
+  <CC_Goal_AllLit>A light in every room people work, eat or sleep in</CC_Goal_AllLit>
+  <CC_Goal_SkillLevel>Someone reaches level {1} in {0} (best now: {2})</CC_Goal_SkillLevel>
   <CC_Goal_FoodDays>Food for {0} days (now: {1} days)</CC_Goal_FoodDays>
   <CC_Goal_AllOwnRooms>A private bedroom for every colonist ({0} / {1})</CC_Goal_AllOwnRooms>
   <CC_Goal_Room>A room that counts as a {0}</CC_Goal_Room>

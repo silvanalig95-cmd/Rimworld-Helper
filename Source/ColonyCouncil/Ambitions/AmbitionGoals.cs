@@ -195,6 +195,8 @@ namespace ColonyCouncil
     {
         public string kind = "medicine";
         public int count = 20;
+        /// <summary>For named things: only possible if the colony can make it right now (or already has some).</summary>
+        public bool needsRecipe;
 
         public static int Count(Map map, string kind)
         {
@@ -226,7 +228,10 @@ namespace ColonyCouncil
             if (kind == "finemeals") return WishWorker_BetterFood.CanCook(map, FoodPreferability.MealFine);
             if (kind == "meals") return WishWorker_BetterFood.CanCook(map, FoodPreferability.MealSimple);
             if (kind == "medicine" || kind == "silver") return true;
-            return DefDatabase<ThingDef>.GetNamedSilentFail(kind) != null;
+            var def = DefDatabase<ThingDef>.GetNamedSilentFail(kind);
+            if (def == null) return false;
+            if (!needsRecipe) return true;
+            return map.resourceCounter.GetCount(def) > 0 || DefDatabase<RecipeDef>.AllDefsListForReading.Any(r => r.ProducedThingDef == def && r.AvailableNow);
         }
 
         public override float Progress(Map map, float baseline) => Ratio(Count(map, kind), count);
@@ -354,5 +359,80 @@ namespace ColonyCouncil
             int have = Count(map, out int total);
             return "CC_Goal_WarmBedrooms".Translate(have, total);
         }
+    }
+}
+
+namespace ColonyCouncil
+{
+    /// <summary>Every kitchen clean, and no butchering next to the stove.</summary>
+    public class Goal_CleanKitchens : AmbitionGoal
+    {
+        public float minCleanliness = 0f;
+
+        public override bool Possible(Map map) => RoomUtil.RoomsWithRole(map, RoomUtil.Kitchen).Any();
+
+        public override float Progress(Map map, float baseline)
+        {
+            var kitchens = RoomUtil.RoomsWithRole(map, RoomUtil.Kitchen).ToList();
+            if (kitchens.Count == 0) return 0f;
+            int good = kitchens.Count(r => r.GetStat(RoomStatDefOf.Cleanliness) >= minCleanliness
+                                           && !RoomUtil.RoomContains(r, AdvisorWorker_Kitchen.IsButcherTable));
+            return good / (float)kitchens.Count;
+        }
+
+        public override string Describe(Map map, float baseline) => "CC_Goal_CleanKitchens".Translate(minCleanliness.ToString("0.0"));
+    }
+
+    /// <summary>Most of the colony's walls made of something that doesn't burn.</summary>
+    public class Goal_SafeWalls : AmbitionGoal
+    {
+        public float share = 0.8f;
+
+        private static float Share(Map map)
+        {
+            var walls = map.listerBuildings.allBuildingsColonist.Where(b => b.def.IsWall).ToList();
+            if (walls.Count == 0) return 0f;
+            return walls.Count(b => b.GetStatValue(StatDefOf.Flammability) <= 0.2f) / (float)walls.Count;
+        }
+
+        public override bool Possible(Map map) =>
+            map.listerBuildings.allBuildingsColonist.Count(b => b.def.IsWall) >= 20
+            && DefDatabase<ThingDef>.AllDefsListForReading.Any(d => d.IsStuff && d.stuffProps?.categories != null && d.stuffProps.categories.Contains(StuffCategoryDefOf.Stony) && map.resourceCounter.GetCount(d) > 0);
+
+        public override float Progress(Map map, float baseline) => Ratio(Share(map), share);
+
+        public override string Describe(Map map, float baseline) => "CC_Goal_SafeWalls".Translate(share.ToStringPercent(), Share(map).ToStringPercent());
+    }
+
+    /// <summary>No room people use is left in the dark.</summary>
+    public class Goal_AllLit : AmbitionGoal
+    {
+        private static int Dark(Map map)
+        {
+            var worker = new AdvisorWorker_Darkness();
+            var signal = worker.Evaluate(map).FirstOrDefault();
+            return signal == null ? 0 : 1;
+        }
+
+        public override bool Possible(Map map) => Avail.AnyBuildable(map, Avail.IsLight);
+
+        public override float Progress(Map map, float baseline) => Dark(map) == 0 ? 1f : 0.3f;
+
+        public override string Describe(Map map, float baseline) => "CC_Goal_AllLit".Translate();
+    }
+
+    /// <summary>Someone in the colony masters a skill.</summary>
+    public class Goal_SkillLevel : AmbitionGoal
+    {
+        public SkillDef skill;
+        public int level = 10;
+
+        private int Best(Map map) => map.mapPawns.FreeColonistsSpawned.Select(p => p.skills?.GetSkill(skill)).Where(s => s != null && !s.TotallyDisabled).Select(s => s.Level).DefaultIfEmpty(0).Max();
+
+        public override bool Possible(Map map) => skill != null && map.mapPawns.FreeColonistsSpawned.Any(p => p.skills?.GetSkill(skill) is SkillRecord s && !s.TotallyDisabled && s.passion != Passion.None && s.Level < level);
+
+        public override float Progress(Map map, float baseline) => skill == null ? 0f : Ratio(Best(map), level);
+
+        public override string Describe(Map map, float baseline) => "CC_Goal_SkillLevel".Translate(skill?.label ?? "?", level, Best(map));
     }
 }
