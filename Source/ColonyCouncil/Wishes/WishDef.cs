@@ -59,6 +59,14 @@ namespace ColonyCouncil
         public float envy = 0.4f;
         /// <summary>Greedy or jealous onlookers may ask for the same thing once they've seen it granted.</summary>
         public bool meToo;
+        /// <summary>Chance that someone speaks up against it when it's voiced (if anyone has a reason to).</summary>
+        public float objectionChance = 0.35f;
+        /// <summary>Colonists with these traits object to it (a kind soul against an execution).</summary>
+        public List<TraitDef> objectorTraits;
+        /// <summary>+1: whoever is fond of the wish's other pawn objects; -1: whoever can't stand them.</summary>
+        public int objectByOpinionOfOther;
+        /// <summary>Objection lines for this wish ({PAWN} objects to {OTHER}'s wish about {ABOUT}); falls back to the general pool.</summary>
+        public FlavorPoolDef objectionPool;
 
         public ToneLines request = new ToneLines();
         public ToneLines requestForOther = new ToneLines();

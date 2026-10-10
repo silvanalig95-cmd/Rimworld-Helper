@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_Granted_Justice</defName>
+    <durationDays>5</durationDays>
+    <stages>
+      <li>
+        <label>justice was done</label>
+        <description>The raider in the cell got what was coming. I sleep better now.</description>
+        <baseMoodEffect>4</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_Granted_Mercy</defName>
+    <durationDays>6</durationDays>
+    <stages>
+      <li>
+        <label>we showed mercy</label>
+        <description>We let them out of the cage. Whatever else we are out here, we're not that.</description>
+        <baseMoodEffect>5</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_Granted_Party</defName>
+    <durationDays>3</durationDays>
+    <stages>
+      <li>
+        <label>we needed that party</label>
+        <description>I asked for one good night, and we had it.</description>
+        <baseMoodEffect>3</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_Granted_Rescue</defName>
+    <durationDays>12</durationDays>
+    <stages>
+      <li>
+        <label>they came back for us</label>
+        <description>Someone I love was taken, and the colony went and brought them home.</description>
+        <baseMoodEffect>12</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_BroughtHome</defName>
+    <durationDays>6</durationDays>
+    <stages>
+      <li>
+        <label>we don't leave our own behind</label>
+        <description>One of us was taken, and we went and got them back. If it's ever me, they'll come.</description>
+        <baseMoodEffect>5</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_Granted_Hunt</defName>
+    <durationDays>3</durationDays>
+    <stages>
+      <li>
+        <label>good hunt</label>
+        <description>Out in the open with a weapon and a clean shot. I needed that.</description>
+        <baseMoodEffect>4</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+</Defs>

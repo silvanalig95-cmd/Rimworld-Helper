@@ -123,7 +123,8 @@ namespace ColonyCouncil
         private void MaybeObject(Wish w)
         {
             var map = w.pawn.MapHeld;
-            if (map == null || !Rand.Chance(0.35f)) return;
+            if (map == null || !Rand.Chance(w.def.objectionChance)) return;
+            var objectors = w.def.objectorTraits;
             Pawn best = null;
             float bestScore = 0f;
             foreach (var p in map.mapPawns.FreeColonistsSpawned)
@@ -136,7 +137,15 @@ namespace ColonyCouncil
                 if (opinion <= -20) score += 2f + (-opinion - 20) / 20f;
                 if (w.def.envy >= 0.5f && traits != null && (traits.HasTrait(TraitDefOf.Jealous) || traits.HasTrait(TraitDefOf.Greedy))) score += 1.5f;
                 if (w.def.category == WishCategory.Comfort && TraitDegree(p, TraitDefOf.Industriousness) > 0) score += 0.7f;
-                if (traits != null && traits.HasTrait(TraitDefOf.Kind)) score -= 2f;
+                if (traits != null && objectors != null)
+                    foreach (var t in objectors)
+                        if (traits.HasTrait(t)) score += 3f;
+                if (traits != null && traits.HasTrait(TraitDefOf.Kind) && (objectors == null || !objectors.Contains(TraitDefOf.Kind))) score -= 2f;
+                if (w.def.objectByOpinionOfOther != 0 && w.other != null && w.other != p)
+                {
+                    int toOther = p.relations.OpinionOf(w.other);
+                    if (w.def.objectByOpinionOfOther > 0 ? toOther >= 20 : toOther <= -20) score += 2f;
+                }
                 if (score > bestScore)
                 {
                     best = p;
@@ -145,8 +154,9 @@ namespace ColonyCouncil
             }
             if (best == null || bestScore < 1.5f) return;
             w.objector = best;
-            string line = Flavor.FromPool("Council_Pool_Objection", best, w, ToneUtility.ToneFor(best));
-            line = line?.Formatted(best.Named("PAWN"), w.pawn.Named("OTHER"), w.Label.Named("WISH")).Resolve();
+            string line = w.def.objectionPool != null ? Flavor.FromPool(w.def.objectionPool.defName, best, w, ToneUtility.ToneFor(best)) : null;
+            if (line.NullOrEmpty()) line = Flavor.FromPool("Council_Pool_Objection", best, w, ToneUtility.ToneFor(best));
+            line = line?.Formatted(best.Named("PAWN"), w.pawn.Named("OTHER"), w.Label.Named("WISH"), (w.other ?? w.Beneficiary).Named("ABOUT")).Resolve();
             if (line.NullOrEmpty()) return;
             Messages.Message("CC_ObjectionMessage".Translate(best.Named("PAWN"), w.pawn.Named("OTHER"), w.Label.Named("WISH")).Resolve() + " \"" + TextUtil.ShortSpeech(line, 120) + "\"",
                 new LookTargets(best), MessageTypeDefOf.SilentInput, false);

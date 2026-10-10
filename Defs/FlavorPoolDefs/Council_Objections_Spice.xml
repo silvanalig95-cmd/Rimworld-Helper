@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- Objections to particular wishes. {PAWN} objects, {OTHER} made the wish, {ABOUT} is who it's about
+       (the prisoner, the kidnapped colonist). -->
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Pool_ObjectJustice</defName>
+    <lines>
+      <plain>
+        <li>{ABOUT_nameDef} is lying in a cell, unarmed. Killing them now isn't justice, it's just killing.</li>
+        <li>If we start executing prisoners, what stops us executing each other when it's convenient?</li>
+        <li>I patched {ABOUT_nameDef} up myself. I'm not watching them get shot after that.</li>
+        <li>[afterraid] Everyone's angry. That's the worst time to decide who dies.</li>
+      </plain>
+      <warm>
+        <li>Please, {OTHER_nameDef}. I know you're hurting. This won't fix it.</li>
+        <li>{ABOUT_nameDef} has people somewhere too. Someone is waiting for them to come home.</li>
+        <li>[trait:Kind] I'll feed {ABOUT_nameDef} from my own plate if that's the problem. Just don't do this.</li>
+      </warm>
+      <blunt>
+        <li>You want blood, {OTHER_nameDef}, go hunt a muffalo. Leave the prisoner alone.</li>
+        <li>Over my dead body. Which, given your mood, is a figure of speech I regret.</li>
+      </blunt>
+      <cheerful>
+        <li>Can we not murder the prisoner? I was just getting to know {ABOUT_nameDef}! They like the same jokes as me!</li>
+      </cheerful>
+      <gloomy>
+        <li>Every time we kill someone who's already beaten, we lose a little more of whatever we were before we crashed.</li>
+      </gloomy>
+      <cold>
+        <li>An execution upsets half the colony and burns any chance of a ransom. It's poor value.</li>
+        <li>{ABOUT_nameDef} could be recruited, sold or ransomed. A corpse can only be buried.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Pool_ObjectMercy</defName>
+    <lines>
+      <plain>
+        <li>We let {ABOUT_nameDef} go, and next month they're back with twenty friends and a map of our walls.</li>
+        <li>{OTHER_nameDef} wants to free {ABOUT_nameDef}. The same {ABOUT_nameDef} who was shooting at us last week?</li>
+        <li>[afterraid] Their blood's still on our floor. Not yet.</li>
+      </plain>
+      <warm>
+        <li>I know you mean well, {OTHER_nameDef}. But I've seen what people like {ABOUT_nameDef} do to people like you.</li>
+      </warm>
+      <blunt>
+        <li>Free {ABOUT_nameDef}? Sure. And then you can explain it to whoever they kill next.</li>
+        <li>[trait:Bloodlust] I had plans for {ABOUT_nameDef}. Don't ask what they were.</li>
+      </blunt>
+      <cheerful>
+        <li>Releasing raiders, great idea! Next let's leave the door open and put out snacks!</li>
+      </cheerful>
+      <gloomy>
+        <li>Mercy is lovely. It's also how colonies get wiped out. I've read the stories.</li>
+      </gloomy>
+      <cold>
+        <li>{ABOUT_nameDef} knows our layout and our numbers. Releasing them is handing over intelligence for nothing.</li>
+        <li>[trait:Psychopath] We've invested a lot of food in {ABOUT_nameDef}. I'd like a return on it.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Pool_ObjectRescue</defName>
+    <lines>
+      <plain>
+        <li>I miss {ABOUT_nameDef} too. But attacking a whole settlement to get one person back could cost us three.</li>
+        <li>We're not an army. We're a handful of farmers with guns.</li>
+      </plain>
+      <blunt>
+        <li>{ABOUT_nameDef} is gone. Stop planning a war we'll lose.</li>
+      </blunt>
+      <gloomy>
+        <li>They're probably dead already. I'm sorry. Someone had to say it.</li>
+      </gloomy>
+      <cold>
+        <li>Recovering {ABOUT_nameDef} means risking several of us for one. The numbers don't work.</li>
+        <li>[trait:Psychopath] We can recruit someone with the same skills from the next raid. Cheaper.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+</Defs>
