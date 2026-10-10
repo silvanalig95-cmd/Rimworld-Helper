@@ -1,0 +1,250 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Memories from the social-web dilemmas (Council_Dilemmas_Social.xml). Bonds themselves are moved by
+    Council_Dlm_MadeUp / Bonded / Grudge / Distrust and the Fight effect; these are the moods and opinions around them.
+  -->
+
+  <!-- ===================== Feuds ===================== -->
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_DlmSoc_Separated</defName>
+    <durationDays>4</durationDays>
+    <stages><li><label>kept apart like children</label><description>The council drew a line through the colony and put us on opposite sides of it. My side is smaller.</description><baseMoodEffect>-2</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_DlmSoc_Reshuffled</defName>
+    <durationDays>3</durationDays>
+    <stages><li><label>my shifts were reshuffled</label><description>My whole week got moved around because of somebody else's trouble. Nobody asked me.</description><baseMoodEffect>-2</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_DlmSoc_TaughtByRival</defName>
+    <durationDays>3</durationDays>
+    <stages><li><label>lessons from my rival</label><description>A week of being taught by someone who thinks I'm an idiot. I learned things. I will never admit it.</description><baseMoodEffect>-2</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_DlmSoc_LivingInAFeud</defName>
+    <durationDays>3</durationDays>
+    <stages><li><label>living in someone else's feud</label><description>Every meal is a cold war. I just want to eat my soup without picking a side.</description><baseMoodEffect>-2</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <!-- ===================== Friends ===================== -->
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_DlmSoc_WorkingTogether</defName>
+    <durationDays>6</durationDays>
+    <stages><li><label>working alongside my friend</label><description>Same shift, same crew, same bad jokes. The days go twice as fast.</description><baseMoodEffect>4</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_DlmSoc_WatchTogether</defName>
+    <durationDays>5</durationDays>
+    <stages><li><label>night watch with a friend</label><description>Cold, dark, hours of nothing happening, and the best talks we've ever had.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_DlmSoc_PostedApart</defName>
+    <durationDays>4</durationDays>
+    <stages><li><label>posted apart from my friend</label><description>I asked to work beside my friend. The council decided the turnips need me more.</description><baseMoodEffect>-3</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_DlmSoc_Favorites</defName>
+    <durationDays>4</durationDays>
+    <stages><li><label>the council plays favorites</label><description>Some people ask and get. Some people have the right friends. The rest of us just work.</description><baseMoodEffect>-3</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_DlmSoc_Abandoned</defName>
+    <durationDays>5</durationDays>
+    <stages><li><label>my friend moved on</label><description>We used to do everything together. Now they have new people, and I have the evenings.</description><baseMoodEffect>-5</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_DlmSoc_Meddled</defName>
+    <durationDays>3</durationDays>
+    <stages><li><label>the council meddled in my friendships</label><description>The council has opinions now about who I spend my evenings with. I didn't know that was on the agenda.</description><baseMoodEffect>-3</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_DlmSoc_Welcomed</defName>
+    <durationDays>5</durationDays>
+    <stages><li><label>made welcome</label><description>They made room for me at their table. I didn't know how much I wanted that until I sat down.</description><baseMoodEffect>4</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Council_DlmSoc_Tagalong</defName>
+    <thoughtClass>Thought_MemorySocial</thoughtClass>
+    <durationDays>10</durationDays>
+    <stackLimit>3</stackLimit>
+    <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
+    <stages><li><label>pushed into our evenings</label><description>Our evenings came with an extra person, by arrangement. Nothing against them. Mostly.</description><baseMoodEffect>-1</baseMoodEffect><baseOpinionOffset>-6</baseOpinionOffset></li></stages>
+  </ThoughtDef>
+
+  <!-- ===================== Cover-ups and pleas ===================== -->
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_DlmSoc_Spared</defName>
+    <durationDays>4</durationDays>
+    <stages><li><label>walked away clean</label><description>I lied for a friend, and I'm the one who got off. It doesn't feel like winning.</description><baseMoodEffect>-3</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_DlmSoc_TookTheFall</defName>
+    <durationDays>5</durationDays>
+    <stages><li><label>my friend took my punishment</label><description>My mistake, their punishment. I can't look at them without feeling it.</description><baseMoodEffect>-4</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_DlmSoc_CoverUps</defName>
+    <durationDays>3</durationDays>
+    <stages><li><label>friends covering for friends</label><description>Something goes wrong, and a friend makes up a story. Who's covering for the rest of us?</description><baseMoodEffect>-2</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_DlmSoc_PleaHeard</defName>
+    <durationDays>4</durationDays>
+    <stages><li><label>my plea was heard</label><description>I begged the council for my friend, and they listened. I'd stand up again tomorrow.</description><baseMoodEffect>4</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_DlmSoc_PleaIgnored</defName>
+    <durationDays>4</durationDays>
+    <stages><li><label>my plea fell flat</label><description>I swallowed my pride and begged for my friend. They heard me out, then did it anyway.</description><baseMoodEffect>-4</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Council_DlmSoc_MadeItWorse</defName>
+    <thoughtClass>Thought_MemorySocial</thoughtClass>
+    <durationDays>12</durationDays>
+    <stackLimit>3</stackLimit>
+    <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
+    <stages><li><label>begged for me and made it worse</label><description>Nobody asked them to speak for me. Now I'm paying double for their good intentions.</description><baseMoodEffect>-2</baseMoodEffect><baseOpinionOffset>-12</baseOpinionOffset></li></stages>
+  </ThoughtDef>
+
+  <!-- ===================== Comrades ===================== -->
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_DlmSoc_Remembrance</defName>
+    <durationDays>4</durationDays>
+    <stages><li><label>the remembrance night</label><description>We told the whole fight by the fire, start to end, and drank to everyone who bled for this place. I slept better than I have in weeks.</description><baseMoodEffect>5</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Council_DlmSoc_ToldTheStory</defName>
+    <thoughtClass>Thought_MemorySocial</thoughtClass>
+    <durationDays>15</durationDays>
+    <stackLimit>3</stackLimit>
+    <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
+    <stages><li><label>told the story of the fight together</label><description>We told it the way it happened, and everyone listened. Nobody else will ever quite know what that day was like. They do.</description><baseMoodEffect>2</baseMoodEffect><baseOpinionOffset>10</baseOpinionOffset></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_DlmSoc_ShortRemembrance</defName>
+    <durationDays>3</durationDays>
+    <stages><li><label>an hour for the fight</label><description>An hour of speeches after dinner, then back to work. The fight deserved more than an hour.</description><baseMoodEffect>-2</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_DlmSoc_Unremembered</defName>
+    <durationDays>5</durationDays>
+    <stages><li><label>the fight forgotten</label><description>We bled for this place, and the council can't spare one evening to remember it.</description><baseMoodEffect>-5</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <!-- ===================== Accusations ===================== -->
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_DlmSoc_Searched</defName>
+    <durationDays>5</durationDays>
+    <stages><li><label>my things were searched</label><description>They turned out everything I own, in front of everyone, on my rival's say-so. Found nothing. I still feel their hands on it.</description><baseMoodEffect>-5</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_DlmSoc_Condemned</defName>
+    <durationDays>6</durationDays>
+    <stages><li><label>punished on a rival's word</label><description>No proof. Just their word against mine, and the council picked theirs.</description><baseMoodEffect>-8</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_DlmSoc_NoProof</defName>
+    <durationDays>3</durationDays>
+    <stages><li><label>a friend punished without proof</label><description>No proof, no hearing, just a rival pointing a finger. Could be any of us next.</description><baseMoodEffect>-3</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_DlmSoc_Retracted</defName>
+    <durationDays>4</durationDays>
+    <stages><li><label>made to take it back</label><description>I said I was wrong in front of everyone. I wasn't. Next time I'll bring proof, and then we'll see who apologizes.</description><baseMoodEffect>-5</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <!-- ===================== Circles ===================== -->
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_DlmSoc_PityInvite</defName>
+    <durationDays>4</durationDays>
+    <stages><li><label>a seat by order</label><description>They let me sit with them because the council told them to. Everyone knows it. I know it.</description><baseMoodEffect>-3</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_DlmSoc_Host</defName>
+    <durationDays>4</durationDays>
+    <stages><li><label>hosted the whole colony</label><description>I put on a supper for everyone, and people came. Even some I didn't expect.</description><baseMoodEffect>5</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_DlmSoc_StoodUp</defName>
+    <durationDays>5</durationDays>
+    <stages><li><label>nobody came</label><description>I set a table for the whole colony. Half the chairs stayed empty, and I know exactly whose.</description><baseMoodEffect>-6</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <!-- ===================== Credit ===================== -->
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_DlmSoc_Credited</defName>
+    <durationDays>5</durationDays>
+    <stages><li><label>credited for my work</label><description>The council said it was mine. It was. Still, it's nice to hear it said out loud.</description><baseMoodEffect>5</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_DlmSoc_Robbed</defName>
+    <durationDays>6</durationDays>
+    <stages><li><label>my work went to my rival</label><description>I built it. The council says they did. Every time I walk past it, I want to knock it down.</description><baseMoodEffect>-6</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_DlmSoc_Uncredited</defName>
+    <durationDays>4</durationDays>
+    <stages><li><label>nobody's work</label><description>Apparently it built itself. "Colony work." I'll remember that next time there's colony work to do.</description><baseMoodEffect>-3</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <!-- ===================== Office ===================== -->
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_DlmSoc_Audited</defName>
+    <durationDays>3</durationDays>
+    <stages><li><label>counted like a thief</label><description>Every sack and every spoon counted twice, because someone doesn't like me. It all added up. Of course it did.</description><baseMoodEffect>-3</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_DlmSoc_PerksGone</defName>
+    <durationDays>4</durationDays>
+    <stages><li><label>lost my little perks</label><description>A little extra on the plate, a slightly warmer coat. Apparently that was favoritism. Apparently it's over.</description><baseMoodEffect>-3</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_DlmSoc_Watched</defName>
+    <durationDays>5</durationDays>
+    <stages><li><label>watched at my own job</label><description>Someone stands at my shoulder now and writes down every ration I hand out. Someone who hates me.</description><baseMoodEffect>-4</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_DlmSoc_BadLot</defName>
+    <durationDays>3</durationDays>
+    <stages><li><label>drew a bad lot</label><description>The good things go by lot now. I drew the patched coat and the burnt end of the stew. Fairness is overrated.</description><baseMoodEffect>-2</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+</Defs>
