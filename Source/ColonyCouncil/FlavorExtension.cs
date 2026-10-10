@@ -25,11 +25,15 @@ namespace ColonyCouncil
         public ToneLines pitch;
         public ToneLines achieved;
 
+        public DecreeDef decree;
+        public ToneLines support;
+        public ToneLines oppose;
+
         public override IEnumerable<string> ConfigErrors()
         {
             foreach (var e in base.ConfigErrors()) yield return e;
-            int targets = (pool.NullOrEmpty() ? 0 : 1) + (wish == null ? 0 : 1) + (ambition == null ? 0 : 1);
-            if (targets != 1) yield return "a flavor extension needs exactly one target: pool, wish or ambition";
+            int targets = (pool.NullOrEmpty() ? 0 : 1) + (wish == null ? 0 : 1) + (ambition == null ? 0 : 1) + (decree == null ? 0 : 1);
+            if (targets != 1) yield return "a flavor extension needs exactly one target: pool, wish, ambition or decree";
         }
     }
 
@@ -63,6 +67,11 @@ namespace ColonyCouncil
                 {
                     ext.ambition.pitch.AddFrom(ext.pitch);
                     ext.ambition.achieved.AddFrom(ext.achieved);
+                }
+                if (ext.decree != null)
+                {
+                    ext.decree.support.AddFrom(ext.support);
+                    ext.decree.oppose.AddFrom(ext.oppose);
                 }
                 merged++;
             }
