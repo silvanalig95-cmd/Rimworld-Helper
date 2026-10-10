@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- Council offices: the holder's edge, and colony-wide effects while a seat is filled. -->
+
+  <HediffDef>
+    <defName>Council_Office_Speaker</defName>
+    <label>speaker of the council</label>
+    <description>Holds the council's speaker's seat.</description>
+    <hediffClass>HediffWithComps</hediffClass>
+    <defaultLabelColor>(0.85, 0.75, 0.5)</defaultLabelColor>
+    <isBad>false</isBad>
+    <everCurableByItem>false</everCurableByItem>
+    <stages>
+      <li><statOffsets><SocialImpact>0.15</SocialImpact><NegotiationAbility>0.1</NegotiationAbility></statOffsets></li>
+    </stages>
+  </HediffDef>
+
+  <HediffDef>
+    <defName>Council_Office_Marshal</defName>
+    <label>marshal of the colony</label>
+    <description>Holds the marshal's seat: leads the colony's defense.</description>
+    <hediffClass>HediffWithComps</hediffClass>
+    <defaultLabelColor>(0.85, 0.75, 0.5)</defaultLabelColor>
+    <isBad>false</isBad>
+    <everCurableByItem>false</everCurableByItem>
+    <stages>
+      <li><statOffsets><ShootingAccuracyPawn>0.02</ShootingAccuracyPawn><MeleeHitChance>0.05</MeleeHitChance><MentalBreakThreshold>-0.03</MentalBreakThreshold></statOffsets></li>
+    </stages>
+  </HediffDef>
+
+  <HediffDef>
+    <defName>Council_Office_MarshalColony</defName>
+    <label>a steady marshal</label>
+    <description>The colony has a marshal: everyone is a little better drilled.</description>
+    <hediffClass>HediffWithComps</hediffClass>
+    <defaultLabelColor>(0.85, 0.75, 0.5)</defaultLabelColor>
+    <isBad>false</isBad>
+    <everCurableByItem>false</everCurableByItem>
+    <stages>
+      <li><statOffsets><ShootingAccuracyPawn>0.005</ShootingAccuracyPawn><MeleeHitChance>0.02</MeleeHitChance></statOffsets></li>
+    </stages>
+  </HediffDef>
+
+  <HediffDef>
+    <defName>Council_Office_Quartermaster</defName>
+    <label>quartermaster</label>
+    <description>Holds the quartermaster's seat: keeps the stores and haggles with traders.</description>
+    <hediffClass>HediffWithComps</hediffClass>
+    <defaultLabelColor>(0.85, 0.75, 0.5)</defaultLabelColor>
+    <isBad>false</isBad>
+    <everCurableByItem>false</everCurableByItem>
+    <stages>
+      <li><statOffsets><TradePriceImprovement>0.06</TradePriceImprovement></statOffsets></li>
+    </stages>
+  </HediffDef>
+
+  <HediffDef>
+    <defName>Council_Office_Physician</defName>
+    <label>physician of the colony</label>
+    <description>Holds the physician's seat: the colony's chief doctor.</description>
+    <hediffClass>HediffWithComps</hediffClass>
+    <defaultLabelColor>(0.85, 0.75, 0.5)</defaultLabelColor>
+    <isBad>false</isBad>
+    <everCurableByItem>false</everCurableByItem>
+    <stages>
+      <li><statOffsets><MedicalTendQuality>0.08</MedicalTendQuality><MedicalSurgerySuccessChance>0.05</MedicalSurgerySuccessChance></statOffsets></li>
+    </stages>
+  </HediffDef>
+
+  <HediffDef>
+    <defName>Council_Office_PhysicianColony</defName>
+    <label>a good physician</label>
+    <description>The colony has a physician: everyone is looked after a little better.</description>
+    <hediffClass>HediffWithComps</hediffClass>
+    <defaultLabelColor>(0.85, 0.75, 0.5)</defaultLabelColor>
+    <isBad>false</isBad>
+    <everCurableByItem>false</everCurableByItem>
+    <stages>
+      <li><statOffsets><ImmunityGainSpeed>0.04</ImmunityGainSpeed></statOffsets><statFactors><InjuryHealingFactor>1.05</InjuryHealingFactor></statFactors></li>
+    </stages>
+  </HediffDef>
+
+  <HediffDef>
+    <defName>Council_Office_Steward</defName>
+    <label>steward of the colony</label>
+    <description>Holds the steward's seat: looks after the colony's spirits.</description>
+    <hediffClass>HediffWithComps</hediffClass>
+    <defaultLabelColor>(0.85, 0.75, 0.5)</defaultLabelColor>
+    <isBad>false</isBad>
+    <everCurableByItem>false</everCurableByItem>
+    <stages>
+      <li><statOffsets><JoyGainFactor>0.15</JoyGainFactor></statOffsets></li>
+    </stages>
+  </HediffDef>
+
+</Defs>

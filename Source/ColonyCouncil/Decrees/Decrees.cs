@@ -231,7 +231,7 @@ namespace ColonyCouncil
                     foreach (var sk in a.def.practiceSkills)
                     {
                         var rec = p.skills.GetSkill(sk);
-                        if (rec != null && !rec.TotallyDisabled) rec.Learn(a.def.practiceXpPerHour);
+                        if (rec != null && !rec.TotallyDisabled) rec.Learn(a.def.practiceXpPerHour * (CouncilGameComponent.Instance?.offices.DrillFactor ?? 1f));
                     }
                 }
             }

@@ -68,7 +68,7 @@ namespace ColonyCouncil
                 float rate;
                 if (mood >= 0.7f)
                 {
-                    rate = mood >= 0.85f ? 0.06f : 0.04f;
+                    rate = (mood >= 0.85f ? 0.06f : 0.04f) * (CouncilGameComponent.Instance?.offices.StandardsFactor ?? 1f);
                     var traits = p.story?.traits;
                     if (traits != null)
                     {

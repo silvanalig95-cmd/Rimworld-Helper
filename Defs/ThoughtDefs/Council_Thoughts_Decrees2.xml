@@ -69,4 +69,28 @@
     </stages>
   </ThoughtDef>
 
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_ElectedToOffice</defName>
+    <durationDays>8</durationDays>
+    <stages><li><label>given a seat on the council</label><description>They chose me. Me! I'd better not make them regret it.</description><baseMoodEffect>5</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Council_LostOffice</defName>
+    <thoughtClass>Thought_MemorySocial</thoughtClass>
+    <durationDays>10</durationDays>
+    <stackLimit>3</stackLimit>
+    <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
+    <stages><li><label>lost my seat</label><description>I had a seat on the council. Now someone else has it.</description><baseMoodEffect>-5</baseMoodEffect><baseOpinionOffset>-12</baseOpinionOffset></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Council_LostElection</defName>
+    <thoughtClass>Thought_MemorySocial</thoughtClass>
+    <durationDays>8</durationDays>
+    <stackLimit>3</stackLimit>
+    <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
+    <stages><li><label>lost the vote to them</label><description>I should have had that seat. Everyone knows it. Apparently not everyone.</description><baseMoodEffect>-3</baseMoodEffect><baseOpinionOffset>-8</baseOpinionOffset></li></stages>
+  </ThoughtDef>
+
 </Defs>

@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- Seats on the council, filled by a yearly election (the council can overrule it). -->
+
+  <ColonyCouncil.OfficeDef>
+    <defName>Council_Office_Speaker</defName>
+    <label>speaker</label>
+    <description>Chairs the council's meetings and speaks for the colony. A good speaker keeps people feeling heard.</description>
+    <order>1</order>
+    <skills><li>Social</li></skills>
+    <goodTraits><li>Kind</li></goodTraits>
+    <badTraits><li>Abrasive</li></badTraits>
+    <hediff>Council_Office_Speaker</hediff>
+    <duties>
+      <li>Chairs every council meeting.</li>
+      <li>Everyone's trust in the council rises a little each day.</li>
+      <li>The speaker is more persuasive (social impact and negotiation).</li>
+    </duties>
+  </ColonyCouncil.OfficeDef>
+
+  <ColonyCouncil.OfficeDef>
+    <defName>Council_Office_Marshal</defName>
+    <label>marshal</label>
+    <description>Leads the colony's defense: drills, watches, and the first rifle on the wall.</description>
+    <order>2</order>
+    <skills><li>Shooting</li><li>Melee</li></skills>
+    <goodTraits><li>Tough</li><li>Bloodlust</li></goodTraits>
+    <badTraits><li>Wimp</li></badTraits>
+    <hediff>Council_Office_Marshal</hediff>
+    <colonyHediff>Council_Office_MarshalColony</colonyHediff>
+    <duties>
+      <li>Drills train everyone half again as fast.</li>
+      <li>The whole colony aims and strikes a little better.</li>
+      <li>The marshal fights better and holds together under fire.</li>
+    </duties>
+  </ColonyCouncil.OfficeDef>
+
+  <ColonyCouncil.OfficeDef>
+    <defName>Council_Office_Quartermaster</defName>
+    <label>quartermaster</label>
+    <description>Keeps the stores, counts the silver and haggles with traders.</description>
+    <order>3</order>
+    <skills><li>Social</li><li>Intellectual</li></skills>
+    <badTraits><li>Greedy</li></badTraits>
+    <hediff>Council_Office_Quartermaster</hediff>
+    <duties>
+      <li>Answers to dilemmas that cost food, wood or silver cost a quarter less.</li>
+      <li>The quartermaster gets better prices from traders.</li>
+    </duties>
+  </ColonyCouncil.OfficeDef>
+
+  <ColonyCouncil.OfficeDef>
+    <defName>Council_Office_Physician</defName>
+    <label>physician</label>
+    <description>The colony's chief doctor: keeps the infirmary, sets the bones, decides who's fit to work.</description>
+    <order>4</order>
+    <skills><li>Medicine</li></skills>
+    <goodTraits><li>Kind</li></goodTraits>
+    <hediff>Council_Office_Physician</hediff>
+    <colonyHediff>Council_Office_PhysicianColony</colonyHediff>
+    <duties>
+      <li>Everyone heals and fights off illness a little faster.</li>
+      <li>The physician tends wounds and operates more skillfully.</li>
+    </duties>
+  </ColonyCouncil.OfficeDef>
+
+  <ColonyCouncil.OfficeDef>
+    <defName>Council_Office_Steward</defName>
+    <label>steward</label>
+    <description>Looks after the colony's spirits: feasts, festivals, and keeping expectations down to earth.</description>
+    <order>5</order>
+    <skills><li>Social</li><li>Artistic</li></skills>
+    <goodTraits><li>Ascetic</li><li>Kind</li></goodTraits>
+    <hediff>Council_Office_Steward</hediff>
+    <duties>
+      <li>Everyone's standards rise a quarter more slowly.</li>
+      <li>The steward gets more out of recreation.</li>
+    </duties>
+  </ColonyCouncil.OfficeDef>
+
+</Defs>

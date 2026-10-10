@@ -24,6 +24,7 @@ namespace ColonyCouncil
         public AnnalsTracker annals = new AnnalsTracker();
         public EpithetTracker epithets = new EpithetTracker();
         public JournalTracker journals = new JournalTracker();
+        public OfficeTracker offices = new OfficeTracker();
         public int nextWishId = 1;
 
         private Dictionary<string, int> cooldowns = new Dictionary<string, int>();
@@ -55,6 +56,7 @@ namespace ColonyCouncil
             Scribe_Deep.Look(ref annals, "annals");
             Scribe_Deep.Look(ref epithets, "epithets");
             Scribe_Deep.Look(ref journals, "journals");
+            Scribe_Deep.Look(ref offices, "offices");
             Scribe_Values.Look(ref nextWishId, "nextWishId", 1);
             Scribe_Collections.Look(ref cooldowns, "cooldowns", LookMode.Value, LookMode.Value, ref tmpKeys, ref tmpValues);
             if (Scribe.mode == LoadSaveMode.PostLoadInit)
@@ -70,6 +72,7 @@ namespace ColonyCouncil
                 if (annals == null) annals = new AnnalsTracker();
                 if (epithets == null) epithets = new EpithetTracker();
                 if (journals == null) journals = new JournalTracker();
+                if (offices == null) offices = new OfficeTracker();
                 wishes.RemoveAll(w => w == null || w.def == null || w.pawn == null);
             }
         }

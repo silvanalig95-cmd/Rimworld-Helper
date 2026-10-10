@@ -249,4 +249,35 @@
     </lines>
   </ColonyCouncil.FlavorPoolDef>
 
+  <!-- {OFFICE}: lowercase office name, e.g. "marshal". -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Journal_Elected</defName>
+    <lines>
+      <plain>
+        <li>They made me {OFFICE}. I didn't campaign. Maybe that's why.</li>
+        <li>New title: {OFFICE}. Same boots, same mud, more people looking at me.</li>
+      </plain>
+      <warm><li>They trust me as {OFFICE}. I won't let them down.</li></warm>
+      <blunt><li>I'm {OFFICE} now. Anyone with complaints can form a line.</li></blunt>
+      <cheerful><li>I'M THE {OFFICE}! I've practiced my serious face! It needs work!</li></cheerful>
+      <gloomy><li>{OFFICE}. More things that will be my fault when they go wrong.</li></gloomy>
+      <cold><li>Appointed {OFFICE}. A position of leverage. I'll use it well.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Journal_LostOffice</defName>
+    <lines>
+      <plain>
+        <li>I'm not {OFFICE} any more. I'm told it's nothing personal. It feels personal.</li>
+        <li>Lost the seat. Someone else is {OFFICE} now. I'll be watching how they do.</li>
+      </plain>
+      <warm><li>No longer {OFFICE}. I hope whoever has it does better than I did.</li></warm>
+      <blunt><li>Kicked out as {OFFICE}. Their mistake.</li></blunt>
+      <cheerful><li>Not {OFFICE} any more! More free time! I'm fine! Totally fine!</li></cheerful>
+      <gloomy><li>Of course they took it away. Things that are mine never last.</li></gloomy>
+      <cold><li>Removed as {OFFICE}. Noted who voted against me.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
 </Defs>

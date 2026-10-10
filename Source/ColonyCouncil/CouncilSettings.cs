@@ -49,6 +49,7 @@ namespace ColonyCouncil
         public bool anniversaries = true;
         public bool epithets = true;
         public bool journals = true;
+        public bool offices = true;
         public float daysBetweenDilemmas = 8f;
         public bool eventWishes = true;
         public bool reminders = true;
@@ -104,6 +105,7 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref anniversaries, "anniversaries", true);
             Scribe_Values.Look(ref epithets, "epithets", true);
             Scribe_Values.Look(ref journals, "journals", true);
+            Scribe_Values.Look(ref offices, "offices", true);
             Scribe_Values.Look(ref daysBetweenDilemmas, "daysBetweenDilemmas", 8f);
             Scribe_Values.Look(ref eventWishes, "eventWishes", true);
             Scribe_Values.Look(ref reminders, "reminders", true);
@@ -208,6 +210,7 @@ namespace ColonyCouncil
             l.CheckboxLabeled("CC_Settings_Anniversaries".Translate(), ref anniversaries, "CC_Settings_Anniversaries_Tip".Translate());
             l.CheckboxLabeled("CC_Settings_Epithets".Translate(), ref epithets, "CC_Settings_Epithets_Tip".Translate());
             l.CheckboxLabeled("CC_Settings_Journals".Translate(), ref journals, "CC_Settings_Journals_Tip".Translate());
+            l.CheckboxLabeled("CC_Settings_Offices".Translate(), ref offices, "CC_Settings_Offices_Tip".Translate());
             l.CheckboxLabeled("CC_Settings_WishLetters".Translate(), ref wishLetters, "CC_Settings_WishLetters_Tip".Translate());
             l.CheckboxLabeled("CC_Settings_GrantedLetters".Translate(), ref grantedLetters, "CC_Settings_GrantedLetters_Tip".Translate());
             l.CheckboxLabeled("CC_Settings_SpeechText".Translate(), ref speechText, "CC_Settings_SpeechText_Tip".Translate());
@@ -293,6 +296,7 @@ namespace ColonyCouncil
             anniversaries = d.anniversaries;
             epithets = d.epithets;
             journals = d.journals;
+            offices = d.offices;
             daysBetweenDilemmas = d.daysBetweenDilemmas;
             eventWishes = d.eventWishes;
             reminders = d.reminders;

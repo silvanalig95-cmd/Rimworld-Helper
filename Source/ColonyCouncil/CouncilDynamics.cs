@@ -604,6 +604,13 @@ namespace ColonyCouncil
             if (s.anniversaries) Safe("anniversaries", Anniversaries);
             Safe("epithets", () => epithets.Daily(this));
             Safe("journals", journals.Daily);
+            Safe("offices", () => offices.Daily(this));
+            if (Settings.offices && offices.Speaker != null)
+                Safe("speaker", () =>
+                {
+                    // A good speaker keeps people feeling heard.
+                    foreach (var p in PawnsFinder.AllMaps_FreeColonists) standings.Change(p, 0.3f, null);
+                });
             Safe("trust effects", () =>
             {
                 foreach (var p in PawnsFinder.AllMaps_FreeColonists.ToList())

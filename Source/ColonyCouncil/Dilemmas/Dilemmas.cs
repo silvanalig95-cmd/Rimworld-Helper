@@ -86,9 +86,12 @@ namespace ColonyCouncil
         /// <summary>Role B only: opinion of A at least this.</summary>
         public int minOpinionOfA = -100;
         public bool canFight;
+        /// <summary>Must hold this council office (scandals, complaints about the marshal...).</summary>
+        public OfficeDef office;
 
         public bool Allows(Pawn p, Pawn a)
         {
+            if (office != null && (!ColonyCouncilMod.Settings.offices || CouncilGameComponent.Instance?.offices.HolderOf(office) != p)) return false;
             if (p == null || p == a || !p.Spawned || p.Downed || p.InMentalState || p.IsQuestLodger()) return false;
             var traits = p.story?.traits;
             if (child) { if (!p.DevelopmentalStage.Child()) return false; }
@@ -479,7 +482,8 @@ namespace ColonyCouncil
         public string what;
         public int count;
 
-        private int Need(DilemmaContext ctx) => count > 0 ? count : ctx.count;
+        /// <summary>A quartermaster stretches the stores.</summary>
+        private int Need(DilemmaContext ctx) => UnityEngine.Mathf.Max(1, UnityEngine.Mathf.RoundToInt((count > 0 ? count : ctx.count) * (CouncilGameComponent.Instance?.offices.CostFactor ?? 1f)));
 
         public static int RawFood(Map map)
         {

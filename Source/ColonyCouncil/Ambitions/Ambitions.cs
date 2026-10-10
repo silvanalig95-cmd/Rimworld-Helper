@@ -312,6 +312,8 @@ namespace ColonyCouncil
         /// <summary>Who runs the meeting: the best talker, helped by how much the others trust them.</summary>
         private static Pawn PickChair(List<Pawn> speakers, CouncilGameComponent comp)
         {
+            var speaker = comp.offices.Speaker;
+            if (speaker != null && speakers.Contains(speaker)) return speaker;
             return speakers.OrderByDescending(p => (p.skills?.GetSkill(SkillDefOf.Social)?.Level ?? 0) + comp.standings.TrustOf(p) / 20f + Rand.Value).FirstOrDefault();
         }
 

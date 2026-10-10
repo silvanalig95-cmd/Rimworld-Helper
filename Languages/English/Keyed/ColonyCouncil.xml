@@ -972,4 +972,30 @@ Granting one of {PAWN_possessive} wishes, or keeping a promise, can win {PAWN_ob
   <CC_Annals_TraditionsKept>Traditions kept: {0}.</CC_Annals_TraditionsKept>
   <CC_Annals_TraditionsBroken>Traditions broken: {0}.</CC_Annals_TraditionsBroken>
 
+  <!-- Offices and elections -->
+  <CC_Settings_Offices>Council offices and yearly elections</CC_Settings_Offices>
+  <CC_Settings_Offices_Tip>Speaker, marshal, quartermaster, physician and steward: each gives its holder an edge and does a job for the colony. Colonists elect them every year by who they like and who's good at it; the council can overrule the vote, at a price.</CC_Settings_Offices_Tip>
+  <CC_Election_Title>Council elections, year {0}</CC_Election_Title>
+  <CC_Election_ByTitle>A seat to fill</CC_Election_ByTitle>
+  <CC_Election_Text>The colony has voted. Everyone picked who they wanted in each seat: some for skill, some for friendship, a few for themselves.</CC_Election_Text>
+  <CC_Election_ByText>A seat on the council stood empty, so the colony voted to fill it.</CC_Election_ByText>
+  <CC_Election_Line>{0}: {PAWN_nameDef}, with {2} of {3} votes.</CC_Election_Line>
+  <CC_Election_Others>Also ran: {0}.</CC_Election_Others>
+  <CC_Office_Vacant>{1} no longer holds the seat of {0}. It will be filled soon.</CC_Office_Vacant>
+  <CC_Office_Appointed>The council appointed {PAWN_nameDef} as {OFFICE}.</CC_Office_Appointed>
+  <CC_Office_Overruled>The council overruled the vote and made {PAWN_nameDef} {OFFICE} instead of {OTHER_nameDef}. Some people won't forget it.</CC_Office_Overruled>
+  <CC_Log_RemovedFromOffice>removed as {0}</CC_Log_RemovedFromOffice>
+  <CC_Log_VoteOverruled>the council overruled the vote for {0}</CC_Log_VoteOverruled>
+  <CC_Chronicle_Elected>{0} was elected {1}.</CC_Chronicle_Elected>
+  <CC_Chronicle_Appointed>The council appointed {0} as {1}.</CC_Chronicle_Appointed>
+  <CC_Offices_Header>Offices</CC_Offices_Header>
+  <CC_Offices_Sub>Elected every year. Overruling the colony's choice costs the trust of those who voted for them.</CC_Offices_Sub>
+  <CC_Office_Empty>vacant</CC_Office_Empty>
+  <CC_Office_Appoint>Appoint...</CC_Office_Appoint>
+  <CC_Office_Dismiss>Dismiss</CC_Office_Dismiss>
+  <CC_Office_Competence>skill {0}</CC_Office_Competence>
+  <CC_Office_CallElection>Call an election now</CC_Office_CallElection>
+  <CC_Office_Holds>{0} holds the office of {1}.</CC_Office_Holds>
+  <CC_Annals_Offices>On the council: {0}.</CC_Annals_Offices>
+
 </LanguageData>

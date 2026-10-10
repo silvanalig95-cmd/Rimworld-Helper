@@ -41,6 +41,7 @@ namespace ColonyCouncil
             var view = new Rect(0f, 0f, outRect.width - 16f, height);
             Widgets.BeginScrollView(outRect, ref scroll, view);
             float cy = 0f;
+            if (ColonyCouncilMod.Settings.offices) cy += DrawOffices(comp, view.width, cy) + 12f;
             foreach (var def in DefDatabase<DecreeDef>.AllDefsListForReading.OrderBy(d => d.order))
                 cy += DrawDecree(def, comp, pawns, view.width, cy) + 8f;
             height = Mathf.Max(cy, 100f);
@@ -100,6 +101,60 @@ namespace ColonyCouncil
                 }
             }
             return h;
+        }
+
+        private static float DrawOffices(CouncilGameComponent comp, float width, float y)
+        {
+            float start = y;
+            Text.Font = GameFont.Medium;
+            Widgets.Label(new Rect(0f, y, width, 30f), "CC_Offices_Header".Translate());
+            Text.Font = GameFont.Small;
+            if (Widgets.ButtonText(new Rect(width - 200f, y, 200f, 28f), "CC_Office_CallElection".Translate()))
+            {
+                var map = Find.AnyPlayerHomeMap;
+                if (map != null) comp.offices.Hold(comp, GenLocalDate.Year(map), false);
+            }
+            y += 32f;
+            y += Label(0f, y, width, "CC_Offices_Sub".Translate(), Faint) + 4f;
+            foreach (var office in OfficeTracker.Offices)
+            {
+                var holder = comp.offices.HolderOf(office);
+                var row = new Rect(0f, y, width, 28f);
+                Widgets.DrawLightHighlight(row);
+                Widgets.Label(new Rect(8f, y + 3f, 150f, 24f), office.LabelCap);
+                if (holder != null)
+                {
+                    Widgets.ThingIcon(new Rect(160f, y + 2f, 24f, 24f), holder);
+                    Widgets.Label(new Rect(190f, y + 3f, 180f, 24f), holder.LabelShort);
+                    GUI.color = Faint;
+                    Widgets.Label(new Rect(370f, y + 3f, 120f, 24f), "CC_Office_Competence".Translate(office.Competence(holder).ToString("0")));
+                    GUI.color = Color.white;
+                }
+                else
+                {
+                    GUI.color = Faint;
+                    Widgets.Label(new Rect(190f, y + 3f, 180f, 24f), "CC_Office_Empty".Translate());
+                    GUI.color = Color.white;
+                }
+                TooltipHandler.TipRegion(row, office.description + "\n\n" + string.Join("\n", office.duties.Select(d => "- " + d)));
+                if (Widgets.ButtonText(new Rect(width - 230f, y + 1f, 120f, 26f), "CC_Office_Appoint".Translate()))
+                {
+                    var options = PawnsFinder.AllMaps_FreeColonistsSpawned
+                        .Where(p => !p.IsQuestLodger() && !p.DevelopmentalStage.Juvenile() && !p.IsSlave)
+                        .OrderByDescending(p => office.Competence(p))
+                        .Select(p => new FloatMenuOption(p.LabelShort + " (" + "CC_Office_Competence".Translate(office.Competence(p).ToString("0")) + ")", () => comp.offices.Appoint(office, p, comp)))
+                        .ToList();
+                    if (options.Count > 0) Find.WindowStack.Add(new FloatMenu(options));
+                }
+                if (holder != null && Widgets.ButtonText(new Rect(width - 105f, y + 1f, 100f, 26f), "CC_Office_Dismiss".Translate()))
+                    comp.offices.Dismiss(office, comp);
+                y += 30f;
+            }
+            Text.Font = GameFont.Medium;
+            Widgets.Label(new Rect(0f, y + 6f, width, 30f), "CC_Decrees_Header".Translate());
+            Text.Font = GameFont.Small;
+            y += 38f;
+            return y - start;
         }
 
         private static string Reactions(DecreeDef def, List<Pawn> pawns)
