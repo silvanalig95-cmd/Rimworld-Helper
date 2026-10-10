@@ -885,4 +885,16 @@ Granting one of {PAWN_possessive} wishes, or keeping a promise, can win {PAWN_ob
   <CC_Annals_Spoiled>Grown hard to please: {0}.</CC_Annals_Spoiled>
   <CC_Chronicle_Annals>{1} wrote the annals of {0}.</CC_Chronicle_Annals>
 
+  <!-- Outside, the fix, quitting, separate rooms, the infirmary -->
+  <CC_Reason_Outside>{PAWN_nameDef} hasn't been outdoors in far too long.</CC_Reason_Outside>
+  <CC_Progress_Outside>Give {PAWN_nameDef} outdoor work or recreation: hauling, hunting, growing, a walk.</CC_Progress_Outside>
+  <CC_Reason_Fix>{PAWN_nameDef} is addicted to {DRUG} and the stores are running low.</CC_Reason_Fix>
+  <CC_Progress_Fix>{0} / {1} doses of {2} in stock</CC_Progress_Fix>
+  <CC_Reason_Quit>{PAWN_nameDef} is addicted to {DRUG} and wants to get clean.</CC_Reason_Quit>
+  <CC_Progress_Quit>Keep {PAWN_nameDef} away from {1} (Assign tab, drug policy) until the addiction passes.</CC_Progress_Quit>
+  <CC_Reason_Separate>{PAWN_nameDef} shares a bedroom with {OTHER_nameDef} and can't stand {OTHER_objective}.</CC_Reason_Separate>
+  <CC_Progress_Separate>Give {PAWN_nameDef} or {OTHER_nameDef} a bed in another room.</CC_Progress_Separate>
+  <CC_Reason_Infirmary>{PAWN_nameDef} counted the medicine: {COUNT} doses for the whole colony.</CC_Reason_Infirmary>
+  <CC_Progress_Infirmary>{0} / {1} medicine in stock</CC_Progress_Infirmary>
+
 </LanguageData>

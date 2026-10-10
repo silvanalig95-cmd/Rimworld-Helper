@@ -1,0 +1,265 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- ===================== Time outside ===================== -->
+  <ColonyCouncil.WishDef>
+    <defName>Council_Wish_Outside</defName>
+    <label>time outside</label>
+    <description>A colonist has been cooped up indoors for too long, in a mountain base or through a long winter, and is going stir-crazy. Outdoor work, a walk, or recreation under the open sky will do.</description>
+    <workerClass>ColonyCouncil.WishWorker_Outside</workerClass>
+    <category>Comfort</category>
+    <weight>1</weight>
+    <expiryDays>4</expiryDays>
+    <cooldownDays>12</cooldownDays>
+    <grantedThought>Council_Granted_Outside</grantedThought>
+    <envy>0</envy>
+    <talkInteraction>Council_Talk_Comfort</talkInteraction>
+    <fulfilledWhen>{PAWN_nameDef} gets enough time under the open sky.</fulfilledWhen>
+    <request>
+      <plain>
+        <li>I haven't seen the sky in days. I've started talking to the ceiling. It doesn't answer, which is the only reason it's a good listener.</li>
+        <li>Put me on hauling, hunting, anything. Just somewhere with weather.</li>
+        <li>[winter] I know it's freezing. I don't care. I need to see something that isn't a wall.</li>
+        <li>[indoors,night] I can hear the wind outside and I'm jealous of it.</li>
+      </plain>
+      <warm>
+        <li>Could I take the next outdoor job? I'm getting a little grey around the edges in here.</li>
+      </warm>
+      <blunt>
+        <li>Let me out or I start breaking things to get out.</li>
+      </blunt>
+      <cheerful>
+        <li>Fresh air! Remember fresh air? I'd love to be reintroduced!</li>
+      </cheerful>
+      <gloomy>
+        <li>We live in a hole in a rock. Very sensible. I'd still like to see the sun before I die.</li>
+      </gloomy>
+      <cold>
+        <li>My productivity is falling. The cause is the walls. Assign me outdoors.</li>
+      </cold>
+    </request>
+    <thanks>
+      <plain>
+        <li>Wind in my face. I forgot how much I missed it.</li>
+        <li>Sky's still there. Good. I was starting to wonder.</li>
+      </plain>
+      <cheerful><li>The SUN! Hello, sun! I missed you!</li></cheerful>
+      <gloomy><li>It was cold and grey and wonderful.</li></gloomy>
+    </thanks>
+    <expired>
+      <plain><li>Another day staring at the same wall. I've named the cracks.</li></plain>
+      <blunt><li>Fine. I live here now. In the dark. Like a mushroom.</li></blunt>
+    </expired>
+  </ColonyCouncil.WishDef>
+
+  <!-- ===================== The fix ===================== -->
+  <ColonyCouncil.WishDef>
+    <defName>Council_Wish_Fix</defName>
+    <label>a steady supply of {SUBJECT}</label>
+    <description>An addicted colonist with no intention of quitting wants the drug they're hooked on kept in stock. Granting it keeps withdrawal away; refusing it is a choice too.</description>
+    <workerClass>ColonyCouncil.WishWorker_Fix</workerClass>
+    <category>Health</category>
+    <weight>1</weight>
+    <expiryDays>5</expiryDays>
+    <cooldownDays>10</cooldownDays>
+    <grantedThought>Council_Granted_Fix</grantedThought>
+    <envy>0</envy>
+    <objectionChance>0.5</objectionChance>
+    <objectorTraits><li>Ascetic</li></objectorTraits>
+    <talkInteraction>Council_Talk_Body</talkInteraction>
+    <fulfilledWhen>At least {TARGET} doses of {SUBJECT} in stock.</fulfilledWhen>
+    <request>
+      <plain>
+        <li>I know what you're thinking. I don't care. Keep {SUBJECT} in the stores, or watch me come apart.</li>
+        <li>I'm not asking for a party. Just enough {SUBJECT} that my hands stop shaking.</li>
+        <li>[lowmood] Every day without it is a week. Please.</li>
+      </plain>
+      <warm>
+        <li>I'm sorry. I know it's not good for me. But I can't do my work like this.</li>
+      </warm>
+      <blunt>
+        <li>Get me {SUBJECT}. In stock. Soon. Or I'll go find some, and you won't like where.</li>
+      </blunt>
+      <cheerful>
+        <li>A little {SUBJECT} and I'm the best worker you've got! Without it, I'm, well, this!</li>
+      </cheerful>
+      <gloomy>
+        <li>I've accepted what I am. I'd appreciate it if the colony would too.</li>
+      </gloomy>
+      <cold>
+        <li>Withdrawal will cost you more labor than {SUBJECT} costs to make. Do the arithmetic.</li>
+      </cold>
+    </request>
+    <thanks>
+      <plain><li>There it is. I can breathe again.</li></plain>
+      <gloomy><li>Thank you. I hate that I'm thanking you for this.</li></gloomy>
+      <cold><li>Supply secured. My output will normalize.</li></cold>
+    </thanks>
+    <expired>
+      <plain><li>No {SUBJECT}. Fine. Watch me fall apart, then.</li></plain>
+      <blunt><li>Remember you chose this when I'm screaming at the walls.</li></blunt>
+    </expired>
+  </ColonyCouncil.WishDef>
+
+  <!-- ===================== Help me quit ===================== -->
+  <ColonyCouncil.WishDef>
+    <defName>Council_Wish_Quit</defName>
+    <label>help getting off {SUBJECT}</label>
+    <description>An addicted colonist wants to get clean. Stop giving them the drug (the Assign tab's drug policies) and see them through the withdrawal until the addiction passes.</description>
+    <workerClass>ColonyCouncil.WishWorker_Quit</workerClass>
+    <category>Health</category>
+    <weight>1.2</weight>
+    <expiryDays>40</expiryDays>
+    <cooldownDays>20</cooldownDays>
+    <grantedThought>Council_Granted_Quit</grantedThought>
+    <inspirationChance>0.2</inspirationChance>
+    <envy>0</envy>
+    <talkInteraction>Council_Talk_Body</talkInteraction>
+    <fulfilledWhen>{PAWN_nameDef} is no longer addicted to {SUBJECT}.</fulfilledWhen>
+    <request>
+      <plain>
+        <li>I want off {SUBJECT}. Lock it away from me. Don't listen when I beg. I will beg.</li>
+        <li>I keep promising myself it's the last time. I need someone else to hold me to it.</li>
+        <li>[old] I've wasted enough years on {SUBJECT}. I'd like the rest of them back.</li>
+      </plain>
+      <warm>
+        <li>I want to be someone you can rely on again. Help me get clean.</li>
+      </warm>
+      <blunt>
+        <li>Take {SUBJECT} off my list. If I yell at you about it, yell back.</li>
+      </blunt>
+      <cheerful>
+        <li>New me! Clean me! It's going to be awful and then great! Mostly awful at first!</li>
+      </cheerful>
+      <gloomy>
+        <li>It'll be the worst few weeks of my life. Still better than the rest of my life like this.</li>
+      </gloomy>
+      <cold>
+        <li>The addiction is a liability. I want it removed. Cut my access.</li>
+      </cold>
+    </request>
+    <thanks>
+      <plain>
+        <li>Clean. I didn't think I could. Thank you for not giving in when I did.</li>
+        <li>It's gone. The craving, the shaking, all of it. I feel like a person again.</li>
+      </plain>
+      <warm><li>You got me through it. All of you. I won't forget it.</li></warm>
+      <cheerful><li>I'm FREE! I'm going to celebrate with a nice glass of water!</li></cheerful>
+      <cold><li>Dependency eliminated. Thank you for your discipline.</li></cold>
+    </thanks>
+    <expired>
+      <plain><li>Still hooked. Maybe next time. There's always a next time with this stuff.</li></plain>
+      <gloomy><li>I tried. Or you didn't. Either way, here I am.</li></gloomy>
+    </expired>
+    <reminder>
+      <plain><li>Still clean. Barely. Keep it away from me.</li></plain>
+    </reminder>
+  </ColonyCouncil.WishDef>
+
+  <!-- ===================== Separate rooms ===================== -->
+  <ColonyCouncil.WishDef>
+    <defName>Council_Wish_Separate</defName>
+    <label>not sleeping next to {OTHER_nameDef}</label>
+    <description>A colonist shares a bedroom or barracks with someone they can't stand, and wants one of them moved.</description>
+    <workerClass>ColonyCouncil.WishWorker_Separate</workerClass>
+    <category>Comfort</category>
+    <weight>1</weight>
+    <expiryDays>6</expiryDays>
+    <cooldownDays>15</cooldownDays>
+    <grantedThought>Council_Granted_Separate</grantedThought>
+    <envy>0.2</envy>
+    <objectionChance>0.4</objectionChance>
+    <objectByOpinionOfOther>1</objectByOpinionOfOther>
+    <talkInteraction>Council_Talk_Room</talkInteraction>
+    <template>Council_SmallBedroom</template>
+    <fulfilledWhen>{PAWN_nameDef} and {OTHER_nameDef} sleep in different rooms.</fulfilledWhen>
+    <request>
+      <plain>
+        <li>{OTHER_nameDef} snores, mutters, and steals blankets. I'd forgive one. Not all three.</li>
+        <li>I lie awake every night listening to {OTHER_nameDef} breathe. Hatefully. Move one of us.</li>
+        <li>[trigger:barracks] Sharing a room is bad enough. Sharing it with {OTHER_nameDef} is a punishment.</li>
+      </plain>
+      <warm>
+        <li>I'm trying with {OTHER_nameDef}, I really am. It'd be easier if we didn't share a room.</li>
+      </warm>
+      <blunt>
+        <li>Move {OTHER_nameDef} or I'll move {OTHER_objective} myself. Out a window, maybe.</li>
+      </blunt>
+      <cheerful>
+        <li>I'm sure {OTHER_nameDef} is lovely to someone! Somewhere! Far from my bed, ideally!</li>
+      </cheerful>
+      <gloomy>
+        <li>I spend all day being miserable. I'd like to sleep without {OTHER_nameDef} watching me do it.</li>
+      </gloomy>
+      <cold>
+        <li>We will fight eventually. Separating us is cheaper than the medicine.</li>
+      </cold>
+    </request>
+    <thanks>
+      <plain><li>A whole night without {OTHER_nameDef}. I slept like the dead.</li></plain>
+      <blunt><li>Peace and quiet. Finally.</li></blunt>
+      <cheerful><li>I can hear myself think! It turns out I think a lot about breakfast!</li></cheerful>
+    </thanks>
+    <expired>
+      <plain><li>Another night with {OTHER_nameDef}. Someone's going to get hurt, and I'm not saying who.</li></plain>
+    </expired>
+  </ColonyCouncil.WishDef>
+
+  <!-- ===================== A stocked infirmary ===================== -->
+  <ColonyCouncil.WishDef>
+    <defName>Council_Wish_Infirmary</defName>
+    <label>a stocked infirmary</label>
+    <description>A doctor looks at the medicine shelf and doesn't like what they see. They want enough medicine for everyone, with some to spare.</description>
+    <workerClass>ColonyCouncil.WishWorker_Infirmary</workerClass>
+    <category>Health</category>
+    <weight>0.9</weight>
+    <expiryDays>10</expiryDays>
+    <cooldownDays>20</cooldownDays>
+    <grantedThought>Council_Granted_Infirmary</grantedThought>
+    <inspirationChance>0.15</inspirationChance>
+    <allowPetition>true</allowPetition>
+    <envy>0</envy>
+    <talkInteraction>Council_Talk_Body</talkInteraction>
+    <template>Council_Hospital</template>
+    <triggers>
+      <li>
+        <key>raid</key>
+        <afterThreatHours>36</afterThreatHours>
+        <boost>4</boost>
+      </li>
+    </triggers>
+    <fulfilledWhen>At least {TARGET} medicine in stock.</fulfilledWhen>
+    <request>
+      <plain>
+        <li>I have bandages for one bad day. We get two a week.</li>
+        <li>Herbs, kits, anything. I can stitch with string, but I'd rather not have to.</li>
+        <li>[trigger:raid] I used the last of the good stuff on the wounded today. Next time I'll be using prayers.</li>
+        <li>[lowtech] Healroot. A whole field of it. Trust me on this.</li>
+      </plain>
+      <warm>
+        <li>I want to be able to help everyone who comes to me hurt. Right now I can't.</li>
+      </warm>
+      <blunt>
+        <li>Get me medicine or start practicing your death rattle.</li>
+      </blunt>
+      <cheerful>
+        <li>A full medicine shelf! It's the most beautiful thing a doctor can imagine! Well, second to nobody getting hurt!</li>
+      </cheerful>
+      <gloomy>
+        <li>Someone's going to bleed out on my table because we were saving silver. I'd like it not to be soon.</li>
+      </gloomy>
+      <cold>
+        <li>Medicine stock per colonist is below safe levels. Treatment quality will suffer, and so will survival rates.</li>
+      </cold>
+    </request>
+    <thanks>
+      <plain><li>Shelves full. Now I can actually do my job.</li></plain>
+      <warm><li>Now nobody has to wait while I decide who gets the last kit.</li></warm>
+      <cold><li>Adequate. Try not to need it.</li></cold>
+    </thanks>
+    <expired>
+      <plain><li>When someone dies of a scratch, remember this conversation.</li></plain>
+    </expired>
+  </ColonyCouncil.WishDef>
+
+</Defs>
