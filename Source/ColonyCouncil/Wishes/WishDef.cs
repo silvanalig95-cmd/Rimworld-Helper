@@ -49,8 +49,6 @@ namespace ColonyCouncil
         public InteractionDef talkInteraction;
 
         [MustTranslate] public string fulfilledWhen;
-        /// <summary>Short English description of the wish for RimTalk's AI context.</summary>
-        public string rimTalkTopic;
 
         public ToneLines request = new ToneLines();
         public ToneLines requestForOther = new ToneLines();

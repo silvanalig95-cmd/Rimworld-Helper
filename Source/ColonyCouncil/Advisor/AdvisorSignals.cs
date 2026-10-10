@@ -44,6 +44,9 @@ namespace ColonyCouncil
     {
         public const float GrowMin = 6f;
 
+        /// <summary>False for vacuum maps (Odyssey space platforms): no seasons, no weather.</summary>
+        public static bool HasSeasons(Map map) => map?.Biome != null && !map.Biome.inVacuum;
+
         public static float TwelfthTemp(Map map, Twelfth t) => GenTemperature.AverageTemperatureAtTileForTwelfth(map.Tile, t);
 
         /// <summary>
@@ -108,7 +111,9 @@ namespace ColonyCouncil
         public override IEnumerable<AdvisorSignal> Evaluate(Map map)
         {
             float days = DaysOfFood(map);
-            SeasonUtil.Winter(map, out float until, out float length, out bool inWinter);
+            float until = -1f, length = 0f;
+            bool inWinter = false;
+            if (SeasonUtil.HasSeasons(map)) SeasonUtil.Winter(map, out until, out length, out inWinter);
             bool greenhouse = RoomUtil.HasGreenhouse(map, 20);
             var hydro = Avail.BestBuildable(map, Avail.IsHydroponics, "HydroponicsBasin");
 
@@ -143,7 +148,7 @@ namespace ColonyCouncil
     {
         public override IEnumerable<AdvisorSignal> Evaluate(Map map)
         {
-            if (RoomUtil.HasFreezer(map)) yield break;
+            if (RoomUtil.HasFreezer(map) || !SeasonUtil.HasSeasons(map)) yield break;
             if (SeasonUtil.MaxTempNextTwelfths(map, 1) < 4f) yield break; // the world is already a freezer
             int rotting = 0;
             foreach (var t in map.listerThings.ThingsInGroup(ThingRequestGroup.FoodSourceNotPlantOrTree))
@@ -158,7 +163,7 @@ namespace ColonyCouncil
             if (cooler != null)
             {
                 var s = Signal(0.35f + UnityEngine.Mathf.Min(0.3f, rotting / 600f), "CC_Adv_Freezer_Title".Translate(),
-                    "CC_Adv_Freezer_Detail".Translate(rotting, cooler.label), 0.7f);
+                    "CC_Adv_Freezer_Detail".Translate(rotting, Avail.Indefinite(cooler)), 0.7f);
                 s.template = DefDatabase<RoomTemplateDef>.GetNamedSilentFail("Council_Freezer");
                 s.suggestThing = cooler;
                 yield return s;
@@ -179,6 +184,7 @@ namespace ColonyCouncil
     {
         public override IEnumerable<AdvisorSignal> Evaluate(Map map)
         {
+            if (!SeasonUtil.HasSeasons(map)) yield break;
             float min = SeasonUtil.MinTempNextTwelfths(map, 2);
             float max = SeasonUtil.MaxTempNextTwelfths(map, 2);
             var colonists = Colonists(map);
@@ -324,7 +330,7 @@ namespace ColonyCouncil
                 var gen = Avail.BestBuildable(map, d => d.GetCompProperties<CompProperties_Power>()?.compClass is System.Type t && typeof(CompPowerPlant).IsAssignableFrom(t),
                     "WoodFiredGenerator", "SolarGenerator", "WindTurbine");
                 if (gen != null)
-                    yield return Signal(0.15f, "CC_Adv_NoPower_Title".Translate(), "CC_Adv_NoPower_Detail".Translate(gen.label), 0.2f);
+                    yield return Signal(0.15f, "CC_Adv_NoPower_Title".Translate(), "CC_Adv_NoPower_Detail".Translate(Avail.Indefinite(gen)), 0.2f);
             }
         }
 

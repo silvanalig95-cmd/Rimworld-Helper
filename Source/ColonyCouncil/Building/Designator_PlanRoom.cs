@@ -23,6 +23,7 @@ namespace ColonyCouncil
         private IntVec3 suggestedAnchor = IntVec3.Invalid;
         private int suggestedRot;
 
+        private bool placed;
         private PlacementPlan cachedPlan;
         private IntVec3 cachedCell = IntVec3.Invalid;
         private int cachedRot = -1;
@@ -107,8 +108,11 @@ namespace ColonyCouncil
             Messages.Message(summary, new LookTargets(plan.door, Map), MessageTypeDefOf.TaskCompletion, false);
             cachedPlan = null;
             suggestedAnchor = IntVec3.Invalid;
-            Find.DesignatorManager.Deselect();
+            // One room per click. The designator manager drops us safely on its next update.
+            placed = true;
         }
+
+        public override bool CanRemainSelected() => !placed && base.CanRemainSelected();
 
         public override void SelectedUpdate()
         {

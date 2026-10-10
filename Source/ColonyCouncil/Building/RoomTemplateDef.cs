@@ -9,8 +9,24 @@ namespace ColonyCouncil
     /// <summary>One piece of furniture in a room template.</summary>
     public class TemplateThing
     {
-        /// <summary>Preferred defs, best first. The first one the colony can build is used.</summary>
-        public List<ThingDef> defs = new List<ThingDef>();
+        /// <summary>
+        /// Preferred defNames, best first. The first one the colony can build is used. Names are looked up
+        /// at runtime, so a def missing from this game (DLC off, removed by a mod) is simply skipped.
+        /// </summary>
+        public List<string> defs = new List<string>();
+
+        public IEnumerable<ThingDef> Defs
+        {
+            get
+            {
+                if (defs == null) yield break;
+                foreach (var name in defs)
+                {
+                    var d = DefDatabase<ThingDef>.GetNamedSilentFail(name);
+                    if (d != null) yield return d;
+                }
+            }
+        }
         /// <summary>
         /// Fallback by purpose (bed, light, heater, table, chair, ...) so modded or era-appropriate
         /// furniture is picked when none of <see cref="defs"/> is available.
@@ -35,8 +51,8 @@ namespace ColonyCouncil
         /// <summary>Door position along the south wall in interior x; -1 = middle.</summary>
         public int doorX = -1;
         public List<TemplateThing> things = new List<TemplateThing>();
-        /// <summary>Optional floor, best first. Skipped if nothing is buildable.</summary>
-        public List<TerrainDef> floors;
+        /// <summary>Optional floor defNames, best first. Skipped if nothing is buildable.</summary>
+        public List<string> floors;
         public int order = 100;
         [MustTranslate] public string purpose;
 
@@ -103,16 +119,14 @@ namespace ColonyCouncil
             {
                 ThingDef pick = null;
                 CellRect rect = default;
-                IntVec2 wantedSize = t.defs != null && t.defs.Count > 0 && t.defs[0] != null ? t.defs[0].size : new IntVec2(1, 1);
-                if (t.defs != null)
+                var known = t.Defs.ToList();
+                IntVec2 wantedSize = known.Count > 0 ? known[0].size : new IntVec2(1, 1);
+                foreach (var d in known)
                 {
-                    foreach (var d in t.defs)
+                    if (Avail.CanBuild(d, map) && Fits(t, d, out rect))
                     {
-                        if (d != null && Avail.CanBuild(d, map) && Fits(t, d, out rect))
-                        {
-                            pick = d;
-                            break;
-                        }
+                        pick = d;
+                        break;
                     }
                 }
                 if (pick == null && !t.role.NullOrEmpty())
@@ -126,7 +140,7 @@ namespace ColonyCouncil
                 }
                 if (pick == null)
                 {
-                    if (!t.optional) missing.Add(t.defs != null && t.defs.Count > 0 && t.defs[0] != null ? t.defs[0].label : t.role);
+                    if (!t.optional) missing.Add(known.Count > 0 ? known[0].label : ("CC_Role_" + t.role).Translate().Resolve());
                     continue;
                 }
                 list.Add(new ResolvedThing
@@ -153,20 +167,47 @@ namespace ColonyCouncil
         public TerrainDef ResolveFloor(Map map)
         {
             if (floors == null) return null;
-            foreach (var f in floors)
+            foreach (var name in floors)
             {
+                var f = DefDatabase<TerrainDef>.GetNamedSilentFail(name);
                 if (f != null && Avail.CanBuild(f, map) && Avail.MaterialsWithinReach(f, map)) return f;
             }
             return null;
         }
 
+        [Unsaved] private Map cachedMap;
+        [Unsaved] private float cachedTime = -999f;
+        [Unsaved] private List<ResolvedThing> cachedThings;
+        [Unsaved] private string cachedReason;
+
+        /// <summary>Resolve() for UI code, cached for a couple of seconds so tabs don't redo it every frame.</summary>
+        public List<ResolvedThing> ResolveCached(Map map, out string unavailableReason)
+        {
+            float now = UnityEngine.Time.realtimeSinceStartup;
+            if (cachedMap != map || now - cachedTime > 2f || cachedThings == null)
+            {
+                cachedMap = map;
+                cachedTime = now;
+                if (!Avail.CanBuild(ThingDefOf.Wall, map))
+                {
+                    cachedThings = new List<ResolvedThing>();
+                    cachedReason = "CC_Template_NoWalls".Translate();
+                }
+                else
+                {
+                    cachedThings = Resolve(map, out var missing);
+                    cachedReason = missing.Count > 0 ? "CC_Template_Missing".Translate(TextUtil.JoinAnd(missing)).Resolve() : null;
+                }
+            }
+            unavailableReason = cachedReason;
+            return cachedThings;
+        }
+
         /// <summary>Why the colony can't use this template right now, or null if it can.</summary>
         public string UnavailableReason(Map map)
         {
-            if (!Avail.CanBuild(ThingDefOf.Wall, map)) return "CC_Template_NoWalls".Translate();
-            Resolve(map, out var missing);
-            if (missing.Count > 0) return "CC_Template_Missing".Translate(TextUtil.JoinAnd(missing));
-            return null;
+            ResolveCached(map, out var reason);
+            return reason;
         }
     }
 

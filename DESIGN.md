@@ -1,6 +1,7 @@
-# RimWorld Helper: design draft
+# Colony Council: design
 
-> Working title. Status: idea and design exploration, no code yet.
+> Status: version 0.1 is built (all three layers plus room planning). This document explains the
+> thinking behind it. See [README.md](README.md) for installing and playing.
 
 ## The problem
 
@@ -30,7 +31,7 @@ of fresh situations rather than a chore list.
 
 ## Layer 1: The Advisor
 
-A panel (its own main tab button, e.g. "Plans") that shows the **top 3 priorities** right
+A panel (the "Council" main tab) that shows the **most important priorities** right
 now. Each one has a reason and an optional "show me" button that jumps the camera there.
 
 ### What it reads and what it says
@@ -119,7 +120,7 @@ The numbers are placeholders. Balance comes later.
 ### Lifecycle
 
 ```
- game state ──► candidate wishes ──► weighted pick ──► letter + listed in "Plans" tab
+ game state ──► candidate wishes ──► weighted pick ──► letter + listed in "Council" tab
                                                           │
                        checked every in-game hour ◄───────┘
                           │                │
@@ -211,22 +212,44 @@ the base layout stays yours.
 
 ---
 
-## Algorithms or AI?
+## Algorithms, not AI
 
-**Core logic: plain algorithms (rules and weights).** It's deterministic, needs no API
-key, works offline, costs nothing, is fast, and can be balanced. Every wish and signal
-is a small rule: "if this condition is true, propose X, satisfied when Y."
+**All logic is plain rules and weights.** It's deterministic, needs no API key, works
+offline, costs nothing, is fast, and can be balanced. Every wish and signal is a small
+rule: "if this condition is true, propose X, fulfilled when Y."
 
-**Optional later: an LLM for flavor text only.** It could write the pawn's line in
-their voice from the wish and their traits, but must never decide what's true about
-the game. Mods like [RimTalk](https://steamcommunity.com/sharedfiles/filedetails/comments/3551203752)
-already do LLM pawn dialogue with player-supplied API keys, so it's proven technically.
-It just shouldn't be a dependency. Hand-written templates with trait variants get
-~80% of the charm.
+The mod has no AI or LLM component and doesn't depend on any other mod. The flavour
+comes from hand-written lines, six "tones" per wish (plain, warm, blunt, cheerful,
+gloomy, cold) chosen by the colonist's traits and mood, plus vanilla social-log
+interactions where colonists grumble about their wishes to each other.
 
 **"Random but sensible"** comes from *weighted* random picks: every candidate wish gets
 a weight (how bad the related thought is, how strong the passion, trait multipliers),
 and the generator rolls among them. Same colony, different stories each playthrough.
+
+---
+
+## Fitting the world: tech level, materials, map
+
+A medieval or tribal colony must never be asked for turrets, heaters or hospital beds it
+can't build. Every suggestion goes through one gate (`Avail`):
+
+- **Research**: a building is only suggested if its research is finished and it shows up in
+  the build menu.
+- **Power**: anything that needs electricity is skipped until Electricity is researched.
+- **Purpose, not names**: buildings are found by what they do (heats, glows, holds
+  patients, is a crafting bench for skill X, gives recreation of kind Y). So a medieval colony
+  gets a torch lamp or a campfire, an industrial one a standing lamp or a heater, and modded
+  furniture (e.g. Medieval Overhaul) counts automatically.
+- **Materials**: room plans pick the wall and furniture material the colony has most of;
+  wood counts as available when there are trees, stone blocks when there are chunks.
+- **The map itself**: "tame an animal" only when tameable animals are roaming nearby,
+  "bury your friend" only when the body is on the map, "a prosthetic" only when one can be
+  made or is in stock, no winter advice on space maps.
+- **Era of the colony**: the research advisor suggests projects from the colony's own tech
+  level first.
+- **Ambitions** are offered only if every goal is possible right now. "A ring of iron"
+  (turrets) never comes up for a medieval colony, but "teeth in the mud" (traps) does.
 
 ---
 
@@ -251,35 +274,44 @@ and the generator rolls among them. Same colony, different stories each playthro
 
 ---
 
-## Technical sketch
+## Technical overview
 
-Standard RimWorld mod: XML defs plus a C# assembly. Harmony patches are probably not even
-needed for the MVP; everything hooks in through game and map components.
+Standard RimWorld mod: XML defs plus a C# assembly. No Harmony patches and no other mods
+are needed; everything hooks in through vanilla extension points (game and map components,
+a main tab, alerts, interaction workers, a designator, a choice letter).
 
 ```
-About/About.xml
-1.6/Assemblies/RimworldHelper.dll
+About/About.xml, About/Preview.png
+1.6/Assemblies/ColonyCouncil.dll
 Defs/
-  WishDefs/            # data-driven wishes (add new ones in XML)
-  AdvisorSignalDefs/   # data-driven advisor checks
-  ThoughtDefs/         # "Wish fulfilled", "Request ignored", "We built this together"
-  MainButtonDefs/      # the "Plans" tab
+  WishDefs/            # 23 data-driven wishes with flavour lines (add new ones in XML)
+  AdvisorSignalDefs/   # 14 advisor checks with "why it matters" tips
+  AmbitionDefs/        # 20 ambitions with goals and pitch lines
+  RoomTemplateDefs/    # 13 room templates for the planner
+  ThoughtDefs/         # wish granted, ambition achieved, spoke up for me, ...
+  InteractionDefs/     # colonists talking about their wishes and the ambition
+  Misc/                # the Council main tab and the meeting letter
 Languages/English/Keyed/
-Source/RimworldHelper/ # C#; builds against the Krafs.Rimworld.Ref NuGet package
+Textures/ColonyCouncil/
+Source/ColonyCouncil/  # C#; builds against the Krafs.Rimworld.Ref NuGet package
+Tools/DefValidator/    # offline XML checker against the real game types
+Tools/Tests/           # tests for the room rotation math
 ```
 
 Core types:
 
-- `WishDef : Def` holds worker class, base weight, reward, expiry, cooldown and text templates.
-- `WishWorker` answers three questions: `Desire(pawn)` (0 means never), `IsSatisfied(pawn)`,
-  and `Explain(pawn)`. One small class per wish type.
-- `Wish : IExposable` is the live instance (pawn, def, created and expiry ticks, state), saved with the game.
-- `WishTracker : GameComponent` generates, tracks and expires wishes.
-- `AdvisorSignalDef` / `AdvisorSignalWorker` evaluate a map and return
-  severity, urgency, explanation and look targets.
-- `ColonyAdvisor : MapComponent` caches signals and refreshes hourly.
-- `MainTabWindow_Plans` is the UI: priorities, open wishes, current ambition.
-- Mod settings: frequency, stakes mode, max open wishes, per-layer toggles.
+- `WishDef` / `WishWorker`: a worker lists candidate wishes for a colonist (with a weight
+  and a reason) and says when a wish is fulfilled.
+- `Wish`: the live, saved instance (who asked, for whom, about whom, expiry, quote, co-signers).
+- `CouncilGameComponent`: generates, tracks, grants and expires wishes hourly; owns the
+  chronicle, the ambition tracker and personal touches.
+- `AdvisorSignalDef` / `AdvisorSignalWorker` + `CouncilMapComponent`: advice per map,
+  refreshed hourly, ranked by severity, urgency and confidence.
+- `AmbitionDef` + goal classes + `AmbitionTracker`: council meetings and the active ambition.
+- `RoomTemplateDef`, `TemplatePlanner`, `Designator_PlanRoom`: room plans with a ghost preview,
+  rotation, material choice and a spot finder.
+- `Avail`: the tech, research, material and purpose checks described above.
+- `MainTabWindow_Council`: the Priorities, Wishes, Ambition, Room plans and Chronicle tabs.
 
 Things the game exposes that this relies on (all available to mods):
 
@@ -301,35 +333,21 @@ Things the game exposes that this relies on (all available to mods):
 
 ## Roadmap
 
-**MVP: "it talks to me"**
-- Advisor with ~6 signals: beds, food vs. winter, defense vs. wealth, recreation variety, power, doctor/medicine.
-- ~8 wish types from the catalogue above.
-- "Plans" tab, wish letters, fulfilled-wish mood memory, Gentle mode only.
-- Settings: on/off per layer, wish frequency.
+**Done in 0.1**
+- Advisor with 14 checks and rotating tips, plus an alert for urgent advice.
+- 23 wish types, six tones each, petitions, Kind colonists asking for others, ascetics
+  skipping luxuries, Gentle / Demanding / Advisor-only modes.
+- Council meetings with three pitched ambitions, heckling, rewards for success.
+- Room templates with ghost placement, rotation, material choice and "find a good spot".
+- Personal touches in colonists' own bedrooms.
+- Royalty (noble room requirements), Biotech (children) and Odyssey (space maps) handled.
 
-**Phase 2: "it has personality"**
-- Trait-flavored text variants, petitions, Kind and Abrasive behaviors, Ascetic refusals.
-- Demanding mode. "Show me where" highlighting.
-- Colony meetings and ambitions.
-
-**Phase 3: "it helps me build"**
-- Room templates with ghost placement ("Plan it").
-- Pawn personal touches in their own rooms.
-- Ideology, Royalty and Biotech wish sources.
-
-**Phase 4: optional extras**
-- LLM flavor text provider (bring your own key).
+**Ideas for later**
 - Ambition chains (multi-step goals across seasons).
+- More Ideology hooks (precept-driven wishes, ritual spaces).
+- Translations.
 
 ---
-
-## Open questions
-
-1. Which RimWorld version and DLCs do you play with? (This draft assumes 1.6.)
-2. Gentle by default, or should ignored wishes sting a little?
-3. Which layer excites you most to start with: Advisor, Wishes, or Meetings?
-4. How much auto-building do you actually want: up to "Propose" (templates), or more?
-5. Have you written C# or RimWorld mods before? (This decides how much scaffolding and explanation the code needs.)
 
 ## References and prior art
 
@@ -338,7 +356,6 @@ in this form. Closest:
 
 - ["Dream and Desire" idea thread](https://steamcommunity.com/workshop/filedetails/discussion/2697015438/3199243752762917307):
   pawns wanting specific apparel and equipment based on traits and backstory (concept only, as far as we could tell).
-- [RimTalk](https://steamcommunity.com/sharedfiles/filedetails/comments/3551203752): LLM-generated pawn dialogue from thoughts and actions.
 - [RimWorld Wiki: Expectations](https://rimworldwiki.com/wiki/Expectations) and [Thoughts list](https://rimworldwiki.com/wiki/Thoughts_list): the vanilla systems the wishes build on.
 - [RimWorld Wiki: Colony Building Guide](https://rimworldwiki.com/wiki/Colony_Building_Guide): its "current plan and next plan" advice is what the Advisor tries to automate.
 - Design inspirations: The Sims 2 wants and fears, Dwarf Fortress noble mandates, Frostpunk promises.

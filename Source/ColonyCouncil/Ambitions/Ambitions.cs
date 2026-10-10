@@ -20,7 +20,6 @@ namespace ColonyCouncil
         public List<AdvisorCategory> relevantCategories = new List<AdvisorCategory>();
         public ToneLines pitch = new ToneLines();
         public ToneLines achieved = new ToneLines();
-        public string rimTalkTopic;
         public RoomTemplateDef template;
 
         public bool Possible(Map map) => goals.Count > 0 && goals.All(g => g.Possible(map));
@@ -303,8 +302,7 @@ namespace ColonyCouncil
                 CouncilGameComponent.Speak(p.proposer, p.def.LabelCap, new Color(0.7f, 0.85f, 1f));
             comp.AddChronicle(new ChronicleEntry(ChronicleKind.Meeting,
                 "CC_Chronicle_Meeting".Translate(TextUtil.JoinAnd(pitches.Select(p => p.def.label + " (" + p.proposer.LabelShort + ")").ToList())).Resolve(),
-                null, "the council met"));
-            RimTalkBridge.OnMeeting(pitches.Select(p => (p.proposer, p.def)).ToList());
+                null));
         }
 
         private static string MeetingVenue(Map map)
@@ -350,8 +348,7 @@ namespace ColonyCouncil
                     if (p != proposer && p.needs?.mood != null && Rand.Chance(0.5f)) CouncilGameComponent.GiveThought(p, CouncilDefOf.Council_HeardAtMeeting);
             }
             comp.AddChronicle(new ChronicleEntry(ChronicleKind.AmbitionChosen,
-                "CC_Chronicle_AmbitionChosen".Translate(def.label, proposer?.LabelShort ?? "?").Resolve(), proposer, "the colony chose the ambition: " + def.label));
-            RimTalkBridge.OnAmbitionChosen(active);
+                "CC_Chronicle_AmbitionChosen".Translate(def.label, proposer?.LabelShort ?? "?").Resolve(), proposer));
         }
 
         public void Postpone()
@@ -379,8 +376,7 @@ namespace ColonyCouncil
             Find.LetterStack.ReceiveLetter("CC_Ambition_AchievedTitle".Translate(a.def.LabelCap.ToString()), text, LetterDefOf.PositiveEvent, new LookTargets(a.proposer));
             if (a.proposer != null) CouncilGameComponent.Speak(a.proposer, line, new Color(0.6f, 1f, 0.6f));
             comp.AddChronicle(new ChronicleEntry(ChronicleKind.AmbitionAchieved,
-                "CC_Chronicle_AmbitionAchieved".Translate(a.def.label).Resolve(), a.proposer, "the colony achieved its ambition: " + a.def.label));
-            RimTalkBridge.OnAmbitionAchieved(a);
+                "CC_Chronicle_AmbitionAchieved".Translate(a.def.label).Resolve(), a.proposer));
             nextMeetingTick = Mathf.Max(nextMeetingTick, Find.TickManager.TicksGame + GenDate.TicksPerDay * 3);
         }
 
@@ -394,7 +390,7 @@ namespace ColonyCouncil
             }
             Messages.Message("CC_Ambition_Failed".Translate(a.def.LabelCap.ToString(), a.Progress.ToStringPercent()), new LookTargets(a.proposer), MessageTypeDefOf.NeutralEvent, false);
             comp.AddChronicle(new ChronicleEntry(ChronicleKind.AmbitionFailed,
-                "CC_Chronicle_AmbitionFailed".Translate(a.def.label, a.Progress.ToStringPercent()).Resolve(), a.proposer, "the colony fell short of its ambition: " + a.def.label));
+                "CC_Chronicle_AmbitionFailed".Translate(a.def.label, a.Progress.ToStringPercent()).Resolve(), a.proposer));
             nextMeetingTick = Mathf.Min(nextMeetingTick, Find.TickManager.TicksGame + GenDate.TicksPerDay * 2);
         }
 
@@ -404,7 +400,7 @@ namespace ColonyCouncil
             var a = active;
             active = null;
             CouncilGameComponent.Instance?.AddChronicle(new ChronicleEntry(ChronicleKind.AmbitionAbandoned,
-                "CC_Chronicle_AmbitionAbandoned".Translate(a.def.label).Resolve(), a.proposer, "the colony gave up on: " + a.def.label));
+                "CC_Chronicle_AmbitionAbandoned".Translate(a.def.label).Resolve(), a.proposer));
             nextMeetingTick = Find.TickManager.TicksGame + GenDate.TicksPerDay * 3;
         }
 

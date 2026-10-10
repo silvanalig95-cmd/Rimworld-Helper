@@ -324,7 +324,8 @@ namespace ColonyCouncil
 
     public class Goal_WarmBedrooms : AmbitionGoal
     {
-        public override bool Possible(Map map) => Avail.AnyBuildable(map, Avail.IsHeater) && SeasonUtil.MinTempNextTwelfths(map, 4) < 0f;
+        public override bool Possible(Map map) =>
+            SeasonUtil.HasSeasons(map) && Avail.AnyBuildable(map, Avail.IsHeater) && SeasonUtil.MinTempNextTwelfths(map, 4) < 0f;
 
         private static int Count(Map map, out int total)
         {

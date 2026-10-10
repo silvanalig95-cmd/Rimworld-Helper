@@ -24,9 +24,6 @@ Room templates with a ghost preview (bedroom, workshop, kitchen, hospital, freez
 [b]Fits your world[/b]
 Everything adapts to your tech level, research, materials and DLCs. A medieval colony gets asked for torches, campfires and spike traps, never turrets or heaters. Works with modded furniture by checking what a building does rather than its name.
 
-[b]RimTalk[/b]
-Optional. If RimTalk is active, colonists know about their wishes and the colony's ambition and talk about them in AI-generated dialogue.
-
 Everything is optional and configurable. By default, ignoring a wish costs nothing.</description>
   <loadAfter>
     <li>Ludeon.RimWorld</li>
@@ -35,7 +32,5 @@ Everything is optional and configurable. By default, ignoring a wish costs nothi
     <li>Ludeon.RimWorld.Biotech</li>
     <li>Ludeon.RimWorld.Anomaly</li>
     <li>Ludeon.RimWorld.Odyssey</li>
-    <li>brrainz.harmony</li>
-    <li>cj.rimtalk</li>
   </loadAfter>
 </ModMetaData>

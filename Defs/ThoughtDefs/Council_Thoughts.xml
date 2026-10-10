@@ -1,0 +1,404 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- ======================= Base ======================= -->
+
+  <ThoughtDef Name="Council_MemoryBase" Abstract="True">
+    <thoughtClass>Thought_Memory</thoughtClass>
+    <stackLimit>1</stackLimit>
+    <showBubble>true</showBubble>
+  </ThoughtDef>
+
+  <!-- ======================= General ======================= -->
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_HelpedSomeone</defName>
+    <durationDays>4</durationDays>
+    <stackLimit>3</stackLimit>
+    <stages>
+      <li>
+        <label>spoke up for someone</label>
+        <description>I asked the colony's leaders to help someone who needed it, and they listened. Feels good to look out for each other out here.</description>
+        <baseMoodEffect>4</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Council_SpokeUpForMe</defName>
+    <thoughtClass>Thought_MemorySocial</thoughtClass>
+    <durationDays>25</durationDays>
+    <stackLimit>5</stackLimit>
+    <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
+    <stages>
+      <li>
+        <label>spoke up for me</label>
+        <baseOpinionOffset>15</baseOpinionOffset>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_WishIgnored</defName>
+    <durationDays>3</durationDays>
+    <stackLimit>2</stackLimit>
+    <stages>
+      <li>
+        <label>my request was ignored</label>
+        <description>I asked for one thing. One. Nobody even looked up.</description>
+        <baseMoodEffect>-3</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_AmbitionAchieved</defName>
+    <durationDays>8</durationDays>
+    <stages>
+      <li>
+        <label>we did it together</label>
+        <description>The council set a goal and the whole colony pulled it off. Maybe we're more than a bunch of castaways after all.</description>
+        <baseMoodEffect>6</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_MyAmbitionAchieved</defName>
+    <durationDays>10</durationDays>
+    <stages>
+      <li>
+        <label>my idea came true</label>
+        <description>I stood up at the council, said what we should do, and we actually did it. I'll be insufferable about this for weeks.</description>
+        <baseMoodEffect>10</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_AmbitionFailed</defName>
+    <durationDays>3</durationDays>
+    <stages>
+      <li>
+        <label>fell short together</label>
+        <description>We promised ourselves we'd get it done. We didn't.</description>
+        <baseMoodEffect>-2</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_PersonalTouchDone</defName>
+    <durationDays>5</durationDays>
+    <stages>
+      <li>
+        <label>made my room my own</label>
+        <description>It's a small thing, but now my room feels like mine.</description>
+        <baseMoodEffect>3</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_HeardAtMeeting</defName>
+    <durationDays>2</durationDays>
+    <stages>
+      <li>
+        <label>had my say at the council</label>
+        <description>We sat together and decided where this colony is going. It felt like a real community.</description>
+        <baseMoodEffect>2</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <!-- ======================= Wishes granted ======================= -->
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_Granted_OwnRoom</defName>
+    <durationDays>6</durationDays>
+    <stages>
+      <li>
+        <label>a room of my own at last</label>
+        <description>Four walls, a door, and nobody snoring but me.</description>
+        <baseMoodEffect>6</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_Granted_NicerBedroom</defName>
+    <durationDays>6</durationDays>
+    <stages>
+      <li>
+        <label>a bedroom worth bragging about</label>
+        <description>They made my room nicer, just like I asked. I've been finding excuses to show people.</description>
+        <baseMoodEffect>5</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_Granted_Spacious</defName>
+    <durationDays>5</durationDays>
+    <stages>
+      <li>
+        <label>room to breathe</label>
+        <description>My room isn't a closet anymore. I can stretch out without hitting a wall.</description>
+        <baseMoodEffect>4</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_Granted_ShareBed</defName>
+    <durationDays>7</durationDays>
+    <stages>
+      <li>
+        <label>together at night</label>
+        <description>We finally share a bed. Falling asleep next to someone you love makes this whole rimworld feel smaller.</description>
+        <baseMoodEffect>6</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_Granted_Furniture</defName>
+    <durationDays>4</durationDays>
+    <stages>
+      <li>
+        <label>a nicer room</label>
+        <description>Someone built the furniture I wanted for my room. It's the little comforts.</description>
+        <baseMoodEffect>3</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_Granted_Light</defName>
+    <durationDays>4</durationDays>
+    <stages>
+      <li>
+        <label>light in the dark</label>
+        <description>I have a light in my room now. The night feels a lot less hungry.</description>
+        <baseMoodEffect>3</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_Granted_ComfortTemp</defName>
+    <durationDays>4</durationDays>
+    <stages>
+      <li>
+        <label>comfortable nights</label>
+        <description>I can sleep without shivering or sweating through my bedroll. Bliss.</description>
+        <baseMoodEffect>3</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_Granted_Dining</defName>
+    <durationDays>4</durationDays>
+    <stages>
+      <li>
+        <label>a proper table</label>
+        <description>No more eating off my knees. We sit down together now, like civilized people.</description>
+        <baseMoodEffect>3</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_Granted_Recreation</defName>
+    <durationDays>5</durationDays>
+    <stages>
+      <li>
+        <label>something new to do</label>
+        <description>There's finally something fun to do around here that isn't staring at clouds.</description>
+        <baseMoodEffect>4</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_Granted_Greenery</defName>
+    <durationDays>4</durationDays>
+    <stages>
+      <li>
+        <label>something green</label>
+        <description>A little living thing in my room. I talk to it when nobody's listening.</description>
+        <baseMoodEffect>3</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_Granted_PassionSpace</defName>
+    <durationDays>7</durationDays>
+    <stages>
+      <li>
+        <label>a place for my craft</label>
+        <description>They gave me a proper space for the work I love. I want to make something great in there.</description>
+        <baseMoodEffect>6</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_Granted_LetMeWork</defName>
+    <durationDays>4</durationDays>
+    <stages>
+      <li>
+        <label>doing what I love</label>
+        <description>I finally get to do the work I'm passionate about. My hands know what to do.</description>
+        <baseMoodEffect>4</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_Granted_Artwork</defName>
+    <durationDays>5</durationDays>
+    <stages>
+      <li>
+        <label>art where we gather</label>
+        <description>There's art in the common rooms now. It makes the place feel like more than a shelter.</description>
+        <baseMoodEffect>3</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_Granted_Weapon</defName>
+    <durationDays>5</durationDays>
+    <stages>
+      <li>
+        <label>a weapon worth carrying</label>
+        <description>Finally, something in my hands I can trust when the raiders come.</description>
+        <baseMoodEffect>4</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_Granted_Brewery</defName>
+    <durationDays>5</durationDays>
+    <stages>
+      <li>
+        <label>the brew is on</label>
+        <description>We're brewing our own now. Life on the rim just got a little warmer.</description>
+        <baseMoodEffect>4</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_Granted_Food</defName>
+    <durationDays>4</durationDays>
+    <stages>
+      <li>
+        <label>real food</label>
+        <description>Someone listened and now we eat like people, not like scavengers.</description>
+        <baseMoodEffect>4</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_Granted_Freezer</defName>
+    <durationDays>5</durationDays>
+    <stages>
+      <li>
+        <label>nothing will rot</label>
+        <description>We have cold storage now. No more watching good food turn into green sludge.</description>
+        <baseMoodEffect>3</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_Granted_Clothes</defName>
+    <durationDays>4</durationDays>
+    <stages>
+      <li>
+        <label>decent clothes</label>
+        <description>Clean, whole clothes that never belonged to a corpse. I feel like a person again.</description>
+        <baseMoodEffect>3</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_Granted_Memorial</defName>
+    <durationDays>8</durationDays>
+    <stages>
+      <li>
+        <label>laid to rest</label>
+        <description>They're finally resting properly, not lying out there in the dirt. I can start to let go.</description>
+        <baseMoodEffect>5</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_Granted_Prosthetic</defName>
+    <durationDays>8</durationDays>
+    <stages>
+      <li>
+        <label>whole again</label>
+        <description>It's not the body I was born with, but it works, and it's mine. Thank you.</description>
+        <baseMoodEffect>6</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_Granted_Companion</defName>
+    <durationDays>6</durationDays>
+    <stages>
+      <li>
+        <label>a new friend with fur</label>
+        <description>We took in a new animal. I already have a name picked out.</description>
+        <baseMoodEffect>4</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_Granted_Defenses</defName>
+    <durationDays>5</durationDays>
+    <stages>
+      <li>
+        <label>safer behind our defences</label>
+        <description>Our defences are stronger now. Next time they come, we'll be ready.</description>
+        <baseMoodEffect>4</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_Granted_Royal</defName>
+    <durationDays>6</durationDays>
+    <stages>
+      <li>
+        <label>befitting my station</label>
+        <description>My quarters finally reflect my title. One mustn't live like a peasant.</description>
+        <baseMoodEffect>5</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_Granted_ChildPlay</defName>
+    <durationDays>5</durationDays>
+    <stages>
+      <li>
+        <label>somewhere to learn and play</label>
+        <description>The grown-ups made something just for me!</description>
+        <baseMoodEffect>5</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+</Defs>

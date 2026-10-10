@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <MainButtonDef>
+    <defName>Council_MainButton</defName>
+    <label>council</label>
+    <description>The colony council: what the colony needs most, what your colonists are wishing for, the ambition you are working towards, room plans, and the chronicle of it all.</description>
+    <tabWindowClass>ColonyCouncil.MainTabWindow_Council</tabWindowClass>
+    <order>45</order>
+    <iconPath>ColonyCouncil/UI/MainButton</iconPath>
+  </MainButtonDef>
+
+  <LetterDef>
+    <defName>Council_MeetingLetter</defName>
+    <letterClass>ColonyCouncil.ChoiceLetter_CouncilMeeting</letterClass>
+    <color>(120, 175, 235)</color>
+    <flashColor>(160, 205, 255)</flashColor>
+    <flashInterval>90</flashInterval>
+    <arriveSound>LetterArrive_Good</arriveSound>
+    <bounce>true</bounce>
+  </LetterDef>
+
+</Defs>

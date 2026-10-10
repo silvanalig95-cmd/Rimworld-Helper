@@ -32,7 +32,8 @@ namespace ColonyCouncil
         private static readonly Color QuoteColor = new Color(1f, 0.93f, 0.75f);
         private static readonly Color GoodColor = new Color(0.55f, 0.9f, 0.55f);
 
-        public override Vector2 RequestedTabSize => new Vector2(1010f, 720f);
+        public override Vector2 RequestedTabSize =>
+            new Vector2(Mathf.Min(1010f, UI.screenWidth - 20f), Mathf.Min(720f, UI.screenHeight - 35f - 20f));
 
         private static CouncilSettings Settings => ColonyCouncilMod.Settings;
 
@@ -440,8 +441,8 @@ namespace ColonyCouncil
                     var g = a.def.goals[i];
                     float p = g.Progress(a.map, a.Baseline(i));
                     bool done = p >= 0.999f;
-                    string line = (done ? "✓ " : "○ ") + g.Describe(a.map, a.Baseline(i));
-                    y += WrappedLabel(10f, y, width - 10f, line, done ? GoodColor : Color.white) + 4f;
+                    Widgets.CheckboxDraw(6f, y, done, false, 22f);
+                    y += Mathf.Max(24f, WrappedLabel(34f, y + 1f, width - 34f, g.Describe(a.map, a.Baseline(i)), done ? GoodColor : Color.white)) + 4f;
                 }
                 y += 10f;
                 if (a.def.template != null && map != null && a.def.template.UnavailableReason(map) == null)
@@ -504,8 +505,7 @@ namespace ColonyCouncil
             float y = 0f;
             foreach (var t in DefDatabase<RoomTemplateDef>.AllDefsListForReading.OrderBy(d => d.order))
             {
-                string reason = t.UnavailableReason(map);
-                var furniture = reason == null ? t.Resolve(map, out _) : new List<ResolvedThing>();
+                var furniture = t.ResolveCached(map, out string reason);
                 string furnitureText = furniture.Count == 0 ? "" : "CC_Build_Contains".Translate(string.Join(", ", furniture.GroupBy(f => f.def).Select(g => g.Count() > 1 ? g.Count() + "× " + g.Key.label : g.Key.label)));
                 float textW = width - 330f;
                 string title = t.LabelCap + "  (" + t.size.x + "×" + t.size.z + ")";

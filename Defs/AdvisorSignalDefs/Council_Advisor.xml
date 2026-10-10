@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- Tips rotate every few days. They explain WHY something matters, so the player learns the game's logic. -->
+
+  <ColonyCouncil.AdvisorSignalDef>
+    <defName>Council_Adv_Beds</defName>
+    <label>beds and bedrooms</label>
+    <workerClass>ColonyCouncil.AdvisorWorker_Beds</workerClass>
+    <category>Shelter</category>
+    <importance>1.1</importance>
+    <tips>
+      <li>Sleeping on the ground or outside gives a mood penalty every single night. A simple bed in a room is one of the cheapest mood boosts in the game.</li>
+      <li>Barracks are fine early on, but each colonist in one gets a mood penalty. Small private bedrooms, even 3×4, beat a big shared room.</li>
+      <li>A bedroom's impressiveness gives a mood bonus or penalty every morning. Floors, a bit of art and good furniture add up quickly.</li>
+      <li>Assign beds yourself in the bed's Owner tab, so couples share and loners get their own rooms.</li>
+    </tips>
+  </ColonyCouncil.AdvisorSignalDef>
+
+  <ColonyCouncil.AdvisorSignalDef>
+    <defName>Council_Adv_Food</defName>
+    <label>food supply</label>
+    <workerClass>ColonyCouncil.AdvisorWorker_Food</workerClass>
+    <category>Food</category>
+    <importance>1.3</importance>
+    <tips>
+      <li>Outdoor crops stop growing once the average temperature falls below about 6°C. Everything you'll eat in winter has to be harvested, hunted or bought before then.</li>
+      <li>A colonist eats about 1.6 nutrition a day. Rice grows fastest, potatoes tolerate poor soil, and corn stores well but grows slowly.</li>
+      <li>Hunting, trading and fishing all fill gaps. Wild animals often leave the map in winter, so hunt before the cold sets in.</li>
+      <li>Food in a cold room lasts much longer. Below 0°C most food stops rotting entirely.</li>
+    </tips>
+  </ColonyCouncil.AdvisorSignalDef>
+
+  <ColonyCouncil.AdvisorSignalDef>
+    <defName>Council_Adv_Freezer</defName>
+    <label>food storage</label>
+    <workerClass>ColonyCouncil.AdvisorWorker_Freezer</workerClass>
+    <category>Food</category>
+    <importance>0.9</importance>
+    <template>Council_Freezer</template>
+    <tips>
+      <li>Rotting food is wasted work. A freezer (a closed room cooled below 0°C) stops most spoilage cold.</li>
+      <li>Coolers push heat out one side and cold in the other. Put them in a wall with the hot side facing outside, and use a double door to keep the cold in.</li>
+      <li>Without cooling you can still preserve food: pemmican and other preserved foods last far longer than raw crops or meat.</li>
+    </tips>
+  </ColonyCouncil.AdvisorSignalDef>
+
+  <ColonyCouncil.AdvisorSignalDef>
+    <defName>Council_Adv_Temperature</defName>
+    <label>temperature</label>
+    <workerClass>ColonyCouncil.AdvisorWorker_Temperature</workerClass>
+    <category>Temperature</category>
+    <importance>1</importance>
+    <tips>
+      <li>Hypothermia and heatstroke kill quietly. Check each colonist's comfortable temperature range on their Gear tab.</li>
+      <li>Thick walls and closed doors hold heat. A heat source in a small room goes much further than one in a big hall.</li>
+      <li>Warm clothes count: parkas and tribalwear widen the range a colonist can work in comfortably.</li>
+      <li>In heat waves, an unroofed area or a room dug into a mountain can be noticeably cooler.</li>
+    </tips>
+  </ColonyCouncil.AdvisorSignalDef>
+
+  <ColonyCouncil.AdvisorSignalDef>
+    <defName>Council_Adv_Defense</defName>
+    <label>defences</label>
+    <workerClass>ColonyCouncil.AdvisorWorker_Defense</workerClass>
+    <category>Defense</category>
+    <importance>1.2</importance>
+    <tips>
+      <li>Raids scale with colony wealth. Getting richer without getting stronger is the classic mid-game trap.</li>
+      <li>Cover matters more than numbers. Colonists behind sandbags or walls take far less damage than ones standing in the open.</li>
+      <li>Funnel attackers through a narrow approach covered by your shooters (and traps), so you choose where the fight happens.</li>
+      <li>Wealth includes everything: stockpiles, buildings, even art. Selling or using up surplus items lowers raid size.</li>
+      <li>This is a rough estimate: it counts fighters, weapons, turrets, traps and cover, not how clever your layout is.</li>
+    </tips>
+  </ColonyCouncil.AdvisorSignalDef>
+
+  <ColonyCouncil.AdvisorSignalDef>
+    <defName>Council_Adv_Medical</defName>
+    <label>medical care</label>
+    <workerClass>ColonyCouncil.AdvisorWorker_Medical</workerClass>
+    <category>Health</category>
+    <importance>1</importance>
+    <template>Council_Hospital</template>
+    <tips>
+      <li>Untreated wounds get infected. A doctor and some medicine turn a deadly wound into a few days of bed rest.</li>
+      <li>Medical beds in a clean room improve tend quality and lower infection chance. Clean floors matter more than you'd think.</li>
+      <li>Healroot can be grown for herbal medicine. It's weaker than industrial medicine, but far better than nothing.</li>
+    </tips>
+  </ColonyCouncil.AdvisorSignalDef>
+
+  <ColonyCouncil.AdvisorSignalDef>
+    <defName>Council_Adv_Power</defName>
+    <label>power</label>
+    <workerClass>ColonyCouncil.AdvisorWorker_Power</workerClass>
+    <category>Power</category>
+    <importance>0.9</importance>
+    <tips>
+      <li>Solar and wind are free but unreliable: night, calm days and eclipses all happen. Batteries smooth it out.</li>
+      <li>Solar flares shut down all electricity for a while. Keep important things (like freezers) well insulated so they ride it out.</li>
+      <li>Batteries can explode during rain, or catch fire from zzzt events. Keep them roofed, and away from things that burn.</li>
+    </tips>
+  </ColonyCouncil.AdvisorSignalDef>
+
+  <ColonyCouncil.AdvisorSignalDef>
+    <defName>Council_Adv_Recreation</defName>
+    <label>recreation</label>
+    <workerClass>ColonyCouncil.AdvisorWorker_Recreation</workerClass>
+    <category>Comfort</category>
+    <importance>0.8</importance>
+    <template>Council_RecRoom</template>
+    <tips>
+      <li>Colonists get bored of the same recreation. Several different kinds (social, gaming, cerebral and so on) keep their recreation need full.</li>
+      <li>As the colony gets richer, expectations rise and colonists want more variety.</li>
+      <li>A dedicated rec room with a few different games is one of the best long-term mood investments.</li>
+    </tips>
+  </ColonyCouncil.AdvisorSignalDef>
+
+  <ColonyCouncil.AdvisorSignalDef>
+    <defName>Council_Adv_Dining</defName>
+    <label>dining</label>
+    <workerClass>ColonyCouncil.AdvisorWorker_Dining</workerClass>
+    <category>Comfort</category>
+    <importance>0.8</importance>
+    <template>Council_DiningRoom</template>
+    <tips>
+      <li>Eating without a table gives a mood penalty at every meal. A table and chairs pay for themselves almost immediately.</li>
+      <li>An impressive dining room gives a mood bonus after every meal, and everyone eats three times a day.</li>
+    </tips>
+  </ColonyCouncil.AdvisorSignalDef>
+
+  <ColonyCouncil.AdvisorSignalDef>
+    <defName>Council_Adv_Mood</defName>
+    <label>mood</label>
+    <workerClass>ColonyCouncil.AdvisorWorker_Mood</workerClass>
+    <category>Comfort</category>
+    <importance>1.2</importance>
+    <tips>
+      <li>Below the break threshold colonists can snap: binges, sad wanders, or worse. Fix the biggest negative thought first.</li>
+      <li>Quick mood fixes: a good meal, recreation time, a nicer bedroom, a party, or simply giving someone a break from hard work.</li>
+      <li>Check the Needs tab: each thought shows exactly how much it moves mood, so you can see what matters most.</li>
+    </tips>
+  </ColonyCouncil.AdvisorSignalDef>
+
+  <ColonyCouncil.AdvisorSignalDef>
+    <defName>Council_Adv_Work</defName>
+    <label>work coverage</label>
+    <workerClass>ColonyCouncil.AdvisorWorker_WorkCoverage</workerClass>
+    <category>Work</category>
+    <importance>1</importance>
+    <tips>
+      <li>A job nobody is assigned to never happens. Check the Work tab after every new recruit or loss.</li>
+      <li>Colonists with a passion for a skill learn it faster and enjoy the work. Put people where their flames are.</li>
+    </tips>
+  </ColonyCouncil.AdvisorSignalDef>
+
+  <ColonyCouncil.AdvisorSignalDef>
+    <defName>Council_Adv_Deterioration</defName>
+    <label>storage</label>
+    <workerClass>ColonyCouncil.AdvisorWorker_Deterioration</workerClass>
+    <category>Work</category>
+    <importance>0.6</importance>
+    <template>Council_Storeroom</template>
+    <tips>
+      <li>Most items slowly fall apart when left outside under the open sky. A roofed stockpile stops that.</li>
+      <li>Shelves stack several items per cell and keep them off the floor, so they don't deteriorate.</li>
+    </tips>
+  </ColonyCouncil.AdvisorSignalDef>
+
+  <ColonyCouncil.AdvisorSignalDef>
+    <defName>Council_Adv_Research</defName>
+    <label>research</label>
+    <workerClass>ColonyCouncil.AdvisorWorker_Research</workerClass>
+    <category>Progress</category>
+    <importance>0.8</importance>
+    <tips>
+      <li>An idle research bench is wasted time. Even a slow project moves the colony forward.</li>
+      <li>The council suggests projects that fit your colony's era first. You can always choose your own on the Research tab.</li>
+    </tips>
+  </ColonyCouncil.AdvisorSignalDef>
+
+  <ColonyCouncil.AdvisorSignalDef>
+    <defName>Council_Adv_Ideas</defName>
+    <label>ideas</label>
+    <workerClass>ColonyCouncil.AdvisorWorker_Ideas</workerClass>
+    <category>Idea</category>
+    <importance>1</importance>
+    <tips>
+      <li>Ideas aren't problems, just directions you could take once the basics are covered.</li>
+      <li>A colony that only survives burns out. Comfort, beauty and purpose keep colonists going through the bad times.</li>
+    </tips>
+  </ColonyCouncil.AdvisorSignalDef>
+
+</Defs>

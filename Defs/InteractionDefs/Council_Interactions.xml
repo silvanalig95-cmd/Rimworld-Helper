@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Colonists with an open wish bring it up in conversation now and then.
+    These lines show up in the social log like any other conversation.
+  -->
+
+  <InteractionDef Name="Council_WishTalkBase" Abstract="True">
+    <workerClass>ColonyCouncil.InteractionWorker_TalkAboutWish</workerClass>
+    <symbol>ColonyCouncil/Symbols/Wish</symbol>
+    <initiatorXpGainSkill>Social</initiatorXpGainSkill>
+    <initiatorXpGainAmount>4</initiatorXpGainAmount>
+  </InteractionDef>
+
+  <InteractionDef ParentName="Council_WishTalkBase">
+    <defName>Council_Talk_Room</defName>
+    <label>talked about wanting a better room</label>
+    <logRulesInitiator>
+      <rulesStrings>
+        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] about [INITIATOR_possessive] dream of [dream].</li>
+        <li>r_logentry->[INITIATOR_nameDef] complained to [RECIPIENT_nameDef] about [gripe].</li>
+        <li>r_logentry->[INITIATOR_nameDef] described to [RECIPIENT_nameDef] exactly how [INITIATOR_pronoun] would arrange [INITIATOR_possessive] ideal room.</li>
+        <li>dream->a room with a door that actually closes</li>
+        <li>dream->a bedroom that feels like home</li>
+        <li>dream->waking up somewhere that isn't cramped and ugly</li>
+        <li>gripe->sleeping in the barracks</li>
+        <li>gripe->the state of [INITIATOR_possessive] bedroom</li>
+        <li>gripe->how bare [INITIATOR_possessive] room is</li>
+        <li>gripe->the snoring that echoes through the night</li>
+      </rulesStrings>
+    </logRulesInitiator>
+  </InteractionDef>
+
+  <InteractionDef ParentName="Council_WishTalkBase">
+    <defName>Council_Talk_Love</defName>
+    <label>talked about sharing a bed with their partner</label>
+    <logRulesInitiator>
+      <rulesStrings>
+        <li>r_logentry->[INITIATOR_nameDef] sighed to [RECIPIENT_nameDef] about sleeping apart from the one [INITIATOR_pronoun] loves.</li>
+        <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] whether a double bed was really too much to ask.</li>
+        <li>r_logentry->[INITIATOR_nameDef] confided in [RECIPIENT_nameDef] that [INITIATOR_pronoun] misses falling asleep next to [INITIATOR_possessive] partner.</li>
+      </rulesStrings>
+    </logRulesInitiator>
+  </InteractionDef>
+
+  <InteractionDef ParentName="Council_WishTalkBase">
+    <defName>Council_Talk_Comfort</defName>
+    <label>grumbled about everyday comforts</label>
+    <logRulesInitiator>
+      <rulesStrings>
+        <li>r_logentry->[INITIATOR_nameDef] grumbled to [RECIPIENT_nameDef] about [gripe].</li>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] agreed that [gripe] is no way to live.</li>
+        <li>gripe->eating meals off [INITIATOR_possessive] knees</li>
+        <li>gripe->freezing half to death every night</li>
+        <li>gripe->sweating through [INITIATOR_possessive] bedroll every night</li>
+        <li>gripe->wearing rags held together by hope</li>
+        <li>gripe->the clothes [INITIATOR_pronoun] pulled off a dead raider</li>
+      </rulesStrings>
+    </logRulesInitiator>
+  </InteractionDef>
+
+  <InteractionDef ParentName="Council_WishTalkBase">
+    <defName>Council_Talk_Fun</defName>
+    <label>talked about wanting something fun</label>
+    <logRulesInitiator>
+      <rulesStrings>
+        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] that if [INITIATOR_pronoun] has to watch one more cloud, [INITIATOR_pronoun] will scream.</li>
+        <li>r_logentry->[INITIATOR_nameDef] daydreamed aloud to [RECIPIENT_nameDef] about [fun].</li>
+        <li>r_logentry->[INITIATOR_nameDef] tried to convince [RECIPIENT_nameDef] that the colony needs [fun].</li>
+        <li>fun->a game of chess by the fire</li>
+        <li>fun->a cold mug of beer after a long day</li>
+        <li>fun->a beautiful sculpture to look at over dinner</li>
+        <li>fun->anything at all to do in the evenings</li>
+      </rulesStrings>
+    </logRulesInitiator>
+  </InteractionDef>
+
+  <InteractionDef ParentName="Council_WishTalkBase">
+    <defName>Council_Talk_Food</defName>
+    <label>talked about wanting better food</label>
+    <logRulesInitiator>
+      <rulesStrings>
+        <li>r_logentry->[INITIATOR_nameDef] described [food] to [RECIPIENT_nameDef] in loving detail.</li>
+        <li>r_logentry->[INITIATOR_nameDef] complained to [RECIPIENT_nameDef] about [gripe].</li>
+        <li>food->a proper hot meal</li>
+        <li>food->a meal with actual seasoning</li>
+        <li>food->a stew so good it makes you forget the raiders</li>
+        <li>gripe->eating raw berries like a squirrel</li>
+        <li>gripe->watching the harvest rot</li>
+        <li>gripe->the smell coming from the food stockpile</li>
+      </rulesStrings>
+    </logRulesInitiator>
+  </InteractionDef>
+
+  <InteractionDef ParentName="Council_WishTalkBase">
+    <defName>Council_Talk_Work</defName>
+    <label>talked about the work they love</label>
+    <logRulesInitiator>
+      <rulesStrings>
+        <li>r_logentry->[INITIATOR_nameDef] lit up while telling [RECIPIENT_nameDef] about the work [INITIATOR_pronoun] loves.</li>
+        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] [INITIATOR_pronoun] could do so much more with a proper workspace.</li>
+        <li>r_logentry->[INITIATOR_nameDef] sketched plans for a workspace in the dirt for [RECIPIENT_nameDef].</li>
+        <li>r_logentry->[INITIATOR_nameDef] admitted to [RECIPIENT_nameDef] that [INITIATOR_pronoun] misses doing the work [INITIATOR_pronoun] is good at.</li>
+      </rulesStrings>
+    </logRulesInitiator>
+  </InteractionDef>
+
+  <InteractionDef ParentName="Council_WishTalkBase">
+    <defName>Council_Talk_Grief</defName>
+    <label>talked about someone who died</label>
+    <logRulesInitiator>
+      <rulesStrings>
+        <li>r_logentry->[INITIATOR_nameDef] quietly told [RECIPIENT_nameDef] that the dead deserve a proper grave.</li>
+        <li>r_logentry->[INITIATOR_nameDef] shared a memory of a lost friend with [RECIPIENT_nameDef].</li>
+        <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] to help bury someone who still lies out in the open.</li>
+      </rulesStrings>
+    </logRulesInitiator>
+  </InteractionDef>
+
+  <InteractionDef ParentName="Council_WishTalkBase">
+    <defName>Council_Talk_Body</defName>
+    <label>talked about a missing body part</label>
+    <logRulesInitiator>
+      <rulesStrings>
+        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] how hard everyday things have become since [INITIATOR_pronoun] was maimed.</li>
+        <li>r_logentry->[INITIATOR_nameDef] joked darkly with [RECIPIENT_nameDef] about [INITIATOR_possessive] missing body part.</li>
+        <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] whether anyone in the colony could make [INITIATOR_objective] a replacement part.</li>
+      </rulesStrings>
+    </logRulesInitiator>
+  </InteractionDef>
+
+  <InteractionDef ParentName="Council_WishTalkBase">
+    <defName>Council_Talk_Animals</defName>
+    <label>talked about taming an animal</label>
+    <logRulesInitiator>
+      <rulesStrings>
+        <li>r_logentry->[INITIATOR_nameDef] pointed out a wild animal to [RECIPIENT_nameDef] and said it would make a fine companion.</li>
+        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] a long story about an animal [INITIATOR_pronoun] once raised.</li>
+        <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] whether the colony could use another four-legged member.</li>
+      </rulesStrings>
+    </logRulesInitiator>
+  </InteractionDef>
+
+  <InteractionDef ParentName="Council_WishTalkBase">
+    <defName>Council_Talk_Safety</defName>
+    <label>talked about the colony's defences</label>
+    <logRulesInitiator>
+      <rulesStrings>
+        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] [INITIATOR_pronoun] doesn't feel safe with the defences the way they are.</li>
+        <li>r_logentry->[INITIATOR_nameDef] walked [RECIPIENT_nameDef] along the perimeter, pointing out every weak spot.</li>
+        <li>r_logentry->[INITIATOR_nameDef] argued with [RECIPIENT_nameDef] about how to hold off the next raid.</li>
+        <li>r_logentry->[INITIATOR_nameDef] complained to [RECIPIENT_nameDef] about having to fight raiders with junk.</li>
+      </rulesStrings>
+    </logRulesInitiator>
+  </InteractionDef>
+
+  <InteractionDef ParentName="Council_WishTalkBase">
+    <defName>Council_Talk_Status</defName>
+    <label>talked about the dignity of their title</label>
+    <logRulesInitiator>
+      <rulesStrings>
+        <li>r_logentry->[INITIATOR_nameDef] lectured [RECIPIENT_nameDef] on what a person of [INITIATOR_possessive] station requires.</li>
+        <li>r_logentry->[INITIATOR_nameDef] lamented to [RECIPIENT_nameDef] that [INITIATOR_possessive] quarters are an insult to [INITIATOR_possessive] title.</li>
+      </rulesStrings>
+    </logRulesInitiator>
+  </InteractionDef>
+
+  <InteractionDef ParentName="Council_WishTalkBase">
+    <defName>Council_Talk_Child</defName>
+    <label>asked for somewhere to learn and play</label>
+    <logRulesInitiator>
+      <rulesStrings>
+        <li>r_logentry->[INITIATOR_nameDef] tugged at [RECIPIENT_nameDef]'s sleeve and asked for somewhere to play.</li>
+        <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] a hundred questions about why there's no school here.</li>
+      </rulesStrings>
+    </logRulesInitiator>
+  </InteractionDef>
+
+  <!-- The proposer of the current ambition keeps talking it up. -->
+
+  <InteractionDef>
+    <defName>Council_Talk_Ambition</defName>
+    <label>talked about the colony's ambition</label>
+    <workerClass>ColonyCouncil.InteractionWorker_TalkAboutAmbition</workerClass>
+    <symbol>ColonyCouncil/Symbols/Ambition</symbol>
+    <initiatorXpGainSkill>Social</initiatorXpGainSkill>
+    <initiatorXpGainAmount>6</initiatorXpGainAmount>
+    <logRulesInitiator>
+      <rulesStrings>
+        <li>r_logentry->[INITIATOR_nameDef] talked [RECIPIENT_nameDef] through the council's plan, step by step.</li>
+        <li>r_logentry->[INITIATOR_nameDef] tried to fire up [RECIPIENT_nameDef] about the colony's big goal.</li>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] argued about how to reach the council's goal fastest.</li>
+        <li>r_logentry->[INITIATOR_nameDef] reminded [RECIPIENT_nameDef] what the council decided, in case [RECIPIENT_pronoun] forgot.</li>
+      </rulesStrings>
+    </logRulesInitiator>
+  </InteractionDef>
+
+</Defs>

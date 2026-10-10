@@ -107,19 +107,6 @@ namespace ColonyCouncil
             return null;
         }
 
-        public IEnumerable<ChronicleEntry> RecentFor(Pawn p, float days)
-        {
-            if (p == null) yield break;
-            string id = p.ThingID;
-            int since = Find.TickManager.TicksGame - (int)(days * GenDate.TicksPerDay);
-            for (int i = chronicle.Count - 1; i >= 0; i--)
-            {
-                var e = chronicle[i];
-                if (e.tick < since) yield break;
-                if (e.pawnId == id) yield return e;
-            }
-        }
-
         public void AddChronicle(ChronicleEntry entry)
         {
             chronicle.Add(entry);
@@ -181,6 +168,8 @@ namespace ColonyCouncil
         public Wish TryGenerateWish(bool force, Pawn onlyFrom = null)
         {
             var s = Settings;
+            // Let a new colony settle in before anyone starts asking for things.
+            if (!force && Find.TickManager.TicksGame < GenDate.TicksPerDay * 3) return null;
             if (!force && !Rand.Chance(1f / (Mathf.Max(0.25f, s.daysBetweenWishes) * 24f))) return null;
             if (OpenWishes.Count() >= s.maxOpenWishes && !force) return null;
 
@@ -342,9 +331,7 @@ namespace ColonyCouncil
 
             Speak(w.pawn, w.quote, new Color(1f, 0.92f, 0.6f));
             AddChronicle(new ChronicleEntry(ChronicleKind.WishMade,
-                "CC_Chronicle_WishMade".Translate(w.pawn.LabelShort, w.Label, w.reason ?? "").Resolve(), w.pawn,
-                "asked for: " + w.Worker.RimTalkTopic(w)));
-            RimTalkBridge.OnWishVoiced(w);
+                "CC_Chronicle_WishMade".Translate(w.pawn.LabelShort, w.Label, w.reason ?? "").Resolve(), w.pawn));
         }
 
         public string DescribeForLetter(Wish w)
@@ -390,6 +377,14 @@ namespace ColonyCouncil
                     continue;
                 }
                 w.coSigners.RemoveAll(p => !StillColonist(p));
+
+                // Away in a caravan or on another expedition: nothing to check until they're home.
+                var home = w.Beneficiary.MapHeld;
+                if (home == null || !home.IsPlayerHome)
+                {
+                    if (now >= w.expiresTick) Expire(w);
+                    continue;
+                }
 
                 bool valid, fulfilled;
                 try
@@ -446,8 +441,7 @@ namespace ColonyCouncil
 
             Speak(who, thanks, new Color(0.6f, 1f, 0.6f));
             AddChronicle(new ChronicleEntry(ChronicleKind.WishGranted,
-                "CC_Chronicle_WishGranted".Translate(who.LabelShort, w.Label).Resolve(), who, "had a wish granted: " + w.Worker.RimTalkTopic(w)));
-            RimTalkBridge.OnWishGranted(w, thanks);
+                "CC_Chronicle_WishGranted".Translate(who.LabelShort, w.Label).Resolve(), who));
 
             foreach (var p in w.Supporters) SetCooldown(p, w.def);
             SetCooldown(who, w.def);
@@ -470,7 +464,7 @@ namespace ColonyCouncil
                 new LookTargets(w.pawn), MessageTypeDefOf.NeutralEvent, false);
             if (w.pawn.Spawned) Speak(w.pawn, line, new Color(0.8f, 0.8f, 0.85f));
             AddChronicle(new ChronicleEntry(ChronicleKind.WishExpired,
-                "CC_Chronicle_WishExpired".Translate(w.pawn.LabelShort, w.Label).Resolve(), w.pawn, "a wish went unanswered: " + w.Worker.RimTalkTopic(w)));
+                "CC_Chronicle_WishExpired".Translate(w.pawn.LabelShort, w.Label).Resolve(), w.pawn));
             foreach (var p in w.Supporters) SetCooldown(p, w.def, 1.5f);
             w.state = WishState.Expired;
         }
@@ -480,7 +474,7 @@ namespace ColonyCouncil
         {
             if (w == null || w.state != WishState.Open) return;
             AddChronicle(new ChronicleEntry(ChronicleKind.WishDismissed,
-                "CC_Chronicle_WishDismissed".Translate(w.pawn.LabelShort, w.Label).Resolve(), w.pawn, "was told 'not now' about: " + w.Worker.RimTalkTopic(w)));
+                "CC_Chronicle_WishDismissed".Translate(w.pawn.LabelShort, w.Label).Resolve(), w.pawn));
             foreach (var p in w.Supporters) SetCooldown(p, w.def, 2f);
             w.state = WishState.Dismissed;
             wishes.Remove(w);
@@ -506,7 +500,7 @@ namespace ColonyCouncil
                 new LookTargets(p), MessageTypeDefOf.NeutralEvent, false);
             Speak(p, speech, new Color(1f, 0.92f, 0.6f));
             AddChronicle(new ChronicleEntry(ChronicleKind.Petition,
-                "CC_Chronicle_Petition".Translate(p.LabelShort, w.pawn.LabelShort, w.Label).Resolve(), p, "backed a petition for: " + w.Worker.RimTalkTopic(w)));
+                "CC_Chronicle_Petition".Translate(p.LabelShort, w.pawn.LabelShort, w.Label).Resolve(), p));
         }
 
         // ================= Effects =================

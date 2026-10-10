@@ -1,0 +1,462 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!-- ===================== General ===================== -->
+  <CC_And>and</CC_And>
+  <CC_Yes>yes</CC_Yes>
+  <CC_No>no</CC_No>
+  <CC_Days>{0} days</CC_Days>
+  <CC_Hours>{0} hours</CC_Hours>
+  <CC_DayN>Day {0}</CC_DayN>
+  <CC_Today>today</CC_Today>
+  <CC_DaysAgo>{0}d ago</CC_DaysAgo>
+  <CC_Why>Why</CC_Why>
+  <CC_WhyItMatters>Why it matters</CC_WhyItMatters>
+  <CC_FulfilledWhen>Fulfilled when</CC_FulfilledWhen>
+  <CC_Reward>Reward</CC_Reward>
+  <CC_Expires>Expires in</CC_Expires>
+  <CC_Progress>Progress</CC_Progress>
+  <CC_SeeCouncilTab>See the Council tab for details.</CC_SeeCouncilTab>
+  <CC_Show>Show me</CC_Show>
+  <CC_PlanIt>Plan the room</CC_PlanIt>
+  <CC_BuildThing>Build {0}</CC_BuildThing>
+  <CC_NotNow>Not now</CC_NotNow>
+  <CC_NotNow_Tip>Politely set this wish aside. No mood penalty. They won't ask for the same thing again for a while.</CC_NotNow_Tip>
+  <CC_Refresh>Ask the council again</CC_Refresh>
+  <CC_NoGame>Start or load a game to hear from the council.</CC_NoGame>
+  <CC_NoHomeMap>The council meets in your home settlement. Open a colony map to see its advice.</CC_NoHomeMap>
+  <CC_Era>Era: {0}. Electricity: {1}. Advice only suggests things your colony can actually build.</CC_Era>
+
+  <CC_Tone_Plain>plain</CC_Tone_Plain>
+  <CC_Tone_Warm>warm</CC_Tone_Warm>
+  <CC_Tone_Blunt>blunt</CC_Tone_Blunt>
+  <CC_Tone_Cheerful>cheerful</CC_Tone_Cheerful>
+  <CC_Tone_Gloomy>gloomy</CC_Tone_Gloomy>
+  <CC_Tone_Cold>cold</CC_Tone_Cold>
+
+  <!-- ===================== Tabs ===================== -->
+  <CC_Tab_Priorities>Priorities</CC_Tab_Priorities>
+  <CC_Tab_Wishes>Wishes ({0})</CC_Tab_Wishes>
+  <CC_Tab_Ambition>Ambition</CC_Tab_Ambition>
+  <CC_Tab_Build>Room plans</CC_Tab_Build>
+  <CC_Tab_Chronicle>Chronicle</CC_Tab_Chronicle>
+
+  <!-- ===================== Priorities ===================== -->
+  <CC_Priorities_Header>What the colony needs</CC_Priorities_Header>
+  <CC_Priorities_AllGood>Nothing pressing right now. The council is pleasantly bored. Check the Ambition tab for something to work towards.</CC_Priorities_AllGood>
+  <CC_AdvisorDisabled>The advisor is switched off in the mod settings.</CC_AdvisorDisabled>
+  <CC_Level_Critical>Urgent</CC_Level_Critical>
+  <CC_Level_High>Important</CC_Level_High>
+  <CC_Level_Medium>Worth doing</CC_Level_Medium>
+  <CC_Level_Low>Minor</CC_Level_Low>
+  <CC_Level_Idea>Idea</CC_Level_Idea>
+  <CC_Cat_Shelter>Shelter</CC_Cat_Shelter>
+  <CC_Cat_Food>Food</CC_Cat_Food>
+  <CC_Cat_Temperature>Temperature</CC_Cat_Temperature>
+  <CC_Cat_Defense>Defence</CC_Cat_Defense>
+  <CC_Cat_Health>Health</CC_Cat_Health>
+  <CC_Cat_Power>Power</CC_Cat_Power>
+  <CC_Cat_Comfort>Comfort</CC_Cat_Comfort>
+  <CC_Cat_Work>Work</CC_Cat_Work>
+  <CC_Cat_Progress>Progress</CC_Cat_Progress>
+  <CC_Cat_Idea>Direction</CC_Cat_Idea>
+
+  <!-- Advisor: shelter -->
+  <CC_Adv_NoBeds_Title>{0} colonist(s) have no bed</CC_Adv_NoBeds_Title>
+  <CC_Adv_NoBeds_Detail>{0} sleep on the ground. Even {1} would stop the nightly mood penalty.</CC_Adv_NoBeds_Detail>
+  <CC_Adv_Barracks_Title>{0} colonist(s) still in the barracks</CC_Adv_Barracks_Title>
+  <CC_Adv_Barracks_Detail>{0} would sleep better (and be happier) in rooms of their own.</CC_Adv_Barracks_Detail>
+
+  <!-- Advisor: food -->
+  <CC_Adv_FoodLow_Title>Food runs out in about {0} days</CC_Adv_FoodLow_Title>
+  <CC_Adv_FoodLow_Detail>Hunt, forage, harvest anything ripe, or buy food from traders. Cooking meals stretches raw food further than eating it raw.</CC_Adv_FoodLow_Detail>
+  <CC_Adv_Winter_Title>The growing season ends in about {0} days</CC_Adv_Winter_Title>
+  <CC_Adv_WinterNow_Title>Lean season: about {0} days until crops grow again</CC_Adv_WinterNow_Title>
+  <CC_Adv_Winter_Detail>You have about {0} days of food. To get through the {2}-day cold spell you'll want around {1}.</CC_Adv_Winter_Detail>
+  <CC_Adv_Winter_Hydro>A greenhouse with {0} would let you grow food all year.</CC_Adv_Winter_Hydro>
+  <CC_Adv_Winter_NoHydro>Plant more now, hunt before the animals migrate, and trade for food.</CC_Adv_Winter_NoHydro>
+  <CC_Adv_Freezer_Title>Food is spoiling without a freezer</CC_Adv_Freezer_Title>
+  <CC_Adv_Freezer_Detail>{0} pieces of perishable food are stored warm. A closed room kept below freezing with {1} keeps it fresh.</CC_Adv_Freezer_Detail>
+  <CC_Adv_Spoil_Title>Food is spoiling</CC_Adv_Spoil_Title>
+  <CC_Adv_Spoil_Detail>{0} pieces of perishable food are stored warm. Eat perishables first, store food in the coldest room you have, and don't overstock raw food in summer.</CC_Adv_Spoil_Detail>
+  <CC_Adv_Spoil_Preserve>{0} pieces of perishable food are stored warm. Turn surplus into {1}, which keeps far longer, and eat perishables first.</CC_Adv_Spoil_Preserve>
+
+  <!-- Advisor: temperature -->
+  <CC_Adv_Cold_Title>Cold months ahead (down to {0})</CC_Adv_Cold_Title>
+  <CC_Adv_Cold_Detail>You have {0} heat source(s). Plan {1} for the bedrooms and workrooms before the cold arrives.</CC_Adv_Cold_Detail>
+  <CC_Adv_WarmClothes_Title>{0} colonist(s) aren't dressed for the cold</CC_Adv_WarmClothes_Title>
+  <CC_Adv_WarmClothes_Detail>{0} will be uncomfortable at {1}. Make warmer clothes (parkas, tribalwear, dusters) before then.</CC_Adv_WarmClothes_Detail>
+  <CC_Adv_Hot_Title>Hot months ahead (up to {0})</CC_Adv_Hot_Title>
+  <CC_Adv_Hot_Detail>You have {0} cooler(s). Plan {1} for the bedrooms to prevent heatstroke.</CC_Adv_Hot_Detail>
+
+  <!-- Advisor: defence -->
+  <CC_Adv_Defense_Title>Defences could be stronger</CC_Adv_Defense_Title>
+  <CC_Adv_Defense_TitleBad>Your defences may not hold the next raid</CC_Adv_Defense_TitleBad>
+  <CC_Adv_Defense_Detail>Raids are currently worth about {0} points. You have {1} fighter(s), {2} turret(s), {3} trap(s) and {4} pieces of cover.</CC_Adv_Defense_Detail>
+  <CC_Adv_Defense_Growth>Colony wealth grew {0} in the last 15 days, so raids will grow too.</CC_Adv_Defense_Growth>
+  <CC_Adv_Defense_Suggest>Next step: about {0} more {1}, placed where raiders approach.</CC_Adv_Defense_Suggest>
+  <CC_Adv_Defense_SuggestTrain>Next step: better weapons and some shooting practice.</CC_Adv_Defense_SuggestTrain>
+
+  <!-- Advisor: health -->
+  <CC_Adv_NoDoctor_Title>Nobody is assigned to doctoring</CC_Adv_NoDoctor_Title>
+  <CC_Adv_NoDoctor_Detail>Enable Doctor in the Work tab for at least one colonist, ideally your best at Medicine.</CC_Adv_NoDoctor_Detail>
+  <CC_Adv_Medicine_Title>Only {0} medicine in stock</CC_Adv_Medicine_Title>
+  <CC_Adv_Medicine_Detail>Buy medicine from traders, or research how to make it. Even a few doses save lives.</CC_Adv_Medicine_Detail>
+  <CC_Adv_Medicine_Grow>Grow {0} to make herbal medicine, and buy better medicine when traders visit.</CC_Adv_Medicine_Grow>
+  <CC_Adv_Hospital_Title>No medical beds</CC_Adv_Hospital_Title>
+  <CC_Adv_Hospital_Detail>After one bad raid, the injured will lie wherever they fall. A small hospital (a few beds set to "medical") is a lifesaver.</CC_Adv_Hospital_Detail>
+
+  <!-- Advisor: power -->
+  <CC_Adv_PowerShort_Title>The power grid is running out</CC_Adv_PowerShort_Title>
+  <CC_Adv_PowerShort_Detail>The grid uses about {0} W more than it produces and the batteries are nearly empty. Add generators or switch things off.</CC_Adv_PowerShort_Detail>
+  <CC_Adv_SolarOnly_Title>Solar-only grid without batteries</CC_Adv_SolarOnly_Title>
+  <CC_Adv_SolarOnly_Detail>Every night (and every eclipse) the power goes out. Batteries or a second kind of generator fix that.</CC_Adv_SolarOnly_Detail>
+  <CC_Adv_NoBattery_Title>No batteries on the grid</CC_Adv_NoBattery_Title>
+  <CC_Adv_NoBattery_Detail>Batteries store surplus power for when generators dip. Handy for freezers.</CC_Adv_NoBattery_Detail>
+  <CC_Adv_NoPower_Title>The colony has electricity research but no power</CC_Adv_NoPower_Title>
+  <CC_Adv_NoPower_Detail>Something like {0} would power lights, better workbenches and coolers.</CC_Adv_NoPower_Detail>
+
+  <!-- Advisor: comfort -->
+  <CC_Adv_Rec_Title>Recreation is thin ({0} kinds, colonists want {1})</CC_Adv_Rec_Title>
+  <CC_Adv_Rec_Detail>Average recreation is at {0}.</CC_Adv_Rec_Detail>
+  <CC_Adv_Rec_Suggest>Adding {0} would give them something new ({1}).</CC_Adv_Rec_Suggest>
+  <CC_Adv_Dining_Title>No proper place to eat</CC_Adv_Dining_Title>
+  <CC_Adv_Dining_Detail>Colonists eat without a table and lose mood at every meal. Put {0} and some chairs in a room.</CC_Adv_Dining_Detail>
+  <CC_Adv_Mood_Title>{0} colonist(s) close to breaking</CC_Adv_Mood_Title>
+  <CC_Adv_Mood_Line>{0}: {1} ({2})</CC_Adv_Mood_Line>
+
+  <!-- Advisor: work -->
+  <CC_Adv_Work_Title>{0} important job(s) nobody does</CC_Adv_Work_Title>
+  <CC_Adv_Work_Detail>Nobody is assigned to {0}. Check the Work tab.</CC_Adv_Work_Detail>
+  <CC_Adv_Rot_Title>{0} stacks deteriorating outside</CC_Adv_Rot_Title>
+  <CC_Adv_Rot_Detail>Items left under the open sky slowly fall apart. Put a roof over your stockpile.</CC_Adv_Rot_Detail>
+  <CC_Adv_Rot_DetailShelf>Items left under the open sky slowly fall apart. A roofed room with some shelving ({0}) fixes it.</CC_Adv_Rot_DetailShelf>
+
+  <!-- Advisor: progress -->
+  <CC_Adv_Research_Title>The research bench is idle</CC_Adv_Research_Title>
+  <CC_Adv_Research_Detail>Suggested next project for your era: {0} (cost {1}).</CC_Adv_Research_Detail>
+
+  <!-- Advisor: ideas -->
+  <CC_Idea_RecRoom_Title>Idea: a room just for fun</CC_Idea_RecRoom_Title>
+  <CC_Idea_RecRoom_Detail>A dedicated recreation room gives a mood bonus every time someone relaxes there.</CC_Idea_RecRoom_Detail>
+  <CC_Idea_Dining_Title>Idea: dress up the dining room</CC_Idea_Dining_Title>
+  <CC_Idea_Dining_Detail>A more impressive dining room gives a mood boost after every meal. Floors, art and good furniture help.</CC_Idea_Dining_Detail>
+  <CC_Idea_Barn_Title>Idea: give the animals a barn</CC_Idea_Barn_Title>
+  <CC_Idea_Barn_Detail>Animals sleeping outside get cold and sick. A barn with sleeping spots keeps them healthy.</CC_Idea_Barn_Detail>
+  <CC_Idea_Era_Title>Idea: the next step forward</CC_Idea_Era_Title>
+  <CC_Idea_Era_Detail>Your colony is settled. Research like {0} opens new possibilities.</CC_Idea_Era_Detail>
+  <CC_Idea_Empire_Title>Idea: friends in high places</CC_Idea_Empire_Title>
+  <CC_Idea_Empire_Detail>The Empire hands out titles for favours. A noble colonist brings powerful perks, and expensive tastes.</CC_Idea_Empire_Detail>
+
+  <!-- ===================== Wishes ===================== -->
+  <CC_Wishes_Header>What your colonists wish for</CC_Wishes_Header>
+  <CC_Wishes_None>Nobody is asking for anything right now. Enjoy it while it lasts.</CC_Wishes_None>
+  <CC_Wishes_Recent>Recently</CC_Wishes_Recent>
+  <CC_WishesDisabled>Wishes are switched off in the mod settings.</CC_WishesDisabled>
+  <CC_Listen>Listen to the colonists</CC_Listen>
+  <CC_Listen_Tip>Ask around. If anyone has a wish, they'll speak up now. (Once a day.)</CC_Listen_Tip>
+  <CC_Listen_Cooldown>You already asked today. Give them some time.</CC_Listen_Cooldown>
+  <CC_Listen_Nothing>You asked around, but nobody wants anything right now.</CC_Listen_Nothing>
+  <CC_Stakes_Short_Gentle>Gentle mode: granted wishes lift mood, ignored ones cost nothing.</CC_Stakes_Short_Gentle>
+  <CC_Stakes_Short_Demanding>Demanding mode: granted wishes lift mood, expired ones sting a little.</CC_Stakes_Short_Demanding>
+  <CC_Stakes_Short_AdvisorOnly>Advisor-only mode: wishes are suggestions, with no mood effects.</CC_Stakes_Short_AdvisorOnly>
+  <CC_WishHeader>{0} wishes for: {1}</CC_WishHeader>
+  <CC_WishHeaderForOther>{0} asks on behalf of {1}: {2}</CC_WishHeaderForOther>
+  <CC_WishLetterTitle>{PAWN_labelShort}'s wish: {WISH}</CC_WishLetterTitle>
+  <CC_WishLetterTitleForOther>{PAWN_labelShort} speaks up for {FOR_labelShort}</CC_WishLetterTitleForOther>
+  <CC_WishGrantedTitle>Wish granted: {PAWN_labelShort}, {WISH}</CC_WishGrantedTitle>
+  <CC_WishExpiredTitle>{PAWN_labelShort} gave up on {WISH}</CC_WishExpiredTitle>
+  <CC_ForOtherFallback>{FOR_nameDef} could really use this: {WISH}. Could we see to it?</CC_ForOtherFallback>
+  <CC_ThanksFallback>Thank you. Really.</CC_ThanksFallback>
+  <CC_ExpiredFallback>Never mind. It doesn't matter.</CC_ExpiredFallback>
+  <CC_InspirationReason>{PAWN_nameDef} is inspired now that {PAWN_possessive} wish ({WISH}) has come true.</CC_InspirationReason>
+  <CC_Petition>Also wanted by: {0} (a petition)</CC_Petition>
+  <CC_PetitionGranted>The petition is answered. {0} are pleased too.</CC_PetitionGranted>
+  <CC_PetitionJoined>{PAWN_labelShort} backs {OTHER_labelShort}'s wish: {WISH} ({COUNT} colonists now)</CC_PetitionJoined>
+  <CC_CoSignLine_Plain>I'm with {PAWN_nameDef} on this one.</CC_CoSignLine_Plain>
+  <CC_CoSignLine_Warm>{PAWN_nameDef} is right, you know. I'd love that too.</CC_CoSignLine_Warm>
+  <CC_CoSignLine_Blunt>Listen to {PAWN_nameDef}. For once.</CC_CoSignLine_Blunt>
+  <CC_CoSignLine_Cheerful>Ooh, yes! What {PAWN_nameDef} said!</CC_CoSignLine_Cheerful>
+  <CC_CoSignLine_Gloomy>{PAWN_nameDef} asked. I'm asking too. Not that it'll help.</CC_CoSignLine_Gloomy>
+  <CC_CoSignLine_Cold>{PAWN_nameDef}'s request is sensible. I support it.</CC_CoSignLine_Cold>
+  <CC_RewardMood>{0} mood for {1} days</CC_RewardMood>
+  <CC_RewardInspiration>{0} chance of inspiration</CC_RewardInspiration>
+  <CC_RewardSmall>a happier colonist</CC_RewardSmall>
+  <CC_RewardNone>none (advisor-only mode)</CC_RewardNone>
+
+  <!-- Wish chronicle -->
+  <CC_Chronicle_WishMade>{0} wished for {1}. ({2})</CC_Chronicle_WishMade>
+  <CC_Chronicle_WishGranted>{0}'s wish came true: {1}.</CC_Chronicle_WishGranted>
+  <CC_Chronicle_WishExpired>{0} gave up waiting for {1}.</CC_Chronicle_WishExpired>
+  <CC_Chronicle_WishDismissed>{0} was told "not now" about {1}.</CC_Chronicle_WishDismissed>
+  <CC_Chronicle_Petition>{0} backed {1}'s wish for {2}.</CC_Chronicle_Petition>
+
+  <!-- Wish reasons -->
+  <CC_Reason_NoBed>{PAWN_nameDef} has no bed and sleeps wherever {PAWN_pronoun} drops.</CC_Reason_NoBed>
+  <CC_Reason_SleepsOutside>{PAWN_nameDef}'s bed isn't even inside a room.</CC_Reason_SleepsOutside>
+  <CC_Reason_Barracks>{PAWN_nameDef} sleeps in a shared room.</CC_Reason_Barracks>
+  <CC_Reason_Jealous>{PAWN_nameDef} is jealous: someone else has a nicer bedroom.</CC_Reason_Jealous>
+  <CC_Reason_Greedy>{PAWN_nameDef} is greedy and wants a bedroom that shows it.</CC_Reason_Greedy>
+  <CC_Reason_HighExpectations>The colony is doing well, and {PAWN_nameDef}'s expectations have risen with it.</CC_Reason_HighExpectations>
+  <CC_Reason_Cramped>{PAWN_nameDef}'s bedroom is {1}.</CC_Reason_Cramped>
+  <CC_Reason_SleepApart>{PAWN_nameDef} and {OTHER_nameDef} are partners but sleep in different beds.</CC_Reason_SleepApart>
+  <CC_Reason_BareRoom>{PAWN_nameDef}'s room is bare and {PAWN_pronoun} expects a bit more these days.</CC_Reason_BareRoom>
+  <CC_Reason_NightOwl>{PAWN_nameDef} is a night owl and spends a lot of time awake in the dark.</CC_Reason_NightOwl>
+  <CC_Reason_Dark>{PAWN_nameDef} keeps ending up in the dark and hates it.</CC_Reason_Dark>
+  <CC_Reason_SleptCold>{PAWN_nameDef} slept in the cold recently.</CC_Reason_SleptCold>
+  <CC_Reason_SleptHot>{PAWN_nameDef} slept in sweltering heat recently.</CC_Reason_SleptHot>
+  <CC_Reason_AteWithoutTable>{PAWN_nameDef} had to eat without a table.</CC_Reason_AteWithoutTable>
+  <CC_Reason_Bored>{PAWN_nameDef} is bored: the colony has {1} kinds of recreation, {PAWN_pronoun} wants {2}.</CC_Reason_Bored>
+  <CC_Reason_Greenery>{PAWN_nameDef} loves growing things.</CC_Reason_Greenery>
+  <CC_Reason_Passion>{SKILL} is {PAWN_nameDef}'s {PASSION}, but the colony has no proper place for it.</CC_Reason_Passion>
+  <CC_PassionBurning>burning passion</CC_PassionBurning>
+  <CC_PassionInterested>passion</CC_PassionInterested>
+  <CC_Reason_WorkOff>{PAWN_nameDef} is passionate about {SKILL}, but {WORK} is switched off for {PAWN_objective}.</CC_Reason_WorkOff>
+  <CC_Reason_Artist>{PAWN_nameDef} is an artist at heart.</CC_Reason_Artist>
+  <CC_Reason_BlandWalls>{PAWN_nameDef} finds the common rooms drab.</CC_Reason_BlandWalls>
+  <CC_Reason_Brawler>{PAWN_nameDef} is a brawler and hates being stuck with a ranged weapon.</CC_Reason_Brawler>
+  <CC_Reason_Fighter>{PAWN_nameDef} lives to fight and wants a weapon worthy of it.</CC_Reason_Fighter>
+  <CC_Reason_Chemical>{PAWN_nameDef} has a chemical interest. Strong drink is a long-standing hobby.</CC_Reason_Chemical>
+  <CC_Reason_Gourmand>{PAWN_nameDef} is a gourmand.</CC_Reason_Gourmand>
+  <CC_Reason_AteRaw>{PAWN_nameDef} has been eating raw food or paste.</CC_Reason_AteRaw>
+  <CC_Reason_AteRotten>{PAWN_nameDef} just ate rotten food.</CC_Reason_AteRotten>
+  <CC_Reason_CookFreezer>{PAWN_nameDef} cooks, and watches the ingredients spoil.</CC_Reason_CookFreezer>
+  <CC_Reason_Clothes_dead>{PAWN_nameDef} is wearing clothes taken from the dead.</CC_Reason_Clothes_dead>
+  <CC_Reason_Clothes_tattered>{PAWN_nameDef}'s clothes are falling apart.</CC_Reason_Clothes_tattered>
+  <CC_Reason_Clothes_naked>{PAWN_nameDef} has nothing to wear.</CC_Reason_Clothes_naked>
+  <CC_Reason_DeadFamily>{OTHER_nameDef} ({2}) lies unburied.</CC_Reason_DeadFamily>
+  <CC_Reason_DeadFriend>{OTHER_nameDef}, someone {PAWN_nameDef} cared about, lies unburied.</CC_Reason_DeadFriend>
+  <CC_Reason_MissingPart>{PAWN_nameDef} lost {PAWN_possessive} {PART}, and a replacement is within the colony's reach.</CC_Reason_MissingPart>
+  <CC_Reason_AnimalLover>{PAWN_nameDef} loves animals, and there are {ANIMALS} roaming nearby.</CC_Reason_AnimalLover>
+  <CC_Reason_Unsafe>{PAWN_nameDef} has seen too much violence and doesn't feel safe.</CC_Reason_Unsafe>
+  <CC_Reason_Tactician>{PAWN_nameDef} is a fighter and sees weak spots in the colony's defences.</CC_Reason_Tactician>
+  <CC_Reason_RoyalBedroom>{PAWN_nameDef}'s title ({TITLE}) requires: {LIST}</CC_Reason_RoyalBedroom>
+  <CC_Reason_RoyalThrone>{PAWN_nameDef}'s title ({TITLE}) requires a throne room with: {LIST}</CC_Reason_RoyalThrone>
+  <CC_Reason_Child>{PAWN_nameDef} is a child and has nothing of {PAWN_possessive} own to learn or play with.</CC_Reason_Child>
+
+  <!-- Wish subjects -->
+  <CC_Warmth>warmth</CC_Warmth>
+  <CC_Coolness>cool air</CC_Coolness>
+  <CC_FineMeals>fine meals</CC_FineMeals>
+  <CC_ProperMeals>proper cooked meals</CC_ProperMeals>
+  <CC_RangedWeapon>ranged weapon</CC_RangedWeapon>
+  <CC_MeleeWeapon>melee weapon</CC_MeleeWeapon>
+  <CC_RoyalBedroom>bedroom</CC_RoyalBedroom>
+  <CC_RoyalThroneRoom>throne room</CC_RoyalThroneRoom>
+  <CC_DefKind_turret>turrets</CC_DefKind_turret>
+  <CC_DefKind_trap>traps</CC_DefKind_trap>
+  <CC_DefKind_cover>barricades and cover</CC_DefKind_cover>
+  <CC_SkillSpace_Crafting>a real workshop</CC_SkillSpace_Crafting>
+  <CC_SkillSpace_Artistic>an artist's workshop</CC_SkillSpace_Artistic>
+  <CC_SkillSpace_Cooking>a proper kitchen</CC_SkillSpace_Cooking>
+  <CC_SkillSpace_Intellectual>a real laboratory</CC_SkillSpace_Intellectual>
+  <CC_SkillSpace_Medicine>a proper hospital</CC_SkillSpace_Medicine>
+  <CC_SkillSpace_Plants>a greenhouse</CC_SkillSpace_Plants>
+  <CC_SkillSpace_Animals>a barn for the animals</CC_SkillSpace_Animals>
+  <CC_When_Passion_Crafting>A crafting station stands in a room that counts as a workshop.</CC_When_Passion_Crafting>
+  <CC_When_Passion_Artistic>A sculpting station stands in a room that counts as a workshop.</CC_When_Passion_Artistic>
+  <CC_When_Passion_Cooking>A cooking station stands in a room that counts as a kitchen.</CC_When_Passion_Cooking>
+  <CC_When_Passion_Intellectual>A research bench stands in a room that counts as a laboratory.</CC_When_Passion_Intellectual>
+  <CC_When_Passion_Medicine>The colony has a room that counts as a hospital (beds set to medical).</CC_When_Passion_Medicine>
+  <CC_When_Passion_Plants>The colony has hydroponics, or a roofed grow zone under a sun lamp.</CC_When_Passion_Plants>
+  <CC_When_Passion_Animals>The colony has a room that counts as a barn.</CC_When_Passion_Animals>
+  <CC_When_Defenses>Build {0} more like this: {1}.</CC_When_Defenses>
+
+  <!-- Wish progress -->
+  <CC_Progress_NoBed>no bed yet</CC_Progress_NoBed>
+  <CC_Progress_SleepsIn>currently sleeps in: {0}</CC_Progress_SleepsIn>
+  <CC_Progress_Impressiveness>impressiveness {0} / {1}</CC_Progress_Impressiveness>
+  <CC_Progress_Space>space {0} / {1}</CC_Progress_Space>
+  <CC_Progress_JoyKinds>{0} / {1} kinds of recreation</CC_Progress_JoyKinds>
+  <CC_Progress_Meals>{0} / {1} in stock</CC_Progress_Meals>
+  <CC_Progress_Count>{0} / {1} built</CC_Progress_Count>
+
+  <!-- ===================== Ambitions & meetings ===================== -->
+  <CC_AmbitionsDisabled>Council meetings and ambitions are switched off in the mod settings.</CC_AmbitionsDisabled>
+  <CC_Ambition_Current>Current ambition: {0}</CC_Ambition_Current>
+  <CC_Ambition_Meta>Proposed by {0}. Time left: {1}.</CC_Ambition_Meta>
+  <CC_Ambition_None>No ambition right now</CC_Ambition_None>
+  <CC_Ambition_NextMeeting>The council meets again in {0}.</CC_Ambition_NextMeeting>
+  <CC_Ambition_SoonMeeting>The council will meet soon.</CC_Ambition_SoonMeeting>
+  <CC_Ambition_CallMeeting>Call a council meeting now</CC_Ambition_CallMeeting>
+  <CC_Ambition_History>Past meetings and ambitions</CC_Ambition_History>
+  <CC_Ambition_Abandon>Abandon this ambition</CC_Ambition_Abandon>
+  <CC_Ambition_AbandonConfirm>Give up on "{0}"? No penalty. The council will meet again in a few days.</CC_Ambition_AbandonConfirm>
+  <CC_Ambition_Chosen>The council chose: {0}, proposed by {1}.</CC_Ambition_Chosen>
+  <CC_Ambition_ChosenSpeech>They picked my idea!</CC_Ambition_ChosenSpeech>
+  <CC_Ambition_AchievedTitle>Ambition achieved: {0}</CC_Ambition_AchievedTitle>
+  <CC_Ambition_AchievedText>The colony set out to achieve "{0}" and did it in {1} days. Everyone feels the lift.</CC_Ambition_AchievedText>
+  <CC_Ambition_Inspired>{PAWN_nameDef} is inspired after seeing {PAWN_possessive} proposal come true.</CC_Ambition_Inspired>
+  <CC_Ambition_Failed>The colony fell short of its ambition "{0}" ({1} done). The council will meet again soon.</CC_Ambition_Failed>
+  <CC_Meeting_BusyAmbition>The colony is already working on an ambition.</CC_Meeting_BusyAmbition>
+  <CC_Meeting_TooSoon>The council met very recently. Try again in {0}.</CC_Meeting_TooSoon>
+  <CC_Meeting_NoOne>Nobody is free to attend a meeting right now.</CC_Meeting_NoOne>
+  <CC_Meeting_NothingToPropose>The council met, but nobody had anything new to propose. Things must be going well.</CC_Meeting_NothingToPropose>
+  <CC_Meeting_Title>The council has met</CC_Meeting_Title>
+  <CC_Meeting_Intro>The colonists gathered {0} to talk about where the colony is heading. Three proposals stood out:</CC_Meeting_Intro>
+  <CC_Meeting_ProposedBy>proposed by {0}</CC_Meeting_ProposedBy>
+  <CC_Meeting_Deadline>Time: about {0} days</CC_Meeting_Deadline>
+  <CC_Meeting_Outro>Which should the colony commit to? Achieving it lifts everyone's mood. Choosing none costs nothing.</CC_Meeting_Outro>
+  <CC_Meeting_Choose>Commit to: {0} ({1})</CC_Meeting_Choose>
+  <CC_Meeting_None>None of these, for now</CC_Meeting_None>
+  <CC_Meeting_Unavailable>The colony is already working on another ambition.</CC_Meeting_Unavailable>
+  <CC_Venue_Dining>around the dining table after supper</CC_Venue_Dining>
+  <CC_Venue_Campfire>around the campfire as the sun went down</CC_Venue_Campfire>
+  <CC_Venue_Outside>in the open, sitting on crates and rocks</CC_Venue_Outside>
+  <CC_Heckle_Plain>{PAWN_nameDef} wondered aloud whether {OTHER_nameDef}'s "{AMBITION}" was really the priority.</CC_Heckle_Plain>
+  <CC_Heckle_Warm>{PAWN_nameDef} thanked everyone for coming, and said {OTHER_nameDef}'s idea ("{AMBITION}") sounded lovely.</CC_Heckle_Warm>
+  <CC_Heckle_Blunt>{PAWN_nameDef} snorted at {OTHER_nameDef}'s "{AMBITION}" and asked who was going to do the actual work.</CC_Heckle_Blunt>
+  <CC_Heckle_Cheerful>{PAWN_nameDef} cheered so loudly for "{AMBITION}" that {OTHER_nameDef} looked embarrassed.</CC_Heckle_Cheerful>
+  <CC_Heckle_Gloomy>{PAWN_nameDef} muttered that "{AMBITION}" wouldn't matter when the next raid came.</CC_Heckle_Gloomy>
+  <CC_Heckle_Cold>{PAWN_nameDef} calmly pointed out every flaw in {OTHER_nameDef}'s "{AMBITION}". Twice.</CC_Heckle_Cold>
+
+  <!-- Goals -->
+  <CC_Goal_FoodDays>Food for {0} days (now: {1} days)</CC_Goal_FoodDays>
+  <CC_Goal_AllOwnRooms>A private bedroom for every colonist ({0} / {1})</CC_Goal_AllOwnRooms>
+  <CC_Goal_Room>A room that counts as a {0}</CC_Goal_Room>
+  <CC_Goal_RoomThings>with {0}× {1}</CC_Goal_RoomThings>
+  <CC_Goal_RoomImpressive>and impressiveness {0}+</CC_Goal_RoomImpressive>
+  <CC_Goal_Build>Build {0} new {1} ({2} so far)</CC_Goal_Build>
+  <CC_Goal_Freezer>A freezer: a stockpile in a room kept below 0°C</CC_Goal_Freezer>
+  <CC_Goal_Greenhouse>A greenhouse: hydroponics, or a roofed grow zone under a sun lamp</CC_Goal_Greenhouse>
+  <CC_Goal_JoyKinds>{0} kinds of recreation in the colony (now: {1})</CC_Goal_JoyKinds>
+  <CC_Goal_Stock>{0} {1} in stock (now: {2})</CC_Goal_Stock>
+  <CC_Goal_Research>Finish {0} research projects ({1} so far)</CC_Goal_Research>
+  <CC_Goal_Mood>Average mood of {0} (now: {1})</CC_Goal_Mood>
+  <CC_Goal_Animals>Tame {0} new animals ({1} so far)</CC_Goal_Animals>
+  <CC_Goal_SharedArt>{0} works of art in dining and rec rooms (now: {1})</CC_Goal_SharedArt>
+  <CC_Goal_Colonists>Welcome {0} new colonist(s) ({1} so far)</CC_Goal_Colonists>
+  <CC_Goal_Defense>Defences strong enough for the raids you attract ({0} there)</CC_Goal_Defense>
+  <CC_Goal_Power>{0} Wd of stored power (now: {1} Wd)</CC_Goal_Power>
+  <CC_Goal_WarmBedrooms>A heat source in every bedroom ({0} / {1})</CC_Goal_WarmBedrooms>
+  <CC_Stock_medicine>medicine</CC_Stock_medicine>
+  <CC_Stock_meals>meals</CC_Stock_meals>
+  <CC_Stock_finemeals>fine meals</CC_Stock_finemeals>
+  <CC_Stock_silver>silver</CC_Stock_silver>
+  <CC_Role_bed>beds</CC_Role_bed>
+  <CC_Role_doublebed>double beds</CC_Role_doublebed>
+  <CC_Role_light>lights</CC_Role_light>
+  <CC_Role_heater>heat sources</CC_Role_heater>
+  <CC_Role_cooler>coolers</CC_Role_cooler>
+  <CC_Role_table>dining tables</CC_Role_table>
+  <CC_Role_chair>chairs</CC_Role_chair>
+  <CC_Role_endtable>bedside tables</CC_Role_endtable>
+  <CC_Role_dresser>dressers</CC_Role_dresser>
+  <CC_Role_joy>recreation furniture</CC_Role_joy>
+  <CC_Role_research>research benches</CC_Role_research>
+  <CC_Role_cook>cooking stations</CC_Role_cook>
+  <CC_Role_craft>crafting stations</CC_Role_craft>
+  <CC_Role_art>sculpting stations</CC_Role_art>
+  <CC_Role_animalbed>animal beds</CC_Role_animalbed>
+  <CC_Role_hydroponics>hydroponics basins</CC_Role_hydroponics>
+  <CC_Role_plantpot>plant pots</CC_Role_plantpot>
+  <CC_Role_storage>shelves</CC_Role_storage>
+  <CC_Role_grave>graves</CC_Role_grave>
+  <CC_Role_turret>turrets</CC_Role_turret>
+  <CC_Role_trap>traps</CC_Role_trap>
+  <CC_Role_cover>pieces of cover (sandbags, barricades)</CC_Role_cover>
+  <CC_Role_fermenter>fermenting barrels</CC_Role_fermenter>
+  <CC_Role_battery>batteries</CC_Role_battery>
+
+  <!-- Ambition chronicle -->
+  <CC_Chronicle_Meeting>The council met. Proposals: {0}.</CC_Chronicle_Meeting>
+  <CC_Chronicle_MeetingPostponed>The council decided not to commit to anything for now.</CC_Chronicle_MeetingPostponed>
+  <CC_Chronicle_AmbitionChosen>The colony set out to achieve: {0} (proposed by {1}).</CC_Chronicle_AmbitionChosen>
+  <CC_Chronicle_AmbitionAchieved>Ambition achieved: {0}!</CC_Chronicle_AmbitionAchieved>
+  <CC_Chronicle_AmbitionFailed>The colony fell short of {0} ({1} done).</CC_Chronicle_AmbitionFailed>
+  <CC_Chronicle_AmbitionAbandoned>The colony abandoned the ambition: {0}.</CC_Chronicle_AmbitionAbandoned>
+  <CC_Chronicle_Header>The colony chronicle</CC_Chronicle_Header>
+  <CC_Chronicle_Empty>Nothing has happened yet. Give it time; something always does.</CC_Chronicle_Empty>
+
+  <!-- ===================== Room plans ===================== -->
+  <CC_Build_Header>Room plans</CC_Build_Header>
+  <CC_Build_Sub>Templates adapt to your tech and materials. Click "Plan" and place the ghost (Q / E to rotate), or let the council find a spot.</CC_Build_Sub>
+  <CC_Build_Plan>Plan</CC_Build_Plan>
+  <CC_Build_Contains>Contains: {0}</CC_Build_Contains>
+  <CC_Template_NoWalls>The colony can't build walls yet.</CC_Template_NoWalls>
+  <CC_Template_Missing>Not yet possible: the colony can't build {0}.</CC_Template_Missing>
+  <CC_PlanRoom>Plan {0}</CC_PlanRoom>
+  <CC_Plan_Blocked>Something is in the way (red cells).</CC_Plan_Blocked>
+  <CC_Plan_DoorBlocked>The door can't go there.</CC_Plan_DoorBlocked>
+  <CC_Plan_WillMine>{0} rock cell(s) will be mined out.</CC_Plan_WillMine>
+  <CC_Plan_Material>Walls: {0}</CC_Plan_Material>
+  <CC_Plan_NoMaterials>No wall materials in stock</CC_Plan_NoMaterials>
+  <CC_Plan_RotateLeft>Rotate left (Q)</CC_Plan_RotateLeft>
+  <CC_Plan_RotateRight>Rotate right (E)</CC_Plan_RotateRight>
+  <CC_Plan_FindSpot>Find a good spot</CC_Plan_FindSpot>
+  <CC_Plan_Floor>Lay floor: {0}</CC_Plan_Floor>
+  <CC_Plan_SpotFound>The council suggests a spot for the {0} (yellow outline). Click to place it there or anywhere you like.</CC_Plan_SpotFound>
+  <CC_Plan_NoSpot>The council couldn't find a good spot for the {0} near the colony. Place it by hand.</CC_Plan_NoSpot>
+  <CC_Plan_Done>Planned {0}: {1} wall segment(s) and {2} piece(s) of furniture, walls in {3}.</CC_Plan_Done>
+  <CC_Plan_Mined>{0} rock cell(s) marked for mining.</CC_Plan_Mined>
+  <CC_Plan_Floors>{0} floor tile(s) of {1}.</CC_Plan_Floors>
+  <CC_Plan_Skipped>{0} piece(s) of furniture didn't fit and were skipped.</CC_Plan_Skipped>
+
+  <!-- ===================== Personal touches ===================== -->
+  <CC_Touch_Message>{PAWN_labelShort} planned {THING} for {PAWN_possessive} bedroom (cancel the blueprint if you'd rather not).</CC_Touch_Message>
+  <CC_Touch_Plain>My room needs {THING}. I've marked the spot.</CC_Touch_Plain>
+  <CC_Touch_Warm>I thought {THING} would make my room a little cozier. I hope that's alright.</CC_Touch_Warm>
+  <CC_Touch_Blunt>I'm putting {THING} in my room. Don't argue.</CC_Touch_Blunt>
+  <CC_Touch_Cheerful>Ooh, {THING} would look perfect right there!</CC_Touch_Cheerful>
+  <CC_Touch_Gloomy>Maybe {THING} will make my room feel less like a cell.</CC_Touch_Gloomy>
+  <CC_Touch_Cold>Placing {THING} there is the optimal arrangement.</CC_Touch_Cold>
+  <CC_TouchDone_Plain>The {THINGBARE} is in. My room feels like mine now.</CC_TouchDone_Plain>
+  <CC_TouchDone_Warm>The {THINGBARE} is perfect. Thank you to whoever built it!</CC_TouchDone_Warm>
+  <CC_TouchDone_Blunt>Good. The {THINGBARE} is where it belongs.</CC_TouchDone_Blunt>
+  <CC_TouchDone_Cheerful>My {THINGBARE}! It's even better than I imagined!</CC_TouchDone_Cheerful>
+  <CC_TouchDone_Gloomy>The {THINGBARE} helps. A little.</CC_TouchDone_Gloomy>
+  <CC_TouchDone_Cold>Arrangement complete.</CC_TouchDone_Cold>
+  <CC_Chronicle_Touch>{0} planned a new {1} for their bedroom.</CC_Chronicle_Touch>
+  <CC_Chronicle_TouchDone>{0}'s new {1} is finished.</CC_Chronicle_TouchDone>
+
+  <!-- ===================== Alerts ===================== -->
+  <CC_Alert_Advice>The council advises</CC_Alert_Advice>
+  <CC_Alert_AdviceLabel>Council: {0}</CC_Alert_AdviceLabel>
+  <CC_Alert_Wishes>Colonist wishes ({0})</CC_Alert_Wishes>
+  <CC_Alert_WishesDesc>These colonists are waiting on a wish. Granting it lifts their mood; ignoring it costs nothing in Gentle mode.</CC_Alert_WishesDesc>
+
+  <!-- ===================== Settings ===================== -->
+  <CC_Settings_Layers>What should the council do?</CC_Settings_Layers>
+  <CC_Settings_EnableAdvisor>Advisor: rank what the colony needs</CC_Settings_EnableAdvisor>
+  <CC_Settings_EnableAdvisor_Tip>Shows prioritized, explained advice on the Council tab's Priorities page.</CC_Settings_EnableAdvisor_Tip>
+  <CC_Settings_EnableWishes>Wishes: colonists make requests</CC_Settings_EnableWishes>
+  <CC_Settings_EnableWishes_Tip>Colonists voice wishes based on their traits, passions, relationships and mood.</CC_Settings_EnableWishes_Tip>
+  <CC_Settings_EnableAmbitions>Council meetings and ambitions</CC_Settings_EnableAmbitions>
+  <CC_Settings_EnableAmbitions_Tip>Every so often the council meets and colonists pitch a bigger goal for the colony.</CC_Settings_EnableAmbitions_Tip>
+  <CC_Settings_EnableTouches>Personal touches</CC_Settings_EnableTouches>
+  <CC_Settings_EnableTouches_Tip>Colonists occasionally plan a small piece of furniture for their own bedroom (as a normal blueprint you can cancel).</CC_Settings_EnableTouches_Tip>
+  <CC_Settings_Stakes>Stakes</CC_Settings_Stakes>
+  <CC_Stakes_Gentle>Gentle (recommended)</CC_Stakes_Gentle>
+  <CC_Stakes_Gentle_Tip>Granted wishes and achieved ambitions lift mood. Ignoring a wish or failing an ambition costs nothing.</CC_Stakes_Gentle_Tip>
+  <CC_Stakes_Demanding>Demanding</CC_Stakes_Demanding>
+  <CC_Stakes_Demanding_Tip>Like Gentle, but expired wishes and failed ambitions give a small, short mood penalty.</CC_Stakes_Demanding_Tip>
+  <CC_Stakes_AdvisorOnly>Advisor only</CC_Stakes_AdvisorOnly>
+  <CC_Stakes_AdvisorOnly_Tip>No mood effects from this mod at all. Wishes and ambitions are pure suggestions.</CC_Stakes_AdvisorOnly_Tip>
+  <CC_Settings_Wishes>Wishes</CC_Settings_Wishes>
+  <CC_Settings_DaysBetweenWishes>Average days between new wishes: {0}</CC_Settings_DaysBetweenWishes>
+  <CC_Settings_MaxOpenWishes>Maximum open wishes at once: {0}</CC_Settings_MaxOpenWishes>
+  <CC_Settings_WishDuration>How long wishes stay open: {0}</CC_Settings_WishDuration>
+  <CC_Settings_Reward>Mood reward strength: {0}</CC_Settings_Reward>
+  <CC_Settings_ForOthers>Kind colonists can ask on behalf of others</CC_Settings_ForOthers>
+  <CC_Settings_ForOthers_Tip>A kind colonist may notice someone else's hardship and ask for them. Both are happier if it's granted.</CC_Settings_ForOthers_Tip>
+  <CC_Settings_Petitions>Petitions</CC_Settings_Petitions>
+  <CC_Settings_Petitions_Tip>Colonists who want the same thing back each other's wish instead of making a new one.</CC_Settings_Petitions_Tip>
+  <CC_Settings_WishLetters>New wishes arrive as letters</CC_Settings_WishLetters>
+  <CC_Settings_WishLetters_Tip>Off: new wishes appear as short messages instead.</CC_Settings_WishLetters_Tip>
+  <CC_Settings_GrantedLetters>Granted wishes arrive as letters</CC_Settings_GrantedLetters>
+  <CC_Settings_GrantedLetters_Tip>Off (default): a short message when a wish comes true.</CC_Settings_GrantedLetters_Tip>
+  <CC_Settings_SpeechText>Colonists speak (floating text)</CC_Settings_SpeechText>
+  <CC_Settings_SpeechText_Tip>Shows a short line above a colonist when they make, back or get a wish, or pitch an ambition.</CC_Settings_SpeechText_Tip>
+  <CC_Settings_Meetings>Council meetings</CC_Settings_Meetings>
+  <CC_Settings_DaysBetweenMeetings>Days between council meetings: {0}</CC_Settings_DaysBetweenMeetings>
+  <CC_Settings_AmbitionDeadline>Time allowed for ambitions: {0}</CC_Settings_AmbitionDeadline>
+  <CC_Settings_Touches>Personal touches</CC_Settings_Touches>
+  <CC_Settings_DaysBetweenTouches>Average days between personal touches: {0}</CC_Settings_DaysBetweenTouches>
+  <CC_Settings_Alerts>Alerts</CC_Settings_Alerts>
+  <CC_Settings_AdvisorAlert>Alert for urgent advice</CC_Settings_AdvisorAlert>
+  <CC_Settings_AdvisorAlert_Tip>Shows the council's most urgent concern in the alerts on the right.</CC_Settings_AdvisorAlert_Tip>
+  <CC_Settings_WishAlert>Alert for open wishes</CC_Settings_WishAlert>
+  <CC_Settings_WishAlert_Tip>Shows a reminder in the alerts while colonists are waiting on wishes.</CC_Settings_WishAlert_Tip>
+  <CC_Settings_Reset>Reset to defaults</CC_Settings_Reset>
+
+</LanguageData>

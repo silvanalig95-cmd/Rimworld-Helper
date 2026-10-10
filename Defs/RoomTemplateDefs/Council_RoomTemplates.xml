@@ -1,0 +1,375 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Room templates for the planner. Coordinates are interior floor cells: (0,0) is the bottom-left floor
+    cell, the door sits in the bottom (south) wall at doorX (default: the middle). The whole template
+    rotates with Q/E when placing.
+
+    Furniture: <defs> lists defNames best-first. The first one the colony can actually build (research,
+    tech, power) is used; otherwise any building with the same <role> and footprint (so modded or medieval
+    furniture works). Missing optional pieces are skipped. A non-optional piece that can't be built makes
+    the whole template unavailable, with a reason shown.
+  -->
+
+  <ColonyCouncil.RoomTemplateDef>
+    <defName>Council_Bedroom</defName>
+    <label>bedroom</label>
+    <description>A private bedroom for one: bed, bedside table, dresser, a light and a plant.</description>
+    <order>10</order>
+    <size>(4,5)</size>
+    <floors>
+      <li>WoodPlankFloor</li>
+    </floors>
+    <things>
+      <li>
+        <defs><li>Bed</li><li>Bedroll</li></defs>
+        <role>bed</role>
+        <pos>(0,3)</pos>
+        <optional>false</optional>
+      </li>
+      <li>
+        <defs><li>EndTable</li></defs>
+        <role>endtable</role>
+        <pos>(1,4)</pos>
+      </li>
+      <li>
+        <defs><li>Dresser</li></defs>
+        <role>dresser</role>
+        <pos>(2,4)</pos>
+      </li>
+      <li>
+        <defs><li>StandingLamp</li><li>TorchLamp</li></defs>
+        <role>light</role>
+        <pos>(3,0)</pos>
+      </li>
+      <li>
+        <defs><li>PlantPot</li></defs>
+        <role>plantpot</role>
+        <pos>(0,0)</pos>
+      </li>
+    </things>
+  </ColonyCouncil.RoomTemplateDef>
+
+  <ColonyCouncil.RoomTemplateDef>
+    <defName>Council_CoupleBedroom</defName>
+    <label>couple's bedroom</label>
+    <description>A bedroom for two: a double bed with a table on each side, a dresser, a light and a plant.</description>
+    <order>11</order>
+    <size>(5,5)</size>
+    <floors>
+      <li>WoodPlankFloor</li>
+    </floors>
+    <things>
+      <li>
+        <defs><li>DoubleBed</li><li>BedrollDouble</li></defs>
+        <role>doublebed</role>
+        <pos>(1,3)</pos>
+        <optional>false</optional>
+      </li>
+      <li>
+        <defs><li>EndTable</li></defs>
+        <role>endtable</role>
+        <pos>(0,4)</pos>
+      </li>
+      <li>
+        <defs><li>EndTable</li></defs>
+        <role>endtable</role>
+        <pos>(3,4)</pos>
+      </li>
+      <li>
+        <defs><li>Dresser</li></defs>
+        <role>dresser</role>
+        <pos>(3,0)</pos>
+      </li>
+      <li>
+        <defs><li>StandingLamp</li><li>TorchLamp</li></defs>
+        <role>light</role>
+        <pos>(4,4)</pos>
+      </li>
+      <li>
+        <defs><li>PlantPot</li></defs>
+        <role>plantpot</role>
+        <pos>(0,0)</pos>
+      </li>
+    </things>
+  </ColonyCouncil.RoomTemplateDef>
+
+  <ColonyCouncil.RoomTemplateDef>
+    <defName>Council_DiningRoom</defName>
+    <label>dining room</label>
+    <description>A table for eight with chairs all round, lights and plants. Everyone eats three times a day, so this pays off fast.</description>
+    <order>20</order>
+    <size>(6,5)</size>
+    <floors>
+      <li>WoodPlankFloor</li>
+    </floors>
+    <things>
+      <li>
+        <defs><li>Table2x2c</li></defs>
+        <role>table</role>
+        <pos>(2,2)</pos>
+        <optional>false</optional>
+      </li>
+      <li><defs><li>DiningChair</li><li>Stool</li></defs><role>chair</role><pos>(1,2)</pos><rot>East</rot></li>
+      <li><defs><li>DiningChair</li><li>Stool</li></defs><role>chair</role><pos>(1,3)</pos><rot>East</rot></li>
+      <li><defs><li>DiningChair</li><li>Stool</li></defs><role>chair</role><pos>(4,2)</pos><rot>West</rot></li>
+      <li><defs><li>DiningChair</li><li>Stool</li></defs><role>chair</role><pos>(4,3)</pos><rot>West</rot></li>
+      <li><defs><li>DiningChair</li><li>Stool</li></defs><role>chair</role><pos>(2,1)</pos><rot>North</rot></li>
+      <li><defs><li>DiningChair</li><li>Stool</li></defs><role>chair</role><pos>(3,1)</pos><rot>North</rot></li>
+      <li><defs><li>DiningChair</li><li>Stool</li></defs><role>chair</role><pos>(2,4)</pos><rot>South</rot></li>
+      <li><defs><li>DiningChair</li><li>Stool</li></defs><role>chair</role><pos>(3,4)</pos><rot>South</rot></li>
+      <li><defs><li>StandingLamp</li><li>TorchLamp</li></defs><role>light</role><pos>(0,0)</pos></li>
+      <li><defs><li>StandingLamp</li><li>TorchLamp</li></defs><role>light</role><pos>(5,4)</pos></li>
+      <li><defs><li>PlantPot</li></defs><role>plantpot</role><pos>(0,4)</pos></li>
+      <li><defs><li>PlantPot</li></defs><role>plantpot</role><pos>(5,0)</pos></li>
+    </things>
+  </ColonyCouncil.RoomTemplateDef>
+
+  <ColonyCouncil.RoomTemplateDef>
+    <defName>Council_RecRoom</defName>
+    <label>recreation room</label>
+    <description>Somewhere to unwind: a game table with seats, horseshoes, a light and a plant. Add more kinds of games over time for variety.</description>
+    <order>21</order>
+    <size>(6,5)</size>
+    <things>
+      <li>
+        <defs><li>ChessTable</li></defs>
+        <role>joy</role>
+        <pos>(1,3)</pos>
+      </li>
+      <li><defs><li>DiningChair</li><li>Stool</li></defs><role>chair</role><pos>(0,3)</pos><rot>East</rot></li>
+      <li><defs><li>DiningChair</li><li>Stool</li></defs><role>chair</role><pos>(2,3)</pos><rot>West</rot></li>
+      <li>
+        <defs><li>HorseshoesPin</li></defs>
+        <role>joy</role>
+        <pos>(5,4)</pos>
+      </li>
+      <li><defs><li>StandingLamp</li><li>TorchLamp</li></defs><role>light</role><pos>(5,0)</pos></li>
+      <li><defs><li>PlantPot</li></defs><role>plantpot</role><pos>(0,0)</pos></li>
+    </things>
+  </ColonyCouncil.RoomTemplateDef>
+
+  <ColonyCouncil.RoomTemplateDef>
+    <defName>Council_Workshop</defName>
+    <label>workshop</label>
+    <description>Two crafting stations along the back wall and a sculpting table by the door, with room to work at each.</description>
+    <order>30</order>
+    <size>(6,5)</size>
+    <things>
+      <li>
+        <defs><li>ElectricTailoringBench</li><li>HandTailoringBench</li></defs>
+        <role>craft</role>
+        <pos>(1,3)</pos>
+        <optional>false</optional>
+      </li>
+      <li>
+        <defs><li>ElectricSmithy</li><li>FueledSmithy</li></defs>
+        <role>craft</role>
+        <pos>(4,3)</pos>
+      </li>
+      <li>
+        <defs><li>TableSculpting</li></defs>
+        <role>art</role>
+        <pos>(1,0)</pos>
+        <rot>South</rot>
+      </li>
+      <li><defs><li>StandingLamp</li><li>TorchLamp</li></defs><role>light</role><pos>(5,0)</pos></li>
+    </things>
+  </ColonyCouncil.RoomTemplateDef>
+
+  <ColonyCouncil.RoomTemplateDef>
+    <defName>Council_Kitchen</defName>
+    <label>kitchen</label>
+    <description>A cooking station, a shelf for ingredients and a clean floor. Keep butchering in a separate room: blood and guts make kitchens filthy and meals risky.</description>
+    <order>31</order>
+    <size>(5,4)</size>
+    <floors>
+      <li>SterileTile</li>
+    </floors>
+    <things>
+      <li>
+        <defs><li>ElectricStove</li><li>FueledStove</li></defs>
+        <role>cook</role>
+        <pos>(1,2)</pos>
+        <optional>false</optional>
+      </li>
+      <li>
+        <defs><li>Shelf</li></defs>
+        <role>storage</role>
+        <pos>(3,3)</pos>
+      </li>
+      <li><defs><li>StandingLamp</li><li>TorchLamp</li></defs><role>light</role><pos>(4,0)</pos></li>
+    </things>
+  </ColonyCouncil.RoomTemplateDef>
+
+  <ColonyCouncil.RoomTemplateDef>
+    <defName>Council_Laboratory</defName>
+    <label>laboratory</label>
+    <description>A quiet room with a research bench and good light. A clean floor speeds up research.</description>
+    <order>32</order>
+    <size>(5,4)</size>
+    <floors>
+      <li>SterileTile</li>
+    </floors>
+    <things>
+      <li>
+        <defs><li>HiTechResearchBench</li><li>SimpleResearchBench</li></defs>
+        <role>research</role>
+        <pos>(2,2)</pos>
+        <optional>false</optional>
+      </li>
+      <li><defs><li>StandingLamp</li><li>TorchLamp</li></defs><role>light</role><pos>(4,0)</pos></li>
+    </things>
+  </ColonyCouncil.RoomTemplateDef>
+
+  <ColonyCouncil.RoomTemplateDef>
+    <defName>Council_Hospital</defName>
+    <label>hospital</label>
+    <description>Three beds along the back wall and a shelf for medicine. Set the beds to "medical" once built. A clean floor lowers infection risk.</description>
+    <order>40</order>
+    <size>(5,5)</size>
+    <floors>
+      <li>SterileTile</li>
+    </floors>
+    <things>
+      <li>
+        <defs><li>HospitalBed</li><li>Bed</li><li>Bedroll</li></defs>
+        <role>bed</role>
+        <pos>(0,3)</pos>
+        <optional>false</optional>
+      </li>
+      <li>
+        <defs><li>HospitalBed</li><li>Bed</li><li>Bedroll</li></defs>
+        <role>bed</role>
+        <pos>(2,3)</pos>
+      </li>
+      <li>
+        <defs><li>HospitalBed</li><li>Bed</li><li>Bedroll</li></defs>
+        <role>bed</role>
+        <pos>(4,3)</pos>
+      </li>
+      <li>
+        <defs><li>Shelf</li></defs>
+        <role>storage</role>
+        <pos>(3,0)</pos>
+      </li>
+      <li><defs><li>StandingLamp</li><li>TorchLamp</li></defs><role>light</role><pos>(0,0)</pos></li>
+    </things>
+  </ColonyCouncil.RoomTemplateDef>
+
+  <ColonyCouncil.RoomTemplateDef>
+    <defName>Council_Freezer</defName>
+    <label>freezer</label>
+    <description>Cold storage: two coolers built into the back wall and shelves inside. The coolers' hot side should face outside; if a blueprint faces the wrong way, rotate it before it's built. A double door (an airlock) keeps the cold in even better.</description>
+    <order>50</order>
+    <size>(5,5)</size>
+    <things>
+      <li>
+        <defs><li>Cooler</li></defs>
+        <role>cooler</role>
+        <inWall>true</inWall>
+        <pos>(2,6)</pos>
+        <optional>false</optional>
+      </li>
+      <li>
+        <defs><li>Cooler</li></defs>
+        <role>cooler</role>
+        <inWall>true</inWall>
+        <pos>(4,6)</pos>
+      </li>
+      <li><defs><li>Shelf</li></defs><role>storage</role><pos>(0,4)</pos></li>
+      <li><defs><li>Shelf</li></defs><role>storage</role><pos>(3,4)</pos></li>
+      <li><defs><li>Shelf</li></defs><role>storage</role><pos>(0,2)</pos></li>
+      <li><defs><li>Shelf</li></defs><role>storage</role><pos>(3,2)</pos></li>
+    </things>
+  </ColonyCouncil.RoomTemplateDef>
+
+  <ColonyCouncil.RoomTemplateDef>
+    <defName>Council_Storeroom</defName>
+    <label>storeroom</label>
+    <description>A roofed room lined with shelves, so materials stop rotting in the rain.</description>
+    <order>51</order>
+    <size>(6,5)</size>
+    <things>
+      <li>
+        <defs><li>Shelf</li></defs>
+        <role>storage</role>
+        <pos>(0,4)</pos>
+        <optional>false</optional>
+      </li>
+      <li><defs><li>Shelf</li></defs><role>storage</role><pos>(2,4)</pos></li>
+      <li><defs><li>Shelf</li></defs><role>storage</role><pos>(4,4)</pos></li>
+      <li><defs><li>Shelf</li></defs><role>storage</role><pos>(0,2)</pos></li>
+      <li><defs><li>Shelf</li></defs><role>storage</role><pos>(4,2)</pos></li>
+    </things>
+  </ColonyCouncil.RoomTemplateDef>
+
+  <ColonyCouncil.RoomTemplateDef>
+    <defName>Council_Barn</defName>
+    <label>barn</label>
+    <description>A sheltered room with sleeping places for the colony's animals.</description>
+    <order>60</order>
+    <size>(6,5)</size>
+    <things>
+      <li>
+        <defs><li>AnimalBed</li><li>AnimalSleepingBox</li><li>AnimalSleepingSpot</li></defs>
+        <role>animalbed</role>
+        <pos>(0,4)</pos>
+        <optional>false</optional>
+      </li>
+      <li><defs><li>AnimalBed</li><li>AnimalSleepingBox</li><li>AnimalSleepingSpot</li></defs><role>animalbed</role><pos>(2,4)</pos></li>
+      <li><defs><li>AnimalBed</li><li>AnimalSleepingBox</li><li>AnimalSleepingSpot</li></defs><role>animalbed</role><pos>(4,4)</pos></li>
+      <li><defs><li>AnimalBed</li><li>AnimalSleepingBox</li><li>AnimalSleepingSpot</li></defs><role>animalbed</role><pos>(0,2)</pos></li>
+      <li><defs><li>AnimalBed</li><li>AnimalSleepingBox</li><li>AnimalSleepingSpot</li></defs><role>animalbed</role><pos>(5,2)</pos></li>
+    </things>
+  </ColonyCouncil.RoomTemplateDef>
+
+  <ColonyCouncil.RoomTemplateDef>
+    <defName>Council_Greenhouse</defName>
+    <label>greenhouse</label>
+    <description>Four hydroponics basins under a sun lamp, with a heat source for the cold months. Grows food whatever the season.</description>
+    <order>61</order>
+    <size>(7,5)</size>
+    <things>
+      <li>
+        <defs><li>HydroponicsBasin</li></defs>
+        <role>hydroponics</role>
+        <pos>(0,2)</pos>
+        <optional>false</optional>
+      </li>
+      <li><defs><li>HydroponicsBasin</li></defs><role>hydroponics</role><pos>(2,2)</pos></li>
+      <li><defs><li>HydroponicsBasin</li></defs><role>hydroponics</role><pos>(4,2)</pos></li>
+      <li><defs><li>HydroponicsBasin</li></defs><role>hydroponics</role><pos>(6,2)</pos></li>
+      <li>
+        <defs><li>SunLamp</li></defs>
+        <pos>(3,2)</pos>
+        <optional>false</optional>
+      </li>
+      <li>
+        <defs><li>Heater</li></defs>
+        <role>heater</role>
+        <pos>(3,4)</pos>
+      </li>
+    </things>
+  </ColonyCouncil.RoomTemplateDef>
+
+  <ColonyCouncil.RoomTemplateDef>
+    <defName>Council_Crypt</defName>
+    <label>crypt</label>
+    <description>A quiet room with three graves, so the dead rest indoors and their friends can visit.</description>
+    <order>70</order>
+    <size>(5,3)</size>
+    <things>
+      <li>
+        <defs><li>Sarcophagus</li><li>Grave</li></defs>
+        <role>grave</role>
+        <pos>(0,1)</pos>
+        <optional>false</optional>
+      </li>
+      <li><defs><li>Sarcophagus</li><li>Grave</li></defs><role>grave</role><pos>(2,1)</pos></li>
+      <li><defs><li>Sarcophagus</li><li>Grave</li></defs><role>grave</role><pos>(4,1)</pos></li>
+    </things>
+  </ColonyCouncil.RoomTemplateDef>
+
+</Defs>

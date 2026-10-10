@@ -24,22 +24,19 @@ namespace ColonyCouncil
         public int tick;
         public ChronicleKind kind;
         public string text;
-        /// <summary>ThingID of the colonist the entry is mostly about (for RimTalk memory of recent events).</summary>
+        /// <summary>ThingID of the colonist the entry is mostly about.</summary>
         public string pawnId;
-        /// <summary>Short English topic for AI context, e.g. "got their own bedroom".</summary>
-        public string topic;
 
         public ChronicleEntry()
         {
         }
 
-        public ChronicleEntry(ChronicleKind kind, string text, Pawn pawn = null, string topic = null)
+        public ChronicleEntry(ChronicleKind kind, string text, Pawn pawn = null)
         {
             tick = Find.TickManager.TicksGame;
             this.kind = kind;
             this.text = text;
             pawnId = pawn?.ThingID;
-            this.topic = topic;
         }
 
         public void ExposeData()
@@ -48,7 +45,6 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref kind, "kind");
             Scribe_Values.Look(ref text, "text");
             Scribe_Values.Look(ref pawnId, "pawnId");
-            Scribe_Values.Look(ref topic, "topic");
         }
     }
 }

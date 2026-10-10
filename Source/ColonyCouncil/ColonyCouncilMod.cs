@@ -23,22 +23,6 @@ namespace ColonyCouncil
         }
     }
 
-    [StaticConstructorOnStartup]
-    public static class CouncilStartup
-    {
-        static CouncilStartup()
-        {
-            try
-            {
-                RimTalkBridge.TryInit();
-            }
-            catch (Exception e)
-            {
-                Log.Warning("[Colony Council] RimTalk integration could not start: " + e.Message);
-            }
-        }
-    }
-
     /// <summary>Logging helpers that never spam the log with the same error.</summary>
     public static class CouncilLog
     {

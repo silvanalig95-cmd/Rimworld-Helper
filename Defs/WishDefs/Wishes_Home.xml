@@ -1,0 +1,622 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Placeholders in lines: {PAWN_nameDef} / {PAWN_pronoun} / {PAWN_possessive} / {PAWN_objective} = who speaks,
+    {FOR_...} = who benefits, {OTHER_...} = partner / lost friend, {THING} = "a torch lamp" (whatever the colony
+    can actually build), {THINGBARE} = "torch lamp", {SUBJECT}, {TARGET}.
+    Lines must stay era-neutral: {THING} already adapts to the colony's tech.
+  -->
+
+  <ColonyCouncil.WishDef>
+    <defName>Council_Wish_OwnRoom</defName>
+    <label>a room of their own</label>
+    <description>Sleeping in the barracks, sharing a room or without a bed at all, this colonist wants a private bedroom.</description>
+    <workerClass>ColonyCouncil.WishWorker_OwnRoom</workerClass>
+    <category>Comfort</category>
+    <weight>1.2</weight>
+    <expiryDays>12</expiryDays>
+    <cooldownDays>15</cooldownDays>
+    <grantedThought>Council_Granted_OwnRoom</grantedThought>
+    <allowForOthers>true</allowForOthers>
+    <template>Council_Bedroom</template>
+    <talkInteraction>Council_Talk_Room</talkInteraction>
+    <fulfilledWhen>{FOR_nameDef} owns a bed in a room nobody else sleeps in.</fulfilledWhen>
+    <request>
+      <plain>
+        <li>I'd sleep a lot better behind a door that's mine. Four walls and {THING}. That's all I ask.</li>
+        <li>Sharing a room means sharing everyone's snoring. Could I get a room of my own?</li>
+        <li>I don't need much. A bed, a door that closes, somewhere to keep my things.</li>
+      </plain>
+      <warm>
+        <li>I know everyone's busy, but if there's ever time for a little room of my own, I'd treasure it.</li>
+        <li>It would mean the world to have my own room. I'd even sweep it myself.</li>
+      </warm>
+      <blunt>
+        <li>I'm done sleeping in a pile of elbows. I want my own room.</li>
+        <li>Someone in that barracks snores like a dying muffalo. Give me my own room before something happens.</li>
+      </blunt>
+      <cheerful>
+        <li>Big dream: my own room! A door, a bed, maybe a little shelf. Imagine it!</li>
+        <li>You know what would make me unbearably happy? A room with my name on the door.</li>
+      </cheerful>
+      <gloomy>
+        <li>Everyone else gets a door to close. I get the barracks. Typical.</li>
+        <li>I lie awake listening to everyone breathe. A room of my own might fix that. Might.</li>
+      </gloomy>
+      <cold>
+        <li>Shared quarters are inefficient. Private rooms improve sleep and output. I want one.</li>
+      </cold>
+    </request>
+    <requestForOther>
+      <plain>
+        <li>{FOR_nameDef} has been in the barracks for ages and never complains. Could we build {FOR_objective} a room of {FOR_possessive} own?</li>
+        <li>Have you seen how tired {FOR_nameDef} looks? A proper room would do wonders. I'd help build it.</li>
+      </plain>
+      <warm>
+        <li>{FOR_nameDef} would never ask, so I will: please give {FOR_objective} a room of {FOR_possessive} own.</li>
+      </warm>
+    </requestForOther>
+    <thanks>
+      <plain>
+        <li>A door that closes. A bed that's mine. I could cry.</li>
+        <li>My own room. I'm going to sleep for a week.</li>
+      </plain>
+      <warm>
+        <li>Thank you, truly. I'll keep it tidy, I promise.</li>
+      </warm>
+      <blunt>
+        <li>Finally. Took long enough. ...It's nice, though.</li>
+      </blunt>
+      <cheerful>
+        <li>MY room! My very own room! Nobody touch anything!</li>
+      </cheerful>
+      <gloomy>
+        <li>It's small and it's cold and it's mine. I'll take it.</li>
+      </gloomy>
+      <cold>
+        <li>Acceptable. My sleep should improve measurably.</li>
+      </cold>
+    </thanks>
+    <expired>
+      <plain>
+        <li>Guess I'm still in the barracks, then.</li>
+        <li>Never mind about the room. I'll get used to the snoring.</li>
+      </plain>
+      <warm>
+        <li>It's alright. Maybe someday.</li>
+      </warm>
+      <blunt>
+        <li>Forget it. I'll sleep with one eye open, like always.</li>
+      </blunt>
+      <cheerful>
+        <li>No room yet? That's fine, the barracks has... character.</li>
+      </cheerful>
+      <gloomy>
+        <li>Of course. Why would anyone build me a room.</li>
+      </gloomy>
+      <cold>
+        <li>Noted. I'll adjust my expectations.</li>
+      </cold>
+    </expired>
+  </ColonyCouncil.WishDef>
+
+  <ColonyCouncil.WishDef>
+    <defName>Council_Wish_NicerBedroom</defName>
+    <label>a more impressive bedroom</label>
+    <description>Greedy, jealous or simply used to better, this colonist wants a bedroom that impresses.</description>
+    <workerClass>ColonyCouncil.WishWorker_NicerBedroom</workerClass>
+    <category>Comfort</category>
+    <weight>0.9</weight>
+    <expiryDays>15</expiryDays>
+    <cooldownDays>20</cooldownDays>
+    <grantedThought>Council_Granted_NicerBedroom</grantedThought>
+    <luxury>true</luxury>
+    <talkInteraction>Council_Talk_Room</talkInteraction>
+    <fulfilledWhen>{FOR_possessive} bedroom reaches impressiveness {TARGET} ("{SUBJECT}"). Better furniture, art, smooth or nice floors and more space all help.</fulfilledWhen>
+    <request>
+      <plain>
+        <li>My room is... fine. I'd like it to be more than fine. Some decent furniture, maybe a bit of art?</li>
+        <li>A nicer floor, a statue, anything. I want to walk into my room and actually like it.</li>
+        <li>I'd love it if my bedroom felt a little less like a storage closet and a little more like a home.</li>
+      </plain>
+      <warm>
+        <li>When there's time, could we make my room a little prettier? It would cheer me up so much.</li>
+      </warm>
+      <blunt>
+        <li>My room is ugly. I've seen nicer rooms in a pirate outpost. Fix it.</li>
+        <li>I deserve better than four bare walls. Everyone can see that.</li>
+      </blunt>
+      <cheerful>
+        <li>Idea! What if my room had a sculpture? And a real floor? I'm just saying, it would be amazing.</li>
+      </cheerful>
+      <gloomy>
+        <li>Everyone else's room looks nicer than mine. I've checked.</li>
+        <li>I wake up, I look at these walls, and my day is already worse.</li>
+      </gloomy>
+      <cold>
+        <li>An impressive room is a reasonable reward for my contributions. I expect one.</li>
+      </cold>
+    </request>
+    <thanks>
+      <plain>
+        <li>Now THAT is a bedroom. I keep finding reasons to go back in.</li>
+        <li>It's beautiful. I didn't think I'd care this much, but I do.</li>
+      </plain>
+      <warm>
+        <li>You made my room lovely. I'll think of you every time I walk in.</li>
+      </warm>
+      <blunt>
+        <li>Better. Much better. I'll allow visitors. Briefly.</li>
+      </blunt>
+      <cheerful>
+        <li>Come look! No, really, come look at my room!</li>
+      </cheerful>
+      <gloomy>
+        <li>Huh. It's actually nice. I don't know what to do with this feeling.</li>
+      </gloomy>
+      <cold>
+        <li>Adequate. This is the standard I expected.</li>
+      </cold>
+    </thanks>
+    <expired>
+      <plain>
+        <li>I suppose my room will stay plain. It's still a room.</li>
+      </plain>
+      <blunt>
+        <li>Fine. I'll keep living in a shoebox.</li>
+      </blunt>
+      <gloomy>
+        <li>Nobody cares how my room looks. Least of all the people who could fix it.</li>
+      </gloomy>
+      <cold>
+        <li>Disappointing, but predictable.</li>
+      </cold>
+    </expired>
+  </ColonyCouncil.WishDef>
+
+  <ColonyCouncil.WishDef>
+    <defName>Council_Wish_Spacious</defName>
+    <label>a roomier bedroom</label>
+    <description>This colonist's bedroom is cramped and they'd like room to breathe.</description>
+    <workerClass>ColonyCouncil.WishWorker_Spacious</workerClass>
+    <category>Comfort</category>
+    <weight>0.7</weight>
+    <expiryDays>15</expiryDays>
+    <cooldownDays>25</cooldownDays>
+    <grantedThought>Council_Granted_Spacious</grantedThought>
+    <luxury>true</luxury>
+    <template>Council_Bedroom</template>
+    <talkInteraction>Council_Talk_Room</talkInteraction>
+    <fulfilledWhen>{FOR_possessive} bedroom's space reaches {TARGET} ("{SUBJECT}"). Move a wall out, or plan a new, bigger bedroom.</fulfilledWhen>
+    <request>
+      <plain>
+        <li>I hit my elbow on the wall every time I turn over. Could my room be a bit bigger?</li>
+        <li>My room is so small my thoughts echo. A little more space would help.</li>
+      </plain>
+      <warm>
+        <li>I don't need a palace, just a little more room to move around. Would that be possible someday?</li>
+      </warm>
+      <blunt>
+        <li>That isn't a bedroom, it's a coffin with a door. Make it bigger.</li>
+      </blunt>
+      <cheerful>
+        <li>If my room were just two steps wider, I could do a little dance in it. Think about it!</li>
+      </cheerful>
+      <gloomy>
+        <li>The walls feel closer every night. I'm sure of it.</li>
+      </gloomy>
+      <cold>
+        <li>My room is below an acceptable size. Please correct it.</li>
+      </cold>
+    </request>
+    <thanks>
+      <plain>
+        <li>Room to stretch! I didn't realise how much I missed it.</li>
+      </plain>
+      <blunt>
+        <li>Now I can actually move. Good.</li>
+      </blunt>
+      <cheerful>
+        <li>Look! I can spin around! Twice!</li>
+      </cheerful>
+    </thanks>
+    <expired>
+      <plain>
+        <li>I'll just keep tucking my elbows in, then.</li>
+      </plain>
+      <gloomy>
+        <li>The walls win again.</li>
+      </gloomy>
+    </expired>
+  </ColonyCouncil.WishDef>
+
+  <ColonyCouncil.WishDef>
+    <defName>Council_Wish_ShareBed</defName>
+    <label>to share a bed with {OTHER_nameDef}</label>
+    <description>Partners who sleep apart would like a bed for two.</description>
+    <workerClass>ColonyCouncil.WishWorker_ShareBed</workerClass>
+    <category>Social</category>
+    <weight>1.3</weight>
+    <expiryDays>10</expiryDays>
+    <cooldownDays>20</cooldownDays>
+    <grantedThought>Council_Granted_ShareBed</grantedThought>
+    <allowPetition>true</allowPetition>
+    <template>Council_CoupleBedroom</template>
+    <talkInteraction>Council_Talk_Love</talkInteraction>
+    <fulfilledWhen>{FOR_nameDef} and {OTHER_nameDef} are both assigned to the same {THINGBARE} (or any bed for two).</fulfilledWhen>
+    <request>
+      <plain>
+        <li>{OTHER_nameDef} and I sleep in separate beds like strangers. Could we have a bed for two?</li>
+        <li>It's hard to feel close to {OTHER_nameDef} when we say goodnight across a room. We'd love {THING}.</li>
+        <li>I'd like to fall asleep next to {OTHER_nameDef}. Is that too much to ask on this rock?</li>
+      </plain>
+      <warm>
+        <li>{OTHER_nameDef} and I would be so grateful for a bed we can share. It would mean everything to us.</li>
+        <li>Life out here is hard. Waking up next to {OTHER_nameDef} would make it a lot softer.</li>
+      </warm>
+      <blunt>
+        <li>{OTHER_nameDef} and I are together. We'd like to sleep together. Get us {THING}.</li>
+      </blunt>
+      <cheerful>
+        <li>{OTHER_nameDef} and I have a little request... a bed for two! Please? We'll be insufferably happy, promise.</li>
+      </cheerful>
+      <gloomy>
+        <li>I lie there at night and {OTHER_nameDef} is right there, and still so far away.</li>
+      </gloomy>
+      <cold>
+        <li>{OTHER_nameDef} and I are partners. Separate beds make no sense. Assign us one.</li>
+      </cold>
+    </request>
+    <thanks>
+      <plain>
+        <li>Thank you. Sleeping next to {OTHER_nameDef} makes everything else easier.</li>
+        <li>We share a bed now. I didn't know how much I'd missed that.</li>
+      </plain>
+      <warm>
+        <li>From both of us: thank you. Truly.</li>
+      </warm>
+      <blunt>
+        <li>Good. Now nobody knock before noon.</li>
+      </blunt>
+      <cheerful>
+        <li>A bed for two! We're never getting up again!</li>
+      </cheerful>
+      <gloomy>
+        <li>For once, the night doesn't feel so cold.</li>
+      </gloomy>
+    </thanks>
+    <expired>
+      <plain>
+        <li>Separate beds again tonight, then.</li>
+      </plain>
+      <warm>
+        <li>It's alright. {OTHER_nameDef} and I will manage.</li>
+      </warm>
+      <gloomy>
+        <li>Goodnight across the room. Again.</li>
+      </gloomy>
+    </expired>
+  </ColonyCouncil.WishDef>
+
+  <ColonyCouncil.WishDef>
+    <defName>Council_Wish_BedroomFurniture</defName>
+    <label>{THING} for {FOR_possessive} room</label>
+    <description>A small piece of furniture to make a bedroom feel lived-in.</description>
+    <workerClass>ColonyCouncil.WishWorker_BedroomFurniture</workerClass>
+    <category>Comfort</category>
+    <weight>0.7</weight>
+    <expiryDays>10</expiryDays>
+    <cooldownDays>15</cooldownDays>
+    <grantedThought>Council_Granted_Furniture</grantedThought>
+    <luxury>true</luxury>
+    <talkInteraction>Council_Talk_Room</talkInteraction>
+    <fulfilledWhen>{THING} stands in {FOR_possessive} bedroom.</fulfilledWhen>
+    <request>
+      <plain>
+        <li>I keep my things in a heap on the floor. With {THING}, my room would feel like a home.</li>
+        <li>Could someone build me {THING}? Just something to put my things on.</li>
+      </plain>
+      <warm>
+        <li>It's a tiny thing, but {THING} by my bed would make me so happy.</li>
+      </warm>
+      <blunt>
+        <li>My room is empty. Get me {THING}.</li>
+      </blunt>
+      <cheerful>
+        <li>I've already picked the spot for {THING}. Now I just need someone to build it!</li>
+      </cheerful>
+      <gloomy>
+        <li>Just a bed and bare walls. Some home. Maybe {THING} would help.</li>
+      </gloomy>
+      <cold>
+        <li>Having {THING} would improve my rest. It's a small cost.</li>
+      </cold>
+    </request>
+    <thanks>
+      <plain>
+        <li>It's perfect. Little things matter out here.</li>
+      </plain>
+      <cheerful>
+        <li>My room has furniture! I'm basically nobility now.</li>
+      </cheerful>
+      <blunt>
+        <li>Good. Exactly what I wanted.</li>
+      </blunt>
+    </thanks>
+    <expired>
+      <plain>
+        <li>The floor works as a shelf, I suppose.</li>
+      </plain>
+    </expired>
+  </ColonyCouncil.WishDef>
+
+  <ColonyCouncil.WishDef>
+    <defName>Council_Wish_Light</defName>
+    <label>light in {FOR_possessive} bedroom</label>
+    <description>Night owls and colonists who've been left in the dark want a light in their room.</description>
+    <workerClass>ColonyCouncil.WishWorker_Light</workerClass>
+    <category>Comfort</category>
+    <weight>0.8</weight>
+    <expiryDays>8</expiryDays>
+    <cooldownDays>15</cooldownDays>
+    <grantedThought>Council_Granted_Light</grantedThought>
+    <talkInteraction>Council_Talk_Room</talkInteraction>
+    <fulfilledWhen>{FOR_possessive} bedroom has a light source, for example {THING}.</fulfilledWhen>
+    <request>
+      <plain>
+        <li>It's pitch black in my room. I stubbed my toe four times last night. Could I get {THING}?</li>
+        <li>Some light in my room would be nice. I'd like to see what I'm tripping over.</li>
+      </plain>
+      <warm>
+        <li>I get a little scared in the dark, honestly. Having {THING} would help so much.</li>
+      </warm>
+      <blunt>
+        <li>My room is a cave. Give me {THING} or give me a candle and some patience.</li>
+      </blunt>
+      <cheerful>
+        <li>Imagine reading in bed by the light of {THING}! I'm imagining it right now.</li>
+      </cheerful>
+      <gloomy>
+        <li>The dark gets into your head after a while. Could I have {THING}?</li>
+      </gloomy>
+      <cold>
+        <li>Darkness hurts efficiency. Installing {THING} solves that.</li>
+      </cold>
+    </request>
+    <thanks>
+      <plain>
+        <li>Light! I can see my own feet again.</li>
+      </plain>
+      <gloomy>
+        <li>The shadows backed off a little. Thank you.</li>
+      </gloomy>
+      <cheerful>
+        <li>It's so cozy now! I might never leave.</li>
+      </cheerful>
+    </thanks>
+    <expired>
+      <plain>
+        <li>Back to feeling my way around in the dark.</li>
+      </plain>
+    </expired>
+  </ColonyCouncil.WishDef>
+
+  <ColonyCouncil.WishDef>
+    <defName>Council_Wish_ComfortTemperature</defName>
+    <label>{SUBJECT} at night</label>
+    <description>After sleeping in the cold or heat, this colonist wants their bedroom kept comfortable.</description>
+    <workerClass>ColonyCouncil.WishWorker_ComfortTemperature</workerClass>
+    <category>Comfort</category>
+    <weight>1.1</weight>
+    <expiryDays>6</expiryDays>
+    <cooldownDays>10</cooldownDays>
+    <grantedThought>Council_Granted_ComfortTemp</grantedThought>
+    <allowForOthers>true</allowForOthers>
+    <talkInteraction>Council_Talk_Comfort</talkInteraction>
+    <fulfilledWhen>{FOR_possessive} bedroom gets {THING}, or simply stays comfortable through the night.</fulfilledWhen>
+    <request>
+      <plain>
+        <li>I woke up and couldn't feel my toes. Could we put {THING} in my room?</li>
+        <li>I can't sleep like this. The temperature in my room is miserable. Having {THING} would fix it.</li>
+      </plain>
+      <warm>
+        <li>I hate to ask, but the nights in my room are rough. Could we get {THING} in there?</li>
+      </warm>
+      <blunt>
+        <li>My room is unlivable at night. I want {THING} in there. Today.</li>
+      </blunt>
+      <cheerful>
+        <li>Good news, I survived the night! Better news would be {THING} in my room.</li>
+      </cheerful>
+      <gloomy>
+        <li>Another night of lying awake, shivering or sweating. Does anyone even notice?</li>
+      </gloomy>
+      <cold>
+        <li>Poor sleep temperature lowers my performance. Install {THING}.</li>
+      </cold>
+    </request>
+    <requestForOther>
+      <plain>
+        <li>{FOR_nameDef} woke up miserable again. Could we put {THING} in {FOR_possessive} room?</li>
+      </plain>
+    </requestForOther>
+    <thanks>
+      <plain>
+        <li>I slept through the whole night. Like a baby muffalo.</li>
+      </plain>
+      <blunt>
+        <li>Finally, a decent night's sleep.</li>
+      </blunt>
+      <cheerful>
+        <li>Perfect temperature! I could hug whoever did this.</li>
+      </cheerful>
+    </thanks>
+    <expired>
+      <plain>
+        <li>I'll pile on more blankets. Or fewer. Whatever works.</li>
+      </plain>
+      <gloomy>
+        <li>I'm getting used to not sleeping. That's probably bad.</li>
+      </gloomy>
+    </expired>
+  </ColonyCouncil.WishDef>
+
+  <ColonyCouncil.WishDef>
+    <defName>Council_Wish_DiningTable</defName>
+    <label>a table to eat at</label>
+    <description>Eating off the floor gets old. This colonist wants a proper place to eat.</description>
+    <workerClass>ColonyCouncil.WishWorker_DiningTable</workerClass>
+    <category>Comfort</category>
+    <weight>1.1</weight>
+    <expiryDays>8</expiryDays>
+    <cooldownDays>12</cooldownDays>
+    <grantedThought>Council_Granted_Dining</grantedThought>
+    <allowPetition>true</allowPetition>
+    <template>Council_DiningRoom</template>
+    <talkInteraction>Council_Talk_Comfort</talkInteraction>
+    <fulfilledWhen>There's a dining table inside a room, for example {THING}.</fulfilledWhen>
+    <request>
+      <plain>
+        <li>I ate dinner crouched next to a woodpile again. Could we have {THING}?</li>
+        <li>A table. Somewhere to sit and eat together. That's all I'm asking.</li>
+      </plain>
+      <warm>
+        <li>It would be lovely to share meals around a real table. Like a family.</li>
+      </warm>
+      <blunt>
+        <li>I'm not an animal. Build a table.</li>
+      </blunt>
+      <cheerful>
+        <li>Picture it: everyone around one table, passing food, telling terrible jokes. Let's build {THING}!</li>
+      </cheerful>
+      <gloomy>
+        <li>Eating alone on the floor. What are we even doing out here.</li>
+      </gloomy>
+      <cold>
+        <li>Eating without a table is degrading and inefficient.</li>
+      </cold>
+    </request>
+    <thanks>
+      <plain>
+        <li>A real table. We eat like people now.</li>
+      </plain>
+      <warm>
+        <li>I love that we can all sit together now.</li>
+      </warm>
+      <cheerful>
+        <li>Pass the salt! I've always wanted to say that.</li>
+      </cheerful>
+    </thanks>
+    <expired>
+      <plain>
+        <li>Back to eating off my knees.</li>
+      </plain>
+      <blunt>
+        <li>Fine. The floor it is.</li>
+      </blunt>
+    </expired>
+  </ColonyCouncil.WishDef>
+
+  <ColonyCouncil.WishDef>
+    <defName>Council_Wish_RecreationVariety</defName>
+    <label>something new to do for fun</label>
+    <description>Bored colonists want a new kind of recreation.</description>
+    <workerClass>ColonyCouncil.WishWorker_RecreationVariety</workerClass>
+    <category>Comfort</category>
+    <weight>1</weight>
+    <expiryDays>10</expiryDays>
+    <cooldownDays>15</cooldownDays>
+    <grantedThought>Council_Granted_Recreation</grantedThought>
+    <allowPetition>true</allowPetition>
+    <template>Council_RecRoom</template>
+    <talkInteraction>Council_Talk_Fun</talkInteraction>
+    <fulfilledWhen>A new kind of recreation becomes available in the colony, for example {THING}.</fulfilledWhen>
+    <request>
+      <plain>
+        <li>I've counted every cloud in the sky. Twice. Could we have {THING}?</li>
+        <li>We need something to do in the evenings that isn't staring at the wall. Maybe {THING}?</li>
+      </plain>
+      <warm>
+        <li>Something fun for everyone would do us all good. How about {THING}?</li>
+      </warm>
+      <blunt>
+        <li>I'm bored out of my skull. Build {THING} or I start making my own fun.</li>
+      </blunt>
+      <cheerful>
+        <li>Game night! We just need {THING}. And snacks. Mostly {THING}.</li>
+      </cheerful>
+      <gloomy>
+        <li>Work, eat, sleep, work. Is this all there is?</li>
+      </gloomy>
+      <cold>
+        <li>Recreation variety prevents breakdowns. Building {THING} is a sound investment.</li>
+      </cold>
+    </request>
+    <thanks>
+      <plain>
+        <li>Finally, something to do! I already lost twice.</li>
+      </plain>
+      <cheerful>
+        <li>This is the best thing that has happened since we got here!</li>
+      </cheerful>
+      <blunt>
+        <li>About time. I'm good at this, by the way.</li>
+      </blunt>
+    </thanks>
+    <expired>
+      <plain>
+        <li>Back to cloud watching. Hey, that one looks like a boomrat.</li>
+      </plain>
+      <gloomy>
+        <li>Boredom is just another way the rim kills you.</li>
+      </gloomy>
+    </expired>
+  </ColonyCouncil.WishDef>
+
+  <ColonyCouncil.WishDef>
+    <defName>Council_Wish_Greenery</defName>
+    <label>a plant for {FOR_possessive} room</label>
+    <description>Someone who loves growing things wants a little greenery in their room.</description>
+    <workerClass>ColonyCouncil.WishWorker_Greenery</workerClass>
+    <category>Comfort</category>
+    <weight>0.6</weight>
+    <expiryDays>8</expiryDays>
+    <cooldownDays>20</cooldownDays>
+    <grantedThought>Council_Granted_Greenery</grantedThought>
+    <talkInteraction>Council_Talk_Room</talkInteraction>
+    <fulfilledWhen>{THING} stands in {FOR_possessive} bedroom.</fulfilledWhen>
+    <request>
+      <plain>
+        <li>Could I have {THING} in my room? I like having something alive nearby.</li>
+        <li>A few flowers by the bed. It's silly, but it would help.</li>
+      </plain>
+      <warm>
+        <li>I'd look after it so well. Just one little plant in my room, please?</li>
+      </warm>
+      <cheerful>
+        <li>I already know what I'll plant. Daylilies! Or roses! Or both!</li>
+      </cheerful>
+      <gloomy>
+        <li>Everything out here is dead or trying to kill us. I'd like one thing that's just... growing.</li>
+      </gloomy>
+      <blunt>
+        <li>I want a plant pot in my room. It's not complicated.</li>
+      </blunt>
+    </request>
+    <thanks>
+      <plain>
+        <li>I'll name it. I'm naming it right now.</li>
+      </plain>
+      <gloomy>
+        <li>Something alive in my room that isn't me. That's nice.</li>
+      </gloomy>
+    </thanks>
+    <expired>
+      <plain>
+        <li>No plant, then. I'll visit the fields instead.</li>
+      </plain>
+    </expired>
+  </ColonyCouncil.WishDef>
+
+</Defs>

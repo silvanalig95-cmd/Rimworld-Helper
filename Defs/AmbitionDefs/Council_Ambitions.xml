@@ -1,0 +1,991 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Ambitions are pitched at council meetings. One is only offered if every goal is possible for the
+    colony right now (tech, research, materials, what's on the map), so a medieval colony never gets
+    "build turrets".
+    In pitch lines {PAWN_nameDef} etc. refer to the colonist pitching it.
+  -->
+
+  <ColonyCouncil.AmbitionDef>
+    <defName>Council_Amb_WinterLarder</defName>
+    <label>a full larder</label>
+    <description>Stock enough food that nobody goes hungry when the fields stop growing.</description>
+    <days>20</days>
+    <weight>1.2</weight>
+    <relevantCategories>
+      <li>Food</li>
+    </relevantCategories>
+    <proposerSkills>
+      <li>Cooking</li>
+      <li>Plants</li>
+    </proposerSkills>
+    <goals>
+      <li Class="ColonyCouncil.Goal_FoodDays">
+        <days>30</days>
+      </li>
+    </goals>
+    <pitch>
+      <plain>
+        <li>I've counted the stores. We won't last the lean months like this. Let's fill the larder: a month of food, minimum.</li>
+        <li>Hunger kills more colonies than raiders do. I say we plant, hunt and stockpile until the shelves groan.</li>
+      </plain>
+      <warm>
+        <li>I want to know that whatever happens, nobody here goes to bed hungry. Let's build up our food stores together.</li>
+      </warm>
+      <blunt>
+        <li>We're one bad harvest away from eating each other. Fill the larder. That's my proposal.</li>
+      </blunt>
+      <cheerful>
+        <li>Picture a storeroom so full we have to climb over the potatoes! Let's make it happen!</li>
+      </cheerful>
+      <gloomy>
+        <li>The cold will come and the food will run out. Unless we start stockpiling now.</li>
+      </gloomy>
+      <cold>
+        <li>Thirty days of reserves eliminates our largest single risk. It's the obvious priority.</li>
+      </cold>
+    </pitch>
+    <achieved>
+      <plain>
+        <li>Look at those stores. Whatever comes, we'll eat.</li>
+      </plain>
+      <cheerful>
+        <li>I may have climbed over the potatoes. Just once. It was glorious.</li>
+      </cheerful>
+      <cold>
+        <li>Food security achieved. As planned.</li>
+      </cold>
+    </achieved>
+  </ColonyCouncil.AmbitionDef>
+
+  <ColonyCouncil.AmbitionDef>
+    <defName>Council_Amb_ColdStore</defName>
+    <label>a cold store</label>
+    <description>Build a freezer and keep it stocked with meals, so nothing rots and nobody goes hungry.</description>
+    <days>18</days>
+    <template>Council_Freezer</template>
+    <relevantCategories>
+      <li>Food</li>
+    </relevantCategories>
+    <proposerSkills>
+      <li>Cooking</li>
+    </proposerSkills>
+    <goals>
+      <li Class="ColonyCouncil.Goal_Freezer" />
+      <li Class="ColonyCouncil.Goal_Stock">
+        <kind>meals</kind>
+        <count>30</count>
+      </li>
+    </goals>
+    <pitch>
+      <plain>
+        <li>Every week I throw out food that turned. A freezer and a stack of meals in it would change everything.</li>
+      </plain>
+      <warm>
+        <li>Imagine a cold room full of ready meals, so nobody waits hungry while I cook. Let's build it.</li>
+      </warm>
+      <blunt>
+        <li>I'm sick of cooking for the flies. Freezer. Meals in it. Done.</li>
+      </blunt>
+      <cheerful>
+        <li>A freezer full of meals! I'll even label the shelves!</li>
+      </cheerful>
+      <gloomy>
+        <li>Everything rots here. Food, hope, everything. Let's at least save the food.</li>
+      </gloomy>
+      <cold>
+        <li>Spoilage is our single biggest waste. A stocked freezer fixes it.</li>
+      </cold>
+    </pitch>
+    <achieved>
+      <plain>
+        <li>Shelves full, air cold, nothing rotting. Beautiful.</li>
+      </plain>
+    </achieved>
+  </ColonyCouncil.AmbitionDef>
+
+  <ColonyCouncil.AmbitionDef>
+    <defName>Council_Amb_Hospital</defName>
+    <label>a real hospital</label>
+    <description>Build a proper hospital with three medical beds and stock up on medicine before the next disaster.</description>
+    <days>20</days>
+    <template>Council_Hospital</template>
+    <relevantCategories>
+      <li>Health</li>
+    </relevantCategories>
+    <proposerSkills>
+      <li>Medicine</li>
+    </proposerSkills>
+    <goals>
+      <li Class="ColonyCouncil.Goal_Room">
+        <role>Hospital</role>
+        <thingRole>bed</thingRole>
+        <thingCount>3</thingCount>
+      </li>
+      <li Class="ColonyCouncil.Goal_Stock">
+        <kind>medicine</kind>
+        <count>15</count>
+      </li>
+    </goals>
+    <pitch>
+      <plain>
+        <li>Last time someone was hurt, I patched them up on the floor next to the stove. We need a real hospital.</li>
+        <li>Three clean beds and a cabinet of medicine. That's what stands between a bad raid and a funeral.</li>
+      </plain>
+      <warm>
+        <li>I never want to lose anyone because we weren't ready. Let's build a hospital we can be proud of.</li>
+      </warm>
+      <blunt>
+        <li>You people keep getting shot. Build me a hospital so I can keep you alive.</li>
+      </blunt>
+      <cheerful>
+        <li>A real hospital! Clean beds! Medicine! I'm so excited I could stitch something!</li>
+      </cheerful>
+      <gloomy>
+        <li>It's not if someone gets badly hurt. It's when. Let's be ready.</li>
+      </gloomy>
+      <cold>
+        <li>Proper medical facilities cut mortality dramatically. This is not optional.</li>
+      </cold>
+    </pitch>
+    <achieved>
+      <plain>
+        <li>Beds made, medicine shelved. Now, please, try not to need it.</li>
+      </plain>
+      <blunt>
+        <li>Good. Now stop getting shot.</li>
+      </blunt>
+    </achieved>
+  </ColonyCouncil.AmbitionDef>
+
+  <ColonyCouncil.AmbitionDef>
+    <defName>Council_Amb_RoomsOfOurOwn</defName>
+    <label>rooms of our own</label>
+    <description>Give every colonist a private bedroom. No more barracks.</description>
+    <days>25</days>
+    <weight>1.1</weight>
+    <template>Council_Bedroom</template>
+    <relevantCategories>
+      <li>Shelter</li>
+      <li>Comfort</li>
+    </relevantCategories>
+    <proposerSkills>
+      <li>Construction</li>
+    </proposerSkills>
+    <proposerTraits>
+      <li>Greedy</li>
+      <li>Jealous</li>
+    </proposerTraits>
+    <goals>
+      <li Class="ColonyCouncil.Goal_AllOwnRooms" />
+    </goals>
+    <pitch>
+      <plain>
+        <li>Everyone deserves a door they can close. I propose a private room for every one of us.</li>
+        <li>We fight better and work better after a good night's sleep. Private rooms for everyone.</li>
+      </plain>
+      <warm>
+        <li>A room of your own makes a place feel like home. Let's make this colony a home.</li>
+      </warm>
+      <blunt>
+        <li>I'm done with the barracks. You're done with the barracks. Let's build rooms.</li>
+      </blunt>
+      <cheerful>
+        <li>Rooms for everybody! With doors! And maybe little name signs!</li>
+      </cheerful>
+      <gloomy>
+        <li>We can't even get a night's peace from each other. Let's fix that before someone snaps.</li>
+      </gloomy>
+      <cold>
+        <li>Private rooms improve sleep quality and mood across the board. The math is simple.</li>
+      </cold>
+    </pitch>
+    <achieved>
+      <plain>
+        <li>A room for everyone. This feels like a real settlement now.</li>
+      </plain>
+      <cheerful>
+        <li>I made the name signs anyway!</li>
+      </cheerful>
+    </achieved>
+  </ColonyCouncil.AmbitionDef>
+
+  <ColonyCouncil.AmbitionDef>
+    <defName>Council_Amb_GreatHall</defName>
+    <label>a great hall</label>
+    <description>Turn the dining room into a hall worth gathering in: impressive, warm and full of good company.</description>
+    <days>25</days>
+    <template>Council_DiningRoom</template>
+    <relevantCategories>
+      <li>Comfort</li>
+      <li>Idea</li>
+    </relevantCategories>
+    <proposerSkills>
+      <li>Artistic</li>
+      <li>Construction</li>
+      <li>Social</li>
+    </proposerSkills>
+    <proposerTraits>
+      <li>Greedy</li>
+    </proposerTraits>
+    <goals>
+      <li Class="ColonyCouncil.Goal_Room">
+        <role>DiningRoom</role>
+        <thingRole>table</thingRole>
+        <thingCount>1</thingCount>
+        <minImpressiveness>65</minImpressiveness>
+      </li>
+    </goals>
+    <pitch>
+      <plain>
+        <li>We eat three times a day. Let's do it somewhere grand: good floors, art on the walls, a hall to be proud of.</li>
+      </plain>
+      <warm>
+        <li>The dining room is where we're a family. Let's make it beautiful.</li>
+      </warm>
+      <blunt>
+        <li>Our dining room looks like a pirate's toilet. Let's build a proper hall.</li>
+      </blunt>
+      <cheerful>
+        <li>A great hall! Long tables! Feasts! Okay, maybe simple meals at first, but in a GREAT HALL!</li>
+      </cheerful>
+      <gloomy>
+        <li>If we're going to die here, we might as well eat somewhere nice first.</li>
+      </gloomy>
+      <cold>
+        <li>An impressive dining room gives a mood bonus three times a day. It's a high-return project.</li>
+      </cold>
+    </pitch>
+    <achieved>
+      <plain>
+        <li>Look at this hall. Visitors are going to be jealous.</li>
+      </plain>
+      <cheerful>
+        <li>First feast is on me! Well, on the cook. But I'll cheer the loudest!</li>
+      </cheerful>
+    </achieved>
+  </ColonyCouncil.AmbitionDef>
+
+  <ColonyCouncil.AmbitionDef>
+    <defName>Council_Amb_FunAndGames</defName>
+    <label>fun and games</label>
+    <description>Build a recreation room with at least five different kinds of recreation in the colony.</description>
+    <days>20</days>
+    <template>Council_RecRoom</template>
+    <relevantCategories>
+      <li>Comfort</li>
+    </relevantCategories>
+    <proposerSkills>
+      <li>Social</li>
+    </proposerSkills>
+    <goals>
+      <li Class="ColonyCouncil.Goal_Room">
+        <role>RecRoom</role>
+      </li>
+      <li Class="ColonyCouncil.Goal_JoyKinds">
+        <count>5</count>
+      </li>
+    </goals>
+    <pitch>
+      <plain>
+        <li>All work and no play makes for mental breaks. I propose a proper rec room.</li>
+      </plain>
+      <warm>
+        <li>We need somewhere to laugh together after a hard day. Let's build a rec room.</li>
+      </warm>
+      <blunt>
+        <li>If I watch one more cloud I'm going to set something on fire. Rec room. Now.</li>
+      </blunt>
+      <cheerful>
+        <li>Games! Lots of games! A whole room of games! Who's with me?</li>
+      </cheerful>
+      <gloomy>
+        <li>We need something to look forward to, or this place will eat us alive.</li>
+      </gloomy>
+      <cold>
+        <li>Recreation variety prevents breakdowns. A rec room is cheap insurance.</li>
+      </cold>
+    </pitch>
+    <achieved>
+      <plain>
+        <li>Game night is officially a colony tradition.</li>
+      </plain>
+      <blunt>
+        <li>I'm going to win at everything. Fair warning.</li>
+      </blunt>
+    </achieved>
+  </ColonyCouncil.AmbitionDef>
+
+  <ColonyCouncil.AmbitionDef>
+    <defName>Council_Amb_HoldTheLine</defName>
+    <label>hold the line</label>
+    <description>Strengthen the colony's defences until we can face the raids our wealth attracts. Add cover where the fighting happens.</description>
+    <days>18</days>
+    <weight>1.1</weight>
+    <relevantCategories>
+      <li>Defense</li>
+    </relevantCategories>
+    <proposerSkills>
+      <li>Shooting</li>
+      <li>Melee</li>
+    </proposerSkills>
+    <proposerTraits>
+      <li>Bloodlust</li>
+      <li>Wimp</li>
+    </proposerTraits>
+    <goals>
+      <li Class="ColonyCouncil.Goal_DefenseRatio">
+        <ratio>1.2</ratio>
+      </li>
+      <li Class="ColonyCouncil.Goal_Build">
+        <thingRole>cover</thingRole>
+        <count>8</count>
+      </li>
+    </goals>
+    <pitch>
+      <plain>
+        <li>The raids are getting bigger and our defences aren't. Let's fix that before they fix us.</li>
+        <li>Cover, weapons, a place to make a stand. I propose we get ready for the next raid.</li>
+      </plain>
+      <warm>
+        <li>I want everyone here to feel safe at night. Let's make this place a fortress.</li>
+      </warm>
+      <blunt>
+        <li>Next time they come, I want them running back where they came from. Build defences.</li>
+      </blunt>
+      <cheerful>
+        <li>Let's make our home the last place any raider wants to visit!</li>
+      </cheerful>
+      <gloomy>
+        <li>They'll come again. Bigger. Let's at least make them pay for it.</li>
+      </gloomy>
+      <cold>
+        <li>Our defensive capacity lags our wealth. That gap gets people killed.</li>
+      </cold>
+    </pitch>
+    <achieved>
+      <plain>
+        <li>Let them come. We're ready.</li>
+      </plain>
+      <blunt>
+        <li>Now I almost want them to try something.</li>
+      </blunt>
+      <gloomy>
+        <li>Safer. Not safe. But safer.</li>
+      </gloomy>
+    </achieved>
+  </ColonyCouncil.AmbitionDef>
+
+  <ColonyCouncil.AmbitionDef>
+    <defName>Council_Amb_IronRing</defName>
+    <label>a ring of iron</label>
+    <description>Build automated turrets to cover the colony's approaches.</description>
+    <days>20</days>
+    <relevantCategories>
+      <li>Defense</li>
+    </relevantCategories>
+    <proposerSkills>
+      <li>Shooting</li>
+      <li>Crafting</li>
+      <li>Construction</li>
+    </proposerSkills>
+    <goals>
+      <li Class="ColonyCouncil.Goal_Build">
+        <thingRole>turret</thingRole>
+        <count>3</count>
+      </li>
+    </goals>
+    <pitch>
+      <plain>
+        <li>Turrets don't sleep, don't eat and don't panic. Let's put three on the main approaches.</li>
+      </plain>
+      <blunt>
+        <li>I want guns that shoot back even when we're asleep. Turrets.</li>
+      </blunt>
+      <cheerful>
+        <li>Little robot guards! Okay, they're turrets. But I'm calling them guards.</li>
+      </cheerful>
+      <gloomy>
+        <li>We can't watch every direction at once. Machines can.</li>
+      </gloomy>
+      <cold>
+        <li>Turrets multiply our firepower at no cost in lives. Build them.</li>
+      </cold>
+    </pitch>
+    <achieved>
+      <plain>
+        <li>The guns are up. The approaches are covered.</li>
+      </plain>
+    </achieved>
+  </ColonyCouncil.AmbitionDef>
+
+  <ColonyCouncil.AmbitionDef>
+    <defName>Council_Amb_TeethInTheMud</defName>
+    <label>teeth in the mud</label>
+    <description>Line the approaches with traps so attackers bleed before they reach our walls.</description>
+    <days>15</days>
+    <relevantCategories>
+      <li>Defense</li>
+    </relevantCategories>
+    <proposerSkills>
+      <li>Construction</li>
+      <li>Melee</li>
+    </proposerSkills>
+    <proposerTraits>
+      <li>Psychopath</li>
+      <li>Bloodlust</li>
+    </proposerTraits>
+    <goals>
+      <li Class="ColonyCouncil.Goal_Build">
+        <thingRole>trap</thingRole>
+        <count>6</count>
+      </li>
+    </goals>
+    <pitch>
+      <plain>
+        <li>Every raider who steps on a trap is one less we have to fight. Let's lay six along the approaches.</li>
+      </plain>
+      <warm>
+        <li>I'd rather they get hurt out there than we get hurt in here. Let's set some traps.</li>
+      </warm>
+      <blunt>
+        <li>Spikes. Lots of spikes. Where they'll walk. Any questions?</li>
+      </blunt>
+      <cheerful>
+        <li>Surprise party for our next visitors! The surprise is spikes.</li>
+      </cheerful>
+      <gloomy>
+        <li>It's ugly work. But so is burying our own.</li>
+      </gloomy>
+      <cold>
+        <li>Traps are cheap and never miss. I find them very efficient.</li>
+      </cold>
+    </pitch>
+    <achieved>
+      <plain>
+        <li>Mind where you step out there. Seriously.</li>
+      </plain>
+      <cold>
+        <li>The approaches are now hostile. Good.</li>
+      </cold>
+    </achieved>
+  </ColonyCouncil.AmbitionDef>
+
+  <ColonyCouncil.AmbitionDef>
+    <defName>Council_Amb_LightsOn</defName>
+    <label>keep the lights on</label>
+    <description>Build up battery storage so the colony rides out nights, calm days and eclipses.</description>
+    <days>18</days>
+    <relevantCategories>
+      <li>Power</li>
+    </relevantCategories>
+    <proposerSkills>
+      <li>Intellectual</li>
+      <li>Construction</li>
+    </proposerSkills>
+    <goals>
+      <li Class="ColonyCouncil.Goal_Build">
+        <thingRole>battery</thingRole>
+        <count>2</count>
+      </li>
+      <li Class="ColonyCouncil.Goal_Power">
+        <storedWd>1500</storedWd>
+      </li>
+    </goals>
+    <pitch>
+      <plain>
+        <li>Every time the sun sets, the lights flicker. Let's build batteries and stop holding our breath at dusk.</li>
+      </plain>
+      <blunt>
+        <li>The power keeps dying at the worst moment. Batteries. Today.</li>
+      </blunt>
+      <cheerful>
+        <li>Let's store up so much power we could light the whole map! Well, the colony.</li>
+      </cheerful>
+      <gloomy>
+        <li>One eclipse and the freezer thaws. One eclipse and we starve. Batteries, please.</li>
+      </gloomy>
+      <cold>
+        <li>Unbuffered power is a single point of failure. Storage fixes it.</li>
+      </cold>
+    </pitch>
+    <achieved>
+      <plain>
+        <li>The lights stay on. Every night. Lovely.</li>
+      </plain>
+    </achieved>
+  </ColonyCouncil.AmbitionDef>
+
+  <ColonyCouncil.AmbitionDef>
+    <defName>Council_Amb_Workshop</defName>
+    <label>the workshop</label>
+    <description>Build a proper workshop with at least two crafting stations.</description>
+    <days>20</days>
+    <template>Council_Workshop</template>
+    <relevantCategories>
+      <li>Work</li>
+      <li>Progress</li>
+    </relevantCategories>
+    <proposerSkills>
+      <li>Crafting</li>
+    </proposerSkills>
+    <goals>
+      <li Class="ColonyCouncil.Goal_Room">
+        <role>Workshop</role>
+        <thingRole>craft</thingRole>
+        <thingCount>2</thingCount>
+      </li>
+    </goals>
+    <pitch>
+      <plain>
+        <li>Clothes, tools, weapons: they all come from somewhere. Let's build a real workshop to make them.</li>
+      </plain>
+      <warm>
+        <li>With a proper workshop I could keep everyone clothed and equipped. Let's build one.</li>
+      </warm>
+      <blunt>
+        <li>You want gear? Then give me a workshop, not a bench in the rain.</li>
+      </blunt>
+      <cheerful>
+        <li>A workshop! The smell of sawdust! The sound of progress!</li>
+      </cheerful>
+      <gloomy>
+        <li>Everything we own is falling apart. Someone has to make new things.</li>
+      </gloomy>
+      <cold>
+        <li>Production capacity is our bottleneck. A workshop removes it.</li>
+      </cold>
+    </pitch>
+    <achieved>
+      <plain>
+        <li>The workshop is open for business.</li>
+      </plain>
+    </achieved>
+  </ColonyCouncil.AmbitionDef>
+
+  <ColonyCouncil.AmbitionDef>
+    <defName>Council_Amb_Gallery</defName>
+    <label>a gallery of our own</label>
+    <description>Place three works of art in the dining room or rec room.</description>
+    <days>25</days>
+    <relevantCategories>
+      <li>Idea</li>
+      <li>Comfort</li>
+    </relevantCategories>
+    <proposerSkills>
+      <li>Artistic</li>
+    </proposerSkills>
+    <goals>
+      <li Class="ColonyCouncil.Goal_SharedArt">
+        <count>3</count>
+      </li>
+    </goals>
+    <pitch>
+      <plain>
+        <li>Out here we survive. I want us to live, too. Three sculptures where everyone can see them.</li>
+      </plain>
+      <warm>
+        <li>Art reminds us we're more than our struggles. Let's fill our common rooms with it.</li>
+      </warm>
+      <blunt>
+        <li>Our walls are depressing. Let me fix that.</li>
+      </blunt>
+      <cheerful>
+        <li>A gallery! I already have so many ideas. One of them is a squirrel.</li>
+      </cheerful>
+      <gloomy>
+        <li>When we're gone, the art will remain. Let's leave something behind.</li>
+      </gloomy>
+      <cold>
+        <li>Beauty increases mood and colony value. I propose three pieces.</li>
+      </cold>
+    </pitch>
+    <achieved>
+      <plain>
+        <li>Our very own gallery. Who knew we had it in us?</li>
+      </plain>
+    </achieved>
+  </ColonyCouncil.AmbitionDef>
+
+  <ColonyCouncil.AmbitionDef>
+    <defName>Council_Amb_Menagerie</defName>
+    <label>the menagerie</label>
+    <description>Tame three new animals and give them a barn to sleep in.</description>
+    <days>25</days>
+    <template>Council_Barn</template>
+    <relevantCategories>
+      <li>Idea</li>
+    </relevantCategories>
+    <proposerSkills>
+      <li>Animals</li>
+    </proposerSkills>
+    <goals>
+      <li Class="ColonyCouncil.Goal_Animals">
+        <count>3</count>
+      </li>
+      <li Class="ColonyCouncil.Goal_Room">
+        <role>Barn</role>
+      </li>
+    </goals>
+    <pitch>
+      <plain>
+        <li>The animals out there could pull carts, give milk, or just be good company. Let's tame a few and build them a barn.</li>
+      </plain>
+      <warm>
+        <li>Animals make a place feel alive. Let's welcome a few into our family.</li>
+      </warm>
+      <blunt>
+        <li>Free labour is walking around on four legs. Tame it.</li>
+      </blunt>
+      <cheerful>
+        <li>A barn full of friends! I want one of everything!</li>
+      </cheerful>
+      <gloomy>
+        <li>Animals are honest. I could use more honesty around here.</li>
+      </gloomy>
+      <cold>
+        <li>Tamed animals provide labour, food and defence. The return is excellent.</li>
+      </cold>
+    </pitch>
+    <achieved>
+      <plain>
+        <li>Listen to them. That's the sound of a real homestead.</li>
+      </plain>
+      <cheerful>
+        <li>I named all of them. Twice.</li>
+      </cheerful>
+    </achieved>
+  </ColonyCouncil.AmbitionDef>
+
+  <ColonyCouncil.AmbitionDef>
+    <defName>Council_Amb_Scholars</defName>
+    <label>the pursuit of knowledge</label>
+    <description>Set up a proper laboratory and complete three research projects.</description>
+    <days>30</days>
+    <template>Council_Laboratory</template>
+    <relevantCategories>
+      <li>Progress</li>
+    </relevantCategories>
+    <proposerSkills>
+      <li>Intellectual</li>
+    </proposerSkills>
+    <goals>
+      <li Class="ColonyCouncil.Goal_Room">
+        <role>Laboratory</role>
+        <thingRole>research</thingRole>
+        <thingCount>1</thingCount>
+      </li>
+      <li Class="ColonyCouncil.Goal_Research">
+        <count>3</count>
+      </li>
+    </goals>
+    <pitch>
+      <plain>
+        <li>Everything we'll ever build starts as an idea. Give me a quiet room to think in, and three projects to finish.</li>
+      </plain>
+      <warm>
+        <li>Knowledge is how we'll make life better for everyone. Let's invest in it.</li>
+      </warm>
+      <blunt>
+        <li>We're stumbling around in the dark. Let me do some actual research.</li>
+      </blunt>
+      <cheerful>
+        <li>Science! Discoveries! Probably a small explosion! Let's do it!</li>
+      </cheerful>
+      <gloomy>
+        <li>We won't survive on what we know now. We have to learn more.</li>
+      </gloomy>
+      <cold>
+        <li>Research compounds. Every project makes the next one more valuable.</li>
+      </cold>
+    </pitch>
+    <achieved>
+      <plain>
+        <li>Three breakthroughs. And I'm only getting started.</li>
+      </plain>
+    </achieved>
+  </ColonyCouncil.AmbitionDef>
+
+  <ColonyCouncil.AmbitionDef>
+    <defName>Council_Amb_Greenhouse</defName>
+    <label>a greenhouse</label>
+    <description>Grow food under a roof, whatever the season, and keep the larder stocked.</description>
+    <days>25</days>
+    <template>Council_Greenhouse</template>
+    <relevantCategories>
+      <li>Food</li>
+    </relevantCategories>
+    <proposerSkills>
+      <li>Plants</li>
+    </proposerSkills>
+    <goals>
+      <li Class="ColonyCouncil.Goal_Greenhouse" />
+      <li Class="ColonyCouncil.Goal_FoodDays">
+        <days>20</days>
+      </li>
+    </goals>
+    <pitch>
+      <plain>
+        <li>Seasons won't decide whether we eat if we grow indoors. Let's build a greenhouse.</li>
+      </plain>
+      <warm>
+        <li>Fresh greens in the middle of winter. Imagine everyone's faces.</li>
+      </warm>
+      <blunt>
+        <li>I'm tired of the weather deciding if we starve. Greenhouse.</li>
+      </blunt>
+      <cheerful>
+        <li>A whole room of growing things! It'll smell like spring all year!</li>
+      </cheerful>
+      <gloomy>
+        <li>One bad season and we're done. Unless we grow indoors.</li>
+      </gloomy>
+      <cold>
+        <li>Year-round production eliminates seasonal risk.</li>
+      </cold>
+    </pitch>
+    <achieved>
+      <plain>
+        <li>Green and growing, whatever the weather.</li>
+      </plain>
+    </achieved>
+  </ColonyCouncil.AmbitionDef>
+
+  <ColonyCouncil.AmbitionDef>
+    <defName>Council_Amb_WarmWinter</defName>
+    <label>a warm winter</label>
+    <description>Put a heat source in every bedroom before the cold sets in.</description>
+    <days>15</days>
+    <relevantCategories>
+      <li>Temperature</li>
+      <li>Shelter</li>
+    </relevantCategories>
+    <proposerSkills>
+      <li>Construction</li>
+    </proposerSkills>
+    <goals>
+      <li Class="ColonyCouncil.Goal_WarmBedrooms" />
+    </goals>
+    <pitch>
+      <plain>
+        <li>Winter is coming, and frostbite isn't a hobby. Every bedroom gets a heat source.</li>
+      </plain>
+      <warm>
+        <li>Nobody should shiver themselves to sleep. Let's warm every room.</li>
+      </warm>
+      <blunt>
+        <li>I lost feeling in my toes last winter. Not again. Heat in every room.</li>
+      </blunt>
+      <cheerful>
+        <li>Cozy rooms for everyone! Winter can come and knock!</li>
+      </cheerful>
+      <gloomy>
+        <li>The cold kills slowly. Let's not give it the chance.</li>
+      </gloomy>
+      <cold>
+        <li>Hypothermia is preventable. Prevent it.</li>
+      </cold>
+    </pitch>
+    <achieved>
+      <plain>
+        <li>Every room warm. Let it snow.</li>
+      </plain>
+    </achieved>
+  </ColonyCouncil.AmbitionDef>
+
+  <ColonyCouncil.AmbitionDef>
+    <defName>Council_Amb_NewBlood</defName>
+    <label>new blood</label>
+    <description>Welcome at least one new colonist: recruit a prisoner, take in a refugee, or answer a call for help.</description>
+    <days>30</days>
+    <weight>0.8</weight>
+    <relevantCategories>
+      <li>Work</li>
+    </relevantCategories>
+    <proposerSkills>
+      <li>Social</li>
+    </proposerSkills>
+    <proposerTraits>
+      <li>Kind</li>
+    </proposerTraits>
+    <goals>
+      <li Class="ColonyCouncil.Goal_Colonists">
+        <count>1</count>
+      </li>
+    </goals>
+    <pitch>
+      <plain>
+        <li>We're stretched thin. One more pair of hands would change everything.</li>
+      </plain>
+      <warm>
+        <li>There are people out there with nowhere to go. Let's give one of them a home.</li>
+      </warm>
+      <blunt>
+        <li>We need more people. I don't care how we get them.</li>
+      </blunt>
+      <cheerful>
+        <li>A new friend! I'll even give them my second-best spoon.</li>
+      </cheerful>
+      <gloomy>
+        <li>There aren't enough of us to survive what's coming.</li>
+      </gloomy>
+      <cold>
+        <li>Our labour shortage is critical. Recruitment is the fastest fix.</li>
+      </cold>
+    </pitch>
+    <achieved>
+      <plain>
+        <li>Welcome to the colony. We're glad you're here.</li>
+      </plain>
+    </achieved>
+  </ColonyCouncil.AmbitionDef>
+
+  <ColonyCouncil.AmbitionDef>
+    <defName>Council_Amb_GoodTimes</defName>
+    <label>good times</label>
+    <description>Lift the colony's average mood to 65%. Fix complaints, feed people well, let them rest.</description>
+    <days>15</days>
+    <weight>0.9</weight>
+    <relevantCategories>
+      <li>Comfort</li>
+    </relevantCategories>
+    <proposerSkills>
+      <li>Social</li>
+    </proposerSkills>
+    <proposerTraits>
+      <li>Kind</li>
+    </proposerTraits>
+    <goals>
+      <li Class="ColonyCouncil.Goal_AverageMood">
+        <mood>0.65</mood>
+      </li>
+    </goals>
+    <pitch>
+      <plain>
+        <li>People are tense. Let's spend a while making this place better to live in, not just bigger.</li>
+      </plain>
+      <warm>
+        <li>I see how tired everyone is. Let's take care of each other for a while.</li>
+      </warm>
+      <blunt>
+        <li>Everyone's miserable and it's making me miserable. Let's fix it.</li>
+      </blunt>
+      <cheerful>
+        <li>Operation: Make Everyone Smile! I'm in charge of the smiling.</li>
+      </cheerful>
+      <gloomy>
+        <li>We're one bad day from someone snapping. Let's lift the mood before that happens.</li>
+      </gloomy>
+      <cold>
+        <li>Low morale reduces output and invites breakdowns. Raise it.</li>
+      </cold>
+    </pitch>
+    <achieved>
+      <plain>
+        <li>Listen to that. People are laughing again.</li>
+      </plain>
+    </achieved>
+  </ColonyCouncil.AmbitionDef>
+
+  <ColonyCouncil.AmbitionDef>
+    <defName>Council_Amb_Treasury</defName>
+    <label>a full treasury</label>
+    <description>Build up 2000 silver for trade, ransoms and emergencies.</description>
+    <days>30</days>
+    <weight>0.7</weight>
+    <relevantCategories>
+      <li>Progress</li>
+    </relevantCategories>
+    <proposerSkills>
+      <li>Social</li>
+    </proposerSkills>
+    <proposerTraits>
+      <li>Greedy</li>
+    </proposerTraits>
+    <goals>
+      <li Class="ColonyCouncil.Goal_Stock">
+        <kind>silver</kind>
+        <count>2000</count>
+      </li>
+    </goals>
+    <pitch>
+      <plain>
+        <li>When the next trader comes, I want to buy what we need, not beg. Let's save up silver.</li>
+      </plain>
+      <warm>
+        <li>A good reserve of silver could save a life one day. Let's build one.</li>
+      </warm>
+      <blunt>
+        <li>Money talks. Right now ours is whispering. Let's fix that.</li>
+      </blunt>
+      <cheerful>
+        <li>Let's get so rich the traders bow when they see us coming!</li>
+      </cheerful>
+      <gloomy>
+        <li>Someday we'll need to buy our way out of trouble. Better have the silver.</li>
+      </gloomy>
+      <cold>
+        <li>Liquidity provides options. I propose we accumulate some.</li>
+      </cold>
+    </pitch>
+    <achieved>
+      <plain>
+        <li>A full treasury. Let the traders come.</li>
+      </plain>
+    </achieved>
+  </ColonyCouncil.AmbitionDef>
+
+  <ColonyCouncil.AmbitionDef>
+    <defName>Council_Amb_FineDining</defName>
+    <label>fine dining</label>
+    <description>Give the cooks a real kitchen and stock twenty fine meals.</description>
+    <days>20</days>
+    <template>Council_Kitchen</template>
+    <relevantCategories>
+      <li>Food</li>
+      <li>Comfort</li>
+    </relevantCategories>
+    <proposerSkills>
+      <li>Cooking</li>
+    </proposerSkills>
+    <goals>
+      <li Class="ColonyCouncil.Goal_Room">
+        <role>Kitchen</role>
+        <thingRole>cook</thingRole>
+        <thingCount>1</thingCount>
+      </li>
+      <li Class="ColonyCouncil.Goal_Stock">
+        <kind>finemeals</kind>
+        <count>20</count>
+      </li>
+    </goals>
+    <pitch>
+      <plain>
+        <li>Give me a real kitchen and good ingredients and I'll give you meals worth fighting for.</li>
+      </plain>
+      <warm>
+        <li>Good food is love you can eat. Let me cook for all of you properly.</li>
+      </warm>
+      <blunt>
+        <li>I'm a cook, not a miracle worker. Give me a kitchen.</li>
+      </blunt>
+      <cheerful>
+        <li>Fine dining on the rim! Garnish and everything!</li>
+      </cheerful>
+      <gloomy>
+        <li>If every day is a struggle, at least dinner shouldn't be.</li>
+      </gloomy>
+      <cold>
+        <li>Fine meals give a lasting mood bonus. The kitchen pays for itself.</li>
+      </cold>
+    </pitch>
+    <achieved>
+      <plain>
+        <li>Dinner is served. Fine dining, rim style.</li>
+      </plain>
+    </achieved>
+  </ColonyCouncil.AmbitionDef>
+
+</Defs>

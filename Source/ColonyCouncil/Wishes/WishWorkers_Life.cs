@@ -84,8 +84,6 @@ namespace ColonyCouncil
             if (corpse != null && corpse.Spawned) return new LookTargets(corpse);
             return base.LookAt(wish);
         }
-
-        public override string RimTalkTopic(Wish wish) => "wants " + (wish.other?.LabelShort ?? "a lost friend") + " to be given a proper burial";
     }
 
     /// <summary>A missing limb or eye, and a prosthetic within reach.</summary>
@@ -191,6 +189,7 @@ namespace ColonyCouncil
             var c = Candidate(shaken ? 1.6f : 1f, shaken ? "CC_Reason_Unsafe".Translate(pawn.Named("PAWN")) : "CC_Reason_Tactician".Translate(pawn.Named("PAWN")));
             c.thingDef = def;
             c.subjectKey = key;
+            c.subjectLabel = ("CC_DefKind_" + key).Translate();
             c.baseline = DefenseUtil.CountOfKind(map, key);
             c.targetValue = c.baseline + extra;
             yield return c;

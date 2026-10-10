@@ -44,10 +44,6 @@ namespace ColonyCouncil
         public bool advisorAlert = true;
         public bool wishAlert = true;
 
-        // RimTalk
-        public bool rimTalkContext = true;
-        public bool rimTalkSpeech = true;
-
         private static Vector2 scroll;
         private static float viewHeight = 1200f;
 
@@ -73,8 +69,6 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref daysBetweenPersonalTouches, "daysBetweenPersonalTouches", 6f);
             Scribe_Values.Look(ref advisorAlert, "advisorAlert", true);
             Scribe_Values.Look(ref wishAlert, "wishAlert", true);
-            Scribe_Values.Look(ref rimTalkContext, "rimTalkContext", true);
-            Scribe_Values.Look(ref rimTalkSpeech, "rimTalkSpeech", true);
         }
 
         public bool MoodEffects => stakes != StakesMode.AdvisorOnly;
@@ -129,11 +123,6 @@ namespace ColonyCouncil
             l.CheckboxLabeled("CC_Settings_AdvisorAlert".Translate(), ref advisorAlert, "CC_Settings_AdvisorAlert_Tip".Translate());
             l.CheckboxLabeled("CC_Settings_WishAlert".Translate(), ref wishAlert, "CC_Settings_WishAlert_Tip".Translate());
 
-            Header(l, "CC_Settings_RimTalk".Translate());
-            l.Label(RimTalkBridge.Active ? "CC_Settings_RimTalkActive".Translate() : "CC_Settings_RimTalkInactive".Translate());
-            l.CheckboxLabeled("CC_Settings_RimTalkContext".Translate(), ref rimTalkContext, "CC_Settings_RimTalkContext_Tip".Translate());
-            l.CheckboxLabeled("CC_Settings_RimTalkSpeech".Translate(), ref rimTalkSpeech, "CC_Settings_RimTalkSpeech_Tip".Translate());
-
             l.Gap();
             if (l.ButtonText("CC_Settings_Reset".Translate(), null, 0.4f))
             {
@@ -176,8 +165,6 @@ namespace ColonyCouncil
             daysBetweenPersonalTouches = d.daysBetweenPersonalTouches;
             advisorAlert = d.advisorAlert;
             wishAlert = d.wishAlert;
-            rimTalkContext = d.rimTalkContext;
-            rimTalkSpeech = d.rimTalkSpeech;
         }
     }
 }

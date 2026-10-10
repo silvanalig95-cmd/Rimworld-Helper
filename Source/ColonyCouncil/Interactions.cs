@@ -6,7 +6,7 @@ namespace ColonyCouncil
 {
     /// <summary>
     /// A colonist with an open wish brings it up in conversation now and then. The line goes into the
-    /// social log, and RimTalk (if installed) turns it into AI dialogue on its own.
+    /// social log, like any other vanilla interaction.
     /// </summary>
     public class InteractionWorker_TalkAboutWish : InteractionWorker
     {

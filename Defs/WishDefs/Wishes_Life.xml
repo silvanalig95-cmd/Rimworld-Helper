@@ -1,0 +1,398 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <ColonyCouncil.WishDef>
+    <defName>Council_Wish_NewClothes</defName>
+    <label>new clothes</label>
+    <description>Tattered rags, a dead raider's shirt, or nothing at all: this colonist wants something decent to wear.</description>
+    <workerClass>ColonyCouncil.WishWorker_NewClothes</workerClass>
+    <category>Gear</category>
+    <weight>1</weight>
+    <expiryDays>8</expiryDays>
+    <cooldownDays>12</cooldownDays>
+    <grantedThought>Council_Granted_Clothes</grantedThought>
+    <allowForOthers>true</allowForOthers>
+    <talkInteraction>Council_Talk_Comfort</talkInteraction>
+    <fulfilledWhen>{FOR_nameDef} no longer wears tattered or dead people's clothes. Make some at a tailoring spot or bench, or buy some.</fulfilledWhen>
+    <request>
+      <plain>
+        <li>My clothes are more holes than cloth at this point. Could someone make me something new?</li>
+        <li>I'm wearing a dead man's shirt. It still smells like him. New clothes, please.</li>
+        <li>A new set of clothes would do wonders. These ones are barely holding on.</li>
+      </plain>
+      <warm>
+        <li>When the tailor has a moment, I'd be so grateful for something new to wear.</li>
+      </warm>
+      <blunt>
+        <li>I look like a scarecrow that lost a fight. Get me some clothes.</li>
+      </blunt>
+      <cheerful>
+        <li>I'd love a new outfit! Something with pockets. Pockets are the dream.</li>
+      </cheerful>
+      <gloomy>
+        <li>Every time I get dressed I think about who wore these last. And how they died.</li>
+      </gloomy>
+      <cold>
+        <li>Damaged clothing reduces protection and morale. Replace mine.</li>
+      </cold>
+    </request>
+    <requestForOther>
+      <plain>
+        <li>{FOR_nameDef} is walking around in rags. Could someone make {FOR_objective} something decent to wear?</li>
+      </plain>
+      <warm>
+        <li>Poor {FOR_nameDef} has been wearing the same torn clothes for ages. Let's make {FOR_objective} something nice.</li>
+      </warm>
+    </requestForOther>
+    <thanks>
+      <plain>
+        <li>Clean clothes that never touched a corpse. I feel human again.</li>
+      </plain>
+      <cheerful>
+        <li>Look at me! Do I look dashing? I feel dashing.</li>
+      </cheerful>
+      <blunt>
+        <li>Fits fine. Thanks.</li>
+      </blunt>
+    </thanks>
+    <expired>
+      <plain>
+        <li>I'll patch these up again. Somehow.</li>
+      </plain>
+      <gloomy>
+        <li>Rags it is. Fitting, really.</li>
+      </gloomy>
+    </expired>
+  </ColonyCouncil.WishDef>
+
+  <ColonyCouncil.WishDef>
+    <defName>Council_Wish_Memorial</defName>
+    <label>a proper burial for {OTHER_nameDef}</label>
+    <description>Someone they loved, or respected, still lies unburied. They want them laid to rest.</description>
+    <workerClass>ColonyCouncil.WishWorker_Memorial</workerClass>
+    <category>Social</category>
+    <weight>1.5</weight>
+    <expiryDays>6</expiryDays>
+    <cooldownDays>10</cooldownDays>
+    <grantedThought>Council_Granted_Memorial</grantedThought>
+    <allowPetition>true</allowPetition>
+    <template>Council_Crypt</template>
+    <talkInteraction>Council_Talk_Grief</talkInteraction>
+    <fulfilledWhen>{OTHER_nameDef}'s body rests in a grave or sarcophagus. Cremation also counts.</fulfilledWhen>
+    <request>
+      <plain>
+        <li>{OTHER_nameDef} is still lying out there. Please, give {OTHER_objective} a proper grave.</li>
+        <li>I can't stop thinking about {OTHER_nameDef} out in the open. That's no way to end. Bury {OTHER_objective}.</li>
+        <li>Whatever we can spare, let's spare it for {OTHER_nameDef}'s grave.</li>
+      </plain>
+      <warm>
+        <li>{OTHER_nameDef} meant so much to me. Let's lay {OTHER_objective} to rest properly. I'll dig the grave myself.</li>
+      </warm>
+      <blunt>
+        <li>{OTHER_nameDef} is rotting in the dirt while we go about our day. Bury {OTHER_objective}. Now.</li>
+      </blunt>
+      <cheerful>
+        <li>{OTHER_nameDef} always made me laugh. The least we can do is give {OTHER_objective} a decent resting place.</li>
+      </cheerful>
+      <gloomy>
+        <li>Every time I walk past, there's {OTHER_nameDef}. I can't keep seeing that.</li>
+      </gloomy>
+      <cold>
+        <li>An unburied body attracts predators and spreads disease. Also, it was {OTHER_nameDef}. Bury it.</li>
+      </cold>
+    </request>
+    <thanks>
+      <plain>
+        <li>{OTHER_nameDef} is at rest now. Thank you for that.</li>
+        <li>I said goodbye at the grave. It helped more than I expected.</li>
+      </plain>
+      <warm>
+        <li>Thank you for giving {OTHER_nameDef} the farewell {OTHER_pronoun} deserved.</li>
+      </warm>
+      <blunt>
+        <li>It's done. Good.</li>
+      </blunt>
+      <gloomy>
+        <li>At least {OTHER_nameDef} doesn't have to lie out there anymore.</li>
+      </gloomy>
+      <cold>
+        <li>Handled with dignity. As it should be.</li>
+      </cold>
+    </thanks>
+    <expired>
+      <plain>
+        <li>I suppose nobody had time for {OTHER_nameDef}.</li>
+      </plain>
+      <gloomy>
+        <li>We'll all end up like {OTHER_nameDef}. Forgotten in the dirt.</li>
+      </gloomy>
+      <blunt>
+        <li>Remember this when it's your turn.</li>
+      </blunt>
+    </expired>
+  </ColonyCouncil.WishDef>
+
+  <ColonyCouncil.WishDef>
+    <defName>Council_Wish_Prosthetic</defName>
+    <label>a replacement for {FOR_possessive} {SUBJECT}</label>
+    <description>A colonist missing a body part wants it replaced, and the colony can get or make something that fits.</description>
+    <workerClass>ColonyCouncil.WishWorker_Prosthetic</workerClass>
+    <category>Health</category>
+    <weight>1.3</weight>
+    <expiryDays>15</expiryDays>
+    <cooldownDays>15</cooldownDays>
+    <grantedThought>Council_Granted_Prosthetic</grantedThought>
+    <allowForOthers>true</allowForOthers>
+    <talkInteraction>Council_Talk_Body</talkInteraction>
+    <fulfilledWhen>{FOR_possessive} {SUBJECT} is replaced, for example with {THING}. Craft or buy one, then have a doctor install it.</fulfilledWhen>
+    <request>
+      <plain>
+        <li>Life without my {SUBJECT} is hard. I've heard we could get {THING}. Please?</li>
+        <li>I keep reaching for things with a {SUBJECT} I don't have. Could the doctor fit me with {THING}?</li>
+      </plain>
+      <warm>
+        <li>I don't want to be a burden. With {THING}, I could pull my weight again.</li>
+      </warm>
+      <blunt>
+        <li>I'm missing my {SUBJECT}. Fix it. You know how.</li>
+      </blunt>
+      <cheerful>
+        <li>I've decided I want {THING}. I'm already practising my dramatic reveal.</li>
+      </cheerful>
+      <gloomy>
+        <li>Every day I'm reminded of what I lost. Maybe {THING} would make it stop.</li>
+      </gloomy>
+      <cold>
+        <li>A missing {SUBJECT} limits my usefulness. Replacing it is efficient.</li>
+      </cold>
+    </request>
+    <requestForOther>
+      <plain>
+        <li>{FOR_nameDef} has been struggling without {FOR_possessive} {SUBJECT}. Could we get {FOR_objective} {THING}?</li>
+      </plain>
+    </requestForOther>
+    <thanks>
+      <plain>
+        <li>It's not what I was born with, but it works. Thank you.</li>
+      </plain>
+      <cheerful>
+        <li>Look at this! I'm basically a new person! Partially!</li>
+      </cheerful>
+      <gloomy>
+        <li>I almost feel whole. Almost is a lot.</li>
+      </gloomy>
+      <cold>
+        <li>Function restored. Good work, doctor.</li>
+      </cold>
+    </thanks>
+    <expired>
+      <plain>
+        <li>I'll learn to manage without it. I suppose.</li>
+      </plain>
+      <gloomy>
+        <li>Broken things stay broken out here.</li>
+      </gloomy>
+    </expired>
+  </ColonyCouncil.WishDef>
+
+  <ColonyCouncil.WishDef>
+    <defName>Council_Wish_Companion</defName>
+    <label>an animal companion</label>
+    <description>An animal lover has spotted a creature out on the map and wants to bring it home.</description>
+    <workerClass>ColonyCouncil.WishWorker_Companion</workerClass>
+    <category>Social</category>
+    <weight>0.8</weight>
+    <expiryDays>10</expiryDays>
+    <cooldownDays>20</cooldownDays>
+    <grantedThought>Council_Granted_Companion</grantedThought>
+    <inspirationChance>0.2</inspirationChance>
+    <talkInteraction>Council_Talk_Animals</talkInteraction>
+    <fulfilledWhen>The colony tames a new animal. There's a {SUBJECT} out there, for a start.</fulfilledWhen>
+    <request>
+      <plain>
+        <li>There's a {SUBJECT} wandering around out there. I think it wants to come home with us.</li>
+        <li>Could I try taming that {SUBJECT}? I'd look after it, I swear.</li>
+      </plain>
+      <warm>
+        <li>That {SUBJECT} looks lonely. We could use a friend, and so could it.</li>
+      </warm>
+      <blunt>
+        <li>There's a perfectly good {SUBJECT} out there doing nothing. Let me tame it.</li>
+      </blunt>
+      <cheerful>
+        <li>I saw a {SUBJECT}! I've already named it! Please let me tame it!</li>
+      </cheerful>
+      <gloomy>
+        <li>Animals don't betray you. People do. Let me tame that {SUBJECT}.</li>
+      </gloomy>
+      <cold>
+        <li>A tamed {SUBJECT} would be useful. And I enjoy the work.</li>
+      </cold>
+    </request>
+    <thanks>
+      <plain>
+        <li>Welcome to the family, little one.</li>
+      </plain>
+      <cheerful>
+        <li>New friend! Best day! Everyone come say hello!</li>
+      </cheerful>
+      <gloomy>
+        <li>Finally, someone around here who doesn't judge me.</li>
+      </gloomy>
+    </thanks>
+    <expired>
+      <plain>
+        <li>Maybe next time I'll get the chance.</li>
+      </plain>
+    </expired>
+  </ColonyCouncil.WishDef>
+
+  <ColonyCouncil.WishDef>
+    <defName>Council_Wish_Defenses</defName>
+    <label>stronger defences</label>
+    <description>A fighter, or someone shaken by violence, doesn't feel safe and wants better defences. What they ask for depends on what the colony can build.</description>
+    <workerClass>ColonyCouncil.WishWorker_Defenses</workerClass>
+    <category>Safety</category>
+    <weight>1</weight>
+    <expiryDays>12</expiryDays>
+    <cooldownDays>20</cooldownDays>
+    <grantedThought>Council_Granted_Defenses</grantedThought>
+    <allowPetition>true</allowPetition>
+    <talkInteraction>Council_Talk_Safety</talkInteraction>
+    <request>
+      <plain>
+        <li>Next raid, I'd like something between me and the bullets. Let's add more {SUBJECT}.</li>
+        <li>Our defences are thin. A few more {SUBJECT} would let me sleep at night.</li>
+        <li>I've been walking the perimeter. We need {SUBJECT} at the approaches.</li>
+      </plain>
+      <warm>
+        <li>I just want everyone to be safe. Could we build some more {SUBJECT}?</li>
+      </warm>
+      <blunt>
+        <li>We're sitting ducks. Build more {SUBJECT} before they come back.</li>
+      </blunt>
+      <cheerful>
+        <li>Let's make the next raid really regret visiting! I'm thinking {SUBJECT}. Lots of them.</li>
+      </cheerful>
+      <gloomy>
+        <li>They'll come again. They always do. And we're not ready.</li>
+      </gloomy>
+      <cold>
+        <li>Our defensive capacity is inadequate. More {SUBJECT} will fix that.</li>
+      </cold>
+    </request>
+    <thanks>
+      <plain>
+        <li>That's better. Let them come.</li>
+      </plain>
+      <cheerful>
+        <li>Ha! I almost feel sorry for the next raiders. Almost.</li>
+      </cheerful>
+      <gloomy>
+        <li>A little safer. That's something.</li>
+      </gloomy>
+      <cold>
+        <li>Defensive position improved. Good.</li>
+      </cold>
+    </thanks>
+    <expired>
+      <plain>
+        <li>I'll keep my weapon close, then.</li>
+      </plain>
+      <gloomy>
+        <li>When they come, remember I asked.</li>
+      </gloomy>
+    </expired>
+  </ColonyCouncil.WishDef>
+
+  <ColonyCouncil.WishDef>
+    <defName>Council_Wish_RoyalStandards</defName>
+    <label>a {SUBJECT} worthy of {FOR_possessive} title</label>
+    <description>A noble's title comes with expectations for their bedroom or throne room, and they're not being met.</description>
+    <workerClass>ColonyCouncil.WishWorker_RoyalStandards</workerClass>
+    <category>Status</category>
+    <weight>1.2</weight>
+    <expiryDays>12</expiryDays>
+    <cooldownDays>15</cooldownDays>
+    <grantedThought>Council_Granted_Royal</grantedThought>
+    <talkInteraction>Council_Talk_Status</talkInteraction>
+    <fulfilledWhen>Every {SUBJECT} requirement of {FOR_possessive} title is met.</fulfilledWhen>
+    <request>
+      <plain>
+        <li>My title carries certain expectations. My {SUBJECT} does not yet meet them.</li>
+        <li>I'm sure you understand that someone of my rank cannot be seen living like this.</li>
+      </plain>
+      <warm>
+        <li>I don't ask for myself, truly. But my title must be honoured, for all our sakes.</li>
+      </warm>
+      <blunt>
+        <li>A noble in a hovel. It's embarrassing for all of us. Fix my {SUBJECT}.</li>
+      </blunt>
+      <cheerful>
+        <li>Oh, I have such plans for my {SUBJECT}! Gold, marble, maybe a harp.</li>
+      </cheerful>
+      <gloomy>
+        <li>If the Empire saw how I live, they'd strip my title on the spot.</li>
+      </gloomy>
+      <cold>
+        <li>My {SUBJECT} is below the required standard. Correct it.</li>
+      </cold>
+    </request>
+    <thanks>
+      <plain>
+        <li>At last, quarters befitting my station.</li>
+      </plain>
+      <cheerful>
+        <li>It's magnificent! I feel positively regal!</li>
+      </cheerful>
+      <cold>
+        <li>This meets the standard. You may go.</li>
+      </cold>
+    </thanks>
+    <expired>
+      <plain>
+        <li>I shall endure this indignity. For now.</li>
+      </plain>
+    </expired>
+  </ColonyCouncil.WishDef>
+
+  <ColonyCouncil.WishDef>
+    <defName>Council_Wish_ChildPlay</defName>
+    <label>{THING} to learn and play at</label>
+    <description>A child wants somewhere of their own to learn and play.</description>
+    <workerClass>ColonyCouncil.WishWorker_ChildPlay</workerClass>
+    <category>Childhood</category>
+    <weight>1.3</weight>
+    <expiryDays>10</expiryDays>
+    <cooldownDays>15</cooldownDays>
+    <grantedThought>Council_Granted_ChildPlay</grantedThought>
+    <talkInteraction>Council_Talk_Child</talkInteraction>
+    <fulfilledWhen>The colony builds {THING}.</fulfilledWhen>
+    <request>
+      <plain>
+        <li>Can we have {THING}? Pleeeease? I'll be good. Mostly.</li>
+        <li>All the grown-ups have stuff to do. I want stuff too! Like {THING}!</li>
+      </plain>
+      <cheerful>
+        <li>If we get {THING}, I'll learn EVERYTHING. Even the boring stuff!</li>
+      </cheerful>
+      <gloomy>
+        <li>There's nothing for kids here. Just work and raiders.</li>
+      </gloomy>
+      <blunt>
+        <li>I'm bored! I want {THING}!</li>
+      </blunt>
+    </request>
+    <thanks>
+      <plain>
+        <li>It's mine? Really mine? Best day ever!</li>
+      </plain>
+    </thanks>
+    <expired>
+      <plain>
+        <li>Grown-ups never listen.</li>
+      </plain>
+    </expired>
+  </ColonyCouncil.WishDef>
+
+</Defs>

@@ -77,7 +77,7 @@ namespace ColonyCouncil
                     string line = Line("CC_TouchDone_", t.pawn, t.def);
                     CouncilGameComponent.Speak(t.pawn, line, new Color(0.6f, 1f, 0.6f));
                     comp.AddChronicle(new ChronicleEntry(ChronicleKind.PersonalTouch,
-                        "CC_Chronicle_TouchDone".Translate(t.pawn.LabelShort, t.def.label).Resolve(), t.pawn, "finished decorating their room with " + Avail.Indefinite(t.def)));
+                        "CC_Chronicle_TouchDone".Translate(t.pawn.LabelShort, t.def.label).Resolve(), t.pawn));
                     continue;
                 }
                 bool stillPlanned = t.cell.GetThingList(t.map).Any(x => (x is Blueprint || x is Frame) && x.def.entityDefToBuild == t.def);
@@ -108,8 +108,7 @@ namespace ColonyCouncil
                     new LookTargets(new TargetInfo(cell, map)), MessageTypeDefOf.NeutralEvent, false);
                 CouncilGameComponent.Speak(pawn, line, new Color(1f, 0.92f, 0.6f));
                 comp.AddChronicle(new ChronicleEntry(ChronicleKind.PersonalTouch,
-                    "CC_Chronicle_Touch".Translate(pawn.LabelShort, def.label).Resolve(), pawn, "planned " + Avail.Indefinite(def) + " for their bedroom"));
-                RimTalkBridge.Say(pawn, "is planning to put " + Avail.Indefinite(def) + " in their bedroom to make it feel like their own");
+                    "CC_Chronicle_Touch".Translate(pawn.LabelShort, def.label).Resolve(), pawn));
                 return true;
             }
             return false;

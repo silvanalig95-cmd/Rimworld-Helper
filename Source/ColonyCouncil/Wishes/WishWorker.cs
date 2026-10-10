@@ -34,8 +34,6 @@ namespace ColonyCouncil
 
         public virtual string FulfilledWhen(Wish wish) => wish.Format(def.fulfilledWhen);
 
-        public virtual string RimTalkTopic(Wish wish) => wish.Format(def.rimTalkTopic ?? def.label);
-
         // ---------- Helpers for workers ----------
 
         protected static Map HomeMap(Pawn p) => p?.MapHeld;
