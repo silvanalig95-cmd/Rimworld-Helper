@@ -412,6 +412,9 @@ Things the game exposes that this relies on (all available to mods):
 - The social web: friends, rivals, comrades, mentors and circles that form and fade from opinion, battles and
   council decisions, daily social events, social dilemmas, and bonds feeding back into votes, objections,
   petitions and trust.
+- Dreams drawn from each colonist's recent memories, injuries, bonds and losses; most are flavour (mood,
+  journal, a line told over breakfast), a few change something, and rare omens schedule the incident they
+  foretell.
 
 **Ideas for later**
 - Ambition chains (multi-step goals across seasons).

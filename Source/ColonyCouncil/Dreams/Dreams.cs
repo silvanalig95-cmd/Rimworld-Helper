@@ -183,7 +183,7 @@ namespace ColonyCouncil
 
         private static CouncilSettings S => ColonyCouncilMod.Settings;
 
-        public const float ChancePerWaking = 0.4f;
+        public const float ChancePerWaking = 0.3f;
 
         private static List<ThoughtDef> dreamThoughts;
 
@@ -457,7 +457,9 @@ namespace ColonyCouncil
                 omens.Add(new PendingOmen { def = def, dreamer = p, map = p.MapHeld, fireTick = Find.TickManager.TicksGame + def.omen.days.RandomInRange * GenDate.TicksPerDay + Rand.Range(0, GenDate.TicksPerDay / 2), text = text });
                 lastOmenTick = Find.TickManager.TicksGame;
             }
-            comp.journals.WriteText(p, text);
+            // Everyday dreams only sometimes make it into the journal, so they don't crowd out the days.
+            if (def.Matters || def.AboutEvents || def.about != DreamAbout.None || def.kind == DreamKind.Omen || Rand.Chance(0.35f))
+                comp.journals.WriteText(p, text);
             recent.Add(new DreamRecord { pawn = p, name = p.LabelShort, text = text, kind = def.kind, tick = Find.TickManager.TicksGame });
             while (recent.Count > 30) recent.RemoveAt(0);
             untold[p] = new DreamMemo { kind = def.kind, other = c.other, tick = Find.TickManager.TicksGame };
