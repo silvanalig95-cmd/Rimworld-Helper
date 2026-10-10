@@ -786,4 +786,21 @@
   <CC_Promise_Hunt>The council marks a {SUBJECT} for {PAWN_nameDef} to hunt. Make sure {PAWN_pronoun} is allowed to hunt in the Work tab.</CC_Promise_Hunt>
   <CC_SelfHelp_Hunt>{PAWN_nameDef} picked out a {SUBJECT}, marked it for hunting and grabbed {PAWN_possessive} gun.</CC_SelfHelp_Hunt>
 
+  <!-- Rewards beyond mood; colonists walking out -->
+  <CC_InspiredNote>{PAWN_nameDef} is inspired: {INSPIRATION}.</CC_InspiredNote>
+  <CC_QuittingTitle>{PAWN_nameDef} is leaving</CC_QuittingTitle>
+  <CC_QuittingText>{PAWN_nameDef} has been bitter about the council for days and has had enough. Unless something changes in the next three days, {PAWN_pronoun} will pack up and leave the colony for good, taking whatever {PAWN_pronoun} is carrying.
+
+Granting one of {PAWN_possessive} wishes, or keeping a promise, can win {PAWN_objective} back.</CC_QuittingText>
+  <CC_StayingTitle>{PAWN_nameDef} is staying</CC_StayingTitle>
+  <CC_StayingText>{PAWN_nameDef} no longer feels ignored, and has decided to stay.</CC_StayingText>
+  <CC_QuitTitle>{PAWN_nameDef} left the colony</CC_QuitTitle>
+  <CC_QuitText>Nobody listened, so {PAWN_nameDef} walked out, and is no longer part of the colony.</CC_QuitText>
+  <CC_Chronicle_Quitting>{0} announced they were leaving the colony.</CC_Chronicle_Quitting>
+  <CC_Chronicle_Staying>{0} decided to stay after all.</CC_Chronicle_Staying>
+  <CC_Chronicle_Quit>{0} walked out on the colony.</CC_Chronicle_Quit>
+  <CC_Settings_Quitting>Bitter colonists may leave the colony (Demanding stakes only)</CC_Settings_Quitting>
+  <CC_Settings_Quitting_Tip>A colonist who stays bitter for days warns that they're leaving, and walks out three days later unless their trust recovers. Children, and anyone whose partner is staying, never leave.</CC_Settings_Quitting_Tip>
+  <CC_Trust_Leaving>leaving in {0}</CC_Trust_Leaving>
+
 </LanguageData>

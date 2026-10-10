@@ -60,7 +60,8 @@ in the colonist's own voice, chosen to fit the season, weather, time of day and 
 | A room befitting their title / somewhere to learn and play | Royalty nobles / Biotech children |
 
 **Your answer matters:**
-- **Grant it** and they're pleased, sometimes inspired or **motivated** (they work faster for a few days).
+- **Grant it** and they're pleased and **motivated** (they work faster for a few days). The happier they already
+  are, the likelier the wish turns into an **inspiration** that fits it: art, a work or shooting frenzy, recruiting.
   Some wishes do more: a burial eases everyone's grief, new defenses make the colony feel safer, a passion space
   gives a burst of practice, petitioners who stood together like each other more.
 - **Promise** it: they wait half again as long and trust you a little more. Break the promise and it hurts far
@@ -75,8 +76,10 @@ in the colonist's own voice, chosen to fit the season, weather, time of day and 
 has been waiting longer can feel passed over, and some will want the same thing.
 
 **Trust.** Each colonist's trust in the council (bitter, doubtful, neutral, trusting, devoted) rises and falls
-with all of this. Trusting colonists are patient and content; bitter ones grumble, stop asking, and on
-Demanding stakes may sulk or go on an insulting spree. The Wishes tab shows everyone's trust and its history.
+with all of this. Trust isn't only mood: loyal colonists work and learn faster and hold together better, while
+a grudge slows them down and shortens their temper (both show in the health tab). Bitter colonists grumble, stop
+asking, and on Demanding stakes may sulk, go on an insulting spree, or announce they're leaving and walk out
+three days later unless you win them back. The Wishes tab shows everyone's trust and its history.
 
 ### Ambition: council meetings
 About once a quadrum, in the evening, the council actually **meets**: colonists gather around the dining

@@ -329,6 +329,12 @@ namespace ColonyCouncil
                 var bar = new Rect(195f, y + 7f, 160f, 12f);
                 Widgets.FillableBar(bar, (trust + 100f) / 200f, trust >= 0f ? TrustGood : TrustBad, BaseContent.BlackTex, false);
                 Widgets.Label(new Rect(365f, y + 2f, 200f, 24f), ("CC_Trust_" + PawnStanding.LevelFor(trust)).Translate());
+                if (st != null && st.leavingTick > 0)
+                {
+                    GUI.color = HighColor;
+                    Widgets.Label(new Rect(470f, y + 2f, Mathf.Max(0f, width - 470f), 24f), "CC_Trust_Leaving".Translate(TextUtil.DaysString(st.leavingTick - Find.TickManager.TicksGame)));
+                    GUI.color = Color.white;
+                }
                 if (st != null)
                 {
                     string tip = "CC_Trust_Tip".Translate(p.LabelShort, trust.ToString("0"), st.granted, st.ignored, st.refused, st.promisesKept, st.promisesBroken).Resolve();

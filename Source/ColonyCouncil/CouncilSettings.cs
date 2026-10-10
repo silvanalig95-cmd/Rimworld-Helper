@@ -41,6 +41,7 @@ namespace ColonyCouncil
         public float penaltyFactor = 1f;
         public bool jealousy = true;
         public bool selfHelp = true;
+        public bool allowQuitting = true;
         public bool eventWishes = true;
         public bool reminders = true;
         public bool wishesForOthers = true;
@@ -87,6 +88,7 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref penaltyFactor, "penaltyFactor", 1f);
             Scribe_Values.Look(ref jealousy, "jealousy", true);
             Scribe_Values.Look(ref selfHelp, "selfHelp", true);
+            Scribe_Values.Look(ref allowQuitting, "allowQuitting", true);
             Scribe_Values.Look(ref eventWishes, "eventWishes", true);
             Scribe_Values.Look(ref reminders, "reminders", true);
             Scribe_Values.Look(ref wishesForOthers, "wishesForOthers", true);
@@ -173,6 +175,7 @@ namespace ColonyCouncil
             l.CheckboxLabeled("CC_Settings_EventWishes".Translate(), ref eventWishes, "CC_Settings_EventWishes_Tip".Translate());
             l.CheckboxLabeled("CC_Settings_Reminders".Translate(), ref reminders, "CC_Settings_Reminders_Tip".Translate());
             l.CheckboxLabeled("CC_Settings_SelfHelp".Translate(), ref selfHelp, "CC_Settings_SelfHelp_Tip".Translate());
+            l.CheckboxLabeled("CC_Settings_Quitting".Translate(), ref allowQuitting, "CC_Settings_Quitting_Tip".Translate());
             l.CheckboxLabeled("CC_Settings_ForOthers".Translate(), ref wishesForOthers, "CC_Settings_ForOthers_Tip".Translate());
             l.CheckboxLabeled("CC_Settings_Petitions".Translate(), ref petitions, "CC_Settings_Petitions_Tip".Translate());
             l.CheckboxLabeled("CC_Settings_WishLetters".Translate(), ref wishLetters, "CC_Settings_WishLetters_Tip".Translate());
@@ -252,6 +255,7 @@ namespace ColonyCouncil
             penaltyFactor = d.penaltyFactor;
             jealousy = d.jealousy;
             selfHelp = d.selfHelp;
+            allowQuitting = d.allowQuitting;
             eventWishes = d.eventWishes;
             reminders = d.reminders;
             wishesForOthers = d.wishesForOthers;

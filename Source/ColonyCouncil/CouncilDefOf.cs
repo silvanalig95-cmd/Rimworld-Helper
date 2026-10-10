@@ -23,8 +23,11 @@ namespace ColonyCouncil
         public static ThoughtDef Council_HappyForThem;
         public static ThoughtDef Council_ObjectionIgnored;
         public static ThoughtDef Council_ObjectionHeard;
+        public static ThoughtDef Council_FriendQuit;
 
         public static HediffDef Council_Motivated;
+        public static HediffDef Council_Loyalty;
+        public static HediffDef Council_Grudge;
         public static HediffDef Council_Disgruntled;
 
         public static MainButtonDef Council_MainButton;

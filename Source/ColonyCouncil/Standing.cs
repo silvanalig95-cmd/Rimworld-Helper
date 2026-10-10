@@ -33,6 +33,9 @@ namespace ColonyCouncil
         public List<int> recentGrants = new List<int>();
         public int lastTriggerTick = -999999;
         public int lastSulkTick = -999999;
+        /// <summary>When they last turned bitter (0 = not bitter), and when they'll walk out (0 = staying).</summary>
+        public int bitterSince;
+        public int leavingTick;
         /// <summary>Wishes this colonist has made before (defNames), for "I've asked before" lines.</summary>
         public List<string> asked = new List<string>();
         /// <summary>Short history for the tooltip, newest last.</summary>
@@ -85,6 +88,8 @@ namespace ColonyCouncil
             Scribe_Collections.Look(ref recentGrants, "recentGrants", LookMode.Value);
             Scribe_Values.Look(ref lastTriggerTick, "lastTriggerTick", -999999);
             Scribe_Values.Look(ref lastSulkTick, "lastSulkTick", -999999);
+            Scribe_Values.Look(ref bitterSince, "bitterSince");
+            Scribe_Values.Look(ref leavingTick, "leavingTick");
             Scribe_Collections.Look(ref log, "log", LookMode.Value);
             Scribe_Collections.Look(ref asked, "asked", LookMode.Value);
             if (Scribe.mode == LoadSaveMode.PostLoadInit)
@@ -121,7 +126,9 @@ namespace ColonyCouncil
         public void Change(Pawn p, float delta, string why)
         {
             if (p == null || !p.IsColonist) return;
-            For(p).Change(delta, why);
+            var st = For(p);
+            st.Change(delta, why);
+            TrustEffects.Sync(p, st);
         }
 
         /// <summary>Average trust of the free colonists, for the council tab and meetings.</summary>
@@ -151,6 +158,49 @@ namespace ColonyCouncil
             {
                 if (standings == null) standings = new List<PawnStanding>();
                 standings.RemoveAll(s => s == null || s.pawn == null);
+            }
+        }
+    }
+
+    /// <summary>
+    /// The working side of trust, which matters even when everyone is already happy: loyal colonists work and
+    /// learn a little faster and hold together under stress; those with a grudge drag their feet and snap sooner.
+    /// Shown in the health tab.
+    /// </summary>
+    public static class TrustEffects
+    {
+        public static void Sync(Pawn p, PawnStanding st)
+        {
+            if (p?.health?.hediffSet == null || p.Dead) return;
+            var s = ColonyCouncilMod.Settings;
+            HediffDef want = null;
+            float severity = 0f;
+            if (s.enableWishes && s.MoodEffects && st != null && p.IsFreeNonSlaveColonist)
+            {
+                switch (st.Level)
+                {
+                    case TrustLevel.Devoted: want = CouncilDefOf.Council_Loyalty; severity = 1f; break;
+                    case TrustLevel.Trusting: want = CouncilDefOf.Council_Loyalty; severity = 0.5f; break;
+                    case TrustLevel.Doubtful: if (s.Negatives) { want = CouncilDefOf.Council_Grudge; severity = 0.5f; } break;
+                    case TrustLevel.Bitter: if (s.Negatives) { want = CouncilDefOf.Council_Grudge; severity = 1f; } break;
+                }
+            }
+            foreach (var def in new[] { CouncilDefOf.Council_Loyalty, CouncilDefOf.Council_Grudge })
+            {
+                if (def == null) continue;
+                var h = p.health.hediffSet.GetFirstHediffOfDef(def);
+                if (def != want)
+                {
+                    if (h != null) p.health.RemoveHediff(h);
+                    continue;
+                }
+                if (h == null)
+                {
+                    h = HediffMaker.MakeHediff(def, p);
+                    h.Severity = severity;
+                    p.health.AddHediff(h);
+                }
+                else if (Mathf.Abs(h.Severity - severity) > 0.01f) h.Severity = severity;
             }
         }
     }

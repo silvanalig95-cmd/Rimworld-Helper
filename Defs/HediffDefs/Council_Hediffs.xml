@@ -67,4 +67,63 @@
     </stages>
   </HediffDef>
 
+  <!-- Lasting effects of trust in the council. Added and removed by the mod as trust changes. -->
+  <HediffDef>
+    <defName>Council_Loyalty</defName>
+    <label>loyal to the council</label>
+    <description>This colonist trusts the council to listen. They work with a will, pick things up quicker and hold together better when things go wrong. It lasts as long as the trust does.</description>
+    <hediffClass>HediffWithComps</hediffClass>
+    <defaultLabelColor>(0.55, 0.9, 0.55)</defaultLabelColor>
+    <isBad>false</isBad>
+    <initialSeverity>0.5</initialSeverity>
+    <maxSeverity>1</maxSeverity>
+    <everCurableByItem>false</everCurableByItem>
+    <stages>
+      <li>
+        <label>trusting</label>
+        <statOffsets>
+          <WorkSpeedGlobal>0.03</WorkSpeedGlobal>
+          <GlobalLearningFactor>0.05</GlobalLearningFactor>
+        </statOffsets>
+      </li>
+      <li>
+        <minSeverity>0.9</minSeverity>
+        <label>devoted</label>
+        <statOffsets>
+          <WorkSpeedGlobal>0.07</WorkSpeedGlobal>
+          <GlobalLearningFactor>0.12</GlobalLearningFactor>
+          <MentalBreakThreshold>-0.03</MentalBreakThreshold>
+        </statOffsets>
+      </li>
+    </stages>
+  </HediffDef>
+
+  <HediffDef>
+    <defName>Council_Grudge</defName>
+    <label>grudge against the council</label>
+    <description>This colonist feels ignored by the council. They do the bare minimum and their temper is short. Granting their wishes and keeping promises wins them back.</description>
+    <hediffClass>HediffWithComps</hediffClass>
+    <defaultLabelColor>(0.9, 0.6, 0.45)</defaultLabelColor>
+    <isBad>true</isBad>
+    <initialSeverity>0.5</initialSeverity>
+    <maxSeverity>1</maxSeverity>
+    <everCurableByItem>false</everCurableByItem>
+    <stages>
+      <li>
+        <label>doubtful</label>
+        <statOffsets>
+          <WorkSpeedGlobal>-0.03</WorkSpeedGlobal>
+        </statOffsets>
+      </li>
+      <li>
+        <minSeverity>0.9</minSeverity>
+        <label>bitter</label>
+        <statOffsets>
+          <WorkSpeedGlobal>-0.08</WorkSpeedGlobal>
+          <MentalBreakThreshold>0.05</MentalBreakThreshold>
+        </statOffsets>
+      </li>
+    </stages>
+  </HediffDef>
+
 </Defs>

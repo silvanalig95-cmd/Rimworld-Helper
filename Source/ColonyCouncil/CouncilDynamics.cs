@@ -291,16 +291,12 @@ namespace ColonyCouncil
             if (w.coSigners.Count > 0) GiveThought(who, CouncilDefOf.Council_StoodTogether, w.coSigners.First());
             foreach (var co in w.coSigners) GiveThought(co, CouncilDefOf.Council_StoodTogether, w.pawn);
 
-            // Fired up: works a bit faster for a few days.
-            if (s.MoodEffects && Rand.Chance(0.4f)) AddHediff(who, CouncilDefOf.Council_Motivated, w.promised ? 0.8f : 0.5f);
+            // Fired up: works faster for a few days, more so when it was promised.
+            if (s.MoodEffects) AddHediff(who, CouncilDefOf.Council_Motivated, w.promised ? 0.8f : 0.5f);
             RunEffects(w, w.def.grantEffects);
 
-            if (s.MoodEffects && w.def.inspirationChance > 0f && Rand.Chance(w.def.inspirationChance) && who.mindState?.inspirationHandler != null && !who.mindState.inspirationHandler.Inspired)
-            {
-                var insp = w.Worker.InspirationFor(w) ?? who.mindState.inspirationHandler.GetRandomAvailableInspirationDef();
-                if (insp != null)
-                    who.mindState.inspirationHandler.TryStartInspiration(insp, "CC_InspirationReason".Translate(who.Named("PAWN"), w.Label.Named("WISH")).Resolve());
-            }
+            // Someone already content can't get much happier, so it comes out as an inspiration instead.
+            string inspired = s.MoodEffects ? TryInspire(w, who) : null;
 
             Tone tone = ToneUtility.ToneFor(who);
             var tags = Flavor.TagsFor(who, w);
@@ -312,8 +308,9 @@ namespace ColonyCouncil
             if (w.coSigners.Count > 0)
                 body += "\n\n" + "CC_PetitionGranted".Translate(TextUtil.JoinAnd(w.coSigners.Select(p => p.LabelShort).ToList())).Resolve();
             if (w.promised) body += "\n\n" + "CC_PromiseKeptNote".Translate(who.Named("PAWN")).Resolve();
+            if (inspired != null) body += "\n\n" + "CC_InspiredNote".Translate(who.Named("PAWN"), inspired.Named("INSPIRATION")).Resolve();
 
-            if (s.grantedLetters)
+            if (s.grantedLetters || inspired != null)
                 Find.LetterStack.ReceiveLetter(title, body, LetterDefOf.PositiveEvent, new LookTargets(who));
             else
                 Messages.Message(title + ": \"" + TextUtil.ShortSpeech(thanks, 120) + "\"", new LookTargets(who), MessageTypeDefOf.PositiveEvent, false);
@@ -334,6 +331,64 @@ namespace ColonyCouncil
         /// The others notice. Friends are happy for them. The jealous, the greedy, rivals, and above all those
         /// who have been waiting longer, feel passed over. Some decide they want the same thing.
         /// </summary>
+        /// <summary>
+        /// A granted wish may inspire: a little for anyone, a lot for someone whose mood is already high. The
+        /// wish picks the kind (art, a work frenzy, a shooting frenzy, recruiting...) where it can.
+        /// Returns the inspiration's label, or null.
+        /// </summary>
+        private static string TryInspire(Wish w, Pawn who)
+        {
+            var handler = who.mindState?.inspirationHandler;
+            if (handler == null || handler.Inspired || who.needs?.mood == null) return null;
+            float mood = who.needs.mood.CurLevelPercentage;
+            float chance = w.def.inspirationChance + (mood >= 0.85f ? 0.45f : mood >= 0.7f ? 0.25f : mood >= 0.55f ? 0.1f : 0f);
+            if (w.promised) chance += 0.1f;
+            if (!Rand.Chance(chance)) return null;
+            string reason = "CC_InspirationReason".Translate(who.Named("PAWN"), w.Label.Named("WISH")).Resolve();
+            foreach (var insp in InspirationsFor(w, who))
+            {
+                if (insp == null) continue;
+                if (handler.TryStartInspiration(insp, reason, false)) return insp.label;
+            }
+            return null;
+        }
+
+        private static IEnumerable<InspirationDef> InspirationsFor(Wish w, Pawn who)
+        {
+            InspirationDef specific = null;
+            try
+            {
+                specific = w.Worker.InspirationFor(w);
+            }
+            catch (Exception e)
+            {
+                CouncilLog.ErrorOnce("inspiration " + w.def.defName, e);
+            }
+            if (specific != null) yield return specific;
+            switch (w.def.category)
+            {
+                case WishCategory.Work:
+                    yield return DefDatabase<InspirationDef>.GetNamedSilentFail("Frenzy_Work");
+                    break;
+                case WishCategory.Gear:
+                case WishCategory.Safety:
+                    yield return DefDatabase<InspirationDef>.GetNamedSilentFail("Frenzy_Shoot");
+                    break;
+                case WishCategory.Social:
+                    yield return InspirationDefOf.Inspired_Recruitment;
+                    yield return InspirationDefOf.Inspired_Trade;
+                    break;
+                case WishCategory.Health:
+                    yield return DefDatabase<InspirationDef>.GetNamedSilentFail("Inspired_Surgery");
+                    break;
+                case WishCategory.Comfort:
+                case WishCategory.Status:
+                    yield return InspirationDefOf.Inspired_Creativity;
+                    break;
+            }
+            yield return who.mindState.inspirationHandler.GetRandomAvailableInspirationDef();
+        }
+
         private void GrantRipples(Wish w)
         {
             var who = w.Beneficiary;
@@ -539,6 +594,12 @@ namespace ColonyCouncil
         {
             standings.Daily();
             var s = Settings;
+            foreach (var p in PawnsFinder.AllMaps_FreeColonists.ToList())
+            {
+                var st = standings.For(p, false);
+                TrustEffects.Sync(p, st);
+                if (st != null && s.enableWishes) CheckQuitting(p, st);
+            }
             if (!s.enableWishes) return;
             // Bitter colonists grumble, and in Demanding mode they may sulk even without a fresh slight.
             foreach (var p in PawnsFinder.AllMaps_FreeColonistsSpawned.ToList())
@@ -557,6 +618,73 @@ namespace ColonyCouncil
                 }
                 if (s.Harsh && Rand.Chance(0.2f)) MaybeSulk(p, null);
             }
+        }
+
+        // ================= Walking out =================
+
+        /// <summary>
+        /// Demanding stakes only: a colonist who has stayed bitter for days announces they're leaving, and
+        /// does unless they're won back in time. Children, and anyone whose partner is staying, stay.
+        /// </summary>
+        private void CheckQuitting(Pawn p, PawnStanding st)
+        {
+            int now = Find.TickManager.TicksGame;
+            bool bitter = st.Level == TrustLevel.Bitter;
+            if (!bitter) st.bitterSince = 0;
+            else if (st.bitterSince == 0) st.bitterSince = now;
+
+            if (st.leavingTick > 0)
+            {
+                if (!bitter || !Settings.Harsh || !Settings.allowQuitting)
+                {
+                    st.leavingTick = 0;
+                    string line = Scene("Council_Pool_Staying", p, null);
+                    Find.LetterStack.ReceiveLetter("CC_StayingTitle".Translate(p.Named("PAWN")).Resolve(),
+                        "CC_StayingText".Translate(p.Named("PAWN")).Resolve() + (line != null ? "\n\n\"" + line + "\"" : ""), LetterDefOf.PositiveEvent, new LookTargets(p));
+                    AddChronicle(new ChronicleEntry(ChronicleKind.Note, "CC_Chronicle_Staying".Translate(p.LabelShort).Resolve(), p));
+                    return;
+                }
+                if (now >= st.leavingTick) Quit(p, st);
+                return;
+            }
+
+            if (!bitter || !Settings.Harsh || !Settings.allowQuitting || !CanVoiceWishes(p)) return;
+            if (now - st.bitterSince < GenDate.TicksPerDay * 3 || p.DevelopmentalStage.Juvenile() || p.IsQuestLodger()) return;
+            // Never the colony's last few people: that would just end the game.
+            if (PawnsFinder.AllMaps_FreeColonists.Count(c => !c.IsQuestLodger()) < 4) return;
+            var partner = LovePartnerRelationUtility.ExistingLovePartner(p);
+            if (partner != null && partner.IsColonist && !partner.Dead && standings.LevelOf(partner) != TrustLevel.Bitter) return;
+            if (!Rand.Chance(0.3f)) return;
+
+            st.leavingTick = now + GenDate.TicksPerDay * 3;
+            string say = Scene("Council_Pool_Quitting", p, null);
+            Find.LetterStack.ReceiveLetter("CC_QuittingTitle".Translate(p.Named("PAWN")).Resolve(),
+                "CC_QuittingText".Translate(p.Named("PAWN")).Resolve() + (say != null ? "\n\n\"" + say + "\"" : ""), LetterDefOf.ThreatSmall, new LookTargets(p));
+            Speak(p, say, SpeechSour);
+            AddChronicle(new ChronicleEntry(ChronicleKind.Note, "CC_Chronicle_Quitting".Translate(p.LabelShort).Resolve(), p));
+        }
+
+        private void Quit(Pawn p, PawnStanding st)
+        {
+            // Not while they're hurt, mid-tantrum, away or in a fight: they leave when they can walk out.
+            if (!p.Spawned || p.Downed || p.InMentalState || p.Drafted || p.Map == null || !p.Map.IsPlayerHome)
+            {
+                st.leavingTick = Find.TickManager.TicksGame + GenDate.TicksPerDay / 2;
+                return;
+            }
+            st.leavingTick = 0;
+            var map = p.Map;
+            foreach (var other in map.mapPawns.FreeColonistsSpawned.ToList())
+            {
+                if (other == p || other.relations == null || other.relations.OpinionOf(p) < 20) continue;
+                GiveThought(other, CouncilDefOf.Council_FriendQuit, p);
+            }
+            foreach (var w in wishes.Where(x => x.state == WishState.Open && x.Involves(p)).ToList()) Resolve(w, WishState.Cancelled);
+            string line = Scene("Council_Pool_Quit", p, null);
+            Find.LetterStack.ReceiveLetter("CC_QuitTitle".Translate(p.Named("PAWN")).Resolve(),
+                "CC_QuitText".Translate(p.Named("PAWN")).Resolve() + (line != null ? "\n\n\"" + line + "\"" : ""), LetterDefOf.NegativeEvent, new LookTargets(p));
+            AddChronicle(new ChronicleEntry(ChronicleKind.Note, "CC_Chronicle_Quit".Translate(p.LabelShort).Resolve(), p));
+            PawnBanishUtility.Banish(p, false);
         }
     }
 }

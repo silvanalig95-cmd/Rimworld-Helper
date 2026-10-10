@@ -73,4 +73,19 @@
     </stages>
   </ThoughtDef>
 
+  <ThoughtDef>
+    <defName>Council_FriendQuit</defName>
+    <thoughtClass>Thought_MemorySocial</thoughtClass>
+    <durationDays>8</durationDays>
+    <stackLimit>3</stackLimit>
+    <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
+    <stages>
+      <li>
+        <label>a friend walked out</label>
+        <description>They packed up and walked out, because nobody listened. I'd have listened.</description>
+        <baseMoodEffect>-5</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
 </Defs>

@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- A bitter colonist announces they're leaving. Only {PAWN_...} (the speaker). -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Pool_Quitting</defName>
+    <lines>
+      <plain>
+        <li>I've asked. I've waited. I've asked again. I'm done asking.</li>
+        <li>There's a whole planet out there. Some of it must have people who listen.</li>
+        <li>Three days. Then I'm taking my things and my boots and walking until this place is a smudge behind me.</li>
+        <li>[winter] I'd rather freeze out there than keep being ignored in here. Think about what that means.</li>
+        <li>[small] You can't afford to lose me. You know that. Act like it.</li>
+      </plain>
+      <warm>
+        <li>I don't want to go. I really don't. But I can't keep being invisible here.</li>
+      </warm>
+      <blunt>
+        <li>I'm leaving. Don't bother packing me a lunch.</li>
+        <li>You've got three days to start treating me like I exist. Then I stop existing here.</li>
+      </blunt>
+      <cheerful>
+        <li>Good news, everyone! I've found a way to stop being disappointed by this colony! It's called leaving!</li>
+      </cheerful>
+      <gloomy>
+        <li>I'll probably die out there alone. At least it'll be my choice for once.</li>
+        <li>Nobody will notice I'm gone. That's sort of the problem.</li>
+      </gloomy>
+      <cold>
+        <li>My skills are worth more somewhere they're valued. I'm reallocating them.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- Won back before leaving. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Pool_Staying</defName>
+    <lines>
+      <plain>
+        <li>Fine. I'll unpack. For now.</li>
+        <li>Somebody listened. Took long enough, but somebody listened.</li>
+      </plain>
+      <warm>
+        <li>I'm glad I don't have to go. I'd have missed all of you. Even the loud ones.</li>
+      </warm>
+      <blunt>
+        <li>I'm staying. Don't make me regret it.</li>
+      </blunt>
+      <cheerful>
+        <li>Never mind! I'm staying! Forget everything I said! Especially the shouting!</li>
+      </cheerful>
+      <gloomy>
+        <li>Where would I even have gone. Fine. Here's as good a place to suffer as any.</li>
+      </gloomy>
+      <cold>
+        <li>The situation has improved enough. I'll stay while that remains true.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- Last words on the way out. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Pool_Quit</defName>
+    <lines>
+      <plain>
+        <li>Don't follow me. Don't write. Not that you could.</li>
+        <li>Good luck with the next raid. You'll be one gun short.</li>
+      </plain>
+      <warm>
+        <li>Take care of each other. Better than you took care of me.</li>
+      </warm>
+      <blunt>
+        <li>Bye. Keep the bed. It was a bad bed.</li>
+      </blunt>
+      <cheerful>
+        <li>So long! It was mostly terrible! Some of you were nice!</li>
+      </cheerful>
+      <gloomy>
+        <li>I won't look back. There's nothing back there that looked at me.</li>
+      </gloomy>
+      <cold>
+        <li>Consider this my resignation. Effective immediately.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+</Defs>
