@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    More pitch and achieved lines for the ambitions in Council_Ambitions4.xml and Council_Ambitions5.xml, merged in
+    at startup. Pitch lines are spoken at the meeting by whoever proposes it (the first sentence floats above their
+    head, the rest goes in the letter); achieved lines are said when it's done and can't use tags. Only {PAWN_...}
+    placeholders. Settle the score is only ever pitched by someone grieving or fresh from a raid.
+  -->
+
+  <!-- ==================================== HARMONY ==================================== -->
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Council_Ext2_Amb_Harmony</defName>
+    <ambition>Council_Amb_Harmony</ambition>
+    <pitch>
+      <plain>
+        <li>Two of us had a fistfight over a chair this morning. It wasn't even a good chair.</li>
+        <li>Watch supper tonight. Two people will wait for the other to leave before they sit down. That's not a colony, that's a stakeout.</li>
+        <li>[winter] We'll be shut in together until the thaw. I'd rather not spend it listening to two people insult each other through a wall.</li>
+      </plain>
+      <warm>
+        <li>Somebody cried in the storeroom yesterday so nobody would see. It wasn't about the raids. It was about us.</li>
+        <li>[trait:Kind] I've been carrying apologies back and forth between two people for a week. I'd like them to just say it to each other.</li>
+      </warm>
+      <blunt>
+        <li>Someone's been oversalting someone else's soup on purpose. Everyone knows who. Stop it.</li>
+        <li>[trait:Abrasive] I know I'm half the problem. I'm proposing it anyway. Fix the other half first.</li>
+        <li>[lowmood] I'm one snide remark away from throwing furniture, and I'm not even in the feud.</li>
+      </blunt>
+      <cheerful>
+        <li>We throw a party! Then another! We keep throwing parties until everyone forgets what they were angry about!</li>
+        <li>[spring] Spring's for fresh starts! New crops, new leaves, people saying good morning to each other on purpose!</li>
+      </cheerful>
+      <gloomy>
+        <li>When somebody finally snaps out here, they don't break a plate. They break a person. Let's not wait for that.</li>
+        <li>[grieving] I'd give anything for one more argument with the people we buried. You still have each other to argue with. Stop wasting it.</li>
+      </gloomy>
+      <cold>
+        <li>Rivals don't cover each other in a firefight. I've watched it happen. That's a gap in our line shaped like a grudge.</li>
+        <li>[trait:Psychopath] I don't care who likes whom. I care that two of our best workers keep stopping to glare at each other.</li>
+      </cold>
+    </pitch>
+    <achieved>
+      <plain>
+        <li>First supper in weeks where nobody took their plate outside to eat alone.</li>
+        <li>Somebody apologized at breakfast. Out loud, in front of people. I had to put my spoon down.</li>
+      </plain>
+      <warm><li>I caught those two sharing a bench by the fire tonight. Not talking. Just sitting. That's plenty.</li></warm>
+      <blunt><li>Good. Whoever starts the next feud hauls corpses for a season.</li></blunt>
+      <cheerful><li>Everyone sat at one table tonight! There weren't enough chairs! It was wonderful!</li></cheerful>
+      <gloomy><li>Everyone's getting along. I give it until the next long winter, but I'll enjoy it while it lasts.</li></gloomy>
+      <cold><li>Nobody is wasting work hours on grudges anymore. I've kept a list, in case it starts again.</li></cold>
+    </achieved>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <!-- ==================================== A COUNCIL WORTH TRUSTING ==================================== -->
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Council_Ext2_Amb_TrustedCouncil</defName>
+    <ambition>Council_Amb_TrustedCouncil</ambition>
+    <pitch>
+      <plain>
+        <li>There's a joke going around about this council. It's a short joke, and nobody laughs at it anymore.</li>
+        <li>[doubtful] We passed a decree last season. I watched people step around it like a puddle.</li>
+        <li>[newcomer] I'm new, so maybe I'm wrong. But when I ask people what the council is for, they shrug.</li>
+      </plain>
+      <warm>
+        <li>Somebody asked for a shelf by their bed and we argued about wood for an hour. Let's just give people the shelf.</li>
+        <li>[trusting] I still believe in this table. I'd like to be a little less lonely in that.</li>
+      </warm>
+      <blunt>
+        <li>Nobody listens to a council that doesn't listen. That's not wisdom, it's just how ears work.</li>
+        <li>[bitter] You promised me a lot of things. I've written them down. Start at the top.</li>
+        <li>[trait:Abrasive] People complain about the council to me because they think I'll be rude about it to your faces. I'm being rude about it to your faces.</li>
+      </blunt>
+      <cheerful>
+        <li>I want people lining up outside the meeting with requests! A queue! We're going to need a queue!</li>
+        <li>[highmood] I'm in a fantastic mood and I'd like to spread it around! Start by keeping one promise! Just one! See how it feels!</li>
+      </cheerful>
+      <gloomy>
+        <li>A colony that stops trusting its council starts trusting whoever shouts loudest. I've seen how that ends.</li>
+        <li>[lowmood] Every broken promise is a stone in somebody's pocket. Some of us are carrying a lot of stones.</li>
+      </gloomy>
+      <cold>
+        <li>Granting a wish costs us a little, once. A colonist who has stopped caring costs us every day.</li>
+        <li>[trait:Psychopath] People work harder when they believe someone's looking out for them. Whether we are is a separate question.</li>
+      </cold>
+    </pitch>
+    <achieved>
+      <plain>
+        <li>Someone brought a complaint to the meeting today and actually expected an answer. That's new.</li>
+        <li>Somebody thanked the council today. Not sarcastically. I asked twice.</li>
+      </plain>
+      <warm><li>People look up when we walk in now, instead of looking away. I hadn't noticed how much I missed that.</li></warm>
+      <blunt><li>Took long enough. Don't make me pitch this again.</li></blunt>
+      <cheerful><li>Someone said "the council will sort it out" and meant it nicely! I heard it! With my own ears!</li></cheerful>
+      <gloomy><li>They trust us now. That only means it'll hurt more when we let them down.</li></gloomy>
+      <cold><li>Compliance is up, and nobody has noticed it's compliance. Good.</li></cold>
+    </achieved>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <!-- ==================================== CLEAN LIVING ==================================== -->
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Council_Ext2_Amb_CleanLiving</defName>
+    <ambition>Council_Amb_CleanLiving</ambition>
+    <pitch>
+      <plain>
+        <li>Someone traded their good coat to a caravan for a pocketful of the stuff. We need to talk about that.</li>
+        <li>[afterraid] When the shooting started, somebody was still sleeping off last night's binge. We dragged them to cover by the collar.</li>
+        <li>[skill:Medicine] I've treated more overdoses this season than gunshot wounds. I'd rather go back to the gunshots.</li>
+      </plain>
+      <warm>
+        <li>Withdrawal is miserable and lonely. If we do this, nobody goes through it by themselves. I'll sit up nights.</li>
+        <li>[trait:Ascetic] I don't need much, and I'm not asking anyone else to need nothing. Just not to need that.</li>
+      </warm>
+      <blunt>
+        <li>Someone's been drinking the beer and topping the bottles up with water. I can taste it. Lock it all up.</li>
+        <li>Half the stockpile walks off at night in somebody's pockets. Lock it up and sit on the key.</li>
+        <li>[trait:Teetotaler] Half of you smell like a still at morning muster. I've been breathing through my mouth for a month.</li>
+      </blunt>
+      <cheerful>
+        <li>Think of the mornings! Everyone up with the sun, clear-eyed, nobody sneaking behind the woodpile with a pipe!</li>
+        <li>[trait:ChemicalInterest] I know how this sounds coming from me! I'm proposing it anyway! Somebody hide everything from me first!</li>
+      </cheerful>
+      <gloomy>
+        <li>I've seen people start a binge in the evening and never come out the other side. Everyone thinks it'll be someone else.</li>
+        <li>[lowmood] Some days the only thing that gets me through is the thing I'm proposing we take away. That's how I know we have to.</li>
+      </gloomy>
+      <cold>
+        <li>Every dose we swallow is a dose we can't sell, and every addict works half the hours with twice the complaints.</li>
+        <li>[trait:Psychopath] Addicts are predictable in the worst way. They'll trade anything we own for the next dose, including each other.</li>
+      </cold>
+    </pitch>
+    <achieved>
+      <plain>
+        <li>Took the lock off the medicine shelf today. Nothing went missing. Not one thing.</li>
+        <li>Nobody's sneaking off behind the storeroom anymore. I checked. Just rats.</li>
+      </plain>
+      <warm><li>Somebody slept through the night for the first time in a season. I sat with them anyway, just in case.</li></warm>
+      <blunt><li>Congratulations. You're all boring now. It's an improvement.</li></blunt>
+      <cheerful><li>Everybody's clean! I'm so proud I could drink! Water! I could drink water!</li></cheerful>
+      <gloomy><li>Clean. They say the cravings come back on bad days. We have a lot of bad days.</li></gloomy>
+      <cold><li>No dependencies left. Our productivity no longer relies on a trader's inventory.</li></cold>
+    </achieved>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <!-- ==================================== SETTLE THE SCORE ==================================== -->
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Council_Ext2_Amb_SettleTheScore</defName>
+    <ambition>Council_Amb_SettleTheScore</ambition>
+    <pitch>
+      <plain>
+        <li>They came over that ridge last time. I know which ridge. I know what's on the other side of it.</li>
+        <li>[hurt] I'm still stitched up from their last visit. I can walk. I can walk as far as their door.</li>
+        <li>[winter] The snow slows them down as much as us, and they'll be huddled around their fires. Let's go find the fires.</li>
+      </plain>
+      <warm>
+        <li>[trait:Kind] I've never wanted to hurt anyone. I want even less to bury anyone else. Those are the only two choices they've left me.</li>
+        <li>[grieving] I keep saving a seat at supper out of habit. I'd like to stop. Maybe this lets me stop.</li>
+      </warm>
+      <blunt>
+        <li>They know where we sleep. Time they learned we know where they sleep.</li>
+        <li>[trait:Pyromaniac] I'll carry the fuel. All of it. Nobody else touches the fuel.</li>
+        <li>[lowtech] Spears, bows, and a lot of angry people walking very quietly through the trees. That's the plan. Questions?</li>
+      </blunt>
+      <cheerful>
+        <li>We'll get back everything they stole! Plus interest! I'm thinking their chairs! They owe us chairs!</li>
+        <li>[highmood] I know I'm smiling. I'm also very, very angry! It's possible to be both! Let's go!</li>
+      </cheerful>
+      <gloomy>
+        <li>Nobody walks home from something like this the same. I'll go anyway. I'm already not the same.</li>
+        <li>[afterraid] They'll come back no matter what we do. At least this way they'll have to rebuild first.</li>
+      </gloomy>
+      <cold>
+        <li>[afterraid] Their losses yesterday mean their walls are thin today. In a week they won't be. Decide quickly.</li>
+        <li>[trait:Bloodlust] I enjoy this sort of thing. I'm telling you so you'll put me at the front, where it's useful.</li>
+      </cold>
+    </pitch>
+    <achieved>
+      <plain>
+        <li>The smoke's still rising where their walls were. You can see it from the ridge if you want to. I don't.</li>
+        <li>We know the way there now. Anyone thinking of raiding us should keep that in mind.</li>
+      </plain>
+      <warm><li>I counted heads the whole way back, over and over. Let's never have to do that again.</li></warm>
+      <blunt><li>They had a lot of nice things. We have them now.</li></blunt>
+      <cheerful><li>We're back! Everyone wash up, there's soot in places soot should never go!</li></cheerful>
+      <gloomy><li>I keep smelling smoke on my hands. I've washed them six times.</li></gloomy>
+      <cold><li>Their stores were modest. The quiet from that direction is the real profit.</li></cold>
+    </achieved>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <!-- ==================================== MAKING A NAME ==================================== -->
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Council_Ext2_Amb_MakingAName</defName>
+    <ambition>Council_Amb_MakingAName</ambition>
+    <pitch>
+      <plain>
+        <li>Somebody's offering good silver for us to put up a few strangers for a while. We have the beds. Mostly.</li>
+        <li>[lowtech] A runner came through with word of someone who needs help, and a reward at the end of it. We should go and see.</li>
+        <li>[poor] We're scraping the bottom of every barrel we own. People out there are offering to fill a few. Let's say yes.</li>
+      </plain>
+      <warm>
+        <li>There's a stranded pilot out there somewhere, waiting for someone to answer. I'd like it to be us.</li>
+        <li>[trait:Kind] Every time we ignore a call for help, I lie awake wondering if anyone came. Let's be the ones who came.</li>
+      </warm>
+      <blunt>
+        <li>Somebody wants to pay us to clear out a ruin. We'd have done that for free. Don't tell them.</li>
+        <li>[large] We've got more mouths than chores. Send a few of the mouths out to earn their dinner.</li>
+        <li>[trait:Greedy] They pay in silver. Heaps of it. I've done the sums, and I'd like to keep doing them.</li>
+      </blunt>
+      <cheerful>
+        <li>Imagine strangers around a campfire somewhere telling stories about us! Probably the wrong stories! Still about us!</li>
+        <li>[spring] The snow's gone, the paths are open, and someone out there needs a hero! Several heroes! Us!</li>
+      </cheerful>
+      <gloomy>
+        <li>Nobody remembers the colonies that kept their heads down. They just stop being there one day.</li>
+        <li>[lowmood] Maybe if we're useful to someone out there, they'll come when it's our turn to need help. Maybe.</li>
+      </gloomy>
+      <cold>
+        <li>A favor done is a debt someone else carries. I'd like a great many people carrying our debts.</li>
+        <li>[trait:Psychopath] Grateful strangers are easy to recruit. If they don't work out, there are other options.</li>
+      </cold>
+    </pitch>
+    <achieved>
+      <plain>
+        <li>A trader asked if we were the ones who helped with that business up north. I said yes. Felt good to say.</li>
+        <li>Came back with silver, a story and a limp. Two out of three is a good haul.</li>
+      </plain>
+      <warm><li>The people we helped sent word they're doing fine. That's the reward I'll remember.</li></warm>
+      <blunt><li>Fine, we're heroes. Heroes still have to clean the kitchen.</li></blunt>
+      <cheerful><li>A caravan guard waved at me by name! By name! I waved back much too hard!</li></cheerful>
+      <gloomy><li>Now people out there know where to find us. That cuts both ways.</li></gloomy>
+      <cold><li>Several factions now think well of us. I've made a note of which ones to test that on.</li></cold>
+    </achieved>
+  </ColonyCouncil.FlavorExtensionDef>
+
+</Defs>
