@@ -95,6 +95,17 @@ namespace ColonyCouncil
                     w = 0.8f;
                     reason = "CC_Reason_HighExpectations".Translate(pawn.Named("PAWN"));
                 }
+                else if (Standards.Of(pawn) >= 0.5f)
+                {
+                    w = 0.4f + Standards.Of(pawn);
+                    reason = "CC_Reason_Standards".Translate(pawn.Named("PAWN"));
+                }
+            }
+            // The spoiled aren't satisfied with one step up.
+            if (w > 0f && target > 0f && Standards.LevelOf(pawn) == StandardsLevel.Spoiled)
+            {
+                float further = RoomUtil.NextStageThreshold(RoomStatDefOf.Impressiveness, target + 0.01f);
+                if (further > target) target = further;
             }
             if (w <= 0f || target <= 0f) yield break;
 
@@ -138,7 +149,7 @@ namespace ColonyCouncil
             if (room == null || HasTrait(pawn, TraitDefOf.Ascetic) || HasTrait(pawn, TraitDefOf.Undergrounder)) yield break;
             float space = RoomUtil.Space(room);
             int stage = RoomStatDefOf.Space.GetScoreStageIndex(space);
-            if (stage > 1) yield break;
+            if (stage > (Standards.Of(pawn) >= 0.75f ? 2 : 1)) yield break;
             float target = RoomUtil.NextStageThreshold(RoomStatDefOf.Space, space);
             if (target <= 0f) yield break;
             var c = Candidate(stage == 0 ? 1.6f : 0.7f, "CC_Reason_Cramped".Translate(pawn.Named("PAWN"), RoomUtil.StageLabel(RoomStatDefOf.Space, space)));

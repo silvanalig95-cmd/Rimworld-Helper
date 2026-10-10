@@ -19,6 +19,7 @@ namespace ColonyCouncil
         public AmbitionTracker ambitions = new AmbitionTracker();
         public PersonalTouchTracker touches = new PersonalTouchTracker();
         public StandingTracker standings = new StandingTracker();
+        public DecreeTracker decrees = new DecreeTracker();
         public int nextWishId = 1;
 
         private Dictionary<string, int> cooldowns = new Dictionary<string, int>();
@@ -45,6 +46,7 @@ namespace ColonyCouncil
             Scribe_Deep.Look(ref ambitions, "ambitions");
             Scribe_Deep.Look(ref touches, "touches");
             Scribe_Deep.Look(ref standings, "standings");
+            Scribe_Deep.Look(ref decrees, "decrees");
             Scribe_Values.Look(ref nextWishId, "nextWishId", 1);
             Scribe_Collections.Look(ref cooldowns, "cooldowns", LookMode.Value, LookMode.Value, ref tmpKeys, ref tmpValues);
             if (Scribe.mode == LoadSaveMode.PostLoadInit)
@@ -55,6 +57,7 @@ namespace ColonyCouncil
                 if (ambitions == null) ambitions = new AmbitionTracker();
                 if (touches == null) touches = new PersonalTouchTracker();
                 if (standings == null) standings = new StandingTracker();
+                if (decrees == null) decrees = new DecreeTracker();
                 wishes.RemoveAll(w => w == null || w.def == null || w.pawn == null);
             }
         }
@@ -68,6 +71,7 @@ namespace ColonyCouncil
 
         private void Hourly()
         {
+            Safe("decrees", () => decrees.Hourly(this));
             Safe("wish upkeep", UpdateWishes);
             if (Settings.enableWishes) Safe("event wishes", CheckTriggers);
             if (Settings.enableWishes) Safe("wish generation", () => TryGenerateWish(false));
@@ -175,11 +179,11 @@ namespace ColonyCouncil
             var s = Settings;
             // Let a new colony settle in before anyone starts asking for things.
             if (!force && Find.TickManager.TicksGame < GenDate.TicksPerDay * 3) return null;
-            if (!force && !Rand.Chance(1f / (Mathf.Max(0.25f, s.daysBetweenWishes) * 24f))) return null;
-            if (OpenWishes.Count() >= s.maxOpenWishes && !force) return null;
-
+            if (!force && decrees.SuspendsWishes) return null;
             var pawns = PawnsFinder.AllMaps_FreeColonistsSpawned.Where(CanVoiceWishes).ToList();
             if (pawns.Count == 0) return null;
+            if (!force && !Rand.Chance(Standards.WishRateFactor(pawns) / (Mathf.Max(0.25f, s.daysBetweenWishes) * 24f))) return null;
+            if (OpenWishes.Count() >= s.maxOpenWishes && !force) return null;
 
             var options = new List<Option>();
             foreach (var requester in pawns)
@@ -238,7 +242,9 @@ namespace ColonyCouncil
                 options.Add(new Option { def = def, requester = requester, petitionTarget = existing, weight = c.weight * factor * 0.6f });
                 return;
             }
-            options.Add(new Option { def = def, requester = requester, beneficiary = beneficiary, candidate = c, weight = c.weight * factor });
+            // The spoiled reach for luxuries.
+            float luxury = def.luxury ? 1f + 1.5f * Standards.Of(beneficiary) : 1f;
+            options.Add(new Option { def = def, requester = requester, beneficiary = beneficiary, candidate = c, weight = c.weight * factor * luxury });
         }
 
         private static IEnumerable<WishCandidate> SafeCandidates(WishDef def, Pawn pawn)
@@ -311,7 +317,7 @@ namespace ColonyCouncil
         {
             var standing = standings.For(beneficiary ?? requester);
             // Trusting colonists are patient; bitter ones aren't.
-            float patience = Mathf.Clamp(1f + standing.trust / 200f, 0.6f, 1.4f);
+            float patience = Mathf.Clamp(1f + standing.trust / 200f, 0.6f, 1.4f) * Standards.PatienceFactor(beneficiary ?? requester);
             var w = new Wish
             {
                 id = nextWishId++,
@@ -488,7 +494,9 @@ namespace ColonyCouncil
             if (def.IsSocial && (otherPawn == null || otherPawn == p)) return;
             var thought = ThoughtMaker.MakeThought(def) as Thought_Memory;
             if (thought == null) return;
-            thought.moodPowerFactor = scale >= 0f ? scale : ColonyCouncilMod.Settings.rewardFactor;
+            float factor = scale >= 0f ? scale : ColonyCouncilMod.Settings.rewardFactor;
+            bool positive = def.stages != null && def.stages.Count > 0 && def.stages[0] != null && def.stages[0].baseMoodEffect > 0f;
+            thought.moodPowerFactor = factor * Standards.MoodFactor(p, positive);
             p.needs.mood.thoughts.memories.TryGainMemory(thought, otherPawn);
         }
 

@@ -16,6 +16,7 @@ namespace ColonyCouncil
             Wishes,
             Ambition,
             Build,
+            Decrees,
             Almanac,
             Chronicle
         }
@@ -49,6 +50,7 @@ namespace ColonyCouncil
                 new TabRecord("CC_Tab_Wishes".Translate(OpenWishCount()), () => SetTab(Tab.Wishes), tab == Tab.Wishes),
                 new TabRecord("CC_Tab_Ambition".Translate(), () => SetTab(Tab.Ambition), tab == Tab.Ambition),
                 new TabRecord("CC_Tab_Build".Translate(), () => SetTab(Tab.Build), tab == Tab.Build),
+                new TabRecord("CC_Tab_Decrees".Translate(), () => SetTab(Tab.Decrees), tab == Tab.Decrees),
                 new TabRecord("CC_Tab_Almanac".Translate(), () => SetTab(Tab.Almanac), tab == Tab.Almanac),
                 new TabRecord("CC_Tab_Chronicle".Translate(), () => SetTab(Tab.Chronicle), tab == Tab.Chronicle)
             };
@@ -73,6 +75,7 @@ namespace ColonyCouncil
                 case Tab.Wishes: DrawWishes(content, comp); break;
                 case Tab.Ambition: DrawAmbition(content, comp, map); break;
                 case Tab.Build: DrawBuild(content, map); break;
+                case Tab.Decrees: DecreePanel.Draw(content, comp); break;
                 case Tab.Almanac: AlmanacPanel.Draw(content); break;
                 case Tab.Chronicle: DrawChronicle(content, comp); break;
             }
@@ -328,11 +331,20 @@ namespace ColonyCouncil
                 Widgets.Label(new Rect(30f, y + 2f, 160f, 24f), p.LabelShort);
                 var bar = new Rect(195f, y + 7f, 160f, 12f);
                 Widgets.FillableBar(bar, (trust + 100f) / 200f, trust >= 0f ? TrustGood : TrustBad, BaseContent.BlackTex, false);
-                Widgets.Label(new Rect(365f, y + 2f, 200f, 24f), ("CC_Trust_" + PawnStanding.LevelFor(trust)).Translate());
+                Widgets.Label(new Rect(365f, y + 2f, 100f, 24f), ("CC_Trust_" + PawnStanding.LevelFor(trust)).Translate());
+                if (Settings.risingStandards)
+                {
+                    var level = Standards.LevelOf(p);
+                    var sRect = new Rect(470f, y + 2f, 160f, 24f);
+                    GUI.color = level == StandardsLevel.Spoiled ? HighColor : level == StandardsLevel.Particular ? MediumColor : Faint;
+                    Widgets.Label(sRect, "CC_Standards_Label".Translate(("CC_Standards_" + level).Translate()));
+                    GUI.color = Color.white;
+                    TooltipHandler.TipRegion(sRect, "CC_Standards_Tip".Translate(("CC_Standards_" + level).Translate(), p.LabelShort));
+                }
                 if (st != null && st.leavingTick > 0)
                 {
                     GUI.color = HighColor;
-                    Widgets.Label(new Rect(470f, y + 2f, Mathf.Max(0f, width - 470f), 24f), "CC_Trust_Leaving".Translate(TextUtil.DaysString(st.leavingTick - Find.TickManager.TicksGame)));
+                    Widgets.Label(new Rect(635f, y + 2f, Mathf.Max(0f, width - 635f), 24f), "CC_Trust_Leaving".Translate(TextUtil.DaysString(st.leavingTick - Find.TickManager.TicksGame)));
                     GUI.color = Color.white;
                 }
                 if (st != null)

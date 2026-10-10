@@ -594,6 +594,8 @@ namespace ColonyCouncil
         {
             standings.Daily();
             var s = Settings;
+            Standards.Daily(standings, decrees.active.Sum(a => a.def.standardsPerDay));
+            DecreeDaily();
             foreach (var p in PawnsFinder.AllMaps_FreeColonists.ToList())
             {
                 var st = standings.For(p, false);
@@ -685,6 +687,75 @@ namespace ColonyCouncil
                 "CC_QuitText".Translate(p.Named("PAWN")).Resolve() + (line != null ? "\n\n\"" + line + "\"" : ""), LetterDefOf.NegativeEvent, new LookTargets(p));
             AddChronicle(new ChronicleEntry(ChronicleKind.Note, "CC_Chronicle_Quit".Translate(p.LabelShort).Resolve(), p));
             PawnBanishUtility.Banish(p, false);
+        }
+
+        // ================= Decrees =================
+
+        public void Notify_DecreeEnacted(DecreeDef def)
+        {
+            var pawns = PawnsFinder.AllMaps_FreeColonistsSpawned.Where(p => !p.IsQuestLodger()).ToList();
+            var lovers = pawns.Where(p => def.ReactionOf(p) >= DecreeReaction.Like).ToList();
+            var haters = pawns.Where(p => def.ReactionOf(p) <= DecreeReaction.Dislike).OrderBy(p => def.ReactionOf(p)).ToList();
+            var text = new System.Text.StringBuilder();
+            text.Append("CC_Decree_EnactedText".Translate(def.label, TextUtil.DaysString(Mathf.RoundToInt(def.durationDays * GenDate.TicksPerDay))).Resolve());
+            if (def.effects.Count > 0) text.Append("\n\n").Append(string.Join("\n", def.effects.Select(e => "  - " + e)));
+            var fan = lovers.RandomElementWithFallback();
+            if (fan != null)
+            {
+                string line = def.support.Pick(ToneUtility.ToneFor(fan), Flavor.TagsFor(fan));
+                if (!line.NullOrEmpty())
+                {
+                    line = line.Formatted(fan.Named("PAWN")).Resolve();
+                    text.Append("\n\n").Append("CC_Decree_Cheers".Translate(fan.Named("PAWN")).Resolve()).Append(" \"").Append(line).Append("\"");
+                    Speak(fan, line, SpeechGood);
+                }
+            }
+            var critic = haters.FirstOrDefault();
+            if (critic != null)
+            {
+                string line = def.oppose.Pick(ToneUtility.ToneFor(critic), Flavor.TagsFor(critic));
+                if (!line.NullOrEmpty())
+                {
+                    line = line.Formatted(critic.Named("PAWN")).Resolve();
+                    text.Append("\n\n").Append("CC_Decree_Grumbles".Translate(critic.Named("PAWN")).Resolve()).Append(" \"").Append(line).Append("\"");
+                    Speak(critic, line, SpeechSour);
+                }
+            }
+            if (lovers.Count + haters.Count > 0)
+                text.Append("\n\n").Append("CC_Decree_Count".Translate(lovers.Count, haters.Count).Resolve());
+            Find.LetterStack.ReceiveLetter("CC_Decree_EnactedTitle".Translate(def.LabelCap).Resolve(), text.ToString(), LetterDefOf.NeutralEvent);
+            AddChronicle(new ChronicleEntry(ChronicleKind.Note, "CC_Chronicle_DecreeEnacted".Translate(def.label).Resolve(), null));
+        }
+
+        public void Notify_DecreeEnded(DecreeDef def, bool early)
+        {
+            Messages.Message((early ? "CC_Decree_Repealed" : "CC_Decree_Expired").Translate(def.LabelCap).Resolve(), MessageTypeDefOf.NeutralEvent, false);
+            AddChronicle(new ChronicleEntry(ChronicleKind.Note, (early ? "CC_Chronicle_DecreeRepealed" : "CC_Chronicle_DecreeExpired").Translate(def.label).Resolve(), null));
+        }
+
+        /// <summary>Living under a decree you hate wears down your trust in the council; one you love builds it.</summary>
+        private void DecreeDaily()
+        {
+            if (decrees.active.Count == 0) return;
+            foreach (var p in PawnsFinder.AllMaps_FreeColonists.ToList())
+            {
+                if (p.IsQuestLodger()) continue;
+                foreach (var a in decrees.active)
+                {
+                    float delta;
+                    switch (a.def.ReactionOf(p))
+                    {
+                        case DecreeReaction.Hate: delta = -2f * Gentleness(p); break;
+                        case DecreeReaction.Dislike: delta = -0.7f * Gentleness(p); break;
+                        case DecreeReaction.Like: delta = 0.5f; break;
+                        case DecreeReaction.Love: delta = 1.2f; break;
+                        default: delta = 0f; break;
+                    }
+                    // Only the strong feelings make it into the trust history; the rest just drift.
+                    bool strong = delta <= -1.5f || delta >= 1f;
+                    if (delta != 0f) standings.Change(p, delta, strong ? "CC_Log_Decree".Translate(a.def.label).ToString() : null);
+                }
+            }
         }
     }
 }

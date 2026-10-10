@@ -126,4 +126,70 @@
     </stages>
   </HediffDef>
 
+  <!-- Decree effects, applied to every colonist while a decree holds. -->
+  <HediffDef>
+    <defName>Council_Decree_LongHours</defName>
+    <label>long hours (decree)</label>
+    <description>Working longer and harder by order of the council.</description>
+    <hediffClass>HediffWithComps</hediffClass>
+    <defaultLabelColor>(0.9, 0.75, 0.45)</defaultLabelColor>
+    <isBad>false</isBad>
+    <everCurableByItem>false</everCurableByItem>
+    <stages>
+      <li><statOffsets><WorkSpeedGlobal>0.15</WorkSpeedGlobal></statOffsets><restFallFactor>1.15</restFallFactor></li>
+    </stages>
+  </HediffDef>
+
+  <HediffDef>
+    <defName>Council_Decree_Rationing</defName>
+    <label>rationing (decree)</label>
+    <description>Eating smaller portions by order of the council.</description>
+    <hediffClass>HediffWithComps</hediffClass>
+    <defaultLabelColor>(0.9, 0.75, 0.45)</defaultLabelColor>
+    <isBad>false</isBad>
+    <everCurableByItem>false</everCurableByItem>
+    <stages>
+      <li><hungerRateFactor>0.75</hungerRateFactor></li>
+    </stages>
+  </HediffDef>
+
+  <HediffDef>
+    <defName>Council_Decree_Drills</defName>
+    <label>drills (decree)</label>
+    <description>Spending hours a day on weapons drills by order of the council.</description>
+    <hediffClass>HediffWithComps</hediffClass>
+    <defaultLabelColor>(0.9, 0.75, 0.45)</defaultLabelColor>
+    <isBad>false</isBad>
+    <everCurableByItem>false</everCurableByItem>
+    <stages>
+      <li><statOffsets><WorkSpeedGlobal>-0.08</WorkSpeedGlobal></statOffsets></li>
+    </stages>
+  </HediffDef>
+
+  <HediffDef>
+    <defName>Council_Decree_Study</defName>
+    <label>study hours (decree)</label>
+    <description>Spending evenings at lessons by order of the council.</description>
+    <hediffClass>HediffWithComps</hediffClass>
+    <defaultLabelColor>(0.6, 0.8, 0.95)</defaultLabelColor>
+    <isBad>false</isBad>
+    <everCurableByItem>false</everCurableByItem>
+    <stages>
+      <li><statOffsets><WorkSpeedGlobal>-0.05</WorkSpeedGlobal><GlobalLearningFactor>0.3</GlobalLearningFactor></statOffsets><statFactors><ResearchSpeed>1.2</ResearchSpeed></statFactors></li>
+    </stages>
+  </HediffDef>
+
+  <HediffDef>
+    <defName>Council_Decree_Festival</defName>
+    <label>festival days (decree)</label>
+    <description>Taking it easy: the council has declared festival days.</description>
+    <hediffClass>HediffWithComps</hediffClass>
+    <defaultLabelColor>(0.6, 0.8, 0.95)</defaultLabelColor>
+    <isBad>false</isBad>
+    <everCurableByItem>false</everCurableByItem>
+    <stages>
+      <li><statOffsets><WorkSpeedGlobal>-0.2</WorkSpeedGlobal></statOffsets></li>
+    </stages>
+  </HediffDef>
+
 </Defs>

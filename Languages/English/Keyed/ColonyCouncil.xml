@@ -803,4 +803,42 @@ Granting one of {PAWN_possessive} wishes, or keeping a promise, can win {PAWN_ob
   <CC_Settings_Quitting_Tip>A colonist who stays bitter for days warns that they're leaving, and walks out three days later unless their trust recovers. Children, and anyone whose partner is staying, never leave.</CC_Settings_Quitting_Tip>
   <CC_Trust_Leaving>leaving in {0}</CC_Trust_Leaving>
 
+  <!-- Rising standards -->
+  <CC_Settings_Standards>Rising standards: the happy grow harder to please</CC_Settings_Standards>
+  <CC_Settings_Standards_Tip>While colonists are happy, their standards creep up: the council's mood rewards shrink, letdowns sting more, and wishes come more often and ask for more. Hard times, and the austerity decree, bring standards back down.</CC_Settings_Standards_Tip>
+  <CC_Reason_Standards>{PAWN_nameDef} has grown used to comfort, and the bedroom doesn't feel good enough any more.</CC_Reason_Standards>
+  <CC_Reason_StandardsFood>{PAWN_nameDef} has grown used to good food. Simple meals don't cut it any more.</CC_Reason_StandardsFood>
+  <CC_Standards_Modest>modest</CC_Standards_Modest>
+  <CC_Standards_Comfortable>comfortable</CC_Standards_Comfortable>
+  <CC_Standards_Particular>particular</CC_Standards_Particular>
+  <CC_Standards_Spoiled>spoiled</CC_Standards_Spoiled>
+  <CC_Standards_Label>standards: {0}</CC_Standards_Label>
+  <CC_Standards_Tip>Standards: {0}. They rise while {1} is happy and fall in hard times. The higher they are, the less the council's rewards lift {1}'s mood, the more letdowns sting, and the more {1} asks for.</CC_Standards_Tip>
+
+  <!-- Decrees -->
+  <CC_Tab_Decrees>Decrees</CC_Tab_Decrees>
+  <CC_Decrees_Header>Decrees</CC_Decrees_Header>
+  <CC_Decrees_Sub>Spend the colony's good mood on what it needs, or the other way round. Up to {0} decrees at a time. Everyone reacts according to their nature, and living under a decree they hate wears down their trust.</CC_Decrees_Sub>
+  <CC_Decrees_State>Average mood: {0}. Standards: {1}.</CC_Decrees_State>
+  <CC_Decree_InForce>(in force, {0} left)</CC_Decree_InForce>
+  <CC_Decree_Enact>Enact for {0}</CC_Decree_Enact>
+  <CC_Decree_Repeal>Repeal now</CC_Decree_Repeal>
+  <CC_Decree_Cooldown>Possible again in {0}</CC_Decree_Cooldown>
+  <CC_Decree_TooMany>{0} decrees already in force</CC_Decree_TooMany>
+  <CC_Decree_Loves>Loves it: {0}</CC_Decree_Loves>
+  <CC_Decree_Likes>Likes it: {0}</CC_Decree_Likes>
+  <CC_Decree_Dislikes>Dislikes it: {0}</CC_Decree_Dislikes>
+  <CC_Decree_Hates>Hates it: {0}</CC_Decree_Hates>
+  <CC_Decree_EnactedTitle>Decree: {0}</CC_Decree_EnactedTitle>
+  <CC_Decree_EnactedText>The council has declared {0} for the next {1}.</CC_Decree_EnactedText>
+  <CC_Decree_Cheers>{PAWN_nameDef} approves:</CC_Decree_Cheers>
+  <CC_Decree_Grumbles>{PAWN_nameDef} grumbles:</CC_Decree_Grumbles>
+  <CC_Decree_Count>{0} for it, {1} against.</CC_Decree_Count>
+  <CC_Decree_Repealed>{0} repealed.</CC_Decree_Repealed>
+  <CC_Decree_Expired>{0} has ended.</CC_Decree_Expired>
+  <CC_Chronicle_DecreeEnacted>The council declared {0}.</CC_Chronicle_DecreeEnacted>
+  <CC_Chronicle_DecreeRepealed>The council repealed {0} early.</CC_Chronicle_DecreeRepealed>
+  <CC_Chronicle_DecreeExpired>{0} came to an end.</CC_Chronicle_DecreeExpired>
+  <CC_Log_Decree>living under {0}</CC_Log_Decree>
+
 </LanguageData>

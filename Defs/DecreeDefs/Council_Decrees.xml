@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- ============ Long hours: work faster, everyone (almost) hates it ============ -->
+  <ColonyCouncil.DecreeDef>
+    <defName>Council_Decree_LongHours</defName>
+    <label>long hours</label>
+    <description>Everyone works harder and longer until the decree ends. Faster building, harvesting and crafting, paid for in mood. Hard workers take it in stride; the lazy take it personally.</description>
+    <order>1</order>
+    <durationDays>5</durationDays>
+    <cooldownDays>8</cooldownDays>
+    <hediff>Council_Decree_LongHours</hediff>
+    <thought>Council_Decree_LongHours</thought>
+    <defaultReaction>Dislike</defaultReaction>
+    <reactions>
+      <li><trait>Industriousness</trait><degree>2</degree><reaction>Like</reaction></li>
+      <li><trait>Industriousness</trait><degree>1</degree><reaction>Neutral</reaction></li>
+      <li><trait>Industriousness</trait><degree>-1</degree><reaction>Hate</reaction></li>
+      <li><trait>Industriousness</trait><degree>-2</degree><reaction>Hate</reaction></li>
+    </reactions>
+    <effects>
+      <li>Everyone works 15% faster.</li>
+      <li>Everyone tires a little faster.</li>
+      <li>Most colonists resent it; the industrious don't mind.</li>
+    </effects>
+    <support>
+      <plain><li>Finally, some urgency around here.</li></plain>
+      <cheerful><li>Let's get it all done! Everything! Today!</li></cheerful>
+      <cold><li>Output will rise. Good.</li></cold>
+    </support>
+    <oppose>
+      <plain>
+        <li>My back already hurts and we haven't started.</li>
+        <li>Longer days. Same rice. Wonderful.</li>
+      </plain>
+      <blunt><li>I'll work longer. I won't work happier.</li></blunt>
+      <gloomy><li>We'll work ourselves into the graves we've been digging.</li></gloomy>
+      <warm><li>I'll do it. But please don't make this a habit.</li></warm>
+    </oppose>
+  </ColonyCouncil.DecreeDef>
+
+  <!-- ============ Rationing: eat less ============ -->
+  <ColonyCouncil.DecreeDef>
+    <defName>Council_Decree_Rationing</defName>
+    <label>rationing</label>
+    <description>Smaller portions for everyone. The stores last a good deal longer, and stomachs grumble. Ascetics hardly notice; gourmands suffer.</description>
+    <order>2</order>
+    <durationDays>7</durationDays>
+    <cooldownDays>7</cooldownDays>
+    <hediff>Council_Decree_Rationing</hediff>
+    <thought>Council_Decree_Rationing</thought>
+    <defaultReaction>Dislike</defaultReaction>
+    <reactions>
+      <li><trait>Ascetic</trait><reaction>Neutral</reaction></li>
+      <li><trait>Gourmand</trait><reaction>Hate</reaction></li>
+      <li><trait>Greedy</trait><reaction>Hate</reaction></li>
+    </reactions>
+    <effects>
+      <li>Everyone gets hungry 25% more slowly, so food lasts longer.</li>
+      <li>Everyone except ascetics minds; gourmands and the greedy hate it.</li>
+    </effects>
+    <support>
+      <plain><li>Better hungry now than starving in winter.</li></plain>
+      <cold><li>Consumption down a quarter. Sensible.</li></cold>
+      <gloomy><li>I'm always hungry anyway. Now it's official.</li></gloomy>
+    </support>
+    <oppose>
+      <plain>
+        <li>Half a bowl. I'm supposed to work all day on half a bowl.</li>
+        <li>I can hear my stomach from across the room.</li>
+      </plain>
+      <blunt><li>Cut my food and see how fast I work.</li></blunt>
+      <cheerful><li>Smaller meals! Well, more chewing per bite, I suppose!</li></cheerful>
+      <warm><li>Give my share to the children. I'll manage.</li></warm>
+    </oppose>
+  </ColonyCouncil.DecreeDef>
+
+  <!-- ============ Drills: combat training ============ -->
+  <ColonyCouncil.DecreeDef>
+    <defName>Council_Decree_Drills</defName>
+    <label>drills</label>
+    <description>Daily weapons drills for everyone who can fight. Shooting and melee improve steadily, other work slows, and most people find it exhausting. The bloodthirsty love it.</description>
+    <order>3</order>
+    <durationDays>5</durationDays>
+    <cooldownDays>10</cooldownDays>
+    <hediff>Council_Decree_Drills</hediff>
+    <thought>Council_Decree_Drills</thought>
+    <defaultReaction>Dislike</defaultReaction>
+    <practiceSkills><li>Shooting</li><li>Melee</li></practiceSkills>
+    <practiceXpPerHour>50</practiceXpPerHour>
+    <practiceNeedsViolence>true</practiceNeedsViolence>
+    <reactions>
+      <li><nonViolent>true</nonViolent><reaction>Neutral</reaction></li>
+      <li><trait>Bloodlust</trait><reaction>Love</reaction></li>
+      <li><trait>Tough</trait><reaction>Like</reaction></li>
+      <li><trait>Brawler</trait><reaction>Like</reaction></li>
+      <li><trait>Wimp</trait><reaction>Hate</reaction></li>
+      <li><trait>Kind</trait><reaction>Hate</reaction></li>
+    </reactions>
+    <effects>
+      <li>Everyone who can fight practices shooting and melee every waking hour.</li>
+      <li>Other work goes 8% slower.</li>
+      <li>The bloodthirsty, tough and brawlers enjoy it; the wimpy and the kind hate it.</li>
+    </effects>
+    <support>
+      <plain><li>Next raid, they'll find us ready.</li></plain>
+      <blunt><li>About time somebody taught you lot which end goes bang.</li></blunt>
+      <cheerful><li>Target practice! I'm going to name the targets!</li></cheerful>
+    </support>
+    <oppose>
+      <plain><li>I came here to farm, not to march.</li></plain>
+      <warm><li>I don't want to get good at this. I really don't.</li></warm>
+      <gloomy><li>Practice dying, basically. Lovely.</li></gloomy>
+      <cold><li>Training a cook to shoot is an inefficient use of a cook.</li></cold>
+    </oppose>
+  </ColonyCouncil.DecreeDef>
+
+  <!-- ============ Study hours: learning and research ============ -->
+  <ColonyCouncil.DecreeDef>
+    <defName>Council_Decree_Study</defName>
+    <label>study hours</label>
+    <description>Evenings of lessons and reading for everyone. Skills improve faster and research picks up, at the cost of some work and patience. Thinkers love it; brawlers count the minutes.</description>
+    <order>4</order>
+    <durationDays>5</durationDays>
+    <cooldownDays>8</cooldownDays>
+    <hediff>Council_Decree_Study</hediff>
+    <thought>Council_Decree_Study</thought>
+    <defaultReaction>Dislike</defaultReaction>
+    <reactions>
+      <li><trait>TooSmart</trait><reaction>Love</reaction></li>
+      <li><passion>Intellectual</passion><reaction>Like</reaction></li>
+      <li><trait>Brawler</trait><reaction>Hate</reaction></li>
+    </reactions>
+    <effects>
+      <li>Everyone learns 30% faster and researches 20% faster.</li>
+      <li>Other work goes 5% slower.</li>
+      <li>Those with a passion for intellectual work like it; brawlers hate it.</li>
+    </effects>
+    <support>
+      <plain><li>I've been waiting years for someone to make everyone read.</li></plain>
+      <cheerful><li>School! For grown-ups! I'll bring the chalk!</li></cheerful>
+      <cold><li>Skills compound. This is an investment.</li></cold>
+    </support>
+    <oppose>
+      <plain><li>I didn't survive a crash landing to sit through lectures.</li></plain>
+      <blunt><li>Wake me when it's over.</li></blunt>
+      <gloomy><li>Learning things just means knowing exactly how we'll die.</li></gloomy>
+    </oppose>
+  </ColonyCouncil.DecreeDef>
+
+  <!-- ============ Austerity: no wishes, standards come down ============ -->
+  <ColonyCouncil.DecreeDef>
+    <defName>Council_Decree_Austerity</defName>
+    <label>austerity</label>
+    <description>The council takes no new wishes, and everyone is asked to make do. Standards come back down to earth, which makes everyone easier to please afterwards. Ascetics are delighted; the greedy are not.</description>
+    <order>5</order>
+    <durationDays>7</durationDays>
+    <cooldownDays>12</cooldownDays>
+    <thought>Council_Decree_Austerity</thought>
+    <defaultReaction>Dislike</defaultReaction>
+    <suspendsWishes>true</suspendsWishes>
+    <standardsPerDay>-0.06</standardsPerDay>
+    <reactions>
+      <li><trait>Ascetic</trait><reaction>Love</reaction></li>
+      <li><trait>Greedy</trait><reaction>Hate</reaction></li>
+      <li><trait>Jealous</trait><reaction>Hate</reaction></li>
+    </reactions>
+    <effects>
+      <li>No new wishes while it lasts.</li>
+      <li>Everyone's standards drop quickly, so the council's rewards count for more again.</li>
+      <li>Ascetics love it; the greedy and jealous hate it.</li>
+    </effects>
+    <support>
+      <plain><li>We've been living soft. A little hardship never killed anyone. Well. Rarely.</li></plain>
+      <cold><li>Expectations had become unsustainable. This corrects them.</li></cold>
+      <warm><li>We have each other. That's enough for a while.</li></warm>
+    </support>
+    <oppose>
+      <plain><li>So we're not allowed to want things now.</li></plain>
+      <blunt><li>Austerity. Fancy word for "no".</li></blunt>
+      <gloomy><li>I knew the good times wouldn't last. I didn't think we'd cancel them on purpose.</li></gloomy>
+    </oppose>
+  </ColonyCouncil.DecreeDef>
+
+  <!-- ============ Festival days: the other way round ============ -->
+  <ColonyCouncil.DecreeDef>
+    <defName>Council_Decree_Festival</defName>
+    <label>festival days</label>
+    <description>A few days of rest, music and late nights. Moods lift and work slows to a crawl. Good for a colony on the edge; standards rise afterwards, so don't make it a habit.</description>
+    <order>6</order>
+    <durationDays>3</durationDays>
+    <cooldownDays>15</cooldownDays>
+    <hediff>Council_Decree_Festival</hediff>
+    <thought>Council_Decree_Festival</thought>
+    <defaultReaction>Like</defaultReaction>
+    <standardsPerDay>0.05</standardsPerDay>
+    <reactions>
+      <li><trait>Industriousness</trait><degree>2</degree><reaction>Dislike</reaction></li>
+      <li><trait>Industriousness</trait><degree>-1</degree><reaction>Love</reaction></li>
+      <li><trait>Industriousness</trait><degree>-2</degree><reaction>Love</reaction></li>
+      <li><trait>Ascetic</trait><reaction>Neutral</reaction></li>
+    </reactions>
+    <effects>
+      <li>Everyone's mood lifts; the lazy are overjoyed.</li>
+      <li>Everyone works 20% slower.</li>
+      <li>Standards rise while it lasts.</li>
+    </effects>
+    <support>
+      <plain><li>Nobody touch a shovel for three days. That's an order.</li></plain>
+      <cheerful><li>FESTIVAL! I've been practicing my dancing! Badly, but practicing!</li></cheerful>
+      <gloomy><li>Fine. One last good week before whatever comes next.</li></gloomy>
+      <warm><li>Everyone deserves this. Everyone.</li></warm>
+    </support>
+    <oppose>
+      <plain><li>The fields don't take holidays.</li></plain>
+      <cold><li>Three days of lost output. I hope the mood is worth it.</li></cold>
+    </oppose>
+  </ColonyCouncil.DecreeDef>
+
+</Defs>

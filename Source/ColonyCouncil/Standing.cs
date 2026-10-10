@@ -36,6 +36,8 @@ namespace ColonyCouncil
         /// <summary>When they last turned bitter (0 = not bitter), and when they'll walk out (0 = staying).</summary>
         public int bitterSince;
         public int leavingTick;
+        /// <summary>0..1: how hard they are to please (see <see cref="Standards"/>).</summary>
+        public float standards;
         /// <summary>Wishes this colonist has made before (defNames), for "I've asked before" lines.</summary>
         public List<string> asked = new List<string>();
         /// <summary>Short history for the tooltip, newest last.</summary>
@@ -90,6 +92,7 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref lastSulkTick, "lastSulkTick", -999999);
             Scribe_Values.Look(ref bitterSince, "bitterSince");
             Scribe_Values.Look(ref leavingTick, "leavingTick");
+            Scribe_Values.Look(ref standards, "standards");
             Scribe_Collections.Look(ref log, "log", LookMode.Value);
             Scribe_Collections.Look(ref asked, "asked", LookMode.Value);
             if (Scribe.mode == LoadSaveMode.PostLoadInit)

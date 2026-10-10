@@ -81,12 +81,27 @@ a grudge slows them down and shortens their temper (both show in the health tab)
 asking, and on Demanding stakes may sulk, go on an insulting spree, or announce they're leaving and walk out
 three days later unless you win them back. The Wishes tab shows everyone's trust and its history.
 
+**Rising standards.** Comfort breeds expectations. While a colonist is happy, their standards creep up from
+*modest* to *comfortable*, *particular* and finally *spoiled*. The council's mood rewards shrink for them, letdowns
+sting more, their patience runs shorter, and their wishes come more often and ask for more: the next impressiveness
+level after that, fine meals instead of simple ones, luxuries. Hard times bring standards back down, and so does the
+austerity decree.
+
+### Decrees: spend the good mood
+When the colony is doing well, put that goodwill to work. The Decrees tab lets you declare up to two policies at a
+time for a few days: **long hours** (work faster), **rationing** (eat less), **drills** (everyone who can fight
+trains shooting and melee), **study hours** (learn and research faster), **austerity** (no new wishes, standards
+come back down) or, the other way round, **festival days** (better mood, much slower work). Everyone reacts according
+to their nature: the industrious like long hours and the lazy hate them, ascetics love austerity, the bloodthirsty
+love drills, gourmands suffer under rationing. The tab shows who will love or hate each one before you decide, and
+living under a decree you hate wears down your trust in the council.
+
 ### Ambition: council meetings
 About once a quadrum, in the evening, the council actually **meets**: colonists gather around the dining
 table, in the rec room, by the campfire or in the open. Three of them pitch an ambition out loud, others back
 them, doubt them or wander off topic, and when the meeting ends everyone who came votes. The decision letter
 shows the votes. Going with the room's favorite pleases its backers; overruling a clear majority costs a
-little trust. 31 ambitions, from *a full larder* and *hold the line* to *clean hands*, *law and order*, *the
+little trust. 35 ambitions, from *a full larder* and *hold the line* to *clean hands*, *law and order*, *the
 brewmasters*, *stone and mortar*, *a master healer*, *a seat of power* and *school days*. Achieving one lifts
 everyone's mood and trust.
 
