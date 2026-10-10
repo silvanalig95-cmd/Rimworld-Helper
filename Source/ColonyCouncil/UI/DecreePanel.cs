@@ -61,7 +61,7 @@ namespace ColonyCouncil
             string effects = string.Join("\n", def.effects.Select(e => "- " + e));
             string reactions = Reactions(def, pawns);
             var req = tracker.RequestFor(def);
-            string petition = req?.pawn == null ? null : "CC_Decree_PetitionLine".Translate(req.pawn.Named("PAWN")).Resolve() + (req.line != null ? " \"" + req.line + "\"" : "");
+            string petition = req?.pawn == null ? null : (req.repeal ? "CC_Decree_RepealLine" : "CC_Decree_PetitionLine").Translate(req.pawn.Named("PAWN")).Resolve() + (req.line != null ? " \"" + req.line + "\"" : "");
             Text.Font = GameFont.Small;
             h += Text.CalcHeight(title, textW) + Text.CalcHeight(def.description, textW) + Text.CalcHeight(effects, textW) + Text.CalcHeight(reactions, textW) + 22f;
             if (petition != null) h += Text.CalcHeight(petition, textW) + 2f;

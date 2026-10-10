@@ -901,6 +901,10 @@ Granting one of {PAWN_possessive} wishes, or keeping a promise, can win {PAWN_ob
 
   <!-- Decree petitions -->
   <CC_Decree_Requested>{PAWN_nameDef} asks the council to declare {DECREE}.</CC_Decree_Requested>
+  <CC_Decree_RepealRequested>{PAWN_nameDef} asks the council to lift {DECREE}.</CC_Decree_RepealRequested>
+  <CC_Decree_RepealLine>{PAWN_nameDef} wants this lifted:</CC_Decree_RepealLine>
+  <CC_Log_RepealHeeded>the council lifted {0}, as asked</CC_Log_RepealHeeded>
+  <CC_Log_RepealIgnored>asked for {0} to be lifted, nobody listened</CC_Log_RepealIgnored>
   <CC_Decree_PetitionLine>{PAWN_nameDef} has asked for this:</CC_Decree_PetitionLine>
   <CC_Tab_DecreesAsked>Decrees ({0} asked)</CC_Tab_DecreesAsked>
   <CC_Log_DecreeHeeded>the council declared {0}, as asked</CC_Log_DecreeHeeded>

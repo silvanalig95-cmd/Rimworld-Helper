@@ -132,6 +132,8 @@ namespace ColonyCouncil
         public Pawn pawn;
         public int tick;
         public string line;
+        /// <summary>Asking for a decree in force to be lifted, rather than declared.</summary>
+        public bool repeal;
 
         public void ExposeData()
         {
@@ -139,6 +141,7 @@ namespace ColonyCouncil
             Scribe_References.Look(ref pawn, "pawn");
             Scribe_Values.Look(ref tick, "tick");
             Scribe_Values.Look(ref line, "line");
+            Scribe_Values.Look(ref repeal, "repeal");
         }
     }
 
@@ -200,6 +203,16 @@ namespace ColonyCouncil
             readyAt[def.defName] = Find.TickManager.TicksGame + Mathf.RoundToInt(def.cooldownDays * GenDate.TicksPerDay);
             SyncHediffs();
             comp.Notify_DecreeEnded(def, early);
+            var req = RequestFor(def);
+            if (req != null && req.repeal)
+            {
+                requests.Remove(req);
+                if (early && req.pawn != null && !req.pawn.Dead)
+                {
+                    comp.standings.Change(req.pawn, 4f, "CC_Log_RepealHeeded".Translate(def.label));
+                    CouncilGameComponent.GiveThought(req.pawn, CouncilDefOf.Council_DecreeHeeded);
+                }
+            }
         }
 
         public void Hourly(CouncilGameComponent comp)
@@ -230,14 +243,34 @@ namespace ColonyCouncil
             foreach (var r in requests.Where(r => r.def == null || r.pawn == null || r.pawn.Dead || now - r.tick > RequestDays * GenDate.TicksPerDay).ToList())
             {
                 requests.Remove(r);
-                if (r.def != null && r.pawn != null && !r.pawn.Dead && !IsActive(r.def))
+                if (r.def == null || r.pawn == null || r.pawn.Dead) continue;
+                if (!r.repeal && !IsActive(r.def))
                     comp.standings.Change(r.pawn, -2f, "CC_Log_DecreeIgnored".Translate(r.def.label));
+                else if (r.repeal && IsActive(r.def))
+                    comp.standings.Change(r.pawn, -2f, "CC_Log_RepealIgnored".Translate(r.def.label));
             }
             if (!ColonyCouncilMod.Settings.decreeRequests || requests.Count >= 2 || now - lastRequestTick < GenDate.TicksPerDay * 3 || !Rand.Chance(0.35f)) return;
             var map = Find.Maps.Where(m => m.IsPlayerHome).OrderByDescending(m => m.mapPawns.FreeColonistsSpawnedCount).FirstOrDefault();
             if (map == null) return;
             var pawns = map.mapPawns.FreeColonistsSpawned.Where(p => !p.IsQuestLodger() && CouncilGameComponent.CanVoiceWishes(p)).ToList();
             if (pawns.Count == 0) return;
+            // A decree half the colony resents: someone who hates it asks for it to be lifted.
+            foreach (var a in active.InRandomOrder())
+            {
+                if (RequestFor(a.def) != null || now - a.startTick < GenDate.TicksPerDay) continue;
+                int against = pawns.Count(p => a.def.ReactionOf(p) <= DecreeReaction.Dislike);
+                if (against * 2 < pawns.Count) continue;
+                var hater = pawns.Where(p => a.def.ReactionOf(p) == DecreeReaction.Hate).RandomElementWithFallback();
+                if (hater == null) continue;
+                string gripe = a.def.oppose.Pick(ToneUtility.ToneFor(hater), Flavor.TagsFor(hater));
+                gripe = gripe.NullOrEmpty() ? null : gripe.Formatted(hater.Named("PAWN")).Resolve();
+                requests.Add(new DecreeRequest { def = a.def, pawn = hater, tick = now, line = gripe, repeal = true });
+                lastRequestTick = now;
+                Messages.Message("CC_Decree_RepealRequested".Translate(hater.Named("PAWN"), a.def.label.Named("DECREE")).Resolve() + (gripe != null ? " \"" + TextUtil.ShortSpeech(gripe, 120) + "\"" : ""),
+                    new LookTargets(hater), MessageTypeDefOf.NeutralEvent, false);
+                CouncilGameComponent.Speak(hater, gripe, new Color(0.95f, 0.6f, 0.5f));
+                return;
+            }
             foreach (var def in DefDatabase<DecreeDef>.AllDefsListForReading.Where(d => !d.requestWhen.NullOrEmpty()).InRandomOrder())
             {
                 if (IsActive(def) || RequestFor(def) != null || CannotEnact(def) != null) continue;
