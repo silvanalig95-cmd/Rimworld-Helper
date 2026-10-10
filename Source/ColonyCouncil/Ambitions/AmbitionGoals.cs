@@ -567,4 +567,54 @@ namespace ColonyCouncil
 
         public override string Describe(Map map, float baseline) => "CC_Goal_NoAddictions".Translate(Addicts(map));
     }
+
+    /// <summary>Burn a hostile settlement to the ground. Only pitched while the colony is grieving or fresh from a raid.</summary>
+    public class Goal_RaidSettlement : AmbitionGoal
+    {
+        public float maxTiles = 25f;
+        public int minFighters = 4;
+
+        private static int Destroyed() => Find.WorldObjects.AllWorldObjects.Count(o => o.def == WorldObjectDefOf.DestroyedSettlement);
+
+        private RimWorld.Planet.Settlement Nearest(Map map) => Find.WorldObjects.Settlements
+            .Where(s => s.Faction != null && !s.Faction.IsPlayer && s.Faction.HostileTo(Faction.OfPlayer) && s.Attackable)
+            .Select(s => (s, d: Find.WorldGrid.ApproxDistanceInTiles(map.Tile, s.Tile)))
+            .Where(x => x.d <= maxTiles)
+            .OrderBy(x => x.d)
+            .Select(x => x.s)
+            .FirstOrDefault();
+
+        public override bool Possible(Map map)
+        {
+            var pawns = map.mapPawns.FreeColonistsSpawned;
+            if (pawns.Count(p => !p.WorkTagIsDisabled(WorkTags.Violent) && !p.DevelopmentalStage.Juvenile()) < minFighters) return false;
+            int lastThreat = map.storyState.LastThreatBigTick;
+            bool angry = pawns.Any(Flavor.IsGrieving) || (lastThreat > 0 && Find.TickManager.TicksGame - lastThreat < GenDate.TicksPerDay * 5);
+            return angry && Nearest(map) != null;
+        }
+
+        public override float Baseline(Map map) => Destroyed();
+
+        public override float Progress(Map map, float baseline) => Destroyed() > baseline ? 1f : 0f;
+
+        public override string Describe(Map map, float baseline)
+        {
+            var s = Nearest(map);
+            return s == null ? "CC_Goal_RaidSettlementAny".Translate() : "CC_Goal_RaidSettlement".Translate(s.LabelCap, s.Faction.Name, Find.WorldGrid.ApproxDistanceInTiles(map.Tile, s.Tile).ToString("0"));
+        }
+    }
+
+    /// <summary>Complete quests abroad (from now).</summary>
+    public class Goal_Quests : AmbitionGoal
+    {
+        public int count = 2;
+
+        private static int Done() => Find.QuestManager.QuestsListForReading.Count(q => q.State == QuestState.EndedSuccess);
+
+        public override float Baseline(Map map) => Done();
+
+        public override float Progress(Map map, float baseline) => Ratio(Done() - baseline, count);
+
+        public override string Describe(Map map, float baseline) => "CC_Goal_Quests".Translate(count, UnityEngine.Mathf.Max(0, Done() - (int)baseline));
+    }
 }

@@ -942,4 +942,8 @@ Granting one of {PAWN_possessive} wishes, or keeping a promise, can win {PAWN_ob
   <CC_Reason_HurtAnimal>{PAWN_nameDef}'s bonded animal, {OTHER_nameDef}, is hurt.</CC_Reason_HurtAnimal>
   <CC_Progress_HurtAnimal>{OTHER_nameDef}: {1} health. Make sure a doctor is allowed to tend animals.</CC_Progress_HurtAnimal>
 
+  <CC_Goal_RaidSettlement>Destroy a hostile settlement (nearest: {0} of {1}, {2} tiles away)</CC_Goal_RaidSettlement>
+  <CC_Goal_RaidSettlementAny>Destroy a hostile settlement</CC_Goal_RaidSettlementAny>
+  <CC_Goal_Quests>Complete {0} quest(s) ({1} so far)</CC_Goal_Quests>
+
 </LanguageData>
