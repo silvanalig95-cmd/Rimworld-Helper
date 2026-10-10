@@ -88,10 +88,17 @@ namespace ColonyCouncil
         public bool canFight;
         /// <summary>Must hold this council office (scandals, complaints about the marshal...).</summary>
         public OfficeDef office;
+        /// <summary>Role B only: must share a bond of this kind with A, at least <see cref="minTie"/> strong.</summary>
+        public TieKind tie = TieKind.None;
+        public float minTie = 20f;
+        /// <summary>Role B only: must not be bonded to A in this way (no rivals for a favour between friends...).</summary>
+        public TieKind notTie = TieKind.None;
 
         public bool Allows(Pawn p, Pawn a)
         {
             if (office != null && (!ColonyCouncilMod.Settings.offices || CouncilGameComponent.Instance?.offices.HolderOf(office) != p)) return false;
+            if (tie != TieKind.None && (a == null || !ColonyCouncilMod.Settings.socialWeb || (CouncilGameComponent.Instance?.social.Strength(p, a, tie) ?? 0f) < minTie)) return false;
+            if (notTie != TieKind.None && a != null && (CouncilGameComponent.Instance?.social.Strength(p, a, notTie) ?? 0f) >= 20f) return false;
             if (p == null || p == a || !p.Spawned || p.Downed || p.InMentalState || p.IsQuestLodger()) return false;
             var traits = p.story?.traits;
             if (child) { if (!p.DevelopmentalStage.Child()) return false; }
@@ -143,6 +150,8 @@ namespace ColonyCouncil
         public Faction faction;
         /// <summary>A's animal, for dilemmas about pets.</summary>
         public Pawn pet;
+        /// <summary>The skill being taught, for social events between a mentor and a student.</summary>
+        public SkillDef skill;
         public string text;
 
         public string Format(string s)
@@ -155,7 +164,8 @@ namespace ColonyCouncil
                 (thing != null ? thing.label : "").Named("THING"),
                 count.Named("COUNT"),
                 (faction != null ? faction.Name : "").Named("FACTION"),
-                (pet != null ? pet.Named("PET") : (a != null ? a.Named("PET") : "?".Named("PET")))
+                (pet != null ? pet.Named("PET") : (a != null ? a.Named("PET") : "?".Named("PET"))),
+                (skill != null ? skill.label : "").Named("SKILL")
             };
             return s.Formatted(args.ToArray()).Resolve();
         }
@@ -172,6 +182,7 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref count, "count");
             Scribe_References.Look(ref faction, "faction");
             Scribe_References.Look(ref pet, "pet");
+            Scribe_Defs.Look(ref skill, "skill");
             Scribe_Values.Look(ref text, "text");
         }
     }
@@ -349,6 +360,25 @@ namespace ColonyCouncil
             {
                 Pawn other = about == DilemmaAbout.A ? ctx.a : about == DilemmaAbout.B ? ctx.b : (p == ctx.a ? ctx.b : ctx.a);
                 CouncilGameComponent.GiveThought(p, thought, other == p ? null : other);
+                // Some memories are bonds being made or broken.
+                var social = CouncilGameComponent.Instance?.social;
+                if (social != null && other != null && other != p && thought != null)
+                {
+                    switch (thought.defName)
+                    {
+                        case "Council_Dlm_MadeUp":
+                            social.Weaken(p, other, TieKind.Rivals, 20f, "CC_TieNote_MadeUp".Translate());
+                            social.Bump(p, other, TieKind.Friends, 8f, "CC_TieNote_MadeUp".Translate());
+                            break;
+                        case "Council_Dlm_Bonded":
+                            social.Bump(p, other, TieKind.Friends, 15f, "CC_TieNote_Bonded".Translate());
+                            break;
+                        case "Council_Dlm_Grudge":
+                        case "Council_Dlm_Distrust":
+                            social.Bump(p, other, TieKind.Rivals, 8f, "CC_TieNote_Grudge".Translate());
+                            break;
+                    }
+                }
             }
         }
     }
@@ -422,6 +452,24 @@ namespace ColonyCouncil
         }
     }
 
+    /// <summary>Practice: experience in a skill (the one being taught, when none is given).</summary>
+    public class DilemmaEffect_Learn : DilemmaEffect
+    {
+        public SkillDef skill;
+        public float xp = 300f;
+
+        public override void Apply(DilemmaContext ctx)
+        {
+            var sk = skill ?? ctx.skill;
+            if (sk == null) return;
+            foreach (var p in Targets(ctx))
+            {
+                var rec = p.skills?.GetSkill(sk);
+                if (rec != null && !rec.TotallyDisabled) rec.Learn(xp, true);
+            }
+        }
+    }
+
     /// <summary>Someone breaks: a sad wander, a tantrum, hiding in their room.</summary>
     public class DilemmaEffect_MentalState : DilemmaEffect
     {
@@ -448,6 +496,7 @@ namespace ColonyCouncil
             if (chance < 1f && !Rand.Chance(chance)) return;
             if (ctx.a.WorkTagIsDisabled(WorkTags.Violent)) ctx.b.interactions?.StartSocialFight(ctx.a);
             else ctx.a.interactions?.StartSocialFight(ctx.b);
+            CouncilGameComponent.Instance?.social.Bump(ctx.a, ctx.b, TieKind.Rivals, 10f, "CC_TieNote_Fight".Translate());
         }
     }
 

@@ -1,0 +1,285 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Small things that happen between two colonists, A and B, a day or two apart.
+    tie: needs a bond of that kind (Friends, Rivals, Comrades, Mentor; for Mentor, A is the teacher), at least minStrength.
+    Without a tie: both opinions must lie between minOpinion and maxOpinion.
+    roleA / roleB: the same requirements as dilemma roles. children: lets children take part when there are no roles.
+    effects: dilemma effects (target A, B, AAndB, Others...). changeTie + change: strengthens (or with a negative change, weakens) a bond.
+    note: the line in the bond's history. notable: also goes in the chronicle.
+    {SKILL} is the skill being taught, for mentor events.
+  -->
+
+  <ColonyCouncil.SocialEventDef>
+    <defName>Council_Soc_LateTalk</defName>
+    <label>a late talk</label>
+    <weight>1.2</weight>
+    <tie>Friends</tie>
+    <minStrength>10</minStrength>
+    <texts>
+      <li>{A_nameDef} and {B_nameDef} stayed up talking long after everyone else had gone to bed.</li>
+      <li>{A_nameDef} and {B_nameDef} sat by the dying fire and talked about the homes they left behind.</li>
+      <li>{B_nameDef} couldn't sleep. Neither could {A_nameDef}. They ended up talking until dawn.</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>AAndB</target><thought>Council_Soc_GoodTalk</thought></li>
+    </effects>
+    <changeTie>Friends</changeTie>
+    <change>6</change>
+    <note>talked half the night</note>
+  </ColonyCouncil.SocialEventDef>
+
+  <ColonyCouncil.SocialEventDef>
+    <defName>Council_Soc_SharedJoke</defName>
+    <label>a shared joke</label>
+    <minOpinion>10</minOpinion>
+    <texts>
+      <li>{A_nameDef} said something under {A_possessive} breath at dinner and {B_nameDef} laughed so hard {B_pronoun} had to leave the table.</li>
+      <li>{A_nameDef} and {B_nameDef} have a joke now. Nobody else gets it. They don't care.</li>
+      <li>{A_nameDef} did an impression of the last raider leader. {B_nameDef} cried laughing.</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>AAndB</target><thought>Council_Soc_Laughed</thought></li>
+    </effects>
+    <changeTie>Friends</changeTie>
+    <change>4</change>
+    <note>shared a joke</note>
+  </ColonyCouncil.SocialEventDef>
+
+  <ColonyCouncil.SocialEventDef>
+    <defName>Council_Soc_FriendlyPrank</defName>
+    <label>a prank between friends</label>
+    <weight>0.7</weight>
+    <tie>Friends</tie>
+    <minStrength>30</minStrength>
+    <texts>
+      <li>{A_nameDef} filled {B_nameDef}'s boots with sand. {B_nameDef} swore revenge, laughing.</li>
+      <li>{A_nameDef} sewed {B_nameDef}'s sleeves shut. {B_nameDef} took it well, and is plotting.</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>AAndB</target><thought>Council_Soc_Laughed</thought></li>
+    </effects>
+    <changeTie>Friends</changeTie>
+    <change>3</change>
+    <note>pranks, and laughter</note>
+  </ColonyCouncil.SocialEventDef>
+
+  <ColonyCouncil.SocialEventDef>
+    <defName>Council_Soc_BadPrank</defName>
+    <label>a prank that landed badly</label>
+    <weight>0.6</weight>
+    <minOpinion>-25</minOpinion>
+    <maxOpinion>25</maxOpinion>
+    <roleB><notTie>Friends</notTie></roleB>
+    <texts>
+      <li>{A_nameDef} thought it would be funny to hide {B_nameDef}'s tools. {B_nameDef} did not think it was funny.</li>
+      <li>{A_nameDef} put a dead rat in {B_nameDef}'s bed as a joke. {B_nameDef} has stopped speaking to {A_objective}.</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_Soc_Pranked</thought></li>
+    </effects>
+    <changeTie>Rivals</changeTie>
+    <change>5</change>
+    <note>a prank that wasn't funny</note>
+  </ColonyCouncil.SocialEventDef>
+
+  <ColonyCouncil.SocialEventDef>
+    <defName>Council_Soc_Snub</defName>
+    <label>a snub</label>
+    <tie>Rivals</tie>
+    <minStrength>10</minStrength>
+    <texts>
+      <li>{B_nameDef} said good morning. {A_nameDef} turned and walked away, in front of everyone.</li>
+      <li>{A_nameDef} moved {A_possessive} chair to the far end of the table when {B_nameDef} sat down.</li>
+      <li>{A_nameDef} thanked everyone who helped with the harvest by name. Everyone except {B_nameDef}.</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_Soc_Snubbed</thought></li>
+    </effects>
+    <changeTie>Rivals</changeTie>
+    <change>5</change>
+    <note>a public snub</note>
+  </ColonyCouncil.SocialEventDef>
+
+  <ColonyCouncil.SocialEventDef>
+    <defName>Council_Soc_ChoreSquabble</defName>
+    <label>a squabble over chores</label>
+    <maxOpinion>15</maxOpinion>
+    <texts>
+      <li>{A_nameDef} and {B_nameDef} argued for an hour over whose turn it was to clean the latrine.</li>
+      <li>{A_nameDef} says {B_nameDef} never puts anything back where it belongs. {B_nameDef} says {A_nameDef} never puts anything back at all.</li>
+      <li>{A_nameDef} and {B_nameDef} had words over who let the fire go out. Again.</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>AAndB</target><thought>Council_Soc_Squabble</thought></li>
+    </effects>
+    <changeTie>Rivals</changeTie>
+    <change>4</change>
+    <note>squabbled over chores</note>
+  </ColonyCouncil.SocialEventDef>
+
+  <ColonyCouncil.SocialEventDef>
+    <defName>Council_Soc_WarStories</defName>
+    <label>war stories</label>
+    <tie>Comrades</tie>
+    <minStrength>15</minStrength>
+    <texts>
+      <li>{A_nameDef} and {B_nameDef} went over the last battle again at dinner, shot by shot. The story gets better every time.</li>
+      <li>{A_nameDef} showed {B_nameDef} the scar. {B_nameDef} showed {A_nameDef} a worse one. They drank to both.</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>AAndB</target><thought>Council_Soc_GoodTalk</thought></li>
+    </effects>
+    <changeTie>Comrades</changeTie>
+    <change>5</change>
+    <note>told war stories</note>
+  </ColonyCouncil.SocialEventDef>
+
+  <ColonyCouncil.SocialEventDef>
+    <defName>Council_Soc_Lesson</defName>
+    <label>a lesson</label>
+    <weight>1.4</weight>
+    <tie>Mentor</tie>
+    <children>true</children>
+    <texts>
+      <li>{A_nameDef} spent the evening showing {B_nameDef} the finer points of {SKILL}. Something clicked.</li>
+      <li>{B_nameDef} made the same {SKILL} mistake three times. {A_nameDef} explained it a fourth time, patiently. The fifth try worked.</li>
+      <li>{A_nameDef} set {B_nameDef} a {SKILL} exercise and watched without a word. Afterwards, a single nod.</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Learn"><target>B</target><xp>800</xp></li>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>AAndB</target><thought>Council_Soc_Lesson</thought></li>
+    </effects>
+    <changeTie>Mentor</changeTie>
+    <change>4</change>
+    <note>a good lesson</note>
+  </ColonyCouncil.SocialEventDef>
+
+  <ColonyCouncil.SocialEventDef>
+    <defName>Council_Soc_RivalContest</defName>
+    <label>a contest between rivals</label>
+    <tie>Rivals</tie>
+    <minStrength>20</minStrength>
+    <texts>
+      <li>{A_nameDef} and {B_nameDef} turned the woodcutting into a contest. {A_nameDef} won, and made sure everyone knew.</li>
+      <li>{A_nameDef} beat {B_nameDef} at horseshoes, then at cards, then at arm-wrestling. {B_nameDef} has demanded a rematch at everything.</li>
+      <li>Somehow {A_nameDef} and {B_nameDef} made a race out of hauling. {A_nameDef} won by a single sack.</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Soc_Won</thought></li>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_Soc_Outdone</thought></li>
+    </effects>
+    <changeTie>Rivals</changeTie>
+    <change>3</change>
+    <note>a contest: {A_nameDef} won</note>
+  </ColonyCouncil.SocialEventDef>
+
+  <ColonyCouncil.SocialEventDef>
+    <defName>Council_Soc_Gift</defName>
+    <label>a small gift</label>
+    <weight>0.7</weight>
+    <tie>Friends</tie>
+    <minStrength>30</minStrength>
+    <roleA><passion>Artistic</passion></roleA>
+    <texts>
+      <li>{A_nameDef} carved {B_nameDef} a little figure out of scrap wood. {B_nameDef} keeps it by {B_possessive} bed.</li>
+      <li>{A_nameDef} painted {B_nameDef}'s name on {B_possessive} door, with flowers. {B_nameDef} pretended not to be moved.</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_Soc_Gift</thought></li>
+    </effects>
+    <changeTie>Friends</changeTie>
+    <change>5</change>
+    <note>a handmade gift</note>
+  </ColonyCouncil.SocialEventDef>
+
+  <ColonyCouncil.SocialEventDef>
+    <defName>Council_Soc_Gossip</defName>
+    <label>gossip</label>
+    <weight>0.8</weight>
+    <maxOpinion>-5</maxOpinion>
+    <texts>
+      <li>{A_nameDef} has been telling everyone what {B_nameDef} said in {B_possessive} sleep. {B_nameDef} found out.</li>
+      <li>{A_nameDef} has a theory about where {B_nameDef} really came from, and has shared it widely. {B_nameDef} is furious.</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_Soc_Gossiped</thought></li>
+    </effects>
+    <changeTie>Rivals</changeTie>
+    <change>7</change>
+    <note>gossip, found out</note>
+    <notable>true</notable>
+  </ColonyCouncil.SocialEventDef>
+
+  <ColonyCouncil.SocialEventDef>
+    <defName>Council_Soc_Truce</defName>
+    <label>a truce</label>
+    <weight>0.6</weight>
+    <tie>Rivals</tie>
+    <minMood>0.6</minMood>
+    <texts>
+      <li>{A_nameDef} and {B_nameDef} ended up on the same work detail and, somewhere around noon, started talking like people.</li>
+      <li>{A_nameDef} brought {B_nameDef} a bowl of stew without being asked. {B_nameDef} said thank you. Everyone noticed.</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>AAndB</target><thought>Council_Dlm_MadeUp</thought></li>
+    </effects>
+    <note>an unexpected truce</note>
+    <notable>true</notable>
+  </ColonyCouncil.SocialEventDef>
+
+  <ColonyCouncil.SocialEventDef>
+    <defName>Council_Soc_StoodUp</defName>
+    <label>standing up for a friend</label>
+    <weight>0.7</weight>
+    <tie>Friends</tie>
+    <minStrength>25</minStrength>
+    <texts>
+      <li>When someone blamed {A_nameDef} for the burnt dinner, {B_nameDef} stepped in and took half the blame.</li>
+      <li>{B_nameDef} told the whole table that anyone with a problem with {A_nameDef} had a problem with {B_objective} too.</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Soc_HadMyBack</thought></li>
+    </effects>
+    <changeTie>Friends</changeTie>
+    <change>7</change>
+    <note>{B_nameDef} stood up for {A_nameDef}</note>
+  </ColonyCouncil.SocialEventDef>
+
+  <ColonyCouncil.SocialEventDef>
+    <defName>Council_Soc_ChildrenPlay</defName>
+    <label>children at play</label>
+    <roleA><child>true</child></roleA>
+    <roleB><child>true</child></roleB>
+    <texts>
+      <li>{A_nameDef} and {B_nameDef} spent the afternoon building a fort out of crates. It has rules. Adults are not allowed.</li>
+      <li>{A_nameDef} and {B_nameDef} found a beetle and spent an hour deciding what to name it.</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>AAndB</target><thought>Council_Soc_Laughed</thought></li>
+    </effects>
+    <changeTie>Friends</changeTie>
+    <change>7</change>
+    <note>played together</note>
+  </ColonyCouncil.SocialEventDef>
+
+  <ColonyCouncil.SocialEventDef>
+    <defName>Council_Soc_Spark</defName>
+    <label>a spark</label>
+    <weight>0.4</weight>
+    <tie>Friends</tie>
+    <minStrength>50</minStrength>
+    <texts>
+      <li>Something {B_nameDef} said over dinner gave {A_nameDef} an idea. {A_nameDef} hasn't stopped working since.</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Inspiration"><target>A</target></li>
+    </effects>
+    <changeTie>Friends</changeTie>
+    <change>3</change>
+    <note>an idea, shared</note>
+    <notable>true</notable>
+  </ColonyCouncil.SocialEventDef>
+
+</Defs>

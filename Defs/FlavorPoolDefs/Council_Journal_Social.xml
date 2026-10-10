@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- Journal entries about bonds. {OTHER_...} is the other person; {SKILL} is the skill being taught (mentorships). -->
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Journal_TieFormed_Friends</defName>
+    <lines>
+      <plain>
+        <li>{OTHER_nameDef} saved me a seat at dinner again. I think we're friends now. I didn't notice it happening.</li>
+        <li>Talked with {OTHER_nameDef} until the fire went out. It's good to have someone here who gets it.</li>
+        <li>[winter] Long cold nights go faster with {OTHER_nameDef} around. I'm glad {OTHER_pronoun}'s here.</li>
+        <li>[summer] {OTHER_nameDef} and I sat on the roof and watched the sun go down. Didn't say much. Didn't need to.</li>
+      </plain>
+      <warm><li>I have a friend here. A real one. {OTHER_nameDef}. I want to write that down so I remember the day I knew.</li></warm>
+      <blunt><li>{OTHER_nameDef}'s all right. Better than all right. Don't tell {OTHER_objective} I said so.</li></blunt>
+      <cheerful><li>{OTHER_nameDef} is my FRIEND! We have an inside joke already! It's about the potatoes!</li></cheerful>
+      <gloomy><li>I've let myself get attached to {OTHER_nameDef}. That never ends well. I did it anyway.</li></gloomy>
+      <cold><li>{OTHER_nameDef} has proved reliable and good company. I will treat the friendship as an asset worth protecting.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Journal_TieFormed_Rivals</defName>
+    <lines>
+      <plain>
+        <li>{OTHER_nameDef} again. Everything I do, {OTHER_pronoun} has an opinion about. Well, I have opinions too.</li>
+        <li>I can't be in the same room as {OTHER_nameDef} anymore. Something has to give, and it won't be me.</li>
+        <li>[trait:Abrasive] {OTHER_nameDef} says I'm the problem. That's rich, coming from {OTHER_objective}.</li>
+      </plain>
+      <warm><li>I tried with {OTHER_nameDef}. I really did. Some people just bring out the worst in each other.</li></warm>
+      <blunt><li>{OTHER_nameDef} is a pain. I'm done pretending otherwise.</li></blunt>
+      <cheerful><li>{OTHER_nameDef} doesn't like me! That's fine! I'll be twice as cheerful at {OTHER_objective}!</li></cheerful>
+      <gloomy><li>Of course {OTHER_nameDef} and I can't get along. Nothing here is ever simple.</li></gloomy>
+      <cold><li>{OTHER_nameDef} opposes me at every turn. I'll keep a record. Records win arguments.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Journal_TieFormed_Comrades</defName>
+    <lines>
+      <plain>
+        <li>{OTHER_nameDef} was next to me when they came over the wall. I'd trust {OTHER_objective} with my life now. I already did.</li>
+        <li>We held the line, {OTHER_nameDef} and me. You don't forget who stood next to you.</li>
+      </plain>
+      <warm><li>{OTHER_nameDef} pulled me back when I was about to do something stupid out there. I owe {OTHER_objective}.</li></warm>
+      <blunt><li>{OTHER_nameDef} can shoot, and {OTHER_pronoun} didn't run. That's all I need to know about a person.</li></blunt>
+      <cheerful><li>{OTHER_nameDef} and I make a GREAT team! Well, we survived! That counts!</li></cheerful>
+      <gloomy><li>{OTHER_nameDef} saw what I saw today. At least I'm not the only one who'll dream about it.</li></gloomy>
+      <cold><li>{OTHER_nameDef} performed well under fire. I'll want {OTHER_objective} beside me next time.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Journal_TieFormed_Mentor</defName>
+    <lines>
+      <plain>
+        <li>I've started teaching {OTHER_nameDef} {SKILL}. The questions never stop. Good.</li>
+        <li>{OTHER_nameDef} wants to learn {SKILL}. Someone taught me once. My turn.</li>
+      </plain>
+      <warm><li>Teaching {OTHER_nameDef} {SKILL}. Seeing it click for someone else is better than doing it myself.</li></warm>
+      <blunt><li>Taking on {OTHER_nameDef} as a student. {SKILL}. If {OTHER_pronoun} slacks, I'll stop.</li></blunt>
+      <cheerful><li>I have a STUDENT! {OTHER_nameDef}! We're doing {SKILL}! I made a lesson plan!</li></cheerful>
+      <gloomy><li>Teaching {OTHER_nameDef} {SKILL}, so someone knows how when I'm gone.</li></gloomy>
+      <cold><li>Knowledge concentrated in one person is a risk. Training {OTHER_nameDef} in {SKILL}.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Journal_TieFormed_Student</defName>
+    <lines>
+      <plain>
+        <li>{OTHER_nameDef} has agreed to teach me {SKILL}. I'm going to be bad at it for a while.</li>
+        <li>First lesson in {SKILL} from {OTHER_nameDef} today, who makes it look easy. It isn't.</li>
+      </plain>
+      <warm><li>{OTHER_nameDef} is teaching me {SKILL}, and didn't have to. I won't waste it.</li></warm>
+      <blunt><li>{OTHER_nameDef} is teaching me {SKILL}. Let's see who gives up first.</li></blunt>
+      <cheerful><li>{OTHER_nameDef} is going to teach me {SKILL}! I'm going to be SO good at {SKILL}!</li></cheerful>
+      <gloomy><li>Learning {SKILL} from {OTHER_nameDef}. I'll probably disappoint {OTHER_objective}. Trying anyway.</li></gloomy>
+      <cold><li>Arranged training in {SKILL} under {OTHER_nameDef}. Efficient use of the evenings.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Journal_TieEnded_Friends</defName>
+    <lines>
+      <plain>
+        <li>{OTHER_nameDef} and I hardly talk these days. I'm not sure when that started.</li>
+        <li>Walked past {OTHER_nameDef} today and we just nodded. We used to be friends. Maybe we still are, a little.</li>
+      </plain>
+      <warm><li>I miss how things were with {OTHER_nameDef}. I hope {OTHER_pronoun}'s all right.</li></warm>
+      <blunt><li>{OTHER_nameDef} and I aren't close anymore. Things change.</li></blunt>
+      <cheerful><li>{OTHER_nameDef} and I drifted apart. That's okay! People do! I'm okay!</li></cheerful>
+      <gloomy><li>Lost {OTHER_nameDef} too, in the slow way. Not dead. Just gone.</li></gloomy>
+      <cold><li>The friendship with {OTHER_nameDef} has lapsed. Noted without sentiment.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Journal_TieEnded_Rivals</defName>
+    <lines>
+      <plain>
+        <li>{OTHER_nameDef} and I passed the salt without a word today. That's peace, out here.</li>
+        <li>I don't hate {OTHER_nameDef} anymore. I don't know when I stopped.</li>
+      </plain>
+      <warm><li>{OTHER_nameDef} and I are finally done fighting. I'm glad. It was exhausting.</li></warm>
+      <blunt><li>Me and {OTHER_nameDef}: truce. For now.</li></blunt>
+      <cheerful><li>{OTHER_nameDef} smiled at me today! Sort of! Progress!</li></cheerful>
+      <gloomy><li>Too tired to stay angry at {OTHER_nameDef}. Maybe that's what peace is.</li></gloomy>
+      <cold><li>The rivalry with {OTHER_nameDef} no longer serves either of us. Concluded.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Journal_TieEnded_Comrades</defName>
+    <lines>
+      <plain>
+        <li>{OTHER_nameDef} and I don't talk about that fight anymore. Maybe that's healing. Maybe it's forgetting.</li>
+      </plain>
+      <warm><li>The battle with {OTHER_nameDef} feels like a long time ago now. I'm glad it does.</li></warm>
+      <blunt><li>Old fight, old news. {OTHER_nameDef} and I have moved on.</li></blunt>
+      <cheerful><li>{OTHER_nameDef} and I hardly remember that fight now! That's good, right?</li></cheerful>
+      <gloomy><li>Even the bond with {OTHER_nameDef} faded. Everything does.</li></gloomy>
+      <cold><li>Shared combat with {OTHER_nameDef} no longer defines us. Fine.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Journal_TieEnded_Mentor</defName>
+    <lines>
+      <plain>
+        <li>No more {SKILL} lessons with {OTHER_nameDef}. It wasn't working.</li>
+      </plain>
+      <warm><li>I stopped teaching {OTHER_nameDef}. I hope I didn't put {OTHER_objective} off {SKILL} for good.</li></warm>
+      <blunt><li>Done teaching {OTHER_nameDef}. Waste of both our evenings.</li></blunt>
+      <cheerful><li>The {SKILL} lessons with {OTHER_nameDef} are over! We tried! Mostly!</li></cheerful>
+      <gloomy><li>Gave up on teaching {OTHER_nameDef}. Another thing I wasn't good enough at.</li></gloomy>
+      <cold><li>Training {OTHER_nameDef} has been discontinued. Poor return on time.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Journal_TieEnded_Student</defName>
+    <lines>
+      <plain>
+        <li>{OTHER_nameDef} stopped teaching me {SKILL}. Maybe I wasn't trying hard enough.</li>
+      </plain>
+      <warm><li>The {SKILL} lessons with {OTHER_nameDef} are over. I learned a little. I'll keep at it.</li></warm>
+      <blunt><li>{OTHER_nameDef} quit on me. Fine. I'll learn {SKILL} myself.</li></blunt>
+      <cheerful><li>No more lessons from {OTHER_nameDef}! I'll teach myself! How hard can {SKILL} be!</li></cheerful>
+      <gloomy><li>{OTHER_nameDef} gave up on me. Can't say I blame {OTHER_objective}.</li></gloomy>
+      <cold><li>{OTHER_nameDef} ended the lessons. I'll find another way.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Journal_TieGraduated_Mentor</defName>
+    <lines>
+      <plain>
+        <li>{OTHER_nameDef} doesn't need my {SKILL} lessons anymore. I got corrected today, and {OTHER_nameDef} was right.</li>
+        <li>Watched {OTHER_nameDef} work today without saying a word. Nothing to say. The student has it.</li>
+      </plain>
+      <warm><li>My student is ready. {OTHER_nameDef} knows {SKILL} now, really knows it. I'm so proud I could burst.</li></warm>
+      <blunt><li>{OTHER_nameDef} graduated. Good. Now {OTHER_pronoun} can carry {OTHER_possessive} own weight.</li></blunt>
+      <cheerful><li>{OTHER_nameDef} GRADUATED! My student! I'm the proudest teacher in the whole rim!</li></cheerful>
+      <gloomy><li>{OTHER_nameDef} has learned everything I can teach. When I'm gone, the {SKILL} will still be here. That helps.</li></gloomy>
+      <cold><li>{OTHER_nameDef} is now competent in {SKILL}. Redundancy achieved. Satisfactory.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Journal_TieGraduated_Student</defName>
+    <lines>
+      <plain>
+        <li>{OTHER_nameDef} told me today there's nothing left to teach me about {SKILL}. I don't believe {OTHER_objective}, but I'll take it.</li>
+        <li>No more lessons. {OTHER_nameDef} just nodded at my work and walked off. Best compliment I've ever had.</li>
+      </plain>
+      <warm><li>Everything I know about {SKILL}, {OTHER_nameDef} gave me. I'll pass it on one day.</li></warm>
+      <blunt><li>Finished learning {SKILL} from {OTHER_nameDef}. Took long enough.</li></blunt>
+      <cheerful><li>I GRADUATED! {OTHER_nameDef} says I'm ready! I'm going to {SKILL} everything!</li></cheerful>
+      <gloomy><li>{OTHER_nameDef} says I'm ready. Now when it goes wrong, it's all on me.</li></gloomy>
+      <cold><li>Training under {OTHER_nameDef} complete. I can now work without supervision.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Journal_TieLost</defName>
+    <lines>
+      <plain>
+        <li>{OTHER_nameDef} is gone. I keep turning around to tell {OTHER_objective} things.</li>
+        <li>We buried {OTHER_nameDef} today. I said a few words. Not the right ones. There aren't any.</li>
+        <li>{OTHER_nameDef}'s seat at the table is empty. Nobody sits there. Nobody will.</li>
+      </plain>
+      <warm><li>I lost {OTHER_nameDef}. I'm grateful for every day we had. I wish there'd been more.</li></warm>
+      <blunt><li>{OTHER_nameDef} is dead. That's all I can write.</li></blunt>
+      <cheerful><li>I'm trying to remember {OTHER_nameDef} laughing instead of the end. It's hard today.</li></cheerful>
+      <gloomy><li>{OTHER_nameDef} is gone. Everyone I let in ends up gone.</li></gloomy>
+      <cold><li>{OTHER_nameDef} died. I will make sure it wasn't for nothing.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Journal_RivalLost</defName>
+    <lines>
+      <plain>
+        <li>{OTHER_nameDef} is dead. We fought about everything. I thought I'd feel something else. I don't know what I feel.</li>
+        <li>No one to argue with at dinner now. {OTHER_nameDef} would have had something to say about that.</li>
+      </plain>
+      <warm><li>{OTHER_nameDef} and I never got along. I wish we'd had the time to fix that.</li></warm>
+      <blunt><li>{OTHER_nameDef} is gone. I won't pretend we were friends. I won't pretend I'm glad, either.</li></blunt>
+      <cheerful><li>I never thought I'd miss {OTHER_nameDef} nagging me. I do.</li></cheerful>
+      <gloomy><li>{OTHER_nameDef} is dead. All that fighting, for what.</li></gloomy>
+      <cold><li>{OTHER_nameDef} has died. The rivalry is settled in the worst way.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+</Defs>

@@ -142,6 +142,10 @@ namespace ColonyCouncil
                     foreach (var t in objectors)
                         if (traits.HasTrait(t)) score += 3f;
                 if (traits != null && traits.HasTrait(TraitDefOf.Kind) && (objectors == null || !objectors.Contains(TraitDefOf.Kind))) score -= 2f;
+                // Rivals speak up against each other's wishes; friends hold their tongues.
+                float warmth = social.Warmth(p, w.pawn);
+                if (warmth <= -25f) score += 2.5f;
+                else if (warmth >= 40f) score -= 1.5f;
                 if (w.def.objectByOpinionOfOther != 0 && w.other != null && w.other != p)
                 {
                     int toOther = p.relations.OpinionOf(w.other);
@@ -424,6 +428,7 @@ namespace ColonyCouncil
                         {
                             standings.Change(p, -4f * Gentleness(p), "CC_Log_PassedOver".Translate(who.LabelShort));
                             passedOver++;
+                            social.Bump(p, who, TieKind.Rivals, 4f, "CC_TieNote_PassedOver".Translate(w.Label));
                             string grumble = Flavor.FromPool("Council_Pool_PassedOver", p, own);
                             if (grumble != null)
                                 Speak(p, grumble.Formatted(p.Named("PAWN"), who.Named("OTHER"), w.Label.Named("WISH"), own.Label.Named("MINE")).Resolve(), SpeechSour);
@@ -605,6 +610,8 @@ namespace ColonyCouncil
             Safe("epithets", () => epithets.Daily(this));
             Safe("journals", journals.Daily);
             Safe("offices", () => offices.Daily(this));
+            Safe("social web", () => social.Daily(this));
+            Safe("social events", () => SocialEvents.Daily(this));
             if (Settings.offices && offices.Speaker != null)
                 Safe("speaker", () =>
                 {

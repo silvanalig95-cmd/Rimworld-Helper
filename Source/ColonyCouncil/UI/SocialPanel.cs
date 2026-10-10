@@ -1,0 +1,171 @@
+using System.Collections.Generic;
+using System.Linq;
+using RimWorld;
+using UnityEngine;
+using Verse;
+
+namespace ColonyCouncil
+{
+    /// <summary>The Social tab: circles, then every bond by kind with its strength and history.</summary>
+    public static class SocialPanel
+    {
+        private static Vector2 scroll;
+        private static float height = 600f;
+        private static Pawn focus;
+
+        private const float RowH = 26f;
+
+        private static readonly Color Faint = new Color(0.7f, 0.7f, 0.7f);
+        private static readonly Color CliqueColor = new Color(1f, 0.85f, 0.5f);
+
+        private static readonly Dictionary<TieKind, Texture2D> Bars = new Dictionary<TieKind, Texture2D>();
+
+        private static Texture2D Bar(TieKind k)
+        {
+            if (Bars.TryGetValue(k, out var tex)) return tex;
+            Color c;
+            switch (k)
+            {
+                case TieKind.Friends: c = new Color(0.35f, 0.65f, 0.4f); break;
+                case TieKind.Rivals: c = new Color(0.7f, 0.33f, 0.28f); break;
+                case TieKind.Comrades: c = new Color(0.4f, 0.55f, 0.75f); break;
+                default: c = new Color(0.8f, 0.68f, 0.3f); break;
+            }
+            tex = SolidColorMaterials.NewSolidColorTexture(c);
+            Bars[k] = tex;
+            return tex;
+        }
+
+        private static bool Shown(Pawn p) => p != null && !p.Dead && p.IsColonist;
+
+        public static void Draw(Rect rect, CouncilGameComponent comp)
+        {
+            Text.Font = GameFont.Medium;
+            Widgets.Label(new Rect(rect.x, rect.y, rect.width, 32f), "CC_Tab_Social".Translate());
+            Text.Font = GameFont.Small;
+            var colonists = PawnsFinder.AllMaps_FreeColonists.Where(p => !p.IsQuestLodger() && p.RaceProps.Humanlike).OrderBy(p => p.LabelShort).ToList();
+            if (focus != null && !colonists.Contains(focus)) focus = null;
+            var filterRect = new Rect(rect.xMax - 260f, rect.y, 260f, 28f);
+            if (Widgets.ButtonText(filterRect, "CC_Social_Filter".Translate() + ": " + (focus?.LabelShort ?? "CC_Social_Everyone".Translate().ToString())))
+            {
+                var options = new List<FloatMenuOption> { new FloatMenuOption("CC_Social_Everyone".Translate(), () => focus = null) };
+                options.AddRange(colonists.Select(p => new FloatMenuOption(p.LabelShort, () => focus = p)));
+                Find.WindowStack.Add(new FloatMenu(options));
+            }
+            if (Prefs.DevMode && Find.CurrentMap != null && Widgets.ButtonText(new Rect(filterRect.x - 190f, rect.y, 180f, 28f), "Dev: social event"))
+            {
+                var pawns = Find.CurrentMap.mapPawns.FreeColonistsSpawned.Where(p => !p.IsQuestLodger() && !p.DevelopmentalStage.Baby()).ToList();
+                if (!SocialEvents.TryOne(comp, Find.CurrentMap, pawns)) Messages.Message("No social event fits right now.", MessageTypeDefOf.RejectInput, false);
+            }
+            float y = rect.y + 34f;
+            GUI.color = Faint;
+            float introH = Text.CalcHeight("CC_Social_Intro".Translate(), rect.width);
+            Widgets.Label(new Rect(rect.x, y, rect.width, introH), "CC_Social_Intro".Translate());
+            GUI.color = Color.white;
+            y += introH + 8f;
+
+            if (!ColonyCouncilMod.Settings.socialWeb)
+            {
+                Widgets.Label(new Rect(rect.x, y, rect.width, 60f), "CC_Settings_SocialWeb".Translate() + ": " + "Off".Translate());
+                return;
+            }
+            var web = comp.social;
+            if (web.cliques.Count == 0 && web.ties.Count > 0) web.RebuildCliques();
+            var ties = web.ties.Where(t => Shown(t.a) && Shown(t.b) && t.strength >= 1f && (focus == null || t.Involves(focus))).ToList();
+
+            var outRect = new Rect(rect.x, y, rect.width, rect.yMax - y);
+            var view = new Rect(0f, 0f, outRect.width - 16f, height);
+            Widgets.BeginScrollView(outRect, ref scroll, view);
+            float cy = 0f;
+            if (ties.Count == 0)
+            {
+                GUI.color = Faint;
+                Widgets.Label(new Rect(0f, cy, view.width, 30f), "CC_Social_None".Translate());
+                GUI.color = Color.white;
+                cy += 30f;
+            }
+
+            var cliques = web.cliques.Where(c => focus == null || c.members.Contains(focus)).ToList();
+            if (cliques.Count > 0)
+            {
+                cy += Header(view.width, cy, "CC_Social_Cliques".Translate());
+                foreach (var c in cliques)
+                {
+                    string members = string.Join(", ", c.members.Where(Shown).Select(p => p.LabelShort));
+                    float h = Mathf.Max(RowH, Text.CalcHeight(members, view.width - 230f));
+                    var r = new Rect(0f, cy, view.width, h);
+                    Widgets.DrawHighlightIfMouseover(r);
+                    GUI.color = CliqueColor;
+                    Widgets.Label(new Rect(6f, cy + 3f, 220f, RowH), c.name);
+                    GUI.color = Color.white;
+                    Widgets.Label(new Rect(230f, cy + 3f, view.width - 230f, h), members);
+                    TooltipHandler.TipRegion(r, "CC_Social_CliqueTip".Translate());
+                    cy += h + 2f;
+                }
+                cy += 10f;
+            }
+
+            foreach (var kind in new[] { TieKind.Friends, TieKind.Rivals, TieKind.Comrades, TieKind.Mentor })
+            {
+                var list = ties.Where(t => t.kind == kind).OrderByDescending(t => t.strength).ToList();
+                if (list.Count == 0) continue;
+                cy += Header(view.width, cy, ("CC_TieKind_" + kind).Translate() + " (" + list.Count + ")");
+                foreach (var t in list)
+                {
+                    DrawTie(new Rect(0f, cy, view.width, RowH), t);
+                    cy += RowH + 2f;
+                }
+                cy += 10f;
+            }
+            height = Mathf.Max(cy, 100f);
+            Widgets.EndScrollView();
+        }
+
+        private static float Header(float width, float y, string text)
+        {
+            GUI.color = Faint;
+            Widgets.Label(new Rect(0f, y, width, 24f), text);
+            GUI.color = Color.white;
+            Widgets.DrawLineHorizontal(0f, y + 22f, width);
+            return 26f;
+        }
+
+        private static void DrawTie(Rect r, SocialTie t)
+        {
+            Widgets.DrawHighlightIfMouseover(r);
+            string names = t.kind == TieKind.Mentor && t.skill != null
+                ? t.a.LabelShort + " → " + t.b.LabelShort + " (" + t.skill.label + ")"
+                : t.a.LabelShort + " & " + t.b.LabelShort;
+            Text.Anchor = TextAnchor.MiddleLeft;
+            Widgets.Label(new Rect(r.x + 6f, r.y, 300f, r.height), names.Truncate(296f));
+            var barRect = new Rect(r.x + 310f, r.y + 7f, 160f, r.height - 14f);
+            Widgets.FillableBar(barRect, Mathf.Clamp01(t.strength / 100f), Bar(t.kind), BaseContent.ClearTex, false);
+            Widgets.DrawBox(barRect);
+            string stage = (t.strength >= 70f ? "CC_Social_Deep" : t.strength >= 35f ? "CC_Social_Solid" : "CC_Social_Weak").Translate();
+            GUI.color = Faint;
+            Widgets.Label(new Rect(r.x + 478f, r.y, 70f, r.height), stage);
+            string last = t.history.Count > 0 ? t.history[t.history.Count - 1] : "";
+            float noteX = r.x + 552f;
+            if (r.width > noteX + 40f) Widgets.Label(new Rect(noteX, r.y, r.width - noteX, r.height), last.Truncate(r.width - noteX - 4f));
+            GUI.color = Color.white;
+            Text.Anchor = TextAnchor.UpperLeft;
+            TooltipHandler.TipRegion(r, () => Tip(t), t.GetHashCode());
+            if (Widgets.ButtonInvisible(r) && t.a.Spawned) CameraJumper.TryJumpAndSelect(t.a);
+        }
+
+        private static string Tip(SocialTie t)
+        {
+            var lines = new List<string>
+            {
+                t.a.LabelShort + " & " + t.b.LabelShort + ": " + t.Label,
+                "CC_Social_Strength".Translate(t.strength.ToString("0")),
+                "CC_Social_Since".Translate("CC_DayN".Translate(t.formedTick / GenDate.TicksPerDay + 1))
+            };
+            if (t.kind == TieKind.Mentor && t.skill != null)
+                lines.Add("CC_Social_Lessons".Translate(t.skill.label, t.b.LabelShort, t.b.skills?.GetSkill(t.skill)?.Level ?? 0));
+            if (t.history.Count > 0) lines.Add("\n" + string.Join("\n", t.history));
+            lines.Add("\n" + "CC_Social_TieTip_Trust".Translate());
+            return string.Join("\n", lines);
+        }
+    }
+}

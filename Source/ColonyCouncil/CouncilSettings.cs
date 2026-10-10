@@ -50,6 +50,8 @@ namespace ColonyCouncil
         public bool epithets = true;
         public bool journals = true;
         public bool offices = true;
+        public bool socialWeb = true;
+        public bool socialEvents = true;
         public float daysBetweenDilemmas = 8f;
         public bool eventWishes = true;
         public bool reminders = true;
@@ -106,6 +108,8 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref epithets, "epithets", true);
             Scribe_Values.Look(ref journals, "journals", true);
             Scribe_Values.Look(ref offices, "offices", true);
+            Scribe_Values.Look(ref socialWeb, "socialWeb", true);
+            Scribe_Values.Look(ref socialEvents, "socialEvents", true);
             Scribe_Values.Look(ref daysBetweenDilemmas, "daysBetweenDilemmas", 8f);
             Scribe_Values.Look(ref eventWishes, "eventWishes", true);
             Scribe_Values.Look(ref reminders, "reminders", true);
@@ -211,6 +215,8 @@ namespace ColonyCouncil
             l.CheckboxLabeled("CC_Settings_Epithets".Translate(), ref epithets, "CC_Settings_Epithets_Tip".Translate());
             l.CheckboxLabeled("CC_Settings_Journals".Translate(), ref journals, "CC_Settings_Journals_Tip".Translate());
             l.CheckboxLabeled("CC_Settings_Offices".Translate(), ref offices, "CC_Settings_Offices_Tip".Translate());
+            l.CheckboxLabeled("CC_Settings_SocialWeb".Translate(), ref socialWeb, "CC_Settings_SocialWeb_Tip".Translate());
+            if (socialWeb) l.CheckboxLabeled("CC_Settings_SocialEvents".Translate(), ref socialEvents, "CC_Settings_SocialEvents_Tip".Translate());
             l.CheckboxLabeled("CC_Settings_WishLetters".Translate(), ref wishLetters, "CC_Settings_WishLetters_Tip".Translate());
             l.CheckboxLabeled("CC_Settings_GrantedLetters".Translate(), ref grantedLetters, "CC_Settings_GrantedLetters_Tip".Translate());
             l.CheckboxLabeled("CC_Settings_SpeechText".Translate(), ref speechText, "CC_Settings_SpeechText_Tip".Translate());
@@ -297,6 +303,8 @@ namespace ColonyCouncil
             epithets = d.epithets;
             journals = d.journals;
             offices = d.offices;
+            socialWeb = d.socialWeb;
+            socialEvents = d.socialEvents;
             daysBetweenDilemmas = d.daysBetweenDilemmas;
             eventWishes = d.eventWishes;
             reminders = d.reminders;

@@ -25,6 +25,7 @@ namespace ColonyCouncil
         public EpithetTracker epithets = new EpithetTracker();
         public JournalTracker journals = new JournalTracker();
         public OfficeTracker offices = new OfficeTracker();
+        public SocialWeb social = new SocialWeb();
         public int nextWishId = 1;
 
         private Dictionary<string, int> cooldowns = new Dictionary<string, int>();
@@ -57,6 +58,7 @@ namespace ColonyCouncil
             Scribe_Deep.Look(ref epithets, "epithets");
             Scribe_Deep.Look(ref journals, "journals");
             Scribe_Deep.Look(ref offices, "offices");
+            Scribe_Deep.Look(ref social, "social");
             Scribe_Values.Look(ref nextWishId, "nextWishId", 1);
             Scribe_Collections.Look(ref cooldowns, "cooldowns", LookMode.Value, LookMode.Value, ref tmpKeys, ref tmpValues);
             if (Scribe.mode == LoadSaveMode.PostLoadInit)
@@ -73,6 +75,7 @@ namespace ColonyCouncil
                 if (epithets == null) epithets = new EpithetTracker();
                 if (journals == null) journals = new JournalTracker();
                 if (offices == null) offices = new OfficeTracker();
+                if (social == null) social = new SocialWeb();
                 wishes.RemoveAll(w => w == null || w.def == null || w.pawn == null);
             }
         }
@@ -256,7 +259,9 @@ namespace ColonyCouncil
             if (existing != null)
             {
                 if (!Settings.petitions || !def.allowPetition || existing.Involves(requester) || beneficiary != requester) return;
-                options.Add(new Option { def = def, requester = requester, petitionTarget = existing, weight = c.weight * factor * 0.6f });
+                // Friends back each other's petitions; rivals don't.
+                float bond = UnityEngine.Mathf.Clamp(1f + social.Warmth(requester, existing.pawn) / 60f, 0.2f, 2.5f);
+                options.Add(new Option { def = def, requester = requester, petitionTarget = existing, weight = c.weight * factor * 0.6f * bond });
                 return;
             }
             // The spoiled reach for luxuries.
@@ -482,6 +487,7 @@ namespace ColonyCouncil
         {
             if (w.Involves(p)) return;
             w.coSigners.Add(p);
+            social.Bump(p, w.pawn, TieKind.Friends, 4f, "CC_TieNote_Petition".Translate(w.Label));
             w.expiresTick += GenDate.TicksPerDay * 2;
             SetCooldown(p, w.def);
             Tone tone = ToneUtility.ToneFor(p);

@@ -160,7 +160,10 @@ namespace ColonyCouncil
                 {
                     var t = kv.Key.story?.traits;
                     if (kv.Value > 0 && t != null && (t.HasTrait(TraitDefOf.Greedy) || t.HasTrait(TraitDefOf.Jealous) || t.HasTrait(TraitDefOf.Abrasive)))
+                    {
                         CouncilGameComponent.GiveThought(kv.Key, CouncilDefOf.Council_LostElection, winner);
+                        comp.social.Bump(kv.Key, winner, TieKind.Rivals, 10f, "CC_TieNote_Election".Translate(office.label));
+                    }
                 }
                 comp.AddChronicle(new ChronicleEntry(ChronicleKind.Note, "CC_Chronicle_Elected".Translate(winner.LabelShort, office.label).Resolve(), winner));
             }
@@ -173,6 +176,8 @@ namespace ColonyCouncil
         {
             float s = office.Competence(candidate);
             if (voter.relations != null && voter != candidate) s += voter.relations.OpinionOf(candidate) / 12f;
+            // Friends, comrades and cliques vote together; rivals vote against.
+            if (voter != candidate) s += (CouncilGameComponent.Instance?.social.Warmth(voter, candidate) ?? 0f) / 12f;
             if (voter == candidate)
             {
                 var t = voter.story?.traits;
@@ -195,6 +200,7 @@ namespace ColonyCouncil
             {
                 CouncilGameComponent.GiveThought(current, CouncilDefOf.Council_LostOffice, p);
                 comp.standings.Change(current, -8f, "CC_Log_RemovedFromOffice".Translate(office.label));
+                comp.social.Bump(current, p, TieKind.Rivals, 15f, "CC_TieNote_Seat".Translate(office.label));
                 comp.journals.Write(current, "Council_Journal_LostOffice", null, office.label.Named("OFFICE"));
                 foreach (var voter in Eligible().Where(v => v != current && v != p && v.relations != null && v.relations.OpinionOf(current) > v.relations.OpinionOf(p)))
                     comp.standings.Change(voter, -3f, "CC_Log_VoteOverruled".Translate(office.label));

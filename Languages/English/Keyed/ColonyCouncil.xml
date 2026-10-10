@@ -998,4 +998,63 @@ Granting one of {PAWN_possessive} wishes, or keeping a promise, can win {PAWN_ob
   <CC_Office_Holds>{0} holds the office of {1}.</CC_Office_Holds>
   <CC_Annals_Offices>On the council: {0}.</CC_Annals_Offices>
 
+  <!-- Social web -->
+  <CC_Settings_SocialWeb>Social web: friendships, rivalries, comrades, mentors</CC_Settings_SocialWeb>
+  <CC_Settings_SocialWeb_Tip>Colonists form lasting bonds out of how they feel about each other and what they live through: friends, rivals, comrades who fought side by side, mentors who teach a skill. Bonds grow, sour and end, and they change how people vote, object, petition and get elected.</CC_Settings_SocialWeb_Tip>
+  <CC_Settings_SocialEvents>Social events between colonists</CC_Settings_SocialEvents>
+  <CC_Settings_SocialEvents_Tip>Small things happen between people every day or so (a late-night talk, a squabble over chores, a prank, war stories), shaped by who they are to each other. They move bonds and moods a little.</CC_Settings_SocialEvents_Tip>
+
+  <CC_Tie_Friends>friends</CC_Tie_Friends>
+  <CC_Tie_Rivals>rivals</CC_Tie_Rivals>
+  <CC_Tie_Comrades>comrades</CC_Tie_Comrades>
+  <CC_Tie_Mentor>mentor and student</CC_Tie_Mentor>
+  <CC_TieKind_Friends>Friendships</CC_TieKind_Friends>
+  <CC_TieKind_Rivals>Rivalries</CC_TieKind_Rivals>
+  <CC_TieKind_Comrades>Comrades in arms</CC_TieKind_Comrades>
+  <CC_TieKind_Mentor>Mentorships</CC_TieKind_Mentor>
+  <CC_Tie_Formed_Friends>{A_nameDef} and {B_nameDef} have become real friends.</CC_Tie_Formed_Friends>
+  <CC_Tie_Formed_Rivals>{A_nameDef} and {B_nameDef} are rivals now. Neither will give the other an inch.</CC_Tie_Formed_Rivals>
+  <CC_Tie_Formed_Comrades>{A_nameDef} and {B_nameDef} fought side by side. They're comrades now.</CC_Tie_Formed_Comrades>
+  <CC_Tie_Formed_Mentor>{A_nameDef} has taken {B_nameDef} under {A_possessive} wing to teach {B_objective} {SKILL}.</CC_Tie_Formed_Mentor>
+  <CC_Tie_Ended_Friends>{A_nameDef} and {B_nameDef} have drifted apart. They aren't really friends any more.</CC_Tie_Ended_Friends>
+  <CC_Tie_Ended_Rivals>{A_nameDef} and {B_nameDef} have let their rivalry go.</CC_Tie_Ended_Rivals>
+  <CC_Tie_Ended_Comrades>The battles {A_nameDef} and {B_nameDef} shared are fading into the past.</CC_Tie_Ended_Comrades>
+  <CC_Tie_Ended_Mentor>{A_nameDef} has stopped teaching {B_nameDef} {SKILL}.</CC_Tie_Ended_Mentor>
+  <CC_Tie_Graduated>{B_nameDef} has learned all {A_nameDef} could teach about {SKILL}. The student is ready to stand alone.</CC_Tie_Graduated>
+
+  <CC_TieNote_Grew>grew close over time</CC_TieNote_Grew>
+  <CC_TieNote_Soured>couldn't stand each other any longer</CC_TieNote_Soured>
+  <CC_TieNote_Battle>fought side by side</CC_TieNote_Battle>
+  <CC_TieNote_Mentor>started lessons in {0}</CC_TieNote_Mentor>
+  <CC_TieNote_PassedOver>one's wish was put ahead of the other's: {0}</CC_TieNote_PassedOver>
+  <CC_TieNote_Gripe>grumbled about a decree together</CC_TieNote_Gripe>
+  <CC_TieNote_Argued>argued over a decree</CC_TieNote_Argued>
+  <CC_TieNote_Petition>backed the same petition: {0}</CC_TieNote_Petition>
+  <CC_TieNote_Election>ran against each other to be {0}</CC_TieNote_Election>
+  <CC_TieNote_Seat>one was given the other's seat as {0}</CC_TieNote_Seat>
+  <CC_TieNote_MadeUp>made up after a quarrel</CC_TieNote_MadeUp>
+  <CC_TieNote_Bonded>went through something together</CC_TieNote_Bonded>
+  <CC_TieNote_Grudge>the council sided against one of them</CC_TieNote_Grudge>
+  <CC_TieNote_Fight>came to blows</CC_TieNote_Fight>
+  <CC_TieNote_Name>one took the other's name, "{0}"</CC_TieNote_Name>
+
+  <CC_Clique_Name>{PAWN_nameDef}'s circle</CC_Clique_Name>
+  <CC_Annals_TieLine>{0} and {1} ({2})</CC_Annals_TieLine>
+  <CC_Annals_Ties>Bonds made this year: {0}.</CC_Annals_Ties>
+
+  <CC_Tab_Social>Social</CC_Tab_Social>
+  <CC_Social_Intro>Who is close to whom, who can't stand whom, and who is teaching whom. Bonds grow out of how people feel about each other and what they go through together. They shape votes, objections, petitions and elections.</CC_Social_Intro>
+  <CC_Social_None>No lasting bonds yet. Give them time, and things to live through together.</CC_Social_None>
+  <CC_Social_Cliques>Circles</CC_Social_Cliques>
+  <CC_Social_CliqueTip>A circle: people held together by strong friendships and shared battles. They back each other's wishes and petitions and vote together.</CC_Social_CliqueTip>
+  <CC_Social_Since>Since {0}.</CC_Social_Since>
+  <CC_Social_Strength>Strength {0} / 100</CC_Social_Strength>
+  <CC_Social_Lessons>Teaching {0}. {1} is at level {2} of 11.</CC_Social_Lessons>
+  <CC_Social_Filter>Show bonds of</CC_Social_Filter>
+  <CC_Social_Everyone>everyone</CC_Social_Everyone>
+  <CC_Social_Weak>new</CC_Social_Weak>
+  <CC_Social_Solid>solid</CC_Social_Solid>
+  <CC_Social_Deep>deep</CC_Social_Deep>
+  <CC_Social_TieTip_Trust>Bonds sway the council: friends back each other's wishes and petitions, rivals object to each other's, and both count in elections.</CC_Social_TieTip_Trust>
+
 </LanguageData>

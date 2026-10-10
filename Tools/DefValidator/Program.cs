@@ -243,7 +243,13 @@ var srcFiles = Directory.GetFiles(Path.Combine(modRoot, "Source"), "*.cs", Searc
 var src = string.Join("\n", srcFiles.Select(File.ReadAllText));
 var allModDefNames = modDefs.Values.SelectMany(x => x).ToHashSet();
 foreach (Match m in Regex.Matches(src, "\"(Council_[A-Za-z0-9_]+)\""))
-    if (!allModDefNames.Contains(m.Groups[1].Value)) errors.Add($"C#: defName \"{m.Groups[1].Value}\" is used but not defined in XML");
+    if (!m.Groups[1].Value.EndsWith("_") && !allModDefNames.Contains(m.Groups[1].Value)) errors.Add($"C#: defName \"{m.Groups[1].Value}\" is used but not defined in XML");
+var tieKinds = new[] { "Friends", "Rivals", "Comrades", "Mentor" };
+var dynamicDefs = tieKinds.Select(k => "Council_Tie_" + k)
+    .Concat(tieKinds.Append("Student").SelectMany(k => new[] { "Council_Journal_TieFormed_" + k, "Council_Journal_TieEnded_" + k }))
+    .Concat(new[] { "Council_Journal_TieGraduated_Mentor", "Council_Journal_TieGraduated_Student" });
+foreach (var name in dynamicDefs)
+    if (!allModDefNames.Contains(name)) errors.Add($"C#: dynamic defName {name} is not defined in XML");
 var defOfType = mod.GetType("ColonyCouncil.CouncilDefOf");
 foreach (var f in defOfType!.GetFields(BindingFlags.Public | BindingFlags.Static))
     if (!ModHas(f.FieldType, f.Name)) errors.Add($"CouncilDefOf.{f.Name} ({f.FieldType.Name}) has no matching def");
@@ -264,6 +270,10 @@ var tones = new[] { "Plain", "Warm", "Blunt", "Cheerful", "Gloomy", "Cold" };
 var dynamic = new Dictionary<string, string[]>
 {
     ["CC_Tone_"] = tones,
+    ["CC_Tie_"] = new[] { "Friends", "Rivals", "Comrades", "Mentor" },
+    ["CC_Tie_Formed_"] = new[] { "Friends", "Rivals", "Comrades", "Mentor" },
+    ["CC_Tie_Ended_"] = new[] { "Friends", "Rivals", "Comrades", "Mentor" },
+    ["CC_TieKind_"] = new[] { "Friends", "Rivals", "Comrades", "Mentor" },
     ["CC_CoSignLine_"] = tones,
     ["CC_Heckle_"] = tones,
     ["CC_Touch_"] = tones,
@@ -307,7 +317,7 @@ foreach (var (k, text) in keyed)
 }
 
 // Placeholders in def flavour text
-var wishPh = new HashSet<string> { "SUBJECT", "THING", "THINGBARE", "TARGET", "WISH", "MINE", "AMBITION", "VENUE", "COUNT", "FACTION", "TITLE", "DECREE", "YEARS", "DILEMMA", "TRADITION", "OFFICE" };
+var wishPh = new HashSet<string> { "SUBJECT", "THING", "THINGBARE", "TARGET", "WISH", "MINE", "AMBITION", "VENUE", "COUNT", "FACTION", "TITLE", "DECREE", "YEARS", "DILEMMA", "TRADITION", "OFFICE", "SKILL" };
 var pawnPrefixes = new HashSet<string> { "PAWN", "FOR", "OTHER", "ENVIED", "ABOUT", "A", "B", "PET" };
 var pawnSuffixes = new HashSet<string> { "nameDef", "nameFull", "labelShort", "pronoun", "possessive", "objective", "label", "definite", "indefinite", "gender" };
 foreach (var (file, doc) in docs)

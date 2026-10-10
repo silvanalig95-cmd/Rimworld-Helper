@@ -17,6 +17,7 @@ namespace ColonyCouncil
             Ambition,
             Build,
             Decrees,
+            Social,
             Almanac,
             Chronicle
         }
@@ -53,6 +54,7 @@ namespace ColonyCouncil
                 new TabRecord(CouncilGameComponent.Instance != null && CouncilGameComponent.Instance.decrees.requests.Count > 0
                     ? "CC_Tab_DecreesAsked".Translate(CouncilGameComponent.Instance.decrees.requests.Count).ToString()
                     : "CC_Tab_Decrees".Translate().ToString(), () => SetTab(Tab.Decrees), tab == Tab.Decrees),
+                new TabRecord("CC_Tab_Social".Translate(), () => SetTab(Tab.Social), tab == Tab.Social),
                 new TabRecord("CC_Tab_Almanac".Translate(), () => SetTab(Tab.Almanac), tab == Tab.Almanac),
                 new TabRecord("CC_Tab_Chronicle".Translate(), () => SetTab(Tab.Chronicle), tab == Tab.Chronicle)
             };
@@ -78,6 +80,7 @@ namespace ColonyCouncil
                 case Tab.Ambition: DrawAmbition(content, comp, map); break;
                 case Tab.Build: DrawBuild(content, map); break;
                 case Tab.Decrees: DecreePanel.Draw(content, comp); break;
+                case Tab.Social: SocialPanel.Draw(content, comp); break;
                 case Tab.Almanac: AlmanacPanel.Draw(content); break;
                 case Tab.Chronicle: DrawChronicle(content, comp); break;
             }
