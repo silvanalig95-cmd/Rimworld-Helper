@@ -37,6 +37,42 @@ namespace ColonyCouncil
         }
     }
 
+    /// <summary>
+    /// Talk about the council itself. Bitter colonists run it down and their doubt is catching (a little trust
+    /// lost by whoever listens, when downsides are on); devoted ones talk it up. Which side a def is for comes
+    /// from its defName ending in "Bitter" or "Devoted".
+    /// </summary>
+    public class InteractionWorker_CouncilGossip : InteractionWorker
+    {
+        private bool Bitter => interaction.defName.EndsWith("Bitter");
+
+        public override float RandomSelectionWeight(Pawn initiator, Pawn recipient)
+        {
+            if (!ColonyCouncilMod.Settings.enableWishes) return 0f;
+            var comp = CouncilGameComponent.Instance;
+            if (comp == null || recipient == null || !recipient.RaceProps.Humanlike || !recipient.IsColonist) return 0f;
+            var level = comp.standings.LevelOf(initiator);
+            if (Bitter) return level == TrustLevel.Bitter ? 0.05f : level == TrustLevel.Doubtful ? 0.015f : 0f;
+            return level == TrustLevel.Devoted ? 0.03f : level == TrustLevel.Trusting ? 0.008f : 0f;
+        }
+
+        public override void Interacted(Pawn initiator, Pawn recipient, List<RulePackDef> extraSentencePacks, out string letterText, out string letterLabel, out LetterDef letterDef, out LookTargets lookTargets)
+        {
+            base.Interacted(initiator, recipient, extraSentencePacks, out letterText, out letterLabel, out letterDef, out lookTargets);
+            var comp = CouncilGameComponent.Instance;
+            if (comp == null || recipient == null || !recipient.IsColonist) return;
+            if (Bitter)
+            {
+                if (ColonyCouncilMod.Settings.Negatives && comp.standings.LevelOf(recipient) > TrustLevel.Bitter)
+                    comp.standings.Change(recipient, -1f * ColonyCouncilMod.Settings.PenaltyScale, "CC_Log_Gossip".Translate(initiator.LabelShort));
+            }
+            else
+            {
+                comp.standings.Change(recipient, 0.5f, null);
+            }
+        }
+    }
+
     /// <summary>"The council suggests..." in the alerts column when something is urgent.</summary>
     public class Alert_CouncilAdvice : Alert
     {
