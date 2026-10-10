@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- How this mod's own systems work, for players who want the rules. -->
+
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Council_Alm_C_Wishes</defName>
+    <label>wishes and promises</label>
+    <category>Council</category>
+    <order>1</order>
+    <summary>How wishes work, and what granting, promising, refusing and ignoring do.</summary>
+    <tip>A promise kept is worth three wishes granted. A promise broken costs more than all three.</tip>
+    <description>Colonists voice wishes that fit their situation, their traits and what the colony can actually build. Each wish has a deadline. Grant it and they're pleased, motivated and trust the council more; let it lapse and it stings. Promising buys patience but raises the stakes; refusing honestly hurts a little now and is over.</description>
+    <facts>
+      <li>A granted wish always makes the colonist motivated (faster work for a few days), more so if promised.</li>
+      <li>The happier a colonist already is, the more likely a granted wish inspires them instead: creativity, a work or shooting frenzy, recruiting, surgery.</li>
+      <li>Promising adds half the remaining time plus two days, and +4 trust now; breaking it costs far more than an ordinary lapse.</li>
+      <li>Some wishes act on a promise straight away: promising a party calls one, promising a hunt marks the prey.</li>
+      <li>Out of patience, colonists sometimes do it themselves: plan the lamp, take the bed, set their own work priorities. They trust the council less for it.</li>
+      <li>Others react: friends are happy for them, the jealous feel passed over, and some will object out loud.</li>
+    </facts>
+    <advice>
+      <li>Promise only what you'll actually do in time.</li>
+      <li>Refuse what you won't do. A clean no beats a lapse.</li>
+      <li>Watch for wishes that come with objections: granting them pleases one colonist and annoys another.</li>
+    </advice>
+    <keywords><li>wish</li><li>promise</li><li>refuse</li><li>trust</li><li>inspiration</li></keywords>
+    <seeAlso><li>Council_Alm_C_Trust</li><li>Council_Alm_C_Standards</li></seeAlso>
+  </ColonyCouncil.AlmanacArticleDef>
+
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Council_Alm_C_Trust</defName>
+    <label>trust in the council</label>
+    <category>Council</category>
+    <order>2</order>
+    <summary>Bitter to devoted: what trust does to mood, work and loyalty.</summary>
+    <tip>People forgive a poor colony. They don't forgive being ignored.</tip>
+    <description>Every colonist has a level of trust in the council: bitter, doubtful, neutral, trusting or devoted. It rises with granted wishes, kept promises and heeded petitions, falls with lapses, refusals and broken promises, and slowly drifts back towards neutral. It shows in the Wishes tab, with its history in the tooltip.</description>
+    <facts>
+      <li>Trusting and devoted colonists work and learn faster and break less (shown in the health tab as "loyal to the council").</li>
+      <li>Doubtful and bitter colonists work slower and snap sooner ("grudge against the council").</li>
+      <li>Trusting colonists are more patient with their wishes; bitter ones less so.</li>
+      <li>On Demanding stakes, a colonist who stays bitter for days may announce they're leaving, and walk out three days later unless their trust recovers. Children, anyone whose partner stays, and colonies of fewer than four never lose someone this way.</li>
+      <li>Living under a decree they hate wears trust down day by day; one they love builds it.</li>
+    </facts>
+    <advice>
+      <li>When someone announces they're leaving, grant one of their wishes or keep a promise: that's usually enough.</li>
+      <li>Check the trust list before big decisions: it tells you who can take a disappointment and who can't.</li>
+    </advice>
+    <keywords><li>trust</li><li>bitter</li><li>devoted</li><li>quit</li><li>leave</li><li>loyalty</li></keywords>
+    <seeAlso><li>Council_Alm_C_Wishes</li><li>Council_Alm_C_Decrees</li></seeAlso>
+  </ColonyCouncil.AlmanacArticleDef>
+
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Council_Alm_C_Standards</defName>
+    <label>rising standards</label>
+    <category>Council</category>
+    <order>3</order>
+    <summary>Comfort breeds expectations: why a happy colony gets harder to please.</summary>
+    <tip>Feed them fine meals for a season and simple ones start to taste like an insult.</tip>
+    <description>While a colonist is happy, their standards creep up from modest to comfortable, particular and spoiled. High standards shrink the council's rewards and sharpen its disappointments. Hard times bring them back down, and so does the austerity decree.</description>
+    <facts>
+      <li>Standards rise while mood is above about 70%, faster above 85%; ascetics barely rise, the greedy and jealous rise faster.</li>
+      <li>They fall while mood is below 40%, slowly in between, and quickly under austerity.</li>
+      <li>Spoiled colonists get half the mood from the council's rewards and about 40% more from its letdowns.</li>
+      <li>They're less patient, voice wishes more often, reach for luxuries, and ask for more: two impressiveness levels instead of one, fine meals instead of simple ones.</li>
+      <li>Feasts, festivals and bonfires raise everyone's standards a little.</li>
+    </facts>
+    <advice>
+      <li>If the whole colony is particular or spoiled, a week of austerity resets expectations cheaply.</li>
+      <li>Not every celebration has to happen. Saying no now keeps the next yes worth something.</li>
+    </advice>
+    <keywords><li>standards</li><li>spoiled</li><li>expectations</li><li>austerity</li></keywords>
+    <seeAlso><li>Council_Alm_C_Decrees</li><li>Council_Alm_2_14_Expectations</li></seeAlso>
+  </ColonyCouncil.AlmanacArticleDef>
+
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Council_Alm_C_Decrees</defName>
+    <label>decrees</label>
+    <category>Council</category>
+    <order>4</order>
+    <summary>Trade mood for output: long hours, rationing, drills and the rest.</summary>
+    <tip>A happy colony is a colony you can push. Push it before something else does.</tip>
+    <description>The Decrees tab puts policies in force for a few days: up to two at once, each with a cooldown afterwards. Each trades mood (and sometimes trust) for something the colony needs, or, like festival days and days of mourning, the other way round. The tab shows who will love or hate each one before you decide.</description>
+    <facts>
+      <li>Long hours: work 15% faster. Rationing: hunger 25% slower. Drills: everyone who can fight trains shooting and melee every waking hour.</li>
+      <li>Study hours: learning 30% and research 20% faster. Harvest push, building season, clean sweep: faster at one kind of work.</li>
+      <li>Best behavior: better negotiating, recruiting and trade prices. On guard: better aim and melee, more tiredness.</li>
+      <li>Austerity: no new wishes, standards fall fast. Festival days: a big mood lift, work much slower, standards rise.</li>
+      <li>Days of mourning: only while someone grieves; grief fades much faster and nobody breaks as easily.</li>
+      <li>Colonists sometimes petition for a decree when the moment fits. Declaring it within five days wins their trust.</li>
+    </facts>
+    <advice>
+      <li>Pair a hated decree with a short one people love, or follow it with festival days.</li>
+      <li>Ration before winter, not during it. Drill before raids grow, not after.</li>
+    </advice>
+    <keywords><li>decree</li><li>rationing</li><li>long hours</li><li>drills</li><li>festival</li><li>austerity</li><li>petition</li></keywords>
+    <seeAlso><li>Council_Alm_C_Standards</li><li>Council_Alm_C_Trust</li></seeAlso>
+  </ColonyCouncil.AlmanacArticleDef>
+
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Council_Alm_C_Dilemmas</defName>
+    <label>dilemmas</label>
+    <category>Council</category>
+    <order>5</order>
+    <summary>Hard choices where every answer costs someone something.</summary>
+    <tip>There's no right answer. There's only the answer you can live with, and the people who can't.</tip>
+    <description>Every week or so, more often while everyone is content, the council is asked to settle something: a thief, a feud, a stash, a feast, a confession, a duel, the spoils of a raid. A letter lists the answers. Colonists react according to their nature, and some answers are gambles. Answer within the time given, or the council's silence decides.</description>
+    <facts>
+      <li>Some answers take real things from the stores: food, wood, silver. They're greyed out if you can't afford them.</li>
+      <li>Seasonal dilemmas (midsummer, harvest home, the longest night, naming the year) and after-battle ones (the spoils, the enemy dead, a victory feast) come up at their moment.</li>
+      <li>Every dilemma and its answer is written into the chronicle and counted in the year's annals.</li>
+    </facts>
+    <advice>
+      <li>Check the trust list first: a colonist who is already doubtful takes being overruled much harder.</li>
+      <li>When kind colonists and hard ones are both present, the "fair" answer usually upsets fewest.</li>
+    </advice>
+    <keywords><li>dilemma</li><li>choice</li><li>letter</li><li>feud</li><li>thief</li></keywords>
+    <seeAlso><li>Council_Alm_C_Trust</li></seeAlso>
+  </ColonyCouncil.AlmanacArticleDef>
+
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Council_Alm_C_Names</defName>
+    <label>names, anniversaries and annals</label>
+    <category>Council</category>
+    <order>6</order>
+    <summary>How the colony remembers its people and its years.</summary>
+    <tip>Write it down. In a hundred years, the annals are all anyone will know about us.</tip>
+    <description>Whoever has done the most of something earns a name for it (the Healer, Deadeye, the Kindling) until someone overtakes them. Each year since a colonist joined is marked. And when a new year begins, the colony's best reader or talker writes the annals of the year that ended.</description>
+    <facts>
+      <li>Names come from the colonist's records: wounds tended, operations, kills, headshots, things built, rock mined, harvests, meals, animals tamed, prisoners recruited, research, crafting, fires fought, and less flattering ones like messes cleaned, times on fire or mental breaks.</li>
+      <li>A name moves to someone else only when they're clearly ahead (by about 15%).</li>
+      <li>The annals cover who joined, died, left or walked out, raids, wealth, wishes, ambitions, decrees, dilemmas, friendships, feuds, trust and names. Past years can be reread from the Chronicle tab.</li>
+    </facts>
+    <keywords><li>epithet</li><li>name</li><li>title</li><li>annals</li><li>anniversary</li><li>chronicle</li></keywords>
+    <seeAlso><li>Council_Alm_C_Wishes</li></seeAlso>
+  </ColonyCouncil.AlmanacArticleDef>
+
+</Defs>

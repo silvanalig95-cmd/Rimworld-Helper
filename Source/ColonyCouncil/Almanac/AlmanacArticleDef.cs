@@ -7,6 +7,7 @@ namespace ColonyCouncil
     public enum AlmanacCategory
     {
         Basics,
+        Council,
         Food,
         Rooms,
         Mood,
