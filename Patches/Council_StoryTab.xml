@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+  <!-- Adds the "Story" tab to colonists' inspect pane. -->
+  <Operation Class="PatchOperationConditional">
+    <xpath>Defs/ThingDef[defName="Human"]/inspectorTabs</xpath>
+    <match Class="PatchOperationAdd">
+      <xpath>Defs/ThingDef[defName="Human"]/inspectorTabs</xpath>
+      <value>
+        <li>ColonyCouncil.ITab_Pawn_Story</li>
+      </value>
+    </match>
+    <nomatch Class="PatchOperationAdd">
+      <xpath>Defs/ThingDef[defName="Human"]</xpath>
+      <value>
+        <inspectorTabs>
+          <li>ColonyCouncil.ITab_Pawn_Story</li>
+        </inspectorTabs>
+      </value>
+    </nomatch>
+  </Operation>
+
+</Patch>

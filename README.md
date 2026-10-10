@@ -130,6 +130,12 @@ decree can start a rivalry, while backing the same petition or making up after a
 dilemmas only come up between friends, rivals or comrades. When someone dies, the people closest to them (and their
 rivals) write about it. The **Social** tab shows every bond with its strength and history, and every circle.
 
+### Story: a page for every colonist
+Select a colonist and open the **Story** tab in their inspect panel (next to Bio, Social and Gear): their trust,
+office and earned names, their life goal and how close they are, their friends, rivals, comrades, students and the
+people they've lost, their quirks, vendettas and the secrets the colony knows about, their last dreams and the latest
+lines of their journal.
+
 ### Life goals
 A few days after settling in, each colonist sets their heart on something to do before they die: master a craft,
 marry for love, have a child, find three true friends, train a student until they can stand alone, make peace with

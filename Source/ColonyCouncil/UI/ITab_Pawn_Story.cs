@@ -1,0 +1,167 @@
+using System.Collections.Generic;
+using System.Linq;
+using RimWorld;
+using UnityEngine;
+using Verse;
+
+namespace ColonyCouncil
+{
+    /// <summary>
+    /// "Story" in a colonist's inspect pane: everything Rimfolk knows about them on one page. Their life goal,
+    /// bonds and circle, quirks, names, office, trust, vendettas, secrets (only what the colony knows), recent
+    /// dreams and the latest lines of their journal.
+    /// </summary>
+    public class ITab_Pawn_Story : ITab
+    {
+        private Vector2 scroll;
+        private float height = 400f;
+
+        private static readonly Color Faint = new Color(0.7f, 0.7f, 0.7f);
+        private static readonly Color HeaderColor = new Color(0.95f, 0.85f, 0.6f);
+        private static readonly Color Quote = new Color(1f, 0.93f, 0.75f);
+
+        public ITab_Pawn_Story()
+        {
+            size = new Vector2(460f, 520f);
+            labelKey = "CC_Tab_Story";
+        }
+
+        public override bool IsVisible
+        {
+            get
+            {
+                var p = SelPawn;
+                return p != null && p.RaceProps.Humanlike && (p.IsColonist || p.IsPrisonerOfColony || p.IsSlaveOfColony) && CouncilGameComponent.Instance != null;
+            }
+        }
+
+        protected override void FillTab()
+        {
+            var p = SelPawn;
+            var comp = CouncilGameComponent.Instance;
+            if (p == null || comp == null) return;
+            var rect = new Rect(0f, 0f, size.x, size.y).ContractedBy(10f);
+            Text.Font = GameFont.Medium;
+            Widgets.Label(new Rect(rect.x, rect.y, rect.width, 30f), p.LabelShortCap);
+            Text.Font = GameFont.Small;
+            var outRect = new Rect(rect.x, rect.y + 34f, rect.width, rect.height - 34f);
+            var view = new Rect(0f, 0f, outRect.width - 16f, height);
+            Widgets.BeginScrollView(outRect, ref scroll, view);
+            float y = 0f;
+            foreach (var section in Sections(comp, p))
+            {
+                GUI.color = HeaderColor;
+                Widgets.Label(new Rect(0f, y, view.width, 24f), section.header);
+                GUI.color = Color.white;
+                Widgets.DrawLineHorizontal(0f, y + 22f, view.width);
+                y += 26f;
+                foreach (var (text, color) in section.lines)
+                {
+                    float h = Text.CalcHeight(text, view.width - 8f);
+                    GUI.color = color;
+                    Widgets.Label(new Rect(8f, y, view.width - 8f, h), text);
+                    GUI.color = Color.white;
+                    y += h + 2f;
+                }
+                if (section.journal != null && Widgets.ButtonText(new Rect(view.width - 160f, y, 160f, 26f), "CC_Story_ReadJournal".Translate()))
+                    Find.WindowStack.Add(new Dialog_Journal(section.journal));
+                if (section.journal != null) y += 30f;
+                y += 8f;
+            }
+            height = Mathf.Max(y, 100f);
+            Widgets.EndScrollView();
+        }
+
+        private class Section
+        {
+            public string header;
+            public List<(string, Color)> lines = new List<(string, Color)>();
+            public PawnJournal journal;
+        }
+
+        private static IEnumerable<Section> Sections(CouncilGameComponent comp, Pawn p)
+        {
+            var s = ColonyCouncilMod.Settings;
+
+            // Standing: trust, office, names.
+            var standing = new Section { header = "CC_Story_Standing".Translate() };
+            var st = comp.standings.For(p, false);
+            if (st != null) standing.lines.Add(("CC_Story_Trust".Translate(("CC_Trust_" + PawnStanding.LevelFor(st.trust)).Translate()).Resolve(), Color.white));
+            var office = comp.offices.OfficeOf(p);
+            if (office != null) standing.lines.Add(("CC_Office_Holds".Translate(p.LabelShort, office.label).Resolve(), Color.white));
+            string titles = comp.epithets.TitlesOf(p);
+            if (!titles.NullOrEmpty()) standing.lines.Add(("CC_Epithet_Known".Translate(p.LabelShort, titles).Resolve(), Color.white));
+            if (standing.lines.Count > 0) yield return standing;
+
+            // Life goal.
+            if (s.aspirations)
+            {
+                var goal = new Section { header = "CC_Social_Goals".Translate() };
+                var a = comp.aspirations.Active(p);
+                if (a != null)
+                {
+                    string progress;
+                    try { progress = a.def.Worker.ProgressText(a); }
+                    catch { progress = a.Progress.ToStringPercent(); }
+                    goal.lines.Add(("CC_Story_Goal".Translate(a.Goal, progress).Resolve(), Color.white));
+                }
+                foreach (var done in comp.aspirations.Fulfilled(p))
+                    goal.lines.Add(("CC_Story_GoalDone".Translate(done.Goal, "CC_DayN".Translate(done.doneTick / GenDate.TicksPerDay + 1)).Resolve(), new Color(0.6f, 0.9f, 0.6f)));
+                if (goal.lines.Count > 0) yield return goal;
+            }
+
+            // Bonds.
+            if (s.socialWeb)
+            {
+                var bonds = new Section { header = "CC_Story_Bonds".Translate() };
+                string describe = comp.social.Describe(p);
+                if (!describe.NullOrEmpty()) bonds.lines.Add((describe, Color.white));
+                foreach (var l in comp.social.lost.Where(l => l.survivor == p).Take(5))
+                    bonds.lines.Add(("CC_Story_Lost".Translate(l.name, ("CC_Tie_" + l.kind).Translate()).Resolve(), Faint));
+                if (bonds.lines.Count > 0) yield return bonds;
+            }
+
+            // Quirks, vendettas, secrets.
+            var heart = new Section { header = "CC_Story_Heart".Translate() };
+            if (s.quirks)
+                foreach (var q in comp.quirks.Of(p))
+                    heart.lines.Add(("CC_Story_Quirk".Translate(q.Label).Resolve(), Color.white));
+            if (s.vendettas)
+                foreach (var v in comp.vendettas.vendettas.Where(v => v.avenger == p && v.faction != null))
+                    heart.lines.Add(((v.settled ? "CC_Social_VendettaSettled" : v.kidnapped ? "CC_Social_VendettaTaken" : "CC_Social_Vendetta")
+                        .Translate(p.LabelShort, v.faction.Name, v.victim, v.kills, Vendetta.KillsToSettle).Resolve(), v.settled ? Faint : new Color(0.9f, 0.55f, 0.45f)));
+            if (s.secrets)
+            {
+                var secret = comp.secrets.Of(p);
+                if (secret != null && secret.revealed) heart.lines.Add((secret.Truth, new Color(0.9f, 0.6f, 0.5f)));
+                else if (secret != null && secret.knowers.Count > 0)
+                    heart.lines.Add(("CC_Social_SecretKnown".Translate(p.LabelShort, TextUtil.JoinAnd(secret.knowers.Select(k => k.LabelShort).ToList())).Resolve(), Faint));
+                foreach (var other in comp.secrets.secrets.Where(x => x.owner != p && !x.revealed && x.knowers.Contains(p) && x.owner != null))
+                    heart.lines.Add(("CC_Story_Keeps".Translate(other.owner.LabelShort).Resolve(), Faint));
+            }
+            if (heart.lines.Count > 0) yield return heart;
+
+            // Dreams.
+            if (s.dreams)
+            {
+                var dreams = new Section { header = "CC_Social_Dreams".Translate() };
+                foreach (var d in comp.dreams.recent.Where(d => d.pawn == p).Reverse().Take(3))
+                    dreams.lines.Add(("\"" + d.text + "\"" + (d.cameTrue ? "  (" + "CC_Social_DreamCameTrue".Translate() + ")" : ""), Quote));
+                if (dreams.lines.Count > 0) yield return dreams;
+            }
+
+            // Journal.
+            if (s.journals)
+            {
+                var j = comp.journals.For(p);
+                if (j != null && j.entries.Count > 0)
+                {
+                    var journal = new Section { header = "CC_Story_Journal".Translate(), journal = j };
+                    foreach (var e in j.entries.AsEnumerable().Reverse().Take(4))
+                        journal.lines.Add((e.date + ": " + e.text, Quote));
+                    yield return journal;
+                }
+            }
+        }
+    }
+}
