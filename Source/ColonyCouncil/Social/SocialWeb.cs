@@ -94,6 +94,7 @@ namespace ColonyCouncil
         /// <summary>The fight going on now: who has fought in it so far, and who it's against.</summary>
         private List<Pawn> fighters = new List<Pawn>();
         public Faction battleFaction;
+        [Unsaved] public Map battleMap;
         public bool battleActive;
         private int quietHours;
         /// <summary>Existing friendships and feuds are taken in quietly the first time the web runs on a save.</summary>
@@ -207,7 +208,7 @@ namespace ColonyCouncil
             if (!graduated && (t.kind == TieKind.Comrades || !t.a.IsColonist || !t.b.IsColonist)) quiet = true;
             var aspirations = CouncilGameComponent.Instance?.aspirations;
             if (graduated) aspirations?.Notify(t.a, "graduated");
-            else if (t.kind == TieKind.Rivals)
+            else if (t.kind == TieKind.Rivals && t.a.IsColonist && t.b.IsColonist)
             {
                 aspirations?.Notify(t.a, "peace");
                 aspirations?.Notify(t.b, "peace");
@@ -353,21 +354,23 @@ namespace ColonyCouncil
         /// </summary>
         public void Hourly(CouncilGameComponent comp)
         {
-            if (!S.socialWeb)
-            {
-                fighters.Clear();
-                battleActive = false;
-                return;
-            }
+            // Fights are tracked even with the social web off: vendettas and quirks rely on them.
             int now = Find.TickManager.TicksGame;
             bool fighting = false;
+            if (!battleActive) battleFaction = null;
             foreach (var map in Find.Maps.Where(m => m.IsPlayerHome))
             {
                 if (!GenHostility.AnyHostileActiveThreatToPlayer(map, false, false)) continue;
                 fighting = true;
-                var top = map.mapPawns.AllPawnsSpawned.Where(x => !x.Dead && !x.Downed && x.Faction != null && x.Faction.HostileTo(Faction.OfPlayer) && !x.IsPrisoner)
-                    .GroupBy(x => x.Faction).OrderByDescending(g => g.Count()).FirstOrDefault();
-                if (top != null && (battleFaction == null || !battleActive)) battleFaction = top.Key;
+                battleMap = map;
+                // Who it's against: the faction with the most fighters here now (none for animals and empty mech clusters).
+                bool stale = battleFaction == null || !map.mapPawns.AllPawnsSpawned.Any(x => x.Faction == battleFaction && !x.Dead && !x.Downed);
+                if (stale)
+                {
+                    var top = map.mapPawns.AllPawnsSpawned.Where(x => !x.Dead && !x.Downed && x.Faction != null && x.Faction != Faction.OfPlayer && x.Faction.HostileTo(Faction.OfPlayer) && !x.IsPrisoner)
+                        .GroupBy(x => x.Faction).OrderByDescending(g => g.Count()).FirstOrDefault();
+                    battleFaction = top?.Key;
+                }
                 foreach (var p in map.mapPawns.FreeColonistsSpawned)
                 {
                     if (!Eligible(p) || fighters.Contains(p)) continue;
@@ -386,10 +389,11 @@ namespace ColonyCouncil
             if (!battleActive) return;
             if (++quietHours < 3) return;
             battleActive = false;
+            battleFaction = null;
             var list = fighters.Where(Eligible).Distinct().ToList();
             fighters.Clear();
             foreach (var p in list) comp.quirks.Notify_Fought(p);
-            if (list.Count < 2) return;
+            if (list.Count < 2 || !S.socialWeb) return;
             var formed = new List<Pawn>();
             for (int i = 0; i < list.Count; i++)
             {

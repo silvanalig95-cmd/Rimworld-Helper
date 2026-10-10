@@ -217,6 +217,8 @@ namespace ColonyCouncil
 
         public override bool CanHave(Pawn p) => ColonyCouncilMod.Settings.socialWeb && Count(p) < def.amount;
 
+        public override bool StillPossible(Aspiration a) => ColonyCouncilMod.Settings.socialWeb;
+
         public override bool Init(Aspiration a)
         {
             a.target = def.amount;
@@ -253,12 +255,17 @@ namespace ColonyCouncil
         }
 
         public override float Progress(Aspiration a) => (CouncilGameComponent.Instance.aspirations.Count(a.pawn, def.counter) - a.baseline) / Mathf.Max(1f, a.target - a.baseline);
+
+        /// <summary>Peace needs a rival still here; vengeance an open vendetta; the rest their feature switched on.</summary>
+        public override bool StillPossible(Aspiration a) => Progress(a) >= 1f || CanHave(a.pawn);
     }
 
     /// <summary>Hold a council office (one in particular, or any).</summary>
     public class AspirationWorker_Office : AspirationWorker
     {
         public override bool CanHave(Pawn p) => ColonyCouncilMod.Settings.offices && !p.DevelopmentalStage.Juvenile() && CouncilGameComponent.Instance?.offices.OfficeOf(p) == null;
+
+        public override bool StillPossible(Aspiration a) => ColonyCouncilMod.Settings.offices;
 
         public override float Progress(Aspiration a)
         {
@@ -298,6 +305,8 @@ namespace ColonyCouncil
         private static bool Named(Pawn p) => CouncilGameComponent.Instance?.epithets.Of(p).Any() ?? false;
 
         public override bool CanHave(Pawn p) => ColonyCouncilMod.Settings.epithets && !Named(p);
+
+        public override bool StillPossible(Aspiration a) => ColonyCouncilMod.Settings.epithets;
 
         public override float Progress(Aspiration a) => Named(a.pawn) ? 1f : 0f;
     }
@@ -384,7 +393,8 @@ namespace ColonyCouncil
                 try
                 {
                     if (a.def.Worker.Done(a)) Fulfil(comp, a);
-                    else if (!a.def.Worker.StillPossible(a))
+                    // Impossible now, or years without getting there: they let it go and may find another.
+                    else if (!a.def.Worker.StillPossible(a) || Find.TickManager.TicksGame - a.startedTick > GenDate.TicksPerYear * 4)
                     {
                         all.Remove(a);
                         comp.journals.Write(p, "Council_Journal_GoalLost", null, a.Goal.Named("GOAL"));
@@ -453,7 +463,12 @@ namespace ColonyCouncil
             comp.annals.Notify_Aspiration(p, a.Goal);
             CouncilGameComponent.GiveThought(p, CouncilDefOf.Council_Asp_Fulfilled);
             comp.standings.Change(p, 10f, "CC_Log_Aspiration".Translate(a.Goal));
-            if (Rand.Chance(0.5f)) p.mindState?.inspirationHandler?.TryStartInspiration(p.mindState.inspirationHandler.GetRandomAvailableInspirationDef(), null, true);
+            var inspiration = p.mindState?.inspirationHandler;
+            if (inspiration != null && !inspiration.Inspired && Rand.Chance(0.5f))
+            {
+                var idef = inspiration.GetRandomAvailableInspirationDef();
+                if (idef != null) inspiration.TryStartInspiration(idef, null, true);
+            }
             // The people who love them are glad.
             foreach (var f in PawnsFinder.AllMaps_FreeColonists.Where(f => f != p && f.relations != null && (f.relations.OpinionOf(p) >= 40 || comp.social.Warmth(f, p) >= 40f)))
                 CouncilGameComponent.GiveThought(f, CouncilDefOf.Council_HappyForThem, p);
@@ -492,7 +507,7 @@ namespace ColonyCouncil
         protected override ThoughtState CurrentStateInternal(Pawn p)
         {
             var a = CouncilGameComponent.Instance?.aspirations.Active(p);
-            if (a == null || !ColonyCouncilMod.Settings.aspirations) return ThoughtState.Inactive;
+            if (a == null || !ColonyCouncilMod.Settings.aspirations || !ColonyCouncilMod.Settings.MoodEffects) return ThoughtState.Inactive;
             return a.Progress >= 0.75f ? ThoughtState.ActiveAtStage(0) : ThoughtState.Inactive;
         }
     }

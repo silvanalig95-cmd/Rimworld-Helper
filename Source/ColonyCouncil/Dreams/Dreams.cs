@@ -294,10 +294,7 @@ namespace ColonyCouncil
             {
                 if (!S.dreamOmens || omens.Count > 0 || Find.TickManager.TicksGame - lastOmenTick < GenDate.TicksPerDay * 8) return null;
                 var inc = def.omen.Def;
-                if (inc == null || map == null || !map.IsPlayerHome) return null;
-                var parms = StorytellerUtility.DefaultParmsNow(inc.category, map);
-                parms.forced = true;
-                if (!inc.Worker.CanFireNow(parms)) return null;
+                if (inc == null || map == null || !map.IsPlayerHome || !OmenCanHappen(inc, map)) return null;
             }
             if (def.wish != null && (!S.enableWishes || comp.OpenWishBy(p) != null)) w *= 0.3f;
 
@@ -417,6 +414,8 @@ namespace ColonyCouncil
             string text = raw.Formatted(p.Named("PAWN"), (c.other ?? p).Named("OTHER"), (c.pet ?? p).Named("PET"), (c.lost ?? "").Named("LOST"), (c.skill?.label ?? "").Named("SKILL"),
                 (comp.aspirations.Active(p)?.Goal ?? "").Named("GOAL")).Resolve();
 
+            bool wasInspired = p.Inspired;
+            int hediffsBefore = p.health?.hediffSet?.hediffs.Count ?? 0;
             var ctx = new DilemmaContext { map = p.MapHeld, a = p, b = c.other, pet = c.pet, skill = c.skill, why = "CC_Log_Dream".Translate().ToString() };
             foreach (var e in def.effects)
             {
@@ -436,7 +435,9 @@ namespace ColonyCouncil
                 if (def.change > 0f) comp.social.Bump(p, c.other, def.changeTie, def.change, note);
                 else comp.social.Weaken(p, c.other, def.changeTie, -def.change, note);
             }
-            if (def.wish != null) comp.TryWishFromDream(p, def.wish);
+            bool wished = def.wish != null && comp.TryWishFromDream(p, def.wish) != null;
+            bool changed = def.notable || def.omen != null || wished || (!wasInspired && p.Inspired)
+                           || (p.health?.hediffSet?.hediffs.Count ?? 0) > hediffsBefore || (c.other != null && Mathf.Abs(def.change) >= 8f);
             if (def.omen?.Def != null)
             {
                 omens.Add(new PendingOmen { def = def, dreamer = p, map = p.MapHeld, fireTick = Find.TickManager.TicksGame + def.omen.days.RandomInRange * GenDate.TicksPerDay + Rand.Range(0, GenDate.TicksPerDay / 2), text = text });
@@ -450,7 +451,7 @@ namespace ColonyCouncil
             untold[p] = new DreamMemo { kind = def.kind, other = c.other, tick = Find.TickManager.TicksGame };
 
             string message = "CC_Dream_Message".Translate(p.Named("PAWN"), text.Named("DREAM")).Resolve();
-            if (S.allDreamMessages || def.Matters)
+            if (S.allDreamMessages || changed)
                 Messages.Message(message, p, def.omen != null ? MessageTypeDefOf.NeutralEvent : MessageTypeDefOf.SilentInput, false);
             if (def.notable || def.omen != null) comp.AddChronicle(new ChronicleEntry(ChronicleKind.Note, message, p));
         }
@@ -485,25 +486,41 @@ namespace ColonyCouncil
 
         // ---------------- Omens ----------------
 
+        /// <summary>
+        /// Only foretell what the game would allow right now: the incident's own rules (biome, population, refire
+        /// timers, the difficulty's disabled threats) are all respected, since the storyteller fires it.
+        /// </summary>
+        private static bool OmenCanHappen(IncidentDef inc, Map map)
+        {
+            if (!inc.TargetAllowed(map)) return false;
+            var parms = StorytellerUtility.DefaultParmsNow(inc.category, map);
+            return inc.Worker.CanFireNow(parms);
+        }
+
         private void CheckOmens(CouncilGameComponent comp)
         {
             int now = Find.TickManager.TicksGame;
             foreach (var o in omens.ToList())
             {
+                // The map is gone (abandoned, left behind): the omen goes with it.
+                if (o.map == null || !Find.Maps.Contains(o.map))
+                {
+                    omens.Remove(o);
+                    continue;
+                }
                 if (now < o.fireTick) continue;
                 var inc = o.def?.omen?.Def;
-                if (inc == null || o.map == null || !Find.Maps.Contains(o.map) || now - o.fireTick > GenDate.TicksPerDay * 2)
+                if (inc == null || now - o.fireTick > GenDate.TicksPerDay * 2)
                 {
                     omens.Remove(o);
                     continue;
                 }
                 var parms = StorytellerUtility.DefaultParmsNow(inc.category, o.map);
-                parms.forced = true;
                 if (o.def.omen.pointsFactor != 1f) parms.points *= o.def.omen.pointsFactor;
                 bool fired;
                 try
                 {
-                    fired = inc.Worker.CanFireNow(parms) && inc.Worker.TryExecute(parms);
+                    fired = inc.TargetAllowed(o.map) && inc.Worker.CanFireNow(parms) && Find.Storyteller.TryFire(new FiringIncident(inc, null, parms), false);
                 }
                 catch (Exception e)
                 {

@@ -218,8 +218,9 @@ namespace ColonyCouncil
                 Widgets.Label(new Rect(6f, y, width - 6f, RowH), line.Truncate(width - 10f));
                 Text.Anchor = TextAnchor.UpperLeft;
                 GUI.color = Color.white;
-                if (s.revealed) TooltipHandler.TipRegion(r, s.Truth);
-                else if (Prefs.DevMode) TooltipHandler.TipRegion(r, "(dev) " + s.Truth);
+                var secret = s;
+                if (s.revealed) TooltipHandler.TipRegion(r, () => secret.Truth, s.GetHashCode());
+                else if (Prefs.DevMode) TooltipHandler.TipRegion(r, () => "(dev) " + secret.Truth, s.GetHashCode());
                 y += RowH + 2f;
             }
             return y - start + 10f;

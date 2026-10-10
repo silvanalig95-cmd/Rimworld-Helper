@@ -21,6 +21,15 @@ namespace ColonyCouncil
 
         public const int KillsToSettle = 3;
 
+        /// <summary>Which kills pay this debt: people for people, machines for machines. Null: no vendetta possible.</summary>
+        public static RecordDef KillRecord(Faction f)
+        {
+            if (f == null) return null;
+            if (f.def.humanlikeFaction) return RecordDefOf.KillsHumanlikes;
+            if (f == Faction.OfMechanoids) return RecordDefOf.KillsMechanoids;
+            return null;
+        }
+
         public bool Active => !settled && avenger != null && !avenger.Dead && faction != null && !faction.defeated;
 
         public void ExposeData()
@@ -36,17 +45,26 @@ namespace ColonyCouncil
         }
     }
 
+    /// <summary>A eulogy to come, with what was known about the dead at the moment they died.</summary>
     public class PendingEulogy : IExposable
     {
         public Pawn dead;
         public int dueTick;
         public Faction killers;
+        public Pawn speaker;
+        public bool close;
+        public bool rival;
+        public string goal;
 
         public void ExposeData()
         {
             Scribe_References.Look(ref dead, "dead");
             Scribe_Values.Look(ref dueTick, "dueTick");
             Scribe_References.Look(ref killers, "killers");
+            Scribe_References.Look(ref speaker, "speaker");
+            Scribe_Values.Look(ref close, "close");
+            Scribe_Values.Look(ref rival, "rival");
+            Scribe_Values.Look(ref goal, "goal");
         }
     }
 
@@ -61,6 +79,7 @@ namespace ColonyCouncil
         private List<Pawn> known = new List<Pawn>();
         private int lastBattleTick = -999999;
         private Faction lastBattleFaction;
+        [Unsaved] private Map lastBattleMap;
         [Unsaved] private Dictionary<Pawn, int> killsAtBattleStart = new Dictionary<Pawn, int>();
         [Unsaved] private bool wasFighting;
         [Unsaved] private HashSet<Faction> warnedThisBattle = new HashSet<Faction>();
@@ -78,14 +97,16 @@ namespace ColonyCouncil
             if (social.battleActive)
             {
                 lastBattleTick = now;
-                if (social.battleFaction != null) lastBattleFaction = social.battleFaction;
+                lastBattleFaction = social.battleFaction;
+                lastBattleMap = social.battleMap;
             }
             WatchLosses(comp, now);
             if (S.vendettas) Battles(comp, social);
             foreach (var e in eulogies.Where(e => now >= e.dueTick).ToList())
             {
                 eulogies.Remove(e);
-                if (S.eulogies && e.dead != null) Safe(() => Eulogy(comp, e));
+                // Brought back (resurrection, a death refused): no grave to speak at.
+                if (S.eulogies && e.dead != null && e.dead.Dead) Safe(() => Eulogy(comp, e));
             }
         }
 
@@ -112,11 +133,10 @@ namespace ColonyCouncil
                 known.Remove(p);
                 if (p.Dead)
                 {
-                    // Killed in (or just after) a fight: that faction did it.
-                    Faction killers = now - lastBattleTick < GenDate.TicksPerHour * 8 ? lastBattleFaction : null;
+                    var killers = Killers(p, now);
                     if (killers != null && S.vendettas) Swear(comp, p, killers, false);
                     comp.legacy.Notify_Death(comp, p);
-                    if (S.eulogies) eulogies.Add(new PendingEulogy { dead = p, dueTick = now + Rand.Range(GenDate.TicksPerHour * 10, GenDate.TicksPerHour * 20), killers = killers });
+                    if (S.eulogies) eulogies.Add(Snapshot(comp, p, killers, now));
                 }
                 else if (S.vendettas)
                 {
@@ -128,14 +148,47 @@ namespace ColonyCouncil
                 if (!known.Contains(p)) known.Add(p);
         }
 
+        /// <summary>
+        /// Who killed them: the faction of whoever dealt their most recent wound (from the combat log), or, failing
+        /// that, the enemy in a fight going on where they fell, if they died of fresh wounds.
+        /// </summary>
+        private Faction Killers(Pawn dead, int now)
+        {
+            var injuries = dead.health?.hediffSet?.hediffs.OfType<Hediff_Injury>().OrderBy(h => h.ageTicks).ToList();
+            if (injuries == null || injuries.Count == 0 || injuries[0].ageTicks > GenDate.TicksPerHour * 12) return null;
+            foreach (var h in injuries.Take(5))
+            {
+                var entry = h.combatLogEntry?.Target;
+                if (entry == null) continue;
+                var attacker = entry.GetConcerns().OfType<Pawn>().FirstOrDefault(x => x != dead && x.Faction != null && x.Faction != Faction.OfPlayer);
+                if (attacker != null) return attacker.Faction.HostileTo(Faction.OfPlayer) ? attacker.Faction : null;
+            }
+            var where = dead.Corpse?.MapHeld ?? dead.MapHeld;
+            return now - lastBattleTick < GenDate.TicksPerHour * 4 && where != null && where == lastBattleMap ? lastBattleFaction : null;
+        }
+
+        /// <summary>Who is closest to the dead, and what to say, while their bonds and goals are still on record.</summary>
+        private static PendingEulogy Snapshot(CouncilGameComponent comp, Pawn dead, Faction killers, int now)
+        {
+            var e = new PendingEulogy { dead = dead, killers = killers, dueTick = now + Rand.Range(GenDate.TicksPerHour * 10, GenDate.TicksPerHour * 20) };
+            var speakers = PawnsFinder.AllMaps_FreeColonists.Where(Eligible).Where(p => !p.DevelopmentalStage.Juvenile() && p.relations != null).ToList();
+            if (speakers.Count == 0) return e;
+            float Closeness(Pawn p) => p.relations.OpinionOf(dead) + comp.social.Warmth(p, dead) + (p.GetRelations(dead).Any() ? 40f : 0f);
+            e.speaker = speakers.OrderByDescending(Closeness).First();
+            e.close = Closeness(e.speaker) >= 20f;
+            e.rival = comp.social.Strength(e.speaker, dead, TieKind.Rivals) >= 20f;
+            e.goal = comp.aspirations.all.FirstOrDefault(a => a.pawn == dead && !a.done)?.Goal;
+            return e;
+        }
+
         /// <summary>The ones closest to the lost swear vengeance.</summary>
         private void Swear(CouncilGameComponent comp, Pawn lostOne, Faction faction, bool kidnapped)
         {
-            if (faction == Faction.OfPlayer || !faction.HostileTo(Faction.OfPlayer)) return;
-            var avengers = PawnsFinder.AllMaps_FreeColonists.Where(Eligible).Where(p => Close(comp, p, lostOne)).ToList();
+            if (faction == Faction.OfPlayer || !faction.HostileTo(Faction.OfPlayer) || Vendetta.KillRecord(faction) == null) return;
+            var avengers = PawnsFinder.AllMaps_FreeColonists.Where(Eligible).Where(p => !p.DevelopmentalStage.Juvenile() && Close(comp, p, lostOne)
+                                                                                 && !vendettas.Any(v => v.avenger == p && v.faction == faction && v.Active)).ToList();
             foreach (var p in avengers)
             {
-                if (vendettas.Any(v => v.avenger == p && v.faction == faction && v.Active)) continue;
                 vendettas.Add(new Vendetta { avenger = p, faction = faction, victim = lostOne.LabelShort, kidnapped = kidnapped, tick = Find.TickManager.TicksGame });
                 comp.journals.Write(p, kidnapped ? "Council_Journal_VendettaTaken" : "Council_Journal_VendettaSworn", null, lostOne.Named("OTHER"), faction.Name.Named("FACTION"));
             }
@@ -165,11 +218,13 @@ namespace ColonyCouncil
             {
                 killsAtBattleStart.Clear();
                 warnedThisBattle.Clear();
-                foreach (var v in vendettas.Where(v => v.Active))
-                    killsAtBattleStart[v.avenger] = v.avenger.records?.GetAsInt(RecordDefOf.KillsHumanlikes) ?? 0;
             }
             if (fighting && faction != null)
             {
+                // Count from when they joined this fight (also after loading a save mid-battle).
+                var record = Vendetta.KillRecord(faction);
+                foreach (var v in vendettas.Where(v => v.Active && v.faction == faction && record != null))
+                    if (!killsAtBattleStart.ContainsKey(v.avenger)) killsAtBattleStart[v.avenger] = (int)(v.avenger.records?.GetValue(record) ?? 0f);
                 // The banners they swore against: fury.
                 var sworn = vendettas.Where(v => v.Active && v.faction == faction && v.avenger.Spawned && v.avenger.Map.IsPlayerHome).ToList();
                 foreach (var v in sworn)
@@ -186,8 +241,9 @@ namespace ColonyCouncil
                 // Debts paid in this fight.
                 foreach (var v in vendettas.Where(v => v.Active && v.faction == lastBattleFaction).ToList())
                 {
-                    if (!killsAtBattleStart.TryGetValue(v.avenger, out int before)) continue;
-                    int delta = (v.avenger.records?.GetAsInt(RecordDefOf.KillsHumanlikes) ?? 0) - before;
+                    var record = Vendetta.KillRecord(v.faction);
+                    if (record == null || !killsAtBattleStart.TryGetValue(v.avenger, out int before)) continue;
+                    int delta = (int)(v.avenger.records?.GetValue(record) ?? 0f) - before;
                     if (delta <= 0) continue;
                     v.kills += delta;
                     if (v.kills >= Vendetta.KillsToSettle) Settle(comp, v, false);
@@ -243,13 +299,15 @@ namespace ColonyCouncil
             var speakers = PawnsFinder.AllMaps_FreeColonists.Where(Eligible).Where(p => !p.DevelopmentalStage.Juvenile() && p.relations != null).ToList();
             if (speakers.Count == 0) return;
             float Closeness(Pawn p) => p.relations.OpinionOf(dead) + comp.social.Warmth(p, dead) + (p.GetRelations(dead).Any() ? 40f : 0f);
-            var speaker = speakers.OrderByDescending(Closeness).First();
-            bool close = Closeness(speaker) >= 20f;
+            // Chosen when they died, while their bonds were still on record; someone else if that person is gone too.
+            bool close = e.close && e.speaker != null && speakers.Contains(e.speaker);
+            var speaker = close ? e.speaker : speakers.OrderByDescending(Closeness).First();
+            if (!close) close = Closeness(speaker) >= 20f;
             if (!close) speaker = speakers.OrderByDescending(p => p.skills?.GetSkill(SkillDefOf.Social)?.Level ?? 0).First();
 
             var tags = new List<string>();
             if (!close) tags.Add("stranger");
-            if (comp.social.Strength(speaker, dead, TieKind.Rivals) >= 20f) tags.Add("rival");
+            if ((e.rival && speaker == e.speaker) || comp.social.Strength(speaker, dead, TieKind.Rivals) >= 20f) tags.Add("rival");
             if (speaker.GetRelations(dead).Any(r => r.familyByBloodRelation)) tags.Add("kin");
             if (speaker.GetRelations(dead).Any(r => r == PawnRelationDefOf.Spouse || r == PawnRelationDefOf.Lover || r == PawnRelationDefOf.Fiance)) tags.Add("partner");
             if (e.killers != null) tags.Add("battle");
@@ -257,7 +315,8 @@ namespace ColonyCouncil
             else if ((dead.ageTracker?.AgeBiologicalYears ?? 0) >= 60) tags.Add("deadold");
             string title = comp.epithets.TitlesOf(dead);
             if (!title.NullOrEmpty()) tags.Add("titled");
-            comp.aspirations.lastMourned.TryGetValue(dead, out string goal);
+            string goal = e.goal;
+            if (goal.NullOrEmpty()) comp.aspirations.lastMourned.TryGetValue(dead, out goal);
             if (!goal.NullOrEmpty()) tags.Add("unfinished");
             float years = (dead.records?.GetValue(RecordDefOf.TimeAsColonistOrColonyAnimal) ?? 0f) / GenDate.TicksPerYear;
             if (years >= 2f) tags.Add("longtime");
@@ -300,7 +359,8 @@ namespace ColonyCouncil
         protected override ThoughtState CurrentStateInternal(Pawn p)
         {
             var comp = CouncilGameComponent.Instance;
-            if (comp?.vendettas == null || !ColonyCouncilMod.Settings.vendettas) return ThoughtState.Inactive;
+            var s = ColonyCouncilMod.Settings;
+            if (comp?.vendettas == null || !s.vendettas || !s.MoodEffects || s.PenaltyScale <= 0f) return ThoughtState.Inactive;
             return comp.vendettas.Of(p).Any(v => v.faction.HostileTo(Faction.OfPlayer)) ? ThoughtState.ActiveAtStage(0) : ThoughtState.Inactive;
         }
     }

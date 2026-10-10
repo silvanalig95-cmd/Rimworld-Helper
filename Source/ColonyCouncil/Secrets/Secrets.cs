@@ -41,7 +41,8 @@ namespace ColonyCouncil
             if (!backstory.NullOrEmpty())
             {
                 string titles = ((p.story?.Childhood?.title ?? "") + " " + (p.story?.Adulthood?.title ?? "")).ToLowerInvariant();
-                backstoryMatch = backstory.Any(w => titles.Contains(w.ToLowerInvariant()));
+                // Whole words only: "con" shouldn't match "construction", nor "heir" "their".
+                backstoryMatch = backstory.Any(w => System.Text.RegularExpressions.Regex.IsMatch(titles, @"\b" + System.Text.RegularExpressions.Regex.Escape(w.ToLowerInvariant()) + @"\b"));
                 if (backstoryOnly && !backstoryMatch) return false;
             }
             return true;
@@ -105,6 +106,8 @@ namespace ColonyCouncil
             {
                 if (rolled.Contains(p.ThingID)) continue;
                 if ((p.records?.GetAsInt(RecordDefOf.TimeAsColonistOrColonyAnimal) ?? 0) < GenDate.TicksPerDay * 2) continue;
+                // Teens raised here get their chance once they're old enough to have a past.
+                if ((p.ageTracker?.AgeBiologicalYears ?? 0) < 16) continue;
                 rolled.Add(p.ThingID);
                 TryGive(p);
             }
@@ -274,6 +277,7 @@ namespace ColonyCouncil
             ctx = null;
             var comp = CouncilGameComponent.Instance;
             if (comp == null || !ColonyCouncilMod.Settings.secrets || !CanHappenNow(map)) return false;
+            if (map.mapPawns.FreeColonistsSpawnedCount < def.minColonists) return false;
             foreach (var s in comp.secrets.RecentlyRevealed(6f).Where(s => !s.judged && (def.secrets.NullOrEmpty() || def.secrets.Contains(s.def.defName))).InRandomOrder())
             {
                 var a = s.owner;

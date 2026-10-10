@@ -107,6 +107,9 @@ namespace ColonyCouncil
 
         private void Hourly()
         {
+            // Fights and deaths first, while the dead still have their bonds and goals on record.
+            Safe("battles", () => social.Hourly(this));
+            Safe("losses", () => vendettas.Hourly(this));
             Safe("decrees", () => decrees.Hourly(this));
             Safe("wish upkeep", UpdateWishes);
             if (Settings.enableWishes) Safe("event wishes", CheckTriggers);
@@ -117,8 +120,6 @@ namespace ColonyCouncil
             Safe("dilemmas", dilemmas.Hourly);
             Safe("annals", () => annals.Hourly(this));
             Safe("dreams", () => dreams.Hourly(this));
-            Safe("battles", () => social.Hourly(this));
-            Safe("losses", () => vendettas.Hourly(this));
             Safe("quirks", quirks.Hourly);
         }
 
