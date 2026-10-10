@@ -328,6 +328,7 @@
   <CC_ObjectionMessage>{PAWN_nameDef} objects to {OTHER_nameDef}'s wish for {WISH}.</CC_ObjectionMessage>
   <CC_Chronicle_Objection>{0} objected to {1}'s wish for {2}.</CC_Chronicle_Objection>
   <CC_ObjectorTag>opposed by {0}</CC_ObjectorTag>
+  <CC_Ambition_CheckIn>{PAWN_nameDef} on {AMBITION} ({PROGRESS} done):</CC_Ambition_CheckIn>
   <CC_Log_NoneChosen>the council chose nothing</CC_Log_NoneChosen>
   <CC_Heckle_Plain>{PAWN_nameDef} wondered aloud whether {OTHER_nameDef}'s "{AMBITION}" was really the priority.</CC_Heckle_Plain>
   <CC_Heckle_Warm>{PAWN_nameDef} thanked everyone for coming, and said {OTHER_nameDef}'s idea ("{AMBITION}") sounded lovely.</CC_Heckle_Warm>

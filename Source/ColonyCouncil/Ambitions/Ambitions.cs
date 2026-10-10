@@ -45,6 +45,8 @@ namespace ColonyCouncil
         public int startTick;
         public int deadlineTick;
         public List<float> baselines = new List<float>();
+        public bool halfwaySaid;
+        public bool deadlineSaid;
 
         public float Baseline(int i) => baselines != null && i < baselines.Count ? baselines[i] : 0f;
 
@@ -78,6 +80,8 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref startTick, "startTick");
             Scribe_Values.Look(ref deadlineTick, "deadlineTick");
             Scribe_Collections.Look(ref baselines, "baselines", LookMode.Value);
+            Scribe_Values.Look(ref halfwaySaid, "halfwaySaid");
+            Scribe_Values.Look(ref deadlineSaid, "deadlineSaid");
             if (Scribe.mode == LoadSaveMode.PostLoadInit && baselines == null) baselines = new List<float>();
         }
     }
@@ -164,6 +168,10 @@ namespace ColonyCouncil
                 {
                     Fail(comp);
                 }
+                else
+                {
+                    CheckIn(active, now);
+                }
                 if (active != null && now >= nextMeetingTick) nextMeetingTick = now + GenDate.TicksPerDay;
                 return;
             }
@@ -174,6 +182,32 @@ namespace ColonyCouncil
                 return;
             }
             if (now >= nextMeetingTick) HoldMeeting(comp, false);
+        }
+
+        /// <summary>The proposer cheers at halfway and frets when time is short and the work isn't.</summary>
+        private void CheckIn(AmbitionState a, int now)
+        {
+            var p = a.proposer;
+            if (p == null || p.Dead || !p.Spawned || p.Map != a.map) return;
+            float progress = a.Progress;
+            string pool = null;
+            if (!a.halfwaySaid && progress >= 0.5f)
+            {
+                a.halfwaySaid = true;
+                pool = "Council_Pool_AmbitionHalfway";
+            }
+            else if (!a.deadlineSaid && a.deadlineTick - now < GenDate.TicksPerDay * 3 && progress < 0.75f)
+            {
+                a.deadlineSaid = true;
+                pool = "Council_Pool_AmbitionDeadline";
+            }
+            if (pool == null) return;
+            string line = Flavor.FromPool(pool, p);
+            if (line.NullOrEmpty()) return;
+            line = line.Formatted(p.Named("PAWN"), a.def.label.Named("AMBITION")).Resolve();
+            CouncilGameComponent.Speak(p, line, new Color(0.7f, 0.85f, 1f));
+            Messages.Message("CC_Ambition_CheckIn".Translate(p.Named("PAWN"), a.def.label.Named("AMBITION"), progress.ToStringPercent().Named("PROGRESS")).Resolve() + " \"" + TextUtil.ShortSpeech(line, 120) + "\"",
+                new LookTargets(p), MessageTypeDefOf.SilentInput, false);
         }
 
         public static Map MeetingMap()

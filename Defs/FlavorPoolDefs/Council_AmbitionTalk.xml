@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- The proposer of the current ambition checks in. {PAWN} speaks, {AMBITION} is the goal's name (use it in quotes). -->
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Pool_AmbitionHalfway</defName>
+    <lines>
+      <plain>
+        <li>Halfway there. Don't slow down now.</li>
+        <li>Half of "{AMBITION}" is done. The easy half, probably.</li>
+        <li>[winter] Halfway through "{AMBITION}", halfway through winter. Neither is giving up.</li>
+        <li>[afterraid] Even with the raids, we're halfway. That means something.</li>
+      </plain>
+      <warm>
+        <li>Look how far we've come. Thank you, all of you.</li>
+      </warm>
+      <blunt>
+        <li>Halfway. Whoever's been slacking, I know who you are.</li>
+      </blunt>
+      <cheerful>
+        <li>HALFWAY! I'm so proud of us I could burst!</li>
+      </cheerful>
+      <gloomy>
+        <li>Halfway. Which means half of it can still go wrong.</li>
+      </gloomy>
+      <cold>
+        <li>Fifty percent complete. Progress is on schedule. Continue.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Pool_AmbitionDeadline</defName>
+    <lines>
+      <plain>
+        <li>We're running out of time on "{AMBITION}". A few more days, that's all we've got.</li>
+        <li>I told everyone we'd do this. Please don't make a liar of me.</li>
+        <li>[night] Can't sleep. Keep thinking about "{AMBITION}" and how much is left.</li>
+      </plain>
+      <warm>
+        <li>I know everyone's tired. Just a little more, and we can say we did it together.</li>
+      </warm>
+      <blunt>
+        <li>Days left and we're nowhere near done. Somebody tell me this is a joke.</li>
+      </blunt>
+      <cheerful>
+        <li>Okay, slight panic! But productive panic! We can still do this!</li>
+      </cheerful>
+      <gloomy>
+        <li>We're not going to make it. I knew it. I said it was a good idea anyway.</li>
+      </gloomy>
+      <cold>
+        <li>At the current rate, "{AMBITION}" will fail. Reassign labor accordingly.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+</Defs>
