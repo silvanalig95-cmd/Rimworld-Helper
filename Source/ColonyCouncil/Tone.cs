@@ -61,6 +61,13 @@ namespace ColonyCouncil
         {
             var list = For(tone);
             string line = null;
+            // Lines written for this exact moment (a trigger, the weather, a trait) win, in the speaker's own voice first.
+            if (context != null && Rand.Chance(0.85f))
+            {
+                line = Flavor.PickTagged(list, context);
+                if (line == null && Rand.Chance(0.75f)) line = Flavor.PickTagged(plain, context);
+                if (line != null) return line;
+            }
             if (list != null && list.Count > 0 && (tone == Tone.Plain || Rand.Chance(0.8f)))
                 line = Flavor.Pick(list, context);
             if (line == null && plain != null && plain.Count > 0) line = Flavor.Pick(plain, context);

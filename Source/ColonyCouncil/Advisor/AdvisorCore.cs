@@ -82,7 +82,7 @@ namespace ColonyCouncil
         public float severity;
         /// <summary>How soon does it bite (0..1).</summary>
         public float urgency = 1f;
-        /// <summary>How sure are we (0..1). Defence estimates are rough.</summary>
+        /// <summary>How sure are we (0..1). Defense estimates are rough.</summary>
         public float confidence = 1f;
         public string title;
         public string detail;

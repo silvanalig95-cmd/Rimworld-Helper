@@ -10,7 +10,7 @@ namespace ColonyCouncil
     /// "What can this colony actually do right now?"
     ///
     /// Every suggestion the mod makes goes through here, so that a medieval colony is never asked for
-    /// a turret and a tribe is never told to build a heater. Buildings are recognised by what they do
+    /// a turret and a tribe is never told to build a heater. Buildings are recognized by what they do
     /// (they heat, they glow, they hold patients) rather than by vanilla defNames, so modded content
     /// such as Medieval Overhaul furniture counts automatically.
     /// </summary>

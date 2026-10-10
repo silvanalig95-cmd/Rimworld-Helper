@@ -251,7 +251,7 @@ namespace ColonyCouncil
             }
         }
 
-        public MeetingPitch Favourite => pitches.OrderByDescending(p => p.voters.Count).FirstOrDefault();
+        public MeetingPitch Favorite => pitches.OrderByDescending(p => p.voters.Count).FirstOrDefault();
 
         public bool Tied
         {

@@ -64,7 +64,7 @@ namespace ColonyCouncil
             if (ours == null || structure == null) return;
             var sorted = DefDatabase<DesignationCategoryDef>.AllDefsListForReading.Where(d => d != ours).OrderBy(d => d.order).ToList();
             int i = sorted.IndexOf(structure);
-            // Halfway between Structure and its neighbour on either side works whichever way the menu sorts.
+            // Halfway between Structure and its neighbor on either side works whichever way the menu sorts.
             var next = i + 1 < sorted.Count ? sorted[i + 1] : null;
             ours.order = next != null && next.order - structure.order >= 2 ? (structure.order + next.order) / 2 : structure.order;
         }

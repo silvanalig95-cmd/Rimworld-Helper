@@ -27,7 +27,7 @@ A ranked list of concerns, each with a short explanation and a rotating **"why i
 so you learn the game's logic while playing:
 - food vs. the coming winter (forecast from your map's actual climate)
 - spoiling food, cold or hot months ahead, warm clothes
-- defences vs. the raids your wealth attracts (a rough estimate, and it says so)
+- defenses vs. the raids your wealth attracts (a rough estimate, and it says so)
 - beds and barracks, a place to eat, recreation variety, mood breaks coming
 - doctor, medicine and medical beds; power shortages, solar-only grids
 - jobs nobody is assigned to, items rotting outside, an idle research bench
@@ -53,7 +53,7 @@ grumbling to others in the social log. Wishes come from who they are:
 | New clothes, warmth at night, a table to eat at | tattered clothes, cold nights, eating off the floor |
 | Something new to do for fun, art in the common rooms | bored colonists, artists |
 | An animal companion | animal lovers, when tameable animals roam nearby |
-| Stronger defences | fighters, and colonists shaken by violence |
+| Stronger defenses | fighters, and colonists shaken by violence |
 | A room befitting their title | Royalty nobles |
 | Somewhere to learn and play | Biotech children |
 
@@ -98,7 +98,7 @@ A running history of wishes, petitions, meetings and ambitions.
 
 The council only suggests what your colony can actually do right now:
 - **Research and tech level:** nothing that needs unresearched tech, and nothing electric before Electricity.
-- **Purpose, not names:** buildings are recognised by what they do. A medieval colony gets
+- **Purpose, not names:** buildings are recognized by what they do. A medieval colony gets
   torch lamps, campfires, spike traps and bedrolls; an industrial one gets standing lamps,
   heaters and turrets. Modded furniture that does the same job counts too.
 - **Materials:** room plans use the wall material you have the most of.

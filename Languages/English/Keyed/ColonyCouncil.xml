@@ -53,7 +53,7 @@
   <CC_Cat_Shelter>Shelter</CC_Cat_Shelter>
   <CC_Cat_Food>Food</CC_Cat_Food>
   <CC_Cat_Temperature>Temperature</CC_Cat_Temperature>
-  <CC_Cat_Defense>Defence</CC_Cat_Defense>
+  <CC_Cat_Defense>Defense</CC_Cat_Defense>
   <CC_Cat_Health>Health</CC_Cat_Health>
   <CC_Cat_Power>Power</CC_Cat_Power>
   <CC_Cat_Comfort>Comfort</CC_Cat_Comfort>
@@ -89,9 +89,9 @@
   <CC_Adv_Hot_Title>Hot months ahead (up to {0})</CC_Adv_Hot_Title>
   <CC_Adv_Hot_Detail>You have {0} cooler(s). Plan {1} for the bedrooms to prevent heatstroke.</CC_Adv_Hot_Detail>
 
-  <!-- Advisor: defence -->
-  <CC_Adv_Defense_Title>Defences could be stronger</CC_Adv_Defense_Title>
-  <CC_Adv_Defense_TitleBad>Your defences may not hold the next raid</CC_Adv_Defense_TitleBad>
+  <!-- Advisor: defense -->
+  <CC_Adv_Defense_Title>Defenses could be stronger</CC_Adv_Defense_Title>
+  <CC_Adv_Defense_TitleBad>Your defenses may not hold the next raid</CC_Adv_Defense_TitleBad>
   <CC_Adv_Defense_Detail>Raids are currently worth about {0} points. You have {1} fighter(s), {2} turret(s), {3} trap(s) and {4} pieces of cover.</CC_Adv_Defense_Detail>
   <CC_Adv_Defense_Growth>Colony wealth grew {0} in the last 15 days, so raids will grow too.</CC_Adv_Defense_Growth>
   <CC_Adv_Defense_Suggest>Next step: about {0} more {1}, placed where raiders approach.</CC_Adv_Defense_Suggest>
@@ -159,7 +159,7 @@
   <CC_Listen_Nothing>You asked around, but nobody wants anything right now.</CC_Listen_Nothing>
   <CC_Stakes_Short_Gentle>Gentle mode: granted wishes lift mood, ignored ones cost nothing.</CC_Stakes_Short_Gentle>
   <CC_Stakes_Short_Balanced>Balanced mode: granting helps, ignoring stings, and others notice who gets what.</CC_Stakes_Short_Balanced>
-  <CC_Stakes_Short_Demanding>Demanding mode: broken promises and favouritism bite hard, and bitter colonists may sulk.</CC_Stakes_Short_Demanding>
+  <CC_Stakes_Short_Demanding>Demanding mode: broken promises and favoritism bite hard, and bitter colonists may sulk.</CC_Stakes_Short_Demanding>
   <CC_Stakes_Short_AdvisorOnly>Advisor-only mode: wishes are suggestions, with no mood effects.</CC_Stakes_Short_AdvisorOnly>
   <CC_WishHeader>{0} wishes for: {1}</CC_WishHeader>
   <CC_WishHeaderForOther>{0} asks on behalf of {1}: {2}</CC_WishHeaderForOther>
@@ -230,7 +230,7 @@
   <CC_Reason_MissingPart>{PAWN_nameDef} lost {PAWN_possessive} {PART}, and a replacement is within the colony's reach.</CC_Reason_MissingPart>
   <CC_Reason_AnimalLover>{PAWN_nameDef} loves animals, and there are {ANIMALS} roaming nearby.</CC_Reason_AnimalLover>
   <CC_Reason_Unsafe>{PAWN_nameDef} has seen too much violence and doesn't feel safe.</CC_Reason_Unsafe>
-  <CC_Reason_Tactician>{PAWN_nameDef} is a fighter and sees weak spots in the colony's defences.</CC_Reason_Tactician>
+  <CC_Reason_Tactician>{PAWN_nameDef} is a fighter and sees weak spots in the colony's defenses.</CC_Reason_Tactician>
   <CC_Reason_RoyalBedroom>{PAWN_nameDef}'s title ({TITLE}) requires: {LIST}</CC_Reason_RoyalBedroom>
   <CC_Reason_RoyalThrone>{PAWN_nameDef}'s title ({TITLE}) requires a throne room with: {LIST}</CC_Reason_RoyalThrone>
   <CC_Reason_Child>{PAWN_nameDef} is a child and has nothing of {PAWN_possessive} own to learn or play with.</CC_Reason_Child>
@@ -348,7 +348,7 @@
   <CC_Goal_Animals>Tame {0} new animals ({1} so far)</CC_Goal_Animals>
   <CC_Goal_SharedArt>{0} works of art in dining and rec rooms (now: {1})</CC_Goal_SharedArt>
   <CC_Goal_Colonists>Welcome {0} new colonist(s) ({1} so far)</CC_Goal_Colonists>
-  <CC_Goal_Defense>Defences strong enough for the raids you attract ({0} there)</CC_Goal_Defense>
+  <CC_Goal_Defense>Defenses strong enough for the raids you attract ({0} there)</CC_Goal_Defense>
   <CC_Goal_Power>{0} Wd of stored power (now: {1} Wd)</CC_Goal_Power>
   <CC_Goal_WarmBedrooms>A heat source in every bedroom ({0} / {1})</CC_Goal_WarmBedrooms>
   <CC_Stock_medicine>medicine</CC_Stock_medicine>
@@ -520,7 +520,7 @@
   <CC_Stakes_Gentle>Gentle</CC_Stakes_Gentle>
   <CC_Stakes_Gentle_Tip>Only upsides. Granted wishes and achieved ambitions lift mood; ignoring a wish, refusing it or failing an ambition costs nothing. Trust is still tracked, but only its good side has effects.</CC_Stakes_Gentle_Tip>
   <CC_Stakes_Balanced>Balanced (recommended)</CC_Stakes_Balanced>
-  <CC_Stakes_Balanced_Tip>Upsides and downsides. Ignored wishes and refusals sting, broken promises sting more, colonists who waited longer feel passed over, the jealous resent favourites, and ignored colonists can turn disgruntled and work slower. Granted wishes can leave people motivated.</CC_Stakes_Balanced_Tip>
+  <CC_Stakes_Balanced_Tip>Upsides and downsides. Ignored wishes and refusals sting, broken promises sting more, colonists who waited longer feel passed over, the jealous resent favorites, and ignored colonists can turn disgruntled and work slower. Granted wishes can leave people motivated.</CC_Stakes_Balanced_Tip>
   <CC_Stakes_Demanding>Demanding</CC_Stakes_Demanding>
   <CC_Stakes_Demanding_Tip>Like Balanced, with every penalty 50% stronger. Bitter, unhappy colonists may storm off to sulk or go on an insulting spree.</CC_Stakes_Demanding_Tip>
   <CC_Stakes_AdvisorOnly>Advisor only</CC_Stakes_AdvisorOnly>
@@ -553,7 +553,7 @@
   <CC_Settings_Reset>Reset to defaults</CC_Settings_Reset>
 
   <CC_Settings_Penalty>Strength of downsides: {0}</CC_Settings_Penalty>
-  <CC_Settings_Jealousy>Jealousy and favouritism</CC_Settings_Jealousy>
+  <CC_Settings_Jealousy>Jealousy and favoritism</CC_Settings_Jealousy>
   <CC_Settings_Jealousy_Tip>When a wish comes true, the jealous, the greedy, rivals and those who have waited longer may resent it, and some will ask for the same thing.</CC_Settings_Jealousy_Tip>
   <CC_Settings_EventWishes>Wishes after events</CC_Settings_EventWishes>
   <CC_Settings_EventWishes_Tip>Raids, deaths, cold nights, meals eaten off the floor and the like make colonists speak up within hours, about the thing that just happened.</CC_Settings_EventWishes_Tip>
@@ -637,7 +637,7 @@
   <CC_AlmanacCat_Food>Food and farming</CC_AlmanacCat_Food>
   <CC_AlmanacCat_Rooms>Rooms</CC_AlmanacCat_Rooms>
   <CC_AlmanacCat_Mood>Mood and minds</CC_AlmanacCat_Mood>
-  <CC_AlmanacCat_Defense>Defence</CC_AlmanacCat_Defense>
+  <CC_AlmanacCat_Defense>Defense</CC_AlmanacCat_Defense>
   <CC_AlmanacCat_Health>Health and medicine</CC_AlmanacCat_Health>
   <CC_AlmanacCat_Management>Running the colony</CC_AlmanacCat_Management>
   <CC_AlmanacCat_LowTech>Tribal and medieval</CC_AlmanacCat_LowTech>

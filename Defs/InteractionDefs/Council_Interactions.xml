@@ -144,10 +144,10 @@
 
   <InteractionDef ParentName="Council_WishTalkBase">
     <defName>Council_Talk_Safety</defName>
-    <label>talked about the colony's defences</label>
+    <label>talked about the colony's defenses</label>
     <logRulesInitiator>
       <rulesStrings>
-        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] [INITIATOR_pronoun] doesn't feel safe with the defences the way they are.</li>
+        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] [INITIATOR_pronoun] doesn't feel safe with the defenses the way they are.</li>
         <li>r_logentry->[INITIATOR_nameDef] walked [RECIPIENT_nameDef] along the perimeter, pointing out every weak spot.</li>
         <li>r_logentry->[INITIATOR_nameDef] argued with [RECIPIENT_nameDef] about how to hold off the next raid.</li>
         <li>r_logentry->[INITIATOR_nameDef] complained to [RECIPIENT_nameDef] about having to fight raiders with junk.</li>

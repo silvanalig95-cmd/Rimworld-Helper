@@ -213,7 +213,7 @@
     <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
     <stages>
       <li>
-        <label>the favourite</label>
+        <label>the favorite</label>
         <description>Some people only have to ask.</description>
         <baseMoodEffect>-2</baseMoodEffect>
         <baseOpinionOffset>-10</baseOpinionOffset>
@@ -242,8 +242,8 @@
     <durationDays>5</durationDays>
     <stages>
       <li>
-        <label>safer behind the new defences</label>
-        <description>Someone asked for better defences and we built them. I sleep a little easier.</description>
+        <label>safer behind the new defenses</label>
+        <description>Someone asked for better defenses and we built them. I sleep a little easier.</description>
         <baseMoodEffect>3</baseMoodEffect>
       </li>
     </stages>
@@ -520,8 +520,8 @@
     <durationDays>5</durationDays>
     <stages>
       <li>
-        <label>safer behind our defences</label>
-        <description>Our defences are stronger now. Next time they come, we'll be ready.</description>
+        <label>safer behind our defenses</label>
+        <description>Our defenses are stronger now. Next time they come, we'll be ready.</description>
         <baseMoodEffect>4</baseMoodEffect>
       </li>
     </stages>

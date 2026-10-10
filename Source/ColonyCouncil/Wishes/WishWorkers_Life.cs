@@ -210,7 +210,7 @@ namespace ColonyCouncil
         }
     }
 
-    /// <summary>Feeling unsafe: more defences, in whatever form the colony can build.</summary>
+    /// <summary>Feeling unsafe: more defenses, in whatever form the colony can build.</summary>
     public class WishWorker_Defenses : WishWorker
     {
         public override IEnumerable<WishCandidate> CandidatesFor(Pawn pawn)

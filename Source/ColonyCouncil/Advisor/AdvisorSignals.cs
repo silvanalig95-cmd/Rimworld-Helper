@@ -229,7 +229,7 @@ namespace ColonyCouncil
         }
     }
 
-    // ---------------- Defence ----------------
+    // ---------------- Defense ----------------
 
     public class AdvisorWorker_Defense : AdvisorSignalWorker
     {

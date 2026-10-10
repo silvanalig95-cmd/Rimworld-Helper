@@ -321,7 +321,7 @@
   <ColonyCouncil.AmbitionDef>
     <defName>Council_Amb_HoldTheLine</defName>
     <label>hold the line</label>
-    <description>Strengthen the colony's defences until we can face the raids our wealth attracts. Add cover where the fighting happens.</description>
+    <description>Strengthen the colony's defenses until we can face the raids our wealth attracts. Add cover where the fighting happens.</description>
     <days>18</days>
     <weight>1.1</weight>
     <relevantCategories>
@@ -346,14 +346,14 @@
     </goals>
     <pitch>
       <plain>
-        <li>The raids are getting bigger and our defences aren't. Let's fix that before they fix us.</li>
+        <li>The raids are getting bigger and our defenses aren't. Let's fix that before they fix us.</li>
         <li>Cover, weapons, a place to make a stand. I propose we get ready for the next raid.</li>
       </plain>
       <warm>
         <li>I want everyone here to feel safe at night. Let's make this place a fortress.</li>
       </warm>
       <blunt>
-        <li>Next time they come, I want them running back where they came from. Build defences.</li>
+        <li>Next time they come, I want them running back where they came from. Build defenses.</li>
       </blunt>
       <cheerful>
         <li>Let's make our home the last place any raider wants to visit!</li>
@@ -646,7 +646,7 @@
         <li>Animals are honest. I could use more honesty around here.</li>
       </gloomy>
       <cold>
-        <li>Tamed animals provide labour, food and defence. The return is excellent.</li>
+        <li>Tamed animals provide labour, food and defense. The return is excellent.</li>
       </cold>
     </pitch>
     <achieved>

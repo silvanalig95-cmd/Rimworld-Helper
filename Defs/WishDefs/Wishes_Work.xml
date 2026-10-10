@@ -27,6 +27,8 @@
         <li>If I had {SUBJECT}, I could do the best work of my life. Right now I'm making do.</li>
         <li>I keep working in a corner, between the food and somebody's laundry. We need {SUBJECT}.</li>
         <li>Give me {SUBJECT} and I'll show you what I can really do.</li>
+        <li>My hands itch for real work. Give me a proper {SUBJECT}.</li>
+        <li>[winter] Nothing to do in winter but work. Let me do the work I love, properly.</li>
       </plain>
       <warm>
         <li>I love this work so much. With {SUBJECT}, I could do it properly, for all of us.</li>
@@ -52,6 +54,7 @@
       <plain>
         <li>This is it. This is where I'll do something great.</li>
         <li>A proper space to work. My hands are itching already.</li>
+        <li>Finally. Now watch what I can do.</li>
       </plain>
       <warm>
         <li>Thank you. I'll make every one of you proud.</li>
@@ -109,6 +112,8 @@
       <plain>
         <li>I'd really like to do some {SUBJECT}. It's what I'm good at, and nobody's letting me.</li>
         <li>Could you put me on {SUBJECT}? I miss it.</li>
+        <li>[trait:Industriousness] I'm going mad doing nothing I'm good at.</li>
+        <li>[lowmood] The one thing that ever makes me feel better is {SUBJECT}. And it's been taken away.</li>
       </plain>
       <warm>
         <li>I'd love to help with {SUBJECT}. I think I could make a real difference there.</li>
@@ -129,6 +134,7 @@
     <thanks>
       <plain>
         <li>Thank you. This is what I'm meant to be doing.</li>
+        <li>Back where I belong.</li>
       </plain>
       <cheerful>
         <li>Yes! Back to what I love!</li>
@@ -167,6 +173,8 @@
       <plain>
         <li>Our dining room is so bare. A sculpture or two would make every meal better.</li>
         <li>We survive just fine. I'd like us to live a little, too. Some art in the common rooms?</li>
+        <li>These walls are begging for something beautiful.</li>
+        <li>[rich] We have the wealth. Let's have the beauty to go with it.</li>
       </plain>
       <warm>
         <li>Beauty matters, even out here. Maybe especially out here. Could we put some art where everyone can see it?</li>
@@ -227,6 +235,8 @@
       <plain>
         <li>When the raiders come, I want something better than this in my hands. A decent {SUBJECT}, please.</li>
         <li>This weapon is going to get me killed. Could someone make or find me a proper {SUBJECT}?</li>
+        <li>[trigger:raid] I fought them with this? I need something better before they come back.</li>
+        <li>[trait:Bloodlust] This blade's too dull to enjoy. Get me something sharper.</li>
       </plain>
       <warm>
         <li>I'd protect everyone better with a good {SUBJECT}. That's all I want it for.</li>
@@ -248,6 +258,7 @@
     <thanks>
       <plain>
         <li>Now that's a weapon. Let them come.</li>
+        <li>Now we're talking.</li>
       </plain>
       <blunt>
         <li>Finally. Raiders, form an orderly line.</li>
@@ -262,6 +273,7 @@
     <expired>
       <plain>
         <li>Guess I'll fight with what I have. Again.</li>
+        <li>I'll make do. With this. Somehow.</li>
       </plain>
       <gloomy>
         <li>Remember this when I'm lying in the dirt.</li>
@@ -287,6 +299,8 @@
       <plain>
         <li>Hops, a barrel, some patience. That's all it takes. Could we brew our own beer?</li>
         <li>A colony isn't a colony without beer. I'd happily build {THING} myself.</li>
+        <li>[afterraid] After a day like this, a drink would be the decent thing.</li>
+        <li>[winter] Long winter evenings and nothing to drink. Explain how that's acceptable.</li>
       </plain>
       <warm>
         <li>Imagine sharing a cold beer with everyone after a long day. It's good for the spirit.</li>
@@ -307,6 +321,7 @@
     <thanks>
       <plain>
         <li>The brew is on! Best news all season.</li>
+        <li>To the brewers!</li>
       </plain>
       <cheerful>
         <li>A toast! To whoever built this! Also to me, for asking!</li>
@@ -355,6 +370,10 @@
       <plain>
         <li>I ate raw corn for lunch. Just raw corn. Could we have {SUBJECT}, please?</li>
         <li>A proper meal now and then would do wonders for everyone. Could we have {SUBJECT}?</li>
+        <li>[trigger:rawfood] I ate a raw potato today. Raw. Like a squirrel.</li>
+        <li>[trigger:sick] I've been throwing up since breakfast. Can we please cook properly?</li>
+        <li>[trait:Gourmand] Food is the only pleasure we've got out here. Let's not waste it.</li>
+        <li>[winter] Hot food in winter. A real meal. Something to look forward to.</li>
       </plain>
       <warm>
         <li>Good food brings people together. Could our cooks make {SUBJECT} sometimes?</li>
@@ -375,6 +394,7 @@
     <thanks>
       <plain>
         <li>Now THAT is a meal. Compliments to the cook.</li>
+        <li>Now THAT is a meal.</li>
       </plain>
       <cheerful>
         <li>I want to marry this meal.</li>
@@ -389,6 +409,7 @@
     <expired>
       <plain>
         <li>Raw food again. My stomach has filed a complaint.</li>
+        <li>Back to gruel, then.</li>
       </plain>
     </expired>
   </ColonyCouncil.WishDef>
@@ -412,6 +433,8 @@
       <plain>
         <li>Half the harvest is turning to mush. We need a freezer, with {THING} keeping it cold.</li>
         <li>I can't cook with ingredients that are already rotting. A freezer, please.</li>
+        <li>[summer] The meat went green again. In two days. We need cold storage.</li>
+        <li>[hot] It's hot enough to cook the food in the storeroom, and not in a good way.</li>
       </plain>
       <warm>
         <li>All that hard work in the fields, wasted. A freezer would save so much.</li>
@@ -432,6 +455,7 @@
     <thanks>
       <plain>
         <li>Cold storage! Nothing goes to waste now.</li>
+        <li>Cold air, fresh food, no flies. Beautiful.</li>
       </plain>
       <cheerful>
         <li>I walked in and my breath fogged up. I love it.</li>

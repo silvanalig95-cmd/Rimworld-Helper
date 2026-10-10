@@ -421,7 +421,7 @@ namespace ColonyCouncil
                 if (!heckle.NullOrEmpty()) sb.AppendLine(heckle);
             }
             sb.AppendLine();
-            var fav = m.Favourite;
+            var fav = m.Favorite;
             if (m.attendees.Count > 1 && fav != null)
                 sb.AppendLine(m.Tied ? "CC_Meeting_Split".Translate().Resolve() : "CC_Meeting_Leans".Translate(fav.def.label.Named("AMBITION"), fav.proposer.Named("PAWN")).Resolve());
             sb.Append("CC_Meeting_Outro".Translate());
@@ -472,7 +472,7 @@ namespace ColonyCouncil
         }
 
         /// <summary>
-        /// The decision. Backing the colony's favourite pleases its voters; overruling a clear majority costs a
+        /// The decision. Backing the colony's favorite pleases its voters; overruling a clear majority costs a
         /// little trust with them (when downsides are on). The proposer of the chosen idea is delighted either way.
         /// </summary>
         public void Choose(AmbitionDef def, Pawn proposer, Map map, ChoiceLetter_CouncilMeeting letter = null)
@@ -485,14 +485,14 @@ namespace ColonyCouncil
                 var counts = letter.options.Select((o, k) => letter.voterChoice.Count(c => c == k)).ToList();
                 int max = counts.Count > 0 ? counts.Max() : 0;
                 bool clearMajority = counts.Count(c => c == max) == 1 && max >= 2;
-                int favourite = counts.IndexOf(max);
+                int favorite = counts.IndexOf(max);
                 for (int k = 0; k < letter.voterPawns.Count; k++)
                 {
                     var v = letter.voterPawns[k];
                     if (v == null || v.Dead) continue;
                     if (letter.voterChoice[k] == chosen) comp.standings.Change(v, 2f, "CC_Log_VoteWon".Translate(def.label));
-                    else if (clearMajority && letter.voterChoice[k] == favourite && Settings.Negatives)
-                        comp.standings.Change(v, -2f, "CC_Log_Overruled".Translate(letter.options[favourite].label));
+                    else if (clearMajority && letter.voterChoice[k] == favorite && Settings.Negatives)
+                        comp.standings.Change(v, -2f, "CC_Log_Overruled".Translate(letter.options[favorite].label));
                 }
             }
             if (proposer != null) comp.standings.Change(proposer, 5f, "CC_Log_IdeaChosen".Translate(def.label));

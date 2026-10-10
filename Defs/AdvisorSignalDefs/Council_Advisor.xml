@@ -61,7 +61,7 @@
 
   <ColonyCouncil.AdvisorSignalDef>
     <defName>Council_Adv_Defense</defName>
-    <label>defences</label>
+    <label>defenses</label>
     <workerClass>ColonyCouncil.AdvisorWorker_Defense</workerClass>
     <category>Defense</category>
     <importance>1.2</importance>

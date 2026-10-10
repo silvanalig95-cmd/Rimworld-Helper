@@ -28,6 +28,10 @@
         <li>My clothes are more holes than cloth at this point. Could someone make me something new?</li>
         <li>I'm wearing a dead man's shirt. It still smells like him. New clothes, please.</li>
         <li>A new set of clothes would do wonders. These ones are barely holding on.</li>
+        <li>[trigger:naked] I'm not wearing enough to be decent, and not enough to be warm. Pick one, then give me both.</li>
+        <li>[winter] My coat has more holes than coat. And it's winter.</li>
+        <li>[trait:Greedy] I deserve better than rags.</li>
+        <li>[afterraid] I'm still wearing a dead raider's shirt. I'd like something that's never been stabbed.</li>
       </plain>
       <warm>
         <li>When the tailor has a moment, I'd be so grateful for something new to wear.</li>
@@ -56,6 +60,7 @@
     <thanks>
       <plain>
         <li>Clean clothes that never touched a corpse. I feel human again.</li>
+        <li>[winter] Warm and in one piece. Both me and the clothes.</li>
       </plain>
       <cheerful>
         <li>Look at me! Do I look dashing? I feel dashing.</li>
@@ -67,6 +72,7 @@
     <expired>
       <plain>
         <li>I'll patch these up again. Somehow.</li>
+        <li>[winter] I'll just shiver, then.</li>
       </plain>
       <gloomy>
         <li>Rags it is. Fitting, really.</li>
@@ -112,6 +118,11 @@
         <li>{OTHER_nameDef} is still lying out there. Please, give {OTHER_objective} a proper grave.</li>
         <li>I can't stop thinking about {OTHER_nameDef} out in the open. That's no way to end. Bury {OTHER_objective}.</li>
         <li>Whatever we can spare, let's spare it for {OTHER_nameDef}'s grave.</li>
+        <li>[trigger:death] We haven't even buried {OTHER_nameDef} yet. Please. Let's do it today.</li>
+        <li>[trigger:death] I can't walk past that spot anymore. {OTHER_nameDef} deserves a grave.</li>
+        <li>[rain] It's raining on {OTHER_nameDef}. Nobody should be left out in the rain.</li>
+        <li>[trait:Psychopath] The body is a morale problem. Bury it.</li>
+        <li>[old] I've buried too many people. One more won't break me. Leaving one unburied might.</li>
       </plain>
       <warm>
         <li>{OTHER_nameDef} meant so much to me. Let's lay {OTHER_objective} to rest properly. I'll dig the grave myself.</li>
@@ -133,6 +144,8 @@
       <plain>
         <li>{OTHER_nameDef} is at rest now. Thank you for that.</li>
         <li>I said goodbye at the grave. It helped more than I expected.</li>
+        <li>Rest well, {OTHER_nameDef}. We'll take it from here.</li>
+        <li>[rain] At least the rain can't reach {OTHER_nameDef} now.</li>
       </plain>
       <warm>
         <li>Thank you for giving {OTHER_nameDef} the farewell {OTHER_pronoun} deserved.</li>
@@ -150,6 +163,7 @@
     <expired>
       <plain>
         <li>I suppose nobody had time for {OTHER_nameDef}.</li>
+        <li>I'll never forgive this place for leaving {OTHER_nameDef} out there.</li>
       </plain>
       <gloomy>
         <li>We'll all end up like {OTHER_nameDef}. Forgotten in the dirt.</li>
@@ -185,6 +199,9 @@
       <plain>
         <li>Life without my {SUBJECT} is hard. I've heard we could get {THING}. Please?</li>
         <li>I keep reaching for things with a {SUBJECT} I don't have. Could the doctor fit me with {THING}?</li>
+        <li>[trigger:injury] I keep reaching with the hand that isn't there.</li>
+        <li>I want to be useful again. Whole again, or close enough.</li>
+        <li>[old] I'm old, not finished. Fix me up and I'll keep working.</li>
       </plain>
       <warm>
         <li>I don't want to be a burden. With {THING}, I could pull my weight again.</li>
@@ -210,6 +227,7 @@
     <thanks>
       <plain>
         <li>It's not what I was born with, but it works. Thank you.</li>
+        <li>I'll learn it. Give me a week and you won't know it isn't mine.</li>
       </plain>
       <cheerful>
         <li>Look at this! I'm basically a new person! Partially!</li>
@@ -224,6 +242,7 @@
     <expired>
       <plain>
         <li>I'll learn to manage without it. I suppose.</li>
+        <li>I'll manage. I've managed so far.</li>
       </plain>
       <gloomy>
         <li>Broken things stay broken out here.</li>
@@ -249,6 +268,9 @@
       <plain>
         <li>There's a {SUBJECT} wandering around out there. I think it wants to come home with us.</li>
         <li>Could I try taming that {SUBJECT}? I'd look after it, I swear.</li>
+        <li>[winter] A warm animal to curl up next to in winter. Is that too much to ask?</li>
+        <li>[lowmood] Animals don't judge you. I could use that.</li>
+        <li>[child] Can we have a pet? Please? I'll feed it. I promise. Mostly.</li>
       </plain>
       <warm>
         <li>That {SUBJECT} looks lonely. We could use a friend, and so could it.</li>
@@ -269,6 +291,7 @@
     <thanks>
       <plain>
         <li>Welcome to the family, little one.</li>
+        <li>Look at it! Look at its face! I'm never letting go.</li>
       </plain>
       <cheerful>
         <li>New friend! Best day! Everyone come say hello!</li>
@@ -286,8 +309,8 @@
 
   <ColonyCouncil.WishDef>
     <defName>Council_Wish_Defenses</defName>
-    <label>stronger defences</label>
-    <description>A fighter, or someone shaken by violence, doesn't feel safe and wants better defences. What they ask for depends on what the colony can build.</description>
+    <label>stronger defenses</label>
+    <description>A fighter, or someone shaken by violence, doesn't feel safe and wants better defenses. What they ask for depends on what the colony can build.</description>
     <workerClass>ColonyCouncil.WishWorker_Defenses</workerClass>
     <envy>0</envy>
     <triggers>
@@ -314,8 +337,13 @@
     <request>
       <plain>
         <li>Next raid, I'd like something between me and the bullets. Let's add more {SUBJECT}.</li>
-        <li>Our defences are thin. A few more {SUBJECT} would let me sleep at night.</li>
+        <li>Our defenses are thin. A few more {SUBJECT} would let me sleep at night.</li>
         <li>I've been walking the perimeter. We need {SUBJECT} at the approaches.</li>
+        <li>[trigger:raid] They walked right up to our door. Next time I want something between them and us.</li>
+        <li>[trigger:raid] We were lucky today. I don't want to need luck tomorrow.</li>
+        <li>[trigger:raid,lowtech] Spikes in the ground and a wall to hide behind. That's all I ask.</li>
+        <li>[hurt] I've got the stitches to prove we need better defenses.</li>
+        <li>[night] I keep hearing things at night. I'd sleep better knowing we're ready.</li>
       </plain>
       <warm>
         <li>I just want everyone to be safe. Could we build some more {SUBJECT}?</li>
@@ -336,6 +364,7 @@
     <thanks>
       <plain>
         <li>That's better. Let them come.</li>
+        <li>[night] Let them come. We're ready now.</li>
       </plain>
       <cheerful>
         <li>Ha! I almost feel sorry for the next raiders. Almost.</li>
@@ -350,6 +379,7 @@
     <expired>
       <plain>
         <li>I'll keep my weapon close, then.</li>
+        <li>[afterraid] We'll do it the hard way, then. With blood.</li>
       </plain>
       <gloomy>
         <li>When they come, remember I asked.</li>
@@ -376,7 +406,7 @@
         <li>I'm sure you understand that someone of my rank cannot be seen living like this.</li>
       </plain>
       <warm>
-        <li>I don't ask for myself, truly. But my title must be honoured, for all our sakes.</li>
+        <li>I don't ask for myself, truly. But my title must be honored, for all our sakes.</li>
       </warm>
       <blunt>
         <li>A noble in a hovel. It's embarrassing for all of us. Fix my {SUBJECT}.</li>
@@ -426,6 +456,8 @@
       <plain>
         <li>Can we have {THING}? Pleeeease? I'll be good. Mostly.</li>
         <li>All the grown-ups have stuff to do. I want stuff too! Like {THING}!</li>
+        <li>[child] There's NOTHING to do here. Nothing! For kids!</li>
+        <li>[winter,child] It's too cold to play outside. Can we have something inside?</li>
       </plain>
       <cheerful>
         <li>If we get {THING}, I'll learn EVERYTHING. Even the boring stuff!</li>

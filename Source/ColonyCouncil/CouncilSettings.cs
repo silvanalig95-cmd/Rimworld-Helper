@@ -7,7 +7,7 @@ namespace ColonyCouncil
     {
         /// <summary>Only upsides: granted wishes help, ignored ones cost nothing.</summary>
         Gentle,
-        /// <summary>Ignored wishes, broken promises, favouritism and jealousy all bite, and can lead to sulking and grudges.</summary>
+        /// <summary>Ignored wishes, broken promises, favoritism and jealousy all bite, and can lead to sulking and grudges.</summary>
         Demanding,
         /// <summary>No mood effects at all. Pure suggestions.</summary>
         AdvisorOnly,

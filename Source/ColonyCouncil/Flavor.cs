@@ -198,6 +198,21 @@ namespace ColonyCouncil
             return Strip(fitting.RandomElementByWeight(x => x.weight).line);
         }
 
+        /// <summary>Like <see cref="Pick"/>, but only lines with at least one matching tag. Null if none.</summary>
+        public static string PickTagged(IEnumerable<string> lines, HashSet<string> context)
+        {
+            if (lines == null || context == null) return null;
+            var fitting = new List<(string line, int m)>();
+            foreach (var l in lines)
+            {
+                if (l.NullOrEmpty()) continue;
+                int m = Match(l, context);
+                if (m > 0) fitting.Add((l, m));
+            }
+            if (fitting.Count == 0) return null;
+            return Strip(fitting.RandomElementByWeight(x => x.m).line);
+        }
+
         public static bool AnyFits(IEnumerable<string> lines, HashSet<string> context) => lines != null && lines.Any(l => !l.NullOrEmpty() && Match(l, context) >= 0);
 
         /// <summary>A line from a <see cref="FlavorPoolDef"/>, or null if the pool doesn't exist or nothing fits.</summary>
