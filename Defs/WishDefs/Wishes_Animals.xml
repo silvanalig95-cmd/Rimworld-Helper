@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- ===================== A bed for the pet ===================== -->
+  <ColonyCouncil.WishDef>
+    <defName>Council_Wish_PetBed</defName>
+    <label>a bed for {OTHER_nameDef} in {PAWN_possessive} room</label>
+    <description>A colonist bonded to a small animal wants it sleeping in their room, not out with the herd.</description>
+    <workerClass>ColonyCouncil.WishWorker_PetBed</workerClass>
+    <category>Comfort</category>
+    <weight>0.9</weight>
+    <expiryDays>8</expiryDays>
+    <cooldownDays>20</cooldownDays>
+    <grantedThought>Council_Granted_PetBed</grantedThought>
+    <envy>0.1</envy>
+    <talkInteraction>Council_Talk_Animals</talkInteraction>
+    <fulfilledWhen>An animal bed or sleeping spot in {PAWN_nameDef}'s bedroom.</fulfilledWhen>
+    <request>
+      <plain>
+        <li>{OTHER_nameDef} sleeps outside my door every night anyway. Might as well be inside it.</li>
+        <li>Just a corner for {OTHER_nameDef}. I'll clean up the hair. Most of it.</li>
+        <li>[winter] It's freezing in the barn. {OTHER_nameDef} could sleep at the foot of my bed. Please.</li>
+        <li>[night] I woke up and {OTHER_nameDef} wasn't there. I didn't sleep again.</li>
+      </plain>
+      <warm>
+        <li>{OTHER_nameDef} looks after me all day. Let me look after {OTHER_objective} at night.</li>
+      </warm>
+      <blunt>
+        <li>{OTHER_nameDef} sleeps with me. Build a bed or I'll share mine.</li>
+      </blunt>
+      <cheerful>
+        <li>A little bed for {OTHER_nameDef}! With a blanket! Maybe a tiny pillow! Is a tiny pillow too much?</li>
+      </cheerful>
+      <gloomy>
+        <li>{OTHER_nameDef} is the only one who's never let me down. The least I can do is keep {OTHER_objective} close.</li>
+      </gloomy>
+      <cold>
+        <li>A bonded animal near its handler sleeps better and works better. So do I.</li>
+      </cold>
+    </request>
+    <thanks>
+      <plain><li>{OTHER_nameDef} turned three times and lay down like {OTHER_pronoun} owned the place. Which, now, fair.</li></plain>
+      <warm><li>Listen to {OTHER_nameDef} snore. Best sound in the colony.</li></warm>
+      <cheerful><li>Look at {OTHER_objective}! In {OTHER_possessive} little bed! I'm not crying. Okay, a bit.</li></cheerful>
+    </thanks>
+    <expired>
+      <plain><li>Back to the barn, then. {OTHER_nameDef} looked at me like it was my fault.</li></plain>
+    </expired>
+  </ColonyCouncil.WishDef>
+
+  <!-- ===================== A hurt animal ===================== -->
+  <ColonyCouncil.WishDef>
+    <defName>Council_Wish_HurtAnimal</defName>
+    <label>{OTHER_nameDef} patched up</label>
+    <description>A colonist's bonded animal is hurt, and they won't rest until it's tended and back on its feet.</description>
+    <workerClass>ColonyCouncil.WishWorker_HurtAnimal</workerClass>
+    <category>Health</category>
+    <weight>2</weight>
+    <expiryDays>5</expiryDays>
+    <cooldownDays>5</cooldownDays>
+    <grantedThought>Council_Granted_HurtAnimal</grantedThought>
+    <envy>0</envy>
+    <talkInteraction>Council_Talk_Animals</talkInteraction>
+    <fulfilledWhen>{OTHER_nameDef} is tended and mostly healed.</fulfilledWhen>
+    <request>
+      <plain>
+        <li>{OTHER_nameDef} is bleeding and nobody's looked at {OTHER_objective}. Somebody. Please.</li>
+        <li>I know animals aren't priority. {OTHER_nameDef} is my priority.</li>
+        <li>[afterraid] {OTHER_nameDef} fought for us too. Patch {OTHER_objective} up like you'd patch me.</li>
+      </plain>
+      <warm>
+        <li>Could a doctor see {OTHER_nameDef}? I'll do anyone's chores for a week.</li>
+      </warm>
+      <blunt>
+        <li>Get a doctor to {OTHER_nameDef}. Now. I'll wait. Not long.</li>
+      </blunt>
+      <cheerful>
+        <li>{OTHER_nameDef} is being so brave! Let's fix {OTHER_objective} up so I can stop pretending I'm brave too!</li>
+      </cheerful>
+      <gloomy>
+        <li>If {OTHER_nameDef} dies because nobody bothered, I don't know what I'll do.</li>
+      </gloomy>
+      <cold>
+        <li>{OTHER_nameDef} is a trained asset. An untended wound means losing the training. Fix it.</li>
+      </cold>
+    </request>
+    <thanks>
+      <plain><li>{OTHER_nameDef} is up and limping around like nothing happened. Thank you.</li></plain>
+      <warm><li>{OTHER_nameDef} licked my face. That's from both of us.</li></warm>
+      <gloomy><li>Still here. Both of us. That's more than I expected.</li></gloomy>
+    </thanks>
+    <expired>
+      <plain><li>I sat with {OTHER_nameDef} all night. Nobody else came.</li></plain>
+    </expired>
+  </ColonyCouncil.WishDef>
+
+</Defs>

@@ -937,4 +937,9 @@ Granting one of {PAWN_possessive} wishes, or keeping a promise, can win {PAWN_ob
   <CC_Adv_Bitter_Title>{0} colonist(s) bitter about the council</CC_Adv_Bitter_Title>
   <CC_Adv_Bitter_Detail>Bitter: {0}. They work slower, break sooner and have stopped expecting anything.</CC_Adv_Bitter_Detail>
 
+  <!-- Animal wishes -->
+  <CC_Reason_PetBed>{PAWN_nameDef} is bonded to {OTHER_nameDef} and wants {OTHER_objective} close at night.</CC_Reason_PetBed>
+  <CC_Reason_HurtAnimal>{PAWN_nameDef}'s bonded animal, {OTHER_nameDef}, is hurt.</CC_Reason_HurtAnimal>
+  <CC_Progress_HurtAnimal>{OTHER_nameDef}: {1} health. Make sure a doctor is allowed to tend animals.</CC_Progress_HurtAnimal>
+
 </LanguageData>
