@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <ColonyCouncil.AdvisorSignalDef>
+    <defName>Council_Adv_Spoiled</defName>
+    <label>spoiled colonists</label>
+    <workerClass>ColonyCouncil.AdvisorWorker_Spoiled</workerClass>
+    <article>Council_Alm_C_Standards</article>
+    <category>Comfort</category>
+    <importance>0.7</importance>
+    <tips>
+      <li>A week of austerity (Decrees tab) brings everyone's standards back down, so the council's rewards count again.</li>
+      <li>Hard times lower standards on their own. So does saying no to the next feast.</li>
+      <li>Spoiled colonists ask more often and for more. Grant fewer, bigger wishes.</li>
+    </tips>
+  </ColonyCouncil.AdvisorSignalDef>
+
+  <ColonyCouncil.AdvisorSignalDef>
+    <defName>Council_Adv_Bitter</defName>
+    <label>trust</label>
+    <workerClass>ColonyCouncil.AdvisorWorker_Bitter</workerClass>
+    <article>Council_Alm_C_Trust</article>
+    <category>Comfort</category>
+    <importance>1</importance>
+    <tips>
+      <li>Granting a bitter colonist's wish, or keeping a promise to them, is the fastest way back.</li>
+      <li>A decree they love builds trust every day it holds; one they hate wears it down.</li>
+      <li>Bitter colonists work slower and break sooner. It shows in the health tab as a grudge.</li>
+    </tips>
+  </ColonyCouncil.AdvisorSignalDef>
+
+</Defs>

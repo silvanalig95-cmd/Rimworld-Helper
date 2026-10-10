@@ -929,4 +929,12 @@ Granting one of {PAWN_possessive} wishes, or keeping a promise, can win {PAWN_ob
   <CC_Settings_Epithets>Colonists earn names for what they do (the Healer, the Kindling...)</CC_Settings_Epithets>
   <CC_Settings_Epithets_Tip>Whoever has done the most of something (tended wounds, killed raiders, cleaned messes, caught fire) earns a name for it, until someone overtakes them.</CC_Settings_Epithets_Tip>
 
+  <!-- Advisor: standards and trust -->
+  <CC_Adv_Spoiled_Title>The colony has grown hard to please</CC_Adv_Spoiled_Title>
+  <CC_Adv_Spoiled_Detail>{0} of {1} colonists are spoiled. Rewards barely lift their mood, letdowns hit hard, and they keep asking for more. Austerity, or a little hardship, resets it.</CC_Adv_Spoiled_Detail>
+  <CC_Adv_Leaving_Title>{PAWN_nameDef} is about to leave</CC_Adv_Leaving_Title>
+  <CC_Adv_Leaving_Detail>{PAWN_nameDef} will walk out in {TIME} unless their trust recovers. Grant one of their wishes or keep a promise.</CC_Adv_Leaving_Detail>
+  <CC_Adv_Bitter_Title>{0} colonist(s) bitter about the council</CC_Adv_Bitter_Title>
+  <CC_Adv_Bitter_Detail>Bitter: {0}. They work slower, break sooner and have stopped expecting anything.</CC_Adv_Bitter_Detail>
+
 </LanguageData>
