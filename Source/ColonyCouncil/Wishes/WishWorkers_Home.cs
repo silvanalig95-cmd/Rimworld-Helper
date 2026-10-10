@@ -113,6 +113,8 @@ namespace ColonyCouncil
 
         public override bool StillValid(Wish wish) => RoomUtil.PrivateRoom(wish.Beneficiary) != null;
 
+        public override string TrySelfHelp(Wish wish) => PlanInOwnRoom(wish.Beneficiary, wish.thingDef) ? "CC_SelfHelp_Plan" : null;
+
         public override string ProgressText(Wish wish)
         {
             float imp = RoomUtil.Impressiveness(RoomUtil.PrivateRoom(wish.Beneficiary));
@@ -153,6 +155,8 @@ namespace ColonyCouncil
         }
 
         public override bool StillValid(Wish wish) => RoomUtil.PrivateRoom(wish.Beneficiary) != null;
+
+        public override string TrySelfHelp(Wish wish) => PlanInOwnRoom(wish.Beneficiary, wish.thingDef) ? "CC_SelfHelp_Plan" : null;
 
         public override string ProgressText(Wish wish) =>
             "CC_Progress_Space".Translate(RoomUtil.Space(RoomUtil.PrivateRoom(wish.Beneficiary)).ToString("0"), wish.targetValue.ToString("0"));
@@ -199,6 +203,16 @@ namespace ColonyCouncil
             if (o == null || o.Dead || !o.IsFreeColonist) return false;
             return LovePartnerRelationUtility.LovePartnerRelationExists(wish.Beneficiary, o);
         }
+
+        /// <summary>If the partner already has a bed for two, they simply move in.</summary>
+        public override string TrySelfHelp(Wish wish)
+        {
+            var bed = wish.other?.ownership?.OwnedBed;
+            var me = wish.Beneficiary;
+            if (bed == null || me.ownership == null || bed.Medical || !bed.AnyUnownedSleepingSlot) return null;
+            me.ownership.ClaimBedIfNonMedical(bed);
+            return me.ownership.OwnedBed == bed ? "CC_SelfHelp_ShareBed" : null;
+        }
     }
 
     /// <summary>Small furniture for a private bedroom: an end table, a dresser.</summary>
@@ -243,6 +257,8 @@ namespace ColonyCouncil
         }
 
         public override bool StillValid(Wish wish) => RoomUtil.PrivateRoom(wish.Beneficiary) != null;
+
+        public override string TrySelfHelp(Wish wish) => PlanInOwnRoom(wish.Beneficiary, wish.thingDef) ? "CC_SelfHelp_Plan" : null;
     }
 
     /// <summary>Light in the bedroom: night owls, and colonists who've been stuck in the dark.</summary>
@@ -269,10 +285,12 @@ namespace ColonyCouncil
         public override bool IsFulfilled(Wish wish) => RoomUtil.RoomContains(RoomUtil.PrivateRoom(wish.Beneficiary), Avail.IsLight);
 
         public override bool StillValid(Wish wish) => RoomUtil.PrivateRoom(wish.Beneficiary) != null;
+
+        public override string TrySelfHelp(Wish wish) => PlanInOwnRoom(wish.Beneficiary, wish.thingDef) ? "CC_SelfHelp_Plan" : null;
     }
 
     /// <summary>Slept in the cold or the heat: a heat source (or cooler) in the bedroom.</summary>
-    public class WishWorker_ComfortTemperature : WishWorker
+    public partial class WishWorker_ComfortTemperature : WishWorker
     {
         public override IEnumerable<WishCandidate> CandidatesFor(Pawn pawn)
         {
@@ -320,6 +338,11 @@ namespace ColonyCouncil
             var range = wish.Beneficiary.ComfortableTemperatureRange();
             return room.Temperature >= range.min && room.Temperature <= range.max;
         }
+    }
+
+    public partial class WishWorker_ComfortTemperature
+    {
+        public override string TrySelfHelp(Wish wish) => PlanInRoom(RoomUtil.BedRoom(wish.Beneficiary), wish.Beneficiary, wish.thingDef) ? "CC_SelfHelp_Plan" : null;
     }
 
     /// <summary>Somewhere proper to eat.</summary>
@@ -400,5 +423,7 @@ namespace ColonyCouncil
         public override bool IsFulfilled(Wish wish) => RoomUtil.RoomContains(RoomUtil.PrivateRoom(wish.Beneficiary), Avail.IsPlantPot);
 
         public override bool StillValid(Wish wish) => RoomUtil.PrivateRoom(wish.Beneficiary) != null;
+
+        public override string TrySelfHelp(Wish wish) => PlanInOwnRoom(wish.Beneficiary, wish.thingDef) ? "CC_SelfHelp_Plan" : null;
     }
 }

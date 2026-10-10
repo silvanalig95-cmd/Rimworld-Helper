@@ -12,12 +12,13 @@ namespace ColonyCouncil
     /// The heart of the mod: owns open wishes, the chronicle, the ambition tracker and personal touches,
     /// and runs everything once per in-game hour.
     /// </summary>
-    public class CouncilGameComponent : GameComponent
+    public partial class CouncilGameComponent : GameComponent
     {
         public List<Wish> wishes = new List<Wish>();
         public List<ChronicleEntry> chronicle = new List<ChronicleEntry>();
         public AmbitionTracker ambitions = new AmbitionTracker();
         public PersonalTouchTracker touches = new PersonalTouchTracker();
+        public StandingTracker standings = new StandingTracker();
         public int nextWishId = 1;
 
         private Dictionary<string, int> cooldowns = new Dictionary<string, int>();
@@ -43,6 +44,7 @@ namespace ColonyCouncil
             Scribe_Collections.Look(ref chronicle, "chronicle", LookMode.Deep);
             Scribe_Deep.Look(ref ambitions, "ambitions");
             Scribe_Deep.Look(ref touches, "touches");
+            Scribe_Deep.Look(ref standings, "standings");
             Scribe_Values.Look(ref nextWishId, "nextWishId", 1);
             Scribe_Collections.Look(ref cooldowns, "cooldowns", LookMode.Value, LookMode.Value, ref tmpKeys, ref tmpValues);
             if (Scribe.mode == LoadSaveMode.PostLoadInit)
@@ -52,6 +54,7 @@ namespace ColonyCouncil
                 if (cooldowns == null) cooldowns = new Dictionary<string, int>();
                 if (ambitions == null) ambitions = new AmbitionTracker();
                 if (touches == null) touches = new PersonalTouchTracker();
+                if (standings == null) standings = new StandingTracker();
                 wishes.RemoveAll(w => w == null || w.def == null || w.pawn == null);
             }
         }
@@ -66,7 +69,9 @@ namespace ColonyCouncil
         private void Hourly()
         {
             Safe("wish upkeep", UpdateWishes);
+            if (Settings.enableWishes) Safe("event wishes", CheckTriggers);
             if (Settings.enableWishes) Safe("wish generation", () => TryGenerateWish(false));
+            if (Find.TickManager.TicksGame % GenDate.TicksPerDay < HourTicks) Safe("daily", Daily);
             if (Settings.enableAmbitions) Safe("ambitions", () => ambitions.HourlyTick(this));
             if (Settings.enablePersonalTouches) Safe("personal touches", () => touches.HourlyTick(this));
         }
@@ -181,7 +186,7 @@ namespace ColonyCouncil
             {
                 if (onlyFrom != null && requester != onlyFrom) continue;
                 if (OpenWishBy(requester) != null) continue;
-                float personal = PersonalityFactor(requester);
+                float personal = PersonalityFactor(requester) * TrustFactor(requester);
 
                 foreach (var def in DefDatabase<WishDef>.AllDefsListForReading)
                 {
@@ -269,6 +274,24 @@ namespace ColonyCouncil
             return f;
         }
 
+        /// <summary>
+        /// Bitter colonists mostly stop asking (they grumble instead); doubtful ones push harder; recently
+        /// spoiled ones come back sooner.
+        /// </summary>
+        private float TrustFactor(Pawn p)
+        {
+            var st = standings.For(p, false);
+            if (st == null) return 1f;
+            float f = 1f;
+            switch (st.Level)
+            {
+                case TrustLevel.Bitter: f = 0.5f; break;
+                case TrustLevel.Doubtful: f = 1.25f; break;
+                case TrustLevel.Devoted: f = 0.85f; break;
+            }
+            return f * (1f + 0.12f * st.RecentGrants());
+        }
+
         private static float CategoryFactor(Pawn p, WishDef def)
         {
             var traits = p.story?.traits;
@@ -284,8 +307,11 @@ namespace ColonyCouncil
 
         // ================= Lifecycle =================
 
-        public Wish CreateWish(WishDef def, Pawn requester, Pawn beneficiary, WishCandidate c)
+        public Wish CreateWish(WishDef def, Pawn requester, Pawn beneficiary, WishCandidate c, string trigger = null, Pawn envied = null)
         {
+            var standing = standings.For(beneficiary ?? requester);
+            // Trusting colonists are patient; bitter ones aren't.
+            float patience = Mathf.Clamp(1f + standing.trust / 200f, 0.6f, 1.4f);
             var w = new Wish
             {
                 id = nextWishId++,
@@ -299,12 +325,22 @@ namespace ColonyCouncil
                 targetValue = c.targetValue,
                 baseline = c.baseline,
                 createdTick = Find.TickManager.TicksGame,
-                expiresTick = Find.TickManager.TicksGame + (int)(def.expiryDays * Settings.wishDurationFactor * GenDate.TicksPerDay),
-                tone = ToneUtility.ToneFor(requester)
+                expiresTick = Find.TickManager.TicksGame + (int)(def.expiryDays * Settings.wishDurationFactor * patience * GenDate.TicksPerDay),
+                tone = ToneUtility.ToneFor(requester),
+                trigger = trigger,
+                envied = envied,
+                repeat = standing.asked.Contains(def.defName)
             };
+            if (!standing.asked.Contains(def.defName)) standing.asked.Add(def.defName);
             w.reason = w.Format(c.reason);
+            var tags = Flavor.TagsFor(requester, w);
             var lines = w.ForSomeoneElse && def.requestForOther.Any ? def.requestForOther : def.request;
-            w.quote = w.Format(lines.Pick(w.tone));
+            w.quote = w.Format(lines.Pick(w.tone, tags));
+            if (envied != null)
+            {
+                string envyLine = Flavor.FromPool("Council_Pool_MeToo", requester, w, w.tone);
+                if (!envyLine.NullOrEmpty()) w.quote = w.Format(envyLine) + " " + w.quote;
+            }
             if (w.ForSomeoneElse && !def.requestForOther.Any)
                 w.quote = "CC_ForOtherFallback".Translate(beneficiary.Named("FOR"), w.Label.Named("WISH")).Resolve();
             wishes.Add(w);
@@ -316,6 +352,7 @@ namespace ColonyCouncil
         private void AnnounceNewWish(Wish w)
         {
             var s = Settings;
+            w.scene = Scene(w.trigger.NullOrEmpty() ? "Council_Pool_Scene" : "Council_Pool_Scene_Trigger", w.pawn, w);
             string title = w.ForSomeoneElse
                 ? "CC_WishLetterTitleForOther".Translate(w.pawn.Named("PAWN"), w.Beneficiary.Named("FOR"), w.Label.Named("WISH")).Resolve()
                 : "CC_WishLetterTitle".Translate(w.pawn.Named("PAWN"), w.Label.Named("WISH")).Resolve();
@@ -337,6 +374,11 @@ namespace ColonyCouncil
         public string DescribeForLetter(Wish w)
         {
             var sb = new StringBuilder();
+            if (!w.scene.NullOrEmpty())
+            {
+                sb.AppendLine(w.scene);
+                sb.AppendLine();
+            }
             sb.AppendLine("\"" + w.quote + "\"");
             sb.AppendLine();
             if (!w.reason.NullOrEmpty()) sb.AppendLine("CC_Why".Translate() + ": " + w.reason);
@@ -402,82 +444,8 @@ namespace ColonyCouncil
                 if (!valid) Resolve(w, WishState.Cancelled);
                 else if (fulfilled) Grant(w);
                 else if (now >= w.expiresTick) Expire(w);
+                else CheckStages(w);
             }
-        }
-
-        public void Grant(Wish w)
-        {
-            var s = Settings;
-            var who = w.Beneficiary;
-            GiveThought(who, w.def.grantedThought);
-            foreach (var co in w.coSigners)
-                if (co != who) GiveThought(co, w.def.grantedThought);
-
-            if (w.ForSomeoneElse)
-            {
-                GiveThought(w.pawn, CouncilDefOf.Council_HelpedSomeone);
-                GiveThought(who, CouncilDefOf.Council_SpokeUpForMe, w.pawn);
-            }
-
-            if (s.MoodEffects && w.def.inspirationChance > 0f && Rand.Chance(w.def.inspirationChance) && who.mindState?.inspirationHandler != null && !who.mindState.inspirationHandler.Inspired)
-            {
-                var insp = w.Worker.InspirationFor(w) ?? who.mindState.inspirationHandler.GetRandomAvailableInspirationDef();
-                if (insp != null)
-                    who.mindState.inspirationHandler.TryStartInspiration(insp, "CC_InspirationReason".Translate(who.Named("PAWN"), w.Label.Named("WISH")).Resolve());
-            }
-
-            Tone tone = ToneUtility.ToneFor(who);
-            string thanks = w.Format(w.def.thanks.Pick(tone)) ;
-            if (thanks.NullOrEmpty()) thanks = "CC_ThanksFallback".Translate();
-            string title = "CC_WishGrantedTitle".Translate(who.Named("PAWN"), w.Label.Named("WISH")).Resolve();
-            string body = "\"" + thanks + "\"";
-            if (w.coSigners.Count > 0)
-                body += "\n\n" + "CC_PetitionGranted".Translate(TextUtil.JoinAnd(w.coSigners.Select(p => p.LabelShort).ToList())).Resolve();
-
-            if (s.grantedLetters)
-                Find.LetterStack.ReceiveLetter(title, body, LetterDefOf.PositiveEvent, new LookTargets(who));
-            else
-                Messages.Message(title + ": \"" + TextUtil.ShortSpeech(thanks, 120) + "\"", new LookTargets(who), MessageTypeDefOf.PositiveEvent, false);
-
-            Speak(who, thanks, new Color(0.6f, 1f, 0.6f));
-            AddChronicle(new ChronicleEntry(ChronicleKind.WishGranted,
-                "CC_Chronicle_WishGranted".Translate(who.LabelShort, w.Label).Resolve(), who));
-
-            foreach (var p in w.Supporters) SetCooldown(p, w.def);
-            SetCooldown(who, w.def);
-            w.state = WishState.Granted;
-            ambitions.Notify_WishGranted(w);
-        }
-
-        private void Expire(Wish w)
-        {
-            var s = Settings;
-            if (s.stakes == StakesMode.Demanding)
-            {
-                GiveThought(w.pawn, CouncilDefOf.Council_WishIgnored);
-                foreach (var co in w.coSigners) GiveThought(co, CouncilDefOf.Council_WishIgnored);
-            }
-            Tone tone = ToneUtility.ToneFor(w.pawn);
-            string line = w.Format(w.def.expired.Pick(tone));
-            if (line.NullOrEmpty()) line = "CC_ExpiredFallback".Translate();
-            Messages.Message("CC_WishExpiredTitle".Translate(w.pawn.Named("PAWN"), w.Label.Named("WISH")).Resolve() + ": \"" + TextUtil.ShortSpeech(line, 120) + "\"",
-                new LookTargets(w.pawn), MessageTypeDefOf.NeutralEvent, false);
-            if (w.pawn.Spawned) Speak(w.pawn, line, new Color(0.8f, 0.8f, 0.85f));
-            AddChronicle(new ChronicleEntry(ChronicleKind.WishExpired,
-                "CC_Chronicle_WishExpired".Translate(w.pawn.LabelShort, w.Label).Resolve(), w.pawn));
-            foreach (var p in w.Supporters) SetCooldown(p, w.def, 1.5f);
-            w.state = WishState.Expired;
-        }
-
-        /// <summary>The player said "not now".</summary>
-        public void Dismiss(Wish w)
-        {
-            if (w == null || w.state != WishState.Open) return;
-            AddChronicle(new ChronicleEntry(ChronicleKind.WishDismissed,
-                "CC_Chronicle_WishDismissed".Translate(w.pawn.LabelShort, w.Label).Resolve(), w.pawn));
-            foreach (var p in w.Supporters) SetCooldown(p, w.def, 2f);
-            w.state = WishState.Dismissed;
-            wishes.Remove(w);
         }
 
         private void Resolve(Wish w, WishState state)
@@ -505,13 +473,14 @@ namespace ColonyCouncil
 
         // ================= Effects =================
 
-        public static void GiveThought(Pawn p, ThoughtDef def, Pawn otherPawn = null)
+        public static void GiveThought(Pawn p, ThoughtDef def, Pawn otherPawn = null, float scale = -1f)
         {
             if (def == null || p?.needs?.mood?.thoughts?.memories == null) return;
             if (!ColonyCouncilMod.Settings.MoodEffects) return;
+            if (def.IsSocial && (otherPawn == null || otherPawn == p)) return;
             var thought = ThoughtMaker.MakeThought(def) as Thought_Memory;
             if (thought == null) return;
-            thought.moodPowerFactor = ColonyCouncilMod.Settings.rewardFactor;
+            thought.moodPowerFactor = scale >= 0f ? scale : ColonyCouncilMod.Settings.rewardFactor;
             p.needs.mood.thoughts.memories.TryGainMemory(thought, otherPawn);
         }
 

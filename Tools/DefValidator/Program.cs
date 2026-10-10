@@ -170,6 +170,13 @@ void ValidateValue(XElement el, Type ft, string file)
     if (ft.IsGenericType && ft.GetGenericTypeDefinition().FullName == "System.Collections.Generic.List`1")
     {
         var inner = ft.GetGenericArguments()[0];
+        // Types with custom XML loading (StatModifier, ThingDefCountClass...) use <DefName>value</DefName> items.
+        if (inner.GetMethods().Any(m => m.Name == "LoadDataFromXmlCustom"))
+        {
+            foreach (var li in el.Elements())
+                if (li.Name.LocalName != "li") warnings.Add($"{Rel(file)}:{Line(li)}: {inner.Name} '{li.Name.LocalName}': make sure it exists in vanilla");
+            return;
+        }
         foreach (var li in el.Elements())
         {
             if (li.Name.LocalName != "li") errors.Add($"{Rel(file)}:{Line(li)}: list items must be <li>, found <{li.Name.LocalName}>");
@@ -263,7 +270,8 @@ var dynamic = new Dictionary<string, string[]>
     ["CC_TouchDone_"] = tones,
     ["CC_Level_"] = new[] { "Idea", "Low", "Medium", "High", "Critical" },
     ["CC_Cat_"] = new[] { "Shelter", "Food", "Temperature", "Defense", "Health", "Power", "Comfort", "Work", "Progress", "Idea" },
-    ["CC_Stakes_Short_"] = new[] { "Gentle", "Demanding", "AdvisorOnly" },
+    ["CC_Stakes_Short_"] = new[] { "Gentle", "Demanding", "AdvisorOnly", "Balanced" },
+    ["CC_Trust_"] = new[] { "Bitter", "Doubtful", "Neutral", "Trusting", "Devoted" },
     ["CC_Reason_Clothes_"] = new[] { "dead", "tattered", "naked" },
     ["CC_When_Passion_"] = new[] { "Crafting", "Artistic", "Cooking", "Intellectual", "Medicine", "Plants", "Animals" },
     ["CC_SkillSpace_"] = new[] { "Crafting", "Artistic", "Cooking", "Intellectual", "Medicine", "Plants", "Animals" },
@@ -297,8 +305,8 @@ foreach (var (k, text) in keyed)
 }
 
 // Placeholders in def flavour text
-var wishPh = new HashSet<string> { "SUBJECT", "THING", "THINGBARE", "TARGET", "WISH" };
-var pawnPrefixes = new HashSet<string> { "PAWN", "FOR", "OTHER" };
+var wishPh = new HashSet<string> { "SUBJECT", "THING", "THINGBARE", "TARGET", "WISH", "MINE" };
+var pawnPrefixes = new HashSet<string> { "PAWN", "FOR", "OTHER", "ENVIED" };
 var pawnSuffixes = new HashSet<string> { "nameDef", "nameFull", "labelShort", "pronoun", "possessive", "objective", "label", "definite", "indefinite", "gender" };
 foreach (var (file, doc) in docs)
 {

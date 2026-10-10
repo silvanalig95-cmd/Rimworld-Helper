@@ -10,7 +10,8 @@ namespace ColonyCouncil
         Granted,
         Expired,
         Dismissed,
-        Cancelled
+        Cancelled,
+        Refused
     }
 
     /// <summary>A possible wish found by a worker, before one is picked.</summary>
@@ -45,10 +46,26 @@ namespace ColonyCouncil
         public float baseline;
         public string reason;
         public string quote;
+        /// <summary>A sentence setting the scene: where and how the wish was voiced.</summary>
+        public string scene;
         public Tone tone;
         public int createdTick;
         public int expiresTick;
         public WishState state = WishState.Open;
+        /// <summary>The player promised to see to it: more patience now, a heavier fall if it doesn't happen.</summary>
+        public bool promised;
+        /// <summary>0 = voiced, 1 = reminded, 2 = last call (escalated).</summary>
+        public int stage;
+        /// <summary>The same colonist has made this wish before.</summary>
+        public bool repeat;
+        /// <summary>What set it off, if an event did (see <see cref="WishTrigger.key"/>).</summary>
+        public string trigger;
+        /// <summary>The colonist who inspired this one by getting the same thing ("me too").</summary>
+        public Pawn envied;
+        /// <summary>The colonist took matters into their own hands.</summary>
+        public bool selfHelped;
+
+        public float Elapsed => expiresTick <= createdTick ? 1f : (Find.TickManager.TicksGame - createdTick) / (float)(expiresTick - createdTick);
 
         public Pawn Beneficiary => beneficiary ?? pawn;
         public bool ForSomeoneElse => beneficiary != null && beneficiary != pawn;
@@ -82,7 +99,8 @@ namespace ColonyCouncil
                 thing.Named("THING"),
                 (thingDef?.label ?? subjectLabel ?? "").Named("THINGBARE"),
                 targetValue.ToString("0").Named("TARGET"),
-                def.label.Named("WISH")).Resolve();
+                def.label.Named("WISH"),
+                (envied ?? other ?? forPawn).Named("ENVIED")).Resolve();
         }
 
         public void ExposeData()
@@ -100,10 +118,17 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref baseline, "baseline");
             Scribe_Values.Look(ref reason, "reason");
             Scribe_Values.Look(ref quote, "quote");
+            Scribe_Values.Look(ref scene, "scene");
             Scribe_Values.Look(ref tone, "tone");
             Scribe_Values.Look(ref createdTick, "createdTick");
             Scribe_Values.Look(ref expiresTick, "expiresTick");
             Scribe_Values.Look(ref state, "state");
+            Scribe_Values.Look(ref promised, "promised");
+            Scribe_Values.Look(ref stage, "stage");
+            Scribe_Values.Look(ref repeat, "repeat");
+            Scribe_Values.Look(ref trigger, "trigger");
+            Scribe_References.Look(ref envied, "envied");
+            Scribe_Values.Look(ref selfHelped, "selfHelped");
             if (Scribe.mode == LoadSaveMode.PostLoadInit)
             {
                 if (coSigners == null) coSigners = new List<Pawn>();

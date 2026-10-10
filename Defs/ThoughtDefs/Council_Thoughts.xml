@@ -111,6 +111,156 @@
     </stages>
   </ThoughtDef>
 
+
+  <!-- ======================= Trust and fairness ======================= -->
+
+  <ThoughtDef>
+    <defName>Council_Trust</defName>
+    <workerClass>ColonyCouncil.ThoughtWorker_CouncilTrust</workerClass>
+    <stages>
+      <li>
+        <label>the council never listens</label>
+        <description>I've asked. I've waited. I've been promised things. Nothing. Why do I even bother?</description>
+        <baseMoodEffect>-5</baseMoodEffect>
+      </li>
+      <li>
+        <label>doubts about the council</label>
+        <description>I'm starting to wonder if asking for anything around here is worth the breath.</description>
+        <baseMoodEffect>-2</baseMoodEffect>
+      </li>
+      <li>
+        <label>the council listens</label>
+        <description>When I need something, people here actually listen. That's rarer than it should be.</description>
+        <baseMoodEffect>2</baseMoodEffect>
+      </li>
+      <li>
+        <label>faith in the council</label>
+        <description>Whatever happens, I know this colony will hear me out. I'd follow them a long way for that.</description>
+        <baseMoodEffect>4</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_Refused</defName>
+    <durationDays>2</durationDays>
+    <stackLimit>2</stackLimit>
+    <stages>
+      <li>
+        <label>my request was refused</label>
+        <description>They said no. At least they said it to my face.</description>
+        <baseMoodEffect>-3</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_TookMatters</defName>
+    <durationDays>3</durationDays>
+    <stages>
+      <li>
+        <label>had to do it myself</label>
+        <description>Nobody listened, so I sorted it out on my own. It got done, but it shouldn't have come to that.</description>
+        <baseMoodEffect>-2</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_PromiseKept</defName>
+    <durationDays>5</durationDays>
+    <stages>
+      <li>
+        <label>a promise kept</label>
+        <description>They said they'd do it, and they did. Out here, a kept promise is worth more than silver.</description>
+        <baseMoodEffect>4</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_BrokenPromise</defName>
+    <durationDays>8</durationDays>
+    <stackLimit>2</stackLimit>
+    <stages>
+      <li>
+        <label>a broken promise</label>
+        <description>They promised. I stopped asking because they promised. I won't make that mistake twice.</description>
+        <baseMoodEffect>-7</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Council_StoodTogether</defName>
+    <thoughtClass>Thought_MemorySocial</thoughtClass>
+    <durationDays>20</durationDays>
+    <stackLimit>5</stackLimit>
+    <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
+    <stages>
+      <li>
+        <label>stood together</label>
+        <baseOpinionOffset>8</baseOpinionOffset>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Council_Favoritism</defName>
+    <thoughtClass>Thought_MemorySocial</thoughtClass>
+    <durationDays>8</durationDays>
+    <stackLimit>4</stackLimit>
+    <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
+    <stages>
+      <li>
+        <label>the favourite</label>
+        <description>Some people only have to ask.</description>
+        <baseMoodEffect>-2</baseMoodEffect>
+        <baseOpinionOffset>-10</baseOpinionOffset>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Council_HappyForThem</defName>
+    <thoughtClass>Thought_MemorySocial</thoughtClass>
+    <durationDays>3</durationDays>
+    <stackLimit>4</stackLimit>
+    <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
+    <stages>
+      <li>
+        <label>happy for a friend</label>
+        <description>Someone I care about finally got what they asked for.</description>
+        <baseMoodEffect>2</baseMoodEffect>
+        <baseOpinionOffset>3</baseOpinionOffset>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_SaferNow</defName>
+    <durationDays>5</durationDays>
+    <stages>
+      <li>
+        <label>safer behind the new defences</label>
+        <description>Someone asked for better defences and we built them. I sleep a little easier.</description>
+        <baseMoodEffect>3</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_LaidToRest</defName>
+    <durationDays>6</durationDays>
+    <stages>
+      <li>
+        <label>laid to rest properly</label>
+        <description>We buried them the right way. It doesn't fix anything. It helps.</description>
+        <baseMoodEffect>4</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
   <!-- ======================= Wishes granted ======================= -->
 
   <ThoughtDef ParentName="Council_MemoryBase">

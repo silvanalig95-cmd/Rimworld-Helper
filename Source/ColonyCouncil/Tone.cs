@@ -53,14 +53,25 @@ namespace ColonyCouncil
             }
         }
 
-        public string Pick(Tone tone)
+        /// <summary>
+        /// A line in this tone that fits the moment (see <see cref="Flavor"/> for tags), falling back to plain
+        /// lines and then to any line at all. Tags are stripped from the result.
+        /// </summary>
+        public string Pick(Tone tone, HashSet<string> context = null)
         {
             var list = For(tone);
+            string line = null;
             if (list != null && list.Count > 0 && (tone == Tone.Plain || Rand.Chance(0.8f)))
-                return list.RandomElement();
-            if (plain != null && plain.Count > 0) return plain.RandomElement();
-            var all = AllLines().ToList();
-            return all.Count > 0 ? all.RandomElement() : null;
+                line = Flavor.Pick(list, context);
+            if (line == null && plain != null && plain.Count > 0) line = Flavor.Pick(plain, context);
+            if (line == null) line = Flavor.Pick(AllLines(), context);
+            // Nothing fits the tags: better an untagged-looking line than silence.
+            if (line == null)
+            {
+                var all = AllLines().ToList();
+                if (all.Count > 0) line = Flavor.Strip(all.RandomElement());
+            }
+            return line;
         }
     }
 

@@ -158,7 +158,8 @@
   <CC_Listen_Cooldown>You already asked today. Give them some time.</CC_Listen_Cooldown>
   <CC_Listen_Nothing>You asked around, but nobody wants anything right now.</CC_Listen_Nothing>
   <CC_Stakes_Short_Gentle>Gentle mode: granted wishes lift mood, ignored ones cost nothing.</CC_Stakes_Short_Gentle>
-  <CC_Stakes_Short_Demanding>Demanding mode: granted wishes lift mood, expired ones sting a little.</CC_Stakes_Short_Demanding>
+  <CC_Stakes_Short_Balanced>Balanced mode: granting helps, ignoring stings, and others notice who gets what.</CC_Stakes_Short_Balanced>
+  <CC_Stakes_Short_Demanding>Demanding mode: broken promises and favouritism bite hard, and bitter colonists may sulk.</CC_Stakes_Short_Demanding>
   <CC_Stakes_Short_AdvisorOnly>Advisor-only mode: wishes are suggestions, with no mood effects.</CC_Stakes_Short_AdvisorOnly>
   <CC_WishHeader>{0} wishes for: {1}</CC_WishHeader>
   <CC_WishHeaderForOther>{0} asks on behalf of {1}: {2}</CC_WishHeaderForOther>
@@ -476,10 +477,12 @@
   <CC_Settings_EnableTouches>Personal touches</CC_Settings_EnableTouches>
   <CC_Settings_EnableTouches_Tip>Colonists occasionally plan a small piece of furniture for their own bedroom (as a normal blueprint you can cancel).</CC_Settings_EnableTouches_Tip>
   <CC_Settings_Stakes>Stakes</CC_Settings_Stakes>
-  <CC_Stakes_Gentle>Gentle (recommended)</CC_Stakes_Gentle>
-  <CC_Stakes_Gentle_Tip>Granted wishes and achieved ambitions lift mood. Ignoring a wish or failing an ambition costs nothing.</CC_Stakes_Gentle_Tip>
+  <CC_Stakes_Gentle>Gentle</CC_Stakes_Gentle>
+  <CC_Stakes_Gentle_Tip>Only upsides. Granted wishes and achieved ambitions lift mood; ignoring a wish, refusing it or failing an ambition costs nothing. Trust is still tracked, but only its good side has effects.</CC_Stakes_Gentle_Tip>
+  <CC_Stakes_Balanced>Balanced (recommended)</CC_Stakes_Balanced>
+  <CC_Stakes_Balanced_Tip>Upsides and downsides. Ignored wishes and refusals sting, broken promises sting more, colonists who waited longer feel passed over, the jealous resent favourites, and ignored colonists can turn disgruntled and work slower. Granted wishes can leave people motivated.</CC_Stakes_Balanced_Tip>
   <CC_Stakes_Demanding>Demanding</CC_Stakes_Demanding>
-  <CC_Stakes_Demanding_Tip>Like Gentle, but expired wishes and failed ambitions give a small, short mood penalty.</CC_Stakes_Demanding_Tip>
+  <CC_Stakes_Demanding_Tip>Like Balanced, with every penalty 50% stronger. Bitter, unhappy colonists may storm off to sulk or go on an insulting spree.</CC_Stakes_Demanding_Tip>
   <CC_Stakes_AdvisorOnly>Advisor only</CC_Stakes_AdvisorOnly>
   <CC_Stakes_AdvisorOnly_Tip>No mood effects from this mod at all. Wishes and ambitions are pure suggestions.</CC_Stakes_AdvisorOnly_Tip>
   <CC_Settings_Wishes>Wishes</CC_Settings_Wishes>
@@ -508,5 +511,72 @@
   <CC_Settings_WishAlert>Alert for open wishes</CC_Settings_WishAlert>
   <CC_Settings_WishAlert_Tip>Shows a reminder in the alerts while colonists are waiting on wishes.</CC_Settings_WishAlert_Tip>
   <CC_Settings_Reset>Reset to defaults</CC_Settings_Reset>
+
+  <CC_Settings_Penalty>Strength of downsides: {0}</CC_Settings_Penalty>
+  <CC_Settings_Jealousy>Jealousy and favouritism</CC_Settings_Jealousy>
+  <CC_Settings_Jealousy_Tip>When a wish comes true, the jealous, the greedy, rivals and those who have waited longer may resent it, and some will ask for the same thing.</CC_Settings_Jealousy_Tip>
+  <CC_Settings_EventWishes>Wishes after events</CC_Settings_EventWishes>
+  <CC_Settings_EventWishes_Tip>Raids, deaths, cold nights, meals eaten off the floor and the like make colonists speak up within hours, about the thing that just happened.</CC_Settings_EventWishes_Tip>
+  <CC_Settings_Reminders>Reminders and last calls</CC_Settings_Reminders>
+  <CC_Settings_Reminders_Tip>Halfway through, colonists bring their wish up again; near the end they make a last, pointed call.</CC_Settings_Reminders_Tip>
+  <CC_Settings_SelfHelp>Colonists take matters into their own hands</CC_Settings_SelfHelp>
+  <CC_Settings_SelfHelp_Tip>Hard-working, handy colonists who run out of patience sometimes sort it out themselves: they plan the lamp, switch their own work back on, mark out a grave, pick an animal to tame.</CC_Settings_SelfHelp_Tip>
+
+  <!-- Promises, refusals, reminders -->
+  <CC_Promise>Promise</CC_Promise>
+  <CC_Promise_Tip>Tell them you'll see to it. They wait half again as long and trust the council a little more. If it doesn't happen in time, it's a broken promise: much worse than never promising.</CC_Promise_Tip>
+  <CC_Refuse>Refuse</CC_Refuse>
+  <CC_Refuse_Tip>Say no, honestly. It stings now (less for kind or ascetic colonists) but it's over: no reminders, no slow souring, and they won't ask again for a long while.</CC_Refuse_Tip>
+  <CC_Refuse_Confirm>Refuse {PAWN_nameDef}'s wish for {WISH}? It will disappoint {PAWN_objective}, and {PAWN_pronoun} won't ask for it again for a while.</CC_Refuse_Confirm>
+  <CC_PromisedMessage>Promised {PAWN_nameDef}: {WISH}.</CC_PromisedMessage>
+  <CC_PromisedFallback>I'll hold you to that.</CC_PromisedFallback>
+  <CC_RefusedMessage>{PAWN_nameDef} hears no to {WISH}.</CC_RefusedMessage>
+  <CC_RefusedFallback>Right. Well.</CC_RefusedFallback>
+  <CC_ReminderMessage>{PAWN_nameDef} brings up {WISH} again.</CC_ReminderMessage>
+  <CC_LastCallMessage>{PAWN_nameDef} is running out of patience about {WISH} ({TIME} left).</CC_LastCallMessage>
+  <CC_SelfHelpTitle>{PAWN_nameDef} took matters into {PAWN_possessive} own hands</CC_SelfHelpTitle>
+  <CC_SelfHelp_Plan>Tired of waiting, {PAWN_nameDef} planned {THING} for the room {PAWN_pronoun} sleeps in. The builders will find the blueprint; cancel it if you object.</CC_SelfHelp_Plan>
+  <CC_SelfHelp_ShareBed>{PAWN_nameDef} has moved into {OTHER_nameDef}'s bed. Nobody asked the council. Nobody had to.</CC_SelfHelp_ShareBed>
+  <CC_SelfHelp_Grave>{PAWN_nameDef} marked out a grave for {OTHER_nameDef}. Once it's dug, the body can be laid to rest.</CC_SelfHelp_Grave>
+  <CC_SelfHelp_Tame>{PAWN_nameDef} picked out an animal ({SUBJECT}) and marked it for taming. If {PAWN_pronoun} isn't allowed to handle animals, someone else will have to.</CC_SelfHelp_Tame>
+  <CC_SelfHelp_Work>{PAWN_nameDef} switched {PAWN_possessive} own {SUBJECT} work back on. You can switch it off again in the Work tab, if you're willing to have that conversation.</CC_SelfHelp_Work>
+  <CC_PromiseKeptNote>A promise kept. {PAWN_nameDef} won't forget it.</CC_PromiseKeptNote>
+  <CC_PromiseBrokenTitle>Broken promise to {PAWN_nameDef}: {WISH}</CC_PromiseBrokenTitle>
+  <CC_MentalReason>Nobody listened about {WISH}.</CC_MentalReason>
+  <CC_MentalReasonGeneral>The council never listens.</CC_MentalReasonGeneral>
+  <CC_BitterMessage>{PAWN_nameDef} is bitter about the council.</CC_BitterMessage>
+  <CC_PromisedTag>promised</CC_PromisedTag>
+  <CC_LastCallTag>last call</CC_LastCallTag>
+  <CC_EnvyTag>after seeing {0}'s</CC_EnvyTag>
+
+  <!-- Trust -->
+  <CC_TrustLabel>Trust: {0}</CC_TrustLabel>
+  <CC_Trust_Bitter>bitter</CC_Trust_Bitter>
+  <CC_Trust_Doubtful>doubtful</CC_Trust_Doubtful>
+  <CC_Trust_Neutral>neutral</CC_Trust_Neutral>
+  <CC_Trust_Trusting>trusting</CC_Trust_Trusting>
+  <CC_Trust_Devoted>devoted</CC_Trust_Devoted>
+  <CC_Trust_Header>Trust in the council</CC_Trust_Header>
+  <CC_Trust_Sub>Grows when wishes come true and promises are kept; falls when they're ignored, refused or broken. Trusting colonists are patient and content; bitter ones grumble, stop asking and (on Demanding) may sulk. Hover a name for the history.</CC_Trust_Sub>
+  <CC_Trust_Tip>{0}: trust {1}\nGranted {2}, let go {3}, refused {4}\nPromises kept {5}, broken {6}</CC_Trust_Tip>
+  <CC_Log_Promised>promised {0}</CC_Log_Promised>
+  <CC_Log_Refused>refused {0}</CC_Log_Refused>
+  <CC_Log_SetAside>set aside {0}</CC_Log_SetAside>
+  <CC_Log_SelfHelp>had to see to {0} alone</CC_Log_SelfHelp>
+  <CC_Log_Granted>{0} came true</CC_Log_Granted>
+  <CC_Log_Ignored>{0} ignored</CC_Log_Ignored>
+  <CC_Log_BrokenPromise>broken promise: {0}</CC_Log_BrokenPromise>
+  <CC_Log_PassedOver>passed over for {0}</CC_Log_PassedOver>
+  <CC_Log_FriendIgnored>{0} was ignored</CC_Log_FriendIgnored>
+  <CC_Log_AmbitionAchieved>achieved {0}</CC_Log_AmbitionAchieved>
+  <CC_Log_AmbitionFailed>failed {0}</CC_Log_AmbitionFailed>
+
+  <!-- Chronicle -->
+  <CC_Chronicle_Promised>{0} was promised {1}.</CC_Chronicle_Promised>
+  <CC_Chronicle_Refused>{0} was refused {1}.</CC_Chronicle_Refused>
+  <CC_Chronicle_SelfHelp>{0} stopped waiting for {1} and saw to it alone.</CC_Chronicle_SelfHelp>
+  <CC_Chronicle_PassedOver>{0} colonist(s) felt passed over when {1} got {2}.</CC_Chronicle_PassedOver>
+  <CC_Chronicle_PromiseBroken>The promise to {0} ({1}) was broken.</CC_Chronicle_PromiseBroken>
+  <CC_Chronicle_Sulk>{0} stormed off to sulk.</CC_Chronicle_Sulk>
 
 </LanguageData>

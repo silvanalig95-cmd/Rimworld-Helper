@@ -14,6 +14,16 @@ namespace ColonyCouncil
         public static ThoughtDef Council_AmbitionFailed;
         public static ThoughtDef Council_PersonalTouchDone;
         public static ThoughtDef Council_HeardAtMeeting;
+        public static ThoughtDef Council_Refused;
+        public static ThoughtDef Council_TookMatters;
+        public static ThoughtDef Council_PromiseKept;
+        public static ThoughtDef Council_BrokenPromise;
+        public static ThoughtDef Council_StoodTogether;
+        public static ThoughtDef Council_Favoritism;
+        public static ThoughtDef Council_HappyForThem;
+
+        public static HediffDef Council_Motivated;
+        public static HediffDef Council_Disgruntled;
 
         public static MainButtonDef Council_MainButton;
 

@@ -50,10 +50,22 @@ namespace ColonyCouncil
 
         [MustTranslate] public string fulfilledWhen;
 
+        /// <summary>Events that make this wish come up right away (a raid, a death, a cold night).</summary>
+        public List<WishTrigger> triggers;
+        /// <summary>Extra consequences beyond the mood memory.</summary>
+        public List<WishEffect> grantEffects;
+        public List<WishEffect> ignoreEffects;
+        /// <summary>How much granting this stirs envy in others (0 = nobody minds, 1 = a private suite).</summary>
+        public float envy = 0.4f;
+        /// <summary>Greedy or jealous onlookers may ask for the same thing once they've seen it granted.</summary>
+        public bool meToo;
+
         public ToneLines request = new ToneLines();
         public ToneLines requestForOther = new ToneLines();
         public ToneLines thanks = new ToneLines();
         public ToneLines expired = new ToneLines();
+        /// <summary>Said when bringing the wish up again; falls back to the shared reminder pool.</summary>
+        public ToneLines reminder = new ToneLines();
 
         [Unsaved] private WishWorker workerInt;
 

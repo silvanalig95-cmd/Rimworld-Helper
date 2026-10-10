@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <HediffDef>
+    <defName>Council_Motivated</defName>
+    <label>motivated</label>
+    <description>Got what they asked for and wants to prove it was worth it. Works a little faster for a few days.</description>
+    <hediffClass>HediffWithComps</hediffClass>
+    <defaultLabelColor>(0.55, 0.9, 0.55)</defaultLabelColor>
+    <isBad>false</isBad>
+    <initialSeverity>0.5</initialSeverity>
+    <maxSeverity>1</maxSeverity>
+    <comps>
+      <li Class="HediffCompProperties_Disappears">
+        <disappearsAfterTicks>120000~180000</disappearsAfterTicks>
+        <showRemainingTime>true</showRemainingTime>
+      </li>
+    </comps>
+    <stages>
+      <li>
+        <label>keen</label>
+        <statOffsets>
+          <WorkSpeedGlobal>0.04</WorkSpeedGlobal>
+        </statOffsets>
+      </li>
+      <li>
+        <minSeverity>0.7</minSeverity>
+        <label>fired up</label>
+        <statOffsets>
+          <WorkSpeedGlobal>0.08</WorkSpeedGlobal>
+          <GlobalLearningFactor>0.1</GlobalLearningFactor>
+        </statOffsets>
+      </li>
+    </stages>
+  </HediffDef>
+
+  <HediffDef>
+    <defName>Council_Disgruntled</defName>
+    <label>disgruntled</label>
+    <description>Ignored once too often. Drags their feet and snaps more easily, for a while.</description>
+    <hediffClass>HediffWithComps</hediffClass>
+    <defaultLabelColor>(0.9, 0.6, 0.45)</defaultLabelColor>
+    <isBad>true</isBad>
+    <initialSeverity>0.3</initialSeverity>
+    <maxSeverity>1</maxSeverity>
+    <comps>
+      <li Class="HediffCompProperties_Disappears">
+        <disappearsAfterTicks>90000~150000</disappearsAfterTicks>
+        <showRemainingTime>true</showRemainingTime>
+      </li>
+    </comps>
+    <stages>
+      <li>
+        <label>grumbling</label>
+        <statOffsets>
+          <WorkSpeedGlobal>-0.04</WorkSpeedGlobal>
+        </statOffsets>
+      </li>
+      <li>
+        <minSeverity>0.6</minSeverity>
+        <label>resentful</label>
+        <statOffsets>
+          <WorkSpeedGlobal>-0.08</WorkSpeedGlobal>
+          <MentalBreakThreshold>0.04</MentalBreakThreshold>
+        </statOffsets>
+      </li>
+    </stages>
+  </HediffDef>
+
+</Defs>

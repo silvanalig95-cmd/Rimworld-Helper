@@ -363,7 +363,10 @@ namespace ColonyCouncil
             active = null;
             var map = a.map;
             foreach (var p in map.mapPawns.FreeColonistsSpawned)
+            {
                 CouncilGameComponent.GiveThought(p, p == a.proposer ? CouncilDefOf.Council_MyAmbitionAchieved : CouncilDefOf.Council_AmbitionAchieved);
+                comp.standings.Change(p, p == a.proposer ? 12f : 5f, "CC_Log_AmbitionAchieved".Translate(a.def.label));
+            }
             if (a.proposer != null && !a.proposer.Dead && Settings.MoodEffects && Rand.Chance(0.35f))
             {
                 var h = a.proposer.mindState?.inspirationHandler;
@@ -384,9 +387,10 @@ namespace ColonyCouncil
         {
             var a = active;
             active = null;
-            if (Settings.stakes == StakesMode.Demanding)
+            foreach (var p in a.map.mapPawns.FreeColonistsSpawned)
             {
-                foreach (var p in a.map.mapPawns.FreeColonistsSpawned) CouncilGameComponent.GiveThought(p, CouncilDefOf.Council_AmbitionFailed);
+                comp.standings.Change(p, p == a.proposer ? -8f : -3f, "CC_Log_AmbitionFailed".Translate(a.def.label));
+                if (Settings.Negatives) CouncilGameComponent.GiveThought(p, CouncilDefOf.Council_AmbitionFailed, null, Settings.PenaltyScale);
             }
             Messages.Message("CC_Ambition_Failed".Translate(a.def.LabelCap.ToString(), a.Progress.ToStringPercent()), new LookTargets(a.proposer), MessageTypeDefOf.NeutralEvent, false);
             comp.AddChronicle(new ChronicleEntry(ChronicleKind.AmbitionFailed,

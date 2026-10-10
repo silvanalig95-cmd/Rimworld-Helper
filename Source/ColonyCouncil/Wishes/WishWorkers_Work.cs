@@ -221,6 +221,16 @@ namespace ColonyCouncil
             var wt = DefDatabase<WorkTypeDef>.GetNamedSilentFail(wish.subjectKey);
             return wt != null && !wish.Beneficiary.WorkTypeIsDisabled(wt);
         }
+
+        /// <summary>They just start doing it. You can switch it off again, if you dare.</summary>
+        public override string TrySelfHelp(Wish wish)
+        {
+            var wt = DefDatabase<WorkTypeDef>.GetNamedSilentFail(wish.subjectKey);
+            var ws = wish.Beneficiary.workSettings;
+            if (wt == null || ws == null || wish.Beneficiary.WorkTypeIsDisabled(wt)) return null;
+            ws.SetPriority(wt, 3);
+            return "CC_SelfHelp_Work";
+        }
     }
 
     /// <summary>Art where people gather: dining and rec rooms.</summary>

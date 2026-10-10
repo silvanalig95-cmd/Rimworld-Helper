@@ -13,6 +13,15 @@
     <label>a room of their own</label>
     <description>Sleeping in the barracks, sharing a room or without a bed at all, this colonist wants a private bedroom.</description>
     <workerClass>ColonyCouncil.WishWorker_OwnRoom</workerClass>
+    <envy>0.9</envy>
+    <meToo>true</meToo>
+    <triggers>
+      <li>
+        <key>barracks</key>
+        <thoughts><li>SleptInBarracks</li><li>SleepDisturbed</li></thoughts>
+        <boost>3</boost>
+      </li>
+    </triggers>
     <category>Comfort</category>
     <weight>1.2</weight>
     <expiryDays>12</expiryDays>
@@ -106,6 +115,8 @@
     <label>a more impressive bedroom</label>
     <description>Greedy, jealous or simply used to better, this colonist wants a bedroom that impresses.</description>
     <workerClass>ColonyCouncil.WishWorker_NicerBedroom</workerClass>
+    <envy>0.8</envy>
+    <meToo>true</meToo>
     <category>Comfort</category>
     <weight>0.9</weight>
     <expiryDays>15</expiryDays>
@@ -180,6 +191,8 @@
     <label>a roomier bedroom</label>
     <description>This colonist's bedroom is cramped and they'd like room to breathe.</description>
     <workerClass>ColonyCouncil.WishWorker_Spacious</workerClass>
+    <envy>0.6</envy>
+    <meToo>true</meToo>
     <category>Comfort</category>
     <weight>0.7</weight>
     <expiryDays>15</expiryDays>
@@ -236,6 +249,15 @@
     <label>to share a bed with {OTHER_nameDef}</label>
     <description>Partners who sleep apart would like a bed for two.</description>
     <workerClass>ColonyCouncil.WishWorker_ShareBed</workerClass>
+    <envy>0.1</envy>
+    <grantEffects>
+      <li Class="ColonyCouncil.WishEffect_Hediff">
+        <hediff>Council_Motivated</hediff>
+        <severity>0.5</severity>
+        <chance>0.5</chance>
+        <target>Supporters</target>
+      </li>
+    </grantEffects>
     <category>Social</category>
     <weight>1.3</weight>
     <expiryDays>10</expiryDays>
@@ -304,6 +326,8 @@
     <label>{THING} for {FOR_possessive} room</label>
     <description>A small piece of furniture to make a bedroom feel lived-in.</description>
     <workerClass>ColonyCouncil.WishWorker_BedroomFurniture</workerClass>
+    <envy>0.4</envy>
+    <meToo>true</meToo>
     <category>Comfort</category>
     <weight>0.7</weight>
     <expiryDays>10</expiryDays>
@@ -356,6 +380,14 @@
     <label>light in {FOR_possessive} bedroom</label>
     <description>Night owls and colonists who've been left in the dark want a light in their room.</description>
     <workerClass>ColonyCouncil.WishWorker_Light</workerClass>
+    <envy>0.1</envy>
+    <triggers>
+      <li>
+        <key>dark</key>
+        <thoughts><li>EnvironmentDark</li></thoughts>
+        <boost>2</boost>
+      </li>
+    </triggers>
     <category>Comfort</category>
     <weight>0.8</weight>
     <expiryDays>8</expiryDays>
@@ -407,6 +439,21 @@
     <label>{SUBJECT} at night</label>
     <description>After sleeping in the cold or heat, this colonist wants their bedroom kept comfortable.</description>
     <workerClass>ColonyCouncil.WishWorker_ComfortTemperature</workerClass>
+    <envy>0.2</envy>
+    <triggers>
+      <li>
+        <key>cold</key>
+        <thoughts><li>SleptInCold</li></thoughts>
+        <conditions><li>ColdSnap</li></conditions>
+        <boost>4</boost>
+      </li>
+      <li>
+        <key>heat</key>
+        <thoughts><li>SleptInHeat</li></thoughts>
+        <conditions><li>HeatWave</li></conditions>
+        <boost>4</boost>
+      </li>
+    </triggers>
     <category>Comfort</category>
     <weight>1.1</weight>
     <expiryDays>6</expiryDays>
@@ -467,6 +514,14 @@
     <label>a table to eat at</label>
     <description>Eating off the floor gets old. This colonist wants a proper place to eat.</description>
     <workerClass>ColonyCouncil.WishWorker_DiningTable</workerClass>
+    <envy>0</envy>
+    <triggers>
+      <li>
+        <key>floor</key>
+        <thoughts><li>AteWithoutTable</li></thoughts>
+        <boost>4</boost>
+      </li>
+    </triggers>
     <category>Comfort</category>
     <weight>1.1</weight>
     <expiryDays>8</expiryDays>
@@ -523,6 +578,21 @@
     <label>something new to do for fun</label>
     <description>Bored colonists want a new kind of recreation.</description>
     <workerClass>ColonyCouncil.WishWorker_RecreationVariety</workerClass>
+    <envy>0</envy>
+    <triggers>
+      <li>
+        <key>cabin</key>
+        <thoughts><li>CabinFever</li></thoughts>
+        <boost>3</boost>
+      </li>
+    </triggers>
+    <grantEffects>
+      <li Class="ColonyCouncil.WishEffect_Need">
+        <need>Joy</need>
+        <amount>0.2</amount>
+        <target>Colony</target>
+      </li>
+    </grantEffects>
     <category>Comfort</category>
     <weight>1</weight>
     <expiryDays>10</expiryDays>
@@ -579,6 +649,7 @@
     <label>a plant for {FOR_possessive} room</label>
     <description>Someone who loves growing things wants a little greenery in their room.</description>
     <workerClass>ColonyCouncil.WishWorker_Greenery</workerClass>
+    <envy>0.2</envy>
     <category>Comfort</category>
     <weight>0.6</weight>
     <expiryDays>8</expiryDays>

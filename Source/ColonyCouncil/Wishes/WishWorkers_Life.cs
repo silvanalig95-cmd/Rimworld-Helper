@@ -84,6 +84,30 @@ namespace ColonyCouncil
             if (corpse != null && corpse.Spawned) return new LookTargets(corpse);
             return base.LookAt(wish);
         }
+
+        /// <summary>They mark out a grave themselves: next to the others if there's a graveyard, else outside the colony.</summary>
+        public override string TrySelfHelp(Wish wish)
+        {
+            var map = wish.Beneficiary.MapHeld;
+            if (map == null) return null;
+            var grave = Avail.BestBuildable(map, Avail.IsGrave, "Grave");
+            if (grave == null) return null;
+            var existing = Avail.ColonyBuildings(map, Avail.IsGrave).FirstOrDefault();
+            IntVec3 center = existing?.Position ?? TemplatePlanner.ColonyCenter(map);
+            float minDist = existing != null ? 0f : 12f;
+            var stuff = grave.MadeFromStuff ? Avail.BestStuff(grave, map) : null;
+            foreach (var c in GenRadial.RadialCellsAround(center, 30f, true))
+            {
+                if (!c.InBounds(map) || c.Fogged(map) || c.DistanceTo(center) < minDist) continue;
+                if (c.Roofed(map) || c.GetZone(map) != null || !c.Standable(map)) continue;
+                if (!GenConstruct.CanPlaceBlueprintAt(grave, c, Rot4.North, map, false, null, null, stuff).Accepted) continue;
+                bool clear = GenAdj.OccupiedRect(c, Rot4.North, grave.size).ExpandedBy(1).Cells.All(x => x.InBounds(map) && x.GetEdifice(map) == null);
+                if (!clear) continue;
+                GenConstruct.PlaceBlueprintForBuild(grave, c, map, Rot4.North, Faction.OfPlayer, stuff);
+                return "CC_SelfHelp_Grave";
+            }
+            return null;
+        }
     }
 
     /// <summary>A missing limb or eye, and a prosthetic within reach.</summary>
@@ -166,6 +190,24 @@ namespace ColonyCouncil
         public override bool IsFulfilled(Wish wish) => RoomUtil.ColonyAnimalCount(wish.Beneficiary.MapHeld) > wish.baseline;
 
         public override InspirationDef InspirationFor(Wish wish) => InspirationDefOf.Inspired_Taming;
+
+        /// <summary>They pick an animal and mark it for taming.</summary>
+        public override string TrySelfHelp(Wish wish)
+        {
+            var pawn = wish.Beneficiary;
+            var map = pawn.MapHeld;
+            if (map == null) return null;
+            var animal = map.mapPawns.AllPawnsSpawned
+                .Where(a => a.RaceProps.Animal && a.Faction == null && !a.Downed && a.GetStatValue(StatDefOf.Wildness) < 0.85f
+                            && a.def.race.trainability != null && !map.fogGrid.IsFogged(a.Position)
+                            && map.designationManager.DesignationOn(a) == null)
+                .OrderBy(a => a.Position.DistanceTo(pawn.Position))
+                .FirstOrDefault();
+            if (animal == null) return null;
+            map.designationManager.AddDesignation(new Designation(animal, DesignationDefOf.Tame));
+            wish.subjectLabel = animal.LabelShort;
+            return "CC_SelfHelp_Tame";
+        }
     }
 
     /// <summary>Feeling unsafe: more defences, in whatever form the colony can build.</summary>

@@ -7,6 +7,7 @@ using Verse;
 namespace ColonyCouncil
 {
     /// <summary>The "Council" tab: priorities, wishes, ambition, build plans and the chronicle.</summary>
+    [StaticConstructorOnStartup]
     public class MainTabWindow_Council : MainTabWindow
     {
         private enum Tab
@@ -29,6 +30,8 @@ namespace ColonyCouncil
         private static readonly Color LowColor = new Color(0.65f, 0.65f, 0.65f);
         private static readonly Color IdeaColor = new Color(0.45f, 0.7f, 0.95f);
         private static readonly Color Faint = new Color(0.7f, 0.7f, 0.7f);
+        private static readonly Texture2D TrustGood = SolidColorMaterials.NewSolidColorTexture(new Color(0.35f, 0.65f, 0.4f));
+        private static readonly Texture2D TrustBad = SolidColorMaterials.NewSolidColorTexture(new Color(0.7f, 0.35f, 0.3f));
         private static readonly Color QuoteColor = new Color(1f, 0.93f, 0.75f);
         private static readonly Color GoodColor = new Color(0.55f, 0.9f, 0.55f);
 
@@ -303,6 +306,32 @@ namespace ColonyCouncil
                 y += WrappedLabel(0f, y, width, AgoString(e.tick) + "  " + e.text, col) + 2f;
                 shown++;
             }
+
+            y += 14f;
+            Text.Font = GameFont.Medium;
+            Widgets.Label(new Rect(0f, y, width, 30f), "CC_Trust_Header".Translate());
+            Text.Font = GameFont.Small;
+            y += 30f;
+            y += WrappedLabel(0f, y, width, "CC_Trust_Sub".Translate(), Faint) + 4f;
+            foreach (var p in PawnsFinder.AllMaps_FreeColonists.Where(x => !x.IsQuestLodger()).OrderBy(x => comp.standings.TrustOf(x)))
+            {
+                var st = comp.standings.For(p, false);
+                float trust = st?.trust ?? 0f;
+                var row = new Rect(0f, y, width, 26f);
+                if (Mouse.IsOver(row)) Widgets.DrawHighlight(row);
+                Widgets.ThingIcon(new Rect(0f, y + 1f, 24f, 24f), p);
+                Widgets.Label(new Rect(30f, y + 2f, 160f, 24f), p.LabelShort);
+                var bar = new Rect(195f, y + 7f, 160f, 12f);
+                Widgets.FillableBar(bar, (trust + 100f) / 200f, trust >= 0f ? TrustGood : TrustBad, BaseContent.BlackTex, false);
+                Widgets.Label(new Rect(365f, y + 2f, 200f, 24f), ("CC_Trust_" + PawnStanding.LevelFor(trust)).Translate());
+                if (st != null)
+                {
+                    string tip = "CC_Trust_Tip".Translate(p.LabelShort, trust.ToString("0"), st.granted, st.ignored, st.refused, st.promisesKept, st.promisesBroken).Resolve();
+                    if (st.log.Count > 0) tip += "\n\n" + string.Join("\n", st.log.AsEnumerable().Reverse());
+                    TooltipHandler.TipRegion(row, tip);
+                }
+                y += 27f;
+            }
             EndScroll(y);
         }
 
@@ -313,8 +342,14 @@ namespace ColonyCouncil
             string header = w.ForSomeoneElse
                 ? "CC_WishHeaderForOther".Translate(w.pawn.LabelShort, w.Beneficiary.LabelShort, w.Label).Resolve()
                 : "CC_WishHeader".Translate(w.pawn.LabelShort, w.Label).Resolve();
-            string quote = "\"" + w.quote + "\"";
+            string quote = (w.scene.NullOrEmpty() ? "" : w.scene + "\n") + "\"" + w.quote + "\"";
             var lines = new List<string>();
+            var standing = comp.standings.For(w.pawn, false);
+            string status = "CC_TrustLabel".Translate(("CC_Trust_" + (standing?.Level ?? TrustLevel.Neutral)).Translate());
+            if (w.promised) status += "   ·   " + "CC_PromisedTag".Translate();
+            if (w.stage >= 2) status += "   ·   " + "CC_LastCallTag".Translate();
+            if (w.envied != null) status += "   ·   " + "CC_EnvyTag".Translate(w.envied.LabelShort);
+            lines.Add(status);
             if (!w.reason.NullOrEmpty()) lines.Add("CC_Why".Translate() + ": " + w.reason);
             string when = w.Worker.FulfilledWhen(w);
             if (!when.NullOrEmpty()) lines.Add("CC_FulfilledWhen".Translate() + ": " + when);
@@ -328,7 +363,7 @@ namespace ColonyCouncil
             float h = Text.CalcHeight(header, textW) + Text.CalcHeight(quote, textW) + Text.CalcHeight(body, textW) + 18f;
             float progress = SafeProgress(w);
             if (progress >= 0f) h += 14f;
-            h = Mathf.Max(h, 96f);
+            h = Mathf.Max(h, 96f + 30f * 3f);
             var row = new Rect(x, y, width, h);
             Widgets.DrawLightHighlight(row);
 
@@ -380,8 +415,19 @@ namespace ColonyCouncil
                 }
                 by += 30f;
             }
-            if (Widgets.ButtonText(new Rect(bx, by, 138f, 26f), "CC_NotNow".Translate())) comp.Dismiss(w);
-            TooltipHandler.TipRegion(new Rect(bx, by, 138f, 26f), "CC_NotNow_Tip".Translate());
+            if (!w.promised)
+            {
+                if (Widgets.ButtonText(new Rect(bx, by, 138f, 26f), "CC_Promise".Translate())) comp.Promise(w);
+                TooltipHandler.TipRegion(new Rect(bx, by, 138f, 26f), "CC_Promise_Tip".Translate());
+                by += 30f;
+            }
+            if (Widgets.ButtonText(new Rect(bx, by, 68f, 26f), "CC_Refuse".Translate()))
+            {
+                Find.WindowStack.Add(Dialog_MessageBox.CreateConfirmation("CC_Refuse_Confirm".Translate(w.pawn.Named("PAWN"), w.Label.Named("WISH")).Resolve(), () => comp.Refuse(w), true));
+            }
+            TooltipHandler.TipRegion(new Rect(bx, by, 68f, 26f), "CC_Refuse_Tip".Translate());
+            if (Widgets.ButtonText(new Rect(bx + 70f, by, 68f, 26f), "CC_NotNow".Translate())) comp.Dismiss(w);
+            TooltipHandler.TipRegion(new Rect(bx + 70f, by, 68f, 26f), "CC_NotNow_Tip".Translate());
             return h;
         }
 
@@ -482,6 +528,7 @@ namespace ColonyCouncil
                 y += WrappedLabel(0f, y, width, AgoString(e.tick) + "  " + e.text, col) + 2f;
                 shown++;
             }
+
             EndScroll(y);
         }
 

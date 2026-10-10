@@ -34,6 +34,26 @@ namespace ColonyCouncil
 
         public virtual string FulfilledWhen(Wish wish) => wish.Format(def.fulfilledWhen);
 
+        /// <summary>
+        /// Out of patience, the colonist does something about it themselves: plans the lamp, switches their
+        /// own work back on, digs the grave. Returns a line for the message ({PAWN}, {THING}...), or null if
+        /// there's nothing they can do on their own.
+        /// </summary>
+        public virtual string TrySelfHelp(Wish wish) => null;
+
+        /// <summary>Plans <paramref name="thing"/> in the colonist's own room. Shared by the furniture-like wishes.</summary>
+        protected static bool PlanInOwnRoom(Pawn p, ThingDef thing) => PlanInRoom(RoomUtil.PrivateRoom(p), p, thing);
+
+        protected static bool PlanInRoom(Room room, Pawn p, ThingDef thing)
+        {
+            var map = p?.MapHeld;
+            if (room == null || map == null || thing == null || !Avail.CanBuild(thing, map)) return false;
+            var stuff = thing.MadeFromStuff ? Avail.BestStuff(thing, map) : null;
+            if (!PersonalTouchTracker.FindCell(room, map, thing, stuff, out var cell, out var rot)) return false;
+            GenConstruct.PlaceBlueprintForBuild(thing, cell, map, rot, Faction.OfPlayer, stuff);
+            return true;
+        }
+
         // ---------- Helpers for workers ----------
 
         protected static Map HomeMap(Pawn p) => p?.MapHeld;

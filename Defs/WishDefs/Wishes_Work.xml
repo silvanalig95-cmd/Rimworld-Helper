@@ -6,6 +6,13 @@
     <label>{SUBJECT}</label>
     <description>A colonist passionate about a skill wants a proper space for it: a workshop, kitchen, laboratory, hospital, greenhouse or barn.</description>
     <workerClass>ColonyCouncil.WishWorker_PassionSpace</workerClass>
+    <envy>0.3</envy>
+    <grantEffects>
+      <li Class="ColonyCouncil.WishEffect_SkillXp">
+        <wishSkill>true</wishSkill>
+        <xp>2500</xp>
+      </li>
+    </grantEffects>
     <category>Work</category>
     <weight>1.2</weight>
     <expiryDays>15</expiryDays>
@@ -83,6 +90,14 @@
     <label>to do some {SUBJECT}</label>
     <description>A colonist passionate about a kind of work that's switched off for them wants to be allowed to do it.</description>
     <workerClass>ColonyCouncil.WishWorker_LetMeWork</workerClass>
+    <envy>0</envy>
+    <grantEffects>
+      <li Class="ColonyCouncil.WishEffect_Hediff">
+        <hediff>Council_Motivated</hediff>
+        <severity>0.8</severity>
+        <chance>0.7</chance>
+      </li>
+    </grantEffects>
     <category>Work</category>
     <weight>0.9</weight>
     <expiryDays>6</expiryDays>
@@ -137,6 +152,7 @@
     <label>art where people gather</label>
     <description>Artists, and anyone with taste, want sculptures in the dining room or rec room.</description>
     <workerClass>ColonyCouncil.WishWorker_Artwork</workerClass>
+    <envy>0</envy>
     <category>Comfort</category>
     <weight>0.7</weight>
     <expiryDays>15</expiryDays>
@@ -191,6 +207,15 @@
     <label>a decent {SUBJECT}</label>
     <description>A colonist who lives to fight wants a weapon worth carrying, or a brawler stuck holding a gun wants something to swing.</description>
     <workerClass>ColonyCouncil.WishWorker_BetterWeapon</workerClass>
+    <envy>0.5</envy>
+    <meToo>true</meToo>
+    <triggers>
+      <li>
+        <key>raid</key>
+        <afterThreatHours>18</afterThreatHours>
+        <boost>3</boost>
+      </li>
+    </triggers>
     <category>Gear</category>
     <weight>0.9</weight>
     <expiryDays>10</expiryDays>
@@ -249,6 +274,7 @@
     <label>a brewery</label>
     <description>A colonist with a chemical interest really, really wants the colony to brew its own beer.</description>
     <workerClass>ColonyCouncil.WishWorker_Brewery</workerClass>
+    <envy>0</envy>
     <category>Comfort</category>
     <weight>1</weight>
     <expiryDays>12</expiryDays>
@@ -304,6 +330,19 @@
     <label>{SUBJECT}</label>
     <description>Gourmands, and anyone sick of raw food, want better meals.</description>
     <workerClass>ColonyCouncil.WishWorker_BetterFood</workerClass>
+    <envy>0</envy>
+    <triggers>
+      <li>
+        <key>rawfood</key>
+        <thoughts><li>AteRawFood</li></thoughts>
+        <boost>3</boost>
+      </li>
+      <li>
+        <key>sick</key>
+        <hediffs><li>FoodPoisoning</li></hediffs>
+        <boost>4</boost>
+      </li>
+    </triggers>
     <category>Comfort</category>
     <weight>1</weight>
     <expiryDays>8</expiryDays>
@@ -359,6 +398,7 @@
     <label>a freezer for the food</label>
     <description>A cook, or someone who just ate something rotten, wants cold storage so food stops spoiling.</description>
     <workerClass>ColonyCouncil.WishWorker_Freezer</workerClass>
+    <envy>0</envy>
     <category>Work</category>
     <weight>1.1</weight>
     <expiryDays>12</expiryDays>

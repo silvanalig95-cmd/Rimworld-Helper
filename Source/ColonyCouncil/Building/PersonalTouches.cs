@@ -151,7 +151,7 @@ namespace ColonyCouncil
         }
 
         /// <summary>A free cell along a wall, away from the door, that doesn't block anything.</summary>
-        private static bool FindCell(Room room, Map map, ThingDef def, ThingDef stuff, out IntVec3 cell, out Rot4 rot)
+        public static bool FindCell(Room room, Map map, ThingDef def, ThingDef stuff, out IntVec3 cell, out Rot4 rot)
         {
             cell = IntVec3.Invalid;
             rot = Rot4.North;

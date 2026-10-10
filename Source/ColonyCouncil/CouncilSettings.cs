@@ -5,12 +5,14 @@ namespace ColonyCouncil
 {
     public enum StakesMode
     {
-        /// <summary>Granted wishes give mood; ignored ones cost nothing.</summary>
+        /// <summary>Only upsides: granted wishes help, ignored ones cost nothing.</summary>
         Gentle,
-        /// <summary>Granted wishes give mood; expired ones sting a little.</summary>
+        /// <summary>Ignored wishes, broken promises, favouritism and jealousy all bite, and can lead to sulking and grudges.</summary>
         Demanding,
         /// <summary>No mood effects at all. Pure suggestions.</summary>
-        AdvisorOnly
+        AdvisorOnly,
+        /// <summary>Upsides and downsides in proportion (default).</summary>
+        Balanced
     }
 
     /// <summary>Where the council button sits in the bottom bar.</summary>
@@ -31,11 +33,16 @@ namespace ColonyCouncil
         public bool enablePersonalTouches = true;
 
         // Wishes
-        public StakesMode stakes = StakesMode.Gentle;
+        public StakesMode stakes = StakesMode.Balanced;
         public float daysBetweenWishes = 2f;
         public int maxOpenWishes = 5;
         public float wishDurationFactor = 1f;
         public float rewardFactor = 1f;
+        public float penaltyFactor = 1f;
+        public bool jealousy = true;
+        public bool selfHelp = true;
+        public bool eventWishes = true;
+        public bool reminders = true;
         public bool wishesForOthers = true;
         public bool petitions = true;
         public bool wishLetters = true;
@@ -71,11 +78,16 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref enableWishes, "enableWishes", true);
             Scribe_Values.Look(ref enableAmbitions, "enableAmbitions", true);
             Scribe_Values.Look(ref enablePersonalTouches, "enablePersonalTouches", true);
-            Scribe_Values.Look(ref stakes, "stakes", StakesMode.Gentle);
+            Scribe_Values.Look(ref stakes, "stakes", StakesMode.Balanced);
             Scribe_Values.Look(ref daysBetweenWishes, "daysBetweenWishes", 2f);
             Scribe_Values.Look(ref maxOpenWishes, "maxOpenWishes", 5);
             Scribe_Values.Look(ref wishDurationFactor, "wishDurationFactor", 1f);
             Scribe_Values.Look(ref rewardFactor, "rewardFactor", 1f);
+            Scribe_Values.Look(ref penaltyFactor, "penaltyFactor", 1f);
+            Scribe_Values.Look(ref jealousy, "jealousy", true);
+            Scribe_Values.Look(ref selfHelp, "selfHelp", true);
+            Scribe_Values.Look(ref eventWishes, "eventWishes", true);
+            Scribe_Values.Look(ref reminders, "reminders", true);
             Scribe_Values.Look(ref wishesForOthers, "wishesForOthers", true);
             Scribe_Values.Look(ref petitions, "petitions", true);
             Scribe_Values.Look(ref wishLetters, "wishLetters", true);
@@ -109,6 +121,15 @@ namespace ColonyCouncil
 
         public bool MoodEffects => stakes != StakesMode.AdvisorOnly;
 
+        /// <summary>Downsides are on (Balanced or Demanding).</summary>
+        public bool Negatives => stakes == StakesMode.Balanced || stakes == StakesMode.Demanding;
+
+        /// <summary>The harsh extras: sulking, tantrums, stronger penalties.</summary>
+        public bool Harsh => stakes == StakesMode.Demanding;
+
+        /// <summary>Multiplier for every penalty: 0 in Gentle, scaled by the slider.</summary>
+        public float PenaltyScale => !Negatives ? 0f : (Harsh ? 1.5f : 1f) * penaltyFactor;
+
         public void DoWindowContents(Rect inRect)
         {
             Rect viewRect = new Rect(0f, 0f, inRect.width - 20f, viewHeight);
@@ -125,6 +146,8 @@ namespace ColonyCouncil
             Header(l, "CC_Settings_Stakes".Translate());
             if (l.RadioButton("CC_Stakes_Gentle".Translate(), stakes == StakesMode.Gentle, 0f, "CC_Stakes_Gentle_Tip".Translate()))
                 stakes = StakesMode.Gentle;
+            if (l.RadioButton("CC_Stakes_Balanced".Translate(), stakes == StakesMode.Balanced, 0f, "CC_Stakes_Balanced_Tip".Translate()))
+                stakes = StakesMode.Balanced;
             if (l.RadioButton("CC_Stakes_Demanding".Translate(), stakes == StakesMode.Demanding, 0f, "CC_Stakes_Demanding_Tip".Translate()))
                 stakes = StakesMode.Demanding;
             if (l.RadioButton("CC_Stakes_AdvisorOnly".Translate(), stakes == StakesMode.AdvisorOnly, 0f, "CC_Stakes_AdvisorOnly_Tip".Translate()))
@@ -139,6 +162,15 @@ namespace ColonyCouncil
             wishDurationFactor = Mathf.Round(wishDurationFactor * 20f) / 20f;
             rewardFactor = l.SliderLabeled("CC_Settings_Reward".Translate(rewardFactor.ToStringPercent()), rewardFactor, 0.25f, 2f, 0.6f);
             rewardFactor = Mathf.Round(rewardFactor * 20f) / 20f;
+            if (Negatives)
+            {
+                penaltyFactor = l.SliderLabeled("CC_Settings_Penalty".Translate(penaltyFactor.ToStringPercent()), penaltyFactor, 0.25f, 2f, 0.6f);
+                penaltyFactor = Mathf.Round(penaltyFactor * 20f) / 20f;
+                l.CheckboxLabeled("CC_Settings_Jealousy".Translate(), ref jealousy, "CC_Settings_Jealousy_Tip".Translate());
+            }
+            l.CheckboxLabeled("CC_Settings_EventWishes".Translate(), ref eventWishes, "CC_Settings_EventWishes_Tip".Translate());
+            l.CheckboxLabeled("CC_Settings_Reminders".Translate(), ref reminders, "CC_Settings_Reminders_Tip".Translate());
+            l.CheckboxLabeled("CC_Settings_SelfHelp".Translate(), ref selfHelp, "CC_Settings_SelfHelp_Tip".Translate());
             l.CheckboxLabeled("CC_Settings_ForOthers".Translate(), ref wishesForOthers, "CC_Settings_ForOthers_Tip".Translate());
             l.CheckboxLabeled("CC_Settings_Petitions".Translate(), ref petitions, "CC_Settings_Petitions_Tip".Translate());
             l.CheckboxLabeled("CC_Settings_WishLetters".Translate(), ref wishLetters, "CC_Settings_WishLetters_Tip".Translate());
@@ -208,6 +240,11 @@ namespace ColonyCouncil
             maxOpenWishes = d.maxOpenWishes;
             wishDurationFactor = d.wishDurationFactor;
             rewardFactor = d.rewardFactor;
+            penaltyFactor = d.penaltyFactor;
+            jealousy = d.jealousy;
+            selfHelp = d.selfHelp;
+            eventWishes = d.eventWishes;
+            reminders = d.reminders;
             wishesForOthers = d.wishesForOthers;
             petitions = d.petitions;
             wishLetters = d.wishLetters;
