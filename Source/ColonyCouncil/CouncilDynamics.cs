@@ -597,6 +597,7 @@ namespace ColonyCouncil
             Standards.Daily(standings, decrees.active.Sum(a => a.def.standardsPerDay));
             DecreeDaily();
             if (s.enableWishes) decrees.DailyRequests(this);
+            if (s.anniversaries) Anniversaries();
             foreach (var p in PawnsFinder.AllMaps_FreeColonists.ToList())
             {
                 var st = standings.For(p, false);
@@ -759,6 +760,40 @@ namespace ColonyCouncil
                     bool strong = delta <= -1.5f || delta >= 1f;
                     if (delta != 0f) standings.Change(p, delta, strong ? "CC_Log_Decree".Translate(a.def.label).ToString() : null);
                 }
+            }
+        }
+
+        // ================= Anniversaries =================
+
+        /// <summary>A year (or two, or five) since someone joined: the colony marks it, a little.</summary>
+        private void Anniversaries()
+        {
+            foreach (var p in PawnsFinder.AllMaps_FreeColonistsSpawned.ToList())
+            {
+                if (p.records == null || p.IsQuestLodger() || p.DevelopmentalStage.Baby()) continue;
+                var st = standings.For(p);
+                int years = (int)(p.records.GetValue(RecordDefOf.TimeAsColonistOrColonyAnimal) / GenDate.TicksPerYear);
+                if (st.yearsMarked < 0)
+                {
+                    // First look at this colonist: don't celebrate years that passed before the council was watching.
+                    st.yearsMarked = years;
+                    continue;
+                }
+                if (years <= st.yearsMarked) continue;
+                st.yearsMarked = years;
+                string key = years == 1 ? "CC_Anniversary_One" : years >= 5 ? "CC_Anniversary_Old" : "CC_Anniversary_Many";
+                string line = Scene("Council_Pool_Anniversary", p, null);
+                Messages.Message(key.Translate(p.Named("PAWN"), years.Named("YEARS")).Resolve() + (line != null ? " \"" + TextUtil.ShortSpeech(line, 120) + "\"" : ""),
+                    new LookTargets(p), MessageTypeDefOf.PositiveEvent, false);
+                Speak(p, line, SpeechGood);
+                GiveThought(p, CouncilDefOf.Council_Anniversary);
+                standings.Change(p, 3f, "CC_Log_Anniversary".Translate(years));
+                foreach (var friend in p.MapHeld.mapPawns.FreeColonistsSpawned)
+                {
+                    if (friend == p || friend.relations == null || friend.relations.OpinionOf(p) < 20) continue;
+                    GiveThought(friend, CouncilDefOf.Council_FriendAnniversary, p);
+                }
+                AddChronicle(new ChronicleEntry(ChronicleKind.Note, "CC_Chronicle_Anniversary".Translate(p.LabelShort, years).Resolve(), p));
             }
         }
     }

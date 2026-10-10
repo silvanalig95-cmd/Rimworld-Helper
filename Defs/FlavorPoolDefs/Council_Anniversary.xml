@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- A colonist on the anniversary of joining. Only {PAWN_...}. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Pool_Anniversary</defName>
+    <lines>
+      <plain>
+        <li>A year ago I'd never heard of this place. Now I know which floorboard creaks.</li>
+        <li>Another year. I've stopped counting the raids and started counting the people still here.</li>
+        <li>When I arrived I gave it a month. Shows what I know.</li>
+        <li>[old] I've lived in a lot of places. This is the one I'll be buried in. I've made my peace with that.</li>
+        <li>[newcomer] Still feels new. Less every day.</li>
+        <li>[winter] Snow again. Same as the day I got here, more or less.</li>
+        <li>[grieving] I'd like to celebrate. Not everyone who was here a year ago got to.</li>
+        <li>[lowtech] Another year of fire and stone. I've grown to like both.</li>
+      </plain>
+      <warm>
+        <li>I came here with nothing. Now I have all of you. Not a bad trade.</li>
+        <li>Thank you for keeping me around. I mean it.</li>
+      </warm>
+      <blunt>
+        <li>Another year. Still hate the rice. Still here.</li>
+        <li>Don't make a fuss. Fine, a small fuss.</li>
+      </blunt>
+      <cheerful>
+        <li>Happy anniversary to ME! I'm accepting gifts, compliments and extra dessert!</li>
+        <li>Best year yet! Well, the only years I've had here, but still the best!</li>
+      </cheerful>
+      <gloomy>
+        <li>One more year survived. The odds keep getting worse, but here I am.</li>
+        <li>I didn't expect to last this long. I'm not sure how I feel about it.</li>
+      </gloomy>
+      <cold>
+        <li>Another year of tenure. My contribution has been substantial. Noted, I hope.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+</Defs>

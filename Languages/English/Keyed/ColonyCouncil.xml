@@ -906,4 +906,13 @@ Granting one of {PAWN_possessive} wishes, or keeping a promise, can win {PAWN_ob
   <CC_Settings_DecreeRequests>Colonists petition for decrees</CC_Settings_DecreeRequests>
   <CC_Settings_DecreeRequests_Tip>When the moment fits (food running low, right after a raid, while people grieve, when everyone is spoiled), a colonist who would like a decree asks the council for it. Declaring it within a few days wins their trust; ignoring it costs a little.</CC_Settings_DecreeRequests_Tip>
 
+  <!-- Anniversaries -->
+  <CC_Anniversary_One>It has been a year since {PAWN_nameDef} joined the colony.</CC_Anniversary_One>
+  <CC_Anniversary_Many>{PAWN_nameDef} has been with the colony for {YEARS} years.</CC_Anniversary_Many>
+  <CC_Anniversary_Old>{YEARS} years: {PAWN_nameDef} is one of the colony's old hands now.</CC_Anniversary_Old>
+  <CC_Log_Anniversary>{0} year(s) in the colony</CC_Log_Anniversary>
+  <CC_Chronicle_Anniversary>{0} marked {1} year(s) in the colony.</CC_Chronicle_Anniversary>
+  <CC_Settings_Anniversaries>Mark each year a colonist has been with the colony</CC_Settings_Anniversaries>
+  <CC_Settings_Anniversaries_Tip>On each anniversary of joining, the colonist says a few words, feels remembered, and their friends share it.</CC_Settings_Anniversaries_Tip>
+
 </LanguageData>

@@ -118,4 +118,19 @@
     <stages><li><label>a stocked infirmary</label><description>Enough medicine for anyone who needs it. I can do my job properly.</description><baseMoodEffect>4</baseMoodEffect></li></stages>
   </ThoughtDef>
 
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_Anniversary</defName>
+    <durationDays>3</durationDays>
+    <stages><li><label>another year here</label><description>Another year in this place. Still alive, still here. People remembered.</description><baseMoodEffect>4</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Council_FriendAnniversary</defName>
+    <thoughtClass>Thought_MemorySocial</thoughtClass>
+    <durationDays>3</durationDays>
+    <stackLimit>3</stackLimit>
+    <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
+    <stages><li><label>a friend's anniversary</label><description>Another year with them around. Glad of it.</description><baseMoodEffect>2</baseMoodEffect><baseOpinionOffset>5</baseOpinionOffset></li></stages>
+  </ThoughtDef>
+
 </Defs>
