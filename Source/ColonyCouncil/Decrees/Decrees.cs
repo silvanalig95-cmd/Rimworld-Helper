@@ -16,6 +16,20 @@ namespace ColonyCouncil
         Love
     }
 
+    /// <summary>Moments when a colonist may petition the council for a decree.</summary>
+    public enum DecreeMoment
+    {
+        FoodLow,
+        RecentThreat,
+        Grief,
+        ColonyHappy,
+        ColonyMiserable,
+        Spoiled,
+        Dirty,
+        Prisoners,
+        Autumn
+    }
+
     /// <summary>Who feels how about a decree: by trait (and degree), by passion for a skill, or by being unable to fight.</summary>
     public class DecreeReactionRule
     {
@@ -79,6 +93,8 @@ namespace ColonyCouncil
         public float griefFadePerDay;
         public ToneLines support = new ToneLines();
         public ToneLines oppose = new ToneLines();
+        /// <summary>When someone who likes it may ask the council for it (any one is enough).</summary>
+        public List<DecreeMoment> requestWhen;
         public int order;
 
         public DecreeReaction ReactionOf(Pawn p)
@@ -109,12 +125,34 @@ namespace ColonyCouncil
         }
     }
 
+    /// <summary>A colonist asked the council for a decree.</summary>
+    public class DecreeRequest : IExposable
+    {
+        public DecreeDef def;
+        public Pawn pawn;
+        public int tick;
+        public string line;
+
+        public void ExposeData()
+        {
+            Scribe_Defs.Look(ref def, "def");
+            Scribe_References.Look(ref pawn, "pawn");
+            Scribe_Values.Look(ref tick, "tick");
+            Scribe_Values.Look(ref line, "line");
+        }
+    }
+
     public class DecreeTracker : IExposable
     {
         public const int MaxActive = 2;
 
         public List<ActiveDecree> active = new List<ActiveDecree>();
         private Dictionary<string, int> readyAt = new Dictionary<string, int>();
+        public List<DecreeRequest> requests = new List<DecreeRequest>();
+        private int lastRequestTick = -999999;
+        public const int RequestDays = 5;
+
+        public DecreeRequest RequestFor(DecreeDef def) => requests.FirstOrDefault(r => r.def == def);
 
         public bool IsActive(DecreeDef def) => active.Any(a => a.def == def);
 
@@ -142,6 +180,16 @@ namespace ColonyCouncil
             active.Add(new ActiveDecree { def = def, startTick = now, endTick = now + Mathf.RoundToInt(def.durationDays * GenDate.TicksPerDay) });
             SyncHediffs();
             comp.Notify_DecreeEnacted(def);
+            var req = RequestFor(def);
+            if (req != null)
+            {
+                requests.Remove(req);
+                if (req.pawn != null && !req.pawn.Dead)
+                {
+                    comp.standings.Change(req.pawn, 5f, "CC_Log_DecreeHeeded".Translate(def.label));
+                    CouncilGameComponent.GiveThought(req.pawn, CouncilDefOf.Council_DecreeHeeded);
+                }
+            }
         }
 
         public void Repeal(DecreeDef def, CouncilGameComponent comp, bool early)
@@ -172,6 +220,67 @@ namespace ColonyCouncil
                         if (rec != null && !rec.TotallyDisabled) rec.Learn(a.def.practiceXpPerHour);
                     }
                 }
+            }
+        }
+
+        /// <summary>Once a day: old petitions lapse (a little sourly), and someone may make a new one.</summary>
+        public void DailyRequests(CouncilGameComponent comp)
+        {
+            int now = Find.TickManager.TicksGame;
+            foreach (var r in requests.Where(r => r.def == null || r.pawn == null || r.pawn.Dead || now - r.tick > RequestDays * GenDate.TicksPerDay).ToList())
+            {
+                requests.Remove(r);
+                if (r.def != null && r.pawn != null && !r.pawn.Dead && !IsActive(r.def))
+                    comp.standings.Change(r.pawn, -2f, "CC_Log_DecreeIgnored".Translate(r.def.label));
+            }
+            if (!ColonyCouncilMod.Settings.decreeRequests || requests.Count >= 2 || now - lastRequestTick < GenDate.TicksPerDay * 3 || !Rand.Chance(0.35f)) return;
+            var map = Find.Maps.Where(m => m.IsPlayerHome).OrderByDescending(m => m.mapPawns.FreeColonistsSpawnedCount).FirstOrDefault();
+            if (map == null) return;
+            var pawns = map.mapPawns.FreeColonistsSpawned.Where(p => !p.IsQuestLodger() && CouncilGameComponent.CanVoiceWishes(p)).ToList();
+            if (pawns.Count == 0) return;
+            foreach (var def in DefDatabase<DecreeDef>.AllDefsListForReading.Where(d => !d.requestWhen.NullOrEmpty()).InRandomOrder())
+            {
+                if (IsActive(def) || RequestFor(def) != null || CannotEnact(def) != null) continue;
+                if (!def.requestWhen.Any(m => MomentNow(m, map, pawns))) continue;
+                var asker = pawns.Where(p => def.ReactionOf(p) == DecreeReaction.Love).RandomElementWithFallback()
+                            ?? pawns.Where(p => def.ReactionOf(p) == DecreeReaction.Like).RandomElementWithFallback();
+                if (asker == null) continue;
+                string line = def.support.Pick(ToneUtility.ToneFor(asker), Flavor.TagsFor(asker));
+                line = line.NullOrEmpty() ? null : line.Formatted(asker.Named("PAWN")).Resolve();
+                requests.Add(new DecreeRequest { def = def, pawn = asker, tick = now, line = line });
+                lastRequestTick = now;
+                Messages.Message("CC_Decree_Requested".Translate(asker.Named("PAWN"), def.label.Named("DECREE")).Resolve() + (line != null ? " \"" + TextUtil.ShortSpeech(line, 120) + "\"" : ""),
+                    new LookTargets(asker), MessageTypeDefOf.NeutralEvent, false);
+                CouncilGameComponent.Speak(asker, line, new Color(0.9f, 0.85f, 0.6f));
+                return;
+            }
+        }
+
+        private static bool MomentNow(DecreeMoment m, Map map, List<Pawn> pawns)
+        {
+            switch (m)
+            {
+                case DecreeMoment.FoodLow:
+                    return AdvisorWorker_Food.DaysOfFood(map) < 8f;
+                case DecreeMoment.RecentThreat:
+                    int last = map.storyState.LastThreatBigTick;
+                    return last > 0 && Find.TickManager.TicksGame - last < GenDate.TicksPerDay * 3;
+                case DecreeMoment.Grief:
+                    return pawns.Any(Flavor.IsGrieving);
+                case DecreeMoment.ColonyHappy:
+                    return pawns.Average(p => p.needs?.mood?.CurLevelPercentage ?? 0.5f) > 0.75f;
+                case DecreeMoment.ColonyMiserable:
+                    return pawns.Average(p => p.needs?.mood?.CurLevelPercentage ?? 0.5f) < 0.4f;
+                case DecreeMoment.Spoiled:
+                    return pawns.Average(p => Standards.Of(p)) > 0.6f;
+                case DecreeMoment.Dirty:
+                    return WishWorker_Tidy.Filth(map) > 60;
+                case DecreeMoment.Prisoners:
+                    return map.mapPawns.PrisonersOfColonySpawnedCount > 0;
+                case DecreeMoment.Autumn:
+                    return GenLocalDate.Season(map) == Season.Fall;
+                default:
+                    return false;
             }
         }
 
@@ -220,11 +329,15 @@ namespace ColonyCouncil
         {
             Scribe_Collections.Look(ref active, "active", LookMode.Deep);
             Scribe_Collections.Look(ref readyAt, "readyAt", LookMode.Value, LookMode.Value);
+            Scribe_Collections.Look(ref requests, "requests", LookMode.Deep);
+            Scribe_Values.Look(ref lastRequestTick, "lastRequestTick", -999999);
             if (Scribe.mode == LoadSaveMode.PostLoadInit)
             {
                 if (active == null) active = new List<ActiveDecree>();
                 active.RemoveAll(a => a?.def == null);
                 if (readyAt == null) readyAt = new Dictionary<string, int>();
+                if (requests == null) requests = new List<DecreeRequest>();
+                requests.RemoveAll(r => r?.def == null || r.pawn == null);
             }
         }
     }

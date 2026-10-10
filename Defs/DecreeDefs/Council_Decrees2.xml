@@ -6,6 +6,7 @@
     <defName>Council_Decree_Harvest</defName>
     <label>harvest push</label>
     <description>Everyone to the fields: sow, tend and harvest from first light to last. Crops come in faster and fuller; backs ache. Growers love it, the lazy curse it.</description>
+    <requestWhen><li>Autumn</li><li>FoodLow</li></requestWhen>
     <order>7</order>
     <durationDays>4</durationDays>
     <cooldownDays>10</cooldownDays>
@@ -39,6 +40,7 @@
     <defName>Council_Decree_Building</defName>
     <label>building season</label>
     <description>Every spare hand on walls, floors and tunnels. Construction and mining go much faster, and everyone goes to bed covered in dust.</description>
+    <requestWhen><li>ColonyHappy</li></requestWhen>
     <order>8</order>
     <durationDays>5</durationDays>
     <cooldownDays>10</cooldownDays>
@@ -73,6 +75,7 @@
     <defName>Council_Decree_Manners</defName>
     <label>best behavior</label>
     <description>Everyone on their best behavior: polite to traders, patient with prisoners, charming to visitors. Trading, recruiting and talking people round all go better. The abrasive find it exhausting.</description>
+    <requestWhen><li>Prisoners</li></requestWhen>
     <order>9</order>
     <durationDays>5</durationDays>
     <cooldownDays>10</cooldownDays>
@@ -107,6 +110,7 @@
     <defName>Council_Decree_Mourning</defName>
     <label>days of mourning</label>
     <description>Work stops, mostly, so the colony can grieve together. Those who lost someone heal faster and are less likely to break. Only possible while someone is grieving.</description>
+    <requestWhen><li>Grief</li></requestWhen>
     <order>10</order>
     <durationDays>2</durationDays>
     <cooldownDays>10</cooldownDays>
@@ -141,6 +145,7 @@
     <defName>Council_Decree_OnGuard</defName>
     <label>on guard</label>
     <description>Weapons within reach, eyes on the horizon, sleep in shifts. Everyone fights a little better and tires a little faster. Fighters like the edge; the nervous jump at every shadow.</description>
+    <requestWhen><li>RecentThreat</li></requestWhen>
     <order>11</order>
     <durationDays>4</durationDays>
     <cooldownDays>8</cooldownDays>
@@ -177,6 +182,7 @@
     <defName>Council_Decree_CleanSweep</defName>
     <label>clean sweep</label>
     <description>Scrub everything: floors, tables, bedding, the hospital twice. Cleaning goes much faster, wounds are tended more carefully, and bodies fight off illness better. Nobody enjoys it except the fastidious.</description>
+    <requestWhen><li>Dirty</li></requestWhen>
     <order>12</order>
     <durationDays>3</durationDays>
     <cooldownDays>8</cooldownDays>

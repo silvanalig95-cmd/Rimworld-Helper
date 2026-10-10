@@ -6,6 +6,7 @@
     <defName>Council_Decree_LongHours</defName>
     <label>long hours</label>
     <description>Everyone works harder and longer until the decree ends. Faster building, harvesting and crafting, paid for in mood. Hard workers take it in stride; the lazy take it personally.</description>
+    <requestWhen><li>ColonyHappy</li></requestWhen>
     <order>1</order>
     <durationDays>5</durationDays>
     <cooldownDays>8</cooldownDays>
@@ -44,6 +45,7 @@
     <defName>Council_Decree_Rationing</defName>
     <label>rationing</label>
     <description>Smaller portions for everyone. The stores last a good deal longer, and stomachs grumble. Ascetics hardly notice; gourmands suffer.</description>
+    <requestWhen><li>FoodLow</li></requestWhen>
     <order>2</order>
     <durationDays>7</durationDays>
     <cooldownDays>7</cooldownDays>
@@ -80,6 +82,7 @@
     <defName>Council_Decree_Drills</defName>
     <label>drills</label>
     <description>Daily weapons drills for everyone who can fight. Shooting and melee improve steadily, other work slows, and most people find it exhausting. The bloodthirsty love it.</description>
+    <requestWhen><li>RecentThreat</li></requestWhen>
     <order>3</order>
     <durationDays>5</durationDays>
     <cooldownDays>10</cooldownDays>
@@ -120,6 +123,7 @@
     <defName>Council_Decree_Study</defName>
     <label>study hours</label>
     <description>Evenings of lessons and reading for everyone. Skills improve faster and research picks up, at the cost of some work and patience. Thinkers love it; brawlers count the minutes.</description>
+    <requestWhen><li>ColonyHappy</li></requestWhen>
     <order>4</order>
     <durationDays>5</durationDays>
     <cooldownDays>8</cooldownDays>
@@ -153,6 +157,7 @@
     <defName>Council_Decree_Austerity</defName>
     <label>austerity</label>
     <description>The council takes no new wishes, and everyone is asked to make do. Standards come back down to earth, which makes everyone easier to please afterwards. Ascetics are delighted; the greedy are not.</description>
+    <requestWhen><li>Spoiled</li></requestWhen>
     <order>5</order>
     <durationDays>7</durationDays>
     <cooldownDays>12</cooldownDays>
@@ -187,6 +192,7 @@
     <defName>Council_Decree_Festival</defName>
     <label>festival days</label>
     <description>A few days of rest, music and late nights. Moods lift and work slows to a crawl. Good for a colony on the edge; standards rise afterwards, so don't make it a habit.</description>
+    <requestWhen><li>ColonyMiserable</li></requestWhen>
     <order>6</order>
     <durationDays>3</durationDays>
     <cooldownDays>15</cooldownDays>

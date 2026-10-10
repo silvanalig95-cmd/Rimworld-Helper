@@ -45,6 +45,7 @@ namespace ColonyCouncil
         public bool risingStandards = true;
         public bool enableDilemmas = true;
         public bool annals = true;
+        public bool decreeRequests = true;
         public float daysBetweenDilemmas = 8f;
         public bool eventWishes = true;
         public bool reminders = true;
@@ -96,6 +97,7 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref risingStandards, "risingStandards", true);
             Scribe_Values.Look(ref enableDilemmas, "enableDilemmas", true);
             Scribe_Values.Look(ref annals, "annals", true);
+            Scribe_Values.Look(ref decreeRequests, "decreeRequests", true);
             Scribe_Values.Look(ref daysBetweenDilemmas, "daysBetweenDilemmas", 8f);
             Scribe_Values.Look(ref eventWishes, "eventWishes", true);
             Scribe_Values.Look(ref reminders, "reminders", true);
@@ -186,6 +188,7 @@ namespace ColonyCouncil
             l.CheckboxLabeled("CC_Settings_Quitting".Translate(), ref allowQuitting, "CC_Settings_Quitting_Tip".Translate());
             l.CheckboxLabeled("CC_Settings_Standards".Translate(), ref risingStandards, "CC_Settings_Standards_Tip".Translate());
             l.CheckboxLabeled("CC_Settings_Annals".Translate(), ref annals, "CC_Settings_Annals_Tip".Translate());
+            l.CheckboxLabeled("CC_Settings_DecreeRequests".Translate(), ref decreeRequests, "CC_Settings_DecreeRequests_Tip".Translate());
             l.CheckboxLabeled("CC_Settings_Dilemmas".Translate(), ref enableDilemmas, "CC_Settings_Dilemmas_Tip".Translate());
             if (enableDilemmas)
             {
@@ -275,6 +278,7 @@ namespace ColonyCouncil
             risingStandards = d.risingStandards;
             enableDilemmas = d.enableDilemmas;
             annals = d.annals;
+            decreeRequests = d.decreeRequests;
             daysBetweenDilemmas = d.daysBetweenDilemmas;
             eventWishes = d.eventWishes;
             reminders = d.reminders;

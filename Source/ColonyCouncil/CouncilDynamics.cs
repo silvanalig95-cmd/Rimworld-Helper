@@ -596,6 +596,7 @@ namespace ColonyCouncil
             var s = Settings;
             Standards.Daily(standings, decrees.active.Sum(a => a.def.standardsPerDay));
             DecreeDaily();
+            if (s.enableWishes) decrees.DailyRequests(this);
             foreach (var p in PawnsFinder.AllMaps_FreeColonists.ToList())
             {
                 var st = standings.For(p, false);

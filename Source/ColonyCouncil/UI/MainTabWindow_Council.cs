@@ -50,7 +50,9 @@ namespace ColonyCouncil
                 new TabRecord("CC_Tab_Wishes".Translate(OpenWishCount()), () => SetTab(Tab.Wishes), tab == Tab.Wishes),
                 new TabRecord("CC_Tab_Ambition".Translate(), () => SetTab(Tab.Ambition), tab == Tab.Ambition),
                 new TabRecord("CC_Tab_Build".Translate(), () => SetTab(Tab.Build), tab == Tab.Build),
-                new TabRecord("CC_Tab_Decrees".Translate(), () => SetTab(Tab.Decrees), tab == Tab.Decrees),
+                new TabRecord(CouncilGameComponent.Instance != null && CouncilGameComponent.Instance.decrees.requests.Count > 0
+                    ? "CC_Tab_DecreesAsked".Translate(CouncilGameComponent.Instance.decrees.requests.Count).ToString()
+                    : "CC_Tab_Decrees".Translate().ToString(), () => SetTab(Tab.Decrees), tab == Tab.Decrees),
                 new TabRecord("CC_Tab_Almanac".Translate(), () => SetTab(Tab.Almanac), tab == Tab.Almanac),
                 new TabRecord("CC_Tab_Chronicle".Translate(), () => SetTab(Tab.Chronicle), tab == Tab.Chronicle)
             };

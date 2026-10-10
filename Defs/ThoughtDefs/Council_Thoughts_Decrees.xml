@@ -69,4 +69,10 @@
     </stages>
   </ThoughtDef>
 
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_DecreeHeeded</defName>
+    <durationDays>4</durationDays>
+    <stages><li><label>the council heeded me</label><description>I asked for a decree, and the council actually declared it.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
 </Defs>

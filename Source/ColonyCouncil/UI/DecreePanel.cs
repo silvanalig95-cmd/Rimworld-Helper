@@ -60,8 +60,11 @@ namespace ColonyCouncil
             if (active != null) title += "  " + "CC_Decree_InForce".Translate(TextUtil.DaysString(active.endTick - Find.TickManager.TicksGame));
             string effects = string.Join("\n", def.effects.Select(e => "- " + e));
             string reactions = Reactions(def, pawns);
+            var req = tracker.RequestFor(def);
+            string petition = req?.pawn == null ? null : "CC_Decree_PetitionLine".Translate(req.pawn.Named("PAWN")).Resolve() + (req.line != null ? " \"" + req.line + "\"" : "");
             Text.Font = GameFont.Small;
             h += Text.CalcHeight(title, textW) + Text.CalcHeight(def.description, textW) + Text.CalcHeight(effects, textW) + Text.CalcHeight(reactions, textW) + 22f;
+            if (petition != null) h += Text.CalcHeight(petition, textW) + 2f;
             h = Mathf.Max(h, 70f);
             var box = new Rect(0f, y, width, h);
             if (active != null) Widgets.DrawBoxSolid(box, new Color(0.3f, 0.45f, 0.3f, 0.25f));
@@ -69,6 +72,7 @@ namespace ColonyCouncil
 
             float cy = y + 6f;
             cy += Label(8f, cy, textW, title, active != null ? Good : Color.white);
+            if (petition != null) cy += Label(8f, cy, textW, petition, new Color(1f, 0.85f, 0.45f)) + 2f;
             cy += Label(8f, cy, textW, def.description, Faint) + 2f;
             cy += Label(8f, cy, textW, effects, Color.white) + 2f;
             Label(8f, cy, textW, reactions, Faint);

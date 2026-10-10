@@ -897,4 +897,13 @@ Granting one of {PAWN_possessive} wishes, or keeping a promise, can win {PAWN_ob
   <CC_Reason_Infirmary>{PAWN_nameDef} counted the medicine: {COUNT} doses for the whole colony.</CC_Reason_Infirmary>
   <CC_Progress_Infirmary>{0} / {1} medicine in stock</CC_Progress_Infirmary>
 
+  <!-- Decree petitions -->
+  <CC_Decree_Requested>{PAWN_nameDef} asks the council to declare {DECREE}.</CC_Decree_Requested>
+  <CC_Decree_PetitionLine>{PAWN_nameDef} has asked for this:</CC_Decree_PetitionLine>
+  <CC_Tab_DecreesAsked>Decrees ({0} asked)</CC_Tab_DecreesAsked>
+  <CC_Log_DecreeHeeded>the council declared {0}, as asked</CC_Log_DecreeHeeded>
+  <CC_Log_DecreeIgnored>asked for {0}, nobody listened</CC_Log_DecreeIgnored>
+  <CC_Settings_DecreeRequests>Colonists petition for decrees</CC_Settings_DecreeRequests>
+  <CC_Settings_DecreeRequests_Tip>When the moment fits (food running low, right after a raid, while people grieve, when everyone is spoiled), a colonist who would like a decree asks the council for it. Declaring it within a few days wins their trust; ignoring it costs a little.</CC_Settings_DecreeRequests_Tip>
+
 </LanguageData>
