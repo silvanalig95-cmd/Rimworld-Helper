@@ -9,7 +9,8 @@
     <importance>1</importance>
     <template>Council_Kitchen</template>
     <tips>
-      <li>Food poisoning comes from two places: a clumsy cook and a dirty kitchen. A skilled cook rarely poisons anyone; a filthy room makes even good cooks dangerous.</li>
+      <li>Food poisoning comes from two places: a clumsy cook and a dirty kitchen. A skilled cook rarely poisons anyone; a kitchen below -2 cleanliness makes even good cooks dangerous.</li>
+      <li>Nutrient paste never causes food poisoning. Raw food can.</li>
       <li>Butchering sprays blood and drags the room's cleanliness down. Give the butcher table its own room next door, not a corner of the kitchen.</li>
       <li>Floors matter in a kitchen. Bare ground collects filth; tiles are easy to keep clean, and sterile tiles are the best of all.</li>
       <li>Once a cook reaches Cooking 6 and you have both meat and vegetables, fine meals cost no more food than simple ones and lift everyone's mood.</li>
@@ -50,8 +51,9 @@
     <category>Defense</category>
     <importance>0.8</importance>
     <tips>
-      <li>Insect hives can only appear under thick overhead mountain, and only where it's warm enough. Cold, bright, busy rooms are less inviting.</li>
-      <li>Mountain bases are easy to defend from raiders and hard to defend from what lives inside the rock. Keep fighters and fire close to the deep tunnels.</li>
+      <li>Hives can only appear under overhead mountain, warmer than -17 °C and within 30 tiles of your buildings. They prefer dark spots far from open sky.</li>
+      <li>Only walls stop hives from spawning, not doors or columns. Walling up every second tile of an unused mountain room is enough.</li>
+      <li>Keeping a mountain room at or below -17 °C keeps insects out of it entirely.</li>
       <li>Fire works on insects too: they hate it, and so will your walls if they're wooden.</li>
     </tips>
   </ColonyCouncil.AdvisorSignalDef>

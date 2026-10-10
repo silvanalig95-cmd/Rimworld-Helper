@@ -656,7 +656,7 @@
   <CC_Adv_ButcherInKitchen_Title>Butchering in the kitchen</CC_Adv_ButcherInKitchen_Title>
   <CC_Adv_ButcherInKitchen_Detail>The {0} shares a room with the stove. Butchering spatters blood and makes the kitchen filthy, and filthy kitchens make food poisoning far more likely. Move it to its own room next door.</CC_Adv_ButcherInKitchen_Detail>
   <CC_Adv_DirtyKitchen_Title>The kitchen is dirty</CC_Adv_DirtyKitchen_Title>
-  <CC_Adv_DirtyKitchen_Detail>Kitchen cleanliness is {0}. Dirty kitchens poison people. Have someone clean it, and lay a proper floor if it's bare ground.</CC_Adv_DirtyKitchen_Detail>
+  <CC_Adv_DirtyKitchen_Detail>Kitchen cleanliness is {0}. Below -2, dirt starts adding to the chance of food poisoning. Have someone clean it, and lay a proper floor if it's bare ground.</CC_Adv_DirtyKitchen_Detail>
   <CC_Adv_NoCleaner_Title>Nobody is cleaning</CC_Adv_NoCleaner_Title>
   <CC_Adv_NoCleaner_Detail>No colonist has Cleaning switched on. Filth will pile up in the kitchen, hospital and dining room, dragging down mood and health. Give it to someone in the Work tab.</CC_Adv_NoCleaner_Detail>
   <CC_Adv_DirtyHospital_Title>The hospital is dirty</CC_Adv_DirtyHospital_Title>
@@ -667,7 +667,7 @@
   <CC_Adv_Fire_Detail>One stray spark and it all goes up. Rebuild the walls around fires, storerooms and bedrooms in {0}.</CC_Adv_Fire_Detail>
   <CC_StoneGeneric>stone blocks</CC_StoneGeneric>
   <CC_Adv_Infestation_Title>Insects could dig in</CC_Adv_Infestation_Title>
-  <CC_Adv_Infestation_Detail>{0} cells of the home area lie under thick overhead mountain, where insect hives can appear when it's warm.</CC_Adv_Infestation_Detail>
+  <CC_Adv_Infestation_Detail>{0} cells of the home area lie under overhead mountain. Hives can appear there when it's warmer than -17 °C, preferring dark spots far from open sky. Walling up unused mountain rooms (every second tile is enough) prevents them.</CC_Adv_Infestation_Detail>
   <CC_Adv_Infestation_Turret>A {0} or two covering the deep rooms would help when they come.</CC_Adv_Infestation_Turret>
   <CC_Adv_Infestation_LowTech>Keep fighters with good melee weapons near the deep rooms, and don't store anything precious there.</CC_Adv_Infestation_LowTech>
   <CC_Adv_Corpses_Title>{0} bodies lying around the colony</CC_Adv_Corpses_Title>

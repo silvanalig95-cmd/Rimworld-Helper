@@ -89,7 +89,7 @@ everyone's mood and trust.
 
 ### Build: room plans
 32 ready-made rooms, grouped by purpose: bedrooms of three sizes, barracks, dining room, rec room, kitchen,
-butcher's room, freezer, cool cellar (no power needed), storeroom, brewery, greenhouse, barn, workshop, smithy,
+butcher's room, freezer, heat shelter (no power needed), storeroom, brewery, greenhouse, barn, workshop, smithy,
 tailor's shop, art studio, laboratory, drug lab, hospitals, crypt, crematorium, prison cell and barracks,
 armory, battery room, meditation and throne rooms (Royalty), classroom and nursery (Biotech).
 

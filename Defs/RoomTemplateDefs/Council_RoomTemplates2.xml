@@ -112,13 +112,13 @@
   <ColonyCouncil.RoomTemplateDef>
     <defName>Council_Brewery</defName>
     <label>brewery</label>
-    <description>A brewing bench and fermenting barrels for beer. Keep it mild: barrels dislike freezing and heat.</description>
+    <description>A brewing bench and fermenting barrels for beer. Barrels only work between -1 °C and 32 °C.</description>
     <order>34</order>
     <group>Food</group>
     <size>(5,4)</size>
     <near><li>Storeroom</li><li>RecRoom</li></near>
     <tips>
-      <li>Fermenting barrels stop working when it gets too cold or too hot. An indoor room with a heater or cooler keeps them steady.</li>
+      <li>Fermenting barrels only work between -1 °C and 32 °C. An indoor room keeps them in range most of the year.</li>
       <li>Beer counts as recreation and cheers people up, but too much leads to hangovers and, for some, alcohol addiction. Set a drug policy.</li>
     </tips>
     <things>
@@ -134,21 +134,22 @@
 
   <ColonyCouncil.RoomTemplateDef>
     <defName>Council_CoolCellar</defName>
-    <label>cool cellar</label>
-    <description>Storage kept cool without electricity: passive coolers and a shelf. Slows rot, though it can't freeze.</description>
-    <order>52</order>
-    <group>Food</group>
+    <label>heat shelter</label>
+    <description>A room kept bearable in desert heat and heat waves without electricity: passive coolers and three beds.</description>
+    <order>12</order>
+    <group>Living</group>
     <size>(5,5)</size>
-    <near><li>Kitchen</li></near>
     <tips>
-      <li>Passive coolers burn wood to keep a room noticeably cooler, but not freezing. That slows rot; food still spoils eventually, so preserve what you can.</li>
-      <li>No torches in here: they heat the room you're trying to keep cool.</li>
-      <li>Dig it into a hillside if you can. Rock walls and an overhead mountain keep temperatures steadier.</li>
+      <li>Passive coolers burn wood and can't cool below 17 °C. That won't keep food, but it keeps people out of heatstroke.</li>
+      <li>Coolers only help in a closed room. Keep the door shut and the walls thick.</li>
+      <li>No torches or campfires in here: they heat the room you're trying to cool.</li>
     </tips>
     <things>
       <li><defs><li>PassiveCooler</li></defs><role>cooler</role><pos>(0,4)</pos><optional>false</optional></li>
       <li><defs><li>PassiveCooler</li></defs><role>cooler</role><pos>(4,4)</pos></li>
-      <li><defs><li>Shelf</li></defs><role>storage</role><pos>(1,4)</pos></li>
+      <li><defs><li>Bed</li><li>Bedroll</li></defs><role>bed</role><pos>(1,3)</pos></li>
+      <li><defs><li>Bed</li><li>Bedroll</li></defs><role>bed</role><pos>(3,3)</pos></li>
+      <li><defs><li>Bed</li><li>Bedroll</li></defs><role>bed</role><pos>(4,1)</pos><rot>South</rot></li>
     </things>
   </ColonyCouncil.RoomTemplateDef>
 

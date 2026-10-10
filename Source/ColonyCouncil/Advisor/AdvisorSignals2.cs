@@ -30,9 +30,10 @@ namespace ColonyCouncil
                     yield break;
                 }
                 float clean = room.GetStat(RoomStatDefOf.Cleanliness);
-                if (clean < -0.5f)
+                // Below -2, dirt adds to the chance of food poisoning; just above, it's close.
+                if (clean < -1.5f)
                 {
-                    var s = Signal(clean < -2f ? 0.55f : 0.3f, "CC_Adv_DirtyKitchen_Title".Translate(), "CC_Adv_DirtyKitchen_Detail".Translate(clean.ToString("0.0")), 0.6f);
+                    var s = Signal(clean < -2f ? 0.55f : 0.25f, "CC_Adv_DirtyKitchen_Title".Translate(), "CC_Adv_DirtyKitchen_Detail".Translate(clean.ToString("0.0")), 0.6f);
                     s.look = new LookTargets(room.Cells.First(), map);
                     s.key = "dirty";
                     yield return s;
