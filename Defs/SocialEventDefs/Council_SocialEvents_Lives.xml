@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Social events about secrets, vendettas, quirks and life goals.
+    bKeepsSecretOfA: B keeps a secret A confided. sharedVendetta: both swore vengeance on {FACTION}.
+    aHasQuirk: A has a quirk ({QUIRK}). aHasGoal: A is pursuing a life goal ({GOAL}).
+  -->
+
+  <ColonyCouncil.SocialEventDef>
+    <defName>Council_SocLife_KnowingLook</defName>
+    <label>a knowing look</label>
+    <bKeepsSecretOfA>true</bKeepsSecretOfA>
+    <texts>
+      <li>Someone at dinner came close to a sore subject. {B_nameDef} changed it, smoothly, without looking at {A_nameDef}.</li>
+      <li>{A_nameDef} and {B_nameDef} shared a look across the room that nobody else understood.</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Soc_HadMyBack</thought></li>
+    </effects>
+    <changeTie>Friends</changeTie>
+    <change>4</change>
+    <note>{B_nameDef} kept the secret</note>
+  </ColonyCouncil.SocialEventDef>
+
+  <ColonyCouncil.SocialEventDef>
+    <defName>Council_SocLife_SecretStrain</defName>
+    <label>the weight of a secret</label>
+    <weight>0.6</weight>
+    <bKeepsSecretOfA>true</bKeepsSecretOfA>
+    <maxOpinion>30</maxOpinion>
+    <texts>
+      <li>{B_nameDef} snapped at {A_nameDef} over nothing, then muttered something about "what I know." {A_nameDef} went pale.</li>
+      <li>{B_nameDef} told {A_nameDef}, quietly, that keeping {A_possessive} secret was getting heavy. It didn't sound like a complaint. It sounded like a warning.</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Soc_Snubbed</thought></li>
+    </effects>
+    <changeTie>Rivals</changeTie>
+    <change>5</change>
+    <note>a secret weighing on them</note>
+    <notable>true</notable>
+  </ColonyCouncil.SocialEventDef>
+
+  <ColonyCouncil.SocialEventDef>
+    <defName>Council_SocLife_SharedHatred</defName>
+    <label>a shared vow</label>
+    <sharedVendetta>true</sharedVendetta>
+    <texts>
+      <li>{A_nameDef} and {B_nameDef} sat by the graves and talked about {FACTION} until the fire went out. They made each other a promise.</li>
+      <li>{A_nameDef} carved a mark into the wall for every one of {FACTION} that has fallen. {B_nameDef} handed over the knife for the next one.</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>AAndB</target><thought>Council_Soc_GoodTalk</thought></li>
+    </effects>
+    <changeTie>Comrades</changeTie>
+    <change>8</change>
+    <note>sworn against {FACTION} together</note>
+  </ColonyCouncil.SocialEventDef>
+
+  <ColonyCouncil.SocialEventDef>
+    <defName>Council_SocLife_TeasedQuirk</defName>
+    <label>teased about a quirk</label>
+    <aHasQuirk>true</aHasQuirk>
+    <maxOpinion>25</maxOpinion>
+    <texts>
+      <li>{B_nameDef} made fun of {A_nameDef} for {A_possessive} habit ({QUIRK}) in front of everyone. {A_nameDef} didn't laugh.</li>
+      <li>{B_nameDef} asked {A_nameDef}, loudly, whether {QUIRK} actually works. It got a laugh. Not from {A_nameDef}.</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Soc_Pranked</thought></li>
+    </effects>
+    <changeTie>Rivals</changeTie>
+    <change>4</change>
+    <note>mocked a superstition</note>
+  </ColonyCouncil.SocialEventDef>
+
+  <ColonyCouncil.SocialEventDef>
+    <defName>Council_SocLife_SharedQuirk</defName>
+    <label>a superstition shared</label>
+    <aHasQuirk>true</aHasQuirk>
+    <minOpinion>10</minOpinion>
+    <texts>
+      <li>{B_nameDef} asked {A_nameDef} about {A_possessive} habit ({QUIRK}), expecting a joke, and got a real story instead. They talked a long time.</li>
+      <li>{B_nameDef} caught {A_nameDef} at it ({QUIRK}) and, instead of laughing, quietly joined in.</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>AAndB</target><thought>Council_Soc_GoodTalk</thought></li>
+    </effects>
+    <changeTie>Friends</changeTie>
+    <change>5</change>
+    <note>shared a superstition</note>
+  </ColonyCouncil.SocialEventDef>
+
+  <ColonyCouncil.SocialEventDef>
+    <defName>Council_SocLife_GoalEncouraged</defName>
+    <label>encouragement</label>
+    <aHasGoal>true</aHasGoal>
+    <minOpinion>15</minOpinion>
+    <texts>
+      <li>{A_nameDef} admitted to {B_nameDef} wanting to {GOAL}. {B_nameDef} didn't laugh. {B_nameDef} said "then do it," and meant it.</li>
+      <li>{B_nameDef} has been asking {A_nameDef} every evening how it's going: the plan to {GOAL}. {A_nameDef} pretends to find it annoying.</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Soc_HadMyBack</thought></li>
+      <li Class="ColonyCouncil.DilemmaEffect_Inspiration"><target>A</target><chance>0.1</chance></li>
+    </effects>
+    <changeTie>Friends</changeTie>
+    <change>5</change>
+    <note>believed in {A_nameDef}'s dream</note>
+  </ColonyCouncil.SocialEventDef>
+
+  <ColonyCouncil.SocialEventDef>
+    <defName>Council_SocLife_GoalMocked</defName>
+    <label>a dream mocked</label>
+    <weight>0.6</weight>
+    <aHasGoal>true</aHasGoal>
+    <maxOpinion>0</maxOpinion>
+    <texts>
+      <li>{B_nameDef} found out {A_nameDef} wants to {GOAL}, and laughed out loud. {A_nameDef} will remember that laugh.</li>
+      <li>"You want to {GOAL}?" {B_nameDef} asked {A_nameDef}, in front of the whole table. Some people laughed. {A_nameDef} didn't.</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Soc_Snubbed</thought></li>
+    </effects>
+    <changeTie>Rivals</changeTie>
+    <change>7</change>
+    <note>laughed at {A_nameDef}'s dream</note>
+  </ColonyCouncil.SocialEventDef>
+
+  <ColonyCouncil.SocialEventDef>
+    <defName>Council_SocLife_GoalHelp</defName>
+    <label>a helping hand</label>
+    <aHasGoal>true</aHasGoal>
+    <tie>Friends</tie>
+    <minStrength>40</minStrength>
+    <texts>
+      <li>{B_nameDef} spent a whole free evening helping {A_nameDef} get a little closer to {A_possessive} goal: to {GOAL}.</li>
+      <li>{B_nameDef} gave up a rest day to help {A_nameDef} with the plan to {GOAL}. {A_nameDef} didn't know what to say.</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Soc_Gift</thought></li>
+    </effects>
+    <changeTie>Friends</changeTie>
+    <change>6</change>
+    <note>helped with {A_nameDef}'s goal</note>
+  </ColonyCouncil.SocialEventDef>
+
+</Defs>

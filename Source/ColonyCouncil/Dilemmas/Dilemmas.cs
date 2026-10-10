@@ -202,7 +202,8 @@ namespace ColonyCouncil
                 (pet != null ? pet.Named("PET") : (a != null ? a.Named("PET") : "?".Named("PET"))),
                 (skill != null ? skill.label : "").Named("SKILL"),
                 (CouncilGameComponent.Instance?.aspirations.Active(a)?.Goal ?? "").Named("GOAL"),
-                (CouncilGameComponent.Instance?.secrets.Of(a)?.def.label ?? "").Named("SECRET")
+                (CouncilGameComponent.Instance?.secrets.Of(a)?.def.label ?? "").Named("SECRET"),
+                (CouncilGameComponent.Instance?.quirks.Of(a).FirstOrDefault()?.Label ?? "").Named("QUIRK")
             };
             return s.Formatted(args.ToArray()).Resolve();
         }

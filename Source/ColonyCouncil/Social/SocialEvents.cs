@@ -33,6 +33,14 @@ namespace ColonyCouncil
         public bool notable;
         /// <summary>Children can take part (without roles, events are for adults by default).</summary>
         public bool children;
+        /// <summary>B keeps a secret A confided (not yet out).</summary>
+        public bool bKeepsSecretOfA;
+        /// <summary>A and B have sworn vengeance on the same faction ({FACTION}).</summary>
+        public bool sharedVendetta;
+        /// <summary>A has a quirk ({QUIRK}).</summary>
+        public bool aHasQuirk;
+        /// <summary>A is pursuing a life goal ({GOAL}).</summary>
+        public bool aHasGoal;
 
         public override IEnumerable<string> ConfigErrors()
         {
@@ -113,12 +121,21 @@ namespace ColonyCouncil
             if (def.roleA != null ? !def.roleA.Allows(a, null) : !def.children && a.DevelopmentalStage.Juvenile()) return false;
             if (def.roleB != null ? !def.roleB.Allows(b, a) : !def.children && b.DevelopmentalStage.Juvenile()) return false;
             if (def.minMood > 0f && ((a.needs?.mood?.CurLevelPercentage ?? 0f) < def.minMood || (b.needs?.mood?.CurLevelPercentage ?? 0f) < def.minMood)) return false;
+            var comp = CouncilGameComponent.Instance;
+            if (def.bKeepsSecretOfA && !(comp.secrets.Of(a) is Secret s && !s.revealed && s.knowers.Contains(b))) return false;
+            if (def.sharedVendetta && SharedVendetta(comp, a, b) == null) return false;
+            if (def.aHasQuirk && !comp.quirks.Of(a).Any()) return false;
+            if (def.aHasGoal && comp.aspirations.Active(a) == null) return false;
             return true;
         }
+
+        private static Faction SharedVendetta(CouncilGameComponent comp, Pawn a, Pawn b) =>
+            comp.vendettas.Of(a).Select(v => v.faction).FirstOrDefault(f => comp.vendettas.Of(b).Any(v => v.faction == f));
 
         private static void Fire(SocialEventDef def, CouncilGameComponent comp, Map map, Pawn a, Pawn b, SocialTie tie)
         {
             var ctx = new DilemmaContext { map = map, a = a, b = b, skill = tie?.skill, why = def.label };
+            if (def.sharedVendetta) ctx.faction = SharedVendetta(comp, a, b);
             foreach (var e in def.effects)
             {
                 try
