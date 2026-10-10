@@ -727,6 +727,11 @@
   <CC_Reason_LittleSomething>{PAWN_nameDef} has a taste for chemicals, and the colony has almost none in stock.</CC_Reason_LittleSomething>
   <CC_Progress_Stock>{0} of {1} in stock</CC_Progress_Stock>
   <CC_Reason_Recruit>{PAWN_nameDef} has taken a liking to the prisoner {OTHER_nameDef}.</CC_Reason_Recruit>
+  <CC_Reason_Tidy>{PAWN_nameDef} counted {COUNT} patches of filth in the home area and has opinions about it.</CC_Reason_Tidy>
+  <CC_Progress_Filth>{0} pieces of filth (goal: {1} or fewer)</CC_Progress_Filth>
+  <CC_SelfHelp_Tidy>{PAWN_nameDef} picked up a broom and made cleaning {PAWN_possessive} top priority. You can change it back in the Work tab.</CC_SelfHelp_Tidy>
+  <CC_Reason_Music>{PAWN_nameDef} has music in {PAWN_objective} and nothing to play it on.</CC_Reason_Music>
+  <CC_Reason_Armor>{PAWN_nameDef} fights for the colony with no real armor, and the colony could make some.</CC_Reason_Armor>
   <CC_SelfHelp_Wedding>{PAWN_nameDef} marked out a marriage spot for {PAWN_objective} and {OTHER_nameDef}. Once it's built, the wedding can happen.</CC_SelfHelp_Wedding>
 
 </LanguageData>

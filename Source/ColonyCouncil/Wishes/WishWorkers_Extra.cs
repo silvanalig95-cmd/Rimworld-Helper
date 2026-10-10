@@ -196,3 +196,102 @@ namespace ColonyCouncil
         public override LookTargets LookAt(Wish wish) => wish.other != null && wish.other.Spawned ? new LookTargets(wish.other) : base.LookAt(wish);
     }
 }
+
+namespace ColonyCouncil
+{
+    /// <summary>Filth everywhere: someone with standards wants the place cleaned up.</summary>
+    public class WishWorker_Tidy : WishWorker
+    {
+        public const int Dirty = 60;
+        public const int Clean = 15;
+
+        public static int Filth(Map map) => map?.listerFilthInHomeArea?.FilthInHomeArea?.Count ?? 0;
+
+        public override IEnumerable<WishCandidate> CandidatesFor(Pawn pawn)
+        {
+            var map = HomeMap(pawn);
+            if (map == null || Filth(map) < Dirty) yield break;
+            bool picky = RoomUtil.ExpectationOrder(pawn) >= 2 || HasTrait(pawn, TraitDefOf.Greedy)
+                         || (pawn.story?.traits?.allTraits.Any(t => t.def.defName == "Beauty" && t.Degree > 0) ?? false);
+            if (!picky) yield break;
+            var c = Candidate(1f, "CC_Reason_Tidy".Translate(pawn.Named("PAWN"), Filth(map).Named("COUNT")));
+            c.targetValue = Clean;
+            c.subjectKey = "colony";
+            yield return c;
+        }
+
+        public override bool IsFulfilled(Wish wish) => Filth(wish.Beneficiary.MapHeld) <= wish.targetValue;
+
+        public override string ProgressText(Wish wish) => "CC_Progress_Filth".Translate(Filth(wish.Beneficiary.MapHeld), wish.targetValue.ToString("0"));
+
+        /// <summary>They pick up a broom: cleaning goes to the top of their own priorities.</summary>
+        public override string TrySelfHelp(Wish wish)
+        {
+            var ws = wish.Beneficiary.workSettings;
+            var cleaning = WorkTypeDefOf.Cleaning;
+            if (ws == null || cleaning == null || wish.Beneficiary.WorkTypeIsDisabled(cleaning)) return null;
+            ws.SetPriority(cleaning, 1);
+            return "CC_SelfHelp_Tidy";
+        }
+    }
+
+    /// <summary>Artists and socialites want music: an instrument somewhere in the colony.</summary>
+    public class WishWorker_Music : WishWorker
+    {
+        private static bool IsInstrument(ThingDef d) => d.thingClass != null && typeof(Building_MusicalInstrument).IsAssignableFrom(d.thingClass);
+
+        public override IEnumerable<WishCandidate> CandidatesFor(Pawn pawn)
+        {
+            var map = HomeMap(pawn);
+            if (map == null || Avail.ColonyHas(map, IsInstrument)) yield break;
+            var instrument = Avail.BestBuildable(map, IsInstrument, "Harp", "Harpsichord", "Piano");
+            if (instrument == null) yield break;
+            var art = pawn.skills?.GetSkill(SkillDefOf.Artistic);
+            var social = pawn.skills?.GetSkill(SkillDefOf.Social);
+            bool musical = (art != null && !art.TotallyDisabled && art.passion != Passion.None) || (social != null && !social.TotallyDisabled && social.passion == Passion.Major);
+            if (!musical) yield break;
+            var c = Candidate(0.8f, "CC_Reason_Music".Translate(pawn.Named("PAWN")));
+            c.thingDef = instrument;
+            c.subjectKey = "colony";
+            yield return c;
+        }
+
+        public override bool IsFulfilled(Wish wish) => Avail.ColonyHas(wish.Beneficiary.MapHeld, IsInstrument);
+    }
+
+    /// <summary>A fighter with nothing between their skin and the bullets wants armor the colony can make.</summary>
+    public class WishWorker_Armor : WishWorker
+    {
+        public const float Wanted = 0.35f;
+
+        public static float BestArmor(Pawn p)
+        {
+            if (p.apparel == null) return 0f;
+            float best = 0f;
+            foreach (var a in p.apparel.WornApparel)
+                best = UnityEngine.Mathf.Max(best, a.GetStatValue(StatDefOf.ArmorRating_Sharp));
+            return best;
+        }
+
+        public static bool CanMakeArmor(Map map) => DefDatabase<RecipeDef>.AllDefsListForReading.Any(r => r.AvailableNow && r.ProducedThingDef != null
+            && r.ProducedThingDef.IsApparel && r.ProducedThingDef.thingCategories != null
+            && (r.ProducedThingDef.thingCategories.Contains(ThingCategoryDefOf.ApparelArmor) || r.ProducedThingDef.thingCategories.Contains(ThingCategoryDefOf.ArmorHeadgear))
+            && r.AllRecipeUsers.Any(u => Avail.ColonyHas(map, d => d == u) || Avail.CanBuild(u, map)));
+
+        public override IEnumerable<WishCandidate> CandidatesFor(Pawn pawn)
+        {
+            var map = HomeMap(pawn);
+            if (map == null || pawn.skills == null || pawn.WorkTagIsDisabled(WorkTags.Violent)) yield break;
+            var shoot = pawn.skills.GetSkill(SkillDefOf.Shooting);
+            var melee = pawn.skills.GetSkill(SkillDefOf.Melee);
+            bool fighter = (shoot != null && shoot.passion != Passion.None && !shoot.TotallyDisabled) || (melee != null && melee.passion != Passion.None && !melee.TotallyDisabled);
+            if (!fighter || BestArmor(pawn) >= Wanted || !CanMakeArmor(map)) yield break;
+            var c = Candidate(map.storyState.LastThreatBigTick > 0 && Find.TickManager.TicksGame - map.storyState.LastThreatBigTick < GenDate.TicksPerDay * 3 ? 1.6f : 0.6f,
+                "CC_Reason_Armor".Translate(pawn.Named("PAWN")));
+            c.targetValue = Wanted;
+            yield return c;
+        }
+
+        public override bool IsFulfilled(Wish wish) => BestArmor(wish.Beneficiary) >= wish.targetValue;
+    }
+}

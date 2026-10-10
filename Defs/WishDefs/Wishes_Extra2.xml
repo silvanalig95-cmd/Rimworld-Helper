@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <ColonyCouncil.WishDef>
+    <defName>Council_Wish_Tidy</defName>
+    <label>a clean colony</label>
+    <description>Filth is piling up inside the home area, and someone with standards has noticed.</description>
+    <workerClass>ColonyCouncil.WishWorker_Tidy</workerClass>
+    <category>Comfort</category>
+    <weight>0.8</weight>
+    <expiryDays>6</expiryDays>
+    <cooldownDays>15</cooldownDays>
+    <grantedThought>Council_Granted_Tidy</grantedThought>
+    <allowPetition>true</allowPetition>
+    <envy>0</envy>
+    <talkInteraction>Council_Talk_Comfort</talkInteraction>
+    <fulfilledWhen>No more than {TARGET} pieces of filth left in the home area.</fulfilledWhen>
+    <request>
+      <plain>
+        <li>There's blood in the hallway, mud in the dining room and something I won't name in the corner. Can we clean?</li>
+        <li>We live like animals. Animals keep their dens cleaner.</li>
+        <li>[afterraid] The raid's over. The mess isn't. Somebody fetch a broom.</li>
+        <li>[rain] Every pair of boots in this colony has brought half the yard inside.</li>
+      </plain>
+      <warm>
+        <li>I'll help, of course. But could we all spend a day making this place clean again?</li>
+      </warm>
+      <blunt>
+        <li>This place is filthy. I'm not eating in it again until somebody cleans.</li>
+      </blunt>
+      <cheerful>
+        <li>Cleaning day! Everyone grab a broom! It'll be fun! It won't be fun. But clean!</li>
+      </cheerful>
+      <gloomy>
+        <li>Dirt everywhere. Fitting, really. Still, I'd like to not live in it.</li>
+      </gloomy>
+      <cold>
+        <li>Filth spreads disease and lowers morale. It also offends me.</li>
+      </cold>
+    </request>
+    <thanks>
+      <plain>
+        <li>Clean floors. I could weep. I won't, I'd make a mess.</li>
+      </plain>
+      <cold>
+        <li>Acceptable. Maintain it.</li>
+      </cold>
+    </thanks>
+    <expired>
+      <plain>
+        <li>I'll just stop looking at the floor, then.</li>
+      </plain>
+    </expired>
+  </ColonyCouncil.WishDef>
+
+  <ColonyCouncil.WishDef>
+    <defName>Council_Wish_Music</defName>
+    <label>music in the colony</label>
+    <description>An artist or born entertainer wants an instrument: music for the evenings.</description>
+    <workerClass>ColonyCouncil.WishWorker_Music</workerClass>
+    <category>Comfort</category>
+    <weight>0.7</weight>
+    <expiryDays>15</expiryDays>
+    <cooldownDays>30</cooldownDays>
+    <grantedThought>Council_Granted_Music</grantedThought>
+    <luxury>true</luxury>
+    <allowPetition>true</allowPetition>
+    <inspirationChance>0.15</inspirationChance>
+    <envy>0</envy>
+    <talkInteraction>Council_Talk_Fun</talkInteraction>
+    <fulfilledWhen>The colony has {THING} or another instrument.</fulfilledWhen>
+    <request>
+      <plain>
+        <li>We have walls, beds and guns. What we don't have is music. Build {THING}.</li>
+        <li>[evening] The evenings are so quiet you can hear the raiders thinking. Some music would help.</li>
+        <li>[winter] A long winter needs songs. Let me have {THING}.</li>
+      </plain>
+      <warm>
+        <li>I'd play for everyone, every evening. Just give me {THING}.</li>
+      </warm>
+      <blunt>
+        <li>If I have to listen to one more person whistle, I'll snap. Get me {THING}.</li>
+      </blunt>
+      <cheerful>
+        <li>Music! Dancing! Terrible singing! The colony needs it, and I need {THING}!</li>
+      </cheerful>
+      <gloomy>
+        <li>Some sad songs would suit this place. I'd need {THING} for that.</li>
+      </gloomy>
+      <cold>
+        <li>Music measurably improves morale. {THING} would be an efficient investment.</li>
+      </cold>
+    </request>
+    <thanks>
+      <plain>
+        <li>Listen to that. Out here, of all places.</li>
+      </plain>
+      <cheerful>
+        <li>First song's for everyone who built it! Second song's for me!</li>
+      </cheerful>
+    </thanks>
+  </ColonyCouncil.WishDef>
+
+  <ColonyCouncil.WishDef>
+    <defName>Council_Wish_Armor</defName>
+    <label>proper armor</label>
+    <description>A fighter going into every raid in ordinary clothes wants armor the colony can make.</description>
+    <workerClass>ColonyCouncil.WishWorker_Armor</workerClass>
+    <category>Safety</category>
+    <weight>0.8</weight>
+    <expiryDays>12</expiryDays>
+    <cooldownDays>20</cooldownDays>
+    <grantedThought>Council_Granted_Armor</grantedThought>
+    <envy>0.4</envy>
+    <meToo>true</meToo>
+    <talkInteraction>Council_Talk_Safety</talkInteraction>
+    <fulfilledWhen>{PAWN_nameDef} wears something with real armor (at least {TARGET} sharp armor).</fulfilledWhen>
+    <triggers>
+      <li>
+        <key>raid</key>
+        <afterThreatHours>18</afterThreatHours>
+        <boost>3</boost>
+      </li>
+    </triggers>
+    <request>
+      <plain>
+        <li>I'm the one standing in front when they come. I'd like something between me and their bullets.</li>
+        <li>[trigger:raid] That arrow went straight through my shirt. My shirt was not consulted.</li>
+        <li>[lowtech] Leather, plate, anything. I'm tired of fighting in a tunic.</li>
+      </plain>
+      <warm>
+        <li>I don't mind being the one who fights. I'd just like to come back from it.</li>
+      </warm>
+      <blunt>
+        <li>Armor. For me. Before the next raid, not after my funeral.</li>
+      </blunt>
+      <cheerful>
+        <li>Picture me in shining armor! Now picture me surviving! Both good!</li>
+      </cheerful>
+      <gloomy>
+        <li>One of these raids is going to kill me. Armor would make it a later one.</li>
+      </gloomy>
+      <cold>
+        <li>My survival rate in combat would improve substantially with armor.</li>
+      </cold>
+    </request>
+    <thanks>
+      <plain>
+        <li>Fits. Heavy. Perfect. Let them come.</li>
+      </plain>
+      <blunt>
+        <li>Good. Now point me at the next idiot with a gun.</li>
+      </blunt>
+    </thanks>
+    <expired>
+      <plain>
+        <li>I'll go out in my shirt again, then. Pray for me.</li>
+      </plain>
+    </expired>
+  </ColonyCouncil.WishDef>
+
+</Defs>

@@ -623,4 +623,40 @@
     </stages>
   </ThoughtDef>
 
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_Granted_Tidy</defName>
+    <durationDays>3</durationDays>
+    <stages>
+      <li>
+        <label>a clean home again</label>
+        <description>Somebody finally cleaned. It feels like a place people live, not a place things die.</description>
+        <baseMoodEffect>3</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_Granted_Music</defName>
+    <durationDays>6</durationDays>
+    <stages>
+      <li>
+        <label>music in the evenings</label>
+        <description>We have music now. The evenings feel less like waiting.</description>
+        <baseMoodEffect>4</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_Granted_Armor</defName>
+    <durationDays>5</durationDays>
+    <stages>
+      <li>
+        <label>properly armored</label>
+        <description>I asked for armor and I got it. I feel like I might survive the next one.</description>
+        <baseMoodEffect>4</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
 </Defs>
