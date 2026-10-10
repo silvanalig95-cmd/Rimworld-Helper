@@ -27,6 +27,12 @@ namespace ColonyCouncil
         /// <summary>The situation, one picked at random. {A_...}, {B_...}, {THING}, {COUNT}, {FACTION}.</summary>
         [MustTranslate] public List<string> texts = new List<string>();
         public List<DilemmaOption> options = new List<DilemmaOption>();
+        /// <summary>Only in these seasons (at the home map). Empty = any time.</summary>
+        public List<Season> seasons;
+        /// <summary>Only within this many days after a raid or other big threat (0 = any time).</summary>
+        public float withinDaysOfThreat;
+        /// <summary>Only while someone is grieving.</summary>
+        public bool needsGrief;
         /// <summary>What happens if the council doesn't answer in time.</summary>
         public int defaultOption;
         public float answerDays = 2f;
@@ -160,9 +166,23 @@ namespace ColonyCouncil
     {
         public DilemmaDef def;
 
+        /// <summary>The time and circumstances are right (season, a recent raid, grief).</summary>
+        public virtual bool CanHappenNow(Map map)
+        {
+            if (!def.seasons.NullOrEmpty() && !def.seasons.Contains(GenLocalDate.Season(map))) return false;
+            if (def.withinDaysOfThreat > 0f)
+            {
+                int last = map.storyState.LastThreatBigTick;
+                if (last <= 0 || Find.TickManager.TicksGame - last > def.withinDaysOfThreat * GenDate.TicksPerDay) return false;
+            }
+            if (def.needsGrief && !map.mapPawns.FreeColonistsSpawned.Any(Flavor.IsGrieving)) return false;
+            return true;
+        }
+
         public virtual bool TryCast(Map map, out DilemmaContext ctx)
         {
             ctx = null;
+            if (!CanHappenNow(map)) return false;
             var pawns = map.mapPawns.FreeColonistsSpawned.Where(p => !p.IsQuestLodger()).ToList();
             if (pawns.Count < def.minColonists) return false;
             var aOptions = pawns.Where(p => def.roleA.Allows(p, null)).ToList();
@@ -567,12 +587,22 @@ namespace ColonyCouncil
 
         private static CouncilSettings S => ColonyCouncilMod.Settings;
 
+        public int lastFiredTick = -999999;
+
         public void Hourly()
         {
             if (!S.enableDilemmas) return;
             int now = Find.TickManager.TicksGame;
             if (nextTick < 0) nextTick = now + Interval();
-            if (now < nextTick || now < GenDate.TicksPerDay * 5) return;
+            if (now < GenDate.TicksPerDay * 5) return;
+            // The aftermath of a raid brings its own questions, outside the usual rhythm.
+            int threat = Find.Maps.Where(m => m.IsPlayerHome).Select(m => m.storyState.LastThreatBigTick).DefaultIfEmpty(0).Max();
+            if (threat > 0 && now - threat > GenDate.TicksPerHour * 6 && now - threat < GenDate.TicksPerDay * 1.5f
+                && now - lastFiredTick > GenDate.TicksPerDay * 3 && Rand.Chance(0.08f))
+            {
+                if (TryFire(false, d => d.withinDaysOfThreat > 0f)) return;
+            }
+            if (now < nextTick) return;
             if (TryFire(false)) nextTick = now + Interval();
             else nextTick = now + GenDate.TicksPerDay;
         }
@@ -586,16 +616,17 @@ namespace ColonyCouncil
             return Mathf.RoundToInt(S.daysBetweenDilemmas * factor * Rand.Range(0.7f, 1.3f) * GenDate.TicksPerDay);
         }
 
-        public bool TryFire(bool force)
+        public bool TryFire(bool force, Func<DilemmaDef, bool> only = null)
         {
             var map = Find.Maps.Where(m => m.IsPlayerHome).OrderByDescending(m => m.mapPawns.FreeColonistsSpawnedCount).FirstOrDefault();
             if (map == null) return false;
             if (Find.LetterStack.LettersListForReading.Any(l => l is ChoiceLetter_Dilemma d && !d.resolved)) return false;
             int now = Find.TickManager.TicksGame;
             var pool = DefDatabase<DilemmaDef>.AllDefsListForReading
+                .Where(d => only == null || only(d))
                 .Where(d => force || !lastTick.TryGetValue(d.defName, out int t) || now - t > d.cooldownDays * GenDate.TicksPerDay)
                 .ToList();
-            foreach (var def in pool.InRandomOrder().OrderByDescending(d => d.weight * Rand.Value))
+            foreach (var def in pool.InRandomOrder().OrderByDescending(d => d.weight * Rand.Value * (d.seasons.NullOrEmpty() && d.withinDaysOfThreat <= 0f ? 1f : 3f)))
             {
                 DilemmaContext ctx;
                 try
@@ -609,6 +640,7 @@ namespace ColonyCouncil
                 }
                 Send(ctx);
                 lastTick[def.defName] = now;
+                lastFiredTick = now;
                 return true;
             }
             return false;
@@ -667,6 +699,7 @@ namespace ColonyCouncil
         public void ExposeData()
         {
             Scribe_Values.Look(ref nextTick, "nextTick", -1);
+            Scribe_Values.Look(ref lastFiredTick, "lastFiredTick", -999999);
             Scribe_Collections.Look(ref lastTick, "lastTick", LookMode.Value, LookMode.Value);
             if (Scribe.mode == LoadSaveMode.PostLoadInit && lastTick == null) lastTick = new Dictionary<string, int>();
         }
