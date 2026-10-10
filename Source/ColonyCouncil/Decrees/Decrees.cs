@@ -24,6 +24,8 @@ namespace ColonyCouncil
         public int degree = int.MinValue;
         public SkillDef passion;
         public bool nonViolent;
+        /// <summary>Someone who lost a friend or family member lately.</summary>
+        public bool grieving;
         public DecreeReaction reaction = DecreeReaction.Neutral;
 
         public bool Matches(Pawn p)
@@ -41,6 +43,7 @@ namespace ColonyCouncil
                 return s != null && !s.TotallyDisabled && s.passion != Passion.None;
             }
             if (nonViolent) return p.WorkTagIsDisabled(WorkTags.Violent);
+            if (grieving) return Flavor.IsGrieving(p);
             return false;
         }
     }
@@ -70,6 +73,10 @@ namespace ColonyCouncil
         public List<SkillDef> practiceSkills;
         public float practiceXpPerHour;
         public bool practiceNeedsViolence;
+        /// <summary>Only when someone in the colony is grieving (a day of mourning).</summary>
+        public bool needsGrief;
+        /// <summary>Fraction of grief memories' duration that passes each day the decree holds.</summary>
+        public float griefFadePerDay;
         public ToneLines support = new ToneLines();
         public ToneLines oppose = new ToneLines();
         public int order;
@@ -124,6 +131,7 @@ namespace ColonyCouncil
             int now = Find.TickManager.TicksGame;
             if (ReadyAt(def) > now) return "CC_Decree_Cooldown".Translate(TextUtil.DaysString(ReadyAt(def) - now));
             if (active.Count >= MaxActive) return "CC_Decree_TooMany".Translate(MaxActive);
+            if (def.needsGrief && !PawnsFinder.AllMaps_FreeColonists.Any(Flavor.IsGrieving)) return "CC_Decree_NeedsGrief".Translate();
             return null;
         }
 
@@ -162,6 +170,26 @@ namespace ColonyCouncil
                     {
                         var rec = p.skills.GetSkill(sk);
                         if (rec != null && !rec.TotallyDisabled) rec.Learn(a.def.practiceXpPerHour);
+                    }
+                }
+            }
+        }
+
+        /// <summary>Once a day: grief fades faster under a day of mourning.</summary>
+        public void Daily()
+        {
+            foreach (var a in active)
+            {
+                if (a.def.griefFadePerDay <= 0f) continue;
+                foreach (var p in PawnsFinder.AllMaps_FreeColonists)
+                {
+                    var mem = p.needs?.mood?.thoughts?.memories;
+                    if (mem == null) continue;
+                    foreach (var m in mem.Memories)
+                    {
+                        if (!Flavor.GriefThoughts.Contains(m.def.defName)) continue;
+                        int duration = m.DurationTicks;
+                        if (duration > 0) m.age = Mathf.Min(duration - 1, m.age + (int)(duration * a.def.griefFadePerDay));
                     }
                 }
             }

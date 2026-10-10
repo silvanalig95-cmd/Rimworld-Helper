@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- Effects of the second set of decrees, applied while each holds. -->
+
+  <HediffDef>
+    <defName>Council_Decree_Harvest</defName>
+    <label>harvest push (decree)</label>
+    <description>Working the fields by order of the council.</description>
+    <hediffClass>HediffWithComps</hediffClass>
+    <defaultLabelColor>(0.6, 0.8, 0.95)</defaultLabelColor>
+    <isBad>false</isBad>
+    <everCurableByItem>false</everCurableByItem>
+    <stages>
+      <li><statOffsets><PlantWorkSpeed>0.3</PlantWorkSpeed><PlantHarvestYield>0.05</PlantHarvestYield></statOffsets></li>
+    </stages>
+  </HediffDef>
+
+  <HediffDef>
+    <defName>Council_Decree_Building</defName>
+    <label>building season (decree)</label>
+    <description>On construction duty by order of the council.</description>
+    <hediffClass>HediffWithComps</hediffClass>
+    <defaultLabelColor>(0.6, 0.8, 0.95)</defaultLabelColor>
+    <isBad>false</isBad>
+    <everCurableByItem>false</everCurableByItem>
+    <stages>
+      <li><statOffsets><ConstructionSpeed>0.3</ConstructionSpeed><MiningSpeed>0.2</MiningSpeed></statOffsets></li>
+    </stages>
+  </HediffDef>
+
+  <HediffDef>
+    <defName>Council_Decree_Manners</defName>
+    <label>best behavior (decree)</label>
+    <description>Minding their manners by order of the council.</description>
+    <hediffClass>HediffWithComps</hediffClass>
+    <defaultLabelColor>(0.6, 0.8, 0.95)</defaultLabelColor>
+    <isBad>false</isBad>
+    <everCurableByItem>false</everCurableByItem>
+    <stages>
+      <li><statOffsets><NegotiationAbility>0.25</NegotiationAbility><SocialImpact>0.25</SocialImpact><TradePriceImprovement>0.03</TradePriceImprovement></statOffsets></li>
+    </stages>
+  </HediffDef>
+
+  <HediffDef>
+    <defName>Council_Decree_Mourning</defName>
+    <label>mourning (decree)</label>
+    <description>Days of mourning declared by the council.</description>
+    <hediffClass>HediffWithComps</hediffClass>
+    <defaultLabelColor>(0.6, 0.8, 0.95)</defaultLabelColor>
+    <isBad>false</isBad>
+    <everCurableByItem>false</everCurableByItem>
+    <stages>
+      <li><statOffsets><WorkSpeedGlobal>-0.3</WorkSpeedGlobal><MentalBreakThreshold>-0.08</MentalBreakThreshold></statOffsets></li>
+    </stages>
+  </HediffDef>
+
+  <HediffDef>
+    <defName>Council_Decree_OnGuard</defName>
+    <label>on guard (decree)</label>
+    <description>Staying alert for attack by order of the council.</description>
+    <hediffClass>HediffWithComps</hediffClass>
+    <defaultLabelColor>(0.6, 0.8, 0.95)</defaultLabelColor>
+    <isBad>false</isBad>
+    <everCurableByItem>false</everCurableByItem>
+    <stages>
+      <li><statOffsets><ShootingAccuracyPawn>0.02</ShootingAccuracyPawn><MeleeHitChance>0.06</MeleeHitChance></statOffsets><restFallFactor>1.15</restFallFactor></li>
+    </stages>
+  </HediffDef>
+
+  <HediffDef>
+    <defName>Council_Decree_CleanSweep</defName>
+    <label>clean sweep (decree)</label>
+    <description>Scrubbing everything by order of the council.</description>
+    <hediffClass>HediffWithComps</hediffClass>
+    <defaultLabelColor>(0.6, 0.8, 0.95)</defaultLabelColor>
+    <isBad>false</isBad>
+    <everCurableByItem>false</everCurableByItem>
+    <stages>
+      <li><statOffsets><CleaningSpeed>0.5</CleaningSpeed><MedicalTendQuality>0.05</MedicalTendQuality><ImmunityGainSpeed>0.1</ImmunityGainSpeed></statOffsets></li>
+    </stages>
+  </HediffDef>
+
+</Defs>

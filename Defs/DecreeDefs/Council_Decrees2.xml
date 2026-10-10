@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- ============ Harvest push ============ -->
+  <ColonyCouncil.DecreeDef>
+    <defName>Council_Decree_Harvest</defName>
+    <label>harvest push</label>
+    <description>Everyone to the fields: sow, tend and harvest from first light to last. Crops come in faster and fuller; backs ache. Growers love it, the lazy curse it.</description>
+    <order>7</order>
+    <durationDays>4</durationDays>
+    <cooldownDays>10</cooldownDays>
+    <hediff>Council_Decree_Harvest</hediff>
+    <thought>Council_Decree_Harvest</thought>
+    <defaultReaction>Dislike</defaultReaction>
+    <reactions>
+      <li><passion>Plants</passion><reaction>Like</reaction></li>
+      <li><trait>Industriousness</trait><degree>-1</degree><reaction>Hate</reaction></li>
+      <li><trait>Industriousness</trait><degree>-2</degree><reaction>Hate</reaction></li>
+      <li><trait>Undergrounder</trait><reaction>Hate</reaction></li>
+    </reactions>
+    <effects>
+      <li>Plant work is 30% faster and harvests yield 5% more.</li>
+      <li>Growers like it; the lazy and undergrounders hate it.</li>
+    </effects>
+    <support>
+      <plain><li>Every hour in the field now is a meal in winter.</li></plain>
+      <cheerful><li>Dirt under every fingernail! My favorite kind of week!</li></cheerful>
+      <cold><li>Yield per day up a third. Correct priority.</li></cold>
+    </support>
+    <oppose>
+      <plain><li>I'll be picking corn in my dreams.</li></plain>
+      <blunt><li>My back. My back is going to sue the council.</li></blunt>
+      <gloomy><li>Bent double for days, and the blight will come anyway.</li></gloomy>
+    </oppose>
+  </ColonyCouncil.DecreeDef>
+
+  <!-- ============ Building season ============ -->
+  <ColonyCouncil.DecreeDef>
+    <defName>Council_Decree_Building</defName>
+    <label>building season</label>
+    <description>Every spare hand on walls, floors and tunnels. Construction and mining go much faster, and everyone goes to bed covered in dust.</description>
+    <order>8</order>
+    <durationDays>5</durationDays>
+    <cooldownDays>10</cooldownDays>
+    <hediff>Council_Decree_Building</hediff>
+    <thought>Council_Decree_Building</thought>
+    <defaultReaction>Dislike</defaultReaction>
+    <reactions>
+      <li><passion>Construction</passion><reaction>Like</reaction></li>
+      <li><passion>Mining</passion><reaction>Like</reaction></li>
+      <li><trait>Industriousness</trait><degree>2</degree><reaction>Like</reaction></li>
+      <li><trait>Industriousness</trait><degree>-1</degree><reaction>Hate</reaction></li>
+      <li><trait>Industriousness</trait><degree>-2</degree><reaction>Hate</reaction></li>
+    </reactions>
+    <effects>
+      <li>Construction is 30% faster and mining 20% faster.</li>
+      <li>Builders, miners and the industrious like it; the lazy hate it.</li>
+    </effects>
+    <support>
+      <plain><li>Give me a week and you won't recognize the place.</li></plain>
+      <cheerful><li>Walls! Floors! A whole new wing! Hand me a hammer!</li></cheerful>
+      <cold><li>Concentrated labor finishes projects. Scattered labor starts them.</li></cold>
+    </support>
+    <oppose>
+      <plain><li>I've had rock dust in my teeth for three days straight.</li></plain>
+      <warm><li>I'll help. I just wish someone would build a bath first.</li></warm>
+      <blunt><li>Build it yourselves. Oh wait, we are. All of us. Constantly.</li></blunt>
+    </oppose>
+  </ColonyCouncil.DecreeDef>
+
+  <!-- ============ Best behavior ============ -->
+  <ColonyCouncil.DecreeDef>
+    <defName>Council_Decree_Manners</defName>
+    <label>best behavior</label>
+    <description>Everyone on their best behavior: polite to traders, patient with prisoners, charming to visitors. Trading, recruiting and talking people round all go better. The abrasive find it exhausting.</description>
+    <order>9</order>
+    <durationDays>5</durationDays>
+    <cooldownDays>10</cooldownDays>
+    <hediff>Council_Decree_Manners</hediff>
+    <thought>Council_Decree_Manners</thought>
+    <defaultReaction>Dislike</defaultReaction>
+    <reactions>
+      <li><trait>Kind</trait><reaction>Like</reaction></li>
+      <li><passion>Social</passion><reaction>Like</reaction></li>
+      <li><trait>Abrasive</trait><reaction>Hate</reaction></li>
+      <li><trait>Psychopath</trait><reaction>Neutral</reaction></li>
+    </reactions>
+    <effects>
+      <li>Negotiation and social impact up 25%: better recruiting, taming talk and diplomacy.</li>
+      <li>Trade prices improve a little.</li>
+      <li>The kind and the sociable like it; the abrasive hate it.</li>
+    </effects>
+    <support>
+      <plain><li>A smile costs nothing. Unlike our last trade.</li></plain>
+      <warm><li>It's nice, everyone being nice. Can we keep it?</li></warm>
+      <cold><li>Courtesy is a negotiating tool. Use it.</li></cold>
+    </support>
+    <oppose>
+      <blunt><li>If I have to say "please" one more time I'll bite someone. Politely.</li></blunt>
+      <plain><li>My face hurts from all the smiling.</li></plain>
+      <gloomy><li>Pretending to like people. Exhausting. Same as usual, but out loud.</li></gloomy>
+    </oppose>
+  </ColonyCouncil.DecreeDef>
+
+  <!-- ============ Day of mourning ============ -->
+  <ColonyCouncil.DecreeDef>
+    <defName>Council_Decree_Mourning</defName>
+    <label>days of mourning</label>
+    <description>Work stops, mostly, so the colony can grieve together. Those who lost someone heal faster and are less likely to break. Only possible while someone is grieving.</description>
+    <order>10</order>
+    <durationDays>2</durationDays>
+    <cooldownDays>10</cooldownDays>
+    <hediff>Council_Decree_Mourning</hediff>
+    <thought>Council_Decree_Mourning</thought>
+    <defaultReaction>Like</defaultReaction>
+    <needsGrief>true</needsGrief>
+    <griefFadePerDay>0.25</griefFadePerDay>
+    <reactions>
+      <li><grieving>true</grieving><reaction>Love</reaction></li>
+      <li><trait>Psychopath</trait><reaction>Dislike</reaction></li>
+      <li><trait>Industriousness</trait><degree>2</degree><reaction>Dislike</reaction></li>
+    </reactions>
+    <effects>
+      <li>Everyone works 30% slower.</li>
+      <li>Grief fades much faster, and nobody breaks as easily.</li>
+      <li>The grieving are grateful; psychopaths and the industrious find it a waste.</li>
+    </effects>
+    <support>
+      <plain><li>We owe them this much. A few days of quiet.</li></plain>
+      <warm><li>Come sit with me. Tell me something about them.</li></warm>
+      <gloomy><li>We should do this more. We lose people often enough.</li></gloomy>
+    </support>
+    <oppose>
+      <cold><li>The dead don't need our labor-hours. The living do.</li></cold>
+      <plain><li>I grieve better with a shovel in my hand.</li></plain>
+    </oppose>
+  </ColonyCouncil.DecreeDef>
+
+  <!-- ============ On guard ============ -->
+  <ColonyCouncil.DecreeDef>
+    <defName>Council_Decree_OnGuard</defName>
+    <label>on guard</label>
+    <description>Weapons within reach, eyes on the horizon, sleep in shifts. Everyone fights a little better and tires a little faster. Fighters like the edge; the nervous jump at every shadow.</description>
+    <order>11</order>
+    <durationDays>4</durationDays>
+    <cooldownDays>8</cooldownDays>
+    <hediff>Council_Decree_OnGuard</hediff>
+    <thought>Council_Decree_OnGuard</thought>
+    <defaultReaction>Dislike</defaultReaction>
+    <reactions>
+      <li><nonViolent>true</nonViolent><reaction>Dislike</reaction></li>
+      <li><trait>Bloodlust</trait><reaction>Like</reaction></li>
+      <li><trait>Tough</trait><reaction>Neutral</reaction></li>
+      <li><trait>Nerves</trait><degree>-1</degree><reaction>Hate</reaction></li>
+      <li><trait>Nerves</trait><degree>-2</degree><reaction>Hate</reaction></li>
+      <li><trait>Wimp</trait><reaction>Hate</reaction></li>
+    </reactions>
+    <effects>
+      <li>Better aim and melee: shooting accuracy and hit chance go up.</li>
+      <li>Everyone tires 15% faster.</li>
+      <li>The bloodthirsty like it; the nervous and wimps hate it.</li>
+    </effects>
+    <support>
+      <plain><li>Let them come. We'll see them first.</li></plain>
+      <blunt><li>Finally. I've been sleeping with a knife anyway.</li></blunt>
+      <cold><li>Readiness is cheaper than recovery.</li></cold>
+    </support>
+    <oppose>
+      <plain><li>Every snapped twig sounds like a raid now.</li></plain>
+      <gloomy><li>Waiting for death, but in shifts.</li></gloomy>
+      <warm><li>Can we at least take turns being scared?</li></warm>
+    </oppose>
+  </ColonyCouncil.DecreeDef>
+
+  <!-- ============ Clean sweep ============ -->
+  <ColonyCouncil.DecreeDef>
+    <defName>Council_Decree_CleanSweep</defName>
+    <label>clean sweep</label>
+    <description>Scrub everything: floors, tables, bedding, the hospital twice. Cleaning goes much faster, wounds are tended more carefully, and bodies fight off illness better. Nobody enjoys it except the fastidious.</description>
+    <order>12</order>
+    <durationDays>3</durationDays>
+    <cooldownDays>8</cooldownDays>
+    <hediff>Council_Decree_CleanSweep</hediff>
+    <thought>Council_Decree_CleanSweep</thought>
+    <defaultReaction>Dislike</defaultReaction>
+    <reactions>
+      <li><trait>Ascetic</trait><reaction>Neutral</reaction></li>
+      <li><passion>Medicine</passion><reaction>Like</reaction></li>
+      <li><trait>Industriousness</trait><degree>-1</degree><reaction>Hate</reaction></li>
+      <li><trait>Industriousness</trait><degree>-2</degree><reaction>Hate</reaction></li>
+    </reactions>
+    <effects>
+      <li>Cleaning is 50% faster.</li>
+      <li>Wounds are tended better and immunity builds faster.</li>
+      <li>Doctors like it; the lazy hate it.</li>
+    </effects>
+    <support>
+      <plain><li>I've been waiting years for someone to order this.</li></plain>
+      <cold><li>Infection rates will drop. Good.</li></cold>
+    </support>
+    <oppose>
+      <plain><li>I scrubbed the same floor three times. It's still a floor.</li></plain>
+      <blunt><li>Dirt never killed anyone. Probably.</li></blunt>
+      <cheerful><li>Bubbles! Lots of bubbles! I'm trying to make this fun!</li></cheerful>
+    </oppose>
+  </ColonyCouncil.DecreeDef>
+
+</Defs>

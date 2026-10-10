@@ -737,6 +737,7 @@ namespace ColonyCouncil
         private void DecreeDaily()
         {
             if (decrees.active.Count == 0) return;
+            decrees.Daily();
             foreach (var p in PawnsFinder.AllMaps_FreeColonists.ToList())
             {
                 if (p.IsQuestLodger()) continue;

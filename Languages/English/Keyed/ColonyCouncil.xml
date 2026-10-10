@@ -854,5 +854,6 @@ Granting one of {PAWN_possessive} wishes, or keeping a promise, can win {PAWN_ob
   <CC_Settings_Dilemmas_Tip>Every so often the council has to settle something: a thief, a feud, a forgotten stash, a confession. Every answer costs someone something. They come more often while everyone is happy.</CC_Settings_Dilemmas_Tip>
   <CC_Settings_DaysBetweenDilemmas>Days between dilemmas: about {0}</CC_Settings_DaysBetweenDilemmas>
   <CC_Dev_Dilemma>Dev: dilemma now</CC_Dev_Dilemma>
+  <CC_Decree_NeedsGrief>Only while someone is grieving</CC_Decree_NeedsGrief>
 
 </LanguageData>
