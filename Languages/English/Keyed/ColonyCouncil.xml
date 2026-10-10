@@ -1142,4 +1142,10 @@ Granting one of {PAWN_possessive} wishes, or keeping a promise, can win {PAWN_ob
   <CC_Eulogy_Label>Goodbye, {0}</CC_Eulogy_Label>
   <CC_Eulogy_Text>At {OTHER_nameDef}'s grave, {PAWN_nameDef} spoke:\n\n"{SPEECH}"</CC_Eulogy_Text>
 
+  <!-- Quirks -->
+  <CC_Settings_Quirks>Quirks and superstitions</CC_Settings_Quirks>
+  <CC_Settings_Quirks_Tip>Colonists pick up beliefs and habits from what they live through: a lucky helmet after surviving a raid in it, a dread of storms after a death, a ritual before every fight, prayers at night after a dream came true. Small moods at the right moments, and they fade in time.</CC_Settings_Quirks_Tip>
+  <CC_Quirk_Gained>{PAWN_nameDef} has picked up a quirk: {QUIRK}.</CC_Quirk_Gained>
+  <CC_Quirk_Tooltip>Quirks: {0}</CC_Quirk_Tooltip>
+
 </LanguageData>

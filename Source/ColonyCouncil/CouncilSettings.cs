@@ -57,6 +57,7 @@ namespace ColonyCouncil
         public bool secrets = true;
         public bool vendettas = true;
         public bool eulogies = true;
+        public bool quirks = true;
         public bool dreamOmens = true;
         public bool allDreamMessages;
         public float daysBetweenDilemmas = 8f;
@@ -122,6 +123,7 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref secrets, "secrets", true);
             Scribe_Values.Look(ref vendettas, "vendettas", true);
             Scribe_Values.Look(ref eulogies, "eulogies", true);
+            Scribe_Values.Look(ref quirks, "quirks", true);
             Scribe_Values.Look(ref dreamOmens, "dreamOmens", true);
             Scribe_Values.Look(ref allDreamMessages, "allDreamMessages", false);
             Scribe_Values.Look(ref daysBetweenDilemmas, "daysBetweenDilemmas", 8f);
@@ -235,6 +237,7 @@ namespace ColonyCouncil
             l.CheckboxLabeled("CC_Settings_Secrets".Translate(), ref secrets, "CC_Settings_Secrets_Tip".Translate());
             l.CheckboxLabeled("CC_Settings_Vendettas".Translate(), ref vendettas, "CC_Settings_Vendettas_Tip".Translate());
             l.CheckboxLabeled("CC_Settings_Eulogies".Translate(), ref eulogies, "CC_Settings_Eulogies_Tip".Translate());
+            l.CheckboxLabeled("CC_Settings_Quirks".Translate(), ref quirks, "CC_Settings_Quirks_Tip".Translate());
             l.CheckboxLabeled("CC_Settings_Dreams".Translate(), ref dreams, "CC_Settings_Dreams_Tip".Translate());
             if (dreams)
             {
@@ -334,6 +337,7 @@ namespace ColonyCouncil
             secrets = d.secrets;
             vendettas = d.vendettas;
             eulogies = d.eulogies;
+            quirks = d.quirks;
             dreamOmens = d.dreamOmens;
             allDreamMessages = d.allDreamMessages;
             daysBetweenDilemmas = d.daysBetweenDilemmas;

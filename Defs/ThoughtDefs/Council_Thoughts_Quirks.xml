@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <ThoughtDef Name="Council_QuirkBase" Abstract="True">
+    <thoughtClass>ColonyCouncil.Thought_Quirk</thoughtClass>
+    <workerClass>ColonyCouncil.ThoughtWorker_Quirk</workerClass>
+    <validWhileDespawned>true</validWhileDespawned>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_QuirkBase">
+    <defName>Council_Quirk_LuckyItem</defName>
+    <stages>
+      <li><label>my lucky {ITEM}</label><description>Nothing bad happens while I'm wearing it. That's just a fact.</description><baseMoodEffect>3</baseMoodEffect></li>
+      <li><label>without my lucky {ITEM}</label><description>Where is it? I don't feel right without it. Something's going to go wrong.</description><baseMoodEffect>-4</baseMoodEffect></li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_QuirkBase">
+    <defName>Council_Quirk_StormDread</defName>
+    <stages><li><label>storms mean death</label><description>The last time the sky raged like this, someone died. Who is it this time?</description><baseMoodEffect>-4</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_QuirkBase">
+    <defName>Council_Quirk_NightPrayers</defName>
+    <stages><li><label>night prayers</label><description>I say the words every night now. Someone, somewhere, is listening.</description><baseMoodEffect>2</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_QuirkBase">
+    <defName>Council_Quirk_DarkFear</defName>
+    <stages><li><label>afraid of the dark</label><description>Ever since I lay there, unable to move, the dark feels like it's waiting.</description><baseMoodEffect>-3</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_QuirkBase">
+    <defName>Council_Quirk_BattleRitual</defName>
+    <stages><li><label>battle ritual</label><description>Touch the doorframe, check the weapon twice, say the name. Then I'm ready.</description><baseMoodEffect>4</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_QuirkBase">
+    <defName>Council_Quirk_EclipseDread</defName>
+    <stages><li><label>the sun has gone out</label><description>I saw this in a dream. I know what it means. Nobody believes me.</description><baseMoodEffect>-6</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_QuirkBase">
+    <defName>Council_Quirk_RainCleanses</defName>
+    <stages><li><label>the rain washes it away</label><description>When it rains, I stand outside for a while. It takes some of it with it.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_QuirkBase">
+    <defName>Council_Quirk_OpenSky</defName>
+    <stages><li><label>under the open sky</label><description>I lay on the ground once thinking it was the last sky I'd see. Now I go and look at it whenever I can.</description><baseMoodEffect>2</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_QuirkBase">
+    <defName>Council_Quirk_WinterGrief</defName>
+    <stages><li><label>winter remembers</label><description>We lost someone in winter. Every winter since, I lose them again.</description><baseMoodEffect>-3</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+</Defs>

@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Quirks and superstitions, picked up from experience. At most two per colonist.
+    Triggers: afterThoughts (memories, within withinDays), afterBattle (fought and survived), afterDowned, afterOmen
+    (a dream of theirs came true). chance: per day while the trigger holds. days: how long it lasts (0 = for good).
+    condition: when the thought applies (None = flavour only, Always, Storm, Rain, Night, Dark, Outdoors, Drafted,
+    Eclipse, Winter, LuckyItem). label may use {ITEM} (the lucky thing, for LuckyItem). gained / faded: first-person
+    journal lines ({ITEM}).
+  -->
+
+  <ColonyCouncil.QuirkDef>
+    <defName>Council_Quirk_LuckyItem</defName>
+    <label>a lucky {ITEM}</label>
+    <afterBattle>true</afterBattle>
+    <chance>0.25</chance>
+    <days>120</days>
+    <condition>LuckyItem</condition>
+    <thought>Council_Quirk_LuckyItem</thought>
+    <gained>
+      <plain>
+        <li>I was wearing my {ITEM} the whole fight and didn't get a scratch. It's lucky. I'm not taking it off.</li>
+        <li>The shot that should have had me went wide. I had my {ITEM} on. That's not a coincidence.</li>
+      </plain>
+      <blunt><li>The {ITEM} is lucky. Don't touch it.</li></blunt>
+      <cold><li>Statistically meaningless. I'm wearing the {ITEM} to every fight from now on regardless.</li></cold>
+    </gained>
+    <faded>
+      <plain><li>I used to think my {ITEM} was lucky. I've stopped needing it, I think.</li></plain>
+    </faded>
+  </ColonyCouncil.QuirkDef>
+
+  <ColonyCouncil.QuirkDef>
+    <defName>Council_Quirk_StormDread</defName>
+    <label>storms mean death</label>
+    <afterThoughts><li>WitnessedDeathAlly</li><li>WitnessedDeathFamily</li><li>KnowColonistDied</li></afterThoughts>
+    <withinDays>3</withinDays>
+    <chance>0.08</chance>
+    <days>90</days>
+    <condition>Storm</condition>
+    <thought>Council_Quirk_StormDread</thought>
+    <who><notTrait><li>Psychopath</li></notTrait></who>
+    <gained>
+      <plain>
+        <li>The sky was black the night we lost them. I keep watching the clouds now.</li>
+        <li>Thunder, then a death. Every time. I've started counting.</li>
+      </plain>
+      <gloomy><li>Storms bring death. I know it's not true. I know it is.</li></gloomy>
+    </gained>
+    <faded>
+      <plain><li>A storm came last night and nobody died. I think I can stop watching the sky.</li></plain>
+    </faded>
+  </ColonyCouncil.QuirkDef>
+
+  <ColonyCouncil.QuirkDef>
+    <defName>Council_Quirk_NightPrayers</defName>
+    <label>prays every night</label>
+    <afterOmen>true</afterOmen>
+    <afterThoughts><li>WitnessedDeathFamily</li><li>PawnWithGoodOpinionDied</li></afterThoughts>
+    <chance>0.12</chance>
+    <condition>Night</condition>
+    <thought>Council_Quirk_NightPrayers</thought>
+    <who><notTrait><li>Psychopath</li></notTrait></who>
+    <gained>
+      <plain>
+        <li>I've started praying at night. I don't know to whom. It helps anyway.</li>
+        <li>Something is out there. My dream proved it. I'm going to talk to it every night.</li>
+      </plain>
+      <cold><li>I've adopted a nightly ritual. Its efficacy is irrelevant. Its regularity is the point.</li></cold>
+    </gained>
+  </ColonyCouncil.QuirkDef>
+
+  <ColonyCouncil.QuirkDef>
+    <defName>Council_Quirk_DarkFear</defName>
+    <label>afraid of the dark</label>
+    <afterDowned>true</afterDowned>
+    <chance>0.15</chance>
+    <days>60</days>
+    <condition>Dark</condition>
+    <thought>Council_Quirk_DarkFear</thought>
+    <who><notTrait><li>Tough</li><li>Psychopath</li></notTrait></who>
+    <children>true</children>
+    <gained>
+      <plain>
+        <li>I lay there in the dirt, couldn't move, couldn't see. Now every dark room feels like that.</li>
+        <li>[child] I don't like the dark anymore. I want a light by my bed. Please.</li>
+      </plain>
+    </gained>
+    <faded>
+      <plain><li>I walked through the storeroom with no light tonight and only noticed afterwards.</li></plain>
+    </faded>
+  </ColonyCouncil.QuirkDef>
+
+  <ColonyCouncil.QuirkDef>
+    <defName>Council_Quirk_BattleRitual</defName>
+    <label>a battle ritual</label>
+    <afterBattle>true</afterBattle>
+    <chance>0.15</chance>
+    <condition>Drafted</condition>
+    <thought>Council_Quirk_BattleRitual</thought>
+    <who><canFight>true</canFight></who>
+    <gained>
+      <plain>
+        <li>Before the fight I touched the doorframe three times and we won. Now I do it every time.</li>
+        <li>I've got a routine before a fight now. Check, check, the name of someone I've lost, go.</li>
+      </plain>
+      <blunt><li>Don't talk to me before a fight. I'm busy.</li></blunt>
+    </gained>
+  </ColonyCouncil.QuirkDef>
+
+  <ColonyCouncil.QuirkDef>
+    <defName>Council_Quirk_EclipseDread</defName>
+    <label>fears the eclipse</label>
+    <afterOmen>true</afterOmen>
+    <chance>0.15</chance>
+    <condition>Eclipse</condition>
+    <thought>Council_Quirk_EclipseDread</thought>
+    <gained>
+      <plain>
+        <li>If my dream could come true, so can the other ones. The one with the black sun.</li>
+      </plain>
+    </gained>
+  </ColonyCouncil.QuirkDef>
+
+  <ColonyCouncil.QuirkDef>
+    <defName>Council_Quirk_RainCleanses</defName>
+    <label>stands in the rain</label>
+    <afterThoughts><li>PawnWithGoodOpinionDied</li><li>WitnessedDeathFamily</li><li>Council_Secret_Exposed</li><li>Council_Secret_Betrayed</li></afterThoughts>
+    <withinDays>5</withinDays>
+    <chance>0.06</chance>
+    <days>120</days>
+    <condition>Rain</condition>
+    <thought>Council_Quirk_RainCleanses</thought>
+    <gained>
+      <plain>
+        <li>It rained, and I went out and stood in it until I was soaked through. I felt better than I have in days.</li>
+      </plain>
+      <cheerful><li>Rain is free and it falls on everyone! I'm going to go stand in it every time!</li></cheerful>
+    </gained>
+  </ColonyCouncil.QuirkDef>
+
+  <ColonyCouncil.QuirkDef>
+    <defName>Council_Quirk_OpenSky</defName>
+    <label>needs the open sky</label>
+    <afterDowned>true</afterDowned>
+    <chance>0.08</chance>
+    <days>150</days>
+    <condition>Outdoors</condition>
+    <thought>Council_Quirk_OpenSky</thought>
+    <who><notTrait><li>Undergrounder</li></notTrait></who>
+    <gained>
+      <plain>
+        <li>When I was lying there I kept looking at the sky. I'd never really looked before. I look every day now.</li>
+      </plain>
+    </gained>
+  </ColonyCouncil.QuirkDef>
+
+  <ColonyCouncil.QuirkDef>
+    <defName>Council_Quirk_WinterGrief</defName>
+    <label>grieves every winter</label>
+    <afterThoughts><li>WitnessedDeathFamily</li><li>PawnWithGoodOpinionDied</li><li>KnowColonistDied</li></afterThoughts>
+    <withinDays>4</withinDays>
+    <chance>0.05</chance>
+    <days>400</days>
+    <condition>Winter</condition>
+    <thought>Council_Quirk_WinterGrief</thought>
+    <gained>
+      <plain><li>The snow came the week we buried them. I think I'll always feel it now when the snow comes.</li></plain>
+    </gained>
+  </ColonyCouncil.QuirkDef>
+
+  <!-- Flavour only -->
+
+  <ColonyCouncil.QuirkDef>
+    <defName>Council_Quirk_KnocksWood</defName>
+    <label>knocks on wood</label>
+    <afterBattle>true</afterBattle>
+    <afterDowned>true</afterDowned>
+    <chance>0.08</chance>
+    <children>true</children>
+    <gained>
+      <plain><li>Every time someone says things are going well, I knock on the nearest wall. You can laugh. We're still alive.</li></plain>
+    </gained>
+  </ColonyCouncil.QuirkDef>
+
+  <ColonyCouncil.QuirkDef>
+    <defName>Council_Quirk_TalksToDead</defName>
+    <label>talks to the dead</label>
+    <afterThoughts><li>WitnessedDeathFamily</li><li>PawnWithGoodOpinionDied</li><li>BondedAnimalDied</li></afterThoughts>
+    <withinDays>4</withinDays>
+    <chance>0.06</chance>
+    <gained>
+      <plain>
+        <li>I went to the grave and told them about my day. I'm going to keep doing that. Someone should keep them up to date.</li>
+      </plain>
+      <warm><li>I talk to the ones we lost, out by the graves. I tell them we're all right. Mostly true.</li></warm>
+    </gained>
+  </ColonyCouncil.QuirkDef>
+
+  <ColonyCouncil.QuirkDef>
+    <defName>Council_Quirk_CountsThings</defName>
+    <label>counts everything</label>
+    <afterThoughts><li>Council_Dream_CameTrue</li><li>Council_Secret_Exposed</li></afterThoughts>
+    <withinDays>4</withinDays>
+    <chance>0.08</chance>
+    <gained>
+      <plain><li>Seven steps from my bed to the door. Twelve to the table. I don't know why I count now. It helps.</li></plain>
+    </gained>
+  </ColonyCouncil.QuirkDef>
+
+  <ColonyCouncil.QuirkDef>
+    <defName>Council_Quirk_SaltsDoor</defName>
+    <label>salts the doorway</label>
+    <afterBattle>true</afterBattle>
+    <afterOmen>true</afterOmen>
+    <chance>0.05</chance>
+    <who><notTrait><li>TooSmart</li></notTrait></who>
+    <gained>
+      <plain><li>My grandmother salted the door to keep bad things out. I've started doing it. The raiders didn't get in last time, did they.</li></plain>
+    </gained>
+  </ColonyCouncil.QuirkDef>
+
+</Defs>

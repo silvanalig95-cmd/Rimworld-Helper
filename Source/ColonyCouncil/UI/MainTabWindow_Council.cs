@@ -380,6 +380,8 @@ namespace ColonyCouncil
             if (office != null) tip = "CC_Office_Holds".Translate(p.LabelShort, office.label) + "\n" + tip;
             var goal = comp.aspirations.Active(p);
             if (goal != null && Settings.aspirations) tip = "CC_Asp_Tooltip".Translate(goal.Goal, goal.Progress.ToStringPercent()) + "\n" + tip;
+            string quirkLine = comp.quirks.Describe(p);
+            if (!quirkLine.NullOrEmpty()) tip = quirkLine + "\n" + tip;
             string bonds = comp.social.Describe(p);
             if (!bonds.NullOrEmpty()) tip = bonds + "\n\n" + tip;
             string titles = comp.epithets.TitlesOf(p);

@@ -153,6 +153,13 @@ peace with the killers.
 When someone dies, the person closest to them speaks a **eulogy** at the grave, about who the dead really were:
 the years they gave, the name they earned, the goal they never reached, who killed them.
 
+### Quirks and superstitions
+Colonists pick up beliefs and habits from what they live through: a **lucky helmet** after surviving a raid in it
+(happy wearing it, uneasy without), a dread of storms after a death, a ritual before every fight, prayers at night
+after a dream came true, a fear of the dark after lying downed in the dirt, grief that comes back every winter, and
+harmless habits like knocking on wood, counting steps or talking to the dead. Small moods at the right moments; most
+fade after a season or two.
+
 ### Dreams
 Colonists who sleep (or lie unconscious) for a few hours sometimes wake from a dream, and tell each other about
 it. Dreams grow out of their lives: the raid two days ago, the friend they buried, the rival who insulted them, the
@@ -257,7 +264,7 @@ The council only suggests what your colony can actually do right now:
 - letters vs. messages, floating speech text, alerts
 - where the council button sits in the bottom bar
 - **council life**: decrees, dilemmas, petitions, annals, names, journals, offices, the social web, social
-  events, life goals, secrets, vendettas, eulogies, dreams and dream omens, each on its own switch
+  events, life goals, secrets, vendettas, eulogies, quirks, dreams and dream omens, each on its own switch
 
 ## Optional mods that go well with it
 

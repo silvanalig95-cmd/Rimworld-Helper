@@ -30,6 +30,7 @@ namespace ColonyCouncil
         public AspirationTracker aspirations = new AspirationTracker();
         public SecretTracker secrets = new SecretTracker();
         public VendettaTracker vendettas = new VendettaTracker();
+        public QuirkTracker quirks = new QuirkTracker();
         public int nextWishId = 1;
 
         private Dictionary<string, int> cooldowns = new Dictionary<string, int>();
@@ -67,6 +68,7 @@ namespace ColonyCouncil
             Scribe_Deep.Look(ref aspirations, "aspirations");
             Scribe_Deep.Look(ref secrets, "secrets");
             Scribe_Deep.Look(ref vendettas, "vendettas");
+            Scribe_Deep.Look(ref quirks, "quirks");
             Scribe_Values.Look(ref nextWishId, "nextWishId", 1);
             Scribe_Collections.Look(ref cooldowns, "cooldowns", LookMode.Value, LookMode.Value, ref tmpKeys, ref tmpValues);
             if (Scribe.mode == LoadSaveMode.PostLoadInit)
@@ -88,6 +90,7 @@ namespace ColonyCouncil
                 if (aspirations == null) aspirations = new AspirationTracker();
                 if (secrets == null) secrets = new SecretTracker();
                 if (vendettas == null) vendettas = new VendettaTracker();
+                if (quirks == null) quirks = new QuirkTracker();
                 wishes.RemoveAll(w => w == null || w.def == null || w.pawn == null);
             }
         }
@@ -113,6 +116,7 @@ namespace ColonyCouncil
             Safe("dreams", () => dreams.Hourly(this));
             Safe("battles", () => social.Hourly(this));
             Safe("losses", () => vendettas.Hourly(this));
+            Safe("quirks", quirks.Hourly);
         }
 
         /// <summary>A dream leaves someone wanting something: raises that wish if it makes sense for them now.</summary>
