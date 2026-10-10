@@ -686,6 +686,7 @@ namespace ColonyCouncil
             Find.LetterStack.ReceiveLetter("CC_QuitTitle".Translate(p.Named("PAWN")).Resolve(),
                 "CC_QuitText".Translate(p.Named("PAWN")).Resolve() + (line != null ? "\n\n\"" + line + "\"" : ""), LetterDefOf.NegativeEvent, new LookTargets(p));
             AddChronicle(new ChronicleEntry(ChronicleKind.Note, "CC_Chronicle_Quit".Translate(p.LabelShort).Resolve(), p));
+            annals.Notify_Quit(p);
             PawnBanishUtility.Banish(p, false);
         }
 
@@ -725,6 +726,7 @@ namespace ColonyCouncil
                 text.Append("\n\n").Append("CC_Decree_Count".Translate(lovers.Count, haters.Count).Resolve());
             Find.LetterStack.ReceiveLetter("CC_Decree_EnactedTitle".Translate(def.LabelCap).Resolve(), text.ToString(), LetterDefOf.NeutralEvent);
             AddChronicle(new ChronicleEntry(ChronicleKind.Note, "CC_Chronicle_DecreeEnacted".Translate(def.label).Resolve(), null));
+            annals.decrees.Add(def.label);
         }
 
         public void Notify_DecreeEnded(DecreeDef def, bool early)

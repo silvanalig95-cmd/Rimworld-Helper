@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- The chronicler's last word on the year. Spoken by {PAWN} (the author). Tags: annals:losses, annals:violent,
+       annals:peaceful, annals:richer, annals:growing, plus the usual speaker tags. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Pool_AnnalsClose</defName>
+    <lines>
+      <plain>
+        <li>Another year on the rim. Most of us are still here. That's the whole of it, really.</li>
+        <li>I don't know what next year brings. Something with teeth, probably. We'll manage.</li>
+        <li>[annals:losses] We lost people this year. Write their names somewhere they'll last longer than this paper.</li>
+        <li>[annals:violent] We spent half the year with a gun in one hand. I'd like next year to need fewer hands.</li>
+        <li>[annals:peaceful] A quiet year. I don't trust it, but I'll take it.</li>
+        <li>[annals:richer] We have more than we did. Raiders can count too. Keep the walls up.</li>
+        <li>[annals:growing] More mouths, more hands, more arguments over the last biscuit. Good.</li>
+        <li>[winter] Snow on the windowsill as I write this. We made it through another one.</li>
+      </plain>
+      <warm>
+        <li>Whatever happens next year, I'm glad it's with all of you.</li>
+        <li>[annals:losses] I keep their places at the table in my head. I think I always will.</li>
+        <li>[annals:growing] So many new faces. I hope they feel at home here. I hope we let them.</li>
+      </warm>
+      <blunt>
+        <li>That's the year. Most of it was mud. Next.</li>
+        <li>[annals:violent] They keep coming. We keep burying them. Fine by me.</li>
+        <li>[annals:peaceful] Nothing tried to kill us. Somebody check the sky for falling ships.</li>
+      </blunt>
+      <cheerful>
+        <li>What a year! Terrible in places! Wonderful in others! Same again, please, minus the terrible!</li>
+        <li>[annals:richer] We're practically rich! Well. Richer. Someone should buy a hat!</li>
+        <li>[annals:peaceful] Not a single raid! I'm going to frame this page!</li>
+      </cheerful>
+      <gloomy>
+        <li>Another year closer to the end. At least it was our year.</li>
+        <li>[annals:losses] The graveyard got bigger. It always does.</li>
+        <li>[annals:violent] I've stopped counting the raids in my head. I only count who's left.</li>
+      </gloomy>
+      <cold>
+        <li>Summary complete. Survival rate acceptable. Recommend continuing.</li>
+        <li>[annals:losses] Losses were within expectations. Replace them.</li>
+        <li>[annals:richer] Assets grew. So will the size of the next raid. Plan accordingly.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+</Defs>

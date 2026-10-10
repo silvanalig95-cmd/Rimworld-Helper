@@ -630,6 +630,8 @@ namespace ColonyCouncil
             if (letter == null || letter.resolved || letter.ctx?.def == null) return;
             letter.resolved = true;
             var ctx = letter.ctx;
+            var comp = CouncilGameComponent.Instance;
+            if (comp != null) comp.annals.dilemmas++;
             var option = ctx.def.options[Mathf.Clamp(index, 0, ctx.def.options.Count - 1)];
             // Someone may have left or died in the meantime; the dilemma happens to whoever is still here.
             if (ctx.a == null || ctx.a.Dead) return;

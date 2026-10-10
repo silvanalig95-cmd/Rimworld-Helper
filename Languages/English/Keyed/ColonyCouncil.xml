@@ -856,4 +856,33 @@ Granting one of {PAWN_possessive} wishes, or keeping a promise, can win {PAWN_ob
   <CC_Dev_Dilemma>Dev: dilemma now</CC_Dev_Dilemma>
   <CC_Decree_NeedsGrief>Only while someone is grieving</CC_Decree_NeedsGrief>
 
+  <!-- Annals: the year in review -->
+  <CC_Settings_Annals>Yearly annals: a colonist writes up each year</CC_Settings_Annals>
+  <CC_Settings_Annals_Tip>When a new year begins, the colony's best reader or talker writes up the year that ended: who came, who was lost, raids, the council's decisions, friendships and feuds. Past years can be reread from the Chronicle tab.</CC_Settings_Annals_Tip>
+  <CC_Annals_Title>The annals of {0}</CC_Annals_Title>
+  <CC_Annals_Button>Annals of {0}</CC_Annals_Button>
+  <CC_Annals_Opening>The year {0} is over. {PAWN_nameDef} sat down by the fire and wrote it all down, so that somebody would remember.</CC_Annals_Opening>
+  <CC_Annals_OpeningPartial>The year {0} is over. {PAWN_nameDef} wrote down what the council saw of it, from the day it began keeping records.</CC_Annals_OpeningPartial>
+  <CC_Annals_Count>We began the year as {0} and end it as {1}.</CC_Annals_Count>
+  <CC_Annals_Joined>New faces: {0}.</CC_Annals_Joined>
+  <CC_Annals_Died>{0} did not live to see the new year.</CC_Annals_Died>
+  <CC_Annals_Gone>Gone from us, but not dead as far as we know: {0}.</CC_Annals_Gone>
+  <CC_Annals_Quit>Walked out on the council: {0}.</CC_Annals_Quit>
+  <CC_Annals_NoRaids>Nobody came to kill us this year. Nobody.</CC_Annals_NoRaids>
+  <CC_Annals_Raids>Trouble came {0} time(s): raiders, beasts, worse.</CC_Annals_Raids>
+  <CC_Annals_Richer>We grew richer: the colony was worth about {0} silver at the start of the year and {1} now. Somebody will have noticed.</CC_Annals_Richer>
+  <CC_Annals_Poorer>We grew poorer: from about {0} silver of worth to {1}.</CC_Annals_Poorer>
+  <CC_Annals_Steady>The colony's worth held about steady, near {1} silver.</CC_Annals_Steady>
+  <CC_Annals_Wishes>The council granted {0} wish(es) and let {1} slip away.</CC_Annals_Wishes>
+  <CC_Annals_Ambitions>Ambitions achieved: {0}. Ambitions failed or abandoned: {1}.</CC_Annals_Ambitions>
+  <CC_Annals_Decrees>Decrees declared: {0}.</CC_Annals_Decrees>
+  <CC_Annals_Times>{0} ({1} times)</CC_Annals_Times>
+  <CC_Annals_Dilemmas>The council was asked to settle {0} hard question(s).</CC_Annals_Dilemmas>
+  <CC_Annals_Friends>Closest of all: {A_nameDef} and {B_nameDef}.</CC_Annals_Friends>
+  <CC_Annals_Rivals>Worst of enemies: {A_nameDef} and {B_nameDef}. Keep them on different shifts.</CC_Annals_Rivals>
+  <CC_Annals_Devoted>Nobody trusts the council more than {PAWN_nameDef}.</CC_Annals_Devoted>
+  <CC_Annals_Bitter>Nobody trusts it less than {PAWN_nameDef}.</CC_Annals_Bitter>
+  <CC_Annals_Spoiled>Grown hard to please: {0}.</CC_Annals_Spoiled>
+  <CC_Chronicle_Annals>{1} wrote the annals of {0}.</CC_Chronicle_Annals>
+
 </LanguageData>

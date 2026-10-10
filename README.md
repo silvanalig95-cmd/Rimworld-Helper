@@ -138,6 +138,12 @@ bedroom.
 An in-game knowledge base: good practice and the numbers behind it, by topic, searchable, linked from the
 advisor's warnings and to room plans. (Being filled with wiki-checked content.)
 
+### Annals
+When a new year begins, the colony's best reader or talker writes up the year that ended: how many you were and
+are, who joined, who died and who walked out, how often trouble came, whether you grew richer or poorer, what the
+council granted, declared and decided, the closest friends and the worst enemies, who trusts the council most and
+least, and a last word in the author's own voice. Past years can be reread from the Chronicle tab.
+
 ### Chronicle
 A running history of wishes, promises, petitions, meetings and ambitions.
 
