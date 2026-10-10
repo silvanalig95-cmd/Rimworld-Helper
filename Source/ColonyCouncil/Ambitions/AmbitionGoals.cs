@@ -435,4 +435,88 @@ namespace ColonyCouncil
 
         public override string Describe(Map map, float baseline) => "CC_Goal_SkillLevel".Translate(skill?.label ?? "?", level, Best(map));
     }
+
+    /// <summary>A number of factions abroad who like the colony this much: trade partners, allies, someone to call when it goes wrong.</summary>
+    public class Goal_Goodwill : AmbitionGoal
+    {
+        public int goodwill = 75;
+        public int count = 1;
+
+        private static IEnumerable<Faction> Candidates() =>
+            Find.FactionManager.AllFactionsVisible.Where(f => !f.IsPlayer && !f.Hidden && !f.defeated && !f.deactivated && !f.temporary && f.HasGoodwill && !f.def.PermanentlyHostileTo(Faction.OfPlayer.def));
+
+        private int Friends() => Candidates().Count(f => f.PlayerGoodwill >= goodwill);
+
+        public override bool Possible(Map map) => Candidates().Count() >= count;
+
+        public override float Progress(Map map, float baseline) => Ratio(Friends(), count);
+
+        public override string Describe(Map map, float baseline) => "CC_Goal_Goodwill".Translate(count, goodwill, Friends());
+    }
+
+    /// <summary>Make N new things of at least this quality: something the colony can point at and say "we made that".</summary>
+    public class Goal_Quality : AmbitionGoal
+    {
+        public QualityCategory quality = QualityCategory.Masterwork;
+        public int count = 1;
+        /// <summary>Someone needs at least this level in Crafting, Artistic or Construction for it to be a fair ask.</summary>
+        public int minSkill = 10;
+
+        private int cachedTick = -99999;
+        private Map cachedMap;
+        private int cached;
+
+        private static readonly SkillDef[] MakerSkills = { SkillDefOf.Crafting, SkillDefOf.Artistic, SkillDefOf.Construction };
+
+        private int Count(Map map)
+        {
+            int now = Find.TickManager.TicksGame;
+            if (map == cachedMap && now - cachedTick < 250 && now >= cachedTick) return cached;
+            cachedTick = now;
+            cachedMap = map;
+            var seen = new HashSet<Thing>();
+            foreach (var t in map.listerThings.ThingsInGroup(ThingRequestGroup.HaulableEver)) Consider(t, seen);
+            foreach (var t in map.listerThings.ThingsInGroup(ThingRequestGroup.BuildingArtificial))
+                if (t.Faction == Faction.OfPlayer) Consider(t, seen);
+            foreach (var p in map.mapPawns.FreeColonistsSpawned)
+            {
+                if (p.apparel != null) foreach (var a in p.apparel.WornApparel) Consider(a, seen);
+                if (p.equipment != null) foreach (var e in p.equipment.AllEquipmentListForReading) Consider(e, seen);
+            }
+            cached = seen.Count;
+            return cached;
+        }
+
+        private void Consider(Thing t, HashSet<Thing> seen)
+        {
+            var inner = t.GetInnerIfMinified();
+            if (inner.TryGetQuality(out var q) && q >= quality) seen.Add(inner);
+        }
+
+        public override bool Possible(Map map) =>
+            map.mapPawns.FreeColonistsSpawned.Any(p => MakerSkills.Any(s => p.skills?.GetSkill(s) is SkillRecord r && !r.TotallyDisabled && r.Level >= minSkill));
+
+        public override float Baseline(Map map) => Count(map);
+
+        public override float Progress(Map map, float baseline) => Ratio(Count(map) - baseline, count);
+
+        public override string Describe(Map map, float baseline) =>
+            "CC_Goal_Quality".Translate(count, quality.GetLabel(), UnityEngine.Mathf.Max(0, Count(map) - (int)baseline));
+    }
+
+    /// <summary>A winter woodpile: only asked for when the colony actually burns wood and real cold is on its way.</summary>
+    public class Goal_Woodpile : Goal_Stock
+    {
+        public Goal_Woodpile()
+        {
+            kind = "WoodLog";
+            count = 300;
+        }
+
+        public override bool Possible(Map map) =>
+            SeasonUtil.HasSeasons(map) && SeasonUtil.MinTempNextTwelfths(map, 4) < 0f && map.listerBuildings.allBuildingsColonist.Any(BurnsWood);
+
+        private static bool BurnsWood(Building b) =>
+            b.TryGetComp<CompRefuelable>() is CompRefuelable r && r.Props.fuelFilter != null && r.Props.fuelFilter.Allows(ThingDefOf.WoodLog);
+    }
 }
