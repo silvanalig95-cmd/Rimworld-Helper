@@ -130,6 +130,8 @@ namespace ColonyCouncil
         public ThingDef thing;
         public int count;
         public Faction faction;
+        /// <summary>A's animal, for dilemmas about pets.</summary>
+        public Pawn pet;
         public string text;
 
         public string Format(string s)
@@ -141,7 +143,8 @@ namespace ColonyCouncil
                 (b != null ? b.Named("B") : (a != null ? a.Named("B") : "?".Named("B"))),
                 (thing != null ? thing.label : "").Named("THING"),
                 count.Named("COUNT"),
-                (faction != null ? faction.Name : "").Named("FACTION")
+                (faction != null ? faction.Name : "").Named("FACTION"),
+                (pet != null ? pet.Named("PET") : (a != null ? a.Named("PET") : "?".Named("PET")))
             };
             return s.Formatted(args.ToArray()).Resolve();
         }
@@ -157,6 +160,7 @@ namespace ColonyCouncil
             Scribe_Defs.Look(ref thing, "thing");
             Scribe_Values.Look(ref count, "count");
             Scribe_References.Look(ref faction, "faction");
+            Scribe_References.Look(ref pet, "pet");
             Scribe_Values.Look(ref text, "text");
         }
     }
@@ -227,6 +231,19 @@ namespace ColonyCouncil
                 .Where(f => !f.IsPlayer && !f.Hidden && !f.defeated && f.HasGoodwill && !f.HostileTo(Faction.OfPlayer) && f.PlayerGoodwill < 80)
                 .RandomElementWithFallback();
             return ctx.faction != null;
+        }
+    }
+
+    /// <summary>Needs an animal of A's: bonded first, else one A is master of.</summary>
+    public class DilemmaWorker_Pet : DilemmaWorker
+    {
+        protected override bool Extra(DilemmaContext ctx)
+        {
+            if (!base.Extra(ctx)) return false;
+            var animals = ctx.map.mapPawns.SpawnedColonyAnimals.Where(a => !a.Dead && !a.Downed).ToList();
+            ctx.pet = animals.FirstOrDefault(a => a.relations != null && a.relations.DirectRelationExists(PawnRelationDefOf.Bond, ctx.a))
+                      ?? animals.FirstOrDefault(a => a.playerSettings?.Master == ctx.a);
+            return ctx.pet != null;
         }
     }
 
@@ -510,6 +527,18 @@ namespace ColonyCouncil
                 t.SplitOff(take).Destroy();
                 left -= take;
             }
+        }
+    }
+
+    /// <summary>The pet is turned loose into the wild. Its person will not take it well (give them a thought separately).</summary>
+    public class DilemmaEffect_ReleasePet : DilemmaEffect
+    {
+        public override void Apply(DilemmaContext ctx)
+        {
+            var pet = ctx.pet;
+            if (pet == null || pet.Dead || pet.Faction != Faction.OfPlayer) return;
+            if (pet.Spawned) pet.jobs?.StopAll();
+            pet.SetFaction(null);
         }
     }
 

@@ -97,4 +97,16 @@
     <stages><li><label>victory feast</label><description>We beat them, and we ate like it. Alive and full. What a day.</description><baseMoodEffect>6</baseMoodEffect></li></stages>
   </ThoughtDef>
 
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_Dlm_PetReleased</defName>
+    <durationDays>15</durationDays>
+    <stages><li><label>they made me let my animal go</label><description>The council had my animal turned loose in the wild. I keep looking at the treeline.</description><baseMoodEffect>-12</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_Dlm_HairInStew</defName>
+    <durationDays>2</durationDays>
+    <stages><li><label>hair in the stew</label><description>There's animal hair in everything I eat now. The council decided that was fine.</description><baseMoodEffect>-2</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
 </Defs>
