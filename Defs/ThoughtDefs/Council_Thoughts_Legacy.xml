@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <ThoughtDef>
+    <defName>Council_Heirloom</defName>
+    <thoughtClass>ColonyCouncil.Thought_Heirloom</thoughtClass>
+    <workerClass>ColonyCouncil.ThoughtWorker_Heirloom</workerClass>
+    <validWhileDespawned>true</validWhileDespawned>
+    <stages>
+      <li><label>carrying {LOST}'s {ITEM}</label><description>It was theirs. When I hold it, it's a little like they're still here.</description><baseMoodEffect>4</baseMoodEffect></li>
+      <li><label>carrying {LOST}'s {ITEM}</label><description>This belonged to someone we lost. I try to be worthy of it.</description><baseMoodEffect>2</baseMoodEffect></li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Council_HeirloomLost</defName>
+    <durationDays>10</durationDays>
+    <stackLimit>1</stackLimit>
+    <stages><li><label>lost the heirloom</label><description>It was all I had left of them. Now it's gone too.</description><baseMoodEffect>-6</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Council_ChildGrown</defName>
+    <thoughtClass>Thought_MemorySocial</thoughtClass>
+    <durationDays>10</durationDays>
+    <stackLimit>3</stackLimit>
+    <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
+    <stages><li><label>my child is grown</label><description>When did that happen? I blinked. I'm so proud I could burst.</description><baseMoodEffect>6</baseMoodEffect><baseOpinionOffset>10</baseOpinionOffset></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Council_SawThemGrow</defName>
+    <thoughtClass>Thought_MemorySocial</thoughtClass>
+    <durationDays>5</durationDays>
+    <stackLimit>3</stackLimit>
+    <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
+    <stages><li><label>watched them grow up</label><description>I remember when they were small enough to carry. Now look.</description><baseMoodEffect>2</baseMoodEffect><baseOpinionOffset>5</baseOpinionOffset></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Council_Path_Chosen</defName>
+    <durationDays>8</durationDays>
+    <stackLimit>1</stackLimit>
+    <stages><li><label>a path of my own</label><description>They asked me what I wanted to become. Me. And then they let me.</description><baseMoodEffect>5</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Council_Path_Given</defName>
+    <durationDays>8</durationDays>
+    <stackLimit>1</stackLimit>
+    <stages><li><label>a path chosen for me</label><description>They decided what I'll be. Maybe they're right. I'd have liked to be asked.</description><baseMoodEffect>-2</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Council_Path_Teacher</defName>
+    <thoughtClass>Thought_MemorySocial</thoughtClass>
+    <durationDays>10</durationDays>
+    <stackLimit>3</stackLimit>
+    <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
+    <stages><li><label>trusted with a student</label><description>The council asked me to teach them. I won't waste that.</description><baseMoodEffect>3</baseMoodEffect><baseOpinionOffset>8</baseOpinionOffset></li></stages>
+  </ThoughtDef>
+
+</Defs>

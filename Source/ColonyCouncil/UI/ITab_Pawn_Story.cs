@@ -126,6 +126,9 @@ namespace ColonyCouncil
             if (s.quirks)
                 foreach (var q in comp.quirks.Of(p))
                     heart.lines.Add(("CC_Story_Quirk".Translate(q.Label).Resolve(), Color.white));
+            if (s.heirlooms)
+                foreach (var h in comp.legacy.heirlooms.Where(h => h.heir == p && h.thing != null && !h.thing.Destroyed))
+                    heart.lines.Add(("CC_Story_Heirloom".Translate(h.ofName, h.thing.def.label).Resolve(), Color.white));
             if (s.vendettas)
                 foreach (var v in comp.vendettas.vendettas.Where(v => v.avenger == p && v.faction != null))
                     heart.lines.Add(((v.settled ? "CC_Social_VendettaSettled" : v.kidnapped ? "CC_Social_VendettaTaken" : "CC_Social_Vendetta")

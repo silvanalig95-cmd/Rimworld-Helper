@@ -115,6 +115,7 @@ namespace ColonyCouncil
                     // Killed in (or just after) a fight: that faction did it.
                     Faction killers = now - lastBattleTick < GenDate.TicksPerHour * 8 ? lastBattleFaction : null;
                     if (killers != null && S.vendettas) Swear(comp, p, killers, false);
+                    comp.legacy.Notify_Death(comp, p);
                     if (S.eulogies) eulogies.Add(new PendingEulogy { dead = p, dueTick = now + Rand.Range(GenDate.TicksPerHour * 10, GenDate.TicksPerHour * 20), killers = killers });
                 }
                 else if (S.vendettas)

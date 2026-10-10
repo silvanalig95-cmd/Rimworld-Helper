@@ -31,6 +31,7 @@ namespace ColonyCouncil
         public SecretTracker secrets = new SecretTracker();
         public VendettaTracker vendettas = new VendettaTracker();
         public QuirkTracker quirks = new QuirkTracker();
+        public LegacyTracker legacy = new LegacyTracker();
         public int nextWishId = 1;
 
         private Dictionary<string, int> cooldowns = new Dictionary<string, int>();
@@ -69,6 +70,7 @@ namespace ColonyCouncil
             Scribe_Deep.Look(ref secrets, "secrets");
             Scribe_Deep.Look(ref vendettas, "vendettas");
             Scribe_Deep.Look(ref quirks, "quirks");
+            Scribe_Deep.Look(ref legacy, "legacy");
             Scribe_Values.Look(ref nextWishId, "nextWishId", 1);
             Scribe_Collections.Look(ref cooldowns, "cooldowns", LookMode.Value, LookMode.Value, ref tmpKeys, ref tmpValues);
             if (Scribe.mode == LoadSaveMode.PostLoadInit)
@@ -91,6 +93,7 @@ namespace ColonyCouncil
                 if (secrets == null) secrets = new SecretTracker();
                 if (vendettas == null) vendettas = new VendettaTracker();
                 if (quirks == null) quirks = new QuirkTracker();
+                if (legacy == null) legacy = new LegacyTracker();
                 wishes.RemoveAll(w => w == null || w.def == null || w.pawn == null);
             }
         }

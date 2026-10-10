@@ -159,6 +159,12 @@ peace with the killers.
 When someone dies, the person closest to them speaks a **eulogy** at the grave, about who the dead really were:
 the years they gave, the name they earned, the goal they never reached, who killed them.
 
+### Heirlooms and coming of age
+A dead colonist's weapon or hat passes to the person who loved them most. Carrying it is a comfort (to anyone,
+more to the heir), and losing it hurts. When a child grows up (Biotech), the colony marks it, parents are proud, and
+the council is asked to help choose a path: an apprenticeship in the workshop, the infirmary, the study or on the
+wall (which starts a real mentorship with the colony's best), or letting them choose for themselves.
+
 ### Quirks and superstitions
 Colonists pick up beliefs and habits from what they live through: a **lucky helmet** after surviving a raid in it
 (happy wearing it, uneasy without), a dread of storms after a death, a ritual before every fight, prayers at night
@@ -270,7 +276,8 @@ The council only suggests what your colony can actually do right now:
 - letters vs. messages, floating speech text, alerts
 - where the council button sits in the bottom bar
 - **council life**: decrees, dilemmas, petitions, annals, names, journals, offices, the social web, social
-  events, life goals, secrets, vendettas, eulogies, quirks, dreams and dream omens, each on its own switch
+  events, life goals, secrets, vendettas, eulogies, heirlooms, coming of age, quirks, dreams and dream omens, each on
+  its own switch
 
 ## Optional mods that go well with it
 

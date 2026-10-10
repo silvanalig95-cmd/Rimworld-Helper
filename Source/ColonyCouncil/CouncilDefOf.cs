@@ -57,6 +57,9 @@ namespace ColonyCouncil
         public static ThoughtDef Council_GaveEulogy;
         public static ThoughtDef Council_EulogyHeard;
         public static HediffDef Council_Vendetta_Fury;
+        public static ThoughtDef Council_HeirloomLost;
+        public static ThoughtDef Council_ChildGrown;
+        public static ThoughtDef Council_SawThemGrow;
 
         public static HediffDef Council_Motivated;
         public static HediffDef Council_Loyalty;

@@ -448,6 +448,19 @@ namespace ColonyCouncil
             }
         }
 
+        /// <summary>Starts a mentorship directly (the council arranged it), unless one already exists between them.</summary>
+        public SocialTie StartMentorship(Pawn mentor, Pawn student, SkillDef skill)
+        {
+            if (!S.socialWeb || !Eligible(mentor) || !Eligible(student) || mentor == student || skill == null) return null;
+            var rec = student.skills?.GetSkill(skill);
+            if (rec == null || rec.TotallyDisabled || Get(mentor, student, TieKind.Mentor) != null || ties.Any(t => t.kind == TieKind.Mentor && t.b == student)) return null;
+            var t = new SocialTie { a = mentor, b = student, kind = TieKind.Mentor, strength = 25f, formedTick = Find.TickManager.TicksGame, skill = skill };
+            ties.Add(t);
+            t.Note("CC_TieNote_Mentor".Translate(skill.label));
+            Announce(t);
+            return t;
+        }
+
         private void TryStartMentorship(List<Pawn> pawns)
         {
             if (!Rand.Chance(0.06f)) return;

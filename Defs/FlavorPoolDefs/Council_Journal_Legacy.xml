@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- {OTHER_...}: the dead. {ITEM}: what the writer will keep. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Journal_Heirloom</defName>
+    <lines>
+      <plain>
+        <li>I'm keeping {OTHER_nameDef}'s {ITEM}. It still smells like {OTHER_objective}. I hope that never fades.</li>
+        <li>They gave me {OTHER_nameDef}'s {ITEM}. I'll carry it as long as I live.</li>
+      </plain>
+      <warm><li>{OTHER_nameDef}'s {ITEM} is mine to look after now. I'll keep it the way {OTHER_nameDef} would have.</li></warm>
+      <blunt><li>Took {OTHER_nameDef}'s {ITEM}. Nobody else is having it.</li></blunt>
+      <gloomy><li>All that's left of {OTHER_nameDef} is a {ITEM}. I'm holding on to it anyway.</li></gloomy>
+      <cold><li>I've taken custody of {OTHER_nameDef}'s {ITEM}. Practical, and something more than practical.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- {LOST}: whose it was. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Journal_HeirloomLost</defName>
+    <lines>
+      <plain>
+        <li>{LOST}'s things are gone. The last piece of {LOST} I had. I keep reaching for it.</li>
+      </plain>
+      <blunt><li>Lost {LOST}'s things. Don't want to talk about it.</li></blunt>
+      <gloomy><li>First I lost {LOST}. Now I've lost what {LOST} left me.</li></gloomy>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Journal_ComingOfAge</defName>
+    <lines>
+      <plain>
+        <li>They say I'm grown now. I don't feel different. Maybe that's what grown feels like.</li>
+        <li>I'm an adult today. I get a vote at the council. I'm going to use it.</li>
+        <li>[winter] Grown up in the middle of winter. Nobody threw a party. Somebody gave me extra soup, though.</li>
+      </plain>
+      <cheerful><li>I'M GROWN UP! Nobody can tell me when to go to bed! (Somebody still will.)</li></cheerful>
+      <gloomy><li>Grown now. Childhood went fast out here. Everything does.</li></gloomy>
+      <cold><li>Adulthood reached. My contributions will be measured differently now. Good.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- {OTHER_...}: the child who came of age. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Journal_ChildGrown</defName>
+    <lines>
+      <plain>
+        <li>{OTHER_nameDef} is grown. I remember the first steps, right over there. I'm not crying. I'm a little crying.</li>
+        <li>My child is an adult today. Out here. We made it this far, the two of us.</li>
+      </plain>
+      <blunt><li>{OTHER_nameDef} is grown. Did a good job, if I say so myself.</li></blunt>
+      <gloomy><li>{OTHER_nameDef} is grown. I just hope this world is kinder to an adult than it was to a child.</li></gloomy>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+</Defs>

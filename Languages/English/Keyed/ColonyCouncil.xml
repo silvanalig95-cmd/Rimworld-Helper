@@ -1158,8 +1158,18 @@ Granting one of {PAWN_possessive} wishes, or keeping a promise, can win {PAWN_ob
   <CC_Story_Lost>Lost {0} ({1}).</CC_Story_Lost>
   <CC_Story_Heart>Heart</CC_Story_Heart>
   <CC_Story_Quirk>Quirk: {0}.</CC_Story_Quirk>
+  <CC_Story_Heirloom>Keeps {0}'s {1}.</CC_Story_Heirloom>
   <CC_Story_Keeps>Keeps a secret for {0}.</CC_Story_Keeps>
   <CC_Story_Journal>From the journal</CC_Story_Journal>
   <CC_Story_ReadJournal>Read the journal</CC_Story_ReadJournal>
+
+  <!-- Heirlooms, coming of age -->
+  <CC_Settings_Heirlooms>Heirlooms</CC_Settings_Heirlooms>
+  <CC_Settings_Heirlooms_Tip>When a colonist dies, their weapon or hat passes to the person who loved them most. Carrying it is a comfort (to anyone, more to the heir); losing it hurts.</CC_Settings_Heirlooms_Tip>
+  <CC_Settings_ComingOfAge>Coming of age</CC_Settings_ComingOfAge>
+  <CC_Settings_ComingOfAge_Tip>When a child grows up, the colony marks it, and the council helps choose their path: an apprenticeship with the colony's best, the defenses, or their own way.</CC_Settings_ComingOfAge_Tip>
+  <CC_Heirloom_Passed>{PAWN_nameDef} will keep {OTHER_nameDef}'s {ITEM}.</CC_Heirloom_Passed>
+  <CC_ComingOfAge_Label>Coming of age: {0}</CC_ComingOfAge_Label>
+  <CC_ComingOfAge_Text>{PAWN_nameDef} is grown. The child who ran between the buildings is an adult now, with a say at the council and a life to choose.</CC_ComingOfAge_Text>
 
 </LanguageData>
