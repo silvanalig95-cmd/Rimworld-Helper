@@ -22,7 +22,7 @@
     <label>bedroom</label>
     <description>A private bedroom for one: bed, bedside table, dresser, a light and a plant.</description>
     <order>10</order>
-    <size>(4,5)</size>
+    <size>(5,5)</size>
     <floors>
       <li>WoodPlankFloor</li>
     </floors>
@@ -41,12 +41,12 @@
       <li>
         <defs><li>Dresser</li></defs>
         <role>dresser</role>
-        <pos>(2,4)</pos>
+        <pos>(3,4)</pos>
       </li>
       <li>
         <defs><li>StandingLamp</li><li>TorchLamp</li></defs>
         <role>light</role>
-        <pos>(3,0)</pos>
+        <pos>(4,0)</pos>
       </li>
       <li>
         <defs><li>PlantPot</li></defs>

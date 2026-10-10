@@ -1,0 +1,1197 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- Almanac: food and farming. -->
+
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Council_Alm_10_FoodNumbers</defName>
+    <label>food numbers at a glance</label>
+    <category>Food</category>
+    <order>5</order>
+    <summary>The key food and farming numbers on one page</summary>
+    <tip>Nobody audits the grain store until it is the grain. Audit it now, while it's still rice.</tip>
+    <description>These are the numbers you'll reach for most when you plan meals, fields and storage. Each one has its own page with the details and what to do about it.</description>
+    <facts>
+      <li>An adult needs 1.6 nutrition per day and can hold 1.0. Raw food and pemmican give 0.05 per unit; a prepared meal gives 0.9 (lavish 1.0).</li>
+      <li>Days before rotting without a freezer: meat and fish 2, simple meal 4, potatoes 30, rice 40, corn 60, pemmican 70.</li>
+      <li>Spoilage begins above 0 °C and stops at or below 0 °C.</li>
+      <li>Plants grow normally at 6 to 42 °C, stop outside 0 to 58 °C, and start dying below -10 °C.</li>
+      <li>Plants grow 13 hours a day, so real growth takes about 1.846x the listed grow days.</li>
+      <li>Fertility: rich soil 140%, soil 100%, gravel 70%, sand 10%, hydroponics basin 280% (70 W). Crops need at least 51% light; a sun lamp draws 2,900 W and covers 24 basins.</li>
+      <li>Meal moods: raw food -7, nutrient paste -4, fine meal +5, lavish meal +12, eating without a table -3.</li>
+    </facts>
+    <advice>
+      <li>To get days of food left, divide your total nutrition by 1.6 times the number of mouths.</li>
+      <li>Before sowing late in the season, multiply the crop's listed grow days by 1.846 and check it ripens in time.</li>
+      <li>Open the linked pages for what to do about each number.</li>
+    </advice>
+    <keywords>
+      <li>cheat sheet</li>
+      <li>quick reference</li>
+      <li>numbers</li>
+      <li>nutrition</li>
+      <li>rot</li>
+      <li>fertility</li>
+    </keywords>
+    <seeAlso>
+      <li>Council_Alm_1_01_DailyNutrition</li>
+      <li>Council_Alm_1_28_SpoilageAndDeterioration</li>
+      <li>Council_Alm_1_04_GrowingTemperature</li>
+      <li>Council_Alm_1_05_GrowingSeason</li>
+      <li>Council_Alm_1_07_SoilFertility</li>
+      <li>Council_Alm_1_23_SunLamps</li>
+      <li>Council_Alm_1_26_MealMoods</li>
+      <li>Council_Alm_1_27_Freezer</li>
+    </seeAlso>
+  </ColonyCouncil.AlmanacArticleDef>
+
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Council_Alm_1_01_DailyNutrition</defName>
+    <label>daily nutrition</label>
+    <category>Food</category>
+    <order>10</order>
+    <summary>An adult eats 1.6 nutrition a day: about two meals</summary>
+    <tip>Count meals, not hopes. If the larder says three days, it means two: somebody always gets hungry, and somebody always gets shot.</tip>
+    <description>Every adult colonist burns through a fixed amount of nutrition each day, and all your food planning starts from that number. Prepared meals pack far more nutrition per serving than raw food, and cooking also stretches your raw ingredients. When the food bar runs dry, colonists turn hungry, then malnourished.</description>
+    <facts>
+      <li>A baseline adult needs 1.6 nutrition per day and can hold 1.0 nutrition at once.</li>
+      <li>Colonists go looking for food once their food bar falls to 0.25.</li>
+      <li>Most raw foods and pemmican give 0.05 nutrition per unit. Simple and fine meals give 0.9, lavish meals 1.0.</li>
+      <li>A rough daily ration is 2 meals, or 32 units of raw food or pemmican.</li>
+      <li>A simple meal turns 0.5 raw nutrition into 0.9, so cooking gives back 180% of what goes in.</li>
+    </facts>
+    <advice>
+      <li>Check the Resources panel often: total meals and raw food against the number of mouths.</li>
+      <li>Count prisoners as well; they eat like colonists.</li>
+      <li>Cook raw food into meals instead of letting people eat it raw: more nutrition and no mood penalty.</li>
+      <li>Treat "Hungry" in the Needs tab as a warning and "Malnourished" as a failure of the food plan.</li>
+    </advice>
+    <keywords>
+      <li>nutrition</li>
+      <li>hunger</li>
+      <li>food per day</li>
+      <li>hungry</li>
+      <li>malnourished</li>
+      <li>ration</li>
+      <li>meals</li>
+    </keywords>
+    <seeAlso>
+      <li>Council_Alm_1_03_WinterStockpile</li>
+      <li>Council_Alm_1_06_FarmlandPerColonist</li>
+      <li>Council_Alm_1_26_MealMoods</li>
+      <li>Council_Alm_1_24_PreservedFood</li>
+      <li>Council_Alm_1_02_ChildrenAndBabies</li>
+      <li>Council_Alm_10_FoodNumbers</li>
+    </seeAlso>
+  </ColonyCouncil.AlmanacArticleDef>
+
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Council_Alm_1_03_WinterStockpile</defName>
+    <label>winter stockpile</label>
+    <category>Food</category>
+    <order>20</order>
+    <approximate>true</approximate>
+    <summary>Bank about 27 meals per colonist before the fields freeze</summary>
+    <tip>Winter doesn't raid you. It just waits by the door while you starve politely.</tip>
+    <description>There's no official "days of food" figure, so you have to do the sums yourself. A colonist eats nearly two meals a day, and a 15-day winter is a long time to live on hope. Whatever you store also has to survive until you eat it, so plan for rot as well as for mouths.</description>
+    <facts>
+      <li>At 1.6 nutrition a day and 0.9 per simple meal, a colonist eats about 1.78 meals a day.</li>
+      <li>A 15-day winter needs roughly 27 meals per colonist; a full 60-day year needs about 107.</li>
+      <li>Without a freezer, simple meals rot in 4 days, potatoes in 30, rice in 40, corn in 60 and pemmican in 70. Packaged survival meals barely rot at all.</li>
+      <li>The quick "10+ tiles per colonist" farming rule assumes crops grow all year, so it underfeeds you anywhere with a real winter.</li>
+    </facts>
+    <advice>
+      <li>Before Septober, divide your food total by your colonist count and compare it with the winter ahead.</li>
+      <li>A common rule of thumb: stock colonists x 1.6 x days without growth, plus about 30% for blight, raids and new mouths.</li>
+      <li>Bank a full winter plus a buffer for toxic fallout or blight, which can wreck the next harvest too.</li>
+      <li>Without a freezer, store raw crops for the long haul and cook as you go; turn spare meat into pemmican.</li>
+      <li>Count tame animals that will need hay once grazing stops.</li>
+    </advice>
+    <keywords>
+      <li>winter</li>
+      <li>food stock</li>
+      <li>how much food</li>
+      <li>days of food</li>
+      <li>larder</li>
+      <li>stockpile</li>
+    </keywords>
+    <seeAlso>
+      <li>Council_Alm_1_01_DailyNutrition</li>
+      <li>Council_Alm_1_06_FarmlandPerColonist</li>
+      <li>Council_Alm_1_05_GrowingSeason</li>
+      <li>Council_Alm_1_24_PreservedFood</li>
+      <li>Council_Alm_1_27_Freezer</li>
+      <li>Council_Alm_1_28_SpoilageAndDeterioration</li>
+      <li>Council_Alm_1_29_FeedingAnimals</li>
+    </seeAlso>
+    <template>Council_Freezer</template>
+  </ColonyCouncil.AlmanacArticleDef>
+
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Council_Alm_1_06_FarmlandPerColonist</defName>
+    <label>farmland per colonist</label>
+    <category>Food</category>
+    <order>30</order>
+    <approximate>true</approximate>
+    <summary>Plan 20 to 25 tiles of food crops per colonist on ordinary soil</summary>
+    <tip>Twenty-five tiles of rice per mouth. Plant fewer and you'll find out which of your friends tastes best.</tip>
+    <description>How much field each colonist needs depends on soil, crop, grower skill, difficulty and the length of your growing season, which is why the figures you'll hear disagree. The quick "10+ tiles" rule assumes crops grow all year; more careful figures land around 20 to 25. Plan for the high end and you'll rarely be sorry.</description>
+    <facts>
+      <li>A quick rule of thumb says 10+ tiles of food crops per colonist, but only where crops grow all year round.</li>
+      <li>A more careful figure: 25 tiles of rice, potatoes or corn on ordinary soil feeds one colonist on simple meals, with a Plants 6 grower, prompt harvests and a year-round season on Losing is Fun. On rich soil, 20 tiles of rice or corn does it.</li>
+      <li>Another reference gives tiles per colonist on soil as rice 21.2, corn 21.8 and potatoes 22.2. Rice needs 15.0 on rich soil and 7.5 in hydroponics.</li>
+      <li>These sources disagree, so treat every figure as approximate. Lower difficulties need less.</li>
+    </facts>
+    <advice>
+      <li>Plan about 25 tiles per colonist on soil, then adjust once you see whether your food stock rises or falls.</li>
+      <li>Add 30% to 50% for a short growing season, a low-skill grower or a harsh difficulty.</li>
+      <li>Put food fields on rich soil first; it cuts the area you need.</li>
+      <li>If your food total falls during the growing season, your fields are too small. Expand now, not in autumn.</li>
+    </advice>
+    <keywords>
+      <li>farm size</li>
+      <li>field size</li>
+      <li>tiles per colonist</li>
+      <li>how much farmland</li>
+      <li>growing zone</li>
+      <li>crops</li>
+    </keywords>
+    <seeAlso>
+      <li>Council_Alm_1_01_DailyNutrition</li>
+      <li>Council_Alm_1_03_WinterStockpile</li>
+      <li>Council_Alm_1_07_SoilFertility</li>
+      <li>Council_Alm_1_09_Rice</li>
+      <li>Council_Alm_1_22_BasinsPerColonist</li>
+    </seeAlso>
+  </ColonyCouncil.AlmanacArticleDef>
+
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Council_Alm_1_26_MealMoods</defName>
+    <label>meals and mood</label>
+    <category>Food</category>
+    <order>40</order>
+    <summary>Raw -7, paste -4, fine +5, lavish +12, no table -3</summary>
+    <tip>Same rice, same meat, five more points of happy. A fine meal is the cheapest therapy on the Rim.</tip>
+    <description>What people eat, and where they eat it, shows up straight in their mood. A fine meal costs no more raw food than a simple one, so once you have a good cook and both meat and vegetables, it's free happiness. Raw food and eating off the floor chip away at everyone.</description>
+    <facts>
+      <li>Raw food: -7 "ate raw food". Milk, berries and insect jelly are exempt, though they can still poison.</li>
+      <li>Nutrient paste meal: -4, but it turns 0.3 raw nutrition into 0.9 (300%), never poisons, and spoils in 0.75 days.</li>
+      <li>Simple meal: 0.9 nutrition from 0.5 raw (180%), no mood effect.</li>
+      <li>Fine meal: +5, 0.9 nutrition from 0.25 meat plus 0.25 vegetable (also 180%). Vegetarian and carnivore fine meals use one kind but need 0.75 raw (120%).</li>
+      <li>Lavish meal: +12, 1.0 nutrition from 0.5 meat plus 0.5 vegetable, so it costs as much raw food as it gives.</li>
+      <li>Eating without a table: -3. Chocolate gives 0.1 nutrition and tastes fine.</li>
+    </facts>
+    <advice>
+      <li>Switch your stove bill to fine meals once a cook reaches Cooking 6 and you have both meat and vegetables.</li>
+      <li>Save lavish meals (Cooking 8) for when mood is in trouble; they eat into your raw food.</li>
+      <li>Give everyone a seat at a table, in a dining room next to the kitchen.</li>
+      <li>Keep nutrient paste for prisoners and food crises, not as the colony's everyday meal.</li>
+      <li>No power? A fueled stove burns wood and cooks the same meals as an electric one.</li>
+    </advice>
+    <keywords>
+      <li>meals</li>
+      <li>fine meal</li>
+      <li>lavish meal</li>
+      <li>simple meal</li>
+      <li>nutrient paste</li>
+      <li>raw food</li>
+      <li>ate without table</li>
+      <li>mood</li>
+    </keywords>
+    <seeAlso>
+      <li>Council_Alm_1_25_FoodPoisoning</li>
+      <li>Council_Alm_1_01_DailyNutrition</li>
+      <li>Council_Alm_1_12_Berries</li>
+      <li>Council_Alm_1_24_PreservedFood</li>
+    </seeAlso>
+    <template>Council_DiningRoom</template>
+  </ColonyCouncil.AlmanacArticleDef>
+
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Council_Alm_1_25_FoodPoisoning</defName>
+    <label>food poisoning</label>
+    <category>Food</category>
+    <order>50</order>
+    <approximate>true</approximate>
+    <summary>Skilled cooks and a clean kitchen keep the meals down</summary>
+    <tip>A clean kitchen is a quiet kitchen. A dirty one has a sound, and it's someone being sick.</tip>
+    <description>Cooked meals can give food poisoning, and the chance depends on two things you control: the cook's skill and the cleanliness of the room the stove stands in. One bad batch can put several colonists on their knees at once. A butcher table in the kitchen is the classic culprit.</description>
+    <facts>
+      <li>The cook's chance of poisoning a meal is roughly 5% at Cooking 0 and 0.5% at Cooking 6, bottoming out at about 0.1% from Cooking 9.</li>
+      <li>The dirty-kitchen risk switches off once the stove room's cleanliness is about -2 or better.</li>
+      <li>A butcher table counts as -15 cleanliness on its tile, and butchering spatters blood. In a small kitchen that alone drags cleanliness below -2; in a big room it barely registers.</li>
+      <li>Nutrient paste meals never cause food poisoning. Raw food has its own built-in chance, and with Biotech, toxipotatoes double it.</li>
+      <li>A batch bill poisons every meal in the batch together. A bionic stomach halves the chance.</li>
+      <li>Each sterile tile adds +0.6 cleanliness.</li>
+    </facts>
+    <advice>
+      <li>Let only your best cook work the stove.</li>
+      <li>Put the butcher table in its own room, next door to the kitchen.</li>
+      <li>Floor the kitchen with tile, sterile if you can afford it, and keep a cleaner on duty.</li>
+      <li>Check the stove room's cleanliness in the room stats and aim for -2 or better.</li>
+      <li>Don't use the kitchen as a corridor: every pair of boots brings dirt. The same rules apply to a fueled stove or a campfire.</li>
+    </advice>
+    <keywords>
+      <li>food poisoning</li>
+      <li>vomit</li>
+      <li>kitchen</li>
+      <li>cleanliness</li>
+      <li>cook</li>
+      <li>butcher table</li>
+      <li>sick</li>
+    </keywords>
+    <seeAlso>
+      <li>Council_Alm_1_26_MealMoods</li>
+      <li>Council_Alm_1_30_Hunting</li>
+      <li>Council_Alm_1_12_Berries</li>
+    </seeAlso>
+    <template>Council_Kitchen</template>
+  </ColonyCouncil.AlmanacArticleDef>
+
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Council_Alm_1_27_Freezer</defName>
+    <label>freezer design</label>
+    <category>Food</category>
+    <order>60</order>
+    <approximate>true</approximate>
+    <summary>Keep it below 0 °C with spare coolers, thick walls and an airlock</summary>
+    <tip>Doors leak heat like gossips leak secrets. Build an airlock, point the hot end at the sky, and set the cooler to minus ten.</tip>
+    <description>A freezer stops food rotting entirely, which turns a few days of meals into months of security. The trick is keeping it below zero through door traffic, heat waves and power cuts. Build it with margin, because the day it fails is the day you're busiest.</description>
+    <facts>
+      <li>Spoilage begins above 0 °C, slows below 10 °C, and stops entirely at or below 0 °C.</li>
+      <li>A cooler draws 200 W. Coolers stop in a solar flare and struggle in a heat wave, so that's when freezers fail.</li>
+      <li>Several coolers set to staggered targets, such as -5 °C and -10 °C, let some of them idle on low power.</li>
+      <li>Bigger rooms need more coolers, and a double-walled freezer holds the cold better.</li>
+      <li>A common size is about 6x6, with room left for the coolers.</li>
+      <li>An airlock, two doors one after the other, keeps the cold in when people walk through.</li>
+    </facts>
+    <advice>
+      <li>Set coolers to about -10 °C so open doors and short power cuts don't push the room above zero.</li>
+      <li>Vent each cooler's hot side outdoors or into an unroofed gap, never into another room.</li>
+      <li>Put an airlock between the freezer and the kitchen, and double the outer walls in hot climates.</li>
+      <li>Keep a reserve of pemmican or survival meals for when the freezer goes down.</li>
+      <li>No power? In a cold winter an unheated, roofed storeroom freezes on its own. The rest of the year, rely on pemmican; passive coolers can't get a room below 17 °C, so they won't stop rot.</li>
+    </advice>
+    <keywords>
+      <li>freezer</li>
+      <li>cooler</li>
+      <li>cold storage</li>
+      <li>airlock</li>
+      <li>refrigeration</li>
+      <li>rot</li>
+    </keywords>
+    <seeAlso>
+      <li>Council_Alm_1_28_SpoilageAndDeterioration</li>
+      <li>Council_Alm_1_24_PreservedFood</li>
+      <li>Council_Alm_1_03_WinterStockpile</li>
+      <li>Council_Alm_1_30_Hunting</li>
+    </seeAlso>
+    <template>Council_Freezer</template>
+  </ColonyCouncil.AlmanacArticleDef>
+
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Council_Alm_1_28_SpoilageAndDeterioration</defName>
+    <label>rot and deterioration</label>
+    <category>Food</category>
+    <order>70</order>
+    <summary>Heat rots food and open sky wears it down: freezers fix one, roofs the other</summary>
+    <tip>Cold stops the rot. It doesn't stop the rain. Put a roof over the meat before you congratulate yourself.</tip>
+    <description>Food can be lost in two separate ways. Spoilage is rot: it depends on temperature, and food is safe to eat right up until it rots away. Deterioration is wear from sitting outside without a roof, and it happens at any temperature, so frozen food under the open sky still disappears.</description>
+    <facts>
+      <li>Days until rotting: nutrient paste 0.75; meat and fish 2; simple, fine and lavish meals 4; milk and berries 14; eggs 15; potatoes 30; rice and raw fungus 40; corn and hay 60; pemmican 70.</li>
+      <li>Deterioration per day when unroofed: meals 10, meat 6, kibble 6, fish 3, pemmican 2.</li>
+      <li>A roof or a shelf stops deterioration.</li>
+      <li>A meal dropped outdoors in freezing weather won't rot, but it will still deteriorate.</li>
+      <li>Food is safe to eat at any stage before it spoils.</li>
+    </facts>
+    <advice>
+      <li>Keep all food under a roof, even in midwinter.</li>
+      <li>Refrigerate meat and fish at once; 2 days goes fast.</li>
+      <li>Without a freezer, cook only what you'll eat within 4 days.</li>
+      <li>Treat every "rotted away" message as proof your storage is too warm.</li>
+    </advice>
+    <keywords>
+      <li>rot</li>
+      <li>spoilage</li>
+      <li>deterioration</li>
+      <li>rotting</li>
+      <li>shelf life</li>
+      <li>roof</li>
+    </keywords>
+    <seeAlso>
+      <li>Council_Alm_1_27_Freezer</li>
+      <li>Council_Alm_1_24_PreservedFood</li>
+      <li>Council_Alm_1_03_WinterStockpile</li>
+      <li>Council_Alm_10_FoodNumbers</li>
+    </seeAlso>
+    <template>Council_Storeroom</template>
+  </ColonyCouncil.AlmanacArticleDef>
+
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Council_Alm_1_04_GrowingTemperature</defName>
+    <label>growing temperature</label>
+    <category>Food</category>
+    <order>80</order>
+    <summary>Crops grow best at 6 to 42 °C and start dying below -10 °C</summary>
+    <tip>When the thermometer sinks toward zero, harvest whatever's ripe. Frost doesn't negotiate, and neither does a dead potato.</tip>
+    <description>Temperature decides whether your crops grow at full speed, crawl, or die. Inside the comfortable band they grow normally; outside it growth slows, then stops, and your growers won't sow at all. One hard frost can wipe out a field that was days from harvest.</description>
+    <facts>
+      <li>Most plants grow normally between 6 °C and 42 °C.</li>
+      <li>Growth stops, and colonists refuse to sow, below 0 °C or above 58 °C. Heat-resistant plants such as cacti grow up to 75 °C.</li>
+      <li>Below 6 °C, growth speed is the temperature divided by 6 (half speed at 3 °C). Above 42 °C it is (58 minus the temperature) divided by 16.</li>
+      <li>Plants start dying or losing their leaves below -10 °C. Each plant has its own random limit between -18 °C and -10 °C.</li>
+      <li>Healroot is cold-resistant, as are nutrifungus and fibercorn with Ideology. Most food crops are not.</li>
+    </facts>
+    <advice>
+      <li>Select a plant to read its temperature growth multiplier; "Not growing" means it's too hot or too cold.</li>
+      <li>When nights drop toward freezing, harvest anything at 65% growth or more before the frost takes it.</li>
+      <li>In cold climates, a heated greenhouse or hydroponics keeps food growing through winter.</li>
+      <li>In hot climates, expect crops to stall above 42 °C and plan harvests around the summer peak.</li>
+    </advice>
+    <keywords>
+      <li>temperature</li>
+      <li>frost</li>
+      <li>cold</li>
+      <li>heat</li>
+      <li>plants dying</li>
+      <li>not growing</li>
+    </keywords>
+    <seeAlso>
+      <li>Council_Alm_1_05_GrowingSeason</li>
+      <li>Council_Alm_1_32_BlightAndFire</li>
+      <li>Council_Alm_1_21_Hydroponics</li>
+      <li>Council_Alm_1_14_Healroot</li>
+      <li>Council_Alm_1_03_WinterStockpile</li>
+    </seeAlso>
+  </ColonyCouncil.AlmanacArticleDef>
+
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Council_Alm_1_05_GrowingSeason</defName>
+    <label>growing season</label>
+    <category>Food</category>
+    <order>90</order>
+    <summary>Plants rest 11 hours a night, so crops take about 1.85x their listed time</summary>
+    <tip>Hope is a crop with a growing season. Plant early.</tip>
+    <description>Plants only grow during the day, so the "grow days" on a plant's info card is not how long you'll actually wait. Your growers also only sow during the zone's growing period, and anything sown too close to its end never ripens. Do the arithmetic before you plant something slow late in the year.</description>
+    <facts>
+      <li>Plants rest from hour 19 to hour 5, leaving 13 growing hours a day.</li>
+      <li>Real growth time is about 1.846x the listed grow days: a potato listed at 5.8 days takes about 10.7 days on soil.</li>
+      <li>A crop must reach about 65% growth before it can be harvested.</li>
+      <li>In the northern hemisphere, the growing period usually starts in early Aprimay and ends in mid or late Septober.</li>
+      <li>A plant lives for its grow days times a lifespan factor (usually 5, up to 8), so an unharvested crop eventually dies.</li>
+    </facts>
+    <advice>
+      <li>Select a growing zone to see its local growing period before you choose what to plant.</li>
+      <li>Late in the season, sow fast rice instead of slow corn.</li>
+      <li>Switch off sowing on zones near the end of the season so your growers' work isn't wasted.</li>
+      <li>Keep enough growers on duty that ripe crops are cut before they die of old age.</li>
+    </advice>
+    <keywords>
+      <li>growing season</li>
+      <li>grow days</li>
+      <li>growth time</li>
+      <li>sowing</li>
+      <li>harvest</li>
+      <li>plant rest</li>
+    </keywords>
+    <seeAlso>
+      <li>Council_Alm_1_04_GrowingTemperature</li>
+      <li>Council_Alm_1_09_Rice</li>
+      <li>Council_Alm_1_11_Corn</li>
+      <li>Council_Alm_1_03_WinterStockpile</li>
+      <li>Council_Alm_10_FoodNumbers</li>
+    </seeAlso>
+  </ColonyCouncil.AlmanacArticleDef>
+
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Council_Alm_1_07_SoilFertility</defName>
+    <label>soil fertility</label>
+    <category>Food</category>
+    <order>100</order>
+    <summary>Rich soil 140%, soil 100%, gravel 70%, hydroponics 280%</summary>
+    <tip>Rich soil is the only thing on this rock that gives more than it takes. Don't build a bedroom on it.</tip>
+    <description>Fertility is how fast plants grow on a tile. It changes growth speed, not how much each plant yields, so better soil means more harvests a year. Hover over the ground to read it, and save your best patches for fields.</description>
+    <facts>
+      <li>Fertility: rich soil 140%, soil 100%, marshy soil 100%, plant pot 100%, stony soil and gravel 70%, sand 10%, hydroponics basin 280%.</li>
+      <li>With Ideology, lichen-covered soil is 100% and fungal gravel 70%. With Biotech, polluted soil drops to 50%.</li>
+      <li>Most crops need at least 50% fertility (trees 30%), so nothing farms on sand.</li>
+      <li>A crop's growth from soil is (fertility - 100%) x its fertility sensitivity + 100%. On gravel, potatoes grow at 88% speed and rice at 70%.</li>
+      <li>Growing zones can't go on sand, mud, ice, bare stone, water or built floors.</li>
+    </facts>
+    <advice>
+      <li>Hover over tiles to read terrain and fertility before you lay out fields.</li>
+      <li>Zone your rich soil patches first, and never build over them.</li>
+      <li>Put soil-sensitive crops such as rice and corn on the best ground, and potatoes on gravel.</li>
+      <li>Don't lay floors where you plan to farm; you can't zone over a built floor.</li>
+    </advice>
+    <keywords>
+      <li>fertility</li>
+      <li>rich soil</li>
+      <li>gravel</li>
+      <li>stony soil</li>
+      <li>sand</li>
+      <li>terrain</li>
+    </keywords>
+    <seeAlso>
+      <li>Council_Alm_1_08_FertilitySensitivity</li>
+      <li>Council_Alm_1_06_FarmlandPerColonist</li>
+      <li>Council_Alm_1_10_Potatoes</li>
+      <li>Council_Alm_1_21_Hydroponics</li>
+    </seeAlso>
+  </ColonyCouncil.AlmanacArticleDef>
+
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Council_Alm_1_08_FertilitySensitivity</defName>
+    <label>matching crops to soil</label>
+    <category>Food</category>
+    <order>110</order>
+    <summary>Potatoes shrug off poor soil; rice and corn want the good stuff</summary>
+    <tip>Rice is for the impatient, corn is for planners, and potatoes are for people who settled on gravel and won't admit it.</tip>
+    <description>Each crop has a fertility sensitivity that says how much it cares about the ground. At 1.0, a crop grows exactly as fast as the soil allows; a low number means it barely notices. Matching crops to soil is free extra food.</description>
+    <facts>
+      <li>Low sensitivity: potato 0.4, psychoid 0.4, haygrass 0.6, hops 0.7.</li>
+      <li>With Ideology: nutrifungus 0.15, fibercorn 0.1. With Biotech: toxipotato 0, so it ignores soil entirely.</li>
+      <li>Full sensitivity (1.0): rice, corn, cotton, healroot, smokeleaf, strawberry, devilstrand.</li>
+      <li>On 70% gravel, potatoes grow at 88% speed while rice and corn grow at 70%.</li>
+    </facts>
+    <advice>
+      <li>Plant potatoes on stony soil and gravel.</li>
+      <li>Give rice, corn, cotton and healroot your rich soil, and rice your hydroponics basins.</li>
+      <li>Read "Fertility sensitivity" on a plant's info card before you commit a new crop to poor ground.</li>
+    </advice>
+    <keywords>
+      <li>fertility sensitivity</li>
+      <li>which crop</li>
+      <li>crop choice</li>
+      <li>poor soil</li>
+      <li>gravel</li>
+    </keywords>
+    <seeAlso>
+      <li>Council_Alm_1_07_SoilFertility</li>
+      <li>Council_Alm_1_10_Potatoes</li>
+      <li>Council_Alm_1_09_Rice</li>
+      <li>Council_Alm_1_11_Corn</li>
+    </seeAlso>
+  </ColonyCouncil.AlmanacArticleDef>
+
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Council_Alm_1_09_Rice</defName>
+    <label>rice</label>
+    <category>Food</category>
+    <order>120</order>
+    <summary>The fastest food crop: first harvest, last harvest, and hydroponics</summary>
+    <tip>The rice doesn't care about your feelings. Harvest it anyway.</tip>
+    <description>Rice ripens faster than any other food crop, which makes it the go-to for a new colony's first meal and for a last harvest before winter. Each harvest is small, so a blight or fire costs you less, but your growers will be busy. It's also the best crop for hydroponics.</description>
+    <facts>
+      <li>Grow time: 3 listed days (about 5.5 real), yield 6 rice per plant, fertility sensitivity 1.0.</li>
+      <li>Harvest per tile per day: 1.08 on soil, 1.52 on rich soil, 3.03 in hydroponics.</li>
+      <li>Needs more harvesting work than corn for the same amount of food.</li>
+      <li>Raw rice rots in 40 days.</li>
+    </facts>
+    <advice>
+      <li>Plant rice first in a new colony, before anything else edible.</li>
+      <li>Sow it late in the season when slower crops wouldn't ripen in time.</li>
+      <li>Make it your hydroponics staple.</li>
+      <li>Put it on soil or rich soil; on gravel, potatoes do better.</li>
+    </advice>
+    <keywords>
+      <li>rice</li>
+      <li>fast crop</li>
+      <li>first harvest</li>
+      <li>staple</li>
+      <li>hydroponics crop</li>
+    </keywords>
+    <seeAlso>
+      <li>Council_Alm_1_10_Potatoes</li>
+      <li>Council_Alm_1_11_Corn</li>
+      <li>Council_Alm_1_22_BasinsPerColonist</li>
+      <li>Council_Alm_1_05_GrowingSeason</li>
+      <li>Council_Alm_1_32_BlightAndFire</li>
+    </seeAlso>
+  </ColonyCouncil.AlmanacArticleDef>
+
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Council_Alm_1_10_Potatoes</defName>
+    <label>potatoes</label>
+    <category>Food</category>
+    <order>130</order>
+    <summary>The crop for poor soil: barely slowed by gravel</summary>
+    <tip>Gravel, frost and a grower who can't tell a hoe from a rifle: the potato has seen worse, and it'll still feed you.</tip>
+    <description>Potatoes care little about soil, so they lose only a bit of speed on stony soil or gravel where rice and corn struggle. That makes them the natural staple on rocky maps. In hydroponics, though, they waste most of the basin's bonus.</description>
+    <facts>
+      <li>Grow time: 5.8 listed days (about 10.7 real), yield 11 potatoes per plant, fertility sensitivity 0.4.</li>
+      <li>Harvest per tile per day: 0.90 on gravel, 1.03 on soil, 1.19 on rich soil, 1.77 in hydroponics.</li>
+      <li>In hydroponics, potatoes produce only about 58% of what rice does.</li>
+      <li>Raw potatoes rot in 30 days.</li>
+    </facts>
+    <advice>
+      <li>Plant potatoes on gravel and stony soil, and save rich soil for rice or corn.</li>
+      <li>Use rice, not potatoes, in hydroponics basins.</li>
+      <li>Freeze or cook a big harvest before the 30 days run out.</li>
+    </advice>
+    <keywords>
+      <li>potato</li>
+      <li>potatoes</li>
+      <li>gravel crop</li>
+      <li>poor soil</li>
+      <li>stony soil</li>
+    </keywords>
+    <seeAlso>
+      <li>Council_Alm_1_08_FertilitySensitivity</li>
+      <li>Council_Alm_1_09_Rice</li>
+      <li>Council_Alm_1_11_Corn</li>
+      <li>Council_Alm_1_07_SoilFertility</li>
+    </seeAlso>
+  </ColonyCouncil.AlmanacArticleDef>
+
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Council_Alm_1_11_Corn</defName>
+    <label>corn</label>
+    <category>Food</category>
+    <order>140</order>
+    <summary>Little work per meal and keeps 60 days, but slow and fragile</summary>
+    <tip>Corn rewards planners and buries procrastinators. Sow it early or not at all.</tip>
+    <description>Corn takes a long time to grow, but each plant gives a big harvest, so your growers spend less time per meal. It also keeps for 60 days raw. The catch: a blight or fire wipes out a lot of food at once, and corn sown late in the season never ripens.</description>
+    <facts>
+      <li>Grow time: 11.3 listed days (about 20.9 real), yield 22 corn per plant, fertility sensitivity 1.0.</li>
+      <li>Harvest per tile per day: 0.74 on gravel, 1.05 on soil, 1.48 on rich soil.</li>
+      <li>Can't be grown in hydroponics.</li>
+      <li>Raw corn rots in 60 days, the longest of the staple crops.</li>
+    </facts>
+    <advice>
+      <li>Sow corn early in the growing season; late in the year, plant rice instead.</li>
+      <li>Use it when you have plenty of soil but few growers.</li>
+      <li>Put it on rich soil; it suffers on gravel.</li>
+      <li>Split corn into several fields with gaps, so one blight or fire can't take the lot.</li>
+    </advice>
+    <keywords>
+      <li>corn</li>
+      <li>maize</li>
+      <li>slow crop</li>
+      <li>long-lasting</li>
+      <li>low labor</li>
+    </keywords>
+    <seeAlso>
+      <li>Council_Alm_1_09_Rice</li>
+      <li>Council_Alm_1_10_Potatoes</li>
+      <li>Council_Alm_1_05_GrowingSeason</li>
+      <li>Council_Alm_1_32_BlightAndFire</li>
+    </seeAlso>
+  </ColonyCouncil.AlmanacArticleDef>
+
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Council_Alm_1_24_PreservedFood</defName>
+    <label>preserved food</label>
+    <category>Food</category>
+    <order>150</order>
+    <summary>Pemmican lasts 70 days and survival meals barely rot at all</summary>
+    <tip>Pemmican tastes like a boot that went to war. It also lasts seventy days, which is more than most of us manage.</tip>
+    <description>When you have no freezer, a long caravan ahead, or a winter you don't trust, you want food that keeps. Pemmican and packaged survival meals last far longer than ordinary meals. They use more raw food than fine meals, so treat them as insurance, not a daily diet.</description>
+    <facts>
+      <li>Pemmican: 0.05 nutrition per unit, made 16 at a time from 0.25 meat plus 0.25 vegetable nutrition (about 160% back). Rots after 70 days and deteriorates 2 a day outdoors.</li>
+      <li>Packaged survival meal: 0.9 nutrition from 0.3 meat plus 0.3 vegetable nutrition (150%). Deteriorates only 0.25 a day and effectively never rots. Tastes "Simple".</li>
+      <li>Kibble: 50 units of 0.05 nutrition from 1 meat or animal product plus 1 vegetable or hay nutrition (125%). For animals only.</li>
+      <li>Fine and simple meals give 180%, so pemmican and survival meals cost you some food for their long life.</li>
+    </facts>
+    <advice>
+      <li>Without power, turn spare meat and vegetables into pemmican before they rot.</li>
+      <li>Pack pemmican or survival meals for any caravan that will be out more than a few days.</li>
+      <li>Keep a stash of non-perishable food for solar flares, heat waves and freezer failures.</li>
+      <li>Store it under a roof; even long-lasting food wears away outdoors.</li>
+    </advice>
+    <keywords>
+      <li>pemmican</li>
+      <li>survival meal</li>
+      <li>packaged meal</li>
+      <li>kibble</li>
+      <li>rations</li>
+      <li>caravan food</li>
+    </keywords>
+    <seeAlso>
+      <li>Council_Alm_1_28_SpoilageAndDeterioration</li>
+      <li>Council_Alm_1_27_Freezer</li>
+      <li>Council_Alm_1_03_WinterStockpile</li>
+      <li>Council_Alm_1_29_FeedingAnimals</li>
+    </seeAlso>
+    <template>Council_Storeroom</template>
+  </ColonyCouncil.AlmanacArticleDef>
+
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Council_Alm_1_32_BlightAndFire</defName>
+    <label>blight and field safety</label>
+    <category>Food</category>
+    <order>160</order>
+    <summary>Leave 4-tile gaps between fields and clear brush around them</summary>
+    <tip>The harvest was excellent. The raiders agreed, and set fire to it.</tip>
+    <description>Besides winter, your fields face three big threats: blight, fire and toxic fallout. Blight jumps between nearby plants of any crop, and raiders like to set fields alight. Spacing and a little clearing make the difference between losing a corner and losing the harvest.</description>
+    <facts>
+      <li>Blight can spread to crops of any kind within a 4-tile radius.</li>
+      <li>Raiders set growing zones on fire.</li>
+      <li>Toxic fallout and bad temperatures kill crops; drought does not.</li>
+      <li>Rice's small, frequent harvests make it the most blight-tolerant crop.</li>
+    </facts>
+    <advice>
+      <li>Leave 4-tile gaps between fields, or split big fields into separate blocks.</li>
+      <li>Cut blighted plants the moment the blight letter arrives.</li>
+      <li>Clear wild plants and flammable items within at least 2 tiles of your fields, and consider firefoam poppers.</li>
+      <li>Build roofed walkways between the kitchen and the fields for winter and toxic fallout.</li>
+    </advice>
+    <keywords>
+      <li>blight</li>
+      <li>fire</li>
+      <li>crop disease</li>
+      <li>firefoam</li>
+      <li>toxic fallout</li>
+      <li>field spacing</li>
+    </keywords>
+    <seeAlso>
+      <li>Council_Alm_1_09_Rice</li>
+      <li>Council_Alm_1_11_Corn</li>
+      <li>Council_Alm_1_04_GrowingTemperature</li>
+      <li>Council_Alm_1_06_FarmlandPerColonist</li>
+    </seeAlso>
+  </ColonyCouncil.AlmanacArticleDef>
+
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Council_Alm_1_21_Hydroponics</defName>
+    <label>hydroponics basin</label>
+    <category>Food</category>
+    <order>170</order>
+    <summary>280% fertility indoors, for as long as the power never fails</summary>
+    <tip>Hydroponics feeds a colony from a closet and a lot of electricity. When the sun burps, the rice dies first.</tip>
+    <description>A hydroponics basin is an indoor planter that grows crops nearly three times as fast as ordinary soil. It lets mountain bases and frozen maps farm all year. Its weak point is power: when the electricity goes, the plants die within hours.</description>
+    <facts>
+      <li>Research: Hydroponics, 700 points (1,400 for tribal starts).</li>
+      <li>Costs 100 steel and 1 component and needs Construction 4. Has a cleanliness of -3 and can't be uninstalled.</li>
+      <li>Acts as 280% fertility soil, holds 4 plants, and draws 70 W day and night.</li>
+      <li>Without power, the plants rot and mostly die within about 8 hours, so a long solar flare can wipe them out.</li>
+      <li>Corn, devilstrand and haygrass can't be grown in it.</li>
+      <li>With Biotech, basins don't protect crops from pollution, except psychoid and toxipotato. With Odyssey, basins ignore drought and are the only way to farm on a gravship.</li>
+    </facts>
+    <advice>
+      <li>Put basins in a roofed room with a sun lamp and a heater for winter.</li>
+      <li>Keep batteries or a backup generator; basins can't wait out a long blackout.</li>
+      <li>Grow rice or strawberries in basins, not potatoes.</li>
+      <li>Tribal colonies pay double for the research. Until then, use a partly unroofed greenhouse instead.</li>
+    </advice>
+    <keywords>
+      <li>hydroponics</li>
+      <li>basin</li>
+      <li>indoor farming</li>
+      <li>greenhouse</li>
+      <li>power</li>
+    </keywords>
+    <seeAlso>
+      <li>Council_Alm_1_22_BasinsPerColonist</li>
+      <li>Council_Alm_1_23_SunLamps</li>
+      <li>Council_Alm_1_09_Rice</li>
+      <li>Council_Alm_1_07_SoilFertility</li>
+    </seeAlso>
+    <template>Council_Greenhouse</template>
+  </ColonyCouncil.AlmanacArticleDef>
+
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Council_Alm_1_22_BasinsPerColonist</defName>
+    <label>basins per colonist</label>
+    <category>Food</category>
+    <order>180</order>
+    <summary>About 2 basins of rice under a sun lamp feed one colonist</summary>
+    <tip>Two basins of rice per mouth, one sun lamp per twenty-four basins, and one very nervous electrician.</tip>
+    <description>If hydroponics feeds your colony, you need to know how many basins one person eats. Rice is the most productive basin crop, and one and a half to two basins of it keep a colonist in simple meals. Build a little over the bare minimum so one bad harvest doesn't mean a hungry week.</description>
+    <facts>
+      <li>A basin of rice gives 24 rice about every 1.98 days: about 12.1 rice, or 0.61 nutrition, a day.</li>
+      <li>Cooked into simple meals, one colonist's 1.6 nutrition a day needs about 1.5 basins of rice.</li>
+      <li>A more cautious reference figure is 7.5 plant tiles per colonist, about 1.9 basins.</li>
+      <li>Per basin per day, strawberries give about 10.6 food and potatoes about 7.1, against about 12.1 for rice.</li>
+    </facts>
+    <advice>
+      <li>Plan 2 basins of rice per colonist if hydroponics is your main food source.</li>
+      <li>Add basins for prisoners and new recruits before they arrive, not after.</li>
+      <li>Watch the food total in the Resources panel for a few days after building; if it still falls, add basins.</li>
+    </advice>
+    <keywords>
+      <li>hydroponics</li>
+      <li>how many basins</li>
+      <li>basins per colonist</li>
+      <li>indoor farm</li>
+      <li>rice</li>
+    </keywords>
+    <seeAlso>
+      <li>Council_Alm_1_21_Hydroponics</li>
+      <li>Council_Alm_1_23_SunLamps</li>
+      <li>Council_Alm_1_06_FarmlandPerColonist</li>
+      <li>Council_Alm_1_09_Rice</li>
+    </seeAlso>
+    <template>Council_Greenhouse</template>
+  </ColonyCouncil.AlmanacArticleDef>
+
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Council_Alm_1_23_SunLamps</defName>
+    <label>sun lamps and light</label>
+    <category>Food</category>
+    <order>190</order>
+    <summary>Crops need 51% light; a sun lamp gives 100% over up to 24 basins</summary>
+    <tip>A standing lamp will cheer a potato up. It won't grow one.</tip>
+    <description>Crops need bright light, and ordinary lamps aren't bright enough. Indoors, only a sun lamp lets food crops grow, and it's one of the hungriest buildings on your grid. Plan your power around it, or let the sun in instead.</description>
+    <facts>
+      <li>Most plants need at least 51% light to grow.</li>
+      <li>Standing lamps give at most 50% and don't stack, so they can't grow crops. Only decorative plants, and with Ideology tinctoria and fibercorn, manage at 50%.</li>
+      <li>A sun lamp gives 100% light in its radius and draws 2,900 W for about 13 hours a day. One lamp covers up to 24 basins.</li>
+      <li>Mushrooms (glowstool, agarilux, and nutrifungus with Ideology) need no light at all and die under any light that isn't meant for mushrooms.</li>
+      <li>A greenhouse can leave up to a quarter of its tiles unroofed (at most 300) to use daylight instead of a sun lamp and to grow trees, at a higher heating cost.</li>
+    </facts>
+    <advice>
+      <li>Arrange basins in a ring around one sun lamp to get the most from its 2,900 W.</li>
+      <li>Make sure your grid can carry the lamp before you switch it on.</li>
+      <li>No electricity? Build a greenhouse with up to a quarter of the roof left open and heat it through the winter.</li>
+      <li>Grow mushrooms in a dark room of their own.</li>
+    </advice>
+    <keywords>
+      <li>sun lamp</li>
+      <li>light</li>
+      <li>grow light</li>
+      <li>standing lamp</li>
+      <li>mushrooms</li>
+      <li>greenhouse</li>
+    </keywords>
+    <seeAlso>
+      <li>Council_Alm_1_21_Hydroponics</li>
+      <li>Council_Alm_1_22_BasinsPerColonist</li>
+      <li>Council_Alm_1_04_GrowingTemperature</li>
+    </seeAlso>
+    <template>Council_Greenhouse</template>
+  </ColonyCouncil.AlmanacArticleDef>
+
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Council_Alm_1_29_FeedingAnimals</defName>
+    <label>feeding animals</label>
+    <category>Food</category>
+    <order>200</order>
+    <summary>Grazing stops in winter; stock hay or kibble before it does</summary>
+    <tip>A hungry muffalo eats your harvest. A fed one hauls it. Choose which.</tip>
+    <description>Grazing animals feed themselves from mature plants most of the year, but in winter plants go leafless and snow can bury them. Without stored hay or kibble, your animals go hungry, then malnourished. Hungry animals, wild or tame, also help themselves to standing crops.</description>
+    <facts>
+      <li>Herbivores graze mature plants, usually from about 65% growth, in pens, near hitching posts or in their allowed area.</li>
+      <li>Hay and kibble both give 0.05 nutrition per unit. Kibble is made from meat or animal products plus vegetables or hay.</li>
+      <li>A haygrass plant gives 18 hay (0.90 nutrition) when harvested, but only about 0.30 if eaten where it stands.</li>
+      <li>In winter, leafless plants can't be eaten and deep snow can block grazing.</li>
+      <li>Underfed animals suffer malnutrition: slower growth, miscarriages, health problems, and finally starvation.</li>
+    </facts>
+    <advice>
+      <li>Before winter, stockpile hay for herbivores and kibble for carnivores.</li>
+      <li>Put a food stockpile inside the pen or barn, with a higher priority than your main storage, so hay gets moved there.</li>
+      <li>Read each animal's "Food consumption" on its info card; big animals eat far more than small ones.</li>
+      <li>Fence your crops, or restrict animals to areas away from the fields.</li>
+    </advice>
+    <keywords>
+      <li>animals</li>
+      <li>livestock</li>
+      <li>hay</li>
+      <li>kibble</li>
+      <li>grazing</li>
+      <li>pen</li>
+      <li>animal food</li>
+    </keywords>
+    <seeAlso>
+      <li>Council_Alm_1_13_Haygrass</li>
+      <li>Council_Alm_1_24_PreservedFood</li>
+      <li>Council_Alm_1_03_WinterStockpile</li>
+      <li>Council_Alm_1_30_Hunting</li>
+    </seeAlso>
+    <template>Council_Barn</template>
+  </ColonyCouncil.AlmanacArticleDef>
+
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Council_Alm_1_13_Haygrass</defName>
+    <label>haygrass</label>
+    <category>Food</category>
+    <order>210</order>
+    <summary>The best feed per tile for animals: harvest it, don't let them graze it</summary>
+    <tip>Cut the haygrass and it feeds the herd three times over. Let the muffalo graze it and they eat the profit standing up.</tip>
+    <description>Haygrass produces more per tile than any other plant, but people can't eat hay: it's for your animals. Harvested and stockpiled, each plant feeds about three times what an animal gets by eating it where it stands. It's your winter insurance for the herd.</description>
+    <facts>
+      <li>Grow time: 7 listed days (about 12.9 real), yield 18 hay per plant, fertility sensitivity 0.6.</li>
+      <li>Harvest per tile per day: 1.39 on soil, the best of any plant.</li>
+      <li>Hay gives 0.05 nutrition per unit and is inedible to people.</li>
+      <li>A full-grown plant eaten in place gives about 0.30 nutrition; harvested, its 18 hay give 0.90.</li>
+      <li>Hay rots in 60 days and can also be made into straw matting. Haygrass can't be grown in hydroponics.</li>
+    </facts>
+    <advice>
+      <li>Grow haygrass through the summer and stockpile the hay for winter, when grazing stops.</li>
+      <li>Keep animals out of the haygrass field with fences or allowed areas.</li>
+      <li>Store hay in or next to the barn so animals eat there.</li>
+    </advice>
+    <keywords>
+      <li>hay</li>
+      <li>haygrass</li>
+      <li>animal feed</li>
+      <li>fodder</li>
+      <li>livestock</li>
+    </keywords>
+    <seeAlso>
+      <li>Council_Alm_1_29_FeedingAnimals</li>
+      <li>Council_Alm_1_24_PreservedFood</li>
+      <li>Council_Alm_1_03_WinterStockpile</li>
+    </seeAlso>
+    <template>Council_Barn</template>
+  </ColonyCouncil.AlmanacArticleDef>
+
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Council_Alm_1_30_Hunting</defName>
+    <label>hunting safely</label>
+    <category>Food</category>
+    <order>220</order>
+    <summary>Meat rots in 2 days, and some prey bites back</summary>
+    <tip>Never shoot a boomalope near the barn. Never shoot one wolf when there are six.</tip>
+    <description>Hunting turns wildlife into meat, but the meat rots fast and some animals fight back, sometimes the whole herd at once. A badly chosen target can send a hunter home on a stretcher or start a manhunter pack. Pick your prey, and have the butcher and the freezer ready before you shoot.</description>
+    <facts>
+      <li>Raw meat rots in 2 days without refrigeration.</li>
+      <li>Manhunter packs carry 40% more raid points than a regular raid.</li>
+      <li>Scaria-infected corpses rot instantly, so their meat is lost.</li>
+      <li>During toxic fallout, wildlife can be hunted for roughly the first day. Animals with heavy toxic buildup rot on death; boomrats and boomalopes stay and can be hunted later.</li>
+      <li>Hunters with short-range weapons against thick-skinned animals are a classic early death.</li>
+    </facts>
+    <advice>
+      <li>Hunt with the longest-range gun or bow you have, and never send a melee-only hunter.</li>
+      <li>Check an animal's info card before you mark it; leave herds and big predators alone early on.</li>
+      <li>Kill boomalopes and boomrats far from buildings, or in the rain: they burst into flame.</li>
+      <li>Butcher and freeze the meat the same day, or cook it right away.</li>
+      <li>Keep the butcher table in its own room between the freezer and the kitchen.</li>
+    </advice>
+    <keywords>
+      <li>hunting</li>
+      <li>hunt</li>
+      <li>meat</li>
+      <li>manhunter</li>
+      <li>wild animals</li>
+      <li>boomalope</li>
+      <li>butcher</li>
+    </keywords>
+    <seeAlso>
+      <li>Council_Alm_1_27_Freezer</li>
+      <li>Council_Alm_1_28_SpoilageAndDeterioration</li>
+      <li>Council_Alm_1_25_FoodPoisoning</li>
+      <li>Council_Alm_1_29_FeedingAnimals</li>
+      <li>Council_Alm_1_31_Fishing</li>
+    </seeAlso>
+    <template>Council_ButcherRoom</template>
+  </ColonyCouncil.AlmanacArticleDef>
+
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Council_Alm_1_14_Healroot</defName>
+    <label>healroot</label>
+    <category>Food</category>
+    <order>230</order>
+    <summary>Your own herbal medicine: slow, but the only home-grown kind</summary>
+    <tip>Grow healroot. You'll thank me with all your remaining limbs.</tip>
+    <description>Healroot is the only crop that gives you medicine. It grows slowly and each plant yields a single herbal medicine, but a steady patch means your doctor never has to tend wounds with bare hands. It also shrugs off cold better than most crops.</description>
+    <facts>
+      <li>Grow time: 7 listed days (about 12.9 real), yield 1 herbal medicine per plant, fertility sensitivity 1.0.</li>
+      <li>Only 0.08 medicine per tile per day on soil.</li>
+      <li>Sowing it needs Plants skill 8.</li>
+      <li>Cold-resistant, unlike most crops.</li>
+      <li>Tending without medicine gives only 30% potency; herbal medicine gives 60%.</li>
+    </facts>
+    <advice>
+      <li>Plant a healroot patch as soon as someone reaches Plants 8; medicine runs out when you can least afford it.</li>
+      <li>Harvest wild healroot with a growing zone that has sowing switched off and cutting allowed.</li>
+      <li>Put it on your best soil; it's fully soil-sensitive.</li>
+    </advice>
+    <keywords>
+      <li>healroot</li>
+      <li>herbal medicine</li>
+      <li>medicine</li>
+      <li>doctor</li>
+      <li>healing</li>
+    </keywords>
+    <seeAlso>
+      <li>Council_Alm_1_04_GrowingTemperature</li>
+      <li>Council_Alm_1_20_WildPlants</li>
+      <li>Council_Alm_1_07_SoilFertility</li>
+    </seeAlso>
+  </ColonyCouncil.AlmanacArticleDef>
+
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Council_Alm_1_12_Berries</defName>
+    <label>strawberries and berries</label>
+    <category>Food</category>
+    <order>240</order>
+    <summary>Berries can be eaten raw without the raw-food mood penalty</summary>
+    <tip>Strawberries: the only thing on the Rim you can eat raw without sulking about it.</tip>
+    <description>Strawberries and wild berries are the exception to the raw-food rule: colonists can eat them straight without the "ate raw food" penalty. That makes them a lifeline for a crisis start with no stove. They still carry a food poisoning chance, though, and cooking them into meals gets you more nutrition.</description>
+    <facts>
+      <li>Strawberries: 4.6 listed grow days (about 8.5 real), yield 8 per plant, fertility sensitivity 1.0.</li>
+      <li>Harvest per tile per day: 0.94 on soil, 2.64 in hydroponics.</li>
+      <li>Eating berries raw skips the -7 "ate raw food" penalty, but can still cause food poisoning.</li>
+      <li>Berries rot in 14 days.</li>
+      <li>Wild berry bushes can't be planted, but they grow in 6 days, give 10 berries, and can be harvested again and again.</li>
+    </facts>
+    <advice>
+      <li>In a crisis start with no stove, grow or forage berries to avoid raw-food moodlets.</li>
+      <li>Cook them anyway once you have a stove: meals stretch the food further.</li>
+      <li>Harvest wild berry bushes with a cut-only growing zone.</li>
+      <li>Try strawberries in hydroponics if you want something beside rice.</li>
+    </advice>
+    <keywords>
+      <li>strawberry</li>
+      <li>strawberries</li>
+      <li>berries</li>
+      <li>berry bush</li>
+      <li>raw food</li>
+    </keywords>
+    <seeAlso>
+      <li>Council_Alm_1_20_WildPlants</li>
+      <li>Council_Alm_1_26_MealMoods</li>
+      <li>Council_Alm_1_25_FoodPoisoning</li>
+      <li>Council_Alm_1_09_Rice</li>
+    </seeAlso>
+  </ColonyCouncil.AlmanacArticleDef>
+
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Council_Alm_1_20_WildPlants</defName>
+    <label>wild food plants</label>
+    <category>Food</category>
+    <order>250</order>
+    <summary>Agave, berry bushes and ambrosia can be harvested but never planted</summary>
+    <tip>The wild sows for free. It just doesn't deliver, and it plants the best bushes next to the wolves.</tip>
+    <description>Some useful plants only grow wild: you can't sow them, but you can harvest them again and again when they ripen. On a harsh map, wild agave and berry bushes can carry a new colony until the first crops come in.</description>
+    <facts>
+      <li>Agave: 6 grow days, yields 10 agave fruit (0.05 nutrition each, rots in 25 days), fertility sensitivity 0.5. Can be harvested more than once.</li>
+      <li>Wild berry bushes: 6 grow days, 10 berries per harvest, harvestable again and again.</li>
+      <li>Ambrosia bush: 6 grow days, yield 4, fertility sensitivity 0.15.</li>
+      <li>Wild plants can't be sown, but a growing zone set to cut only harvests them when ripe.</li>
+    </facts>
+    <advice>
+      <li>Lay a cut-only growing zone over wild berry bushes, agave and healroot near your base.</li>
+      <li>Mark ripe wild plants for harvest in the early days, before your fields produce.</li>
+      <li>When an ambrosia grove appears, harvest it.</li>
+    </advice>
+    <keywords>
+      <li>agave</li>
+      <li>wild plants</li>
+      <li>foraging</li>
+      <li>ambrosia</li>
+      <li>berry bush</li>
+      <li>harvest</li>
+    </keywords>
+    <seeAlso>
+      <li>Council_Alm_1_12_Berries</li>
+      <li>Council_Alm_1_14_Healroot</li>
+      <li>Council_Alm_1_29_FeedingAnimals</li>
+    </seeAlso>
+  </ColonyCouncil.AlmanacArticleDef>
+
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Council_Alm_1_16_Cotton</defName>
+    <label>cotton</label>
+    <category>Food</category>
+    <order>260</order>
+    <summary>The standard cloth crop for clothes and furniture</summary>
+    <tip>Cotton isn't glamorous. Neither is freezing to death in a shirt with more holes than a raider's alibi.</tip>
+    <description>Cotton is your everyday textile: shirts, pants, beds and more. It grows at a steady pace and does well in hydroponics if you have basins to spare.</description>
+    <facts>
+      <li>Grow time: 8 listed days (about 14.8 real), yield 10 cloth per plant, fertility sensitivity 1.0.</li>
+      <li>Harvest per tile per day: 0.68 on soil, 1.9 in hydroponics.</li>
+      <li>Grazing animals will eat cotton plants, which are worth 0.2 nutrition to them.</li>
+    </facts>
+    <advice>
+      <li>Start a cotton patch early so clothes can be replaced before they wear out.</li>
+      <li>Grow it on good soil; it's fully soil-sensitive.</li>
+      <li>Keep grazing animals out of the field.</li>
+    </advice>
+    <keywords>
+      <li>cotton</li>
+      <li>cloth</li>
+      <li>fabric</li>
+      <li>textile</li>
+      <li>clothing</li>
+    </keywords>
+    <seeAlso>
+      <li>Council_Alm_1_15_Devilstrand</li>
+      <li>Council_Alm_1_07_SoilFertility</li>
+      <li>Council_Alm_1_21_Hydroponics</li>
+    </seeAlso>
+  </ColonyCouncil.AlmanacArticleDef>
+
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Council_Alm_1_15_Devilstrand</defName>
+    <label>devilstrand</label>
+    <category>Food</category>
+    <order>270</order>
+    <summary>A slow, skilled crop that makes tough, heat-resistant cloth</summary>
+    <tip>Devilstrand takes a season to grow and a lifetime to wear out. Plant it now and thank me when the raiders' knives bounce.</tip>
+    <description>Devilstrand is a fiber crop that takes a very long time to grow and needs a skilled grower, but its cloth makes some of the best apparel you can tailor. It's a long-term investment, not a quick fix.</description>
+    <facts>
+      <li>Grow time: 22.5 listed days (about 41.5 real), yield 6 per plant, fertility sensitivity 1.0.</li>
+      <li>Only 0.14 harvest per tile per day on soil.</li>
+      <li>Sowing it needs a high Plants skill: 10.</li>
+      <li>Can't be grown in hydroponics. With Biotech, it grows on polluted soil.</li>
+      <li>Devilstrand apparel resists heat well, which helps against fire.</li>
+    </facts>
+    <advice>
+      <li>Sow it right at the start of the growing season; it needs about 42 real days of growth.</li>
+      <li>Where the season is shorter than that, it won't ripen outdoors at all.</li>
+      <li>Give it rich soil; it's fully soil-sensitive.</li>
+      <li>Tailor it into clothing for your fighters and firefighters.</li>
+    </advice>
+    <keywords>
+      <li>devilstrand</li>
+      <li>fabric</li>
+      <li>cloth</li>
+      <li>armor</li>
+      <li>apparel</li>
+      <li>tailoring</li>
+    </keywords>
+    <seeAlso>
+      <li>Council_Alm_1_16_Cotton</li>
+      <li>Council_Alm_1_05_GrowingSeason</li>
+      <li>Council_Alm_1_07_SoilFertility</li>
+    </seeAlso>
+  </ColonyCouncil.AlmanacArticleDef>
+
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Council_Alm_1_17_DrugCrops</defName>
+    <label>smokeleaf and psychoid</label>
+    <category>Food</category>
+    <order>280</order>
+    <summary>The drug crops: leaves for joints, psychite tea, flake and yayo</summary>
+    <tip>Smoke the leaf in moderation, then watch what moderation does to the leaf.</tip>
+    <description>Smokeleaf and psychoid are the drug crops. Their leaves feed the drug lab: smokeleaf becomes joints, and psychoid becomes psychite tea, flake and yayo. Grow them only if you mean to use or sell the drugs, and set drug policies before the stockpile fills.</description>
+    <facts>
+      <li>Smokeleaf: 7.5 listed grow days (about 13.9 real), yield 9 leaves, fertility sensitivity 1.0. Harvest per tile per day: 0.65 on soil, 1.82 in hydroponics.</li>
+      <li>Psychoid: 9 listed grow days (about 16.6 real), yield 8 leaves, fertility sensitivity 0.4. Harvest per tile per day: 0.48 on soil.</li>
+      <li>Psychoid leaves make psychite tea (4 leaves), flake (4 leaves) and yayo (8 leaves).</li>
+      <li>With Biotech, psychoid is one of the few plants that grows on polluted ground.</li>
+    </facts>
+    <advice>
+      <li>Set a drug policy before you stock drugs, so colonists don't help themselves.</li>
+      <li>Check your ideoligion first: some forbid drugs outright.</li>
+      <li>Put psychoid on poor ground and smokeleaf on good soil.</li>
+    </advice>
+    <keywords>
+      <li>smokeleaf</li>
+      <li>psychoid</li>
+      <li>drugs</li>
+      <li>joint</li>
+      <li>flake</li>
+      <li>yayo</li>
+      <li>psychite tea</li>
+    </keywords>
+    <seeAlso>
+      <li>Council_Alm_1_19_Hops</li>
+      <li>Council_Alm_1_08_FertilitySensitivity</li>
+    </seeAlso>
+  </ColonyCouncil.AlmanacArticleDef>
+
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Council_Alm_1_19_Hops</defName>
+    <label>hops</label>
+    <category>Food</category>
+    <order>290</order>
+    <summary>The beer crop: hops feed the brewery and its barrels</summary>
+    <tip>Hops are the only crop the colony thanks you for out loud. Usually after the third beer, and usually too loud.</tip>
+    <description>Hops are brewed into wort, which ferments into beer in barrels. Beer is recreation that cheers people up, though too much brings hangovers. The whole chain runs without electricity, which makes it a favorite for tribal colonies.</description>
+    <facts>
+      <li>Grow time: 5 listed days (about 9.2 real), yield 8 hops per plant, fertility sensitivity 0.7.</li>
+      <li>Harvest per tile per day: 0.87 on soil, 1.96 in hydroponics.</li>
+      <li>Hops are brewed into wort at a brewery, then fermented into beer in barrels.</li>
+      <li>Beer carries a 1% addiction chance.</li>
+    </facts>
+    <advice>
+      <li>Keep fermenting barrels in a heated or cooled room between 7 and 32 °C so batches aren't ruined.</li>
+      <li>Set a drug policy for beer so nobody drinks themselves into a hangover before a raid.</li>
+      <li>A small hops patch goes a long way; it copes with middling soil.</li>
+    </advice>
+    <keywords>
+      <li>hops</li>
+      <li>beer</li>
+      <li>wort</li>
+      <li>brewery</li>
+      <li>fermenting barrel</li>
+      <li>alcohol</li>
+    </keywords>
+    <seeAlso>
+      <li>Council_Alm_1_17_DrugCrops</li>
+      <li>Council_Alm_1_08_FertilitySensitivity</li>
+    </seeAlso>
+    <template>Council_Brewery</template>
+  </ColonyCouncil.AlmanacArticleDef>
+
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Council_Alm_1_31_Fishing</defName>
+    <label>fishing</label>
+    <category>Food</category>
+    <order>300</order>
+    <dlc>Odyssey</dlc>
+    <approximate>true</approximate>
+    <summary>A fishing zone on shallow water feeds you without a field</summary>
+    <tip>We caught eleven fish and one very old map. The map was the more nutritious.</tip>
+    <description>Fishing pulls food out of shallow water with a fishing zone, which makes it a handy side dish for lakeside and coastal colonies. It runs on the Animals skill rather than Plants. Fish in a body of water share one stock that regrows slowly, so heavy fishing thins it out.</description>
+    <facts>
+      <li>Needs the Fishing research; new tribal starts begin with it.</li>
+      <li>A fishing zone goes on shallow, non-toxic water that holds fish. Bigger bodies of water are better.</li>
+      <li>The Animals skill sets fishing speed and yield.</li>
+      <li>All fish in one body of water share a count that regrows 2.5% of its maximum per day, unless gill rot strikes.</li>
+      <li>A catch is rolled roughly every 7,500 ticks: about 2% bad outcome, 1% rare catch, 5% uncommon fish, otherwise a common fish. With Biotech, pollution can turn up to 60% of catches into toxfish.</li>
+      <li>Catch size grows from 1x to 6x as the fish population rises toward 300. Raw fish give 0.25 to 0.5 nutrition and rot in 2 days.</li>
+      <li>There's no fishing in the scarlands.</li>
+    </facts>
+    <advice>
+      <li>Assign fishing to your best Animals colonist.</li>
+      <li>Put the zone on the largest clean, shallow water near your base.</li>
+      <li>Check the fish count in the zone's inspect pane, and move to another body of water if it runs low.</li>
+      <li>Freeze or cook the catch at once; fish rot as fast as meat.</li>
+    </advice>
+    <keywords>
+      <li>fishing</li>
+      <li>fish</li>
+      <li>fishing zone</li>
+      <li>water</li>
+      <li>catch</li>
+      <li>seafood</li>
+    </keywords>
+    <seeAlso>
+      <li>Council_Alm_1_30_Hunting</li>
+      <li>Council_Alm_1_28_SpoilageAndDeterioration</li>
+      <li>Council_Alm_1_27_Freezer</li>
+    </seeAlso>
+  </ColonyCouncil.AlmanacArticleDef>
+
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Council_Alm_1_02_ChildrenAndBabies</defName>
+    <label>feeding children and babies</label>
+    <category>Food</category>
+    <order>310</order>
+    <dlc>Biotech</dlc>
+    <approximate>true</approximate>
+    <summary>Kids eat less, babies eat twice a day, and growth vats eat a lot</summary>
+    <tip>A baby eats like a sparrow and shouts like a raid siren. Feed the sparrow and the siren stops.</tip>
+    <description>Children have smaller stomachs because of their body size, so they fill up on less food. Babies need less nutrition to become full, but their hunger is tuned so they still need feeding twice a day, by an adult or with baby food. Growth vats are a separate, hungry option that eats nutrition every day.</description>
+    <facts>
+      <li>Baby food is made at a campfire or stove: 0.25 vegetable nutrition makes 10 units of 0.05 nutrition each.</li>
+      <li>Baby food rots in 14 days and tastes "Terrible".</li>
+      <li>A growth vat uses 3 nutrition a day to age a child and 6 a day to grow an embryo, plus 200 W of power.</li>
+      <li>One reading of the game files puts a baby's hunger rate at about 0.125x, but the exact figure is unconfirmed.</li>
+      <li>A child's food store scales with their smaller body size.</li>
+    </facts>
+    <advice>
+      <li>Check each baby's Feeding tab and make sure someone is free to feed them.</li>
+      <li>Keep baby food stocked so feeding doesn't depend on a busy adult.</li>
+      <li>Count a growth vat raising a child as nearly two extra adults at the table.</li>
+      <li>Keep vats fed and powered, and act at once on a bio-starvation warning.</li>
+    </advice>
+    <keywords>
+      <li>baby food</li>
+      <li>baby</li>
+      <li>child</li>
+      <li>children</li>
+      <li>growth vat</li>
+      <li>feeding</li>
+    </keywords>
+    <seeAlso>
+      <li>Council_Alm_1_01_DailyNutrition</li>
+      <li>Council_Alm_1_24_PreservedFood</li>
+    </seeAlso>
+  </ColonyCouncil.AlmanacArticleDef>
+
+</Defs>

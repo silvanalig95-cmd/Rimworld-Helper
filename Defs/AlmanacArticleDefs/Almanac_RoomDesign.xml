@@ -1,0 +1,1149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- Almanac: room design. One page per room type: size, key furniture, what to put next to it, and pitfalls. -->
+
+  <!-- ==================== Living ==================== -->
+
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Council_Alm_9_01_Bedroom</defName>
+    <label>bedroom</label>
+    <category>RoomDesign</category>
+    <order>10</order>
+    <summary>A private room of about 5x5 with a real floor, a light and a bit of decor</summary>
+    <tip>Four walls, a door that shuts and a dresser. Not much, but it's theirs, and out here that's worth more than silver.</tip>
+    <description>Your colonists wake up every morning with a mood bonus or penalty based on how impressive their bedroom is. A private room of about 5x5 with a real floor, a light and a plant or sculpture is the cheapest lasting mood boost you can build. Size matters more than it looks, because every piece of furniture eats into the room's space.</description>
+    <facts>
+      <li>Space is 1.4 per floor tile, minus 0.9 for every tile a piece of furniture blocks. Aim for Space 25 or more.</li>
+      <li>With a bed, dresser and end table, a 5x5 comes to about 31.4 Space, a 4x6 about 30, a 4x5 about 24.4 and a 4x4 about 18.8.</li>
+      <li>A 3x4 or smaller reads as "cramped"; a 3x6 or 4x5 as "rather tight".</li>
+      <li>Bedroom impressiveness under 20 costs -2 mood; 30-39 gives +1, 85 or more ("very impressive") gives +5, and 240 or more gives +8.</li>
+      <li>The room stops counting as a bedroom if it holds a medical or prisoner bed, or more than one unassigned bed. A child's room also needs a parent assigned.</li>
+      <li>Slept on the ground, outside, in the cold or in the heat: -4 mood each, for a day.</li>
+      <li>With Royalty, nobles from Knight or Dame upward need an end table and a dresser in their bedroom.</li>
+    </facts>
+    <advice>
+      <li>Give each colonist their own room as soon as you have the wood. The bedroom plan is 5x5; the small bedroom plan (3x4) is the budget option until you can afford more.</li>
+      <li>Fix the weakest room stat first: a real floor, a light and a plant pot usually beat an expensive bed.</li>
+      <li>Cluster bedrooms near the dining and rec rooms, away from the kitchen, butcher room and crematorium.</li>
+      <li>Keep bedrooms heated in winter and cooled in summer. Without power, torch lamps give light and stone walls hold heat.</li>
+      <li>Couples want a double bed in a shared room; use the couple's bedroom plan for them.</li>
+    </advice>
+    <keywords>
+      <li>bedroom</li>
+      <li>bed</li>
+      <li>private room</li>
+      <li>sleep</li>
+      <li>impressiveness</li>
+      <li>space</li>
+      <li>dresser</li>
+      <li>end table</li>
+    </keywords>
+    <seeAlso>
+      <li>Council_Alm_9_02_Barracks</li>
+      <li>Council_Alm_9_03_DiningRoom</li>
+      <li>Council_Alm_9_04_RecRoom</li>
+      <li>Council_Alm_9_21_Nursery</li>
+      <li>Council_Alm_9_19_ThroneRoom</li>
+    </seeAlso>
+    <template>Council_Bedroom</template>
+  </ColonyCouncil.AlmanacArticleDef>
+
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Council_Alm_9_02_Barracks</defName>
+    <label>barracks</label>
+    <category>RoomDesign</category>
+    <order>90</order>
+    <summary>Shared sleeping quarters: cheap and quick early, a mood drag later</summary>
+    <tip>A barracks is fine for the first winter. By the third, somebody's snoring has become a matter for the council.</tip>
+    <description>A barracks is any room with two or more ordinary beds that isn't a valid bedroom. Everyone sleeping there shares one impressiveness score, so one big, clean, decorated room serves every sleeper for the price of one set of decor. It's a solid start, but people walking past wake the sleepers, and experienced players move colonists into private rooms as soon as they can.</description>
+    <facts>
+      <li>Two or more ordinary beds make a barracks. It stops counting if it holds a prisoner bed or qualifies as a bedroom.</li>
+      <li>A 7x7 with 4 beds and 4 end tables has about 57.8 Space, "somewhat spacious".</li>
+      <li>All sleepers share the room's single impressiveness score.</li>
+      <li>Disturbed sleep costs -1 mood for a day.</li>
+      <li>The exact penalty for sleeping in a shared room isn't confirmed, but community guides agree: private rooms are better.</li>
+    </facts>
+    <advice>
+      <li>Use it for the first weeks, for new arrivals and for soldiers, then move people into bedrooms.</li>
+      <li>Keep it off the main corridors so nobody tramps past the beds at night.</li>
+      <li>Spend on one good floor, lights and a sculpture: every sleeper gets the benefit.</li>
+      <li>For a soldiers' barracks, put it near the armory and the dining room.</li>
+      <li>Never put a prisoner or medical bed in it.</li>
+    </advice>
+    <keywords>
+      <li>barracks</li>
+      <li>dormitory</li>
+      <li>shared bedroom</li>
+      <li>beds</li>
+      <li>disturbed sleep</li>
+      <li>early game</li>
+    </keywords>
+    <seeAlso>
+      <li>Council_Alm_9_01_Bedroom</li>
+      <li>Council_Alm_9_23_Armory</li>
+      <li>Council_Alm_9_03_DiningRoom</li>
+      <li>Council_Alm_9_14_PrisonBarracks</li>
+    </seeAlso>
+    <template>Council_Barracks</template>
+    <approximate>true</approximate>
+  </ColonyCouncil.AlmanacArticleDef>
+
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Council_Alm_9_03_DiningRoom</defName>
+    <label>dining room</label>
+    <category>RoomDesign</category>
+    <order>20</order>
+    <summary>Tables, enough chairs and a clean, pretty room right next to the kitchen</summary>
+    <tip>Feed them in a pretty room and they'll forgive you a lot. Feed them on the floor and they'll forgive you nothing.</tip>
+    <description>Every colonist eats here several times a day, so a dining room repays decoration faster than almost any other room, and it gets its own impressiveness mood bonus. Put it next to the kitchen so meals don't travel across the base, and keep it well away from blood and bodies.</description>
+    <facts>
+      <li>Each table counts toward the dining room role. Tables come as 1x2, 2x2, 2x4 and 3x3.</li>
+      <li>Ate without table: -3 mood for a day.</li>
+      <li>Dining room impressiveness gives +2 from 40, +5 from 85 and up to +8 from 240. Unlike a bedroom, a dull dining room costs nothing.</li>
+      <li>A bed in the room turns it into a bedroom or barracks, and one stove outscores two tables, so keep both out.</li>
+      <li>Every tile of blood is -30 beauty and -10 cleanliness.</li>
+    </facts>
+    <advice>
+      <li>Build enough chairs for everyone who eats at the same time.</li>
+      <li>Share a wall and a door with the kitchen; keep the butcher room and corpses well away.</li>
+      <li>Add lights, a real floor and a sculpture, and keep it clean.</li>
+      <li>Many colonies combine dining and recreation in one big room, so one set of decoration serves both.</li>
+      <li>Tribal colonies get the same bonus with wooden tables and torch lamps: impressiveness doesn't care about tech level.</li>
+    </advice>
+    <keywords>
+      <li>dining room</li>
+      <li>table</li>
+      <li>chairs</li>
+      <li>eating</li>
+      <li>ate without table</li>
+      <li>meals</li>
+      <li>mess hall</li>
+    </keywords>
+    <seeAlso>
+      <li>Council_Alm_9_05_Kitchen</li>
+      <li>Council_Alm_9_04_RecRoom</li>
+      <li>Council_Alm_9_06_Freezer</li>
+      <li>Council_Alm_9_27_ArtStudio</li>
+    </seeAlso>
+    <template>Council_DiningRoom</template>
+  </ColonyCouncil.AlmanacArticleDef>
+
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Council_Alm_9_04_RecRoom</defName>
+    <label>recreation room</label>
+    <category>RoomDesign</category>
+    <order>60</order>
+    <summary>Several kinds of recreation in one room, between dining and bedrooms</summary>
+    <tip>A rec room with one chessboard is just a waiting room with a chessboard.</tip>
+    <description>Colonists refill their Recreation need at joy buildings, but they get bored of doing the same thing over and over. A rec room with several different kinds of recreation keeps the need high and gives its own impressiveness bonus. The richer your colony gets, the more variety people expect.</description>
+    <facts>
+      <li>Recommended number of recreation types by expectations: 2 (extremely low), 3 (very low), 3 (low), 4 (moderate), 5 (high), 6 (sky-high).</li>
+      <li>Spots and power: chess table 4 spots (2 players); billiards 2 spots, 130%; poker table 8 spots, 130%; flatscreen TV 30 spots, 140%; telescope 120%; horseshoes or hoopstone 12 spots.</li>
+      <li>Recreation is gained at 36% per hour times the building's power: billiards gives 46.8% per hour, a flatscreen TV 50.4%.</li>
+      <li>A colonist gets bored of a recreation type above 50% tolerance and stays bored until it falls below 30%.</li>
+      <li>Each recreation building counts toward the rec room role.</li>
+    </facts>
+    <advice>
+      <li>Mix kinds: a game table, a TV, an instrument with Royalty, and horseshoes just outside the door.</li>
+      <li>Put it between the dining room and the bedrooms.</li>
+      <li>Don't cram it: crowded rooms lose space and impressiveness.</li>
+      <li>Put a TV in the hospital too: bedridden patients can only watch TV.</li>
+      <li>Without power, horseshoes, a hoopstone ring and chess still give three kinds of recreation.</li>
+    </advice>
+    <keywords>
+      <li>recreation</li>
+      <li>rec room</li>
+      <li>joy</li>
+      <li>chess</li>
+      <li>billiards</li>
+      <li>television</li>
+      <li>bored</li>
+      <li>tolerance</li>
+    </keywords>
+    <seeAlso>
+      <li>Council_Alm_9_03_DiningRoom</li>
+      <li>Council_Alm_9_01_Bedroom</li>
+      <li>Council_Alm_9_12_Hospital</li>
+      <li>Council_Alm_9_28_MeditationRoom</li>
+    </seeAlso>
+    <template>Council_RecRoom</template>
+  </ColonyCouncil.AlmanacArticleDef>
+
+  <!-- ==================== Food ==================== -->
+
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Council_Alm_9_05_Kitchen</defName>
+    <label>kitchen</label>
+    <category>RoomDesign</category>
+    <order>30</order>
+    <summary>A small, clean cooking room between the freezer and the dining room</summary>
+    <tip>A clean kitchen is a quiet kitchen. A dirty one has a sound, and it's someone being sick.</tip>
+    <description>Food poisoning comes from the cook's skill and the cleanliness of the room the stove stands in, so the kitchen is the one room that must stay clean. Keep it small, give it a smooth or tiled floor, and never let butchering or through-traffic in. Put it between the freezer and the dining room so meals take the shortest trip.</description>
+    <facts>
+      <li>A stove plus one workbench is still a kitchen; a stove with two workbenches becomes a workshop.</li>
+      <li>Community testing suggests the dirty-room food poisoning roll switches off once room cleanliness is about -2 or better.</li>
+      <li>A butcher table drags cleanliness down by roughly 15 on its tile: in a small kitchen that alone ruins it.</li>
+      <li>Sterile tile is +0.6 cleanliness per tile.</li>
+      <li>Electric stoves work best between 10 and 35 °C and slow to 70% speed outside that.</li>
+    </facts>
+    <advice>
+      <li>Give it a door straight into the freezer and another into the dining room, and keep it off the main hallway.</li>
+      <li>Floor it with smooth stone or tile; sterile tile once you can afford it.</li>
+      <li>Put a shelf for ingredients inside, and set cleaning high for someone so the floor stays clean.</li>
+      <li>Butcher in a separate room next door.</li>
+      <li>Fueled stoves and campfires work without power, but keep them on stone, not wooden floors.</li>
+    </advice>
+    <keywords>
+      <li>kitchen</li>
+      <li>stove</li>
+      <li>cooking</li>
+      <li>food poisoning</li>
+      <li>cleanliness</li>
+      <li>cook</li>
+      <li>fueled stove</li>
+    </keywords>
+    <seeAlso>
+      <li>Council_Alm_9_06_Freezer</li>
+      <li>Council_Alm_9_03_DiningRoom</li>
+      <li>Council_Alm_9_07_ButcherRoom</li>
+      <li>Council_Alm_9_15_Storeroom</li>
+    </seeAlso>
+    <template>Council_Kitchen</template>
+    <approximate>true</approximate>
+  </ColonyCouncil.AlmanacArticleDef>
+
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Council_Alm_9_06_Freezer</defName>
+    <label>freezer</label>
+    <category>RoomDesign</category>
+    <order>40</order>
+    <summary>A double-walled, cooled room that holds food at or below 0 °C</summary>
+    <tip>The freezer holds the meat. The meat holds the colony. Nobody asks what holds the freezer.</tip>
+    <description>Food stops spoiling at 0 °C or below, so a freezer turns a few days of meals into months of stock. It needs a roof, coolers venting their heat outside, and walls thick enough to hold the cold through a heat wave. Put it right next to the kitchen.</description>
+    <facts>
+      <li>Spoilage stops completely at or below 0 °C.</li>
+      <li>Raw meat rots in 2 days unrefrigerated.</li>
+      <li>Coolers stop during a solar flare, and a heat wave can add up to 17 °C to the outside temperature.</li>
+      <li>Passive coolers can't go below 17 °C, so they can't freeze anything.</li>
+      <li>Coolers set to different targets, for example -5 °C and -10 °C, let one idle on low power.</li>
+      <li>Community players suggest about 6x6, with wall space left for extra coolers.</li>
+    </facts>
+    <advice>
+      <li>Double-wall it and use two doors in a row toward the kitchen, so opening one doesn't let the warm air in.</li>
+      <li>Vent the coolers' hot side outdoors, never into another roofed room.</li>
+      <li>Build one more cooler than you think you need, for heat waves.</li>
+      <li>Haul harvests and fresh meat in promptly.</li>
+      <li>No power? Passive coolers won't preserve food. Lean on pemmican, which keeps for 70 days, cook only what you need and keep raw stock small.</li>
+    </advice>
+    <keywords>
+      <li>freezer</li>
+      <li>cooler</li>
+      <li>refrigeration</li>
+      <li>spoilage</li>
+      <li>rot</li>
+      <li>cold storage</li>
+      <li>airlock</li>
+    </keywords>
+    <seeAlso>
+      <li>Council_Alm_9_05_Kitchen</li>
+      <li>Council_Alm_9_07_ButcherRoom</li>
+      <li>Council_Alm_9_24_BatteryRoom</li>
+      <li>Council_Alm_9_15_Storeroom</li>
+    </seeAlso>
+    <template>Council_Freezer</template>
+    <approximate>true</approximate>
+  </ColonyCouncil.AlmanacArticleDef>
+
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Council_Alm_9_07_ButcherRoom</defName>
+    <label>butcher room</label>
+    <category>RoomDesign</category>
+    <order>100</order>
+    <summary>Butchering in its own small room, next to the freezer and away from the stove</summary>
+    <tip>Blood goes on the butcher's floor and nowhere else. That's what the wall is for.</tip>
+    <description>Butchering spreads blood, and blood near a stove is how food poisoning starts. A small butcher room of its own keeps the mess away from the kitchen and the dining room. Put it next to the freezer, with a short route in from the hunting grounds.</description>
+    <facts>
+      <li>A butcher table lowers cleanliness by about 15 on its tile, according to community testing.</li>
+      <li>Every tile of blood is -10 cleanliness and -30 beauty.</li>
+      <li>Seeing a corpse costs -4 mood and a rotting one -6, each for half a day.</li>
+      <li>Raw meat rots in 2 days unrefrigerated.</li>
+    </facts>
+    <advice>
+      <li>Wall it off from the kitchen; a door straight into the freezer is ideal.</li>
+      <li>Use a smooth stone or tiled floor so blood cleans up quickly.</li>
+      <li>Keep a corpse stockpile and a meat shelf inside or in the freezer next door.</li>
+      <li>Tribal colonies: a butcher spot works the same way. Give it its own room, away from the campfire.</li>
+    </advice>
+    <keywords>
+      <li>butcher</li>
+      <li>butcher table</li>
+      <li>butcher spot</li>
+      <li>meat</li>
+      <li>corpses</li>
+      <li>blood</li>
+      <li>hunting</li>
+    </keywords>
+    <seeAlso>
+      <li>Council_Alm_9_05_Kitchen</li>
+      <li>Council_Alm_9_06_Freezer</li>
+      <li>Council_Alm_9_25_Crematorium</li>
+    </seeAlso>
+    <template>Council_ButcherRoom</template>
+    <approximate>true</approximate>
+  </ColonyCouncil.AlmanacArticleDef>
+
+  <!-- ==================== Work ==================== -->
+
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Council_Alm_9_08_Workshop</defName>
+    <label>workshop</label>
+    <category>RoomDesign</category>
+    <order>80</order>
+    <summary>Workbenches with walkways and materials close by, kept lit and mild</summary>
+    <tip>Put the steel next to the bench. Every step your crafter takes is a step not spent crafting.</tip>
+    <description>A workshop is a room where workbenches outscore everything else. Crafters spend long hours there, so light, a sensible temperature and materials close at hand pay off in faster work. Put it right beside the storeroom.</description>
+    <facts>
+      <li>Every workbench counts toward the workshop role; a crafting spot doesn't count.</li>
+      <li>Many benches work at only 70% speed outside 10-35 °C.</li>
+      <li>A research bench counts for more than two workbenches, so a room with one research bench and two benches is a laboratory. A third bench makes it a workshop again.</li>
+      <li>Electric benches stop during a solar flare.</li>
+    </facts>
+    <advice>
+      <li>Line benches along the walls, with a shelf of their materials beside each one.</li>
+      <li>Keep the room lit and between 10 and 35 °C.</li>
+      <li>Put the storeroom next door.</li>
+      <li>Give the research bench a room of its own.</li>
+      <li>Without power, the hand tailor bench, fueled smithy, art bench and stonecutter's table all work. Keep fueled benches off wooden floors.</li>
+    </advice>
+    <keywords>
+      <li>workshop</li>
+      <li>workbench</li>
+      <li>crafting</li>
+      <li>production</li>
+      <li>stonecutter</li>
+      <li>machining</li>
+    </keywords>
+    <seeAlso>
+      <li>Council_Alm_9_15_Storeroom</li>
+      <li>Council_Alm_9_09_Smithy</li>
+      <li>Council_Alm_9_10_TailorShop</li>
+      <li>Council_Alm_9_11_Laboratory</li>
+      <li>Council_Alm_9_27_ArtStudio</li>
+      <li>Council_Alm_9_26_DrugLab</li>
+    </seeAlso>
+    <template>Council_Workshop</template>
+  </ColonyCouncil.AlmanacArticleDef>
+
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Council_Alm_9_09_Smithy</defName>
+    <label>smithy</label>
+    <category>RoomDesign</category>
+    <order>180</order>
+    <summary>Weapons, armor and tools made on a stone floor beside the metal store</summary>
+    <tip>A smithy on a wooden floor is just a bonfire with ambitions.</tip>
+    <description>The smithy makes melee weapons and, later, armor and tools. The fueled version burns wood and needs no power, which makes it the heart of a medieval colony's war effort. Give it a stone floor and keep the metal store and the armory close by.</description>
+    <facts>
+      <li>Smithing research costs 700, or 1,050 on a tribal start.</li>
+      <li>The fueled smithy is medieval tech and burns wood; the electric smithy is industrial.</li>
+      <li>A smithy counts as a workbench, so the room scores as a workshop.</li>
+      <li>A fueled smithy on a wooden floor is a fire risk.</li>
+    </facts>
+    <advice>
+      <li>Floor it with stone and keep wood and cloth stockpiles out of the room.</li>
+      <li>Store steel and other metals next door, with the armory a short walk away.</li>
+      <li>Light it and keep it at a comfortable temperature for the smith.</li>
+      <li>Tribal starts pay half again for Smithing, but it's their road to metal weapons; the fueled smithy needs no electricity.</li>
+    </advice>
+    <keywords>
+      <li>smithy</li>
+      <li>smithing</li>
+      <li>weapons</li>
+      <li>armor</li>
+      <li>fueled smithy</li>
+      <li>electric smithy</li>
+      <li>forge</li>
+      <li>melee</li>
+    </keywords>
+    <seeAlso>
+      <li>Council_Alm_9_08_Workshop</li>
+      <li>Council_Alm_9_23_Armory</li>
+      <li>Council_Alm_9_15_Storeroom</li>
+      <li>Council_Alm_9_10_TailorShop</li>
+    </seeAlso>
+    <template>Council_Smithy</template>
+  </ColonyCouncil.AlmanacArticleDef>
+
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Council_Alm_9_10_TailorShop</defName>
+    <label>tailor shop</label>
+    <category>RoomDesign</category>
+    <order>190</order>
+    <summary>A tailoring bench beside the cloth and leather store</summary>
+    <tip>Cloth grows slower than colonists wear it out. Every winter, somebody learns this in a T-shirt.</tip>
+    <description>Tailors turn cloth and leather into the clothes your colonists need for winter, summer and their mood. The bench is simple; the real limit is cloth, which takes weeks to grow. Keep the shop next to the textile store and plan the fields well ahead.</description>
+    <facts>
+      <li>The hand tailor bench is medieval and needs no power; the electric tailor bench is industrial.</li>
+      <li>Cotton takes 8 listed growing days (about 14.77 real days); devilstrand takes 22.5 (about 41.54 real days).</li>
+      <li>Clothes and cloth left outdoors deteriorate.</li>
+      <li>A tailor bench counts as a workbench, so the room scores as a workshop.</li>
+    </facts>
+    <advice>
+      <li>Keep cloth and leather on shelves next to the bench, indoors.</li>
+      <li>Plant cotton early, and devilstrand long before you need it.</li>
+      <li>Set bills to "do until you have X" so the tailor doesn't burn through your cloth.</li>
+      <li>Put it near the armory so finished parkas and armor go straight onto shelves.</li>
+    </advice>
+    <keywords>
+      <li>tailor</li>
+      <li>tailoring bench</li>
+      <li>clothes</li>
+      <li>apparel</li>
+      <li>cloth</li>
+      <li>leather</li>
+      <li>cotton</li>
+      <li>devilstrand</li>
+    </keywords>
+    <seeAlso>
+      <li>Council_Alm_9_08_Workshop</li>
+      <li>Council_Alm_9_15_Storeroom</li>
+      <li>Council_Alm_9_23_Armory</li>
+      <li>Council_Alm_9_09_Smithy</li>
+    </seeAlso>
+    <template>Council_TailorShop</template>
+  </ColonyCouncil.AlmanacArticleDef>
+
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Council_Alm_9_11_Laboratory</defName>
+    <label>laboratory</label>
+    <category>RoomDesign</category>
+    <order>110</order>
+    <summary>A quiet, clean, lit room for the research bench and nothing else</summary>
+    <tip>Dust in the lab is dust in the research. Sweep before you think.</tip>
+    <description>Research decides when you get electricity, hydroponics, medicine and better weapons. A research bench in its own quiet, lit, clean room keeps your researcher working steadily, and keeps the room from being counted as a workshop. Leave space to upgrade to the hi-tech bench later.</description>
+    <facts>
+      <li>A research bench or gene equipment makes a room a laboratory, unless three or more workbenches outscore it and turn it into a workshop.</li>
+      <li>Most industrial projects need only the simple research bench; the hi-tech research bench needs Microelectronics.</li>
+      <li>Medicine production (1,500 research, 3,000 on a tribal start) needs the hi-tech bench.</li>
+      <li>With Ideology, slaves can't do research.</li>
+    </facts>
+    <advice>
+      <li>Give it its own room with a light and a real floor, and keep it clean.</li>
+      <li>Put it next to the workshop, behind its own door.</li>
+      <li>Leave space beside the bench for the hi-tech upgrade and add-ons such as the multi-analyzer.</li>
+      <li>The simple research bench needs no power, so tribes can research from day one.</li>
+    </advice>
+    <keywords>
+      <li>laboratory</li>
+      <li>lab</li>
+      <li>research bench</li>
+      <li>hi-tech research bench</li>
+      <li>research</li>
+      <li>multi-analyzer</li>
+    </keywords>
+    <seeAlso>
+      <li>Council_Alm_9_08_Workshop</li>
+      <li>Council_Alm_9_12_Hospital</li>
+      <li>Council_Alm_9_26_DrugLab</li>
+    </seeAlso>
+    <template>Council_Laboratory</template>
+  </ColonyCouncil.AlmanacArticleDef>
+
+  <!-- ==================== Care and security ==================== -->
+
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Council_Alm_9_12_Hospital</defName>
+    <label>hospital</label>
+    <category>RoomDesign</category>
+    <order>50</order>
+    <summary>Medical beds, sterile floors, bright light and a TV, close to where fights end</summary>
+    <tip>If the hospital smells of anything, it isn't a hospital yet.</tip>
+    <description>The hospital is where wounds heal and surgery succeeds or fails. Cleanliness cuts infection and raises surgery odds, light matters at every bed, and hospital beds speed up recovery. Build it early, keep it spotless, and put it on the main route so the wounded arrive fast.</description>
+    <facts>
+      <li>One medical bed makes the room a hospital; a prisoner bed breaks it, and a hospital that is also someone's bedroom counts as neither.</li>
+      <li>Room cleanliness multiplies infection chance: 50% in a floored room with no filth, 32% in a clean room with sterile tiles, 100% outdoors.</li>
+      <li>Surgery odds fall to 75% in complete darkness at the bed's head, and as low as 60% in a filthy room.</li>
+      <li>A vitals monitor at each bed brings tend quality to +17% and immunity gain to 1.13x.</li>
+      <li>Hospital bed rest effectiveness runs from 100% (normal) to 160% (legendary).</li>
+      <li>Bedridden patients can only watch TV for recreation.</li>
+    </facts>
+    <advice>
+      <li>Lay sterile tile as soon as you can; until then, any smooth floor, cleaned often.</li>
+      <li>Light every bed and link a vitals monitor to each one.</li>
+      <li>Keep a medicine shelf inside, and add a TV and a sculpture.</li>
+      <li>Put it on the main corridor near where fights end, away from the freezer's cold door.</li>
+      <li>Tribal colonies: set ordinary beds to medical, light them with torch lamps and keep the floor swept. Light and cleanliness matter as much as the bed.</li>
+    </advice>
+    <keywords>
+      <li>hospital</li>
+      <li>medical bed</li>
+      <li>surgery</li>
+      <li>infection</li>
+      <li>sterile tile</li>
+      <li>vitals monitor</li>
+      <li>doctor</li>
+      <li>sickbay</li>
+    </keywords>
+    <seeAlso>
+      <li>Council_Alm_9_04_RecRoom</li>
+      <li>Council_Alm_9_11_Laboratory</li>
+      <li>Council_Alm_9_13_PrisonCell</li>
+      <li>Council_Alm_9_21_Nursery</li>
+    </seeAlso>
+    <template>Council_Hospital</template>
+  </ColonyCouncil.AlmanacArticleDef>
+
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Council_Alm_9_13_PrisonCell</defName>
+    <label>prison cell</label>
+    <category>RoomDesign</category>
+    <order>120</order>
+    <summary>One prisoner bed, one door, stone walls, and a room that isn't cramped</summary>
+    <tip>Build the cell like you expect them to try. They will.</tip>
+    <description>A prison cell holds one prisoner while you recruit, convert, ransom or release them. Prisoners feel their cell's impressiveness much like a bedroom, so a cramped, ugly cell means an unhappy prisoner. Strong walls and a single door keep escape attempts rare.</description>
+    <facts>
+      <li>One bed set "for prisoners" in a fully enclosed room makes a prison cell. An ordinary bed, or more than one bed, changes that.</li>
+      <li>A prisoner's mood uses the cell's impressiveness as a bedroom would, so aim for Space 25 or more.</li>
+      <li>Colonists and slaves can't share a room with prisoners.</li>
+      <li>Security doors lengthen the time between escape attempts; more exits shorten it.</li>
+      <li>A nutrient paste dispenser facing into the cell can feed prisoners who can walk.</li>
+    </facts>
+    <advice>
+      <li>One door per cell, stone walls, and no door straight to the outside.</li>
+      <li>Keep the armory and any spare weapons well away from the cells.</li>
+      <li>Put cells on the warden's route, near the dining room.</li>
+      <li>Add a light, a floor, and a table and chair so prisoners don't eat off the floor.</li>
+    </advice>
+    <keywords>
+      <li>prison</li>
+      <li>prisoner</li>
+      <li>cell</li>
+      <li>jail</li>
+      <li>recruit</li>
+      <li>warden</li>
+      <li>prison break</li>
+    </keywords>
+    <seeAlso>
+      <li>Council_Alm_9_14_PrisonBarracks</li>
+      <li>Council_Alm_9_23_Armory</li>
+      <li>Council_Alm_9_01_Bedroom</li>
+      <li>Council_Alm_9_12_Hospital</li>
+    </seeAlso>
+    <template>Council_PrisonCell</template>
+  </ColonyCouncil.AlmanacArticleDef>
+
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Council_Alm_9_14_PrisonBarracks</defName>
+    <label>prison barracks</label>
+    <category>RoomDesign</category>
+    <order>240</order>
+    <summary>Several prisoners in one room: cheap, but every escape attempt spreads</summary>
+    <tip>Six prisoners in one room is one escape attempt with six volunteers.</tip>
+    <description>Two or more prisoner beds in one room make a prison barracks. It's cheaper than separate cells, but every prisoner rolls for escape on their own, and one break can drag nearby cells into it. Use it only for prisoners you don't expect to cause trouble.</description>
+    <facts>
+      <li>Two or more prisoner beds make a prison barracks; medical prisoner beds count too.</li>
+      <li>Each prisoner rolls for escape separately, so more prisoners means more breaks.</li>
+      <li>A prison break always involves the room it starts in; other prison rooms within 20 tiles join it half the time.</li>
+      <li>Escape chance is multiplied by the number of exits.</li>
+      <li>Colonists and slaves can't share the room.</li>
+    </facts>
+    <advice>
+      <li>Use it for low-risk prisoners waiting for ransom or release; recruit dangerous ones from single cells.</li>
+      <li>If you hold many prisoners, keep separate prison rooms more than 20 tiles apart.</li>
+      <li>One door, stone walls, and a table with chairs.</li>
+      <li>Keep weapons far away.</li>
+    </advice>
+    <keywords>
+      <li>prison barracks</li>
+      <li>prisoners</li>
+      <li>shared cell</li>
+      <li>prison break</li>
+      <li>escape</li>
+    </keywords>
+    <seeAlso>
+      <li>Council_Alm_9_13_PrisonCell</li>
+      <li>Council_Alm_9_02_Barracks</li>
+      <li>Council_Alm_9_23_Armory</li>
+    </seeAlso>
+    <template>Council_PrisonBarracks</template>
+    <approximate>true</approximate>
+  </ColonyCouncil.AlmanacArticleDef>
+
+  <!-- ==================== Storage and land ==================== -->
+
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Council_Alm_9_15_Storeroom</defName>
+    <label>storeroom</label>
+    <category>RoomDesign</category>
+    <order>70</order>
+    <summary>A roofed room full of shelves, between the workshops and the entrance</summary>
+    <tip>One room for everything is one fire away from nothing.</tip>
+    <description>Most items left outdoors slowly deteriorate, and loose piles make rooms ugly. A roofed storeroom with shelves keeps materials safe and out of sight. Put it between the workshops and the main entrance so haulers and crafters walk less.</description>
+    <facts>
+      <li>Shelves make a roofed room a storeroom.</li>
+      <li>Every loose stack on the floor is -5 beauty; items on shelves don't count.</li>
+      <li>Community players report that shelves count as covered, so items on them don't deteriorate.</li>
+      <li>Everything you store counts toward colony wealth, and wealth drives raid size.</li>
+    </facts>
+    <advice>
+      <li>Roof it, floor it and line it with shelves.</li>
+      <li>Keep a dumping stockpile outside for junk and the main store inside.</li>
+      <li>Store chemfuel and mortar shells away from everything else.</li>
+      <li>Build the storeroom from stone if you can: a wooden room full of wood and cloth is a fire waiting to happen.</li>
+      <li>Sell or use surplus instead of hoarding it.</li>
+    </advice>
+    <keywords>
+      <li>storeroom</li>
+      <li>storage</li>
+      <li>stockpile</li>
+      <li>shelves</li>
+      <li>deterioration</li>
+      <li>warehouse</li>
+      <li>hauling</li>
+    </keywords>
+    <seeAlso>
+      <li>Council_Alm_9_08_Workshop</li>
+      <li>Council_Alm_9_06_Freezer</li>
+      <li>Council_Alm_9_23_Armory</li>
+      <li>Council_Alm_9_10_TailorShop</li>
+    </seeAlso>
+    <template>Council_Storeroom</template>
+    <approximate>true</approximate>
+  </ColonyCouncil.AlmanacArticleDef>
+
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Council_Alm_9_16_Barn</defName>
+    <label>barn</label>
+    <category>RoomDesign</category>
+    <order>170</order>
+    <summary>A roof, sleeping spots and stored feed for your animals, next to the hay field</summary>
+    <tip>Cold muffalo give no milk and a great deal of attitude.</tip>
+    <description>A barn gives your animals a roof, somewhere to sleep and a store of feed for the months when nothing grows. Without stored hay or kibble, herds starve in winter. Put it beside the haygrass field, inside or attached to the pen.</description>
+    <facts>
+      <li>Hay is 0.05 nutrition per unit, and one haygrass plant yields 18 hay.</li>
+      <li>Haygrass eaten in the field gives about 0.30 nutrition per plant; harvested, it gives 0.90.</li>
+      <li>Kibble is made 50 at a time from meat or animal products plus vegetables or hay.</li>
+      <li>Animals eat standing crops unless fenced or zoned away.</li>
+      <li>A manhunter pack breaks down a door if it sees a colonist run behind it.</li>
+    </facts>
+    <advice>
+      <li>Stockpile hay or kibble inside the barn before winter.</li>
+      <li>Plant haygrass next to it and harvest it rather than letting animals graze it.</li>
+      <li>Keep the barn warm enough for your animals in winter.</li>
+      <li>Fence animals away from crops, and keep the barn away from bedrooms.</li>
+    </advice>
+    <keywords>
+      <li>barn</li>
+      <li>animals</li>
+      <li>pen</li>
+      <li>hay</li>
+      <li>kibble</li>
+      <li>livestock</li>
+      <li>haygrass</li>
+    </keywords>
+    <seeAlso>
+      <li>Council_Alm_9_17_Greenhouse</li>
+      <li>Council_Alm_9_15_Storeroom</li>
+      <li>Council_Alm_9_06_Freezer</li>
+    </seeAlso>
+    <template>Council_Barn</template>
+  </ColonyCouncil.AlmanacArticleDef>
+
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Council_Alm_9_17_Greenhouse</defName>
+    <label>greenhouse</label>
+    <category>RoomDesign</category>
+    <order>130</order>
+    <summary>Hydroponics under a sun lamp: crops in any season, if the power holds</summary>
+    <tip>A greenhouse is a farm that pays an electric bill. Keep the bill paid.</tip>
+    <description>A greenhouse lets you grow food through winter, toxic fallout and bad soil. Hydroponics basins grow crops very fast but need constant power, and every roofed crop needs a sun lamp. It's powerful and fragile at once, so plan for flares and blackouts.</description>
+    <facts>
+      <li>Hydroponics basins have 280% fertility and draw 70 W each, day and night.</li>
+      <li>Most plants need 51% light. Standing lamps give at most 50%, so only a sun lamp will do.</li>
+      <li>One sun lamp covers up to 24 basins and draws 2,900 W for about 13 hours a day.</li>
+      <li>If the power fails, basin plants mostly die within about 8 hours.</li>
+      <li>Corn, devilstrand and haygrass can't be grown in basins.</li>
+      <li>Crops grow normally between 6 and 42 °C.</li>
+    </facts>
+    <advice>
+      <li>Lay out 24 basins around one sun lamp.</li>
+      <li>Back it with batteries and more than one power source.</li>
+      <li>Keep a campfire stocked with wood in the room for solar flares: cold, not darkness, kills the plants.</li>
+      <li>Grow rice or strawberries in basins; potatoes do poorly there, so save them for poor soil outdoors.</li>
+      <li>No power? Leave up to a quarter of the room unroofed (300 tiles at most) so sun reaches the crops; it still holds heat, at a higher heating cost.</li>
+      <li>With Biotech, roofs and basins don't protect crops from pollution.</li>
+    </advice>
+    <keywords>
+      <li>greenhouse</li>
+      <li>hydroponics</li>
+      <li>sun lamp</li>
+      <li>basins</li>
+      <li>indoor farming</li>
+      <li>winter crops</li>
+    </keywords>
+    <seeAlso>
+      <li>Council_Alm_9_24_BatteryRoom</li>
+      <li>Council_Alm_9_16_Barn</li>
+      <li>Council_Alm_9_06_Freezer</li>
+      <li>Council_Alm_9_05_Kitchen</li>
+    </seeAlso>
+    <template>Council_Greenhouse</template>
+  </ColonyCouncil.AlmanacArticleDef>
+
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Council_Alm_9_18_Crypt</defName>
+    <label>crypt and graveyard</label>
+    <category>RoomDesign</category>
+    <order>160</order>
+    <summary>Graves and sarcophagi out of sight of the routes people use every day</summary>
+    <tip>Bury them with dignity, and well away from where we eat. The dead earned the first; the living insist on the second.</tip>
+    <description>Corpses lying around cost mood for everyone who walks past, and friends of the dead want them properly buried. A crypt or graveyard gives bodies somewhere to go, and with Ideology it's where funerals happen. Keep it reachable, but out of sight of the dining room and bedrooms.</description>
+    <facts>
+      <li>Seeing a corpse costs -4 mood and a rotting one -6, each for half a day.</li>
+      <li>Visiting a grave counts as recreation, with a multiplier of 1 to 1.4.</li>
+      <li>With Ideology, a funeral needs the corpse in a grave or sarcophagus for full quality.</li>
+    </facts>
+    <advice>
+      <li>Dig graves or build sarcophagi in an out-of-the-way room or walled plot.</li>
+      <li>Keep bodies in the freezer until the grave is ready, and put the crypt near it.</li>
+      <li>Add a sculpture so visits are pleasant rather than grim.</li>
+      <li>Save graves for your own people; cremate raiders instead.</li>
+    </advice>
+    <keywords>
+      <li>crypt</li>
+      <li>graveyard</li>
+      <li>grave</li>
+      <li>sarcophagus</li>
+      <li>burial</li>
+      <li>funeral</li>
+      <li>cemetery</li>
+    </keywords>
+    <seeAlso>
+      <li>Council_Alm_9_25_Crematorium</li>
+      <li>Council_Alm_9_06_Freezer</li>
+      <li>Council_Alm_9_20_Temple</li>
+    </seeAlso>
+    <template>Council_Crypt</template>
+  </ColonyCouncil.AlmanacArticleDef>
+
+  <!-- ==================== DLC rooms ==================== -->
+
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Council_Alm_9_19_ThroneRoom</defName>
+    <label>throne room</label>
+    <category>RoomDesign</category>
+    <order>250</order>
+    <summary>The size, impressiveness and furniture a noble's throne room needs at each title</summary>
+    <tip>Nobility runs on columns and braziers. Daft, but cheaper than a sulking baron.</tip>
+    <description>Titled nobles demand a throne room that grows with their rank: more area, more impressiveness and more furnishings at each title. Miss a requirement and they sulk. Build it once with room to grow, so each promotion means adding furniture rather than knocking down walls.</description>
+    <facts>
+      <li>Acolyte: area 24; a throne, every tile floored, 2 lit braziers, and a roof.</li>
+      <li>Knight or Dame: area 30, impressiveness 60; add 2 columns and a harp (a harpsichord or piano also counts).</li>
+      <li>Praetor: area 40, impressiveness 90; 4 columns.</li>
+      <li>Baron or Baroness: area 60, impressiveness 120; a grand throne, fine floors throughout, 2 drapes and a harpsichord (or piano).</li>
+      <li>Archon: area 80, impressiveness 160; 6 columns and a piano.</li>
+      <li>A bestowing ceremony gets +40% quality in a room of impressiveness 170.</li>
+    </facts>
+    <advice>
+      <li>Build big from the start. The throne room plan's 7x7 floor (49 tiles) covers titles up to Praetor; expand it for a Baron.</li>
+      <li>Keep beds, workbenches and dining tables out, or the room stops counting.</li>
+      <li>Check the Royalty tab for unmet requirements after every promotion.</li>
+      <li>Nobles also need a bedroom that suits their title and the right apparel; each missing apparel item costs -4 mood.</li>
+    </advice>
+    <keywords>
+      <li>throne room</li>
+      <li>throne</li>
+      <li>noble</li>
+      <li>title</li>
+      <li>braziers</li>
+      <li>columns</li>
+      <li>harp</li>
+      <li>bestowing</li>
+    </keywords>
+    <seeAlso>
+      <li>Council_Alm_9_01_Bedroom</li>
+      <li>Council_Alm_9_28_MeditationRoom</li>
+      <li>Council_Alm_9_27_ArtStudio</li>
+      <li>Council_Alm_9_20_Temple</li>
+    </seeAlso>
+    <template>Council_ThroneRoom</template>
+    <dlc>Royalty</dlc>
+  </ColonyCouncil.AlmanacArticleDef>
+
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Council_Alm_9_20_Temple</defName>
+    <label>temple</label>
+    <category>RoomDesign</category>
+    <order>260</order>
+    <summary>A ritual room with an altar, lectern, seats and standing room for everyone</summary>
+    <tip>A ritual is just a meeting with better lighting and worse consequences.</tip>
+    <description>Ideology rituals turn out better in an impressive room with the right furniture. Ritual quality isn't the chance of success, but it shifts the odds toward fun and unforgettable outcomes and away from terrible ones. A dedicated temple with an altar, a lectern and seating improves every ritual you hold there.</description>
+    <facts>
+      <li>Many rituals get +20% quality from a room with impressiveness 120.</li>
+      <li>An altar adds +20%, a lectern +15-20% and seats +15-20%.</li>
+      <li>Dance and drum parties get +30% from 6 speakers or 6 drums.</li>
+      <li>Funerals, skylantern festivals and tree connections want 10 participants; trials want 20.</li>
+      <li>At 50% quality the odds are about 8% terrible, 25% boring, 50% fun and 17% unforgettable.</li>
+    </facts>
+    <advice>
+      <li>Size it for your whole colony, standing and seated.</li>
+      <li>Put the altar and lectern at one end, with seats facing them.</li>
+      <li>Decorate for impressiveness: sculptures, fine floors and good light.</li>
+      <li>Tribal drum parties also want a campfire (+20%); keep it on stone.</li>
+      <li>Make it reachable, but don't let it become a corridor.</li>
+    </advice>
+    <keywords>
+      <li>temple</li>
+      <li>ritual</li>
+      <li>altar</li>
+      <li>lectern</li>
+      <li>ideoligion</li>
+      <li>ceremony</li>
+      <li>ritual quality</li>
+    </keywords>
+    <seeAlso>
+      <li>Council_Alm_9_19_ThroneRoom</li>
+      <li>Council_Alm_9_28_MeditationRoom</li>
+      <li>Council_Alm_9_18_Crypt</li>
+      <li>Council_Alm_9_27_ArtStudio</li>
+    </seeAlso>
+    <dlc>Ideology</dlc>
+  </ColonyCouncil.AlmanacArticleDef>
+
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Council_Alm_9_21_Classroom</defName>
+    <label>classroom</label>
+    <category>RoomDesign</category>
+    <order>280</order>
+    <summary>School desks and blackboards where children learn from an adult</summary>
+    <tip>Teach them to read before they teach each other to throw things.</tip>
+    <description>Children learn skills faster at school desks, taught by an adult, and blackboards in the same room add to that. A classroom only works if a teacher is around, so put it where adults pass by and lessons actually happen.</description>
+    <facts>
+      <li>A school desk is 2x1 and costs 30 material.</li>
+      <li>Up to 3 blackboards count per desk, +20% learning each; three give 160% skill XP.</li>
+      <li>Lessons need an awake adult who is able to teach.</li>
+    </facts>
+    <advice>
+      <li>Put three blackboards near each desk.</li>
+      <li>Build it near adults' workplaces so a teacher is always close.</li>
+      <li>Keep it lit and warm, and add a toy box so children can play too.</li>
+    </advice>
+    <keywords>
+      <li>classroom</li>
+      <li>school desk</li>
+      <li>blackboard</li>
+      <li>children</li>
+      <li>learning</li>
+      <li>teacher</li>
+      <li>school</li>
+    </keywords>
+    <seeAlso>
+      <li>Council_Alm_9_21_Nursery</li>
+      <li>Council_Alm_9_01_Bedroom</li>
+      <li>Council_Alm_9_04_RecRoom</li>
+    </seeAlso>
+    <template>Council_Classroom</template>
+    <dlc>Biotech</dlc>
+  </ColonyCouncil.AlmanacArticleDef>
+
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Council_Alm_9_21_Nursery</defName>
+    <label>nursery</label>
+    <category>RoomDesign</category>
+    <order>290</order>
+    <summary>A warm, safe room for cribs, close to the parents and far from the front door</summary>
+    <tip>Babies need three things: milk, a warm crib, and someone who isn't afraid of either end.</tip>
+    <description>Babies sleep a lot, eat twice a day and can't move on their own, so their room should be warm, safe and close to whoever looks after them. A nursery keeps cribs out of the adults' bedrooms and gives the colony's youngest a room well away from the front door.</description>
+    <facts>
+      <li>Babies need feeding twice a day.</li>
+      <li>Baby food is cooked at a campfire or stove: 0.25 nutrition of vegetables makes 10 portions, and it rots in 14 days.</li>
+      <li>A bedroom with a child assigned stops counting as a bedroom unless a parent is assigned too.</li>
+      <li>A growth vat uses 200 W and 3 nutrition a day to age a child, or 6 a day to grow an embryo.</li>
+    </facts>
+    <advice>
+      <li>Put the cribs in their own room near the parents' bedrooms.</li>
+      <li>Keep it warm, lit and away from the entrance.</li>
+      <li>Keep baby food or a feeding adult within easy reach.</li>
+      <li>Add a toy box and a soft floor.</li>
+    </advice>
+    <keywords>
+      <li>nursery</li>
+      <li>crib</li>
+      <li>baby</li>
+      <li>babies</li>
+      <li>baby food</li>
+      <li>growth vat</li>
+      <li>toy box</li>
+    </keywords>
+    <seeAlso>
+      <li>Council_Alm_9_21_Classroom</li>
+      <li>Council_Alm_9_01_Bedroom</li>
+      <li>Council_Alm_9_12_Hospital</li>
+    </seeAlso>
+    <template>Council_Nursery</template>
+    <dlc>Biotech</dlc>
+  </ColonyCouncil.AlmanacArticleDef>
+
+  <!-- ==================== Specialist rooms ==================== -->
+
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Council_Alm_9_22_Brewery</defName>
+    <label>brewery</label>
+    <category>RoomDesign</category>
+    <order>200</order>
+    <summary>Fermenting barrels kept between -1 and 32 °C, near the hops field</summary>
+    <tip>Beer wants the same thing we do: a steady room, a bit of warmth and six days of peace.</tip>
+    <description>Beer is the simplest drug and a cheap mood lift, but fermenting barrels are fussy about temperature. A small roofed room beside the hops field and the storeroom keeps them in range all year. None of it needs power.</description>
+    <facts>
+      <li>Fermenting barrels only work between -1 and 32 °C; outside that range no beer is made.</li>
+      <li>Each barrel holds 25 wort and takes 6 days to ferment it.</li>
+      <li>Hops take 5 listed growing days.</li>
+      <li>Beer carries a small risk of addiction with every bottle.</li>
+    </facts>
+    <advice>
+      <li>Insulate the room and keep barrels well inside their range, away from the edges.</li>
+      <li>Without power, a campfire warms it in winter and a passive cooler keeps it below 32 °C in summer.</li>
+      <li>Put it next to the hops field and the storeroom.</li>
+      <li>Set a drug policy so beer lifts mood without becoming a habit.</li>
+    </advice>
+    <keywords>
+      <li>brewery</li>
+      <li>beer</li>
+      <li>fermenting barrel</li>
+      <li>wort</li>
+      <li>hops</li>
+      <li>alcohol</li>
+    </keywords>
+    <seeAlso>
+      <li>Council_Alm_9_15_Storeroom</li>
+      <li>Council_Alm_9_26_DrugLab</li>
+      <li>Council_Alm_9_04_RecRoom</li>
+    </seeAlso>
+    <template>Council_Brewery</template>
+  </ColonyCouncil.AlmanacArticleDef>
+
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Council_Alm_9_23_Armory</defName>
+    <label>armory</label>
+    <category>RoomDesign</category>
+    <order>150</order>
+    <summary>Weapons and armor on shelves near the defenses, far from the cells</summary>
+    <tip>Guns near the walls, far from the cells. Escapees never need directions to the armory.</tip>
+    <description>Spare weapons and armor on the floor deteriorate and clutter corridors; in an armory they're ready when the raid letter arrives. Put it where colonists can grab gear on the way to the defenses, and keep it away from prisoners and slaves.</description>
+    <facts>
+      <li>Weapons left outdoors deteriorate.</li>
+      <li>Stored weapons and armor count toward colony wealth, and so toward raid size.</li>
+      <li>With Ideology, a usable weapon within 7 tiles of a slave, or in the same indoor room, makes rebellion 4 times as likely.</li>
+    </facts>
+    <advice>
+      <li>Roof it, give it a door and line it with shelves; sort weapons and armor apart.</li>
+      <li>Put it between the bedrooms or barracks and the defensive line.</li>
+      <li>Keep it far from prison cells and slave quarters.</li>
+      <li>Sell or scrap weapons you'll never use.</li>
+    </advice>
+    <keywords>
+      <li>armory</li>
+      <li>armoury</li>
+      <li>weapons</li>
+      <li>armor</li>
+      <li>gear</li>
+      <li>equipment</li>
+    </keywords>
+    <seeAlso>
+      <li>Council_Alm_9_02_Barracks</li>
+      <li>Council_Alm_9_09_Smithy</li>
+      <li>Council_Alm_9_13_PrisonCell</li>
+      <li>Council_Alm_9_15_Storeroom</li>
+    </seeAlso>
+    <template>Council_Armory</template>
+  </ColonyCouncil.AlmanacArticleDef>
+
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Council_Alm_9_24_BatteryRoom</defName>
+    <label>battery room</label>
+    <category>RoomDesign</category>
+    <order>140</order>
+    <summary>Roofed, stone-floored, batteries in separate pairs, generators elsewhere</summary>
+    <tip>Batteries: two is an accident, ten is a statistic.</tip>
+    <description>Batteries store power for the night and calm days, but unroofed batteries and bare conduits short out and start fires, and batteries packed together go up together. A boring stone room with a roof keeps one spark from taking the colony's power, and half the base, with it.</description>
+    <facts>
+      <li>A battery stores 600 Wd and loses 5 Wd a day.</li>
+      <li>Unroofed batteries and ordinary conduits can short-circuit; in recent versions, roofed batteries and hidden conduits prevent it.</li>
+      <li>Batteries packed together can chain-explode; community players build them in separated pairs.</li>
+      <li>A wood-fired generator burns 22 wood a day.</li>
+      <li>A solar flare shuts down everything powered.</li>
+    </facts>
+    <advice>
+      <li>Stone floor and walls, a roof over every battery, and nothing wooden inside.</li>
+      <li>Build batteries in pairs with gaps between them.</li>
+      <li>Put generators in a separate room, with their fuel stored somewhere else.</li>
+      <li>Use hidden conduits, and add a firefoam popper when you can.</li>
+    </advice>
+    <keywords>
+      <li>battery</li>
+      <li>batteries</li>
+      <li>power</li>
+      <li>generator</li>
+      <li>short circuit</li>
+      <li>zzztt</li>
+      <li>conduit</li>
+      <li>electricity</li>
+    </keywords>
+    <seeAlso>
+      <li>Council_Alm_9_17_Greenhouse</li>
+      <li>Council_Alm_9_06_Freezer</li>
+      <li>Council_Alm_9_15_Storeroom</li>
+    </seeAlso>
+    <template>Council_BatteryRoom</template>
+    <approximate>true</approximate>
+  </ColonyCouncil.AlmanacArticleDef>
+
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Council_Alm_9_25_Crematorium</defName>
+    <label>crematorium</label>
+    <category>RoomDesign</category>
+    <order>230</order>
+    <summary>An electric crematorium in a small room beside the freezer</summary>
+    <tip>Raiders don't need graves. They need to stop lying in the yard.</tip>
+    <description>After a raid you'll have more bodies than graves. A crematorium burns them, so corpses stop lying in view and souring everyone's mood. It needs power, so give it a small room of its own beside the freezer.</description>
+    <facts>
+      <li>The electric crematorium is industrial tech and needs power.</li>
+      <li>Seeing a corpse costs -4 mood and a rotting one -6, each for half a day.</li>
+      <li>Rot stops at or below 0 °C, so bodies waiting in the freezer next door don't turn into rotting ones.</li>
+    </facts>
+    <advice>
+      <li>Keep corpses in the freezer or a cold room next door until they're burned.</li>
+      <li>Set a bill to cremate strangers' corpses and keep your own dead for graves.</li>
+      <li>Build it away from living space, so corpses aren't carried past the dining room.</li>
+      <li>Without power, use a graveyard instead.</li>
+    </advice>
+    <keywords>
+      <li>crematorium</li>
+      <li>cremate</li>
+      <li>corpses</li>
+      <li>bodies</li>
+      <li>raiders</li>
+      <li>morgue</li>
+    </keywords>
+    <seeAlso>
+      <li>Council_Alm_9_18_Crypt</li>
+      <li>Council_Alm_9_06_Freezer</li>
+      <li>Council_Alm_9_07_ButcherRoom</li>
+    </seeAlso>
+    <template>Council_Crematorium</template>
+  </ColonyCouncil.AlmanacArticleDef>
+
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Council_Alm_9_26_DrugLab</defName>
+    <label>drug lab</label>
+    <category>RoomDesign</category>
+    <order>220</order>
+    <summary>A drug lab bench in a clean, lit room beside the leaf and neutroamine store</summary>
+    <tip>Smoke the leaf in moderation, then watch what moderation does to the leaf.</tip>
+    <description>The drug lab turns smokeleaf, psychoid leaves and neutroamine into recreational drugs, combat drugs and trade goods. The room itself is simple, but what you make there needs drug policies to match, or it becomes the colony's biggest problem.</description>
+    <facts>
+      <li>Smokeleaf joint: 450 ticks from 4 smokeleaf leaves. Psychite tea: 400 ticks from 4 psychoid leaves, Cooking 2.</li>
+      <li>Flake: 250 ticks from 4 psychoid leaves. Yayo: 350 ticks from 8.</li>
+      <li>Go-juice: 600 ticks from 2 neutroamine and 1 yayo. Wake-up: 900 ticks from 2 neutroamine.</li>
+      <li>Penoxycyline: 600 ticks from 2 neutroamine.</li>
+      <li>Colonies can't make neutroamine; it has to be bought or found.</li>
+    </facts>
+    <advice>
+      <li>Put the bench next to where you store leaves and neutroamine.</li>
+      <li>Set drug policies before production starts.</li>
+      <li>Spend scarce neutroamine carefully: go-juice and wake-up are for emergencies.</li>
+      <li>Keep the room lit and clean like any workshop.</li>
+    </advice>
+    <keywords>
+      <li>drug lab</li>
+      <li>drugs</li>
+      <li>smokeleaf</li>
+      <li>flake</li>
+      <li>yayo</li>
+      <li>go-juice</li>
+      <li>penoxycyline</li>
+      <li>neutroamine</li>
+    </keywords>
+    <seeAlso>
+      <li>Council_Alm_9_22_Brewery</li>
+      <li>Council_Alm_9_11_Laboratory</li>
+      <li>Council_Alm_9_08_Workshop</li>
+    </seeAlso>
+    <template>Council_DrugLab</template>
+  </ColonyCouncil.AlmanacArticleDef>
+
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Council_Alm_9_27_ArtStudio</defName>
+    <label>art studio</label>
+    <category>RoomDesign</category>
+    <order>210</order>
+    <summary>An art bench, good light and your best artist, making beauty for the whole base</summary>
+    <tip>Beauty is a stat. So is regret. Only one of them has an overlay.</tip>
+    <description>Sculptures are the most efficient way to make rooms beautiful and impressive, and their value multiplies with quality. An art studio gives your best artist a lit, clean place to work. The best pieces then go where the most people see them.</description>
+    <facts>
+      <li>Base beauty: small sculpture 50, large 100, grand 400.</li>
+      <li>Sculpture beauty is (base x material modifier + material offset) x quality; good quality doubles it, legendary multiplies it by 8.</li>
+      <li>The material offset counts once per sculpture, so four large legendary gold sculptures (13,440) beat one grand one (12,960).</li>
+      <li>The art bench is neolithic tech, so tribes can use it.</li>
+      <li>With Ideology, slaves can't do art.</li>
+    </facts>
+    <advice>
+      <li>Give art only to your best artist; low-quality pieces waste material.</li>
+      <li>Light the studio and keep it near the storeroom.</li>
+      <li>Put the best sculptures in the dining room, rec room and hospital, where everyone sees them.</li>
+    </advice>
+    <keywords>
+      <li>art</li>
+      <li>sculpture</li>
+      <li>art bench</li>
+      <li>beauty</li>
+      <li>artist</li>
+      <li>sculpting</li>
+    </keywords>
+    <seeAlso>
+      <li>Council_Alm_9_03_DiningRoom</li>
+      <li>Council_Alm_9_04_RecRoom</li>
+      <li>Council_Alm_9_19_ThroneRoom</li>
+      <li>Council_Alm_9_08_Workshop</li>
+    </seeAlso>
+    <template>Council_ArtStudio</template>
+  </ColonyCouncil.AlmanacArticleDef>
+
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Council_Alm_9_28_MeditationRoom</defName>
+    <label>meditation room</label>
+    <category>RoomDesign</category>
+    <order>270</order>
+    <summary>A quiet, beautiful room where psycasters meditate for psyfocus</summary>
+    <tip>Meditation is sitting still on purpose. Most colonists only manage it while unconscious.</tip>
+    <description>Psycasters regain psyfocus by meditating, and what's around them matters, depending on their focus types. A quiet, beautiful room with a meditation spot keeps them out of the corridors and away from noise. Meditation counts as recreation too.</description>
+    <facts>
+      <li>Royal meditation and prayer count as recreation, at a 1x multiplier.</li>
+      <li>Go-juice gives +15% psyfocus; wake-up gives +20% meditation speed.</li>
+      <li>With Anomaly, a holding platform or holding spot works as a cheap void meditation focus anywhere.</li>
+    </facts>
+    <advice>
+      <li>Put a meditation spot in a quiet room off the main corridors.</li>
+      <li>Furnish it for the psycaster's focus types: plants for natural focus, sculptures for artistic focus.</li>
+      <li>Schedule meditation time so psyfocus is full before you need it.</li>
+      <li>With Anomaly, check an entity's containment before meditating beside its platform.</li>
+    </advice>
+    <keywords>
+      <li>meditation</li>
+      <li>psyfocus</li>
+      <li>psycaster</li>
+      <li>meditation spot</li>
+      <li>focus</li>
+      <li>psylink</li>
+    </keywords>
+    <seeAlso>
+      <li>Council_Alm_9_19_ThroneRoom</li>
+      <li>Council_Alm_9_20_Temple</li>
+      <li>Council_Alm_9_04_RecRoom</li>
+      <li>Council_Alm_9_27_ArtStudio</li>
+    </seeAlso>
+    <template>Council_MeditationRoom</template>
+    <dlc>Royalty</dlc>
+  </ColonyCouncil.AlmanacArticleDef>
+
+</Defs>
