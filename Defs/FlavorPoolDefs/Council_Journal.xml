@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- Colonists' journals: first person, written that evening. {PAWN_...} is the writer.
+       Extra placeholders per pool are noted. {WISH} is a capitalized label: quote it or put it after a colon. -->
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Journal_Arrival</defName>
+    <lines>
+      <plain>
+        <li>New place. New people. I'm writing this down so I remember what I thought on the first day, before I know better.</li>
+        <li>They gave me a bed and a bowl of something. I've had worse first days. I've had worse last days.</li>
+        <li>[winter] Arrived in the snow. Nobody asked many questions. I appreciated that.</li>
+      </plain>
+      <warm><li>Everyone here looks tired and kind. I think I'll like it.</li></warm>
+      <blunt><li>Day one. They need hands, I need a roof. Fair trade.</li></blunt>
+      <cheerful><li>First day in my new home! I've already learned everyone's name! Most of them!</li></cheerful>
+      <gloomy><li>Another place to start over. I hope it takes longer to fall apart than the last one.</li></gloomy>
+      <cold><li>Assessment of the colony: viable, understaffed, poorly defended. Adequate.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Journal_Begin</defName>
+    <lines>
+      <plain>
+        <li>Someone said we should write things down. So here I am, writing things down.</li>
+        <li>Starting a journal. If I die, at least someone will know what I thought of the rice.</li>
+      </plain>
+      <warm><li>I want to remember these people. So I'm writing them down.</li></warm>
+      <blunt><li>Journal. Fine. Here it is.</li></blunt>
+      <cheerful><li>Dear journal! Hello! We're going to be best friends!</li></cheerful>
+      <gloomy><li>A record, for whoever finds it. Hello, whoever you are.</li></gloomy>
+      <cold><li>Keeping records improves decisions. Beginning now.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Journal_Granted</defName>
+    <lines>
+      <plain>
+        <li>The council came through: {WISH}. I didn't think they'd bother. Noted.</li>
+        <li>Asked for something, got it. Writing that down because it doesn't happen often out here.</li>
+        <li>[bitter] They finally did something I asked: {WISH}. I'm not ready to forgive them. Closer, though.</li>
+      </plain>
+      <warm><li>They listened. Such a small thing, and I could have cried.</li></warm>
+      <blunt><li>Got what I wanted. About time.</li></blunt>
+      <cheerful><li>BEST DAY! The council said yes! I've been grinning at everyone like an idiot!</li></cheerful>
+      <gloomy><li>Something went right today. I'm waiting for the catch.</li></gloomy>
+      <cold><li>Request fulfilled. The council is more reliable than I estimated.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Journal_PromiseKept</defName>
+    <lines>
+      <plain>
+        <li>They promised, and they actually did it. I'm writing it down so I remember it the next time I doubt them.</li>
+        <li>A promise kept: {WISH}. Rarer than rain in summer.</li>
+      </plain>
+      <warm><li>They kept their word. I'll keep mine.</li></warm>
+      <blunt><li>They said they would. They did. Good.</li></blunt>
+      <cheerful><li>A kept promise! I want to frame it!</li></cheerful>
+      <gloomy><li>A promise kept. I'd almost stopped believing in those.</li></gloomy>
+      <cold><li>Commitment honored. Trust adjusted upward.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Journal_Lapsed</defName>
+    <lines>
+      <plain>
+        <li>Asked for something. Waited. Nothing. I'll stop asking soon.</li>
+        <li>The days ran out and nobody did anything. So that's how it is.</li>
+        <li>[repeat] Asked again. Ignored again. I'm keeping count, in here.</li>
+      </plain>
+      <warm><li>I know everyone's busy. It still hurts a little.</li></warm>
+      <blunt><li>Ignored. Remember that, next time they want something from me.</li></blunt>
+      <cheerful><li>Didn't happen! That's fine! It's fine. It's fine.</li></cheerful>
+      <gloomy><li>Nobody came. Nobody ever really comes.</li></gloomy>
+      <cold><li>Request lapsed. Lowering expectations accordingly.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Journal_PromiseBroken</defName>
+    <lines>
+      <plain>
+        <li>They promised. They looked me in the eye and promised. Writing it down so I never forget the date.</li>
+        <li>A broken promise weighs more than a broken arm. I've had both now.</li>
+      </plain>
+      <warm><li>I believed them. I wanted to. I don't know what I want now.</li></warm>
+      <blunt><li>Liars. All of them. Noted.</li></blunt>
+      <cheerful><li>So the promise didn't happen. I'm going to be cheerful about something else. Give me a minute.</li></cheerful>
+      <gloomy><li>Of course they broke it. What else was ever going to happen?</li></gloomy>
+      <cold><li>Promise broken. The council's word has been repriced.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Journal_Refused</defName>
+    <lines>
+      <plain>
+        <li>They said no. Straight to my face. At least they didn't string me along.</li>
+        <li>Refused. I'll survive. I always do.</li>
+      </plain>
+      <warm><li>A clear no. I can respect that, even if I don't like it.</li></warm>
+      <blunt><li>No, they said. Fine. Their loss.</li></blunt>
+      <cheerful><li>A no is just a yes that hasn't happened yet! I'm told that's not how it works.</li></cheerful>
+      <gloomy><li>Told no. Somehow it's better than being ignored. Slightly.</li></gloomy>
+      <cold><li>Request declined. Clear answers are efficient. I'll allow it.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Journal_DecreeLiked</defName>
+    <lines>
+      <plain>
+        <li>The council declared {DECREE}. About time somebody made a sensible decision.</li>
+        <li>Declared today: {DECREE}. Half the colony is grumbling. I'm not.</li>
+      </plain>
+      <warm><li>A good decision today. I hope the others come round to it.</li></warm>
+      <blunt><li>So it's {DECREE}. Finally. The complainers can complain.</li></blunt>
+      <cheerful><li>Wonderful news: {DECREE}! I may be the only one cheering. I'm cheering twice as loud.</li></cheerful>
+      <gloomy><li>For once the council did what I'd have done. Unsettling.</li></gloomy>
+      <cold><li>Decree of {DECREE}: correct.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Journal_DecreeHated</defName>
+    <lines>
+      <plain>
+        <li>Now it's {DECREE}. Of course. Nobody asked me.</li>
+        <li>The council declared {DECREE} today. Counting the days until it ends.</li>
+      </plain>
+      <warm><li>I'll go along with it. I won't pretend to like it.</li></warm>
+      <blunt><li>Whoever came up with {DECREE} can do my share.</li></blunt>
+      <cheerful><li>New decree! I hate it! But in a cheerful way!</li></cheerful>
+      <gloomy><li>Another rule to suffer under. The days get longer.</li></gloomy>
+      <cold><li>The council declared {DECREE} against my judgment. Noted for later.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Journal_Anniversary</defName>
+    <lines>
+      <plain>
+        <li>{YEARS} year(s) here today. I've stopped thinking of anywhere else as home.</li>
+        <li>Anniversary. They remembered. I didn't think they would.</li>
+      </plain>
+      <warm><li>Another year with these people. I'm lucky, and I know it.</li></warm>
+      <blunt><li>Another year. Still alive. Moving on.</li></blunt>
+      <cheerful><li>Happy anniversary to me! Someone even said it out loud!</li></cheerful>
+      <gloomy><li>Another year survived. The odds are catching up, I can feel it.</li></gloomy>
+      <cold><li>Tenure: {YEARS} year(s). Contribution: considerable.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Journal_Epithet</defName>
+    <lines>
+      <plain>
+        <li>They call me {TITLE} now. I pretended not to notice. I noticed.</li>
+        <li>Someone said "{TITLE}" today and meant me. I've earned that.</li>
+      </plain>
+      <warm><li>They call me {TITLE}. I hope I live up to it.</li></warm>
+      <blunt><li>Known as {TITLE} now. Took them long enough.</li></blunt>
+      <cheerful><li>I have a TITLE! They call me {TITLE}! I'm going to make everyone use it!</li></cheerful>
+      <gloomy><li>So I'm {TITLE}. Something to carve on the headstone, I suppose.</li></gloomy>
+      <cold><li>Reputation acquired: {TITLE}. Useful.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Journal_EpithetDubious</defName>
+    <lines>
+      <plain>
+        <li>They've started calling me {TITLE}. I'm told it's affectionate. I'm not convinced.</li>
+        <li>I'm {TITLE} now, apparently. I didn't get a vote.</li>
+      </plain>
+      <warm><li>They call me {TITLE}. Well, as long as they're smiling when they say it.</li></warm>
+      <blunt><li>The next person who calls me {TITLE} gets to find out why.</li></blunt>
+      <cheerful><li>They call me {TITLE}! It's not a compliment! I'm taking it as one anyway!</li></cheerful>
+      <gloomy><li>Remembered as {TITLE}. Of all the things.</li></gloomy>
+      <cold><li>Nickname assigned: {TITLE}. Inaccurate, but persistent.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Journal_Leaving</defName>
+    <lines>
+      <plain>
+        <li>I told them I'm leaving. If anything changes in three days, it'll be the first time anything has.</li>
+        <li>Packing tonight. Not everything. Just what's mine.</li>
+      </plain>
+      <warm><li>I don't want to go. Someone, please, give me a reason to stay.</li></warm>
+      <blunt><li>Done. Out. Three days.</li></blunt>
+      <cheerful><li>Leaving! New start! I'm so happy I could scream! I might be screaming!</li></cheerful>
+      <gloomy><li>I'll probably die out there. It'll still be better than being ignored in here.</li></gloomy>
+      <cold><li>Departure scheduled. Remaining here is no longer rational.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Journal_Raid</defName>
+    <lines>
+      <plain>
+        <li>They came again. We're still here. Most of us. Hands still shaking as I write this.</li>
+        <li>Another raid. I can still smell the smoke on my sleeves.</li>
+        <li>[hurt] Got hit today. It hurts to hold the pen. Writing anyway, because I can.</li>
+      </plain>
+      <warm><li>Everyone looked after each other today. That's what I want to remember, not the rest.</li></warm>
+      <blunt><li>They came. We shot them. Same as always.</li></blunt>
+      <cheerful><li>We won! I think! Everyone I like is still breathing, so: won!</li></cheerful>
+      <gloomy><li>One day they'll win. Not today. Today we were lucky.</li></gloomy>
+      <cold><li>Raid repelled. Losses acceptable. The perimeter needs work.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Journal_Grief</defName>
+    <lines>
+      <plain>
+        <li>{OTHER_nameDef} is gone. I keep starting sentences with "we should tell {OTHER_nameDef}".</li>
+        <li>Lost {OTHER_nameDef} today. Writing the name here so it's written somewhere.</li>
+      </plain>
+      <warm><li>{OTHER_nameDef}, wherever you are: thank you. For everything. I didn't say it enough.</li></warm>
+      <blunt><li>{OTHER_nameDef} died. Nothing to say that makes it better. So I won't.</li></blunt>
+      <cheerful><li>I can't be cheerful today. {OTHER_nameDef} would tell me to try. Tomorrow.</li></cheerful>
+      <gloomy><li>{OTHER_nameDef} is dead. The world got a bit darker and nobody else seems to notice.</li></gloomy>
+      <cold><li>{OTHER_nameDef} is dead. I find I am not as unaffected as I expected.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+</Defs>

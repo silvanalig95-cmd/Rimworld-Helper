@@ -330,7 +330,14 @@ namespace ColonyCouncil
                 var row = new Rect(0f, y, width, 26f);
                 if (Mouse.IsOver(row)) Widgets.DrawHighlight(row);
                 Widgets.ThingIcon(new Rect(0f, y + 1f, 24f, 24f), p);
-                Widgets.Label(new Rect(30f, y + 2f, 160f, 24f), p.LabelShort);
+                var nameRect = new Rect(30f, y + 2f, 160f, 24f);
+                Widgets.Label(nameRect, p.LabelShort);
+                var journal = comp.journals.For(p);
+                if (journal != null && journal.entries.Count > 0)
+                {
+                    Widgets.DrawHighlightIfMouseover(nameRect);
+                    if (Widgets.ButtonInvisible(nameRect)) Find.WindowStack.Add(new Dialog_Journal(journal));
+                }
                 var bar = new Rect(195f, y + 7f, 160f, 12f);
                 Widgets.FillableBar(bar, (trust + 100f) / 200f, trust >= 0f ? TrustGood : TrustBad, BaseContent.BlackTex, false);
                 Widgets.Label(new Rect(365f, y + 2f, 100f, 24f), ("CC_Trust_" + PawnStanding.LevelFor(trust)).Translate());

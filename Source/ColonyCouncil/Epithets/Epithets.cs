@@ -80,6 +80,7 @@ namespace ColonyCouncil
             CouncilGameComponent.GiveThought(p, def.dubious ? CouncilDefOf.Council_EpithetDubious : CouncilDefOf.Council_Epithet);
             if (previous != null && !def.dubious) CouncilGameComponent.GiveThought(previous, CouncilDefOf.Council_EpithetLost, p);
             comp.AddChronicle(new ChronicleEntry(ChronicleKind.Note, "CC_Chronicle_Epithet".Translate(p.LabelShort, def.label).Resolve(), p));
+            comp.journals.Write(p, def.dubious ? "Council_Journal_EpithetDubious" : "Council_Journal_Epithet", null, def.label.Named("TITLE"));
         }
 
         public void ExposeData()

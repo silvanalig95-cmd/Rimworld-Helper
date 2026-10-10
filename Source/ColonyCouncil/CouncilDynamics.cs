@@ -79,6 +79,7 @@ namespace ColonyCouncil
         public void Refuse(Wish w)
         {
             if (w == null || w.state != WishState.Open) return;
+            journals.Write(w.pawn, "Council_Journal_Refused", w);
             float pen = Settings.PenaltyScale;
             foreach (var p in w.Supporters.ToList())
             {
@@ -318,6 +319,7 @@ namespace ColonyCouncil
             Speak(who, thanks, SpeechGood);
             AddChronicle(new ChronicleEntry(ChronicleKind.WishGranted,
                 "CC_Chronicle_WishGranted".Translate(who.LabelShort, w.Label).Resolve(), who));
+            journals.Write(who, w.promised ? "Council_Journal_PromiseKept" : "Council_Journal_Granted", w);
 
             foreach (var p in w.Supporters) SetCooldown(p, w.def);
             SetCooldown(who, w.def);
@@ -495,6 +497,7 @@ namespace ColonyCouncil
             if (w.pawn.Spawned) Speak(w.pawn, line, w.promised ? SpeechSour : SpeechGrey);
             AddChronicle(new ChronicleEntry(ChronicleKind.WishExpired,
                 (w.promised ? "CC_Chronicle_PromiseBroken" : "CC_Chronicle_WishExpired").Translate(w.pawn.LabelShort, w.Label).Resolve(), w.pawn));
+            journals.Write(w.pawn, w.promised ? "Council_Journal_PromiseBroken" : "Council_Journal_Lapsed", w);
             foreach (var p in w.Supporters) SetCooldown(p, w.def, 1.5f);
             w.state = WishState.Expired;
             Safe("objection", () => ResolveObjection(w, false));
@@ -599,6 +602,7 @@ namespace ColonyCouncil
             if (s.enableWishes) decrees.DailyRequests(this);
             if (s.anniversaries) Anniversaries();
             epithets.Daily(this);
+            journals.Daily();
             foreach (var p in PawnsFinder.AllMaps_FreeColonists.ToList())
             {
                 var st = standings.For(p, false);
@@ -667,6 +671,7 @@ namespace ColonyCouncil
                 "CC_QuittingText".Translate(p.Named("PAWN")).Resolve() + (say != null ? "\n\n\"" + say + "\"" : ""), LetterDefOf.ThreatSmall, new LookTargets(p));
             Speak(p, say, SpeechSour);
             AddChronicle(new ChronicleEntry(ChronicleKind.Note, "CC_Chronicle_Quitting".Translate(p.LabelShort).Resolve(), p));
+            journals.Write(p, "Council_Journal_Leaving");
         }
 
         private void Quit(Pawn p, PawnStanding st)
@@ -712,6 +717,7 @@ namespace ColonyCouncil
                     line = line.Formatted(fan.Named("PAWN")).Resolve();
                     text.Append("\n\n").Append("CC_Decree_Cheers".Translate(fan.Named("PAWN")).Resolve()).Append(" \"").Append(line).Append("\"");
                     Speak(fan, line, SpeechGood);
+                    journals.Write(fan, "Council_Journal_DecreeLiked", null, def.label.Named("DECREE"));
                 }
             }
             var critic = haters.FirstOrDefault();
@@ -723,6 +729,7 @@ namespace ColonyCouncil
                     line = line.Formatted(critic.Named("PAWN")).Resolve();
                     text.Append("\n\n").Append("CC_Decree_Grumbles".Translate(critic.Named("PAWN")).Resolve()).Append(" \"").Append(line).Append("\"");
                     Speak(critic, line, SpeechSour);
+                    journals.Write(critic, "Council_Journal_DecreeHated", null, def.label.Named("DECREE"));
                 }
             }
             if (lovers.Count + haters.Count > 0)
@@ -795,6 +802,7 @@ namespace ColonyCouncil
                     GiveThought(friend, CouncilDefOf.Council_FriendAnniversary, p);
                 }
                 AddChronicle(new ChronicleEntry(ChronicleKind.Note, "CC_Chronicle_Anniversary".Translate(p.LabelShort, years).Resolve(), p));
+                journals.Write(p, "Council_Journal_Anniversary", null, years.Named("YEARS"));
             }
         }
     }

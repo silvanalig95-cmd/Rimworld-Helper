@@ -951,4 +951,10 @@ Granting one of {PAWN_possessive} wishes, or keeping a promise, can win {PAWN_ob
   <CC_Goal_RaidSettlementAny>Destroy a hostile settlement</CC_Goal_RaidSettlementAny>
   <CC_Goal_Quests>Complete {0} quest(s) ({1} so far)</CC_Goal_Quests>
 
+  <!-- Journals -->
+  <CC_Journal_Title>The journal of {0}</CC_Journal_Title>
+  <CC_Journal_Empty>Nothing written yet.</CC_Journal_Empty>
+  <CC_Settings_Journals>Colonists keep journals</CC_Settings_Journals>
+  <CC_Settings_Journals_Tip>Each colonist writes a line in their own voice when something happens to them: wishes granted or ignored, promises, decrees, raids, losses, names earned. Click a name in the Wishes tab's trust list to read it.</CC_Settings_Journals_Tip>
+
 </LanguageData>
