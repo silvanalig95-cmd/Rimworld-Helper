@@ -48,7 +48,7 @@ namespace ColonyCouncil
                         if (weather.snowRate > 0.01f) tags.Add("snow");
                         else if (weather.rainRate > 0.01f) tags.Add("rain");
                         if (weather.defName.Contains("Fog")) tags.Add("fog");
-                        if (weather.defName.Contains("Thunder") || weather.defName.Contains("Storm")) tags.Add("storm");
+                        if (IsStorm(weather)) tags.Add("storm");
                         if (!weather.isBad && weather.rainRate <= 0.01f && weather.snowRate <= 0.01f) tags.Add("clear");
                     }
                     float temp = map.mapTemperature.OutdoorTemp;
@@ -250,6 +250,14 @@ namespace ColonyCouncil
         /// Age in human years, for races that live much longer or shorter than people (alien race mods):
         /// a 300-year-old elf with a lifespan of 1000 counts as about 24.
         /// </summary>
+        /// <summary>Thunderstorms, dust storms, petal storms: any weather with "storm" or "thunder" in its name.</summary>
+        public static bool IsStorm(WeatherDef w)
+        {
+            if (w == null) return false;
+            string n = w.defName.ToLowerInvariant();
+            return n.Contains("thunder") || n.Contains("storm");
+        }
+
         public static float HumanAge(Pawn p)
         {
             if (p?.ageTracker == null) return 0f;

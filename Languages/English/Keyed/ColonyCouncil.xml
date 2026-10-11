@@ -720,6 +720,22 @@
   <CC_Adv_Cond_PsychicDrone_Detail>A drone grinds on the minds of one gender ({0} left). Watch moods: give recreation time, good food and rest to those affected.</CC_Adv_Cond_PsychicDrone_Detail>
   <CC_Adv_Cond_NoxiousHaze_Title>Noxious haze</CC_Adv_Cond_NoxiousHaze_Title>
   <CC_Adv_Cond_NoxiousHaze_Detail>Polluted haze ({0} left). Keep people indoors where you can; it harms lungs over time.</CC_Adv_Cond_NoxiousHaze_Detail>
+  <CC_Adv_Cond_VEE_Drought_Title>Drought</CC_Adv_Cond_VEE_Drought_Title>
+  <CC_Adv_Cond_VEE_Drought_Detail>A drought ({0} left): outdoor crops and wild plants barely grow and start to die, and fire spreads faster. Harvest what you can, lean on stores, hunting and trade, and keep a firebreak around the fields.</CC_Adv_Cond_VEE_Drought_Detail>
+  <CC_Adv_Cond_VEE_Whiteout_Title>Whiteout</CC_Adv_Cond_VEE_Whiteout_Title>
+  <CC_Adv_Cond_VEE_Whiteout_Detail>A whiteout of bitter cold and snow ({0} left). Keep everyone indoors and warm, keep the fires fed, and make sure the woodpile lasts.</CC_Adv_Cond_VEE_Whiteout_Detail>
+  <CC_Adv_Cond_VEE_Scorch_Title>Scorch</CC_Adv_Cond_VEE_Scorch_Title>
+  <CC_Adv_Cond_VEE_Scorch_Detail>Scorching heat ({0} left). Keep people in the shade and in cool rooms through the day, watch for heatstroke, and eat the food that spoils first.</CC_Adv_Cond_VEE_Scorch_Detail>
+  <CC_Adv_Cond_VEE_LongNight_Title>The long night</CC_Adv_Cond_VEE_LongNight_Title>
+  <CC_Adv_Cond_VEE_LongNight_Detail>The sun doesn't rise ({0} left). Outdoor crops can't grow and the cold sets in: light and heat the colony, and live off the stores.</CC_Adv_Cond_VEE_LongNight_Detail>
+  <CC_Adv_Cond_AB_AcidRainCondition_Title>Acid rain</CC_Adv_Cond_AB_AcidRainCondition_Title>
+  <CC_Adv_Cond_AB_AcidRainCondition_Detail>Acid rain ({0} left) harms people and plants caught out in it. Keep colonists and animals under a roof until it passes.</CC_Adv_Cond_AB_AcidRainCondition_Detail>
+  <CC_Adv_Cond_AB_VolcanicHeatWave_Title>Volcanic heat</CC_Adv_Cond_AB_VolcanicHeatWave_Title>
+  <CC_Adv_Cond_AB_VolcanicHeatWave_Detail>Volcanic heat ({0} left). Keep people in the shade and in cool rooms, and watch for heatstroke.</CC_Adv_Cond_AB_VolcanicHeatWave_Detail>
+  <CC_Adv_Cond_Earthquake_Title>Earthquake</CC_Adv_Cond_Earthquake_Title>
+  <CC_Adv_Cond_Earthquake_Detail>Tremors ({0} left) run along a fault line, wrecking buildings and floors in their path; lit braziers, torches and campfires there can start fires. Keep people clear of the line and firefighters ready.</CC_Adv_Cond_Earthquake_Detail>
+  <CC_Adv_Cond_Wildfire_Title>Wildfire</CC_Adv_Cond_Wildfire_Title>
+  <CC_Adv_Cond_Wildfire_Detail>A wildfire is spreading ({0} left). Fight it, cut firebreaks by clearing plants, and keep people, stores and animals away from the flames.</CC_Adv_Cond_Wildfire_Detail>
   <CC_Adv_Cond_Drought_Title>Drought</CC_Adv_Cond_Drought_Title>
   <CC_Adv_Cond_Drought_Detail>The land is parched ({0} left). Crops grow poorly; lean on stores, hunting and trade.</CC_Adv_Cond_Drought_Detail>
   <CC_Adv_Cond_Eclipse_Title>Eclipse</CC_Adv_Cond_Eclipse_Title>

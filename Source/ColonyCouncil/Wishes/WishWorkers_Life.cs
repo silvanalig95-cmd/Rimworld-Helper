@@ -176,7 +176,7 @@ namespace ColonyCouncil
             if (map == null || animals == null || animals.TotallyDisabled || !People.Passionate(animals)) yield break;
             if (pawn.WorkTypeIsDisabled(WorkTypeDefOf.Handling)) yield break;
             var wild = map.mapPawns.AllPawnsSpawned
-                .Where(a => a.RaceProps.Animal && a.Faction == null && !a.Downed && a.GetStatValue(StatDefOf.Wildness) < 0.85f
+                .Where(a => a.RaceProps.Animal && a.Faction == null && !a.Downed && SafeToTame(a)
                             && a.def.race.trainability != null && !map.fogGrid.IsFogged(a.Position))
                 .ToList();
             if (wild.Count == 0) yield break;
@@ -189,6 +189,17 @@ namespace ColonyCouncil
 
         public override bool IsFulfilled(Wish wish) => RoomUtil.ColonyAnimalCount(wish.Beneficiary.MapHeld) > wish.baseline;
 
+        /// <summary>
+        /// Safe to go after without anyone's say-so: not too wild, not a predator, not huge, and unlikely to turn on a
+        /// tamer who fails. Animal mods add plenty of beasts that look tameable and aren't safe to try.
+        /// </summary>
+        private static bool SafeToTame(Pawn a)
+        {
+            var r = a.RaceProps;
+            return r != null && !r.predator && r.baseBodySize <= 2.5f && r.manhunterOnTameFailChance <= 0.05f
+                   && a.GetStatValue(StatDefOf.Wildness) < 0.85f;
+        }
+
         public override InspirationDef InspirationFor(Wish wish) => InspirationDefOf.Inspired_Taming;
 
         /// <summary>They pick an animal and mark it for taming.</summary>
@@ -198,7 +209,7 @@ namespace ColonyCouncil
             var map = pawn.MapHeld;
             if (map == null) return null;
             var animal = map.mapPawns.AllPawnsSpawned
-                .Where(a => a.RaceProps.Animal && a.Faction == null && !a.Downed && a.GetStatValue(StatDefOf.Wildness) < 0.85f
+                .Where(a => a.RaceProps.Animal && a.Faction == null && !a.Downed && SafeToTame(a)
                             && a.def.race.trainability != null && !map.fogGrid.IsFogged(a.Position)
                             && map.designationManager.DesignationOn(a) == null)
                 .OrderBy(a => a.Position.DistanceTo(pawn.Position))

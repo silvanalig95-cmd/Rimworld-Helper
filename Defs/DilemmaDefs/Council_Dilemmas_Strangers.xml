@@ -440,6 +440,8 @@
       <kind>Wild</kind>
       <predator>true</predator>
       <maxDistance>40</maxDistance>
+      <!-- Wolves and bears, not the megafauna and dinosaurs of animal mods. -->
+      <maxBodySize>2.6</maxBodySize>
     </stranger>
     <texts>
       <li>{A_nameDef} came back from work pale: {X_indefinite} has made a den close to the colony and has been watching the paths. It hasn't attacked anyone yet. It did eat something large last night, and {A_nameDef} found what was left.\n\n{B_nameDef}, who handles the colony's animals, wants to try taming it. Others want it dead before it decides people are food. Everyone agrees on keeping their voices down, because it can probably hear.</li>

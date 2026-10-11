@@ -289,7 +289,18 @@ namespace ColonyCouncil
             { "NoxiousHaze", 0.5f },
             { "Drought", 0.4f },
             { "Eclipse", 0.25f },
-            { "Aurora", 0.05f }
+            { "Aurora", 0.05f },
+            // Vanilla Events Expanded
+            { "VEE_Drought", 0.45f },
+            { "VEE_Whiteout", 0.6f },
+            { "VEE_Scorch", 0.6f },
+            { "VEE_LongNight", 0.6f },
+            // Alpha Biomes
+            { "AB_AcidRainCondition", 0.45f },
+            { "AB_VolcanicHeatWave", 0.5f },
+            // Seasonal Weather
+            { "Earthquake", 0.6f },
+            { "Wildfire", 0.7f }
         };
 
         private static readonly Dictionary<string, string> ConditionArticles = new Dictionary<string, string>
@@ -299,7 +310,15 @@ namespace ColonyCouncil
             { "HeatWave", "Council_Alm_3_18_HeatWaveColdSnap" },
             { "ColdSnap", "Council_Alm_3_18_HeatWaveColdSnap" },
             { "Eclipse", "Council_Alm_3_19_EclipseVolcanicWinter" },
-            { "VolcanicWinter", "Council_Alm_3_19_EclipseVolcanicWinter" }
+            { "VolcanicWinter", "Council_Alm_3_19_EclipseVolcanicWinter" },
+            { "VEE_Drought", "Council_AlmMod_B_VEE" },
+            { "VEE_Whiteout", "Council_AlmMod_B_VEE" },
+            { "VEE_Scorch", "Council_AlmMod_B_VEE" },
+            { "VEE_LongNight", "Council_AlmMod_B_VEE" },
+            { "AB_AcidRainCondition", "Council_AlmMod_D_AlphaBiomes" },
+            { "AB_VolcanicHeatWave", "Council_AlmMod_D_AlphaBiomes" },
+            { "Earthquake", "Council_AlmMod_D_SeasonalWeather" },
+            { "Wildfire", "Council_AlmMod_D_SeasonalWeather" }
         };
 
         public override IEnumerable<AdvisorSignal> Evaluate(Map map)

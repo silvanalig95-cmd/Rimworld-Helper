@@ -233,7 +233,7 @@ namespace ColonyCouncil
                 case QuirkCondition.Storm:
                 {
                     var w = map?.weatherManager?.curWeather;
-                    return w != null && (w.defName.Contains("Thunder") || w.defName.Contains("Storm")) ? ThoughtState.ActiveAtStage(0) : ThoughtState.Inactive;
+                    return Flavor.IsStorm(w) ? ThoughtState.ActiveAtStage(0) : ThoughtState.Inactive;
                 }
                 case QuirkCondition.Rain:
                     return (map?.weatherManager?.curWeather?.rainRate ?? 0f) > 0.01f ? ThoughtState.ActiveAtStage(0) : ThoughtState.Inactive;
