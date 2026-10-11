@@ -17,7 +17,7 @@
       </plain>
       <warm><li>I never want to cut anyone's portion in half again. Let's store what we can while the fields still give it.</li></warm>
       <blunt><li>Empty shelves make people stupid and mean. Fill them.</li></blunt>
-      <cheerful><li>Sacks in every corner and shelves stacked to the ceiling!</li></cheerful>
+      <cheerful><li>Sacks in every corner, and a pantry so full you have to squeeze in sideways!</li></cheerful>
       <gloomy><li>I expect every colony that starved thought it had enough put away.</li></gloomy>
       <cold><li>Hunger is the one threat we can predict to the day. I've done the count, and we're short.</li></cold>
     </pitch>
@@ -148,7 +148,7 @@
       <plain><li>Three turrets on the approaches. They'll see raiders before we do, and they never ask for a day off.</li></plain>
       <warm><li>Turrets can take the first hits, so the rest of us don't have to.</li></warm>
       <blunt><li>I'm tired of being the one who stands in the open. Let a machine do it.</li></blunt>
-      <cheerful><li>Three turrets, and I'm going to name every one of them!</li></cheerful>
+      <cheerful><li>Three turrets! I'm going to polish them every morning, and I'll be very sad when they explode.</li></cheerful>
       <gloomy><li>A turret doesn't freeze up when the shooting starts. Some of us do.</li></gloomy>
       <cold><li>A turret costs less than a colonist and complains less. Build three.</li></cold>
     </pitch>
@@ -260,7 +260,7 @@
       <blunt><li>We're still doing everything the hard way because nobody's bothered to learn the easy way. Let me.</li></blunt>
       <cheerful><li>A lab with notes pinned to every wall! I can't wait to get started.</li></cheerful>
       <gloomy><li>The raiders are getting smarter. We'd better get smarter faster.</li></gloomy>
-      <cold><li>Every project we finish keeps paying off for as long as the colony stands.</li></cold>
+      <cold><li>A finished project keeps paying off for as long as the colony stands. Few things we buy do that.</li></cold>
     </pitch>
     <achieved>
       <plain><li>Three projects done. My head hurts in the good way.</li></plain>
@@ -452,7 +452,7 @@
       <blunt><li>Wood walls are just firewood we've agreed to live inside.</li></blunt>
       <cheerful><li>Stone walls have a wonderful echo! They don't burn, either.</li></cheerful>
       <gloomy><li>Lightning, a careless cook, a pyromaniac with a grudge. It only takes one.</li></gloomy>
-      <cold><li>Wood is temporary. We are not planning to be temporary.</li></cold>
+      <cold><li>Wooden walls need rebuilding after every fire. Stone doesn't.</li></cold>
     </pitch>
     <achieved>
       <plain><li>Stone, nearly all of it. I knocked on a wall today just to hear how solid it is.</li></plain>
@@ -595,7 +595,7 @@
     <ambition>Council_Amb_FriendsAbroad</ambition>
     <pitch>
       <plain><li>Every caravan that leaves here thinks better or worse of us than when it came. I'd like it to be better.</li></plain>
-      <warm><li>The next time a trader's caravan limps in hungry, let's feed them. That's how friendships start out here.</li></warm>
+      <warm><li>The next time a trader's caravan limps in hungry, let's feed them and send them off with extra.</li></warm>
       <blunt><li>Somewhere out there is a faction with more guns than sense. I'd like them on our side.</li></blunt>
       <cheerful><li>People who wave when they see us coming, instead of shooting!</li></cheerful>
       <gloomy><li>When a raid comes that we can't handle, no one out there will send help unless we've given them a reason to.</li></gloomy>
@@ -612,7 +612,7 @@
     <ambition>Council_Amb_FinerThings</ambition>
     <pitch>
       <plain><li>Just once I'd like to sit on a chair that somebody cared about while making it.</li></plain>
-      <warm><li>Something well made lasts. I'd like to give this place a few things that last.</li></warm>
+      <warm><li>I'd like to give this place a few things that will outlast us.</li></warm>
       <blunt><li>Everything here looks like it was built during a raid. Mostly because it was.</li></blunt>
       <cheerful><li>Two beautiful things to start with, then four, then a museum!</li></cheerful>
       <gloomy><li>Most days I can't tell if anything we do matters. A well-made thing would.</li></gloomy>

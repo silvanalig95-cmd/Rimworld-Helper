@@ -41,7 +41,7 @@
       <warm><li>I've mastered {SKILL}. Now I want to teach it to anyone who'll listen.</li></warm>
       <gloomy><li>I'm a master of {SKILL} now. I thought I'd feel more different than I do.</li></gloomy>
       <blunt><li>Master of {SKILL}. Took long enough. Now stop asking me for tips while I'm working.</li></blunt>
-      <cold><li>Mastery of {SKILL}. There's always further to go, and I intend to.</li></cold>
+      <cold><li>Mastery of {SKILL}. There's always a level beyond this one, and I'll find it.</li></cold>
     </achieved>
   </ColonyCouncil.AspirationDef>
 
@@ -322,7 +322,7 @@
         <li>I'd like to see this place full, with noise at dinner and arguments over chores, like a real town.</li>
       </plain>
       <warm><li>I want so many people here I forget some of their names. Then I'll learn them all again.</li></warm>
-      <cheerful><li>So many neighbors that we need a second dining room! That's what I'm hoping for.</li></cheerful>
+      <cheerful><li>Enough neighbors that we need a second dining room! And then a third.</li></cheerful>
       <cold><li>Small colonies die of one bad season. I want to see us grow out of that danger.</li></cold>
     </chosen>
     <achieved>
@@ -464,7 +464,7 @@
     </chosen>
     <achieved>
       <plain>
-        <li>Five wild animals that would follow me anywhere now. Better company than most people.</li>
+        <li>Five wild animals that would follow me anywhere now. One of them sleeps across my doorway.</li>
       </plain>
       <blunt><li>Five tamed. They listen better than most of you.</li></blunt>
       <warm><li>Five wild hearts trust me now. I'll never give them a reason not to.</li></warm>
@@ -537,7 +537,7 @@
       <plain>
         <li>[spark:loss] They killed someone I loved. Now I know what I'm living for.</li>
         <li>[inherited] {NAME} wanted them to pay, and died before they did. I'll {GOAL}, for {NAME} as well.</li>
-        <li>I don't care about comfort anymore, or peace. I care about making them pay.</li>
+        <li>I don't care about comfort anymore, or peace. I'm going to find the ones who did this.</li>
         <li>I sat at the grave until dark and made a promise. I intend to keep it.</li>
         <li>[lowmood] I can't sleep. I can't eat. The only thing I can think about is making them pay.</li>
       </plain>

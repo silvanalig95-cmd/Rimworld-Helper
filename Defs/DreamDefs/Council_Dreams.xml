@@ -113,7 +113,7 @@
     <afterThreat>true</afterThreat>
     <lines>
       <plain>
-        <li>In my dream the fight never ended. They kept coming over the wall, and my arms were too heavy to lift.</li>
+        <li>The fight never ended in my dream. They kept coming over the wall, and my arms were too heavy to lift.</li>
         <li>Dreamt I was still behind the sandbags, keeping watch, long after the others had gone in to eat.</li>
         <li>[again] The same fight, every night. I know every shot by now.</li>
         <li>Last night I dreamt the raiders were back at the door, and I couldn't remember where I'd put my weapon.</li>
@@ -135,9 +135,9 @@
     <lines>
       <plain>
         <li>Fought it all again in my sleep, and this time I saw every move before it came. I woke up calm.</li>
-        <li>We held the line, and they broke against it like water on rock.</li>
+        <li>We held the line in my dream, and they broke against it like water on rock.</li>
       </plain>
-      <blunt><li>Dreamt I won the fight on my own. Woke up ready for the next one.</li></blunt>
+      <blunt><li>Won the whole fight on my own last night, in a dream. Ready for the next one.</li></blunt>
       <cold><li>The fight again, in my sleep, with every angle covered. I'm ready.</li></cold>
     </lines>
     <effects>
@@ -153,7 +153,7 @@
     <withinDays>4</withinDays>
     <lines>
       <plain>
-        <li>Back there again last night, at the end. I kept saying the wrong thing.</li>
+        <li>Back there again in my sleep, at the end. I kept saying the wrong thing.</li>
         <li>In the dream the grave was empty when we came back to fill it, and the dirt was still piled neatly beside it.</li>
         <li>I kept trying to stop the bleeding all night, and my hands went straight through.</li>
       </plain>
@@ -172,7 +172,7 @@
         <li>In my dream I had the perfect answer for {OTHER_nameDef}. I've been trying to remember it all morning.</li>
         <li>{OTHER_nameDef} came to my door in the dream to apologize. I let {OTHER_objective} stand there a while.</li>
       </plain>
-      <blunt><li>Dreamt I knocked {OTHER_nameDef} flat. Felt good. Still angry.</li></blunt>
+      <blunt><li>Knocked {OTHER_nameDef} flat last night. Only in a dream, worse luck.</li></blunt>
       <warm><li>{OTHER_nameDef} and I sat down and talked it through, in the dream. Maybe we could do that for real.</li></warm>
     </lines>
     <changeTie>Rivals</changeTie>
@@ -190,7 +190,7 @@
         <li>Dreamt I stood before the council and talked until my throat hurt, and no sound came out of me at all.</li>
         <li>Last night I asked the council for one small thing, and they built a wall around me, stone by stone.</li>
       </plain>
-      <blunt><li>Dreamt about the council ignoring me. It's not far off.</li></blunt>
+      <blunt><li>Had a dream the council ignored me. Not much of a dream.</li></blunt>
       <gloomy><li>In the dream the council had forgotten my name, and by the end I'd forgotten it as well.</li></gloomy>
     </lines>
     <effects>
@@ -207,7 +207,7 @@
     <lines>
       <plain>
         <li>Dreamt the council came to my door just to say thank you. I didn't know what to do with my hands.</li>
-        <li>The colony was a cart in my dream, and we were all pulling it the same way.</li>
+        <li>The colony was a big cart, and we were all pulling it the same way.</li>
       </plain>
       <cheerful><li>The council gave me a medal made of cake, and I ate it right there in the meeting!</li></cheerful>
     </lines>
@@ -289,7 +289,7 @@
     <weight>0.6</weight>
     <lines>
       <plain>
-        <li>{OTHER_nameDef} walked out into the snow and didn't look back. I couldn't move my legs.</li>
+        <li>In the dream {OTHER_nameDef} walked out into the snow and didn't look back, and I couldn't move my legs.</li>
         <li>Called out to {OTHER_nameDef} in the dream, and {OTHER_pronoun} looked at me like a stranger.</li>
       </plain>
       <warm><li>Dreamt I lost {OTHER_nameDef}. First thing this morning I went and found {OTHER_objective}, just to see.</li></warm>
@@ -306,7 +306,7 @@
     <lines>
       <plain>
         <li>In my dream {OTHER_nameDef} sat on the council, and the first decree was about me.</li>
-        <li>{OTHER_nameDef} followed me around all night, never saying a word, just watching.</li>
+        <li>{OTHER_nameDef} followed me around all night in my dream, never saying a word, just watching.</li>
       </plain>
       <blunt><li>Even in my sleep, {OTHER_nameDef}. Can't get away from {OTHER_objective}.</li></blunt>
       <cold><li>{OTHER_nameDef} appeared in my dream. I don't care for the company.</li></cold>
@@ -324,7 +324,7 @@
     <dreamer><minMood>0.45</minMood></dreamer>
     <lines>
       <plain>
-        <li>{OTHER_nameDef} and I were stranded somewhere dry, passing the last waterskin back and forth. We got along fine.</li>
+        <li>{OTHER_nameDef} and I were stranded somewhere dry in the dream, passing the last waterskin back and forth. We got along fine.</li>
         <li>Dreamt {OTHER_nameDef} pulled me out of a river. I don't know what to do with that.</li>
       </plain>
       <warm><li>In the dream {OTHER_nameDef} and I shook hands and meant it. Maybe we could.</li></warm>
@@ -342,7 +342,7 @@
     <lines>
       <plain>
         <li>{OTHER_nameDef} and I were old, really old, sitting outside a house we'd built.</li>
-        <li>Dreamt {OTHER_nameDef} was singing in the next room. I lay there and listened.</li>
+        <li>{OTHER_nameDef} was singing in the next room in my dream. I lay there and listened.</li>
       </plain>
       <blunt><li>Dreamt about {OTHER_nameDef}. Not telling anyone the details.</li></blunt>
       <gloomy><li>Dreamt I lost {OTHER_nameDef}. I held on tighter than usual this morning.</li></gloomy>
@@ -357,9 +357,9 @@
     <children>true</children>
     <lines>
       <plain>
-        <li>{OTHER_nameDef} went over {SKILL} with me again, slower this time, and I understood every step.</li>
+        <li>In my sleep {OTHER_nameDef} went over {SKILL} with me again, slower this time, and I understood every step.</li>
         <li>Dreamt I was doing {SKILL} while {OTHER_nameDef} watched, and {OTHER_pronoun} didn't correct me once.</li>
-        <li>Last night {OTHER_nameDef} and I did {SKILL} side by side, and I kept up the whole way.</li>
+        <li>{OTHER_nameDef} and I did {SKILL} side by side in the dream, and I kept up the whole way.</li>
       </plain>
     </lines>
     <effects>
@@ -398,9 +398,9 @@
     <children>true</children>
     <lines>
       <plain>
-        <li>Dreamt {PET_nameDef} could talk, and wanted to know when dinner was.</li>
-        <li>Ran across open country with {PET_nameDef} all night, nothing chasing us and nowhere to be.</li>
-        <li>Last night {PET_nameDef} curled up on my chest, heavy and warm, and I didn't move until morning.</li>
+        <li>{PET_nameDef} could talk in my dream, and wanted to know when dinner was.</li>
+        <li>In the dream {PET_nameDef} and I ran across open country, nothing chasing us and nowhere to be.</li>
+        <li>Dreamt {PET_nameDef} curled up on my chest, heavy as a sack of grain, and I didn't move till morning.</li>
       </plain>
       <cheerful><li>{PET_nameDef} was the size of a house in my dream and we went everywhere together!</li></cheerful>
     </lines>
@@ -469,8 +469,8 @@
     <weight>0.25</weight>
     <lines>
       <plain>
-        <li>Bells, and pack animals coming over the hill from the east, loaded down.</li>
-        <li>Strangers came with carts full of what we needed, and they only wanted what we had too much of.</li>
+        <li>Bells in my dream, and pack animals coming over the hill from the east, loaded down.</li>
+        <li>In the dream strangers came with carts full of what we needed, and they only wanted what we had too much of.</li>
       </plain>
     </lines>
     <omen><incident>TraderCaravanArrival</incident><days>1~3</days><good>true</good></omen>
@@ -483,7 +483,7 @@
     <weight>0.2</weight>
     <lines>
       <plain>
-        <li>A stranger walked out of the trees and sat down at our fire like they'd always lived here. We handed them a bowl.</li>
+        <li>Dreamt a stranger walked out of the trees and sat down at our fire like they'd always lived here. We handed them a bowl.</li>
         <li>There was an extra chair at the table in my dream, and I knew someone was coming to sit in it.</li>
       </plain>
     </lines>
@@ -497,7 +497,7 @@
     <weight>0.2</weight>
     <lines>
       <plain>
-        <li>Torches in the dark, dozens of them, coming closer. I was the only one awake to see them.</li>
+        <li>Torches in the dark, dozens of them, coming closer, and in the dream I was the only one awake to see them.</li>
         <li>Dreamt of wolves circling the walls, walking on two legs and carrying weapons.</li>
       </plain>
       <cold><li>I dreamt of an attack, in detail. Probably anxiety. I'd still check the defenses.</li></cold>
@@ -531,7 +531,7 @@
     <lines>
       <plain>
         <li>Stars fell into the field. When we went out to look, they were full of gifts.</li>
-        <li>Last night crates came down out of the clouds, slow as seeds, and landed in the grass.</li>
+        <li>In my dream crates came down out of the clouds, slow as seeds, and landed in the grass.</li>
       </plain>
     </lines>
     <omen><incident>ResourcePodCrash</incident><days>1~3</days><good>true</good></omen>

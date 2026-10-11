@@ -326,7 +326,7 @@
         <li>I caught myself explaining something today that I didn't know a year ago, and explaining it well. I think I'm a scholar now.</li>
       </plain>
       <cheerful><li>I know so many things now! Please, somebody ask me something.</li></cheerful>
-      <cold><li>My understanding is thorough now, and still incomplete. It will stay incomplete.</li></cold>
+      <cold><li>My understanding is thorough now, and still incomplete. I find I like it that way.</li></cold>
     </achieved>
   </ColonyCouncil.AspirationDef>
 
@@ -372,7 +372,7 @@
     <who><canFight>true</canFight><notTrait><li>Wimp</li></notTrait></who>
     <chosen>
       <plain>
-        <li>[inherited] {NAME} always knew where to put people when the alarm went. I'll {GOAL} and keep {NAME}'s plans.</li>
+        <li>[inherited] {NAME} always knew where to put people when the alarm went. I'll {GOAL} and follow {NAME}'s plans.</li>
         <li>When the alarm goes, people look around for someone to tell them what to do. I want it to be me they look at.</li>
         <li>[afterraid] That raid was chaos, with no one in charge and everyone shouting. Next time I want to be marshal, and I want there to be a plan.</li>
       </plain>
@@ -537,7 +537,7 @@
     <sparks><li>birth</li></sparks>
     <chosen>
       <plain>
-        <li>[inherited] Back when there were only a handful of us, {NAME} was already calling this place a town. I'll {GOAL} and make it true.</li>
+        <li>[inherited] Back when we all ate at one small table, {NAME} was already calling this place a town. I'll {GOAL} and make it true.</li>
         <li>I want a town. Not a camp, not a hideout. A town, with neighbors you don't like and gossip that travels.</li>
         <li>[small] There's only a handful of us. One bad raid and we're gone. I want this place to grow until nothing can wipe it out.</li>
       </plain>

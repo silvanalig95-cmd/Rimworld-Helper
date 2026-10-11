@@ -243,7 +243,7 @@
         <li>I'd like the dining room to be somewhere grand, with a good floor and some art on the walls.</li>
       </plain>
       <warm>
-        <li>The dining room is where we see each other every day. It should be a beautiful room.</li>
+        <li>The dining room is where we see each other every day. It deserves better than a dirt floor and a wobbly table.</li>
       </warm>
       <blunt>
         <li>Our dining room looks like a pirate's latrine. Build a proper hall.</li>
@@ -290,7 +290,7 @@
     </goals>
     <pitch>
       <plain>
-        <li>We work all day, and in the evenings there's nothing to do but sit on the steps. I propose a rec room.</li>
+        <li>We work all day, and in the evenings the only entertainment is the cook's singing. I propose a rec room.</li>
       </plain>
       <warm>
         <li>After a hard day we need somewhere to sit and laugh together. A rec room would give us that.</li>
@@ -540,16 +540,16 @@
     </goals>
     <pitch>
       <plain>
-        <li>Our clothes, tools and weapons all have to be made somewhere. I'd like a real workshop to make them in.</li>
+        <li>Our clothes, tools and weapons all have to be made somewhere, and right now that's a corner of the storeroom.</li>
       </plain>
       <warm>
-        <li>Give me a real workshop and I'll keep all of you in decent boots and coats.</li>
+        <li>I'd keep all of you in decent boots and coats if I had a real workshop to work in.</li>
       </warm>
       <blunt>
         <li>You want gear? Then give me a workshop, not a bench in the rain.</li>
       </blunt>
       <cheerful>
-        <li>A real workshop, smelling of sawdust and glue! I can't wait.</li>
+        <li>A workshop that smells of sawdust and glue! I can't wait.</li>
       </cheerful>
       <gloomy>
         <li>Everything we own is falling apart, and there's nowhere decent to make new things.</li>
@@ -584,10 +584,10 @@
     </goals>
     <pitch>
       <plain>
-        <li>I'd like three sculptures in the dining room, where we'll see them every day.</li>
+        <li>Three sculptures in the dining room, where we'll see them every day. I've already picked the spots.</li>
       </plain>
       <warm>
-        <li>We eat every meal looking at the same bare wall. A sculpture by the door would do us good.</li>
+        <li>Something beautiful in the room where we eat would do us all good, after the year we've had.</li>
       </warm>
       <blunt>
         <li>The dining room is depressing. Let me put some art in it.</li>
@@ -686,7 +686,7 @@
         <li>Give me a quiet room with a research bench and I'll finish three projects for us.</li>
       </plain>
       <warm>
-        <li>There are better ways to do half the jobs around here, and I'd like to find them.</li>
+        <li>I'd like to find easier ways to do the work that's wearing all of you down.</li>
       </warm>
       <blunt>
         <li>We're stumbling around in the dark. Let me do some actual research.</li>
