@@ -13,6 +13,7 @@ namespace ColonyCouncil
         public ColonyCouncilMod(ModContentPack content) : base(content)
         {
             Settings = GetSettings<CouncilSettings>();
+            RimfolkPatches.ApplyAll();
         }
 
         public override string SettingsCategory() => "Rimfolk";

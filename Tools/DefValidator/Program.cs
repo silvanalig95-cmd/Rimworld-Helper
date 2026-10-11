@@ -16,6 +16,23 @@ var errors = new List<string>();
 var warnings = new List<string>();
 
 var paths = Directory.GetFiles(refDir, "*.dll").Append(modDll).ToList();
+// Optional extra reference assemblies (e.g. Harmony) as a 4th argument: a folder or a dll.
+if (args.Length > 3)
+{
+    var extra = Path.GetFullPath(args[3]);
+    if (Directory.Exists(extra)) paths.AddRange(Directory.GetFiles(extra, "*.dll", SearchOption.AllDirectories));
+    else if (File.Exists(extra)) paths.Add(extra);
+}
+// Harmony from the local NuGet cache, when present (Rimfolk's patches reference it).
+var harmonyRef = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), ".nuget/packages/lib.harmony.ref");
+if (Directory.Exists(harmonyRef) && !paths.Any(p => Path.GetFileName(p) == "0Harmony.dll"))
+{
+    var dll = Directory.GetFiles(harmonyRef, "0Harmony.dll", SearchOption.AllDirectories).OrderByDescending(f => f).FirstOrDefault();
+    if (dll != null) paths.Add(dll);
+}
+// netstandard facades, which Harmony's reference assembly points at.
+var netstd = Directory.GetFiles(Path.GetDirectoryName(typeof(object).Assembly.Location)!, "netstandard.dll");
+if (netstd.Length > 0 && !paths.Any(p => Path.GetFileName(p) == "netstandard.dll")) paths.Add(netstd[0]);
 using var mlc = new MetadataLoadContext(new PathAssemblyResolver(paths), "mscorlib");
 var ac = mlc.LoadFromAssemblyPath(Path.Combine(refDir, "Assembly-CSharp.dll"));
 var mod = mlc.LoadFromAssemblyPath(modDll);

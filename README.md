@@ -322,9 +322,11 @@ The council only suggests what your colony can actually do right now:
 
 ## Playing with other mods
 
-Rimfolk patches nothing: no Harmony, no edits to vanilla defs. It only adds its own things and reads the
-game (the one exception: the slow speeds hold back the game clock's time budget), so it shouldn't clash with
-other mods. A few things it does on purpose:
+Rimfolk needs **Harmony** (load it first; most modlists already have it). Almost everything Rimfolk does
+adds its own things and reads the game; a few small, careful Harmony patches change how the game itself behaves
+(for example Rimfolk's hints in the game's own Needs tab). Each patch switches itself off with one warning if it
+can't work alongside your other mods, and the "Deeper game hooks" setting turns them all off at once. No vanilla
+defs are edited. A few things it does on purpose:
 - **Medieval Overhaul, Vanilla Brewing Expanded and other barrel mods:** fermenting barrels, kegs and stills
   made with the Vanilla Expanded framework or Processor Framework (Medieval Overhaul's rustic fermenting barrel)
   count for brewing wishes and room plans, and a stock of social drinks (ale, mead, cider, wine) fulfils the

@@ -342,9 +342,13 @@ plain vanilla or industrial run. Every feature that touches another mod or a gam
 
 ## Technical overview
 
-Standard RimWorld mod: XML defs plus a C# assembly. No Harmony patches and no other mods
-are needed; everything hooks in through vanilla extension points (game and map components,
-a main tab, alerts, interaction workers, a designator, a choice letter).
+Standard RimWorld mod: XML defs plus a C# assembly, depending on Harmony. Most of it hooks in
+through vanilla extension points (game and map components, a main tab, inspector tabs, alerts,
+thought and interaction workers, a designator, a choice letter). Where those can't reach, small
+Harmony patches do (Source/ColonyCouncil/Patches): postfixes where possible, each applied on its
+own so one failure doesn't stop the others, each logged once if skipped, all switchable at
+runtime through the "deeper game hooks" setting. A patch has to earn its place: it changes how
+the game behaves in a way the extension points can't.
 
 ```
 About/About.xml, About/Preview.png

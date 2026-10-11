@@ -376,6 +376,53 @@ namespace ColonyCouncil
             return byKey.Values.ToList();
         }
 
+        /// <summary>One mood group as a line, for a single tooltip (the Needs tab).</summary>
+        public static MoodLine LineFor(Pawn p, Thought group)
+        {
+            var handler = p?.needs?.mood?.thoughts;
+            if (handler == null || group?.def == null) return null;
+            var line = new MoodLine { pawn = p, thought = group, def = group.def, label = group.LabelCap, why = Why(group) };
+            try
+            {
+                line.mood = handler.MoodOffsetOfGroup(group);
+                tmpThoughts.Clear();
+                handler.GetMoodThoughts(group, tmpThoughts);
+                line.count = Mathf.Max(1, tmpThoughts.Count);
+                line.ticksLeft = TicksLeft(tmpThoughts);
+            }
+            finally
+            {
+                tmpThoughts.Clear();
+            }
+            return line;
+        }
+
+        /// <summary>
+        /// The extra tooltip for a mood in the game's Needs tab: when it ends, where it's from, why (if the game's own
+        /// description doesn't already say), and what to do.
+        /// </summary>
+        public static string HintTooltip(Pawn p, Thought group)
+        {
+            try
+            {
+                var l = LineFor(p, group);
+                if (l == null) return null;
+                var parts = new System.Collections.Generic.List<string> { WhenItEnds(l) };
+                var (kind, source) = SourceOf(l.def);
+                if (kind != MoodSource.Game) parts[0] += "  ·  " + "CC_Mood_From".Translate(source).Resolve();
+                // Rimfolk's own moods already say why in their description.
+                if (!l.why.NullOrEmpty() && !(group is ICausedThought) && !(group is IExplainedThought)) parts.Add("CC_Cause_Line".Translate(l.why).Resolve());
+                string advice = Advice(l);
+                if (!advice.NullOrEmpty()) parts.Add((l.mood < 0f ? "CC_Mood_Fix" : "CC_Mood_Keep").Translate(advice).Resolve());
+                return string.Join("\n\n", parts);
+            }
+            catch (Exception e)
+            {
+                CouncilLog.ErrorOnce("mood hint tooltip", e);
+                return null;
+            }
+        }
+
         public static void ResetCache()
         {
             hints = null;

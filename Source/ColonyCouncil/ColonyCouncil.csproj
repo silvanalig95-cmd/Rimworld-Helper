@@ -22,6 +22,8 @@
     <!-- RimWorld 1.6 reference assemblies; nothing from these packages ships with the mod. -->
     <PackageReference Include="Krafs.Rimworld.Ref" Version="1.6.4871" PrivateAssets="all" ExcludeAssets="runtime" />
     <PackageReference Include="Microsoft.NETFramework.ReferenceAssemblies" Version="1.0.3" PrivateAssets="all" />
+    <!-- Harmony comes from the Harmony mod (brrainz.harmony), loaded before Rimfolk; only its reference is used here. -->
+    <PackageReference Include="Lib.Harmony.Ref" Version="2.4.2" PrivateAssets="all" ExcludeAssets="runtime" />
   </ItemGroup>
 
 </Project>

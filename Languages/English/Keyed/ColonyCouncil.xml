@@ -1542,4 +1542,9 @@ Those against it ({WHO}) will trust the council less and resent it more than usu
   <CC_Auto_Cooler>{PAWN_nameDef} can't sleep in the heat and planned {THING} for {PAWN_possessive} room. (It's only a plan: cancel it if you'd rather not.)</CC_Auto_Cooler>
   <CC_Auto_PlantPot>{PAWN_nameDef} wants something living in {PAWN_possessive} room and planned {THING}. (It's only a plan: cancel it if you'd rather not.)</CC_Auto_PlantPot>
   <CC_Auto_SleepingSpot>{PAWN_nameDef} is done sleeping on the ground and marked a sleeping spot somewhere sheltered. (Cancel it if you'd rather not.)</CC_Auto_SleepingSpot>
+  <!-- Harmony -->
+  <CC_Settings_DeepHooks>Deeper game hooks</CC_Settings_DeepHooks>
+  <CC_Settings_DeepHooks_Tip>Small, careful changes to how the game itself behaves (through Harmony), such as Rimfolk's hints in the game's own Needs tab. Each one switches itself off if it can't work with your other mods. Active now: {0}; skipped: {1}. Turning this off takes effect at once.</CC_Settings_DeepHooks_Tip>
+  <CC_Settings_NeedsTabHints>... and in the game's Needs tab</CC_Settings_NeedsTabHints>
+  <CC_Settings_NeedsTabHints_Tip>Hovering a mood in the game's own Needs tab also shows why it's there, when it ends, which mod it comes from, and what to do about it.</CC_Settings_NeedsTabHints_Tip>
 </LanguageData>
