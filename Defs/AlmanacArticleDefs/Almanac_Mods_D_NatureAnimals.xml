@@ -1,0 +1,965 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- Almanac: mods in the medieval modlist, batch D (nature, animals, land, farming). Shown only when one of each page's mods is active. -->
+
+  <!-- ===================== Animals ===================== -->
+
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Council_AlmMod_D_Beasts</defName>
+    <label>animal mods together</label>
+    <category>Mods</category>
+    <order>400</order>
+    <mods>
+      <li>sarg.alphaanimals</li>
+      <li>vanillaexpanded.vanillaanimalsexpanded</li>
+      <li>spincrus.dinosauria</li>
+      <li>spino.megafauna</li>
+    </mods>
+    <summary>How Alpha Animals, Vanilla Animals Expanded, Dinosauria and Megafauna share the wild</summary>
+    <tip>Four bestiaries, one forest. Something out there is taller than your wall.</tip>
+    <description>This game loads several big animal mods at once, and they all draw from the same biome spawn lists. Each mod's creatures turn up less often than its author planned, but the wild as a whole is far stranger and more dangerous than in vanilla. Giant herbivores wander past, new predators stalk the tree line, and a caravan can come home with a mammoth.</description>
+    <facts>
+      <li>Alpha Animals adds more than 100 creatures, Megafauna 38, Dinosauria 32 and Vanilla Animals Expanded several dozen more. ReGrowth 2 adds a few of its own, such as the woolly stegosaurus.</li>
+      <li>Alpha Animals warns that its spawn rates were balanced without other animal mods, so expect each mod's animals to be rarer here than on its own.</li>
+      <li>Alpha Animals, Megafauna and Vanilla Animals Expanded can each switch off single animals in their mod settings. Megafauna can also change its spawn rate or turn off vanilla animal spawns.</li>
+      <li>Many of the new giants are pack animals, so caravans and Giddy-Up riders have far more choice than in vanilla.</li>
+      <li>Rimfolk treats a wild animal as a great beast when it is very large or about as wild as a thrumbo, so colonists meet great beasts much more often with these mods.</li>
+    </facts>
+    <advice>
+      <li>Scout the map before you build. Note the big predators and the herds that fight back when hurt, and keep hunters away from both.</li>
+      <li>Trim wildlife that doesn't fit your world in the mod settings instead of fighting it all game.</li>
+      <li>Tame a big pack animal early. It carries your caravans and, with Giddy-Up, a rider.</li>
+      <li>With Rimfolk: an animal that downs or maims a colonist and gets away gets a name and keeps prowling. Hunt it as a group; seeing it dead lifts its victim's mood.</li>
+      <li>With Rimfolk: hunting wishes only ever ask for safe game, but the "den in the brush" dilemma can pick any nearby predator. Check what it is before you answer "hunt it".</li>
+    </advice>
+    <keywords>
+      <li>animals</li>
+      <li>beasts</li>
+      <li>wildlife</li>
+      <li>predator</li>
+      <li>spawn</li>
+      <li>nemesis</li>
+      <li>great beast</li>
+    </keywords>
+    <seeAlso>
+      <li>Council_AlmMod_D_AlphaAnimals</li>
+      <li>Council_AlmMod_D_VAE</li>
+      <li>Council_AlmMod_D_Dinosauria</li>
+      <li>Council_AlmMod_D_Megafauna</li>
+      <li>Council_Alm_C_Strangers</li>
+      <li>Council_Alm_3_13_ManhunterPacks</li>
+    </seeAlso>
+  </ColonyCouncil.AlmanacArticleDef>
+
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Council_AlmMod_D_AlphaAnimals</defName>
+    <label>Alpha Animals</label>
+    <category>Mods</category>
+    <order>401</order>
+    <mods><li>sarg.alphaanimals</li></mods>
+    <summary>Over a hundred strange creatures, the Black Hive insects and some very large visitors</summary>
+    <tip>If it glows, hums or carries its own boulder, let it pass.</tip>
+    <description>Alpha Animals adds more than a hundred odd but vanilla-styled creatures, each built around a mechanic of its own: walking tanks, living resource farms, night stalkers, giant spiders. They spawn by biome, a few come only from traders, and some arrive in special events. It also adds the Black Hive, an aggressive insect faction that can raid you.</description>
+    <facts>
+      <li>A stalking arctic lion hunts one colonist while nearly invisible, until it attacks or gets hurt. Drafted, alert colonists and turrets can spot it.</li>
+      <li>Spider clutch mothers wander in carrying a clutch of eggs on their backs. The letter warns that leaving one alone is a recipe for disaster.</li>
+      <li>The summit crab is not hostile, but it is almost impervious to gunfire and wrecks whatever lies in its path. Gallatross and fire-breathing behemoth herds also pass through.</li>
+      <li>Mod options switch off Black Hive raids, stalking lions, clutch mothers, gallatross and behemoth migrations, the summit crab, and any single animal.</li>
+      <li>New pack animals include the nightmule, spined gow, chameleon yak, gigantelope and mammoth worm. With Giddy-Up, the meadow ave and mammoth worm make especially good mounts.</li>
+      <li>On an existing save, Black Hive raids only happen after you add the faction when the Vanilla Expanded Framework asks.</li>
+    </facts>
+    <advice>
+      <li>If you want a purely medieval feel, turn off Black Hive raids in the mod options before they start.</li>
+      <li>When the stalking lion letter arrives, draft a few fighters around the colonist it hunts so they see it coming.</li>
+      <li>Deal with a clutch mother quickly, with every fighter you can spare.</li>
+      <li>Read an animal's info card before you tame it: several new predators turn on whoever fails to tame them.</li>
+      <li>With Rimfolk: giants such as the gallatross and behemoth count as great beasts in colonists' encounters, and a predator that mauls someone and escapes becomes a named nemesis that keeps prowling.</li>
+    </advice>
+    <keywords>
+      <li>alpha animals</li>
+      <li>black hive</li>
+      <li>arctic lion</li>
+      <li>clutch mother</li>
+      <li>feralisk</li>
+      <li>gallatross</li>
+      <li>behemoth</li>
+      <li>summit crab</li>
+    </keywords>
+    <seeAlso>
+      <li>Council_AlmMod_D_Beasts</li>
+      <li>Council_AlmMod_D_AlphaBiomes</li>
+      <li>Council_AlmMod_D_GiddyUp</li>
+      <li>Council_AlmMod_D_HuntForMe</li>
+      <li>Council_Alm_C_Strangers</li>
+    </seeAlso>
+  </ColonyCouncil.AlmanacArticleDef>
+
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Council_AlmMod_D_VAE</defName>
+    <label>Vanilla Animals Expanded</label>
+    <category>Mods</category>
+    <order>403</order>
+    <mods><li>vanillaexpanded.vanillaanimalsexpanded</li></mods>
+    <summary>Dozens of vanilla-style animals for every biome, plus dog and cat breeds</summary>
+    <tip>A rottweiler at the gate is worth two spears. A corgi at the gate is worth a laugh, and some winters that counts for more.</tip>
+    <description>Vanilla Animals Expanded gathers the Vanilla Expanded biome packs into one mod: dozens of animals drawn in the vanilla style, from house cats and rottweilers to anacondas and Indian elephants. Most turn up in temperate forests, the rest in the biomes they belong to. With Odyssey active, animals the DLC already has are left out, so you never get two versions.</description>
+    <facts>
+      <li>Every animal can be switched off in the mod settings, which stops it spawning in the wild.</li>
+      <li>Dog breeds include the Great Dane, German shepherd, rottweiler, corgi and beagle; cat breeds include the Maine coon, Persian and Siamese. All have zero wildness, like the vanilla dogs and cats.</li>
+      <li>Big new animals include the giraffe, the Indian elephant (a pack animal), the anaconda, the camel and the zebra.</li>
+      <li>The megawolverine is a large predator nearly as wild as a thrumbo.</li>
+      <li>Crocodiles and beavers need a river on the map, and beavers build their own dams.</li>
+    </facts>
+    <advice>
+      <li>Look for an Indian elephant or a camel when you want a strong pack animal for caravans.</li>
+      <li>Switch off animals that don't fit your world in the settings; it only affects wild spawns.</li>
+      <li>On a river map, keep an eye on the banks: crocodiles live there.</li>
+      <li>With Rimfolk: a named dog or cat is the heart of Rimfolk's pet moments: warm feet at night, stolen dinners, a farewell when it dies. A colonist bonded to a small one may ask for a bed for it in their room.</li>
+      <li>With Rimfolk: the megawolverine counts as a great beast, and one that mauls a colonist and escapes becomes that colonist's nemesis.</li>
+    </advice>
+    <keywords>
+      <li>vanilla animals expanded</li>
+      <li>vae</li>
+      <li>dog</li>
+      <li>cat</li>
+      <li>breed</li>
+      <li>elephant</li>
+      <li>beaver</li>
+      <li>megawolverine</li>
+    </keywords>
+    <seeAlso>
+      <li>Council_AlmMod_D_Beasts</li>
+      <li>Council_AlmMod_D_VAERoyal</li>
+      <li>Council_AlmMod_D_VAEEndangered</li>
+      <li>Council_AlmMod_D_Landscape</li>
+      <li>Council_Alm_6_10_TribalAnimals</li>
+    </seeAlso>
+  </ColonyCouncil.AlmanacArticleDef>
+
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Council_AlmMod_D_VAERoyal</defName>
+    <label>Vanilla Animals Expanded: Royal Animals</label>
+    <category>Mods</category>
+    <order>405</order>
+    <mods><li>vanillaexpanded.vaeroy</li></mods>
+    <dlc>Royalty</dlc>
+    <summary>Empire animals with noble perks: cranes, orangutan tutors, quail, megachickens and more</summary>
+    <tip>The cranes are for the baron. The baron is for the cranes. Nobody remembers who started it.</tip>
+    <description>Royal Animals adds nine animals bred for the Empire's nobility, each with a special effect beyond meat and leather. They never spawn in the wild: you get them from Imperial traders and quests. With Odyssey active, its swan, peacock and quail are the DLC's own birds, given the royal abilities.</description>
+    <facts>
+      <li>Cranes: with at least 5 under your control, every pawn with a noble title gets +5 mood.</li>
+      <li>Orangutans hold conversations that boost social recreation and give a little experience in a random skill.</li>
+      <li>Quail meat turns a simple or fine meal into a lavish one.</li>
+      <li>Peacocks nuzzle colonists for +25% psychic sensitivity for 12 hours, stacking up to 8 times. Swans build one nest each, with very high beauty, as their sleeping spot.</li>
+      <li>A bonded angora rabbit helps its master's neural heat dissipation, but the rabbit dies of grief if the master dies.</li>
+      <li>The megachicken keeps growing through five stages, at 0, 3, 8, 12 and 18 years. A fleeing pheasant gives nearby colonists brief psychic invisibility, once a day.</li>
+    </facts>
+    <advice>
+      <li>Buy cranes for a titled noble in a flock of five; fewer do nothing for mood.</li>
+      <li>Keep a few quail for feast days: their meat makes simple meals lavish.</li>
+      <li>Think twice before bonding an angora rabbit to a fighter. If the fighter falls, so does the rabbit.</li>
+      <li>With Rimfolk: a named crane or a bonded rabbit is a pet like any other, and its death brings a farewell from the one who loved it.</li>
+    </advice>
+    <keywords>
+      <li>royal animals</li>
+      <li>crane</li>
+      <li>orangutan</li>
+      <li>quail</li>
+      <li>peacock</li>
+      <li>swan</li>
+      <li>megachicken</li>
+      <li>angora rabbit</li>
+    </keywords>
+    <seeAlso>
+      <li>Council_AlmMod_D_VAE</li>
+      <li>Council_Alm_7_01_TitlesAndHonor</li>
+    </seeAlso>
+  </ColonyCouncil.AlmanacArticleDef>
+
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Council_AlmMod_D_VAEEndangered</defName>
+    <label>Vanilla Animals Expanded: Endangered</label>
+    <category>Mods</category>
+    <order>407</order>
+    <mods><li>vanillaexpanded.vaeendandext</li></mods>
+    <summary>Rare pairs of endangered animals pass through: tame them, breed them, release them</summary>
+    <tip>Two of them walked in. Be quick and kind, and there will be more than two walking out.</tip>
+    <description>Endangered adds eleven rare or extinct animals that never spawn in the wild, from pandas and pangolins to quaggas and thylacines. Instead, a male and a female of one species now and then wander onto the map, and you have a short window to tame them. Animals bred from them can be released back into the wild to win friends.</description>
+    <facts>
+      <li>The species: black rhino, giant panda, moa, quagga, thylacine, African wild dog, bonobo, Tasmanian devil, black-footed ferret, giant pangolin and rockhopper penguin.</li>
+      <li>The pair heads for the middle of the map and leaves after 1.5 to 2.5 days. Only species that can live in your current weather appear, and never during toxic fallout.</li>
+      <li>The quagga is a pack animal.</li>
+      <li>"Release to the wild" sends the animal off the map and gives +2 goodwill with every vanilla tribal and outlander faction. A setting adds the button to all animals.</li>
+    </facts>
+    <advice>
+      <li>When the letter comes, put your best handlers on taming both animals at once; you only have a day or two.</li>
+      <li>Keep the pair together and fed so they breed, then release the young ones rather than selling them.</li>
+      <li>In this modlist, check who will notice: releases only please the vanilla tribal and outlander factions, not factions added by other mods.</li>
+      <li>With Rimfolk: a passionate animal handler may ask to tame something they've spotted on the map. With a rare pair in sight, granting that wish is an easy win.</li>
+    </advice>
+    <keywords>
+      <li>endangered</li>
+      <li>extinct</li>
+      <li>panda</li>
+      <li>quagga</li>
+      <li>moa</li>
+      <li>thylacine</li>
+      <li>release</li>
+      <li>goodwill</li>
+    </keywords>
+    <seeAlso>
+      <li>Council_AlmMod_D_VAE</li>
+      <li>Council_AlmMod_D_Beasts</li>
+    </seeAlso>
+  </ColonyCouncil.AlmanacArticleDef>
+
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Council_AlmMod_D_Dinosauria</defName>
+    <label>Dinosauria</label>
+    <category>Mods</category>
+    <order>409</order>
+    <mods><li>spincrus.dinosauria</li></mods>
+    <summary>32 dinosaurs and pterosaurs across the biomes, rare and hard to tame</summary>
+    <tip>The tracks have three toes and are a yard across. Nobody volunteers to follow them.</tip>
+    <description>Dinosauria brings 32 species of dinosaurs and pterosaurs to the Rim, from the tiny compsognathus to the brachiosaurus and Tyrannosaurus rex. They are rarer than vanilla animals and spawn across many biomes. The author keeps it running on new versions but adds no new features.</description>
+    <facts>
+      <li>Theropods are harder to tame than thrumbos.</li>
+      <li>The stegosaurus, triceratops, magyarosaurus and ankylosaurus are pack animals that carry a great deal.</li>
+      <li>All dinosaurs lay eggs, and some species lay unfertilized eggs you can collect as food.</li>
+      <li>Triceratops horns and the Tyrannosaurus rex skull drop as exotic items.</li>
+      <li>It comes with patches for Giddy-Up and A Dog Said, and More Vanilla Biomes and Alpha Biomes bring its species into their biomes.</li>
+    </facts>
+    <advice>
+      <li>Treat any big theropod as a threat: go after it only as a group, from behind cover.</li>
+      <li>Tame a plant-eating pack dinosaur, such as a triceratops or stegosaurus, for your caravans.</li>
+      <li>Pen egg-layers close to a stockpile so the eggs get hauled before they spoil.</li>
+      <li>With Rimfolk: the largest dinosaurs count as great beasts, so colonists find huge tracks and giants at the tree line more often. A raptor that mauls someone and escapes becomes a named nemesis.</li>
+    </advice>
+    <keywords>
+      <li>dinosaur</li>
+      <li>dinosauria</li>
+      <li>tyrannosaurus</li>
+      <li>raptor</li>
+      <li>triceratops</li>
+      <li>stegosaurus</li>
+      <li>eggs</li>
+    </keywords>
+    <seeAlso>
+      <li>Council_AlmMod_D_Beasts</li>
+      <li>Council_AlmMod_D_Megafauna</li>
+      <li>Council_AlmMod_D_GiddyUp</li>
+      <li>Council_Alm_1_30_Hunting</li>
+    </seeAlso>
+  </ColonyCouncil.AlmanacArticleDef>
+
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Council_AlmMod_D_Megafauna</defName>
+    <label>Megafauna</label>
+    <category>Mods</category>
+    <order>411</order>
+    <mods><li>spino.megafauna</li></mods>
+    <summary>38 prehistoric giants: mammoths, smilodons, aurochs, titanoboas and more</summary>
+    <tip>We wanted wool. We got a mammoth. We got the wool. We also got a new door.</tip>
+    <description>Megafauna brings back 38 animals that once lived on Earth, from the woolly mammoth and aurochs to the smilodon, titanoboa and the giant rhino paraceratherium. They are rare, spawn naturally in different biomes, and are a real challenge to tame or kill. Many are useful once tamed: pack animals, wool, milk and eggs.</description>
+    <facts>
+      <li>Woolly mammoths, elasmotherium and josephoartigasia can be sheared.</li>
+      <li>Sivatherium, macrauchenia, aurochs cows and uintatherium can be milked. Sivatherium milk is very nutritious and valuable.</li>
+      <li>Many are pack animals, and the author names the paraceratherium your best caravan companion.</li>
+      <li>Several lay eggs, among them the titanoboa, titanis, megalania, dinornis and purussaurus.</li>
+      <li>The settings can disable any animal, change how common they are, or turn off vanilla animal spawns entirely.</li>
+    </facts>
+    <advice>
+      <li>After adding the mod to a running save, update your butcher bills so they accept the new animals.</li>
+      <li>Aim for a paraceratherium or another big pack animal before your first long caravan.</li>
+      <li>Aurochs cows give milk, which suits a medieval farmstead.</li>
+      <li>With Rimfolk: the biggest of these giants count as great beasts in colonists' encounters, and a predator that mauls someone and slinks off becomes a named nemesis.</li>
+    </advice>
+    <keywords>
+      <li>megafauna</li>
+      <li>mammoth</li>
+      <li>smilodon</li>
+      <li>aurochs</li>
+      <li>paraceratherium</li>
+      <li>titanoboa</li>
+      <li>prehistoric</li>
+    </keywords>
+    <seeAlso>
+      <li>Council_AlmMod_D_Beasts</li>
+      <li>Council_AlmMod_D_Dinosauria</li>
+      <li>Council_AlmMod_D_GiddyUp</li>
+      <li>Council_Alm_5_21_Caravans</li>
+    </seeAlso>
+  </ColonyCouncil.AlmanacArticleDef>
+
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Council_AlmMod_D_AnimalHelpers</defName>
+    <label>animal helpers</label>
+    <category>Mods</category>
+    <order>413</order>
+    <mods>
+      <li>oblitus.animalslogic</li>
+      <li>animal.bedsnew</li>
+      <li>ezfi.montereybayaquariumanimals</li>
+    </mods>
+    <summary>Animals Logic, the extra animal beds and the Monterey Bay animals</summary>
+    <tip>The alert says the goat is bleeding. The goat says nothing. Trust the alert.</tip>
+    <description>Three smaller animal mods: one that smooths out the handling of animals, one that adds nicer animal beds, and one that adds two coastal animals. None changes the game much on its own, but together they make keeping animals less of a chore.</description>
+    <facts>
+      <li>Animals Logic: shows milk, egg, wool and breeding details for animals, warns you when an animal needs medical care, and lets you get wool from corpses when butchering.</li>
+      <li>Animals Logic: predators hunting your people count as hostile for your whole colony, so colonists recognize the threat. Explosive animals don't explode while anesthetized.</li>
+      <li>Animal beds: more animal bed choices, including bigger beds for your larger animals.</li>
+      <li>Animals of Monterey Bay: sea otters on temperate and cooler coasts, with intermediate trainability, and bone-eating worms on temperate and tropical coasts that eat desiccated corpses.</li>
+    </facts>
+    <advice>
+      <li>Keep Animals Logic's medical alerts on, and give a doctor time for animal patients.</li>
+      <li>Slaughter boomalopes with the "euthanize by cut" bill and herbal medicine, so they can't explode.</li>
+      <li>With Rimfolk: any animal bed counts for Rimfolk, so these beds fit the barn room plan and a colonist's wish for a bed for their pet.</li>
+      <li>With Rimfolk: when a bonded animal is hurt, its person asks the council to have it tended. The Animals Logic alert tells you which one.</li>
+    </advice>
+    <keywords>
+      <li>animals logic</li>
+      <li>animal bed</li>
+      <li>pet bed</li>
+      <li>sea otter</li>
+      <li>medical alert</li>
+      <li>boomalope</li>
+      <li>wool</li>
+    </keywords>
+    <seeAlso>
+      <li>Council_Alm_9_16_Barn</li>
+      <li>Council_Alm_1_29_FeedingAnimals</li>
+      <li>Council_AlmMod_D_Beasts</li>
+    </seeAlso>
+    <template>Council_Barn</template>
+  </ColonyCouncil.AlmanacArticleDef>
+
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Council_AlmMod_D_GiddyUp</defName>
+    <label>Giddy-Up 2</label>
+    <category>Mods</category>
+    <order>415</order>
+    <mods><li>memegoddess.giddyup</li></mods>
+    <summary>Ride animals to work, into battle and on caravans, and expect mounted raiders</summary>
+    <tip>A raider on foot, you can outrun. A raider on a horse, you fight.</tip>
+    <description>Giddy-Up 2 lets your colonists ride animals. They hop on a mount for long walks across the map, fight from the saddle and ride out with caravans. Enemies and visitors can arrive mounted too, and in a medieval world that happens a lot.</description>
+    <facts>
+      <li>Colonists pick a mount for jobs far enough away. You can draw areas where nobody rides, such as indoors, and spots where riders get off.</li>
+      <li>Riders can fight in melee and shoot at reduced accuracy, and the mount fights too.</li>
+      <li>By default, a third of eligible raiders from pre-industrial factions arrive mounted, against 15% for industrial ones. A raider needs an Animals skill above 3 to ride in.</li>
+      <li>Colonists skip mounts that are slower than walking or too weak to carry them.</li>
+      <li>Drafted colonists get a button to mount the nearest animal or get off.</li>
+      <li>The mod page lists Allies Are Helpful, which is in this modlist, as reported incompatible.</li>
+    </facts>
+    <advice>
+      <li>Tame and train fast, strong animals as mounts. Horses are the obvious choice, and many of the modded giants take riders too.</li>
+      <li>Draw a no-riding area over your buildings so riders leave their mounts at the door.</li>
+      <li>Expect mounted raids: keep walls and choke points between the map edge and your fields.</li>
+      <li>If allied fighters behave oddly, remember the reported clash with Allies Are Helpful.</li>
+      <li>With Rimfolk: a named or bonded horse is a pet like any other. If it falls in battle, its person bids it farewell.</li>
+    </advice>
+    <keywords>
+      <li>giddy-up</li>
+      <li>mount</li>
+      <li>ride</li>
+      <li>horse</li>
+      <li>cavalry</li>
+      <li>battle mount</li>
+      <li>saddle</li>
+    </keywords>
+    <seeAlso>
+      <li>Council_AlmMod_D_Beasts</li>
+      <li>Council_AlmMod_D_HuntForMe</li>
+      <li>Council_Alm_5_21_Caravans</li>
+    </seeAlso>
+  </ColonyCouncil.AlmanacArticleDef>
+
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Council_AlmMod_D_HuntForMe</defName>
+    <label>Hunt for Me</label>
+    <category>Mods</category>
+    <order>417</order>
+    <mods><li>arandomkiwi.huntforme</li></mods>
+    <summary>Train animals to hunt for the colony, alone or in packs; cats bring gifts</summary>
+    <tip>The wolves brought back a deer. Then they brought back a trader's dog. Be specific about what you want.</tip>
+    <description>Hunt for Me adds hunting as a new animal training. Trained predators go out alone or in packs, bring down prey and haul the corpse to the nearest stockpile. Cats bring small gifts, and you choose how bold or careful your hunters are.</description>
+    <facts>
+      <li>Hunting needs Advanced trainability, Obedience and Haul training first, and a body size of at least 0.4.</li>
+      <li>A pack gathers before it attacks, so latecomers aren't picked off. Packs hold up to 16 animals by default.</li>
+      <li>Safe hunting mode keeps them on smaller prey; supervised mode limits them to animals you marked for hunting. Animals marked for taming are never targeted.</li>
+      <li>Cats bring small prey to the nearest stockpile as gifts. Only cats on the mod's cat list do this, and Vanilla Animals Expanded's breeds aren't on it by default.</li>
+    </facts>
+    <advice>
+      <li>Train a few dogs or wolves to hunt and leave safe hunting mode on, so they don't pick fights they can't win.</li>
+      <li>Near dangerous wildlife, switch them to supervised mode: they will only go after animals you have marked.</li>
+      <li>To get gifts from Vanilla Animals Expanded cats, add the breeds to the cat list in the mod settings by their internal names, for example AEXP_CatPersian.</li>
+      <li>With Rimfolk: a colonist's hunting wish only comes with a ranged weapon in hand (a bow will do) and is only fulfilled by a kill they make themselves, so let the wishing hunter take the shot.</li>
+    </advice>
+    <keywords>
+      <li>hunt for me</li>
+      <li>hunting</li>
+      <li>training</li>
+      <li>dog</li>
+      <li>wolf</li>
+      <li>cat gift</li>
+      <li>pack</li>
+    </keywords>
+    <seeAlso>
+      <li>Council_Alm_1_30_Hunting</li>
+      <li>Council_AlmMod_D_GiddyUp</li>
+      <li>Council_AlmMod_D_Beasts</li>
+    </seeAlso>
+  </ColonyCouncil.AlmanacArticleDef>
+
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Council_AlmMod_D_MiscTraining</defName>
+    <label>Misc. Training</label>
+    <category>Mods</category>
+    <order>419</order>
+    <mods><li>haplo.miscellaneous.training</li></mods>
+    <summary>Shooting targets, martial arts dummies and archery targets to train and relax</summary>
+    <tip>The dummy has lost every fight it ever had. It keeps showing up. Respect that.</tip>
+    <description>Misc. Training adds three practice buildings: a shooting target and a martial arts dummy that train combat skills, and an archery target colonists shoot at for fun. In this modlist, the Medieval Retexture gives them a look that matches Medieval Overhaul.</description>
+    <facts>
+      <li>Shooting target: trains Shooting.</li>
+      <li>Martial arts dummy: trains Melee.</li>
+      <li>Archery target: recreation, shooting arrows for fun.</li>
+      <li>This version comes with its own training task.</li>
+      <li>The Medieval Retexture changes the materials they accept, so pieces built before you added it keep their old material color.</li>
+    </facts>
+    <advice>
+      <li>Put a dummy and a target near the barracks, and let fighters with spare time train between raids.</li>
+      <li>Use the archery target as cheap recreation in the early game.</li>
+      <li>With Rimfolk: the martial arts dummy and the archery target both satisfy a fighter's wish for somewhere to train, and the council can suggest them.</li>
+    </advice>
+    <keywords>
+      <li>training dummy</li>
+      <li>shooting target</li>
+      <li>archery target</li>
+      <li>martial arts</li>
+      <li>melee</li>
+      <li>practice</li>
+      <li>recreation</li>
+    </keywords>
+  </ColonyCouncil.AlmanacArticleDef>
+
+  <!-- ===================== Bees, biomes, land and weather ===================== -->
+
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Council_AlmMod_D_AlphaBees</defName>
+    <label>Alpha Bees</label>
+    <category>Mods</category>
+    <order>421</order>
+    <mods><li>sarg.rimbees</li></mods>
+    <summary>Beekeeping: honey, wax, mead, candles, pollinated crops and over 100 kinds of bee</summary>
+    <tip>Two hives make honey. Ten hives make a beekeeper. One angry hive makes a lesson.</tip>
+    <description>Alpha Bees, once called RimBees, turns bees into a craft of their own. Catch wild bees, house them in beehouses, collect their combs and spin them into honey and wax. Breed and cross them to discover more than a hundred kinds of bee, some of which make far stranger things than honey.</description>
+    <facts>
+      <li>Basic beekeeping is a medieval research of 300 points. Bee breeding, hybridizing, mead brewing and beeswax lighting are medieval too.</li>
+      <li>Wild bees can be found in every biome. A beehouse holds bees and fills with combs; one beehouse alone makes little.</li>
+      <li>The honey centrifuge spins combs into honey and wax. It is meant to run on power, but works without it at 30% speed.</li>
+      <li>A working beehouse pollinates crops within 6 tiles: each harvest has a 25% chance to leave a partly grown new plant, if the bees are active at the time.</li>
+      <li>Bees need the right average temperature on the whole map, even when the beehouse stands indoors. A "greenhouse bees" option changes that.</li>
+      <li>Mead ferments in a mead fermenting barrel: 25 must becomes 25 mead in 6 days, safe between 7 and 32 °C. Mead is a social drink, a little stronger than beer.</li>
+    </facts>
+    <advice>
+      <li>Build several beehouses around your main fields, not one: you get combs and pollinated harvests together.</li>
+      <li>Run the centrifuge without power at first, and give it a steady worker, since it's slow.</li>
+      <li>Research beeswax lighting for candles, a cheap light for a medieval base.</li>
+      <li>With Rimfolk: every Alpha Bees beehouse counts when a colonist asks for bees, and its honeys count toward a gourmand's "honey in the larder" wish. The mead barrel counts as a brewing barrel, and mead as a drink worth stocking.</li>
+    </advice>
+    <keywords>
+      <li>bees</li>
+      <li>beehive</li>
+      <li>beehouse</li>
+      <li>honey</li>
+      <li>wax</li>
+      <li>mead</li>
+      <li>candle</li>
+      <li>rimbees</li>
+    </keywords>
+    <seeAlso>
+      <li>Council_AlmMod_D_VPE</li>
+      <li>Council_AlmMod_D_VFEFarming</li>
+      <li>Council_Alm_4_20_SocialDrugs</li>
+    </seeAlso>
+  </ColonyCouncil.AlmanacArticleDef>
+
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Council_AlmMod_D_AlphaBiomes</defName>
+    <label>Alpha Biomes</label>
+    <category>Mods</category>
+    <order>430</order>
+    <mods><li>sarg.alphabiomes</li></mods>
+    <summary>Twelve strange biomes, from flower meadows to tar pits and lava fields</summary>
+    <tip>The meadow is lovely. The tar pits are honest about it. The crags will eat your torches.</tip>
+    <description>Alpha Biomes adds twelve unusual biomes to the world map, built with Alpha Animals in mind. A few are gentle, most are hard, and some are close to impossible for a colony without electricity. You need a new world to see them, and their odd climates mean not every planet has all twelve.</description>
+    <facts>
+      <li>Idyllic Meadows: giant flowers, plenty of resources and few predators. This is the easy one.</li>
+      <li>The Mycotic Jungle and Ocular Forest have very little wood, the Gelatinous Superorganism has no rock but nearly everything is edible, and the Mechanoid Intrusion has almost no food.</li>
+      <li>Tar Pits slow movement and hide bumbledrone hives. The Forsaken Crags lie in permanent darkness.</li>
+      <li>The Propane Lakes are colder than sea ice, the Pyroclastic Conflagration is lava and fire, the Miasmic Mangrove is full of diseases, and the Feralisk Infested Jungle crawls with predatory spiders.</li>
+      <li>Biome buildings, such as the tar pump and propane stoves, are in the Furniture tab under biome buildings.</li>
+      <li>New weather includes petal storms, red fog, volcanic ash and acid rain.</li>
+    </facts>
+    <advice>
+      <li>For a medieval start, pick Idyllic Meadows or a vanilla biome. Biomes short on wood or food punish colonies without power.</li>
+      <li>In the Forsaken Crags, plan your light before anything else.</li>
+      <li>Expect to rely on caravans: several biomes lack something you will have to trade for.</li>
+      <li>With Rimfolk: colonists who have come to dread storms feel it during petal storms and forsaken thunderstorms too.</li>
+    </advice>
+    <keywords>
+      <li>alpha biomes</li>
+      <li>biome</li>
+      <li>idyllic meadows</li>
+      <li>tar pits</li>
+      <li>mycotic jungle</li>
+      <li>forsaken crags</li>
+      <li>lava</li>
+    </keywords>
+    <seeAlso>
+      <li>Council_AlmMod_D_AlphaAnimals</li>
+      <li>Council_AlmMod_D_MVB</li>
+      <li>Council_AlmMod_D_GeoLandforms</li>
+      <li>Council_Alm_5_21_Caravans</li>
+    </seeAlso>
+  </ColonyCouncil.AlmanacArticleDef>
+
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Council_AlmMod_D_MVB</defName>
+    <label>More Vanilla Biomes</label>
+    <category>Mods</category>
+    <order>432</order>
+    <mods><li>zylle.morevanillabiomes</li></mods>
+    <summary>Ten vanilla-style biomes, from alpine meadows to ice floes</summary>
+    <tip>Alpine meadow: flowers to the knee in summer, snow to the waist in winter. Plan for the second one.</tip>
+    <description>More Vanilla Biomes adds ten new biomes that look and play like the base game's. They range from the gentle alpine meadow and oasis to the brutal glacial shield and ice floes. It already brings in the animals and plants of many other mods in this list.</description>
+    <facts>
+      <li>The ten biomes: glacial shield, badlands, cloud forest, marsh, stormy savanna, coastal dunes, sandbar, alpine meadow, oasis and ice floes.</li>
+      <li>Alpine meadows have fertile soil, lots of flowers and few predators, with mild summers and harsh winters.</li>
+      <li>Cloud forests are named for their constant fog, and animals often wander up from the forests below.</li>
+      <li>Sandbars have little if any farmland, and ice floes are frigid chunks of ice floating on the ocean.</li>
+      <li>It includes patches for Alpha Animals, Dinosauria, Megafauna, Medieval Overhaul, ReGrowth, Vanilla Plants Expanded and Vanilla Animals Expanded.</li>
+    </facts>
+    <advice>
+      <li>The new biomes only appear on a newly generated world.</li>
+      <li>For a medieval colony, the alpine meadow and the oasis are the friendliest of the ten. Save the sandbar and ice floes for a challenge.</li>
+      <li>In the alpine meadow, use the mild summers to store food and firewood for the harsh winter.</li>
+      <li>With Rimfolk: wild roses and daylilies in the alpine meadow count toward a colonist's "flowers around the colony" wish when they grow inside your home area.</li>
+    </advice>
+    <keywords>
+      <li>more vanilla biomes</li>
+      <li>biome</li>
+      <li>alpine meadow</li>
+      <li>oasis</li>
+      <li>marsh</li>
+      <li>cloud forest</li>
+      <li>glacial shield</li>
+    </keywords>
+    <seeAlso>
+      <li>Council_AlmMod_D_AlphaBiomes</li>
+      <li>Council_AlmMod_D_GeoLandforms</li>
+      <li>Council_AlmMod_D_ReGrowth</li>
+      <li>Council_Alm_1_05_GrowingSeason</li>
+    </seeAlso>
+  </ColonyCouncil.AlmanacArticleDef>
+
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Council_AlmMod_D_ReGrowth</defName>
+    <label>ReGrowth 2</label>
+    <category>Mods</category>
+    <order>434</order>
+    <mods>
+      <li>regrowth.botr.core</li>
+      <li>regrowth.botr.aspenforest</li>
+    </mods>
+    <summary>Richer wild plants and weather for every biome, bathing, and the Aspen Forest biome</summary>
+    <tip>Hot spring at the edge of the map. Best mood on the Rim, worst place to be caught by a raid.</tip>
+    <description>ReGrowth 2 makes every biome fuller and more atmospheric: more wild plants and flowers, new weather, boulders and ruins, a few new creatures, and more wood. In 1.6 it covers all the biomes in one mod. ReGrowth 2: Aspen adds the Aspen Forest, a colorful biome of engineered aspens and flowers.</description>
+    <facts>
+      <li>Colonists can bathe for fun: a swim gives +4 mood for half a day, a hot spring +6 for a day. Getting wet costs a little mood.</li>
+      <li>New weather includes breezy days, drizzle, fog storms and foggy snow. Dust devils can form and hurt anyone who wanders into them.</li>
+      <li>Wild flowers such as dandelions, lupines and saxifraga grow in the wild and can also be sown.</li>
+      <li>Berry cultivation and mushroom cultivation are early (neolithic) research projects.</li>
+      <li>New creatures include the woolly stegosaurus, the rimclaw, the hemolope and the neutrolope.</li>
+      <li>Most of its settings need a restart to take effect.</li>
+    </facts>
+    <advice>
+      <li>If your map has a hot spring, build near it: it's strong, free recreation.</li>
+      <li>Keep colonists out of dust devils; they hurt people and animals alike.</li>
+      <li>The Aspen Forest only appears on a newly generated world, so pick it when you make one.</li>
+      <li>With Rimfolk: wild flowers inside your home area count toward a colonist's "flowers around the colony" wish. A hot spring does not fulfill the wish for a bath, which wants a built bath or tub.</li>
+    </advice>
+    <keywords>
+      <li>regrowth</li>
+      <li>aspen</li>
+      <li>hot spring</li>
+      <li>bathing</li>
+      <li>dust devils</li>
+      <li>wild flowers</li>
+      <li>berries</li>
+    </keywords>
+    <seeAlso>
+      <li>Council_AlmMod_D_MVB</li>
+      <li>Council_AlmMod_D_Landscape</li>
+      <li>Council_AlmMod_D_SeasonalWeather</li>
+      <li>Council_Alm_1_20_WildPlants</li>
+    </seeAlso>
+  </ColonyCouncil.AlmanacArticleDef>
+
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Council_AlmMod_D_GeoLandforms</defName>
+    <label>Geological Landforms</label>
+    <category>Mods</category>
+    <order>436</order>
+    <mods>
+      <li>m00nl1ght.geologicallandforms</li>
+      <li>m00nl1ght.geologicallandforms.biometransitions</li>
+    </mods>
+    <summary>43 landforms, from valleys and canyons to islands and caves, and maps that mix biomes</summary>
+    <tip>A canyon is a fine place to hold a gate. It's a poor place to grow rice.</tip>
+    <description>Geological Landforms changes the shape of the colony map: valleys, canyons, islands, cave entrances, craters and dozens more, on top of whatever biome you choose. Some make defense easy and farming hard, others the reverse. Its add-on, Biome Transitions, gives maps on a biome border a mix of up to seven biomes, each with its own plants and animals.</description>
+    <facts>
+      <li>There are 43 landforms. 14 overlap with Odyssey and switch off when the DLC is active, while this mod's rivers replace Odyssey's by default.</li>
+      <li>Islands and archipelagos are remote and short on stone and ore. Canyons and rifts are easy to defend and rich in ore, but short on food, wood, light and room to farm.</li>
+      <li>On the world map, a tile's Terrain tab has a "Search for landform nearby" button.</li>
+      <li>Roofs don't collapse on Impassable Mountains tiles, because the cave landforms there have huge roofed areas.</li>
+      <li>Biome Transitions: plants grow by the biome under them and animals wander in from neighboring biomes. Temperature and weather still follow the world tile.</li>
+    </facts>
+    <advice>
+      <li>Pick your landform for your plans: a valley or canyon for a castle that is easy to hold, open land or a lake shore for fields and herds.</li>
+      <li>On an island, plan your stone early. You may have to trade or caravan for it.</li>
+      <li>Settle on a biome border for variety: two biomes mean two sets of plants and animals within walking distance.</li>
+      <li>With Rimfolk: in cave and canyon colonies colonists spend long stretches indoors and will ask for time outside, and the advisor warns about insects under overhead mountain.</li>
+    </advice>
+    <keywords>
+      <li>landform</li>
+      <li>canyon</li>
+      <li>valley</li>
+      <li>island</li>
+      <li>cave</li>
+      <li>map</li>
+      <li>biome transitions</li>
+    </keywords>
+    <seeAlso>
+      <li>Council_AlmMod_D_Landscape</li>
+      <li>Council_AlmMod_D_MVB</li>
+      <li>Council_AlmMod_D_VPEMushrooms</li>
+      <li>Council_AlmMod_D_Mining</li>
+    </seeAlso>
+  </ColonyCouncil.AlmanacArticleDef>
+
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Council_AlmMod_D_SeasonalWeather</defName>
+    <label>Seasonal Weather</label>
+    <category>Mods</category>
+    <order>438</order>
+    <mods><li>mlie.seasonalweather</li></mods>
+    <summary>Weather that follows the seasons, plus earthquakes, wildfires and double rainbows</summary>
+    <tip>Spring rain grows the barley. Summer wind spreads the fire. Keep a firebreak the way you keep a wall.</tip>
+    <description>Seasonal Weather gives each season of the vanilla biomes its own weather. It adds new kinds of weather and two disasters, earthquakes and wildfires, both of which you can switch off in the settings. Rain helps your crops, and now and then the weather itself lifts everyone's mood.</description>
+    <facts>
+      <li>New weather: windy, cloudy, fog snow, dust, and the dry duststorm, whose lightning starts fires with no rain to put them out.</li>
+      <li>Plants grow up to 20% faster while it rains.</li>
+      <li>An earthquake runs a fault line across the map. Buildings on it that aren't walls are destroyed, fueled or powered ones start fires, roofs on the line can collapse, and people on it get hurt.</li>
+      <li>A wildfire keeps starting new fires until no large fire is left. Left alone it lasts at least 5 days; fought quickly, about half a day.</li>
+      <li>A rare double rainbow after rain and the rare "weather soothe" lift moods; the soothe gives +7.</li>
+      <li>Its seasonal changes cover the eleven vanilla biomes; biomes added by other mods are not adjusted.</li>
+    </facts>
+    <advice>
+      <li>Keep firebreaks around fields and wooden buildings, and enough colonists on firefighting, for wildfire season.</li>
+      <li>Don't line wooden walls with braziers, torches and campfires: an earthquake that breaks one starts a fire right there.</li>
+      <li>If you'd rather not have them, turn off earthquakes or wildfires in the settings. Both are on by default.</li>
+      <li>With Rimfolk: the council's advisor doesn't know about earthquakes and wildfires yet, so watch the letters and act yourself.</li>
+    </advice>
+    <keywords>
+      <li>weather</li>
+      <li>season</li>
+      <li>earthquake</li>
+      <li>wildfire</li>
+      <li>rainbow</li>
+      <li>fog</li>
+      <li>duststorm</li>
+      <li>rain</li>
+    </keywords>
+    <seeAlso>
+      <li>Council_Alm_1_32_BlightAndFire</li>
+      <li>Council_Alm_3_18_HeatWaveColdSnap</li>
+      <li>Council_AlmMod_D_ReGrowth</li>
+    </seeAlso>
+  </ColonyCouncil.AlmanacArticleDef>
+
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Council_AlmMod_D_Landscape</defName>
+    <label>land and garden tweaks</label>
+    <category>Mods</category>
+    <order>440</order>
+    <mods>
+      <li>meltup.beautifuloutdoors</li>
+      <li>meltup.grandrivers.reborn</li>
+      <li>gt.sam.tilledsoil</li>
+      <li>vanillaexpanded.vplantsesucculents</li>
+    </mods>
+    <summary>Beautiful Outdoors, Grand Rivers Reborn, Tilled Soil and the succulents</summary>
+    <tip>Rich soil, a river view and a pot of something that won't die. Half of happiness is scenery.</tip>
+    <description>Four smaller mods that shape the land your colony lives on: how beautiful nature looks to your colonists, how wide the rivers run, how fertile you can make a field, and a set of decorative plants that need little care.</description>
+    <facts>
+      <li>Beautiful Outdoors: flowers, trees and water look better to colonists (roses 20 beauty, daylilies 26, deep ocean 6), while mud (-4) and marsh (-6) look worse.</li>
+      <li>Grand Rivers Reborn: rivers on the colony map are much wider. A river is 15 tiles instead of 6, a large river 23 instead of 14, a creek 7 instead of 4. The world map is unchanged.</li>
+      <li>Tilled Soil: a buildable tilled soil floor with 200% fertility, plus research that lets you lay soil on smooth stone for underground fields.</li>
+      <li>Vanilla Plants Expanded - Succulents: ten decorative succulents with about half a flower's beauty but three times its lifespan, unlocked by Succulent Sowing research.</li>
+      <li>Tilled Soil and Vanilla Plants Expanded both have something called tilled soil: Tilled Soil's is a permanent floor, while Vanilla Plants Expanded's plowing wears off after each harvest.</li>
+    </facts>
+    <advice>
+      <li>Settle beside water and keep paths off mud; with Beautiful Outdoors, a riverside walk lifts the mood.</li>
+      <li>On a river map, plan bridges early: rivers are more than twice as wide as usual.</li>
+      <li>Lay tilled soil under your most valuable crops, such as healroot, rather than everywhere, since every tile takes work.</li>
+      <li>Use succulents in bedrooms and the hospital, where nobody has time to replant flowers every few weeks.</li>
+      <li>With Rimfolk: succulents count as flowers for the "flowers around the colony" wish, and they suit the plant pot a colonist asks for in their room.</li>
+    </advice>
+    <keywords>
+      <li>beauty</li>
+      <li>outdoors</li>
+      <li>river</li>
+      <li>tilled soil</li>
+      <li>fertility</li>
+      <li>succulent</li>
+      <li>flowers</li>
+    </keywords>
+    <seeAlso>
+      <li>Council_Alm_2_05_Beauty</li>
+      <li>Council_Alm_1_07_SoilFertility</li>
+      <li>Council_AlmMod_D_VPE</li>
+      <li>Council_AlmMod_D_ReGrowth</li>
+    </seeAlso>
+  </ColonyCouncil.AlmanacArticleDef>
+
+  <!-- ===================== Plants and farming ===================== -->
+
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Council_AlmMod_D_VPE</defName>
+    <label>Vanilla Plants Expanded</label>
+    <category>Mods</category>
+    <order>450</order>
+    <mods>
+      <li>vanillaexpanded.vplantse</li>
+      <li>vanillaexpanded.vplantsemore</li>
+    </mods>
+    <summary>New crops and fruit trees, soil plowing, flower gardens, sandy and aquatic fields</summary>
+    <tip>Barley for the brewer, garlic for the cook, lavender for the one who keeps asking for flowers.</tip>
+    <description>Vanilla Plants Expanded adds crops that each do something a little different, fruit trees locked to their biomes, and the option to plow soil for extra fertility. Its More Plants add-on brings grains, more vegetables and three new kinds of growing zone: flower gardens, sandy fields and aquatic beds in shallow water.</description>
+    <facts>
+      <li>Plowing turns normal soil into tilled soil with 140% fertility. It goes back to normal soil after each harvest and must be plowed again, and the plowman needs at least Plants 1.</li>
+      <li>Fruit trees are locked to two per biome, all with the same nutrition. They need Tree Sowing research and can't be moved once planted.</li>
+      <li>More Plants adds grains such as barley, rye, oats and buckwheat, many vegetables, healshroom, and nut and fruit trees.</li>
+      <li>Flower garden zones grow decorative flowers such as lavender, roses, lilies and tulips, purely for beauty.</li>
+      <li>Sandy zones on sand and aquatic zones in shallow water or marsh grow special crops that ignore fertility but take long to sow and harvest.</li>
+    </facts>
+    <advice>
+      <li>Plow your best fields before sowing slow crops; the bonus lasts one harvest.</li>
+      <li>On a river map, fill the shallows with aquatic beds of taro and watercress; Grand Rivers Reborn gives you plenty of them.</li>
+      <li>Plant fruit trees with care: you can't move them later.</li>
+      <li>With Rimfolk: flowers in a flower garden count toward a colonist's "flowers around the colony" wish in spring and summer.</li>
+    </advice>
+    <keywords>
+      <li>vanilla plants expanded</li>
+      <li>crops</li>
+      <li>fruit tree</li>
+      <li>plow</li>
+      <li>flower garden</li>
+      <li>barley</li>
+      <li>aquatic</li>
+    </keywords>
+    <seeAlso>
+      <li>Council_AlmMod_D_VPEMushrooms</li>
+      <li>Council_AlmMod_D_Landscape</li>
+      <li>Council_AlmMod_D_VFEFarming</li>
+      <li>Council_Alm_1_08_FertilitySensitivity</li>
+    </seeAlso>
+  </ColonyCouncil.AlmanacArticleDef>
+
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Council_AlmMod_D_VPEMushrooms</defName>
+    <label>Vanilla Plants Expanded - Mushrooms</label>
+    <category>Mods</category>
+    <order>452</order>
+    <mods><li>vanillaexpanded.vplantsemushrooms</li></mods>
+    <summary>Mushrooms that give wood, medicine, cloth, light and food underground</summary>
+    <tip>Down in the mountain the timbercaps grow and the glowcaps shine. Nobody misses the sky. Much.</tip>
+    <description>Mushrooms is a Vanilla Plants Expanded module for colonies that live under rock. Its mushrooms fill the gaps a tunnel colony has: wood, herbal medicine, food, cloth, light, even a little power. Some grow wild in caves; others only in flower pots.</description>
+    <facts>
+      <li>Timbercap: harvested for a wood-like material.</li>
+      <li>Healtruffle: harvested for herbal medicine, but only grows with rotstink gas around it, which stinkers make. Stinkers die in sunlight.</li>
+      <li>Mycothread: a fabric for clothes, ropes and furniture, very slow to grow.</li>
+      <li>Glowcaps give light, too weak for crops. Redcaps are pretty decorative mushrooms that need replanting often.</li>
+      <li>In flower pots: lullabloom calms whoever sleeps in the bed beside it, thermoregulus pushes the room toward 16 °C, and foampuffer bursts into firefoam near fire.</li>
+      <li>Bileceps feeds on the bile of decaying bodies and gives a meaty harvest.</li>
+    </facts>
+    <advice>
+      <li>In a cave or canyon colony, start timbercaps and stinkers first: wood and food without daylight.</li>
+      <li>Put a lullabloom pot by the bed of your worst sleeper.</li>
+      <li>Keep a foampuffer pot near the kitchen fire as a cheap firefighter.</li>
+      <li>With Rimfolk: redcaps count as flowers for the "flowers around the colony" wish.</li>
+    </advice>
+    <keywords>
+      <li>mushroom</li>
+      <li>timbercap</li>
+      <li>healtruffle</li>
+      <li>glowcap</li>
+      <li>underground</li>
+      <li>cave</li>
+      <li>mycothread</li>
+    </keywords>
+    <seeAlso>
+      <li>Council_AlmMod_D_VPE</li>
+      <li>Council_AlmMod_D_GeoLandforms</li>
+    </seeAlso>
+  </ColonyCouncil.AlmanacArticleDef>
+
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Council_AlmMod_D_VFEFarming</defName>
+    <label>Vanilla Furniture Expanded - Farming</label>
+    <category>Mods</category>
+    <order>454</order>
+    <mods><li>vanillaexpanded.vfefarming</li></mods>
+    <summary>Planter boxes and scarecrows for any era; sprinklers and hydroponics for later ones</summary>
+    <tip>The scarecrow doesn't fool the wolves. It fools the hares, and the hares were the ones eating the rice.</tip>
+    <description>This Vanilla Furniture Expanded module adds farming furniture. A medieval colony gets unpowered planter boxes and the scarecrow; sprinklers, draggable hydroponics and artificial ecosystems wait for electricity.</description>
+    <facts>
+      <li>Planter box: no research, no power, 95% fertility, and it grows the same plants as a hydroponics basin. A draggable version can take any shape.</li>
+      <li>Scarecrow: Farming Techniques research (medieval, 300 points). It regularly scares wild animals up to body size 2.1 out of a 10-tile radius.</li>
+      <li>Predators that can hunt people ignore scarecrows, and your own tamed predators are never scared. A button decides whether your other animals are affected.</li>
+      <li>Sprinklers (industrial) and artificial ecosystems (spacer, 350% fertility) need power.</li>
+    </facts>
+    <advice>
+      <li>Put scarecrows among your crops to keep hares, deer and the like off them.</li>
+      <li>Use planter boxes where the soil is poor, under open sky: like any crop, they need light.</li>
+      <li>With Rimfolk: the council treats a planter box like a hydroponics basin, so before you have power it may suggest one when a colonist asks for a greenhouse. Give it daylight.</li>
+    </advice>
+    <keywords>
+      <li>planter box</li>
+      <li>scarecrow</li>
+      <li>sprinkler</li>
+      <li>hydroponics</li>
+      <li>farming</li>
+      <li>crops</li>
+    </keywords>
+    <seeAlso>
+      <li>Council_AlmMod_D_VPE</li>
+      <li>Council_AlmMod_D_AlphaBees</li>
+      <li>Council_Alm_1_04_GrowingTemperature</li>
+    </seeAlso>
+  </ColonyCouncil.AlmanacArticleDef>
+
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Council_AlmMod_D_Gauranlen</defName>
+    <label>Gauranlen Tree Expanded</label>
+    <category>Mods</category>
+    <order>456</order>
+    <mods><li>mlie.gauranlentreeexpanded</li></mods>
+    <dlc>Ideology</dlc>
+    <summary>Up to four colonists per Gauranlen tree, replanting, and a ritual to break the bond</summary>
+    <tip>One tree, four keepers, more dryads. Also four people who will mope if you cut it.</tip>
+    <description>Gauranlen Tree Expanded rewrites how a Gauranlen tree's connection works. Several colonists can share one tree, the tree can be moved, and a new ritual lets a colonist tear their connection when it has to end. A button calls the dryads home to guard the tree for a few hours.</description>
+    <facts>
+      <li>Up to 4 colonists can connect to one tree (a setting). More connected colonists mean more dryads, up to 1.5 times as many by default.</li>
+      <li>Gauranlen trees can be replanted, keeping their connections.</li>
+      <li>The tear connection ritual ends a bond; the colonist who tears it gets -10 mood for 5 days.</li>
+      <li>A button calls all dryads to protect the tree for several hours.</li>
+      <li>It doesn't work with existing connections: remove all connections and dryads before adding it to a save. It also clashes with other Gauranlen mods.</li>
+    </facts>
+    <advice>
+      <li>Connect several colonists with good Plants skill to one tree, so they share the pruning.</li>
+      <li>Plant the tree where you like: you can move it later if your base grows around it.</li>
+      <li>With Rimfolk: the Almanac's base-game Gauranlen pages describe vanilla rules. This mod changes the connection, so check its settings for the numbers in your game.</li>
+    </advice>
+    <keywords>
+      <li>gauranlen</li>
+      <li>dryad</li>
+      <li>tree connection</li>
+      <li>prune</li>
+      <li>ritual</li>
+      <li>replant</li>
+    </keywords>
+    <seeAlso>
+      <li>Council_Alm_7_12_GauranlenConnection</li>
+      <li>Council_Alm_7_13_GauranlenDryads</li>
+    </seeAlso>
+  </ColonyCouncil.AlmanacArticleDef>
+
+  <!-- ===================== Climate and mining ===================== -->
+
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Council_AlmMod_D_VETemperature</defName>
+    <label>Vanilla Temperature Expanded</label>
+    <category>Mods</category>
+    <order>460</order>
+    <mods><li>vanillaexpanded.temperature</li></mods>
+    <summary>Central heating and air conditioning, mostly for colonies with power</summary>
+    <tip>Ducts, compressors and efficiency ratings. Or a fireplace and a blanket. Your era decides.</tip>
+    <description>Vanilla Temperature Expanded adds central climate control: air ducts carry heated or cooled air from AC units to the rooms that need it, and compressors keep the network efficient. It also adds heaters, coolers and ceiling fans. Nearly all of it needs electricity, so a medieval colony will barely see it.</description>
+    <facts>
+      <li>AC units, compressors and ducts need HVAC research, which comes after Air Conditioning.</li>
+      <li>Connecting more devices than the compressors support raises the power draw of every device; efficiency above 100% lowers it.</li>
+      <li>Heaters, coolers and ceiling fans need Electricity or Air Conditioning research, and power.</li>
+      <li>The wall-mounted vent needs no power, only Complex Furniture research and 20 steel. Built into a wall, it shares temperature between two rooms.</li>
+    </facts>
+    <advice>
+      <li>In a pre-industrial colony, use the wall-mounted vent to share a fire's heat with the next room.</li>
+      <li>Once you have electricity, add compressors as you add devices to keep efficiency at 100% or more.</li>
+      <li>With Rimfolk: the council never suggests powered buildings before you have electricity, so these stay out of its advice in a medieval game.</li>
+    </advice>
+    <keywords>
+      <li>temperature</li>
+      <li>heating</li>
+      <li>cooling</li>
+      <li>air conditioning</li>
+      <li>duct</li>
+      <li>vent</li>
+      <li>heater</li>
+    </keywords>
+    <seeAlso>
+      <li>Council_Alm_10_Temperatures</li>
+      <li>Council_Alm_2_19_TemperatureComfort</li>
+    </seeAlso>
+  </ColonyCouncil.AlmanacArticleDef>
+
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Council_AlmMod_D_Mining</defName>
+    <label>mining helpers</label>
+    <category>Mods</category>
+    <order>470</order>
+    <mods>
+      <li>phant0m5.modeepveinmines</li>
+      <li>rabiosus.minesight</li>
+      <li>proxyer.dismantleancientjunk</li>
+    </mods>
+    <summary>Medieval deep mining, ore highlights and salvaging ancient junk</summary>
+    <tip>There's iron down there. The bird says so. Nobody asks the bird how.</tip>
+    <description>Three small mods for getting more out of rock and ruins: a Medieval Overhaul patch that turns deep drilling into medieval mine shafts, a highlight for ore veins, and the ability to take apart every piece of ancient junk.</description>
+    <facts>
+      <li>Medieval Overhaul Deep Vein Mining: the deep drill becomes a deep vein mineshaft and the ground-penetrating scanner a prospecting desk, both medieval. They still need a trickle of power, which a "mining bird" provides.</li>
+      <li>It also removes gold, silver, plasteel and steel from deep deposits, so Medieval Overhaul's own ores turn up instead.</li>
+      <li>Mine Sight: while the mine order is selected, ores are highlighted, and holding Shift designates a whole vein.</li>
+      <li>Dismantle Ancient Junk: every ancient ruin piece can be taken apart for twice what destroying it gives, including Medieval Overhaul's ruined battering rams and siege towers.</li>
+    </facts>
+    <advice>
+      <li>Set up a prospecting desk early to find deep veins, then sink mineshafts on them.</li>
+      <li>Shift-click a whole ore vein to mine it in one order.</li>
+      <li>Strip ancient ruins near your base for materials instead of burning them down.</li>
+    </advice>
+    <keywords>
+      <li>mining</li>
+      <li>deep drill</li>
+      <li>mineshaft</li>
+      <li>prospecting</li>
+      <li>ore</li>
+      <li>vein</li>
+      <li>ancient junk</li>
+    </keywords>
+    <seeAlso>
+      <li>Council_AlmMod_D_GeoLandforms</li>
+    </seeAlso>
+  </ColonyCouncil.AlmanacArticleDef>
+
+</Defs>
