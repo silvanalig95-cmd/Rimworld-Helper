@@ -184,7 +184,24 @@ namespace ColonyCouncil
                     if (t.Spawned && !t.IsForbidden(Faction.OfPlayer) && (t.IsInAnyStorage() || home[t.Position])) n += t.stackCount;
                 }
             }
+            // Things kept inside furniture (books on a bookcase) aren't spawned.
+            foreach (var t in HeldInBuildings(map))
+                if (Defs.Contains(t.def)) n += t.stackCount;
             return n;
+        }
+
+        /// <summary>Items held inside the colony's buildings (a bookcase's books), but not graves, caskets or pawns.</summary>
+        public static IEnumerable<Thing> HeldInBuildings(Map map)
+        {
+            if (map == null) yield break;
+            foreach (var b in map.listerBuildings.allBuildingsColonist)
+            {
+                if (!(b is IThingHolder holder) || b is Building_Grave || b is Building_Casket) continue;
+                var held = holder.GetDirectlyHeldThings();
+                if (held == null) continue;
+                for (int i = 0; i < held.Count; i++)
+                    if (held[i] != null && held[i].def.category == ThingCategory.Item) yield return held[i];
+            }
         }
 
         private bool Producible(Map map) =>
@@ -360,6 +377,8 @@ namespace ColonyCouncil
                 if (p.equipment?.Primary != null && p.equipment.Primary.ThingID == wish.subjectKey) return p.equipment.Primary;
                 if (p.inventory?.innerContainer.FirstOrDefault(i => i.ThingID == wish.subjectKey) is Thing inv) return inv;
             }
+            foreach (var t in WishWorker_Stock.HeldInBuildings(map))
+                if (t.ThingID == wish.subjectKey) return t;
             return null;
         }
 
@@ -380,7 +399,7 @@ namespace ColonyCouncil
             var map = HomeMap(pawn);
             var nem = CouncilGameComponent.Instance?.nemeses;
             if (map == null || nem == null || !ColonyCouncilMod.Settings.nemeses || !P.Who(pawn)) yield break;
-            foreach (var n in nem.Open.Where(n => n.IsBeast && n.pawn != null && n.pawn.Spawned && n.pawn.Map == map))
+            foreach (var n in nem.Open.Where(n => n.IsBeast && n.pawn != null && n.pawn.Faction == null && n.pawn.Spawned && n.pawn.Map == map))
             {
                 bool mine = n.victim == pawn;
                 bool friend = !mine && n.victim != null && pawn.relations != null && pawn.relations.OpinionOf(n.victim) >= 30;
@@ -395,14 +414,14 @@ namespace ColonyCouncil
 
         public override bool IsFulfilled(Wish wish) => wish.other != null && wish.other.Dead;
 
-        public override bool StillValid(Wish wish) => wish.other != null && (wish.other.Dead || (wish.other.Spawned && wish.other.Map == wish.Beneficiary.MapHeld));
+        public override bool StillValid(Wish wish) => wish.other != null && (wish.other.Dead || (wish.other.Faction == null && wish.other.Spawned && wish.other.Map == wish.Beneficiary.MapHeld));
 
         public override LookTargets LookAt(Wish wish) => wish.other != null && wish.other.Spawned ? new LookTargets(wish.other) : base.LookAt(wish);
 
         private static bool Mark(Wish wish)
         {
             var x = wish.other;
-            if (x == null || x.Dead || !x.Spawned) return false;
+            if (x == null || x.Dead || !x.Spawned || x.Faction != null) return false;
             var dm = x.Map.designationManager;
             if (dm.DesignationOn(x, DesignationDefOf.Hunt) != null) return false;
             dm.RemoveAllDesignationsOn(x);

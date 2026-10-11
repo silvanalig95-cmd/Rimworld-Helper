@@ -651,6 +651,8 @@
     <stranger>
       <kind>Wild</kind>
       <minBodySize>1.5</minBodySize>
+      <maxBodySize>2.4</maxBodySize>
+      <notPredator>true</notPredator>
     </stranger>
     <colonist>
       <notTrait>

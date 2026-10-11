@@ -28,6 +28,8 @@ namespace ColonyCouncil
         /// <summary>How it ended, for the Story tab.</summary>
         public string endText;
         public int lastSeedThreat;
+        /// <summary>Last time they were on one of our maps (or got away); long silence ends it.</summary>
+        public int lastSeen;
 
         public bool IsBeast => pawn?.RaceProps != null && pawn.RaceProps.Animal;
 
@@ -40,7 +42,12 @@ namespace ColonyCouncil
         {
             get
             {
-                if (ended) return pawn != null && pawn.Dead ? "CC_Nemesis_Status_Dead".Translate().ToString() : "CC_Nemesis_Status_Gone".Translate().ToString();
+                if (ended)
+                {
+                    if (pawn != null && pawn.Dead) return "CC_Nemesis_Status_Dead".Translate();
+                    if (pawn != null && !pawn.Discarded && pawn.Faction == Faction.OfPlayer) return "CC_Nemesis_Status_Joined".Translate();
+                    return "CC_Nemesis_Status_Gone".Translate();
+                }
                 if (captured) return "CC_Nemesis_Status_Captured".Translate();
                 if (pawn != null && pawn.Spawned && pawn.Map.IsPlayerHome) return "CC_Nemesis_Status_Here".Translate();
                 return "CC_Nemesis_Status_Loose".Translate();
@@ -65,6 +72,7 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref endedTick, "endedTick");
             Scribe_Values.Look(ref endText, "endText");
             Scribe_Values.Look(ref lastSeedThreat, "lastSeedThreat");
+            Scribe_Values.Look(ref lastSeen, "lastSeen");
         }
     }
 
@@ -89,9 +97,21 @@ namespace ColonyCouncil
 
         private static readonly string[] Severity = { "downed", "maimed", "killed" };
 
+        [Unsaved] private bool unpinned;
+
         public void Hourly(CouncilGameComponent comp)
         {
-            if (!S.nemeses) return;
+            if (!S.nemeses)
+            {
+                // Switched off: let the world forget them.
+                if (!unpinned)
+                {
+                    foreach (var n in all.Where(n => n.pawn != null)) Find.WorldPawns?.ForcefullyKeptPawns.Remove(n.pawn);
+                    unpinned = true;
+                }
+                return;
+            }
+            unpinned = false;
             int now = Find.TickManager.TicksGame;
             Safe(() => Detect(comp, now));
             foreach (var n in all.Where(n => !n.ended).ToList()) Safe(() => Update(comp, n, now));
@@ -129,8 +149,9 @@ namespace ColonyCouncil
             {
                 var entry = h.combatLogEntry.Target;
                 if (entry == null) continue;
-                var x = entry.GetConcerns().OfType<Pawn>().FirstOrDefault(c => c != victim && IsFoe(c));
-                if (x != null) return x;
+                // Only whoever struck: a colonist's stray shot names the raider it was aimed at as a concern too.
+                var x = entry.GetConcerns().FirstOrDefault() as Pawn;
+                if (x != null && x != victim && IsFoe(x)) return x;
             }
             return null;
         }
@@ -143,8 +164,8 @@ namespace ColonyCouncil
             foreach (var h in hediffs.Where(h => h.combatLogEntry != null).OrderBy(h => h.ageTicks).Take(5))
             {
                 var entry = h.combatLogEntry.Target;
-                var k = entry?.GetConcerns().OfType<Pawn>().FirstOrDefault(c => c != dead && c.Faction == Faction.OfPlayer && c.RaceProps.Humanlike);
-                if (k != null) return k;
+                var k = entry?.GetConcerns().FirstOrDefault() as Pawn;
+                if (k != null && k != dead && k.Faction == Faction.OfPlayer && k.RaceProps.Humanlike) return k;
             }
             return null;
         }
@@ -211,6 +232,13 @@ namespace ColonyCouncil
                 else all.Remove(n);
                 return;
             }
+            // Tamed, recruited, joined: not an enemy any more.
+            if (x.Faction == Faction.OfPlayer && !x.IsPrisonerOfColony)
+            {
+                if (n.announced) End(n, "CC_Nemesis_End_Joined".Translate(x.Named("X")).Resolve());
+                else all.Remove(n);
+                return;
+            }
             // Someone they only knocked down has since died of other causes, or left: the grudge goes with them.
             bool victimHere = n.victim != null && !n.victim.Dead && n.victim.Faction == Faction.OfPlayer;
             if (!victimHere && n.deed != "killed")
@@ -232,6 +260,7 @@ namespace ColonyCouncil
                 else if (!n.captured) Captured(comp, n);
                 n.captured = true;
                 n.onMap = true;
+                n.lastSeen = now;
                 return;
             }
             n.captured = false;
@@ -248,17 +277,34 @@ namespace ColonyCouncil
                     // The fight is over and it's still out there, calm again: it gets a name.
                     if (!x.InMentalState && !comp.social.battleActive && !GenHostility.AnyHostileActiveThreatToPlayer(x.Map, false, false)) Escaped(comp, n, now);
                 }
-                else if (!here && now - n.tick < GenDate.TicksPerDay * 2) Escaped(comp, n, now);
-                else if (!here) all.Remove(n);
+                // Off every map (fled, carried off, or the caravan's battlefield was left behind): they got away.
+                else if (!x.Spawned && now - n.tick < GenDate.TicksPerDay * 2) Escaped(comp, n, now);
+                else if (!x.Spawned) all.Remove(n);
                 n.onMap = here;
+                if (n.announced) n.lastSeen = now;
                 return;
             }
-            if (here && !n.onMap)
+            if (here)
             {
-                n.returns++;
-                Returned(comp, n);
+                if (!n.onMap)
+                {
+                    n.returns++;
+                    Returned(comp, n);
+                }
+                n.lastSeen = now;
             }
             n.onMap = here;
+            if (!n.IsBeast && !x.Spawned)
+            {
+                // Long gone and never seen again: let it end, and let the world have them back.
+                if (now - n.lastSeen > GenDate.TicksPerDay * 120)
+                {
+                    End(n, "CC_Nemesis_End_Vanished".Translate().ToString());
+                    return;
+                }
+                // Keep them in the world while they're still someone's nemesis (a return through a raid unpins them).
+                if (Find.WorldPawns.Contains(x)) Find.WorldPawns.ForcefullyKeptPawns.Add(x);
+            }
         }
 
         private static bool Bold(Pawn p)
@@ -285,6 +331,7 @@ namespace ColonyCouncil
                 if (!named.NullOrEmpty()) x.Name = new NameSingle(named.Trim());
             }
             n.name = x.LabelShort;
+            n.lastSeen = now;
             if (!n.IsBeast) Find.WorldPawns.ForcefullyKeptPawns.Add(x);
             string key = n.IsBeast ? "CC_Nemesis_EscapedBeast" : "CC_Nemesis_Escaped";
             string text = key.Translate(x.Named("X"), (n.victimName ?? "?").Named("VICTIM"), n.DeedText.Named("DEED")).Resolve();

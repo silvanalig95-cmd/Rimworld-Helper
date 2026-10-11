@@ -87,18 +87,22 @@ namespace ColonyCouncil
                 if (x.Faction == null || x.Faction.IsPlayer || x.IsSlave) return StrangerKind.None;
                 if (x.Faction.HostileTo(Faction.OfPlayer)) return x.Downed && !x.InMentalState ? StrangerKind.Fallen : StrangerKind.None;
                 if (x.Downed || x.InMentalState) return StrangerKind.None;
+                // Only people here to visit or trade: not a ceremony's envoy, permit troops or a quest's pawns.
+                if (QuestUtility.IsReservedByQuestOrQuestBeingGenerated(x)) return StrangerKind.None;
                 var lord = x.GetLord();
-                if (lord != null && lord.LordJob is LordJob_TradeWithColony)
+                if (lord?.LordJob is LordJob_TradeWithColony)
                 {
                     var role = TraderCaravanUtility.GetTraderCaravanRole(x);
                     if (role == TraderCaravanRole.Trader) return StrangerKind.Trader;
                     if (role == TraderCaravanRole.Chattel) return StrangerKind.None;
+                    return StrangerKind.Visitor;
                 }
-                return StrangerKind.Visitor;
+                if (lord?.LordJob is LordJob_VisitColony || IsHospitalityGuest(x)) return StrangerKind.Visitor;
+                return StrangerKind.None;
             }
             if (x.RaceProps.Animal)
             {
-                if (x.Faction == Faction.OfPlayer) return StrangerKind.Pet;
+                if (x.Faction == Faction.OfPlayer) return x.Downed || x.InMentalState ? StrangerKind.None : StrangerKind.Pet;
                 if (x.Faction == null && !x.Downed && !x.InMentalState) return StrangerKind.Wild;
             }
             return StrangerKind.None;
@@ -179,8 +183,20 @@ namespace ColonyCouncil
             return options.RandomElementByWeight(x => 1f / (1f + x.Position.DistanceTo(a.Position) / 25f));
         }
 
-        /// <summary>The faction to deal with over a stranger: theirs, unless it's ours or there is none.</summary>
-        public static Faction FactionOf(Pawn x) => x?.Faction != null && !x.Faction.IsPlayer && x.RaceProps.Humanlike ? x.Faction : null;
+        /// <summary>
+        /// The faction to deal with over a stranger: theirs, unless it's ours or there is none. Quest guests belong to the
+        /// colony while they stay; their own people are their "extra home faction".
+        /// </summary>
+        public static Faction FactionOf(Pawn x)
+        {
+            if (x?.RaceProps == null || !x.RaceProps.Humanlike) return null;
+            var home = x.IsQuestLodger() ? QuestUtility.GetExtraHomeFaction(x, null) : null;
+            var f = home ?? x.Faction;
+            return f != null && !f.IsPlayer ? f : null;
+        }
+
+        /// <summary>A guest of the Hospitality mod: its own visit (and its own way of recruiting) applies.</summary>
+        public static bool IsHospitalityGuest(Pawn x) => x?.GetLord()?.LordJob?.GetType().Namespace == "Hospitality";
     }
 
     /// <summary>

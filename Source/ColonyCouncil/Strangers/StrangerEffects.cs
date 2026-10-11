@@ -11,13 +11,17 @@ namespace ColonyCouncil
     /// <summary>The stranger joins the colony: a visitor who stays, a prisoner won over, a wild animal that follows A home.</summary>
     public class DilemmaEffect_Recruit : DilemmaEffect
     {
-        public override string Unavailable(DilemmaContext ctx) =>
-            ctx.stranger == null || ctx.stranger.Dead || !ctx.stranger.Spawned ? "CC_Stranger_Gone".Translate(ctx.stranger?.LabelShort ?? "?").ToString() : null;
+        public override string Unavailable(DilemmaContext ctx)
+        {
+            if (ctx.stranger == null || ctx.stranger.Dead || !ctx.stranger.Spawned) return "CC_Stranger_Gone".Translate(ctx.stranger?.LabelShort ?? "?").ToString();
+            if (Strangers.IsHospitalityGuest(ctx.stranger)) return "CC_Stranger_HospitalityRecruit".Translate(ctx.stranger.LabelShort).ToString();
+            return null;
+        }
 
         public override void Apply(DilemmaContext ctx)
         {
             var x = ctx.stranger;
-            if (x == null || x.Dead || !x.Spawned || x.Faction == Faction.OfPlayer) return;
+            if (x == null || x.Dead || !x.Spawned || x.Faction == Faction.OfPlayer || Strangers.IsHospitalityGuest(x)) return;
             if (chance < 1f && !Rand.Chance(chance)) return;
             var recruiter = ctx.a != null && !ctx.a.Dead ? ctx.a : ctx.Colonists.FirstOrDefault();
             if (recruiter == null) return;
@@ -141,15 +145,20 @@ namespace ColonyCouncil
     {
         public float priceFactor = 1.5f;
 
-        public override string Unavailable(DilemmaContext ctx) =>
-            CouncilGameComponent.Instance?.legacy.HeirloomCarriedBy(ctx.a) == null ? "CC_Stranger_NoHeirloom".Translate(ctx.a?.LabelShort ?? "?").ToString() : null;
+        public override string Unavailable(DilemmaContext ctx)
+        {
+            if (ctx.stranger == null || ctx.stranger.Dead || !ctx.stranger.Spawned || ctx.stranger.Map != ctx.map)
+                return "CC_Stranger_Gone".Translate(ctx.stranger?.LabelShort ?? "?").ToString();
+            if (ctx.a == null || !ctx.a.Spawned || ctx.a.Map != ctx.map) return "CC_Stranger_Away".Translate(ctx.a?.LabelShort ?? "?").ToString();
+            return CouncilGameComponent.Instance?.legacy.HeirloomCarriedBy(ctx.a) == null ? "CC_Stranger_NoHeirloom".Translate(ctx.a?.LabelShort ?? "?").ToString() : null;
+        }
 
         public override void Apply(DilemmaContext ctx)
         {
             var comp = CouncilGameComponent.Instance;
             var a = ctx.a;
             var h = comp?.legacy.HeirloomCarriedBy(a);
-            if (h?.thing == null || h.thing.Destroyed) return;
+            if (h?.thing == null || h.thing.Destroyed || a == null || !a.Spawned || ctx.stranger == null || !ctx.stranger.Spawned) return;
             var thing = h.thing;
             int price = Mathf.Max(1, Mathf.RoundToInt(thing.MarketValue * priceFactor));
             comp.legacy.Forget(h);
@@ -173,6 +182,14 @@ namespace ColonyCouncil
     /// <summary>A's animal goes with the stranger: given or sold to a visitor, it leaves with their group.</summary>
     public class DilemmaEffect_GivePet : DilemmaEffect
     {
+        public override string Unavailable(DilemmaContext ctx)
+        {
+            if (ctx.stranger == null || ctx.stranger.Dead || !ctx.stranger.Spawned || ctx.stranger.Map != ctx.map)
+                return "CC_Stranger_Gone".Translate(ctx.stranger?.LabelShort ?? "?").ToString();
+            if (ctx.pet == null || ctx.pet.Dead || ctx.pet.Faction != Faction.OfPlayer) return "CC_Stranger_PetGone".Translate().ToString();
+            return null;
+        }
+
         public override void Apply(DilemmaContext ctx)
         {
             var pet = ctx.pet;

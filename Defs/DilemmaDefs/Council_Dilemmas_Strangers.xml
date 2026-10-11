@@ -801,7 +801,6 @@
         <label>Let {X_objective} rot in there</label>
         <outcome>{X_nameDef} stays in the cell, fed and ignored, for as long as that takes. {A_nameDef} has stopped going anywhere near that end of the colony.</outcome>
         <effects>
-          <li Class="ColonyCouncil.DilemmaEffect_PrisonerOrder"><mode>MaintainOnly</mode></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_DlmS_UnderOurRoof</thought></li>
         </effects>
       </li>

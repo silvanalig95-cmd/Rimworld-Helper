@@ -1273,6 +1273,9 @@ Granting one of {PAWN_possessive} wishes, or keeping a promise, can win {PAWN_ob
   <CC_ChronicleFilter_Strangers>Strangers</CC_ChronicleFilter_Strangers>
   <CC_Stranger_Gone>{0} is no longer here.</CC_Stranger_Gone>
   <CC_Stranger_NoPrisonBed>{PAWN_nameDef} can't take {X_nameDef} prisoner: there's no free prisoner bed.</CC_Stranger_NoPrisonBed>
+  <CC_Stranger_Away>{0} is away from home.</CC_Stranger_Away>
+  <CC_Stranger_PetGone>The animal isn't the colony's any more.</CC_Stranger_PetGone>
+  <CC_Stranger_HospitalityRecruit>{0} is a Hospitality guest: invite them to stay the Hospitality way, from their guest tab.</CC_Stranger_HospitalityRecruit>
   <CC_Stranger_NoHeirloom>{0} isn't carrying the heirloom any more.</CC_Stranger_NoHeirloom>
 
   <CC_Nemesis_Deed_downed>struck down {0}</CC_Nemesis_Deed_downed>
@@ -1293,6 +1296,8 @@ It's still out there. Hunting it down would settle a lot of nerves.</CC_Nemesis_
   <CC_Nemesis_SlainBy>{X_nameDef}, who {DEED}, is dead. {SLAYER_nameDef} struck the last blow.</CC_Nemesis_SlainBy>
   <CC_Nemesis_Dead>{X_nameDef}, who {DEED}, is dead.</CC_Nemesis_Dead>
   <CC_Nemesis_End_Vanished>Never seen again.</CC_Nemesis_End_Vanished>
+  <CC_Nemesis_End_Joined>{X_nameDef} is one of the colony's own now. Some grudges don't survive living together; some just go quiet.</CC_Nemesis_End_Joined>
+  <CC_Nemesis_Status_Joined>one of us now</CC_Nemesis_Status_Joined>
   <CC_Nemesis_Status_Loose>still out there</CC_Nemesis_Status_Loose>
   <CC_Nemesis_Status_Here>here, now</CC_Nemesis_Status_Here>
   <CC_Nemesis_Status_Captured>our prisoner</CC_Nemesis_Status_Captured>

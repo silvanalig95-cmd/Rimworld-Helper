@@ -170,8 +170,11 @@ namespace ColonyCouncil
             {
                 var entry = h.combatLogEntry?.Target;
                 if (entry == null) continue;
-                var attacker = entry.GetConcerns().OfType<Pawn>().FirstOrDefault(x => x != dead && x.Faction != null && x.Faction != Faction.OfPlayer);
-                if (attacker != null) return attacker.Faction.HostileTo(Faction.OfPlayer) ? attacker.Faction : null;
+                // The one who struck (a stray shot also names the raider it was aimed at).
+                var attacker = entry.GetConcerns().FirstOrDefault() as Pawn;
+                if (attacker == null || attacker == dead) continue;
+                if (attacker.Faction == null || attacker.Faction == Faction.OfPlayer) break;
+                return attacker.Faction.HostileTo(Faction.OfPlayer) ? attacker.Faction : null;
             }
             var where = dead.Corpse?.MapHeld ?? dead.MapHeld;
             return now - lastBattleTick < GenDate.TicksPerHour * 4 && where != null && where == lastBattleMap ? lastBattleFaction : null;

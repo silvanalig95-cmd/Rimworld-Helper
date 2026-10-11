@@ -218,7 +218,7 @@ namespace ColonyCouncil
                 (b != null ? b.Named("B") : (a != null ? a.Named("B") : "?".Named("B"))),
                 (thing != null ? thing.label : "").Named("THING"),
                 count.Named("COUNT"),
-                (faction != null ? faction.Name : stranger?.Faction != null ? stranger.Faction.Name : "").Named("FACTION"),
+                (faction != null ? faction.Name : Strangers.FactionOf(stranger)?.Name ?? "").Named("FACTION"),
                 (stranger != null ? stranger.Named("X") : "?".Named("X")),
                 (pet != null ? pet.Named("PET") : (a != null ? a.Named("PET") : "?".Named("PET"))),
                 (skill != null ? skill.label : "").Named("SKILL"),
