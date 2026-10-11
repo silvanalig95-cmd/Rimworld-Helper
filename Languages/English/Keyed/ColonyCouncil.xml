@@ -1267,7 +1267,8 @@ Granting one of {PAWN_possessive} wishes, or keeping a promise, can win {PAWN_ob
   <CC_Preset_Everything>Everything on</CC_Preset_Everything>
   <CC_Preset_Core>Council only</CC_Preset_Core>
   <CC_Preset_AdvisorOnly>Advisor only</CC_Preset_AdvisorOnly>
-  <CC_Settings_Era>Era</CC_Settings_Era>
+  <CC_Settings_Era>Era (this colony)</CC_Settings_Era>
+  <CC_Settings_EraNoGame>The era is set per colony: load a game to change it. Every colony starts on Auto, which recognizes a medieval or tribal colony by its research and buildings.</CC_Settings_EraNoGame>
   <CC_Era_Auto>Detect from research</CC_Era_Auto>
   <CC_Era_Auto_Tip>The mod reads your finished research and your buildings to decide what your colony can make. Works for most games, including modded tech trees.</CC_Era_Auto_Tip>
   <CC_Era_PreIndustrial>Pre-industrial (medieval, tribal)</CC_Era_PreIndustrial>

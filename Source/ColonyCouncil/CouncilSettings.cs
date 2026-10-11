@@ -269,13 +269,17 @@ namespace ColonyCouncil
             }
             l.Gap();
 
+            // The era belongs to each colony, not to every game: a medieval save and an industrial one can't share it.
             Header(l, "CC_Settings_Era".Translate());
-            foreach (EraMode mode in System.Enum.GetValues(typeof(EraMode)))
-                if (l.RadioButton(("CC_Era_" + mode).Translate(), era == mode, 0f, ("CC_Era_" + mode + "_Tip").Translate()))
-                {
-                    era = mode;
-                    Avail.ResetCache();
-                }
+            var colony = Current.ProgramState == ProgramState.Playing ? CouncilGameComponent.Instance : null;
+            if (colony == null) l.Label("CC_Settings_EraNoGame".Translate());
+            else
+                foreach (EraMode mode in System.Enum.GetValues(typeof(EraMode)))
+                    if (l.RadioButton(("CC_Era_" + mode).Translate(), colony.era == mode, 0f, ("CC_Era_" + mode + "_Tip").Translate()))
+                    {
+                        colony.era = mode;
+                        Avail.ResetCache();
+                    }
 
             Header(l, "CC_Settings_Layers".Translate());
             l.CheckboxLabeled("CC_Settings_EnableAdvisor".Translate(), ref enableAdvisor, "CC_Settings_EnableAdvisor_Tip".Translate());

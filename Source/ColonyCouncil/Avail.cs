@@ -45,7 +45,7 @@ namespace ColonyCouncil
         {
             get
             {
-                switch (ColonyCouncilMod.Settings.era)
+                switch (Era)
                 {
                     case EraMode.PreIndustrial: return true;
                     case EraMode.Industrial: return false;
@@ -53,6 +53,9 @@ namespace ColonyCouncil
                 }
             }
         }
+
+        /// <summary>The era chosen for this colony (each save has its own; Auto outside a game).</summary>
+        public static EraMode Era => Current.ProgramState == ProgramState.Playing ? CouncilGameComponent.Instance?.era ?? EraMode.Auto : EraMode.Auto;
 
         public static bool ResearchDone(string defName)
         {
@@ -64,7 +67,7 @@ namespace ColonyCouncil
         {
             get
             {
-                if (ColonyCouncilMod.Settings.era == EraMode.PreIndustrial) return false;
+                if (Era == EraMode.PreIndustrial) return false;
                 RefreshCache();
                 return hasElectricity;
             }
@@ -89,7 +92,40 @@ namespace ColonyCouncil
                 }
             }
             if (def is ThingDef td && NeedsPower(td) && !HasElectricity) return false;
-            return true;
+            return InBuildMenu(def);
+        }
+
+        private static readonly Dictionary<BuildableDef, bool> inMenu = new Dictionary<BuildableDef, bool>();
+        private static int inMenuHour = -1;
+        private static Game inMenuGame;
+
+        /// <summary>
+        /// The game's own build menu offers it right now: covers what the checks above don't, like buildings a scenario
+        /// forbids, tech-level limits and buildings an ideoligion unlocks. Remembered for the in-game hour.
+        /// </summary>
+        private static bool InBuildMenu(BuildableDef def)
+        {
+            if (Current.ProgramState != ProgramState.Playing) return true;
+            int hour = (Find.TickManager?.TicksGame ?? 0) / GenDate.TicksPerHour;
+            if (hour != inMenuHour || Current.Game != inMenuGame)
+            {
+                inMenu.Clear();
+                inMenuHour = hour;
+                inMenuGame = Current.Game;
+            }
+            if (!inMenu.TryGetValue(def, out bool ok))
+            {
+                try
+                {
+                    ok = BuildCopyCommandUtility.FindAllowedDesignator(def, true) != null;
+                }
+                catch
+                {
+                    ok = true;
+                }
+                inMenu[def] = ok;
+            }
+            return ok;
         }
 
         public static bool NeedsPower(ThingDef td)
@@ -525,6 +561,8 @@ namespace ColonyCouncil
             cacheTick = -99999;
             bestMemo.Clear();
             bestMemoGame = null;
+            inMenu.Clear();
+            inMenuGame = null;
         }
     }
 }

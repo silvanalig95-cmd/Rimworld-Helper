@@ -65,6 +65,8 @@ namespace ColonyCouncil
         public NemesisTracker nemeses = new NemesisTracker();
         public PetTracker pets = new PetTracker();
         public AutonomyTracker autonomy = new AutonomyTracker();
+        /// <summary>The colony's era, set by hand in the mod settings or detected (Auto). Saved with each colony.</summary>
+        public EraMode era = EraMode.Auto;
         public CharacterTracker character = new CharacterTracker();
         public int nextWishId = 1;
 
@@ -142,6 +144,7 @@ namespace ColonyCouncil
             Scribe_Deep.Look(ref nemeses, "nemeses");
             Scribe_Deep.Look(ref pets, "pets");
             Scribe_Deep.Look(ref autonomy, "autonomy");
+            Scribe_Values.Look(ref era, "era", EraMode.Auto);
             Scribe_Deep.Look(ref character, "character");
             Scribe_Values.Look(ref nextWishId, "nextWishId", 1);
             Scribe_Collections.Look(ref cooldowns, "cooldowns", LookMode.Value, LookMode.Value, ref tmpKeys, ref tmpValues);
@@ -187,8 +190,40 @@ namespace ColonyCouncil
         public override void GameComponentTick()
         {
             int t = Find.TickManager.TicksGame;
+            // Something was just built (a Harmony hook tells us): see right away whether it makes a wish come true.
+            if (builtSomething && t % 30 == 0)
+            {
+                builtSomething = false;
+                Safe("wishes after building", GrantFulfilledWishes);
+            }
             if (t % HourTicks != 157) return;
             Hourly();
+        }
+
+        [Unsaved] private bool builtSomething;
+
+        /// <summary>Construction just finished (from Patch_ConstructionDone).</summary>
+        public void Notify_Constructed() => builtSomething = true;
+
+        /// <summary>Grants every open wish that is now fulfilled; the rest waits for the hourly upkeep.</summary>
+        private void GrantFulfilledWishes()
+        {
+            if (!Settings.enableWishes) return;
+            foreach (var w in wishes.Where(x => x.state == WishState.Open).ToList())
+            {
+                var home = w.Beneficiary?.MapHeld;
+                if (home == null || !home.IsPlayerHome || w.def == null) continue;
+                bool fulfilled;
+                try
+                {
+                    fulfilled = w.Worker.StillValid(w) && w.Worker.IsFulfilled(w);
+                }
+                catch
+                {
+                    fulfilled = false;
+                }
+                if (fulfilled) Grant(w);
+            }
         }
 
         private void Hourly()
