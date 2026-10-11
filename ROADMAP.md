@@ -3,12 +3,12 @@
 A living plan. Each phase ends with a build, the XML validator, a review pass and a push. Phases can overlap;
 content work runs alongside code work.
 
-## Phase A: Faster and sturdier
+## Phase A: Faster and sturdier (light pass done)
 Performance is good in play (big medieval modlist, no complaints), so this stays a light pass: apply the cheap,
 safe wins from an audit of the per-frame interface and the hourly simulation, and keep every system skipped
 entirely when switched off.
 
-## Phase B: The colony's character
+## Phase B: The colony's character (done)
 The council's choices add up to a reputation. The colony becomes known as merciful or harsh, generous or
 thrifty, open or wary, keeper of traditions or restless for change, easygoing or hard-working.
 - Council answers, decrees, granted wishes and how strangers are treated shift the colony's ways; old deeds
@@ -44,6 +44,10 @@ The Almanac learns about the mods in the user's modlist, and Rimfolk uses that k
 
 ## Phase F: Release (when the user asks)
 - Steam Workshop upload (private first), then an automatic upload of each new version.
+
+## Also done
+- Decrees can be repeated or forced through their cooldown, at a price in trust and resentment, with a chance
+  someone snaps.
 
 ## Done so far
 See README.md for everything Rimfolk does today, and DESIGN.md for the reasoning behind it.

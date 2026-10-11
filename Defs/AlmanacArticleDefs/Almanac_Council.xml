@@ -89,13 +89,19 @@
       <li>Austerity: no new wishes, standards fall fast. Festival days: a big mood lift, work much slower, standards rise.</li>
       <li>Days of mourning: only while someone grieves; grief fades much faster and nobody breaks as easily.</li>
       <li>Colonists sometimes petition for a decree when the moment fits. Declaring it within five days wins their trust.</li>
+      <li>The same decree again within 30 days wears thin. For each recent time, those against it lose more trust in the council and resent it 35% more while it lasts.</li>
+      <li>A decree still on cooldown can be forced through, at a price: it counts as one more recent time, and those against it take it badly.</li>
+      <li>Each repeat can make someone snap: a 20% chance per recent time, 15% more when forced, at most 80%. The hot-tempered throw a tantrum; others wander off in a daze.</li>
+      <li>Each decree also says something about the colony: long hours make it more hard-working, festivals more easygoing and traditional, being on guard more guarded.</li>
     </facts>
     <advice>
       <li>Pair a hated decree with a short one people love, or follow it with festival days.</li>
       <li>Ration before winter, not during it. Drill before raids grow, not after.</li>
+      <li>Space out the decrees people hate. If you must repeat one, the tab shows how many times it was used this month and the chance someone snaps.</li>
+      <li>Force a decree through only in an emergency, and keep the hot-tempered busy and away from the stores while it lasts.</li>
     </advice>
-    <keywords><li>decree</li><li>rationing</li><li>long hours</li><li>drills</li><li>festival</li><li>austerity</li><li>petition</li></keywords>
-    <seeAlso><li>Council_Alm_C_Standards</li><li>Council_Alm_C_Trust</li></seeAlso>
+    <keywords><li>decree</li><li>rationing</li><li>long hours</li><li>drills</li><li>festival</li><li>austerity</li><li>petition</li><li>cooldown</li><li>force</li><li>fatigue</li><li>unrest</li></keywords>
+    <seeAlso><li>Council_Alm_C_Standards</li><li>Council_Alm_C_Trust</li><li>Council_Alm_C_Ways</li></seeAlso>
   </ColonyCouncil.AlmanacArticleDef>
 
   <ColonyCouncil.AlmanacArticleDef>
@@ -316,6 +322,34 @@
     </advice>
     <keywords><li>visitor</li><li>trader</li><li>prisoner</li><li>nemesis</li><li>beast</li><li>pet</li><li>animal</li><li>encounter</li></keywords>
     <seeAlso><li>Council_Alm_C_Social</li><li>Council_Alm_C_Goals</li><li>Council_Alm_C_Dilemmas</li></seeAlso>
+  </ColonyCouncil.AlmanacArticleDef>
+
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Council_Alm_C_Ways</defName>
+    <label>the colony's character</label>
+    <category>Council</category>
+    <order>14</order>
+    <summary>How the council's choices add up to a reputation: merciful or harsh, generous or thrifty, and more.</summary>
+    <tip>Nobody decides to be known as harsh. They just keep choosing it.</tip>
+    <description>Every answer to a dilemma, every decree and many granted wishes say something about who the colony is. Lean far enough one way and word spreads: the colony becomes known as merciful, thrifty, hard-working or guarded, and later renowned for it. Colonists are proud of ways that suit their nature and chafe at ways that don't. Old deeds slowly fade, so a colony can change its name. The "Our ways" page in the council window shows where the colony stands, who is proud, who chafes, and what shaped it.</description>
+    <facts>
+      <li>Five ways, each with two sides: merciful or harsh, generous or thrifty, traditional or restless, open or guarded, hard-working or easygoing.</li>
+      <li>Each way runs from -100 to 100. The colony is known for a way at 25 and renowned at 60, and loses the name a little below that.</li>
+      <li>Old deeds fade: about half of a way is forgotten in a year. The further the colony already leans, the less each new deed adds.</li>
+      <li>An answer given by default, when the council didn't decide in time, counts half.</li>
+      <li>Kind colonists like mercy and generosity, the greedy like thrift, the bloodthirsty and psychopaths like harshness, the industrious like hard work and the lazy like ease. The old like tradition, the young like change, and sociable people like openness.</li>
+      <li>Colonists whose nature fits the colony's ways get up to +4 mood; those whose nature clashes get up to -4.</li>
+      <li>A generous or open colony slowly gains goodwill with its neighbors as word gets around; a thrifty or guarded one slowly loses a little.</li>
+      <li>Some encounters and dilemmas only come up for a colony with a certain name: refugees seeking a merciful colony, traders who heard you count every grain.</li>
+    </facts>
+    <advice>
+      <li>Decide what kind of colony you want to be, and let the council's answers follow. A consistent colony makes the colonists who fit it happy.</li>
+      <li>Check "Our ways" before recruiting: a kind recruit will chafe in a harsh colony.</li>
+      <li>To change the colony's name, choose the other way for a while. Old deeds fade on their own too.</li>
+      <li>Being open and generous is a slow, cheap way to keep neighbors friendly.</li>
+    </advice>
+    <keywords><li>reputation</li><li>character</li><li>ways</li><li>merciful</li><li>harsh</li><li>generous</li><li>thrifty</li><li>traditional</li><li>restless</li><li>open</li><li>guarded</li><li>hard-working</li><li>easygoing</li></keywords>
+    <seeAlso><li>Council_Alm_C_Dilemmas</li><li>Council_Alm_C_Decrees</li><li>Council_Alm_C_Strangers</li></seeAlso>
   </ColonyCouncil.AlmanacArticleDef>
 
 </Defs>

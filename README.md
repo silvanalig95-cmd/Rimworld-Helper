@@ -115,6 +115,21 @@ to their nature: the industrious like long hours and the lazy hate them, ascetic
 love drills, gourmands suffer under rationing. The tab shows who will love or hate each one before you decide, and
 living under a decree you hate wears down your trust in the council.
 
+There's no hard limit on repeating a decree, but there is a price. Enact the same one again within a month, or
+**force it through** before its cooldown is over, and those against it lose more trust and resent it more each
+time. Someone may even snap: the hot-tempered throw a tantrum, others wander off in a daze. The tab warns you how
+many times a decree was used lately and how likely trouble is.
+
+### Our ways: the colony's character
+The council's choices add up. Every dilemma answer, decree and many granted wishes nudge the colony's five ways:
+**merciful or harsh**, **generous or thrifty**, **traditional or restless**, **open or guarded**, **hard-working or
+easygoing**. Lean far enough and word spreads: a letter tells you the colony is now known (and later renowned) for
+it. Colonists whose nature fits are proud of it (up to +4 mood); those it clashes with chafe (up to -4): the kind
+hate harshness, the greedy love thrift, the lazy love an easygoing colony, the old love tradition. Neighbors warm to
+a generous or open colony and cool towards a thrifty or guarded one, and some encounters and dilemmas only happen
+for a colony with a certain name. Old deeds fade (about half in a year), so a colony can change. The **Our ways**
+page in the council window shows where you stand, who is proud, who chafes, and what shaped it.
+
 ### Dilemmas: hard choices
 Every week or so (sooner while everyone is content) the council has to settle something, and every answer costs
 someone. A thief caught in the stores: forgive, make them work it off, or make an example of them? Two colonists
@@ -268,7 +283,9 @@ bedroom.
 
 ### Almanac
 An in-game knowledge base: good practice and the numbers behind it, by topic, searchable, linked from the
-advisor's warnings and to room plans. (Being filled with wiki-checked content.)
+advisor's warnings and to room plans. The **Your mods** category explains the mods in your game: what each adds, how
+to get the most out of it in a medieval run, and how it works with Rimfolk. Each page only shows when its mod is
+active.
 
 ### Names, anniversaries and petitions
 Whoever has done the most of something earns a name for it, until someone overtakes them: *the Healer*, *the
@@ -361,8 +378,8 @@ journals, the Story tab and History) or **Important only**.
 - letters vs. messages, floating speech text, alerts
 - where the council button sits in the bottom bar
 - **council life**: decrees, dilemmas, petitions, annals, names, journals, offices, the social web, social
-  events, life goals, secrets, vendettas, eulogies, heirlooms, coming of age, quirks, dreams and dream omens, encounters with strangers, nemeses (and whether they return), pets, each on
-  its own switch
+  events, life goals, secrets, vendettas, eulogies, heirlooms, coming of age, quirks, dreams and dream omens, encounters with strangers, nemeses (and whether they return), pets, the
+  colony's character, each on its own switch
 
 ## Optional mods that go well with it
 
@@ -372,7 +389,7 @@ journals, the Story tab and History) or **Important only**.
 ## Status and feedback
 
 Version 0.4. It compiles against RimWorld 1.6, and all XML is checked against the real game types by the
-included validator. It has **not been play-tested** in a live game yet. If something misbehaves, open the debug
+included validator. It runs in a live game with a 200+ mod medieval list. If something misbehaves, open the debug
 log (Options → Development mode, then the log button): lines starting with `[Rimfolk]` are from this mod.
 Please share them so they can be fixed.
 
