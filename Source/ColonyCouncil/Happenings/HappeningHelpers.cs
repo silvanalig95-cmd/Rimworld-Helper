@@ -159,6 +159,8 @@ namespace ColonyCouncil
         public static bool Send(Map map, Faction f, float points, string label, string text, Pawn leader = null)
         {
             if (map == null || !CanRaid(f)) return false;
+            // Whoever leads it is part of its strength, not on top of it.
+            if (leader != null && !leader.Dead && leader.kindDef != null) points -= leader.kindDef.combatPower;
             float min = 0f;
             try
             {

@@ -112,7 +112,7 @@ namespace ColonyCouncil
                 // Switched off: let the world forget them.
                 if (!unpinned)
                 {
-                    foreach (var n in all.Where(n => n.pawn != null)) Find.WorldPawns?.ForcefullyKeptPawns.Remove(n.pawn);
+                    foreach (var n in all.Where(n => n.pawn != null && !Held(n.pawn))) Find.WorldPawns?.ForcefullyKeptPawns.Remove(n.pawn);
                     unpinned = true;
                 }
                 return;
@@ -179,6 +179,8 @@ namespace ColonyCouncil
         private void Record(Pawn enemy, Pawn victim, string deed, int now)
         {
             var n = For(enemy);
+            // A scenario's enemy keeps their story (they hunt the colony), whatever they do along the way.
+            if (n != null && n.Sworn) return;
             if (n != null)
             {
                 // The same enemy, worse: keep the worst thing they did (to the first they hurt, unless they killed someone since).
@@ -455,7 +457,17 @@ namespace ColonyCouncil
             n.endedTick = Find.TickManager.TicksGame;
             n.endText = how;
             n.name = n.Name;
-            if (n.pawn != null) Find.WorldPawns?.ForcefullyKeptPawns.Remove(n.pawn);
+            if (n.pawn != null && !Held(n.pawn)) Find.WorldPawns?.ForcefullyKeptPawns.Remove(n.pawn);
+        }
+
+        /// <summary>Still needed by a world event's memo (a scenario's hunt): not ours to let go.</summary>
+        private static bool Held(Pawn p) => CouncilGameComponent.Instance?.happenings.Holds(p) ?? false;
+
+        /// <summary>Their quarrel with the colony is settled some other way (a debt paid): it ends, with how.</summary>
+        public void Settle(Pawn enemy, string how)
+        {
+            var n = For(enemy);
+            if (n != null && n.announced) End(n, how);
         }
 
         // ---------------- Coming back ----------------

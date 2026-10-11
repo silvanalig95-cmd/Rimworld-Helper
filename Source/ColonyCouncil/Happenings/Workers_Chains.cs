@@ -21,7 +21,9 @@ namespace ColonyCouncil
             m != null && !m.used && m.pawn != null && !m.pawn.Dead && m.pawn.IsColonist && m.pawn.Spawned && m.pawn.Map == map && Raids.CanRaid(m.faction);
 
         private static Memo Pick(Map map) =>
-            Fits(forced, map) ? forced : CouncilGameComponent.Instance?.happenings.Memos("deserter", 20f).Where(m => Fits(m, map)).RandomElementWithFallback();
+            forced != null
+                ? (Fits(forced, map) ? forced : null)
+                : CouncilGameComponent.Instance?.happenings.Memos("deserter", 20f).Where(m => Fits(m, map)).RandomElementWithFallback();
 
         protected override bool CanHappen(Map map, HappeningExtension ext) => Pick(map) != null;
 
@@ -31,6 +33,7 @@ namespace ColonyCouncil
             if (m == null) return false;
             ctx.a = m.pawn;
             ctx.enemy = m.faction;
+            ctx.scenario = m == forced;
             float points = StorytellerUtility.DefaultThreatPointsNow(ctx.map);
             ctx.count = Mathf.Clamp(Mathf.RoundToInt(points * Rand.Range(1.2f, 1.8f) / 10f) * 10, 200, 3000);
             CouncilGameComponent.Instance.happenings.Use(m);

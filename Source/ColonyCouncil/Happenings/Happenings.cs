@@ -126,6 +126,8 @@ namespace ColonyCouncil
         public int variant;
         /// <summary>{SKILL} names a contest ("marksmanship", "wrestling") rather than a craft.</summary>
         public bool contest;
+        /// <summary>Set off by the scenario the player chose: its fights ignore the world-event battle switch.</summary>
+        public bool scenario;
 
         public HappeningExtension Ext => incident?.GetModExtension<HappeningExtension>();
 
@@ -159,6 +161,7 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref xWaiting, "xWaiting");
             Scribe_Values.Look(ref variant, "variant");
             Scribe_Values.Look(ref contest, "contest");
+            Scribe_Values.Look(ref scenario, "scenario");
             if (Scribe.mode == LoadSaveMode.PostLoadInit)
             {
                 if (group == null) group = new List<Pawn>();
@@ -596,9 +599,12 @@ namespace ColonyCouncil
         private void Unpin(Pawn p)
         {
             // Not while they're a nemesis, or another memo (a hunt they lead) still needs them.
-            if (p == null || (CouncilGameComponent.Instance?.nemeses.IsNemesis(p) ?? false) || memos.Any(m => !m.used && m.pawn == p)) return;
+            if (p == null || (CouncilGameComponent.Instance?.nemeses.IsNemesis(p) ?? false) || Holds(p)) return;
             Find.WorldPawns.ForcefullyKeptPawns.Remove(p);
         }
+
+        /// <summary>A memo still waiting on this pawn (a hunt they lead, a debt they're owed): keep them in the world.</summary>
+        public bool Holds(Pawn p) => p != null && memos.Any(m => !m.used && m.pawn == p);
 
         public void AddRaid(Map map, Faction faction, float factor, float delayHours, string label, string text, Pawn leader = null, bool scenario = false)
         {
@@ -632,7 +638,11 @@ namespace ColonyCouncil
                     raids.Add(r);
                     continue;
                 }
-                Raids.Send(r.map, r.faction, StorytellerUtility.DefaultThreatPointsNow(r.map) * r.factor, r.label, r.text, r.leader);
+                bool sent = Raids.Send(r.map, r.faction, StorytellerUtility.DefaultThreatPointsNow(r.map) * r.factor, r.label, r.text, r.leader);
+                // The raid's own letter told the story: counted as their return without a second letter.
+                var comp = CouncilGameComponent.Instance;
+                var n = sent && r.leader != null && r.leader.Spawned ? comp?.nemeses.For(r.leader) : null;
+                if (n != null && n.announced) comp.nemeses.Notify_LedRaid(comp, n);
             }
         }
 

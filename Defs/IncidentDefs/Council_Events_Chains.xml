@@ -38,7 +38,6 @@
               <li Class="ColonyCouncil.DilemmaEffect_RaidLater">
                 <points>0.5~0.75</points>
                 <delayHours>3~8</delayHours>
-                <scenario>true</scenario>
                 <forA>true</forA>
                 <label>{ENEMY} want their deserter</label>
                 <text>{ENEMY} have come for {A_nameDef}, who ran from them to us. The colony said no.</text>

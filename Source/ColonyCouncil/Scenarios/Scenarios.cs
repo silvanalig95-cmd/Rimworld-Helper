@@ -23,6 +23,8 @@ namespace ColonyCouncil
         /// <summary>The enemy a foe part made, for the parts after it (the boss whose money was taken).</summary>
         public Pawn foe;
         public Faction foeFaction;
+        /// <summary>Who the foe's quarrel is with (the betrayed captain isn't the one who was in on it).</summary>
+        public Pawn victim;
         /// <summary>Lines for the letter, one per part.</summary>
         public List<string> lines = new List<string>();
         public List<Pawn> look = new List<Pawn>();
@@ -171,15 +173,17 @@ namespace ColonyCouncil
             else Find.WorldPawns.PassToWorld(foe, PawnDiscardDecideMode.KeepForever);
             ctx.foe = foe;
             ctx.foeFaction = faction;
+            ctx.victim = victim;
             ctx.look.Add(victim);
             ctx.comp.nemeses.Add(foe, victim, Deeds.Contains(deed) ? deed : "hunts", captive);
             bool comes = firstDays.max > 0f;
             if (comes)
             {
                 var m = ctx.comp.happenings.Remember("hunt", foe, faction, story);
-                m.due = now + Mathf.RoundToInt(Days(firstDays) * GenDate.TicksPerDay);
-                m.everyMin = everyDays.min;
-                m.everyMax = everyDays.max;
+                // Never the same day they land, and never back to back.
+                m.due = now + Mathf.RoundToInt(Mathf.Max(1f, Days(firstDays)) * GenDate.TicksPerDay);
+                m.everyMin = Mathf.Max(3f, everyDays.min);
+                m.everyMax = Mathf.Max(m.everyMin, everyDays.max);
                 m.left = everyDays.max > 0f ? -1 : 1;
                 ctx.threat = true;
             }
@@ -331,16 +335,22 @@ namespace ColonyCouncil
             var groups = new List<List<Pawn>>();
             foreach (var p in people.InRandomOrder())
             {
-                var g = groups.FirstOrDefault(x => x.Any(o => p.GetRelations(o).Any()));
-                if (g != null) g.Add(p);
-                else groups.Add(new List<Pawn> { p });
+                // Someone related to people in two groups brings both groups together.
+                var related = groups.Where(x => x.Any(o => p.GetRelations(o).Any() || o.GetRelations(p).Any())).ToList();
+                var g = new List<Pawn> { p };
+                foreach (var r in related)
+                {
+                    g.AddRange(r);
+                    groups.Remove(r);
+                }
+                groups.Add(g);
             }
             var a = new List<Pawn>();
             var b = new List<Pawn>();
             foreach (var g in groups.OrderByDescending(g => g.Count)) (a.Count <= b.Count ? a : b).AddRange(g);
             if (a.Count == 0 || b.Count == 0) return;
-            string nameA = Surname(a, null);
-            string nameB = Surname(b, nameA);
+            string nameA = Surname(a, null) ?? NewSurname(a[0], null);
+            string nameB = Surname(b, nameA) ?? NewSurname(b[0], nameA);
             Rename(a, nameA);
             Rename(b, nameB);
             foreach (var x in people)
@@ -359,6 +369,17 @@ namespace ColonyCouncil
         /// <summary>The family's name: one of theirs, different from the other family's.</summary>
         private static string Surname(List<Pawn> family, string not) =>
             family.Select(p => (p.Name as NameTriple)?.Last).Where(n => !n.NullOrEmpty() && n != not).RandomElementWithFallback();
+
+        /// <summary>A fresh surname when nobody in the family has one of their own to give.</summary>
+        private static string NewSurname(Pawn p, string not)
+        {
+            for (int i = 0; i < 10; i++)
+            {
+                string last = (PawnBioAndNameGenerator.GeneratePawnName(p) as NameTriple)?.Last;
+                if (!last.NullOrEmpty() && last != not) return last;
+            }
+            return null;
+        }
 
         private static void Rename(List<Pawn> family, string last)
         {
@@ -431,7 +452,9 @@ namespace ColonyCouncil
         {
             if (secret == null) return;
             int given = 0;
-            foreach (var p in ctx.Adults.OrderByDescending(p => secret.Fits(p, out bool match) ? (match ? 2 : 1) : 0).ThenBy(_ => Rand.Value))
+            var adults = ctx.Adults;
+            if (adults.Count > count) adults.Remove(ctx.victim);
+            foreach (var p in adults.OrderByDescending(p => secret.Fits(p, out bool match) ? (match ? 2 : 1) : 0).ThenBy(_ => Rand.Value))
             {
                 if (given >= count) break;
                 if (ctx.comp.secrets.Give(p, secret)) given++;
@@ -450,7 +473,9 @@ namespace ColonyCouncil
             Widgets.TextFieldNumericLabeled(Row(r, 1), "CC_ScenPart_Count".Translate(), ref count, ref buffer, 1f, 10f);
         }
 
-        public override bool HasNullDefs() => base.HasNullDefs() || secret == null;
+        public override void Randomize() =>
+            secret = DefDatabase<SecretDef>.AllDefsListForReading.Where(d => d.scenario).RandomElementWithFallback()
+                     ?? DefDatabase<SecretDef>.AllDefsListForReading.RandomElementWithFallback();
 
         public override void ExposeData()
         {
@@ -501,13 +526,16 @@ namespace ColonyCouncil
         {
             if (m.faction == null || m.faction.defeated) return "defeated";
             var x = m.pawn;
+            // Led by someone the world has since lost track of.
+            if (x == null && m.left < 0) return "gone";
             if (x != null)
             {
                 if (x.Dead) return "dead";
                 if (x.Discarded) return "gone";
+                if (x.IsSlaveOfColony) return "enslaved";
                 if (x.Faction == Faction.OfPlayer && !x.IsPrisonerOfColony) return "joined";
-                // Sold, or gone over to another people.
-                if (x.Faction != m.faction && !x.IsPrisonerOfColony) return "gone";
+                // Sold (to a ship or a caravan), or gone over to another people.
+                if (x.ParentHolder is ITrader || (x.Faction != m.faction && !x.IsPrisonerOfColony)) return "gone";
             }
             if (!m.faction.HostileTo(Faction.OfPlayer)) return "peace";
             return null;
@@ -523,6 +551,9 @@ namespace ColonyCouncil
                 Ended(t, comp, m, over);
                 return;
             }
+            // Keep the one leading it in the world between attacks (a raid they led lets go of them).
+            var lead = m.pawn;
+            if (lead != null && !lead.Spawned && !lead.Dead && Find.WorldPawns.Contains(lead)) Find.WorldPawns.ForcefullyKeptPawns.Add(lead);
             if (map == null || now < m.due || m.left == 0) return;
             if (!IncidentWorker_Happening.ScenarioFightsPossible || !Raids.CanRaid(m.faction))
             {
@@ -543,9 +574,10 @@ namespace ColonyCouncil
                 ? x
                 : null;
             string story = m.def.NullOrEmpty() ? PlainHunt : m.def;
-            string key = "CC_Scen_Hunt_" + story + (captive ? "_Captive" : leader != null ? "_Led" : "");
-            if (!(key + "_Label").CanTranslate()) key = "CC_Scen_Hunt_" + story;
-            if (!(key + "_Label").CanTranslate()) key = "CC_Scen_Hunt_" + PlainHunt;
+            // This story told this way; else any hunt told this way; else this story; else any hunt.
+            string how = captive ? "_Captive" : leader != null ? "_Led" : "";
+            string key = new[] { "CC_Scen_Hunt_" + story + how, "CC_Scen_Hunt_" + PlainHunt + how, "CC_Scen_Hunt_" + story }
+                .FirstOrDefault(k => (k + "_Label").CanTranslate()) ?? "CC_Scen_Hunt_" + PlainHunt;
             NamedArgument foe = (x?.LabelShort ?? m.faction.Name).Named("FOE");
             NamedArgument faction = m.faction.Name.Named("FACTION");
             string label = (key + "_Label").Translate(foe, faction).Resolve();
@@ -566,7 +598,10 @@ namespace ColonyCouncil
             if (why == "settled" && m.pawn != null) return;
             string name = m.pawn?.LabelShort ?? m.faction?.Name ?? "?";
             string text = ("CC_Scen_HuntOver_" + why).Translate(name.Named("FOE"), (m.faction?.Name ?? "?").Named("FACTION")).Resolve();
-            Find.LetterStack.ReceiveLetter("CC_Scen_HuntOver_Label".Translate(), text, LetterDefOf.PositiveEvent, m.pawn != null && m.pawn.Spawned ? new LookTargets(m.pawn) : LookTargets.Invalid);
+            // A nemesis's own end already came with a letter (slain, joined): this one is a message.
+            bool told = (why == "dead" || why == "joined" || why == "enslaved") && m.pawn != null && comp.nemeses.all.Any(n => n.pawn == m.pawn && n.announced);
+            if (told) Notify.Message(text, m.pawn.Spawned ? new LookTargets(m.pawn) : LookTargets.Invalid, MessageTypeDefOf.PositiveEvent, Importance.Notable);
+            else Find.LetterStack.ReceiveLetter("CC_Scen_HuntOver_Label".Translate(), text, LetterDefOf.PositiveEvent, m.pawn != null && m.pawn.Spawned ? new LookTargets(m.pawn) : LookTargets.Invalid);
             comp.AddChronicle(new ChronicleEntry(ChronicleKind.World, text));
             using (Causes.Push(text))
             {
@@ -629,7 +664,7 @@ namespace ColonyCouncil
 
         private static void Chase(Memo m, Map map, int now)
         {
-            if (m.pawn == null || m.pawn.Dead || !m.pawn.IsColonist)
+            if (m.pawn == null || m.pawn.Dead || !m.pawn.IsColonist || m.faction == null || m.faction.defeated || !m.faction.HostileTo(Faction.OfPlayer))
             {
                 m.due = 0;
                 return;
@@ -684,9 +719,10 @@ namespace ColonyCouncil
             ctx.variant = m.times;
             var x = m.pawn;
             ctx.stranger = x != null && !x.Dead && !x.Discarded && !x.Spawned && x.Faction == m.faction ? x : null;
+            ctx.scenario = true;
             ctx.a = Colonists(ctx.map).Where(p => !p.DevelopmentalStage.Juvenile())
                 .OrderByDescending(p => p.skills?.GetSkill(SkillDefOf.Social)?.Level ?? 0).FirstOrDefault();
-            story = (m.def == "heist" && ctx.stranger != null) ? "heist" : "loan";
+            story = m.def == "heist" ? "heist" : "loan";
             return ctx.a != null;
         }
 
@@ -694,6 +730,7 @@ namespace ColonyCouncil
         {
             tags.Add(story ?? "loan");
             if (ctx.variant > 0) tags.Add("late");
+            if (ctx.stranger != null) tags.Add("boss");
         }
 
         // The boss is someone the colony knows: never thrown away.
@@ -724,6 +761,8 @@ namespace ColonyCouncil
                 case 0:
                     t.Use(m);
                     foreach (var p in Colonists(ctx.map)) CouncilGameComponent.GiveThought(p, CouncilDefOf.Council_Scen_DebtPaid);
+                    // Paid back: the one who was robbed calls it square.
+                    if (m.pawn != null) comp.nemeses.Settle(m.pawn, "CC_Nemesis_End_Paid".Translate(m.pawn.LabelShort).Resolve());
                     break;
                 case 1:
                     m.amount = Mathf.Max(10, Later(m.amount));
@@ -732,12 +771,12 @@ namespace ColonyCouncil
                     break;
                 default:
                     t.Use(m);
-                    // They'll be back: until the one leading them falls, or (a loan's collectors) twice more.
+                    // They'll be back: until the one leading them falls, or (collectors) once more.
                     bool led = ctx.stranger != null;
                     var hunt = t.Remember("hunt", ctx.stranger, m.faction, m.def);
                     hunt.everyMin = led ? 25f : 15f;
                     hunt.everyMax = led ? 35f : 20f;
-                    hunt.left = led ? -1 : 2;
+                    hunt.left = led ? -1 : 1;
                     hunt.due = now + Mathf.RoundToInt(Rand.Range(hunt.everyMin, hunt.everyMax) * GenDate.TicksPerDay);
                     break;
             }

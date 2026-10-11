@@ -1328,6 +1328,7 @@ It's still out there. Hunting it down would settle a lot of nerves.</CC_Nemesis_
   <CC_Nemesis_SlainBy>{X_nameDef}, who {DEED}, is dead. {SLAYER_nameDef} struck the last blow.</CC_Nemesis_SlainBy>
   <CC_Nemesis_Dead>{X_nameDef}, who {DEED}, is dead.</CC_Nemesis_Dead>
   <CC_Nemesis_End_Vanished>Never seen again.</CC_Nemesis_End_Vanished>
+  <CC_Nemesis_End_Paid>Paid back in full. {0} counted every coin and called it square.</CC_Nemesis_End_Paid>
   <CC_Nemesis_End_Joined>{X_nameDef} is one of the colony's own now. Some grudges don't survive living together; some just go quiet.</CC_Nemesis_End_Joined>
   <CC_Nemesis_Status_Joined>one of us now</CC_Nemesis_Status_Joined>
   <CC_Nemesis_Status_Loose>still out there</CC_Nemesis_Status_Loose>
@@ -1737,6 +1738,8 @@ Those against it ({WHO}) will trust the council less and resent it more than usu
   <CC_Scen_Hunt_hunt_Text>{FACTION} are coming for the colony again, on {FOE}'s word.</CC_Scen_Hunt_hunt_Text>
   <CC_Scen_Hunt_hunt_Led_Label>{FOE} is back</CC_Scen_Hunt_hunt_Led_Label>
   <CC_Scen_Hunt_hunt_Led_Text>{FOE} has found the colony again, with a war party of {FACTION} behind. There's only one way this ends.</CC_Scen_Hunt_hunt_Led_Text>
+  <CC_Scen_Hunt_hunt_Captive_Label>They've come for {FOE}</CC_Scen_Hunt_hunt_Captive_Label>
+  <CC_Scen_Hunt_hunt_Captive_Text>{FACTION} have come to take {FOE} back from the colony, by force.</CC_Scen_Hunt_hunt_Captive_Text>
   <CC_Scen_Hunt_mutiny_Label>The mutineers</CC_Scen_Hunt_mutiny_Label>
   <CC_Scen_Hunt_mutiny_Text>{FACTION} have sent their people after the colony again, on {FOE}'s orders. The ringleader doesn't leave loose ends.</CC_Scen_Hunt_mutiny_Text>
   <CC_Scen_Hunt_mutiny_Led_Label>{FOE} comes to finish it</CC_Scen_Hunt_mutiny_Led_Label>
@@ -1757,6 +1760,7 @@ Those against it ({WHO}) will trust the council less and resent it more than usu
   <CC_Scen_HuntOver_dead>{FOE} is dead. {FACTION} have no reason left to come for the colony, and for the first time since it began, nobody here needs to look over their shoulder.</CC_Scen_HuntOver_dead>
   <CC_Scen_HuntOver_gone>{FOE} is gone, and with {FOE} went the reason {FACTION} kept coming. The hunt is over.</CC_Scen_HuntOver_gone>
   <CC_Scen_HuntOver_joined>{FOE} is one of the colony now. Strange as that is, it means {FACTION} have stopped coming.</CC_Scen_HuntOver_joined>
+  <CC_Scen_HuntOver_enslaved>{FOE} wears the colony's collar now. {FACTION} have stopped coming: there's nobody left for them to follow.</CC_Scen_HuntOver_enslaved>
   <CC_Scen_HuntOver_peace>{FACTION} have made peace with the colony. Whatever {FOE} wants, {FACTION} won't be fighting for it any more.</CC_Scen_HuntOver_peace>
   <CC_Scen_HuntOver_defeated>{FACTION} are no more, and the hunt died with them.</CC_Scen_HuntOver_defeated>
   <CC_Scen_HuntOver_settled>{FACTION} have taken what they think they're owed out of the colony's hide. As far as they're concerned, the debt is settled.</CC_Scen_HuntOver_settled>

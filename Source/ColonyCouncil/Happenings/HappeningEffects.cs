@@ -68,7 +68,7 @@ namespace ColonyCouncil
             var ext = h?.Ext;
             float factor = (points.max > 0f ? points : ext?.points ?? new FloatRange(0.5f, 0.7f)).RandomInRange;
             float delay = (delayHours.max > 0f ? delayHours : ext?.delayHours ?? new FloatRange(3f, 8f)).RandomInRange;
-            tracker.AddRaid(ctx.map, f, factor, delay, ctx.Format(label ?? ""), ctx.Format(text ?? ""), xLeads ? ctx.stranger : null, scenario);
+            tracker.AddRaid(ctx.map, f, factor, delay, ctx.Format(label ?? ""), ctx.Format(text ?? ""), xLeads ? ctx.stranger : null, scenario || (h?.scenario ?? false));
         }
     }
 
