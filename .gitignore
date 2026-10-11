@@ -6,3 +6,4 @@ Tools/**/obj/
 *.user
 .vs/
 .idea/
+.claude/worktrees/
