@@ -19,8 +19,12 @@ namespace ColonyCouncil
         /// <summary>Whether the patches should do anything right now.</summary>
         public static bool On => ColonyCouncilMod.Settings?.deepHooks ?? true;
 
+        private static bool applied;
+
         public static void ApplyAll()
         {
+            if (applied) return;
+            applied = true;
             Harmony harmony;
             try
             {
@@ -55,6 +59,28 @@ namespace ColonyCouncil
                     Failed.Add(type.Name);
                     Log.Warning("[Rimfolk] Couldn't apply " + type.Name + ", so that small feature is off: " + e.Message);
                 }
+            }
+        }
+    }
+
+    /// <summary>
+    /// Applies the game hooks once every def has loaded. Patching a method runs its class's static setup, and some of
+    /// the game's classes build tables from defs there (PregnancyUtility keys one by pawn relations). Patched from the
+    /// mod's constructor, before the defs exist, that setup failed for the rest of the session: no pawn could be
+    /// generated, so world generation stopped after the first faction.
+    /// </summary>
+    [StaticConstructorOnStartup]
+    public static class RimfolkPatchesStartup
+    {
+        static RimfolkPatchesStartup()
+        {
+            try
+            {
+                RimfolkPatches.ApplyAll();
+            }
+            catch (Exception e)
+            {
+                Log.Warning("[Rimfolk] The deeper game hooks couldn't start (is Harmony loaded before Rimfolk?): " + e.Message);
             }
         }
     }

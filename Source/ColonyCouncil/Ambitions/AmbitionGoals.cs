@@ -506,7 +506,8 @@ namespace ColonyCouncil
         private Map cachedMap;
         private int cached;
 
-        private static readonly SkillDef[] MakerSkills = { SkillDefOf.Crafting, SkillDefOf.Artistic, SkillDefOf.Construction };
+        // Read when needed: goals are made while the defs are still loading, before SkillDefOf is filled in.
+        private static SkillDef[] MakerSkills => new[] { SkillDefOf.Crafting, SkillDefOf.Artistic, SkillDefOf.Construction };
 
         private int Count(Map map)
         {

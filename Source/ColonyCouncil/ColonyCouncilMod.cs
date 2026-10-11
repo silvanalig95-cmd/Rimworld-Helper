@@ -13,14 +13,7 @@ namespace ColonyCouncil
         public ColonyCouncilMod(ModContentPack content) : base(content)
         {
             Settings = GetSettings<CouncilSettings>();
-            try
-            {
-                RimfolkPatches.ApplyAll();
-            }
-            catch (Exception e)
-            {
-                Log.Warning("[Rimfolk] The deeper game hooks couldn't start (is Harmony loaded before Rimfolk?): " + e.Message);
-            }
+            // The game hooks are applied later, once every def has loaded (see RimfolkPatchesStartup).
         }
 
         public override string SettingsCategory() => "Rimfolk";
