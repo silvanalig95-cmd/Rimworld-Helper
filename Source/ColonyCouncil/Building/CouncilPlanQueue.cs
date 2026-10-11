@@ -19,16 +19,19 @@ namespace ColonyCouncil
 
         public void ExposeData()
         {
-            Scribe_Defs.Look(ref thing, "thing");
-            Scribe_Defs.Look(ref terrain, "terrain");
-            Scribe_Defs.Look(ref stuff, "stuff");
+            // Silently: the building, floor or material may come from a mod that has since been removed.
+            CouncilScribe.LookDef(ref thing, "thing");
+            CouncilScribe.LookDef(ref terrain, "terrain");
+            CouncilScribe.LookDef(ref stuff, "stuff");
             Scribe_Values.Look(ref cell, "cell");
             Scribe_Values.Look(ref rot, "rot");
             Scribe_Values.Look(ref tick, "tick");
             Scribe_Values.Look(ref label, "label");
-            // The material came from a mod that's gone: fall back to the default one.
-            if (Scribe.mode == LoadSaveMode.PostLoadInit && thing != null && thing.MadeFromStuff && stuff == null)
-                stuff = GenStuff.DefaultStuffFor(thing);
+            // The material came from a mod that's gone: fall back to the default one (walls and furniture, and floors
+            // made from stuff alike).
+            var def = Def;
+            if (Scribe.mode == LoadSaveMode.PostLoadInit && def != null && def.MadeFromStuff && stuff == null)
+                stuff = GenStuff.DefaultStuffFor(def);
         }
     }
 

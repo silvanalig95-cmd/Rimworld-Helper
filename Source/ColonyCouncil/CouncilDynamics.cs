@@ -465,6 +465,22 @@ namespace ColonyCouncil
 
         private void Expire(Wish w)
         {
+            // What they wanted can't be had any more (its mod was removed, nothing like it can be built or bought):
+            // nobody's fault, so it lapses quietly instead of costing trust.
+            bool obtainable = true;
+            try
+            {
+                obtainable = w.Worker.StillObtainable(w);
+            }
+            catch (Exception e)
+            {
+                CouncilLog.ErrorOnce("expiring wish " + w.def.defName, e);
+            }
+            if (!obtainable)
+            {
+                Resolve(w, WishState.Cancelled);
+                return;
+            }
             using var _cause = Causes.Push(WishCause(w, w.promised ? "CC_Cause_WishBroken" : "CC_Cause_WishIgnored"));
             var s = Settings;
             float pen = s.PenaltyScale;

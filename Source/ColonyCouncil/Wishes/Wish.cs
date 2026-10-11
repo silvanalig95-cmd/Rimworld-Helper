@@ -66,6 +66,11 @@ namespace ColonyCouncil
         public bool selfHelped;
         /// <summary>Someone who spoke up against this wish (an ascetic against luxury, a rival, the jealous).</summary>
         public Pawn objector;
+        /// <summary>
+        /// The thing it was about came from a mod that has since been removed: the wish is let go quietly on load,
+        /// with no penalty (not saved).
+        /// </summary>
+        [Unsaved] public bool thingLost;
 
         public float Elapsed => expiresTick <= createdTick ? 1f : (Find.TickManager.TicksGame - createdTick) / (float)(expiresTick - createdTick);
 
@@ -120,7 +125,8 @@ namespace ColonyCouncil
             Scribe_References.Look(ref beneficiary, "beneficiary");
             Scribe_References.Look(ref other, "other");
             Scribe_Collections.Look(ref coSigners, "coSigners", LookMode.Reference);
-            Scribe_Defs.Look(ref thingDef, "thingDef");
+            // Silently, so a thing from a removed mod doesn't log an error; the wish is dropped after loading.
+            CouncilScribe.LookDef(ref thingDef, "thingDef", ref thingLost);
             Scribe_Values.Look(ref subjectKey, "subjectKey", "");
             Scribe_Values.Look(ref subjectLabel, "subjectLabel");
             Scribe_Values.Look(ref targetValue, "targetValue");

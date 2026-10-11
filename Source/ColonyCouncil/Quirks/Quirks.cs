@@ -76,11 +76,15 @@ namespace ColonyCouncil
 
         public string Label => def.label.Formatted((item?.label ?? "").Named("ITEM")).Resolve();
 
+        /// <summary>A lucky-item quirk whose item is gone (its mod was removed): it is quietly forgotten.</summary>
+        public bool Broken => def == null || pawn == null || (def.condition == QuirkCondition.LuckyItem && item == null);
+
         public void ExposeData()
         {
             Scribe_Defs.Look(ref def, "def");
             Scribe_References.Look(ref pawn, "pawn");
-            Scribe_Defs.Look(ref item, "item");
+            // Silently: the item may come from a mod that has since been removed.
+            CouncilScribe.LookDef(ref item, "item");
             Scribe_Values.Look(ref gainedTick, "gainedTick");
             Scribe_Values.Look(ref expiresTick, "expiresTick");
         }
@@ -119,7 +123,7 @@ namespace ColonyCouncil
         public void Daily(CouncilGameComponent comp)
         {
             int now = Find.TickManager.TicksGame;
-            quirks.RemoveAll(q => q.pawn == null || q.pawn.Dead || q.def == null);
+            quirks.RemoveAll(q => q.Broken || q.pawn.Dead);
             foreach (var k in downedTick.Keys.Where(k => k == null || k.Dead).ToList()) downedTick.Remove(k);
             foreach (var k in battleTick.Keys.Where(k => k == null || k.Dead).ToList()) battleTick.Remove(k);
             if (!S.quirks) return;
@@ -201,7 +205,7 @@ namespace ColonyCouncil
             if (Scribe.mode == LoadSaveMode.PostLoadInit)
             {
                 if (quirks == null) quirks = new List<Quirk>();
-                quirks.RemoveAll(q => q == null || q.def == null || q.pawn == null);
+                quirks.RemoveAll(q => q == null || q.Broken);
                 if (downedTick == null) downedTick = new Dictionary<Pawn, int>();
                 if (battleTick == null) battleTick = new Dictionary<Pawn, int>();
                 downedTick.Remove(null);

@@ -32,6 +32,9 @@
       <notContains><li>burnpit</li><li>burn pit</li><li>sauna</li><li>incinerat</li><li>crematori</li></notContains>
       <inBedroom>true</inBedroom>
       <seasons><li>Fall</li><li>Winter</li></seasons>
+      <!-- Only once they've actually slept cold (or the room is cold tonight), and nothing heats it yet. -->
+      <sleepsCold>true</sleepsCold>
+      <noHeaterInRoom>true</noHeaterInRoom>
       <reason>{PAWN_nameDef} has a bedroom of {PAWN_possessive} own, and it gets bitterly cold in there at night.</reason>
     </wants>
     <request>
@@ -382,6 +385,9 @@
       <count>500</count>
       <anySource>true</anySource>
       <seasons><li>Fall</li><li>Winter</li></seasons>
+      <!-- Only for a colony that keeps wood fires, with real cold on the way. -->
+      <burnsWood>true</burnsWood>
+      <coldComing>true</coldComing>
       <reason>{PAWN_nameDef} has looked at the woodpile, looked at the calendar, and done the arithmetic.</reason>
     </wants>
     <request>
