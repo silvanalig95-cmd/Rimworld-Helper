@@ -94,6 +94,11 @@ namespace ColonyCouncil
         public static LetterDef Council_EventLetterThreat;
         public static HediffDef Council_Legendary;
         public static GameConditionDef Council_Comet;
+        public static ThoughtDef Council_Victory;
+        public static ThoughtDef Council_VictoryCostly;
+        public static ThoughtDef Council_BattleHero;
+        public static ThoughtDef Council_QuestDone;
+        public static ThoughtDef Council_Evt_ChildCameBack;
 
         public static HediffDef Council_Motivated;
         public static HediffDef Council_Loyalty;

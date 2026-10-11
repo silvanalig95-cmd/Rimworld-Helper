@@ -236,6 +236,14 @@ namespace ColonyCouncil
             MakeCapable(x, 5);
             return x;
         }
+
+        public override string Resolved(HappeningContext ctx, int option, bool risk, bool byDefault, string outcome)
+        {
+            // Taken in, and nobody came looking (yet): their old unit may find them one day.
+            if (option == 0 && !risk && ctx.stranger != null && ctx.stranger.Faction == Faction.OfPlayer && ctx.enemy != null)
+                CouncilGameComponent.Instance?.happenings.Remember("deserter", ctx.stranger, ctx.enemy);
+            return base.Resolved(ctx, option, risk, byDefault, outcome);
+        }
     }
 
     /// <summary>Someone who walked out (or was sent away) comes back and asks to be let in again.</summary>

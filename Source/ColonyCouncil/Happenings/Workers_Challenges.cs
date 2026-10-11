@@ -138,6 +138,8 @@ namespace ColonyCouncil
                 won ? LetterDefOf.PositiveEvent : LetterDefOf.NeutralEvent, new LookTargets(a));
             comp.AddChronicle(new ChronicleEntry(ChronicleKind.World, text, a));
             comp.journals.Write(a, won ? "Council_Journal_Evt_ContestWon" : "Council_Journal_Evt_ContestLost", null, x.Named("X"), what.Named("SKILL"));
+            // They'll want a rematch one day (or to defend their title).
+            if (x.Faction != null && x.RaceProps.Humanlike) comp.happenings.Remember("challenger", x, x.Faction, v.skill.defName, null, won, a);
             Arrivals.SendAway(new[] { x });
             return false;
         }
@@ -172,23 +174,32 @@ namespace ColonyCouncil
     /// </summary>
     public class HappeningWorker_GreatBeast : IncidentWorker_Happening
     {
-        private static IEnumerable<PawnKindDef> Kinds(Map map) =>
-            map.Biome.AllWildAnimals.Where(k => k?.race?.race != null && k.RaceProps.Animal && !k.RaceProps.Insect && !k.RaceProps.Dryad
-                                                // Never a predator: a legend that hunts people would be a raid, not a challenge.
-                                                && !k.RaceProps.predator
-                                                && k.RaceProps.baseBodySize >= 1f && k.combatPower >= 70f
-                                                && map.mapTemperature.SeasonAndOutdoorTemperatureAcceptableFor(k.race, 0f));
+        /// <summary>A great beast can be any big, calm animal of the land: never a predator (a legend that hunts people would be a raid, not a challenge).</summary>
+        public static bool Fits(PawnKindDef k, Map map) =>
+            k?.race?.race != null && k.RaceProps.Animal && !k.RaceProps.Insect && !k.RaceProps.Dryad && !k.RaceProps.predator
+            && k.RaceProps.baseBodySize >= 1f && k.combatPower >= 70f && map.mapTemperature.SeasonAndOutdoorTemperatureAcceptableFor(k.race, 0f);
+
+        private static IEnumerable<PawnKindDef> Kinds(Map map) => map.Biome.AllWildAnimals.Where(k => Fits(k, map));
 
         protected override bool CanHappen(Map map, HappeningExtension ext) =>
             CouncilGameComponent.Instance?.happenings.beast == null && Kinds(map).Any();
 
+        protected virtual PawnKindDef PickKind(HappeningContext ctx) =>
+            Kinds(ctx.map).RandomElementByWeightWithFallback(k => k.RaceProps.baseBodySize * k.RaceProps.baseBodySize);
+
+        protected virtual string PickName(HappeningContext ctx, HappeningExtension ext, PawnKindDef kind) =>
+            ext.lines.NullOrEmpty() ? kind.label : Flavor.PickText(ext.lines);
+
+        /// <summary>How old it is, as a share of its kind's lifespan.</summary>
+        protected virtual FloatRange AgeShare => new FloatRange(0.5f, 0.7f);
+
         protected override bool Cast(HappeningContext ctx, HappeningExtension ext)
         {
-            var kind = Kinds(ctx.map).RandomElementByWeightWithFallback(k => k.RaceProps.baseBodySize * k.RaceProps.baseBodySize);
+            var kind = PickKind(ctx);
             if (kind == null) return false;
-            float age = kind.RaceProps.lifeExpectancy * Rand.Range(0.5f, 0.7f);
+            float age = kind.RaceProps.lifeExpectancy * AgeShare.RandomInRange;
             var beast = PawnGenerator.GeneratePawn(new PawnGenerationRequest(kind, null, PawnGenerationContext.NonPlayer, forceGenerateNewPawn: true, fixedBiologicalAge: age, fixedChronologicalAge: age));
-            ctx.beast = ext.lines.NullOrEmpty() ? kind.label : Flavor.PickText(ext.lines);
+            ctx.beast = PickName(ctx, ext, kind);
             beast.Name = new NameSingle(ctx.beast);
             if (CouncilDefOf.Council_Legendary != null) beast.health.AddHediff(CouncilDefOf.Council_Legendary);
             ctx.stranger = beast;
@@ -265,6 +276,8 @@ namespace ColonyCouncil
             var map = beast.MapHeld ?? killer.MapHeld;
             if (map != null)
                 foreach (var p in IncidentWorker_Happening.Colonists(map).Where(p => p != killer)) CouncilGameComponent.GiveThought(p, CouncilDefOf.Council_Evt_BeastDown, killer);
+            // Its young may come one day, to take its place.
+            t.Remember("beast", null, null, beast.kindDef?.defName, name, false, killer);
             string text = "CC_Evt_BeastSlain".Translate(name, killer.Named("PAWN")).Resolve();
             Find.LetterStack.ReceiveLetter("CC_Evt_BeastSlainTitle".Translate(name).Resolve(), text, LetterDefOf.PositiveEvent, new LookTargets(killer));
             comp.AddChronicle(new ChronicleEntry(ChronicleKind.World, text, killer));

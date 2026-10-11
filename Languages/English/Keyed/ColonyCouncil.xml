@@ -1629,4 +1629,42 @@ Those against it ({WHO}) will trust the council less and resent it more than usu
   <CC_Evt_ContestWonStakeB>It was close for a while, and then it wasn't: {A_nameDef} beat {X_nameDef} at {2}, and {3} silver changed hands in the colony's favour. {X_nameDef} left muttering about a rematch.</CC_Evt_ContestWonStakeB>
   <CC_Evt_ContestLostB>{A_nameDef} gave {X_nameDef} a real contest at {2}, and lost by a whisker. The onlookers are already arguing about how close it was.</CC_Evt_ContestLostB>
   <CC_Evt_ContestLostStakeB>{A_nameDef} gave {X_nameDef} a real contest at {2}, and lost by a whisker. The colony's {3} silver went with {X_nameDef}, and the onlookers are still arguing about how close it was.</CC_Evt_ContestLostStakeB>
+  <!-- World page, chains, victories, quests -->
+  <CC_Tab_World>World</CC_Tab_World>
+  <CC_Tab_WorldComing>World ({0})</CC_Tab_WorldComing>
+  <CC_World_Header>The world around the colony</CC_World_Header>
+  <CC_World_Intro>What's coming, who's out there with the colony on their mind, and what the world has brought lately. Fights and questions show up here as soon as the colony knows of them.</CC_World_Intro>
+  <CC_World_Coming>Coming</CC_World_Coming>
+  <CC_World_AFight>A fight</CC_World_AFight>
+  <CC_World_Raid>{0}: {1}, in about {2}.</CC_World_Raid>
+  <CC_World_RaidSoon>{0}: {1}, any time now.</CC_World_RaidSoon>
+  <CC_World_Waiting>{0}: waiting for an answer ({1} left). Click to read it.</CC_World_Waiting>
+  <CC_World_NextEvent>The next world event is due in about {0}.</CC_World_NextEvent>
+  <CC_World_NothingComing>Nothing the colony knows of.</CC_World_NothingComing>
+  <CC_World_OutThere>Out there</CC_World_OutThere>
+  <CC_World_Beast>{0}, the great beast, roams the colony's land for about {1} more. Click to find it.</CC_World_Beast>
+  <CC_World_Nemesis>{0}, who {1}, is still out there.</CC_World_Nemesis>
+  <CC_World_Departed_Quit>{0} walked out {1} ago, and might come back one day.</CC_World_Departed_Quit>
+  <CC_World_Departed_Banished>{0} was sent away {1} ago, and might come back one day.</CC_World_Departed_Banished>
+  <CC_World_Grudge>{0} remember {1}, who died a prisoner here.</CC_World_Grudge>
+  <CC_World_OurBest>the colony's best</CC_World_OurBest>
+  <CC_World_Rival_Won>{0} lost to {1} at {2}, and may come back for a rematch.</CC_World_Rival_Won>
+  <CC_World_Rival_Lost>{0} beat {1} at {2}, and may come back to defend the title.</CC_World_Rival_Lost>
+  <CC_World_Child>{0}, the lost child the colony took home to {1}.</CC_World_Child>
+  <CC_World_Deserter>{0} deserted {1}, who may not have stopped looking.</CC_World_Deserter>
+  <CC_World_BeastLine>{0} is dead, but its young may still be out there.</CC_World_BeastLine>
+  <CC_World_Pilgrims>Pilgrims of {0} remember the colony's kindness.</CC_World_Pilgrims>
+  <CC_World_NobodyOut>Nobody out there has the colony on their mind, as far as anyone knows.</CC_World_NobodyOut>
+  <CC_World_Lately>Lately</CC_World_Lately>
+  <CC_World_NothingLately>Nothing yet.</CC_World_NothingLately>
+  <CC_Evt_TooYoung>Too young to leave home</CC_Evt_TooYoung>
+  <CC_Evt_HeirName>{0} the Younger</CC_Evt_HeirName>
+  <CC_Victory_Beasts>the beasts</CC_Victory_Beasts>
+  <CC_Victory_Clean>The colony saw off {0}: {1} of them fell, and none of ours.</CC_Victory_Clean>
+  <CC_Victory_Costly>The colony saw off {0}: {1} of them fell, but so did {2}.</CC_Victory_Costly>
+  <CC_Victory_Hero>{PAWN_nameDef} alone brought down {1} of them.</CC_Victory_Hero>
+  <CC_Cause_Victory>the fight against {0}.</CC_Cause_Victory>
+  <CC_World_QuestDone>The colony saw it through: {0}.</CC_World_QuestDone>
+  <CC_World_QuestFailed>It came to nothing: {0}.</CC_World_QuestFailed>
+  <CC_Cause_Quest>{0}, done.</CC_Cause_Quest>
 </LanguageData>

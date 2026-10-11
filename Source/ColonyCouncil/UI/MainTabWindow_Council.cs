@@ -24,6 +24,7 @@ namespace ColonyCouncil
         {
             Priorities,
             Moods,
+            World,
             Build,
             Roster,
             Bonds,
@@ -47,6 +48,7 @@ namespace ColonyCouncil
             {
                 case Tab.Priorities:
                 case Tab.Moods:
+                case Tab.World:
                 case Tab.Build: return Section.Colony;
                 case Tab.Roster:
                 case Tab.Bonds:
@@ -65,7 +67,7 @@ namespace ColonyCouncil
         {
             switch (s)
             {
-                case Section.Colony: return new[] { Tab.Priorities, Tab.Moods, Tab.Build };
+                case Section.Colony: return new[] { Tab.Priorities, Tab.Moods, Tab.World, Tab.Build };
                 case Section.People: return new[] { Tab.Roster, Tab.Bonds, Tab.Wishes };
                 case Section.Council: return new[] { Tab.Decrees, Tab.Ambition, Tab.Ways };
                 case Section.History: return new[] { Tab.Chronicle, Tab.Dreams, Tab.Journals };
@@ -152,6 +154,7 @@ namespace ColonyCouncil
                 case Tab.Ambition: DrawAmbition(content, comp, map); break;
                 case Tab.Ways: WaysPanel.Draw(content, comp); break;
                 case Tab.Moods: MoodsPanel.Draw(content); break;
+                case Tab.World: WorldPanel.Draw(content, comp); break;
                 case Tab.Chronicle: DrawChronicle(content, comp); break;
                 case Tab.Dreams: HistoryPanels.DrawDreams(content, comp); break;
                 case Tab.Journals: HistoryPanels.DrawJournals(content, comp); break;
@@ -181,6 +184,8 @@ namespace ColonyCouncil
             {
                 case Section.Colony:
                     n = map != null && Settings.enableAdvisor ? CouncilMapComponent.For(map)?.Signals?.Count(x => x.Level >= AdviceLevel.High) ?? 0 : 0;
+                    // Fights the colony knows are coming.
+                    n += comp.happenings.raids.Count;
                     break;
                 case Section.People:
                     n = OpenWishCount();
@@ -199,6 +204,8 @@ namespace ColonyCouncil
                 case Tab.Wishes: return "CC_Tab_Wishes".Translate(OpenWishCount());
                 case Tab.Decrees:
                     return comp.decrees.requests.Count > 0 ? "CC_Tab_DecreesAsked".Translate(comp.decrees.requests.Count).ToString() : "CC_Tab_Decrees".Translate().ToString();
+                case Tab.World:
+                    return comp.happenings.raids.Count > 0 ? "CC_Tab_WorldComing".Translate(comp.happenings.raids.Count).ToString() : "CC_Tab_World".Translate().ToString();
                 default: return ("CC_Tab_" + t).Translate();
             }
         }

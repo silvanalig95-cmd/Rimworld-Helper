@@ -384,6 +384,16 @@ medieval things). Many ask the council what to do, with a day or so to answer.
   along, a young **apprentice** who wants to learn from your master of a craft (a real mentorship), a **quiet
   stranger** with a secret, a **lost child** (Biotech), a **stray** that follows someone home.
 
+Some events pick up where an earlier one left off: the **deserter**'s old unit tracks them down; the **lost child**
+you walked home comes back years later, grown, with a gift; a **champion** you beat comes back for a rematch (or one
+who beat you, to defend the title); the **great beast**'s young turns up a season after it fell; **pilgrims** you fed
+send their thanks down the road.
+
+The council window's **World** page (Colony section) shows what's coming (fights the colony knows about and how
+soon, questions waiting for an answer), who's out there with the colony on their mind (nemeses at large, people who
+left and might come back, peoples with a grudge, rivals, a great beast and how long it'll stay), and the latest world
+events.
+
 Answers shape the colony's character, and the events feed nemeses, secrets, mentorships, journals and the
 chronicle. Fights come only with **battles** switched on in the settings, when the storyteller sends threats at
 all, never on top of another fight, and at a share of the storyteller's own raid strength. In dev mode, every
@@ -394,7 +404,10 @@ The moment it happens: a **wedding** is written into the chronicle and the journ
 (and nudges the colony a little towards tradition); a **birth** is recorded by the parents; colonists **coming
 home** from a journey of two days or more are glad to be home, their friends are glad to see them, and long
 journeys make the chronicle; when someone **breaks down** from their mood, their close friends worry in their
-journals, and the worst breaks are remembered. Nemeses are now caught the instant someone is downed or killed.
+journals, and the worst breaks are remembered. When a real fight at home is over, the colony tells itself the story
+of its **victory**: how many of them fell, who of ours didn't make it, and who brought down the most (a small
+"we held" mood for everyone, a little pride for the hero, and journal lines). **Quests** the colony took on are
+noted in the chronicle when they end, with a small "job well done" when they went well. Nemeses are now caught the instant someone is downed or killed.
 
 ## Colonists who help themselves
 Now and then a colonist fixes a small thing that hurts their mood, on their own and in their own time:

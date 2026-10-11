@@ -330,6 +330,41 @@ namespace ColonyCouncil
         }
     }
 
+    /// <summary>
+    /// Something a world event left behind that a later one can pick up: a deserter who joined, a child taken home, a
+    /// champion beaten, a beast felled, pilgrims fed. People in it are kept in the world until it's used or forgotten.
+    /// </summary>
+    public class Memo : IExposable
+    {
+        public string kind;
+        public Pawn pawn;
+        /// <summary>Someone of ours it concerns (who found the lost child, who felled the beast).</summary>
+        public Pawn other;
+        public Faction faction;
+        /// <summary>A def name (the skill of a contest, the kind of a beast).</summary>
+        public string def;
+        public string text;
+        public int tick;
+        public bool used;
+        public bool pinned;
+        /// <summary>Contest: the colony won it.</summary>
+        public bool won;
+
+        public void ExposeData()
+        {
+            Scribe_Values.Look(ref kind, "kind");
+            Scribe_References.Look(ref pawn, "pawn");
+            Scribe_References.Look(ref other, "other");
+            Scribe_References.Look(ref faction, "faction");
+            Scribe_Values.Look(ref def, "def");
+            Scribe_Values.Look(ref text, "text");
+            Scribe_Values.Look(ref tick, "tick");
+            Scribe_Values.Look(ref used, "used");
+            Scribe_Values.Look(ref pinned, "pinned");
+            Scribe_Values.Look(ref won, "won");
+        }
+    }
+
     // ===================== The tracker =====================
 
     /// <summary>
@@ -345,6 +380,10 @@ namespace ColonyCouncil
         public List<Departed> departed = new List<Departed>();
         public List<Grudge> grudges = new List<Grudge>();
         public List<Visit> visits = new List<Visit>();
+        public List<Memo> memos = new List<Memo>();
+        /// <summary>Quests already noticed (finished ones get a line in the chronicle once).</summary>
+        private HashSet<int> seenQuests = new HashSet<int>();
+        private bool questsInitialized;
         public Pawn beast;
         public string beastName;
         public int beastTick;
@@ -370,6 +409,7 @@ namespace ColonyCouncil
             Safe("event visits", () => VisitsHour(comp, now));
             Safe("great beast", () => HappeningWorker_GreatBeast.Hourly(this, comp));
             if (now % GenDate.TicksPerDay < GenDate.TicksPerHour) Safe("event memory", Prune);
+            Safe("quests", () => Quests(comp));
             if (!S.worldEvents) return;
             if (nextTick < 0) nextTick = now + Interval();
             if (now < GenDate.TicksPerDay * 3 || now < nextTick) return;
@@ -626,11 +666,14 @@ namespace ColonyCouncil
             public bool beast;
             public Faction prisonerOf;
             public string name;
+            /// <summary>An enemy falling in a fight at home (for the victory count).</summary>
+            public bool foe;
         }
 
         public DeathNote Before(Pawn victim)
         {
             var note = new DeathNote { beast = victim == beast, name = victim.LabelShort };
+            note.foe = victim.Spawned && victim.Map.IsPlayerHome && !victim.IsPrisoner && victim.HostileTo(Faction.OfPlayer);
             if (victim.RaceProps.Humanlike && victim.IsPrisonerOfColony && victim.Faction != null && !victim.Faction.IsPlayer && !victim.Faction.Hidden)
                 note.prisonerOf = victim.Faction;
             return note;
@@ -640,11 +683,63 @@ namespace ColonyCouncil
         public void Notify_Killed(Pawn victim, DamageInfo? dinfo, DeathNote note)
         {
             if (victim == null) return;
+            if (note.foe) CouncilGameComponent.Instance?.social.Notify_EnemyFell(dinfo?.Instigator as Pawn);
             if (note.beast) HappeningWorker_GreatBeast.Slain(this, victim, dinfo);
             if (note.prisonerOf != null)
             {
                 grudges.Add(new Grudge { name = note.name, faction = note.prisonerOf, tick = Now });
                 while (grudges.Count > 10) grudges.RemoveAt(0);
+            }
+        }
+
+        // ---------------- Memos for later events ----------------
+
+        public Memo Remember(string kind, Pawn pawn, Faction faction = null, string def = null, string text = null, bool won = false, Pawn other = null)
+        {
+            var m = new Memo { kind = kind, pawn = pawn, other = other, faction = faction, def = def, text = text, tick = Now, won = won };
+            if (pawn != null && !pawn.Dead && pawn.Faction != Faction.OfPlayer) m.pinned = Find.WorldPawns.ForcefullyKeptPawns.Add(pawn);
+            memos.Add(m);
+            while (memos.Count > 24) Drop(memos.OrderBy(x => x.used ? 0 : 1).ThenBy(x => x.tick).First());
+            return m;
+        }
+
+        /// <summary>Unused memos of this kind at least <paramref name="minDays"/> old.</summary>
+        public IEnumerable<Memo> Memos(string kind, float minDays = 0f) =>
+            memos.Where(m => m.kind == kind && !m.used && Now - m.tick >= minDays * GenDate.TicksPerDay);
+
+        /// <summary>A later event picked it up: it won't come round again.</summary>
+        public void Use(Memo m)
+        {
+            if (m == null) return;
+            m.used = true;
+            if (m.pinned && m.pawn != null && !AskedAbout(m.pawn)) Unpin(m.pawn);
+            m.pinned = false;
+        }
+
+        private void Drop(Memo m)
+        {
+            Use(m);
+            memos.Remove(m);
+        }
+
+        /// <summary>Finished quests get a line in the chronicle (and a little pride when they went well).</summary>
+        private void Quests(CouncilGameComponent comp)
+        {
+            var all = Find.QuestManager?.QuestsListForReading;
+            if (all == null) return;
+            if (!questsInitialized)
+            {
+                // Quests finished before Rimfolk was keeping count are history already.
+                foreach (var q in all) if (q.State != QuestState.NotYetAccepted && q.State != QuestState.Ongoing) seenQuests.Add(q.id);
+                questsInitialized = true;
+                return;
+            }
+            foreach (var q in all)
+            {
+                if (q.hidden || !q.EverAccepted || seenQuests.Contains(q.id)) continue;
+                if (q.State != QuestState.EndedSuccess && q.State != QuestState.EndedFailed) continue;
+                seenQuests.Add(q.id);
+                if (S.worldReactions) WorldReactions.QuestEnded(comp, q.name, q.State == QuestState.EndedSuccess);
             }
         }
 
@@ -655,6 +750,9 @@ namespace ColonyCouncil
                                                    || (now - d.tick > GenDate.TicksPerYear * 2 && !AskedAbout(d.pawn))).ToList())
                 Forget(d);
             grudges.RemoveAll(g => g.settled || g.faction == null || g.faction.defeated || now - g.tick > GenDate.TicksPerYear * 2);
+            foreach (var m in memos.Where(m => (m.used && now - m.tick > GenDate.TicksPerDay) || now - m.tick > GenDate.TicksPerYear * 3
+                                               || (m.pawn != null && (m.pawn.Dead || m.pawn.Discarded))).ToList())
+                Drop(m);
         }
 
         public void ExposeData()
@@ -666,6 +764,9 @@ namespace ColonyCouncil
             Scribe_Collections.Look(ref departed, "departed", LookMode.Deep);
             Scribe_Collections.Look(ref grudges, "grudges", LookMode.Deep);
             Scribe_Collections.Look(ref visits, "visits", LookMode.Deep);
+            Scribe_Collections.Look(ref memos, "memos", LookMode.Deep);
+            Scribe_Collections.Look(ref seenQuests, "seenQuests", LookMode.Value);
+            Scribe_Values.Look(ref questsInitialized, "questsInitialized");
             Scribe_References.Look(ref beast, "beast");
             Scribe_Values.Look(ref beastName, "beastName");
             Scribe_Values.Look(ref beastTick, "beastTick");
@@ -675,6 +776,9 @@ namespace ColonyCouncil
                 if (departed == null) departed = new List<Departed>();
                 if (grudges == null) grudges = new List<Grudge>();
                 if (visits == null) visits = new List<Visit>();
+                if (memos == null) memos = new List<Memo>();
+                if (seenQuests == null) seenQuests = new HashSet<int>();
+                memos.RemoveAll(m => m == null || m.kind == null);
                 raids.RemoveAll(r => r == null || r.map == null || r.faction == null);
                 departed.RemoveAll(d => d == null || d.pawn == null);
                 grudges.RemoveAll(g => g == null || g.faction == null);

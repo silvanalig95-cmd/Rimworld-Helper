@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- Rimfolk world events that pick up where an earlier one left off. Each needs its earlier event to have happened
+       (and gone a certain way), so they're likelier than most when they can come up at all. -->
+
+  <!-- ===================== The deserter's old unit ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Council_Evt_DeserterFound</defName>
+    <label>deserter found</label>
+    <workerClass>ColonyCouncil.HappeningWorker_DeserterFound</workerClass>
+    <baseChance>2</baseChance>
+    <minRefireDays>30</minRefireDays>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Battle</group>
+        <battle>true</battle>
+        <threat>true</threat>
+        <answerDays>0.5</answerDays>
+        <journal>Council_Journal_Evt_DeserterFound</journal>
+        <titles>
+          <li>{ENEMY} found {A_nameDef}</li>
+        </titles>
+        <texts>
+          <li>[lowtech] Riders in the colours of {ENEMY} have been asking at every village and crossroads for a deserter. Today they found the colony, and {A_nameDef} went pale at the sound of {A_possessive} own name. They want {A_objective} back, to answer for it. They'll take {COUNT} silver in {A_possessive} place, or {A_objective} by force.</li>
+          <li>[!lowtech] A message from {ENEMY} comes over the comms, cold and short: they know {A_nameDef} is here. A deserter belongs to the unit until the unit says otherwise. Hand {A_objective} over, buy out {A_possessive} service for {COUNT} silver, or they'll come and take {A_objective}.</li>
+        </texts>
+        <defaultOption>0</defaultOption>
+        <options>
+          <li>
+            <label>{A_nameDef} is one of us</label>
+            <outcome>{A_nameDef} says nothing, but checks {A_possessive} weapon twice. {ENEMY} will be here within hours.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Thought"><thought>Council_Evt_StoodByMe</thought><onlyIfChosen>true</onlyIfChosen></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Trust"><amount>10</amount><onlyIfChosen>true</onlyIfChosen></li>
+              <li Class="ColonyCouncil.DilemmaEffect_RaidLater">
+                <points>0.5~0.75</points>
+                <delayHours>3~8</delayHours>
+                <label>{ENEMY} want their deserter</label>
+                <text>{ENEMY} have come for {A_nameDef}, who ran from them to us. The colony said no.</text>
+              </li>
+            </effects>
+            <ways><mercy>3</mercy></ways>
+          </li>
+          <li>
+            <label>Buy out {A_possessive} service ({COUNT} silver)</label>
+            <outcome>{ENEMY} take the silver and strike {A_nameDef}'s name from their rolls. {A_nameDef} is free, properly free, for the first time in years.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>silver</what></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Thought"><thought>Council_Evt_BoughtFreedom</thought></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Trust"><amount>6</amount></li>
+            </effects>
+            <ways><generosity>2</generosity></ways>
+          </li>
+          <li>
+            <label>Hand {A_nameDef} back</label>
+            <outcome>{A_nameDef} walks out to them without a word. Nobody in the colony looks at anyone else for the rest of the day.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Others</target><thought>Council_Evt_GaveUpOneOfUs</thought><exceptTrait><li>Psychopath</li></exceptTrait></li>
+              <li Class="ColonyCouncil.DilemmaEffect_EventGoodwill"><amount>10</amount><enemy>true</enemy></li>
+              <li Class="ColonyCouncil.DilemmaEffect_LeaveColony" />
+            </effects>
+            <ways><mercy>-8</mercy><openness>-3</openness></ways>
+          </li>
+        </options>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== The lost child, grown ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Council_Evt_ChildGrown</defName>
+    <label>the lost child returns</label>
+    <workerClass>ColonyCouncil.HappeningWorker_ChildGrown</workerClass>
+    <baseChance>2</baseChance>
+    <minRefireDays>30</minRefireDays>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Visitors</group>
+        <addsPeople>true</addsPeople>
+        <stayHours>18~26</stayHours>
+        <answerDays>0.6</answerDays>
+        <journal>Council_Journal_Evt_ChildGrown</journal>
+        <titles>
+          <li>{X_nameDef} comes back</li>
+        </titles>
+        <texts>
+          <li>[grown] A young traveller of {FACTION} has come asking for {A_nameDef} by name. It takes a moment to recognise {X_objective}: {X_nameDef}, the lost child the colony once walked home, all grown up. {X_nameDef} has brought a gift, and a question: is there room here for someone who never forgot this place?</li>
+          <li>[young] {X_nameDef}, the lost child the colony once walked home, is back: a little taller, with a gift from {X_possessive} family of {FACTION} and a great many questions for {A_nameDef}.</li>
+        </texts>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Loot"><value>150~400</value></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_Evt_ChildCameBack</thought><exceptTrait><li>Psychopath</li></exceptTrait></li>
+        </effects>
+        <defaultOption>1</defaultOption>
+        <options>
+          <li>
+            <label>Ask {X_objective} to stay</label>
+            <outcome>{X_nameDef} stays. {A_nameDef} pretends not to be moved, and fools nobody.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Join" />
+              <li Class="ColonyCouncil.DilemmaEffect_Tie"><kind>Friends</kind><amount>25</amount></li>
+            </effects>
+            <ways><openness>3</openness><mercy>2</mercy></ways>
+          </li>
+          <li>
+            <label>Thank {X_objective} and wish {X_objective} well</label>
+            <outcome>{X_nameDef} stays for supper, tells everyone about home, and leaves in the morning with a full pack. {FACTION} speak well of the colony.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_EventGoodwill"><amount>6</amount></li>
+            </effects>
+          </li>
+        </options>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== A rematch ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Council_Evt_Rematch</defName>
+    <label>rematch</label>
+    <workerClass>ColonyCouncil.HappeningWorker_Rematch</workerClass>
+    <baseChance>1.6</baseChance>
+    <minRefireDays>30</minRefireDays>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Challenge</group>
+        <stayHours>20~28</stayHours>
+        <answerDays>0.5</answerDays>
+        <titles>
+          <li>A rematch</li>
+        </titles>
+        <texts>
+          <li>[won] {X_nameDef} of {FACTION}, who lost to the colony at {SKILL}, is back, and has very clearly been practising. {X_nameDef} wants a rematch against {A_nameDef}. Same rules as before: nobody gets hurt, and the colony can put silver on it.</li>
+          <li>[lost] {X_nameDef} of {FACTION}, who beat the colony at {SKILL} last time, has come back to defend the title against {A_nameDef}. {X_nameDef} is all smiles. The colony can put silver on it, if it fancies its chances this time.</li>
+        </texts>
+        <defaultOption>2</defaultOption>
+        <options>
+          <li>
+            <label>Accept: {COUNT} silver on {A_nameDef}</label>
+            <outcome>The rematch is on. Half the colony has already picked a side.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Contest"><stake>true</stake></li>
+            </effects>
+          </li>
+          <li>
+            <label>Accept, for honour only</label>
+            <outcome>The rematch is on, for bragging rights. Which, this time, everyone agrees, matter a great deal.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Contest" />
+            </effects>
+          </li>
+          <li>
+            <label>Decline politely</label>
+            <outcome>{X_nameDef} looks disappointed, and moves on. The question of who's really better will have to wait.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_SendAway" />
+            </effects>
+          </li>
+        </options>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== The great beast's young ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Council_Evt_BeastHeir</defName>
+    <label>the great beast's young</label>
+    <workerClass>ColonyCouncil.HappeningWorker_BeastHeir</workerClass>
+    <baseChance>1.6</baseChance>
+    <minRefireDays>45</minRefireDays>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Challenge</group>
+        <letter>NeutralEvent</letter>
+        <days>4~6</days>
+        <titles>
+          <li>{BEAST}</li>
+        </titles>
+        <texts>
+          <li>Hunters swear they've seen it: {BEAST}, the young of {DEAD}, the great beast the colony brought down. Nearly as big as its parent was and every bit as stubborn, it's roaming the colony's land now. It'll move on in a few days, unless someone makes a second legend of it.</li>
+          <li>[lowtech] The old hunters always said {DEAD} had young somewhere out there. They were right. {BEAST} has come down to the colony's land, scarred already and growing into its parent's size. It'll move on in a few days. {A_nameDef} has heard, and has gone very quiet.</li>
+        </texts>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== Kindness repaid ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Council_Evt_PilgrimsReturn</defName>
+    <label>kindness repaid</label>
+    <workerClass>ColonyCouncil.HappeningWorker_PilgrimsReturn</workerClass>
+    <baseChance>2</baseChance>
+    <minRefireDays>30</minRefireDays>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Visitors</group>
+        <letter>PositiveEvent</letter>
+        <titles>
+          <li>Kindness repaid</li>
+        </titles>
+        <texts>
+          <li>[lowtech] A pedlar arrives with a bundle and a message: the pilgrims of {FACTION} the colony once fed made it to the end of their road, and they haven't forgotten. They've sent what they could spare, with their blessings.</li>
+          <li>[!lowtech] A drop pod arrives with a short note from the pilgrims of {FACTION} the colony once fed: they made it, and they haven't forgotten. Inside is what they could spare.</li>
+        </texts>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Loot"><value>200~500</value><pod>true</pod></li>
+          <li Class="ColonyCouncil.DilemmaEffect_EventGoodwill"><amount>5</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_Evt_KindnessRepaid</thought><exceptTrait><li>Psychopath</li></exceptTrait></li>
+        </effects>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+</Defs>

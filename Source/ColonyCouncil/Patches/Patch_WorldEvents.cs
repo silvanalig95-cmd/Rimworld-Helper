@@ -35,6 +35,7 @@ namespace ColonyCouncil
             if (!RimfolkPatches.On || __instance == null || __instance.Dead || !__instance.IsColonist) return;
             try
             {
+                if (__instance.Spawned) CouncilGameComponent.Instance?.social?.Notify_ColonistFell(__instance);
                 if (dinfo?.Instigator is Pawn attacker) CouncilGameComponent.Instance?.nemeses?.Notify_Harmed(__instance, attacker, "killed");
             }
             catch (System.Exception e)

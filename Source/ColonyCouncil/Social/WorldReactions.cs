@@ -103,5 +103,61 @@ namespace ColonyCouncil
             if (state.IsAggro)
                 comp.AddChronicle(new ChronicleEntry(ChronicleKind.Life, "CC_World_Breakdown".Translate(p.Named("PAWN"), state.label.Named("STATE")).Resolve(), p));
         }
+
+        /// <summary>
+        /// A fight at home is over: if the colony saw off a real threat, it tells itself the story. Who fought, how many
+        /// of them fell, what it cost, and who stood out.
+        /// </summary>
+        public static void Victory(CouncilGameComponent comp, List<Pawn> fighters, Faction foe, int kills, List<string> fallen, Dictionary<Pawn, int> killsBy)
+        {
+            if (!On || comp == null || fighters.NullOrEmpty()) return;
+            // A real fight: a raid seen off, or a pack brought down. One stray wolf isn't a victory.
+            if (kills < 3 && !(foe != null && kills >= 1)) return;
+            var home = Find.Maps.Where(m => m.IsPlayerHome).ToList();
+            if (home.Count == 0 || home.All(m => m.mapPawns.FreeColonistsSpawnedCount == 0)) return;
+            var hero = killsBy.Where(kv => kv.Key != null && !kv.Key.Dead && kv.Key.IsColonist && kv.Value >= 2).OrderByDescending(kv => kv.Value).Select(kv => kv.Key).FirstOrDefault();
+            string foeName = foe != null ? foe.Name : "CC_Victory_Beasts".Translate().ToString();
+            bool costly = fallen.Count > 0;
+            string text = costly
+                ? "CC_Victory_Costly".Translate(foeName, kills, TextUtil.JoinAnd(fallen)).Resolve()
+                : "CC_Victory_Clean".Translate(foeName, kills).Resolve();
+            if (hero != null) text += " " + "CC_Victory_Hero".Translate(hero.Named("PAWN"), killsBy[hero]).Resolve();
+            Notify.Message(text, new LookTargets(fighters.Where(p => p.Spawned)), MessageTypeDefOf.PositiveEvent, Importance.Notable);
+            comp.AddChronicle(new ChronicleEntry(ChronicleKind.World, text, hero ?? fighters[0]));
+            using var _cause = Causes.Push("CC_Cause_Victory".Translate(foeName).Resolve());
+            var thought = costly ? CouncilDefOf.Council_VictoryCostly : CouncilDefOf.Council_Victory;
+            foreach (var map in home)
+                foreach (var p in map.mapPawns.FreeColonistsSpawned.Where(p => People.HasInnerLife(p) && !p.DevelopmentalStage.Baby()).ToList())
+                    CouncilGameComponent.GiveThought(p, thought);
+            if (hero != null) CouncilGameComponent.GiveThought(hero, CouncilDefOf.Council_BattleHero);
+            var tags = new List<string> { costly ? "costly" : "clean" };
+            if (foe == null) tags.Add("beasts");
+            var writers = new List<Pawn>();
+            if (hero != null) writers.Add(hero);
+            writers.AddRange(fighters.Where(p => p != hero && !p.Dead && p.IsColonist).InRandomOrder().Take(hero != null ? 1 : 2));
+            foreach (var w in writers)
+            {
+                var t = new List<string>(tags);
+                if (w == hero) t.Add("hero");
+                comp.journals.WriteTagged(w, "Council_Journal_Victory", t.ToArray(), null, foeName.Named("ENEMY"), kills.Named("COUNT"),
+                    (costly ? TextUtil.JoinAnd(fallen) : "").Named("DEAD"));
+            }
+        }
+
+        /// <summary>A quest the colony took on is over, for better or worse.</summary>
+        public static void QuestEnded(CouncilGameComponent comp, string name, bool success)
+        {
+            if (comp == null || name.NullOrEmpty()) return;
+            string text = (success ? "CC_World_QuestDone" : "CC_World_QuestFailed").Translate(name).Resolve();
+            comp.AddChronicle(new ChronicleEntry(ChronicleKind.World, text));
+            var pawns = PawnsFinder.AllMaps_FreeColonistsSpawned.Where(p => People.HasInnerLife(p) && !p.DevelopmentalStage.Baby() && !p.IsQuestLodger()).ToList();
+            if (success)
+            {
+                using var _cause = Causes.Push("CC_Cause_Quest".Translate(name).Resolve());
+                foreach (var p in pawns) CouncilGameComponent.GiveThought(p, CouncilDefOf.Council_QuestDone);
+            }
+            var writer = pawns.Where(p => !p.DevelopmentalStage.Juvenile()).RandomElementWithFallback();
+            if (writer != null) comp.journals.Write(writer, success ? "Council_Journal_QuestDone" : "Council_Journal_QuestFailed", null, name.Named("TALE"));
+        }
     }
 }

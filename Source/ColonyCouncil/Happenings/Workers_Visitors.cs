@@ -197,6 +197,13 @@ namespace ColonyCouncil
             Arrivals.Visit(ctx.group.Prepend(ctx.stranger).ToList(), ctx.map, ctx.faction, null, ext.stayHours.RandomInRange) != null;
 
         protected override string Extra(HappeningContext ctx) => "CC_Evt_PilgrimsFood".Translate(DilemmaEffect_Consume.RawFood(ctx.map), ctx.count).Resolve();
+
+        public override string Resolved(HappeningContext ctx, int option, bool risk, bool byDefault, string outcome)
+        {
+            // Fed: their gratitude may come back down the road.
+            if (option == 0 && !byDefault && ctx.faction != null) CouncilGameComponent.Instance?.happenings.Remember("pilgrims", null, ctx.faction);
+            return base.Resolved(ctx, option, risk, byDefault, outcome);
+        }
     }
 
     // ===================== The scholar =====================
@@ -258,6 +265,14 @@ namespace ColonyCouncil
 
         protected override bool Begin(HappeningContext ctx, HappeningExtension ext) =>
             Arrivals.Visit(new List<Pawn> { ctx.stranger }, ctx.map, ctx.faction, null, ext.answerDays * 24f + 6f) != null;
+
+        public override string Resolved(HappeningContext ctx, int option, bool risk, bool byDefault, string outcome)
+        {
+            // Taken home: one day, grown, they may come back to say thank you.
+            if (option == 0 && ctx.stranger != null && !ctx.stranger.Dead && ctx.stranger.Faction == ctx.faction)
+                CouncilGameComponent.Instance?.happenings.Remember("child", ctx.stranger, ctx.faction, null, null, false, ctx.a);
+            return base.Resolved(ctx, option, risk, byDefault, outcome);
+        }
     }
 
     // ===================== A stray =====================

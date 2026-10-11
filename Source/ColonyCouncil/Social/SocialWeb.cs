@@ -96,6 +96,45 @@ namespace ColonyCouncil
         public Faction battleFaction;
         [Unsaved] public Map battleMap;
         public bool battleActive;
+        /// <summary>The fight's tally, for the colony's account of its victory: enemies fallen, who brought them down, our dead.</summary>
+        private int battleKills;
+        private int battleCountStart = -1;
+        private List<string> battleFallen = new List<string>();
+        [Unsaved] private Dictionary<Pawn, int> killsBy = new Dictionary<Pawn, int>();
+
+        /// <summary>An enemy fell in a fight at home (Harmony hook).</summary>
+        public void Notify_EnemyFell(Pawn killer)
+        {
+            StartCount();
+            battleKills++;
+            if (killer != null && killer.IsColonist && killer.RaceProps.Humanlike)
+                killsBy[killer] = (killsBy.TryGetValue(killer, out int n) ? n : 0) + 1;
+        }
+
+        /// <summary>One of ours fell during a fight at home (Harmony hook).</summary>
+        public void Notify_ColonistFell(Pawn p)
+        {
+            if (p == null || p.Map == null || !p.Map.IsPlayerHome || !GenHostility.AnyHostileActiveThreatToPlayer(p.Map, false, false)) return;
+            StartCount();
+            if (battleFallen.Count < 20) battleFallen.Add(p.LabelShort);
+        }
+
+        /// <summary>Counts from the first blood of a fight; anything older than that fight is forgotten.</summary>
+        private void StartCount()
+        {
+            int now = Find.TickManager.TicksGame;
+            if (battleActive || (battleCountStart >= 0 && now - battleCountStart < GenDate.TicksPerHour * 3)) return;
+            ResetCount();
+            battleCountStart = now;
+        }
+
+        private void ResetCount()
+        {
+            battleKills = 0;
+            battleCountStart = -1;
+            battleFallen.Clear();
+            killsBy.Clear();
+        }
         private int quietHours;
         /// <summary>Existing friendships and feuds are taken in quietly the first time the web runs on a save.</summary>
         private bool seeded;
@@ -409,6 +448,11 @@ namespace ColonyCouncil
             }
             if (fighting)
             {
+                if (!battleActive && (battleCountStart < 0 || now - battleCountStart > GenDate.TicksPerHour * 3))
+                {
+                    ResetCount();
+                    battleCountStart = now;
+                }
                 battleActive = true;
                 quietHours = 0;
                 return;
@@ -416,9 +460,19 @@ namespace ColonyCouncil
             if (!battleActive) return;
             if (++quietHours < 3) return;
             battleActive = false;
+            var foe = battleFaction;
             battleFaction = null;
             var list = fighters.Where(Eligible).Distinct().ToList();
             fighters.Clear();
+            try
+            {
+                WorldReactions.Victory(comp, list, foe, battleKills, battleFallen.ToList(), new Dictionary<Pawn, int>(killsBy));
+            }
+            catch (System.Exception e)
+            {
+                CouncilLog.ErrorOnce("victory", e);
+            }
+            ResetCount();
             foreach (var p in list)
             {
                 comp.quirks.Notify_Fought(p);
@@ -563,6 +617,10 @@ namespace ColonyCouncil
             Scribe_Collections.Look(ref fighters, "fighters", LookMode.Reference);
             Scribe_References.Look(ref battleFaction, "battleFaction");
             Scribe_Values.Look(ref battleActive, "battleActive");
+            Scribe_Values.Look(ref battleKills, "battleKills");
+            Scribe_Values.Look(ref battleCountStart, "battleCountStart", -1);
+            Scribe_Collections.Look(ref battleFallen, "battleFallen", LookMode.Value);
+            if (Scribe.mode == LoadSaveMode.PostLoadInit && battleFallen == null) battleFallen = new List<string>();
             Scribe_Values.Look(ref quietHours, "quietHours");
             Scribe_Values.Look(ref seeded, "seeded");
             if (Scribe.mode == LoadSaveMode.PostLoadInit)

@@ -24,9 +24,9 @@ More of what makes a long medieval run feel lived-in.
   moments, seasonal festivals that can become traditions, more dreams and secrets.
 - Era-aware writing throughout.
 
-## Phase D: Reacting to the world (started)
+## Phase D: Reacting to the world (mostly done)
 The colony notices what the game does to it. Done so far (Harmony hooks): weddings, births, homecomings, breakdowns,
-exact nemesis detection.
+exact nemesis detection, victories (who fell, who stood out), quests won and lost.
 - Weddings, births, breakdowns, victories, caravans coming home with stories, quests won and lost.
 - Journals, the chronicle, friends' reactions and life-goal sparks for each.
 
@@ -35,9 +35,9 @@ Things that happen to the colony from outside, on Rimfolk's own rhythm, written 
 - Done: 31 events in five groups (pasts catching up, challenges, old enemies, the land and sky, visitors with a
   purpose), fights behind their own switch, era-appropriate loot and visitors, ties into nemeses, secrets,
   mentorships, journals, the chronicle and the colony's character.
-- Next: more events per group, events that build on each other (a champion who comes back for a rematch, the
-  great beast's offspring, a deserter's old unit sending an envoy), mod-aware events when the user's new modlist
-  arrives, and a short "what's coming" line in the council window for promised fights.
+- Done: events that build on each other (a deserter's old unit, the lost child grown, a rematch, the great beast's
+  young, fed pilgrims' thanks) and the World page (what's coming, who's out there, what happened lately).
+- Next: more events per group, mod-aware events when the user's new modlist arrives.
 
 ## Phase E: The council at a glance
 - An overview page: the colony's mood and trust over time, open wishes, the colony's character, nemeses still

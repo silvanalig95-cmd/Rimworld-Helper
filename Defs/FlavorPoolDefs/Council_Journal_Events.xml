@@ -257,4 +257,73 @@
     </lines>
   </ColonyCouncil.FlavorPoolDef>
 
+  <!-- ===================== Chains ===================== -->
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Journal_Evt_DeserterFound</defName>
+    <lines>
+      <plain>
+        <li>[opt0] {ENEMY} found me. The colony said no. They're coming anyway, and the colony is standing between us. I didn't know people did that.</li>
+        <li>[opt1] The colony bought out my service to {ENEMY}. I'm nobody's soldier now. I keep saying it out loud to see if it's true.</li>
+        <li>[opt2] They're handing me back to {ENEMY}. I knew it might come to this. I'd hoped it wouldn't.</li>
+      </plain>
+      <blunt><li>[opt0] Let {ENEMY} come. I know how they fight. They don't know how we do.</li></blunt>
+      <gloomy><li>[opt2] Back to {ENEMY}. Funny. I ran a long way to end up exactly where I started.</li></gloomy>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Journal_Evt_ChildGrown</defName>
+    <lines>
+      <plain>
+        <li>[opt0] {X_nameDef} came back, the child I found by the fields all those seasons ago, and now {X_pronoun} is staying. I'm not crying. It's dusty in here.</li>
+        <li>[opt1] {X_nameDef} came back to say thank you, the lost child I found by the fields. Grown, or nearly. I didn't know how much I'd wondered what happened to {X_objective}.</li>
+      </plain>
+      <warm><li>[opt1] {X_nameDef} remembered us. Remembered me. Of all the things I've done here, that one might be the best.</li></warm>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- ===================== Victories and quests ===================== -->
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Journal_Victory</defName>
+    <lines>
+      <plain>
+        <li>[clean] {ENEMY} came, and we sent them running: {COUNT} of them won't be coming back, and none of ours fell. My hands only stopped shaking an hour ago.</li>
+        <li>[clean,hero] I brought down more of {ENEMY} than anyone today. People keep clapping me on the back. I keep thinking about the ones I didn't get.</li>
+        <li>[costly] We beat {ENEMY}, but we lost {DEAD}. Everyone says we won. It doesn't feel like it.</li>
+        <li>[costly,hero] They say I fought well today. I'd trade every one of them for {DEAD}.</li>
+        <li>[beasts,clean] The beasts came, and we put them down, every one. Nobody hurt worse than scratches. There's going to be a lot of meat.</li>
+        <li>[beasts,costly] The beasts are dead. So is {DEAD}. I don't know how to write the rest of this.</li>
+      </plain>
+      <blunt><li>[clean] They attacked. We won. Next.</li></blunt>
+      <cheerful><li>[clean] We WON! All of us, still here! Somebody find the good drink!</li></cheerful>
+      <gloomy><li>[clean] We held this time. Every time, they come back with more.</li></gloomy>
+      <cold><li>[clean] The engagement went well. Positions held, no losses. Their tactics were poor.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Journal_QuestDone</defName>
+    <lines>
+      <plain>
+        <li>We finished it: {TALE}. Said we would, did it. That's worth something out here.</li>
+        <li>"{TALE}" is done and dusted. I didn't think we'd manage, honestly.</li>
+      </plain>
+      <cheerful><li>Done! {TALE}, done! We're getting good at this!</li></cheerful>
+      <cold><li>Objective complete: {TALE}. Satisfactory.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Journal_QuestFailed</defName>
+    <lines>
+      <plain>
+        <li>We didn't manage it: {TALE}. Nobody's saying much about it.</li>
+        <li>"{TALE}" came to nothing. We'll do better next time, if there is a next time.</li>
+      </plain>
+      <gloomy><li>Failed: {TALE}. Add it to the list.</li></gloomy>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
 </Defs>
