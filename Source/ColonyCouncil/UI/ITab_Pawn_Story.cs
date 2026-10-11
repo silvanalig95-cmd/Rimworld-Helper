@@ -16,10 +16,6 @@ namespace ColonyCouncil
         private Vector2 scroll;
         private float height = 400f;
 
-        private static readonly Color Faint = new Color(0.7f, 0.7f, 0.7f);
-        private static readonly Color HeaderColor = new Color(0.95f, 0.85f, 0.6f);
-        private static readonly Color Quote = new Color(1f, 0.93f, 0.75f);
-
         public ITab_Pawn_Story()
         {
             size = new Vector2(460f, 520f);
@@ -38,17 +34,50 @@ namespace ColonyCouncil
         protected override void FillTab()
         {
             var p = SelPawn;
-            var comp = CouncilGameComponent.Instance;
-            if (p == null || comp == null) return;
+            if (p == null || CouncilGameComponent.Instance == null) return;
             var rect = new Rect(0f, 0f, size.x, size.y).ContractedBy(10f);
             Text.Font = GameFont.Medium;
-            Widgets.Label(new Rect(rect.x, rect.y, rect.width, 30f), p.LabelShortCap);
+            Widgets.Label(new Rect(rect.x, rect.y, rect.width - 130f, 30f), p.LabelShortCap);
             Text.Font = GameFont.Small;
-            var outRect = new Rect(rect.x, rect.y + 34f, rect.width, rect.height - 34f);
+            if (p.IsColonist && Widgets.ButtonText(new Rect(rect.xMax - 124f, rect.y + 2f, 124f, 26f), "CC_Story_OpenCouncil".Translate()))
+                MainTabWindow_Council.OpenPerson(p);
+            StoryView.Draw(new Rect(rect.x, rect.y + 34f, rect.width, rect.height - 34f), p, ref scroll, ref height);
+        }
+    }
+
+    /// <summary>The story of one colonist, drawn in the Story tab and the council window's People roster.</summary>
+    public static class StoryView
+    {
+        private static readonly Color Faint = new Color(0.7f, 0.7f, 0.7f);
+        private static readonly Color HeaderColor = new Color(0.95f, 0.85f, 0.6f);
+        private static readonly Color Quote = new Color(1f, 0.93f, 0.75f);
+
+        // Built a couple of times a second rather than every frame.
+        private static Pawn cachedPawn;
+        private static float cachedAt = -1f;
+        private static List<Section> cached;
+
+        public static void Draw(Rect outRect, Pawn p, ref Vector2 scroll, ref float height)
+        {
+            var comp = CouncilGameComponent.Instance;
+            if (p == null || comp == null) return;
+            if (cachedPawn != p || cached == null || Time.realtimeSinceStartup - cachedAt > 0.5f)
+            {
+                cached = Sections(comp, p).ToList();
+                cachedPawn = p;
+                cachedAt = Time.realtimeSinceStartup;
+            }
             var view = new Rect(0f, 0f, outRect.width - 16f, height);
             Widgets.BeginScrollView(outRect, ref scroll, view);
             float y = 0f;
-            foreach (var section in Sections(comp, p))
+            if (cached.Count == 0)
+            {
+                GUI.color = Faint;
+                Widgets.Label(new Rect(0f, y, view.width, 60f), "CC_Story_Empty".Translate(p.LabelShort));
+                GUI.color = Color.white;
+                y += 60f;
+            }
+            foreach (var section in cached)
             {
                 GUI.color = HeaderColor;
                 Widgets.Label(new Rect(0f, y, view.width, 24f), section.header);

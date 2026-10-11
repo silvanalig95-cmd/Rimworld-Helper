@@ -78,14 +78,14 @@ namespace ColonyCouncil
             holders[def.defName] = p;
             string text = def.earned.Formatted(p.Named("PAWN")).Resolve();
             if (previous != null) text += " " + "CC_Epithet_Taken".Translate(previous.Named("OTHER"), def.label.Named("TITLE")).Resolve();
-            Messages.Message(text, new LookTargets(p), def.dubious ? MessageTypeDefOf.NeutralEvent : MessageTypeDefOf.PositiveEvent, false);
+            Notify.Message(text, new LookTargets(p), def.dubious ? MessageTypeDefOf.NeutralEvent : MessageTypeDefOf.PositiveEvent, Importance.Notable);
             CouncilGameComponent.GiveThought(p, def.dubious ? CouncilDefOf.Council_EpithetDubious : CouncilDefOf.Council_Epithet);
             if (previous != null && !def.dubious)
             {
                 CouncilGameComponent.GiveThought(previous, CouncilDefOf.Council_EpithetLost, p);
                 comp.social.Bump(previous, p, TieKind.Rivals, 12f, "CC_TieNote_Name".Translate(def.label));
             }
-            comp.AddChronicle(new ChronicleEntry(ChronicleKind.Note, "CC_Chronicle_Epithet".Translate(p.LabelShort, def.label).Resolve(), p));
+            comp.AddChronicle(new ChronicleEntry(ChronicleKind.Life, "CC_Chronicle_Epithet".Translate(p.LabelShort, def.label).Resolve(), p));
             comp.journals.Write(p, def.dubious ? "Council_Journal_EpithetDubious" : "Council_Journal_Epithet", null, def.label.Named("TITLE"));
         }
 

@@ -192,7 +192,7 @@ namespace ColonyCouncil
             CouncilGameComponent.GiveThought(friend, CouncilDefOf.Council_Secret_Trusted, owner);
             comp.journals.Write(owner, "Council_Journal_Confided", null, friend.Named("OTHER"));
             comp.journals.Write(friend, "Council_Journal_Confidant", null, owner.Named("OTHER"));
-            Messages.Message("CC_Secret_Confided".Translate(owner.Named("A"), friend.Named("B")).Resolve(), new LookTargets(owner, friend), MessageTypeDefOf.SilentInput, false);
+            Notify.Message("CC_Secret_Confided".Translate(owner.Named("A"), friend.Named("B")).Resolve(), new LookTargets(owner, friend), MessageTypeDefOf.SilentInput, Importance.Flavor);
         }
 
         /// <summary>It comes out. <paramref name="leaker"/> is the owner when they confess it themselves.</summary>
@@ -209,8 +209,8 @@ namespace ColonyCouncil
             string text = s.Truth + "\n\n" + how;
             var look = confessed ? new LookTargets(owner) : new LookTargets(owner, leaker);
             if (s.def.major) Find.LetterStack.ReceiveLetter("CC_Secret_Label".Translate(owner.LabelShort), text, s.def.good ? LetterDefOf.PositiveEvent : LetterDefOf.NegativeEvent, look);
-            else Messages.Message("CC_Secret_Short".Translate(owner.Named("PAWN")).Resolve() + " " + s.Truth, look, s.def.good ? MessageTypeDefOf.PositiveEvent : MessageTypeDefOf.NegativeEvent, false);
-            comp.AddChronicle(new ChronicleEntry(ChronicleKind.Note, s.Truth, owner));
+            else Notify.Message("CC_Secret_Short".Translate(owner.Named("PAWN")).Resolve() + " " + s.Truth, look, s.def.good ? MessageTypeDefOf.PositiveEvent : MessageTypeDefOf.NegativeEvent, Importance.Notable);
+            comp.AddChronicle(new ChronicleEntry(ChronicleKind.Secret, s.Truth, owner));
             comp.annals.Notify_Secret(owner, s.def.label);
 
             // The owner.
@@ -247,12 +247,12 @@ namespace ColonyCouncil
             var teller = s.knowers.Where(k => k.IsColonist && !k.Dead).RandomElementWithFallback();
             if (teller == null)
             {
-                comp.AddChronicle(new ChronicleEntry(ChronicleKind.Note, "CC_Secret_ToTheGrave".Translate(s.owner.Named("PAWN")).Resolve(), null));
+                comp.AddChronicle(new ChronicleEntry(ChronicleKind.Secret, "CC_Secret_ToTheGrave".Translate(s.owner.Named("PAWN")).Resolve(), null));
                 return;
             }
             string text = "CC_Secret_Posthumous".Translate(teller.Named("TELLER"), s.owner.Named("PAWN")).Resolve() + " " + s.Truth;
-            Messages.Message(text, teller, MessageTypeDefOf.NeutralEvent, false);
-            comp.AddChronicle(new ChronicleEntry(ChronicleKind.Note, text, teller));
+            Notify.Message(text, teller, MessageTypeDefOf.NeutralEvent, Importance.Notable);
+            comp.AddChronicle(new ChronicleEntry(ChronicleKind.Secret, text, teller));
             comp.journals.Write(teller, "Council_Journal_SecretKept", null, s.owner.Named("OTHER"));
         }
 

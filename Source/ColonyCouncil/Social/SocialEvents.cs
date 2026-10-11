@@ -160,8 +160,8 @@ namespace ColonyCouncil
                 else if (def.change > 0f) comp.social.Bump(a, b, def.changeTie, def.change, note);
                 else comp.social.Weaken(a, b, def.changeTie, -def.change, note);
             }
-            Messages.Message(text, new LookTargets(a, b), MessageTypeDefOf.SilentInput, false);
-            if (def.notable) comp.AddChronicle(new ChronicleEntry(ChronicleKind.Note, text, a));
+            Notify.Message(text, new LookTargets(a, b), MessageTypeDefOf.SilentInput, def.notable ? Importance.Notable : Importance.Flavor);
+            if (def.notable) comp.AddChronicle(new ChronicleEntry(ChronicleKind.Bond, text, a));
         }
     }
 }

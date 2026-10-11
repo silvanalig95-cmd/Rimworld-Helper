@@ -172,7 +172,7 @@ namespace ColonyCouncil
             quirks.Add(q);
             string line = Line(d.gained, q);
             if (!line.NullOrEmpty()) comp.journals.WriteText(p, line);
-            Messages.Message("CC_Quirk_Gained".Translate(p.Named("PAWN"), q.Label.Named("QUIRK")).Resolve() + (line.NullOrEmpty() ? "" : " \"" + line + "\""), p, MessageTypeDefOf.SilentInput, false);
+            Notify.Message("CC_Quirk_Gained".Translate(p.Named("PAWN"), q.Label.Named("QUIRK")).Resolve() + (line.NullOrEmpty() ? "" : " \"" + line + "\""), p, MessageTypeDefOf.SilentInput, Importance.Flavor);
         }
 
         private static string Line(ToneLines lines, Quirk q)

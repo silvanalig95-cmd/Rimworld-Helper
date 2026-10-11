@@ -165,7 +165,7 @@ namespace ColonyCouncil
                         comp.social.Bump(kv.Key, winner, TieKind.Rivals, 10f, "CC_TieNote_Election".Translate(office.label));
                     }
                 }
-                comp.AddChronicle(new ChronicleEntry(ChronicleKind.Note, "CC_Chronicle_Elected".Translate(winner.LabelShort, office.label).Resolve(), winner));
+                comp.AddChronicle(new ChronicleEntry(ChronicleKind.Council, "CC_Chronicle_Elected".Translate(winner.LabelShort, office.label).Resolve(), winner));
             }
             SyncHediffs();
             Find.LetterStack.ReceiveLetter((byElection ? "CC_Election_ByTitle" : "CC_Election_Title").Translate(year).Resolve(), text.ToString(), LetterDefOf.NeutralEvent);
@@ -209,7 +209,7 @@ namespace ColonyCouncil
             else Messages.Message("CC_Office_Appointed".Translate(p.Named("PAWN"), office.label.Named("OFFICE")).Resolve(), new LookTargets(p), MessageTypeDefOf.NeutralEvent, false);
             CouncilGameComponent.GiveThought(p, CouncilDefOf.Council_ElectedToOffice);
             comp.journals.Write(p, "Council_Journal_Elected", null, office.label.Named("OFFICE"));
-            comp.AddChronicle(new ChronicleEntry(ChronicleKind.Note, "CC_Chronicle_Appointed".Translate(p.LabelShort, office.label).Resolve(), p));
+            comp.AddChronicle(new ChronicleEntry(ChronicleKind.Council, "CC_Chronicle_Appointed".Translate(p.LabelShort, office.label).Resolve(), p));
             SyncHediffs();
         }
 

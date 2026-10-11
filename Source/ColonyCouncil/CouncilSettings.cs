@@ -62,6 +62,7 @@ namespace ColonyCouncil
         public bool comingOfAge = true;
         public bool dreamOmens = true;
         public bool allDreamMessages;
+        public MessageLevel messageLevel = MessageLevel.Notable;
         public float daysBetweenDilemmas = 8f;
         public bool eventWishes = true;
         public bool reminders = true;
@@ -130,6 +131,7 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref comingOfAge, "comingOfAge", true);
             Scribe_Values.Look(ref dreamOmens, "dreamOmens", true);
             Scribe_Values.Look(ref allDreamMessages, "allDreamMessages", false);
+            Scribe_Values.Look(ref messageLevel, "messageLevel", MessageLevel.Notable);
             Scribe_Values.Look(ref daysBetweenDilemmas, "daysBetweenDilemmas", 8f);
             Scribe_Values.Look(ref eventWishes, "eventWishes", true);
             Scribe_Values.Look(ref reminders, "reminders", true);
@@ -176,12 +178,51 @@ namespace ColonyCouncil
         /// <summary>Multiplier for every penalty: 0 in Gentle, scaled by the slider.</summary>
         public float PenaltyScale => !Negatives ? 0f : (Harsh ? 1.5f : 1f) * penaltyFactor;
 
+        private static int settingsTab;
+
         public void DoWindowContents(Rect inRect)
         {
-            Rect viewRect = new Rect(0f, 0f, inRect.width - 20f, viewHeight);
-            Widgets.BeginScrollView(inRect, ref scroll, viewRect);
+            // Four pages instead of one endless list.
+            var tabs = new System.Collections.Generic.List<TabRecord>();
+            string[] keys = { "CC_SetTab_General", "CC_SetTab_Council", "CC_SetTab_People", "CC_SetTab_Notify" };
+            for (int i = 0; i < keys.Length; i++)
+            {
+                int index = i;
+                tabs.Add(new TabRecord(keys[i].Translate(), () => { settingsTab = index; scroll = Vector2.zero; }, settingsTab == i));
+            }
+            var body = new Rect(inRect.x, inRect.y + 32f, inRect.width, inRect.height - 32f);
+            Widgets.DrawMenuSection(body);
+            TabDrawer.DrawTabs(body, tabs, 200f);
+            var inner = body.ContractedBy(10f);
+            Rect viewRect = new Rect(0f, 0f, inner.width - 20f, viewHeight);
+            Widgets.BeginScrollView(inner, ref scroll, viewRect);
             var l = new Listing_Standard();
             l.Begin(viewRect);
+            switch (settingsTab)
+            {
+                case 0: GeneralPage(l); break;
+                case 1: CouncilPage(l); break;
+                case 2: PeoplePage(l); break;
+                default: NotifyPage(l); break;
+            }
+            viewHeight = l.CurHeight + 30f;
+            l.End();
+            Widgets.EndScrollView();
+        }
+
+        private void GeneralPage(Listing_Standard l)
+        {
+            Header(l, "CC_Settings_Presets".Translate());
+            l.Label("CC_Settings_Presets_Tip".Translate());
+            var row = l.GetRect(30f);
+            if (Widgets.ButtonText(new Rect(row.x, row.y, row.width / 3f - 6f, 30f), "CC_Preset_Everything".Translate())) SetPeople(true, true);
+            if (Widgets.ButtonText(new Rect(row.x + row.width / 3f, row.y, row.width / 3f - 6f, 30f), "CC_Preset_Core".Translate())) SetPeople(false, true);
+            if (Widgets.ButtonText(new Rect(row.x + row.width * 2f / 3f, row.y, row.width / 3f - 6f, 30f), "CC_Preset_AdvisorOnly".Translate()))
+            {
+                SetPeople(false, false);
+                stakes = StakesMode.AdvisorOnly;
+            }
+            l.Gap();
 
             Header(l, "CC_Settings_Layers".Translate());
             l.CheckboxLabeled("CC_Settings_EnableAdvisor".Translate(), ref enableAdvisor, "CC_Settings_EnableAdvisor_Tip".Translate());
@@ -198,7 +239,20 @@ namespace ColonyCouncil
                 stakes = StakesMode.Demanding;
             if (l.RadioButton("CC_Stakes_AdvisorOnly".Translate(), stakes == StakesMode.AdvisorOnly, 0f, "CC_Stakes_AdvisorOnly_Tip".Translate()))
                 stakes = StakesMode.AdvisorOnly;
+            if (Negatives)
+            {
+                penaltyFactor = l.SliderLabeled("CC_Settings_Penalty".Translate(penaltyFactor.ToStringPercent()), penaltyFactor, 0.25f, 2f, 0.6f);
+                penaltyFactor = Mathf.Round(penaltyFactor * 20f) / 20f;
+            }
+            rewardFactor = l.SliderLabeled("CC_Settings_Reward".Translate(rewardFactor.ToStringPercent()), rewardFactor, 0.25f, 2f, 0.6f);
+            rewardFactor = Mathf.Round(rewardFactor * 20f) / 20f;
 
+            l.Gap();
+            if (l.ButtonText("CC_Settings_Reset".Translate(), null, 0.4f)) ResetToDefaults();
+        }
+
+        private void CouncilPage(Listing_Standard l)
+        {
             Header(l, "CC_Settings_Wishes".Translate());
             daysBetweenWishes = l.SliderLabeled("CC_Settings_DaysBetweenWishes".Translate(daysBetweenWishes.ToString("0.0")), daysBetweenWishes, 0.5f, 10f, 0.6f);
             daysBetweenWishes = Mathf.Round(daysBetweenWishes * 2f) / 2f;
@@ -206,14 +260,7 @@ namespace ColonyCouncil
             maxOpenWishes = Mathf.RoundToInt(maxF);
             wishDurationFactor = l.SliderLabeled("CC_Settings_WishDuration".Translate(wishDurationFactor.ToStringPercent()), wishDurationFactor, 0.5f, 3f, 0.6f);
             wishDurationFactor = Mathf.Round(wishDurationFactor * 20f) / 20f;
-            rewardFactor = l.SliderLabeled("CC_Settings_Reward".Translate(rewardFactor.ToStringPercent()), rewardFactor, 0.25f, 2f, 0.6f);
-            rewardFactor = Mathf.Round(rewardFactor * 20f) / 20f;
-            if (Negatives)
-            {
-                penaltyFactor = l.SliderLabeled("CC_Settings_Penalty".Translate(penaltyFactor.ToStringPercent()), penaltyFactor, 0.25f, 2f, 0.6f);
-                penaltyFactor = Mathf.Round(penaltyFactor * 20f) / 20f;
-                l.CheckboxLabeled("CC_Settings_Jealousy".Translate(), ref jealousy, "CC_Settings_Jealousy_Tip".Translate());
-            }
+            if (Negatives) l.CheckboxLabeled("CC_Settings_Jealousy".Translate(), ref jealousy, "CC_Settings_Jealousy_Tip".Translate());
             l.CheckboxLabeled("CC_Settings_EventWishes".Translate(), ref eventWishes, "CC_Settings_EventWishes_Tip".Translate());
             l.CheckboxLabeled("CC_Settings_Reminders".Translate(), ref reminders, "CC_Settings_Reminders_Tip".Translate());
             l.CheckboxLabeled("CC_Settings_SelfHelp".Translate(), ref selfHelp, "CC_Settings_SelfHelp_Tip".Translate());
@@ -230,29 +277,7 @@ namespace ColonyCouncil
                 daysBetweenDilemmas = Mathf.Round(daysBetweenDilemmas);
             }
             l.CheckboxLabeled("CC_Settings_DecreeRequests".Translate(), ref decreeRequests, "CC_Settings_DecreeRequests_Tip".Translate());
-            l.CheckboxLabeled("CC_Settings_Annals".Translate(), ref annals, "CC_Settings_Annals_Tip".Translate());
-            l.CheckboxLabeled("CC_Settings_Anniversaries".Translate(), ref anniversaries, "CC_Settings_Anniversaries_Tip".Translate());
-            l.CheckboxLabeled("CC_Settings_Epithets".Translate(), ref epithets, "CC_Settings_Epithets_Tip".Translate());
-            l.CheckboxLabeled("CC_Settings_Journals".Translate(), ref journals, "CC_Settings_Journals_Tip".Translate());
             l.CheckboxLabeled("CC_Settings_Offices".Translate(), ref offices, "CC_Settings_Offices_Tip".Translate());
-            l.CheckboxLabeled("CC_Settings_SocialWeb".Translate(), ref socialWeb, "CC_Settings_SocialWeb_Tip".Translate());
-            if (socialWeb) l.CheckboxLabeled("CC_Settings_SocialEvents".Translate(), ref socialEvents, "CC_Settings_SocialEvents_Tip".Translate());
-            l.CheckboxLabeled("CC_Settings_Aspirations".Translate(), ref aspirations, "CC_Settings_Aspirations_Tip".Translate());
-            l.CheckboxLabeled("CC_Settings_Secrets".Translate(), ref secrets, "CC_Settings_Secrets_Tip".Translate());
-            l.CheckboxLabeled("CC_Settings_Vendettas".Translate(), ref vendettas, "CC_Settings_Vendettas_Tip".Translate());
-            l.CheckboxLabeled("CC_Settings_Eulogies".Translate(), ref eulogies, "CC_Settings_Eulogies_Tip".Translate());
-            l.CheckboxLabeled("CC_Settings_Quirks".Translate(), ref quirks, "CC_Settings_Quirks_Tip".Translate());
-            l.CheckboxLabeled("CC_Settings_Heirlooms".Translate(), ref heirlooms, "CC_Settings_Heirlooms_Tip".Translate());
-            l.CheckboxLabeled("CC_Settings_ComingOfAge".Translate(), ref comingOfAge, "CC_Settings_ComingOfAge_Tip".Translate());
-            l.CheckboxLabeled("CC_Settings_Dreams".Translate(), ref dreams, "CC_Settings_Dreams_Tip".Translate());
-            if (dreams)
-            {
-                l.CheckboxLabeled("CC_Settings_DreamOmens".Translate(), ref dreamOmens, "CC_Settings_DreamOmens_Tip".Translate());
-                l.CheckboxLabeled("CC_Settings_AllDreamMessages".Translate(), ref allDreamMessages, "CC_Settings_AllDreamMessages_Tip".Translate());
-            }
-            l.CheckboxLabeled("CC_Settings_WishLetters".Translate(), ref wishLetters, "CC_Settings_WishLetters_Tip".Translate());
-            l.CheckboxLabeled("CC_Settings_GrantedLetters".Translate(), ref grantedLetters, "CC_Settings_GrantedLetters_Tip".Translate());
-            l.CheckboxLabeled("CC_Settings_SpeechText".Translate(), ref speechText, "CC_Settings_SpeechText_Tip".Translate());
 
             Header(l, "CC_Settings_Meetings".Translate());
             daysBetweenMeetings = l.SliderLabeled("CC_Settings_DaysBetweenMeetings".Translate(daysBetweenMeetings.ToString("0")), daysBetweenMeetings, 5f, 60f, 0.6f);
@@ -263,6 +288,47 @@ namespace ColonyCouncil
             Header(l, "CC_Settings_Touches".Translate());
             daysBetweenPersonalTouches = l.SliderLabeled("CC_Settings_DaysBetweenTouches".Translate(daysBetweenPersonalTouches.ToString("0")), daysBetweenPersonalTouches, 1f, 30f, 0.6f);
             daysBetweenPersonalTouches = Mathf.Round(daysBetweenPersonalTouches);
+        }
+
+        private void PeoplePage(Listing_Standard l)
+        {
+            var row = l.GetRect(30f);
+            if (Widgets.ButtonText(new Rect(row.x, row.y, 180f, 30f), "CC_Settings_AllOn".Translate())) SetPeople(true, true);
+            if (Widgets.ButtonText(new Rect(row.x + 190f, row.y, 180f, 30f), "CC_Settings_AllOff".Translate())) SetPeople(false, true);
+            l.Gap();
+
+            Header(l, "CC_Settings_Bonds".Translate());
+            l.CheckboxLabeled("CC_Settings_SocialWeb".Translate(), ref socialWeb, "CC_Settings_SocialWeb_Tip".Translate());
+            if (socialWeb) l.CheckboxLabeled("CC_Settings_SocialEvents".Translate(), ref socialEvents, "CC_Settings_SocialEvents_Tip".Translate());
+            l.CheckboxLabeled("CC_Settings_Secrets".Translate(), ref secrets, "CC_Settings_Secrets_Tip".Translate());
+            l.CheckboxLabeled("CC_Settings_Vendettas".Translate(), ref vendettas, "CC_Settings_Vendettas_Tip".Translate());
+
+            Header(l, "CC_Settings_Lives".Translate());
+            l.CheckboxLabeled("CC_Settings_Aspirations".Translate(), ref aspirations, "CC_Settings_Aspirations_Tip".Translate());
+            l.CheckboxLabeled("CC_Settings_Quirks".Translate(), ref quirks, "CC_Settings_Quirks_Tip".Translate());
+            l.CheckboxLabeled("CC_Settings_Heirlooms".Translate(), ref heirlooms, "CC_Settings_Heirlooms_Tip".Translate());
+            l.CheckboxLabeled("CC_Settings_ComingOfAge".Translate(), ref comingOfAge, "CC_Settings_ComingOfAge_Tip".Translate());
+            l.CheckboxLabeled("CC_Settings_Dreams".Translate(), ref dreams, "CC_Settings_Dreams_Tip".Translate());
+            if (dreams) l.CheckboxLabeled("CC_Settings_DreamOmens".Translate(), ref dreamOmens, "CC_Settings_DreamOmens_Tip".Translate());
+
+            Header(l, "CC_Settings_Memory".Translate());
+            l.CheckboxLabeled("CC_Settings_Journals".Translate(), ref journals, "CC_Settings_Journals_Tip".Translate());
+            l.CheckboxLabeled("CC_Settings_Epithets".Translate(), ref epithets, "CC_Settings_Epithets_Tip".Translate());
+            l.CheckboxLabeled("CC_Settings_Anniversaries".Translate(), ref anniversaries, "CC_Settings_Anniversaries_Tip".Translate());
+            l.CheckboxLabeled("CC_Settings_Annals".Translate(), ref annals, "CC_Settings_Annals_Tip".Translate());
+            l.CheckboxLabeled("CC_Settings_Eulogies".Translate(), ref eulogies, "CC_Settings_Eulogies_Tip".Translate());
+        }
+
+        private void NotifyPage(Listing_Standard l)
+        {
+            Header(l, "CC_Settings_Messages".Translate());
+            foreach (MessageLevel level in System.Enum.GetValues(typeof(MessageLevel)))
+                if (l.RadioButton(("CC_MsgLevel_" + level).Translate(), messageLevel == level, 0f, ("CC_MsgLevel_" + level + "_Tip").Translate()))
+                    messageLevel = level;
+            if (dreams) l.CheckboxLabeled("CC_Settings_AllDreamMessages".Translate(), ref allDreamMessages, "CC_Settings_AllDreamMessages_Tip".Translate());
+            l.CheckboxLabeled("CC_Settings_WishLetters".Translate(), ref wishLetters, "CC_Settings_WishLetters_Tip".Translate());
+            l.CheckboxLabeled("CC_Settings_GrantedLetters".Translate(), ref grantedLetters, "CC_Settings_GrantedLetters_Tip".Translate());
+            l.CheckboxLabeled("CC_Settings_SpeechText".Translate(), ref speechText, "CC_Settings_SpeechText_Tip".Translate());
 
             Header(l, "CC_Settings_Alerts".Translate());
             l.CheckboxLabeled("CC_Settings_AdvisorAlert".Translate(), ref advisorAlert, "CC_Settings_AdvisorAlert_Tip".Translate());
@@ -291,16 +357,16 @@ namespace ColonyCouncil
                 roomsButton = rooms;
                 CouncilStartup.ApplyButtonPosition(true);
             }
+        }
 
-            l.Gap();
-            if (l.ButtonText("CC_Settings_Reset".Translate(), null, 0.4f))
-            {
-                ResetToDefaults();
-            }
-
-            viewHeight = l.CurHeight + 30f;
-            l.End();
-            Widgets.EndScrollView();
+        /// <summary>The "people" systems all on or all off; councilToo also covers dilemmas, offices and petitions.</summary>
+        private void SetPeople(bool on, bool councilOn)
+        {
+            socialWeb = socialEvents = secrets = vendettas = aspirations = quirks = heirlooms = comingOfAge = dreams = dreamOmens = eulogies = on;
+            enableDilemmas = decreeRequests = offices = councilOn;
+            enableWishes = enableAmbitions = councilOn || on;
+            journals = epithets = anniversaries = annals = on || councilOn;
+            if (councilOn && stakes == StakesMode.AdvisorOnly) stakes = StakesMode.Balanced;
         }
 
         private static void Header(Listing_Standard l, string text)
@@ -348,6 +414,7 @@ namespace ColonyCouncil
             comingOfAge = d.comingOfAge;
             dreamOmens = d.dreamOmens;
             allDreamMessages = d.allDreamMessages;
+            messageLevel = d.messageLevel;
             daysBetweenDilemmas = d.daysBetweenDilemmas;
             eventWishes = d.eventWishes;
             reminders = d.reminders;

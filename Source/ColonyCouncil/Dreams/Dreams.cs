@@ -447,13 +447,13 @@ namespace ColonyCouncil
             if (def.Matters || def.AboutEvents || def.about != DreamAbout.None || def.kind == DreamKind.Omen || Rand.Chance(0.35f))
                 comp.journals.WriteText(p, text);
             recent.Add(new DreamRecord { pawn = p, name = p.LabelShort, text = text, kind = def.kind, tick = Find.TickManager.TicksGame });
-            while (recent.Count > 30) recent.RemoveAt(0);
+            while (recent.Count > 80) recent.RemoveAt(0);
             untold[p] = new DreamMemo { kind = def.kind, other = c.other, tick = Find.TickManager.TicksGame };
 
             string message = "CC_Dream_Message".Translate(p.Named("PAWN"), text.Named("DREAM")).Resolve();
-            if (S.allDreamMessages || changed)
-                Messages.Message(message, p, def.omen != null ? MessageTypeDefOf.NeutralEvent : MessageTypeDefOf.SilentInput, false);
-            if (def.notable || def.omen != null) comp.AddChronicle(new ChronicleEntry(ChronicleKind.Note, message, p));
+            Notify.Message(message, p, def.omen != null ? MessageTypeDefOf.NeutralEvent : MessageTypeDefOf.SilentInput,
+                S.allDreamMessages || changed ? Importance.Notable : Importance.Flavor);
+            if (def.notable || def.omen != null) comp.AddChronicle(new ChronicleEntry(ChronicleKind.Dream, message, p));
         }
 
         private static ThoughtDef DefaultThought(DreamKind kind)
@@ -539,8 +539,8 @@ namespace ColonyCouncil
             var p = o.dreamer;
             if (p == null || p.Dead) return;
             string text = "CC_Dream_CameTrue".Translate(p.Named("PAWN"), (o.text ?? "").Named("DREAM")).Resolve();
-            Messages.Message(text, p.Spawned ? new LookTargets(p) : LookTargets.Invalid, o.def.omen.good ? MessageTypeDefOf.PositiveEvent : MessageTypeDefOf.NegativeEvent, false);
-            comp.AddChronicle(new ChronicleEntry(ChronicleKind.Note, text, p));
+            Notify.Message(text, p.Spawned ? new LookTargets(p) : LookTargets.Invalid, o.def.omen.good ? MessageTypeDefOf.PositiveEvent : MessageTypeDefOf.NegativeEvent, Importance.Important);
+            comp.AddChronicle(new ChronicleEntry(ChronicleKind.Dream, text, p));
             comp.annals.Notify_Omen(p, o.def.label);
             comp.aspirations.Notify(p, "omen");
             comp.aspirations.Notify_Event(p, "omen");

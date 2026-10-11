@@ -25,7 +25,20 @@ one-time errors about missing classes. They're harmless.
 
 ## What you get
 
-A **Council** button at the right end of the bottom bar (you can move it in the settings) opens eight tabs: Priorities, Wishes, Ambition, Room plans, Decrees, Social, Almanac and Chronicle.
+A **Council** button at the right end of the bottom bar (you can move it in the settings) opens the council
+window, organized in five sections:
+
+| Section | Sub-tabs | What's there |
+|---|---|---|
+| **Colony** | Priorities · Room plans | the advisor's ranked list of what the colony needs; ready-made rooms |
+| **People** | Roster · Bonds · Wishes | every colonist at a glance with their full story; friendships, rivalries, circles, vendettas, secrets; open wishes and trust |
+| **Council** | Decrees · Ambition | decrees, petitions and the council's five offices; the current ambition and meetings |
+| **History** | Chronicle · Dreams · Journals | everything that happened (filter by wishes, council, people, dreams, losses), recent dreams, every colonist's journal |
+| **Almanac** | | the knowledge base |
+
+Section names show a count when something there wants your attention (urgent advice, open wishes, petitions).
+Each colonist also has a **Story** tab in their inspect panel, and clicking a colonist's name in the council window
+opens their page in the roster.
 
 ### Priorities: what the colony needs
 A ranked list of concerns, each with a short explanation, a rotating **"why it matters"** tip, and buttons to
@@ -267,7 +280,10 @@ The council only suggests what your colony can actually do right now:
 
 ## Settings
 
-**Options → Mod options → Rimfolk**:
+**Options → Mod options → Rimfolk**, on four pages (General, Wishes and council, People, Messages and interface),
+with quick setups (*Everything on*, *Council only*, *Advisor only*) and one switch for how chatty the mod is:
+**Everything**, **Notable only** (default: messages for what changes something; small moments stay in the
+journals, the Story tab and History) or **Important only**.
 - turn each part (advisor, wishes, meetings, personal touches) on or off
 - **Stakes**:
   - **Gentle**: only upsides

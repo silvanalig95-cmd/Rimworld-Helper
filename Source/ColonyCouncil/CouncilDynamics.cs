@@ -61,7 +61,7 @@ namespace ColonyCouncil
             Messages.Message("CC_PromisedMessage".Translate(w.pawn.Named("PAWN"), w.Label.Named("WISH")).Resolve() + (line != null ? " \"" + TextUtil.ShortSpeech(line, 120) + "\"" : ""),
                 new LookTargets(w.pawn), MessageTypeDefOf.NeutralEvent, false);
             Speak(w.pawn, line, SpeechGood);
-            AddChronicle(new ChronicleEntry(ChronicleKind.Note, "CC_Chronicle_Promised".Translate(w.pawn.LabelShort, w.Label).Resolve(), w.pawn));
+            AddChronicle(new ChronicleEntry(ChronicleKind.Petition, "CC_Chronicle_Promised".Translate(w.pawn.LabelShort, w.Label).Resolve(), w.pawn));
             string act = null;
             try
             {
@@ -166,7 +166,7 @@ namespace ColonyCouncil
             Messages.Message("CC_ObjectionMessage".Translate(best.Named("PAWN"), w.pawn.Named("OTHER"), w.Label.Named("WISH")).Resolve() + " \"" + TextUtil.ShortSpeech(line, 120) + "\"",
                 new LookTargets(best), MessageTypeDefOf.SilentInput, false);
             Speak(best, line, SpeechSour);
-            AddChronicle(new ChronicleEntry(ChronicleKind.Note, "CC_Chronicle_Objection".Translate(best.LabelShort, w.pawn.LabelShort, w.Label).Resolve(), best));
+            AddChronicle(new ChronicleEntry(ChronicleKind.Petition, "CC_Chronicle_Objection".Translate(best.LabelShort, w.pawn.LabelShort, w.Label).Resolve(), best));
         }
 
         private void ResolveObjection(Wish w, bool granted)
@@ -239,7 +239,7 @@ namespace ColonyCouncil
                     Find.LetterStack.ReceiveLetter("CC_SelfHelpTitle".Translate(w.pawn.Named("PAWN")).Resolve(),
                         w.Format(what.CanTranslate() ? what.Translate().ToString() : what) + (line != null ? "\n\n\"" + line + "\"" : ""), LetterDefOf.NeutralEvent, w.Worker.LookAt(w));
                     Speak(w.pawn, line, SpeechWish);
-                    AddChronicle(new ChronicleEntry(ChronicleKind.Note, "CC_Chronicle_SelfHelp".Translate(w.pawn.LabelShort, w.Label).Resolve(), w.pawn));
+                    AddChronicle(new ChronicleEntry(ChronicleKind.Petition, "CC_Chronicle_SelfHelp".Translate(w.pawn.LabelShort, w.Label).Resolve(), w.pawn));
                     return;
                 }
             }
@@ -443,7 +443,7 @@ namespace ColonyCouncil
             }
 
             if (passedOver > 0)
-                AddChronicle(new ChronicleEntry(ChronicleKind.Note, "CC_Chronicle_PassedOver".Translate(passedOver, who.LabelShort, w.Label).Resolve(), who));
+                AddChronicle(new ChronicleEntry(ChronicleKind.Petition, "CC_Chronicle_PassedOver".Translate(passedOver, who.LabelShort, w.Label).Resolve(), who));
 
             if (envious != null && OpenWishes.Count() < s.maxOpenWishes && !OnCooldown(envious, w.def) && CanVoiceWishes(envious))
             {
@@ -528,7 +528,7 @@ namespace ColonyCouncil
             if (p.mindState?.mentalStateHandler?.TryStartMentalState(state, reason, false, false, true) == true)
             {
                 st.lastSulkTick = Find.TickManager.TicksGame;
-                AddChronicle(new ChronicleEntry(ChronicleKind.Note, "CC_Chronicle_Sulk".Translate(p.LabelShort).Resolve(), p));
+                AddChronicle(new ChronicleEntry(ChronicleKind.Life, "CC_Chronicle_Sulk".Translate(p.LabelShort).Resolve(), p));
             }
         }
 
@@ -676,7 +676,7 @@ namespace ColonyCouncil
                     string line = Scene("Council_Pool_Staying", p, null);
                     Find.LetterStack.ReceiveLetter("CC_StayingTitle".Translate(p.Named("PAWN")).Resolve(),
                         "CC_StayingText".Translate(p.Named("PAWN")).Resolve() + (line != null ? "\n\n\"" + line + "\"" : ""), LetterDefOf.PositiveEvent, new LookTargets(p));
-                    AddChronicle(new ChronicleEntry(ChronicleKind.Note, "CC_Chronicle_Staying".Translate(p.LabelShort).Resolve(), p));
+                    AddChronicle(new ChronicleEntry(ChronicleKind.Life, "CC_Chronicle_Staying".Translate(p.LabelShort).Resolve(), p));
                     return;
                 }
                 if (now >= st.leavingTick) Quit(p, st);
@@ -696,7 +696,7 @@ namespace ColonyCouncil
             Find.LetterStack.ReceiveLetter("CC_QuittingTitle".Translate(p.Named("PAWN")).Resolve(),
                 "CC_QuittingText".Translate(p.Named("PAWN")).Resolve() + (say != null ? "\n\n\"" + say + "\"" : ""), LetterDefOf.ThreatSmall, new LookTargets(p));
             Speak(p, say, SpeechSour);
-            AddChronicle(new ChronicleEntry(ChronicleKind.Note, "CC_Chronicle_Quitting".Translate(p.LabelShort).Resolve(), p));
+            AddChronicle(new ChronicleEntry(ChronicleKind.Life, "CC_Chronicle_Quitting".Translate(p.LabelShort).Resolve(), p));
             journals.Write(p, "Council_Journal_Leaving");
         }
 
@@ -719,7 +719,7 @@ namespace ColonyCouncil
             string line = Scene("Council_Pool_Quit", p, null);
             Find.LetterStack.ReceiveLetter("CC_QuitTitle".Translate(p.Named("PAWN")).Resolve(),
                 "CC_QuitText".Translate(p.Named("PAWN")).Resolve() + (line != null ? "\n\n\"" + line + "\"" : ""), LetterDefOf.NegativeEvent, new LookTargets(p));
-            AddChronicle(new ChronicleEntry(ChronicleKind.Note, "CC_Chronicle_Quit".Translate(p.LabelShort).Resolve(), p));
+            AddChronicle(new ChronicleEntry(ChronicleKind.Life, "CC_Chronicle_Quit".Translate(p.LabelShort).Resolve(), p));
             annals.Notify_Quit(p);
             TrustEffects.StripAll(p);
             PawnBanishUtility.Banish(p, false);
@@ -762,14 +762,14 @@ namespace ColonyCouncil
             if (lovers.Count + haters.Count > 0)
                 text.Append("\n\n").Append("CC_Decree_Count".Translate(lovers.Count, haters.Count).Resolve());
             Find.LetterStack.ReceiveLetter("CC_Decree_EnactedTitle".Translate(def.LabelCap).Resolve(), text.ToString(), LetterDefOf.NeutralEvent);
-            AddChronicle(new ChronicleEntry(ChronicleKind.Note, "CC_Chronicle_DecreeEnacted".Translate(def.label).Resolve(), null));
+            AddChronicle(new ChronicleEntry(ChronicleKind.Council, "CC_Chronicle_DecreeEnacted".Translate(def.label).Resolve(), null));
             annals.decrees.Add(def.label);
         }
 
         public void Notify_DecreeEnded(DecreeDef def, bool early)
         {
             Messages.Message((early ? "CC_Decree_Repealed" : "CC_Decree_Expired").Translate(def.LabelCap).Resolve(), MessageTypeDefOf.NeutralEvent, false);
-            AddChronicle(new ChronicleEntry(ChronicleKind.Note, (early ? "CC_Chronicle_DecreeRepealed" : "CC_Chronicle_DecreeExpired").Translate(def.label).Resolve(), null));
+            AddChronicle(new ChronicleEntry(ChronicleKind.Council, (early ? "CC_Chronicle_DecreeRepealed" : "CC_Chronicle_DecreeExpired").Translate(def.label).Resolve(), null));
         }
 
         /// <summary>Living under a decree you hate wears down your trust in the council; one you love builds it.</summary>
@@ -828,7 +828,7 @@ namespace ColonyCouncil
                     if (friend == p || friend.relations == null || friend.relations.OpinionOf(p) < 20) continue;
                     GiveThought(friend, CouncilDefOf.Council_FriendAnniversary, p);
                 }
-                AddChronicle(new ChronicleEntry(ChronicleKind.Note, "CC_Chronicle_Anniversary".Translate(p.LabelShort, years).Resolve(), p));
+                AddChronicle(new ChronicleEntry(ChronicleKind.Life, "CC_Chronicle_Anniversary".Translate(p.LabelShort, years).Resolve(), p));
                 journals.Write(p, "Council_Journal_Anniversary", null, years.Named("YEARS"));
             }
         }

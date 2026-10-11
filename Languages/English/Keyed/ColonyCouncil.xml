@@ -1182,4 +1182,72 @@ Granting one of {PAWN_possessive} wishes, or keeping a promise, can win {PAWN_ob
   <CC_ComingOfAge_Label>Coming of age: {0}</CC_ComingOfAge_Label>
   <CC_ComingOfAge_Text>{PAWN_nameDef} is grown. The child who ran between the buildings is an adult now, with a say at the council and a life to choose.</CC_ComingOfAge_Text>
 
+  <!-- Council window layout -->
+  <CC_Section_Colony>Colony</CC_Section_Colony>
+  <CC_Section_People>People</CC_Section_People>
+  <CC_Section_Council>Council</CC_Section_Council>
+  <CC_Section_History>History</CC_Section_History>
+  <CC_Section_Almanac>Almanac</CC_Section_Almanac>
+  <CC_Tab_Roster>Roster</CC_Tab_Roster>
+  <CC_Tab_Bonds>Bonds</CC_Tab_Bonds>
+  <CC_Tab_Dreams>Dreams</CC_Tab_Dreams>
+  <CC_Tab_Journals>Journals</CC_Tab_Journals>
+
+  <CC_People_Count>Colonists ({0})</CC_People_Count>
+  <CC_People_Sort>Sort: {0}</CC_People_Sort>
+  <CC_People_Sort_Name>name</CC_People_Sort_Name>
+  <CC_People_Sort_Trust>trust</CC_People_Sort_Trust>
+  <CC_People_Sort_Goal>life goal</CC_People_Sort_Goal>
+  <CC_People_Sort_Mood>mood</CC_People_Sort_Mood>
+  <CC_People_None>No colonists.</CC_People_None>
+  <CC_People_Jump>Go to</CC_People_Jump>
+  <CC_People_Journal>Journal</CC_People_Journal>
+  <CC_People_Age>age {0}</CC_People_Age>
+  <CC_People_Mood>mood {0}</CC_People_Mood>
+  <CC_People_NoGoal>no life goal yet</CC_People_NoGoal>
+  <CC_People_Teaching>teaching {0}</CC_People_Teaching>
+  <CC_People_Learning>learning {0}</CC_People_Learning>
+  <CC_People_Rivals>{0} rival(s)</CC_People_Rivals>
+  <CC_People_Quirks>{0} quirk(s)</CC_People_Quirks>
+  <CC_People_Vendetta>vendetta</CC_People_Vendetta>
+  <CC_People_SecretOut>secret out</CC_People_SecretOut>
+  <CC_People_Confided>has confided</CC_People_Confided>
+  <CC_Story_Empty>Nothing to tell about {0} yet. Give it time.</CC_Story_Empty>
+  <CC_Story_OpenCouncil>In the council</CC_Story_OpenCouncil>
+
+  <CC_ChronicleFilter_All>All</CC_ChronicleFilter_All>
+  <CC_ChronicleFilter_Wishes>Wishes</CC_ChronicleFilter_Wishes>
+  <CC_ChronicleFilter_Council>Council</CC_ChronicleFilter_Council>
+  <CC_ChronicleFilter_People>People</CC_ChronicleFilter_People>
+  <CC_ChronicleFilter_Dreams>Dreams</CC_ChronicleFilter_Dreams>
+  <CC_ChronicleFilter_Losses>Losses</CC_ChronicleFilter_Losses>
+  <CC_History_AllKinds>All dreams</CC_History_AllKinds>
+  <CC_History_Departed>(gone)</CC_History_Departed>
+  <CC_History_DreamsOff>Dreams are switched off in the settings.</CC_History_DreamsOff>
+  <CC_History_JournalsOff>Journals are switched off in the settings.</CC_History_JournalsOff>
+  <CC_History_NoJournals>Nobody has written anything yet.</CC_History_NoJournals>
+
+  <!-- Settings pages -->
+  <CC_SetTab_General>General</CC_SetTab_General>
+  <CC_SetTab_Council>Wishes and council</CC_SetTab_Council>
+  <CC_SetTab_People>People</CC_SetTab_People>
+  <CC_SetTab_Notify>Messages and interface</CC_SetTab_Notify>
+  <CC_Settings_Presets>Quick setup</CC_Settings_Presets>
+  <CC_Settings_Presets_Tip>Start from one of these, then fine-tune on the other pages.</CC_Settings_Presets_Tip>
+  <CC_Preset_Everything>Everything on</CC_Preset_Everything>
+  <CC_Preset_Core>Council only</CC_Preset_Core>
+  <CC_Preset_AdvisorOnly>Advisor only</CC_Preset_AdvisorOnly>
+  <CC_Settings_AllOn>Turn all on</CC_Settings_AllOn>
+  <CC_Settings_AllOff>Turn all off</CC_Settings_AllOff>
+  <CC_Settings_Bonds>Bonds</CC_Settings_Bonds>
+  <CC_Settings_Lives>Lives</CC_Settings_Lives>
+  <CC_Settings_Memory>Memory</CC_Settings_Memory>
+  <CC_Settings_Messages>Messages</CC_Settings_Messages>
+  <CC_MsgLevel_Everything>Everything</CC_MsgLevel_Everything>
+  <CC_MsgLevel_Everything_Tip>A message for every dream, small social moment, quirk and confidence. Busy, but you won't miss a thing.</CC_MsgLevel_Everything_Tip>
+  <CC_MsgLevel_Notable>Notable only</CC_MsgLevel_Notable>
+  <CC_MsgLevel_Notable_Tip>Messages for what changes something: bonds formed, vendettas, secrets out, names earned, dreams that mattered. The small moments are still in the journals, the Story tab and the History section.</CC_MsgLevel_Notable_Tip>
+  <CC_MsgLevel_LettersOnly>Important only</CC_MsgLevel_LettersOnly>
+  <CC_MsgLevel_LettersOnly_Tip>Only letters and the biggest moments (an omen coming true). Everything else is in the council window.</CC_MsgLevel_LettersOnly_Tip>
+
 </LanguageData>

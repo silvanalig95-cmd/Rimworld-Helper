@@ -537,8 +537,8 @@ namespace ColonyCouncil
             if (!line.NullOrEmpty()) comp.journals.WriteText(p, line);
             string why = a.SparkText;
             string text = "CC_Asp_Chosen".Translate(p.Named("PAWN"), a.Goal.Named("GOAL")).Resolve() + (why.NullOrEmpty() ? "" : " (" + why + ")");
-            Messages.Message(text + (line.NullOrEmpty() ? "" : " \"" + line + "\""), p, MessageTypeDefOf.SilentInput, false);
-            comp.AddChronicle(new ChronicleEntry(ChronicleKind.Note, text, p));
+            ColonyCouncil.Notify.Message(text + (line.NullOrEmpty() ? "" : " \"" + line + "\""), p, MessageTypeDefOf.SilentInput, spark != null || inheritedFrom != null ? Importance.Notable : Importance.Flavor);
+            comp.AddChronicle(new ChronicleEntry(ChronicleKind.Life, text, p));
             return a;
         }
 
@@ -596,7 +596,7 @@ namespace ColonyCouncil
             if (!quote.NullOrEmpty()) text += "\n\n\"" + quote + "\"";
             Find.LetterStack.ReceiveLetter("CC_Asp_FulfilledLabel".Translate(p.LabelShort), text, LetterDefOf.PositiveEvent, p);
             if (!quote.NullOrEmpty()) comp.journals.WriteText(p, quote);
-            comp.AddChronicle(new ChronicleEntry(ChronicleKind.Note, "CC_Asp_FulfilledText".Translate(p.Named("PAWN"), a.Goal.Named("GOAL")).Resolve(), p));
+            comp.AddChronicle(new ChronicleEntry(ChronicleKind.Life, "CC_Asp_FulfilledText".Translate(p.Named("PAWN"), a.Goal.Named("GOAL")).Resolve(), p));
             comp.annals.Notify_Aspiration(p, a.Goal);
             CouncilGameComponent.GiveThought(p, CouncilDefOf.Council_Asp_Fulfilled);
             comp.standings.Change(p, 10f, "CC_Log_Aspiration".Translate(a.Goal));
@@ -621,7 +621,7 @@ namespace ColonyCouncil
         {
             var p = a.pawn;
             string text = "CC_Asp_DiedBefore".Translate(p.Named("PAWN"), a.Goal.Named("GOAL")).Resolve();
-            comp.AddChronicle(new ChronicleEntry(ChronicleKind.Note, text, null));
+            comp.AddChronicle(new ChronicleEntry(ChronicleKind.Life, text, null));
             foreach (var f in PawnsFinder.AllMaps_FreeColonists.Where(f => f != p && f.relations != null && (f.relations.OpinionOf(p) >= 30 || comp.social.Warmth(f, p) >= 35f)).Take(4))
                 comp.journals.Write(f, "Council_Journal_DiedDreaming", null, p.Named("OTHER"), a.Goal.Named("GOAL"));
             lastMourned[p] = a.Goal;

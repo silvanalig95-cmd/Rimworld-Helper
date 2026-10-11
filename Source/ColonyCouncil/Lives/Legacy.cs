@@ -72,8 +72,8 @@ namespace ColonyCouncil
             if (heir == null || heir.relations.OpinionOf(dead) < 20 && comp.social.Warmth(heir, dead) < 30f && !heir.GetRelations(dead).Any()) return;
             heirlooms.Add(new Heirloom { thing = thing, ofName = dead.LabelShort, heir = heir, tick = Find.TickManager.TicksGame });
             string text = "CC_Heirloom_Passed".Translate(heir.Named("PAWN"), dead.Named("OTHER"), thing.def.label.Named("ITEM")).Resolve();
-            Messages.Message(text, new LookTargets(heir, thing), MessageTypeDefOf.NeutralEvent, false);
-            comp.AddChronicle(new ChronicleEntry(ChronicleKind.Note, text, heir));
+            Notify.Message(text, new LookTargets(heir, thing), MessageTypeDefOf.NeutralEvent, Importance.Notable);
+            comp.AddChronicle(new ChronicleEntry(ChronicleKind.Loss, text, heir));
             comp.journals.Write(heir, "Council_Journal_Heirloom", null, dead.Named("OTHER"), thing.def.label.Named("ITEM"));
         }
 
@@ -127,7 +127,7 @@ namespace ColonyCouncil
             if (!S.comingOfAge) return;
             string text = "CC_ComingOfAge_Text".Translate(p.Named("PAWN")).Resolve();
             Find.LetterStack.ReceiveLetter("CC_ComingOfAge_Label".Translate(p.LabelShort), text, LetterDefOf.PositiveEvent, p);
-            comp.AddChronicle(new ChronicleEntry(ChronicleKind.Note, text, p));
+            comp.AddChronicle(new ChronicleEntry(ChronicleKind.Life, text, p));
             comp.journals.Write(p, "Council_Journal_ComingOfAge");
             foreach (var o in PawnsFinder.AllMaps_FreeColonists.Where(o => o != p && Eligible(o) && o.relations != null && !o.DevelopmentalStage.Juvenile()))
             {

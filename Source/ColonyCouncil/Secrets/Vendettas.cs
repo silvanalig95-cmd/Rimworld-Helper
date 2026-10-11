@@ -198,8 +198,8 @@ namespace ColonyCouncil
             if (avengers.Count > 0)
             {
                 string text = (kidnapped ? "CC_Vendetta_SwornTaken" : "CC_Vendetta_Sworn").Translate(TextUtil.JoinAnd(avengers.Select(a => a.LabelShort).ToList()), lostOne.Named("LOST"), faction.Name.Named("FACTION")).Resolve();
-                Messages.Message(text, new LookTargets(avengers), MessageTypeDefOf.NegativeEvent, false);
-                comp.AddChronicle(new ChronicleEntry(ChronicleKind.Note, text, avengers[0]));
+                Notify.Message(text, new LookTargets(avengers), MessageTypeDefOf.NegativeEvent, Importance.Notable);
+                comp.AddChronicle(new ChronicleEntry(ChronicleKind.Loss, text, avengers[0]));
             }
         }
 
@@ -236,8 +236,8 @@ namespace ColonyCouncil
                     if (hediff == null) v.avenger.health?.AddHediff(CouncilDefOf.Council_Vendetta_Fury);
                 }
                 if (sworn.Count > 0 && warnedThisBattle.Add(faction))
-                    Messages.Message("CC_Vendetta_Fury".Translate(TextUtil.JoinAnd(sworn.Select(v => v.avenger.LabelShort).Distinct().ToList()), faction.Name.Named("FACTION")).Resolve(),
-                        new LookTargets(sworn.Select(v => v.avenger)), MessageTypeDefOf.NeutralEvent, false);
+                    Notify.Message("CC_Vendetta_Fury".Translate(TextUtil.JoinAnd(sworn.Select(v => v.avenger.LabelShort).Distinct().ToList()), faction.Name.Named("FACTION")).Resolve(),
+                        new LookTargets(sworn.Select(v => v.avenger)), MessageTypeDefOf.NeutralEvent, Importance.Notable);
             }
             if (!fighting && wasFighting && lastBattleFaction != null)
             {
@@ -262,8 +262,8 @@ namespace ColonyCouncil
             if (quietly) return;
             CouncilGameComponent.GiveThought(v.avenger, CouncilDefOf.Council_Vendetta_Avenged);
             string text = "CC_Vendetta_Avenged".Translate(v.avenger.Named("PAWN"), v.victim.Named("LOST"), v.faction.Name.Named("FACTION")).Resolve();
-            Messages.Message(text, v.avenger, MessageTypeDefOf.PositiveEvent, false);
-            comp.AddChronicle(new ChronicleEntry(ChronicleKind.Note, text, v.avenger));
+            Notify.Message(text, v.avenger, MessageTypeDefOf.PositiveEvent, Importance.Notable);
+            comp.AddChronicle(new ChronicleEntry(ChronicleKind.Loss, text, v.avenger));
             comp.journals.Write(v.avenger, "Council_Journal_Avenged", null, v.victim.Named("LOST"), v.faction.Name.Named("FACTION"));
             comp.aspirations.Notify(v.avenger, "avenged");
         }
@@ -330,7 +330,7 @@ namespace ColonyCouncil
                 Mathf.Max(1, Mathf.RoundToInt(years)).Named("YEARS"), (e.killers?.Name ?? "").Named("FACTION")).Resolve();
             string text = "CC_Eulogy_Text".Translate(speaker.Named("PAWN"), dead.Named("OTHER"), speech.Named("SPEECH")).Resolve();
             Find.LetterStack.ReceiveLetter("CC_Eulogy_Label".Translate(dead.LabelShort), text, LetterDefOf.NeutralEvent, speaker);
-            comp.AddChronicle(new ChronicleEntry(ChronicleKind.Note, text, speaker));
+            comp.AddChronicle(new ChronicleEntry(ChronicleKind.Loss, text, speaker));
             comp.journals.Write(speaker, "Council_Journal_GaveEulogy", null, dead.Named("OTHER"));
             CouncilGameComponent.GiveThought(speaker, CouncilDefOf.Council_GaveEulogy);
             foreach (var p in speakers.Where(p => p != speaker && p.relations.OpinionOf(dead) >= 20 && p.Spawned))

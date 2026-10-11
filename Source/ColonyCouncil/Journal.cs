@@ -43,6 +43,8 @@ namespace ColonyCouncil
     {
         public const int MaxEntries = 60;
         private List<PawnJournal> journals = new List<PawnJournal>();
+
+        public IEnumerable<PawnJournal> All => journals.Where(j => j.entries.Count > 0);
         /// <summary>Grief memories already written about (memory def + other pawn), so each loss is written once.</summary>
         private HashSet<string> griefSeen = new HashSet<string>();
 

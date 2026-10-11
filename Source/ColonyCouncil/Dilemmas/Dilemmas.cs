@@ -832,7 +832,7 @@ namespace ColonyCouncil
             if (byDefault) told = "CC_Dilemma_NoAnswer".Translate() + " " + told;
             if (!told.NullOrEmpty())
                 Messages.Message(told, new LookTargets(new[] { ctx.a, ctx.b }.Where(p => p != null && p.Spawned)), MessageTypeDefOf.NeutralEvent, false);
-            CouncilGameComponent.Instance?.AddChronicle(new ChronicleEntry(ChronicleKind.Note,
+            CouncilGameComponent.Instance?.AddChronicle(new ChronicleEntry(ChronicleKind.Council,
                 "CC_Chronicle_Dilemma".Translate(ctx.def.label, ctx.Format(option.label)).Resolve(), ctx.a));
             // The letter's text is already written; let go of the people and places so old saves don't hold them.
             ctx.a = ctx.b = ctx.pet = null;
@@ -861,7 +861,7 @@ namespace ColonyCouncil
                     foreach (var p in colonists) CouncilGameComponent.GiveThought(p, CouncilDefOf.Council_TraditionKept);
                     Find.LetterStack.ReceiveLetter("CC_Tradition_BornTitle".Translate(def.traditionLabel.CapitalizeFirst()).Resolve(),
                         "CC_Tradition_BornText".Translate(def.traditionLabel).Resolve(), LetterDefOf.PositiveEvent);
-                    comp.AddChronicle(new ChronicleEntry(ChronicleKind.Note, "CC_Chronicle_TraditionBorn".Translate(def.traditionLabel).Resolve(), null));
+                    comp.AddChronicle(new ChronicleEntry(ChronicleKind.Council, "CC_Chronicle_TraditionBorn".Translate(def.traditionLabel).Resolve(), null));
                     comp.annals.Notify_TraditionBorn(def.traditionLabel);
                     foreach (var p in colonists.InRandomOrder().Take(2))
                         comp.journals.Write(p, "Council_Journal_TraditionBorn", null, def.traditionLabel.Named("TRADITION"));
@@ -884,12 +884,12 @@ namespace ColonyCouncil
                 traditionCount[key] = 0;
                 traditionBreaks[key] = 0;
                 Messages.Message("CC_Tradition_Lapsed".Translate(def.traditionLabel).Resolve(), MessageTypeDefOf.NegativeEvent, false);
-                comp.AddChronicle(new ChronicleEntry(ChronicleKind.Note, "CC_Chronicle_TraditionLapsed".Translate(def.traditionLabel).Resolve(), null));
+                comp.AddChronicle(new ChronicleEntry(ChronicleKind.Council, "CC_Chronicle_TraditionLapsed".Translate(def.traditionLabel).Resolve(), null));
             }
             else
             {
                 Messages.Message("CC_Tradition_Broken".Translate(def.traditionLabel).Resolve(), MessageTypeDefOf.NegativeEvent, false);
-                comp.AddChronicle(new ChronicleEntry(ChronicleKind.Note, "CC_Chronicle_TraditionBroken".Translate(def.traditionLabel).Resolve(), null));
+                comp.AddChronicle(new ChronicleEntry(ChronicleKind.Council, "CC_Chronicle_TraditionBroken".Translate(def.traditionLabel).Resolve(), null));
             }
         }
 

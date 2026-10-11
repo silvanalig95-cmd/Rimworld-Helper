@@ -10,19 +10,64 @@ namespace ColonyCouncil
     [StaticConstructorOnStartup]
     public class MainTabWindow_Council : MainTabWindow
     {
+        /// <summary>Five sections, each with its own sub-tabs.</summary>
+        private enum Section
+        {
+            Colony,
+            People,
+            Council,
+            History,
+            Almanac
+        }
+
         private enum Tab
         {
             Priorities,
-            Wishes,
-            Ambition,
             Build,
+            Roster,
+            Bonds,
+            Wishes,
             Decrees,
-            Social,
-            Almanac,
-            Chronicle
+            Ambition,
+            Chronicle,
+            Dreams,
+            Journals,
+            Almanac
         }
 
         private static Tab tab = Tab.Priorities;
+        /// <summary>The sub-tab last open in each section, so switching sections comes back to where you were.</summary>
+        private static readonly Dictionary<Section, Tab> lastInSection = new Dictionary<Section, Tab>();
+
+        private static Section SectionOf(Tab t)
+        {
+            switch (t)
+            {
+                case Tab.Priorities:
+                case Tab.Build: return Section.Colony;
+                case Tab.Roster:
+                case Tab.Bonds:
+                case Tab.Wishes: return Section.People;
+                case Tab.Decrees:
+                case Tab.Ambition: return Section.Council;
+                case Tab.Chronicle:
+                case Tab.Dreams:
+                case Tab.Journals: return Section.History;
+                default: return Section.Almanac;
+            }
+        }
+
+        private static Tab[] TabsOf(Section s)
+        {
+            switch (s)
+            {
+                case Section.Colony: return new[] { Tab.Priorities, Tab.Build };
+                case Section.People: return new[] { Tab.Roster, Tab.Bonds, Tab.Wishes };
+                case Section.Council: return new[] { Tab.Decrees, Tab.Ambition };
+                case Section.History: return new[] { Tab.Chronicle, Tab.Dreams, Tab.Journals };
+                default: return new[] { Tab.Almanac };
+            }
+        }
         private Vector2 scroll;
         private float lastHeight = 1000f;
         private static int lastListenTick = -999999;
@@ -45,30 +90,49 @@ namespace ColonyCouncil
 
         public override void DoWindowContents(Rect inRect)
         {
-            var tabs = new List<TabRecord>
-            {
-                new TabRecord("CC_Tab_Priorities".Translate(), () => SetTab(Tab.Priorities), tab == Tab.Priorities),
-                new TabRecord("CC_Tab_Wishes".Translate(OpenWishCount()), () => SetTab(Tab.Wishes), tab == Tab.Wishes),
-                new TabRecord("CC_Tab_Ambition".Translate(), () => SetTab(Tab.Ambition), tab == Tab.Ambition),
-                new TabRecord("CC_Tab_Build".Translate(), () => SetTab(Tab.Build), tab == Tab.Build),
-                new TabRecord(CouncilGameComponent.Instance != null && CouncilGameComponent.Instance.decrees.requests.Count > 0
-                    ? "CC_Tab_DecreesAsked".Translate(CouncilGameComponent.Instance.decrees.requests.Count).ToString()
-                    : "CC_Tab_Decrees".Translate().ToString(), () => SetTab(Tab.Decrees), tab == Tab.Decrees),
-                new TabRecord("CC_Tab_Social".Translate(), () => SetTab(Tab.Social), tab == Tab.Social),
-                new TabRecord("CC_Tab_Almanac".Translate(), () => SetTab(Tab.Almanac), tab == Tab.Almanac),
-                new TabRecord("CC_Tab_Chronicle".Translate(), () => SetTab(Tab.Chronicle), tab == Tab.Chronicle)
-            };
-            var body = new Rect(inRect.x, inRect.y + 32f, inRect.width, inRect.height - 32f);
-            Widgets.DrawMenuSection(body);
-            TabDrawer.DrawTabs(body, tabs, 170f);
-            var content = body.ContractedBy(12f);
-
             var map = Find.CurrentMap;
             var comp = CouncilGameComponent.Instance;
+            var current = SectionOf(tab);
+            var tabs = new List<TabRecord>();
+            foreach (Section s in System.Enum.GetValues(typeof(Section)))
+            {
+                var section = s;
+                tabs.Add(new TabRecord(SectionLabel(section, comp, map), () => OpenSection(section), current == section));
+            }
+            var body = new Rect(inRect.x, inRect.y + 32f, inRect.width, inRect.height - 32f);
+            Widgets.DrawMenuSection(body);
+            TabDrawer.DrawTabs(body, tabs, 200f);
+            var content = body.ContractedBy(12f);
+
             if (comp == null)
             {
                 Widgets.Label(content, "CC_NoGame".Translate());
                 return;
+            }
+
+            // The section's sub-tabs, as a row of buttons along the top.
+            var subTabs = TabsOf(current);
+            if (subTabs.Length > 1)
+            {
+                float x = content.x;
+                foreach (var t in subTabs)
+                {
+                    string label = SubTabLabel(t, comp);
+                    float w = Mathf.Max(110f, Text.CalcSize(label).x + 24f);
+                    var r = new Rect(x, content.y, w, 28f);
+                    if (t == tab) Widgets.DrawBoxSolid(r, new Color(1f, 1f, 1f, 0.12f));
+                    Widgets.DrawHighlightIfMouseover(r);
+                    GUI.color = t == tab ? Color.white : Faint;
+                    Text.Anchor = TextAnchor.MiddleCenter;
+                    Widgets.Label(r, label);
+                    Text.Anchor = TextAnchor.UpperLeft;
+                    GUI.color = Color.white;
+                    if (t == tab) Widgets.DrawLineHorizontal(r.x, r.yMax - 1f, r.width);
+                    if (Widgets.ButtonInvisible(r)) SetTab(t);
+                    x += w + 4f;
+                }
+                Widgets.DrawLineHorizontal(content.x, content.y + 30f, content.width);
+                content = new Rect(content.x, content.y + 38f, content.width, content.height - 38f);
             }
 
             Text.Font = GameFont.Small;
@@ -76,13 +140,16 @@ namespace ColonyCouncil
             switch (tab)
             {
                 case Tab.Priorities: DrawPriorities(content, map); break;
-                case Tab.Wishes: DrawWishes(content, comp); break;
-                case Tab.Ambition: DrawAmbition(content, comp, map); break;
                 case Tab.Build: DrawBuild(content, map); break;
+                case Tab.Roster: PeoplePanel.Draw(content, comp); break;
+                case Tab.Bonds: SocialPanel.Draw(content, comp); break;
+                case Tab.Wishes: DrawWishes(content, comp); break;
                 case Tab.Decrees: DecreePanel.Draw(content, comp); break;
-                case Tab.Social: SocialPanel.Draw(content, comp); break;
-                case Tab.Almanac: AlmanacPanel.Draw(content); break;
+                case Tab.Ambition: DrawAmbition(content, comp, map); break;
                 case Tab.Chronicle: DrawChronicle(content, comp); break;
+                case Tab.Dreams: HistoryPanels.DrawDreams(content, comp); break;
+                case Tab.Journals: HistoryPanels.DrawJournals(content, comp); break;
+                case Tab.Almanac: AlmanacPanel.Draw(content); break;
             }
             Text.Font = GameFont.Small;
             Text.Anchor = TextAnchor.UpperLeft;
@@ -92,7 +159,52 @@ namespace ColonyCouncil
         private void SetTab(Tab t)
         {
             tab = t;
+            lastInSection[SectionOf(t)] = t;
             scroll = Vector2.zero;
+        }
+
+        private void OpenSection(Section s) => SetTab(lastInSection.TryGetValue(s, out var t) ? t : TabsOf(s)[0]);
+
+        /// <summary>Section names, with a count when something there wants attention.</summary>
+        private static string SectionLabel(Section s, CouncilGameComponent comp, Map map)
+        {
+            string label = ("CC_Section_" + s).Translate();
+            if (comp == null) return label;
+            int n = 0;
+            switch (s)
+            {
+                case Section.Colony:
+                    n = map != null && Settings.enableAdvisor ? CouncilMapComponent.For(map)?.Signals?.Count(x => x.Level >= AdviceLevel.High) ?? 0 : 0;
+                    break;
+                case Section.People:
+                    n = OpenWishCount();
+                    break;
+                case Section.Council:
+                    n = comp.decrees.requests.Count;
+                    break;
+            }
+            return n > 0 ? label + " (" + n + ")" : label;
+        }
+
+        private static string SubTabLabel(Tab t, CouncilGameComponent comp)
+        {
+            switch (t)
+            {
+                case Tab.Wishes: return "CC_Tab_Wishes".Translate(OpenWishCount());
+                case Tab.Decrees:
+                    return comp.decrees.requests.Count > 0 ? "CC_Tab_DecreesAsked".Translate(comp.decrees.requests.Count).ToString() : "CC_Tab_Decrees".Translate().ToString();
+                default: return ("CC_Tab_" + t).Translate();
+            }
+        }
+
+        /// <summary>Opens the council window on a colonist's page in the People roster.</summary>
+        public static void OpenPerson(Pawn p)
+        {
+            tab = Tab.Roster;
+            lastInSection[Section.People] = Tab.Roster;
+            PeoplePanel.Select(p);
+            var button = CouncilDefOf.Council_MainButton;
+            if (button != null && Find.MainTabsRoot.OpenTab != button) Find.MainTabsRoot.SetCurrentTab(button, false);
         }
 
         /// <summary>Opens the council window on an almanac page.</summary>
@@ -335,12 +447,9 @@ namespace ColonyCouncil
                 Widgets.ThingIcon(new Rect(0f, y + 1f, 24f, 24f), p);
                 var nameRect = new Rect(30f, y + 2f, 160f, 24f);
                 Widgets.Label(nameRect, p.LabelShort);
-                var journal = comp.journals.For(p);
-                if (journal != null && journal.entries.Count > 0)
-                {
-                    Widgets.DrawHighlightIfMouseover(nameRect);
-                    if (Widgets.ButtonInvisible(nameRect)) Find.WindowStack.Add(new Dialog_Journal(journal));
-                }
+                // The name opens their page in the People roster (story, goal, bonds, journal).
+                Widgets.DrawHighlightIfMouseover(nameRect);
+                if (Widgets.ButtonInvisible(nameRect)) OpenPerson(p);
                 var bar = new Rect(195f, y + 7f, 160f, 12f);
                 Widgets.FillableBar(bar, (trust + 100f) / 200f, trust >= 0f ? TrustGood : TrustBad, BaseContent.BlackTex, false);
                 Widgets.Label(new Rect(365f, y + 2f, 100f, 24f), ("CC_Trust_" + PawnStanding.LevelFor(trust)).Translate());
@@ -691,13 +800,53 @@ namespace ColonyCouncil
                 if (Widgets.ButtonText(new Rect(bx, rect.y + 2f, w, 28f), label))
                     Find.WindowStack.Add(new Dialog_MessageBox(entry.text, title: "CC_Annals_Title".Translate(entry.year)));
             }
-            var outRect = new Rect(rect.x, rect.y + 40f, rect.width, rect.height - 40f);
+            // Filters: everything, or one part of colony life.
+            float fx = rect.x;
+            foreach (ChronicleFilter f in System.Enum.GetValues(typeof(ChronicleFilter)))
+            {
+                string label = ("CC_ChronicleFilter_" + f).Translate();
+                float fw = Text.CalcSize(label).x + 20f;
+                var fr = new Rect(fx, rect.y + 38f, fw, 26f);
+                if (f == chronicleFilter) Widgets.DrawBoxSolid(fr, new Color(1f, 1f, 1f, 0.12f));
+                Widgets.DrawHighlightIfMouseover(fr);
+                GUI.color = f == chronicleFilter ? Color.white : Faint;
+                Text.Anchor = TextAnchor.MiddleCenter;
+                Widgets.Label(fr, label);
+                Text.Anchor = TextAnchor.UpperLeft;
+                GUI.color = Color.white;
+                if (Widgets.ButtonInvisible(fr))
+                {
+                    chronicleFilter = f;
+                    scroll = Vector2.zero;
+                }
+                fx += fw + 4f;
+            }
+            var entries = new List<ChronicleEntry>();
+            for (int i = comp.chronicle.Count - 1; i >= 0; i--)
+                if (Matches(comp.chronicle[i].kind, chronicleFilter)) entries.Add(comp.chronicle[i]);
+
+            var outRect = new Rect(rect.x, rect.y + 70f, rect.width, rect.height - 70f);
             float width = BeginScroll(outRect);
             float y = 0f;
-            if (comp.chronicle.Count == 0) y += WrappedLabel(0f, y, width, "CC_Chronicle_Empty".Translate(), Faint);
-            for (int i = comp.chronicle.Count - 1; i >= 0; i--)
+            if (entries.Count == 0) y += WrappedLabel(0f, y, width, "CC_Chronicle_Empty".Translate(), Faint);
+            if (chronicleWidth != width)
             {
-                var e = comp.chronicle[i];
+                chronicleHeights.Clear();
+                chronicleWidth = width;
+            }
+            foreach (var e in entries)
+            {
+                if (!chronicleHeights.TryGetValue(e, out float h))
+                {
+                    h = Text.CalcHeight(e.text, width - 115f);
+                    chronicleHeights[e] = h;
+                }
+                // Only what's on screen is drawn; the rest just takes up its space.
+                if (y + h < scroll.y || y > scroll.y + outRect.height)
+                {
+                    y += h + 4f;
+                    continue;
+                }
                 Color col;
                 switch (e.kind)
                 {
@@ -714,7 +863,14 @@ namespace ColonyCouncil
                         break;
                     case ChronicleKind.Meeting:
                     case ChronicleKind.AmbitionChosen:
+                    case ChronicleKind.Council:
                         col = IdeaColor;
+                        break;
+                    case ChronicleKind.Dream:
+                        col = QuoteColor;
+                        break;
+                    case ChronicleKind.Loss:
+                        col = new Color(0.85f, 0.7f, 0.65f);
                         break;
                     default:
                         col = Color.white;
@@ -723,9 +879,47 @@ namespace ColonyCouncil
                 GUI.color = Faint;
                 Widgets.Label(new Rect(0f, y, 110f, 24f), DayString(e.tick));
                 GUI.color = Color.white;
-                y += WrappedLabel(115f, y, width - 115f, e.text, col) + 4f;
+                GUI.color = col;
+                Widgets.Label(new Rect(115f, y, width - 115f, h), e.text);
+                GUI.color = Color.white;
+                y += h + 4f;
             }
             EndScroll(y);
+        }
+
+        private enum ChronicleFilter
+        {
+            All,
+            Wishes,
+            Council,
+            People,
+            Dreams,
+            Losses
+        }
+
+        private static ChronicleFilter chronicleFilter = ChronicleFilter.All;
+        private static readonly Dictionary<ChronicleEntry, float> chronicleHeights = new Dictionary<ChronicleEntry, float>();
+        private static float chronicleWidth;
+
+        private static bool Matches(ChronicleKind k, ChronicleFilter f)
+        {
+            switch (f)
+            {
+                case ChronicleFilter.Wishes:
+                    return k == ChronicleKind.WishMade || k == ChronicleKind.WishGranted || k == ChronicleKind.WishExpired || k == ChronicleKind.WishDismissed
+                           || k == ChronicleKind.Petition || k == ChronicleKind.PersonalTouch;
+                case ChronicleFilter.Council:
+                    return k == ChronicleKind.Meeting || k == ChronicleKind.AmbitionChosen || k == ChronicleKind.AmbitionAchieved || k == ChronicleKind.AmbitionFailed
+                           || k == ChronicleKind.AmbitionAbandoned || k == ChronicleKind.Council;
+                case ChronicleFilter.People:
+                    return k == ChronicleKind.Bond || k == ChronicleKind.Life || k == ChronicleKind.Secret;
+                case ChronicleFilter.Dreams:
+                    return k == ChronicleKind.Dream;
+                case ChronicleFilter.Losses:
+                    return k == ChronicleKind.Loss;
+                default:
+                    return true;
+            }
         }
 
         private static string DayString(int tick) => "CC_DayN".Translate(tick / GenDate.TicksPerDay + 1);

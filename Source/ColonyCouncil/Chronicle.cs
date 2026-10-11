@@ -15,7 +15,17 @@ namespace ColonyCouncil
         AmbitionFailed,
         AmbitionAbandoned,
         PersonalTouch,
-        Note
+        Note,
+        /// <summary>Decrees, dilemmas, offices, traditions.</summary>
+        Council,
+        /// <summary>Friendships, rivalries, mentorships, circles, social moments.</summary>
+        Bond,
+        /// <summary>Life goals, names, coming of age.</summary>
+        Life,
+        Secret,
+        /// <summary>Deaths, eulogies, vendettas, heirlooms.</summary>
+        Loss,
+        Dream
     }
 
     /// <summary>One line in the colony's chronicle. Stores text, not references, so it survives anything.</summary>
