@@ -117,7 +117,7 @@
     <options>
       <li>
         <label>Say the dead go somewhere warm</label>
-        <outcome>{B_nameDef} told {A_nameDef} the dead go somewhere warm, with good food and no raiders. {A_nameDef} seemed comforted, and wanted to know if the food there is better than ours. A few of the adults think it was a kind lie.</outcome>
+        <outcome>{B_nameDef} told {A_nameDef} the dead go somewhere warm, with good food and no raiders. {A_nameDef} seemed comforted, and asked whether the food there is better than the colony's. A few of the adults think it was a kind lie.</outcome>
         <ways><mercy>2</mercy><tradition>5</tradition></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_Comforted</thought></li>

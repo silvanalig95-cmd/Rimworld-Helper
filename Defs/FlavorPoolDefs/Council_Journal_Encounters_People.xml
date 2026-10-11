@@ -273,7 +273,7 @@
       </warm>
       <blunt>
         <li>{X_nameDef} is a thief with a cart. If {X_pronoun} comes back, I'm doing the weighing.</li>
-        <li>Cheated. By that one, of all people.</li>
+        <li>Cheated. Me, of all people.</li>
         <li>[rain] The weatherproof cloak is soaked through. {X_nameDef} is lucky the caravan's out of throwing range.</li>
       </blunt>
       <cheerful>
@@ -560,7 +560,7 @@
         <li>{X_nameDef} talked my ear off while bleeding. Some people don't know how to lie still.</li>
       </blunt>
       <cheerful>
-        <li>I'm keeping {X_nameDef}'s message folded in my boot, the safest place I've got!</li>
+        <li>I'm keeping {X_nameDef}'s message tucked in my boot, the safest place I've got!</li>
         <li>{X_nameDef} trusted me with {X_possessive} message! I'm going to get it where it needs to go.</li>
       </cheerful>
       <gloomy>
