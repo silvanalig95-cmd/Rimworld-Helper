@@ -26,6 +26,7 @@ BRACE = re.compile(r"\{([^{}]+)\}")
 SQUARE = re.compile(r"\[([^\[\]]+)\]")
 # A pronoun placeholder opening a sentence ("... home. {A_pronoun} said") isn't capitalized by the game.
 LOWER_START = re.compile(r"(^(\[[^\]]*\]\s*)?|[.!?]\s+|\\n)\{[A-Z]+_(pronoun|possessive|objective|definite|indefinite)\}")
+NUMBER = re.compile(r"\d+(?:[.,]\d+)*")
 KNOWN_SUFFIXES = {
     "nameDef", "nameFull", "nameIndef", "labelShort", "label", "definite", "indefinite", "pronoun", "possessive",
     "objective", "gender", "title", "kind", "labelPlural", "factionName", "nameShortDef", "nameShort",
@@ -154,6 +155,11 @@ def check(path):
         for t in nsq - osq:
             if root(t) not in {root(x) for x in osq} and t not in old_text:
                 errors.append(f"{path}: {p} new grammar symbol [{t}]")
+        # Facts: the numbers a line states (rot days, wattage, percentages) must all still be there.
+        onums, nnums = set(NUMBER.findall(BRACE.sub("", ot))), set(NUMBER.findall(BRACE.sub("", nt)))
+        if onums - nnums:
+            (errors if "Almanac" in path else warnings).append(
+                f"{path}: {p} numbers changed: lost {sorted(onums - nnums)}")
         if LOWER_START.search(nt) and not LOWER_START.search(ot):
             warnings.append(f"{path}: {p} a sentence starts with a pronoun placeholder (it would show lowercase): {nt.strip()[:80]!r}")
         if nt.count("->") != ot.count("->") or (ot.split("->")[0] if "->" in ot else "") != (nt.split("->")[0] if "->" in nt else ""):
