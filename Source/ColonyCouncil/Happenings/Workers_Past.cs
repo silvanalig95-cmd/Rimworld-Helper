@@ -46,9 +46,14 @@ namespace ColonyCouncil
         protected override void AddTags(HappeningContext ctx, HashSet<string> tags)
         {
             if (ctx.a == null) return;
-            foreach (var k in Pasts.Of(ctx.a)) tags.Add(Pasts.Tag(k));
+            PastTags(ctx, tags);
             if (LovePartnerRelationUtility.ExistingMostLikedLovePartner(ctx.a, false) != null) tags.Add("partner");
             if (ctx.stranger != null) tags.Add(ctx.stranger.gender == Gender.Female ? "female" : "male");
+        }
+
+        protected virtual void PastTags(HappeningContext ctx, HashSet<string> tags)
+        {
+            foreach (var k in Pasts.Of(ctx.a)) tags.Add(Pasts.Tag(k));
         }
 
         /// <summary>A newcomer with a fighter's past knows how to fight.</summary>
@@ -151,10 +156,15 @@ namespace ColonyCouncil
 
         protected override Pawn MakeX(HappeningContext ctx, HappeningExtension ext)
         {
+            // One past for the whole story: a soldier's comrade, or a partner in crime.
+            bool soldier = Pasts.Has(ctx.a, Past.Soldier), outlaw = Pasts.Has(ctx.a, Past.Outlaw);
+            ctx.variant = soldier && outlaw ? (Rand.Bool ? 0 : 1) : outlaw ? 1 : 0;
             var x = Arrivals.Make(Arrivals.JoinerKind(), null, ext.ages);
             MakeCapable(x, 6);
             return x;
         }
+
+        protected override void PastTags(HappeningContext ctx, HashSet<string> tags) => tags.Add(ctx.variant == 1 ? "outlaw" : "soldier");
     }
 
     /// <summary>A young person who wants to learn from the colony's master of a craft.</summary>

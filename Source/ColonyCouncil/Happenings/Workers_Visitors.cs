@@ -44,7 +44,12 @@ namespace ColonyCouncil
     /// <summary>A travelling storyteller (a bard, a news-teller) stays the evening. Those who listen get a fine night out.</summary>
     public class HappeningWorker_Storyteller : HappeningWorker_Visitors
     {
-        private static readonly ChronicleKind[] TaleKinds = { ChronicleKind.World, ChronicleKind.Stranger, ChronicleKind.AmbitionAchieved, ChronicleKind.Loss, ChronicleKind.Council };
+        private static readonly ChronicleKind[] TaleKinds = { ChronicleKind.World, ChronicleKind.Stranger, ChronicleKind.AmbitionAchieved };
+
+        /// <summary>A chronicle line that reads like a story (a beast felled, a contest won, a nemesis brought down), not a log entry.</summary>
+        private static bool Tellable(ChronicleEntry e, int now) =>
+            TaleKinds.Contains(e.kind) && now - e.tick < GenDate.TicksPerYear && !e.text.NullOrEmpty() && e.text.Length >= 30 && e.text.Length < 200
+            && !e.text.Contains("\"") && !e.text.Contains(": ");
 
         protected override bool Cast(HappeningContext ctx, HappeningExtension ext)
         {
@@ -56,8 +61,7 @@ namespace ColonyCouncil
             var comp = CouncilGameComponent.Instance;
             int now = Find.TickManager.TicksGame;
             // They've heard of the colony: something it did this past year, if it did anything worth telling.
-            ctx.tale = comp?.chronicle.Where(e => TaleKinds.Contains(e.kind) && now - e.tick < GenDate.TicksPerYear && !e.text.NullOrEmpty() && e.text.Length < 200)
-                .RandomElementWithFallback()?.text;
+            ctx.tale = comp?.chronicle.Where(e => Tellable(e, now)).RandomElementWithFallback()?.text;
             ctx.a = Colonists(ctx.map).Where(p => !p.DevelopmentalStage.Baby()).RandomElementByWeightWithFallback(p =>
                 p.skills?.GetSkill(SkillDefOf.Social) is SkillRecord s && People.Passionate(s) ? 3f : 1f);
             return ctx.a != null;
@@ -102,7 +106,14 @@ namespace ColonyCouncil
     {
         private static IEnumerable<Building_Grave> Graves(Map map) =>
             map.listerBuildings.allBuildingsColonist.OfType<Building_Grave>()
-                .Where(g => g.HasCorpse && g.Corpse?.InnerPawn is Pawn d && d.RaceProps.Humanlike && d.Faction == Faction.OfPlayer);
+                .Where(g => g.HasCorpse && g.Corpse?.InnerPawn is Pawn d && d.RaceProps.Humanlike && d.Faction == Faction.OfPlayer && CameGrown(d));
+
+        /// <summary>Someone who had a life (and people) before the colony: not a child born or raised here.</summary>
+        private static bool CameGrown(Pawn d)
+        {
+            float here = d.records?.GetValue(RecordDefOf.TimeAsColonistOrColonyAnimal) ?? 0f;
+            return d.ageTracker.AgeBiologicalTicks - (long)here >= GenDate.TicksPerYear * 16L;
+        }
 
         protected override bool CanHappen(Map map, HappeningExtension ext) => base.CanHappen(map, ext) && Graves(map).Any();
 

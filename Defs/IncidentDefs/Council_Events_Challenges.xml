@@ -38,7 +38,7 @@
         <options>
           <li>
             <label>Accept: {COUNT} silver on {A_nameDef}</label>
-            <outcome>The challenge is on. Word goes round, and people start finding reasons to be nearby in a couple of hours.</outcome>
+            <outcome>The challenge is on. Word goes round, and in a couple of hours half the colony will have found a reason to be nearby.</outcome>
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_Contest"><stake>true</stake></li>
             </effects>
@@ -79,9 +79,9 @@
           <li>The great beast</li>
         </titles>
         <texts>
-          <li>Travellers have been talking about it for weeks, and now it's here: {BEAST}, an old {THING} out of the stories, huge and scarred and older than anyone can say, is roaming the colony's land. It won't trouble anyone who leaves it alone. Whoever brings it down will be talked about for years. It'll move on in a few days.</li>
+          <li>Travellers have been talking about it for weeks, and now it's here: {BEAST}, an old {THING} out of the stories, huge and scarred and older than anyone can say, is roaming the colony's land. It has never gone looking for trouble, but it has never walked away from any either. Whoever brings it down will be talked about for years. It'll move on in a few days.</li>
           <li>[lowtech] Hunters' tales speak of {BEAST}, an old {THING} that has outlived every spear thrown at it. It's on the colony's land now. {A_nameDef} has already been out to look at it, and came back very quiet and very excited. It'll move on in a few days, whether anyone tries their luck or not.</li>
-          <li>[!lowtech] The hunters' radio chatter calls it {BEAST}: an old {THING}, now roaming the colony's land. Bullets have bounced off it before. It's left alone those who left it alone, and it'll be gone in a few days. {A_nameDef} is already checking the rifles.</li>
+          <li>[!lowtech] Trappers on the road call it {BEAST}: an old {THING}, now roaming the colony's land. Bullets have bounced off it before. It has never bothered anyone who left it alone, and it'll be gone in a few days. {A_nameDef} is already cleaning a weapon.</li>
         </texts>
         <lines>
           <li>Old Greymane</li>
@@ -119,8 +119,9 @@
           <li>A treasure map</li>
         </titles>
         <texts>
-          <li>{X_nameDef} of {FACTION}, while the colony's guests, takes {A_nameDef} aside with a grin. {X_nameDef} has a map, old and creased, that shows something buried right here on the colony's land. {X_nameDef} would sell it for {COUNT} silver, being in no position to dig it up. It might even be true.</li>
+          <li>{X_nameDef} of {FACTION}, one of the colony's guests, takes {A_nameDef} aside with a grin. {X_nameDef} has a map, old and creased, that shows something buried right here on the colony's land. {X_nameDef} would sell it for {COUNT} silver, being in no position to dig it up. It might even be true.</li>
           <li>[lowtech] {X_nameDef} of {FACTION} pulls a scrap of old hide from {X_possessive} coat and spreads it out for {A_nameDef}: a map, with an X on it, somewhere on the colony's land. {COUNT} silver, says {X_nameDef}, and it's yours. Treasure maps are always true, aren't they?</li>
+          <li>[!lowtech] {X_nameDef} of {FACTION} shows {A_nameDef} an old survey printout with one spot circled in faded ink, right here on the colony's land. "Supply cache," {X_nameDef} says. "Pre-war. Never dug up." For {COUNT} silver it's the colony's. Probably.</li>
         </texts>
         <defaultOption>1</defaultOption>
         <options>
@@ -128,7 +129,7 @@
             <label>Buy it ({COUNT} silver)</label>
             <outcome>The map is ours. {A_nameDef} sets off at once with a shovel.</outcome>
             <riskChance>0.3</riskChance>
-            <riskOutcome>The map leads to a hole, which {A_nameDef} digs, and then to another hole, which {A_nameDef} also digs. There's nothing in either. {X_nameDef} is nowhere to be found.</riskOutcome>
+            <riskOutcome>The map leads to a hole, which {A_nameDef} digs, and then to another hole, which {A_nameDef} also digs. There's nothing in either. {X_nameDef}, when asked, says maps are like that.</riskOutcome>
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>silver</what></li>
             </effects>
@@ -166,14 +167,15 @@
           <li>Tribute demanded</li>
         </titles>
         <texts>
-          <li>[lowtech] A herald of {ENEMY} rides up under a banner of truce, reads out a list of the colony's sins against no one in particular, and names the price of peace: {COUNT} silver, by tomorrow. Otherwise {ENEMY} will come and take it, and whatever else they like.</li>
+          <li>[tribal] A runner of {ENEMY}, painted for war, plants a spear at the edge of the colony and names the price of peace: {COUNT} silver, by tomorrow. If it isn't paid, {ENEMY} will come and take it, and whatever else they like.</li>
+          <li>[lowtech,!tribal] A herald of {ENEMY} rides up under a banner of truce, reads out a list of the colony's sins against no one in particular, and names the price of peace: {COUNT} silver, by tomorrow. Otherwise {ENEMY} will come and take it, and whatever else they like.</li>
           <li>[!lowtech] The comms light up with a message from {ENEMY}: the colony is "under their protection" now, and protection costs {COUNT} silver. They'll wait a day for it. After that, they'll come and collect it themselves.</li>
         </texts>
         <defaultOption>2</defaultOption>
         <options>
           <li>
             <label>Pay the {COUNT} silver</label>
-            <outcome>The tribute is handed over. {ENEMY} will leave the colony alone, for now. Nobody looks very proud.</outcome>
+            <outcome>The tribute is handed over. Whether it buys any peace, nobody can say. Nobody looks very proud.</outcome>
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>silver</what></li>
               <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_Evt_PaidTribute</thought><exceptTrait><li>Ascetic</li></exceptTrait></li>
@@ -184,7 +186,7 @@
             <outcome>{A_nameDef} argues them down to half, somehow, and they go away almost pleased. Half the tribute is handed over.</outcome>
             <riskChance>0.6</riskChance>
             <riskReplaces>true</riskReplaces>
-            <riskOutcome>{A_nameDef} argues, and the herald takes offence. There will be no tribute now. There will be a war party instead, and soon.</riskOutcome>
+            <riskOutcome>{A_nameDef} argues, and {ENEMY} take offence. There will be no tribute now. There will be a war party instead, and soon.</riskOutcome>
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>silver</what><factor>0.5</factor></li>
             </effects>

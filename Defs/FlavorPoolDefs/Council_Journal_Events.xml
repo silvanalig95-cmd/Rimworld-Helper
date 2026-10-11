@@ -18,7 +18,7 @@
       </plain>
       <warm><li>[opt0] {X_nameDef} is here, and safe, and staying. Whatever we were before, we're neighbours now.</li></warm>
       <blunt><li>[opt1] They sent {X_nameDef} packing. Fine. I'll remember it.</li></blunt>
-      <cheerful><li>[opt0] {X_nameDef}! Here! Staying! I'm going to tell every story about {X_objective}, and {X_pronoun} is going to hate it.</li></cheerful>
+      <cheerful><li>[opt0] {X_nameDef}, here, staying! I'm going to tell every story about {X_objective}, and {X_nameDef} is going to hate it.</li></cheerful>
       <gloomy><li>[opt1] The past came to the door, and we shut it. Maybe that's best. It doesn't feel best.</li></gloomy>
       <cold><li>[opt0] {X_nameDef} joined. Capable, reliable. I can vouch for that much.</li></cold>
     </lines>
@@ -34,7 +34,7 @@
       </plain>
       <warm><li>[opt0] Family. Here. I'll never take a single ordinary day with {X_nameDef} for granted.</li></warm>
       <blunt><li>[opt1] They turned away my {RELATION}. I won't forget who voted for that.</li></blunt>
-      <cheerful><li>[opt0] {X_nameDef} is HERE! My {RELATION}! Everyone has to meet {X_objective}! Everyone!</li></cheerful>
+      <cheerful><li>[opt0] {X_nameDef} is here! My {RELATION}! Everyone has to meet {X_objective}. Everyone.</li></cheerful>
       <gloomy><li>[opt1] Found and lost again, in the same day. That's about how my luck runs.</li></gloomy>
       <cold><li>[opt0] {X_nameDef}, my {RELATION}, has joined the colony. It is... good. Very good.</li></cold>
     </lines>
@@ -102,7 +102,7 @@
         <li>An inheritance came for me today, from someone I hadn't thought about in years. They thought about me, at the end. That's the part I can't stop thinking about.</li>
         <li>Somebody from my old life left me something. I'll use it well. It's what they'd have wanted, I think.</li>
       </plain>
-      <cheerful><li>I inherited things! Real things! I'm sad, and also I inherited things!</li></cheerful>
+      <cheerful><li>I inherited things. Real things. I'm sad, and also, things.</li></cheerful>
       <gloomy><li>Strange, to be remembered only once you're gone. I'll try to do better than that.</li></gloomy>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
@@ -114,7 +114,7 @@
         <li>A letter from my old {SKILL} teacher. Three pages of advice, two of them complaints. I've already tried half of it. Annoyingly, it works.</li>
         <li>My old teacher is still alive, still teaching, still sure I'm doing {SKILL} wrong. I've never been so happy to be told off.</li>
       </plain>
-      <warm><li>My old teacher remembered me. All these years later. I hope I make {SKILL} look the way they taught me.</li></warm>
+      <warm><li>My old teacher remembered me. All these years later. I hope I'm still doing them proud.</li></warm>
       <blunt><li>Old teacher sent advice. Some of it's even good.</li></blunt>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
@@ -123,11 +123,12 @@
     <defName>Council_Journal_Evt_GoodNews</defName>
     <lines>
       <plain>
-        <li>Good news from home today. Everyone's well. I didn't realise how much I'd been bracing for the opposite.</li>
-        <li>News from the people I left behind, and all of it good. I read it twice and then once more out loud.</li>
+        <li>Good news from my old life today. I didn't realise how much I'd been bracing for the opposite.</li>
+        <li>[!lowtech] News from the people I left behind, and all of it good. I read it twice and then once more out loud.</li>
+        <li>[lowtech] News from the people I left behind, and all of it good. I made the traveller tell it twice.</li>
       </plain>
-      <cheerful><li>Everyone back home is FINE! Better than fine! Best day in ages!</li></cheerful>
-      <gloomy><li>Good news from home. They're doing well without me. Good. That's good.</li></gloomy>
+      <cheerful><li>Good news from home! The best news! Best day in ages!</li></cheerful>
+      <gloomy><li>Good news from the old life, for once. I keep waiting for the catch.</li></gloomy>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
 
@@ -148,10 +149,11 @@
     <defName>Council_Journal_Evt_Scholar</defName>
     <lines>
       <plain>
-        <li>[opt0] A scholar stayed the night, and we talked about {TALE} until the candles gave out. I understand it twice as well, and have three times as many questions.</li>
+        <li>[opt0,lowtech] A scholar stayed the night, and we talked about {TALE} until the candles gave out. I understand it twice as well, and have three times as many questions.</li>
+        <li>[opt0,!lowtech] A visiting engineer stayed the night, and we talked about {TALE} until the small hours. I understand it twice as well, and have three times as many questions.</li>
         <li>[opt1] A scholar asked for a bed and the council said no. I'd have liked to ask {X_objective} a few things about {TALE}.</li>
       </plain>
-      <cheerful><li>[opt0] Best conversation in YEARS. {X_nameDef} knows everything about {TALE}, and now so do I. Nearly.</li></cheerful>
+      <cheerful><li>[opt0] Best conversation in years. {X_nameDef} knows everything about {TALE}, and now so do I. Nearly.</li></cheerful>
       <cold><li>[opt0] A productive exchange with a visiting expert. The work on {TALE} has advanced considerably.</li></cold>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
@@ -185,9 +187,9 @@
     <lines>
       <plain>
         <li>{X_nameDef} came a long way to beat me at {SKILL}, and went home a long way beaten. Not bad for a day's work.</li>
-        <li>Won a {SKILL} contest against a travelling champion today, in front of everyone. I'll try to be modest about it. Tomorrow.</li>
+        <li>Won the {SKILL} contest against a travelling champion today, in front of everyone. I'll try to be modest about it. Tomorrow.</li>
       </plain>
-      <cheerful><li>I WON! Against a real champion! At {SKILL}! Someone write this down! Oh, I am writing it down.</li></cheerful>
+      <cheerful><li>I won! Against a real champion! Someone write this down! Oh, I am writing it down.</li></cheerful>
       <cold><li>Defeated a travelling champion at {SKILL}. Their technique had obvious flaws.</li></cold>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
@@ -196,7 +198,7 @@
     <defName>Council_Journal_Evt_ContestLost</defName>
     <lines>
       <plain>
-        <li>Lost a {SKILL} contest to {X_nameDef} today. Fair and square. I learned more in that hour than in a season, which is the only good thing I'm going to say about it.</li>
+        <li>Lost the {SKILL} contest to {X_nameDef} today. Fair and square. I learned more in that hour than in a season, which is the only good thing I'm going to say about it.</li>
         <li>{X_nameDef} beat me at {SKILL}, in front of everyone. Next time {X_pronoun} passes through, I'll be ready.</li>
       </plain>
       <blunt><li>Lost. {X_nameDef} was better. Today.</li></blunt>
@@ -224,9 +226,9 @@
         <li>There's a comet in the sky. Everyone has a different idea what it means. I've decided it means we should all go outside more.</li>
         <li>A comet tonight, bright enough to read by. I stood out there until my neck hurt.</li>
       </plain>
-      <cheerful><li>A COMET! A good omen, obviously. Anyone who says otherwise is wrong.</li></cheerful>
+      <cheerful><li>A comet! A good omen, obviously. Anyone who says otherwise is wrong.</li></cheerful>
       <gloomy><li>A comet. Nothing good ever came from a sky that changes.</li></gloomy>
-      <cold><li>A comet is visible. It is a ball of ice and dust. It is also, I admit, quite beautiful.</li></cold>
+      <cold><li>[!lowtech] A comet is visible. It is a ball of ice and dust. It is also, I admit, quite beautiful.</li><li>[lowtech] A star with a tail. The old ones argue about what it means. I don't think it means anything. I keep looking anyway.</li></cold>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
 
@@ -237,7 +239,7 @@
         <li>I found a buried cache today. Somebody hid it and never came back. I wonder who they were, and what happened to them.</li>
         <li>Dug up treasure. Actual buried treasure. I'm going to be insufferable for a while, and I've earned it.</li>
       </plain>
-      <cheerful><li>TREASURE! I found TREASURE! In the GROUND!</li></cheerful>
+      <cheerful><li>Treasure! I found treasure! In the ground!</li></cheerful>
       <gloomy><li>Found a cache someone buried and never came back for. Someday someone will dig up our things and wonder about us too.</li></gloomy>
     </lines>
   </ColonyCouncil.FlavorPoolDef>

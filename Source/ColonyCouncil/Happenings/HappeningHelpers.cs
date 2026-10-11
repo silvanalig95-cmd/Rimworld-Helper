@@ -349,8 +349,8 @@ namespace ColonyCouncil
     {
         private static readonly Dictionary<Past, Regex> Words = new Dictionary<Past, Regex>
         {
-            { Past.Soldier, Words_("soldier|mercenar(y|ies)|merc|guard|guardsman|marine|knight|squire|veteran|militia\\w*|trooper|legionnaire|legionary|warrior|sentry|officer|sergeant|commando|gunner|sniper|janissary|cataphract|man-at-arms|footman|archer|bodyguard|enforcer|war\\w*|fighter|recruit|cadet|infantry\\w*|cavalry\\w*|scout|ranger") },
-            { Past.Outlaw, Words_("thief|thieves|pirate|smuggler|bandit|assassin|convict|prisoner|gang\\w*|outlaw|con artist|conman|con man|raider|murderer|cutpurse|pickpocket|criminal|burglar|poacher|mugger|hitman|hit man|fugitive|deserter|cultist|slaver|scavenger|swindler|thug|brigand|highwayman|cutthroat|rogue|drug \\w+|dealer|fence") },
+            { Past.Soldier, Words_("soldier|mercenar(y|ies)|merc|guard|guardsman|marine|knight|squire|veteran|militia\\w*|trooper|legionnaire|legionary|warrior|sentry|officer|sergeant|commando|gunner|sniper|janissary|cataphract|man-at-arms|footman|archer|bodyguard|enforcer|warlord|warband|war veteran|fighter|recruit|cadet|infantry\\w*|cavalry\\w*|scout|ranger") },
+            { Past.Outlaw, Words_("thief|thieves|pirate|smuggler|bandit|assassin|convict|prisoner|gang\\w*|outlaw|con artist|conman|con man|raider|murderer|cutpurse|pickpocket|criminal|burglar|poacher|mugger|hitman|hit man|fugitive|deserter|cultist|slaver|swindler|thug|brigand|highwayman|cutthroat|rogue|drug \\w+|dealer|fence") },
             { Past.Noble, Words_("noble\\w*|lord|lady|prince|princess|heir|heiress|aristocrat|courtier|baron\\w*|duke|duchess|royal\\w*|count|countess|socialite|dilettante|scion|knight-errant") },
             { Past.Healer, Words_("doctor|surgeon|healer|medic|nurse|herbalist|physician|apothecary|paramedic|midwife") },
             { Past.Scholar, Words_("scholar|scientist|researcher|professor|student|monk|scribe|teacher|philosopher|archivist|librarian|engineer|academic|tutor|historian|alchemist|astronomer") },

@@ -37,10 +37,10 @@
           <li>A face from the past</li>
         </titles>
         <texts>
-          <li>[soldier,lowtech] A weathered traveller with a soldier's walk is asking for {A_nameDef} by name. {X_nameDef} served beside {A_objective} in the old wars: the same mud, the same thin rations, the same terrible marching songs. {X_nameDef} has no war left to fight and nowhere left to go, and asks to stay.</li>
+          <li>[soldier,lowtech] A weathered traveller with a soldier's walk is asking for {A_nameDef} by name. {X_nameDef} served beside {A_objective} in the old wars: the same mud, the same thin rations, the same terrible marching songs. {X_nameDef} has no war left to fight and nowhere left to go, and would like a place here.</li>
           <li>[soldier,!lowtech] A drifter in a faded uniform comes up the road asking for {A_nameDef}. {X_nameDef} and {A_nameDef} served in the same unit, years ago and a long way from here. {X_nameDef} heard {A_nameDef} had settled down and walked a long way to see it with {X_possessive} own eyes. Now {X_nameDef} would like to stay.</li>
-          <li>[outlaw] Someone {A_nameDef} hoped never to see again, or hoped to see every day, is waiting at the edge of the colony. {X_nameDef} ran with {A_objective} in the bad old days. "I'm done with all that," {X_nameDef} says. "Same as you, I hear. Any room for one more honest soul?"</li>
-          <li>{X_nameDef} is waiting at the edge of the colony and asking for {A_nameDef}. They knew each other in another life, the kind with fewer fences and more trouble. {X_nameDef} looks tired of the road, and asks to stay.</li>
+          <li>[outlaw] Someone {A_nameDef} hoped never to see again, or hoped to see every day, is waiting by the gate. {X_nameDef} ran with {A_objective} in the bad old days. "I'm done with all that," {X_nameDef} says. "Same as you, I hear. Any room for one more honest soul?"</li>
+          <li>{X_nameDef} turned up at the treeline this morning, asking for {A_nameDef}. They knew each other before all this, back when there were fewer fences and more trouble. {X_nameDef} looks tired of the road, and asks if there's room for one more.</li>
         </texts>
         <defaultOption>1</defaultOption>
         <options>
@@ -85,8 +85,8 @@
           <li>Family found {A_nameDef}</li>
         </titles>
         <texts>
-          <li>A traveller at the edge of the colony asks for {A_nameDef}, won't give a reason, and won't leave. When {A_nameDef} comes out, the traveller just stands there. It's {X_nameDef}: {A_possessive} {RELATION}. They each thought the other was dead. {X_nameDef} has come a very long way, and asks to stay.</li>
-          <li>[lowtech] A pilgrim with nothing but a walking stick has been asking at every village and crossroads for someone called {A_nameDef}. Today the answer was yes. {X_nameDef}, {A_possessive} {RELATION}, is waiting at the edge of the colony, and asks to stay.</li>
+          <li>A traveller at the edge of the colony asks for {A_nameDef}, won't give a reason, and won't leave. When {A_nameDef} comes out, the traveller just stands there. It's {X_nameDef}: {A_possessive} {RELATION}. They each thought the other was dead. {X_nameDef} has come a very long way, and has nowhere else to be.</li>
+          <li>[lowtech] A pilgrim with nothing but a walking stick has been asking at every village and crossroads for someone called {A_nameDef}. Today the answer was yes. {X_nameDef}, {A_possessive} {RELATION}, is waiting by the fields, and would like to stay.</li>
           <li>[!lowtech] A message came over the comms days ago, asking after someone named {A_nameDef}. Nobody answered it. Now the sender is standing at the edge of the colony: {X_nameDef}, {A_possessive} {RELATION}, who followed a rumour across half a continent. {X_nameDef} asks to stay.</li>
         </texts>
         <defaultOption>0</defaultOption>
@@ -133,8 +133,8 @@
           <li>An old flame</li>
         </titles>
         <texts>
-          <li>[partner] Someone at the edge of the colony is asking for {A_nameDef}, and {A_nameDef} goes very quiet on hearing the name. {X_nameDef} and {A_nameDef} were together once, before all this. {X_nameDef} has nowhere else to go and asks to stay. {A_nameDef}'s partner has already noticed how quiet {A_nameDef} went.</li>
-          <li>{X_nameDef} is at the edge of the colony, asking for {A_nameDef}. They were together once, in another life, and it ended the way these things end. Now {X_nameDef} is alone on the road and asks if there's room here. {A_nameDef} says it's up to the council. {A_possessive} face says something else.</li>
+          <li>[partner] Someone at the gate is asking for {A_nameDef}, who goes very quiet on hearing the name. They were together once, before all this, and {X_nameDef} has nowhere else to go. {A_nameDef}'s partner has already noticed the quiet.</li>
+          <li>{X_nameDef} is at the edge of the colony, asking for {A_nameDef}. They were together once, years ago, and it ended the way these things end. Now {X_nameDef} is alone on the road and asks if there's room here. {A_nameDef} says it's up to the council. The look on {A_possessive} face says something else.</li>
         </texts>
         <defaultOption>1</defaultOption>
         <options>
@@ -174,7 +174,7 @@
         </titles>
         <texts>
           <li>[quit] {X_nameDef}, who walked out on the colony, is standing at the edge of the fields with {X_possessive} pack and a speech {X_pronoun} has clearly practised. Life out there was harder than {X_pronoun} thought, and {X_pronoun} was wrong about some things. {X_nameDef} asks to come home. {A_nameDef} heard first, and is waiting to hear what the council says.</li>
-          <li>[banished] {X_nameDef}, who was sent away, has come back: thinner, quieter, and asking to be let in. "I know what I did," {X_nameDef} says. "I'm asking anyway." {A_nameDef} heard first, and is waiting to hear what the council says.</li>
+          <li>[banished] {X_nameDef}, who was sent away, has come back: thinner, quieter, and asking to be let in. "I know how it ended," {X_nameDef} says. "I'm asking anyway." {A_nameDef} heard first, and is waiting to hear what the council says.</li>
           <li>{X_nameDef}, who once lived here, has come back and asks to be let in again. {A_nameDef} heard first, and is waiting to hear what the council says.</li>
         </texts>
         <defaultOption>1</defaultOption>
@@ -220,7 +220,8 @@
           <li>[outlaw] A sharp-eyed collector has tracked {A_nameDef} down. {A_nameDef} owes {COUNT} silver to some very patient people from {A_possessive} old life, and patience, the collector explains, has run out.</li>
           <li>[trader] A creditor has found {A_nameDef}. Once upon a time a deal went wrong, {A_nameDef} left town in a hurry, and {COUNT} silver left with {A_objective}. The creditor would like it back, with or without a scene.</li>
           <li>[noble] A clerk with a ledger and two very large companions has come about a debt of {A_nameDef}'s family: {COUNT} silver, owed for years and, as of today, owed by {A_objective}.</li>
-          <li>Someone has come asking for {A_nameDef}, holding a slip of paper with {A_possessive} old signature on it. {A_nameDef} owes {COUNT} silver from another life, and the creditor has come to collect.</li>
+          <li>[!tribal] Someone has come asking for {A_nameDef}, holding a slip of paper with {A_possessive} old signature on it. {A_nameDef} owes {COUNT} silver from another life, and the creditor has come to collect.</li>
+          <li>[tribal] Someone has come asking for {A_nameDef}, carrying a tally stick notched with {A_possessive} old mark. {A_nameDef} owes {COUNT} silver from long ago, and the creditor has walked a long way to collect it.</li>
         </texts>
         <defaultOption>2</defaultOption>
         <options>
@@ -291,6 +292,8 @@
         </titles>
         <texts>
           <li>[lowtech] A rider under a white rag stops just out of bowshot. {A_nameDef}, the rider shouts, is wanted for old crimes, with {COUNT} silver on {A_possessive} head, and {ENEMY} mean to collect it. Hand {A_objective} over, match the bounty, or they'll come in and take {A_objective}.</li>
+          <li>[lowtech] An arrow thuds into the gatepost with a message wrapped round it: {A_nameDef} is worth {COUNT} silver to {ENEMY}, for old crimes not forgotten. Send {A_objective} out, pay the price yourselves, or they'll come and get {A_objective}.</li>
+          <li>[!lowtech] A wanted poster, weighted with a stone, is waiting at the gate: {A_nameDef}'s face, {COUNT} silver, and a note from {ENEMY}. Hand {A_objective} over, match the bounty, or they'll come in and collect.</li>
           <li>[!lowtech] The comms crackle with a flat, bored voice. There's a bounty of {COUNT} silver on {A_nameDef} for things done in another life, and a crew from {ENEMY} has come to collect. Hand {A_objective} over, match the bounty, or they'll come in and take {A_objective}.</li>
         </texts>
         <defaultOption>0</defaultOption>
@@ -299,8 +302,8 @@
             <label>We stand by {A_nameDef}</label>
             <outcome>{A_nameDef} can't quite find the words. The hunters will be here within hours.</outcome>
             <effects>
-              <li Class="ColonyCouncil.DilemmaEffect_Thought"><thought>Council_Evt_StoodByMe</thought></li>
-              <li Class="ColonyCouncil.DilemmaEffect_Trust"><amount>10</amount></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Thought"><thought>Council_Evt_StoodByMe</thought><onlyIfChosen>true</onlyIfChosen></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Trust"><amount>10</amount><onlyIfChosen>true</onlyIfChosen></li>
               <li Class="ColonyCouncil.DilemmaEffect_RaidLater">
                 <points>0.5~0.75</points>
                 <delayHours>3~8</delayHours>
@@ -353,7 +356,7 @@
         <texts>
           <li>[lowtech] A courier has come a long way with a bundle for {A_nameDef}: someone from {A_possessive} old life has died, and remembered {A_objective} at the end. The courier leaves it at {A_possessive} feet, wishes {A_objective} well, and goes.</li>
           <li>[!lowtech] A drop pod thumps down near the colony, addressed to {A_nameDef}. Inside, with a short and very formal letter: everything a distant relative left behind, sent on to {A_possessive} last known address.</li>
-          <li>[noble] Lawyers have found {A_nameDef} at last: an aunt nobody liked has died, and of everyone in the family, she remembered {A_objective}. The estate has been sent on, with the lawyers' compliments and their bill already deducted.</li>
+          <li>[noble,!tribal] Lawyers have found {A_nameDef} at last: an aunt nobody liked has died, and of everyone in the family, she remembered {A_objective}. The estate has been sent on, with the lawyers' compliments and their bill already deducted.</li>
         </texts>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Loot"><value>400~1000</value><fancy>true</fancy><pod>true</pod></li>
@@ -377,8 +380,10 @@
           <li>Word from an old teacher</li>
         </titles>
         <texts>
-          <li>[lowtech] A travelling peddler brings {A_nameDef} a letter, much folded and rained on. It's from the old master who taught {A_objective} {SKILL}, years ago: still alive, still opinionated, and full of advice {A_nameDef} immediately sets out to prove wrong.</li>
-          <li>[!lowtech] A message finds its way to {A_nameDef}, bounced across half the world's relays: {A_possessive} old {SKILL} teacher, still alive, still opinionated, and full of advice {A_nameDef} immediately sets out to prove wrong.</li>
+          <li>[lowtech] A travelling peddler brings {A_nameDef} a letter, much folded and rained on. It's from the old master who taught {A_objective} everything {A_pronoun} knows about {SKILL}: still alive, still opinionated, and full of advice {A_nameDef} immediately sets out to prove wrong.</li>
+          <li>[lowtech] A pedlar passing through has a message for {A_nameDef}, learned by heart from {A_possessive} old teacher of {SKILL}: a list of everything {A_nameDef} was always doing wrong, and one line at the end saying {A_pronoun} was the best student they ever had.</li>
+          <li>[!lowtech] A message finds its way to {A_nameDef}, bounced across half the world's relays: the teacher who taught {A_objective} {SKILL}, still alive, still opinionated, and full of advice {A_nameDef} immediately sets out to prove wrong.</li>
+          <li>[!lowtech] A battered data chip arrives with a trader's caravan, addressed to {A_nameDef}: hours of recorded notes on {SKILL} from {A_possessive} old teacher, who apparently never stopped thinking about how {A_nameDef} held the tools.</li>
         </texts>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Learn"><xp>2500</xp></li>
@@ -435,8 +440,9 @@
         </titles>
         <texts>
           <li>[lowtech] A traveller brings {A_nameDef} news nobody wants: the village {A_pronoun} came from was burned in a raid this year. There's nobody left there now.</li>
-          <li>[industrial] A news broadcast, half lost in static, mentions a place {A_nameDef} recognises: {A_possessive} hometown, overrun in some war {A_pronoun} had never heard of. There's nothing left to go back to.</li>
-          <li>[spacer] Word reaches {A_nameDef} that the world {A_pronoun} came from has gone dark: no transmissions, no ships, nothing. Nobody knows what happened. Maybe nobody ever will.</li>
+          <li>[!lowtech,!spacer] A news broadcast, half lost in static, mentions a place {A_nameDef} recognises: {A_possessive} hometown, overrun in some war {A_pronoun} had never heard of. There's nothing left to go back to.</li>
+          <li>Word reaches {A_nameDef}, late and second-hand, that the place {A_pronoun} came from is gone. There's nothing left to go back to.</li>
+          <li>[spacer,!lowtech] Word reaches {A_nameDef} that the world {A_pronoun} came from has gone dark: no transmissions, no ships, nothing. Nobody knows what happened. Maybe nobody ever will.</li>
         </texts>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><thought>Council_Evt_HomeLost</thought></li>

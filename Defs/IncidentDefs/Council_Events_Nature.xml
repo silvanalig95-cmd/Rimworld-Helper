@@ -27,8 +27,8 @@
           <li>A wild harvest</li>
         </titles>
         <texts>
-          <li>[food] {A_nameDef} came back from a walk with stained fingers and good news: patches of wild {THING} have sprung up across the colony's land, heavy and ripe and waiting to be picked.</li>
-          <li>[medicine] {A_nameDef} has found {THING} growing wild in patches across the colony's land, more than anyone has seen in years. Whoever gathers it first is going to make the colony's healer very happy.</li>
+          <li>[food] {A_nameDef} came back from a walk with good news: patches of wild {TALE} are ripe across the colony's land, waiting to be picked.</li>
+          <li>[medicine] {A_nameDef} has found patches of {TALE} all across the colony's land, more than anyone has seen in years. Whoever gathers it first is going to make the colony's healer very happy.</li>
         </texts>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><thought>Council_Evt_WildBounty</thought></li>
@@ -121,7 +121,8 @@
           <li>Hailstorm</li>
         </titles>
         <texts>
-          <li>Hail! Ice the size of knuckles is hammering down out of a black sky. Crops out in the open are going to suffer, the young ones most. Nobody will get hurt as long as they come inside, and it won't last long. (Roofed fields and greenhouses don't care about hail.)</li>
+          <li>Hail! Ice the size of knuckles is hammering down out of a black sky. Crops out in the open are going to suffer, the young ones most. Nobody will be hurt, though anyone caught outside will complain about it, and it won't last long. (Roofed fields and greenhouses don't care about hail.)</li>
+          <li>[lowtech] The sky went green and then it started: hail, hammering down on everything. Young crops in the open fields won't all survive it. Nobody will be hurt, though everyone caught outside will say otherwise. (Fields under a roof don't care about hail.)</li>
         </texts>
       </li>
     </modExtensions>
@@ -144,9 +145,9 @@
           <li>Vermin in the stores</li>
         </titles>
         <texts>
-          <li>[loss,lowtech] Rats have got into the stores. By the time anyone noticed, they'd ruined {COUNT} portions of food and left droppings through the rest.</li>
+          <li>[loss,lowtech] Rats have got into the stores. By the time anyone noticed, they'd ruined {COUNT} units of food and left droppings through the rest.</li>
           <li>[loss,!lowtech] Rats got into the stores, the big kind, with a taste for everything. {COUNT} units of food were chewed through or spoiled before anyone noticed.</li>
-          <li>[mouser] Rats tried to get into the stores last night. They hadn't counted on {PET_nameDef}. {A_nameDef}'s animal has been very busy, and is very pleased with itself.</li>
+          <li>[mouser] Rats tried to get into the stores last night. They hadn't counted on {PET_nameDef}, who has been very busy and is very pleased with itself.</li>
         </texts>
       </li>
     </modExtensions>

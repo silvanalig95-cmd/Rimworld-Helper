@@ -1582,7 +1582,7 @@ Those against it ({WHO}) will trust the council less and resent it more than usu
   <CC_Evt_Trust_Back>let back in</CC_Evt_Trust_Back>
   <CC_Evt_TributeHave>The colony has {0} silver. They ask for {1}.</CC_Evt_TributeHave>
   <CC_Evt_PilgrimsFood>Feeding them takes {1} raw food (vegetables, berries, meat) from the stores; the colony has {0}.</CC_Evt_PilgrimsFood>
-  <CC_Evt_ChampionOdds>The colony's best at {4} is {A_nameDef} (skill {2}). The challenger, {X_nameDef}, is about {3}. The better one usually wins, but not always.</CC_Evt_ChampionOdds>
+  <CC_Evt_ChampionOdds>At {4}, the colony's best is {A_nameDef} (skill {2}). The challenger, {X_nameDef}, is about {3}. The better one usually wins, but not always.</CC_Evt_ChampionOdds>
   <CC_Evt_ContestOff>The contest never happened: the challenger moved on.</CC_Evt_ContestOff>
   <CC_Cause_Challenge>the {0} contest with a travelling champion.</CC_Cause_Challenge>
   <CC_Evt_Contest_Won>Victory!</CC_Evt_Contest_Won>
@@ -1608,4 +1608,25 @@ Those against it ({WHO}) will trust the council less and resent it more than usu
   <CC_Cause_Mourners>mourners at {0}'s grave.</CC_Cause_Mourners>
   <CC_Evt_Mourners>Mourners stood at {0}'s grave for a while, and moved on.</CC_Evt_Mourners>
   <CC_Evt_MournersGift>Mourners stood at {0}'s grave for a while, and left {1} silver there, for the colony that buried {0} properly.</CC_Evt_MournersGift>
+  <CC_SkillNoun_Shooting>shooting</CC_SkillNoun_Shooting>
+  <CC_SkillNoun_Melee>fighting</CC_SkillNoun_Melee>
+  <CC_SkillNoun_Construction>building</CC_SkillNoun_Construction>
+  <CC_SkillNoun_Mining>mining</CC_SkillNoun_Mining>
+  <CC_SkillNoun_Cooking>cooking</CC_SkillNoun_Cooking>
+  <CC_SkillNoun_Plants>growing</CC_SkillNoun_Plants>
+  <CC_SkillNoun_Animals>animal handling</CC_SkillNoun_Animals>
+  <CC_SkillNoun_Crafting>crafting</CC_SkillNoun_Crafting>
+  <CC_SkillNoun_Artistic>art</CC_SkillNoun_Artistic>
+  <CC_SkillNoun_Medicine>healing</CC_SkillNoun_Medicine>
+  <CC_SkillNoun_Social>persuasion</CC_SkillNoun_Social>
+  <CC_SkillNoun_Intellectual>scholarship</CC_SkillNoun_Intellectual>
+  <CC_SkillContest_Shooting>marksmanship</CC_SkillContest_Shooting>
+  <CC_SkillContest_Melee>wrestling</CC_SkillContest_Melee>
+  <CC_SkillContest_Social>debating</CC_SkillContest_Social>
+  <CC_SkillContest_Intellectual>riddles</CC_SkillContest_Intellectual>
+  <CC_SkillContest_Plants>judging the harvest</CC_SkillContest_Plants>
+  <CC_Evt_ContestWonB>It was close for a while, and then it wasn't: {A_nameDef} beat {X_nameDef} at {2}. {X_nameDef} shook hands like a good sport, and left muttering about a rematch.</CC_Evt_ContestWonB>
+  <CC_Evt_ContestWonStakeB>It was close for a while, and then it wasn't: {A_nameDef} beat {X_nameDef} at {2}, and {3} silver changed hands in the colony's favour. {X_nameDef} left muttering about a rematch.</CC_Evt_ContestWonStakeB>
+  <CC_Evt_ContestLostB>{A_nameDef} gave {X_nameDef} a real contest at {2}, and lost by a whisker. The onlookers are already arguing about how close it was.</CC_Evt_ContestLostB>
+  <CC_Evt_ContestLostStakeB>{A_nameDef} gave {X_nameDef} a real contest at {2}, and lost by a whisker. The colony's {3} silver went with {X_nameDef}, and the onlookers are still arguing about how close it was.</CC_Evt_ContestLostStakeB>
 </LanguageData>

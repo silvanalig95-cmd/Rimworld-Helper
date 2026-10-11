@@ -26,6 +26,8 @@
           <li>[lowtech,tale] {X_nameDef}, a wandering bard of {FACTION}, has come to spend an evening by the colony's fire. Tales for supper, songs for a bed: the old bargain. And {X_nameDef} has heard of this place already. They tell it like this on the road: "{TALE}"</li>
           <li>[lowtech,notale] {X_nameDef}, a wandering bard of {FACTION}, has come to spend an evening by the colony's fire. Tales for supper, songs for a bed: the old bargain. Anyone who gathers round tonight is in for a treat.</li>
           <li>[!lowtech,tale] {X_nameDef} of {FACTION}, a travelling storyteller with a battered instrument and a hundred stories, is stopping for the night. {X_nameDef} already knows a story about this colony, and tells it like this: "{TALE}"</li>
+          <li>[notale] {X_nameDef} of {FACTION} has come to the colony with a pack full of songs and a head full of lies, the best kind. {X_nameDef} would like a meal and a place to sleep, and will pay in stories tonight.</li>
+          <li>[tale] {X_nameDef} of {FACTION}, who tells stories for a living, has come to spend the night. {X_nameDef} has a new favourite, picked up on the road, about this very colony: "{TALE}" Tonight, {X_nameDef} promises, everyone gets the long version.</li>
           <li>[!lowtech,notale] {X_nameDef} of {FACTION}, a travelling storyteller with a battered instrument and a hundred stories, is stopping for the night. Anyone who gathers round this evening is in for a treat.</li>
         </texts>
         <lines>
@@ -73,7 +75,7 @@
         <lines>
           <li>Rest well.</li>
           <li>We never forgot you.</li>
-          <li>Thank you for keeping them.</li>
+          <li>Thank you for looking after them.</li>
         </lines>
       </li>
     </modExtensions>
@@ -91,13 +93,15 @@
         <group>Visitors</group>
         <ages>18~70</ages>
         <count>2~4</count>
-        <stayHours>10~16</stayHours>
+        <stayHours>12~18</stayHours>
+        <answerDays>0.4</answerDays>
         <titles>
           <li>Hungry pilgrims</li>
         </titles>
         <texts>
           <li>[lowtech] A small band of pilgrims of {FACTION}, footsore and thin, is walking up to the colony. Their road is long and their bags are empty, and they ask, very politely, for a meal before they go on.</li>
           <li>[!lowtech] A handful of travellers of {FACTION} have stopped at the edge of the colony, on their way somewhere better, or so they hope. Their rations ran out three days ago. They ask, very politely, for a meal.</li>
+          <li>Travellers of {FACTION}, on the long walk to somewhere holy to them, have stopped by the colony's gate. They carry very little and have eaten less. Could the colony spare a meal? They'll pray for it, if that helps.</li>
           <li>[winter] Pilgrims of {FACTION} have come in out of the cold, half frozen and wholly hungry, asking for a meal and a little warmth before they go on.</li>
         </texts>
         <defaultOption>1</defaultOption>
@@ -139,14 +143,16 @@
       <li Class="ColonyCouncil.HappeningExtension">
         <group>Visitors</group>
         <ages>25~70</ages>
-        <stayHours>18~26</stayHours>
+        <stayHours>20~28</stayHours>
+        <answerDays>0.6</answerDays>
         <journal>Council_Journal_Evt_Scholar</journal>
         <titles>
           <li>[lowtech] A wandering scholar</li>
           <li>[!lowtech] A travelling engineer</li>
         </titles>
         <texts>
-          <li>[lowtech] {X_nameDef}, a wandering scholar of {FACTION} with ink-stained fingers and a satchel of books, asks for a bed for the night. On hearing that the colony is working on {TALE}, {X_nameDef}'s eyes light up: {X_pronoun} has thoughts on that. Many thoughts.</li>
+          <li>[tribal] {X_nameDef}, a lore-keeper of {FACTION} who carries a whole people's history in {X_possessive} head, asks for a place by the fire tonight. On hearing that the colony is working on {TALE}, {X_nameDef} smiles: there's an old story about that, and it might help.</li>
+          <li>[lowtech,!tribal] {X_nameDef}, a wandering scholar of {FACTION} with ink-stained fingers and a satchel of books, asks for a bed for the night. On hearing that the colony is working on {TALE}, {X_nameDef}'s eyes light up: {X_pronoun} has thoughts on that. Many thoughts.</li>
           <li>[!lowtech] {X_nameDef}, a travelling engineer of {FACTION}, asks for a bunk for the night. Someone mentions the colony's work on {TALE}, and {X_nameDef} immediately asks to see the notes. "Oh, no, no, no," {X_nameDef} says, smiling. "Let me show you."</li>
         </texts>
         <defaultOption>1</defaultOption>
@@ -192,14 +198,14 @@
           <li>A would-be apprentice</li>
         </titles>
         <texts>
-          <li>A young traveller named {X_nameDef} has come a long way with one question: is this where {A_nameDef} lives? Word of {A_nameDef}'s {SKILL} has spread further than anyone here knew, and {X_nameDef} wants to learn from the best. {X_nameDef} asks to stay as {A_nameDef}'s apprentice.</li>
-          <li>[lowtech] {X_nameDef}, barely more than a child, turns up at the edge of the colony asking for the master of {SKILL} the whole valley talks about. That's {A_nameDef}, apparently. {X_nameDef} will work for board and lessons, and asks to stay.</li>
+          <li>A young traveller named {X_nameDef} has come a long way with one question: is this where {A_nameDef} lives? Word of {A_nameDef}'s skill at {SKILL} has spread further than anyone here knew, and {X_nameDef} wants to learn from the best. {X_nameDef} asks to stay as {A_nameDef}'s apprentice.</li>
+          <li>[lowtech] {X_nameDef}, barely grown, turns up by the gate asking for the master of {SKILL} the whole valley talks about. That's {A_nameDef}, apparently. {X_nameDef} will work for board and lessons, and asks to stay.</li>
         </texts>
         <defaultOption>1</defaultOption>
         <options>
           <li>
             <label>Take {X_objective} on</label>
-            <outcome>{A_nameDef} has a student. {A_nameDef} pretends to grumble about it, and fails.</outcome>
+            <outcome>{A_nameDef} has a student, and pretends to grumble about it. Nobody is fooled.</outcome>
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_Join" />
               <li Class="ColonyCouncil.DilemmaEffect_Mentor" />
@@ -234,7 +240,7 @@
           <li>A quiet stranger</li>
         </titles>
         <texts>
-          <li>A stranger called {X_nameDef} has been waiting at the edge of the colony since dawn, and asks to stay. {X_nameDef} answers every question politely and none of them completely. Where from? "Far." Why here? "Why not." {A_nameDef} thinks {X_pronoun} is running from something. {A_nameDef} also thinks {X_pronoun} looks like a hard worker.</li>
+          <li>A stranger called {X_nameDef} has been waiting at the edge of the colony since dawn, and asks to stay. {X_nameDef} answers every question politely and none of them completely. Where from? "Far." Why here? "Why not?" {A_nameDef} thinks {X_pronoun} is running from something. {A_nameDef} also thinks {X_pronoun} looks like a hard worker.</li>
           <li>[lowtech] {X_nameDef} came out of the woods with good boots, empty hands and a name that might be real. {X_nameDef} asks to stay, and wants to know very little about anyone, and to be known even less. {A_nameDef} found {X_objective} first.</li>
           <li>[!lowtech] {X_nameDef} walked in off the road with a good coat, no papers and a story that changes slightly every time it's told. {X_nameDef} asks to stay. {A_nameDef} found {X_objective} first, and thinks there's more to the story.</li>
         </texts>
@@ -302,6 +308,7 @@
               <li Class="ColonyCouncil.DilemmaEffect_Join" />
               <li Class="ColonyCouncil.DilemmaEffect_EventGoodwill"><amount>-20</amount></li>
               <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_Evt_KeptChild</thought><onlyTrait><li>Kind</li></onlyTrait></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>X</target><thought>Council_Evt_TakenFromFamily</thought></li>
             </effects>
             <ways><mercy>-6</mercy></ways>
           </li>

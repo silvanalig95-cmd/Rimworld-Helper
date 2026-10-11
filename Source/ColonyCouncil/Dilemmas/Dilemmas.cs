@@ -231,7 +231,7 @@ namespace ColonyCouncil
                 (faction != null ? faction.Name : Strangers.FactionOf(stranger)?.Name ?? "").Named("FACTION"),
                 (stranger != null ? stranger.Named("X") : "?".Named("X")),
                 (pet != null ? pet.Named("PET") : (a != null ? a.Named("PET") : "?".Named("PET"))),
-                (skill != null ? skill.label : "").Named("SKILL"),
+                SkillText.Named("SKILL"),
                 (CouncilGameComponent.Instance?.aspirations.Active(a)?.Goal ?? "").Named("GOAL"),
                 (CouncilGameComponent.Instance?.secrets.Of(a)?.def.label ?? "").Named("SECRET"),
                 (CouncilGameComponent.Instance?.quirks.Of(a).FirstOrDefault()?.Label ?? "").Named("QUIRK")
@@ -239,6 +239,9 @@ namespace ColonyCouncil
             AddArgs(args);
             return s.Formatted(args.ToArray()).Resolve();
         }
+
+        /// <summary>What {SKILL} says (world events use a noun: "growing" rather than "plants").</summary>
+        public virtual string SkillText => skill?.label ?? "";
 
         /// <summary>More named arguments for the texts (world events add their own).</summary>
         protected virtual void AddArgs(List<NamedArgument> args)
@@ -382,6 +385,8 @@ namespace ColonyCouncil
         public int minDegree = -99;
         public int maxDegree = 99;
         public float chance = 1f;
+        /// <summary>World events: only when the colony actually chose this answer, not when it fell to the default.</summary>
+        public bool onlyIfChosen;
 
         /// <summary>Why the option can't be picked (not enough silver), or null.</summary>
         public virtual string Unavailable(DilemmaContext ctx) => null;

@@ -21,7 +21,10 @@ namespace ColonyCouncil
         {
             ctx.thing = Species(ctx.map).RandomElementByWeightWithFallback(p => p.plant.harvestedThingDef.IsMedicine ? 0.6f : 1f);
             if (ctx.thing == null) return false;
-            var pawns = Colonists(ctx.map);
+            // What's there to pick: "berries", not "berry bush"; medicine plants go by their own name.
+            var crop = ctx.thing.plant.harvestedThingDef;
+            ctx.tale = crop.IsMedicine ? ctx.thing.label : crop.label;
+            var pawns = Colonists(ctx.map).Where(p => !p.DevelopmentalStage.Baby()).ToList();
             ctx.a = pawns.Where(p => p.skills?.GetSkill(SkillDefOf.Plants) is SkillRecord r && People.Passionate(r)).RandomElementWithFallback() ?? pawns.RandomElementWithFallback();
             return ctx.a != null;
         }
@@ -247,9 +250,12 @@ namespace ColonyCouncil
 
         protected override bool Begin(HappeningContext ctx, HappeningExtension ext)
         {
-            if (ctx.variant == 1 && ctx.a != null) CouncilGameComponent.GiveThought(ctx.a, CouncilDefOf.Council_Evt_PetCaughtVermin, ctx.pet);
+            // Only the animal's own person takes the credit.
+            if (ctx.variant == 1 && ctx.a != null && PetTracker.PersonOf(ctx.pet) == ctx.a) CouncilGameComponent.GiveThought(ctx.a, CouncilDefOf.Council_Evt_PetCaughtVermin, ctx.pet);
             return true;
         }
+
+        protected override LetterDef LetterFor(HappeningContext ctx, HappeningExtension ext) => ctx.variant == 1 ? LetterDefOf.PositiveEvent : base.LetterFor(ctx, ext);
 
         protected override void AddTags(HappeningContext ctx, HashSet<string> tags) => tags.Add(ctx.variant == 1 ? "mouser" : "loss");
 

@@ -306,6 +306,7 @@ var dynamic = new Dictionary<string, string[]>
     ["CC_Nemesis_Deed_"] = new[] { "downed", "maimed", "killed" },
     ["CC_Way_"] = new[] { "Mercy_Pos", "Mercy_Neg", "Generosity_Pos", "Generosity_Neg", "Tradition_Pos", "Tradition_Neg", "Openness_Pos", "Openness_Neg", "Toil_Pos", "Toil_Neg" },
     ["CC_Ways_Meaning_"] = new[] { "Mercy_Pos", "Mercy_Neg", "Generosity_Pos", "Generosity_Neg", "Tradition_Pos", "Tradition_Neg", "Openness_Pos", "Openness_Neg", "Toil_Pos", "Toil_Neg" },
+    ["CC_SkillNoun_"] = new[] { "Shooting", "Melee", "Construction", "Mining", "Cooking", "Plants", "Animals", "Crafting", "Artistic", "Medicine", "Social", "Intellectual" },
     ["CC_Slow_Level_"] = new[] { "1", "2", "1_Tip", "2_Tip" },
     ["CC_People_Sort_"] = new[] { "Name", "Trust", "Goal", "Mood" },
     ["CC_MsgLevel_"] = new[] { "Everything", "Notable", "LettersOnly" },

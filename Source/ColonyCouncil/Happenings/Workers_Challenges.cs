@@ -41,6 +41,7 @@ namespace ColonyCouncil
             if (pick.p == null) return false;
             ctx.a = pick.p;
             ctx.skill = pick.s;
+            ctx.contest = true;
             ctx.faction = Arrivals.Friendly();
             if (ctx.faction == null) return false;
             int level = ctx.a.skills.GetSkill(ctx.skill).Level;
@@ -74,7 +75,7 @@ namespace ColonyCouncil
         {
             int ours = ctx.a?.skills?.GetSkill(ctx.skill)?.Level ?? 0;
             int theirs = ctx.stranger?.skills?.GetSkill(ctx.skill)?.Level ?? 0;
-            return "CC_Evt_ChampionOdds".Translate(ctx.a.Named("A"), ctx.stranger.Named("X"), ours, theirs, ctx.skill.label).Resolve();
+            return "CC_Evt_ChampionOdds".Translate(ctx.a.Named("A"), ctx.stranger.Named("X"), ours, theirs, ctx.SkillText).Resolve();
         }
 
         /// <summary>The contest, a couple of hours after the colony accepted (if both are still around).</summary>
@@ -99,9 +100,10 @@ namespace ColonyCouncil
             int al = a.skills.GetSkill(v.skill)?.Level ?? 0;
             int xl = x.skills?.GetSkill(v.skill)?.Level ?? 0;
             bool won = Rand.Chance(Mathf.Clamp(0.5f + (al - xl) * 0.07f, 0.1f, 0.9f));
-            var ctx = new HappeningContext { incident = v.incident, map = v.map, a = a, stranger = x, skill = v.skill, count = v.stake };
+            var ctx = new HappeningContext { incident = v.incident, map = v.map, a = a, stranger = x, skill = v.skill, count = v.stake, contest = true };
+            string what = ctx.SkillText;
             var ext = v.Ext;
-            using var _cause = Causes.Push("CC_Cause_Challenge".Translate(v.skill.label).Resolve());
+            using var _cause = Causes.Push("CC_Cause_Challenge".Translate(what).Resolve());
             Arrivals.Say(a, (won ? "CC_Evt_Contest_Won" : "CC_Evt_Contest_Lost").Translate().Resolve());
             Arrivals.Say(x, (won ? "CC_Evt_Contest_Lost" : "CC_Evt_Contest_Won").Translate().Resolve());
             if (won)
@@ -122,12 +124,14 @@ namespace ColonyCouncil
                 if (v.stake > 0) new DilemmaEffect_Consume { what = "silver", count = v.stake }.Apply(ctx);
                 a.skills.Learn(v.skill, 900f, true);
             }
-            string text = (won ? (v.stake > 0 ? "CC_Evt_ContestWonStake" : "CC_Evt_ContestWon") : (v.stake > 0 ? "CC_Evt_ContestLostStake" : "CC_Evt_ContestLost"))
-                .Translate(a.Named("A"), x.Named("X"), v.skill.label, v.stake).Resolve();
+            string key = won ? (v.stake > 0 ? "CC_Evt_ContestWonStake" : "CC_Evt_ContestWon") : (v.stake > 0 ? "CC_Evt_ContestLostStake" : "CC_Evt_ContestLost");
+            if (Rand.Bool) key += "B";
+            string text = key
+                .Translate(a.Named("A"), x.Named("X"), what, v.stake).Resolve();
             Find.LetterStack.ReceiveLetter((won ? "CC_Evt_ContestWonTitle" : "CC_Evt_ContestLostTitle").Translate(a.Named("A")).Resolve(), text,
                 won ? LetterDefOf.PositiveEvent : LetterDefOf.NeutralEvent, new LookTargets(a));
             comp.AddChronicle(new ChronicleEntry(ChronicleKind.World, text, a));
-            comp.journals.Write(a, won ? "Council_Journal_Evt_ContestWon" : "Council_Journal_Evt_ContestLost", null, x.Named("X"), v.skill.label.Named("SKILL"));
+            comp.journals.Write(a, won ? "Council_Journal_Evt_ContestWon" : "Council_Journal_Evt_ContestLost", null, x.Named("X"), what.Named("SKILL"));
             Arrivals.SendAway(new[] { x });
             return false;
         }
@@ -164,6 +168,8 @@ namespace ColonyCouncil
     {
         private static IEnumerable<PawnKindDef> Kinds(Map map) =>
             map.Biome.AllWildAnimals.Where(k => k?.race?.race != null && k.RaceProps.Animal && !k.RaceProps.Insect && !k.RaceProps.Dryad
+                                                // Never a predator: a legend that hunts people would be a raid, not a challenge.
+                                                && !k.RaceProps.predator
                                                 && k.RaceProps.baseBodySize >= 1f && k.combatPower >= 70f
                                                 && map.mapTemperature.SeasonAndOutdoorTemperatureAcceptableFor(k.race, 0f));
 

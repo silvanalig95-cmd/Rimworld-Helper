@@ -120,10 +120,14 @@ namespace ColonyCouncil
         /// <summary>X is a world pawn until the colony answers (joins at the edge of the map).</summary>
         public bool xWaiting;
         public int variant;
+        /// <summary>{SKILL} names a contest ("marksmanship", "wrestling") rather than a craft.</summary>
+        public bool contest;
 
         public HappeningExtension Ext => incident?.GetModExtension<HappeningExtension>();
 
         public IncidentWorker_Happening Worker => incident?.Worker as IncidentWorker_Happening;
+
+        public override string SkillText => HappeningText.SkillNoun(skill, contest);
 
         protected override void AddArgs(List<NamedArgument> args)
         {
@@ -148,6 +152,7 @@ namespace ColonyCouncil
             Scribe_References.Look(ref place, "place");
             Scribe_Values.Look(ref xWaiting, "xWaiting");
             Scribe_Values.Look(ref variant, "variant");
+            Scribe_Values.Look(ref contest, "contest");
             if (Scribe.mode == LoadSaveMode.PostLoadInit)
             {
                 if (group == null) group = new List<Pawn>();
@@ -444,11 +449,14 @@ namespace ColonyCouncil
                 using var _cause = Causes.Push(ctx.cause);
                 bool risk = option.riskChance > 0f && Rand.Chance(worker.RiskChance(ctx, i, option.riskChance));
                 if (!risk || !option.riskReplaces)
-                    foreach (var e in option.effects) Safe(e, ctx);
+                    foreach (var e in option.effects)
+                        if (!byDefault || !e.onlyIfChosen) Safe(e, ctx);
                 string outcome = option.outcome;
                 if (risk)
                 {
-                    if (option.riskEffects != null) foreach (var e in option.riskEffects) Safe(e, ctx);
+                    if (option.riskEffects != null)
+                        foreach (var e in option.riskEffects)
+                            if (!byDefault || !e.onlyIfChosen) Safe(e, ctx);
                     if (!option.riskOutcome.NullOrEmpty()) outcome = option.riskOutcome;
                 }
                 outcome = worker.Resolved(ctx, i, risk, byDefault, outcome);
@@ -636,6 +644,18 @@ namespace ColonyCouncil
                 grudges.RemoveAll(g => g == null || g.faction == null);
                 visits.RemoveAll(v => v == null || v.incident == null || v.map == null);
             }
+        }
+    }
+
+    public static class HappeningText
+    {
+        /// <summary>A skill as a noun ("growing", "animal handling"); for contests, what the contest is ("marksmanship", "riddles").</summary>
+        public static string SkillNoun(SkillDef skill, bool contest = false)
+        {
+            if (skill == null) return "";
+            if (contest && ("CC_SkillContest_" + skill.defName).CanTranslate()) return ("CC_SkillContest_" + skill.defName).Translate().Resolve();
+            if (("CC_SkillNoun_" + skill.defName).CanTranslate()) return ("CC_SkillNoun_" + skill.defName).Translate().Resolve();
+            return skill.label;
         }
     }
 }

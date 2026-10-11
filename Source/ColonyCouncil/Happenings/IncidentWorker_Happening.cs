@@ -57,6 +57,9 @@ namespace ColonyCouncil
             && !GenHostility.AnyHostileActiveThreatToPlayer(map, false, false)
             && Now - map.storyState.LastThreatBigTick > GenDate.TicksPerDay * 2;
 
+        /// <summary>Fights at all: the setting is on and the storyteller sends threats (whatever is happening right now).</summary>
+        public static bool FightsPossible => S.worldEvents && S.worldEventBattles && Find.Storyteller.difficulty.threatScale > 0.01f;
+
         /// <summary>A cheap check that the event could find its people now (nobody is made or spawned).</summary>
         protected virtual bool CanHappen(Map map, HappeningExtension ext) =>
             ext.colonist == null || Colonists(map).Any(p => ext.colonist.Allows(p, null));
@@ -132,7 +135,15 @@ namespace ColonyCouncil
             if (lines.NullOrEmpty()) return null;
             var tags = new HashSet<string>();
             Flavor.AddEraTags(tags);
-            tags.Add(GenLocalDate.Season(ctx.map).ToString().ToLowerInvariant());
+            switch (GenLocalDate.Season(ctx.map))
+            {
+                case Season.Spring: tags.Add("spring"); break;
+                case Season.Summer:
+                case Season.PermanentSummer: tags.Add("summer"); break;
+                case Season.Fall: tags.Add("fall"); break;
+                case Season.Winter:
+                case Season.PermanentWinter: tags.Add("winter"); break;
+            }
             AddTags(ctx, tags);
             return Flavor.Pick(lines, tags) ?? Flavor.PickText(lines);
         }
@@ -163,7 +174,7 @@ namespace ColonyCouncil
             }
             if (ext.options.NullOrEmpty())
             {
-                Find.LetterStack.ReceiveLetter(label, body, ext.letter ?? (ext.threat ? LetterDefOf.ThreatSmall : LetterDefOf.NeutralEvent), Look(ctx));
+                Find.LetterStack.ReceiveLetter(label, body, LetterFor(ctx, ext), Look(ctx));
                 Happened(ctx, ext, label);
                 return;
             }
@@ -176,6 +187,9 @@ namespace ColonyCouncil
             Find.LetterStack.ReceiveLetter(letter);
             Asked(ctx, ext);
         }
+
+        protected virtual LetterDef LetterFor(HappeningContext ctx, HappeningExtension ext) =>
+            ext.letter ?? (ext.threat ? LetterDefOf.ThreatSmall : LetterDefOf.NeutralEvent);
 
         /// <summary>A plain event happened: the chronicle, A's journal and the colony's character.</summary>
         protected virtual void Happened(HappeningContext ctx, HappeningExtension ext, string label)
@@ -204,7 +218,7 @@ namespace ColonyCouncil
                 (ctx.beast ?? "").Named("BEAST"),
                 (ctx.faction?.Name ?? "").Named("FACTION"),
                 (ctx.enemy?.Name ?? "").Named("ENEMY"),
-                (ctx.skill?.label ?? "").Named("SKILL"),
+                ctx.SkillText.Named("SKILL"),
                 (ctx.tale ?? "").Named("TALE")
             };
             CouncilGameComponent.Instance?.journals.WriteTagged(ctx.a, ext.journal, tags, null, args.ToArray());
@@ -227,6 +241,9 @@ namespace ColonyCouncil
         public virtual float RiskChance(HappeningContext ctx, int option, float chance)
         {
             var ext = Ext;
+            // A risk that is a fight can't happen when fights are off: then it's simply safe.
+            var opt = ext != null && option >= 0 && option < ext.options.Count ? ext.options[option] : null;
+            if (opt?.riskEffects != null && opt.riskEffects.Any(e => e is DilemmaEffect_RaidLater) && !FightsPossible) return 0f;
             var r = ext?.riskSkill != null && (ext.riskSkillOption < 0 || ext.riskSkillOption == option) ? ctx.a?.skills?.GetSkill(ext.riskSkill) : null;
             if (r != null && !r.TotallyDisabled) chance -= r.Level * 0.035f;
             return Mathf.Clamp(chance, 0.05f, 0.95f);

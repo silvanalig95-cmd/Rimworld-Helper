@@ -24,7 +24,7 @@
           <li>{X_nameDef} returns</li>
         </titles>
         <texts>
-          <li>[victim] {X_nameDef} is back. The one who left {A_nameDef} bleeding in the dirt is riding at the head of a war party of {ENEMY}, and this time {X_nameDef} means to finish it.</li>
+          <li>[victim] {X_nameDef} is back. The one who left {A_nameDef} bleeding in the dirt is marching at the head of a war party of {ENEMY}, and this time {X_nameDef} means to finish it.</li>
           <li>[killed] {X_nameDef}, who killed {DEAD}, has come back with {ENEMY} behind {X_objective}. The colony remembers. So, it seems, does {X_nameDef}.</li>
           <li>[maimed] {X_nameDef}, who maimed {DEAD}, is leading a war party of {ENEMY} against the colony. Whatever {X_nameDef} wants, it isn't peace.</li>
           <li>{X_nameDef} is back, leading a war party of {ENEMY}. Last time {X_nameDef} got away. Nobody here intends to let that happen twice.</li>
@@ -79,7 +79,8 @@
         </titles>
         <texts>
           <li>[lowtech] A young soldier in the colours of {ENEMY} stumbles up to the colony with empty hands raised. {X_nameDef} has deserted, and {ENEMY} hang deserters. {X_nameDef} begs to be taken in. {A_nameDef} found {X_objective} first, and thinks the fear is real.</li>
-          <li>[!lowtech] A figure in {ENEMY} gear walks up to the colony with hands raised and weapon slung. {X_nameDef} has had enough of {ENEMY}, and {ENEMY} are not the forgiving kind. {X_nameDef} asks for shelter. {A_nameDef} found {X_objective} first, and believes the story.</li>
+          <li>[!lowtech] A figure in {ENEMY} gear walks up to the colony with hands raised and weapon slung. {X_nameDef} has had enough of {ENEMY}, and they are not the forgiving kind. {X_nameDef} asks for shelter. {A_nameDef} found {X_objective} first, and believes the story.</li>
+          <li>{X_nameDef}, who fought for {ENEMY} until three days ago, is hiding in the scrub near the colony and has asked {A_nameDef} for help. Deserters don't live long among {ENEMY}. {X_nameDef} asks for shelter, and swears {X_pronoun} is done with fighting for anyone but friends.</li>
         </texts>
         <defaultOption>1</defaultOption>
         <options>
