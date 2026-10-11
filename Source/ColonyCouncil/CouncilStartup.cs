@@ -24,20 +24,22 @@ namespace ColonyCouncil
         }
 
         /// <summary>
-        /// Adds the Story tab to every humanlike race (vanilla humans and modded races alike), in code rather than by
+        /// Adds the Mood and Story tabs to every humanlike race (vanilla humans and modded races alike), in code rather than by
         /// an XML patch, so it survives other mods rewriting a race's tabs and covers races added by mods.
         /// </summary>
         private static void AddStoryTab()
         {
-            var tabType = typeof(ITab_Pawn_Story);
-            foreach (var def in DefDatabase<ThingDef>.AllDefsListForReading)
+            foreach (var tabType in new[] { typeof(ITab_Pawn_Mood), typeof(ITab_Pawn_Story) })
             {
-                if (def.race == null || !def.race.Humanlike) continue;
-                if (def.inspectorTabs == null) def.inspectorTabs = new List<System.Type>();
-                if (!def.inspectorTabs.Contains(tabType)) def.inspectorTabs.Add(tabType);
-                if (def.inspectorTabsResolved == null) def.inspectorTabsResolved = new List<InspectTabBase>();
-                if (!def.inspectorTabsResolved.Any(t => t is ITab_Pawn_Story))
-                    def.inspectorTabsResolved.Add(InspectTabManager.GetSharedInstance(tabType));
+                foreach (var def in DefDatabase<ThingDef>.AllDefsListForReading)
+                {
+                    if (def.race == null || !def.race.Humanlike) continue;
+                    if (def.inspectorTabs == null) def.inspectorTabs = new List<System.Type>();
+                    if (!def.inspectorTabs.Contains(tabType)) def.inspectorTabs.Add(tabType);
+                    if (def.inspectorTabsResolved == null) def.inspectorTabsResolved = new List<InspectTabBase>();
+                    if (!def.inspectorTabsResolved.Any(t => t.GetType() == tabType))
+                        def.inspectorTabsResolved.Add(InspectTabManager.GetSharedInstance(tabType));
+                }
             }
         }
 

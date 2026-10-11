@@ -354,6 +354,15 @@ Every mood Rimfolk gives says what caused it, under the description in its toolt
 didn't), which council decision, which decree and how long it has left, which visitor, secret, nemesis or
 moment. The trust mood lists what moved it lately.
 
+## Mood tab and Moods page: what to do about it
+Select a colonist and open their **Mood** tab: every mood weighing on them or lifting them, with its size, why it's
+there, when it fades, which mod it comes from, and **what you can do about it** ("Build a table with chairs near
+where they eat"). The mood bar shows where they are, where they're heading and the lines where breaks begin.
+The council window's **Moods** page (Colony section) adds it up for the whole colony: what weighs on everyone,
+who feels it, who is closest to breaking, and how much comes from the base game, Rimfolk and each of your mods.
+Buttons lead straight to the advisor's matching warning, the council page that deals with it, or an Almanac page.
+Hints cover the base game, the DLCs and Rimfolk; moods from other mods get general advice and their mod's name.
+
 ## Slow speeds
 Two speeds slower than normal, **½×** and **¼×**, for planning without pausing: the colony keeps living, gently.
 Small buttons sit next to the time controls (drag them by their grip to put them wherever you like; on a

@@ -68,6 +68,12 @@ namespace ColonyCouncil
         string Cause { get; set; }
     }
 
+    /// <summary>A lasting mood that can say why it's there right now (which decree, which reasons).</summary>
+    public interface IExplainedThought
+    {
+        string Why { get; }
+    }
+
     /// <summary>The mod's memory thoughts: an ordinary memory that remembers why.</summary>
     public class Thought_CouncilMemory : Thought_Memory, ICausedThought
     {

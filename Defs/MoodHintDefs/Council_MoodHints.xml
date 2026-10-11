@@ -1,0 +1,590 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    What to do about a mood (the Mood tab and the council's Moods page). A hint matches by exact ThoughtDef
+    (thoughts), by game class (workers, thoughtClasses; subclasses count), by part of the defName (nameContains,
+    lowercase) or by mod (mods). The best match wins; priority breaks ties. fix: when it hurts. keep: when it helps.
+  -->
+
+  <ColonyCouncil.MoodHintDef>
+    <defName>Council_Mood_Hunger</defName>
+    <workers><li>ThoughtWorker_NeedFood</li></workers>
+    <fix>Make sure they can get to food: meals in stock, food allowed in their area and food policy, and a cook at work. It vanishes as soon as they eat.</fix>
+    <article>Council_Alm_1_01_DailyNutrition</article>
+    <signal>Council_Adv_Food</signal>
+  </ColonyCouncil.MoodHintDef>
+
+  <ColonyCouncil.MoodHintDef>
+    <defName>Council_Mood_Rest</defName>
+    <workers><li>ThoughtWorker_NeedRest</li></workers>
+    <fix>Give them enough sleep in their schedule and a bed not too far from where they work. Tired colonists also work slower.</fix>
+    <article>Council_Alm_5_03_Sleep</article>
+    <signal>Council_Adv_Beds</signal>
+  </ColonyCouncil.MoodHintDef>
+
+  <ColonyCouncil.MoodHintDef>
+    <defName>Council_Mood_Recreation</defName>
+    <workers><li>ThoughtWorker_NeedJoy</li></workers>
+    <fix>Give them free time in their schedule and several kinds of recreation: games, music, a garden, socializing. Doing the same thing over and over gets dull.</fix>
+    <keep>Keep recreation varied and give them free time every day.</keep>
+    <article>Council_Alm_2_13_Recreation</article>
+    <signal>Council_Adv_Recreation</signal>
+  </ColonyCouncil.MoodHintDef>
+
+  <ColonyCouncil.MoodHintDef>
+    <defName>Council_Mood_Beauty</defName>
+    <workers><li>ThoughtWorker_NeedBeauty</li></workers>
+    <fix>Clean away blood, dirt and debris where they spend their time, and add art, flowers, plants and nicer floors.</fix>
+    <keep>Keep the places they use clean and pretty: art, plants and good floors.</keep>
+    <article>Council_Alm_2_06_BeautyNeed</article>
+  </ColonyCouncil.MoodHintDef>
+
+  <ColonyCouncil.MoodHintDef>
+    <defName>Council_Mood_Comfort</defName>
+    <workers><li>ThoughtWorker_NeedComfort</li></workers>
+    <fix>Give them comfortable places to sit and sleep: chairs or armchairs at tables and workbenches, and better beds. Higher quality is comfier.</fix>
+    <keep>Comfortable chairs and beds keep this up.</keep>
+    <article>Council_Alm_2_22_CheapUpgrades</article>
+  </ColonyCouncil.MoodHintDef>
+
+  <ColonyCouncil.MoodHintDef>
+    <defName>Council_Mood_Outdoors</defName>
+    <workers><li>ThoughtWorker_NeedOutdoors</li></workers>
+    <fix>Give them a reason to go out: outdoor work, a walk, a garden. Long stretches indoors or underground wear on them.</fix>
+    <article>Council_Alm_2_18_CabinFever</article>
+  </ColonyCouncil.MoodHintDef>
+
+  <ColonyCouncil.MoodHintDef>
+    <defName>Council_Mood_Indoors</defName>
+    <workers><li>ThoughtWorker_NeedIndoors</li><li>ThoughtWorker_IsOutdoorsForUndergrounder</li></workers>
+    <fix>This colonist prefers a roof over their head: give them indoor work and keep them out of the open where you can.</fix>
+  </ColonyCouncil.MoodHintDef>
+
+  <ColonyCouncil.MoodHintDef>
+    <defName>Council_Mood_RoomSize</defName>
+    <workers><li>ThoughtWorker_NeedRoomSize</li></workers>
+    <fix>Cramped: make the rooms where they spend their time bigger, or take out furniture that crowds them.</fix>
+    <article>Council_Alm_2_03_Space</article>
+  </ColonyCouncil.MoodHintDef>
+
+  <ColonyCouncil.MoodHintDef>
+    <defName>Council_Mood_Learning</defName>
+    <workers><li>ThoughtWorker_NeedLearning</li><li>ThoughtWorker_NeedPlay</li></workers>
+    <fix>Children need to learn and play: give them lessons, a school desk or blackboard, toys and someone to play with.</fix>
+    <article>Council_Alm_7_14_RaisingChildren</article>
+  </ColonyCouncil.MoodHintDef>
+
+  <ColonyCouncil.MoodHintDef>
+    <defName>Council_Mood_Dark</defName>
+    <workers><li>ThoughtWorker_Dark</li></workers>
+    <fix>Light the places where they work and walk after dark: torches, braziers, candles or lamps.</fix>
+    <article>Council_Alm_2_17_Light</article>
+    <signal>Council_Adv_Darkness</signal>
+  </ColonyCouncil.MoodHintDef>
+
+  <ColonyCouncil.MoodHintDef>
+    <defName>Council_Mood_Temperature</defName>
+    <workers><li>ThoughtWorker_Hot</li><li>ThoughtWorker_Cold</li></workers>
+    <fix>Heat or cool the places they use: a campfire, hearth or heater in winter, a passive cooler or shade in summer. Warmer or lighter clothes help too.</fix>
+    <article>Council_Alm_2_19_TemperatureComfort</article>
+    <signal>Council_Adv_Temperature</signal>
+  </ColonyCouncil.MoodHintDef>
+
+  <ColonyCouncil.MoodHintDef>
+    <defName>Council_Mood_Rot</defName>
+    <workers><li>ThoughtWorker_RotStink</li><li>ThoughtWorker_RotStinkLingering</li></workers>
+    <fix>Clear away rotting corpses and food. Bury or burn them well away from where people live and work.</fix>
+    <article>Council_Alm_2_20_CorpsesAndFilth</article>
+    <signal>Council_Adv_Corpses</signal>
+  </ColonyCouncil.MoodHintDef>
+
+  <ColonyCouncil.MoodHintDef>
+    <defName>Council_Mood_Unburied</defName>
+    <workers><li>ThoughtWorker_ColonistLeftUnburied</li></workers>
+    <fix>Give the fallen a resting place: dig a grave or build a sarcophagus, and have someone carry them there.</fix>
+    <article>Council_Alm_9_18_Crypt</article>
+    <signal>Council_Adv_Corpses</signal>
+  </ColonyCouncil.MoodHintDef>
+
+  <ColonyCouncil.MoodHintDef>
+    <defName>Council_Mood_Corpses</defName>
+    <thoughts><li>ObservedLayingCorpse</li><li>ObservedLayingRottingCorpse</li></thoughts>
+    <fix>Haul corpses out of sight: a dumping zone or graves away from paths and rooms. It fades in a few days.</fix>
+    <article>Council_Alm_2_20_CorpsesAndFilth</article>
+    <signal>Council_Adv_Corpses</signal>
+  </ColonyCouncil.MoodHintDef>
+
+  <ColonyCouncil.MoodHintDef>
+    <defName>Council_Mood_Wet</defName>
+    <thoughts><li>SoakingWet</li></thoughts>
+    <fix>Roof over the paths they use most, and avoid outdoor work in heavy rain. It passes once they dry off.</fix>
+    <article>Council_Alm_8_15_WetAndBloodyPaths</article>
+  </ColonyCouncil.MoodHintDef>
+
+  <ColonyCouncil.MoodHintDef>
+    <defName>Council_Mood_Event</defName>
+    <workers><li>ThoughtWorker_GameCondition</li><li>ThoughtWorker_PsychicDrone</li><li>ThoughtWorker_ToxicFallout</li><li>ThoughtWorker_NoxiousHaze</li></workers>
+    <fix>Something in the world is pressing on them. It ends when the event does; until then soften it with good meals, recreation and rest.</fix>
+    <article>Council_Alm_3_16_ToxicFallout</article>
+  </ColonyCouncil.MoodHintDef>
+
+  <ColonyCouncil.MoodHintDef>
+    <defName>Council_Mood_Impressive</defName>
+    <workers><li>ThoughtWorker_RoomImpressiveness</li><li>ThoughtWorker_HospitalPatientRoomStats</li></workers>
+    <fix>Make the room more impressive: more space, cleaner, better furniture and some art.</fix>
+    <keep>Keep the room clean and well furnished.</keep>
+    <article>Council_Alm_2_01_Impressiveness</article>
+  </ColonyCouncil.MoodHintDef>
+
+  <ColonyCouncil.MoodHintDef>
+    <defName>Council_Mood_Bedroom</defName>
+    <thoughts><li>SleptInBedroom</li></thoughts>
+    <fix>Improve their bedroom: more space, cleaner, better bed and furniture, some art.</fix>
+    <keep>A good bedroom pays off every night. Keep it clean.</keep>
+    <article>Council_Alm_9_01_Bedroom</article>
+    <signal>Council_Adv_Beds</signal>
+  </ColonyCouncil.MoodHintDef>
+
+  <ColonyCouncil.MoodHintDef>
+    <defName>Council_Mood_Barracks</defName>
+    <thoughts><li>SleptInBarracks</li></thoughts>
+    <fix>Give them a bedroom of their own. Even a small private room beats a shared barracks.</fix>
+    <article>Council_Alm_2_10_BarracksOrBedrooms</article>
+    <signal>Council_Adv_Beds</signal>
+  </ColonyCouncil.MoodHintDef>
+
+  <ColonyCouncil.MoodHintDef>
+    <defName>Council_Mood_SleptRough</defName>
+    <thoughts><li>SleptOutside</li><li>SleptOnGround</li></thoughts>
+    <fix>Give them a bed under a roof, even a simple one.</fix>
+    <article>Council_Alm_9_01_Bedroom</article>
+    <signal>Council_Adv_Beds</signal>
+  </ColonyCouncil.MoodHintDef>
+
+  <ColonyCouncil.MoodHintDef>
+    <defName>Council_Mood_SleptTemp</defName>
+    <thoughts><li>SleptInCold</li><li>SleptInHeat</li></thoughts>
+    <fix>Keep bedrooms at a comfortable temperature: a heater or campfire nearby in winter, a passive cooler in summer.</fix>
+    <article>Council_Alm_2_19_TemperatureComfort</article>
+    <signal>Council_Adv_Temperature</signal>
+  </ColonyCouncil.MoodHintDef>
+
+  <ColonyCouncil.MoodHintDef>
+    <defName>Council_Mood_Disturbed</defName>
+    <thoughts><li>SleepDisturbed</li></thoughts>
+    <fix>Give them a bedroom of their own, and keep busy paths, doors and noisy work away from where people sleep.</fix>
+    <article>Council_Alm_5_03_Sleep</article>
+  </ColonyCouncil.MoodHintDef>
+
+  <ColonyCouncil.MoodHintDef>
+    <defName>Council_Mood_SharedBed</defName>
+    <workers><li>ThoughtWorker_SharedBed</li></workers>
+    <fix>Give each colonist their own bed. Only lovers want to share.</fix>
+    <article>Council_Alm_8_12_SharedBedrooms</article>
+  </ColonyCouncil.MoodHintDef>
+
+  <ColonyCouncil.MoodHintDef>
+    <defName>Council_Mood_Lovers</defName>
+    <workers><li>ThoughtWorker_WantToSleepWithSpouseOrLover</li></workers>
+    <fix>Give the couple a double bed in the same room.</fix>
+    <article>Council_Alm_9_01_Bedroom</article>
+  </ColonyCouncil.MoodHintDef>
+
+  <ColonyCouncil.MoodHintDef>
+    <defName>Council_Mood_Greedy</defName>
+    <workers><li>ThoughtWorker_Greedy</li></workers>
+    <fix>Greedy colonists want an impressive bedroom of their own. Give them the best one, or improve theirs.</fix>
+    <article>Council_Alm_9_01_Bedroom</article>
+  </ColonyCouncil.MoodHintDef>
+
+  <ColonyCouncil.MoodHintDef>
+    <defName>Council_Mood_Jealous</defName>
+    <workers><li>ThoughtWorker_BedroomJealous</li></workers>
+    <fix>Jealous colonists want a bedroom at least as good as anyone else's. Even out the bedrooms, or give them the best.</fix>
+    <article>Council_Alm_9_01_Bedroom</article>
+  </ColonyCouncil.MoodHintDef>
+
+  <ColonyCouncil.MoodHintDef>
+    <defName>Council_Mood_NightOwl</defName>
+    <workers><li>ThoughtWorker_IsDayForNightOwl</li></workers>
+    <fix>Night owls want to be awake at night: set their schedule to sleep during the day.</fix>
+    <keep>Keep their schedule on nights.</keep>
+    <article>Council_Alm_5_02_Schedules</article>
+  </ColonyCouncil.MoodHintDef>
+
+  <ColonyCouncil.MoodHintDef>
+    <defName>Council_Mood_Table</defName>
+    <thoughts><li>AteWithoutTable</li></thoughts>
+    <fix>Build a table with chairs near where they eat: a dining room close to the kitchen and food storage.</fix>
+    <article>Council_Alm_2_11_EatingAtTable</article>
+    <signal>Council_Adv_Dining</signal>
+  </ColonyCouncil.MoodHintDef>
+
+  <ColonyCouncil.MoodHintDef>
+    <defName>Council_Mood_Raw</defName>
+    <thoughts><li>AteRawFood</li><li>AteNutrientPasteMeal</li></thoughts>
+    <fix>Cook proper meals: a cook at a campfire or stove, with raw food left off their food policy.</fix>
+    <article>Council_Alm_1_26_MealMoods</article>
+    <signal>Council_Adv_Kitchen</signal>
+  </ColonyCouncil.MoodHintDef>
+
+  <ColonyCouncil.MoodHintDef>
+    <defName>Council_Mood_Rotten</defName>
+    <thoughts><li>AteRottenFood</li></thoughts>
+    <fix>Keep food cold or eat it fresh, and keep rotting food out of the stockpiles.</fix>
+    <article>Council_Alm_1_28_SpoilageAndDeterioration</article>
+    <signal>Council_Adv_Spoiled</signal>
+  </ColonyCouncil.MoodHintDef>
+
+  <ColonyCouncil.MoodHintDef>
+    <defName>Council_Mood_BadMeat</defName>
+    <thoughts><li>AteCorpse</li><li>AteHumanlikeMeatDirect</li><li>AteHumanlikeMeatAsIngredient</li><li>AteInsectMeatDirect</li><li>AteInsectMeatAsIngredient</li></thoughts>
+    <fix>Check their food policy and the cook's bills: leave out corpses, human meat or insect meat for those who mind.</fix>
+    <article>Council_Alm_1_26_MealMoods</article>
+  </ColonyCouncil.MoodHintDef>
+
+  <ColonyCouncil.MoodHintDef>
+    <defName>Council_Mood_FineMeal</defName>
+    <thoughts><li>AteFineMeal</li><li>AteLavishMeal</li></thoughts>
+    <keep>Keep a good cook making fine or lavish meals.</keep>
+    <article>Council_Alm_1_26_MealMoods</article>
+  </ColonyCouncil.MoodHintDef>
+
+  <ColonyCouncil.MoodHintDef>
+    <defName>Council_Mood_DiningRoom</defName>
+    <thoughts><li>AteInImpressiveDiningRoom</li></thoughts>
+    <fix>Make the dining room more impressive: bigger, cleaner, better tables and chairs, art.</fix>
+    <keep>A fine dining room lifts every meal. Keep it clean.</keep>
+    <article>Council_Alm_9_03_DiningRoom</article>
+  </ColonyCouncil.MoodHintDef>
+
+  <ColonyCouncil.MoodHintDef>
+    <defName>Council_Mood_RecRoom</defName>
+    <thoughts><li>JoyActivityInImpressiveRecRoom</li></thoughts>
+    <fix>Make the recreation room more impressive: more space, cleaner, better furniture, art.</fix>
+    <keep>Keep the recreation room clean and well furnished.</keep>
+    <article>Council_Alm_9_04_RecRoom</article>
+  </ColonyCouncil.MoodHintDef>
+
+  <ColonyCouncil.MoodHintDef>
+    <defName>Council_Mood_Tattered</defName>
+    <workers><li>ThoughtWorker_ApparelDamaged</li></workers>
+    <fix>Replace tattered clothes: set their outfit to drop apparel below about half condition, and keep a tailor busy.</fix>
+  </ColonyCouncil.MoodHintDef>
+
+  <ColonyCouncil.MoodHintDef>
+    <defName>Council_Mood_DeadMan</defName>
+    <workers><li>ThoughtWorker_DeadMansApparel</li></workers>
+    <fix>Set outfits to refuse clothes taken from the dead; burn or sell those clothes.</fix>
+  </ColonyCouncil.MoodHintDef>
+
+  <ColonyCouncil.MoodHintDef>
+    <defName>Council_Mood_HumanLeather</defName>
+    <workers><li>ThoughtWorker_HumanLeatherApparel</li></workers>
+    <fix>Take off clothes made of human leather, unless their beliefs welcome them.</fix>
+  </ColonyCouncil.MoodHintDef>
+
+  <ColonyCouncil.MoodHintDef>
+    <defName>Council_Mood_Naked</defName>
+    <thoughts><li>Naked</li></thoughts>
+    <workers><li>ThoughtWorker_PsychologicallyNude</li></workers>
+    <fix>Give them clothes: check their outfit and make sure there is apparel to wear.</fix>
+  </ColonyCouncil.MoodHintDef>
+
+  <ColonyCouncil.MoodHintDef>
+    <defName>Council_Mood_Pain</defName>
+    <workers><li>ThoughtWorker_Pain</li><li>ThoughtWorker_Precept_Pain</li></workers>
+    <fix>Treat their wounds and let them rest in a medical bed. Healing takes the pain away; some drugs dull it.</fix>
+    <article>Council_Alm_4_05_BleedingAndPain</article>
+    <signal>Council_Adv_Medical</signal>
+  </ColonyCouncil.MoodHintDef>
+
+  <ColonyCouncil.MoodHintDef>
+    <defName>Council_Mood_Sick</defName>
+    <workers><li>ThoughtWorker_Sick</li></workers>
+    <fix>Tend the illness with medicine, and let them rest in a clean, well-lit hospital.</fix>
+    <article>Council_Alm_4_03_HospitalBeds</article>
+    <signal>Council_Adv_Medical</signal>
+  </ColonyCouncil.MoodHintDef>
+
+  <ColonyCouncil.MoodHintDef>
+    <defName>Council_Mood_Hediff</defName>
+    <workers><li>ThoughtWorker_Hediff</li><li>ThoughtWorker_HediffThoughtRandom</li></workers>
+    <fix>This comes from their health: see the Health tab. Treating or curing the condition ends the mood.</fix>
+    <article>Council_Alm_10_HealthQuickReference</article>
+    <priority>-50</priority>
+  </ColonyCouncil.MoodHintDef>
+
+  <ColonyCouncil.MoodHintDef>
+    <defName>Council_Mood_Craving</defName>
+    <workers><li>ThoughtWorker_DrugDesireUnsatisfied</li><li>ThoughtWorker_GeneticChemicalDependency</li></workers>
+    <fix>They crave a drug. Allow a little of it (beer counts) in their drug policy, or wait it out.</fix>
+    <article>Council_Alm_4_18_DrugPolicies</article>
+  </ColonyCouncil.MoodHintDef>
+
+  <ColonyCouncil.MoodHintDef>
+    <defName>Council_Mood_Surgery</defName>
+    <thoughts><li>BotchedMySurgery</li></thoughts>
+    <fix>Let your best doctor operate, in a clean and well-lit operating room. The memory fades.</fix>
+    <article>Council_Alm_4_09_SurgerySuccess</article>
+  </ColonyCouncil.MoodHintDef>
+
+  <ColonyCouncil.MoodHintDef>
+    <defName>Council_Mood_Grief</defName>
+    <thoughts><li>KnowColonistDied</li><li>ColonistLost</li><li>PawnWithGoodOpinionDied</li><li>PawnWithGoodOpinionLost</li><li>WitnessedDeathAlly</li><li>WitnessedDeathFamily</li><li>FailedToRescueRelative</li></thoughts>
+    <fix>Grief takes time. A proper grave or funeral and good moments help; the council's days of mourning decree makes it pass faster.</fix>
+    <article>Council_Alm_C_Decrees</article>
+    <councilTab>Decrees</councilTab>
+    <priority>-10</priority>
+  </ColonyCouncil.MoodHintDef>
+
+  <ColonyCouncil.MoodHintDef>
+    <defName>Council_Mood_DarkDeeds</defName>
+    <thoughts><li>KnowPrisonerDiedInnocent</li><li>KnowGuestExecuted</li><li>KnowColonistExecuted</li><li>ColonistBanished</li><li>ColonistBanishedToDie</li><li>PrisonerBanishedToDie</li><li>KnowPrisonerSold</li><li>KnowColonistOrganHarvested</li><li>ButcheredHumanlikeCorpse</li><li>KnowButcheredHumanlikeCorpse</li></thoughts>
+    <fix>The colony's harsh deeds weigh on them. Do fewer of them, or leave such jobs to those who don't mind. It fades.</fix>
+    <article>Council_Alm_5_08_PrisonerFates</article>
+  </ColonyCouncil.MoodHintDef>
+
+  <ColonyCouncil.MoodHintDef>
+    <defName>Council_Mood_Animals</defName>
+    <thoughts><li>BondedAnimalBanished</li><li>BondedAnimalReleased</li><li>SoldMyBondedAnimalMood</li></thoughts>
+    <fix>Keep bonded animals in the colony: selling or releasing them hurts their person. It fades.</fix>
+  </ColonyCouncil.MoodHintDef>
+
+  <ColonyCouncil.MoodHintDef>
+    <defName>Council_Mood_Fight</defName>
+    <thoughts><li>HadAngeringFight</li><li>Insulted</li><li>HarmedMe</li></thoughts>
+    <fix>Keep the two apart for a while: different rooms, work and schedules. It fades.</fix>
+    <councilTab>Bonds</councilTab>
+  </ColonyCouncil.MoodHintDef>
+
+  <ColonyCouncil.MoodHintDef>
+    <defName>Council_Mood_Heartbreak</defName>
+    <thoughts><li>RebuffedMyRomanceAttempt</li><li>BrokeUpWithMe</li><li>CheatedOnMe</li><li>DivorcedMe</li><li>RejectedMyProposalMood</li><li>FailedRomanceAttemptOnMeLowOpinionMood</li></thoughts>
+    <fix>Heartbreak fades with time. Keeping the two apart for a while helps.</fix>
+    <councilTab>Bonds</councilTab>
+  </ColonyCouncil.MoodHintDef>
+
+  <ColonyCouncil.MoodHintDef>
+    <defName>Council_Mood_Together</defName>
+    <thoughts><li>AttendedParty</li><li>AttendedWedding</li><li>AttendedConcert</li><li>GotMarried</li><li>HoneymoonPhase</li><li>GotSomeLovin</li><li>Nuzzled</li><li>Catharsis</li></thoughts>
+    <keep>Moments like this lift the colony. A party now and then helps everyone.</keep>
+  </ColonyCouncil.MoodHintDef>
+
+  <ColonyCouncil.MoodHintDef>
+    <defName>Council_Mood_NewColony</defName>
+    <thoughts><li>NewColonyOptimism</li><li>NewColonyHope</li></thoughts>
+    <keep>The fresh-start glow fades in a few weeks. Get beds, a dining table and recreation in place before it does.</keep>
+    <article>Council_Alm_Basics_FirstSeason</article>
+  </ColonyCouncil.MoodHintDef>
+
+  <ColonyCouncil.MoodHintDef>
+    <defName>Council_Mood_Children</defName>
+    <workers><li>ThoughtWorker_MyChildSad</li><li>ThoughtWorker_MyChildrenSad</li><li>ThoughtWorker_YoungstersSad</li><li>ThoughtWorker_BabySick</li></workers>
+    <fix>Their child is unhappy or unwell. Look after the child's mood and health, and theirs will follow.</fix>
+    <article>Council_Alm_7_14_RaisingChildren</article>
+  </ColonyCouncil.MoodHintDef>
+
+  <ColonyCouncil.MoodHintDef>
+    <defName>Council_Mood_CryingBaby</defName>
+    <thoughts><li>CryingBaby</li><li>MyCryingBaby</li></thoughts>
+    <fix>Feed and soothe the baby, and give babies a nursery away from the bedrooms.</fix>
+    <article>Council_Alm_9_21_Nursery</article>
+  </ColonyCouncil.MoodHintDef>
+
+  <ColonyCouncil.MoodHintDef>
+    <defName>Council_Mood_Expectations</defName>
+    <workers><li>ThoughtWorker_Expectations</li><li>ThoughtWorker_ExpectationsSlave</li></workers>
+    <keep>Low expectations make them easy to please while the colony is poor. This bonus shrinks as the colony grows richer.</keep>
+    <article>Council_Alm_2_14_Expectations</article>
+    <signal>Council_Adv_Expectations</signal>
+  </ColonyCouncil.MoodHintDef>
+
+  <ColonyCouncil.MoodHintDef>
+    <defName>Council_Mood_Passion</defName>
+    <workers><li>ThoughtWorker_PassionateWork</li></workers>
+    <keep>They love this work. Keep it high on their work priorities.</keep>
+    <article>Council_Alm_5_01_WorkPriorities</article>
+  </ColonyCouncil.MoodHintDef>
+
+  <ColonyCouncil.MoodHintDef>
+    <defName>Council_Mood_RoyalRooms</defName>
+    <workers><li>ThoughtWorker_BedroomRequirementsNotMet</li><li>ThoughtWorker_NoPersonalBedroom</li></workers>
+    <fix>Their title demands a better bedroom. Read their Royalty tab for what is missing.</fix>
+    <article>Council_Alm_7_03_NobleBedrooms</article>
+  </ColonyCouncil.MoodHintDef>
+
+  <ColonyCouncil.MoodHintDef>
+    <defName>Council_Mood_Throne</defName>
+    <workers><li>ThoughtWorker_ThroneRoomRequirementsNotMet</li><li>ThoughtWorker_NoThroneroom</li></workers>
+    <fix>Their title demands a proper throne room. Read their Royalty tab for what is missing.</fix>
+    <article>Council_Alm_7_02_ThroneRoomRequirements</article>
+  </ColonyCouncil.MoodHintDef>
+
+  <ColonyCouncil.MoodHintDef>
+    <defName>Council_Mood_RoyalApparel</defName>
+    <thoughts><li>AteFoodInappropriateForTitle</li></thoughts>
+    <workers><li>ThoughtWorker_RoyalTitleApparelRequirementNotMet</li><li>ThoughtWorker_RoyalTitleApparelMinQualityNotMet</li></workers>
+    <fix>Their title demands certain clothes and meals. Read their Royalty tab for what is missing.</fix>
+    <article>Council_Alm_7_04_NobleApparelAndMeals</article>
+  </ColonyCouncil.MoodHintDef>
+
+  <ColonyCouncil.MoodHintDef>
+    <defName>Council_Mood_RoyalDecree</defName>
+    <thoughts><li>DecreeUnmet</li></thoughts>
+    <fix>A noble made a demand. Fulfil it while there is time: their Royalty tab says what they want.</fix>
+    <article>Council_Alm_7_01_TitlesAndHonor</article>
+  </ColonyCouncil.MoodHintDef>
+
+  <ColonyCouncil.MoodHintDef>
+    <defName>Council_Mood_Precept</defName>
+    <workers><li>ThoughtWorker_Precept</li><li>ThoughtWorker_Precept_AlwaysActive</li></workers>
+    <fix>This comes from their ideoligion. Honor the belief, or change it when the ideoligion is next reformed.</fix>
+    <keep>Their beliefs approve. Keep honoring them.</keep>
+    <article>Council_Alm_7_10_PreceptsAndRoles</article>
+    <priority>-50</priority>
+  </ColonyCouncil.MoodHintDef>
+
+  <ColonyCouncil.MoodHintDef>
+    <defName>Council_Mood_IdeoBuildings</defName>
+    <thoughts><li>IdeoBuildingMissing</li><li>IdeoBuildingDisrespected</li><li>IdeoRoleEmpty</li><li>IdeoRoleApparelRequirementNotMet</li></thoughts>
+    <fix>Their ideoligion wants something in place: the building it asks for, a role filled, or the role's clothes worn.</fix>
+    <article>Council_Alm_7_10_PreceptsAndRoles</article>
+  </ColonyCouncil.MoodHintDef>
+
+  <ColonyCouncil.MoodHintDef>
+    <defName>Council_Mood_Gibbets</defName>
+    <thoughts><li>ObservedGibbetCage</li><li>ObservedSkullspike</li><li>Skullspike_Disapproved</li></thoughts>
+    <fix>Move gibbet cages and skullspikes away from where they walk, unless their beliefs welcome them.</fix>
+  </ColonyCouncil.MoodHintDef>
+
+  <ColonyCouncil.MoodHintDef>
+    <defName>Council_Mood_KillThirst</defName>
+    <workers><li>ThoughtWorker_KillThirst</li></workers>
+    <fix>Their genes want violence: let them hunt or fight in melee now and then.</fix>
+  </ColonyCouncil.MoodHintDef>
+
+  <ColonyCouncil.MoodHintDef>
+    <defName>Council_Mood_Deathrest</defName>
+    <workers><li>ThoughtWorker_DeathrestExhaustion</li></workers>
+    <fix>Let them deathrest in a deathrest casket.</fix>
+  </ColonyCouncil.MoodHintDef>
+
+  <ColonyCouncil.MoodHintDef>
+    <defName>Council_Mood_RF_Decree</defName>
+    <thoughts><li>Council_Decree_Again</li></thoughts>
+    <thoughtClasses><li>Thought_Decree</li></thoughtClasses>
+    <fix>Repeal the decree in the Decrees tab, or wait for it to end. Repeating it soon makes this worse.</fix>
+    <keep>It lasts while the decree is in force.</keep>
+    <article>Council_Alm_C_Decrees</article>
+    <councilTab>Decrees</councilTab>
+  </ColonyCouncil.MoodHintDef>
+
+  <ColonyCouncil.MoodHintDef>
+    <defName>Council_Mood_RF_Trust</defName>
+    <thoughtClasses><li>Thought_CouncilTrust</li></thoughtClasses>
+    <fix>Trust grows when the council listens: grant or promise their wishes, heed their petitions, answer dilemmas the way they would.</fix>
+    <keep>Keep listening to them: their wishes and petitions matter.</keep>
+    <article>Council_Alm_C_Trust</article>
+    <signal>Council_Adv_Bitter</signal>
+    <councilTab>Wishes</councilTab>
+  </ColonyCouncil.MoodHintDef>
+
+  <ColonyCouncil.MoodHintDef>
+    <defName>Council_Mood_RF_Ways</defName>
+    <thoughtClasses><li>Thought_ColonyWays</li></thoughtClasses>
+    <fix>Their nature clashes with what the colony is known for. Lean the other way in dilemmas and decrees, or give them other reasons to be happy.</fix>
+    <keep>The colony's ways suit them.</keep>
+    <article>Council_Alm_C_Ways</article>
+    <councilTab>Ways</councilTab>
+  </ColonyCouncil.MoodHintDef>
+
+  <ColonyCouncil.MoodHintDef>
+    <defName>Council_Mood_RF_Wish</defName>
+    <nameContains><li>council_wish</li><li>council_promise</li></nameContains>
+    <fix>Look at their wish in the Wishes tab: grant it or promise it before it runs out.</fix>
+    <article>Council_Alm_C_Wishes</article>
+    <councilTab>Wishes</councilTab>
+  </ColonyCouncil.MoodHintDef>
+
+  <ColonyCouncil.MoodHintDef>
+    <defName>Council_Mood_RF_Granted</defName>
+    <nameContains><li>council_granted_</li></nameContains>
+    <keep>A granted wish is remembered for a while. Promised wishes count the most.</keep>
+    <article>Council_Alm_C_Wishes</article>
+    <councilTab>Wishes</councilTab>
+  </ColonyCouncil.MoodHintDef>
+
+  <ColonyCouncil.MoodHintDef>
+    <defName>Council_Mood_RF_Ties</defName>
+    <workers><li>ThoughtWorker_SocialTie</li></workers>
+    <nameContains><li>council_tie_</li><li>council_soc</li></nameContains>
+    <fix>Friends, rivals and mentors: see their bonds. Keep rivals apart and friends together.</fix>
+    <keep>Keep friends working and eating together.</keep>
+    <article>Council_Alm_C_Social</article>
+    <councilTab>Bonds</councilTab>
+  </ColonyCouncil.MoodHintDef>
+
+  <ColonyCouncil.MoodHintDef>
+    <defName>Council_Mood_RF_Secrets</defName>
+    <workers><li>ThoughtWorker_Vendetta</li></workers>
+    <nameContains><li>council_secret</li><li>council_vendetta</li></nameContains>
+    <fix>Secrets and vendettas fade with time, or end when the score is settled.</fix>
+    <article>Council_Alm_C_Secrets</article>
+  </ColonyCouncil.MoodHintDef>
+
+  <ColonyCouncil.MoodHintDef>
+    <defName>Council_Mood_RF_Dreams</defName>
+    <thoughtClasses><li>Thought_Dream</li></thoughtClasses>
+    <nameContains><li>council_dream</li></nameContains>
+    <fix>Only a dream. It fades by evening.</fix>
+    <article>Council_Alm_C_Dreams</article>
+    <councilTab>Dreams</councilTab>
+  </ColonyCouncil.MoodHintDef>
+
+  <ColonyCouncil.MoodHintDef>
+    <defName>Council_Mood_RF_Strangers</defName>
+    <nameContains><li>council_enc</li><li>council_nemesis</li><li>council_pet_</li></nameContains>
+    <fix>A moment with a stranger, a nemesis or an animal. It fades; a nemesis captured or slain lifts it for good.</fix>
+    <article>Council_Alm_C_Strangers</article>
+  </ColonyCouncil.MoodHintDef>
+
+  <ColonyCouncil.MoodHintDef>
+    <defName>Council_Mood_RF_Dilemma</defName>
+    <nameContains><li>council_dlm</li></nameContains>
+    <fix>The council's decision weighs on them. It fades; answering the next dilemma their way helps.</fix>
+    <keep>They approved of the council's decision.</keep>
+    <article>Council_Alm_C_Dilemmas</article>
+    <priority>-20</priority>
+  </ColonyCouncil.MoodHintDef>
+
+  <ColonyCouncil.MoodHintDef>
+    <defName>Council_Mood_RF_Goals</defName>
+    <workers><li>ThoughtWorker_GoalInReach</li></workers>
+    <nameContains><li>council_asp</li><li>council_path</li><li>council_dlmgoal</li></nameContains>
+    <fix>Their life goal: help them toward it, or let it go in its own time.</fix>
+    <article>Council_Alm_C_Goals</article>
+    <councilTab>Roster</councilTab>
+  </ColonyCouncil.MoodHintDef>
+
+  <ColonyCouncil.MoodHintDef>
+    <defName>Council_Mood_RF_Quirk</defName>
+    <workers><li>ThoughtWorker_Quirk</li></workers>
+    <thoughtClasses><li>Thought_Quirk</li></thoughtClasses>
+    <fix>One of their quirks. It comes and goes with what they're doing.</fix>
+  </ColonyCouncil.MoodHintDef>
+
+  <ColonyCouncil.MoodHintDef>
+    <defName>Council_Mood_RF_Heirloom</defName>
+    <workers><li>ThoughtWorker_Heirloom</li></workers>
+    <fix>Their keepsake: keep it safe, or return it if it was lost.</fix>
+  </ColonyCouncil.MoodHintDef>
+
+  <ColonyCouncil.MoodHintDef>
+    <defName>Council_Mood_Mod_Hygiene</defName>
+    <nameContains><li>hygiene</li><li>bladder</li><li>toilet</li><li>bathroom</li><li>shower</li><li>washed</li></nameContains>
+    <fix>Dubs Bad Hygiene: build toilets and something to wash at (a wash bucket, bath or shower), keep water flowing, and give them time to wash.</fix>
+  </ColonyCouncil.MoodHintDef>
+
+</Defs>

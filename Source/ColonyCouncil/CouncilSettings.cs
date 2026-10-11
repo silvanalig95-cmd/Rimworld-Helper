@@ -79,6 +79,7 @@ namespace ColonyCouncil
         public bool colonyCharacter = true;
         /// <summary>On-screen buttons for half and quarter speed, and where they sit (fractions of the screen; -1 = default).</summary>
         public bool slowButtons = true;
+        public bool moodInsight = true;
         public float slowButtonsX = -1f;
         public float slowButtonsY = -1f;
         public bool allDreamMessages;
@@ -156,6 +157,7 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref petMoments, "petMoments", true);
             Scribe_Values.Look(ref colonyCharacter, "colonyCharacter", true);
             Scribe_Values.Look(ref slowButtons, "slowButtons", true);
+            Scribe_Values.Look(ref moodInsight, "moodInsight", true);
             Scribe_Values.Look(ref slowButtonsX, "slowButtonsX", -1f);
             Scribe_Values.Look(ref slowButtonsY, "slowButtonsY", -1f);
             Scribe_Values.Look(ref dreamOmens, "dreamOmens", true);
@@ -383,6 +385,7 @@ namespace ColonyCouncil
             l.CheckboxLabeled("CC_Settings_WishAlert".Translate(), ref wishAlert, "CC_Settings_WishAlert_Tip".Translate());
 
             Header(l, "CC_Settings_Interface".Translate());
+            l.CheckboxLabeled("CC_Settings_MoodInsight".Translate(), ref moodInsight, "CC_Settings_MoodInsight_Tip".Translate());
             l.CheckboxLabeled("CC_Settings_SlowButtons".Translate(), ref slowButtons, "CC_Settings_SlowButtons_Tip".Translate());
             if (slowButtons && (slowButtonsX >= 0f || slowButtonsY >= 0f) && l.ButtonText("CC_Settings_SlowButtonsReset".Translate()))
                 slowButtonsX = slowButtonsY = -1f;
@@ -469,6 +472,7 @@ namespace ColonyCouncil
             nemesisReturns = d.nemesisReturns;
             petMoments = d.petMoments;
             colonyCharacter = d.colonyCharacter;
+            moodInsight = d.moodInsight;
             dreamOmens = d.dreamOmens;
             allDreamMessages = d.allDreamMessages;
             messageLevel = d.messageLevel;

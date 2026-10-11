@@ -1458,4 +1458,55 @@ Those against it ({WHO}) will trust the council less and resent it more than usu
   <CC_Ways_NoHistory>Nothing yet. The council's choices will shape the colony's ways.</CC_Ways_NoHistory>
   <CC_Ways_HistoryLine>{0}. {1}: {2}</CC_Ways_HistoryLine>
 
+  <!-- Mood insight: the Mood tab and the council's Moods page -->
+  <CC_Tab_Mood>Mood</CC_Tab_Mood>
+  <CC_Tab_Moods>Moods</CC_Tab_Moods>
+  <CC_Settings_MoodInsight>Mood insight</CC_Settings_MoodInsight>
+  <CC_Settings_MoodInsight_Tip>A Mood tab for each colonist and a Moods page in the council window: every mood with its size, why it's there, when it fades, which mod it comes from, and what you can do about it.</CC_Settings_MoodInsight_Tip>
+  <CC_Mood_Title>{0}'s mood</CC_Mood_Title>
+  <CC_Mood_State>Mood {0}, {1}.</CC_Mood_State>
+  <CC_Mood_Steady>holding steady</CC_Mood_Steady>
+  <CC_Mood_HeadingUp>rising towards {0}</CC_Mood_HeadingUp>
+  <CC_Mood_HeadingDown>sinking towards {0}</CC_Mood_HeadingDown>
+  <CC_Mood_Above>{0} above the line where minor breaks become possible ({1}).</CC_Mood_Above>
+  <CC_Mood_BelowMinor>Below the minor break line ({0}): small breaks like binges or sad wandering can happen.</CC_Mood_BelowMinor>
+  <CC_Mood_BelowMajor>Below the major break line ({0}): serious breaks like tantrums or running wild can happen.</CC_Mood_BelowMajor>
+  <CC_Mood_BelowExtreme>Below the extreme break line ({0}): the worst breaks can happen. Act now.</CC_Mood_BelowExtreme>
+  <CC_Mood_InBreak>In a mental break right now: {0}.</CC_Mood_InBreak>
+  <CC_Mood_LineMinor>Minor breaks become possible below {0}.</CC_Mood_LineMinor>
+  <CC_Mood_LineMajor>Major breaks become possible below {0}.</CC_Mood_LineMajor>
+  <CC_Mood_LineExtreme>Extreme breaks become possible below {0}.</CC_Mood_LineExtreme>
+  <CC_Mood_Sources>Where it comes from: {0}.</CC_Mood_Sources>
+  <CC_Mood_Source_Game>Base game</CC_Mood_Source_Game>
+  <CC_Mood_From>from {0}</CC_Mood_From>
+  <CC_Mood_Weighing>Weighing on {0}</CC_Mood_Weighing>
+  <CC_Mood_Lifting>Lifting {0}</CC_Mood_Lifting>
+  <CC_Mood_Nothing>Nothing in particular.</CC_Mood_Nothing>
+  <CC_Mood_FadesIn>Fades in {0}</CC_Mood_FadesIn>
+  <CC_Mood_WhileCause>Lasts while its cause does</CC_Mood_WhileCause>
+  <CC_Mood_Permanent>Permanent</CC_Mood_Permanent>
+  <CC_Mood_About>about {0}.</CC_Mood_About>
+  <CC_Mood_Belief>their belief "{0}" ({1}).</CC_Mood_Belief>
+  <CC_Mood_Fix>What to do: {0}</CC_Mood_Fix>
+  <CC_Mood_Keep>To keep it: {0}</CC_Mood_Keep>
+  <CC_Mood_Generic_Memory>A memory: it fades on its own. Until then, good moments balance it out: fine meals, recreation, a nice room, time with friends.</CC_Mood_Generic_Memory>
+  <CC_Mood_Generic_Situation>This lasts as long as its cause does. Hover over it to read the game's description of what it is, then remove the cause.</CC_Mood_Generic_Situation>
+  <CC_Mood_Generic_Precept>This comes from their ideoligion's beliefs. Honor the belief, or change it the next time the ideoligion is reformed.</CC_Mood_Generic_Precept>
+  <CC_Mood_Advisor>Advisor: {0}</CC_Mood_Advisor>
+  <CC_Mood_GoTo>Go to {0}</CC_Mood_GoTo>
+  <CC_Mood_ReadMore>Almanac: {0}</CC_Mood_ReadMore>
+  <CC_Mood_WishesTab>Wishes</CC_Mood_WishesTab>
+  <CC_Moods_Off>Mood insight is switched off in the mod settings.</CC_Moods_Off>
+  <CC_Moods_Header>The colony's mood</CC_Moods_Header>
+  <CC_Moods_NoColonists>No colonists to look after.</CC_Moods_NoColonists>
+  <CC_Moods_Summary>Average mood {0}. {1} of {2} colonists are near or below the line where breaks begin.</CC_Moods_Summary>
+  <CC_Moods_InBreak>{0} in a mental break right now.</CC_Moods_InBreak>
+  <CC_Moods_PerColonist>(per colonist, on average)</CC_Moods_PerColonist>
+  <CC_Moods_Intro>Every mood in the colony, added up: what weighs on it most, who feels it, and what to do. Hover over a line for the game's own description. Click a colonist to open their Mood tab.</CC_Moods_Intro>
+  <CC_Moods_Closest>Closest to breaking</CC_Moods_Closest>
+  <CC_Moods_ClickPerson>Click to open their Mood tab.</CC_Moods_ClickPerson>
+  <CC_Moods_Weighing>Weighing on the colony</CC_Moods_Weighing>
+  <CC_Moods_Lifting>Lifting the colony</CC_Moods_Lifting>
+  <CC_Moods_People>{0} colonist(s)</CC_Moods_People>
+
 </LanguageData>

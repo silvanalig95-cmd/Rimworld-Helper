@@ -250,15 +250,17 @@ namespace ColonyCouncil
     }
 
     /// <summary>The trust mood, with what moved it lately.</summary>
-    public class Thought_CouncilTrust : Thought_Situational
+    public class Thought_CouncilTrust : Thought_Situational, IExplainedThought
     {
-        public override string Description
+        public string Why
         {
             get
             {
                 var reasons = CouncilGameComponent.Instance?.standings.For(pawn, false)?.RecentReasons();
-                return Causes.Append(base.Description, reasons.NullOrEmpty() ? null : "CC_Cause_Trust".Translate(reasons).Resolve());
+                return reasons.NullOrEmpty() ? null : "CC_Cause_Trust".Translate(reasons).Resolve();
             }
         }
+
+        public override string Description => Causes.Append(base.Description, Why);
     }
 }

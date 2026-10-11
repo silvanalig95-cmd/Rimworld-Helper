@@ -352,4 +352,28 @@
     <seeAlso><li>Council_Alm_C_Dilemmas</li><li>Council_Alm_C_Decrees</li><li>Council_Alm_C_Strangers</li></seeAlso>
   </ColonyCouncil.AlmanacArticleDef>
 
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Council_Alm_C_Moods</defName>
+    <label>reading moods</label>
+    <category>Council</category>
+    <order>15</order>
+    <summary>The Mood tab and the Moods page: what weighs on your colonists, why, and what to do about it.</summary>
+    <tip>Don't ask why they're sad. Look it up, then fix the table.</tip>
+    <description>Every colonist has a Mood tab next to their Needs: each mood with its size, why it's there, when it fades, which mod it comes from, and what you can do about it. The council window's Moods page adds up every mood in the colony, so you can see what weighs on everyone at once, who feels it, and who is closest to breaking.</description>
+    <facts>
+      <li>The mood bar shows where a colonist is, where their mood is heading, and the lines below which minor, major and extreme breaks become possible.</li>
+      <li>A memory fades on its own; the Mood tab says when. A lasting mood stays while its cause does, so removing the cause is the only fix.</li>
+      <li>"Where it comes from" splits the mood between the base game, Rimfolk and each of your other mods, so you can see which mod is pushing hardest.</li>
+      <li>Each mood with a known fix has a "what to do" line. Buttons lead to the advisor's matching warning, the council page that deals with it, or an Almanac page.</li>
+      <li>Moods from other mods get general advice based on what kind of mood they are, and their mod's name.</li>
+    </facts>
+    <advice>
+      <li>Start at the top of "Weighing on the colony": the biggest totals usually have the cheapest fixes, like a dining table, lights or a bedroom.</li>
+      <li>Check "Closest to breaking" before a long job or a caravan, and give the shakiest colonists something good first.</li>
+      <li>A colonist sinking towards a break line needs help now: a fine meal, recreation, a party or rest, while you fix the cause.</li>
+    </advice>
+    <keywords><li>mood</li><li>thoughts</li><li>break</li><li>mental break</li><li>sad</li><li>unhappy</li><li>why</li><li>fix</li></keywords>
+    <seeAlso><li>Council_Alm_2_15_MentalBreaks</li><li>Council_Alm_10_MoodNumbers</li><li>Council_Alm_C_Ways</li></seeAlso>
+  </ColonyCouncil.AlmanacArticleDef>
+
 </Defs>

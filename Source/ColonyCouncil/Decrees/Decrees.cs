@@ -459,10 +459,10 @@ namespace ColonyCouncil
     }
 
     /// <summary>Decree moods: the bad ones follow the stakes setting and the penalty slider.</summary>
-    public class Thought_Decree : Thought_Situational
+    public class Thought_Decree : Thought_Situational, IExplainedThought
     {
         /// <summary>Which decree, and how long it has left.</summary>
-        public override string Description
+        public string Why
         {
             get
             {
@@ -473,9 +473,11 @@ namespace ColonyCouncil
                     : "CC_Cause_Decree".Translate(decree.label, TextUtil.DaysString(Mathf.Max(0, active.endTick - Find.TickManager.TicksGame))).Resolve();
                 if (active != null && active.fatigue > 0)
                     cause += " " + (active.forced ? "CC_Cause_DecreeForcedNote" : "CC_Cause_DecreeAgainNote").Translate((0.35f * active.fatigue).ToStringPercent()).Resolve();
-                return Causes.Append(base.Description, cause);
+                return cause;
             }
         }
+
+        public override string Description => Causes.Append(base.Description, Why);
 
         private ActiveDecree Active
         {

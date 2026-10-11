@@ -315,7 +315,7 @@ namespace ColonyCouncil
         }
     }
 
-    public class Thought_ColonyWays : Thought_Situational
+    public class Thought_ColonyWays : Thought_Situational, IExplainedThought
     {
         public override float MoodOffset()
         {
@@ -323,14 +323,16 @@ namespace ColonyCouncil
             return m < 0f ? m * ColonyCouncilMod.Settings.PenaltyScale : m;
         }
 
-        public override string Description
+        public string Why
         {
             get
             {
                 var reasons = new List<string>();
                 CouncilGameComponent.Instance?.character.Approval(pawn, reasons);
-                return Causes.Append(base.Description, reasons.Count > 0 ? string.Join("; ", reasons) + "." : null);
+                return reasons.Count > 0 ? string.Join("; ", reasons) + "." : null;
             }
         }
+
+        public override string Description => Causes.Append(base.Description, Why);
     }
 }

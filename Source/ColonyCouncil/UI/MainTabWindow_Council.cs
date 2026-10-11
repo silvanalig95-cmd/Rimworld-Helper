@@ -23,6 +23,7 @@ namespace ColonyCouncil
         private enum Tab
         {
             Priorities,
+            Moods,
             Build,
             Roster,
             Bonds,
@@ -45,6 +46,7 @@ namespace ColonyCouncil
             switch (t)
             {
                 case Tab.Priorities:
+                case Tab.Moods:
                 case Tab.Build: return Section.Colony;
                 case Tab.Roster:
                 case Tab.Bonds:
@@ -63,7 +65,7 @@ namespace ColonyCouncil
         {
             switch (s)
             {
-                case Section.Colony: return new[] { Tab.Priorities, Tab.Build };
+                case Section.Colony: return new[] { Tab.Priorities, Tab.Moods, Tab.Build };
                 case Section.People: return new[] { Tab.Roster, Tab.Bonds, Tab.Wishes };
                 case Section.Council: return new[] { Tab.Decrees, Tab.Ambition, Tab.Ways };
                 case Section.History: return new[] { Tab.Chronicle, Tab.Dreams, Tab.Journals };
@@ -149,6 +151,7 @@ namespace ColonyCouncil
                 case Tab.Decrees: DecreePanel.Draw(content, comp); break;
                 case Tab.Ambition: DrawAmbition(content, comp, map); break;
                 case Tab.Ways: WaysPanel.Draw(content, comp); break;
+                case Tab.Moods: MoodsPanel.Draw(content); break;
                 case Tab.Chronicle: DrawChronicle(content, comp); break;
                 case Tab.Dreams: HistoryPanels.DrawDreams(content, comp); break;
                 case Tab.Journals: HistoryPanels.DrawJournals(content, comp); break;
@@ -208,6 +211,28 @@ namespace ColonyCouncil
             PeoplePanel.Select(p);
             var button = CouncilDefOf.Council_MainButton;
             if (button != null && Find.MainTabsRoot.OpenTab != button) Find.MainTabsRoot.SetCurrentTab(button, false);
+        }
+
+        /// <summary>Opens the council window on a page by name ("Decrees", "Wishes", "Ways"...).</summary>
+        public static void OpenTab(string name)
+        {
+            if (!System.Enum.TryParse(name, true, out Tab t)) return;
+            tab = t;
+            lastInSection[SectionOf(t)] = t;
+            var button = CouncilDefOf.Council_MainButton;
+            if (button != null && Find.MainTabsRoot.OpenTab != button) Find.MainTabsRoot.SetCurrentTab(button, false);
+        }
+
+        /// <summary>A page's plain name, for buttons that lead there.</summary>
+        public static string TabName(string name)
+        {
+            if (!System.Enum.TryParse(name, true, out Tab t)) return name;
+            switch (t)
+            {
+                case Tab.Wishes: return "CC_Mood_WishesTab".Translate();
+                case Tab.Decrees: return "CC_Tab_Decrees".Translate();
+                default: return ("CC_Tab_" + t).Translate();
+            }
         }
 
         /// <summary>Opens the council window on an almanac page.</summary>
