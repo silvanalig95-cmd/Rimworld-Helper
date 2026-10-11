@@ -55,13 +55,13 @@ namespace ColonyCouncil
         public List<string> mods;
 
         /// <summary>Is one of the article's mods active?</summary>
-        public bool ModsActive => mods.NullOrEmpty() || mods.Any(id => ModLister.GetActiveModWithIdentifier(id, true) != null);
+        public bool ModsActive => mods.NullOrEmpty() || mods.Any(People.ModActive);
 
         /// <summary>The names of the article's mods, as the game knows them (the active ones, or the ids).</summary>
         public string ModNames()
         {
             if (mods.NullOrEmpty()) return null;
-            var names = mods.Select(id => ModLister.GetActiveModWithIdentifier(id, true)?.Name).Where(n => !n.NullOrEmpty()).Distinct().ToList();
+            var names = mods.Select(id => People.ActiveMod(id)?.Name).Where(n => !n.NullOrEmpty()).Distinct().ToList();
             return names.Count > 0 ? string.Join(", ", names) : string.Join(", ", mods);
         }
 

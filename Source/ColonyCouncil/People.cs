@@ -117,6 +117,36 @@ namespace ColonyCouncil
             return oursIds;
         }
 
+        private static readonly Dictionary<string, ModMetaData> activeMods = new Dictionary<string, ModMetaData>();
+
+        /// <summary>
+        /// The active mod with this package id, or null. Ignores letter case and the "_steam" / "_copy" endings the
+        /// game adds to local copies, so ids can be written in lowercase anywhere in Rimfolk's XML.
+        /// </summary>
+        public static ModMetaData ActiveMod(string packageId)
+        {
+            if (packageId.NullOrEmpty()) return null;
+            string id = packageId.Trim().ToLowerInvariant();
+            if (activeMods.TryGetValue(id, out var found)) return found;
+            found = ModLister.GetActiveModWithIdentifier(id, true);
+            if (found == null)
+            {
+                foreach (var m in ModsConfig.ActiveModsInLoadOrder)
+                {
+                    string mine = (m.PackageIdPlayerFacing ?? m.PackageId ?? "").ToLowerInvariant();
+                    if (mine == id || mine == id + "_steam" || mine == id + "_copy")
+                    {
+                        found = m;
+                        break;
+                    }
+                }
+            }
+            activeMods[id] = found;
+            return found;
+        }
+
+        public static bool ModActive(string packageId) => ActiveMod(packageId) != null;
+
         public static bool Kidnapped(Pawn p) =>
             p != null && Find.FactionManager.AllFactionsListForReading.Any(f => f.kidnapped != null && f.kidnapped.KidnappedPawnsListForReading.Contains(p));
 

@@ -238,7 +238,7 @@
     <logRulesInitiator>
       <rulesStrings>
         <li>r_logentry->[INITIATOR_nameDef] taught [RECIPIENT_nameDef] [childlesson]. [RECIPIENT_nameDef] got it on the third try and was very proud.</li>
-        <li>r_logentry->[INITIATOR_nameDef] showed [RECIPIENT_nameDef] [childlesson], then spent the rest of the hour being shown it back.</li>
+        <li>r_logentry->[INITIATOR_nameDef] showed [RECIPIENT_nameDef] [childlesson]. By supper, [RECIPIENT_nameDef] was teaching the grown-ups.</li>
         <li>r_logentry->[INITIATOR_nameDef] taught [RECIPIENT_nameDef] a new word. [RECIPIENT_nameDef] used it [wordcount] before supper.</li>
         <li>r_logentry->[INITIATOR_nameDef] taught [RECIPIENT_nameDef] [childgame], and lost on purpose. Then lost not on purpose.</li>
         <li>r_logentry->[RECIPIENT_nameDef] asked [INITIATOR_nameDef] [childquestion], and [INITIATOR_nameDef] did [INITIATOR_possessive] honest best to answer.</li>
@@ -248,7 +248,7 @@
         <li>childlesson->how to count to a hundred</li>
         <li>childlesson->how to tell which berries are safe to eat</li>
         <li>childlesson->how to skip a stone across water</li>
-        <li>childgame->a clapping rhyme</li>
+        <li>childgame->a clapping game</li>
         <li>childgame->a game with five pebbles and a circle in the dirt</li>
         <li>childgame->a riddle game</li>
         <li>childgame->hide-and-seek around the storeroom</li>
@@ -475,7 +475,7 @@
       <rulesStrings>
         <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] about the place [INITIATOR_pronoun] grew up: [hometown].</li>
         <li>r_logentry->[RECIPIENT_nameDef] asked [INITIATOR_nameDef] where [INITIATOR_pronoun] came from. The answer took a good long while.</li>
-        <li>r_logentry->[INITIATOR_nameDef] described [hometown] to [RECIPIENT_nameDef], and went quiet at the end.</li>
+        <li>r_logentry->[INITIATOR_nameDef] described home to [RECIPIENT_nameDef], [hometown], and went quiet at the end.</li>
         <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] about [missedthing], the thing [INITIATOR_pronoun] missed most from home.</li>
         <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] how [INITIATOR_pronoun] ended up here. [RECIPIENT_nameDef] said [homeresponse].</li>
         <li>hometown->a fishing village where everyone knew everyone's business</li>
@@ -519,7 +519,7 @@
         <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] invented a song about the job, with [songverses].</li>
         <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] that [workjoke]. [RECIPIENT_nameDef] groaned, then laughed.</li>
         <li>r_logentry->[INITIATOR_nameDef] did an impression of [impression] for [RECIPIENT_nameDef], and nearly dropped what [INITIATOR_pronoun] was holding.</li>
-        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] kept a running tally of [worktally] while they worked.</li>
+        <li>r_logentry->While they worked, [INITIATOR_nameDef] and [RECIPIENT_nameDef] kept a running tally of [worktally].</li>
         <li>songverses->far too many verses</li>
         <li>songverses->one verse, repeated until it stopped being funny and then became funny again</li>
         <li>songverses->rhymes that did not rhyme</li>
@@ -682,7 +682,7 @@
         <li>fightfavor->shouting the warning just in time</li>
         <li>fightmemory->the moment the attackers came over the rise</li>
         <li>fightmemory->that long wait before it started</li>
-        <li>fightmemory->the noise of it</li>
+        <li>fightmemory->the colony that close to falling</li>
         <li>fightmemory->anything like that day</li>
         <li>sleepanswer->not really, but tonight might be better</li>
         <li>sleepanswer->like a stone, oddly enough</li>
@@ -794,7 +794,7 @@
         <li>standbypromise->that [INITIATOR_pronoun] would not face that one alone</li>
         <li>standbypromise->to keep an eye out, every single day</li>
         <li>standbypromise->that the whole colony had [INITIATOR_possessive] back</li>
-        <li>standbyreply->then [RECIPIENT_pronoun] would look over it for [INITIATOR_objective]</li>
+        <li>standbyreply->[RECIPIENT_pronoun] would look over it for [INITIATOR_objective], then</li>
         <li>standbyreply->that was what friends were for</li>
         <li>standbyreply->they would see it through together</li>
       </rulesStrings>
@@ -1280,7 +1280,7 @@
     <defName>Council_Sent_Craft_InitiatorWon</defName>
     <rulePack>
       <rulesStrings>
-        <li>sent->[INITIATOR_nameDef]'s work was neater, and [INITIATOR_nameDef] made sure everyone saw it.</li>
+        <li>sent->[INITIATOR_nameDef]'s work was neater, and [INITIATOR_pronoun] made sure everyone saw it.</li>
         <li>sent->[INITIATOR_nameDef] won. [RECIPIENT_nameDef] kept [RECIPIENT_possessive] attempt anyway, and said it had character.</li>
         <li>sent->[INITIATOR_nameDef] finished first, and best.</li>
       </rulesStrings>
@@ -1306,7 +1306,7 @@
     <logRulesInitiator>
       <rulesStrings>
         <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] each brought out the biggest [prizecrop] they had grown this season for a solemn weigh-in.</li>
-        <li>r_logentry->[INITIATOR_nameDef] bet [RECIPIENT_nameDef] [growstakes] that [INITIATOR_possessive] best [prizecrop] was bigger. Out came the scales.</li>
+        <li>r_logentry->[INITIATOR_nameDef] bet [RECIPIENT_nameDef] that [INITIATOR_possessive] best [prizecrop] was bigger, with [growstakes] on the line. Out came the scales.</li>
         <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] compared the best of their harvest with the seriousness of judges at a fair.</li>
         <li>r_logentry->[INITIATOR_nameDef] showed [RECIPIENT_nameDef] [INITIATOR_possessive] prize [prizecrop], nearly the size of [INITIATOR_possessive] head. [RECIPIENT_nameDef] went to fetch [RECIPIENT_possessive] own.</li>
         <li>prizecrop->turnip</li>
@@ -1342,7 +1342,7 @@
     <defName>Council_Sent_Vegetable_InitiatorWon</defName>
     <rulePack>
       <rulesStrings>
-        <li>sent->[INITIATOR_nameDef]'s was bigger, and [INITIATOR_nameDef] is talking about keeping it forever.</li>
+        <li>sent->[INITIATOR_nameDef]'s was bigger, and [INITIATOR_pronoun] is talking about keeping it forever.</li>
         <li>sent->[INITIATOR_nameDef] won by a whisker, and a little dirt.</li>
         <li>sent->[INITIATOR_nameDef] won. [RECIPIENT_nameDef] demanded a recount, which is hard to do with vegetables.</li>
       </rulesStrings>
@@ -1353,7 +1353,7 @@
     <defName>Council_Sent_Vegetable_RecipientWon</defName>
     <rulePack>
       <rulesStrings>
-        <li>sent->[RECIPIENT_nameDef]'s was bigger, and [RECIPIENT_nameDef] was gracious about it, nearly.</li>
+        <li>sent->[RECIPIENT_nameDef]'s was bigger, and [RECIPIENT_pronoun] was gracious about it, nearly.</li>
         <li>sent->[RECIPIENT_nameDef] won. [INITIATOR_nameDef] blamed the soil.</li>
         <li>sent->[RECIPIENT_nameDef] won, and [INITIATOR_nameDef] has started talking to [INITIATOR_possessive] plants.</li>
       </rulesStrings>
@@ -1608,8 +1608,8 @@
         <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] that [INITIATOR_pronoun] had tasted [newdish] and was now ruined for ordinary food forever.</li>
         <li>newdish->the new dish</li>
         <li>newdish->today's special</li>
-        <li>newdish->whatever the cook had made today</li>
-        <li>newdish->that last plate</li>
+        <li>newdish->the cook's latest creation</li>
+        <li>newdish->the new recipe</li>
         <li>dishpraise->something new, and something wonderful</li>
         <li>dishpraise->rich, careful and gone far too soon</li>
         <li>dishpraise->proper food, the kind with a name</li>

@@ -75,7 +75,7 @@ namespace ColonyCouncil
             {
                 if (available == null)
                 {
-                    bool ok = mods.NullOrEmpty() || mods.Any(id => ModLister.GetActiveModWithIdentifier(id, true) != null);
+                    bool ok = mods.NullOrEmpty() || mods.Any(People.ModActive);
                     if (ok && !needsDefs.NullOrEmpty())
                         ok = needsDefs.Any(n => DefDatabase<TraitDef>.GetNamedSilentFail(n) != null || DefDatabase<NeedDef>.GetNamedSilentFail(n) != null
                                                 || DefDatabase<ThoughtDef>.GetNamedSilentFail(n) != null || DefDatabase<ThingDef>.GetNamedSilentFail(n) != null);
