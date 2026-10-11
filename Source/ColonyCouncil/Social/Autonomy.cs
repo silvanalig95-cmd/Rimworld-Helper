@@ -5,6 +5,7 @@ using RimWorld;
 using UnityEngine;
 using Verse;
 using Verse.AI;
+using Verse.AI.Group;
 
 namespace ColonyCouncil
 {
@@ -92,19 +93,25 @@ namespace ColonyCouncil
             bool child = p.DevelopmentalStage.Child();
 
             // A short break when recreation is nearly gone, even in work hours (but not from urgent work).
-            if (done == null && (p.needs.joy?.CurLevelPercentage ?? 1f) < 0.12f && !free && CanBreakFrom(p))
+            if (done == null && (p.needs.joy?.CurLevelPercentage ?? 1f) < 0.12f && p.timetable?.CurrentAssignment == TimeAssignmentDefOf.Work && CanBreakFrom(p))
             {
                 var job = JoyGiver.TryIssueJobPackage(p, default(JobIssueParams)).Job;
-                if (job != null && Start(p, job))
-                    done = "CC_Auto_JoyBreak".Translate(p.Named("PAWN")).Resolve();
+                if (job != null)
+                {
+                    // A real break despite the work hours, but a short one (about half an hour).
+                    job.ignoreJoyTimeAssignment = true;
+                    job.expiryInterval = 1250;
+                    if (Start(p, job)) done = "CC_Auto_JoyBreak".Translate(p.Named("PAWN")).Resolve();
+                }
             }
 
             // Grief: a visit to the grave, in their own time.
-            if (done == null && free && Idle(p) && Has(d => Named(d, "KnowColonistDied", "PawnWithGoodOpinionDied", "WitnessedDeathFamily", "WitnessedDeathAlly", "ColonistLost")))
+            if (done == null && free && Idle(p) && Has(d => Flavor.GriefThoughts.Contains(d.defName) || Named(d, "WitnessedDeathFamily", "WitnessedDeathAlly", "ColonistLost")))
             {
                 var grave = GraveOfSomeoneMourned(p);
                 var visit = DefDatabase<JobDef>.GetNamedSilentFail("VisitGrave");
-                if (grave != null && visit != null && p.CanReserveAndReach(grave, PathEndMode.InteractionCell, Danger.None))
+                if (grave != null && visit != null && !grave.IsForbidden(p) && grave.Position.InAllowedArea(p)
+                    && p.CanReserveAndReach(grave, PathEndMode.InteractionCell, Danger.None))
                 {
                     if (Start(p, JobMaker.MakeJob(visit, grave)))
                     {
@@ -193,8 +200,8 @@ namespace ColonyCouncil
         private static bool Start(Pawn p, Job job)
         {
             if (job == null || p.jobs == null) return false;
-            if (!job.TryMakePreToilReservations(p, false)) return false;
-            p.jobs.StartJob(job, JobCondition.InterruptForced, null, false, true);
+            // If its reservations fail, the game ends the job and releases whatever it had reserved.
+            p.jobs.StartJob(job, JobCondition.InterruptForced, null, false, true, preToilReservationsCanFail: true);
             return p.CurJob == job;
         }
 
@@ -259,19 +266,26 @@ namespace ColonyCouncil
         /// <summary>Doing nothing much: wandering, waiting, or at their leisure.</summary>
         private static bool Idle(Pawn p)
         {
+            // A party, a ritual or a caravan being packed looks like waiting around, but isn't.
+            if (Busy(p)) return false;
             var job = p.CurJob;
             if (job == null) return true;
             return job.def == JobDefOf.Wait || job.def == JobDefOf.Wait_Wander || job.def == JobDefOf.GotoWander || job.def.joyKind != null;
         }
 
+        private static bool Busy(Pawn p) =>
+            p.GetLord() != null || p.mindState?.duty != null || p.carryTracker?.CarriedThing != null || p.InBed();
+
         /// <summary>A break is fine from ordinary work, not from fighting fires, tending the sick or the like.</summary>
         private static bool CanBreakFrom(Pawn p)
         {
+            if (Busy(p) || JoyUtility.LordPreventsGettingJoy(p)) return false;
             var job = p.CurJob;
             if (job == null) return true;
-            if (job.playerForced || job.def == JobDefOf.LayDown || job.def == JobDefOf.Ingest) return false;
+            if (job.playerForced || !job.def.casualInterruptible || job.def == JobDefOf.LayDown || job.def == JobDefOf.Ingest) return false;
+            // Only ordinary work from the work tab: never deathrest, resting, rituals, fleeing or anything else.
             var type = job.workGiverDef?.workType?.defName;
-            if (type == null) return job.def.joyKind == null;
+            if (type == null) return false;
             return type != "Firefighter" && type != "Doctor" && type != "Patient" && type != "PatientBedRest" && type != "Childcare" && type != "Warden" && type != "BasicWorker";
         }
 
@@ -293,10 +307,13 @@ namespace ColonyCouncil
         private static Room Shelter(Pawn p)
         {
             var map = p.Map;
+            // A barracks first, then a room with no beds at all; never someone's private bedroom (a second bed would
+            // turn it into a barracks and cost them their room).
             var rooms = map.regionGrid.AllRooms
                 .Where(r => !r.PsychologicallyOutdoors && !r.IsDoorway && !r.Fogged && r.CellCount >= 4 && r.ProperRoom
-                            && map.areaManager.Home[r.Cells.First()] && !r.IsPrisonCell && OkRole(r.Role))
-                .OrderBy(r => r.Role == RoomRoleDefOf.Barracks || r.Role == RoomRoleDefOf.Bedroom ? 0 : 1)
+                            && map.areaManager.Home[r.Cells.First()] && !r.IsPrisonCell && OkRole(r.Role)
+                            && (r.Role == RoomRoleDefOf.Barracks || !r.ContainedBeds.Any()))
+                .OrderBy(r => r.Role == RoomRoleDefOf.Barracks ? 0 : 1)
                 .ThenBy(r => r.Cells.First().DistanceToSquared(p.Position))
                 .ToList();
             return rooms.FirstOrDefault();

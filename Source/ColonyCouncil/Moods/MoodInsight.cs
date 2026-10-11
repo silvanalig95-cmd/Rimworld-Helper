@@ -406,7 +406,7 @@ namespace ColonyCouncil
             try
             {
                 var l = LineFor(p, group);
-                if (l == null) return null;
+                if (l == null) return "";
                 var parts = new System.Collections.Generic.List<string> { WhenItEnds(l) };
                 var (kind, source) = SourceOf(l.def);
                 if (kind != MoodSource.Game) parts[0] += "  ·  " + "CC_Mood_From".Translate(source).Resolve();
@@ -419,7 +419,7 @@ namespace ColonyCouncil
             catch (Exception e)
             {
                 CouncilLog.ErrorOnce("mood hint tooltip", e);
-                return null;
+                return "";
             }
         }
 

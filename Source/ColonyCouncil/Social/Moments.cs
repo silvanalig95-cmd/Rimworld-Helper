@@ -67,6 +67,10 @@ namespace ColonyCouncil
         public float bumpAmount = 2f;
 
         [Unsaved] private bool? available;
+        [Unsaved] private string initiatorExpr, recipientExpr;
+
+        public string InitiatorExpr => initiatorExpr ??= "[" + initiatorTags + "]";
+        public string RecipientExpr => recipientExpr ??= "[" + recipientTags + "]";
 
         /// <summary>Its mods and defs are in this game.</summary>
         public bool Available
@@ -120,8 +124,9 @@ namespace ColonyCouncil
                 if (initiator == null || recipient == null || !recipient.RaceProps.Humanlike || !initiator.RaceProps.Humanlike) return 0f;
                 if (!Ours(initiator) || !Ours(recipient) || !People.HasInnerLife(initiator) || !People.HasInnerLife(recipient)) return 0f;
                 int now = Find.TickManager.TicksGame;
-                if (lastAny.TryGetValue(initiator.thingIDNumber, out int any) && now - any < MinGapTicks) return 0f;
-                if (lastStarted.TryGetValue((initiator.thingIDNumber, interaction.shortHash), out int last) && now - last < ext.cooldownDays * GenDate.TicksPerDay) return 0f;
+                // (A time in the future means an older save was loaded: that wait is over.)
+                if (lastAny.TryGetValue(initiator.thingIDNumber, out int any) && any <= now && now - any < MinGapTicks) return 0f;
+                if (lastStarted.TryGetValue((initiator.thingIDNumber, interaction.shortHash), out int last) && last <= now && now - last < ext.cooldownDays * GenDate.TicksPerDay) return 0f;
                 if (!Fits(ext, initiator, recipient)) return 0f;
                 return ext.weight;
             }
@@ -134,11 +139,16 @@ namespace ColonyCouncil
 
         private static bool Ours(Pawn p) => p.IsColonist || p.IsSlaveOfColony;
 
+        /// <summary>Forget the last game's people (called when a game loads).</summary>
+        public static void Reset()
+        {
+            lastStarted.Clear();
+            lastAny.Clear();
+            tagCache.Clear();
+        }
+
         private static bool Fits(MomentExtension x, Pawn a, Pawn b)
         {
-            int opinion = a.relations?.OpinionOf(b) ?? 0;
-            if (opinion < x.minOpinion || opinion > x.maxOpinion) return false;
-            if (x.mutualFriends && (opinion < 20 || (b.relations?.OpinionOf(a) ?? 0) < 20)) return false;
             var social = CouncilGameComponent.Instance?.social;
             if (!x.tie.NullOrEmpty() && System.Enum.TryParse(x.tie, out TieKind kind) && social?.Get(a, b, kind) == null) return false;
             if (x.bondedPet && !(a.relations?.DirectRelations.Any(r => r.def == PawnRelationDefOf.Bond && r.otherPawn != null && !r.otherPawn.Dead) ?? false)) return false;
@@ -179,8 +189,14 @@ namespace ColonyCouncil
             }
             if (x.sharedPassion && !SharedPassion(a, b)) return false;
             if (x.recipientBestCook && !BestCook(b)) return false;
-            if (!x.initiatorTags.NullOrEmpty() && Flavor.Match("[" + x.initiatorTags + "]", TagsOf(a)) < 0) return false;
-            if (!x.recipientTags.NullOrEmpty() && Flavor.Match("[" + x.recipientTags + "]", TagsOf(b)) < 0) return false;
+            if (x.minOpinion > -100 || x.maxOpinion < 100 || x.mutualFriends)
+            {
+                int opinion = a.relations?.OpinionOf(b) ?? 0;
+                if (opinion < x.minOpinion || opinion > x.maxOpinion) return false;
+                if (x.mutualFriends && (opinion < 20 || (b.relations?.OpinionOf(a) ?? 0) < 20)) return false;
+            }
+            if (!x.initiatorTags.NullOrEmpty() && Flavor.Match(x.InitiatorExpr, TagsOf(a)) < 0) return false;
+            if (!x.recipientTags.NullOrEmpty() && Flavor.Match(x.RecipientExpr, TagsOf(b)) < 0) return false;
             return true;
         }
 

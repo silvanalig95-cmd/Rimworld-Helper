@@ -17,6 +17,27 @@ namespace ColonyCouncil
 
         private static bool On => S != null && S.worldReactions && RimfolkPatches.On && CouncilGameComponent.Instance != null;
 
+        private static int ownBreaks;
+
+        /// <summary>Wrap Rimfolk's own sulks and tantrums, so they aren't also told as breakdowns.</summary>
+        public static System.IDisposable OwnBreak()
+        {
+            ownBreaks++;
+            return new Done();
+        }
+
+        private sealed class Done : System.IDisposable
+        {
+            private bool disposed;
+
+            public void Dispose()
+            {
+                if (disposed) return;
+                disposed = true;
+                ownBreaks--;
+            }
+        }
+
         /// <summary>Close friends of someone, at home and able to care.</summary>
         private static IEnumerable<Pawn> FriendsOf(Pawn p, int minOpinion = 30) =>
             PawnsFinder.AllMaps_FreeColonistsSpawned.Where(o => o != p && People.HasInnerLife(o) && !o.DevelopmentalStage.Baby()
@@ -48,13 +69,14 @@ namespace ColonyCouncil
             foreach (var p in parents) comp.journals.Write(p, "Council_Journal_Birth", null, baby.Named("BABY"));
         }
 
-        /// <summary>Colonists back from a caravan journey of at least two days.</summary>
-        public static void Homecoming(List<Pawn> pawns, int awayTicks)
+        /// <summary>Colonists back from a journey of at least two days (counted from when each was last at home).</summary>
+        public static void Homecoming(List<Pawn> pawns)
         {
-            if (!On || pawns == null || awayTicks < GenDate.TicksPerDay * 2) return;
+            if (!On || pawns == null) return;
             var comp = CouncilGameComponent.Instance;
-            var back = pawns.Where(p => p != null && !p.Dead && p.IsColonist && People.HasInnerLife(p)).ToList();
+            var back = pawns.Where(p => p != null && !p.Dead && p.IsColonist && People.HasInnerLife(p) && comp.AwayTicks(p) >= GenDate.TicksPerDay * 2).ToList();
             if (back.Count == 0) return;
+            int awayTicks = back.Max(p => comp.AwayTicks(p));
             string days = TextUtil.DaysString(awayTicks);
             foreach (var p in back)
             {
@@ -74,7 +96,7 @@ namespace ColonyCouncil
         /// <summary>A colonist broke down from their mood: their friends worry, and the worst breaks are remembered.</summary>
         public static void Breakdown(Pawn p, MentalStateDef state)
         {
-            if (!On || p == null || state == null || !p.IsColonist || !People.HasInnerLife(p)) return;
+            if (!On || ownBreaks > 0 || p == null || state == null || !p.IsColonist || !People.HasInnerLife(p)) return;
             var comp = CouncilGameComponent.Instance;
             foreach (var f in FriendsOf(p, 40).Take(3))
                 comp.journals.Write(f, "Council_Journal_FriendBroke", null, p.Named("OTHER"));

@@ -205,7 +205,7 @@ namespace ColonyCouncil
         {
             if (state == null || p.InMentalState || p.Downed || !p.Spawned) return;
             if ((p.needs?.mood?.CurLevelPercentage ?? 1f) > maxMood) return;
-            p.mindState?.mentalStateHandler?.TryStartMentalState(state, "CC_MentalReason".Translate(w.Label.Named("WISH")).Resolve(), false, false, true);
+            using (WorldReactions.OwnBreak()) p.mindState?.mentalStateHandler?.TryStartMentalState(state, "CC_MentalReason".Translate(w.Label.Named("WISH")).Resolve(), false, false, true);
         }
     }
 

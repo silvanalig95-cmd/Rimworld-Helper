@@ -551,7 +551,9 @@ namespace ColonyCouncil
                 ? DefDatabase<MentalStateDef>.GetNamedSilentFail("InsultingSpree") ?? MentalStateDefOf.Wander_Sad
                 : MentalStateDefOf.Wander_Sad;
             string reason = w != null ? "CC_MentalReason".Translate(w.Label.Named("WISH")).Resolve() : "CC_MentalReasonGeneral".Translate().Resolve();
-            if (p.mindState?.mentalStateHandler?.TryStartMentalState(state, reason, false, false, true) == true)
+            bool started;
+            using (WorldReactions.OwnBreak()) started = p.mindState?.mentalStateHandler?.TryStartMentalState(state, reason, false, false, true) == true;
+            if (started)
             {
                 st.lastSulkTick = Find.TickManager.TicksGame;
                 AddChronicle(new ChronicleEntry(ChronicleKind.Life, "CC_Chronicle_Sulk".Translate(p.LabelShort).Resolve(), p));

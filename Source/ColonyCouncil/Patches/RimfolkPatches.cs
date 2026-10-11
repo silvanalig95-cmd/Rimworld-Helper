@@ -31,9 +31,18 @@ namespace ColonyCouncil
                 Log.Warning("[Rimfolk] Harmony isn't available, so Rimfolk's deeper game hooks are off: " + e.Message);
                 return;
             }
-            var types = typeof(RimfolkPatches).Assembly.GetTypes()
-                .Where(t => t.GetCustomAttributes(typeof(HarmonyPatch), false).Length > 0)
-                .OrderBy(t => t.Name);
+            List<Type> types;
+            try
+            {
+                types = typeof(RimfolkPatches).Assembly.GetTypes()
+                    .Where(t => t.GetCustomAttributes(typeof(HarmonyPatch), false).Length > 0)
+                    .OrderBy(t => t.Name).ToList();
+            }
+            catch (Exception e)
+            {
+                Log.Warning("[Rimfolk] Couldn't list Rimfolk's game hooks, so they are off: " + e.Message);
+                return;
+            }
             foreach (var type in types)
             {
                 try

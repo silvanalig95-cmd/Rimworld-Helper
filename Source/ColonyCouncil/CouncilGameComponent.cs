@@ -108,6 +108,7 @@ namespace ColonyCouncil
             MoodsPanel.Reset();
             StoryView.Reset();
             UiCache.Clear();
+            InteractionWorker_Moment.Reset();
             cachedInstance = this;
             cachedGame = Current.Game;
         }
@@ -145,6 +146,8 @@ namespace ColonyCouncil
             Scribe_Deep.Look(ref pets, "pets");
             Scribe_Deep.Look(ref autonomy, "autonomy");
             Scribe_Values.Look(ref era, "era", EraMode.Auto);
+            if (Scribe.mode == LoadSaveMode.Saving) lastAtHome.RemoveAll(kv => kv.Key == null || kv.Key.Dead || kv.Key.Discarded);
+            Scribe_Collections.Look(ref lastAtHome, "lastAtHome", LookMode.Reference, LookMode.Value, ref tmpHomePawns, ref tmpHomeTicks);
             Scribe_Deep.Look(ref character, "character");
             Scribe_Values.Look(ref nextWishId, "nextWishId", 1);
             Scribe_Collections.Look(ref cooldowns, "cooldowns", LookMode.Value, LookMode.Value, ref tmpKeys, ref tmpValues);
@@ -182,6 +185,8 @@ namespace ColonyCouncil
                 if (nemeses == null) nemeses = new NemesisTracker();
                 if (pets == null) pets = new PetTracker();
                 if (autonomy == null) autonomy = new AutonomyTracker();
+                if (lastAtHome == null) lastAtHome = new Dictionary<Pawn, int>();
+                lastAtHome.RemoveAll(kv => kv.Key == null);
                 if (character == null) character = new CharacterTracker();
                 // A wish about a thing whose mod was removed can't be granted any more: let it go without a word.
                 wishes.RemoveAll(w => w == null || w.def == null || w.pawn == null || w.thingLost);
@@ -202,6 +207,24 @@ namespace ColonyCouncil
         }
 
         [Unsaved] private bool builtSomething;
+
+        // When each colonist was last at home (for homecomings: a stop at a site on the way doesn't reset it).
+        private Dictionary<Pawn, int> lastAtHome = new Dictionary<Pawn, int>();
+        private List<Pawn> tmpHomePawns;
+        private List<int> tmpHomeTicks;
+
+        /// <summary>How long since this colonist was last on a home map, or -1 if unknown.</summary>
+        public int AwayTicks(Pawn p) => p != null && lastAtHome.TryGetValue(p, out int t) ? Find.TickManager.TicksGame - t : -1;
+
+        private void NoteWhoIsHome()
+        {
+            int now = Find.TickManager.TicksGame;
+            foreach (var map in Find.Maps)
+            {
+                if (!map.IsPlayerHome) continue;
+                foreach (var p in map.mapPawns.FreeColonistsSpawned) lastAtHome[p] = now;
+            }
+        }
 
         /// <summary>Construction just finished (from Patch_ConstructionDone).</summary>
         public void Notify_Constructed() => builtSomething = true;
@@ -246,6 +269,7 @@ namespace ColonyCouncil
             Safe("nemeses", () => nemeses.Hourly(this));
             Safe("pets", () => pets.Hourly(this));
             Safe("autonomy", () => autonomy.Hourly(this));
+            Safe("who is home", NoteWhoIsHome);
             Safe("encounters", () => encounters.Hourly(this));
         }
 

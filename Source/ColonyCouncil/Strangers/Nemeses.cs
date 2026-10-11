@@ -222,6 +222,8 @@ namespace ColonyCouncil
         public void Notify_Death(Pawn dead)
         {
             if (!S.nemeses || dead == null) return;
+            // The exact killer may already be known (Harmony hook): don't name a second one.
+            if (all.Any(n => n.victim == dead && n.deed == "killed" && !n.ended)) return;
             var x = Attacker(dead, GenDate.TicksPerHour * 12);
             if (x != null) Record(x, dead, "killed", Find.TickManager.TicksGame);
         }

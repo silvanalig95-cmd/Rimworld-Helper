@@ -14,7 +14,7 @@ namespace ColonyCouncil
     {
         public static void Postfix(Rect rect, Thought group, Pawn pawn)
         {
-            if (!RimfolkPatches.On || group?.def == null || pawn == null) return;
+            if (!RimfolkPatches.On || group?.def == null || pawn == null || !Mouse.IsOver(rect)) return;
             var s = ColonyCouncilMod.Settings;
             if (s == null || !s.moodInsight || !s.needsTabHints) return;
             try

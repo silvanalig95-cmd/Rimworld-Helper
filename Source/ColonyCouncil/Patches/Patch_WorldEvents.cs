@@ -77,53 +77,29 @@ namespace ColonyCouncil
     }
 
     /// <summary>
-    /// A caravan arriving: who was in it and how long they were away; afterwards, if it's home, a homecoming. Both ways
-    /// a caravan can enter a map are hooked; whichever runs first handles it.
+    /// A caravan arriving at a home map: a homecoming. (The other way a caravan enters a map hands over to this one.)
     /// </summary>
-    public static class CaravanHome
+    [HarmonyPatch(typeof(CaravanEnterMapUtility), nameof(CaravanEnterMapUtility.Enter),
+        new[] { typeof(Caravan), typeof(Map), typeof(System.Func<Pawn, IntVec3>), typeof(CaravanDropInventoryMode), typeof(bool) })]
+    public static class Patch_CaravanHome
     {
-        private static int lastCaravan = -1;
-        private static int lastTick = -1;
-
-        public static void Before(Caravan caravan, out (List<Pawn> pawns, int away, int id) state)
+        public static void Prefix(Caravan caravan, out List<Pawn> __state)
         {
-            state = (null, 0, -1);
-            if (!RimfolkPatches.On || caravan == null || !caravan.IsPlayerControlled) return;
-            int now = Find.TickManager.TicksGame;
-            if (caravan.ID == lastCaravan && now == lastTick) return;
-            lastCaravan = caravan.ID;
-            lastTick = now;
-            state = (caravan.PawnsListForReading.ToList(), now - caravan.creationGameTicks, caravan.ID);
+            __state = RimfolkPatches.On && caravan != null && caravan.IsPlayerControlled ? caravan.PawnsListForReading.ToList() : null;
         }
 
-        public static void After(Map map, (List<Pawn> pawns, int away, int id) state)
+        public static void Postfix(Map map, List<Pawn> __state)
         {
-            if (state.pawns == null || map == null || !map.IsPlayerHome) return;
+            if (__state == null || map == null || !map.IsPlayerHome) return;
             try
             {
-                WorldReactions.Homecoming(state.pawns, state.away);
+                WorldReactions.Homecoming(__state);
             }
             catch (System.Exception e)
             {
                 CouncilLog.ErrorOnce("homecoming hook", e);
             }
         }
-    }
-
-    [HarmonyPatch(typeof(CaravanEnterMapUtility), nameof(CaravanEnterMapUtility.Enter),
-        new[] { typeof(Caravan), typeof(Map), typeof(System.Func<Pawn, IntVec3>), typeof(CaravanDropInventoryMode), typeof(bool) })]
-    public static class Patch_CaravanHome
-    {
-        public static void Prefix(Caravan caravan, out (List<Pawn> pawns, int away, int id) __state) => CaravanHome.Before(caravan, out __state);
-        public static void Postfix(Map map, (List<Pawn> pawns, int away, int id) __state) => CaravanHome.After(map, __state);
-    }
-
-    [HarmonyPatch(typeof(CaravanEnterMapUtility), nameof(CaravanEnterMapUtility.Enter),
-        new[] { typeof(Caravan), typeof(Map), typeof(CaravanEnterMode), typeof(CaravanDropInventoryMode), typeof(bool), typeof(System.Predicate<IntVec3>) })]
-    public static class Patch_CaravanHomeByMode
-    {
-        public static void Prefix(Caravan caravan, out (List<Pawn> pawns, int away, int id) __state) => CaravanHome.Before(caravan, out __state);
-        public static void Postfix(Map map, (List<Pawn> pawns, int away, int id) __state) => CaravanHome.After(map, __state);
     }
 
     /// <summary>A colonist breaking down from their mood (not breaks forced by events or psycasts).</summary>
