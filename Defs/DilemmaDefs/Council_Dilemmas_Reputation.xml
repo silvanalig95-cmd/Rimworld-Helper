@@ -328,7 +328,7 @@
       </li>
       <li>
         <label>Let {X_objective} laugh</label>
-        <outcome>The council let it go. {X_nameDef} kept up the jokes until the caravan left, and {A_nameDef} stayed in {A_possessive} room until it was out of sight.</outcome>
+        <outcome>{X_nameDef} kept up the jokes until the caravan left, and {A_nameDef} stayed in {A_possessive} room until it was out of sight.</outcome>
         <ways><generosity>-3</generosity></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_DlmR_Mocked</thought></li>
@@ -651,7 +651,7 @@
     <options>
       <li>
         <label>Everyone pulls their weight</label>
-        <outcome>The council drew up a list of chores by name and posted it by the kitchen door. The naps got shorter and the grumbling got louder, and {A_nameDef} finally got a full night's sleep.</outcome>
+        <outcome>Chores were handed out by name and posted by the kitchen door. The naps got shorter and the grumbling got louder, and {A_nameDef} finally got a full night's sleep.</outcome>
         <ways><toil>8</toil></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_DlmR_BackedUp</thought></li>

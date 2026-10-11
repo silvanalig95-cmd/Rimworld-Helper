@@ -82,7 +82,7 @@
       </li>
       <li>
         <label>Tell them to grow up</label>
-        <outcome>The council told {A_nameDef} and {B_nameDef} to settle it like adults. The line down the middle of the colony is still there, and it is getting deeper.</outcome>
+        <outcome>Told to settle it like adults, {A_nameDef} and {B_nameDef} have done nothing of the kind. The line down the middle of the colony is still there, and getting deeper.</outcome>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>AAndB</target><thought>Council_Dlm_Ignored</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>AAndB</target><amount>-3</amount></li>
@@ -146,7 +146,7 @@
       </li>
       <li>
         <label>Keep the roster as it is</label>
-        <outcome>The council kept the roster as it was. {A_nameDef} and {B_nameDef} still find each other at meals, and glare at the roster on the way past.</outcome>
+        <outcome>The roster stays as it was. {A_nameDef} and {B_nameDef} still find each other at meals, and glare at it on the way past.</outcome>
         <ways><tradition>3</tradition><toil>2</toil></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>AAndB</target><thought>Council_DlmSoc_PostedApart</thought></li>
@@ -163,7 +163,7 @@
       </li>
       <li>
         <label>Split them up on purpose</label>
-        <outcome>The council put {A_nameDef} and {B_nameDef} at opposite ends of the day, to keep the colony from turning into cliques. They leave each other notes now, and the notes are getting longer.</outcome>
+        <outcome>{A_nameDef} and {B_nameDef} now work at opposite ends of the day, so the colony doesn't split into cliques. They leave each other notes, and the notes are getting longer.</outcome>
         <ways><mercy>-4</mercy></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>AAndB</target><thought>Council_DlmSoc_PostedApart</thought></li>
@@ -241,7 +241,7 @@
       </li>
       <li>
         <label>Let it go</label>
-        <outcome>The council let it go. {A_nameDef} and {B_nameDef} are relieved. The others have started checking the latches themselves.</outcome>
+        <outcome>No one was punished. {A_nameDef} and {B_nameDef} are relieved, and the others have started checking the doors and lamps themselves.</outcome>
         <ways><mercy>5</mercy></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>AAndB</target><thought>Council_Dlm_Forgiven</thought></li>
@@ -294,7 +294,7 @@
       </li>
       <li>
         <label>Allow speeches, but no feast</label>
-        <outcome>The council allowed speeches after dinner, and nothing more. {A_nameDef} and {B_nameDef} said their piece to a room that kept glancing at the door.</outcome>
+        <outcome>There were speeches after dinner and nothing more. {A_nameDef} and {B_nameDef} said their piece to a room that kept glancing at the door.</outcome>
         <ways><tradition>2</tradition></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>AAndB</target><thought>Council_DlmSoc_ShortRemembrance</thought></li>
@@ -401,7 +401,7 @@
       </li>
       <li>
         <label>Throw the case out</label>
-        <outcome>The council threw the accusation out for want of proof. {B_nameDef} has started keeping a ledger of the silver, and stares at {A_nameDef} while writing in it.</outcome>
+        <outcome>With no proof, the accusation was thrown out. {B_nameDef} has started keeping a ledger of the silver, and stares at {A_nameDef} while writing in it.</outcome>
         <ways><mercy>4</mercy></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_Vindicated</thought></li>
@@ -499,7 +499,7 @@
       </li>
       <li>
         <label>Keep {B_nameDef} busy</label>
-        <outcome>The council handed {B_nameDef} a project big enough to fill the evenings, and {B_nameDef} works at it late, alone.</outcome>
+        <outcome>{B_nameDef} has been given a project big enough to fill the evenings, and works at it late, alone.</outcome>
         <ways><toil>3</toil></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Hediff"><target>B</target><hediff>Council_Motivated</hediff><severity>0.8</severity></li>
@@ -571,7 +571,7 @@
       </li>
       <li>
         <label>Mix up the work crews</label>
-        <outcome>The council broke up the work crews and shuffled everyone. The circle is scattered across the colony now, and its members spend their breaks complaining about it to each other.</outcome>
+        <outcome>The work crews were broken up and everyone reshuffled. The circle is scattered across the colony now, and its members spend their breaks complaining about it to each other.</outcome>
         <ways><tradition>-4</tradition></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_Vindicated</thought></li>
@@ -658,7 +658,7 @@
       </li>
       <li>
         <label>Credit {B_nameDef}</label>
-        <outcome>The council named {B_nameDef} as the builder. {B_nameDef} brings it up at every chance, and {A_nameDef} has stopped speaking to {B_objective}.</outcome>
+        <outcome>It's {B_nameDef}'s work now, by the council's ruling. {B_nameDef} brings it up at every chance, and {A_nameDef} has stopped speaking to {B_objective}.</outcome>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_DlmSoc_Credited</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>B</target><amount>5</amount></li>
@@ -674,7 +674,7 @@
       </li>
       <li>
         <label>Carve both their names on it</label>
-        <outcome>The council credited them jointly and carved both names into it. {A_nameDef} and {B_nameDef} grumbled, but the arguing has mostly stopped.</outcome>
+        <outcome>Both names were carved into it, side by side. {A_nameDef} and {B_nameDef} grumbled, but the arguing has mostly stopped.</outcome>
         <ways><tradition>3</tradition></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>AAndB</target><thought>Council_Dlm_Compromise</thought></li>
@@ -753,7 +753,7 @@
       </li>
       <li>
         <label>Halve it, if {B_nameDef} takes the other half</label>
-        <outcome>The council halved the punishment and handed the other half to {B_nameDef}. The two of them are working it off together, and don't seem to mind.</outcome>
+        <outcome>{A_nameDef} got half the punishment and {B_nameDef} took the other half. The two of them are working it off together, and don't seem to mind.</outcome>
         <ways><mercy>3</mercy></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Hediff"><target>AAndB</target><hediff>Council_Dlm_Penance</hediff></li>
@@ -865,7 +865,7 @@
       </li>
       <li>
         <label>Hand out the good things by lot</label>
-        <outcome>The council took the choosing out of {A_nameDef}'s hands. From now on, the good things go by drawing lots. Some people have done well out of it, and the quartermaster's friends have not.</outcome>
+        <outcome>From now on, the good things go by drawing lots, and {A_nameDef} no longer gets to choose. Some people have done well out of it, and the quartermaster's friends have not.</outcome>
         <ways><generosity>2</generosity><tradition>-3</tradition></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_Overruled</thought></li>

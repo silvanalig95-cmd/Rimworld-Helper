@@ -203,7 +203,7 @@
         <li>oldwisdom->people used to mend things instead of throwing them away</li>
         <li>oldwisdom->a handshake used to mean something</li>
         <li>oldwisdom->winters used to be colder, or felt it</li>
-        <li>oldwisdom->nobody went to bed hungry if a neighbor had bread</li>
+        <li>oldwisdom->no one went to bed hungry if a neighbor had bread</li>
         <li>oldstory->the winter the river froze solid</li>
         <li>oldstory->a market so big you could get lost in it for a day</li>
         <li>oldstory->a dog that could find its way home from anywhere</li>
@@ -286,7 +286,7 @@
         <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] traded stories as the evening wore on, each one taller than the last.</li>
         <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] [talltale]. [RECIPIENT_nameDef] [talereaction].</li>
         <li>r_logentry->As the light faded, [INITIATOR_nameDef] told [RECIPIENT_nameDef] a ghost story and then refused to walk to bed alone.</li>
-        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] stayed up later than they should have, talking about [eveningtopic].</li>
+        <li>r_logentry->Long after dark, [INITIATOR_nameDef] and [RECIPIENT_nameDef] were still up talking about [eveningtopic].</li>
         <li>r_logentry->[INITIATOR_nameDef] forgot the ending of [INITIATOR_possessive] story halfway through, and [RECIPIENT_nameDef] helped make up a new one.</li>
         <li>talltale->the one about the thrumbo that followed a trader for a week</li>
         <li>talltale->a story about a lost city out in the hills</li>
@@ -400,9 +400,9 @@
     <logRulesInitiator>
       <rulesStrings>
         <li>r_logentry->[INITIATOR_nameDef] pulled [RECIPIENT_nameDef] over to see [springsight].</li>
-        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] stopped what they were doing for a moment, just to stand in the sun.</li>
+        <li>r_logentry->For a moment [INITIATOR_nameDef] and [RECIPIENT_nameDef] stopped what they were doing, just to stand in the sun.</li>
         <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] that [INITIATOR_pronoun] could smell spring in the air. [RECIPIENT_nameDef] said [springsmell].</li>
-        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] counted the first blossoms on the way across the colony and lost count at [blossomcount].</li>
+        <li>r_logentry->On the way across the colony, [INITIATOR_nameDef] and [RECIPIENT_nameDef] counted the first blossoms and lost count at [blossomcount].</li>
         <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] that winter was finally over. [RECIPIENT_nameDef] told [INITIATOR_objective] not to jinx it.</li>
         <li>springsight->the first flowers pushing up through the mud</li>
         <li>springsight->a bird building a nest in the oddest place</li>
@@ -442,7 +442,7 @@
         <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] that [encouragement].</li>
         <li>r_logentry->[INITIATOR_nameDef] didn't ask [RECIPIENT_nameDef] what was wrong, and just stayed close for a while.</li>
         <li>r_logentry->[INITIATOR_nameDef] made [RECIPIENT_nameDef] laugh, mostly by accident.</li>
-        <li>cheergesture->brought [RECIPIENT_objective] something warm to drink</li>
+        <li>cheergesture->brought [RECIPIENT_objective] a hot drink</li>
         <li>cheergesture->offered to take [RECIPIENT_possessive] next chore</li>
         <li>cheergesture->just listened for a while</li>
         <li>cheergesture->walked with [RECIPIENT_objective] until [RECIPIENT_pronoun] felt a bit lighter</li>
@@ -483,7 +483,7 @@
         <li>hometown->a farm at the end of a very long road</li>
         <li>hometown->a traders' camp that moved with the seasons</li>
         <li>hometown->a hill town where it rained more days than not</li>
-        <li>hometown->a crowded city where nobody knew anybody</li>
+        <li>hometown->a crowded city where no one knew their neighbors</li>
         <li>missedthing->a mother's cooking</li>
         <li>missedthing->the sound of the sea</li>
         <li>missedthing->a particular tree [INITIATOR_pronoun] used to climb</li>
@@ -596,7 +596,7 @@
         <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] agreed that the cold was [coldverdict].</li>
         <li>r_logentry->[INITIATOR_nameDef] showed [RECIPIENT_nameDef] [INITIATOR_possessive] numb fingers, and [RECIPIENT_nameDef] showed [INITIATOR_objective] [RECIPIENT_possessive] numb nose.</li>
         <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] that [INITIATOR_pronoun] was wearing [coldlayers] and still couldn't feel [INITIATOR_possessive] toes.</li>
-        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] watched their breath steam and tried to blow rings with it.</li>
+        <li>r_logentry->Out in the cold, [INITIATOR_nameDef] and [RECIPIENT_nameDef] watched their breath steam and tried to blow rings with it.</li>
         <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] whether summer had ever really existed. [RECIPIENT_nameDef] said [coldanswer].</li>
         <li>coldverdict->bitter enough to freeze words in the air</li>
         <li>coldverdict->the kind that gets into your bones and stays for supper</li>
@@ -637,7 +637,7 @@
         <li>drinkplan->a quiet mug at the end of the day</li>
         <li>drinkplan->one drink, which both of them knew meant three</li>
         <li>drinkplan->a cup of something and a long sit-down</li>
-        <li>drinkplan->a drink and a game of something</li>
+        <li>drinkplan->a drink and a game of dice</li>
         <li>drinktoast->surviving another day</li>
         <li>drinktoast->whoever cooks supper</li>
         <li>drinktoast->sore feet and good company</li>
@@ -988,7 +988,7 @@
         <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] [faithact], and both felt steadier for it.</li>
         <li>blessedthing->the day's meal</li>
         <li>blessedthing->the fields</li>
-        <li>blessedthing->everyone away from the colony</li>
+        <li>blessedthing->those away from the colony</li>
         <li>blessedthing->the colony's newest arrivals</li>
         <li>blessedthing->the ones they had lost</li>
         <li>faithline->their faith had carried [INITIATOR_objective] through worse than this</li>
@@ -1222,7 +1222,7 @@
       <rulesStrings>
         <li>sent->[INITIATOR_nameDef] won, and the listeners asked to hear the ending again.</li>
         <li>sent->[INITIATOR_nameDef] won by a show of hands, though [RECIPIENT_nameDef] counted twice.</li>
-        <li>sent->[INITIATOR_nameDef] won with an ending nobody saw coming.</li>
+        <li>sent->[INITIATOR_nameDef] won with an ending no one saw coming.</li>
       </rulesStrings>
     </rulePack>
   </RulePackDef>
@@ -1245,7 +1245,7 @@
     <symbol>ColonyCouncil/Symbols/Star</symbol>
     <logRulesInitiator>
       <rulesStrings>
-        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] each whittled a little figure from a scrap of wood, to see whose looked more like [whittlesubject].</li>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] each whittled a small figure from a scrap of wood, to see whose looked more like [whittlesubject].</li>
         <li>r_logentry->[INITIATOR_nameDef] challenged [RECIPIENT_nameDef] to a knot-tying race, ten knots with no mistakes.</li>
         <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] raced to weave a basket from scraps, with [craftjudge] as the judge.</li>
         <li>r_logentry->[INITIATOR_nameDef] bet [RECIPIENT_nameDef] that [INITIATOR_pronoun] could carve a better spoon in the time it takes to eat supper.</li>
@@ -1280,7 +1280,7 @@
     <defName>Council_Sent_Craft_InitiatorWon</defName>
     <rulePack>
       <rulesStrings>
-        <li>sent->[INITIATOR_nameDef]'s work was neater, and [INITIATOR_pronoun] made sure everyone saw it.</li>
+        <li>sent->[INITIATOR_nameDef]'s work was neater, and [INITIATOR_pronoun] showed it round the table.</li>
         <li>sent->[INITIATOR_nameDef] won. [RECIPIENT_nameDef] kept [RECIPIENT_possessive] attempt anyway, and said it had character.</li>
         <li>sent->[INITIATOR_nameDef] finished first, and best.</li>
       </rulesStrings>
@@ -1484,11 +1484,11 @@
         <li>magicfeel->like music only [RECIPIENT_pronoun] could hear</li>
         <li>magicfeel->like holding a breath and letting it go all at once</li>
         <li>canlearn->some can, if the gift is there</li>
-        <li>canlearn->it takes years, and patience, and a little luck</li>
+        <li>canlearn->it takes years, and patience, and some luck</li>
         <li>canlearn->anyone can try, though most give up</li>
         <li>canlearn->no one really knows</li>
         <li>magictired->some days it's like carrying water uphill</li>
-        <li>magictired->it's like any work: tiring, and worth it</li>
+        <li>magictired->it's tiring, like any work, and worth it</li>
         <li>magictired->rest matters as much as practice</li>
         <li>magichurt->only [RECIPIENT_possessive] pride, when it goes wrong</li>
         <li>magichurt->no, it tickles</li>
@@ -1528,7 +1528,7 @@
         <li>r_logentry->[RECIPIENT_nameDef] told [INITIATOR_nameDef], as a friend, that the animals had started avoiding [INITIATOR_objective].</li>
         <li>r_logentry->[INITIATOR_nameDef] leaned in to tell [RECIPIENT_nameDef] something, and [RECIPIENT_nameDef] leaned away and pointed toward the water.</li>
         <li>r_logentry->[RECIPIENT_nameDef] asked [INITIATOR_nameDef], with great tact, whether [INITIATOR_pronoun] was [smellguess].</li>
-        <li>r_logentry->[INITIATOR_nameDef] wondered aloud why everyone was keeping their distance today. [RECIPIENT_nameDef] [washanswer].</li>
+        <li>r_logentry->[INITIATOR_nameDef] wondered aloud why the others were keeping their distance today. [RECIPIENT_nameDef] [washanswer].</li>
         <li>washhint->might enjoy a nice long wash</li>
         <li>washhint->pay the wash tub a visit, today if possible</li>
         <li>washhint->could use some soap and a quiet hour</li>
@@ -1610,7 +1610,7 @@
         <li>newdish->today's special</li>
         <li>newdish->the cook's latest creation</li>
         <li>newdish->the new recipe</li>
-        <li>dishpraise->something new and wonderful</li>
+        <li>dishpraise->a new dish, and a wonderful one</li>
         <li>dishpraise->a meal so rich it was gone far too soon</li>
         <li>dishpraise->proper food, the kind with a name</li>
         <li>dishpraise->the kind of dish you remember for a season</li>

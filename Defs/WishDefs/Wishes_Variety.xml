@@ -190,7 +190,7 @@
         <li>[skill:Artistic,night] I need stories. Somebody else's, for a change. My own are wearing thin.</li>
         <li>[winter] Long nights and nothing new to read. I've started reading the labels on the crates.</li>
         <li>[skill:Social,evening] I keep quoting the same three books at supper, and people have started to groan.</li>
-        <li>[trait:NightOwl] I'm up all night anyway, and I've read everything we own twice by lamplight.</li>
+        <li>[trait:NightOwl] I'm up all night anyway. The nights would go faster with a book I haven't read.</li>
       </plain>
       <warm>
         <li>With a few more books I could read aloud in the evenings. People would like that, I think.</li>
@@ -203,7 +203,7 @@
       </cheerful>
       <gloomy>
         <li>[lowmood] When the book ends, I have to come back here. I'd rather the books didn't end so often.</li>
-        <li>I've read every book we have twice. The evenings are long without a new one.</li>
+        <li>Without a new book, the evenings here are very long.</li>
       </gloomy>
       <cold>
         <li>Bored colonists start fights. I'd like {TARGET} books in storage, at least.</li>
@@ -212,7 +212,7 @@
     <thanks>
       <plain><li>New books. I'll try not to read them all tonight.</li></plain>
       <warm><li>Thank you. I've already made a list of who'd like which one.</li></warm>
-      <cheerful><li>New books! I can smell the pages from here.</li></cheerful>
+      <cheerful><li>I can smell the fresh pages from here!</li></cheerful>
       <gloomy><li>One of these is bound to have a sad ending. I'm saving it for a bad day.</li></gloomy>
       <cold><li>Sufficient for now. I'll pace myself.</li></cold>
     </thanks>
@@ -393,7 +393,7 @@
     <request>
       <plain>
         <li>I counted the woodpile. Then I counted the days until spring. They don't match.</li>
-        <li>We burn wood, we build with wood, and the pile keeps getting lower.</li>
+        <li>We burn wood, we build with wood, and there isn't enough of it for both this winter.</li>
         <li>[fall,day] Good weather for chopping, while it lasts. Let's get a proper woodpile in before the cold.</li>
         <li>[winter,evening] Every fire in the colony eats from the same pile, and the pile is shrinking.</li>
         <li>[snow] The snow's getting deep. In another week, chopping will mean wading out to the trees.</li>
@@ -735,7 +735,7 @@
     <request>
       <plain>
         <li>My scalp's peeling from the sun. Any hat would do.</li>
-        <li>People look more capable in a hat. I could use looking more capable.</li>
+        <li>People look more capable in a hat. I could do with some of that.</li>
         <li>[rain] Rain's been running down the back of my neck since breakfast. Could I have something for my head?</li>
         <li>[hot] My head's hot enough to cook on. I'd like something between it and the sun.</li>
         <li>[snow] My ears are numb by midmorning. A hat would sort that out.</li>
@@ -998,7 +998,7 @@
     <request>
       <plain>
         <li>{OTHER_nameDef} has {THING} in those packs. I've walked past it nine times today.</li>
-        <li>I know we're careful with silver. But that {THINGBARE} won't be here tomorrow, and I'll think about it for a year.</li>
+        <li>We're careful with silver, I know. But that {THINGBARE} won't be here tomorrow, and I'll think about it for a year.</li>
         <li>[evening] The trader leaves soon, and that {THINGBARE} goes too.</li>
         <li>[poor,day] I know we're poor. I know. But have you seen {OTHER_nameDef}'s {THINGBARE}? Have you really looked?</li>
         <li>[trait:Greedy] {OTHER_nameDef} has what I want in those packs, and I mean to have it before the trader goes.</li>
@@ -1066,7 +1066,7 @@
       <plain>
         <li>{OTHER_nameDef} is still out there. Some mornings I see it at the tree line, watching us work.</li>
         <li>Every time someone goes out to haul, I wonder if {OTHER_nameDef} is waiting for them.</li>
-        <li>[hurt] I've still got the marks {OTHER_nameDef} left on me, and it's still out there.</li>
+        <li>[hurt] I've still got the marks {OTHER_nameDef} left on me, and it's out there walking around.</li>
         <li>[night] It's dark and {OTHER_nameDef} is out there somewhere. I can't sleep with that thing breathing.</li>
         <li>[skill:Shooting] Give me one clear shot at {OTHER_nameDef}. That's all I'll need.</li>
         <li>[skill:Melee] I want to look {OTHER_nameDef} in the eye when it happens. Up close. Let me go.</li>
@@ -1397,7 +1397,7 @@
         <li>Smoked meat keeps for months and tastes like a campfire in the best way. Let's build {THING}.</li>
         <li>[fall] Winter's coming, and so is the hunting. We'll need somewhere to cure what we bring back.</li>
         <li>[hot] In this heat, meat turns before I can get it into the pot. I need {THING}.</li>
-        <li>[lowtech,summer] We have no way to keep meat cold in summer. Smoke will keep it for months.</li>
+        <li>[lowtech,summer] We have no way to keep meat cold in summer. Smoke is the only thing that saves it.</li>
         <li>[poor,evening] We can't afford to waste a scrap of meat. Smoking it means we don't have to.</li>
         <li>[winter] The hunters come back empty-handed half the time in winter. Smoked meat would see us through.</li>
       </plain>
