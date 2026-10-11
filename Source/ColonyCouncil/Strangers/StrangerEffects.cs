@@ -33,6 +33,14 @@ namespace ColonyCouncil
     /// <summary>The stranger's group leaves the map now (thrown out, or sent on their way with thanks).</summary>
     public class DilemmaEffect_SendAway : DilemmaEffect
     {
+        /// <summary>Hospitality's guests leave when their visit ends, not when the council says: the answer can't be given.</summary>
+        public override string Unavailable(DilemmaContext ctx)
+        {
+            var x = ctx.stranger;
+            if (x != null && !x.Dead && x.Spawned && Strangers.IsHospitalityGuest(x)) return "CC_Stranger_HospitalitySendAway".Translate(x.LabelShort).ToString();
+            return null;
+        }
+
         public override void Apply(DilemmaContext ctx)
         {
             var x = ctx.stranger;

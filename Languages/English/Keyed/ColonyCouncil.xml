@@ -1286,6 +1286,7 @@ Granting one of {PAWN_possessive} wishes, or keeping a promise, can win {PAWN_ob
   <CC_Stranger_NoPrisonBed>{PAWN_nameDef} can't take {X_nameDef} prisoner: there's no free prisoner bed.</CC_Stranger_NoPrisonBed>
   <CC_Stranger_Away>{0} is away from home.</CC_Stranger_Away>
   <CC_Stranger_PetGone>The animal isn't the colony's any more.</CC_Stranger_PetGone>
+  <CC_Stranger_HospitalitySendAway>{0} is a guest of the house: Hospitality decides when guests leave, not the council.</CC_Stranger_HospitalitySendAway>
   <CC_Stranger_HospitalityRecruit>{0} is a Hospitality guest: invite them to stay the Hospitality way, from their guest tab.</CC_Stranger_HospitalityRecruit>
   <CC_Stranger_NoHeirloom>{0} isn't carrying the heirloom any more.</CC_Stranger_NoHeirloom>
 

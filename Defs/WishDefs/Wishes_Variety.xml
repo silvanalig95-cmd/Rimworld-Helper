@@ -101,7 +101,8 @@
     <talkInteraction>Council_Talk_Fun</talkInteraction>
     <fulfilledWhen>The colony has {THING}, or any other bookcase or bookshelf.</fulfilledWhen>
     <wants>
-      <nameContains><li>bookcase</li><li>bookshelf</li></nameContains>
+      <thingClasses><li>Building_Bookcase</li></thingClasses>
+      <nameContains><li>bookcase</li></nameContains>
       <passions><li>Intellectual</li><li>Artistic</li></passions>
       <reason>{PAWN_nameDef} loves books, and the colony has nowhere decent to keep them.</reason>
     </wants>
@@ -375,7 +376,7 @@
     <talkInteraction>Council_Talk_Safety</talkInteraction>
     <fulfilledWhen>Keep at least {TARGET} wood in storage or in the home area. Chop trees, or buy it from traders.</fulfilledWhen>
     <wants>
-      <defNames><li>WoodLog</li></defNames>
+      <defNames><li>WoodLog</li><li>DankPyon_RawWood</li></defNames>
       <count>500</count>
       <anySource>true</anySource>
       <seasons><li>Fall</li><li>Winter</li></seasons>
@@ -852,7 +853,8 @@
     <talkInteraction>Council_Talk_Status</talkInteraction>
     <fulfilledWhen>{PAWN_nameDef} wears a necklace, bracelet, amulet, circlet or other piece of jewelry.</fulfilledWhen>
     <wants>
-      <nameContains><li>necklace</li><li>bracelet</li><li>earring</li><li>amulet</li><li>pendant</li><li>circlet</li><li>brooch</li><li>tiara</li></nameContains>
+      <nameContains><li>necklace</li><li>bracelet</li><li>earring</li><li>amulet</li><li>pendant</li><li>circlet</li><li>brooch</li><li>tiara</li><li>ring</li></nameContains>
+      <notContains><li>string</li><li>spring</li><li>ring mail</li><li>ringmail</li><li>ring armor</li><li>offering</li><li>herring</li><li>bearing</li><li>boring</li></notContains>
       <reason>{PAWN_nameDef} would like to wear something beautiful for once, rather than something useful.</reason>
     </wants>
     <request>

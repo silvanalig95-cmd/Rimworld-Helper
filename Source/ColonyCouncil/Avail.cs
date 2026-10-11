@@ -495,7 +495,7 @@ namespace ColonyCouncil
             cacheTick = now;
             // Electricity: the vanilla research, or a power plant the colony actually runs (mods rename things).
             hasElectricity = ResearchDone("Electricity")
-                             || Find.Maps.Any(m => m.IsPlayerHome && m.listerBuildings.allBuildingsColonist.Any(b => b.TryGetComp<CompPowerPlant>() != null));
+                             || Find.Maps.Any(m => m.IsPlayerHome && m.listerBuildings.allBuildingsColonist.Any(IsRealGenerator));
             // The era: the most advanced level with at least two finished projects, so one stray modded project
             // doesn't drag a medieval colony into the industrial age.
             var counts = new Dictionary<TechLevel, int>();
@@ -505,6 +505,16 @@ namespace ColonyCouncil
             foreach (var kv in counts)
                 if (kv.Key > best && kv.Value >= 2) best = kv.Key;
             researchedTech = best;
+        }
+
+        /// <summary>
+        /// A generator that feeds a power grid. Medieval Overhaul's watermill uses a power-plant part only to measure
+        /// the river (it makes 1 W and connects to nothing), and must not make a medieval colony look industrial.
+        /// </summary>
+        private static bool IsRealGenerator(Building b)
+        {
+            var plant = b.TryGetComp<CompPowerPlant>();
+            return plant?.Props != null && plant.Props.transmitsPower && plant.Props.PowerConsumption <= -50f;
         }
 
         public static void ResetCache()

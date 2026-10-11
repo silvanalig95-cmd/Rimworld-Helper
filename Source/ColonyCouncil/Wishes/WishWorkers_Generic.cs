@@ -22,6 +22,8 @@ namespace ColonyCouncil
         /// <summary>Lower-case words looked for in defName and label (modded things count without naming them).</summary>
         public List<string> nameContains;
         public List<string> notContains;
+        /// <summary>Building classes (by name; subclasses count), e.g. Building_Bookcase.</summary>
+        public List<string> thingClasses;
         public List<ThingCategoryDef> categories;
         public bool fire;
         public int count = 1;
@@ -79,7 +81,17 @@ namespace ColonyCouncil
             }
             if (!nameContains.NullOrEmpty()) preds.Add(d => nameContains.Any(w => NameOf(d).Contains(w)));
             if (!categories.NullOrEmpty()) preds.Add(d => d.thingCategories != null && categories.Any(c => d.IsWithinCategory(c)));
-            bool hasFire(ThingDef d) => d.comps != null && d.comps.Any(c => c is CompProperties_FireOverlay);
+            if (!thingClasses.NullOrEmpty())
+                preds.Add(d =>
+                {
+                    for (var t = d.thingClass; t != null && t != typeof(object); t = t.BaseType)
+                        if (thingClasses.Contains(t.Name)) return true;
+                    return false;
+                });
+            // A real fire: the game's fire overlay, or something that burns fuel for heat and light (Medieval
+            // Overhaul's hearth has no overlay).
+            bool hasFire(ThingDef d) => d.comps != null && (d.comps.Any(c => c is CompProperties_FireOverlay)
+                                                            || (d.comps.Any(c => c is CompProperties_Refuelable) && d.comps.Any(c => c is CompProperties_HeatPusher h && h.heatPerSecond > 0f) && d.comps.Any(c => c is CompProperties_Glower)));
             return d =>
             {
                 if (fire && !hasFire(d)) return false;

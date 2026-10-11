@@ -46,7 +46,8 @@ namespace ColonyCouncil
 
         /// <summary>
         /// Colonists held somewhere the game's pawn lists don't look: Vanilla Outposts keeps its occupants inside the
-        /// outpost (an "AllPawns" list), not as world pawns.
+        /// outpost (an "AllPawns" list), and Vehicle Framework its passengers in flight ("AllPawnsAboard"), not as
+        /// world pawns.
         /// </summary>
         public static IEnumerable<Pawn> OffMapColonists()
         {
@@ -58,8 +59,17 @@ namespace ColonyCouncil
                 var type = o.GetType();
                 if (!pawnLists.TryGetValue(type, out var prop))
                 {
-                    prop = type.GetProperty("AllPawns", System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.Instance);
-                    if (prop != null && !typeof(IEnumerable<Pawn>).IsAssignableFrom(prop.PropertyType)) prop = null;
+                    // Vanilla Outposts: AllPawns. Vehicle Framework's vehicles in flight: AllPawnsAboard.
+                    prop = null;
+                    foreach (var name in new[] { "AllPawns", "AllPawnsAboard" })
+                    {
+                        var candidate = type.GetProperty(name, System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.Instance);
+                        if (candidate != null && typeof(IEnumerable<Pawn>).IsAssignableFrom(candidate.PropertyType))
+                        {
+                            prop = candidate;
+                            break;
+                        }
+                    }
                     pawnLists[type] = prop;
                 }
                 if (prop == null) continue;
@@ -127,6 +137,15 @@ namespace ColonyCouncil
             }
             int key = (int)s.passion;
             if (modPassions.TryGetValue(key, out int level)) return level;
+            // Vanilla Skills Expanded (and Alpha Skills, which builds on it) defines each passion: read how fast it
+            // makes one learn, and whether it's a bad one. A colonist's own learning speed won't do, because VSE also
+            // slows it for passions in their other skills.
+            int? fromDef = VsePassionLevel(key);
+            if (fromDef.HasValue)
+            {
+                modPassions[key] = fromDef.Value;
+                return fromDef.Value;
+            }
             level = 1;
             try
             {
@@ -137,8 +156,36 @@ namespace ColonyCouncil
             {
                 // A passion the game can't price: call it an interest.
             }
-            if (!DebugSettings.fastLearning) modPassions[key] = level;
+            // Judged from one colonist's learning speed, so not remembered: another may learn differently.
             return level;
+        }
+
+        private static bool vseLooked;
+        private static System.Reflection.FieldInfo vsePassions;
+
+        private static int? VsePassionLevel(int passion)
+        {
+            try
+            {
+                if (!vseLooked)
+                {
+                    vseLooked = true;
+                    var type = GenTypes.GetTypeInAnyAssembly("VSE.Passions.PassionManager");
+                    vsePassions = type?.GetField("Passions", System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.Static);
+                }
+                if (!(vsePassions?.GetValue(null) is System.Array defs) || passion < 0 || passion >= defs.Length) return null;
+                var def = defs.GetValue(passion);
+                if (def == null) return null;
+                var t = def.GetType();
+                bool bad = t.GetField("isBad")?.GetValue(def) is bool b && b;
+                float rate = t.GetField("learnRateFactor")?.GetValue(def) is float f ? f : 1f;
+                if (bad || rate < 0.9f) return 0;
+                return rate >= 1.25f ? 2 : 1;
+            }
+            catch
+            {
+                return null;
+            }
         }
 
         public static bool Passionate(SkillRecord s) => PassionLevel(s) > 0;
