@@ -54,6 +54,8 @@ namespace ColonyCouncil
         public bool xLeads;
         /// <summary>Part of the scenario the player chose (see PendingRaid.scenario).</summary>
         public bool scenario;
+        /// <summary>They come for A: if A has died or left since, there's nobody to come for.</summary>
+        public bool forA;
 
         public override void Apply(DilemmaContext ctx)
         {
@@ -61,6 +63,7 @@ namespace ColonyCouncil
             var f = h?.enemy ?? ctx.faction;
             var tracker = CouncilGameComponent.Instance?.happenings;
             if (f == null || ctx.map == null || tracker == null || !Raids.CanRaid(f)) return;
+            if (forA && (ctx.a == null || ctx.a.Dead || !ctx.a.IsColonist)) return;
             if (chance < 1f && !Rand.Chance(chance)) return;
             var ext = h?.Ext;
             float factor = (points.max > 0f ? points : ext?.points ?? new FloatRange(0.5f, 0.7f)).RandomInRange;

@@ -139,7 +139,9 @@ namespace ColonyCouncil
             comp.AddChronicle(new ChronicleEntry(ChronicleKind.World, text, a));
             comp.journals.Write(a, won ? "Council_Journal_Evt_ContestWon" : "Council_Journal_Evt_ContestLost", null, x.Named("X"), what.Named("SKILL"));
             // They'll want a rematch one day (or to defend their title).
-            if (x.Faction != null && x.RaceProps.Humanlike) comp.happenings.Remember("challenger", x, x.Faction, v.skill.defName, null, won, a);
+            // (Once: a rematch settles it.)
+            if (x.Faction != null && x.RaceProps.Humanlike && !(v.incident?.Worker is HappeningWorker_Rematch))
+                comp.happenings.Remember("challenger", x, x.Faction, v.skill.defName, null, won, a);
             Arrivals.SendAway(new[] { x });
             return false;
         }

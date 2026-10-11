@@ -111,10 +111,14 @@ namespace ColonyCouncil
                 killsBy[killer] = (killsBy.TryGetValue(killer, out int n) ? n : 0) + 1;
         }
 
-        /// <summary>One of ours fell during a fight at home (Harmony hook).</summary>
-        public void Notify_ColonistFell(Pawn p)
+        /// <summary>
+        /// One of ours died at home during a fight, or in the quiet hours after it (someone downed in the fight who bled
+        /// out later still fell in it). Harmony hook, after the death.
+        /// </summary>
+        public void Notify_ColonistFell(Pawn p, Map map)
         {
-            if (p == null || p.Map == null || !p.Map.IsPlayerHome || !GenHostility.AnyHostileActiveThreatToPlayer(p.Map, false, false)) return;
+            if (p == null || map == null || !map.IsPlayerHome) return;
+            if (!battleActive && !GenHostility.AnyHostileActiveThreatToPlayer(map, false, false)) return;
             StartCount();
             if (battleFallen.Count < 20) battleFallen.Add(p.LabelShort);
         }
@@ -132,10 +136,32 @@ namespace ColonyCouncil
         {
             battleKills = 0;
             battleCountStart = -1;
+            battleKidnapped = Kidnapped();
             battleFallen.Clear();
             killsBy.Clear();
         }
         private int quietHours;
+        /// <summary>Colonists held by other peoples when the fight began: if that went up, the fight wasn't won.</summary>
+        private int battleKidnapped;
+        /// <summary>Hours the end of a fight was held back while one of ours lay bleeding (or the enemy lingered).</summary>
+        [Unsaved] private int heldHours;
+
+        private static int Kidnapped() =>
+            Find.FactionManager?.AllFactionsListForReading.Sum(f => f.kidnapped?.KidnappedPawnsListForReading.Count ?? 0) ?? 0;
+
+        /// <summary>One of ours lies bleeding: whether they make it is part of the fight's story.</summary>
+        private static bool Bleeding() =>
+            Find.Maps.Where(m => m.IsPlayerHome).Any(m => m.mapPawns.FreeColonistsSpawned.Any(p => p.Downed && !p.Dead && p.health.hediffSet.BleedRateTotal > 0.01f));
+
+        /// <summary>The enemy is still about, though not attacking: fleeing slowly, or insects guarding their hive.</summary>
+        private static bool EnemyLingers(Faction foe) =>
+            foe != null && Find.Maps.Where(m => m.IsPlayerHome).Any(m =>
+                m.mapPawns.AllPawnsSpawned.Any(x => x.Faction == foe && !x.Dead && !x.Downed && !x.IsPrisoner && x.HostileTo(Faction.OfPlayer)));
+
+        /// <summary>A real threat came this time (a raid, a pack, an infestation...), not a scuffle with guests or a hunt gone wrong.</summary>
+        private bool WasThreat(int start) =>
+            start >= 0 && Find.Maps.Any(m => m.IsPlayerHome && m.storyState.LastThreatBigTick >= start - GenDate.TicksPerDay);
+
         /// <summary>Existing friendships and feuds are taken in quietly the first time the web runs on a save.</summary>
         private bool seeded;
 
@@ -455,18 +481,28 @@ namespace ColonyCouncil
                 }
                 battleActive = true;
                 quietHours = 0;
+                heldHours = 0;
                 return;
             }
             if (!battleActive) return;
             if (++quietHours < 3) return;
+            // Not over while one of ours lies bleeding or the enemy is still about (a few hours at most).
+            if (heldHours < 8 && (Bleeding() || EnemyLingers(battleFaction)))
+            {
+                heldHours++;
+                return;
+            }
             battleActive = false;
+            heldHours = 0;
             var foe = battleFaction;
             battleFaction = null;
             var list = fighters.Where(Eligible).Distinct().ToList();
             fighters.Clear();
             try
             {
-                WorldReactions.Victory(comp, list, foe, battleKills, battleFallen.ToList(), new Dictionary<Pawn, int>(killsBy));
+                // Won: a real threat, seen off (not still out there), and nobody of ours carried away.
+                if (WasThreat(battleCountStart) && Kidnapped() <= battleKidnapped && !EnemyLingers(foe))
+                    WorldReactions.Victory(comp, list, foe, battleKills, battleFallen.ToList(), new Dictionary<Pawn, int>(killsBy));
             }
             catch (System.Exception e)
             {
@@ -622,6 +658,7 @@ namespace ColonyCouncil
             Scribe_Collections.Look(ref battleFallen, "battleFallen", LookMode.Value);
             if (Scribe.mode == LoadSaveMode.PostLoadInit && battleFallen == null) battleFallen = new List<string>();
             Scribe_Values.Look(ref quietHours, "quietHours");
+            Scribe_Values.Look(ref battleKidnapped, "battleKidnapped");
             Scribe_Values.Look(ref seeded, "seeded");
             if (Scribe.mode == LoadSaveMode.PostLoadInit)
             {

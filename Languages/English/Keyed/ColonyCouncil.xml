@@ -1657,12 +1657,14 @@ Those against it ({WHO}) will trust the council less and resent it more than usu
   <CC_World_NobodyOut>Nobody out there has the colony on their mind, as far as anyone knows.</CC_World_NobodyOut>
   <CC_World_Lately>Lately</CC_World_Lately>
   <CC_World_NothingLately>Nothing yet.</CC_World_NothingLately>
-  <CC_Evt_TooYoung>Too young to leave home</CC_Evt_TooYoung>
+  <CC_Evt_DeserterGone>{0} isn't here any more</CC_Evt_DeserterGone>
   <CC_Evt_HeirName>{0} the Younger</CC_Evt_HeirName>
+  <!-- Words dropped from a great beast's name when its young is named after it, comma-separated. -->
+  <CC_Evt_HeirDrop>Old,Grandmother,Grandfather</CC_Evt_HeirDrop>
   <CC_Victory_Beasts>the beasts</CC_Victory_Beasts>
   <CC_Victory_Clean>The colony saw off {0}: {1} of them fell, and none of ours.</CC_Victory_Clean>
   <CC_Victory_Costly>The colony saw off {0}: {1} of them fell, but so did {2}.</CC_Victory_Costly>
-  <CC_Victory_Hero>{PAWN_nameDef} alone brought down {1} of them.</CC_Victory_Hero>
+  <CC_Victory_Hero>{PAWN_nameDef} brought down {1} of them, more than anyone.</CC_Victory_Hero>
   <CC_Cause_Victory>the fight against {0}.</CC_Cause_Victory>
   <CC_World_QuestDone>The colony saw it through: {0}.</CC_World_QuestDone>
   <CC_World_QuestFailed>It came to nothing: {0}.</CC_World_QuestFailed>

@@ -116,7 +116,8 @@ namespace ColonyCouncil
             var home = Find.Maps.Where(m => m.IsPlayerHome).ToList();
             if (home.Count == 0 || home.All(m => m.mapPawns.FreeColonistsSpawnedCount == 0)) return;
             var hero = killsBy.Where(kv => kv.Key != null && !kv.Key.Dead && kv.Key.IsColonist && kv.Value >= 2).OrderByDescending(kv => kv.Value).Select(kv => kv.Key).FirstOrDefault();
-            string foeName = foe != null ? foe.Name : "CC_Victory_Beasts".Translate().ToString();
+            // Peoples nobody can talk to (mechanoids, insects) go by what they are.
+            string foeName = foe == null ? "CC_Victory_Beasts".Translate().ToString() : foe.Hidden ? foe.def.pawnsPlural : foe.Name;
             bool costly = fallen.Count > 0;
             string text = costly
                 ? "CC_Victory_Costly".Translate(foeName, kills, TextUtil.JoinAnd(fallen)).Resolve()
@@ -134,7 +135,7 @@ namespace ColonyCouncil
             if (foe == null) tags.Add("beasts");
             var writers = new List<Pawn>();
             if (hero != null) writers.Add(hero);
-            writers.AddRange(fighters.Where(p => p != hero && !p.Dead && p.IsColonist).InRandomOrder().Take(hero != null ? 1 : 2));
+            if (hero == null) writers.AddRange(fighters.Where(p => !p.Dead && p.IsColonist).InRandomOrder().Take(1));
             foreach (var w in writers)
             {
                 var t = new List<string>(tags);

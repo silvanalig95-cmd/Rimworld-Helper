@@ -24,7 +24,8 @@
         </titles>
         <texts>
           <li>[lowtech] Riders in the colours of {ENEMY} have been asking at every village and crossroads for a deserter. Today they found the colony, and {A_nameDef} went pale at the sound of {A_possessive} own name. They want {A_objective} back, to answer for it. They'll take {COUNT} silver in {A_possessive} place, or {A_objective} by force.</li>
-          <li>[!lowtech] A message from {ENEMY} comes over the comms, cold and short: they know {A_nameDef} is here. A deserter belongs to the unit until the unit says otherwise. Hand {A_objective} over, buy out {A_possessive} service for {COUNT} silver, or they'll come and take {A_objective}.</li>
+          <li>[!lowtech,tribalfoe] A runner of {ENEMY} comes out of the trees with a message, cold and short: they know {A_nameDef} is here. A warrior who runs belongs to the war band until the band says otherwise. Hand {A_objective} over, buy out {A_possessive} oath for {COUNT} silver, or they'll come and take {A_objective}.</li>
+          <li>[!lowtech,!tribalfoe] A message from {ENEMY} comes over the comms, cold and short: they know {A_nameDef} is here. A deserter belongs to the unit until the unit says otherwise. Hand {A_objective} over, buy out {A_possessive} service for {COUNT} silver, or they'll come and take {A_objective}.</li>
         </texts>
         <defaultOption>0</defaultOption>
         <options>
@@ -38,6 +39,7 @@
                 <points>0.5~0.75</points>
                 <delayHours>3~8</delayHours>
                 <scenario>true</scenario>
+                <forA>true</forA>
                 <label>{ENEMY} want their deserter</label>
                 <text>{ENEMY} have come for {A_nameDef}, who ran from them to us. The colony said no.</text>
               </li>
@@ -88,8 +90,7 @@
           <li>{X_nameDef} comes back</li>
         </titles>
         <texts>
-          <li>[grown] A young traveller of {FACTION} has come asking for {A_nameDef} by name. It takes a moment to recognise {X_objective}: {X_nameDef}, the lost child the colony once walked home, all grown up. {X_nameDef} has brought a gift, and a question: is there room here for someone who never forgot this place?</li>
-          <li>[young] {X_nameDef}, the lost child the colony once walked home, is back: a little taller, with a gift from {X_possessive} family of {FACTION} and a great many questions for {A_nameDef}.</li>
+          <li>A young traveller of {FACTION} has come asking for {A_nameDef} by name. It takes a moment to recognise {X_objective}: {X_nameDef}, the lost child the colony once walked home, all grown up. {X_nameDef} has brought a gift, and a question: is there room here for someone who never forgot this place?</li>
         </texts>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Loot"><value>150~400</value></li>

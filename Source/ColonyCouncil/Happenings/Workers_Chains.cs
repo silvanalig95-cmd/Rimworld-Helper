@@ -36,45 +36,64 @@ namespace ColonyCouncil
             CouncilGameComponent.Instance.happenings.Use(m);
             return true;
         }
+
+        protected override void AddTags(HappeningContext ctx, HashSet<string> tags)
+        {
+            if (ctx.enemy != null && ctx.enemy.def.techLevel <= TechLevel.Neolithic) tags.Add("tribalfoe");
+        }
+
+        /// <summary>Nobody to buy free if they've died or left while the colony was deciding.</summary>
+        public override string Unavailable(HappeningContext ctx, int option) =>
+            option == 1 && (ctx.a == null || ctx.a.Dead || !ctx.a.IsColonist)
+                ? "CC_Evt_DeserterGone".Translate(ctx.a?.LabelShort ?? "?").ToString()
+                : null;
     }
 
-    /// <summary>The lost child the colony took home, back years later to say thank you.</summary>
+    /// <summary>
+    /// The lost child the colony took home, back years later, grown up, to thank the one who found them. (A child
+    /// found young may take years: the memory waits for them.)
+    /// </summary>
     public class HappeningWorker_ChildGrown : HappeningWorker_Visitors
     {
-        private static Memo Pick() =>
+        private Memo chosen;
+
+        private static Memo Pick(Map map) =>
             CouncilGameComponent.Instance?.happenings.Memos("child", 90f).Where(m =>
             {
                 var x = m.pawn;
+                var finder = m.other;
                 return x != null && !x.Dead && !x.Discarded && !x.Spawned && Find.WorldPawns.Contains(x) && x.Faction != null && !x.Faction.IsPlayer
+                       && !x.DevelopmentalStage.Juvenile()
                        && !x.Faction.defeated && !x.Faction.HostileTo(Faction.OfPlayer) && !x.IsPrisoner && !People.Kidnapped(x) && x.GetCaravan() == null
-                       && !QuestUtility.IsReservedByQuestOrQuestBeingGenerated(x);
+                       && !QuestUtility.IsReservedByQuestOrQuestBeingGenerated(x)
+                       && finder != null && !finder.Dead && finder.IsColonist && finder.Spawned && finder.Map == map;
             }).RandomElementWithFallback();
 
-        protected override bool CanHappen(Map map, HappeningExtension ext) => Colonists(map).Count > 0 && Pick() != null;
+        protected override bool CanHappen(Map map, HappeningExtension ext) => Pick(map) != null;
 
         protected override bool Cast(HappeningContext ctx, HappeningExtension ext)
         {
-            var m = Pick();
-            if (m == null) return false;
-            ctx.stranger = m.pawn;
-            ctx.faction = m.pawn.Faction;
-            ctx.variant = m.pawn.DevelopmentalStage.Juvenile() ? 0 : 1;
-            var colonists = Colonists(ctx.map).Where(p => !p.DevelopmentalStage.Baby()).ToList();
-            ctx.a = m.other != null && colonists.Contains(m.other) ? m.other : colonists.RandomElementWithFallback();
-            if (ctx.a == null) return false;
-            CouncilGameComponent.Instance.happenings.Use(m);
+            chosen = Pick(ctx.map);
+            if (chosen == null) return false;
+            ctx.stranger = chosen.pawn;
+            ctx.faction = chosen.pawn.Faction;
+            ctx.a = chosen.other;
             return true;
         }
 
-        protected override bool Begin(HappeningContext ctx, HappeningExtension ext) =>
-            Arrivals.Visit(new List<Pawn> { ctx.stranger }, ctx.map, ctx.faction, null, ext.stayHours.RandomInRange) != null;
+        protected override bool Begin(HappeningContext ctx, HappeningExtension ext)
+        {
+            bool ok = Arrivals.Visit(new List<Pawn> { ctx.stranger }, ctx.map, ctx.faction, null, ext.stayHours.RandomInRange) != null;
+            if (ok) CouncilGameComponent.Instance?.happenings.Use(chosen);
+            chosen = null;
+            return ok;
+        }
 
-        protected override void Abort(HappeningContext ctx) => ctx.stranger = null;
-
-        protected override void AddTags(HappeningContext ctx, HashSet<string> tags) => tags.Add(ctx.variant == 1 ? "grown" : "young");
-
-        public override string Unavailable(HappeningContext ctx, int option) =>
-            option == 0 && (ctx.stranger == null || ctx.stranger.DevelopmentalStage.Juvenile()) ? "CC_Evt_TooYoung".Translate().ToString() : null;
+        protected override void Abort(HappeningContext ctx)
+        {
+            chosen = null;
+            ctx.stranger = null;
+        }
     }
 
     /// <summary>A travelling champion who met the colony's best before comes back for another contest.</summary>
@@ -116,12 +135,26 @@ namespace ColonyCouncil
             if (r == null || r.TotallyDisabled) return false;
             r.Level = Mathf.Clamp(Mathf.Max(r.Level + 2, ours - 1), 1, 20);
             ctx.count = Mathf.Clamp(Mathf.RoundToInt((60f + ours * 15f) / 10f) * 10, 60, 500);
-            CouncilGameComponent.Instance.happenings.Use(m);
+            chosen = m;
             return true;
         }
 
+        private Memo chosen;
+
+        protected override bool Begin(HappeningContext ctx, HappeningExtension ext)
+        {
+            bool ok = base.Begin(ctx, ext);
+            if (ok) CouncilGameComponent.Instance?.happenings.Use(chosen);
+            chosen = null;
+            return ok;
+        }
+
         // They were someone before this event: never thrown away.
-        protected override void Abort(HappeningContext ctx) => ctx.stranger = null;
+        protected override void Abort(HappeningContext ctx)
+        {
+            chosen = null;
+            ctx.stranger = null;
+        }
 
         protected override void AddTags(HappeningContext ctx, HashSet<string> tags)
         {
@@ -151,8 +184,35 @@ namespace ColonyCouncil
         protected override string PickName(HappeningContext ctx, HappeningExtension ext, PawnKindDef kind)
         {
             ctx.dead = picked?.text;
-            CouncilGameComponent.Instance?.happenings.Use(picked);
-            return "CC_Evt_HeirName".Translate(picked?.text ?? kind.label).Resolve();
+            return HeirName(picked?.text ?? kind.label);
+        }
+
+        protected override bool Begin(HappeningContext ctx, HappeningExtension ext)
+        {
+            bool ok = base.Begin(ctx, ext);
+            if (ok) CouncilGameComponent.Instance?.happenings.Use(picked);
+            picked = null;
+            return ok;
+        }
+
+        protected override void Abort(HappeningContext ctx)
+        {
+            picked = null;
+            base.Abort(ctx);
+        }
+
+        /// <summary>"Greymane the Younger" for Old Greymane; the young of a young one keeps the same name.</summary>
+        private static string HeirName(string parent)
+        {
+            string name = parent.Trim();
+            string suffix = "CC_Evt_HeirName".Translate("").Resolve().Trim();
+            if (!suffix.NullOrEmpty() && name.EndsWith(" " + suffix)) name = name.Substring(0, name.Length - suffix.Length - 1).Trim();
+            foreach (var word in "CC_Evt_HeirDrop".Translate().Resolve().Split(','))
+            {
+                string w = word.Trim() + " ";
+                if (w.Length > 1 && name.StartsWith(w) && name.Length > w.Length) name = name.Substring(w.Length);
+            }
+            return "CC_Evt_HeirName".Translate(name).Resolve();
         }
 
         /// <summary>Younger than its parent was, and not quite as tough yet.</summary>

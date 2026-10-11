@@ -26,17 +26,34 @@ namespace ColonyCouncil
         }
     }
 
-    /// <summary>A colonist killed: who did it, exactly (for nemeses). Runs before the death, while they're still ours.</summary>
+    /// <summary>
+    /// A colonist killed: who did it, exactly (for nemeses), before the death while they're still ours; and, once
+    /// they're really dead (another mod may have stopped it), one of ours fallen in the fight.
+    /// </summary>
     [HarmonyPatch(typeof(Pawn), nameof(Pawn.Kill))]
     public static class Patch_Killed
     {
-        public static void Prefix(Pawn __instance, DamageInfo? dinfo)
+        public static void Prefix(Pawn __instance, DamageInfo? dinfo, out Map __state)
         {
+            __state = null;
             if (!RimfolkPatches.On || __instance == null || __instance.Dead || !__instance.IsColonist) return;
             try
             {
-                if (__instance.Spawned) CouncilGameComponent.Instance?.social?.Notify_ColonistFell(__instance);
+                if (__instance.Spawned) __state = __instance.Map;
                 if (dinfo?.Instigator is Pawn attacker) CouncilGameComponent.Instance?.nemeses?.Notify_Harmed(__instance, attacker, "killed");
+            }
+            catch (System.Exception e)
+            {
+                CouncilLog.ErrorOnce("killed hook", e);
+            }
+        }
+
+        public static void Postfix(Pawn __instance, Map __state)
+        {
+            if (__state == null || __instance == null || !__instance.Dead) return;
+            try
+            {
+                CouncilGameComponent.Instance?.social?.Notify_ColonistFell(__instance, __state);
             }
             catch (System.Exception e)
             {

@@ -701,12 +701,15 @@ namespace ColonyCouncil
             public string name;
             /// <summary>An enemy falling in a fight at home (for the victory count).</summary>
             public bool foe;
+            /// <summary>Finished off after the fight, lying downed: counted, but nobody's glory.</summary>
+            public bool afterFight;
         }
 
         public DeathNote Before(Pawn victim)
         {
             var note = new DeathNote { beast = victim == beast, name = victim.LabelShort };
             note.foe = victim.Spawned && victim.Map.IsPlayerHome && !victim.IsPrisoner && victim.HostileTo(Faction.OfPlayer);
+            note.afterFight = note.foe && victim.Downed && !GenHostility.AnyHostileActiveThreatToPlayer(victim.Map, false, false);
             if (victim.RaceProps.Humanlike && victim.IsPrisonerOfColony && victim.Faction != null && !victim.Faction.IsPlayer && !victim.Faction.Hidden)
                 note.prisonerOf = victim.Faction;
             return note;
@@ -716,7 +719,7 @@ namespace ColonyCouncil
         public void Notify_Killed(Pawn victim, DamageInfo? dinfo, DeathNote note)
         {
             if (victim == null) return;
-            if (note.foe) CouncilGameComponent.Instance?.social.Notify_EnemyFell(dinfo?.Instigator as Pawn);
+            if (note.foe) CouncilGameComponent.Instance?.social.Notify_EnemyFell(note.afterFight ? null : dinfo?.Instigator as Pawn);
             if (note.beast) HappeningWorker_GreatBeast.Slain(this, victim, dinfo);
             if (note.prisonerOf != null)
             {
@@ -746,7 +749,9 @@ namespace ColonyCouncil
         {
             if (m == null) return;
             m.used = true;
-            if (m.pinned && m.pawn != null && !AskedAbout(m.pawn)) Unpin(m.pawn);
+            // Still being asked about in a letter: the pin stays until the memo is dropped.
+            if (m.pinned && m.pawn != null && AskedAbout(m.pawn)) return;
+            if (m.pinned && m.pawn != null) Unpin(m.pawn);
             m.pinned = false;
         }
 
@@ -770,7 +775,8 @@ namespace ColonyCouncil
             }
             foreach (var q in all)
             {
-                if (q.hidden || !q.EverAccepted || seenQuests.Contains(q.id)) continue;
+                // Only quests the colony chose to take on (not hidden ones, nor ones that started on their own).
+                if (q.hidden || q.hiddenInUI || q.initiallyAccepted || !q.EverAccepted || seenQuests.Contains(q.id)) continue;
                 if (q.State != QuestState.EndedSuccess && q.State != QuestState.EndedFailed) continue;
                 seenQuests.Add(q.id);
                 if (S.worldReactions) WorldReactions.QuestEnded(comp, q.name, q.State == QuestState.EndedSuccess);
@@ -785,7 +791,7 @@ namespace ColonyCouncil
                 Forget(d);
             grudges.RemoveAll(g => g.settled || g.faction == null || g.faction.defeated || now - g.tick > GenDate.TicksPerYear * 2);
             foreach (var m in memos.Where(m => (m.used && now - m.tick > GenDate.TicksPerDay)
-                                               || (now - m.tick > GenDate.TicksPerYear * 3 && !ScenarioStakes.Lasting(m))
+                                               || (now - m.tick > GenDate.TicksPerYear * (m.kind == "child" ? 10 : 3) && !ScenarioStakes.Lasting(m))
                                                || (m.pawn != null && (m.pawn.Dead || m.pawn.Discarded) && !ScenarioStakes.Lasting(m))).ToList())
                 Drop(m);
         }

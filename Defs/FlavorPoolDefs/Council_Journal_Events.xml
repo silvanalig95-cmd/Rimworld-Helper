@@ -294,7 +294,7 @@
         <li>[costly] We beat {ENEMY}, but we lost {DEAD}. Everyone says we won. It doesn't feel like it.</li>
         <li>[costly,hero] They say I fought well today. I'd trade every one of them for {DEAD}.</li>
         <li>[beasts,clean] The beasts came, and we put them down, every one. Nobody hurt worse than scratches. There's going to be a lot of meat.</li>
-        <li>[beasts,costly] The beasts are dead. So is {DEAD}. I don't know how to write the rest of this.</li>
+        <li>[beasts,costly] The beasts are dead. We lost {DEAD} to them. I don't know how to write the rest of this.</li>
       </plain>
       <blunt><li>[clean] They attacked. We won. Next.</li></blunt>
       <cheerful><li>[clean] We WON! All of us, still here! Somebody find the good drink!</li></cheerful>
