@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- Rimfolk world events: the land and the sky. -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Council_Evt_WildBounty</defName>
+    <label>wild harvest</label>
+    <workerClass>ColonyCouncil.HappeningWorker_WildBounty</workerClass>
+    <letterDef>PositiveEvent</letterDef>
+    <baseChance>1.2</baseChance>
+    <minRefireDays>30</minRefireDays>
+    <earliestDay>4</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Nature</group>
+        <seasons>
+          <li>Spring</li>
+          <li>Summer</li>
+          <li>Fall</li>
+          <li>PermanentSummer</li>
+        </seasons>
+        <minTemp>6</minTemp>
+        <count>2~4</count>
+        <notable>false</notable>
+        <titles>
+          <li>A wild harvest</li>
+        </titles>
+        <texts>
+          <li>[food] {A_nameDef} came back from a walk with stained fingers and good news: patches of wild {THING} have sprung up across the colony's land, heavy and ripe and waiting to be picked.</li>
+          <li>[medicine] {A_nameDef} has found {THING} growing wild in patches across the colony's land, more than anyone has seen in years. Whoever gathers it first is going to make the colony's healer very happy.</li>
+        </texts>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><thought>Council_Evt_WildBounty</thought></li>
+        </effects>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Council_Evt_Comet</defName>
+    <label>comet</label>
+    <workerClass>ColonyCouncil.HappeningWorker_Condition</workerClass>
+    <letterDef>NeutralEvent</letterDef>
+    <baseChance>0.7</baseChance>
+    <minRefireDays>120</minRefireDays>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Nature</group>
+        <condition>Council_Comet</condition>
+        <days>4~7</days>
+        <journal>Council_Journal_Evt_Comet</journal>
+        <titles>
+          <li>A comet</li>
+        </titles>
+        <texts>
+          <li>A comet has appeared, a smear of light across the whole sky, visible even by day. It will hang there for days. Some in the colony say it's a good omen. Some say the opposite, loudly. Everyone agrees it's beautiful.</li>
+          <li>[lowtech] A star with a tail has appeared in the sky. The old folk have stories about such things, and the stories don't agree: a sign of good harvests, or of war, or of kings dying. It will hang there for days.</li>
+          <li>[!lowtech] A bright comet is passing close enough to see by day. Somebody worked out its orbit and says it won't be back for nine hundred years. Some take it as a good omen; others are sure it's a bad one.</li>
+        </texts>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Council_Evt_Fireflies</defName>
+    <label>firefly nights</label>
+    <workerClass>ColonyCouncil.HappeningWorker_Condition</workerClass>
+    <letterDef>PositiveEvent</letterDef>
+    <minRefireDays>60</minRefireDays>
+    <disallowedBiomes>
+      <li>Desert</li>
+      <li>ExtremeDesert</li>
+      <li>IceSheet</li>
+      <li>SeaIce</li>
+    </disallowedBiomes>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Nature</group>
+        <condition>Council_Fireflies</condition>
+        <days>2~4</days>
+        <seasons>
+          <li>Summer</li>
+          <li>PermanentSummer</li>
+        </seasons>
+        <minTemp>14</minTemp>
+        <notable>false</notable>
+        <titles>
+          <li>Firefly nights</li>
+        </titles>
+        <texts>
+          <li>The warm nights have brought out the fireflies: thousands of them, drifting over the fields like slow sparks. Anyone outside after dark is in for a treat.</li>
+          <li>[lowtech] Firefly nights are here. The old folk say they're the souls of the harvest, come back to see how the fields are doing. Anyone outside after dark will see them.</li>
+        </texts>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Council_Evt_Hail</defName>
+    <label>hailstorm</label>
+    <workerClass>ColonyCouncil.HappeningWorker_Hail</workerClass>
+    <letterDef>NegativeEvent</letterDef>
+    <baseChance>0.8</baseChance>
+    <minRefireDays>30</minRefireDays>
+    <earliestDay>8</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Nature</group>
+        <condition>Council_Hail</condition>
+        <days>0.15~0.3</days>
+        <seasons>
+          <li>Spring</li>
+          <li>Summer</li>
+          <li>Fall</li>
+        </seasons>
+        <minTemp>2</minTemp>
+        <maxTemp>32</maxTemp>
+        <notable>false</notable>
+        <titles>
+          <li>Hailstorm</li>
+        </titles>
+        <texts>
+          <li>Hail! Ice the size of knuckles is hammering down out of a black sky. Crops out in the open are going to suffer, the young ones most. Nobody will get hurt as long as they come inside, and it won't last long. (Roofed fields and greenhouses don't care about hail.)</li>
+        </texts>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Council_Evt_Pests</defName>
+    <label>vermin in the stores</label>
+    <workerClass>ColonyCouncil.HappeningWorker_Pests</workerClass>
+    <letterDef>NegativeEvent</letterDef>
+    <baseChance>0.8</baseChance>
+    <minRefireDays>30</minRefireDays>
+    <earliestDay>8</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Nature</group>
+        <minTemp>5</minTemp>
+        <notable>false</notable>
+        <titles>
+          <li>Vermin in the stores</li>
+        </titles>
+        <texts>
+          <li>[loss,lowtech] Rats have got into the stores. By the time anyone noticed, they'd ruined {COUNT} portions of food and left droppings through the rest.</li>
+          <li>[loss,!lowtech] Rats got into the stores, the big kind, with a taste for everything. {COUNT} units of food were chewed through or spoiled before anyone noticed.</li>
+          <li>[mouser] Rats tried to get into the stores last night. They hadn't counted on {PET_nameDef}. {A_nameDef}'s animal has been very busy, and is very pleased with itself.</li>
+        </texts>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Council_Evt_BuriedCache</defName>
+    <label>buried cache</label>
+    <workerClass>ColonyCouncil.HappeningWorker_BuriedCache</workerClass>
+    <letterDef>PositiveEvent</letterDef>
+    <minRefireDays>40</minRefireDays>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Nature</group>
+        <value>250~650</value>
+        <journal>Council_Journal_Evt_Cache</journal>
+        <titles>
+          <li>A buried cache</li>
+        </titles>
+        <texts>
+          <li>[mining] Cutting into the rock, {A_nameDef} broke into a hollow someone had walled up long ago. Inside: a cache, hidden and forgotten.</li>
+          <li>[farming] {A_nameDef}'s spade hit something hard in the field: a box, buried long ago by someone who never came back for it.</li>
+          <li>[child] {A_nameDef} was digging for worms and found treasure instead: an old buried cache. {A_nameDef} is going to be unbearable about this for weeks.</li>
+          <li>{A_nameDef} tripped over something sticking out of the ground and dug it up: an old cache, buried by someone who never came back for it.</li>
+        </texts>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><thought>Council_Evt_FoundCache</thought></li>
+        </effects>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+</Defs>

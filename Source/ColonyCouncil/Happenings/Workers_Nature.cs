@@ -1,0 +1,295 @@
+using System.Collections.Generic;
+using System.Linq;
+using RimWorld;
+using UnityEngine;
+using Verse;
+
+namespace ColonyCouncil
+{
+    // ===================== Wild bounty =====================
+
+    /// <summary>A good year for wild berries (or healroot, or whatever grows wild here): patches spring up ready to pick.</summary>
+    public class HappeningWorker_WildBounty : IncidentWorker_Happening
+    {
+        private static IEnumerable<ThingDef> Species(Map map) =>
+            map.Biome.AllWildPlants.Where(p => p?.plant != null && !p.plant.IsTree && !p.plant.cavePlant && p.plant.Harvestable && p.plant.harvestedThingDef is ThingDef h
+                                               && ((h.IsNutritionGivingIngestible && h.ingestible.HumanEdible && h.ingestible.preferability >= FoodPreferability.RawBad) || h.IsMedicine));
+
+        protected override bool CanHappen(Map map, HappeningExtension ext) => Species(map).Any() && Colonists(map).Count > 0;
+
+        protected override bool Cast(HappeningContext ctx, HappeningExtension ext)
+        {
+            ctx.thing = Species(ctx.map).RandomElementByWeightWithFallback(p => p.plant.harvestedThingDef.IsMedicine ? 0.6f : 1f);
+            if (ctx.thing == null) return false;
+            var pawns = Colonists(ctx.map);
+            ctx.a = pawns.Where(p => p.skills?.GetSkill(SkillDefOf.Plants) is SkillRecord r && People.Passionate(r)).RandomElementWithFallback() ?? pawns.RandomElementWithFallback();
+            return ctx.a != null;
+        }
+
+        private static bool Free(IntVec3 c, Map map, ThingDef plant)
+        {
+            if (!c.InBounds(map) || !c.Standable(map) || c.Fogged(map) || c.Roofed(map) || c.GetFirstBuilding(map) != null || c.GetZone(map) != null) return false;
+            if (map.areaManager.Home[c] || map.fertilityGrid.FertilityAt(c) < plant.plant.fertilityMin) return false;
+            var existing = c.GetPlant(map);
+            return existing == null || (!existing.def.plant.IsTree && !existing.sown && existing.def != plant);
+        }
+
+        protected override bool Begin(HappeningContext ctx, HappeningExtension ext)
+        {
+            var map = ctx.map;
+            var plant = ctx.thing;
+            int spawned = 0;
+            int patches = ext.count.RandomInRange;
+            for (int i = 0; i < patches; i++)
+            {
+                if (!CellFinderLoose.TryGetRandomCellWith(c => Free(c, map, plant), map, 400, out var center)) continue;
+                int want = Rand.RangeInclusive(5, 9);
+                foreach (var c in GenRadial.RadialCellsAround(center, 3f, true))
+                {
+                    if (want <= 0) break;
+                    if (!Free(c, map, plant) || !Rand.Chance(0.75f)) continue;
+                    c.GetPlant(map)?.Destroy();
+                    if (GenSpawn.Spawn(plant, c, map) is Plant p)
+                    {
+                        p.Growth = 1f;
+                        if (ctx.place == null) ctx.place = p;
+                        spawned++;
+                        want--;
+                    }
+                }
+            }
+            ctx.count = spawned;
+            return spawned > 0;
+        }
+
+        protected override void AddTags(HappeningContext ctx, HashSet<string> tags)
+        {
+            tags.Add(ctx.thing?.plant?.harvestedThingDef?.IsMedicine == true ? "medicine" : "food");
+        }
+    }
+
+    // ===================== Sky and weather =====================
+
+    /// <summary>Starts a game condition (a comet, fireflies, a hailstorm) for a few days.</summary>
+    public class HappeningWorker_Condition : IncidentWorker_Happening
+    {
+        protected override bool CanHappen(Map map, HappeningExtension ext) =>
+            ext.condition != null && !map.gameConditionManager.ConditionIsActive(ext.condition) && Colonists(map).Count > 0;
+
+        protected override bool Begin(HappeningContext ctx, HappeningExtension ext)
+        {
+            var cond = GameConditionMaker.MakeCondition(ext.condition, Mathf.RoundToInt(ext.days.RandomInRange * GenDate.TicksPerDay));
+            ctx.map.gameConditionManager.RegisterCondition(cond);
+            return true;
+        }
+    }
+
+    /// <summary>A hailstorm: only worth telling about when there are crops out in the open.</summary>
+    public class HappeningWorker_Hail : HappeningWorker_Condition
+    {
+        protected override bool CanHappen(Map map, HappeningExtension ext) => base.CanHappen(map, ext) && GameCondition_Hail.Crops(map).Count >= 12;
+    }
+
+    /// <summary>A comet in the sky for days: stargazing is better, and people read it as an omen, each in their own way.</summary>
+    public class GameCondition_Comet : GameCondition
+    {
+        public override float SkyGazeChanceFactor(Map map) => 2.5f;
+
+        public override float SkyGazeJoyGainFactor(Map map) => 1.6f;
+    }
+
+    /// <summary>Warm nights full of fireflies: anyone outside after dark gets to see them.</summary>
+    public class GameCondition_Fireflies : GameCondition
+    {
+        public override float SkyGazeJoyGainFactor(Map map) => 1.3f;
+
+        public override void GameConditionTick()
+        {
+            base.GameConditionTick();
+            if (Find.TickManager.TicksGame % 600 != 0) return;
+            foreach (var map in AffectedMaps)
+            {
+                int hour = GenLocalDate.HourOfDay(map);
+                if (hour >= 4 && hour < 20) continue;
+                foreach (var p in map.mapPawns.FreeColonistsSpawned)
+                {
+                    if (!p.Awake() || p.Position.Roofed(map) || p.InMentalState) continue;
+                    if (p.needs?.mood?.thoughts?.memories?.GetFirstMemoryOfDef(CouncilDefOf.Council_Evt_Fireflies) != null) continue;
+                    CouncilGameComponent.GiveThought(p, CouncilDefOf.Council_Evt_Fireflies);
+                }
+            }
+        }
+    }
+
+    /// <summary>
+    /// Hail for a few hours: crops out in the open get knocked back (some young ones flattened), and anyone caught
+    /// outside grumbles. Nobody is hurt. Roofed fields and greenhouses are safe.
+    /// </summary>
+    public class GameCondition_Hail : GameCondition
+    {
+        private int hits;
+
+        public static List<Plant> Crops(Map map) =>
+            map.listerThings.ThingsInGroup(ThingRequestGroup.Plant).OfType<Plant>()
+                .Where(p => p.Spawned && p.sown && !p.def.plant.IsTree && !p.Position.Roofed(map)).ToList();
+
+        public override WeatherDef ForcedWeather() => DefDatabase<WeatherDef>.GetNamedSilentFail("Rain");
+
+        public override void GameConditionTick()
+        {
+            base.GameConditionTick();
+            if (Find.TickManager.TicksGame % 250 != 0) return;
+            foreach (var map in AffectedMaps)
+            {
+                var crops = Crops(map);
+                // About a quarter of the open fields over the storm, a few plants at a time.
+                if (crops.Count > 0 && hits < Mathf.Max(6, crops.Count / 4))
+                {
+                    foreach (var p in crops.InRandomOrder().Take(Rand.RangeInclusive(1, 3)))
+                    {
+                        hits++;
+                        if (p.Growth < 0.25f && Rand.Chance(0.35f)) p.Kill(null, null);
+                        else p.Growth = Mathf.Max(0.05f, p.Growth - Rand.Range(0.08f, 0.2f));
+                    }
+                }
+                foreach (var pawn in map.mapPawns.FreeColonistsSpawned)
+                {
+                    if (pawn.Position.Roofed(map) || !pawn.Awake()) continue;
+                    if (pawn.needs?.mood?.thoughts?.memories?.GetFirstMemoryOfDef(CouncilDefOf.Council_Evt_Hail) != null) continue;
+                    CouncilGameComponent.GiveThought(pawn, CouncilDefOf.Council_Evt_Hail);
+                }
+            }
+        }
+
+        public override void ExposeData()
+        {
+            base.ExposeData();
+            Scribe_Values.Look(ref hits, "hits");
+        }
+    }
+
+    /// <summary>How someone reads the comet: a good omen (the cheerful), a bad one (the gloomy and nervous), or just a wonder.</summary>
+    public class ThoughtWorker_Comet : ThoughtWorker
+    {
+        private static TraitDef naturalMood;
+        private static TraitDef nerves;
+        private static bool looked;
+
+        protected override ThoughtState CurrentStateInternal(Pawn p)
+        {
+            var map = p.MapHeld;
+            if (map == null || CouncilDefOf.Council_Comet == null || !map.gameConditionManager.ConditionIsActive(CouncilDefOf.Council_Comet)) return ThoughtState.Inactive;
+            if (!ColonyCouncilMod.Settings.MoodEffects || !p.RaceProps.Humanlike) return ThoughtState.Inactive;
+            if (!looked)
+            {
+                naturalMood = DefDatabase<TraitDef>.GetNamedSilentFail("NaturalMood");
+                nerves = DefDatabase<TraitDef>.GetNamedSilentFail("Nerves");
+                looked = true;
+            }
+            var traits = p.story?.traits;
+            if (traits == null) return ThoughtState.ActiveAtStage(2);
+            int mood = naturalMood != null && traits.HasTrait(naturalMood) ? traits.DegreeOfTrait(naturalMood) : 0;
+            int nerve = nerves != null && traits.HasTrait(nerves) ? traits.DegreeOfTrait(nerves) : 0;
+            if (mood > 0) return ThoughtState.ActiveAtStage(0);
+            if (mood < 0 || nerve < 0) return ThoughtState.ActiveAtStage(1);
+            return ThoughtState.ActiveAtStage(2);
+        }
+    }
+
+    // ===================== Vermin =====================
+
+    /// <summary>
+    /// Rats (or whatever passes for them here) get into the stores. Food kept cold is safe; a colony cat or dog
+    /// may catch them first. Otherwise some of the food is spoiled.
+    /// </summary>
+    public class HappeningWorker_Pests : IncidentWorker_Happening
+    {
+        private static List<Thing> AtRisk(Map map) =>
+            map.listerThings.ThingsInGroup(ThingRequestGroup.FoodSourceNotPlantOrTree)
+                .Where(t => t.Spawned && !(t is Pawn) && !t.def.IsCorpse && !t.def.IsDrug && t.def.IsNutritionGivingIngestible && t.def.ingestible.HumanEdible
+                            && t.IsInAnyStorage() && t.AmbientTemperature > 4f).ToList();
+
+        private static Pawn Mouser(Map map) =>
+            map.mapPawns.SpawnedColonyAnimals.Where(a => !a.Downed && !a.Dead && a.RaceProps.predator && a.RaceProps.baseBodySize <= 1.1f).RandomElementWithFallback();
+
+        protected override bool CanHappen(Map map, HappeningExtension ext) => AtRisk(map).Count >= 3;
+
+        protected override bool Cast(HappeningContext ctx, HappeningExtension ext)
+        {
+            var food = AtRisk(ctx.map);
+            var room = food.GroupBy(t => t.GetRoom()).OrderByDescending(g => g.Count()).FirstOrDefault();
+            if (room == null) return false;
+            ctx.place = room.OrderByDescending(t => t.stackCount).First();
+            ctx.pet = Mouser(ctx.map);
+            ctx.variant = ctx.pet != null ? 1 : 0;
+            ctx.a = ctx.pet != null ? PetTracker.PersonOf(ctx.pet) : null;
+            ctx.a = ctx.a ?? Colonists(ctx.map).Where(p => !p.DevelopmentalStage.Juvenile()).RandomElementWithFallback();
+            if (ctx.a == null) return false;
+            if (ctx.variant == 0)
+            {
+                int lost = 0;
+                foreach (var t in room.ToList())
+                {
+                    int n = Mathf.Max(1, Mathf.RoundToInt(t.stackCount * Rand.Range(0.1f, 0.25f)));
+                    n = Mathf.Min(n, t.stackCount);
+                    lost += n;
+                    if (n >= t.stackCount)
+                    {
+                        if (t == ctx.place) ctx.place = null;
+                        t.Destroy();
+                    }
+                    else t.SplitOff(n).Destroy();
+                }
+                ctx.count = lost;
+            }
+            return true;
+        }
+
+        protected override bool Begin(HappeningContext ctx, HappeningExtension ext)
+        {
+            if (ctx.variant == 1 && ctx.a != null) CouncilGameComponent.GiveThought(ctx.a, CouncilDefOf.Council_Evt_PetCaughtVermin, ctx.pet);
+            return true;
+        }
+
+        protected override void AddTags(HappeningContext ctx, HashSet<string> tags) => tags.Add(ctx.variant == 1 ? "mouser" : "loss");
+
+        protected override string Extra(HappeningContext ctx) => ctx.variant == 0 ? "CC_Evt_PestsTip".Translate().Resolve() : null;
+    }
+
+    // ===================== A find =====================
+
+    /// <summary>Someone working outside turns up something buried long ago: of the colony's own era.</summary>
+    public class HappeningWorker_BuriedCache : IncidentWorker_Happening
+    {
+        private static IEnumerable<Pawn> Outside(Map map) =>
+            Colonists(map).Where(p => !p.DevelopmentalStage.Baby() && p.Awake() && !p.Drafted && !p.Position.Roofed(map));
+
+        protected override bool CanHappen(Map map, HappeningExtension ext) => Outside(map).Any();
+
+        protected override bool Cast(HappeningContext ctx, HappeningExtension ext)
+        {
+            ctx.a = Outside(ctx.map).RandomElementWithFallback();
+            return ctx.a != null;
+        }
+
+        protected override bool Begin(HappeningContext ctx, HappeningExtension ext)
+        {
+            var things = Loot.Make(ext.value.RandomInRange * Mathf.Clamp(Mathf.Sqrt(ctx.map.wealthWatcher.WealthTotal / 40000f), 0.6f, 2f), Rand.Chance(0.25f));
+            if (things.Count == 0) return false;
+            foreach (var t in things) GenPlace.TryPlaceThing(t, ctx.a.Position, ctx.map, ThingPlaceMode.Near);
+            ctx.place = things.FirstOrDefault(t => t.Spawned);
+            ctx.tale = Loot.Describe(things);
+            return true;
+        }
+
+        protected override void AddTags(HappeningContext ctx, HashSet<string> tags)
+        {
+            var job = ctx.a?.CurJobDef;
+            if (job == JobDefOf.Mine) tags.Add("mining");
+            else if (job == JobDefOf.Sow || job == JobDefOf.Harvest || job == JobDefOf.CutPlant) tags.Add("farming");
+            if (ctx.a?.DevelopmentalStage.Child() == true) tags.Add("child");
+        }
+
+        protected override string Extra(HappeningContext ctx) => "CC_Evt_Found".Translate(ctx.tale ?? "").Resolve();
+    }
+}

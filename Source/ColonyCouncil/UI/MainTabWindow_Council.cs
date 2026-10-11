@@ -910,6 +910,9 @@ namespace ColonyCouncil
                     case ChronicleKind.Stranger:
                         col = new Color(0.75f, 0.85f, 0.7f);
                         break;
+                    case ChronicleKind.World:
+                        col = new Color(0.72f, 0.8f, 0.95f);
+                        break;
                     default:
                         col = Color.white;
                         break;
@@ -932,6 +935,7 @@ namespace ColonyCouncil
             Council,
             People,
             Strangers,
+            World,
             Dreams,
             Losses
         }
@@ -954,6 +958,8 @@ namespace ColonyCouncil
                     return k == ChronicleKind.Bond || k == ChronicleKind.Life || k == ChronicleKind.Secret;
                 case ChronicleFilter.Strangers:
                     return k == ChronicleKind.Stranger;
+                case ChronicleFilter.World:
+                    return k == ChronicleKind.World;
                 case ChronicleFilter.Dreams:
                     return k == ChronicleKind.Dream;
                 case ChronicleFilter.Losses:

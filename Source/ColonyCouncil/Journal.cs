@@ -72,13 +72,16 @@ namespace ColonyCouncil
         /// Writes a line from <paramref name="pool"/> in the colonist's voice. The pool's lines may use {PAWN_...}
         /// and whatever named arguments are passed (WISH, OTHER_..., TITLE, DECREE, DILEMMA, YEARS).
         /// </summary>
-        public void Write(Pawn p, string pool, Wish w = null, params NamedArgument[] args)
+        public void Write(Pawn p, string pool, Wish w = null, params NamedArgument[] args) => WriteTagged(p, pool, null, w, args);
+
+        /// <summary>Like <see cref="Write"/>, with extra tags for picking the line (what the council answered, say).</summary>
+        public void WriteTagged(Pawn p, string pool, string[] tags, Wish w = null, params NamedArgument[] args)
         {
             if (!ColonyCouncilMod.Settings.journals || p == null || p.Dead || !p.RaceProps.Humanlike) return;
             string line;
             try
             {
-                line = Flavor.FromPool(pool, p, w);
+                line = Flavor.FromPool(pool, p, w, null, tags);
                 if (line.NullOrEmpty()) return;
                 var all = new List<NamedArgument> { p.Named("PAWN") };
                 if (w != null) all.Add(w.Label.Named("WISH"));

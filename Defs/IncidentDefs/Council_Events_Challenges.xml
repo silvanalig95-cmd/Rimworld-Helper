@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- Rimfolk world events: challenges, gambles and fights. Fights only come with "battles" switched on in the
+       settings, when the storyteller sends threats at all, and never on top of another fight. Contests between
+       people never hurt anyone: target shooting, wrestling without weapons, crafts, debates. -->
+
+  <!-- ===================== The travelling champion ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Council_Evt_Champion</defName>
+    <label>travelling champion</label>
+    <workerClass>ColonyCouncil.HappeningWorker_Champion</workerClass>
+    <baseChance>1.2</baseChance>
+    <minRefireDays>25</minRefireDays>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Challenge</group>
+        <ages>20~45</ages>
+        <stayHours>20~28</stayHours>
+        <answerDays>0.5</answerDays>
+        <titles>
+          <li>A challenger</li>
+        </titles>
+        <texts>
+          <li>[Shooting,lowtech] {X_nameDef} of {FACTION}, an archer who has won every contest from here to the coast, has heard the colony has a good eye in {A_nameDef}. {X_nameDef} proposes a match: arrows at straw targets, best of ten. Nobody aims at anybody.</li>
+          <li>[Shooting,!lowtech] {X_nameDef} of {FACTION}, a marksman with a bag of medals and an ego to match, challenges the colony's best shot to a match at tin cans. That's {A_nameDef}. Nobody aims at anybody; there's silver on it if the colony likes.</li>
+          <li>[Melee] {X_nameDef} of {FACTION}, a wrestler built like a door, is touring the settlements looking for anyone willing to try a fall. No weapons, no grudges, a ring drawn in the dirt. The colony's champion would be {A_nameDef}.</li>
+          <li>[Crafting] {X_nameDef}, a travelling artisan of {FACTION}, says {X_possessive} work is the finest in the region and would like to prove it against {A_nameDef}'s. Same materials, same time, and the onlookers judge.</li>
+          <li>[Artistic] {X_nameDef}, a wandering artist of {FACTION}, has heard of {A_nameDef}'s work and doesn't believe it. A contest, then: one afternoon, one piece each, and the colony judges.</li>
+          <li>[Cooking] {X_nameDef}, a travelling cook of {FACTION} who claims to have fed kings, challenges {A_nameDef} to a cook-off. One kitchen, one afternoon, and everyone at the table gets a vote.</li>
+          <li>[Social] {X_nameDef} of {FACTION}, a famous talker, challenges the colony to a debate, a war of words in front of everyone. The colony's voice would be {A_nameDef}.</li>
+          <li>[Animals] {X_nameDef}, a drover of {FACTION}, swears no one can handle a stubborn animal like {X_pronoun} can, and challenges {A_nameDef} to prove otherwise.</li>
+          <li>[Intellectual] {X_nameDef} of {FACTION} challenges the colony's sharpest mind to a contest of riddles and puzzles. That's {A_nameDef}. Loser buys the drinks, or the colony can put real silver on it.</li>
+          <li>[Plants] {X_nameDef}, a gardener of {FACTION}, has heard about the colony's fields and challenges {A_nameDef}: who can judge seed, soil and sprout better? The onlookers decide.</li>
+        </texts>
+        <defaultOption>2</defaultOption>
+        <options>
+          <li>
+            <label>Accept: {COUNT} silver on {A_nameDef}</label>
+            <outcome>The challenge is on. Word goes round, and people start finding reasons to be nearby in a couple of hours.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Contest"><stake>true</stake></li>
+            </effects>
+          </li>
+          <li>
+            <label>Accept, for honour only</label>
+            <outcome>The challenge is on, for nothing but bragging rights, which are worth more anyway.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Contest" />
+            </effects>
+          </li>
+          <li>
+            <label>Decline politely</label>
+            <outcome>{X_nameDef} shrugs, says something about cowards that {X_pronoun} probably means as a joke, and moves on.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_SendAway" />
+            </effects>
+          </li>
+        </options>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== The great beast ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Council_Evt_GreatBeast</defName>
+    <label>great beast</label>
+    <workerClass>ColonyCouncil.HappeningWorker_GreatBeast</workerClass>
+    <letterDef>NeutralEvent</letterDef>
+    <minRefireDays>45</minRefireDays>
+    <earliestDay>10</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Challenge</group>
+        <days>4~6</days>
+        <titles>
+          <li>The great beast</li>
+        </titles>
+        <texts>
+          <li>Travellers have been talking about it for weeks, and now it's here: {BEAST}, an old {THING} out of the stories, huge and scarred and older than anyone can say, is roaming the colony's land. It won't trouble anyone who leaves it alone. Whoever brings it down will be talked about for years. It'll move on in a few days.</li>
+          <li>[lowtech] Hunters' tales speak of {BEAST}, an old {THING} that has outlived every spear thrown at it. It's on the colony's land now. {A_nameDef} has already been out to look at it, and came back very quiet and very excited. It'll move on in a few days, whether anyone tries their luck or not.</li>
+          <li>[!lowtech] The hunters' radio chatter calls it {BEAST}: an old {THING}, now roaming the colony's land. Bullets have bounced off it before. It's left alone those who left it alone, and it'll be gone in a few days. {A_nameDef} is already checking the rifles.</li>
+        </texts>
+        <lines>
+          <li>Old Greymane</li>
+          <li>Ironhide</li>
+          <li>Widowmaker</li>
+          <li>Scar-Ear</li>
+          <li>Old King</li>
+          <li>Stonehoof</li>
+          <li>Ridge Ghost</li>
+          <li>Three-Spears</li>
+          <li>Grandmother Tusk</li>
+          <li>Old Hungry</li>
+          <li>Mossback</li>
+          <li>Lastborn</li>
+        </lines>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== The treasure map ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Council_Evt_TreasureMap</defName>
+    <label>treasure map</label>
+    <workerClass>ColonyCouncil.HappeningWorker_TreasureMap</workerClass>
+    <baseChance>1.5</baseChance>
+    <minRefireDays>30</minRefireDays>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Challenge</group>
+        <amount>120~300</amount>
+        <answerDays>0.5</answerDays>
+        <notable>false</notable>
+        <titles>
+          <li>A treasure map</li>
+        </titles>
+        <texts>
+          <li>{X_nameDef} of {FACTION}, while the colony's guests, takes {A_nameDef} aside with a grin. {X_nameDef} has a map, old and creased, that shows something buried right here on the colony's land. {X_nameDef} would sell it for {COUNT} silver, being in no position to dig it up. It might even be true.</li>
+          <li>[lowtech] {X_nameDef} of {FACTION} pulls a scrap of old hide from {X_possessive} coat and spreads it out for {A_nameDef}: a map, with an X on it, somewhere on the colony's land. {COUNT} silver, says {X_nameDef}, and it's yours. Treasure maps are always true, aren't they?</li>
+        </texts>
+        <defaultOption>1</defaultOption>
+        <options>
+          <li>
+            <label>Buy it ({COUNT} silver)</label>
+            <outcome>The map is ours. {A_nameDef} sets off at once with a shovel.</outcome>
+            <riskChance>0.3</riskChance>
+            <riskOutcome>The map leads to a hole, which {A_nameDef} digs, and then to another hole, which {A_nameDef} also digs. There's nothing in either. {X_nameDef} is nowhere to be found.</riskOutcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>silver</what></li>
+            </effects>
+            <riskEffects>
+              <li Class="ColonyCouncil.DilemmaEffect_Thought"><thought>Council_Evt_Swindled</thought></li>
+            </riskEffects>
+          </li>
+          <li>
+            <label>No, thank you</label>
+            <outcome>{X_nameDef} folds the map away with a sigh. Somebody else's lucky day, then.</outcome>
+          </li>
+        </options>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== Tribute ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Council_Evt_Tribute</defName>
+    <label>tribute demanded</label>
+    <workerClass>ColonyCouncil.HappeningWorker_Tribute</workerClass>
+    <baseChance>0.8</baseChance>
+    <minRefireDays>60</minRefireDays>
+    <earliestDay>20</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Battle</group>
+        <battle>true</battle>
+        <threat>true</threat>
+        <answerDays>1</answerDays>
+        <riskSkill>Social</riskSkill>
+        <riskSkillOption>1</riskSkillOption>
+        <titles>
+          <li>Tribute demanded</li>
+        </titles>
+        <texts>
+          <li>[lowtech] A herald of {ENEMY} rides up under a banner of truce, reads out a list of the colony's sins against no one in particular, and names the price of peace: {COUNT} silver, by tomorrow. Otherwise {ENEMY} will come and take it, and whatever else they like.</li>
+          <li>[!lowtech] The comms light up with a message from {ENEMY}: the colony is "under their protection" now, and protection costs {COUNT} silver. They'll wait a day for it. After that, they'll come and collect it themselves.</li>
+        </texts>
+        <defaultOption>2</defaultOption>
+        <options>
+          <li>
+            <label>Pay the {COUNT} silver</label>
+            <outcome>The tribute is handed over. {ENEMY} will leave the colony alone, for now. Nobody looks very proud.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>silver</what></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_Evt_PaidTribute</thought><exceptTrait><li>Ascetic</li></exceptTrait></li>
+            </effects>
+          </li>
+          <li>
+            <label>Let {A_nameDef} haggle</label>
+            <outcome>{A_nameDef} argues them down to half, somehow, and they go away almost pleased. Half the tribute is handed over.</outcome>
+            <riskChance>0.6</riskChance>
+            <riskReplaces>true</riskReplaces>
+            <riskOutcome>{A_nameDef} argues, and the herald takes offence. There will be no tribute now. There will be a war party instead, and soon.</riskOutcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>silver</what><factor>0.5</factor></li>
+            </effects>
+            <riskEffects>
+              <li Class="ColonyCouncil.DilemmaEffect_RaidLater">
+                <points>0.8~1.0</points>
+                <delayHours>6~14</delayHours>
+                <label>{ENEMY} want their tribute</label>
+                <text>The haggling went badly. {ENEMY} have come to take what they asked for, and more.</text>
+              </li>
+            </riskEffects>
+          </li>
+          <li>
+            <label>Refuse</label>
+            <outcome>The answer is no. The colony has a day to get ready.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_Evt_Defiance</thought><exceptTrait><li>Wimp</li></exceptTrait></li>
+              <li Class="ColonyCouncil.DilemmaEffect_RaidLater">
+                <points>0.85~1.05</points>
+                <delayHours>18~30</delayHours>
+                <label>{ENEMY} want their tribute</label>
+                <text>The colony refused to pay. {ENEMY} have come to take it by force.</text>
+              </li>
+            </effects>
+          </li>
+        </options>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+</Defs>

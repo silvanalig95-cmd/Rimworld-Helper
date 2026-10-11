@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- Rimfolk's world events live in their own category: Rimfolk schedules them itself (Settings: World events),
+       so they never take a slot from the storyteller's own events. Dev mode can fire any of them. -->
+  <IncidentCategoryDef>
+    <defName>Council_WorldEvent</defName>
+    <label>Rimfolk world event</label>
+  </IncidentCategoryDef>
+
+  <LetterDef>
+    <defName>Council_EventLetter</defName>
+    <letterClass>ColonyCouncil.ChoiceLetter_Happening</letterClass>
+    <color>(120, 165, 225)</color>
+    <flashColor>(160, 200, 250)</flashColor>
+    <flashInterval>90</flashInterval>
+    <arriveSound>LetterArrive</arriveSound>
+    <bounce>true</bounce>
+  </LetterDef>
+
+  <LetterDef>
+    <defName>Council_EventLetterThreat</defName>
+    <letterClass>ColonyCouncil.ChoiceLetter_Happening</letterClass>
+    <color>(205, 80, 60)</color>
+    <flashColor>(240, 110, 90)</flashColor>
+    <flashInterval>90</flashInterval>
+    <arriveSound>LetterArrive_BadUrgentSmall</arriveSound>
+    <bounce>true</bounce>
+  </LetterDef>
+
+  <!-- The great beast: old, huge, scarred, and very hard to bring down. -->
+  <HediffDef>
+    <defName>Council_Legendary</defName>
+    <hediffClass>HediffWithComps</hediffClass>
+    <label>legendary</label>
+    <description>This creature is old beyond its kind, scarred by everything that ever tried to bring it down, and still here. Its hide turns blows that would fell any other of its kind, and it hits back harder.</description>
+    <defaultLabelColor>(0.85, 0.75, 0.45)</defaultLabelColor>
+    <isBad>false</isBad>
+    <everCurableByItem>false</everCurableByItem>
+    <stages>
+      <li>
+        <statFactors>
+          <IncomingDamageFactor>0.5</IncomingDamageFactor>
+          <MeleeDamageFactor>1.3</MeleeDamageFactor>
+        </statFactors>
+        <capMods>
+          <li>
+            <capacity>Moving</capacity>
+            <offset>0.1</offset>
+          </li>
+        </capMods>
+      </li>
+    </stages>
+  </HediffDef>
+
+  <GameConditionDef>
+    <defName>Council_Comet</defName>
+    <conditionClass>ColonyCouncil.GameCondition_Comet</conditionClass>
+    <label>comet</label>
+    <description>A comet hangs in the sky, bright enough to see by day and brighter by night. Stargazing is better than ever, and everyone has an opinion on what it means.</description>
+    <endMessage>The comet has faded from the sky.</endMessage>
+    <canBePermanent>false</canBePermanent>
+  </GameConditionDef>
+
+  <GameConditionDef>
+    <defName>Council_Fireflies</defName>
+    <conditionClass>ColonyCouncil.GameCondition_Fireflies</conditionClass>
+    <label>firefly nights</label>
+    <description>The nights are full of fireflies. Anyone outside after dark gets to see them.</description>
+    <endMessage>The fireflies are gone for this year.</endMessage>
+    <canBePermanent>false</canBePermanent>
+  </GameConditionDef>
+
+  <GameConditionDef>
+    <defName>Council_Hail</defName>
+    <conditionClass>ColonyCouncil.GameCondition_Hail</conditionClass>
+    <label>hailstorm</label>
+    <description>Hail is hammering down. Crops out in the open are being knocked back, and young ones flattened; anything under a roof is safe. Nobody's going to get hurt, but nobody's going to enjoy being outside either.</description>
+    <endMessage>The hail has stopped.</endMessage>
+    <canBePermanent>false</canBePermanent>
+  </GameConditionDef>
+
+</Defs>

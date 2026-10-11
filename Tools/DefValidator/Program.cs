@@ -114,6 +114,8 @@ int Line(XElement e) => ((System.Xml.IXmlLineInfo)e).LineNumber;
 var intVec2 = new Regex(@"^\(\s*-?\d+\s*,\s*-?\d+\s*\)$");
 var colorRe = new Regex(@"^\(\s*\d+(\.\d+)?\s*,\s*\d+(\.\d+)?\s*,\s*\d+(\.\d+)?\s*(,\s*\d+(\.\d+)?\s*)?\)$");
 var ruleRe = new Regex(@"^[A-Za-z_][A-Za-z0-9_]*(\(.*\))?->");
+var floatRange = new Regex(@"^-?\d+(\.\d+)?(\s*~\s*-?\d+(\.\d+)?)?$");
+var intRange = new Regex(@"^-?\d+(\s*~\s*-?\d+)?$");
 
 void ValidateFields(XElement el, Type t, string file)
 {
@@ -177,6 +179,12 @@ void ValidateValue(XElement el, Type ft, string file)
             return;
         case "UnityEngine.Color":
             if (!colorRe.IsMatch(v)) errors.Add($"{Rel(file)}:{Line(el)}: '{v}' is not a color");
+            return;
+        case "Verse.FloatRange":
+            if (!floatRange.IsMatch(v)) errors.Add($"{Rel(file)}:{Line(el)}: '{v}' is not a FloatRange like 1.5~3");
+            return;
+        case "Verse.IntRange":
+            if (!intRange.IsMatch(v)) errors.Add($"{Rel(file)}:{Line(el)}: '{v}' is not an IntRange like 1~3");
             return;
     }
     if (IsDef(ft))
@@ -294,7 +302,7 @@ var dynamic = new Dictionary<string, string[]>
     ["CC_DreamKind_"] = new[] { "Sweet", "Strange", "Nightmare", "Omen", "Lost" },
     ["CC_Section_"] = new[] { "Colony", "People", "Council", "History", "Almanac" },
     ["CC_Tab_"] = new[] { "Priorities", "Build", "Roster", "Bonds", "Ambition", "Chronicle", "Dreams", "Journals", "Almanac", "Ways", "Moods" },
-    ["CC_ChronicleFilter_"] = new[] { "All", "Wishes", "Council", "People", "Strangers", "Dreams", "Losses" },
+    ["CC_ChronicleFilter_"] = new[] { "All", "Wishes", "Council", "People", "Strangers", "World", "Dreams", "Losses" },
     ["CC_Nemesis_Deed_"] = new[] { "downed", "maimed", "killed" },
     ["CC_Way_"] = new[] { "Mercy_Pos", "Mercy_Neg", "Generosity_Pos", "Generosity_Neg", "Tradition_Pos", "Tradition_Neg", "Openness_Pos", "Openness_Neg", "Toil_Pos", "Toil_Neg" },
     ["CC_Ways_Meaning_"] = new[] { "Mercy_Pos", "Mercy_Neg", "Generosity_Pos", "Generosity_Neg", "Tradition_Pos", "Tradition_Neg", "Openness_Pos", "Openness_Neg", "Toil_Pos", "Toil_Neg" },
@@ -356,7 +364,7 @@ foreach (var (k, text) in keyed)
 }
 
 // Placeholders in def flavour text
-var wishPh = new HashSet<string> { "SUBJECT", "THING", "THINGBARE", "TARGET", "WISH", "MINE", "AMBITION", "VENUE", "COUNT", "FACTION", "TITLE", "DECREE", "YEARS", "DILEMMA", "TRADITION", "OFFICE", "SKILL", "LOST", "DREAM", "GOAL", "SECRET", "LEAKER", "TELLER", "SPEECH", "ITEM", "QUIRK", "OLDGOAL", "NAME", "VICTIM", "DEED", "DAYS" };
+var wishPh = new HashSet<string> { "SUBJECT", "THING", "THINGBARE", "TARGET", "WISH", "MINE", "AMBITION", "VENUE", "COUNT", "FACTION", "TITLE", "DECREE", "YEARS", "DILEMMA", "TRADITION", "OFFICE", "SKILL", "LOST", "DREAM", "GOAL", "SECRET", "LEAKER", "TELLER", "SPEECH", "ITEM", "QUIRK", "OLDGOAL", "NAME", "VICTIM", "DEED", "DAYS", "RELATION", "DEAD", "BEAST", "ENEMY", "TALE" };
 var pawnPrefixes = new HashSet<string> { "PAWN", "FOR", "OTHER", "ENVIED", "ABOUT", "A", "B", "PET", "LEAKER", "TELLER", "X", "SLAYER", "BABY" };
 var pawnSuffixes = new HashSet<string> { "nameDef", "nameFull", "labelShort", "pronoun", "possessive", "objective", "label", "definite", "indefinite", "gender" };
 foreach (var (file, doc) in docs)

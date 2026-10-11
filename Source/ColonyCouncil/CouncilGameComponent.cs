@@ -65,6 +65,7 @@ namespace ColonyCouncil
         public NemesisTracker nemeses = new NemesisTracker();
         public PetTracker pets = new PetTracker();
         public AutonomyTracker autonomy = new AutonomyTracker();
+        public HappeningTracker happenings = new HappeningTracker();
         /// <summary>The colony's era, set by hand in the mod settings or detected (Auto). Saved with each colony.</summary>
         public EraMode era = EraMode.Auto;
         public CharacterTracker character = new CharacterTracker();
@@ -145,6 +146,7 @@ namespace ColonyCouncil
             Scribe_Deep.Look(ref nemeses, "nemeses");
             Scribe_Deep.Look(ref pets, "pets");
             Scribe_Deep.Look(ref autonomy, "autonomy");
+            Scribe_Deep.Look(ref happenings, "happenings");
             Scribe_Values.Look(ref era, "era", EraMode.Auto);
             if (Scribe.mode == LoadSaveMode.Saving) lastAtHome.RemoveAll(kv => kv.Key == null || kv.Key.Dead || kv.Key.Discarded);
             Scribe_Collections.Look(ref lastAtHome, "lastAtHome", LookMode.Reference, LookMode.Value, ref tmpHomePawns, ref tmpHomeTicks);
@@ -185,6 +187,7 @@ namespace ColonyCouncil
                 if (nemeses == null) nemeses = new NemesisTracker();
                 if (pets == null) pets = new PetTracker();
                 if (autonomy == null) autonomy = new AutonomyTracker();
+                if (happenings == null) happenings = new HappeningTracker();
                 if (lastAtHome == null) lastAtHome = new Dictionary<Pawn, int>();
                 lastAtHome.RemoveAll(kv => kv.Key == null);
                 if (character == null) character = new CharacterTracker();
@@ -271,6 +274,7 @@ namespace ColonyCouncil
             Safe("autonomy", () => autonomy.Hourly(this));
             Safe("who is home", NoteWhoIsHome);
             Safe("encounters", () => encounters.Hourly(this));
+            Safe("world events", () => happenings.Hourly(this));
         }
 
         /// <summary>A dream leaves someone wanting something: raises that wish if it makes sense for them now.</summary>
@@ -714,7 +718,7 @@ namespace ColonyCouncil
             }
         }
 
-        private void Resolve(Wish w, WishState state)
+        public void Resolve(Wish w, WishState state)
         {
             w.state = state;
             wishes.Remove(w);

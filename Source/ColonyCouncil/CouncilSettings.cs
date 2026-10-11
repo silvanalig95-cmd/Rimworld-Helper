@@ -79,6 +79,11 @@ namespace ColonyCouncil
         public bool autonomy = true;
         public bool worldReactions = true;
         public bool autonomyPlans = true;
+        /// <summary>Rimfolk's world events: pasts catching up, challenges, wonders, visitors (on their own rhythm).</summary>
+        public bool worldEvents = true;
+        /// <summary>World events that can end in a fight (bounty hunters, revenge, tribute refused).</summary>
+        public bool worldEventBattles = true;
+        public float daysBetweenWorldEvents = 4f;
         /// <summary>The colony's character: what its choices make it known for.</summary>
         public bool colonyCharacter = true;
         /// <summary>On-screen buttons for half and quarter speed, and where they sit (fractions of the screen; -1 = default).</summary>
@@ -165,6 +170,9 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref autonomy, "autonomy", true);
             Scribe_Values.Look(ref worldReactions, "worldReactions", true);
             Scribe_Values.Look(ref autonomyPlans, "autonomyPlans", true);
+            Scribe_Values.Look(ref worldEvents, "worldEvents", true);
+            Scribe_Values.Look(ref worldEventBattles, "worldEventBattles", true);
+            Scribe_Values.Look(ref daysBetweenWorldEvents, "daysBetweenWorldEvents", 4f);
             Scribe_Values.Look(ref colonyCharacter, "colonyCharacter", true);
             Scribe_Values.Look(ref slowButtons, "slowButtons", true);
             Scribe_Values.Look(ref moodInsight, "moodInsight", true);
@@ -381,6 +389,16 @@ namespace ColonyCouncil
             l.CheckboxLabeled("CC_Settings_WorldReactions".Translate(), ref worldReactions, "CC_Settings_WorldReactions_Tip".Translate());
             if (autonomy) l.CheckboxLabeled("  " + "CC_Settings_AutonomyPlans".Translate(), ref autonomyPlans, "CC_Settings_AutonomyPlans_Tip".Translate());
 
+            Header(l, "CC_Settings_WorldEventsHeader".Translate());
+            l.CheckboxLabeled("CC_Settings_WorldEvents".Translate(), ref worldEvents, "CC_Settings_WorldEvents_Tip".Translate());
+            if (worldEvents)
+            {
+                l.CheckboxLabeled("  " + "CC_Settings_WorldEventBattles".Translate(), ref worldEventBattles, "CC_Settings_WorldEventBattles_Tip".Translate());
+                daysBetweenWorldEvents = l.SliderLabeled("CC_Settings_DaysBetweenWorldEvents".Translate(daysBetweenWorldEvents.ToString("0.#")), daysBetweenWorldEvents, 1f, 20f, 0.6f,
+                    "CC_Settings_DaysBetweenWorldEvents_Tip".Translate());
+                daysBetweenWorldEvents = Mathf.Round(daysBetweenWorldEvents * 2f) / 2f;
+            }
+
             Header(l, "CC_Settings_Memory".Translate());
             l.CheckboxLabeled("CC_Settings_Journals".Translate(), ref journals, "CC_Settings_Journals_Tip".Translate());
             l.CheckboxLabeled("CC_Settings_Epithets".Translate(), ref epithets, "CC_Settings_Epithets_Tip".Translate());
@@ -439,7 +457,7 @@ namespace ColonyCouncil
         private void SetPeople(bool on, bool councilOn)
         {
             socialWeb = socialEvents = secrets = vendettas = aspirations = quirks = heirlooms = comingOfAge = dreams = dreamOmens = eulogies = on;
-            strangers = nemeses = nemesisReturns = petMoments = colonistMoments = autonomy = worldReactions = on;
+            strangers = nemeses = nemesisReturns = petMoments = colonistMoments = autonomy = worldReactions = worldEvents = on;
             enableDilemmas = decreeRequests = offices = colonyCharacter = councilOn;
             enableWishes = enableAmbitions = councilOn || on;
             journals = epithets = anniversaries = annals = on || councilOn;
@@ -497,6 +515,9 @@ namespace ColonyCouncil
             autonomy = d.autonomy;
             worldReactions = d.worldReactions;
             autonomyPlans = d.autonomyPlans;
+            worldEvents = d.worldEvents;
+            worldEventBattles = d.worldEventBattles;
+            daysBetweenWorldEvents = d.daysBetweenWorldEvents;
             colonyCharacter = d.colonyCharacter;
             moodInsight = d.moodInsight;
             deepHooks = d.deepHooks;

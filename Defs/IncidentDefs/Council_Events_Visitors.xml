@@ -1,0 +1,355 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- Rimfolk world events: visitors with a purpose, and wanderers asking to stay. Visitors come from a people that
+       isn't hostile, of the colony's own era by preference (a medieval colony meets medieval folk). -->
+
+  <!-- ===================== The storyteller ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Council_Evt_Storyteller</defName>
+    <label>travelling storyteller</label>
+    <workerClass>ColonyCouncil.HappeningWorker_Storyteller</workerClass>
+    <letterDef>PositiveEvent</letterDef>
+    <baseChance>1.3</baseChance>
+    <minRefireDays>25</minRefireDays>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Visitors</group>
+        <ages>25~70</ages>
+        <stayHours>20~30</stayHours>
+        <titles>
+          <li>[lowtech] A wandering bard</li>
+          <li>[!lowtech] A travelling storyteller</li>
+        </titles>
+        <texts>
+          <li>[lowtech,tale] {X_nameDef}, a wandering bard of {FACTION}, has come to spend an evening by the colony's fire. Tales for supper, songs for a bed: the old bargain. And {X_nameDef} has heard of this place already. They tell it like this on the road: "{TALE}"</li>
+          <li>[lowtech,notale] {X_nameDef}, a wandering bard of {FACTION}, has come to spend an evening by the colony's fire. Tales for supper, songs for a bed: the old bargain. Anyone who gathers round tonight is in for a treat.</li>
+          <li>[!lowtech,tale] {X_nameDef} of {FACTION}, a travelling storyteller with a battered instrument and a hundred stories, is stopping for the night. {X_nameDef} already knows a story about this colony, and tells it like this: "{TALE}"</li>
+          <li>[!lowtech,notale] {X_nameDef} of {FACTION}, a travelling storyteller with a battered instrument and a hundred stories, is stopping for the night. Anyone who gathers round this evening is in for a treat.</li>
+        </texts>
+        <lines>
+          <li>...and the dragon said...</li>
+          <li>...three days without water...</li>
+          <li>...and that's why you never trust a muffalo...</li>
+          <li>...the prince never saw it coming...</li>
+          <li>...a storm like you've never seen...</li>
+          <li>...and they all lived. Mostly.</li>
+          <li>...on the far side of the mountains...</li>
+          <li>[!lowtech] ...the ship came down in flames...</li>
+          <li>[!lowtech] ...on a glitterworld, they say...</li>
+          <li>[lowtech] ...the old king's crown...</li>
+          <li>[lowtech] ...a knight with no name...</li>
+        </lines>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== Mourners ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Council_Evt_Mourners</defName>
+    <label>mourners</label>
+    <workerClass>ColonyCouncil.HappeningWorker_GraveVisitors</workerClass>
+    <letterDef>NeutralEvent</letterDef>
+    <minRefireDays>40</minRefireDays>
+    <earliestDay>15</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Visitors</group>
+        <ages>20~70</ages>
+        <count>1~3</count>
+        <stayHours>8~12</stayHours>
+        <amount>40~150</amount>
+        <notable>false</notable>
+        <titles>
+          <li>Mourners for {DEAD}</li>
+        </titles>
+        <texts>
+          <li>Travellers from {FACTION} are on their way to the colony, asking for the grave of {DEAD}. They knew {DEAD} long before the colony did: family, or as good as. They've come to stand at the grave for a while, and then they'll go.</li>
+          <li>[lowtech] Word of {DEAD}'s death travelled further than anyone thought. Kin from {FACTION} are walking in to pay their respects at the grave, as their custom is.</li>
+          <li>[!lowtech] Someone from {FACTION} found {DEAD}'s name in a settlement record and has come all this way with family to see the grave. They won't stay long.</li>
+        </texts>
+        <lines>
+          <li>Rest well.</li>
+          <li>We never forgot you.</li>
+          <li>Thank you for keeping them.</li>
+        </lines>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== Pilgrims ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Council_Evt_Pilgrims</defName>
+    <label>hungry pilgrims</label>
+    <workerClass>ColonyCouncil.HappeningWorker_Pilgrims</workerClass>
+    <minRefireDays>30</minRefireDays>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Visitors</group>
+        <ages>18~70</ages>
+        <count>2~4</count>
+        <stayHours>10~16</stayHours>
+        <titles>
+          <li>Hungry pilgrims</li>
+        </titles>
+        <texts>
+          <li>[lowtech] A small band of pilgrims of {FACTION}, footsore and thin, is walking up to the colony. Their road is long and their bags are empty, and they ask, very politely, for a meal before they go on.</li>
+          <li>[!lowtech] A handful of travellers of {FACTION} have stopped at the edge of the colony, on their way somewhere better, or so they hope. Their rations ran out three days ago. They ask, very politely, for a meal.</li>
+          <li>[winter] Pilgrims of {FACTION} have come in out of the cold, half frozen and wholly hungry, asking for a meal and a little warmth before they go on.</li>
+        </texts>
+        <defaultOption>1</defaultOption>
+        <options>
+          <li>
+            <label>Feed them</label>
+            <outcome>The pilgrims eat like they haven't in days, because they haven't. They leave blessings behind them, and tell everyone they meet.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>rawfood</what></li>
+              <li Class="ColonyCouncil.DilemmaEffect_EventGoodwill"><amount>8</amount></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_Evt_FedPilgrims</thought><exceptTrait><li>Greedy</li><li>Psychopath</li></exceptTrait></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Inspiration"><chance>0.25</chance></li>
+            </effects>
+            <ways><generosity>4</generosity><mercy>2</mercy></ways>
+          </li>
+          <li>
+            <label>Turn them away</label>
+            <outcome>The pilgrims bow, and go on hungry.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_SendAway" />
+              <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_Evt_TurnedAwayHungry</thought><onlyTrait><li>Kind</li></onlyTrait></li>
+            </effects>
+            <ways><generosity>-3</generosity></ways>
+          </li>
+        </options>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== The scholar ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Council_Evt_Scholar</defName>
+    <label>travelling scholar</label>
+    <workerClass>ColonyCouncil.HappeningWorker_Scholar</workerClass>
+    <minRefireDays>40</minRefireDays>
+    <earliestDay>8</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Visitors</group>
+        <ages>25~70</ages>
+        <stayHours>18~26</stayHours>
+        <journal>Council_Journal_Evt_Scholar</journal>
+        <titles>
+          <li>[lowtech] A wandering scholar</li>
+          <li>[!lowtech] A travelling engineer</li>
+        </titles>
+        <texts>
+          <li>[lowtech] {X_nameDef}, a wandering scholar of {FACTION} with ink-stained fingers and a satchel of books, asks for a bed for the night. On hearing that the colony is working on {TALE}, {X_nameDef}'s eyes light up: {X_pronoun} has thoughts on that. Many thoughts.</li>
+          <li>[!lowtech] {X_nameDef}, a travelling engineer of {FACTION}, asks for a bunk for the night. Someone mentions the colony's work on {TALE}, and {X_nameDef} immediately asks to see the notes. "Oh, no, no, no," {X_nameDef} says, smiling. "Let me show you."</li>
+        </texts>
+        <defaultOption>1</defaultOption>
+        <options>
+          <li>
+            <label>Host {X_objective} for the night</label>
+            <outcome>{X_nameDef} and {A_nameDef} talk until the fire burns out. In the morning, the colony's notes on {TALE} are twice as long and half as wrong.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Research"><share>0.3</share><max>1500</max></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Thought"><thought>Council_Evt_ScholarTalk</thought></li>
+              <li Class="ColonyCouncil.DilemmaEffect_EventGoodwill"><amount>4</amount></li>
+            </effects>
+            <ways><openness>3</openness></ways>
+          </li>
+          <li>
+            <label>No room tonight</label>
+            <outcome>{X_nameDef} shrugs and moves on. Somewhere else will get those notes.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_SendAway" />
+            </effects>
+            <ways><openness>-2</openness></ways>
+          </li>
+        </options>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== The apprentice ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Council_Evt_Apprentice</defName>
+    <label>would-be apprentice</label>
+    <workerClass>ColonyCouncil.HappeningWorker_Apprentice</workerClass>
+    <minRefireDays>50</minRefireDays>
+    <earliestDay>15</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Visitors</group>
+        <addsPeople>true</addsPeople>
+        <ages>15~22</ages>
+        <journal>Council_Journal_Evt_Apprentice</journal>
+        <titles>
+          <li>A would-be apprentice</li>
+        </titles>
+        <texts>
+          <li>A young traveller named {X_nameDef} has come a long way with one question: is this where {A_nameDef} lives? Word of {A_nameDef}'s {SKILL} has spread further than anyone here knew, and {X_nameDef} wants to learn from the best. {X_nameDef} asks to stay as {A_nameDef}'s apprentice.</li>
+          <li>[lowtech] {X_nameDef}, barely more than a child, turns up at the edge of the colony asking for the master of {SKILL} the whole valley talks about. That's {A_nameDef}, apparently. {X_nameDef} will work for board and lessons, and asks to stay.</li>
+        </texts>
+        <defaultOption>1</defaultOption>
+        <options>
+          <li>
+            <label>Take {X_objective} on</label>
+            <outcome>{A_nameDef} has a student. {A_nameDef} pretends to grumble about it, and fails.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Join" />
+              <li Class="ColonyCouncil.DilemmaEffect_Mentor" />
+              <li Class="ColonyCouncil.DilemmaEffect_Thought"><thought>Council_Evt_ApprenticeCame</thought></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>X</target><thought>Council_Evt_FoundMaster</thought></li>
+            </effects>
+            <ways><openness>3</openness><tradition>2</tradition></ways>
+          </li>
+          <li>
+            <label>Send {X_objective} home</label>
+            <outcome>{X_nameDef} goes, disappointed. {A_nameDef} is quieter than usual that evening.</outcome>
+          </li>
+        </options>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== A wanderer with a secret ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Council_Evt_QuietStranger</defName>
+    <label>quiet stranger</label>
+    <workerClass>ColonyCouncil.HappeningWorker_Joiner</workerClass>
+    <minRefireDays>40</minRefireDays>
+    <earliestDay>10</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Visitors</group>
+        <addsPeople>true</addsPeople>
+        <ages>20~55</ages>
+        <titles>
+          <li>A quiet stranger</li>
+        </titles>
+        <texts>
+          <li>A stranger called {X_nameDef} has been waiting at the edge of the colony since dawn, and asks to stay. {X_nameDef} answers every question politely and none of them completely. Where from? "Far." Why here? "Why not." {A_nameDef} thinks {X_pronoun} is running from something. {A_nameDef} also thinks {X_pronoun} looks like a hard worker.</li>
+          <li>[lowtech] {X_nameDef} came out of the woods with good boots, empty hands and a name that might be real. {X_nameDef} asks to stay, and wants to know very little about anyone, and to be known even less. {A_nameDef} found {X_objective} first.</li>
+          <li>[!lowtech] {X_nameDef} walked in off the road with a good coat, no papers and a story that changes slightly every time it's told. {X_nameDef} asks to stay. {A_nameDef} found {X_objective} first, and thinks there's more to the story.</li>
+        </texts>
+        <defaultOption>1</defaultOption>
+        <options>
+          <li>
+            <label>Everyone deserves a fresh start</label>
+            <outcome>{X_nameDef} is one of us now. Whatever {X_pronoun} left behind, {X_pronoun} hasn't said.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Join" />
+              <li Class="ColonyCouncil.DilemmaEffect_Secret" />
+              <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>X</target><thought>Council_Evt_Sheltered</thought></li>
+            </effects>
+            <ways><openness>4</openness><mercy>2</mercy></ways>
+          </li>
+          <li>
+            <label>Not without answers</label>
+            <outcome>{X_nameDef} doesn't give any, and leaves.</outcome>
+            <ways><openness>-3</openness></ways>
+          </li>
+        </options>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== A lost child (Biotech) ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Council_Evt_LostChild</defName>
+    <label>lost child</label>
+    <workerClass>ColonyCouncil.HappeningWorker_LostChild</workerClass>
+    <minRefireDays>60</minRefireDays>
+    <earliestDay>10</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Visitors</group>
+        <mods>
+          <li>ludeon.rimworld.biotech</li>
+        </mods>
+        <ages>5~11</ages>
+        <answerDays>0.75</answerDays>
+        <titles>
+          <li>A lost child</li>
+        </titles>
+        <texts>
+          <li>A child has wandered into the colony: {X_nameDef}, of {FACTION}, muddy, scared and very far from home. {A_nameDef} found {X_objective} sitting by the fields, trying hard not to cry. Somewhere out there, a family is searching.</li>
+          <li>[winter] {A_nameDef} found a child out in the cold, half frozen and too frightened to speak: {X_nameDef}, of {FACTION}, who followed something into the woods and couldn't find the way back. Somewhere out there, a family is searching.</li>
+        </texts>
+        <defaultOption>0</defaultOption>
+        <options>
+          <li>
+            <label>Take {X_objective} home</label>
+            <outcome>{X_nameDef} is walked back towards {X_possessive} people, clutching a bit of bread and somebody's spare coat. {FACTION} won't forget this.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_SendAway" />
+              <li Class="ColonyCouncil.DilemmaEffect_EventGoodwill"><amount>12</amount></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_Evt_ReturnedChild</thought><exceptTrait><li>Psychopath</li></exceptTrait></li>
+            </effects>
+            <ways><mercy>4</mercy></ways>
+          </li>
+          <li>
+            <label>Keep {X_objective}</label>
+            <outcome>{X_nameDef} stays. Whether {X_pronoun} wanted to is a question nobody asks out loud.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Join" />
+              <li Class="ColonyCouncil.DilemmaEffect_EventGoodwill"><amount>-20</amount></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_Evt_KeptChild</thought><onlyTrait><li>Kind</li></onlyTrait></li>
+            </effects>
+            <ways><mercy>-6</mercy></ways>
+          </li>
+        </options>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== A stray ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Council_Evt_Stray</defName>
+    <label>stray</label>
+    <workerClass>ColonyCouncil.HappeningWorker_StrayAnimal</workerClass>
+    <minRefireDays>40</minRefireDays>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Visitors</group>
+        <notable>false</notable>
+        <journal>Council_Journal_Evt_Stray</journal>
+        <titles>
+          <li>A stray</li>
+        </titles>
+        <texts>
+          <li>A stray {THING} has followed {A_nameDef} all the way home and refuses to leave {A_possessive} side. It's thin, it's filthy, and it has very clearly decided {A_nameDef} is its person now.</li>
+          <li>[child] A stray {THING} followed {A_nameDef} home, and {A_nameDef} has already given it a name, a bowl and a corner of {A_possessive} bed. The look on {A_possessive} face says the matter is not up for discussion.</li>
+          <li>[hunter] A scrawny stray {THING} has been hanging around {A_nameDef} all day, bringing small dead things as gifts. It seems to think the colony could use a hunter.</li>
+        </texts>
+        <defaultOption>0</defaultOption>
+        <options>
+          <li>
+            <label>It can stay</label>
+            <outcome>The {THING} curls up at {A_nameDef}'s feet as if it had always lived here.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Thought"><thought>Council_Evt_StrayChoseMe</thought></li>
+            </effects>
+          </li>
+          <li>
+            <label>Let it go</label>
+            <outcome>{A_nameDef} walks the {THING} to the edge of the fields and leaves it there. It sits and watches {A_objective} go.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_ReleasePet" />
+              <li Class="ColonyCouncil.DilemmaEffect_Thought"><thought>Council_Evt_StrayLetGo</thought></li>
+            </effects>
+          </li>
+        </options>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+</Defs>

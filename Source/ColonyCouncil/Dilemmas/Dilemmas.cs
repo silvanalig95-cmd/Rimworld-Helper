@@ -236,12 +236,18 @@ namespace ColonyCouncil
                 (CouncilGameComponent.Instance?.secrets.Of(a)?.def.label ?? "").Named("SECRET"),
                 (CouncilGameComponent.Instance?.quirks.Of(a).FirstOrDefault()?.Label ?? "").Named("QUIRK")
             };
+            AddArgs(args);
             return s.Formatted(args.ToArray()).Resolve();
+        }
+
+        /// <summary>More named arguments for the texts (world events add their own).</summary>
+        protected virtual void AddArgs(List<NamedArgument> args)
+        {
         }
 
         public IEnumerable<Pawn> Colonists => map == null ? Enumerable.Empty<Pawn>() : map.mapPawns.FreeColonistsSpawned.Where(p => !p.IsQuestLodger());
 
-        public void ExposeData()
+        public virtual void ExposeData()
         {
             Scribe_Defs.Look(ref def, "def");
             Scribe_References.Look(ref map, "map");
@@ -614,9 +620,11 @@ namespace ColonyCouncil
         /// <summary>"silver", "rawfood", or a ThingDef defName; empty = the dilemma's thing.</summary>
         public string what;
         public int count;
+        /// <summary>A share of the amount (half the tribute, after haggling).</summary>
+        public float factor = 1f;
 
         /// <summary>A quartermaster stretches the stores.</summary>
-        private int Need(DilemmaContext ctx) => UnityEngine.Mathf.Max(1, UnityEngine.Mathf.RoundToInt((count > 0 ? count : ctx.count) * (CouncilGameComponent.Instance?.offices.CostFactor ?? 1f)));
+        private int Need(DilemmaContext ctx) => UnityEngine.Mathf.Max(1, UnityEngine.Mathf.RoundToInt((count > 0 ? count : ctx.count) * factor * (CouncilGameComponent.Instance?.offices.CostFactor ?? 1f)));
 
         public static int RawFood(Map map)
         {

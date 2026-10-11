@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- Rimfolk world events: old enemies and old wrongs come back. These bring fights, so they only come with "battles"
+       switched on, when the storyteller sends threats at all, and never on top of another fight. Their strength is a
+       share of what the storyteller would send now. -->
+
+  <!-- ===================== A nemesis returns ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Council_Evt_NemesisReturns</defName>
+    <label>nemesis returns</label>
+    <workerClass>ColonyCouncil.HappeningWorker_NemesisReturns</workerClass>
+    <baseChance>1.5</baseChance>
+    <minRefireDays>30</minRefireDays>
+    <earliestDay>15</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Battle</group>
+        <battle>true</battle>
+        <threat>true</threat>
+        <points>0.75~0.95</points>
+        <titles>
+          <li>{X_nameDef} returns</li>
+        </titles>
+        <texts>
+          <li>[victim] {X_nameDef} is back. The one who left {A_nameDef} bleeding in the dirt is riding at the head of a war party of {ENEMY}, and this time {X_nameDef} means to finish it.</li>
+          <li>[killed] {X_nameDef}, who killed {DEAD}, has come back with {ENEMY} behind {X_objective}. The colony remembers. So, it seems, does {X_nameDef}.</li>
+          <li>[maimed] {X_nameDef}, who maimed {DEAD}, is leading a war party of {ENEMY} against the colony. Whatever {X_nameDef} wants, it isn't peace.</li>
+          <li>{X_nameDef} is back, leading a war party of {ENEMY}. Last time {X_nameDef} got away. Nobody here intends to let that happen twice.</li>
+        </texts>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== Revenge for a prisoner who died here ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Council_Evt_Revenge</defName>
+    <label>revenge</label>
+    <workerClass>ColonyCouncil.HappeningWorker_Revenge</workerClass>
+    <baseChance>1.2</baseChance>
+    <minRefireDays>30</minRefireDays>
+    <earliestDay>15</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Battle</group>
+        <battle>true</battle>
+        <threat>true</threat>
+        <points>0.55~0.8</points>
+        <titles>
+          <li>Revenge for {DEAD}</li>
+        </titles>
+        <texts>
+          <li>{ENEMY} have not forgotten {DEAD}, who died in the colony's hands. A war party has come to settle the matter.</li>
+          <li>[lowtech] Blood calls for blood, the old saying goes. Kin of {DEAD}, who died a prisoner here, have come with {ENEMY} to answer the call.</li>
+          <li>[!lowtech] {ENEMY} are broadcasting one name, over and over, as they march on the colony: {DEAD}. They know {DEAD} died here, a prisoner. They've come to make someone pay for it.</li>
+        </texts>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== A deserter ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Council_Evt_Deserter</defName>
+    <label>deserter</label>
+    <workerClass>ColonyCouncil.HappeningWorker_Deserter</workerClass>
+    <minRefireDays>45</minRefireDays>
+    <earliestDay>12</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Battle</group>
+        <addsPeople>true</addsPeople>
+        <ages>18~40</ages>
+        <journal>Council_Journal_Evt_Deserter</journal>
+        <titles>
+          <li>A deserter</li>
+        </titles>
+        <texts>
+          <li>[lowtech] A young soldier in the colours of {ENEMY} stumbles up to the colony with empty hands raised. {X_nameDef} has deserted, and {ENEMY} hang deserters. {X_nameDef} begs to be taken in. {A_nameDef} found {X_objective} first, and thinks the fear is real.</li>
+          <li>[!lowtech] A figure in {ENEMY} gear walks up to the colony with hands raised and weapon slung. {X_nameDef} has had enough of {ENEMY}, and {ENEMY} are not the forgiving kind. {X_nameDef} asks for shelter. {A_nameDef} found {X_objective} first, and believes the story.</li>
+        </texts>
+        <defaultOption>1</defaultOption>
+        <options>
+          <li>
+            <label>Take {X_objective} in</label>
+            <outcome>{X_nameDef} is one of us now. With any luck, {ENEMY} will never learn where {X_pronoun} went.</outcome>
+            <riskChance>0.45</riskChance>
+            <riskOutcome>{X_nameDef} is one of us now. {ENEMY} won't let it go, though: sooner or later they'll come looking.</riskOutcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Join" />
+              <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>X</target><thought>Council_Evt_Sheltered</thought></li>
+            </effects>
+            <riskEffects>
+              <li Class="ColonyCouncil.DilemmaEffect_RaidLater">
+                <points>0.35~0.55</points>
+                <delayHours>24~72</delayHours>
+                <label>{ENEMY} want their deserter</label>
+                <text>{ENEMY} have come for {X_nameDef}, who ran from them to us.</text>
+              </li>
+            </riskEffects>
+            <ways><mercy>4</mercy><openness>3</openness></ways>
+          </li>
+          <li>
+            <label>Send {X_objective} on</label>
+            <outcome>{X_nameDef} goes back out into the wild, alone.</outcome>
+            <ways><mercy>-2</mercy></ways>
+          </li>
+          <li>
+            <label>Hand {X_objective} back to {ENEMY}</label>
+            <outcome>{X_nameDef} is marched back to {ENEMY} under guard. {ENEMY} are pleased. {X_nameDef} is not.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_EventGoodwill"><amount>12</amount><enemy>true</enemy></li>
+            </effects>
+            <ways><mercy>-8</mercy></ways>
+          </li>
+        </options>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+</Defs>

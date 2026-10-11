@@ -27,7 +27,9 @@ namespace ColonyCouncil
         Loss,
         Dream,
         /// <summary>Visitors, traders, prisoners, beasts, pets, nemeses.</summary>
-        Stranger
+        Stranger,
+        /// <summary>World events: pasts catching up, challenges, wonders, visitors with a purpose.</summary>
+        World
     }
 
     /// <summary>One line in the colony's chronicle. Stores text, not references, so it survives anything.</summary>

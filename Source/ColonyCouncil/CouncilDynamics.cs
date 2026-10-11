@@ -752,7 +752,15 @@ namespace ColonyCouncil
             AddChronicle(new ChronicleEntry(ChronicleKind.Life, "CC_Chronicle_Quit".Translate(p.LabelShort).Resolve(), p));
             annals.Notify_Quit(p);
             TrustEffects.StripAll(p);
-            PawnBanishUtility.Banish(p, false);
+            if (happenings != null) happenings.quitting = p;
+            try
+            {
+                PawnBanishUtility.Banish(p, false);
+            }
+            finally
+            {
+                if (happenings != null) happenings.quitting = null;
+            }
         }
 
         // ================= Decrees =================

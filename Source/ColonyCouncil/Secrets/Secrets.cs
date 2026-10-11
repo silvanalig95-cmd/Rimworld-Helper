@@ -140,6 +140,19 @@ namespace ColonyCouncil
             }
         }
 
+        /// <summary>A newcomer arrives with something to hide (a world event): gives them a fitting secret now. False if none fits.</summary>
+        public bool GiveNow(Pawn p)
+        {
+            if (!S.secrets || p == null || Of(p) != null) return false;
+            var options = new List<(SecretDef def, float w)>();
+            foreach (var d in DefDatabase<SecretDef>.AllDefsListForReading)
+                if (d.Fits(p, out bool match)) options.Add((d, d.weight * (match ? 6f : 1f)));
+            if (options.Count == 0) return false;
+            rolled.Add(p.ThingID);
+            secrets.Add(new Secret { def = options.RandomElementByWeight(o => o.w).def, owner = p });
+            return true;
+        }
+
         private void TryGive(Pawn p)
         {
             var options = new List<(SecretDef def, float w)>();

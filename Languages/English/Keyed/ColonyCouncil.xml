@@ -1561,4 +1561,51 @@ Those against it ({WHO}) will trust the council less and resent it more than usu
   <CC_World_Breakdown>{PAWN_nameDef} broke down: {STATE}.</CC_World_Breakdown>
   <CC_Cause_HomeAgain>home again after {0} away.</CC_Cause_HomeAgain>
   <CC_Cause_GladBack>{0} is back home.</CC_Cause_GladBack>
+
+  <!-- ===================== World events ===================== -->
+  <CC_ChronicleFilter_World>World</CC_ChronicleFilter_World>
+  <CC_Settings_WorldEventsHeader>World events</CC_Settings_WorldEventsHeader>
+  <CC_Settings_WorldEvents>World events</CC_Settings_WorldEvents>
+  <CC_Settings_WorldEvents_Tip>Rimfolk's own events, on their own rhythm (they never take a slot from your storyteller's events): colonists' pasts catching up with them (old comrades, lost family, creditors, bounty hunters, news from home), challenges (a travelling champion, a legendary beast, a treasure map, a demand for tribute), wonders and nuisances of the land (comets, fireflies, hail, vermin, wild harvests, buried caches) and visitors with a purpose (storytellers, mourners, pilgrims, scholars, apprentices, strays). Each fits the colony's era, and many touch Rimfolk's other systems: nemeses, secrets, mentors, the colony's character. Dev mode can fire any of them (Debug actions, incidents, "Council_Evt_...").</CC_Settings_WorldEvents_Tip>
+  <CC_Settings_WorldEventBattles>... including ones that can end in a fight</CC_Settings_WorldEventBattles>
+  <CC_Settings_WorldEventBattles_Tip>Bounty hunters, a nemesis returning, revenge for a prisoner who died in the colony's hands, a refused tribute, creditors' thugs, a deserter's pursuers. Only when the storyteller sends threats at all, never on top of another fight, and at a share of the storyteller's own raid strength. Off: none of these come (and promised fights never arrive).</CC_Settings_WorldEventBattles_Tip>
+  <CC_Settings_DaysBetweenWorldEvents>About one world event every {0} days</CC_Settings_DaysBetweenWorldEvents>
+  <CC_Settings_DaysBetweenWorldEvents_Tip>On average; it varies. Each event also has its own cooldown, so the same one won't come back soon.</CC_Settings_DaysBetweenWorldEvents_Tip>
+  <CC_Evt_LookAt>Look at {0}</CC_Evt_LookAt>
+  <CC_Evt_Deadline>The colony has {0} to answer. If nobody does: "{1}".</CC_Evt_Deadline>
+  <CC_Evt_NoAnswer>Nobody answered.</CC_Evt_NoAnswer>
+  <CC_Cause_Event>{0}: {1}.</CC_Cause_Event>
+  <CC_Cause_EventHappened>{0}.</CC_Cause_EventHappened>
+  <CC_Ways_Why_Event>{0}: "{1}"</CC_Ways_Why_Event>
+  <CC_Chronicle_EventChoice>{0}: the colony chose "{1}".</CC_Chronicle_EventChoice>
+  <CC_Evt_NoResearch>No research project in hand</CC_Evt_NoResearch>
+  <CC_Evt_Trust_Back>let back in</CC_Evt_Trust_Back>
+  <CC_Evt_TributeHave>The colony has {0} silver. They ask for {1}.</CC_Evt_TributeHave>
+  <CC_Evt_PilgrimsFood>Feeding them takes {1} raw food (vegetables, berries, meat) from the stores; the colony has {0}.</CC_Evt_PilgrimsFood>
+  <CC_Evt_ChampionOdds>The colony's best at {4} is {A_nameDef} (skill {2}). The challenger, {X_nameDef}, is about {3}. The better one usually wins, but not always.</CC_Evt_ChampionOdds>
+  <CC_Evt_ContestOff>The contest never happened: the challenger moved on.</CC_Evt_ContestOff>
+  <CC_Cause_Challenge>the {0} contest with a travelling champion.</CC_Cause_Challenge>
+  <CC_Evt_Contest_Won>Victory!</CC_Evt_Contest_Won>
+  <CC_Evt_Contest_Lost>Beaten!</CC_Evt_Contest_Lost>
+  <CC_Evt_ContestWonTitle>{A_nameDef} wins</CC_Evt_ContestWonTitle>
+  <CC_Evt_ContestLostTitle>{A_nameDef} is beaten</CC_Evt_ContestLostTitle>
+  <CC_Evt_ContestWon>{A_nameDef} beat {X_nameDef} at {2}, in front of half the colony. There will be no living with {A_objective} now.</CC_Evt_ContestWon>
+  <CC_Evt_ContestWonStake>{A_nameDef} beat {X_nameDef} at {2}, in front of half the colony, and won the colony {3} silver. There will be no living with {A_objective} now.</CC_Evt_ContestWonStake>
+  <CC_Evt_ContestLost>{X_nameDef} beat {A_nameDef} at {2}, fair and square. {A_nameDef} took it well, mostly, and learned a lot.</CC_Evt_ContestLost>
+  <CC_Evt_ContestLostStake>{X_nameDef} beat {A_nameDef} at {2}, fair and square, and walked off with the colony's {3} silver. {A_nameDef} learned a lot, at least.</CC_Evt_ContestLostStake>
+  <CC_Evt_BeastSlainTitle>{0} is dead</CC_Evt_BeastSlainTitle>
+  <CC_Evt_BeastSlain>{PAWN_nameDef} has brought down {0}, the great beast. They'll be telling this one for years, and {PAWN_nameDef} will be telling it loudest.</CC_Evt_BeastSlain>
+  <CC_Evt_BeastDied>{0}, the great beast, is dead.</CC_Evt_BeastDied>
+  <CC_Evt_BeastGone>{0}, the great beast, has moved on into the wilds.</CC_Evt_BeastGone>
+  <CC_Evt_BeastTamedTitle>{0} is tamed</CC_Evt_BeastTamedTitle>
+  <CC_Evt_BeastTamed>{0}, the great beast that outlived every hunter, has been tamed. It answers to {PAWN} now. Nobody quite believes it.</CC_Evt_BeastTamed>
+  <CC_Cause_Beast>{0}, the great beast.</CC_Cause_Beast>
+  <CC_Evt_TreasureTitle>The map was true</CC_Evt_TreasureTitle>
+  <CC_Evt_TreasureText>Right where the X was, under a foot of earth: a cache. Inside: {0}.</CC_Evt_TreasureText>
+  <CC_Evt_PestsTip>Food kept cold draws no vermin, and a cat or a dog keeps them away.</CC_Evt_PestsTip>
+  <CC_Evt_Found>Inside: {0}.</CC_Evt_Found>
+  <CC_Cause_Tales>an evening of {0}'s tales.</CC_Cause_Tales>
+  <CC_Cause_Mourners>mourners at {0}'s grave.</CC_Cause_Mourners>
+  <CC_Evt_Mourners>Mourners stood at {0}'s grave for a while, and moved on.</CC_Evt_Mourners>
+  <CC_Evt_MournersGift>Mourners stood at {0}'s grave for a while, and left {1} silver there, for the colony that buried {0} properly.</CC_Evt_MournersGift>
 </LanguageData>

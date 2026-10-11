@@ -73,6 +73,28 @@ namespace ColonyCouncil
         public static ThoughtDef Council_ChildGrown;
         public static ThoughtDef Council_SawThemGrow;
 
+        // World events
+        public static ThoughtDef Council_Evt_PartnersEx;
+        public static ThoughtDef Council_Evt_WelcomeBack;
+        public static ThoughtDef Council_Evt_UnwelcomeBack;
+        public static ThoughtDef Council_Evt_WonChallenge;
+        public static ThoughtDef Council_Evt_LostChallenge;
+        public static ThoughtDef Council_Evt_ChampionWon;
+        public static ThoughtDef Council_Evt_FelledBeast;
+        public static ThoughtDef Council_Evt_BeastDown;
+        public static ThoughtDef Council_Evt_TamedBeast;
+        public static ThoughtDef Council_Evt_Fireflies;
+        public static ThoughtDef Council_Evt_Hail;
+        public static ThoughtDef Council_Evt_PetCaughtVermin;
+        public static ThoughtDef Council_Evt_HeardTales;
+        public static ThoughtDef Council_Evt_DeadHonored;
+        public static ThoughtDef Council_Evt_TreasureFound;
+        public static IncidentCategoryDef Council_WorldEvent;
+        public static LetterDef Council_EventLetter;
+        public static LetterDef Council_EventLetterThreat;
+        public static HediffDef Council_Legendary;
+        public static GameConditionDef Council_Comet;
+
         public static HediffDef Council_Motivated;
         public static HediffDef Council_Loyalty;
         public static HediffDef Council_Grudge;
