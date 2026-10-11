@@ -46,7 +46,7 @@
         <li>The sky was black the night we lost them. I keep watching the clouds now.</li>
         <li>Thunder, then a death. Every time. I've started counting.</li>
       </plain>
-      <gloomy><li>Storms bring death. I know it's not true. I know it is.</li></gloomy>
+      <gloomy><li>Every time there's a storm, I wait to hear who died.</li></gloomy>
     </gained>
     <faded>
       <plain><li>A storm came last night and nobody died. I think I can stop watching the sky.</li></plain>
@@ -65,7 +65,7 @@
     <gained>
       <plain>
         <li>I've started praying at night. I don't know to whom. It helps anyway.</li>
-        <li>Something is out there. My dream proved it. I'm going to talk to it every night.</li>
+        <li>My dream came true, so somebody out there must be listening. I talk to them every night now.</li>
       </plain>
       <cold><li>I've adopted a nightly ritual. Its efficacy is irrelevant. Its regularity is the point.</li></cold>
     </gained>
@@ -136,7 +136,7 @@
       <plain>
         <li>It rained, and I went out and stood in it until I was soaked through. I felt better than I have in days.</li>
       </plain>
-      <cheerful><li>Rain is free and it falls on everyone! I'm going to go stand in it every time!</li></cheerful>
+      <cheerful><li>Rain is free and it falls on everyone! I'm going to go stand in it every time.</li></cheerful>
     </gained>
   </ColonyCouncil.QuirkDef>
 

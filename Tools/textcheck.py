@@ -10,7 +10,9 @@ Checks rewritten text against the committed version (git HEAD), so a prose pass 
     arguments ({0}, {1}) never dropped;
   - and it reports how often the tics listed in STYLE.md show up, before and after.
 
-Usage: python3 Tools/textcheck.py [files...]   (no files: every changed .xml under Defs/ and Languages/)
+Usage: python3 Tools/textcheck.py [--base REF] [files...]
+  --base REF  compare against that commit instead of HEAD (e.g. the commit before a long pass began)
+  no files: every .xml under Defs/ and Languages/ that differs from the base
 Exit code 1 if anything is broken.
 """
 import re
@@ -32,8 +34,11 @@ def run(*args):
     return subprocess.run(args, capture_output=True, text=True).stdout
 
 
+BASE = "HEAD"
+
+
 def changed_files():
-    out = run("git", "diff", "--name-only", "HEAD") + run("git", "ls-files", "--others", "--exclude-standard")
+    out = run("git", "diff", "--name-only", BASE) + run("git", "ls-files", "--others", "--exclude-standard")
     return [f for f in out.split() if f.endswith(".xml") and (f.startswith("Defs/") or f.startswith("Languages/"))]
 
 
@@ -107,7 +112,7 @@ def check(path):
         new = parse(new_text)
     except Exception as e:
         return [f"{path}: doesn't parse: {e}"], [], None, None
-    old_text = run("git", "show", f"HEAD:{path}")
+    old_text = run("git", "show", f"{BASE}:{path}")
     if not old_text:
         return [], [f"{path}: new file, not compared"], None, tic_report([e.text for _, e in new])
     old = parse(old_text)
@@ -179,7 +184,12 @@ def check(path):
 
 
 def main():
-    files = sys.argv[1:] or changed_files()
+    global BASE
+    args = sys.argv[1:]
+    if len(args) >= 2 and args[0] == "--base":
+        BASE = args[1]
+        args = args[2:]
+    files = args or changed_files()
     bad = False
     for f in files:
         errors, warnings, before, after = check(f)

@@ -31,7 +31,7 @@
       </blunt>
       <cheerful>
         <li>Felt rotten all day, and then {X_definite} did that silly thing {X_pronoun} does with {X_possessive} head and I laughed so hard I snorted!</li>
-        <li>Note to self: when sad, go and find {X_definite}. It worked again today!</li>
+        <li>When I'm sad I should go and find {X_definite}. Worked again today!</li>
       </cheerful>
       <gloomy>
         <li>The only one here who never needs me to be fine is {X_definite}.</li>
@@ -56,7 +56,7 @@
         <li>[trait:Gourmand] Another gift from {X_definite}. I'll admit I looked at it and thought about seasoning. Not proud of that.</li>
         <li>[night] Something crunched under my bare foot on the way to the latrine. A gift from {X_definite}. I don't want to talk about which part.</li>
         <li>[winter] Food's scarce, and {X_definite} has started sharing. Generous. Disgusting, but generous.</li>
-        <li>[skill:Animals] I know what the gifts mean. To {X_definite} I'm family, and a terrible hunter.</li>
+        <li>[skill:Animals] I know what the gifts mean. I'm family, and as far as the animal can tell, a hopeless hunter who needs feeding.</li>
         <li>[hot] It's far too hot for what {X_definite} left on my pillow. I've opened every shutter in the place.</li>
       </plain>
       <warm>
@@ -186,7 +186,7 @@
       </blunt>
       <cheerful>
         <li>I bow to {X_definite} every morning now, like an elder! I get a yawn back.</li>
-        <li>We went for a walk today, a short one with lots of sitting down. It was perfect!</li>
+        <li>We went for a walk today, a short one with lots of sitting down. Perfect!</li>
       </cheerful>
       <gloomy>
         <li>Every animal I've ever loved has died before me. I knew that when I took on {X_definite}. I did it anyway.</li>
@@ -211,7 +211,7 @@
         <li>[skill:Animals] I've spent my whole life with animals. None of them prepared me for {X_definite}.</li>
         <li>[morning] Before breakfast I saw {X_indefinite} among the trees, steam rising off {X_possessive} back. I forgot I was hungry.</li>
         <li>[winter] Watched {X_indefinite} wade through the drifts like they weren't there. I can barely get across the yard.</li>
-        <li>[child] I saw {X_indefinite}! It was bigger than a house, maybe two houses.</li>
+        <li>[child] I saw {X_indefinite}! Bigger than a house, maybe two houses.</li>
         <li>[trait:Bloodlust] Spent half the day watching {X_indefinite} and thinking about what a fight that would be.</li>
         <li>[trait:Greedy] I keep thinking about what that hide would fetch from a trader. Then I remember the size of {X_possessive} feet.</li>
         <li>[evening] At sunset {X_indefinite} crossed the ridge, dark against the red sky. We stood and watched until the light was gone.</li>
@@ -227,7 +227,7 @@
       </blunt>
       <cheerful>
         <li>I saw {X_indefinite} today and I've decided we're friends now. I just have to tell {X_objective}!</li>
-        <li>It was so big I ran out of words and just pointed for a while!</li>
+        <li>So big! I ran out of words and just pointed for a while.</li>
       </cheerful>
       <gloomy>
         <li>Something that big and that free, and here I am inside a fence, counting potatoes.</li>
@@ -269,7 +269,7 @@
         <li>[morning] A wild animal in the mist first thing this morning. Today's going to be a good one!</li>
       </cheerful>
       <gloomy>
-        <li>Watched {X_indefinite} graze at first light. It was peaceful until I remembered the work waiting for me.</li>
+        <li>Watched {X_indefinite} graze at first light. Peaceful, until I remembered the work waiting for me.</li>
         <li>[lowmood] Even {X_definite} looked happier than me this morning, and {X_pronoun} eats grass.</li>
         <li>[winter] Watched {X_indefinite} paw at the frozen ground for anything to eat. We're not much better off.</li>
       </gloomy>

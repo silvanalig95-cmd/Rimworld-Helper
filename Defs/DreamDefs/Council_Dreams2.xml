@@ -31,7 +31,7 @@
       <blunt><li>Dreamt I could fly. Back to hauling.</li></blunt>
       <cheerful><li>I flew! Loops over the kitchen roof, right past the chimney.</li></cheerful>
       <gloomy><li>I could fly until I was halfway up and remembered that I can't.</li></gloomy>
-      <cold><li>I dreamt of flight. The physics were wrong, but I enjoyed it anyway.</li></cold>
+      <cold><li>Flight, in my dream. The physics were wrong, but I enjoyed it anyway.</li></cold>
     </lines>
   </ColonyCouncil.DreamDef>
 
@@ -81,7 +81,7 @@
       </plain>
       <blunt><li>Dreamt about work, then got up and did it.</li></blunt>
       <cheerful><li>Dreamt every job in the colony was done and we all went swimming!</li></cheerful>
-      <gloomy><li>Work, even in my sleep.</li></gloomy>
+      <gloomy><li>Even in my dreams I'm hauling something.</li></gloomy>
       <cold><li>Spent the night doing chores in my head. A poor use of sleep.</li></cold>
     </lines>
   </ColonyCouncil.DreamDef>
@@ -96,7 +96,7 @@
       <plain>
         <li>Dreamt I could understand the chickens. All complaints, mostly about the rooster.</li>
         <li>There was a thrumbo asleep in my bed, so I slept on the floor. It snored like a landslide.</li>
-        <li>A boomalope followed me around all day like a dog, and I wasn't worried about it once.</li>
+        <li>A boomalope stood up at dinner and gave us all a long talk about fire safety. It was very thorough.</li>
         <li>[skill:Animals] Walked through the forest, and every animal I met knew my name and wanted its ears scratched.</li>
         <li>[child] I had an alpaca small enough to fit in my pocket, and it came everywhere with me.</li>
         <li>[tribal] The animal spirits came and sat with us, and the great elk told the story of the first hunt.</li>
@@ -106,7 +106,7 @@
       <blunt><li>Dreamt about animals. They were fine. I was fine.</li></blunt>
       <cheerful><li>Rode a giant squirrel through the treetops last night! Best dream I've had.</li></cheerful>
       <gloomy><li>The animals were talking about us. None of it was kind.</li></gloomy>
-      <cold><li>I dreamt I understood what the animals were saying. They're as foolish as I expected.</li></cold>
+      <cold><li>Dreamt I understood what the animals were saying. They're as foolish as I expected.</li></cold>
     </lines>
   </ColonyCouncil.DreamDef>
 
@@ -173,7 +173,7 @@
         <li>[fog] The fog was a crowd of people, all looking for the same door.</li>
         <li>[storm] Dreamt I caught a lightning bolt in a jar and kept it under my bed.</li>
         <li>[clear,night] Lay on the roof counting stars, and every one I counted went out.</li>
-        <li>[spacer] I dreamt I could see the ship that brought me here, still up there, going around and around.</li>
+        <li>[spacer] I could see the ship that brought me here, still up there, going around and around.</li>
         <li>[child] The clouds were sheep and I was the shepherd. One of them got away.</li>
       </plain>
       <warm><li>We all lay in the grass watching the sky change colors, with nowhere we had to be.</li></warm>
@@ -205,7 +205,7 @@
       <blunt><li>Dreamt about food. Now I'm starving.</li></blunt>
       <cheerful><li>There was a cake taller than me, and I climbed up and ate the top!</li></cheerful>
       <gloomy><li>Roast meat and gravy, all night long. Now it's back to whatever's in the pot.</li></gloomy>
-      <cold><li>I dreamt of food. Hunger, presumably. I'll eat early.</li></cold>
+      <cold><li>A dream about food. Hunger, presumably. I'll eat early.</li></cold>
     </lines>
   </ColonyCouncil.DreamDef>
 
@@ -222,15 +222,15 @@
         <li>[spacer] I was born a tribal hunter in my dream. Life was simple, and I knew every plant by name.</li>
         <li>[medieval] I was a lord in a stone castle. They all bowed, and I was bored out of my skull.</li>
         <li>[old] I dreamt I was young again, with my whole life ahead of me, and I made all the same choices.</li>
-        <li>[teen] Dreamt I was very old and they all listened when I talked.</li>
+        <li>[teen] Dreamt I was very old and they all listened when I talked. I said a lot of nonsense.</li>
         <li>[trait:Greedy] I was rich, rooms full of silver and gold, and I still wanted more.</li>
         <li>[again] That other life again. I'm starting to know my way around it.</li>
       </plain>
       <warm><li>Dreamt of another life, a gentler one. I'm still glad I woke up here, with all of you.</li></warm>
       <blunt><li>Dreamt I was someone else. They had it easier.</li></blunt>
       <cheerful><li>I was a famous singer in my dream! I might sing at breakfast.</li></cheerful>
-      <gloomy><li>I dreamt of the life I could have had. This one doesn't compare.</li></gloomy>
-      <cold><li>I dreamt I was a different person. That person made better choices. Instructive.</li></cold>
+      <gloomy><li>Dreamt of the life I could have had. This one doesn't compare.</li></gloomy>
+      <cold><li>In the dream I was a different person, and that person made better choices. Instructive.</li></cold>
     </lines>
   </ColonyCouncil.DreamDef>
 
@@ -242,7 +242,7 @@
     <children>true</children>
     <lines>
       <plain>
-        <li>A huge face hung in the sky, deciding what would happen to us next.</li>
+        <li>A huge face hung in the sky, deciding what would happen to us next. It looked bored.</li>
         <li>Dreamt someone far off was moving us around like pieces on a board, and laughing.</li>
         <li>A voice was telling our story to someone I couldn't see, and it kept getting the names wrong.</li>
         <li>[trait:PsychicallySensitive|trait:PsychicallyHypersensitive] I dreamt something vast turned to look at us, the way you'd look at an anthill. Then it looked away.</li>
@@ -253,7 +253,7 @@
       <blunt><li>Dreamt something up there was watching us. If it's listening, it can stop.</li></blunt>
       <cheerful><li>We were all characters in a story! I hope I'm one of the main ones.</li></cheerful>
       <gloomy><li>Dreamt there's a thing up there watching us that enjoys it when the crops fail.</li></gloomy>
-      <cold><li>I dreamt we were being observed by something that finds us entertaining. I see no reason to doubt it.</li></cold>
+      <cold><li>We were being observed by something that finds us entertaining. I see no reason to doubt it.</li></cold>
     </lines>
   </ColonyCouncil.DreamDef>
 
@@ -274,8 +274,8 @@
       <warm><li>It was my birthday in the dream and everyone came, and there weren't any chores.</li></warm>
       <blunt><li>Dreamt I was big. I'm still small. Not fair.</li></blunt>
       <cheerful><li>I could jump right over the houses! They were all cheering.</li></cheerful>
-      <gloomy><li>I dreamt I was a grown-up. It was mostly chores.</li></gloomy>
-      <cold><li>I dreamt I was in charge. My rules were better.</li></cold>
+      <gloomy><li>Dreamt I was a grown-up. It was mostly chores.</li></gloomy>
+      <cold><li>I was in charge in my dream. My rules were better.</li></cold>
     </lines>
   </ColonyCouncil.DreamDef>
 
@@ -298,7 +298,7 @@
       <blunt><li>Bad dream. I'm not scared.</li></blunt>
       <cheerful><li>I had a scary dream, but I punched the monster on the nose and it ran away crying!</li></cheerful>
       <gloomy><li>I had a bad dream. I don't want to go to sleep ever again.</li></gloomy>
-      <cold><li>I dreamt of a monster. Monsters aren't real. I checked anyway.</li></cold>
+      <cold><li>There was a monster in my dream. Monsters aren't real. I checked anyway.</li></cold>
     </lines>
   </ColonyCouncil.DreamDef>
 
@@ -322,7 +322,7 @@
       <warm><li>I was one of the raiders, and there were people waiting for me at home. I keep thinking about that.</li></warm>
       <blunt><li>Dreamt I was one of the raiders. I didn't make it past the wall.</li></blunt>
       <gloomy><li>I was one of the ones we killed. It wasn't hard to picture.</li></gloomy>
-      <cold><li>I dreamt the fight from the enemy's position. Their approach was obvious. Ours should be less so.</li></cold>
+      <cold><li>Fought the battle from the enemy's side in my sleep. Their approach was obvious. Ours should be less so.</li></cold>
     </lines>
   </ColonyCouncil.DreamDef>
 
@@ -339,10 +339,10 @@
         <li>I dreamt the one we butchered was sitting at the table with us, waiting politely for a plate.</li>
         <li>[again] The butcher's table again. Same table, same knife.</li>
       </plain>
-      <warm><li>I dreamt we gave them a proper burial instead. I wish that's what we'd done.</li></warm>
+      <warm><li>We gave them a proper burial in my dream. I wish that's what we'd done.</li></warm>
       <blunt><li>Dreamt about the butcher's table. Leave it.</li></blunt>
       <gloomy><li>Dreamt I was the one on the table, and whoever held the knife didn't hesitate.</li></gloomy>
-      <cold><li>I dreamt about the butchering. My stomach turned on waking. Odd, since I felt nothing at the time.</li></cold>
+      <cold><li>A dream about the butchering. My stomach turned on waking. Odd, since I felt nothing at the time.</li></cold>
     </lines>
     <effects>
       <li Class="ColonyCouncil.DilemmaEffect_Hediff"><target>A</target><hediff>Council_Dream_Shaken</hediff><chance>0.3</chance></li>
@@ -366,7 +366,7 @@
       <warm><li>Dreamt we buried them all, ours and theirs, and said a few words over each.</li></warm>
       <blunt><li>Dreamt about the bodies. Someone bury them. I'll do it myself if I have to.</li></blunt>
       <gloomy><li>In my dream I was lying out there with them, and no one came.</li></gloomy>
-      <cold><li>I dreamt of the corpses. A disease risk, mostly. They should be dealt with.</li></cold>
+      <cold><li>Dreamt of the corpses. A disease risk, mostly. They should be dealt with.</li></cold>
     </lines>
     <wish>Council_Wish_Memorial</wish>
   </ColonyCouncil.DreamDef>
@@ -385,7 +385,7 @@
         <li>[trait:Kind] In the dream I stood up and said no, and they listened.</li>
         <li>[again] The trial again. I still don't know the verdict.</li>
       </plain>
-      <warm><li>I dreamt we found another way. I keep thinking there must have been one.</li></warm>
+      <warm><li>We found another way, in the dream. I keep thinking there must have been one.</li></warm>
       <blunt><li>Dreamt about what we did. Was it right? It's done now, either way.</li></blunt>
       <gloomy><li>I dreamt they'll do the same to me one day. Maybe they should.</li></gloomy>
       <cold><li>A dream about the decision. I still think it was correct. The dream disagreed.</li></cold>
@@ -430,8 +430,8 @@
       </plain>
       <warm><li>My old companion lay down at my feet like always. I'd forgotten how warm that was.</li></warm>
       <blunt><li>Dreamt my animal came back. It didn't.</li></blunt>
-      <gloomy><li>I dreamt I called and called and nothing came. That part, at least, was true.</li></gloomy>
-      <cold><li>I dreamt of the animal. Attachment is inconvenient. I miss it anyway.</li></cold>
+      <gloomy><li>Called and called in my dream, and nothing came. That part, at least, was true.</li></gloomy>
+      <cold><li>Dreamt of the animal. Attachment is inconvenient. I miss it anyway.</li></cold>
     </lines>
   </ColonyCouncil.DreamDef>
 
@@ -446,7 +446,7 @@
         <li>{OTHER_nameDef} was packing a bag, and every time I unpacked it, it filled up again.</li>
         <li>Dreamt {OTHER_nameDef} was across a river, waving, and every step I took the river got wider.</li>
         <li>Last night I told {OTHER_nameDef} everything I should have said. {OTHER_nameDef} just kept eating breakfast.</li>
-        <li>[rain] I dreamt {OTHER_nameDef} and I were standing in the rain, and only I was getting wet.</li>
+        <li>[rain] {OTHER_nameDef} and I were standing in the rain, and only I was getting wet.</li>
         <li>[again] {OTHER_nameDef} again. I'd like my sleep back, please.</li>
       </plain>
       <warm><li>{OTHER_nameDef} was happy, just not with me. I think I can live with that, in time.</li></warm>
@@ -476,7 +476,7 @@
       <blunt><li>Dreamt about {OTHER_nameDef}. We talked. It was good.</li></blunt>
       <cheerful><li>{OTHER_nameDef} and I talked the whole night through! We should do that for real.</li></cheerful>
       <gloomy><li>Dreamt {OTHER_nameDef} was kind to me, the way {OTHER_pronoun} was the other day. I'm waiting for it to wear off.</li></gloomy>
-      <cold><li>I dreamt about my conversation with {OTHER_nameDef}. Apparently it mattered to me. Interesting.</li></cold>
+      <cold><li>My conversation with {OTHER_nameDef} came back in a dream. Apparently it mattered to me. Interesting.</li></cold>
     </lines>
     <changeTie>Friends</changeTie>
     <change>2</change>
@@ -495,10 +495,10 @@
         <li>I dreamt {OTHER_nameDef} was writing something about me on every door in the colony. I couldn't read any of it.</li>
         <li>[again] Whispers again, and {OTHER_nameDef} again. I'm starting to whisper back.</li>
       </plain>
-      <warm><li>I dreamt {OTHER_nameDef} said sorry. I'd like to think {OTHER_pronoun} meant it.</li></warm>
+      <warm><li>{OTHER_nameDef} said sorry in my dream. I'd like to think {OTHER_pronoun} meant it.</li></warm>
       <blunt><li>Dreamt {OTHER_nameDef} was talking behind my back. Probably was. I'll ask.</li></blunt>
       <gloomy><li>Dreamt they all agreed with what {OTHER_nameDef} said about me. Maybe they do.</li></gloomy>
-      <cold><li>I dreamt about {OTHER_nameDef} and the remarks. I'm giving them more attention than they deserve.</li></cold>
+      <cold><li>Dreamt about {OTHER_nameDef} and the remarks. I'm giving them more attention than they deserve.</li></cold>
     </lines>
     <changeTie>Rivals</changeTie>
     <change>2</change>
@@ -514,16 +514,16 @@
     <lines>
       <plain>
         <li>The party never ended. We were still dancing when the harvest came in.</li>
-        <li>Everyone was dancing, even the animals, even the ones who can't dance.</li>
+        <li>We were all dancing, even the animals, even the ones who can't dance.</li>
         <li>I dreamt the music kept playing after we all went to bed, and the colony danced by itself.</li>
         <li>[child] I danced on the table, and the grown-ups clapped instead of telling me to get down!</li>
-        <li>[winter] I dreamt we danced so hard the snow melted.</li>
+        <li>[winter] We danced so hard the snow melted.</li>
       </plain>
       <warm><li>Dreamt of all your faces at the celebration. I want to remember them like that.</li></warm>
       <blunt><li>Dreamt about the party. Good party.</li></blunt>
       <cheerful><li>The party went on for a week in my dream! Can we do that?</li></cheerful>
       <gloomy><li>Dreamt of the party. Then the music stopped and I was cleaning up alone.</li></gloomy>
-      <cold><li>I dreamt of the celebration. I suppose I enjoyed it more than I let on.</li></cold>
+      <cold><li>Dreamt of the celebration. I suppose I enjoyed it more than I let on.</li></cold>
     </lines>
   </ColonyCouncil.DreamDef>
 
@@ -541,14 +541,14 @@
         <li>[cold|winter] I was a block of ice, and someone was carving me into a statue of myself, chip by chip.</li>
         <li>[hot|summer] I was a loaf of bread in an oven, and someone kept opening the door to check on me.</li>
         <li>[rain] Dreamt I was a fish, and the wet didn't bother me at all.</li>
-        <li>[large] The snoring around me turned into a choir, and I was conducting.</li>
-        <li>[tribal] I dreamt the ground was a great animal and I was sleeping on its back. It breathed all night.</li>
+        <li>[large] The snoring around me turned into a choir, and I was conducting. We were terrible.</li>
+        <li>[tribal] The ground was a great animal and I was sleeping on its back. It breathed all night.</li>
         <li>[again] Another bad night, another strange dream. I'd like a proper bed.</li>
       </plain>
-      <warm><li>I dreamt someone tucked a blanket around me in the night. I don't know who. Thank you, whoever you are.</li></warm>
+      <warm><li>Someone tucked a blanket around me in my dream. I don't know who. Thank you, whoever you are.</li></warm>
       <blunt><li>Bad sleep, weird dream. Need a real bed.</li></blunt>
       <cheerful><li>My bed was a boat and I sailed it all night! A bit seasick now.</li></cheerful>
-      <gloomy><li>I dreamt I'd never sleep properly again. My back agrees.</li></gloomy>
+      <gloomy><li>Dreamt I'd never sleep properly again. My back agrees.</li></gloomy>
       <cold><li>Poor sleeping conditions produced an odd dream. I'd like the conditions corrected.</li></cold>
     </lines>
   </ColonyCouncil.DreamDef>
@@ -565,7 +565,7 @@
         <li>Dreamt I was a house with all the windows open, and the wind kept blowing through, and no one would close them.</li>
         <li>The doctor was a muffalo, very gentle, breathing warm on my face while it worked.</li>
         <li>[cold] I was sitting inside a glacier, quiet and blue, and I didn't want to leave.</li>
-        <li>[hot] I dreamt I was sitting inside the sun. It was pleasant, at first.</li>
+        <li>[hot] Sat inside the sun all night. It was pleasant, at first.</li>
         <li>[fever] The bed was a raft and the fever was a sea, and someone kept rowing me back to shore.</li>
         <li>[child] The sickness was a small gray animal sitting on my chest, and it wouldn't get off.</li>
         <li>[again] I keep dreaming my body is a fort under siege. I'm holding.</li>
@@ -574,7 +574,7 @@
       <blunt><li>Sick. Dreamt I was sick. Even my dreams are boring.</li></blunt>
       <cheerful><li>I fought the sickness with a sword! I think I'm winning.</li></cheerful>
       <gloomy><li>Dreamt I'd been sick for years and they'd all stopped visiting.</li></gloomy>
-      <cold><li>I dreamt my immune system was losing. I'd prefer it didn't.</li></cold>
+      <cold><li>My body was losing the fight, in the dream. I'd prefer it didn't.</li></cold>
     </lines>
   </ColonyCouncil.DreamDef>
 
@@ -598,7 +598,7 @@
       </plain>
       <warm><li>Floating somewhere dark, and a hand kept holding mine. I think it was real.</li></warm>
       <blunt><li>Was out cold. Dreamt of nothing much, just dark. Then here.</li></blunt>
-      <gloomy><li>I dreamt of the dark. It was quiet there. It's loud here.</li></gloomy>
+      <gloomy><li>Dreamt of the dark. It was quiet there. It's loud here.</li></gloomy>
       <cold><li>Unconscious. Fragments of a well, voices above. Nothing useful.</li></cold>
     </lines>
   </ColonyCouncil.DreamDef>
@@ -660,13 +660,13 @@
       <plain>
         <li>{OTHER_nameDef} and I swore to look after each other, whatever came, and the words were carved into the hillside.</li>
         <li>The world was ending, and {OTHER_nameDef} came to find me first. I'd have done the same.</li>
-        <li>Dreamt {OTHER_nameDef} and I were very old and still arguing about the same silly thing. I was so happy.</li>
+        <li>We were very old, {OTHER_nameDef} and I, and still arguing about the same silly thing. I was so happy.</li>
       </plain>
       <warm><li>I dreamt {OTHER_nameDef} and I made a promise to stick together. I'm keeping it, dream or no dream.</li></warm>
       <blunt><li>Dreamt {OTHER_nameDef} and I swore an oath. Didn't need a dream for it. Still counts.</li></blunt>
-      <cheerful><li>Dreamt {OTHER_nameDef} and I swore to be friends forever! I'm counting it.</li></cheerful>
+      <cheerful><li>In my dream {OTHER_nameDef} and I swore to be friends forever! I'm counting it.</li></cheerful>
       <gloomy><li>Lost everything in my dream except {OTHER_nameDef}. It was enough. That surprised me.</li></gloomy>
-      <cold><li>I dreamt I would die for {OTHER_nameDef}. I've checked my reasoning. It holds.</li></cold>
+      <cold><li>Dreamt I would die for {OTHER_nameDef}. I've checked my reasoning. It holds.</li></cold>
     </lines>
     <changeTie>Friends</changeTie>
     <change>10</change>
@@ -689,7 +689,7 @@
       <blunt><li>Dreamt I beat {OTHER_nameDef} in a fight. Fair and square. Remember that.</li></blunt>
       <cheerful><li>Beat {OTHER_nameDef} at arm wrestling in my dream! I'll take it as a sign.</li></cheerful>
       <gloomy><li>{OTHER_nameDef} won, in the dream. Of course {OTHER_pronoun} did.</li></gloomy>
-      <cold><li>I dreamt of a contest with {OTHER_nameDef}. I lost on a technicality. That won't happen awake.</li></cold>
+      <cold><li>A contest with {OTHER_nameDef}, in my sleep. I lost on a technicality. That won't happen awake.</li></cold>
     </lines>
     <changeTie>Rivals</changeTie>
     <change>2</change>
@@ -707,10 +707,10 @@
         <li>I dreamt {OTHER_nameDef} was a child, lost and cold, and I was the only one who could see {OTHER_objective}.</li>
         <li>Saw the world through {OTHER_nameDef}'s eyes for a day. It was harder than I thought.</li>
       </plain>
-      <warm><li>I dreamt {OTHER_nameDef} was hurting, and I was the one who went to help. I don't know if I'd do it awake. I'd like to.</li></warm>
+      <warm><li>{OTHER_nameDef} was hurting, and I was the one who went to help. I don't know if I'd do it awake. I'd like to.</li></warm>
       <blunt><li>Dreamt {OTHER_nameDef} was miserable. Didn't enjoy it as much as I thought I would.</li></blunt>
       <gloomy><li>{OTHER_nameDef} was as lonely as I am, in the dream. That's not nothing.</li></gloomy>
-      <cold><li>I dreamt of {OTHER_nameDef} at a weak moment. I felt sympathy instead of advantage. Irritating.</li></cold>
+      <cold><li>Dreamt of {OTHER_nameDef} at a weak moment. I felt sympathy instead of advantage. Irritating.</li></cold>
     </lines>
     <changeTie>Rivals</changeTie>
     <change>-4</change>
@@ -732,7 +732,7 @@
       <warm><li>{OTHER_nameDef} covered me while I pulled someone out of the line of fire. That's just how it is with us.</li></warm>
       <blunt><li>Dreamt I was in a fight with {OTHER_nameDef} at my back. Good place for {OTHER_objective}.</li></blunt>
       <cheerful><li>Took on a whole army with {OTHER_nameDef} last night, and we won!</li></cheerful>
-      <cold><li>I dreamt of combat alongside {OTHER_nameDef}. Our coordination was excellent. It usually is.</li></cold>
+      <cold><li>Fought alongside {OTHER_nameDef} in my sleep. Our coordination was excellent. It usually is.</li></cold>
     </lines>
     <changeTie>Comrades</changeTie>
     <change>3</change>
@@ -800,7 +800,7 @@
       <blunt><li>Dreamt I botched a lesson. Practicing today.</li></blunt>
       <cheerful><li>Set {OTHER_nameDef}'s workbench on fire in my dream! I'll be careful today.</li></cheerful>
       <gloomy><li>Dreamt {OTHER_nameDef} finally realized I'll never be any good at {SKILL}.</li></gloomy>
-      <cold><li>I dreamt I failed a lesson with {OTHER_nameDef}. A useful warning against complacency.</li></cold>
+      <cold><li>Failed a lesson with {OTHER_nameDef} in my dream. A useful warning against complacency.</li></cold>
     </lines>
     <changeTie>Mentor</changeTie>
     <change>2</change>
@@ -815,7 +815,7 @@
     <lines>
       <plain>
         <li>{OTHER_nameDef} was on the other side of a glass wall, talking, and I couldn't hear a word.</li>
-        <li>Waited at the gate for {OTHER_nameDef} all night. Everyone came home except {OTHER_objective}.</li>
+        <li>Waited at the gate for {OTHER_nameDef} all night. The others all came home, but not {OTHER_objective}.</li>
         <li>Dreamt {OTHER_nameDef} and I were in different rooms of the same house, and every door I opened took me further away.</li>
         <li>[winter] {OTHER_nameDef} went out into a blizzard to fetch something for me, and the snow closed up behind {OTHER_objective}.</li>
       </plain>
@@ -844,7 +844,7 @@
       <blunt><li>Dreamt about {OTHER_nameDef}. Family. Wouldn't trade them.</li></blunt>
       <cheerful><li>Had a giant family picnic in my dream with {OTHER_nameDef}, and every cousin came!</li></cheerful>
       <gloomy><li>{OTHER_nameDef} and I were the last of our family, in the dream. We are, more or less.</li></gloomy>
-      <cold><li>I dreamt of {OTHER_nameDef}. Shared blood apparently means more to me than I admit.</li></cold>
+      <cold><li>A dream about {OTHER_nameDef}. Shared blood apparently means more to me than I admit.</li></cold>
     </lines>
   </ColonyCouncil.DreamDef>
 
@@ -911,7 +911,7 @@
       <warm><li>Dreamt I lost {PET_nameDef}. I've been carrying treats in my pocket all morning.</li></warm>
       <blunt><li>Dreamt {PET_nameDef} went missing. Didn't. Checked.</li></blunt>
       <cheerful><li>{PET_nameDef} ran off in my dream, but only to fetch me a present!</li></cheerful>
-      <gloomy><li>I dreamt {PET_nameDef} forgot me. Animals don't hold on to much.</li></gloomy>
+      <gloomy><li>{PET_nameDef} had forgotten me, in the dream. Animals don't hold on to much.</li></gloomy>
       <cold><li>Dreamt {PET_nameDef} wandered off. I'll inspect the pens.</li></cold>
     </lines>
   </ColonyCouncil.DreamDef>
@@ -929,7 +929,7 @@
         <li>Back in the early days, sleeping on the floor and eating out of one pot. It wasn't so bad.</li>
         <li>[tribal] Dreamt of the lean months before this place, when we chewed bark to fool our bellies. Today's meal will taste like a feast.</li>
         <li>[spacer] I was in the crashed pod again, rationing water a capful at a time. This place is luxury, and I'd forgotten.</li>
-        <li>[newcomer] I dreamt of the road that brought me here. I'm glad to have a roof at all.</li>
+        <li>[newcomer] Dreamt of the road that brought me here. I'm glad to have a roof at all.</li>
         <li>[rich] Dreamt we'd lost everything and were starting over with a few sticks and a cookpot. We managed.</li>
       </plain>
       <warm><li>The hard days, in my dream, when all we had was each other and one blanket between three of us.</li></warm>
@@ -961,7 +961,7 @@
       <warm><li>In my dream I saw a piece I could make for the dining room, for all of us. I'm going to make it.</li></warm>
       <blunt><li>Had an idea in my sleep. Out of my way.</li></blunt>
       <cheerful><li>Saw the most beautiful thing in my dream, and I'm going to make it!</li></cheerful>
-      <gloomy><li>I dreamt of something beautiful. I'd better make it before it fades like everything else.</li></gloomy>
+      <gloomy><li>Something beautiful came to me in my sleep. I'd better make it before it fades like everything else.</li></gloomy>
       <cold><li>A complete design arrived during sleep. I'll begin before I lose the details.</li></cold>
     </lines>
     <effects>
@@ -1011,7 +1011,7 @@
       <blunt><li>Dreamt I was a mountain. Feel like one. Bring it.</li></blunt>
       <cheerful><li>I was a mountain last night! I still feel like one.</li></cheerful>
       <gloomy><li>Dreamt nothing could hurt me anymore. It won't last, but I'll take today.</li></gloomy>
-      <cold><li>I dreamt of being immovable. My nerves have settled. Good.</li></cold>
+      <cold><li>A dream of being immovable. My nerves have settled. Good.</li></cold>
     </lines>
     <effects>
       <li Class="ColonyCouncil.DilemmaEffect_Hediff"><target>A</target><hediff>Council_Dream_Steeled</hediff></li>
@@ -1032,7 +1032,7 @@
         <li>[trusting] The council kept every promise it ever made, in my dream. I think it might really be trying.</li>
         <li>[tribal] The elders sat in a ring and spoke for all of us, and the spirits nodded along.</li>
       </plain>
-      <warm><li>I dreamt of the council, all of us together, deciding things kindly. We can be like that.</li></warm>
+      <warm><li>Dreamt of the council, all of us together, deciding things kindly. We can be like that.</li></warm>
       <blunt><li>Dreamt the council got something right. Fine. I'll give them a chance.</li></blunt>
       <cheerful><li>Dreamt our council was the best in the world! Maybe it is.</li></cheerful>
       <gloomy><li>The council was fair to everyone in my dream. Maybe that's not as far off as I think.</li></gloomy>
@@ -1083,7 +1083,7 @@
       <warm><li>Green things growing beside my bed, in my dream. I'd like that. Something living to look after.</li></warm>
       <blunt><li>Dreamt of plants in my room. Want one. That's all.</li></blunt>
       <cheerful><li>My room was a jungle in my dream! I want a plant. Maybe two.</li></cheerful>
-      <gloomy><li>I dreamt of a garden. Then I woke up to bare walls.</li></gloomy>
+      <gloomy><li>A garden, in my dream. Then I woke up to bare walls.</li></gloomy>
       <cold><li>Dreamt of greenery in my quarters. The preference is clear. I'll raise it.</li></cold>
     </lines>
     <wish>Council_Wish_Greenery</wish>
@@ -1104,7 +1104,7 @@
       </plain>
       <warm><li>Something old and kind walked past us in the night and wished us well. I hope it comes back.</li></warm>
       <cheerful><li>A giant white beast with a horn walked by in my dream! It looked so soft.</li></cheerful>
-      <cold><li>I dreamt of an enormous white animal. Valuable, and dangerous. I'd leave it be.</li></cold>
+      <cold><li>Dreamt of an enormous white animal. Valuable, and dangerous. I'd leave it be.</li></cold>
     </lines>
     <omen><incident>ThrumboPasses</incident><days>1~3</days><good>true</good></omen>
   </ColonyCouncil.DreamDef>
@@ -1139,7 +1139,7 @@
         <li>[tribal] The iron birds fought in the sky, and one of them fell to pieces over our hills.</li>
       </plain>
       <gloomy><li>Dreamt a ship broke apart overhead. Whoever was on it never made it down.</li></gloomy>
-      <cold><li>I dreamt of falling wreckage. Salvage, if it lands somewhere convenient.</li></cold>
+      <cold><li>Falling wreckage, in my dream. Salvage, if it lands somewhere convenient.</li></cold>
     </lines>
     <omen><incident>ShipChunkDrop</incident><days>1~3</days><good>true</good></omen>
   </ColonyCouncil.DreamDef>
@@ -1157,7 +1157,7 @@
       </plain>
       <warm><li>The land gave us something sweet in my dream, just because. I'll keep an eye out.</li></warm>
       <cheerful><li>Dreamt of magic fruit growing just outside the walls! Let's go and look.</li></cheerful>
-      <cold><li>I dreamt of a fruit with pleasant effects, growing nearby. Worth investigating.</li></cold>
+      <cold><li>A fruit with pleasant effects, growing nearby. I saw it in a dream. Worth investigating.</li></cold>
     </lines>
     <omen><incident>AmbrosiaSprout</incident><days>2~4</days><good>true</good></omen>
   </ColonyCouncil.DreamDef>
@@ -1175,7 +1175,7 @@
       </plain>
       <blunt><li>Dreamt of animals coming for us. Mad ones. Keep the doors shut.</li></blunt>
       <gloomy><li>Dreamt even the animals hate us now. Maybe they always did.</li></gloomy>
-      <cold><li>I dreamt of a stampede aimed at the colony. Keep the doors closed for a few days. It costs nothing.</li></cold>
+      <cold><li>A dream of a stampede aimed at the colony. Keep the doors closed for a few days. It costs nothing.</li></cold>
     </lines>
     <omen><incident>ManhunterPack</incident><days>2~4</days><pointsFactor>0.8</pointsFactor><good>false</good></omen>
   </ColonyCouncil.DreamDef>
@@ -1193,7 +1193,7 @@
       </plain>
       <blunt><li>Dreamt the power died. All of it. Charge what you can.</li></blunt>
       <cheerful><li>Dreamt all the machines took a nap at the same time! Even they need a rest.</li></cheerful>
-      <cold><li>I dreamt of a total electrical failure. I'd make sure nothing vital depends on power for the next few days.</li></cold>
+      <cold><li>Dreamt of a total electrical failure. I'd make sure nothing vital depends on power for the next few days.</li></cold>
     </lines>
     <omen><incident>SolarFlare</incident><days>1~3</days><good>false</good></omen>
   </ColonyCouncil.DreamDef>
@@ -1211,7 +1211,7 @@
       </plain>
       <cheerful><li>It was night in the daytime in my dream! A whole day of bedtime stories.</li></cheerful>
       <gloomy><li>Dreamt the sun turned its back on us. Fitting.</li></gloomy>
-      <cold><li>I dreamt of darkness at midday. Bad for the crops, bad for solar power. I'd plan accordingly.</li></cold>
+      <cold><li>Darkness at midday, in my dream. Bad for the crops, bad for solar power. I'd plan accordingly.</li></cold>
     </lines>
     <omen><incident>Eclipse</incident><days>1~3</days><good>false</good></omen>
   </ColonyCouncil.DreamDef>
@@ -1230,7 +1230,7 @@
       </plain>
       <blunt><li>Dreamt it got hot. Really hot. Find some shade.</li></blunt>
       <cheerful><li>It was so hot we cooked eggs on the roof! Free breakfast.</li></cheerful>
-      <cold><li>I dreamt of extreme heat. I'd check the shade and the water.</li></cold>
+      <cold><li>Dreamt of extreme heat. I'd check the shade and the water.</li></cold>
     </lines>
     <omen><incident>HeatWave</incident><days>1~3</days><good>false</good></omen>
   </ColonyCouncil.DreamDef>
@@ -1249,7 +1249,7 @@
       </plain>
       <cheerful><li>We had visitors in my dream and they brought sweets! I'm going to wait by the gate.</li></cheerful>
       <gloomy><li>People came to visit in my dream and none of them talked to me. Maybe they will this time.</li></gloomy>
-      <cold><li>I dreamt of visitors. I'm going to watch them very carefully when they come.</li></cold>
+      <cold><li>Visitors, in my dream. I'm going to watch them very carefully when they come.</li></cold>
     </lines>
     <omen><incident>VisitorGroup</incident><days>1~3</days><good>true</good></omen>
   </ColonyCouncil.DreamDef>
