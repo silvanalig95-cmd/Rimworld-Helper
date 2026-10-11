@@ -654,6 +654,7 @@
     <expiryDays>10</expiryDays>
     <cooldownDays>15</cooldownDays>
     <grantedThought>Council_Granted_Recreation</grantedThought>
+    <ways><toil>-2</toil></ways>
     <allowPetition>true</allowPetition>
     <template>Council_RecRoom</template>
     <talkInteraction>Council_Talk_Fun</talkInteraction>

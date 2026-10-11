@@ -27,6 +27,7 @@
       <li>
         <label>Let {A_nameDef} off with a warning</label>
         <outcome>{A_nameDef} got off with a warning. {B_nameDef} thinks the council has gone soft.</outcome>
+        <ways><mercy>6</mercy></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_Forgiven</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>6</amount></li>
@@ -38,6 +39,7 @@
       <li>
         <label>Make {A_nameDef} work it off</label>
         <outcome>{A_nameDef} is pulling extra shifts until the debt is paid. Most people think that's fair.</outcome>
+        <ways><toil>3</toil></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Hediff"><target>A</target><hediff>Council_Dlm_Penance</hediff></li>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>-3</amount></li>
@@ -47,6 +49,7 @@
       <li>
         <label>Punish {A_nameDef} in front of everyone</label>
         <outcome>The council made an example of {A_nameDef}. Nobody will steal from the stores again soon, and the kind-hearted are appalled.</outcome>
+        <ways><mercy>-8</mercy></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_Humiliated</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>-12</amount></li>
@@ -79,6 +82,7 @@
       <li>
         <label>Share it out tonight</label>
         <outcome>The stash was shared out. Some people had a very good evening; the teetotalers went to bed early.</outcome>
+        <ways><generosity>4</generosity><toil>-3</toil></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Spawn" />
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_Dlm_Stash</thought><degreeTrait>DrugDesire</degreeTrait><minDegree>1</minDegree></li>
@@ -87,6 +91,7 @@
       <li>
         <label>Lock it away for trading</label>
         <outcome>The stash went into storage, forbidden, to be traded. The colony's drinkers are sulking.</outcome>
+        <ways><generosity>-4</generosity></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Spawn"><forbidden>true</forbidden></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_Dlm_LockedAway</thought><degreeTrait>DrugDesire</degreeTrait><minDegree>1</minDegree></li>
@@ -95,6 +100,7 @@
       <li>
         <label>Pour it out</label>
         <outcome>The stash was destroyed. The teetotalers and ascetics approve; a few others look like they've lost a friend.</outcome>
+        <ways><toil>3</toil></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_Dlm_Wasted</thought><degreeTrait>DrugDesire</degreeTrait><minDegree>1</minDegree></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_Dlm_Clean</thought><degreeTrait>DrugDesire</degreeTrait><maxDegree>-1</maxDegree></li>
@@ -154,6 +160,7 @@
       <li>
         <label>Make them work side by side until they sort it out</label>
         <outcome>A week of shared shifts later, {A_nameDef} and {B_nameDef} have grudgingly made peace. Mostly.</outcome>
+        <ways><toil>4</toil></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>AAndB</target><thought>Council_Dlm_ForcedTogether</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>AAndB</target><thought>Council_Dlm_MadeUp</thought></li>
@@ -202,6 +209,7 @@
       <li>
         <label>Let {A_nameDef} cook the feast</label>
         <outcome>The feast was magnificent. People will be talking about it for weeks, and expecting another.</outcome>
+        <ways><generosity>6</generosity><toil>-3</toil></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>rawfood</what></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_Dlm_Feast</thought></li>
@@ -213,6 +221,7 @@
       <li>
         <label>Save the food</label>
         <outcome>The stores stay full. {A_nameDef} is cooking rice again, very pointedly.</outcome>
+        <ways><generosity>-5</generosity></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_FeastDenied</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>-4</amount></li>
@@ -221,6 +230,7 @@
       <li>
         <label>A smaller feast, then</label>
         <outcome>{A_nameDef} made a fine dinner from a modest share of the stores. Not a banquet, but a good night.</outcome>
+        <ways><generosity>2</generosity></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>rawfood</what><count>12</count></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_Dlm_SmallFeast</thought></li>
@@ -247,6 +257,7 @@
       <li>
         <label>Give {A_nameDef} a few easy days</label>
         <outcome>{A_nameDef} is taking a few easy days. Some of the harder workers are muttering about it.</outcome>
+        <ways><mercy>5</mercy><toil>-5</toil></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Hediff"><target>A</target><hediff>Council_Dlm_Rest</hediff></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_Understood</thought></li>
@@ -257,6 +268,7 @@
       <li>
         <label>Tell {A_nameDef} to pull together</label>
         <outcome>{A_nameDef} went back to work without a word.</outcome>
+        <ways><mercy>-4</mercy><toil>6</toil></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_Dismissed</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>-8</amount></li>
@@ -270,6 +282,7 @@
       <li>
         <label>Ask {B_nameDef} to look after {A_objective}</label>
         <outcome>{B_nameDef} has been sitting up with {A_nameDef} in the evenings. It seems to be helping both of them.</outcome>
+        <ways><mercy>4</mercy></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_Understood</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_Bonded</thought><about>B</about></li>

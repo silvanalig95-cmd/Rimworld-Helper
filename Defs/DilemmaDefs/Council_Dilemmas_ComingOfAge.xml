@@ -26,6 +26,7 @@
       <li>
         <label>Apprentice {A_nameDef} to {B_nameDef} in crafting</label>
         <outcome>{A_nameDef} starts in the workshop tomorrow. {B_nameDef} has already set aside a bench.</outcome>
+        <ways><tradition>4</tradition></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Mentorship"><skill>Crafting</skill></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_Path_Teacher</thought></li>
@@ -35,6 +36,7 @@
       <li>
         <label>Put {A_nameDef} on the defenses</label>
         <outcome>{A_nameDef} spends the next weeks on the range and the wall. The colony is safer. {A_nameDef} is tired.</outcome>
+        <ways><openness>-3</openness><toil>3</toil></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Learn"><target>A</target><skill>Shooting</skill><xp>3000</xp></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Path_Given</thought></li>
@@ -43,6 +45,7 @@
       <li>
         <label>Let {A_nameDef} choose</label>
         <outcome>The council asked {A_nameDef} what {A_pronoun} wanted. It took a while to answer. It was a good answer.</outcome>
+        <ways><tradition>-4</tradition></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Path_Chosen</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>6</amount></li>
@@ -64,6 +67,7 @@
       <li>
         <label>Apprentice {A_nameDef} to {B_nameDef} in medicine</label>
         <outcome>{A_nameDef} now follows {B_nameDef} on every round of the sickbeds, taking notes.</outcome>
+        <ways><mercy>3</mercy><tradition>3</tradition></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Mentorship"><skill>Medicine</skill></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_Path_Teacher</thought></li>
@@ -72,6 +76,7 @@
       <li>
         <label>The fields need hands more</label>
         <outcome>{A_nameDef} is sent to the fields. The harvest will be better. {B_nameDef} goes on alone.</outcome>
+        <ways><toil>4</toil></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Learn"><target>A</target><skill>Plants</skill><xp>3000</xp></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Path_Given</thought></li>
@@ -81,6 +86,7 @@
       <li>
         <label>Let {A_nameDef} choose</label>
         <outcome>{A_nameDef} was asked, and thanked the council for asking.</outcome>
+        <ways><tradition>-4</tradition></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Path_Chosen</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>6</amount></li>
@@ -101,6 +107,7 @@
       <li>
         <label>Apprentice {A_nameDef} to {B_nameDef} in study</label>
         <outcome>{A_nameDef} spends the evenings with {B_nameDef} and a stack of salvaged books.</outcome>
+        <ways><tradition>-3</tradition></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Mentorship"><skill>Intellectual</skill></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_Path_Teacher</thought></li>
@@ -109,6 +116,7 @@
       <li>
         <label>Hands before books</label>
         <outcome>{A_nameDef} is put to construction. The walls go up faster. {B_nameDef} sulks.</outcome>
+        <ways><tradition>3</tradition><toil>4</toil></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Learn"><target>A</target><skill>Construction</skill><xp>3000</xp></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Path_Given</thought></li>
@@ -117,6 +125,7 @@
       <li>
         <label>Let {A_nameDef} choose</label>
         <outcome>{A_nameDef} chose. The council listened.</outcome>
+        <ways><tradition>-4</tradition></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Path_Chosen</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>6</amount></li>
@@ -137,6 +146,7 @@
       <li>
         <label>Apprentice {A_nameDef} to {B_nameDef} at arms</label>
         <outcome>{A_nameDef} is on the range at dawn every day now, with {B_nameDef} standing behind, correcting.</outcome>
+        <ways><mercy>-3</mercy><openness>-3</openness></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Mentorship"><skill>Shooting</skill></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_Path_Teacher</thought></li>
@@ -146,6 +156,7 @@
       <li>
         <label>No. Not this one, not yet</label>
         <outcome>{A_nameDef} is kept off the wall. {A_nameDef} is furious. Some of the parents are relieved.</outcome>
+        <ways><mercy>4</mercy></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Path_Given</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>-4</amount></li>
@@ -154,6 +165,7 @@
       <li>
         <label>Let {A_nameDef} choose</label>
         <outcome>The council left it to {A_nameDef}. Everyone is waiting to see what {A_pronoun} decides.</outcome>
+        <ways><tradition>-4</tradition></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Path_Chosen</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>6</amount></li>

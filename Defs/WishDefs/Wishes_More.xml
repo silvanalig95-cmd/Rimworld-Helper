@@ -63,6 +63,7 @@
     <expiryDays>5</expiryDays>
     <cooldownDays>10</cooldownDays>
     <grantedThought>Council_Granted_Fix</grantedThought>
+    <ways><toil>-3</toil></ways>
     <envy>0</envy>
     <objectionChance>0.5</objectionChance>
     <objectorTraits><li>Ascetic</li></objectorTraits>
@@ -113,6 +114,7 @@
     <fixedPatience>true</fixedPatience>
     <cooldownDays>20</cooldownDays>
     <grantedThought>Council_Granted_Quit</grantedThought>
+    <ways><mercy>3</mercy></ways>
     <inspirationChance>0.2</inspirationChance>
     <envy>0</envy>
     <talkInteraction>Council_Talk_Body</talkInteraction>
@@ -217,6 +219,7 @@
     <expiryDays>10</expiryDays>
     <cooldownDays>20</cooldownDays>
     <grantedThought>Council_Granted_Infirmary</grantedThought>
+    <ways><mercy>3</mercy></ways>
     <inspirationChance>0.15</inspirationChance>
     <allowPetition>true</allowPetition>
     <envy>0</envy>

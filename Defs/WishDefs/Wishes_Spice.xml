@@ -13,6 +13,7 @@
     <expiryDays>6</expiryDays>
     <cooldownDays>15</cooldownDays>
     <grantedThought>Council_Granted_Justice</grantedThought>
+    <ways><mercy>-5</mercy></ways>
     <allowPetition>true</allowPetition>
     <envy>0</envy>
     <talkInteraction>Council_Talk_Safety</talkInteraction>
@@ -99,6 +100,7 @@
     <expiryDays>10</expiryDays>
     <cooldownDays>20</cooldownDays>
     <grantedThought>Council_Granted_Mercy</grantedThought>
+    <ways><mercy>5</mercy></ways>
     <allowPetition>true</allowPetition>
     <envy>0</envy>
     <talkInteraction>Council_Talk_Comfort</talkInteraction>
@@ -161,6 +163,7 @@
     <expiryDays>5</expiryDays>
     <cooldownDays>20</cooldownDays>
     <grantedThought>Council_Granted_Party</grantedThought>
+    <ways><toil>-3</toil></ways>
     <allowPetition>true</allowPetition>
     <envy>0</envy>
     <objectionChance>0.25</objectionChance>
@@ -226,6 +229,7 @@
     <fixedPatience>true</fixedPatience>
     <cooldownDays>30</cooldownDays>
     <grantedThought>Council_Granted_Rescue</grantedThought>
+    <ways><mercy>4</mercy></ways>
     <allowPetition>true</allowPetition>
     <envy>0</envy>
     <objectionChance>0.4</objectionChance>
@@ -299,6 +303,7 @@
     <expiryDays>6</expiryDays>
     <cooldownDays>12</cooldownDays>
     <grantedThought>Council_Granted_Hunt</grantedThought>
+    <ways><mercy>-2</mercy></ways>
     <envy>0</envy>
     <talkInteraction>Council_Talk_Animals</talkInteraction>
     <fulfilledWhen>{PAWN_nameDef} brings down an animal.</fulfilledWhen>

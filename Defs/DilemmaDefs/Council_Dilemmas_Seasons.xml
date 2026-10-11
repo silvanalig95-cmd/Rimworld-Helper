@@ -21,6 +21,7 @@
       <li>
         <label>Light the bonfire</label>
         <outcome>The midsummer fire burned until dawn. Nobody remembers going to bed.</outcome>
+        <ways><tradition>4</tradition><toil>-5</toil></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>WoodLog</what><count>40</count></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_Dlm_Bonfire</thought></li>
@@ -32,6 +33,7 @@
       <li>
         <label>Not this year: we need the wood</label>
         <outcome>No bonfire. {A_nameDef} sat on the log pile all evening, looking at it.</outcome>
+        <ways><generosity>-3</generosity><toil>4</toil></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_Dlm_NoCelebration</thought><exceptTrait><li>Ascetic</li></exceptTrait></li>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>-3</amount></li>
@@ -40,6 +42,7 @@
       <li>
         <label>A small fire, no drinking</label>
         <outcome>A modest fire, early to bed. Pleasant enough. {A_nameDef} calls it "a candle with ambitions".</outcome>
+        <ways><tradition>2</tradition><toil>2</toil></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>WoodLog</what><count>12</count></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_Dlm_Stories</thought></li>
@@ -71,6 +74,7 @@
       <li>
         <label>A harvest feast for everyone</label>
         <outcome>The harvest home was a triumph. Even the cook had seconds.</outcome>
+        <ways><generosity>5</generosity><tradition>4</tradition><toil>-3</toil></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>rawfood</what></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_Dlm_HarvestHome</thought></li>
@@ -81,6 +85,7 @@
       <li>
         <label>Store every scrap for winter</label>
         <outcome>Every grain went into storage. Sensible. {A_nameDef} is not speaking to the council.</outcome>
+        <ways><generosity>-5</generosity><toil>3</toil></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_Dlm_NoCelebration</thought><exceptTrait><li>Ascetic</li></exceptTrait></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_FeastDenied</thought></li>
@@ -90,6 +95,7 @@
       <li>
         <label>A modest supper</label>
         <outcome>A good meal, nothing extravagant. The storeroom barely noticed.</outcome>
+        <ways><generosity>2</generosity></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>rawfood</what><count>10</count></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_Dlm_SmallFeast</thought></li>
@@ -117,6 +123,7 @@
       <li>
         <label>Extra rations for the long night</label>
         <outcome>Full bellies on the longest night. Someone sang. Nobody stopped them.</outcome>
+        <ways><generosity>4</generosity><tradition>4</tradition><toil>-2</toil></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>rawfood</what><count>20</count></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_Dlm_Midwinter</thought></li>
@@ -126,6 +133,7 @@
       <li>
         <label>Stories by the fire, no feast</label>
         <outcome>A long evening of stories by the fire. Some were sad, some were filthy, all of them were better than the silence.</outcome>
+        <ways><tradition>4</tradition></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_Dlm_Stories</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>2</amount></li>
@@ -134,6 +142,7 @@
       <li>
         <label>Just another night</label>
         <outcome>The longest night passed like any other: cold, dark and quiet.</outcome>
+        <ways><generosity>-2</generosity><tradition>-4</tradition></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_Dlm_NoCelebration</thought><exceptTrait><li>Ascetic</li><li>Psychopath</li></exceptTrait></li>
         </effects>
@@ -162,6 +171,7 @@
       <li>
         <label>The year of {A_nameDef}</label>
         <outcome>This is now officially the year of {A_nameDef}. {A_nameDef} has mentioned it a dozen times since breakfast.</outcome>
+        <ways><tradition>-4</tradition></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_NamedYear</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>6</amount></li>
@@ -171,6 +181,7 @@
       <li>
         <label>Name it for those we lost</label>
         <outcome>The year carries the names of the dead. Nobody argued with that.</outcome>
+        <ways><tradition>6</tradition></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_Dlm_YearOfTheDead</thought><exceptTrait><li>Psychopath</li></exceptTrait></li>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>-2</amount></li>
@@ -179,6 +190,7 @@
       <li>
         <label>The year of the muffalo</label>
         <outcome>It is the year of the muffalo. The muffalo has not been informed. {A_nameDef} is sulking.</outcome>
+        <ways><tradition>-3</tradition></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Others</target><thought>Council_Dlm_Muffalo</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>-3</amount></li>
@@ -207,6 +219,7 @@
       <li>
         <label>{A_nameDef} earned first pick</label>
         <outcome>{A_nameDef} took the best of the spoils. Some of the others are counting who fought and who hid.</outcome>
+        <ways><generosity>-4</generosity></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_FirstPick</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>5</amount></li>
@@ -216,6 +229,7 @@
       <li>
         <label>Everything goes to the stores, shared equally</label>
         <outcome>The spoils went to the common stores. Fair, and everybody knows it. {A_nameDef} knows it loudest.</outcome>
+        <ways><generosity>4</generosity></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Others</target><thought>Council_Dlm_FairShares</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>-3</amount></li>
@@ -224,6 +238,7 @@
       <li>
         <label>The fighters get the spoils</label>
         <outcome>Everyone who fought got a share. Those who stayed inside got the dishes.</outcome>
+        <ways><generosity>-2</generosity><tradition>2</tradition></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_FairShares</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Others</target><thought>Council_Dlm_SpoilsUnfair</thought><onlyTrait><li>Wimp</li><li>Kind</li></onlyTrait></li>
@@ -251,6 +266,7 @@
       <li>
         <label>Give them graves</label>
         <outcome>The raiders got graves at the edge of the colony. It took most of a day. The kind-hearted slept better for it.</outcome>
+        <ways><mercy>6</mercy><tradition>3</tradition></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_Dlm_DecentBurial</thought><onlyTrait><li>Kind</li></onlyTrait></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_Dlm_Unfair</thought><onlyTrait><li>Bloodlust</li><li>Abrasive</li></onlyTrait></li>
@@ -268,6 +284,7 @@
       <li>
         <label>Drag them to the treeline</label>
         <outcome>The bodies went to the treeline. The scavengers came at dusk, and everyone heard them.</outcome>
+        <ways><mercy>-6</mercy></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_Dlm_BodiesLeft</thought><exceptTrait><li>Psychopath</li><li>Bloodlust</li></exceptTrait></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_Dlm_FairsFair</thought><onlyTrait><li>Bloodlust</li></onlyTrait></li>
@@ -296,6 +313,7 @@
       <li>
         <label>A victory feast</label>
         <outcome>They feasted like people who'd just survived something, because they had.</outcome>
+        <ways><generosity>3</generosity><toil>-5</toil></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>rawfood</what></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_Dlm_VictoryFeast</thought></li>
@@ -305,6 +323,7 @@
       <li>
         <label>Repairs first, celebrations later</label>
         <outcome>Straight back to work: walls, wounds and bodies. The celebration never quite happened.</outcome>
+        <ways><toil>6</toil></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_Dlm_NoCelebration</thought><exceptTrait><li>Ascetic</li></exceptTrait></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_Dlm_FairsFair</thought><degreeTrait>Industriousness</degreeTrait><minDegree>1</minDegree></li>

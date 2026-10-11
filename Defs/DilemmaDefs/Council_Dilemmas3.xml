@@ -29,6 +29,7 @@
       <li>
         <label>Teach {A_nameDef} to shoot</label>
         <outcome>{B_nameDef} is teaching {A_nameDef} to shoot, starting with which end is which. {A_nameDef} hit a target on day two and has not stopped talking about it.</outcome>
+        <ways><tradition>-5</tradition></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_LearnedToShoot</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>6</amount></li>
@@ -48,6 +49,7 @@
       <li>
         <label>{A_nameDef} can carry the game bags, nothing more</label>
         <outcome>{A_nameDef} goes out with the hunters now, hauling the bags and asking detailed questions about guts. {B_nameDef} has developed a permanent whisper of "stay down."</outcome>
+        <ways><toil>3</toil></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_TaggedAlong</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>2</amount></li>
@@ -58,6 +60,7 @@
       <li>
         <label>Not until {A_nameDef} is older</label>
         <outcome>The council said no. {A_nameDef} took the news with great dignity, then slammed every door between the council and bed.</outcome>
+        <ways><tradition>5</tradition></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_TooYoung</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>-4</amount></li>
@@ -76,6 +79,7 @@
       <li>
         <label>Let {B_nameDef} show {A_objective} the messy part</label>
         <outcome>{B_nameDef} walked {A_nameDef} through skinning the day's kill, slowly, with commentary. {A_nameDef} went pale, then green, and has decided to be a farmer.</outcome>
+        <ways><mercy>-3</mercy></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_SawSkinning</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>B</target><amount>2</amount></li>
@@ -114,6 +118,7 @@
       <li>
         <label>Say the dead go somewhere warm</label>
         <outcome>{B_nameDef} told {A_nameDef} the dead go somewhere warm, with good food and no raiders. {A_nameDef} has asked whether we can all go now. The skeptics are rolling their eyes.</outcome>
+        <ways><mercy>2</mercy><tradition>5</tradition></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_Comforted</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>3</amount></li>
@@ -125,6 +130,7 @@
       <li>
         <label>Tell the truth: the ground</label>
         <outcome>{B_nameDef} told {A_nameDef} the truth: the ground, the worms, and that's all. {A_nameDef} took it quietly and has been sleeping with the light on.</outcome>
+        <ways><mercy>-2</mercy><tradition>-5</tradition></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_Worms</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Others</target><thought>Council_Dlm_FairsFair</thought><onlyTrait><li>TooSmart</li><li>Psychopath</li></onlyTrait></li>
@@ -141,6 +147,7 @@
       <li>
         <label>Give the little thing a proper funeral</label>
         <outcome>The colony stopped work to bury a very small animal in a very small box, with speeches. {A_nameDef} gave the longest one. Some of the adults cried and are denying it.</outcome>
+        <ways><tradition>6</tradition><toil>-3</toil></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>WoodLog</what><count>10</count></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_Comforted</thought></li>
@@ -191,6 +198,7 @@
       <li>
         <label>Let {A_nameDef} keep feeding it</label>
         <outcome>{A_nameDef} now carries a small ration out past the wall every evening, very solemnly. The friend is getting fat. The storeroom is not.</outcome>
+        <ways><mercy>4</mercy><generosity>4</generosity></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>rawfood</what><count>15</count></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_SecretFriend</thought></li>
@@ -210,6 +218,7 @@
       <li>
         <label>Chase it off for good</label>
         <outcome>{B_nameDef} chased the animal off with a lot of shouting and one thrown boot. {A_nameDef} watched from the wall and has not spoken to {B_nameDef} since.</outcome>
+        <ways><mercy>-3</mercy><generosity>-3</generosity></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_FriendGone</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>-4</amount></li>
@@ -221,6 +230,7 @@
       <li>
         <label>Let {B_nameDef} deal with it</label>
         <outcome>{B_nameDef} dealt with it at dusk, quietly, and came back wiping a knife. {A_nameDef} was watching from the wall the whole time.</outcome>
+        <ways><mercy>-8</mercy></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_FriendKilled</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>-8</amount></li>
@@ -239,6 +249,7 @@
       <li>
         <label>Pretend nobody noticed</label>
         <outcome>The council said nothing. The jerky keeps vanishing, the animal keeps getting bolder, and {B_nameDef} keeps an eye on the scrub.</outcome>
+        <ways><mercy>2</mercy></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_SecretFriend</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_Dlm_Ignored</thought></li>
@@ -300,6 +311,7 @@
       <li>
         <label>Turn {PET_nameDef} loose</label>
         <outcome>{PET_nameDef} was walked out past the wall and left there. It followed {A_nameDef} halfway back before it understood. {A_nameDef} hasn't looked at {B_nameDef} since.</outcome>
+        <ways><mercy>-7</mercy></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_ReleasePet" />
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_PetReleased</thought></li>
@@ -313,6 +325,7 @@
       <li>
         <label>Bites heal. Let it go</label>
         <outcome>The council let it go. {B_nameDef} now walks the long way around {PET_nameDef}, and around {A_nameDef}.</outcome>
+        <ways><mercy>3</mercy></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_Dlm_Ignored</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>B</target><amount>-4</amount></li>
@@ -348,6 +361,7 @@
       <li>
         <label>Nurse {PET_nameDef}: soft food, a warm corner</label>
         <outcome>{PET_nameDef} gets the warm corner, the soft food and {B_nameDef} sitting up at night. {PET_nameDef} is eating again. Everyone involved looks exhausted and pleased.</outcome>
+        <ways><mercy>5</mercy><generosity>2</generosity></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>rawfood</what><count>15</count></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_PetNursed</thought></li>
@@ -369,6 +383,7 @@
       <li>
         <label>Take {PET_nameDef} on one last walk</label>
         <outcome>{A_nameDef} walked {PET_nameDef} out past the walls, slowly, the long way round, and came back alone. Nobody asked. {A_nameDef} hasn't said.</outcome>
+        <ways><mercy>-4</mercy></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_ReleasePet" />
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_LastWalk</thought></li>
@@ -381,6 +396,7 @@
       <li>
         <label>Let {B_nameDef} decide</label>
         <outcome>{B_nameDef} looked at {PET_nameDef} for a long time and decided there was some fight left. {PET_nameDef} now sleeps on {B_nameDef}'s spare blanket and eats better than most colonists.</outcome>
+        <ways><mercy>3</mercy></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>rawfood</what><count>10</count></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_PetNursed</thought></li>
@@ -430,6 +446,7 @@
       <li>
         <label>{PET_nameDef} is family. Nobody eats family</label>
         <outcome>The council ruled that {PET_nameDef} is family. {B_nameDef} accepted the ruling, and still licks {B_possessive} lips when {PET_nameDef} walks past.</outcome>
+        <ways><mercy>5</mercy></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_Vindicated</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>4</amount></li>
@@ -446,6 +463,7 @@
       <li>
         <label>Feed {B_nameDef} extra rations instead</label>
         <outcome>{B_nameDef} gets a little extra at every meal, on the understanding that {PET_nameDef} is not a meal. It's working. {B_nameDef} still looks, but chews while looking.</outcome>
+        <ways><generosity>4</generosity></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>rawfood</what><count>15</count></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_Dlm_SmallFeast</thought></li>
@@ -457,6 +475,7 @@
       <li>
         <label>Fine. Fetch the pot</label>
         <outcome>The council said yes. {PET_nameDef} somehow understood, cleared the wall before the water boiled, and hasn't been seen since. {A_nameDef} can't look at a pot anymore.</outcome>
+        <ways><mercy>-8</mercy><generosity>-3</generosity></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_ReleasePet" />
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_PetReleased</thought></li>
@@ -507,6 +526,7 @@
       <li>
         <label>Make {B_nameDef} apologize at dinner</label>
         <outcome>{B_nameDef} apologized at dinner, from the same seat as the reading, to the same audience. It got fewer laughs.</outcome>
+        <ways><tradition>3</tradition></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_Dlm_PublicApology</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>B</target><amount>-3</amount></li>
@@ -528,6 +548,7 @@
       <li>
         <label>Give {B_nameDef} the worst chores for a week</label>
         <outcome>{B_nameDef} is scrubbing, hauling and emptying things for a week. {A_nameDef} drops by to watch, sometimes with a snack.</outcome>
+        <ways><mercy>-4</mercy></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Hediff"><target>B</target><hediff>Council_Dlm_Penance</hediff></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_Dlm_Disciplined</thought></li>
@@ -542,6 +563,7 @@
       <li>
         <label>Let {A_nameDef} read the rest, from a chair</label>
         <outcome>{A_nameDef} climbed onto a chair and read the rest of the letter, all three pages, shaking but loud. At the end, someone clapped. It may have been the right someone.</outcome>
+        <ways><tradition>-5</tradition></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_SaidItAloud</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>4</amount></li>
@@ -562,6 +584,7 @@
       <li>
         <label>It was funny. Let it go</label>
         <outcome>The council let it go. {A_nameDef} has stopped writing anything down, and has started eyeing {B_nameDef}'s laundry with intent.</outcome>
+        <ways><mercy>-3</mercy></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_LetterRead</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_Ignored</thought></li>
@@ -592,6 +615,7 @@
       <li>
         <label>Build {A_nameDef} a coffin now</label>
         <outcome>The coffin is finished and stands in the corner of {A_nameDef}'s room. {A_nameDef} lies in it some evenings to read. Visitors have become rare.</outcome>
+        <ways><tradition>4</tradition></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>WoodLog</what><count>30</count></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_CoffinReady</thought></li>
@@ -604,6 +628,7 @@
       <li>
         <label>Hold a living funeral, with eulogies</label>
         <outcome>The whole colony gathered to say kind things about {A_nameDef}, who was there to hear every word. {A_nameDef} cried, then asked for an encore.</outcome>
+        <ways><tradition>-4</tradition><toil>-3</toil></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>rawfood</what><count>10</count></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_LivingFuneral</thought></li>
@@ -625,6 +650,7 @@
       <li>
         <label>Let {A_nameDef} pick a spot, nothing more</label>
         <outcome>{A_nameDef} picked a plot out of the wind, under the best tree, and lay down in it to test the view. It passed.</outcome>
+        <ways><tradition>2</tradition></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_PickedPlot</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>2</amount></li>
@@ -664,6 +690,7 @@
       <li>
         <label>Bolt {A_nameDef}'s door at night</label>
         <outcome>{A_nameDef}'s door is bolted from the outside at night now. {A_nameDef} says it feels like being a prisoner. {B_nameDef} says it feels like sleeping.</outcome>
+        <ways><mercy>-5</mercy></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_LockedIn</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>-4</amount></li>
@@ -681,6 +708,7 @@
       <li>
         <label>{B_nameDef} sits up with {A_nameDef} at night</label>
         <outcome>{B_nameDef} sits up at night now, steering {A_nameDef} back to bed whenever the wandering starts. The two of them talk in between. It's going better than anyone expected.</outcome>
+        <ways><mercy>5</mercy></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Hediff"><target>B</target><hediff>Council_Dlm_NightWatch</hediff></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_Dlm_Helped</thought></li>
@@ -717,6 +745,7 @@
       <li>
         <label>{A_nameDef} can't help it. Let it go</label>
         <outcome>The council let it go. {B_nameDef} now sleeps with a chair against the door and a boot in one hand.</outcome>
+        <ways><mercy>3</mercy></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_Dlm_Ignored</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>B</target><amount>-4</amount></li>
@@ -753,6 +782,7 @@
       <li>
         <label>Confiscate the {THING}</label>
         <outcome>The {COUNT} {THING} went into the common stores. {A_nameDef} watched it go with the face of someone whose best idea has just been taxed at a hundred percent.</outcome>
+        <ways><openness>-3</openness></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Spawn" />
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_Confiscated</thought></li>
@@ -771,6 +801,7 @@
       <li>
         <label>Take the {THING} and put {A_nameDef} to work</label>
         <outcome>The {THING} went into the stores and {A_nameDef} went onto the dirtiest shifts in the colony. Nobody is doing any private trading this season.</outcome>
+        <ways><mercy>-5</mercy><openness>-4</openness></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Spawn" />
           <li Class="ColonyCouncil.DilemmaEffect_Hediff"><target>A</target><hediff>Council_Dlm_Penance</hediff></li>
@@ -785,6 +816,7 @@
       <li>
         <label>Make {A_nameDef} the colony's trader</label>
         <outcome>{A_nameDef} is now officially in charge of dealing with traders, and has started wearing a nicer shirt for it. {B_nameDef} counts the stores daily.</outcome>
+        <ways><openness>6</openness></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_InCharge</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>6</amount></li>
@@ -808,6 +840,7 @@
       <li>
         <label>A good deal is a good deal</label>
         <outcome>The council let {A_nameDef} keep the {THING}. {A_nameDef} has been seen counting it at night. So, separately, has {B_nameDef}.</outcome>
+        <ways><openness>3</openness></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_GotAway</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>3</amount></li>
@@ -927,6 +960,7 @@
       <li>
         <label>Send word properly: 60 silver</label>
         <outcome>The message went out with sixty silver and {A_nameDef}'s best handwriting. Somewhere a long way off, someone is going to open it and sit down very suddenly.</outcome>
+        <ways><generosity>6</generosity><openness>2</openness></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>silver</what><count>60</count></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_WordSent</thought></li>
@@ -950,6 +984,7 @@
       <li>
         <label>A short note, the cheap way: 20 silver</label>
         <outcome>A short note went out with the next traveler, for twenty silver and a handshake. It may even get there. {A_nameDef} has started counting days.</outcome>
+        <ways><generosity>2</generosity></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>silver</what><count>20</count></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_Compromise</thought></li>
@@ -967,6 +1002,7 @@
       <li>
         <label>No: a message can be followed back</label>
         <outcome>The council refused: a message can be followed back to whoever sent it. {A_nameDef} understood, and has stopped eating dinner with everyone else.</outcome>
+        <ways><mercy>-2</mercy><openness>-6</openness></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_NoWord</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>-6</amount></li>

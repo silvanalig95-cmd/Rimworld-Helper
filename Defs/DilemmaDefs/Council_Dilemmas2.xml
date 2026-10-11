@@ -23,6 +23,7 @@
       <li>
         <label>A bet is a bet. Pay up, {B_nameDef}</label>
         <outcome>The debt stands. {A_nameDef} is enjoying the winnings loudly, and {B_nameDef} is learning a valuable lesson quietly.</outcome>
+        <ways><mercy>-3</mercy><generosity>-2</generosity></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_WonBet</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>4</amount></li>
@@ -39,6 +40,7 @@
       <li>
         <label>Call the bet off</label>
         <outcome>The council voided the bet. {A_nameDef} handed back the winnings one slow finger at a time.</outcome>
+        <ways><mercy>4</mercy></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_Overruled</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>-8</amount></li>
@@ -51,6 +53,7 @@
       <li>
         <label>Ban gambling in the colony</label>
         <outcome>The council banned gambling and voided every debt. The cards went in the fire; the dice went somewhere nobody will admit to.</outcome>
+        <ways><tradition>3</tradition><toil>3</toil></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_Overruled</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>-5</amount></li>
@@ -62,6 +65,7 @@
       <li>
         <label>Double or nothing: one more hand</label>
         <outcome>One more hand, with the whole council watching. {A_nameDef} won again, and {B_nameDef} now owes twice as much and spends a lot of time staring at the horizon.</outcome>
+        <ways><mercy>-5</mercy><toil>-3</toil></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_WonBet</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_Dlm_LostShirt</thought></li>
@@ -105,6 +109,7 @@
       <li>
         <label>Confiscate the lot</label>
         <outcome>The hoard went back into the stockpiles, {THING} and all. {A_nameDef} watched every spoon leave.</outcome>
+        <ways><mercy>-3</mercy></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Spawn" />
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_Confiscated</thought></li>
@@ -123,6 +128,7 @@
       <li>
         <label>Let {A_nameDef} keep it</label>
         <outcome>{A_nameDef} keeps the collection. {B_nameDef} has started hiding things, which is hard, because nothing here locks.</outcome>
+        <ways><mercy>4</mercy><generosity>-4</generosity></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_KeptHoard</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>5</amount></li>
@@ -162,6 +168,7 @@
       <li>
         <label>Take it seriously: double the watch</label>
         <outcome>The council doubled the watch and told everyone to keep their eyes open. {A_nameDef} feels heard. Everyone else is sleeping badly.</outcome>
+        <ways><tradition>3</tradition><openness>-5</openness></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_Vindicated</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>8</amount></li>
@@ -174,6 +181,7 @@
       <li>
         <label>Laugh it off at dinner</label>
         <outcome>The council made a joke of it at dinner. Everyone laughed except {A_nameDef}, who has stopped telling people about dreams.</outcome>
+        <ways><mercy>-2</mercy><tradition>-5</tradition></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_Humiliated</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>-6</amount></li>
@@ -189,6 +197,7 @@
       <li>
         <label>Let {A_nameDef} hold a little ceremony</label>
         <outcome>{A_nameDef} had everyone write their fears on scraps of wood and burn them on a bonfire. It felt silly. It also worked, mostly.</outcome>
+        <ways><tradition>7</tradition></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>WoodLog</what><count>30</count></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_Dlm_Rite</thought><exceptTrait><li>TooSmart</li><li>Psychopath</li></exceptTrait></li>
@@ -201,6 +210,7 @@
       <li>
         <label>Tell {A_nameDef} to keep it quiet</label>
         <outcome>{A_nameDef} has been asked to stop sharing dreams at breakfast. The dreams haven't stopped. The sharing has, mostly.</outcome>
+        <ways><tradition>-3</tradition></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_Hushed</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>-4</amount></li>
@@ -228,6 +238,7 @@
       <li>
         <label>Send them 100 silver</label>
         <outcome>A hundred silver went to {FACTION} with a short letter from {A_nameDef}. The reply was warm. The colony's purse is lighter.</outcome>
+        <ways><generosity>8</generosity></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>silver</what><count>100</count></li>
           <li Class="ColonyCouncil.DilemmaEffect_Goodwill"><amount>10</amount></li>
@@ -249,6 +260,7 @@
       <li>
         <label>Send a token: 25 silver</label>
         <outcome>{FACTION} got 25 silver and a polite note. {A_nameDef} wrote the note and did not enjoy writing it.</outcome>
+        <ways><generosity>2</generosity></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>silver</what><count>25</count></li>
           <li Class="ColonyCouncil.DilemmaEffect_Goodwill"><amount>3</amount></li>
@@ -259,6 +271,7 @@
       <li>
         <label>Send them food instead</label>
         <outcome>A load of food went to {FACTION}, who needed it more than silver anyway. The storeroom echoes a little now.</outcome>
+        <ways><generosity>6</generosity></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>rawfood</what><count>50</count></li>
           <li Class="ColonyCouncil.DilemmaEffect_Goodwill"><amount>7</amount></li>
@@ -270,6 +283,7 @@
       <li>
         <label>We need it more than they do</label>
         <outcome>The council kept the silver. {A_nameDef} said nothing at all, and has been very quiet since.</outcome>
+        <ways><generosity>-7</generosity></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_DebtUnpaid</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>-6</amount></li>
@@ -297,6 +311,7 @@
       <li>
         <label>{B_nameDef} apologizes in front of everyone</label>
         <outcome>{B_nameDef} apologized at dinner, in front of everyone. It was stiff, but it was said, and {A_nameDef} nodded at the end.</outcome>
+        <ways><tradition>3</tradition></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_Dlm_PublicApology</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>B</target><amount>-3</amount></li>
@@ -317,6 +332,7 @@
       <li>
         <label>The council pays {A_nameDef} 50 silver</label>
         <outcome>The council paid {A_nameDef} fifty silver for the loss. It doesn't fix anything, and everyone knows it, but it was something.</outcome>
+        <ways><generosity>5</generosity></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>silver</what><count>50</count></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_LostKeepsake</thought></li>
@@ -331,6 +347,7 @@
       <li>
         <label>Have {B_nameDef} make a new one</label>
         <outcome>{B_nameDef} spent three evenings making a replacement. It isn't the same, but {A_nameDef} keeps it on the shelf where the old one was.</outcome>
+        <ways><toil>3</toil></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Hediff"><target>B</target><hediff>Council_Dlm_Penance</hediff></li>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>B</target><amount>-3</amount></li>
@@ -350,6 +367,7 @@
       <li>
         <label>Accidents happen. Let it go</label>
         <outcome>The council called it an accident. {A_nameDef} has kept the pieces, and an eye on {B_nameDef}.</outcome>
+        <ways><mercy>3</mercy></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_LostKeepsake</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_Ignored</thought></li>
@@ -378,6 +396,7 @@
       <li>
         <label>Punish {B_nameDef} with extra shifts</label>
         <outcome>{B_nameDef} is hauling and digging from dawn to dusk until the council says otherwise. Nobody is sleeping on watch this week.</outcome>
+        <ways><mercy>-4</mercy><toil>4</toil></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Hediff"><target>B</target><hediff>Council_Dlm_Penance</hediff></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_Dlm_Disciplined</thought></li>
@@ -397,6 +416,7 @@
       <li>
         <label>Warn {B_nameDef} quietly</label>
         <outcome>The council had a quiet word with {B_nameDef}, who swore it won't happen again. {A_nameDef} has started checking on the watch personally.</outcome>
+        <ways><mercy>5</mercy></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_Dlm_Forgiven</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>B</target><amount>4</amount></li>
@@ -414,6 +434,7 @@
       <li>
         <label>Put {A_nameDef} in charge of the watch</label>
         <outcome>{A_nameDef} now runs the night watch, with a schedule, a whistle and no sense of humor about any of it. {B_nameDef} is on the schedule a lot.</outcome>
+        <ways><openness>-4</openness><toil>3</toil></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_InCharge</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Hediff"><target>AAndB</target><hediff>Council_Dlm_NightWatch</hediff></li>
@@ -426,6 +447,7 @@
       <li>
         <label>Nobody died. Let it go</label>
         <outcome>The council let it go. {A_nameDef} has stopped sleeping well, and keeps getting up to check the gate.</outcome>
+        <ways><toil>-5</toil></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_Ignored</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>-5</amount></li>
@@ -461,6 +483,7 @@
       <li>
         <label>Smash it</label>
         <outcome>The council had the sculpture smashed. {B_nameDef} swept up the pieces personally, smiling. {A_nameDef} watched from the doorway.</outcome>
+        <ways><mercy>-3</mercy></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_ArtDestroyed</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>-6</amount></li>
@@ -477,6 +500,7 @@
       <li>
         <label>Keep it on display</label>
         <outcome>The sculpture stays. Visitors love it. {B_nameDef} has taken to eating facing the wall.</outcome>
+        <ways><tradition>-4</tradition></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_Dlm_Mocked</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>B</target><amount>-6</amount></li>
@@ -534,6 +558,7 @@
       <li>
         <label>Ban the night music</label>
         <outcome>The night music is banned. {B_nameDef} slept fourteen hours straight. {A_nameDef} has been drumming on tables, very quietly, all day.</outcome>
+        <ways><toil>3</toil></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_Silenced</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>-5</amount></li>
@@ -562,6 +587,7 @@
       <li>
         <label>Tell {B_nameDef} to live with it</label>
         <outcome>The music plays on, and {A_nameDef} is getting better, slowly. {B_nameDef} sleeps with rags stuffed in both ears and wakes up looking like a raid survivor.</outcome>
+        <ways><tradition>-4</tradition><toil>-3</toil></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_Vindicated</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>4</amount></li>
@@ -603,6 +629,7 @@
       <li>
         <label>Allow the duel</label>
         <outcome>The duel was held at dawn, with half the colony cheering. There was blood, a loose tooth, and afterward, something like respect.</outcome>
+        <ways><mercy>-5</mercy><tradition>4</tradition></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Fight" />
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>AAndB</target><thought>Council_Dlm_MadeUp</thought><chance>0.6</chance></li>
@@ -615,6 +642,7 @@
       <li>
         <label>Forbid it</label>
         <outcome>The council forbade the duel. {A_nameDef} and {B_nameDef} now glare at each other across every room, which is somehow worse.</outcome>
+        <ways><mercy>4</mercy><tradition>-3</tradition></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>AAndB</target><thought>Council_Dlm_Forbidden</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>AAndB</target><amount>-4</amount></li>
@@ -629,6 +657,7 @@
       <li>
         <label>Make them shake hands in public</label>
         <outcome>{A_nameDef} and {B_nameDef} shook hands in front of everyone. It went on for a long time and both of them had sore fingers after, but it's done.</outcome>
+        <ways><tradition>2</tradition></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>AAndB</target><thought>Council_Dlm_ForcedTogether</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>AAndB</target><thought>Council_Dlm_MadeUp</thought></li>
@@ -645,6 +674,7 @@
       <li>
         <label>Settle it with a hauling race instead</label>
         <outcome>Instead of fists, {A_nameDef} and {B_nameDef} raced to haul a mountain of stone. The colony got a lot done, and the rivalry has turned almost friendly.</outcome>
+        <ways><toil>5</toil></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Hediff"><target>AAndB</target><hediff>Council_Motivated</hediff><severity>0.8</severity></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>AAndB</target><thought>Council_Dlm_MadeUp</thought><chance>0.4</chance></li>
@@ -675,6 +705,7 @@
       <li>
         <label>Grant {A_nameDef} a title</label>
         <outcome>{A_nameDef} is now Warden of something. Nobody is quite sure what, least of all {A_nameDef}, who has started walking differently.</outcome>
+        <ways><tradition>4</tradition></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_Titled</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Hediff"><target>A</target><hediff>Council_Motivated</hediff><severity>0.8</severity></li>
@@ -703,6 +734,7 @@
       <li>
         <label>Put {A_nameDef} in charge of the storeroom</label>
         <outcome>{A_nameDef} is now in charge of the storeroom, and has labeled every shelf. Twice.</outcome>
+        <ways><toil>3</toil></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_InCharge</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>3</amount></li>
@@ -719,6 +751,7 @@
       <li>
         <label>Let {A_nameDef} sit in on one meeting</label>
         <outcome>{A_nameDef} sat through four hours of debate about where to dig the new latrine, and has quietly withdrawn the request.</outcome>
+        <ways><tradition>-3</tradition></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_LongMeeting</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>4</amount></li>
@@ -755,6 +788,7 @@
       <li>
         <label>Side with {A_nameDef}: {B_nameDef} works double</label>
         <outcome>{B_nameDef} is on double shifts until the tally evens out. {A_nameDef} updates the wall daily, with great satisfaction.</outcome>
+        <ways><mercy>-3</mercy><toil>7</toil></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Hediff"><target>B</target><hediff>Council_Dlm_Penance</hediff></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_Dlm_Disciplined</thought></li>
@@ -775,6 +809,7 @@
       <li>
         <label>Side with {B_nameDef}: everyone has a pace</label>
         <outcome>The council ruled that people work at different speeds. {B_nameDef} took the ruling back out to the grass. {A_nameDef} took it badly.</outcome>
+        <ways><mercy>3</mercy><toil>-7</toil></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_Dlm_Vindicated</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>B</target><amount>5</amount></li>
@@ -789,6 +824,7 @@
       <li>
         <label>Pair them up on every shift</label>
         <outcome>{A_nameDef} and {B_nameDef} now work every shift together. {B_nameDef} is picking up the pace, mostly to make the lecturing stop.</outcome>
+        <ways><toil>3</toil></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>AAndB</target><thought>Council_Dlm_ForcedTogether</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Hediff"><target>B</target><hediff>Council_Motivated</hediff><severity>0.5</severity></li>
@@ -807,6 +843,7 @@
       <li>
         <label>Stay out of it</label>
         <outcome>The council stayed out of it. The tally on the wall keeps growing, and so does the underlining.</outcome>
+        <ways><toil>-2</toil></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_Ignored</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>-4</amount></li>
@@ -838,6 +875,7 @@
       <li>
         <label>The past is past</label>
         <outcome>The council ruled that what {A_nameDef} did before belongs to before. {B_nameDef} left the table and hasn't come back to it.</outcome>
+        <ways><mercy>8</mercy><openness>3</openness></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_Forgiven</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>8</amount></li>
@@ -856,6 +894,7 @@
       <li>
         <label>{A_nameDef} works to earn a place</label>
         <outcome>{A_nameDef} is working the hardest jobs in the colony, without complaint, until the council is satisfied. {B_nameDef} watches every shift.</outcome>
+        <ways><mercy>2</mercy><toil>4</toil></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Hediff"><target>A</target><hediff>Council_Dlm_Penance</hediff></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_Atoned</thought></li>
@@ -867,6 +906,7 @@
       <li>
         <label>Let {B_nameDef} have one swing</label>
         <outcome>The council looked away for one minute. {B_nameDef} used all of it, and {A_nameDef} didn't raise a hand until the very end.</outcome>
+        <ways><mercy>-7</mercy><tradition>4</tradition></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Fight" />
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_Dlm_Reckoning</thought></li>
@@ -881,6 +921,7 @@
       <li>
         <label>Bury it: nobody else needs to know</label>
         <outcome>The council told {A_nameDef} and {B_nameDef} to keep it to themselves. {B_nameDef} agreed, and hasn't turned {B_possessive} back on {A_nameDef} since.</outcome>
+        <ways><mercy>3</mercy></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>3</amount></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_Dlm_Ignored</thought></li>

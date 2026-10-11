@@ -593,6 +593,7 @@
       <li>{A_nameDef} held out a handful of grain and kept still for a very long time, and at the end of it {X_indefinite} ate out of {A_possessive} palm, then bolted.</li>
       <li>{A_nameDef} has been sharing lunch with {X_indefinite} at the edge of the field all week. The gap between them shrinks a little every day. {A_nameDef} pretends not to notice.</li>
     </texts>
+    <ways><generosity>2</generosity></ways>
     <effects>
       <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncC_FedWild</thought></li>
       <li Class="ColonyCouncil.DilemmaEffect_Recruit"><target>X</target><chance>0.12</chance></li>

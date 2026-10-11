@@ -29,6 +29,7 @@
       <li>
         <label>It's an animal. Let it go</label>
         <outcome>The council shrugged. {B_nameDef} has started eating with one arm around the bowl.</outcome>
+        <ways><mercy>2</mercy></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_Dlm_Unfair</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>B</target><amount>-3</amount></li>
@@ -38,6 +39,7 @@
       <li>
         <label>Turn {PET_nameDef} loose in the wild</label>
         <outcome>{PET_nameDef} was walked to the edge of the map and left there. {A_nameDef} hasn't said a word to anyone since.</outcome>
+        <ways><mercy>-7</mercy></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_ReleasePet" />
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_PetReleased</thought></li>
@@ -66,6 +68,7 @@
       <li>
         <label>Keep {PET_nameDef} out of the kitchen</label>
         <outcome>{PET_nameDef} is banned from the kitchen and spends meals staring through the door, wounded. {A_nameDef} grumbles.</outcome>
+        <ways><toil>2</toil></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_Dlm_Vindicated</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_Overruled</thought></li>
@@ -75,6 +78,7 @@
       <li>
         <label>The kitchen is {PET_nameDef}'s too</label>
         <outcome>{PET_nameDef} stays. So does the hair in the stew. {B_nameDef} cooks with a grim face now.</outcome>
+        <ways><toil>-2</toil></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_Vindicated</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_Dlm_Overruled</thought></li>

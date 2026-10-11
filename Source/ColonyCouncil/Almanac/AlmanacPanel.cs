@@ -194,6 +194,7 @@ namespace ColonyCouncil
             GUI.color = Faint;
             string meta = ("CC_AlmanacCat_" + a.category).Translate();
             if (!a.dlc.NullOrEmpty()) meta += "  ·  " + a.dlc + (a.DlcActive ? "" : " (" + "CC_Almanac_NotActive".Translate() + ")");
+            if (!a.mods.NullOrEmpty()) meta += "  ·  " + "CC_Almanac_FromMod".Translate(a.ModNames()).ToString() + (a.ModsActive ? "" : " (" + "CC_Almanac_NotActive".Translate().ToString() + ")");
             if (a.approximate) meta += "  ·  " + "CC_Almanac_Approximate".Translate();
             Widgets.Label(new Rect(0f, y, w, 18f), meta);
             GUI.color = Color.white;

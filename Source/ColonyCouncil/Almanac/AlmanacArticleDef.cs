@@ -22,7 +22,8 @@ namespace ColonyCouncil
         Biotech,
         Anomaly,
         Odyssey,
-        Numbers
+        Numbers,
+        Mods
     }
 
     /// <summary>
@@ -50,11 +51,25 @@ namespace ColonyCouncil
         public string dlc;
         /// <summary>Some numbers come from community testing or differ between sources.</summary>
         public bool approximate;
+        /// <summary>About these mods (package ids): shown only when one of them is active.</summary>
+        public List<string> mods;
+
+        /// <summary>Is one of the article's mods active?</summary>
+        public bool ModsActive => mods.NullOrEmpty() || mods.Any(id => ModLister.GetActiveModWithIdentifier(id, true) != null);
+
+        /// <summary>The names of the article's mods, as the game knows them (the active ones, or the ids).</summary>
+        public string ModNames()
+        {
+            if (mods.NullOrEmpty()) return null;
+            var names = mods.Select(id => ModLister.GetActiveModWithIdentifier(id, true)?.Name).Where(n => !n.NullOrEmpty()).Distinct().ToList();
+            return names.Count > 0 ? string.Join(", ", names) : string.Join(", ", mods);
+        }
 
         public bool DlcActive
         {
             get
             {
+                if (!ModsActive) return false;
                 switch (dlc)
                 {
                     case null:
@@ -93,6 +108,7 @@ namespace ColonyCouncil
         {
             foreach (var e in base.ConfigErrors()) yield return e;
             if (description.NullOrEmpty() && (facts == null || facts.Count == 0)) yield return "almanac article has no text";
+            if (mods != null && mods.Any(m => m.NullOrEmpty() || m != m.Trim().ToLowerInvariant())) yield return "mod package ids must be lowercase";
             if (!dlc.NullOrEmpty() && !new[] { "Royalty", "Ideology", "Biotech", "Anomaly", "Odyssey" }.Contains(dlc)) yield return "unknown dlc " + dlc;
         }
     }

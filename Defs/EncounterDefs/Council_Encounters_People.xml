@@ -184,6 +184,7 @@
       <li>{X_nameDef} said a settlement this small ought to pay {FACTION} for protection. {A_nameDef} said a great many things back, several of them about {X_nameDef}'s mother.</li>
       <li>{A_nameDef} and {X_nameDef} argued about how to treat strangers: loudly, at the gate, in front of other strangers. Nobody came out of it looking good.</li>
     </texts>
+    <ways><openness>-2</openness></ways>
     <effects>
       <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncP_Insufferable</thought></li>
       <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>X</target><thought>Council_EncP_RudeHost</thought></li>
@@ -223,6 +224,7 @@
       <li>{X_nameDef} remembered that {A_nameDef} had given up a seat by the fire for {X_objective}. A little bundle was waiting for {A_nameDef} afterwards: silver and a twist of healing herbs.</li>
       <li>{A_nameDef} mended a torn strap on {X_nameDef}'s pack. {X_nameDef} paid in silver, healroot, and a lecture about how nobody does anything for free anymore.</li>
     </texts>
+    <ways><openness>2</openness></ways>
     <effects>
       <li Class="ColonyCouncil.DilemmaEffect_Spawn"><thing>Silver</thing><count>12</count></li>
       <li Class="ColonyCouncil.DilemmaEffect_Spawn"><thing>MedicineHerbal</thing><count>1</count></li>
@@ -316,6 +318,7 @@
       <li>{A_nameDef} pointed out a moth hole, a crooked seam and the trader's own sad face. {X_nameDef} knocked a third off the price just to make it stop.</li>
       <li>{X_nameDef} opened at forty silver. {A_nameDef} opened by laughing. They settled at twenty-two, and {X_nameDef} counted the coins twice in disbelief.</li>
     </texts>
+    <ways><generosity>-2</generosity></ways>
     <effects>
       <li Class="ColonyCouncil.DilemmaEffect_Learn"><target>A</target><skill>Social</skill><xp>300</xp></li>
       <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncP_OutHaggled</thought></li>
@@ -438,6 +441,7 @@
       <li>{A_nameDef} sniffed {X_nameDef}'s dried meat and announced that the animal had died of old age. {X_nameDef} has stopped offering {A_nameDef} anything.</li>
       <li>{A_nameDef} told {X_nameDef} that {FACTION} prices are the reason the roads have bandits: the bandits are just trying to afford things.</li>
     </texts>
+    <ways><openness>-2</openness></ways>
     <effects>
       <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>X</target><thought>Council_EncP_RudeHost</thought></li>
       <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncP_Insufferable</thought><chance>0.5</chance></li>
@@ -498,6 +502,7 @@
       <li>{X_nameDef} told {A_nameDef} it was the first night in a month {X_pronoun} hadn't slept with {X_possessive} shoes on. {A_nameDef} didn't know what to say, and just nodded.</li>
       <li>{X_nameDef} carved {A_nameDef} a small wooden bird with a borrowed knife, badly, and handed it over with both hands. "For the blanket," {X_nameDef} said.</li>
     </texts>
+    <ways><generosity>2</generosity></ways>
     <effects>
       <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncP_RefugeeThanks</thought></li>
       <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>X</target><thought>Council_EncP_KindToMe</thought></li>
@@ -558,6 +563,7 @@
       <li>{A_nameDef} slid an extra blanket under {X_nameDef}'s door and said goodnight. {X_nameDef} didn't answer, but the blanket was gone by morning.</li>
       <li>{X_nameDef} asked {A_nameDef} why {A_pronoun} bothered being nice to a prisoner. {A_nameDef} said somebody has to be, and it might as well be {A_objective}.</li>
     </texts>
+    <ways><mercy>2</mercy></ways>
     <effects>
       <li Class="ColonyCouncil.DilemmaEffect_Resistance"><resistance>-4</resistance></li>
       <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncP_KindWords</thought></li>
@@ -725,6 +731,7 @@
       <li>{A_nameDef} gave {X_nameDef} a drink and wiped the dirt off {X_possessive} face. {X_nameDef} said nobody had done that since {X_pronoun} was small.</li>
       <li>{X_nameDef} was trying to lick rainwater off a stone. {A_nameDef} swore under {A_possessive} breath and went to fetch a cup.</li>
     </texts>
+    <ways><mercy>3</mercy></ways>
     <effects>
       <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncP_GaveWater</thought></li>
       <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>X</target><thought>Council_EncP_KindToMe</thought></li>
@@ -780,6 +787,7 @@
       <li>{A_nameDef} crouched by {X_nameDef} and explained, in some detail, how the fight could have gone even worse for {X_objective}. Then {A_nameDef} spat, smiled, and left.</li>
       <li>{X_nameDef} asked {A_nameDef} for help. {A_nameDef} spat on {X_objective} and said that was all the help on offer today. A few people saw.</li>
     </texts>
+    <ways><mercy>-3</mercy></ways>
     <effects>
       <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncP_SpatOnRaider</thought></li>
       <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Others</target><thought>Council_EncP_CruelToFallen</thought><onlyTrait><li>Kind</li></onlyTrait><chance>0.7</chance></li>

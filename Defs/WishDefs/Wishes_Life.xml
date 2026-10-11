@@ -109,6 +109,7 @@
     <expiryDays>6</expiryDays>
     <cooldownDays>10</cooldownDays>
     <grantedThought>Council_Granted_Memorial</grantedThought>
+    <ways><tradition>5</tradition></ways>
     <allowPetition>true</allowPetition>
     <template>Council_Crypt</template>
     <talkInteraction>Council_Talk_Grief</talkInteraction>
@@ -192,6 +193,7 @@
     <expiryDays>15</expiryDays>
     <cooldownDays>15</cooldownDays>
     <grantedThought>Council_Granted_Prosthetic</grantedThought>
+    <ways><tradition>-2</tradition></ways>
     <allowForOthers>true</allowForOthers>
     <talkInteraction>Council_Talk_Body</talkInteraction>
     <fulfilledWhen>{FOR_possessive} {SUBJECT} is replaced, for example with {THING}. Craft or buy one, then have a doctor install it.</fulfilledWhen>
@@ -332,6 +334,7 @@
     <expiryDays>12</expiryDays>
     <cooldownDays>20</cooldownDays>
     <grantedThought>Council_Granted_Defenses</grantedThought>
+    <ways><openness>-3</openness></ways>
     <allowPetition>true</allowPetition>
     <talkInteraction>Council_Talk_Safety</talkInteraction>
     <request>
@@ -398,6 +401,7 @@
     <expiryDays>12</expiryDays>
     <cooldownDays>15</cooldownDays>
     <grantedThought>Council_Granted_Royal</grantedThought>
+    <ways><tradition>3</tradition></ways>
     <talkInteraction>Council_Talk_Status</talkInteraction>
     <fulfilledWhen>Every {SUBJECT} requirement of {FOR_possessive} title is met.</fulfilledWhen>
     <request>

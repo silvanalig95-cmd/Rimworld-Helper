@@ -10,6 +10,7 @@
     <order>7</order>
     <durationDays>4</durationDays>
     <cooldownDays>10</cooldownDays>
+    <ways><toil>5</toil></ways>
     <hediff>Council_Decree_Harvest</hediff>
     <thought>Council_Decree_Harvest</thought>
     <defaultReaction>Dislike</defaultReaction>
@@ -44,6 +45,7 @@
     <order>8</order>
     <durationDays>5</durationDays>
     <cooldownDays>10</cooldownDays>
+    <ways><toil>5</toil></ways>
     <hediff>Council_Decree_Building</hediff>
     <thought>Council_Decree_Building</thought>
     <defaultReaction>Dislike</defaultReaction>
@@ -79,6 +81,7 @@
     <order>9</order>
     <durationDays>5</durationDays>
     <cooldownDays>10</cooldownDays>
+    <ways><openness>6</openness></ways>
     <hediff>Council_Decree_Manners</hediff>
     <thought>Council_Decree_Manners</thought>
     <defaultReaction>Dislike</defaultReaction>
@@ -114,6 +117,7 @@
     <order>10</order>
     <durationDays>2</durationDays>
     <cooldownDays>10</cooldownDays>
+    <ways><tradition>5</tradition><toil>-3</toil></ways>
     <hediff>Council_Decree_Mourning</hediff>
     <thought>Council_Decree_Mourning</thought>
     <defaultReaction>Like</defaultReaction>
@@ -149,6 +153,7 @@
     <order>11</order>
     <durationDays>4</durationDays>
     <cooldownDays>8</cooldownDays>
+    <ways><openness>-5</openness></ways>
     <hediff>Council_Decree_OnGuard</hediff>
     <thought>Council_Decree_OnGuard</thought>
     <defaultReaction>Dislike</defaultReaction>
@@ -186,6 +191,7 @@
     <order>12</order>
     <durationDays>3</durationDays>
     <cooldownDays>8</cooldownDays>
+    <ways><toil>4</toil></ways>
     <hediff>Council_Decree_CleanSweep</hediff>
     <thought>Council_Decree_CleanSweep</thought>
     <defaultReaction>Dislike</defaultReaction>

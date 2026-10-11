@@ -59,6 +59,7 @@
     <expiryDays>5</expiryDays>
     <cooldownDays>5</cooldownDays>
     <grantedThought>Council_Granted_HurtAnimal</grantedThought>
+    <ways><mercy>3</mercy></ways>
     <envy>0</envy>
     <talkInteraction>Council_Talk_Animals</talkInteraction>
     <fulfilledWhen>{OTHER_nameDef} is tended and mostly healed.</fulfilledWhen>

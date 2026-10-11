@@ -45,6 +45,8 @@ namespace ColonyCouncil
 
         public bool Any => mercy != 0f || generosity != 0f || tradition != 0f || openness != 0f || toil != 0f;
 
+        public WayShift Scaled(float f) => new WayShift { mercy = mercy * f, generosity = generosity * f, tradition = tradition * f, openness = openness * f, toil = toil * f };
+
         /// <summary>"more merciful, a little more guarded".</summary>
         public string Summary()
         {

@@ -636,7 +636,7 @@
   <CC_ReadMore>Read more</CC_ReadMore>
   <CC_Almanac_Search>Search the almanac...</CC_Almanac_Search>
   <CC_Almanac_All>Everything</CC_Almanac_All>
-  <CC_Almanac_AllDlc>Show pages for DLCs I don't have</CC_Almanac_AllDlc>
+  <CC_Almanac_AllDlc>Show pages for DLCs and mods I don't have</CC_Almanac_AllDlc>
   <CC_Almanac_NothingFound>Nothing written about that. Yet.</CC_Almanac_NothingFound>
   <CC_Almanac_Pick>Pick a page.</CC_Almanac_Pick>
   <CC_Almanac_NotActive>not active</CC_Almanac_NotActive>
@@ -662,6 +662,8 @@
   <CC_AlmanacCat_Anomaly>Anomaly</CC_AlmanacCat_Anomaly>
   <CC_AlmanacCat_Odyssey>Odyssey</CC_AlmanacCat_Odyssey>
   <CC_AlmanacCat_Numbers>Numbers to know</CC_AlmanacCat_Numbers>
+  <CC_AlmanacCat_Mods>Your mods</CC_AlmanacCat_Mods>
+  <CC_Almanac_FromMod>Mod: {0}</CC_Almanac_FromMod>
 
   <!-- Advisor: research-based checks -->
   <CC_Adv_ButcherInKitchen_Title>Butchering in the kitchen</CC_Adv_ButcherInKitchen_Title>

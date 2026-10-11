@@ -11,6 +11,7 @@
     <expiryDays>20</expiryDays>
     <cooldownDays>20</cooldownDays>
     <grantedThought>Council_Granted_Wedding</grantedThought>
+    <ways><tradition>4</tradition></ways>
     <envy>0</envy>
     <talkInteraction>Council_Talk_Love</talkInteraction>
     <fulfilledWhen>{PAWN_nameDef} and {OTHER_nameDef} are married.</fulfilledWhen>
@@ -64,6 +65,7 @@
     <expiryDays>4</expiryDays>
     <cooldownDays>40</cooldownDays>
     <grantedThought>Council_Granted_Birthday</grantedThought>
+    <ways><generosity>3</generosity></ways>
     <inspirationChance>0.1</inspirationChance>
     <envy>0</envy>
     <talkInteraction>Council_Talk_Food</talkInteraction>
@@ -171,6 +173,7 @@
     <expiryDays>6</expiryDays>
     <cooldownDays>20</cooldownDays>
     <grantedThought>Council_Granted_DayOff</grantedThought>
+    <ways><toil>-4</toil></ways>
     <envy>0.5</envy>
     <meToo>true</meToo>
     <talkInteraction>Council_Talk_Fun</talkInteraction>
@@ -224,6 +227,7 @@
     <expiryDays>10</expiryDays>
     <cooldownDays>20</cooldownDays>
     <grantedThought>Council_Granted_LittleSomething</grantedThought>
+    <ways><toil>-2</toil></ways>
     <envy>0</envy>
     <talkInteraction>Council_Talk_Fun</talkInteraction>
     <fulfilledWhen>The colony has at least {TARGET} social drugs (beer, smokeleaf joints and the like) in stock.</fulfilledWhen>
@@ -270,6 +274,7 @@
     <expiryDays>15</expiryDays>
     <cooldownDays>15</cooldownDays>
     <grantedThought>Council_Granted_Recruit</grantedThought>
+    <ways><mercy>2</mercy><openness>4</openness></ways>
     <envy>0</envy>
     <talkInteraction>Council_Talk_Comfort</talkInteraction>
     <fulfilledWhen>{OTHER_nameDef} joins the colony.</fulfilledWhen>

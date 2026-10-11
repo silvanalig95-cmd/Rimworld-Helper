@@ -25,6 +25,7 @@
       <li>
         <label>Let {A_nameDef} off the chores for a season</label>
         <outcome>{A_nameDef} is off the chore roster for now and has thrown every spare hour at the dream. The others are hauling a little more and grumbling a little louder.</outcome>
+        <ways><toil>-6</toil></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_DlmGoal_GivenTime</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>5</amount></li>
@@ -43,6 +44,7 @@
       <li>
         <label>One free afternoon in three</label>
         <outcome>{A_nameDef} gets every third afternoon off the roster. It's not what {A_nameDef} asked for, but it's a start, and nobody else's week got much worse.</outcome>
+        <ways><toil>-2</toil></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_Compromise</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>2</amount></li>
@@ -52,6 +54,7 @@
       <li>
         <label>The chores come first</label>
         <outcome>The roster stays as it is. {A_nameDef} went back to hauling, and the dream went back to waiting.</outcome>
+        <ways><toil>6</toil></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_DlmGoal_DreamDeferred</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>-4</amount></li>
@@ -84,6 +87,7 @@
       <li>
         <label>Give {A_nameDef} 150 silver</label>
         <outcome>{A_nameDef} got the silver and spent it carefully, with receipts. Whether it gets the dream any closer, time will tell. {A_nameDef} certainly believes it will.</outcome>
+        <ways><generosity>8</generosity></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>silver</what><count>150</count></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_DlmGoal_Backed</thought></li>
@@ -105,6 +109,7 @@
       <li>
         <label>Give 50 silver and the council's good wishes</label>
         <outcome>{A_nameDef} got fifty silver and a handshake. It covers a third of the plan. {A_nameDef} is already rewriting the numbers.</outcome>
+        <ways><generosity>3</generosity></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>silver</what><count>50</count></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_Compromise</thought></li>
@@ -115,6 +120,7 @@
       <li>
         <label>Not from the colony's purse</label>
         <outcome>The silver stays in the purse. {A_nameDef} folded the plan up very small and put it away, and nobody has seen it since.</outcome>
+        <ways><generosity>-5</generosity></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_DlmGoal_DreamDeferred</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>-4</amount></li>
@@ -146,6 +152,7 @@
       <li>
         <label>Ask {B_nameDef} to make the time</label>
         <outcome>{B_nameDef} now spends the evenings with {A_nameDef}, talking through every step of the plan. {B_nameDef} grumbled at first. Lately, less.</outcome>
+        <ways><toil>3</toil></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_DlmGoal_Mentored</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>4</amount></li>
@@ -167,6 +174,7 @@
       <li>
         <label>Take chores off {B_nameDef} to free the evenings</label>
         <outcome>The council shared some of {B_nameDef}'s chores out among the others, so the evenings are free for teaching. {A_nameDef} is delighted, {B_nameDef} is flattered, and everyone else is doing a little more hauling.</outcome>
+        <ways><toil>-3</toil></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_DlmGoal_Mentored</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_DlmGoal_AskedToTeach</thought></li>
@@ -210,6 +218,7 @@
       <li>
         <label>Stand behind {A_nameDef}'s dream</label>
         <outcome>The council said, in front of everyone, that a person's dream is their own business and a fine thing to have. {A_nameDef} sat up a little straighter. {B_nameDef} chewed very loudly.</outcome>
+        <ways><mercy>2</mercy><tradition>-4</tradition></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_Vindicated</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>4</amount></li>
@@ -226,6 +235,7 @@
       <li>
         <label>Hear {B_nameDef} out</label>
         <outcome>The council let {B_nameDef} make the whole case against the dream, start to finish. Some of it was even fair. {A_nameDef} left before the end.</outcome>
+        <ways><tradition>4</tradition></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_DlmGoal_Doubted</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>-5</amount></li>
@@ -360,6 +370,7 @@
       <li>
         <label>Ask {A_nameDef} to stay, and mean it</label>
         <outcome>The council asked {A_nameDef} to stay, and promised real help with the dream. {A_nameDef} unpacked the bag that night, slowly, and seemed relieved to have been asked.</outcome>
+        <ways><tradition>3</tradition></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_DlmGoal_AskedToStay</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>5</amount></li>
@@ -374,6 +385,7 @@
       <li>
         <label>Give {A_nameDef} the council's blessing</label>
         <outcome>The council gave {A_nameDef} its blessing and a hug or two. {A_nameDef} walked to the gate, stood there a long while, and came back in for dinner. It seems the blessing was what {A_nameDef} needed, not the road.</outcome>
+        <ways><tradition>-4</tradition><openness>2</openness></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_Understood</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>6</amount></li>
@@ -384,6 +396,7 @@
       <li>
         <label>Nobody leaves: the colony needs every hand</label>
         <outcome>The council told {A_nameDef} the colony can't spare anyone. {A_nameDef} unpacked the bag without a word and has been staring at the walls ever since.</outcome>
+        <ways><mercy>-3</mercy><toil>4</toil></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_DlmGoal_Caged</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>-6</amount></li>
@@ -423,6 +436,7 @@
       <li>
         <label>Rally the colony behind {A_nameDef}</label>
         <outcome>At dinner the council asked everyone to give {A_nameDef} one reason not to give up. It went all the way around the table. {A_nameDef} cried, laughed, and was up before dawn the next morning, back at it.</outcome>
+        <ways><toil>3</toil></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_DlmGoal_Encouraged</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>5</amount></li>
@@ -440,6 +454,7 @@
       <li>
         <label>A few easy days to think it over</label>
         <outcome>The council gave {A_nameDef} a few quiet days off the roster. {A_nameDef} spent them walking, sleeping and, near the end, sketching something new on the back of an old plan.</outcome>
+        <ways><mercy>3</mercy><toil>-4</toil></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Hediff"><target>A</target><hediff>Council_Dlm_Rest</hediff></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_Understood</thought></li>
@@ -450,6 +465,7 @@
       <li>
         <label>There's no shame in letting it go</label>
         <outcome>Nobody pushed. {A_nameDef} was told that a dream set down isn't a failure, nodded, and has stopped talking about it. Whether that means giving up or getting on with it, nobody can tell.</outcome>
+        <ways><toil>-2</toil></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_DlmGoal_LetGo</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>1</amount></li>
@@ -463,6 +479,7 @@
       <li>
         <label>Tell {A_nameDef} to toughen up</label>
         <outcome>The council told {A_nameDef} that everyone has bad days and the rim doesn't care. {A_nameDef} heard it out and went back to work without a word.</outcome>
+        <ways><mercy>-4</mercy><toil>5</toil></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_Dismissed</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>-5</amount></li>
@@ -499,6 +516,7 @@
       <li>
         <label>Write it into the colony's records, with a ceremony</label>
         <outcome>The council gathered everyone after dinner, read {A_nameDef}'s dream aloud, and wrote it into the colony's records. {A_nameDef} stood at the back, pretending not to be moved, and failing.</outcome>
+        <ways><tradition>6</tradition></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_DlmGoal_Remembered</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>5</amount></li>
@@ -509,6 +527,7 @@
       <li>
         <label>{B_nameDef} promises to carry it on</label>
         <outcome>{B_nameDef} stood up and promised: if the worst happens, {B_nameDef} will see the dream through. {A_nameDef} shook {B_possessive} hand for a long time.</outcome>
+        <ways><tradition>3</tradition></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_DlmGoal_Remembered</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_DlmGoal_Promised</thought></li>

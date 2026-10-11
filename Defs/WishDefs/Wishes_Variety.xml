@@ -582,6 +582,7 @@
     <expiryDays>20</expiryDays>
     <cooldownDays>30</cooldownDays>
     <grantedThought>Council_Granted_NestEgg</grantedThought>
+    <ways><generosity>-4</generosity></ways>
     <allowPetition>true</allowPetition>
     <envy>0</envy>
     <talkInteraction>Council_Talk_Status</talkInteraction>
@@ -911,6 +912,7 @@
     <cooldownDays>60</cooldownDays>
     <fixedPatience>true</fixedPatience>
     <grantedThought>Council_Granted_Travel</grantedThought>
+    <ways><tradition>-2</tradition><openness>3</openness></ways>
     <envy>0.3</envy>
     <talkInteraction>Council_Talk_Fun</talkInteraction>
     <fulfilledWhen>Send {PAWN_nameDef} out with a caravan: to trade, to visit a settlement, or anywhere at all.</fulfilledWhen>
@@ -976,6 +978,7 @@
     <expiryDays>1.5</expiryDays>
     <cooldownDays>20</cooldownDays>
     <grantedThought>Council_Granted_TraderGoods</grantedThought>
+    <ways><openness>3</openness></ways>
     <envy>0.4</envy>
     <talkInteraction>Council_Talk_Status</talkInteraction>
     <fulfilledWhen>Buy that very {SUBJECT} from {OTHER_nameDef} before the trader leaves.</fulfilledWhen>
@@ -1040,6 +1043,7 @@
     <expiryDays>8</expiryDays>
     <cooldownDays>10</cooldownDays>
     <grantedThought>Council_Granted_Beast</grantedThought>
+    <ways><mercy>-3</mercy></ways>
     <allowPetition>true</allowPetition>
     <envy>0</envy>
     <objectionChance>0.15</objectionChance>
@@ -1105,6 +1109,7 @@
     <expiryDays>15</expiryDays>
     <cooldownDays>25</cooldownDays>
     <grantedThought>Council_Granted_Lessons</grantedThought>
+    <ways><tradition>2</tradition></ways>
     <envy>0.1</envy>
     <talkInteraction>Council_Talk_Work</talkInteraction>
     <fulfilledWhen>{PAWN_nameDef}'s {SUBJECT} skill reaches {TARGET}. Promising pairs {PAWN_objective} with {OTHER_nameDef} as a mentor.</fulfilledWhen>
@@ -1232,6 +1237,7 @@
     <expiryDays>15</expiryDays>
     <cooldownDays>30</cooldownDays>
     <grantedThought>Council_Granted_Shrine</grantedThought>
+    <ways><tradition>5</tradition></ways>
     <allowPetition>true</allowPetition>
     <envy>0</envy>
     <talkInteraction>Council_Talk_Comfort</talkInteraction>
@@ -1496,6 +1502,7 @@
     <expiryDays>20</expiryDays>
     <cooldownDays>40</cooldownDays>
     <grantedThought>Council_Granted_Fountain</grantedThought>
+    <ways><toil>-2</toil></ways>
     <luxury>true</luxury>
     <allowPetition>true</allowPetition>
     <inspirationChance>0.1</inspirationChance>
@@ -1563,6 +1570,7 @@
     <expiryDays>15</expiryDays>
     <cooldownDays>40</cooldownDays>
     <grantedThought>Council_Granted_Banner</grantedThought>
+    <ways><tradition>3</tradition></ways>
     <allowPetition>true</allowPetition>
     <envy>0</envy>
     <talkInteraction>Council_Talk_Status</talkInteraction>
@@ -1627,6 +1635,7 @@
     <expiryDays>15</expiryDays>
     <cooldownDays>30</cooldownDays>
     <grantedThought>Council_Granted_WeaponRack</grantedThought>
+    <ways><openness>-2</openness></ways>
     <allowPetition>true</allowPetition>
     <envy>0</envy>
     <talkInteraction>Council_Talk_Safety</talkInteraction>

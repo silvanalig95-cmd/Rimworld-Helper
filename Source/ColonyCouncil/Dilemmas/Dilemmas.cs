@@ -871,7 +871,8 @@ namespace ColonyCouncil
                 if (option.riskEffects != null) foreach (var e in option.riskEffects) Safe(e, ctx);
                 if (!option.riskOutcome.NullOrEmpty()) outcome = option.riskOutcome;
             }
-            comp?.character.Shift(option.ways, "CC_Ways_Why_Dilemma".Translate(ctx.def.label, ctx.Format(option.label)).Resolve());
+            // An answer nobody gave says less about the colony than one the council chose.
+            comp?.character.Shift(byDefault ? option.ways?.Scaled(0.5f) : option.ways, "CC_Ways_Why_Dilemma".Translate(ctx.def.label, ctx.Format(option.label)).Resolve());
             string told = ctx.Format(outcome);
             if (byDefault) told = "CC_Dilemma_NoAnswer".Translate() + " " + told;
             if (!told.NullOrEmpty())

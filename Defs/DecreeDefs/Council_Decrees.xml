@@ -10,6 +10,7 @@
     <order>1</order>
     <durationDays>5</durationDays>
     <cooldownDays>8</cooldownDays>
+    <ways><toil>6</toil></ways>
     <hediff>Council_Decree_LongHours</hediff>
     <thought>Council_Decree_LongHours</thought>
     <defaultReaction>Dislike</defaultReaction>
@@ -49,6 +50,7 @@
     <order>2</order>
     <durationDays>7</durationDays>
     <cooldownDays>7</cooldownDays>
+    <ways><generosity>-4</generosity></ways>
     <hediff>Council_Decree_Rationing</hediff>
     <thought>Council_Decree_Rationing</thought>
     <defaultReaction>Dislike</defaultReaction>
@@ -86,6 +88,7 @@
     <order>3</order>
     <durationDays>5</durationDays>
     <cooldownDays>10</cooldownDays>
+    <ways><openness>-4</openness></ways>
     <hediff>Council_Decree_Drills</hediff>
     <thought>Council_Decree_Drills</thought>
     <defaultReaction>Dislike</defaultReaction>
@@ -127,6 +130,7 @@
     <order>4</order>
     <durationDays>5</durationDays>
     <cooldownDays>8</cooldownDays>
+    <ways><tradition>-5</tradition></ways>
     <hediff>Council_Decree_Study</hediff>
     <thought>Council_Decree_Study</thought>
     <defaultReaction>Dislike</defaultReaction>
@@ -161,6 +165,7 @@
     <order>5</order>
     <durationDays>7</durationDays>
     <cooldownDays>12</cooldownDays>
+    <ways><generosity>-5</generosity></ways>
     <thought>Council_Decree_Austerity</thought>
     <defaultReaction>Dislike</defaultReaction>
     <suspendsWishes>true</suspendsWishes>
@@ -196,6 +201,7 @@
     <order>6</order>
     <durationDays>3</durationDays>
     <cooldownDays>15</cooldownDays>
+    <ways><tradition>3</tradition><toil>-5</toil></ways>
     <hediff>Council_Decree_Festival</hediff>
     <thought>Council_Decree_Festival</thought>
     <defaultReaction>Like</defaultReaction>
