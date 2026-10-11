@@ -20,21 +20,21 @@
     <who><canFight>true</canFight></who>
     <chosen>
       <plain>
-        <li>[inherited] {NAME} never got the chance. So I will. I'll {GOAL}, and I'll say {NAME}'s name when I do.</li>
-        <li>I saw what the machines did to the last place I lived. I'm going to put ten of them in the dirt. Ten, to start.</li>
+        <li>[inherited] The machines took a lot from {NAME}. I'm going to {GOAL} and take some of it back.</li>
+        <li>I saw what the machines did to the last place I lived. I'm going to put ten of them in the dirt, to start.</li>
         <li>[afterraid] The last attack is still smoking outside the walls. Next time it's machines, I want to be the one who stops them. Ten of them, at least.</li>
       </plain>
-      <blunt><li>Machines don't bleed and they don't beg. Good. Ten of them. I won't lose any sleep.</li></blunt>
-      <cheerful><li>I'm going to fight robots! Ten of them! I've already named my weapon!</li></cheerful>
+      <blunt><li>Machines don't bleed and they don't beg, so I won't lose any sleep over ten of them.</li></blunt>
+      <cheerful><li>I'm going to fight ten robots! I've already named my weapon.</li></cheerful>
       <cold><li>Mechanoid weak points: joints, sensor clusters, power cores. I've written them down. Ten units is the target.</li></cold>
     </chosen>
     <achieved>
       <plain>
         <li>Ten machines, broken open in the dirt. I kept a bolt from each one. They're on a string by my bed.</li>
-        <li>[hurt] Ten mechanoids down. The last one got its claws into me first, and I'm still picking bits of it out of my arm. Worth it.</li>
+        <li>[hurt] Ten mechanoids down. The last one got its claws into me first, and I'm still picking bits of it out of my arm.</li>
       </plain>
-      <gloomy><li>Ten. They'll build a hundred more. Still. Ten.</li></gloomy>
-      <cold><li>Ten mechanoids destroyed. Whoever built them will not have noticed. I have.</li></cold>
+      <gloomy><li>Ten down, and they'll build a hundred more. Still, that's ten.</li></gloomy>
+      <cold><li>Ten mechanoids destroyed. Whoever built them won't have noticed.</li></cold>
     </achieved>
   </ColonyCouncil.AspirationDef>
 
@@ -49,17 +49,17 @@
     <who><passion>Mining</passion></who>
     <chosen>
       <plain>
-        <li>[inherited] {NAME} never got the chance. So I will. I'll {GOAL}, and I'll say {NAME}'s name when I do.</li>
-        <li>Walls fall down. Roofs cave in. A mountain stays. I'm going to dig us a home inside one, a rock at a time.</li>
+        <li>[inherited] {NAME} started a tunnel into the hillside and got about ten paces in. I'll {GOAL}, beginning where {NAME}'s pick stopped.</li>
+        <li>Walls fall down and roofs cave in, but this mountain has stood for ages. I'm going to dig us a home inside it.</li>
         <li>[trait:Undergrounder] I sleep better with stone over my head. I want all of us under the mountain, deep and dry. I'll dig it myself if I have to.</li>
-        <li>[work:Mining] Every swing of the pick, a little more room. I want this mountain hollowed out like a gourd before I'm done with it.</li>
+        <li>[work:Mining] Every swing of the pick makes more room. I want this mountain hollowed out like a gourd before I'm done with it.</li>
       </plain>
-      <cheerful><li>I'm going to dig a whole house into the mountain! With rooms! And a hallway! I've always wanted a hallway!</li></cheerful>
+      <cheerful><li>I'm going to dig a whole house into the mountain, with rooms and a hallway. I've always wanted a hallway!</li></cheerful>
       <gloomy><li>The sky out here has never done us any favors. I'm going to put a mountain between us and it.</li></gloomy>
     </chosen>
     <achieved>
       <plain>
-        <li>I walked from one end of what I dug to the other today. It took a while. There was a mountain here, and now there's a home.</li>
+        <li>I walked from one end of what I've dug to the other today, and it took a while.</li>
         <li>[trait:Undergrounder] Deep, quiet and ours. The mountain holds us like a pair of cupped hands now.</li>
       </plain>
       <blunt><li>Five hundred cuts of rock. My arms hurt. The mountain lost.</li></blunt>
@@ -78,7 +78,7 @@
     <who><passion>Medicine</passion></who>
     <chosen>
       <plain>
-        <li>[inherited] {NAME} never got the chance. So I will. I'll {GOAL}, and I'll say {NAME}'s name when I do.</li>
+        <li>[inherited] {NAME} had the steadiest hands in the colony. I'll {GOAL} with {NAME}'s knives, and try to keep mine as steady.</li>
         <li>Bandages are one thing. I want to be the one they trust to open someone up and put them back together. Twenty operations, done right.</li>
         <li>[tribal] The old healers worked with a sharp stone and a steady breath. I want to learn their art properly, twenty times over, until my hands stop shaking.</li>
       </plain>
@@ -88,7 +88,7 @@
     </chosen>
     <achieved>
       <plain>
-        <li>Twenty operations. I could find my way around the inside of a person with my eyes closed now. That's less romantic than it sounds.</li>
+        <li>Twenty operations. I could find my way around the inside of a person with my eyes closed now.</li>
       </plain>
       <warm><li>Twenty times someone lay down and trusted me. Twenty times, I tried to deserve it.</li></warm>
       <blunt><li>Twenty. My hands don't shake anymore. That was the point.</li></blunt>
@@ -107,13 +107,13 @@
     <who><anyTrait><li>Kind</li></anyTrait></who>
     <chosen>
       <plain>
-        <li>[sparked] Nobody should lie in the open like that. I'll see that ours are buried properly.</li>
-        <li>[inherited] {NAME} never got the chance. So I will. I'll {GOAL}, and I'll say {NAME}'s name when I do.</li>
-        <li>Raider or friend, nobody should be left out for the birds. I've started digging. I'll keep digging.</li>
+        <li>[sparked] No one should be left lying in the open like that. I'll see that ours are buried properly.</li>
+        <li>[inherited] {NAME} buried our dead with such care. I'll {GOAL}, with {NAME}'s old shovel.</li>
+        <li>Raider or friend, they shouldn't be left out for the birds. I've started digging.</li>
       </plain>
       <warm>
         <li>Everyone was somebody's child once. I'm going to make sure fifteen of them get a proper grave, even the ones who came here to kill us.</li>
-        <li>[winter] The ground's frozen hard and the dead keep coming. I'll break the ground anyway. Somebody has to, and it might as well be someone who cares.</li>
+        <li>[winter] The ground's frozen hard and the dead keep coming. I'll break it anyway.</li>
         <li>We'll all need a grave someday. I'd like to think someone will dig mine with care. So I'll start with theirs.</li>
       </warm>
     </chosen>
@@ -123,7 +123,7 @@
       </plain>
       <warm>
         <li>I said a few words over every one of them. I didn't know most of their names. I said the words anyway.</li>
-        <li>[afterraid] Fifteen graves now. The rim keeps making more dead than one person can bury. I'll keep going, gently.</li>
+        <li>[afterraid] Fifteen graves now, and the raids keep making more dead than one person can bury. I'll keep going.</li>
       </warm>
     </achieved>
   </ColonyCouncil.AspirationDef>
@@ -138,19 +138,19 @@
     <goal>keep the colony spotless</goal>
     <chosen>
       <plain>
-        <li>[inherited] {NAME} never got the chance. So I will. I'll {GOAL}, and I'll say {NAME}'s name when I do.</li>
-        <li>Blood, mud, vomit, ash. I've decided I'm going to win against all of it. Four hundred messes. I'm counting.</li>
+        <li>[inherited] {NAME} swept these floors every morning, and they've gone filthy since. I mean to {GOAL}.</li>
+        <li>Blood, mud, vomit, ash. I'm going to clean up four hundred messes, and I'm counting.</li>
         <li>[trait:Industrious] Idle hands make me itch. Filthy floors make me itch worse. Four hundred messes, and then I'll rest. Maybe.</li>
         <li>[afterraid] There's still blood on the floor from the last attack and everyone just walks around it. Not anymore. I'm cleaning this colony top to bottom, and keeping it that way.</li>
       </plain>
-      <blunt><li>This place is filthy and nobody else cares. Fine. I'll care for everyone.</li></blunt>
-      <cheerful><li>I'm going to make this place SPARKLE! Four hundred messes, gone! The floors won't know what hit them!</li></cheerful>
+      <blunt><li>This place is filthy and no one else seems to care. Fine. I'll do it.</li></blunt>
+      <cheerful><li>I'm going to make this place sparkle! Four hundred messes, gone.</li></cheerful>
     </chosen>
     <achieved>
       <plain>
-        <li>Four hundred messes. Someone ate off the kitchen floor today on a dare and nothing bad happened. That's my legacy.</li>
+        <li>Four hundred messes. Someone ate off the kitchen floor today on a dare and didn't get sick.</li>
       </plain>
-      <cheerful><li>Four hundred! I could see my face in the kitchen floor this morning! It was smiling!</li></cheerful>
+      <cheerful><li>Four hundred! I could see my face in the kitchen floor this morning.</li></cheerful>
       <gloomy><li>Four hundred messes cleaned. There's already another one by the door. There always will be.</li></gloomy>
     </achieved>
   </ColonyCouncil.AspirationDef>
@@ -166,17 +166,17 @@
     <who><passion>Intellectual</passion></who>
     <chosen>
       <plain>
-        <li>[inherited] {NAME} never got the chance. So I will. I'll {GOAL}, and I'll say {NAME}'s name when I do.</li>
+        <li>[inherited] {NAME} left a stack of notes I can barely follow. I'll work through every page and {GOAL}.</li>
         <li>Somewhere in all these notes there's an idea nobody's had yet. I'm going to find it if it takes me years.</li>
         <li>[tribal] The ancients knew things we've forgotten. I'm going to learn them back, one by one, until I find something they never knew.</li>
-        <li>[spacer] We have machines that think and engines that cross the stars, and still nobody understands half of what's out here. I want to change that, a little.</li>
+        <li>[spacer] We have machines that think and engines that cross the stars, and still no one understands half of what's out here. I'd like to understand some of it.</li>
       </plain>
-      <cheerful><li>I'm going to discover something! I don't know what yet! That's what makes it a discovery!</li></cheerful>
+      <cheerful><li>I'm going to discover something! I don't know what yet, which is the point.</li></cheerful>
       <cold><li>Our knowledge is a patchwork of half-remembered manuals. I intend to add something original to it.</li></cold>
     </chosen>
     <achieved>
       <plain>
-        <li>It clicked tonight. Months of notes, and suddenly they all pointed the same way. I ran outside and told the first person I saw. They didn't understand a word. I didn't care.</li>
+        <li>It clicked tonight. Months of notes, and suddenly they all pointed the same way. I ran outside and told the first person I saw, who didn't understand a word of it.</li>
       </plain>
       <warm><li>I made a discovery, and the whole colony will be safer for it. That's the part I'll remember.</li></warm>
       <cold><li>Breakthrough achieved. I've documented it thoroughly. It will outlast me.</li></cold>
@@ -194,12 +194,12 @@
     <who><canFight>true</canFight><passion>Shooting</passion></who>
     <chosen>
       <plain>
-        <li>[inherited] {NAME} never got the chance. So I will. I'll {GOAL}, and I'll say {NAME}'s name when I do.</li>
-        <li>Forty kills from the hunt. I want them telling stories about me at the fire long after I'm gone.</li>
+        <li>[inherited] {NAME} knew every game trail for a day's walk around here. I'll walk them all and {GOAL}.</li>
+        <li>Forty kills from the hunt. I'd like them still telling stories about me long after I'm gone.</li>
         <li>[tribal] My grandmother's grandmother brought down a thrumbo with a spear. I'm not asking for that. Forty good kills, and a story worth telling.</li>
         <li>[winter] Winter's long and the stores are thin. I'm going to keep the pot full. Forty kills, every one of them clean.</li>
       </plain>
-      <blunt><li>Meat doesn't walk into the freezer on its own. I'll bring it in. Forty kills.</li></blunt>
+      <blunt><li>Meat doesn't walk into the storeroom on its own. I'll bring in forty.</li></blunt>
       <cold><li>Tracking, patience, one shot. Repeated forty times. A reasonable discipline.</li></cold>
     </chosen>
     <achieved>
@@ -207,7 +207,7 @@
         <li>Forty. I could track a squirrel across bare rock now. The animals have started to know my smell.</li>
         <li>[trait:Kind] Forty kills, all of them quick. I thanked every one. It sounds silly written down.</li>
       </plain>
-      <blunt><li>Forty kills. Meat in the freezer, hides on the racks. Ask me about any one of them.</li></blunt>
+      <blunt><li>Forty kills. Meat in the storeroom, hides on the racks. Ask me about any one of them.</li></blunt>
     </achieved>
   </ColonyCouncil.AspirationDef>
 
@@ -222,13 +222,13 @@
     <who><notTrait><li>Pyromaniac</li></notTrait></who>
     <chosen>
       <plain>
-        <li>[inherited] {NAME} never got the chance. So I will. I'll {GOAL}, and I'll say {NAME}'s name when I do.</li>
-        <li>Everything here burns. Wood, crops, people. I'm going to be the one who runs toward it. Thirty fires, and then I'll stop counting.</li>
+        <li>[inherited] {NAME} was always first to run toward the smoke. Now that's my job. I'll {GOAL}.</li>
+        <li>Everything here burns sooner or later. I'm going to be the one who runs toward it.</li>
         <li>[summer] The grass is dry and the lightning's close. Fires are coming. I want to be the one standing in front of them.</li>
       </plain>
       <blunt><li>Somebody has to stand in the smoke with a beater. Might as well be someone who's decided to be good at it.</li></blunt>
-      <cheerful><li>I'm going to be the colony's official fire-stopper! Unofficially! Until somebody makes it official!</li></cheerful>
-      <gloomy><li>I watched a whole house burn once, with people still inside. Never again. Not here.</li></gloomy>
+      <cheerful><li>I'm going to be the colony's official fire-stopper! Well, unofficial, until someone makes it official.</li></cheerful>
+      <gloomy><li>I watched a whole house burn once, with people still inside. I won't watch that here.</li></gloomy>
     </chosen>
     <achieved>
       <plain>
@@ -254,7 +254,7 @@
     <who><canFight>true</canFight><anyTrait><li>Bloodlust</li><li>Tough</li></anyTrait></who>
     <chosen>
       <plain>
-        <li>[inherited] {NAME} never got the chance. So I will. I'll {GOAL}, and I'll say {NAME}'s name when I do.</li>
+        <li>[inherited] {NAME} could hit a hare at the far end of the field. I'll practice every day until I {GOAL} too.</li>
         <li>Raiders don't wait for you to steady your hands. I'm going to practice until mine don't need steadying.</li>
         <li>[trait:Bloodlust] I love the moment right before the shot. I want to get so good at {SKILL} that it's the only moment there is.</li>
         <li>[tribal] The best hunters in the old stories could split a reed at a hundred paces. I'll settle for ninety.</li>
@@ -265,7 +265,7 @@
     <achieved>
       <plain>
         <li>I put three shots through the same hole today. Nobody believed me, so I did it again.</li>
-        <li>[trait:Bloodlust] I'm the best shot here now. Let them come. I mean it. Please, let them come.</li>
+        <li>[trait:Bloodlust] I'm the best shot here now. Let them come. I mean it.</li>
       </plain>
       <blunt><li>Crack shot. The next raiders will find out the hard way.</li></blunt>
     </achieved>
@@ -284,19 +284,19 @@
     <who><passion>Social</passion></who>
     <chosen>
       <plain>
-        <li>[inherited] {NAME} never got the chance. So I will. I'll {GOAL}, and I'll say {NAME}'s name when I do.</li>
+        <li>[inherited] When {NAME} spoke at meetings, people put their spoons down to listen. I want to {GOAL} like that.</li>
         <li>When I talk at meetings, people's eyes drift. I want to learn to hold a room, so the right ideas win.</li>
       </plain>
       <warm><li>Words can stop fights and start friendships. I want to be good enough with them to do both on purpose.</li></warm>
       <blunt><li>Apparently I "come across badly." Fine. I'll learn to come across however I like. Then we'll see.</li></blunt>
-      <cheerful><li>I'm going to be the most charming person on the rim! I've been practicing my smile in the water barrel!</li></cheerful>
+      <cheerful><li>I'm going to be the most charming person on the Rim! I've been practicing my smile in the water barrel.</li></cheerful>
       <cold><li>Persuasion is leverage without force. I intend to learn how to apply it.</li></cold>
     </chosen>
     <achieved>
       <plain>
-        <li>I spoke at dinner and the whole room went quiet to listen. Not because they had to. Because they wanted to.</li>
+        <li>I spoke at dinner tonight, and the room went quiet to listen without anyone asking for quiet.</li>
       </plain>
-      <cheerful><li>People ask my opinion now! On purpose! I've had to start having more opinions to keep up!</li></cheerful>
+      <cheerful><li>People ask my opinion now, on purpose! I've had to start having more opinions.</li></cheerful>
       <cold><li>They listen when I speak. It took years. It was worth the investment.</li></cold>
     </achieved>
   </ColonyCouncil.AspirationDef>
@@ -313,20 +313,20 @@
     <who><anyTrait><li>TooSmart</li></anyTrait></who>
     <chosen>
       <plain>
-        <li>[inherited] {NAME} never got the chance. So I will. I'll {GOAL}, and I'll say {NAME}'s name when I do.</li>
+        <li>[inherited] {NAME}'s books are still stacked by the bed. I'm going to read every one of them and {GOAL}.</li>
         <li>Everyone here thinks I'm clever. I want to actually be as clever as I act. That's going to take some work.</li>
         <li>[night] Can't sleep. Too many questions. I've decided to stop fighting it and start answering them, properly, one at a time.</li>
       </plain>
       <blunt><li>Most people stop learning once they know enough to get by. I'm not most people.</li></blunt>
       <gloomy><li>The more I learn, the more I see how little anyone knows. I want to know all of it anyway, even if it doesn't help.</li></gloomy>
-      <cold><li>I've read everything in the colony twice. It's not enough. Time to know the things nobody here has thought to wonder about.</li></cold>
+      <cold><li>I've read everything in the colony twice, and it isn't enough.</li></cold>
     </chosen>
     <achieved>
       <plain>
         <li>I caught myself explaining something today that I didn't know a year ago, and explaining it well. I think I'm a scholar now.</li>
       </plain>
-      <cheerful><li>I know SO MANY THINGS now. Ask me anything. Please. Somebody. Anything at all.</li></cheerful>
-      <cold><li>My understanding is now thorough. It is still incomplete. It will always be incomplete. That's the interesting part.</li></cold>
+      <cheerful><li>I know so many things now! Please, somebody ask me something.</li></cheerful>
+      <cold><li>My understanding is thorough now, and still incomplete. It will stay incomplete.</li></cold>
     </achieved>
   </ColonyCouncil.AspirationDef>
 
@@ -342,13 +342,13 @@
     <who><passion>Artistic</passion></who>
     <chosen>
       <plain>
-        <li>[inherited] {NAME} never got the chance. So I will. I'll {GOAL}, and I'll say {NAME}'s name when I do.</li>
-        <li>We survive out here. I want us to do more than survive. I want to make something beautiful enough that strangers stop to look.</li>
+        <li>[inherited] {NAME} left a sculpture half finished in the workshop. I won't touch it, but I'll {GOAL} in {NAME}'s memory.</li>
+        <li>I want to make something beautiful enough that strangers stop to look at it.</li>
         <li>[lowmood] Making things is the only time my head goes quiet. I want to get good enough that it stays quiet longer.</li>
       </plain>
-      <warm><li>One day someone will walk past a piece of mine and feel a little better. I want to get that good.</li></warm>
-      <cheerful><li>I'm going to be a GREAT artist! Right now I'm a medium artist! The plan is very simple!</li></cheerful>
-      <gloomy><li>Everything here is mud and blood and walls. I want to leave one beautiful thing behind before the rim takes me.</li></gloomy>
+      <warm><li>One day someone will walk past a piece of mine and feel better for it. I want to get that good.</li></warm>
+      <cheerful><li>I'm going to be a great artist! Right now I'm a medium one, so there's work to do.</li></cheerful>
+      <gloomy><li>Everything here is mud and blood and walls. I want to leave one beautiful thing behind before this place takes me.</li></gloomy>
     </chosen>
     <achieved>
       <plain>
@@ -372,9 +372,9 @@
     <who><canFight>true</canFight><notTrait><li>Wimp</li></notTrait></who>
     <chosen>
       <plain>
-        <li>[inherited] {NAME} never got the chance. So I will. I'll {GOAL}, and I'll say {NAME}'s name when I do.</li>
+        <li>[inherited] {NAME} always knew where to put people when the alarm went. I'll {GOAL} and keep {NAME}'s plans.</li>
         <li>When the alarm goes, people look around for someone to tell them what to do. I want it to be me they look at.</li>
-        <li>[afterraid] That raid was chaos. Nobody in charge, everyone shouting. Next time I want to be marshal, and I want there to be a plan.</li>
+        <li>[afterraid] That raid was chaos, with no one in charge and everyone shouting. Next time I want to be marshal, and I want there to be a plan.</li>
       </plain>
       <blunt><li>I'd make a good marshal. Better than some. I'll say that to anyone's face.</li></blunt>
       <cold><li>Defense requires one mind directing many hands. I'll be that mind.</li></cold>
@@ -399,7 +399,7 @@
     <who><passion>Medicine</passion></who>
     <chosen>
       <plain>
-        <li>[inherited] {NAME} never got the chance. So I will. I'll {GOAL}, and I'll say {NAME}'s name when I do.</li>
+        <li>[inherited] {NAME} kept the infirmary going on almost nothing. I'm going to {GOAL} and keep it going.</li>
         <li>I want the keys to the infirmary. Not for the title. Because I know how to run it, and somebody should.</li>
         <li>[hurt] Lying in that bed gave me a lot of time to think about how I'd run the infirmary. Better than this. I'm going to be physician.</li>
       </plain>
@@ -408,7 +408,7 @@
     </chosen>
     <achieved>
       <plain>
-        <li>They made me physician. The first thing I did was reorganize the medicine shelf. The second thing I did was cry a little.</li>
+        <li>They made me physician. The first thing I did was reorganize the medicine shelf; the second was have a good cry.</li>
       </plain>
       <warm><li>Physician. Everyone who's sick here is my responsibility now. I wouldn't have it any other way.</li></warm>
       <blunt><li>Physician. Good. Nobody gets to argue with my splints anymore.</li></blunt>
@@ -426,7 +426,7 @@
     <who><anyTrait><li>Kind</li><li>Ascetic</li></anyTrait></who>
     <chosen>
       <plain>
-        <li>[inherited] {NAME} never got the chance. So I will. I'll {GOAL}, and I'll say {NAME}'s name when I do.</li>
+        <li>[inherited] On the bad days, {NAME} was the one who got us laughing again. I'll {GOAL} and try to do the same.</li>
         <li>Somebody needs to remember birthdays and plan the feasts. I want to be the one who keeps this colony's spirits up.</li>
         <li>[trait:Ascetic] People here want too much and end up disappointed too often. I'd teach them to enjoy what we have. Steward suits me.</li>
       </plain>
@@ -454,11 +454,11 @@
     <sparks><li>thought:Council_LostElection</li></sparks>
     <chosen>
       <plain>
-        <li>[inherited] {NAME} never got the chance. So I will. I'll {GOAL}, and I'll say {NAME}'s name when I do.</li>
+        <li>[inherited] {NAME} kept the stores better than anyone, and they've been a mess since. I'll {GOAL} and set them right.</li>
         <li>I know exactly what's in every stockpile, down to the last nail. It's about time someone gave me the keys.</li>
         <li>[trait:Greedy] Quartermaster. Imagine it. All the silver in the colony, counted by me, every evening. Just counted. Mostly.</li>
       </plain>
-      <cheerful><li>I want to be quartermaster! I love lists! I love counting! I love a well-stacked shelf!</li></cheerful>
+      <cheerful><li>I want to be quartermaster! I love lists and counting and a well-stacked shelf.</li></cheerful>
       <cold><li>Our stores are mismanaged. I could run them at a profit within a season. Quartermaster is the obvious seat.</li></cold>
     </chosen>
     <achieved>
@@ -483,20 +483,20 @@
     <who><notTrait><li>Psychopath</li></notTrait></who>
     <chosen>
       <plain>
-        <li>[inherited] {NAME} never got the chance. So I will. I'll {GOAL}, and I'll say {NAME}'s name when I do.</li>
+        <li>[inherited] There wasn't room for all the mourners at {NAME}'s grave. I'd like to be loved like that, so I'm going to {GOAL}.</li>
         <li>I have friends here. I want more. I want a table so full that somebody has to sit on a crate.</li>
         <li>[newcomer] I barely know anyone's name yet. By the time I'm done here, I want five of them to be friends.</li>
       </plain>
-      <warm><li>Every friend I've made here has made the rim a little smaller and warmer. I want five. I want a crowd.</li></warm>
-      <cheerful><li>Goal: five best friends! I've made a list of candidates! I'm not showing anyone the list!</li></cheerful>
-      <gloomy><li>When I die, I want five people standing at my grave who mean it. That's not too much to ask. Is it?</li></gloomy>
+      <warm><li>Every friend I've made here has made this place warmer. I'd like five.</li></warm>
+      <cheerful><li>Five best friends! I've made a list of candidates, and no, you can't see it.</li></cheerful>
+      <gloomy><li>When I die, I want five people standing at my grave who mean it.</li></gloomy>
     </chosen>
     <achieved>
       <plain>
-        <li>Five friends. Real ones. I had them all over for dinner, it got loud, and someone broke a chair. Perfect.</li>
+        <li>Five friends. Real ones. I had them all over for dinner, it got loud, and someone broke a chair.</li>
       </plain>
       <warm><li>Five people who'd come looking for me in a storm. I'm the luckiest person on this planet.</li></warm>
-      <cheerful><li>FIVE best friends! That's a whole hand! I counted on my fingers to be sure!</li></cheerful>
+      <cheerful><li>Five best friends, a whole hand of them! I counted on my fingers to be sure.</li></cheerful>
     </achieved>
   </ColonyCouncil.AspirationDef>
 
@@ -510,11 +510,11 @@
     <sparks><li>downed</li><li>loss</li></sparks>
     <chosen>
       <plain>
-        <li>[inherited] {NAME} never got the chance. So I will. I'll {GOAL}, and I'll say {NAME}'s name when I do.</li>
+        <li>[inherited] {NAME} wanted to grow old here. I'm going to {GOAL}, and grow old for both of us.</li>
         <li>Five more years. I want to see this place grow up, and I want to be here for it.</li>
         <li>[old] My knees know every winter by name now. I'd like to meet five more of them. Then I'll think about resting.</li>
       </plain>
-      <cheerful><li>Five more years here! Think of all the harvests! All the birthdays! All the arguments about chores!</li></cheerful>
+      <cheerful><li>Five more years here! Think of all the harvests and birthdays, and the arguments about chores.</li></cheerful>
       <gloomy><li>[old] Everyone my age is in the ground already. I'm going to be stubborn about it. Five more years, at least.</li></gloomy>
       <cold><li>Life expectancy here is poor. I intend to be an outlier. Five years.</li></cold>
     </chosen>
@@ -523,7 +523,7 @@
         <li>Five more years. I remember the day I made the promise. I'm still here, and so is the colony.</li>
         <li>[old] Five more winters, and I'm still the first one up in the morning. The young ones can't believe it. Neither can I.</li>
       </plain>
-      <warm><li>Five years with these people. Every one of them was worth it. Even the bad ones. Especially the bad ones.</li></warm>
+      <warm><li>Five years with these people, and every one of them was worth it, even the bad ones.</li></warm>
     </achieved>
   </ColonyCouncil.AspirationDef>
 
@@ -537,7 +537,7 @@
     <sparks><li>birth</li></sparks>
     <chosen>
       <plain>
-        <li>[inherited] {NAME} never got the chance. So I will. I'll {GOAL}, and I'll say {NAME}'s name when I do.</li>
+        <li>[inherited] {NAME} called this place a town back when there were only a handful of us. I'll {GOAL} and make it true.</li>
         <li>I want a town. Not a camp, not a hideout. A town, with neighbors you don't like and gossip that travels.</li>
         <li>[small] There's only a handful of us. One bad raid and we're gone. I want this place to grow until nothing can wipe it out.</li>
       </plain>
@@ -546,9 +546,9 @@
     </chosen>
     <achieved>
       <plain>
-        <li>I stood at the edge of the fields at dusk and counted the lights. A town. We built a town.</li>
+        <li>I stood out past the fields at dusk and counted the lights. We built a town.</li>
       </plain>
-      <cheerful><li>We're a town now! I don't even know everyone's name! Isn't that wonderful?</li></cheerful>
+      <cheerful><li>We're a town now! I don't even know all the names yet.</li></cheerful>
       <gloomy><li>So many people now. So many more to lose. Still, I wouldn't change it.</li></gloomy>
     </achieved>
   </ColonyCouncil.AspirationDef>

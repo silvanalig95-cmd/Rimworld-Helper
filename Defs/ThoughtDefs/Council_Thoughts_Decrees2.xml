@@ -8,7 +8,7 @@
     <workerClass>ColonyCouncil.ThoughtWorker_Decree</workerClass>
     <thoughtClass>ColonyCouncil.Thought_Decree</thoughtClass>
     <stages>
-      <li><label>slaving in the fields</label><description>I'm bent over in the fields from dawn to dusk. My back is ruined.</description><baseMoodEffect>-10</baseMoodEffect></li>
+      <li><label>slaving in the fields</label><description>I'm bent over in the fields from dawn to dusk. I'm a person, not a plow.</description><baseMoodEffect>-10</baseMoodEffect></li>
       <li><label>harvest push</label><description>We're all out in the fields all day. My back aches.</description><baseMoodEffect>-5</baseMoodEffect></li>
       <li><label>good growing days</label><description>We're all out working the fields together. I like it.</description><baseMoodEffect>3</baseMoodEffect></li>
       <li><label>a great harvest</label><description>We're all in the fields, and the crops look good. This is my kind of work.</description><baseMoodEffect>6</baseMoodEffect></li>

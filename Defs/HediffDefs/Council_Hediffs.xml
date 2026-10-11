@@ -4,7 +4,7 @@
   <HediffDef>
     <defName>Council_Motivated</defName>
     <label>motivated</label>
-    <description>Got what they asked for and wants to prove it was worth it. Works a little faster for a few days.</description>
+    <description>This colonist got what they asked the council for and is eager to show it was worth it. They work faster for a few days.</description>
     <hediffClass>HediffWithComps</hediffClass>
     <defaultLabelColor>(0.55, 0.9, 0.55)</defaultLabelColor>
     <isBad>false</isBad>
@@ -37,7 +37,7 @@
   <HediffDef>
     <defName>Council_Disgruntled</defName>
     <label>disgruntled</label>
-    <description>Ignored once too often. Drags their feet and snaps more easily, for a while.</description>
+    <description>This colonist has been ignored by the council once too often. For a while they drag their feet at work and lose their temper more easily.</description>
     <hediffClass>HediffWithComps</hediffClass>
     <defaultLabelColor>(0.9, 0.6, 0.45)</defaultLabelColor>
     <isBad>true</isBad>
@@ -130,7 +130,7 @@
   <HediffDef>
     <defName>Council_Decree_LongHours</defName>
     <label>long hours (decree)</label>
-    <description>Working longer and harder by order of the council.</description>
+    <description>Working longer, harder days by order of the council, and tiring faster for it.</description>
     <hediffClass>HediffWithComps</hediffClass>
     <defaultLabelColor>(0.9, 0.75, 0.45)</defaultLabelColor>
     <isBad>false</isBad>
@@ -143,7 +143,7 @@
   <HediffDef>
     <defName>Council_Decree_Rationing</defName>
     <label>rationing (decree)</label>
-    <description>Eating smaller portions by order of the council.</description>
+    <description>Eating smaller portions by order of the council, so the food stores last longer.</description>
     <hediffClass>HediffWithComps</hediffClass>
     <defaultLabelColor>(0.9, 0.75, 0.45)</defaultLabelColor>
     <isBad>false</isBad>
@@ -182,7 +182,7 @@
   <HediffDef>
     <defName>Council_Decree_Festival</defName>
     <label>festival days (decree)</label>
-    <description>Taking it easy: the council has declared festival days.</description>
+    <description>Taking it easy during the festival days the council has declared.</description>
     <hediffClass>HediffWithComps</hediffClass>
     <defaultLabelColor>(0.6, 0.8, 0.95)</defaultLabelColor>
     <isBad>false</isBad>

@@ -25,7 +25,7 @@
     <label>the Defender</label>
     <record>KillsHumanlikes</record>
     <threshold>15</threshold>
-    <earned>{PAWN_nameDef} has put down more raiders than anyone. The colony calls {PAWN_objective} the Defender now, mostly with gratitude.</earned>
+    <earned>More raiders have fallen to {PAWN_nameDef} than to anyone else here. The colony calls {PAWN_objective} the Defender now, mostly with gratitude.</earned>
   </ColonyCouncil.EpithetDef>
 
   <ColonyCouncil.EpithetDef>
@@ -33,7 +33,7 @@
     <label>Deadeye</label>
     <record>Headshots</record>
     <threshold>8</threshold>
-    <earned>{PAWN_nameDef} keeps putting rounds exactly where the head is. The others have started calling {PAWN_objective} Deadeye.</earned>
+    <earned>{PAWN_nameDef} keeps putting shots right where the head is. The others have started calling {PAWN_objective} Deadeye.</earned>
   </ColonyCouncil.EpithetDef>
 
   <ColonyCouncil.EpithetDef>
@@ -41,7 +41,7 @@
     <label>the Hunter</label>
     <record>KillsAnimals</record>
     <threshold>25</threshold>
-    <earned>{PAWN_nameDef} has brought down more game than anyone. Everyone knows {PAWN_objective} as the Hunter now.</earned>
+    <earned>No one here has brought down more game than {PAWN_nameDef}. They call {PAWN_objective} the Hunter now.</earned>
   </ColonyCouncil.EpithetDef>
 
   <ColonyCouncil.EpithetDef>
@@ -57,7 +57,7 @@
     <label>the Builder</label>
     <record>ThingsConstructed</record>
     <threshold>150</threshold>
-    <earned>Half the colony's walls went up under {PAWN_nameDef}'s hands. Everyone calls {PAWN_objective} the Builder.</earned>
+    <earned>Most of the walls around here went up under {PAWN_nameDef}'s hands. People call {PAWN_objective} the Builder.</earned>
   </ColonyCouncil.EpithetDef>
 
   <ColonyCouncil.EpithetDef>
@@ -73,7 +73,7 @@
     <label>Greenhand</label>
     <record>PlantsHarvested</record>
     <threshold>400</threshold>
-    <earned>{PAWN_nameDef} has brought in more harvests than anyone. The colony calls {PAWN_objective} Greenhand.</earned>
+    <earned>{PAWN_nameDef} has brought in more harvests than anyone, and there's always dirt under {PAWN_possessive} nails. The colony calls {PAWN_objective} Greenhand.</earned>
   </ColonyCouncil.EpithetDef>
 
   <ColonyCouncil.EpithetDef>
@@ -81,7 +81,7 @@
     <label>the Cook</label>
     <record>MealsCooked</record>
     <threshold>300</threshold>
-    <earned>{PAWN_nameDef} has cooked more meals than anyone. Whatever else happens, {PAWN_pronoun} is the Cook.</earned>
+    <earned>Most of what the colony eats comes out of {PAWN_nameDef}'s pots. Everyone calls {PAWN_objective} the Cook.</earned>
   </ColonyCouncil.EpithetDef>
 
   <ColonyCouncil.EpithetDef>
@@ -97,7 +97,7 @@
     <label>Silver-Tongue</label>
     <record>PrisonersRecruited</record>
     <threshold>3</threshold>
-    <earned>{PAWN_nameDef} has talked more prisoners into joining than anyone. They call {PAWN_objective} Silver-Tongue.</earned>
+    <earned>{PAWN_nameDef} can talk a prisoner into almost anything, even joining up. They call {PAWN_objective} Silver-Tongue.</earned>
   </ColonyCouncil.EpithetDef>
 
   <ColonyCouncil.EpithetDef>
@@ -121,7 +121,7 @@
     <label>the Maker</label>
     <record>ThingsCrafted</record>
     <threshold>60</threshold>
-    <earned>Half the things in the colony were made by {PAWN_nameDef}. People call {PAWN_objective} the Maker.</earned>
+    <earned>Pick up any chair or tool in the colony and odds are {PAWN_nameDef} made it. People call {PAWN_objective} the Maker.</earned>
   </ColonyCouncil.EpithetDef>
 
   <ColonyCouncil.EpithetDef>
@@ -129,7 +129,7 @@
     <label>the Butcher</label>
     <record>AnimalsSlaughtered</record>
     <threshold>20</threshold>
-    <earned>{PAWN_nameDef} has slaughtered more animals than anyone. The children have started calling {PAWN_objective} the Butcher. The adults have too.</earned>
+    <earned>{PAWN_nameDef} has slaughtered more animals than anyone. The children started calling {PAWN_objective} the Butcher, and now the adults do too.</earned>
   </ColonyCouncil.EpithetDef>
 
   <ColonyCouncil.EpithetDef>
@@ -164,7 +164,7 @@
     <label>Smokewalker</label>
     <record>FiresExtinguished</record>
     <threshold>30</threshold>
-    <earned>{PAWN_nameDef} has beaten out more fires than anyone. They call {PAWN_objective} Smokewalker.</earned>
+    <earned>Whenever something catches fire, {PAWN_nameDef} is the first one there beating it out. They call {PAWN_objective} Smokewalker.</earned>
   </ColonyCouncil.EpithetDef>
 
   <ColonyCouncil.EpithetDef>
@@ -173,7 +173,7 @@
     <record>TimesOnFire</record>
     <threshold>3</threshold>
     <dubious>true</dubious>
-    <earned>{PAWN_nameDef} has caught fire more often than anyone should. The colony calls {PAWN_objective} the Kindling now. Nobody stands too close.</earned>
+    <earned>{PAWN_nameDef} has caught fire more often than anyone should. The colony calls {PAWN_objective} the Kindling now, and keeps a bucket of water handy.</earned>
   </ColonyCouncil.EpithetDef>
 
   <ColonyCouncil.EpithetDef>
@@ -191,7 +191,7 @@
     <record>TimesInMentalState</record>
     <threshold>6</threshold>
     <dubious>true</dubious>
-    <earned>{PAWN_nameDef} has snapped more often than anyone. Quietly, so {PAWN_pronoun} won't hear, the colony calls {PAWN_objective} the Storm.</earned>
+    <earned>{PAWN_nameDef} has snapped more often than anyone. Behind {PAWN_possessive} back, the colony calls {PAWN_objective} the Storm.</earned>
   </ColonyCouncil.EpithetDef>
 
   <ColonyCouncil.EpithetDef>
@@ -209,7 +209,7 @@
     <record>ShotsFired</record>
     <threshold>3000</threshold>
     <dubious>true</dubious>
-    <earned>{PAWN_nameDef} has fired more rounds than anyone, hit or miss. Mostly miss. They call {PAWN_objective} Trigger-Happy.</earned>
+    <earned>{PAWN_nameDef} has fired more shots than anyone, and missed with most of them. They call {PAWN_objective} Trigger-Happy.</earned>
   </ColonyCouncil.EpithetDef>
 
 </Defs>

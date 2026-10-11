@@ -19,7 +19,7 @@
         <li>Nothing big. Just {THING}, so the room stops feeling borrowed.</li>
         <li>There's been an empty corner in my room for weeks. I've marked it out for {THING}.</li>
         <li>[touch:plantpot] My room smells like boots and old sweat. A plant might help.</li>
-        <li>[touch:light] I find my bed every night by memory and bruised shins. I'd like a light.</li>
+        <li>[touch:light] Every night I find my bed by memory and bruised shins. I'd like a light.</li>
         <li>[touch:endtable] I keep putting my things on the floor and then stepping on them. I've marked a spot by the bed.</li>
         <li>[touch:dresser] Everything I own lives in a heap at the foot of my bed. I've planned {THING} for it.</li>
         <li>[skill:Plants,touch:plantpot] I grow food for everyone all day. This one's just for me.</li>
@@ -103,7 +103,7 @@
       <blunt>
         <li>It's in, it's mine, and it stays where it is.</li>
         <li>About time, and it's not even crooked.</li>
-        <li>[touch:light] I have a light, finally.</li>
+        <li>[touch:light] Finally a light, and now I can see how dusty everything is.</li>
         <li>[touch:endtable] Good, my things have somewhere to go besides the floor.</li>
       </blunt>
       <cheerful>

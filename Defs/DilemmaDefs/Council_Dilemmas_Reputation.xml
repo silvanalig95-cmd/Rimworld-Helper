@@ -215,7 +215,7 @@
       </li>
       <li>
         <label>Pardon {X_objective}</label>
-        <outcome>The council pardoned {X_nameDef} and untied {X_possessive} hands. The {FACTION} leader spat in the dirt and walked off. Before the caravan left, {X_nameDef} came back to the gate to say thank you, twice.</outcome>
+        <outcome>The council pardoned {X_nameDef} and untied {X_possessive} hands. The {FACTION} leader spat in the dirt and walked off. Before the caravan left, {X_nameDef} came back to the gate to thank the council.</outcome>
         <ways><mercy>6</mercy></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Goodwill"><amount>-3</amount></li>
@@ -507,7 +507,7 @@
       </li>
       <li>
         <label>Ask the {FACTION} visitors to move on</label>
-        <outcome>The council thanked the {FACTION} party for its visit and asked them to be on their way by noon. {X_nameDef} complained all the way to the gate, and {A_nameDef} has {A_possessive} bed back.</outcome>
+        <outcome>The council thanked the {FACTION} party for its visit and asked them to be on their way by noon. {X_nameDef} complained all the way to the gate, and {A_nameDef} changed the sheets.</outcome>
         <ways><openness>-6</openness></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_SendAway" />
@@ -543,7 +543,7 @@
     <options>
       <li>
         <label>Open the gate for {X_objective}</label>
-        <outcome>The gate opened for {X_nameDef}, who ate at the colony's table next to {A_nameDef}. The two of them talked late into the night about people and places from before.</outcome>
+        <outcome>The gate opened for {X_nameDef}, who ate at the colony's table next to {A_nameDef} and talked late into the night about people from before. In the morning the watch checked the storeroom twice. Nothing was missing.</outcome>
         <ways><openness>6</openness></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_DlmR_FriendLetIn</thought></li>
@@ -607,7 +607,7 @@
       </li>
       <li>
         <label>A day of rest for everyone</label>
-        <outcome>The council declared a day of rest for the whole colony. People wandered about in the morning, unsure what to do with themselves. By afternoon most of them were lying in the grass, and the hardest workers were already restless.</outcome>
+        <outcome>The council declared a day of rest for the whole colony. People wandered about in the morning, unsure what to do with themselves. By afternoon they were lying in the grass, arguing about the shapes of clouds.</outcome>
         <ways><toil>-10</toil></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_DlmR_RestDay</thought></li>
@@ -643,7 +643,7 @@
       <bestAt>Plants</bestAt>
     </roleA>
     <texts>
-      <li>This colony is known for taking its time, and most people here are happy to live up to it. {A_nameDef} has been bringing in the crops more or less alone while the others nap in the shade, and today threw a sickle down in the middle of the yard.\n\n"I'm not carrying all of you through another winter," {A_nameDef} told the council.</li>
+      <li>This colony is known for taking its time, and most people here are happy to live up to it. {A_nameDef} has been bringing in the crops more or less alone while the others nap in the shade, and today threw a sickle down in the middle of the yard.\n\n"I'm not carrying all of you through another winter," {A_nameDef} told the council. Several people looked up from their naps to listen.</li>
       <li>Visitors envy the colony's easy pace. {A_nameDef} has stopped finding it charming. The fields are {A_nameDef}'s, most of the hauling is {A_nameDef}'s, and this morning {A_nameDef} found the woodpile empty and three colonists asleep against it.\n\n{A_nameDef} wants the council to make everyone pull their weight, or at least to say out loud who's been pulling it.</li>
       <li>{A_nameDef} counted. Of everything sown and brought in this season, most went through {A_nameDef}'s hands, and the colony's long lunches got longer the whole time.\n\n"I don't mind work," {A_nameDef} told the council. "I mind being the only one doing it."</li>
     </texts>

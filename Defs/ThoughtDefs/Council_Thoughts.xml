@@ -69,7 +69,7 @@
     <stages>
       <li>
         <label>my idea worked out</label>
-        <description>I told the council what we should aim for, and we actually did it. I'm proud of that.</description>
+        <description>I told the council what we should aim for, and we actually did it. I'll be insufferable about this for weeks.</description>
         <baseMoodEffect>10</baseMoodEffect>
       </li>
     </stages>
@@ -270,7 +270,7 @@
     <stages>
       <li>
         <label>a room of my own at last</label>
-        <description>I finally have a room to myself, with a door I can close.</description>
+        <description>A room of my own, with a door that shuts. The only snoring in there is mine.</description>
         <baseMoodEffect>6</baseMoodEffect>
       </li>
     </stages>
@@ -378,7 +378,7 @@
     <stages>
       <li>
         <label>something green</label>
-        <description>There's a potted plant in my room now. I water it every morning.</description>
+        <description>There's a potted plant in my room now. I talk to it when no one's listening.</description>
         <baseMoodEffect>3</baseMoodEffect>
       </li>
     </stages>
@@ -462,7 +462,7 @@
     <stages>
       <li>
         <label>nothing will rot</label>
-        <description>We have cold storage now. The food won't rot before we get to eat it.</description>
+        <description>We have cold storage now. No more watching good meat turn green.</description>
         <baseMoodEffect>3</baseMoodEffect>
       </li>
     </stages>
@@ -570,7 +570,7 @@
     <stages>
       <li>
         <label>a birthday to remember</label>
-        <description>They made a fuss over my birthday. I didn't expect that.</description>
+        <description>They made a fuss over my birthday, with a song and a second helping at dinner.</description>
         <baseMoodEffect>6</baseMoodEffect>
       </li>
     </stages>
@@ -642,7 +642,7 @@
     <stages>
       <li>
         <label>music in the evenings</label>
-        <description>We have music in the evenings now. I look forward to it all day.</description>
+        <description>We have music in the evenings now. I catch myself humming the tunes at work.</description>
         <baseMoodEffect>4</baseMoodEffect>
       </li>
     </stages>

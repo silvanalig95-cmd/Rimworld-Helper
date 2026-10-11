@@ -23,20 +23,20 @@
         <li>r_logentry->[INITIATOR_nameDef] complained to [RECIPIENT_nameDef] about [gripe].</li>
         <li>r_logentry->[INITIATOR_nameDef] described to [RECIPIENT_nameDef] exactly how [INITIATOR_pronoun] would arrange [INITIATOR_possessive] ideal room, down to [detail].</li>
         <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] whether [RECIPIENT_pronoun] also lay awake because of [gripe].</li>
-        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] traded stories about the worst places they have ever slept, and agreed [INITIATOR_possessive] current bed was in the running.</li>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] traded stories about the worst places they have ever slept, and agreed that [INITIATOR_possessive] current bed was near the top of the list.</li>
         <li>r_logentry->[INITIATOR_nameDef] pointed at an empty patch of ground and told [RECIPIENT_nameDef] that [INITIATOR_possessive] room would go right there, [someday].</li>
         <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] that [INITIATOR_pronoun] had started dreaming about doors.</li>
         <li>dream->a room with a door that actually closes</li>
         <li>dream->a bedroom that feels like home</li>
         <li>dream->waking up somewhere that isn't cramped and ugly</li>
-        <li>dream->a room with a window and nobody else's boots in it</li>
-        <li>dream->four walls and a little peace and quiet</li>
+        <li>dream->a room with a window and no one else's boots in it</li>
+        <li>dream->four walls and some peace and quiet</li>
         <li>gripe->sleeping in the barracks</li>
         <li>gripe->the state of [INITIATOR_possessive] bedroom</li>
         <li>gripe->how bare [INITIATOR_possessive] room is</li>
         <li>gripe->the snoring that echoes through the night</li>
         <li>gripe->someone's elbow in the dark</li>
-        <li>gripe->a room that smells like everyone's socks</li>
+        <li>gripe->a room that smells of other people's socks</li>
         <li>detail->where the dresser would stand</li>
         <li>detail->which side of the bed faces the door</li>
         <li>detail->the exact plant that would sit in the corner</li>
@@ -64,10 +64,10 @@
         <li>ask->a bit of privacy for two</li>
         <li>confession->misses falling asleep next to [INITIATOR_possessive] partner</li>
         <li>confession->already has the wedding speech written</li>
-        <li>confession->can't imagine growing old anywhere else, if [INITIATOR_pronoun] gets to grow old at all</li>
-        <li>reaction->found an urgent reason to leave</li>
+        <li>confession->has kept a dried flower from the day [INITIATOR_pronoun] first met [INITIATOR_possessive] partner</li>
+        <li>reaction->found a reason to get back to work</li>
         <li>reaction->smiled despite [RECIPIENT_objective]self</li>
-        <li>reaction->begged for mercy</li>
+        <li>reaction->changed the subject</li>
       </rulesStrings>
     </logRulesInitiator>
   </InteractionDef>
@@ -79,17 +79,17 @@
       <rulesStrings>
         <li>r_logentry->[INITIATOR_nameDef] grumbled to [RECIPIENT_nameDef] about [gripe].</li>
         <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] agreed that [gripe] is no way to live.</li>
-        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] that [gripe] was the last straw, then listed several more straws.</li>
+        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] that [gripe] was the last straw.</li>
         <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] to back [INITIATOR_objective] up next time [INITIATOR_pronoun] raised [gripe] with the council.</li>
-        <li>r_logentry->[INITIATOR_nameDef] tried to laugh off [gripe] with [RECIPIENT_nameDef]. It didn't quite work.</li>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] tried to make a joke of [gripe], without much success.</li>
         <li>gripe->eating meals off [INITIATOR_possessive] knees</li>
         <li>gripe->freezing half to death every night</li>
         <li>gripe->sweating through [INITIATOR_possessive] bedding every night</li>
-        <li>gripe->wearing rags held together by hope</li>
+        <li>gripe->wearing rags held together with string</li>
         <li>gripe->the clothes [INITIATOR_pronoun] pulled off a dead raider</li>
         <li>gripe->the wind whistling through the walls</li>
-        <li>gripe->a colony where nobody can find a chair</li>
-        <li>gripe->getting by with less than a muffalo has</li>
+        <li>gripe->a colony with no chairs to sit on</li>
+        <li>gripe->sleeping on the bare ground</li>
       </rulesStrings>
     </logRulesInitiator>
   </InteractionDef>
@@ -102,9 +102,9 @@
         <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] that if [INITIATOR_pronoun] has to watch one more cloud, [INITIATOR_pronoun] will scream.</li>
         <li>r_logentry->[INITIATOR_nameDef] daydreamed aloud to [RECIPIENT_nameDef] about [fun].</li>
         <li>r_logentry->[INITIATOR_nameDef] tried to convince [RECIPIENT_nameDef] that the colony needs [fun].</li>
-        <li>r_logentry->[INITIATOR_nameDef] invented a game with two rocks and a stick and tried to teach it to [RECIPIENT_nameDef]. It was not a good game.</li>
+        <li>r_logentry->[INITIATOR_nameDef] invented a game with two rocks and a stick and spent the afternoon teaching it to [RECIPIENT_nameDef].</li>
         <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] agreed that [fun] would make the evenings bearable.</li>
-        <li>r_logentry->[INITIATOR_nameDef] admitted to [RECIPIENT_nameDef] that [INITIATOR_pronoun] has counted every crack in the ceiling. Twice.</li>
+        <li>r_logentry->[INITIATOR_nameDef] admitted to [RECIPIENT_nameDef] that [INITIATOR_pronoun] has counted the cracks in the ceiling, and there are forty-one.</li>
         <li>fun->a game of chess by the fire</li>
         <li>fun->a cold mug of beer after a long day</li>
         <li>fun->a beautiful sculpture to look at over dinner</li>
@@ -123,18 +123,18 @@
       <rulesStrings>
         <li>r_logentry->[INITIATOR_nameDef] described [food] to [RECIPIENT_nameDef] in loving detail.</li>
         <li>r_logentry->[INITIATOR_nameDef] complained to [RECIPIENT_nameDef] about [gripe].</li>
-        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] ranked every meal they've eaten on the Rim. The list was short and mostly sad.</li>
-        <li>r_logentry->[INITIATOR_nameDef] made [RECIPIENT_nameDef] promise to remember [INITIATOR_possessive] birthday, and [food].</li>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] spent supper remembering the best meals they had ever eaten.</li>
+        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] that all [INITIATOR_pronoun] wanted for [INITIATOR_possessive] birthday was [food].</li>
         <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] that [gripe] was a crime against cooking.</li>
         <li>food->a proper hot meal</li>
         <li>food->a meal with actual seasoning</li>
-        <li>food->a stew so good it makes you forget the raiders</li>
+        <li>food->a stew with real meat in it</li>
         <li>food->a feast with everyone at one table</li>
-        <li>food->fresh bread, if anyone remembers how</li>
-        <li>gripe->eating raw berries like a squirrel</li>
+        <li>food->fresh bread, still warm from the oven</li>
+        <li>gripe->eating berries raw off the bush</li>
         <li>gripe->watching the harvest rot</li>
         <li>gripe->the smell coming from the food stockpile</li>
-        <li>gripe->another bowl of paste</li>
+        <li>gripe->the same plain meal, day after day</li>
         <li>gripe->last night's mystery meat</li>
       </rulesStrings>
     </logRulesInitiator>
@@ -150,7 +150,7 @@
         <li>r_logentry->[INITIATOR_nameDef] sketched plans for a workspace in the dirt for [RECIPIENT_nameDef].</li>
         <li>r_logentry->[INITIATOR_nameDef] admitted to [RECIPIENT_nameDef] that [INITIATOR_pronoun] misses doing the work [INITIATOR_pronoun] is good at.</li>
         <li>r_logentry->[INITIATOR_nameDef] showed [RECIPIENT_nameDef] [INITIATOR_possessive] calloused hands and said they were made for better work than this.</li>
-        <li>r_logentry->[INITIATOR_nameDef] explained [INITIATOR_possessive] craft to [RECIPIENT_nameDef] for a very long time. [RECIPIENT_nameDef] nodded a lot.</li>
+        <li>r_logentry->[INITIATOR_nameDef] explained [INITIATOR_possessive] craft to [RECIPIENT_nameDef] at great length, with examples.</li>
       </rulesStrings>
     </logRulesInitiator>
   </InteractionDef>
@@ -160,12 +160,12 @@
     <label>talked about someone who died</label>
     <logRulesInitiator>
       <rulesStrings>
-        <li>r_logentry->[INITIATOR_nameDef] quietly told [RECIPIENT_nameDef] that the dead deserve a proper grave.</li>
+        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] that the dead deserve a proper grave.</li>
         <li>r_logentry->[INITIATOR_nameDef] shared a memory of a lost friend with [RECIPIENT_nameDef].</li>
         <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] to help bury someone who still lies out in the open.</li>
         <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] sat together for a while without saying much.</li>
         <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] [memory].</li>
-        <li>memory->a story about the dead that made both of them laugh, then stop laughing</li>
+        <li>memory->a story about the dead that made them both laugh</li>
         <li>memory->that [INITIATOR_pronoun] still sets out one bowl too many some evenings</li>
         <li>memory->what the dead had wanted to build here, someday</li>
       </rulesStrings>
@@ -209,12 +209,12 @@
         <li>r_logentry->[INITIATOR_nameDef] walked [RECIPIENT_nameDef] along the perimeter, pointing out every weak spot.</li>
         <li>r_logentry->[INITIATOR_nameDef] argued with [RECIPIENT_nameDef] about how to hold off the next raid.</li>
         <li>r_logentry->[INITIATOR_nameDef] complained to [RECIPIENT_nameDef] about having to fight raiders with junk.</li>
-        <li>r_logentry->[INITIATOR_nameDef] drew a battle plan in the dirt for [RECIPIENT_nameDef]. It involved a lot of arrows pointing at [plan].</li>
+        <li>r_logentry->[INITIATOR_nameDef] drew a battle plan in the dirt for [RECIPIENT_nameDef], with most of the arrows pointing at [plan].</li>
         <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] [INITIATOR_pronoun] still hears the last raid at night.</li>
         <li>plan->the front door</li>
         <li>plan->a very hopeful line of barricades</li>
         <li>plan->where the traps should go</li>
-        <li>plan->the spot where everyone nearly died last time</li>
+        <li>plan->the spot where they nearly lost the wall last time</li>
       </rulesStrings>
     </logRulesInitiator>
   </InteractionDef>
@@ -277,7 +277,7 @@
       <rulesStrings>
         <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] not to bother asking the council for anything.</li>
         <li>r_logentry->[INITIATOR_nameDef] complained to [RECIPIENT_nameDef] that the council only listens to [favorites].</li>
-        <li>r_logentry->[INITIATOR_nameDef] listed every broken promise to [RECIPIENT_nameDef]. It took a while.</li>
+        <li>r_logentry->[INITIATOR_nameDef] went through every promise the council has broken, one by one, for [RECIPIENT_nameDef].</li>
         <li>r_logentry->[INITIATOR_nameDef] muttered to [RECIPIENT_nameDef] that [bitter].</li>
         <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] when [RECIPIENT_pronoun] last got anything [RECIPIENT_pronoun] asked for.</li>
         <li>favorites->the loud ones</li>
@@ -302,7 +302,7 @@
         <li>r_logentry->[INITIATOR_nameDef] reminded [RECIPIENT_nameDef] of [proof].</li>
         <li>r_logentry->[INITIATOR_nameDef] defended the council's last decision to [RECIPIENT_nameDef], at length.</li>
         <li>proof->the time the council kept its word</li>
-        <li>proof->how far the colony has come since the crash</li>
+        <li>proof->how far the colony has come since the first winter</li>
         <li>proof->the room [INITIATOR_pronoun] finally got</li>
       </rulesStrings>
     </logRulesInitiator>
@@ -320,9 +320,9 @@
     <logRulesInitiator>
       <rulesStrings>
         <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] spent a while agreeing that [decree] is [verdict].</li>
-        <li>r_logentry->[INITIATOR_nameDef] muttered to [RECIPIENT_nameDef] about [decree]. [RECIPIENT_nameDef] muttered back.</li>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] muttered to each other about [decree] over their work.</li>
         <li>r_logentry->[INITIATOR_nameDef] counted down the days left of [decree] with [RECIPIENT_nameDef].</li>
-        <li>r_logentry->[INITIATOR_nameDef] did an impression of the council announcing [decree]. [RECIPIENT_nameDef] laughed despite [RECIPIENT_objective]self.</li>
+        <li>r_logentry->[INITIATOR_nameDef] did an impression of the council announcing [decree], and [RECIPIENT_nameDef] laughed despite [RECIPIENT_objective]self.</li>
         <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] whether anyone actually voted for [decree].</li>
         <li>decree->the council's latest decree</li>
         <li>decree->the new rules</li>
@@ -346,7 +346,7 @@
     <recipientThought>Council_DecreeArgument</recipientThought>
     <logRulesInitiator>
       <rulesStrings>
-        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] that [decree] was [defense]. [RECIPIENT_nameDef] disagreed loudly.</li>
+        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] that [decree] was [defense], and [RECIPIENT_nameDef] disagreed loudly.</li>
         <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] argued about [decree] until someone told them both to shut up.</li>
         <li>r_logentry->[INITIATOR_nameDef] suggested [RECIPIENT_nameDef] stop complaining about [decree] and get on with it.</li>
         <li>r_logentry->[INITIATOR_nameDef] defended [decree] to [RECIPIENT_nameDef], who made it very clear what [RECIPIENT_pronoun] thought of that.</li>

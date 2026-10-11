@@ -63,7 +63,7 @@
     <weight>1.1</weight>
     <cooldownDays>6</cooldownDays>
     <texts>
-      <li>{A_nameDef} looked away for a moment and the best piece of meat was gone from {A_possessive} plate, and {X_definite} was under the table, chewing.</li>
+      <li>{A_nameDef} looked away for a moment and the best piece of meat was gone from {A_possessive} plate. Across the room, {X_definite} was chewing and not meeting anyone's eye.</li>
       <li>{A_nameDef} set {A_possessive} bowl down to scratch an itch. When {A_pronoun} looked back, {X_definite} had {X_possessive} whole face in it.</li>
       <li>Half of {A_nameDef}'s dinner went out the door with {X_definite}. {A_nameDef} gave chase for three steps, then sat back down and ate the other half faster.</li>
     </texts>
@@ -172,7 +172,7 @@
     <weight>0.6</weight>
     <cooldownDays>14</cooldownDays>
     <texts>
-      <li>{A_nameDef} opened the storeroom and found {X_definite} sitting in a torn sack of vegetables, eating steadily.</li>
+      <li>{A_nameDef} opened the storeroom and found {X_definite} sitting in a torn sack of vegetables, very round and not at all sorry.</li>
       <li>Somebody left the larder door open. By the time {A_nameDef} noticed, {X_definite} had been through a good part of the raw food.</li>
       <li>{A_nameDef} followed a trail of gnawed peel from the storeroom to the barn, where {X_definite} lay on {X_possessive} side with a swollen belly.</li>
     </texts>
@@ -195,7 +195,7 @@
     <cooldownDays>5</cooldownDays>
     <texts>
       <li>{A_nameDef} and {X_definite} chased each other round the yard all afternoon, until neither of them could run another step.</li>
-      <li>{A_nameDef} tied a ribbon round {X_definite}'s neck and declared {X_objective} a knight of the colony.</li>
+      <li>{A_nameDef} tied a ribbon round {X_definite}'s neck and declared {X_objective} a knight of the colony. By supper the knight had eaten the ribbon.</li>
       <li>{A_nameDef} built {X_definite} a house out of sticks and an old blanket, and spent the evening trying to coax {X_objective} inside.</li>
       <li>All afternoon {A_nameDef} held up fingers in front of {X_definite}, trying to teach {X_objective} to count.</li>
     </texts>
@@ -216,7 +216,7 @@
     <cooldownDays>10</cooldownDays>
     <texts>
       <li>{A_nameDef} isn't the one who looks after {X_definite}, but lately {X_pronoun} follows {A_nameDef} from room to room and sleeps across {A_possessive} doorway.</li>
-      <li>{A_nameDef} has never fed or trained {X_definite}, yet {X_pronoun} now waits under {A_possessive} chair at every meal.</li>
+      <li>{A_nameDef} has never fed or trained {X_definite}, but these days {X_pronoun} waits under {A_possessive} chair at every meal.</li>
       <li>{A_nameDef} can't work out why {X_definite} has picked {A_objective}. Today {X_pronoun} walked {A_objective} to the latrine and waited outside.</li>
     </texts>
     <effects>

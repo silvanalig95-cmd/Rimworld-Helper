@@ -9,7 +9,7 @@
     <thoughtClass>ColonyCouncil.Thought_Decree</thoughtClass>
     <stages>
       <li><label>worked to the bone</label><description>The council has us working from dawn until we drop. I can't keep this up.</description><baseMoodEffect>-12</baseMoodEffect></li>
-      <li><label>long hours</label><description>We're up early and in bed late, and the work never ends.</description><baseMoodEffect>-6</baseMoodEffect></li>
+      <li><label>long hours</label><description>We're up early and in bed late, and the work never ends. The council says it's temporary.</description><baseMoodEffect>-6</baseMoodEffect></li>
       <li><label>honest hard work</label><description>We're all putting in long days now. I like seeing the work get done.</description><baseMoodEffect>3</baseMoodEffect></li>
       <li><label>a colony that works</label><description>Long, hard days for all of us. This is how a colony should be run.</description><baseMoodEffect>6</baseMoodEffect></li>
     </stages>
@@ -20,7 +20,7 @@
     <workerClass>ColonyCouncil.ThoughtWorker_Decree</workerClass>
     <thoughtClass>ColonyCouncil.Thought_Decree</thoughtClass>
     <stages>
-      <li><label>starving on rations</label><description>The rations are too small. I think about food all day.</description><baseMoodEffect>-10</baseMoodEffect></li>
+      <li><label>starving on rations</label><description>Half a bowl of mush at every meal. I think about food all day.</description><baseMoodEffect>-10</baseMoodEffect></li>
       <li><label>on rations</label><description>The portions have shrunk. My belt has new holes.</description><baseMoodEffect>-5</baseMoodEffect></li>
       <li><label>sensible rations</label><description>Eating less now is sensible. We'll be glad of the full stores later.</description><baseMoodEffect>2</baseMoodEffect></li>
       <li><label>living lean</label><description>I like eating lean. My head feels clearer on an empty stomach.</description><baseMoodEffect>4</baseMoodEffect></li>

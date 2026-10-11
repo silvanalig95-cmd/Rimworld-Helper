@@ -16,7 +16,7 @@
         <li>[relaxing] {PAWN_nameDef} is meant to be resting, but has spent the time going over a list of complaints.</li>
         <li>[relaxing] {PAWN_nameDef} uses a rare free hour to ask for what {PAWN_pronoun} wants.</li>
         <li>[work:Cooking] {PAWN_nameDef} waves a ladle for emphasis, dripping soup on the floor.</li>
-        <li>[work:Cooking] {PAWN_nameDef} stops stirring the pot and turns around.</li>
+        <li>[work:Cooking] {PAWN_nameDef} stops stirring, and the stew starts to catch on the bottom of the pot.</li>
         <li>[work:Growing] Knee-deep in the field, {PAWN_nameDef} straightens up, wipes the dirt off {PAWN_possessive} hands, and speaks.</li>
         <li>[work:Growing] {PAWN_nameDef} stops halfway down a row of seedlings to call someone over.</li>
         <li>[work:PlantCutting] {PAWN_nameDef} talks between swings of the axe, a few words at a time.</li>
@@ -27,7 +27,7 @@
         <li>[work:Hauling] {PAWN_nameDef} drops {PAWN_possessive} load harder than necessary and speaks up.</li>
         <li>[work:Hauling] Halfway to the stockpile with an armful of stone, {PAWN_nameDef} decides this is the moment.</li>
         <li>[work:Cleaning] {PAWN_nameDef} has swept the same corner three times while working up to this.</li>
-        <li>[work:Research] {PAWN_nameDef} looks up from the research bench and pushes {PAWN_possessive} notes aside.</li>
+        <li>[work:Research] {PAWN_nameDef} looks up from the research bench, where the same page has been open all morning.</li>
         <li>[work:Doctor] Still washing blood off {PAWN_possessive} hands, {PAWN_nameDef} has a word with whoever is nearest.</li>
         <li>[work:Hunting] {PAWN_nameDef} comes back from the hunt with a carcass over one shoulder and drops it at the kitchen door.</li>
         <li>[work:Handling] {PAWN_nameDef} talks it over with the muffalo first, then comes to find a person.</li>

@@ -24,7 +24,7 @@
     <texts>
       <li>Over a bowl of soup, {X_nameDef} told {A_nameDef} that two warlords up north are burning each other's fields again. Grain will be dear by winter.</li>
       <li>A town three weeks east has the coughing sickness, {X_nameDef} told {A_nameDef}, and they've started nailing the doors shut on the sick.</li>
-      <li>{A_nameDef} heard from {X_nameDef} that salt costs twice what it did last year, and that the bridge at the ford has washed out.</li>
+      <li>{A_nameDef} heard from {X_nameDef} that salt costs twice what it did last year, the bridge at the ford has washed out, and a village up north has made a goat its headman.</li>
       <li>{A_nameDef} sat up with {X_nameDef} hearing who is at war, who is starving and who got hanged since the last caravan came through.</li>
     </texts>
     <effects>
@@ -461,8 +461,8 @@
     <texts>
       <li>{X_nameDef} sent {A_nameDef} back to the kitchen twice, once because the soup was cold and once because it was too hot, then tipped {A_objective} eight silver for the trouble.</li>
       <li>{X_nameDef} asked {A_nameDef} where the bath was, and when {A_nameDef} pointed at the river, {X_nameDef} complained about it for the rest of the day.</li>
-      <li>{X_nameDef} had {A_nameDef} turn the mattress three times and shake out the blankets twice before the bed was fit to lie in.</li>
-      <li>{X_nameDef} called {A_nameDef} "you there" all day and never once asked {A_possessive} name.</li>
+      <li>{X_nameDef} had {A_nameDef} turn the mattress three times, then complained about the view from the bed, which faces a wall.</li>
+      <li>{X_nameDef} called {A_nameDef} "you there" all day, and once "the hairy one".</li>
     </texts>
     <effects>
       <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncP_TreatedLikeFurniture</thought></li>
@@ -659,7 +659,7 @@
     <stranger><kind>Prisoner</kind><adult>true</adult></stranger>
     <colonist><passion>Cooking</passion></colonist>
     <texts>
-      <li>{X_nameDef} sent word to {A_nameDef} that the rats in the cell eat better than {X_pronoun} does.</li>
+      <li>{X_nameDef} sent word to {A_nameDef} that the rats in the cell eat better than {X_pronoun} does, along with the bowl, licked clean.</li>
       <li>The food, {X_nameDef} told {A_nameDef}, was the worst part of being captured, worse than the wound.</li>
       <li>With {X_possessive} mouth full, {X_nameDef} asked {A_nameDef} whether {A_pronoun} had ever cooked before or was just guessing.</li>
     </texts>

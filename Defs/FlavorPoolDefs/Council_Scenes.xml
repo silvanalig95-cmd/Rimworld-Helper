@@ -105,7 +105,7 @@
         <li>[trigger:heat] The air in the sleeping quarters is like soup. {PAWN_nameDef} emerges red-faced and short-tempered.</li>
         <li>[trigger:floor] {PAWN_nameDef} finishes another meal hunched on the floor and gets up brushing crumbs off {PAWN_possessive} knees.</li>
         <li>[trigger:floor] Another dinner off the dirt. {PAWN_nameDef} sets the bowl down very deliberately.</li>
-        <li>[trigger:barracks] {PAWN_nameDef} slept badly again. The snoring in the barracks went on until dawn.</li>
+        <li>[trigger:barracks] {PAWN_nameDef} slept badly again, and can now tell every snorer in the barracks apart by sound.</li>
         <li>[trigger:barracks] Woken for the third time by someone's elbow, {PAWN_nameDef} is ready to talk about living arrangements.</li>
         <li>[trigger:rawfood] {PAWN_nameDef} is still chewing something raw and unidentifiable when {PAWN_pronoun} speaks.</li>
         <li>[trigger:sick] Pale and sweating, {PAWN_nameDef} sits up in bed long enough to make a point.</li>
@@ -194,7 +194,7 @@
         <li>Fine. Don't make me bring it up again.</li>
       </blunt>
       <cheerful>
-        <li>A promise! I can hardly wait.</li>
+        <li>A promise! I'm going to count the days.</li>
         <li>Thank you! You won't regret it.</li>
       </cheerful>
       <gloomy>
@@ -330,7 +330,7 @@
         <li>Next time I ask for something, maybe just say yes. Saves time.</li>
       </blunt>
       <cheerful>
-        <li>I took care of it myself! It came out pretty well, too.</li>
+        <li>I took care of it myself! Only one bent nail.</li>
         <li>Look at me, solving problems!</li>
       </cheerful>
       <gloomy>

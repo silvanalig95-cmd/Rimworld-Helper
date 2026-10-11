@@ -18,7 +18,7 @@
     <texts>
       <li>{A_nameDef} finally confessed to eating the chocolate {B_nameDef} had been saving since spring. {B_nameDef} took a long breath and let it go.</li>
       <li>{A_nameDef} admitted to {B_nameDef} that {A_pronoun} had broken {B_nameDef}'s good mug a month ago and hidden the pieces.</li>
-      <li>{A_nameDef} owned up to {B_nameDef} that it was {A_objective}, not the wind, who knocked over {B_nameDef}'s drying rack.</li>
+      <li>{A_nameDef} owned up to {B_nameDef} that it was {A_objective}, not the wind, who knocked over {B_nameDef}'s drying rack. {B_nameDef} had known for weeks.</li>
     </texts>
     <effects>
       <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Soc2_Forgiven</thought></li>

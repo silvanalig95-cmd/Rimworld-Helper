@@ -97,7 +97,7 @@
     <options>
       <li>
         <label>Demand an apology</label>
-        <outcome>{X_nameDef} was made to apologize to {A_nameDef} at supper. It was a grudging apology, but {A_nameDef} was satisfied.</outcome>
+        <outcome>{X_nameDef} was made to apologize to {A_nameDef} at supper, and managed it without once looking up from {X_possessive} plate. {A_nameDef} was satisfied.</outcome>
         <ways><openness>-2</openness></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_DlmS_GotApology</thought></li>
@@ -391,7 +391,7 @@
     <options>
       <li>
         <label>Pay for the bite</label>
-        <outcome>The council paid {X_nameDef} eighty silver for the bite. {X_nameDef} counted it with {X_possessive} good hand and let the matter drop.</outcome>
+        <outcome>The council paid {X_nameDef} eighty silver for the bite. {X_nameDef} counted it with the bandaged hand, which no longer seemed to hurt.</outcome>
         <ways><generosity>4</generosity><openness>2</openness></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>silver</what><count>80</count></li>
@@ -567,7 +567,7 @@
     </stranger>
     <texts>
       <li>{X_nameDef}, the titled guest, inspected the room {A_nameDef} built, ran a finger along the wall, and asked whether the colony keeps pigs in it the rest of the year. {A_nameDef} spent days on that room.\n\n{X_nameDef}'s patrons will hear how {X_nameDef} was treated here. {A_nameDef} wants to know whether the council will stand up for the work.</li>
-      <li>Over supper {X_nameDef} explained to the whole table that the servants' quarters back home are better built than the finest room in this colony, and looked straight at {A_nameDef} while saying it. {A_nameDef} raised most of the walls in the place.\n\nNo one has answered yet. {A_nameDef} has asked the council whether a title means you get to say that.</li>
+      <li>Over supper {X_nameDef} explained to the whole table that the servants' quarters back home are better built than the finest room in this colony, and looked straight at {A_nameDef} while saying it. {A_nameDef} raised most of the walls in the place.\n\nNo one has answered yet. {A_nameDef} has asked the council whether a title means you get to say that, and asked it with a hammer in hand.</li>
     </texts>
     <defaultOption>0</defaultOption>
     <options>
@@ -641,7 +641,7 @@
         </effects>
         <riskChance>0.5</riskChance>
         <riskReplaces>true</riskReplaces>
-        <riskOutcome>The tonic was water, sugar and something that tasted like an old boot. {A_nameDef} drank all of it anyway, out of spite, and felt no better for it.</riskOutcome>
+        <riskOutcome>The tonic was water, sugar and something that tasted like an old boot. {A_nameDef} drank all of it anyway, out of spite, and people have been calling {A_objective} the alchemist since.</riskOutcome>
         <riskEffects>
           <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>silver</what><count>100</count></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_DlmS_TonicSwindle</thought></li>
@@ -969,7 +969,7 @@
       </li>
       <li>
         <label>Pay {X_objective} to teach {B_nameDef}</label>
-        <outcome>For sixty silver {X_nameDef} spent the afternoon teaching {B_nameDef} what everything in the bag is for, using {A_nameDef}'s old injury for practice. {A_nameDef} was poked and prodded for hours and is no better for it.</outcome>
+        <outcome>For sixty silver {X_nameDef} spent the afternoon teaching {B_nameDef} what everything in the bag is for, using {A_nameDef}'s old injury for practice. {A_nameDef} was poked a great deal and helped not at all.</outcome>
         <ways><tradition>-3</tradition><openness>4</openness></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>silver</what><count>60</count></li>

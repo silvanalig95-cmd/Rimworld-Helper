@@ -7,39 +7,39 @@
     <defName>Council_Pool_AnnalsClose</defName>
     <lines>
       <plain>
-        <li>Another year on the rim. Most of us are still here. That's the whole of it, really.</li>
-        <li>I don't know what next year brings. Something with teeth, probably. We'll manage.</li>
-        <li>[annals:losses] We lost people this year. Write their names somewhere they'll last longer than this paper.</li>
-        <li>[annals:violent] We spent half the year with a gun in one hand. I'd like next year to need fewer hands.</li>
+        <li>Another year on the rim, and most of us are still here.</li>
+        <li>No one can say what next year will bring. We'll plant in spring, as usual, and see.</li>
+        <li>[annals:losses] We lost people this year. Their names should be carved somewhere that will last longer than this page.</li>
+        <li>[annals:violent] We spent most of this year with weapons close at hand. I'd like to spend the next one with a hoe.</li>
         <li>[annals:peaceful] A quiet year. I don't trust it, but I'll take it.</li>
-        <li>[annals:richer] We have more than we did. Raiders can count too. Keep the walls up.</li>
-        <li>[annals:growing] More mouths, more hands, more arguments over the last biscuit. Good.</li>
-        <li>[winter] Snow on the windowsill as I write this. We made it through another one.</li>
+        <li>[annals:richer] We have more than we did a year ago, and raiders will have heard. Keep the walls in good repair.</li>
+        <li>[annals:growing] More mouths to feed and more hands to work. There's a queue for the stew pot now.</li>
+        <li>[winter] It's snowing as I write this. We've made it through another year.</li>
       </plain>
       <warm>
         <li>Whatever happens next year, I'm glad it's with all of you.</li>
         <li>[annals:losses] I keep their places at the table in my head. I think I always will.</li>
-        <li>[annals:growing] So many new faces. I hope they feel at home here. I hope we let them.</li>
+        <li>[annals:growing] There are a lot of new faces at supper now. I hope they're starting to feel at home.</li>
       </warm>
       <blunt>
-        <li>That's the year. Most of it was mud. Next.</li>
+        <li>That's the year. Most of it was mud and hard work.</li>
         <li>[annals:violent] They keep coming. We keep burying them. Fine by me.</li>
-        <li>[annals:peaceful] Nothing tried to kill us. Somebody check the sky for falling ships.</li>
+        <li>[annals:peaceful] Nothing tried to kill us this year. Don't get used to it.</li>
       </blunt>
       <cheerful>
-        <li>What a year! Terrible in places! Wonderful in others! Same again, please, minus the terrible!</li>
-        <li>[annals:richer] We're practically rich! Well. Richer. Someone should buy a hat!</li>
-        <li>[annals:peaceful] Not a single raid! I'm going to frame this page!</li>
+        <li>What a year! Terrible in places and wonderful in others. Same again next year, please, without the terrible parts.</li>
+        <li>[annals:richer] We're richer than we've ever been! Someone should buy a nice hat.</li>
+        <li>[annals:peaceful] Not a single raid all year! I'd like that written in large letters.</li>
       </cheerful>
       <gloomy>
-        <li>Another year closer to the end. At least it was our year.</li>
-        <li>[annals:losses] The graveyard got bigger. It always does.</li>
+        <li>Another year closer to the end. We got through this one, anyway.</li>
+        <li>[annals:losses] The graveyard is bigger than it was last year.</li>
         <li>[annals:violent] I've stopped counting the raids in my head. I only count who's left.</li>
       </gloomy>
       <cold>
-        <li>Summary complete. Survival rate acceptable. Recommend continuing.</li>
+        <li>That concludes the year. Survival rate acceptable.</li>
         <li>[annals:losses] Losses were within expectations. Replace them.</li>
-        <li>[annals:richer] Assets grew. So will the size of the next raid. Plan accordingly.</li>
+        <li>[annals:richer] Our wealth grew this year. The raids will grow with it.</li>
       </cold>
     </lines>
   </ColonyCouncil.FlavorPoolDef>

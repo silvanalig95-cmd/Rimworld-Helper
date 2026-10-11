@@ -78,7 +78,7 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_Dlm_Feast</defName>
     <durationDays>2</durationDays>
-    <stages><li><label>a feast</label><description>We had a feast with the best food in the stores. I'm still full.</description><baseMoodEffect>8</baseMoodEffect></li></stages>
+    <stages><li><label>a feast</label><description>We had a feast with the best food in the stores. I ate until I had to lie down.</description><baseMoodEffect>8</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
@@ -90,7 +90,7 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_Dlm_FeastDenied</defName>
     <durationDays>3</durationDays>
-    <stages><li><label>no feast</label><description>I wanted to cook a proper feast for us all, and the council said no.</description><baseMoodEffect>-4</baseMoodEffect></li></stages>
+    <stages><li><label>no feast</label><description>I wanted to cook a proper feast for us all. The council decided rice would do.</description><baseMoodEffect>-4</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">

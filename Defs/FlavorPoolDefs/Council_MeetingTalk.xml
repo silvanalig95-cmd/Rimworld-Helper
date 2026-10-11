@@ -11,7 +11,7 @@
     <defName>Council_Pool_MeetingOpen</defName>
     <lines>
       <plain>
-        <li>Right. Find somewhere to sit and we'll begin.</li>
+        <li>Right. Somebody wake up the ones at the back, and we'll begin.</li>
         <li>This council is now in session. Somebody find a chair for the old ones.</li>
         <li>We have a few proposals to get through. One at a time, please.</li>
         <li>[evening] One more thing before bed. What do we work on next?</li>
@@ -26,7 +26,7 @@
         <li>Let's keep this short. Say your piece and sit down.</li>
       </blunt>
       <cheerful>
-        <li>Welcome, welcome! There are some good ideas tonight.</li>
+        <li>Welcome, welcome! Mind the loose board by the door.</li>
       </cheerful>
       <gloomy>
         <li>Let's get this over with before something else goes wrong.</li>

@@ -21,18 +21,18 @@
       </plain>
       <warm><li>I don't want to hate anyone. But I won't sleep properly until the one who did this can't do it again.</li></warm>
       <blunt><li>Somebody hurt me and walked away. That doesn't get to stand.</li></blunt>
-      <cheerful><li>New life plan: outlive the person who tried to kill me. Ideally by quite a lot. Ideally because they're dead.</li></cheerful>
-      <gloomy><li>Either I end it or it ends me. I've made my peace with which is likelier. I'm going to try anyway.</li></gloomy>
+      <cheerful><li>My new plan is to outlive the person who tried to kill me! Ideally because they're dead.</li></cheerful>
+      <gloomy><li>Either I end it or it ends me, and I know which is likelier. I'm going to try anyway.</li></gloomy>
       <cold><li>An open matter. I prefer my matters closed.</li></cold>
     </chosen>
     <achieved>
       <plain>
-        <li>It's over. I touched the scar this morning and, for the first time, it was only a scar.</li>
+        <li>It's over. I touched the scar this morning and it was only a scar.</li>
         <li>I slept a whole night. I didn't know I'd forgotten how.</li>
       </plain>
       <warm><li>It's done. I hope I never have to feel like that about anyone again.</li></warm>
       <blunt><li>Score settled. Moving on.</li></blunt>
-      <gloomy><li>My nemesis is dead. There'll be another. There's always another. But this one's done.</li></gloomy>
+      <gloomy><li>My nemesis is dead. There'll be another one someday, but this one's done.</li></gloomy>
       <cold><li>Closed. Satisfactory.</li></cold>
     </achieved>
   </ColonyCouncil.AspirationDef>
@@ -49,13 +49,13 @@
     <who><notTrait><li>Psychopath</li></notTrait></who>
     <chosen>
       <plain>
-        <li>Everyone who comes through here has a story. I want to hear them. I want them to remember mine.</li>
+        <li>Everyone who comes through here has a story. I'd like to hear theirs, and have them remember mine.</li>
         <li>[skill:Social] I'm going to be the one visitors ask for by name.</li>
         <li>[small] It's a small colony. The world isn't. I'd like to know some of it.</li>
       </plain>
-      <warm><li>I want every traveler who stops here to leave a little warmer than they came.</li></warm>
+      <warm><li>I want every traveler who stops here to leave with a full stomach and a reason to come back.</li></warm>
       <blunt><li>Strangers are just people I haven't argued with yet. Time to fix that.</li></blunt>
-      <cheerful><li>New goal: a friend in every caravan! And ideally a free sample from every trader!</li></cheerful>
+      <cheerful><li>A friend in every caravan, and a free sample from every trader!</li></cheerful>
       <gloomy><li>Everyone here will die eventually. Maybe the people on the road will remember us.</li></gloomy>
       <cold><li>Contacts outside the colony are an asset. I intend to collect them.</li></cold>
     </chosen>
@@ -65,7 +65,7 @@
         <li>Half the caravans on this road know my face now. Some of them even like it.</li>
       </plain>
       <warm><li>I have friends in places I've never been. That's a strange, good feeling.</li></warm>
-      <cheerful><li>I'm FAMOUS! Regionally! In a small way! I'll take it!</li></cheerful>
+      <cheerful><li>I'm famous, in a small way! I'll take it.</li></cheerful>
       <cold><li>A reliable network of acquaintances. Useful, and, I admit, pleasant.</li></cold>
     </achieved>
   </ColonyCouncil.AspirationDef>

@@ -24,8 +24,8 @@
         <li>I'd say yes in a better season, {OTHER_nameDef}. Not this one.</li>
       </warm>
       <blunt>
-        <li>No. There are bigger problems than this.</li>
-        <li>{OTHER_nameDef} wants "{WISH}". I want a roof that doesn't leak. Mine comes first.</li>
+        <li>No. Ask me again after the harvest is in.</li>
+        <li>{OTHER_nameDef} wants "{WISH}". I want boots without holes in them. We can both wait.</li>
         <li>Give {OTHER_nameDef} "{WISH}" and the rest of us will be lining up tomorrow.</li>
       </blunt>
       <cheerful>
