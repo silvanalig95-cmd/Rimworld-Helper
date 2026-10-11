@@ -170,7 +170,8 @@
     <talkInteraction>Council_Talk_Fun</talkInteraction>
     <fulfilledWhen>Keep at least {TARGET} books in storage or in the home area. Write them, buy them from traders or take them off raiders.</fulfilledWhen>
     <wants>
-      <categories><li>Books</li></categories>
+      <nameContains><li>book</li><li>novel</li><li>tome</li><li>schematic</li></nameContains>
+      <notContains><li>bookcase</li><li>bookshelf</li></notContains>
       <count>4</count>
       <anySource>true</anySource>
       <passions><li>Intellectual</li><li>Artistic</li><li>Social</li></passions>
