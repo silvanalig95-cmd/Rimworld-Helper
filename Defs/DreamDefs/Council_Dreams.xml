@@ -25,17 +25,17 @@
     <children>true</children>
     <lines>
       <plain>
-        <li>I dreamt I was home. Not here. Before. The door was open and someone was cooking.</li>
-        <li>I dreamt of the place I grew up. Everything was smaller than I remembered, and nobody was afraid.</li>
+        <li>I was home in my dream. The old home, from before. The door was open and someone was frying onions.</li>
+        <li>Dreamt about the street I grew up on. It was smaller than I remember, and quieter.</li>
         <li>[again] The house again. I always wake up just before I reach the door.</li>
-        <li>[winter] I dreamt of a warm room and a long winter outside it. I didn't want to wake up.</li>
-        <li>[child] I dreamt I had my own room with a window and a cat. The cat could talk. It was polite.</li>
+        <li>[winter] A warm room in my dream, with snow piled against the window. I lay there a long while before I got up.</li>
+        <li>[child] In my dream I had a room with a window, and a cat that slept on my feet.</li>
       </plain>
-      <warm><li>I dreamt everyone I've ever loved was at one table. Nobody was missing. I woke up crying, the good kind.</li></warm>
-      <blunt><li>Dreamt of home. Waste of a night. It's not there anymore.</li></blunt>
-      <cheerful><li>I dreamt we'd built a whole town here, with a bakery! I'm going to tell everyone!</li></cheerful>
-      <gloomy><li>I dreamt of home. I woke up here. Every time.</li></gloomy>
-      <cold><li>A dream of my former residence. Sentimental. Discarded.</li></cold>
+      <warm><li>Everyone I've ever loved was sitting at one long table, passing the bread down. I woke up with wet eyes.</li></warm>
+      <blunt><li>Dreamt of home. It isn't there anymore. Waste of a night.</li></blunt>
+      <cheerful><li>Had a dream we'd built a proper town here, with a bakery on the corner. We could, you know.</li></cheerful>
+      <gloomy><li>Dreamt of home again. Then I woke up here.</li></gloomy>
+      <cold><li>Dreamt of the house I was born in. I don't see the use of it.</li></cold>
     </lines>
   </ColonyCouncil.DreamDef>
 
@@ -47,18 +47,18 @@
     <children>true</children>
     <lines>
       <plain>
-        <li>I dreamt the walls of the colony were made of bread and nobody thought that was strange.</li>
-        <li>I dreamt every door led back into the same room. I kept walking. So did the room.</li>
-        <li>I dreamt a muffalo was on the council. It had good ideas. I can't remember any of them.</li>
-        <li>I dreamt the stars came down to listen to us talk. Then they got bored and left.</li>
-        <li>[fever] Everything was talking. The bed, the walls, the light. They all had opinions about me.</li>
-        <li>[rain] I dreamt the rain was falling upward and we all had to hold on to the ground.</li>
-        <li>[tribal] I dreamt the spirits were arguing about us, like old people at a fire.</li>
+        <li>Dreamt the walls were made of bread. I kept tearing bits off and eating them while I worked.</li>
+        <li>Every door in my dream led back into the same room. I must have opened a hundred of them.</li>
+        <li>Dreamt a muffalo sat on the council, chewing, and we all waited for it to speak.</li>
+        <li>The stars came down low in my dream, close enough to touch, and they were listening to us.</li>
+        <li>[fever] The bed and the walls kept talking to me, all at once, and none of it made sense.</li>
+        <li>[rain] In the dream the rain fell upward, and we had to hold on to the grass to stay down.</li>
+        <li>[tribal] The spirits were arguing about us in my dream. They sounded like the elders do.</li>
         <li>[spacer] I dreamt I was back in a cryptosleep pod, but the pod was dreaming me.</li>
       </plain>
-      <cheerful><li>I dreamt I could breathe underwater and everyone wanted to come swimming! It was great!</li></cheerful>
-      <gloomy><li>I dreamt I was a ghost walking around the colony. Nobody noticed. Nothing changed.</li></gloomy>
-      <cold><li>I dreamt in numbers again. The numbers did not add up. That bothers me more than it should.</li></cold>
+      <cheerful><li>I could breathe underwater in my dream! I swam the whole river and back.</li></cheerful>
+      <gloomy><li>I was a ghost in my dream, walking through the colony. The work went on without me.</li></gloomy>
+      <cold><li>I dreamt in numbers again. They didn't add up.</li></cold>
     </lines>
   </ColonyCouncil.DreamDef>
 
@@ -69,15 +69,15 @@
     <children>true</children>
     <lines>
       <plain>
-        <li>I dreamt the stores were empty and everyone was looking at me.</li>
-        <li>I dreamt I was falling for a long time. I'm still not sure I landed.</li>
-        <li>I dreamt something was walking around outside my door all night, waiting for me to open it.</li>
-        <li>[again] That dream again. The corridor. The thing at the end of it. I'm not going back to sleep.</li>
+        <li>Dreamt the storeroom was empty and they were all looking at me.</li>
+        <li>I was falling in my dream, for so long I stopped being afraid of it.</li>
+        <li>In the dream something paced outside my door all night. It never knocked.</li>
+        <li>[again] The corridor again, and the thing at the far end of it. I sat up until morning.</li>
         <li>[child] I dreamt there was a monster under the bed and it knew my name.</li>
-        <li>[lowmood] I dreamt everyone left in the night and didn't tell me.</li>
+        <li>[lowmood] Dreamt they all packed up and left in the night, and didn't wake me.</li>
       </plain>
-      <blunt><li>Bad dream. Didn't like it. Moving on.</li></blunt>
-      <gloomy><li>Nightmares again. At least they're honest.</li></gloomy>
+      <blunt><li>Bad dream. I'm not talking about it.</li></blunt>
+      <gloomy><li>Nightmares again. I'm used to them by now.</li></gloomy>
       <cold><li>A nightmare. Elevated heart rate on waking. Irrelevant, but noted.</li></cold>
     </lines>
     <effects>
