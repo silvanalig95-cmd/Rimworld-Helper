@@ -47,7 +47,7 @@ namespace ColonyCouncil
 
             // Who's proud of it, who chafes.
             var pawns = PawnsFinder.AllMaps_FreeColonists.Where(p => !p.IsQuestLodger() && People.HasInnerLife(p) && !p.DevelopmentalStage.Baby()).Distinct().ToList();
-            var rated = pawns.Select(p => (p, score: ch.Approval(p))).Where(x => Mathf.Abs(x.score) >= 8f).OrderByDescending(x => x.score).ToList();
+            var rated = pawns.Select(p => (p, score: ch.Approval(p))).Where(x => Mathf.Abs(x.score) >= ThoughtWorker_ColonyWays.Mild).OrderByDescending(x => x.score).ToList();
             float colW = (w - 12f) / 2f;
             float y0 = y;
             float leftH = DrawPeople("CC_Ways_Proud".Translate(), rated.Where(x => x.score > 0f).ToList(), ch, 0f, y0, colW, Pos);

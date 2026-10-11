@@ -64,7 +64,7 @@ namespace ColonyCouncil
             var req = tracker.RequestFor(def);
             string petition = req?.pawn == null ? null : (req.repeal ? "CC_Decree_RepealLine" : "CC_Decree_PetitionLine").Translate(req.pawn.Named("PAWN")).Resolve() + (req.line != null ? " \"" + req.line + "\"" : "");
             int fatigue = active == null ? tracker.Fatigue(def) : 0;
-            string warning = fatigue > 0 ? "CC_Decree_FatigueWarn".Translate(fatigue, Mathf.RoundToInt(DecreeTracker.FatigueDays), tracker.UnrestChance(def, false).ToStringPercent()).Resolve() : null;
+            string warning = fatigue > 0 ? "CC_Decree_FatigueWarn".Translate(fatigue, Mathf.RoundToInt(DecreeTracker.FatigueDays), tracker.UnrestChance(def, tracker.OnCooldown(def)).ToStringPercent()).Resolve() : null;
             Text.Font = GameFont.Small;
             h += Text.CalcHeight(title, textW) + Text.CalcHeight(def.description, textW) + Text.CalcHeight(effects, textW) + Text.CalcHeight(reactions, textW) + 22f;
             if (petition != null) h += Text.CalcHeight(petition, textW) + 2f;

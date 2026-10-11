@@ -271,7 +271,7 @@ namespace ColonyCouncil
                 if (a == 0f) continue;
                 float part = v * a;
                 score += part;
-                if (reasons != null && Mathf.Abs(part) >= 8f)
+                if (reasons != null && Mathf.Abs(part) >= 5f)
                     reasons.Add((part > 0f ? "CC_Ways_Likes" : "CC_Ways_Dislikes").Translate(PoleLabel(w, v > 0f)).Resolve());
             }
             return score;
@@ -296,17 +296,21 @@ namespace ColonyCouncil
     /// <summary>How a colonist feels about the colony's ways: pride, or chafing.</summary>
     public class ThoughtWorker_ColonyWays : ThoughtWorker
     {
+        /// <summary>How strongly a colonist must approve (or disapprove) before it shows in their mood.</summary>
+        public const float Mild = 18f;
+        public const float Strong = 45f;
+
         protected override ThoughtState CurrentStateInternal(Pawn p)
         {
             var s = ColonyCouncilMod.Settings;
             var comp = CouncilGameComponent.Instance;
             if (comp?.character == null || !s.colonyCharacter || !s.MoodEffects || !p.IsColonist || p.IsQuestLodger() || !People.HasInnerLife(p) || p.DevelopmentalStage.Baby()) return ThoughtState.Inactive;
             float a = comp.character.Approval(p);
-            if (a >= 45f) return ThoughtState.ActiveAtStage(3);
-            if (a >= 18f) return ThoughtState.ActiveAtStage(2);
+            if (a >= Strong) return ThoughtState.ActiveAtStage(3);
+            if (a >= Mild) return ThoughtState.ActiveAtStage(2);
             if (!s.Negatives) return ThoughtState.Inactive;
-            if (a <= -45f) return ThoughtState.ActiveAtStage(0);
-            if (a <= -18f) return ThoughtState.ActiveAtStage(1);
+            if (a <= -Strong) return ThoughtState.ActiveAtStage(0);
+            if (a <= -Mild) return ThoughtState.ActiveAtStage(1);
             return ThoughtState.Inactive;
         }
     }
