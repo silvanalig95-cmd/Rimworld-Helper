@@ -16,8 +16,9 @@ templates. Nothing in `Source/` names any of these package ids; every current in
 matching: `Avail.IsFermenter` (vanilla barrel, or any building whose thingClass contains "ItemProcessor" or a comp
 whose class contains "Processor", with "barrel/ferment/brew/keg/cask/still" in defName or label), the role predicates
 in `RoomTemplateDef.RolePredicate` (bed, endtable, dresser, heater, storage, grave, fermenter, medical...),
-`WishParams.nameContains` (bath/tub/sauna, bookcase/bookshelf, book, statue/sculpture, banner, bench, weapon rack,
-fountain, smoker, beehive...), `WishWorker_Stock.HeldInBuildings` (items inside an `IThingHolder` building such as a
+`WishParams.nameContains` (bath/tub/sauna, book, statue/sculpture, banner, bench, weapon rack, fountain, smoker,
+beehive...) and `WishParams.thingClasses` (the bookcase wish: a `Building_Bookcase` or "bookcase" in the name), the
+`fire` test (a fire overlay, or refuelable + heat pusher + glower), `WishWorker_Stock.HeldInBuildings` (items inside an `IThingHolder` building such as a
 bookcase count for stock wishes), `WishWorker_LittleSomething.SocialDrugs` (`DrugCategory.Social`), and
 `WishWorker_BetterFood.MealStock` (meals by `FoodPreferability`). Research was done from the mods' own XML and C#
 (shallow, read-only sparse clones of the public GitHub repos) and the Steam Workshop descriptions (Steam Web API
@@ -249,7 +250,8 @@ cocktails, VFE Power, most of VFE Medical and most VE Apparel need Industrial re
   reactor (radiation uses toxic buildup), new batteries, lightning rod and utilities, helixien gas (a combustible gas
   with pipes, tanks and gas-powered buildings immune to solar flares).
 - In play: nothing for a pre-electric colony. Any power plant built sets Rimfolk's electricity flag.
-- Rimfolk today: `Avail.HasElectricity` turns on when the colony runs any `CompPowerPlant`; these generators count.
+- Rimfolk today: `Avail.HasElectricity` turns on when the colony runs a generator that transmits power and makes at least
+  50 W (`Avail.IsRealGenerator`); these generators count.
 - Hook ideas: none for the medieval run; advisor could read gas tanks for the power section.
 - Confidence: medium-high (Steam description; repo cloned but not studied in depth).
 
@@ -293,8 +295,9 @@ cocktails, VFE Power, most of VFE Medical and most VE Apparel need Industrial re
 - In play: decoration and storytelling; containers can be abused to wall in raiders (the authors will not fix it).
 - Rimfolk today: props are not `BuildableByPlayer`, so Rimfolk never suggests one, but placed props are colonist
   buildings and `WishWorker_Have` counts by name. In this modlist props named "banner" (`VFEPD_Banner`), "statue" (VE
-  Memes set), "bookshelf" (`VFEPD_SteelBookshelf`), "empty weapon rack", "cracked bathtub" (Odyssey set) and "relic
-  altar" (Alpha Memes set) therefore fulfil the banner, more-art, bookcase, weapon-rack, bath and shrine wishes.
+  Memes set), "empty weapon rack", "cracked bathtub" (Odyssey set) and "relic altar" (Alpha Memes set) therefore
+  fulfil the banner, more-art, weapon-rack, bath and shrine wishes. The "bookshelf" prop (`VFEPD_SteelBookshelf`) no
+  longer counts: the bookcase wish now needs a `Building_Bookcase` or "bookcase" in the name.
 - Hook ideas: exclude `VFEProps.Building_SubstractsSilver` (or defName prefix `VFEPD_`) from name-based wish counts;
   or embrace it as "a make-believe" cheap grant with a smaller mood.
 - Confidence: high for the mechanism (source), medium that props spawn with the player faction (not traced in code).
@@ -496,12 +499,17 @@ cocktails, VFE Power, most of VFE Medical and most VE Apparel need Industrial re
   **bath mat**; `BestBuildable` picks the cheapest buildable match by WorkToBuild, so with DBH the bath wish usually
   suggests (and is met by) a water tub (WorkToBuild 250). `Council_Wish_Fountain` matches DBH's fountain (Industrial).
   `Avail.IsHeater` (heatPerSecond >= 10) counts the burn pit (21) and fueled sauna heater (34) as heaters: they count
-  in heater statistics, and the 1x1 burn pit could be a fallback `heater` variant (the bedroom/hearth suggestions prefer
-  Heater, Brazier, Campfire first; the hearth wish also requires a fire overlay, which the burn pit lacks). The
+  in heater statistics, and the 1x1 burn pit could be a fallback `heater` variant. Since the `fire` test also accepts
+  "refuelable + heat pusher + glower" (added for MO's hearth), both now count as "a fire" for `Council_Wish_Hearth`
+  (fire + heater role, in the bedroom, no preferred defNames): a burn pit or sauna heater in a bedroom fulfils it, and
+  the burn pit (WorkToBuild 200, no research) may even be the cheapest suggestion (`BestBuildable` sorts by
+  WorkToBuild; vanilla campfire/brazier values not checked here). The bedroom-heater wish and the advisor prefer
+  Heater, Brazier, Campfire by name first. The
   `AdvisorWorker_Hygiene` is about cleaning, not DBH.
 - Hook ideas: a bathroom template (latrine or toilet, basin, bathtub, stall doors) and a sauna template; tighten the
   bath wish (`notContains` "water tub", "bath mat", or a `defNames` preference for `BathtubStuff`, `HotTub`,
-  `DBHSaunaHeaterLog`); exclude `DubsBadHygiene.Building_BurnPit` from `IsHeater`; advisor checks for low hygiene or a
+  `DBHSaunaHeaterLog`); exclude `DubsBadHygiene.Building_BurnPit` (and sauna heaters) from `IsHeater` and the `fire` test, or give the hearth
+  wish preferred defNames (Campfire, Brazier, `Stone_Campfire`); advisor checks for low hygiene or a
   full latrine (`Need` defs `Hygiene`/`Bladder`); dilemmas about latrine duty (Rimfolk already jokes about latrines);
   "a hot bath" grant mood using `SaunaRoom`.
 - Confidence: high (repo XML + Rimfolk source).
@@ -526,8 +534,10 @@ cocktails, VFE Power, most of VFE Medical and most VE Apparel need Industrial re
 - What it adds: four bookcases that work exactly like the vanilla bookcase but layer correctly: 2-tier bookcase (2x1)
   and narrow 2-tier (1x1), up to 12 items per cell; bookshelf (2x1) and small bookshelf (1x1, can sit on tables), up to
   6 per cell. Furniture tab, or Storage with Neat Storage. Author seobongzu.
-- Rimfolk today: labels contain "bookcase"/"bookshelf", so they fulfil `Council_Wish_Bookcase`; books held inside are
-  counted by `WishWorker_Stock.HeldInBuildings` for the books wish (vanilla bookcase behavior assumed).
+- Rimfolk today: the bookcase wish now wants a `Building_Bookcase` (subclasses count) or "bookcase" in the name: the two
+  bookcases match by name for certain; the two bookshelves count if they use the vanilla bookcase class, as their
+  description implies (not checked in files). Books held inside are counted by `WishWorker_Stock.HeldInBuildings` for
+  the books wish.
 - Hook ideas: library template; MO's schematic-in-bookcase rule as an advisor tip.
 - Confidence: medium-high (Steam description).
 
@@ -552,8 +562,9 @@ cocktails, VFE Power, most of VFE Medical and most VE Apparel need Industrial re
   chemfuel, VBE drinks...; a water barrel with DBH), firewood rack (60 wood + 150 stuff, Complex Furniture; 14 stacks of
   wood, 7 per tile, stops deterioration), bin (Machining; loose raw food, plants, textiles...), organ fridge (Machining +
   air conditioning). Patches for VFE Medieval, DBH, VBE.
-- Rimfolk today: the firewood rack keeps the firewood wish's logs in storage; the barrel is storage, not a fermenter
-  (no processor comp).
+- Rimfolk today: the firewood wish counts `WoodLog` and Medieval Overhaul's `DankPyon_RawWood` in storage or the home
+  area; the firewood rack's filter lists `WoodLog` only (no MO raw-wood patch found), so it holds planks/logs but probably
+  not MO raw wood. The barrel is storage, not a fermenter (no processor comp).
 - Hook ideas: firewood advisor could suggest the rack in autumn.
 - Confidence: high (Steam description).
 
@@ -652,8 +663,9 @@ cocktails, VFE Power, most of VFE Medical and most VE Apparel need Industrial re
 2. **Processor awareness** (VEF PipeSystem `CompAdvancedResourceProcessor` and PF `CompProcessor`): warn when a stew pot
    runs out of wood, a barrel is ruined by heat, or legendary wine is ready; and fix `IsFermenter` false positives (soy
    sauce fermenter) and misses (vodka drum) by checking what the process produces.
-3. **Name-matching guard for props**: VFE Props' silver-bought props (banner, statue, bookshelf, weapon rack, cracked
-   bathtub, relic altar) quietly fulfil wishes; exclude `VFEProps.Building_SubstractsSilver` or the `VFEPD_` prefix.
+3. **Name-matching guard for props and fires**: VFE Props' silver-bought props (banner, statue, weapon rack, cracked
+   bathtub, relic altar) quietly fulfil wishes, and DBH's burn pit now passes the hearth wish's fire test;
+   exclude `VFEProps.Building_SubstractsSilver` / the `VFEPD_` prefix and `DubsBadHygiene.Building_BurnPit`.
 4. **Noble and library templates** using VFE's artisan set (poster bed, royal end table/dresser/wardrobe) and VE Books'
    writer's table with sbz bookcases; plus a memoir life goal (write a textbook of your best skill).
 5. **Defense literacy**: credit VFE Security's catapults, ballistas, bear traps and cavalry spikes in a medieval
