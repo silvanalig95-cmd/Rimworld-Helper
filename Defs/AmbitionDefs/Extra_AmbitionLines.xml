@@ -131,7 +131,7 @@
       </plain>
       <warm><li>I keep thinking about who we'd lose if they hit us harder. I'd rather build than grieve.</li></warm>
       <blunt><li>Next raid, I want to be behind something solid, looking down a long empty field at them.</li></blunt>
-      <cheerful><li>Barricades, walls and a nice clear line of fire! It'll be like a proper fort.</li></cheerful>
+      <cheerful><li>Barricades, walls and a nice clear line of fire! It'll be like a real fort.</li></cheerful>
       <gloomy><li>The raids only get bigger. One day they'll be big enough. I'd like that day to come later.</li></gloomy>
       <cold><li>We have things worth stealing and very little to stop anyone taking them.</li></cold>
     </pitch>
@@ -414,7 +414,7 @@
       </plain>
       <warm><li>Some of the people who attack us are just hungry and desperate. A bed behind a door would give them a way out.</li></warm>
       <blunt><li>I want somewhere to put the ones who shot at me, so I can watch them heal.</li></blunt>
-      <cheerful><li>A cell with a proper bed! We'll run the friendliest prison on the Rim.</li></cheerful>
+      <cheerful><li>A cell with a real bed! We'll run the friendliest prison on the Rim.</li></cheerful>
       <gloomy><li>No one comes to the Rim because they want to. Some of the raiders just need a reason to stop fighting.</li></gloomy>
       <cold><li>A wounded raider in a cell is a worker, a hostage or an organ donor. Options are good.</li></cold>
     </pitch>
@@ -527,8 +527,8 @@
       <cold><li>Pemmican keeps for months without refrigeration. That is the entire argument.</li></cold>
     </pitch>
     <achieved>
-      <plain><li>A hundred and fifty packs of pemmican, stacked and dry.</li></plain>
-      <cheerful><li>I've stacked the pemmican into a little wall in the storeroom!</li></cheerful>
+      <plain><li>A hundred and fifty packs of pemmican. The storeroom smells like old saddle leather.</li></plain>
+      <cheerful><li>I've stacked the pemmican into a little wall in the storeroom! I think it's load-bearing now.</li></cheerful>
       <gloomy><li>Enough to survive on, if not to enjoy.</li></gloomy>
     </achieved>
   </ColonyCouncil.FlavorExtensionDef>
@@ -637,7 +637,7 @@
     </pitch>
     <achieved>
       <plain><li>People keep finding reasons to walk past it. I keep catching them.</li></plain>
-      <blunt><li>Took long enough, but it was worth it.</li></blunt>
+      <blunt><li>Took long enough. Don't tell anyone I said it was worth it.</li></blunt>
     </achieved>
   </ColonyCouncil.FlavorExtensionDef>
 

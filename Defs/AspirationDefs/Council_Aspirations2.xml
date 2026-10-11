@@ -49,7 +49,7 @@
     <who><passion>Mining</passion></who>
     <chosen>
       <plain>
-        <li>[inherited] {NAME} started a tunnel into the hillside and got about ten paces in. I'll {GOAL}, beginning where {NAME}'s pick stopped.</li>
+        <li>[inherited] The tunnel {NAME} started into the hillside only goes about ten paces. I'll {GOAL}, beginning where {NAME}'s pick stopped.</li>
         <li>Walls fall down and roofs cave in, but this mountain has stood for ages. I'm going to dig us a home inside it.</li>
         <li>[trait:Undergrounder] I sleep better with stone over my head. I want all of us under the mountain, deep and dry. I'll dig it myself if I have to.</li>
         <li>[work:Mining] Every swing of the pick makes more room. I want this mountain hollowed out like a gourd before I'm done with it.</li>
@@ -108,7 +108,7 @@
     <chosen>
       <plain>
         <li>[sparked] No one should be left lying in the open like that. I'll see that ours are buried properly.</li>
-        <li>[inherited] {NAME} buried our dead with such care. I'll {GOAL}, with {NAME}'s old shovel.</li>
+        <li>[inherited] Every grave {NAME} dug was straight and deep and marked. I'll {GOAL} with {NAME}'s old shovel, and dig them the same way.</li>
         <li>Raider or friend, they shouldn't be left out for the birds. I've started digging.</li>
       </plain>
       <warm>
@@ -166,7 +166,7 @@
     <who><passion>Intellectual</passion></who>
     <chosen>
       <plain>
-        <li>[inherited] {NAME} left a stack of notes I can barely follow. I'll work through every page and {GOAL}.</li>
+        <li>[inherited] I can barely follow the notes {NAME} left behind. I'll work through every page and {GOAL}.</li>
         <li>Somewhere in all these notes there's an idea nobody's had yet. I'm going to find it if it takes me years.</li>
         <li>[tribal] The ancients knew things we've forgotten. I'm going to learn them back, one by one, until I find something they never knew.</li>
         <li>[spacer] We have machines that think and engines that cross the stars, and still no one understands half of what's out here. I'd like to understand some of it.</li>
@@ -222,7 +222,7 @@
     <who><notTrait><li>Pyromaniac</li></notTrait></who>
     <chosen>
       <plain>
-        <li>[inherited] {NAME} was always first to run toward the smoke. Now that's my job. I'll {GOAL}.</li>
+        <li>[inherited] Whenever there was smoke, {NAME} was the first one running toward it. Now that's my job. I'll {GOAL}.</li>
         <li>Everything here burns sooner or later. I'm going to be the one who runs toward it.</li>
         <li>[summer] The grass is dry and the lightning's close. Fires are coming. I want to be the one standing in front of them.</li>
       </plain>
@@ -342,7 +342,7 @@
     <who><passion>Artistic</passion></who>
     <chosen>
       <plain>
-        <li>[inherited] {NAME} left a sculpture half finished in the workshop. I won't touch it, but I'll {GOAL} in {NAME}'s memory.</li>
+        <li>[inherited] There's a sculpture in the workshop that {NAME} never finished. I won't touch it, but I'll {GOAL} in {NAME}'s memory.</li>
         <li>I want to make something beautiful enough that strangers stop to look at it.</li>
         <li>[lowmood] Making things is the only time my head goes quiet. I want to get good enough that it stays quiet longer.</li>
       </plain>
@@ -400,10 +400,10 @@
     <chosen>
       <plain>
         <li>[inherited] {NAME} kept the infirmary going on almost nothing. I'm going to {GOAL} and keep it going.</li>
-        <li>I want the keys to the infirmary. Not for the title. Because I know how to run it, and somebody should.</li>
+        <li>I want the keys to the infirmary, not for the title but because I know how to run it.</li>
         <li>[hurt] Lying in that bed gave me a lot of time to think about how I'd run the infirmary. Better than this. I'm going to be physician.</li>
       </plain>
-      <warm><li>When people are hurting, I want them to know exactly where to find me. I want the council to make it official.</li></warm>
+      <warm><li>When people are hurting, they should know exactly where to find me. I'd like the council to make it official.</li></warm>
       <cold><li>Medical decisions are being made by whoever happens to be nearby. That's inefficient. I'll take the physician's seat.</li></cold>
     </chosen>
     <achieved>
@@ -454,7 +454,7 @@
     <sparks><li>thought:Council_LostElection</li></sparks>
     <chosen>
       <plain>
-        <li>[inherited] {NAME} kept the stores better than anyone, and they've been a mess since. I'll {GOAL} and set them right.</li>
+        <li>[inherited] The stores have been a mess since we lost {NAME}. I'll {GOAL} and set them right.</li>
         <li>I know exactly what's in every stockpile, down to the last nail. It's about time someone gave me the keys.</li>
         <li>[trait:Greedy] Quartermaster. Imagine it. All the silver in the colony, counted by me, every evening. Just counted. Mostly.</li>
       </plain>
@@ -484,7 +484,7 @@
     <chosen>
       <plain>
         <li>[inherited] There wasn't room for all the mourners at {NAME}'s grave. I'd like to be loved like that, so I'm going to {GOAL}.</li>
-        <li>I have friends here. I want more. I want a table so full that somebody has to sit on a crate.</li>
+        <li>I have friends here, but I'd like a table so full that somebody has to sit on a crate.</li>
         <li>[newcomer] I barely know anyone's name yet. By the time I'm done here, I want five of them to be friends.</li>
       </plain>
       <warm><li>Every friend I've made here has made this place warmer. I'd like five.</li></warm>
@@ -511,7 +511,7 @@
     <chosen>
       <plain>
         <li>[inherited] {NAME} wanted to grow old here. I'm going to {GOAL}, and grow old for both of us.</li>
-        <li>Five more years. I want to see this place grow up, and I want to be here for it.</li>
+        <li>Five more years. I'd like to see this place grow up, and be here for it.</li>
         <li>[old] My knees know every winter by name now. I'd like to meet five more of them. Then I'll think about resting.</li>
       </plain>
       <cheerful><li>Five more years here! Think of all the harvests and birthdays, and the arguments about chores.</li></cheerful>
@@ -537,7 +537,7 @@
     <sparks><li>birth</li></sparks>
     <chosen>
       <plain>
-        <li>[inherited] {NAME} called this place a town back when there were only a handful of us. I'll {GOAL} and make it true.</li>
+        <li>[inherited] Back when there were only a handful of us, {NAME} was already calling this place a town. I'll {GOAL} and make it true.</li>
         <li>I want a town. Not a camp, not a hideout. A town, with neighbors you don't like and gossip that travels.</li>
         <li>[small] There's only a handful of us. One bad raid and we're gone. I want this place to grow until nothing can wipe it out.</li>
       </plain>

@@ -46,7 +46,7 @@
     <achieved>
       <plain>
         <li>They call us friends now. Let's keep it that way.</li>
-        <li>If we called for help now, someone would come.</li>
+        <li>If we sent for help now, someone would actually come.</li>
       </plain>
       <warm><li>We have real friends out there now. I'm going to wave at their next caravan until my arm hurts.</li></warm>
       <blunt><li>Good. Now we've got someone to borrow soldiers from.</li></blunt>
@@ -127,7 +127,7 @@
         <li>[skill:Artistic] There's a sculpture I keep seeing when I close my eyes. I need to get it out.</li>
       </plain>
       <warm>
-        <li>I want to make one thing for all of you that will still be here after we're gone.</li>
+        <li>Let me make one thing for all of you that will still be here after we're gone.</li>
       </warm>
       <blunt>
         <li>I'm the best crafter on this rock and nothing I've made proves it yet.</li>
@@ -191,8 +191,8 @@
       </cold>
     </pitch>
     <achieved>
-      <plain><li>That's a proper woodpile. We'll have fires all winter.</li></plain>
-      <warm><li>We'll all sleep warm this winter.</li></warm>
+      <plain><li>Now that's a woodpile. We'll have fires all winter.</li></plain>
+      <warm><li>We'll all sleep warm this winter, even whoever gets the bed by the door.</li></warm>
       <blunt><li>Good. Nobody freezes this year.</li></blunt>
       <cheerful><li>Look at it, it's taller than me! We're going to be so toasty.</li></cheerful>
       <gloomy><li>Enough to last the winter. If the winter plays fair.</li></gloomy>

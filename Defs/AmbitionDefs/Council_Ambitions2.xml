@@ -17,7 +17,7 @@
     <pitch>
       <plain>
         <li>I cook in the same room where someone butchered a muffalo yesterday, and then we wonder why people are throwing up.</li>
-        <li>I want a clean kitchen with no guts on the floor, and the butchering done in a room of its own.</li>
+        <li>The butchering needs a room of its own, and the kitchen needs a good scrub. That's all I'm asking.</li>
       </plain>
       <warm>
         <li>I want to feed you all without making anyone sick. Help me keep the kitchen clean.</li>
@@ -58,7 +58,7 @@
     </goals>
     <pitch>
       <plain>
-        <li>The last raider we captured had to sleep tied up in the storeroom. We need a proper cell.</li>
+        <li>The last raider we captured had to sleep tied up in the storeroom. We need a real cell.</li>
         <li>A cell needs a bed and a door that locks. We have the materials for both.</li>
       </plain>
       <warm>
@@ -225,7 +225,7 @@
     <pitch>
       <plain>
         <li>Somebody here has to get really good at stitching people back together. I volunteer, but I'll need practice.</li>
-        <li>Our doctor can set a bone and not much else. I want someone trained properly.</li>
+        <li>Our doctor can set a bone and not much else. Someone here needs real training.</li>
       </plain>
       <warm>
         <li>Let me learn. I'd rather patch you up than bury you.</li>
@@ -304,7 +304,7 @@
     </goals>
     <pitch>
       <plain>
-        <li>Pemmican tastes like an old boot, but it lasts for months. I want a hundred and fifty packs of it.</li>
+        <li>Pemmican tastes like a boot that went to war, but it lasts for months. Let's make a hundred and fifty packs of it.</li>
         <li>If the meat spoils or the winter runs long, I want food that keeps.</li>
       </plain>
       <warm>
@@ -346,7 +346,7 @@
     <pitch>
       <plain>
         <li>We've buried people in ditches. We can do better than that.</li>
-        <li>I'm asking for somewhere we can put flowers and say goodbye properly.</li>
+        <li>I'm asking for somewhere we can leave flowers and say goodbye.</li>
       </plain>
       <warm>
         <li>The ones we lose deserve a place. Let's give them one.</li>
@@ -365,7 +365,7 @@
       </cold>
     </pitch>
     <achieved>
-      <plain><li>There's proper ground for our dead now, with a fence around it.</li></plain>
+      <plain><li>Our dead have their own ground now, with a fence around it.</li></plain>
     </achieved>
   </ColonyCouncil.AmbitionDef>
 
@@ -431,7 +431,7 @@
     </goals>
     <pitch>
       <plain>
-        <li>The children need a proper place to learn, with desks and someone to teach them.</li>
+        <li>The children do their sums in the dirt with a stick. They need desks and a place to learn.</li>
         <li>The kids are the colony in twenty years. Let's teach them something.</li>
       </plain>
       <warm>

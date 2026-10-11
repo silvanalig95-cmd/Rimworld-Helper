@@ -17,7 +17,7 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_DlmS_PaidForAPerson</defName>
     <durationDays>3</durationDays>
-    <stages><li><label>silver for a stranger</label><description>We paid good silver to take on one more mouth to feed. I hope they're worth it.</description><baseMoodEffect>-2</baseMoodEffect></li></stages>
+    <stages><li><label>silver for a stranger</label><description>We paid good silver for one more mouth at the table. I hope the new one can at least cook.</description><baseMoodEffect>-2</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
@@ -29,7 +29,7 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_DlmS_NotWanted</defName>
     <durationDays>3</durationDays>
-    <stages><li><label>not wanted there</label><description>I asked those people for a place among them, and they turned me down.</description><baseMoodEffect>-4</baseMoodEffect></li></stages>
+    <stages><li><label>not wanted there</label><description>I asked those people for a place among them, and they turned me down. Their walls are ugly anyway.</description><baseMoodEffect>-4</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <!-- ===================== A guest's tongue ===================== -->
@@ -78,7 +78,7 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_DlmS_SoldTheHeirloom</defName>
     <durationDays>12</durationDays>
-    <stages><li><label>sold what they left me</label><description>It was the last thing I had of them, and I sold it to a trader for silver.</description><baseMoodEffect>-6</baseMoodEffect></li></stages>
+    <stages><li><label>sold what they left me</label><description>It was the last thing I had of them, and I sold it to a trader. The silver spends just fine, and that's the worst part.</description><baseMoodEffect>-6</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
@@ -105,7 +105,7 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_DlmS_SilverInHand</defName>
     <durationDays>3</durationDays>
-    <stages><li><label>silver in the stores</label><description>One of us sold an old keepsake to a trader. That silver will buy us food.</description><baseMoodEffect>2</baseMoodEffect></li></stages>
+    <stages><li><label>silver in the stores</label><description>One of us finally sold an old keepsake to a trader. You can't eat a keepsake.</description><baseMoodEffect>2</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <!-- ===================== A voice through the door ===================== -->
@@ -223,19 +223,19 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_DlmS_TheHunt</defName>
     <durationDays>3</durationDays>
-    <stages><li><label>the hunt is on</label><description>There's a big predator denning nearby, and we're going after it. I can't wait.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
+    <stages><li><label>the hunt is on</label><description>There's a big predator denning nearby, and we're going after it. Finally, a reason to get up early.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_DlmS_WastedBeauty</defName>
     <durationDays>3</durationDays>
-    <stages><li><label>hunting a fine animal</label><description>It's the finest animal I've seen in a year, and we're sending hunters after it.</description><baseMoodEffect>-2</baseMoodEffect></li></stages>
+    <stages><li><label>hunting a fine animal</label><description>It's the finest animal I've seen in a year, and we're sending hunters after it. All that muscle, for the butcher's table.</description><baseMoodEffect>-2</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_DlmS_WorthTaming</defName>
     <durationDays>4</durationDays>
-    <stages><li><label>a predator worth taming</label><description>That predator would make the best guard animal we've ever had. I want to tame it.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
+    <stages><li><label>a predator worth taming</label><description>That predator would make the best guard animal we've ever had, if it doesn't eat me first.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
@@ -273,7 +273,7 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_DlmS_NotAllowed</defName>
     <durationDays>4</durationDays>
-    <stages><li><label>not allowed to keep it</label><description>It liked me, and they still said I can't keep it.</description><baseMoodEffect>-4</baseMoodEffect></li></stages>
+    <stages><li><label>not allowed to keep it</label><description>It liked me, and they still said I can't keep it. I wasn't even going to let it sleep in my bed.</description><baseMoodEffect>-4</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <!-- ===================== A titled critic ===================== -->
@@ -305,7 +305,7 @@
     <durationDays>12</durationDays>
     <stackLimit>3</stackLimit>
     <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
-    <stages><li><label>an insolent builder</label><description>A common builder lectured me at dinner. I shall remember it.</description><baseMoodEffect>-2</baseMoodEffect><baseOpinionOffset>-15</baseOpinionOffset></li></stages>
+    <stages><li><label>an insolent builder</label><description>A common builder lectured me at dinner. I have written it down, so that I may remember it precisely.</description><baseMoodEffect>-2</baseMoodEffect><baseOpinionOffset>-15</baseOpinionOffset></li></stages>
   </ThoughtDef>
 
   <!-- ===================== The miracle tonic ===================== -->
@@ -313,7 +313,7 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_DlmS_TonicWorked</defName>
     <durationDays>4</durationDays>
-    <stages><li><label>that tonic actually worked</label><description>The trader's tonic tasted like swamp water, but I slept like a log. I want the recipe.</description><baseMoodEffect>4</baseMoodEffect></li></stages>
+    <stages><li><label>that tonic actually worked</label><description>The trader's tonic tasted like a swamp in a boot, but I slept like a log. I want the recipe.</description><baseMoodEffect>4</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
@@ -392,7 +392,7 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_DlmS_CabinFever</defName>
     <durationDays>3</durationDays>
-    <stages><li><label>cooped up indoors</label><description>We've been stuck indoors for days because of one animal. I'm going stir crazy.</description><baseMoodEffect>-2</baseMoodEffect></li></stages>
+    <stages><li><label>cooped up indoors</label><description>We've been stuck indoors for days because of one animal. I've counted the knots in the ceiling twice.</description><baseMoodEffect>-2</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
@@ -444,7 +444,7 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_DlmS_GoodPriceThough</defName>
     <durationDays>4</durationDays>
-    <stages><li><label>sold my animal, at a good price</label><description>I miss my animal, but we got a lot of silver for it.</description><baseMoodEffect>-1</baseMoodEffect></li></stages>
+    <stages><li><label>sold my animal, at a good price</label><description>I miss my animal, but we got a lot of silver for it. I miss it a little less every time I count it.</description><baseMoodEffect>-1</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
@@ -464,13 +464,13 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_DlmS_QuackHealer</defName>
     <durationDays>3</durationDays>
-    <stages><li><label>mud rubbed in for silver</label><description>The council paid good silver for a healer to rub mud into my old injury. It hurts just the same.</description><baseMoodEffect>-2</baseMoodEffect></li></stages>
+    <stages><li><label>mud rubbed in for silver</label><description>The council paid good silver for a healer to rub mud into my old injury. It hurts just the same, and the mud is still there.</description><baseMoodEffect>-2</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_DlmS_LearnedFromHealer</defName>
     <durationDays>5</durationDays>
-    <stages><li><label>lessons from a traveling healer</label><description>I spent the afternoon learning from a traveling healer. Some of it was even useful.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
+    <stages><li><label>lessons from a traveling healer</label><description>I spent the afternoon with a traveling healer. Half of what they said was nonsense, but I'm keeping the other half.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">

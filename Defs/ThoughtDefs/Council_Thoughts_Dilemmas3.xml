@@ -70,7 +70,7 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_Dlm_Worms</defName>
     <durationDays>4</durationDays>
-    <stages><li><label>learned about the worms</label><description>They told me the worms eat all of you when you're buried, even the eyes. I asked about the eyes specially.</description><baseMoodEffect>-4</baseMoodEffect></li></stages>
+    <stages><li><label>learned about the worms</label><description>They told me the worms eat all of you when you're buried, even the eyes. I asked about the eyes specifically.</description><baseMoodEffect>-4</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">

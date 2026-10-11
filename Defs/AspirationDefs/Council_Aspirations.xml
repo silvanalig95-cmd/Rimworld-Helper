@@ -23,7 +23,7 @@
     <chosen>
       <plain>
         <li>[spark:fulfilled] I watched {NAME} do it and couldn't stop thinking about it afterward. I'm going to master {SKILL} too.</li>
-        <li>[inherited] {NAME} was getting really good, right up to the end. I'm going to {GOAL} and pick up where {NAME} left off.</li>
+        <li>[inherited] Right up to the end, {NAME} was getting better every week. I'm going to {GOAL} and pick up where {NAME} left off.</li>
         <li>Before I die, I'm going to be truly good at {SKILL}. Not decent, good.</li>
         <li>The others each have a thing they're known for. I'd like {SKILL} to be mine.</li>
         <li>[old] I've been passable at {SKILL} for decades. I'd like to die a master. There's still time, if I hurry.</li>
@@ -55,10 +55,10 @@
     <chosen>
       <plain>
         <li>[sparked] I stood at that wedding and wanted the same for myself, someone who'd promise to stay.</li>
-        <li>[inherited] {NAME} used to talk about having a wedding out here, with flowers from the fields. I mean to {GOAL}, and have those flowers there.</li>
+        <li>[inherited] All that talk from {NAME} about a wedding with flowers from the fields, and it never happened. I mean to {GOAL}, and there will be flowers.</li>
         <li>I'd like to get married. Out here on the Rim, of all places.</li>
         <li>I want a wedding, with flowers and too much food and people crying.</li>
-        <li>[old] They say it's never too late. I want to marry while I can still dance at my own wedding.</li>
+        <li>[old] They say it's never too late. I'd better marry while I can still dance at my own wedding.</li>
       </plain>
       <blunt><li>I want to marry. Don't make it weird.</li></blunt>
       <gloomy><li>I'd like to marry someone before this place takes everything else from me.</li></gloomy>
@@ -87,7 +87,7 @@
       <plain>
         <li>[spark:birth] I held the new baby today. I want one of my own. I didn't know how much until now.</li>
         <li>[inherited] {NAME} wanted children so badly. I'm going to {GOAL}, and if I can, the baby will carry {NAME}'s name.</li>
-        <li>I want a child, someone to teach and to carry on after me.</li>
+        <li>I've started thinking about a child of my own, someone to teach and to carry on after me.</li>
         <li>One day I'd like to hear a baby crying in this colony and know it's mine.</li>
       </plain>
       <gloomy>
@@ -118,7 +118,7 @@
     <chosen>
       <plain>
         <li>[sparked] I've been alone too long. I don't want to die with nobody at my grave who really knew me.</li>
-        <li>[inherited] {NAME} was lonely here, and I didn't see it until too late. I'll {GOAL}, and I won't let anyone else eat alone.</li>
+        <li>[inherited] I didn't see how lonely {NAME} was until too late. I'll {GOAL}, and I won't let anyone else eat alone.</li>
         <li>I want real friends here. The kind you'd run back into a fire for.</li>
         <li>[newcomer] I'm new here and everyone already has their people. I'd like three friends of my own.</li>
       </plain>
@@ -149,8 +149,8 @@
       <plain>
         <li>[sparked] Someone took the time to teach me. Now I want to do the same for someone else.</li>
         <li>[inherited] {NAME} had so much to pass on and no one to pass it to. I'll {GOAL} and teach them what {NAME} taught me.</li>
-        <li>I've picked up a lot over the years. I'd like to pass it on to someone here, properly.</li>
-        <li>I want a student, someone I can teach everything I know.</li>
+        <li>I learned most of what I know by getting it wrong. I'd like to spare someone a few of those mistakes.</li>
+        <li>I've got a head full of tricks and no one to give them to. It's time I took a student.</li>
         <li>[old] My hands are slowing down. Before they stop, I want someone else to know what they know.</li>
       </plain>
       <cold><li>If I die, everything I know dies with me. That's poor planning. I'll train a successor.</li></cold>
@@ -161,7 +161,7 @@
         <li>My student doesn't need me anymore. I watched them work today and had nothing to correct.</li>
       </plain>
       <warm><li>My student is ready. Whatever I've done wrong in my life, I did this right.</li></warm>
-      <cold><li>My student outperformed me today. That was the plan.</li></cold>
+      <cold><li>My student outperformed me today, exactly as planned. I am entirely calm about it.</li></cold>
       <cheerful><li>My student is ready! I may have hugged them too hard.</li></cheerful>
     </achieved>
   </ColonyCouncil.AspirationDef>
@@ -261,9 +261,9 @@
     <sparks><li>fulfilled</li></sparks>
     <chosen>
       <plain>
-        <li>[inherited] {NAME} deserved a title, something people said with respect. I'll {GOAL}, and every time I hear it I'll think of {NAME}.</li>
+        <li>[inherited] If anyone here deserved a title, it was {NAME}. I'll {GOAL}, and every time I hear it I'll think of {NAME}.</li>
         <li>The others have names. "The Healer." "Deadeye." I want one. A good one, ideally.</li>
-        <li>I'd like to be more than a name on the roster. I want the others to have a word for me.</li>
+        <li>When people tell stories about this colony one day, I'd like to come up in them.</li>
       </plain>
       <blunt><li>I want a title. I'll earn it.</li></blunt>
       <cheerful><li>I want a nickname, a heroic one with "the" in it!</li></cheerful>
@@ -299,7 +299,7 @@
     </chosen>
     <achieved>
       <plain>
-        <li>Three more years, and I'm still here.</li>
+        <li>Three more years. I've outlasted two roofs and three cooks.</li>
         <li>[hurt] Three years. I've got a scar for every one of them. Still here.</li>
       </plain>
       <cold><li>Survival objective met. Setting a new one.</li></cold>
@@ -322,7 +322,7 @@
         <li>I'd like to see this place full, with noise at dinner and arguments over chores, like a real town.</li>
       </plain>
       <warm><li>I want so many people here I forget some of their names. Then I'll learn them all again.</li></warm>
-      <cheerful><li>I want so many neighbors that we need a second dining room!</li></cheerful>
+      <cheerful><li>So many neighbors that we need a second dining room! That's what I'm hoping for.</li></cheerful>
       <cold><li>Small colonies die of one bad season. I want to see us grow out of that danger.</li></cold>
     </chosen>
     <achieved>
@@ -346,7 +346,7 @@
     <chosen>
       <plain>
         <li>[spark:battle] I saw what they did on the wall today. They'll keep coming. I'll keep counting.</li>
-        <li>[inherited] {NAME} held the wall longer than any of us. Now I'll {GOAL}, carrying {NAME}'s weapon.</li>
+        <li>[inherited] When the raiders came, {NAME} held the wall longer than any of us. Now I'll {GOAL}, carrying {NAME}'s weapon.</li>
         <li>The raiders keep coming. Fine. I'm going to be the reason they stop.</li>
         <li>[trait:Bloodlust] Every raid is a gift. I want to unwrap twenty-five of them.</li>
       </plain>
@@ -374,7 +374,7 @@
     <chosen>
       <plain>
         <li>[inherited] Half the walls here went up under {NAME}'s hands. I'll {GOAL}, starting with the ones {NAME} left unfinished.</li>
-        <li>I want to look at this colony one day and see my hands everywhere. Walls, doors, roofs. Mine.</li>
+        <li>One day I'd like to walk through this colony and see my work in every wall, door and roof.</li>
         <li>[tribal] Our ancestors raised great halls of timber and stone. I want to raise this place the same way, wall by wall.</li>
         <li>I like the sound a wall makes when the last piece goes in. I'd like to hear it a hundred and fifty times.</li>
       </plain>
@@ -401,7 +401,7 @@
     <chosen>
       <plain>
         <li>[spark:downed] Someone stitched me up when I was bleeding out. I want to be that person for someone else.</li>
-        <li>[inherited] {NAME} kept a lot of us alive with a needle and steady hands. I'm going to {GOAL} and try to be half as calm about it.</li>
+        <li>[inherited] A lot of us are only alive because of {NAME}'s needle and steady hands. I'm going to {GOAL} and try to be half as calm about it.</li>
         <li>Every scar in this colony should have my stitches in it. A hundred wounds. Then I'll call myself a healer.</li>
         <li>[afterraid] I spent all night after the raid with my hands in other people's blood. I want to get good enough that I lose fewer of them.</li>
       </plain>
@@ -508,7 +508,7 @@
     <sparks><li>omen</li></sparks>
     <chosen>
       <plain>
-        <li>[inherited] {NAME} used to wake up and tell us what was coming, and sometimes it came. I'm going to {GOAL}, and write each dream down the way {NAME} did.</li>
+        <li>[inherited] Some mornings {NAME} would tell us what was coming, and sometimes it came. I'm going to {GOAL}, and write each dream down the way {NAME} did.</li>
         <li>My grandmother dreamt things before they happened. I want to know if I can too.</li>
         <li>[night] I woke from a dream so vivid I wrote it down in the dark. I want to know if any of this means anything.</li>
       </plain>

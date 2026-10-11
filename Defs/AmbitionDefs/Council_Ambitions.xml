@@ -147,7 +147,7 @@
         <li>Someone will get badly hurt again; it's only a question of when. We should have beds ready.</li>
       </gloomy>
       <cold>
-        <li>The wounded recover faster and die less often in a proper hospital. I consider it necessary.</li>
+        <li>The wounded recover faster and die less often in a real hospital. I consider it necessary.</li>
       </cold>
     </pitch>
     <achieved>
@@ -290,7 +290,7 @@
     </goals>
     <pitch>
       <plain>
-        <li>We work all day and there's nothing to do in the evenings. I propose a proper rec room.</li>
+        <li>We work all day, and in the evenings there's nothing to do but sit on the steps. I propose a rec room.</li>
       </plain>
       <warm>
         <li>After a hard day we need somewhere to sit and laugh together. A rec room would give us that.</li>
@@ -350,7 +350,7 @@
         <li>I propose we spend the next few weeks on cover and weapons, and pick a place to make our stand.</li>
       </plain>
       <warm>
-        <li>I want us to sleep through the night without listening for raiders. Let's make the defenses solid.</li>
+        <li>None of us has slept a whole night since the last raid. Let's make the defenses solid enough that we can.</li>
       </warm>
       <blunt>
         <li>Next time they come, I want them running back where they came from. Build defenses.</li>
@@ -543,13 +543,13 @@
         <li>Our clothes, tools and weapons all have to be made somewhere. I'd like a real workshop to make them in.</li>
       </plain>
       <warm>
-        <li>Give me a proper workshop and I'll keep all of you clothed and equipped.</li>
+        <li>Give me a real workshop and I'll keep all of you in decent boots and coats.</li>
       </warm>
       <blunt>
         <li>You want gear? Then give me a workshop, not a bench in the rain.</li>
       </blunt>
       <cheerful>
-        <li>A real workshop, smelling of sawdust! I can't wait.</li>
+        <li>A real workshop, smelling of sawdust and glue! I can't wait.</li>
       </cheerful>
       <gloomy>
         <li>Everything we own is falling apart, and there's nowhere decent to make new things.</li>
@@ -587,7 +587,7 @@
         <li>I'd like three sculptures in the dining room, where we'll see them every day.</li>
       </plain>
       <warm>
-        <li>It would do us good to have something beautiful in the rooms we share.</li>
+        <li>We eat every meal looking at the same bare wall. A sculpture by the door would do us good.</li>
       </warm>
       <blunt>
         <li>The dining room is depressing. Let me put some art in it.</li>
@@ -634,7 +634,7 @@
         <li>The animals out there could pull carts, give milk, or just be good company. Let's tame a few and build them a barn.</li>
       </plain>
       <warm>
-        <li>A few animals around the place would make it feel more alive.</li>
+        <li>I miss hearing animals in the morning. A few around the place would make it feel alive.</li>
       </warm>
       <blunt>
         <li>Free labor is walking around out there on four legs. Tame it.</li>
@@ -686,7 +686,7 @@
         <li>Give me a quiet room with a research bench and I'll finish three projects for us.</li>
       </plain>
       <warm>
-        <li>I want to learn the things that would make the work easier for all of you.</li>
+        <li>There are better ways to do half the jobs around here, and I'd like to find them.</li>
       </warm>
       <blunt>
         <li>We're stumbling around in the dark. Let me do some actual research.</li>
@@ -876,7 +876,7 @@
         <li>I'm going to get a smile out of every one of you at least once a day!</li>
       </cheerful>
       <gloomy>
-        <li>Someone's going to snap soon if nothing changes.</li>
+        <li>Someone's going to snap soon. I've seen how people look at each other over supper.</li>
       </gloomy>
       <cold>
         <li>Low morale reduces output and invites breakdowns. Raise it.</li>
@@ -966,7 +966,7 @@
         <li>Give me a real kitchen and good ingredients and I'll give you meals worth fighting for.</li>
       </plain>
       <warm>
-        <li>I'd love to cook for all of you properly, with good ingredients and a real stove.</li>
+        <li>I'd love to cook for all of you the way my mother cooked for us, with herbs and a slow fire.</li>
       </warm>
       <blunt>
         <li>I'm a cook, not a miracle worker. Give me a kitchen.</li>
@@ -983,7 +983,7 @@
     </pitch>
     <achieved>
       <plain>
-        <li>Dinner is served, and it's the best meal this colony has had.</li>
+        <li>Dinner is served. There's a sauce, and it has herbs in it.</li>
       </plain>
     </achieved>
   </ColonyCouncil.AmbitionDef>

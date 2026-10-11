@@ -11,7 +11,7 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_DlmSoc_Separated</defName>
     <durationDays>4</durationDays>
-    <stages><li><label>kept apart like children</label><description>The council split up our work and our rooms so we'd stay apart.</description><baseMoodEffect>-2</baseMoodEffect></li></stages>
+    <stages><li><label>kept apart like children</label><description>The council split up our work and our rooms so we'd stay apart. My half of the colony is smaller.</description><baseMoodEffect>-2</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
@@ -23,7 +23,7 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_DlmSoc_TaughtByRival</defName>
     <durationDays>3</durationDays>
-    <stages><li><label>lessons from my rival</label><description>The council made my rival teach me. They treated me like an idiot the whole time.</description><baseMoodEffect>-2</baseMoodEffect></li></stages>
+    <stages><li><label>lessons from my rival</label><description>The council made my rival teach me. I learned a few things, and I'll never admit it.</description><baseMoodEffect>-2</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
@@ -49,7 +49,7 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_DlmSoc_PostedApart</defName>
     <durationDays>4</durationDays>
-    <stages><li><label>posted apart from my friend</label><description>I asked to work beside my friend, and the council sent me somewhere else.</description><baseMoodEffect>-3</baseMoodEffect></li></stages>
+    <stages><li><label>posted apart from my friend</label><description>I asked to work beside my friend, and the council decided the turnips need me more.</description><baseMoodEffect>-3</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
@@ -73,7 +73,7 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_DlmSoc_Welcomed</defName>
     <durationDays>5</durationDays>
-    <stages><li><label>made welcome</label><description>They made room for me at their table. It's good to have people to sit with.</description><baseMoodEffect>4</baseMoodEffect></li></stages>
+    <stages><li><label>made welcome</label><description>They made room for me at their table and passed me the bread first.</description><baseMoodEffect>4</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef>
@@ -160,7 +160,7 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_DlmSoc_Searched</defName>
     <durationDays>5</durationDays>
-    <stages><li><label>my things were searched</label><description>They went through everything I own on my rival's word, and found nothing.</description><baseMoodEffect>-5</baseMoodEffect></li></stages>
+    <stages><li><label>my things were searched</label><description>They turned out everything I own on my rival's word, right down to my socks, and found nothing.</description><baseMoodEffect>-5</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
@@ -218,7 +218,7 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_DlmSoc_Uncredited</defName>
     <durationDays>4</durationDays>
-    <stages><li><label>no credit for my work</label><description>The council called it colony work and didn't name anyone. I did most of it myself.</description><baseMoodEffect>-3</baseMoodEffect></li></stages>
+    <stages><li><label>no credit for my work</label><description>The council called it colony work and didn't name anyone. I'll remember that next time there's colony work to do.</description><baseMoodEffect>-3</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <!-- ===================== Office ===================== -->

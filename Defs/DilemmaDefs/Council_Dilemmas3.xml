@@ -167,7 +167,7 @@
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>-3</amount></li>
         </effects>
         <riskChance>0.35</riskChance>
-        <riskOutcome>{A_nameDef} never got an answer, so {A_nameDef} has been asking the question at every meal since, of anyone who will sit still for it.</riskOutcome>
+        <riskOutcome>{A_nameDef} never got an answer, so {A_pronoun} has been asking the question at every meal since, of anyone who will sit still for it.</riskOutcome>
         <riskEffects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_Dlm_AwkwardQuestions</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Others</target><thought>Council_Dlm_AwkwardQuestions</thought><exceptTrait><li>Psychopath</li></exceptTrait><chance>0.6</chance></li>

@@ -262,7 +262,7 @@
     <stranger><kind>Visitor</kind><adult>true</adult></stranger>
     <texts>
       <li>{X_nameDef} stared at {A_nameDef} all day, from the gate, from the well and across the supper table, and only said "what?" when {A_nameDef} asked about it.</li>
-      <li>{X_nameDef} watched {A_nameDef} chop wood for an hour without a word, then spat and walked off. {A_nameDef} has been going over every swing since.</li>
+      <li>{X_nameDef} watched {A_nameDef} chop wood all morning without a word, then spat and walked off. {A_nameDef} has been going over every swing since.</li>
       <li>Wherever {A_nameDef} went today, {X_nameDef} was leaning on a wall nearby, watching. In the evening {X_nameDef} explained that {A_nameDef} looks very like {X_possessive} dead brother.</li>
     </texts>
     <effects>
@@ -659,7 +659,7 @@
     <stranger><kind>Prisoner</kind><adult>true</adult></stranger>
     <colonist><passion>Cooking</passion></colonist>
     <texts>
-      <li>{X_nameDef} sent word to {A_nameDef} that the rats in the cell eat better than {X_pronoun} does, along with the bowl, licked clean.</li>
+      <li>{X_nameDef} sent {A_nameDef}'s bowl back licked clean, with word that the rats in the cell eat better.</li>
       <li>The food, {X_nameDef} told {A_nameDef}, was the worst part of being captured, worse than the wound.</li>
       <li>With {X_possessive} mouth full, {X_nameDef} asked {A_nameDef} whether {A_pronoun} had ever cooked before or was just guessing.</li>
     </texts>

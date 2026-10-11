@@ -79,7 +79,7 @@
       <rulesStrings>
         <li>r_logentry->[INITIATOR_nameDef] grumbled to [RECIPIENT_nameDef] about [gripe].</li>
         <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] agreed that [gripe] is no way to live.</li>
-        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] that [gripe] was the last straw.</li>
+        <li>r_logentry->[INITIATOR_nameDef] announced to [RECIPIENT_nameDef] that [gripe] was the last straw.</li>
         <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] to back [INITIATOR_objective] up next time [INITIATOR_pronoun] raised [gripe] with the council.</li>
         <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] tried to make a joke of [gripe], without much success.</li>
         <li>gripe->eating meals off [INITIATOR_possessive] knees</li>
@@ -124,7 +124,7 @@
         <li>r_logentry->[INITIATOR_nameDef] described [food] to [RECIPIENT_nameDef] in loving detail.</li>
         <li>r_logentry->[INITIATOR_nameDef] complained to [RECIPIENT_nameDef] about [gripe].</li>
         <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] spent supper remembering the best meals they had ever eaten.</li>
-        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] that all [INITIATOR_pronoun] wanted for [INITIATOR_possessive] birthday was [food].</li>
+        <li>r_logentry->[INITIATOR_nameDef] informed [RECIPIENT_nameDef] that [INITIATOR_pronoun] wanted [food] for [INITIATOR_possessive] birthday, and nothing else.</li>
         <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] that [gripe] was a crime against cooking.</li>
         <li>food->a proper hot meal</li>
         <li>food->a meal with actual seasoning</li>
@@ -160,7 +160,7 @@
     <label>talked about someone who died</label>
     <logRulesInitiator>
       <rulesStrings>
-        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] that the dead deserve a proper grave.</li>
+        <li>r_logentry->[INITIATOR_nameDef] insisted to [RECIPIENT_nameDef] that the dead deserve a proper grave.</li>
         <li>r_logentry->[INITIATOR_nameDef] shared a memory of a lost friend with [RECIPIENT_nameDef].</li>
         <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] to help bury someone who still lies out in the open.</li>
         <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] sat together for a while without saying much.</li>
