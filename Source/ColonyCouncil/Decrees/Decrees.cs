@@ -33,6 +33,8 @@ namespace ColonyCouncil
     /// <summary>Who feels how about a decree: by trait (and degree), by passion for a skill, or by being unable to fight.</summary>
     public class DecreeReactionRule
     {
+        // trait and passion are def references resolved when the XML loads: vanilla traits and skills only. A mod's
+        // trait or skill here breaks the decree when that mod is missing; match those by name (a string field) instead.
         public TraitDef trait;
         /// <summary>Trait degree to match; leave out to match any degree.</summary>
         public int degree = int.MinValue;

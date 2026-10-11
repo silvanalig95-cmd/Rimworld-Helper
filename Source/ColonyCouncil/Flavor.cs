@@ -64,12 +64,7 @@ namespace ColonyCouncil
                     else if (colonists >= 10) tags.Add("large");
                 }
 
-                var tech = Avail.EffectiveTech;
-                if (tech <= TechLevel.Neolithic) tags.Add("tribal");
-                else if (tech == TechLevel.Medieval) tags.Add("medieval");
-                else if (tech == TechLevel.Industrial) tags.Add("industrial");
-                else if (tech >= TechLevel.Spacer) tags.Add("spacer");
-                if (Avail.IsPreIndustrial) tags.Add("lowtech");
+                AddEraTags(tags);
 
                 if (p != null)
                 {
@@ -234,22 +229,66 @@ namespace ColonyCouncil
         }
 
         /// <summary>
-        /// Picks a line that fits the moment. Lines matching more tags are much more likely, so a colonist
-        /// shivering in winter talks about the cold, while untagged lines keep things varied. Tags are removed.
+        /// Words that don't belong in a colony that has never seen gunpowder or electricity. Words that are only
+        /// sometimes high-tech stay out of this list (a passive cooler or a fueled heater is fine in a medieval
+        /// colony, an electric one isn't): lines that mean the electric kind are tagged <c>[!lowtech]</c> instead.
         /// </summary>
-        /// <summary>Words that don't belong in a colony that has never seen gunpowder or electricity.</summary>
         private static readonly System.Text.RegularExpressions.Regex HighTech = new System.Text.RegularExpressions.Regex(
-            @"\b(guns?|gunfire|gunshots?|rifles?|pistols?|shotguns?|revolvers?|turrets?|grenades?|bullets?|ammo|sandbags?|electric\w*|batter(y|ies)|power (cell|grid|line)s?|computers?|comms|radios?|cryptosleep|spaceships?|starships?|shuttles?|lasers?|plasma|freezers?|solar)\b",
+            @"\b(guns?|gunfire|gunshots?|rifles?|pistols?|shotguns?|revolvers?|turrets?|grenades?|bullets?|ammo|sandbags?|electric\w*|batter(y|ies)|power (cell|grid|line)s?|computers?|comms|radios?|cryptosleep|spaceships?|starships?|shuttles?|lasers?|plasma|freezers?|solar"
+            + @"|hydroponics?|sun ?lamps?|hospital beds?|vitals monitors?|hi-?tech|high-tech|multi-?analy[sz]ers?|components?|glitterworlds?|urbworlds?|sterile (tiles?|floors?))\b",
             System.Text.RegularExpressions.RegexOptions.IgnoreCase | System.Text.RegularExpressions.RegexOptions.Compiled);
 
+        private static readonly HashSet<string> EraTagNames = new HashSet<string> { "tribal", "medieval", "industrial", "spacer", "lowtech" };
+
+        /// <summary>The colony's era as tags: tribal, medieval, industrial or spacer, plus lowtech before electricity.</summary>
+        public static void AddEraTags(HashSet<string> tags)
+        {
+            var tech = Avail.EffectiveTech;
+            if (tech <= TechLevel.Neolithic) tags.Add("tribal");
+            else if (tech == TechLevel.Medieval) tags.Add("medieval");
+            else if (tech == TechLevel.Industrial) tags.Add("industrial");
+            else if (tech >= TechLevel.Spacer) tags.Add("spacer");
+            if (Avail.IsPreIndustrial) tags.Add("lowtech");
+        }
+
         /// <summary>
-        /// False for a line about guns, turrets, electricity, computers or spaceships while the colony is pre-industrial
-        /// (medieval or tribal, no electricity): those lines are skipped whenever another one fits.
+        /// False when the line is tagged for another era (<c>[lowtech]</c>, <c>[!lowtech]</c>, <c>[medieval|tribal]</c>...).
+        /// Other tags (the weather, the speaker) are left to <see cref="Match"/>.
         /// </summary>
+        public static bool EraTagsFit(string line)
+        {
+            Strip(line, out var tags);
+            if (tags == null || tags.Length == 0) return true;
+            HashSet<string> era = null;
+            foreach (var tag in tags)
+            {
+                var alts = tag.Split('|').Select(a => a.Trim()).ToArray();
+                if (!alts.All(a => EraTagNames.Contains(a.TrimStart('!')))) continue;
+                if (era == null)
+                {
+                    era = new HashSet<string>();
+                    AddEraTags(era);
+                }
+                if (!alts.Any(a => a.StartsWith("!") ? !era.Contains(a.Substring(1)) : era.Contains(a))) return false;
+            }
+            return true;
+        }
+
         /// <summary>
-        /// Age in human years, for races that live much longer or shorter than people (alien race mods):
-        /// a 300-year-old elf with a lifespan of 1000 counts as about 24.
+        /// One of these tips, the same one for as long as <paramref name="seed"/> stays the same. Never one tagged
+        /// for another era, and none about guns or power in a pre-industrial colony unless that's all there is.
+        /// Tags are removed. Null when nothing fits.
         /// </summary>
+        public static string PickTip(List<string> tips, int seed)
+        {
+            if (tips.NullOrEmpty()) return null;
+            var pool = tips.Where(t => !t.NullOrEmpty() && EraTagsFit(t)).ToList();
+            var fitting = pool.Where(TechFits).ToList();
+            if (fitting.Count == 0) fitting = pool;
+            if (fitting.Count == 0) return null;
+            return Strip(fitting[(seed % fitting.Count + fitting.Count) % fitting.Count]);
+        }
+
         /// <summary>Thunderstorms, dust storms, petal storms: any weather with "storm" or "thunder" in its name.</summary>
         public static bool IsStorm(WeatherDef w)
         {
@@ -258,6 +297,10 @@ namespace ColonyCouncil
             return n.Contains("thunder") || n.Contains("storm");
         }
 
+        /// <summary>
+        /// Age in human years, for races that live much longer or shorter than people (alien race mods):
+        /// a 300-year-old elf with a lifespan of 1000 counts as about 24.
+        /// </summary>
         public static float HumanAge(Pawn p)
         {
             if (p?.ageTracker == null) return 0f;
@@ -278,20 +321,33 @@ namespace ColonyCouncil
             return life > 1f && System.Math.Abs(life - 80f) > 1f ? years * 80f / life : years;
         }
 
+        /// <summary>
+        /// False for a line tagged for another era, and for a line about guns, turrets, electricity, computers or
+        /// spaceships while the colony is pre-industrial (medieval or tribal, no electricity): those lines are
+        /// skipped whenever another one fits.
+        /// </summary>
         public static bool TechFits(string line)
         {
-            if (line.NullOrEmpty() || !Avail.IsPreIndustrial) return true;
+            if (line.NullOrEmpty()) return true;
+            if (!EraTagsFit(line)) return false;
+            if (!Avail.IsPreIndustrial) return true;
             return !HighTech.IsMatch(Strip(line));
         }
 
-        /// <summary>One of these texts, preferring ones that fit the colony's era.</summary>
+        /// <summary>One of these texts, preferring ones that fit the colony's era (never one tagged for another). Tags are removed.</summary>
         public static string PickText(List<string> texts)
         {
             if (texts.NullOrEmpty()) return null;
-            var fitting = texts.Where(TechFits).ToList();
-            return (fitting.Count > 0 ? fitting : texts).RandomElement();
+            var pool = texts.Where(EraTagsFit).ToList();
+            if (pool.Count == 0) pool = texts;
+            var fitting = pool.Where(TechFits).ToList();
+            return Strip((fitting.Count > 0 ? fitting : pool).RandomElement());
         }
 
+        /// <summary>
+        /// Picks a line that fits the moment. Lines matching more tags are much more likely, so a colonist
+        /// shivering in winter talks about the cold, while untagged lines keep things varied. Tags are removed.
+        /// </summary>
         public static string Pick(IEnumerable<string> lines, HashSet<string> context)
         {
             if (lines == null) return null;

@@ -136,6 +136,7 @@
   <!-- Advisor: progress -->
   <CC_Adv_Research_Title>The research bench is idle</CC_Adv_Research_Title>
   <CC_Adv_Research_Detail>Suggested next project for your era: {0} (cost {1}).</CC_Adv_Research_Detail>
+  <CC_Adv_Research_DetailLaterEra>Nothing from your own era is left to research right now. What remains belongs to a later age, such as {0} (cost {1}): only worth it if that is the road you want to take.</CC_Adv_Research_DetailLaterEra>
 
   <!-- Advisor: ideas -->
   <CC_Idea_RecRoom_Title>Idea: a room just for fun</CC_Idea_RecRoom_Title>
@@ -367,6 +368,8 @@
   <CC_Stock_meals>meals</CC_Stock_meals>
   <CC_Stock_finemeals>fine meals</CC_Stock_finemeals>
   <CC_Stock_silver>silver</CC_Stock_silver>
+  <CC_Stock_alcohol>drinks (beer, wine and the like)</CC_Stock_alcohol>
+  <CC_Stock_firewood>wood</CC_Stock_firewood>
   <CC_Role_bed>beds</CC_Role_bed>
   <CC_Role_doublebed>double beds</CC_Role_doublebed>
   <CC_Role_light>lights</CC_Role_light>

@@ -183,7 +183,8 @@ namespace ColonyCouncil
                 if (pets == null) pets = new PetTracker();
                 if (autonomy == null) autonomy = new AutonomyTracker();
                 if (character == null) character = new CharacterTracker();
-                wishes.RemoveAll(w => w == null || w.def == null || w.pawn == null);
+                // A wish about a thing whose mod was removed can't be granted any more: let it go without a word.
+                wishes.RemoveAll(w => w == null || w.def == null || w.pawn == null || w.thingLost);
             }
         }
 

@@ -309,8 +309,8 @@
     <group>Food</group>
     <near><li>Kitchen</li></near>
     <tips>
-      <li>Set coolers to -10 °C so open doors and short power cuts don't thaw anything.</li>
-      <li>Coolers blow hot air out the back. Make sure that side faces outside or an open space, not another room.</li>
+      <li>[!lowtech] Set coolers to -10 °C so open doors and short power cuts don't thaw anything.</li>
+      <li>[!lowtech] Coolers blow hot air out the back. Make sure that side faces outside or an open space, not another room.</li>
       <li>A double door (airlock) keeps the cold in when people walk in and out.</li>
     </tips>
     <label>freezer</label>

@@ -86,7 +86,7 @@
   <ColonyCouncil.AmbitionDef>
     <defName>Council_Amb_Brewmasters</defName>
     <label>the brewmasters</label>
-    <description>Set up fermenting barrels and put twenty-five bottles of beer in the store. For celebrations. And for bad days.</description>
+    <description>Set up fermenting barrels and put twenty-five drinks in the store: beer, or whatever the barrels make. For celebrations. And for bad days.</description>
     <days>25</days>
     <template>Council_Brewery</template>
     <relevantCategories><li>Comfort</li></relevantCategories>
@@ -96,8 +96,9 @@
         <thingRole>fermenter</thingRole>
         <count>3</count>
       </li>
+      <!-- Any brewed drink counts (modded ales, wines, spirits), not only vanilla's beer. -->
       <li Class="ColonyCouncil.Goal_Stock">
-        <kind>Beer</kind>
+        <kind>alcohol</kind>
         <count>25</count>
       </li>
     </goals>
@@ -382,6 +383,8 @@
         <thingRole>throne</thingRole>
         <thingCount>1</thingCount>
         <minImpressiveness>50</minImpressiveness>
+        <!-- Only while someone's title actually asks for a throne room. -->
+        <forTitle>true</forTitle>
       </li>
     </goals>
     <pitch>
@@ -422,6 +425,8 @@
       <li Class="ColonyCouncil.Goal_Build">
         <thingRole>school</thingRole>
         <count>3</count>
+        <!-- Only while there's a child or a baby to teach. -->
+        <forChildren>true</forChildren>
       </li>
     </goals>
     <pitch>

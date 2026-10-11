@@ -24,6 +24,11 @@ namespace ColonyCouncil
         public int minAge = 16;
         /// <summary>What it is, told when it comes out ({PAWN_...} the owner).</summary>
         [MustTranslate] public string truth;
+        /// <summary>
+        /// The same secret told for a colony without electricity, where the truth mentions other worlds,
+        /// starships or the like (a minstrel's fame rather than a glitterworld star's). Optional.
+        /// </summary>
+        [MustTranslate] public string truthLowTech;
         /// <summary>A secret people will be glad to learn (a hidden kindness).</summary>
         public bool good;
         /// <summary>A big one: a letter rather than a message.</summary>
@@ -64,8 +69,18 @@ namespace ColonyCouncil
         public int revealedTick;
         public Pawn leaker;
         public bool judged;
+        /// <summary>Which telling: 0 not decided yet, 1 the low-tech one, 2 the usual one. Decided once, so the story doesn't change.</summary>
+        public int telling;
 
-        public string Truth => def.truth.Formatted(owner.Named("PAWN")).Resolve();
+        public string Truth
+        {
+            get
+            {
+                if (telling == 0) telling = Avail.IsPreIndustrial && !def.truthLowTech.NullOrEmpty() ? 1 : 2;
+                string text = telling == 1 && !def.truthLowTech.NullOrEmpty() ? def.truthLowTech : def.truth;
+                return text.Formatted(owner.Named("PAWN")).Resolve();
+            }
+        }
 
         public void ExposeData()
         {
@@ -76,6 +91,7 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref revealedTick, "revealedTick");
             Scribe_References.Look(ref leaker, "leaker");
             Scribe_Values.Look(ref judged, "judged");
+            Scribe_Values.Look(ref telling, "telling");
             if (Scribe.mode == LoadSaveMode.PostLoadInit)
             {
                 if (knowers == null) knowers = new List<Pawn>();

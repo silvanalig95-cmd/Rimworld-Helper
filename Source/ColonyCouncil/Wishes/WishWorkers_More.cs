@@ -39,6 +39,33 @@ namespace ColonyCouncil
 
         public static int Stock(Map map, ChemicalDef chem) => map == null || chem == null ? 0 : DrugsFor(chem).Sum(d => map.resourceCounter.GetCount(d));
 
+        /// <summary>
+        /// Can the colony come by any of these: some in stock, a researched recipe at a bench it has or can build,
+        /// a crop it can sow, a brewing barrel for drink, or a trader on the map who sells it.
+        /// </summary>
+        public static bool Obtainable(Map map, ICollection<ThingDef> things)
+        {
+            if (map == null || things == null || things.Count == 0) return false;
+            if (things.Any(d => map.resourceCounter.GetCount(d) > 0)) return true;
+            if (CanMake(map, things) || CanGrow(things)) return true;
+            if (things.Any(Goal_Stock.Alcohol.Contains) && (Avail.ColonyHas(map, Avail.IsFermenter) || Avail.AnyBuildable(map, Avail.IsFermenter))) return true;
+            return TraderSells(map, things);
+        }
+
+        /// <summary>A researched recipe for one of these, at a bench the colony has or can build.</summary>
+        public static bool CanMake(Map map, ICollection<ThingDef> things) =>
+            DefDatabase<RecipeDef>.AllDefsListForReading.Any(r => r.ProducedThingDef != null && things.Contains(r.ProducedThingDef) && r.AvailableNow
+                                                                  && Avail.RecipeUsers(r).Any(u => map.listerBuildings.ColonistsHaveBuilding(u) || Avail.CanBuild(u, map)));
+
+        /// <summary>A sowable crop that yields one of these, with its research done.</summary>
+        public static bool CanGrow(ICollection<ThingDef> things) =>
+            DefDatabase<ThingDef>.AllDefsListForReading.Any(p => p.plant?.harvestedThingDef != null && things.Contains(p.plant.harvestedThingDef) && p.plant.Sowable
+                                                                 && (p.plant.sowResearchPrerequisites == null || p.plant.sowResearchPrerequisites.All(rp => rp.IsFinished)));
+
+        /// <summary>A trader on the map has one of these for sale.</summary>
+        public static bool TraderSells(Map map, ICollection<ThingDef> things) =>
+            Strangers.On(map, StrangerKind.Trader).Any(t => t.trader?.Goods?.Any(g => g != null && things.Contains(g.def)) ?? false);
+
         public override IEnumerable<WishCandidate> CandidatesFor(Pawn pawn)
         {
             var map = HomeMap(pawn);
@@ -46,6 +73,8 @@ namespace ColonyCouncil
             if (map == null || addiction == null || TraitDegree(pawn, TraitDefOf.DrugDesire) < 0) yield break;
             var drugs = DrugsFor(addiction.Chemical);
             if (drugs.Count == 0 || Stock(map, addiction.Chemical) >= Wanted) yield break;
+            // Only what the colony can actually get: no asking for a drug it can't make, grow or buy.
+            if (!Obtainable(map, drugs)) yield break;
             var c = Candidate(1.5f, "CC_Reason_Fix".Translate(pawn.Named("PAWN"), addiction.Chemical.label.Named("DRUG")));
             c.thingDef = drugs.OrderBy(d => d.BaseMarketValue).First();
             c.subjectKey = addiction.Chemical.defName;
@@ -59,7 +88,20 @@ namespace ColonyCouncil
         public override bool IsFulfilled(Wish wish) => Stock(wish.Beneficiary.MapHeld, Chem(wish)) >= wish.targetValue;
 
         /// <summary>Clean now, or the craving is gone: nothing to ask for.</summary>
-        public override bool StillValid(Wish wish) => Addiction(wish.Beneficiary)?.Chemical == Chem(wish);
+        public override bool StillValid(Wish wish)
+        {
+            var chem = Chem(wish);
+            return chem != null && Addiction(wish.Beneficiary)?.Chemical == chem;
+        }
+
+        /// <summary>The drug can't be made, grown or bought any more (the trader left, its mod was removed): no blame.</summary>
+        public override bool StillObtainable(Wish wish)
+        {
+            var chem = Chem(wish);
+            if (!base.StillObtainable(wish) || chem == null) return false;
+            var map = wish.Beneficiary.MapHeld;
+            return map == null || Obtainable(map, DrugsFor(chem));
+        }
 
         public override string ProgressText(Wish wish) => "CC_Progress_Fix".Translate(Stock(wish.Beneficiary.MapHeld, Chem(wish)), wish.targetValue.ToString("0"), wish.subjectLabel ?? "");
     }

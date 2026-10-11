@@ -78,6 +78,9 @@ namespace ColonyCouncil
     /// <summary>Requirements for one person in a dilemma. All given conditions must hold.</summary>
     public class DilemmaRole
     {
+        // anyTrait, notTrait, passion and bestAt are def references resolved when the XML loads: vanilla traits and
+        // skills only. A mod's trait or skill listed here breaks the def when that mod is missing; match those by
+        // name (a string field) instead.
         /// <summary>Any one of these traits (empty = no requirement).</summary>
         public List<TraitDef> anyTrait;
         public List<TraitDef> notTrait;

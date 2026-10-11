@@ -156,8 +156,9 @@ namespace ColonyCouncil
             if (map == null || TraitDefOf.DrugDesire == null || !HasTrait(pawn, TraitDefOf.DrugDesire)) yield break;
             if (pawn.story.traits.DegreeOfTrait(TraitDefOf.DrugDesire) <= 0) yield break;
             if (Stock(map) >= Wanted) yield break;
+            // A barrel, or a recipe the colony has actually researched at a bench it has or can build.
             bool canMake = Avail.AnyBuildable(map, Avail.IsFermenter) || Avail.ColonyHas(map, Avail.IsFermenter)
-                           || Avail.AnyBuildable(map, d => d.AllRecipes != null && d.AllRecipes.Any(r => r.ProducedThingDef != null && SocialDrugs.Contains(r.ProducedThingDef)));
+                           || WishWorker_Fix.CanMake(map, SocialDrugs);
             if (!canMake) yield break;
             var c = Candidate(1.3f, "CC_Reason_LittleSomething".Translate(pawn.Named("PAWN")));
             c.targetValue = Wanted;

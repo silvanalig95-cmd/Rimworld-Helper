@@ -24,6 +24,9 @@ namespace ColonyCouncil
         public List<string> notContains;
         /// <summary>Building classes (by name; subclasses count), e.g. Building_Bookcase.</summary>
         public List<string> thingClasses;
+        // categories, anyTrait, notTrait, passion and passions are def references resolved when the XML loads:
+        // vanilla defs only. A mod's category, trait or skill must be matched by name (nameContains, defNames,
+        // or a string field), never listed here, or the wish breaks when that mod is missing.
         public List<ThingCategoryDef> categories;
         public bool fire;
         public int count = 1;
@@ -38,7 +41,17 @@ namespace ColonyCouncil
         public float minColdInsulation;
         /// <summary>Excellent quality or better.</summary>
         public bool fine;
+        // ---- When ----
+        /// <summary>Slept in the cold lately, or their bedroom is cold tonight.</summary>
+        public bool sleepsCold;
+        /// <summary>No heat source of any kind in their bedroom yet (a fire, an electric heater, a modded stove).</summary>
+        public bool noHeaterInRoom;
+        /// <summary>The colony has something that burns wood: a hearth, a campfire, a wood stove.</summary>
+        public bool burnsWood;
+        /// <summary>Real cold is on its way (freezing within the next few months).</summary>
+        public bool coldComing;
         // ---- Who ----
+        // Vanilla traits and skills only (see categories above): mod defs here break when the mod is missing.
         public List<TraitDef> anyTrait;
         public List<TraitDef> notTrait;
         public SkillDef passion;
@@ -141,7 +154,26 @@ namespace ColonyCouncil
             if (!seasons.NullOrEmpty() && (p.MapHeld == null || !seasons.Contains(GenLocalDate.Season(p.MapHeld)))) return false;
             if (minDaysInColony > 0f && (p.records?.GetValue(RecordDefOf.TimeAsColonistOrColonyAnimal) ?? 0f) < minDaysInColony * GenDate.TicksPerDay) return false;
             if (parentOfLittleOne && !(p.relations?.Children.Any(c => !c.Dead && c.DevelopmentalStage.Baby() && c.MapHeld == p.MapHeld) ?? false)) return false;
+            var map = p.MapHeld;
+            if ((burnsWood || coldComing) && map == null) return false;
+            if (burnsWood && !Goal_Woodpile.BurnsWood(map)) return false;
+            if (coldComing && !Goal_Woodpile.ColdComing(map)) return false;
+            if (noHeaterInRoom && RoomUtil.RoomContains(RoomUtil.PrivateRoom(p) ?? RoomUtil.BedRoom(p), Avail.IsHeater)) return false;
+            if (sleepsCold && !SleepsCold(p)) return false;
             return true;
+        }
+
+        /// <summary>The game's "slept in the cold" memory, or a bedroom colder than they can bear on a night like this one.</summary>
+        private static bool SleepsCold(Pawn p)
+        {
+            var memories = p.needs?.mood?.thoughts?.memories;
+            if (ThoughtDefOf.SleptInCold != null && memories?.GetFirstMemoryOfDef(ThoughtDefOf.SleptInCold) != null) return true;
+            var map = p.MapHeld;
+            var room = RoomUtil.PrivateRoom(p) ?? RoomUtil.BedRoom(p);
+            if (map == null || room == null || room.PsychologicallyOutdoors) return false;
+            int hour = GenLocalDate.HourOfDay(map);
+            if (hour >= 6 && hour < 22) return false;
+            return room.Temperature < p.GetStatValue(StatDefOf.ComfyTemperatureMin);
         }
 
         public string Reason(Pawn p) => reason.NullOrEmpty() ? null : reason.Formatted(p.Named("PAWN")).Resolve();
@@ -183,6 +215,19 @@ namespace ColonyCouncil
         }
 
         public override bool IsFulfilled(Wish wish) => Count(wish.Beneficiary, wish.Beneficiary.MapHeld) >= wish.targetValue;
+
+        /// <summary>Their room is still theirs, and something that fits can still be had.</summary>
+        public override bool StillValid(Wish wish) =>
+            (!P.inBedroom || wish.Beneficiary.MapHeld == null || RoomUtil.PrivateRoom(wish.Beneficiary) != null) && StillObtainable(wish);
+
+        /// <summary>Built already, or something that fits can still be built (the suggested thing's mod may be gone).</summary>
+        public override bool StillObtainable(Wish wish)
+        {
+            if (!base.StillObtainable(wish) || wish.thingDef == null) return false;
+            var map = wish.Beneficiary.MapHeld;
+            if (map == null) return true;
+            return Avail.CanBuild(wish.thingDef, map) || Count(wish.Beneficiary, map) >= wish.targetValue || Avail.AnyBuildable(map, P.Matches);
+        }
 
         public override string ProgressText(Wish wish) =>
             wish.targetValue > 1 ? "CC_Progress_Count".Translate(Count(wish.Beneficiary, wish.Beneficiary.MapHeld), wish.targetValue.ToString("0")).ToString() : null;

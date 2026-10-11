@@ -20,6 +20,12 @@ namespace ColonyCouncil
         /// <summary>False when the wish no longer makes sense (a partner left, the friend's body is gone).</summary>
         public virtual bool StillValid(Wish wish) => true;
 
+        /// <summary>
+        /// False when what the wish asks for can't be had at all any more (its mod was removed, nothing like it can
+        /// be built, made or bought). A wish like that lapses without blame instead of expiring with a penalty.
+        /// </summary>
+        public virtual bool StillObtainable(Wish wish) => !wish.thingLost;
+
         /// <summary>Human-readable progress, e.g. "Impressiveness 32 / 50".</summary>
         public virtual string ProgressText(Wish wish) => null;
 

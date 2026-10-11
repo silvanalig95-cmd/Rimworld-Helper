@@ -15,14 +15,21 @@ namespace ColonyCouncil
         public Pawn heir;
         public int tick;
         public bool lostNoticed;
+        /// <summary>
+        /// The thing was already gone when the game was saved (its loss not grieved yet). Any other heirloom that
+        /// comes back without its thing belonged to a mod that has since been removed, and is let go without grief.
+        /// </summary>
+        public bool goneAtSave;
 
         public void ExposeData()
         {
+            if (Scribe.mode == LoadSaveMode.Saving) goneAtSave = thing == null || thing.Destroyed;
             Scribe_References.Look(ref thing, "thing");
             Scribe_Values.Look(ref ofName, "ofName");
             Scribe_References.Look(ref heir, "heir");
             Scribe_Values.Look(ref tick, "tick");
             Scribe_Values.Look(ref lostNoticed, "lostNoticed");
+            Scribe_Values.Look(ref goneAtSave, "goneAtSave");
         }
     }
 
@@ -172,7 +179,8 @@ namespace ColonyCouncil
             if (Scribe.mode == LoadSaveMode.PostLoadInit)
             {
                 if (heirlooms == null) heirlooms = new List<Heirloom>();
-                heirlooms.RemoveAll(h => h == null || h.heir == null);
+                // Missing its thing though it was there at saving: the thing's mod was removed. Not a loss to grieve.
+                heirlooms.RemoveAll(h => h == null || h.heir == null || (h.thing == null && !h.goneAtSave));
                 if (children == null) children = new HashSet<string>();
                 if (cameOfAge == null) cameOfAge = new List<Pawn>();
                 cameOfAge.RemoveAll(p => p == null);
