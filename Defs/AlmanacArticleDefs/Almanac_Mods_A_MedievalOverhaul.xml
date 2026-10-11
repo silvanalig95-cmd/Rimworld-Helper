@@ -589,7 +589,7 @@
     <facts>
       <li>Adds 35 talent traits. Every pawn gets exactly one, and they are mutually exclusive.</li>
       <li>The higher a talent's tier, the rarer it is.</li>
-      <li>Talents also give bonuses to temperature tolerance, mood, mental break threshold and pain tolerance.</li>
+      <li>Talents can also give bonuses to temperature tolerance, mood, mental break threshold and pain tolerance.</li>
       <li>The author balanced it for big medieval colonies of 50 or more people.</li>
     </facts>
     <advice>

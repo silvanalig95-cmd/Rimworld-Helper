@@ -1,0 +1,797 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- Almanac: mods in the medieval modlist, batch C (people, races, magic, ideology, traits and skills). -->
+  <!-- Reference notes for these mods: Modlists/mods/C_PeopleMagic.md -->
+
+  <!-- ===================== Magic ===================== -->
+
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Council_AlmMod_C_RimWorldOfMagic</defName>
+    <label>A RimWorld of Magic</label>
+    <category>Mods</category>
+    <order>300</order>
+    <mods><li>torann.arimworldofmagic</li></mods>
+    <summary>Mage and fighter classes, a Magic research tab, enchanting, golems and magical threats</summary>
+    <tip>The fire mage is worth three archers until his mana runs dry. Then he's worth one cook.</tip>
+    <description>A RimWorld of Magic gives some colonists a class. Mages spend mana on spells, fighters spend stamina on combat techniques, and every class levels up its own ability tree. The mod also adds a Magic research tab, enchanting, golems, portals and new magical dangers, and enemy classes use their powers against you. Nearly all of it sits at tribal or medieval tech, so it fits a medieval game well.</description>
+    <facts>
+      <li>Classes are traits. The mod lists over 35 of them, from fire, ice and lightning mages to druids, priests, necromancers, paladins, rangers, gladiators and monks.</li>
+      <li>A colonist who is "magically gifted" or "physically adept" has the talent but no class yet. An arcane tome (such as Arcane Tome: Fire) or a combat manual (such as Combat Style: Ranger) teaches them one.</li>
+      <li>Raw magicyte turns up while mining any rock: every strike has a small chance. Deep drilling never finds it. It is cut into enchanting gems at the gemcrafting table.</li>
+      <li>Only a mage can enchant. Enchantments are permanent, one of each type per item, and do not raise the item's value.</li>
+      <li>Its research lives in a separate Magic tab. Almost every project is neolithic or medieval tier; only the mecha golem projects are industrial.</li>
+      <li>New threats include mana storms, elemental assaults, demon attacks, a wandering lich and enemy arcane raiding parties.</li>
+    </facts>
+    <advice>
+      <li>Check every newcomer's traits for magically gifted or physically adept, and keep any tome or manual you find for them.</li>
+      <li>Keep someone mining rock by hand: it is the only steady source of magicyte for enchanting.</li>
+      <li>In a raid, find the enemy mage first. A single caster can do more damage than the rest of the raid.</li>
+      <li>Psycasts from Vanilla Psycasts Expanded run on their own, so a colony can have both mages and psycasters.</li>
+      <li>With Rimfolk: raised undead and spirits are not counted as people, so they make no wishes, keep no journals and form no friendships, and an enemy undead can't become a nemesis.</li>
+    </advice>
+    <keywords>
+      <li>magic</li>
+      <li>mage</li>
+      <li>mana</li>
+      <li>class</li>
+      <li>tome</li>
+      <li>enchanting</li>
+      <li>magicyte</li>
+      <li>necromancer</li>
+      <li>undead</li>
+      <li>golem</li>
+    </keywords>
+    <seeAlso>
+      <li>Council_AlmMod_C_Psycasts</li>
+      <li>Council_Alm_C_Strangers</li>
+    </seeAlso>
+  </ColonyCouncil.AlmanacArticleDef>
+
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Council_AlmMod_C_Psycasts</defName>
+    <label>Vanilla Psycasts Expanded</label>
+    <category>Mods</category>
+    <order>305</order>
+    <mods><li>vanillaexpanded.vpsycastse</li></mods>
+    <summary>Psycasts rebuilt as a level-up tree with fifteen paths, from empath to conflagrator</summary>
+    <tip>Meditate, they said. It'll calm you, they said. Then he learned to throw fire tornadoes.</tip>
+    <description>Vanilla Psycasts Expanded replaces Royalty's fixed list of psycasts with a role-playing system. A psycaster gains experience by meditating, levels up, and spends points on abilities in one or more paths or on their own psychic stats. Rarely, enemies send their own psycasters against you. It needs Royalty, and it can't be removed from a save.</description>
+    <facts>
+      <li>Fifteen paths: empath, skipmaster, conflagrator, protector, warlord, chronopath, archotechist, necropath, staticlord, archon, frostshaper, wildspeaker, harmonist, technomancer and nightstalker.</li>
+      <li>Some paths are locked: archotechist needs an Imperial backstory, and wildspeaker needs a caster who can meditate on natural focus.</li>
+      <li>There is no level cap.</li>
+      <li>Psycaster raids are a rare raid type for tribals and the Empire, and the game warns you when one is coming.</li>
+      <li>Added to a running save, it turns existing psycasts into levels you can spend again.</li>
+      <li>Caster gear research is medieval tier, but eltex gear is spacer tier, so a game held at medieval research won't reach it.</li>
+    </facts>
+    <advice>
+      <li>Give each psycaster a good meditation spot that suits their focus: meditation is how they level up.</li>
+      <li>Level one or two paths deeply rather than dabbling in many.</li>
+      <li>Right-click an ability to let the psycaster cast it on their own.</li>
+      <li>When the warning letter names an enemy psycaster, make them your first target.</li>
+      <li>With Rimfolk: an enemy psycaster who cuts someone down and escapes is remembered like any raider and can come back as a nemesis.</li>
+    </advice>
+    <keywords>
+      <li>psycast</li>
+      <li>psycaster</li>
+      <li>psylink</li>
+      <li>meditation</li>
+      <li>path</li>
+      <li>eltex</li>
+      <li>skipmaster</li>
+      <li>conflagrator</li>
+    </keywords>
+    <seeAlso>
+      <li>Council_Alm_7_06_PsycastsAndMeditation</li>
+      <li>Council_AlmMod_C_RimWorldOfMagic</li>
+    </seeAlso>
+    <dlc>Royalty</dlc>
+  </ColonyCouncil.AlmanacArticleDef>
+
+  <!-- ===================== Peoples ===================== -->
+
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Council_AlmMod_C_Elves</defName>
+    <label>Elves (Continued)</label>
+    <category>Mods</category>
+    <order>310</order>
+    <mods><li>devdesigner.elves.continued</li></mods>
+    <summary>Wood, dark and high elves as xenotypes, with six factions, elven gear and two new beasts</summary>
+    <tip>An elf stops aging at thirty. Her opinion of your carpentry stopped long before that.</tip>
+    <description>Elves (Continued) adds wood, dark and high elves as Biotech xenotypes, six medieval elven factions, three playable elven starts, elven weapons and armor, the ancient deer and the Cold One. These elves are long-lived humans: their ageless gene slows aging from age 13 and stops it entirely at 30.</description>
+    <facts>
+      <li>Three xenotypes: wood elf, dark elf (aggressive) and high elf. All are pretty, long-haired, beardless and point-eared.</li>
+      <li>Six medieval factions: wood, dark and high elves you can deal with, and savage wood elves and rough dark and high elves, which are natural enemies.</li>
+      <li>Three player factions (wood elf clan, high elf colony, dark elf coven) and a wood elf scenario to start from.</li>
+      <li>Three medieval research projects, one per house, unlock that house's weapons and armor: bows and greatbows, crossbows, swords, halberds, shields and named armor sets.</li>
+      <li>New animals: the ancient deer, which gives milk and wool, and the Cold One, an egg-laying reptile its description calls a dark elf mount.</li>
+    </facts>
+    <advice>
+      <li>Research your own house's equipment early: the gear is medieval and fits right into this modlist.</li>
+      <li>Expect raids from the savage and rough elves. They carry bows and crossbows, so build cover along your walls.</li>
+      <li>Before recruiting an elf, check their genes with Xenotype Summary's button.</li>
+      <li>With Rimfolk: the council reads biological age, which the ageless gene holds at about 30, so elves never count as old and stay able to set their heart on having a child.</li>
+    </advice>
+    <keywords>
+      <li>elf</li>
+      <li>elves</li>
+      <li>wood elf</li>
+      <li>dark elf</li>
+      <li>high elf</li>
+      <li>ageless</li>
+      <li>ancient deer</li>
+      <li>cold one</li>
+      <li>xenotype</li>
+    </keywords>
+    <seeAlso>
+      <li>Council_AlmMod_C_Stoneborn</li>
+      <li>Council_AlmMod_C_ReadabilityTools</li>
+      <li>Council_Alm_C_Goals</li>
+    </seeAlso>
+    <dlc>Biotech</dlc>
+  </ColonyCouncil.AlmanacArticleDef>
+
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Council_AlmMod_C_Stoneborn</defName>
+    <label>Det's Xenotypes - Stoneborn</label>
+    <category>Mods</category>
+    <order>315</order>
+    <mods><li>det.stoneborn</li></mods>
+    <summary>Short, bearded, short-tempered master miners and builders, with their own dwarven clan</summary>
+    <tip>Never insult a stoneborn's beard. Never praise it either. Just leave the beard alone.</tip>
+    <description>The Stoneborn are a Biotech xenotype of stout, bearded dwarves who live for mining, building and crafting. They are superb at all three, but slow, nearsighted, poor with people and quick to fight. The mod also adds a stoneborn clan faction made up entirely of dwarves.</description>
+    <facts>
+      <li>Strong aptitude for mining and construction and a remarkable one for crafting; terrible at social work and poor with animals.</li>
+      <li>Slow, nearsighted, robust, psychically deaf and always bearded.</li>
+      <li>Stonecall: a war cry that raises the caster's construction and mining speed by 30% for about 14 hours, usable once every 6 days.</li>
+      <li>A gene gives them the undergrounder trait, so they are happy indoors and under a mountain.</li>
+      <li>Other genes: a mighty liver (immune to cirrhosis), an extended memory (moods last 25% longer and skills fade more slowly), a 1.5 times longer lifespan, and an irascible temper that makes social fights 1.5 times as likely.</li>
+      <li>The stoneborn clan is at war with every other faction but starts out neutral with you.</li>
+    </facts>
+    <advice>
+      <li>Put stoneborn on mining, building and crafting, and keep them out of social jobs like warden and trader.</li>
+      <li>Save the stonecall for a big push, such as finishing the walls before winter.</li>
+      <li>Keep rivals apart: an irascible stoneborn starts fights easily. The council's Bonds tab shows who can't stand whom.</li>
+      <li>The Stoneborn Dwarven Style Pack and Stoneborn Delights in your list add dwarven furniture and food to go with them.</li>
+      <li>With Rimfolk: as undergrounders they never ask the council for time outside and they hate the harvest push decree. One with a passion for mining may set their heart on carving a home out of the mountain.</li>
+    </advice>
+    <keywords>
+      <li>dwarf</li>
+      <li>dwarves</li>
+      <li>stoneborn</li>
+      <li>stonecall</li>
+      <li>miner</li>
+      <li>undergrounder</li>
+      <li>beard</li>
+      <li>xenotype</li>
+    </keywords>
+    <seeAlso>
+      <li>Council_AlmMod_C_Elves</li>
+      <li>Council_Alm_C_Decrees</li>
+      <li>Council_Alm_C_Goals</li>
+    </seeAlso>
+    <dlc>Biotech</dlc>
+  </ColonyCouncil.AlmanacArticleDef>
+
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Council_AlmMod_C_Merren</defName>
+    <label>Goji's Fantasy Race: Merren</label>
+    <category>Mods</category>
+    <order>320</order>
+    <mods><li>arquebus.stagzmerfolk</li></mods>
+    <summary>Two merfolk xenotypes who need water, swim fast, sing and charm</summary>
+    <tip>Keep the merren near the river. A dry merren is a sad merren, and soon a dead one.</tip>
+    <description>Merren are merfolk. Coastal merren are friendly swimmers and singers; abyssal merren are aggressive storm-callers with great psychic power. Both have fish tails and a hydration need, so they must reach rain or open water regularly. Its package id still carries the project's working name, Stagz Merfolk.</description>
+    <facts>
+      <li>Hydration refills in rain, marsh and rivers. At zero a merren dehydrates and can die; they go looking for water on their own when it runs low.</li>
+      <li>Coastal merren swim fast, are nimble, charming and good with animals, but terrible at mining and cooking.</li>
+      <li>Abyssal merren call rain, see in the dark and have extreme psychic sensitivity, but are nearsighted, aggressive and very sensitive to sunlight.</li>
+      <li>Siren song overwhelms nearby enemies. Charm person compels a human or animal to join; a charmed person ends up staying loyal, leaving or turning aggressive, each equally likely, after 7 to 15 days.</li>
+      <li>Merren may join through special events: one may rescue a colonist lying wounded on a shore, and with Royalty a merren virtuoso may answer a colonist's recital.</li>
+      <li>Extras: a wood-fueled floating lantern, a squid dryad with Ideology, waterborne plants with VE Plants More (in your list), and baths that refill hydration with Dubs Bad Hygiene, switched off by default in the mod settings.</li>
+    </facts>
+    <advice>
+      <li>Settle merren near a river or marsh, or in a rainy biome, and keep their work close to water.</li>
+      <li>You run Dubs Bad Hygiene: turn on the bath option in the mod settings if you want baths to keep merren watered.</li>
+      <li>Charm people sparingly. Two times in three, a charmed recruit will eventually walk out or turn on you.</li>
+      <li>Keep abyssal merren out of the midday sun where you can.</li>
+    </advice>
+    <keywords>
+      <li>merfolk</li>
+      <li>mermaid</li>
+      <li>merren</li>
+      <li>siren</li>
+      <li>hydration</li>
+      <li>water</li>
+      <li>charm</li>
+      <li>stagz</li>
+    </keywords>
+    <seeAlso>
+      <li>Council_AlmMod_C_ReadabilityTools</li>
+      <li>Council_Alm_C_Strangers</li>
+    </seeAlso>
+    <dlc>Biotech</dlc>
+  </ColonyCouncil.AlmanacArticleDef>
+
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Council_AlmMod_C_AwakenedApes</defName>
+    <label>Awakened Apes</label>
+    <category>Mods</category>
+    <order>325</order>
+    <mods><li>onlymonkey.awakenedapes</li></mods>
+    <summary>Five sapient ape xenotypes, from gentle gorillas to jittery monkeys</summary>
+    <tip>The orangutan built the finest chair in the colony. The chimp broke it over a raider.</tip>
+    <description>Awakened Apes adds five playable ape xenotypes, each with its own strengths and temper. They speak broken English, so their social skills count for half, and they can only have children with their own species. It is a community update of an older monkey xenotype mod.</description>
+    <facts>
+      <li>Gorillas: strong, gentle haulers who are peaceful until provoked.</li>
+      <li>Chimpanzees: fast learners and deadly shots, with violent tendencies.</li>
+      <li>Bonobos: kind peacekeepers who settle quarrels through social bonding.</li>
+      <li>Orangutans: gifted artisans with psychic sensitivity who need little sleep.</li>
+      <li>Monkeys: small, anxious sharpshooters, good with plants and in a fight.</li>
+      <li>All apes have their social impact halved. The mod needs Biotech.</li>
+    </facts>
+    <advice>
+      <li>Use apes as specialists: gorillas hauling, orangutans crafting, monkeys on the fields and the walls.</li>
+      <li>Keep them out of social jobs like warden, trader and negotiator.</li>
+      <li>Watch chimpanzees around their rivals, and press the Summary button on their gene tab to see their exact numbers.</li>
+      <li>With Rimfolk: apes are humanlike people with moods, so they make wishes, vote in elections and keep journals like everyone else.</li>
+    </advice>
+    <keywords>
+      <li>ape</li>
+      <li>gorilla</li>
+      <li>chimpanzee</li>
+      <li>bonobo</li>
+      <li>orangutan</li>
+      <li>monkey</li>
+      <li>xenotype</li>
+    </keywords>
+    <seeAlso>
+      <li>Council_AlmMod_C_ReadabilityTools</li>
+      <li>Council_Alm_C_Offices</li>
+    </seeAlso>
+    <dlc>Biotech</dlc>
+    <approximate>true</approximate>
+  </ColonyCouncil.AlmanacArticleDef>
+
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Council_AlmMod_C_AlphaGenes</defName>
+    <label>Alpha Genes</label>
+    <category>Mods</category>
+    <order>330</order>
+    <mods><li>sarg.alphagenes</li></mods>
+    <summary>Over 300 new genes, new xenotypes, abandoned biotech labs and gene tools</summary>
+    <tip>One more gene, she said. Now the cook glows in the dark and eats gravel.</tip>
+    <description>Alpha Genes floods Biotech with new genes, from small tweaks to game changers, and more than a dozen new xenotypes. Two new factions are built from xenotypes you design yourself. Abandoned biotech lab quests and genetic tools let you collect and change genes during play, which matters in a medieval game where gene machines are probably out of reach.</description>
+    <facts>
+      <li>More than 300 new genes, by the mod's own count.</li>
+      <li>A "custom random" xenotype puts your own xenotype designs into two new factions: the civil xenohuman union and the xenohuman pirate gang.</li>
+      <li>Abandoned biotech lab quests give access to the new genes.</li>
+      <li>Gene tools come from lab quests and ordinary quest rewards. The gene remover takes out a random gene and the germline mutator adds a random one; either puts the target in a coma for 3 days.</li>
+      <li>A few extra genes appear with Alpha Animals and Alpha Biomes, both in your list.</li>
+    </facts>
+    <advice>
+      <li>Read a stranger's genes before you recruit them: some xenotypes come with heavy drawbacks.</li>
+      <li>Use gene tools in a quiet season, since the target sleeps for three days.</li>
+      <li>If Rimedieval keeps your research medieval, treat found tools and recruits as your only way into genetics.</li>
+    </advice>
+    <keywords>
+      <li>gene</li>
+      <li>genes</li>
+      <li>xenotype</li>
+      <li>xenogerm</li>
+      <li>gene remover</li>
+      <li>biotech lab</li>
+      <li>mutation</li>
+    </keywords>
+    <seeAlso>
+      <li>Council_AlmMod_C_ReadabilityTools</li>
+      <li>Council_AlmMod_C_VGE</li>
+    </seeAlso>
+    <dlc>Biotech</dlc>
+    <approximate>true</approximate>
+  </ColonyCouncil.AlmanacArticleDef>
+
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Council_AlmMod_C_VGE</defName>
+    <label>Vanilla Genetics Expanded</label>
+    <category>Mods</category>
+    <order>335</order>
+    <mods><li>vanillaexpanded.vgeneticse</li></mods>
+    <summary>Hybrid animals from mixed genomes; in a medieval game, mostly a source of monsters</summary>
+    <tip>Somewhere out there is a lab that crossed a boomalope with a warg. Don't go looking for it.</tip>
+    <description>Vanilla Genetics Expanded lets a colony extract animal genomes and grow hybrid creatures in a genetics lab. All of its research is industrial or spacer tier, and Rimedieval limits your research to medieval, so you won't build the labs. What still reaches you are abandoned lab quests and the occasional pack of roaming monstrosities.</description>
+    <facts>
+      <li>Its five genetics projects are industrial tier and mechahybridization is spacer tier.</li>
+      <li>Roaming monstrosities are packs of hybrid manhunters, and their letter warns about greater scaria.</li>
+      <li>Its quests and raids run on their own timer outside the storyteller; the mod options set how often they come.</li>
+      <li>Alpha Animals, Dinosauria and Megafauna, all in your list, get full hybrid families.</li>
+    </facts>
+    <advice>
+      <li>Treat it as a source of threats: fight monstrosities from behind walls, like any manhunter pack.</li>
+      <li>If they come too often, lower the raid and quest frequency in the mod options rather than removing the mod.</li>
+      <li>If you take an abandoned lab quest, expect genetics gear your medieval colony can't use itself.</li>
+      <li>With Rimfolk: a monstrosity that mauls a colonist and gets away can be given a name and come back as a nemesis.</li>
+    </advice>
+    <keywords>
+      <li>hybrid</li>
+      <li>genome</li>
+      <li>genetics</li>
+      <li>monstrosity</li>
+      <li>manhunter</li>
+      <li>scaria</li>
+      <li>lab</li>
+    </keywords>
+    <seeAlso>
+      <li>Council_Alm_3_13_ManhunterPacks</li>
+      <li>Council_AlmMod_C_AlphaGenes</li>
+    </seeAlso>
+  </ColonyCouncil.AlmanacArticleDef>
+
+  <!-- ===================== Ideology ===================== -->
+
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Council_AlmMod_C_AlphaMemes</defName>
+    <label>Alpha Memes</label>
+    <category>Mods</category>
+    <order>340</order>
+    <mods><li>sarg.alphamemes</li></mods>
+    <summary>New memes, structures, styles and rituals, including a whole set of funerals</summary>
+    <tip>We buried him in a pyramid. He'd have complained about the stairs.</tip>
+    <description>Alpha Memes adds new memes, ideoligion structures and a huge number of building and apparel styles, plus rituals such as sparring matches, rodeos, baptisms and many kinds of funeral. Memes are chosen when you found your ideoligion, so plan them before the game starts.</description>
+    <facts>
+      <li>Its heaviest memes reshape a colony: deep devotion (live underground), pain is divine and naked truth.</li>
+      <li>Combat memes: gladiator (glory is won hand to hand and ranged weapons are shameful), sharpshooter and bulwark.</li>
+      <li>Other memes include monastic, artist, cowboys, water primacy, deforestation and gauranlen supremacy.</li>
+      <li>Funeral variants include cremation, mummification, sky burial and pyramid burial.</li>
+      <li>New structures include Kemetic, Mesoamerican, Jewish, Jain and Sikh origins, neolithic, corsair, scavenger and atheism.</li>
+      <li>Buildings include pyramids, a sphinx, megaliths, a grand gate, a baptismal font and crude stone and wooden tables.</li>
+    </facts>
+    <advice>
+      <li>Decide your memes before you start: adding the mod to a running game changes nothing without dev mode.</li>
+      <li>Think twice about gladiator if your defense relies on archers, since bows count as ranged weapons.</li>
+      <li>Deep devotion suits a mountain colony, especially one with Stoneborn.</li>
+      <li>With Rimfolk: a funeral that cremates the body settles a colonist's wish for a proper burial, just as a grave would.</li>
+    </advice>
+    <keywords>
+      <li>meme</li>
+      <li>ideoligion</li>
+      <li>funeral</li>
+      <li>ritual</li>
+      <li>pyramid</li>
+      <li>gladiator</li>
+      <li>monastic</li>
+      <li>style</li>
+    </keywords>
+    <seeAlso>
+      <li>Council_Alm_7_10_PreceptsAndRoles</li>
+      <li>Council_AlmMod_C_VMemes</li>
+      <li>Council_Alm_C_Wishes</li>
+    </seeAlso>
+    <dlc>Ideology</dlc>
+  </ColonyCouncil.AlmanacArticleDef>
+
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Council_AlmMod_C_VMemes</defName>
+    <label>Vanilla Ideology Expanded - Memes and Structures</label>
+    <category>Mods</category>
+    <order>345</order>
+    <mods><li>vanillaexpanded.vmemese</li></mods>
+    <summary>Dozens of memes and structures, from aristocratic and republic to craft culture, with rituals to match</summary>
+    <tip>The wicker man burned for an hour. The argument over who builds next year's lasted all winter.</tip>
+    <description>Memes and Structures adds a long list of memes and religious structures to pick when you found your ideoligion, many with their own rituals, buildings, roles and needs. Plenty suit a medieval realm: aristocratic, royal, republic, craft culture, city builders, bushido, fire worship, nomad and elders.</description>
+    <facts>
+      <li>Leadership memes: aristocratic, royal, god emperor, exalted priesthood, and republic, which adds a second and a third triumvir.</li>
+      <li>Rituals include the bonfire, wicker man burning, divine the stars, the trading fair, the leadership challenge, slave emancipation and incantation.</li>
+      <li>The eldritch cult structure adds a corruption need: it fades daily, obelisks pause it and incantations raise it. At 100 the pawn breaks; at 0 they are easily converted.</li>
+      <li>The elders meme asks the colony to respect and heed its old, and the mod also adds an elder trait.</li>
+      <li>Other memes include trader, party life, pacifist, vegan, healthcare, cultured, sweet teeth and fishing culture.</li>
+    </facts>
+    <advice>
+      <li>For a feudal colony, aristocratic or royal plus craft culture or city builders fits the medieval mods in your list.</li>
+      <li>Fire worship wants flames around: keep them in stone rooms in a wooden town. The council's advisor already warns about wooden walls near open fires.</li>
+      <li>A trading fair suits a merchant colony that sees many caravans.</li>
+      <li>With Rimfolk: the council's offices and elections are its own. They sit beside your ideoligion's leader or a republic's triumvirs; neither replaces the other.</li>
+    </advice>
+    <keywords>
+      <li>meme</li>
+      <li>structure</li>
+      <li>republic</li>
+      <li>aristocratic</li>
+      <li>royal</li>
+      <li>wicker man</li>
+      <li>bonfire</li>
+      <li>corruption</li>
+    </keywords>
+    <seeAlso>
+      <li>Council_Alm_7_10_PreceptsAndRoles</li>
+      <li>Council_AlmMod_C_AlphaMemes</li>
+      <li>Council_Alm_C_Offices</li>
+      <li>Council_Alm_3_20_FireSafety</li>
+    </seeAlso>
+    <dlc>Ideology</dlc>
+  </ColonyCouncil.AlmanacArticleDef>
+
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Council_AlmMod_C_Schisms</defName>
+    <label>Vanilla Ideology Expanded - Splits and Schisms</label>
+    <category>Mods</category>
+    <order>350</order>
+    <mods><li>vanillaexpanded.viesas</li></mods>
+    <summary>A big colony can split into two rival ideoligions</summary>
+    <tip>Two creeds, one dining table. Pass the salt carefully.</tip>
+    <description>Splits and Schisms adds the ideological schism: once your colony is big enough, part of it can break away into a new ideoligion that differs from yours by a meme or two. The two creeds then compete inside the colony until one of them is gone, and only then can another schism happen.</description>
+    <facts>
+      <li>The new ideoligion is close to the old one, with one or two different memes.</li>
+      <li>Only part of the colony follows it, not everyone.</li>
+      <li>A new schism can only come once one of the two ideoligions has vanished from the colony.</li>
+      <li>It is meant as a threat for colonies that have grown large.</li>
+      <li>Extensive mod options make schisms rarer, gentler or harsher, and the mod can be added to a running game.</li>
+    </facts>
+    <advice>
+      <li>Keep a moral guide able to convert: winning the breakaways back ends the split.</li>
+      <li>Expect it as the colony grows; if it comes too often for your taste, tune it in the mod options.</li>
+      <li>With Rimfolk: council votes follow skill, suitability and friendship, not creed, so a schism doesn't split the council on its own.</li>
+    </advice>
+    <keywords>
+      <li>schism</li>
+      <li>split</li>
+      <li>ideoligion</li>
+      <li>conversion</li>
+      <li>certainty</li>
+    </keywords>
+    <seeAlso>
+      <li>Council_Alm_7_10_PreceptsAndRoles</li>
+      <li>Council_Alm_C_Offices</li>
+    </seeAlso>
+    <dlc>Ideology</dlc>
+    <approximate>true</approximate>
+  </ColonyCouncil.AlmanacArticleDef>
+
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Council_AlmMod_C_IdeoExtras</defName>
+    <label>ideoligion icons and relics</label>
+    <category>Mods</category>
+    <order>355</order>
+    <mods>
+      <li>vanillaexpanded.ideo.iconsandsymbols</li>
+      <li>vanillaexpanded.ideo.relicsandartifacts</li>
+    </mods>
+    <summary>More ideoligion symbols, and dozens of new relics including helmets and armor</summary>
+    <tip>Our relic is a rusty gauntlet. Theirs is a gauntlet too, but they polish it.</tip>
+    <description>Two small Vanilla Ideology Expanded modules that widen your choices when you design an ideoligion. Both take effect when an ideoligion is created, so they matter most at the start of a game.</description>
+    <facts>
+      <li>Icons and Symbols: over 200 new ideoligion icons, tagged so they only appear on fitting ideoligions.</li>
+      <li>Relics and Artifacts: over 40 new relics such as scrolls, statuettes, idols and sword shards. Apparel like helmets and armor can be chosen as a relic too, and the relic picker gets a search bar.</li>
+    </facts>
+    <advice>
+      <li>A crown, helmet or blade shard makes a fitting relic for a medieval creed.</li>
+      <li>Use the relic picker's search bar to find a fitting item among the hundreds on offer.</li>
+      <li>Both can be added mid-game, but they only affect ideoligions created afterwards.</li>
+    </advice>
+    <keywords>
+      <li>relic</li>
+      <li>artifact</li>
+      <li>icon</li>
+      <li>symbol</li>
+      <li>ideoligion</li>
+    </keywords>
+    <seeAlso>
+      <li>Council_AlmMod_C_VMemes</li>
+      <li>Council_AlmMod_C_AlphaMemes</li>
+    </seeAlso>
+    <dlc>Ideology</dlc>
+  </ColonyCouncil.AlmanacArticleDef>
+
+  <!-- ===================== Traits and skills ===================== -->
+
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Council_AlmMod_C_VTE</defName>
+    <label>Vanilla Traits Expanded</label>
+    <category>Mods</category>
+    <order>360</order>
+    <mods><li>vanillaexpanded.vanillatraitsexpanded</li></mods>
+    <summary>More than 50 new traits, and a switch to stop any trait from appearing</summary>
+    <tip>The kleptomaniac swears the silver jumped into his pocket. All of it. Twice.</tip>
+    <description>Vanilla Traits Expanded adds dozens of traits: some bring new mechanics, some are quirky story traits and some are plain stat boosts. Its mod options can also switch off any trait, from the base game or another mod, so it stops appearing on new pawns.</description>
+    <facts>
+      <li>More than 50 new traits, such as drunken master, mad surgeon, heavy sleeper, kleptomaniac, perfectionist, snob, vengeful, wanderlust and workaholic.</li>
+      <li>A drunken master hits harder the more alcohol is in them; a mad surgeon suffers no mood penalty from harvesting organs; a heavy sleeper can't have their sleep disturbed.</li>
+      <li>A perfectionist production specialist can make legendary items.</li>
+      <li>Switching a trait off sets its commonality to zero; pawns who already have it keep it.</li>
+      <li>Trait and Backstory Icons and RimTraits Vanilla Trait Colors, both in your list, support all of its traits.</li>
+    </facts>
+    <advice>
+      <li>In a wooden medieval town, consider switching off pyromaniac in the mod options.</li>
+      <li>Read each newcomer's traits: a few of the new ones, like kleptomaniac, are real burdens.</li>
+      <li>Load it above any other trait mods, as its authors recommend.</li>
+      <li>With Rimfolk: council reactions to decrees, dilemmas and secrets are keyed to the base game's traits, such as kind, greedy and industrious, so these new traits don't change how someone reacts there yet.</li>
+    </advice>
+    <keywords>
+      <li>trait</li>
+      <li>traits</li>
+      <li>kleptomaniac</li>
+      <li>drunken master</li>
+      <li>mad surgeon</li>
+      <li>wanderlust</li>
+      <li>perfectionist</li>
+    </keywords>
+    <seeAlso>
+      <li>Council_AlmMod_C_RimTraits</li>
+      <li>Council_AlmMod_C_PeopleCanChange</li>
+      <li>Council_Alm_C_Decrees</li>
+    </seeAlso>
+  </ColonyCouncil.AlmanacArticleDef>
+
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Council_AlmMod_C_RimTraits</defName>
+    <label>RimTraits: General Traits and Trait Colors</label>
+    <category>Mods</category>
+    <order>362</order>
+    <mods>
+      <li>sierra.rt.generaltraits</li>
+      <li>sierra.rt.vanillatraitcolors</li>
+    </mods>
+    <summary>46 smaller attribute traits, and trait labels colored by how rare they are</summary>
+    <tip>A green trait means it's common. It doesn't mean he's any good.</tip>
+    <description>RimTraits - General Traits adds smaller traits that describe a pawn's body and mind, in tiers that get rarer as they get stronger. RimTraits - Vanilla Trait Colors recolors trait labels by how common they are, using the same scheme, for the base game and a few supported mods.</description>
+    <facts>
+      <li>General Traits: 46 traits; some exclude each other, and the stronger tiers are rarer.</li>
+      <li>Vanilla Trait Colors: recolors the base game's traits and those of General Traits, Vanilla Traits Expanded, Vanilla Fishing Expanded and Medieval Overhaul.</li>
+      <li>The same author makes RimTraits - Medieval Talents, also in your list.</li>
+      <li>Trait and Backstory Icons has icons for all 46 General Traits.</li>
+    </facts>
+    <advice>
+      <li>Read the color as rarity, not as good or bad.</li>
+      <li>Keep Vanilla Trait Colors next to Trait and Backstory Icons: for traits without their own icon, the icon mod picks one from these colors.</li>
+      <li>With Rimfolk: like other modded traits, these don't change council reactions yet; the council reads the base game's traits.</li>
+    </advice>
+    <keywords>
+      <li>trait</li>
+      <li>rimtraits</li>
+      <li>trait color</li>
+      <li>rarity</li>
+    </keywords>
+    <seeAlso>
+      <li>Council_AlmMod_C_VTE</li>
+      <li>Council_AlmMod_C_ReadabilityTools</li>
+    </seeAlso>
+    <approximate>true</approximate>
+  </ColonyCouncil.AlmanacArticleDef>
+
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Council_AlmMod_C_PeopleCanChange</defName>
+    <label>People Can Change</label>
+    <category>Mods</category>
+    <order>365</order>
+    <mods><li>battlemage64.peoplecanchange</li></mods>
+    <summary>Colonists slowly gain, lose or shift traits as the years go by</summary>
+    <tip>He came here a pessimist. Three good harvests later, he hums.</tip>
+    <description>People Can Change lets colonists change over time: they can gain a trait, lose one, or move up or down a trait's scale. Some changes follow from what they live through, such as long happiness or misery, eating human meat or getting used to a new body.</description>
+    <facts>
+      <li>New traits stop at a maximum, 4 by default; a minimum can be set as well.</li>
+      <li>A colonist who stays happy, or stays close to breaking, can turn optimist or depressive: roughly a 1 in 2 chance at each check, about once a quadrum. This can be switched off.</li>
+      <li>Eating human meat: a 1 in 100 chance (cooked) or 1 in 300 (raw) of becoming a cannibal.</li>
+      <li>A body purist has a 1 in 3 chance each quadrum to let it go, and 1 in 3 of those turn transhumanist.</li>
+      <li>It works with modded traits; the settings choose which traits can be gained or lost. It can be added to or removed from a save.</li>
+    </facts>
+    <advice>
+      <li>In the settings, block traits you never want gained, such as pyromaniac.</li>
+      <li>Vanilla Social Interactions Expanded can also give out traits. If traits change too often, turn off one of the two.</li>
+      <li>In a famine, think twice before serving human meat: it can make a cannibal for life.</li>
+      <li>With Rimfolk: the council reads traits as they are now, so a colonist who turns kind, greedy or industrious reacts to decrees, dilemmas and secrets accordingly from then on.</li>
+    </advice>
+    <keywords>
+      <li>trait</li>
+      <li>change</li>
+      <li>optimist</li>
+      <li>depressive</li>
+      <li>cannibal</li>
+      <li>body purist</li>
+    </keywords>
+    <seeAlso>
+      <li>Council_AlmMod_C_VTE</li>
+      <li>Council_AlmMod_C_VSIE</li>
+      <li>Council_Alm_C_Dilemmas</li>
+    </seeAlso>
+  </ColonyCouncil.AlmanacArticleDef>
+
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Council_AlmMod_C_Skills</defName>
+    <label>Vanilla Skills Expanded and Alpha Skills</label>
+    <category>Mods</category>
+    <order>370</order>
+    <mods>
+      <li>vanillaexpanded.skills</li>
+      <li>sarg.alphaskills</li>
+    </mods>
+    <summary>Permanent expertise, and new passions like natural, critical, apathy and many conditional ones</summary>
+    <tip>Critical passion for cooking. Can't hold a sword to save his life, but my word, the stew.</tip>
+    <description>Vanilla Skills Expanded lets a colonist with a passion and a high skill pick one permanent expertise, a specialty within that skill. It also adds three passions: apathy, natural and critical. Alpha Skills builds on it with dozens more passions, many of which switch on only under certain conditions, and more expertises.</description>
+    <facts>
+      <li>Learning speed by passion: none 35%, interested 100%, burning 150%, apathy 25%, natural 200% and critical 300%.</li>
+      <li>Natural passions also forget three times as fast. Critical passions never forget, but by default they slow every other skill to a quarter.</li>
+      <li>Expertise is one per colonist and permanent. The mod says it needs a passion and a skill above 15. Only your own colonists get it.</li>
+      <li>Expertise examples include weaponsmithing, tailoring, surgery, first aid, dueling, hunting, architecture and smoothing.</li>
+      <li>Alpha Skills adds 26 passions and 19 expertises. Passions like drunken, night, rainy day, vengeful, nomadic and competitive learn much faster only while their condition holds.</li>
+    </facts>
+    <advice>
+      <li>Choose expertise carefully, as it can't be undone; pick what the colony lacks, such as weaponsmithing or surgery.</li>
+      <li>Keep natural-passion colonists working at their skill, or they lose it fast.</li>
+      <li>Match conditional passions to the job: night owls on night shifts, rainy-day learners outdoors in the rain.</li>
+      <li>With Rimfolk: passions are judged by how fast they make someone learn. Apathy counts as no passion, natural and critical count as burning, and an Alpha Skills passion that switches on and off counts by its current state.</li>
+    </advice>
+    <keywords>
+      <li>skill</li>
+      <li>passion</li>
+      <li>expertise</li>
+      <li>natural</li>
+      <li>critical</li>
+      <li>apathy</li>
+      <li>learning</li>
+    </keywords>
+    <seeAlso>
+      <li>Council_Alm_C_Social</li>
+      <li>Council_Alm_C_Goals</li>
+      <li>Council_AlmMod_C_ReadabilityTools</li>
+    </seeAlso>
+  </ColonyCouncil.AlmanacArticleDef>
+
+  <!-- ===================== Social life and drugs ===================== -->
+
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Council_AlmMod_C_VSIE</defName>
+    <label>Vanilla Social Interactions Expanded</label>
+    <category>Mods</category>
+    <order>375</order>
+    <mods><li>vanillaexpanded.vanillasocialinteractionsexpanded</li></mods>
+    <summary>Richer free time: best friends, venting, teaching, dates, gatherings and aspirations</summary>
+    <tip>Two best friends, one jug of beer, and a long talk about the cook behind his back.</tip>
+    <description>Vanilla Social Interactions Expanded changes what colonists do in their spare time. They make best friends, vent to friends, teach each other, go on dates, and gather for meals, walks, drinks and parties. Aspirations and a reworked inspiration system add moods to chase. Every mechanic can be switched off in the mod options.</description>
+    <facts>
+      <li>Mechanics: memories, inspiration changes, gaining new traits, venting, friends and best friends, teaching, discord, group activities, dating and more.</li>
+      <li>Group activities include a meal together, a walk, grabbing a beer, skygazing, viewing art, building snowmen, parties, birthday parties and funerals.</li>
+      <li>New inspirations: planting, mining, cooking, research, learning, party, flirting and melee frenzy.</li>
+      <li>Best friends get their own grief when one dies, is sold or is killed.</li>
+    </facts>
+    <advice>
+      <li>Give gatherings a place to happen: a proper dining room and a rec area.</li>
+      <li>Movie night needs a television, so it won't come up in a medieval colony.</li>
+      <li>It can also hand out traits, like People Can Change. Switch one of them off if traits change too often.</li>
+      <li>With Rimfolk: the two work side by side. Its best friends and teaching sit next to the council's bonds and mentorships, and its aspirations are short inspiration tasks, not life goals. When a granted wish turns into an inspiration that doesn't match the wish, it can be one of these new ones.</li>
+    </advice>
+    <keywords>
+      <li>social</li>
+      <li>best friend</li>
+      <li>venting</li>
+      <li>teaching</li>
+      <li>dating</li>
+      <li>aspiration</li>
+      <li>inspiration</li>
+      <li>gathering</li>
+    </keywords>
+    <seeAlso>
+      <li>Council_Alm_C_Social</li>
+      <li>Council_Alm_C_Goals</li>
+      <li>Council_AlmMod_C_PeopleCanChange</li>
+    </seeAlso>
+  </ColonyCouncil.AlmanacArticleDef>
+
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Council_AlmMod_C_GoJuice</defName>
+    <label>Medieval Go-juice</label>
+    <category>Mods</category>
+    <order>380</order>
+    <mods><li>rince.gaulishgojuice</li></mods>
+    <summary>A druid's Gaulish potion: go-juice for colonies with no drug lab</summary>
+    <tip>Only the druid knows what goes in it. The druid also won't drink it. Make of that what you will.</tip>
+    <description>Medieval Go-juice adds a Gaulish potion brewed by druids, so medieval and tribal colonies, and their go-juice-hungry Hussars, aren't left without it. It needs no research, but it needs a rare brewer: a good cook who is also a scholar. The potion doesn't keep for long, so brew it shortly before you need it.</description>
+    <facts>
+      <li>Brewed at a fueled cooking station, with no research needed.</li>
+      <li>The brewer needs Cooking 10 and Intellectual 10.</li>
+      <li>Psychoid leaves are part of the recipe; the rest is a druid's secret.</li>
+      <li>Since a 2025 update it keeps for about 7 days and is quicker to make.</li>
+      <li>It can also be made in Medieval Overhaul's stew pot, and the mod adds a weak psychite joint that needs no research.</li>
+    </facts>
+    <advice>
+      <li>Find your druid early: look for a colonist with both Cooking and Intellectual at 10 or more.</li>
+      <li>Keep a stock of psychoid leaves, from your own field or from traders.</li>
+      <li>Brew a batch when a raid looks likely rather than stockpiling it.</li>
+      <li>Treat it like any go-juice: dose your fighters, not your whole colony.</li>
+    </advice>
+    <keywords>
+      <li>go-juice</li>
+      <li>gojuice</li>
+      <li>potion</li>
+      <li>druid</li>
+      <li>gaulish</li>
+      <li>combat drug</li>
+      <li>hussar</li>
+      <li>psychoid</li>
+    </keywords>
+    <seeAlso>
+      <li>Council_Alm_4_23_GoJuiceWakeUp</li>
+      <li>Council_Alm_4_19_AddictionTolerance</li>
+    </seeAlso>
+    <approximate>true</approximate>
+  </ColonyCouncil.AlmanacArticleDef>
+
+  <!-- ===================== Small mods ===================== -->
+
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Council_AlmMod_C_ReadabilityTools</defName>
+    <label>trait, gene and level-up helpers</label>
+    <category>Mods</category>
+    <order>390</order>
+    <mods>
+      <li>krafs.levelup</li>
+      <li>superniquito.traiticons</li>
+      <li>zhuma.xenotypesummary</li>
+      <li>vanillaracesexpanded.customicons</li>
+    </mods>
+    <summary>Small helpers that make traits, xenotypes and skill gains easier to read</summary>
+    <tip>The little icon next to his name is a skull. Maybe don't make him the cook.</tip>
+    <description>Four small interface mods in your list. None of them change the game's balance; they make it easier to see who your people are and what they can do.</description>
+    <facts>
+      <li>Level Up!: a notice whenever a colonist gains a skill level, with a cooldown so skill decay doesn't flood you with messages.</li>
+      <li>Trait and Backstory Icons: icons next to traits and backstories in the bio tab, with icons for Vanilla Traits Expanded, RimTraits, Medieval Overhaul, Alpha Memes, Alpha Genes and A RimWorld of Magic.</li>
+      <li>Xenotype Summary: a Summary button on the gene tab, info cards, the xenotype creator and the gene assembler that lists every gene's effect and adds up the totals.</li>
+      <li>Vanilla Races Expanded - Custom Icons: hundreds of extra icons for xenotypes you design in the xenotype creator.</li>
+    </facts>
+    <advice>
+      <li>Before you recruit an elf, stoneborn, merren or ape, open their info card and press Summary.</li>
+      <li>A skill bouncing between levels 9 and 10, or 19 and 20, is the base game's skill decay, not a bug.</li>
+      <li>If the level-up notices get too chatty, tune them in Level Up's mod settings.</li>
+    </advice>
+    <keywords>
+      <li>level up</li>
+      <li>trait icons</li>
+      <li>xenotype summary</li>
+      <li>genes</li>
+      <li>icons</li>
+      <li>interface</li>
+    </keywords>
+    <seeAlso>
+      <li>Council_AlmMod_C_Skills</li>
+      <li>Council_AlmMod_C_AlphaGenes</li>
+    </seeAlso>
+  </ColonyCouncil.AlmanacArticleDef>
+
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Council_AlmMod_C_Looks</defName>
+    <label>hair and menu looks</label>
+    <category>Mods</category>
+    <order>395</order>
+    <mods>
+      <li>vanillaexpanded.vhe</li>
+      <li>neronix17.retexture.vanillahair</li>
+      <li>vanillaexpanded.backgrounds</li>
+    </mods>
+    <summary>New hairstyles and a barber's table, sharper vanilla hair, and new menu backgrounds</summary>
+    <tip>New hair, same colonist. He still won't haul.</tip>
+    <description>Three cosmetic mods in your list. They change how your people and the game's menus look, not how the game plays.</description>
+    <facts>
+      <li>Vanilla Hair Expanded: about a hundred new hairstyles in the base game's style, and a barber's table in the Misc tab (75 wood or metal plus 20 steel) to change hair, hair color and beard.</li>
+      <li>Vanilla Hair Retextured: sharper, more consistent textures for every base game and DLC hairstyle.</li>
+      <li>Vanilla Backgrounds Expanded: new main menu and loading screen backgrounds, which you can pick and cycle in the mod options. It adds menu art, not pawn backstories.</li>
+    </facts>
+    <advice>
+      <li>Build the barber's table from wood if steel is scarce; it still needs its 20 steel.</li>
+      <li>Use the barber's table to tell lookalike colonists apart at a glance.</li>
+      <li>Vanilla Hair Expanded can be added or removed mid-game, and its barber's table finds hairstyles from every hair mod.</li>
+    </advice>
+    <keywords>
+      <li>hair</li>
+      <li>hairstyle</li>
+      <li>barber</li>
+      <li>beard</li>
+      <li>retexture</li>
+      <li>background</li>
+      <li>menu</li>
+    </keywords>
+    <seeAlso>
+      <li>Council_AlmMod_C_ReadabilityTools</li>
+    </seeAlso>
+  </ColonyCouncil.AlmanacArticleDef>
+
+</Defs>

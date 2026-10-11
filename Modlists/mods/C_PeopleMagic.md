@@ -238,7 +238,7 @@ Also note `isBad` passions with a normal rate (Alpha Skills' traumatic, rate 1.0
 - Link: https://steamcommunity.com/sharedfiles/filedetails/?id=2636329500 (GitHub: https://github.com/Vanilla-Expanded/VanillaIdeologyExpanded-Memes)
 - What it adds: memes such as `VME_Aristocratic`, `VME_Royal`, `VME_Republic` (second and third triumvir roles),
   `VME_GodEmperor`, `VME_ExaltedPriesthood`, `VME_CraftCulture`, `VME_CityBuilders`, `VME_Nomad`, `VME_Bushido`,
-  `VME_BloodCourt`, `VME_FireWorship`, `VME_Light`, `VME_Elders` (adds trait `VME_Elder`), `VME_Trader`,
+  `VME_BloodCourt`, `VME_FireWorship`, `VME_Light`, `VME_Elders` (trait `VME_Elder` is defined separately; link to the meme not seen in XML), `VME_Trader`,
   `VME_PartyLife`, `VME_Pacifist`, `VME_Vegan`, `VME_Egalitarian`, `VME_Emancipation`, `VME_Nationalist`,
   `VME_Healthcare`, `VME_Cultured`, `VME_SweetTeeth`, `VME_Angler`, `VME_Astrology`, `VME_Gestalt`,
   `VME_ViolentConversion`, `VME_HolyDiseases`, `VME_Scrapper`, `VME_Anonymity`, `VME_PsychicFocus`,
