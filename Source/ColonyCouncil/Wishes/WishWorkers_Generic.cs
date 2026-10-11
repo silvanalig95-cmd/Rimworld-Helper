@@ -94,6 +94,9 @@ namespace ColonyCouncil
                                                             || (d.comps.Any(c => c is CompProperties_Refuelable) && d.comps.Any(c => c is CompProperties_HeatPusher h && h.heatPerSecond > 0f) && d.comps.Any(c => c is CompProperties_Glower)));
             return d =>
             {
+                // Vanilla Furniture Expanded's props are decorations bought with silver: a prop bathtub or weapon rack
+                // isn't the real thing.
+                if (IsProp(d)) return false;
                 if (fire && !hasFire(d)) return false;
                 if (preds.Count > 0 && !preds.Any(p => p(d))) return false;
                 if (preds.Count == 0 && !fire) return false;
@@ -103,6 +106,20 @@ namespace ColonyCouncil
         }
 
         private static readonly Dictionary<ThingDef, string> names = new Dictionary<ThingDef, string>();
+
+        private static readonly Dictionary<ThingDef, bool> props = new Dictionary<ThingDef, bool>();
+
+        private static bool IsProp(ThingDef d)
+        {
+            if (!props.TryGetValue(d, out bool prop))
+            {
+                prop = d.defName.StartsWith("VFEPD_");
+                for (var t = d.thingClass; !prop && t != null && t != typeof(object); t = t.BaseType)
+                    if (t.Name.Contains("SubstractsSilver") || t.Name.Contains("SubtractsSilver")) prop = true;
+                props[d] = prop;
+            }
+            return prop;
+        }
 
         private static string NameOf(ThingDef d)
         {

@@ -372,7 +372,10 @@ namespace ColonyCouncil
                              || (d.comps != null && d.comps.Any(c => c?.compClass != null && c.compClass.FullName.Contains("Processor")));
             if (!processor) return false;
             string name = (d.defName + " " + d.label).ToLowerInvariant();
-            return name.Contains("barrel") || name.Contains("ferment") || name.Contains("brew") || name.Contains("keg") || name.Contains("cask") || name.Contains("still");
+            // Sauces and pickles ferment too, but they aren't brewing.
+            if (name.Contains("sauce") || name.Contains("soy") || name.Contains("vinegar") || name.Contains("pickl")) return false;
+            return name.Contains("barrel") || name.Contains("ferment") || name.Contains("brew") || name.Contains("keg") || name.Contains("cask")
+                   || name.Contains("still") || name.Contains("distill") || name.Contains("drum");
         }
 
         public static bool IsHydroponics(ThingDef d) =>

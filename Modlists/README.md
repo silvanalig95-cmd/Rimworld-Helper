@@ -3,8 +3,16 @@
 The modlists Rimfolk is played with, and what Rimfolk knows about the mods in them.
 
 - `medieval-main.txt`: the main medieval modlist (RimWorld 1.6), one package id per line, in load order.
-- `mods/`: one note per theme. Each mod gets a section with what it adds, how it plays, what Rimfolk already does
+- `mods/`: one note per theme, a section for every mod with what it adds, how it plays, what Rimfolk already does
   with it, and hook ideas for future features. New Rimfolk features start by checking these notes.
+  - `A_MedievalOverhaul.md`: Medieval Overhaul and add-ons, Rimedieval, Medieval Total Rim, Divine Order (34 mods)
+  - `B_FactionsWorld.md`: Outland, Forgotten Realms, al9000, faction and diplomacy mods, Outposts, Hospitality,
+    Vanilla Events Expanded (31)
+  - `C_PeopleMagic.md`: races and xenotypes, A RimWorld of Magic, psycasts, memes, traits and skills (30)
+  - `D_NatureAnimals.md`: animal, biome, terrain, weather, plant and mining mods (33)
+  - `E_MakingThings.md`: food, drink, furniture, apparel, books, hygiene, storage, floors (45)
+  - `F_QualityOfLife.md`: interface, hauling, work, combat helpers, saves, libraries (36)
+- `HOOKS.md`: the most promising integration ideas from all of the above, and conflicts in the modlist.
 
 The in-game Almanac has a "Your mods" category built from the same research
 (`Defs/AlmanacArticleDefs/Almanac_Mods_*.xml`). Each article lists the mods it is about and only shows when one of

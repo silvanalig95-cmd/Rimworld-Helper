@@ -283,9 +283,9 @@ bedroom.
 
 ### Almanac
 An in-game knowledge base: good practice and the numbers behind it, by topic, searchable, linked from the
-advisor's warnings and to room plans. The **Your mods** category explains the mods in your game: what each adds, how
-to get the most out of it in a medieval run, and how it works with Rimfolk. Each page only shows when its mod is
-active.
+advisor's warnings and to room plans. The **Your mods** category explains the mods in your game (over 100 pages
+covering a 216-mod medieval list): what each adds, how to get the most out of it in a medieval run, pitfalls and
+conflicts, and how it works with Rimfolk. Each page only shows when its mod is active.
 
 ### Names, anniversaries and petitions
 Whoever has done the most of something earns a name for it, until someone overtakes them: *the Healer*, *the

@@ -34,13 +34,15 @@ The colony notices what the game does to it.
   out there, and the latest chronicle.
 - Finer frequency settings (how often encounters, dilemmas and social moments come up).
 
-## Phase E2: The mod almanac
+## Phase E2: The mod almanac (done for the main modlist)
 The Almanac learns about the mods in the user's modlist, and Rimfolk uses that knowledge for new ideas.
 - Almanac articles on the mods in play: what each adds, how to get the most out of it, and how it touches
   Rimfolk (medieval factions, hospitality, outposts, quality of life, and so on).
 - A reference in the repository (`Modlists/`): each modlist the user shares, plus a list of mods with the
   hooks Rimfolk can use (their pawns, buildings, items, events and settings). New features check it first.
 - New or alternative modlists from the user go into the same folder and update the articles.
+- Done: 104 Almanac articles covering all 216 mods of the main medieval modlist; notes and `Modlists/HOOKS.md`.
+  Next: build the best ideas from HOOKS.md into Rimfolk, a few at a time.
 
 ## Phase F: Release (when the user asks)
 - Steam Workshop upload (private first), then an automatic upload of each new version.

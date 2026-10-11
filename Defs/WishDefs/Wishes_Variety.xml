@@ -28,6 +28,8 @@
     <wants>
       <fire>true</fire>
       <roles><li>heater</li></roles>
+      <!-- A pit for burning rubbish or a sauna stove is no fire to sleep beside. -->
+      <notContains><li>burnpit</li><li>burn pit</li><li>sauna</li><li>incinerat</li><li>crematori</li></notContains>
       <inBedroom>true</inBedroom>
       <seasons><li>Fall</li><li>Winter</li></seasons>
       <reason>{PAWN_nameDef} has a bedroom of {PAWN_possessive} own, and it gets bitterly cold in there at night.</reason>
