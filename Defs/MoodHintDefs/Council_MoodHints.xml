@@ -683,4 +683,56 @@
     <article>Council_Alm_Basics_ReadingTheCouncil</article>
     <priority>-100</priority>
   </ColonyCouncil.MoodHintDef>
+
+  <!-- ===================== World events ===================== -->
+
+  <ColonyCouncil.MoodHintDef>
+    <defName>Council_Mood_RF_Events</defName>
+    <nameContains><li>council_evt_</li></nameContains>
+    <fix>Something that happened out in the world. It fades on its own; a good evening, a fine meal or time with friends helps in the meantime.</fix>
+    <keep>Something good that happened out in the world. Enjoy it while it lasts.</keep>
+    <article>Council_Alm_C_WorldEvents</article>
+    <priority>-50</priority>
+  </ColonyCouncil.MoodHintDef>
+
+  <ColonyCouncil.MoodHintDef>
+    <defName>Council_Mood_RF_EvtTurnedAway</defName>
+    <thoughts><li>Council_Evt_KinTurnedAway</li><li>Council_Evt_FriendTurnedAway</li><li>Council_Evt_GaveUpOneOfUs</li></thoughts>
+    <fix>The council turned away (or gave up) someone they cared about. It fades with time; a granted wish or a kind word from the council helps their trust recover.</fix>
+    <article>Council_Alm_C_WorldEvents</article>
+    <councilTab>Wishes</councilTab>
+  </ColonyCouncil.MoodHintDef>
+
+  <ColonyCouncil.MoodHintDef>
+    <defName>Council_Mood_RF_EvtPartnersEx</defName>
+    <thoughts><li>Council_Evt_PartnersEx</li></thoughts>
+    <fix>Their partner's ex lives here now. Keep the two apart at work and at meals, and give it time.</fix>
+  </ColonyCouncil.MoodHintDef>
+
+  <ColonyCouncil.MoodHintDef>
+    <defName>Council_Mood_RF_EvtHomeLost</defName>
+    <thoughts><li>Council_Evt_HomeLost</li></thoughts>
+    <fix>Grief for the home they came from. Nothing to fix; friends, recreation and a good room help them carry it.</fix>
+  </ColonyCouncil.MoodHintDef>
+
+  <ColonyCouncil.MoodHintDef>
+    <defName>Council_Mood_RF_EvtHail</defName>
+    <thoughts><li>Council_Evt_Hail</li></thoughts>
+    <fix>Caught out in the hail. It passes in hours. Roofed walkways and greenhouses keep both people and crops out of it.</fix>
+    <priority>5</priority>
+  </ColonyCouncil.MoodHintDef>
+
+  <ColonyCouncil.MoodHintDef>
+    <defName>Council_Mood_RF_EvtComet</defName>
+    <thoughts><li>Council_Evt_Comet</li></thoughts>
+    <fix>They read the comet as a bad omen. It lasts until the comet fades; nothing else will convince them.</fix>
+    <keep>They read the comet as a good omen, or just think it's beautiful. Stargazing is better while it lasts.</keep>
+  </ColonyCouncil.MoodHintDef>
+
+  <ColonyCouncil.MoodHintDef>
+    <defName>Council_Mood_RF_EvtTribute</defName>
+    <thoughts><li>Council_Evt_PaidTribute</li></thoughts>
+    <fix>The colony paid tribute, and it stings. A stronger defence makes the next demand easier to refuse.</fix>
+    <signal>Council_Adv_Defense</signal>
+  </ColonyCouncil.MoodHintDef>
 </Defs>

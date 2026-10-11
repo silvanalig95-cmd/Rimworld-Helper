@@ -30,6 +30,15 @@ exact nemesis detection.
 - Weddings, births, breakdowns, victories, caravans coming home with stories, quests won and lost.
 - Journals, the chronicle, friends' reactions and life-goal sparks for each.
 
+## Phase H: World events (first batch done)
+Things that happen to the colony from outside, on Rimfolk's own rhythm, written for every era.
+- Done: 31 events in five groups (pasts catching up, challenges, old enemies, the land and sky, visitors with a
+  purpose), fights behind their own switch, era-appropriate loot and visitors, ties into nemeses, secrets,
+  mentorships, journals, the chronicle and the colony's character.
+- Next: more events per group, events that build on each other (a champion who comes back for a rematch, the
+  great beast's offspring, a deserter's old unit sending an envoy), mod-aware events when the user's new modlist
+  arrives, and a short "what's coming" line in the council window for promised fights.
+
 ## Phase E: The council at a glance
 - An overview page: the colony's mood and trust over time, open wishes, the colony's character, nemeses still
   out there, and the latest chronicle.

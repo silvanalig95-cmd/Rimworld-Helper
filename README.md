@@ -33,7 +33,7 @@ window, organized in five sections:
 | **Colony** | Priorities · Room plans | the advisor's ranked list of what the colony needs; ready-made rooms |
 | **People** | Roster · Bonds · Wishes | every colonist at a glance with their full story; friendships, rivalries, circles, vendettas, secrets; open wishes and trust |
 | **Council** | Decrees · Ambition | decrees, petitions and the council's five offices; the current ambition and meetings |
-| **History** | Chronicle · Dreams · Journals | everything that happened (filter by wishes, council, people, dreams, losses), recent dreams, every colonist's journal |
+| **History** | Chronicle · Dreams · Journals | everything that happened (filter by wishes, council, people, strangers, world events, dreams, losses), recent dreams, every colonist's journal |
 | **Almanac** | | the knowledge base |
 
 Section names show a count when something there wants your attention (urgent advice, open wishes, petitions).
@@ -356,6 +356,39 @@ Every mood Rimfolk gives says what caused it, under the description in its toolt
 didn't), which council decision, which decree and how long it has left, which visitor, secret, nemesis or
 moment. The trust mood lists what moved it lately.
 
+## World events
+Every few days (you choose how often), something happens out in the world: Rimfolk's own events, on their own
+rhythm, so they never take a slot from your storyteller's events. Each is written for tribal, medieval, industrial
+and spacer colonies alike, and finds and visitors fit your era (a medieval colony meets medieval folk and digs up
+medieval things). Many ask the council what to do, with a day or so to answer.
+- **Pasts catch up.** Who a colonist used to be (read from their backstory: soldier, outlaw, noble, trader...)
+  decides what finds them: an **old comrade** or partner in crime asking to stay, **lost family** (a sibling, a
+  parent, a grown child) who thought them dead, an **old flame** (with their current partner watching), a
+  **creditor** with an old debt (pay, let them talk their way out, or refuse and maybe meet the thugs), **bounty
+  hunters** for a colonist with a violent past (stand by them and fight, pay, or hand them over), an
+  **inheritance**, a letter from an **old teacher**, good or bad **news from home**. Someone who **walked out or
+  was banished** may come back one day and ask to be let in.
+- **Challenges.** A **travelling champion** challenges your best at shooting targets, wrestling (no weapons),
+  crafting, cooking, art, debate, animals, riddles or farming, and you can bet silver on them. A **great beast**
+  with a name roams your land for a few days: bring it down or tame it for glory, or let it pass. A visitor sells a
+  **treasure map** (maybe true). A hostile people **demands tribute**: pay, haggle, or refuse and fight.
+- **Old enemies come back.** A **nemesis** who got away returns at the head of a raid. The people of a prisoner who
+  **died in the colony's hands** come for revenge. A **deserter** from a hostile people asks for shelter, and
+  their old comrades may come looking.
+- **The land and the sky.** A **comet** for days (the cheerful call it a good omen, the gloomy and nervous a bad
+  one), **firefly nights** in summer, **hail** that knocks back crops in open fields (roofs and greenhouses are
+  safe), **vermin** in warm stores (food kept cold is safe, and a cat or dog may catch them first), a **wild
+  harvest** of berries or healroot, a **buried cache** turned up by someone working outside.
+- **Visitors with a purpose.** A **storyteller** for an evening of tales (who may already know a story about your
+  colony), **mourners** at a colonist's grave, **hungry pilgrims**, a **scholar** who can push your current research
+  along, a young **apprentice** who wants to learn from your master of a craft (a real mentorship), a **quiet
+  stranger** with a secret, a **lost child** (Biotech), a **stray** that follows someone home.
+
+Answers shape the colony's character, and the events feed nemeses, secrets, mentorships, journals and the
+chronicle. Fights come only with **battles** switched on in the settings, when the storyteller sends threats at
+all, never on top of another fight, and at a share of the storyteller's own raid strength. In dev mode, every
+event can be fired from **Debug actions → Incidents** (they're named `Council_Evt_...`).
+
 ## The colony notices what happens
 The moment it happens: a **wedding** is written into the chronicle and the journals of the couple and their friends
 (and nudges the colony a little towards tradition); a **birth** is recorded by the parents; colonists **coming
@@ -411,6 +444,7 @@ journals, the Story tab and History) or **Important only**.
 - **council life**: decrees, dilemmas, petitions, annals, names, journals, offices, the social web, social
   events, life goals, secrets, vendettas, eulogies, heirlooms, coming of age, quirks, dreams and dream omens, encounters with strangers, nemeses (and whether they return), pets, the
   colony's character, each on its own switch
+- **world events**: on or off, whether they may bring fights, and how often (about every 4 days by default)
 
 ## Optional mods that go well with it
 

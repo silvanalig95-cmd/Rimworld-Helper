@@ -377,4 +377,33 @@
     <seeAlso><li>Council_Alm_2_15_MentalBreaks</li><li>Council_Alm_10_MoodNumbers</li><li>Council_Alm_C_Ways</li></seeAlso>
   </ColonyCouncil.AlmanacArticleDef>
 
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Council_Alm_C_WorldEvents</defName>
+    <label>world events</label>
+    <category>Council</category>
+    <order>16</order>
+    <summary>What comes to the colony from outside: pasts catching up, challenges, old enemies, the land and the sky, visitors with a purpose.</summary>
+    <tip>The past doesn't stay buried. Sometimes it brings a casserole.</tip>
+    <description>Every few days something happens out in the world: an old comrade asks for a colonist by name, a travelling champion wants a contest, a comet hangs in the sky, mourners come to a grave. These are Rimfolk's own events, on their own rhythm, so they never take a slot from your storyteller's. Many ask the council what to do; the answer shapes the colony's character, and often a colonist's life.</description>
+    <facts>
+      <li>Who a colonist used to be (read from their backstory: soldier, outlaw, noble, trader, healer, scholar, farmer, artisan) decides which pasts can catch up with them. Bounty hunters only come for someone with a violent past.</li>
+      <li>Strangers who ask to join wait at the edge of the map until you answer. Use "Look at" in the letter to see who they are before you decide.</li>
+      <li>Visitors, finds and inheritances fit the colony's era: a medieval colony meets medieval folk and digs up medieval things.</li>
+      <li>Fights come only with "battles" on in the settings, when the storyteller sends threats at all, never on top of another fight, and at a share of the storyteller's own raid strength.</li>
+      <li>A colonist who walked out or was banished may come back one day. A prisoner who dies in the colony's hands may be avenged by their people.</li>
+      <li>Contests with a travelling champion never hurt anyone: target shooting, wrestling without weapons, crafts, cooking, art, debate. The better one usually wins.</li>
+      <li>Hail only hurts crops out in the open. Vermin only get into food that isn't kept cold, and a cat or dog may catch them first.</li>
+      <li>The great beast is tougher than any of its kind. It leaves in a few days, and only fights if provoked.</li>
+    </facts>
+    <advice>
+      <li>Answer the letters: an unanswered one falls to a default, which is rarely the best choice.</li>
+      <li>Read the odds before betting on a contest: the letter says how good each side is.</li>
+      <li>Keep some silver in the stores. Debts, bounties, tribute and treasure maps all ask for it.</li>
+      <li>Roof a field or two, and keep food cold, and two of the nastier natural events lose their teeth.</li>
+      <li>Take a group, not a hero, to hunt the great beast.</li>
+    </advice>
+    <keywords><li>event</li><li>incident</li><li>comrade</li><li>family</li><li>bounty</li><li>debt</li><li>champion</li><li>contest</li><li>beast</li><li>tribute</li><li>revenge</li><li>deserter</li><li>comet</li><li>fireflies</li><li>hail</li><li>vermin</li><li>cache</li><li>treasure</li><li>storyteller</li><li>pilgrims</li><li>scholar</li><li>apprentice</li><li>stray</li><li>mourners</li></keywords>
+    <seeAlso><li>Council_Alm_C_Strangers</li><li>Council_Alm_C_Ways</li><li>Council_Alm_C_Dilemmas</li></seeAlso>
+  </ColonyCouncil.AlmanacArticleDef>
+
 </Defs>

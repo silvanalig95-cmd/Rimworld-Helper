@@ -239,6 +239,36 @@ Design rules:
 - Social events are small and frequent (about one per five colonists per day), mostly worth a few points of
   opinion; the dramatic ones are rare and go in the chronicle.
 
+## Layer 5: World events
+
+Rimfolk's own incidents: things that happen *to* the colony from outside, as opposed to the wishes and dilemmas
+that come from inside it. They can stand on their own, but most reach into the rest of Rimfolk.
+
+- **Plumbing.** Each event is an ordinary `IncidentDef` in its own category (`Council_WorldEvent`) with a
+  `HappeningExtension` (texts, options, effects, knobs). No storyteller lists that category, so the storyteller's
+  own pacing is untouched; Rimfolk's `HappeningTracker` fires one about every *n* days (a setting), picking by
+  weight among those whose `CanFireNow` passes, with vanilla's own refire, earliest-day and biome rules. Dev mode
+  can fire any of them. Options reuse the dilemma machinery (`DilemmaOption`, `DilemmaEffect`), plus new effects:
+  join, raid later, era loot, research progress, a bond, a mentorship, a secret, leaving the colony.
+- **Who comes.** Strangers are generated when the event fires and wait as world pawns until the colony answers;
+  then they walk in from the edge, or stay out in the world (family stays family). Visitors come from a people that
+  isn't hostile, of the colony's own era by preference, and spawn with a visiting lord.
+- **Pasts.** A colonist's past is read from their backstory titles and categories by keyword (soldier, outlaw,
+  noble, healer, scholar, farmer, trader, artisan), so modded backstories count. Lines tagged with a past only show
+  for someone with that past; events that need a past (an old comrade needs a soldier or an outlaw; bounty hunters
+  need a violent past) only fire when someone has one.
+- **Fights.** Only with the battles setting on, threat scale above zero, no hostile threat on the map and no big
+  threat in the last two days. Strength is a share of `DefaultThreatPointsNow`, sent through the vanilla raid
+  incident with the event's story above vanilla's raid text, and recorded with the storyteller as a big threat so
+  it doesn't stack its own on top. A promised fight (refused tribute, creditor's thugs) is queued and re-checks
+  all of this when it's due.
+- **Era.** Every text has lines for pre-industrial and industrial-or-later colonies (`[lowtech]` / `[!lowtech]`, and
+  `[industrial]` / `[spacer]` where it matters). Loot is drawn from things at or below the colony's tech level.
+- **Choices cost something both ways.** Turning family away hurts; taking in a deserter may bring pursuers; paying
+  tribute shames, refusing it brings a war party. Unanswered letters fall to a sensible default.
+- **Nobody gets hurt for flavour.** Contests are matches at targets, wrestling without weapons, crafts and
+  debates. Hail damages crops, never people.
+
 ## Building help: how far should the mod build things itself?
 
 Think of it as a ladder. Each rung is optional and builds on the one below:
