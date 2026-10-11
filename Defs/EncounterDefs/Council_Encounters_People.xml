@@ -730,7 +730,7 @@
       <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>X</target><thought>Council_EncP_KindToMe</thought></li>
       <li Class="ColonyCouncil.DilemmaEffect_LifeEvent"><target>A</target><counter>stranger</counter><chance>0.5</chance></li>
     </effects>
-    <journal>Council_Journal_EncP_FallenPlea</journal>
+    <journal>Council_Journal_EncP_Water</journal>
   </ColonyCouncil.EncounterDef>
 
   <ColonyCouncil.EncounterDef>
@@ -764,7 +764,7 @@
     <effects>
       <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncP_LastWords</thought><exceptTrait><li>Psychopath</li></exceptTrait></li>
     </effects>
-    <journal>Council_Journal_EncP_FallenPlea</journal>
+    <journal>Council_Journal_EncP_LastWords</journal>
     <notable>true</notable>
   </ColonyCouncil.EncounterDef>
 

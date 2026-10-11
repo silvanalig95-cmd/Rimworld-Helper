@@ -1,0 +1,514 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Journal entries after encounters with people who aren't colonists (Council_Encounters_People.xml).
+    Written by the colonist: {PAWN_...} is the writer, {X_...} the stranger (visitor, trader, lodger, prisoner or
+    fallen enemy). No {FACTION} here.
+  -->
+
+  <!-- A cook swapped recipes with a visitor. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Journal_EncP_Recipe</defName>
+    <lines>
+      <plain>
+        <li>{X_nameDef} showed me a trick with onions I'd never seen. Years at the stove, and I felt like a child holding the spoon wrong.</li>
+        <li>Traded recipes with {X_nameDef}. I gave up my pemmican secret and got a stew in return. I'll be making it until somebody begs me to stop.</li>
+        <li>[winter] {X_nameDef} says where {X_pronoun} comes from they bury cabbages in the snow and dig them up sour in spring. I'm trying it. Nobody touch the snow by the kitchen.</li>
+        <li>[trait:Gourmand] {X_nameDef} let me taste a sauce made from things I'd have thrown away. I'm still thinking about it. I'll be thinking about it at my funeral.</li>
+        <li>[lowmood] Rotten week. Then {X_nameDef} showed me how to fry bread in a hot pan with a little fat, and for ten minutes the world was all right.</li>
+        <li>Spent the afternoon arguing with {X_nameDef} about salt. We both won. The stew lost.</li>
+        <li>[rain] Rained all day, so {X_nameDef} and I stayed in the kitchen and cooked everything in it. The colony ate well. The larder is weeping.</li>
+      </plain>
+      <warm>
+        <li>{X_nameDef} wouldn't leave the kitchen until I'd folded the dumplings right three times. I hope someone on the road feeds {X_objective} as well as {X_pronoun} fed me today.</li>
+        <li>I gave {X_nameDef} a bag of my flatbread for the road. It felt right to send a bit of this place along.</li>
+      </warm>
+      <blunt>
+        <li>{X_nameDef}'s recipe is better than mine. I'm writing that once, here, where nobody will read it.</li>
+        <li>Told {X_nameDef} the soup was bland. Then I stole the recipe. Both things are true.</li>
+      </blunt>
+      <cheerful>
+        <li>NEW RECIPE! From {X_nameDef}! It has honey AND meat in it and I don't care what anyone says!</li>
+        <li>[summer] {X_nameDef} showed me how to cook berries down so they keep! Jars of summer! I'm going to make a hundred!</li>
+      </cheerful>
+      <gloomy>
+        <li>{X_nameDef} taught me {X_possessive} grandmother's stew. The grandmother died in a famine, {X_nameDef} said. That explains why it uses so little meat.</li>
+        <li>[winter] Learned a new dish from {X_nameDef}. It's mostly roots and patience. Good, because roots and patience are what we've got.</li>
+      </gloomy>
+      <cold>
+        <li>{X_nameDef} gave me a way to cure meat that will stretch our stores by a week. Worth more than anything the caravan was selling.</li>
+        <li>{X_nameDef} talked while cooking. I listened. Recipes are cheaper to steal than to buy.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- A colony child played with a visiting child. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Journal_EncP_PlayFriend</defName>
+    <lines>
+      <plain>
+        <li>{X_nameDef} is my best friend. {X_nameDef} is leaving with the caravan. I don't think that's fair, and I said so, loudly.</li>
+        <li>Me and {X_nameDef} found a dead beetle as big as my hand. We buried it with honors. {X_nameDef} did the speech.</li>
+        <li>[rain] It rained all day so {X_nameDef} and I made a fort out of blankets. Somebody wanted the blankets back. We said no.</li>
+        <li>[winter] {X_nameDef} and I had a snowball war. I won. {X_nameDef} says {X_pronoun} won. I'm writing it down so it's official: I won.</li>
+        <li>[newcomer] I'm new here and {X_nameDef} is new everywhere, all the time. We agreed to be new together.</li>
+        <li>{X_nameDef} knows a song about a goat with a terrible secret. I know it now too. The grown-ups don't like it.</li>
+        <li>[summer] {X_nameDef} and I sat in the stream until our toes went wrinkly. {X_nameDef} wants to be a trader when {X_pronoun} grows up. I want to be a bear.</li>
+      </plain>
+      <warm>
+        <li>I gave {X_nameDef} my second-best rock so {X_pronoun} won't forget me on the road. It's a very good rock.</li>
+        <li>{X_nameDef} was scared of our big animals, so I held {X_possessive} hand past the pens. I was a bit scared too, but I didn't say.</li>
+      </warm>
+      <blunt>
+        <li>{X_nameDef} cheats at tag. I let {X_objective} anyway. Only because {X_pronoun}'s a guest.</li>
+        <li>{X_nameDef} said our colony smells. It does. I still pushed {X_objective} in the mud.</li>
+      </blunt>
+      <cheerful>
+        <li>{X_nameDef} can whistle with TWO fingers! I can almost do it with one! We practiced all day!</li>
+        <li>We made a secret club, me and {X_nameDef}! It has two members and a password! I'm not allowed to write the password!</li>
+      </cheerful>
+      <gloomy>
+        <li>{X_nameDef} told me about the place {X_pronoun} lived before. It got burned. {X_nameDef} said it like it was nothing. I don't think it was nothing.</li>
+        <li>[afterraid] {X_nameDef} asked if raiders come here a lot. I said only sometimes. I don't think {X_pronoun} believed me.</li>
+      </gloomy>
+      <cold>
+        <li>{X_nameDef} is useful. {X_nameDef} knows where the caravan keeps the sweets.</li>
+        <li>I let {X_nameDef} win at stones so {X_pronoun} would like me. It worked. People are easy.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- Flirting with a visitor. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Journal_EncP_Flirt</defName>
+    <lines>
+      <plain>
+        <li>{X_nameDef} laughed at my joke about the boomalope. Nobody laughs at that one. I might be in trouble.</li>
+        <li>Sat on the wall with {X_nameDef} until the stars came out. We talked about nothing. I keep thinking about it anyway.</li>
+        <li>[night] {X_nameDef} is asleep with the caravan by now. I am not asleep. I am writing this. That's all I'm going to say.</li>
+        <li>[trait:Abrasive] {X_nameDef} called me rude and then sat closer. I don't understand people, and for once I don't need to.</li>
+        <li>[spring] Spring, and a stranger with a nice laugh. I know exactly how this ends: with a caravan leaving. Still.</li>
+        <li>{X_nameDef} touched my arm when {X_pronoun} laughed. Twice. I counted.</li>
+        <li>[trait:Ugly] {X_nameDef} looked right at my face and smiled. I checked behind me. Nobody there.</li>
+      </plain>
+      <warm>
+        <li>I hope {X_nameDef} gets wherever {X_pronoun}'s going safely. I hope the road brings {X_objective} back this way.</li>
+        <li>{X_nameDef} asked about my scar and actually listened to the answer. I'd forgotten what that feels like.</li>
+      </warm>
+      <blunt>
+        <li>Flirted with a visitor. It went fine. Shut up.</li>
+        <li>{X_nameDef} has nice hands and terrible jokes. I'd put up with the jokes.</li>
+      </blunt>
+      <cheerful>
+        <li>{X_nameDef} SMILED at me! On purpose! I checked!</li>
+        <li>I told {X_nameDef} {X_pronoun} had eyes like a sunset, and {X_nameDef} said "red?" and we laughed for ten minutes! Best day!</li>
+      </cheerful>
+      <gloomy>
+        <li>{X_nameDef} will leave with the caravan, and I'll still be here mucking out the same pens. Nice while it lasted. It's still lasting, technically.</li>
+        <li>[lowmood] For one evening {X_nameDef} made me forget this place. Then the evening ended.</li>
+      </gloomy>
+      <cold>
+        <li>{X_nameDef} was charming. I was more charming. A pleasant way to spend an evening, and it cost nothing.</li>
+        <li>{X_nameDef} is attractive and leaves soon. The ideal arrangement.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- A visitor knew the writer's name from stories on the road. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Journal_EncP_Recognized</defName>
+    <lines>
+      <plain>
+        <li>{X_nameDef} knew my name before I said it. Apparently they talk about me on the road. I don't know whether to be proud or start sleeping with a knife.</li>
+        <li>There's a story going around about me. {X_nameDef} told it. I was taller in it, and I killed more people. I'll take it.</li>
+        <li>[afterraid] We'd barely washed the blood off when {X_nameDef} asked if I was the one from the stories. After this week, maybe I am.</li>
+        <li>[trait:Wimp] {X_nameDef} says I'm famous for my bravery. I fainted at a splinter last month. Somebody out there is lying, and I won't be correcting them.</li>
+        <li>[old] {X_nameDef}'s father used to tell stories about me, {X_nameDef} said. The father. I'm going to go lie down.</li>
+        <li>[newcomer] I've barely been here a season and the road already has a song about me. Three verses. Two of them rhyme.</li>
+        <li>{X_nameDef} wanted to shake my hand. Then {X_nameDef} wanted to shake it again, for a friend who couldn't come.</li>
+      </plain>
+      <warm>
+        <li>{X_nameDef} said the stories about me give people hope out there. I don't feel like a hope. I'll try to be one.</li>
+        <li>I hope whatever {X_nameDef} heard about me was the kind part.</li>
+      </warm>
+      <blunt>
+        <li>Apparently I'm famous. Doesn't make the latrine dig itself.</li>
+        <li>{X_nameDef} got half the story wrong. I left it wrong. The wrong version's better.</li>
+      </blunt>
+      <cheerful>
+        <li>I'm in a SONG! {X_nameDef} sang it! I come in at the second verse and fight a bear! I have never fought a bear! I'd like to!</li>
+        <li>Someone on the road knows who I am! I waved at {X_nameDef} all day like a lunatic!</li>
+      </cheerful>
+      <gloomy>
+        <li>If they know my name out there, so do the raiders. Thanks, {X_nameDef}.</li>
+        <li>{X_nameDef} told me the story they tell about me. Everyone in it dies except me. That part's true.</li>
+      </gloomy>
+      <cold>
+        <li>A reputation is a weapon nobody can take off you. {X_nameDef} says mine is sharp. Good.</li>
+        <li>{X_nameDef} recognized me. I'd like to know who else does, and what exactly they're saying.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- War stories with a visitor who has fought too. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Journal_EncP_WarStories</defName>
+    <lines>
+      <plain>
+        <li>{X_nameDef} had better scars than me. I had better stories. We called it even.</li>
+        <li>{X_nameDef} fought in the same kind of war I did, probably on the other side. Didn't matter tonight.</li>
+        <li>[afterraid] Told {X_nameDef} about the last fight while it was still fresh. {X_nameDef} listened like a soldier: no questions until the end, and then the right one.</li>
+        <li>[trait:Bloodlust] {X_nameDef} has killed more people than I have. I'm jealous, and also a little bit in love.</li>
+        <li>[hurt] Showed {X_nameDef} the new wound. {X_nameDef} said it'll heal ugly, and that ugly is the best kind. I'll hold {X_objective} to that.</li>
+        <li>{X_nameDef} showed me a better way to hold a spear when they come at you in a line. I hope I never need it. I'm practicing anyway.</li>
+        <li>[winter] Cold night, good fire, and a stranger who knows exactly what I mean when I say I still hear it sometimes.</li>
+      </plain>
+      <warm>
+        <li>We drank to everyone we've lost, {X_nameDef} and me. It took a while. Neither of us rushed it.</li>
+        <li>I told {X_nameDef} I hope {X_pronoun} never has to fight again. {X_nameDef} said the same about me. Neither of us believed it.</li>
+      </warm>
+      <blunt>
+        <li>{X_nameDef} can fight. Respect. That's all.</li>
+        <li>{X_nameDef} says {X_possessive} old company would've held our wall better. Well, they aren't here, are they.</li>
+      </blunt>
+      <cheerful>
+        <li>{X_nameDef} and I acted out a whole battle with spoons and a turnip! The turnip was the enemy! The turnip lost!</li>
+        <li>Best war stories ever! {X_nameDef} once fought a man with a ladder! I want a ladder!</li>
+      </cheerful>
+      <gloomy>
+        <li>{X_nameDef} has the same look I have, the one where you're always counting the exits. Takes one to know one.</li>
+        <li>We told stories until the fire went out. All of {X_nameDef}'s end with somebody dead. Mine too.</li>
+      </gloomy>
+      <cold>
+        <li>{X_nameDef} had useful observations on flanking. I'll test them on the next raid.</li>
+        <li>{X_nameDef} says raiders break when the one in front goes down. Simple. I'll make sure the one in front goes down first.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- A trader's tales of far places. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Journal_EncP_Wanderlust</defName>
+    <lines>
+      <plain>
+        <li>{X_nameDef} talked about a warm sea and fish that jump into the boats. I looked at our fields for a long time afterwards.</li>
+        <li>[winter] Somewhere south it's warm right now. {X_nameDef} has been there. I have frostbite on one ear.</li>
+        <li>[spring] The roads are open again. {X_nameDef} will be on one soon. I'll be here, with the turnips.</li>
+        <li>{X_nameDef} has seen a city with a thousand chimneys. I keep thinking about the chimneys. Who sweeps them all?</li>
+        <li>[trait:Undergrounder] {X_nameDef} talked about plains so wide you can see weather coming for three days. Sounds horrible. Glad I'm here, under a good roof.</li>
+        <li>[small] There are so few of us here, and {X_nameDef} talked about markets with crowds you can get lost in. I'd like to get lost. Just for an afternoon.</li>
+        <li>I asked {X_nameDef} what's past the mountains. More mountains, {X_nameDef} said, then the sea. I'm going to dream about the sea.</li>
+      </plain>
+      <warm>
+        <li>Maybe someday we'll all go and see {X_nameDef}'s warm coast together. The whole colony, on a beach. I'd like that.</li>
+        <li>I asked {X_nameDef} to look at the sea for me when {X_pronoun} gets there.</li>
+      </warm>
+      <blunt>
+        <li>Trader talks too much about places I'll never see. Bought a needle anyway.</li>
+        <li>Warm sea. Jumping fish. Either {X_nameDef} is lying, or I'm going.</li>
+      </blunt>
+      <cheerful>
+        <li>There's a desert where the sand SINGS! {X_nameDef} heard it! I'm going someday! I've already packed a sock!</li>
+        <li>I'm making a list of everywhere {X_nameDef} has been! It's very long! I've been to one of them! It's here!</li>
+      </cheerful>
+      <gloomy>
+        <li>{X_nameDef} told me about places I'll never see. Then {X_nameDef} left to go and see them.</li>
+        <li>[lowmood] Somewhere out there people are eating fresh fish by a warm sea. Here we're eating whatever the rats left.</li>
+      </gloomy>
+      <cold>
+        <li>{X_nameDef}'s descriptions of the southern routes were detailed. Useful, if we ever need to leave in a hurry.</li>
+        <li>The world is larger than this valley. I'll keep that in mind as an option.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- Cheated by a trader. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Journal_EncP_Cheated</defName>
+    <lines>
+      <plain>
+        <li>{X_nameDef} sold me watered beer and a smile. The smile was watered too.</li>
+        <li>Counted the coins {X_nameDef} gave me three times. Came up short three times. {X_nameDef} was very busy with someone else by the third.</li>
+        <li>[trait:Greedy] I have been robbed. By a professional. I'm furious, and also taking notes.</li>
+        <li>[trait:TooSmart] I should have checked the scales. I always check the scales. I didn't check the scales.</li>
+        <li>The boots {X_nameDef} sold me lasted a day. My grudge will last longer.</li>
+        <li>[rain] It's raining, and my new cloak from {X_nameDef} lets every drop straight through. "Weatherproof," {X_nameDef} said. Weatherproof.</li>
+        <li>[hurt] Hobbled over to complain to {X_nameDef} about the bandages. They're bandages the way a sieve is a bucket.</li>
+      </plain>
+      <warm>
+        <li>Maybe {X_nameDef} needed the silver more than I did. I'm trying to believe that. It isn't going well.</li>
+        <li>I wanted to think the best of {X_nameDef}. I'll think the best of the next one, and check the scales.</li>
+      </warm>
+      <blunt>
+        <li>{X_nameDef} is a thief with a cart. If {X_pronoun} comes back, I'm doing the weighing.</li>
+        <li>Cheated. Me. By THAT.</li>
+      </blunt>
+      <cheerful>
+        <li>Got swindled! Lesson learned! The lesson is never buy a "lucky" anything!</li>
+        <li>{X_nameDef} sold me a rock and called it a whetstone! It's a nice rock though! I'm keeping it!</li>
+      </cheerful>
+      <gloomy>
+        <li>Raiders, wolves, plague, and still the trader finds a way to rob you. Some things are eternal.</li>
+        <li>Of course {X_nameDef} cheated me. Why would today be any different.</li>
+      </gloomy>
+      <cold>
+        <li>{X_nameDef} misjudged who to cheat. I've written down the caravan's route and its faction.</li>
+        <li>Cost: a few silver. Lesson: {X_nameDef}'s word is worth nothing. Cheap at the price.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- Waiting on a noble lodger. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Journal_EncP_Noble</defName>
+    <lines>
+      <plain>
+        <li>{X_nameDef} wanted the bed turned to face east. Then west. Then wanted to know why it's so small. It's a bed.</li>
+        <li>Carried hot water for {X_nameDef} four times today. The water was the wrong temperature four times.</li>
+        <li>[trait:Ascetic] {X_nameDef} asked how anyone can live like this. I sleep on a plank and I've never been happier. I didn't say so.</li>
+        <li>[trait:Abrasive] {X_nameDef} called me a servant. I called {X_nameDef} something too. We are both waiting to see who apologizes first.</li>
+        <li>[small] There's only a handful of us, and {X_nameDef} expects a staff. Today I was the cook, the maid and the guard, and it wasn't even noon.</li>
+        <li>{X_nameDef} snaps {X_possessive} fingers for service. I've started going deaf at convenient moments.</li>
+        <li>[rich] We have more than most colonies on this whole continent, and {X_nameDef} still asked whether we're "getting by".</li>
+      </plain>
+      <warm>
+        <li>{X_nameDef} is rude, but scared, I think. People far from home get rude. I brought the tea anyway.</li>
+        <li>Under all the demands, {X_nameDef} said thank you once. Very quietly. I'm going to remember the once.</li>
+      </warm>
+      <blunt>
+        <li>Nobles. One more day of {X_nameDef} and I'm putting a lizard in the pillow.</li>
+        <li>{X_nameDef} wanted to know if I'd been "trained". I have. With an axe.</li>
+      </blunt>
+      <cheerful>
+        <li>{X_nameDef} said my manners were "nearly adequate"! NEARLY! I'll get there!</li>
+        <li>I've learned seven ways {X_nameDef} doesn't like eggs! Tomorrow I'm trying an eighth!</li>
+      </cheerful>
+      <gloomy>
+        <li>{X_nameDef} looks at all of us like we're stains. Maybe we are. Out here everything's a stain eventually.</li>
+        <li>We risk our necks to keep {X_nameDef} safe, and {X_nameDef} complains about the pillows. That's how it's always been, I suppose.</li>
+      </gloomy>
+      <cold>
+        <li>{X_nameDef} is unpleasant but well connected. I smile. The smile is an investment.</li>
+        <li>I've noted everything {X_nameDef} demanded today. When the reward comes, it had better cover it.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- A frightened lodger thanked the writer. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Journal_EncP_Refugee</defName>
+    <lines>
+      <plain>
+        <li>{X_nameDef} cried into the stew I brought. Didn't say why. Didn't need to.</li>
+        <li>{X_nameDef} sleeps with {X_possessive} shoes on, ready to run. Last night {X_nameDef} took them off. I noticed.</li>
+        <li>[winter] Gave {X_nameDef} my spare blanket. It's cold enough that I'll regret it tonight. I don't regret it.</li>
+        <li>[trait:Kind] {X_nameDef} thanked me for a bowl of stew like I'd handed over a kingdom. I didn't know what to do with my hands.</li>
+        <li>[grieving] I've lost someone too. I didn't tell {X_nameDef}. I just sat with {X_objective} a while, and maybe that said it.</li>
+        <li>{X_nameDef} carved me a little bird. It looks like a potato with a beak. It's on my shelf, front and center.</li>
+        <li>[afterraid] After this week I know a little of what {X_nameDef} ran from. I'm glad there's a wall between us and them, for now.</li>
+      </plain>
+      <warm>
+        <li>{X_nameDef} has eaten properly two days in a row. That's the best thing I've done all season.</li>
+        <li>I told {X_nameDef} {X_pronoun}'s safe here. I'll make it true if I have to.</li>
+      </warm>
+      <blunt>
+        <li>{X_nameDef} keeps thanking me. Stop thanking me. Eat.</li>
+        <li>Whoever {X_nameDef} is running from can try the gate. I'll be standing behind it.</li>
+      </blunt>
+      <cheerful>
+        <li>{X_nameDef} smiled today! First time! I'm counting it as a victory for the whole colony!</li>
+        <li>I taught {X_nameDef} our silly dinner song and {X_nameDef} actually sang along! Badly! Wonderful!</li>
+      </cheerful>
+      <gloomy>
+        <li>{X_nameDef} said thank you like someone who's had very little to thank anyone for. I know that voice. I used to have it.</li>
+        <li>We give {X_nameDef} stew and a bed. Whatever chased {X_objective} here is still out there, walking around. Stew doesn't fix that.</li>
+      </gloomy>
+      <cold>
+        <li>{X_nameDef} is grateful. Gratitude is a debt. I haven't decided yet what I'll collect.</li>
+        <li>{X_nameDef} told me everything about the people chasing {X_objective}. Numbers, weapons, names. Very useful.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- A prisoner's story stayed with the writer. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Journal_EncP_PrisonerStory</defName>
+    <lines>
+      <plain>
+        <li>{X_nameDef} told me how {X_pronoun} ended up raiding. I keep thinking about the part with the cousin.</li>
+        <li>Sat outside {X_nameDef}'s door longer than I meant to. It's strange, liking someone through a lock.</li>
+        <li>[night] Can't sleep. {X_nameDef}'s story is still going round my head, the bit about the burnt crust.</li>
+        <li>[trait:Kind] Nobody's born a raider. {X_nameDef} wasn't. I'd like to think {X_pronoun} doesn't have to die one.</li>
+        <li>[afterraid] Hard to listen to {X_nameDef}'s story the same week {X_possessive} kind came over our wall. I listened anyway. I'm not sure what that makes me.</li>
+        <li>{X_nameDef} misses {X_possessive} mother's cooking more than freedom. Said so. Then asked what was for dinner.</li>
+        <li>[rain] Rain on the prison roof. {X_nameDef} said it sounds like home. I didn't ask where home was. I should have.</li>
+      </plain>
+      <warm>
+        <li>I want {X_nameDef} to have a second chance. I want us to be the kind of place that gives them.</li>
+        <li>{X_nameDef} said nobody had asked about {X_possessive} life in years. So I asked. It took all evening.</li>
+      </warm>
+      <blunt>
+        <li>{X_nameDef}'s got a sad story. Everyone's got a sad story. {X_nameDef}'s was better than most.</li>
+        <li>Still a raider. Still locked up. Still kind of liked talking to {X_objective}.</li>
+      </blunt>
+      <cheerful>
+        <li>{X_nameDef} told me a story through the door and it was really good! I think we're friends now! Through a door!</li>
+        <li>{X_nameDef} does voices! Even locked up! I laughed so hard the warden glared at me!</li>
+      </cheerful>
+      <gloomy>
+        <li>{X_nameDef} could have been me, with a worse year. Most raiders could. That's the bit I can't put down.</li>
+        <li>A sad story, a cell and a cold bowl. That's {X_nameDef}'s whole life right now. Could be anyone's.</li>
+      </gloomy>
+      <cold>
+        <li>{X_nameDef} talks freely now. Every story is another lever. I'm keeping them all.</li>
+        <li>{X_nameDef} believes I'm sympathetic. Good. That makes recruitment simpler.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- A prisoner from the same kind of past. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Journal_EncP_SamePast</defName>
+    <lines>
+      <plain>
+        <li>{X_nameDef} knew the work song. Same mines, different years. I didn't expect to hear it again in this life.</li>
+        <li>Turns out {X_nameDef} and I grew up two valleys apart. Same bad bread, same tax collector, probably. Small world, and one of us is in a cell.</li>
+        <li>[old] {X_nameDef} remembers the old ways too. Hardly anyone does anymore. We talked about them like dead friends.</li>
+        <li>[winter] {X_nameDef} remembers the winter the river froze solid back home. So do I. We were both there, it turns out, on different banks.</li>
+        <li>[trait:Abrasive] I don't like most people. {X_nameDef} grew up as rough as I did, and I don't hate {X_objective}. That's a lot, from me.</li>
+        <li>[night] I can hear {X_nameDef} humming the old songs in the cell. I hum back. The others think we're mad.</li>
+        <li>{X_nameDef} and I both ran away at twelve. I ran here. {X_nameDef} ran into the wrong crowd. A coin toss, really.</li>
+      </plain>
+      <warm>
+        <li>It's been a long time since anyone knew where I came from without being told. {X_nameDef} does. I'd forgotten how much I missed that.</li>
+        <li>I'm going to ask the council to give {X_nameDef} a chance. People like us don't get many.</li>
+      </warm>
+      <blunt>
+        <li>{X_nameDef} is from where I'm from. That doesn't make {X_objective} a friend. It makes {X_objective} close.</li>
+        <li>Same past. Different choices. I'm still the one with the keys.</li>
+      </blunt>
+      <cheerful>
+        <li>{X_nameDef} knows the clapping game from my village! THE CLAPPING GAME! We did it through the bars!</li>
+        <li>I found someone who swears in my old dialect! We swore at each other for an hour! It was wonderful!</li>
+      </cheerful>
+      <gloomy>
+        <li>{X_nameDef} and I came out of the same mud. One of us got lucky. I'm not sure it was me.</li>
+        <li>Everyone from back home is dead or a raider, it turns out. {X_nameDef} is nearly both.</li>
+      </gloomy>
+      <cold>
+        <li>Shared history makes {X_nameDef} easy to read. I know what {X_pronoun} fears, because I used to fear it.</li>
+        <li>{X_nameDef} trusts me now, because of where we're from. I'll use that, for the colony's sake and maybe {X_possessive}.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- Face to face with the raider who hurt the writer, now a prisoner. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Journal_EncP_Nemesis</defName>
+    <lines>
+      <plain>
+        <li>{X_nameDef} is behind a door I can lock. I walked past it four times today to make sure it holds.</li>
+        <li>Looked {X_nameDef} in the eye today. My hands didn't shake until afterwards.</li>
+        <li>[hurt] Still healing from what {X_nameDef} did. {X_nameDef} asked how it was healing. I didn't answer. I'm still not answering.</li>
+        <li>[trait:Bloodlust] {X_nameDef} is right there, unarmed, behind one little door. The council had better have a plan. I have several.</li>
+        <li>[trait:Kind] I hate {X_nameDef}. I brought {X_objective} water anyway. I'm not sure who that was for.</li>
+        <li>[night] Dreamed {X_nameDef} got out. Went and checked. Still there, asleep. How can {X_nameDef} sleep?</li>
+        <li>{X_nameDef} looked away first. I've been waiting a long time for that.</li>
+      </plain>
+      <warm>
+        <li>I want to be bigger than what {X_nameDef} did to me. Today I wasn't. Maybe tomorrow.</li>
+        <li>Everyone keeps asking if I'm all right since {X_nameDef} was brought in. I'm all right. I will be.</li>
+      </warm>
+      <blunt>
+        <li>{X_nameDef}'s in a cell. I'm not. That's the whole entry.</li>
+        <li>Told {X_nameDef} I'd be the last face {X_pronoun} ever sees. Probably shouldn't have. Meant it.</li>
+      </blunt>
+      <cheerful>
+        <li>Guess who's eating cold porridge behind bars tonight? Not me! I'm having stew!</li>
+        <li>I sang outside {X_nameDef}'s door! Loudly! Every song I know! Nobody stopped me!</li>
+      </cheerful>
+      <gloomy>
+        <li>{X_nameDef} is caught, and I still wake up on the ground in that fight. Locks don't reach that far.</li>
+        <li>I thought it would feel like winning, seeing {X_nameDef} locked up. It feels like a scar that itches.</li>
+      </gloomy>
+      <cold>
+        <li>{X_nameDef} is contained. I've begun thinking about what comes after, in detail.</li>
+        <li>{X_nameDef} remembers me. Good. It's important that {X_pronoun} does.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- Gave water to a downed enemy. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Journal_EncP_Water</defName>
+    <lines>
+      <plain>
+        <li>{X_nameDef} was lying in the mud asking for water. I gave it. I don't know what that makes me, but I know what the other choice would have made me.</li>
+        <li>[hurt] I was bleeding too, a little, when I held the cup for {X_nameDef}. Two leaking people in the mud, and neither of us mentioned whose fault it was.</li>
+        <li>[rain] {X_nameDef} was lying face up in the rain, trying to drink it. I rolled {X_objective} onto {X_possessive} side so {X_pronoun} wouldn't drown, then fetched a proper cup.</li>
+        <li>[trait:Kind] {X_nameDef} came here to kill us. I gave {X_objective} water anyway. I'd do it again. I hate that I'd do it again.</li>
+        <li>[winter] The water in my skin was half ice. {X_nameDef} drank it anyway, and thanked me with blue lips.</li>
+        <li>[night] Can't sleep. I keep seeing {X_nameDef}'s hands shaking around the cup.</li>
+        <li>{X_nameDef} said a lot of things while drinking. The worst was "thank you".</li>
+      </plain>
+      <warm>
+        <li>{X_nameDef} was somebody's child once. I tried to remember that while I held the cup.</li>
+        <li>I hope someone did the same for our people, on the days we lost. I hope someone held the cup.</li>
+      </warm>
+      <blunt>
+        <li>Gave a raider water. Don't make it a thing.</li>
+        <li>{X_nameDef} drank half and spilled the other half down my sleeve. Ungrateful, and wet.</li>
+      </blunt>
+      <cheerful>
+        <li>{X_nameDef} said I had a kind face, from the mud! Nobody's ever said that! Not even from the mud!</li>
+        <li>I gave {X_nameDef} a drink and {X_nameDef} said I make good water! It's just water! But thank you!</li>
+      </cheerful>
+      <gloomy>
+        <li>One day it'll be me in the mud, asking a stranger for water. I hope the stranger is like me today, and not like me most days.</li>
+        <li>Gave {X_nameDef} water so {X_pronoun} could hurt a little longer. Mercy is a funny word out here.</li>
+      </gloomy>
+      <cold>
+        <li>{X_nameDef} offered information for water. A fair trade. I took notes.</li>
+        <li>A grateful enemy is more useful than a dead one. I gave {X_nameDef} water accordingly.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- A downed enemy, sure they were dying, handed the writer a name or a message. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Journal_EncP_LastWords</defName>
+    <lines>
+      <plain>
+        <li>Somebody's words are in my head now, handed to me by {X_nameDef} in the dirt. I'll carry them. I don't know where to.</li>
+        <li>I promised {X_nameDef} I'd pass the message on. It's not a promise I know how to keep. It's still a promise.</li>
+        <li>[hurt] I was bleeding too, a little, when {X_nameDef} grabbed my sleeve. Two leaking people in the mud, and only one of us thought it was the end.</li>
+        <li>[rain] {X_nameDef} whispered it in the rain, and I had to lean right down to hear. My knees are still wet. The words are still there.</li>
+        <li>[trait:Kind] {X_nameDef} came here to kill us, and I knelt in the dirt and promised to remember. I meant it. I hate that I meant it.</li>
+        <li>[night] Can't sleep. I keep hearing {X_nameDef} asking me to remember, and I'm remembering.</li>
+        <li>{X_nameDef} thought those were the last words. Maybe they weren't. I've got them now either way.</li>
+      </plain>
+      <warm>
+        <li>{X_nameDef} was somebody's child once, and somebody is still waiting. I hope the message finds them.</li>
+        <li>I'll ask every caravan that comes through. Someone out there should hear what {X_nameDef} said.</li>
+      </warm>
+      <blunt>
+        <li>A raider gave me a message. I'm not a messenger. I'll probably pass it on anyway.</li>
+        <li>{X_nameDef} talked my ear off while bleeding. Some people don't know how to lie still.</li>
+      </blunt>
+      <cheerful>
+        <li>I'm keeping {X_nameDef}'s message safe in my boot! It's the safest place I have! Mostly safe!</li>
+        <li>{X_nameDef} said I had an honest face, from the mud! I'm going to be honest about it! I'll pass it on!</li>
+      </cheerful>
+      <gloomy>
+        <li>{X_nameDef} asked me to tell somebody something. Everyone out here is carrying messages for the dead, or the nearly dead.</li>
+        <li>One day it'll be me in the dirt, handing my last words to a stranger. I hope they're better words than mine would be today.</li>
+      </gloomy>
+      <cold>
+        <li>{X_nameDef} talked freely from the ground. Names, places, who's waiting for {X_objective}. I took it all down.</li>
+        <li>Last words are surprisingly informative. {X_nameDef} gave me a name and a place. Filed.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+</Defs>
