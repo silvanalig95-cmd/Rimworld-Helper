@@ -64,6 +64,7 @@ namespace ColonyCouncil
         public EncounterTracker encounters = new EncounterTracker();
         public NemesisTracker nemeses = new NemesisTracker();
         public PetTracker pets = new PetTracker();
+        public AutonomyTracker autonomy = new AutonomyTracker();
         public CharacterTracker character = new CharacterTracker();
         public int nextWishId = 1;
 
@@ -140,6 +141,7 @@ namespace ColonyCouncil
             Scribe_Deep.Look(ref encounters, "encounters");
             Scribe_Deep.Look(ref nemeses, "nemeses");
             Scribe_Deep.Look(ref pets, "pets");
+            Scribe_Deep.Look(ref autonomy, "autonomy");
             Scribe_Deep.Look(ref character, "character");
             Scribe_Values.Look(ref nextWishId, "nextWishId", 1);
             Scribe_Collections.Look(ref cooldowns, "cooldowns", LookMode.Value, LookMode.Value, ref tmpKeys, ref tmpValues);
@@ -176,6 +178,7 @@ namespace ColonyCouncil
                 if (encounters == null) encounters = new EncounterTracker();
                 if (nemeses == null) nemeses = new NemesisTracker();
                 if (pets == null) pets = new PetTracker();
+                if (autonomy == null) autonomy = new AutonomyTracker();
                 if (character == null) character = new CharacterTracker();
                 wishes.RemoveAll(w => w == null || w.def == null || w.pawn == null);
             }
@@ -206,6 +209,7 @@ namespace ColonyCouncil
             Safe("quirks", quirks.Hourly);
             Safe("nemeses", () => nemeses.Hourly(this));
             Safe("pets", () => pets.Hourly(this));
+            Safe("autonomy", () => autonomy.Hourly(this));
             Safe("encounters", () => encounters.Hourly(this));
         }
 

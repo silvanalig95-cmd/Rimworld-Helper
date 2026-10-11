@@ -1530,4 +1530,16 @@ Those against it ({WHO}) will trust the council less and resent it more than usu
   <CC_Settings_Moments>Moments between colonists</CC_Settings_Moments>
   <CC_Settings_Moments_Tip>Colonists share small moments in conversation: grieving together, talking shop, praising the cook, old stories by the fire, friendly contests that hurt nobody. They show in the social log, and as speech bubbles with Interaction Bubbles.</CC_Settings_Moments_Tip>
   <CC_Cause_Contest>{0} with {1}.</CC_Cause_Contest>
+  <!-- Colonists helping themselves -->
+  <CC_Settings_Autonomy>Colonists fix what bothers them</CC_Settings_Autonomy>
+  <CC_Settings_Autonomy_Tip>Now and then, a colonist fixes a small thing that hurts their mood, in their own time: cleans their room, visits a grave, takes a short break when they're starved of recreation. Never in danger, never anything that harms anyone. You get a message each time.</CC_Settings_Autonomy_Tip>
+  <CC_Settings_AutonomyPlans>... and may place plans for small things</CC_Settings_AutonomyPlans>
+  <CC_Settings_AutonomyPlans_Tip>They may also place a building plan for one cheap thing the colony can already build, with materials in stock, in their own room: a light for a dark room, a plant pot for an ugly one, a passive cooler for a hot one, or a free sleeping spot when there's no bed. At most two such plans at a time; cancel any you don't want.</CC_Settings_AutonomyPlans_Tip>
+  <CC_Auto_JoyBreak>{PAWN_nameDef} was worn down to nothing and took a short break.</CC_Auto_JoyBreak>
+  <CC_Auto_Grave>{PAWN_nameDef} went to sit by {1}'s grave for a while.</CC_Auto_Grave>
+  <CC_Auto_Clean>{PAWN_nameDef} got fed up with the mess and started tidying {PAWN_possessive} own room.</CC_Auto_Clean>
+  <CC_Auto_Light>{PAWN_nameDef} is tired of the dark and planned {THING} for {PAWN_possessive} room. (It's only a plan: cancel it if you'd rather not.)</CC_Auto_Light>
+  <CC_Auto_Cooler>{PAWN_nameDef} can't sleep in the heat and planned {THING} for {PAWN_possessive} room. (It's only a plan: cancel it if you'd rather not.)</CC_Auto_Cooler>
+  <CC_Auto_PlantPot>{PAWN_nameDef} wants something living in {PAWN_possessive} room and planned {THING}. (It's only a plan: cancel it if you'd rather not.)</CC_Auto_PlantPot>
+  <CC_Auto_SleepingSpot>{PAWN_nameDef} is done sleeping on the ground and marked a sleeping spot somewhere sheltered. (Cancel it if you'd rather not.)</CC_Auto_SleepingSpot>
 </LanguageData>

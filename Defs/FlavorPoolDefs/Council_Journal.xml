@@ -159,6 +159,23 @@
   </ColonyCouncil.FlavorPoolDef>
 
   <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Journal_SelfHelp</defName>
+    <lines>
+      <plain>
+        <li>Nobody was going to fix it, so I did. It took an hour. I don't know why I waited this long.</li>
+        <li>Did something about it today instead of complaining. Felt better than complaining, which surprised me.</li>
+        <li>[night] Sorted out the thing that's been nagging at me. Maybe tonight I'll actually sleep.</li>
+        <li>[child] I fixed it all by myself and nobody even had to tell me.</li>
+      </plain>
+      <warm><li>Small things matter. Today I took care of one, and it made the whole day kinder.</li></warm>
+      <blunt><li>Fixed it myself. Done.</li></blunt>
+      <cheerful><li>Took matters into my own hands today! Small matters, but still! Hands!</li></cheerful>
+      <gloomy><li>I fixed one small thing. There are a hundred more. Still, one.</li></gloomy>
+      <cold><li>Identified a problem, resolved it. Efficient. Others could learn from this.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
     <defName>Council_Journal_Anniversary</defName>
     <lines>
       <plain>

@@ -366,6 +366,7 @@
       <li>"Where it comes from" splits the mood between the base game, Rimfolk and each of your other mods, so you can see which mod is pushing hardest.</li>
       <li>Each mood with a known fix has a "what to do" line. Buttons lead to the advisor's matching warning, the council page that deals with it, or an Almanac page.</li>
       <li>Moods from other mods get general advice based on what kind of mood they are, and their mod's name.</li>
+      <li>Colonists fix some small things themselves: they tidy their room, visit a grave, take a break when worn down, or plan a cheap light, plant pot, passive cooler or sleeping spot for their own room. You get a message each time.</li>
     </facts>
     <advice>
       <li>Start at the top of "Weighing on the colony": the biggest totals usually have the cheapest fixes, like a dining table, lights or a bedroom.</li>

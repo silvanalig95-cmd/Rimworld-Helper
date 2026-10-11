@@ -354,6 +354,19 @@ Every mood Rimfolk gives says what caused it, under the description in its toolt
 didn't), which council decision, which decree and how long it has left, which visitor, secret, nemesis or
 moment. The trust mood lists what moved it lately.
 
+## Colonists who help themselves
+Now and then a colonist fixes a small thing that hurts their mood, on their own and in their own time:
+- tidies their own room when it's filthy, or visits a grave while they grieve
+- takes a short break when they're starved of recreation (even in work hours, but never from fighting fires or
+  tending the sick)
+- places a **plan** for one cheap thing in their own room: a light when it's too dark, a plant pot when it's ugly, a
+  passive cooler when it's too hot to sleep, or a free sleeping spot when there's no bed at all
+
+Only things the colony can already build, with the materials in stock, and cheap; at most two such plans at a time.
+Never during a raid, never anything that harms or bothers anyone else. The industrious do it more, the lazy less.
+You get a message each time, and a plan is only a plan: cancel it if you'd rather not. Both parts have their own
+switch in the settings.
+
 ## Mood tab and Moods page: what to do about it
 Select a colonist and open their **Mood** tab: every mood weighing on them or lifting them, with its size, why it's
 there, when it fades, which mod it comes from, and **what you can do about it** ("Build a table with chairs near
