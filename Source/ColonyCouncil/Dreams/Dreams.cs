@@ -215,7 +215,7 @@ namespace ColonyCouncil
                 wasOut[p] = false;
                 if (slept < 4) continue;
                 if (lastDreamTick.TryGetValue(p, out int last) && now - last < GenDate.TicksPerHour * 18) continue;
-                if (!Rand.Chance(fever ? 0.7f : ChancePerWaking)) continue;
+                if (!Rand.Chance(fever ? 0.7f : Mathf.Min(0.95f, ChancePerWaking * S.dreamFrequency))) continue;
                 try
                 {
                     if (TryDream(comp, p, fever)) lastDreamTick[p] = now;

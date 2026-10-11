@@ -128,7 +128,7 @@ namespace ColonyCouncil
                 if (lastAny.TryGetValue(initiator.thingIDNumber, out int any) && any <= now && now - any < MinGapTicks) return 0f;
                 if (lastStarted.TryGetValue((initiator.thingIDNumber, interaction.shortHash), out int last) && last <= now && now - last < ext.cooldownDays * GenDate.TicksPerDay) return 0f;
                 if (!Fits(ext, initiator, recipient)) return 0f;
-                return ext.weight;
+                return ext.weight * ColonyCouncilMod.Settings.momentFrequency;
             }
             catch (System.Exception e)
             {

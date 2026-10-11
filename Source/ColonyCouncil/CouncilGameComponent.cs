@@ -147,6 +147,7 @@ namespace ColonyCouncil
             Scribe_Deep.Look(ref pets, "pets");
             Scribe_Deep.Look(ref autonomy, "autonomy");
             Scribe_Deep.Look(ref happenings, "happenings");
+            Scribe_Collections.Look(ref history, "history", LookMode.Deep);
             Scribe_Values.Look(ref era, "era", EraMode.Auto);
             if (Scribe.mode == LoadSaveMode.Saving) lastAtHome.RemoveAll(kv => kv.Key == null || kv.Key.Dead || kv.Key.Discarded);
             Scribe_Collections.Look(ref lastAtHome, "lastAtHome", LookMode.Reference, LookMode.Value, ref tmpHomePawns, ref tmpHomeTicks);
@@ -188,6 +189,8 @@ namespace ColonyCouncil
                 if (pets == null) pets = new PetTracker();
                 if (autonomy == null) autonomy = new AutonomyTracker();
                 if (happenings == null) happenings = new HappeningTracker();
+                if (history == null) history = new List<DaySample>();
+                history.RemoveAll(h => h == null);
                 if (lastAtHome == null) lastAtHome = new Dictionary<Pawn, int>();
                 lastAtHome.RemoveAll(kv => kv.Key == null);
                 if (character == null) character = new CharacterTracker();

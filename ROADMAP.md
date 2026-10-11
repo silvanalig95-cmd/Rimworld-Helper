@@ -39,10 +39,10 @@ Things that happen to the colony from outside, on Rimfolk's own rhythm, written 
   young, fed pilgrims' thanks) and the World page (what's coming, who's out there, what happened lately).
 - Next: more events per group, mod-aware events when the user's new modlist arrives.
 
-## Phase E: The council at a glance
-- An overview page: the colony's mood and trust over time, open wishes, the colony's character, nemeses still
-  out there, and the latest chronicle.
-- Finer frequency settings (how often encounters, dilemmas and social moments come up).
+## Phase E: The council at a glance (done)
+- Done: an Overview page (the colony's numbers and how they moved this week, graphs of mood, trust, wealth and
+  people over the last weeks, and one line from the advisor, the World page, the colony's character and the
+  chronicle), and "how often" sliders for encounters, colonist moments, social events and dreams.
 
 ## Phase E2: The mod almanac (done for the main modlist)
 The Almanac learns about the mods in the user's modlist, and Rimfolk uses that knowledge for new ideas.

@@ -60,7 +60,7 @@ namespace ColonyCouncil
             if (comp.social.battleActive || GenHostility.AnyHostileActiveThreatToPlayer(map, false, false)) return;
             var pawns = map.mapPawns.FreeColonistsSpawned.Where(p => !p.IsQuestLodger() && !p.DevelopmentalStage.Baby() && !p.Downed && !p.InMentalState && !p.Drafted).ToList();
             if (pawns.Count < 2) return;
-            float expected = UnityEngine.Mathf.Clamp(pawns.Count / 5f, 0.4f, 2f);
+            float expected = UnityEngine.Mathf.Clamp(pawns.Count / 5f, 0.4f, 2f) * ColonyCouncilMod.Settings.socialEventFrequency;
             int count = (int)expected + (Rand.Chance(expected - (int)expected) ? 1 : 0);
             for (int i = 0; i < count; i++) TryOne(comp, map, pawns);
         }

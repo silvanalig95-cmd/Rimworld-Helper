@@ -1667,4 +1667,42 @@ Those against it ({WHO}) will trust the council less and resent it more than usu
   <CC_World_QuestDone>The colony saw it through: {0}.</CC_World_QuestDone>
   <CC_World_QuestFailed>It came to nothing: {0}.</CC_World_QuestFailed>
   <CC_Cause_Quest>{0}, done.</CC_Cause_Quest>
+  <!-- Overview page and frequency settings -->
+  <CC_Tab_Overview>Overview</CC_Tab_Overview>
+  <CC_Overview_Header>The colony at a glance</CC_Overview_Header>
+  <CC_Overview_HeaderNamed>{0} at a glance</CC_Overview_HeaderNamed>
+  <CC_Overview_TilePeople>colonists</CC_Overview_TilePeople>
+  <CC_Overview_TilePeople_Tip>Free colonists, at home or away.</CC_Overview_TilePeople_Tip>
+  <CC_Overview_TileMood>average mood</CC_Overview_TileMood>
+  <CC_Overview_TileMood_Tip>The colonists' average mood right now. The Moods page says what's behind it.</CC_Overview_TileMood_Tip>
+  <CC_Overview_TileTrust>trust in the council</CC_Overview_TileTrust>
+  <CC_Overview_TileTrust_Tip>How much the colonists trust the council, on average ({0}, from -100 to 100). Granting wishes and keeping promises raises it; ignoring them lowers it.</CC_Overview_TileTrust_Tip>
+  <CC_Overview_TileWishes>open wishes</CC_Overview_TileWishes>
+  <CC_Overview_TileWishes_Tip>Wishes waiting for the council's answer (People → Wishes).</CC_Overview_TileWishes_Tip>
+  <CC_Overview_TileWealth>wealth</CC_Overview_TileWealth>
+  <CC_Overview_TileWealth_Tip>The colony's wealth. Raids grow with it.</CC_Overview_TileWealth_Tip>
+  <CC_Overview_Trend>{0} this week</CC_Overview_Trend>
+  <CC_Overview_Mood>Average mood</CC_Overview_Mood>
+  <CC_Overview_Trust>Trust in the council</CC_Overview_Trust>
+  <CC_Overview_Wealth>Wealth</CC_Overview_Wealth>
+  <CC_Overview_People>Colonists</CC_Overview_People>
+  <CC_Overview_NotYet>The graph fills in as the days go by.</CC_Overview_NotYet>
+  <CC_Overview_Needs>What the colony needs</CC_Overview_Needs>
+  <CC_Overview_Coming>Coming</CC_Overview_Coming>
+  <CC_Overview_KnownAs>The colony's character</CC_Overview_KnownAs>
+  <CC_Overview_Lately>Lately</CC_Overview_Lately>
+  <CC_Overview_Nothing>Nothing right now.</CC_Overview_Nothing>
+  <CC_Overview_Open>Open {0}</CC_Overview_Open>
+  <CC_Overview_Fight>{0}, in about {1}</CC_Overview_Fight>
+  <CC_Overview_Letters>{0} question(s) waiting for an answer</CC_Overview_Letters>
+  <CC_Overview_Beast>{0}, the great beast, is on the colony's land</CC_Overview_Beast>
+  <CC_Settings_HowOften>How often</CC_Settings_HowOften>
+  <CC_Settings_FreqEncounters>Moments with strangers and animals: {0}</CC_Settings_FreqEncounters>
+  <CC_Settings_FreqEncounters_Tip>How often colonists have little moments with visitors, traders, prisoners, fallen enemies, pets and wild animals. 100% is as designed.</CC_Settings_FreqEncounters_Tip>
+  <CC_Settings_FreqMoments>Moments between colonists: {0}</CC_Settings_FreqMoments>
+  <CC_Settings_FreqMoments_Tip>How often colonists have Rimfolk's conversations and friendly contests with each other, compared to ordinary chit-chat. 100% is as designed.</CC_Settings_FreqMoments_Tip>
+  <CC_Settings_FreqSocial>Social events: {0}</CC_Settings_FreqSocial>
+  <CC_Settings_FreqSocial_Tip>How many social events (favours, quarrels, confidences) happen each day. 100% is about one a day for every five colonists.</CC_Settings_FreqSocial_Tip>
+  <CC_Settings_FreqDreams>Dreams: {0}</CC_Settings_FreqDreams>
+  <CC_Settings_FreqDreams_Tip>How often colonists remember a dream when they wake. 100% is about one night in three.</CC_Settings_FreqDreams_Tip>
 </LanguageData>

@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using RimWorld;
+using UnityEngine;
 using Verse;
 
 namespace ColonyCouncil
@@ -87,7 +88,7 @@ namespace ColonyCouncil
                 day = now / GenDate.TicksPerDay;
                 today = 0;
             }
-            if (today >= MaxPerDay || now - lastFired < GenDate.TicksPerHour * 3) return;
+            if (today >= Mathf.CeilToInt(MaxPerDay * Mathf.Max(1f, S.encounterFrequency)) || now - lastFired < GenDate.TicksPerHour * 3) return;
             var map = Find.Maps.Where(m => m.IsPlayerHome).OrderByDescending(m => m.mapPawns.FreeColonistsSpawnedCount).FirstOrDefault();
             if (map == null || comp.social.battleActive || GenHostility.AnyHostileActiveThreatToPlayer(map, false, false)) return;
             var present = Strangers.Present(map);
@@ -103,8 +104,9 @@ namespace ColonyCouncil
                     return;
             }
             float none = 1f;
+            float freq = Mathf.Clamp(S.encounterFrequency, 0.1f, 4f);
             foreach (var k in present)
-                if (HourlyChance.TryGetValue(k, out float c)) none *= 1f - c;
+                if (HourlyChance.TryGetValue(k, out float c)) none *= 1f - Mathf.Min(0.9f, c * freq);
             if (!Rand.Chance(1f - none)) return;
             TryOne(comp, map, present);
         }

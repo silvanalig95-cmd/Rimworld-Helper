@@ -30,7 +30,7 @@ window, organized in five sections:
 
 | Section | Sub-tabs | What's there |
 |---|---|---|
-| **Colony** | Priorities · Room plans | the advisor's ranked list of what the colony needs; ready-made rooms |
+| **Colony** | Overview · Priorities · Moods · World · Room plans | the colony at a glance (numbers, how they moved this week, graphs of mood, trust, wealth and people over the last weeks); the advisor's ranked list of what the colony needs; every mood added up; what's coming and who's out there; ready-made rooms |
 | **People** | Roster · Bonds · Wishes | every colonist at a glance with their full story; friendships, rivalries, circles, vendettas, secrets; open wishes and trust |
 | **Council** | Decrees · Ambition | decrees, petitions and the council's five offices; the current ambition and meetings |
 | **History** | Chronicle · Dreams · Journals | everything that happened (filter by wishes, council, people, strangers, world events, dreams, losses), recent dreams, every colonist's journal |
@@ -458,6 +458,8 @@ journals, the Story tab and History) or **Important only**.
   events, life goals, secrets, vendettas, eulogies, heirlooms, coming of age, quirks, dreams and dream omens, encounters with strangers, nemeses (and whether they return), pets, the
   colony's character, each on its own switch
 - **world events**: on or off, whether they may bring fights, and how often (about every 4 days by default)
+- **how often** the smaller things happen: moments with strangers and animals, moments between colonists, social
+  events and dreams, each from a quarter as often to three times as often
 
 ## Optional mods that go well with it
 

@@ -22,6 +22,7 @@ namespace ColonyCouncil
 
         private enum Tab
         {
+            Overview,
             Priorities,
             Moods,
             World,
@@ -38,7 +39,7 @@ namespace ColonyCouncil
             Almanac
         }
 
-        private static Tab tab = Tab.Priorities;
+        private static Tab tab = Tab.Overview;
         /// <summary>The sub-tab last open in each section, so switching sections comes back to where you were.</summary>
         private static readonly Dictionary<Section, Tab> lastInSection = new Dictionary<Section, Tab>();
 
@@ -46,6 +47,7 @@ namespace ColonyCouncil
         {
             switch (t)
             {
+                case Tab.Overview:
                 case Tab.Priorities:
                 case Tab.Moods:
                 case Tab.World:
@@ -67,7 +69,7 @@ namespace ColonyCouncil
         {
             switch (s)
             {
-                case Section.Colony: return new[] { Tab.Priorities, Tab.Moods, Tab.World, Tab.Build };
+                case Section.Colony: return new[] { Tab.Overview, Tab.Priorities, Tab.Moods, Tab.World, Tab.Build };
                 case Section.People: return new[] { Tab.Roster, Tab.Bonds, Tab.Wishes };
                 case Section.Council: return new[] { Tab.Decrees, Tab.Ambition, Tab.Ways };
                 case Section.History: return new[] { Tab.Chronicle, Tab.Dreams, Tab.Journals };
@@ -145,6 +147,7 @@ namespace ColonyCouncil
             GUI.color = Color.white;
             switch (tab)
             {
+                case Tab.Overview: OverviewPanel.Draw(content, comp, map); break;
                 case Tab.Priorities: DrawPriorities(content, map); break;
                 case Tab.Build: DrawBuild(content, map); break;
                 case Tab.Roster: PeoplePanel.Draw(content, comp); break;

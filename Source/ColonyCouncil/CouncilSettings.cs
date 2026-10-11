@@ -84,6 +84,11 @@ namespace ColonyCouncil
         /// <summary>World events that can end in a fight (bounty hunters, revenge, tribute refused).</summary>
         public bool worldEventBattles = true;
         public float daysBetweenWorldEvents = 4f;
+        /// <summary>How often the smaller things happen: 1 = as designed, 0.25 = rarely, 3 = often.</summary>
+        public float encounterFrequency = 1f;
+        public float momentFrequency = 1f;
+        public float socialEventFrequency = 1f;
+        public float dreamFrequency = 1f;
         /// <summary>The colony's character: what its choices make it known for.</summary>
         public bool colonyCharacter = true;
         /// <summary>On-screen buttons for half and quarter speed, and where they sit (fractions of the screen; -1 = default).</summary>
@@ -173,6 +178,10 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref worldEvents, "worldEvents", true);
             Scribe_Values.Look(ref worldEventBattles, "worldEventBattles", true);
             Scribe_Values.Look(ref daysBetweenWorldEvents, "daysBetweenWorldEvents", 4f);
+            Scribe_Values.Look(ref encounterFrequency, "encounterFrequency", 1f);
+            Scribe_Values.Look(ref momentFrequency, "momentFrequency", 1f);
+            Scribe_Values.Look(ref socialEventFrequency, "socialEventFrequency", 1f);
+            Scribe_Values.Look(ref dreamFrequency, "dreamFrequency", 1f);
             Scribe_Values.Look(ref colonyCharacter, "colonyCharacter", true);
             Scribe_Values.Look(ref slowButtons, "slowButtons", true);
             Scribe_Values.Look(ref moodInsight, "moodInsight", true);
@@ -399,6 +408,12 @@ namespace ColonyCouncil
                 daysBetweenWorldEvents = Mathf.Round(daysBetweenWorldEvents * 2f) / 2f;
             }
 
+            Header(l, "CC_Settings_HowOften".Translate());
+            encounterFrequency = Frequency(l, "CC_Settings_FreqEncounters", encounterFrequency);
+            momentFrequency = Frequency(l, "CC_Settings_FreqMoments", momentFrequency);
+            socialEventFrequency = Frequency(l, "CC_Settings_FreqSocial", socialEventFrequency);
+            dreamFrequency = Frequency(l, "CC_Settings_FreqDreams", dreamFrequency);
+
             Header(l, "CC_Settings_Memory".Translate());
             l.CheckboxLabeled("CC_Settings_Journals".Translate(), ref journals, "CC_Settings_Journals_Tip".Translate());
             l.CheckboxLabeled("CC_Settings_Epithets".Translate(), ref epithets, "CC_Settings_Epithets_Tip".Translate());
@@ -464,6 +479,14 @@ namespace ColonyCouncil
             if (councilOn && stakes == StakesMode.AdvisorOnly) stakes = StakesMode.Balanced;
         }
 
+        /// <summary>A "how often" slider: a quarter as often to three times as often.</summary>
+        private static float Frequency(Listing_Standard l, string key, float value)
+        {
+            float v = l.SliderLabeled(key.Translate(value.ToStringPercent()), value, 0.25f, 3f, 0.6f, (key + "_Tip").Translate());
+            v = Mathf.Round(v * 4f) / 4f;
+            return v;
+        }
+
         private static void Header(Listing_Standard l, string text)
         {
             l.Gap(10f);
@@ -518,6 +541,10 @@ namespace ColonyCouncil
             worldEvents = d.worldEvents;
             worldEventBattles = d.worldEventBattles;
             daysBetweenWorldEvents = d.daysBetweenWorldEvents;
+            encounterFrequency = d.encounterFrequency;
+            momentFrequency = d.momentFrequency;
+            socialEventFrequency = d.socialEventFrequency;
+            dreamFrequency = d.dreamFrequency;
             colonyCharacter = d.colonyCharacter;
             moodInsight = d.moodInsight;
             deepHooks = d.deepHooks;
