@@ -543,6 +543,7 @@ namespace ColonyCouncil
             comp.AddChronicle(new ChronicleEntry(ChronicleKind.Note, text, p));
             comp.annals.Notify_Omen(p, o.def.label);
             comp.aspirations.Notify(p, "omen");
+            comp.aspirations.Notify_Event(p, "omen");
             if (S.MoodEffects) CouncilGameComponent.GiveThought(p, CouncilDefOf.Council_Dream_CameTrue);
             comp.journals.Write(p, "Council_Journal_DreamCameTrue", null, o.def.label.Named("DREAM"));
             var rec = recent.LastOrDefault(r => r.pawn == p && r.text == o.text);

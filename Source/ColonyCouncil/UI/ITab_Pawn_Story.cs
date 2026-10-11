@@ -104,6 +104,8 @@ namespace ColonyCouncil
                     try { progress = a.def.Worker.ProgressText(a); }
                     catch { progress = a.Progress.ToStringPercent(); }
                     goal.lines.Add(("CC_Story_Goal".Translate(a.Goal, progress).Resolve(), Color.white));
+                    string why = a.SparkText;
+                    if (!why.NullOrEmpty()) goal.lines.Add(("CC_Story_GoalWhy".Translate(why, "CC_DayN".Translate(a.startedTick / GenDate.TicksPerDay + 1)).Resolve(), Faint));
                 }
                 foreach (var done in comp.aspirations.Fulfilled(p))
                     goal.lines.Add(("CC_Story_GoalDone".Translate(done.Goal, "CC_DayN".Translate(done.doneTick / GenDate.TicksPerDay + 1)).Resolve(), new Color(0.6f, 0.9f, 0.6f)));

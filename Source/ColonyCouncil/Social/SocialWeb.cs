@@ -392,7 +392,11 @@ namespace ColonyCouncil
             battleFaction = null;
             var list = fighters.Where(Eligible).Distinct().ToList();
             fighters.Clear();
-            foreach (var p in list) comp.quirks.Notify_Fought(p);
+            foreach (var p in list)
+            {
+                comp.quirks.Notify_Fought(p);
+                comp.aspirations.Notify_Event(p, "battle");
+            }
             if (list.Count < 2 || !S.socialWeb) return;
             var formed = new List<Pawn>();
             for (int i = 0; i < list.Count; i++)

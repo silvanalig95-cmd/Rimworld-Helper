@@ -1094,6 +1094,15 @@ Granting one of {PAWN_possessive} wishes, or keeping a promise, can win {PAWN_ob
   <CC_Asp_FulfilledLabel>A life goal: {0}</CC_Asp_FulfilledLabel>
   <CC_Asp_FulfilledText>{PAWN_nameDef} has done what {PAWN_pronoun} set out to do: {GOAL}.</CC_Asp_FulfilledText>
   <CC_Asp_DiedBefore>{PAWN_nameDef} died before {PAWN_pronoun} could {GOAL}.</CC_Asp_DiedBefore>
+  <CC_Asp_FulfilledFor>{PAWN_nameDef} has done what {NAME} never got to: {GOAL}.</CC_Asp_FulfilledFor>
+  <CC_Asp_Spark_battle>after a battle</CC_Asp_Spark_battle>
+  <CC_Asp_Spark_downed>after a brush with death</CC_Asp_Spark_downed>
+  <CC_Asp_Spark_loss>after losing someone</CC_Asp_Spark_loss>
+  <CC_Asp_Spark_birth>after a birth in the colony</CC_Asp_Spark_birth>
+  <CC_Asp_Spark_omen>after a dream came true</CC_Asp_Spark_omen>
+  <CC_Asp_Spark_fulfilled>inspired by {0}</CC_Asp_Spark_fulfilled>
+  <CC_Asp_Spark_thought>after what happened</CC_Asp_Spark_thought>
+  <CC_Asp_Spark_Inherited>for {0}, who never got the chance</CC_Asp_Spark_Inherited>
   <CC_Asp_SkillProgress>{0} {1} of {2}</CC_Asp_SkillProgress>
   <CC_Asp_CountProgress>{0} of {1}</CC_Asp_CountProgress>
   <CC_Asp_RoomProgress>bedroom impressiveness {0} of {1}</CC_Asp_RoomProgress>
@@ -1153,6 +1162,7 @@ Granting one of {PAWN_possessive} wishes, or keeping a promise, can win {PAWN_ob
   <CC_Story_Standing>Standing</CC_Story_Standing>
   <CC_Story_Trust>Trust in the council: {0}</CC_Story_Trust>
   <CC_Story_Goal>Wants to {0} ({1}).</CC_Story_Goal>
+  <CC_Story_GoalWhy>Set their heart on it {0} ({1}).</CC_Story_GoalWhy>
   <CC_Story_GoalDone>Did it: {0} ({1}).</CC_Story_GoalDone>
   <CC_Story_Bonds>Bonds</CC_Story_Bonds>
   <CC_Story_Lost>Lost {0} ({1}).</CC_Story_Lost>

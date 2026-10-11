@@ -33,6 +33,15 @@ namespace ColonyCouncil
         public OfficeDef office;
         /// <summary>The goal as a verb phrase, used in sentences: "master {SKILL}", "find someone to marry".</summary>
         [MustTranslate] public string goal;
+        /// <summary>
+        /// What can make someone set their heart on this, beyond who they are: battle, downed (a brush with death),
+        /// loss (someone close died or was taken), birth (a child born in the colony), omen (their dream came true),
+        /// fulfilled (someone they care about just achieved this same goal), or thought:ThoughtDefName (a recent
+        /// memory, e.g. thought:AttendedWedding). A spark makes the goal far likelier, can change their mind about a
+        /// goal they've barely started, and tags the chosen line [sparked] and [spark:battle] etc.
+        /// </summary>
+        public List<string> sparks;
+        public float sparkDays = 4f;
         /// <summary>Journal, when they set their heart on it ({GOAL}).</summary>
         public ToneLines chosen = new ToneLines();
         /// <summary>Journal and the letter, when they achieve it ({GOAL}).</summary>
@@ -72,6 +81,12 @@ namespace ColonyCouncil
         public int startedTick;
         public bool done;
         public int doneTick;
+        /// <summary>What set them on it (a spark key: battle, loss, fulfilled...), if anything.</summary>
+        public string spark;
+        /// <summary>Someone's name tied to the spark: who inspired them, or whose unfinished goal they took up.</summary>
+        public string sparkName;
+        /// <summary>Taken up from someone who died before reaching it.</summary>
+        public bool inherited;
 
         public string Goal => def == null ? "" : def.goal.Formatted((skill?.label ?? "").Named("SKILL"), target.ToString("0").Named("COUNT")).Resolve();
 
@@ -87,6 +102,21 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref startedTick, "startedTick");
             Scribe_Values.Look(ref done, "done");
             Scribe_Values.Look(ref doneTick, "doneTick");
+            Scribe_Values.Look(ref spark, "spark");
+            Scribe_Values.Look(ref sparkName, "sparkName");
+            Scribe_Values.Look(ref inherited, "inherited");
+        }
+
+        /// <summary>"after a battle", "inspired by Ann", "for Bo": why they want it, or null.</summary>
+        public string SparkText
+        {
+            get
+            {
+                if (inherited) return "CC_Asp_Spark_Inherited".Translate(sparkName ?? "?").Resolve();
+                if (spark.NullOrEmpty()) return null;
+                string key = "CC_Asp_Spark_" + (spark.StartsWith("thought:") ? "thought" : spark);
+                return key.CanTranslate() ? key.Translate(sparkName ?? "").Resolve() : null;
+            }
         }
     }
 
@@ -355,7 +385,44 @@ namespace ColonyCouncil
 
         private static CouncilSettings S => ColonyCouncilMod.Settings;
 
+        /// <summary>When things that can spark a goal last happened to each colonist: "ThingID|battle" and so on.</summary>
+        private Dictionary<string, int> events = new Dictionary<string, int>();
+        /// <summary>Who inspired the latest "fulfilled" spark for each colonist and goal.</summary>
+        private Dictionary<string, string> inspiredBy = new Dictionary<string, string>();
+
         public Aspiration Active(Pawn p) => p == null ? null : all.FirstOrDefault(a => a.pawn == p && !a.done);
+
+        /// <summary>Something happened that might give them a goal (battle, downed, loss, birth, omen).</summary>
+        public void Notify_Event(Pawn p, string key)
+        {
+            if (p == null || key == null) return;
+            events[p.ThingID + "|" + key] = Find.TickManager.TicksGame;
+        }
+
+        private bool Recent(Pawn p, string key, float days) =>
+            events.TryGetValue(p.ThingID + "|" + key, out int t) && Find.TickManager.TicksGame - t < days * GenDate.TicksPerDay;
+
+        /// <summary>The first spark of this goal that has happened to them lately, or null.</summary>
+        private string Sparked(AspirationDef d, Pawn p)
+        {
+            if (d.sparks.NullOrEmpty()) return null;
+            foreach (var spark in d.sparks)
+            {
+                if (spark.StartsWith("thought:"))
+                {
+                    string name = spark.Substring(8);
+                    int window = (int)(d.sparkDays * GenDate.TicksPerDay);
+                    var memories = p.needs?.mood?.thoughts?.memories?.Memories;
+                    if (memories != null && memories.Any(m => m.def != null && m.def.defName == name && m.age <= window)) return spark;
+                }
+                else if (spark == "fulfilled")
+                {
+                    if (Recent(p, "fulfilled:" + d.defName, d.sparkDays)) return spark;
+                }
+                else if (Recent(p, spark, d.sparkDays)) return spark;
+            }
+            return null;
+        }
 
         public IEnumerable<Aspiration> Fulfilled(Pawn p) => all.Where(a => a.pawn == p && a.done);
 
@@ -392,6 +459,7 @@ namespace ColonyCouncil
                 }
                 try
                 {
+                    if (TryChangeOfHeart(comp, p, a)) continue;
                     if (a.def.Worker.Done(a)) Fulfil(comp, a);
                     // Impossible now, or years without getting there: they let it go and may find another.
                     else if (!a.def.Worker.StillPossible(a) || Find.TickManager.TicksGame - a.startedTick > GenDate.TicksPerYear * 4)
@@ -413,20 +481,81 @@ namespace ColonyCouncil
             if (inColony < GenDate.TicksPerDay * 3) return;
             var last = all.Where(x => x.pawn == p && x.done).OrderByDescending(x => x.doneTick).FirstOrDefault();
             if (last != null && Find.TickManager.TicksGame - last.doneTick < GenDate.TicksPerDay * 20) return;
-            if (!Rand.Chance(0.2f)) return;
-            var done = new HashSet<AspirationDef>(Fulfilled(p).Select(x => x.def));
-            var options = DefDatabase<AspirationDef>.AllDefsListForReading
-                .Where(d => !done.Contains(d) && DilemmaRole.Fits(d.who, p, d.children) && SafeCanHave(d, p)).ToList();
+            var options = Options(p);
             if (options.Count == 0) return;
-            var def = options.RandomElementByWeight(d => d.weight * (d.who?.passion != null || d.who?.anyTrait != null ? 2f : 1f));
-            var a = new Aspiration { def = def, pawn = p, startedTick = Find.TickManager.TicksGame };
-            if (!def.Worker.Init(a)) return;
+            // Something just happened that points somewhere: they're likely to decide now. Otherwise, in their own time.
+            var sparked = options.Where(o => o.spark != null).ToList();
+            if (sparked.Count > 0 && Rand.Chance(0.6f))
+            {
+                var pick = sparked.RandomElementByWeight(o => o.weight);
+                Begin(comp, p, pick.def, pick.spark, null);
+                return;
+            }
+            if (!Rand.Chance(0.2f)) return;
+            var any = options.RandomElementByWeight(o => o.weight * (o.spark != null ? 6f : 1f));
+            Begin(comp, p, any.def, any.spark, null);
+        }
+
+        private List<(AspirationDef def, string spark, float weight)> Options(Pawn p)
+        {
+            var done = new HashSet<AspirationDef>(Fulfilled(p).Select(x => x.def));
+            var result = new List<(AspirationDef, string, float)>();
+            foreach (var d in DefDatabase<AspirationDef>.AllDefsListForReading)
+            {
+                if (done.Contains(d) || !DilemmaRole.Fits(d.who, p, d.children) || !SafeCanHave(d, p)) continue;
+                result.Add((d, Sparked(d, p), d.weight * (d.who?.passion != null || d.who?.anyTrait != null ? 2f : 1f)));
+            }
+            return result;
+        }
+
+        /// <summary>Sets their heart on it: journal line (tagged by what sparked it), a message, the chronicle.</summary>
+        private Aspiration Begin(CouncilGameComponent comp, Pawn p, AspirationDef def, string spark, string inheritedFrom)
+        {
+            var a = new Aspiration { def = def, pawn = p, startedTick = Find.TickManager.TicksGame, spark = spark };
+            if (!def.Worker.Init(a)) return null;
+            if (inheritedFrom != null)
+            {
+                a.inherited = true;
+                a.sparkName = inheritedFrom;
+            }
+            else if (spark == "fulfilled" && inspiredBy.TryGetValue(p.ThingID + "|" + def.defName, out string by)) a.sparkName = by;
             all.Add(a);
-            string line = Line(def.chosen, p, a);
+            var tags = new List<string>();
+            if (spark != null)
+            {
+                tags.Add("sparked");
+                tags.Add("spark:" + (spark.StartsWith("thought:") ? spark.Substring(8) : spark));
+            }
+            if (inheritedFrom != null) tags.Add("inherited");
+            string line = Line(def.chosen, p, a, tags);
             if (!line.NullOrEmpty()) comp.journals.WriteText(p, line);
-            string text = "CC_Asp_Chosen".Translate(p.Named("PAWN"), a.Goal.Named("GOAL")).Resolve();
+            string why = a.SparkText;
+            string text = "CC_Asp_Chosen".Translate(p.Named("PAWN"), a.Goal.Named("GOAL")).Resolve() + (why.NullOrEmpty() ? "" : " (" + why + ")");
             Messages.Message(text + (line.NullOrEmpty() ? "" : " \"" + line + "\""), p, MessageTypeDefOf.SilentInput, false);
             comp.AddChronicle(new ChronicleEntry(ChronicleKind.Note, text, p));
+            return a;
+        }
+
+        /// <summary>
+        /// Something big happened and points to a different goal than the one they've barely started: sometimes
+        /// they change their mind.
+        /// </summary>
+        private bool TryChangeOfHeart(CouncilGameComponent comp, Pawn p, Aspiration a)
+        {
+            if (a.inherited || Find.TickManager.TicksGame - a.startedTick < GenDate.TicksPerDay * 10 || a.Progress >= 0.35f) return false;
+            var sparked = Options(p).Where(o => o.spark != null && o.def != a.def).ToList();
+            if (sparked.Count == 0 || !Rand.Chance(0.25f)) return false;
+            var pick = sparked.RandomElementByWeight(o => o.weight);
+            string old = a.Goal;
+            all.Remove(a);
+            var b = Begin(comp, p, pick.def, pick.spark, null);
+            if (b == null)
+            {
+                all.Add(a);
+                return false;
+            }
+            comp.journals.Write(p, "Council_Journal_GoalChanged", null, old.Named("OLDGOAL"), b.Goal.Named("GOAL"));
+            return true;
         }
 
         private static bool SafeCanHave(AspirationDef d, Pawn p)
@@ -442,11 +571,13 @@ namespace ColonyCouncil
             }
         }
 
-        private static string Line(ToneLines lines, Pawn p, Aspiration a)
+        private static string Line(ToneLines lines, Pawn p, Aspiration a, List<string> extraTags = null)
         {
             if (lines == null || !lines.Any) return null;
-            string raw = lines.Pick(ToneUtility.ToneFor(p), Flavor.TagsFor(p));
-            return raw.NullOrEmpty() ? null : raw.Formatted(p.Named("PAWN"), a.Goal.Named("GOAL"), (a.skill?.label ?? "").Named("SKILL")).Resolve();
+            var tags = Flavor.TagsFor(p);
+            if (extraTags != null) foreach (var t in extraTags) tags.Add(t);
+            string raw = lines.Pick(ToneUtility.ToneFor(p), tags);
+            return raw.NullOrEmpty() ? null : raw.Formatted(p.Named("PAWN"), a.Goal.Named("GOAL"), (a.skill?.label ?? "").Named("SKILL"), (a.sparkName ?? "").Named("NAME")).Resolve();
         }
 
         private void Fulfil(CouncilGameComponent comp, Aspiration a)
@@ -455,7 +586,7 @@ namespace ColonyCouncil
             a.done = true;
             a.doneTick = Find.TickManager.TicksGame;
             string quote = Line(a.def.achieved, p, a);
-            string text = "CC_Asp_FulfilledText".Translate(p.Named("PAWN"), a.Goal.Named("GOAL")).Resolve();
+            string text = (a.inherited ? "CC_Asp_FulfilledFor" : "CC_Asp_FulfilledText").Translate(p.Named("PAWN"), a.Goal.Named("GOAL"), (a.sparkName ?? "").Named("NAME")).Resolve();
             if (!quote.NullOrEmpty()) text += "\n\n\"" + quote + "\"";
             Find.LetterStack.ReceiveLetter("CC_Asp_FulfilledLabel".Translate(p.LabelShort), text, LetterDefOf.PositiveEvent, p);
             if (!quote.NullOrEmpty()) comp.journals.WriteText(p, quote);
@@ -471,7 +602,12 @@ namespace ColonyCouncil
             }
             // The people who love them are glad.
             foreach (var f in PawnsFinder.AllMaps_FreeColonists.Where(f => f != p && f.relations != null && (f.relations.OpinionOf(p) >= 40 || comp.social.Warmth(f, p) >= 40f)))
+            {
                 CouncilGameComponent.GiveThought(f, CouncilDefOf.Council_HappyForThem, p);
+                // Seeing someone they love do it can make them want it too.
+                Notify_Event(f, "fulfilled:" + a.def.defName);
+                inspiredBy[f.ThingID + "|" + a.def.defName] = p.LabelShort;
+            }
         }
 
         /// <summary>They died before they got there: the chronicle says so, and their friends write about it.</summary>
@@ -483,6 +619,17 @@ namespace ColonyCouncil
             foreach (var f in PawnsFinder.AllMaps_FreeColonists.Where(f => f != p && f.relations != null && (f.relations.OpinionOf(p) >= 30 || comp.social.Warmth(f, p) >= 35f)).Take(4))
                 comp.journals.Write(f, "Council_Journal_DiedDreaming", null, p.Named("OTHER"), a.Goal.Named("GOAL"));
             lastMourned[p] = a.Goal;
+            // Someone who loved them may take it up and finish it for them.
+            var heir = PawnsFinder.AllMaps_FreeColonists.Where(Eligible)
+                .Where(f => f != p && f.relations != null && !f.DevelopmentalStage.Juvenile() && (f.relations.OpinionOf(p) >= 50 || comp.social.Warmth(f, p) >= 50f))
+                .Where(f => Active(f) == null || (Active(f).Progress < 0.35f && !Active(f).inherited))
+                .Where(f => DilemmaRole.Fits(a.def.who, f, a.def.children) && SafeCanHave(a.def, f) && !Fulfilled(f).Any(x => x.def == a.def))
+                .OrderByDescending(f => f.relations.OpinionOf(p) + comp.social.Warmth(f, p)).FirstOrDefault();
+            if (heir == null || !Rand.Chance(0.5f)) return;
+            var old = Active(heir);
+            if (old != null) all.Remove(old);
+            if (Begin(comp, heir, a.def, null, p.LabelShort) != null) comp.journals.Write(heir, "Council_Journal_GoalInherited", null, p.Named("OTHER"), a.Goal.Named("GOAL"));
+            else if (old != null) all.Add(old);
         }
 
         /// <summary>The goal someone died before reaching, for their eulogy.</summary>
@@ -492,11 +639,15 @@ namespace ColonyCouncil
         {
             Scribe_Collections.Look(ref all, "all", LookMode.Deep);
             Scribe_Collections.Look(ref counters, "counters", LookMode.Value, LookMode.Value);
+            Scribe_Collections.Look(ref events, "events", LookMode.Value, LookMode.Value);
+            Scribe_Collections.Look(ref inspiredBy, "inspiredBy", LookMode.Value, LookMode.Value);
             if (Scribe.mode == LoadSaveMode.PostLoadInit)
             {
                 if (all == null) all = new List<Aspiration>();
                 all.RemoveAll(a => a == null || a.def == null || a.pawn == null);
                 if (counters == null) counters = new Dictionary<string, int>();
+                if (events == null) events = new Dictionary<string, int>();
+                if (inspiredBy == null) inspiredBy = new Dictionary<string, string>();
             }
         }
     }

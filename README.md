@@ -141,7 +141,11 @@ A few days after settling in, each colonist sets their heart on something to do 
 marry for love, have a child, find three true friends, train a student until they can stand alone, make peace with
 a rival, earn a seat on the council or a name the colony remembers, a bedroom fit for a noble, bring down twenty-five
 enemies, raise a hundred and fifty structures, tend a hundred wounds, or simply live three more years. Goals fit the
-person (their passions, traits and situation), and the Social tab shows everyone's progress. Achieving one is a big
+person (their passions, traits and situation) and grow out of what happens to them: a battle makes a warrior, a
+brush with death a healer, a wedding someone who wants to marry, a birth someone who wants a child, a lost election
+someone who wants a seat, loneliness someone who wants friends, and seeing a friend reach their goal can make them
+want the same. Something big can change their mind, and when someone dies before reaching theirs, the person who
+loved them most may take it up and finish it for them. The Social tab shows everyone's progress and why. Achieving one is a big
 moment: a letter, a long good mood, trust, often an inspiration, friends who are glad for them. Dying before it is
 remembered: the chronicle notes what they never got to do, and their friends write about it.
 

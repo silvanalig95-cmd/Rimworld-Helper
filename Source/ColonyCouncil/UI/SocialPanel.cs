@@ -148,7 +148,8 @@ namespace ColonyCouncil
                 Widgets.Label(new Rect(478f, y, width - 478f, RowH), progress.Truncate(width - 482f));
                 GUI.color = Color.white;
                 Text.Anchor = TextAnchor.UpperLeft;
-                TooltipHandler.TipRegion(r, () => "CC_Social_GoalTip".Translate(a.pawn.LabelShort, a.Goal, "CC_DayN".Translate(a.startedTick / GenDate.TicksPerDay + 1), progress).Resolve(), a.GetHashCode());
+                TooltipHandler.TipRegion(r, () => "CC_Social_GoalTip".Translate(a.pawn.LabelShort, a.Goal, "CC_DayN".Translate(a.startedTick / GenDate.TicksPerDay + 1), progress).Resolve()
+                                                  + (a.SparkText.NullOrEmpty() ? "" : "\n" + a.SparkText.CapitalizeFirst()), a.GetHashCode());
                 if (Widgets.ButtonInvisible(r) && a.pawn.Spawned) CameraJumper.TryJumpAndSelect(a.pawn);
                 y += RowH + 2f;
             }

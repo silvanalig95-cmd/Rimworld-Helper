@@ -19,8 +19,11 @@
     <level>15</level>
     <gain>4</gain>
     <goal>master {SKILL}</goal>
+    <sparks><li>fulfilled</li></sparks>
     <chosen>
       <plain>
+        <li>[spark:fulfilled] I watched {NAME} do it, and something in me said: me too. I'm going to master {SKILL}.</li>
+        <li>[inherited] {NAME} never got the chance. So I will. I'll {GOAL}, and I'll say {NAME}'s name when I do.</li>
         <li>I've decided. Before I die, I'm going to be truly good at {SKILL}. Not decent. Good.</li>
         <li>Everyone here is good at something. I want {SKILL} to be my something.</li>
         <li>[old] I've been passable at {SKILL} for decades. I'd like to die a master. There's still time, if I hurry.</li>
@@ -48,8 +51,11 @@
     <workerClass>ColonyCouncil.AspirationWorker_Spouse</workerClass>
     <weight>1.2</weight>
     <goal>marry for love</goal>
+    <sparks><li>thought:AttendedWedding</li><li>fulfilled</li></sparks>
     <chosen>
       <plain>
+        <li>[sparked] I stood at that wedding and thought: I want that. Someone to promise to stay.</li>
+        <li>[inherited] {NAME} never got the chance. So I will. I'll {GOAL}, and I'll say {NAME}'s name when I do.</li>
         <li>I want to get married. Here. Out on the rim, of all places. I want someone to promise to stay.</li>
         <li>I want a wedding. Flowers, bad food, everyone crying. All of it.</li>
         <li>[old] They say it's never too late. I'd like to test that. I want to marry before I'm too old to dance at my own wedding.</li>
@@ -75,9 +81,12 @@
     <label>a child</label>
     <workerClass>ColonyCouncil.AspirationWorker_Child</workerClass>
     <goal>have a child</goal>
+    <sparks><li>birth</li></sparks>
     <who><notTrait><li>Psychopath</li></notTrait></who>
     <chosen>
       <plain>
+        <li>[spark:birth] I held the new baby today. I want one of my own. I didn't know how much until now.</li>
+        <li>[inherited] {NAME} never got the chance. So I will. I'll {GOAL}, and I'll say {NAME}'s name when I do.</li>
         <li>I want a child. Someone to carry on after me. Someone to teach.</li>
         <li>I want to hear a baby crying in this colony and know it's mine.</li>
       </plain>
@@ -104,9 +113,12 @@
     <workerClass>ColonyCouncil.AspirationWorker_Friends</workerClass>
     <amount>3</amount>
     <goal>find three true friends</goal>
+    <sparks><li>thought:Council_Soc_LeftOut</li><li>loss</li></sparks>
     <who><notTrait><li>Psychopath</li></notTrait></who>
     <chosen>
       <plain>
+        <li>[sparked] I've been alone too long. I don't want to die with nobody at my grave who really knew me.</li>
+        <li>[inherited] {NAME} never got the chance. So I will. I'll {GOAL}, and I'll say {NAME}'s name when I do.</li>
         <li>I want real friends here. The kind you'd run back into a fire for.</li>
         <li>[newcomer] I'm new here and everyone already has their people. I want to be somebody's people. Three friends. Real ones.</li>
       </plain>
@@ -132,8 +144,11 @@
     <counter>graduated</counter>
     <amount>1</amount>
     <goal>train a student until they can stand alone</goal>
+    <sparks><li>thought:Council_GratefulStudent</li><li>fulfilled</li></sparks>
     <chosen>
       <plain>
+        <li>[sparked] Someone took the time to teach me. Now I want to do the same for someone else.</li>
+        <li>[inherited] {NAME} never got the chance. So I will. I'll {GOAL}, and I'll say {NAME}'s name when I do.</li>
         <li>Someone taught me. I want to do the same for someone here, all the way.</li>
         <li>What I know shouldn't die with me. I want a student.</li>
         <li>[old] I won't be around forever. What I know should outlast me. I want a student.</li>
@@ -159,9 +174,12 @@
     <amount>1</amount>
     <weight>0.8</weight>
     <goal>make peace with a rival</goal>
+    <sparks><li>loss</li></sparks>
     <who><notTrait><li>Psychopath</li><li>Abrasive</li></notTrait></who>
     <chosen>
       <plain>
+        <li>[spark:loss] We buried someone today, and all I could think about was the feud I'm wasting my life on. I want to end it.</li>
+        <li>[inherited] {NAME} never got the chance. So I will. I'll {GOAL}, and I'll say {NAME}'s name when I do.</li>
         <li>I'm tired of being angry. I want to end at least one of my feuds before it ends me.</li>
       </plain>
       <warm><li>Someone here hates me and I hate them back. I want to fix that. I don't know how yet.</li></warm>
@@ -183,9 +201,12 @@
     <label>a seat on the council</label>
     <workerClass>ColonyCouncil.AspirationWorker_Office</workerClass>
     <goal>earn a seat on the council</goal>
+    <sparks><li>thought:Council_LostElection</li><li>thought:Council_LostOffice</li></sparks>
     <who><notTrait><li>Psychopath</li></notTrait></who>
     <chosen>
       <plain>
+        <li>[sparked] They voted for someone else. Next time, they won't.</li>
+        <li>[inherited] {NAME} never got the chance. So I will. I'll {GOAL}, and I'll say {NAME}'s name when I do.</li>
         <li>I want a seat on the council. I have ideas. Somebody should listen to them.</li>
         <li>[doubtful] I don't trust the council. So I'm going to join it and see for myself what goes on in there.</li>
       </plain>
@@ -210,9 +231,12 @@
     <amount>85</amount>
     <weight>0.8</weight>
     <goal>have a bedroom fit for a noble</goal>
+    <sparks><li>thought:SleptInBarracks</li><li>thought:SleptOutside</li></sparks>
     <who><notTrait><li>Ascetic</li></notTrait></who>
     <chosen>
       <plain>
+        <li>[sparked] Another night on the floor with a dozen snorers. One day I'll have a room so fine people stop at the door.</li>
+        <li>[inherited] {NAME} never got the chance. So I will. I'll {GOAL}, and I'll say {NAME}'s name when I do.</li>
         <li>I've slept in holes my whole life. Before I die, I want a room so fine people stop at the door.</li>
         <li>[trait:Greedy] Everyone else can sleep in a barracks. I want a room fit for a lord, with carpets, and a lock.</li>
       </plain>
@@ -234,8 +258,10 @@
     <label>a name to remember</label>
     <workerClass>ColonyCouncil.AspirationWorker_Epithet</workerClass>
     <goal>earn a name the colony remembers</goal>
+    <sparks><li>fulfilled</li></sparks>
     <chosen>
       <plain>
+        <li>[inherited] {NAME} never got the chance. So I will. I'll {GOAL}, and I'll say {NAME}'s name when I do.</li>
         <li>The others have names. "The Healer." "Deadeye." I want one. A good one, ideally.</li>
       </plain>
       <blunt><li>I want a title. I'll earn it.</li></blunt>
@@ -259,8 +285,11 @@
     <amount>3</amount>
     <weight>0.6</weight>
     <goal>live to see three more years here</goal>
+    <sparks><li>downed</li><li>loss</li></sparks>
     <chosen>
       <plain>
+        <li>[spark:downed] I lay in the dirt and thought that was the end. It wasn't. I want every year I can get now.</li>
+        <li>[inherited] {NAME} never got the chance. So I will. I'll {GOAL}, and I'll say {NAME}'s name when I do.</li>
         <li>People don't last long out here. I want to be the exception. Three more years. Then we'll see.</li>
         <li>[old] I've outlived most of the people I started out with. Three more years. Then I'll negotiate for three more.</li>
       </plain>
@@ -284,8 +313,11 @@
     <amount>12</amount>
     <weight>0.7</weight>
     <goal>see the colony grow to {COUNT} people</goal>
+    <sparks><li>birth</li></sparks>
     <chosen>
       <plain>
+        <li>[spark:birth] A baby was born here today. A child, in this place. I want to see this colony full of them.</li>
+        <li>[inherited] {NAME} never got the chance. So I will. I'll {GOAL}, and I'll say {NAME}'s name when I do.</li>
         <li>I want to see this place full. Noise at dinner, arguments over chores. A real town.</li>
       </plain>
       <warm><li>I want so many people here I forget some of their names. Then I'll learn them all again.</li></warm>
@@ -308,9 +340,12 @@
     <record>KillsHumanlikes</record>
     <amount>25</amount>
     <goal>bring down twenty-five enemies</goal>
+    <sparks><li>battle</li><li>loss</li></sparks>
     <who><canFight>true</canFight><anyTrait><li>Bloodlust</li><li>Tough</li><li>Brawler</li><li>Psychopath</li></anyTrait></who>
     <chosen>
       <plain>
+        <li>[spark:battle] I saw what they did on the wall today. They'll keep coming. I'll keep counting.</li>
+        <li>[inherited] {NAME} never got the chance. So I will. I'll {GOAL}, and I'll say {NAME}'s name when I do.</li>
         <li>The raiders keep coming. Fine. I'm going to be the reason they stop.</li>
         <li>[trait:Bloodlust] Every raid is a gift. I want to unwrap twenty-five of them.</li>
       </plain>
@@ -337,6 +372,7 @@
     <who><passion>Construction</passion></who>
     <chosen>
       <plain>
+        <li>[inherited] {NAME} never got the chance. So I will. I'll {GOAL}, and I'll say {NAME}'s name when I do.</li>
         <li>I want to look at this colony one day and see my hands everywhere. Walls, doors, roofs. Mine.</li>
         <li>[tribal] Our ancestors raised great halls of timber and stone. I want to raise this place the same way, wall by wall.</li>
       </plain>
@@ -358,9 +394,12 @@
     <record>TimesTendedOther</record>
     <amount>100</amount>
     <goal>tend a hundred wounds</goal>
+    <sparks><li>downed</li><li>loss</li></sparks>
     <who><passion>Medicine</passion></who>
     <chosen>
       <plain>
+        <li>[spark:downed] Someone stitched me up when I was bleeding out. I want to be that person for someone else.</li>
+        <li>[inherited] {NAME} never got the chance. So I will. I'll {GOAL}, and I'll say {NAME}'s name when I do.</li>
         <li>Every scar in this colony should have my stitches in it. A hundred wounds. Then I'll call myself a healer.</li>
         <li>[afterraid] I spent all night after the raid with my hands in other people's blood. I'm going to get so good at this that nobody dies on my watch.</li>
       </plain>
@@ -383,9 +422,12 @@
     <record>MealsCooked</record>
     <amount>500</amount>
     <goal>cook five hundred meals</goal>
+    <sparks><li>thought:AteLavishMeal</li><li>thought:AteFineMeal</li></sparks>
     <who><passion>Cooking</passion></who>
     <chosen>
       <plain>
+        <li>[sparked] That meal last night made everyone go quiet. I want to cook like that.</li>
+        <li>[inherited] {NAME} never got the chance. So I will. I'll {GOAL}, and I'll say {NAME}'s name when I do.</li>
         <li>Food is how people know they're cared for. Five hundred meals. Then I'll believe I'm a cook.</li>
         <li>[trait:Gourmand] I love food more than I love most people. Time to share that love around. Five hundred meals.</li>
       </plain>
@@ -411,6 +453,7 @@
     <who><passion>Animals</passion></who>
     <chosen>
       <plain>
+        <li>[inherited] {NAME} never got the chance. So I will. I'll {GOAL}, and I'll say {NAME}'s name when I do.</li>
         <li>Wild things trust nobody. I want five of them to trust me.</li>
       </plain>
       <warm><li>Everything wild out there is scared or hungry or both. I want to show five of them they don't have to be.</li></warm>
@@ -436,6 +479,7 @@
     <who><passion>Social</passion></who>
     <chosen>
       <plain>
+        <li>[inherited] {NAME} never got the chance. So I will. I'll {GOAL}, and I'll say {NAME}'s name when I do.</li>
         <li>Everyone we lock up was someone once. I want to talk three of them into being someone here.</li>
       </plain>
       <warm><li>Some of the people in our cells just need someone to listen. I'm going to listen to three of them, all the way to freedom.</li></warm>
@@ -458,8 +502,10 @@
     <amount>1</amount>
     <weight>0.3</weight>
     <goal>dream something that comes true</goal>
+    <sparks><li>omen</li></sparks>
     <chosen>
       <plain>
+        <li>[inherited] {NAME} never got the chance. So I will. I'll {GOAL}, and I'll say {NAME}'s name when I do.</li>
         <li>My grandmother dreamt things before they happened. I want to know if I can too.</li>
         <li>[night] I woke from a dream so vivid I wrote it down in the dark. I want to know if any of this means anything.</li>
       </plain>
@@ -483,8 +529,11 @@
     <amount>1</amount>
     <weight>3</weight>
     <goal>avenge the dead</goal>
+    <sparks><li>loss</li></sparks>
     <chosen>
       <plain>
+        <li>[spark:loss] They killed someone I loved. Now I know what I'm living for.</li>
+        <li>[inherited] {NAME} never got the chance. So I will. I'll {GOAL}, and I'll say {NAME}'s name when I do.</li>
         <li>I know what I'm living for now. Not peace. Not comfort. Payment.</li>
         <li>I sat at the grave until dark and made a promise. I intend to keep it.</li>
         <li>[lowmood] I can't sleep. I can't eat. The only thing I can think about is making them pay.</li>

@@ -16,9 +16,11 @@
     <amount>10</amount>
     <weight>0.6</weight>
     <goal>bring down ten mechanoids</goal>
+    <sparks><li>battle</li></sparks>
     <who><canFight>true</canFight></who>
     <chosen>
       <plain>
+        <li>[inherited] {NAME} never got the chance. So I will. I'll {GOAL}, and I'll say {NAME}'s name when I do.</li>
         <li>I saw what the machines did to the last place I lived. I'm going to put ten of them in the dirt. Ten, to start.</li>
         <li>[afterraid] The last attack is still smoking outside the walls. Next time it's machines, I want to be the one who stops them. Ten of them, at least.</li>
       </plain>
@@ -47,6 +49,7 @@
     <who><passion>Mining</passion></who>
     <chosen>
       <plain>
+        <li>[inherited] {NAME} never got the chance. So I will. I'll {GOAL}, and I'll say {NAME}'s name when I do.</li>
         <li>Walls fall down. Roofs cave in. A mountain stays. I'm going to dig us a home inside one, a rock at a time.</li>
         <li>[trait:Undergrounder] I sleep better with stone over my head. I want all of us under the mountain, deep and dry. I'll dig it myself if I have to.</li>
         <li>[work:Mining] Every swing of the pick, a little more room. I want this mountain hollowed out like a gourd before I'm done with it.</li>
@@ -71,9 +74,11 @@
     <amount>20</amount>
     <weight>0.7</weight>
     <goal>perform twenty operations</goal>
+    <sparks><li>downed</li><li>loss</li></sparks>
     <who><passion>Medicine</passion></who>
     <chosen>
       <plain>
+        <li>[inherited] {NAME} never got the chance. So I will. I'll {GOAL}, and I'll say {NAME}'s name when I do.</li>
         <li>Bandages are one thing. I want to be the one they trust to open someone up and put them back together. Twenty operations, done right.</li>
         <li>[tribal] The old healers worked with a sharp stone and a steady breath. I want to learn their art properly, twenty times over, until my hands stop shaking.</li>
       </plain>
@@ -98,9 +103,12 @@
     <amount>15</amount>
     <weight>0.6</weight>
     <goal>give fifteen of the dead a proper burial</goal>
+    <sparks><li>thought:ObservedLayingCorpse</li><li>thought:ObservedLayingRottingCorpse</li><li>loss</li></sparks>
     <who><anyTrait><li>Kind</li></anyTrait></who>
     <chosen>
       <plain>
+        <li>[sparked] Nobody should lie in the open like that. I'll see that ours are buried properly.</li>
+        <li>[inherited] {NAME} never got the chance. So I will. I'll {GOAL}, and I'll say {NAME}'s name when I do.</li>
         <li>Raider or friend, nobody should be left out for the birds. I've started digging. I'll keep digging.</li>
       </plain>
       <warm>
@@ -130,6 +138,7 @@
     <goal>keep the colony spotless</goal>
     <chosen>
       <plain>
+        <li>[inherited] {NAME} never got the chance. So I will. I'll {GOAL}, and I'll say {NAME}'s name when I do.</li>
         <li>Blood, mud, vomit, ash. I've decided I'm going to win against all of it. Four hundred messes. I'm counting.</li>
         <li>[trait:Industrious] Idle hands make me itch. Filthy floors make me itch worse. Four hundred messes, and then I'll rest. Maybe.</li>
         <li>[afterraid] There's still blood on the floor from the last attack and everyone just walks around it. Not anymore. I'm cleaning this colony top to bottom, and keeping it that way.</li>
@@ -157,6 +166,7 @@
     <who><passion>Intellectual</passion></who>
     <chosen>
       <plain>
+        <li>[inherited] {NAME} never got the chance. So I will. I'll {GOAL}, and I'll say {NAME}'s name when I do.</li>
         <li>Somewhere in all these notes there's an idea nobody's had yet. I'm going to find it if it takes me years.</li>
         <li>[tribal] The ancients knew things we've forgotten. I'm going to learn them back, one by one, until I find something they never knew.</li>
         <li>[spacer] We have machines that think and engines that cross the stars, and still nobody understands half of what's out here. I want to change that, a little.</li>
@@ -184,6 +194,7 @@
     <who><canFight>true</canFight><passion>Shooting</passion></who>
     <chosen>
       <plain>
+        <li>[inherited] {NAME} never got the chance. So I will. I'll {GOAL}, and I'll say {NAME}'s name when I do.</li>
         <li>Forty kills from the hunt. I want them telling stories about me at the fire long after I'm gone.</li>
         <li>[tribal] My grandmother's grandmother brought down a thrumbo with a spear. I'm not asking for that. Forty good kills, and a story worth telling.</li>
         <li>[winter] Winter's long and the stores are thin. I'm going to keep the pot full. Forty kills, every one of them clean.</li>
@@ -211,6 +222,7 @@
     <who><notTrait><li>Pyromaniac</li></notTrait></who>
     <chosen>
       <plain>
+        <li>[inherited] {NAME} never got the chance. So I will. I'll {GOAL}, and I'll say {NAME}'s name when I do.</li>
         <li>Everything here burns. Wood, crops, people. I'm going to be the one who runs toward it. Thirty fires, and then I'll stop counting.</li>
         <li>[summer] The grass is dry and the lightning's close. Fires are coming. I want to be the one standing in front of them.</li>
       </plain>
@@ -238,9 +250,11 @@
     <gain>4</gain>
     <weight>0.8</weight>
     <goal>become a crack shot</goal>
+    <sparks><li>battle</li></sparks>
     <who><canFight>true</canFight><anyTrait><li>Bloodlust</li><li>Tough</li></anyTrait></who>
     <chosen>
       <plain>
+        <li>[inherited] {NAME} never got the chance. So I will. I'll {GOAL}, and I'll say {NAME}'s name when I do.</li>
         <li>Raiders don't wait for you to steady your hands. I'm going to practice until mine don't need steadying.</li>
         <li>[trait:Bloodlust] I love the moment right before the shot. I want to get so good at {SKILL} that it's the only moment there is.</li>
         <li>[tribal] The best hunters in the old stories could split a reed at a hundred paces. I'll settle for ninety.</li>
@@ -266,9 +280,11 @@
     <gain>4</gain>
     <weight>0.7</weight>
     <goal>become someone people listen to</goal>
+    <sparks><li>thought:Council_LostElection</li></sparks>
     <who><passion>Social</passion></who>
     <chosen>
       <plain>
+        <li>[inherited] {NAME} never got the chance. So I will. I'll {GOAL}, and I'll say {NAME}'s name when I do.</li>
         <li>When I talk at meetings, people's eyes drift. I want to learn to hold a room, so the right ideas win.</li>
       </plain>
       <warm><li>Words can stop fights and start friendships. I want to be good enough with them to do both on purpose.</li></warm>
@@ -297,6 +313,7 @@
     <who><anyTrait><li>TooSmart</li></anyTrait></who>
     <chosen>
       <plain>
+        <li>[inherited] {NAME} never got the chance. So I will. I'll {GOAL}, and I'll say {NAME}'s name when I do.</li>
         <li>Everyone here thinks I'm clever. I want to actually be as clever as I act. That's going to take some work.</li>
         <li>[night] Can't sleep. Too many questions. I've decided to stop fighting it and start answering them, properly, one at a time.</li>
       </plain>
@@ -325,6 +342,7 @@
     <who><passion>Artistic</passion></who>
     <chosen>
       <plain>
+        <li>[inherited] {NAME} never got the chance. So I will. I'll {GOAL}, and I'll say {NAME}'s name when I do.</li>
         <li>We survive out here. I want us to do more than survive. I want to make something beautiful enough that strangers stop to look.</li>
         <li>[lowmood] Making things is the only time my head goes quiet. I want to get good enough that it stays quiet longer.</li>
       </plain>
@@ -350,9 +368,11 @@
     <office>Council_Office_Marshal</office>
     <weight>0.6</weight>
     <goal>serve as the colony's marshal</goal>
+    <sparks><li>battle</li><li>thought:Council_LostElection</li></sparks>
     <who><canFight>true</canFight><notTrait><li>Wimp</li></notTrait></who>
     <chosen>
       <plain>
+        <li>[inherited] {NAME} never got the chance. So I will. I'll {GOAL}, and I'll say {NAME}'s name when I do.</li>
         <li>When the alarm goes, people look around for someone to tell them what to do. I want it to be me they look at.</li>
         <li>[afterraid] That raid was chaos. Nobody in charge, everyone shouting. Next time I want to be marshal, and I want there to be a plan.</li>
       </plain>
@@ -375,9 +395,11 @@
     <office>Council_Office_Physician</office>
     <weight>0.6</weight>
     <goal>become the colony's physician</goal>
+    <sparks><li>downed</li><li>thought:Council_LostElection</li></sparks>
     <who><passion>Medicine</passion></who>
     <chosen>
       <plain>
+        <li>[inherited] {NAME} never got the chance. So I will. I'll {GOAL}, and I'll say {NAME}'s name when I do.</li>
         <li>I want the keys to the infirmary. Not for the title. Because I know how to run it, and somebody should.</li>
         <li>[hurt] Lying in that bed gave me a lot of time to think about how I'd run the infirmary. Better than this. I'm going to be physician.</li>
       </plain>
@@ -400,9 +422,11 @@
     <office>Council_Office_Steward</office>
     <weight>0.6</weight>
     <goal>serve as the colony's steward</goal>
+    <sparks><li>thought:Council_LostElection</li></sparks>
     <who><anyTrait><li>Kind</li><li>Ascetic</li></anyTrait></who>
     <chosen>
       <plain>
+        <li>[inherited] {NAME} never got the chance. So I will. I'll {GOAL}, and I'll say {NAME}'s name when I do.</li>
         <li>Somebody needs to remember birthdays and plan the feasts. I want to be the one who keeps this colony's spirits up.</li>
         <li>[trait:Ascetic] People here want too much and end up disappointed too often. I'd teach them to enjoy what we have. Steward suits me.</li>
       </plain>
@@ -427,8 +451,10 @@
     <office>Council_Office_Quartermaster</office>
     <weight>0.5</weight>
     <goal>become the colony's quartermaster</goal>
+    <sparks><li>thought:Council_LostElection</li></sparks>
     <chosen>
       <plain>
+        <li>[inherited] {NAME} never got the chance. So I will. I'll {GOAL}, and I'll say {NAME}'s name when I do.</li>
         <li>I know exactly what's in every stockpile, down to the last nail. It's about time someone gave me the keys.</li>
         <li>[trait:Greedy] Quartermaster. Imagine it. All the silver in the colony, counted by me, every evening. Just counted. Mostly.</li>
       </plain>
@@ -453,9 +479,11 @@
     <amount>5</amount>
     <weight>0.6</weight>
     <goal>have five true friends</goal>
+    <sparks><li>thought:Council_Soc_LeftOut</li><li>loss</li></sparks>
     <who><notTrait><li>Psychopath</li></notTrait></who>
     <chosen>
       <plain>
+        <li>[inherited] {NAME} never got the chance. So I will. I'll {GOAL}, and I'll say {NAME}'s name when I do.</li>
         <li>I have friends here. I want more. I want a table so full that somebody has to sit on a crate.</li>
         <li>[newcomer] I barely know anyone's name yet. By the time I'm done here, I want five of them to be friends.</li>
       </plain>
@@ -479,8 +507,10 @@
     <amount>5</amount>
     <weight>0.4</weight>
     <goal>see five more years with the colony</goal>
+    <sparks><li>downed</li><li>loss</li></sparks>
     <chosen>
       <plain>
+        <li>[inherited] {NAME} never got the chance. So I will. I'll {GOAL}, and I'll say {NAME}'s name when I do.</li>
         <li>Five more years. I want to see this place grow up, and I want to be here for it.</li>
         <li>[old] My knees know every winter by name now. I'd like to meet five more of them. Then I'll think about resting.</li>
       </plain>
@@ -504,8 +534,10 @@
     <amount>20</amount>
     <weight>0.5</weight>
     <goal>see {COUNT} people call this place home</goal>
+    <sparks><li>birth</li></sparks>
     <chosen>
       <plain>
+        <li>[inherited] {NAME} never got the chance. So I will. I'll {GOAL}, and I'll say {NAME}'s name when I do.</li>
         <li>I want a town. Not a camp, not a hideout. A town, with neighbors you don't like and gossip that travels.</li>
         <li>[small] There's only a handful of us. One bad raid and we're gone. I want this place to grow until nothing can wipe it out.</li>
       </plain>

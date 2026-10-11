@@ -107,10 +107,13 @@ namespace ColonyCouncil
 
         public void Hourly()
         {
-            if (!S.quirks) return;
             int now = Find.TickManager.TicksGame;
             foreach (var p in PawnsFinder.AllMaps_FreeColonistsSpawned)
-                if (p.Downed && !p.Dead) downedTick[p] = now;
+            {
+                if (!p.Downed || p.Dead) continue;
+                downedTick[p] = now;
+                CouncilGameComponent.Instance?.aspirations.Notify_Event(p, "downed");
+            }
         }
 
         public void Daily(CouncilGameComponent comp)

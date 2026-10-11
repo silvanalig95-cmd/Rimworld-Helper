@@ -104,7 +104,10 @@ namespace ColonyCouncil
             {
                 if (p.DevelopmentalStage.Juvenile())
                 {
-                    children.Add(p.ThingID);
+                    // A newborn: something for the adults to think about.
+                    if (children.Add(p.ThingID) && (p.ageTracker?.AgeBiologicalTicks ?? long.MaxValue) < GenDate.TicksPerDay * 3)
+                        foreach (var o in PawnsFinder.AllMaps_FreeColonists.Where(o => o != p && Eligible(o) && !o.DevelopmentalStage.Juvenile()))
+                            comp.aspirations.Notify_Event(o, "birth");
                     continue;
                 }
                 if (!children.Remove(p.ThingID)) continue;

@@ -34,4 +34,37 @@
     </lines>
   </ColonyCouncil.FlavorPoolDef>
 
+  <!-- They changed their mind. {OLDGOAL}: what they wanted before; {GOAL}: what they want now. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Journal_GoalChanged</defName>
+    <lines>
+      <plain>
+        <li>I used to want to {OLDGOAL}. After what happened, I want to {GOAL}. Funny how fast that can change.</li>
+        <li>Crossed out "{OLDGOAL}" in my head today. New plan: {GOAL}. It feels truer.</li>
+        <li>[afterraid] The fight changed something. I don't care about trying to {OLDGOAL} anymore. I want to {GOAL}.</li>
+      </plain>
+      <warm><li>I thought I wanted to {OLDGOAL}. Now I know what matters: I want to {GOAL}.</li></warm>
+      <blunt><li>Forget trying to {OLDGOAL}. I'm going to {GOAL}.</li></blunt>
+      <cheerful><li>NEW DREAM! Out with trying to {OLDGOAL}, in with: {GOAL}!</li></cheerful>
+      <gloomy><li>I wanted to {OLDGOAL}. That seems small now. I want to {GOAL}, before it's too late.</li></gloomy>
+      <cold><li>Revised objective: {GOAL}. The previous one, to {OLDGOAL}, no longer fits the circumstances.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- They took up a dead friend's unfinished goal. {OTHER_...}: the dead. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Journal_GoalInherited</defName>
+    <lines>
+      <plain>
+        <li>{OTHER_nameDef} wanted to {GOAL}. Didn't get the chance. So I'll do it, for both of us.</li>
+        <li>I've taken up {OTHER_nameDef}'s dream: to {GOAL}. It's the only thing I can still do for {OTHER_objective}.</li>
+      </plain>
+      <warm><li>I'm going to {GOAL}, the way {OTHER_nameDef} always meant to. I'll tell {OTHER_objective} about it at the grave.</li></warm>
+      <blunt><li>{OTHER_nameDef} never finished it. I will.</li></blunt>
+      <cheerful><li>{OTHER_nameDef} would want someone to {GOAL}. Guess who's going to!</li></cheerful>
+      <gloomy><li>Someone has to {GOAL} now that {OTHER_nameDef} can't. I suppose it's me.</li></gloomy>
+      <cold><li>{OTHER_nameDef}'s objective is unfinished. I'm assuming it.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
 </Defs>

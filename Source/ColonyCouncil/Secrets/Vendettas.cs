@@ -131,6 +131,9 @@ namespace ColonyCouncil
             {
                 if (p == null || current.Contains(p)) continue;
                 known.Remove(p);
+                // The ones who loved them: a loss that can change what they want from life.
+                foreach (var f in PawnsFinder.AllMaps_FreeColonists.Where(f => f != p && Eligible(f) && Close(comp, f, p)))
+                    comp.aspirations.Notify_Event(f, "loss");
                 if (p.Dead)
                 {
                     var killers = Killers(p, now);
