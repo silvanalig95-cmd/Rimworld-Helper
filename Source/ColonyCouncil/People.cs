@@ -16,7 +16,67 @@ namespace ColonyCouncil
         /// feelingless constructs and anything else that only looks like a person.
         /// </summary>
         public static bool HasInnerLife(Pawn p) =>
-            p != null && !p.Dead && p.RaceProps != null && p.RaceProps.Humanlike && p.needs?.mood != null && !p.IsMutant;
+            p != null && !p.Dead && p.RaceProps != null && p.RaceProps.Humanlike && p.needs?.mood != null && !p.IsMutant && !IsRaisedDead(p);
+
+        private static bool deadLooked;
+        private static TraitDef undeadTrait;
+        private static HediffDef undeadHediff;
+
+        /// <summary>The walking dead of magic mods (A RimWorld of Magic's raised undead keep a mood need, pinned at full).</summary>
+        public static bool IsRaisedDead(Pawn p)
+        {
+            if (!deadLooked)
+            {
+                deadLooked = true;
+                undeadTrait = DefDatabase<TraitDef>.GetNamedSilentFail("Undead");
+                undeadHediff = DefDatabase<HediffDef>.GetNamedSilentFail("TM_UndeadHD");
+            }
+            if (undeadTrait != null && (p.story?.traits?.HasTrait(undeadTrait) ?? false)) return true;
+            return undeadHediff != null && p.health?.hediffSet?.GetFirstHediffOfDef(undeadHediff) != null;
+        }
+
+        /// <summary>
+        /// Mechanoids are part of this game: they exist and are hostile. Rimedieval keeps the faction but turns it
+        /// friendly and destroys any that appear; other mods remove it outright.
+        /// </summary>
+        public static bool MechanoidsAround =>
+            Faction.OfMechanoids != null && !Faction.OfMechanoids.defeated && Faction.OfMechanoids.HostileTo(Faction.OfPlayer);
+
+        private static readonly Dictionary<System.Type, System.Reflection.PropertyInfo> pawnLists = new Dictionary<System.Type, System.Reflection.PropertyInfo>();
+
+        /// <summary>
+        /// Colonists held somewhere the game's pawn lists don't look: Vanilla Outposts keeps its occupants inside the
+        /// outpost (an "AllPawns" list), not as world pawns.
+        /// </summary>
+        public static IEnumerable<Pawn> OffMapColonists()
+        {
+            var objects = Find.WorldObjects?.AllWorldObjects;
+            if (objects == null) yield break;
+            foreach (var o in objects)
+            {
+                if (o == null) continue;
+                var type = o.GetType();
+                if (!pawnLists.TryGetValue(type, out var prop))
+                {
+                    prop = type.GetProperty("AllPawns", System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.Instance);
+                    if (prop != null && !typeof(IEnumerable<Pawn>).IsAssignableFrom(prop.PropertyType)) prop = null;
+                    pawnLists[type] = prop;
+                }
+                if (prop == null) continue;
+                IEnumerable<Pawn> list = null;
+                try
+                {
+                    list = prop.GetValue(o) as IEnumerable<Pawn>;
+                }
+                catch
+                {
+                    pawnLists[type] = null;
+                }
+                if (list == null) continue;
+                foreach (var p in list)
+                    if (p != null && p.Faction == Faction.OfPlayer) yield return p;
+            }
+        }
 
         /// <summary>
         /// Still one of the colony even when on no map: at an outpost, aboard a ship in flight, in a vehicle. False once
@@ -34,7 +94,7 @@ namespace ColonyCouncil
             float now = UnityEngine.Time.realtimeSinceStartup;
             if (oursIds == null || now - oursTime > 2f)
             {
-                oursIds = new HashSet<string>(PawnsFinder.AllMapsWorldAndTemporary_Alive.Where(StillOurs).Select(p => p.ThingID));
+                oursIds = new HashSet<string>(PawnsFinder.AllMapsWorldAndTemporary_Alive.Concat(OffMapColonists()).Where(StillOurs).Select(p => p.ThingID));
                 oursTime = now;
             }
             return oursIds;

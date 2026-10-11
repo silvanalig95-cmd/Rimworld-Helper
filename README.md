@@ -288,12 +288,24 @@ The council only suggests what your colony can actually do right now:
 Rimfolk patches nothing: no Harmony, no edits to vanilla defs. It only adds its own things and reads the
 game, so it shouldn't clash with other mods. A few things it does on purpose:
 - **Medieval Overhaul, Vanilla Brewing Expanded and other barrel mods:** fermenting barrels, kegs and stills
-  made with the Vanilla Expanded framework count for brewing wishes and room plans, and a stock of social drinks
-  (beer, mead, wine) fulfils the brewery wish.
+  made with the Vanilla Expanded framework or Processor Framework (Medieval Overhaul's rustic fermenting barrel)
+  count for brewing wishes and room plans, and a stock of social drinks (ale, mead, cider, wine) fulfils the
+  brewery wish.
 - **Alien races (Humanoid Alien Races):** every humanlike race gets the Story tab, and ages are read against the
   race's lifespan, so a 300-year-old elf isn't treated as elderly.
 - **Simple Sidearms:** an heirloom weapon carried as a sidearm still counts as carried.
-- **No mechanoids:** mechanoid dreams and goals only show up in games that have mechanoids.
+- **No mechanoids:** mechanoid dreams and goals only show up in games where mechanoids are around and hostile
+  (Rimedieval's default, which turns them friendly, counts as none).
+- **Rimedieval:** events it removes stay removed (dream omens won't bring them back), and hidden buildings are
+  never suggested.
+- **Vanilla Skills Expanded, Alpha Skills:** their passions are judged by how fast they make a pawn learn, so
+  apathy-type passions don't count as passions and natural/critical ones count as burning.
+- **Vanilla Outposts, gravships, vehicles (Vehicle Framework):** someone away at an outpost, in flight or aboard a
+  vehicle is still one of the colony: no grief, no "gone" in the annals, and their records are kept.
+- **Anomaly ghouls, A RimWorld of Magic's raised undead and spirits:** not treated as people, so no life goals,
+  quirks, dreams or friendships for them.
+- **Vanilla Social Interactions Expanded:** works alongside. Its best friends and teaching sit next to Rimfolk's
+  bonds and mentorships; its "aspirations" are short inspiration tasks, not life goals, so nothing doubles up.
 - **Guests, prisoners and visitors** (Hospitality and the like) are left out of meetings, votes and council
   talk.
 - **Removing a mod mid-game:** room plans that used a material from that mod fall back to a default material,

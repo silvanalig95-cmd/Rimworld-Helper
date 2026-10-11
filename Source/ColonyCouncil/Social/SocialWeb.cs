@@ -267,7 +267,7 @@ namespace ColonyCouncil
                 cliquesBuilt = false;
                 return;
             }
-            var pawns = PawnsFinder.AllMaps_FreeColonists.Where(Eligible).ToList();
+            var pawns = PawnsFinder.AllMaps_FreeColonists.Where(Eligible).Distinct().ToList();
 
             // People who left (banished, walked out, arrested): lessons stop, other bonds fade away.
             foreach (var t in ties.Where(t => Gone(t.a) || Gone(t.b)).ToList())

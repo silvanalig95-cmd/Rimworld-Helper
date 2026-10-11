@@ -23,7 +23,8 @@ namespace ColonyCouncil
             if (knownPawnIds == null || knownPawnIdsFrame != UnityEngine.Time.frameCount)
             {
                 knownPawnIds = new HashSet<string>(PawnsFinder.AllMapsWorldAndTemporary_AliveOrDead
-                    .Concat(PawnsFinder.AllMapsCaravansAndTravellingTransporters_Alive).Where(p => p != null).Select(p => p.ThingID));
+                    .Concat(PawnsFinder.AllMapsCaravansAndTravellingTransporters_Alive).Concat(People.OffMapColonists())
+                    .Where(p => p != null).Select(p => p.ThingID));
                 knownPawnIdsFrame = UnityEngine.Time.frameCount;
             }
             return knownPawnIds;

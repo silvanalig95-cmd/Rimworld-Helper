@@ -289,7 +289,7 @@ namespace ColonyCouncil
                 int threat = Find.Maps.Where(m => m.IsPlayerHome).Select(m => m.storyState.LastThreatBigTick).DefaultIfEmpty(0).Max();
                 if (threat <= 0 || Find.TickManager.TicksGame - threat > GenDate.TicksPerDay * 2) return null;
             }
-            if (def.needsMechanoids && (Faction.OfMechanoids == null || Faction.OfMechanoids.defeated)) return null;
+            if (def.needsMechanoids && !People.MechanoidsAround) return null;
             if (!def.hediffs.NullOrEmpty() && !(p.health?.hediffSet?.hediffs.Any(h => def.hediffs.Contains(h.def.defName)) ?? false)) return null;
             if (!About(comp, def.about, p, c)) return null;
             if (c.skill == null) c.skill = SkillOf(p);
@@ -496,7 +496,7 @@ namespace ColonyCouncil
         /// </summary>
         private static bool OmenCanHappen(IncidentDef inc, Map map)
         {
-            if (!inc.TargetAllowed(map)) return false;
+            if (!DefDatabase<IncidentDef>.AllDefsListForReading.Contains(inc) || !inc.TargetAllowed(map)) return false;
             if (inc.defName == "SolarFlare" && !Avail.HasElectricity) return false;
             var parms = StorytellerUtility.DefaultParmsNow(inc.category, map);
             return inc.Worker.CanFireNow(parms);

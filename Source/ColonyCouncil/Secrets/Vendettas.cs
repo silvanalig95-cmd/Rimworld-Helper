@@ -126,7 +126,7 @@ namespace ColonyCouncil
 
         private void WatchLosses(CouncilGameComponent comp, int now)
         {
-            var current = PawnsFinder.AllMapsCaravansAndTravellingTransporters_Alive_FreeColonists.Where(Eligible).ToList();
+            var current = PawnsFinder.AllMapsCaravansAndTravellingTransporters_Alive_FreeColonists.Where(Eligible).Distinct().ToList();
             foreach (var p in known.ToList())
             {
                 if (p == null)

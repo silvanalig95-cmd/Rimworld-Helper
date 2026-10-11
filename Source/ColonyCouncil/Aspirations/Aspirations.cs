@@ -191,7 +191,7 @@ namespace ColonyCouncil
         {
             if (Rec == null || p.records == null) return false;
             // Some mod lists (medieval ones especially) have no mechanoids at all.
-            if (Rec == RecordDefOf.KillsMechanoids && (Faction.OfMechanoids == null || Faction.OfMechanoids.defeated)) return false;
+            if (Rec == RecordDefOf.KillsMechanoids && !People.MechanoidsAround) return false;
             return true;
         }
 
