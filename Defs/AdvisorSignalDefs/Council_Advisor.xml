@@ -50,10 +50,10 @@
     <template>Council_Freezer</template>
     <tips>
       <li>Rotting food is wasted work. A freezer (a closed room cooled below 0°C) stops most spoilage cold.</li>
-      <li>Coolers push heat out one side and cold in the other. Put them in a wall with the hot side facing outside, and use a double door to keep the cold in.</li>
+      <li>[!lowtech] Coolers push heat out one side and cold in the other. Put them in a wall with the hot side facing outside, and use a double door to keep the cold in.</li>
       <li>Without cooling you can still preserve food: pemmican and other preserved foods last far longer than raw crops or meat.</li>
       <li>Food stops rotting at 0 °C and below. Between 0 and 10 °C it only rots more slowly.</li>
-      <li>Set two coolers a little apart, for example -5 °C and -10 °C, so a door left open doesn't thaw the room.</li>
+      <li>[!lowtech] Set two coolers a little apart, for example -5 °C and -10 °C, so a door left open doesn't thaw the room.</li>
       <li>Passive coolers can't go below 17 °C. They keep people comfortable but can't keep food fresh.</li>
     </tips>
   </ColonyCouncil.AdvisorSignalDef>

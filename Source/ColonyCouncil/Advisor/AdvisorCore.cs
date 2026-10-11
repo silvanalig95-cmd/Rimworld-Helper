@@ -55,21 +55,17 @@ namespace ColonyCouncil
             }
         }
 
-        /// <summary>A tip that stays the same for a few days, then rotates.</summary>
+        /// <summary>
+        /// A tip that stays the same for a few days, then rotates. Tips tagged for another era never show (no
+        /// electric coolers in a medieval colony); tips about guns and power only when that's all there is.
+        /// </summary>
         public string TipForToday
         {
             get
             {
                 if (tips == null || tips.Count == 0) return null;
                 int day = (Find.TickManager?.TicksGame ?? 0) / (GenDate.TicksPerDay * 3);
-                // Skip tips about guns and power in a medieval colony, unless that's all there is.
-                int fitting = 0;
-                foreach (var t in tips) if (Flavor.TechFits(t)) fitting++;
-                if (fitting == 0) return tips[(day + shortHash) % tips.Count];
-                int idx = (day + shortHash) % fitting;
-                foreach (var t in tips)
-                    if (Flavor.TechFits(t) && idx-- == 0) return t;
-                return tips[0];
+                return Flavor.PickTip(tips, day + shortHash);
             }
         }
 

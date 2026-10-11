@@ -251,12 +251,12 @@ namespace ColonyCouncil
                 GUI.color = Color.white;
             }
 
-            // A word of advice
-            if (t.tips != null && t.tips.Count > 0)
+            // A word of advice that fits the colony's era
+            string tip = Flavor.PickTip(t.tips, (int)(Time.realtimeSinceStartup / 12f));
+            if (!tip.NullOrEmpty())
             {
-                int i = (int)(Time.realtimeSinceStartup / 12f) % t.tips.Count;
                 GUI.color = Faint;
-                y += 4f + Label(y + 4f, w, t.tips[i]);
+                y += 4f + Label(y + 4f, w, tip);
                 GUI.color = Color.white;
             }
 

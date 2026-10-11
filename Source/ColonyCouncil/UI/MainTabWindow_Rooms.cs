@@ -143,7 +143,8 @@ namespace ColonyCouncil
                 lines.Add("CC_Build_Contains".Translate(string.Join(", ", furniture.GroupBy(f => f.def).Select(g => g.Count() > 1 ? g.Count() + "× " + g.Key.label : g.Key.label))));
             if (suggestedBecause != null) lines.Add("\n" + "CC_Rooms_Suggested".Translate(suggestedBecause).Colorize(Suggested));
             if (reason != null) lines.Add("\n" + reason.Colorize(new Color(1f, 0.5f, 0.45f)));
-            if (t.tips != null && t.tips.Count > 0) lines.Add("\n" + t.tips[0]);
+            string tip = Flavor.PickTip(t.tips, 0);
+            if (!tip.NullOrEmpty()) lines.Add("\n" + tip);
             return string.Join("\n", lines);
         }
 
