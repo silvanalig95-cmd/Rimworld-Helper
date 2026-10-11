@@ -116,6 +116,7 @@ namespace ColonyCouncil
         {
             var x = ctx.stranger;
             if (designation == null || x == null || x.Dead || !x.Spawned) return;
+            if (chance < 1f && !Rand.Chance(chance)) return;
             var dm = x.Map.designationManager;
             if (dm.DesignationOn(x) != null) return;
             dm.AddDesignation(new Designation(x, designation));

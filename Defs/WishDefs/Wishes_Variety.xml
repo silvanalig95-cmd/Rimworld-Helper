@@ -37,7 +37,7 @@
         <li>My breath fogs when I wake up. Indoors. I'd like {THING} in my room before my toes give notice.</li>
         <li>[fall,evening] The nights are turning. I can feel it in my teeth. A fire in my room, before it gets worse?</li>
         <li>[winter,night] It's the middle of the night and I'm wearing every piece of clothing I own. In bed.</li>
-        <li>[old] Cold gets into old joints and stays there. {THING} by my bed would coax it back out.</li>
+        <li>[old] Cold gets into old joints and stays there. A fire by my bed would coax it back out.</li>
         <li>[trait:Pyromaniac] I want a fire in my room. For warmth. Purely for warmth. Why is everyone looking at me like that?</li>
       </plain>
       <warm>
@@ -72,7 +72,7 @@
       <plain><li>I'll sleep in my boots. And everything else I own. And possibly the rug.</li></plain>
       <warm><li>It's alright. I'll pile on whatever I can find. There are people worse off.</li></warm>
       <blunt><li>If I freeze, I'm haunting this council first.</li></blunt>
-      <gloomy><li>[winter] Cold room, long winter. See you in spring. Maybe.</li></gloomy>
+      <gloomy><li>Cold room, long winter. See you in spring. Maybe.</li></gloomy>
     </expired>
     <reminder>
       <plain>
@@ -108,7 +108,7 @@
     <request>
       <plain>
         <li>Our books live in a pile by the door. Something treads on them twice a day. Could we build {THING}?</li>
-        <li>A colony with books and nowhere to keep them is a colony with kindling.</li>
+        <li>[winter] A colony with books and nowhere to keep them is a colony with kindling.</li>
         <li>I've read everything we have twice. The least we can do is give it a proper home.</li>
         <li>[rain] The roof leaks and the books are on the floor. You can guess the rest.</li>
         <li>[evening] Evenings would be better with a book in hand and a shelf to put it back on.</li>
@@ -125,6 +125,7 @@
       </cheerful>
       <gloomy>
         <li>[lowmood] Books are the only company here that never lets me down. They deserve better than the floor.</li>
+        <li>We'll all be forgotten out here. The books could at least be forgotten on a shelf.</li>
       </gloomy>
       <cold>
         <li>Books on the floor rot, and what's in them rots too. A shelf costs less than what we're losing.</li>
@@ -179,7 +180,7 @@
       <plain>
         <li>I've read our books so often I'm correcting the spelling in my head. We need new ones.</li>
         <li>Next trader through, could we look at the books first? Before the weapons. Well. Alongside the weapons.</li>
-        <li>I need stories. Somebody else's, for a change. My own are wearing thin.</li>
+        <li>[skill:Artistic,night] I need stories. Somebody else's, for a change. My own are wearing thin.</li>
         <li>[winter] Long nights and nothing new to read. I've started reading the labels on the crates.</li>
         <li>[skill:Social,evening] I keep quoting the same three books at people. They've noticed. They've started leaving the room.</li>
         <li>[trait:NightOwl] I'm up all night anyway. I'd like to be up with something I haven't read.</li>
@@ -195,6 +196,7 @@
       </cheerful>
       <gloomy>
         <li>[lowmood] When the book ends, I have to come back here. I'd rather the books didn't end so often.</li>
+        <li>Reading is the only time I get to be somewhere else. I'd like to be somewhere else more often.</li>
       </gloomy>
       <cold>
         <li>Idle minds look for trouble. Books keep them busy. I'd like {TARGET} in storage, at least.</li>
@@ -248,6 +250,7 @@
         <li>[hurt] I got hurt because I was a step slow. I'd like to be a step faster next time.</li>
         <li>[skill:Shooting,clear] Clear day, good light, and nothing to aim at that isn't a person or the livestock.</li>
         <li>[skill:Melee,morning] Every morning I wake up wanting to hit something that won't hit back or file a complaint.</li>
+        <li>[trait:Bloodlust] I need something to stab between raids. Build {THING}. It's for everyone's safety, really.</li>
       </plain>
       <warm>
         <li>I'd teach anyone who wants to learn. I just need {THING} and a corner of the yard.</li>
@@ -397,7 +400,7 @@
         <li>Chopping party! Everyone outside! Trees don't fell themselves! Well, sometimes lightning helps!</li>
       </cheerful>
       <gloomy>
-        <li>[cold] First we burn the chairs. Then the beds. Then the doors. I've seen how it goes.</li>
+        <li>First we burn the chairs. Then the beds. Then the doors. I've seen how it goes.</li>
       </gloomy>
       <cold>
         <li>Running out of fuel in winter is how small colonies die. Let's not be a small colony that died.</li>
@@ -414,7 +417,7 @@
       <plain><li>I'll start working out which chair burns longest.</li></plain>
       <warm><li>We'll share the fires and huddle up. It'll be alright. Mostly.</li></warm>
       <blunt><li>When we're freezing, your bed goes in the fire first.</li></blunt>
-      <gloomy><li>[winter] The cold's coming for us, and we let it.</li></gloomy>
+      <gloomy><li>The cold's coming for us, and we let it.</li></gloomy>
     </expired>
     <reminder>
       <plain>
@@ -462,6 +465,7 @@
       </plain>
       <warm>
         <li>[evening] I sat with the animals after feeding. They can't ask, so I'm asking for them: feed for the winter.</li>
+        <li>I'll do the cutting and the hauling myself. I just don't want to watch them go thin.</li>
       </warm>
       <blunt>
         <li>No fodder, no animals. No animals, no milk, no wool, no meat. Your call.</li>
@@ -524,6 +528,7 @@
       <plain>
         <li>Everything we eat tastes brown. I want something golden. Honey, specifically. A lot of honey.</li>
         <li>We have a jar's worth of honey. That's not a stock. That's a tease.</li>
+        <li>[rain] Gray day, wet boots, plain bread. Honey would only fix one of those, and it's the one that matters.</li>
         <li>[night] I dream about honey. Not in a nice way. In a way where I wake up chewing my thumb.</li>
         <li>[morning] Breakfast without honey is just wet regret. Could we keep a proper stock in the larder?</li>
         <li>[winter] Sweet things get you through winter. Everyone knows that. Everyone who's had honey in winter.</li>
@@ -672,6 +677,7 @@
       </cheerful>
       <gloomy>
         <li>[cold] One day you'll find me frozen to a fence post. Something warm to wear might push that day back.</li>
+        <li>I've been cold so long I've forgotten what my fingers are for. Something warm, if anyone's handing it out.</li>
       </gloomy>
       <cold>
         <li>Cold slows the hands and dulls the mind. My output drops until I'm properly dressed.</li>
@@ -735,6 +741,7 @@
       </cheerful>
       <gloomy>
         <li>[afterraid] Raiders aim for the head. A hat won't change that. I'd still like one.</li>
+        <li>Bare head, bare walls, bare prospects. A hat would cover one of those.</li>
       </gloomy>
       <cold>
         <li>Sun and rain on the head are avoidable discomforts. A hat is a trivial expense.</li>
@@ -783,7 +790,7 @@
     <request>
       <plain>
         <li>Everything I own was stitched by someone in a hurry. I'd like something stitched by someone who cared.</li>
-        <li>Some people here dress better than me. I've noticed. I notice everything.</li>
+        <li>[evening] Some people here dress better than me at supper. I've noticed. I notice everything.</li>
         <li>I deserve something fine. Excellent work, at least. Masterwork, if we're being honest.</li>
         <li>[rich,morning] We have money now. I'd like to look like it.</li>
         <li>[poor,evening] I know we're poor. That's exactly why one of us should look like we aren't.</li>
@@ -797,7 +804,7 @@
         <li>I look like a scarecrow. Get me something fine before the crows start respecting me.</li>
       </blunt>
       <cheerful>
-        <li>[highmood] Something beautiful to wear! Good stitching! I'll twirl! Nobody has to watch me twirl!</li>
+        <li>Something beautiful to wear! Good stitching! I'll twirl! Nobody has to watch me twirl!</li>
       </cheerful>
       <gloomy>
         <li>Fine clothes won't make this place less of a dump. They'd make me less of one, though.</li>
@@ -866,6 +873,7 @@
       </cheerful>
       <gloomy>
         <li>[lowmood] I want something beautiful in my life. If it has to be small enough to wear, so be it.</li>
+        <li>Nothing lasts out here except metal, maybe. I'd like to wear some that's pretty.</li>
       </gloomy>
       <cold>
         <li>Jewelry is portable wealth. I also like how it looks. Both reasons are valid.</li>
@@ -881,7 +889,7 @@
     <expired>
       <plain><li>Nothing that shines, then. Just dirt and work clothes.</li></plain>
       <cheerful><li>That's okay! I'll tie a pretty rock on a string! Basically jewelry!</li></cheerful>
-      <gloomy><li>Beautiful things are for other people. I knew that.</li></gloomy>
+      <gloomy><li>Pretty things belong to prettier lives. I should have known.</li></gloomy>
     </expired>
     <reminder>
       <plain><li>Still nothing shiny. I keep touching my neck out of habit.</li></plain>
@@ -929,6 +937,7 @@
       </cheerful>
       <gloomy>
         <li>[lowmood] I'll probably die in this colony. I'd like to see one other place first.</li>
+        <li>I've seen the same view every day for ages. It's not a bad view. It's just the only one.</li>
       </gloomy>
       <cold>
         <li>I'd make a useful escort: trading, scouting, negotiating. The change of scenery is incidental.</li>
@@ -980,6 +989,7 @@
         <li>[poor,day] I know we're poor. I know. But have you seen {OTHER_nameDef}'s {THINGBARE}? Have you really looked?</li>
         <li>[trait:Greedy] {OTHER_nameDef} has something I want, and I always get what I want. Eventually. Now would be nice.</li>
         <li>[rain] {OTHER_nameDef} is covering the packs against the rain. I'd like that {THINGBARE} under our roof instead.</li>
+        <li>[night] The trader's camp is quiet. That {THINGBARE} is just sitting in a pack out there. Not that I've been to check.</li>
       </plain>
       <warm>
         <li>I never ask for things like this. But {OTHER_nameDef} has {THING}, and I'd treasure it. Truly.</li>
@@ -988,7 +998,7 @@
         <li>Buy me that {THINGBARE} before {OTHER_nameDef} packs up, or I trade my own boots for it.</li>
       </blunt>
       <cheerful>
-        <li>[highmood] Did you see it? {OTHER_nameDef} has {THING}! It's perfect! It's PERFECT! Can we? Can we?</li>
+        <li>Did you see it? {OTHER_nameDef} has {THING}! It's perfect! It's PERFECT! Can we? Can we?</li>
       </cheerful>
       <gloomy>
         <li>{OTHER_nameDef} will leave, the {THINGBARE} will go too, and I'll spend the rest of my life knowing.</li>
@@ -1104,7 +1114,7 @@
       <plain>
         <li>I love the work. I'm just bad at it. {OTHER_nameDef} isn't. Could I learn from {OTHER_objective}?</li>
         <li>{OTHER_nameDef} makes it look easy. When I try, it looks like an accident. I want lessons.</li>
-        <li>I've been watching {OTHER_nameDef} work when nobody's looking. It's less creepy than it sounds. I'd rather just be taught.</li>
+        <li>[evening] I've been watching {OTHER_nameDef} work when nobody's looking. It's less creepy than it sounds. I'd rather just be taught.</li>
         <li>[newcomer] I'm new, I know. But I want to be good at this, and {OTHER_nameDef} could show me how.</li>
         <li>[teen] I'm young enough to learn anything, and {OTHER_nameDef} is the best we've got when it comes to {SUBJECT}.</li>
         <li>[morning] I'd get up before dawn for it. An hour with {OTHER_nameDef} every morning, learning to do it right.</li>
@@ -1120,7 +1130,7 @@
         <li>I want to be as good as {OTHER_nameDef}! Or half as good! A quarter! I'm flexible!</li>
       </cheerful>
       <gloomy>
-        <li>[lowmood] I'll never be as good as {OTHER_nameDef}. But I'd like to be less bad. That's achievable, isn't it?</li>
+        <li>I'll never be as good as {OTHER_nameDef}. But I'd like to be less bad. That's achievable, isn't it?</li>
       </gloomy>
       <cold>
         <li>{OTHER_nameDef}'s knowledge dies with {OTHER_objective} unless someone learns it. I volunteer.</li>
@@ -1237,6 +1247,7 @@
         <li>[afterraid] We lived through that one. Somebody deserves thanks for it, and I'd like a proper place to say it.</li>
         <li>[night] At night it gets very quiet and I feel very small. A shrine would help with one of those.</li>
         <li>[storm] Hear that? Somebody up there is angry. Let's build them something nice.</li>
+        <li>[trait:Nervous] I pray when I'm scared, which is always. I'd like somewhere to do it sitting down.</li>
       </plain>
       <warm>
         <li>It wouldn't just be for me. Anyone could sit there when things are hard. And things are hard.</li>
@@ -1245,7 +1256,7 @@
         <li>I need somewhere to pray that isn't next to the latrine. Build {THING}.</li>
       </blunt>
       <cheerful>
-        <li>[spring|summer] A little shrine! With offerings! Everyone can leave a pebble or a flower! It'll be lovely!</li>
+        <li>A little shrine! With offerings! Everyone can leave a pebble or a flower! It'll be lovely!</li>
       </cheerful>
       <gloomy>
         <li>Nobody's listening, probably. But if someone is, I'd like a proper place to complain.</li>
@@ -1301,9 +1312,10 @@
         <li>[hot] It's sweltering and we all smell like the inside of a boot. A bath. For everyone's sake.</li>
         <li>[afterraid] There's still blood under my fingernails from the raid. I'd like to soak until it's gone.</li>
         <li>[old] My back aches every morning. A long soak in hot water would quiet it down.</li>
+        <li>[rain] Mud to the knees, again. I'd like to sit in hot water until I forget what mud is.</li>
       </plain>
       <warm>
-        <li>[evening] Imagine coming in at the end of the day and sinking into warm water. Everyone would be kinder for it.</li>
+        <li>Imagine coming in at the end of the day and sinking into warm water. Everyone would be kinder for it.</li>
       </warm>
       <blunt>
         <li>We stink. All of us. You too. Build {THING}.</li>
@@ -1370,6 +1382,7 @@
         <li>[hot] In this heat, meat turns before I can get it into the pot. I need {THING}.</li>
         <li>[lowtech,summer] We don't have cold rooms. We have smoke and patience. Give me the smoke.</li>
         <li>[poor,evening] We can't afford to waste a scrap of meat. Smoking it means we don't have to.</li>
+        <li>[winter] Fresh meat in winter is a rumor. Smoked meat is a plan.</li>
       </plain>
       <warm>
         <li>If we could keep meat longer, nobody would go hungry between hunts. I'd tend it every day.</li>
@@ -1378,7 +1391,7 @@
         <li>I'm sick of burying meat. Build {THING} or start eating faster.</li>
       </blunt>
       <cheerful>
-        <li>[highmood] Smoked meat! Jerky! Smoked everything! I'll smoke a boot if we run out of meat!</li>
+        <li>Smoked meat! Jerky! Smoked everything! I'll smoke a boot if we run out of meat!</li>
       </cheerful>
       <gloomy>
         <li>Everything out here rots eventually. Meat, people, plans. At least the meat we can slow down.</li>
@@ -1565,9 +1578,10 @@
         <li>[large,day] There are enough of us now to be called something. A banner would make it official.</li>
         <li>[small,evening] We're few, but we're here. A banner says that louder than we can.</li>
         <li>[storm] Imagine our colors snapping in a wind like this. Instead it's just our laundry.</li>
+        <li>[newcomer] Where I come from, you knew a place by its colors. What are ours?</li>
       </plain>
       <warm>
-        <li>[trusting] Something we all share. Anyone coming home from a caravan would see it from the hills and know.</li>
+        <li>Something we all share. Anyone coming home from a caravan would see it from the hills and know.</li>
       </warm>
       <blunt>
         <li>Raise a banner. Let raiders see whose land they're about to bleed on.</li>
@@ -1629,6 +1643,7 @@
         <li>[night] If they come tonight, where's my weapon? Somewhere. Probably. That's not good enough.</li>
         <li>[rain] Weapons left in a damp heap rust, and rusty weapons fail at the worst moment. Let's hang them up.</li>
         <li>[trait:Nervous] I check where my weapon is four times a day. A rack would get me down to two.</li>
+        <li>[trait:Tough] I can take a hit. What I can't take is not finding my weapon when the hit's coming.</li>
       </plain>
       <warm>
         <li>It's not about looking tough. It's about everyone grabbing what they need and getting home alive.</li>
@@ -1637,7 +1652,7 @@
         <li>Build {THING}. Next person who leaves a weapon on the dining table loses it. In a way they'll remember.</li>
       </blunt>
       <cheerful>
-        <li>[highmood] A rack with all our weapons on it, gleaming! It'll look so intimidating! Like a real fort!</li>
+        <li>A rack with all our weapons on it, gleaming! It'll look so intimidating! Like a real fort!</li>
       </cheerful>
       <gloomy>
         <li>When the big raid comes, we'll lose seconds finding our weapons. Seconds are people, out here.</li>
@@ -1708,6 +1723,7 @@
       </cheerful>
       <gloomy>
         <li>[grieving] Long after we're gone, a statue will still be standing. Might as well leave a good one.</li>
+        <li>Everything we build here is built to survive. I'd like one more thing built just to be looked at.</li>
       </gloomy>
       <cold>
         <li>Art raises the beauty of a room, and beauty steadies minds. One more sculpture is a modest request.</li>
@@ -1772,6 +1788,7 @@
       </cheerful>
       <gloomy>
         <li>[lowmood] Somewhere to sit and stare at the horizon. Waiting for the next raid, probably. But sitting.</li>
+        <li>Some days my legs give out halfway through. A bench would let me pretend it was a choice.</li>
       </gloomy>
       <cold>
         <li>A short rest outdoors restores focus. A bench costs little. Put one by the fields.</li>

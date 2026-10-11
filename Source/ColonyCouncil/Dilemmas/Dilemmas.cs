@@ -584,6 +584,7 @@ namespace ColonyCouncil
             int n = count > 0 ? count : ctx.count;
             var at = ctx.a != null && ctx.a.Spawned ? ctx.a : ctx.Colonists.FirstOrDefault();
             if (def == null || n <= 0 || at == null) return;
+            if (chance < 1f && !Rand.Chance(chance)) return;
             while (n > 0)
             {
                 var t = ThingMaker.MakeThing(def, def.MadeFromStuff ? GenStuff.DefaultStuffFor(def) : null);
