@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Moments between colonists (ColonyCouncil.InteractionWorker_Moment). They are ordinary conversations: the game's
+    social system picks them among all others when their conditions fit (MomentExtension, see
+    Source/ColonyCouncil/Social/Moments.cs), they go into the social log and show as Interaction Bubbles. Nobody is
+    ever hurt: contests are friendly. Mod-only moments name their mods (mods/needsDefs) and simply never happen
+    without them.
+  -->
+
+  <InteractionDef Name="Council_MomentBase" Abstract="True">
+    <workerClass>ColonyCouncil.InteractionWorker_Moment</workerClass>
+    <symbol>ColonyCouncil/Symbols/Moment</symbol>
+  </InteractionDef>
+
+  <!-- ===================== Grieving together ===================== -->
+  <InteractionDef ParentName="Council_MomentBase">
+    <defName>Council_Moment_GriefShared</defName>
+    <label>grieved together</label>
+    <symbol>ColonyCouncil/Symbols/Heart</symbol>
+    <recipientThought>Council_Moment_NotAlone</recipientThought>
+    <initiatorThought>Council_Moment_NotAlone</initiatorThought>
+    <logRulesInitiator>
+      <rulesStrings>
+        <li>r_logentry->[INITIATOR_nameDef] sat with [RECIPIENT_nameDef] for a while. Neither said much. Neither needed to.</li>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] traded stories about the one they lost, and somewhere in the middle one of them laughed.</li>
+        <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] whether it gets easier. [RECIPIENT_nameDef] said [answer].</li>
+        <li>answer->[RECIPIENT_pronoun] would let [INITIATOR_objective] know</li>
+        <li>answer->not easier, just quieter</li>
+        <li>answer->it does, a little, every day</li>
+      </rulesStrings>
+    </logRulesInitiator>
+    <modExtensions>
+      <li Class="ColonyCouncil.MomentExtension">
+        <weight>0.12</weight>
+        <cooldownDays>4</cooldownDays>
+        <initiatorMemories><li>KnowColonistDied</li><li>PawnWithGoodOpinionDied</li><li>WitnessedDeathFamily</li><li>WitnessedDeathAlly</li><li>ColonistLost</li></initiatorMemories>
+        <memoryDays>6</memoryDays>
+        <sharedMemory>true</sharedMemory>
+        <minOpinion>0</minOpinion>
+        <bumpTie>Friends</bumpTie>
+        <bumpAmount>4</bumpAmount>
+      </li>
+    </modExtensions>
+  </InteractionDef>
+
+  <!-- ===================== A friendly contest: arm wrestling ===================== -->
+  <InteractionDef ParentName="Council_MomentBase">
+    <defName>Council_Moment_ArmWrestle</defName>
+    <label>arm-wrestled</label>
+    <symbol>ColonyCouncil/Symbols/Star</symbol>
+    <logRulesInitiator>
+      <rulesStrings>
+        <li>r_logentry->[INITIATOR_nameDef] slapped an elbow on the table and dared [RECIPIENT_nameDef] to an arm-wrestling match.</li>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] settled an old argument the only sensible way: arm wrestling, best of three.</li>
+        <li>r_logentry->A small crowd gathered as [INITIATOR_nameDef] and [RECIPIENT_nameDef] locked hands across the table.</li>
+      </rulesStrings>
+    </logRulesInitiator>
+    <modExtensions>
+      <li Class="ColonyCouncil.MomentExtension">
+        <weight>0.04</weight>
+        <cooldownDays>6</cooldownDays>
+        <mutualFriends>true</mutualFriends>
+        <initiatorTags>!child,!hurt,!old,relaxing|eating|evening</initiatorTags>
+        <recipientTags>!child,!hurt,!old</recipientTags>
+        <contestSkill>Melee</contestSkill>
+        <winnerThought>Council_Moment_WonContest</winnerThought>
+        <loserThought>Council_Moment_LostContest</loserThought>
+        <initiatorWonPack>Council_Sent_InitiatorWon</initiatorWonPack>
+        <recipientWonPack>Council_Sent_RecipientWon</recipientWonPack>
+        <bumpTie>Friends</bumpTie>
+        <bumpAmount>2</bumpAmount>
+      </li>
+    </modExtensions>
+  </InteractionDef>
+
+  <!-- ===================== Contest results ===================== -->
+  <RulePackDef>
+    <defName>Council_Sent_InitiatorWon</defName>
+    <rulePack>
+      <rulesStrings>
+        <li>sent->[INITIATOR_nameDef] won, and was insufferable about it for the rest of the day.</li>
+        <li>sent->[INITIATOR_nameDef] won. [RECIPIENT_nameDef] demanded a rematch.</li>
+        <li>sent->[INITIATOR_nameDef] came out on top, barely.</li>
+      </rulesStrings>
+    </rulePack>
+  </RulePackDef>
+
+  <RulePackDef>
+    <defName>Council_Sent_RecipientWon</defName>
+    <rulePack>
+      <rulesStrings>
+        <li>sent->[RECIPIENT_nameDef] won, and was gracious about it, mostly.</li>
+        <li>sent->[RECIPIENT_nameDef] won. [INITIATOR_nameDef] blamed the table.</li>
+        <li>sent->[RECIPIENT_nameDef] came out on top, to [INITIATOR_nameDef]'s loud disbelief.</li>
+      </rulesStrings>
+    </rulePack>
+  </RulePackDef>
+
+</Defs>

@@ -301,6 +301,24 @@ can't build. Every suggestion goes through one gate (`Avail`):
 
 ---
 
+## Playing nicely with any modlist (rules for every integration)
+Rimfolk is played with a 200+ mod medieval list, but must work just as well with any other list, including a
+plain vanilla or industrial run. Every feature that touches another mod or a game system follows these rules:
+
+1. **Soft integrations only.** A mod-specific feature switches itself on when that mod is active and is simply
+   absent otherwise: defs are matched by name at runtime (`GetNamedSilentFail`, type names, package ids), never by
+   XML cross-references to another mod's defs, and mod-only content is gated (`MayRequire`, mod checks). Removing a
+   mod mid-save must not leave errors or broken entries behind.
+2. **Never harder or emptier without a mod.** Integrations add flavor and options; they don't carry the balance.
+   With a mod missing, the base experience stays complete and fair.
+3. **Only what the colony has unlocked.** Wishes, ambitions, advice, room plans, decrees and dilemmas only ask for or
+   suggest what the colony can research, build, make or buy now. Nothing pushes the player into a tech line or a
+   mod's late-game system (diplomatic marriages, faction wars) they haven't chosen to engage with.
+4. **No per-run adjustment.** Era (medieval or industrial) and mods are detected automatically; medieval content stays
+   out of an industrial run and the other way round.
+5. **Nobody gets hurt for flavor.** Moments between colonists never injure anyone: contests are friendly (arm
+   wrestling, races, riddles), never fights with weapons.
+
 ## Limits and risks
 
 - **Heuristics are approximate.** Defense strength in particular is hard to compute

@@ -1526,4 +1526,8 @@ Those against it ({WHO}) will trust the council less and resent it more than usu
   <CC_Moods_Lifting>Lifting the colony</CC_Moods_Lifting>
   <CC_Moods_People>{0} colonist(s)</CC_Moods_People>
 
+  <!-- Moments between colonists -->
+  <CC_Settings_Moments>Moments between colonists</CC_Settings_Moments>
+  <CC_Settings_Moments_Tip>Colonists share small moments in conversation: grieving together, talking shop, praising the cook, old stories by the fire, friendly contests that hurt nobody. They show in the social log, and as speech bubbles with Interaction Bubbles.</CC_Settings_Moments_Tip>
+  <CC_Cause_Contest>{0} with {1}.</CC_Cause_Contest>
 </LanguageData>

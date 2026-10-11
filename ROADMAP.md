@@ -44,6 +44,18 @@ The Almanac learns about the mods in the user's modlist, and Rimfolk uses that k
 - Done: 104 Almanac articles covering all 216 mods of the main medieval modlist; notes and `Modlists/HOOKS.md`.
   Next: build the best ideas from HOOKS.md into Rimfolk, a few at a time.
 
+## Phase G: Integrations, the careful way
+Built from `Modlists/HOOKS.md`, following the rules in DESIGN.md ("Playing nicely with any modlist"): soft, only
+when a mod is active, only what the colony has unlocked, never harder without a mod, no per-run tweaks.
+- First: more moments between colonists (conversations that show in the social log and as Interaction Bubbles):
+  shared grief, talking shop, praising the cook, old stories, friendly contests that hurt nobody, faith, magic and
+  hygiene moments when those mods are present.
+- Then: people, magic and beliefs (RimWorld of Magic classes, traits and skills mods, memes); hygiene and cooking
+  (bathroom plans, better bath wishes, processors and aging); medieval life (Medieval Overhaul production, wine and
+  cheese) when those mods are active.
+- Not planned: diplomacy and faction-war features (Diplomatic Marriage, Factional War); weapon duels.
+- An audit of existing content against these rules (unlocked-only, mod removal, era fit) comes first.
+
 ## Phase F: Release (when the user asks)
 - Steam Workshop upload (private first), then an automatic upload of each new version.
 

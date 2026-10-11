@@ -75,6 +75,7 @@ namespace ColonyCouncil
         /// <summary>A nemesis who got away may ride with their people's next raid.</summary>
         public bool nemesisReturns = true;
         public bool petMoments = true;
+        public bool colonistMoments = true;
         /// <summary>The colony's character: what its choices make it known for.</summary>
         public bool colonyCharacter = true;
         /// <summary>On-screen buttons for half and quarter speed, and where they sit (fractions of the screen; -1 = default).</summary>
@@ -155,6 +156,7 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref nemeses, "nemeses", true);
             Scribe_Values.Look(ref nemesisReturns, "nemesisReturns", true);
             Scribe_Values.Look(ref petMoments, "petMoments", true);
+            Scribe_Values.Look(ref colonistMoments, "colonistMoments", true);
             Scribe_Values.Look(ref colonyCharacter, "colonyCharacter", true);
             Scribe_Values.Look(ref slowButtons, "slowButtons", true);
             Scribe_Values.Look(ref moodInsight, "moodInsight", true);
@@ -360,6 +362,7 @@ namespace ColonyCouncil
             l.CheckboxLabeled("CC_Settings_Nemeses".Translate(), ref nemeses, "CC_Settings_Nemeses_Tip".Translate());
             if (nemeses) l.CheckboxLabeled("CC_Settings_NemesisReturns".Translate(), ref nemesisReturns, "CC_Settings_NemesisReturns_Tip".Translate());
             l.CheckboxLabeled("CC_Settings_PetMoments".Translate(), ref petMoments, "CC_Settings_PetMoments_Tip".Translate());
+            l.CheckboxLabeled("CC_Settings_Moments".Translate(), ref colonistMoments, "CC_Settings_Moments_Tip".Translate());
 
             Header(l, "CC_Settings_Memory".Translate());
             l.CheckboxLabeled("CC_Settings_Journals".Translate(), ref journals, "CC_Settings_Journals_Tip".Translate());
@@ -417,7 +420,7 @@ namespace ColonyCouncil
         private void SetPeople(bool on, bool councilOn)
         {
             socialWeb = socialEvents = secrets = vendettas = aspirations = quirks = heirlooms = comingOfAge = dreams = dreamOmens = eulogies = on;
-            strangers = nemeses = nemesisReturns = petMoments = on;
+            strangers = nemeses = nemesisReturns = petMoments = colonistMoments = on;
             enableDilemmas = decreeRequests = offices = colonyCharacter = councilOn;
             enableWishes = enableAmbitions = councilOn || on;
             journals = epithets = anniversaries = annals = on || councilOn;
@@ -471,6 +474,7 @@ namespace ColonyCouncil
             nemeses = d.nemeses;
             nemesisReturns = d.nemesisReturns;
             petMoments = d.petMoments;
+            colonistMoments = d.colonistMoments;
             colonyCharacter = d.colonyCharacter;
             moodInsight = d.moodInsight;
             dreamOmens = d.dreamOmens;
