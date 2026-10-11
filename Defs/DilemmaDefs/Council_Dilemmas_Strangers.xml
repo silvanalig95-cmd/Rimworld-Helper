@@ -392,9 +392,9 @@
       </li>
       <li>
         <label>Hand {PET_definite} over to them</label>
-        <outcome>{X_nameDef} led {PET_definite} away on a rope and got as far as the fields before being bitten again. Now {PET_definite} is out there somewhere, belonging to nobody, and {A_nameDef} is not speaking to the council.</outcome>
+        <outcome>{X_nameDef} led {PET_definite} away on a rope, rubbing the bite. {A_nameDef} watched them all the way to the tree line and is not speaking to the council.</outcome>
         <effects>
-          <li Class="ColonyCouncil.DilemmaEffect_ReleasePet" />
+          <li Class="ColonyCouncil.DilemmaEffect_GivePet" />
           <li Class="ColonyCouncil.DilemmaEffect_Goodwill"><amount>5</amount></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_DlmS_AnimalGivenAway</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>-8</amount></li>
@@ -840,10 +840,10 @@
     <options>
       <li>
         <label>Sell {PET_objective}</label>
-        <outcome>{X_nameDef} paid and led {PET_definite} off on a rope. Somewhere past the fields {PET_definite} slipped it and bolted into the wild, and {X_nameDef}, to everyone's surprise, hasn't asked for the silver back.</outcome>
+        <outcome>{X_nameDef} counted out the silver and led {PET_definite} off on a rope. On the way out, {PET_definite} looked back twice. {A_nameDef} counted.</outcome>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Spawn"><thing>Silver</thing><count>120</count></li>
-          <li Class="ColonyCouncil.DilemmaEffect_ReleasePet" />
+          <li Class="ColonyCouncil.DilemmaEffect_GivePet" />
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_DlmS_SoldMyAnimal</thought><exceptTrait><li>Greedy</li></exceptTrait></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_DlmS_GoodPriceThough</thought><onlyTrait><li>Greedy</li></onlyTrait></li>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>-6</amount><exceptTrait><li>Greedy</li></exceptTrait></li>
@@ -852,10 +852,10 @@
       </li>
       <li>
         <label>Name a price {X_nameDef} won't pay</label>
-        <outcome>The council asked two hundred and fifty silver, expecting a no. {X_nameDef} paid on the spot. By the tree line {PET_definite} had slipped the rope, so now the colony has the silver, {X_nameDef} has a rope, and nobody has the animal.</outcome>
+        <outcome>The council asked two hundred and fifty silver, expecting a no. {X_nameDef} paid on the spot, without haggling, which somehow made it worse.</outcome>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Spawn"><thing>Silver</thing><count>250</count></li>
-          <li Class="ColonyCouncil.DilemmaEffect_ReleasePet" />
+          <li Class="ColonyCouncil.DilemmaEffect_GivePet" />
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_DlmS_SoldMyAnimal</thought><exceptTrait><li>Greedy</li></exceptTrait></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_DlmS_GoodPriceThough</thought><onlyTrait><li>Greedy</li></onlyTrait></li>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>-6</amount><exceptTrait><li>Greedy</li></exceptTrait></li>

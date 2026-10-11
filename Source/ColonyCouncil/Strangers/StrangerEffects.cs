@@ -169,6 +169,28 @@ namespace ColonyCouncil
         }
     }
 
+    /// <summary>A's animal goes with the stranger: given or sold to a visitor, it leaves with their group.</summary>
+    public class DilemmaEffect_GivePet : DilemmaEffect
+    {
+        public override void Apply(DilemmaContext ctx)
+        {
+            var pet = ctx.pet;
+            var x = ctx.stranger;
+            if (pet == null || pet.Dead || pet.Faction != Faction.OfPlayer) return;
+            if (x == null || x.Dead || !x.Spawned || x.Faction == null || x.Faction.IsPlayer)
+            {
+                // Nobody to take it: it's turned loose instead.
+                if (pet.Spawned) pet.jobs?.StopAll();
+                pet.SetFaction(null);
+                return;
+            }
+            if (pet.Spawned) pet.jobs?.StopAll();
+            pet.SetFaction(x.Faction);
+            var lord = x.GetLord();
+            if (pet.Spawned && pet.Map == x.Map && lord != null && lord.CanAddPawn(pet)) lord.AddPawn(pet);
+        }
+    }
+
     /// <summary>Something a life goal can grow from (a spark: battle, loss, news...) or count (a counter).</summary>
     public class DilemmaEffect_LifeEvent : DilemmaEffect
     {
