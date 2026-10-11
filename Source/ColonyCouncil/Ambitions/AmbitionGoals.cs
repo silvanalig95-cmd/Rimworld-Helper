@@ -66,6 +66,8 @@ namespace ColonyCouncil
         public string thingRole;
         public int thingCount = 0;
         public float minImpressiveness = 0f;
+        /// <summary>Only while a colonist's royal title asks for a throne room (no noble, no throne room ambition).</summary>
+        public bool forTitle;
 
         private RoomRoleDef Role
         {
@@ -76,9 +78,15 @@ namespace ColonyCouncil
             }
         }
 
+        /// <summary>Someone in the colony holds a title that wants a throne room (Royalty).</summary>
+        public static bool TitleWantsThroneRoom(Map map) =>
+            ModsConfig.RoyaltyActive && map.mapPawns.FreeColonists.Any(p => p.royalty != null && p.royalty.CanRequireThroneroom()
+                                                                            && p.royalty.HighestTitleWithThroneRoomRequirements() != null);
+
         public override bool Possible(Map map)
         {
             if (Role == null) return false;
+            if (forTitle && !TitleWantsThroneRoom(map)) return false;
             if (thingRole.NullOrEmpty()) return true;
             var pred = RoomTemplateDef.RolePredicate(thingRole);
             return pred != null && (Avail.AnyBuildable(map, pred) || Avail.ColonyHas(map, pred));
@@ -116,6 +124,8 @@ namespace ColonyCouncil
         public string thingRole = "cover";
         public int count = 4;
         public bool relative = true;
+        /// <summary>Only while the colony has a child or a baby (school desks for nobody is no ambition).</summary>
+        public bool forChildren;
 
         private System.Func<ThingDef, bool> Pred
         {
@@ -138,6 +148,7 @@ namespace ColonyCouncil
         {
             var p = Pred;
             if (p == null) return false;
+            if (forChildren && !map.mapPawns.FreeColonists.Any(c => c.DevelopmentalStage.Juvenile())) return false;
             if (thingRole == "art") return Avail.ColonyHas(map, d => Avail.IsWorkstationFor(d, SkillDefOf.Artistic)) || Avail.AnyBuildable(map, d => Avail.IsWorkstationFor(d, SkillDefOf.Artistic));
             return Avail.AnyBuildable(map, p);
         }
@@ -190,7 +201,10 @@ namespace ColonyCouncil
         public override string Describe(Map map, float baseline) => "CC_Goal_JoyKinds".Translate(count, Avail.JoyKindsOnMap(map));
     }
 
-    /// <summary>Have N of an item category in stock: medicine, meals, components, silver.</summary>
+    /// <summary>
+    /// Have N of an item category in stock: medicine, meals, fine meals, silver, alcohol (any brewed drink),
+    /// firewood (logs and modded raw wood), or a thing by defName.
+    /// </summary>
     public class Goal_Stock : AmbitionGoal
     {
         public string kind = "medicine";
@@ -198,10 +212,35 @@ namespace ColonyCouncil
         /// <summary>For named things: only possible if the colony can make it right now (or already has some).</summary>
         public bool needsRecipe;
 
+        private static HashSet<ThingDef> alcohol;
+
+        /// <summary>
+        /// Beer and anything else brewed: vanilla's beer, Medieval Overhaul's ales and wines, Vanilla Brewing's
+        /// spirits. Recognized as liquor or by the alcohol chemical, so modded drinks count without being named.
+        /// </summary>
+        public static HashSet<ThingDef> Alcohol => alcohol ?? (alcohol = new HashSet<ThingDef>(DefDatabase<ThingDef>.AllDefsListForReading
+            .Where(d => d.category == ThingCategory.Item && d.ingestible != null
+                        && ((d.ingestible.foodType & FoodTypeFlags.Liquor) != 0
+                            || (d.IsDrug && d.GetCompProperties<CompProperties_Drug>()?.chemical == ChemicalDefOf.Alcohol)))));
+
+        /// <summary>Can the colony brew something: a barrel it has or can build, or a researched recipe at a bench it has or can build.</summary>
+        public static bool CanBrew(Map map) =>
+            Avail.ColonyHas(map, Avail.IsFermenter) || Avail.AnyBuildable(map, Avail.IsFermenter)
+            || DefDatabase<RecipeDef>.AllDefsListForReading.Any(r => r.ProducedThingDef != null && Alcohol.Contains(r.ProducedThingDef) && r.AvailableNow
+                                                                     && Avail.RecipeUsers(r).Any(u => map.listerBuildings.ColonistsHaveBuilding(u) || Avail.CanBuild(u, map)));
+
         public static int Count(Map map, string kind)
         {
             switch (kind)
             {
+                case "alcohol":
+                {
+                    int n = 0;
+                    foreach (var d in Alcohol) n += map.resourceCounter.GetCount(d);
+                    return n;
+                }
+                case "firewood":
+                    return Goal_Woodpile.Firewood(map);
                 case "medicine":
                 {
                     int n = 0;
@@ -227,7 +266,8 @@ namespace ColonyCouncil
         {
             if (kind == "finemeals") return WishWorker_BetterFood.CanCook(map, FoodPreferability.MealFine);
             if (kind == "meals") return WishWorker_BetterFood.CanCook(map, FoodPreferability.MealSimple);
-            if (kind == "medicine" || kind == "silver") return true;
+            if (kind == "medicine" || kind == "silver" || kind == "firewood") return true;
+            if (kind == "alcohol") return Alcohol.Count > 0 && (Count(map, kind) > 0 || CanBrew(map));
             var def = DefDatabase<ThingDef>.GetNamedSilentFail(kind);
             if (def == null) return false;
             if (!needsRecipe) return true;
@@ -509,15 +549,38 @@ namespace ColonyCouncil
     {
         public Goal_Woodpile()
         {
-            kind = "WoodLog";
+            kind = "firewood";
             count = 300;
         }
 
-        public override bool Possible(Map map) =>
-            SeasonUtil.HasSeasons(map) && SeasonUtil.MinTempNextTwelfths(map, 4) < 0f && map.listerBuildings.allBuildingsColonist.Any(BurnsWood);
+        public override bool Possible(Map map) => ColdComing(map) && BurnsWood(map);
+
+        /// <summary>Logs, and Medieval Overhaul's raw wood (looked up by name, so it's simply left out without the mod).</summary>
+        public static IEnumerable<ThingDef> FirewoodDefs
+        {
+            get
+            {
+                yield return ThingDefOf.WoodLog;
+                var raw = DefDatabase<ThingDef>.GetNamedSilentFail("DankPyon_RawWood");
+                if (raw != null) yield return raw;
+            }
+        }
+
+        public static int Firewood(Map map)
+        {
+            int n = 0;
+            foreach (var d in FirewoodDefs) n += map.resourceCounter.GetCount(d);
+            return n;
+        }
+
+        /// <summary>Real cold within the next few months (and a map with seasons at all).</summary>
+        public static bool ColdComing(Map map) => SeasonUtil.HasSeasons(map) && SeasonUtil.MinTempNextTwelfths(map, 4) < 0f;
+
+        /// <summary>The colony has something that burns wood: a hearth, a campfire, a wood-fired stove or heater.</summary>
+        public static bool BurnsWood(Map map) => map.listerBuildings.allBuildingsColonist.Any(BurnsWood);
 
         private static bool BurnsWood(Building b) =>
-            b.TryGetComp<CompRefuelable>() is CompRefuelable r && r.Props.fuelFilter != null && r.Props.fuelFilter.Allows(ThingDefOf.WoodLog);
+            b.TryGetComp<CompRefuelable>() is CompRefuelable r && r.Props.fuelFilter != null && FirewoodDefs.Any(r.Props.fuelFilter.Allows);
     }
 
     /// <summary>No two colonists who loathe each other (both ways at or below the threshold).</summary>

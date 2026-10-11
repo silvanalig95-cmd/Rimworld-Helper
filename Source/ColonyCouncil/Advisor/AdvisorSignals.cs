@@ -467,23 +467,26 @@ namespace ColonyCouncil
             if (!map.listerBuildings.ColonistsHaveResearchBench()) yield break;
             var current = Find.ResearchManager.GetProject();
             if (current != null) yield break;
-            var next = SuggestNext();
+            var next = SuggestNext(true);
             if (next == null) yield break;
-            yield return Signal(0.25f, "CC_Adv_Research_Title".Translate(), "CC_Adv_Research_Detail".Translate(next.LabelCap.ToString(), next.CostApparent.ToString("0")), 0.5f);
+            // Nothing left in the colony's own era: say so plainly rather than push it into the next one.
+            string key = next.techLevel > Avail.EffectiveTech ? "CC_Adv_Research_DetailLaterEra" : "CC_Adv_Research_Detail";
+            yield return Signal(0.25f, "CC_Adv_Research_Title".Translate(), key.Translate(next.LabelCap.ToString(), next.CostApparent.ToString("0")), 0.5f);
         }
 
         /// <summary>
-        /// A sensible next project for this colony's era: something it can start now, preferring its own
-        /// tech level (so a medieval colony isn't pushed towards spaceships), cheapest first.
+        /// A sensible next project for this colony's era: something it can start now at its own tech level (so a
+        /// medieval colony isn't pushed towards spaceships), cheapest first. Only with <paramref name="laterEra"/>
+        /// does it fall back to a later era's project when the colony's own era is all done.
         /// </summary>
-        public static ResearchProjectDef SuggestNext()
+        public static ResearchProjectDef SuggestNext(bool laterEra = false)
         {
             var tech = Avail.EffectiveTech;
             var available = DefDatabase<ResearchProjectDef>.AllDefsListForReading
                 .Where(r => !r.IsFinished && !r.IsHidden && r.CanStartNow && r.knowledgeCategory == null).ToList();
             if (available.Count == 0) return null;
             var inEra = available.Where(r => r.techLevel <= tech).ToList();
-            var pool = inEra.Count > 0 ? inEra : available;
+            var pool = inEra.Count > 0 || !laterEra ? inEra : available;
             return pool.OrderBy(r => r.CostApparent).FirstOrDefault();
         }
     }
@@ -516,15 +519,25 @@ namespace ColonyCouncil
             }
             if (Avail.IsPreIndustrial && colonists >= 4)
             {
+                // Only a step within the colony's own era: never an idea that pushes it into the next one.
                 var next = AdvisorWorker_Research.SuggestNext();
                 if (next != null)
                     yield return Signal(0.06f, "CC_Idea_Era_Title".Translate(), "CC_Idea_Era_Detail".Translate(next.LabelCap.ToString()));
             }
-            if (ModsConfig.RoyaltyActive && map.mapPawns.FreeColonistsSpawned.Any(p => p.royalty?.MostSeniorTitle != null) == false
-                && Find.FactionManager.OfEmpire != null && !Find.FactionManager.OfEmpire.HostileTo(Faction.OfPlayer) && colonists >= 5)
+            var empire = Find.FactionManager.OfEmpire;
+            if (ModsConfig.RoyaltyActive && empire != null && !empire.HostileTo(Faction.OfPlayer) && colonists >= 5
+                && !map.mapPawns.FreeColonistsSpawned.Any(p => p.royalty?.MostSeniorTitle != null) && EngagedWithEmpire(map, empire))
             {
                 yield return Signal(0.05f, "CC_Idea_Empire_Title".Translate(), "CC_Idea_Empire_Detail".Translate());
             }
         }
+
+        /// <summary>
+        /// The player has already taken a step towards the Empire: someone has earned honor, holds a title or has a
+        /// psylink. Without that, titles are a late-game system the council doesn't push.
+        /// </summary>
+        private static bool EngagedWithEmpire(Map map, Faction empire) =>
+            map.mapPawns.FreeColonists.Any(p => p.HasPsylink
+                                                || (p.royalty != null && (p.royalty.GetFavor(empire) > 0 || p.royalty.HasAnyTitleIn(empire))));
     }
 }

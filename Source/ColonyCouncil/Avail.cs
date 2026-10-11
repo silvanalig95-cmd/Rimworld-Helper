@@ -378,9 +378,17 @@ namespace ColonyCouncil
                    || name.Contains("still") || name.Contains("distill") || name.Contains("drum");
         }
 
-        public static bool IsHydroponics(ThingDef d) =>
-            d?.thingClass != null && typeof(Building_PlantGrower).IsAssignableFrom(d.thingClass)
-            && d.building != null && d.building.sowTag != "DecorativePlant";
+        /// <summary>
+        /// A hydroponics basin: a plant grower with the Hydroponic sow tag, or one named for it. Other growers
+        /// (Medieval Overhaul's and Vanilla Expanded's planters, flower pots) aren't hydroponics.
+        /// </summary>
+        public static bool IsHydroponics(ThingDef d)
+        {
+            if (d?.thingClass == null || d.building == null || !typeof(Building_PlantGrower).IsAssignableFrom(d.thingClass)) return false;
+            if (d.building.sowTag == "Hydroponic") return true;
+            return d.defName.IndexOf("hydroponic", StringComparison.OrdinalIgnoreCase) >= 0
+                   || (d.label != null && d.label.IndexOf("hydroponic", StringComparison.OrdinalIgnoreCase) >= 0);
+        }
 
         public static bool IsPlantPot(ThingDef d) =>
             d?.thingClass != null && typeof(Building_PlantGrower).IsAssignableFrom(d.thingClass)
