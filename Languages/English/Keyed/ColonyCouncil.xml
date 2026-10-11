@@ -1318,4 +1318,18 @@ It's still out there. Hunting it down would settle a lot of nerves.</CC_Nemesis_
   <CC_Progress_Lessons>Skill {0} / {1}</CC_Progress_Lessons>
   <CC_Progress_Flowers>{0} / {1} flowers growing</CC_Progress_Flowers>
 
+  <!-- Slow speeds -->
+  <CC_Slow_Level_1>½×</CC_Slow_Level_1>
+  <CC_Slow_Level_2>¼×</CC_Slow_Level_2>
+  <CC_Slow_Level_1_Tip>Half speed: time keeps moving, gently. Click again for normal speed.
+
+Keys: the game's "slower" key ({0}) steps below normal speed, "faster" ({1}) steps back up. The normal-speed key or any faster speed ends it.</CC_Slow_Level_1_Tip>
+  <CC_Slow_Level_2_Tip>Quarter speed: for planning while the colony slowly lives. Click again for normal speed.
+
+Keys: the game's "slower" key ({0}) steps below normal speed, "faster" ({1}) steps back up. The normal-speed key or any faster speed ends it.</CC_Slow_Level_2_Tip>
+  <CC_Slow_Grip>Drag to move these buttons.</CC_Slow_Grip>
+  <CC_Settings_SlowButtons>Slow speed buttons (½× and ¼×)</CC_Settings_SlowButtons>
+  <CC_Settings_SlowButtons_Tip>Two speeds slower than normal, for planning without pausing. Small buttons sit next to the time controls (drag them by their grip to move them). The game's "slower" and "faster" keys also step below normal speed, even with the buttons hidden.</CC_Settings_SlowButtons_Tip>
+  <CC_Settings_SlowButtonsReset>Put the slow speed buttons back in their usual place</CC_Settings_SlowButtonsReset>
+
 </LanguageData>

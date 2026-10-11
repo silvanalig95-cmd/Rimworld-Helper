@@ -306,7 +306,8 @@ The council only suggests what your colony can actually do right now:
 ## Playing with other mods
 
 Rimfolk patches nothing: no Harmony, no edits to vanilla defs. It only adds its own things and reads the
-game, so it shouldn't clash with other mods. A few things it does on purpose:
+game (the one exception: the slow speeds hold back the game clock's time budget), so it shouldn't clash with
+other mods. A few things it does on purpose:
 - **Medieval Overhaul, Vanilla Brewing Expanded and other barrel mods:** fermenting barrels, kegs and stills
   made with the Vanilla Expanded framework or Processor Framework (Medieval Overhaul's rustic fermenting barrel)
   count for brewing wishes and room plans, and a stock of social drinks (ale, mead, cider, wine) fulfils the
@@ -330,6 +331,12 @@ game, so it shouldn't clash with other mods. A few things it does on purpose:
   talk.
 - **Removing a mod mid-game:** room plans that used a material from that mod fall back to a default material,
   and people who vanished with it are quietly forgotten.
+
+## Slow speeds
+Two speeds slower than normal, **½×** and **¼×**, for planning without pausing: the colony keeps living, gently.
+Small buttons sit next to the time controls (drag them by their grip to put them wherever you like; on a
+Steam Deck too). The game's own "slower" and "faster" keys also step below normal speed. Picking normal or any
+faster speed ends it; pausing and unpausing keeps it. Hide the buttons in the settings if you only want the keys.
 
 ## Settings
 

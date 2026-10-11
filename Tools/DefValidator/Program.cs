@@ -279,6 +279,7 @@ var dynamic = new Dictionary<string, string[]>
     ["CC_Tab_"] = new[] { "Priorities", "Build", "Roster", "Bonds", "Ambition", "Chronicle", "Dreams", "Journals", "Almanac" },
     ["CC_ChronicleFilter_"] = new[] { "All", "Wishes", "Council", "People", "Strangers", "Dreams", "Losses" },
     ["CC_Nemesis_Deed_"] = new[] { "downed", "maimed", "killed" },
+    ["CC_Slow_Level_"] = new[] { "1", "2", "1_Tip", "2_Tip" },
     ["CC_People_Sort_"] = new[] { "Name", "Trust", "Goal", "Mood" },
     ["CC_MsgLevel_"] = new[] { "Everything", "Notable", "LettersOnly" },
     ["CC_Era_"] = new[] { "Auto", "PreIndustrial", "Industrial", "Auto_Tip", "PreIndustrial_Tip", "Industrial_Tip" },

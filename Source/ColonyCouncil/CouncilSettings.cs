@@ -75,6 +75,10 @@ namespace ColonyCouncil
         /// <summary>A nemesis who got away may ride with their people's next raid.</summary>
         public bool nemesisReturns = true;
         public bool petMoments = true;
+        /// <summary>On-screen buttons for half and quarter speed, and where they sit (fractions of the screen; -1 = default).</summary>
+        public bool slowButtons = true;
+        public float slowButtonsX = -1f;
+        public float slowButtonsY = -1f;
         public bool allDreamMessages;
         public MessageLevel messageLevel = MessageLevel.Notable;
         public EraMode era = EraMode.Auto;
@@ -148,6 +152,9 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref nemeses, "nemeses", true);
             Scribe_Values.Look(ref nemesisReturns, "nemesisReturns", true);
             Scribe_Values.Look(ref petMoments, "petMoments", true);
+            Scribe_Values.Look(ref slowButtons, "slowButtons", true);
+            Scribe_Values.Look(ref slowButtonsX, "slowButtonsX", -1f);
+            Scribe_Values.Look(ref slowButtonsY, "slowButtonsY", -1f);
             Scribe_Values.Look(ref dreamOmens, "dreamOmens", true);
             Scribe_Values.Look(ref allDreamMessages, "allDreamMessages", false);
             Scribe_Values.Look(ref messageLevel, "messageLevel", MessageLevel.Notable);
@@ -372,6 +379,9 @@ namespace ColonyCouncil
             l.CheckboxLabeled("CC_Settings_WishAlert".Translate(), ref wishAlert, "CC_Settings_WishAlert_Tip".Translate());
 
             Header(l, "CC_Settings_Interface".Translate());
+            l.CheckboxLabeled("CC_Settings_SlowButtons".Translate(), ref slowButtons, "CC_Settings_SlowButtons_Tip".Translate());
+            if (slowButtons && (slowButtonsX >= 0f || slowButtonsY >= 0f) && l.ButtonText("CC_Settings_SlowButtonsReset".Translate()))
+                slowButtonsX = slowButtonsY = -1f;
             if (l.ButtonTextLabeled("CC_Settings_ButtonPosition".Translate(), ("CC_ButtonPos_" + buttonPosition).Translate()))
             {
                 var options = new System.Collections.Generic.List<FloatMenuOption>();
