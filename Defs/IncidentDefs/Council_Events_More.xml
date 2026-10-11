@@ -1,0 +1,252 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- More Rimfolk world events. Written with industrial and spacer colonies in mind, each with a pre-industrial
+       counterpart (a cargo pod or a runaway mule, a recruiter or a lord's steward, a journalist or a chronicler). -->
+
+  <!-- ===================== Lost cargo ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Council_Evt_LostCargo</defName>
+    <label>lost cargo</label>
+    <workerClass>ColonyCouncil.HappeningWorker_LostCargo</workerClass>
+    <baseChance>1.2</baseChance>
+    <minRefireDays>30</minRefireDays>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Challenge</group>
+        <value>300~800</value>
+        <answerDays>1</answerDays>
+        <titles>
+          <li>Lost cargo</li>
+        </titles>
+        <texts>
+          <li>[!lowtech] A cargo pod streaked down and thumped into the ground beyond the colony's fields. The markings say it belongs to {FACTION}, and a message from them is already waiting: it went astray, and they'd like it back, please. The colony could, of course, simply not have seen it.</li>
+          <li>[lowtech] A laden pack mule bolted from a caravan of {FACTION}, shed its load on the colony's land and vanished over the hills. A rider from {FACTION} is already asking after it, politely. The colony could, of course, simply not have seen it.</li>
+        </texts>
+        <defaultOption>1</defaultOption>
+        <options>
+          <li>
+            <label>Send it back</label>
+            <outcome>The cargo goes back to {FACTION}, with the colony's compliments. They won't forget it.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_EventGoodwill"><amount>12</amount></li>
+            </effects>
+            <ways><generosity>3</generosity><openness>1</openness></ways>
+          </li>
+          <li>
+            <label>Finders keepers</label>
+            <outcome>The colony keeps the cargo. {FACTION} have their suspicions, and they're right.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_EventGoodwill"><amount>-8</amount></li>
+            </effects>
+            <ways><generosity>-3</generosity></ways>
+          </li>
+        </options>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== A talent scout ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Council_Evt_TalentScout</defName>
+    <label>talent scout</label>
+    <workerClass>ColonyCouncil.HappeningWorker_TalentScout</workerClass>
+    <minRefireDays>60</minRefireDays>
+    <earliestDay>20</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Challenge</group>
+        <journal>Council_Journal_Evt_Scout</journal>
+        <titles>
+          <li>An offer for {A_nameDef}</li>
+        </titles>
+        <texts>
+          <li>[!lowtech] A recruiter from {FACTION}, polished boots and a polished smile, has heard about {A_nameDef}'s {SKILL}. {FACTION} would pay the colony {COUNT} silver to take over {A_possessive} contract, and pay {A_objective} a fine wage besides. The recruiter is very sure {A_nameDef} will say yes.</li>
+          <li>[lowtech,!tribal] A steward of {FACTION} has come with an offer: {A_possessive} lord has heard of {A_nameDef}'s {SKILL}, and would pay the colony {COUNT} silver to take {A_objective} into service. A good post, the steward says. A great house. Room and board.</li>
+          <li>[tribal] Elders of {FACTION} have sent word: they have heard of {A_nameDef}'s {SKILL}, and would give the colony {COUNT} silver for {A_objective} to come and live among them and teach their young.</li>
+        </texts>
+        <defaultOption>2</defaultOption>
+        <options>
+          <li>
+            <label>Accept ({COUNT} silver)</label>
+            <outcome>{A_nameDef} packs up and goes with them. The silver is counted out on the table, and nobody wants to be the one to pick it up.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Others</target><thought>Council_Evt_SoldOne</thought><exceptTrait><li>Greedy</li><li>Psychopath</li></exceptTrait></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Spawn"><thing>Silver</thing></li>
+              <li Class="ColonyCouncil.DilemmaEffect_LeaveColony" />
+            </effects>
+            <ways><generosity>-5</generosity><mercy>-3</mercy></ways>
+          </li>
+          <li>
+            <label>Let {A_nameDef} decide</label>
+            <outcome>{A_nameDef} thinks it over, and stays. "This is home," {A_nameDef} says, and seems to surprise {A_objective}self a little.</outcome>
+            <riskChance>0.5</riskChance>
+            <riskReplaces>true</riskReplaces>
+            <riskOutcome>{A_nameDef} thinks it over, and takes the job. There are handshakes, a few tears, and a long walk down the road with someone else's pack.</riskOutcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Thought"><thought>Council_Evt_AskedMe</thought></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Trust"><amount>6</amount></li>
+            </effects>
+            <riskEffects>
+              <li Class="ColonyCouncil.DilemmaEffect_LeaveColony" />
+            </riskEffects>
+            <ways><openness>3</openness></ways>
+          </li>
+          <li>
+            <label>Not for sale</label>
+            <outcome>The offer is turned down flat. {A_nameDef} pretends not to have been listening, and stands a little taller all day.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Trust"><amount>3</amount><onlyIfChosen>true</onlyIfChosen></li>
+            </effects>
+          </li>
+        </options>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== A journalist ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Council_Evt_Journalist</defName>
+    <label>journalist</label>
+    <workerClass>ColonyCouncil.HappeningWorker_Journalist</workerClass>
+    <minRefireDays>45</minRefireDays>
+    <earliestDay>15</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Visitors</group>
+        <ages>22~60</ages>
+        <stayHours>14~22</stayHours>
+        <answerDays>0.5</answerDays>
+        <titles>
+          <li>[!lowtech] A journalist</li>
+          <li>[lowtech] A chronicler</li>
+        </titles>
+        <texts>
+          <li>[!lowtech] {X_nameDef}, a journalist of {FACTION} with a notebook and a camera, wants to write about the colony: how it lives, what it stands for, what it's known for. People read these things. Will the colony give {X_objective} the tour?</li>
+          <li>[lowtech] {X_nameDef}, a chronicler of {FACTION}, travels the land writing down the deeds of its settlements, and would like to write down the colony's. Word of what {X_nameDef} writes will travel far. Will the colony show {X_objective} around?</li>
+        </texts>
+        <defaultOption>1</defaultOption>
+        <options>
+          <li>
+            <label>Give {X_objective} the tour</label>
+            <outcome>{X_nameDef} writes it all down. Word will get around.</outcome>
+          </li>
+          <li>
+            <label>No interviews</label>
+            <outcome>{X_nameDef} shrugs, and writes something anyway, about a colony that keeps its doors shut.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_SendAway" />
+            </effects>
+            <ways><openness>-2</openness></ways>
+          </li>
+        </options>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== A travelling doctor ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Council_Evt_Inoculation</defName>
+    <label>travelling doctor</label>
+    <workerClass>ColonyCouncil.HappeningWorker_Inoculation</workerClass>
+    <minRefireDays>45</minRefireDays>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Visitors</group>
+        <ages>25~65</ages>
+        <stayHours>14~22</stayHours>
+        <answerDays>0.5</answerDays>
+        <titles>
+          <li>[!lowtech] A travelling doctor</li>
+          <li>[lowtech] A wandering herbalist</li>
+        </titles>
+        <texts>
+          <li>[!lowtech] {X_nameDef}, a travelling doctor of {FACTION}, is going from settlement to settlement with a case of vaccines. For {COUNT} silver, everyone in the colony gets a shot, and for a month they'll fight off sickness noticeably better.</li>
+          <li>[lowtech] {X_nameDef}, a wandering herbalist of {FACTION}, sells a bitter tonic said to keep the coughing sickness away. For {COUNT} silver there's enough for everyone, and for a month the colony would shake off sickness faster. Remarkably, it seems to work.</li>
+        </texts>
+        <defaultOption>1</defaultOption>
+        <options>
+          <li>
+            <label>Pay {COUNT} silver</label>
+            <outcome>Everyone gets their dose. There's a lot of complaining about it, which is how you know it's medicine.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>silver</what></li>
+            </effects>
+          </li>
+          <li>
+            <label>No, thank you</label>
+            <outcome>{X_nameDef} packs up the case and moves on to the next settlement.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_SendAway" />
+            </effects>
+          </li>
+        </options>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== Music ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Council_Evt_Music</defName>
+    <label>music in the air</label>
+    <workerClass>ColonyCouncil.HappeningWorker_Music</workerClass>
+    <minRefireDays>30</minRefireDays>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Visitors</group>
+        <letter>PositiveEvent</letter>
+        <notable>false</notable>
+        <titles>
+          <li>Music in the air</li>
+        </titles>
+        <texts>
+          <li>[!lowtech] Someone left the comms console scanning, and it found a station nobody has heard of: one voice, a stack of very old records, and no ads at all. Half the colony has found an excuse to work within earshot.</li>
+          <li>[lowtech] Minstrels have made camp on the hill beyond the fields, and in the evenings their music comes drifting down over the colony. Nobody asked them to. Nobody wants them to stop.</li>
+        </texts>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_Evt_Music</thought></li>
+        </effects>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== Someone famous ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Council_Evt_Celebrity</defName>
+    <label>famous visitor</label>
+    <workerClass>ColonyCouncil.HappeningWorker_Storyteller</workerClass>
+    <minRefireDays>45</minRefireDays>
+    <earliestDay>10</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Visitors</group>
+        <letter>PositiveEvent</letter>
+        <ages>22~55</ages>
+        <stayHours>20~30</stayHours>
+        <thought>Council_Evt_MetFamous</thought>
+        <titles>
+          <li>Someone famous</li>
+        </titles>
+        <texts>
+          <li>[!lowtech] {X_nameDef} of {FACTION}, whose face is on half the posters in the region, is passing through, very much incognito. The sunglasses fool nobody. {X_nameDef} would like a quiet evening, and will almost certainly not get one.</li>
+          <li>[lowtech,!tribal] {X_nameDef} of {FACTION}, a champion of the tourney fields whose name is in half the songs from here to the sea, is stopping the night. {A_nameDef} has already asked about the scar. Twice.</li>
+          <li>[tribal] {X_nameDef} of {FACTION}, a hunter so famous that children play at being {X_objective}, is resting at the colony for a night. Everyone suddenly has somewhere to be that happens to be near the fire.</li>
+        </texts>
+        <lines>
+          <li>Yes, that was me.</li>
+          <li>No, I won't do the voice.</li>
+          <li>...and then I said, "not in this hat."</li>
+          <li>You're very kind.</li>
+          <li>Honestly, it's mostly travelling.</li>
+        </lines>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+</Defs>

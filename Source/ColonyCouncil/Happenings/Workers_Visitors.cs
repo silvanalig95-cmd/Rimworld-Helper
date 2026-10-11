@@ -92,7 +92,7 @@ namespace ColonyCouncil
                 if (v.touched.Contains(p) || !p.Awake() || p.Drafted || p.InMentalState || p.Downed || p.Position.DistanceTo(x.Position) > 16f) continue;
                 v.touched.Add(p);
                 using var _cause = Causes.Push("CC_Cause_Tales".Translate(x.LabelShort).Resolve());
-                CouncilGameComponent.GiveThought(p, CouncilDefOf.Council_Evt_HeardTales, x);
+                CouncilGameComponent.GiveThought(p, v.Ext?.thought ?? CouncilDefOf.Council_Evt_HeardTales, x);
                 p.needs?.joy?.GainJoy(0.15f, JoyKindDefOf.Social);
             }
             return true;

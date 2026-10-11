@@ -1705,4 +1705,9 @@ Those against it ({WHO}) will trust the council less and resent it more than usu
   <CC_Settings_FreqSocial_Tip>How many social events (favours, quarrels, confidences) happen each day. 100% is about one a day for every five colonists.</CC_Settings_FreqSocial_Tip>
   <CC_Settings_FreqDreams>Dreams: {0}</CC_Settings_FreqDreams>
   <CC_Settings_FreqDreams_Tip>How often colonists remember a dream when they wake. 100% is about one night in three.</CC_Settings_FreqDreams_Tip>
+  <CC_Evt_CargoPartly>(Some of it was already used up. What was left went back.)</CC_Evt_CargoPartly>
+  <CC_Evt_Article_Unknown>a colony still finding out who it is</CC_Evt_Article_Unknown>
+  <CC_Evt_Article_Good>{0}'s piece calls the colony {1}, and means it kindly. Neighbours who read it think better of the colony.</CC_Evt_Article_Good>
+  <CC_Evt_Article_Bad>{0}'s piece calls the colony {1}, and doesn't mean it kindly. Neighbours who read it think a little worse of the colony.</CC_Evt_Article_Bad>
+  <CC_Evt_Article_Plain>{0}'s piece calls the colony {1}: fair, plain, and a little dull. A few neighbours remember the name.</CC_Evt_Article_Plain>
 </LanguageData>

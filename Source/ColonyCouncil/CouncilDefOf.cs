@@ -99,6 +99,10 @@ namespace ColonyCouncil
         public static ThoughtDef Council_BattleHero;
         public static ThoughtDef Council_QuestDone;
         public static ThoughtDef Council_Evt_ChildCameBack;
+        public static ThoughtDef Council_Evt_GoodPress;
+        public static ThoughtDef Council_Evt_BadPress;
+        public static HediffDef Council_Inoculated;
+        public static HediffDef Council_HerbalTonic;
 
         public static HediffDef Council_Motivated;
         public static HediffDef Council_Loyalty;

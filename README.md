@@ -383,6 +383,11 @@ medieval things). Many ask the council what to do, with a day or so to answer.
   colony), **mourners** at a colonist's grave, **hungry pilgrims**, a **scholar** who can push your current research
   along, a young **apprentice** who wants to learn from your master of a craft (a real mentorship), a **quiet
   stranger** with a secret, a **lost child** (Biotech), a **stray** that follows someone home.
+- **A wider world.** **Lost cargo** lands on your land (send it back, or keep it and hope nobody checks), a
+  **talent scout** wants to buy out your best colonist's contract (or a lord wants them in service), a
+  **journalist** or **chronicler** writes about the colony (what they write depends on its character), a
+  **travelling doctor** or **herbalist** sells a month of better resistance to sickness, **music** on the radio or
+  minstrels on the hill, and a **famous visitor** stopping for the night.
 
 Some events pick up where an earlier one left off: the **deserter**'s old unit tracks them down; the **lost child**
 you walked home comes back years later, grown, with a gift; a **champion** you beat comes back for a rematch (or one

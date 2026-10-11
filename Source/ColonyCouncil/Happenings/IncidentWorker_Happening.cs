@@ -167,6 +167,7 @@ namespace ColonyCouncil
             foreach (var p in new[] { ctx.stranger, ctx.a, ctx.b, ctx.pet })
                 if (p != null && p.Spawned) targets.Add(p);
             if (ctx.place != null && ctx.place.Spawned) targets.Add(ctx.place);
+            else if (ctx.spot.IsValid && ctx.map != null) targets.Add(new GlobalTargetInfo(ctx.spot, ctx.map));
             return targets.Count > 0 ? new LookTargets(targets) : LookTargets.Invalid;
         }
 

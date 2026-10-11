@@ -445,4 +445,54 @@
     <stages><li><label>a job well done</label><description>We said we'd do it, and we did. The colony's word is good.</description><baseMoodEffect>2</baseMoodEffect></li></stages>
   </ThoughtDef>
 
+  <!-- ===================== More events ===================== -->
+
+  <ThoughtDef>
+    <defName>Council_Evt_SoldOne</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
+    <durationDays>6</durationDays>
+    <stackLimit>1</stackLimit>
+    <stages><li><label>they sold one of us</label><description>Someone offered silver for one of us, and the council took it. What's my price?</description><baseMoodEffect>-5</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Council_Evt_AskedMe</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
+    <durationDays>4</durationDays>
+    <stackLimit>1</stackLimit>
+    <stages><li><label>the council let me choose</label><description>Someone wanted me badly enough to pay for me, and the council asked what I wanted. I chose here.</description><baseMoodEffect>4</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Council_Evt_GoodPress</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
+    <durationDays>3</durationDays>
+    <stackLimit>1</stackLimit>
+    <stages><li><label>they wrote well of us</label><description>Someone wrote about the colony, and they got it right. That's us. That's who we are.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Council_Evt_BadPress</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
+    <durationDays>3</durationDays>
+    <stackLimit>1</stackLimit>
+    <stages><li><label>they wrote badly of us</label><description>Someone wrote about the colony, and it wasn't kind. The worst part is, it wasn't wrong either.</description><baseMoodEffect>-3</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Council_Evt_Music</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
+    <durationDays>2</durationDays>
+    <stackLimit>1</stackLimit>
+    <stages><li><label>music in the air</label><description>Somebody's playing somewhere, and the work goes easier for it.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Council_Evt_MetFamous</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
+    <durationDays>3</durationDays>
+    <stackLimit>1</stackLimit>
+    <stages><li><label>met someone famous</label><description>I talked to them! Properly talked! Nobody back home would believe it.</description><baseMoodEffect>4</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
 </Defs>

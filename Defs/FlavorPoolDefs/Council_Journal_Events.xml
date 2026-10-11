@@ -326,4 +326,18 @@
     </lines>
   </ColonyCouncil.FlavorPoolDef>
 
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Journal_Evt_Scout</defName>
+    <lines>
+      <plain>
+        <li>[opt0] They sold my contract. I'm writing this on the road. I hope the silver was worth it.</li>
+        <li>[opt1,safe] Someone offered to buy me away, and the council let me choose. I chose to stay. It felt better than I expected to say it out loud.</li>
+        <li>[opt1,risk] Someone offered me a better life, and the council let me choose. I took it. I'll miss them. I already do.</li>
+        <li>[opt2] Someone wanted to buy my contract, and the council said I'm not for sale. I don't know whether to be flattered or annoyed. Flattered, mostly.</li>
+      </plain>
+      <blunt><li>[opt0] Sold. Like a cow at market. Fine. Remember this.</li></blunt>
+      <warm><li>[opt1,safe] They asked me what I wanted. Nobody's asked me that in years.</li></warm>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
 </Defs>

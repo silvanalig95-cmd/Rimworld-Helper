@@ -37,6 +37,8 @@ Things that happen to the colony from outside, on Rimfolk's own rhythm, written 
   mentorships, journals, the chronicle and the colony's character.
 - Done: events that build on each other (a deserter's old unit, the lost child grown, a rematch, the great beast's
   young, fed pilgrims' thanks) and the World page (what's coming, who's out there, what happened lately).
+- Done: a second batch for industrial and spacer colonies (each with a tribal and medieval version too): lost
+  cargo, a talent scout, a journalist, a travelling doctor, music in the air, a famous visitor.
 - Next: more events per group, mod-aware events when the user's new modlist arrives.
 
 ## Phase E: The council at a glance (done)

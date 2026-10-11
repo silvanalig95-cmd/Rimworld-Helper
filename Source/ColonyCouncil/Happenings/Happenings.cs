@@ -117,6 +117,10 @@ namespace ColonyCouncil
         public Faction enemy;
         /// <summary>A grave, a cache.</summary>
         public Thing place;
+        /// <summary>Things the event brought (a lost cargo), to give back later.</summary>
+        public List<Thing> things = new List<Thing>();
+        /// <summary>Where it happened, when there's no thing to point at yet (a pod still falling).</summary>
+        public IntVec3 spot = IntVec3.Invalid;
         /// <summary>X is a world pawn until the colony answers (joins at the edge of the map).</summary>
         public bool xWaiting;
         public int variant;
@@ -150,6 +154,8 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref points, "points");
             Scribe_References.Look(ref enemy, "enemy");
             Scribe_References.Look(ref place, "place");
+            Scribe_Collections.Look(ref things, "things", LookMode.Reference);
+            Scribe_Values.Look(ref spot, "spot", IntVec3.Invalid);
             Scribe_Values.Look(ref xWaiting, "xWaiting");
             Scribe_Values.Look(ref variant, "variant");
             Scribe_Values.Look(ref contest, "contest");
@@ -157,6 +163,8 @@ namespace ColonyCouncil
             {
                 if (group == null) group = new List<Pawn>();
                 group.RemoveAll(p => p == null);
+                if (things == null) things = new List<Thing>();
+                things.RemoveAll(t => t == null);
             }
         }
     }
@@ -531,6 +539,7 @@ namespace ColonyCouncil
                 // The letter's text is written; let go of the people so old saves don't hold them.
                 ctx.a = ctx.b = ctx.pet = ctx.stranger = null;
                 ctx.group.Clear();
+                ctx.things.Clear();
                 ctx.map = null;
                 ctx.place = null;
             }

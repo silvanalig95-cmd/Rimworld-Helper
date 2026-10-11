@@ -396,6 +396,8 @@
       <li>The great beast is tougher than any of its kind. It leaves in a few days, and only fights if provoked.</li>
       <li>Some events follow from earlier ones: a deserter's old unit, a lost child back grown, a rematch with a champion, the great beast's young, grateful pilgrims.</li>
       <li>The council window's World page shows fights on their way, questions waiting for an answer, and who's out there with the colony on their mind.</li>
+      <li>What a journalist or chronicler writes depends on the colony's character: mercy, generosity and openness make for a kind article, and their opposites for an unkind one.</li>
+      <li>A travelling doctor's shots (or a herbalist's tonic) help everyone fight off sickness faster for a month.</li>
     </facts>
     <advice>
       <li>Answer the letters: an unanswered one falls to a default, which is rarely the best choice.</li>
@@ -404,7 +406,7 @@
       <li>Roof a field or two, and keep food cold, and two of the nastier natural events lose their teeth.</li>
       <li>Take a group, not a hero, to hunt the great beast.</li>
     </advice>
-    <keywords><li>event</li><li>incident</li><li>comrade</li><li>family</li><li>bounty</li><li>debt</li><li>champion</li><li>contest</li><li>beast</li><li>tribute</li><li>revenge</li><li>deserter</li><li>comet</li><li>fireflies</li><li>hail</li><li>vermin</li><li>cache</li><li>treasure</li><li>storyteller</li><li>pilgrims</li><li>scholar</li><li>apprentice</li><li>stray</li><li>mourners</li></keywords>
+    <keywords><li>event</li><li>incident</li><li>comrade</li><li>family</li><li>bounty</li><li>debt</li><li>champion</li><li>contest</li><li>beast</li><li>tribute</li><li>revenge</li><li>deserter</li><li>comet</li><li>fireflies</li><li>hail</li><li>vermin</li><li>cache</li><li>treasure</li><li>storyteller</li><li>pilgrims</li><li>scholar</li><li>apprentice</li><li>stray</li><li>mourners</li><li>cargo</li><li>scout</li><li>journalist</li><li>doctor</li><li>herbalist</li><li>music</li><li>celebrity</li></keywords>
     <seeAlso><li>Council_Alm_C_Strangers</li><li>Council_Alm_C_Ways</li><li>Council_Alm_C_Dilemmas</li></seeAlso>
   </ColonyCouncil.AlmanacArticleDef>
 
