@@ -360,7 +360,7 @@
     <weight>0.8</weight>
     <cooldownDays>7</cooldownDays>
     <texts>
-      <li>Sometime past midnight {X_definite} started making an unholy noise at the dark, and kept at it until {A_nameDef} went out in a blanket to sit with {X_objective}.</li>
+      <li>Well after dark, {X_definite} started making an unholy noise at nothing, and kept at it until {A_nameDef} went out in a blanket to sit with {X_objective}.</li>
       <li>{A_nameDef} is awake because {X_definite} is awake, and {X_definite} is awake because of something past the wall that nobody else can see.</li>
       <li>{A_nameDef} lay listening to {X_definite} cry out toward the tree line, over and over, and tried very hard not to wonder what {X_pronoun} was crying at.</li>
     </texts>
