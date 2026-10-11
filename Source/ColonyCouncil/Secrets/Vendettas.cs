@@ -225,6 +225,7 @@ namespace ColonyCouncil
 
         private void Battles(CouncilGameComponent comp, SocialWeb social)
         {
+            using var _cause = Causes.Push("CC_Cause_VendettaBlood".Translate().Resolve());
             bool fighting = social.battleActive;
             var faction = social.battleFaction;
             if (fighting && !wasFighting)
@@ -268,6 +269,7 @@ namespace ColonyCouncil
 
         private void Settle(CouncilGameComponent comp, Vendetta v, bool quietly)
         {
+            using var _cause = Causes.Push("CC_Cause_VendettaSettled".Translate(v.faction?.Name ?? "?", v.victim ?? "?").Resolve());
             v.settled = true;
             if (quietly) return;
             CouncilGameComponent.GiveThought(v.avenger, CouncilDefOf.Council_Vendetta_Avenged);
@@ -295,7 +297,7 @@ namespace ColonyCouncil
                 if (!hostile && !v.peaceNoticed && v.avenger.IsColonist)
                 {
                     v.peaceNoticed = true;
-                    CouncilGameComponent.GiveThought(v.avenger, CouncilDefOf.Council_Vendetta_Betrayed);
+                    CouncilGameComponent.GiveThought(v.avenger, CouncilDefOf.Council_Vendetta_Betrayed, null, -1f, "CC_Cause_VendettaBetrayed".Translate(v.faction?.Name ?? "?").Resolve());
                     comp.standings.Change(v.avenger, -8f * S.PenaltyScale, "CC_Log_PeaceWithKillers".Translate(v.faction.Name));
                     comp.journals.Write(v.avenger, "Council_Journal_PeaceWithKillers", null, v.victim.Named("LOST"), v.faction.Name.Named("FACTION"));
                 }
@@ -308,6 +310,7 @@ namespace ColonyCouncil
 
         private void Eulogy(CouncilGameComponent comp, PendingEulogy e)
         {
+            using var _cause = Causes.Push("CC_Cause_Funeral".Translate(e.dead?.LabelShort ?? "?").Resolve());
             var dead = e.dead;
             var speakers = PawnsFinder.AllMaps_FreeColonists.Where(Eligible).Where(p => !p.DevelopmentalStage.Juvenile() && p.relations != null).ToList();
             if (speakers.Count == 0) return;

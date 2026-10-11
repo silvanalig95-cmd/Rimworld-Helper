@@ -78,7 +78,7 @@
 
   <ThoughtDef>
     <defName>Council_DlmSoc_Tagalong</defName>
-    <thoughtClass>Thought_MemorySocial</thoughtClass>
+    <thoughtClass>ColonyCouncil.Thought_CouncilSocial</thoughtClass>
     <durationDays>10</durationDays>
     <stackLimit>3</stackLimit>
     <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
@@ -119,7 +119,7 @@
 
   <ThoughtDef>
     <defName>Council_DlmSoc_MadeItWorse</defName>
-    <thoughtClass>Thought_MemorySocial</thoughtClass>
+    <thoughtClass>ColonyCouncil.Thought_CouncilSocial</thoughtClass>
     <durationDays>12</durationDays>
     <stackLimit>3</stackLimit>
     <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
@@ -136,7 +136,7 @@
 
   <ThoughtDef>
     <defName>Council_DlmSoc_ToldTheStory</defName>
-    <thoughtClass>Thought_MemorySocial</thoughtClass>
+    <thoughtClass>ColonyCouncil.Thought_CouncilSocial</thoughtClass>
     <durationDays>15</durationDays>
     <stackLimit>3</stackLimit>
     <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>

@@ -590,6 +590,7 @@ namespace ColonyCouncil
 
         private void Fulfil(CouncilGameComponent comp, Aspiration a)
         {
+            using var _cause = Causes.Push("CC_Cause_GoalReached".Translate(a.pawn?.LabelShort ?? "?", a.Goal).Resolve());
             var p = a.pawn;
             a.done = true;
             a.doneTick = Find.TickManager.TicksGame;

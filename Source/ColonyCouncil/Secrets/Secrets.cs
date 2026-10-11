@@ -185,6 +185,7 @@ namespace ColonyCouncil
 
         public void Confide(CouncilGameComponent comp, Secret s, Pawn friend)
         {
+            using var _cause = Causes.Push("CC_Cause_Confided".Translate(s.owner?.LabelShort ?? "?", friend?.LabelShort ?? "?").Resolve());
             var owner = s.owner;
             s.knowers.Add(friend);
             comp.social.Bump(owner, friend, TieKind.Friends, 6f, "CC_TieNote_Confided".Translate());
@@ -198,6 +199,7 @@ namespace ColonyCouncil
         /// <summary>It comes out. <paramref name="leaker"/> is the owner when they confess it themselves.</summary>
         public void Reveal(CouncilGameComponent comp, Secret s, Pawn leaker)
         {
+            using var _cause = Causes.Push("CC_Cause_SecretOut".Translate(s.owner?.LabelShort ?? "?", s.def.label).Resolve());
             var owner = s.owner;
             bool confessed = leaker == null || leaker == owner;
             s.revealed = true;
@@ -225,7 +227,7 @@ namespace ColonyCouncil
                 comp.social.Bump(owner, leaker, TieKind.Rivals, 15f, "CC_TieNote_Betrayed".Translate());
             }
             // Everyone else, according to their nature.
-            var ctx = new DilemmaContext { map = owner.MapHeld ?? Find.AnyPlayerHomeMap, a = owner, b = confessed ? null : leaker, why = s.def.label };
+            var ctx = new DilemmaContext { map = owner.MapHeld ?? Find.AnyPlayerHomeMap, a = owner, b = confessed ? null : leaker, why = s.def.label, cause = Causes.Current };
             foreach (var e in s.def.revealEffects)
             {
                 try

@@ -388,6 +388,7 @@ namespace ColonyCouncil
 
         private void Conclude(CouncilGameComponent comp, bool inPassing)
         {
+            using var _cause = Causes.Push("CC_Cause_Meeting".Translate().Resolve());
             var m = meeting;
             meeting = null;
             if (m == null || m.map == null) return;
@@ -516,6 +517,7 @@ namespace ColonyCouncil
         /// </summary>
         public void Choose(AmbitionDef def, Pawn proposer, Map map, ChoiceLetter_CouncilMeeting letter = null)
         {
+            using var _cause = Causes.Push("CC_Cause_AmbitionChosen".Translate(def.label).Resolve());
             var comp = CouncilGameComponent.Instance;
             if (comp == null || def == null || map == null) return;
             if (letter != null && letter.voterPawns != null)
@@ -570,6 +572,7 @@ namespace ColonyCouncil
 
         private void Complete(CouncilGameComponent comp)
         {
+            using var _cause = Causes.Push(active?.def != null ? "CC_Cause_AmbitionDone".Translate(active.def.label).Resolve() : null);
             var a = active;
             active = null;
             var map = a.map;
@@ -596,6 +599,7 @@ namespace ColonyCouncil
 
         private void Fail(CouncilGameComponent comp)
         {
+            using var _cause = Causes.Push(active?.def != null ? "CC_Cause_AmbitionFailed".Translate(active.def.label).Resolve() : null);
             var a = active;
             active = null;
             foreach (var p in a.map.mapPawns.FreeColonistsSpawned)

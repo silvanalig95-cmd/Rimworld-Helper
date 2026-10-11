@@ -83,7 +83,7 @@
 
   <ThoughtDef>
     <defName>Council_SharedGripe</defName>
-    <thoughtClass>Thought_MemorySocial</thoughtClass>
+    <thoughtClass>ColonyCouncil.Thought_CouncilSocial</thoughtClass>
     <durationDays>6</durationDays>
     <stackLimit>5</stackLimit>
     <stackLimitForSameOtherPawn>2</stackLimitForSameOtherPawn>
@@ -92,7 +92,7 @@
 
   <ThoughtDef>
     <defName>Council_DecreeArgument</defName>
-    <thoughtClass>Thought_MemorySocial</thoughtClass>
+    <thoughtClass>ColonyCouncil.Thought_CouncilSocial</thoughtClass>
     <durationDays>6</durationDays>
     <stackLimit>5</stackLimit>
     <stackLimitForSameOtherPawn>2</stackLimitForSameOtherPawn>

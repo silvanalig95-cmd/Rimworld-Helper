@@ -118,6 +118,7 @@ namespace ColonyCouncil
         /// <summary>Everyone votes, office by office; nobody holds two.</summary>
         public void Hold(CouncilGameComponent comp, int year, bool byElection)
         {
+            using var _cause = Causes.Push("CC_Cause_Election".Translate().Resolve());
             var voters = Eligible();
             if (voters.Count < 2) return;
             lastElectionYear = year;
@@ -190,6 +191,7 @@ namespace ColonyCouncil
         /// <summary>The council puts someone else in the seat. Overruling the vote costs the trust of those who wanted the winner.</summary>
         public void Appoint(OfficeDef office, Pawn p, CouncilGameComponent comp)
         {
+            using var _cause = Causes.Push("CC_Cause_Appointed".Translate(p.LabelShort, office.label).Resolve());
             if (office == null || p == null) return;
             var current = HolderOf(office);
             if (current == p) return;
@@ -215,6 +217,7 @@ namespace ColonyCouncil
 
         public void Dismiss(OfficeDef office, CouncilGameComponent comp)
         {
+            using var _cause = Causes.Push("CC_Cause_Dismissed".Translate(office.label).Resolve());
             var current = HolderOf(office);
             if (current == null) return;
             holders.Remove(office.defName);

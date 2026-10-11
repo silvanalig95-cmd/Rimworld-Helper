@@ -135,6 +135,8 @@ namespace ColonyCouncil
         private static void Fire(SocialEventDef def, CouncilGameComponent comp, Map map, Pawn a, Pawn b, SocialTie tie)
         {
             var ctx = new DilemmaContext { map = map, a = a, b = b, skill = tie?.skill, why = def.label };
+            string text = ctx.Format(Flavor.PickText(def.texts));
+            ctx.cause = text;
             if (def.sharedVendetta) ctx.faction = SharedVendetta(comp, a, b);
             foreach (var e in def.effects)
             {
@@ -147,7 +149,6 @@ namespace ColonyCouncil
                     CouncilLog.ErrorOnce("social event effect " + def.defName, ex);
                 }
             }
-            string text = ctx.Format(Flavor.PickText(def.texts));
             string note = def.note.NullOrEmpty() ? null : ctx.Format(def.note);
             if (def.changeTie != TieKind.None && def.change != 0f)
             {

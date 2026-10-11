@@ -61,6 +61,7 @@ namespace ColonyCouncil
 
         private void CheckPending(CouncilGameComponent comp, int now)
         {
+            using var _cause = Causes.Push("CC_Cause_PersonalTouch".Translate().Resolve());
             for (int i = pending.Count - 1; i >= 0; i--)
             {
                 var t = pending[i];

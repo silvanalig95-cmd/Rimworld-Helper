@@ -332,6 +332,11 @@ other mods. A few things it does on purpose:
 - **Removing a mod mid-game:** room plans that used a material from that mod fall back to a default material,
   and people who vanished with it are quietly forgotten.
 
+## Why am I feeling this?
+Every mood Rimfolk gives says what caused it, under the description in its tooltip: whose wish came true (or
+didn't), which council decision, which decree and how long it has left, which visitor, secret, nemesis or
+moment. The trust mood lists what moved it lately.
+
 ## Slow speeds
 Two speeds slower than normal, **½×** and **¼×**, for planning without pausing: the colony keeps living, gently.
 Small buttons sit next to the time controls (drag them by their grip to put them wherever you like; on a

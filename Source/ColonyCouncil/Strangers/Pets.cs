@@ -71,6 +71,7 @@ namespace ColonyCouncil
 
         private void Farewell(CouncilGameComponent comp, Pawn pet)
         {
+            using var _cause = Causes.Push("CC_Cause_PetDied".Translate(pet.LabelShort).Resolve());
             var person = PersonOf(pet);
             if (person == null || pet.Name == null) return;
             bool bonded = Bonded(pet, person);
@@ -118,7 +119,7 @@ namespace ColonyCouncil
                 Notify.Message(text, new LookTargets(pet, person), MessageTypeDefOf.PositiveEvent, defended ? Importance.Notable : Importance.Flavor);
                 if (!defended) continue;
                 comp.AddChronicle(new ChronicleEntry(ChronicleKind.Stranger, text, person));
-                CouncilGameComponent.GiveThought(person, CouncilDefOf.Council_Pet_Defended);
+                CouncilGameComponent.GiveThought(person, CouncilDefOf.Council_Pet_Defended, null, -1f, "CC_Cause_PetFought".Translate(pet.LabelShort).Resolve());
                 comp.journals.Write(person, "Council_Journal_PetDefended", null, pet.Named("PET"));
             }
             fought.Clear();

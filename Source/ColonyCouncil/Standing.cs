@@ -68,6 +68,9 @@ namespace ColonyCouncil
         /// </summary>
         public float Entitlement => Mathf.Min(2f, 1f + 0.2f * RecentGrants());
 
+        /// <summary>The latest few things that moved their trust, newest first, for the trust mood's tooltip.</summary>
+        public string RecentReasons(int n = 3) => log.Count == 0 ? null : string.Join("\n", Enumerable.Reverse(log).Take(n));
+
         public void Change(float delta, string why)
         {
             if (Mathf.Abs(delta) < 0.01f) return;
@@ -242,6 +245,19 @@ namespace ColonyCouncil
                 case TrustLevel.Trusting: return ThoughtState.ActiveAtStage(2);
                 case TrustLevel.Devoted: return ThoughtState.ActiveAtStage(3);
                 default: return ThoughtState.Inactive;
+            }
+        }
+    }
+
+    /// <summary>The trust mood, with what moved it lately.</summary>
+    public class Thought_CouncilTrust : Thought_Situational
+    {
+        public override string Description
+        {
+            get
+            {
+                var reasons = CouncilGameComponent.Instance?.standings.For(pawn, false)?.RecentReasons();
+                return Causes.Append(base.Description, reasons.NullOrEmpty() ? null : "CC_Cause_Trust".Translate(reasons).Resolve());
             }
         }
     }

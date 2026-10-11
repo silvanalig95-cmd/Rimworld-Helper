@@ -307,7 +307,7 @@ namespace ColonyCouncil
                 var lonely = pawns.Where(p => CliqueOf(p) == null && p.needs?.mood != null
                                               && !ties.Any(t => t.Involves(p) && t.kind == TieKind.Friends && t.strength >= 20f)
                                               && p.story?.traits?.HasTrait(TraitDefOf.Psychopath) != true).RandomElementWithFallback();
-                if (lonely != null) CouncilGameComponent.GiveThought(lonely, CouncilDefOf.Council_Soc_LeftOut);
+                if (lonely != null) CouncilGameComponent.GiveThought(lonely, CouncilDefOf.Council_Soc_LeftOut, null, -1f, "CC_Cause_LeftOut".Translate().Resolve());
             }
         }
 
@@ -433,6 +433,7 @@ namespace ColonyCouncil
 
         private void Mentor(SocialTie t, CouncilGameComponent comp)
         {
+            using var _cause = Causes.Push(t.skill != null ? "CC_Cause_Lessons".Translate(t.a?.LabelShort ?? "?", t.b?.LabelShort ?? "?", t.skill.label).Resolve() : null);
             var mentor = t.a;
             var student = t.b;
             var sk = t.skill;

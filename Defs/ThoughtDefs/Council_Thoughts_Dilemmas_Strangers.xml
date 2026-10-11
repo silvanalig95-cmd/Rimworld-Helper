@@ -42,7 +42,7 @@
 
   <ThoughtDef>
     <defName>Council_DlmS_ForcedApology</defName>
-    <thoughtClass>Thought_MemorySocial</thoughtClass>
+    <thoughtClass>ColonyCouncil.Thought_CouncilSocial</thoughtClass>
     <durationDays>10</durationDays>
     <stackLimit>3</stackLimit>
     <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
@@ -89,7 +89,7 @@
 
   <ThoughtDef>
     <defName>Council_DlmS_RespectedRefusal</defName>
-    <thoughtClass>Thought_MemorySocial</thoughtClass>
+    <thoughtClass>ColonyCouncil.Thought_CouncilSocial</thoughtClass>
     <durationDays>8</durationDays>
     <stackLimit>3</stackLimit>
     <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
@@ -124,7 +124,7 @@
 
   <ThoughtDef>
     <defName>Council_DlmS_GotAttached</defName>
-    <thoughtClass>Thought_MemorySocial</thoughtClass>
+    <thoughtClass>ColonyCouncil.Thought_CouncilSocial</thoughtClass>
     <durationDays>15</durationDays>
     <stackLimit>3</stackLimit>
     <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
@@ -205,7 +205,7 @@
 
   <ThoughtDef>
     <defName>Council_DlmS_BittenAndBlamed</defName>
-    <thoughtClass>Thought_MemorySocial</thoughtClass>
+    <thoughtClass>ColonyCouncil.Thought_CouncilSocial</thoughtClass>
     <durationDays>10</durationDays>
     <stackLimit>3</stackLimit>
     <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
@@ -286,7 +286,7 @@
 
   <ThoughtDef>
     <defName>Council_DlmS_DeferredTo</defName>
-    <thoughtClass>Thought_MemorySocial</thoughtClass>
+    <thoughtClass>ColonyCouncil.Thought_CouncilSocial</thoughtClass>
     <durationDays>8</durationDays>
     <stackLimit>3</stackLimit>
     <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
@@ -301,7 +301,7 @@
 
   <ThoughtDef>
     <defName>Council_DlmS_Insolent</defName>
-    <thoughtClass>Thought_MemorySocial</thoughtClass>
+    <thoughtClass>ColonyCouncil.Thought_CouncilSocial</thoughtClass>
     <durationDays>12</durationDays>
     <stackLimit>3</stackLimit>
     <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
@@ -362,7 +362,7 @@
 
   <ThoughtDef>
     <defName>Council_DlmS_Threatened</defName>
-    <thoughtClass>Thought_MemorySocial</thoughtClass>
+    <thoughtClass>ColonyCouncil.Thought_CouncilSocial</thoughtClass>
     <durationDays>15</durationDays>
     <stackLimit>3</stackLimit>
     <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>

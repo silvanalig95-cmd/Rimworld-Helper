@@ -83,7 +83,7 @@
 
   <ThoughtDef>
     <defName>Council_EncP_Insufferable</defName>
-    <thoughtClass>Thought_MemorySocial</thoughtClass>
+    <thoughtClass>ColonyCouncil.Thought_CouncilSocial</thoughtClass>
     <durationDays>10</durationDays>
     <stackLimit>5</stackLimit>
     <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
@@ -93,7 +93,7 @@
 
   <ThoughtDef>
     <defName>Council_EncP_FellowFighter</defName>
-    <thoughtClass>Thought_MemorySocial</thoughtClass>
+    <thoughtClass>ColonyCouncil.Thought_CouncilSocial</thoughtClass>
     <durationDays>15</durationDays>
     <stackLimit>5</stackLimit>
     <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
@@ -103,7 +103,7 @@
 
   <ThoughtDef>
     <defName>Council_EncP_Stared</defName>
-    <thoughtClass>Thought_MemorySocial</thoughtClass>
+    <thoughtClass>ColonyCouncil.Thought_CouncilSocial</thoughtClass>
     <durationDays>6</durationDays>
     <stackLimit>5</stackLimit>
     <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
@@ -115,7 +115,7 @@
 
   <ThoughtDef>
     <defName>Council_EncP_GoodCompany</defName>
-    <thoughtClass>Thought_MemorySocial</thoughtClass>
+    <thoughtClass>ColonyCouncil.Thought_CouncilSocial</thoughtClass>
     <durationDays>10</durationDays>
     <stackLimit>5</stackLimit>
     <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
@@ -125,7 +125,7 @@
 
   <ThoughtDef>
     <defName>Council_EncP_Smitten</defName>
-    <thoughtClass>Thought_MemorySocial</thoughtClass>
+    <thoughtClass>ColonyCouncil.Thought_CouncilSocial</thoughtClass>
     <durationDays>10</durationDays>
     <stackLimit>5</stackLimit>
     <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
@@ -135,7 +135,7 @@
 
   <ThoughtDef>
     <defName>Council_EncP_RudeHost</defName>
-    <thoughtClass>Thought_MemorySocial</thoughtClass>
+    <thoughtClass>ColonyCouncil.Thought_CouncilSocial</thoughtClass>
     <durationDays>15</durationDays>
     <stackLimit>5</stackLimit>
     <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
@@ -145,7 +145,7 @@
 
   <ThoughtDef>
     <defName>Council_EncP_KindToMe</defName>
-    <thoughtClass>Thought_MemorySocial</thoughtClass>
+    <thoughtClass>ColonyCouncil.Thought_CouncilSocial</thoughtClass>
     <durationDays>20</durationDays>
     <stackLimit>5</stackLimit>
     <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
@@ -163,7 +163,7 @@
 
   <ThoughtDef>
     <defName>Council_EncP_HardBargain</defName>
-    <thoughtClass>Thought_MemorySocial</thoughtClass>
+    <thoughtClass>ColonyCouncil.Thought_CouncilSocial</thoughtClass>
     <durationDays>10</durationDays>
     <stackLimit>5</stackLimit>
     <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
@@ -185,7 +185,7 @@
 
   <ThoughtDef>
     <defName>Council_EncP_Cheated</defName>
-    <thoughtClass>Thought_MemorySocial</thoughtClass>
+    <thoughtClass>ColonyCouncil.Thought_CouncilSocial</thoughtClass>
     <durationDays>15</durationDays>
     <stackLimit>5</stackLimit>
     <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
@@ -221,7 +221,7 @@
 
   <ThoughtDef>
     <defName>Council_EncP_TreatedLikeFurniture</defName>
-    <thoughtClass>Thought_MemorySocial</thoughtClass>
+    <thoughtClass>ColonyCouncil.Thought_CouncilSocial</thoughtClass>
     <durationDays>10</durationDays>
     <stackLimit>5</stackLimit>
     <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
@@ -269,7 +269,7 @@
 
   <ThoughtDef>
     <defName>Council_EncP_Taunted</defName>
-    <thoughtClass>Thought_MemorySocial</thoughtClass>
+    <thoughtClass>ColonyCouncil.Thought_CouncilSocial</thoughtClass>
     <durationDays>8</durationDays>
     <stackLimit>5</stackLimit>
     <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
@@ -279,7 +279,7 @@
 
   <ThoughtDef>
     <defName>Council_EncP_PrisonerStory</defName>
-    <thoughtClass>Thought_MemorySocial</thoughtClass>
+    <thoughtClass>ColonyCouncil.Thought_CouncilSocial</thoughtClass>
     <durationDays>15</durationDays>
     <stackLimit>5</stackLimit>
     <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
@@ -289,7 +289,7 @@
 
   <ThoughtDef>
     <defName>Council_EncP_SamePast</defName>
-    <thoughtClass>Thought_MemorySocial</thoughtClass>
+    <thoughtClass>ColonyCouncil.Thought_CouncilSocial</thoughtClass>
     <durationDays>20</durationDays>
     <stackLimit>5</stackLimit>
     <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
@@ -311,7 +311,7 @@
 
   <ThoughtDef>
     <defName>Council_EncP_FoodInsulted</defName>
-    <thoughtClass>Thought_MemorySocial</thoughtClass>
+    <thoughtClass>ColonyCouncil.Thought_CouncilSocial</thoughtClass>
     <durationDays>8</durationDays>
     <stackLimit>5</stackLimit>
     <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
@@ -327,7 +327,7 @@
 
   <ThoughtDef>
     <defName>Council_EncP_BribeOffered</defName>
-    <thoughtClass>Thought_MemorySocial</thoughtClass>
+    <thoughtClass>ColonyCouncil.Thought_CouncilSocial</thoughtClass>
     <durationDays>6</durationDays>
     <stackLimit>5</stackLimit>
     <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
@@ -375,7 +375,7 @@
 
   <ThoughtDef>
     <defName>Council_EncP_CruelToFallen</defName>
-    <thoughtClass>Thought_MemorySocial</thoughtClass>
+    <thoughtClass>ColonyCouncil.Thought_CouncilSocial</thoughtClass>
     <durationDays>12</durationDays>
     <stackLimit>5</stackLimit>
     <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
@@ -385,7 +385,7 @@
 
   <ThoughtDef>
     <defName>Council_EncP_Spat</defName>
-    <thoughtClass>Thought_MemorySocial</thoughtClass>
+    <thoughtClass>ColonyCouncil.Thought_CouncilSocial</thoughtClass>
     <durationDays>20</durationDays>
     <stackLimit>5</stackLimit>
     <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>

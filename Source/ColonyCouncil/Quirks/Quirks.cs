@@ -272,6 +272,15 @@ namespace ColonyCouncil
     /// <summary>A lucky-item thought names the item.</summary>
     public class Thought_Quirk : Thought_Situational
     {
+        public override string Description
+        {
+            get
+            {
+                var q = CouncilGameComponent.Instance?.quirks.quirks.FirstOrDefault(x => x.pawn == pawn && x.def.thought == def);
+                return Causes.Append(base.Description, q != null ? "CC_Cause_Quirk".Translate(q.Label).Resolve() : null);
+            }
+        }
+
         public override float MoodOffset()
         {
             float m = base.MoodOffset();

@@ -83,7 +83,7 @@
 
   <ThoughtDef>
     <defName>Council_LostOffice</defName>
-    <thoughtClass>Thought_MemorySocial</thoughtClass>
+    <thoughtClass>ColonyCouncil.Thought_CouncilSocial</thoughtClass>
     <durationDays>10</durationDays>
     <stackLimit>3</stackLimit>
     <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
@@ -92,7 +92,7 @@
 
   <ThoughtDef>
     <defName>Council_LostElection</defName>
-    <thoughtClass>Thought_MemorySocial</thoughtClass>
+    <thoughtClass>ColonyCouncil.Thought_CouncilSocial</thoughtClass>
     <durationDays>8</durationDays>
     <stackLimit>3</stackLimit>
     <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>

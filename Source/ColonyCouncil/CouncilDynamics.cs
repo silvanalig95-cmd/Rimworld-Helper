@@ -76,8 +76,12 @@ namespace ColonyCouncil
         }
 
         /// <summary>An honest no. Stings now, but it's over: no reminders, no slow souring.</summary>
+        /// <summary>"Ann's wish came true: a room of her own." for the tooltips of the moods it causes.</summary>
+        public static string WishCause(Wish w, string key) => w?.pawn == null ? null : key.Translate(w.pawn.LabelShort, w.Label).Resolve();
+
         public void Refuse(Wish w)
         {
+            using var _cause = Causes.Push(WishCause(w, "CC_Cause_WishRefused"));
             if (w == null || w.state != WishState.Open) return;
             journals.Write(w.pawn, "Council_Journal_Refused", w);
             float pen = Settings.PenaltyScale;
@@ -171,6 +175,7 @@ namespace ColonyCouncil
 
         private void ResolveObjection(Wish w, bool granted)
         {
+            using var _cause = Causes.Push(w.objector != null ? "CC_Cause_WishObjection".Translate(w.objector.LabelShort, w.pawn.LabelShort, w.Label).Resolve() : WishCause(w, "CC_Cause_Wish"));
             var o = w.objector;
             if (o == null || o.Dead || !o.IsColonist) return;
             if (granted)
@@ -216,6 +221,7 @@ namespace ColonyCouncil
 
         private void LastCall(Wish w)
         {
+            using var _cause = Causes.Push(WishCause(w, "CC_Cause_WishSelfHelp"));
             if (Settings.selfHelp && WouldDoItThemselves(w.pawn))
             {
                 string what = null;
@@ -269,6 +275,7 @@ namespace ColonyCouncil
 
         public void Grant(Wish w)
         {
+            using var _cause = Causes.Push(WishCause(w, "CC_Cause_WishGranted"));
             var s = Settings;
             var who = w.Beneficiary;
             GiveThought(who, w.def.grantedThought);
@@ -397,6 +404,7 @@ namespace ColonyCouncil
 
         private void GrantRipples(Wish w)
         {
+            using var _cause = Causes.Push(WishCause(w, "CC_Cause_WishGranted"));
             var who = w.Beneficiary;
             var map = who.MapHeld;
             if (map == null) return;
@@ -456,6 +464,7 @@ namespace ColonyCouncil
 
         private void Expire(Wish w)
         {
+            using var _cause = Causes.Push(WishCause(w, w.promised ? "CC_Cause_WishBroken" : "CC_Cause_WishIgnored"));
             var s = Settings;
             float pen = s.PenaltyScale;
             foreach (var p in w.Supporters.ToList())
@@ -702,6 +711,7 @@ namespace ColonyCouncil
 
         private void Quit(Pawn p, PawnStanding st)
         {
+            using var _cause = Causes.Push("CC_Cause_Quit".Translate(p.LabelShort).Resolve());
             // Not while they're hurt, mid-tantrum, away or in a fight: they leave when they can walk out.
             if (!p.Spawned || p.Downed || p.InMentalState || p.Drafted || p.Map == null || !p.Map.IsPlayerHome)
             {
@@ -803,6 +813,7 @@ namespace ColonyCouncil
         /// <summary>A year (or two, or five) since someone joined: the colony marks it, a little.</summary>
         private void Anniversaries()
         {
+            using var _cause = Causes.Push("CC_Cause_Anniversary".Translate().Resolve());
             foreach (var p in PawnsFinder.AllMaps_FreeColonistsSpawned.ToList())
             {
                 if (p.records == null || p.IsQuestLodger() || p.DevelopmentalStage.Baby()) continue;

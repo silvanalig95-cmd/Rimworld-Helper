@@ -229,7 +229,7 @@
 
   <ThoughtDef>
     <defName>Council_Dlm_Distrust</defName>
-    <thoughtClass>Thought_MemorySocial</thoughtClass>
+    <thoughtClass>ColonyCouncil.Thought_CouncilSocial</thoughtClass>
     <durationDays>15</durationDays>
     <stackLimit>3</stackLimit>
     <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>

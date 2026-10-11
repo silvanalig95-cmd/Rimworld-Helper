@@ -94,7 +94,7 @@ namespace ColonyCouncil
                 if (!h.lostNoticed && h.heir.IsColonist)
                 {
                     h.lostNoticed = true;
-                    CouncilGameComponent.GiveThought(h.heir, CouncilDefOf.Council_HeirloomLost);
+                    CouncilGameComponent.GiveThought(h.heir, CouncilDefOf.Council_HeirloomLost, null, -1f, "CC_Cause_HeirloomLost".Translate(h.ofName).Resolve());
                     comp.journals.Write(h.heir, "Council_Journal_HeirloomLost", null, h.ofName.Named("LOST"));
                 }
                 heirlooms.Remove(h);
@@ -127,6 +127,7 @@ namespace ColonyCouncil
 
         private void ComingOfAge(CouncilGameComponent comp, Pawn p)
         {
+            using var _cause = Causes.Push("CC_Cause_ComingOfAge".Translate(p.LabelShort).Resolve());
             if (!S.comingOfAge) return;
             string text = "CC_ComingOfAge_Text".Translate(p.Named("PAWN")).Resolve();
             Find.LetterStack.ReceiveLetter("CC_ComingOfAge_Label".Translate(p.LabelShort), text, LetterDefOf.PositiveEvent, p);

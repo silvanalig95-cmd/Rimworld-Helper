@@ -4,7 +4,7 @@
   <!-- ======================= Base ======================= -->
 
   <ThoughtDef Name="Council_MemoryBase" Abstract="True">
-    <thoughtClass>Thought_Memory</thoughtClass>
+    <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
     <stackLimit>1</stackLimit>
     <showBubble>true</showBubble>
   </ThoughtDef>
@@ -26,7 +26,7 @@
 
   <ThoughtDef>
     <defName>Council_SpokeUpForMe</defName>
-    <thoughtClass>Thought_MemorySocial</thoughtClass>
+    <thoughtClass>ColonyCouncil.Thought_CouncilSocial</thoughtClass>
     <durationDays>25</durationDays>
     <stackLimit>5</stackLimit>
     <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
@@ -117,6 +117,7 @@
   <ThoughtDef>
     <defName>Council_Trust</defName>
     <workerClass>ColonyCouncil.ThoughtWorker_CouncilTrust</workerClass>
+    <thoughtClass>ColonyCouncil.Thought_CouncilTrust</thoughtClass>
     <stages>
       <li>
         <label>the council never listens</label>
@@ -193,7 +194,7 @@
 
   <ThoughtDef>
     <defName>Council_StoodTogether</defName>
-    <thoughtClass>Thought_MemorySocial</thoughtClass>
+    <thoughtClass>ColonyCouncil.Thought_CouncilSocial</thoughtClass>
     <durationDays>20</durationDays>
     <stackLimit>5</stackLimit>
     <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
@@ -207,7 +208,7 @@
 
   <ThoughtDef>
     <defName>Council_Favoritism</defName>
-    <thoughtClass>Thought_MemorySocial</thoughtClass>
+    <thoughtClass>ColonyCouncil.Thought_CouncilSocial</thoughtClass>
     <durationDays>8</durationDays>
     <stackLimit>4</stackLimit>
     <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
@@ -223,7 +224,7 @@
 
   <ThoughtDef>
     <defName>Council_HappyForThem</defName>
-    <thoughtClass>Thought_MemorySocial</thoughtClass>
+    <thoughtClass>ColonyCouncil.Thought_CouncilSocial</thoughtClass>
     <durationDays>3</durationDays>
     <stackLimit>4</stackLimit>
     <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
@@ -661,7 +662,7 @@
 
   <ThoughtDef>
     <defName>Council_ObjectionIgnored</defName>
-    <thoughtClass>Thought_MemorySocial</thoughtClass>
+    <thoughtClass>ColonyCouncil.Thought_CouncilSocial</thoughtClass>
     <durationDays>6</durationDays>
     <stackLimit>3</stackLimit>
     <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>

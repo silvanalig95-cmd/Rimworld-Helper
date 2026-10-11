@@ -75,6 +75,7 @@ namespace ColonyCouncil
 
         private void Award(EpithetDef def, Pawn p, Pawn previous, CouncilGameComponent comp)
         {
+            using var _cause = Causes.Push("CC_Cause_Epithet".Translate(p.LabelShort, def.label).Resolve());
             holders[def.defName] = p;
             string text = def.earned.Formatted(p.Named("PAWN")).Resolve();
             if (previous != null) text += " " + "CC_Epithet_Taken".Translate(previous.Named("OTHER"), def.label.Named("TITLE")).Resolve();

@@ -162,6 +162,8 @@ namespace ColonyCouncil
         private static void Fire(EncounterDef def, CouncilGameComponent comp, Map map, Pawn a, Pawn x)
         {
             var ctx = new DilemmaContext { map = map, a = a, stranger = x, faction = Strangers.FactionOf(x), why = def.label };
+            string text = ctx.Format(Flavor.PickText(def.texts));
+            ctx.cause = text;
             foreach (var e in def.effects)
             {
                 try
@@ -173,7 +175,6 @@ namespace ColonyCouncil
                     CouncilLog.ErrorOnce("encounter effect " + def.defName, ex);
                 }
             }
-            string text = ctx.Format(Flavor.PickText(def.texts));
             Notify.Message(text, new LookTargets(a, x), MessageTypeDefOf.SilentInput, def.notable ? Importance.Notable : Importance.Flavor);
             if (def.notable) comp.AddChronicle(new ChronicleEntry(ChronicleKind.Stranger, text, a));
             if (!def.journal.NullOrEmpty()) comp.journals.Write(a, def.journal, null, x.Named("X"));

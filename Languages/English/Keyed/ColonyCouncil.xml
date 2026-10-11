@@ -1341,4 +1341,49 @@ Keys: the game's "slower" key ({0}) steps below normal speed, "faster" ({1}) ste
   <CC_Settings_SlowButtons_Tip>Two speeds slower than normal, for planning without pausing. Small buttons sit next to the time controls (drag them by their grip to move them). The game's "slower" and "faster" keys also step below normal speed, even with the buttons hidden.</CC_Settings_SlowButtons_Tip>
   <CC_Settings_SlowButtonsReset>Put the slow speed buttons back in their usual place</CC_Settings_SlowButtonsReset>
 
+  <!-- Why a mood happened (shown under the description in the mood tooltip) -->
+  <CC_Cause_Line>Why: {0}</CC_Cause_Line>
+  <CC_Cause_About>about {0}.</CC_Cause_About>
+  <CC_Cause_Wish>{0}'s wish: {1}.</CC_Cause_Wish>
+  <CC_Cause_WishGranted>{0}'s wish came true: {1}.</CC_Cause_WishGranted>
+  <CC_Cause_WishRefused>the council said no to {0}'s wish: {1}.</CC_Cause_WishRefused>
+  <CC_Cause_WishIgnored>{0}'s wish was never answered: {1}.</CC_Cause_WishIgnored>
+  <CC_Cause_WishBroken>the council promised {0} this and didn't deliver: {1}.</CC_Cause_WishBroken>
+  <CC_Cause_WishSelfHelp>{0} stopped waiting for the council: {1}.</CC_Cause_WishSelfHelp>
+  <CC_Cause_WishObjection>{0} spoke against {1}'s wish: {2}.</CC_Cause_WishObjection>
+  <CC_Cause_Quit>{0} walked out on the colony.</CC_Cause_Quit>
+  <CC_Cause_Anniversary>another year in the colony.</CC_Cause_Anniversary>
+  <CC_Cause_Dilemma>the council's choice: {0}.</CC_Cause_Dilemma>
+  <CC_Cause_Decision>the council's answer to "{0}": {1}.</CC_Cause_Decision>
+  <CC_Cause_Tradition>the tradition of {0}.</CC_Cause_Tradition>
+  <CC_Cause_Meeting>the council meeting.</CC_Cause_Meeting>
+  <CC_Cause_AmbitionChosen>the council's new ambition: {0}.</CC_Cause_AmbitionChosen>
+  <CC_Cause_AmbitionDone>the colony achieved its ambition: {0}.</CC_Cause_AmbitionDone>
+  <CC_Cause_AmbitionFailed>the colony failed its ambition: {0}.</CC_Cause_AmbitionFailed>
+  <CC_Cause_GoalReached>{0} reached a life goal: {1}.</CC_Cause_GoalReached>
+  <CC_Cause_PersonalTouch>a personal touch for their room.</CC_Cause_PersonalTouch>
+  <CC_Cause_DecreeEnacted>the council enacted a decree: {0}.</CC_Cause_DecreeEnacted>
+  <CC_Cause_DecreeRepealed>the council repealed a decree: {0}.</CC_Cause_DecreeRepealed>
+  <CC_Cause_Decree>the decree "{0}", in force for {1} more.</CC_Cause_Decree>
+  <CC_Cause_DreamTrue>a dream that came true.</CC_Cause_DreamTrue>
+  <CC_Cause_Epithet>{0} earned a name: {1}.</CC_Cause_Epithet>
+  <CC_Cause_ComingOfAge>{0} came of age.</CC_Cause_ComingOfAge>
+  <CC_Cause_HeirloomLost>{0}'s keepsake is gone.</CC_Cause_HeirloomLost>
+  <CC_Cause_Election>the yearly election.</CC_Cause_Election>
+  <CC_Cause_Appointed>{0} was made {1}.</CC_Cause_Appointed>
+  <CC_Cause_Dismissed>the council left the office of {0} empty.</CC_Cause_Dismissed>
+  <CC_Cause_Confided>{0} confided a secret in {1}.</CC_Cause_Confided>
+  <CC_Cause_SecretOut>{0}'s secret came out: {1}.</CC_Cause_SecretOut>
+  <CC_Cause_VendettaBlood>a blow struck against the ones they swore vengeance on.</CC_Cause_VendettaBlood>
+  <CC_Cause_VendettaSettled>vengeance on {0}, for {1}.</CC_Cause_VendettaSettled>
+  <CC_Cause_VendettaBetrayed>the colony made peace with {0}, the ones they swore vengeance on.</CC_Cause_VendettaBetrayed>
+  <CC_Cause_Funeral>{0}'s funeral.</CC_Cause_Funeral>
+  <CC_Cause_LeftOut>everyone else has a circle of friends.</CC_Cause_LeftOut>
+  <CC_Cause_Lessons>{0} taught {1} {2}.</CC_Cause_Lessons>
+  <CC_Cause_Nemesis>{0}, who {1}.</CC_Cause_Nemesis>
+  <CC_Cause_PetDied>{0} died.</CC_Cause_PetDied>
+  <CC_Cause_PetFought>{0} fought beside them in the battle.</CC_Cause_PetFought>
+  <CC_Cause_Quirk>their quirk: {0}.</CC_Cause_Quirk>
+  <CC_Cause_Trust>lately, with the council:\n{0}</CC_Cause_Trust>
+
 </LanguageData>

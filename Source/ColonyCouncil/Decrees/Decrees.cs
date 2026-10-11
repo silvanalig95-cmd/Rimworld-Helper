@@ -179,6 +179,7 @@ namespace ColonyCouncil
 
         public void Enact(DecreeDef def, CouncilGameComponent comp)
         {
+            using var _cause = Causes.Push("CC_Cause_DecreeEnacted".Translate(def.label).Resolve());
             if (def == null || CannotEnact(def) != null || IsActive(def)) return;
             int now = Find.TickManager.TicksGame;
             active.Add(new ActiveDecree { def = def, startTick = now, endTick = now + Mathf.RoundToInt(def.durationDays * GenDate.TicksPerDay) });
@@ -198,6 +199,7 @@ namespace ColonyCouncil
 
         public void Repeal(DecreeDef def, CouncilGameComponent comp, bool early)
         {
+            using var _cause = Causes.Push("CC_Cause_DecreeRepealed".Translate(def.label).Resolve());
             var a = Get(def);
             if (a == null) return;
             active.Remove(a);
@@ -379,6 +381,20 @@ namespace ColonyCouncil
     /// <summary>Decree moods: the bad ones follow the stakes setting and the penalty slider.</summary>
     public class Thought_Decree : Thought_Situational
     {
+        /// <summary>Which decree, and how long it has left.</summary>
+        public override string Description
+        {
+            get
+            {
+                var comp = CouncilGameComponent.Instance;
+                var decree = DefDatabase<DecreeDef>.AllDefsListForReading.FirstOrDefault(d => d.thought == def);
+                var active = decree != null ? comp?.decrees.active.FirstOrDefault(a => a.def == decree) : null;
+                string cause = active == null ? null
+                    : "CC_Cause_Decree".Translate(decree.label, TextUtil.DaysString(Mathf.Max(0, active.endTick - Find.TickManager.TicksGame))).Resolve();
+                return Causes.Append(base.Description, cause);
+            }
+        }
+
         public override float MoodOffset()
         {
             float m = base.MoodOffset();

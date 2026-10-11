@@ -667,7 +667,7 @@ namespace ColonyCouncil
 
         // ================= Effects =================
 
-        public static void GiveThought(Pawn p, ThoughtDef def, Pawn otherPawn = null, float scale = -1f)
+        public static void GiveThought(Pawn p, ThoughtDef def, Pawn otherPawn = null, float scale = -1f, string cause = null)
         {
             if (def == null || p?.needs?.mood?.thoughts?.memories == null) return;
             if (!ColonyCouncilMod.Settings.MoodEffects) return;
@@ -678,6 +678,8 @@ namespace ColonyCouncil
             float factor = scale >= 0f ? scale : positive ? ColonyCouncilMod.Settings.rewardFactor : ColonyCouncilMod.Settings.PenaltyScale;
             if (factor <= 0f) return;
             thought.moodPowerFactor = factor * Standards.MoodFactor(p, positive);
+            if (thought is ICausedThought caused)
+                caused.Cause = cause ?? Causes.Current ?? (otherPawn != null && otherPawn != p && !def.IsSocial ? "CC_Cause_About".Translate(otherPawn.LabelShort).ToString() : null);
             p.needs.mood.thoughts.memories.TryGainMemory(thought, otherPawn);
         }
 

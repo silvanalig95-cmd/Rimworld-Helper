@@ -321,6 +321,7 @@ namespace ColonyCouncil
 
         private void Escaped(CouncilGameComponent comp, Nemesis n, int now)
         {
+            using var _cause = Causes.Push("CC_Cause_Nemesis".Translate(n.pawn?.LabelShort ?? n.name ?? "?", n.DeedText).Resolve());
             var x = n.pawn;
             n.announced = true;
             n.tick = now;
@@ -350,6 +351,7 @@ namespace ColonyCouncil
 
         private void Returned(CouncilGameComponent comp, Nemesis n)
         {
+            using var _cause = Causes.Push("CC_Cause_Nemesis".Translate(n.Name, n.DeedText).Resolve());
             var x = n.pawn;
             string text = "CC_Nemesis_Returned".Translate(x.Named("X"), (n.victimName ?? "?").Named("VICTIM"), n.DeedText.Named("DEED")).Resolve();
             if (n.IsBeast) Notify.Message(text, x, MessageTypeDefOf.NeutralEvent, Importance.Notable);
@@ -363,6 +365,7 @@ namespace ColonyCouncil
 
         private void Captured(CouncilGameComponent comp, Nemesis n)
         {
+            using var _cause = Causes.Push("CC_Cause_Nemesis".Translate(n.Name, n.DeedText).Resolve());
             var x = n.pawn;
             string text = "CC_Nemesis_Captured".Translate(x.Named("X"), (n.victimName ?? "?").Named("VICTIM"), n.DeedText.Named("DEED")).Resolve();
             Notify.Message(text, x, MessageTypeDefOf.PositiveEvent, Importance.Notable);
@@ -374,6 +377,7 @@ namespace ColonyCouncil
 
         private void Slain(CouncilGameComponent comp, Nemesis n)
         {
+            using var _cause = Causes.Push("CC_Cause_Nemesis".Translate(n.Name, n.DeedText).Resolve());
             var x = n.pawn;
             var slayer = Slayer(x);
             bool revenge = slayer != null && slayer == n.victim;

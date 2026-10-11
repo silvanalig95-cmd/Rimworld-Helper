@@ -541,6 +541,7 @@ namespace ColonyCouncil
 
         private void CameTrue(CouncilGameComponent comp, PendingOmen o)
         {
+            using var _cause = Causes.Push("CC_Cause_DreamTrue".Translate().Resolve());
             var p = o.dreamer;
             if (p == null || p.Dead) return;
             string text = "CC_Dream_CameTrue".Translate(p.Named("PAWN"), (o.text ?? "").Named("DREAM")).Resolve();

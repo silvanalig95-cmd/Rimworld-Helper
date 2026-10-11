@@ -208,6 +208,8 @@ namespace ColonyCouncil
         public string text;
         /// <summary>Outside dilemmas (social events, dreams): what to call the cause in trust logs.</summary>
         [Unsaved] public string why;
+        /// <summary>What happened, for the tooltips of the moods it causes.</summary>
+        [Unsaved] public string cause;
 
         public string Format(string s)
         {
@@ -420,6 +422,7 @@ namespace ColonyCouncil
 
         public override void Apply(DilemmaContext ctx)
         {
+            using var _cause = Causes.Push(ctx.cause ?? (ctx.def != null ? "CC_Cause_Dilemma".Translate(ctx.def.label).Resolve() : ctx.why));
             var pairs = new HashSet<(Pawn, Pawn)>();
             foreach (var p in Targets(ctx))
             {
@@ -850,6 +853,8 @@ namespace ColonyCouncil
             var option = ctx.def.options[Mathf.Clamp(index, 0, ctx.def.options.Count - 1)];
             // Someone may have left or died in the meantime; the dilemma happens to whoever is still here.
             if (ctx.a == null || ctx.a.Dead) return;
+            ctx.cause = "CC_Cause_Decision".Translate(ctx.def.label, ctx.Format(option.label)).Resolve();
+            using var _cause = Causes.Push(ctx.cause);
             if (ctx.def.traditionOption >= 0 && comp != null) Tradition(ctx, index == ctx.def.traditionOption, comp);
             bool risk = option.riskChance > 0f && Rand.Chance(option.riskChance);
             if (!risk || !option.riskReplaces)
@@ -875,6 +880,7 @@ namespace ColonyCouncil
         /// <summary>Keeping, founding or breaking a tradition.</summary>
         private void Tradition(DilemmaContext ctx, bool kept, CouncilGameComponent comp)
         {
+            using var _cause = Causes.Push("CC_Cause_Tradition".Translate(ctx.def.traditionLabel ?? ctx.def.label).Resolve());
             var def = ctx.def;
             string key = def.defName;
             var colonists = ctx.Colonists.ToList();
