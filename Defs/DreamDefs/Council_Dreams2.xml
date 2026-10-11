@@ -1187,13 +1187,13 @@
     <weight>0.15</weight>
     <lines>
       <plain>
-        <li>Every machine in the colony held its breath, and the lights went out, and the sun was laughing.</li>
+        <li>The sun went white in my dream, and every light we had went out at once, and the sun was laughing.</li>
         <li>I dreamt the sun reached down and pressed its thumb on everything that hums.</li>
         <li>[tribal|medieval] The sun grew angry at the strangers' machines in my dream and struck them all dumb.</li>
       </plain>
-      <blunt><li>Dreamt the power died. All of it. Charge what you can.</li></blunt>
-      <cheerful><li>Dreamt all the machines took a nap at the same time! Even they need a rest.</li></cheerful>
-      <cold><li>Dreamt every light and machine went dead. I'd make sure nothing vital depends on power for the next few days.</li></cold>
+      <blunt><li>Dreamt the sun turned white and everything went dark. Something's coming.</li></blunt>
+      <cheerful><li>In my dream the sun put everything to sleep for a day, the lights and all. It was very peaceful!</li></cheerful>
+      <cold><li>Dreamt every light went dead at once. I'd plan for a few dark days.</li></cold>
     </lines>
     <omen><incident>SolarFlare</incident><days>1~3</days><good>false</good></omen>
   </ColonyCouncil.DreamDef>
