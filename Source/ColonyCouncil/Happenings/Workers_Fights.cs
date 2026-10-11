@@ -83,10 +83,9 @@ namespace ColonyCouncil
 
         protected override void Attacked(HappeningContext ctx)
         {
-            var n = CouncilGameComponent.Instance?.nemeses.For(ctx.stranger);
-            if (n == null) return;
-            n.returns++;
-            n.lastSeen = Find.TickManager.TicksGame;
+            var comp = CouncilGameComponent.Instance;
+            var n = comp?.nemeses.For(ctx.stranger);
+            if (n != null) comp.nemeses.Notify_LedRaid(comp, n);
         }
     }
 

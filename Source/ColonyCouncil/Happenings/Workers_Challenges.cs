@@ -66,6 +66,12 @@ namespace ColonyCouncil
         protected override bool Begin(HappeningContext ctx, HappeningExtension ext) =>
             Arrivals.Visit(new List<Pawn> { ctx.stranger }, ctx.map, ctx.faction, null, ext.stayHours.RandomInRange) != null;
 
+        protected override void Abort(HappeningContext ctx)
+        {
+            if (ctx.stranger != null && !ctx.stranger.Spawned) Arrivals.Discard(ctx.stranger);
+            ctx.stranger = null;
+        }
+
         protected override void AddTags(HappeningContext ctx, HashSet<string> tags)
         {
             if (ctx.skill != null) tags.Add(ctx.skill.defName);

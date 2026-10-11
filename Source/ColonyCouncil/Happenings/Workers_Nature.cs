@@ -132,9 +132,19 @@ namespace ColonyCouncil
     {
         private int hits;
 
-        public static List<Plant> Crops(Map map) =>
-            map.listerThings.ThingsInGroup(ThingRequestGroup.Plant).OfType<Plant>()
-                .Where(p => p.Spawned && p.sown && !p.def.plant.IsTree && !p.Position.Roofed(map)).ToList();
+        /// <summary>Crops in open fields (growing zones under the sky).</summary>
+        public static List<Plant> Crops(Map map)
+        {
+            var list = new List<Plant>();
+            foreach (var zone in map.zoneManager.AllZones.OfType<Zone_Growing>())
+                foreach (var c in zone.Cells)
+                {
+                    if (c.Roofed(map)) continue;
+                    var p = c.GetPlant(map);
+                    if (p != null && p.sown && !p.def.plant.IsTree) list.Add(p);
+                }
+            return list;
+        }
 
         public override WeatherDef ForcedWeather() => DefDatabase<WeatherDef>.GetNamedSilentFail("Rain");
 
@@ -152,7 +162,11 @@ namespace ColonyCouncil
                     {
                         hits++;
                         if (p.Growth < 0.25f && Rand.Chance(0.35f)) p.Kill(null, null);
-                        else p.Growth = Mathf.Max(0.05f, p.Growth - Rand.Range(0.08f, 0.2f));
+                        else
+                        {
+                            p.Growth = Mathf.Max(0.05f, p.Growth - Rand.Range(0.08f, 0.2f));
+                            map.mapDrawer.MapMeshDirty(p.Position, MapMeshFlagDefOf.Things);
+                        }
                     }
                 }
                 foreach (var pawn in map.mapPawns.FreeColonistsSpawned)

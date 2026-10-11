@@ -254,6 +254,8 @@ namespace ColonyCouncil
         public string name;
         public int tick;
         public bool quit;
+        /// <summary>Rimfolk pinned them in the world (and so may let go).</summary>
+        public bool pinned;
 
         public void ExposeData()
         {
@@ -261,6 +263,7 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref name, "name");
             Scribe_Values.Look(ref tick, "tick");
             Scribe_Values.Look(ref quit, "quit");
+            Scribe_Values.Look(ref pinned, "pinned");
         }
     }
 
@@ -378,7 +381,9 @@ namespace ColonyCouncil
                 nextTick = now + GenDate.TicksPerHour * 4;
                 return;
             }
-            nextTick = TryFire(map, null) ? now + Interval() : now + GenDate.TicksPerDay / 2;
+            // Moved on first, so an event that throws can't fire again every hour.
+            nextTick = now + GenDate.TicksPerDay / 2;
+            if (TryFire(map, null)) nextTick = now + Interval();
         }
 
         /// <summary>An event letter nobody has answered yet.</summary>
@@ -445,6 +450,7 @@ namespace ColonyCouncil
             var comp = CouncilGameComponent.Instance;
             try
             {
+                if (ctx.why == null) ctx.why = ctx.incident.LabelCap;
                 ctx.cause = "CC_Cause_Event".Translate(ctx.incident.LabelCap, ctx.Format(option.label)).Resolve();
                 using var _cause = Causes.Push(ctx.cause);
                 bool risk = option.riskChance > 0f && Rand.Chance(worker.RiskChance(ctx, i, option.riskChance));
@@ -516,6 +522,11 @@ namespace ColonyCouncil
 
         // ---------------- Promised fights ----------------
 
+        private static void Unpin(Pawn p)
+        {
+            if (p != null && !(CouncilGameComponent.Instance?.nemeses.IsNemesis(p) ?? false)) Find.WorldPawns.ForcefullyKeptPawns.Remove(p);
+        }
+
         public void AddRaid(Map map, Faction faction, float factor, float delayHours, string label, string text, Pawn leader = null)
         {
             if (map == null || faction == null) return;
@@ -532,11 +543,16 @@ namespace ColonyCouncil
             foreach (var r in raids.Where(r => now >= r.tick).ToList())
             {
                 raids.Remove(r);
-                if (r.map == null || !Find.Maps.Contains(r.map) || r.faction == null || r.faction.defeated || !r.faction.HostileTo(Faction.OfPlayer)) continue;
-                // Switched off since, or the storyteller no longer sends fights: the threat never comes.
-                if (!S.worldEvents || !S.worldEventBattles || Find.Storyteller.difficulty.threatScale <= 0.01f) continue;
-                // Not on top of another fight: they wait a little.
-                if (GenHostility.AnyHostileActiveThreatToPlayer(r.map, false, false) && r.postponed < 4)
+                // The map is gone, the enemy is gone or at peace, or fights were switched off since: the threat never comes.
+                if (r.map == null || !Find.Maps.Contains(r.map) || r.faction == null || r.faction.defeated || !r.faction.HostileTo(Faction.OfPlayer)
+                    || !IncidentWorker_Happening.FightsPossible)
+                {
+                    Unpin(r.leader);
+                    continue;
+                }
+                // Not on top of another fight, nor right after one: they wait a little.
+                bool busy = GenHostility.AnyHostileActiveThreatToPlayer(r.map, false, false) || now - r.map.storyState.LastThreatBigTick < GenDate.TicksPerDay;
+                if (busy && r.postponed < 4)
                 {
                     r.postponed++;
                     r.tick = now + GenDate.TicksPerHour * 6;
@@ -586,28 +602,48 @@ namespace ColonyCouncil
         /// <summary>A colonist was banished or walked out (Harmony hook on banishing).</summary>
         public void Notify_Banished(Pawn p)
         {
-            if (p == null || !p.RaceProps.Humanlike || !People.HasInnerLife(p)) return;
-            departed.RemoveAll(d => d.pawn == p);
-            departed.Add(new Departed { pawn = p, name = p.LabelShort, tick = Now, quit = p == quitting });
-            Find.WorldPawns.ForcefullyKeptPawns.Add(p);
-            while (departed.Count > 6) Forget(departed[0]);
+            if (p == null || p.Dead || !p.RaceProps.Humanlike) return;
+            var old = departed.FirstOrDefault(d => d.pawn == p);
+            if (old != null) departed.Remove(old);
+            bool pinned = Find.WorldPawns.ForcefullyKeptPawns.Add(p) || (old?.pinned ?? false);
+            departed.Add(new Departed { pawn = p, name = p.LabelShort, tick = Now, quit = p == quitting || (old?.quit ?? false), pinned = pinned });
+            foreach (var d in departed.Where(d => !AskedAbout(d.pawn)).Take(Mathf.Max(0, departed.Count - 6)).ToList()) Forget(d);
         }
+
+        /// <summary>The stranger of an event letter still waiting for an answer.</summary>
+        private static bool AskedAbout(Pawn p) =>
+            p != null && Find.LetterStack.LettersListForReading.Any(l => l is ChoiceLetter_Happening h && !h.resolved && h.ctx?.stranger == p);
 
         public void Forget(Departed d)
         {
             departed.Remove(d);
-            if (d.pawn != null && Find.WorldPawns.ForcefullyKeptPawns.Contains(d.pawn) && !(CouncilGameComponent.Instance?.nemeses.IsNemesis(d.pawn) ?? false))
-                Find.WorldPawns.ForcefullyKeptPawns.Remove(d.pawn);
+            if (d.pinned && d.pawn != null && !AskedAbout(d.pawn)) Unpin(d.pawn);
+        }
+
+        /// <summary>Who someone was just before they died (taken before the death, acted on after it).</summary>
+        public struct DeathNote
+        {
+            public bool beast;
+            public Faction prisonerOf;
+            public string name;
+        }
+
+        public DeathNote Before(Pawn victim)
+        {
+            var note = new DeathNote { beast = victim == beast, name = victim.LabelShort };
+            if (victim.RaceProps.Humanlike && victim.IsPrisonerOfColony && victim.Faction != null && !victim.Faction.IsPlayer && !victim.Faction.Hidden)
+                note.prisonerOf = victim.Faction;
+            return note;
         }
 
         /// <summary>Someone died (Harmony hook): a prisoner in our hands, or the great beast.</summary>
-        public void Notify_Killed(Pawn victim, DamageInfo? dinfo)
+        public void Notify_Killed(Pawn victim, DamageInfo? dinfo, DeathNote note)
         {
             if (victim == null) return;
-            if (victim == beast) HappeningWorker_GreatBeast.Slain(this, victim, dinfo);
-            if (victim.RaceProps.Humanlike && victim.IsPrisonerOfColony && victim.Faction != null && !victim.Faction.IsPlayer && !victim.Faction.Hidden)
+            if (note.beast) HappeningWorker_GreatBeast.Slain(this, victim, dinfo);
+            if (note.prisonerOf != null)
             {
-                grudges.Add(new Grudge { name = victim.LabelShort, faction = victim.Faction, tick = Now });
+                grudges.Add(new Grudge { name = note.name, faction = note.prisonerOf, tick = Now });
                 while (grudges.Count > 10) grudges.RemoveAt(0);
             }
         }
@@ -616,7 +652,7 @@ namespace ColonyCouncil
         {
             int now = Now;
             foreach (var d in departed.Where(d => d.pawn == null || d.pawn.Dead || d.pawn.Discarded || d.pawn.Faction == Faction.OfPlayer
-                                                   || now - d.tick > GenDate.TicksPerYear * 2).ToList())
+                                                   || (now - d.tick > GenDate.TicksPerYear * 2 && !AskedAbout(d.pawn))).ToList())
                 Forget(d);
             grudges.RemoveAll(g => g.settled || g.faction == null || g.faction.defeated || now - g.tick > GenDate.TicksPerYear * 2);
         }

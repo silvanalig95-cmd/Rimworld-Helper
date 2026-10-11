@@ -120,6 +120,7 @@ namespace ColonyCouncil
         public static bool Join(Pawn x, Map map, IntVec3? near = null)
         {
             if (x == null || x.Dead || x.Discarded || map == null) return false;
+            if (x.Spawned && x.Map != map) return false;
             if (!x.Spawned && !Spawn(x, map, near)) return false;
             Find.WorldPawns.ForcefullyKeptPawns.Remove(x);
             x.GetLord()?.RemovePawn(x);
@@ -216,13 +217,15 @@ namespace ColonyCouncil
         /// <summary>Someone special (a nemesis) walks in with the raiders who just arrived.</summary>
         private static void Lead(Map map, Faction f, Pawn leader, HashSet<Lord> before)
         {
-            Find.WorldPawns.ForcefullyKeptPawns.Remove(leader);
             if (leader.Dead || leader.Discarded || leader.Spawned || leader.Faction != f || leader.IsPrisoner || People.Kidnapped(leader)
                 || leader.GetCaravan() != null || QuestUtility.IsReservedByQuestOrQuestBeingGenerated(leader)) return;
-            var lord = map.lordManager.lords.FirstOrDefault(l => !before.Contains(l) && l.faction == f && l.ownedPawns.Count > 0);
+            var lord = map.lordManager.lords.FirstOrDefault(l => !before.Contains(l) && l.faction == f && l.ownedPawns.Any(p => p.Spawned));
             if (lord == null) return;
-            var anchor = lord.ownedPawns.RandomElement();
-            if (!CellFinder.TryFindRandomCellNear(anchor.Position, map, 5, c => c.Standable(map) && c.GetFirstPawn(map) == null, out var cell)) cell = anchor.Position;
+            // Raiders still in drop pods aren't anywhere yet: walk in beside one who is.
+            var anchor = lord.ownedPawns.Where(p => p.Spawned && p.Map == map).RandomElementWithFallback();
+            if (anchor == null) return;
+            if (!CellFinder.TryFindRandomCellNear(anchor.Position, map, 5, c => c.Standable(map) && c.GetFirstPawn(map) == null, out var cell)) return;
+            Find.WorldPawns.ForcefullyKeptPawns.Remove(leader);
             if (Find.WorldPawns.Contains(leader)) Find.WorldPawns.RemovePawn(leader);
             GenSpawn.Spawn(leader, cell, map);
             if (lord.CanAddPawn(leader)) lord.AddPawn(leader);
@@ -264,6 +267,7 @@ namespace ColonyCouncil
                 if (d.HasComp(typeof(CompRottable)) || d.HasComp(typeof(CompBladelinkWeapon)) || d.HasComp(typeof(CompHatcher))) return false;
                 if (d.thingClass == typeof(MinifiedThing) || d.thingClass == typeof(Pawn)) return false;
                 if (d.IsWeapon && d.weaponTags.NullOrEmpty()) return false;
+                if (tech <= TechLevel.Medieval && HighTechMaterials.Contains(d.defName)) return false;
                 return d.IsStuff || d.IsMedicine || d.IsWeapon || d.IsApparel || d == ThingDefOf.ComponentIndustrial;
             }
             catch
@@ -271,6 +275,12 @@ namespace ColonyCouncil
                 return false;
             }
         }
+
+        /// <summary>Materials the game doesn't give a tech level, but that a medieval colony has no business finding.</summary>
+        private static readonly HashSet<string> HighTechMaterials = new HashSet<string>
+        {
+            "Plasteel", "Uranium", "Hyperweave", "Synthread", "Chemfuel", "Neutroamine", "ComponentIndustrial", "ComponentSpacer", "MedicineIndustrial", "MedicineUltratech"
+        };
 
         public static void ClearCache() => cache = null;
 

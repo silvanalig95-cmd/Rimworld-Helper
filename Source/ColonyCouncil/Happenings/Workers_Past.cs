@@ -40,6 +40,8 @@ namespace ColonyCouncil
 
         protected virtual Pawn MakeX(HappeningContext ctx, HappeningExtension ext) => Arrivals.Make(Arrivals.JoinerKind(), null, ext.ages);
 
+        protected static bool Sane(FloatRange r) => r.min >= 0f && r.max >= r.min;
+
         /// <summary>Only people of A's own kind can be their family (an elf's sister is an elf).</summary>
         protected static bool SameRaceAsJoiners(Pawn a) => a.def == Arrivals.JoinerKind()?.race;
 
@@ -90,7 +92,9 @@ namespace ColonyCouncil
             {
                 case "sibling":
                 {
-                    var x = Arrivals.Make(kind, null, new FloatRange(Mathf.Max(16f, age - 12f), Mathf.Min(70f, age + 12f)), null, last);
+                    var range = new FloatRange(Mathf.Max(16f, age - 12f), Mathf.Min(70f, age + 12f));
+                    if (!Sane(range)) return null;
+                    var x = Arrivals.Make(kind, null, range, null, last);
                     if (father != null) x.SetFather(father);
                     if (mother != null) x.SetMother(mother);
                     return x;
@@ -98,13 +102,17 @@ namespace ColonyCouncil
                 case "parent":
                 {
                     var g = father == null && mother == null ? (Rand.Bool ? Gender.Male : Gender.Female) : father == null ? Gender.Male : Gender.Female;
-                    var x = Arrivals.Make(kind, null, new FloatRange(age + 18f, Mathf.Min(age + 40f, 88f)), g, g == Gender.Male ? last : null);
+                    var range = new FloatRange(age + 18f, Mathf.Min(age + 40f, 88f));
+                    if (!Sane(range)) return null;
+                    var x = Arrivals.Make(kind, null, range, g, g == Gender.Male ? last : null);
                     a.relations.AddDirectRelation(PawnRelationDefOf.Parent, x);
                     return x;
                 }
                 default:
                 {
-                    var x = Arrivals.Make(kind, null, new FloatRange(16f, age - 18f), null, a.gender == Gender.Male ? last : null);
+                    var range = new FloatRange(16f, age - 18f);
+                    if (!Sane(range)) return null;
+                    var x = Arrivals.Make(kind, null, range, null, a.gender == Gender.Male ? last : null);
                     x.relations.AddDirectRelation(PawnRelationDefOf.Parent, a);
                     return x;
                 }
@@ -130,7 +138,9 @@ namespace ColonyCouncil
             else if (traits != null && traits.HasTrait(TraitDefOf.Bisexual)) g = Rand.Bool ? Gender.Male : Gender.Female;
             else g = a.gender == Gender.Male ? Gender.Female : Gender.Male;
             float age = a.ageTracker.AgeBiologicalYearsFloat;
-            var x = Arrivals.Make(Arrivals.JoinerKind(), null, new FloatRange(Mathf.Max(18f, age - 8f), Mathf.Min(75f, age + 8f)), g);
+            var range = new FloatRange(Mathf.Max(18f, age - 8f), Mathf.Min(75f, age + 8f));
+            if (!Sane(range)) return null;
+            var x = Arrivals.Make(Arrivals.JoinerKind(), null, range, g);
             a.relations.AddDirectRelation(PawnRelationDefOf.ExLover, x);
             return x;
         }

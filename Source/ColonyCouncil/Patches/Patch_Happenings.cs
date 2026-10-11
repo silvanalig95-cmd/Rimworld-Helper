@@ -8,12 +8,27 @@ namespace ColonyCouncil
     [HarmonyPatch(typeof(Pawn), nameof(Pawn.Kill))]
     public static class Patch_KilledStranger
     {
-        public static void Prefix(Pawn __instance, DamageInfo? dinfo)
+        public static void Prefix(Pawn __instance, out HappeningTracker.DeathNote? __state)
         {
+            __state = null;
             if (!RimfolkPatches.On || __instance == null || __instance.Dead || __instance.IsColonist) return;
             try
             {
-                CouncilGameComponent.Instance?.happenings?.Notify_Killed(__instance, dinfo);
+                __state = CouncilGameComponent.Instance?.happenings?.Before(__instance);
+            }
+            catch (System.Exception e)
+            {
+                CouncilLog.ErrorOnce("stranger death hook", e);
+            }
+        }
+
+        /// <summary>Only once they're really dead (another mod may stop a death).</summary>
+        public static void Postfix(Pawn __instance, DamageInfo? dinfo, HappeningTracker.DeathNote? __state)
+        {
+            if (__state == null || __instance == null || !__instance.Dead) return;
+            try
+            {
+                CouncilGameComponent.Instance?.happenings?.Notify_Killed(__instance, dinfo, __state.Value);
             }
             catch (System.Exception e)
             {

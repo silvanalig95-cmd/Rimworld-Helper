@@ -14,10 +14,22 @@ namespace ColonyCouncil
     {
         public bool withGroup;
 
+        /// <summary>Someone who was here (a visitor, a lost child) and has gone can't be asked to stay.</summary>
+        private static bool Gone(DilemmaContext ctx)
+        {
+            var x = ctx.stranger;
+            if (x == null || x.Dead || x.Discarded) return true;
+            bool waiting = (ctx as HappeningContext)?.xWaiting ?? false;
+            return !waiting && (!x.Spawned || x.Map != ctx.map);
+        }
+
+        public override string Unavailable(DilemmaContext ctx) =>
+            Gone(ctx) ? "CC_Stranger_Gone".Translate(ctx.stranger?.LabelShort ?? "?").ToString() : null;
+
         public override void Apply(DilemmaContext ctx)
         {
             var x = ctx.stranger;
-            if (x == null || ctx.map == null) return;
+            if (x == null || ctx.map == null || Gone(ctx)) return;
             if (chance < 1f && !Rand.Chance(chance)) return;
             var h = ctx as HappeningContext;
             IntVec3? near = ctx.a != null && ctx.a.Spawned && ctx.a.Map == ctx.map && !x.Spawned && x.RaceProps.Animal ? ctx.a.Position : (IntVec3?)null;

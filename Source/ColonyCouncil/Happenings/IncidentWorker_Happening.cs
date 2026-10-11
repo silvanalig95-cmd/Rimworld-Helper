@@ -53,12 +53,14 @@ namespace ColonyCouncil
 
         /// <summary>Fights only when the player wants them and the storyteller sends them, and not on top of another.</summary>
         public static bool BattlesAllowed(Map map) =>
-            S.worldEventBattles && Find.Storyteller.difficulty.threatScale > 0.01f
+            FightsPossible
             && !GenHostility.AnyHostileActiveThreatToPlayer(map, false, false)
-            && Now - map.storyState.LastThreatBigTick > GenDate.TicksPerDay * 2;
+            && Now - map.storyState.LastThreatBigTick > GenDate.TicksPerDay * 2
+            && !(CouncilGameComponent.Instance?.happenings.raids.Any(r => r.map == map) ?? false);
 
         /// <summary>Fights at all: the setting is on and the storyteller sends threats (whatever is happening right now).</summary>
-        public static bool FightsPossible => S.worldEvents && S.worldEventBattles && Find.Storyteller.difficulty.threatScale > 0.01f;
+        public static bool FightsPossible =>
+            S.worldEvents && S.worldEventBattles && Find.Storyteller.difficulty.threatScale > 0.01f && Find.Storyteller.difficulty.allowBigThreats;
 
         /// <summary>A cheap check that the event could find its people now (nobody is made or spawned).</summary>
         protected virtual bool CanHappen(Map map, HappeningExtension ext) =>
@@ -88,7 +90,15 @@ namespace ColonyCouncil
                 Abort(ctx);
                 return false;
             }
-            Send(ctx, ext);
+            // It has happened (people may already be walking in): a broken letter mustn't make it happen again.
+            try
+            {
+                Send(ctx, ext);
+            }
+            catch (Exception e)
+            {
+                CouncilLog.ErrorOnce("event letter " + def.defName, e);
+            }
             CouncilGameComponent.Instance?.happenings.Notify_Fired(def, ext);
             return true;
         }

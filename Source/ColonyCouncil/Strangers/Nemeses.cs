@@ -362,13 +362,26 @@ namespace ColonyCouncil
             }
         }
 
-        private void Returned(CouncilGameComponent comp, Nemesis n)
+        /// <summary>A world event sent this nemesis at the head of a raid: counted and felt once, and its own letter already told the story.</summary>
+        public void Notify_LedRaid(CouncilGameComponent comp, Nemesis n)
+        {
+            if (n?.pawn == null || !n.pawn.Spawned) return;
+            n.returns++;
+            n.onMap = true;
+            n.lastSeen = Find.TickManager.TicksGame;
+            Returned(comp, n, false);
+        }
+
+        private void Returned(CouncilGameComponent comp, Nemesis n, bool tell = true)
         {
             using var _cause = Causes.Push("CC_Cause_Nemesis".Translate(n.Name, n.DeedText).Resolve());
             var x = n.pawn;
             string text = "CC_Nemesis_Returned".Translate(x.Named("X"), (n.victimName ?? "?").Named("VICTIM"), n.DeedText.Named("DEED")).Resolve();
-            if (n.IsBeast) Notify.Message(text, x, MessageTypeDefOf.NeutralEvent, Importance.Notable);
-            else Find.LetterStack.ReceiveLetter("CC_Nemesis_ReturnedLabel".Translate(x.LabelShort), text, LetterDefOf.ThreatSmall, x);
+            if (tell)
+            {
+                if (n.IsBeast) Notify.Message(text, x, MessageTypeDefOf.NeutralEvent, Importance.Notable);
+                else Find.LetterStack.ReceiveLetter("CC_Nemesis_ReturnedLabel".Translate(x.LabelShort), text, LetterDefOf.ThreatSmall, x);
+            }
             comp.AddChronicle(new ChronicleEntry(ChronicleKind.Stranger, text, n.victim));
             if (!VictimCanFeel(n)) return;
             CouncilGameComponent.GiveThought(n.victim, Bold(n.victim) ? CouncilDefOf.Council_Nemesis_Defiant : CouncilDefOf.Council_Nemesis_Dread);

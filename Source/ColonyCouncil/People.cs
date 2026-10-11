@@ -16,7 +16,18 @@ namespace ColonyCouncil
         /// feelingless constructs and anything else that only looks like a person.
         /// </summary>
         public static bool HasInnerLife(Pawn p) =>
-            p != null && !p.Dead && p.RaceProps != null && p.RaceProps.Humanlike && p.needs?.mood != null && !p.IsMutant && !IsRaisedDead(p);
+            p != null && !p.Dead && p.RaceProps != null && p.RaceProps.Humanlike && !p.IsMutant && !IsRaisedDead(p)
+            && (p.needs?.mood != null || !MoodTracked(p));
+
+        /// <summary>
+        /// The game only keeps a mood for the colony's own people and those it holds (prisoners, guests it hosts).
+        /// Visitors, traders and raiders have none, so for them a missing mood says nothing about who they are.
+        /// </summary>
+        private static bool MoodTracked(Pawn p)
+        {
+            var player = Faction.OfPlayerSilentFail;
+            return player != null && (p.Faction == player || p.HostFaction == player);
+        }
 
         private static bool deadLooked;
         private static TraitDef undeadTrait;
