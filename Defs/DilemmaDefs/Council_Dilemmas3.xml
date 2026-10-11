@@ -382,7 +382,7 @@
       </li>
       <li>
         <label>Take {PET_nameDef} on one last walk</label>
-        <outcome>{A_nameDef} walked {PET_nameDef} out past the walls, slowly, the long way round, and came back alone. {A_nameDef} hasn't talked about it, and the others haven't asked.</outcome>
+        <outcome>{A_nameDef} walked {PET_nameDef} out past the walls, slowly, the long way around, and came back alone. {A_nameDef} hasn't talked about it, and the others haven't asked.</outcome>
         <ways><mercy>-4</mercy></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_ReleasePet" />

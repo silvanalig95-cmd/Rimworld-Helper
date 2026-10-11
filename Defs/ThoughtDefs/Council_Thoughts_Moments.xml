@@ -18,7 +18,7 @@
     <durationDays>1</durationDays>
     <stackLimit>2</stackLimit>
     <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
-    <stages><li><label>won a friendly contest</label><description>I won our little contest, fair and square.</description><baseMoodEffect>3</baseMoodEffect><baseOpinionOffset>3</baseOpinionOffset></li></stages>
+    <stages><li><label>won a friendly contest</label><description>I won our little contest, fair and square. Mostly fair.</description><baseMoodEffect>3</baseMoodEffect><baseOpinionOffset>3</baseOpinionOffset></li></stages>
   </ThoughtDef>
 
   <ThoughtDef>
@@ -83,7 +83,7 @@
     <durationDays>2</durationDays>
     <stackLimit>2</stackLimit>
     <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
-    <stages><li><label>learned something new</label><description>A grown-up showed me how to do it! I'm going to show the others.</description><baseMoodEffect>3</baseMoodEffect><baseOpinionOffset>6</baseOpinionOffset></li></stages>
+    <stages><li><label>learned something new</label><description>A grown-up showed me how to do it! I'm going to show everybody, twice.</description><baseMoodEffect>3</baseMoodEffect><baseOpinionOffset>6</baseOpinionOffset></li></stages>
   </ThoughtDef>
 
   <ThoughtDef>
@@ -101,7 +101,7 @@
     <durationDays>1</durationDays>
     <stackLimit>2</stackLimit>
     <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
-    <stages><li><label>waited out the storm together</label><description>The wind howled at the walls, and we sat and talked until it died down.</description><baseMoodEffect>1</baseMoodEffect><baseOpinionOffset>3</baseOpinionOffset></li></stages>
+    <stages><li><label>waited out the storm together</label><description>The wind howled at the walls, and we sat and talked until it gave up. It was almost cozy.</description><baseMoodEffect>1</baseMoodEffect><baseOpinionOffset>3</baseOpinionOffset></li></stages>
   </ThoughtDef>
 
   <ThoughtDef>
@@ -334,7 +334,7 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_Moment_ToldToWash</defName>
     <durationDays>0.5</durationDays>
-    <stages><li><label>told I need a wash</label><description>A friend took me aside and told me, kindly, that I smell. I should wash.</description><baseMoodEffect>-1</baseMoodEffect></li></stages>
+    <stages><li><label>told I need a wash</label><description>A friend took me aside and told me, kindly, that I smell. They're not wrong.</description><baseMoodEffect>-1</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">

@@ -109,7 +109,7 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_DlmGoal_Pitied</defName>
     <durationDays>4</durationDays>
-    <stages><li><label>pitied at the table</label><description>They all tried to cheer me up at once. They meant well, but I felt pathetic.</description><baseMoodEffect>-3</baseMoodEffect></li></stages>
+    <stages><li><label>pitied at the table</label><description>They all tried to cheer me up at once. It felt like my own funeral, with me in the front row.</description><baseMoodEffect>-3</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
@@ -129,13 +129,13 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_DlmGoal_Witnessed</defName>
     <durationDays>3</durationDays>
-    <stages><li><label>a dream written down</label><description>We stood together while one of us had their dream read out and written into the records. It was moving.</description><baseMoodEffect>2</baseMoodEffect></li></stages>
+    <stages><li><label>a dream written down</label><description>We stood together while one of us had their dream read out and written into the records. It was a strange little ceremony, and I liked it.</description><baseMoodEffect>2</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_DlmGoal_Promised</defName>
     <durationDays>10</durationDays>
-    <stages><li><label>carrying a promise</label><description>I promised to finish a friend's dream if they can't. I meant it.</description><baseMoodEffect>2</baseMoodEffect></li></stages>
+    <stages><li><label>carrying a promise</label><description>I promised to finish a friend's dream if they can't. It weighs more than I expected.</description><baseMoodEffect>2</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
