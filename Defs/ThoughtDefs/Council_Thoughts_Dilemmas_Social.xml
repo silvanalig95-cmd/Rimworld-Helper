@@ -23,7 +23,7 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_DlmSoc_TaughtByRival</defName>
     <durationDays>3</durationDays>
-    <stages><li><label>lessons from my rival</label><description>The council made my rival teach me. I learned a few things, and I'll never admit it.</description><baseMoodEffect>-2</baseMoodEffect></li></stages>
+    <stages><li><label>lessons from my rival</label><description>I've been stuck taking lessons from my rival. I learned a few things, and I'll never admit it.</description><baseMoodEffect>-2</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
@@ -55,7 +55,7 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_DlmSoc_Favorites</defName>
     <durationDays>4</durationDays>
-    <stages><li><label>the council plays favorites</label><description>The council keeps doing favors for people with the right friends. The rest of us just work.</description><baseMoodEffect>-3</baseMoodEffect></li></stages>
+    <stages><li><label>the council plays favorites</label><description>Some people ask and get, because they have the right friends. The rest of us just work.</description><baseMoodEffect>-3</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
@@ -67,7 +67,7 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_DlmSoc_Meddled</defName>
     <durationDays>3</durationDays>
-    <stages><li><label>the council meddled in my friendships</label><description>The council is telling me who to spend my evenings with now. That's none of their business.</description><baseMoodEffect>-3</baseMoodEffect></li></stages>
+    <stages><li><label>the council meddled in my friendships</label><description>Now the council has opinions about who I spend my evenings with. That's none of their business.</description><baseMoodEffect>-3</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
@@ -82,7 +82,7 @@
     <durationDays>10</durationDays>
     <stackLimit>3</stackLimit>
     <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
-    <stages><li><label>pushed into our evenings</label><description>The council made us include them in our evenings. It's not the same anymore.</description><baseMoodEffect>-1</baseMoodEffect><baseOpinionOffset>-6</baseOpinionOffset></li></stages>
+    <stages><li><label>pushed into our evenings</label><description>Our evenings come with an extra person now, by the council's arrangement. It's not the same.</description><baseMoodEffect>-1</baseMoodEffect><baseOpinionOffset>-6</baseOpinionOffset></li></stages>
   </ThoughtDef>
 
   <!-- ===================== Cover-ups and pleas ===================== -->
@@ -146,7 +146,7 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_DlmSoc_ShortRemembrance</defName>
     <durationDays>3</durationDays>
-    <stages><li><label>an hour for the fight</label><description>The council gave the fight an hour of speeches after dinner, then sent us back to work. It deserved more.</description><baseMoodEffect>-2</baseMoodEffect></li></stages>
+    <stages><li><label>an hour for the fight</label><description>An hour of speeches after dinner, then back to work. The fight deserved more than that.</description><baseMoodEffect>-2</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
@@ -172,13 +172,13 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_DlmSoc_NoProof</defName>
     <durationDays>3</durationDays>
-    <stages><li><label>a friend punished without proof</label><description>The council punished a friend of mine on a rival's word, with no proof at all.</description><baseMoodEffect>-3</baseMoodEffect></li></stages>
+    <stages><li><label>a friend punished without proof</label><description>A friend of mine was punished on a rival's word, with no proof at all.</description><baseMoodEffect>-3</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_DlmSoc_Retracted</defName>
     <durationDays>4</durationDays>
-    <stages><li><label>made to take it back</label><description>The council made me take back what I said, with the others watching. I know I was right.</description><baseMoodEffect>-5</baseMoodEffect></li></stages>
+    <stages><li><label>made to take it back</label><description>I had to take back what I said, with the others watching. I know I was right.</description><baseMoodEffect>-5</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <!-- ===================== Circles ===================== -->
@@ -206,7 +206,7 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_DlmSoc_Credited</defName>
     <durationDays>5</durationDays>
-    <stages><li><label>credited for my work</label><description>The council gave me the credit for my work. It's nice to hear it said out loud.</description><baseMoodEffect>5</baseMoodEffect></li></stages>
+    <stages><li><label>credited for my work</label><description>They said the work was mine, for all to hear. It was, but it's nice to hear it said.</description><baseMoodEffect>5</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
@@ -226,7 +226,7 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_DlmSoc_Audited</defName>
     <durationDays>3</durationDays>
-    <stages><li><label>counted like a thief</label><description>The council counted every sack in the stores on my rival's word, as if I were a thief. It all added up.</description><baseMoodEffect>-3</baseMoodEffect></li></stages>
+    <stages><li><label>counted like a thief</label><description>Every sack in the stores got counted twice on my rival's word, as if I were a thief. It all added up.</description><baseMoodEffect>-3</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">

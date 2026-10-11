@@ -551,7 +551,7 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_DlmR_RulesBent</defName>
     <durationDays>2</durationDays>
-    <stages><li><label>the rules bent</label><description>The council let a stranger in because one of us asked nicely. I thought we had rules about that.</description><baseMoodEffect>-1</baseMoodEffect></li></stages>
+    <stages><li><label>the rules bent</label><description>A stranger got in because one of us asked nicely. I thought we had rules about that.</description><baseMoodEffect>-1</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
@@ -577,7 +577,7 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_DlmR_DayOff</defName>
     <durationDays>5</durationDays>
-    <stages><li><label>a day off</label><description>The council gave me a day off. I sat by the water and did nothing at all.</description><baseMoodEffect>5</baseMoodEffect></li></stages>
+    <stages><li><label>a day off</label><description>I had a whole day off. I sat by the water and did nothing at all.</description><baseMoodEffect>5</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
@@ -603,7 +603,7 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_DlmR_BackedUp</defName>
     <durationDays>6</durationDays>
-    <stages><li><label>the council backed me</label><description>The council has ordered the others to pull their weight. It took long enough.</description><baseMoodEffect>4</baseMoodEffect></li></stages>
+    <stages><li><label>the council backed me</label><description>The others have been ordered to pull their weight. It took long enough.</description><baseMoodEffect>4</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">

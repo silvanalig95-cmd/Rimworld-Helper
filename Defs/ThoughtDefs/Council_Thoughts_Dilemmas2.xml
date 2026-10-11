@@ -26,13 +26,13 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_Dlm_NoCards</defName>
     <durationDays>4</durationDays>
-    <stages><li><label>gambling banned</label><description>The council banned cards and dice. Now the evenings are just sitting in the dark, listening for raiders.</description><baseMoodEffect>-2</baseMoodEffect></li></stages>
+    <stages><li><label>gambling banned</label><description>No more cards or dice, by order of the council. Now the evenings are just sitting in the dark, listening for raiders.</description><baseMoodEffect>-2</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_Dlm_Compromise</defName>
     <durationDays>3</durationDays>
-    <stages><li><label>met halfway</label><description>The council split it down the middle. Neither of us got what we wanted.</description><baseMoodEffect>-2</baseMoodEffect></li></stages>
+    <stages><li><label>met halfway</label><description>It was split down the middle. Neither of us got what we wanted.</description><baseMoodEffect>-2</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <!-- ===================== Hoards and keepsakes ===================== -->
@@ -46,7 +46,7 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_Dlm_KeptHoard</defName>
     <durationDays>4</durationDays>
-    <stages><li><label>kept my collection</label><description>The council looked over my collection and let me keep all of it.</description><baseMoodEffect>4</baseMoodEffect></li></stages>
+    <stages><li><label>kept my collection</label><description>They came, looked over my collection, and let me keep every piece.</description><baseMoodEffect>4</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
@@ -58,13 +58,13 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_Dlm_PublicApology</defName>
     <durationDays>3</durationDays>
-    <stages><li><label>made to apologize in public</label><description>The council made me say sorry with the others watching. I hated every word of it.</description><baseMoodEffect>-4</baseMoodEffect></li></stages>
+    <stages><li><label>made to apologize in public</label><description>I had to say sorry with the others watching. I hated every word of it.</description><baseMoodEffect>-4</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_Dlm_Compensated</defName>
     <durationDays>4</durationDays>
-    <stages><li><label>compensated for my loss</label><description>The council paid me for what I lost. It's not the same, but they took it seriously.</description><baseMoodEffect>4</baseMoodEffect></li></stages>
+    <stages><li><label>compensated for my loss</label><description>I was paid for what I lost. It's not the same, but at least they took it seriously.</description><baseMoodEffect>4</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
@@ -154,7 +154,7 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_Dlm_Titled</defName>
     <durationDays>10</durationDays>
-    <stages><li><label>I have a title now</label><description>The council gave me a title. I've started walking differently, and people have noticed.</description><baseMoodEffect>8</baseMoodEffect></li></stages>
+    <stages><li><label>I have a title now</label><description>I have a title now. I've started walking differently, and people have noticed.</description><baseMoodEffect>8</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
@@ -198,7 +198,7 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_Dlm_Silenced</defName>
     <durationDays>5</durationDays>
-    <stages><li><label>my music was banned</label><description>The council banned my music at night. Now all I hear is snoring and the wind.</description><baseMoodEffect>-5</baseMoodEffect></li></stages>
+    <stages><li><label>my music was banned</label><description>My music is banned at night now. All I hear is snoring and the wind.</description><baseMoodEffect>-5</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">

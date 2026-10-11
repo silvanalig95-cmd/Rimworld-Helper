@@ -57,7 +57,7 @@
     <stages>
       <li>
         <label>reached our goal together</label>
-        <description>The council set us a goal, and we worked at it together until it was done.</description>
+        <description>We had a goal, and we all worked at it until it was done. Not bad for a bunch of castaways.</description>
         <baseMoodEffect>6</baseMoodEffect>
       </li>
     </stages>
@@ -161,7 +161,7 @@
     <stages>
       <li>
         <label>had to do it myself</label>
-        <description>The council didn't act, so I took care of it myself. I shouldn't have had to.</description>
+        <description>I sorted it out myself, because the council wouldn't. It shouldn't have come to that.</description>
         <baseMoodEffect>-2</baseMoodEffect>
       </li>
     </stages>
@@ -173,7 +173,7 @@
     <stages>
       <li>
         <label>a promise kept</label>
-        <description>The council said they'd do it, and they did. I'll believe them next time.</description>
+        <description>They said they'd do it, and they did. I'll believe them next time.</description>
         <baseMoodEffect>4</baseMoodEffect>
       </li>
     </stages>
@@ -186,7 +186,7 @@
     <stages>
       <li>
         <label>a broken promise</label>
-        <description>The council promised me, so I stopped asking. Then they never did it.</description>
+        <description>I stopped asking because they promised. Then they never did it.</description>
         <baseMoodEffect>-7</baseMoodEffect>
       </li>
     </stages>
@@ -215,7 +215,7 @@
     <stages>
       <li>
         <label>the favorite</label>
-        <description>The council always seems to say yes to them. I'm still waiting on my own request.</description>
+        <description>They only have to ask, and the council says yes. I'm still waiting on my own request.</description>
         <baseMoodEffect>-2</baseMoodEffect>
         <baseOpinionOffset>-10</baseOpinionOffset>
       </li>

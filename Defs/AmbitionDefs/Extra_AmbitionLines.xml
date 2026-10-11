@@ -298,7 +298,7 @@
         <li>Half of us slept in our coats last winter. Let's put heat in the bedrooms this time.</li>
         <li>[fall] The nights are getting colder already. Let's get heat into every bedroom before the first frost.</li>
       </plain>
-      <warm><li>I'd like everyone to wake up with feeling in their fingers this winter.</li></warm>
+      <warm><li>This winter, everyone should wake up with feeling in their fingers.</li></warm>
       <blunt><li>Last winter someone's toes turned black. I'm not naming names. Heat in every room.</li></blunt>
       <cheerful><li>Imagine waking up without your breath frozen to the blanket!</li></cheerful>
       <gloomy><li>I've seen people go to sleep cold and not wake up. I'd rather not see it again.</li></gloomy>
@@ -355,7 +355,7 @@
     <ambition>Council_Amb_Treasury</ambition>
     <pitch>
       <plain><li>Every time a trader comes through, we can't afford what we need. Let's put silver aside so that stops.</li></plain>
-      <warm><li>One day that silver might pay a ransom for one of us. I'd like it to be there.</li></warm>
+      <warm><li>One day that silver might pay a ransom for one of us. It should be there when we need it.</li></warm>
       <blunt><li>Traders can smell poverty. I want them to smell silver.</li></blunt>
       <cheerful><li>A big pile of shiny coins! I'd just like to look at it sometimes.</li></cheerful>
       <gloomy><li>The day we need something desperately is the day the trader doubles the price. Let's be ready for it.</li></gloomy>
@@ -594,7 +594,7 @@
     <defName>Council_Ext_Amb_FriendsAbroad</defName>
     <ambition>Council_Amb_FriendsAbroad</ambition>
     <pitch>
-      <plain><li>Every caravan that leaves here thinks better or worse of us than when it came. I'd like it to be better.</li></plain>
+      <plain><li>Every caravan that leaves here thinks better or worse of us than when it came. Let's make it better.</li></plain>
       <warm><li>The next time a trader's caravan limps in hungry, let's feed them and send them off with extra.</li></warm>
       <blunt><li>Somewhere out there is a faction with more guns than sense. I'd like them on our side.</li></blunt>
       <cheerful><li>People who wave when they see us coming, instead of shooting!</li></cheerful>
@@ -612,7 +612,7 @@
     <ambition>Council_Amb_FinerThings</ambition>
     <pitch>
       <plain><li>Just once I'd like to sit on a chair that somebody cared about while making it.</li></plain>
-      <warm><li>I'd like to give this place a few things that will outlast us.</li></warm>
+      <warm><li>Let's give this place a few things that will outlast us.</li></warm>
       <blunt><li>Everything here looks like it was built during a raid. Mostly because it was.</li></blunt>
       <cheerful><li>Two beautiful things to start with, then four, then a museum!</li></cheerful>
       <gloomy><li>Most days I can't tell if anything we do matters. A well-made thing would.</li></gloomy>
@@ -646,7 +646,7 @@
     <ambition>Council_Amb_LongNight</ambition>
     <pitch>
       <plain><li>Every log we cut now is one we don't have to dig out of the snow later.</li></plain>
-      <warm><li>I'd like whoever's on night watch to have a fire to come back to.</li></warm>
+      <warm><li>Whoever's on night watch should have a fire to come back to.</li></warm>
       <blunt><li>Trees don't cut themselves, and the cold doesn't care how tired you are.</li></blunt>
       <cheerful><li>A woodpile so high we'll need a ladder to reach the top!</li></cheerful>
       <gloomy><li>The last thing you burn is your bed. I've heard of colonies that got that far.</li></gloomy>

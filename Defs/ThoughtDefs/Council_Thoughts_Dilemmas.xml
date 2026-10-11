@@ -6,7 +6,7 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_Dlm_Humiliated</defName>
     <durationDays>5</durationDays>
-    <stages><li><label>humiliated by the council</label><description>The council made an example of me while the others watched. I won't forget whose idea that was.</description><baseMoodEffect>-9</baseMoodEffect></li></stages>
+    <stages><li><label>humiliated by the council</label><description>They made an example of me while the others watched. I won't forget whose idea that was.</description><baseMoodEffect>-9</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
@@ -24,7 +24,7 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_Dlm_Harsh</defName>
     <durationDays>3</durationDays>
-    <stages><li><label>the council was cruel</label><description>The council punished them far too harshly for one mistake.</description><baseMoodEffect>-4</baseMoodEffect></li></stages>
+    <stages><li><label>the council was cruel</label><description>That punishment was far too harsh for one mistake.</description><baseMoodEffect>-4</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
@@ -60,7 +60,7 @@
     <durationDays>15</durationDays>
     <stackLimit>3</stackLimit>
     <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
-    <stages><li><label>worked it out</label><description>The council made us sort it out between ourselves, and we did. We get along better now.</description><baseMoodEffect>2</baseMoodEffect><baseOpinionOffset>15</baseOpinionOffset></li></stages>
+    <stages><li><label>worked it out</label><description>We were told to sort it out between ourselves, and we did. We get along better now.</description><baseMoodEffect>2</baseMoodEffect><baseOpinionOffset>15</baseOpinionOffset></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
@@ -141,7 +141,7 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_Dlm_Wasted</defName>
     <durationDays>3</durationDays>
-    <stages><li><label>they poured it out</label><description>The council had the whole stash poured into the dirt. What a waste.</description><baseMoodEffect>-5</baseMoodEffect></li></stages>
+    <stages><li><label>they poured it out</label><description>Perfectly good stuff, poured into the dirt on the council's orders. What a waste.</description><baseMoodEffect>-5</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">

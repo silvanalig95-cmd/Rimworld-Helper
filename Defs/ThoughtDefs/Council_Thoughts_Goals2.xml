@@ -43,13 +43,13 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_DlmGoal_Volunteered</defName>
     <durationDays>4</durationDays>
-    <stages><li><label>volunteered as a teacher</label><description>The council gave my evenings to teaching someone else, without asking me first.</description><baseMoodEffect>-3</baseMoodEffect></li></stages>
+    <stages><li><label>volunteered as a teacher</label><description>My evenings have been promised to teaching someone else, and I wasn't asked first.</description><baseMoodEffect>-3</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_DlmGoal_AskedToTeach</defName>
     <durationDays>5</durationDays>
-    <stages><li><label>asked to teach</label><description>The council cleared my evenings so I can teach what I know. It's nice to be asked.</description><baseMoodEffect>4</baseMoodEffect></li></stages>
+    <stages><li><label>asked to teach</label><description>I've been asked to teach what I know, and my evenings are cleared for it. It's flattering.</description><baseMoodEffect>4</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <!-- ===================== Doubters and rivals ===================== -->

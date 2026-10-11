@@ -49,7 +49,7 @@
       </plain>
       <warm>
         <li>[hurt] I'll work, but slowly. My stitches pull every time I bend.</li>
-        <li>I'll keep up. Watch the young ones, though; they won't say when they're done in.</li>
+        <li>I can keep up. Watch the young ones, though; they won't say when they're done in.</li>
       </warm>
       <blunt>
         <li>Work me any longer and you'll get crooked walls.</li>
@@ -59,7 +59,7 @@
         <li>I've spent so long with this shovel I've given it a name!</li>
       </cheerful>
       <gloomy>
-        <li>[lowmood] I was tired before this. Now I can barely lift my arms.</li>
+        <li>[lowmood] I was tired before this started, and now I can barely lift my arms.</li>
       </gloomy>
       <cold>
         <li>Tired workers make mistakes, and mistakes cost more than the extra hours buy.</li>
@@ -332,7 +332,7 @@
         <li>[fall] The harvest is standing in the field while we dance around it.</li>
       </plain>
       <warm>
-        <li>Go, have fun. I'll keep the fires going.</li>
+        <li>Go and have fun. I'll mind the fires.</li>
       </warm>
       <blunt>
         <li>[trait:Industrious] Party all you want. I'll be in the workshop, being useful.</li>
@@ -364,7 +364,7 @@
       </plain>
       <warm>
         <li>I'll show the new ones how to cut without losing a finger. It's easy, mostly.</li>
-        <li>[skill:Plants] I love this part. Everyone out in the rows together.</li>
+        <li>[skill:Plants] I love this part, all of us out in the rows together.</li>
       </warm>
       <blunt>
         <li>Pick faster. The blight isn't waiting for you to finish stretching.</li>
@@ -391,7 +391,7 @@
         <li>I'll do my rows. Could someone bring water out to the far field? People are wilting.</li>
       </warm>
       <blunt>
-        <li>Nobody told me surviving out here would involve this much kneeling.</li>
+        <li>I didn't know surviving out here would involve this much kneeling.</li>
         <li>[trait:Undergrounder] Open sky, all day. If I go strange, that's on you.</li>
       </blunt>
       <cheerful>
@@ -414,7 +414,7 @@
     <decree>Council_Decree_Building</decree>
     <support>
       <plain>
-        <li>[skill:Construction] I've had that wall in my head since the day I got here. Now I get to build it.</li>
+        <li>[skill:Construction] I've had that wall in my head since the day I got here, and now I get to build it.</li>
         <li>[skill:Mining] There's a vein in the north face I've been eyeing for days. I'm going after it first.</li>
         <li>[winter] The cold gets in through every gap. Let's close the gaps.</li>
         <li>[trait:Undergrounder] More tunnels. Good. The sky has had its chance.</li>
@@ -610,7 +610,7 @@
         <li>[night] Every noise out there is a raider or a squirrel, and I can't tell which anymore.</li>
       </plain>
       <warm>
-        <li>I'll keep watch. But the children shouldn't have to sleep with a knife beside them.</li>
+        <li>Fine, I'll stand watch. But the children shouldn't have to sleep with a knife beside them.</li>
       </warm>
       <blunt>
         <li>If they come, they come. Me glaring at a tree won't change that.</li>

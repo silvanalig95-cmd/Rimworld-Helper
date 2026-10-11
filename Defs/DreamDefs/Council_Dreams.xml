@@ -135,7 +135,7 @@
     <lines>
       <plain>
         <li>Fought it all again in my sleep, and this time I saw every move before it came. I woke up calm.</li>
-        <li>We held the line in my dream, and they broke against it like water on rock.</li>
+        <li>Had a dream we held the line, and they broke against it like water on rock.</li>
       </plain>
       <blunt><li>Won the whole fight on my own last night, in a dream. Ready for the next one.</li></blunt>
       <cold><li>The fight again, in my sleep, with every angle covered. I'm ready.</li></cold>
@@ -272,7 +272,7 @@
       <plain>
         <li>{OTHER_nameDef} and I were children again, running through a field I've never seen.</li>
         <li>Dreamt {OTHER_nameDef} and I built a boat and rowed it down a river that ran right through the dining room.</li>
-        <li>[winter] {OTHER_nameDef} brought me hot soup in my dream and sat on the end of the bed while I ate it.</li>
+        <li>[winter] Had a dream {OTHER_nameDef} brought me hot soup and sat on the end of the bed while I ate it.</li>
       </plain>
       <warm><li>{OTHER_nameDef} was laughing at something I said, in the dream. I want to hear that laugh today.</li></warm>
       <blunt><li>Dreamt about {OTHER_nameDef}. We were fishing. It was fine.</li></blunt>
@@ -306,7 +306,7 @@
     <lines>
       <plain>
         <li>In my dream {OTHER_nameDef} sat on the council, and the first decree was about me.</li>
-        <li>{OTHER_nameDef} followed me around all night in my dream, never saying a word, just watching.</li>
+        <li>In my sleep {OTHER_nameDef} followed me everywhere, never saying a word, just watching.</li>
       </plain>
       <blunt><li>Even in my sleep, {OTHER_nameDef}. Can't get away from {OTHER_objective}.</li></blunt>
       <cold><li>{OTHER_nameDef} appeared in my dream. I don't care for the company.</li></cold>
@@ -342,7 +342,7 @@
     <lines>
       <plain>
         <li>{OTHER_nameDef} and I were old, really old, sitting outside a house we'd built.</li>
-        <li>{OTHER_nameDef} was singing in the next room in my dream. I lay there and listened.</li>
+        <li>Last night I dreamt {OTHER_nameDef} was singing in the next room, and I lay there and listened.</li>
       </plain>
       <blunt><li>Dreamt about {OTHER_nameDef}. Not telling anyone the details.</li></blunt>
       <gloomy><li>Dreamt I lost {OTHER_nameDef}. I held on tighter than usual this morning.</li></gloomy>
@@ -455,7 +455,7 @@
         <li>Dreamt of a feast with every dish we know how to cook, and music, and no one on watch. We should do that.</li>
         <li>In the dream the tables ran the length of the hall, and the plates kept coming.</li>
       </plain>
-      <cheerful><li>We had a party in my dream that went on for three days! We need one.</li></cheerful>
+      <cheerful><li>Had a dream about a party that went on for three days! We need one.</li></cheerful>
     </lines>
     <wish>Council_Wish_Party</wish>
   </ColonyCouncil.DreamDef>
@@ -469,7 +469,7 @@
     <weight>0.25</weight>
     <lines>
       <plain>
-        <li>Bells in my dream, and pack animals coming over the hill from the east, loaded down.</li>
+        <li>I heard bells in my sleep, and saw pack animals coming over the hill from the east, loaded down.</li>
         <li>In the dream strangers came with carts full of what we needed, and they only wanted what we had too much of.</li>
       </plain>
     </lines>
@@ -531,7 +531,7 @@
     <lines>
       <plain>
         <li>Stars fell into the field. When we went out to look, they were full of gifts.</li>
-        <li>In my dream crates came down out of the clouds, slow as seeds, and landed in the grass.</li>
+        <li>Dreamt of crates coming down out of the clouds, slow as seeds, and landing in the grass.</li>
       </plain>
     </lines>
     <omen><incident>ResourcePodCrash</incident><days>1~3</days><good>true</good></omen>

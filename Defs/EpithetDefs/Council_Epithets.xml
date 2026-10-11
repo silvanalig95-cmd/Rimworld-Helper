@@ -81,7 +81,7 @@
     <label>the Cook</label>
     <record>MealsCooked</record>
     <threshold>300</threshold>
-    <earned>Most of what the colony eats comes out of {PAWN_nameDef}'s pots. Everyone calls {PAWN_objective} the Cook.</earned>
+    <earned>Most of what the colony eats comes out of {PAWN_nameDef}'s pots. To the rest of the colony, {PAWN_nameDef} is simply the Cook.</earned>
   </ColonyCouncil.EpithetDef>
 
   <ColonyCouncil.EpithetDef>

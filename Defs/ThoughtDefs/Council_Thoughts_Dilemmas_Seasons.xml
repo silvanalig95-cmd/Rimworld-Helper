@@ -16,7 +16,7 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_Dlm_NoCelebration</defName>
     <durationDays>2</durationDays>
-    <stages><li><label>no celebration</label><description>The council skipped the celebration this year. It was just another day of work.</description><baseMoodEffect>-2</baseMoodEffect></li></stages>
+    <stages><li><label>no celebration</label><description>No celebration this year. It was just another day of work.</description><baseMoodEffect>-2</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
@@ -46,7 +46,7 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_Dlm_Vanity</defName>
     <durationDays>3</durationDays>
-    <stages><li><label>someone's vanity indulged</label><description>The council named a whole year after one of us. It's gone to their head.</description><baseMoodEffect>-3</baseMoodEffect></li></stages>
+    <stages><li><label>someone's vanity indulged</label><description>They named a whole year after one of us, and it's gone to their head.</description><baseMoodEffect>-3</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">

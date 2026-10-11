@@ -325,7 +325,7 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_DlmS_WastedSilver</defName>
     <durationDays>3</durationDays>
-    <stages><li><label>silver down someone's throat</label><description>The council spent good silver on a trader's tonic. I'd bet it was pond water.</description><baseMoodEffect>-2</baseMoodEffect></li></stages>
+    <stages><li><label>silver down someone's throat</label><description>We spent good silver on a trader's tonic. I'd bet it was pond water.</description><baseMoodEffect>-2</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
@@ -345,7 +345,7 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_DlmS_HushMoney</defName>
     <durationDays>3</durationDays>
-    <stages><li><label>silver for someone's secret</label><description>The council paid a visitor good silver to keep one of us from being exposed. They won't say who.</description><baseMoodEffect>-2</baseMoodEffect></li></stages>
+    <stages><li><label>silver for someone's secret</label><description>Good silver went to a visitor to keep one of us from being exposed. They won't say who.</description><baseMoodEffect>-2</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
@@ -406,7 +406,7 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_DlmS_GrimSatisfaction</defName>
     <durationDays>10</durationDays>
-    <stages><li><label>my nemesis will answer for it</label><description>The council ordered the execution. Soon the one who hurt me will be gone.</description><baseMoodEffect>5</baseMoodEffect></li></stages>
+    <stages><li><label>my nemesis will answer for it</label><description>The order's been given. Soon the one who hurt me will be gone.</description><baseMoodEffect>5</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
@@ -430,7 +430,7 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_DlmS_FriendsNemesis</defName>
     <durationDays>5</durationDays>
-    <stages><li><label>recruiting my friend's attacker</label><description>The council is trying to recruit the one who hurt my friend. I'll have to share a table with them.</description><baseMoodEffect>-2</baseMoodEffect></li></stages>
+    <stages><li><label>recruiting my friend's attacker</label><description>They're trying to recruit the one who hurt my friend. I'll have to share a table with them.</description><baseMoodEffect>-2</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <!-- ===================== A fair offer ===================== -->
@@ -438,7 +438,7 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_DlmS_SoldMyAnimal</defName>
     <durationDays>12</durationDays>
-    <stages><li><label>my animal was sold</label><description>The council sold my animal to a stranger. It slipped its rope past the fields, and now it's out there on its own.</description><baseMoodEffect>-6</baseMoodEffect></li></stages>
+    <stages><li><label>my animal was sold</label><description>My animal was sold to a stranger. It slipped its rope past the fields, and now it's out there on its own.</description><baseMoodEffect>-6</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
@@ -464,7 +464,7 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_DlmS_QuackHealer</defName>
     <durationDays>3</durationDays>
-    <stages><li><label>mud rubbed in for silver</label><description>The council paid good silver for a healer to rub mud into my old injury. It hurts just the same, and the mud is still there.</description><baseMoodEffect>-2</baseMoodEffect></li></stages>
+    <stages><li><label>mud rubbed in for silver</label><description>We paid good silver for a healer to rub mud into my old injury. It hurts just the same, and the mud is still there.</description><baseMoodEffect>-2</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">

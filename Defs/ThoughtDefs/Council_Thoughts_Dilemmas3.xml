@@ -14,7 +14,7 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_Dlm_ChildArmed</defName>
     <durationDays>3</durationDays>
-    <stages><li><label>a child with a weapon</label><description>The council let a child carry a loaded weapon. I've started walking behind things.</description><baseMoodEffect>-3</baseMoodEffect></li></stages>
+    <stages><li><label>a child with a weapon</label><description>There's a child walking around with a loaded weapon, and the council allowed it. I've started walking behind things.</description><baseMoodEffect>-3</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
@@ -240,7 +240,7 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_Dlm_SavedTheColony</defName>
     <durationDays>6</durationDays>
-    <stages><li><label>the colony's hero</label><description>The council says I'm the one who saved the colony. The story gets better every time I tell it.</description><baseMoodEffect>6</baseMoodEffect></li></stages>
+    <stages><li><label>the colony's hero</label><description>Officially, I'm the one who saved the colony. The story gets better every time I tell it.</description><baseMoodEffect>6</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">

@@ -15,7 +15,7 @@
     <label>told about a good dream</label>
     <logRulesInitiator>
       <rulesStrings>
-        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] about a lovely dream [INITIATOR_pronoun] had, involving [sweet].</li>
+        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] about a lovely dream of [sweet].</li>
         <li>r_logentry->[INITIATOR_nameDef] was still smiling about last night's dream when [INITIATOR_pronoun] told [RECIPIENT_nameDef] about it.</li>
         <li>r_logentry->[INITIATOR_nameDef] described a dream about [sweet] to [RECIPIENT_nameDef], who said it sounded wonderful.</li>
         <li>sweet->a warm kitchen and nowhere to be</li>
@@ -33,12 +33,12 @@
     <label>told about a strange dream</label>
     <logRulesInitiator>
       <rulesStrings>
-        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] about a dream where [strange]. [RECIPIENT_nameDef] had no idea what it meant.</li>
+        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] about a dream in which [strange].</li>
         <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] what it means to dream that [strange].</li>
         <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] spent a while trying to work out what [INITIATOR_possessive] dream meant.</li>
         <li>strange->the walls were made of bread</li>
-        <li>strange->everyone spoke backwards</li>
-        <li>strange->the colony was underwater and nobody minded</li>
+        <li>strange->every word came out backwards</li>
+        <li>strange->the colony sat at the bottom of a lake</li>
         <li>strange->a muffalo was giving orders</li>
         <li>strange->the stars were close enough to touch</li>
         <li>strange->all the doors led to the same room</li>
@@ -51,13 +51,13 @@
     <label>told about a nightmare</label>
     <logRulesInitiator>
       <rulesStrings>
-        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] about a nightmare. [RECIPIENT_nameDef] listened and said it was only a dream.</li>
+        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] about a nightmare, and [RECIPIENT_nameDef] reminded [INITIATOR_objective] that it was only a dream.</li>
         <li>r_logentry->[INITIATOR_nameDef] admitted to [RECIPIENT_nameDef] that a nightmare about [dread] had kept [INITIATOR_objective] up.</li>
-        <li>r_logentry->[INITIATOR_nameDef] described a bad dream about [dread] to [RECIPIENT_nameDef], and felt a little better for saying it out loud.</li>
+        <li>r_logentry->[INITIATOR_nameDef] described a bad dream about [dread] to [RECIPIENT_nameDef], and felt better for saying it out loud.</li>
         <li>dread->the walls coming down</li>
         <li>dread->being left behind</li>
         <li>dread->the last raid, again</li>
-        <li>dread->something in the dark</li>
+        <li>dread->a shape in the dark</li>
         <li>dread->the stores running empty</li>
         <li>dread->falling</li>
       </rulesStrings>
@@ -69,9 +69,9 @@
     <label>told about a prophetic dream</label>
     <logRulesInitiator>
       <rulesStrings>
-        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] about a dream that felt like a warning. [RECIPIENT_nameDef] laughed, a little nervously.</li>
+        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] about a dream that felt like a warning.</li>
         <li>r_logentry->[INITIATOR_nameDef] insisted to [RECIPIENT_nameDef] that last night's dream was going to come true.</li>
-        <li>r_logentry->[INITIATOR_nameDef] described [INITIATOR_possessive] vivid dream to [RECIPIENT_nameDef] in unsettling detail.</li>
+        <li>r_logentry->[INITIATOR_nameDef] described last night's dream to [RECIPIENT_nameDef] in unsettling detail.</li>
       </rulesStrings>
     </logRulesInitiator>
   </InteractionDef>
@@ -81,7 +81,7 @@
     <label>told about dreaming of the dead</label>
     <logRulesInitiator>
       <rulesStrings>
-        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] about dreaming of someone [INITIATOR_pronoun] lost. They sat quietly for a while.</li>
+        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] about dreaming of someone [INITIATOR_pronoun] lost, and they sat together for a while without talking.</li>
         <li>r_logentry->[INITIATOR_nameDef] said to [RECIPIENT_nameDef] that the dead had visited [INITIATOR_objective] last night, and that it was good to see them.</li>
       </rulesStrings>
     </logRulesInitiator>
@@ -95,12 +95,12 @@
       <rulesStrings>
         <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] that [RECIPIENT_pronoun] had been in [INITIATOR_possessive] dream last night.</li>
         <li>r_logentry->[INITIATOR_nameDef] described a dream to [RECIPIENT_nameDef] in which the two of them [together].</li>
-        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef], a little shyly, about dreaming of [RECIPIENT_objective].</li>
+        <li>r_logentry->[INITIATOR_nameDef] admitted to [RECIPIENT_nameDef], a bit shyly, that [INITIATOR_pronoun] had dreamt about [RECIPIENT_objective].</li>
         <li>together->built a house by a river</li>
-        <li>together->fought off a dragon with spoons</li>
+        <li>together->fought off a thrumbo with a broom</li>
         <li>together->sailed a ship across the sand</li>
         <li>together->were children again</li>
-        <li>together->opened a very small restaurant</li>
+        <li>together->opened a restaurant with one table</li>
       </rulesStrings>
     </logRulesInitiator>
   </InteractionDef>
