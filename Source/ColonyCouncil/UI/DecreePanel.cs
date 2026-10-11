@@ -60,7 +60,7 @@ namespace ColonyCouncil
             string title = def.LabelCap;
             if (active != null) title += "  " + "CC_Decree_InForce".Translate(TextUtil.DaysString(active.endTick - Find.TickManager.TicksGame));
             string effects = string.Join("\n", def.effects.Select(e => "- " + e));
-            string reactions = Reactions(def, pawns);
+            string reactions = CachedReactions(def, pawns);
             var req = tracker.RequestFor(def);
             string petition = req?.pawn == null ? null : (req.repeal ? "CC_Decree_RepealLine" : "CC_Decree_PetitionLine").Translate(req.pawn.Named("PAWN")).Resolve() + (req.line != null ? " \"" + req.line + "\"" : "");
             int fatigue = active == null ? tracker.Fatigue(def) : 0;
@@ -176,6 +176,22 @@ namespace ColonyCouncil
             Text.Font = GameFont.Small;
             y += 38f;
             return y - start;
+        }
+
+        // Who would love or hate each decree, worked out about once a second rather than every frame.
+        private static readonly Dictionary<DecreeDef, string> reactionCache = new Dictionary<DecreeDef, string>();
+        private static float reactionTime = -999f;
+
+        private static string CachedReactions(DecreeDef def, List<Pawn> pawns)
+        {
+            float now = Time.realtimeSinceStartup;
+            if (now - reactionTime > 1f)
+            {
+                reactionCache.Clear();
+                reactionTime = now;
+            }
+            if (!reactionCache.TryGetValue(def, out var text)) reactionCache[def] = text = Reactions(def, pawns);
+            return text;
         }
 
         private static string Reactions(DecreeDef def, List<Pawn> pawns)

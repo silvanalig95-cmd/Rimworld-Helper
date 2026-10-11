@@ -169,7 +169,7 @@ namespace ColonyCouncil
                 ThingDef stuff = null;
                 if (pick.MadeFromStuff)
                 {
-                    if (config != null && config.stuff.TryGetValue(t.GroupKey, out var s) && s != null && GenStuff.AllowedStuffsFor(pick).Contains(s)) stuff = s;
+                    if (config != null && config.stuff.TryGetValue(t.GroupKey, out var s) && s != null && Avail.StuffAllowed(pick, s)) stuff = s;
                     else stuff = Avail.BestStuff(pick, map);
                 }
                 list.Add(new ResolvedThing

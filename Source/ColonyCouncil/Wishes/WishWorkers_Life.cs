@@ -148,7 +148,7 @@ namespace ColonyCouncil
                         if (item.IsMedicine || !item.isTechHediff) continue;
                         if (map.listerThings.ThingsOfDef(item).Any()) return item;
                         if (DefDatabase<RecipeDef>.AllDefsListForReading.Any(cr => cr.ProducedThingDef == item && cr.AvailableNow
-                                && cr.AllRecipeUsers.Any(u => map.listerBuildings.ColonistsHaveBuilding(u) || Avail.CanBuild(u, map))))
+                                && Avail.RecipeUsers(cr).Any(u => map.listerBuildings.ColonistsHaveBuilding(u) || Avail.CanBuild(u, map))))
                             return item;
                     }
                 }

@@ -204,9 +204,26 @@ namespace ColonyCouncil
             }
         }
 
-        private bool Producible(Map map) =>
+        private int producibleMap = -1;
+        private int producibleHour = -1;
+        private bool producible;
+
+        /// <summary>Can the colony make or grow any of it? Asked for every colonist on each wish roll, so remembered for the hour.</summary>
+        private bool Producible(Map map)
+        {
+            int hour = Find.TickManager.TicksGame / GenDate.TicksPerHour;
+            if (map.uniqueID != producibleMap || hour != producibleHour)
+            {
+                producible = FindProducible(map);
+                producibleMap = map.uniqueID;
+                producibleHour = hour;
+            }
+            return producible;
+        }
+
+        private bool FindProducible(Map map) =>
             DefDatabase<RecipeDef>.AllDefsListForReading.Any(r => r.ProducedThingDef != null && Defs.Contains(r.ProducedThingDef) && r.AvailableNow
-                                                                  && r.AllRecipeUsers.Any(u => map.listerBuildings.ColonistsHaveBuilding(u) || Avail.CanBuild(u, map)))
+                                                                  && Avail.RecipeUsers(r).Any(u => map.listerBuildings.ColonistsHaveBuilding(u) || Avail.CanBuild(u, map)))
             || DefDatabase<ThingDef>.AllDefsListForReading.Any(p => p.plant?.harvestedThingDef != null && Defs.Contains(p.plant.harvestedThingDef)
                                                                     && p.plant.Sowable && (p.plant.sowResearchPrerequisites == null || p.plant.sowResearchPrerequisites.All(rp => rp.IsFinished)));
 
@@ -262,10 +279,10 @@ namespace ColonyCouncil
             foreach (var t in map.listerThings.ThingsInGroup(ThingRequestGroup.Apparel))
                 if (t is Apparel a && a.Spawned && !a.IsForbidden(Faction.OfPlayer) && Fits(a, p)) return true;
             if (P.fine) return DefDatabase<RecipeDef>.AllDefsListForReading.Any(r => r.ProducedThingDef != null && DefFits(r.ProducedThingDef) && r.AvailableNow
-                                                                                    && r.AllRecipeUsers.Any(u => map.listerBuildings.ColonistsHaveBuilding(u)));
+                                                                                    && Avail.RecipeUsers(r).Any(u => map.listerBuildings.ColonistsHaveBuilding(u)));
             return DefDatabase<RecipeDef>.AllDefsListForReading.Any(r => r.ProducedThingDef != null && DefFits(r.ProducedThingDef) && r.AvailableNow
                                                                          && ApparelUtility.HasPartsToWear(p, r.ProducedThingDef)
-                                                                         && r.AllRecipeUsers.Any(u => map.listerBuildings.ColonistsHaveBuilding(u) || Avail.CanBuild(u, map)));
+                                                                         && Avail.RecipeUsers(r).Any(u => map.listerBuildings.ColonistsHaveBuilding(u) || Avail.CanBuild(u, map)));
         }
 
         public override IEnumerable<WishCandidate> CandidatesFor(Pawn pawn)

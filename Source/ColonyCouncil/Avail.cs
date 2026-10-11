@@ -113,7 +113,7 @@ namespace ColonyCouncil
             int bestCount = -1;
             ThingDef bestEnough = null;
             int bestEnoughCount = -1;
-            foreach (var stuff in GenStuff.AllowedStuffsFor(def))
+            foreach (var stuff in AllowedStuffs(def))
             {
                 int count = map != null ? map.resourceCounter.GetCount(stuff) : 0;
                 if (count > bestCount)
@@ -169,13 +169,82 @@ namespace ColonyCouncil
             return false;
         }
 
+        private static readonly Dictionary<RecipeDef, List<ThingDef>> recipeUsers = new Dictionary<RecipeDef, List<ThingDef>>();
+
+        /// <summary>The workbenches (and the like) that can do a recipe. Vanilla walks every item in the game for this; it is remembered.</summary>
+        public static List<ThingDef> RecipeUsers(RecipeDef r)
+        {
+            if (r == null) return new List<ThingDef>();
+            if (!recipeUsers.TryGetValue(r, out var list)) recipeUsers[r] = list = r.AllRecipeUsers.Distinct().ToList();
+            return list;
+        }
+
         // ---------- Finding the right building for a job ----------
+
+        // ---------- Materials ----------
+
+        private static readonly Dictionary<BuildableDef, List<ThingDef>> allowedStuffs = new Dictionary<BuildableDef, List<ThingDef>>();
+        private static readonly Dictionary<BuildableDef, HashSet<ThingDef>> allowedStuffSets = new Dictionary<BuildableDef, HashSet<ThingDef>>();
+
+        /// <summary>
+        /// Every material this can be made from. Vanilla works this out by walking every item in the game each time;
+        /// defs never change after loading, so it is remembered.
+        /// </summary>
+        public static List<ThingDef> AllowedStuffs(BuildableDef def)
+        {
+            if (def == null) return new List<ThingDef>();
+            if (!allowedStuffs.TryGetValue(def, out var list))
+                allowedStuffs[def] = list = def.MadeFromStuff ? GenStuff.AllowedStuffsFor(def).ToList() : new List<ThingDef>();
+            return list;
+        }
+
+        public static bool StuffAllowed(BuildableDef def, ThingDef stuff)
+        {
+            if (def == null || stuff == null) return false;
+            if (!allowedStuffSets.TryGetValue(def, out var set)) allowedStuffSets[def] = set = new HashSet<ThingDef>(AllowedStuffs(def));
+            return set.Contains(stuff);
+        }
+
+        // ---------- Finding the right building for a job ----------
+
+        private static readonly Dictionary<ThingDef, float> workToBuild = new Dictionary<ThingDef, float>();
+
+        private static float WorkToBuild(ThingDef d)
+        {
+            if (!workToBuild.TryGetValue(d, out float w)) workToBuild[d] = w = d.GetStatValueAbstract(StatDefOf.WorkToBuild);
+            return w;
+        }
+
+        /// <summary>BestBuildable answers for this in-game hour (research and buildings don't change faster than that).</summary>
+        private static readonly Dictionary<(Map, System.Reflection.MethodInfo, object, string), ThingDef> bestMemo = new Dictionary<(Map, System.Reflection.MethodInfo, object, string), ThingDef>();
+        private static int bestMemoHour = -1;
+        private static Game bestMemoGame;
 
         /// <summary>
         /// The best buildable for a purpose: preferred vanilla defNames first (if buildable), otherwise
         /// any buildable def matching the predicate, cheapest first. Null if the colony can't build one.
         /// </summary>
         public static ThingDef BestBuildable(Map map, Func<ThingDef, bool> pred, params string[] preferred)
+        {
+            if (pred == null) return null;
+            // Only predicates that capture nothing (method groups and plain lambdas) can be remembered: a capturing
+            // lambda is a new object on every call.
+            var target = pred.Target;
+            bool memoable = target == null || target.GetType().Name == "<>c";
+            if (!memoable) return FindBestBuildable(map, pred, preferred);
+            int hour = (Find.TickManager?.TicksGame ?? 0) / GenDate.TicksPerHour;
+            if (hour != bestMemoHour || Current.Game != bestMemoGame || bestMemo.Count > 1000)
+            {
+                bestMemo.Clear();
+                bestMemoHour = hour;
+                bestMemoGame = Current.Game;
+            }
+            var key = (map, pred.Method, target, preferred == null || preferred.Length == 0 ? "" : string.Join(",", preferred));
+            if (!bestMemo.TryGetValue(key, out var best)) bestMemo[key] = best = FindBestBuildable(map, pred, preferred);
+            return best;
+        }
+
+        private static ThingDef FindBestBuildable(Map map, Func<ThingDef, bool> pred, string[] preferred)
         {
             if (preferred != null)
             {
@@ -190,7 +259,7 @@ namespace ColonyCouncil
             foreach (var d in AllBuildings)
             {
                 if (!pred(d) || !CanBuild(d, map)) continue;
-                float cost = d.GetStatValueAbstract(StatDefOf.WorkToBuild);
+                float cost = WorkToBuild(d);
                 if (cost < bestCost)
                 {
                     best = d;
@@ -441,6 +510,8 @@ namespace ColonyCouncil
         public static void ResetCache()
         {
             cacheTick = -99999;
+            bestMemo.Clear();
+            bestMemoGame = null;
         }
     }
 }

@@ -53,7 +53,7 @@ namespace ColonyCouncil
 
         public ThingDef WallStuff(RoomTemplateDef t, Map map)
         {
-            if (wallStuff != null && GenStuff.AllowedStuffsFor(ThingDefOf.Wall).Contains(wallStuff)) return wallStuff;
+            if (wallStuff != null && Avail.StuffAllowed(ThingDefOf.Wall, wallStuff)) return wallStuff;
             return Avail.BestStuff(ThingDefOf.Wall, map, (t.FullWidth + t.FullHeight) * 2 * ThingDefOf.Wall.CostStuffCount);
         }
 
@@ -67,10 +67,9 @@ namespace ColonyCouncil
         public ThingDef DoorStuff(ThingDef door, ThingDef walls, Map map)
         {
             if (door == null || !door.MadeFromStuff) return null;
-            var allowed = GenStuff.AllowedStuffsFor(door).ToList();
-            if (doorStuff != null && allowed.Contains(doorStuff)) return doorStuff;
+            if (doorStuff != null && Avail.StuffAllowed(door, doorStuff)) return doorStuff;
             // A door that matches the walls looks deliberate; otherwise whatever there's most of.
-            if (walls != null && allowed.Contains(walls) && map.resourceCounter.GetCount(walls) >= door.CostStuffCount) return walls;
+            if (walls != null && Avail.StuffAllowed(door, walls) && map.resourceCounter.GetCount(walls) >= door.CostStuffCount) return walls;
             return Avail.BestStuff(door, map);
         }
 
@@ -80,7 +79,7 @@ namespace ColonyCouncil
         public ThingDef FloorStuff(TerrainDef f, Map map, int cells = -1)
         {
             if (f == null || !f.MadeFromStuff) return null;
-            if (floorStuff != null && GenStuff.AllowedStuffsFor(f).Contains(floorStuff)) return floorStuff;
+            if (floorStuff != null && Avail.StuffAllowed(f, floorStuff)) return floorStuff;
             return Avail.BestStuff(f, map, cells > 0 ? f.CostStuffCount * cells : -1);
         }
 
@@ -114,7 +113,7 @@ namespace ColonyCouncil
         /// <summary>Materials worth offering: anything in stock, plus the current pick.</summary>
         public static List<ThingDef> StuffOptions(BuildableDef def, Map map, ThingDef current)
         {
-            var list = GenStuff.AllowedStuffsFor(def)
+            var list = Avail.AllowedStuffs(def)
                 .Where(s => s == current || map.resourceCounter.GetCount(s) > 0)
                 .OrderByDescending(s => map.resourceCounter.GetCount(s))
                 .ToList();

@@ -87,15 +87,22 @@ namespace ColonyCouncil
 
         private static HashSet<string> oursIds;
         private static float oursTime = -999f;
+        private static int oursTick = -99999;
 
-        /// <summary>ThingIDs of everyone still ours (see <see cref="StillOurs"/>), refreshed every couple of seconds for the UI.</summary>
+        /// <summary>
+        /// ThingIDs of everyone still ours (see <see cref="StillOurs"/>), for the UI. Refreshed as game time passes
+        /// (every few seconds of play), and only now and then while paused, since this walks every pawn in the world.
+        /// </summary>
         public static HashSet<string> OursIds()
         {
             float now = UnityEngine.Time.realtimeSinceStartup;
-            if (oursIds == null || now - oursTime > 2f)
+            int tick = Find.TickManager?.TicksGame ?? 0;
+            bool stale = oursIds == null || tick < oursTick || (tick - oursTick >= 250 && now - oursTime > 2f) || now - oursTime > 15f;
+            if (stale)
             {
                 oursIds = new HashSet<string>(PawnsFinder.AllMapsWorldAndTemporary_Alive.Concat(OffMapColonists()).Where(StillOurs).Select(p => p.ThingID));
                 oursTime = now;
+                oursTick = tick;
             }
             return oursIds;
         }

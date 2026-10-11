@@ -279,7 +279,7 @@ namespace ColonyCouncil
         public static bool CanMakeArmor(Map map) => DefDatabase<RecipeDef>.AllDefsListForReading.Any(r => r.AvailableNow && r.ProducedThingDef != null
             && r.ProducedThingDef.IsApparel && r.ProducedThingDef.thingCategories != null
             && (r.ProducedThingDef.thingCategories.Contains(ThingCategoryDefOf.ApparelArmor) || r.ProducedThingDef.thingCategories.Contains(ThingCategoryDefOf.ArmorHeadgear))
-            && r.AllRecipeUsers.Any(u => map.listerBuildings.ColonistsHaveBuilding(u) || Avail.CanBuild(u, map)));
+            && Avail.RecipeUsers(r).Any(u => map.listerBuildings.ColonistsHaveBuilding(u) || Avail.CanBuild(u, map)));
 
         public override IEnumerable<WishCandidate> CandidatesFor(Pawn pawn)
         {

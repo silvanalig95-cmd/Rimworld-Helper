@@ -519,9 +519,9 @@ namespace ColonyCouncil
             if (w.objector != null) status += "   ·   " + "CC_ObjectorTag".Translate(w.objector.LabelShort);
             lines.Add(status);
             if (!w.reason.NullOrEmpty()) lines.Add("CC_Why".Translate() + ": " + w.reason);
-            string when = w.Worker.FulfilledWhen(w);
+            string when = UiCache.Get(w, 1, () => w.Worker.FulfilledWhen(w));
             if (!when.NullOrEmpty()) lines.Add("CC_FulfilledWhen".Translate() + ": " + when);
-            string prog = SafeProgressText(w);
+            string prog = UiCache.Get(w, 2, () => SafeProgressText(w));
             if (!prog.NullOrEmpty()) lines.Add("CC_Progress".Translate() + ": " + prog);
             if (w.coSigners.Count > 0) lines.Add("CC_Petition".Translate(TextUtil.JoinAnd(w.coSigners.Select(p => p.LabelShort).ToList())));
             lines.Add("CC_Reward".Translate() + ": " + comp.RewardText(w) + "   ·   " + "CC_Expires".Translate() + ": " + TextUtil.DaysString(w.TicksLeft));
@@ -529,7 +529,7 @@ namespace ColonyCouncil
 
             Text.Font = GameFont.Small;
             float h = Text.CalcHeight(header, textW) + Text.CalcHeight(quote, textW) + Text.CalcHeight(body, textW) + 18f;
-            float progress = SafeProgress(w);
+            float progress = UiCache.Get(w, 3, () => SafeProgress(w));
             if (progress >= 0f) h += 14f;
             h = Mathf.Max(h, 96f + 30f * 3f);
             var row = new Rect(x, y, width, h);
@@ -557,15 +557,19 @@ namespace ColonyCouncil
             float by = y + 6f;
             if (Widgets.ButtonText(new Rect(bx, by, 138f, 26f), "CC_Show".Translate())) Jump(w.Worker.LookAt(w));
             by += 30f;
-            RoomTemplateDef template = null;
-            try
+            var template = UiCache.Get(w, 4, () =>
             {
-                template = w.Worker.SuggestedTemplate(w);
-            }
-            catch
-            {
-            }
-            if (template != null && Find.CurrentMap != null && template.UnavailableReason(Find.CurrentMap) == null)
+                try
+                {
+                    var t = w.Worker.SuggestedTemplate(w);
+                    return t != null && Find.CurrentMap != null && t.UnavailableReason(Find.CurrentMap) == null ? t : null;
+                }
+                catch
+                {
+                    return null;
+                }
+            });
+            if (template != null)
             {
                 if (Widgets.ButtonText(new Rect(bx, by, 138f, 26f), "CC_PlanIt".Translate())) StartPlanning(template, true);
                 by += 30f;
@@ -645,18 +649,21 @@ namespace ColonyCouncil
                 y += WrappedLabel(0f, y, width, a.def.description, Faint) + 6f;
                 string meta = "CC_Ambition_Meta".Translate(a.proposer?.LabelShort ?? "?", TextUtil.DaysString(Mathf.Max(0, a.deadlineTick - Find.TickManager.TicksGame)));
                 y += WrappedLabel(0f, y, width, meta) + 6f;
-                Widgets.FillableBar(new Rect(0f, y, Mathf.Min(400f, width), 18f), a.Progress);
+                float total = UiCache.Get(a, -1, () => a.Progress);
+                Widgets.FillableBar(new Rect(0f, y, Mathf.Min(400f, width), 18f), total);
                 Text.Anchor = TextAnchor.MiddleCenter;
-                Widgets.Label(new Rect(0f, y, Mathf.Min(400f, width), 18f), a.Progress.ToStringPercent());
+                Widgets.Label(new Rect(0f, y, Mathf.Min(400f, width), 18f), total.ToStringPercent());
                 Text.Anchor = TextAnchor.UpperLeft;
                 y += 26f;
                 for (int i = 0; i < a.def.goals.Count; i++)
                 {
                     var g = a.def.goals[i];
-                    float p = g.Progress(a.map, a.Baseline(i));
+                    int gi = i;
+                    float p = UiCache.Get(a, gi * 2, () => g.Progress(a.map, a.Baseline(gi)));
                     bool done = p >= 0.999f;
                     Widgets.CheckboxDraw(6f, y, done, false, 22f);
-                    y += Mathf.Max(24f, WrappedLabel(34f, y + 1f, width - 34f, g.Describe(a.map, a.Baseline(i)), done ? GoodColor : Color.white)) + 4f;
+                    string desc = UiCache.Get(a, gi * 2 + 1, () => g.Describe(a.map, a.Baseline(gi)));
+                    y += Mathf.Max(24f, WrappedLabel(34f, y + 1f, width - 34f, desc, done ? GoodColor : Color.white)) + 4f;
                 }
                 y += 10f;
                 if (a.def.template != null && map != null && a.def.template.UnavailableReason(map) == null)

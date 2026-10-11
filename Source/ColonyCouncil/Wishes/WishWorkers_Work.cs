@@ -315,7 +315,7 @@ namespace ColonyCouncil
             {
                 var prod = r.ProducedThingDef;
                 if (prod == null || !prod.IsWeapon || prod.IsRangedWeapon != ranged || !r.AvailableNow) continue;
-                if (r.AllRecipeUsers.Any(u => map.listerBuildings.ColonistsHaveBuilding(u) || Avail.CanBuild(u, map))) return true;
+                if (Avail.RecipeUsers(r).Any(u => map.listerBuildings.ColonistsHaveBuilding(u) || Avail.CanBuild(u, map))) return true;
             }
             return false;
         }
@@ -377,7 +377,7 @@ namespace ColonyCouncil
             {
                 var prod = r.ProducedThingDef;
                 if (prod?.ingestible == null || prod.ingestible.preferability != pref || !r.AvailableNow) continue;
-                if (r.AllRecipeUsers.Any(u => map.listerBuildings.ColonistsHaveBuilding(u) || Avail.CanBuild(u, map))) return true;
+                if (Avail.RecipeUsers(r).Any(u => map.listerBuildings.ColonistsHaveBuilding(u) || Avail.CanBuild(u, map))) return true;
             }
             return false;
         }

@@ -325,6 +325,15 @@ namespace ColonyCouncil
             if (OpenWishes.Count() >= s.maxOpenWishes && !force) return null;
 
             var options = new List<Option>();
+            // Each roll asks every wish about every colonist; remember the answers so kind colonists speaking up
+            // for others don't ask again, and work out how fresh each wish is only once.
+            var memo = new Dictionary<(WishDef, Pawn), List<WishCandidate>>();
+            List<WishCandidate> Candidates(WishDef def, Pawn p)
+            {
+                if (!memo.TryGetValue((def, p), out var list)) memo[(def, p)] = list = SafeCandidates(def, p).ToList();
+                return list;
+            }
+            var novelty = new Dictionary<WishDef, float>();
             foreach (var requester in pawns)
             {
                 if (onlyFrom != null && requester != onlyFrom) continue;
@@ -334,9 +343,10 @@ namespace ColonyCouncil
                 foreach (var def in DefDatabase<WishDef>.AllDefsListForReading)
                 {
                     if (OnCooldown(requester, def)) continue;
-                    float defFactor = def.weight * personal * CategoryFactor(requester, def) * Novelty(def);
+                    if (!novelty.TryGetValue(def, out float fresh)) novelty[def] = fresh = Novelty(def);
+                    float defFactor = def.weight * personal * CategoryFactor(requester, def) * fresh;
                     if (defFactor <= 0f) continue;
-                    foreach (var c in SafeCandidates(def, requester))
+                    foreach (var c in Candidates(def, requester))
                     {
                         AddOption(options, def, requester, requester, c, defFactor);
                     }
@@ -351,7 +361,7 @@ namespace ColonyCouncil
                         foreach (var def in DefDatabase<WishDef>.AllDefsListForReading)
                         {
                             if (!def.allowForOthers || OnCooldown(other, def)) continue;
-                            foreach (var c in SafeCandidates(def, other))
+                            foreach (var c in Candidates(def, other))
                             {
                                 AddOption(options, def, requester, other, c, def.weight * 0.5f);
                             }

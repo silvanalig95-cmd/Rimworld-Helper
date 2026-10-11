@@ -104,7 +104,34 @@ namespace ColonyCouncil
 
         // ---------------- Queries ----------------
 
-        public SocialTie Get(Pawn x, Pawn y, TieKind kind) => ties.FirstOrDefault(t => t.kind == kind && t.Between(x, y));
+        // Ties by pair, for the opinion thoughts that ask about every pair of colonists. Rebuilt at most once a tick,
+        // and whenever a tie is added or dropped.
+        [Unsaved] private Dictionary<(int, int, TieKind), SocialTie> index;
+        [Unsaved] private int indexTick = -1;
+        [Unsaved] private int indexCount = -1;
+
+        public SocialTie Get(Pawn x, Pawn y, TieKind kind)
+        {
+            if (x == null || y == null) return null;
+            int tick = Find.TickManager?.TicksGame ?? 0;
+            if (index == null || tick != indexTick || ties.Count != indexCount)
+            {
+                index = index ?? new Dictionary<(int, int, TieKind), SocialTie>();
+                index.Clear();
+                foreach (var t in ties)
+                {
+                    if (t?.a == null || t.b == null) continue;
+                    var k = Key(t.a, t.b, t.kind);
+                    if (!index.ContainsKey(k)) index[k] = t;
+                }
+                indexTick = tick;
+                indexCount = ties.Count;
+            }
+            return index.TryGetValue(Key(x, y, kind), out var found) ? found : null;
+        }
+
+        private static (int, int, TieKind) Key(Pawn x, Pawn y, TieKind kind) =>
+            x.thingIDNumber < y.thingIDNumber ? (x.thingIDNumber, y.thingIDNumber, kind) : (y.thingIDNumber, x.thingIDNumber, kind);
 
         public IEnumerable<SocialTie> Of(Pawn p) => ties.Where(t => t.Involves(p));
 

@@ -94,15 +94,36 @@ namespace ColonyCouncil
             return Widgets.ButtonInvisible(r);
         }
 
+        // The filtered list and each row's height, worked out again only when the filter or the width changes.
+        private static List<AlmanacArticleDef> listArticles;
+        private static List<(float title, float sub)> listHeights;
+        private static string listKey;
+
         private static void DrawList(Rect rect)
         {
-            var articles = Visible
-                .Where(a => (category == null || a.category == category || !search.NullOrEmpty()) && a.Matches(search))
-                .OrderBy(a => a.category).ThenBy(a => a.order).ThenBy(a => a.label)
-                .ToList();
             Widgets.DrawMenuSection(rect);
             var inner = rect.ContractedBy(4f);
             var view = new Rect(0f, 0f, inner.width - 16f, listHeight);
+            string key = (category?.ToString() ?? "") + "|" + search + "|" + view.width + "|" + Visible.Count();
+            if (key != listKey || listArticles == null)
+            {
+                listKey = key;
+                listArticles = Visible
+                    .Where(a => (category == null || a.category == category || !search.NullOrEmpty()) && a.Matches(search))
+                    .OrderBy(a => a.category).ThenBy(a => a.order).ThenBy(a => a.label)
+                    .ToList();
+                listHeights = new List<(float, float)>(listArticles.Count);
+                foreach (var a in listArticles)
+                {
+                    Text.Font = GameFont.Small;
+                    float th = Text.CalcHeight(a.LabelCap, view.width - 8f);
+                    Text.Font = GameFont.Tiny;
+                    float sh = a.summary.NullOrEmpty() ? 0f : Text.CalcHeight(a.summary, view.width - 8f);
+                    listHeights.Add((th, sh));
+                }
+                Text.Font = GameFont.Small;
+            }
+            var articles = listArticles;
             Widgets.BeginScrollView(inner, ref listScroll, view);
             float y = 0f;
             if (articles.Count == 0)
@@ -112,15 +133,19 @@ namespace ColonyCouncil
                 GUI.color = Color.white;
                 y += 40f;
             }
-            foreach (var a in articles)
+            for (int i = 0; i < articles.Count; i++)
             {
+                var a = articles[i];
+                float th = listHeights[i].title, sh = listHeights[i].sub;
+                float h = th + sh + 8f;
+                // Only the rows in sight are drawn.
+                if (y + h < listScroll.y || y > listScroll.y + inner.height)
+                {
+                    y += h + 2f;
+                    continue;
+                }
                 string title = a.LabelCap;
                 string sub = a.summary ?? "";
-                Text.Font = GameFont.Small;
-                float th = Text.CalcHeight(title, view.width - 8f);
-                Text.Font = GameFont.Tiny;
-                float sh = sub.NullOrEmpty() ? 0f : Text.CalcHeight(sub, view.width - 8f);
-                float h = th + sh + 8f;
                 var row = new Rect(0f, y, view.width, h);
                 if (a == selected) Widgets.DrawHighlightSelected(row);
                 else if (Mouse.IsOver(row)) Widgets.DrawHighlight(row);

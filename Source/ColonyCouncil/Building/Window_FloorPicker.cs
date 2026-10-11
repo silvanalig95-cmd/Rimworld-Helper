@@ -164,7 +164,7 @@ namespace ColonyCouncil
         {
             var chosen = cfg.FloorStuff(floor, map, area);
             int need = floor.CostStuffCount * area;
-            var options = GenStuff.AllowedStuffsFor(floor)
+            var options = Avail.AllowedStuffs(floor)
                 .Where(s => s == chosen || !onlyAffordable || map.resourceCounter.GetCount(s) >= need)
                 .OrderByDescending(s => map.resourceCounter.GetCount(s))
                 .ThenBy(s => s.label)
@@ -309,7 +309,7 @@ namespace ColonyCouncil
         {
             cfg.floorChosen = true;
             cfg.floor = f;
-            if (f != null && f.MadeFromStuff && cfg.floorStuff != null && !GenStuff.AllowedStuffsFor(f).Contains(cfg.floorStuff)) cfg.floorStuff = null;
+            if (f != null && f.MadeFromStuff && cfg.floorStuff != null && !Avail.StuffAllowed(f, cfg.floorStuff)) cfg.floorStuff = null;
             cfg.Changed();
             if (close) Close();
             else scroll = Vector2.zero;
