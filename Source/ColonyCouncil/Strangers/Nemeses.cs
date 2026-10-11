@@ -207,6 +207,17 @@ namespace ColonyCouncil
             }
         }
 
+        /// <summary>
+        /// A colonist was just downed or killed by this attacker (from a Harmony hook, so it's exact; the hourly scan of
+        /// the combat log remains for when the hooks are off).
+        /// </summary>
+        public void Notify_Harmed(Pawn victim, Pawn attacker, string deed)
+        {
+            if (!S.nemeses || victim == null || attacker == null || attacker == victim) return;
+            if (!victim.IsColonist || !People.HasInnerLife(victim) || !IsFoe(attacker)) return;
+            Record(attacker, victim, deed, Find.TickManager.TicksGame);
+        }
+
         /// <summary>A colonist has died; if their killer lives, they become someone's nemesis.</summary>
         public void Notify_Death(Pawn dead)
         {

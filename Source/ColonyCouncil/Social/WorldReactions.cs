@@ -1,0 +1,85 @@
+using System.Collections.Generic;
+using System.Linq;
+using RimWorld;
+using RimWorld.Planet;
+using Verse;
+
+namespace ColonyCouncil
+{
+    /// <summary>
+    /// The colony notices what happens to it, the moment it happens (Harmony hooks in Patches/Patch_WorldEvents.cs):
+    /// weddings, births, homecomings from long journeys, and friends breaking down. Each leaves journal lines, a
+    /// line in the chronicle when it matters, and small moods where they fit.
+    /// </summary>
+    public static class WorldReactions
+    {
+        private static CouncilSettings S => ColonyCouncilMod.Settings;
+
+        private static bool On => S != null && S.worldReactions && RimfolkPatches.On && CouncilGameComponent.Instance != null;
+
+        /// <summary>Close friends of someone, at home and able to care.</summary>
+        private static IEnumerable<Pawn> FriendsOf(Pawn p, int minOpinion = 30) =>
+            PawnsFinder.AllMaps_FreeColonistsSpawned.Where(o => o != p && People.HasInnerLife(o) && !o.DevelopmentalStage.Baby()
+                                                                && (o.relations?.OpinionOf(p) ?? 0) >= minOpinion);
+
+        public static void Wedding(Pawn a, Pawn b)
+        {
+            if (!On || a == null || b == null || !(a.IsColonist || b.IsColonist)) return;
+            var comp = CouncilGameComponent.Instance;
+            string text = "CC_World_Wedding".Translate(a.Named("A"), b.Named("B")).Resolve();
+            comp.AddChronicle(new ChronicleEntry(ChronicleKind.Life, text, a.IsColonist ? a : b));
+            foreach (var p in new[] { a, b }.Where(p => p.IsColonist)) comp.journals.Write(p, "Council_Journal_Wedding", null, (p == a ? b : a).Named("OTHER"));
+            foreach (var f in FriendsOf(a).Concat(FriendsOf(b)).Distinct().Where(f => f != a && f != b).Take(4))
+                comp.journals.Write(f, "Council_Journal_WeddingGuest", null, a.Named("A"), b.Named("B"));
+            // A wedding is the oldest custom there is.
+            comp.character?.Shift(new WayShift { tradition = 2f }, text);
+        }
+
+        public static void Birth(Pawn baby, Pawn mother, Pawn father)
+        {
+            if (!On || baby == null || baby.Dead) return;
+            var parents = new[] { mother, father }.Where(p => p != null && !p.Dead && p.IsColonist).ToList();
+            if (parents.Count == 0 && baby.Faction != Faction.OfPlayer) return;
+            var comp = CouncilGameComponent.Instance;
+            string text = parents.Count > 0
+                ? "CC_World_Birth".Translate(baby.Named("BABY"), parents[0].Named("PARENT")).Resolve()
+                : "CC_World_BirthNoParent".Translate(baby.Named("BABY")).Resolve();
+            comp.AddChronicle(new ChronicleEntry(ChronicleKind.Life, text, parents.FirstOrDefault()));
+            foreach (var p in parents) comp.journals.Write(p, "Council_Journal_Birth", null, baby.Named("BABY"));
+        }
+
+        /// <summary>Colonists back from a caravan journey of at least two days.</summary>
+        public static void Homecoming(List<Pawn> pawns, int awayTicks)
+        {
+            if (!On || pawns == null || awayTicks < GenDate.TicksPerDay * 2) return;
+            var comp = CouncilGameComponent.Instance;
+            var back = pawns.Where(p => p != null && !p.Dead && p.IsColonist && People.HasInnerLife(p)).ToList();
+            if (back.Count == 0) return;
+            string days = TextUtil.DaysString(awayTicks);
+            foreach (var p in back)
+            {
+                CouncilGameComponent.GiveThought(p, CouncilDefOf.Council_HomeAgain, null, -1f, "CC_Cause_HomeAgain".Translate(days).Resolve());
+                comp.journals.Write(p, "Council_Journal_Homecoming", null, days.Named("DAYS"));
+            }
+            // Those who stayed and missed them.
+            foreach (var p in back)
+                foreach (var f in FriendsOf(p, 40).Where(f => !back.Contains(f)).Take(3))
+                    CouncilGameComponent.GiveThought(f, CouncilDefOf.Council_GladTheyreBack, p, -1f, "CC_Cause_GladBack".Translate(p.LabelShort).Resolve());
+            string names = TextUtil.JoinAnd(back.Select(p => p.LabelShort).ToList());
+            string text = "CC_World_Homecoming".Translate(names, days).Resolve();
+            Notify.Message(text, new LookTargets(back), MessageTypeDefOf.PositiveEvent, Importance.Flavor);
+            if (awayTicks >= GenDate.TicksPerDay * 8) comp.AddChronicle(new ChronicleEntry(ChronicleKind.Life, text, back[0]));
+        }
+
+        /// <summary>A colonist broke down from their mood: their friends worry, and the worst breaks are remembered.</summary>
+        public static void Breakdown(Pawn p, MentalStateDef state)
+        {
+            if (!On || p == null || state == null || !p.IsColonist || !People.HasInnerLife(p)) return;
+            var comp = CouncilGameComponent.Instance;
+            foreach (var f in FriendsOf(p, 40).Take(3))
+                comp.journals.Write(f, "Council_Journal_FriendBroke", null, p.Named("OTHER"));
+            if (state.IsAggro)
+                comp.AddChronicle(new ChronicleEntry(ChronicleKind.Life, "CC_World_Breakdown".Translate(p.Named("PAWN"), state.label.Named("STATE")).Resolve(), p));
+        }
+    }
+}

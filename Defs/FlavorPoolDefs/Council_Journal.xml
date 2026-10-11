@@ -176,6 +176,84 @@
   </ColonyCouncil.FlavorPoolDef>
 
   <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Journal_Wedding</defName>
+    <lines>
+      <plain>
+        <li>Married {OTHER_nameDef} today. I keep looking at my hands as if something on them should have changed.</li>
+        <li>We said the words in front of everyone. {OTHER_nameDef} said them louder. I'll remember that.</li>
+        <li>[night] Married. The word still sounds like it belongs to someone else.</li>
+      </plain>
+      <warm><li>{OTHER_nameDef} and I are married. Whatever comes next, it comes for both of us now.</li></warm>
+      <blunt><li>Married {OTHER_nameDef}. Good decision. Best one I've made out here.</li></blunt>
+      <cheerful><li>MARRIED! To {OTHER_nameDef}! I may never stop smiling. My face hurts already.</li></cheerful>
+      <gloomy><li>Married {OTHER_nameDef} today. For once I'm not waiting for it to go wrong. Almost not.</li></gloomy>
+      <cold><li>Formalized my partnership with {OTHER_nameDef}. Sensible. I find I'm moved anyway.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Journal_WeddingGuest</defName>
+    <lines>
+      <plain>
+        <li>{A_nameDef} and {B_nameDef} are married. Someone cried. It might have been me.</li>
+        <li>Watched {A_nameDef} and {B_nameDef} wed today. The colony felt like a village for an afternoon.</li>
+      </plain>
+      <warm><li>{A_nameDef} and {B_nameDef} married today. It made me believe in this place a little more.</li></warm>
+      <blunt><li>Wedding today. {A_nameDef} and {B_nameDef}. Good for them. The food was decent.</li></blunt>
+      <cheerful><li>A WEDDING! {A_nameDef} and {B_nameDef}! I danced. Badly. Joyfully.</li></cheerful>
+      <gloomy><li>{A_nameDef} and {B_nameDef} are married. I'm glad for them. I'm not sure I'll ever have that.</li></gloomy>
+      <cold><li>Attended the union of {A_nameDef} and {B_nameDef}. Morale effects appear positive.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Journal_Birth</defName>
+    <lines>
+      <plain>
+        <li>{BABY_nameDef} is here. So small. I counted the fingers twice.</li>
+        <li>I'm a parent now. {BABY_nameDef} has opinions already, mostly loud ones.</li>
+        <li>[night] {BABY_nameDef} is asleep at last. I'm too afraid to breathe in case it wakes them.</li>
+      </plain>
+      <warm><li>Welcome, {BABY_nameDef}. We'll make this place worth growing up in.</li></warm>
+      <blunt><li>{BABY_nameDef} was born today. Healthy. Loud. Mine.</li></blunt>
+      <cheerful><li>{BABY_nameDef}! Born today! The best day! I keep telling everyone, even the ones who were there!</li></cheerful>
+      <gloomy><li>{BABY_nameDef} was born into all this. I'll have to be better than the world is.</li></gloomy>
+      <cold><li>{BABY_nameDef} arrived today. I had planned to be calm about it. The plan has failed.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Journal_Homecoming</defName>
+    <lines>
+      <plain>
+        <li>Home after {DAYS} on the road. The colony looks smaller than I remembered, and better.</li>
+        <li>Back home. Slept in my own bed for the first time in {DAYS}. I didn't even take my boots off.</li>
+        <li>[winter] Home, out of the cold at last. {DAYS} of bad roads and worse weather, and I'd still go again.</li>
+      </plain>
+      <warm><li>Home after {DAYS}. Everyone came out to meet us. I didn't know I'd missed them this much.</li></warm>
+      <blunt><li>Back after {DAYS}. Long trip. Good to be home.</li></blunt>
+      <cheerful><li>HOME! {DAYS} away and I have SO many stories. Nobody has asked yet. They will.</li></cheerful>
+      <gloomy><li>Home after {DAYS}. Nothing burned down while we were gone. I'd half expected it to.</li></gloomy>
+      <cold><li>Returned after {DAYS}. The expedition achieved most of its aims. Home is adequate. More than adequate.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Journal_FriendBroke</defName>
+    <lines>
+      <plain>
+        <li>{OTHER_nameDef} broke today. I saw it coming and didn't say anything. I should have said something.</li>
+        <li>I'm worried about {OTHER_nameDef}. Everyone has a limit; today was theirs.</li>
+      </plain>
+      <warm><li>{OTHER_nameDef} had a terrible day. Tomorrow I'll sit with them, whether they want company or not.</li></warm>
+      <blunt><li>{OTHER_nameDef} cracked. Can't blame them. Something has to change around here.</li></blunt>
+      <cheerful><li>{OTHER_nameDef} had a bad day. A really bad day. I'm going to make it up to them somehow. Pie, maybe.</li></cheerful>
+      <gloomy><li>{OTHER_nameDef} broke today. I wonder which of us is next.</li></gloomy>
+      <cold><li>{OTHER_nameDef} broke down today. The signs were there. I'll pay closer attention.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
     <defName>Council_Journal_Anniversary</defName>
     <lines>
       <plain>

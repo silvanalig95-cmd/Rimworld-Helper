@@ -1548,4 +1548,14 @@ Those against it ({WHO}) will trust the council less and resent it more than usu
   <CC_Settings_DeepHooks_Tip>Small, careful changes to how the game itself behaves (through Harmony), such as Rimfolk's hints in the game's own Needs tab. Each one switches itself off if it can't work with your other mods. Active now: {0}; skipped: {1}. Turning this off takes effect at once.</CC_Settings_DeepHooks_Tip>
   <CC_Settings_NeedsTabHints>... and in the game's Needs tab</CC_Settings_NeedsTabHints>
   <CC_Settings_NeedsTabHints_Tip>Hovering a mood in the game's own Needs tab also shows why it's there, when it ends, which mod it comes from, and what to do about it.</CC_Settings_NeedsTabHints_Tip>
+  <!-- The colony reacts to the world -->
+  <CC_Settings_WorldReactions>The colony notices what happens</CC_Settings_WorldReactions>
+  <CC_Settings_WorldReactions_Tip>Weddings, births, homecomings from long journeys and friends breaking down leave journal lines, a line in the chronicle when it matters, and small moods (glad you're back, home again). Needs the deeper game hooks.</CC_Settings_WorldReactions_Tip>
+  <CC_World_Wedding>{A_nameDef} and {B_nameDef} were married.</CC_World_Wedding>
+  <CC_World_Birth>{BABY_nameDef} was born to {PARENT_nameDef}.</CC_World_Birth>
+  <CC_World_BirthNoParent>{BABY_nameDef} was born in the colony.</CC_World_BirthNoParent>
+  <CC_World_Homecoming>{0} came home after {1} away.</CC_World_Homecoming>
+  <CC_World_Breakdown>{PAWN_nameDef} broke down: {STATE}.</CC_World_Breakdown>
+  <CC_Cause_HomeAgain>home again after {0} away.</CC_Cause_HomeAgain>
+  <CC_Cause_GladBack>{0} is back home.</CC_Cause_GladBack>
 </LanguageData>

@@ -77,6 +77,7 @@ namespace ColonyCouncil
         public bool petMoments = true;
         public bool colonistMoments = true;
         public bool autonomy = true;
+        public bool worldReactions = true;
         public bool autonomyPlans = true;
         /// <summary>The colony's character: what its choices make it known for.</summary>
         public bool colonyCharacter = true;
@@ -162,6 +163,7 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref petMoments, "petMoments", true);
             Scribe_Values.Look(ref colonistMoments, "colonistMoments", true);
             Scribe_Values.Look(ref autonomy, "autonomy", true);
+            Scribe_Values.Look(ref worldReactions, "worldReactions", true);
             Scribe_Values.Look(ref autonomyPlans, "autonomyPlans", true);
             Scribe_Values.Look(ref colonyCharacter, "colonyCharacter", true);
             Scribe_Values.Look(ref slowButtons, "slowButtons", true);
@@ -376,6 +378,7 @@ namespace ColonyCouncil
             l.CheckboxLabeled("CC_Settings_PetMoments".Translate(), ref petMoments, "CC_Settings_PetMoments_Tip".Translate());
             l.CheckboxLabeled("CC_Settings_Moments".Translate(), ref colonistMoments, "CC_Settings_Moments_Tip".Translate());
             l.CheckboxLabeled("CC_Settings_Autonomy".Translate(), ref autonomy, "CC_Settings_Autonomy_Tip".Translate());
+            l.CheckboxLabeled("CC_Settings_WorldReactions".Translate(), ref worldReactions, "CC_Settings_WorldReactions_Tip".Translate());
             if (autonomy) l.CheckboxLabeled("  " + "CC_Settings_AutonomyPlans".Translate(), ref autonomyPlans, "CC_Settings_AutonomyPlans_Tip".Translate());
 
             Header(l, "CC_Settings_Memory".Translate());
@@ -436,7 +439,7 @@ namespace ColonyCouncil
         private void SetPeople(bool on, bool councilOn)
         {
             socialWeb = socialEvents = secrets = vendettas = aspirations = quirks = heirlooms = comingOfAge = dreams = dreamOmens = eulogies = on;
-            strangers = nemeses = nemesisReturns = petMoments = colonistMoments = autonomy = on;
+            strangers = nemeses = nemesisReturns = petMoments = colonistMoments = autonomy = worldReactions = on;
             enableDilemmas = decreeRequests = offices = colonyCharacter = councilOn;
             enableWishes = enableAmbitions = councilOn || on;
             journals = epithets = anniversaries = annals = on || councilOn;
@@ -492,6 +495,7 @@ namespace ColonyCouncil
             petMoments = d.petMoments;
             colonistMoments = d.colonistMoments;
             autonomy = d.autonomy;
+            worldReactions = d.worldReactions;
             autonomyPlans = d.autonomyPlans;
             colonyCharacter = d.colonyCharacter;
             moodInsight = d.moodInsight;

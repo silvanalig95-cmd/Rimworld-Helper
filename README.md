@@ -356,6 +356,13 @@ Every mood Rimfolk gives says what caused it, under the description in its toolt
 didn't), which council decision, which decree and how long it has left, which visitor, secret, nemesis or
 moment. The trust mood lists what moved it lately.
 
+## The colony notices what happens
+The moment it happens: a **wedding** is written into the chronicle and the journals of the couple and their friends
+(and nudges the colony a little towards tradition); a **birth** is recorded by the parents; colonists **coming
+home** from a journey of two days or more are glad to be home, their friends are glad to see them, and long
+journeys make the chronicle; when someone **breaks down** from their mood, their close friends worry in their
+journals, and the worst breaks are remembered. Nemeses are now caught the instant someone is downed or killed.
+
 ## Colonists who help themselves
 Now and then a colonist fixes a small thing that hurts their mood, on their own and in their own time:
 - tidies their own room when it's filthy, or visits a grave while they grieve

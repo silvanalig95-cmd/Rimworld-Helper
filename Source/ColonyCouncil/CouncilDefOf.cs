@@ -68,6 +68,8 @@ namespace ColonyCouncil
         public static ThoughtDef Council_Pet_Defended;
         public static ThoughtDef Council_Pet_Lost;
         public static ThoughtDef Council_Decree_Again;
+        public static ThoughtDef Council_HomeAgain;
+        public static ThoughtDef Council_GladTheyreBack;
         public static ThoughtDef Council_ChildGrown;
         public static ThoughtDef Council_SawThemGrow;
 

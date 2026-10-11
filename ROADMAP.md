@@ -24,8 +24,9 @@ More of what makes a long medieval run feel lived-in.
   moments, seasonal festivals that can become traditions, more dreams and secrets.
 - Era-aware writing throughout.
 
-## Phase D: Reacting to the world
-The colony notices what the game does to it.
+## Phase D: Reacting to the world (started)
+The colony notices what the game does to it. Done so far (Harmony hooks): weddings, births, homecomings, breakdowns,
+exact nemesis detection.
 - Weddings, births, breakdowns, victories, caravans coming home with stories, quests won and lost.
 - Journals, the chronicle, friends' reactions and life-goal sparks for each.
 
