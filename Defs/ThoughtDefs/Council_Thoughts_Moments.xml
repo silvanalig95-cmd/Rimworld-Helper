@@ -30,4 +30,326 @@
     <stages><li><label>lost a friendly contest</label><description>Next time. There will be a next time.</description><baseMoodEffect>1</baseMoodEffect><baseOpinionOffset>2</baseOpinionOffset></li></stages>
   </ThoughtDef>
 
+  <!-- ===================== Everyday ===================== -->
+
+  <ThoughtDef>
+    <defName>Council_Moment_KindredCraft</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilSocial</thoughtClass>
+    <durationDays>1</durationDays>
+    <stackLimit>2</stackLimit>
+    <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
+    <stages><li><label>talked shop</label><description>Finally, someone who understands why it matters how it's done. We could have gone on all night.</description><baseMoodEffect>1</baseMoodEffect><baseOpinionOffset>4</baseOpinionOffset></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Council_Moment_CookingPraised</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilSocial</thoughtClass>
+    <durationDays>2</durationDays>
+    <stackLimit>2</stackLimit>
+    <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
+    <stages><li><label>my cooking was praised</label><description>Someone actually stopped to tell me the meal was good. I'll be cooking on that for days.</description><baseMoodEffect>3</baseMoodEffect><baseOpinionOffset>5</baseOpinionOffset></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Council_Moment_SomeoneListened</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilSocial</thoughtClass>
+    <durationDays>2</durationDays>
+    <stackLimit>2</stackLimit>
+    <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
+    <stages><li><label>someone listened to my old stories</label><description>The young ones still listen, some of them. Somebody ought to remember how it was.</description><baseMoodEffect>2</baseMoodEffect><baseOpinionOffset>3</baseOpinionOffset></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Council_Moment_HeardOldStories</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilSocial</thoughtClass>
+    <durationDays>2</durationDays>
+    <stackLimit>2</stackLimit>
+    <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
+    <stages><li><label>heard stories of the old days</label><description>Half of it can't be true. I hope all of it is.</description><baseMoodEffect>1</baseMoodEffect><baseOpinionOffset>4</baseOpinionOffset></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Council_Moment_TaughtLittleOne</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilSocial</thoughtClass>
+    <durationDays>1.5</durationDays>
+    <stackLimit>2</stackLimit>
+    <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
+    <stages><li><label>taught a little one</label><description>That moment when it clicks for a child, when their whole face lights up. Worth more than most things out here.</description><baseMoodEffect>2</baseMoodEffect><baseOpinionOffset>3</baseOpinionOffset></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Council_Moment_LearnedSomething</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilSocial</thoughtClass>
+    <durationDays>2</durationDays>
+    <stackLimit>2</stackLimit>
+    <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
+    <stages><li><label>learned something new</label><description>A grown-up showed me how! I'm going to show everyone. Twice.</description><baseMoodEffect>3</baseMoodEffect><baseOpinionOffset>6</baseOpinionOffset></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Council_Moment_EveningTales</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilSocial</thoughtClass>
+    <durationDays>1</durationDays>
+    <stackLimit>2</stackLimit>
+    <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
+    <stages><li><label>stories in the evening</label><description>The day's work done, somebody talking, somebody listening. That's the good part of the day.</description><baseMoodEffect>2</baseMoodEffect><baseOpinionOffset>3</baseOpinionOffset></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Council_Moment_RodeOutStorm</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilSocial</thoughtClass>
+    <durationDays>1</durationDays>
+    <stackLimit>2</stackLimit>
+    <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
+    <stages><li><label>waited out the storm together</label><description>The wind howled at the walls and we talked until it gave up. It was almost cozy.</description><baseMoodEffect>1</baseMoodEffect><baseOpinionOffset>3</baseOpinionOffset></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Council_Moment_SnowTogether</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilSocial</thoughtClass>
+    <durationDays>1</durationDays>
+    <stackLimit>2</stackLimit>
+    <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
+    <stages><li><label>watched the snow fall together</label><description>Big soft flakes, and everything gone quiet. For a moment the whole colony looked new.</description><baseMoodEffect>2</baseMoodEffect><baseOpinionOffset>2</baseOpinionOffset></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Council_Moment_SpringTogether</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilSocial</thoughtClass>
+    <durationDays>1</durationDays>
+    <stackLimit>2</stackLimit>
+    <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
+    <stages><li><label>spring in the air</label><description>Something green poking out of the mud, sun on my face, and somebody to point at it with.</description><baseMoodEffect>2</baseMoodEffect><baseOpinionOffset>2</baseOpinionOffset></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Council_Moment_LiftedSpirits</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilSocial</thoughtClass>
+    <durationDays>1</durationDays>
+    <stackLimit>2</stackLimit>
+    <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
+    <stages><li><label>lifted someone's spirits</label><description>They were having a hard day. I think I made it a little less hard.</description><baseMoodEffect>1</baseMoodEffect><baseOpinionOffset>2</baseOpinionOffset></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Council_Moment_CheeredUp</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilSocial</thoughtClass>
+    <durationDays>1.5</durationDays>
+    <stackLimit>2</stackLimit>
+    <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
+    <stages><li><label>someone cheered me up</label><description>I was in a dark place, and they sat with me in it until it wasn't so dark.</description><baseMoodEffect>3</baseMoodEffect><baseOpinionOffset>8</baseOpinionOffset></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Council_Moment_ToldMyStory</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilSocial</thoughtClass>
+    <durationDays>2</durationDays>
+    <stackLimit>2</stackLimit>
+    <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
+    <stages><li><label>told someone where I came from</label><description>I'm still new here, but someone wanted to know who I was before. It helps.</description><baseMoodEffect>2</baseMoodEffect><baseOpinionOffset>4</baseOpinionOffset></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Council_Moment_HeardTheirStory</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilSocial</thoughtClass>
+    <durationDays>2</durationDays>
+    <stackLimit>2</stackLimit>
+    <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
+    <stages><li><label>heard where they came from</label><description>I know a little more about where they're from now. They feel less like a stranger.</description><baseMoodEffect>1</baseMoodEffect><baseOpinionOffset>3</baseOpinionOffset></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Council_Moment_SharedJoke</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilSocial</thoughtClass>
+    <durationDays>0.5</durationDays>
+    <stackLimit>2</stackLimit>
+    <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
+    <stages><li><label>a joke at work</label><description>The work was dull. The company wasn't.</description><baseMoodEffect>1</baseMoodEffect><baseOpinionOffset>3</baseOpinionOffset></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Council_Moment_GrumbledTogether</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilSocial</thoughtClass>
+    <durationDays>0.5</durationDays>
+    <stackLimit>2</stackLimit>
+    <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
+    <stages><li><label>grumbled about the weather together</label><description>Complaining about the weather fixes nothing. Complaining about it with someone helps anyway.</description><baseMoodEffect>1</baseMoodEffect><baseOpinionOffset>2</baseOpinionOffset></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Council_Moment_RoundPlanned</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilSocial</thoughtClass>
+    <durationDays>0.5</durationDays>
+    <stackLimit>2</stackLimit>
+    <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
+    <stages><li><label>a drink to look forward to</label><description>Something waiting at the end of the day, and someone to share it with.</description><baseMoodEffect>1</baseMoodEffect><baseOpinionOffset>3</baseOpinionOffset></li></stages>
+  </ThoughtDef>
+
+  <!-- ===================== Bonds ===================== -->
+
+  <ThoughtDef>
+    <defName>Council_Moment_FoughtTogether</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilSocial</thoughtClass>
+    <durationDays>2</durationDays>
+    <stackLimit>2</stackLimit>
+    <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
+    <stages><li><label>remembered the fight together</label><description>We stood together when it counted. Talking it over with someone who was there makes it sit easier.</description><baseMoodEffect>2</baseMoodEffect><baseOpinionOffset>6</baseOpinionOffset></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Council_Moment_LessonsPayOff</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilSocial</thoughtClass>
+    <durationDays>2</durationDays>
+    <stackLimit>2</stackLimit>
+    <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
+    <stages><li><label>the lessons are paying off</label><description>Teaching and learning, day after day, and today we could both see it working.</description><baseMoodEffect>2</baseMoodEffect><baseOpinionOffset>5</baseOpinionOffset></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_Moment_GotAJabIn</defName>
+    <durationDays>0.5</durationDays>
+    <stages><li><label>got a good jab in</label><description>Saw the look on their face. Worth it.</description><baseMoodEffect>1</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Council_Moment_RivalJabbed</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilSocial</thoughtClass>
+    <durationDays>1</durationDays>
+    <stackLimit>2</stackLimit>
+    <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
+    <stages><li><label>my rival's little jab</label><description>Of course they had something to say. They always do. I'll think of the perfect answer tonight, in bed, too late.</description><baseMoodEffect>-1</baseMoodEffect><baseOpinionOffset>-3</baseOpinionOffset></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Council_Moment_NotFacingItAlone</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilSocial</thoughtClass>
+    <durationDays>2</durationDays>
+    <stackLimit>2</stackLimit>
+    <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
+    <stages><li><label>they stood by me</label><description>The one who hurt me is still out there. But I'm not facing it alone, and now I know it.</description><baseMoodEffect>3</baseMoodEffect><baseOpinionOffset>8</baseOpinionOffset></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Council_Moment_TrustedWithIt</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilSocial</thoughtClass>
+    <durationDays>2</durationDays>
+    <stackLimit>2</stackLimit>
+    <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
+    <stages><li><label>they trusted me with it</label><description>They told me what still keeps them up at night. I won't let them carry it alone.</description><baseMoodEffect>1</baseMoodEffect><baseOpinionOffset>4</baseOpinionOffset></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_Moment_ShowedOffAnimal</defName>
+    <durationDays>1</durationDays>
+    <stages><li><label>bragged about my animal</label><description>Best animal on the Rim. I have witnesses now.</description><baseMoodEffect>2</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Council_Moment_MetTheAnimal</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilSocial</thoughtClass>
+    <durationDays>1</durationDays>
+    <stackLimit>2</stackLimit>
+    <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
+    <stages><li><label>heard all about their animal</label><description>They love that animal so much. It's hard not to smile.</description><baseMoodEffect>1</baseMoodEffect><baseOpinionOffset>2</baseOpinionOffset></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Council_Moment_JoyShared</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilSocial</thoughtClass>
+    <durationDays>1</durationDays>
+    <stackLimit>2</stackLimit>
+    <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
+    <stages><li><label>shared my good news</label><description>Something good happened, and somebody was glad about it with me. That doubles it.</description><baseMoodEffect>1</baseMoodEffect><baseOpinionOffset>3</baseOpinionOffset></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Council_Moment_HappyForThem</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilSocial</thoughtClass>
+    <durationDays>1</durationDays>
+    <stackLimit>2</stackLimit>
+    <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
+    <stages><li><label>happy for them</label><description>Their wish came true, and they couldn't stop grinning. It's catching.</description><baseMoodEffect>2</baseMoodEffect><baseOpinionOffset>3</baseOpinionOffset></li></stages>
+  </ThoughtDef>
+
+  <!-- ===================== The colony's ways ===================== -->
+
+  <ThoughtDef>
+    <defName>Council_Moment_ProudOfOurWays</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilSocial</thoughtClass>
+    <durationDays>1.5</durationDays>
+    <stackLimit>2</stackLimit>
+    <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
+    <stages><li><label>proud of how we live</label><description>We do things our own way here. Talking about it, I realized I wouldn't want it any other way.</description><baseMoodEffect>2</baseMoodEffect><baseOpinionOffset>3</baseOpinionOffset></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Council_Moment_WaysArgument</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilSocial</thoughtClass>
+    <durationDays>1</durationDays>
+    <stackLimit>2</stackLimit>
+    <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
+    <stages><li><label>argued about our ways</label><description>We see this colony differently, and we said so. Loudly. Nobody stormed off, which is something.</description><baseOpinionOffset>-3</baseOpinionOffset></li></stages>
+  </ThoughtDef>
+
+  <!-- ===================== Beliefs ===================== -->
+
+  <ThoughtDef>
+    <defName>Council_Moment_SharedFaith</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilSocial</thoughtClass>
+    <durationDays>1.5</durationDays>
+    <stackLimit>2</stackLimit>
+    <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
+    <stages><li><label>shared a blessing</label><description>We said the words together. Out here, it matters to have someone who believes what you believe.</description><baseMoodEffect>2</baseMoodEffect><baseOpinionOffset>5</baseOpinionOffset></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Council_Moment_FaithTalk</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilSocial</thoughtClass>
+    <durationDays>1</durationDays>
+    <stackLimit>2</stackLimit>
+    <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
+    <stages><li><label>a friendly talk about faith</label><description>We don't believe the same things. We talked about it anyway, and nobody tried to win. I understand them a little better.</description><baseMoodEffect>1</baseMoodEffect><baseOpinionOffset>2</baseOpinionOffset></li></stages>
+  </ThoughtDef>
+
+  <!-- ===================== Mods: magic, hygiene, cooking ===================== -->
+
+  <ThoughtDef>
+    <defName>Council_Moment_SawMagic</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilSocial</thoughtClass>
+    <durationDays>1</durationDays>
+    <stackLimit>2</stackLimit>
+    <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
+    <stages><li><label>saw a little magic</label><description>Nothing grand, nothing dangerous. Just a small wonder, shown to me on purpose. I keep thinking about it.</description><baseMoodEffect>3</baseMoodEffect><baseOpinionOffset>4</baseOpinionOffset></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Council_Moment_TalkedMagic</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilSocial</thoughtClass>
+    <durationDays>1</durationDays>
+    <stackLimit>2</stackLimit>
+    <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
+    <stages><li><label>talked about magic</label><description>We talked about what magic feels like. I understand it a little better, and wonder about it a lot more.</description><baseMoodEffect>1</baseMoodEffect><baseOpinionOffset>3</baseOpinionOffset></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_Moment_ToldToWash</defName>
+    <durationDays>0.5</durationDays>
+    <stages><li><label>told I need a wash</label><description>A friend took me aside and told me, kindly, that I smell. They're not wrong. I'll get to it.</description><baseMoodEffect>-1</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_Moment_FeelingClean</defName>
+    <durationDays>0.5</durationDays>
+    <stages><li><label>feeling clean</label><description>Clean skin, clean hair, and I smell like a person again. Small things.</description><baseMoodEffect>1</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Council_Moment_TalkedFood</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilSocial</thoughtClass>
+    <durationDays>0.5</durationDays>
+    <stackLimit>2</stackLimit>
+    <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
+    <stages><li><label>talked about food</label><description>Good food, and someone to talk about it with. Now I'm hungry again.</description><baseMoodEffect>1</baseMoodEffect><baseOpinionOffset>2</baseOpinionOffset></li></stages>
+  </ThoughtDef>
+
 </Defs>
