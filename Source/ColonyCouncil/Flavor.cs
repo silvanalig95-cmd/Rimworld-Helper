@@ -255,6 +255,18 @@ namespace ColonyCouncil
             if (p?.ageTracker == null) return 0f;
             float years = p.ageTracker.AgeBiologicalYearsFloat;
             float life = p.RaceProps?.lifeExpectancy ?? 80f;
+            // Long-lived genes (Stoneborn, elves and the like) stretch a lifetime without changing the race.
+            if (StatDefOf.LifespanFactor != null && p.RaceProps?.Humanlike == true)
+            {
+                try
+                {
+                    float factor = p.GetStatValue(StatDefOf.LifespanFactor, true, 2500);
+                    if (factor > 0.1f) life *= factor;
+                }
+                catch
+                {
+                }
+            }
             return life > 1f && System.Math.Abs(life - 80f) > 1f ? years * 80f / life : years;
         }
 
