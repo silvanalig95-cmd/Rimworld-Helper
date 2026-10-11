@@ -753,7 +753,7 @@
       </li>
       <li>
         <label>Halve it, if {B_nameDef} takes the other half</label>
-        <outcome>{A_nameDef} got half the punishment and {B_nameDef} took the other half. The two of them are working it off together, and don't seem to mind.</outcome>
+        <outcome>The punishment was split down the middle, and {B_nameDef} took half of it. The two of them are working it off together, and don't seem to mind.</outcome>
         <ways><mercy>3</mercy></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Hediff"><target>AAndB</target><hediff>Council_Dlm_Penance</hediff></li>

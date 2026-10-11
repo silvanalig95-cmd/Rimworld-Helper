@@ -135,7 +135,7 @@
     <tie>Friends</tie>
     <minStrength>40</minStrength>
     <texts>
-      <li>{B_nameDef} spent a free evening helping {A_nameDef} work toward {A_possessive} goal, which is to {GOAL}.</li>
+      <li>{B_nameDef} spent a free evening helping {A_nameDef}, who means to {GOAL} one day.</li>
       <li>{B_nameDef} gave up a rest day to help {A_nameDef} with the plan to {GOAL}. {A_nameDef} didn't know what to say.</li>
     </texts>
     <effects>

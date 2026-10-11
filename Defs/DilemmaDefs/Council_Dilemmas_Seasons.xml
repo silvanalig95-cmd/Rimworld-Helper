@@ -303,7 +303,7 @@
     <withinDaysOfThreat>1.5</withinDaysOfThreat>
     <thingCount>20</thingCount>
     <texts>
-      <li>The colony has come through the attack, and the survivors are giddy with it. {A_nameDef} wants to celebrate properly with a victory feast tonight, using about {COUNT} raw food.\n\nThe repairs would have to wait until morning.</li>
+      <li>The colony has come through the attack, and everyone still standing is giddy with relief. {A_nameDef} wants to celebrate properly with a victory feast tonight, using about {COUNT} raw food.\n\nThe repairs would have to wait until morning.</li>
       <li>The fighting stopped an hour ago, and {A_nameDef} is already asking the council for a feast. "We earned it," {A_nameDef} says, wiping someone else's blood off {A_possessive} sleeve.</li>
     </texts>
     <traditionOption>0</traditionOption>

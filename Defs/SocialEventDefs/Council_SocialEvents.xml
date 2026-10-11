@@ -222,7 +222,7 @@
     <minMood>0.6</minMood>
     <texts>
       <li>{A_nameDef} and {B_nameDef} ended up on the same work detail and, somewhere around noon, started talking like people.</li>
-      <li>{A_nameDef} held the ladder for {B_nameDef} without being asked, and for the rest of the afternoon they managed to be civil.</li>
+      <li>{A_nameDef} held the ladder steady for {B_nameDef} on the roof job, and for the rest of the afternoon they managed to be civil.</li>
       <li>{A_nameDef} brought {B_nameDef} a bowl of stew without being asked, and {B_nameDef} said thank you.</li>
     </texts>
     <effects>

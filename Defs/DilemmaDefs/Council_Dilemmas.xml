@@ -21,6 +21,7 @@
     <texts>
       <li>{B_nameDef} caught {A_nameDef} in the storeroom in the middle of the night, still chewing, with {A_possessive} pockets stuffed full. {A_nameDef} says {A_pronoun} was hungry. {B_nameDef} says it's the third time this week.\n\nWord was out by breakfast, and {B_nameDef} wants the council to deal with it.</li>
       <li>Food has been going missing from the stores for days. Last night {B_nameDef} waited in the dark between the shelves and caught {A_nameDef} filling a sack.\n\n{A_nameDef} hasn't tried to deny it.</li>
+      <li>The stores have been running short all week, and this morning {B_nameDef} found a pile of picked bones and empty sacks under {A_nameDef}'s bed.\n\n{A_nameDef} says {A_pronoun} only took what {A_pronoun} needed. {B_nameDef} says the rest of the colony has been going to bed hungry because of it.</li>
     </texts>
     <defaultOption>0</defaultOption>
     <options>
@@ -122,6 +123,7 @@
     <texts>
       <li>{A_nameDef} and {B_nameDef} have been at each other's throats for days. Today it was about whose turn it was to clean. Yesterday it was a borrowed knife that came back dull.\n\nBoth of them want the council to settle it, and both expect to win.</li>
       <li>{A_nameDef} and {B_nameDef} had another shouting match, this time across the dinner table, and a spoon was thrown.\n\nThey've each come to the council separately, each with a list of complaints about the other.</li>
+      <li>This morning {B_nameDef} moved {A_nameDef}'s things out of the workshop. By lunch {A_nameDef} had salted {B_nameDef}'s stew until it couldn't be eaten. It has gone on like this for days.\n\nThe others are tired of it, and {A_nameDef} and {B_nameDef} each want the council to take their side.</li>
     </texts>
     <defaultOption>3</defaultOption>
     <options>
