@@ -12,6 +12,19 @@ No other mods are required, and it works with any combination of DLCs (or none).
 
 ## Installing
 
+**Recommended: install once with GitHub Desktop, then update with a double-click.**
+1. Install [GitHub Desktop](https://desktop.github.com) (no account needed for this).
+2. If you have an old `Rimfolk` (or `ColonyCouncil`) folder in your RimWorld `Mods` folder, delete it.
+3. In GitHub Desktop: **File → Clone repository → URL**, enter `silvanalig95-cmd/Rimworld-Helper`, and set the
+   **Local path** to your `Mods` folder plus `\Rimfolk`, for example
+   `C:\Program Files (x86)\Steam\steamapps\common\RimWorld\Mods\Rimfolk`. Click **Clone**.
+4. Start RimWorld, open **Mods**, enable **Rimfolk** and restart.
+
+To update later, double-click **`Update Rimfolk.bat`** in the `Rimfolk` folder (or click **Fetch origin**, then
+**Pull origin**, in GitHub Desktop). Restart RimWorld afterwards. Updating replaces anything changed by hand inside
+the mod folder; your settings and saves are kept elsewhere and are safe.
+
+**Or: download a ZIP each time.**
 1. Download this repository as a ZIP (green **Code** button → **Download ZIP**) and extract it.
 2. Move the extracted folder into your RimWorld `Mods` folder and name it `Rimfolk` (if you had the old
    `ColonyCouncil` folder, delete it first):
