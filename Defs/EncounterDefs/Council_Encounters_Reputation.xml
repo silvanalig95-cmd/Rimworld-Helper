@@ -1,0 +1,433 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    What the road says about the colony: small moments with visitors and traders who have heard what the colony
+    is known for (colonyIs: Merciful, Harsh, Generous, Thrifty, Traditional, Restless, Open, Guarded, Hardworking,
+    Easygoing; see Source/ColonyCouncil/Character/Character.cs). Two per reputation, so a name the council earned
+    comes back to it through strangers. Same format as Council_Encounters_People.xml: A is a colonist, X the
+    stranger, {FACTION} X's faction. Thoughts in Defs/ThoughtDefs/Council_Thoughts_Reputation.xml, journals in
+    Defs/FlavorPoolDefs/Council_Journal_Reputation.xml.
+  -->
+
+  <!-- ===================== Merciful ===================== -->
+
+  <ColonyCouncil.EncounterDef>
+    <defName>Council_EncR_SparesPrisoners</defName>
+    <label>a name for mercy</label>
+    <weight>1.2</weight>
+    <cooldownDays>12</cooldownDays>
+    <colonyIs><li>Merciful</li></colonyIs>
+    <stranger><kind>Visitor</kind><adult>true</adult></stranger>
+    <texts>
+      <li>{X_nameDef} asked {A_nameDef} if it was true what they say on the road: that this colony patches up the raiders it beats and sends them home with bread. {A_nameDef} said it was mostly true. {X_nameDef} said that was the strangest thing {X_pronoun} had heard all year.</li>
+      <li>Over supper, {X_nameDef} told {A_nameDef} that {FACTION} folk call this "the place that lets them go". {X_nameDef} meant it kindly, mostly. {A_nameDef} has been turning it over ever since.</li>
+      <li>{X_nameDef} said {X_pronoun} slept better here than anywhere on the road, because a colony that spares its own prisoners probably won't knife its guests. {A_nameDef} decided to take that as praise.</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncR_KnownForMercy</thought><exceptTrait><li>Bloodlust</li><li>Psychopath</li></exceptTrait></li>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncR_KnownAsSoft</thought><onlyTrait><li>Bloodlust</li><li>Psychopath</li></onlyTrait></li>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>X</target><thought>Council_EncP_GoodCompany</thought><chance>0.5</chance></li>
+      <li Class="ColonyCouncil.DilemmaEffect_Goodwill"><amount>1</amount><chance>0.3</chance></li>
+    </effects>
+    <journal>Council_Journal_EncR_Merciful</journal>
+    <notable>true</notable>
+  </ColonyCouncil.EncounterDef>
+
+  <ColonyCouncil.EncounterDef>
+    <defName>Council_EncR_KindnessReturned</defName>
+    <label>a kindness returned</label>
+    <weight>1.0</weight>
+    <cooldownDays>12</cooldownDays>
+    <colonyIs><li>Merciful</li></colonyIs>
+    <stranger><kind>Trader</kind></stranger>
+    <texts>
+      <li>{X_nameDef} pressed a few coins and a twist of healroot on {A_nameDef} and wouldn't hear a word about it. A cousin of {X_possessive} was one of the raiders the colony patched up and sent home. "Didn't deserve it," {X_nameDef} said. "Thanks all the same."</li>
+      <li>{X_nameDef} tucked some healroot and a little silver into {A_nameDef}'s basket after the trading was done. Word on the road is the colony sets its prisoners free, and {X_nameDef} once had a brother in a cell somewhere much worse.</li>
+      <li>{X_nameDef} gave {A_nameDef} a twist of healroot and a few coins "for the mercy". {A_nameDef} asked which mercy. {X_nameDef} said it didn't matter, people talk about all of them.</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Spawn"><thing>Silver</thing><count>10</count></li>
+      <li Class="ColonyCouncil.DilemmaEffect_Spawn"><thing>MedicineHerbal</thing><count>1</count></li>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncR_KindnessReturned</thought></li>
+    </effects>
+  </ColonyCouncil.EncounterDef>
+
+  <!-- ===================== Harsh ===================== -->
+
+  <ColonyCouncil.EncounterDef>
+    <defName>Council_EncR_ChildrenClose</defName>
+    <label>children kept close</label>
+    <weight>1.1</weight>
+    <cooldownDays>12</cooldownDays>
+    <colonyIs><li>Harsh</li></colonyIs>
+    <stranger><kind>Visitor</kind><adult>true</adult></stranger>
+    <texts>
+      <li>The {FACTION} visitors keep their children on a short rope here. When one wandered toward {A_nameDef}, {X_nameDef} snatched the child back by the collar without a word. {A_nameDef} had only been going to wave.</li>
+      <li>{X_nameDef} told {A_nameDef}, half joking, that {FACTION} parents use the colony's name to get their children indoors before dark. {X_nameDef} stopped smiling when {A_nameDef} didn't laugh.</li>
+      <li>{A_nameDef} offered a visiting child a heel of sweet bread. {X_nameDef} took it first, turned it over twice, and only then let the child have it. Nobody said why. Everybody knew why.</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncR_TheyFearUs</thought><exceptTrait><li>Bloodlust</li><li>Psychopath</li></exceptTrait></li>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncR_FearedAndGlad</thought><onlyTrait><li>Bloodlust</li><li>Psychopath</li></onlyTrait></li>
+    </effects>
+    <journal>Council_Journal_EncR_Harsh</journal>
+    <notable>true</notable>
+  </ColonyCouncil.EncounterDef>
+
+  <ColonyCouncil.EncounterDef>
+    <defName>Council_EncR_NervousTrader</defName>
+    <label>a nervous trader</label>
+    <weight>1.0</weight>
+    <cooldownDays>10</cooldownDays>
+    <colonyIs><li>Harsh</li></colonyIs>
+    <stranger><kind>Trader</kind></stranger>
+    <texts>
+      <li>{X_nameDef} didn't haggle once. {X_nameDef} named a fair price, then a better one before {A_nameDef} could open {A_possessive} mouth, and kept glancing at the gate the whole time.</li>
+      <li>{X_nameDef} has heard what happens to people who cheat this colony, or at least the stories. {A_nameDef} came away from the trade with a little extra silver and the uncomfortable feeling of having frightened someone.</li>
+      <li>{X_nameDef} counted {A_nameDef}'s change out twice, very carefully, then added a few coins "in case I miscounted". {A_nameDef} hadn't said a word.</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Spawn"><thing>Silver</thing><count>15</count></li>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncR_ScaredTheTrader</thought><exceptTrait><li>Bloodlust</li><li>Psychopath</li><li>Greedy</li></exceptTrait></li>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncR_FearfulPrice</thought><onlyTrait><li>Bloodlust</li><li>Psychopath</li><li>Greedy</li></onlyTrait></li>
+    </effects>
+  </ColonyCouncil.EncounterDef>
+
+  <!-- ===================== Generous ===================== -->
+
+  <ColonyCouncil.EncounterDef>
+    <defName>Council_EncR_HopesForMeal</defName>
+    <label>hoping for a bowl</label>
+    <weight>1.2</weight>
+    <cooldownDays>8</cooldownDays>
+    <colonyIs><li>Generous</li></colonyIs>
+    <stranger><kind>Visitor</kind><adult>true</adult></stranger>
+    <texts>
+      <li>{X_nameDef} hung around the kitchen door at suppertime, not quite asking. "Heard there's always a bowl here," {X_nameDef} said eventually. {A_nameDef} found one, and then found another for the road.</li>
+      <li>{X_nameDef} told {A_nameDef} that {FACTION} folk say nobody leaves this colony hungry, and then waited, hopefully. {A_nameDef} laughed and fetched the bread.</li>
+      <li>{X_nameDef} had walked an extra day out of {X_possessive} way because someone said the colony feeds travelers. {A_nameDef} filled {X_possessive} bowl twice and didn't ask for anything back.</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncR_FedATraveler</thought><exceptTrait><li>Greedy</li></exceptTrait></li>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncR_AnotherMouth</thought><onlyTrait><li>Greedy</li></onlyTrait></li>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>X</target><thought>Council_EncP_GoodCompany</thought></li>
+      <li Class="ColonyCouncil.DilemmaEffect_Goodwill"><amount>1</amount><chance>0.5</chance></li>
+    </effects>
+    <ways><generosity>2</generosity></ways>
+    <journal>Council_Journal_EncR_Generous</journal>
+  </ColonyCouncil.EncounterDef>
+
+  <ColonyCouncil.EncounterDef>
+    <defName>Council_EncR_WordOfCharity</defName>
+    <label>word of our charity</label>
+    <weight>1.0</weight>
+    <cooldownDays>12</cooldownDays>
+    <colonyIs><li>Generous</li></colonyIs>
+    <stranger><kind>Trader</kind></stranger>
+    <texts>
+      <li>{X_nameDef} said {FACTION} villages still talk about what this colony gave away in the lean months. Someone there has started calling the place "the full pot". {A_nameDef} has decided to like it.</li>
+      <li>{X_nameDef} told {A_nameDef} that every settlement along the road has heard about the colony's charity, and half of them think it's a trick. "What's the catch?" {X_nameDef} asked. {A_nameDef} said there wasn't one, and {X_nameDef} didn't believe that either.</li>
+      <li>{X_nameDef} knocked a little off every price for {A_nameDef}. "You fed my sister's lot through a bad winter," {X_nameDef} said. "Don't argue." {A_nameDef} didn't.</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncR_SpokenWellOf</thought></li>
+      <li Class="ColonyCouncil.DilemmaEffect_Goodwill"><amount>2</amount></li>
+    </effects>
+    <notable>true</notable>
+  </ColonyCouncil.EncounterDef>
+
+  <!-- ===================== Thrifty ===================== -->
+
+  <ColonyCouncil.EncounterDef>
+    <defName>Council_EncR_HaggleHarder</defName>
+    <label>every grain counted</label>
+    <weight>1.1</weight>
+    <cooldownDays>8</cooldownDays>
+    <colonyIs><li>Thrifty</li></colonyIs>
+    <stranger><kind>Trader</kind></stranger>
+    <texts>
+      <li>"I heard you count every grain," {X_nameDef} said, before {A_nameDef} had even opened {A_possessive} purse, and then haggled as if {X_pronoun} were being robbed. They settled two hours later, both of them exhausted.</li>
+      <li>{X_nameDef} set {X_possessive} prices high on purpose. "Word is you lot squeeze a coin till it squeals," {X_nameDef} told {A_nameDef}. "So I've left room for squeezing."</li>
+      <li>{X_nameDef} brought {X_possessive} own scales, a second set of weights and a witness. "Nothing personal," {X_nameDef} told {A_nameDef}. "It's just that I've heard about this place."</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Learn"><target>A</target><skill>Social</skill><xp>200</xp></li>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncR_HardBargainers</thought><onlyTrait><li>Greedy</li></onlyTrait></li>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncR_CalledAMiser</thought><exceptTrait><li>Greedy</li></exceptTrait></li>
+    </effects>
+  </ColonyCouncil.EncounterDef>
+
+  <ColonyCouncil.EncounterDef>
+    <defName>Council_EncR_OwnBread</defName>
+    <label>they brought their own bread</label>
+    <weight>1.0</weight>
+    <cooldownDays>12</cooldownDays>
+    <colonyIs><li>Thrifty</li></colonyIs>
+    <stranger><kind>Visitor</kind><adult>true</adult></stranger>
+    <colonist><notTrait><li>Greedy</li></notTrait></colonist>
+    <texts>
+      <li>{X_nameDef} sat down at the colony's table and unwrapped {X_possessive} own bread and cheese. "Heard you count every crumb here," {X_nameDef} said, not unkindly. {A_nameDef} went and fetched a bowl of stew anyway, to prove a point.</li>
+      <li>The {FACTION} visitors brought their own water skins and their own firewood. {A_nameDef} asked why. {X_nameDef} said they'd heard the colony charges for both, and {A_nameDef} spent the evening carrying wood over to their fire for nothing.</li>
+      <li>{X_nameDef} offered to pay {A_nameDef} for a cup of water. {A_nameDef} was so put out that {A_pronoun} gave {X_objective} a jug of beer instead, and wouldn't take a coin for it.</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncR_ProvedAPoint</thought></li>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>X</target><thought>Council_EncP_GoodCompany</thought></li>
+    </effects>
+    <ways><generosity>2</generosity></ways>
+    <journal>Council_Journal_EncR_Thrifty</journal>
+    <notable>true</notable>
+  </ColonyCouncil.EncounterDef>
+
+  <!-- ===================== Traditional ===================== -->
+
+  <ColonyCouncil.EncounterDef>
+    <defName>Council_EncR_ElderPraise</defName>
+    <label>the old ways, kept</label>
+    <weight>1.1</weight>
+    <cooldownDays>12</cooldownDays>
+    <colonyIs><li>Traditional</li></colonyIs>
+    <stranger><kind>Visitor</kind><adult>true</adult></stranger>
+    <texts>
+      <li>{X_nameDef}, grey to the eyebrows, watched the colony bless the bread at supper and went quiet. "Nobody does that anymore," {X_nameDef} told {A_nameDef} afterwards. "My mother did that."</li>
+      <li>{X_nameDef} said the colony keeps the old customs better than half the towns on the road, where everyone has forgotten why anything is done. {A_nameDef} didn't know what to say, so {A_pronoun} poured the guest's cup first, the old way.</li>
+      <li>{X_nameDef} knew the words to the colony's evening song, an old one, and sang them a little off. {A_nameDef} sang along, and for a minute the two of them were somewhere else entirely.</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncR_OurWaysPraised</thought></li>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>X</target><thought>Council_EncP_GoodCompany</thought><chance>0.5</chance></li>
+    </effects>
+    <journal>Council_Journal_EncR_Traditional</journal>
+    <notable>true</notable>
+  </ColonyCouncil.EncounterDef>
+
+  <ColonyCouncil.EncounterDef>
+    <defName>Council_EncR_KnowsCustoms</defName>
+    <label>a trader who knows our customs</label>
+    <weight>0.9</weight>
+    <cooldownDays>12</cooldownDays>
+    <colonyIs><li>Traditional</li></colonyIs>
+    <stranger><kind>Trader</kind></stranger>
+    <texts>
+      <li>{X_nameDef} stopped at the gate and waited for the bread and salt before stepping in, the way the colony does things. "Heard you're particular," {X_nameDef} told {A_nameDef}. "I like particular. Particular pays its debts."</li>
+      <li>{X_nameDef} refused to talk prices until {X_pronoun} had shared a cup with {A_nameDef}, the old way. "Your sort of place," {X_nameDef} said, "you do things in order."</li>
+      <li>{X_nameDef} made a point of greeting the colony's eldest first and nodding to the graves on the way in. {A_nameDef} noticed, and gave {X_objective} the good stool.</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncR_RespectedOurWays</thought></li>
+      <li Class="ColonyCouncil.DilemmaEffect_Goodwill"><amount>1</amount><chance>0.5</chance></li>
+    </effects>
+  </ColonyCouncil.EncounterDef>
+
+  <!-- ===================== Restless ===================== -->
+
+  <ColonyCouncil.EncounterDef>
+    <defName>Council_EncR_NewThings</defName>
+    <label>come to see the new things</label>
+    <weight>1.1</weight>
+    <cooldownDays>12</cooldownDays>
+    <colonyIs><li>Restless</li></colonyIs>
+    <stranger><kind>Visitor</kind><adult>true</adult></stranger>
+    <texts>
+      <li>{X_nameDef} had heard the colony is always trying something new, and asked to see all of it: the oven with two doors, the furrows that run the wrong way, the bread with seeds in. {A_nameDef} gave the tour, and was surprised by how proud {A_pronoun} sounded.</li>
+      <li>{X_nameDef} asked {A_nameDef} what the colony was trying this season. {A_nameDef} talked for an hour. {X_nameDef} wrote some of it down, and asked whether anyone would mind if {FACTION} stole a few ideas.</li>
+      <li>On the road, {X_nameDef} said, they call this the place that never does anything the same way twice. {A_nameDef} showed {X_objective} the new drying racks to prove it, and then the even newer ones next to them.</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncR_ShowedOffNewWays</thought></li>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>X</target><thought>Council_EncP_GoodCompany</thought><chance>0.5</chance></li>
+      <li Class="ColonyCouncil.DilemmaEffect_Inspiration"><target>A</target><inspiration>Inspired_Creativity</inspiration><chance>0.1</chance></li>
+    </effects>
+    <journal>Council_Journal_EncR_Restless</journal>
+    <notable>true</notable>
+  </ColonyCouncil.EncounterDef>
+
+  <ColonyCouncil.EncounterDef>
+    <defName>Council_EncR_NothingWhereItWas</defName>
+    <label>nothing where it was</label>
+    <weight>0.9</weight>
+    <cooldownDays>12</cooldownDays>
+    <colonyIs><li>Restless</li></colonyIs>
+    <stranger><kind>Trader</kind></stranger>
+    <texts>
+      <li>{X_nameDef} complained that every time {X_pronoun} comes through, the gate is somewhere else. {A_nameDef} pointed out that it had only moved twice. {X_nameDef} said three times, and that the well had moved too.</li>
+      <li>{X_nameDef} asked {A_nameDef} where the storeroom was, then where it used to be, then why. {A_nameDef} explained the new plan. {X_nameDef} said the old plan had been fine.</li>
+      <li>{X_nameDef} looked around the yard and sighed. "You lot can't leave anything alone, can you?" {A_nameDef} wasn't sure whether that was a complaint or a compliment. Neither was {X_nameDef}.</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncR_AlwaysChanging</thought></li>
+    </effects>
+  </ColonyCouncil.EncounterDef>
+
+  <!-- ===================== Open ===================== -->
+
+  <ColonyCouncil.EncounterDef>
+    <defName>Council_EncR_SongsAndNews</defName>
+    <label>guests at ease</label>
+    <weight>1.2</weight>
+    <cooldownDays>10</cooldownDays>
+    <children>true</children>
+    <colonyIs><li>Open</li></colonyIs>
+    <stranger><kind>Visitor</kind><adult>true</adult></stranger>
+    <texts>
+      <li>The {FACTION} visitors put their packs down, took their boots off and stayed up half the night swapping songs with the colony. {X_nameDef} said it was the first place in weeks {X_pronoun} hadn't slept with one eye open. {A_nameDef} sang the loudest.</li>
+      <li>{X_nameDef} told {A_nameDef} all the news from the road, the true parts and the good parts, and taught {A_objective} a song about a miller's terrible luck. Nobody here keeps a guest at arm's length, {X_nameDef} said, and it shows.</li>
+      <li>{X_nameDef} said people on the road call this the friendly place, then proved it by falling asleep in the middle of a story by the fire. {A_nameDef} put a blanket over {X_objective} and finished the story for the others.</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncR_GuestsAtEase</thought></li>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Others</target><thought>Council_EncR_GuestsAtEase</thought><chance>0.25</chance></li>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>X</target><thought>Council_EncP_GoodCompany</thought></li>
+      <li Class="ColonyCouncil.DilemmaEffect_Goodwill"><amount>1</amount><chance>0.5</chance></li>
+    </effects>
+    <journal>Council_Journal_EncR_Open</journal>
+    <notable>true</notable>
+  </ColonyCouncil.EncounterDef>
+
+  <ColonyCouncil.EncounterDef>
+    <defName>Council_EncR_TraderConfides</defName>
+    <label>a trader's confidences</label>
+    <weight>1.0</weight>
+    <cooldownDays>10</cooldownDays>
+    <colonyIs><li>Open</li></colonyIs>
+    <stranger><kind>Trader</kind></stranger>
+    <texts>
+      <li>{X_nameDef} lowered {X_possessive} voice and told {A_nameDef} which roads have bandits on them this season, and which towns water their beer. "I don't tell everyone," {X_nameDef} said. "But you lot always let us in."</li>
+      <li>{X_nameDef} told {A_nameDef} where salt is cheap and which lords are greedy, as freely as if {A_nameDef} were family. A colony with an open gate, {X_nameDef} said, hears everything sooner or later.</li>
+      <li>{X_nameDef} spent an hour after the trading was done just talking with {A_nameDef}: prices, feuds, who is marrying whom. "It's nice to be somewhere nobody's counting my knives," {X_nameDef} said.</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncR_TrustedWithNews</thought></li>
+      <li Class="ColonyCouncil.DilemmaEffect_Goodwill"><amount>1</amount></li>
+    </effects>
+  </ColonyCouncil.EncounterDef>
+
+  <!-- ===================== Guarded ===================== -->
+
+  <ColonyCouncil.EncounterDef>
+    <defName>Council_EncR_HandsVisible</defName>
+    <label>hands where we can see them</label>
+    <weight>1.1</weight>
+    <cooldownDays>12</cooldownDays>
+    <colonyIs><li>Guarded</li></colonyIs>
+    <stranger><kind>Visitor</kind><adult>true</adult></stranger>
+    <texts>
+      <li>The {FACTION} visitors keep their hands out of their sleeves and their knives on their belts, where anyone can see them. {X_nameDef} even asked {A_nameDef}'s leave before stepping over to the well.</li>
+      <li>{X_nameDef} asked {A_nameDef} where guests are allowed to stand, sit, and look. {A_nameDef} realized the colony has an answer for all three.</li>
+      <li>{X_nameDef} waited outside the gate a full hour before anyone waved {X_objective} in, then spent the whole visit careful not to touch anything. "Heard you don't care for strangers," {X_nameDef} told {A_nameDef}. "I'm being as little of one as I can."</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncR_GuestsOnEdge</thought><onlyTrait><li>Kind</li></onlyTrait></li>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncR_GuestsMindTheirManners</thought><exceptTrait><li>Kind</li></exceptTrait></li>
+    </effects>
+    <journal>Council_Journal_EncR_Guarded</journal>
+    <notable>true</notable>
+  </ColonyCouncil.EncounterDef>
+
+  <ColonyCouncil.EncounterDef>
+    <defName>Council_EncR_PastTheWatch</defName>
+    <label>walked in past the watch</label>
+    <weight>0.9</weight>
+    <cooldownDays>12</cooldownDays>
+    <colonyIs><li>Guarded</li></colonyIs>
+    <stranger><kind>Trader</kind></stranger>
+    <texts>
+      <li>{X_nameDef} set up {X_possessive} goods outside the walls, as the colony prefers. {A_nameDef} felt foolish haggling across the gate, and in the end walked {X_nameDef} inside to look at the stores properly.</li>
+      <li>{X_nameDef} made a joke about being searched for the third time. {A_nameDef} didn't laugh, and told the gate watch to let the trader be. {X_nameDef} looked at {A_nameDef} as if {A_pronoun} had grown a second head.</li>
+      <li>{X_nameDef} said {X_pronoun} usually trades with this colony through a crack in the gate. {A_nameDef} opened it the rest of the way and handed {X_objective} a cup of something warm. It seemed to confuse {X_nameDef} more than anything.</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncR_OpenedTheGate</thought></li>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>X</target><thought>Council_EncP_GoodCompany</thought></li>
+      <li Class="ColonyCouncil.DilemmaEffect_Goodwill"><amount>1</amount></li>
+    </effects>
+    <ways><openness>2</openness></ways>
+  </ColonyCouncil.EncounterDef>
+
+  <!-- ===================== Hard-working ===================== -->
+
+  <ColonyCouncil.EncounterDef>
+    <defName>Council_EncR_AdmiredFields</defName>
+    <label>not a weed</label>
+    <weight>1.1</weight>
+    <cooldownDays>12</cooldownDays>
+    <dayOnly>true</dayOnly>
+    <colonyIs><li>Hardworking</li></colonyIs>
+    <stranger><kind>Trader</kind></stranger>
+    <texts>
+      <li>{X_nameDef} stood at the edge of the fields shaking {X_possessive} head. "Not a weed," {X_nameDef} said to {A_nameDef}. "I've seen monasteries with less discipline."</li>
+      <li>{X_nameDef} said the colony is known on the road for working from dark to dark, and having seen the woodpile, {X_nameDef} believes it. {A_nameDef} tried not to look pleased, and failed.</li>
+      <li>{X_nameDef} asked {A_nameDef} how many hands the colony has. When {A_nameDef} told {X_objective}, {X_nameDef} counted the fields and the stacked stone twice, and called {A_nameDef} a liar, admiringly.</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncR_WorkNoticed</thought></li>
+    </effects>
+    <journal>Council_Journal_EncR_Hardworking</journal>
+    <notable>true</notable>
+  </ColonyCouncil.EncounterDef>
+
+  <ColonyCouncil.EncounterDef>
+    <defName>Council_EncR_WhatForFun</defName>
+    <label>what do you do for fun</label>
+    <weight>1.0</weight>
+    <cooldownDays>10</cooldownDays>
+    <colonyIs><li>Hardworking</li></colonyIs>
+    <stranger><kind>Visitor</kind><adult>true</adult></stranger>
+    <texts>
+      <li>{X_nameDef} asked {A_nameDef} what the colony does for fun. {A_nameDef} thought about it for so long that {X_nameDef} took {A_objective} down to the water and taught {A_objective} to skip stones. {A_nameDef} skipped stones for an hour and felt guilty for most of it.</li>
+      <li>{X_nameDef} watched {A_nameDef} hurry from one job to the next and finally stepped into {A_possessive} path with two cups. "Sit," {X_nameDef} said. {A_nameDef} sat, and didn't get up again for an hour.</li>
+      <li>{X_nameDef} had heard nobody in this colony ever sits down, and challenged {A_nameDef} to prove it wrong over a game of knucklebones. {A_nameDef} won three games, and lost the afternoon.</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncR_StoleAnHour</thought></li>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>X</target><thought>Council_EncP_GoodCompany</thought><chance>0.5</chance></li>
+    </effects>
+    <ways><toil>-2</toil></ways>
+  </ColonyCouncil.EncounterDef>
+
+  <!-- ===================== Easygoing ===================== -->
+
+  <ColonyCouncil.EncounterDef>
+    <defName>Council_EncR_EnviesPace</defName>
+    <label>envied our pace</label>
+    <weight>1.1</weight>
+    <cooldownDays>12</cooldownDays>
+    <colonyIs><li>Easygoing</li></colonyIs>
+    <stranger><kind>Visitor</kind><adult>true</adult></stranger>
+    <texts>
+      <li>{X_nameDef} watched half the colony doze in the shade at midday and asked {A_nameDef}, very seriously, whether the colony needed anyone else. Where {X_nameDef} comes from, a nap like that earns you a beating.</li>
+      <li>{X_nameDef} said {FACTION} works from first bell to last and still goes hungry. {X_nameDef} watched the colony take its long, slow lunch, and {A_nameDef} thought for a moment that {X_pronoun} might cry.</li>
+      <li>{X_nameDef} asked {A_nameDef} what time the colony starts work. {A_nameDef} said "after breakfast". {X_nameDef} asked what time breakfast was. {A_nameDef} said "when everyone's up". {X_nameDef} wrote it down.</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncR_WeLiveWell</thought><exceptTrait><li>Industriousness</li></exceptTrait></li>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncR_WeLiveWell</thought><degreeTrait>Industriousness</degreeTrait><maxDegree>-1</maxDegree></li>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncR_ThoughtIdle</thought><degreeTrait>Industriousness</degreeTrait><minDegree>1</minDegree></li>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>X</target><thought>Council_EncP_GoodCompany</thought><chance>0.5</chance></li>
+    </effects>
+    <journal>Council_Journal_EncR_Easygoing</journal>
+    <notable>true</notable>
+  </ColonyCouncil.EncounterDef>
+
+  <ColonyCouncil.EncounterDef>
+    <defName>Council_EncR_SecondLunch</defName>
+    <label>the second lunch</label>
+    <weight>1.0</weight>
+    <cooldownDays>10</cooldownDays>
+    <dayOnly>true</dayOnly>
+    <colonyIs><li>Easygoing</li></colonyIs>
+    <stranger><kind>Trader</kind></stranger>
+    <texts>
+      <li>{X_nameDef} rang the trade bell three times before {A_nameDef} turned up. Everyone else, {A_nameDef} explained, was at second lunch. {X_nameDef} asked what second lunch was, and was invited.</li>
+      <li>{X_nameDef} found half the colony asleep in the shade and asked {A_nameDef} whether there had been a sickness. {A_nameDef} explained that it was just the middle of the day.</li>
+      <li>{X_nameDef} told {A_nameDef} that this colony is known for two things on the road: fair prices and never being in a hurry. Then {X_nameDef} waited most of the afternoon for someone to fetch the silver.</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncR_NoHurry</thought><exceptTrait><li>Industriousness</li></exceptTrait></li>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncR_NoHurry</thought><degreeTrait>Industriousness</degreeTrait><maxDegree>-1</maxDegree></li>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncR_TraderKeptWaiting</thought><degreeTrait>Industriousness</degreeTrait><minDegree>1</minDegree></li>
+    </effects>
+  </ColonyCouncil.EncounterDef>
+
+</Defs>
