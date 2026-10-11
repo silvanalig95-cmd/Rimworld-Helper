@@ -15,10 +15,29 @@ namespace ColonyCouncil
             {
                 ApplyButtonPosition(false);
                 FlavorExtensions.Apply();
+                AddStoryTab();
             }
             catch (System.Exception e)
             {
                 CouncilLog.ErrorOnce("startup", e);
+            }
+        }
+
+        /// <summary>
+        /// Adds the Story tab to every humanlike race (vanilla humans and modded races alike), in code rather than by
+        /// an XML patch, so it survives other mods rewriting a race's tabs and covers races added by mods.
+        /// </summary>
+        private static void AddStoryTab()
+        {
+            var tabType = typeof(ITab_Pawn_Story);
+            foreach (var def in DefDatabase<ThingDef>.AllDefsListForReading)
+            {
+                if (def.race == null || !def.race.Humanlike) continue;
+                if (def.inspectorTabs == null) def.inspectorTabs = new List<System.Type>();
+                if (!def.inspectorTabs.Contains(tabType)) def.inspectorTabs.Add(tabType);
+                if (def.inspectorTabsResolved == null) def.inspectorTabsResolved = new List<InspectTabBase>();
+                if (!def.inspectorTabsResolved.Any(t => t is ITab_Pawn_Story))
+                    def.inspectorTabsResolved.Add(InspectTabManager.GetSharedInstance(tabType));
             }
         }
 

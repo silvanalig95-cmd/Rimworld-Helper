@@ -147,7 +147,7 @@ namespace ColonyCouncil
                     CouncilLog.ErrorOnce("social event effect " + def.defName, ex);
                 }
             }
-            string text = ctx.Format(def.texts.RandomElement());
+            string text = ctx.Format(Flavor.PickText(def.texts));
             string note = def.note.NullOrEmpty() ? null : ctx.Format(def.note);
             if (def.changeTie != TieKind.None && def.change != 0f)
             {

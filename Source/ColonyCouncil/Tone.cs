@@ -93,7 +93,8 @@ namespace ColonyCouncil
             // Nothing fits the tags: better an untagged-looking line than silence.
             if (line == null)
             {
-                var all = AllLines().ToList();
+                var all = AllLines().Where(Flavor.TechFits).ToList();
+                if (all.Count == 0) all = AllLines().ToList();
                 if (all.Count > 0) line = Flavor.Strip(all.RandomElement());
             }
             return line;

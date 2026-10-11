@@ -237,13 +237,36 @@ namespace ColonyCouncil
         /// Picks a line that fits the moment. Lines matching more tags are much more likely, so a colonist
         /// shivering in winter talks about the cold, while untagged lines keep things varied. Tags are removed.
         /// </summary>
+        /// <summary>Words that don't belong in a colony that has never seen gunpowder or electricity.</summary>
+        private static readonly System.Text.RegularExpressions.Regex HighTech = new System.Text.RegularExpressions.Regex(
+            @"\b(guns?|gunfire|gunshots?|rifles?|pistols?|shotguns?|revolvers?|turrets?|mortars?|grenades?|bullets?|ammo|sandbags?|electric\w*|batter(y|ies)|power (cell|grid|line)s?|computers?|comms|radios?|cryptosleep|spaceships?|starships?|shuttles?|lasers?|plasma|drones?)\b",
+            System.Text.RegularExpressions.RegexOptions.IgnoreCase | System.Text.RegularExpressions.RegexOptions.Compiled);
+
+        /// <summary>
+        /// False for a line about guns, turrets, electricity, computers or spaceships while the colony is pre-industrial
+        /// (medieval or tribal, no electricity): those lines are skipped whenever another one fits.
+        /// </summary>
+        public static bool TechFits(string line)
+        {
+            if (line.NullOrEmpty() || !Avail.IsPreIndustrial) return true;
+            return !HighTech.IsMatch(Strip(line));
+        }
+
+        /// <summary>One of these texts, preferring ones that fit the colony's era.</summary>
+        public static string PickText(List<string> texts)
+        {
+            if (texts.NullOrEmpty()) return null;
+            var fitting = texts.Where(TechFits).ToList();
+            return (fitting.Count > 0 ? fitting : texts).RandomElement();
+        }
+
         public static string Pick(IEnumerable<string> lines, HashSet<string> context)
         {
             if (lines == null) return null;
             var fitting = new List<(string line, float weight)>();
             foreach (var l in lines)
             {
-                if (l.NullOrEmpty()) continue;
+                if (l.NullOrEmpty() || !TechFits(l)) continue;
                 int m = Match(l, context);
                 if (m < 0) continue;
                 fitting.Add((l, m == 0 ? 1f : 2.5f + m * 1.5f));
@@ -259,7 +282,7 @@ namespace ColonyCouncil
             var fitting = new List<(string line, int m)>();
             foreach (var l in lines)
             {
-                if (l.NullOrEmpty()) continue;
+                if (l.NullOrEmpty() || !TechFits(l)) continue;
                 int m = Match(l, context);
                 if (m > 0) fitting.Add((l, m));
             }

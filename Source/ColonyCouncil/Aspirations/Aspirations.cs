@@ -187,7 +187,13 @@ namespace ColonyCouncil
     {
         private RecordDef Rec => DefDatabase<RecordDef>.GetNamedSilentFail(def.record);
 
-        public override bool CanHave(Pawn p) => Rec != null && p.records != null;
+        public override bool CanHave(Pawn p)
+        {
+            if (Rec == null || p.records == null) return false;
+            // Some mod lists (medieval ones especially) have no mechanoids at all.
+            if (Rec == RecordDefOf.KillsMechanoids && (Faction.OfMechanoids == null || Faction.OfMechanoids.defeated)) return false;
+            return true;
+        }
 
         public override bool Init(Aspiration a)
         {

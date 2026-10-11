@@ -51,6 +51,8 @@ namespace ColonyCouncil
             {
                 if (h.thing == null || h.thing.Destroyed) continue;
                 if (p.equipment?.Primary == h.thing || (p.apparel?.WornApparel.Contains(h.thing as Apparel) ?? false)) return h;
+                // Carried as a sidearm (Simple Sidearms keeps those in the inventory).
+                if (h.thing.def.IsWeapon && (p.inventory?.innerContainer?.Contains(h.thing) ?? false)) return h;
             }
             return null;
         }

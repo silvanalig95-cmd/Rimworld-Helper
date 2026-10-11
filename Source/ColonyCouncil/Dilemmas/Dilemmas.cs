@@ -796,7 +796,7 @@ namespace ColonyCouncil
 
         private void Send(DilemmaContext ctx)
         {
-            ctx.text = ctx.def.texts.RandomElement();
+            ctx.text = Flavor.PickText(ctx.def.texts);
             var letterDef = DefDatabase<LetterDef>.GetNamedSilentFail("Council_DilemmaLetter");
             var look = new LookTargets(new[] { ctx.a, ctx.b }.Where(p => p != null));
             string tradition = IsTradition(ctx.def)
