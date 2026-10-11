@@ -66,7 +66,7 @@
       <li>A colonist who walked far to haul something looks further afield for more to carry, so long trips aren't wasted.</li>
       <li>You can order a colonist to pick up an item and keep it. They remember it and keep it on them, handy for a field medic's herbal medicine.</li>
       <li>A corpse is too heavy for a pocket: it needs a stockpile that accepts corpses, such as a dumping zone.</li>
-      <li>Haul to Stack makes haulers prefer an existing stack and lets several pawns haul to the same tile, but with Pick Up And Haul installed it does nothing. Keeping both causes no harm.</li>
+      <li>Haul to Stack makes haulers prefer an existing stack and lets several pawns haul to the same tile, but with Pick Up And Haul installed it does nothing. Its author sees no harm in keeping both.</li>
     </facts>
     <advice>
       <li>Give every kind of item a stockpile or shelf, corpses included, so loaded haulers always have somewhere to go.</li>
@@ -148,7 +148,7 @@
       <li>Doctors clean up after tending a patient.</li>
       <li>For bills, colonists prefer hauling a whole stack of ingredients to a stockpile over carrying only the part they need, and can collect all the ingredients in their inventory first.</li>
       <li>Colonists don't mix food made with "bad" ingredients, such as human or insect meat, into stacks of normal food.</li>
-      <li>Colonists who need the outdoors look for recreation outside, and they stop clearing snow while it is still snowing or raining.</li>
+      <li>Colonists who need the outdoors are nudged toward recreation outside, and away from clearing snow while it is still snowing or raining.</li>
       <li>Off by default: cleaning where they are about to eat, avoiding bad weather when idle, and a mood that keeps drifting toward its target while asleep.</li>
     </facts>
     <advice>
@@ -503,7 +503,7 @@
       <li>zal.musicmanager</li>
       <li>ilyvion.loadingprogress</li>
     </mods>
-    <summary>Searchable menus, a minimap, a crop planner, a research tree, save folders, music, a loading bar</summary>
+    <summary>Searchable menus, a minimap, crop planning, a research tree, save folders, music, loading</summary>
     <tip>Two hundred mods and one search box. Type "bed" and pick the comfiest.</tip>
     <description>The rest of your interface helpers: searchable build and bill menus, a minimap, a smarter plant menu, a readable research tree, folders for your saves, control over the music, and a progress window while all of it loads. With more than two hundred mods, these are what keep the menus usable.</description>
     <facts>
@@ -519,7 +519,7 @@
       <li>Bind the Mint build menu to a key. With this many furniture mods, searching beats scrolling.</li>
       <li>Mint Menus has its own research menu and queue. If you use YART, pick one research screen and switch the other off in its settings.</li>
       <li>Before sowing late in summer, check the plants menu's frost warning: slow crops planted late are a classic way to lose a harvest.</li>
-      <li>If RimSaves' menu doesn't show up, its author suggests moving it higher in the mod list, just below Core or HugsLib.</li>
+      <li>If RimSaves' menu doesn't show up, its author suggests moving it up the mod list, close to Core and HugsLib.</li>
       <li>Turn on Loading Progress's load-time tracking once, then click the load time text on the main menu to see which mods cost you the most.</li>
       <li>With Rimfolk: the advisor warns "The research bench is idle" when no project is chosen and suggests the cheapest one for your era. A research queue keeps that warning away.</li>
     </advice>
@@ -571,7 +571,7 @@
       <li>HugsLib is shared code for mods such as Allow Tool, and its author asks for it right after Core. It also uploads your log: press Ctrl+F12 to get a link you can share.</li>
       <li>XML Extensions gives other mods extra patching tools and lets them build settings menus in XML. Its author says to load it after Core and the DLCs, before the mods that use it.</li>
       <li>Vanilla Expanded Framework is the shared code behind the Vanilla Expanded mods, and Medieval Overhaul and Outland need it too. Medieval Overhaul also needs Processor Framework, the code behind its barrels and other processors, which upgrades RimBees to its system as well.</li>
-      <li>Tabula Rasa (its id says Neronix17's Toolbox) is the base of the Outland mods, EBSG Framework holds shared code first written for gene mods, and Vehicle Framework is what Medieval Overhaul's balloon and airship run on.</li>
+      <li>Tabula Rasa (its id says Neronix17's Toolbox) is the base of the Outland mods, EBSG Framework holds shared code first written for gene mods, and Vehicle Framework is what the balloon and airship of Medieval Overhaul: Air Vehicles run on.</li>
       <li>Map Mode Framework adds a switch to the world map for map modes: biome, temperature, elevation, rainfall, growing period, animal or plant commonality, and landforms.</li>
       <li>Two ids here only look like libraries: vanillaexpanded.vfecore is Vanilla Furniture Expanded and vanillaexpanded.vcef is Vanilla Fishing Expanded, both ordinary content mods.</li>
     </facts>
