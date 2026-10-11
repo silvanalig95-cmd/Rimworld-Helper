@@ -10,11 +10,11 @@
     <defName>Council_Evt_Storyteller</defName>
     <label>travelling storyteller</label>
     <workerClass>ColonyCouncil.HappeningWorker_Storyteller</workerClass>
-    <letterDef>PositiveEvent</letterDef>
     <baseChance>1.3</baseChance>
     <minRefireDays>25</minRefireDays>
     <modExtensions>
       <li Class="ColonyCouncil.HappeningExtension">
+        <letter>PositiveEvent</letter>
         <group>Visitors</group>
         <ages>25~70</ages>
         <stayHours>20~30</stayHours>
@@ -51,11 +51,11 @@
     <defName>Council_Evt_Mourners</defName>
     <label>mourners</label>
     <workerClass>ColonyCouncil.HappeningWorker_GraveVisitors</workerClass>
-    <letterDef>NeutralEvent</letterDef>
     <minRefireDays>40</minRefireDays>
     <earliestDay>15</earliestDay>
     <modExtensions>
       <li Class="ColonyCouncil.HappeningExtension">
+        <letter>NeutralEvent</letter>
         <group>Visitors</group>
         <ages>20~70</ages>
         <count>1~3</count>

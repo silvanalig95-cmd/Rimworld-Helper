@@ -7,12 +7,12 @@
     <defName>Council_Evt_WildBounty</defName>
     <label>wild harvest</label>
     <workerClass>ColonyCouncil.HappeningWorker_WildBounty</workerClass>
-    <letterDef>PositiveEvent</letterDef>
     <baseChance>1.2</baseChance>
     <minRefireDays>30</minRefireDays>
     <earliestDay>4</earliestDay>
     <modExtensions>
       <li Class="ColonyCouncil.HappeningExtension">
+        <letter>PositiveEvent</letter>
         <group>Nature</group>
         <seasons>
           <li>Spring</li>
@@ -41,11 +41,11 @@
     <defName>Council_Evt_Comet</defName>
     <label>comet</label>
     <workerClass>ColonyCouncil.HappeningWorker_Condition</workerClass>
-    <letterDef>NeutralEvent</letterDef>
     <baseChance>0.7</baseChance>
     <minRefireDays>120</minRefireDays>
     <modExtensions>
       <li Class="ColonyCouncil.HappeningExtension">
+        <letter>NeutralEvent</letter>
         <group>Nature</group>
         <condition>Council_Comet</condition>
         <days>4~7</days>
@@ -66,7 +66,6 @@
     <defName>Council_Evt_Fireflies</defName>
     <label>firefly nights</label>
     <workerClass>ColonyCouncil.HappeningWorker_Condition</workerClass>
-    <letterDef>PositiveEvent</letterDef>
     <minRefireDays>60</minRefireDays>
     <disallowedBiomes>
       <li>Desert</li>
@@ -76,6 +75,7 @@
     </disallowedBiomes>
     <modExtensions>
       <li Class="ColonyCouncil.HappeningExtension">
+        <letter>PositiveEvent</letter>
         <group>Nature</group>
         <condition>Council_Fireflies</condition>
         <days>2~4</days>
@@ -100,12 +100,12 @@
     <defName>Council_Evt_Hail</defName>
     <label>hailstorm</label>
     <workerClass>ColonyCouncil.HappeningWorker_Hail</workerClass>
-    <letterDef>NegativeEvent</letterDef>
     <baseChance>0.8</baseChance>
     <minRefireDays>30</minRefireDays>
     <earliestDay>8</earliestDay>
     <modExtensions>
       <li Class="ColonyCouncil.HappeningExtension">
+        <letter>NegativeEvent</letter>
         <group>Nature</group>
         <condition>Council_Hail</condition>
         <days>0.15~0.3</days>
@@ -131,12 +131,12 @@
     <defName>Council_Evt_Pests</defName>
     <label>vermin in the stores</label>
     <workerClass>ColonyCouncil.HappeningWorker_Pests</workerClass>
-    <letterDef>NegativeEvent</letterDef>
     <baseChance>0.8</baseChance>
     <minRefireDays>30</minRefireDays>
     <earliestDay>8</earliestDay>
     <modExtensions>
       <li Class="ColonyCouncil.HappeningExtension">
+        <letter>NegativeEvent</letter>
         <group>Nature</group>
         <minTemp>5</minTemp>
         <notable>false</notable>
@@ -156,10 +156,10 @@
     <defName>Council_Evt_BuriedCache</defName>
     <label>buried cache</label>
     <workerClass>ColonyCouncil.HappeningWorker_BuriedCache</workerClass>
-    <letterDef>PositiveEvent</letterDef>
     <minRefireDays>40</minRefireDays>
     <modExtensions>
       <li Class="ColonyCouncil.HappeningExtension">
+        <letter>PositiveEvent</letter>
         <group>Nature</group>
         <value>250~650</value>
         <journal>Council_Journal_Evt_Cache</journal>

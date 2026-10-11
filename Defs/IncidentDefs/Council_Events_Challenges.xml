@@ -68,11 +68,11 @@
     <defName>Council_Evt_GreatBeast</defName>
     <label>great beast</label>
     <workerClass>ColonyCouncil.HappeningWorker_GreatBeast</workerClass>
-    <letterDef>NeutralEvent</letterDef>
     <minRefireDays>45</minRefireDays>
     <earliestDay>10</earliestDay>
     <modExtensions>
       <li Class="ColonyCouncil.HappeningExtension">
+        <letter>NeutralEvent</letter>
         <group>Challenge</group>
         <days>4~6</days>
         <titles>

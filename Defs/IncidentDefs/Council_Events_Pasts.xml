@@ -340,11 +340,11 @@
     <defName>Council_Evt_Inheritance</defName>
     <label>inheritance</label>
     <workerClass>ColonyCouncil.HappeningWorker_News</workerClass>
-    <letterDef>PositiveEvent</letterDef>
     <minRefireDays>60</minRefireDays>
     <earliestDay>10</earliestDay>
     <modExtensions>
       <li Class="ColonyCouncil.HappeningExtension">
+        <letter>PositiveEvent</letter>
         <group>Past</group>
         <journal>Council_Journal_Evt_Inheritance</journal>
         <titles>
@@ -367,10 +367,10 @@
     <defName>Council_Evt_TeacherLetter</defName>
     <label>word from an old teacher</label>
     <workerClass>ColonyCouncil.HappeningWorker_News</workerClass>
-    <letterDef>PositiveEvent</letterDef>
     <minRefireDays>40</minRefireDays>
     <modExtensions>
       <li Class="ColonyCouncil.HappeningExtension">
+        <letter>PositiveEvent</letter>
         <group>Past</group>
         <journal>Council_Journal_Evt_Teacher</journal>
         <titles>
@@ -393,10 +393,10 @@
     <defName>Council_Evt_GoodNews</defName>
     <label>good news from home</label>
     <workerClass>ColonyCouncil.HappeningWorker_News</workerClass>
-    <letterDef>PositiveEvent</letterDef>
     <minRefireDays>30</minRefireDays>
     <modExtensions>
       <li Class="ColonyCouncil.HappeningExtension">
+        <letter>PositiveEvent</letter>
         <group>Past</group>
         <notable>false</notable>
         <journal>Council_Journal_Evt_GoodNews</journal>
@@ -422,12 +422,12 @@
     <defName>Council_Evt_HomeLost</defName>
     <label>bad news from home</label>
     <workerClass>ColonyCouncil.HappeningWorker_News</workerClass>
-    <letterDef>NegativeEvent</letterDef>
     <baseChance>0.6</baseChance>
     <minRefireDays>60</minRefireDays>
     <earliestDay>15</earliestDay>
     <modExtensions>
       <li Class="ColonyCouncil.HappeningExtension">
+        <letter>NegativeEvent</letter>
         <group>Past</group>
         <journal>Council_Journal_Evt_HomeLost</journal>
         <titles>

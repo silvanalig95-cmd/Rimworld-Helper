@@ -163,7 +163,7 @@ namespace ColonyCouncil
             }
             if (ext.options.NullOrEmpty())
             {
-                Find.LetterStack.ReceiveLetter(label, body, def.letterDef ?? (ext.threat ? LetterDefOf.ThreatSmall : LetterDefOf.NeutralEvent), Look(ctx));
+                Find.LetterStack.ReceiveLetter(label, body, ext.letter ?? (ext.threat ? LetterDefOf.ThreatSmall : LetterDefOf.NeutralEvent), Look(ctx));
                 Happened(ctx, ext, label);
                 return;
             }

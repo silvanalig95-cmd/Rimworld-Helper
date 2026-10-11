@@ -60,6 +60,8 @@ namespace ColonyCouncil
         public int riskSkillOption = -1;
         /// <summary>A red letter.</summary>
         public bool threat;
+        /// <summary>The kind of letter for an event without a choice (positive, neutral, negative...).</summary>
+        public LetterDef letter;
         /// <summary>A flavor pool for A's journal ({X_...} and the named arguments above work).</summary>
         public string journal;
         /// <summary>Goes in the chronicle.</summary>
