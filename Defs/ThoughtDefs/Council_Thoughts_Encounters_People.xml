@@ -1,0 +1,402 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Thoughts from encounters with people who aren't colonists (Council_Encounters_People.xml).
+    Memories are A's (first person). Socials given to A are about the stranger (X); socials given to X are about A,
+    and are written from X's side. Socials given to Others (onlookers) are about A.
+  -->
+
+  <!-- ===================== Visitors ===================== -->
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_EncP_RoadNews</defName>
+    <durationDays>2</durationDays>
+    <stages><li><label>news from the road</label><description>A visitor told me who's at war, who's sick and what salt costs now. The world is still out there, being terrible without us.</description><baseMoodEffect>1</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_EncP_BladeTales</defName>
+    <durationDays>3</durationDays>
+    <stages><li><label>tales of a famous blade</label><description>There's a duelist out there who can cut a candle in half without tipping it over. I'm going to need more candles.</description><baseMoodEffect>2</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_EncP_RecipeSwap</defName>
+    <durationDays>4</durationDays>
+    <stages><li><label>swapped recipes</label><description>A traveler and I traded kitchen secrets. I came out ahead. So did the stew.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_EncP_WorkAdmired</defName>
+    <durationDays>5</durationDays>
+    <stages><li><label>a stranger admired my work</label><description>Someone who has seen a hundred walls stopped to look at mine. Didn't have to. Did.</description><baseMoodEffect>4</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_EncP_ArtMoved</defName>
+    <durationDays>5</durationDays>
+    <stages><li><label>my work moved a stranger</label><description>A stranger went quiet in front of something I made. That's the whole reason to make anything.</description><baseMoodEffect>4</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_EncP_PlayFriend</defName>
+    <durationDays>3</durationDays>
+    <stages><li><label>a friend from the road</label><description>I made a friend from the caravan. We have a secret, a password and a frog funeral to our names.</description><baseMoodEffect>4</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_EncP_FireSongs</defName>
+    <durationDays>2</durationDays>
+    <stages><li><label>songs by the fire</label><description>A traveler sang by the fire last night. The chorus is still stuck in my head, and I don't mind.</description><baseMoodEffect>2</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_EncP_Flirted</defName>
+    <durationDays>3</durationDays>
+    <stages><li><label>flirted with a visitor</label><description>Someone from the road laughed at my jokes and sat too close. I'm going to be thinking about that for a while.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_EncP_Recognized</defName>
+    <durationDays>5</durationDays>
+    <stages><li><label>they've heard of me</label><description>A stranger knew my name before I said it. There are stories about me on the road. Some of them might even be true.</description><baseMoodEffect>4</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_EncP_StrangersThanks</defName>
+    <durationDays>4</durationDays>
+    <stages><li><label>a stranger's thanks</label><description>I did a small kindness for a traveler, and they paid it back in silver and herbs. People can still surprise you.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_EncP_StrangeDog</defName>
+    <durationDays>2</durationDays>
+    <stages><li><label>a stranger's dog</label><description>A visitor's dog leaned against my legs all afternoon. Best company I've had all week.</description><baseMoodEffect>2</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_EncP_DiceNight</defName>
+    <durationDays>2</durationDays>
+    <stages><li><label>dice with a stranger</label><description>Played dice with a traveler all evening, for pebbles. Lost, won, lost again. Didn't think about raiders once.</description><baseMoodEffect>2</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Council_EncP_Insufferable</defName>
+    <thoughtClass>Thought_MemorySocial</thoughtClass>
+    <durationDays>10</durationDays>
+    <stackLimit>5</stackLimit>
+    <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
+    <stackedEffectMultiplier>0.5</stackedEffectMultiplier>
+    <stages><li><label>insufferable outsider</label><description>Walked up to our gate and told us how to live. Next time they can tell it to the wall.</description><baseMoodEffect>-1</baseMoodEffect><baseOpinionOffset>-12</baseOpinionOffset></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Council_EncP_FellowFighter</defName>
+    <thoughtClass>Thought_MemorySocial</thoughtClass>
+    <durationDays>15</durationDays>
+    <stackLimit>5</stackLimit>
+    <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
+    <stackedEffectMultiplier>0.5</stackedEffectMultiplier>
+    <stages><li><label>a fellow fighter</label><description>We've stood in the same kind of line and lost the same kind of friends. It doesn't need saying.</description><baseMoodEffect>2</baseMoodEffect><baseOpinionOffset>12</baseOpinionOffset></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Council_EncP_Stared</defName>
+    <thoughtClass>Thought_MemorySocial</thoughtClass>
+    <durationDays>6</durationDays>
+    <stackLimit>5</stackLimit>
+    <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
+    <stackedEffectMultiplier>0.5</stackedEffectMultiplier>
+    <stages><li><label>stared at me all day</label><description>Everywhere I went, those eyes. Never once said what they wanted.</description><baseMoodEffect>-1</baseMoodEffect><baseOpinionOffset>-6</baseOpinionOffset></li></stages>
+  </ThoughtDef>
+
+  <!-- How the stranger feels about A afterwards (given to X). -->
+
+  <ThoughtDef>
+    <defName>Council_EncP_GoodCompany</defName>
+    <thoughtClass>Thought_MemorySocial</thoughtClass>
+    <durationDays>10</durationDays>
+    <stackLimit>5</stackLimit>
+    <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
+    <stackedEffectMultiplier>0.5</stackedEffectMultiplier>
+    <stages><li><label>good company</label><description>Made a long stop on a long road feel shorter.</description><baseOpinionOffset>10</baseOpinionOffset></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Council_EncP_Smitten</defName>
+    <thoughtClass>Thought_MemorySocial</thoughtClass>
+    <durationDays>10</durationDays>
+    <stackLimit>5</stackLimit>
+    <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
+    <stackedEffectMultiplier>0.5</stackedEffectMultiplier>
+    <stages><li><label>flirted with me</label><description>Terrible jokes, nice laugh. I'll be thinking about that one on the road.</description><baseOpinionOffset>15</baseOpinionOffset></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Council_EncP_RudeHost</defName>
+    <thoughtClass>Thought_MemorySocial</thoughtClass>
+    <durationDays>15</durationDays>
+    <stackLimit>5</stackLimit>
+    <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
+    <stackedEffectMultiplier>0.5</stackedEffectMultiplier>
+    <stages><li><label>rude host</label><description>Insulted me at their own gate. I'll remember the face.</description><baseOpinionOffset>-15</baseOpinionOffset></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Council_EncP_KindToMe</defName>
+    <thoughtClass>Thought_MemorySocial</thoughtClass>
+    <durationDays>20</durationDays>
+    <stackLimit>5</stackLimit>
+    <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
+    <stackedEffectMultiplier>0.5</stackedEffectMultiplier>
+    <stages><li><label>kind to me when I needed it</label><description>They didn't have to be kind to me. They were anyway.</description><baseOpinionOffset>18</baseOpinionOffset></li></stages>
+  </ThoughtDef>
+
+  <!-- ===================== Traders ===================== -->
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_EncP_OutHaggled</defName>
+    <durationDays>4</durationDays>
+    <stages><li><label>out-haggled a trader</label><description>I talked a professional trader down to almost nothing. They called me a bandit. I've never been prouder.</description><baseMoodEffect>4</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Council_EncP_HardBargain</defName>
+    <thoughtClass>Thought_MemorySocial</thoughtClass>
+    <durationDays>10</durationDays>
+    <stackLimit>5</stackLimit>
+    <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
+    <stackedEffectMultiplier>0.5</stackedEffectMultiplier>
+    <stages><li><label>drove a hard bargain</label><description>Robbed me blind with a straight face. I almost respect it. No, I do respect it.</description><baseOpinionOffset>6</baseOpinionOffset></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_EncP_HaggledBadly</defName>
+    <durationDays>3</durationDays>
+    <stages><li><label>haggled badly</label><description>I thought I'd driven a hard bargain. Then I saw what everyone else paid.</description><baseMoodEffect>-2</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_EncP_Wanderlust</defName>
+    <durationDays>5</durationDays>
+    <stages><li><label>wanderlust</label><description>The trader talked about a warm sea and a city with a thousand chimneys. I keep looking at the road.</description><baseMoodEffect>1</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Council_EncP_Cheated</defName>
+    <thoughtClass>Thought_MemorySocial</thoughtClass>
+    <durationDays>15</durationDays>
+    <stackLimit>5</stackLimit>
+    <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
+    <stackedEffectMultiplier>0.5</stackedEffectMultiplier>
+    <stages><li><label>cheated me</label><description>Sold me rubbish and smiled while doing it. From now on I check the scales myself.</description><baseMoodEffect>-3</baseMoodEffect><baseOpinionOffset>-20</baseOpinionOffset></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_EncP_WorkTraveled</defName>
+    <durationDays>7</durationDays>
+    <stages><li><label>my work is known on the road</label><description>A trader recognized something I made. My work has been places I've never seen, and people pay good silver for it.</description><baseMoodEffect>5</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_EncP_CaravanGossip</defName>
+    <durationDays>2</durationDays>
+    <stages><li><label>caravan gossip</label><description>The trader told me who's broke, who's feuding and who ate their trader. We're doing fine, by comparison.</description><baseMoodEffect>1</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_EncP_FreeSample</defName>
+    <durationDays>2</durationDays>
+    <stages><li><label>a free taste</label><description>The trader let me taste something from very far away. I'm still thinking about it.</description><baseMoodEffect>2</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_EncP_FreeSampleGourmand</defName>
+    <durationDays>4</durationDays>
+    <stages><li><label>a taste of somewhere else</label><description>One pinch of something from three weeks south, and now everything we cook tastes like a lie. Worth it.</description><baseMoodEffect>5</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <!-- ===================== Lodgers ===================== -->
+
+  <ThoughtDef>
+    <defName>Council_EncP_TreatedLikeFurniture</defName>
+    <thoughtClass>Thought_MemorySocial</thoughtClass>
+    <durationDays>10</durationDays>
+    <stackLimit>5</stackLimit>
+    <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
+    <stackedEffectMultiplier>0.5</stackedEffectMultiplier>
+    <stages><li><label>treats me like furniture</label><description>Snaps fingers at me, sent the soup back twice and has never once used my name.</description><baseMoodEffect>-1</baseMoodEffect><baseOpinionOffset>-10</baseOpinionOffset></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_EncP_NobleNotice</defName>
+    <durationDays>5</durationDays>
+    <stages><li><label>noticed by a noble</label><description>Someone with a title said I'd do well at court. I don't know what a court is for, but apparently I'd do well at it.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_EncP_RefugeeThanks</defName>
+    <durationDays>6</durationDays>
+    <stages><li><label>a guest's thanks</label><description>I gave a frightened guest a bowl of stew and a blanket, and they thanked me like I'd saved their life. Maybe I did.</description><baseMoodEffect>4</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_EncP_GuestPitchedIn</defName>
+    <durationDays>2</durationDays>
+    <stages><li><label>the guest pitched in</label><description>Our guest got tired of being protected and picked up an axe. Good help is hard to find, and this help was free.</description><baseMoodEffect>2</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_EncP_HuntedGuest</defName>
+    <durationDays>3</durationDays>
+    <stages><li><label>a hunted guest</label><description>We're sheltering someone with killers on their trail. Every noise at night is them, until it isn't.</description><baseMoodEffect>-2</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_EncP_KeptWatch</defName>
+    <durationDays>3</durationDays>
+    <stages><li><label>kept watch for a guest</label><description>Our guest was too scared to sleep, so I stayed up too. Somebody should be awake with them.</description><baseMoodEffect>2</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <!-- ===================== Prisoners ===================== -->
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_EncP_KindWords</defName>
+    <durationDays>3</durationDays>
+    <stages><li><label>kind words through a door</label><description>I talked to a prisoner like a person today. They talked back like one.</description><baseMoodEffect>2</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Council_EncP_Taunted</defName>
+    <thoughtClass>Thought_MemorySocial</thoughtClass>
+    <durationDays>8</durationDays>
+    <stackLimit>5</stackLimit>
+    <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
+    <stackedEffectMultiplier>0.5</stackedEffectMultiplier>
+    <stages><li><label>taunted me through the door</label><description>Locked up and still found a way under my skin. I checked the walls twice because of them.</description><baseMoodEffect>-2</baseMoodEffect><baseOpinionOffset>-10</baseOpinionOffset></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Council_EncP_PrisonerStory</defName>
+    <thoughtClass>Thought_MemorySocial</thoughtClass>
+    <durationDays>15</durationDays>
+    <stackLimit>5</stackLimit>
+    <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
+    <stackedEffectMultiplier>0.5</stackedEffectMultiplier>
+    <stages><li><label>their story stays with me</label><description>They told me how they ended up raiding. I wish they hadn't. I wish I didn't understand it.</description><baseMoodEffect>-1</baseMoodEffect><baseOpinionOffset>10</baseOpinionOffset></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Council_EncP_SamePast</defName>
+    <thoughtClass>Thought_MemorySocial</thoughtClass>
+    <durationDays>20</durationDays>
+    <stackLimit>5</stackLimit>
+    <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
+    <stackedEffectMultiplier>0.5</stackedEffectMultiplier>
+    <stages><li><label>came from the same place</label><description>Same mud, same bread, same songs. Different side of the door, that's all.</description><baseMoodEffect>2</baseMoodEffect><baseOpinionOffset>15</baseOpinionOffset></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_EncP_NemesisFaced</defName>
+    <durationDays>3</durationDays>
+    <stages><li><label>face to face with them</label><description>I stood at the door and looked at the one who hurt me. They're the one locked in. Somehow I'm the one who can't breathe.</description><baseMoodEffect>-3</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_EncP_NemesisStaredDown</defName>
+    <durationDays>4</durationDays>
+    <stages><li><label>stared them down</label><description>The one who hurt me looked up, saw me, and looked away first. I've been waiting a long time for that.</description><baseMoodEffect>4</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Council_EncP_FoodInsulted</defName>
+    <thoughtClass>Thought_MemorySocial</thoughtClass>
+    <durationDays>8</durationDays>
+    <stackLimit>5</stackLimit>
+    <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
+    <stackedEffectMultiplier>0.5</stackedEffectMultiplier>
+    <stages><li><label>insulted my cooking</label><description>Ate every crumb and then called it slop. From a cell. Fed by me.</description><baseMoodEffect>-2</baseMoodEffect><baseOpinionOffset>-8</baseOpinionOffset></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_EncP_BuriedStash</defName>
+    <durationDays>3</durationDays>
+    <stages><li><label>a buried stash, supposedly</label><description>A prisoner told me where a chest of silver is buried. It's almost certainly a lie. Almost.</description><baseMoodEffect>2</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Council_EncP_BribeOffered</defName>
+    <thoughtClass>Thought_MemorySocial</thoughtClass>
+    <durationDays>6</durationDays>
+    <stackLimit>5</stackLimit>
+    <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
+    <stackedEffectMultiplier>0.5</stackedEffectMultiplier>
+    <stages><li><label>tried to bribe me</label><description>Offered me buried treasure for a key. Do I look that stupid? Don't answer that.</description><baseOpinionOffset>-5</baseOpinionOffset></li></stages>
+  </ThoughtDef>
+
+  <!-- ===================== The fallen ===================== -->
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_EncP_Begged</defName>
+    <durationDays>3</durationDays>
+    <stages><li><label>an enemy begged me</label><description>A downed raider begged me not to leave them out there. I can still feel the hand on my ankle.</description><baseMoodEffect>-2</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_EncP_Cursed</defName>
+    <durationDays>2</durationDays>
+    <stages><li><label>cursed from the dirt</label><description>A raider who couldn't even stand spent their breath cursing me. My mother, my face, my colony. Thorough.</description><baseMoodEffect>-1</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_EncP_GaveWater</defName>
+    <durationDays>3</durationDays>
+    <stages><li><label>gave water to an enemy</label><description>A raider asked for water and I gave it. They came here to kill us. It still felt right.</description><baseMoodEffect>2</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_EncP_EnemyPrayer</defName>
+    <durationDays>2</durationDays>
+    <stages><li><label>an enemy's prayer</label><description>A fallen raider prayed in the mud to a god I don't know. I keep hearing the words.</description><baseMoodEffect>-1</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_EncP_LastWords</defName>
+    <durationDays>6</durationDays>
+    <stages><li><label>a name to carry</label><description>A raider who thought they were dying gave me a name and a message. Now I'm carrying it, and I don't know where to.</description><baseMoodEffect>-2</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_EncP_SpatOnRaider</defName>
+    <durationDays>3</durationDays>
+    <stages><li><label>spat on a raider</label><description>They came over our wall to kill us. Now they're in the dirt and I'm not, and I made sure they knew it.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Council_EncP_CruelToFallen</defName>
+    <thoughtClass>Thought_MemorySocial</thoughtClass>
+    <durationDays>12</durationDays>
+    <stackLimit>5</stackLimit>
+    <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
+    <stackedEffectMultiplier>0.5</stackedEffectMultiplier>
+    <stages><li><label>spat on a helpless enemy</label><description>They were down and bleeding and couldn't lift a hand. Whatever they did, that wasn't right.</description><baseOpinionOffset>-8</baseOpinionOffset></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Council_EncP_Spat</defName>
+    <thoughtClass>Thought_MemorySocial</thoughtClass>
+    <durationDays>20</durationDays>
+    <stackLimit>5</stackLimit>
+    <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
+    <stackedEffectMultiplier>0.5</stackedEffectMultiplier>
+    <stages><li><label>spat on me when I was down</label><description>I was on the ground, bleeding, and they spat on me. I won't forget it.</description><baseOpinionOffset>-25</baseOpinionOffset></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_EncP_FarewellPostponed</defName>
+    <durationDays>2</durationDays>
+    <stages><li><label>a farewell, postponed</label><description>A raider gave me a whole deathbed speech over a sprained ankle. I laughed about it all evening.</description><baseMoodEffect>1</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+</Defs>

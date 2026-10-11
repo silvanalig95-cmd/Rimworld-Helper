@@ -1,0 +1,807 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Small moments between a colonist (A) and a person who isn't one of us (X): visitors, traders, lodgers,
+    prisoners, and enemies lying downed after a fight.
+    stranger: StrangerRole (kind + optional royal, child, adult, opinions, goodwill, nemesisOfA...).
+    colonist: who A must be (DilemmaRole: anyTrait, notTrait, passion, canFight, child...). Without one: any adult;
+    children: true lets children take part too.
+    effects: dilemma effects (target X for the stranger; social memories on X are about A, on A about X).
+    journal: a pool A writes in ({PAWN_...} = A, {X_...} = the stranger). notable: a message worth noticing and a
+    chronicle line. Texts: {A_...}, {X_...}, {FACTION} (X's faction; only used for visitors and traders).
+    Encounters never kill or capture anyone; that's for dilemmas.
+  -->
+
+  <!-- ===================== Visitors ===================== -->
+
+  <ColonyCouncil.EncounterDef>
+    <defName>Council_EncP_RoadNews</defName>
+    <label>news from the road</label>
+    <weight>1.5</weight>
+    <cooldownDays>4</cooldownDays>
+    <stranger><kind>Visitor</kind><adult>true</adult></stranger>
+    <texts>
+      <li>{X_nameDef} told {A_nameDef} over a bowl of soup that two warlords up north are burning each other's fields again. Grain will be dear by winter.</li>
+      <li>According to {X_nameDef}, a town three weeks east has the coughing sickness and they've started nailing doors shut. {A_nameDef} asked which side of the door the nails go.</li>
+      <li>{X_nameDef} says salt costs twice what it did last year, the bridge at the ford washed out, and some village elected a goat as headman. {A_nameDef} believes two of these.</li>
+      <li>{A_nameDef} spent an hour getting the news from {X_nameDef}: who's at war, who's starving, who got hanged. Mostly the same names as last time.</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncP_RoadNews</thought></li>
+    </effects>
+  </ColonyCouncil.EncounterDef>
+
+  <ColonyCouncil.EncounterDef>
+    <defName>Council_EncP_FamousBlade</defName>
+    <label>tales of a famous blade</label>
+    <weight>0.8</weight>
+    <cooldownDays>8</cooldownDays>
+    <stranger><kind>Visitor</kind><adult>true</adult></stranger>
+    <colonist><passion>Melee</passion></colonist>
+    <texts>
+      <li>{X_nameDef} told {A_nameDef} about a one-eyed swordswoman down south who has never lost a duel, mostly because she only fights drunks. {A_nameDef} wants to meet her anyway.</li>
+      <li>{X_nameDef} once watched a duelist called the Heron cut a candle in half without tipping it over. {A_nameDef} spent the evening trying it with a kitchen knife and far too many candles.</li>
+      <li>{A_nameDef} made {X_nameDef} describe the famous swordsman's footwork three times, then practiced it in the yard until dark. {X_nameDef} admitted the swordsman was shorter than the story.</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncP_BladeTales</thought></li>
+      <li Class="ColonyCouncil.DilemmaEffect_Learn"><target>A</target><skill>Melee</skill><xp>250</xp></li>
+      <li Class="ColonyCouncil.DilemmaEffect_Hediff"><target>A</target><hediff>Council_Motivated</hediff><severity>0.5</severity><chance>0.4</chance></li>
+    </effects>
+  </ColonyCouncil.EncounterDef>
+
+  <ColonyCouncil.EncounterDef>
+    <defName>Council_EncP_RecipeSwap</defName>
+    <label>swapped recipes</label>
+    <weight>1.0</weight>
+    <cooldownDays>8</cooldownDays>
+    <stranger><kind>Visitor</kind><adult>true</adult></stranger>
+    <colonist><passion>Cooking</passion></colonist>
+    <texts>
+      <li>{X_nameDef} showed {A_nameDef} how {FACTION} cooks stretch a stew over four days: more salt, more onion, fewer questions. {A_nameDef} paid for it with a trick for rice that doesn't stick.</li>
+      <li>{A_nameDef} and {X_nameDef} argued all afternoon about whether berries belong in a meat pie. They settled it by baking one of each and eating both.</li>
+      <li>{X_nameDef} swears by a pinch of ash in the bread. {A_nameDef} tried it, made a face, tried it again, and is now putting ash in the bread.</li>
+      <li>{A_nameDef} traded {X_nameDef} a pemmican recipe for one that makes old muffalo chewable. Each of them is sure they got the better deal.</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Learn"><target>A</target><skill>Cooking</skill><xp>400</xp></li>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncP_RecipeSwap</thought></li>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>X</target><thought>Council_EncP_GoodCompany</thought></li>
+      <li Class="ColonyCouncil.DilemmaEffect_Goodwill"><amount>1</amount><chance>0.5</chance></li>
+      <li Class="ColonyCouncil.DilemmaEffect_LifeEvent"><target>A</target><counter>stranger</counter></li>
+    </effects>
+    <journal>Council_Journal_EncP_Recipe</journal>
+  </ColonyCouncil.EncounterDef>
+
+  <ColonyCouncil.EncounterDef>
+    <defName>Council_EncP_AdmiredWalls</defName>
+    <label>admired the walls</label>
+    <weight>0.8</weight>
+    <cooldownDays>10</cooldownDays>
+    <stranger><kind>Visitor</kind><adult>true</adult></stranger>
+    <colonist><passion>Construction</passion></colonist>
+    <texts>
+      <li>{X_nameDef} ran a hand along a wall {A_nameDef} built and asked who laid it. {A_nameDef} said "nobody important", then stood beside it for the rest of the afternoon.</li>
+      <li>{X_nameDef} said the colony's walls were straighter than any {X_pronoun} had seen this side of the mountains. {A_nameDef} has worked this into every conversation since.</li>
+      <li>{X_nameDef} rapped a knuckle on a doorframe {A_nameDef} had hung and nodded at the sound. {A_nameDef} didn't need anything else said.</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncP_WorkAdmired</thought></li>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>X</target><thought>Council_EncP_GoodCompany</thought></li>
+    </effects>
+  </ColonyCouncil.EncounterDef>
+
+  <ColonyCouncil.EncounterDef>
+    <defName>Council_EncP_MovedByArt</defName>
+    <label>a stranger moved by art</label>
+    <weight>0.7</weight>
+    <cooldownDays>10</cooldownDays>
+    <stranger><kind>Visitor</kind><adult>true</adult></stranger>
+    <colonist><passion>Artistic</passion></colonist>
+    <texts>
+      <li>{X_nameDef} stood in front of {A_nameDef}'s carving for a long time, then asked what it was. {A_nameDef} said it was grief. {X_nameDef} said that made sense.</li>
+      <li>{X_nameDef} asked {A_nameDef} what the little carving by the door would cost. It wasn't for sale. {A_nameDef} spent the whole evening pleased about being asked.</li>
+      <li>{X_nameDef} went quiet in front of {A_nameDef}'s work, wiped {X_possessive} eyes, and wouldn't say why. {A_nameDef} has decided to take it as a review.</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncP_ArtMoved</thought></li>
+      <li Class="ColonyCouncil.DilemmaEffect_Inspiration"><target>A</target><inspiration>Inspired_Creativity</inspiration><chance>0.15</chance></li>
+    </effects>
+  </ColonyCouncil.EncounterDef>
+
+  <ColonyCouncil.EncounterDef>
+    <defName>Council_EncP_ChildrenPlay</defName>
+    <label>children at play</label>
+    <weight>1.2</weight>
+    <cooldownDays>5</cooldownDays>
+    <stranger><kind>Visitor</kind><child>true</child></stranger>
+    <colonist><child>true</child></colonist>
+    <texts>
+      <li>{A_nameDef} and {X_nameDef} played raiders and colonists behind the barn until both of them were raiders and there was nobody left to raid.</li>
+      <li>{X_nameDef} taught {A_nameDef} a clapping song from the road. Half the words are rude. {A_nameDef} will be singing it for a month.</li>
+      <li>{A_nameDef} and {X_nameDef} caught a frog, named it, lost it, and held a funeral for it. They are best friends now, at least until the caravan leaves.</li>
+      <li>{A_nameDef} showed {X_nameDef} the best hiding spot in the colony. {X_nameDef} found a better one within ten minutes, which {A_nameDef} is taking hard.</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncP_PlayFriend</thought></li>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>X</target><thought>Council_EncP_GoodCompany</thought></li>
+      <li Class="ColonyCouncil.DilemmaEffect_Goodwill"><amount>1</amount><chance>0.5</chance></li>
+      <li Class="ColonyCouncil.DilemmaEffect_LifeEvent"><target>A</target><counter>stranger</counter></li>
+    </effects>
+    <journal>Council_Journal_EncP_PlayFriend</journal>
+  </ColonyCouncil.EncounterDef>
+
+  <ColonyCouncil.EncounterDef>
+    <defName>Council_EncP_FireSongs</defName>
+    <label>songs by the fire</label>
+    <weight>1.0</weight>
+    <cooldownDays>6</cooldownDays>
+    <nightOnly>true</nightOnly>
+    <children>true</children>
+    <stranger><kind>Visitor</kind><adult>true</adult></stranger>
+    <texts>
+      <li>{X_nameDef} sang a long song by the fire about a miller's daughter and a bear. By the end, {A_nameDef} wasn't sure whose side to be on, and neither was the song.</li>
+      <li>{X_nameDef} told ghost stories by the fire until {A_nameDef} jumped at a settling log. {X_nameDef} called it the best reaction yet and told another one.</li>
+      <li>{X_nameDef} knew a drinking song with forty verses. {A_nameDef} had the chorus by the fifth and was bellowing it by the twentieth.</li>
+      <li>By the fire, {X_nameDef} told how {X_possessive} caravan once crossed a frozen lake and lost two muffalo to the ice. {A_nameDef} hung on every crack.</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncP_FireSongs</thought></li>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Others</target><thought>Council_EncP_FireSongs</thought><chance>0.3</chance></li>
+    </effects>
+  </ColonyCouncil.EncounterDef>
+
+  <ColonyCouncil.EncounterDef>
+    <defName>Council_EncP_Flirt</defName>
+    <label>flirting with a visitor</label>
+    <weight>0.9</weight>
+    <cooldownDays>8</cooldownDays>
+    <stranger><kind>Visitor</kind><adult>true</adult></stranger>
+    <texts>
+      <li>{X_nameDef} told {A_nameDef} {A_pronoun} had kind eyes for someone carrying that many knives. {A_nameDef} has been checking {A_possessive} reflection in the water barrel ever since.</li>
+      <li>{A_nameDef} offered to show {X_nameDef} the view from the wall. There isn't much of a view from the wall. They were up there for an hour.</li>
+      <li>{X_nameDef} laughed at every one of {A_nameDef}'s jokes, including the one about the boomalope. Nobody laughs at the one about the boomalope.</li>
+      <li>{A_nameDef} and {X_nameDef} shared a bench, a jug of beer and very little elbow room. The caravan leaves tomorrow, which might be the point.</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncP_Flirted</thought></li>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>X</target><thought>Council_EncP_Smitten</thought></li>
+      <li Class="ColonyCouncil.DilemmaEffect_LifeEvent"><target>A</target><counter>stranger</counter></li>
+    </effects>
+    <journal>Council_Journal_EncP_Flirt</journal>
+  </ColonyCouncil.EncounterDef>
+
+  <ColonyCouncil.EncounterDef>
+    <defName>Council_EncP_ArgueWays</defName>
+    <label>an argument about our ways</label>
+    <weight>0.7</weight>
+    <cooldownDays>10</cooldownDays>
+    <stranger><kind>Visitor</kind><adult>true</adult></stranger>
+    <colonist><anyTrait><li>Abrasive</li></anyTrait></colonist>
+    <texts>
+      <li>{X_nameDef} called the colony "a mud fort with opinions". {A_nameDef} offered to show {X_objective} the opinions up close, and had to be walked away from the gate.</li>
+      <li>{X_nameDef} said a settlement this small ought to pay {FACTION} for protection. {A_nameDef} said a great many things back, several of them about {X_nameDef}'s mother.</li>
+      <li>{A_nameDef} and {X_nameDef} argued about how to treat strangers: loudly, at the gate, in front of other strangers. Nobody came out of it looking good.</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncP_Insufferable</thought></li>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>X</target><thought>Council_EncP_RudeHost</thought></li>
+      <li Class="ColonyCouncil.DilemmaEffect_Goodwill"><amount>-3</amount></li>
+      <li Class="ColonyCouncil.DilemmaEffect_Fight"><withStranger>true</withStranger><chance>0.3</chance></li>
+    </effects>
+    <notable>true</notable>
+  </ColonyCouncil.EncounterDef>
+
+  <ColonyCouncil.EncounterDef>
+    <defName>Council_EncP_Reputation</defName>
+    <label>a name on the road</label>
+    <weight>0.6</weight>
+    <cooldownDays>15</cooldownDays>
+    <stranger><kind>Visitor</kind><adult>true</adult></stranger>
+    <texts>
+      <li>{X_nameDef} squinted at {A_nameDef} and asked, "You're that one, aren't you? From the stories?" {A_nameDef} has no idea which stories, and isn't going to ask.</li>
+      <li>{X_nameDef} said people on the road talk about {A_nameDef}, and not all of it is lies. {A_nameDef} spent dinner trying to find out which parts.</li>
+      <li>{X_nameDef} asked to touch {A_nameDef}'s sleeve for luck. {A_nameDef} allowed it, baffled. Apparently there's a song, and {A_nameDef} is in the second verse.</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncP_Recognized</thought></li>
+    </effects>
+    <journal>Council_Journal_EncP_Recognized</journal>
+    <notable>true</notable>
+  </ColonyCouncil.EncounterDef>
+
+  <ColonyCouncil.EncounterDef>
+    <defName>Council_EncP_KindGift</defName>
+    <label>a gift from a visitor</label>
+    <weight>0.7</weight>
+    <cooldownDays>12</cooldownDays>
+    <stranger><kind>Visitor</kind><adult>true</adult></stranger>
+    <colonist><anyTrait><li>Kind</li></anyTrait></colonist>
+    <texts>
+      <li>{A_nameDef} carried water for {X_nameDef}'s lame pack animal without being asked. Later, {X_nameDef} pressed some coins and a sprig of healroot into {A_possessive} hand and wouldn't take them back.</li>
+      <li>{X_nameDef} remembered that {A_nameDef} had given up a seat by the fire for {X_objective}. A little bundle was waiting for {A_nameDef} afterwards: silver and a twist of healing herbs.</li>
+      <li>{A_nameDef} mended a torn strap on {X_nameDef}'s pack. {X_nameDef} paid in silver, healroot, and a lecture about how nobody does anything for free anymore.</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Spawn"><thing>Silver</thing><count>12</count></li>
+      <li Class="ColonyCouncil.DilemmaEffect_Spawn"><thing>MedicineHerbal</thing><count>1</count></li>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncP_StrangersThanks</thought></li>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>X</target><thought>Council_EncP_GoodCompany</thought></li>
+    </effects>
+  </ColonyCouncil.EncounterDef>
+
+  <ColonyCouncil.EncounterDef>
+    <defName>Council_EncP_WarStories</defName>
+    <label>war stories with a stranger</label>
+    <weight>0.9</weight>
+    <cooldownDays>8</cooldownDays>
+    <stranger><kind>Visitor</kind><adult>true</adult></stranger>
+    <colonist><canFight>true</canFight></colonist>
+    <texts>
+      <li>{A_nameDef} and {X_nameDef} compared scars by the fire. {X_nameDef} won with an arrowhead still lodged in {X_possessive} shoulder, and let {A_nameDef} feel it.</li>
+      <li>{X_nameDef} showed {A_nameDef} how {FACTION} spearmen brace for a charge. {A_nameDef} showed {X_nameDef} where to hit someone who's bracing like that.</li>
+      <li>{A_nameDef} and {X_nameDef} didn't say much about the fighting itself. They named the people they'd lost, drank to each one, and that was enough.</li>
+      <li>{X_nameDef} has fought in three border wars and {A_nameDef} has fought everything that came over our wall. They talked tactics until the fire was ash.</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncP_FellowFighter</thought></li>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>X</target><thought>Council_EncP_FellowFighter</thought></li>
+      <li Class="ColonyCouncil.DilemmaEffect_LifeEvent"><target>A</target><counter>stranger</counter></li>
+    </effects>
+    <journal>Council_Journal_EncP_WarStories</journal>
+  </ColonyCouncil.EncounterDef>
+
+  <ColonyCouncil.EncounterDef>
+    <defName>Council_EncP_StaringGuard</defName>
+    <label>a guard who stares</label>
+    <weight>0.8</weight>
+    <cooldownDays>6</cooldownDays>
+    <stranger><kind>Visitor</kind><adult>true</adult></stranger>
+    <texts>
+      <li>{X_nameDef} has stared at {A_nameDef} all day: from the gate, from the well, across dinner. Asked about it, {X_nameDef} said "what?" {A_nameDef} is sleeping with a knife tonight.</li>
+      <li>{X_nameDef} watched {A_nameDef} chop wood for an hour without a word, then spat and walked off. {A_nameDef} has been going over every swing since.</li>
+      <li>Wherever {A_nameDef} went today, {X_nameDef} was leaning on something nearby, watching. Turns out {A_nameDef} looks exactly like {X_possessive} dead brother. That did not help.</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncP_Stared</thought></li>
+    </effects>
+  </ColonyCouncil.EncounterDef>
+
+  <ColonyCouncil.EncounterDef>
+    <defName>Council_EncP_VisitorDog</defName>
+    <label>a visitor's dog</label>
+    <weight>0.8</weight>
+    <cooldownDays>7</cooldownDays>
+    <children>true</children>
+    <stranger><kind>Visitor</kind><adult>true</adult></stranger>
+    <texts>
+      <li>{X_nameDef}'s dog followed {A_nameDef} around all afternoon and leaned on {A_possessive} legs whenever {A_pronoun} stopped. {X_nameDef} said it only does that with good people. {A_nameDef} chose to believe it.</li>
+      <li>{X_nameDef}'s scruffy dog stole a sausage off {A_nameDef}'s plate and ate it while looking {A_objective} in the eye. {A_nameDef} forgave it at once.</li>
+      <li>{A_nameDef} spent an hour picking burrs out of {X_nameDef}'s dog. {X_nameDef} admitted the dog has a stupid name. It's called Captain.</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncP_StrangeDog</thought></li>
+    </effects>
+  </ColonyCouncil.EncounterDef>
+
+  <ColonyCouncil.EncounterDef>
+    <defName>Council_EncP_Dice</defName>
+    <label>dice with a stranger</label>
+    <weight>0.9</weight>
+    <cooldownDays>6</cooldownDays>
+    <stranger><kind>Visitor</kind><adult>true</adult></stranger>
+    <texts>
+      <li>{X_nameDef} taught {A_nameDef} a dice game called Muffalo Knees and won every round. {A_nameDef} is fairly sure the rules changed twice.</li>
+      <li>{A_nameDef} and {X_nameDef} played knucklebones for pebbles all evening. {A_nameDef} won forty pebbles and has no idea what to do with them.</li>
+      <li>{X_nameDef} lost three rounds of dice to {A_nameDef}, then blamed the dice. {A_nameDef} offered {X_objective} {X_possessive} own dice. {A_nameDef} won with those too.</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncP_DiceNight</thought></li>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>X</target><thought>Council_EncP_GoodCompany</thought><chance>0.5</chance></li>
+    </effects>
+  </ColonyCouncil.EncounterDef>
+
+  <!-- ===================== Traders ===================== -->
+
+  <ColonyCouncil.EncounterDef>
+    <defName>Council_EncP_HaggleWin</defName>
+    <label>a haggling triumph</label>
+    <weight>1.0</weight>
+    <cooldownDays>6</cooldownDays>
+    <stranger><kind>Trader</kind></stranger>
+    <colonist><passion>Social</passion></colonist>
+    <texts>
+      <li>{A_nameDef} talked {X_nameDef} down on a bolt of cloth until the trader threw up {X_possessive} hands and called {A_objective} a bandit. {A_nameDef} took it as a compliment.</li>
+      <li>{A_nameDef} pointed out a moth hole, a crooked seam and the trader's own sad face. {X_nameDef} knocked a third off the price just to make it stop.</li>
+      <li>{X_nameDef} opened at forty silver. {A_nameDef} opened by laughing. They settled at twenty-two, and {X_nameDef} counted the coins twice in disbelief.</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Learn"><target>A</target><skill>Social</skill><xp>300</xp></li>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncP_OutHaggled</thought></li>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>X</target><thought>Council_EncP_HardBargain</thought></li>
+      <li Class="ColonyCouncil.DilemmaEffect_Inspiration"><target>A</target><inspiration>Inspired_Trade</inspiration><chance>0.1</chance></li>
+    </effects>
+  </ColonyCouncil.EncounterDef>
+
+  <ColonyCouncil.EncounterDef>
+    <defName>Council_EncP_HaggleLoss</defName>
+    <label>a haggling humiliation</label>
+    <weight>0.9</weight>
+    <cooldownDays>6</cooldownDays>
+    <stranger><kind>Trader</kind></stranger>
+    <texts>
+      <li>{A_nameDef} haggled {X_nameDef} down from twenty silver to eighteen and walked off proud. Then {A_nameDef} watched someone else buy the same thing for nine.</li>
+      <li>{X_nameDef} sold {A_nameDef} a lucky pan, a lucky rope and a lucky rock. {A_nameDef} went back later for the matching lucky rock.</li>
+      <li>{A_nameDef} tried the old trick of walking away from the deal. {X_nameDef} let {A_objective} walk. {A_nameDef} came back four minutes later and paid full price.</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncP_HaggledBadly</thought></li>
+    </effects>
+  </ColonyCouncil.EncounterDef>
+
+  <ColonyCouncil.EncounterDef>
+    <defName>Council_EncP_FarPlaces</defName>
+    <label>tales of far places</label>
+    <weight>0.9</weight>
+    <cooldownDays>8</cooldownDays>
+    <stranger><kind>Trader</kind></stranger>
+    <texts>
+      <li>{X_nameDef} told {A_nameDef} about a coast where the sea stays warm in winter and fish jump into the boats. {A_nameDef} has been staring at the horizon ever since.</li>
+      <li>{X_nameDef} has seen a city with walls taller than trees and a market that never closes. {A_nameDef} asked how far. {X_nameDef} said "far" and left it there.</li>
+      <li>{X_nameDef} described salt flats white as bone, under skies so clear you can count every star. {A_nameDef} tried counting the ones over the colony that night. It wasn't the same.</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncP_Wanderlust</thought></li>
+    </effects>
+    <journal>Council_Journal_EncP_Wanderlust</journal>
+  </ColonyCouncil.EncounterDef>
+
+  <ColonyCouncil.EncounterDef>
+    <defName>Council_EncP_Cheated</defName>
+    <label>cheated by a trader</label>
+    <weight>0.7</weight>
+    <cooldownDays>10</cooldownDays>
+    <stranger><kind>Trader</kind></stranger>
+    <texts>
+      <li>{A_nameDef} bought a cask of beer from {X_nameDef}. It was half river water. {X_nameDef} was very sorry about it, and also suddenly very busy elsewhere.</li>
+      <li>{X_nameDef}'s scales were off by a thumb's weight, and {A_nameDef} noticed too late. That's three days of hauling {A_nameDef} will never see again.</li>
+      <li>The tough leather boots {A_nameDef} bought from {X_nameDef} came apart at the first puddle. {X_nameDef} explained that they were dry-weather boots.</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncP_Cheated</thought></li>
+    </effects>
+    <journal>Council_Journal_EncP_Cheated</journal>
+  </ColonyCouncil.EncounterDef>
+
+  <ColonyCouncil.EncounterDef>
+    <defName>Council_EncP_WorkTraveled</defName>
+    <label>known by their work</label>
+    <weight>0.6</weight>
+    <cooldownDays>15</cooldownDays>
+    <stranger><kind>Trader</kind></stranger>
+    <colonist><passion>Crafting</passion></colonist>
+    <texts>
+      <li>{X_nameDef} turned a knife over in {X_possessive} hands and asked if {A_nameDef} made it. {X_nameDef} sold one just like it last year, to a captain who wouldn't stop bragging about it.</li>
+      <li>{X_nameDef} recognized {A_nameDef}'s stitching on a colonist's coat and said coats like that fetch a fortune two towns over. {A_nameDef} is pricing everything in {A_possessive} head now.</li>
+      <li>{X_nameDef} asked who made the colony's tools. When {A_nameDef} said it was {A_objective}, {X_nameDef} asked if {A_pronoun} had ever thought of leaving. {A_nameDef} said no, slowly.</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncP_WorkTraveled</thought></li>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>X</target><thought>Council_EncP_GoodCompany</thought></li>
+    </effects>
+    <notable>true</notable>
+  </ColonyCouncil.EncounterDef>
+
+  <ColonyCouncil.EncounterDef>
+    <defName>Council_EncP_CaravanGossip</defName>
+    <label>caravan gossip</label>
+    <weight>1.2</weight>
+    <cooldownDays>5</cooldownDays>
+    <stranger><kind>Trader</kind></stranger>
+    <texts>
+      <li>{X_nameDef} told {A_nameDef} about a settlement east of here that tried to tame a thrumbo with a rope and a song. They're rebuilding, slowly.</li>
+      <li>{X_nameDef} has been to every settlement within a week's ride and has gossip on all of them: who's broke, who's feuding, and who ate their trader.</li>
+      <li>According to {X_nameDef}, the last colony {X_pronoun} visited paid in turnips and insults. {A_nameDef} took the hint and was very polite all afternoon.</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncP_CaravanGossip</thought></li>
+    </effects>
+  </ColonyCouncil.EncounterDef>
+
+  <ColonyCouncil.EncounterDef>
+    <defName>Council_EncP_FreeSample</defName>
+    <label>a free taste</label>
+    <weight>0.8</weight>
+    <cooldownDays>8</cooldownDays>
+    <stranger><kind>Trader</kind></stranger>
+    <texts>
+      <li>{X_nameDef} let {A_nameDef} try a pinch of the spice {X_pronoun} was selling. {A_nameDef} has been trying to describe the taste to everyone, and failing.</li>
+      <li>{X_nameDef} cut {A_nameDef} a sliver of hard cheese from three weeks south. {A_nameDef} chewed it very slowly, as if it might be the last cheese in the world.</li>
+      <li>{X_nameDef} poured {A_nameDef} a thimble of something amber from a stoppered flask. {A_nameDef} coughed, wept, and asked for another thimble.</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncP_FreeSample</thought><exceptTrait><li>Gourmand</li></exceptTrait></li>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncP_FreeSampleGourmand</thought><onlyTrait><li>Gourmand</li></onlyTrait></li>
+    </effects>
+  </ColonyCouncil.EncounterDef>
+
+  <ColonyCouncil.EncounterDef>
+    <defName>Council_EncP_InsultGoods</defName>
+    <label>insulting the goods</label>
+    <weight>0.6</weight>
+    <cooldownDays>10</cooldownDays>
+    <stranger><kind>Trader</kind></stranger>
+    <colonist><anyTrait><li>Abrasive</li><li>Greedy</li></anyTrait></colonist>
+    <texts>
+      <li>{A_nameDef} held up {X_nameDef}'s best cloak and asked how much {X_nameDef} would pay {A_objective} to take it away. The trader did not find this funny.</li>
+      <li>{A_nameDef} sniffed {X_nameDef}'s dried meat and announced that the animal had died of old age. {X_nameDef} has stopped offering {A_nameDef} anything.</li>
+      <li>{A_nameDef} told {X_nameDef} that {FACTION} prices are the reason the roads have bandits: the bandits are just trying to afford things.</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>X</target><thought>Council_EncP_RudeHost</thought></li>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncP_Insufferable</thought><chance>0.5</chance></li>
+      <li Class="ColonyCouncil.DilemmaEffect_Goodwill"><amount>-2</amount></li>
+      <li Class="ColonyCouncil.DilemmaEffect_Fight"><withStranger>true</withStranger><chance>0.2</chance></li>
+    </effects>
+  </ColonyCouncil.EncounterDef>
+
+  <!-- ===================== Lodgers ===================== -->
+
+  <ColonyCouncil.EncounterDef>
+    <defName>Council_EncP_NobleAirs</defName>
+    <label>a noble's demands</label>
+    <weight>1.0</weight>
+    <cooldownDays>6</cooldownDays>
+    <stranger><kind>Lodger</kind><royal>true</royal></stranger>
+    <texts>
+      <li>{X_nameDef} sent {A_nameDef} back to the kitchen twice: once because the soup was cold, once because it was too hot. Then {X_nameDef} tipped {A_objective} eight silver, which was somehow worse.</li>
+      <li>{X_nameDef} asked {A_nameDef} where the bath was. {A_nameDef} pointed at the river. {X_nameDef} has not stopped talking about it.</li>
+      <li>{X_nameDef} had {A_nameDef} turn the mattress three times, then complained about the view from the bed. The bed faces a wall.</li>
+      <li>{X_nameDef} called {A_nameDef} "you there" all day, and once "the hairy one". {A_nameDef} is not especially hairy, and is now worried about it.</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncP_TreatedLikeFurniture</thought></li>
+      <li Class="ColonyCouncil.DilemmaEffect_Spawn"><thing>Silver</thing><count>8</count></li>
+    </effects>
+    <journal>Council_Journal_EncP_Noble</journal>
+  </ColonyCouncil.EncounterDef>
+
+  <ColonyCouncil.EncounterDef>
+    <defName>Council_EncP_NobleNotice</defName>
+    <label>noticed by a noble</label>
+    <weight>0.6</weight>
+    <cooldownDays>12</cooldownDays>
+    <stranger><kind>Lodger</kind><royal>true</royal></stranger>
+    <texts>
+      <li>{X_nameDef} watched {A_nameDef} settle a quarrel at dinner and said it was better done than in half the courts {X_pronoun} had sat in. Then {X_nameDef} taught {A_objective} to bow properly, unasked.</li>
+      <li>{X_nameDef} spent an evening teaching {A_nameDef} which fork is for what at a lord's table. The colony owns one kind of fork. {A_nameDef} paid close attention anyway.</li>
+      <li>{X_nameDef} told {A_nameDef} {A_pronoun} had the bearing of someone born to a better house, and that it was a shame about the clothes.</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Learn"><target>A</target><skill>Social</skill><xp>400</xp></li>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncP_NobleNotice</thought></li>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>X</target><thought>Council_EncP_GoodCompany</thought></li>
+      <li Class="ColonyCouncil.DilemmaEffect_Goodwill"><amount>2</amount></li>
+      <li Class="ColonyCouncil.DilemmaEffect_LifeEvent"><target>A</target><counter>stranger</counter></li>
+    </effects>
+  </ColonyCouncil.EncounterDef>
+
+  <ColonyCouncil.EncounterDef>
+    <defName>Council_EncP_RefugeeThanks</defName>
+    <label>a guest's thanks</label>
+    <weight>1.0</weight>
+    <cooldownDays>10</cooldownDays>
+    <stranger><kind>Lodger</kind><adult>true</adult></stranger>
+    <texts>
+      <li>{X_nameDef} hadn't said ten words since arriving. Today {A_nameDef} brought {X_objective} a second bowl of stew without asking, and {X_nameDef} cried into it and said thank you, over and over.</li>
+      <li>{X_nameDef} told {A_nameDef} it was the first night in a month {X_pronoun} hadn't slept with {X_possessive} shoes on. {A_nameDef} didn't know what to say, and just nodded.</li>
+      <li>{X_nameDef} carved {A_nameDef} a small wooden bird with a borrowed knife, badly, and handed it over with both hands. "For the blanket," {X_nameDef} said.</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncP_RefugeeThanks</thought></li>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>X</target><thought>Council_EncP_KindToMe</thought></li>
+      <li Class="ColonyCouncil.DilemmaEffect_LifeEvent"><target>A</target><counter>stranger</counter></li>
+    </effects>
+    <journal>Council_Journal_EncP_Refugee</journal>
+    <notable>true</notable>
+  </ColonyCouncil.EncounterDef>
+
+  <ColonyCouncil.EncounterDef>
+    <defName>Council_EncP_GuestPitchedIn</defName>
+    <label>the guest pitched in</label>
+    <weight>1.0</weight>
+    <cooldownDays>6</cooldownDays>
+    <dayOnly>true</dayOnly>
+    <stranger><kind>Lodger</kind><adult>true</adult></stranger>
+    <texts>
+      <li>{X_nameDef} got bored of being protected and felled a dead tree out back before {A_nameDef} noticed. "Beats sitting around waiting to be murdered," {X_nameDef} said.</li>
+      <li>{X_nameDef} insisted on helping {A_nameDef} cut and haul logs, did it wrong, was told, and then did it wrong more carefully. The logs got there.</li>
+      <li>{A_nameDef} came back to find that {X_nameDef} had chopped a fallen trunk into neat logs and stacked them by size. Nobody asked. It looks very nice.</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Spawn"><thing>WoodLog</thing><count>20</count></li>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncP_GuestPitchedIn</thought></li>
+    </effects>
+  </ColonyCouncil.EncounterDef>
+
+  <ColonyCouncil.EncounterDef>
+    <defName>Council_EncP_HuntedGuest</defName>
+    <label>a hunted guest</label>
+    <weight>0.8</weight>
+    <cooldownDays>8</cooldownDays>
+    <nightOnly>true</nightOnly>
+    <stranger><kind>Lodger</kind><adult>true</adult></stranger>
+    <texts>
+      <li>{X_nameDef} woke {A_nameDef} at midnight to ask whether the gate was barred. It was. {X_nameDef} went to check anyway, and {A_nameDef} went too.</li>
+      <li>{X_nameDef} sat up all night facing the door with a kitchen knife in {X_possessive} lap. {A_nameDef} sat up too, because somebody should.</li>
+      <li>{X_nameDef} told {A_nameDef}, very quietly, what the people hunting {X_objective} do to anyone who helps. Then {X_nameDef} thanked {A_objective} for the bed.</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncP_KeptWatch</thought><onlyTrait><li>Kind</li></onlyTrait></li>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncP_HuntedGuest</thought><exceptTrait><li>Kind</li></exceptTrait></li>
+      <li Class="ColonyCouncil.DilemmaEffect_Hediff"><target>A</target><hediff>Council_Dlm_Sleepless</hediff><exceptTrait><li>NightOwl</li></exceptTrait><chance>0.3</chance></li>
+    </effects>
+  </ColonyCouncil.EncounterDef>
+
+  <!-- ===================== Prisoners ===================== -->
+
+  <ColonyCouncil.EncounterDef>
+    <defName>Council_EncP_KindWords</defName>
+    <label>kind words through the door</label>
+    <weight>1.0</weight>
+    <cooldownDays>6</cooldownDays>
+    <stranger><kind>Prisoner</kind><adult>true</adult></stranger>
+    <colonist><anyTrait><li>Kind</li></anyTrait></colonist>
+    <texts>
+      <li>{A_nameDef} sat outside {X_nameDef}'s cell after dinner and talked about nothing: the weather, the beans, a dog {A_pronoun} once had. {X_nameDef} talked back, for the first time.</li>
+      <li>{A_nameDef} slid an extra blanket under {X_nameDef}'s door and said goodnight. {X_nameDef} didn't answer, but the blanket was gone by morning.</li>
+      <li>{X_nameDef} asked {A_nameDef} why {A_pronoun} bothered being nice to a prisoner. {A_nameDef} said somebody has to be, and it might as well be {A_objective}.</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Resistance"><resistance>-4</resistance></li>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncP_KindWords</thought></li>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>X</target><thought>Council_EncP_KindToMe</thought></li>
+      <li Class="ColonyCouncil.DilemmaEffect_Inspiration"><target>A</target><inspiration>Inspired_Recruitment</inspiration><chance>0.1</chance></li>
+      <li Class="ColonyCouncil.DilemmaEffect_LifeEvent"><target>A</target><counter>stranger</counter></li>
+    </effects>
+  </ColonyCouncil.EncounterDef>
+
+  <ColonyCouncil.EncounterDef>
+    <defName>Council_EncP_Taunts</defName>
+    <label>a prisoner's taunts</label>
+    <weight>1.0</weight>
+    <cooldownDays>6</cooldownDays>
+    <stranger><kind>Prisoner</kind><adult>true</adult></stranger>
+    <texts>
+      <li>{X_nameDef} told {A_nameDef} through the bars that {X_possessive} friends know where the wall is thin. {A_nameDef} went and checked the wall. Then checked it again.</li>
+      <li>{X_nameDef} spent the whole meal describing how {X_pronoun} would have burned the colony down, building by building. {A_nameDef} left half {A_possessive} dinner.</li>
+      <li>Every time {A_nameDef} walked past the cell, {X_nameDef} counted out loud. Nobody knows what {X_nameDef} is counting toward. {A_nameDef} has started taking the long way round.</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncP_Taunted</thought><exceptTrait><li>Psychopath</li></exceptTrait></li>
+    </effects>
+  </ColonyCouncil.EncounterDef>
+
+  <ColonyCouncil.EncounterDef>
+    <defName>Council_EncP_PrisonerStory</defName>
+    <label>a prisoner's story</label>
+    <weight>0.8</weight>
+    <cooldownDays>10</cooldownDays>
+    <stranger><kind>Prisoner</kind><adult>true</adult></stranger>
+    <texts>
+      <li>{X_nameDef} told {A_nameDef} how {X_pronoun} ended up raiding: a burned farm, a debt, a cousin with a plan. {A_nameDef} came away less sure who the bad one was.</li>
+      <li>{X_nameDef} has a daughter somewhere south who thinks {X_nameDef} is a trader. {X_nameDef} asked {A_nameDef} not to tell her, if she ever came by. {A_nameDef} promised.</li>
+      <li>Through the door, {X_nameDef} described the last meal {X_pronoun} ate at home, down to the burnt crust. {A_nameDef} stayed to listen long after the bowl was collected.</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncP_PrisonerStory</thought></li>
+      <li Class="ColonyCouncil.DilemmaEffect_Resistance"><resistance>-2</resistance></li>
+      <li Class="ColonyCouncil.DilemmaEffect_LifeEvent"><target>A</target><counter>stranger</counter></li>
+    </effects>
+    <journal>Council_Journal_EncP_PrisonerStory</journal>
+  </ColonyCouncil.EncounterDef>
+
+  <ColonyCouncil.EncounterDef>
+    <defName>Council_EncP_SamePast</defName>
+    <label>the same kind of past</label>
+    <weight>0.5</weight>
+    <cooldownDays>15</cooldownDays>
+    <stranger><kind>Prisoner</kind><adult>true</adult></stranger>
+    <texts>
+      <li>{A_nameDef} and {X_nameDef} worked out they grew up two valleys apart, on the same bad bread and the same tax collectors. They talked through the bars until the candle died.</li>
+      <li>{X_nameDef} hummed a work song in the cell, and {A_nameDef} sang the next line without thinking. Same mines, different years. Neither said much after that.</li>
+      <li>{A_nameDef} and {X_nameDef} both ran away from home at twelve, both slept in stables, both stole from the same kind of people. Only one of them ended up behind this door.</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncP_SamePast</thought></li>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>X</target><thought>Council_EncP_SamePast</thought></li>
+      <li Class="ColonyCouncil.DilemmaEffect_Resistance"><resistance>-3</resistance></li>
+      <li Class="ColonyCouncil.DilemmaEffect_LifeEvent"><target>A</target><counter>stranger</counter></li>
+    </effects>
+    <journal>Council_Journal_EncP_SamePast</journal>
+    <notable>true</notable>
+  </ColonyCouncil.EncounterDef>
+
+  <ColonyCouncil.EncounterDef>
+    <defName>Council_EncP_NemesisBehindBars</defName>
+    <label>face to face through the bars</label>
+    <weight>1.5</weight>
+    <cooldownDays>10</cooldownDays>
+    <stranger><kind>Prisoner</kind><nemesisOfA>true</nemesisOfA></stranger>
+    <texts>
+      <li>{A_nameDef} stood at {X_nameDef}'s door for a long time without a word. {X_nameDef} looked up, recognized {A_objective}, and looked away first.</li>
+      <li>{X_nameDef} grinned at {A_nameDef} through the bars and asked how the scar was coming along. {A_nameDef} walked away before {A_possessive} hands could decide anything.</li>
+      <li>{A_nameDef} carried {X_nameDef}'s dinner in personally, set it down, and said, "Now I know where you sleep, too."</li>
+      <li>The last time they met, {A_nameDef} was on the ground and {X_nameDef} was standing over {A_objective}. Today {X_nameDef} is on a cell floor, and {A_nameDef} can't stop looking.</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncP_NemesisStaredDown</thought><onlyTrait><li>Bloodlust</li><li>Tough</li><li>Psychopath</li></onlyTrait></li>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncP_NemesisFaced</thought><exceptTrait><li>Bloodlust</li><li>Tough</li><li>Psychopath</li></exceptTrait></li>
+      <li Class="ColonyCouncil.DilemmaEffect_Hediff"><target>A</target><hediff>Council_Dlm_Rattled</hediff><exceptTrait><li>Bloodlust</li><li>Tough</li><li>Psychopath</li></exceptTrait><chance>0.5</chance></li>
+      <li Class="ColonyCouncil.DilemmaEffect_LifeEvent"><target>A</target><spark>nemesis</spark></li>
+    </effects>
+    <journal>Council_Journal_EncP_Nemesis</journal>
+    <notable>true</notable>
+  </ColonyCouncil.EncounterDef>
+
+  <ColonyCouncil.EncounterDef>
+    <defName>Council_EncP_FoodCritic</defName>
+    <label>a prisoner's food review</label>
+    <weight>0.8</weight>
+    <cooldownDays>8</cooldownDays>
+    <stranger><kind>Prisoner</kind><adult>true</adult></stranger>
+    <colonist><passion>Cooking</passion></colonist>
+    <texts>
+      <li>{X_nameDef} sent {A_nameDef}'s stew back with a message: the rats in here eat better. The bowl had been licked clean.</li>
+      <li>{X_nameDef} told {A_nameDef} that the food was the worst part of being captured, worse than the arrow. {A_nameDef} has taken this personally and keeps thinking about the arrow.</li>
+      <li>Through a full mouth, {X_nameDef} asked {A_nameDef} whether {A_pronoun} had ever cooked before or was just guessing. Then {X_nameDef} asked for seconds.</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncP_FoodInsulted</thought></li>
+    </effects>
+  </ColonyCouncil.EncounterDef>
+
+  <ColonyCouncil.EncounterDef>
+    <defName>Council_EncP_Bribe</defName>
+    <label>a prisoner's bribe</label>
+    <weight>0.8</weight>
+    <cooldownDays>10</cooldownDays>
+    <stranger><kind>Prisoner</kind><adult>true</adult></stranger>
+    <texts>
+      <li>{X_nameDef} offered {A_nameDef} a map to a buried chest of silver in exchange for one unlocked door. {X_nameDef} drew the map on the floor, in porridge.</li>
+      <li>{X_nameDef} whispered to {A_nameDef} that {X_possessive} people pay well for friends on the inside. {A_nameDef} asked how well. {X_nameDef} named a number that doesn't exist.</li>
+      <li>{X_nameDef} promised {A_nameDef} a horse, a sword and a cousin's hand in marriage for the key. {A_nameDef} said {A_pronoun} would think about the horse.</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncP_BuriedStash</thought><onlyTrait><li>Greedy</li></onlyTrait></li>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncP_BribeOffered</thought><exceptTrait><li>Greedy</li></exceptTrait></li>
+    </effects>
+  </ColonyCouncil.EncounterDef>
+
+  <!-- ===================== The fallen (enemies downed after a fight) ===================== -->
+
+  <ColonyCouncil.EncounterDef>
+    <defName>Council_EncP_Begging</defName>
+    <label>a raider's plea</label>
+    <weight>1.2</weight>
+    <cooldownDays>4</cooldownDays>
+    <stranger><kind>Fallen</kind><adult>true</adult></stranger>
+    <texts>
+      <li>{X_nameDef} caught {A_nameDef}'s ankle from the dirt and begged, over and over, not to be left out there for the wolves.</li>
+      <li>Bleeding in the mud, {X_nameDef} recognized {A_nameDef} from a trade two seasons back and begged on the strength of it. {A_nameDef} remembered the trade. It hadn't been a good deal.</li>
+      <li>{X_nameDef} promised {A_nameDef} silver, a horse, never coming back, anything at all. The voice kept going long after {A_nameDef} was out of earshot.</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncP_Begged</thought><exceptTrait><li>Psychopath</li><li>Bloodlust</li></exceptTrait></li>
+    </effects>
+  </ColonyCouncil.EncounterDef>
+
+  <ColonyCouncil.EncounterDef>
+    <defName>Council_EncP_Cursing</defName>
+    <label>cursed from the dirt</label>
+    <weight>1.0</weight>
+    <cooldownDays>4</cooldownDays>
+    <stranger><kind>Fallen</kind><adult>true</adult></stranger>
+    <texts>
+      <li>{X_nameDef} couldn't stand, but could still talk, and spent all of it on {A_nameDef}: {A_possessive} mother, {A_possessive} face and {A_possessive} colony, in that order.</li>
+      <li>{X_nameDef} spat blood at {A_nameDef}'s boots and swore {X_possessive} brothers would come for {A_objective}. {A_nameDef} asked how many brothers. It was a lot of brothers.</li>
+      <li>{X_nameDef} lay in the mud cursing {A_nameDef} in a language {A_nameDef} didn't know. The tone translated fine.</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncP_Cursed</thought><exceptTrait><li>Psychopath</li></exceptTrait></li>
+    </effects>
+  </ColonyCouncil.EncounterDef>
+
+  <ColonyCouncil.EncounterDef>
+    <defName>Council_EncP_GaveWater</defName>
+    <label>water for the fallen</label>
+    <weight>0.9</weight>
+    <cooldownDays>6</cooldownDays>
+    <stranger><kind>Fallen</kind><adult>true</adult></stranger>
+    <colonist><notTrait><li>Psychopath</li><li>Bloodlust</li></notTrait></colonist>
+    <texts>
+      <li>{X_nameDef} asked for water, just that. {A_nameDef} knelt and held the waterskin while {X_nameDef} drank, and neither of them mentioned the fight.</li>
+      <li>{A_nameDef} gave {X_nameDef} a drink and wiped the dirt off {X_possessive} face. {X_nameDef} said nobody had done that since {X_pronoun} was small.</li>
+      <li>{X_nameDef} was trying to lick rainwater off a stone. {A_nameDef} swore under {A_possessive} breath and went to fetch a cup.</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncP_GaveWater</thought></li>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>X</target><thought>Council_EncP_KindToMe</thought></li>
+      <li Class="ColonyCouncil.DilemmaEffect_LifeEvent"><target>A</target><counter>stranger</counter><chance>0.5</chance></li>
+    </effects>
+    <journal>Council_Journal_EncP_FallenPlea</journal>
+  </ColonyCouncil.EncounterDef>
+
+  <ColonyCouncil.EncounterDef>
+    <defName>Council_EncP_EnemyPrayer</defName>
+    <label>an enemy's prayer</label>
+    <weight>0.9</weight>
+    <cooldownDays>5</cooldownDays>
+    <stranger><kind>Fallen</kind><adult>true</adult></stranger>
+    <texts>
+      <li>{X_nameDef} lay on {X_possessive} back praying, the same short line over and over, until {A_nameDef} realized {A_pronoun} had learned the words.</li>
+      <li>{X_nameDef} was praying to something with a great many teeth, by the sound of it. {A_nameDef} hurried past and felt watched for the rest of the day.</li>
+      <li>{X_nameDef} asked {A_nameDef} to pray with {X_objective}. {A_nameDef} didn't know the god or the words, but knelt in the mud for a minute anyway.</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncP_EnemyPrayer</thought></li>
+      <li Class="ColonyCouncil.DilemmaEffect_Hediff"><target>A</target><hediff>Council_Dlm_Rattled</hediff><degreeTrait>Nerves</degreeTrait><maxDegree>-1</maxDegree><chance>0.3</chance></li>
+    </effects>
+  </ColonyCouncil.EncounterDef>
+
+  <ColonyCouncil.EncounterDef>
+    <defName>Council_EncP_LastWords</defName>
+    <label>a name to carry</label>
+    <weight>0.8</weight>
+    <cooldownDays>10</cooldownDays>
+    <stranger><kind>Fallen</kind><adult>true</adult></stranger>
+    <texts>
+      <li>{X_nameDef} grabbed {A_nameDef}'s sleeve and made {A_objective} repeat a name twice: Tamsin, at the mill by the black river. Tell her it wasn't her fault.</li>
+      <li>{X_nameDef} told {A_nameDef} where {X_pronoun} had buried {X_possessive} mother's knife, so that somebody would know. {A_nameDef} knows now, and wishes {A_pronoun} didn't.</li>
+      <li>Between gasps, {X_nameDef} asked {A_nameDef} to tell the others {X_pronoun} hadn't run. {A_nameDef} promised. Nobody on our side has any idea who the others are.</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncP_LastWords</thought><exceptTrait><li>Psychopath</li></exceptTrait></li>
+    </effects>
+    <journal>Council_Journal_EncP_FallenPlea</journal>
+    <notable>true</notable>
+  </ColonyCouncil.EncounterDef>
+
+  <ColonyCouncil.EncounterDef>
+    <defName>Council_EncP_SpatOn</defName>
+    <label>spat on the fallen</label>
+    <weight>0.9</weight>
+    <cooldownDays>6</cooldownDays>
+    <stranger><kind>Fallen</kind><adult>true</adult></stranger>
+    <colonist><anyTrait><li>Bloodlust</li></anyTrait></colonist>
+    <texts>
+      <li>{A_nameDef} stopped over the downed {X_nameDef}, spat in the dirt an inch from {X_possessive} face, and walked off whistling.</li>
+      <li>{A_nameDef} crouched by {X_nameDef} and explained, in some detail, how the fight could have gone even worse for {X_objective}. Then {A_nameDef} spat, smiled, and left.</li>
+      <li>{X_nameDef} asked {A_nameDef} for help. {A_nameDef} spat on {X_objective} and said that was all the help on offer today. A few people saw.</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncP_SpatOnRaider</thought></li>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Others</target><thought>Council_EncP_CruelToFallen</thought><onlyTrait><li>Kind</li></onlyTrait><chance>0.7</chance></li>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>X</target><thought>Council_EncP_Spat</thought></li>
+    </effects>
+    <notable>true</notable>
+  </ColonyCouncil.EncounterDef>
+
+  <ColonyCouncil.EncounterDef>
+    <defName>Council_EncP_FarewellPostponed</defName>
+    <label>a farewell, postponed</label>
+    <weight>0.7</weight>
+    <cooldownDays>8</cooldownDays>
+    <stranger><kind>Fallen</kind><adult>true</adult></stranger>
+    <texts>
+      <li>{X_nameDef} was sure this was the end and gave {A_nameDef} a long, trembling speech about {X_possessive} regrets. It was a sprained ankle. Both of them are embarrassed.</li>
+      <li>{X_nameDef} forgave {A_nameDef}, forgave the world, and asked {A_objective} to sing {X_objective} out. {A_nameDef} pointed out the wound was mostly bruise. {X_nameDef} asked for the song anyway.</li>
+      <li>{X_nameDef} said goodbye to {A_nameDef}, to the sky, and to someone called Bram. Then {X_nameDef} fell asleep and snored, very much alive.</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncP_FarewellPostponed</thought></li>
+    </effects>
+  </ColonyCouncil.EncounterDef>
+
+</Defs>
