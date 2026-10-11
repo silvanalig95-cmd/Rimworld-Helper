@@ -763,6 +763,15 @@
   <CC_Floor_Quick>quick to lay</CC_Floor_Quick>
   <CC_Floor_Medium>takes a while</CC_Floor_Medium>
   <CC_Floor_Slow>slow to lay</CC_Floor_Slow>
+  <CC_Floor_ShowLocked>Also show designs that still need research</CC_Floor_ShowLocked>
+  <CC_Floor_Locked>needs research</CC_Floor_Locked>
+  <CC_Floor_NeedsResearch>Needs research: {0}</CC_Floor_NeedsResearch>
+  <CC_Floor_CantBuild>The colony can't lay this yet.</CC_Floor_CantBuild>
+  <CC_Floor_HasMaterials>(choice of material)</CC_Floor_HasMaterials>
+  <CC_Floor_MaterialOf>{0}: pick the material</CC_Floor_MaterialOf>
+  <CC_Floor_MaterialHint>{0} needed for the whole room. Red: not enough in stock yet.</CC_Floor_MaterialHint>
+  <CC_Floor_NoMaterial>Nothing in stock this floor can be made of (untick "only floors we have the materials for" to see every option).</CC_Floor_NoMaterial>
+  <CC_Floor_MaterialChip>{0} ({1})</CC_Floor_MaterialChip>
   <CC_Floor_CostLine>{0} {1} for the room (have {2})</CC_Floor_CostLine>
 
   <!-- Justice, mercy, parties, rescues, hunts -->

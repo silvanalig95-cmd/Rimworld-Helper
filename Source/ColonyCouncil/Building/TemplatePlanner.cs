@@ -156,7 +156,7 @@ namespace ColonyCouncil
                 doorStuff = cfg.DoorStuff(doorDef, wallStuff, map),
                 floor = cfg.Floor(t, map)
             };
-            plan.floorStuff = plan.floor != null && plan.floor.MadeFromStuff ? Avail.BestStuff(plan.floor, map) : null;
+            plan.floorStuff = cfg.FloorStuff(plan.floor, map, t.size.x * t.size.z);
             bool cutPlants = S.planCutPlants, mineRock = S.planMineRock, replace = S.planReplaceOwn, smooth = S.planSmoothStone;
 
             int w = t.FullWidth, h = t.FullHeight;
@@ -654,6 +654,7 @@ namespace ColonyCouncil
             to.doorStuff = from.doorStuff;
             to.floorChosen = from.floorChosen;
             to.floor = from.floor;
+            to.floorStuff = from.floorStuff;
         }
 
         private static List<IntVec3> RoleCenters(Map map, List<string> roles)

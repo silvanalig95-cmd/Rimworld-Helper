@@ -7,9 +7,10 @@ using Verse;
 namespace ColonyCouncil
 {
     /// <summary>
-    /// The floor chooser for the room planner. Instead of one endless menu, floors are grouped into families
-    /// (stone tiles, carpets, ...) with one row each; the materials of a family are small buttons on that row.
-    /// By default it only shows what the colony has the materials for, enough for the whole room.
+    /// The floor chooser for the room planner. Floors are grouped into families (stone tiles, carpets, plank floors,
+    /// ...) with one row each and every design of the family as a small button on that row. A floor that can be made
+    /// of different materials (wood, stone, metal) gets a material row once chosen. By default it only shows what the
+    /// colony has the materials for; designs that still need research can be shown greyed out.
     /// </summary>
     public class Window_FloorPicker : Window
     {
@@ -20,19 +21,21 @@ namespace ColonyCouncil
         private readonly int area;
         private readonly List<Family> families;
         private static bool onlyAffordable = true;
+        private static bool showLocked;
         private Vector2 scroll;
         private float contentHeight = 300f;
 
         private static readonly Color Faint = new Color(0.7f, 0.7f, 0.7f);
         private static readonly Color Short = new Color(1f, 0.5f, 0.45f);
         private static readonly Color Chosen = new Color(0.55f, 0.85f, 0.55f);
+        private static readonly Color LockedColor = new Color(0.55f, 0.55f, 0.55f);
 
         private class Family
         {
             public string label;
             /// <summary>Most of the materials in stock first.</summary>
             public List<TerrainDef> members;
-            /// <summary>What tells the members apart ("granite", "marble"), or the full label for one-member families.</summary>
+            /// <summary>What tells the members apart ("granite", "parquet"), or the full label for one-member families.</summary>
             public Dictionary<TerrainDef, string> shortLabels;
         }
 
@@ -43,7 +46,7 @@ namespace ColonyCouncil
             this.map = map;
             this.near = near;
             area = Mathf.Max(1, template.size.x * template.size.z);
-            families = BuildFamilies(RoomPlanConfig.FloorOptions(map), map);
+            families = BuildFamilies(RoomPlanConfig.FloorOptions(map, true), map);
             layer = WindowLayer.GameUI;
             doCloseX = true;
             closeOnClickedOutside = true;
@@ -56,7 +59,7 @@ namespace ColonyCouncil
 
         protected override float Margin => 10f;
 
-        public override Vector2 InitialSize => new Vector2(430f, 520f);
+        public override Vector2 InitialSize => new Vector2(460f, 580f);
 
         protected override void SetInitialSizeAndPosition()
         {
@@ -77,6 +80,24 @@ namespace ColonyCouncil
             Find.WindowStack.Add(new Window_FloorPicker(t, cfg, map, near));
         }
 
+        // ---------------- Materials ----------------
+
+        private ThingDef StuffFor(TerrainDef f) => f == null || !f.MadeFromStuff ? null : f == cfg.Floor(template, map) ? cfg.FloorStuff(f, map, area) : Avail.BestStuff(f, map, f.CostStuffCount * area);
+
+        private bool Locked(TerrainDef f) => !Avail.CanBuild(f, map);
+
+        private bool Affordable(TerrainDef f, ThingDef stuff)
+        {
+            if (f.MadeFromStuff && stuff == null) return false;
+            foreach (var c in f.CostListAdjusted(stuff, false))
+                if (map.resourceCounter.GetCount(c.thingDef) < c.count * area) return false;
+            return true;
+        }
+
+        private bool Affordable(TerrainDef f) => Affordable(f, StuffFor(f));
+
+        // ---------------- Drawing ----------------
+
         public override void DoWindowContents(Rect inRect)
         {
             var current = cfg.Floor(template, map);
@@ -88,21 +109,28 @@ namespace ColonyCouncil
 
             // Quick picks: none, and what the plan would use on its own.
             float bx = inRect.x;
-            if (QuickButton(ref bx, y, "CC_Planner_NoFloor".Translate(), current == null)) Pick(null);
+            if (QuickButton(ref bx, y, "CC_Planner_NoFloor".Translate(), current == null)) Pick(null, true);
             var suggested = template.ResolveFloor(map);
-            if (suggested != null && QuickButton(ref bx, y, "CC_Floor_Suggested".Translate(suggested.label), current == suggested)) Pick(suggested);
+            if (suggested != null && QuickButton(ref bx, y, "CC_Floor_Suggested".Translate(suggested.label), current == suggested)) Pick(suggested, !suggested.MadeFromStuff);
             y += 30f;
             Widgets.CheckboxLabeled(new Rect(inRect.x, y, inRect.width, 24f), "CC_Floor_OnlyAffordable".Translate(area), ref onlyAffordable);
+            y += 26f;
+            Widgets.CheckboxLabeled(new Rect(inRect.x, y, inRect.width, 24f), "CC_Floor_ShowLocked".Translate(), ref showLocked);
             y += 28f;
 
             var outRect = new Rect(inRect.x, y, inRect.width, inRect.yMax - y - 22f);
             var viewRect = new Rect(0f, 0f, outRect.width - 16f, contentHeight);
             Widgets.BeginScrollView(outRect, ref scroll, viewRect);
             float cy = 0f;
+            // The floor chosen now, with its material if it has one.
+            if (current != null && current.MadeFromStuff)
+            {
+                cy += DrawMaterials(current, viewRect.width, cy) + 8f;
+            }
             int hidden = 0;
             foreach (var fam in families)
             {
-                var shown = onlyAffordable ? fam.members.Where(f => Affordable(f) || f == current).ToList() : fam.members;
+                var shown = fam.members.Where(f => f == current || ((showLocked || !Locked(f)) && (!onlyAffordable || Locked(f) || Affordable(f)))).ToList();
                 if (shown.Count == 0)
                 {
                     hidden++;
@@ -131,6 +159,55 @@ namespace ColonyCouncil
             GUI.color = Color.white;
         }
 
+        /// <summary>The material row for a floor made of wood, stone or metal: every allowed material, stock first.</summary>
+        private float DrawMaterials(TerrainDef floor, float width, float y)
+        {
+            var chosen = cfg.FloorStuff(floor, map, area);
+            int need = floor.CostStuffCount * area;
+            var options = GenStuff.AllowedStuffsFor(floor)
+                .Where(s => s == chosen || !onlyAffordable || map.resourceCounter.GetCount(s) >= need)
+                .OrderByDescending(s => map.resourceCounter.GetCount(s))
+                .ThenBy(s => s.label)
+                .ToList();
+            const float iconSize = 36f;
+            float textX = iconSize + 8f;
+            float textW = width - textX;
+            var labels = options.Select(s => "CC_Floor_MaterialChip".Translate(s.LabelAsStuff.CapitalizeFirst(), map.resourceCounter.GetCount(s)).ToString()).ToList();
+            float chipsH = ChipsHeight(labels, textW);
+            float h = 48f + chipsH;
+            var row = new Rect(0f, y, width, h);
+            Widgets.DrawBoxSolid(row, new Color(0.3f, 0.45f, 0.3f, 0.25f));
+            Widgets.DefIcon(new Rect(4f, y + 4f, iconSize, iconSize), floor, chosen);
+            Widgets.Label(new Rect(textX, y + 2f, textW, 24f), "CC_Floor_MaterialOf".Translate(GenLabel.ThingLabel(floor, chosen).CapitalizeFirst()));
+            GUI.color = Faint;
+            Text.Font = GameFont.Tiny;
+            Widgets.Label(new Rect(textX, y + 22f, textW, 20f), options.Count > 0 ? "CC_Floor_MaterialHint".Translate(need).ToString() : "CC_Floor_NoMaterial".Translate().ToString());
+            Text.Font = GameFont.Small;
+            GUI.color = Color.white;
+            float cx = textX, cyy = y + 44f;
+            for (int i = 0; i < options.Count; i++)
+            {
+                var s = options[i];
+                float w = Text.CalcSize(labels[i]).x + 14f;
+                if (cx + w > width && cx > textX)
+                {
+                    cx = textX;
+                    cyy += 26f;
+                }
+                var r = new Rect(cx, cyy, w, 24f);
+                GUI.color = s == chosen ? Chosen : map.resourceCounter.GetCount(s) >= need ? Color.white : Short;
+                if (Widgets.ButtonText(r, labels[i]))
+                {
+                    cfg.floorStuff = s;
+                    cfg.Changed();
+                }
+                GUI.color = Color.white;
+                TooltipHandler.TipRegion(r, Tip(floor, s));
+                cx += w + 4f;
+            }
+            return h;
+        }
+
         private float DrawFamily(Family fam, List<TerrainDef> shown, TerrainDef current, float width, float y)
         {
             bool hasCurrent = current != null && fam.members.Contains(current);
@@ -139,20 +216,22 @@ namespace ColonyCouncil
             float textX = iconSize + 8f;
             float textW = width - textX;
 
-            // Chips for families with several materials; a whole-row click for the rest.
+            // Chips for families with several designs; a whole-row click for the rest.
             bool chips = fam.members.Count > 1;
-            float chipsHeight = chips ? ChipsHeight(fam, shown, textW) : 0f;
+            float chipsHeight = chips ? ChipsHeight(shown.Select(f => fam.shortLabels[f]).ToList(), textW) : 0f;
             float h = Mathf.Max(iconSize + 8f, 46f + chipsHeight);
             var row = new Rect(0f, y, width, h);
             if (hasCurrent) Widgets.DrawBoxSolid(row, new Color(0.3f, 0.45f, 0.3f, 0.25f));
             else Widgets.DrawLightHighlight(row);
             Widgets.DrawHighlightIfMouseover(row);
 
-            Widgets.DefIcon(new Rect(4f, y + 4f, iconSize, iconSize), rep);
-            Widgets.Label(new Rect(textX, y + 2f, textW, 24f), fam.label.CapitalizeFirst());
+            Widgets.DefIcon(new Rect(4f, y + 4f, iconSize, iconSize), rep, StuffFor(rep));
+            string title = fam.label.CapitalizeFirst();
+            if (fam.members.Any(m => m.MadeFromStuff)) title += "  " + "CC_Floor_HasMaterials".Translate();
+            Widgets.Label(new Rect(textX, y + 2f, textW, 24f), title);
             GUI.color = Faint;
             Text.Font = GameFont.Tiny;
-            Widgets.Label(new Rect(textX, y + 22f, textW, 20f), Stats(rep));
+            Widgets.Label(new Rect(textX, y + 22f, textW, 20f), Stats(rep, StuffFor(rep)));
             Text.Font = GameFont.Small;
             GUI.color = Color.white;
 
@@ -170,38 +249,40 @@ namespace ColonyCouncil
                         cyy += 26f;
                     }
                     var r = new Rect(cx, cyy, w, 24f);
-                    bool affordable = Affordable(f);
-                    GUI.color = f == current ? Chosen : affordable ? Color.white : Short;
-                    if (Widgets.ButtonText(r, label)) Pick(f);
+                    bool locked = Locked(f);
+                    GUI.color = f == current ? Chosen : locked ? LockedColor : Affordable(f) ? Color.white : Short;
+                    if (Widgets.ButtonText(r, label, true, true, !locked) && !locked) Pick(f, !f.MadeFromStuff);
                     GUI.color = Color.white;
-                    TooltipHandler.TipRegion(r, Tip(f));
+                    TooltipHandler.TipRegion(r, Tip(f, StuffFor(f)));
                     cx += w + 4f;
                 }
             }
             else
             {
                 var f = shown[0];
-                if (!Affordable(f))
+                bool locked = Locked(f);
+                string flag = locked ? "CC_Floor_Locked".Translate().ToString() : !Affordable(f) ? "CC_Floor_Short".Translate().ToString() : null;
+                if (flag != null)
                 {
-                    GUI.color = Short;
+                    GUI.color = locked ? LockedColor : Short;
                     Text.Font = GameFont.Tiny;
-                    Widgets.Label(new Rect(width - 90f, y + 4f, 86f, 20f), "CC_Floor_Short".Translate());
+                    Widgets.Label(new Rect(width - 110f, y + 4f, 106f, 20f), flag);
                     Text.Font = GameFont.Small;
                     GUI.color = Color.white;
                 }
-                TooltipHandler.TipRegion(row, Tip(f));
-                if (Widgets.ButtonInvisible(row)) Pick(f);
+                TooltipHandler.TipRegion(row, Tip(f, StuffFor(f)));
+                if (!locked && Widgets.ButtonInvisible(row)) Pick(f, !f.MadeFromStuff);
             }
             return h;
         }
 
-        private static float ChipsHeight(Family fam, List<TerrainDef> shown, float width)
+        private static float ChipsHeight(List<string> labels, float width)
         {
             float cx = 0f;
             int lines = 1;
-            foreach (var f in shown)
+            foreach (var l in labels)
             {
-                float w = Text.CalcSize(fam.shortLabels[f]).x + 14f;
+                float w = Text.CalcSize(l).x + 14f;
                 if (cx + w > width && cx > 0f)
                 {
                     cx = 0f;
@@ -223,38 +304,41 @@ namespace ColonyCouncil
             return clicked;
         }
 
-        private void Pick(TerrainDef f)
+        /// <summary>Chooses a floor. One that comes in several materials keeps the window open so the material can be picked.</summary>
+        private void Pick(TerrainDef f, bool close)
         {
             cfg.floorChosen = true;
             cfg.floor = f;
+            if (f != null && f.MadeFromStuff && cfg.floorStuff != null && !GenStuff.AllowedStuffsFor(f).Contains(cfg.floorStuff)) cfg.floorStuff = null;
             cfg.Changed();
-            Close();
+            if (close) Close();
+            else scroll = Vector2.zero;
         }
 
-        private bool Affordable(TerrainDef f)
-        {
-            foreach (var c in f.CostListAdjusted(null, false))
-                if (map.resourceCounter.GetCount(c.thingDef) < c.count * area) return false;
-            return true;
-        }
-
-        private static string Stats(TerrainDef f)
+        private static string Stats(TerrainDef f, ThingDef stuff)
         {
             var parts = new List<string>();
-            float beauty = f.GetStatValueAbstract(StatDefOf.Beauty);
-            float clean = f.GetStatValueAbstract(StatDefOf.Cleanliness);
+            float beauty = f.GetStatValueAbstract(StatDefOf.Beauty, stuff);
+            float clean = f.GetStatValueAbstract(StatDefOf.Cleanliness, stuff);
             if (beauty != 0f) parts.Add("CC_Floor_Beauty".Translate(beauty.ToStringByStyle(ToStringStyle.FloatMaxOne, ToStringNumberSense.Offset)));
             if (clean != 0f) parts.Add("CC_Floor_Clean".Translate(clean.ToStringByStyle(ToStringStyle.FloatMaxOne, ToStringNumberSense.Offset)));
-            float work = f.GetStatValueAbstract(StatDefOf.WorkToBuild);
+            float work = f.GetStatValueAbstract(StatDefOf.WorkToBuild, stuff);
             parts.Add(work <= 300f ? "CC_Floor_Quick".Translate() : work >= 1500f ? "CC_Floor_Slow".Translate() : "CC_Floor_Medium".Translate());
             return string.Join("  ·  ", parts);
         }
 
-        private string Tip(TerrainDef f)
+        private string Tip(TerrainDef f, ThingDef stuff)
         {
-            var lines = new List<string> { f.LabelCap.ToString() };
+            var lines = new List<string> { GenLabel.ThingLabel(f, stuff).CapitalizeFirst() };
             if (!f.description.NullOrEmpty()) lines.Add(f.description);
-            var cost = f.CostListAdjusted(null, false);
+            if (Locked(f))
+            {
+                var missing = f.researchPrerequisites?.Where(r => !r.IsFinished).Select(r => r.LabelCap.ToString()).ToList();
+                lines.Add("");
+                lines.Add(missing != null && missing.Count > 0 ? "CC_Floor_NeedsResearch".Translate(string.Join(", ", missing)).ToString() : "CC_Floor_CantBuild".Translate().ToString());
+            }
+            if (f.MadeFromStuff && stuff == null) return string.Join("\n", lines);
+            var cost = f.CostListAdjusted(stuff, false);
             if (cost.Count > 0)
             {
                 lines.Add("");
@@ -264,13 +348,25 @@ namespace ColonyCouncil
             return string.Join("\n", lines);
         }
 
+        // ---------------- Families ----------------
+
         private static List<Family> BuildFamilies(List<TerrainDef> floors, Map map)
         {
+            // Designs the game groups in one Architect dropdown belong together; so do floors without a dropdown
+            // whose labels differ only in their first word ("granite tile", "marble tile"; "oak plank floor", ...).
+            string Key(TerrainDef f)
+            {
+                if (f.designatorDropdown != null) return "dd:" + f.designatorDropdown.defName;
+                string stem = Stem(f.label);
+                if (stem != null && floors.Count(o => o.designatorDropdown == null && Stem(o.label) == stem) > 1) return "stem:" + stem;
+                return "floor:" + f.defName;
+            }
             var result = new List<Family>();
-            foreach (var group in floors.GroupBy(f => f.designatorDropdown?.defName ?? "floor:" + f.defName))
+            foreach (var group in floors.GroupBy(Key))
             {
                 var members = group
-                    .OrderByDescending(f => f.CostListAdjusted(null, false).Select(c => map.resourceCounter.GetCount(c.thingDef) / Mathf.Max(1, c.count)).DefaultIfEmpty(int.MaxValue).Min())
+                    .OrderByDescending(f => Avail.CanBuild(f, map) ? 1 : 0)
+                    .ThenByDescending(f => Stock(f, map))
                     .ThenBy(f => f.label)
                     .ToList();
                 var fam = new Family { members = members, shortLabels = new Dictionary<TerrainDef, string>() };
@@ -283,20 +379,42 @@ namespace ColonyCouncil
                 {
                     var dd = members[0].designatorDropdown;
                     string suffix = CommonSuffix(members.Select(m => m.label).ToList());
-                    fam.label = !dd.label.NullOrEmpty() ? dd.label : !suffix.NullOrEmpty() ? suffix : members[0].label;
+                    fam.label = dd != null && !dd.label.NullOrEmpty() ? dd.label : !suffix.NullOrEmpty() ? suffix : members[0].label;
                     foreach (var m in members)
                     {
                         string s = m.label;
                         if (!suffix.NullOrEmpty() && s.Length > suffix.Length && s.EndsWith(suffix)) s = s.Substring(0, s.Length - suffix.Length).Trim();
                         fam.shortLabels[m] = s.CapitalizeFirst();
                     }
+                    // Two designs that would read the same: fall back to their full labels.
+                    if (fam.shortLabels.Values.Distinct().Count() < members.Count)
+                        foreach (var m in members) fam.shortLabels[m] = m.LabelCap;
                 }
                 result.Add(fam);
             }
             return result
-                .OrderBy(f => f.members.Min(m => m.GetStatValueAbstract(StatDefOf.WorkToBuild)))
+                .OrderByDescending(f => f.members.Any(m => Avail.CanBuild(m, map)) ? 1 : 0)
+                .ThenBy(f => f.members.Min(m => m.GetStatValueAbstract(StatDefOf.WorkToBuild)))
                 .ThenBy(f => f.label)
                 .ToList();
+        }
+
+        /// <summary>How many rooms' worth of the scarcest material is in stock (best material for floors made of one).</summary>
+        private static int Stock(TerrainDef f, Map map)
+        {
+            var stuff = f.MadeFromStuff ? Avail.BestStuff(f, map) : null;
+            if (f.MadeFromStuff && stuff == null) return 0;
+            return f.CostListAdjusted(stuff, false).Select(c => map.resourceCounter.GetCount(c.thingDef) / Mathf.Max(1, c.count)).DefaultIfEmpty(int.MaxValue).Min();
+        }
+
+        /// <summary>The label without its first word, if what's left is specific enough to group by ("tile" yes, "floor" no).</summary>
+        private static string Stem(string label)
+        {
+            if (label.NullOrEmpty()) return null;
+            var words = label.ToLowerInvariant().Split(' ');
+            if (words.Length < 2) return null;
+            string stem = string.Join(" ", words.Skip(1));
+            return stem == "floor" || stem == "floors" || stem == "flooring" ? null : stem;
         }
 
         /// <summary>The words all labels end with: "granite tile" + "marble tile" give "tile".</summary>

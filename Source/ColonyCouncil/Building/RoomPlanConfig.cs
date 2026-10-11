@@ -22,6 +22,8 @@ namespace ColonyCouncil
         /// <summary>False until the player picks a floor; then <see cref="floor"/> is used (null = no floor).</summary>
         public bool floorChosen;
         public TerrainDef floor;
+        /// <summary>The material for a floor that can be made of different ones (null = whatever there's most of).</summary>
+        public ThingDef floorStuff;
         public readonly Dictionary<string, ThingDef> variant = new Dictionary<string, ThingDef>();
         public readonly Dictionary<string, ThingDef> stuff = new Dictionary<string, ThingDef>();
 
@@ -74,6 +76,14 @@ namespace ColonyCouncil
 
         public TerrainDef Floor(RoomTemplateDef t, Map map) => floorChosen ? floor : t.ResolveFloor(map);
 
+        /// <summary>The floor's material: the player's pick if it suits this floor, else whatever there's most of.</summary>
+        public ThingDef FloorStuff(TerrainDef f, Map map, int cells = -1)
+        {
+            if (f == null || !f.MadeFromStuff) return null;
+            if (floorStuff != null && GenStuff.AllowedStuffsFor(f).Contains(floorStuff)) return floorStuff;
+            return Avail.BestStuff(f, map, cells > 0 ? f.CostStuffCount * cells : -1);
+        }
+
         /// <summary>Single-cell doors the colony can build (simple doors, autodoors, modded ones).</summary>
         public static List<ThingDef> DoorOptions(Map map)
         {
@@ -84,14 +94,22 @@ namespace ColonyCouncil
                 .ToList();
         }
 
-        /// <summary>Floors the colony can lay, cheapest work first.</summary>
-        public static List<TerrainDef> FloorOptions(Map map)
+        /// <summary>
+        /// Floors the colony can lay (with <paramref name="includeLocked"/>, also those still waiting on research),
+        /// cheapest work first. Any player-buildable terrain you can walk on counts, so modded floors that don't use
+        /// the vanilla floor template show up too; bridges, ship substructure, water and soil don't.
+        /// </summary>
+        public static List<TerrainDef> FloorOptions(Map map, bool includeLocked = false)
         {
             return DefDatabase<TerrainDef>.AllDefsListForReading
-                .Where(f => f.BuildableByPlayer && f.layerable && !f.bridge && Avail.CanBuild(f, map))
+                .Where(f => IsFloor(f) && (includeLocked || Avail.CanBuild(f, map)))
                 .OrderBy(f => f.GetStatValueAbstract(StatDefOf.WorkToBuild))
                 .ToList();
         }
+
+        public static bool IsFloor(TerrainDef f) =>
+            f != null && f.BuildableByPlayer && !f.bridge && !f.IsSubstructure && !f.IsWater
+            && f.passability != Traversability.Impassable && f.fertility <= 0f;
 
         /// <summary>Materials worth offering: anything in stock, plus the current pick.</summary>
         public static List<ThingDef> StuffOptions(BuildableDef def, Map map, ThingDef current)

@@ -177,7 +177,7 @@ namespace ColonyCouncil
                 cfg.Changed();
             }));
             var floor = cfg.Floor(t, map);
-            y = PickRow(y, w, "CC_Planner_Floor".Translate(), floor != null ? floor.LabelCap.ToString() : "CC_Planner_NoFloor".Translate().ToString(), null,
+            y = PickRow(y, w, "CC_Planner_Floor".Translate(), floor != null ? GenLabel.ThingLabel(floor, cfg.FloorStuff(floor, map, t.size.x * t.size.z)).CapitalizeFirst() : "CC_Planner_NoFloor".Translate().ToString(), null,
                 () => Window_FloorPicker.Open(t, cfg, map, windowRect));
 
             // Furniture
