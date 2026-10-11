@@ -276,6 +276,7 @@ namespace ColonyCouncil
         public void Grant(Wish w)
         {
             using var _cause = Causes.Push(WishCause(w, "CC_Cause_WishGranted"));
+            character.Shift(w.def.ways, WishCause(w, "CC_Cause_WishGranted"));
             var s = Settings;
             var who = w.Beneficiary;
             GiveThought(who, w.def.grantedThought);
@@ -628,6 +629,7 @@ namespace ColonyCouncil
             Safe("vendettas", () => vendettas.Daily(this));
             Safe("quirks", () => quirks.Daily(this));
             Safe("legacy", () => legacy.Daily(this));
+            Safe("character", () => character.Daily(this));
             if (Settings.offices && offices.Speaker != null)
                 Safe("speaker", () =>
                 {

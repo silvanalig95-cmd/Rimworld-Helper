@@ -28,6 +28,11 @@ namespace ColonyCouncil
         public string journal;
         /// <summary>Worth a message at the "notable" level and a chronicle line.</summary>
         public bool notable;
+        /// <summary>Only for a colony known this way (see DilemmaDef.colonyIs).</summary>
+        public List<string> colonyIs;
+        public List<string> colonyIsNot;
+        /// <summary>How this moment shapes the colony's character (small: it's one colonist's doing).</summary>
+        public WayShift ways;
 
         public override IEnumerable<string> ConfigErrors()
         {
@@ -119,7 +124,8 @@ namespace ColonyCouncil
                 && (only == null || only(d))
                 && (!lastTick.TryGetValue(d.defName, out int t) || now - t > d.cooldownDays * GenDate.TicksPerDay)
                 && (d.seasons.NullOrEmpty() || d.seasons.Contains(season))
-                && (!d.nightOnly || night) && (!d.dayOnly || !night)).ToList();
+                && (!d.nightOnly || night) && (!d.dayOnly || !night)
+                && ((d.colonyIs.NullOrEmpty() && d.colonyIsNot.NullOrEmpty()) || comp.character.Fits(d.colonyIs, d.colonyIsNot))).ToList();
             foreach (var def in pool.InRandomOrder().OrderByDescending(d => d.weight * Rand.Value))
             {
                 Pawn a = null, x = null;
@@ -175,6 +181,7 @@ namespace ColonyCouncil
                     CouncilLog.ErrorOnce("encounter effect " + def.defName, ex);
                 }
             }
+            comp.character.Shift(def.ways, text);
             Notify.Message(text, new LookTargets(a, x), MessageTypeDefOf.SilentInput, def.notable ? Importance.Notable : Importance.Flavor);
             if (def.notable) comp.AddChronicle(new ChronicleEntry(ChronicleKind.Stranger, text, a));
             if (!def.journal.NullOrEmpty()) comp.journals.Write(a, def.journal, null, x.Named("X"));

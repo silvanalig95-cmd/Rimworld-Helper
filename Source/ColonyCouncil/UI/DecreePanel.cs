@@ -63,9 +63,12 @@ namespace ColonyCouncil
             string reactions = Reactions(def, pawns);
             var req = tracker.RequestFor(def);
             string petition = req?.pawn == null ? null : (req.repeal ? "CC_Decree_RepealLine" : "CC_Decree_PetitionLine").Translate(req.pawn.Named("PAWN")).Resolve() + (req.line != null ? " \"" + req.line + "\"" : "");
+            int fatigue = active == null ? tracker.Fatigue(def) : 0;
+            string warning = fatigue > 0 ? "CC_Decree_FatigueWarn".Translate(fatigue, Mathf.RoundToInt(DecreeTracker.FatigueDays), tracker.UnrestChance(def, false).ToStringPercent()).Resolve() : null;
             Text.Font = GameFont.Small;
             h += Text.CalcHeight(title, textW) + Text.CalcHeight(def.description, textW) + Text.CalcHeight(effects, textW) + Text.CalcHeight(reactions, textW) + 22f;
             if (petition != null) h += Text.CalcHeight(petition, textW) + 2f;
+            if (warning != null) h += Text.CalcHeight(warning, textW) + 2f;
             h = Mathf.Max(h, 70f);
             var box = new Rect(0f, y, width, h);
             if (active != null) Widgets.DrawBoxSolid(box, new Color(0.3f, 0.45f, 0.3f, 0.25f));
@@ -74,6 +77,7 @@ namespace ColonyCouncil
             float cy = y + 6f;
             cy += Label(8f, cy, textW, title, active != null ? Good : Color.white);
             if (petition != null) cy += Label(8f, cy, textW, petition, new Color(1f, 0.85f, 0.45f)) + 2f;
+            if (warning != null) cy += Label(8f, cy, textW, warning, Bad) + 2f;
             cy += Label(8f, cy, textW, def.description, Faint) + 2f;
             cy += Label(8f, cy, textW, effects, Color.white) + 2f;
             Label(8f, cy, textW, reactions, Faint);
@@ -93,11 +97,28 @@ namespace ColonyCouncil
                 }
                 else
                 {
+                    // Only the cooldown stands in the way: it can be forced through, at a price.
+                    bool forcible = tracker.CannotEnact(def, true) == null;
+                    var whyRect = forcible ? new Rect(btn.x, btn.y - 4f, btn.width, 24f) : btn;
                     Text.Anchor = TextAnchor.MiddleCenter;
                     GUI.color = Faint;
-                    Widgets.Label(btn, why);
+                    Widgets.Label(whyRect, why);
                     GUI.color = Color.white;
                     Text.Anchor = TextAnchor.UpperLeft;
+                    if (forcible)
+                    {
+                        var forceBtn = new Rect(btn.x, btn.y + 22f, btn.width, 28f);
+                        string chance = tracker.UnrestChance(def, true).ToStringPercent();
+                        TooltipHandler.TipRegion(forceBtn, "CC_Decree_ForceTip".Translate(chance));
+                        if (Widgets.ButtonText(forceBtn, "CC_Decree_Force".Translate()))
+                        {
+                            var against = pawns.Where(p => def.ReactionOf(p) <= DecreeReaction.Dislike).Select(p => p.LabelShort).ToList();
+                            string who = against.Count > 0 ? string.Join(", ", against) : "CC_Decree_ForceNobody".Translate().ToString();
+                            Find.WindowStack.Add(Dialog_MessageBox.CreateConfirmation(
+                                "CC_Decree_ForceConfirm".Translate(def.label.Named("DECREE"), who.Named("WHO"), chance.Named("CHANCE")).Resolve(),
+                                () => tracker.Enact(def, comp, true), true));
+                        }
+                    }
                 }
             }
             return h;

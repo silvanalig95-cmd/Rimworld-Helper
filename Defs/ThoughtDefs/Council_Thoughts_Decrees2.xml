@@ -99,4 +99,22 @@
     <stages><li><label>lost the vote to them</label><description>I should have had that seat. Everyone knows it. Apparently not everyone.</description><baseMoodEffect>-3</baseMoodEffect><baseOpinionOffset>-8</baseOpinionOffset></li></stages>
   </ThoughtDef>
 
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_Decree_Again</defName>
+    <durationDays>6</durationDays>
+    <stages><li><label>that decree again</label><description>We only just got through it, and the council orders it all over again. Do they even listen?</description><baseMoodEffect>-3</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Council_ColonyWays</defName>
+    <workerClass>ColonyCouncil.ThoughtWorker_ColonyWays</workerClass>
+    <thoughtClass>ColonyCouncil.Thought_ColonyWays</thoughtClass>
+    <stages>
+      <li><label>ashamed of our ways</label><description>This isn't the colony I wanted to belong to. I hear what people say about us, and they're right.</description><baseMoodEffect>-4</baseMoodEffect></li>
+      <li><label>uneasy about our ways</label><description>The colony is turning into something I don't much like.</description><baseMoodEffect>-2</baseMoodEffect></li>
+      <li><label>like our ways</label><description>This colony does things the way I would. It's good to belong here.</description><baseMoodEffect>2</baseMoodEffect></li>
+      <li><label>proud of our ways</label><description>People know what this colony stands for, and so do I. I'm proud to be one of us.</description><baseMoodEffect>4</baseMoodEffect></li>
+    </stages>
+  </ThoughtDef>
+
 </Defs>

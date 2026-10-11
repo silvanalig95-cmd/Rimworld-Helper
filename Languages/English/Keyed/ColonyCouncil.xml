@@ -1386,4 +1386,74 @@ Keys: the game's "slower" key ({0}) steps below normal speed, "faster" ({1}) ste
   <CC_Cause_Quirk>their quirk: {0}.</CC_Cause_Quirk>
   <CC_Cause_Trust>lately, with the council:\n{0}</CC_Cause_Trust>
 
+  <!-- Decree fatigue: the same decree again, or forced through its cooldown -->
+  <CC_Decree_FatigueWarn>Enacted {0} time(s) in the last {1} days. Again, and those against it will trust the council less and resent it more; {2} chance someone snaps.</CC_Decree_FatigueWarn>
+  <CC_Decree_Force>Force it through</CC_Decree_Force>
+  <CC_Decree_ForceTip>People aren't ready for this again yet. You can push it through anyway: those against it lose trust in the council and resent it more for every recent time, and there's a {0} chance someone snaps.</CC_Decree_ForceTip>
+  <CC_Decree_ForceNobody>nobody yet</CC_Decree_ForceNobody>
+  <CC_Decree_ForceConfirm>Force "{DECREE}" through before people are ready for it again?
+
+Those against it ({WHO}) will trust the council less and resent it more than usual. There's a {CHANCE} chance someone snaps.</CC_Decree_ForceConfirm>
+  <CC_Decree_UnrestReason>the decree "{0}", again</CC_Decree_UnrestReason>
+  <CC_Decree_Unrest>{PAWN_nameDef} has had enough of "{DECREE}" and snapped.</CC_Decree_Unrest>
+  <CC_Decree_UnrestForced>The council forced "{DECREE}" through early, and {PAWN_nameDef} snapped.</CC_Decree_UnrestForced>
+  <CC_Log_DecreeAgain>{0}, again</CC_Log_DecreeAgain>
+  <CC_Cause_DecreeAgain>the council enacted "{0}" again, too soon.</CC_Cause_DecreeAgain>
+  <CC_Cause_DecreeAgainNote>Enacted again too soon: resented {0} more.</CC_Cause_DecreeAgainNote>
+  <CC_Cause_DecreeForcedNote>Forced through before its time: resented {0} more.</CC_Cause_DecreeForcedNote>
+
+  <!-- Colony character -->
+  <CC_Tab_Ways>Our ways</CC_Tab_Ways>
+  <CC_Settings_Character>The colony's character</CC_Settings_Character>
+  <CC_Settings_Character_Tip>The council's choices add up to a reputation: merciful or harsh, generous or thrifty, traditional or restless, open or guarded, hard-working or easygoing. Colonists approve or chafe by nature, neighbors hear of it, and some encounters and dilemmas only come up for a colony with a certain name. Old deeds slowly fade.</CC_Settings_Character_Tip>
+
+  <CC_Way_Mercy_Pos>merciful</CC_Way_Mercy_Pos>
+  <CC_Way_Mercy_Neg>harsh</CC_Way_Mercy_Neg>
+  <CC_Way_Generosity_Pos>generous</CC_Way_Generosity_Pos>
+  <CC_Way_Generosity_Neg>thrifty</CC_Way_Generosity_Neg>
+  <CC_Way_Tradition_Pos>traditional</CC_Way_Tradition_Pos>
+  <CC_Way_Tradition_Neg>restless</CC_Way_Tradition_Neg>
+  <CC_Way_Openness_Pos>open</CC_Way_Openness_Pos>
+  <CC_Way_Openness_Neg>guarded</CC_Way_Openness_Neg>
+  <CC_Way_Toil_Pos>hard-working</CC_Way_Toil_Pos>
+  <CC_Way_Toil_Neg>easygoing</CC_Way_Toil_Neg>
+
+  <CC_Ways_More>more {0}</CC_Ways_More>
+  <CC_Ways_Bit>a little more {0}</CC_Ways_Bit>
+
+  <CC_Ways_KnownLabel>Known as {0}</CC_Ways_KnownLabel>
+  <CC_Ways_RenownedLabel>Renowned as {0}</CC_Ways_RenownedLabel>
+  <CC_Ways_Known>Word has spread: the colony is becoming known as {0}. The council's choices have added up to a name.</CC_Ways_Known>
+  <CC_Ways_Renowned>The colony is renowned as {0}. Travelers repeat it at every fire, and the colonists hear it said of them.</CC_Ways_Renowned>
+  <CC_Ways_Meaning_Mercy_Pos>Kind souls are proud of it; the bloodthirsty think the colony has gone soft. Desperate strangers may come looking for sanctuary.</CC_Ways_Meaning_Mercy_Pos>
+  <CC_Ways_Meaning_Mercy_Neg>The bloodthirsty approve; kind souls are troubled by it. Some will think twice before crossing the colony, and some will never trust it.</CC_Ways_Meaning_Mercy_Neg>
+  <CC_Ways_Meaning_Generosity_Pos>Kind and simple souls approve; the greedy grumble. Neighbors warm to the colony over time, and those in need remember it.</CC_Ways_Meaning_Generosity_Pos>
+  <CC_Ways_Meaning_Generosity_Neg>The greedy approve; the kind find it mean. Neighbors cool a little towards a colony that keeps everything for itself.</CC_Ways_Meaning_Generosity_Neg>
+  <CC_Ways_Meaning_Tradition_Pos>The old are glad of it; the young find it stifling. Customs and celebrations matter more here.</CC_Ways_Meaning_Tradition_Pos>
+  <CC_Ways_Meaning_Tradition_Neg>The young love it; the old miss how things were. Something is always being tried for the first time.</CC_Ways_Meaning_Tradition_Neg>
+  <CC_Ways_Meaning_Openness_Pos>Kind and sociable souls approve; the abrasive don't. Neighbors warm to the colony, and more strangers stop by.</CC_Ways_Meaning_Openness_Pos>
+  <CC_Ways_Meaning_Openness_Neg>The abrasive approve; kind and sociable souls feel hemmed in. Neighbors cool a little, and strangers keep their distance.</CC_Ways_Meaning_Openness_Neg>
+  <CC_Ways_Meaning_Toil_Pos>The industrious are proud of it; the lazy feel ground down.</CC_Ways_Meaning_Toil_Pos>
+  <CC_Ways_Meaning_Toil_Neg>The lazy love it; the industrious wonder when anyone gets anything done.</CC_Ways_Meaning_Toil_Neg>
+  <CC_Ways_Fading>The colony is no longer known as {0}. Memories are short.</CC_Ways_Fading>
+  <CC_Ways_WordGood>Word of the colony's {1} ways reached {0}. Goodwill {2}.</CC_Ways_WordGood>
+  <CC_Ways_WordBad>{0} heard the colony is {1}. Goodwill {2}.</CC_Ways_WordBad>
+
+  <CC_Ways_Likes>the colony being {0} suits them</CC_Ways_Likes>
+  <CC_Ways_Dislikes>the colony being {0} grates on them</CC_Ways_Dislikes>
+  <CC_Ways_Why_Dilemma>{0}: {1}</CC_Ways_Why_Dilemma>
+  <CC_Ways_Why_Decree>The decree "{0}"</CC_Ways_Why_Decree>
+
+  <CC_Ways_Off>The colony's character is switched off in the mod settings.</CC_Ways_Off>
+  <CC_Ways_KnownAs>Known as {0}</CC_Ways_KnownAs>
+  <CC_Ways_NoName>The colony has no particular name yet</CC_Ways_NoName>
+  <CC_Ways_Intro>Every council answer, decree and granted wish says something about who the colony is. Lean far enough one way and word spreads; old deeds slowly fade, so the colony can change. Colonists approve or chafe by nature.</CC_Ways_Intro>
+  <CC_Ways_Value>Now: {0} (known at 25, renowned at 60)</CC_Ways_Value>
+  <CC_Ways_Proud>Proud of our ways</CC_Ways_Proud>
+  <CC_Ways_Chafe>Chafing at our ways</CC_Ways_Chafe>
+  <CC_Ways_Nobody>Nobody, for now.</CC_Ways_Nobody>
+  <CC_Ways_History>What shaped us</CC_Ways_History>
+  <CC_Ways_NoHistory>Nothing yet. The council's choices will shape the colony's ways.</CC_Ways_NoHistory>
+  <CC_Ways_HistoryLine>{0}. {1}: {2}</CC_Ways_HistoryLine>
+
 </LanguageData>

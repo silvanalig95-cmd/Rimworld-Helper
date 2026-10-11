@@ -276,9 +276,11 @@ var dynamic = new Dictionary<string, string[]>
     ["CC_TieKind_"] = new[] { "Friends", "Rivals", "Comrades", "Mentor" },
     ["CC_DreamKind_"] = new[] { "Sweet", "Strange", "Nightmare", "Omen", "Lost" },
     ["CC_Section_"] = new[] { "Colony", "People", "Council", "History", "Almanac" },
-    ["CC_Tab_"] = new[] { "Priorities", "Build", "Roster", "Bonds", "Ambition", "Chronicle", "Dreams", "Journals", "Almanac" },
+    ["CC_Tab_"] = new[] { "Priorities", "Build", "Roster", "Bonds", "Ambition", "Chronicle", "Dreams", "Journals", "Almanac", "Ways" },
     ["CC_ChronicleFilter_"] = new[] { "All", "Wishes", "Council", "People", "Strangers", "Dreams", "Losses" },
     ["CC_Nemesis_Deed_"] = new[] { "downed", "maimed", "killed" },
+    ["CC_Way_"] = new[] { "Mercy_Pos", "Mercy_Neg", "Generosity_Pos", "Generosity_Neg", "Tradition_Pos", "Tradition_Neg", "Openness_Pos", "Openness_Neg", "Toil_Pos", "Toil_Neg" },
+    ["CC_Ways_Meaning_"] = new[] { "Mercy_Pos", "Mercy_Neg", "Generosity_Pos", "Generosity_Neg", "Tradition_Pos", "Tradition_Neg", "Openness_Pos", "Openness_Neg", "Toil_Pos", "Toil_Neg" },
     ["CC_Slow_Level_"] = new[] { "1", "2", "1_Tip", "2_Tip" },
     ["CC_People_Sort_"] = new[] { "Name", "Trust", "Goal", "Mood" },
     ["CC_MsgLevel_"] = new[] { "Everything", "Notable", "LettersOnly" },
@@ -310,6 +312,17 @@ dynamic["CC_Role_"] = roles.ToArray();
 foreach (var (prefix, suffixes) in dynamic)
     foreach (var s in suffixes)
         if (!keyed.ContainsKey(prefix + s)) errors.Add($"Keyed: missing dynamic key {prefix + s}");
+
+// Colony character tags (CharacterTracker.TagMap)
+var wayTags = new HashSet<string> { "Merciful", "Harsh", "Generous", "Thrifty", "Traditional", "Restless", "Open", "Guarded", "Hardworking", "Easygoing" };
+foreach (var (file, doc) in docs)
+    foreach (var e in doc.Descendants().Where(x => x.Name.LocalName == "li" && x.Parent?.Name.LocalName is "colonyIs" or "colonyIsNot"))
+        if (!wayTags.Contains(e.Value.Trim())) errors.Add($"{Rel(file)}:{Line(e)}: unknown colony way '{e.Value.Trim()}'");
+// Way shifts stay small: one choice is a nudge, not a reputation.
+foreach (var (file, doc) in docs)
+    foreach (var e in doc.Descendants().Where(x => x.Parent?.Name.LocalName == "ways"))
+        if (!float.TryParse(e.Value.Trim(), System.Globalization.NumberStyles.Float, System.Globalization.CultureInfo.InvariantCulture, out var v) || Math.Abs(v) > 20f)
+            errors.Add($"{Rel(file)}:{Line(e)}: way shift '{e.Value.Trim()}' should be a number between -20 and 20");
 
 // Placeholder sanity in Keyed text
 var placeholder = new Regex(@"\{([^{}]*)\}");

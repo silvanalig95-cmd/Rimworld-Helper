@@ -143,6 +143,22 @@
   </ColonyCouncil.FlavorPoolDef>
 
   <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Journal_DecreeUnrest</defName>
+    <lines>
+      <plain>
+        <li>The council declared {DECREE} again. I couldn't take it. I don't fully remember what I did, only that I'm not sorry enough.</li>
+        <li>We'd barely got through {DECREE} and they ordered it all over again. Something in me just gave.</li>
+        <li>[night] Can't sleep. Keep thinking about the council, and {DECREE}, and the look on their faces when I snapped.</li>
+      </plain>
+      <warm><li>I lost my temper over {DECREE}. I'll apologize to whoever I frightened. Not to the council.</li></warm>
+      <blunt><li>They pushed {DECREE} on us one time too many. Now they know.</li></blunt>
+      <cheerful><li>Well! Turns out there IS a limit to how much {DECREE} I can smile through. Good to know!</li></cheerful>
+      <gloomy><li>Again it's {DECREE}. It'll be {DECREE} forever. I stopped pretending I could bear it.</li></gloomy>
+      <cold><li>The council repeated {DECREE} against all sense. My reaction was proportionate.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
     <defName>Council_Journal_Anniversary</defName>
     <lines>
       <plain>

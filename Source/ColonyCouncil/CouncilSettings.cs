@@ -75,6 +75,8 @@ namespace ColonyCouncil
         /// <summary>A nemesis who got away may ride with their people's next raid.</summary>
         public bool nemesisReturns = true;
         public bool petMoments = true;
+        /// <summary>The colony's character: what its choices make it known for.</summary>
+        public bool colonyCharacter = true;
         /// <summary>On-screen buttons for half and quarter speed, and where they sit (fractions of the screen; -1 = default).</summary>
         public bool slowButtons = true;
         public float slowButtonsX = -1f;
@@ -152,6 +154,7 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref nemeses, "nemeses", true);
             Scribe_Values.Look(ref nemesisReturns, "nemesisReturns", true);
             Scribe_Values.Look(ref petMoments, "petMoments", true);
+            Scribe_Values.Look(ref colonyCharacter, "colonyCharacter", true);
             Scribe_Values.Look(ref slowButtons, "slowButtons", true);
             Scribe_Values.Look(ref slowButtonsX, "slowButtonsX", -1f);
             Scribe_Values.Look(ref slowButtonsY, "slowButtonsY", -1f);
@@ -315,6 +318,7 @@ namespace ColonyCouncil
                 daysBetweenDilemmas = Mathf.Round(daysBetweenDilemmas);
             }
             l.CheckboxLabeled("CC_Settings_DecreeRequests".Translate(), ref decreeRequests, "CC_Settings_DecreeRequests_Tip".Translate());
+            l.CheckboxLabeled("CC_Settings_Character".Translate(), ref colonyCharacter, "CC_Settings_Character_Tip".Translate());
             l.CheckboxLabeled("CC_Settings_Offices".Translate(), ref offices, "CC_Settings_Offices_Tip".Translate());
 
             Header(l, "CC_Settings_Meetings".Translate());
@@ -411,7 +415,7 @@ namespace ColonyCouncil
         {
             socialWeb = socialEvents = secrets = vendettas = aspirations = quirks = heirlooms = comingOfAge = dreams = dreamOmens = eulogies = on;
             strangers = nemeses = nemesisReturns = petMoments = on;
-            enableDilemmas = decreeRequests = offices = councilOn;
+            enableDilemmas = decreeRequests = offices = colonyCharacter = councilOn;
             enableWishes = enableAmbitions = councilOn || on;
             journals = epithets = anniversaries = annals = on || councilOn;
             if (councilOn && stakes == StakesMode.AdvisorOnly) stakes = StakesMode.Balanced;
@@ -464,6 +468,7 @@ namespace ColonyCouncil
             nemeses = d.nemeses;
             nemesisReturns = d.nemesisReturns;
             petMoments = d.petMoments;
+            colonyCharacter = d.colonyCharacter;
             dreamOmens = d.dreamOmens;
             allDreamMessages = d.allDreamMessages;
             messageLevel = d.messageLevel;

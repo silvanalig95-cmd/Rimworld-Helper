@@ -47,6 +47,9 @@ namespace ColonyCouncil
         public StrangerRole stranger;
         /// <summary>For DilemmaWorker_Stranger: also needs an animal of A's ({PET}).</summary>
         public bool petOfA;
+        /// <summary>Only for a colony known this way (all of them): Merciful, Harsh, Generous, Thrifty, Traditional, Restless, Open, Guarded, Hardworking, Easygoing.</summary>
+        public List<string> colonyIs;
+        public List<string> colonyIsNot;
 
         [Unsaved] private DilemmaWorker worker;
 
@@ -187,6 +190,8 @@ namespace ColonyCouncil
         public List<DilemmaEffect> riskEffects;
         /// <summary>When the risk comes true, it happens instead of the normal effects rather than as well.</summary>
         public bool riskReplaces;
+        /// <summary>How this answer shapes the colony's character.</summary>
+        public WayShift ways;
     }
 
     /// <summary>The people and things of one dilemma as it happens.</summary>
@@ -257,6 +262,7 @@ namespace ColonyCouncil
         /// <summary>The time and circumstances are right (season, a recent raid, grief).</summary>
         public virtual bool CanHappenNow(Map map)
         {
+            if ((!def.colonyIs.NullOrEmpty() || !def.colonyIsNot.NullOrEmpty()) && !(CouncilGameComponent.Instance?.character.Fits(def.colonyIs, def.colonyIsNot) ?? false)) return false;
             if (!def.seasons.NullOrEmpty() && !def.seasons.Contains(GenLocalDate.Season(map))) return false;
             if (def.withinDaysOfThreat > 0f)
             {
@@ -865,6 +871,7 @@ namespace ColonyCouncil
                 if (option.riskEffects != null) foreach (var e in option.riskEffects) Safe(e, ctx);
                 if (!option.riskOutcome.NullOrEmpty()) outcome = option.riskOutcome;
             }
+            comp?.character.Shift(option.ways, "CC_Ways_Why_Dilemma".Translate(ctx.def.label, ctx.Format(option.label)).Resolve());
             string told = ctx.Format(outcome);
             if (byDefault) told = "CC_Dilemma_NoAnswer".Translate() + " " + told;
             if (!told.NullOrEmpty())

@@ -72,6 +72,8 @@ namespace ColonyCouncil
 
         /// <summary>For the XML-driven workers (WishWorker_Have, _Stock, _Wear...): what is wanted and by whom.</summary>
         public WishParams wants;
+        /// <summary>How granting it shapes the colony's character (an execution, a party, letting a prisoner go).</summary>
+        public WayShift ways;
 
         public ToneLines request = new ToneLines();
         public ToneLines requestForOther = new ToneLines();

@@ -29,6 +29,7 @@ namespace ColonyCouncil
             Wishes,
             Decrees,
             Ambition,
+            Ways,
             Chronicle,
             Dreams,
             Journals,
@@ -49,7 +50,8 @@ namespace ColonyCouncil
                 case Tab.Bonds:
                 case Tab.Wishes: return Section.People;
                 case Tab.Decrees:
-                case Tab.Ambition: return Section.Council;
+                case Tab.Ambition:
+                case Tab.Ways: return Section.Council;
                 case Tab.Chronicle:
                 case Tab.Dreams:
                 case Tab.Journals: return Section.History;
@@ -63,7 +65,7 @@ namespace ColonyCouncil
             {
                 case Section.Colony: return new[] { Tab.Priorities, Tab.Build };
                 case Section.People: return new[] { Tab.Roster, Tab.Bonds, Tab.Wishes };
-                case Section.Council: return new[] { Tab.Decrees, Tab.Ambition };
+                case Section.Council: return new[] { Tab.Decrees, Tab.Ambition, Tab.Ways };
                 case Section.History: return new[] { Tab.Chronicle, Tab.Dreams, Tab.Journals };
                 default: return new[] { Tab.Almanac };
             }
@@ -146,6 +148,7 @@ namespace ColonyCouncil
                 case Tab.Wishes: DrawWishes(content, comp); break;
                 case Tab.Decrees: DecreePanel.Draw(content, comp); break;
                 case Tab.Ambition: DrawAmbition(content, comp, map); break;
+                case Tab.Ways: WaysPanel.Draw(content, comp); break;
                 case Tab.Chronicle: DrawChronicle(content, comp); break;
                 case Tab.Dreams: HistoryPanels.DrawDreams(content, comp); break;
                 case Tab.Journals: HistoryPanels.DrawJournals(content, comp); break;

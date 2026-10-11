@@ -93,6 +93,8 @@ namespace ColonyCouncil
         public float griefFadePerDay;
         public ToneLines support = new ToneLines();
         public ToneLines oppose = new ToneLines();
+        /// <summary>How enacting it shapes the colony's character.</summary>
+        public WayShift ways;
         /// <summary>When someone who likes it may ask the council for it (any one is enough).</summary>
         public List<DecreeMoment> requestWhen;
         public int order;
@@ -116,12 +118,17 @@ namespace ColonyCouncil
         public DecreeDef def;
         public int startTick;
         public int endTick;
+        /// <summary>How many times it had been enacted lately when this one began (and once more if forced): resentment.</summary>
+        public int fatigue;
+        public bool forced;
 
         public void ExposeData()
         {
             Scribe_Defs.Look(ref def, "def");
             Scribe_Values.Look(ref startTick, "startTick");
             Scribe_Values.Look(ref endTick, "endTick");
+            Scribe_Values.Look(ref fatigue, "fatigue");
+            Scribe_Values.Look(ref forced, "forced");
         }
     }
 
@@ -165,26 +172,61 @@ namespace ColonyCouncil
 
         public int ReadyAt(DecreeDef def) => readyAt.TryGetValue(def.defName, out int t) ? t : 0;
 
-        /// <summary>Why it can't be enacted right now, or null.</summary>
-        public string CannotEnact(DecreeDef def)
+        public bool OnCooldown(DecreeDef def) => ReadyAt(def) > Find.TickManager.TicksGame;
+
+        /// <summary>When each decree was enacted (parallel lists), for decree fatigue.</summary>
+        private List<string> useDefs = new List<string>();
+        private List<int> useTicks = new List<int>();
+        public const float FatigueDays = 30f;
+
+        /// <summary>How many times it has been enacted in the last month: each time again, people resent it more.</summary>
+        public int Fatigue(DecreeDef def)
+        {
+            int now = Find.TickManager.TicksGame, n = 0;
+            for (int i = 0; i < useDefs.Count; i++)
+                if (useDefs[i] == def.defName && now - useTicks[i] < FatigueDays * GenDate.TicksPerDay) n++;
+            return n;
+        }
+
+        /// <summary>The chance that someone snaps when it's enacted (again, or forced through its cooldown).</summary>
+        public float UnrestChance(DecreeDef def, bool force)
+        {
+            int fatigue = Fatigue(def) + (force ? 1 : 0);
+            return fatigue <= 0 ? 0f : Mathf.Clamp(0.2f * fatigue + (force ? 0.15f : 0f), 0f, 0.8f);
+        }
+
+        /// <summary>Why it can't be enacted right now, or null. <paramref name="force"/>: pushing it through its cooldown.</summary>
+        public string CannotEnact(DecreeDef def, bool force = false)
         {
             if (IsActive(def)) return null;
             int now = Find.TickManager.TicksGame;
             if (!ColonyCouncilMod.Settings.MoodEffects) return "CC_Decree_NoMood".Translate();
-            if (ReadyAt(def) > now) return "CC_Decree_Cooldown".Translate(TextUtil.DaysString(ReadyAt(def) - now));
+            if (!force && ReadyAt(def) > now) return "CC_Decree_Cooldown".Translate(TextUtil.DaysString(ReadyAt(def) - now));
             if (active.Count >= MaxActive) return "CC_Decree_TooMany".Translate(MaxActive);
             if (def.needsGrief && !PawnsFinder.AllMaps_FreeColonists.Any(Flavor.IsGrieving)) return "CC_Decree_NeedsGrief".Translate();
             return null;
         }
 
-        public void Enact(DecreeDef def, CouncilGameComponent comp)
+        public void Enact(DecreeDef def, CouncilGameComponent comp, bool force = false)
         {
+            if (def == null || CannotEnact(def, force) != null || IsActive(def)) return;
             using var _cause = Causes.Push("CC_Cause_DecreeEnacted".Translate(def.label).Resolve());
-            if (def == null || CannotEnact(def) != null || IsActive(def)) return;
             int now = Find.TickManager.TicksGame;
-            active.Add(new ActiveDecree { def = def, startTick = now, endTick = now + Mathf.RoundToInt(def.durationDays * GenDate.TicksPerDay) });
+            force = force && OnCooldown(def);
+            int fatigue = Fatigue(def) + (force ? 1 : 0);
+            float unrest = UnrestChance(def, force);
+            useDefs.Add(def.defName);
+            useTicks.Add(now);
+            while (useTicks.Count > 0 && now - useTicks[0] > FatigueDays * GenDate.TicksPerDay)
+            {
+                useDefs.RemoveAt(0);
+                useTicks.RemoveAt(0);
+            }
+            active.Add(new ActiveDecree { def = def, startTick = now, endTick = now + Mathf.RoundToInt(def.durationDays * GenDate.TicksPerDay), fatigue = fatigue, forced = force });
             SyncHediffs();
             comp.Notify_DecreeEnacted(def);
+            comp.character?.Shift(def.ways, "CC_Ways_Why_Decree".Translate(def.label).Resolve());
+            if (fatigue > 0) Backlash(def, fatigue, force, unrest, comp);
             var req = RequestFor(def);
             if (req != null)
             {
@@ -195,6 +237,37 @@ namespace ColonyCouncil
                     CouncilGameComponent.GiveThought(req.pawn, CouncilDefOf.Council_DecreeHeeded);
                 }
             }
+        }
+
+        /// <summary>
+        /// The same decree again (or forced through its cooldown): those against it trust the council less and resent
+        /// it more, and someone may snap.
+        /// </summary>
+        private void Backlash(DecreeDef def, int fatigue, bool forced, float unrest, CouncilGameComponent comp)
+        {
+            using var _cause = Causes.Push("CC_Cause_DecreeAgain".Translate(def.label).Resolve());
+            var pawns = PawnsFinder.AllMaps_FreeColonistsSpawned.Where(p => !p.IsQuestLodger() && People.HasInnerLife(p)).ToList();
+            var against = pawns.Where(p => def.ReactionOf(p) <= DecreeReaction.Dislike).ToList();
+            float scale = ColonyCouncilMod.Settings.ChosenPenaltyScale * Mathf.Min(fatigue, 3);
+            foreach (var p in against)
+            {
+                bool hate = def.ReactionOf(p) == DecreeReaction.Hate;
+                comp.standings.Change(p, -(hate ? 3f : 2f) * fatigue, "CC_Log_DecreeAgain".Translate(def.label));
+                if (scale > 0f) CouncilGameComponent.GiveThought(p, CouncilDefOf.Council_Decree_Again, null, scale);
+            }
+            if (!Rand.Chance(unrest)) return;
+            var who = against.Where(p => def.ReactionOf(p) == DecreeReaction.Hate).Concat(against)
+                .FirstOrDefault(p => p.Spawned && p.Awake() && !p.Downed && !p.InMentalState && !p.Drafted);
+            if (who == null) return;
+            var t = who.story?.traits;
+            bool hot = !who.WorkTagIsDisabled(WorkTags.Violent) && t != null
+                       && (t.HasTrait(TraitDefOf.Abrasive) || t.HasTrait(TraitDefOf.Bloodlust) || t.allTraits.Any(x => x.def.defName == "Brawler") || (t.allTraits.FirstOrDefault(x => x.def.defName == "Nerves")?.Degree ?? 0) < 0);
+            var state = DefDatabase<MentalStateDef>.GetNamedSilentFail(hot ? "Tantrum" : "Wander_Sad") ?? DefDatabase<MentalStateDef>.GetNamedSilentFail("Wander_Sad");
+            if (state == null || !(who.mindState?.mentalStateHandler?.TryStartMentalState(state, "CC_Decree_UnrestReason".Translate(def.label), true) ?? false)) return;
+            string text = (forced ? "CC_Decree_UnrestForced" : "CC_Decree_Unrest").Translate(who.Named("PAWN"), def.label.Named("DECREE")).Resolve();
+            Notify.Message(text, who, MessageTypeDefOf.NegativeEvent, Importance.Notable);
+            comp.AddChronicle(new ChronicleEntry(ChronicleKind.Council, text, who));
+            comp.journals.Write(who, "Council_Journal_DecreeUnrest", null, def.label.Named("DECREE"));
         }
 
         public void Repeal(DecreeDef def, CouncilGameComponent comp, bool early)
@@ -363,6 +436,13 @@ namespace ColonyCouncil
 
         public void ExposeData()
         {
+            Scribe_Collections.Look(ref useDefs, "useDefs", LookMode.Value);
+            Scribe_Collections.Look(ref useTicks, "useTicks", LookMode.Value);
+            if (Scribe.mode == LoadSaveMode.PostLoadInit && (useDefs == null || useTicks == null || useDefs.Count != useTicks.Count))
+            {
+                useDefs = new List<string>();
+                useTicks = new List<int>();
+            }
             Scribe_Collections.Look(ref active, "active", LookMode.Deep);
             Scribe_Collections.Look(ref readyAt, "readyAt", LookMode.Value, LookMode.Value);
             Scribe_Collections.Look(ref requests, "requests", LookMode.Deep);
@@ -391,14 +471,27 @@ namespace ColonyCouncil
                 var active = decree != null ? comp?.decrees.active.FirstOrDefault(a => a.def == decree) : null;
                 string cause = active == null ? null
                     : "CC_Cause_Decree".Translate(decree.label, TextUtil.DaysString(Mathf.Max(0, active.endTick - Find.TickManager.TicksGame))).Resolve();
+                if (active != null && active.fatigue > 0)
+                    cause += " " + (active.forced ? "CC_Cause_DecreeForcedNote" : "CC_Cause_DecreeAgainNote").Translate((0.35f * active.fatigue).ToStringPercent()).Resolve();
                 return Causes.Append(base.Description, cause);
+            }
+        }
+
+        private ActiveDecree Active
+        {
+            get
+            {
+                var decree = DefDatabase<DecreeDef>.AllDefsListForReading.FirstOrDefault(d => d.thought == def);
+                return decree != null ? CouncilGameComponent.Instance?.decrees.Get(decree) : null;
             }
         }
 
         public override float MoodOffset()
         {
             float m = base.MoodOffset();
-            return m < 0f ? m * ColonyCouncilMod.Settings.ChosenPenaltyScale : m;
+            if (m >= 0f) return m;
+            int fatigue = Active?.fatigue ?? 0;
+            return m * ColonyCouncilMod.Settings.ChosenPenaltyScale * (1f + 0.35f * fatigue);
         }
     }
 
