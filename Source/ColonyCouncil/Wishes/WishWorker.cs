@@ -28,6 +28,9 @@ namespace ColonyCouncil
 
         public virtual RoomTemplateDef SuggestedTemplate(Wish wish) => def.template;
 
+        /// <summary>Called while the colonist is away from home (in a caravan): wishes about being away can note it.</summary>
+        public virtual void WhileAway(Wish wish) { }
+
         public virtual LookTargets LookAt(Wish wish) => new LookTargets(wish.Beneficiary);
 
         public virtual InspirationDef InspirationFor(Wish wish) => null;

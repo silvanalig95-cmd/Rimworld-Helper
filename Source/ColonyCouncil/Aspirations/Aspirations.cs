@@ -279,6 +279,8 @@ namespace ColonyCouncil
                 case "graduated": return ColonyCouncilMod.Settings.socialWeb && p.skills != null && p.skills.skills.Any(s => s.Level >= 10 && People.Passionate(s));
                 case "omen": return ColonyCouncilMod.Settings.dreams && ColonyCouncilMod.Settings.dreamOmens;
                 case "avenged": return ColonyCouncilMod.Settings.vendettas && comp.vendettas.Of(p).Any();
+                case "nemesis": return ColonyCouncilMod.Settings.nemeses && comp.nemeses.Of(p).Any(n => !n.ended);
+                case "stranger": return ColonyCouncilMod.Settings.strangers;
                 default: return true;
             }
         }

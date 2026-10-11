@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- ===== Nemeses: the one who hurt them and got away ===== -->
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_Nemesis_Escaped</defName>
+    <durationDays>8</durationDays>
+    <stages>
+      <li>
+        <label>they got away</label>
+        <description>The one who did this to me is out there, walking around, eating, sleeping. I keep seeing the face.</description>
+        <baseMoodEffect>-4</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_Nemesis_Dread</defName>
+    <durationDays>3</durationDays>
+    <stages>
+      <li>
+        <label>they came back</label>
+        <description>I knew it. I knew they'd come back. My hands won't stop shaking.</description>
+        <baseMoodEffect>-6</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_Nemesis_Defiant</defName>
+    <durationDays>3</durationDays>
+    <stages>
+      <li>
+        <label>let them come</label>
+        <description>They came back. Good. This time I'm the one who knows what's coming.</description>
+        <baseMoodEffect>4</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_Nemesis_Captured</defName>
+    <durationDays>10</durationDays>
+    <stages>
+      <li>
+        <label>my nemesis in chains</label>
+        <description>The one who hurt me sleeps behind a door I can lock. I walked past it twice today, just to hear it hold.</description>
+        <baseMoodEffect>6</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_Nemesis_Revenge</defName>
+    <durationDays>25</durationDays>
+    <stages>
+      <li>
+        <label>I had my revenge</label>
+        <description>It was me. At the end it was my hand. I thought I'd feel more. I feel lighter, which is close enough.</description>
+        <baseMoodEffect>14</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_Nemesis_Avenged</defName>
+    <durationDays>15</durationDays>
+    <stages>
+      <li>
+        <label>my nemesis is dead</label>
+        <description>Someone finished it. I wish it had been me, but I'll take dead over waiting.</description>
+        <baseMoodEffect>7</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_Nemesis_Slayer</defName>
+    <durationDays>10</durationDays>
+    <stages>
+      <li>
+        <label>ended someone's nightmare</label>
+        <description>That one had been haunting one of ours. Not anymore. People keep buying me drinks with their eyes.</description>
+        <baseMoodEffect>4</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <!-- ===== Pets ===== -->
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_Pet_Defended</defName>
+    <durationDays>12</durationDays>
+    <stages>
+      <li>
+        <label>my animal fought for me</label>
+        <description>When it went bad, my animal didn't run. It came straight at them. I owe it more than scraps.</description>
+        <baseMoodEffect>6</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_Pet_Lost</defName>
+    <durationDays>10</durationDays>
+    <stages>
+      <li>
+        <label>lost my animal</label>
+        <description>I keep listening for it at the door. It was only an animal. That's what I keep telling myself.</description>
+        <baseMoodEffect>-4</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+</Defs>

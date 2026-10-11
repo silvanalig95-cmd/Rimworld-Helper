@@ -1260,4 +1260,57 @@ Granting one of {PAWN_possessive} wishes, or keeping a promise, can win {PAWN_ob
   <CC_MsgLevel_LettersOnly>Important only</CC_MsgLevel_LettersOnly>
   <CC_MsgLevel_LettersOnly_Tip>Only letters and the biggest moments (an omen coming true). Everything else is in the council window.</CC_MsgLevel_LettersOnly_Tip>
 
+  <!-- Strangers and creatures -->
+  <CC_Settings_Strangers>Strangers and creatures</CC_Settings_Strangers>
+  <CC_Settings_Encounters>Encounters</CC_Settings_Encounters>
+  <CC_Settings_Encounters_Tip>Small moments between colonists and everyone else on the map: news from visitors, haggling with traders, words through a prisoner's door, a fallen raider's plea, a pet's mischief, a stag at dawn. Also turns on the council's choices about strangers (a visitor who wants to stay, a trader who wants an heirloom).</CC_Settings_Encounters_Tip>
+  <CC_Settings_Nemeses>Nemeses</CC_Settings_Nemeses>
+  <CC_Settings_Nemeses_Tip>An enemy who strikes down, maims or kills a colonist and gets away is remembered. A wild animal that does it gets a name. The one they hurt feels it until it's settled: captured, killed, or never seen again.</CC_Settings_Nemeses_Tip>
+  <CC_Settings_NemesisReturns>Nemeses may return</CC_Settings_NemesisReturns>
+  <CC_Settings_NemesisReturns_Tip>A raider who got away sometimes rides with their people's next raid (at most three times).</CC_Settings_NemesisReturns_Tip>
+  <CC_Settings_PetMoments>Pets as companions</CC_Settings_PetMoments>
+  <CC_Settings_PetMoments_Tip>An animal that fights beside its person in a battle is remembered for it, and a named animal that dies gets a farewell from the one who loved it.</CC_Settings_PetMoments_Tip>
+  <CC_ChronicleFilter_Strangers>Strangers</CC_ChronicleFilter_Strangers>
+  <CC_Stranger_Gone>{0} is no longer here.</CC_Stranger_Gone>
+  <CC_Stranger_NoPrisonBed>{PAWN_nameDef} can't take {X_nameDef} prisoner: there's no free prisoner bed.</CC_Stranger_NoPrisonBed>
+  <CC_Stranger_NoHeirloom>{0} isn't carrying the heirloom any more.</CC_Stranger_NoHeirloom>
+
+  <CC_Nemesis_Deed_downed>struck down {0}</CC_Nemesis_Deed_downed>
+  <CC_Nemesis_Deed_maimed>maimed {0}</CC_Nemesis_Deed_maimed>
+  <CC_Nemesis_Deed_killed>killed {0}</CC_Nemesis_Deed_killed>
+  <CC_Nemesis_Label>Nemesis: {0}</CC_Nemesis_Label>
+  <CC_Nemesis_Escaped>{X_nameDef}, who {DEED}, got away. {VICTIM} won't forget that face, and neither will the colony.
+
+If {X_nameDef} ever rides with those people again, you'll know.</CC_Nemesis_Escaped>
+  <CC_Nemesis_EscapedBeast>The animal that {DEED} has slunk off into the wild. The colony has started calling it {X_nameDef}.
+
+It's still out there. Hunting it down would settle a lot of nerves.</CC_Nemesis_EscapedBeast>
+  <CC_Nemesis_ReturnedLabel>{0} returns</CC_Nemesis_ReturnedLabel>
+  <CC_Nemesis_Returned>{X_nameDef} is back: the one who {DEED}.</CC_Nemesis_Returned>
+  <CC_Nemesis_Captured>{X_nameDef}, who {DEED}, is now the colony's prisoner.</CC_Nemesis_Captured>
+  <CC_Nemesis_EndLabel>{0} is dead</CC_Nemesis_EndLabel>
+  <CC_Nemesis_Revenge>{PAWN_nameDef} has had {PAWN_possessive} revenge. {X_nameDef}, who {DEED}, died by {PAWN_possessive} own hand.</CC_Nemesis_Revenge>
+  <CC_Nemesis_SlainBy>{X_nameDef}, who {DEED}, is dead. {SLAYER_nameDef} struck the last blow.</CC_Nemesis_SlainBy>
+  <CC_Nemesis_Dead>{X_nameDef}, who {DEED}, is dead.</CC_Nemesis_Dead>
+  <CC_Nemesis_End_Vanished>Never seen again.</CC_Nemesis_End_Vanished>
+  <CC_Nemesis_Status_Loose>still out there</CC_Nemesis_Status_Loose>
+  <CC_Nemesis_Status_Here>here, now</CC_Nemesis_Status_Here>
+  <CC_Nemesis_Status_Captured>our prisoner</CC_Nemesis_Status_Captured>
+  <CC_Nemesis_Status_Dead>dead</CC_Nemesis_Status_Dead>
+  <CC_Nemesis_Status_Gone>never seen again</CC_Nemesis_Status_Gone>
+  <CC_Nemesis_Line>{0}, who {1} ({2})</CC_Nemesis_Line>
+  <CC_Story_Nemesis>Nemesis: {0}</CC_Story_Nemesis>
+  <CC_Social_Nemeses>Nemeses</CC_Social_Nemeses>
+  <CC_Asp_Spark_nemesis>because of a nemesis</CC_Asp_Spark_nemesis>
+
+  <CC_Pet_Defended>In the battle, {PET_definite} fought to defend {PAWN_nameDef}. {PAWN_nameDef} won't forget it.</CC_Pet_Defended>
+  <CC_Pet_Fought>In the fighting, {PET_definite} went for the enemy alongside {PAWN_nameDef}.</CC_Pet_Fought>
+
+  <CC_Promise_Planned>The council plans {THING} for {FOR_nameDef}'s room.</CC_Promise_Planned>
+  <CC_Promise_Beast>The council marks {OTHER_definite} for hunting. Send good hunters, and send them together.</CC_Promise_Beast>
+  <CC_SelfHelp_Beast>{PAWN_nameDef} marked {OTHER_definite} for hunting and is going after it. Make sure {PAWN_nameDef} doesn't go alone.</CC_SelfHelp_Beast>
+  <CC_Promise_Lessons>The council asks {OTHER_nameDef} to teach {FOR_nameDef} {SUBJECT}. The lessons start today.</CC_Promise_Lessons>
+  <CC_Progress_Lessons>Skill {0} / {1}</CC_Progress_Lessons>
+  <CC_Progress_Flowers>{0} / {1} flowers growing</CC_Progress_Flowers>
+
 </LanguageData>

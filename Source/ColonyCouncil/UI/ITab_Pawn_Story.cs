@@ -164,6 +164,9 @@ namespace ColonyCouncil
                 foreach (var v in comp.vendettas.vendettas.Where(v => v.avenger == p && v.faction != null))
                     heart.lines.Add(((v.settled ? "CC_Social_VendettaSettled" : v.kidnapped ? "CC_Social_VendettaTaken" : "CC_Social_Vendetta")
                         .Translate(p.LabelShort, v.faction.Name, v.victim, v.kills, Vendetta.KillsToSettle).Resolve(), v.settled ? Faint : new Color(0.9f, 0.55f, 0.45f)));
+            if (s.nemeses && comp.nemeses != null)
+                foreach (var n in comp.nemeses.Of(p).OrderBy(n => n.ended))
+                    heart.lines.Add(("CC_Story_Nemesis".Translate(n.Line).Resolve(), n.ended ? Faint : new Color(0.9f, 0.5f, 0.4f)));
             if (s.secrets)
             {
                 var secret = comp.secrets.Of(p);

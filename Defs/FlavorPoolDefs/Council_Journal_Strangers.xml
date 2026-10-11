@@ -1,0 +1,288 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- Names the colony gives a wild animal that mauled someone and got away. Plain names, no placeholders.
+       Tags: predator / grazer, huge / small, and the usual season tags. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Pool_BeastNames</defName>
+    <lines>
+      <plain>
+        <li>Old Scar</li>
+        <li>Notch</li>
+        <li>the Gray Widow</li>
+        <li>Half-Ear</li>
+        <li>the Hollow-Eyed</li>
+        <li>Crooked Tooth</li>
+        <li>the Lame One</li>
+        <li>Blackhide</li>
+        <li>the Old Devil</li>
+        <li>Grudge</li>
+        <li>[predator] Red Maw</li>
+        <li>[predator] the Widowmaker</li>
+        <li>[predator] Night-Eye</li>
+        <li>[predator] Bonecrusher</li>
+        <li>[predator] the Gray Hunger</li>
+        <li>[predator] Quiet Death</li>
+        <li>[predator,huge] the Butcher of the Woods</li>
+        <li>[predator,small] Little Murder</li>
+        <li>[grazer] Old Tusk</li>
+        <li>[grazer] Ironhead</li>
+        <li>[grazer] the Trampler</li>
+        <li>[grazer,huge] the Mountain</li>
+        <li>[grazer,huge] Thunderfoot</li>
+        <li>[grazer,small] the Biter</li>
+        <li>[small] Stitches</li>
+        <li>[small] the Ankle-Taker</li>
+        <li>[huge] the Big Wrong</li>
+        <li>[winter] Frostback</li>
+        <li>[winter] the White Ruin</li>
+        <li>[summer] Dusthide</li>
+        <li>[fall] Rot-Tooth</li>
+        <li>[spring] Mudjaw</li>
+      </plain>
+      <cheerful>
+        <li>Mister Bitey</li>
+        <li>[small] Lord Fluffington the Dreadful</li>
+      </cheerful>
+      <gloomy>
+        <li>the Last Thing You See</li>
+        <li>Inevitable</li>
+      </gloomy>
+      <cold>
+        <li>Specimen One</li>
+        <li>the Problem</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- The message when a named or bonded animal dies. {PAWN_...} its person, {PET_...} the animal.
+       [hero] = it died in or right after a fight; [quiet] = otherwise. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Pool_PetFarewell</defName>
+    <lines>
+      <plain>
+        <li>{PAWN_nameDef} sat a long time with {PET_definite} before letting anyone take the body. Nobody hurried {PAWN_objective}.</li>
+        <li>{PET_nameDef} is gone. {PAWN_nameDef} put the bowl away and then took it back out again.</li>
+        <li>[quiet] {PET_nameDef} died in the night, curled up in the usual spot. {PAWN_nameDef} found it in the morning and didn't eat breakfast.</li>
+        <li>[quiet] {PAWN_nameDef} says {PET_nameDef} had a good life, for out here. {PAWN_nameDef} says it twice, like it needs saying again.</li>
+        <li>[hero] {PET_nameDef} went down in front of {PAWN_nameDef}, between {PAWN_objective} and the enemy. That's where it always stood.</li>
+        <li>[hero] {PAWN_nameDef} carried {PET_definite} back from the fighting alone and wouldn't let anyone help.</li>
+        <li>[winter] {PAWN_nameDef} wanted to bury {PET_nameDef}, but the ground was frozen. {PAWN_nameDef} dug anyway.</li>
+        <li>[rain] {PAWN_nameDef} stood in the rain where {PET_nameDef} used to wait for {PAWN_objective}. Somebody brought a coat. It wasn't put on.</li>
+      </plain>
+      <warm>
+        <li>{PAWN_nameDef} thanked {PET_nameDef} out loud, for everything, and then asked everyone to give {PAWN_objective} a minute.</li>
+        <li>[hero] {PAWN_nameDef} keeps saying {PET_nameDef} saved {PAWN_objective}. It did.</li>
+      </warm>
+      <blunt>
+        <li>{PAWN_nameDef} punched a wall when {PET_nameDef} died. The wall won. {PAWN_nameDef} didn't seem to care.</li>
+        <li>[hero] "It went for them like it was twice its size," {PAWN_nameDef} said, and then stopped talking for the day.</li>
+      </blunt>
+      <cheerful>
+        <li>{PAWN_nameDef} told stories about {PET_nameDef} all evening, the funny ones, and laughed until it turned into something else.</li>
+      </cheerful>
+      <gloomy>
+        <li>{PAWN_nameDef} says everything good out here dies first. {PET_nameDef} was very good.</li>
+        <li>[quiet] {PAWN_nameDef} buried {PET_nameDef} and said it was the only one here who never wanted anything from {PAWN_objective}.</li>
+      </gloomy>
+      <cold>
+        <li>{PAWN_nameDef} noted {PET_nameDef}'s death in the ledger with the date and the cause. Then {PAWN_nameDef} noted it again, by mistake.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- Journals. {PAWN_...} is always the writer; {X_...} the enemy or beast; {OTHER_...} who struck the blow;
+       {VICTIM} the name of who they hurt; {PET_...} an animal. -->
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Journal_NemesisEscaped</defName>
+    <lines>
+      <plain>
+        <li>{X_nameDef}. I learned the name from the others. I'm going to remember it for the rest of my life.</li>
+        <li>The one who did this ran when it turned. I watched {X_objective} go over the ridge and couldn't stand up to follow.</li>
+        <li>[hurt] Everything hurts, and somewhere out there {X_nameDef} is walking around on two good legs.</li>
+        <li>[night] I keep waking up at the sound of footsteps. It's never {X_nameDef}. Yet.</li>
+      </plain>
+      <blunt>
+        <li>{X_nameDef} got away. Next time {X_pronoun} won't.</li>
+      </blunt>
+      <gloomy>
+        <li>{X_nameDef} will come back. People like that always come back. People like me always lose the second time.</li>
+      </gloomy>
+      <warm>
+        <li>I don't want to hate anyone. But I'd like {X_nameDef} to be very, very far away, forever.</li>
+      </warm>
+      <cold>
+        <li>Subject: {X_nameDef}. Status: alive, unfortunately. Noted.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Journal_BeastEscaped</defName>
+    <lines>
+      <plain>
+        <li>They're calling it {X_nameDef} now. It has a name. It got the name from me.</li>
+        <li>I can still smell it. Whatever I eat tastes like that breath.</li>
+        <li>[night] Something moved at the tree line tonight. Probably the wind. Probably.</li>
+        <li>[winter] Tracks in the snow outside the wall this morning. Too big. Too close.</li>
+      </plain>
+      <cheerful>
+        <li>I got mauled by an animal with a nickname! That's a story for the grandchildren! If it doesn't eat me first!</li>
+      </cheerful>
+      <blunt>
+        <li>That thing is going to be a rug. My rug.</li>
+      </blunt>
+      <gloomy>
+        <li>The animals out here don't even hate us. We're just food that complains. {X_nameDef} knows that.</li>
+      </gloomy>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Journal_NemesisReturned</defName>
+    <lines>
+      <plain>
+        <li>{X_nameDef} is back. I saw {X_objective} before anyone else did. I always knew I would.</li>
+        <li>Same face. Same walk. {X_nameDef} came back with friends this time.</li>
+        <li>[trait:Bloodlust] {X_nameDef} came back. I sharpened everything twice.</li>
+        <li>[trait:Wimp] {X_nameDef} is here and I hid in the pantry and I'm writing this in the pantry.</li>
+      </plain>
+      <blunt>
+        <li>Should've stayed gone, {X_nameDef}.</li>
+      </blunt>
+      <gloomy>
+        <li>Of course {X_nameDef} came back. The worst things always do. I wrote my name inside my boots, just in case.</li>
+      </gloomy>
+      <cold>
+        <li>{X_nameDef} has returned. A second opportunity. I don't intend to waste it.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Journal_NemesisCaptured</defName>
+    <lines>
+      <plain>
+        <li>{X_nameDef} is in a cell now. I went and looked. Smaller than I remember. Everything is, behind bars.</li>
+        <li>They brought {X_nameDef} in bleeding. I didn't help. I didn't stop anyone helping, either. I think that counts for something.</li>
+        <li>[night] I can't sleep knowing {X_nameDef} is under the same roof. I can't sleep any better when I imagine {X_objective} out there, either.</li>
+      </plain>
+      <warm>
+        <li>I brought {X_nameDef} water. I don't know why. My hands did it before I decided.</li>
+      </warm>
+      <blunt>
+        <li>{X_nameDef} gets bread and water. I get to watch. Seems fair.</li>
+      </blunt>
+      <cold>
+        <li>{X_nameDef} is contained. The council will decide what that's worth. I already have.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Journal_NemesisRevenge</defName>
+    <lines>
+      <plain>
+        <li>It was me. {X_nameDef} looked at me at the end, and I think {X_pronoun} remembered.</li>
+        <li>{X_nameDef} is dead and I did it. I keep washing my hands. They're clean. I keep washing them.</li>
+        <li>[hurt] I'm still not healed from the first time. Doesn't matter. {X_nameDef} won't heal at all.</li>
+      </plain>
+      <cheerful>
+        <li>I GOT {X_nameDef}! Me! I'd like that on my gravestone, please, in big letters!</li>
+      </cheerful>
+      <gloomy>
+        <li>{X_nameDef} is dead. I'm still the person {X_nameDef} made me. That part doesn't wash off.</li>
+      </gloomy>
+      <cold>
+        <li>{X_nameDef}: resolved, personally. Efficient. Satisfying, which I hadn't predicted.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Journal_NemesisAvenged</defName>
+    <lines>
+      <plain>
+        <li>{X_nameDef} is dead. {OTHER_nameDef} did it. I should thank {OTHER_objective}. I will, when I can say it without shaking.</li>
+        <li>They told me {X_nameDef} is dead and I asked them to say it again, slower.</li>
+      </plain>
+      <warm>
+        <li>{OTHER_nameDef} ended it for me. I'm cooking {OTHER_objective} dinner every night this week whether {OTHER_pronoun} likes it or not.</li>
+      </warm>
+      <blunt>
+        <li>Wanted to do it myself. Dead is dead, though.</li>
+      </blunt>
+      <gloomy>
+        <li>{X_nameDef} is dead and I feel exactly the same. I was told I'd feel different.</li>
+      </gloomy>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Journal_NemesisSlayer</defName>
+    <lines>
+      <plain>
+        <li>The one I brought down today was {X_nameDef}, the one who hurt {VICTIM}. I didn't know until after. Glad it was me.</li>
+        <li>{VICTIM} hugged me today. Hard. I'll take it.</li>
+      </plain>
+      <blunt>
+        <li>Killed {X_nameDef}. Apparently that's a big deal. It felt like Tuesday.</li>
+      </blunt>
+      <cheerful>
+        <li>I'm a hero! {VICTIM} said so! Well, {VICTIM} cried, but it was the good kind!</li>
+      </cheerful>
+      <cold>
+        <li>{X_nameDef} is removed. {VICTIM} is grateful. Gratitude is a useful currency.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Journal_PetFarewell</defName>
+    <lines>
+      <plain>
+        <li>{PET_nameDef} is gone. I keep saving the scraps from my plate anyway.</li>
+        <li>Buried {PET_nameDef} today. Somebody scratched the name into a board for the grave. I didn't ask them to.</li>
+        <li>[night] The room is too quiet. I didn't know an animal could breathe that loudly until it stopped.</li>
+        <li>[child] They say {PET_nameDef} went to sleep and won't wake up. I'm not stupid. I know what dead is.</li>
+      </plain>
+      <warm>
+        <li>Thank you, {PET_nameDef}. For waiting at the door every single day.</li>
+      </warm>
+      <blunt>
+        <li>Don't talk to me today.</li>
+      </blunt>
+      <gloomy>
+        <li>{PET_nameDef} was the only one here who never looked at me like I'd done something wrong.</li>
+      </gloomy>
+      <cold>
+        <li>{PET_nameDef} has died. I find I'm unwilling to adopt another. Interesting.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Journal_PetDefended</defName>
+    <lines>
+      <plain>
+        <li>When they came at me, {PET_nameDef} came at them. I've never seen it move like that.</li>
+        <li>{PET_nameDef} gets the best cut of meat tonight. And tomorrow. Maybe forever.</li>
+        <li>[hurt] I'm patched up and sore, and {PET_nameDef} won't leave my side. Neither of us is complaining.</li>
+      </plain>
+      <cheerful>
+        <li>{PET_nameDef} is a WARRIOR. I'm going to make a little helmet. Somebody stop me.</li>
+      </cheerful>
+      <blunt>
+        <li>{PET_nameDef} fought better than half the people here. Said so at dinner. Some people sulked.</li>
+      </blunt>
+      <gloomy>
+        <li>{PET_nameDef} would die for me. I don't know what I did to deserve that. Probably nothing.</li>
+      </gloomy>
+      <cold>
+        <li>{PET_nameDef} proved a reliable defensive asset. I've also grown attached, which is less reliable.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+</Defs>

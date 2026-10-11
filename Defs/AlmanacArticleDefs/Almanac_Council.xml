@@ -291,4 +291,31 @@
     <seeAlso><li>Council_Alm_C_Social</li><li>Council_Alm_C_Goals</li></seeAlso>
   </ColonyCouncil.AlmanacArticleDef>
 
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Council_Alm_C_Strangers</defName>
+    <label>strangers, beasts and pets</label>
+    <category>Council</category>
+    <order>13</order>
+    <summary>Visitors, traders, prisoners, fallen enemies, nemeses, wild animals and the colony's own animals.</summary>
+    <tip>The raider who ran away is the one your colonists will dream about.</tip>
+    <description>Colonists don't only live among themselves. While visitors, a trade caravan, guests or prisoners are around, and every day among the colony's animals and the wildlife, small moments happen: news from the road, haggling, words through a cell door, a fallen raider's plea, a pet's mischief, a stag at dawn. Some put a hard choice to the council. And an enemy who badly hurts one of yours and gets away becomes that colonist's nemesis.</description>
+    <facts>
+      <li>Encounters happen a few times a day at most, and never during a fight. Visitors and traders make them likelier while they're here.</li>
+      <li>Warm moments make visitors like the colonist (their opinion of them rises), sometimes improve goodwill with their people, and count towards the "known far and wide" life goal.</li>
+      <li>Kind words soften prisoners (less resistance); taunts and cruelty sour moods on both sides.</li>
+      <li>Council choices about strangers come with short deadlines when the stranger is only passing through: a visitor who wants to stay, a trader who wants an heirloom, beggars at the gate, a wounded raider who's still breathing.</li>
+      <li>A nemesis is an enemy who struck down, maimed or killed a colonist and lived. A raider who flees is remembered, and may ride with the next raid from their people. A wild animal that mauls someone and slinks off gets a name and keeps prowling.</li>
+      <li>Capturing a nemesis, or seeing them dead, lifts the one they hurt. Doing it by their own hand lifts them most, and settles the "settle the score" life goal.</li>
+      <li>An animal that fights beside its person in a battle is remembered for it. A named animal that dies gets a farewell from the one who loved it.</li>
+    </facts>
+    <advice>
+      <li>When a nemesis returns, put the one they hurt somewhere safe, or somewhere they can finish it. Their mood will swing either way.</li>
+      <li>Capture fallen raiders who downed your people: a nemesis in your cells can't come back with the next raid.</li>
+      <li>Hunt a named beast as a group. It already beat one of you.</li>
+      <li>Let your most sociable colonists host visitors. Good impressions add up to goodwill, and sometimes to a new recruit.</li>
+    </advice>
+    <keywords><li>visitor</li><li>trader</li><li>prisoner</li><li>nemesis</li><li>beast</li><li>pet</li><li>animal</li><li>encounter</li></keywords>
+    <seeAlso><li>Council_Alm_C_Social</li><li>Council_Alm_C_Goals</li><li>Council_Alm_C_Dilemmas</li></seeAlso>
+  </ColonyCouncil.AlmanacArticleDef>
+
 </Defs>

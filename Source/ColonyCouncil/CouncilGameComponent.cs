@@ -61,9 +61,16 @@ namespace ColonyCouncil
         public VendettaTracker vendettas = new VendettaTracker();
         public QuirkTracker quirks = new QuirkTracker();
         public LegacyTracker legacy = new LegacyTracker();
+        public EncounterTracker encounters = new EncounterTracker();
+        public NemesisTracker nemeses = new NemesisTracker();
+        public PetTracker pets = new PetTracker();
         public int nextWishId = 1;
 
         private Dictionary<string, int> cooldowns = new Dictionary<string, int>();
+        /// <summary>Recent wishes colony-wide (defName and tick), so the same wish doesn't come round again and again.</summary>
+        private List<string> recentWishDefs = new List<string>();
+        private List<int> recentWishTicks = new List<int>();
+        private HashSet<string> everWished = new HashSet<string>();
         private List<string> tmpKeys;
         private List<int> tmpValues;
 
@@ -126,13 +133,25 @@ namespace ColonyCouncil
             Scribe_Deep.Look(ref vendettas, "vendettas");
             Scribe_Deep.Look(ref quirks, "quirks");
             Scribe_Deep.Look(ref legacy, "legacy");
+            Scribe_Deep.Look(ref encounters, "encounters");
+            Scribe_Deep.Look(ref nemeses, "nemeses");
+            Scribe_Deep.Look(ref pets, "pets");
             Scribe_Values.Look(ref nextWishId, "nextWishId", 1);
             Scribe_Collections.Look(ref cooldowns, "cooldowns", LookMode.Value, LookMode.Value, ref tmpKeys, ref tmpValues);
+            Scribe_Collections.Look(ref recentWishDefs, "recentWishDefs", LookMode.Value);
+            Scribe_Collections.Look(ref recentWishTicks, "recentWishTicks", LookMode.Value);
+            Scribe_Collections.Look(ref everWished, "everWished", LookMode.Value);
             if (Scribe.mode == LoadSaveMode.PostLoadInit)
             {
                 if (wishes == null) wishes = new List<Wish>();
                 if (chronicle == null) chronicle = new List<ChronicleEntry>();
                 if (cooldowns == null) cooldowns = new Dictionary<string, int>();
+                if (recentWishDefs == null || recentWishTicks == null || recentWishDefs.Count != recentWishTicks.Count)
+                {
+                    recentWishDefs = new List<string>();
+                    recentWishTicks = new List<int>();
+                }
+                if (everWished == null) everWished = new HashSet<string>();
                 if (ambitions == null) ambitions = new AmbitionTracker();
                 if (touches == null) touches = new PersonalTouchTracker();
                 if (standings == null) standings = new StandingTracker();
@@ -149,6 +168,9 @@ namespace ColonyCouncil
                 if (vendettas == null) vendettas = new VendettaTracker();
                 if (quirks == null) quirks = new QuirkTracker();
                 if (legacy == null) legacy = new LegacyTracker();
+                if (encounters == null) encounters = new EncounterTracker();
+                if (nemeses == null) nemeses = new NemesisTracker();
+                if (pets == null) pets = new PetTracker();
                 wishes.RemoveAll(w => w == null || w.def == null || w.pawn == null);
             }
         }
@@ -176,6 +198,9 @@ namespace ColonyCouncil
             Safe("annals", () => annals.Hourly(this));
             Safe("dreams", () => dreams.Hourly(this));
             Safe("quirks", quirks.Hourly);
+            Safe("nemeses", () => nemeses.Hourly(this));
+            Safe("pets", () => pets.Hourly(this));
+            Safe("encounters", () => encounters.Hourly(this));
         }
 
         /// <summary>A dream leaves someone wanting something: raises that wish if it makes sense for them now.</summary>
@@ -306,7 +331,7 @@ namespace ColonyCouncil
                 foreach (var def in DefDatabase<WishDef>.AllDefsListForReading)
                 {
                     if (OnCooldown(requester, def)) continue;
-                    float defFactor = def.weight * personal * CategoryFactor(requester, def);
+                    float defFactor = def.weight * personal * CategoryFactor(requester, def) * Novelty(def);
                     if (defFactor <= 0f) continue;
                     foreach (var c in SafeCandidates(def, requester))
                     {
@@ -340,6 +365,38 @@ namespace ColonyCouncil
                 return pick.petitionTarget;
             }
             return CreateWish(pick.def, pick.requester, pick.beneficiary, pick.candidate);
+        }
+
+        /// <summary>
+        /// Variety: a wish the colony has heard several times lately is much less likely to come up again, and so,
+        /// a little, is its kind; one nobody here has ever made is a little more likely.
+        /// </summary>
+        private float Novelty(WishDef def)
+        {
+            int now = Find.TickManager.TicksGame;
+            int same = 0, kind = 0;
+            for (int i = 0; i < recentWishDefs.Count; i++)
+            {
+                int age = now - recentWishTicks[i];
+                if (recentWishDefs[i] == def.defName && age < GenDate.TicksPerDay * 12) same++;
+                else if (age < GenDate.TicksPerDay * 5 && DefDatabase<WishDef>.GetNamedSilentFail(recentWishDefs[i])?.category == def.category) kind++;
+            }
+            float f = Mathf.Pow(0.45f, same) * Mathf.Pow(0.8f, kind);
+            if (!everWished.Contains(def.defName)) f *= 1.25f;
+            return f;
+        }
+
+        private void NoteWish(WishDef def)
+        {
+            int now = Find.TickManager.TicksGame;
+            recentWishDefs.Add(def.defName);
+            recentWishTicks.Add(now);
+            everWished.Add(def.defName);
+            while (recentWishTicks.Count > 0 && (now - recentWishTicks[0] > GenDate.TicksPerDay * 20 || recentWishTicks.Count > 60))
+            {
+                recentWishDefs.RemoveAt(0);
+                recentWishTicks.RemoveAt(0);
+            }
         }
 
         private void AddOption(List<Option> options, WishDef def, Pawn requester, Pawn beneficiary, WishCandidate c, float factor)
@@ -429,6 +486,7 @@ namespace ColonyCouncil
         public Wish CreateWish(WishDef def, Pawn requester, Pawn beneficiary, WishCandidate c, string trigger = null, Pawn envied = null)
         {
             var standing = standings.For(beneficiary ?? requester);
+            NoteWish(def);
             // Trusting colonists are patient; bitter ones aren't.
             float patience = def.fixedPatience ? 1f : Mathf.Clamp(1f + standing.trust / 200f, 0.6f, 1.4f) * Standards.PatienceFactor(beneficiary ?? requester);
             var w = new Wish
@@ -544,6 +602,14 @@ namespace ColonyCouncil
                 var home = w.Beneficiary.MapHeld;
                 if (home == null || !home.IsPlayerHome)
                 {
+                    try
+                    {
+                        w.Worker.WhileAway(w);
+                    }
+                    catch (Exception e)
+                    {
+                        CouncilLog.ErrorOnce("away wish " + w.def.defName, e);
+                    }
                     if (now >= w.expiresTick) Expire(w);
                     continue;
                 }

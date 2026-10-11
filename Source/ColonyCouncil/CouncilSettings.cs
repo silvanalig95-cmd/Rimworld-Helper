@@ -69,6 +69,12 @@ namespace ColonyCouncil
         public bool heirlooms = true;
         public bool comingOfAge = true;
         public bool dreamOmens = true;
+        /// <summary>Small moments with visitors, traders, prisoners, fallen enemies, pets and wild animals.</summary>
+        public bool strangers = true;
+        public bool nemeses = true;
+        /// <summary>A nemesis who got away may ride with their people's next raid.</summary>
+        public bool nemesisReturns = true;
+        public bool petMoments = true;
         public bool allDreamMessages;
         public MessageLevel messageLevel = MessageLevel.Notable;
         public EraMode era = EraMode.Auto;
@@ -138,6 +144,10 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref quirks, "quirks", true);
             Scribe_Values.Look(ref heirlooms, "heirlooms", true);
             Scribe_Values.Look(ref comingOfAge, "comingOfAge", true);
+            Scribe_Values.Look(ref strangers, "strangers", true);
+            Scribe_Values.Look(ref nemeses, "nemeses", true);
+            Scribe_Values.Look(ref nemesisReturns, "nemesisReturns", true);
+            Scribe_Values.Look(ref petMoments, "petMoments", true);
             Scribe_Values.Look(ref dreamOmens, "dreamOmens", true);
             Scribe_Values.Look(ref allDreamMessages, "allDreamMessages", false);
             Scribe_Values.Look(ref messageLevel, "messageLevel", MessageLevel.Notable);
@@ -332,6 +342,12 @@ namespace ColonyCouncil
             l.CheckboxLabeled("CC_Settings_Dreams".Translate(), ref dreams, "CC_Settings_Dreams_Tip".Translate());
             if (dreams) l.CheckboxLabeled("CC_Settings_DreamOmens".Translate(), ref dreamOmens, "CC_Settings_DreamOmens_Tip".Translate());
 
+            Header(l, "CC_Settings_Strangers".Translate());
+            l.CheckboxLabeled("CC_Settings_Encounters".Translate(), ref strangers, "CC_Settings_Encounters_Tip".Translate());
+            l.CheckboxLabeled("CC_Settings_Nemeses".Translate(), ref nemeses, "CC_Settings_Nemeses_Tip".Translate());
+            if (nemeses) l.CheckboxLabeled("CC_Settings_NemesisReturns".Translate(), ref nemesisReturns, "CC_Settings_NemesisReturns_Tip".Translate());
+            l.CheckboxLabeled("CC_Settings_PetMoments".Translate(), ref petMoments, "CC_Settings_PetMoments_Tip".Translate());
+
             Header(l, "CC_Settings_Memory".Translate());
             l.CheckboxLabeled("CC_Settings_Journals".Translate(), ref journals, "CC_Settings_Journals_Tip".Translate());
             l.CheckboxLabeled("CC_Settings_Epithets".Translate(), ref epithets, "CC_Settings_Epithets_Tip".Translate());
@@ -384,6 +400,7 @@ namespace ColonyCouncil
         private void SetPeople(bool on, bool councilOn)
         {
             socialWeb = socialEvents = secrets = vendettas = aspirations = quirks = heirlooms = comingOfAge = dreams = dreamOmens = eulogies = on;
+            strangers = nemeses = nemesisReturns = petMoments = on;
             enableDilemmas = decreeRequests = offices = councilOn;
             enableWishes = enableAmbitions = councilOn || on;
             journals = epithets = anniversaries = annals = on || councilOn;
@@ -433,6 +450,10 @@ namespace ColonyCouncil
             quirks = d.quirks;
             heirlooms = d.heirlooms;
             comingOfAge = d.comingOfAge;
+            strangers = d.strangers;
+            nemeses = d.nemeses;
+            nemesisReturns = d.nemesisReturns;
+            petMoments = d.petMoments;
             dreamOmens = d.dreamOmens;
             allDreamMessages = d.allDreamMessages;
             messageLevel = d.messageLevel;

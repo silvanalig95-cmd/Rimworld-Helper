@@ -277,7 +277,8 @@ var dynamic = new Dictionary<string, string[]>
     ["CC_DreamKind_"] = new[] { "Sweet", "Strange", "Nightmare", "Omen", "Lost" },
     ["CC_Section_"] = new[] { "Colony", "People", "Council", "History", "Almanac" },
     ["CC_Tab_"] = new[] { "Priorities", "Build", "Roster", "Bonds", "Ambition", "Chronicle", "Dreams", "Journals", "Almanac" },
-    ["CC_ChronicleFilter_"] = new[] { "All", "Wishes", "Council", "People", "Dreams", "Losses" },
+    ["CC_ChronicleFilter_"] = new[] { "All", "Wishes", "Council", "People", "Strangers", "Dreams", "Losses" },
+    ["CC_Nemesis_Deed_"] = new[] { "downed", "maimed", "killed" },
     ["CC_People_Sort_"] = new[] { "Name", "Trust", "Goal", "Mood" },
     ["CC_MsgLevel_"] = new[] { "Everything", "Notable", "LettersOnly" },
     ["CC_Era_"] = new[] { "Auto", "PreIndustrial", "Industrial", "Auto_Tip", "PreIndustrial_Tip", "Industrial_Tip" },
@@ -324,8 +325,8 @@ foreach (var (k, text) in keyed)
 }
 
 // Placeholders in def flavour text
-var wishPh = new HashSet<string> { "SUBJECT", "THING", "THINGBARE", "TARGET", "WISH", "MINE", "AMBITION", "VENUE", "COUNT", "FACTION", "TITLE", "DECREE", "YEARS", "DILEMMA", "TRADITION", "OFFICE", "SKILL", "LOST", "DREAM", "GOAL", "SECRET", "LEAKER", "TELLER", "SPEECH", "ITEM", "QUIRK", "OLDGOAL", "NAME" };
-var pawnPrefixes = new HashSet<string> { "PAWN", "FOR", "OTHER", "ENVIED", "ABOUT", "A", "B", "PET", "LEAKER", "TELLER" };
+var wishPh = new HashSet<string> { "SUBJECT", "THING", "THINGBARE", "TARGET", "WISH", "MINE", "AMBITION", "VENUE", "COUNT", "FACTION", "TITLE", "DECREE", "YEARS", "DILEMMA", "TRADITION", "OFFICE", "SKILL", "LOST", "DREAM", "GOAL", "SECRET", "LEAKER", "TELLER", "SPEECH", "ITEM", "QUIRK", "OLDGOAL", "NAME", "VICTIM", "DEED" };
+var pawnPrefixes = new HashSet<string> { "PAWN", "FOR", "OTHER", "ENVIED", "ABOUT", "A", "B", "PET", "LEAKER", "TELLER", "X", "SLAYER" };
 var pawnSuffixes = new HashSet<string> { "nameDef", "nameFull", "labelShort", "pronoun", "possessive", "objective", "label", "definite", "indefinite", "gender" };
 foreach (var (file, doc) in docs)
 {

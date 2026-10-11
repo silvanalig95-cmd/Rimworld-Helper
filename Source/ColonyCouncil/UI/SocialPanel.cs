@@ -118,6 +118,7 @@ namespace ColonyCouncil
                 cy += 10f;
             }
             if (ColonyCouncilMod.Settings.vendettas) cy += DrawVendettas(comp, view.width, cy);
+            if (ColonyCouncilMod.Settings.nemeses) cy += DrawNemeses(comp, view.width, cy);
             if (ColonyCouncilMod.Settings.secrets) cy += DrawSecrets(comp, view.width, cy);
             height = Mathf.Max(cy, 100f);
             Widgets.EndScrollView();
@@ -137,6 +138,27 @@ namespace ColonyCouncil
                 GUI.color = v.settled ? Faint : new Color(0.9f, 0.55f, 0.45f);
                 Text.Anchor = TextAnchor.MiddleLeft;
                 Widgets.Label(new Rect(6f, y, width - 6f, RowH), line.Truncate(width - 10f));
+                Text.Anchor = TextAnchor.UpperLeft;
+                GUI.color = Color.white;
+                y += RowH + 2f;
+            }
+            return y - start + 10f;
+        }
+
+        private static float DrawNemeses(CouncilGameComponent comp, float width, float y)
+        {
+            var list = comp.nemeses.all.Where(n => n.announced && (focus == null || n.victim == focus))
+                .OrderBy(n => n.ended).ThenByDescending(n => n.tick).Take(10).ToList();
+            if (list.Count == 0) return 0f;
+            float start = y;
+            y += Header(width, y, "CC_Social_Nemeses".Translate());
+            foreach (var n in list)
+            {
+                GUI.color = n.ended ? Faint : new Color(0.9f, 0.5f, 0.4f);
+                Text.Anchor = TextAnchor.MiddleLeft;
+                var r = new Rect(6f, y, width - 6f, RowH);
+                Widgets.Label(r, n.Line.Truncate(width - 10f));
+                if (n.endText != null) TooltipHandler.TipRegion(r, n.endText);
                 Text.Anchor = TextAnchor.UpperLeft;
                 GUI.color = Color.white;
                 y += RowH + 2f;

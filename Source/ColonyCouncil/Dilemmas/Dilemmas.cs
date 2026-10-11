@@ -43,6 +43,10 @@ namespace ColonyCouncil
         /// <summary>For DilemmaWorker_Secret: only after one of these secrets (SecretDef names) comes out; empty = any.</summary>
         public List<string> secrets;
         public float answerDays = 2f;
+        /// <summary>For DilemmaWorker_Stranger: who the stranger (X) must be.</summary>
+        public StrangerRole stranger;
+        /// <summary>For DilemmaWorker_Stranger: also needs an animal of A's ({PET}).</summary>
+        public bool petOfA;
 
         [Unsaved] private DilemmaWorker worker;
 
@@ -97,6 +101,18 @@ namespace ColonyCouncil
         public TieKind notTie = TieKind.None;
         /// <summary>Must be pursuing a life goal ({GOAL} in texts is A's goal).</summary>
         public bool goal;
+        /// <summary>Must be carrying an heirloom.</summary>
+        public bool heirloom;
+        /// <summary>Must have a secret that isn't out yet ({SECRET}).</summary>
+        public bool secret;
+
+        private bool Extras(Pawn p)
+        {
+            var comp = CouncilGameComponent.Instance;
+            if (heirloom && (!ColonyCouncilMod.Settings.heirlooms || comp?.legacy.HeirloomCarriedBy(p) == null)) return false;
+            if (secret && (!ColonyCouncilMod.Settings.secrets || !(comp?.secrets.Of(p) is Secret s) || s.revealed)) return false;
+            return true;
+        }
 
         /// <summary>
         /// The parts that describe who someone is (traits, passions, mood, age, office, violence), ignoring where they
@@ -123,12 +139,14 @@ namespace ColonyCouncil
             if (r.office != null && (!ColonyCouncilMod.Settings.offices || CouncilGameComponent.Instance?.offices.HolderOf(r.office) != p)) return false;
             if (r.canFight && p.WorkTagIsDisabled(WorkTags.Violent)) return false;
             if (r.goal && CouncilGameComponent.Instance?.aspirations.Active(p) == null) return false;
+            if (!r.Extras(p)) return false;
             return true;
         }
 
         public bool Allows(Pawn p, Pawn a)
         {
             if (goal && CouncilGameComponent.Instance?.aspirations.Active(p) == null) return false;
+            if (p != null && !Extras(p)) return false;
             if (office != null && (!ColonyCouncilMod.Settings.offices || CouncilGameComponent.Instance?.offices.HolderOf(office) != p)) return false;
             if (tie != TieKind.None && (a == null || !ColonyCouncilMod.Settings.socialWeb || (CouncilGameComponent.Instance?.social.Strength(p, a, tie) ?? 0f) < minTie)) return false;
             if (notTie != TieKind.None && a != null && (CouncilGameComponent.Instance?.social.Strength(p, a, notTie) ?? 0f) >= 20f) return false;
@@ -185,6 +203,8 @@ namespace ColonyCouncil
         public Pawn pet;
         /// <summary>The skill being taught, for social events between a mentor and a student.</summary>
         public SkillDef skill;
+        /// <summary>Someone who isn't a colonist: a visitor, trader, prisoner, fallen enemy, pet or wild animal ({X_...}).</summary>
+        public Pawn stranger;
         public string text;
         /// <summary>Outside dilemmas (social events, dreams): what to call the cause in trust logs.</summary>
         [Unsaved] public string why;
@@ -198,7 +218,8 @@ namespace ColonyCouncil
                 (b != null ? b.Named("B") : (a != null ? a.Named("B") : "?".Named("B"))),
                 (thing != null ? thing.label : "").Named("THING"),
                 count.Named("COUNT"),
-                (faction != null ? faction.Name : "").Named("FACTION"),
+                (faction != null ? faction.Name : stranger?.Faction != null ? stranger.Faction.Name : "").Named("FACTION"),
+                (stranger != null ? stranger.Named("X") : "?".Named("X")),
                 (pet != null ? pet.Named("PET") : (a != null ? a.Named("PET") : "?".Named("PET"))),
                 (skill != null ? skill.label : "").Named("SKILL"),
                 (CouncilGameComponent.Instance?.aspirations.Active(a)?.Goal ?? "").Named("GOAL"),
@@ -221,6 +242,7 @@ namespace ColonyCouncil
             Scribe_References.Look(ref faction, "faction");
             Scribe_References.Look(ref pet, "pet");
             Scribe_Defs.Look(ref skill, "skill");
+            Scribe_References.Look(ref stranger, "stranger");
             Scribe_Values.Look(ref text, "text");
         }
     }
@@ -327,7 +349,9 @@ namespace ColonyCouncil
         /// <summary>Those who like A (opinion 20+).</summary>
         FriendsOfA,
         /// <summary>Those who dislike A (opinion -20 or less).</summary>
-        RivalsOfA
+        RivalsOfA,
+        /// <summary>The stranger (visitor, prisoner, animal...).</summary>
+        X
     }
 
     public abstract class DilemmaEffect
@@ -359,6 +383,7 @@ namespace ColonyCouncil
                 case DilemmaTarget.Others: list = ctx.Colonists.Where(p => p != ctx.a && p != ctx.b); break;
                 case DilemmaTarget.FriendsOfA: list = ctx.Colonists.Where(p => p != ctx.a && p != ctx.b && p.relations != null && ctx.a != null && p.relations.OpinionOf(ctx.a) >= 20); break;
                 case DilemmaTarget.RivalsOfA: list = ctx.Colonists.Where(p => p != ctx.a && p != ctx.b && p.relations != null && ctx.a != null && p.relations.OpinionOf(ctx.a) <= -20); break;
+                case DilemmaTarget.X: list = ctx.stranger != null ? new[] { ctx.stranger } : new Pawn[0]; break;
                 default: list = new Pawn[0]; break;
             }
             foreach (var p in list.ToList())
@@ -383,7 +408,8 @@ namespace ColonyCouncil
     {
         Auto,
         A,
-        B
+        B,
+        X
     }
 
     /// <summary>A memory. Social thoughts are about B when given to A, and about A otherwise (or <see cref="about"/>).</summary>
@@ -397,11 +423,12 @@ namespace ColonyCouncil
             var pairs = new HashSet<(Pawn, Pawn)>();
             foreach (var p in Targets(ctx))
             {
-                Pawn other = about == DilemmaAbout.A ? ctx.a : about == DilemmaAbout.B ? ctx.b : (p == ctx.a ? ctx.b : ctx.a);
+                Pawn other = about == DilemmaAbout.A ? ctx.a : about == DilemmaAbout.B ? ctx.b : about == DilemmaAbout.X ? ctx.stranger
+                    : p == ctx.a ? ctx.b ?? ctx.stranger : ctx.a;
                 CouncilGameComponent.GiveThought(p, thought, other == p ? null : other);
                 // Some memories are bonds being made or broken (once per pair, even when both get the memory).
                 var social = CouncilGameComponent.Instance?.social;
-                if (social != null && other != null && other != p && thought != null && pairs.Add(p.thingIDNumber < other.thingIDNumber ? (p, other) : (other, p)))
+                if (social != null && other != null && other != p && thought != null && p.IsColonist && other.IsColonist && pairs.Add(p.thingIDNumber < other.thingIDNumber ? (p, other) : (other, p)))
                 {
                     switch (thought.defName)
                     {
@@ -529,14 +556,18 @@ namespace ColonyCouncil
     /// <summary>A and B come to blows.</summary>
     public class DilemmaEffect_Fight : DilemmaEffect
     {
+        /// <summary>A fights the stranger (a person) instead of B.</summary>
+        public bool withStranger;
+
         public override void Apply(DilemmaContext ctx)
         {
-            if (ctx.a == null || ctx.b == null || !ctx.a.Spawned || !ctx.b.Spawned || ctx.a.Downed || ctx.b.Downed || ctx.a.Map != ctx.b.Map) return;
-            if (ctx.a.WorkTagIsDisabled(WorkTags.Violent) && ctx.b.WorkTagIsDisabled(WorkTags.Violent)) return;
+            var b = withStranger ? ctx.stranger : ctx.b;
+            if (ctx.a == null || b == null || !b.RaceProps.Humanlike || !ctx.a.Spawned || !b.Spawned || ctx.a.Downed || b.Downed || ctx.a.Map != b.Map) return;
+            if (ctx.a.WorkTagIsDisabled(WorkTags.Violent) && b.WorkTagIsDisabled(WorkTags.Violent)) return;
             if (chance < 1f && !Rand.Chance(chance)) return;
-            if (ctx.a.WorkTagIsDisabled(WorkTags.Violent)) ctx.b.interactions?.StartSocialFight(ctx.a);
-            else ctx.a.interactions?.StartSocialFight(ctx.b);
-            CouncilGameComponent.Instance?.social.Bump(ctx.a, ctx.b, TieKind.Rivals, 10f, "CC_TieNote_Fight".Translate());
+            if (ctx.a.WorkTagIsDisabled(WorkTags.Violent)) b.interactions?.StartSocialFight(ctx.a);
+            else ctx.a.interactions?.StartSocialFight(b);
+            if (!withStranger) CouncilGameComponent.Instance?.social.Bump(ctx.a, b, TieKind.Rivals, 10f, "CC_TieNote_Fight".Translate());
         }
     }
 
@@ -798,7 +829,7 @@ namespace ColonyCouncil
         {
             ctx.text = Flavor.PickText(ctx.def.texts);
             var letterDef = DefDatabase<LetterDef>.GetNamedSilentFail("Council_DilemmaLetter");
-            var look = new LookTargets(new[] { ctx.a, ctx.b }.Where(p => p != null));
+            var look = new LookTargets(new[] { ctx.a, ctx.b, ctx.stranger }.Where(p => p != null));
             string tradition = IsTradition(ctx.def)
                 ? "\n\n" + "CC_Tradition_Note".Translate(ctx.def.traditionLabel, ctx.Format(ctx.def.options[ctx.def.traditionOption].label)).Resolve()
                 : "";
@@ -831,11 +862,11 @@ namespace ColonyCouncil
             string told = ctx.Format(outcome);
             if (byDefault) told = "CC_Dilemma_NoAnswer".Translate() + " " + told;
             if (!told.NullOrEmpty())
-                Messages.Message(told, new LookTargets(new[] { ctx.a, ctx.b }.Where(p => p != null && p.Spawned)), MessageTypeDefOf.NeutralEvent, false);
+                Messages.Message(told, new LookTargets(new[] { ctx.a, ctx.b, ctx.stranger }.Where(p => p != null && p.Spawned)), MessageTypeDefOf.NeutralEvent, false);
             CouncilGameComponent.Instance?.AddChronicle(new ChronicleEntry(ChronicleKind.Council,
                 "CC_Chronicle_Dilemma".Translate(ctx.def.label, ctx.Format(option.label)).Resolve(), ctx.a));
             // The letter's text is already written; let go of the people and places so old saves don't hold them.
-            ctx.a = ctx.b = ctx.pet = null;
+            ctx.a = ctx.b = ctx.pet = ctx.stranger = null;
             ctx.map = null;
             ctx.faction = null;
         }

@@ -70,6 +70,9 @@ namespace ColonyCouncil
         /// <summary>Objection lines for this wish ({PAWN} objects to {OTHER}'s wish about {ABOUT}); falls back to the general pool.</summary>
         public FlavorPoolDef objectionPool;
 
+        /// <summary>For the XML-driven workers (WishWorker_Have, _Stock, _Wear...): what is wanted and by whom.</summary>
+        public WishParams wants;
+
         public ToneLines request = new ToneLines();
         public ToneLines requestForOther = new ToneLines();
         public ToneLines thanks = new ToneLines();

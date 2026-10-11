@@ -58,6 +58,15 @@ namespace ColonyCouncil
         public static ThoughtDef Council_EulogyHeard;
         public static HediffDef Council_Vendetta_Fury;
         public static ThoughtDef Council_HeirloomLost;
+        public static ThoughtDef Council_Nemesis_Escaped;
+        public static ThoughtDef Council_Nemesis_Dread;
+        public static ThoughtDef Council_Nemesis_Defiant;
+        public static ThoughtDef Council_Nemesis_Captured;
+        public static ThoughtDef Council_Nemesis_Revenge;
+        public static ThoughtDef Council_Nemesis_Avenged;
+        public static ThoughtDef Council_Nemesis_Slayer;
+        public static ThoughtDef Council_Pet_Defended;
+        public static ThoughtDef Council_Pet_Lost;
         public static ThoughtDef Council_ChildGrown;
         public static ThoughtDef Council_SawThemGrow;
 

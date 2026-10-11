@@ -62,20 +62,21 @@ to them. A raid makes someone ask for defenses within hours; a cold night, a mea
 friend's death or food poisoning all set off matching wishes. Every wish arrives with a little scene and a line
 in the colonist's own voice, chosen to fit the season, weather, time of day and their situation.
 
+More than 70 kinds of wish, most with variants (six kinds of work room, a dozen pieces of furniture, any
+missing body part), so the same colony rarely hears the same request twice in a row: a wish the colony has
+heard several times lately becomes much less likely, and one nobody here has ever made a little more likely.
+
 | Wish | Who asks |
 |---|---|
-| A room of their own, a bigger or nicer bedroom, furniture, a light, a plant | barracks sleepers, the greedy and jealous, night owls, rising expectations |
-| To share a bed with their partner | couples who sleep apart |
-| A workshop, kitchen, laboratory, hospital, greenhouse or barn | colonists with a passion for that skill (a greenhouse only when frost is coming) |
-| To do the work they love | passionate colonists whose work type is switched off |
-| A proper burial for a friend | when someone they cared about lies unburied |
-| A prosthetic | missing a limb or eye, when one can be made or is in stock |
-| A decent weapon, stronger defenses | fighters, and anyone shaken by a raid |
-| Better food, a freezer, a brewery | gourmands, cooks, the food-poisoned |
-| New clothes, warmth at night, a table to eat at | tattered clothes, cold or hot nights, eating off the floor |
-| Something new to do for fun, art in the common rooms | bored colonists, artists, cabin fever |
-| An animal companion | animal lovers |
-| A room befitting their title / somewhere to learn and play | Royalty nobles / Biotech children |
+| **Home:** a room of their own, a bigger, roomier or nicer bedroom, a piece of furniture, a light, a plant, art for the bedroom, a fire in their room for winter, a bed for their pet | barracks sleepers, the greedy and jealous, night owls, rising expectations, the cold |
+| **Love and family:** to share a bed with their partner, not to sleep next to someone, a wedding, a birthday treat, a crib for the little one, somewhere for children to learn and play | couples, feuding roommates, parents (Biotech) |
+| **Work:** a workshop, kitchen, laboratory, hospital, greenhouse or barn; to do the work they love; lessons from the colony's best; somewhere to train; a weapon rack; a smokehouse; a beehive | passionate colonists, fighters, cooks, keepers |
+| **Stores:** better food, a freezer, a brewery, a little something to drink, firewood for winter, fodder before winter, honey in the larder, more books, a stocked infirmary, a proper treasury | gourmands, cooks, the food-poisoned, keepers, readers, the greedy |
+| **Gear:** new clothes, something warm for winter, a hat, something fine, a piece of jewelry, proper armor, a decent weapon, something a visiting trader has | tattered clothes, the cold, the vain, fighters, anyone who saw the trader's wares |
+| **Colony:** stronger defenses, a clean colony, music, art where people gather, another sculpture, flowers, a bath, a fountain, a banner, a place to pray, a bench to sit on outside, a fire to gather around | anyone shaken by a raid, the tidy, artists, the devout, everyone in spring |
+| **People:** a proper burial for a friend, a party, a day off, time outside, help quitting a drug or a steady supply of it, a prisoner recruited, executed or set free, a kidnapped friend brought home | grieving friends, the bored and overworked, addicts, the kind, the vengeful |
+| **Adventure:** to see something of the world (a caravan), a hunt, the beast that mauled someone hunted down | the restless, hunters, the beast's victims and their friends |
+| **Body and status:** a prosthetic, an animal companion, a hurt animal patched up, a room befitting their title | the maimed, animal lovers, Royalty nobles |
 
 **Your answer matters:**
 - **Grant it** and they're pleased and **motivated** (they work faster for a few days). The happier they already
@@ -198,6 +199,25 @@ changes something: an inspiration, a lesson, a good night's rest, a nightmare th
 victory that steadies their aim, a softened rivalry, a sudden wish. And rarely a dream is an **omen**: a few days
 after someone wakes up talking about bells and pack animals on the hill, a caravan arrives; after torches in the
 dark, a raid. Recent dreams are listed in the Social tab.
+
+### Strangers, beasts and pets
+Colonists meet everyone else on the map, too:
+- **Visitors and traders** bring news from the road, swap recipes, admire someone's work, flirt, insult, haggle
+  and cheat. Warm moments make them like your colonists and can raise goodwill; insults can end in a fistfight.
+- **Guests and prisoners:** a noble's airs, a refugee's gratitude, kind words through a cell door that soften a
+  prisoner, taunts that sour everyone.
+- **Fallen enemies** lying downed after a fight beg, curse and pray; how your people react depends on who they are.
+- **Pets and wildlife:** a pet's welcome after a hard day, stolen dinners, a dead rat as a gift, a thrumbo at the
+  tree line, wolves at night, a small creature that follows someone home.
+- **The council decides** when it gets harder: a visitor who wants to stay, a rude guest, a trader who wants an
+  heirloom, beggars at the gate, a wounded raider who's still breathing, a predator's den, a child who wants to
+  keep a wild animal, an old acquaintance who knows a secret.
+- **Nemeses.** An enemy who strikes down, maims or kills a colonist and gets away is remembered. A raider who
+  fled may ride with the next raid from their people; a wild animal that mauled someone gets a name and keeps
+  prowling. The victim dreads it or burns for it, may make settling the score their life goal, and feels it
+  when the nemesis is captured or finally brought down.
+- **Pets as companions:** an animal that fights beside its person is remembered for it, and a named animal that
+  dies gets a farewell.
 
 ### Offices and elections
 Five council seats: **speaker** (chairs meetings, everyone's trust rises a little each day), **marshal** (drills
@@ -329,7 +349,7 @@ journals, the Story tab and History) or **Important only**.
 - letters vs. messages, floating speech text, alerts
 - where the council button sits in the bottom bar
 - **council life**: decrees, dilemmas, petitions, annals, names, journals, offices, the social web, social
-  events, life goals, secrets, vendettas, eulogies, heirlooms, coming of age, quirks, dreams and dream omens, each on
+  events, life goals, secrets, vendettas, eulogies, heirlooms, coming of age, quirks, dreams and dream omens, encounters with strangers, nemeses (and whether they return), pets, each on
   its own switch
 
 ## Optional mods that go well with it

@@ -57,6 +57,9 @@ namespace ColonyCouncil
             return null;
         }
 
+        /// <summary>Lets go of an heirloom without grief (sold, given away on purpose).</summary>
+        public void Forget(Heirloom h) => heirlooms.Remove(h);
+
         // ---------------- Heirlooms ----------------
 
         /// <summary>Called when a colonist has died: their weapon or hat goes to the one who loved them most.</summary>

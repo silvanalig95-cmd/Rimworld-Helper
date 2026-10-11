@@ -587,7 +587,7 @@ namespace ColonyCouncil
                     {
                         if (!trig.Matches(p, tmpThoughts)) continue;
                         foreach (var c in SafeCandidates(def, p))
-                            options.Add((def, p, c, trig, c.weight * def.weight * trig.boost));
+                            options.Add((def, p, c, trig, c.weight * def.weight * trig.boost * Novelty(def)));
                         break;
                     }
                 }
