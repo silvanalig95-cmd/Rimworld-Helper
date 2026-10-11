@@ -587,4 +587,100 @@
     <fix>Dubs Bad Hygiene: build toilets and something to wash at (a wash bucket, bath or shower), keep water flowing, and give them time to wash.</fix>
   </ColonyCouncil.MoodHintDef>
 
+  <ColonyCouncil.MoodHintDef>
+    <defName>Council_Mood_RF_Promise</defName>
+    <thoughts><li>Council_BrokenPromise</li></thoughts>
+    <fix>A promised wish ran out unanswered. Promise only what the colony can grant soon; a promise broken hurts more than a wish ignored.</fix>
+    <article>Council_Alm_C_Wishes</article>
+    <councilTab>Wishes</councilTab>
+  </ColonyCouncil.MoodHintDef>
+
+  <ColonyCouncil.MoodHintDef>
+    <defName>Council_Mood_RF_Favoritism</defName>
+    <thoughts><li>Council_Favoritism</li></thoughts>
+    <fix>They feel others get all the favors. Spread granted wishes more fairly, and grant theirs next.</fix>
+    <article>Council_Alm_C_Wishes</article>
+    <councilTab>Wishes</councilTab>
+  </ColonyCouncil.MoodHintDef>
+
+  <ColonyCouncil.MoodHintDef>
+    <defName>Council_Mood_RF_Objections</defName>
+    <thoughts><li>Council_ObjectionIgnored</li><li>Council_ObjectionHeard</li><li>Council_HeardAtMeeting</li><li>Council_Refused</li></thoughts>
+    <fix>They spoke up and weren't heard. Next time, weigh their objection, or give them something they asked for.</fix>
+    <keep>Being heard at the council matters to them.</keep>
+    <article>Council_Alm_C_Trust</article>
+  </ColonyCouncil.MoodHintDef>
+
+  <ColonyCouncil.MoodHintDef>
+    <defName>Council_Mood_RF_Offices</defName>
+    <thoughts><li>Council_ElectedToOffice</li><li>Council_LostElection</li><li>Council_LostOffice</li></thoughts>
+    <fix>Losing a seat stings and fades. A wish granted or a kind word from the council softens it.</fix>
+    <keep>A seat on the council is an honor. Keep them in it while they do the job well.</keep>
+    <article>Council_Alm_C_Offices</article>
+    <councilTab>Decrees</councilTab>
+  </ColonyCouncil.MoodHintDef>
+
+  <ColonyCouncil.MoodHintDef>
+    <defName>Council_Mood_RF_DecreeTalk</defName>
+    <thoughts><li>Council_DecreeHeeded</li><li>Council_DecreeArgument</li></thoughts>
+    <fix>An argument over a decree. It fades; repealing the decree they hate ends the cause.</fix>
+    <keep>The council declared what they asked for.</keep>
+    <article>Council_Alm_C_Decrees</article>
+    <councilTab>Decrees</councilTab>
+  </ColonyCouncil.MoodHintDef>
+
+  <ColonyCouncil.MoodHintDef>
+    <defName>Council_Mood_RF_Ambition</defName>
+    <thoughts><li>Council_AmbitionAchieved</li><li>Council_MyAmbitionAchieved</li><li>Council_AmbitionFailed</li></thoughts>
+    <fix>The colony missed its ambition. It fades; pick a next ambition the colony can reach in time.</fix>
+    <keep>The colony reached its ambition together. Set the next one.</keep>
+    <councilTab>Ambition</councilTab>
+  </ColonyCouncil.MoodHintDef>
+
+  <ColonyCouncil.MoodHintDef>
+    <defName>Council_Mood_RF_Traditions</defName>
+    <thoughts><li>Council_TraditionKept</li><li>Council_TraditionBroken</li></thoughts>
+    <fix>A tradition was broken. Keep it next time: people expect it now.</fix>
+    <keep>Keeping the colony's traditions matters to them.</keep>
+    <article>Council_Alm_C_Traditions</article>
+  </ColonyCouncil.MoodHintDef>
+
+  <ColonyCouncil.MoodHintDef>
+    <defName>Council_Mood_RF_Names</defName>
+    <thoughts><li>Council_Epithet</li><li>Council_EpithetDubious</li><li>Council_EpithetLost</li></thoughts>
+    <fix>A name they're not proud of, or one they lost. It fades; deeds earn better names.</fix>
+    <keep>They earned a name and they wear it proudly.</keep>
+    <article>Council_Alm_C_Names</article>
+  </ColonyCouncil.MoodHintDef>
+
+  <ColonyCouncil.MoodHintDef>
+    <defName>Council_Mood_RF_Farewells</defName>
+    <thoughts><li>Council_EulogyHeard</li><li>Council_GaveEulogy</li><li>Council_LaidToRest</li><li>Council_FriendQuit</li></thoughts>
+    <fix>A farewell weighs on them. It fades; time with their other friends helps.</fix>
+    <keep>A proper farewell helps the living as much as the dead.</keep>
+    <article>Council_Alm_C_Secrets</article>
+  </ColonyCouncil.MoodHintDef>
+
+  <ColonyCouncil.MoodHintDef>
+    <defName>Council_Mood_RF_HeirloomLost</defName>
+    <thoughts><li>Council_HeirloomLost</li></thoughts>
+    <fix>Their keepsake is gone. If it can be found or bought back, that would mean a great deal; otherwise it fades.</fix>
+  </ColonyCouncil.MoodHintDef>
+
+  <ColonyCouncil.MoodHintDef>
+    <defName>Council_Mood_RF_Quirks</defName>
+    <nameContains><li>council_quirk_</li></nameContains>
+    <fix>One of their quirks. It comes and goes with the weather, the dark or what they're doing.</fix>
+    <keep>One of their quirks, and a happy one.</keep>
+    <priority>-5</priority>
+  </ColonyCouncil.MoodHintDef>
+
+  <ColonyCouncil.MoodHintDef>
+    <defName>Council_Mood_RF_Council</defName>
+    <nameContains><li>council_</li></nameContains>
+    <fix>A moment with the council or the colony. It fades; listening to their wishes and petitions keeps trust high.</fix>
+    <keep>A good moment with the council or the colony. These add up.</keep>
+    <article>Council_Alm_Basics_ReadingTheCouncil</article>
+    <priority>-100</priority>
+  </ColonyCouncil.MoodHintDef>
 </Defs>

@@ -12,6 +12,8 @@ namespace ColonyCouncil
     {
         private static readonly Dictionary<(object, int), (float time, object value)> values = new Dictionary<(object, int), (float, object)>();
 
+        public static void Clear() => values.Clear();
+
         public static T Get<T>(object owner, int part, Func<T> make, float seconds = 1f)
         {
             float now = Time.realtimeSinceStartup;

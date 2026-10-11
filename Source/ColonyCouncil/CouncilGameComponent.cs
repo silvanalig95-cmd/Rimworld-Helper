@@ -100,8 +100,11 @@ namespace ColonyCouncil
         public override void FinalizeInit()
         {
             base.FinalizeInit();
-            // A different game: forget what the last one knew about tech and research.
+            // A different game: forget what the last one knew about tech and research, and the last game's people.
             Avail.ResetCache();
+            MoodsPanel.Reset();
+            StoryView.Reset();
+            UiCache.Clear();
             cachedInstance = this;
             cachedGame = Current.Game;
         }

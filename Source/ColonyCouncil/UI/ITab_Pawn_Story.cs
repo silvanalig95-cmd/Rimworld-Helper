@@ -57,6 +57,13 @@ namespace ColonyCouncil
         private static float cachedAt = -1f;
         private static List<Section> cached;
 
+        /// <summary>Forget the last game's colonist (called when a game loads).</summary>
+        public static void Reset()
+        {
+            cachedPawn = null;
+            cached = null;
+        }
+
         public static void Draw(Rect outRect, Pawn p, ref Vector2 scroll, ref float height)
         {
             var comp = CouncilGameComponent.Instance;

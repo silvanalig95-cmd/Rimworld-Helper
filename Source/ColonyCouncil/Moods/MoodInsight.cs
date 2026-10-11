@@ -91,17 +91,33 @@ namespace ColonyCouncil
         /// <summary>Ticks until the last of them fades; -1 while its cause lasts; -2 never.</summary>
         public int ticksLeft = -1;
         public string description;
+        /// <summary>Its text, worked out once (see MoodView).</summary>
+        public MoodView.Texts texts;
     }
 
-    /// <summary>One kind of mood across the colony.</summary>
+    /// <summary>One kind of mood across the colony, the good and the bad kept apart.</summary>
     public class ColonyMoodLine
     {
         public ThoughtDef def;
+        public bool good;
         public string label;
         public float total;
         public List<MoodLine> lines = new List<MoodLine>();
-        /// <summary>The strongest single case, whose label names the line ("ravenously hungry" over "hungry").</summary>
-        public float strongest;
+        /// <summary>Each colonist once, with everything this kind of mood does to them.</summary>
+        public Dictionary<Pawn, float> byPawn = new Dictionary<Pawn, float>();
+        public MoodLine sample;
+        public MoodView.Texts texts;
+    }
+
+    /// <summary>A colonist's mood at a glance, worked out once per refresh.</summary>
+    public class PawnMood
+    {
+        public Pawn pawn;
+        public float now, heading, minor, major, extreme;
+        public string state;
+        public string worst;
+        public string sources;
+        public List<MoodLine> lines;
     }
 
     /// <summary>
@@ -112,6 +128,7 @@ namespace ColonyCouncil
     {
         private static Dictionary<ThoughtDef, MoodHintDef> hints;
         private static readonly Dictionary<ThoughtDef, (MoodSource, string)> sources = new Dictionary<ThoughtDef, (MoodSource, string)>();
+        private static readonly Dictionary<Type, bool> lastsWhileCause = new Dictionary<Type, bool>();
         private static readonly List<Thought> tmpGroups = new List<Thought>();
         private static readonly List<Thought> tmpThoughts = new List<Thought>();
 
@@ -151,9 +168,9 @@ namespace ColonyCouncil
             return src;
         }
 
-        /// <summary>Everyone whose mood the colony looks after.</summary>
+        /// <summary>Everyone whose mood the colony looks after (not those asleep in caskets or pods).</summary>
         public static List<Pawn> Colonists() =>
-            PawnsFinder.AllMaps_FreeColonists.Where(p => p.needs?.mood?.thoughts != null && !p.IsQuestLodger() && !p.Dead).Distinct().ToList();
+            PawnsFinder.AllMaps_FreeColonists.Where(p => p.needs?.mood?.thoughts != null && !p.IsQuestLodger() && !p.Dead && !p.Suspended).Distinct().ToList();
 
         /// <summary>A colonist's moods, worst first.</summary>
         public static List<MoodLine> LinesFor(Pawn p)
@@ -161,44 +178,93 @@ namespace ColonyCouncil
             var result = new List<MoodLine>();
             var handler = p?.needs?.mood?.thoughts;
             if (handler == null) return result;
-            tmpGroups.Clear();
             try
             {
-                handler.GetDistinctMoodThoughtGroups(tmpGroups);
-            }
-            catch (Exception e)
-            {
-                CouncilLog.ErrorOnce("mood groups", e);
-                return result;
-            }
-            foreach (var group in tmpGroups)
-            {
-                // One misbehaving modded mood shouldn't hide the rest.
+                tmpGroups.Clear();
                 try
                 {
-                    if (group?.def == null) continue;
-                    float mood = handler.MoodOffsetOfGroup(group);
-                    if (Mathf.Abs(mood) < 0.05f) continue;
-                    tmpThoughts.Clear();
-                    handler.GetMoodThoughts(group, tmpThoughts);
-                    result.Add(new MoodLine
-                    {
-                        pawn = p,
-                        thought = group,
-                        def = group.def,
-                        label = group.LabelCap.NullOrEmpty() ? group.def.defName : group.LabelCap,
-                        mood = mood,
-                        count = Mathf.Max(1, tmpThoughts.Count),
-                        why = Why(group),
-                        ticksLeft = TicksLeft(tmpThoughts)
-                    });
+                    handler.GetDistinctMoodThoughtGroups(tmpGroups);
                 }
                 catch (Exception e)
                 {
-                    CouncilLog.ErrorOnce("mood line " + group?.def?.defName, e);
+                    CouncilLog.ErrorOnce("mood groups", e);
+                    return result;
+                }
+                foreach (var group in tmpGroups)
+                {
+                    // One misbehaving modded mood shouldn't hide the rest.
+                    try
+                    {
+                        // Moods the game itself keeps out of the Needs tab stay out of ours too.
+                        if (group?.def == null || !group.VisibleInNeedsTab || group.CurStage == null) continue;
+                        float mood = handler.MoodOffsetOfGroup(group);
+                        if (Mathf.Abs(mood) < 0.05f) continue;
+                        tmpThoughts.Clear();
+                        handler.GetMoodThoughts(group, tmpThoughts);
+                        string label = group.CurStage.label.NullOrEmpty() ? group.def.label : group.LabelCap;
+                        result.Add(new MoodLine
+                        {
+                            pawn = p,
+                            thought = group,
+                            def = group.def,
+                            label = label.NullOrEmpty() ? group.def.defName : label.CapitalizeFirst(),
+                            mood = mood,
+                            count = Mathf.Max(1, tmpThoughts.Count),
+                            why = Why(group),
+                            ticksLeft = TicksLeft(tmpThoughts)
+                        });
+                    }
+                    catch (Exception e)
+                    {
+                        CouncilLog.ErrorOnce("mood line " + group?.def?.defName, e);
+                    }
                 }
             }
+            finally
+            {
+                // Don't keep thoughts (and through them, the whole game) alive between calls.
+                tmpGroups.Clear();
+                tmpThoughts.Clear();
+            }
             return result.OrderBy(l => l.mood).ToList();
+        }
+
+        /// <summary>A colonist's mood at a glance: levels, a sentence, the worst moods and where they come from.</summary>
+        public static PawnMood MoodOf(Pawn p, List<MoodLine> lines = null)
+        {
+            var m = new PawnMood { pawn = p, lines = lines ?? LinesFor(p) };
+            var need = p?.needs?.mood;
+            if (need == null) return m;
+            m.now = need.CurLevelPercentage;
+            m.heading = m.now;
+            try
+            {
+                m.heading = Mathf.Clamp01(need.CurInstantLevel);
+            }
+            catch
+            {
+            }
+            var breaker = p.mindState?.mentalBreaker;
+            m.minor = 0.35f;
+            m.major = 0.2f;
+            m.extreme = 0.05f;
+            try
+            {
+                if (breaker != null)
+                {
+                    m.minor = breaker.BreakThresholdMinor;
+                    m.major = breaker.BreakThresholdMajor;
+                    m.extreme = breaker.BreakThresholdExtreme;
+                }
+            }
+            catch
+            {
+            }
+            m.state = MoodView.State(m);
+            var worst = m.lines.Where(l => l.mood < 0f).Take(3).Select(l => l.label + " " + MoodView.Number(l.mood)).ToList();
+            m.worst = worst.Count > 0 ? string.Join(",  ", worst) : "CC_Mood_Nothing".Translate().ToString();
+            m.sources = MoodView.Sources(m.lines, 1);
+            return m;
         }
 
         /// <summary>The thought's own description, worked out only when asked (it can be slow for some mods).</summary>
@@ -225,9 +291,23 @@ namespace ColonyCouncil
             {
                 if (!(t is Thought_Memory m)) return -1;
                 if (m.permanent) return -2;
+                // Some memories end by their own rules (renewed while a weapon is held, a harmonizer nearby...):
+                // they last while their cause does, whatever their clock says.
+                if (LastsWhileCause(m.GetType())) return -1;
                 left = Mathf.Max(left, m.DurationTicks - m.age);
             }
             return left;
+        }
+
+        private static bool LastsWhileCause(Type type)
+        {
+            if (!lastsWhileCause.TryGetValue(type, out bool own))
+            {
+                var decl = type.GetProperty("ShouldDiscard")?.GetGetMethod()?.DeclaringType;
+                own = decl != null && decl != typeof(Thought_Memory) && decl != typeof(Thought_MemorySocial) && decl.Assembly != typeof(MoodInsight).Assembly;
+                lastsWhileCause[type] = own;
+            }
+            return own;
         }
 
         /// <summary>Why the mood is there, if it can be said in a line.</summary>
@@ -247,7 +327,7 @@ namespace ColonyCouncil
             return null;
         }
 
-        /// <summary>What to do about it (or how to keep it), and when it ends.</summary>
+        /// <summary>What to do about it (or how to keep it).</summary>
         public static string Advice(MoodLine l)
         {
             var hint = HintFor(l.def);
@@ -268,43 +348,32 @@ namespace ColonyCouncil
             return "CC_Mood_WhileCause".Translate();
         }
 
-        /// <summary>Every mood in the colony, by kind, with who has it.</summary>
-        public static List<ColonyMoodLine> Colony(List<Pawn> pawns, Dictionary<Pawn, List<MoodLine>> perPawn)
+        /// <summary>
+        /// Every mood in the colony by kind, the good and the bad apart (a fine bedroom for one and an awful one for
+        /// another are two lines), each colonist counted once.
+        /// </summary>
+        public static List<ColonyMoodLine> Colony(IEnumerable<PawnMood> pawns)
         {
-            var byDef = new Dictionary<ThoughtDef, ColonyMoodLine>();
-            foreach (var p in pawns)
+            var byKey = new Dictionary<(ThoughtDef, bool), ColonyMoodLine>();
+            foreach (var pm in pawns)
             {
-                if (!perPawn.TryGetValue(p, out var lines)) perPawn[p] = lines = LinesFor(p);
-                foreach (var l in lines)
+                foreach (var l in pm.lines)
                 {
-                    if (!byDef.TryGetValue(l.def, out var c)) byDef[l.def] = c = new ColonyMoodLine { def = l.def, label = l.label };
+                    var key = (l.def, l.mood > 0f);
+                    if (!byKey.TryGetValue(key, out var c)) byKey[key] = c = new ColonyMoodLine { def = l.def, good = l.mood > 0f };
                     c.total += l.mood;
                     c.lines.Add(l);
-                    if (Mathf.Abs(l.mood) > c.strongest)
-                    {
-                        c.strongest = Mathf.Abs(l.mood);
-                        c.label = l.label;
-                    }
+                    c.byPawn[l.pawn] = (c.byPawn.TryGetValue(l.pawn, out float had) ? had : 0f) + l.mood;
+                    if (c.sample == null || Mathf.Abs(l.mood) > Mathf.Abs(c.sample.mood)) c.sample = l;
                 }
             }
-            return byDef.Values.ToList();
-        }
-
-        /// <summary>A colonist's mood now, where it's heading, and the line where they might break.</summary>
-        public static (float now, float heading, float minor, float major, float extreme) Levels(Pawn p)
-        {
-            var need = p?.needs?.mood;
-            if (need == null) return (0f, 0f, 0f, 0f, 0f);
-            float now = need.CurLevelPercentage, heading = now;
-            try
+            foreach (var c in byKey.Values)
             {
-                heading = Mathf.Clamp01(need.CurInstantLevel);
+                // One label for everyone, unless the moods are about different people ("my friend Bob died").
+                bool sameLabel = c.lines.All(l => l.label == c.lines[0].label);
+                c.label = sameLabel || c.def.label.NullOrEmpty() ? c.sample.label : c.def.LabelCap.ToString();
             }
-            catch
-            {
-            }
-            var breaker = p.mindState?.mentalBreaker;
-            return (now, heading, breaker?.BreakThresholdMinor ?? 0.35f, breaker?.BreakThresholdMajor ?? 0.2f, breaker?.BreakThresholdExtreme ?? 0.05f);
+            return byKey.Values.ToList();
         }
 
         public static void ResetCache()
