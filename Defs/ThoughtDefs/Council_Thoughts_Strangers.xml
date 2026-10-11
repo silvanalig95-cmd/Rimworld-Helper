@@ -95,7 +95,7 @@
     <stages>
       <li>
         <label>my animal fought for me</label>
-        <description>When the fight turned bad, my animal didn't run. It went straight at them.</description>
+        <description>When the fight turned bad, my animal didn't run. It went straight at them, and it gets the best scraps from now on.</description>
         <baseMoodEffect>6</baseMoodEffect>
       </li>
     </stages>

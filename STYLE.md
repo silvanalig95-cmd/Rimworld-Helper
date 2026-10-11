@@ -89,7 +89,7 @@ Mostly flat statements. The humor is in the situation and the occasional dry asi
 | Before | After |
 |---|---|
 | I've cleared a spot for the art! I dust the spot every day! It's a very clean spot! | I've cleared a spot on the wall for a painting. It's been empty a while now. |
-| {A_nameDef} stood perfectly still in the long grass while {X_indefinite} came right up and sniffed {A_possessive} hair. {A_nameDef} has told everyone. Some people twice. | {X_indefinite} came right up to {A_nameDef} in the long grass and sniffed {A_possessive} hair before wandering off. |
+| {A_nameDef} stood perfectly still in the long grass while {X_indefinite} came right up and sniffed {A_possessive} hair. {A_nameDef} has told everyone. Some people twice. | In the long grass, {X_indefinite} came right up to {A_nameDef} and sniffed {A_possessive} hair before wandering off. |
 | I dreamt the stars came down to listen to us talk. Then they got bored and left. | The stars came down low in my dream, close enough to touch, and they were listening. |
 | The council sided with {B_nameDef}. {A_nameDef} is fuming. | The council sided with {B_nameDef}. {A_nameDef} took it badly. |
 | Factions forget favors fast and grudges slowly. Better start piling up favors now. | Gifts and help now will pay off later, when we need someone to answer a call for help. |
@@ -103,5 +103,7 @@ Mostly flat statements. The humor is in the situation and the occasional dry asi
 - No em dashes; use commas, colons, parentheses or a new sentence.
 - Placeholders stay exactly as they are: `{A_nameDef}`, `{OTHER_pronoun}`, `[INITIATOR_nameDef]`, `{0}`. A line may
   use a different form of a person it already names (`{A_nameDef}` → `{A_pronoun}`), never someone new.
+- Never start a sentence with a placeholder the game shows in lowercase: pronouns (`{A_pronoun}`), and animals or
+  things with an article (`{X_definite}` = "the muffalo", `{X_indefinite}`). Names (`{A_nameDef}`) are fine.
 - Leading tags (`[winter]`, `[trait:Kind]`, `[!lowtech]`) stay exactly as they are.
 - After editing, run `python3 Tools/textcheck.py` (structure, tags and placeholders) and the DefValidator.

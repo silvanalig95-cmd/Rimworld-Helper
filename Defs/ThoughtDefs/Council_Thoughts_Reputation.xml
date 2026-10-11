@@ -12,7 +12,7 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_EncR_KnownForMercy</defName>
     <durationDays>3</durationDays>
-    <stages><li><label>a name for mercy</label><description>A traveler had heard that we spare the raiders we beat. I'm glad that's what people say about us.</description><baseMoodEffect>2</baseMoodEffect></li></stages>
+    <stages><li><label>a name for mercy</label><description>A traveler had heard that we spare the raiders we beat. Strange thing to be known for, but I'll take it.</description><baseMoodEffect>2</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
@@ -58,7 +58,7 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_EncR_FedATraveler</defName>
     <durationDays>3</durationDays>
-    <stages><li><label>fed a traveler</label><description>A traveler went out of their way because they'd heard we'd feed them, and we did.</description><baseMoodEffect>2</baseMoodEffect></li></stages>
+    <stages><li><label>fed a traveler</label><description>A traveler went out of their way because they'd heard we'd feed them. We fed them twice.</description><baseMoodEffect>2</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
@@ -90,7 +90,7 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_EncR_ProvedAPoint</defName>
     <durationDays>2</durationDays>
-    <stages><li><label>proved a point</label><description>A guest brought their own bread because they'd heard we wouldn't share. I shared mine with them anyway.</description><baseMoodEffect>2</baseMoodEffect></li></stages>
+    <stages><li><label>proved a point</label><description>A guest brought their own bread because they'd heard we wouldn't share. I shared mine, mostly out of spite.</description><baseMoodEffect>2</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <!-- ===================== Encounters: traditional ===================== -->
@@ -104,7 +104,7 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_EncR_RespectedOurWays</defName>
     <durationDays>2</durationDays>
-    <stages><li><label>a guest who knew our ways</label><description>The trader waited at the gate for bread and salt, the proper way. It was good to see.</description><baseMoodEffect>2</baseMoodEffect></li></stages>
+    <stages><li><label>a guest who knew our ways</label><description>The trader waited at the gate for bread and salt, the proper way. Hardly anyone remembers to anymore.</description><baseMoodEffect>2</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <!-- ===================== Encounters: restless ===================== -->
@@ -152,7 +152,7 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_EncR_OpenedTheGate</defName>
     <durationDays>2</durationDays>
-    <stages><li><label>opened the gate a little</label><description>I let a trader in past the watch instead of haggling through the gate. Nothing bad happened.</description><baseMoodEffect>2</baseMoodEffect></li></stages>
+    <stages><li><label>opened the gate a little</label><description>I let a trader in past the watch instead of haggling through the gate. The sky didn't fall.</description><baseMoodEffect>2</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <!-- ===================== Encounters: hard-working ===================== -->
@@ -166,7 +166,7 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_EncR_StoleAnHour</defName>
     <durationDays>2</durationDays>
-    <stages><li><label>an idle hour</label><description>A visitor made me sit down and rest for a while. I'd forgotten what that was like.</description><baseMoodEffect>2</baseMoodEffect></li></stages>
+    <stages><li><label>an idle hour</label><description>A visitor made me sit down and rest for a while. I'd forgotten how. I might do it again next year.</description><baseMoodEffect>2</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <!-- ===================== Encounters: easygoing ===================== -->
@@ -180,7 +180,7 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_EncR_ThoughtIdle</defName>
     <durationDays>2</durationDays>
-    <stages><li><label>thought idle</label><description>Travelers think we're lazy here. I work as hard as anyone.</description><baseMoodEffect>-1</baseMoodEffect></li></stages>
+    <stages><li><label>thought idle</label><description>Travelers think we're lazy here. I work, and I'd like that noted somewhere.</description><baseMoodEffect>-1</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
@@ -405,7 +405,7 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_DlmR_SilverForAJoke</defName>
     <durationDays>3</durationDays>
-    <stages><li><label>silver for a joke</label><description>We paid a trader good silver just to stop laughing at us.</description><baseMoodEffect>-2</baseMoodEffect></li></stages>
+    <stages><li><label>silver for a joke</label><description>We paid a trader good silver just to stop laughing at us. Most expensive joke I've ever heard.</description><baseMoodEffect>-2</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
@@ -440,7 +440,7 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_DlmR_MadeToConform</defName>
     <durationDays>5</durationDays>
-    <stages><li><label>made to keep the custom</label><description>The council ordered me to keep a custom I don't believe in. I do it, but I resent it.</description><baseMoodEffect>-3</baseMoodEffect></li></stages>
+    <stages><li><label>made to keep the custom</label><description>The council ordered me to keep a custom I don't believe in. So I keep it, loudly and badly.</description><baseMoodEffect>-3</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
@@ -609,7 +609,7 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_DlmR_PutToWork</defName>
     <durationDays>4</durationDays>
-    <stages><li><label>put to work</label><description>The council says I have to pull my weight now. I liked things the way they were.</description><baseMoodEffect>-3</baseMoodEffect></li></stages>
+    <stages><li><label>put to work</label><description>The council says everyone pulls their weight now. Mine was resting, and it liked resting.</description><baseMoodEffect>-3</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">

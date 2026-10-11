@@ -25,7 +25,7 @@ TAG_BLOCK = re.compile(r"^\[([^\]]*)\]\s*")
 BRACE = re.compile(r"\{([^{}]+)\}")
 SQUARE = re.compile(r"\[([^\[\]]+)\]")
 # A pronoun placeholder opening a sentence ("... home. {A_pronoun} said") isn't capitalized by the game.
-LOWER_START = re.compile(r"(^(\[[^\]]*\]\s*)?|[.!?]\s+|\\n)\{[A-Z]+_(pronoun|possessive|objective)\}")
+LOWER_START = re.compile(r"(^(\[[^\]]*\]\s*)?|[.!?]\s+|\\n)\{[A-Z]+_(pronoun|possessive|objective|definite|indefinite)\}")
 KNOWN_SUFFIXES = {
     "nameDef", "nameFull", "nameIndef", "labelShort", "label", "definite", "indefinite", "pronoun", "possessive",
     "objective", "gender", "title", "kind", "labelPlural", "factionName", "nameShortDef", "nameShort",
