@@ -1,0 +1,658 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- Almanac: mods of batch A (Medieval Overhaul and its circle). Facts checked against the mods' own files and
+       Workshop descriptions; see Modlists/mods/A_MedievalOverhaul.md for sources and hook ideas. -->
+
+  <!-- ===================== Medieval Overhaul ===================== -->
+
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Council_AlmMod_A_MedievalOverhaul</defName>
+    <label>Medieval Overhaul</label>
+    <category>Mods</category>
+    <order>100</order>
+    <mods><li>dankpyon.medieval.overhaul</li></mods>
+    <summary>The heart of this game: a medieval tech tree, raw materials to process, and a new world</summary>
+    <tip>Steel used to come out of the hill. Now it comes out of the hill, then the furnace, then the argument about who hauls the coal.</tip>
+    <description>Medieval Overhaul rebuilds RimWorld around the Middle Ages: its own Medieval research tab, raw materials that must be worked before you can use them, rustic furniture, castle walls, siege engines, and a world of noble houses, brigands, cultists and monsters. Almost everything else in this modlist is balanced around it, so learning its production chains early saves you a hungry, half-built first winter.</description>
+    <facts>
+      <li>Four production chains, each of which can be switched off in the mod's settings: trees drop raw wood that is sawn into wood planks, animals drop hides that must be dried or tanned into leather, plant fibers are spun into cloth or linen, and ore is smelted into ingots.</li>
+      <li>Steel no longer comes out of the ground. Iron ore is smelted into iron ingots at the furnace, and iron ingots are refined into steel once you finish the Steel research, which needs Alchemy first.</li>
+      <li>Some research projects need a schematic scroll, and the scroll must sit in a bookcase in the same room as the research bench. Schematics turn up in ruins and with caravans that trade them.</li>
+      <li>Mining, the windmill, the watermill, the ballista and the trebuchet can only be researched at the advanced research bench, which Engineering unlocks.</li>
+      <li>The tanning rack burns tanning liquor, which you boil from wood at a campfire or stove. The rawhide rack dries hides into stiff rawhide without it.</li>
+      <li>With Plowed Soil researched you can plow fields for extra fertility. By default plowed soil can wear out after a harvest, and new plowing is planned for you automatically.</li>
+      <li>The messenger table and a linked bird post work as the medieval comms console: talk to factions, call for trade and ask for help.</li>
+    </facts>
+    <advice>
+      <li>Set up the wood chain before anything else: a trestle to saw raw wood into planks, and later a windmill or watermill to do it without labor.</li>
+      <li>Research Leather Tanning early and keep tanning liquor in stock, or every hunt fills your freezer with hides nobody can wear.</li>
+      <li>Put a bookcase in your research room and store schematics there. Buy every schematic a caravan offers; they gate weapons, cooking and metallurgy.</li>
+      <li>Open the mod's settings before you start: you can turn off any chain you find tedious, stop torches from needing fuel, and remove hornet nests from new maps.</li>
+      <li>With Rimfolk: set General, Era to Pre-industrial. The watermill uses a power-plant part to measure the river, and the council's automatic era check reads it as a generator and decides you have electricity.</li>
+      <li>With Rimfolk: the council knows this mod's things by what they do. Rustic torches and oil lamps count as lights, log and straw beds as beds, and the smoker, drying racks, apiary, banners, fountains and weapon rack fulfil the matching wishes.</li>
+    </advice>
+    <keywords>
+      <li>MO</li>
+      <li>medieval</li>
+      <li>production chain</li>
+      <li>raw wood</li>
+      <li>planks</li>
+      <li>hides</li>
+      <li>tanning</li>
+      <li>iron ingot</li>
+      <li>steel</li>
+      <li>schematic</li>
+      <li>research</li>
+      <li>plowed soil</li>
+    </keywords>
+    <seeAlso>
+      <li>Council_AlmMod_A_MOFoodDrink</li>
+      <li>Council_AlmMod_A_MOWorld</li>
+      <li>Council_AlmMod_A_MOAddons</li>
+      <li>Council_AlmMod_A_Rimedieval</li>
+      <li>Council_Alm_6_09_MedievalGear</li>
+      <li>Council_Alm_6_05_FueledBenches</li>
+    </seeAlso>
+    <template>Council_Workshop</template>
+  </ColonyCouncil.AlmanacArticleDef>
+
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Council_AlmMod_A_MOFoodDrink</defName>
+    <label>Medieval Overhaul: food and drink</label>
+    <category>Mods</category>
+    <order>101</order>
+    <mods><li>dankpyon.medieval.overhaul</li></mods>
+    <summary>Bread, smoked meat, cheese, ale, wine and mead, and how to keep them coming</summary>
+    <tip>Wine gets better with age. Cheese gets better with age. The cook just gets louder.</tip>
+    <description>Medieval Overhaul turns the kitchen into a small economy. Wheat becomes flour and flour becomes bread; meat is smoked or dried so it keeps without a freezer; milk is pressed into cheese; grain, grapes and honey become ale, wine and mead in barrels. Good food and good drink are the cheapest mood a medieval colony can buy, and aged wine is one of the few luxuries you can make yourself.</description>
+    <facts>
+      <li>Ale: 25 wheat make 5 ale wort at the brewery, and the wort turns into ale in a fermenting barrel in 6 days. Wine needs grape must and mead needs honey; apple juice turns into cider on its own when kept at room temperature.</li>
+      <li>Barrels work between -1 and 32 °C and best from 7 °C up. Below that they slow to a crawl; above 32 °C the brew starts to spoil.</li>
+      <li>Wine, mead and cheese age toward a target quality you pick on the barrel or press: normal takes 8 days, good 14, excellent 20, masterwork 50 and legendary 120.</li>
+      <li>A glass of wine or mead, or a slice of cheese, gives a mood for a day by its quality: from -7 for awful to +15 for legendary. A mug of ale gives +4.</li>
+      <li>The smoker turns raw meat into smoked meat in a day; the drying rack makes dried meat in two and a half. Smoked meat is a small meal that keeps 30 days; dried meat is a cooking ingredient that keeps 60.</li>
+      <li>The apiary makes honeycomb about every 5 days while it is between 13 and 37 °C, and rests at night.</li>
+      <li>Slop pots are the medieval paste dispenser: the plain pot serves slop, the ragout pot stew and the fondue pot a fine cheese fondue.</li>
+    </facts>
+    <advice>
+      <li>Grow wheat early (12 days to harvest) and research the windmill or watermill: they grind flour and saw planks with no one standing at them.</li>
+      <li>Dig a cellar for the barrels and keep it between 7 and 32 °C all year. The fermenting barrel that makes ale, wine and mead costs iron ingots, so smelt some first.</li>
+      <li>Age everyday wine and cheese to good or excellent, and lay down a few casks for legendary before a wedding or a feast you can see coming.</li>
+      <li>Smoke and dry meat in autumn: it keeps through winter without a freezer, and frees your ice for the vegetables.</li>
+      <li>With Rimfolk: the council counts this mod's barrel as a fermenter for brewery wishes and the brewery room plan, and ale, wine, mead and cider all count as something to drink.</li>
+      <li>With Rimfolk: the firewood wish counts wood planks, not raw wood, so saw a stack of planks before the first frost if someone is fretting about the woodpile.</li>
+    </advice>
+    <keywords>
+      <li>ale</li>
+      <li>wine</li>
+      <li>mead</li>
+      <li>cider</li>
+      <li>cheese</li>
+      <li>barrel</li>
+      <li>bread</li>
+      <li>flour</li>
+      <li>wheat</li>
+      <li>smoker</li>
+      <li>drying rack</li>
+      <li>honey</li>
+      <li>apiary</li>
+      <li>slop</li>
+    </keywords>
+    <seeAlso>
+      <li>Council_AlmMod_A_MedievalOverhaul</li>
+      <li>Council_Alm_9_22_Brewery</li>
+      <li>Council_Alm_6_03_FoodWithoutFreezer</li>
+      <li>Council_Alm_1_24_PreservedFood</li>
+      <li>Council_Alm_4_20_SocialDrugs</li>
+    </seeAlso>
+    <template>Council_Brewery</template>
+  </ColonyCouncil.AlmanacArticleDef>
+
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Council_AlmMod_A_MOWorld</defName>
+    <label>Medieval Overhaul: houses, monsters and sieges</label>
+    <category>Mods</category>
+    <order>102</order>
+    <mods><li>dankpyon.medieval.overhaul</li></mods>
+    <summary>Noble houses, brigands, cultists, trolls and golems, and the trebuchets they bring</summary>
+    <tip>If the chest in the ruin has teeth, it isn't a chest. If the rock is humming, it isn't a rock.</tip>
+    <description>Medieval Overhaul fills the world with four noble houses, brigands and a hidden cult, and the wilds with beasts out of Battle Brothers: trolls, lindwurms, griffons, direwolves, unholds and golems. Medieval factions besiege you with trebuchets instead of mortars, and ruins and cult hideouts are worth exploring if you go well armed.</description>
+    <facts>
+      <li>The noble houses are House Amboise, House Soren (merchants), House Oswin (ruin delvers) and House Hesse, a cruel house that starts out hostile.</li>
+      <li>Medieval factions besiege with trebuchets and lines of wooden cavalry spikes instead of mortars, and arrive from the sky by balloon instead of drop pod.</li>
+      <li>Brigands and the Cultists have no towns you can visit; they guard ruins and hideouts. The explorer's workbench pieces torn notes together into the locations of cultist hideouts in three sizes.</li>
+      <li>Rare daers, lindwurms, griffons and ancient trolls sometimes wander in and leave after a while. Trolls regenerate their wounds, so a slow fight favors them.</li>
+      <li>A strange meteorite can crash down with dormant golems inside, a big threat. Unusual iron or silver formations on a new map hide golems too: mining them wakes what is inside.</li>
+      <li>Working a mine shaft can wake insects under the ground, the same way a deep drill does.</li>
+    </facts>
+    <advice>
+      <li>When a trebuchet goes up, go out and break it quickly: it is built to smash walls from beyond bow range.</li>
+      <li>Let wandering trolls and lindwurms leave unless you are ready; a griffon or daer hunted with a full company pays well in hides and horns.</li>
+      <li>Keep the Cultists faction switched on when you create the world, or their hideouts and the loot in them never appear.</li>
+      <li>Read the map before you mine: leave humming iron formations alone until your fighters are home.</li>
+      <li>With Rimfolk: a beast that mauls a colonist and gets away can become a named nemesis, and a house that kills one of yours can earn a vendetta. The council's defense advice counts cavalry spikes as traps, but not manned ballistas as turrets.</li>
+    </advice>
+    <keywords>
+      <li>noble house</li>
+      <li>Hesse</li>
+      <li>Soren</li>
+      <li>Oswin</li>
+      <li>Amboise</li>
+      <li>brigands</li>
+      <li>cultists</li>
+      <li>hideout</li>
+      <li>troll</li>
+      <li>golem</li>
+      <li>griffon</li>
+      <li>lindwurm</li>
+      <li>trebuchet</li>
+      <li>siege</li>
+    </keywords>
+    <seeAlso>
+      <li>Council_AlmMod_A_MedievalOverhaul</li>
+      <li>Council_AlmMod_A_MTRNations</li>
+      <li>Council_Alm_3_10_Sieges</li>
+      <li>Council_Alm_6_08_DefenseWithoutTurrets</li>
+      <li>Council_Alm_3_15_Infestations</li>
+    </seeAlso>
+  </ColonyCouncil.AlmanacArticleDef>
+
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Council_AlmMod_A_MORoyalty</defName>
+    <label>Medieval Overhaul: Royalty</label>
+    <category>Mods</category>
+    <order>105</order>
+    <mods><li>accurex.medievalempireoverhaul</li></mods>
+    <dlc>Royalty</dlc>
+    <summary>The Empire as a medieval power: knights, fortresses, medieval permits and noble armor</summary>
+    <tip>The Empire still wants a throne room. It just wants you to walk there now.</tip>
+    <description>This add-on gives Royalty's Empire a medieval face. Its soldiers march in plate and carry swords, its settlements are fortresses, its traders sell medieval goods, and its permits fit a world without aerodrones. It also lets Medieval Overhaul's finest armor count as noble apparel, so a knight can dress for the title without spacer cloth.</description>
+    <facts>
+      <li>Imperial troops become peasants, mercenaries, light and heavy infantry, grenadiers, crusaders and the praetorian guard, all in medieval gear. With Giddy-Up the Empire also fields mounted crusaders.</li>
+      <li>Imperial settlements are fortresses, so attacking one takes siege gear.</li>
+      <li>The glitterworld medicine, aerodrone strike and aerodrone salvo permits are gone; a request for herbal medicine takes their place.</li>
+      <li>Medieval Overhaul plate armor and great helms count toward a title's apparel requirements: full plate, armets and great helms among them.</li>
+      <li>Every part can be switched off on its own, and the mod's settings list what each title needs in its throne room and bedroom.</li>
+    </facts>
+    <advice>
+      <li>Read the rank overview in the mod's settings before accepting a promotion, then build for the next title, not this one.</li>
+      <li>Dress your nobles in Medieval Overhaul's adorned or gilded plate: it covers the apparel demand and protects them in a raid.</li>
+      <li>Plan on herbal medicine from the Empire rather than glitterworld kits; keep your own doctor and medicine stocked.</li>
+      <li>With Rimfolk: titled colonists still ask for a room befitting their title, and the council's throne room plan and royalty pages apply as usual.</li>
+    </advice>
+    <keywords>
+      <li>empire</li>
+      <li>royalty</li>
+      <li>noble</li>
+      <li>title</li>
+      <li>permit</li>
+      <li>plate armor</li>
+      <li>crusader</li>
+    </keywords>
+    <seeAlso>
+      <li>Council_AlmMod_A_MedievalOverhaul</li>
+      <li>Council_Alm_7_01_TitlesAndHonor</li>
+      <li>Council_Alm_7_04_NobleApparelAndMeals</li>
+    </seeAlso>
+    <template>Council_ThroneRoom</template>
+  </ColonyCouncil.AlmanacArticleDef>
+
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Council_AlmMod_A_MOAddons</defName>
+    <label>Medieval Overhaul add-ons</label>
+    <category>Mods</category>
+    <order>108</order>
+    <mods>
+      <li>accurex.medievaloverhaul.stuff</li>
+      <li>pphhyy.barbariansmosubmod</li>
+      <li>gayuki.medievaloverhaulairvehicles</li>
+    </mods>
+    <summary>Toggleable Stuff, Barbarians and Air Vehicles: smaller mods built on Medieval Overhaul</summary>
+    <tip>The barbarian armor needs eighteen skulls. Try not to ask where the last one came from.</tip>
+    <description>Three add-ons that hang off Medieval Overhaul. Toggleable Stuff adds and switches small conveniences, Barbarians brings a skull-and-plunder way of life, and Air Vehicles puts hot air balloons and airships in a medieval sky.</description>
+    <facts>
+      <li>Toggleable Stuff: adds a loading cart that works like a trade beacon, makes scrap fields deconstructible, and can add a thermostat to the stove and hearth, flickable fireplaces, or drop the schematic requirement from research. Each option has its own switch and needs a restart.</li>
+      <li>Barbarians: a barbarian faction and way of life where you loot enemy gear and rework it into barbarian armor and weapons with skulls, up to 18 for a full outfit. It also adds 14 weapons, shields, banners and the northern horse.</li>
+      <li>Air Vehicles: a hot air balloon (a pilot, one passenger and 150 kg of cargo) and an airship (a pilot, ten passengers and 1000 kg), both burning coal. Research opens after Engineering; the airship also needs a special book.</li>
+    </facts>
+    <advice>
+      <li>Turn on the loading cart in Toggleable Stuff and park it next to your trade goods so visiting traders can see them.</li>
+      <li>For a barbarian run, the author suggests a tribal start: research the barbarian projects and plan your raids around the skulls you need.</li>
+      <li>A balloon is a cheap scout and a quick way to reach a nearby quest; keep coal stocked at home for the trip back.</li>
+      <li>With Rimfolk: colonists away in a balloon or airship are still counted as part of the colony, and a barbarian banner counts for the wish to fly the colony's colors.</li>
+    </advice>
+    <keywords>
+      <li>loading cart</li>
+      <li>trade beacon</li>
+      <li>thermostat</li>
+      <li>barbarian</li>
+      <li>skulls</li>
+      <li>balloon</li>
+      <li>airship</li>
+      <li>vehicle</li>
+    </keywords>
+    <seeAlso>
+      <li>Council_AlmMod_A_MedievalOverhaul</li>
+      <li>Council_Alm_5_21_Caravans</li>
+    </seeAlso>
+  </ColonyCouncil.AlmanacArticleDef>
+
+  <!-- ===================== Rimedieval ===================== -->
+
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Council_AlmMod_A_Rimedieval</defName>
+    <label>Rimedieval</label>
+    <category>Mods</category>
+    <order>110</order>
+    <mods><li>ogam.rimedieval</li></mods>
+    <summary>Keeps the whole world medieval: no guns, no mechanoids, no high-tech events</summary>
+    <tip>No mechanoids, no orbital traders, no toxic fallout. The Rim had to find new ways to kill you, and it did.</tip>
+    <description>Rimedieval does not delete technology; it hides it. Research beyond the medieval era disappears from your tree, every faction and pawn from every mod is re-equipped with medieval or neolithic gear, and the events and quests that only make sense in a spacer world are removed. It is the reason a raider in this modlist carries a crossbow instead of a charge rifle.</description>
+    <facts>
+      <li>Your research is limited to the medieval era. The setting "Allow pre-industrial tech" widens it to industrial projects up to electricity, but not microelectronics or anything that needs it.</li>
+      <li>Mechanoids are disabled by default: any that appear are destroyed, and they stop being hostile.</li>
+      <li>Removed events include toxic fallout, volcanic winter, psychic drones and soothes, short circuits, mech clusters, ship part crashes, ship chunks, orbital traders and the ship-escape ending.</li>
+      <li>The comms console becomes a signal fire, ancient junk and mech remains no longer generate on maps, and plasteel and compacted machinery no longer appear as ore.</li>
+      <li>Buildings from other mods that are too advanced are taken out of the build menu instead of being deleted.</li>
+    </facts>
+    <advice>
+      <li>Research and build the signal fire early, or Medieval Overhaul's messenger table and bird post, so you can call traders and allies.</li>
+      <li>Do not add Rimedieval's factions if the Vanilla Expanded framework asks; the author warns against it.</li>
+      <li>The author recommends loading Rimedieval near the bottom of the list. If modded raiders ever arrive with guns, move it further down.</li>
+      <li>With Rimfolk: events Rimedieval removes stay removed (dream omens will not bring them back), buildings it hides are never suggested, and with mechanoids disabled their dreams and life goals never come up.</li>
+    </advice>
+    <keywords>
+      <li>tech level</li>
+      <li>mechanoids</li>
+      <li>signal fire</li>
+      <li>comms</li>
+      <li>research limit</li>
+      <li>pre-industrial</li>
+    </keywords>
+    <seeAlso>
+      <li>Council_AlmMod_A_MedievalOverhaul</li>
+      <li>Council_AlmMod_A_FantasyRenames</li>
+      <li>Council_Alm_5_20_CommsConsole</li>
+      <li>Council_Alm_6_01_TribalTech</li>
+    </seeAlso>
+  </ColonyCouncil.AlmanacArticleDef>
+
+  <!-- ===================== RimFantasy ===================== -->
+
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Council_AlmMod_A_RimFantasy</defName>
+    <label>RimFantasy: Medieval Overhaul Edition</label>
+    <category>Mods</category>
+    <order>115</order>
+    <mods>
+      <li>sierra.rf.medievaloverhaul</li>
+      <li>sierra.rf.housedoyle</li>
+    </mods>
+    <summary>Gem magic: arcane weapons, magical lights and climate control, and the legacy of House Doyle</summary>
+    <tip>A sword that glows is still a sword. Swing it at the end that isn't you.</tip>
+    <description>RimFantasy adds a touch of gem magic to Medieval Overhaul's world: weapons with magical powers, enchanted furniture that lights rooms and regulates temperature, and magical defenses. House Doyle builds on it with amethyst, heraldic arms and armor you can craft, and a line of arcane weapons.</description>
+    <facts>
+      <li>RimFantasy adds magical weapons with powers, magical furniture for light and for temperature, and magical defenses for your colony.</li>
+      <li>House Doyle adds amethyst as a new resource, amethyst jewelry, craftable heraldic weapons and armor, and arcane weapons made with amethyst. Some arcane weapons can only be found through exploration.</li>
+      <li>Both are rebuilt to Medieval Overhaul's standards and replace the original RimFantasy series, which must not be loaded with them.</li>
+      <li>The authors list a moderate incompatibility with Simple Sidearms, which is in this modlist: it breaks the no-bond rules of arcane weapons.</li>
+    </facts>
+    <advice>
+      <li>If arcane weapons misbehave with sidearms, turn on "Allow use of blocked weapons" in Simple Sidearms' settings, as the author suggests.</li>
+      <li>Treat gems as a strategic resource: they feed jewelry, magical furniture and arcane weapons, so mine and trade for them.</li>
+      <li>With Rimfolk: the council recognizes lights and heaters by what they do, so magical lamps and climate furniture count like torches and hearths. The jewelry wish looks for necklaces, bracelets, amulets and the like; rings do not count.</li>
+    </advice>
+    <keywords>
+      <li>magic</li>
+      <li>gems</li>
+      <li>amethyst</li>
+      <li>arcane</li>
+      <li>House Doyle</li>
+      <li>heraldic</li>
+    </keywords>
+    <seeAlso>
+      <li>Council_AlmMod_A_MedievalOverhaul</li>
+      <li>Council_AlmMod_A_MedievalTalents</li>
+    </seeAlso>
+  </ColonyCouncil.AlmanacArticleDef>
+
+  <!-- ===================== Medieval Total Rim ===================== -->
+
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Council_AlmMod_A_MedievalTotalRim</defName>
+    <label>Medieval Total Rim</label>
+    <category>Mods</category>
+    <order>120</order>
+    <approximate>true</approximate>
+    <mods>
+      <li>athelas.medievaltotalrim.core</li>
+      <li>athelas.medievaltotalrim.armory</li>
+      <li>athelas.medievaltotalrim.animals</li>
+      <li>athelas.medievaltotalrim.events</li>
+      <li>athelas.medievaltotalrim.hediff</li>
+    </mods>
+    <summary>Medieval II: Total War in RimWorld: the core, armory, animals, quests and prosthetics</summary>
+    <tip>Every kingdom out there has a holy war, a horse breed and an opinion about you. Two of those can be traded.</tip>
+    <description>Medieval Total Rim brings the factions of Medieval II: Total War into RimWorld, built to sit beside Medieval Overhaul and the Tasty Armory mods. The core holds the shared ideologies, cultures and backstories; the other modules add armor, historical animal breeds, quests with real choices and pre-industrial prosthetics. The nations themselves come in their own packs.</description>
+    <facts>
+      <li>Core: the shared memes, fixed ideologies, backstories and code for the nation packs, and the Teutonic Order, a permanent hostile military order. It also makes Tasty Armory's shields usable without Combat Extended.</li>
+      <li>Armory: 4 engraved armor variants, 7 hats and 23 helmets, and patches that bring Tasty Armory's items in line with Medieval Overhaul's stats.</li>
+      <li>Animals: historical dog, cat and horse breeds. Wild ones such as the caracal and the Iberian lynx live in their biomes; breeds like the Andalusian horse or the Chartreux cat are only sold by their nation's traders.</li>
+      <li>Quests and Incidents: five quests where you pick a side or an approach, and two random events that can lift moods or bring trade, but may also spread disease.</li>
+      <li>Pre-Industrial Prosthetics: three sets of prosthetics with their own research, better than a peg leg but below industrial bionics.</li>
+    </facts>
+    <advice>
+      <li>Read each Medieval Total Rim quest's options before you commit: the approach you pick changes the rewards on offer.</li>
+      <li>Buy foreign horse breeds and pets from the nations whose traders sell them; they never turn up in the wild.</li>
+      <li>Research the prosthetics before your first big battle, so a lost hand is a setback rather than a retirement.</li>
+      <li>With Rimfolk: a colonist who loses a limb asks for a prosthetic once you can make one, and these count.</li>
+    </advice>
+    <keywords>
+      <li>Total War</li>
+      <li>Teutonic Order</li>
+      <li>Tasty Armory</li>
+      <li>helmets</li>
+      <li>horse breeds</li>
+      <li>quests</li>
+      <li>prosthetics</li>
+    </keywords>
+    <seeAlso>
+      <li>Council_AlmMod_A_MTRNations</li>
+      <li>Council_AlmMod_A_MedievalMedicines</li>
+      <li>Council_Alm_4_17_Bionics</li>
+    </seeAlso>
+  </ColonyCouncil.AlmanacArticleDef>
+
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Council_AlmMod_A_MTRNations</defName>
+    <label>Medieval Total Rim: the nations</label>
+    <category>Mods</category>
+    <order>121</order>
+    <approximate>true</approximate>
+    <mods>
+      <li>athelas.medievaltotalrim.france</li>
+      <li>athelas.medievaltotalrim.hre</li>
+      <li>athelas.medievaltotalrim.poland</li>
+      <li>athelas.medievaltotalrim.russia</li>
+      <li>athelas.medievaltotalrim.mongols</li>
+      <li>athelas.medievaltotalrim.turks</li>
+      <li>athelas.medievaltotalrim.byzantium</li>
+      <li>athelas.medievaltotalrim.iberia</li>
+    </mods>
+    <summary>France, the Holy Roman Empire, Poland, Muscovy, the Mongols, the Ottomans, Byzantium and Iberia</summary>
+    <tip>The Mongols don't want your wheat. They want your horses, and then your wheat.</tip>
+    <description>Each nation pack adds a faction inspired by Medieval II: Total War, with its own unit roster, culture, ideology, backstories and starting scenarios. Together they turn the world map into a crowded medieval Europe and beyond, so your neighbors have real character and real armies.</description>
+    <facts>
+      <li>Single-nation packs: the Kingdom of France, the Holy Roman Empire, the Kingdom of Poland, the Grand Principality of Moscow, the Mongolian Khaganate and the Ottoman Empire.</li>
+      <li>The Eastern Roman Empire pack adds Byzantium and is built to work with Royalty as well.</li>
+      <li>Reconquista adds three Iberian factions, Spain, Portugal and the Moors, with two ideologies between them.</li>
+      <li>Every pack adds new unit types, backstories, a culture, an ideology and scenarios you can start with.</li>
+      <li>The rosters use gear from all the Tasty Armory mods, which is why they are all required.</li>
+    </facts>
+    <advice>
+      <li>Try one of the nation scenarios if you want a colony that starts with a culture and an ideology already in place.</li>
+      <li>Look at a nation's ideology before you recruit its prisoners: people bring their beliefs with them.</li>
+      <li>Trade with the nations for their horses, pets and armor; each sells things the others do not.</li>
+      <li>With Rimfolk: their visitors and traders meet your colonists like any others, and a nation whose raiders kill one of yours can earn a vendetta.</li>
+    </advice>
+    <keywords>
+      <li>France</li>
+      <li>Holy Roman Empire</li>
+      <li>Poland</li>
+      <li>Moscow</li>
+      <li>Mongols</li>
+      <li>Ottomans</li>
+      <li>Byzantium</li>
+      <li>Spain</li>
+      <li>Portugal</li>
+      <li>Moors</li>
+      <li>faction</li>
+    </keywords>
+    <seeAlso>
+      <li>Council_AlmMod_A_MedievalTotalRim</li>
+      <li>Council_AlmMod_A_MOWorld</li>
+      <li>Council_AlmMod_A_DivineOrder</li>
+    </seeAlso>
+  </ColonyCouncil.AlmanacArticleDef>
+
+  <!-- ===================== Divine Order ===================== -->
+
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Council_AlmMod_A_DivineOrder</defName>
+    <label>Divine Order</label>
+    <category>Mods</category>
+    <order>125</order>
+    <mods><li>botchjob.divineorder</li></mods>
+    <summary>A zealous knightly order, its sacred tablets, its arms and armor, and its warhorses</summary>
+    <tip>The Order will trade with you, pray for you, and burn you. They just need to decide which.</tip>
+    <description>Divine Order adds a medieval fantasy faction of iron-clad zealots who see it as their mission to cleanse the realm of corruption. They distrust outsiders but sometimes make uneasy alliances. With them come their weapons and armor, sacred tablets, a new altar and sculptures, a warhorse and a scenario for players who have stolen from them.</description>
+    <facts>
+      <li>The scenario "Divine Order defectors" starts you with four defectors on the run with a stolen sacred tablet.</li>
+      <li>Sacred tablets must be studied for the elite armor research and are also a crafting component. You can trade for them, take them from crusaders, inquisitors and heralds, or rarely win one from a quest.</li>
+      <li>The Order's warhorse is larger, stronger and faster than a regular horse. The Order and merchant caravans sell it.</li>
+      <li>With EBSG Framework, which this modlist has, the Order's weapons deal extra damage to Anomaly entities.</li>
+      <li>With Vanilla Ideology Expanded - Memes, also in this modlist, the faction carries the Violent Conversion meme.</li>
+    </facts>
+    <advice>
+      <li>Keep a sacred tablet when you get one: it unlocks the elite armor and you will want it for crafting.</li>
+      <li>Buy a warhorse when the Order's traders come: it is bigger, stronger and faster than a regular horse.</li>
+      <li>The author notes that Rimedieval may give the Order's pawns different weapons and apparel than intended. Expect a few odd loadouts.</li>
+      <li>With Rimfolk: an altar of any style counts for a colonist's wish for a place to pray.</li>
+    </advice>
+    <keywords>
+      <li>crusader</li>
+      <li>inquisitor</li>
+      <li>sacred tablet</li>
+      <li>warhorse</li>
+      <li>altar</li>
+      <li>zealots</li>
+    </keywords>
+    <seeAlso>
+      <li>Council_AlmMod_A_MTRNations</li>
+      <li>Council_AlmMod_A_FantasyRenames</li>
+      <li>Council_Alm_7_10_PreceptsAndRoles</li>
+    </seeAlso>
+  </ColonyCouncil.AlmanacArticleDef>
+
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Council_AlmMod_A_FantasyRenames</defName>
+    <label>Medieval Fantasy themed rewards, resources and relics</label>
+    <category>Mods</category>
+    <order>128</order>
+    <mods>
+      <li>botchjob.medievalfantasyquestrewards</li>
+      <li>botchjob.medievalfantasyrareresources</li>
+      <li>botchjob.medievalfantasythemedrelicquests</li>
+    </mods>
+    <summary>Spacer rewards, rare materials and relic quests renamed and redrawn for a fantasy world</summary>
+    <tip>The shield talisman works exactly like a shield belt. The difference is that the talisman sounds like it should.</tip>
+    <description>Three companion mods that keep the game's high-tech rewards but dress them for a medieval fantasy world. Nothing is added or removed: items work as before under new names, descriptions and pictures, so a quest reward reads like treasure instead of a spaceship part.</description>
+    <facts>
+      <li>Quest Rewards: persona weapons become possessed weapons, the shield belt a shield talisman, luciferium demon blood potion, glitterworld medicine exalted medicine, skilltrainers skill tomes and psytrainers spell tomes; launchers and targeters become staffs and spell scrolls.</li>
+      <li>Rare Resources: plasteel becomes mithril, uranium adamantite, synthread damask and hyperweave runeweave.</li>
+      <li>Relic Quests: Ideology's relic and ancient complex quests become ancient outposts with sarcophagi, treasure chests and ancient texts, and hacking becomes investigating. Shuttles and drop pods become airships and balloons everywhere.</li>
+      <li>The rewards are set to the medieval tech level so Rimedieval does not filter them out, except the shield talisman and barrier spell scroll as quest rewards.</li>
+      <li>With Relic Quests active, Rimedieval lets the ancient complex quests back into the game.</li>
+    </facts>
+    <advice>
+      <li>Read a reward by its effect, not its name: a "healing potion" is the old healer mech serum and just as precious.</li>
+      <li>Hunt relic quests if your ideology wants a relic; with these mods and Rimedieval together they are back on the table.</li>
+      <li>With Rimfolk: skill tomes and spell tomes count as books when a reader asks for more on the shelves. The Almanac's pages still use the vanilla names, so glitterworld medicine there means exalted medicine here.</li>
+    </advice>
+    <keywords>
+      <li>mithril</li>
+      <li>adamantite</li>
+      <li>damask</li>
+      <li>runeweave</li>
+      <li>spell scroll</li>
+      <li>tome</li>
+      <li>possessed weapon</li>
+      <li>exalted medicine</li>
+      <li>relic</li>
+      <li>ancient outpost</li>
+    </keywords>
+    <seeAlso>
+      <li>Council_AlmMod_A_Rimedieval</li>
+      <li>Council_AlmMod_A_DivineOrder</li>
+    </seeAlso>
+  </ColonyCouncil.AlmanacArticleDef>
+
+  <!-- ===================== Medicine, hygiene and talents ===================== -->
+
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Council_AlmMod_A_MedievalMedicines</defName>
+    <label>Medieval Medicines (Medieval Overhaul Edition)</label>
+    <category>Mods</category>
+    <order>130</order>
+    <approximate>true</approximate>
+    <mods><li>joedaly.medmeds.mo</li></mods>
+    <summary>Three tiers of medieval medicine, four tiers of prosthetics, potions and a medieval cryptosleep</summary>
+    <tip>Herbal medicine, then better herbal medicine, then herbal medicine with a stiff drink in it. Progress.</tip>
+    <description>Medieval Medicines fills the long gap between herbal medicine and industrial kits. It adds tiered medicines made from herbs, cloth and alcohol, prosthetic limbs from a crude hook up to emerald-enchanted Paresian limbs, healing and mana potions, and Entosomnia, a medieval stand-in for the cryptosleep casket.</description>
+    <facts>
+      <li>Early medieval medicine needs herbal medicine and cloth or linen; late medieval medicine adds alcohol and is made at the alchemy bench; Paresian medicine needs neutroamine, late medicine, mithril and cloth.</li>
+      <li>The medicines range from slightly better than herbal medicine to slightly better than industrial medicine.</li>
+      <li>Prosthetics come in four tiers: crude, artificial, mechanical and Paresian. The first three top out at 80% efficiency; Paresian limbs, made with emeralds at the alchemy bench, match a natural limb, and Paresian eyes and ears restore sight and hearing.</li>
+      <li>Lesser and minor healing potions speed healing with some drawbacks; mana potions restore psyfocus and need Royalty.</li>
+      <li>The author suggests the Mod Medicines Patch if pawns don't use these medicines on their own.</li>
+    </facts>
+    <advice>
+      <li>Turn your ale and wine into late medieval medicine: the recipe accepts Medieval Overhaul's drinks.</li>
+      <li>Keep a few emeralds back for Paresian limbs; one restored hand can bring a master crafter back to work.</li>
+      <li>Watch your doctors for a day after adding this mod; if they skip the new medicine, add the patch the author recommends.</li>
+      <li>With Rimfolk: these medicines count toward a well-stocked infirmary, and a colonist missing a limb asks for any prosthetic the colony can make.</li>
+    </advice>
+    <keywords>
+      <li>medicine</li>
+      <li>prosthetic</li>
+      <li>Paresian</li>
+      <li>healing potion</li>
+      <li>mana potion</li>
+      <li>Entosomnia</li>
+      <li>cryptosleep</li>
+    </keywords>
+    <seeAlso>
+      <li>Council_AlmMod_A_MedievalTotalRim</li>
+      <li>Council_Alm_4_01_MedicinePotency</li>
+      <li>Council_Alm_4_06_ChoosingMedicine</li>
+      <li>Council_Alm_4_17_Bionics</li>
+    </seeAlso>
+    <template>Council_Hospital</template>
+  </ColonyCouncil.AlmanacArticleDef>
+
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Council_AlmMod_A_DBHMedieval</defName>
+    <label>DBH for Medieval</label>
+    <category>Mods</category>
+    <order>135</order>
+    <mods><li>eldersign.dbhformedieval</li></mods>
+    <summary>Medieval pumps, toilets, baths and water treatment for Dubs Bad Hygiene</summary>
+    <tip>A well, a bucket and a bath. Your colonists stop smelling like the barn, and the barn notices.</tip>
+    <description>Dubs Bad Hygiene has little to offer before electricity. This add-on gives a medieval colony its own plumbing: pumps, toilets, baths and water purification you can build without power, and wells you can connect to pipes. It is patched for Medieval Overhaul, so the costs use its iron ingots and basic components.</description>
+    <facts>
+      <li>Adds pumps, toilets, baths and water purification buildable with medieval technology, and lets water pipes connect to primitive wells.</li>
+      <li>With Medieval Overhaul: the log boiler and fueled sauna heater also burn coal, wind pumps need the Windmill research, and steel and components in medieval-tier costs become iron ingots and basic components.</li>
+      <li>It is not built for Dubs Bad Hygiene Lite; the full version's Lite mode option works instead.</li>
+    </facts>
+    <advice>
+      <li>Connect your well to pipes early: hauling water by hand eats hours your colonists don't have.</li>
+      <li>Keep latrines and septic tanks away from wells, kitchens and the hospital.</li>
+      <li>Stock coal from the charcoal pile or a mine for the boiler and sauna heater before winter.</li>
+      <li>With Rimfolk: a bath, tub or sauna fulfils the wish of someone who has not been properly clean in a long time.</li>
+    </advice>
+    <keywords>
+      <li>hygiene</li>
+      <li>bath</li>
+      <li>toilet</li>
+      <li>latrine</li>
+      <li>well</li>
+      <li>pump</li>
+      <li>sauna</li>
+      <li>plumbing</li>
+    </keywords>
+    <seeAlso>
+      <li>Council_AlmMod_A_MedievalOverhaul</li>
+      <li>Council_Alm_8_05_DirtyKitchen</li>
+    </seeAlso>
+  </ColonyCouncil.AlmanacArticleDef>
+
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Council_AlmMod_A_MedievalTalents</defName>
+    <label>RimTraits - Medieval Talents</label>
+    <category>Mods</category>
+    <order>140</order>
+    <mods><li>sierra.rt.medievaltalents</li></mods>
+    <summary>Every pawn gets one talent trait, from common to very rare</summary>
+    <tip>She has no passion for medicine and no patience for patients. She also never loses one. Talent is rude like that.</tip>
+    <description>Medieval Talents gives every pawn exactly one talent: a trait that says what they are naturally good at, separate from what they enjoy. Higher tiers are rarer. Talents also toughen people up against cold, heat, pain and breakdowns, to make up for living without modern comforts.</description>
+    <facts>
+      <li>Adds 35 talent traits. Every pawn gets exactly one, and they are mutually exclusive.</li>
+      <li>The higher a talent's tier, the rarer it is.</li>
+      <li>Talents also give bonuses to temperature tolerance, mood, mental break threshold and pain tolerance.</li>
+      <li>The author balanced it for big medieval colonies of 50 or more people.</li>
+    </facts>
+    <advice>
+      <li>Read the talent on every recruit and prisoner: a rare talent is often worth more than a high skill.</li>
+      <li>Give work by talent and passion together; a talented colonist without passion still works well, just without enjoying it.</li>
+      <li>With Rimfolk: the council does not read talents yet. Life goals and wishes still come from passions, traits and what happens to people.</li>
+    </advice>
+    <keywords>
+      <li>traits</li>
+      <li>talent</li>
+      <li>RimTraits</li>
+      <li>skills</li>
+    </keywords>
+    <seeAlso>
+      <li>Council_AlmMod_A_RimFantasy</li>
+      <li>Council_Alm_C_Goals</li>
+    </seeAlso>
+  </ColonyCouncil.AlmanacArticleDef>
+
+  <!-- ===================== Looks: styles, walls and wardrobe ===================== -->
+
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Council_AlmMod_A_StylesWalls</defName>
+    <label>Medieval styles, walls and wardrobe</label>
+    <category>Mods</category>
+    <order>150</order>
+    <mods>
+      <li>kongkim.medievalwalls</li>
+      <li>det.dwarvenstyle</li>
+      <li>gerrymon.greekcorestyle</li>
+      <li>serek.thewildfields</li>
+      <li>serek.misctrainingmedievalretexture</li>
+    </mods>
+    <summary>Medieval Walls, the Dwarven and Greekcore styles, The Wild Fields and a medieval Misc. Training</summary>
+    <tip>A ditch is the cheapest wall there is. It costs nothing but the man who digs it.</tip>
+    <description>Smaller mods that change how a medieval colony looks and what it wears. Two of them change play a little: Medieval Walls adds embrasures and ditches for defense, and The Wild Fields adds noble clothes and weapons. The rest are styles and retextures.</description>
+    <facts>
+      <li>Medieval Walls: walls and embrasures that cost twice a normal wall and are a bit sturdier. Embrasures give 75% cover, and cellar ditches slow attackers a lot and can be dug on any floor.</li>
+      <li>Stoneborn - Dwarven Style Pack: an Ideology style for dwarven colonies, with styled furniture, altars, sculptures, weapons and helmets, hall pillars and doors, dwarven floors and its own ritual.</li>
+      <li>Gerrymon's Greekcore Style: Greek clothing and laurels, the klinai (a couch you can sleep on that doesn't make a bedroom), a carved stone fence and marble tiles that count as fine floors.</li>
+      <li>The Wild Fields: 7 garments and 4 weapons inspired by Polish nobility and the Cossacks. With Medieval Overhaul they fit its weapon tiers; with Royalty the noble pieces satisfy noble apparel needs.</li>
+      <li>Misc. Training Medieval Retexture: gives Misc. Training's dummies and targets a medieval look and changes their materials. It must load after Misc. Training.</li>
+    </facts>
+    <advice>
+      <li>Ring your gate with ditches and line the wall with embrasures: raiders slow down exactly where your archers can see them.</li>
+      <li>Pick a style when you set up your ideology: styles change how your buildings and gear look, and believers like rooms where their style dominates.</li>
+      <li>With Rimfolk: training dummies and archery targets fulfil a fighter's wish for somewhere to train, and any styled altar counts as a place to pray.</li>
+    </advice>
+    <keywords>
+      <li>walls</li>
+      <li>embrasure</li>
+      <li>ditch</li>
+      <li>dwarven</li>
+      <li>Greek</li>
+      <li>style</li>
+      <li>Cossack</li>
+      <li>training dummy</li>
+    </keywords>
+    <seeAlso>
+      <li>Council_AlmMod_A_MOWorld</li>
+      <li>Council_Alm_6_08_DefenseWithoutTurrets</li>
+      <li>Council_Alm_3_05_Cover</li>
+    </seeAlso>
+  </ColonyCouncil.AlmanacArticleDef>
+
+</Defs>
