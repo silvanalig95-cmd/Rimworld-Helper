@@ -429,7 +429,7 @@ namespace ColonyCouncil
 
         private int Best(Map map) => map.mapPawns.FreeColonistsSpawned.Select(p => p.skills?.GetSkill(skill)).Where(s => s != null && !s.TotallyDisabled).Select(s => s.Level).DefaultIfEmpty(0).Max();
 
-        public override bool Possible(Map map) => skill != null && map.mapPawns.FreeColonistsSpawned.Any(p => p.skills?.GetSkill(skill) is SkillRecord s && !s.TotallyDisabled && s.passion != Passion.None && s.Level < level);
+        public override bool Possible(Map map) => skill != null && map.mapPawns.FreeColonistsSpawned.Any(p => p.skills?.GetSkill(skill) is SkillRecord s && !s.TotallyDisabled && People.Passionate(s) && s.Level < level);
 
         public override float Progress(Map map, float baseline) => skill == null ? 0f : Ratio(Best(map), level);
 

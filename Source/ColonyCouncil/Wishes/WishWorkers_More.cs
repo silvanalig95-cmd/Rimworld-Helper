@@ -140,7 +140,7 @@ namespace ColonyCouncil
             var map = HomeMap(pawn);
             var med = pawn.skills?.GetSkill(SkillDefOf.Medicine);
             if (map == null || med == null || med.TotallyDisabled || pawn.WorkTypeIsDisabled(WorkTypeDefOf.Doctor)) yield break;
-            if (med.passion == Passion.None && med.Level < 8) yield break;
+            if (!People.Passionate(med) && med.Level < 8) yield break;
             int colonists = map.mapPawns.FreeColonistsSpawnedCount;
             int have = Medicine(map);
             if (have >= colonists * 2) yield break;

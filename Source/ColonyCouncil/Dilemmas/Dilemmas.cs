@@ -116,7 +116,7 @@ namespace ColonyCouncil
             if (r.passion != null)
             {
                 var s = p.skills?.GetSkill(r.passion);
-                if (s == null || s.TotallyDisabled || s.passion == Passion.None) return false;
+                if (s == null || s.TotallyDisabled || !People.Passionate(s)) return false;
             }
             float mood = p.needs?.mood?.CurLevelPercentage ?? 0.5f;
             if (mood < r.minMood || mood > r.maxMood) return false;
@@ -141,7 +141,7 @@ namespace ColonyCouncil
             if (passion != null)
             {
                 var s = p.skills?.GetSkill(passion);
-                if (s == null || s.TotallyDisabled || s.passion == Passion.None) return false;
+                if (s == null || s.TotallyDisabled || !People.Passionate(s)) return false;
             }
             float mood = p.needs?.mood?.CurLevelPercentage ?? 0.5f;
             if (mood < minMood || mood > maxMood) return false;

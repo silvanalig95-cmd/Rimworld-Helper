@@ -110,7 +110,7 @@ namespace ColonyCouncil
             if (pawn.needs?.mood == null) yield break;
             float mood = pawn.needs.mood.CurLevelPercentage;
             var social = pawn.skills?.GetSkill(SkillDefOf.Social);
-            bool socialite = social != null && !social.TotallyDisabled && social.passion != Passion.None;
+            bool socialite = social != null && !social.TotallyDisabled && People.Passionate(social);
             bool sanguine = pawn.story?.traits?.allTraits.Any(t => t.def.defName == "NaturalMood" && t.Degree > 0) ?? false;
             bool gloomyColony = map.mapPawns.FreeColonistsSpawned.Count >= 3
                                 && map.mapPawns.FreeColonistsSpawned.Average(p => p.needs?.mood?.CurLevelPercentage ?? 0.5f) < 0.45f;
@@ -212,7 +212,7 @@ namespace ColonyCouncil
             if (map == null || pawn.records == null || pawn.WorkTypeIsDisabled(WorkTypeDefOf.Hunting)) yield break;
             if (pawn.equipment?.Primary == null || !pawn.equipment.Primary.def.IsRangedWeapon) yield break;
             var shooting = pawn.skills?.GetSkill(SkillDefOf.Shooting);
-            bool hunter = shooting != null && !shooting.TotallyDisabled && shooting.passion != Passion.None;
+            bool hunter = shooting != null && !shooting.TotallyDisabled && People.Passionate(shooting);
             bool bloodlust = HasTrait(pawn, TraitDefOf.Bloodlust);
             if (!hunter && !bloodlust) yield break;
             if (!Game(map).Any()) yield break;

@@ -42,7 +42,7 @@ namespace ColonyCouncil
 
         private static CouncilSettings S => ColonyCouncilMod.Settings;
 
-        private static bool Eligible(Pawn p) => p != null && !p.Dead && p.IsColonist && !p.IsQuestLodger() && p.RaceProps.Humanlike;
+        private static bool Eligible(Pawn p) => People.HasInnerLife(p) && p.IsColonist && !p.IsQuestLodger() && p.RaceProps.Humanlike;
 
         public Heirloom HeirloomCarriedBy(Pawn p)
         {

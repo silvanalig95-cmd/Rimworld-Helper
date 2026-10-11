@@ -144,8 +144,8 @@ namespace ColonyCouncil
     public class AspirationWorker_Skill : AspirationWorker
     {
         private SkillDef Pick(Pawn p) => def.skill ?? p.skills?.skills
-            .Where(s => !s.TotallyDisabled && s.passion != Passion.None && s.Level < 18)
-            .RandomElementByWeightWithFallback(s => s.passion == Passion.Major ? 3f : 1f)?.def;
+            .Where(s => !s.TotallyDisabled && People.Passionate(s) && s.Level < 18)
+            .RandomElementByWeightWithFallback(s => People.Burning(s) ? 3f : 1f)?.def;
 
         public override bool CanHave(Pawn p)
         {
@@ -276,7 +276,7 @@ namespace ColonyCouncil
             switch (def.counter)
             {
                 case "peace": return comp.social.ties.Any(t => t.kind == TieKind.Rivals && t.announced && t.Involves(p));
-                case "graduated": return ColonyCouncilMod.Settings.socialWeb && p.skills != null && p.skills.skills.Any(s => s.Level >= 10 && s.passion != Passion.None);
+                case "graduated": return ColonyCouncilMod.Settings.socialWeb && p.skills != null && p.skills.skills.Any(s => s.Level >= 10 && People.Passionate(s));
                 case "omen": return ColonyCouncilMod.Settings.dreams && ColonyCouncilMod.Settings.dreamOmens;
                 case "avenged": return ColonyCouncilMod.Settings.vendettas && comp.vendettas.Of(p).Any();
                 default: return true;
@@ -442,7 +442,7 @@ namespace ColonyCouncil
             counters[k] = (counters.TryGetValue(k, out int n) ? n : 0) + 1;
         }
 
-        private static bool Eligible(Pawn p) => p != null && !p.Dead && p.IsColonist && !p.IsQuestLodger() && p.RaceProps.Humanlike && !p.DevelopmentalStage.Baby() && !p.IsSlave;
+        private static bool Eligible(Pawn p) => People.HasInnerLife(p) && p.IsColonist && !p.IsQuestLodger() && p.RaceProps.Humanlike && !p.DevelopmentalStage.Baby() && !p.IsSlave;
 
         public void Daily(CouncilGameComponent comp)
         {

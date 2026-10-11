@@ -32,7 +32,7 @@ namespace ColonyCouncil
             {
                 var r = p.skills.GetSkill(sk);
                 if (r == null || r.TotallyDisabled) continue;
-                sum += r.Level + (r.passion == Passion.Major ? 3f : r.passion == Passion.Minor ? 1.5f : 0f);
+                sum += r.Level + People.PassionLevel(r) * 1.5f;
             }
             float c = sum / skills.Count;
             var traits = p.story?.traits;
@@ -68,7 +68,7 @@ namespace ColonyCouncil
 
         public bool Filled(string defName) => HolderOf(defName) != null;
 
-        private static bool Valid(Pawn p) => p != null && !p.Dead && p.IsColonist && !p.IsPrisoner;
+        private static bool Valid(Pawn p) => People.HasInnerLife(p) && p.IsColonist && !p.IsPrisoner;
 
         private static List<Pawn> Eligible() => PawnsFinder.AllMaps_FreeColonistsSpawned
             .Where(p => !p.IsQuestLodger() && !p.DevelopmentalStage.Juvenile() && !p.IsSlave && CouncilGameComponent.CanVoiceWishes(p)).ToList();

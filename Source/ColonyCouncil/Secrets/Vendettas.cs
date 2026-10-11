@@ -88,7 +88,7 @@ namespace ColonyCouncil
 
         public IEnumerable<Vendetta> Of(Pawn p) => vendettas.Where(v => v.avenger == p && v.Active);
 
-        private static bool Eligible(Pawn p) => p != null && !p.Dead && p.IsColonist && !p.IsQuestLodger() && p.RaceProps.Humanlike && !p.DevelopmentalStage.Baby();
+        private static bool Eligible(Pawn p) => People.HasInnerLife(p) && p.IsColonist && !p.IsQuestLodger() && p.RaceProps.Humanlike && !p.DevelopmentalStage.Baby();
 
         public void Hourly(CouncilGameComponent comp)
         {
@@ -129,7 +129,13 @@ namespace ColonyCouncil
             var current = PawnsFinder.AllMapsCaravansAndTravellingTransporters_Alive_FreeColonists.Where(Eligible).ToList();
             foreach (var p in known.ToList())
             {
-                if (p == null || current.Contains(p)) continue;
+                if (p == null)
+                {
+                    known.Remove(p);
+                    continue;
+                }
+                // Away at an outpost, aboard a ship, in a vehicle: still ours, not a loss.
+                if (current.Contains(p) || (Eligible(p) && People.StillOurs(p))) continue;
                 known.Remove(p);
                 // The ones who loved them: a loss that can change what they want from life.
                 foreach (var f in PawnsFinder.AllMaps_FreeColonists.Where(f => f != p && Eligible(f) && Close(comp, f, p)))

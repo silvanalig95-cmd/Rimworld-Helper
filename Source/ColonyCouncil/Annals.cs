@@ -90,6 +90,12 @@ namespace ColonyCouncil
                 foreach (var p in present)
                 {
                     if (p == null || current.Contains(p)) continue;
+                    // Away, not gone: keep them on the books.
+                    if (People.StillOurs(p))
+                    {
+                        current.Add(p);
+                        continue;
+                    }
                     string name = p.LabelShort;
                     if (p.Dead) died.Add(name);
                     else if (!quit.Contains(name)) gone.Add(name);

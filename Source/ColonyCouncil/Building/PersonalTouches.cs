@@ -120,9 +120,9 @@ namespace ColonyCouncil
             var traits = p.story?.traits;
             if (traits != null && traits.HasTrait(TraitDefOf.Greedy)) w += 1f;
             var art = p.skills?.GetSkill(SkillDefOf.Artistic);
-            if (art != null && art.passion != Passion.None) w += 0.5f;
+            if (art != null && People.Passionate(art)) w += 0.5f;
             var cons = p.skills?.GetSkill(SkillDefOf.Construction);
-            if (cons != null && cons.passion != Passion.None) w += 0.5f;
+            if (cons != null && People.Passionate(cons)) w += 0.5f;
             return w;
         }
 
@@ -136,7 +136,7 @@ namespace ColonyCouncil
                 if (d != null) options.Add((d, w));
             }
             var plants = pawn.skills?.GetSkill(SkillDefOf.Plants);
-            Add(Avail.IsPlantPot, plants != null && plants.passion != Passion.None ? 3f : 1f, "PlantPot");
+            Add(Avail.IsPlantPot, plants != null && People.Passionate(plants) ? 3f : 1f, "PlantPot");
             Add(Avail.IsEndTable, 1.5f, "EndTable");
             Add(Avail.IsDresser, 1f, "Dresser");
             var nightOwl = DefDatabase<TraitDef>.GetNamedSilentFail("NightOwl");

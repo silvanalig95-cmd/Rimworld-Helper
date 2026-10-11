@@ -201,7 +201,7 @@ namespace ColonyCouncil
             int now = Find.TickManager.TicksGame;
             foreach (var p in PawnsFinder.AllMaps_FreeColonistsSpawned.ToList())
             {
-                if (p.IsQuestLodger() || !p.RaceProps.Humanlike || p.DevelopmentalStage.Baby() || p.needs?.mood == null) continue;
+                if (p.IsQuestLodger() || !People.HasInnerLife(p) || p.DevelopmentalStage.Baby()) continue;
                 bool asleep = !RestUtility.Awake(p);
                 if (asleep)
                 {
@@ -394,8 +394,8 @@ namespace ColonyCouncil
         {
             var skills = p.skills?.skills.Where(s => !s.TotallyDisabled).ToList();
             if (skills == null || skills.Count == 0) return null;
-            var passions = skills.Where(s => s.passion != Passion.None).ToList();
-            return (passions.Count > 0 ? passions.RandomElementByWeight(s => s.passion == Passion.Major ? 2f : 1f) : skills.MaxBy(s => s.Level)).def;
+            var passions = skills.Where(s => People.Passionate(s)).ToList();
+            return (passions.Count > 0 ? passions.RandomElementByWeight(s => People.PassionLevel(s)) : skills.MaxBy(s => s.Level)).def;
         }
 
         private static string Key(Pawn p, DreamDef d) => p.ThingID + "|" + d.defName;

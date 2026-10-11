@@ -238,7 +238,7 @@ namespace ColonyCouncil
         {
             if (p == null || p.Dead || !p.Spawned || p.Map == null || !p.Map.IsPlayerHome) return false;
             if (!p.IsFreeNonSlaveColonist || p.IsQuestLodger()) return false;
-            if (p.needs?.mood == null) return false;
+            if (!People.HasInnerLife(p)) return false;
             if (p.DevelopmentalStage.Baby()) return false;
             if (p.InMentalState || p.Downed || p.Drafted) return false;
             if (p.Map.dangerWatcher.DangerRating == StoryDanger.High) return false;

@@ -173,7 +173,7 @@ namespace ColonyCouncil
         {
             var map = HomeMap(pawn);
             var animals = pawn.skills?.GetSkill(SkillDefOf.Animals);
-            if (map == null || animals == null || animals.TotallyDisabled || animals.passion == Passion.None) yield break;
+            if (map == null || animals == null || animals.TotallyDisabled || !People.Passionate(animals)) yield break;
             if (pawn.WorkTypeIsDisabled(WorkTypeDefOf.Handling)) yield break;
             var wild = map.mapPawns.AllPawnsSpawned
                 .Where(a => a.RaceProps.Animal && a.Faction == null && !a.Downed && a.GetStatValue(StatDefOf.Wildness) < 0.85f
@@ -181,7 +181,7 @@ namespace ColonyCouncil
                 .ToList();
             if (wild.Count == 0) yield break;
             var example = wild.RandomElement();
-            var c = Candidate(animals.passion == Passion.Major ? 1.2f : 0.5f, "CC_Reason_AnimalLover".Translate(pawn.Named("PAWN"), example.kindDef.GetLabelPlural().Named("ANIMALS")));
+            var c = Candidate(People.Burning(animals) ? 1.2f : 0.5f, "CC_Reason_AnimalLover".Translate(pawn.Named("PAWN"), example.kindDef.GetLabelPlural().Named("ANIMALS")));
             c.baseline = RoomUtil.ColonyAnimalCount(map);
             c.subjectLabel = example.kindDef.label;
             yield return c;
@@ -221,7 +221,7 @@ namespace ColonyCouncil
             if (assessment.ratio >= 0.8f) yield break;
             var shoot = pawn.skills?.GetSkill(SkillDefOf.Shooting);
             var melee = pawn.skills?.GetSkill(SkillDefOf.Melee);
-            bool fighter = (shoot != null && shoot.passion == Passion.Major) || (melee != null && melee.passion == Passion.Major);
+            bool fighter = (shoot != null && People.Burning(shoot)) || (melee != null && People.Burning(melee));
             bool shaken = HasMemory(pawn, ThoughtDefOf.WitnessedDeathAlly) || HasMemory(pawn, ThoughtDefOf.ColonistLost)
                           || HasTrait(pawn, TraitDefOf.Wimp);
             if (!fighter && !shaken) yield break;

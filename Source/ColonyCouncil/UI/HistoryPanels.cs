@@ -92,7 +92,7 @@ namespace ColonyCouncil
                 Widgets.Label(rect, "CC_History_JournalsOff".Translate());
                 return;
             }
-            var here = new HashSet<string>(PawnsFinder.AllMapsCaravansAndTravellingTransporters_Alive_FreeColonists.Select(p => p.ThingID));
+            var here = People.OursIds();
             var journals = comp.journals.All.OrderBy(j => here.Contains(j.pawnId) ? 0 : 1).ThenBy(j => j.name).ToList();
             if (selectedJournal == null || !journals.Contains(selectedJournal)) selectedJournal = journals.FirstOrDefault();
 

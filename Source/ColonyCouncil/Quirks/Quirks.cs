@@ -103,7 +103,7 @@ namespace ColonyCouncil
 
         public void Notify_Fought(Pawn p) => battleTick[p] = Find.TickManager.TicksGame;
 
-        private static bool Eligible(Pawn p) => p != null && !p.Dead && p.IsColonist && !p.IsQuestLodger() && p.RaceProps.Humanlike && !p.DevelopmentalStage.Baby();
+        private static bool Eligible(Pawn p) => People.HasInnerLife(p) && p.IsColonist && !p.IsQuestLodger() && p.RaceProps.Humanlike && !p.DevelopmentalStage.Baby();
 
         public void Hourly()
         {

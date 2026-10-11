@@ -93,7 +93,7 @@ namespace ColonyCouncil
             bool haveArt = map.listerThings.ThingsInGroup(ThingRequestGroup.Art).Any(t => !t.Spawned || t.Position.GetRoom(map) == null || t.Position.GetRoom(map).PsychologicallyOutdoors || t.MapHeld == map);
             if (!canMakeArt && !haveArt) yield break;
             var art = pawn.skills?.GetSkill(SkillDefOf.Artistic);
-            bool artist = art != null && !art.TotallyDisabled && art.passion != Passion.None;
+            bool artist = art != null && !art.TotallyDisabled && People.Passionate(art);
             bool greedy = HasTrait(pawn, TraitDefOf.Greedy);
             if (!artist && !greedy && RoomUtil.ExpectationOrder(pawn) < 3) yield break;
             yield return Candidate(artist ? 1.2f : 0.7f, artist
@@ -178,7 +178,7 @@ namespace ColonyCouncil
             if (map == null || pawn.relations == null) yield break;
             bool kind = HasTrait(pawn, TraitDefOf.Kind);
             var social = pawn.skills?.GetSkill(SkillDefOf.Social);
-            bool talker = social != null && !social.TotallyDisabled && social.passion != Passion.None;
+            bool talker = social != null && !social.TotallyDisabled && People.Passionate(social);
             if (!kind && !talker) yield break;
             foreach (var prisoner in map.mapPawns.PrisonersOfColonySpawned)
             {
@@ -251,7 +251,7 @@ namespace ColonyCouncil
             if (instrument == null) yield break;
             var art = pawn.skills?.GetSkill(SkillDefOf.Artistic);
             var social = pawn.skills?.GetSkill(SkillDefOf.Social);
-            bool musical = (art != null && !art.TotallyDisabled && art.passion != Passion.None) || (social != null && !social.TotallyDisabled && social.passion == Passion.Major);
+            bool musical = (art != null && !art.TotallyDisabled && People.Passionate(art)) || (social != null && !social.TotallyDisabled && People.Burning(social));
             if (!musical) yield break;
             var c = Candidate(0.8f, "CC_Reason_Music".Translate(pawn.Named("PAWN")));
             c.thingDef = instrument;
@@ -287,7 +287,7 @@ namespace ColonyCouncil
             if (map == null || pawn.skills == null || pawn.WorkTagIsDisabled(WorkTags.Violent)) yield break;
             var shoot = pawn.skills.GetSkill(SkillDefOf.Shooting);
             var melee = pawn.skills.GetSkill(SkillDefOf.Melee);
-            bool fighter = (shoot != null && shoot.passion != Passion.None && !shoot.TotallyDisabled) || (melee != null && melee.passion != Passion.None && !melee.TotallyDisabled);
+            bool fighter = (shoot != null && People.Passionate(shoot) && !shoot.TotallyDisabled) || (melee != null && People.Passionate(melee) && !melee.TotallyDisabled);
             if (!fighter || BestArmor(pawn) >= Wanted || !CanMakeArmor(map)) yield break;
             var c = Candidate(map.storyState.LastThreatBigTick > 0 && Find.TickManager.TicksGame - map.storyState.LastThreatBigTick < GenDate.TicksPerDay * 3 ? 1.6f : 0.6f,
                 "CC_Reason_Armor".Translate(pawn.Named("PAWN")));

@@ -97,7 +97,7 @@ namespace ColonyCouncil
                     {
                         foreach (var s in p.skills.skills)
                         {
-                            if (s.passion != Passion.None && !s.TotallyDisabled) tags.Add("skill:" + s.def.defName);
+                            if (People.Passionate(s) && !s.TotallyDisabled) tags.Add("skill:" + s.def.defName);
                         }
                     }
                     if (p.records != null && p.records.GetAsInt(RecordDefOf.TimeAsColonistOrColonyAnimal) < GenDate.TicksPerDay * 10) tags.Add("newcomer");

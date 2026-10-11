@@ -422,11 +422,11 @@ namespace ColonyCouncil
             var map = HomeMap(pawn);
             if (room == null || map == null || HasTrait(pawn, TraitDefOf.Ascetic)) yield break;
             var plants = pawn.skills?.GetSkill(SkillDefOf.Plants);
-            if (plants == null || plants.TotallyDisabled || plants.passion == Passion.None) yield break;
+            if (plants == null || plants.TotallyDisabled || !People.Passionate(plants)) yield break;
             if (RoomUtil.RoomContains(room, Avail.IsPlantPot)) yield break;
             var pot = Avail.BestBuildable(map, Avail.IsPlantPot, "PlantPot");
             if (pot == null) yield break;
-            var c = Candidate(plants.passion == Passion.Major ? 1f : 0.5f, "CC_Reason_Greenery".Translate(pawn.Named("PAWN")));
+            var c = Candidate(People.Burning(plants) ? 1f : 0.5f, "CC_Reason_Greenery".Translate(pawn.Named("PAWN")));
             c.thingDef = pot;
             yield return c;
         }

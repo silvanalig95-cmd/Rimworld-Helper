@@ -51,7 +51,7 @@ namespace ColonyCouncil
         /// <summary>Journals of people no longer with the colony (dead, gone, walked out).</summary>
         public IEnumerable<PawnJournal> Departed()
         {
-            var here = new HashSet<string>(PawnsFinder.AllMapsCaravansAndTravellingTransporters_Alive_FreeColonists.Select(p => p.ThingID));
+            var here = People.OursIds();
             return journals.Where(j => j.entries.Count > 0 && !here.Contains(j.pawnId));
         }
 

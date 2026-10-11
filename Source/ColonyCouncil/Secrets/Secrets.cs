@@ -97,7 +97,7 @@ namespace ColonyCouncil
         public IEnumerable<Secret> RecentlyRevealed(float days) =>
             secrets.Where(s => s.revealed && Find.TickManager.TicksGame - s.revealedTick < days * GenDate.TicksPerDay);
 
-        private static bool Eligible(Pawn p) => p != null && !p.Dead && p.IsColonist && !p.IsQuestLodger() && p.RaceProps.Humanlike && !p.DevelopmentalStage.Juvenile();
+        private static bool Eligible(Pawn p) => People.HasInnerLife(p) && p.IsColonist && !p.IsQuestLodger() && p.RaceProps.Humanlike && !p.DevelopmentalStage.Juvenile();
 
         public void Daily(CouncilGameComponent comp)
         {

@@ -54,7 +54,7 @@ namespace ColonyCouncil
             if (passion != null)
             {
                 var s = p.skills?.GetSkill(passion);
-                return s != null && !s.TotallyDisabled && s.passion != Passion.None;
+                return s != null && !s.TotallyDisabled && People.Passionate(s);
             }
             if (nonViolent) return p.WorkTagIsDisabled(WorkTags.Violent);
             if (grieving) return Flavor.IsGrieving(p);

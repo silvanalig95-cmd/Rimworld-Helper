@@ -50,7 +50,7 @@ namespace ColonyCouncil
         {
             if (!ColonyCouncilMod.Settings.enableWishes) return 0f;
             var comp = CouncilGameComponent.Instance;
-            if (comp == null || recipient == null || !recipient.RaceProps.Humanlike || !recipient.IsColonist) return 0f;
+            if (comp == null || recipient == null || !recipient.RaceProps.Humanlike || !recipient.IsColonist || !initiator.IsColonist) return 0f;
             var level = comp.standings.LevelOf(initiator);
             if (Bitter) return level == TrustLevel.Bitter ? 0.05f : level == TrustLevel.Doubtful ? 0.015f : 0f;
             return level == TrustLevel.Devoted ? 0.03f : level == TrustLevel.Trusting ? 0.008f : 0f;

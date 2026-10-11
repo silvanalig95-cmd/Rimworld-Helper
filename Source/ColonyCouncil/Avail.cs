@@ -298,7 +298,10 @@ namespace ColonyCouncil
         {
             if (d?.thingClass == null) return false;
             if (typeof(Building_FermentingBarrel).IsAssignableFrom(d.thingClass)) return true;
-            if (!d.thingClass.FullName.Contains("ItemProcessor")) return false;
+            // Vanilla Expanded's item processors and Processor Framework's processors: barrels by name.
+            bool processor = d.thingClass.FullName.Contains("ItemProcessor")
+                             || (d.comps != null && d.comps.Any(c => c?.compClass != null && c.compClass.FullName.Contains("Processor")));
+            if (!processor) return false;
             string name = (d.defName + " " + d.label).ToLowerInvariant();
             return name.Contains("barrel") || name.Contains("ferment") || name.Contains("brew") || name.Contains("keg") || name.Contains("cask") || name.Contains("still");
         }

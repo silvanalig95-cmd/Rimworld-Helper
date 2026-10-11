@@ -161,7 +161,7 @@ namespace ColonyCouncil
             return parts.Count == 0 ? null : string.Join(" ", parts);
         }
 
-        private static bool Eligible(Pawn p) => p != null && !p.Dead && p.IsColonist && !p.IsQuestLodger() && p.RaceProps.Humanlike && !p.DevelopmentalStage.Baby();
+        private static bool Eligible(Pawn p) => People.HasInnerLife(p) && p.IsColonist && !p.IsQuestLodger() && p.RaceProps.Humanlike && !p.DevelopmentalStage.Baby();
 
         // ---------------- Changes ----------------
 
@@ -474,9 +474,9 @@ namespace ColonyCouncil
             if (!Rand.Chance(0.06f)) return;
             foreach (var sk in DefDatabase<SkillDef>.AllDefsListForReading.InRandomOrder())
             {
-                var mentors = pawns.Where(p => p.skills?.GetSkill(sk) is SkillRecord r && !r.TotallyDisabled && r.Level >= 12 && r.passion != Passion.None).ToList();
+                var mentors = pawns.Where(p => p.skills?.GetSkill(sk) is SkillRecord r && !r.TotallyDisabled && r.Level >= 12 && People.Passionate(r)).ToList();
                 if (mentors.Count == 0) continue;
-                var students = pawns.Where(p => p.skills?.GetSkill(sk) is SkillRecord r && !r.TotallyDisabled && r.Level <= 7 && r.passion != Passion.None
+                var students = pawns.Where(p => p.skills?.GetSkill(sk) is SkillRecord r && !r.TotallyDisabled && r.Level <= 7 && People.Passionate(r)
                                                 && !ties.Any(t => t.kind == TieKind.Mentor && t.b == p)).ToList();
                 // One teaching relationship per pair, in one direction, between people who live together.
                 foreach (var student in students.InRandomOrder())

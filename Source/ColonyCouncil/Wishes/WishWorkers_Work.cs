@@ -124,7 +124,7 @@ namespace ColonyCouncil
             {
                 if (spec.skill == null) continue;
                 var rec = pawn.skills.GetSkill(spec.skill);
-                if (rec == null || rec.TotallyDisabled || rec.passion == Passion.None) continue;
+                if (rec == null || rec.TotallyDisabled || !People.Passionate(rec)) continue;
                 if (spec.satisfied(map)) continue;
                 if (spec.needed != null && !spec.needed(map)) continue;
                 // Animals: only once the colony actually keeps animals.
@@ -133,9 +133,9 @@ namespace ColonyCouncil
                 if (spec.skill == SkillDefOf.Medicine && RoomUtil.ColonistCount(map) < 3) continue;
                 var thing = spec.suggest(map);
                 if (thing == null) continue;
-                var c = Candidate(rec.passion == Passion.Major ? 1.6f : 0.6f,
+                var c = Candidate(People.Burning(rec) ? 1.6f : 0.6f,
                     "CC_Reason_Passion".Translate(pawn.Named("PAWN"), spec.skill.label.Named("SKILL"),
-                        (rec.passion == Passion.Major ? "CC_PassionBurning" : "CC_PassionInterested").Translate().Named("PASSION")));
+                        (People.Burning(rec) ? "CC_PassionBurning" : "CC_PassionInterested").Translate().Named("PASSION")));
                 c.thingDef = thing;
                 c.subjectKey = spec.skill.defName;
                 c.subjectLabel = ("CC_SkillSpace_" + spec.skill.defName).CanTranslate()
@@ -187,23 +187,23 @@ namespace ColonyCouncil
             {
                 if (wt.relevantSkills == null || wt.relevantSkills.Count == 0 || !wt.visible) continue;
                 if (pawn.WorkTypeIsDisabled(wt) || pawn.workSettings.GetPriority(wt) > 0) continue;
-                Passion best = Passion.None;
+                int best = 0;
                 SkillDef bestSkill = null;
                 foreach (var sk in wt.relevantSkills)
                 {
-                    var rec = pawn.skills.GetSkill(sk);
-                    if (rec != null && !rec.TotallyDisabled && rec.passion > best)
+                    int level = People.PassionLevel(pawn.skills.GetSkill(sk));
+                    if (level > best)
                     {
-                        best = rec.passion;
+                        best = level;
                         bestSkill = sk;
                     }
                 }
-                if (best == Passion.None) continue;
+                if (best == 0) continue;
                 // Only if nothing else using that skill is turned on.
                 bool otherOn = DefDatabase<WorkTypeDef>.AllDefsListForReading.Any(o => o != wt && o.relevantSkills != null
                     && o.relevantSkills.Contains(bestSkill) && !pawn.WorkTypeIsDisabled(o) && pawn.workSettings.GetPriority(o) > 0);
                 if (otherOn) continue;
-                var c = Candidate(best == Passion.Major ? 1.4f : 0.6f, "CC_Reason_WorkOff".Translate(pawn.Named("PAWN"), wt.gerundLabel.Named("WORK"), bestSkill.label.Named("SKILL")));
+                var c = Candidate(best >= 2 ? 1.4f : 0.6f, "CC_Reason_WorkOff".Translate(pawn.Named("PAWN"), wt.gerundLabel.Named("WORK"), bestSkill.label.Named("SKILL")));
                 c.subjectKey = wt.defName;
                 c.subjectLabel = wt.gerundLabel;
                 yield return c;
@@ -252,7 +252,7 @@ namespace ColonyCouncil
             var map = HomeMap(pawn);
             if (map == null) yield break;
             var art = pawn.skills?.GetSkill(SkillDefOf.Artistic);
-            bool artist = art != null && !art.TotallyDisabled && art.passion != Passion.None;
+            bool artist = art != null && !art.TotallyDisabled && People.Passionate(art);
             bool greedy = HasTrait(pawn, TraitDefOf.Greedy);
             if (!artist && !greedy && RoomUtil.ExpectationOrder(pawn) < 4) yield break;
             if (!RoomUtil.ColonyRooms(map).Any(r => r.Role == RoomUtil.DiningRoom || r.Role == RoomUtil.RecRoom)) yield break;
@@ -282,8 +282,8 @@ namespace ColonyCouncil
             bool brawler = HasTrait(pawn, TraitDefOf.Brawler);
             var shoot = pawn.skills.GetSkill(SkillDefOf.Shooting);
             var melee = pawn.skills.GetSkill(SkillDefOf.Melee);
-            bool wantsRanged = !brawler && shoot != null && shoot.passion == Passion.Major && (melee == null || shoot.passion >= melee.passion);
-            bool wantsMelee = brawler || (melee != null && melee.passion == Passion.Major && !wantsRanged);
+            bool wantsRanged = !brawler && shoot != null && People.Burning(shoot) && (melee == null || People.PassionLevel(shoot) >= People.PassionLevel(melee));
+            bool wantsMelee = brawler || (melee != null && People.Burning(melee) && !wantsRanged);
             if (!wantsRanged && !wantsMelee) yield break;
             if (Satisfied(pawn, wantsRanged)) yield break;
             if (!WeaponObtainable(map, wantsRanged)) yield break;
@@ -416,7 +416,7 @@ namespace ColonyCouncil
             var map = HomeMap(pawn);
             if (map == null || RoomUtil.HasFreezer(map)) yield break;
             var cook = pawn.skills?.GetSkill(SkillDefOf.Cooking);
-            bool cookPassion = cook != null && !cook.TotallyDisabled && cook.passion != Passion.None;
+            bool cookPassion = cook != null && !cook.TotallyDisabled && People.Passionate(cook);
             bool ateRotten = HasMemory(pawn, ThoughtDefOf.AteRottenFood);
             if (!cookPassion && !ateRotten) yield break;
             var cooler = Avail.BestBuildable(map, d => d.thingClass != null && typeof(Building_Cooler).IsAssignableFrom(d.thingClass), "Cooler");
