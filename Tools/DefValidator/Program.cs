@@ -223,6 +223,8 @@ void ValidateValue(XElement el, Type ft, string file)
     ValidateFields(el, ft, file);
 }
 
+// Abstract defs from the base game that the mod's defs may inherit from.
+var vanillaParents = new HashSet<string> { "ScenarioBase" };
 foreach (var (file, doc) in docs)
 {
     foreach (var el in doc.Root!.Elements())
@@ -230,7 +232,7 @@ foreach (var (file, doc) in docs)
         var t = ResolveType(el.Name.LocalName);
         if (t == null || !IsDef(t)) continue;
         var parent = el.Attribute("ParentName")?.Value;
-        if (parent != null && !abstractNames.Contains(parent)) errors.Add($"{Rel(file)}:{Line(el)}: ParentName '{parent}' not found in this mod");
+        if (parent != null && !abstractNames.Contains(parent) && !vanillaParents.Contains(parent)) errors.Add($"{Rel(file)}:{Line(el)}: ParentName '{parent}' not found in this mod");
         ValidateFields(el, t, file);
     }
 }

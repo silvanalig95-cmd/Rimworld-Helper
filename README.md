@@ -404,6 +404,32 @@ chronicle. Fights come only with **battles** switched on in the settings, when t
 all, never on top of another fight, and at a share of the storyteller's own raid strength. In dev mode, every
 event can be fired from **Debug actions → Incidents** (they're named `Council_Evt_...`).
 
+## Scenarios with stakes
+Six new scenarios (pick them on the scenario page; they're marked "(Rimfolk)") start the game with something
+already in motion. A few seconds in, a letter says how things stand.
+- **Hot Money.** Four thieves with 2,500 silver that belongs to a pirate boss, who comes asking for it within the
+  week: pay it back, pay half and beg for time (with interest), or keep it and fight for it while the boss lives.
+  One of the four skimmed from the take.
+- **Marooned.** A loyal few, thrown off their ship by mutineers. The ringleader's pirate friends come for them
+  within two weeks and every few weeks after, until the ringleader falls. One of them was in on the mutiny.
+- **Deserters.** Five soldiers who walked away from a losing war, well armed and badly fed. Within the month their
+  old unit comes for one of them: hand them over, buy their freedom, or fight.
+- **Bad Blood.** Six survivors from two families who have never got on. Each family takes one name, stands by its
+  own, and can't stand the other (the grudge fades in a couple of months, if nothing feeds it).
+- **Borrowed Time.** The best start money can buy (electricity researched, a stack of steel and components), bought
+  with a 4,000-silver loan due in a month. Refusing to pay brings the collectors, twice.
+- **The Fallen Tyrant.** Five servants who drugged their warlord at a feast. The warlord starts as your prisoner,
+  out cold for a few hours (build a cell fast), every colonist loathes them, and their loyalists come within days
+  and keep coming while the warlord lives. What to do with the tyrant is the colony's first real decision.
+
+The pieces are **scenario parts** you can add to any scenario in the scenario editor: *a sworn enemy* (who hunts,
+was robbed by, betrayed or held the colonists in chains, and can start as your prisoner), *a debt*, *deserters*,
+*two feuding families*, *a reputation* (the colony's ways from day one) and *a secret*. Enemies are nemeses from the
+first day; debts and hunts show on the **World** page. A hunt ends when the one leading it dies, joins you, is sold
+off, or their people make peace or are wiped out, and the colony gets to feel that. Fights a scenario promises come
+even with Rimfolk's world-event battles switched off (you chose the scenario for them), but only when your
+storyteller sends threats at all.
+
 ## The colony notices what happens
 The moment it happens: a **wedding** is written into the chronicle and the journals of the couple and their friends
 (and nudges the colony a little towards tradition); a **birth** is recorded by the parents; colonists **coming

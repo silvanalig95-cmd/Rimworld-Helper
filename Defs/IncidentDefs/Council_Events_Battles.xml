@@ -27,7 +27,11 @@
           <li>[victim] {X_nameDef} is back. The one who left {A_nameDef} bleeding in the dirt is marching at the head of a war party of {ENEMY}, and this time {X_nameDef} means to finish it.</li>
           <li>[killed] {X_nameDef}, who killed {DEAD}, has come back with {ENEMY} behind {X_objective}. The colony remembers. So, it seems, does {X_nameDef}.</li>
           <li>[maimed] {X_nameDef}, who maimed {DEAD}, is leading a war party of {ENEMY} against the colony. Whatever {X_nameDef} wants, it isn't peace.</li>
-          <li>{X_nameDef} is back, leading a war party of {ENEMY}. Last time {X_nameDef} got away. Nobody here intends to let that happen twice.</li>
+          <li>[fled] {X_nameDef} is back, leading a war party of {ENEMY}. Last time {X_nameDef} got away. Nobody here intends to let that happen twice.</li>
+          <li>[hunts] {X_nameDef} of {ENEMY}, who swore to hunt down {DEAD}, has found the colony again, and brought a war party to settle it.</li>
+          <li>[robbed] {X_nameDef} hasn't forgotten the money. {ENEMY} are marching on the colony with {X_nameDef} at their head, asking for {DEAD} by name.</li>
+          <li>[betrayed] {X_nameDef}, who turned a crew against {DEAD} and threw {DEAD} off the ship, is back to finish the job, with {ENEMY} behind {X_objective}.</li>
+          <li>[enslaved] {X_nameDef}, who once held {DEAD} in chains, is coming back with {ENEMY} to take back what {X_pronoun} still thinks is {X_possessive}.</li>
         </texts>
       </li>
     </modExtensions>

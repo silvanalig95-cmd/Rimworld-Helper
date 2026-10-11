@@ -1710,4 +1710,96 @@ Those against it ({WHO}) will trust the council less and resent it more than usu
   <CC_Evt_Article_Good>{0}'s piece calls the colony {1}, and means it kindly. Neighbours who read it think better of the colony.</CC_Evt_Article_Good>
   <CC_Evt_Article_Bad>{0}'s piece calls the colony {1}, and doesn't mean it kindly. Neighbours who read it think a little worse of the colony.</CC_Evt_Article_Bad>
   <CC_Evt_Article_Plain>{0}'s piece calls the colony {1}: fair, plain, and a little dull. A few neighbours remember the name.</CC_Evt_Article_Plain>
+
+  <!-- Scenarios: the letter that says how things stand -->
+  <CC_Scen_LetterLabel>How things stand</CC_Scen_LetterLabel>
+  <CC_Scen_LetterIntro>The colony didn't start with a clean slate.</CC_Scen_LetterIntro>
+  <CC_Scen_NoEnemy>Whoever this colony crossed, there's nobody in this world hostile enough to come after it. Lucky.</CC_Scen_NoEnemy>
+  <CC_Scen_Foe_hunts>{FOE_nameDef} of {FACTION} has sworn to hunt down {VICTIM_nameDef}, and has the people to do it.</CC_Scen_Foe_hunts>
+  <CC_Scen_Foe_robbed>The silver was taken from {FOE_nameDef} of {FACTION}, and {FOE_nameDef} knows exactly who took it: {VICTIM_nameDef} planned the job.</CC_Scen_Foe_robbed>
+  <CC_Scen_Foe_betrayed>{FOE_nameDef} turned the crew against {VICTIM_nameDef}, and has friends among {FACTION} down here.</CC_Scen_Foe_betrayed>
+  <CC_Scen_Foe_enslaved>{FOE_nameDef} of {FACTION} held {VICTIM_nameDef} and the others in chains for years.</CC_Scen_Foe_enslaved>
+  <CC_Scen_Foe_Prisoner>Now {FOE_nameDef} is the colony's prisoner, and {FACTION} will want {FOE_objective} back.</CC_Scen_Foe_Prisoner>
+  <CC_Scen_Foe_Once>They'll come for the colony within days.</CC_Scen_Foe_Once>
+  <CC_Scen_Foe_Again>They'll come for the colony soon, and keep coming every few weeks for as long as {FOE_nameDef} lives.</CC_Scen_Foe_Again>
+  <CC_Scen_Debt_loan>The colony owes {FACTION} {AMOUNT} silver: the price of everything it landed with. They'll want it in about {DAYS} days.</CC_Scen_Debt_loan>
+  <CC_Scen_Debt_heist>The {AMOUNT} silver in the colony's packs belongs to {FOE}, by any reasonable account. {FACTION} will come asking for it in about {DAYS} days.</CC_Scen_Debt_heist>
+  <CC_Scen_Deserters>{NAMES} deserted from {FACTION}. Their old unit still has their names, and is still looking.</CC_Scen_Deserters>
+  <CC_Scen_Families>The {NAMEA} family: {FAMILYA}. The {NAMEB} family: {FAMILYB}. The two have never got on, and nobody expects that to change soon.</CC_Scen_Families>
+  <CC_Scen_SecretHint>Not everyone here is telling the whole truth.</CC_Scen_SecretHint>
+  <CC_Scen_WaysWhy>how the colony began ({0})</CC_Scen_WaysWhy>
+
+  <!-- Scenarios: hunts -->
+  <CC_Scen_HuntWarning>Word comes that {FACTION} are on the move, and coming this way. They'll be here within hours.</CC_Scen_HuntWarning>
+  <CC_Scen_Hunt_hunt_Label>{FACTION} are back</CC_Scen_Hunt_hunt_Label>
+  <CC_Scen_Hunt_hunt_Text>{FACTION} are coming for the colony again, on {FOE}'s word.</CC_Scen_Hunt_hunt_Text>
+  <CC_Scen_Hunt_hunt_Led_Label>{FOE} is back</CC_Scen_Hunt_hunt_Led_Label>
+  <CC_Scen_Hunt_hunt_Led_Text>{FOE} has found the colony again, with a war party of {FACTION} behind. There's only one way this ends.</CC_Scen_Hunt_hunt_Led_Text>
+  <CC_Scen_Hunt_mutiny_Label>The mutineers</CC_Scen_Hunt_mutiny_Label>
+  <CC_Scen_Hunt_mutiny_Text>{FACTION} have sent their people after the colony again, on {FOE}'s orders. The ringleader doesn't leave loose ends.</CC_Scen_Hunt_mutiny_Text>
+  <CC_Scen_Hunt_mutiny_Led_Label>{FOE} comes to finish it</CC_Scen_Hunt_mutiny_Led_Label>
+  <CC_Scen_Hunt_mutiny_Led_Text>{FOE}, the mutiny's ringleader, is leading {FACTION} against the colony in person. Whatever happened on that ship, {FOE} means to finish it here.</CC_Scen_Hunt_mutiny_Led_Text>
+  <CC_Scen_Hunt_heist_Label>They want the money</CC_Scen_Hunt_heist_Label>
+  <CC_Scen_Hunt_heist_Text>{FACTION} have come for the money again, on {FOE}'s orders, and they've stopped asking nicely.</CC_Scen_Hunt_heist_Text>
+  <CC_Scen_Hunt_heist_Led_Label>{FOE} comes to collect</CC_Scen_Hunt_heist_Led_Label>
+  <CC_Scen_Hunt_heist_Led_Text>{FOE} still hasn't been paid back, and has come to collect in person, with {FACTION} behind.</CC_Scen_Hunt_heist_Led_Text>
+  <CC_Scen_Hunt_tyrant_Label>{FOE}'s loyalists</CC_Scen_Hunt_tyrant_Label>
+  <CC_Scen_Hunt_tyrant_Text>{FACTION} have come again, in {FOE}'s name.</CC_Scen_Hunt_tyrant_Text>
+  <CC_Scen_Hunt_tyrant_Captive_Label>They've come for {FOE}</CC_Scen_Hunt_tyrant_Captive_Label>
+  <CC_Scen_Hunt_tyrant_Captive_Text>{FOE}'s loyalists of {FACTION} have come to break their master out, and to punish the ones who rose up.</CC_Scen_Hunt_tyrant_Captive_Text>
+  <CC_Scen_Hunt_tyrant_Led_Label>{FOE} returns</CC_Scen_Hunt_tyrant_Led_Label>
+  <CC_Scen_Hunt_tyrant_Led_Text>{FOE} is free, and has come back at the head of {FACTION} to take back the valley, and the people {FOE} still thinks of as property.</CC_Scen_Hunt_tyrant_Led_Text>
+  <CC_Scen_Hunt_loan_Label>Debt collectors</CC_Scen_Hunt_loan_Label>
+  <CC_Scen_Hunt_loan_Text>{FACTION} have come to collect what the colony owes them, one way or another.</CC_Scen_Hunt_loan_Text>
+  <CC_Scen_HuntOver_Label>The hunt is over</CC_Scen_HuntOver_Label>
+  <CC_Scen_HuntOver_dead>{FOE} is dead. {FACTION} have no reason left to come for the colony, and for the first time since it began, nobody here needs to look over their shoulder.</CC_Scen_HuntOver_dead>
+  <CC_Scen_HuntOver_gone>{FOE} is gone, and with {FOE} went the reason {FACTION} kept coming. The hunt is over.</CC_Scen_HuntOver_gone>
+  <CC_Scen_HuntOver_joined>{FOE} is one of the colony now. Strange as that is, it means {FACTION} have stopped coming.</CC_Scen_HuntOver_joined>
+  <CC_Scen_HuntOver_peace>{FACTION} have made peace with the colony. Whatever {FOE} wants, {FACTION} won't be fighting for it any more.</CC_Scen_HuntOver_peace>
+  <CC_Scen_HuntOver_defeated>{FACTION} are no more, and the hunt died with them.</CC_Scen_HuntOver_defeated>
+  <CC_Scen_HuntOver_settled>{FACTION} have taken what they think they're owed out of the colony's hide. As far as they're concerned, the debt is settled.</CC_Scen_HuntOver_settled>
+
+  <!-- Scenarios: debts -->
+  <CC_Scen_DebtHalf>Paying half now leaves about {0} silver owed, with their interest, due in about three weeks.</CC_Scen_DebtHalf>
+  <CC_Scen_NoMoreTime>They won't wait any longer.</CC_Scen_NoMoreTime>
+
+  <!-- Scenarios: the World page -->
+  <CC_World_Hunt>{0} haven't finished with the colony yet.</CC_World_Hunt>
+  <CC_World_Hunt_Led>{1} of {0} won't stop hunting the colony while {1} lives.</CC_World_Hunt_Led>
+  <CC_World_Hunt_Captive>{0} want {1} back, and will keep coming for as long as the colony holds {1}.</CC_World_Hunt_Captive>
+  <CC_World_Debt>The colony owes {1} {0} silver, due in {2}.</CC_World_Debt>
+
+  <!-- Scenarios: the parts, in the scenario editor and a scenario's summary -->
+  <CC_ScenPart_Foe_hunts>Rimfolk: an enemy has sworn to hunt down one of the colonists.</CC_ScenPart_Foe_hunts>
+  <CC_ScenPart_Foe_robbed>Rimfolk: the colonists robbed a powerful enemy, who knows their names.</CC_ScenPart_Foe_robbed>
+  <CC_ScenPart_Foe_betrayed>Rimfolk: the colonists were betrayed by a mutineer, who has friends on this world.</CC_ScenPart_Foe_betrayed>
+  <CC_ScenPart_Foe_enslaved>Rimfolk: the colonists' old master, a tyrant with loyal followers.</CC_ScenPart_Foe_enslaved>
+  <CC_ScenPart_Foe_Captive>They start as the colony's prisoner.</CC_ScenPart_Foe_Captive>
+  <CC_ScenPart_Foe_Once>Their people will come once.</CC_ScenPart_Foe_Once>
+  <CC_ScenPart_Foe_Again>Their people will keep coming while they live.</CC_ScenPart_Foe_Again>
+  <CC_ScenPart_Deed_hunts>Sworn to hunt them</CC_ScenPart_Deed_hunts>
+  <CC_ScenPart_Deed_robbed>Robbed by them</CC_ScenPart_Deed_robbed>
+  <CC_ScenPart_Deed_betrayed>Betrayed them</CC_ScenPart_Deed_betrayed>
+  <CC_ScenPart_Deed_enslaved>Held them in chains</CC_ScenPart_Deed_enslaved>
+  <CC_ScenPart_Captive>Starts as the colony's prisoner</CC_ScenPart_Captive>
+  <CC_ScenPart_FirstDays>First attack after {0} days (0: none)</CC_ScenPart_FirstDays>
+  <CC_ScenPart_EveryDays>Then every {0} days (0: never again)</CC_ScenPart_EveryDays>
+  <CC_ScenPart_Debt_loan>Rimfolk: the colony owes {0} silver, due in about {1} days.</CC_ScenPart_Debt_loan>
+  <CC_ScenPart_Debt_heist>Rimfolk: the colony is carrying {0} stolen silver, and its owner wants it back in about {1} days.</CC_ScenPart_Debt_heist>
+  <CC_ScenPart_Debt_Story_loan>A loan</CC_ScenPart_Debt_Story_loan>
+  <CC_ScenPart_Debt_Story_heist>Stolen money (needs a sworn enemy above it)</CC_ScenPart_Debt_Story_heist>
+  <CC_ScenPart_Amount>Silver</CC_ScenPart_Amount>
+  <CC_ScenPart_DueDays>Due after {0} days</CC_ScenPart_DueDays>
+  <CC_ScenPart_Deserters>Rimfolk: {0} of the colonists deserted from a hostile army, which is still looking for them.</CC_ScenPart_Deserters>
+  <CC_ScenPart_Count>How many</CC_ScenPart_Count>
+  <CC_ScenPart_Families>Rimfolk: the colonists are two families who have never got on.</CC_ScenPart_Families>
+  <CC_ScenPart_Ways>Rimfolk: the colony starts out with a reputation ({0}).</CC_ScenPart_Ways>
+  <CC_ScenPart_Secret>Rimfolk: someone is keeping a secret ({0}).</CC_ScenPart_Secret>
+  <CC_ScenPart_PickSecret>Pick a secret</CC_ScenPart_PickSecret>
+
+  <!-- Nemeses a scenario starts with -->
+  <CC_Nemesis_Deed_hunts>has sworn to hunt down {0}</CC_Nemesis_Deed_hunts>
+  <CC_Nemesis_Deed_robbed>was robbed by {0}</CC_Nemesis_Deed_robbed>
+  <CC_Nemesis_Deed_betrayed>betrayed {0}</CC_Nemesis_Deed_betrayed>
+  <CC_Nemesis_Deed_enslaved>held {0} in chains</CC_Nemesis_Deed_enslaved>
 </LanguageData>

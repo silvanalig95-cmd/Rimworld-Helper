@@ -62,6 +62,13 @@ namespace ColonyCouncil
         public static bool FightsPossible =>
             S.worldEvents && S.worldEventBattles && Find.Storyteller.difficulty.threatScale > 0.01f && Find.Storyteller.difficulty.allowBigThreats;
 
+        /// <summary>
+        /// Fights a scenario promised (a hunt, a debt collector): the player chose them with the scenario, so they come
+        /// even with world events or their battles switched off, as long as the storyteller sends threats at all.
+        /// </summary>
+        public static bool ScenarioFightsPossible =>
+            Find.Storyteller.difficulty.threatScale > 0.01f && Find.Storyteller.difficulty.allowBigThreats;
+
         /// <summary>A cheap check that the event could find its people now (nobody is made or spawned).</summary>
         protected virtual bool CanHappen(Map map, HappeningExtension ext) =>
             ext.colonist == null || Colonists(map).Any(p => ext.colonist.Allows(p, null));

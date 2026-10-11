@@ -78,7 +78,12 @@ namespace ColonyCouncil
         {
             var n = CouncilGameComponent.Instance?.nemeses.For(ctx.stranger);
             if (n?.deed != null) tags.Add(n.deed);
-            if (ctx.a != null && n?.victim == ctx.a) tags.Add("victim");
+            // Someone who once fled the colony's guns (a scenario's enemy never did).
+            if (n != null && !n.Sworn)
+            {
+                tags.Add("fled");
+                if (ctx.a != null && n.victim == ctx.a) tags.Add("victim");
+            }
         }
 
         protected override void Attacked(HappeningContext ctx)

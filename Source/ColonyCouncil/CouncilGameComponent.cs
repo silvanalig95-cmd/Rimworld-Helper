@@ -66,6 +66,8 @@ namespace ColonyCouncil
         public PetTracker pets = new PetTracker();
         public AutonomyTracker autonomy = new AutonomyTracker();
         public HappeningTracker happenings = new HappeningTracker();
+        /// <summary>A Rimfolk scenario's stakes (its enemy, debt, families...) have been set up for this game.</summary>
+        public bool scenarioSetUp;
         /// <summary>The colony's era, set by hand in the mod settings or detected (Auto). Saved with each colony.</summary>
         public EraMode era = EraMode.Auto;
         public CharacterTracker character = new CharacterTracker();
@@ -147,6 +149,7 @@ namespace ColonyCouncil
             Scribe_Deep.Look(ref pets, "pets");
             Scribe_Deep.Look(ref autonomy, "autonomy");
             Scribe_Deep.Look(ref happenings, "happenings");
+            Scribe_Values.Look(ref scenarioSetUp, "scenarioSetUp");
             Scribe_Collections.Look(ref history, "history", LookMode.Deep);
             Scribe_Values.Look(ref era, "era", EraMode.Auto);
             if (Scribe.mode == LoadSaveMode.Saving) lastAtHome.RemoveAll(kv => kv.Key == null || kv.Key.Dead || kv.Key.Discarded);

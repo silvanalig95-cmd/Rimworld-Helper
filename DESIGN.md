@@ -269,6 +269,15 @@ that come from inside it. They can stand on their own, but most reach into the r
 - **Nobody gets hurt for flavour.** Contests are matches at targets, wrestling without weapons, crafts and
   debates. Hail damages crops, never people.
 
+### Scenarios with stakes
+Rimfolk's scenarios use the same machinery to start a game with stakes in play: a nemesis from day one, a debt
+that comes due as a world event, a "hunt" (a promised raid that comes back every few weeks while the one leading it
+lives), deserters whose old unit finds them, two families seeded with kin and feud opinions, a starting reputation,
+a scenario-only secret. Everything is set up once, a few seconds into the game, and kept in Rimfolk's own save data
+(the scenario parts hold no state). The one exception to the battle switch: fights a scenario promises ignore the
+world-event battles setting, because the player picked the scenario for them, but they still need a storyteller
+that sends threats.
+
 ## Building help: how far should the mod build things itself?
 
 Think of it as a ladder. Each rung is optional and builds on the one below:

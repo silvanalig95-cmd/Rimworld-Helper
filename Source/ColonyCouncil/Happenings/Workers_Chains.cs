@@ -14,9 +14,14 @@ namespace ColonyCouncil
     /// <summary>The deserter the colony took in has been found by their old unit.</summary>
     public class HappeningWorker_DeserterFound : IncidentWorker_Happening
     {
+        /// <summary>A scenario's deserter whose unit finds them at a set time (see ScenarioStakes).</summary>
+        internal static Memo forced;
+
+        private static bool Fits(Memo m, Map map) =>
+            m != null && !m.used && m.pawn != null && !m.pawn.Dead && m.pawn.IsColonist && m.pawn.Spawned && m.pawn.Map == map && Raids.CanRaid(m.faction);
+
         private static Memo Pick(Map map) =>
-            CouncilGameComponent.Instance?.happenings.Memos("deserter", 20f).Where(m =>
-                m.pawn != null && !m.pawn.Dead && m.pawn.IsColonist && m.pawn.Spawned && m.pawn.Map == map && Raids.CanRaid(m.faction)).RandomElementWithFallback();
+            Fits(forced, map) ? forced : CouncilGameComponent.Instance?.happenings.Memos("deserter", 20f).Where(m => Fits(m, map)).RandomElementWithFallback();
 
         protected override bool CanHappen(Map map, HappeningExtension ext) => Pick(map) != null;
 

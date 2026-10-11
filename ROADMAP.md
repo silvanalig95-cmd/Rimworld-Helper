@@ -41,6 +41,12 @@ Things that happen to the colony from outside, on Rimfolk's own rhythm, written 
   cargo, a talent scout, a journalist, a travelling doctor, music in the air, a famous visitor.
 - Next: more events per group, mod-aware events when the user's new modlist arrives.
 
+## Phase H2: Scenarios with stakes (done)
+- Done: six scenarios (Hot Money, Marooned, Deserters, Bad Blood, Borrowed Time, The Fallen Tyrant) built from six
+  scenario parts anyone can add in the scenario editor: a sworn enemy, a debt, deserters, feuding families, a
+  reputation, a secret.
+- Next: a tribal and a medieval scenario or two, once the parts have been played with.
+
 ## Phase E: The council at a glance (done)
 - Done: an Overview page (the colony's numbers and how they moved this week, graphs of mood, trust, wealth and
   people over the last weeks, and one line from the advisor, the World page, the colony's character and the

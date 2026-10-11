@@ -33,6 +33,12 @@ namespace ColonyCouncil
 
         public bool IsBeast => pawn?.RaceProps != null && pawn.RaceProps.Animal;
 
+        /// <summary>
+        /// A scenario's enemy (they hunt, were robbed by, betrayed or held someone): their quarrel is with the whole
+        /// colony, so it outlasts the one it names.
+        /// </summary>
+        public bool Sworn => deed == "hunts" || deed == "robbed" || deed == "betrayed" || deed == "enslaved";
+
         public string Name => pawn != null && !pawn.Discarded ? pawn.LabelShort : name ?? "?";
 
         public string DeedText => ("CC_Nemesis_Deed_" + (deed ?? "downed")).Translate(victimName ?? "?").Resolve();
@@ -254,7 +260,7 @@ namespace ColonyCouncil
             }
             // Someone they only knocked down has since died of other causes, or left: the grudge goes with them.
             bool victimHere = n.victim != null && !n.victim.Dead && n.victim.Faction == Faction.OfPlayer;
-            if (!victimHere && n.deed != "killed")
+            if (!victimHere && n.deed != "killed" && !n.Sworn)
             {
                 if (n.announced) End(n, null);
                 else all.Remove(n);
@@ -360,6 +366,21 @@ namespace ColonyCouncil
                 comp.journals.Write(n.victim, n.IsBeast ? "Council_Journal_BeastEscaped" : "Council_Journal_NemesisEscaped", null, x.Named("X"));
                 comp.aspirations.Notify_Event(n.victim, "nemesis");
             }
+        }
+
+        /// <summary>A scenario starts the game with an enemy who already knows the colony: known from the first day.</summary>
+        public Nemesis Add(Pawn enemy, Pawn victim, string deed, bool captive)
+        {
+            if (!S.nemeses || enemy == null || victim == null) return null;
+            int now = Find.TickManager.TicksGame;
+            var n = new Nemesis
+            {
+                pawn = enemy, victim = victim, victimName = victim.LabelShort, name = enemy.LabelShort, deed = deed, tick = now,
+                announced = true, captured = captive, onMap = enemy.Spawned, lastSeen = now
+            };
+            all.Add(n);
+            if (!enemy.Spawned && Find.WorldPawns.Contains(enemy)) Find.WorldPawns.ForcefullyKeptPawns.Add(enemy);
+            return n;
         }
 
         /// <summary>A world event sent this nemesis at the head of a raid: counted and felt once, and its own letter already told the story.</summary>

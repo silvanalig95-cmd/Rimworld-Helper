@@ -79,6 +79,11 @@ namespace ColonyCouncil
                     tip = r.text
                 };
             }
+            foreach (var m in t.memos.Where(m => !m.used && m.kind == "debt").OrderBy(m => m.due))
+            {
+                string line = ScenarioStakes.WorldLine(m, now);
+                if (line != null) yield return new Row { text = line };
+            }
             foreach (var l in Find.LetterStack.LettersListForReading.OfType<ChoiceLetter_Happening>().Where(l => !l.resolved).ToList())
             {
                 var letter = l;
@@ -116,7 +121,7 @@ namespace ColonyCouncil
                 yield return new Row { text = "CC_World_Grudge".Translate(g.faction.Name, g.name).Resolve() };
             foreach (var m in t.memos.Where(m => !m.used))
             {
-                string line = Memo(m);
+                string line = m.kind == "hunt" ? ScenarioStakes.WorldLine(m, now) : Memo(m);
                 if (line != null) yield return new Row { text = line };
             }
         }

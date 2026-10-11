@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- World events that only a Rimfolk scenario sets off (see Defs/Scenarios). They come when they're due, whatever
+       the world-event settings, because they're what the player chose the scenario for. -->
+
+  <!-- ===================== The debt comes due ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Council_Evt_DebtDue</defName>
+    <label>debt due</label>
+    <workerClass>ColonyCouncil.HappeningWorker_DebtDue</workerClass>
+    <baseChance>0</baseChance>
+    <minRefireDays>0</minRefireDays>
+    <earliestDay>0</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Battle</group>
+        <threat>true</threat>
+        <answerDays>1.5</answerDays>
+        <titles>
+          <li>[loan,!late] The debt is due</li>
+          <li>[loan,late] The debt, again</li>
+          <li>[heist,!late] {X_nameDef} wants the money back</li>
+          <li>[heist,late] {X_nameDef} is still waiting</li>
+        </titles>
+        <texts>
+          <li>[loan,!late,!lowtech] The comms crackle: {ENEMY}, about the loan. Everything the colony landed with was bought with their money, and the {COUNT} silver it owes them is due. They're very polite about it. They're always polite, right up until they aren't.</li>
+          <li>[loan,!late,lowtech] A rider of {ENEMY} comes to the gate with a ledger under one arm: the colony's debt of {COUNT} silver is due. The rider is very polite about it. {ENEMY} are always polite, right up until they aren't.</li>
+          <li>[loan,late,!lowtech] {ENEMY} are back on the comms about the debt, now {COUNT} silver with their interest. They're noticeably less polite this time.</li>
+          <li>[loan,late,lowtech] The rider of {ENEMY} is back at the gate, ledger and all. With their interest, the colony now owes {COUNT} silver, and the rider has stopped smiling.</li>
+          <li>[heist,!late,!lowtech] {X_nameDef} of {ENEMY} has found the colony. The message is short: {COUNT} silver was taken from {X_objective}, and {X_pronoun} wants every coin of it back. Pay, and {X_pronoun} might call it square. Don't, and {X_pronoun} will come and take it.</li>
+          <li>[heist,!late,lowtech] A rider in the colours of {ENEMY} brings a message from {X_nameDef}: {COUNT} silver was taken from {X_objective}, and {X_pronoun} wants every coin of it back. Pay, and {X_pronoun} might call it square. Don't, and {X_pronoun} will come and take it.</li>
+          <li>[heist,late] {X_nameDef} is back for the rest of the money, {COUNT} silver of it now, interest included. The message ends: "I've been patient. Ask anyone. I'm known for it."</li>
+        </texts>
+        <defaultOption>2</defaultOption>
+        <options>
+          <li>
+            <label>Pay the {COUNT} silver</label>
+            <outcome>The silver is handed over, every coin of it. {ENEMY} take it and go, and the colony breathes out for what feels like the first time in weeks.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>silver</what></li>
+            </effects>
+          </li>
+          <li>
+            <label>Pay half now and ask for more time</label>
+            <outcome>{A_nameDef} hands over half the silver and a great many promises. {ENEMY} agree to wait. The rest will cost more when they come back for it.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>silver</what><factor>0.5</factor></li>
+            </effects>
+          </li>
+          <li>
+            <label>Refuse to pay</label>
+            <outcome>The answer is no. {ENEMY} won't take it well: they'll come for what they're owed, and they'll keep coming.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_RaidLater">
+                <points>0.8~1.05</points>
+                <delayHours>10~20</delayHours>
+                <xLeads>true</xLeads>
+                <scenario>true</scenario>
+                <label>{ENEMY} want their money</label>
+                <text>The colony wouldn't pay what it owes {ENEMY}. They've come to take it.</text>
+              </li>
+            </effects>
+            <ways><generosity>-3</generosity></ways>
+          </li>
+        </options>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+</Defs>

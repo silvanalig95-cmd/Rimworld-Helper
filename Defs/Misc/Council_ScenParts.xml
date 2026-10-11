@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- Rimfolk's scenario parts: stakes already in play when the game starts. Rimfolk's own scenarios use them, and
+       they can be added to any scenario in the scenario editor. They're never added to random scenarios. -->
+
+  <ScenPartDef>
+    <defName>Council_ScenFoe</defName>
+    <label>Rimfolk: a sworn enemy</label>
+    <category>Misc</category>
+    <scenPartClass>ColonyCouncil.ScenPart_CouncilFoe</scenPartClass>
+    <selectionWeight>0</selectionWeight>
+    <canBeRandomlyAdded>false</canBeRandomlyAdded>
+    <maxUses>1</maxUses>
+    <summaryPriority>500</summaryPriority>
+  </ScenPartDef>
+
+  <ScenPartDef>
+    <defName>Council_ScenDebt</defName>
+    <label>Rimfolk: a debt</label>
+    <category>Misc</category>
+    <scenPartClass>ColonyCouncil.ScenPart_CouncilDebt</scenPartClass>
+    <selectionWeight>0</selectionWeight>
+    <canBeRandomlyAdded>false</canBeRandomlyAdded>
+    <maxUses>1</maxUses>
+    <summaryPriority>490</summaryPriority>
+  </ScenPartDef>
+
+  <ScenPartDef>
+    <defName>Council_ScenDeserters</defName>
+    <label>Rimfolk: deserters</label>
+    <category>Misc</category>
+    <scenPartClass>ColonyCouncil.ScenPart_CouncilDeserters</scenPartClass>
+    <selectionWeight>0</selectionWeight>
+    <canBeRandomlyAdded>false</canBeRandomlyAdded>
+    <maxUses>1</maxUses>
+    <summaryPriority>480</summaryPriority>
+  </ScenPartDef>
+
+  <ScenPartDef>
+    <defName>Council_ScenFamilies</defName>
+    <label>Rimfolk: two feuding families</label>
+    <category>Misc</category>
+    <scenPartClass>ColonyCouncil.ScenPart_CouncilFamilies</scenPartClass>
+    <selectionWeight>0</selectionWeight>
+    <canBeRandomlyAdded>false</canBeRandomlyAdded>
+    <maxUses>1</maxUses>
+    <summaryPriority>470</summaryPriority>
+  </ScenPartDef>
+
+  <ScenPartDef>
+    <defName>Council_ScenWays</defName>
+    <label>Rimfolk: a reputation</label>
+    <category>Misc</category>
+    <scenPartClass>ColonyCouncil.ScenPart_CouncilWays</scenPartClass>
+    <selectionWeight>0</selectionWeight>
+    <canBeRandomlyAdded>false</canBeRandomlyAdded>
+    <maxUses>1</maxUses>
+    <summaryPriority>460</summaryPriority>
+  </ScenPartDef>
+
+  <ScenPartDef>
+    <defName>Council_ScenSecret</defName>
+    <label>Rimfolk: a secret</label>
+    <category>Misc</category>
+    <scenPartClass>ColonyCouncil.ScenPart_CouncilSecret</scenPartClass>
+    <selectionWeight>0</selectionWeight>
+    <canBeRandomlyAdded>false</canBeRandomlyAdded>
+    <maxUses>3</maxUses>
+    <summaryPriority>450</summaryPriority>
+  </ScenPartDef>
+
+</Defs>

@@ -241,6 +241,8 @@ namespace ColonyCouncil
         /// <summary>Someone who leads it (a nemesis): joins the raiders when they arrive.</summary>
         public Pawn leader;
         public int postponed;
+        /// <summary>Part of the scenario the player chose: comes even with world-event battles switched off.</summary>
+        public bool scenario;
 
         public void ExposeData()
         {
@@ -252,6 +254,7 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref text, "text");
             Scribe_References.Look(ref leader, "leader");
             Scribe_Values.Look(ref postponed, "postponed");
+            Scribe_Values.Look(ref scenario, "scenario");
         }
     }
 
@@ -357,6 +360,17 @@ namespace ColonyCouncil
         public bool pinned;
         /// <summary>Contest: the colony won it.</summary>
         public bool won;
+        /// <summary>Debts and hunts (from a scenario): when it next comes due. A debt waiting for an answer: int.MaxValue.</summary>
+        public int due;
+        /// <summary>A debt: how much silver is owed.</summary>
+        public int amount;
+        /// <summary>A hunt: how many more times they come (-1: until the one leading it falls).</summary>
+        public int left = -1;
+        /// <summary>A hunt: days between attacks.</summary>
+        public float everyMin;
+        public float everyMax;
+        /// <summary>A debt: times it was put off. A hunt: times they came.</summary>
+        public int times;
 
         public void ExposeData()
         {
@@ -370,6 +384,12 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref used, "used");
             Scribe_Values.Look(ref pinned, "pinned");
             Scribe_Values.Look(ref won, "won");
+            Scribe_Values.Look(ref due, "due");
+            Scribe_Values.Look(ref amount, "amount");
+            Scribe_Values.Look(ref left, "left", -1);
+            Scribe_Values.Look(ref everyMin, "everyMin");
+            Scribe_Values.Look(ref everyMax, "everyMax");
+            Scribe_Values.Look(ref times, "times");
         }
     }
 
@@ -416,6 +436,8 @@ namespace ColonyCouncil
             Safe("event raids", () => RaidsDue(now));
             Safe("event visits", () => VisitsHour(comp, now));
             Safe("great beast", () => HappeningWorker_GreatBeast.Hourly(this, comp));
+            // Before the daily tidy-up, so a hunt whose leader just died is told before its memo goes.
+            Safe("scenario", () => ScenarioStakes.Hourly(this, comp, now));
             if (now % GenDate.TicksPerDay < GenDate.TicksPerHour) Safe("event memory", Prune);
             Safe("quests", () => Quests(comp));
             if (!S.worldEvents) return;
@@ -571,18 +593,20 @@ namespace ColonyCouncil
 
         // ---------------- Promised fights ----------------
 
-        private static void Unpin(Pawn p)
+        private void Unpin(Pawn p)
         {
-            if (p != null && !(CouncilGameComponent.Instance?.nemeses.IsNemesis(p) ?? false)) Find.WorldPawns.ForcefullyKeptPawns.Remove(p);
+            // Not while they're a nemesis, or another memo (a hunt they lead) still needs them.
+            if (p == null || (CouncilGameComponent.Instance?.nemeses.IsNemesis(p) ?? false) || memos.Any(m => !m.used && m.pawn == p)) return;
+            Find.WorldPawns.ForcefullyKeptPawns.Remove(p);
         }
 
-        public void AddRaid(Map map, Faction faction, float factor, float delayHours, string label, string text, Pawn leader = null)
+        public void AddRaid(Map map, Faction faction, float factor, float delayHours, string label, string text, Pawn leader = null, bool scenario = false)
         {
             if (map == null || faction == null) return;
             raids.Add(new PendingRaid
             {
                 map = map, faction = faction, factor = factor, tick = Now + Mathf.RoundToInt(delayHours * GenDate.TicksPerHour),
-                label = label, text = text, leader = leader
+                label = label, text = text, leader = leader, scenario = scenario
             });
             if (leader != null && Find.WorldPawns.Contains(leader)) Find.WorldPawns.ForcefullyKeptPawns.Add(leader);
         }
@@ -594,7 +618,7 @@ namespace ColonyCouncil
                 raids.Remove(r);
                 // The map is gone, the enemy is gone or at peace, or fights were switched off since: the threat never comes.
                 if (r.map == null || !Find.Maps.Contains(r.map) || r.faction == null || r.faction.defeated || !r.faction.HostileTo(Faction.OfPlayer)
-                    || !IncidentWorker_Happening.FightsPossible)
+                    || !(r.scenario ? IncidentWorker_Happening.ScenarioFightsPossible : IncidentWorker_Happening.FightsPossible))
                 {
                     Unpin(r.leader);
                     continue;
@@ -708,7 +732,8 @@ namespace ColonyCouncil
             var m = new Memo { kind = kind, pawn = pawn, other = other, faction = faction, def = def, text = text, tick = Now, won = won };
             if (pawn != null && !pawn.Dead && pawn.Faction != Faction.OfPlayer) m.pinned = Find.WorldPawns.ForcefullyKeptPawns.Add(pawn);
             memos.Add(m);
-            while (memos.Count > 24) Drop(memos.OrderBy(x => x.used ? 0 : 1).ThenBy(x => x.tick).First());
+            while (memos.Count > 24 && memos.Any(x => !ScenarioStakes.Lasting(x)))
+                Drop(memos.Where(x => !ScenarioStakes.Lasting(x)).OrderBy(x => x.used ? 0 : 1).ThenBy(x => x.tick).First());
             return m;
         }
 
@@ -759,8 +784,9 @@ namespace ColonyCouncil
                                                    || (now - d.tick > GenDate.TicksPerYear * 2 && !AskedAbout(d.pawn))).ToList())
                 Forget(d);
             grudges.RemoveAll(g => g.settled || g.faction == null || g.faction.defeated || now - g.tick > GenDate.TicksPerYear * 2);
-            foreach (var m in memos.Where(m => (m.used && now - m.tick > GenDate.TicksPerDay) || now - m.tick > GenDate.TicksPerYear * 3
-                                               || (m.pawn != null && (m.pawn.Dead || m.pawn.Discarded))).ToList())
+            foreach (var m in memos.Where(m => (m.used && now - m.tick > GenDate.TicksPerDay)
+                                               || (now - m.tick > GenDate.TicksPerYear * 3 && !ScenarioStakes.Lasting(m))
+                                               || (m.pawn != null && (m.pawn.Dead || m.pawn.Discarded) && !ScenarioStakes.Lasting(m))).ToList())
                 Drop(m);
         }
 

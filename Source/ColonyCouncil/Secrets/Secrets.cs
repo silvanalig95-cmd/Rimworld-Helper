@@ -37,6 +37,8 @@ namespace ColonyCouncil
         public List<DilemmaEffect> revealEffects = new List<DilemmaEffect>();
         /// <summary>The owner's memory when it comes out (default: exposed).</summary>
         public ThoughtDef ownerThought;
+        /// <summary>Only ever given by a scenario (the take someone skimmed, a mutiny someone joined), never at random.</summary>
+        public bool scenario;
 
         public bool Fits(Pawn p, out bool backstoryMatch)
         {
@@ -146,10 +148,19 @@ namespace ColonyCouncil
             if (!S.secrets || p == null || Of(p) != null) return false;
             var options = new List<(SecretDef def, float w)>();
             foreach (var d in DefDatabase<SecretDef>.AllDefsListForReading)
-                if (d.Fits(p, out bool match)) options.Add((d, d.weight * (match ? 6f : 1f)));
+                if (!d.scenario && d.Fits(p, out bool match)) options.Add((d, d.weight * (match ? 6f : 1f)));
             if (options.Count == 0) return false;
             rolled.Add(p.ThingID);
             secrets.Add(new Secret { def = options.RandomElementByWeight(o => o.w).def, owner = p });
+            return true;
+        }
+
+        /// <summary>A scenario's secret for this colonist (replacing nothing: someone who already has one keeps theirs).</summary>
+        public bool Give(Pawn p, SecretDef def)
+        {
+            if (!S.secrets || p == null || def == null || Of(p) != null) return false;
+            rolled.Add(p.ThingID);
+            secrets.Add(new Secret { def = def, owner = p });
             return true;
         }
 
@@ -158,7 +169,7 @@ namespace ColonyCouncil
             var options = new List<(SecretDef def, float w)>();
             foreach (var d in DefDatabase<SecretDef>.AllDefsListForReading)
             {
-                if (!d.Fits(p, out bool match)) continue;
+                if (d.scenario || !d.Fits(p, out bool match)) continue;
                 options.Add((d, d.weight * (match ? 6f : 1f)));
             }
             // A backstory that fits a secret makes one much likelier.

@@ -103,6 +103,13 @@ namespace ColonyCouncil
         public static ThoughtDef Council_Evt_BadPress;
         public static HediffDef Council_Inoculated;
         public static HediffDef Council_HerbalTonic;
+        public static IncidentDef Council_Evt_DebtDue;
+        public static IncidentDef Council_Evt_DeserterFound;
+        public static ThoughtDef Council_Scen_Kin;
+        public static ThoughtDef Council_Scen_Feud;
+        public static ThoughtDef Council_Scen_Tyrant;
+        public static ThoughtDef Council_Scen_HuntOver;
+        public static ThoughtDef Council_Scen_DebtPaid;
 
         public static HediffDef Council_Motivated;
         public static HediffDef Council_Loyalty;
