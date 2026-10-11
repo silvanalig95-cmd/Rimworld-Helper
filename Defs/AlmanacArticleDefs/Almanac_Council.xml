@@ -415,11 +415,13 @@
     <label>scenarios with stakes</label>
     <category>Council</category>
     <order>17</order>
-    <summary>Rimfolk's scenarios start the game with something already in motion: an enemy, a debt, a feud, a prisoner.</summary>
+    <summary>Rimfolk's scenarios start the game with something already in motion: a friend on the way, a mentorship, an enemy, a debt, a feud, a prisoner.</summary>
     <tip>Every colony has a past. Some of them have a past with a price on it.</tip>
-    <description>Six scenarios, marked "(Rimfolk)" on the scenario page: Hot Money, Marooned, Deserters, Bad Blood, Borrowed Time and The Fallen Tyrant. A few seconds into the game a letter says how things stand: who is after the colony, what it owes, who belongs to which family. Their pieces are scenario parts you can add to any scenario in the editor.</description>
+    <description>Ten scenarios, marked "(Rimfolk)" on the scenario page with how hard they are. Four are small, gentle starts with one or two colonists and no attacks of their own (The Inheritance, Master and Apprentice, Runaway Hearts, The Lone Hunter); six come with stakes (Hot Money, Marooned, Deserters, Bad Blood, Borrowed Time, The Fallen Tyrant). A few seconds into the game a letter says how things stand. Their pieces are scenario parts you can add to any scenario in the editor.</description>
     <facts>
-      <li>A sworn enemy is a nemesis from the first day. If their people hunt the colony, they come every few weeks until that enemy dies, joins the colony, is sold off, or their people make peace or are wiped out.</li>
+      <li>A sworn enemy is a nemesis from the first day. If their people hunt the colony, they come a set number of times, a month or so apart, or sooner over if that enemy dies, joins the colony, is sold off, or their people make peace or are wiped out.</li>
+      <li>Settings, "Fights in Rimfolk's scenarios", makes those attacks weaker or stronger. Your storyteller's difficulty scales them too.</li>
+      <li>Someone from the past, a visiting scholar or a great beast arriving "around a set day" waits for a quiet moment, and if they can't come yet (the wrong season, nobody fits), they try again the next day.</li>
       <li>A debt comes due as a letter: pay it, pay half and ask for more time (the rest grows by about a third, and they only wait twice), or refuse and meet the collectors.</li>
       <li>Unanswered, a debt counts as refused.</li>
       <li>Two feuding families each take one surname. Family members like each other more, and dislike the other family; the grudge fades over a couple of months if nothing feeds it.</li>
@@ -433,7 +435,7 @@
       <li>Bad Blood: friendships across the families are worth more than anything. Shared work, shared meals and a common enemy all help.</li>
       <li>Marooned: someone in the pods is lying. Keep the friendships strong and the truth will come out sooner.</li>
     </advice>
-    <keywords><li>scenario</li><li>start</li><li>debt</li><li>loan</li><li>heist</li><li>mutiny</li><li>deserter</li><li>family</li><li>feud</li><li>tyrant</li><li>prisoner</li><li>hunt</li></keywords>
+    <keywords><li>scenario</li><li>start</li><li>debt</li><li>loan</li><li>heist</li><li>mutiny</li><li>deserter</li><li>family</li><li>feud</li><li>tyrant</li><li>prisoner</li><li>hunt</li><li>gentle</li><li>mentor</li><li>lovers</li><li>small start</li></keywords>
     <seeAlso><li>Council_Alm_C_WorldEvents</li><li>Council_Alm_C_Ways</li></seeAlso>
   </ColonyCouncil.AlmanacArticleDef>
 

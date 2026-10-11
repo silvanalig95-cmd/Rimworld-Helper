@@ -45,6 +45,9 @@ Things that happen to the colony from outside, on Rimfolk's own rhythm, written 
 - Done: six scenarios (Hot Money, Marooned, Deserters, Bad Blood, Borrowed Time, The Fallen Tyrant) built from six
   scenario parts anyone can add in the scenario editor: a sworn enemy, a debt, deserters, feuding families, a
   reputation, a secret.
+- Done: gentler stakes (later, smaller and fewer attacks; smaller debts; a softer feud; a strength setting) and
+  four small, gentle starts with one or two colonists (The Inheritance, Master and Apprentice, Runaway Hearts,
+  The Lone Hunter), built from two new parts: a bond from the start, and a world event around a set day.
 - Next: a tribal and a medieval scenario or two, once the parts have been played with.
 
 ## Phase E: The council at a glance (done)

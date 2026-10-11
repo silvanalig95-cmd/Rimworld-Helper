@@ -418,30 +418,45 @@ all, never on top of another fight, and at a share of the storyteller's own raid
 event can be fired from **Debug actions → Incidents** (they're named `Council_Evt_...`).
 
 ## Scenarios with stakes
-Six new scenarios (pick them on the scenario page; they're marked "(Rimfolk)") start the game with something
-already in motion. A few seconds in, a letter says how things stand.
-- **Hot Money.** Four thieves with 2,500 silver that belongs to a pirate boss, who comes asking for it within the
-  week: pay it back, pay half and beg for time (with interest), or keep it and fight for it while the boss lives.
-  One of the four skimmed from the take.
-- **Marooned.** A loyal few, thrown off their ship by mutineers. The ringleader's pirate friends come for them
-  within two weeks and every few weeks after, until the ringleader falls. One of them was in on the mutiny.
-- **Deserters.** Five soldiers who walked away from a losing war, well armed and badly fed. Within the month their
+Ten scenarios, marked "(Rimfolk)" on the scenario page with how hard they are. Each starts the game with
+something already in motion, and a few seconds in, a letter says how things stand.
+
+**Small, gentle starts** (one or two colonists, no attacks of their own):
+- **The Inheritance.** One colonist and a dog in a valley left to them by a great-aunt. Within a week or two someone
+  from their past finds them and asks to stay; a few weeks later someone else may follow.
+- **Master and Apprentice.** Two colonists: a master teaching the apprentice their best craft (a real mentorship
+  from day one). A travelling scholar visits in a week or two, and later someone else comes wanting to learn.
+- **Runaway Hearts.** Two lovers who ran away together. In a couple of weeks an old flame of one of them turns
+  up asking to stay; later, family may come looking.
+- **The Lone Hunter.** One hunter, a rifle and a dog, on the trail of a legendary beast that passes through in a
+  couple of weeks (hunt it, tame it, or let it go: it only fights if provoked). Someone may join them before that.
+
+**With stakes** (fights come later, smaller and a limited number of times; your storyteller's difficulty scales them):
+- **Hot Money** (moderate). Four thieves with 2,500 silver that belongs to a pirate boss, who asks for it back in
+  about two weeks: pay it back (and it's over), pay half and ask for time, or keep it and fend off the boss's
+  people a few times. One of the four skimmed from the take.
+- **Marooned** (moderate). A loyal few thrown off their ship by mutineers, whose pirate friends come three times,
+  a month or so apart, starting in about three weeks (sooner over if the ringleader falls). One of them was in on
+  the mutiny.
+- **Deserters** (moderate). Five well-armed, badly fed soldiers who walked away from a war. In a month or so their
   old unit comes for one of them: hand them over, buy their freedom, or fight.
-- **Bad Blood.** Six survivors from two families who have never got on. Each family takes one name, stands by its
-  own, and can't stand the other (the grudge fades in a couple of months, if nothing feeds it).
-- **Borrowed Time.** The best start money can buy (electricity researched, a stack of steel and components), bought
-  with a 4,000-silver loan due in a month. Refusing to pay brings the collectors, twice.
-- **The Fallen Tyrant.** Five servants who drugged their warlord at a feast. The warlord starts as your prisoner,
-  out cold for a few hours (build a cell fast), every colonist loathes them, and their loyalists come within days
-  and keep coming while the warlord lives. What to do with the tyrant is the colony's first real decision.
+- **Bad Blood** (gentle fights, social drama). Six survivors from two families who have never got on. Each family
+  takes one name, stands by its own, and doesn't think much of the other (the grudge fades over a month or two).
+- **Borrowed Time** (moderate). The best start money can buy, bought with a 3,000-silver loan due in about a month
+  and a half. Refusing to pay brings the collectors twice.
+- **The Fallen Tyrant** (challenging). Five servants who drugged their warlord at a feast. The warlord starts as your
+  prisoner, out cold for a few hours (build a cell fast), and every colonist loathes them. Their loyalists come in
+  a week or so, and twice more after that unless the warlord is dead or one of you by then.
 
 The pieces are **scenario parts** you can add to any scenario in the scenario editor: *a sworn enemy* (who hunts,
-was robbed by, betrayed or held the colonists in chains, and can start as your prisoner), *a debt*, *deserters*,
-*two feuding families*, *a reputation* (the colony's ways from day one) and *a secret*. Enemies are nemeses from the
-first day; debts and hunts show on the **World** page. A hunt ends when the one leading it dies, joins you, is sold
-off, or their people make peace or are wiped out, and the colony gets to feel that. Fights a scenario promises come
-even with Rimfolk's world-event battles switched off (you chose the scenario for them), but only when your
-storyteller sends threats at all.
+was robbed by, betrayed or held the colonists in chains, can start as your prisoner, and attacks a set number of
+times or until they fall), *a debt*, *deserters*, *two feuding families*, *a bond from the start* (a couple, old
+friends, or a master and apprentice), *a world event around a set day* (someone from the past, a visitor, a great
+beast...), *a reputation* and *a secret*. Enemies are nemeses from the first day; debts and hunts show on the
+**World** page. A hunt ends when its attacks run out, or when the one leading it dies, joins you, is sold off, or
+their people make peace or are wiped out, and the colony gets to feel that. Settings → **Fights in Rimfolk's
+scenarios** makes those attacks weaker or stronger (25% to 200%). They come even with Rimfolk's world-event battles
+switched off (you chose the scenario for them), but only when your storyteller sends threats at all.
 
 ## The colony notices what happens
 The moment it happens: a **wedding** is written into the chronicle and the journals of the couple and their friends

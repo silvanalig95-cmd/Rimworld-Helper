@@ -1571,6 +1571,8 @@ Those against it ({WHO}) will trust the council less and resent it more than usu
   <CC_Settings_WorldEventBattles>... including ones that can end in a fight</CC_Settings_WorldEventBattles>
   <CC_Settings_WorldEventBattles_Tip>Bounty hunters, a nemesis returning, revenge for a prisoner who died in the colony's hands, a refused tribute, creditors' thugs, a deserter's pursuers. Only when the storyteller sends threats at all, never on top of another fight, and at a share of the storyteller's own raid strength. Off: none of these come (and promised fights never arrive).</CC_Settings_WorldEventBattles_Tip>
   <CC_Settings_DaysBetweenWorldEvents>About one world event every {0} days</CC_Settings_DaysBetweenWorldEvents>
+  <CC_Settings_ScenarioThreat>Fights in Rimfolk's scenarios: {0} strength</CC_Settings_ScenarioThreat>
+  <CC_Settings_ScenarioThreat_Tip>How hard the attacks a Rimfolk scenario promises hit (a hunt, debt collectors, a deserter's old unit), compared with their usual strength. Your storyteller's difficulty scales them as well.</CC_Settings_ScenarioThreat_Tip>
   <CC_Settings_DaysBetweenWorldEvents_Tip>On average; it varies. Each event also has its own cooldown, so the same one won't come back soon.</CC_Settings_DaysBetweenWorldEvents_Tip>
   <CC_Evt_LookAt>Look at {0}</CC_Evt_LookAt>
   <CC_Evt_Deadline>The colony has {0} to answer. If nobody does: "{1}".</CC_Evt_Deadline>
@@ -1723,8 +1725,9 @@ Those against it ({WHO}) will trust the council less and resent it more than usu
   <CC_Scen_Foe_betrayed>{FOE_nameDef} turned the crew against {VICTIM_nameDef}, and has friends among {FACTION} down here.</CC_Scen_Foe_betrayed>
   <CC_Scen_Foe_enslaved>{FOE_nameDef} of {FACTION} held {VICTIM_nameDef} and the others in chains for years.</CC_Scen_Foe_enslaved>
   <CC_Scen_Foe_Prisoner>Now {FOE_nameDef} is the colony's prisoner, and {FACTION} will want {FOE_objective} back.</CC_Scen_Foe_Prisoner>
-  <CC_Scen_Foe_Once>They'll come for the colony within days.</CC_Scen_Foe_Once>
-  <CC_Scen_Foe_Again>They'll come for the colony soon, and keep coming every few weeks for as long as {FOE_nameDef} lives.</CC_Scen_Foe_Again>
+  <CC_Scen_Foe_Once>They'll come for the colony once, before long.</CC_Scen_Foe_Once>
+  <CC_Scen_Foe_Again>They'll come for the colony before long, and a couple more times after that, unless {FOE_nameDef} falls first.</CC_Scen_Foe_Again>
+  <CC_Scen_Foe_Always>They'll come for the colony before long, and keep coming every so often for as long as {FOE_nameDef} lives.</CC_Scen_Foe_Always>
   <CC_Scen_Debt_loan>The colony owes {FACTION} {AMOUNT} silver: the price of everything it landed with. They'll want it in about {DAYS} days.</CC_Scen_Debt_loan>
   <CC_Scen_Debt_heist>The {AMOUNT} silver in the colony's packs belongs to {FOE}, by any reasonable account. {FACTION} will come asking for it in about {DAYS} days.</CC_Scen_Debt_heist>
   <CC_Scen_Deserters>{NAMES} deserted from {FACTION}. Their old unit still has their names, and is still looking.</CC_Scen_Deserters>
@@ -1763,6 +1766,7 @@ Those against it ({WHO}) will trust the council less and resent it more than usu
   <CC_Scen_HuntOver_enslaved>{FOE} wears the colony's collar now. {FACTION} have stopped coming: there's nobody left for them to follow.</CC_Scen_HuntOver_enslaved>
   <CC_Scen_HuntOver_peace>{FACTION} have made peace with the colony. Whatever {FOE} wants, {FACTION} won't be fighting for it any more.</CC_Scen_HuntOver_peace>
   <CC_Scen_HuntOver_defeated>{FACTION} are no more, and the hunt died with them.</CC_Scen_HuntOver_defeated>
+  <CC_Scen_HuntOver_gaveup>{FACTION} seem to have given up on the colony. {FOE} is still out there somewhere, but the attacks have stopped, and the colony can finally breathe.</CC_Scen_HuntOver_gaveup>
   <CC_Scen_HuntOver_settled>{FACTION} have taken what they think they're owed out of the colony's hide. As far as they're concerned, the debt is settled.</CC_Scen_HuntOver_settled>
 
   <!-- Scenarios: debts -->
@@ -1771,7 +1775,7 @@ Those against it ({WHO}) will trust the council less and resent it more than usu
 
   <!-- Scenarios: the World page -->
   <CC_World_Hunt>{0} haven't finished with the colony yet.</CC_World_Hunt>
-  <CC_World_Hunt_Led>{1} of {0} won't stop hunting the colony while {1} lives.</CC_World_Hunt_Led>
+  <CC_World_Hunt_Led>{1} of {0} isn't finished with the colony yet.</CC_World_Hunt_Led>
   <CC_World_Hunt_Captive>{0} want {1} back, and will keep coming for as long as the colony holds {1}.</CC_World_Hunt_Captive>
   <CC_World_Debt>The colony owes {1} {0} silver, due in {2}.</CC_World_Debt>
 
@@ -1802,6 +1806,22 @@ Those against it ({WHO}) will trust the council less and resent it more than usu
   <CC_ScenPart_Ways>Rimfolk: the colony starts out with a reputation ({0}).</CC_ScenPart_Ways>
   <CC_ScenPart_Secret>Rimfolk: someone is keeping a secret ({0}).</CC_ScenPart_Secret>
   <CC_ScenPart_PickSecret>Pick a secret</CC_ScenPart_PickSecret>
+  <CC_ScenPart_Times>Attacks in all (0: until they fall)</CC_ScenPart_Times>
+  <CC_ScenPart_Event>Rimfolk: {0} around day {1}-{2}.</CC_ScenPart_Event>
+  <CC_ScenPart_PickEvent>Pick a world event</CC_ScenPart_PickEvent>
+  <CC_ScenPart_AroundDay>Around day {0}</CC_ScenPart_AroundDay>
+  <CC_ScenPart_Bond_lovers>Rimfolk: two of the colonists are a couple (or close friends, if they couldn't be).</CC_ScenPart_Bond_lovers>
+  <CC_ScenPart_Bond_friends>Rimfolk: two of the colonists are old friends.</CC_ScenPart_Bond_friends>
+  <CC_ScenPart_Bond_mentor>Rimfolk: one colonist is teaching another their best craft.</CC_ScenPart_Bond_mentor>
+
+  <!-- Scenarios: bonds and things to come -->
+  <CC_TieNote_Scenario>came out here together</CC_TieNote_Scenario>
+  <CC_Scen_Bond_lovers>{A_nameDef} and {B_nameDef} are together, and gave up a great deal to stay that way.</CC_Scen_Bond_lovers>
+  <CC_Scen_Bond_friends>{A_nameDef} and {B_nameDef} go back a long way. Whatever comes, they'll face it together.</CC_Scen_Bond_friends>
+  <CC_Scen_Bond_mentor>{A_nameDef} is teaching {B_nameDef} {SKILL}: everything {A_pronoun} knows, one lesson at a time.</CC_Scen_Bond_mentor>
+  <CC_Scen_Hint_Follower>Someone will find their way here before long, and ask to stay.</CC_Scen_Hint_Follower>
+  <CC_Scen_Hint_Visitor>A travelling scholar has heard about the workshop, and means to visit soon.</CC_Scen_Hint_Visitor>
+  <CC_Scen_Hint_Beast>The great beast's trail leads here. It will pass through in a couple of weeks, and it only fights if provoked.</CC_Scen_Hint_Beast>
 
   <!-- Nemeses a scenario starts with -->
   <CC_Nemesis_Deed_hunts>has sworn to hunt down {0}</CC_Nemesis_Deed_hunts>

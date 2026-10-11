@@ -84,6 +84,8 @@ namespace ColonyCouncil
         /// <summary>World events that can end in a fight (bounty hunters, revenge, tribute refused).</summary>
         public bool worldEventBattles = true;
         public float daysBetweenWorldEvents = 4f;
+        /// <summary>How hard the fights a Rimfolk scenario promises hit (share of their usual strength).</summary>
+        public float scenarioThreat = 1f;
         /// <summary>How often the smaller things happen: 1 = as designed, 0.25 = rarely, 3 = often.</summary>
         public float encounterFrequency = 1f;
         public float momentFrequency = 1f;
@@ -178,6 +180,7 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref worldEvents, "worldEvents", true);
             Scribe_Values.Look(ref worldEventBattles, "worldEventBattles", true);
             Scribe_Values.Look(ref daysBetweenWorldEvents, "daysBetweenWorldEvents", 4f);
+            Scribe_Values.Look(ref scenarioThreat, "scenarioThreat", 1f);
             Scribe_Values.Look(ref encounterFrequency, "encounterFrequency", 1f);
             Scribe_Values.Look(ref momentFrequency, "momentFrequency", 1f);
             Scribe_Values.Look(ref socialEventFrequency, "socialEventFrequency", 1f);
@@ -407,6 +410,9 @@ namespace ColonyCouncil
                     "CC_Settings_DaysBetweenWorldEvents_Tip".Translate());
                 daysBetweenWorldEvents = Mathf.Round(daysBetweenWorldEvents * 2f) / 2f;
             }
+            scenarioThreat = l.SliderLabeled("CC_Settings_ScenarioThreat".Translate(scenarioThreat.ToStringPercent()), scenarioThreat, 0.25f, 2f, 0.6f,
+                "CC_Settings_ScenarioThreat_Tip".Translate());
+            scenarioThreat = Mathf.Round(scenarioThreat * 4f) / 4f;
 
             Header(l, "CC_Settings_HowOften".Translate());
             encounterFrequency = Frequency(l, "CC_Settings_FreqEncounters", encounterFrequency);
@@ -541,6 +547,7 @@ namespace ColonyCouncil
             worldEvents = d.worldEvents;
             worldEventBattles = d.worldEventBattles;
             daysBetweenWorldEvents = d.daysBetweenWorldEvents;
+            scenarioThreat = d.scenarioThreat;
             encounterFrequency = d.encounterFrequency;
             momentFrequency = d.momentFrequency;
             socialEventFrequency = d.socialEventFrequency;

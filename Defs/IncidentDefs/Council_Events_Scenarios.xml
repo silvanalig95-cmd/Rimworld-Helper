@@ -56,8 +56,8 @@
             <outcome>The answer is no. {ENEMY} won't take it well: they'll come for what they're owed, and they'll keep coming.</outcome>
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_RaidLater">
-                <points>0.8~1.05</points>
-                <delayHours>10~20</delayHours>
+                <points>0.6~0.8</points>
+                <delayHours>18~30</delayHours>
                 <xLeads>true</xLeads>
                 <scenario>true</scenario>
                 <label>{ENEMY} want their money</label>

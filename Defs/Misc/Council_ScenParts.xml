@@ -60,6 +60,28 @@
   </ScenPartDef>
 
   <ScenPartDef>
+    <defName>Council_ScenEvent</defName>
+    <label>Rimfolk: a world event around a set day</label>
+    <category>Misc</category>
+    <scenPartClass>ColonyCouncil.ScenPart_CouncilEvent</scenPartClass>
+    <selectionWeight>0</selectionWeight>
+    <canBeRandomlyAdded>false</canBeRandomlyAdded>
+    <maxUses>4</maxUses>
+    <summaryPriority>445</summaryPriority>
+  </ScenPartDef>
+
+  <ScenPartDef>
+    <defName>Council_ScenBond</defName>
+    <label>Rimfolk: a bond from the start</label>
+    <category>Misc</category>
+    <scenPartClass>ColonyCouncil.ScenPart_CouncilBond</scenPartClass>
+    <selectionWeight>0</selectionWeight>
+    <canBeRandomlyAdded>false</canBeRandomlyAdded>
+    <maxUses>2</maxUses>
+    <summaryPriority>455</summaryPriority>
+  </ScenPartDef>
+
+  <ScenPartDef>
     <defName>Council_ScenSecret</defName>
     <label>Rimfolk: a secret</label>
     <category>Misc</category>

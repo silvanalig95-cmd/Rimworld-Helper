@@ -10,16 +10,16 @@
     <durationDays>90</durationDays>
     <stackLimit>100</stackLimit>
     <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
-    <stages><li><label>family</label><description>Whatever happens out here, we stick together. We always have.</description><baseOpinionOffset>25</baseOpinionOffset></li></stages>
+    <stages><li><label>family</label><description>Whatever happens out here, we stick together. We always have.</description><baseOpinionOffset>20</baseOpinionOffset></li></stages>
   </ThoughtDef>
 
   <ThoughtDef>
     <defName>Council_Scen_Feud</defName>
     <thoughtClass>ColonyCouncil.Thought_CouncilSocial</thoughtClass>
-    <durationDays>60</durationDays>
+    <durationDays>45</durationDays>
     <stackLimit>100</stackLimit>
     <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
-    <stages><li><label>bad blood between our families</label><description>Their family and mine go back a long way, and none of it is good. Sharing a roof with them doesn't change that.</description><baseOpinionOffset>-30</baseOpinionOffset></li></stages>
+    <stages><li><label>bad blood between our families</label><description>Their family and mine go back a long way, and none of it is good. Sharing a roof with them doesn't change that.</description><baseOpinionOffset>-20</baseOpinionOffset></li></stages>
   </ThoughtDef>
 
   <ThoughtDef>
@@ -29,6 +29,15 @@
     <stackLimit>100</stackLimit>
     <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
     <stages><li><label>my old master</label><description>For years I worked when they said work and ate when they said eat. Now they're the one behind a door.</description><baseOpinionOffset>-60</baseOpinionOffset></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Council_Scen_OldFriend</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilSocial</thoughtClass>
+    <durationDays>90</durationDays>
+    <stackLimit>100</stackLimit>
+    <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
+    <stages><li><label>we go back a long way</label><description>We came out here together. Whatever this place throws at us, I know who I'm facing it with.</description><baseOpinionOffset>25</baseOpinionOffset></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">

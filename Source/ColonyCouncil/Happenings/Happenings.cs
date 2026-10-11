@@ -638,7 +638,8 @@ namespace ColonyCouncil
                     raids.Add(r);
                     continue;
                 }
-                bool sent = Raids.Send(r.map, r.faction, StorytellerUtility.DefaultThreatPointsNow(r.map) * r.factor, r.label, r.text, r.leader);
+                float factor = r.factor * (r.scenario ? Mathf.Max(0.1f, S.scenarioThreat) : 1f);
+                bool sent = Raids.Send(r.map, r.faction, StorytellerUtility.DefaultThreatPointsNow(r.map) * factor, r.label, r.text, r.leader);
                 // The raid's own letter told the story: counted as their return without a second letter.
                 var comp = CouncilGameComponent.Instance;
                 var n = sent && r.leader != null && r.leader.Spawned ? comp?.nemeses.For(r.leader) : null;

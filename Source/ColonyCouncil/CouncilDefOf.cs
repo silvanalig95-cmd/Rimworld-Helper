@@ -110,6 +110,7 @@ namespace ColonyCouncil
         public static ThoughtDef Council_Scen_Tyrant;
         public static ThoughtDef Council_Scen_HuntOver;
         public static ThoughtDef Council_Scen_DebtPaid;
+        public static ThoughtDef Council_Scen_OldFriend;
 
         public static HediffDef Council_Motivated;
         public static HediffDef Council_Loyalty;

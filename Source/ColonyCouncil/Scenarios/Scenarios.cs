@@ -131,8 +131,11 @@ namespace ColonyCouncil
         public bool captive;
         /// <summary>When they first come (0~0: not until something else sets them off).</summary>
         public FloatRange firstDays = new FloatRange(10f, 14f);
-        /// <summary>Days between later attacks while they live (0~0: they come once).</summary>
+        /// <summary>Days between later attacks (0~0: they come once).</summary>
         public FloatRange everyDays = FloatRange.Zero;
+        /// <summary>How many attacks in all (0: until the one leading them falls).</summary>
+        public int times;
+        private string timesBuffer;
         /// <summary>How the attacks are told: hunt, mutiny, heist, tyrant.</summary>
         public string story = "hunt";
 
@@ -184,12 +187,13 @@ namespace ColonyCouncil
                 m.due = now + Mathf.RoundToInt(Mathf.Max(1f, Days(firstDays)) * GenDate.TicksPerDay);
                 m.everyMin = Mathf.Max(3f, everyDays.min);
                 m.everyMax = Mathf.Max(m.everyMin, everyDays.max);
-                m.left = everyDays.max > 0f ? -1 : 1;
+                m.left = everyDays.max > 0f ? (times > 0 ? times : -1) : 1;
                 ctx.threat = true;
             }
             string line = ("CC_Scen_Foe_" + deed).Translate(foe.Named("FOE"), faction.Name.Named("FACTION"), victim.Named("VICTIM")).Resolve();
             if (captive) line += " " + "CC_Scen_Foe_Prisoner".Translate(foe.Named("FOE"), faction.Name.Named("FACTION")).Resolve();
-            if (comes) line += " " + (everyDays.max > 0f ? "CC_Scen_Foe_Again" : "CC_Scen_Foe_Once").Translate(foe.Named("FOE"), faction.Name.Named("FACTION")).Resolve();
+            string again = everyDays.max <= 0f ? "CC_Scen_Foe_Once" : times > 0 ? "CC_Scen_Foe_Again" : "CC_Scen_Foe_Always";
+            if (comes) line += " " + again.Translate(foe.Named("FOE"), faction.Name.Named("FACTION")).Resolve();
             ctx.lines.Add(line);
             ctx.comp.AddChronicle(new ChronicleEntry(ChronicleKind.World, line, victim));
         }
@@ -200,12 +204,13 @@ namespace ColonyCouncil
 
         public override void DoEditInterface(Listing_ScenEdit listing)
         {
-            var r = Rows(listing, 4);
+            var r = Rows(listing, 5);
             if (Widgets.ButtonText(Row(r, 0), ("CC_ScenPart_Deed_" + deed).Translate()))
                 Find.WindowStack.Add(new FloatMenu(Deeds.Select(d => new FloatMenuOption(("CC_ScenPart_Deed_" + d).Translate(), () => deed = d)).ToList()));
             Widgets.CheckboxLabeled(Row(r, 1), "CC_ScenPart_Captive".Translate(), ref captive);
             Widgets.FloatRange(Row(r, 2), Id ^ 0x5ce1, ref firstDays, 0f, 40f, "CC_ScenPart_FirstDays", ToStringStyle.Integer, 0f, GameFont.Tiny, null, 1f);
             Widgets.FloatRange(Row(r, 3), Id ^ 0x5ce2, ref everyDays, 0f, 60f, "CC_ScenPart_EveryDays", ToStringStyle.Integer, 0f, GameFont.Tiny, null, 1f);
+            Widgets.TextFieldNumericLabeled(Row(r, 4), "CC_ScenPart_Times".Translate(), ref times, ref timesBuffer, 0f, 20f);
         }
 
         public override void ExposeData()
@@ -217,6 +222,7 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref firstDays, "firstDays");
             Scribe_Values.Look(ref everyDays, "everyDays");
             Scribe_Values.Look(ref story, "story", "hunt");
+            Scribe_Values.Look(ref times, "times");
         }
     }
 
@@ -491,7 +497,7 @@ namespace ColonyCouncil
     public static class ScenarioStakes
     {
         /// <summary>A scenario's memo stays until it's settled (never pruned for age or crowded out).</summary>
-        public static bool Lasting(Memo m) => m != null && !m.used && (m.kind == "hunt" || m.kind == "debt" || (m.kind == "deserter" && m.due > 0));
+        public static bool Lasting(Memo m) => m != null && !m.used && (m.kind == "hunt" || m.kind == "debt" || m.kind == "event" || (m.kind == "deserter" && m.due > 0));
 
         public static void Hourly(HappeningTracker t, CouncilGameComponent comp, int now)
         {
@@ -506,6 +512,9 @@ namespace ColonyCouncil
                         case "debt": Debt(t, m, map, now); break;
                         case "deserter":
                             if (m.due > 0 && now >= m.due) Chase(m, map, now);
+                            break;
+                        case "event":
+                            if (now >= m.due) Happen(t, m, map, now);
                             break;
                     }
                 }
@@ -545,7 +554,7 @@ namespace ColonyCouncil
         {
             string over = Over(m);
             // Collectors who came as often as they meant to: square, as far as they're concerned.
-            if (over == null && m.left == 0 && now >= m.due) over = "settled";
+            if (over == null && m.left == 0 && now >= m.due) over = m.pawn != null ? "gaveup" : "settled";
             if (over != null)
             {
                 Ended(t, comp, m, over);
@@ -582,7 +591,7 @@ namespace ColonyCouncil
             NamedArgument faction = m.faction.Name.Named("FACTION");
             string label = (key + "_Label").Translate(foe, faction).Resolve();
             string text = (key + "_Text").Translate(foe, faction).Resolve();
-            t.AddRaid(map, m.faction, Rand.Range(0.55f, 0.8f), Rand.Range(5f, 10f), label, text, leader, true);
+            t.AddRaid(map, m.faction, Rand.Range(0.45f, 0.65f), Rand.Range(6f, 12f), label, text, leader, true);
             Notify.Message("CC_Scen_HuntWarning".Translate(faction).Resolve(), LookTargets.Invalid, MessageTypeDefOf.ThreatSmall, Importance.Notable);
             m.times++;
             if (m.left > 0) m.left--;
@@ -595,7 +604,7 @@ namespace ColonyCouncil
         {
             t.Use(m);
             // A one-off attack that came and went isn't "the end of a hunt" worth a letter.
-            if (why == "settled" && m.pawn != null) return;
+            if (why == "gaveup" && m.times <= 1) return;
             string name = m.pawn?.LabelShort ?? m.faction?.Name ?? "?";
             string text = ("CC_Scen_HuntOver_" + why).Translate(name.Named("FOE"), (m.faction?.Name ?? "?").Named("FACTION")).Resolve();
             // A nemesis's own end already came with a letter (slain, joined): this one is a message.
@@ -649,15 +658,37 @@ namespace ColonyCouncil
             bool ok;
             try
             {
-                var parms = StorytellerUtility.DefaultParmsNow(HappeningTracker.Category, map);
-                parms.forced = true;
-                ok = CouncilDefOf.Council_Evt_DebtDue.Worker.TryExecute(parms);
+                ok = (CouncilDefOf.Council_Evt_DebtDue.Worker as IncidentWorker_Happening)?.ScenarioFire(map) ?? false;
             }
             finally
             {
                 HappeningWorker_DebtDue.pending = null;
             }
             m.due = ok ? int.MaxValue : now + GenDate.TicksPerHour * 6;
+        }
+
+        // ---------------- Scheduled events ----------------
+
+        private static void Happen(HappeningTracker t, Memo m, Map map, int now)
+        {
+            if (map == null) return;
+            // Not on top of a fight, or while another question waits for an answer.
+            if (HappeningTracker.Waiting || GenHostility.AnyHostileActiveThreatToPlayer(map, false, false))
+            {
+                m.due = now + GenDate.TicksPerHour * 6;
+                return;
+            }
+            var workers = (m.text ?? "").Split(',').Select(n => DefDatabase<IncidentDef>.GetNamedSilentFail(n.Trim()))
+                .Select(d => d?.Worker as IncidentWorker_Happening).Where(w => w != null).InRandomOrder().ToList();
+            foreach (var w in workers)
+            {
+                if (!w.ScenarioCanFire(map) || !w.ScenarioFire(map)) continue;
+                t.Use(m);
+                return;
+            }
+            // None of them can happen yet (nobody fits, the wrong season): tomorrow, for a month.
+            if (++m.times > 30) t.Use(m);
+            else m.due = now + GenDate.TicksPerDay;
         }
 
         // ---------------- Deserters ----------------
@@ -678,9 +709,7 @@ namespace ColonyCouncil
             bool ok;
             try
             {
-                var parms = StorytellerUtility.DefaultParmsNow(HappeningTracker.Category, map);
-                parms.forced = true;
-                ok = CouncilDefOf.Council_Evt_DeserterFound.Worker.TryExecute(parms);
+                ok = (CouncilDefOf.Council_Evt_DeserterFound.Worker as IncidentWorker_Happening)?.ScenarioFire(map) ?? false;
             }
             finally
             {
@@ -688,6 +717,144 @@ namespace ColonyCouncil
             }
             // Done (the event used the memo), or try again tomorrow.
             m.due = ok ? 0 : now + GenDate.TicksPerDay;
+        }
+    }
+
+    // ===================== Scheduled world events =====================
+
+    /// <summary>
+    /// Something the scenario promises will happen, around a set day: one of a few world events (whichever can happen
+    /// then), such as someone from the past coming to join, a scholar visiting, or a great beast. It waits for a
+    /// quiet moment, and keeps trying for a month if none of them can happen yet.
+    /// </summary>
+    public class ScenPart_CouncilEvent : ScenPart_Council
+    {
+        public List<IncidentDef> events = new List<IncidentDef>();
+        public FloatRange days = new FloatRange(6f, 10f);
+        /// <summary>A line for the letter that says how things stand (a key; none for a surprise).</summary>
+        public string hint;
+
+        public override void Setup(ScenarioSetupContext ctx)
+        {
+            var defs = events.Where(d => d?.Worker is IncidentWorker_Happening).ToList();
+            if (defs.Count == 0) return;
+            var m = ctx.comp.happenings.Remember("event", null, null, null, string.Join(",", defs.Select(d => d.defName)));
+            m.due = Find.TickManager.TicksGame + Mathf.RoundToInt(Mathf.Max(1f, Days(days)) * GenDate.TicksPerDay);
+            if (!hint.NullOrEmpty() && hint.CanTranslate()) ctx.lines.Add(hint.Translate().Resolve());
+        }
+
+        public override string Summary(Scenario scen) =>
+            "CC_ScenPart_Event".Translate(events.Where(d => d != null).Select(d => d.label).ToCommaList(false, true), Mathf.RoundToInt(days.min), Mathf.RoundToInt(days.max));
+
+        public override void Randomize() => events = new List<IncidentDef> { DefDatabase<IncidentDef>.GetNamedSilentFail("Council_Evt_OldComrade") };
+
+        public override void DoEditInterface(Listing_ScenEdit listing)
+        {
+            var r = Rows(listing, 2);
+            string label = events.Count > 0 && events[0] != null ? events[0].LabelCap.ToString() : "CC_ScenPart_PickEvent".Translate().ToString();
+            if (Widgets.ButtonText(Row(r, 0), label))
+                Find.WindowStack.Add(new FloatMenu(HappeningTracker.All.Where(d => d != CouncilDefOf.Council_Evt_DebtDue).OrderBy(d => d.label)
+                    .Select(d => new FloatMenuOption(d.LabelCap, () => events = new List<IncidentDef> { d })).ToList()));
+            Widgets.FloatRange(Row(r, 1), Id ^ 0x5ce5, ref days, 1f, 60f, "CC_ScenPart_AroundDay", ToStringStyle.Integer, 0f, GameFont.Tiny, null, 1f);
+        }
+
+        public override bool CanCoexistWith(ScenPart other) => true;
+
+        public override void ExposeData()
+        {
+            base.ExposeData();
+            Scribe_Collections.Look(ref events, "events", LookMode.Def);
+            Scribe_Values.Look(ref days, "days");
+            Scribe_Values.Look(ref hint, "hint");
+            if (Scribe.mode == LoadSaveMode.PostLoadInit)
+            {
+                if (events == null) events = new List<IncidentDef>();
+                events.RemoveAll(d => d == null);
+            }
+        }
+    }
+
+    // ===================== Bonds from the start =====================
+
+    /// <summary>
+    /// Two of the colonists start close: a couple (if they could be), old friends, or a master teaching an
+    /// apprentice their best craft.
+    /// </summary>
+    public class ScenPart_CouncilBond : ScenPart_Council
+    {
+        /// <summary>lovers, friends or mentor.</summary>
+        public string kind = "friends";
+
+        private static readonly string[] Kinds = { "lovers", "friends", "mentor" };
+
+        public override void Setup(ScenarioSetupContext ctx)
+        {
+            var adults = ctx.Adults.Where(p => p.needs?.mood != null).ToList();
+            if (adults.Count < 2) return;
+            Pawn a = null, b = null;
+            string how = kind;
+            if (kind == "lovers")
+            {
+                foreach (var x in adults.InRandomOrder())
+                {
+                    if (LovePartnerRelationUtility.HasAnyLovePartner(x)) continue;
+                    b = adults.FirstOrDefault(y => y != x && !LovePartnerRelationUtility.HasAnyLovePartner(y)
+                                                   && RelationsUtility.AttractedToGender(x, y.gender) && RelationsUtility.AttractedToGender(y, x.gender));
+                    if (b == null) continue;
+                    a = x;
+                    break;
+                }
+                if (a != null) a.relations.AddDirectRelation(PawnRelationDefOf.Lover, b);
+                else how = "friends";
+            }
+            SkillDef skill = null;
+            if (how == "mentor")
+            {
+                // The one with the most to teach; the least experienced to learn it.
+                var best = adults.SelectMany(p => p.skills?.skills ?? new List<SkillRecord>(), (p, r) => (p, r))
+                    .Where(x => !x.r.TotallyDisabled).OrderByDescending(x => x.r.Level).ToList();
+                foreach (var (mentor, rec) in best)
+                {
+                    var student = ctx.colonists.Where(p => p != mentor && p.skills?.GetSkill(rec.def) is SkillRecord s && !s.TotallyDisabled && s.Level <= rec.Level - 4)
+                        .OrderBy(p => p.ageTracker.AgeBiologicalYearsFloat).FirstOrDefault();
+                    if (student == null) continue;
+                    if (ctx.comp.social.StartMentorship(mentor, student, rec.def) == null) break;
+                    a = mentor;
+                    b = student;
+                    skill = rec.def;
+                    break;
+                }
+                if (a == null) how = "friends";
+            }
+            if (how == "friends")
+            {
+                var pair = adults.SelectMany(x => adults.Where(y => y != x), (x, y) => (x, y))
+                    .OrderByDescending(p => p.x.relations.OpinionOf(p.y) + p.y.relations.OpinionOf(p.x)).FirstOrDefault();
+                a = pair.x;
+                b = pair.y;
+                if (a == null || b == null) return;
+                ctx.comp.social.Bump(a, b, TieKind.Friends, 50f, "CC_TieNote_Scenario".Translate(), true);
+            }
+            a.needs?.mood?.thoughts?.memories?.TryGainMemory(CouncilDefOf.Council_Scen_OldFriend, b);
+            b.needs?.mood?.thoughts?.memories?.TryGainMemory(CouncilDefOf.Council_Scen_OldFriend, a);
+            ctx.lines.Add(("CC_Scen_Bond_" + how).Translate(a.Named("A"), b.Named("B"), (skill?.label ?? "").Named("SKILL")).Resolve());
+            ctx.look.Add(a);
+            ctx.look.Add(b);
+        }
+
+        public override string Summary(Scenario scen) => ("CC_ScenPart_Bond_" + kind).Translate();
+
+        public override void DoEditInterface(Listing_ScenEdit listing)
+        {
+            var r = Rows(listing, 1);
+            if (Widgets.ButtonText(Row(r, 0), ("CC_ScenPart_Bond_" + kind).Translate()))
+                Find.WindowStack.Add(new FloatMenu(Kinds.Select(k => new FloatMenuOption(("CC_ScenPart_Bond_" + k).Translate(), () => kind = k)).ToList()));
+        }
+
+        public override void ExposeData()
+        {
+            base.ExposeData();
+            Scribe_Values.Look(ref kind, "kind", "friends");
         }
     }
 
@@ -771,12 +938,12 @@ namespace ColonyCouncil
                     break;
                 default:
                     t.Use(m);
-                    // They'll be back: until the one leading them falls, or (collectors) once more.
+                    // They'll be back: a few more times with the one who was wronged at their head, or collectors once more.
                     bool led = ctx.stranger != null;
                     var hunt = t.Remember("hunt", ctx.stranger, m.faction, m.def);
-                    hunt.everyMin = led ? 25f : 15f;
-                    hunt.everyMax = led ? 35f : 20f;
-                    hunt.left = led ? -1 : 1;
+                    hunt.everyMin = led ? 30f : 20f;
+                    hunt.everyMax = led ? 45f : 30f;
+                    hunt.left = led ? 2 : 1;
                     hunt.due = now + Mathf.RoundToInt(Rand.Range(hunt.everyMin, hunt.everyMax) * GenDate.TicksPerDay);
                     break;
             }

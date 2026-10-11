@@ -11,9 +11,9 @@
   <ScenarioDef ParentName="ScenarioBase">
     <defName>Council_Scenario_HotMoney</defName>
     <label>Hot Money</label>
-    <description>The job went perfectly. Four of you walked out of a pirate boss's vault with 2,500 silver and a stolen shuttle, and nobody fired a shot. Then the shuttle ran dry over the rim, and the perfect getaway became a long walk.\n\nThe boss you robbed knows your names, and will be along within the week to ask for the money back. Pay it, and maybe that's the end of it. Keep it, and you'd better be ready to fight for every coin, again and again, for as long as the boss lives.\n\nOne more thing: one of you knows more about the take than they're telling.</description>
+    <description>The job went perfectly. Four of you walked out of a pirate boss's vault with 2,500 silver and a stolen shuttle, and nobody fired a shot. Then the shuttle ran dry over the rim, and the perfect getaway became a long walk.\n\nThe boss you robbed knows your names, and in about two weeks will ask for the money back. Pay it, and that's the end of it. Pay half and talk your way into more time. Or keep it, and be ready to fight for it: the boss's people will come a few times before they give up.\n\nOne more thing: one of you knows more about the take than they're telling.</description>
     <scenario>
-      <summary>Four thieves, a fortune in stolen silver, and the boss they robbed already on their trail. (Rimfolk)</summary>
+      <summary>Four thieves, a fortune in stolen silver, and the boss they robbed on their trail. Pay it back and you're safe. (Rimfolk · moderate)</summary>
       <playerFaction>
         <def>PlayerFaction</def>
         <factionDef>PlayerColony</factionDef>
@@ -40,7 +40,7 @@
         <li Class="ColonyCouncil.ScenPart_CouncilDebt">
           <def>Council_ScenDebt</def>
           <amount>2500</amount>
-          <dueDays>5~7</dueDays>
+          <dueDays>12~15</dueDays>
           <story>heist</story>
         </li>
         <li Class="ColonyCouncil.ScenPart_CouncilSecret">
@@ -127,9 +127,9 @@
   <ScenarioDef ParentName="ScenarioBase">
     <defName>Council_Scenario_Marooned</defName>
     <label>Marooned</label>
-    <description>Three days out from port, the crew mutinied. The captain and the few who stayed loyal were bundled into drop pods with a crate of gear and fired at the nearest rimworld, with the mutineers' laughter over the comms.\n\nThe ringleader has friends among the pirates down there, and doesn't leave loose ends. They'll come for you within a couple of weeks, and keep coming every few weeks for as long as the ringleader lives. The hunt ends when the ringleader falls.\n\nAnd not everyone in those pods was as loyal as they claimed.</description>
+    <description>Three days out from port, the crew mutinied. The captain and the few who stayed loyal were bundled into drop pods with a crate of gear and fired at the nearest rimworld, with the mutineers' laughter over the comms.\n\nThe ringleader has friends among the pirates down there, and doesn't like loose ends. In about three weeks they'll come for you, and twice more after that, a month or so apart, unless the ringleader falls first.\n\nAnd not everyone in those pods was as loyal as they claimed.</description>
     <scenario>
-      <summary>A loyal few, marooned by mutineers who mean to finish the job, with a traitor among them. (Rimfolk)</summary>
+      <summary>A loyal few, marooned by mutineers who'll come for them three times, with a traitor among them. (Rimfolk · moderate)</summary>
       <playerFaction>
         <def>PlayerFaction</def>
         <factionDef>PlayerColony</factionDef>
@@ -149,8 +149,9 @@
           <def>Council_ScenFoe</def>
           <deed>betrayed</deed>
           <outlaws>true</outlaws>
-          <firstDays>10~14</firstDays>
-          <everyDays>20~30</everyDays>
+          <firstDays>18~24</firstDays>
+          <everyDays>30~40</everyDays>
+          <times>3</times>
           <story>mutiny</story>
         </li>
         <li Class="ColonyCouncil.ScenPart_CouncilSecret">
@@ -236,9 +237,9 @@
   <ScenarioDef ParentName="ScenarioBase">
     <defName>Council_Scenario_Deserters</defName>
     <label>Deserters</label>
-    <description>The war was going badly, the officers were worse, and one night five of you simply walked away from the front with your rifles and whatever you could carry.\n\nDesertion is a hanging offence where you come from. Your old unit still has your names, and before the month is out someone will come asking for them: hand your comrades over, buy their freedom, or fight.\n\nOut here, nobody gives orders but you. That was the point.</description>
+    <description>The war was going badly, the officers were worse, and one night five of you simply walked away from the front with your rifles and whatever you could carry.\n\nDesertion is a hanging offence where you come from. Your old unit still has your names, and in a month or so someone will come asking for one of them: hand your comrade over, buy their freedom, or fight.\n\nOut here, nobody gives orders but you. That was the point.</description>
     <scenario>
-      <summary>Five soldiers who walked away from a losing war, well armed and badly fed, with their old unit on their trail. (Rimfolk)</summary>
+      <summary>Five soldiers who walked away from a losing war, well armed and badly fed, with their old unit on their trail. (Rimfolk · moderate)</summary>
       <playerFaction>
         <def>PlayerFaction</def>
         <factionDef>PlayerColony</factionDef>
@@ -257,7 +258,7 @@
         <li Class="ColonyCouncil.ScenPart_CouncilDeserters">
           <def>Council_ScenDeserters</def>
           <count>2</count>
-          <firstDays>15~22</firstDays>
+          <firstDays>25~35</firstDays>
         </li>
         <li Class="ColonyCouncil.ScenPart_CouncilWays">
           <def>Council_ScenWays</def>
@@ -334,9 +335,9 @@
   <ScenarioDef ParentName="ScenarioBase">
     <defName>Council_Scenario_BadBlood</defName>
     <label>Bad Blood</label>
-    <description>Two families, one valley, and three generations of bad blood. When the colony ship broke apart, the only pods that launched carried the last of two clans who haven't shared a meal in living memory. Now they share everything.\n\nEach family takes one name and stands by its own. Whether they can stand each other is another question. Expect harsh words, cold shoulders, rivalries that outlast the winter, and a council where every vote is a family vote.\n\nThe grudge will fade, given time and a reason. The question is whether the colony lasts that long.</description>
+    <description>Two families, one valley, and three generations of bad blood. When the colony ship broke apart, the only pods that launched carried the last of two clans who haven't shared a meal in living memory. Now they share everything.\n\nEach family takes one name and stands by its own. Whether they can stand each other is another question. Expect cold shoulders, a few harsh words, rivalries, and a council where every vote is a family vote.\n\nNobody is coming to attack you: the trouble is all at home. The grudge fades over a month or two, faster if the families find a reason to work together.</description>
     <scenario>
-      <summary>Six survivors from two feuding families, forced to build one colony together. (Rimfolk)</summary>
+      <summary>Six survivors from two feuding families, forced to build one colony together. No extra fights, just drama. (Rimfolk · gentle)</summary>
       <playerFaction>
         <def>PlayerFaction</def>
         <factionDef>PlayerColony</factionDef>
@@ -432,9 +433,9 @@
   <ScenarioDef ParentName="ScenarioBase">
     <defName>Council_Scenario_BorrowedTime</defName>
     <label>Borrowed Time</label>
-    <description>Everything you landed with was bought on credit: the gear, the supplies, the research files, the very pods you came down in. The lender was happy to oblige. Lenders like that always are.\n\nIn about a month they'll want 4,000 silver. Pay it all, pay half and beg for time (with interest), or refuse and meet the people they send to collect.\n\nYou have the best start money can buy. You'll need it.</description>
+    <description>Everything you landed with was bought on credit: the gear, the supplies, the research files, the very pods you came down in. The lender was happy to oblige. Lenders like that always are.\n\nIn about a month and a half they'll want 3,000 silver. Pay it all, pay half and ask for more time (with interest), or refuse and meet the people they send to collect, twice.\n\nYou have the best start money can buy. You'll need it.</description>
     <scenario>
-      <summary>A rich start, bought with a loan from people you really should pay back. (Rimfolk)</summary>
+      <summary>A rich start, bought with a 3,000-silver loan from people you really should pay back. (Rimfolk · moderate)</summary>
       <playerFaction>
         <def>PlayerFaction</def>
         <factionDef>PlayerColony</factionDef>
@@ -452,8 +453,8 @@
 
         <li Class="ColonyCouncil.ScenPart_CouncilDebt">
           <def>Council_ScenDebt</def>
-          <amount>4000</amount>
-          <dueDays>30~36</dueDays>
+          <amount>3000</amount>
+          <dueDays>45~55</dueDays>
           <story>loan</story>
         </li>
 
@@ -536,7 +537,7 @@
 
         <li Class="ScenPart_GameStartDialog">
           <def>GameStartDialog</def>
-          <text>The pods open on a fine day, a fine valley and a fine pile of brand-new gear, every last piece of it paid for with somebody else's money.\n\nThe lender's message is still blinking on the comms: "Welcome to your new home. See you in a month."</text>
+          <text>The pods open on a fine day, a fine valley and a fine pile of brand-new gear, every last piece of it paid for with somebody else's money.\n\nThe lender's message is still blinking on the comms: "Welcome to your new home. We'll be in touch."</text>
           <closeSound>GameStartSting</closeSound>
         </li>
       </parts>
@@ -548,9 +549,9 @@
   <ScenarioDef ParentName="ScenarioBase">
     <defName>Council_Scenario_FallenTyrant</defName>
     <label>The Fallen Tyrant</label>
-    <description>For years the warlord ruled this valley with a whip and a smile. Last night, at the feast, five of the servants poured the wine. This morning the warlord is sleeping it off in the dirt, and the valley is yours.\n\nYou have a few hours to find somewhere to keep a tyrant. The warlord's loyalists will be back within days to find out what happened, and they'll keep coming while their master lives.\n\nWhat to do with the person in chains is the colony's first real decision. Everyone has an opinion. None of them are kind.</description>
+    <description>For years the warlord ruled this valley with a whip and a smile. Last night, at the feast, five of the servants poured the wine. This morning the warlord is sleeping it off in the dirt, and the valley is yours.\n\nYou have a few hours to find somewhere to keep a tyrant. In a week or so the warlord's loyalists will come to find out what happened, and twice more after that, a month or so apart, unless their master is dead or one of you by then.\n\nWhat to do with the person in chains is the colony's first real decision. Everyone has an opinion. None of them are kind.</description>
     <scenario>
-      <summary>Five former servants, one drugged tyrant, and the tyrant's loyalists on their way back. (Rimfolk)</summary>
+      <summary>Five former servants, one drugged tyrant, and the tyrant's loyalists on their way back. (Rimfolk · challenging)</summary>
       <playerFaction>
         <def>PlayerFaction</def>
         <factionDef>PlayerColony</factionDef>
@@ -571,8 +572,9 @@
           <deed>enslaved</deed>
           <outlaws>true</outlaws>
           <captive>true</captive>
-          <firstDays>3~5</firstDays>
-          <everyDays>15~25</everyDays>
+          <firstDays>7~10</firstDays>
+          <everyDays>30~40</everyDays>
+          <times>3</times>
           <story>tyrant</story>
         </li>
 
@@ -631,6 +633,407 @@
         <li Class="ScenPart_GameStartDialog">
           <def>GameStartDialog</def>
           <text>The feast is over. The warlord is snoring in the dirt, the keys are in your hands, and for the first time in years nobody is telling you what to do.\n\nThat won't last. Find somewhere to put the warlord before the wine wears off.</text>
+          <closeSound>GameStartSting</closeSound>
+        </li>
+      </parts>
+    </scenario>
+  </ScenarioDef>
+
+  <!-- ===================== Small, gentle starts ===================== -->
+  <!-- One or two colonists, no attacks of their own: the story grows through people who come to stay. -->
+
+  <!-- ===================== The Inheritance ===================== -->
+
+  <ScenarioDef ParentName="ScenarioBase">
+    <defName>Council_Scenario_Inheritance</defName>
+    <label>The Inheritance</label>
+    <description>A great-aunt you never met has left you her claim to a valley on a rimworld you'd never heard of, with a little silver, a sturdy dog, and a letter that ends: "You won't be alone out there for long. People always find their way to that valley."\n\nShe was right. Within a week or two someone from your past will turn up and ask to stay, and a few weeks later someone else may follow. Nobody is hunting you and nobody wants your money. It's just you, the dog, and whoever finds their way to you.</description>
+    <scenario>
+      <summary>One colonist, a dog and a quiet valley. People from your past will find their way to you. (Rimfolk · gentle)</summary>
+      <playerFaction>
+        <def>PlayerFaction</def>
+        <factionDef>PlayerColony</factionDef>
+      </playerFaction>
+      <parts>
+        <li Class="ScenPart_ConfigPage_ConfigureStartingPawns">
+          <def>ConfigPage_ConfigureStartingPawns</def>
+          <pawnCount>1</pawnCount>
+          <pawnChoiceCount>6</pawnChoiceCount>
+        </li>
+        <li Class="ScenPart_PlayerPawnsArriveMethod">
+          <def>PlayerPawnsArriveMethod</def>
+          <method>Standing</method>
+        </li>
+
+        <li Class="ColonyCouncil.ScenPart_CouncilEvent">
+          <def>Council_ScenEvent</def>
+          <events>
+            <li>Council_Evt_OldComrade</li>
+            <li>Council_Evt_LostKin</li>
+            <li>Council_Evt_QuietStranger</li>
+          </events>
+          <days>6~10</days>
+          <hint>CC_Scen_Hint_Follower</hint>
+        </li>
+        <li Class="ColonyCouncil.ScenPart_CouncilEvent">
+          <def>Council_ScenEvent</def>
+          <events>
+            <li>Council_Evt_OldComrade</li>
+            <li>Council_Evt_LostKin</li>
+            <li>Council_Evt_QuietStranger</li>
+            <li>Council_Evt_OldFlame</li>
+          </events>
+          <days>22~30</days>
+        </li>
+
+        <li Class="ScenPart_StartingThing_Defined">
+          <def>StartingThing_Defined</def>
+          <thingDef>Silver</thingDef>
+          <count>600</count>
+        </li>
+        <li Class="ScenPart_StartingThing_Defined">
+          <def>StartingThing_Defined</def>
+          <thingDef>MealSurvivalPack</thingDef>
+          <count>25</count>
+        </li>
+        <li Class="ScenPart_StartingThing_Defined">
+          <def>StartingThing_Defined</def>
+          <thingDef>MedicineIndustrial</thingDef>
+          <count>10</count>
+        </li>
+        <li Class="ScenPart_StartingThing_Defined">
+          <def>StartingThing_Defined</def>
+          <thingDef>ComponentIndustrial</thingDef>
+          <count>12</count>
+        </li>
+        <li Class="ScenPart_StartingThing_Defined">
+          <def>StartingThing_Defined</def>
+          <thingDef>Gun_BoltActionRifle</thingDef>
+        </li>
+        <li Class="ScenPart_StartingThing_Defined">
+          <def>StartingThing_Defined</def>
+          <thingDef>MeleeWeapon_Knife</thingDef>
+          <stuff>Steel</stuff>
+        </li>
+        <li Class="ScenPart_StartingAnimal">
+          <def>StartingAnimal</def>
+          <animalKind>Husky</animalKind>
+          <count>1</count>
+          <bondToRandomPlayerPawnChance>1.0</bondToRandomPlayerPawnChance>
+        </li>
+        <li Class="ScenPart_ScatterThingsNearPlayerStart">
+          <def>ScatterThingsNearPlayerStart</def>
+          <thingDef>Steel</thingDef>
+          <count>300</count>
+        </li>
+        <li Class="ScenPart_ScatterThingsNearPlayerStart">
+          <def>ScatterThingsNearPlayerStart</def>
+          <thingDef>WoodLog</thingDef>
+          <count>400</count>
+        </li>
+
+        <li Class="ScenPart_GameStartDialog">
+          <def>GameStartDialog</def>
+          <text>The valley is just as the letter described it: quiet, green, and empty, apart from you and a dog who has already decided that this is home.\n\nThe last line of the letter is still on your mind. "You won't be alone out there for long."</text>
+          <closeSound>GameStartSting</closeSound>
+        </li>
+      </parts>
+    </scenario>
+  </ScenarioDef>
+
+  <!-- ===================== Master and Apprentice ===================== -->
+
+  <ScenarioDef ParentName="ScenarioBase">
+    <defName>Council_Scenario_MasterApprentice</defName>
+    <label>Master and Apprentice</label>
+    <description>A master of a craft, and the apprentice who followed them out to the edge of the world to learn it. The master has a lifetime of knowledge to pass on. The apprentice has the patience to learn it, most days.\n\nWord of a good workshop travels: in a week or two a travelling scholar will stop by, and later someone else may come wanting to learn, or an old friend of the master's may turn up. Nobody is waiting to attack you here. Just the work, and the slow satisfaction of getting better at it.</description>
+    <scenario>
+      <summary>Two colonists, a master and an apprentice, building a workshop at the edge of the world. (Rimfolk · gentle)</summary>
+      <playerFaction>
+        <def>PlayerFaction</def>
+        <factionDef>PlayerColony</factionDef>
+      </playerFaction>
+      <parts>
+        <li Class="ScenPart_ConfigPage_ConfigureStartingPawns">
+          <def>ConfigPage_ConfigureStartingPawns</def>
+          <pawnCount>2</pawnCount>
+          <pawnChoiceCount>8</pawnChoiceCount>
+        </li>
+        <li Class="ScenPart_PlayerPawnsArriveMethod">
+          <def>PlayerPawnsArriveMethod</def>
+          <method>Standing</method>
+        </li>
+
+        <li Class="ColonyCouncil.ScenPart_CouncilBond">
+          <def>Council_ScenBond</def>
+          <kind>mentor</kind>
+        </li>
+        <li Class="ColonyCouncil.ScenPart_CouncilEvent">
+          <def>Council_ScenEvent</def>
+          <events>
+            <li>Council_Evt_Scholar</li>
+            <li>Council_Evt_Storyteller</li>
+          </events>
+          <days>8~12</days>
+          <hint>CC_Scen_Hint_Visitor</hint>
+        </li>
+        <li Class="ColonyCouncil.ScenPart_CouncilEvent">
+          <def>Council_ScenEvent</def>
+          <events>
+            <li>Council_Evt_Apprentice</li>
+            <li>Council_Evt_OldComrade</li>
+          </events>
+          <days>18~26</days>
+        </li>
+        <li Class="ColonyCouncil.ScenPart_CouncilWays">
+          <def>Council_ScenWays</def>
+          <toil>20</toil>
+        </li>
+
+        <li Class="ScenPart_StartingThing_Defined">
+          <def>StartingThing_Defined</def>
+          <thingDef>Silver</thingDef>
+          <count>500</count>
+        </li>
+        <li Class="ScenPart_StartingThing_Defined">
+          <def>StartingThing_Defined</def>
+          <thingDef>MealSurvivalPack</thingDef>
+          <count>25</count>
+        </li>
+        <li Class="ScenPart_StartingThing_Defined">
+          <def>StartingThing_Defined</def>
+          <thingDef>MedicineIndustrial</thingDef>
+          <count>10</count>
+        </li>
+        <li Class="ScenPart_StartingThing_Defined">
+          <def>StartingThing_Defined</def>
+          <thingDef>ComponentIndustrial</thingDef>
+          <count>20</count>
+        </li>
+        <li Class="ScenPart_StartingThing_Defined">
+          <def>StartingThing_Defined</def>
+          <thingDef>Gun_BoltActionRifle</thingDef>
+        </li>
+        <li Class="ScenPart_StartingThing_Defined">
+          <def>StartingThing_Defined</def>
+          <thingDef>Gun_Revolver</thingDef>
+        </li>
+        <li Class="ScenPart_ScatterThingsNearPlayerStart">
+          <def>ScatterThingsNearPlayerStart</def>
+          <thingDef>Steel</thingDef>
+          <count>450</count>
+        </li>
+        <li Class="ScenPart_ScatterThingsNearPlayerStart">
+          <def>ScatterThingsNearPlayerStart</def>
+          <thingDef>WoodLog</thingDef>
+          <count>500</count>
+        </li>
+
+        <li Class="ScenPart_GameStartDialog">
+          <def>GameStartDialog</def>
+          <text>The cart is unloaded, the tools are laid out, and the master is already explaining, for the third time, the right way to hold a hammer.\n\nThe apprentice nods, and makes a note, and wonders how long it will take before the master runs out of things to teach.</text>
+          <closeSound>GameStartSting</closeSound>
+        </li>
+      </parts>
+    </scenario>
+  </ScenarioDef>
+
+  <!-- ===================== Runaway Hearts ===================== -->
+
+  <ScenarioDef ParentName="ScenarioBase">
+    <defName>Council_Scenario_RunawayHearts</defName>
+    <label>Runaway Hearts</label>
+    <description>Two people, one stolen afternoon, and no intention of ever going back. You ran away together, and this is where the road ran out.\n\nLove is easy when there's nobody else around. In a couple of weeks someone from one of your pasts will turn up at the edge of the clearing, someone who used to matter a great deal, and you'll find out how easy it really is. Later, family may come looking too. Nobody here wants to hurt you: the trouble, if there is any, will be of the heart.</description>
+    <scenario>
+      <summary>Two runaway lovers, a new home, and a past that isn't quite done with them. (Rimfolk · gentle)</summary>
+      <playerFaction>
+        <def>PlayerFaction</def>
+        <factionDef>PlayerColony</factionDef>
+      </playerFaction>
+      <parts>
+        <li Class="ScenPart_ConfigPage_ConfigureStartingPawns">
+          <def>ConfigPage_ConfigureStartingPawns</def>
+          <pawnCount>2</pawnCount>
+          <pawnChoiceCount>8</pawnChoiceCount>
+        </li>
+        <li Class="ScenPart_PlayerPawnsArriveMethod">
+          <def>PlayerPawnsArriveMethod</def>
+          <method>Standing</method>
+        </li>
+
+        <li Class="ColonyCouncil.ScenPart_CouncilBond">
+          <def>Council_ScenBond</def>
+          <kind>lovers</kind>
+        </li>
+        <li Class="ColonyCouncil.ScenPart_CouncilEvent">
+          <def>Council_ScenEvent</def>
+          <events>
+            <li>Council_Evt_OldFlame</li>
+          </events>
+          <days>14~20</days>
+        </li>
+        <li Class="ColonyCouncil.ScenPart_CouncilEvent">
+          <def>Council_ScenEvent</def>
+          <events>
+            <li>Council_Evt_LostKin</li>
+            <li>Council_Evt_OldComrade</li>
+          </events>
+          <days>26~34</days>
+        </li>
+        <li Class="ColonyCouncil.ScenPart_CouncilWays">
+          <def>Council_ScenWays</def>
+          <openness>15</openness>
+        </li>
+
+        <li Class="ScenPart_StartingThing_Defined">
+          <def>StartingThing_Defined</def>
+          <thingDef>Silver</thingDef>
+          <count>450</count>
+        </li>
+        <li Class="ScenPart_StartingThing_Defined">
+          <def>StartingThing_Defined</def>
+          <thingDef>MealSurvivalPack</thingDef>
+          <count>25</count>
+        </li>
+        <li Class="ScenPart_StartingThing_Defined">
+          <def>StartingThing_Defined</def>
+          <thingDef>MedicineIndustrial</thingDef>
+          <count>10</count>
+        </li>
+        <li Class="ScenPart_StartingThing_Defined">
+          <def>StartingThing_Defined</def>
+          <thingDef>ComponentIndustrial</thingDef>
+          <count>12</count>
+        </li>
+        <li Class="ScenPart_StartingThing_Defined">
+          <def>StartingThing_Defined</def>
+          <thingDef>Gun_BoltActionRifle</thingDef>
+        </li>
+        <li Class="ScenPart_StartingThing_Defined">
+          <def>StartingThing_Defined</def>
+          <thingDef>Gun_Revolver</thingDef>
+        </li>
+        <li Class="ScenPart_StartingAnimal">
+          <def>StartingAnimal</def>
+          <count>1</count>
+          <bondToRandomPlayerPawnChance>1.0</bondToRandomPlayerPawnChance>
+        </li>
+        <li Class="ScenPart_ScatterThingsNearPlayerStart">
+          <def>ScatterThingsNearPlayerStart</def>
+          <thingDef>Steel</thingDef>
+          <count>300</count>
+        </li>
+        <li Class="ScenPart_ScatterThingsNearPlayerStart">
+          <def>ScatterThingsNearPlayerStart</def>
+          <thingDef>WoodLog</thingDef>
+          <count>400</count>
+        </li>
+
+        <li Class="ScenPart_GameStartDialog">
+          <def>GameStartDialog</def>
+          <text>Nobody followed you. Nobody even knows where you are. For the first time in your lives, there's nobody to answer to but each other.\n\nIt's a good feeling. Enjoy it while it lasts.</text>
+          <closeSound>GameStartSting</closeSound>
+        </li>
+      </parts>
+    </scenario>
+  </ScenarioDef>
+
+  <!-- ===================== The Lone Hunter ===================== -->
+
+  <ScenarioDef ParentName="ScenarioBase">
+    <defName>Council_Scenario_LoneHunter</defName>
+    <label>The Lone Hunter</label>
+    <description>You've tracked it across three valleys: the great beast the hunters talk about around their fires, old and scarred and never brought down. Now its trail leads here, and so do you.\n\nIn a couple of weeks it will come through this land. Hunt it if you dare, tame it if you can, or simply watch it pass: it only fights if provoked. In the meantime word of a lone hunter living off the land travels, and you may not be alone for long.</description>
+    <scenario>
+      <summary>A lone hunter, a rifle, a dog, and a legend to track. (Rimfolk · gentle)</summary>
+      <playerFaction>
+        <def>PlayerFaction</def>
+        <factionDef>PlayerColony</factionDef>
+      </playerFaction>
+      <parts>
+        <li Class="ScenPart_ConfigPage_ConfigureStartingPawns">
+          <def>ConfigPage_ConfigureStartingPawns</def>
+          <pawnCount>1</pawnCount>
+          <pawnChoiceCount>6</pawnChoiceCount>
+        </li>
+        <li Class="ScenPart_PlayerPawnsArriveMethod">
+          <def>PlayerPawnsArriveMethod</def>
+          <method>Standing</method>
+        </li>
+
+        <li Class="ColonyCouncil.ScenPart_CouncilEvent">
+          <def>Council_ScenEvent</def>
+          <events>
+            <li>Council_Evt_Apprentice</li>
+            <li>Council_Evt_OldComrade</li>
+            <li>Council_Evt_QuietStranger</li>
+          </events>
+          <days>6~10</days>
+          <hint>CC_Scen_Hint_Follower</hint>
+        </li>
+        <li Class="ColonyCouncil.ScenPart_CouncilEvent">
+          <def>Council_ScenEvent</def>
+          <events>
+            <li>Council_Evt_GreatBeast</li>
+          </events>
+          <days>12~18</days>
+          <hint>CC_Scen_Hint_Beast</hint>
+        </li>
+
+        <li Class="ScenPart_StartingThing_Defined">
+          <def>StartingThing_Defined</def>
+          <thingDef>Gun_BoltActionRifle</thingDef>
+        </li>
+        <li Class="ScenPart_StartingThing_Defined">
+          <def>StartingThing_Defined</def>
+          <thingDef>MeleeWeapon_Knife</thingDef>
+          <stuff>Plasteel</stuff>
+        </li>
+        <li Class="ScenPart_StartingThing_Defined">
+          <def>StartingThing_Defined</def>
+          <thingDef>Pemmican</thingDef>
+          <count>50</count>
+        </li>
+        <li Class="ScenPart_StartingThing_Defined">
+          <def>StartingThing_Defined</def>
+          <thingDef>MedicineHerbal</thingDef>
+          <count>12</count>
+        </li>
+        <li Class="ScenPart_StartingThing_Defined">
+          <def>StartingThing_Defined</def>
+          <thingDef>MedicineIndustrial</thingDef>
+          <count>5</count>
+        </li>
+        <li Class="ScenPart_StartingThing_Defined">
+          <def>StartingThing_Defined</def>
+          <thingDef>Silver</thingDef>
+          <count>350</count>
+        </li>
+        <li Class="ScenPart_StartingThing_Defined">
+          <def>StartingThing_Defined</def>
+          <thingDef>ComponentIndustrial</thingDef>
+          <count>8</count>
+        </li>
+        <li Class="ScenPart_StartingAnimal">
+          <def>StartingAnimal</def>
+          <animalKind>Husky</animalKind>
+          <count>1</count>
+          <bondToRandomPlayerPawnChance>1.0</bondToRandomPlayerPawnChance>
+        </li>
+        <li Class="ScenPart_ScatterThingsNearPlayerStart">
+          <def>ScatterThingsNearPlayerStart</def>
+          <thingDef>Steel</thingDef>
+          <count>200</count>
+        </li>
+        <li Class="ScenPart_ScatterThingsNearPlayerStart">
+          <def>ScatterThingsNearPlayerStart</def>
+          <thingDef>WoodLog</thingDef>
+          <count>400</count>
+        </li>
+
+        <li Class="ScenPart_GameStartDialog">
+          <def>GameStartDialog</def>
+          <text>Fresh tracks in the mud, as wide as your spread hand. It passed through here not long ago, and it'll be back.\n\nTime to build a camp worth coming back to.</text>
           <closeSound>GameStartSting</closeSound>
         </li>
       </parts>

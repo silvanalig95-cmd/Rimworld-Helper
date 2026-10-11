@@ -40,10 +40,10 @@ namespace ColonyCouncil
         /// <summary>Settings, mods, season, the colony's character, enough people.</summary>
         protected virtual bool Gates(Map map, HappeningExtension ext)
         {
-            if (!S.worldEvents) return false;
+            if (!S.worldEvents && !forScenario) return false;
             float temp = map.mapTemperature.OutdoorTemp;
             if (temp < ext.minTemp || temp > ext.maxTemp) return false;
-            if (ext.battle && !BattlesAllowed(map)) return false;
+            if (ext.battle && !(forScenario ? ScenarioBattlesAllowed(map) : BattlesAllowed(map))) return false;
             if (!ext.mods.NullOrEmpty() && !ext.mods.Any(m => ModsConfig.IsActive(m) || People.ModActive(m))) return false;
             if (!ext.seasons.NullOrEmpty() && !ext.seasons.Contains(GenLocalDate.Season(map))) return false;
             if ((!ext.colonyIs.NullOrEmpty() || !ext.colonyIsNot.NullOrEmpty()) && !(CouncilGameComponent.Instance?.character.Fits(ext.colonyIs, ext.colonyIsNot) ?? false)) return false;
@@ -61,6 +61,54 @@ namespace ColonyCouncil
         /// <summary>Fights at all: the setting is on and the storyteller sends threats (whatever is happening right now).</summary>
         public static bool FightsPossible =>
             S.worldEvents && S.worldEventBattles && Find.Storyteller.difficulty.threatScale > 0.01f && Find.Storyteller.difficulty.allowBigThreats;
+
+        /// <summary>Asked or fired for a scenario (see <see cref="ScenarioCanFire"/>): the world-event switches don't apply.</summary>
+        internal static bool forScenario;
+
+        /// <summary>
+        /// A scenario wants this event now: everything an event needs except the world-event switches (a fight
+        /// needs only a storyteller that sends threats, and a quiet moment).
+        /// </summary>
+        public bool ScenarioCanFire(Map map)
+        {
+            var ext = Ext;
+            if (map == null || ext == null || !map.IsPlayerHome) return false;
+            forScenario = true;
+            try
+            {
+                return Gates(map, ext) && CanHappen(map, ext);
+            }
+            catch (Exception e)
+            {
+                CouncilLog.ErrorOnce("event check " + def.defName, e);
+                return false;
+            }
+            finally
+            {
+                forScenario = false;
+            }
+        }
+
+        /// <summary>Fires it for a scenario: its fights come whatever the battle switch says.</summary>
+        public bool ScenarioFire(Map map)
+        {
+            var parms = StorytellerUtility.DefaultParmsNow(HappeningTracker.Category, map);
+            parms.forced = true;
+            forScenario = true;
+            try
+            {
+                return TryExecute(parms);
+            }
+            finally
+            {
+                forScenario = false;
+            }
+        }
+
+        private static bool ScenarioBattlesAllowed(Map map) =>
+            ScenarioFightsPossible
+            && !GenHostility.AnyHostileActiveThreatToPlayer(map, false, false)
+            && Now - map.storyState.LastThreatBigTick > GenDate.TicksPerDay * 2;
 
         /// <summary>
         /// Fights a scenario promised (a hunt, a debt collector): the player chose them with the scenario, so they come
@@ -82,7 +130,7 @@ namespace ColonyCouncil
             var map = parms.target as Map;
             var ext = Ext;
             if (map == null || ext == null) return false;
-            var ctx = new HappeningContext { incident = def, map = map, points = parms.points };
+            var ctx = new HappeningContext { incident = def, map = map, points = parms.points, scenario = forScenario };
             try
             {
                 if (!Cast(ctx, ext) || !Begin(ctx, ext))
