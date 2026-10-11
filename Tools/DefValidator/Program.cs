@@ -280,6 +280,7 @@ var dynamic = new Dictionary<string, string[]>
     ["CC_ChronicleFilter_"] = new[] { "All", "Wishes", "Council", "People", "Dreams", "Losses" },
     ["CC_People_Sort_"] = new[] { "Name", "Trust", "Goal", "Mood" },
     ["CC_MsgLevel_"] = new[] { "Everything", "Notable", "LettersOnly" },
+    ["CC_Era_"] = new[] { "Auto", "PreIndustrial", "Industrial", "Auto_Tip", "PreIndustrial_Tip", "Industrial_Tip" },
     ["CC_CoSignLine_"] = tones,
     ["CC_Heckle_"] = tones,
     ["CC_Touch_"] = tones,

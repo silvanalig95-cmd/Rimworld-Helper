@@ -95,6 +95,9 @@ namespace ColonyCouncil
         /// <summary>Worth a message even when dream messages are off, and a line in the chronicle.</summary>
         public bool notable;
 
+        /// <summary>Only in games where mechanoids are around (some mods remove them).</summary>
+        public bool needsMechanoids;
+
         public bool AboutEvents => !afterThoughts.NullOrEmpty() || afterThreat || !hediffs.NullOrEmpty() || unconscious;
 
         public bool Matters => notable || omen != null || wish != null || changeTie != TieKind.None || effects.Any(e => !(e is DilemmaEffect_Thought));
@@ -286,6 +289,7 @@ namespace ColonyCouncil
                 int threat = Find.Maps.Where(m => m.IsPlayerHome).Select(m => m.storyState.LastThreatBigTick).DefaultIfEmpty(0).Max();
                 if (threat <= 0 || Find.TickManager.TicksGame - threat > GenDate.TicksPerDay * 2) return null;
             }
+            if (def.needsMechanoids && (Faction.OfMechanoids == null || Faction.OfMechanoids.defeated)) return null;
             if (!def.hediffs.NullOrEmpty() && !(p.health?.hediffSet?.hediffs.Any(h => def.hediffs.Contains(h.def.defName)) ?? false)) return null;
             if (!About(comp, def.about, p, c)) return null;
             if (c.skill == null) c.skill = SkillOf(p);
@@ -493,6 +497,7 @@ namespace ColonyCouncil
         private static bool OmenCanHappen(IncidentDef inc, Map map)
         {
             if (!inc.TargetAllowed(map)) return false;
+            if (inc.defName == "SolarFlare" && !Avail.HasElectricity) return false;
             var parms = StorytellerUtility.DefaultParmsNow(inc.category, map);
             return inc.Worker.CanFireNow(parms);
         }
@@ -554,6 +559,7 @@ namespace ColonyCouncil
         {
             Scribe_Collections.Look(ref recent, "recent", LookMode.Deep);
             Scribe_Collections.Look(ref omens, "omens", LookMode.Deep);
+            if (Scribe.mode == LoadSaveMode.Saving) CouncilGameComponent.PruneByPawn(seen);
             Scribe_Collections.Look(ref seen, "seen", LookMode.Value, LookMode.Value);
             Scribe_Values.Look(ref lastOmenTick, "lastOmenTick", -999999);
             if (Scribe.mode == LoadSaveMode.PostLoadInit)

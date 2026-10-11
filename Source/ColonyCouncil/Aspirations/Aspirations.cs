@@ -234,7 +234,7 @@ namespace ColonyCouncil
     {
         private static int Children(Pawn p) => p.relations?.Children.Count(c => !c.Dead) ?? 0;
 
-        public override bool CanHave(Pawn p) => ModsConfig.BiotechActive && p.ageTracker != null && p.ageTracker.AgeBiologicalYears < 45;
+        public override bool CanHave(Pawn p) => ModsConfig.BiotechActive && p.ageTracker != null && Flavor.HumanAge(p) < 45f;
 
         public override bool Init(Aspiration a)
         {
@@ -644,6 +644,14 @@ namespace ColonyCouncil
         public void ExposeData()
         {
             Scribe_Collections.Look(ref all, "all", LookMode.Deep);
+            if (Scribe.mode == LoadSaveMode.Saving)
+            {
+                CouncilGameComponent.PruneByPawn(counters);
+                CouncilGameComponent.PruneByPawn(inspiredBy);
+                // Sparks only look back a few days; a month is plenty.
+                int now = Find.TickManager.TicksGame;
+                foreach (var k in events.Where(e => now - e.Value > GenDate.TicksPerDay * 30).Select(e => e.Key).ToList()) events.Remove(k);
+            }
             Scribe_Collections.Look(ref counters, "counters", LookMode.Value, LookMode.Value);
             Scribe_Collections.Look(ref events, "events", LookMode.Value, LookMode.Value);
             Scribe_Collections.Look(ref inspiredBy, "inspiredBy", LookMode.Value, LookMode.Value);

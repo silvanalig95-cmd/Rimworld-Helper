@@ -142,8 +142,11 @@ namespace ColonyCouncil
     {
         public const int Wanted = 10;
 
-        private static IEnumerable<ThingDef> SocialDrugs => DefDatabase<ThingDef>.AllDefsListForReading
-            .Where(d => d.IsDrug && d.ingestible != null && d.ingestible.drugCategory == DrugCategory.Social);
+        private static HashSet<ThingDef> socialDrugs;
+
+        /// <summary>Beer, smokeleaf and the like (worked out once; big mod lists have a lot of things to look through).</summary>
+        public static HashSet<ThingDef> SocialDrugs => socialDrugs ?? (socialDrugs = new HashSet<ThingDef>(DefDatabase<ThingDef>.AllDefsListForReading
+            .Where(d => d.IsDrug && d.ingestible != null && d.ingestible.drugCategory == DrugCategory.Social)));
 
         public static int Stock(Map map) => SocialDrugs.Sum(d => map.resourceCounter.GetCount(d));
 
@@ -276,7 +279,7 @@ namespace ColonyCouncil
         public static bool CanMakeArmor(Map map) => DefDatabase<RecipeDef>.AllDefsListForReading.Any(r => r.AvailableNow && r.ProducedThingDef != null
             && r.ProducedThingDef.IsApparel && r.ProducedThingDef.thingCategories != null
             && (r.ProducedThingDef.thingCategories.Contains(ThingCategoryDefOf.ApparelArmor) || r.ProducedThingDef.thingCategories.Contains(ThingCategoryDefOf.ArmorHeadgear))
-            && r.AllRecipeUsers.Any(u => Avail.ColonyHas(map, d => d == u) || Avail.CanBuild(u, map)));
+            && r.AllRecipeUsers.Any(u => map.listerBuildings.ColonistsHaveBuilding(u) || Avail.CanBuild(u, map)));
 
         public override IEnumerable<WishCandidate> CandidatesFor(Pawn pawn)
         {

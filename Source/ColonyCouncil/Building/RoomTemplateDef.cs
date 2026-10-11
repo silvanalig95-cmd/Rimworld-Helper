@@ -283,7 +283,7 @@ namespace ColonyCouncil
         public List<ResolvedThing> ResolveCached(Map map, out string unavailableReason)
         {
             float now = UnityEngine.Time.realtimeSinceStartup;
-            if (cachedMap != map || now - cachedTime > 2f || cachedThings == null)
+            if (cachedMap != map || now - cachedTime > 2f + (shortHash % 64) / 64f || cachedThings == null)
             {
                 cachedMap = map;
                 cachedTime = now;

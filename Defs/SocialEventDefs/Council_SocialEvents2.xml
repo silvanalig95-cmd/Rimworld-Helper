@@ -139,7 +139,7 @@
     <texts>
       <li>{A_nameDef} told the table about killing a warg with a frying pan. {B_nameDef} said {B_pronoun} once killed two, with the lid.</li>
       <li>{A_nameDef} mentioned walking thirty kilometers on a broken ankle. {B_nameDef} mentioned walking forty, on two.</li>
-      <li>Every time {A_nameDef} finished a story at dinner, {B_nameDef} had a bigger one. By the end of the meal, both of them had single-handedly destroyed a mechanoid hive.</li>
+      <li>Every time {A_nameDef} finished a story at dinner, {B_nameDef} had a bigger one. By the end of the meal, both of them had single-handedly fought off the same raid, twice.</li>
     </texts>
     <effects>
       <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>AAndB</target><thought>Council_Soc2_OneUpped</thought></li>

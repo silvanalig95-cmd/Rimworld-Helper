@@ -36,7 +36,7 @@ namespace ColonyCouncil
         public bool Fits(Pawn p, out bool backstoryMatch)
         {
             backstoryMatch = false;
-            if (p.ageTracker == null || p.ageTracker.AgeBiologicalYears < minAge) return false;
+            if (p.ageTracker == null || Flavor.HumanAge(p) < minAge) return false;
             if (!DilemmaRole.Fits(who, p, false)) return false;
             if (!backstory.NullOrEmpty())
             {
@@ -107,7 +107,7 @@ namespace ColonyCouncil
                 if (rolled.Contains(p.ThingID)) continue;
                 if ((p.records?.GetAsInt(RecordDefOf.TimeAsColonistOrColonyAnimal) ?? 0) < GenDate.TicksPerDay * 2) continue;
                 // Teens raised here get their chance once they're old enough to have a past.
-                if ((p.ageTracker?.AgeBiologicalYears ?? 0) < 16) continue;
+                if (Flavor.HumanAge(p) < 16f) continue;
                 rolled.Add(p.ThingID);
                 TryGive(p);
             }

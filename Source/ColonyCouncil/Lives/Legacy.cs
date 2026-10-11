@@ -164,7 +164,7 @@ namespace ColonyCouncil
             Scribe_Collections.Look(ref cameOfAge, "cameOfAge", LookMode.Reference);
             if (Scribe.mode == LoadSaveMode.Saving)
                 foreach (var k in cameOfAgeTick.Keys.Where(k => k == null || k.Dead || k.Destroyed).ToList()) cameOfAgeTick.Remove(k);
-            Scribe_Collections.Look(ref cameOfAgeTick, "cameOfAgeTick", LookMode.Reference, LookMode.Value, ref k1, ref v1);
+            Scribe_Collections.Look(ref cameOfAgeTick, "cameOfAgeTick", LookMode.Reference, LookMode.Value, ref k1, ref v1, false);
             if (Scribe.mode == LoadSaveMode.PostLoadInit)
             {
                 if (heirlooms == null) heirlooms = new List<Heirloom>();
@@ -173,6 +173,7 @@ namespace ColonyCouncil
                 if (cameOfAge == null) cameOfAge = new List<Pawn>();
                 cameOfAge.RemoveAll(p => p == null);
                 if (cameOfAgeTick == null) cameOfAgeTick = new Dictionary<Pawn, int>();
+                cameOfAgeTick.Remove(null);
             }
         }
     }

@@ -196,14 +196,16 @@ namespace ColonyCouncil
                 foreach (var k in downedTick.Keys.Where(k => k == null || k.Dead || k.Destroyed).ToList()) downedTick.Remove(k);
                 foreach (var k in battleTick.Keys.Where(k => k == null || k.Dead || k.Destroyed).ToList()) battleTick.Remove(k);
             }
-            Scribe_Collections.Look(ref downedTick, "downedTick", LookMode.Reference, LookMode.Value, ref k1, ref v1);
-            Scribe_Collections.Look(ref battleTick, "battleTick", LookMode.Reference, LookMode.Value, ref k2, ref v2);
+            Scribe_Collections.Look(ref downedTick, "downedTick", LookMode.Reference, LookMode.Value, ref k1, ref v1, false);
+            Scribe_Collections.Look(ref battleTick, "battleTick", LookMode.Reference, LookMode.Value, ref k2, ref v2, false);
             if (Scribe.mode == LoadSaveMode.PostLoadInit)
             {
                 if (quirks == null) quirks = new List<Quirk>();
                 quirks.RemoveAll(q => q == null || q.def == null || q.pawn == null);
                 if (downedTick == null) downedTick = new Dictionary<Pawn, int>();
                 if (battleTick == null) battleTick = new Dictionary<Pawn, int>();
+                downedTick.Remove(null);
+                battleTick.Remove(null);
             }
         }
     }
@@ -216,9 +218,11 @@ namespace ColonyCouncil
         protected override ThoughtState CurrentStateInternal(Pawn p)
         {
             var comp = CouncilGameComponent.Instance;
-            if (comp?.quirks == null || !ColonyCouncilMod.Settings.quirks) return ThoughtState.Inactive;
+            var s = ColonyCouncilMod.Settings;
+            if (comp?.quirks == null || !s.quirks || !s.MoodEffects) return ThoughtState.Inactive;
             if (quirk == null) quirk = DefDatabase<QuirkDef>.AllDefsListForReading.FirstOrDefault(q => q.thought == def);
             if (quirk == null) return ThoughtState.Inactive;
+            if (!s.Negatives && def.stages.Count > 0 && def.stages[0] != null && def.stages[0].baseMoodEffect < 0f) return ThoughtState.Inactive;
             var q = comp.quirks.Get(p, quirk);
             if (q == null) return ThoughtState.Inactive;
             var map = p.MapHeld;
@@ -268,6 +272,12 @@ namespace ColonyCouncil
     /// <summary>A lucky-item thought names the item.</summary>
     public class Thought_Quirk : Thought_Situational
     {
+        public override float MoodOffset()
+        {
+            float m = base.MoodOffset();
+            return m < 0f ? m * ColonyCouncilMod.Settings.PenaltyScale : m;
+        }
+
         public override string LabelCap
         {
             get

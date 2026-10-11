@@ -157,7 +157,7 @@ namespace ColonyCouncil
         /// <summary>Called every few seconds while the meeting runs: a pitch, an argument, a joke.</summary>
         public void Talk(Lord lord)
         {
-            var here = lord.ownedPawns.Where(p => p.Spawned && !p.Downed && p.Map == map && GatheringsUtility.InGatheringArea(p.Position, spot, map)).ToList();
+            var here = lord.ownedPawns.Where(p => p.Spawned && !p.Downed && p.IsColonist && !p.IsQuestLodger() && p.Map == map && GatheringsUtility.InGatheringArea(p.Position, spot, map)).ToList();
             foreach (var p in here)
                 if (!attendees.Contains(p)) attendees.Add(p);
             if (here.Count == 0) return;
@@ -227,7 +227,7 @@ namespace ColonyCouncil
         {
             foreach (var p in pitches) p.voters.Clear();
             var advice = CouncilMapComponent.For(map)?.Signals ?? new List<AdvisorSignal>();
-            foreach (var voter in attendees.Where(p => p != null && !p.Dead))
+            foreach (var voter in attendees.Where(p => p != null && !p.Dead && p.IsColonist))
             {
                 MeetingPitch best = null;
                 float bestScore = float.MinValue;

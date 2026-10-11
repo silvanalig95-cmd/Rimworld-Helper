@@ -308,8 +308,11 @@ namespace ColonyCouncil
             {
                 string key = cond.def.defName;
                 if (!Severity.TryGetValue(key, out float sev)) continue;
+                // A solar flare means nothing to a colony without power.
+                if (key == "SolarFlare" && !Avail.HasElectricity) continue;
                 string titleKey = "CC_Adv_Cond_" + key + "_Title";
                 string detailKey = "CC_Adv_Cond_" + key + "_Detail";
+                if (!Avail.HasElectricity && (detailKey + "Low").CanTranslate()) detailKey += "Low";
                 if (!titleKey.CanTranslate() || !detailKey.CanTranslate()) continue;
                 int left = cond.TicksLeft;
                 string time = cond.Permanent || left <= 0 ? "CC_Adv_Cond_Unknown".Translate().ToString() : TextUtil.DaysString(left);

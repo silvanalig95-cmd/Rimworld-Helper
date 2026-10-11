@@ -40,7 +40,19 @@ namespace ColonyCouncil
         /// <summary>The era the colony "lives in": its faction level or what it has researched, whichever is higher.</summary>
         public static TechLevel EffectiveTech => PlayerTech > ResearchedTech ? PlayerTech : ResearchedTech;
 
-        public static bool IsPreIndustrial => EffectiveTech <= TechLevel.Medieval && !HasElectricity;
+        /// <summary>No electricity, no gunpowder era: medieval or tribal. The player can also set the era by hand.</summary>
+        public static bool IsPreIndustrial
+        {
+            get
+            {
+                switch (ColonyCouncilMod.Settings.era)
+                {
+                    case EraMode.PreIndustrial: return true;
+                    case EraMode.Industrial: return false;
+                    default: return EffectiveTech <= TechLevel.Medieval && !HasElectricity;
+                }
+            }
+        }
 
         public static bool ResearchDone(string defName)
         {
@@ -52,6 +64,7 @@ namespace ColonyCouncil
         {
             get
             {
+                if (ColonyCouncilMod.Settings.era == EraMode.PreIndustrial) return false;
                 RefreshCache();
                 return hasElectricity;
             }
@@ -277,8 +290,18 @@ namespace ColonyCouncil
         public static bool IsGrave(ThingDef d) =>
             d?.thingClass != null && typeof(Building_Grave).IsAssignableFrom(d.thingClass);
 
-        public static bool IsFermenter(ThingDef d) =>
-            d?.thingClass != null && typeof(Building_FermentingBarrel).IsAssignableFrom(d.thingClass);
+        /// <summary>
+        /// A brewing barrel: vanilla's, or a Vanilla Expanded Framework item processor that brews (as used by
+        /// Medieval Overhaul and Vanilla Brewing Expanded), recognized by what it's called.
+        /// </summary>
+        public static bool IsFermenter(ThingDef d)
+        {
+            if (d?.thingClass == null) return false;
+            if (typeof(Building_FermentingBarrel).IsAssignableFrom(d.thingClass)) return true;
+            if (!d.thingClass.FullName.Contains("ItemProcessor")) return false;
+            string name = (d.defName + " " + d.label).ToLowerInvariant();
+            return name.Contains("barrel") || name.Contains("ferment") || name.Contains("brew") || name.Contains("keg") || name.Contains("cask") || name.Contains("still");
+        }
 
         public static bool IsHydroponics(ThingDef d) =>
             d?.thingClass != null && typeof(Building_PlantGrower).IsAssignableFrom(d.thingClass)
@@ -395,14 +418,20 @@ namespace ColonyCouncil
         private static void RefreshCache()
         {
             int now = Find.TickManager?.TicksGame ?? 0;
-            if (now - cacheTick < 2500 && cacheTick >= 0) return;
+            // Also refresh when time went backwards: another save was loaded.
+            if (cacheTick >= 0 && now >= cacheTick && now - cacheTick < 2500) return;
             cacheTick = now;
-            hasElectricity = ResearchDone("Electricity");
-            var best = TechLevel.Neolithic;
+            // Electricity: the vanilla research, or a power plant the colony actually runs (mods rename things).
+            hasElectricity = ResearchDone("Electricity")
+                             || Find.Maps.Any(m => m.IsPlayerHome && m.listerBuildings.allBuildingsColonist.Any(b => b.TryGetComp<CompPowerPlant>() != null));
+            // The era: the most advanced level with at least two finished projects, so one stray modded project
+            // doesn't drag a medieval colony into the industrial age.
+            var counts = new Dictionary<TechLevel, int>();
             foreach (var r in DefDatabase<ResearchProjectDef>.AllDefsListForReading)
-            {
-                if (r.techLevel > best && r.IsFinished) best = r.techLevel;
-            }
+                if (r.IsFinished) counts[r.techLevel] = (counts.TryGetValue(r.techLevel, out int n) ? n : 0) + 1;
+            var best = TechLevel.Neolithic;
+            foreach (var kv in counts)
+                if (kv.Key > best && kv.Value >= 2) best = kv.Key;
             researchedTech = best;
         }
 

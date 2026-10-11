@@ -14,6 +14,34 @@ namespace ColonyCouncil
     /// </summary>
     public partial class CouncilGameComponent : GameComponent
     {
+        private static HashSet<string> knownPawnIds;
+        private static int knownPawnIdsFrame = -1;
+
+        /// <summary>Every pawn the game still knows (alive or dead), by ThingID. Computed once per save.</summary>
+        public static HashSet<string> KnownPawnIds()
+        {
+            if (knownPawnIds == null || knownPawnIdsFrame != UnityEngine.Time.frameCount)
+            {
+                knownPawnIds = new HashSet<string>(PawnsFinder.AllMapsWorldAndTemporary_AliveOrDead
+                    .Concat(PawnsFinder.AllMapsCaravansAndTravellingTransporters_Alive).Where(p => p != null).Select(p => p.ThingID));
+                knownPawnIdsFrame = UnityEngine.Time.frameCount;
+            }
+            return knownPawnIds;
+        }
+
+        /// <summary>Drops "pawnId|..." entries for pawns the game has forgotten.</summary>
+        public static void PruneByPawn<V>(Dictionary<string, V> dict)
+        {
+            if (dict == null || dict.Count == 0) return;
+            var ids = KnownPawnIds();
+            foreach (var k in dict.Keys.Where(k =>
+                     {
+                         int i = k?.IndexOf('|') ?? -1;
+                         return i <= 0 || !ids.Contains(k.Substring(0, i));
+                     }).ToList())
+                dict.Remove(k);
+        }
+
         public List<Wish> wishes = new List<Wish>();
         public List<ChronicleEntry> chronicle = new List<ChronicleEntry>();
         public AmbitionTracker ambitions = new AmbitionTracker();
@@ -41,7 +69,33 @@ namespace ColonyCouncil
         public const int MaxChronicle = 300;
         private const int HourTicks = 2500;
 
-        public static CouncilGameComponent Instance => Current.Game?.GetComponent<CouncilGameComponent>();
+        private static CouncilGameComponent cachedInstance;
+        private static Game cachedGame;
+
+        /// <summary>The component of the current game (looked up once per game; thought workers ask a lot).</summary>
+        public static CouncilGameComponent Instance
+        {
+            get
+            {
+                var game = Current.Game;
+                if (game == null) return null;
+                if (cachedGame != game || cachedInstance == null)
+                {
+                    cachedInstance = game.GetComponent<CouncilGameComponent>();
+                    cachedGame = game;
+                }
+                return cachedInstance;
+            }
+        }
+
+        public override void FinalizeInit()
+        {
+            base.FinalizeInit();
+            // A different game: forget what the last one knew about tech and research.
+            Avail.ResetCache();
+            cachedInstance = this;
+            cachedGame = Current.Game;
+        }
 
         private static CouncilSettings Settings => ColonyCouncilMod.Settings;
 

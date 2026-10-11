@@ -26,6 +26,9 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref rot, "rot");
             Scribe_Values.Look(ref tick, "tick");
             Scribe_Values.Look(ref label, "label");
+            // The material came from a mod that's gone: fall back to the default one.
+            if (Scribe.mode == LoadSaveMode.PostLoadInit && thing != null && thing.MadeFromStuff && stuff == null)
+                stuff = GenStuff.DefaultStuffFor(thing);
         }
     }
 

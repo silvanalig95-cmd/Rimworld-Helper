@@ -277,6 +277,27 @@ The council only suggests what your colony can actually do right now:
 - **Materials:** room plans default to what you have the most of, and you can change every material.
 - **What's on the map:** animals to tame, a body to bury, a prosthetic you can make, winter that actually comes.
 - **Ambitions:** only ones whose every goal is achievable for your colony are offered.
+- **Era setting:** the mod works out your era from finished research and from what's built (a generator
+  counts as electricity). If a modded tech tree confuses it, set **General → Era** to *Pre-industrial* or
+  *Industrial or later*. In a pre-industrial colony, text about guns, turrets, freezers, power or
+  spaceships is skipped whenever another line fits, solar flare advice and omens disappear, and defense
+  advice suggests barricades and traps.
+
+## Playing with other mods
+
+Rimfolk patches nothing: no Harmony, no edits to vanilla defs. It only adds its own things and reads the
+game, so it shouldn't clash with other mods. A few things it does on purpose:
+- **Medieval Overhaul, Vanilla Brewing Expanded and other barrel mods:** fermenting barrels, kegs and stills
+  made with the Vanilla Expanded framework count for brewing wishes and room plans, and a stock of social drinks
+  (beer, mead, wine) fulfils the brewery wish.
+- **Alien races (Humanoid Alien Races):** every humanlike race gets the Story tab, and ages are read against the
+  race's lifespan, so a 300-year-old elf isn't treated as elderly.
+- **Simple Sidearms:** an heirloom weapon carried as a sidearm still counts as carried.
+- **No mechanoids:** mechanoid dreams and goals only show up in games that have mechanoids.
+- **Guests, prisoners and visitors** (Hospitality and the like) are left out of meetings, votes and council
+  talk.
+- **Removing a mod mid-game:** room plans that used a material from that mod fall back to a default material,
+  and people who vanished with it are quietly forgotten.
 
 ## Settings
 
@@ -286,7 +307,7 @@ with quick setups (*Everything on*, *Council only*, *Advisor only*) and one swit
 journals, the Story tab and History) or **Important only**.
 - turn each part (advisor, wishes, meetings, personal touches) on or off
 - **Stakes**:
-  - **Gentle**: only upsides
+  - **Gentle**: only upsides (decrees still cost some mood, at half strength, because you chose them)
   - **Balanced** (default): upsides and downsides in proportion
   - **Demanding**: downsides 50% stronger; bitter colonists may sulk
   - **Advisor only**: no mood effects at all

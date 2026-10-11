@@ -6,6 +6,7 @@
   <ThoughtDef>
     <defName>Council_Decree_Harvest</defName>
     <workerClass>ColonyCouncil.ThoughtWorker_Decree</workerClass>
+    <thoughtClass>ColonyCouncil.Thought_Decree</thoughtClass>
     <stages>
       <li><label>slaving in the fields</label><description>Dawn to dusk, bent over in the dirt. I'm a person, not a plow.</description><baseMoodEffect>-10</baseMoodEffect></li>
       <li><label>harvest push</label><description>Everyone in the fields, all day. My back has opinions.</description><baseMoodEffect>-5</baseMoodEffect></li>
@@ -17,6 +18,7 @@
   <ThoughtDef>
     <defName>Council_Decree_Building</defName>
     <workerClass>ColonyCouncil.ThoughtWorker_Decree</workerClass>
+    <thoughtClass>ColonyCouncil.Thought_Decree</thoughtClass>
     <stages>
       <li><label>hauling stone all day</label><description>Rock, mortar, more rock. I came here to live, not to build pyramids.</description><baseMoodEffect>-9</baseMoodEffect></li>
       <li><label>building season</label><description>Everyone on construction. Dust in everything.</description><baseMoodEffect>-4</baseMoodEffect></li>
@@ -28,6 +30,7 @@
   <ThoughtDef>
     <defName>Council_Decree_Manners</defName>
     <workerClass>ColonyCouncil.ThoughtWorker_Decree</workerClass>
+    <thoughtClass>ColonyCouncil.Thought_Decree</thoughtClass>
     <stages>
       <li><label>forced politeness</label><description>Smile, nod, say thank you. Every day. I'm going to explode.</description><baseMoodEffect>-8</baseMoodEffect></li>
       <li><label>best behavior</label><description>Minding my manners all day long. It's tiring.</description><baseMoodEffect>-3</baseMoodEffect></li>
@@ -39,6 +42,7 @@
   <ThoughtDef>
     <defName>Council_Decree_Mourning</defName>
     <workerClass>ColonyCouncil.ThoughtWorker_Decree</workerClass>
+    <thoughtClass>ColonyCouncil.Thought_Decree</thoughtClass>
     <stages>
       <li><label>wasted mourning days</label><description>Everyone sitting around crying while the work piles up.</description><baseMoodEffect>-5</baseMoodEffect></li>
       <li><label>idle mourning</label><description>I respect the dead. I'd respect them better while working.</description><baseMoodEffect>-2</baseMoodEffect></li>
@@ -50,8 +54,9 @@
   <ThoughtDef>
     <defName>Council_Decree_OnGuard</defName>
     <workerClass>ColonyCouncil.ThoughtWorker_Decree</workerClass>
+    <thoughtClass>ColonyCouncil.Thought_Decree</thoughtClass>
     <stages>
-      <li><label>constant alarm</label><description>Every shadow is a raider. Every noise is a gun. I can't breathe.</description><baseMoodEffect>-9</baseMoodEffect></li>
+      <li><label>constant alarm</label><description>Every shadow is a raider. Every noise is an attack. I can't breathe.</description><baseMoodEffect>-9</baseMoodEffect></li>
       <li><label>on guard</label><description>Weapons by the bed, sleeping in shifts. Exhausting.</description><baseMoodEffect>-4</baseMoodEffect></li>
       <li><label>ready for anything</label><description>Let them come. We're ready.</description><baseMoodEffect>3</baseMoodEffect></li>
       <li><label>itching for a fight</label><description>Everyone's sharp, armed and waiting. Wonderful.</description><baseMoodEffect>6</baseMoodEffect></li>
@@ -61,6 +66,7 @@
   <ThoughtDef>
     <defName>Council_Decree_CleanSweep</defName>
     <workerClass>ColonyCouncil.ThoughtWorker_Decree</workerClass>
+    <thoughtClass>ColonyCouncil.Thought_Decree</thoughtClass>
     <stages>
       <li><label>endless scrubbing</label><description>My hands are raw. The floor was fine. It was always fine.</description><baseMoodEffect>-7</baseMoodEffect></li>
       <li><label>clean sweep</label><description>Mops, buckets and more mops.</description><baseMoodEffect>-3</baseMoodEffect></li>

@@ -139,6 +139,7 @@
     <label>a dream of the machines</label>
     <kind>Nightmare</kind>
     <weight>0.6</weight>
+    <needsMechanoids>true</needsMechanoids>
     <lines>
       <plain>
         <li>I dreamt a centipede walked through the colony very politely, checking our names off a list.</li>

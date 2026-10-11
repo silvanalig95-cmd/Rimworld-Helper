@@ -22,7 +22,7 @@
   <ColonyCouncil.OfficeDef>
     <defName>Council_Office_Marshal</defName>
     <label>marshal</label>
-    <description>Leads the colony's defense: drills, watches, and the first rifle on the wall.</description>
+    <description>Leads the colony's defense: drills, watches, and the first weapon on the wall.</description>
     <order>2</order>
     <skills><li>Shooting</li><li>Melee</li></skills>
     <goodTraits><li>Tough</li><li>Bloodlust</li></goodTraits>

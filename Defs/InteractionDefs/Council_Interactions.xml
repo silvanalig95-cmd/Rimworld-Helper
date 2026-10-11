@@ -212,7 +212,7 @@
         <li>r_logentry->[INITIATOR_nameDef] drew a battle plan in the dirt for [RECIPIENT_nameDef]. It involved a lot of arrows pointing at [plan].</li>
         <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] [INITIATOR_pronoun] still hears the last raid at night.</li>
         <li>plan->the front door</li>
-        <li>plan->a very hopeful line of sandbags</li>
+        <li>plan->a very hopeful line of barricades</li>
         <li>plan->where the traps should go</li>
         <li>plan->the spot where everyone nearly died last time</li>
       </rulesStrings>
@@ -341,7 +341,7 @@
     <label>argued about the decree</label>
     <workerClass>ColonyCouncil.InteractionWorker_DecreeTalk</workerClass>
     <symbol>ColonyCouncil/Symbols/Ambition</symbol>
-    <socialFightBaseChance>0.05</socialFightBaseChance>
+    <socialFightBaseChance>0.02</socialFightBaseChance>
     <initiatorThought>Council_DecreeArgument</initiatorThought>
     <recipientThought>Council_DecreeArgument</recipientThought>
     <logRulesInitiator>

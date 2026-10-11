@@ -93,6 +93,7 @@
   <CC_Adv_Defense_Title>Defenses could be stronger</CC_Adv_Defense_Title>
   <CC_Adv_Defense_TitleBad>Your defenses may not hold the next raid</CC_Adv_Defense_TitleBad>
   <CC_Adv_Defense_Detail>Raids are currently worth about {0} points. You have {1} fighter(s), {2} turret(s), {3} trap(s) and {4} pieces of cover.</CC_Adv_Defense_Detail>
+  <CC_Adv_Defense_DetailLow>Raids are currently worth about {0} points. You have {1} fighter(s), {3} trap(s) and {4} pieces of cover.</CC_Adv_Defense_DetailLow>
   <CC_Adv_Defense_Growth>Colony wealth grew {0} in the last 15 days, so raids will grow too.</CC_Adv_Defense_Growth>
   <CC_Adv_Defense_Suggest>Next step: about {0} more {1}, placed where raiders approach.</CC_Adv_Defense_Suggest>
   <CC_Adv_Defense_SuggestTrain>Next step: better weapons and some shooting practice.</CC_Adv_Defense_SuggestTrain>
@@ -387,7 +388,7 @@
   <CC_Role_grave>graves</CC_Role_grave>
   <CC_Role_turret>turrets</CC_Role_turret>
   <CC_Role_trap>traps</CC_Role_trap>
-  <CC_Role_cover>pieces of cover (sandbags, barricades)</CC_Role_cover>
+  <CC_Role_cover>pieces of cover to fight behind</CC_Role_cover>
   <CC_Role_fermenter>fermenting barrels</CC_Role_fermenter>
   <CC_Role_battery>batteries</CC_Role_battery>
   <CC_Role_butcher>butcher tables</CC_Role_butcher>
@@ -529,7 +530,7 @@
   <CC_Settings_EnableTouches_Tip>Colonists occasionally plan a small piece of furniture for their own bedroom (as a normal blueprint you can cancel).</CC_Settings_EnableTouches_Tip>
   <CC_Settings_Stakes>Stakes</CC_Settings_Stakes>
   <CC_Stakes_Gentle>Gentle</CC_Stakes_Gentle>
-  <CC_Stakes_Gentle_Tip>Only upsides. Granted wishes and achieved ambitions lift mood; ignoring a wish, refusing it or failing an ambition costs nothing. Trust is still tracked, but only its good side has effects.</CC_Stakes_Gentle_Tip>
+  <CC_Stakes_Gentle_Tip>Only upsides. Granted wishes and achieved ambitions lift mood; ignoring a wish, refusing it or failing an ambition costs nothing. Trust is still tracked, but only its good side has effects. Bad quirks are off; decrees still cost some mood, at half strength, because you chose them.</CC_Stakes_Gentle_Tip>
   <CC_Stakes_Balanced>Balanced (recommended)</CC_Stakes_Balanced>
   <CC_Stakes_Balanced_Tip>Upsides and downsides. Ignored wishes and refusals sting, broken promises sting more, colonists who waited longer feel passed over, the jealous resent favorites, and ignored colonists can turn disgruntled and work slower. Granted wishes can leave people motivated.</CC_Stakes_Balanced_Tip>
   <CC_Stakes_Demanding>Demanding</CC_Stakes_Demanding>
@@ -708,6 +709,7 @@
   <CC_Adv_Cond_SolarFlare_Detail>Electrical devices are dead ({0} left). Freezers warm up, hydroponics wither and turrets fall silent. Keep the freezer door shut and fighters ready.</CC_Adv_Cond_SolarFlare_Detail>
   <CC_Adv_Cond_HeatWave_Title>Heat wave</CC_Adv_Cond_HeatWave_Title>
   <CC_Adv_Cond_HeatWave_Detail>Dangerous heat ({0} left). Keep colonists indoors in cooled rooms during the hottest hours, watch for heatstroke, and keep the freezer closed.</CC_Adv_Cond_HeatWave_Detail>
+  <CC_Adv_Cond_HeatWave_DetailLow>Dangerous heat ({0} left). Keep colonists in the shade and indoors through the hottest hours, watch for heatstroke, and eat the food that spoils first.</CC_Adv_Cond_HeatWave_DetailLow>
   <CC_Adv_Cond_ColdSnap_Title>Cold snap</CC_Adv_Cond_ColdSnap_Title>
   <CC_Adv_Cond_ColdSnap_Detail>A sudden freeze ({0} left). Harvest what's ripe, warm the bedrooms, and dress people properly before they go out.</CC_Adv_Cond_ColdSnap_Detail>
   <CC_Adv_Cond_Flashstorm_Title>Flashstorm</CC_Adv_Cond_Flashstorm_Title>
@@ -720,6 +722,7 @@
   <CC_Adv_Cond_Drought_Detail>The land is parched ({0} left). Crops grow poorly; lean on stores, hunting and trade.</CC_Adv_Cond_Drought_Detail>
   <CC_Adv_Cond_Eclipse_Title>Eclipse</CC_Adv_Cond_Eclipse_Title>
   <CC_Adv_Cond_Eclipse_Detail>The sun is gone for a while ({0} left). Solar panels are useless and outdoor crops stall; lean on batteries and other power.</CC_Adv_Cond_Eclipse_Detail>
+  <CC_Adv_Cond_Eclipse_DetailLow>The sun is gone for a while ({0} left). Outdoor crops stop growing and the dark sets people on edge; keep the torches lit and the work indoors.</CC_Adv_Cond_Eclipse_DetailLow>
   <CC_Adv_Cond_Aurora_Title>Aurora</CC_Adv_Cond_Aurora_Title>
   <CC_Adv_Cond_Aurora_Detail>Lights dance across the sky ({0} left). Colonists who see it feel better; a good night for a walk outside.</CC_Adv_Cond_Aurora_Detail>
 
@@ -785,7 +788,7 @@
   <CC_Reason_HuntBlood>{PAWN_nameDef} is bloodthirsty and wants something to kill. Better an animal than a colonist.</CC_Reason_HuntBlood>
   <CC_Progress_Hunt>Mark an animal for hunting and let {PAWN_nameDef} do the Hunting work.</CC_Progress_Hunt>
   <CC_Promise_Hunt>The council marks a {SUBJECT} for {PAWN_nameDef} to hunt. Make sure {PAWN_pronoun} is allowed to hunt in the Work tab.</CC_Promise_Hunt>
-  <CC_SelfHelp_Hunt>{PAWN_nameDef} picked out a {SUBJECT}, marked it for hunting and grabbed {PAWN_possessive} gun.</CC_SelfHelp_Hunt>
+  <CC_SelfHelp_Hunt>{PAWN_nameDef} picked out a {SUBJECT}, marked it for hunting and set off after it.</CC_SelfHelp_Hunt>
 
   <!-- Rewards beyond mood; colonists walking out -->
   <CC_InspiredNote>{PAWN_nameDef} is inspired: {INSPIRATION}.</CC_InspiredNote>
@@ -1237,6 +1240,13 @@ Granting one of {PAWN_possessive} wishes, or keeping a promise, can win {PAWN_ob
   <CC_Preset_Everything>Everything on</CC_Preset_Everything>
   <CC_Preset_Core>Council only</CC_Preset_Core>
   <CC_Preset_AdvisorOnly>Advisor only</CC_Preset_AdvisorOnly>
+  <CC_Settings_Era>Era</CC_Settings_Era>
+  <CC_Era_Auto>Detect from research</CC_Era_Auto>
+  <CC_Era_Auto_Tip>The mod reads your finished research and your buildings to decide what your colony can make. Works for most games, including modded tech trees.</CC_Era_Auto_Tip>
+  <CC_Era_PreIndustrial>Pre-industrial (medieval, tribal)</CC_Era_PreIndustrial>
+  <CC_Era_PreIndustrial_Tip>Treat the colony as pre-industrial whatever the research says: no power, turrets, freezers or solar flares in advice, wishes, dreams and text. For medieval playthroughs.</CC_Era_PreIndustrial_Tip>
+  <CC_Era_Industrial>Industrial or later</CC_Era_Industrial>
+  <CC_Era_Industrial_Tip>Treat the colony as industrial or later even if the research looks primitive (useful with tech trees the mod can't read).</CC_Era_Industrial_Tip>
   <CC_Settings_AllOn>Turn all on</CC_Settings_AllOn>
   <CC_Settings_AllOff>Turn all off</CC_Settings_AllOff>
   <CC_Settings_Bonds>Bonds</CC_Settings_Bonds>

@@ -343,8 +343,8 @@ namespace ColonyCouncil
         {
             var map = wish.Beneficiary.MapHeld;
             if (Avail.ColonyHas(map, Avail.IsFermenter)) return true;
-            var beer = DefDatabase<ThingDef>.GetNamedSilentFail("Beer");
-            return beer != null && map.resourceCounter.GetCount(beer) >= 5;
+            // Or a stockroom with something to drink: beer, mead, wine, whatever this colony's mods brew.
+            return WishWorker_LittleSomething.Stock(map) >= 5;
         }
     }
 

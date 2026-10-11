@@ -315,7 +315,7 @@ namespace ColonyCouncil
             if (speaker.GetRelations(dead).Any(r => r == PawnRelationDefOf.Spouse || r == PawnRelationDefOf.Lover || r == PawnRelationDefOf.Fiance)) tags.Add("partner");
             if (e.killers != null) tags.Add("battle");
             if (dead.DevelopmentalStage.Juvenile()) tags.Add("deadchild");
-            else if ((dead.ageTracker?.AgeBiologicalYears ?? 0) >= 60) tags.Add("deadold");
+            else if (Flavor.HumanAge(dead) >= 60f) tags.Add("deadold");
             string title = comp.epithets.TitlesOf(dead);
             if (!title.NullOrEmpty()) tags.Add("titled");
             string goal = e.goal;

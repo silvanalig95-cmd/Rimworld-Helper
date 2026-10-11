@@ -243,7 +243,7 @@ namespace ColonyCouncil
             string growthNote = growth >= 0.25f ? " " + "CC_Adv_Defense_Growth".Translate(growth.ToStringPercent()) : "";
             float sev = a.ratio < 1f ? 0.35f + 0.55f * (1f - a.ratio) : growth >= 0.25f ? 0.25f : 0.12f;
             var s = Signal(sev, a.ratio < 0.7f ? "CC_Adv_Defense_TitleBad".Translate() : "CC_Adv_Defense_Title".Translate(),
-                "CC_Adv_Defense_Detail".Translate(a.threatPoints.ToString("0"), a.fighters, a.turrets, a.traps, a.cover) + growthNote + " " + suggestion,
+                (Avail.IsPreIndustrial && a.turrets == 0 ? "CC_Adv_Defense_DetailLow" : "CC_Adv_Defense_Detail").Translate(a.threatPoints.ToString("0"), a.fighters, a.turrets, a.traps, a.cover) + growthNote + " " + suggestion,
                 0.5f, 0.5f);
             s.suggestThing = def;
             yield return s;

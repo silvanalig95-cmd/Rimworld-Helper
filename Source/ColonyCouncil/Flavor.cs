@@ -77,8 +77,8 @@ namespace ColonyCouncil
                     if (mood < 0.3f) tags.Add("lowmood");
                     else if (mood > 0.7f) tags.Add("highmood");
                     if (p.DevelopmentalStage.Child()) tags.Add("child");
-                    else if (p.ageTracker != null && p.ageTracker.AgeBiologicalYears < 20) tags.Add("teen");
-                    else if (p.ageTracker != null && p.ageTracker.AgeBiologicalYears >= 60) tags.Add("old");
+                    else if (p.ageTracker != null && HumanAge(p) < 20f) tags.Add("teen");
+                    else if (p.ageTracker != null && HumanAge(p) >= 60f) tags.Add("old");
                     if (p.health?.hediffSet != null && p.health.summaryHealth.SummaryHealthPercent < 0.85f) tags.Add("hurt");
                     if (p.story?.traits != null)
                     {
@@ -239,13 +239,25 @@ namespace ColonyCouncil
         /// </summary>
         /// <summary>Words that don't belong in a colony that has never seen gunpowder or electricity.</summary>
         private static readonly System.Text.RegularExpressions.Regex HighTech = new System.Text.RegularExpressions.Regex(
-            @"\b(guns?|gunfire|gunshots?|rifles?|pistols?|shotguns?|revolvers?|turrets?|mortars?|grenades?|bullets?|ammo|sandbags?|electric\w*|batter(y|ies)|power (cell|grid|line)s?|computers?|comms|radios?|cryptosleep|spaceships?|starships?|shuttles?|lasers?|plasma|drones?)\b",
+            @"\b(guns?|gunfire|gunshots?|rifles?|pistols?|shotguns?|revolvers?|turrets?|grenades?|bullets?|ammo|sandbags?|electric\w*|batter(y|ies)|power (cell|grid|line)s?|computers?|comms|radios?|cryptosleep|spaceships?|starships?|shuttles?|lasers?|plasma|freezers?|solar)\b",
             System.Text.RegularExpressions.RegexOptions.IgnoreCase | System.Text.RegularExpressions.RegexOptions.Compiled);
 
         /// <summary>
         /// False for a line about guns, turrets, electricity, computers or spaceships while the colony is pre-industrial
         /// (medieval or tribal, no electricity): those lines are skipped whenever another one fits.
         /// </summary>
+        /// <summary>
+        /// Age in human years, for races that live much longer or shorter than people (alien race mods):
+        /// a 300-year-old elf with a lifespan of 1000 counts as about 24.
+        /// </summary>
+        public static float HumanAge(Pawn p)
+        {
+            if (p?.ageTracker == null) return 0f;
+            float years = p.ageTracker.AgeBiologicalYearsFloat;
+            float life = p.RaceProps?.lifeExpectancy ?? 80f;
+            return life > 1f && System.Math.Abs(life - 80f) > 1f ? years * 80f / life : years;
+        }
+
         public static bool TechFits(string line)
         {
             if (line.NullOrEmpty() || !Avail.IsPreIndustrial) return true;

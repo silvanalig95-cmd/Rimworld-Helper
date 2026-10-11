@@ -376,6 +376,16 @@ namespace ColonyCouncil
         }
     }
 
+    /// <summary>Decree moods: the bad ones follow the stakes setting and the penalty slider.</summary>
+    public class Thought_Decree : Thought_Situational
+    {
+        public override float MoodOffset()
+        {
+            float m = base.MoodOffset();
+            return m < 0f ? m * ColonyCouncilMod.Settings.ChosenPenaltyScale : m;
+        }
+    }
+
     /// <summary>How a colonist feels about the decrees in force: the thought's stages are hate, dislike, like, love.</summary>
     public class ThoughtWorker_Decree : ThoughtWorker
     {

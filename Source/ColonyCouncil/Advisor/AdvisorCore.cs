@@ -62,7 +62,14 @@ namespace ColonyCouncil
             {
                 if (tips == null || tips.Count == 0) return null;
                 int day = (Find.TickManager?.TicksGame ?? 0) / (GenDate.TicksPerDay * 3);
-                return tips[(day + shortHash) % tips.Count];
+                // Skip tips about guns and power in a medieval colony, unless that's all there is.
+                int fitting = 0;
+                foreach (var t in tips) if (Flavor.TechFits(t)) fitting++;
+                if (fitting == 0) return tips[(day + shortHash) % tips.Count];
+                int idx = (day + shortHash) % fitting;
+                foreach (var t in tips)
+                    if (Flavor.TechFits(t) && idx-- == 0) return t;
+                return tips[0];
             }
         }
 
@@ -280,7 +287,9 @@ namespace ColonyCouncil
             }
             var trap = Avail.BestBuildable(map, Avail.IsTrap, "TrapSpike");
             if (trap != null) return (trap, "trap", 4);
-            var cover = Avail.BestBuildable(map, Avail.IsCover, "Sandbags", "Barricade");
+            var cover = Avail.IsPreIndustrial
+                ? Avail.BestBuildable(map, Avail.IsCover, "Barricade", "Sandbags")
+                : Avail.BestBuildable(map, Avail.IsCover, "Sandbags", "Barricade");
             if (cover != null) return (cover, "cover", 8);
             return (null, null, 0);
         }

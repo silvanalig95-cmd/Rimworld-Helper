@@ -6,6 +6,7 @@
   <ThoughtDef>
     <defName>Council_Decree_LongHours</defName>
     <workerClass>ColonyCouncil.ThoughtWorker_Decree</workerClass>
+    <thoughtClass>ColonyCouncil.Thought_Decree</thoughtClass>
     <stages>
       <li><label>worked to the bone</label><description>The council has us working from dawn until we drop. I hate every minute.</description><baseMoodEffect>-12</baseMoodEffect></li>
       <li><label>long hours</label><description>Up early, to bed late, and the work never ends. The council says it's temporary.</description><baseMoodEffect>-6</baseMoodEffect></li>
@@ -17,6 +18,7 @@
   <ThoughtDef>
     <defName>Council_Decree_Rationing</defName>
     <workerClass>ColonyCouncil.ThoughtWorker_Decree</workerClass>
+    <thoughtClass>ColonyCouncil.Thought_Decree</thoughtClass>
     <stages>
       <li><label>starving on rations</label><description>Half a bowl of mush and a pat on the back. I think about food all day.</description><baseMoodEffect>-10</baseMoodEffect></li>
       <li><label>on rations</label><description>The portions have shrunk. My belt has new holes.</description><baseMoodEffect>-5</baseMoodEffect></li>
@@ -28,6 +30,7 @@
   <ThoughtDef>
     <defName>Council_Decree_Drills</defName>
     <workerClass>ColonyCouncil.ThoughtWorker_Decree</workerClass>
+    <thoughtClass>ColonyCouncil.Thought_Decree</thoughtClass>
     <stages>
       <li><label>endless drills</label><description>Marching, shooting, shouting. I'm not a soldier, and I hate pretending.</description><baseMoodEffect>-8</baseMoodEffect></li>
       <li><label>drills</label><description>Weapons practice every day. My arms ache and my ears ring.</description><baseMoodEffect>-4</baseMoodEffect></li>
@@ -39,6 +42,7 @@
   <ThoughtDef>
     <defName>Council_Decree_Study</defName>
     <workerClass>ColonyCouncil.ThoughtWorker_Decree</workerClass>
+    <thoughtClass>ColonyCouncil.Thought_Decree</thoughtClass>
     <stages>
       <li><label>stuck in lessons</label><description>Sitting still, listening to lectures, when there's real work to do. Torture.</description><baseMoodEffect>-7</baseMoodEffect></li>
       <li><label>study hours</label><description>Lessons every evening. My head is full and my back is stiff.</description><baseMoodEffect>-3</baseMoodEffect></li>
@@ -50,6 +54,7 @@
   <ThoughtDef>
     <defName>Council_Decree_Austerity</defName>
     <workerClass>ColonyCouncil.ThoughtWorker_Decree</workerClass>
+    <thoughtClass>ColonyCouncil.Thought_Decree</thoughtClass>
     <stages>
       <li><label>austerity</label><description>We're not even allowed to ask for things now. What's the point of any of this?</description><baseMoodEffect>-8</baseMoodEffect></li>
       <li><label>tightened belts</label><description>The council isn't taking requests. We make do.</description><baseMoodEffect>-4</baseMoodEffect></li>
@@ -61,6 +66,7 @@
   <ThoughtDef>
     <defName>Council_Decree_Festival</defName>
     <workerClass>ColonyCouncil.ThoughtWorker_Decree</workerClass>
+    <thoughtClass>ColonyCouncil.Thought_Decree</thoughtClass>
     <stages>
       <li><label>wasted festival days</label><description>Everyone is lazing about while the work piles up. It makes my skin crawl.</description><baseMoodEffect>-6</baseMoodEffect></li>
       <li><label>idle festival</label><description>Nobody is working. I can't relax knowing that.</description><baseMoodEffect>-2</baseMoodEffect></li>

@@ -3,6 +3,14 @@ using Verse;
 
 namespace ColonyCouncil
 {
+    /// <summary>What era the colony lives in, for what the mod suggests and how its colonists talk.</summary>
+    public enum EraMode
+    {
+        Auto,
+        PreIndustrial,
+        Industrial
+    }
+
     public enum StakesMode
     {
         /// <summary>Only upsides: granted wishes help, ignored ones cost nothing.</summary>
@@ -63,6 +71,7 @@ namespace ColonyCouncil
         public bool dreamOmens = true;
         public bool allDreamMessages;
         public MessageLevel messageLevel = MessageLevel.Notable;
+        public EraMode era = EraMode.Auto;
         public float daysBetweenDilemmas = 8f;
         public bool eventWishes = true;
         public bool reminders = true;
@@ -132,6 +141,7 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref dreamOmens, "dreamOmens", true);
             Scribe_Values.Look(ref allDreamMessages, "allDreamMessages", false);
             Scribe_Values.Look(ref messageLevel, "messageLevel", MessageLevel.Notable);
+            Scribe_Values.Look(ref era, "era", EraMode.Auto);
             Scribe_Values.Look(ref daysBetweenDilemmas, "daysBetweenDilemmas", 8f);
             Scribe_Values.Look(ref eventWishes, "eventWishes", true);
             Scribe_Values.Look(ref reminders, "reminders", true);
@@ -178,6 +188,9 @@ namespace ColonyCouncil
         /// <summary>Multiplier for every penalty: 0 in Gentle, scaled by the slider.</summary>
         public float PenaltyScale => !Negatives ? 0f : (Harsh ? 1.5f : 1f) * penaltyFactor;
 
+        /// <summary>For downsides the player picked knowingly (decrees): half strength in Gentle instead of none.</summary>
+        public float ChosenPenaltyScale => !MoodEffects ? 0f : Negatives ? PenaltyScale : 0.5f;
+
         private static int settingsTab;
 
         public void DoWindowContents(Rect inRect)
@@ -223,6 +236,14 @@ namespace ColonyCouncil
                 stakes = StakesMode.AdvisorOnly;
             }
             l.Gap();
+
+            Header(l, "CC_Settings_Era".Translate());
+            foreach (EraMode mode in System.Enum.GetValues(typeof(EraMode)))
+                if (l.RadioButton(("CC_Era_" + mode).Translate(), era == mode, 0f, ("CC_Era_" + mode + "_Tip").Translate()))
+                {
+                    era = mode;
+                    Avail.ResetCache();
+                }
 
             Header(l, "CC_Settings_Layers".Translate());
             l.CheckboxLabeled("CC_Settings_EnableAdvisor".Translate(), ref enableAdvisor, "CC_Settings_EnableAdvisor_Tip".Translate());
@@ -415,6 +436,7 @@ namespace ColonyCouncil
             dreamOmens = d.dreamOmens;
             allDreamMessages = d.allDreamMessages;
             messageLevel = d.messageLevel;
+            era = d.era;
             daysBetweenDilemmas = d.daysBetweenDilemmas;
             eventWishes = d.eventWishes;
             reminders = d.reminders;
