@@ -16,7 +16,7 @@
     </roleB>
     <texts>
       <li>Last night's card game went late, and by the end {B_nameDef} had bet {B_possessive} good coat on a pair of twos and lost. {A_nameDef} has worn it every day since and keeps mentioning how warm it is.\n\n{B_nameDef} says the deck was marked. {A_nameDef} says {B_nameDef} can't count. Both want the council to rule on it.</li>
-      <li>{A_nameDef} won a week of {B_nameDef}'s dinners at dice, fairly and in front of witnesses. Three days in, {B_nameDef} is living on scraps and has started eyeing {A_nameDef}'s plate.\n\n"A bet is a bet," says {A_nameDef}. The others would like the council to step in before it turns into a fight.</li>
+      <li>{A_nameDef} won a week of {B_nameDef}'s dinners at dice, fairly and in front of witnesses. Three days in, {B_nameDef} is living on scraps and has started eyeing {A_nameDef}'s plate.\n\n"A bet is a bet," says {A_nameDef}. The others would like the council to step in before someone gets a fork in the hand.</li>
     </texts>
     <defaultOption>0</defaultOption>
     <options>
@@ -39,7 +39,7 @@
       </li>
       <li>
         <label>Call the bet off</label>
-        <outcome>The bet is off. {A_nameDef} handed back the winnings and has been sour about it since.</outcome>
+        <outcome>The bet is off. {A_nameDef} handed back the winnings one coin at a time, and has been sour about it since.</outcome>
         <ways><mercy>4</mercy></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_Overruled</thought></li>
@@ -52,7 +52,7 @@
       </li>
       <li>
         <label>Ban gambling in the colony</label>
-        <outcome>The council banned gambling and canceled every debt. The cards went into the fire, and the regular players are not pleased.</outcome>
+        <outcome>The council banned gambling and canceled every debt. The cards went into the fire; the dice have not turned up.</outcome>
         <ways><tradition>3</tradition><toil>3</toil></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_Overruled</thought></li>
@@ -331,7 +331,7 @@
       </li>
       <li>
         <label>Pay {A_nameDef} 50 silver</label>
-        <outcome>{A_nameDef} received fifty silver from the colony for the loss. Silver can't replace a keepsake, but {A_nameDef} appreciated the gesture.</outcome>
+        <outcome>{A_nameDef} received fifty silver from the colony for the loss. It won't mend anything, but {A_nameDef} appreciated the gesture.</outcome>
         <ways><generosity>5</generosity></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>silver</what><count>50</count></li>
@@ -433,7 +433,7 @@
       </li>
       <li>
         <label>Put {A_nameDef} in charge of the watch</label>
-        <outcome>{A_nameDef} now runs the night watch, with a strict schedule and surprise checks. {B_nameDef}'s name comes up on it often.</outcome>
+        <outcome>{A_nameDef} now runs the night watch, with a strict schedule, a whistle and surprise checks. {B_nameDef}'s name comes up on the schedule often.</outcome>
         <ways><openness>-4</openness><toil>3</toil></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_InCharge</thought></li>

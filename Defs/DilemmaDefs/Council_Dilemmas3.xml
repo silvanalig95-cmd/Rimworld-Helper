@@ -48,7 +48,7 @@
       </li>
       <li>
         <label>{A_nameDef} carries the game bags, nothing more</label>
-        <outcome>{A_nameDef} goes out with the hunters now, carrying the bags and asking questions about everything. {B_nameDef} spends most of each hunt telling {A_objective} to stay down.</outcome>
+        <outcome>{A_nameDef} goes out with the hunters now, carrying the bags and asking detailed questions about guts. {B_nameDef} spends most of each hunt telling {A_objective} to stay down.</outcome>
         <ways><toil>3</toil></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_TaggedAlong</thought></li>
@@ -78,7 +78,7 @@
       </li>
       <li>
         <label>Let {B_nameDef} show {A_objective} the messy part</label>
-        <outcome>{B_nameDef} walked {A_nameDef} through skinning the day's kill, step by step. {A_nameDef} went pale halfway through and hasn't asked about hunting since.</outcome>
+        <outcome>{B_nameDef} walked {A_nameDef} through skinning the day's kill, step by step. {A_nameDef} went pale halfway through and now says {A_pronoun} wants to be a farmer.</outcome>
         <ways><mercy>-3</mercy></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_SawSkinning</thought></li>
@@ -117,7 +117,7 @@
     <options>
       <li>
         <label>Say the dead go somewhere warm</label>
-        <outcome>{B_nameDef} told {A_nameDef} the dead go somewhere warm, with good food and no raiders. {A_nameDef} seemed comforted. A few of the adults think it was a lie, however kindly meant.</outcome>
+        <outcome>{B_nameDef} told {A_nameDef} the dead go somewhere warm, with good food and no raiders. {A_nameDef} seemed comforted, and wanted to know if the food there is better than ours. A few of the adults think it was a kind lie.</outcome>
         <ways><mercy>2</mercy><tradition>5</tradition></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_Comforted</thought></li>
@@ -197,7 +197,7 @@
     <options>
       <li>
         <label>Let {A_nameDef} keep feeding it</label>
-        <outcome>{A_nameDef} now takes a small ration out past the wall every evening. The animal is getting fat on it, and the stores are lower for it.</outcome>
+        <outcome>{A_nameDef} now takes a small ration out past the wall every evening. The animal is getting fat, and the stores are getting lighter.</outcome>
         <ways><mercy>4</mercy><generosity>4</generosity></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>rawfood</what><count>15</count></li>
@@ -276,7 +276,7 @@
       <minOpinionOfA>-100</minOpinionOfA>
     </roleB>
     <texts>
-      <li>{PET_nameDef} bit {B_nameDef} this morning, hard enough to need a bandage.\n\n{B_nameDef} says it came out of nowhere. {A_nameDef} says {B_nameDef} stepped on {PET_nameDef} first, and doesn't see why the animal should be punished for it.</li>
+      <li>{PET_nameDef} bit {B_nameDef} this morning. Not a nip, but a proper bite, the kind that needs a bandage and a sit-down.\n\n{B_nameDef} says it came out of nowhere. {A_nameDef} says {B_nameDef} stepped on {PET_nameDef} first, and doesn't see why the animal should be punished for it.</li>
       <li>{B_nameDef} came to the council holding up a bandaged hand. {PET_nameDef} did that, and {A_nameDef} isn't nearly as sorry as {B_nameDef} would like.\n\n"It's never bitten anyone before," {A_nameDef} says. "No one's ever given it a reason."</li>
     </texts>
     <defaultOption>3</defaultOption>
@@ -445,7 +445,7 @@
     <options>
       <li>
         <label>{PET_nameDef} is family</label>
-        <outcome>The council ruled that {PET_nameDef} is family. {B_nameDef} accepted the ruling, but still watches {PET_nameDef} at mealtimes.</outcome>
+        <outcome>The council ruled that {PET_nameDef} is family. {B_nameDef} accepted the ruling, and still licks {B_possessive} lips when {PET_nameDef} walks past.</outcome>
         <ways><mercy>5</mercy></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_Vindicated</thought></li>
@@ -547,7 +547,7 @@
       </li>
       <li>
         <label>Give {B_nameDef} the worst chores for a week</label>
-        <outcome>{B_nameDef} is on the worst chores for a week, scrubbing floors and hauling waste. {A_nameDef} stops by to watch now and then.</outcome>
+        <outcome>{B_nameDef} is on the worst chores for a week, scrubbing floors and hauling waste. {A_nameDef} stops by to watch, sometimes with a snack.</outcome>
         <ways><mercy>-4</mercy></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Hediff"><target>B</target><hediff>Council_Dlm_Penance</hediff></li>
@@ -880,7 +880,7 @@
     <options>
       <li>
         <label>It was {A_nameDef}</label>
-        <outcome>The council credits {A_nameDef} with saving the colony. {A_nameDef} is enjoying the thanks, and {B_nameDef} has been avoiding {A_objective} since.</outcome>
+        <outcome>The council credits {A_nameDef} with saving the colony. {A_nameDef} has taken to lingering in doorways in case anyone wants to say thanks. {B_nameDef} uses other doorways.</outcome>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_SavedTheColony</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>6</amount></li>

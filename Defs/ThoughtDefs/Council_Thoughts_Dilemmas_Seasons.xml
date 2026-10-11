@@ -4,7 +4,7 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_Dlm_Bonfire</defName>
     <durationDays>2</durationDays>
-    <stages><li><label>midsummer bonfire</label><description>We lit a bonfire higher than the roof and sang until it burned down.</description><baseMoodEffect>6</baseMoodEffect></li></stages>
+    <stages><li><label>midsummer bonfire</label><description>We lit a bonfire higher than the roof and sang, badly, until it burned down.</description><baseMoodEffect>6</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
@@ -40,7 +40,7 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_Dlm_NamedYear</defName>
     <durationDays>8</durationDays>
-    <stages><li><label>a year named after me</label><description>They named this year after me. People will remember my name.</description><baseMoodEffect>6</baseMoodEffect></li></stages>
+    <stages><li><label>a year named after me</label><description>They named this year after me. I've said it out loud a few times, just to hear it.</description><baseMoodEffect>6</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
@@ -58,7 +58,7 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_Dlm_Muffalo</defName>
     <durationDays>4</durationDays>
-    <stages><li><label>the year of the muffalo</label><description>We named the year after a muffalo. I still laugh every time I hear it.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
+    <stages><li><label>the year of the muffalo</label><description>We named the year after a muffalo. I laughed until I cried, and the muffalo didn't care at all.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">

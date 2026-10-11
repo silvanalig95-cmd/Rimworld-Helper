@@ -41,7 +41,7 @@
       </li>
       <li>
         <label>A small fire, no drinking</label>
-        <outcome>They had a small fire and went to bed early. It was a pleasant evening, though {A_nameDef} had hoped for more.</outcome>
+        <outcome>They had a small fire and went to bed early. {A_nameDef} called it "a candle with ambitions."</outcome>
         <ways><tradition>2</tradition><toil>2</toil></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>WoodLog</what><count>12</count></li>
@@ -73,7 +73,7 @@
     <options>
       <li>
         <label>A harvest feast for everyone</label>
-        <outcome>The harvest home went on late, with second helpings for everyone.</outcome>
+        <outcome>The harvest home went on late, and even the cook had seconds.</outcome>
         <ways><generosity>5</generosity><tradition>4</tradition><toil>-3</toil></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>rawfood</what></li>
@@ -189,7 +189,7 @@
       </li>
       <li>
         <label>The year of the muffalo</label>
-        <outcome>It is the year of the muffalo. Most of the colony finds it funny; {A_nameDef} is sulking.</outcome>
+        <outcome>It is the year of the muffalo. The muffalo has not been told. {A_nameDef} is sulking.</outcome>
         <ways><tradition>-3</tradition></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Others</target><thought>Council_Dlm_Muffalo</thought></li>
@@ -237,7 +237,7 @@
       </li>
       <li>
         <label>The fighters get the spoils</label>
-        <outcome>Everyone who fought got a share. Those who stayed inside got nothing, and some of them resent it.</outcome>
+        <outcome>Everyone who fought got a share. Those who stayed inside got nothing but the cleanup, and some of them resent it.</outcome>
         <ways><generosity>-2</generosity><tradition>2</tradition></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_FairShares</thought></li>

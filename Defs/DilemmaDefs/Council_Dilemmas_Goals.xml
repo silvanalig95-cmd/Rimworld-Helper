@@ -217,7 +217,7 @@
     <options>
       <li>
         <label>Stand behind {A_nameDef}'s dream</label>
-        <outcome>The council said at dinner that a person's dream is their own business and nothing to mock. {A_nameDef} looked pleased; {B_nameDef} ate the rest of the meal in silence.</outcome>
+        <outcome>The council said at dinner that a person's dream is their own business and nothing to mock. {A_nameDef} sat up straighter, and {B_nameDef} chewed loudly through the rest of the meal.</outcome>
         <ways><mercy>2</mercy><tradition>-4</tradition></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_Vindicated</thought></li>

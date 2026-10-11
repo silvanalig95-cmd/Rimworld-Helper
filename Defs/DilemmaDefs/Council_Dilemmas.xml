@@ -220,7 +220,7 @@
       </li>
       <li>
         <label>Save the food</label>
-        <outcome>The food stays in the stores. {A_nameDef} has gone back to cooking plain meals and isn't happy about it.</outcome>
+        <outcome>The food stays in the stores. {A_nameDef} has gone back to plain meals, and sets each bowl down harder than it needs to.</outcome>
         <ways><generosity>-5</generosity></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_FeastDenied</thought></li>

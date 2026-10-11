@@ -7,3 +7,5 @@ Tools/**/obj/
 .vs/
 .idea/
 .claude/worktrees/
+__pycache__/
+*.pyc

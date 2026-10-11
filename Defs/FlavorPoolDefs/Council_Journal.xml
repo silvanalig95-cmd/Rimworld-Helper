@@ -106,7 +106,7 @@
       </plain>
       <warm><li>A clear no. I can respect that, even if I don't like it.</li></warm>
       <blunt><li>No, they said. Fine. Their loss.</li></blunt>
-      <cheerful><li>They said no! Fine. I'll ask again when they're in a better mood.</li></cheerful>
+      <cheerful><li>They said no! Oh well. I'll ask again after they've had a good dinner.</li></cheerful>
       <gloomy><li>They said no. It's still better than being ignored.</li></gloomy>
       <cold><li>Request declined. A clear answer, at least. I can plan around a clear answer.</li></cold>
     </lines>
@@ -147,7 +147,7 @@
     <lines>
       <plain>
         <li>The council declared {DECREE} again and I couldn't take it. I don't remember all of what I did. I'm not as sorry as I should be.</li>
-        <li>We'd barely got through {DECREE} and they ordered it again. I'd had enough, and it came out of me.</li>
+        <li>We'd barely got through {DECREE} and they ordered it again. I'd had enough, and I let them all know it.</li>
         <li>[night] Can't sleep. Keep thinking about the council, and {DECREE}, and the look on their faces when I snapped.</li>
       </plain>
       <warm><li>I lost my temper over {DECREE}. Tomorrow I'll apologize to the ones I frightened.</li></warm>
@@ -284,7 +284,7 @@
       <blunt><li>Known as {TITLE} now. Took them long enough.</li></blunt>
       <cheerful><li>People are calling me {TITLE}! I said it to myself all the way back from the fields.</li></cheerful>
       <gloomy><li>So I'm {TITLE}. Something to carve on the headstone, I suppose.</li></gloomy>
-      <cold><li>People call me {TITLE} now. That will be useful.</li></cold>
+      <cold><li>A name like {TITLE} opens doors. I'll make use of it.</li></cold>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
 

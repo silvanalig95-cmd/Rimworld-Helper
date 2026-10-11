@@ -14,7 +14,7 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_Dlm_ChildArmed</defName>
     <durationDays>3</durationDays>
-    <stages><li><label>a child with a weapon</label><description>The council let a child carry a loaded weapon. I don't like it one bit.</description><baseMoodEffect>-3</baseMoodEffect></li></stages>
+    <stages><li><label>a child with a weapon</label><description>The council let a child carry a loaded weapon. I've started walking behind things.</description><baseMoodEffect>-3</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
@@ -26,7 +26,7 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_Dlm_TaggedAlong</defName>
     <durationDays>3</durationDays>
-    <stages><li><label>went out with the hunters</label><description>I got to go out with the hunters and carry the bag. It was heavy, but I didn't complain once.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
+    <stages><li><label>went out with the hunters</label><description>I got to go out with the hunters and carry the bag. It was heavy and it smelled. Best day ever.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
@@ -44,13 +44,13 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_Dlm_Taught</defName>
     <durationDays>4</durationDays>
-    <stages><li><label>taught a kid to shoot</label><description>I taught a kid to shoot today. They held it all wrong and still hit the target.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
+    <stages><li><label>taught a kid to shoot</label><description>I taught a kid to shoot today. They held it all wrong and still hit the target. I may have cheered.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_Dlm_SawSkinning</defName>
     <durationDays>3</durationDays>
-    <stages><li><label>saw what hunting really is</label><description>I watched them skin and gut the animal. There was so much blood. I don't want to hunt anymore.</description><baseMoodEffect>-3</baseMoodEffect></li></stages>
+    <stages><li><label>saw what hunting really is</label><description>I watched them gut the animal, and there was so much more inside it than I thought. I want to grow potatoes now.</description><baseMoodEffect>-3</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <!-- ===================== Children: where the dead go ===================== -->
@@ -58,7 +58,7 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_Dlm_Comforted</defName>
     <durationDays>5</durationDays>
-    <stages><li><label>the dead go somewhere nice</label><description>They told me the dead go somewhere warm, with good food and no raiders. I hope there are dogs there too.</description><baseMoodEffect>4</baseMoodEffect></li></stages>
+    <stages><li><label>the dead go somewhere nice</label><description>They told me the dead go somewhere warm, with good food and no raiders. I asked if there are dogs. They said probably.</description><baseMoodEffect>4</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
@@ -70,7 +70,7 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_Dlm_Worms</defName>
     <durationDays>4</durationDays>
-    <stages><li><label>learned about the worms</label><description>They told me what happens to the dead in the ground. The worms eat all of you, even the eyes.</description><baseMoodEffect>-4</baseMoodEffect></li></stages>
+    <stages><li><label>learned about the worms</label><description>They told me the worms eat all of you when you're buried, even the eyes. I asked about the eyes specially.</description><baseMoodEffect>-4</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
@@ -108,7 +108,7 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_Dlm_SecretFriend</defName>
     <durationDays>5</durationDays>
-    <stages><li><label>my friend past the wall</label><description>The animal past the wall eats out of my hand now. I gave it a secret name.</description><baseMoodEffect>5</baseMoodEffect></li></stages>
+    <stages><li><label>my friend past the wall</label><description>The animal past the wall eats out of my hand now. It has a name, and I'm not telling you what it is.</description><baseMoodEffect>5</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
@@ -164,7 +164,7 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_Dlm_ApologizedToAnimal</defName>
     <durationDays>4</durationDays>
-    <stages><li><label>apologized to an animal</label><description>The council made me apologize to an animal while the others watched. I felt like an idiot.</description><baseMoodEffect>-4</baseMoodEffect></li></stages>
+    <stages><li><label>apologized to an animal</label><description>The council made me apologize to an animal while the others watched. It licked itself the whole time.</description><baseMoodEffect>-4</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <!-- ===================== Letters, funerals, sleepwalkers ===================== -->
@@ -172,7 +172,7 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_Dlm_LetterRead</defName>
     <durationDays>6</durationDays>
-    <stages><li><label>my love letter was read aloud</label><description>My love letter was read out at dinner for all to hear. I wish I'd never written it.</description><baseMoodEffect>-8</baseMoodEffect></li></stages>
+    <stages><li><label>my love letter was read aloud</label><description>I wrote it at three in the morning, and it was read out at dinner, with voices. I wish I'd never written it.</description><baseMoodEffect>-8</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
@@ -190,7 +190,7 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_Dlm_CoffinReady</defName>
     <durationDays>8</durationDays>
-    <stages><li><label>my coffin is ready</label><description>My coffin is finished and standing in the corner of my room. I find it comforting.</description><baseMoodEffect>5</baseMoodEffect></li></stages>
+    <stages><li><label>my coffin is ready</label><description>My coffin is finished and standing in the corner of my room. I check the fit some evenings.</description><baseMoodEffect>5</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
@@ -214,7 +214,7 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_Dlm_PickedPlot</defName>
     <durationDays>5</durationDays>
-    <stages><li><label>picked my grave</label><description>I picked out my grave, out of the wind with a view of the fields. It's a good spot.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
+    <stages><li><label>picked my grave</label><description>I picked out my grave, out of the wind with a view of the fields. I lay down in it to check.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
@@ -226,7 +226,7 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_Dlm_Belled</defName>
     <durationDays>4</durationDays>
-    <stages><li><label>wearing a bell</label><description>They put a bell on my ankle so they'll hear me sleepwalking. I feel like livestock.</description><baseMoodEffect>-3</baseMoodEffect></li></stages>
+    <stages><li><label>wearing a bell</label><description>They put a bell on my ankle so they'll hear me sleepwalking. The animals treat me like one of the herd now.</description><baseMoodEffect>-3</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <!-- ===================== Deals, credit, word from home ===================== -->
@@ -240,19 +240,19 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_Dlm_SavedTheColony</defName>
     <durationDays>6</durationDays>
-    <stages><li><label>the colony's hero</label><description>The council says I'm the one who saved the colony. I've told the story a few times now.</description><baseMoodEffect>6</baseMoodEffect></li></stages>
+    <stages><li><label>the colony's hero</label><description>The council says I'm the one who saved the colony. The story gets better every time I tell it.</description><baseMoodEffect>6</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_Dlm_Deflated</defName>
     <durationDays>4</durationDays>
-    <stages><li><label>no hero after all</label><description>I know what I did out there, but the council didn't give me the credit.</description><baseMoodEffect>-3</baseMoodEffect></li></stages>
+    <stages><li><label>no hero after all</label><description>I know what I did out there. The others remember it as a lot of shouting.</description><baseMoodEffect>-3</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_Dlm_WordSent</defName>
     <durationDays>8</durationDays>
-    <stages><li><label>sent word home</label><description>I sent word home that I'm alive. I keep imagining their faces when they read it.</description><baseMoodEffect>6</baseMoodEffect></li></stages>
+    <stages><li><label>sent word home</label><description>I sent word home that I'm alive. I hope they sit down before they read it.</description><baseMoodEffect>6</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">

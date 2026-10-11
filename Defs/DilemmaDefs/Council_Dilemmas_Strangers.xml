@@ -66,7 +66,7 @@
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>X</target><thought>Council_DlmS_NotWanted</thought></li>
         </effects>
         <riskChance>0.2</riskChance>
-        <riskOutcome>{X_nameDef} left with {FACTION} at first light. {A_nameDef} walked with them a good way down the road, and kept going alone after they had parted. x</riskOutcome>
+        <riskOutcome>{X_nameDef} left with {FACTION} at first light. {A_nameDef} walked with them a good way down the road, and kept going alone after they had parted.</riskOutcome>
         <riskEffects>
           <li Class="ColonyCouncil.DilemmaEffect_MentalState"><target>A</target><mentalState>Wander_Sad</mentalState></li>
         </riskEffects>
@@ -567,7 +567,7 @@
     </stranger>
     <texts>
       <li>{X_nameDef}, the titled guest, inspected the room {A_nameDef} built, ran a finger along the wall, and asked whether the colony keeps pigs in it the rest of the year. {A_nameDef} spent days on that room.\n\n{X_nameDef}'s patrons will hear how {X_nameDef} was treated here. {A_nameDef} wants to know whether the council will stand up for the work.</li>
-      <li>Over supper {X_nameDef} explained to the whole table that the servants' quarters back home are better built than the finest room in this colony, and looked straight at {A_nameDef} while saying it. {A_nameDef} raised most of the walls in the place.\n\nNo one has answered yet. {A_nameDef} has asked the council whether a title means you get to say that, and asked it with a hammer in hand.</li>
+      <li>Over supper {X_nameDef} explained to the whole table that the servants' quarters back home are better built than the finest room in this colony, and looked straight at {A_nameDef} while saying it. {A_nameDef} raised most of the walls in the place.\n\nNo one has answered yet. {A_nameDef}, hammer still in hand, has asked the council whether a title means you get to say that.</li>
     </texts>
     <defaultOption>0</defaultOption>
     <options>
