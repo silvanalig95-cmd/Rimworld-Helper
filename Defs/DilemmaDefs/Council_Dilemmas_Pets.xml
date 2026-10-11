@@ -12,14 +12,14 @@
       <minOpinionOfA>-100</minOpinionOfA>
     </roleB>
     <texts>
-      <li>{B_nameDef} cooked something special, set it on the table for one minute, and came back to find {PET_nameDef} licking the plate clean. {PET_nameDef} belongs to {A_nameDef}.\n\n{B_nameDef} wants something done about that animal. {A_nameDef} wants everyone to calm down.</li>
-      <li>{PET_nameDef} got into {B_nameDef}'s food again, the third time this season. {B_nameDef} has come to the council with what's left of the bowl.\n\n{A_nameDef} says {PET_nameDef} is just hungry. {B_nameDef} says so is everyone.</li>
+      <li>{B_nameDef} cooked a special dinner, left it on the table for a minute, and came back to find {PET_nameDef} licking the plate clean. {PET_nameDef} belongs to {A_nameDef}.\n\n{B_nameDef} wants the animal dealt with. {A_nameDef} thinks {B_nameDef} is making too much of it.</li>
+      <li>{PET_nameDef} got into {B_nameDef}'s food again, the third time this season. {B_nameDef} has come to the council with what's left of the bowl.\n\n{A_nameDef} says {PET_nameDef} was only hungry. {B_nameDef} points out that {B_pronoun} was hungry too.</li>
     </texts>
     <defaultOption>1</defaultOption>
     <options>
       <li>
         <label>{A_nameDef} cooks {B_nameDef} a new meal</label>
-        <outcome>{A_nameDef} cooked {B_nameDef} a replacement dinner, badly. {PET_nameDef} watched the whole time.</outcome>
+        <outcome>{A_nameDef} cooked {B_nameDef} a replacement dinner, with {PET_nameDef} shut outside. It wasn't as good as the first one, but {B_nameDef} ate it.</outcome>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>rawfood</what><count>5</count></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_Dlm_FairsFair</thought></li>
@@ -27,7 +27,7 @@
         </effects>
       </li>
       <li>
-        <label>It's an animal. Let it go</label>
+        <label>It's only an animal</label>
         <outcome>The council shrugged. {B_nameDef} has started eating with one arm around the bowl.</outcome>
         <ways><mercy>2</mercy></ways>
         <effects>
@@ -38,7 +38,7 @@
       </li>
       <li>
         <label>Turn {PET_nameDef} loose in the wild</label>
-        <outcome>{PET_nameDef} was walked to the edge of the map and left there. {A_nameDef} hasn't said a word to anyone since.</outcome>
+        <outcome>{PET_nameDef} was led far out into the wilds and left there. {A_nameDef} has hardly said a word to anyone since.</outcome>
         <ways><mercy>-7</mercy></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_ReleasePet" />
@@ -60,14 +60,14 @@
       <passion>Cooking</passion>
     </roleB>
     <texts>
-      <li>{B_nameDef} found {PET_nameDef}'s hair in the stew again, and {PET_nameDef} asleep in the flour. {B_nameDef} is threatening to stop cooking until something changes.\n\n{PET_nameDef} is {A_nameDef}'s, and {A_nameDef} thinks {B_nameDef} is overreacting.</li>
-      <li>"Either that animal leaves my kitchen or I do," {B_nameDef} told the council, pointing at {PET_nameDef}. {A_nameDef} pointed out that {PET_nameDef} was there first. This did not help.</li>
+      <li>{B_nameDef} found {PET_nameDef}'s hair in the stew again, and {PET_nameDef} asleep in the flour. {B_nameDef} is threatening to stop cooking until the animal is kept out.\n\n{PET_nameDef} is {A_nameDef}'s, and {A_nameDef} thinks {B_nameDef} is overreacting.</li>
+      <li>"Either that animal leaves my kitchen or I do," {B_nameDef} told the council, pointing at {PET_nameDef}. {A_nameDef} argued that {PET_nameDef} was there first, and the two of them have been at it since.</li>
     </texts>
     <defaultOption>2</defaultOption>
     <options>
       <li>
         <label>Keep {PET_nameDef} out of the kitchen</label>
-        <outcome>{PET_nameDef} is banned from the kitchen and spends meals staring through the door, wounded. {A_nameDef} grumbles.</outcome>
+        <outcome>{PET_nameDef} is banned from the kitchen and spends mealtimes waiting by the door. {A_nameDef} isn't happy about it.</outcome>
         <ways><toil>2</toil></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_Dlm_Vindicated</thought></li>
@@ -77,7 +77,7 @@
       </li>
       <li>
         <label>The kitchen is {PET_nameDef}'s too</label>
-        <outcome>{PET_nameDef} stays. So does the hair in the stew. {B_nameDef} cooks with a grim face now.</outcome>
+        <outcome>{PET_nameDef} stays in the kitchen, and so does the hair in the stew. {B_nameDef} is cooking under protest.</outcome>
         <ways><toil>-2</toil></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_Vindicated</thought></li>
@@ -87,8 +87,8 @@
         </effects>
       </li>
       <li>
-        <label>Let them sort it out between them</label>
-        <outcome>The council stayed out of it. {A_nameDef} and {B_nameDef} are now in a cold war, with {PET_nameDef} as the disputed territory.</outcome>
+        <label>Let them sort it out</label>
+        <outcome>The council stayed out of it. {A_nameDef} and {B_nameDef} are barely speaking, and {PET_nameDef} still wanders into the kitchen.</outcome>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>AAndB</target><thought>Council_Dlm_Ignored</thought></li>
         </effects>

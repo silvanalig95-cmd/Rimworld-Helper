@@ -59,7 +59,7 @@
     <durationDays>15</durationDays>
     <stackLimit>3</stackLimit>
     <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
-    <stages><li><label>my student is ready</label><description>Everything I knew, they know now. Some of it better than me. That's the point.</description><baseMoodEffect>6</baseMoodEffect><baseOpinionOffset>15</baseOpinionOffset></li></stages>
+    <stages><li><label>my student is ready</label><description>Everything I know, they know now, and some of it better than me. I'm proud of them.</description><baseMoodEffect>6</baseMoodEffect><baseOpinionOffset>15</baseOpinionOffset></li></stages>
   </ThoughtDef>
 
   <ThoughtDef>
@@ -88,7 +88,7 @@
     <durationDays>2</durationDays>
     <stackLimit>3</stackLimit>
     <stackLimitForSameOtherPawn>2</stackLimitForSameOtherPawn>
-    <stages><li><label>laughed together</label><description>We laughed until it hurt. Out here, that counts for something.</description><baseMoodEffect>3</baseMoodEffect><baseOpinionOffset>5</baseOpinionOffset></li></stages>
+    <stages><li><label>laughed together</label><description>We laughed until our sides hurt.</description><baseMoodEffect>3</baseMoodEffect><baseOpinionOffset>5</baseOpinionOffset></li></stages>
   </ThoughtDef>
 
   <ThoughtDef>
@@ -97,7 +97,7 @@
     <durationDays>3</durationDays>
     <stackLimit>3</stackLimit>
     <stackLimitForSameOtherPawn>2</stackLimitForSameOtherPawn>
-    <stages><li><label>pranked</label><description>Very funny. Very, very funny. I'll remember this.</description><baseMoodEffect>-2</baseMoodEffect><baseOpinionOffset>-6</baseOpinionOffset></li></stages>
+    <stages><li><label>pranked</label><description>They pulled a prank on me. Very funny. I'll remember it.</description><baseMoodEffect>-2</baseMoodEffect><baseOpinionOffset>-6</baseOpinionOffset></li></stages>
   </ThoughtDef>
 
   <ThoughtDef>
@@ -106,7 +106,7 @@
     <durationDays>4</durationDays>
     <stackLimit>3</stackLimit>
     <stackLimitForSameOtherPawn>2</stackLimitForSameOtherPawn>
-    <stages><li><label>snubbed</label><description>They looked straight through me. In front of everyone.</description><baseMoodEffect>-3</baseMoodEffect><baseOpinionOffset>-10</baseOpinionOffset></li></stages>
+    <stages><li><label>snubbed</label><description>They looked straight through me, with the others watching.</description><baseMoodEffect>-3</baseMoodEffect><baseOpinionOffset>-10</baseOpinionOffset></li></stages>
   </ThoughtDef>
 
   <ThoughtDef>
@@ -142,7 +142,7 @@
     <durationDays>5</durationDays>
     <stackLimit>3</stackLimit>
     <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
-    <stages><li><label>gossiped about me</label><description>I heard what they've been saying about me. Everyone heard.</description><baseMoodEffect>-3</baseMoodEffect><baseOpinionOffset>-12</baseOpinionOffset></li></stages>
+    <stages><li><label>gossiped about me</label><description>I heard what they've been saying about me behind my back.</description><baseMoodEffect>-3</baseMoodEffect><baseOpinionOffset>-12</baseOpinionOffset></li></stages>
   </ThoughtDef>
 
   <ThoughtDef>
@@ -160,7 +160,7 @@
     <durationDays>3</durationDays>
     <stackLimit>3</stackLimit>
     <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
-    <stages><li><label>outdone by my rival</label><description>They beat me. Of all people, them. Next time.</description><baseMoodEffect>-3</baseMoodEffect><baseOpinionOffset>-5</baseOpinionOffset></li></stages>
+    <stages><li><label>outdone by my rival</label><description>My rival beat me, of all people. I'll get them next time.</description><baseMoodEffect>-3</baseMoodEffect><baseOpinionOffset>-5</baseOpinionOffset></li></stages>
   </ThoughtDef>
 
   <ThoughtDef>
@@ -169,7 +169,7 @@
     <durationDays>3</durationDays>
     <stackLimit>3</stackLimit>
     <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
-    <stages><li><label>beat my rival</label><description>I won. They know it, I know it, everyone knows it.</description><baseMoodEffect>4</baseMoodEffect><baseOpinionOffset>-2</baseOpinionOffset></li></stages>
+    <stages><li><label>beat my rival</label><description>I beat my rival, and they know it.</description><baseMoodEffect>4</baseMoodEffect><baseOpinionOffset>-2</baseOpinionOffset></li></stages>
   </ThoughtDef>
 
   <ThoughtDef>
@@ -178,7 +178,7 @@
     <durationDays>4</durationDays>
     <stackLimit>3</stackLimit>
     <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
-    <stages><li><label>remembered the fallen together</label><description>We talked about the ones we lost. It hurt, and then it helped.</description><baseMoodEffect>2</baseMoodEffect><baseOpinionOffset>8</baseOpinionOffset></li></stages>
+    <stages><li><label>remembered the fallen together</label><description>We talked about the ones we lost, late into the night.</description><baseMoodEffect>2</baseMoodEffect><baseOpinionOffset>8</baseOpinionOffset></li></stages>
   </ThoughtDef>
 
   <ThoughtDef>
@@ -186,7 +186,7 @@
     <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
     <durationDays>3</durationDays>
     <stackLimit>2</stackLimit>
-    <stages><li><label>left out</label><description>They all had somewhere to be together. Nobody asked me.</description><baseMoodEffect>-3</baseMoodEffect></li></stages>
+    <stages><li><label>left out</label><description>The others all went off together, and I wasn't asked along.</description><baseMoodEffect>-3</baseMoodEffect></li></stages>
   </ThoughtDef>
 
 </Defs>

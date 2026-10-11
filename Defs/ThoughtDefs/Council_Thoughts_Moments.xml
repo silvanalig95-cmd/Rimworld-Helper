@@ -9,7 +9,7 @@
     <durationDays>3</durationDays>
     <stackLimit>2</stackLimit>
     <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
-    <stages><li><label>grieved together</label><description>We sat with it together. It didn't fix anything. It helped anyway.</description><baseMoodEffect>3</baseMoodEffect><baseOpinionOffset>8</baseOpinionOffset></li></stages>
+    <stages><li><label>grieved together</label><description>We sat together with our grief for a while. Neither of us had to say much.</description><baseMoodEffect>3</baseMoodEffect><baseOpinionOffset>8</baseOpinionOffset></li></stages>
   </ThoughtDef>
 
   <ThoughtDef>
@@ -18,7 +18,7 @@
     <durationDays>1</durationDays>
     <stackLimit>2</stackLimit>
     <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
-    <stages><li><label>won a friendly contest</label><description>Fair and square. Mostly fair. Square enough.</description><baseMoodEffect>3</baseMoodEffect><baseOpinionOffset>3</baseOpinionOffset></li></stages>
+    <stages><li><label>won a friendly contest</label><description>I won our little contest, fair and square.</description><baseMoodEffect>3</baseMoodEffect><baseOpinionOffset>3</baseOpinionOffset></li></stages>
   </ThoughtDef>
 
   <ThoughtDef>
@@ -27,7 +27,7 @@
     <durationDays>1</durationDays>
     <stackLimit>2</stackLimit>
     <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
-    <stages><li><label>lost a friendly contest</label><description>Next time. There will be a next time.</description><baseMoodEffect>1</baseMoodEffect><baseOpinionOffset>2</baseOpinionOffset></li></stages>
+    <stages><li><label>lost a friendly contest</label><description>I lost our little contest. I'll win the next one.</description><baseMoodEffect>1</baseMoodEffect><baseOpinionOffset>2</baseOpinionOffset></li></stages>
   </ThoughtDef>
 
   <!-- ===================== Everyday ===================== -->
@@ -38,7 +38,7 @@
     <durationDays>1</durationDays>
     <stackLimit>2</stackLimit>
     <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
-    <stages><li><label>talked shop</label><description>Finally, someone who understands why it matters how it's done. We could have gone on all night.</description><baseMoodEffect>1</baseMoodEffect><baseOpinionOffset>4</baseOpinionOffset></li></stages>
+    <stages><li><label>talked shop</label><description>We talked about our craft for ages. It's good to find someone who cares how it's done.</description><baseMoodEffect>1</baseMoodEffect><baseOpinionOffset>4</baseOpinionOffset></li></stages>
   </ThoughtDef>
 
   <ThoughtDef>
@@ -47,7 +47,7 @@
     <durationDays>2</durationDays>
     <stackLimit>2</stackLimit>
     <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
-    <stages><li><label>my cooking was praised</label><description>Someone actually stopped to tell me the meal was good. I'll be cooking on that for days.</description><baseMoodEffect>3</baseMoodEffect><baseOpinionOffset>5</baseOpinionOffset></li></stages>
+    <stages><li><label>my cooking was praised</label><description>They stopped to tell me the meal was good. That made my day.</description><baseMoodEffect>3</baseMoodEffect><baseOpinionOffset>5</baseOpinionOffset></li></stages>
   </ThoughtDef>
 
   <ThoughtDef>
@@ -56,7 +56,7 @@
     <durationDays>2</durationDays>
     <stackLimit>2</stackLimit>
     <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
-    <stages><li><label>someone listened to my old stories</label><description>The young ones still listen, some of them. Somebody ought to remember how it was.</description><baseMoodEffect>2</baseMoodEffect><baseOpinionOffset>3</baseOpinionOffset></li></stages>
+    <stages><li><label>a young one listened to my stories</label><description>One of the young ones sat and listened to my old stories. Somebody ought to remember how things were.</description><baseMoodEffect>2</baseMoodEffect><baseOpinionOffset>3</baseOpinionOffset></li></stages>
   </ThoughtDef>
 
   <ThoughtDef>
@@ -65,7 +65,7 @@
     <durationDays>2</durationDays>
     <stackLimit>2</stackLimit>
     <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
-    <stages><li><label>heard stories of the old days</label><description>Half of it can't be true. I hope all of it is.</description><baseMoodEffect>1</baseMoodEffect><baseOpinionOffset>4</baseOpinionOffset></li></stages>
+    <stages><li><label>heard stories of the old days</label><description>They told me stories about the old days. Half of it can't be true, but I loved it.</description><baseMoodEffect>1</baseMoodEffect><baseOpinionOffset>4</baseOpinionOffset></li></stages>
   </ThoughtDef>
 
   <ThoughtDef>
@@ -74,7 +74,7 @@
     <durationDays>1.5</durationDays>
     <stackLimit>2</stackLimit>
     <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
-    <stages><li><label>taught a little one</label><description>That moment when it clicks for a child, when their whole face lights up. Worth more than most things out here.</description><baseMoodEffect>2</baseMoodEffect><baseOpinionOffset>3</baseOpinionOffset></li></stages>
+    <stages><li><label>taught a little one</label><description>I taught a child something today, and their face lit up when they got it.</description><baseMoodEffect>2</baseMoodEffect><baseOpinionOffset>3</baseOpinionOffset></li></stages>
   </ThoughtDef>
 
   <ThoughtDef>
@@ -83,7 +83,7 @@
     <durationDays>2</durationDays>
     <stackLimit>2</stackLimit>
     <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
-    <stages><li><label>learned something new</label><description>A grown-up showed me how! I'm going to show everyone. Twice.</description><baseMoodEffect>3</baseMoodEffect><baseOpinionOffset>6</baseOpinionOffset></li></stages>
+    <stages><li><label>learned something new</label><description>A grown-up showed me how to do it! I'm going to show the others.</description><baseMoodEffect>3</baseMoodEffect><baseOpinionOffset>6</baseOpinionOffset></li></stages>
   </ThoughtDef>
 
   <ThoughtDef>
@@ -92,7 +92,7 @@
     <durationDays>1</durationDays>
     <stackLimit>2</stackLimit>
     <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
-    <stages><li><label>stories in the evening</label><description>The day's work done, somebody talking, somebody listening. That's the good part of the day.</description><baseMoodEffect>2</baseMoodEffect><baseOpinionOffset>3</baseOpinionOffset></li></stages>
+    <stages><li><label>stories in the evening</label><description>We sat and told stories after the day's work was done. That's my favorite part of the day.</description><baseMoodEffect>2</baseMoodEffect><baseOpinionOffset>3</baseOpinionOffset></li></stages>
   </ThoughtDef>
 
   <ThoughtDef>
@@ -101,7 +101,7 @@
     <durationDays>1</durationDays>
     <stackLimit>2</stackLimit>
     <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
-    <stages><li><label>waited out the storm together</label><description>The wind howled at the walls and we talked until it gave up. It was almost cozy.</description><baseMoodEffect>1</baseMoodEffect><baseOpinionOffset>3</baseOpinionOffset></li></stages>
+    <stages><li><label>waited out the storm together</label><description>The wind howled at the walls, and we sat and talked until it died down.</description><baseMoodEffect>1</baseMoodEffect><baseOpinionOffset>3</baseOpinionOffset></li></stages>
   </ThoughtDef>
 
   <ThoughtDef>
@@ -110,7 +110,7 @@
     <durationDays>1</durationDays>
     <stackLimit>2</stackLimit>
     <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
-    <stages><li><label>watched the snow fall together</label><description>Big soft flakes, and everything gone quiet. For a moment the whole colony looked new.</description><baseMoodEffect>2</baseMoodEffect><baseOpinionOffset>2</baseOpinionOffset></li></stages>
+    <stages><li><label>watched the snow fall together</label><description>We watched big, soft flakes come down, and everything went quiet.</description><baseMoodEffect>2</baseMoodEffect><baseOpinionOffset>2</baseOpinionOffset></li></stages>
   </ThoughtDef>
 
   <ThoughtDef>
@@ -119,7 +119,7 @@
     <durationDays>1</durationDays>
     <stackLimit>2</stackLimit>
     <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
-    <stages><li><label>spring in the air</label><description>Something green poking out of the mud, sun on my face, and somebody to point at it with.</description><baseMoodEffect>2</baseMoodEffect><baseOpinionOffset>2</baseOpinionOffset></li></stages>
+    <stages><li><label>spring in the air</label><description>The first green shoots are coming up through the mud. We stood in the sun and looked at them.</description><baseMoodEffect>2</baseMoodEffect><baseOpinionOffset>2</baseOpinionOffset></li></stages>
   </ThoughtDef>
 
   <ThoughtDef>
@@ -128,7 +128,7 @@
     <durationDays>1</durationDays>
     <stackLimit>2</stackLimit>
     <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
-    <stages><li><label>lifted someone's spirits</label><description>They were having a hard day. I think I made it a little less hard.</description><baseMoodEffect>1</baseMoodEffect><baseOpinionOffset>2</baseOpinionOffset></li></stages>
+    <stages><li><label>lifted someone's spirits</label><description>They were having a hard day, and I think I helped.</description><baseMoodEffect>1</baseMoodEffect><baseOpinionOffset>2</baseOpinionOffset></li></stages>
   </ThoughtDef>
 
   <ThoughtDef>
@@ -137,7 +137,7 @@
     <durationDays>1.5</durationDays>
     <stackLimit>2</stackLimit>
     <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
-    <stages><li><label>someone cheered me up</label><description>I was in a dark place, and they sat with me in it until it wasn't so dark.</description><baseMoodEffect>3</baseMoodEffect><baseOpinionOffset>8</baseOpinionOffset></li></stages>
+    <stages><li><label>someone cheered me up</label><description>I was feeling low, and they sat with me until I felt better.</description><baseMoodEffect>3</baseMoodEffect><baseOpinionOffset>8</baseOpinionOffset></li></stages>
   </ThoughtDef>
 
   <ThoughtDef>
@@ -146,7 +146,7 @@
     <durationDays>2</durationDays>
     <stackLimit>2</stackLimit>
     <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
-    <stages><li><label>told someone where I came from</label><description>I'm still new here, but someone wanted to know who I was before. It helps.</description><baseMoodEffect>2</baseMoodEffect><baseOpinionOffset>4</baseOpinionOffset></li></stages>
+    <stages><li><label>told someone where I came from</label><description>I'm still new here, but they asked about my life before. It was nice to be asked.</description><baseMoodEffect>2</baseMoodEffect><baseOpinionOffset>4</baseOpinionOffset></li></stages>
   </ThoughtDef>
 
   <ThoughtDef>
@@ -155,7 +155,7 @@
     <durationDays>2</durationDays>
     <stackLimit>2</stackLimit>
     <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
-    <stages><li><label>heard where they came from</label><description>I know a little more about where they're from now. They feel less like a stranger.</description><baseMoodEffect>1</baseMoodEffect><baseOpinionOffset>3</baseOpinionOffset></li></stages>
+    <stages><li><label>heard where they came from</label><description>They told me where they came from. They feel less like a stranger now.</description><baseMoodEffect>1</baseMoodEffect><baseOpinionOffset>3</baseOpinionOffset></li></stages>
   </ThoughtDef>
 
   <ThoughtDef>
@@ -164,7 +164,7 @@
     <durationDays>0.5</durationDays>
     <stackLimit>2</stackLimit>
     <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
-    <stages><li><label>a joke at work</label><description>The work was dull. The company wasn't.</description><baseMoodEffect>1</baseMoodEffect><baseOpinionOffset>3</baseOpinionOffset></li></stages>
+    <stages><li><label>a joke at work</label><description>We joked around while we worked. It made the time go faster.</description><baseMoodEffect>1</baseMoodEffect><baseOpinionOffset>3</baseOpinionOffset></li></stages>
   </ThoughtDef>
 
   <ThoughtDef>
@@ -173,7 +173,7 @@
     <durationDays>0.5</durationDays>
     <stackLimit>2</stackLimit>
     <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
-    <stages><li><label>grumbled about the weather together</label><description>Complaining about the weather fixes nothing. Complaining about it with someone helps anyway.</description><baseMoodEffect>1</baseMoodEffect><baseOpinionOffset>2</baseOpinionOffset></li></stages>
+    <stages><li><label>grumbled about the weather together</label><description>We stood around complaining about the weather. I feel better for it.</description><baseMoodEffect>1</baseMoodEffect><baseOpinionOffset>2</baseOpinionOffset></li></stages>
   </ThoughtDef>
 
   <ThoughtDef>
@@ -182,7 +182,7 @@
     <durationDays>0.5</durationDays>
     <stackLimit>2</stackLimit>
     <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
-    <stages><li><label>a drink to look forward to</label><description>Something waiting at the end of the day, and someone to share it with.</description><baseMoodEffect>1</baseMoodEffect><baseOpinionOffset>3</baseOpinionOffset></li></stages>
+    <stages><li><label>a drink to look forward to</label><description>We're having a drink together after work. I'm looking forward to it.</description><baseMoodEffect>1</baseMoodEffect><baseOpinionOffset>3</baseOpinionOffset></li></stages>
   </ThoughtDef>
 
   <!-- ===================== Bonds ===================== -->
@@ -193,7 +193,7 @@
     <durationDays>2</durationDays>
     <stackLimit>2</stackLimit>
     <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
-    <stages><li><label>remembered the fight together</label><description>We stood together when it counted. Talking it over with someone who was there makes it sit easier.</description><baseMoodEffect>2</baseMoodEffect><baseOpinionOffset>6</baseOpinionOffset></li></stages>
+    <stages><li><label>remembered the fight together</label><description>We talked over the fight together. It's easier to talk about with someone who was there.</description><baseMoodEffect>2</baseMoodEffect><baseOpinionOffset>6</baseOpinionOffset></li></stages>
   </ThoughtDef>
 
   <ThoughtDef>
@@ -202,13 +202,13 @@
     <durationDays>2</durationDays>
     <stackLimit>2</stackLimit>
     <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
-    <stages><li><label>the lessons are paying off</label><description>Teaching and learning, day after day, and today we could both see it working.</description><baseMoodEffect>2</baseMoodEffect><baseOpinionOffset>5</baseOpinionOffset></li></stages>
+    <stages><li><label>the lessons are paying off</label><description>We've been at these lessons day after day, and today we could both see it working.</description><baseMoodEffect>2</baseMoodEffect><baseOpinionOffset>5</baseOpinionOffset></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_Moment_GotAJabIn</defName>
     <durationDays>0.5</durationDays>
-    <stages><li><label>got a good jab in</label><description>Saw the look on their face. Worth it.</description><baseMoodEffect>1</baseMoodEffect></li></stages>
+    <stages><li><label>got a good jab in</label><description>I got a good jab in at my rival. I saw the look on their face.</description><baseMoodEffect>1</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef>
@@ -217,7 +217,7 @@
     <durationDays>1</durationDays>
     <stackLimit>2</stackLimit>
     <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
-    <stages><li><label>my rival's little jab</label><description>Of course they had something to say. They always do. I'll think of the perfect answer tonight, in bed, too late.</description><baseMoodEffect>-1</baseMoodEffect><baseOpinionOffset>-3</baseOpinionOffset></li></stages>
+    <stages><li><label>my rival's little jab</label><description>My rival had something snide to say, as usual. I'll think of the perfect answer tonight, too late.</description><baseMoodEffect>-1</baseMoodEffect><baseOpinionOffset>-3</baseOpinionOffset></li></stages>
   </ThoughtDef>
 
   <ThoughtDef>
@@ -226,7 +226,7 @@
     <durationDays>2</durationDays>
     <stackLimit>2</stackLimit>
     <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
-    <stages><li><label>they stood by me</label><description>The one who hurt me is still out there. But I'm not facing it alone, and now I know it.</description><baseMoodEffect>3</baseMoodEffect><baseOpinionOffset>8</baseOpinionOffset></li></stages>
+    <stages><li><label>they stood by me</label><description>The one who hurt me is still out there, but I'm not facing it alone.</description><baseMoodEffect>3</baseMoodEffect><baseOpinionOffset>8</baseOpinionOffset></li></stages>
   </ThoughtDef>
 
   <ThoughtDef>
@@ -241,7 +241,7 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_Moment_ShowedOffAnimal</defName>
     <durationDays>1</durationDays>
-    <stages><li><label>bragged about my animal</label><description>Best animal on the Rim. I have witnesses now.</description><baseMoodEffect>2</baseMoodEffect></li></stages>
+    <stages><li><label>bragged about my animal</label><description>I showed off my animal. It's the best animal on the Rim, and now the others know it.</description><baseMoodEffect>2</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef>
@@ -259,7 +259,7 @@
     <durationDays>1</durationDays>
     <stackLimit>2</stackLimit>
     <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
-    <stages><li><label>shared my good news</label><description>Something good happened, and somebody was glad about it with me. That doubles it.</description><baseMoodEffect>1</baseMoodEffect><baseOpinionOffset>3</baseOpinionOffset></li></stages>
+    <stages><li><label>shared my good news</label><description>Something good happened to me, and they were glad about it with me.</description><baseMoodEffect>1</baseMoodEffect><baseOpinionOffset>3</baseOpinionOffset></li></stages>
   </ThoughtDef>
 
   <ThoughtDef>
@@ -279,7 +279,7 @@
     <durationDays>1.5</durationDays>
     <stackLimit>2</stackLimit>
     <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
-    <stages><li><label>proud of how we live</label><description>We do things our own way here. Talking about it, I realized I wouldn't want it any other way.</description><baseMoodEffect>2</baseMoodEffect><baseOpinionOffset>3</baseOpinionOffset></li></stages>
+    <stages><li><label>proud of how we live</label><description>We talked about how we do things here. I wouldn't want it any other way.</description><baseMoodEffect>2</baseMoodEffect><baseOpinionOffset>3</baseOpinionOffset></li></stages>
   </ThoughtDef>
 
   <ThoughtDef>
@@ -288,7 +288,7 @@
     <durationDays>1</durationDays>
     <stackLimit>2</stackLimit>
     <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
-    <stages><li><label>argued about our ways</label><description>We see this colony differently, and we said so. Loudly. Nobody stormed off, which is something.</description><baseOpinionOffset>-3</baseOpinionOffset></li></stages>
+    <stages><li><label>argued about our ways</label><description>We see this colony differently, and we argued about it loudly.</description><baseOpinionOffset>-3</baseOpinionOffset></li></stages>
   </ThoughtDef>
 
   <!-- ===================== Beliefs ===================== -->
@@ -299,7 +299,7 @@
     <durationDays>1.5</durationDays>
     <stackLimit>2</stackLimit>
     <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
-    <stages><li><label>shared a blessing</label><description>We said the words together. Out here, it matters to have someone who believes what you believe.</description><baseMoodEffect>2</baseMoodEffect><baseOpinionOffset>5</baseOpinionOffset></li></stages>
+    <stages><li><label>shared a blessing</label><description>We said the words together. It's good to have someone here who shares my faith.</description><baseMoodEffect>2</baseMoodEffect><baseOpinionOffset>5</baseOpinionOffset></li></stages>
   </ThoughtDef>
 
   <ThoughtDef>
@@ -308,7 +308,7 @@
     <durationDays>1</durationDays>
     <stackLimit>2</stackLimit>
     <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
-    <stages><li><label>a friendly talk about faith</label><description>We don't believe the same things. We talked about it anyway, and nobody tried to win. I understand them a little better.</description><baseMoodEffect>1</baseMoodEffect><baseOpinionOffset>2</baseOpinionOffset></li></stages>
+    <stages><li><label>a friendly talk about faith</label><description>We don't believe the same things, but we talked about it calmly. I understand them better now.</description><baseMoodEffect>1</baseMoodEffect><baseOpinionOffset>2</baseOpinionOffset></li></stages>
   </ThoughtDef>
 
   <!-- ===================== Mods: magic, hygiene, cooking ===================== -->
@@ -319,7 +319,7 @@
     <durationDays>1</durationDays>
     <stackLimit>2</stackLimit>
     <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
-    <stages><li><label>saw a little magic</label><description>Nothing grand, nothing dangerous. Just a small wonder, shown to me on purpose. I keep thinking about it.</description><baseMoodEffect>3</baseMoodEffect><baseOpinionOffset>4</baseOpinionOffset></li></stages>
+    <stages><li><label>saw a little magic</label><description>They showed me a small bit of magic, just for me. I keep thinking about it.</description><baseMoodEffect>3</baseMoodEffect><baseOpinionOffset>4</baseOpinionOffset></li></stages>
   </ThoughtDef>
 
   <ThoughtDef>
@@ -328,19 +328,19 @@
     <durationDays>1</durationDays>
     <stackLimit>2</stackLimit>
     <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
-    <stages><li><label>talked about magic</label><description>We talked about what magic feels like. I understand it a little better, and wonder about it a lot more.</description><baseMoodEffect>1</baseMoodEffect><baseOpinionOffset>3</baseOpinionOffset></li></stages>
+    <stages><li><label>talked about magic</label><description>We talked about what it feels like to use magic. I'm still wondering about it.</description><baseMoodEffect>1</baseMoodEffect><baseOpinionOffset>3</baseOpinionOffset></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_Moment_ToldToWash</defName>
     <durationDays>0.5</durationDays>
-    <stages><li><label>told I need a wash</label><description>A friend took me aside and told me, kindly, that I smell. They're not wrong. I'll get to it.</description><baseMoodEffect>-1</baseMoodEffect></li></stages>
+    <stages><li><label>told I need a wash</label><description>A friend took me aside and told me, kindly, that I smell. I should wash.</description><baseMoodEffect>-1</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_Moment_FeelingClean</defName>
     <durationDays>0.5</durationDays>
-    <stages><li><label>feeling clean</label><description>Clean skin, clean hair, and I smell like a person again. Small things.</description><baseMoodEffect>1</baseMoodEffect></li></stages>
+    <stages><li><label>feeling clean</label><description>I've had a proper wash, and I smell like a person again.</description><baseMoodEffect>1</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef>
@@ -349,7 +349,7 @@
     <durationDays>0.5</durationDays>
     <stackLimit>2</stackLimit>
     <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
-    <stages><li><label>talked about food</label><description>Good food, and someone to talk about it with. Now I'm hungry again.</description><baseMoodEffect>1</baseMoodEffect><baseOpinionOffset>2</baseOpinionOffset></li></stages>
+    <stages><li><label>talked about food</label><description>We talked about our favorite meals. Now I'm hungry again.</description><baseMoodEffect>1</baseMoodEffect><baseOpinionOffset>2</baseOpinionOffset></li></stages>
   </ThoughtDef>
 
 
@@ -357,7 +357,7 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_HomeAgain</defName>
     <durationDays>1.5</durationDays>
-    <stages><li><label>home again</label><description>My own bed. Familiar faces. The road was something, but this is better.</description><baseMoodEffect>4</baseMoodEffect></li></stages>
+    <stages><li><label>home again</label><description>I'm back in my own bed, with familiar faces around me. It's good to be home.</description><baseMoodEffect>4</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef>

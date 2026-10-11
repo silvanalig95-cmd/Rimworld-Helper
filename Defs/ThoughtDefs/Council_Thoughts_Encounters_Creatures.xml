@@ -8,25 +8,25 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_EncC_Greeted</defName>
     <durationDays>1</durationDays>
-    <stages><li><label>someone was glad to see me</label><description>I came home filthy and done in, and my animal acted like I'd hung the moon. It's nice to be somebody's favorite.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
+    <stages><li><label>my animal was glad to see me</label><description>I came home filthy and worn out, and my animal was so happy to see me.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_EncC_WarmFeet</defName>
     <durationDays>1.5</durationDays>
-    <stages><li><label>warm feet</label><description>Something heavy and warm sleeps across my feet these nights. It snores. I've decided I don't mind.</description><baseMoodEffect>2</baseMoodEffect></li></stages>
+    <stages><li><label>warm feet</label><description>My animal sleeps across my feet at night. It snores, but my feet stay warm.</description><baseMoodEffect>2</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_EncC_LunchStolen</defName>
     <durationDays>0.5</durationDays>
-    <stages><li><label>lost my dinner to an animal</label><description>Turned my head for one breath and my dinner was gone. Not all of it. The good part.</description><baseMoodEffect>-1</baseMoodEffect></li></stages>
+    <stages><li><label>lost my dinner to an animal</label><description>I looked away for a moment and an animal ate the best part of my dinner.</description><baseMoodEffect>-1</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_EncC_GourmandRobbed</defName>
     <durationDays>1</durationDays>
-    <stages><li><label>the best bite, stolen</label><description>It took the one piece I'd been saving for last and didn't even chew it properly. A perfect bite, wasted on an animal.</description><baseMoodEffect>-3</baseMoodEffect></li></stages>
+    <stages><li><label>the best bite, stolen</label><description>An animal took the piece I'd been saving for last and swallowed it whole. What a waste of a good bite.</description><baseMoodEffect>-3</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
@@ -38,25 +38,25 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_EncC_GrimGift</defName>
     <durationDays>1</durationDays>
-    <stages><li><label>a gift, technically</label><description>My animal brought me something dead and laid it at my feet like treasure. It's the thought that counts. It's mostly the thought.</description><baseMoodEffect>1</baseMoodEffect></li></stages>
+    <stages><li><label>a gift from my animal</label><description>My animal dropped a dead rat at my feet and looked very proud of itself.</description><baseMoodEffect>1</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_EncC_TaughtTrick</defName>
     <durationDays>2</durationDays>
-    <stages><li><label>taught my animal a trick</label><description>Days of patience and pocketfuls of scraps, and now it does the thing when I ask. Sometimes. I'm very proud of us both.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
+    <stages><li><label>taught my animal a trick</label><description>It took days and pocketfuls of scraps, but my animal does its trick when I ask now. I'm proud of us both.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_EncC_Comforted</defName>
     <durationDays>2</durationDays>
-    <stages><li><label>my animal knew</label><description>I didn't tell anyone how bad it was. I didn't have to tell my animal. It just came and stayed.</description><baseMoodEffect>4</baseMoodEffect></li></stages>
+    <stages><li><label>my animal knew</label><description>I was feeling low and didn't tell anyone. My animal came and stayed by me anyway.</description><baseMoodEffect>4</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_EncC_ThingsChewed</defName>
     <durationDays>2</durationDays>
-    <stages><li><label>my things got chewed</label><description>Something I needed is now in several damp pieces. I know exactly who did it, and it knows that I know.</description><baseMoodEffect>-2</baseMoodEffect></li></stages>
+    <stages><li><label>my things got chewed</label><description>An animal chewed up some of my things. They're in damp pieces all over the floor.</description><baseMoodEffect>-2</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
@@ -74,43 +74,43 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_EncC_ChosenByAnimal</defName>
     <durationDays>3</durationDays>
-    <stages><li><label>an animal chose me</label><description>It isn't even mine, but it follows me everywhere and waits for me at the door. Out of everyone here, it picked me.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
+    <stages><li><label>an animal chose me</label><description>One of the animals has taken to me. It follows me everywhere and waits for me at the door.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_EncC_ToldItEverything</defName>
     <durationDays>1</durationDays>
-    <stages><li><label>told my troubles to an animal</label><description>I said it all out loud to something that won't repeat it or have an opinion. I feel lighter.</description><baseMoodEffect>2</baseMoodEffect></li></stages>
+    <stages><li><label>told my troubles to an animal</label><description>I told one of the animals everything that's been bothering me. It just listened.</description><baseMoodEffect>2</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_EncC_HatedByAnimal</defName>
     <durationDays>2</durationDays>
-    <stages><li><label>an animal hates me</label><description>One animal in this colony has decided I'm the enemy. I've done nothing to it. It doesn't care.</description><baseMoodEffect>-2</baseMoodEffect></li></stages>
+    <stages><li><label>an animal hates me</label><description>One of the animals hates me. It growls whenever I walk past, and I've never done anything to it.</description><baseMoodEffect>-2</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_EncC_WorkCompanion</defName>
     <durationDays>1</durationDays>
-    <stages><li><label>company at work</label><description>My animal lay nearby while I worked all day. The hours go quicker with someone watching who thinks you're wonderful.</description><baseMoodEffect>2</baseMoodEffect></li></stages>
+    <stages><li><label>company at work</label><description>My animal lay nearby while I worked all day. The hours went quicker with it there.</description><baseMoodEffect>2</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_EncC_OldFriendSlowing</defName>
     <durationDays>3</durationDays>
-    <stages><li><label>my old friend is slowing down</label><description>It's slower to get up every morning, and it still comes to find me. I'm trying not to count how many mornings are left.</description><baseMoodEffect>-2</baseMoodEffect></li></stages>
+    <stages><li><label>my old friend is slowing down</label><description>My old animal is slower to get up every morning, but it still comes to find me.</description><baseMoodEffect>-2</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_EncC_NewLitter</defName>
     <durationDays>2</durationDays>
-    <stages><li><label>new life in the barn</label><description>Tiny, loud, wobbling things in the straw. Something out here is being born instead of dying, for once.</description><baseMoodEffect>2</baseMoodEffect></li></stages>
+    <stages><li><label>new life in the barn</label><description>There are newborns in the barn, tiny and loud and wobbling around in the straw.</description><baseMoodEffect>2</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_EncC_HerdGrows</defName>
     <durationDays>2</durationDays>
-    <stages><li><label>the herd is growing</label><description>More animals in the barn: more hide, more meat, more labor later on. A sound investment, and nobody had to pay for it.</description><baseMoodEffect>1</baseMoodEffect></li></stages>
+    <stages><li><label>the herd is growing</label><description>There are more animals in the barn now. That's more meat and leather later on.</description><baseMoodEffect>1</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
@@ -122,7 +122,7 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_EncC_KeptAwake</defName>
     <durationDays>0.5</durationDays>
-    <stages><li><label>kept awake by the noise</label><description>My animal spent half the night crying at the dark. Neither of us slept. Only one of us got a nap afterwards.</description><baseMoodEffect>-1</baseMoodEffect></li></stages>
+    <stages><li><label>kept awake by the noise</label><description>My animal spent half the night crying at the dark, and I couldn't sleep.</description><baseMoodEffect>-1</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <!-- ===================== Wild animals ===================== -->
@@ -130,103 +130,103 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_EncC_NightNerves</defName>
     <durationDays>1</durationDays>
-    <stages><li><label>noises in the dark</label><description>Every sound outside last night was something coming for me. None of them were. My heart didn't believe that.</description><baseMoodEffect>-3</baseMoodEffect></li></stages>
+    <stages><li><label>noises in the dark</label><description>Every sound outside last night had me sure something was coming for me. I barely slept.</description><baseMoodEffect>-3</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_EncC_EerieNight</defName>
     <durationDays>1</durationDays>
-    <stages><li><label>calls in the dark</label><description>Something past the fields called all night, and something farther off answered. I don't like being in the middle of a conversation I can't follow.</description><baseMoodEffect>-1</baseMoodEffect></li></stages>
+    <stages><li><label>calls in the dark</label><description>An animal past the fields called all night, and another one farther off answered it. I couldn't sleep.</description><baseMoodEffect>-1</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_EncC_HuntersBlood</defName>
     <durationDays>1</durationDays>
-    <stages><li><label>something worth hunting</label><description>There's a real animal out there. Big, clever, dangerous. My hands keep reaching for a blade on their own.</description><baseMoodEffect>2</baseMoodEffect></li></stages>
+    <stages><li><label>something worth hunting</label><description>There's a big, dangerous animal out there. My hand keeps going to my blade.</description><baseMoodEffect>2</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_EncC_GreatBeast</defName>
     <durationDays>3</durationDays>
-    <stages><li><label>saw a great beast</label><description>It crossed the meadow, huge and slow and completely uninterested in us. I've been smiling at nothing all day.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
+    <stages><li><label>saw a great beast</label><description>A huge animal crossed the meadow, slow and calm, paying us no mind. It was wonderful to watch.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_EncC_GreatBeastClose</defName>
     <durationDays>4</durationDays>
-    <stages><li><label>close to a great beast</label><description>I got near enough to smell it: dust, grass and something very old. I've worked with animals all my life and never felt this small.</description><baseMoodEffect>5</baseMoodEffect></li></stages>
+    <stages><li><label>close to a great beast</label><description>I got close enough to smell it, all dust and grass. I've worked with animals all my life and never seen one like it.</description><baseMoodEffect>5</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_EncC_QuietMorning</defName>
     <durationDays>1</durationDays>
-    <stages><li><label>a quiet morning</label><description>An animal in the mist, nobody else awake, nothing burning or bleeding. For a whole minute this place was just beautiful.</description><baseMoodEffect>2</baseMoodEffect></li></stages>
+    <stages><li><label>a quiet morning</label><description>I was up before the others and saw an animal standing in the morning mist. It was beautiful.</description><baseMoodEffect>2</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_EncC_HerdPassed</defName>
     <durationDays>1</durationDays>
-    <stages><li><label>watched a herd go by</label><description>The whole herd went past, taking its time, while I stood and watched. The world out there doesn't know we exist. That's oddly restful.</description><baseMoodEffect>2</baseMoodEffect></li></stages>
+    <stages><li><label>watched a herd go by</label><description>A herd went past, taking its time, and I stopped to watch it go by.</description><baseMoodEffect>2</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_EncC_Birdsong</defName>
     <durationDays>1</durationDays>
-    <stages><li><label>birdsong</label><description>Birds in the hedges all morning, something small asleep in the sun. For a few hours I forgot to listen for raiders.</description><baseMoodEffect>2</baseMoodEffect></li></stages>
+    <stages><li><label>birdsong</label><description>Birds sang in the bushes all morning. For a few hours I forgot to listen for raiders.</description><baseMoodEffect>2</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_EncC_Watched</defName>
     <durationDays>1</durationDays>
-    <stages><li><label>being watched</label><description>Something out past the fence spent the day watching me work. Not the way you watch a person. The way you watch food.</description><baseMoodEffect>-2</baseMoodEffect></li></stages>
+    <stages><li><label>being watched</label><description>A predator out past the fence watched me work all day. I didn't like the way it looked at me.</description><baseMoodEffect>-2</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_EncC_PreyFeeling</defName>
     <durationDays>1.5</durationDays>
-    <stages><li><label>I felt like prey</label><description>My legs knew before I did. I keep looking at the long grass, waiting for it to move.</description><baseMoodEffect>-2</baseMoodEffect></li></stages>
+    <stages><li><label>I felt like prey</label><description>I felt like prey out there today. I keep watching the long grass, waiting for it to move.</description><baseMoodEffect>-2</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_EncC_CropsRaided</defName>
     <durationDays>1.5</durationDays>
-    <stages><li><label>something is eating the crops</label><description>I plant them, I water them, I weed them, and something small with no manners eats them. This is war now.</description><baseMoodEffect>-2</baseMoodEffect></li></stages>
+    <stages><li><label>something is eating the crops</label><description>I plant the crops and weed them, and some little animal comes and eats them.</description><baseMoodEffect>-2</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_EncC_FedWild</defName>
     <durationDays>1.5</durationDays>
-    <stages><li><label>fed a wild creature</label><description>A wild thing ate out of my hand today. It didn't trust me, not really. It was just hungrier than it was scared.</description><baseMoodEffect>2</baseMoodEffect></li></stages>
+    <stages><li><label>fed a wild creature</label><description>A wild animal ate out of my hand today. It was nervous, but it came.</description><baseMoodEffect>2</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_EncC_WildTouchedNoses</defName>
     <durationDays>2</durationDays>
-    <stages><li><label>a wild animal came to me</label><description>A real wild animal came right up to me and I didn't scream or run, and it liked me. I'm going to remember this when I'm old.</description><baseMoodEffect>4</baseMoodEffect></li></stages>
+    <stages><li><label>a wild animal came to me</label><description>A real wild animal came right up to me, and I stayed still, and it sniffed my hand!</description><baseMoodEffect>4</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_EncC_BigTracks</defName>
     <durationDays>1</durationDays>
-    <stages><li><label>something huge is out there</label><description>I put my hand in one of its footprints and there was room to spare. It's out there now, somewhere, walking around.</description><baseMoodEffect>-1</baseMoodEffect></li></stages>
+    <stages><li><label>something huge is out there</label><description>I found tracks out past the fields bigger than my hand. Whatever made them is still out there.</description><baseMoodEffect>-1</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_EncC_TouchedTheBeast</defName>
     <durationDays>1.5</durationDays>
-    <stages><li><label>touched a wild beast</label><description>I put my hand right on it. Everyone said I was mad. My heart is still going like a drum.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
+    <stages><li><label>touched a wild beast</label><description>I walked right up to a wild beast and put my hand on it. My heart is still pounding.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_EncC_BeastDread</defName>
     <durationDays>2</durationDays>
-    <stages><li><label>it's still out there</label><description>I saw it again at the tree line. The same beast. The old wounds ached just from looking, as if they remembered.</description><baseMoodEffect>-5</baseMoodEffect></li></stages>
+    <stages><li><label>it's still out there</label><description>I saw the beast that mauled me again, out at the tree line. My old wounds ached just from looking at it.</description><baseMoodEffect>-5</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_EncC_BeastFury</defName>
     <durationDays>2</durationDays>
-    <stages><li><label>come and try it</label><description>That beast came back to look at me. Let it look. Next time I'll be the one walking toward it.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
+    <stages><li><label>come and try it</label><description>The beast that mauled me came back. Next time I'll be the one hunting it.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
@@ -238,19 +238,19 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_EncC_RobbedByAnimal</defName>
     <durationDays>1</durationDays>
-    <stages><li><label>robbed by a wild animal</label><description>A wild animal walked off with my things in broad daylight, and the worst part is that everybody saw.</description><baseMoodEffect>-1</baseMoodEffect></li></stages>
+    <stages><li><label>robbed by a wild animal</label><description>A wild animal walked off with my things in broad daylight, and the others all saw it happen.</description><baseMoodEffect>-1</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_EncC_Moonlit</defName>
     <durationDays>1.5</durationDays>
-    <stages><li><label>night-time company</label><description>Out walking in the dark again, and a wild animal crossed my path and didn't run. We keep the same hours, it and I.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
+    <stages><li><label>night-time company</label><description>I was out walking in the dark, and a wild animal crossed my path without running off.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_EncC_RutFight</defName>
     <durationDays>1</durationDays>
-    <stages><li><label>watched a fight in the meadow</label><description>Two of them crashed heads in the meadow for an hour. Best entertainment we've had all season, and nobody bled but them.</description><baseMoodEffect>2</baseMoodEffect></li></stages>
+    <stages><li><label>watched a fight in the meadow</label><description>Two big males crashed heads in the meadow for most of the afternoon. I couldn't stop watching.</description><baseMoodEffect>2</baseMoodEffect></li></stages>
   </ThoughtDef>
 
 </Defs>

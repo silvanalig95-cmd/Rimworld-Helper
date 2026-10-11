@@ -8,43 +8,43 @@
     <pool>Council_Pool_Scene</pool>
     <lines>
       <plain>
-        <li>[eating] {PAWN_nameDef} sets down {PAWN_possessive} spoon halfway through the meal. Something has to be said, and apparently it can't wait for dessert.</li>
-        <li>[eating] Between mouthfuls, {PAWN_nameDef} makes a point, then makes it again in case the chewing drowned it out.</li>
-        <li>[eating,!child] {PAWN_nameDef} waits until everyone has food in their mouths and can't interrupt.</li>
-        <li>[inbed] From under the blankets comes a voice. It's {PAWN_nameDef}, and {PAWN_pronoun} is not asleep.</li>
-        <li>[inbed,night] {PAWN_nameDef} sits up in bed in the dark and says it to the ceiling, loud enough for everyone.</li>
-        <li>[relaxing] {PAWN_nameDef} is supposed to be relaxing. {PAWN_nameDef} is instead composing a list of grievances.</li>
-        <li>[relaxing] In the middle of a rare quiet moment, {PAWN_nameDef} decides to spend it asking for something.</li>
-        <li>[work:Cooking] Over the hiss of the stove, {PAWN_nameDef} waves a ladle for emphasis.</li>
-        <li>[work:Cooking] {PAWN_nameDef} stops stirring, which is how everyone knows it's serious.</li>
+        <li>[eating] {PAWN_nameDef} puts down {PAWN_possessive} spoon halfway through the meal.</li>
+        <li>[eating] {PAWN_nameDef} talks with {PAWN_possessive} mouth full and doesn't apologize for it.</li>
+        <li>[eating,!child] {PAWN_nameDef} waits until the others have food in their mouths and can't interrupt.</li>
+        <li>[inbed] {PAWN_nameDef} speaks up from under the blankets, wide awake.</li>
+        <li>[inbed,night] {PAWN_nameDef} sits up in bed in the dark and says it to the ceiling, loud enough to wake the next room.</li>
+        <li>[relaxing] {PAWN_nameDef} is meant to be resting, but has spent the time going over a list of complaints.</li>
+        <li>[relaxing] {PAWN_nameDef} uses a rare free hour to ask for what {PAWN_pronoun} wants.</li>
+        <li>[work:Cooking] {PAWN_nameDef} waves a ladle for emphasis, dripping soup on the floor.</li>
+        <li>[work:Cooking] {PAWN_nameDef} stops stirring the pot and turns around.</li>
         <li>[work:Growing] Knee-deep in the field, {PAWN_nameDef} straightens up, wipes the dirt off {PAWN_possessive} hands, and speaks.</li>
-        <li>[work:Growing] {PAWN_nameDef} pauses between rows of crops, thinking about something other than crops for once.</li>
-        <li>[work:PlantCutting] Between swings of the axe, {PAWN_nameDef} says what's been on {PAWN_possessive} mind all morning.</li>
+        <li>[work:Growing] {PAWN_nameDef} stops halfway down a row of seedlings to call someone over.</li>
+        <li>[work:PlantCutting] {PAWN_nameDef} talks between swings of the axe, a few words at a time.</li>
         <li>[work:Mining] {PAWN_nameDef} comes up from the mine covered in rock dust, coughs twice, and makes a request.</li>
         <li>[work:Mining] The pick stops. {PAWN_nameDef} leans on it and talks into the dark.</li>
-        <li>[work:Construction] {PAWN_nameDef} drives one last nail, steps back from the wall, and says the wall can wait.</li>
+        <li>[work:Construction] {PAWN_nameDef} drives in one last nail and climbs down to talk.</li>
         <li>[work:Construction] Up on the half-built frame, {PAWN_nameDef} shouts it down to whoever is listening.</li>
-        <li>[work:Hauling] {PAWN_nameDef} drops the load {PAWN_pronoun} was carrying, a little harder than necessary, and speaks up.</li>
-        <li>[work:Hauling] Halfway across the base with an armful of something heavy, {PAWN_nameDef} decides this is the moment.</li>
-        <li>[work:Cleaning] {PAWN_nameDef} leans on the broom. Sweeping gives a person time to think, and {PAWN_pronoun} has been thinking.</li>
-        <li>[work:Research] {PAWN_nameDef} looks up from the research bench with the expression of someone who has solved something, just not the research.</li>
+        <li>[work:Hauling] {PAWN_nameDef} drops {PAWN_possessive} load harder than necessary and speaks up.</li>
+        <li>[work:Hauling] Halfway to the stockpile with an armful of stone, {PAWN_nameDef} decides this is the moment.</li>
+        <li>[work:Cleaning] {PAWN_nameDef} has swept the same corner three times while working up to this.</li>
+        <li>[work:Research] {PAWN_nameDef} looks up from the research bench and pushes {PAWN_possessive} notes aside.</li>
         <li>[work:Doctor] Still washing blood off {PAWN_possessive} hands, {PAWN_nameDef} has a word with whoever is nearest.</li>
-        <li>[work:Hunting] {PAWN_nameDef} comes back from the hunt with a carcass over one shoulder and a request on {PAWN_possessive} lips.</li>
-        <li>[work:Handling] {PAWN_nameDef} talks it through with a muffalo first. The muffalo agrees. Now it's the colony's turn.</li>
-        <li>[work:Warden] On the way back from the prison, {PAWN_nameDef} decides prisoners aren't the only ones with demands.</li>
-        <li>[work:Smithing] Over the clang of the anvil, {PAWN_nameDef} shouts something that might be a request.</li>
-        <li>[work:Tailoring] {PAWN_nameDef} talks around a mouthful of pins, which makes it hard to argue with.</li>
-        <li>[work:Art] {PAWN_nameDef} sets down the chisel and squints at the half-finished sculpture, then at everyone else.</li>
-        <li>[work:Crafting] {PAWN_nameDef} turns a half-made thing over in {PAWN_possessive} hands while making a case for something else entirely.</li>
-        <li>[work:Firefighter] Still smelling of smoke, {PAWN_nameDef} decides near-death is a good time to raise an issue.</li>
-        <li>[work:Childcare] With a child on each knee, {PAWN_nameDef} makes a request that nobody dares refuse in front of them.</li>
-        <li>[outside,rain] Standing in the rain, hood up, {PAWN_nameDef} makes a request that would go better indoors.</li>
-        <li>[outside,snow] {PAWN_nameDef} kicks a drift of snow off the path and decides to say it now, before the next drift.</li>
-        <li>[outside,night,clear] Under a sky full of stars, {PAWN_nameDef} says something that has nothing to do with the stars.</li>
+        <li>[work:Hunting] {PAWN_nameDef} comes back from the hunt with a carcass over one shoulder and drops it at the kitchen door.</li>
+        <li>[work:Handling] {PAWN_nameDef} talks it over with the muffalo first, then comes to find a person.</li>
+        <li>[work:Warden] {PAWN_nameDef} comes back from the prison with an empty bowl and a request of {PAWN_possessive} own.</li>
+        <li>[work:Smithing] {PAWN_nameDef} sets the hammer down and waits for the anvil to stop ringing.</li>
+        <li>[work:Tailoring] {PAWN_nameDef} talks around a mouthful of pins.</li>
+        <li>[work:Art] {PAWN_nameDef} sets down the chisel, squints at the half-finished sculpture, then turns to whoever's watching.</li>
+        <li>[work:Crafting] {PAWN_nameDef} turns a half-made piece over in {PAWN_possessive} hands while {PAWN_pronoun} talks.</li>
+        <li>[work:Firefighter] {PAWN_nameDef} comes in from beating out the fire, still smelling of smoke.</li>
+        <li>[work:Childcare] {PAWN_nameDef} asks with a child on each knee.</li>
+        <li>[outside,rain] {PAWN_nameDef} stands in the rain with {PAWN_possessive} hood up and makes {PAWN_possessive} case.</li>
+        <li>[outside,snow] {PAWN_nameDef} stops clearing snow off the path and leans on the shovel.</li>
+        <li>[outside,night,clear] Out under the stars, {PAWN_nameDef} finally says it.</li>
         <li>[inownroom] {PAWN_nameDef} calls someone into {PAWN_possessive} room to show them exactly what the problem is.</li>
         <li>[indoors,storm] The walls shudder with thunder. {PAWN_nameDef} uses the moment of quiet after it.</li>
-        <li>[working,trait:Industrious|trait:HardWorker] {PAWN_nameDef} raises it without breaking stride. Work doesn't stop for wishes.</li>
-        <li>[working,trait:Industrious|trait:HardWorker] {PAWN_nameDef} asks while working, so nobody can say {PAWN_pronoun} slacked off to ask.</li>
+        <li>[working,trait:Industrious|trait:HardWorker] {PAWN_nameDef} raises it without breaking stride.</li>
+        <li>[working,trait:Industrious|trait:HardWorker] {PAWN_nameDef} asks over {PAWN_possessive} shoulder and keeps working.</li>
       </plain>
     </lines>
   </ColonyCouncil.FlavorExtensionDef>

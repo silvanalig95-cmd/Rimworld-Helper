@@ -8,31 +8,31 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_Dlm_WonBet</defName>
     <durationDays>3</durationDays>
-    <stages><li><label>won big at cards</label><description>Cards are a game of skill. Mostly the skill of playing people who've been drinking.</description><baseMoodEffect>4</baseMoodEffect></li></stages>
+    <stages><li><label>won big at cards</label><description>I won big at cards. My pockets are heavy with silver.</description><baseMoodEffect>4</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_Dlm_LostBet</defName>
     <durationDays>4</durationDays>
-    <stages><li><label>lost a bet and had to pay</label><description>I lost it fair, and the council made sure I paid. I don't have to like either part.</description><baseMoodEffect>-5</baseMoodEffect></li></stages>
+    <stages><li><label>lost a bet and had to pay</label><description>I lost the bet fair and square, and the council made sure I paid up.</description><baseMoodEffect>-5</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_Dlm_LostShirt</defName>
     <durationDays>6</durationDays>
-    <stages><li><label>lost everything at cards</label><description>Double or nothing, they said. They were half right.</description><baseMoodEffect>-8</baseMoodEffect></li></stages>
+    <stages><li><label>lost everything at cards</label><description>I kept playing to win it back, and lost everything I had.</description><baseMoodEffect>-8</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_Dlm_NoCards</defName>
     <durationDays>4</durationDays>
-    <stages><li><label>gambling banned</label><description>No cards, no dice. Evenings out here are just staring into the dark and listening for raiders now.</description><baseMoodEffect>-2</baseMoodEffect></li></stages>
+    <stages><li><label>gambling banned</label><description>The council banned cards and dice. The evenings are long and dull now.</description><baseMoodEffect>-2</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_Dlm_Compromise</defName>
     <durationDays>3</durationDays>
-    <stages><li><label>met halfway</label><description>Nobody got what they wanted. Apparently that's called fairness.</description><baseMoodEffect>-2</baseMoodEffect></li></stages>
+    <stages><li><label>met halfway</label><description>The council split it down the middle. Neither of us got what we wanted.</description><baseMoodEffect>-2</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <!-- ===================== Hoards and keepsakes ===================== -->
@@ -40,37 +40,37 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_Dlm_Confiscated</defName>
     <durationDays>5</durationDays>
-    <stages><li><label>my collection was confiscated</label><description>Every one of those things was going to be useful someday. Now they're in a stockpile, where anyone can lose them.</description><baseMoodEffect>-7</baseMoodEffect></li></stages>
+    <stages><li><label>my collection was confiscated</label><description>The council took my collection and dumped it in the stockpile. Every piece of it would have been useful someday.</description><baseMoodEffect>-7</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_Dlm_KeptHoard</defName>
     <durationDays>4</durationDays>
-    <stages><li><label>kept my collection</label><description>They came, they looked, they left it all where it was. The council has taste.</description><baseMoodEffect>4</baseMoodEffect></li></stages>
+    <stages><li><label>kept my collection</label><description>The council looked over my collection and let me keep all of it.</description><baseMoodEffect>4</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_Dlm_LostKeepsake</defName>
     <durationDays>8</durationDays>
-    <stages><li><label>my keepsake was broken</label><description>It was only an old thing. It was the last old thing I had.</description><baseMoodEffect>-5</baseMoodEffect></li></stages>
+    <stages><li><label>my keepsake was broken</label><description>My keepsake got broken. It was the last thing I had from before.</description><baseMoodEffect>-5</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_Dlm_PublicApology</defName>
     <durationDays>3</durationDays>
-    <stages><li><label>made to apologize in public</label><description>I said sorry. Everyone watched me say it. The thing is still broken.</description><baseMoodEffect>-4</baseMoodEffect></li></stages>
+    <stages><li><label>made to apologize in public</label><description>The council made me say sorry with the others watching. I hated every word of it.</description><baseMoodEffect>-4</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_Dlm_Compensated</defName>
     <durationDays>4</durationDays>
-    <stages><li><label>compensated for my loss</label><description>Silver can't replace it. Still, someone noticed it mattered.</description><baseMoodEffect>4</baseMoodEffect></li></stages>
+    <stages><li><label>compensated for my loss</label><description>The council paid me for what I lost. It's not the same, but they took it seriously.</description><baseMoodEffect>4</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_Dlm_PoorCopy</defName>
     <durationDays>5</durationDays>
-    <stages><li><label>a poor copy</label><description>They made me a new one. I keep it next to the pieces of the old one, so I can see exactly how bad it is.</description><baseMoodEffect>-3</baseMoodEffect></li></stages>
+    <stages><li><label>a poor copy</label><description>They made me a replacement, but it's a poor copy of the one that broke.</description><baseMoodEffect>-3</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <!-- ===================== Omens and rites ===================== -->
@@ -78,31 +78,31 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_Dlm_Omen</defName>
     <durationDays>3</durationDays>
-    <stages><li><label>a bad omen</label><description>Somebody dreamed of fire. Probably nothing. I keep sniffing the air for smoke anyway.</description><baseMoodEffect>-3</baseMoodEffect></li></stages>
+    <stages><li><label>a bad omen</label><description>One of us dreamed of fire. I keep sniffing the air for smoke.</description><baseMoodEffect>-3</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_Dlm_Superstition</defName>
     <durationDays>3</durationDays>
-    <stages><li><label>the council believes in dreams</label><description>We've survived this rock on sense and luck. Now we're running the place on someone's nightmares.</description><baseMoodEffect>-3</baseMoodEffect></li></stages>
+    <stages><li><label>the council believes in dreams</label><description>The council is making decisions based on a bad dream. I don't like it.</description><baseMoodEffect>-3</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_Dlm_GoodLaugh</defName>
     <durationDays>2</durationDays>
-    <stages><li><label>a good laugh</label><description>Somebody made a fool of themselves in front of everyone. I needed that.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
+    <stages><li><label>a good laugh</label><description>One of the others made a complete fool of themselves at dinner. I laughed until I cried.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_Dlm_Rite</defName>
     <durationDays>3</durationDays>
-    <stages><li><label>burned our fears</label><description>We wrote our fears on scraps of wood and threw them in the fire. It felt ridiculous. I slept fine.</description><baseMoodEffect>4</baseMoodEffect></li></stages>
+    <stages><li><label>burned our fears</label><description>We wrote our fears on scraps of wood and threw them in the fire. I slept well afterward.</description><baseMoodEffect>4</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_Dlm_Hushed</defName>
     <durationDays>4</durationDays>
-    <stages><li><label>told to keep quiet</label><description>I saw what's coming. The council would rather not hear about it.</description><baseMoodEffect>-4</baseMoodEffect></li></stages>
+    <stages><li><label>told to keep quiet</label><description>I know what I saw, and the council told me to keep it to myself.</description><baseMoodEffect>-4</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <!-- ===================== Old debts ===================== -->
@@ -110,13 +110,13 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_Dlm_DebtRepaid</defName>
     <durationDays>6</durationDays>
-    <stages><li><label>repaid an old kindness</label><description>Someone was good to me when they didn't have to be. Now they know I didn't forget.</description><baseMoodEffect>5</baseMoodEffect></li></stages>
+    <stages><li><label>repaid an old kindness</label><description>I finally repaid an old kindness. They know now that I never forgot.</description><baseMoodEffect>5</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_Dlm_DebtUnpaid</defName>
     <durationDays>6</durationDays>
-    <stages><li><label>couldn't repay an old kindness</label><description>They saved my life once. Whatever I owe them, it's still owed.</description><baseMoodEffect>-5</baseMoodEffect></li></stages>
+    <stages><li><label>couldn't repay an old kindness</label><description>They saved my life once, and I never got to repay them.</description><baseMoodEffect>-5</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
@@ -130,49 +130,49 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_Dlm_Disciplined</defName>
     <durationDays>4</durationDays>
-    <stages><li><label>disciplined by the council</label><description>One mistake, and now I'm hauling stone until my arms come off.</description><baseMoodEffect>-5</baseMoodEffect></li></stages>
+    <stages><li><label>disciplined by the council</label><description>I made one mistake, and now the council has me hauling stone as punishment.</description><baseMoodEffect>-5</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_Dlm_Unguarded</defName>
     <durationDays>3</durationDays>
-    <stages><li><label>nobody's watching the gate</label><description>The night watch sleeps on duty and nothing happens about it. I'll be sleeping with one eye open.</description><baseMoodEffect>-3</baseMoodEffect></li></stages>
+    <stages><li><label>nobody's watching the gate</label><description>The night watch sleeps on duty, and the council does nothing about it.</description><baseMoodEffect>-3</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_Dlm_InCharge</defName>
     <durationDays>6</durationDays>
-    <stages><li><label>put in charge</label><description>The council trusts me with something. I intend to be unbearable about it.</description><baseMoodEffect>5</baseMoodEffect></li></stages>
+    <stages><li><label>put in charge</label><description>The council put me in charge. I won't let them down.</description><baseMoodEffect>5</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_Dlm_BossedAround</defName>
     <durationDays>4</durationDays>
-    <stages><li><label>being bossed around</label><description>Give some people a little authority and they grow three sizes. Mostly in the mouth.</description><baseMoodEffect>-4</baseMoodEffect></li></stages>
+    <stages><li><label>being bossed around</label><description>Ever since the council put one of them in charge, I've been ordered around all day.</description><baseMoodEffect>-4</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_Dlm_Titled</defName>
     <durationDays>10</durationDays>
-    <stages><li><label>I have a title now</label><description>Officially important. I've started walking differently, and people have noticed.</description><baseMoodEffect>8</baseMoodEffect></li></stages>
+    <stages><li><label>I have a title now</label><description>The council gave me a title. I like the sound of it.</description><baseMoodEffect>8</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_Dlm_Envious</defName>
     <durationDays>5</durationDays>
-    <stages><li><label>someone got a title</label><description>Same mud, same raiders, same rations. But now one of us gets called by a title, and it isn't me.</description><baseMoodEffect>-4</baseMoodEffect></li></stages>
+    <stages><li><label>someone got a title</label><description>One of us got a title from the council. I work just as hard as they do.</description><baseMoodEffect>-4</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_Dlm_Snubbed</defName>
     <durationDays>6</durationDays>
-    <stages><li><label>refused a seat at the table</label><description>I offered to help run this place. They said no. Fine. I'll be watching how they do it.</description><baseMoodEffect>-6</baseMoodEffect></li></stages>
+    <stages><li><label>refused a seat at the table</label><description>I offered to help run the colony, and the council turned me down.</description><baseMoodEffect>-6</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_Dlm_LongMeeting</defName>
     <durationDays>2</durationDays>
-    <stages><li><label>sat through a council meeting</label><description>Four hours. Latrines. I've been in raids that were more fun.</description><baseMoodEffect>-2</baseMoodEffect></li></stages>
+    <stages><li><label>sat through a council meeting</label><description>The council meeting dragged on for hours. My legs went numb.</description><baseMoodEffect>-2</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <!-- ===================== Art, music, fists ===================== -->
@@ -180,37 +180,37 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_Dlm_ArtDestroyed</defName>
     <durationDays>5</durationDays>
-    <stages><li><label>they smashed my work</label><description>Art is supposed to provoke a reaction. I didn't expect the reaction to be a hammer.</description><baseMoodEffect>-6</baseMoodEffect></li></stages>
+    <stages><li><label>they smashed my work</label><description>They took a hammer to my work. All those hours, gone.</description><baseMoodEffect>-6</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_Dlm_Mocked</defName>
     <durationDays>6</durationDays>
-    <stages><li><label>my face is a joke</label><description>Every meal, there it is, grinning at me with my own crooked teeth.</description><baseMoodEffect>-6</baseMoodEffect></li></stages>
+    <stages><li><label>my face is a joke</label><description>That ugly likeness of me hangs where we eat. I have to look at it every meal.</description><baseMoodEffect>-6</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_Dlm_Flattered</defName>
     <durationDays>4</durationDays>
-    <stages><li><label>a flattering likeness</label><description>They carved me heroic. My chin has never been that chin. I love it.</description><baseMoodEffect>4</baseMoodEffect></li></stages>
+    <stages><li><label>a flattering likeness</label><description>The likeness they made of me is far better looking than I am. I love it.</description><baseMoodEffect>4</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_Dlm_Silenced</defName>
     <durationDays>5</durationDays>
-    <stages><li><label>my music was banned</label><description>Silence at night, by order of the council. Silence, and snoring, and whatever's howling out past the walls.</description><baseMoodEffect>-5</baseMoodEffect></li></stages>
+    <stages><li><label>my music was banned</label><description>The council banned my music at night. Now all I hear is snoring and the wind.</description><baseMoodEffect>-5</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_Dlm_GoodFight</defName>
     <durationDays>2</durationDays>
-    <stages><li><label>watched a good fight</label><description>Blood, a loose tooth, a bit of crying at the end. Best evening in weeks.</description><baseMoodEffect>4</baseMoodEffect></li></stages>
+    <stages><li><label>watched a good fight</label><description>We watched two of them settle it with their fists. Best evening in weeks.</description><baseMoodEffect>4</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_Dlm_Forbidden</defName>
     <durationDays>4</durationDays>
-    <stages><li><label>the council stopped the fight</label><description>There was a proper way to settle it, and the council took it away. Now it'll get settled the improper way.</description><baseMoodEffect>-4</baseMoodEffect></li></stages>
+    <stages><li><label>the council stopped the fight</label><description>The council stopped the fight before it started. Now it'll never be settled.</description><baseMoodEffect>-4</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <!-- ===================== Old sins ===================== -->
@@ -218,13 +218,13 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_Dlm_Atoned</defName>
     <durationDays>5</durationDays>
-    <stages><li><label>took what was coming</label><description>I did something terrible once. Paying for it, a little at a time, helps more than I thought it would.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
+    <stages><li><label>took what was coming</label><description>I did something terrible once. Now I'm paying for it, and I'm glad to.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_Dlm_Reckoning</defName>
     <durationDays>5</durationDays>
-    <stages><li><label>settled an old score</label><description>Years I've carried that. Today I put some of it down, on their face.</description><baseMoodEffect>5</baseMoodEffect></li></stages>
+    <stages><li><label>settled an old score</label><description>I've carried that grudge for years. Today I finally hit them for it.</description><baseMoodEffect>5</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef>
@@ -233,7 +233,7 @@
     <durationDays>15</durationDays>
     <stackLimit>3</stackLimit>
     <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
-    <stages><li><label>used to be a raider</label><description>They burned someone's home once. Now they pass me the salt at dinner.</description><baseMoodEffect>-2</baseMoodEffect><baseOpinionOffset>-15</baseOpinionOffset></li></stages>
+    <stages><li><label>used to be a raider</label><description>They used to raid settlements like ours. I don't trust them.</description><baseMoodEffect>-2</baseMoodEffect><baseOpinionOffset>-15</baseOpinionOffset></li></stages>
   </ThoughtDef>
 
 </Defs>

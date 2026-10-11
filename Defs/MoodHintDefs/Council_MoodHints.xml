@@ -43,7 +43,7 @@
   <ColonyCouncil.MoodHintDef>
     <defName>Council_Mood_Comfort</defName>
     <workers><li>ThoughtWorker_NeedComfort</li></workers>
-    <fix>Give them comfortable places to sit and sleep: chairs or armchairs at tables and workbenches, and better beds. Higher quality is comfier.</fix>
+    <fix>Give them comfortable places to sit and sleep: chairs or armchairs at tables and workbenches, and better beds. Better quality furniture is more comfortable.</fix>
     <keep>Comfortable chairs and beds keep this up.</keep>
     <article>Council_Alm_2_22_CheapUpgrades</article>
   </ColonyCouncil.MoodHintDef>
@@ -64,7 +64,7 @@
   <ColonyCouncil.MoodHintDef>
     <defName>Council_Mood_RoomSize</defName>
     <workers><li>ThoughtWorker_NeedRoomSize</li></workers>
-    <fix>Cramped: make the rooms where they spend their time bigger, or take out furniture that crowds them.</fix>
+    <fix>Make the rooms where they spend their time bigger, or take out furniture that crowds them.</fix>
     <article>Council_Alm_2_03_Space</article>
   </ColonyCouncil.MoodHintDef>
 
@@ -125,7 +125,7 @@
   <ColonyCouncil.MoodHintDef>
     <defName>Council_Mood_Event</defName>
     <workers><li>ThoughtWorker_GameCondition</li><li>ThoughtWorker_PsychicDrone</li><li>ThoughtWorker_ToxicFallout</li><li>ThoughtWorker_NoxiousHaze</li></workers>
-    <fix>Something in the world is pressing on them. It ends when the event does; until then soften it with good meals, recreation and rest.</fix>
+    <fix>A world event is weighing on them. It ends when the event does; until then, soften it with good meals, recreation and rest.</fix>
     <article>Council_Alm_3_16_ToxicFallout</article>
   </ColonyCouncil.MoodHintDef>
 
@@ -141,7 +141,7 @@
     <defName>Council_Mood_Bedroom</defName>
     <thoughts><li>SleptInBedroom</li></thoughts>
     <fix>Improve their bedroom: more space, cleaner, better bed and furniture, some art.</fix>
-    <keep>A good bedroom pays off every night. Keep it clean.</keep>
+    <keep>Keep their bedroom clean. The bonus comes back every night they sleep there.</keep>
     <article>Council_Alm_9_01_Bedroom</article>
     <signal>Council_Adv_Beds</signal>
   </ColonyCouncil.MoodHintDef>
@@ -255,7 +255,7 @@
     <defName>Council_Mood_DiningRoom</defName>
     <thoughts><li>AteInImpressiveDiningRoom</li></thoughts>
     <fix>Make the dining room more impressive: bigger, cleaner, better tables and chairs, art.</fix>
-    <keep>A fine dining room lifts every meal. Keep it clean.</keep>
+    <keep>Keep the dining room clean. The bonus applies to every meal eaten there.</keep>
     <article>Council_Alm_9_03_DiningRoom</article>
   </ColonyCouncil.MoodHintDef>
 
@@ -369,7 +369,7 @@
   <ColonyCouncil.MoodHintDef>
     <defName>Council_Mood_Together</defName>
     <thoughts><li>AttendedParty</li><li>AttendedWedding</li><li>AttendedConcert</li><li>GotMarried</li><li>HoneymoonPhase</li><li>GotSomeLovin</li><li>Nuzzled</li><li>Catharsis</li></thoughts>
-    <keep>Moments like this lift the colony. A party now and then helps everyone.</keep>
+    <keep>Throw a party now and then. Moments like this lift everyone's mood.</keep>
   </ColonyCouncil.MoodHintDef>
 
   <ColonyCouncil.MoodHintDef>
@@ -433,7 +433,7 @@
   <ColonyCouncil.MoodHintDef>
     <defName>Council_Mood_RoyalDecree</defName>
     <thoughts><li>DecreeUnmet</li></thoughts>
-    <fix>A noble made a demand. Fulfil it while there is time: their Royalty tab says what they want.</fix>
+    <fix>A noble made a demand. Fulfill it while there is time; their Royalty tab says what they want.</fix>
     <article>Council_Alm_7_01_TitlesAndHonor</article>
   </ColonyCouncil.MoodHintDef>
 
@@ -485,7 +485,7 @@
     <defName>Council_Mood_RF_Trust</defName>
     <thoughtClasses><li>Thought_CouncilTrust</li></thoughtClasses>
     <fix>Trust grows when the council listens: grant or promise their wishes, heed their petitions, answer dilemmas the way they would.</fix>
-    <keep>Keep listening to them: their wishes and petitions matter.</keep>
+    <keep>Keep listening to their wishes and petitions.</keep>
     <article>Council_Alm_C_Trust</article>
     <signal>Council_Adv_Bitter</signal>
     <councilTab>Wishes</councilTab>
@@ -503,7 +503,7 @@
   <ColonyCouncil.MoodHintDef>
     <defName>Council_Mood_RF_Wish</defName>
     <nameContains><li>council_wish</li><li>council_promise</li></nameContains>
-    <fix>Look at their wish in the Wishes tab: grant it or promise it before it runs out.</fix>
+    <fix>Check their wish in the Wishes tab, and grant or promise it before it runs out.</fix>
     <article>Council_Alm_C_Wishes</article>
     <councilTab>Wishes</councilTab>
   </ColonyCouncil.MoodHintDef>
@@ -520,7 +520,7 @@
     <defName>Council_Mood_RF_Ties</defName>
     <workers><li>ThoughtWorker_SocialTie</li></workers>
     <nameContains><li>council_tie_</li><li>council_soc</li></nameContains>
-    <fix>Friends, rivals and mentors: see their bonds. Keep rivals apart and friends together.</fix>
+    <fix>This comes from their friends, rivals or mentors; see their bonds. Keep rivals apart and friends together.</fix>
     <keep>Keep friends working and eating together.</keep>
     <article>Council_Alm_C_Social</article>
     <councilTab>Bonds</councilTab>
@@ -563,7 +563,7 @@
     <defName>Council_Mood_RF_Goals</defName>
     <workers><li>ThoughtWorker_GoalInReach</li></workers>
     <nameContains><li>council_asp</li><li>council_path</li><li>council_dlmgoal</li></nameContains>
-    <fix>Their life goal: help them toward it, or let it go in its own time.</fix>
+    <fix>This is about their life goal. Help them toward it, or let it go in its own time.</fix>
     <article>Council_Alm_C_Goals</article>
     <councilTab>Roster</councilTab>
   </ColonyCouncil.MoodHintDef>
@@ -578,7 +578,7 @@
   <ColonyCouncil.MoodHintDef>
     <defName>Council_Mood_RF_Heirloom</defName>
     <workers><li>ThoughtWorker_Heirloom</li></workers>
-    <fix>Their keepsake: keep it safe, or return it if it was lost.</fix>
+    <fix>This is about their keepsake. Keep it safe, or return it if it was lost.</fix>
   </ColonyCouncil.MoodHintDef>
 
   <ColonyCouncil.MoodHintDef>
@@ -640,7 +640,7 @@
   <ColonyCouncil.MoodHintDef>
     <defName>Council_Mood_RF_Traditions</defName>
     <thoughts><li>Council_TraditionKept</li><li>Council_TraditionBroken</li></thoughts>
-    <fix>A tradition was broken. Keep it next time: people expect it now.</fix>
+    <fix>A tradition was broken. Keep it next time, since people expect it now.</fix>
     <keep>Keeping the colony's traditions matters to them.</keep>
     <article>Council_Alm_C_Traditions</article>
   </ColonyCouncil.MoodHintDef>
@@ -657,7 +657,7 @@
     <defName>Council_Mood_RF_Farewells</defName>
     <thoughts><li>Council_EulogyHeard</li><li>Council_GaveEulogy</li><li>Council_LaidToRest</li><li>Council_FriendQuit</li></thoughts>
     <fix>A farewell weighs on them. It fades; time with their other friends helps.</fix>
-    <keep>A proper farewell helps the living as much as the dead.</keep>
+    <keep>A proper farewell helps them grieve.</keep>
     <article>Council_Alm_C_Secrets</article>
   </ColonyCouncil.MoodHintDef>
 
@@ -689,8 +689,8 @@
   <ColonyCouncil.MoodHintDef>
     <defName>Council_Mood_RF_Events</defName>
     <nameContains><li>council_evt_</li></nameContains>
-    <fix>Something that happened out in the world. It fades on its own; a good evening, a fine meal or time with friends helps in the meantime.</fix>
-    <keep>Something good that happened out in the world. Enjoy it while it lasts.</keep>
+    <fix>An event out in the world. It fades on its own; a good evening, a fine meal or time with friends helps in the meantime.</fix>
+    <keep>A happy event out in the world. It fades on its own.</keep>
     <article>Council_Alm_C_WorldEvents</article>
     <priority>-50</priority>
   </ColonyCouncil.MoodHintDef>
@@ -732,7 +732,7 @@
   <ColonyCouncil.MoodHintDef>
     <defName>Council_Mood_RF_EvtTribute</defName>
     <thoughts><li>Council_Evt_PaidTribute</li></thoughts>
-    <fix>The colony paid tribute, and it stings. A stronger defence makes the next demand easier to refuse.</fix>
+    <fix>The colony paid tribute, and it stings. Stronger defenses make the next demand easier to refuse.</fix>
     <signal>Council_Adv_Defense</signal>
   </ColonyCouncil.MoodHintDef>
 </Defs>

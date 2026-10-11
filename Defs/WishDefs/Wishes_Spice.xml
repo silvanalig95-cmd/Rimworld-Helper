@@ -37,9 +37,9 @@
     </triggers>
     <request>
       <plain>
-        <li>{OTHER_nameDef} came here to kill us. We patched them up and we feed them three times a day. I don't understand it.</li>
+        <li>{OTHER_nameDef} came here to kill us, and now we feed {OTHER_objective} three times a day. I don't understand it.</li>
         <li>Every meal {OTHER_nameDef} eats is a meal one of us doesn't. End it.</li>
-        <li>[trigger:raid] The blood's still drying out there, and the one who spilled it is sleeping in our bed. In our cell. Whatever.</li>
+        <li>[trigger:raid] The blood's still drying out there, and the one who spilled it is sleeping in our cell.</li>
         <li>[trigger:death] We buried one of ours today. {OTHER_nameDef}'s people did that. {OTHER_nameDef} doesn't get to keep breathing.</li>
         <li>[grieving] I keep walking past the cell. Every time, I think about who isn't here because of the one inside it.</li>
         <li>[poor] We can't feed ourselves properly, and we're feeding a raider. Do the math.</li>
@@ -48,13 +48,13 @@
         <li>I don't enjoy saying it. But {OTHER_nameDef} will come back with friends if we let them go, and someone I love will pay for it.</li>
       </warm>
       <blunt>
-        <li>Shoot {OTHER_nameDef}. Or give me the gun and I'll do it.</li>
+        <li>Execute {OTHER_nameDef}. Or hand me a knife and I'll do it.</li>
         <li>That raider in the cell? I want them gone. Not released. Gone.</li>
-        <li>[trait:Bloodlust] I've been thinking about it all day. I'd make it quick. Mostly.</li>
+        <li>[trait:Bloodlust] I've been thinking about it all day. Let me be the one to do it.</li>
         <li>[trigger:raid] They came for our throats. Fair's fair.</li>
       </blunt>
       <cheerful>
-        <li>Not to be a downer, but I'd love it if {OTHER_nameDef} stopped existing! Then we could all relax!</li>
+        <li>I'd sleep a lot better with {OTHER_nameDef} gone for good! Wouldn't you?</li>
       </cheerful>
       <gloomy>
         <li>We'll either kill {OTHER_nameDef} now, or {OTHER_nameDef} will kill one of us later. I've seen how this ends.</li>
@@ -68,11 +68,11 @@
     </request>
     <thanks>
       <plain>
-        <li>It's done. I thought I'd feel better. I do, a little.</li>
+        <li>It's done. I thought I'd feel better than this.</li>
         <li>{OTHER_nameDef} won't be shooting at anyone else. Good.</li>
       </plain>
       <blunt><li>About time. Somebody hose the cell down.</li></blunt>
-      <gloomy><li>One less of them. There's always another, but one less.</li></gloomy>
+      <gloomy><li>One less of them. There'll be others.</li></gloomy>
       <cold><li>Resolved. The cell is available again.</li></cold>
     </thanks>
     <expired>
@@ -83,7 +83,7 @@
       <cold><li>A poor decision. I'll note it.</li></cold>
     </expired>
     <reminder>
-      <plain><li>{OTHER_nameDef} is still alive, by the way. Still eating. Still looking at us through the bars.</li></plain>
+      <plain><li>{OTHER_nameDef} is still alive, by the way, eating our food and watching us through the bars.</li></plain>
       <blunt><li>That raider's still breathing. Why is that raider still breathing?</li></blunt>
     </reminder>
   </ColonyCouncil.WishDef>
@@ -111,22 +111,22 @@
     <fulfilledWhen>{OTHER_nameDef} is no longer a prisoner, and still alive.</fulfilledWhen>
     <request>
       <plain>
-        <li>{OTHER_nameDef} isn't going to join us. Everyone knows it. Let them walk home.</li>
-        <li>I talk to {OTHER_nameDef} sometimes, through the bars. They have a sister. Did you know that?</li>
+        <li>{OTHER_nameDef} isn't going to join us, we all know that. Let {OTHER_objective} walk home.</li>
+        <li>I talk to {OTHER_nameDef} sometimes, through the bars. There's a sister waiting for {OTHER_objective} at home.</li>
         <li>We're not raiders. Let's stop acting like it. Let {OTHER_nameDef} go.</li>
         <li>[child] I'm not much older than {OTHER_nameDef}. If it were me in there, I'd want someone to say something.</li>
-        <li>[winter] If we let {OTHER_nameDef} go now, they might not make it home through the snow. So soon, then. Before it gets worse.</li>
+        <li>[winter] If we wait much longer, {OTHER_nameDef} won't make it home through the snow. Let {OTHER_objective} go soon.</li>
       </plain>
       <warm>
-        <li>Whatever {OTHER_nameDef} did, they've paid for it. Please. Open the door.</li>
+        <li>Whatever {OTHER_nameDef} did, {OTHER_pronoun}'s paid for it by now. Please, open the door.</li>
         <li>I know what they came here to do. I also know what it's like to have nowhere to go. Let {OTHER_nameDef} go home.</li>
-        <li>[trait:Kind] Mercy costs us nothing. Well, a little. It's worth a little.</li>
+        <li>[trait:Kind] Letting one prisoner go costs us very little. I think it's worth it.</li>
       </warm>
       <blunt>
         <li>Either recruit {OTHER_nameDef} or let them out. This in-between is cruel and it's costing us rice.</li>
       </blunt>
       <cheerful>
-        <li>Let's set {OTHER_nameDef} free! Who knows, maybe they'll tell their friends we're nice and stop shooting at us!</li>
+        <li>Let's set {OTHER_nameDef} free! Maybe {OTHER_pronoun}'ll tell {OTHER_possessive} friends we're not so bad.</li>
       </cheerful>
       <gloomy>
         <li>Keeping someone in a cage until they rot. Is that who we are now? Maybe it is.</li>
@@ -138,14 +138,14 @@
     <thanks>
       <plain>
         <li>{OTHER_nameDef} looked back once, on the way out. I think that meant something.</li>
-        <li>Good. We're still decent people. I was starting to wonder.</li>
+        <li>Good. We're still decent people.</li>
       </plain>
-      <warm><li>Thank you. Truly. That's the colony I want to live in.</li></warm>
-      <cold><li>Acceptable. Their faction will note it.</li></cold>
+      <warm><li>Thank you. That's the colony I want to live in.</li></warm>
+      <cold><li>Good. Their faction will take note.</li></cold>
     </thanks>
     <expired>
       <plain>
-        <li>So {OTHER_nameDef} stays in the cage. I'll keep bringing them extra bread, then.</li>
+        <li>So {OTHER_nameDef} stays in the cell. I'll keep bringing {OTHER_objective} extra bread.</li>
       </plain>
       <warm><li>I hope someone shows us more mercy than we showed {OTHER_nameDef}.</li></warm>
     </expired>
@@ -173,29 +173,29 @@
     <request>
       <plain>
         <li>When was the last time anyone here laughed? Not counting the time the boomalope exploded.</li>
-        <li>One evening. Some food, something to drink, nobody on watch except the turrets. That's all.</li>
-        <li>We survive all day. Let's spend one night living.</li>
+        <li>One evening with some food and something to drink, and no work. That's all I'm asking.</li>
+        <li>We work from dawn to dark every day. Let's take one night off together.</li>
         <li>[afterraid] We're alive. That's worth a drink.</li>
         <li>[winter] It's dark at four and colder than a grave. Let's light a fire and make some noise.</li>
-        <li>[lowmood] Everybody's walking around like it's a funeral. Nobody died. Let's prove it.</li>
-        <li>[lowtech] A fire, a drum, a pot of something. People have been doing this since before there were people.</li>
+        <li>[lowmood] Everybody's walking around like it's a funeral. A party would shake us out of it.</li>
+        <li>[lowtech] A fire, a drum and a pot of something hot. That's all a party needs.</li>
       </plain>
       <warm>
         <li>I want to see everyone in one room, not working, not bleeding. Just together for a bit.</li>
-        <li>[newcomer] Nobody's really welcomed me yet. A party would help. Not for me! For everyone. But also for me.</li>
+        <li>[newcomer] I'm still getting to know people here. A party would help with that.</li>
       </warm>
       <blunt>
-        <li>We need a party before somebody snaps and stabs somebody. I'm not saying who.</li>
+        <li>We need a party before somebody snaps and stabs somebody.</li>
         <li>Party. Tonight. I'm not asking twice.</li>
       </blunt>
       <cheerful>
-        <li>Party! Party party party! Okay, I'm calm. But a party!</li>
-        <li>I've been saving a joke for weeks. It needs an audience and a little alcohol!</li>
-        <li>[trait:Industrious|trait:HardWorker] I'll even work double tomorrow to make up for it! Probably!</li>
+        <li>We should have a party! I'll help set everything up.</li>
+        <li>I've been saving a joke for weeks. It needs an audience and a few drinks!</li>
+        <li>[trait:Industrious|trait:HardWorker] I'll work double tomorrow to make up for it!</li>
       </cheerful>
       <gloomy>
         <li>We'll all be dead eventually. Might as well have one nice evening first.</li>
-        <li>I'm not a party person. But I'm even less of a misery-every-day person. So.</li>
+        <li>I'm not a party person. But one night off from all this would do me good.</li>
       </gloomy>
       <cold>
         <li>Morale is low enough to risk breakdowns. A gathering is the cheapest fix.</li>
@@ -206,13 +206,13 @@
         <li>That was a good night. We should do that more than once a year.</li>
         <li>My head hurts. Worth it.</li>
       </plain>
-      <cheerful><li>Best. Night. Ever. When's the next one?</li></cheerful>
-      <gloomy><li>For one evening I forgot where we are. That's rare.</li></gloomy>
+      <cheerful><li>Best night we've had here! When's the next one?</li></cheerful>
+      <gloomy><li>For one evening, nothing went wrong.</li></gloomy>
       <cold><li>Morale has recovered. Effective.</li></cold>
     </thanks>
     <expired>
-      <plain><li>No party, then. Back to work. Always back to work.</li></plain>
-      <cheerful><li>Okay, no party. I'll just... dance alone. In my room. It's fine.</li></cheerful>
+      <plain><li>Back to work. It's always back to work.</li></plain>
+      <cheerful><li>Oh well. I'll dance in my room instead.</li></cheerful>
     </expired>
   </ColonyCouncil.WishDef>
 
@@ -252,14 +252,14 @@
       </plain>
       <warm>
         <li>{OTHER_nameDef} would come for any one of us. You know they would. Please.</li>
-        <li>I don't care what it costs. Silver, guns, a season's harvest. Bring {OTHER_nameDef} home.</li>
+        <li>I don't care what it costs. Silver, weapons, a season's harvest. Bring {OTHER_nameDef} home.</li>
       </warm>
       <blunt>
         <li>We arm up, we walk to {SUBJECT}'s camp, we take {OTHER_nameDef} back. Simple.</li>
-        <li>Nobody takes one of ours. Nobody.</li>
+        <li>They don't get to keep one of ours.</li>
       </blunt>
       <cheerful>
-        <li>A rescue mission! Like in the stories! Except real, and scary, and we have to win. But still!</li>
+        <li>A rescue mission, like in the stories! Except this one's real, so we'd better win.</li>
       </cheerful>
       <gloomy>
         <li>Every day we wait, {SUBJECT} has another day to sell {OTHER_nameDef}, or worse.</li>
@@ -275,8 +275,8 @@
         <li>We went and got them. We actually went and got them.</li>
       </plain>
       <warm><li>Welcome home, {OTHER_nameDef}. Your bed's still made.</li></warm>
-      <blunt><li>Told you. Nobody takes one of ours.</li></blunt>
-      <cheerful><li>{OTHER_nameDef}! YOU'RE BACK! Somebody get a cake! Do we have cake? Get rice!</li></cheerful>
+      <blunt><li>Told you we'd bring them back.</li></blunt>
+      <cheerful><li>{OTHER_nameDef}, you're back! Somebody cook a proper meal tonight.</li></cheerful>
       <cold><li>Asset recovered. Well done.</li></cold>
     </thanks>
     <expired>
@@ -310,23 +310,23 @@
     <request>
       <plain>
         <li>There's meat walking around out there on four legs, and I'm in here sorting rocks.</li>
-        <li>Let me take the rifle out for an afternoon. I'll come back with dinner.</li>
+        <li>Give me an afternoon out with a weapon. I'll come back with dinner.</li>
         <li>[winter] Food's running thin, and the deer are fat. Let me out.</li>
         <li>[lowtech] A bow, a quiet morning and something worth eating. I miss that.</li>
         <li>[outside] I just saw tracks by the treeline. Fresh ones.</li>
       </plain>
       <warm>
-        <li>I'd love to bring back something good for the cooks. Everyone's been eating so plain.</li>
+        <li>I'd love to bring back some fresh meat for the cooks. We've been eating so plain lately.</li>
       </warm>
       <blunt>
         <li>I need to shoot something. Better an animal than one of you.</li>
-        <li>[trait:Bloodlust] My trigger finger itches. Find me a muffalo before it finds one of you.</li>
+        <li>[trait:Bloodlust] I'm itching to kill something. Find me a muffalo before it's one of you.</li>
       </blunt>
       <cheerful>
-        <li>Hunting trip! Fresh air, sunshine, and a very surprised deer!</li>
+        <li>A hunting trip! Fresh air, sunshine and a very surprised deer.</li>
       </cheerful>
       <gloomy>
-        <li>Out there it's just me, the wind and something that doesn't know it's about to die. Peaceful, in a way.</li>
+        <li>Out there it's just me, the wind and an animal that doesn't know it's about to die. Peaceful, in a way.</li>
       </gloomy>
       <cold>
         <li>The local wildlife is an unharvested food stock. I'm qualified to harvest it.</li>
@@ -338,9 +338,9 @@
         <li>That's the best afternoon I've had in a season.</li>
       </plain>
       <blunt><li>Got it. Now somebody else can drag it back.</li></blunt>
-      <cheerful><li>I got one! I GOT ONE! Sorry, little guy. Thank you, little guy!</li></cheerful>
+      <cheerful><li>I got one! Sorry, little guy, and thank you.</li></cheerful>
       <gloomy><li>It didn't suffer. That's more than most of us will get.</li></gloomy>
-      <cold><li>Kill confirmed. Meat to the freezer.</li></cold>
+      <cold><li>Kill confirmed. The meat's in storage.</li></cold>
     </thanks>
     <expired>
       <plain><li>Fine. The animals live. I'll go back to whatever this is.</li></plain>

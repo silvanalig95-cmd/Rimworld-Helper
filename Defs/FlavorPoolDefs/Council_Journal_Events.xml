@@ -12,15 +12,15 @@
     <defName>Council_Journal_Evt_OldFriend</defName>
     <lines>
       <plain>
-        <li>[opt0] {X_nameDef} turned up today. Of all the people. The council let {X_objective} stay, and we talked until the fire went out.</li>
-        <li>[opt0] Someone from the old days is here: {X_nameDef}. I'd forgotten how it feels to be known without explaining anything.</li>
-        <li>[opt1] {X_nameDef} found me after all these years, and the council sent {X_objective} away. I walked {X_objective} to the edge of the fields. Neither of us said much.</li>
+        <li>[opt0] {X_nameDef} turned up at the gate today, after all these years. The council let {X_objective} stay, and we talked until well past midnight.</li>
+        <li>[opt0] {X_nameDef} knew me before all this. I didn't have to explain a single thing to {X_objective} all evening. I'd forgotten what that's like.</li>
+        <li>[opt1] {X_nameDef} found me after all these years, and the council sent {X_objective} away. I walked {X_objective} out past the fields and gave {X_objective} what food I had on me.</li>
       </plain>
-      <warm><li>[opt0] {X_nameDef} is here, and safe, and staying. Whatever we were before, we're neighbours now.</li></warm>
-      <blunt><li>[opt1] They sent {X_nameDef} packing. Fine. I'll remember it.</li></blunt>
-      <cheerful><li>[opt0] {X_nameDef}, here, staying! I'm going to tell every story about {X_objective}, and {X_nameDef} is going to hate it.</li></cheerful>
-      <gloomy><li>[opt1] The past came to the door, and we shut it. Maybe that's best. It doesn't feel best.</li></gloomy>
-      <cold><li>[opt0] {X_nameDef} joined. Capable, reliable. I can vouch for that much.</li></cold>
+      <warm><li>[opt0] {X_nameDef} is staying. I put an extra blanket on {X_possessive} bed while {X_pronoun} was still at supper.</li></warm>
+      <blunt><li>[opt1] They turned {X_nameDef} away. I'd have trusted {X_objective} over most people here.</li></blunt>
+      <cheerful><li>[opt0] {X_nameDef} is staying! Years of old stories about {X_objective}, and the people here haven't heard a single one yet.</li></cheerful>
+      <gloomy><li>[opt1] The council turned away an old friend of mine today. There aren't many of those left.</li></gloomy>
+      <cold><li>[opt0] {X_nameDef} joined us. I know {X_possessive} habits and {X_possessive} weaknesses, which makes {X_objective} easy to work with.</li></cold>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
 
@@ -28,15 +28,15 @@
     <defName>Council_Journal_Evt_Kin</defName>
     <lines>
       <plain>
-        <li>[opt0] My {RELATION} found me. {X_nameDef}, here, alive, at the table across from me. I keep looking up to check.</li>
-        <li>[opt0] I thought I'd never see family again. Today {X_nameDef} walked in out of nowhere. I don't know what I did to deserve this.</li>
-        <li>[opt1] My {RELATION} came all this way, and the council said no. {X_nameDef} is out there on the road again. I keep looking at the horizon.</li>
+        <li>[opt0] My {RELATION} found me. {X_nameDef} sat across from me at supper, alive, eating our stew, and I kept looking up to check {X_pronoun} was still there.</li>
+        <li>[opt0] I'd stopped hoping to see any of my family again. Then {X_nameDef} came up the road with a pack on {X_possessive} back, thinner and grayer and still the same.</li>
+        <li>[opt1] My {RELATION} came all this way, and the council said no. I packed {X_nameDef} food for a week and watched {X_objective} go.</li>
       </plain>
-      <warm><li>[opt0] Family. Here. I'll never take a single ordinary day with {X_nameDef} for granted.</li></warm>
+      <warm><li>[opt0] {X_nameDef} and I shelled beans together this afternoon, the way we used to. I didn't want it to end.</li></warm>
       <blunt><li>[opt1] They turned away my {RELATION}. I won't forget who voted for that.</li></blunt>
-      <cheerful><li>[opt0] {X_nameDef} is here! My {RELATION}! Everyone has to meet {X_objective}. Everyone.</li></cheerful>
-      <gloomy><li>[opt1] Found and lost again, in the same day. That's about how my luck runs.</li></gloomy>
-      <cold><li>[opt0] {X_nameDef}, my {RELATION}, has joined the colony. It is... good. Very good.</li></cold>
+      <cheerful><li>[opt0] My {RELATION} is here! I dragged {X_nameDef} around to meet every single person before {X_pronoun} even had a chance to sit down.</li></cheerful>
+      <gloomy><li>[opt1] Family came to the gate, and we sent them away again. I didn't go to supper.</li></gloomy>
+      <cold><li>[opt0] {X_nameDef}, my {RELATION}, has joined the colony. Blood relatives are predictable. I can work with that.</li></cold>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
 
@@ -44,12 +44,13 @@
     <defName>Council_Journal_Evt_Flame</defName>
     <lines>
       <plain>
-        <li>[opt0] {X_nameDef} lives here now. We were something once. I don't know what we are now. I suppose we'll find out.</li>
-        <li>[opt1] {X_nameDef} came, and left again. Probably for the best. Probably.</li>
+        <li>[opt0] {X_nameDef} lives here now. We were together once, years ago. Today we passed the salt across the table like strangers.</li>
+        <li>[opt1] The council sent {X_nameDef} on. I didn't argue. I did stand at the gate until {X_pronoun} was out of sight.</li>
+        <li>[opt0] {X_nameDef} sat at the far end of the table tonight. I could still tell what {X_pronoun} was thinking.</li>
       </plain>
-      <warm><li>[opt0] It's good to see {X_nameDef} safe, whatever else we were or weren't.</li></warm>
-      <blunt><li>[opt0] My ex lives here now. Great. Wonderful. Everything's fine.</li></blunt>
-      <gloomy><li>[opt1] Another door closed. I'm getting good at hearing them shut.</li></gloomy>
+      <warm><li>[opt0] Whatever we were to each other, I'm glad {X_nameDef} has a roof over {X_possessive} head tonight.</li></warm>
+      <blunt><li>[opt0] My old flame lives here now. I'll be eating at the other end of the table.</li></blunt>
+      <gloomy><li>[opt1] They sent my old love back out on the road. I keep thinking about the weather out there.</li></gloomy>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
 
@@ -57,12 +58,12 @@
     <defName>Council_Journal_Evt_Prodigal</defName>
     <lines>
       <plain>
-        <li>[opt0] {X_nameDef} is back. I was the first to see {X_objective} at the edge of the fields. The council let {X_objective} in, and I'm glad.</li>
+        <li>[opt0] {X_nameDef} is back. I saw {X_objective} first, standing out in the fields with {X_possessive} pack, not sure whether to come closer. The council let {X_objective} in. I'm glad.</li>
         <li>[opt1] {X_nameDef} came back and asked to come home. The council said no. I watched {X_objective} go, for the second time.</li>
       </plain>
-      <warm><li>[opt0] Everyone deserves a way home. {X_nameDef} found it.</li></warm>
+      <warm><li>[opt0] {X_nameDef}'s old bed was still there. I made it up with a clean blanket before {X_pronoun} came in.</li></warm>
       <blunt><li>[opt0] {X_nameDef} is back. We'll see if {X_pronoun} has learned anything.</li></blunt>
-      <cold><li>[opt1] {X_nameDef} made a choice when {X_pronoun} left. The council made one today.</li></cold>
+      <cold><li>[opt1] {X_nameDef} left once already. I saw no reason to take that risk again, and neither did the council.</li></cold>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
 
@@ -70,14 +71,14 @@
     <defName>Council_Journal_Evt_Debt</defName>
     <lines>
       <plain>
-        <li>[opt0] The colony paid my old debt. Every coin of it. I'll pay them back, somehow, some way.</li>
-        <li>[opt1,safe] I talked my way out of an old debt today. Still got it, apparently.</li>
-        <li>[opt1,risk] I tried to talk my way out of an old debt, and it didn't work. They'll be back. My fault.</li>
-        <li>[opt2,safe] Someone from my old life came for money I owed. The council said no, and they just... left. I keep waiting for the other shoe.</li>
-        <li>[opt2,risk] The council refused to pay my old debt, and the collector promised to come back. I believe them.</li>
+        <li>[opt0] The colony paid my old debt, every coin of it. I've started keeping a tally of what I owe them now.</li>
+        <li>[opt1,safe] I talked the collector out of an old debt today. It took most of the afternoon and every trick I used to know.</li>
+        <li>[opt1,risk] I tried to talk the collector down and made it worse. They'll be back, with friends. That's on me.</li>
+        <li>[opt2,safe] The council refused to pay my old debt, and the collector just left. I keep checking the road.</li>
+        <li>[opt2,risk] The collector left swearing to come back with help. I've started sleeping in my boots.</li>
       </plain>
-      <cheerful><li>[opt1,safe] Talked a debt collector into forgiving everything! And laughing! I'm a genius.</li></cheerful>
-      <gloomy><li>[opt2,risk] You can't outrun what you owe. Apparently you can't out-settle it either.</li></gloomy>
+      <cheerful><li>[opt1,safe] Talked the debt collector into forgetting the whole thing! We even shook hands at the end.</li></cheerful>
+      <gloomy><li>[opt2,risk] I came all this way to get clear of that debt, and it walked right up to the gate.</li></gloomy>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
 
@@ -85,13 +86,13 @@
     <defName>Council_Journal_Evt_Bounty</defName>
     <lines>
       <plain>
-        <li>[opt0] There's a price on my head, and the colony refused to sell me. They're getting ready to fight for me. For me.</li>
-        <li>[opt1] The colony paid off the hunters. All that silver, for my old sins. I don't know how to thank anyone.</li>
-        <li>[opt2] They're handing me over. I understand. I'd have done the same, once. That's the whole problem, isn't it.</li>
+        <li>[opt0] There's a price on my head, and the council won't hand me over. They spent the afternoon getting ready to fight for me.</li>
+        <li>[opt1] The colony paid the hunters off. That silver was meant for winter, and they spent it on my old sins.</li>
+        <li>[opt2] They're handing me over. I understand why. I'd have done the same once.</li>
       </plain>
-      <warm><li>[opt0] Whatever I was, these people decided I'm one of them. I'll spend the rest of my life proving them right.</li></warm>
+      <warm><li>[opt0] They know what I did, and they're standing in front of me anyway. I'll spend the rest of my life earning that.</li></warm>
       <blunt><li>[opt2] Fine. I'll go. Don't come looking.</li></blunt>
-      <gloomy><li>[opt0] More people are going to bleed because of what I did years ago. And they chose it. That's worse, somehow.</li></gloomy>
+      <gloomy><li>[opt0] People here are going to bleed for what I did years ago, and they chose to. I'd rather they hadn't.</li></gloomy>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
 
@@ -99,11 +100,11 @@
     <defName>Council_Journal_Evt_Inheritance</defName>
     <lines>
       <plain>
-        <li>An inheritance came for me today, from someone I hadn't thought about in years. They thought about me, at the end. That's the part I can't stop thinking about.</li>
-        <li>Somebody from my old life left me something. I'll use it well. It's what they'd have wanted, I think.</li>
+        <li>An inheritance came for me today, from someone I hadn't thought about in years. They thought of me at the end, though.</li>
+        <li>Somebody from my old life left me what they had. I sorted through it all on my bed this evening, one thing at a time.</li>
       </plain>
-      <cheerful><li>I inherited things. Real things. I'm sad, and also, things.</li></cheerful>
-      <gloomy><li>Strange, to be remembered only once you're gone. I'll try to do better than that.</li></gloomy>
+      <cheerful><li>I'm sad about it, of course. But I've never inherited anything before!</li></cheerful>
+      <gloomy><li>They only thought of me at the very end. I'd have liked a word from them while they were alive.</li></gloomy>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
 
@@ -111,10 +112,10 @@
     <defName>Council_Journal_Evt_Teacher</defName>
     <lines>
       <plain>
-        <li>A letter from my old {SKILL} teacher. Three pages of advice, two of them complaints. I've already tried half of it. Annoyingly, it works.</li>
-        <li>My old teacher is still alive, still teaching, still sure I'm doing {SKILL} wrong. I've never been so happy to be told off.</li>
+        <li>Word came from my old {SKILL} teacher, with a long list of things I've always done wrong. I tried two of them this afternoon, and they work.</li>
+        <li>My old teacher is still alive and still sure I do {SKILL} the wrong way. It was good to be told off again.</li>
       </plain>
-      <warm><li>My old teacher remembered me. All these years later. I hope I'm still doing them proud.</li></warm>
+      <warm><li>My old teacher still remembers me, after all these years. I hope I've done them proud.</li></warm>
       <blunt><li>Old teacher sent advice. Some of it's even good.</li></blunt>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
@@ -123,11 +124,11 @@
     <defName>Council_Journal_Evt_GoodNews</defName>
     <lines>
       <plain>
-        <li>Good news from my old life today. I didn't realise how much I'd been bracing for the opposite.</li>
+        <li>Good news from my old life today. I hadn't realized how long I'd been bracing for bad news.</li>
         <li>[!lowtech] News from the people I left behind, and all of it good. I read it twice and then once more out loud.</li>
-        <li>[lowtech] News from the people I left behind, and all of it good. I made the traveller tell it twice.</li>
+        <li>[lowtech] News from the people I left behind, and all of it good. I made the traveler tell it twice.</li>
       </plain>
-      <cheerful><li>Good news from home! The best news! Best day in ages!</li></cheerful>
+      <cheerful><li>Good news from home! I've been grinning at everyone since breakfast.</li></cheerful>
       <gloomy><li>Good news from the old life, for once. I keep waiting for the catch.</li></gloomy>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
@@ -136,12 +137,12 @@
     <defName>Council_Journal_Evt_HomeLost</defName>
     <lines>
       <plain>
-        <li>My old home is gone. I always told myself I'd go back one day. There's no day now.</li>
-        <li>The place I came from doesn't exist any more. This colony is all the home I have left. I'd better start acting like it.</li>
+        <li>My old home is gone. I always told myself I'd go back one day.</li>
+        <li>The place I came from doesn't exist anymore. I spent the evening trying to remember the names of the streets.</li>
       </plain>
-      <warm><li>I lost my old home today. I still have this one, and these people. I'm holding on to that.</li></warm>
-      <gloomy><li>Everything I came from, gone. Someday this place will be a name nobody remembers too.</li></gloomy>
-      <cold><li>My place of origin has been destroyed. I find I care more than I expected.</li></cold>
+      <warm><li>My old home is gone. I sat with the others at supper tonight and was very glad of them.</li></warm>
+      <gloomy><li>Everything I came from is gone. One day this place will go the same way.</li></gloomy>
+      <cold><li>My place of origin has been destroyed. I have no reason to go back now, which simplifies things.</li></cold>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
 
@@ -149,11 +150,11 @@
     <defName>Council_Journal_Evt_Scholar</defName>
     <lines>
       <plain>
-        <li>[opt0,lowtech] A scholar stayed the night, and we talked about {TALE} until the candles gave out. I understand it twice as well, and have three times as many questions.</li>
-        <li>[opt0,!lowtech] A visiting engineer stayed the night, and we talked about {TALE} until the small hours. I understand it twice as well, and have three times as many questions.</li>
+        <li>[opt0,lowtech] A scholar stayed the night, and we talked about {TALE} until the candles gave out. My head's still full of it.</li>
+        <li>[opt0,!lowtech] A visiting engineer stayed the night. We went over {TALE} until the small hours, sketching on the lid of a crate.</li>
         <li>[opt1] A scholar asked for a bed and the council said no. I'd have liked to ask {X_objective} a few things about {TALE}.</li>
       </plain>
-      <cheerful><li>[opt0] Best conversation in years. {X_nameDef} knows everything about {TALE}, and now so do I. Nearly.</li></cheerful>
+      <cheerful><li>[opt0] Best talk I've had in years! {X_nameDef} knows more about {TALE} than anyone I've ever met.</li></cheerful>
       <cold><li>[opt0] A productive exchange with a visiting expert. The work on {TALE} has advanced considerably.</li></cold>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
@@ -162,8 +163,8 @@
     <defName>Council_Journal_Evt_Apprentice</defName>
     <lines>
       <plain>
-        <li>[opt0] I have an apprentice. {X_nameDef} walked all this way to learn {SKILL} from me. Me! I'd better be as good as the stories.</li>
-        <li>[opt1] A young one came to learn {SKILL} from me, and the council sent {X_objective} home. Maybe that's for the best. I'm no teacher. Am I?</li>
+        <li>[opt0] I have an apprentice. {X_nameDef} walked all this way to learn {SKILL} from me, because of stories {X_pronoun} heard on the road. I hope I live up to them.</li>
+        <li>[opt1] A youngster came all this way to learn {SKILL} from me, and the council sent {X_objective} home. I'd already been thinking about what to show {X_objective} first.</li>
       </plain>
       <warm><li>[opt0] {X_nameDef} has a good eye already. Give it a year, and I'll be learning from {X_objective}.</li></warm>
       <blunt><li>[opt0] New apprentice. Clumsy, keen, asks too many questions. I was exactly the same.</li></blunt>
@@ -174,11 +175,11 @@
     <defName>Council_Journal_Evt_Stray</defName>
     <lines>
       <plain>
-        <li>[opt0] A stray followed me home, and the council let it stay. It sleeps by my feet. I've decided we're friends.</li>
-        <li>[opt1] A stray followed me home, and I had to walk it back out to the fields. It sat and watched me go. I'm not thinking about it.</li>
+        <li>[opt0] A stray followed me home, and the council let it stay. It sleeps across my feet and snores.</li>
+        <li>[opt1] The council said no to the stray. I walked it back out past the fields, and it sat down there and watched me leave.</li>
       </plain>
-      <cheerful><li>[opt0] I have an animal now! It's mine! It chose me!</li></cheerful>
-      <gloomy><li>[opt1] Even the strays know when they're not wanted.</li></gloomy>
+      <cheerful><li>[opt0] The stray can stay! It follows me everywhere now, even to the latrine.</li></cheerful>
+      <gloomy><li>[opt1] The stray was still sitting out past the fields at dusk. Gone by morning.</li></gloomy>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
 
@@ -186,11 +187,11 @@
     <defName>Council_Journal_Evt_ContestWon</defName>
     <lines>
       <plain>
-        <li>{X_nameDef} came a long way to beat me at {SKILL}, and went home a long way beaten. Not bad for a day's work.</li>
-        <li>Won the {SKILL} contest against a travelling champion today, in front of everyone. I'll try to be modest about it. Tomorrow.</li>
+        <li>{X_nameDef} came a long way to beat me at {SKILL}. It was close. {X_nameDef} shook my hand at the end and asked how I'd done the last part.</li>
+        <li>Beat a traveling champion at {SKILL} today. I've been going over the last round in my head all evening.</li>
       </plain>
-      <cheerful><li>I won! Against a real champion! Someone write this down! Oh, I am writing it down.</li></cheerful>
-      <cold><li>Defeated a travelling champion at {SKILL}. Their technique had obvious flaws.</li></cold>
+      <cheerful><li>I beat a real traveling champion today! I'm still grinning.</li></cheerful>
+      <cold><li>Defeated a traveling champion at {SKILL}. Their technique had obvious flaws.</li></cold>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
 
@@ -198,11 +199,11 @@
     <defName>Council_Journal_Evt_ContestLost</defName>
     <lines>
       <plain>
-        <li>Lost the {SKILL} contest to {X_nameDef} today. Fair and square. I learned more in that hour than in a season, which is the only good thing I'm going to say about it.</li>
-        <li>{X_nameDef} beat me at {SKILL}, in front of everyone. Next time {X_pronoun} passes through, I'll be ready.</li>
+        <li>Lost to {X_nameDef} at {SKILL} today, fair and square. I watched how {X_pronoun} worked and learned more in an afternoon than I have all season.</li>
+        <li>{X_nameDef} beat me at {SKILL}. Next time {X_pronoun} passes through, I'll be ready.</li>
       </plain>
-      <blunt><li>Lost. {X_nameDef} was better. Today.</li></blunt>
-      <gloomy><li>Beaten at {SKILL} in front of the whole colony. They're all being very nice about it, which is worse.</li></gloomy>
+      <blunt><li>Lost to {X_nameDef}, fair and square. Back to practice.</li></blunt>
+      <gloomy><li>Beaten at {SKILL}. The others keep being kind about it, and I wish they'd stop.</li></gloomy>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
 
@@ -210,12 +211,12 @@
     <defName>Council_Journal_Evt_Beast</defName>
     <lines>
       <plain>
-        <li>I brought down {BEAST} today. Something out of the old stories, and now it's a story about me. My hands are still shaking.</li>
-        <li>{BEAST} is dead, and I killed it. Everyone wants to hear how. I keep telling it, and it keeps getting bigger.</li>
+        <li>I brought down {BEAST} today, the one from the old stories. I keep going out to look at the body.</li>
+        <li>{BEAST} is dead, and I killed it. I've told the story six times today. It was a lot messier than I've been making it sound.</li>
       </plain>
-      <cheerful><li>I KILLED {BEAST}! THE {BEAST}! Me! There's going to be a feast and I'm going to tell the story at it!</li></cheerful>
-      <gloomy><li>{BEAST} outlived everything that ever hunted it, until me. I thought it would feel better than this.</li></gloomy>
-      <cold><li>Killed {BEAST}. A worthy animal. A considerable amount of meat.</li></cold>
+      <cheerful><li>I killed {BEAST}! There's going to be a feast, and I get to tell the story.</li></cheerful>
+      <gloomy><li>{BEAST} outlived every hunter who went after it, until me. It looked very old up close.</li></gloomy>
+      <cold><li>Killed {BEAST}. The hide is in good condition, and there's a great deal of meat.</li></cold>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
 
@@ -223,12 +224,12 @@
     <defName>Council_Journal_Evt_Comet</defName>
     <lines>
       <plain>
-        <li>There's a comet in the sky. Everyone has a different idea what it means. I've decided it means we should all go outside more.</li>
-        <li>A comet tonight, bright enough to read by. I stood out there until my neck hurt.</li>
+        <li>There's a comet in the sky. We ate supper outside so we could look at it.</li>
+        <li>A comet tonight, bright enough to cast shadows. I stood out there until my neck hurt.</li>
       </plain>
       <cheerful><li>A comet! A good omen, obviously. Anyone who says otherwise is wrong.</li></cheerful>
-      <gloomy><li>A comet. Nothing good ever came from a sky that changes.</li></gloomy>
-      <cold><li>[!lowtech] A comet is visible. It is a ball of ice and dust. It is also, I admit, quite beautiful.</li><li>[lowtech] A star with a tail. The old ones argue about what it means. I don't think it means anything. I keep looking anyway.</li></cold>
+      <gloomy><li>A comet. My grandmother always said they come before a bad winter.</li></gloomy>
+      <cold><li>[!lowtech] A comet is visible. Ice and dust on a long orbit. The others are treating it as an omen.</li><li>[lowtech] A star with a tail. The elders argue over what it means. It means nothing, and it will be gone in a few days.</li></cold>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
 
@@ -237,10 +238,10 @@
     <lines>
       <plain>
         <li>I found a buried cache today. Somebody hid it and never came back. I wonder who they were, and what happened to them.</li>
-        <li>Dug up treasure. Actual buried treasure. I'm going to be insufferable for a while, and I've earned it.</li>
+        <li>Dug up a buried stash today, wrapped in rotten cloth. Real treasure, like in the stories. I'm going to be unbearable about it for weeks.</li>
       </plain>
-      <cheerful><li>Treasure! I found treasure! In the ground!</li></cheerful>
-      <gloomy><li>Found a cache someone buried and never came back for. Someday someone will dig up our things and wonder about us too.</li></gloomy>
+      <cheerful><li>I found treasure today, real buried treasure!</li></cheerful>
+      <gloomy><li>Found a stash somebody buried and never came back for. I doubt they meant to leave it.</li></gloomy>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
 
@@ -248,11 +249,11 @@
     <defName>Council_Journal_Evt_Deserter</defName>
     <lines>
       <plain>
-        <li>[opt0] I found a deserter from {ENEMY} today, and the council took {X_objective} in. Brave or foolish, we'll find out which.</li>
+        <li>[opt0] I found a deserter from {ENEMY} hiding in the brush today, and the council took {X_objective} in. I hope we don't regret it.</li>
         <li>[opt1] The deserter I found was sent back out into the wild. I hope {X_pronoun} finds somewhere else.</li>
         <li>[opt2] We handed the deserter back to {ENEMY}. I keep thinking about {X_possessive} face when {X_pronoun} understood.</li>
       </plain>
-      <warm><li>[opt0] {X_nameDef} ran from {ENEMY} to us. We said yes. That's the right answer, whatever comes of it.</li></warm>
+      <warm><li>[opt0] {X_nameDef} ran from {ENEMY} straight to us, and we took {X_objective} in. Whatever comes of it, I'm glad we did.</li></warm>
       <cold><li>[opt2] Returning the deserter improved relations with {ENEMY}. It was the practical choice.</li></cold>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
@@ -263,12 +264,12 @@
     <defName>Council_Journal_Evt_DeserterFound</defName>
     <lines>
       <plain>
-        <li>[opt0] {ENEMY} found me. The colony said no. They're coming anyway, and the colony is standing between us. I didn't know people did that.</li>
-        <li>[opt1] The colony bought out my service to {ENEMY}. I'm nobody's soldier now. I keep saying it out loud to see if it's true.</li>
-        <li>[opt2] They're handing me back to {ENEMY}. I knew it might come to this. I'd hoped it wouldn't.</li>
+        <li>[opt0] {ENEMY} found me, and the council wouldn't give me up. They're coming for me anyway. I've never had people stand in front of me like this.</li>
+        <li>[opt1] The colony bought out my service to {ENEMY}. I'm nobody's soldier now. I keep saying it to myself.</li>
+        <li>[opt2] The council is sending me back to {ENEMY}. I knew it might come to this.</li>
       </plain>
-      <blunt><li>[opt0] Let {ENEMY} come. I know how they fight. They don't know how we do.</li></blunt>
-      <gloomy><li>[opt2] Back to {ENEMY}. Funny. I ran a long way to end up exactly where I started.</li></gloomy>
+      <blunt><li>[opt0] Let {ENEMY} come. I know how they fight.</li></blunt>
+      <gloomy><li>[opt2] Back to {ENEMY}. All that running, and I end up where I started.</li></gloomy>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
 
@@ -276,10 +277,10 @@
     <defName>Council_Journal_Evt_ChildGrown</defName>
     <lines>
       <plain>
-        <li>[opt0] {X_nameDef} came back, the child I found by the fields all those seasons ago, and now {X_pronoun} is staying. I'm not crying. It's dusty in here.</li>
-        <li>[opt1] {X_nameDef} came back to say thank you, the lost child I found by the fields. Grown, or nearly. I didn't know how much I'd wondered what happened to {X_objective}.</li>
+        <li>[opt0] {X_nameDef} came back, the lost child I found out by the fields all those seasons ago. {X_nameDef} is taller than me now, and staying.</li>
+        <li>[opt1] {X_nameDef}, the lost child I found by the fields, came back just to say thank you. Nearly grown now. I hadn't realized how often I'd wondered about {X_objective}.</li>
       </plain>
-      <warm><li>[opt1] {X_nameDef} remembered us. Remembered me. Of all the things I've done here, that one might be the best.</li></warm>
+      <warm><li>[opt1] {X_nameDef} remembered my name after all this time. Of all the things I've done here, finding {X_objective} might be the one I'm proudest of.</li></warm>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
 
@@ -289,16 +290,16 @@
     <defName>Council_Journal_Victory</defName>
     <lines>
       <plain>
-        <li>[clean] {ENEMY} came, and we sent them running: {COUNT} of them won't be coming back, and none of ours fell. My hands only stopped shaking an hour ago.</li>
-        <li>[clean,hero] I brought down more of {ENEMY} than anyone today. People keep clapping me on the back. I keep thinking about the ones I didn't get.</li>
-        <li>[costly] We beat {ENEMY}, but we lost {DEAD}. Everyone says we won. It doesn't feel like it.</li>
-        <li>[costly,hero] They say I fought well today. I'd trade every one of them for {DEAD}.</li>
-        <li>[beasts,clean] The beasts came, and we put them down, every one. Nobody hurt worse than scratches. There's going to be a lot of meat.</li>
-        <li>[beasts,costly] The beasts are dead. We lost {DEAD} to them. I don't know how to write the rest of this.</li>
+        <li>[clean] {ENEMY} came, and we sent them running. {COUNT} of them won't be going home, and none of ours fell. My hands have only just stopped shaking.</li>
+        <li>[clean,hero] I brought down more of {ENEMY} than anyone else today. The others keep clapping me on the back, and I keep going over the shots I missed.</li>
+        <li>[costly] We beat {ENEMY}, but it cost us {DEAD}. I spent the evening digging.</li>
+        <li>[costly,hero] They say I fought well today. It wasn't well enough to save {DEAD}.</li>
+        <li>[beasts,clean] The animals came at us, and we put down every one of them. Scratches and bites, nothing worse. We'll be butchering for days.</li>
+        <li>[beasts,costly] We killed every one of the animals, but not before they killed {DEAD}.</li>
       </plain>
-      <blunt><li>[clean] They attacked. We won. Next.</li></blunt>
-      <cheerful><li>[clean] We WON! All of us, still here! Somebody find the good drink!</li></cheerful>
-      <gloomy><li>[clean] We held this time. Every time, they come back with more.</li></gloomy>
+      <blunt><li>[clean] They attacked and we beat them. Back to work.</li></blunt>
+      <cheerful><li>[clean] We won, and every one of us walked away from it! Somebody find the good beer.</li></cheerful>
+      <gloomy><li>[clean] We held this time. They'll be back with more.</li></gloomy>
       <cold><li>[clean] The engagement went well. Positions held, no losses. Their tactics were poor.</li></cold>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
@@ -307,10 +308,10 @@
     <defName>Council_Journal_QuestDone</defName>
     <lines>
       <plain>
-        <li>We finished it: {TALE}. Said we would, did it. That's worth something out here.</li>
-        <li>"{TALE}" is done and dusted. I didn't think we'd manage, honestly.</li>
+        <li>"{TALE}" is finished. We said we'd see it through, and we did.</li>
+        <li>We got "{TALE}" done. I wasn't sure we'd manage it.</li>
       </plain>
-      <cheerful><li>Done! {TALE}, done! We're getting good at this!</li></cheerful>
+      <cheerful><li>"{TALE}" is done! We're getting good at this.</li></cheerful>
       <cold><li>Objective complete: {TALE}. Satisfactory.</li></cold>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
@@ -319,8 +320,9 @@
     <defName>Council_Journal_QuestFailed</defName>
     <lines>
       <plain>
-        <li>We didn't manage it: {TALE}. Nobody's saying much about it.</li>
+        <li>We didn't manage "{TALE}". The others didn't say much about it at supper.</li>
         <li>"{TALE}" came to nothing. We'll do better next time, if there is a next time.</li>
+        <li>We didn't see "{TALE}" through. I keep going over where it went wrong.</li>
       </plain>
       <gloomy><li>Failed: {TALE}. Add it to the list.</li></gloomy>
     </lines>
@@ -331,12 +333,12 @@
     <lines>
       <plain>
         <li>[opt0] They sold my contract. I'm writing this on the road. I hope the silver was worth it.</li>
-        <li>[opt1,safe] Someone offered to buy me away, and the council let me choose. I chose to stay. It felt better than I expected to say it out loud.</li>
-        <li>[opt1,risk] Someone offered me a better life, and the council let me choose. I took it. I'll miss them. I already do.</li>
-        <li>[opt2] Someone wanted to buy my contract, and the council said I'm not for sale. I don't know whether to be flattered or annoyed. Flattered, mostly.</li>
+        <li>[opt1,safe] Someone offered to buy me away, and the council let me choose. I said I'd stay, and meant it.</li>
+        <li>[opt1,risk] Someone offered me a better life, and the council let me choose. I took it. I'll miss them more than I let on.</li>
+        <li>[opt2] Someone wanted to buy my contract, and the council said I'm not for sale. They didn't ask me first, but I'd have said the same.</li>
       </plain>
-      <blunt><li>[opt0] Sold. Like a cow at market. Fine. Remember this.</li></blunt>
-      <warm><li>[opt1,safe] They asked me what I wanted. Nobody's asked me that in years.</li></warm>
+      <blunt><li>[opt0] Sold off like a cow at market. Don't expect me to wave goodbye.</li></blunt>
+      <warm><li>[opt1,safe] The council asked me what I wanted, and then let me have it. I'm staying, and glad to.</li></warm>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
 

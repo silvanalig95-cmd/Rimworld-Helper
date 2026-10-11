@@ -6,13 +6,13 @@
     <defName>Council_Journal_GoalLost</defName>
     <lines>
       <plain>
-        <li>I wanted to {GOAL}. That's not going to happen now. I need a new reason to get up in the morning.</li>
+        <li>I wanted to {GOAL}. That isn't going to happen now, and I've been lying awake over it.</li>
         <li>Crossed it off the list today, the hard way. I'll never {GOAL}.</li>
       </plain>
       <warm><li>I won't {GOAL} after all. Maybe someone else will. I'd like to help them.</li></warm>
       <blunt><li>Can't {GOAL} anymore. Fine. Next.</li></blunt>
-      <cheerful><li>Okay, so I can't {GOAL}. I'll find something even better!</li></cheerful>
-      <gloomy><li>I was going to {GOAL}. Of course I was.</li></gloomy>
+      <cheerful><li>So I can't {GOAL}. I'll find something else to aim for!</li></cheerful>
+      <gloomy><li>I was going to {GOAL}. I should have known better.</li></gloomy>
       <cold><li>Objective abandoned: {GOAL}. Circumstances changed.</li></cold>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
@@ -24,12 +24,12 @@
       <plain>
         <li>{OTHER_nameDef} always said {OTHER_pronoun} would {GOAL} one day. One day isn't coming now.</li>
         <li>{OTHER_nameDef} wanted to {GOAL}. I keep thinking about how close {OTHER_pronoun} got.</li>
-        <li>I'm going to {GOAL} for {OTHER_nameDef}. Or try. Someone should.</li>
+        <li>I'm going to try to {GOAL}, for {OTHER_nameDef}.</li>
       </plain>
       <warm><li>{OTHER_nameDef} never got to {GOAL}. I hope wherever {OTHER_pronoun} is now, it doesn't matter anymore.</li></warm>
       <blunt><li>{OTHER_nameDef} wanted to {GOAL}. Didn't get the chance. That's the rim.</li></blunt>
-      <cheerful><li>{OTHER_nameDef} would've loved to {GOAL}. I'm going to tell everyone how hard {OTHER_pronoun} tried.</li></cheerful>
-      <gloomy><li>{OTHER_nameDef} died wanting to {GOAL}. We all die wanting something.</li></gloomy>
+      <cheerful><li>{OTHER_nameDef} would've loved to {GOAL}. I'll make sure the others know how hard {OTHER_pronoun} tried.</li></cheerful>
+      <gloomy><li>{OTHER_nameDef} died still wanting to {GOAL}. Most of us will go with a list like that.</li></gloomy>
       <cold><li>{OTHER_nameDef}'s goal, to {GOAL}, died with {OTHER_objective}. Unless someone takes it up.</li></cold>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
@@ -39,13 +39,13 @@
     <defName>Council_Journal_GoalChanged</defName>
     <lines>
       <plain>
-        <li>I used to want to {OLDGOAL}. After what happened, I want to {GOAL}. Funny how fast that can change.</li>
-        <li>Crossed out "{OLDGOAL}" in my head today. New plan: {GOAL}. It feels truer.</li>
-        <li>[afterraid] The fight changed something. I don't care about trying to {OLDGOAL} anymore. I want to {GOAL}.</li>
+        <li>I used to want to {OLDGOAL}. After what happened, I want to {GOAL} instead.</li>
+        <li>I've stopped thinking about how to {OLDGOAL}. These days I want to {GOAL}.</li>
+        <li>[afterraid] After the fight, trying to {OLDGOAL} seems pointless. I want to {GOAL}.</li>
       </plain>
-      <warm><li>I thought I wanted to {OLDGOAL}. Now I know what matters: I want to {GOAL}.</li></warm>
+      <warm><li>I thought I wanted to {OLDGOAL}. What I really want is to {GOAL}.</li></warm>
       <blunt><li>Forget trying to {OLDGOAL}. I'm going to {GOAL}.</li></blunt>
-      <cheerful><li>NEW DREAM! Out with trying to {OLDGOAL}, in with: {GOAL}!</li></cheerful>
+      <cheerful><li>I've got a new dream! I'm done trying to {OLDGOAL}, and I'm going to {GOAL} instead.</li></cheerful>
       <gloomy><li>I wanted to {OLDGOAL}. That seems small now. I want to {GOAL}, before it's too late.</li></gloomy>
       <cold><li>Revised objective: {GOAL}. The previous one, to {OLDGOAL}, no longer fits the circumstances.</li></cold>
     </lines>
@@ -56,12 +56,12 @@
     <defName>Council_Journal_GoalInherited</defName>
     <lines>
       <plain>
-        <li>{OTHER_nameDef} wanted to {GOAL}. Didn't get the chance. So I'll do it, for both of us.</li>
-        <li>I've taken up {OTHER_nameDef}'s dream: to {GOAL}. It's the only thing I can still do for {OTHER_objective}.</li>
+        <li>{OTHER_nameDef} wanted to {GOAL} and didn't get the chance. So I'll do it, for both of us.</li>
+        <li>I've taken up what {OTHER_nameDef} never finished, and I mean to {GOAL}. It's the only thing I can still do for {OTHER_objective}.</li>
       </plain>
       <warm><li>I'm going to {GOAL}, the way {OTHER_nameDef} always meant to. I'll tell {OTHER_objective} about it at the grave.</li></warm>
       <blunt><li>{OTHER_nameDef} never finished it. I will.</li></blunt>
-      <cheerful><li>{OTHER_nameDef} would want someone to {GOAL}. Guess who's going to!</li></cheerful>
+      <cheerful><li>{OTHER_nameDef} would want someone to {GOAL}, and I've decided it's going to be me!</li></cheerful>
       <gloomy><li>Someone has to {GOAL} now that {OTHER_nameDef} can't. I suppose it's me.</li></gloomy>
       <cold><li>{OTHER_nameDef}'s objective is unfinished. I'm assuming it.</li></cold>
     </lines>

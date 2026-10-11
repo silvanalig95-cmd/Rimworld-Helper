@@ -20,7 +20,7 @@
     <durationDays>5</durationDays>
     <stackLimit>3</stackLimit>
     <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
-    <stages><li><label>told someone at last</label><description>I've carried that for years. Someone else knows now, and the world didn't end.</description><baseMoodEffect>4</baseMoodEffect><baseOpinionOffset>8</baseOpinionOffset></li></stages>
+    <stages><li><label>told someone at last</label><description>I've carried that for years. I finally told them, and they didn't think less of me.</description><baseMoodEffect>4</baseMoodEffect><baseOpinionOffset>8</baseOpinionOffset></li></stages>
   </ThoughtDef>
 
   <ThoughtDef>
@@ -29,7 +29,7 @@
     <durationDays>6</durationDays>
     <stackLimit>3</stackLimit>
     <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
-    <stages><li><label>trusted with a secret</label><description>They told me something nobody else knows. I'll keep it for them.</description><baseMoodEffect>3</baseMoodEffect><baseOpinionOffset>10</baseOpinionOffset></li></stages>
+    <stages><li><label>trusted with a secret</label><description>They trusted me with their secret. It's safe with me.</description><baseMoodEffect>3</baseMoodEffect><baseOpinionOffset>10</baseOpinionOffset></li></stages>
   </ThoughtDef>
 
   <ThoughtDef>
@@ -76,7 +76,7 @@
     <durationDays>4</durationDays>
     <stackLimit>3</stackLimit>
     <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
-    <stages><li><label>accused of sabotage</label><description>They blamed me in front of everyone. I wasn't even there. Probably.</description><baseMoodEffect>-3</baseMoodEffect><baseOpinionOffset>-10</baseOpinionOffset></li></stages>
+    <stages><li><label>accused of sabotage</label><description>They blamed me for breaking it, with the others listening. I wasn't even there.</description><baseMoodEffect>-3</baseMoodEffect><baseOpinionOffset>-10</baseOpinionOffset></li></stages>
   </ThoughtDef>
 
   <ThoughtDef>
@@ -85,7 +85,7 @@
     <durationDays>3</durationDays>
     <stackLimit>3</stackLimit>
     <stackLimitForSameOtherPawn>2</stackLimitForSameOtherPawn>
-    <stages><li><label>one-upped</label><description>Whatever I've done, they claim to have done it twice, uphill, on fire.</description><baseMoodEffect>-1</baseMoodEffect><baseOpinionOffset>-6</baseOpinionOffset></li></stages>
+    <stages><li><label>one-upped</label><description>Whatever I've done, they claim to have done it twice, and better.</description><baseMoodEffect>-1</baseMoodEffect><baseOpinionOffset>-6</baseOpinionOffset></li></stages>
   </ThoughtDef>
 
   <ThoughtDef>
@@ -102,7 +102,7 @@
     <durationDays>4</durationDays>
     <stackLimit>3</stackLimit>
     <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
-    <stages><li><label>earned a grudging nod</label><description>Even they had to admit it was good work. That's worth more than praise from a friend.</description><baseMoodEffect>3</baseMoodEffect><baseOpinionOffset>5</baseOpinionOffset></li></stages>
+    <stages><li><label>earned a grudging nod</label><description>Even my rival had to admit it was good work.</description><baseMoodEffect>3</baseMoodEffect><baseOpinionOffset>5</baseOpinionOffset></li></stages>
   </ThoughtDef>
 
   <ThoughtDef>
@@ -111,7 +111,7 @@
     <durationDays>5</durationDays>
     <stackLimit>3</stackLimit>
     <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
-    <stages><li><label>insulted at dinner</label><description>They said it loud enough for the whole table. Everyone laughed. I didn't.</description><baseMoodEffect>-4</baseMoodEffect><baseOpinionOffset>-12</baseOpinionOffset></li></stages>
+    <stages><li><label>insulted at dinner</label><description>They insulted me loud enough for the whole table to hear, and the others laughed.</description><baseMoodEffect>-4</baseMoodEffect><baseOpinionOffset>-12</baseOpinionOffset></li></stages>
   </ThoughtDef>
 
   <ThoughtDef>
@@ -120,7 +120,7 @@
     <durationDays>4</durationDays>
     <stackLimit>3</stackLimit>
     <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
-    <stages><li><label>nearly came to blows</label><description>We were one word away from a fight. Next time there might be nobody to step between us.</description><baseMoodEffect>-2</baseMoodEffect><baseOpinionOffset>-10</baseOpinionOffset></li></stages>
+    <stages><li><label>nearly came to blows</label><description>We were one word away from a fistfight before somebody stepped in.</description><baseMoodEffect>-2</baseMoodEffect><baseOpinionOffset>-10</baseOpinionOffset></li></stages>
   </ThoughtDef>
 
   <!-- Comrades -->
@@ -131,7 +131,7 @@
     <durationDays>2</durationDays>
     <stackLimit>3</stackLimit>
     <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
-    <stages><li><label>sparred together</label><description>We knocked each other around until we were both laughing. I'll be sore tomorrow. Worth it.</description><baseMoodEffect>2</baseMoodEffect><baseOpinionOffset>5</baseOpinionOffset></li></stages>
+    <stages><li><label>sparred together</label><description>We knocked each other around until we were both laughing. I'll be sore tomorrow.</description><baseMoodEffect>2</baseMoodEffect><baseOpinionOffset>5</baseOpinionOffset></li></stages>
   </ThoughtDef>
 
   <ThoughtDef>
@@ -149,7 +149,7 @@
     <durationDays>5</durationDays>
     <stackLimit>3</stackLimit>
     <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
-    <stages><li><label>sat with me after a nightmare</label><description>I woke up back in the fight. They didn't ask questions. They just stayed until it was light.</description><baseMoodEffect>3</baseMoodEffect><baseOpinionOffset>10</baseOpinionOffset></li></stages>
+    <stages><li><label>sat with me after a nightmare</label><description>I woke up thinking I was back in the fight. They stayed with me until it was light, and didn't ask questions.</description><baseMoodEffect>3</baseMoodEffect><baseOpinionOffset>10</baseOpinionOffset></li></stages>
   </ThoughtDef>
 
   <ThoughtDef>
@@ -158,7 +158,7 @@
     <durationDays>4</durationDays>
     <stackLimit>3</stackLimit>
     <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
-    <stages><li><label>patched me up</label><description>They stitched me shut with a sewing needle and terrible jokes. The jokes hurt more.</description><baseMoodEffect>2</baseMoodEffect><baseOpinionOffset>8</baseOpinionOffset></li></stages>
+    <stages><li><label>patched me up</label><description>They stitched me up with a sewing needle, telling terrible jokes the whole time.</description><baseMoodEffect>2</baseMoodEffect><baseOpinionOffset>8</baseOpinionOffset></li></stages>
   </ThoughtDef>
 
   <!-- Mentors -->
@@ -169,7 +169,7 @@
     <durationDays>2</durationDays>
     <stackLimit>3</stackLimit>
     <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
-    <stages><li><label>a frustrating lesson</label><description>Hours of it, and nothing stuck. Neither of us is proud of how it ended.</description><baseMoodEffect>-2</baseMoodEffect><baseOpinionOffset>-5</baseOpinionOffset></li></stages>
+    <stages><li><label>a frustrating lesson</label><description>We went at it for hours and nothing stuck. We both lost our tempers.</description><baseMoodEffect>-2</baseMoodEffect><baseOpinionOffset>-5</baseOpinionOffset></li></stages>
   </ThoughtDef>
 
   <ThoughtDef>
@@ -178,7 +178,7 @@
     <durationDays>5</durationDays>
     <stackLimit>3</stackLimit>
     <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
-    <stages><li><label>my student outdid me</label><description>They did it better than I could have. I'm proud. I'm also going to practice tonight.</description><baseMoodEffect>4</baseMoodEffect><baseOpinionOffset>8</baseOpinionOffset></li></stages>
+    <stages><li><label>my student outdid me</label><description>My student did it better than I could have. I'm proud of them, and I'll be practicing tonight.</description><baseMoodEffect>4</baseMoodEffect><baseOpinionOffset>8</baseOpinionOffset></li></stages>
   </ThoughtDef>
 
   <ThoughtDef>
@@ -187,7 +187,7 @@
     <durationDays>4</durationDays>
     <stackLimit>3</stackLimit>
     <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
-    <stages><li><label>outdid my teacher</label><description>Just once, at just one thing, I was better than them. And they said so.</description><baseMoodEffect>4</baseMoodEffect><baseOpinionOffset>6</baseOpinionOffset></li></stages>
+    <stages><li><label>outdid my teacher</label><description>For once I did something better than my teacher, and they said so.</description><baseMoodEffect>4</baseMoodEffect><baseOpinionOffset>6</baseOpinionOffset></li></stages>
   </ThoughtDef>
 
   <ThoughtDef>
@@ -196,7 +196,7 @@
     <durationDays>3</durationDays>
     <stackLimit>3</stackLimit>
     <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
-    <stages><li><label>learned from my student</label><description>They asked a question I couldn't answer. Now I can. Funny how that works.</description><baseMoodEffect>3</baseMoodEffect><baseOpinionOffset>6</baseOpinionOffset></li></stages>
+    <stages><li><label>learned from my student</label><description>My student asked a question I couldn't answer, so I worked it out. I learned something too.</description><baseMoodEffect>3</baseMoodEffect><baseOpinionOffset>6</baseOpinionOffset></li></stages>
   </ThoughtDef>
 
   <ThoughtDef>
@@ -205,7 +205,7 @@
     <durationDays>3</durationDays>
     <stackLimit>3</stackLimit>
     <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
-    <stages><li><label>a lesson gone wrong</label><description>That lesson went badly. Very badly. At least we were in it together.</description><baseMoodEffect>-1</baseMoodEffect><baseOpinionOffset>3</baseOpinionOffset></li></stages>
+    <stages><li><label>a lesson gone wrong</label><description>That lesson went very badly, but at least we were in it together.</description><baseMoodEffect>-1</baseMoodEffect><baseOpinionOffset>3</baseOpinionOffset></li></stages>
   </ThoughtDef>
 
   <!-- Near strangers -->
@@ -225,7 +225,7 @@
     <durationDays>4</durationDays>
     <stackLimit>3</stackLimit>
     <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
-    <stages><li><label>took my things</label><description>My things, used without asking and put back dirty. When they come back at all.</description><baseMoodEffect>-2</baseMoodEffect><baseOpinionOffset>-8</baseOpinionOffset></li></stages>
+    <stages><li><label>took my things</label><description>They use my things without asking and put them back dirty, if they put them back at all.</description><baseMoodEffect>-2</baseMoodEffect><baseOpinionOffset>-8</baseOpinionOffset></li></stages>
   </ThoughtDef>
 
   <ThoughtDef>
@@ -234,7 +234,7 @@
     <durationDays>4</durationDays>
     <stackLimit>3</stackLimit>
     <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
-    <stages><li><label>an unexpected kindness</label><description>I was having a bad day and they noticed. We barely know each other. They noticed anyway.</description><baseMoodEffect>4</baseMoodEffect><baseOpinionOffset>10</baseOpinionOffset></li></stages>
+    <stages><li><label>an unexpected kindness</label><description>I was having a bad day, and they noticed, though we barely know each other.</description><baseMoodEffect>4</baseMoodEffect><baseOpinionOffset>10</baseOpinionOffset></li></stages>
   </ThoughtDef>
 
   <ThoughtDef>
@@ -252,7 +252,7 @@
     <durationDays>5</durationDays>
     <stackLimit>3</stackLimit>
     <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
-    <stages><li><label>chilled by a remark</label><description>The way they said it, so calm. Like they'd thought about it before. Often.</description><baseMoodEffect>-3</baseMoodEffect><baseOpinionOffset>-10</baseOpinionOffset></li></stages>
+    <stages><li><label>chilled by a remark</label><description>They said it so calmly, like they'd thought about it many times before.</description><baseMoodEffect>-3</baseMoodEffect><baseOpinionOffset>-10</baseOpinionOffset></li></stages>
   </ThoughtDef>
 
   <!-- Children -->
@@ -263,7 +263,7 @@
     <durationDays>3</durationDays>
     <stackLimit>3</stackLimit>
     <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
-    <stages><li><label>a dare, done</label><description>We did it. Nobody can ever know. Everybody has to know.</description><baseMoodEffect>3</baseMoodEffect><baseOpinionOffset>6</baseOpinionOffset></li></stages>
+    <stages><li><label>a dare, done</label><description>We did the dare! We swore not to tell anyone, but I really want to.</description><baseMoodEffect>3</baseMoodEffect><baseOpinionOffset>6</baseOpinionOffset></li></stages>
   </ThoughtDef>
 
   <ThoughtDef>
@@ -281,7 +281,7 @@
     <durationDays>3</durationDays>
     <stackLimit>3</stackLimit>
     <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
-    <stages><li><label>endless questions</label><description>A hundred questions. I knew the answers to about four. I liked it anyway.</description><baseMoodEffect>2</baseMoodEffect><baseOpinionOffset>6</baseOpinionOffset></li></stages>
+    <stages><li><label>endless questions</label><description>The kid asked me a hundred questions, and I knew the answers to about four. I liked it anyway.</description><baseMoodEffect>2</baseMoodEffect><baseOpinionOffset>6</baseOpinionOffset></li></stages>
   </ThoughtDef>
 
   <!-- Natures -->
@@ -292,7 +292,7 @@
     <durationDays>4</durationDays>
     <stackLimit>3</stackLimit>
     <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
-    <stages><li><label>envious of their room</label><description>Their room is bigger than mine. I measured. Twice.</description><baseMoodEffect>-2</baseMoodEffect><baseOpinionOffset>-8</baseOpinionOffset></li></stages>
+    <stages><li><label>envious of their room</label><description>Their room is bigger than mine. I paced it out to be sure.</description><baseMoodEffect>-2</baseMoodEffect><baseOpinionOffset>-8</baseOpinionOffset></li></stages>
   </ThoughtDef>
 
   <ThoughtDef>

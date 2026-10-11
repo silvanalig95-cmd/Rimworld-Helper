@@ -13,7 +13,7 @@
     <bKeepsSecretOfA>true</bKeepsSecretOfA>
     <texts>
       <li>Someone at dinner came close to a sore subject. {B_nameDef} changed it, smoothly, without looking at {A_nameDef}.</li>
-      <li>{A_nameDef} and {B_nameDef} shared a look across the room that nobody else understood.</li>
+      <li>{B_nameDef} sat down beside {A_nameDef} when the questions started, and answered most of them for {A_objective}.</li>
     </texts>
     <effects>
       <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Soc_HadMyBack</thought></li>
@@ -31,7 +31,7 @@
     <maxOpinion>30</maxOpinion>
     <texts>
       <li>{B_nameDef} snapped at {A_nameDef} over nothing, then muttered something about "what I know." {A_nameDef} went pale.</li>
-      <li>{B_nameDef} told {A_nameDef}, quietly, that keeping {A_possessive} secret was getting heavy. It didn't sound like a complaint. It sounded like a warning.</li>
+      <li>{B_nameDef} told {A_nameDef}, under {B_possessive} breath, that keeping {A_possessive} secret was getting heavy, and it sounded more like a warning than a complaint.</li>
     </texts>
     <effects>
       <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Soc_Snubbed</thought></li>
@@ -64,8 +64,8 @@
     <aHasQuirk>true</aHasQuirk>
     <maxOpinion>25</maxOpinion>
     <texts>
-      <li>{B_nameDef} made fun of {A_nameDef} for {A_possessive} habit ({QUIRK}) in front of everyone. {A_nameDef} didn't laugh.</li>
-      <li>{B_nameDef} asked {A_nameDef}, loudly, whether {QUIRK} actually works. It got a laugh. Not from {A_nameDef}.</li>
+      <li>{B_nameDef} made fun of {A_nameDef}'s habit ({QUIRK}) at supper, and {A_nameDef} didn't laugh.</li>
+      <li>{B_nameDef} asked {A_nameDef}, loudly, whether {QUIRK} actually works, and got a laugh from the table.</li>
     </texts>
     <effects>
       <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Soc_Pranked</thought></li>
@@ -82,7 +82,7 @@
     <minOpinion>10</minOpinion>
     <texts>
       <li>{B_nameDef} asked {A_nameDef} about {A_possessive} habit ({QUIRK}), expecting a joke, and got a real story instead. They talked a long time.</li>
-      <li>{B_nameDef} caught {A_nameDef} at it ({QUIRK}) and, instead of laughing, quietly joined in.</li>
+      <li>{B_nameDef} caught {A_nameDef} at it ({QUIRK}) and, instead of laughing, joined in.</li>
     </texts>
     <effects>
       <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>AAndB</target><thought>Council_Soc_GoodTalk</thought></li>
@@ -98,8 +98,8 @@
     <aHasGoal>true</aHasGoal>
     <minOpinion>15</minOpinion>
     <texts>
-      <li>{A_nameDef} admitted to {B_nameDef} wanting to {GOAL}. {B_nameDef} didn't laugh. {B_nameDef} said "then do it," and meant it.</li>
-      <li>{B_nameDef} has been asking {A_nameDef} every evening how it's going: the plan to {GOAL}. {A_nameDef} pretends to find it annoying.</li>
+      <li>{A_nameDef} admitted to {B_nameDef} wanting to {GOAL}, and {B_nameDef} didn't laugh. "Then do it," {B_nameDef} said.</li>
+      <li>Every evening {B_nameDef} asks {A_nameDef} how the plan to {GOAL} is coming along, and listens to the whole answer.</li>
     </texts>
     <effects>
       <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Soc_HadMyBack</thought></li>
@@ -117,8 +117,8 @@
     <aHasGoal>true</aHasGoal>
     <maxOpinion>0</maxOpinion>
     <texts>
-      <li>{B_nameDef} found out {A_nameDef} wants to {GOAL}, and laughed out loud. {A_nameDef} will remember that laugh.</li>
-      <li>"You want to {GOAL}?" {B_nameDef} asked {A_nameDef}, in front of the whole table. Some people laughed. {A_nameDef} didn't.</li>
+      <li>{B_nameDef} found out {A_nameDef} wants to {GOAL}, and laughed in {A_possessive} face.</li>
+      <li>"You want to {GOAL}?" {B_nameDef} asked {A_nameDef}, loud enough for the whole table to hear, and a few of them laughed.</li>
     </texts>
     <effects>
       <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Soc_Snubbed</thought></li>
@@ -135,7 +135,7 @@
     <tie>Friends</tie>
     <minStrength>40</minStrength>
     <texts>
-      <li>{B_nameDef} spent a whole free evening helping {A_nameDef} get a little closer to {A_possessive} goal: to {GOAL}.</li>
+      <li>{B_nameDef} spent a free evening helping {A_nameDef} work toward {A_possessive} goal, which is to {GOAL}.</li>
       <li>{B_nameDef} gave up a rest day to help {A_nameDef} with the plan to {GOAL}. {A_nameDef} didn't know what to say.</li>
     </texts>
     <effects>

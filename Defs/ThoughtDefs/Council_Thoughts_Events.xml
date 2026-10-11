@@ -11,7 +11,7 @@
     <durationDays>10</durationDays>
     <stackLimit>2</stackLimit>
     <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
-    <stages><li><label>reunited with family</label><description>After all this time, after everything. I don't have the words yet. I don't think I need them.</description><baseMoodEffect>10</baseMoodEffect><baseOpinionOffset>20</baseOpinionOffset></li></stages>
+    <stages><li><label>reunited with family</label><description>After all these years, we've found each other again. I still can't quite believe it.</description><baseMoodEffect>10</baseMoodEffect><baseOpinionOffset>20</baseOpinionOffset></li></stages>
   </ThoughtDef>
 
   <ThoughtDef>
@@ -19,7 +19,7 @@
     <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
     <durationDays>8</durationDays>
     <stackLimit>1</stackLimit>
-    <stages><li><label>my family was turned away</label><description>They found me after all those years, and the colony sent them back down the road. I'll be thinking about that for a long time.</description><baseMoodEffect>-8</baseMoodEffect></li></stages>
+    <stages><li><label>my family was turned away</label><description>My family found me after all those years, and the colony sent them back down the road.</description><baseMoodEffect>-8</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef>
@@ -28,7 +28,7 @@
     <durationDays>6</durationDays>
     <stackLimit>2</stackLimit>
     <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
-    <stages><li><label>back with an old comrade</label><description>Someone who was there. Someone who doesn't need it explained. It's good to have that again.</description><baseMoodEffect>6</baseMoodEffect><baseOpinionOffset>18</baseOpinionOffset></li></stages>
+    <stages><li><label>back with an old comrade</label><description>An old comrade is with me again. I don't have to explain anything to them.</description><baseMoodEffect>6</baseMoodEffect><baseOpinionOffset>18</baseOpinionOffset></li></stages>
   </ThoughtDef>
 
   <ThoughtDef>
@@ -36,7 +36,7 @@
     <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
     <durationDays>4</durationDays>
     <stackLimit>1</stackLimit>
-    <stages><li><label>an old friend was turned away</label><description>Someone from my old life came all this way, and we said no. I understand why. I don't like it.</description><baseMoodEffect>-4</baseMoodEffect></li></stages>
+    <stages><li><label>an old friend was turned away</label><description>An old friend came all this way, and we turned them away. I understand why, but I don't like it.</description><baseMoodEffect>-4</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef>
@@ -44,7 +44,7 @@
     <thoughtClass>ColonyCouncil.Thought_CouncilSocial</thoughtClass>
     <durationDays>6</durationDays>
     <stackLimit>1</stackLimit>
-    <stages><li><label>my old flame is here</label><description>Of all the colonies in all the world. It's strange, and it's complicated, and I'm not sorry.</description><baseMoodEffect>3</baseMoodEffect><baseOpinionOffset>10</baseOpinionOffset></li></stages>
+    <stages><li><label>my old flame is here</label><description>Of all the places to end up, my old flame ended up here. It's complicated, but I'm not sorry.</description><baseMoodEffect>3</baseMoodEffect><baseOpinionOffset>10</baseOpinionOffset></li></stages>
   </ThoughtDef>
 
   <ThoughtDef>
@@ -52,7 +52,7 @@
     <thoughtClass>ColonyCouncil.Thought_CouncilSocial</thoughtClass>
     <durationDays>8</durationDays>
     <stackLimit>1</stackLimit>
-    <stages><li><label>my partner's ex moved in</label><description>Lovely. Just lovely. Every meal, every evening, there they are. Smiling.</description><baseMoodEffect>-4</baseMoodEffect><baseOpinionOffset>-15</baseOpinionOffset></li></stages>
+    <stages><li><label>my partner's ex moved in</label><description>My partner's ex lives here now. I see them at every meal, smiling.</description><baseMoodEffect>-4</baseMoodEffect><baseOpinionOffset>-15</baseOpinionOffset></li></stages>
   </ThoughtDef>
 
   <ThoughtDef>
@@ -61,7 +61,7 @@
     <durationDays>5</durationDays>
     <stackLimit>3</stackLimit>
     <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
-    <stages><li><label>they came back</label><description>I always hoped they would. Whatever happened before, it's good to see that face at the table again.</description><baseMoodEffect>4</baseMoodEffect><baseOpinionOffset>12</baseOpinionOffset></li></stages>
+    <stages><li><label>they came back</label><description>I always hoped they'd come back. It's good to see them at the table again.</description><baseMoodEffect>4</baseMoodEffect><baseOpinionOffset>12</baseOpinionOffset></li></stages>
   </ThoughtDef>
 
   <ThoughtDef>
@@ -78,7 +78,7 @@
     <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
     <durationDays>10</durationDays>
     <stackLimit>1</stackLimit>
-    <stages><li><label>they let me come home</label><description>I walked away. They let me walk back. I won't forget that.</description><baseMoodEffect>8</baseMoodEffect></li></stages>
+    <stages><li><label>they let me come home</label><description>I walked away, and they still let me come back. I won't forget that.</description><baseMoodEffect>8</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef>
@@ -94,7 +94,7 @@
     <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
     <durationDays>6</durationDays>
     <stackLimit>1</stackLimit>
-    <stages><li><label>the colony paid for me</label><description>Hard silver, for my old mistakes. They didn't have to.</description><baseMoodEffect>6</baseMoodEffect></li></stages>
+    <stages><li><label>the colony paid for me</label><description>The colony paid good silver to settle my old mistakes. They didn't have to.</description><baseMoodEffect>6</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef>
@@ -110,7 +110,7 @@
     <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
     <durationDays>6</durationDays>
     <stackLimit>1</stackLimit>
-    <stages><li><label>my old debt is paid</label><description>The colony paid what I owed from my old life. A weight I'd stopped noticing, gone.</description><baseMoodEffect>5</baseMoodEffect></li></stages>
+    <stages><li><label>my old debt is paid</label><description>The colony paid off what I owed from my old life. I feel lighter.</description><baseMoodEffect>5</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef>
@@ -126,7 +126,7 @@
     <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
     <durationDays>6</durationDays>
     <stackLimit>1</stackLimit>
-    <stages><li><label>an inheritance</label><description>Someone from my old life is gone, and they remembered me at the end. It's a strange thing to be grateful for.</description><baseMoodEffect>4</baseMoodEffect></li></stages>
+    <stages><li><label>an inheritance</label><description>An old acquaintance died and left me something. They remembered me at the end.</description><baseMoodEffect>4</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef>
@@ -134,7 +134,7 @@
     <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
     <durationDays>4</durationDays>
     <stackLimit>1</stackLimit>
-    <stages><li><label>word from my old teacher</label><description>After all these years, still correcting my technique. I've never been so glad to be told I'm doing it wrong.</description><baseMoodEffect>4</baseMoodEffect></li></stages>
+    <stages><li><label>word from my old teacher</label><description>My old teacher wrote to me, and still found things to correct in my technique. It made me smile.</description><baseMoodEffect>4</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef>
@@ -150,7 +150,7 @@
     <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
     <durationDays>10</durationDays>
     <stackLimit>1</stackLimit>
-    <stages><li><label>my old home is gone</label><description>The place I came from doesn't exist any more. Every road I could have gone back down, closed.</description><baseMoodEffect>-7</baseMoodEffect></li></stages>
+    <stages><li><label>my old home is gone</label><description>The place I came from is gone. I can never go back now.</description><baseMoodEffect>-7</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef>
@@ -158,7 +158,7 @@
     <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
     <durationDays>6</durationDays>
     <stackLimit>1</stackLimit>
-    <stages><li><label>someone came to learn from me</label><description>They walked all this way because they'd heard of my work. Me. I'll have to be worth it.</description><baseMoodEffect>6</baseMoodEffect></li></stages>
+    <stages><li><label>someone came to learn from me</label><description>A young traveler walked all this way to learn from me, because they'd heard of my work. I'll try to be worth it.</description><baseMoodEffect>6</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef>
@@ -166,7 +166,7 @@
     <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
     <durationDays>6</durationDays>
     <stackLimit>1</stackLimit>
-    <stages><li><label>I found my master</label><description>The stories were true. I'm going to learn everything.</description><baseMoodEffect>6</baseMoodEffect></li></stages>
+    <stages><li><label>I found my master</label><description>The master from the stories is real, and here. I want to learn everything they know.</description><baseMoodEffect>6</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef>
@@ -184,7 +184,7 @@
     <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
     <durationDays>6</durationDays>
     <stackLimit>2</stackLimit>
-    <stages><li><label>beat the travelling champion</label><description>They came a long way to beat me. They'll be telling this one on the road for a long time.</description><baseMoodEffect>8</baseMoodEffect></li></stages>
+    <stages><li><label>beat the traveling champion</label><description>A champion came a long way to beat me, and I won. They'll be telling this one on the road.</description><baseMoodEffect>8</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef>
@@ -192,7 +192,7 @@
     <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
     <durationDays>2</durationDays>
     <stackLimit>2</stackLimit>
-    <stages><li><label>lost to the travelling champion</label><description>Beaten in front of everyone. It stings. It'll sting less once I've practised.</description><baseMoodEffect>-3</baseMoodEffect></li></stages>
+    <stages><li><label>lost to the traveling champion</label><description>The champion beat me while the others watched. I need more practice.</description><baseMoodEffect>-3</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef>
@@ -200,7 +200,7 @@
     <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
     <durationDays>3</durationDays>
     <stackLimit>2</stackLimit>
-    <stages><li><label>our champion won</label><description>One of ours beat the best the road could send. Drinks are on someone, surely.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
+    <stages><li><label>our champion won</label><description>One of ours beat the traveling champion. I'm proud of them.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef>
@@ -208,7 +208,7 @@
     <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
     <durationDays>8</durationDays>
     <stackLimit>1</stackLimit>
-    <stages><li><label>felled the great beast</label><description>Something out of the old stories, and I brought it down. Nobody is ever going to let me forget it, and I don't want them to.</description><baseMoodEffect>8</baseMoodEffect></li></stages>
+    <stages><li><label>felled the great beast</label><description>I brought down a beast out of the old stories. I'll be telling this one for the rest of my life.</description><baseMoodEffect>8</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef>
@@ -216,7 +216,7 @@
     <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
     <durationDays>3</durationDays>
     <stackLimit>1</stackLimit>
-    <stages><li><label>the great beast is down</label><description>One of ours brought down a living legend. There'll be a feast, and a story told at every one after it.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
+    <stages><li><label>the great beast is down</label><description>One of ours brought down a legendary beast. We'll be telling that story for years.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef>
@@ -224,7 +224,7 @@
     <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
     <durationDays>8</durationDays>
     <stackLimit>1</stackLimit>
-    <stages><li><label>tamed a living legend</label><description>Everyone else wanted to kill it. It eats from my hand now.</description><baseMoodEffect>8</baseMoodEffect></li></stages>
+    <stages><li><label>tamed a living legend</label><description>The others wanted to kill the great beast. It eats from my hand now.</description><baseMoodEffect>8</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef>
@@ -232,7 +232,7 @@
     <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
     <durationDays>4</durationDays>
     <stackLimit>1</stackLimit>
-    <stages><li><label>we paid tribute</label><description>We handed over our silver because they asked with an army behind them. Peace, they call it.</description><baseMoodEffect>-3</baseMoodEffect></li></stages>
+    <stages><li><label>we paid tribute</label><description>We handed over our silver because they had an army behind them.</description><baseMoodEffect>-3</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef>
@@ -240,7 +240,7 @@
     <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
     <durationDays>3</durationDays>
     <stackLimit>1</stackLimit>
-    <stages><li><label>we refused to bow</label><description>They demanded tribute and we told them where to put it. Let them come.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
+    <stages><li><label>we refused to bow</label><description>They demanded tribute, and we refused. Let them come.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef>
@@ -248,7 +248,7 @@
     <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
     <durationDays>4</durationDays>
     <stackLimit>1</stackLimit>
-    <stages><li><label>the map was true</label><description>A stranger's scrap of a map, and there it was, right where the mark said. I may never stop smiling.</description><baseMoodEffect>5</baseMoodEffect></li></stages>
+    <stages><li><label>the map was true</label><description>We followed a stranger's scrap of a map, and the treasure was right where the mark said.</description><baseMoodEffect>5</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef>
@@ -256,7 +256,7 @@
     <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
     <durationDays>3</durationDays>
     <stackLimit>1</stackLimit>
-    <stages><li><label>swindled</label><description>A map to nothing, for good silver. I'll know that face if I ever see it again.</description><baseMoodEffect>-4</baseMoodEffect></li></stages>
+    <stages><li><label>swindled</label><description>We paid good silver for a map that led to nothing. I'll know that face if I ever see it again.</description><baseMoodEffect>-4</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <!-- ===================== Nature ===================== -->
@@ -266,7 +266,7 @@
     <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
     <durationDays>1</durationDays>
     <stackLimit>1</stackLimit>
-    <stages><li><label>saw the fireflies</label><description>Thousands of little lights over the fields. For a while nothing else mattered.</description><baseMoodEffect>4</baseMoodEffect></li></stages>
+    <stages><li><label>saw the fireflies</label><description>Thousands of fireflies lit up over the fields last night. I stayed out watching until late.</description><baseMoodEffect>4</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef>
@@ -274,15 +274,15 @@
     <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
     <durationDays>0.5</durationDays>
     <stackLimit>1</stackLimit>
-    <stages><li><label>caught in the hail</label><description>Ice the size of knuckles, straight down. My ears are still ringing.</description><baseMoodEffect>-2</baseMoodEffect></li></stages>
+    <stages><li><label>caught in the hail</label><description>I got caught out in hail the size of knuckles. My ears are still ringing.</description><baseMoodEffect>-2</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef>
     <defName>Council_Evt_Comet</defName>
     <workerClass>ColonyCouncil.ThoughtWorker_Comet</workerClass>
     <stages>
-      <li><label>the comet is a good omen</label><description>Something bright in the sky, going somewhere. It has to mean something good. I've decided it does.</description><baseMoodEffect>4</baseMoodEffect></li>
-      <li><label>the comet is a bad omen</label><description>Things like that in the sky never mean anything good. Everyone knows that. Everyone used to know that, anyway.</description><baseMoodEffect>-4</baseMoodEffect></li>
+      <li><label>the comet is a good omen</label><description>There's a comet in the sky. I'm sure it means good things are coming.</description><baseMoodEffect>4</baseMoodEffect></li>
+      <li><label>the comet is a bad omen</label><description>A comet in the sky never means anything good. My grandmother always said so.</description><baseMoodEffect>-4</baseMoodEffect></li>
       <li><label>the comet</label><description>A tail of light across the whole sky. Whatever it means, it's beautiful.</description><baseMoodEffect>2</baseMoodEffect></li>
     </stages>
   </ThoughtDef>
@@ -292,7 +292,7 @@
     <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
     <durationDays>2</durationDays>
     <stackLimit>1</stackLimit>
-    <stages><li><label>my animal saved the stores</label><description>Vermin in the food, and my animal had them before anyone else noticed. Good, good animal.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
+    <stages><li><label>my animal saved the stores</label><description>Vermin got into the food stores, and my animal caught them before anyone else noticed.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef>
@@ -300,7 +300,7 @@
     <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
     <durationDays>4</durationDays>
     <stackLimit>1</stackLimit>
-    <stages><li><label>found a buried cache</label><description>Someone hid it a long time ago and never came back. Their loss. Our luck. My find.</description><baseMoodEffect>5</baseMoodEffect></li></stages>
+    <stages><li><label>found a buried cache</label><description>I found a cache someone buried long ago and never came back for.</description><baseMoodEffect>5</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef>
@@ -308,7 +308,7 @@
     <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
     <durationDays>2</durationDays>
     <stackLimit>1</stackLimit>
-    <stages><li><label>the land is generous</label><description>Whole patches of it, ripe and waiting, and nobody planted a thing. Some years the land just gives.</description><baseMoodEffect>2</baseMoodEffect></li></stages>
+    <stages><li><label>the land is generous</label><description>There are wild plants ripe for picking all over, and none of us planted them.</description><baseMoodEffect>2</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <!-- ===================== Visitors ===================== -->
@@ -318,7 +318,7 @@
     <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
     <durationDays>2</durationDays>
     <stackLimit>1</stackLimit>
-    <stages><li><label>an evening of tales</label><description>A traveller's stories by the fire: faraway places, terrible battles, worse jokes. The best night in a long time.</description><baseMoodEffect>5</baseMoodEffect></li></stages>
+    <stages><li><label>an evening of tales</label><description>A traveler told us stories all evening, about faraway places and terrible battles. Best night we've had in a long time.</description><baseMoodEffect>5</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef>
@@ -326,7 +326,7 @@
     <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
     <durationDays>4</durationDays>
     <stackLimit>1</stackLimit>
-    <stages><li><label>strangers honoured our dead</label><description>They came a long way just to stand at a grave of ours. The dead aren't forgotten here, and not out there either.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
+    <stages><li><label>strangers honored our dead</label><description>Strangers came a long way just to stand at one of our graves. Our dead are remembered out there too.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef>
@@ -334,7 +334,7 @@
     <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
     <durationDays>3</durationDays>
     <stackLimit>1</stackLimit>
-    <stages><li><label>we fed the pilgrims</label><description>Hungry people came to our door, and they left fed. That's the kind of place I want to live in.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
+    <stages><li><label>we fed the pilgrims</label><description>Hungry pilgrims came to our door, and we fed them.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef>
@@ -358,7 +358,7 @@
     <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
     <durationDays>2</durationDays>
     <stackLimit>1</stackLimit>
-    <stages><li><label>had to let the stray go</label><description>It kept looking back. I kept looking back too.</description><baseMoodEffect>-3</baseMoodEffect></li></stages>
+    <stages><li><label>had to let the stray go</label><description>We had to let the stray go. It kept looking back at me.</description><baseMoodEffect>-3</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef>
@@ -374,7 +374,7 @@
     <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
     <durationDays>6</durationDays>
     <stackLimit>1</stackLimit>
-    <stages><li><label>we kept someone's child</label><description>Somewhere out there, a family is still searching. We know exactly where their child is.</description><baseMoodEffect>-4</baseMoodEffect></li></stages>
+    <stages><li><label>we kept someone's child</label><description>A family is still out there searching, and we know exactly where their child is.</description><baseMoodEffect>-4</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef>
@@ -382,7 +382,7 @@
     <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
     <durationDays>10</durationDays>
     <stackLimit>1</stackLimit>
-    <stages><li><label>they kept me from my family</label><description>I was lost, and they found me, and they didn't take me home. Everyone is nice to me here. I still want to go home.</description><baseMoodEffect>-6</baseMoodEffect></li></stages>
+    <stages><li><label>they kept me from my family</label><description>I was lost, and they found me, but they didn't take me home. They're nice to me here, but I want my family.</description><baseMoodEffect>-6</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef>
@@ -390,7 +390,7 @@
     <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
     <durationDays>3</durationDays>
     <stackLimit>1</stackLimit>
-    <stages><li><label>talked all night with a scholar</label><description>Someone who understood the problem, and saw three things in it I'd never thought to wonder about. My head is still buzzing.</description><baseMoodEffect>4</baseMoodEffect></li></stages>
+    <stages><li><label>talked all night with a scholar</label><description>I talked all night with a visiting scholar who saw things in my work I'd never thought of. My head is still buzzing.</description><baseMoodEffect>4</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <!-- ===================== Chains ===================== -->
@@ -400,7 +400,7 @@
     <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
     <durationDays>4</durationDays>
     <stackLimit>1</stackLimit>
-    <stages><li><label>the lost child came back</label><description>We walked a lost child home once. Now they've come back to say thank you. Some things you do turn out to matter.</description><baseMoodEffect>4</baseMoodEffect></li></stages>
+    <stages><li><label>the lost child came back</label><description>We walked a lost child home once. Now they've come back to say thank you.</description><baseMoodEffect>4</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef>
@@ -408,7 +408,7 @@
     <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
     <durationDays>3</durationDays>
     <stackLimit>1</stackLimit>
-    <stages><li><label>kindness repaid</label><description>We fed some hungry strangers once, and they remembered. The world is a little better than it looks.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
+    <stages><li><label>kindness repaid</label><description>We fed some hungry strangers once, and they came back to repay us.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <!-- ===================== Victories and quests ===================== -->
@@ -418,7 +418,7 @@
     <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
     <durationDays>3</durationDays>
     <stackLimit>1</stackLimit>
-    <stages><li><label>we held</label><description>They came for us, and we sent them running, and every one of us is still here. Tonight we drink to that.</description><baseMoodEffect>4</baseMoodEffect></li></stages>
+    <stages><li><label>we held</label><description>They came for us, and we sent them running. Every one of us is still alive.</description><baseMoodEffect>4</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef>
@@ -426,7 +426,7 @@
     <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
     <durationDays>3</durationDays>
     <stackLimit>1</stackLimit>
-    <stages><li><label>we held, at a price</label><description>We won. That's what they'll say. Not all of us are here to hear it.</description><baseMoodEffect>1</baseMoodEffect></li></stages>
+    <stages><li><label>we held, at a price</label><description>We drove them off, but not all of us lived to see it.</description><baseMoodEffect>1</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef>
@@ -434,7 +434,7 @@
     <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
     <durationDays>5</durationDays>
     <stackLimit>1</stackLimit>
-    <stages><li><label>hero of the fight</label><description>Everyone saw what I did out there. I'm trying to be modest about it. It's not going well.</description><baseMoodEffect>5</baseMoodEffect></li></stages>
+    <stages><li><label>hero of the fight</label><description>The others saw what I did in that fight. I'm proud of it.</description><baseMoodEffect>5</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef>
@@ -452,7 +452,7 @@
     <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
     <durationDays>6</durationDays>
     <stackLimit>1</stackLimit>
-    <stages><li><label>they sold one of us</label><description>Someone offered silver for one of us, and the council took it. What's my price?</description><baseMoodEffect>-5</baseMoodEffect></li></stages>
+    <stages><li><label>they sold one of us</label><description>A stranger offered silver for one of us, and the council took it. I wonder what they'd take for me.</description><baseMoodEffect>-5</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef>
@@ -460,7 +460,7 @@
     <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
     <durationDays>4</durationDays>
     <stackLimit>1</stackLimit>
-    <stages><li><label>the council let me choose</label><description>Someone wanted me badly enough to pay for me, and the council asked what I wanted. I chose here.</description><baseMoodEffect>4</baseMoodEffect></li></stages>
+    <stages><li><label>the council let me choose</label><description>A stranger offered to pay for me, and the council let me decide. I chose to stay.</description><baseMoodEffect>4</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef>
@@ -468,7 +468,7 @@
     <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
     <durationDays>3</durationDays>
     <stackLimit>1</stackLimit>
-    <stages><li><label>they wrote well of us</label><description>Someone wrote about the colony, and they got it right. That's us. That's who we are.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
+    <stages><li><label>they wrote well of us</label><description>A traveler wrote about our colony, and they got it right.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef>
@@ -476,7 +476,7 @@
     <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
     <durationDays>3</durationDays>
     <stackLimit>1</stackLimit>
-    <stages><li><label>they wrote badly of us</label><description>Someone wrote about the colony, and it wasn't kind. The worst part is, it wasn't wrong either.</description><baseMoodEffect>-3</baseMoodEffect></li></stages>
+    <stages><li><label>they wrote badly of us</label><description>A traveler wrote something unkind about our colony, and I can't say they were wrong.</description><baseMoodEffect>-3</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef>
@@ -484,7 +484,7 @@
     <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
     <durationDays>2</durationDays>
     <stackLimit>1</stackLimit>
-    <stages><li><label>music in the air</label><description>Somebody's playing somewhere, and the work goes easier for it.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
+    <stages><li><label>music in the air</label><description>There's been music in the air, and the work goes easier for it.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef>
@@ -492,7 +492,7 @@
     <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
     <durationDays>3</durationDays>
     <stackLimit>1</stackLimit>
-    <stages><li><label>met someone famous</label><description>I talked to them! Properly talked! Nobody back home would believe it.</description><baseMoodEffect>4</baseMoodEffect></li></stages>
+    <stages><li><label>met someone famous</label><description>I met someone famous and actually talked with them! The folks back home would never believe it.</description><baseMoodEffect>4</baseMoodEffect></li></stages>
   </ThoughtDef>
 
 </Defs>

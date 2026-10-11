@@ -4,7 +4,7 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_Dlm_Bonfire</defName>
     <durationDays>2</durationDays>
-    <stages><li><label>midsummer bonfire</label><description>Flames higher than the roof, everyone singing badly. The shortest night of the year, and the best.</description><baseMoodEffect>6</baseMoodEffect></li></stages>
+    <stages><li><label>midsummer bonfire</label><description>We lit a bonfire higher than the roof and sang until it burned down.</description><baseMoodEffect>6</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
@@ -16,49 +16,49 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_Dlm_NoCelebration</defName>
     <durationDays>2</durationDays>
-    <stages><li><label>no celebration</label><description>Other people mark the seasons. We just work through them.</description><baseMoodEffect>-2</baseMoodEffect></li></stages>
+    <stages><li><label>no celebration</label><description>The council skipped the celebration this year. It was just another day of work.</description><baseMoodEffect>-2</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_Dlm_HarvestHome</defName>
     <durationDays>3</durationDays>
-    <stages><li><label>harvest home</label><description>The fields are in and we ate like kings to celebrate. Winter can do its worst.</description><baseMoodEffect>6</baseMoodEffect></li></stages>
+    <stages><li><label>harvest home</label><description>The harvest is in, and we celebrated with a big meal. We'll be fine this winter.</description><baseMoodEffect>6</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_Dlm_Midwinter</defName>
     <durationDays>3</durationDays>
-    <stages><li><label>a warm midwinter</label><description>The longest night, a full belly and everyone close to the fire.</description><baseMoodEffect>5</baseMoodEffect></li></stages>
+    <stages><li><label>a warm midwinter</label><description>We spent the longest night of the year together, warm and well fed.</description><baseMoodEffect>5</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_Dlm_Stories</defName>
     <durationDays>2</durationDays>
-    <stages><li><label>midwinter stories</label><description>We sat up late telling stories about home. Some of them were even true.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
+    <stages><li><label>midwinter stories</label><description>We sat up late on midwinter night, telling stories about where we came from.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_Dlm_NamedYear</defName>
     <durationDays>8</durationDays>
-    <stages><li><label>a year named after me</label><description>They named the whole year after me. My name, in the annals. Forever, or until the paper burns.</description><baseMoodEffect>6</baseMoodEffect></li></stages>
+    <stages><li><label>a year named after me</label><description>They named this year after me. People will remember my name.</description><baseMoodEffect>6</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_Dlm_Vanity</defName>
     <durationDays>3</durationDays>
-    <stages><li><label>someone's vanity indulged</label><description>A whole year named after one person. Who do they think they are?</description><baseMoodEffect>-3</baseMoodEffect></li></stages>
+    <stages><li><label>someone's vanity indulged</label><description>The council named a whole year after one of us. It's gone to their head.</description><baseMoodEffect>-3</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_Dlm_YearOfTheDead</defName>
     <durationDays>8</durationDays>
-    <stages><li><label>a year for those we lost</label><description>This year carries the names of our dead. That feels right.</description><baseMoodEffect>4</baseMoodEffect></li></stages>
+    <stages><li><label>a year for those we lost</label><description>We named this year for the ones we lost.</description><baseMoodEffect>4</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_Dlm_Muffalo</defName>
     <durationDays>4</durationDays>
-    <stages><li><label>the year of the muffalo</label><description>We named the year after a muffalo. I laughed for an hour. The muffalo did not care.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
+    <stages><li><label>the year of the muffalo</label><description>We named the year after a muffalo. I still laugh every time I hear it.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
@@ -76,13 +76,13 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_Dlm_FairShares</defName>
     <durationDays>2</durationDays>
-    <stages><li><label>fair shares</label><description>The spoils were split evenly. Nobody can complain. Some will anyway.</description><baseMoodEffect>2</baseMoodEffect></li></stages>
+    <stages><li><label>fair shares</label><description>The spoils were split evenly between us. That's fair.</description><baseMoodEffect>2</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_Dlm_DecentBurial</defName>
     <durationDays>3</durationDays>
-    <stages><li><label>graves even for raiders</label><description>They came to kill us, and we buried them anyway. That's the difference between us.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
+    <stages><li><label>graves even for raiders</label><description>They came to kill us, and we still gave them graves.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
@@ -94,7 +94,7 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_Dlm_VictoryFeast</defName>
     <durationDays>2</durationDays>
-    <stages><li><label>victory feast</label><description>We beat them, and we ate like it. Alive and full. What a day.</description><baseMoodEffect>6</baseMoodEffect></li></stages>
+    <stages><li><label>victory feast</label><description>We beat them, then sat down to a feast. I'm alive and my belly's full.</description><baseMoodEffect>6</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
@@ -112,13 +112,13 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_TraditionKept</defName>
     <durationDays>4</durationDays>
-    <stages><li><label>a tradition kept</label><description>We did it the way we always do. Some things out here stay the same, and that's a comfort.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
+    <stages><li><label>a tradition kept</label><description>We kept up our tradition, the way we do every year.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_TraditionBroken</defName>
     <durationDays>5</durationDays>
-    <stages><li><label>a tradition broken</label><description>We've always done it. This year we didn't. It feels like something slipped.</description><baseMoodEffect>-5</baseMoodEffect></li></stages>
+    <stages><li><label>a tradition broken</label><description>We've kept that tradition every year until now. It doesn't feel right to let it go.</description><baseMoodEffect>-5</baseMoodEffect></li></stages>
   </ThoughtDef>
 
 </Defs>

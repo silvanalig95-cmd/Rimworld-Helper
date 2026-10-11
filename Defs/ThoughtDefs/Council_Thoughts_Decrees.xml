@@ -8,10 +8,10 @@
     <workerClass>ColonyCouncil.ThoughtWorker_Decree</workerClass>
     <thoughtClass>ColonyCouncil.Thought_Decree</thoughtClass>
     <stages>
-      <li><label>worked to the bone</label><description>The council has us working from dawn until we drop. I hate every minute.</description><baseMoodEffect>-12</baseMoodEffect></li>
-      <li><label>long hours</label><description>Up early, to bed late, and the work never ends. The council says it's temporary.</description><baseMoodEffect>-6</baseMoodEffect></li>
-      <li><label>honest hard work</label><description>Finally the whole colony is pulling its weight.</description><baseMoodEffect>3</baseMoodEffect></li>
-      <li><label>a colony that works</label><description>This is how it should always be.</description><baseMoodEffect>6</baseMoodEffect></li>
+      <li><label>worked to the bone</label><description>The council has us working from dawn until we drop. I can't keep this up.</description><baseMoodEffect>-12</baseMoodEffect></li>
+      <li><label>long hours</label><description>We're up early and in bed late, and the work never ends.</description><baseMoodEffect>-6</baseMoodEffect></li>
+      <li><label>honest hard work</label><description>We're all putting in long days now. I like seeing the work get done.</description><baseMoodEffect>3</baseMoodEffect></li>
+      <li><label>a colony that works</label><description>Long, hard days for all of us. This is how a colony should be run.</description><baseMoodEffect>6</baseMoodEffect></li>
     </stages>
   </ThoughtDef>
 
@@ -20,10 +20,10 @@
     <workerClass>ColonyCouncil.ThoughtWorker_Decree</workerClass>
     <thoughtClass>ColonyCouncil.Thought_Decree</thoughtClass>
     <stages>
-      <li><label>starving on rations</label><description>Half a bowl of mush and a pat on the back. I think about food all day.</description><baseMoodEffect>-10</baseMoodEffect></li>
+      <li><label>starving on rations</label><description>The rations are too small. I think about food all day.</description><baseMoodEffect>-10</baseMoodEffect></li>
       <li><label>on rations</label><description>The portions have shrunk. My belt has new holes.</description><baseMoodEffect>-5</baseMoodEffect></li>
-      <li><label>sensible rations</label><description>Eating less is wise. We'll be glad of it in winter.</description><baseMoodEffect>2</baseMoodEffect></li>
-      <li><label>living lean</label><description>Hunger sharpens the mind.</description><baseMoodEffect>4</baseMoodEffect></li>
+      <li><label>sensible rations</label><description>Eating less now is sensible. We'll be glad of the full stores later.</description><baseMoodEffect>2</baseMoodEffect></li>
+      <li><label>living lean</label><description>I like eating lean. My head feels clearer on an empty stomach.</description><baseMoodEffect>4</baseMoodEffect></li>
     </stages>
   </ThoughtDef>
 
@@ -32,10 +32,10 @@
     <workerClass>ColonyCouncil.ThoughtWorker_Decree</workerClass>
     <thoughtClass>ColonyCouncil.Thought_Decree</thoughtClass>
     <stages>
-      <li><label>endless drills</label><description>Marching, shooting, shouting. I'm not a soldier, and I hate pretending.</description><baseMoodEffect>-8</baseMoodEffect></li>
+      <li><label>endless drills</label><description>We have to march and shoot every day. I'm not a soldier, and I hate it.</description><baseMoodEffect>-8</baseMoodEffect></li>
       <li><label>drills</label><description>Weapons practice every day. My arms ache and my ears ring.</description><baseMoodEffect>-4</baseMoodEffect></li>
-      <li><label>good training</label><description>We're getting sharper. I can feel it.</description><baseMoodEffect>3</baseMoodEffect></li>
-      <li><label>battle drills!</label><description>Every day is a fight now. Practice ones, sadly. Still.</description><baseMoodEffect>7</baseMoodEffect></li>
+      <li><label>good training</label><description>All this practice is making us sharper. We'll be ready for the next raid.</description><baseMoodEffect>3</baseMoodEffect></li>
+      <li><label>daily battle drills</label><description>We drill for battle every day now. I almost wish it were the real thing.</description><baseMoodEffect>7</baseMoodEffect></li>
     </stages>
   </ThoughtDef>
 
@@ -44,10 +44,10 @@
     <workerClass>ColonyCouncil.ThoughtWorker_Decree</workerClass>
     <thoughtClass>ColonyCouncil.Thought_Decree</thoughtClass>
     <stages>
-      <li><label>stuck in lessons</label><description>Sitting still, listening to lectures, when there's real work to do. Torture.</description><baseMoodEffect>-7</baseMoodEffect></li>
+      <li><label>stuck in lessons</label><description>I have to sit still through lessons when there's real work to do. I can't stand it.</description><baseMoodEffect>-7</baseMoodEffect></li>
       <li><label>study hours</label><description>Lessons every evening. My head is full and my back is stiff.</description><baseMoodEffect>-3</baseMoodEffect></li>
-      <li><label>learning together</label><description>Everyone is learning something. It's good to see.</description><baseMoodEffect>3</baseMoodEffect></li>
-      <li><label>a colony of scholars</label><description>Finally, people around here are using their heads.</description><baseMoodEffect>6</baseMoodEffect></li>
+      <li><label>learning together</label><description>We all have lessons now. I've already picked up a few things.</description><baseMoodEffect>3</baseMoodEffect></li>
+      <li><label>a colony of scholars</label><description>We all study now. I love talking over the lessons at dinner.</description><baseMoodEffect>6</baseMoodEffect></li>
     </stages>
   </ThoughtDef>
 
@@ -56,10 +56,10 @@
     <workerClass>ColonyCouncil.ThoughtWorker_Decree</workerClass>
     <thoughtClass>ColonyCouncil.Thought_Decree</thoughtClass>
     <stages>
-      <li><label>austerity</label><description>We're not even allowed to ask for things now. What's the point of any of this?</description><baseMoodEffect>-8</baseMoodEffect></li>
+      <li><label>austerity</label><description>We're not even allowed to ask the council for things now. It's wearing me down.</description><baseMoodEffect>-8</baseMoodEffect></li>
       <li><label>tightened belts</label><description>The council isn't taking requests. We make do.</description><baseMoodEffect>-4</baseMoodEffect></li>
-      <li><label>living simply</label><description>Fewer wants, fewer worries.</description><baseMoodEffect>2</baseMoodEffect></li>
-      <li><label>blessed simplicity</label><description>At last everyone lives the way I always have.</description><baseMoodEffect>6</baseMoodEffect></li>
+      <li><label>living simply</label><description>I don't mind going without. It keeps things simple.</description><baseMoodEffect>2</baseMoodEffect></li>
+      <li><label>blessed simplicity</label><description>At last we all live simply, the way I always have.</description><baseMoodEffect>6</baseMoodEffect></li>
     </stages>
   </ThoughtDef>
 
@@ -68,10 +68,10 @@
     <workerClass>ColonyCouncil.ThoughtWorker_Decree</workerClass>
     <thoughtClass>ColonyCouncil.Thought_Decree</thoughtClass>
     <stages>
-      <li><label>wasted festival days</label><description>Everyone is lazing about while the work piles up. It makes my skin crawl.</description><baseMoodEffect>-6</baseMoodEffect></li>
-      <li><label>idle festival</label><description>Nobody is working. I can't relax knowing that.</description><baseMoodEffect>-2</baseMoodEffect></li>
-      <li><label>festival days</label><description>Music, rest and late nights. We needed this.</description><baseMoodEffect>8</baseMoodEffect></li>
-      <li><label>best festival ever</label><description>No work, all play. If only it could last forever.</description><baseMoodEffect>14</baseMoodEffect></li>
+      <li><label>wasted festival days</label><description>The others are lazing about while the work piles up. It makes my skin crawl.</description><baseMoodEffect>-6</baseMoodEffect></li>
+      <li><label>idle festival</label><description>The work has stopped for the festival. I can't relax with the chores piling up.</description><baseMoodEffect>-2</baseMoodEffect></li>
+      <li><label>festival days</label><description>The festival means music, rest and late nights. I needed this.</description><baseMoodEffect>8</baseMoodEffect></li>
+      <li><label>best festival ever</label><description>No work, just music and food and dancing. I wish it would never end.</description><baseMoodEffect>14</baseMoodEffect></li>
     </stages>
   </ThoughtDef>
 
@@ -96,7 +96,7 @@
     <durationDays>6</durationDays>
     <stackLimit>5</stackLimit>
     <stackLimitForSameOtherPawn>2</stackLimitForSameOtherPawn>
-    <stages><li><label>argued about the decree</label><description>We disagreed about the council's decree, loudly.</description><baseMoodEffect>-1</baseMoodEffect><baseOpinionOffset>-5</baseOpinionOffset></li></stages>
+    <stages><li><label>argued about the decree</label><description>We had a loud argument about the council's decree.</description><baseMoodEffect>-1</baseMoodEffect><baseOpinionOffset>-5</baseOpinionOffset></li></stages>
   </ThoughtDef>
 
 </Defs>

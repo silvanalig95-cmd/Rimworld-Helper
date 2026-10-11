@@ -6,7 +6,7 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_Dlm_Humiliated</defName>
     <durationDays>5</durationDays>
-    <stages><li><label>humiliated by the council</label><description>They made an example of me in front of everyone. I won't forget whose idea that was.</description><baseMoodEffect>-9</baseMoodEffect></li></stages>
+    <stages><li><label>humiliated by the council</label><description>The council made an example of me while the others watched. I won't forget whose idea that was.</description><baseMoodEffect>-9</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
@@ -18,13 +18,13 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_Dlm_Unfair</defName>
     <durationDays>3</durationDays>
-    <stages><li><label>the council let it slide</label><description>Somebody does wrong and gets a pat on the head. So much for rules.</description><baseMoodEffect>-4</baseMoodEffect></li></stages>
+    <stages><li><label>the council let it slide</label><description>One of us did wrong, and the council let it go. That isn't fair.</description><baseMoodEffect>-4</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_Dlm_Harsh</defName>
     <durationDays>3</durationDays>
-    <stages><li><label>the council was cruel</label><description>There was no need for that. People make mistakes. We're supposed to be better than this.</description><baseMoodEffect>-4</baseMoodEffect></li></stages>
+    <stages><li><label>the council was cruel</label><description>The council punished them far too harshly for one mistake.</description><baseMoodEffect>-4</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
@@ -36,13 +36,13 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_Dlm_Vindicated</defName>
     <durationDays>4</durationDays>
-    <stages><li><label>the council took my side</label><description>I was right, and now everyone knows it.</description><baseMoodEffect>5</baseMoodEffect></li></stages>
+    <stages><li><label>the council took my side</label><description>I brought it to the council, and they agreed I was right.</description><baseMoodEffect>5</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_Dlm_Overruled</defName>
     <durationDays>5</durationDays>
-    <stages><li><label>the council took their side</label><description>I brought it to the council and they sided against me. Fine. I know where I stand.</description><baseMoodEffect>-6</baseMoodEffect></li></stages>
+    <stages><li><label>the council took their side</label><description>I brought it to the council and they sided against me. Now I know where I stand.</description><baseMoodEffect>-6</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef>
@@ -60,13 +60,13 @@
     <durationDays>15</durationDays>
     <stackLimit>3</stackLimit>
     <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
-    <stages><li><label>worked it out</label><description>We were made to sort it out ourselves, and somehow we did.</description><baseMoodEffect>2</baseMoodEffect><baseOpinionOffset>15</baseOpinionOffset></li></stages>
+    <stages><li><label>worked it out</label><description>The council made us sort it out between ourselves, and we did. We get along better now.</description><baseMoodEffect>2</baseMoodEffect><baseOpinionOffset>15</baseOpinionOffset></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_Dlm_ForcedTogether</defName>
     <durationDays>3</durationDays>
-    <stages><li><label>forced to work with someone I can't stand</label><description>The council's idea of a solution: lock us in a room together. Brilliant.</description><baseMoodEffect>-3</baseMoodEffect></li></stages>
+    <stages><li><label>forced to work with someone I can't stand</label><description>The council's answer was to make us work side by side. I can barely stand being near them.</description><baseMoodEffect>-3</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
@@ -78,7 +78,7 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_Dlm_Feast</defName>
     <durationDays>2</durationDays>
-    <stages><li><label>a feast!</label><description>Everything good in the stores, all at once. My stomach is a happy stomach.</description><baseMoodEffect>8</baseMoodEffect></li></stages>
+    <stages><li><label>a feast</label><description>We had a feast with the best food in the stores. I'm still full.</description><baseMoodEffect>8</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
@@ -90,7 +90,7 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_Dlm_FeastDenied</defName>
     <durationDays>3</durationDays>
-    <stages><li><label>no feast</label><description>I wanted to cook something special for everyone. Apparently rice is special enough.</description><baseMoodEffect>-4</baseMoodEffect></li></stages>
+    <stages><li><label>no feast</label><description>I wanted to cook a proper feast for us all, and the council said no.</description><baseMoodEffect>-4</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
@@ -108,7 +108,7 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_Dlm_Helped</defName>
     <durationDays>4</durationDays>
-    <stages><li><label>helped someone through a bad time</label><description>Someone needed a friend, and I was there.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
+    <stages><li><label>helped someone through a bad time</label><description>I sat with one of the others through a bad stretch. I'm glad I could help.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef>
@@ -123,25 +123,25 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_Dlm_Shirking</defName>
     <durationDays>3</durationDays>
-    <stages><li><label>someone's getting days off</label><description>We're all tired. Some of us still work.</description><baseMoodEffect>-2</baseMoodEffect></li></stages>
+    <stages><li><label>someone got days off</label><description>One of us got days off to rest. The rest of us are tired too.</description><baseMoodEffect>-2</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_Dlm_Stash</defName>
     <durationDays>2</durationDays>
-    <stages><li><label>shared the stash</label><description>Somebody's forgotten stash, and now it's ours. Cheers.</description><baseMoodEffect>4</baseMoodEffect></li></stages>
+    <stages><li><label>shared the stash</label><description>We found a forgotten stash and shared it around.</description><baseMoodEffect>4</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_Dlm_LockedAway</defName>
     <durationDays>2</durationDays>
-    <stages><li><label>they locked up the good stuff</label><description>A whole stash, and it goes in a locked room for "trading". Sure.</description><baseMoodEffect>-3</baseMoodEffect></li></stages>
+    <stages><li><label>they locked up the good stuff</label><description>We found a whole stash, and the council locked it away to sell.</description><baseMoodEffect>-3</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_Dlm_Wasted</defName>
     <durationDays>3</durationDays>
-    <stages><li><label>they poured it out</label><description>Perfectly good stuff, poured into the dirt. I could weep.</description><baseMoodEffect>-5</baseMoodEffect></li></stages>
+    <stages><li><label>they poured it out</label><description>The council had the whole stash poured into the dirt. What a waste.</description><baseMoodEffect>-5</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">

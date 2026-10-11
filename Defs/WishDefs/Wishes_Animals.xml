@@ -17,34 +17,34 @@
     <fulfilledWhen>An animal bed or sleeping spot in {PAWN_nameDef}'s bedroom.</fulfilledWhen>
     <request>
       <plain>
-        <li>{OTHER_nameDef} sleeps outside my door every night anyway. Might as well be inside it.</li>
-        <li>Just a corner for {OTHER_nameDef}. I'll clean up the hair. Most of it.</li>
-        <li>[winter] It's freezing in the barn. {OTHER_nameDef} could sleep at the foot of my bed. Please.</li>
+        <li>{OTHER_nameDef} curls up outside my door every night anyway. Could we put a bed for {OTHER_objective} on the inside?</li>
+        <li>Just a corner of my room for {OTHER_nameDef}, with a blanket on the floor. I'll sweep up the hair.</li>
+        <li>[winter] The animal pen is freezing at night. {OTHER_nameDef} could sleep at the foot of my bed instead.</li>
         <li>[night] I woke up and {OTHER_nameDef} wasn't there. I didn't sleep again.</li>
       </plain>
       <warm>
-        <li>{OTHER_nameDef} looks after me all day. Let me look after {OTHER_objective} at night.</li>
+        <li>{OTHER_nameDef} follows me around all day. I'd like {OTHER_objective} close at night too, somewhere soft.</li>
       </warm>
       <blunt>
         <li>{OTHER_nameDef} sleeps with me. Build a bed or I'll share mine.</li>
       </blunt>
       <cheerful>
-        <li>A little bed for {OTHER_nameDef}! With a blanket! Maybe a tiny pillow! Is a tiny pillow too much?</li>
+        <li>A little bed for {OTHER_nameDef}, right next to mine! With a blanket, and maybe a tiny pillow.</li>
       </cheerful>
       <gloomy>
-        <li>{OTHER_nameDef} is the only one who's never let me down. The least I can do is keep {OTHER_objective} close.</li>
+        <li>{OTHER_nameDef} has never once let me down. I'd sleep better with {OTHER_objective} in the room.</li>
       </gloomy>
       <cold>
-        <li>A bonded animal near its handler sleeps better and works better. So do I.</li>
+        <li>Bonded animals settle better when they sleep near their handler. Put a bed for mine in my room.</li>
       </cold>
     </request>
     <thanks>
-      <plain><li>{OTHER_nameDef} turned three times and lay down like {OTHER_pronoun} owned the place. Which, now, fair.</li></plain>
+      <plain><li>{OTHER_nameDef} turned around three times and lay down like {OTHER_pronoun} owned the place.</li></plain>
       <warm><li>Listen to {OTHER_nameDef} snore. Best sound in the colony.</li></warm>
-      <cheerful><li>Look at {OTHER_objective}! In {OTHER_possessive} little bed! I'm not crying. Okay, a bit.</li></cheerful>
+      <cheerful><li>Look at {OTHER_objective} curled up in {OTHER_possessive} own little bed! I could watch {OTHER_objective} all evening.</li></cheerful>
     </thanks>
     <expired>
-      <plain><li>Back to the barn, then. {OTHER_nameDef} looked at me like it was my fault.</li></plain>
+      <plain><li>Back out with the herd, then. {OTHER_nameDef} whined at my door half the night.</li></plain>
     </expired>
   </ColonyCouncil.WishDef>
 
@@ -65,33 +65,33 @@
     <fulfilledWhen>{OTHER_nameDef} is tended and mostly healed.</fulfilledWhen>
     <request>
       <plain>
-        <li>{OTHER_nameDef} is bleeding and nobody's looked at {OTHER_objective}. Somebody. Please.</li>
-        <li>I know animals aren't priority. {OTHER_nameDef} is my priority.</li>
-        <li>[afterraid] {OTHER_nameDef} fought for us too. Patch {OTHER_objective} up like you'd patch me.</li>
+        <li>{OTHER_nameDef} is still bleeding. Could a doctor look at {OTHER_objective} before the day's out?</li>
+        <li>I know the doctors have people to see first. But {OTHER_nameDef} hasn't been tended at all.</li>
+        <li>[afterraid] {OTHER_nameDef} was in that fight with us and came out of it bleeding. Get a doctor to {OTHER_objective}.</li>
       </plain>
       <warm>
         <li>Could a doctor see {OTHER_nameDef}? I'll do anyone's chores for a week.</li>
       </warm>
       <blunt>
-        <li>Get a doctor to {OTHER_nameDef}. Now. I'll wait. Not long.</li>
+        <li>Get a doctor to {OTHER_nameDef}. Today.</li>
       </blunt>
       <cheerful>
-        <li>{OTHER_nameDef} is being so brave! Let's fix {OTHER_objective} up so I can stop pretending I'm brave too!</li>
+        <li>{OTHER_nameDef} is being so brave about it! Let's get {OTHER_objective} stitched up and back on {OTHER_possessive} feet.</li>
       </cheerful>
       <gloomy>
-        <li>If {OTHER_nameDef} dies because nobody bothered, I don't know what I'll do.</li>
+        <li>{OTHER_nameDef} is lying in the straw, breathing shallow. I don't think {OTHER_pronoun} can wait much longer.</li>
       </gloomy>
       <cold>
-        <li>{OTHER_nameDef} is a trained asset. An untended wound means losing the training. Fix it.</li>
+        <li>{OTHER_nameDef} took months to train. Losing {OTHER_objective} to an untended wound would be a waste.</li>
       </cold>
     </request>
     <thanks>
       <plain><li>{OTHER_nameDef} is up and limping around like nothing happened. Thank you.</li></plain>
       <warm><li>{OTHER_nameDef} licked my face. That's from both of us.</li></warm>
-      <gloomy><li>Still here. Both of us. That's more than I expected.</li></gloomy>
+      <gloomy><li>I'd already picked out a spot to bury the poor thing. I'm glad I didn't need it.</li></gloomy>
     </thanks>
     <expired>
-      <plain><li>I sat with {OTHER_nameDef} all night. Nobody else came.</li></plain>
+      <plain><li>I sat up with {OTHER_nameDef} all night and changed the bandages myself.</li></plain>
     </expired>
   </ColonyCouncil.WishDef>
 

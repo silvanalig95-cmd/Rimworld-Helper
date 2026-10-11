@@ -12,19 +12,19 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_EncR_KnownForMercy</defName>
     <durationDays>3</durationDays>
-    <stages><li><label>a name for mercy</label><description>A traveler had heard we spare the ones we beat. Strange thing to be famous for. I'll take it.</description><baseMoodEffect>2</baseMoodEffect></li></stages>
+    <stages><li><label>a name for mercy</label><description>A traveler had heard that we spare the raiders we beat. I'm glad that's what people say about us.</description><baseMoodEffect>2</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_EncR_KnownAsSoft</defName>
     <durationDays>3</durationDays>
-    <stages><li><label>known as soft</label><description>On the road they say we patch up raiders and send them home. They're laughing at us out there, and they're right to.</description><baseMoodEffect>-2</baseMoodEffect></li></stages>
+    <stages><li><label>known as soft</label><description>On the road they say we patch up raiders and send them home. They're laughing at us.</description><baseMoodEffect>-2</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_EncR_KindnessReturned</defName>
     <durationDays>3</durationDays>
-    <stages><li><label>a kindness came back</label><description>We let someone go once. Today a trader remembered it and paid us back in herbs and coin. Mercy travels.</description><baseMoodEffect>2</baseMoodEffect></li></stages>
+    <stages><li><label>a kindness came back</label><description>We let a prisoner go once. Today a trader remembered it and paid us back in herbs and silver.</description><baseMoodEffect>2</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <!-- ===================== Encounters: harsh ===================== -->
@@ -44,13 +44,13 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_EncR_ScaredTheTrader</defName>
     <durationDays>2</durationDays>
-    <stages><li><label>frightened a trader</label><description>The trader gave us a better price because they were afraid of us. The silver spends the same. It still doesn't sit right.</description><baseMoodEffect>-1</baseMoodEffect></li></stages>
+    <stages><li><label>frightened a trader</label><description>The trader gave us a better price because they were afraid of us. That doesn't sit right with me.</description><baseMoodEffect>-1</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_EncR_FearfulPrice</defName>
     <durationDays>2</durationDays>
-    <stages><li><label>a frightened trader's price</label><description>Didn't even have to haggle. The trader just kept lowering the price. A name is worth something after all.</description><baseMoodEffect>2</baseMoodEffect></li></stages>
+    <stages><li><label>a frightened trader's price</label><description>I didn't even have to haggle. The trader was afraid of us and kept lowering the price.</description><baseMoodEffect>2</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <!-- ===================== Encounters: generous ===================== -->
@@ -58,13 +58,13 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_EncR_FedATraveler</defName>
     <durationDays>3</durationDays>
-    <stages><li><label>fed a traveler</label><description>A stranger came out of their way because they'd heard we'd feed them. We did. Twice.</description><baseMoodEffect>2</baseMoodEffect></li></stages>
+    <stages><li><label>fed a traveler</label><description>A traveler went out of their way because they'd heard we'd feed them, and we did.</description><baseMoodEffect>2</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_EncR_AnotherMouth</defName>
     <durationDays>2</durationDays>
-    <stages><li><label>another mouth at the door</label><description>Every hungry traveler on the road knows where our kitchen is now. Wonderful.</description><baseMoodEffect>-1</baseMoodEffect></li></stages>
+    <stages><li><label>another mouth at the door</label><description>Every hungry traveler on the road knows where our kitchen is now. Our stores won't last.</description><baseMoodEffect>-1</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
@@ -78,19 +78,19 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_EncR_HardBargainers</defName>
     <durationDays>2</durationDays>
-    <stages><li><label>known for hard bargains</label><description>The trader expected a fight over every coin, and got one. Our name is worth more than their margins.</description><baseMoodEffect>2</baseMoodEffect></li></stages>
+    <stages><li><label>known for hard bargains</label><description>The trader expected a fight over every piece of silver, and got one.</description><baseMoodEffect>2</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_EncR_CalledAMiser</defName>
     <durationDays>2</durationDays>
-    <stages><li><label>called a miser</label><description>A trader haggled with me like I was a known cheat. Apparently we count every grain. Apparently that's what we're known for.</description><baseMoodEffect>-1</baseMoodEffect></li></stages>
+    <stages><li><label>called a miser</label><description>A trader haggled with me like I was a known cheat. Apparently we're known as misers.</description><baseMoodEffect>-1</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_EncR_ProvedAPoint</defName>
     <durationDays>2</durationDays>
-    <stages><li><label>proved a point</label><description>A guest brought their own bread because they'd heard we wouldn't share. I shared. Out of spite, mostly, but I shared.</description><baseMoodEffect>2</baseMoodEffect></li></stages>
+    <stages><li><label>proved a point</label><description>A guest brought their own bread because they'd heard we wouldn't share. I shared mine with them anyway.</description><baseMoodEffect>2</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <!-- ===================== Encounters: traditional ===================== -->
@@ -98,13 +98,13 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_EncR_OurWaysPraised</defName>
     <durationDays>3</durationDays>
-    <stages><li><label>our ways praised</label><description>An old traveler said we keep the old customs better than anywhere on the road. Good to know they aren't wasted on us.</description><baseMoodEffect>2</baseMoodEffect></li></stages>
+    <stages><li><label>our ways praised</label><description>An old traveler said we keep the old customs better than anywhere else on the road.</description><baseMoodEffect>2</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_EncR_RespectedOurWays</defName>
     <durationDays>2</durationDays>
-    <stages><li><label>a guest who knew our ways</label><description>The trader waited for the bread and salt at the gate, the proper way. Small thing. Felt like being understood.</description><baseMoodEffect>2</baseMoodEffect></li></stages>
+    <stages><li><label>a guest who knew our ways</label><description>The trader waited at the gate for bread and salt, the proper way. It was good to see.</description><baseMoodEffect>2</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <!-- ===================== Encounters: restless ===================== -->
@@ -112,13 +112,13 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_EncR_ShowedOffNewWays</defName>
     <durationDays>3</durationDays>
-    <stages><li><label>showed off our new ideas</label><description>A traveler came all this way to see what we're trying. I talked for an hour. I could have talked for three.</description><baseMoodEffect>2</baseMoodEffect></li></stages>
+    <stages><li><label>showed off our new ideas</label><description>A traveler came all this way to see what we're trying here. I could have talked about it all day.</description><baseMoodEffect>2</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_EncR_AlwaysChanging</defName>
     <durationDays>2</durationDays>
-    <stages><li><label>nothing where it was</label><description>The trader couldn't find the storeroom because we moved it again. I suppose that's what we're like now. I suppose I like it.</description><baseMoodEffect>1</baseMoodEffect></li></stages>
+    <stages><li><label>nothing where it was</label><description>The trader couldn't find the storeroom because we'd moved it again. That's what we're like, and I like it.</description><baseMoodEffect>1</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <!-- ===================== Encounters: open ===================== -->
@@ -126,13 +126,13 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_EncR_GuestsAtEase</defName>
     <durationDays>2</durationDays>
-    <stages><li><label>guests at ease</label><description>The visitors took their boots off and sang with us half the night. That's what a welcome is for.</description><baseMoodEffect>2</baseMoodEffect></li></stages>
+    <stages><li><label>guests at ease</label><description>The visitors took their boots off and sang with us half the night.</description><baseMoodEffect>2</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_EncR_TrustedWithNews</defName>
     <durationDays>2</durationDays>
-    <stages><li><label>trusted with the road's news</label><description>The trader told me things they don't tell everyone, because we always let them in. It pays to keep the gate open.</description><baseMoodEffect>2</baseMoodEffect></li></stages>
+    <stages><li><label>trusted with the road's news</label><description>The trader told me news they don't share with just anyone, because we always let them in.</description><baseMoodEffect>2</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <!-- ===================== Encounters: guarded ===================== -->
@@ -140,19 +140,19 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_EncR_GuestsOnEdge</defName>
     <durationDays>3</durationDays>
-    <stages><li><label>guests afraid to move</label><description>A visitor asked my leave to walk to the well. Is that what we are now? The place where you ask before you breathe?</description><baseMoodEffect>-2</baseMoodEffect></li></stages>
+    <stages><li><label>guests afraid to move</label><description>A visitor asked my permission to walk to the well. I don't like that we've become that kind of place.</description><baseMoodEffect>-2</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_EncR_GuestsMindTheirManners</defName>
     <durationDays>2</durationDays>
-    <stages><li><label>guests minding their manners</label><description>The visitors kept their hands where we could see them. Good. That's how it should be.</description><baseMoodEffect>1</baseMoodEffect></li></stages>
+    <stages><li><label>guests minding their manners</label><description>The visitors kept their hands where we could see them. That's how it should be.</description><baseMoodEffect>1</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_EncR_OpenedTheGate</defName>
     <durationDays>2</durationDays>
-    <stages><li><label>opened the gate a little</label><description>I let a trader in past the watch instead of haggling through a crack. The sky didn't fall. Imagine that.</description><baseMoodEffect>2</baseMoodEffect></li></stages>
+    <stages><li><label>opened the gate a little</label><description>I let a trader in past the watch instead of haggling through the gate. Nothing bad happened.</description><baseMoodEffect>2</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <!-- ===================== Encounters: hard-working ===================== -->
@@ -160,13 +160,13 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_EncR_WorkNoticed</defName>
     <durationDays>3</durationDays>
-    <stages><li><label>the work was noticed</label><description>A trader stood and stared at our fields. Not a weed. People on the road know what we do here.</description><baseMoodEffect>2</baseMoodEffect></li></stages>
+    <stages><li><label>the work was noticed</label><description>A trader stopped to stare at our fields, without a weed in them. People on the road know how hard we work.</description><baseMoodEffect>2</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_EncR_StoleAnHour</defName>
     <durationDays>2</durationDays>
-    <stages><li><label>an idle hour</label><description>A visitor made me sit down. Just sit. I'd forgotten how. I should do it again sometime. Next year, maybe.</description><baseMoodEffect>2</baseMoodEffect></li></stages>
+    <stages><li><label>an idle hour</label><description>A visitor made me sit down and rest for a while. I'd forgotten what that was like.</description><baseMoodEffect>2</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <!-- ===================== Encounters: easygoing ===================== -->
@@ -174,25 +174,25 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_EncR_WeLiveWell</defName>
     <durationDays>3</durationDays>
-    <stages><li><label>the envy of travelers</label><description>A stranger looked at how we live and wanted it. Long lunches, no bells, nobody counting. We've got something good here.</description><baseMoodEffect>2</baseMoodEffect></li></stages>
+    <stages><li><label>the envy of travelers</label><description>A traveler saw how we live, with our long lunches and no work bells, and wished they could stay. We have something good here.</description><baseMoodEffect>2</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_EncR_ThoughtIdle</defName>
     <durationDays>2</durationDays>
-    <stages><li><label>thought idle</label><description>Travelers think we're the place where nobody works. I work. I'd like that noted somewhere.</description><baseMoodEffect>-1</baseMoodEffect></li></stages>
+    <stages><li><label>thought idle</label><description>Travelers think we're lazy here. I work as hard as anyone.</description><baseMoodEffect>-1</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_EncR_NoHurry</defName>
     <durationDays>2</durationDays>
-    <stages><li><label>no hurry</label><description>A trader waited on us, and nobody died of it. Things here happen when they happen.</description><baseMoodEffect>1</baseMoodEffect></li></stages>
+    <stages><li><label>no hurry</label><description>A trader had to wait on us for a while. We do things in our own time here.</description><baseMoodEffect>1</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_EncR_TraderKeptWaiting</defName>
     <durationDays>2</durationDays>
-    <stages><li><label>kept a trader waiting</label><description>A trader waited half a day for us to wake up. Half a day! I'd have had the deal done and a fence mended.</description><baseMoodEffect>-2</baseMoodEffect></li></stages>
+    <stages><li><label>kept a trader waiting</label><description>A trader waited half a day for us to get around to them. I'd have had the deal done and a fence mended by then.</description><baseMoodEffect>-2</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <!-- ===================== Dilemma: sanctuary ===================== -->
@@ -200,43 +200,43 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_DlmR_GaveSanctuary</defName>
     <durationDays>8</durationDays>
-    <stages><li><label>gave someone sanctuary</label><description>They came to us because they'd heard we were merciful. We were. I'd like to keep being.</description><baseMoodEffect>5</baseMoodEffect></li></stages>
+    <stages><li><label>gave someone sanctuary</label><description>They came to us because they'd heard we were merciful, and we took them in. I'm proud of that.</description><baseMoodEffect>5</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_DlmR_MercyShown</defName>
     <durationDays>5</durationDays>
-    <stages><li><label>we took in a runaway</label><description>Someone ran from their own people to us, and we didn't send them back. That's who I want us to be.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
+    <stages><li><label>we took in a runaway</label><description>A runaway came to us from their own people, and we didn't send them back.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_DlmR_GaveThemUp</defName>
     <durationDays>6</durationDays>
-    <stages><li><label>gave a runaway back</label><description>They trusted me with what they wanted. The council handed it straight to the people they were running from.</description><baseMoodEffect>-4</baseMoodEffect></li></stages>
+    <stages><li><label>gave a runaway back</label><description>The runaway trusted me, and the council handed them straight back to the people they were running from.</description><baseMoodEffect>-4</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_DlmR_RunawayBetrayed</defName>
     <durationDays>5</durationDays>
-    <stages><li><label>we gave them up</label><description>We told their masters what they'd asked of us. Somewhere on the road, someone is paying for having trusted this place.</description><baseMoodEffect>-3</baseMoodEffect></li></stages>
+    <stages><li><label>we gave them up</label><description>We told their masters where the runaway had gone. They trusted us, and now they're paying for it.</description><baseMoodEffect>-3</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_DlmR_Betrayed</defName>
     <durationDays>6</durationDays>
-    <stages><li><label>betrayed to my own people</label><description>I asked them for help. They went and told the one person I was hiding from. Merciful, they said. Merciful.</description><baseMoodEffect>-6</baseMoodEffect></li></stages>
+    <stages><li><label>betrayed to my own people</label><description>I asked them for help, and they told the people I was hiding from. So much for their mercy.</description><baseMoodEffect>-6</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_DlmR_NightsRest</defName>
     <durationDays>3</durationDays>
-    <stages><li><label>a night's rest</label><description>They couldn't keep me. They gave me a warm corner and a full bowl anyway. It'll carry me a while.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
+    <stages><li><label>a night's rest</label><description>They couldn't take me in, but they gave me a warm corner and a full bowl for the night.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_DlmR_CouldntKeepThem</defName>
     <durationDays>3</durationDays>
-    <stages><li><label>sent them back on the road</label><description>A night's rest and a full bowl. It was kind. It wasn't what they asked for.</description><baseMoodEffect>-2</baseMoodEffect></li></stages>
+    <stages><li><label>sent them back on the road</label><description>We gave the runaway a night's rest and a full bowl, then sent them on. It wasn't what they asked for.</description><baseMoodEffect>-2</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <!-- ===================== Dilemma: counting on our mercy ===================== -->
@@ -244,25 +244,25 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_DlmR_NotSoSoft</defName>
     <durationDays>4</durationDays>
-    <stages><li><label>not so soft after all</label><description>I heard this place was soft. The new guard on my door didn't get the message.</description><baseMoodEffect>-4</baseMoodEffect></li></stages>
+    <stages><li><label>not so soft after all</label><description>I'd heard this place was soft on prisoners. Now there's a new guard on my door.</description><baseMoodEffect>-4</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_DlmR_NobodysFool</defName>
     <durationDays>3</durationDays>
-    <stages><li><label>nobody's fool</label><description>The prisoner thought our mercy meant weakness. Found out otherwise.</description><baseMoodEffect>2</baseMoodEffect></li></stages>
+    <stages><li><label>nobody's fool</label><description>The prisoner thought our mercy meant we were weak. They know better now.</description><baseMoodEffect>2</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_DlmR_MeanToPrisoner</defName>
     <durationDays>3</durationDays>
-    <stages><li><label>hard on a prisoner</label><description>One prisoner made a joke about our mercy, so we took it away from them. That's not what mercy is for.</description><baseMoodEffect>-2</baseMoodEffect></li></stages>
+    <stages><li><label>hard on a prisoner</label><description>A prisoner made a joke about our mercy, so we came down hard on them. That's petty.</description><baseMoodEffect>-2</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_DlmR_TakenForFools</defName>
     <durationDays>4</durationDays>
-    <stages><li><label>taken for fools</label><description>The prisoner laughed at our mercy, and the council opened the door anyway. I hope it was worth it.</description><baseMoodEffect>-2</baseMoodEffect></li></stages>
+    <stages><li><label>taken for fools</label><description>The prisoner laughed at our mercy, and the council let them go anyway.</description><baseMoodEffect>-2</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <!-- ===================== Dilemma: one act of mercy ===================== -->
@@ -270,19 +270,19 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_DlmR_KindnessSent</defName>
     <durationDays>8</durationDays>
-    <stages><li><label>mercy sent out</label><description>We sent food to people who were afraid of us, and asked nothing back. Maybe the stories will change. Maybe I'll sleep.</description><baseMoodEffect>5</baseMoodEffect></li></stages>
+    <stages><li><label>mercy sent out</label><description>We sent food to people who are afraid of us, and asked nothing back. Maybe the stories about us will change.</description><baseMoodEffect>5</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_DlmR_GoneSoft</defName>
     <durationDays>3</durationDays>
-    <stages><li><label>gone soft</label><description>We're going easy on people who used to fear us. Fear kept the walls standing.</description><baseMoodEffect>-2</baseMoodEffect></li></stages>
+    <stages><li><label>gone soft</label><description>We're going easy on people who used to fear us. That fear kept us safe.</description><baseMoodEffect>-2</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_DlmR_SilverNotMercy</defName>
     <durationDays>4</durationDays>
-    <stages><li><label>silver instead</label><description>The council sent silver, not food. It's something. It's not quite what I asked for.</description><baseMoodEffect>2</baseMoodEffect></li></stages>
+    <stages><li><label>silver instead</label><description>The council sent silver instead of food. It's not what I asked for, but it's something.</description><baseMoodEffect>2</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
@@ -294,7 +294,7 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_DlmR_KnownForCruelty</defName>
     <durationDays>4</durationDays>
-    <stages><li><label>known for cruelty</label><description>They use our name to frighten children. The council seems content with that. I'm not.</description><baseMoodEffect>-2</baseMoodEffect></li></stages>
+    <stages><li><label>known for cruelty</label><description>People out there use our name to frighten children, and the council is content with that.</description><baseMoodEffect>-2</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <!-- ===================== Dilemma: someone else's thief ===================== -->
@@ -302,7 +302,7 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_DlmR_FloggedByStrangers</defName>
     <durationDays>8</durationDays>
-    <stages><li><label>flogged by strangers</label><description>My own people handed me to strangers to be whipped, because these strangers have a name for it. My back will remember their yard.</description><baseMoodEffect>-8</baseMoodEffect></li></stages>
+    <stages><li><label>flogged by strangers</label><description>My own people handed me over to strangers to be whipped, because these strangers are known for it. My back is raw.</description><baseMoodEffect>-8</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef>
@@ -311,31 +311,31 @@
     <durationDays>20</durationDays>
     <stackLimit>3</stackLimit>
     <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
-    <stages><li><label>held the whip</label><description>That one held the whip. I made sure to learn the face.</description><baseOpinionOffset>-20</baseOpinionOffset></li></stages>
+    <stages><li><label>held the whip</label><description>They held the whip. I won't forget their face.</description><baseOpinionOffset>-20</baseOpinionOffset></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_DlmR_HeldTheWhip</defName>
     <durationDays>5</durationDays>
-    <stages><li><label>held the whip</label><description>The visitors asked for me by name, because of what we're known for. I did it. I can still hear it.</description><baseMoodEffect>-3</baseMoodEffect></li></stages>
+    <stages><li><label>held the whip</label><description>The visitors asked for me by name to do the whipping, and I did it. I can still hear it.</description><baseMoodEffect>-3</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_DlmR_KeptOurName</defName>
     <durationDays>3</durationDays>
-    <stages><li><label>kept our name</label><description>They came all this way to see us do it properly. We did. People will remember.</description><baseMoodEffect>2</baseMoodEffect></li></stages>
+    <stages><li><label>kept our name</label><description>They came all this way to see us do it properly, and we did.</description><baseMoodEffect>2</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_DlmR_FloggingInOurYard</defName>
     <durationDays>4</durationDays>
-    <stages><li><label>a flogging in our yard</label><description>We whipped somebody else's thief because they asked us to. Our name has turned into a service we offer.</description><baseMoodEffect>-2</baseMoodEffect></li></stages>
+    <stages><li><label>a flogging in our yard</label><description>We whipped somebody else's thief in our yard, just because they asked us to.</description><baseMoodEffect>-2</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_DlmR_SparedByStrangers</defName>
     <durationDays>6</durationDays>
-    <stages><li><label>spared by strangers</label><description>My own people wanted me whipped. The hard ones, the ones from the stories, untied my hands instead.</description><baseMoodEffect>5</baseMoodEffect></li></stages>
+    <stages><li><label>spared by strangers</label><description>My own people wanted me whipped. These strangers, the hard ones from the stories, untied my hands instead.</description><baseMoodEffect>5</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef>
@@ -350,7 +350,7 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_DlmR_PutTheWhipDown</defName>
     <durationDays>4</durationDays>
-    <stages><li><label>put the whip down</label><description>They handed me a whip and a name to live up to. The council said no. I didn't know how much I wanted it to.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
+    <stages><li><label>put the whip down</label><description>They handed me a whip and expected me to use it. The council said no, and I was glad.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <!-- ===================== Dilemma: always a bowl ===================== -->
@@ -358,25 +358,25 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_DlmR_NoOneTurnedAway</defName>
     <durationDays>5</durationDays>
-    <stages><li><label>nobody turned away</label><description>Hungry at our gate, fed at our table. Every time. I'm proud of that, even when the larder isn't.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
+    <stages><li><label>nobody turned away</label><description>Anyone who comes hungry to our gate gets fed. I'm proud of that, even when the larder runs low.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_DlmR_FeedingTheRoad</defName>
     <durationDays>3</durationDays>
-    <stages><li><label>feeding the whole road</label><description>Every hungry mouth for three valleys knows the way to our kitchen. Our winter is going out the gate one bowl at a time.</description><baseMoodEffect>-2</baseMoodEffect></li></stages>
+    <stages><li><label>feeding the whole road</label><description>Every hungry traveler for three valleys knows the way to our kitchen. Our stores are going out the gate one bowl at a time.</description><baseMoodEffect>-2</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_DlmR_FoodForWork</defName>
     <durationDays>3</durationDays>
-    <stages><li><label>food for work</label><description>Anyone who wants a bowl splits wood first. Fair's fair, and the woodpile looks wonderful.</description><baseMoodEffect>2</baseMoodEffect></li></stages>
+    <stages><li><label>food for work</label><description>Anyone who wants a bowl splits wood first. That's fair, and the woodpile has never been bigger.</description><baseMoodEffect>2</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_DlmR_GateClosedToHungry</defName>
     <durationDays>5</durationDays>
-    <stages><li><label>the gate closed to the hungry</label><description>We used to be the place with the full pot. Now we're the place with the closed gate.</description><baseMoodEffect>-3</baseMoodEffect></li></stages>
+    <stages><li><label>the gate closed to the hungry</label><description>We used to feed anyone who came hungry. Now we turn them away at the gate.</description><baseMoodEffect>-3</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
@@ -393,31 +393,31 @@
     <durationDays>15</durationDays>
     <stackLimit>3</stackLimit>
     <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
-    <stages><li><label>an unexpected gift</label><description>Their lot are supposed to be misers. Then this one sent me off with a full purse. Hm.</description><baseOpinionOffset>12</baseOpinionOffset></li></stages>
+    <stages><li><label>an unexpected gift</label><description>Their colony is known for being stingy, but this one sent me off with a full purse.</description><baseOpinionOffset>12</baseOpinionOffset></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_DlmR_SavedFace</defName>
     <durationDays>5</durationDays>
-    <stages><li><label>saved face</label><description>The trader called us misers. We sent them off with a gift they'll be talking about for a month. Let them talk about that.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
+    <stages><li><label>saved face</label><description>The trader called us misers, so we sent them off with a generous gift. That'll give them something to talk about.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_DlmR_SilverForAJoke</defName>
     <durationDays>3</durationDays>
-    <stages><li><label>silver for a joke</label><description>We paid a trader to stop laughing at us. Most expensive joke I've ever heard.</description><baseMoodEffect>-2</baseMoodEffect></li></stages>
+    <stages><li><label>silver for a joke</label><description>We paid a trader good silver just to stop laughing at us.</description><baseMoodEffect>-2</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_DlmR_Mocked</defName>
     <durationDays>4</durationDays>
-    <stages><li><label>laughed at for our thrift</label><description>A trader made fools of us in front of everyone, and the council let it stand. My ears burned for an hour.</description><baseMoodEffect>-3</baseMoodEffect></li></stages>
+    <stages><li><label>laughed at for our thrift</label><description>A trader made fools of us at the gate, and the council let it stand. My ears are still burning.</description><baseMoodEffect>-3</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_DlmR_ThriftyAndProud</defName>
     <durationDays>3</durationDays>
-    <stages><li><label>thrifty and proud</label><description>Let them laugh. Our silver stays where it is, and theirs doesn't.</description><baseMoodEffect>2</baseMoodEffect></li></stages>
+    <stages><li><label>thrifty and proud</label><description>Let them laugh. Our silver stays in our stores.</description><baseMoodEffect>2</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef>
@@ -426,13 +426,13 @@
     <durationDays>15</durationDays>
     <stackLimit>3</stackLimit>
     <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
-    <stages><li><label>charged me for water</label><description>Two silver a bucket. I made a joke, and they turned it into a price list.</description><baseOpinionOffset>-10</baseOpinionOffset></li></stages>
+    <stages><li><label>charged me for water</label><description>I made a joke about their stinginess, and they charged me two silver a bucket for water.</description><baseOpinionOffset>-10</baseOpinionOffset></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_DlmR_MadeItWorse</defName>
     <durationDays>4</durationDays>
-    <stages><li><label>made it worse</label><description>I asked the council to shut the trader up. They charged for water instead. Now the whole road has a new story about us.</description><baseMoodEffect>-2</baseMoodEffect></li></stages>
+    <stages><li><label>made it worse</label><description>I asked the council to shut the trader up, and they charged them for water instead. Now there's a new story about us on the road.</description><baseMoodEffect>-2</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <!-- ===================== Dilemma: the way it's done here ===================== -->
@@ -440,7 +440,7 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_DlmR_MadeToConform</defName>
     <durationDays>5</durationDays>
-    <stages><li><label>made to keep the custom</label><description>The council ordered me to keep a custom I don't believe in. So I keep it. Loudly, and badly.</description><baseMoodEffect>-3</baseMoodEffect></li></stages>
+    <stages><li><label>made to keep the custom</label><description>The council ordered me to keep a custom I don't believe in. I do it, but I resent it.</description><baseMoodEffect>-3</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
@@ -452,7 +452,7 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_DlmR_FreeToChoose</defName>
     <durationDays>5</durationDays>
-    <stages><li><label>free to choose</label><description>The council said I can keep the custom or not, as I like. Funny: now I'm half tempted to keep it.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
+    <stages><li><label>free to choose</label><description>The council said I can keep the custom or not, as I like. Now I'm half tempted to keep it.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
@@ -478,13 +478,13 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_DlmR_OldCustomNewTwist</defName>
     <durationDays>4</durationDays>
-    <stages><li><label>an old custom, new again</label><description>We brought back the old evening, with a few new twists of course. It's us, after all.</description><baseMoodEffect>2</baseMoodEffect></li></stages>
+    <stages><li><label>an old custom, new again</label><description>We brought back the old evening, with a few new twists of our own.</description><baseMoodEffect>2</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_DlmR_NotQuiteHowItWas</defName>
     <durationDays>4</durationDays>
-    <stages><li><label>not quite how it was</label><description>They brought it back, sort of. It's different now. Better than nothing. Mostly.</description><baseMoodEffect>1</baseMoodEffect></li></stages>
+    <stages><li><label>not quite how it was</label><description>They brought the old custom back, more or less. It's not the same, but it's better than nothing.</description><baseMoodEffect>1</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
@@ -498,19 +498,19 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_DlmR_GuestInMyBed</defName>
     <durationDays>4</durationDays>
-    <stages><li><label>a guest in my bed</label><description>The council says guests are guests. My guest is in my bed, my boots and my beer.</description><baseMoodEffect>-3</baseMoodEffect></li></stages>
+    <stages><li><label>a guest in my bed</label><description>The council says guests are guests. Mine is sleeping in my bed and drinking my beer.</description><baseMoodEffect>-3</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_DlmR_MadeWelcome</defName>
     <durationDays>3</durationDays>
-    <stages><li><label>made welcome</label><description>These people never tell you to go. I could get used to this. I have.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
+    <stages><li><label>made welcome</label><description>These people never tell you to leave. I could get used to it here.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_DlmR_GuestEarnedIt</defName>
     <durationDays>3</durationDays>
-    <stages><li><label>the guest earned their keep</label><description>We handed our guest an axe. Living like family means working like family. The woodpile agrees.</description><baseMoodEffect>2</baseMoodEffect></li></stages>
+    <stages><li><label>the guest earned their keep</label><description>We handed our guest an axe. If they live like family, they can work like family.</description><baseMoodEffect>2</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
@@ -525,13 +525,13 @@
     <durationDays>15</durationDays>
     <stackLimit>3</stackLimit>
     <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
-    <stages><li><label>had me shown out</label><description>They're supposed to be the friendly ones. This one had me walked to the edge of their land.</description><baseOpinionOffset>-10</baseOpinionOffset></li></stages>
+    <stages><li><label>had me shown out</label><description>Their colony is supposed to be friendly, but this one had me walked off their land.</description><baseOpinionOffset>-10</baseOpinionOffset></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_DlmR_GuestsSentOff</defName>
     <durationDays>2</durationDays>
-    <stages><li><label>guests sent off</label><description>We walked a whole party of guests to the edge of the map because one of them borrowed some boots.</description><baseMoodEffect>-1</baseMoodEffect></li></stages>
+    <stages><li><label>guests sent off</label><description>We sent a whole party of guests away because one of them borrowed some boots.</description><baseMoodEffect>-1</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <!-- ===================== Dilemma: a friend at the gate ===================== -->
@@ -545,13 +545,13 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_DlmR_LetInAtLast</defName>
     <durationDays>3</durationDays>
-    <stages><li><label>let in at last</label><description>They don't let strangers in. They let me in. My old friend must have begged.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
+    <stages><li><label>let in at last</label><description>They don't usually let strangers in, but they let me in. My old friend must have begged.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_DlmR_RulesBent</defName>
     <durationDays>2</durationDays>
-    <stages><li><label>the rules bent</label><description>The council let a stranger in because someone asked nicely. So much for the rules.</description><baseMoodEffect>-1</baseMoodEffect></li></stages>
+    <stages><li><label>the rules bent</label><description>The council let a stranger in because one of us asked nicely. I thought we had rules about that.</description><baseMoodEffect>-1</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
@@ -569,7 +569,7 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_DlmR_NightOutsideTheWalls</defName>
     <durationDays>4</durationDays>
-    <stages><li><label>a night outside the walls</label><description>The gate stayed shut, so I went out through it. We talked until the fire was ash. Worth every yawn.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
+    <stages><li><label>a night outside the walls</label><description>The gate stayed shut to my friend, so I went out to them. We talked until the fire burned down.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <!-- ===================== Dilemma: one day off ===================== -->
@@ -577,13 +577,13 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_DlmR_DayOff</defName>
     <durationDays>5</durationDays>
-    <stages><li><label>a day off</label><description>The council gave me a day. I sat by the water and did nothing, and nobody counted. I'd forgotten what that feels like.</description><baseMoodEffect>5</baseMoodEffect></li></stages>
+    <stages><li><label>a day off</label><description>The council gave me a day off. I sat by the water and did nothing at all.</description><baseMoodEffect>5</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_DlmR_RestDay</defName>
     <durationDays>3</durationDays>
-    <stages><li><label>a day of rest</label><description>A whole day with no work, for everyone. The fields kept. Turns out we do too.</description><baseMoodEffect>4</baseMoodEffect></li></stages>
+    <stages><li><label>a day of rest</label><description>We all had a whole day with no work. The fields were fine without us.</description><baseMoodEffect>4</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
@@ -595,7 +595,7 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_DlmR_WorkedRagged</defName>
     <durationDays>5</durationDays>
-    <stages><li><label>worked ragged</label><description>I asked for one day. The work won't wait, they said. Neither, it turns out, will I.</description><baseMoodEffect>-4</baseMoodEffect></li></stages>
+    <stages><li><label>worked ragged</label><description>I asked for one day off, and they said the work won't wait. I'm worn to the bone.</description><baseMoodEffect>-4</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <!-- ===================== Dilemma: carrying everyone ===================== -->
@@ -603,31 +603,31 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_DlmR_BackedUp</defName>
     <durationDays>6</durationDays>
-    <stages><li><label>the council backed me</label><description>Everyone pulls their weight now, by order. Took long enough. My back thanks the council.</description><baseMoodEffect>4</baseMoodEffect></li></stages>
+    <stages><li><label>the council backed me</label><description>The council has ordered the others to pull their weight. It took long enough.</description><baseMoodEffect>4</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_DlmR_PutToWork</defName>
     <durationDays>4</durationDays>
-    <stages><li><label>put to work</label><description>The council says everyone pulls their weight now. Mine was resting. It liked resting.</description><baseMoodEffect>-3</baseMoodEffect></li></stages>
+    <stages><li><label>put to work</label><description>The council says I have to pull my weight now. I liked things the way they were.</description><baseMoodEffect>-3</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_DlmR_AboutTime</defName>
     <durationDays>3</durationDays>
-    <stages><li><label>about time</label><description>Finally, everyone pulling their weight. I might even get a full night's sleep.</description><baseMoodEffect>2</baseMoodEffect></li></stages>
+    <stages><li><label>about time</label><description>Finally, we're all pulling our weight. I might even get a full night's sleep.</description><baseMoodEffect>2</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_DlmR_ThankedByName</defName>
     <durationDays>5</durationDays>
-    <stages><li><label>thanked in front of everyone</label><description>They stood up at supper and thanked me by name. Nobody's lifting any more than before, but now they know who has been.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
+    <stages><li><label>thanked at supper</label><description>They stood up at supper and thanked me by name for all the work I've been doing.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_DlmR_ToldToSlowDown</defName>
     <durationDays>4</durationDays>
-    <stages><li><label>told to slow down</label><description>I said I was carrying everyone. The council told me to stop carrying. That's not how fields work.</description><baseMoodEffect>-3</baseMoodEffect></li></stages>
+    <stages><li><label>told to slow down</label><description>I told the council I was doing everyone's work, and they told me to do less. The fields won't tend themselves.</description><baseMoodEffect>-3</baseMoodEffect></li></stages>
   </ThoughtDef>
 
 </Defs>

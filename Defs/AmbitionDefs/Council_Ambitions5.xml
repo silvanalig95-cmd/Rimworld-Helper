@@ -4,7 +4,7 @@
   <ColonyCouncil.AmbitionDef>
     <defName>Council_Amb_SettleTheScore</defName>
     <label>settle the score</label>
-    <description>Take the fight to them: march on a hostile settlement and burn it to the ground. Dangerous, costly, and some will never forgive the blood on the colony's hands. Only pitched while the colony is grieving or fresh from a raid.</description>
+    <description>Send a force to a hostile settlement and destroy it. It's dangerous and costly, and some colonists will never forgive the bloodshed. This is only proposed while the colony is grieving or has just been raided.</description>
     <days>40</days>
     <weight>0.7</weight>
     <relevantCategories><li>Defense</li></relevantCategories>
@@ -16,7 +16,7 @@
     <pitch>
       <plain>
         <li>They keep coming here. We know where they live. I say we pay a visit.</li>
-        <li>Every raid, we bury someone and they lose nothing. Let's change the arithmetic.</li>
+        <li>Every raid, we bury someone and they go home to a hot meal. I want them to lose something too.</li>
         <li>[grieving] I dug the grave myself. Now I want to see their walls burn.</li>
         <li>[afterraid] They ran home to lick their wounds. Let's follow them there.</li>
       </plain>
@@ -24,11 +24,11 @@
         <li>I hate this. But if we don't stop them, they'll take someone else we love. Let's end it.</li>
       </warm>
       <blunt>
-        <li>Guns, food, a long walk, and then a big fire. Who's in?</li>
+        <li>Weapons, food, a long walk, and then a big fire. Who's in?</li>
         <li>[trait:Bloodlust] I've been sharpening things for weeks. Let's go use them.</li>
       </blunt>
       <cheerful>
-        <li>Road trip! With guns! And at the end, revenge! It's like a holiday, but louder!</li>
+        <li>A long walk, a big fight and revenge at the end of it! I'll pack lunch.</li>
       </cheerful>
       <gloomy>
         <li>Some of us won't come back. Most of them won't either. That's the trade.</li>
@@ -42,7 +42,7 @@
       <plain><li>Ashes and quiet. They won't come from that direction again.</li></plain>
       <warm><li>It's over. I hope it's over. Let's go home.</li></warm>
       <blunt><li>Told you. Fire solves things.</li></blunt>
-      <gloomy><li>We won. It doesn't feel like winning. It feels like less losing.</li></gloomy>
+      <gloomy><li>We won, and it doesn't feel like winning.</li></gloomy>
       <cold><li>Threat neutralized. The spoils should cover the ammunition.</li></cold>
     </achieved>
   </ColonyCouncil.AmbitionDef>
@@ -50,7 +50,7 @@
   <ColonyCouncil.AmbitionDef>
     <defName>Council_Amb_MakingAName</defName>
     <label>making a name</label>
-    <description>Answer two calls from the wider world: quests for factions, rescues, deliveries, ruins. Rewards, allies, and a colony people have heard of.</description>
+    <description>Complete two quests: rescues, deliveries, ruins to clear, or whatever else the factions offer. They bring rewards, goodwill and a name people recognize.</description>
     <days>40</days>
     <relevantCategories><li>Work</li><li>Progress</li></relevantCategories>
     <proposerSkills><li>Social</li></proposerSkills>
@@ -61,7 +61,7 @@
     </goals>
     <pitch>
       <plain>
-        <li>The comms console keeps beeping with offers and we keep ignoring them. Let's answer a couple.</li>
+        <li>Offers keep coming in from out there, and we keep ignoring them. Let's take on a couple.</li>
         <li>Out there, people pay for help. We could use the pay, and the friends.</li>
         <li>[small] We're a handful of people on a big planet. Let's make sure someone out there knows our name.</li>
       </plain>
@@ -69,10 +69,10 @@
         <li>Somebody out there needs help, and we're able to give it. That feels like reason enough.</li>
       </warm>
       <blunt>
-        <li>Quests mean loot. Loot means fewer of us starving. Simple.</li>
+        <li>Quests mean loot, and loot means we eat better this winter.</li>
       </blunt>
       <cheerful>
-        <li>Adventure! Heroic deeds! Rewards! Possibly danger, but mostly the other things!</li>
+        <li>Adventure and rewards! Possibly some danger, but mostly the other things.</li>
       </cheerful>
       <gloomy>
         <li>Everything out there wants to kill us. Might as well get paid to find out how.</li>
@@ -82,8 +82,8 @@
       </cold>
     </pitch>
     <achieved>
-      <plain><li>People out there know who we are now. That's worth more than the reward.</li></plain>
-      <cheerful><li>We're famous! Moderately! In a small region!</li></cheerful>
+      <plain><li>People out there know who we are now.</li></plain>
+      <cheerful><li>Traders have heard of us now!</li></cheerful>
       <cold><li>Reputation established. Leverage it.</li></cold>
     </achieved>
   </ColonyCouncil.AmbitionDef>

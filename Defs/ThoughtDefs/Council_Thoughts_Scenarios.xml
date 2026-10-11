@@ -43,13 +43,13 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_Scen_HuntOver</defName>
     <durationDays>8</durationDays>
-    <stages><li><label>the hunt is over</label><description>Nobody is coming for us any more. I keep looking at the horizon out of habit, and there's nothing there.</description><baseMoodEffect>8</baseMoodEffect></li></stages>
+    <stages><li><label>the hunt is over</label><description>No one is hunting us anymore. I still watch the horizon out of habit.</description><baseMoodEffect>8</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_Scen_DebtPaid</defName>
     <durationDays>5</durationDays>
-    <stages><li><label>debt paid</label><description>We don't owe anybody anything. It's amazing how much lighter that makes everything.</description><baseMoodEffect>5</baseMoodEffect></li></stages>
+    <stages><li><label>debt paid</label><description>Our debt is paid off, and we don't owe anyone anything. What a relief.</description><baseMoodEffect>5</baseMoodEffect></li></stages>
   </ThoughtDef>
 
 </Defs>

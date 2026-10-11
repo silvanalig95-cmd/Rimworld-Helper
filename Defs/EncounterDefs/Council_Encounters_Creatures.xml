@@ -23,8 +23,8 @@
     <weight>1.2</weight>
     <cooldownDays>6</cooldownDays>
     <texts>
-      <li>{A_nameDef} dragged in after a long shift and found {X_definite} waiting by the door, exactly where {X_pronoun} waits every evening, whether anyone comes home or not.</li>
-      <li>Nobody thanked {A_nameDef} for the day's work. Then {X_definite} heard {A_possessive} footsteps and nearly fell over with joy, which covered most of it.</li>
+      <li>{A_nameDef} dragged in after a long shift and found {X_definite} waiting by the door, in the same spot as every evening.</li>
+      <li>When {X_definite} heard {A_nameDef}'s footsteps on the path, {X_pronoun} came running so fast {X_pronoun} nearly went over.</li>
       <li>{A_nameDef} sat down on the step, too tired to unlace {A_possessive} boots, and {X_definite} leaned {X_possessive} whole weight against {A_objective} until the worst of the day had drained off.</li>
     </texts>
     <effects>
@@ -44,9 +44,9 @@
     <weight>1.0</weight>
     <cooldownDays>8</cooldownDays>
     <texts>
-      <li>{A_nameDef} woke up pinned under the blankets by {X_definite}, who had climbed onto the bed sometime in the night and could not be argued off it.</li>
+      <li>{A_nameDef} woke up pinned under the blankets by {X_definite}, who had climbed onto the bed in the night and was still asleep.</li>
       <li>Every night {X_definite} turns three slow circles and drops across {A_nameDef}'s feet. {A_nameDef} hasn't had warm toes this reliably in years.</li>
-      <li>{A_nameDef} claims to sleep better with {X_definite} snoring at the foot of the bed. The people in the next room have asked to see some proof.</li>
+      <li>These days {A_nameDef} sleeps badly without {X_definite} snoring at the foot of the bed.</li>
     </texts>
     <effects>
       <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncC_WarmFeet</thought></li>
@@ -63,7 +63,7 @@
     <weight>1.1</weight>
     <cooldownDays>6</cooldownDays>
     <texts>
-      <li>{A_nameDef} looked away for one breath and the best piece left {A_possessive} plate. Across the room, {X_definite} was chewing and refusing all eye contact.</li>
+      <li>{A_nameDef} looked away for a moment and the best piece of meat was gone from {A_possessive} plate, and {X_definite} was under the table, chewing.</li>
       <li>{A_nameDef} set {A_possessive} bowl down to scratch an itch. When {A_pronoun} looked back, {X_definite} had {X_possessive} whole face in it.</li>
       <li>Half of {A_nameDef}'s dinner went out the door with {X_definite}. {A_nameDef} gave chase for three steps, then sat back down and ate the other half faster.</li>
     </texts>
@@ -87,9 +87,9 @@
     <weight>0.9</weight>
     <cooldownDays>9</cooldownDays>
     <texts>
-      <li>{A_nameDef} found a dead rat laid out on {A_possessive} pillow, neat as a place setting and still warm, with {X_definite} beside it waiting to be told how clever {X_pronoun} was.</li>
-      <li>A gift from {X_definite}: the back half of something small, left in {A_nameDef}'s boot. {A_nameDef} said thank you, because what else do you say?</li>
-      <li>{A_nameDef} praised {X_definite} once for a dead squirrel on the doorstep. Now there is a dead something on the doorstep every single morning.</li>
+      <li>{A_nameDef} found a dead rat laid out on {A_possessive} pillow, still warm, with {X_definite} sitting beside it waiting to be praised.</li>
+      <li>{A_nameDef} pulled on {A_possessive} boot this morning and found the back half of a mouse in it, left there by {X_definite}.</li>
+      <li>{A_nameDef} made a fuss of {X_definite} once for a dead squirrel on the doorstep. Since then there has been a dead bird or rat there most mornings.</li>
     </texts>
     <effects>
       <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncC_GrimGift</thought></li>
@@ -108,9 +108,9 @@
     <weight>1.0</weight>
     <cooldownDays>8</cooldownDays>
     <texts>
-      <li>{A_nameDef} spent the afternoon teaching {X_definite} to sit on command. By sunset {X_pronoun} sat on command about half the time, which {A_nameDef} is calling a triumph.</li>
-      <li>After a week of patience and stolen scraps, {X_definite} finally comes when {A_nameDef} whistles. Also when anyone whistles. Also at mealtimes, unwhistled for.</li>
-      <li>{A_nameDef} has taught {X_definite} to fetch. So far {X_pronoun} fetches the stick, chews the stick and buries the stick, in that order, every time.</li>
+      <li>{A_nameDef} spent the afternoon teaching {X_definite} to sit on command. By sunset it worked about half the time.</li>
+      <li>After a week of patience and kitchen scraps, {X_definite} finally comes when {A_nameDef} whistles, and also when anyone else does.</li>
+      <li>{A_nameDef} is teaching {X_definite} to fetch. So far {X_pronoun} chases the stick, lies down with it and chews it.</li>
     </texts>
     <effects>
       <li Class="ColonyCouncil.DilemmaEffect_Learn"><target>A</target><skill>Animals</skill><xp>400</xp></li>
@@ -132,9 +132,9 @@
     <weight>1.4</weight>
     <cooldownDays>6</cooldownDays>
     <texts>
-      <li>{A_nameDef} sat alone behind the storehouse with {A_possessive} head in {A_possessive} hands. After a while {X_definite} came and leaned against {A_objective}, asking for nothing, which was exactly right.</li>
-      <li>Nobody else noticed that {A_nameDef} had gone quiet for days, but {X_definite} did, and has not left {A_possessive} side since.</li>
-      <li>{A_nameDef} cried for the first time in weeks, out by the pens, into the warm side of {X_definite}. Neither of them has mentioned it to anyone.</li>
+      <li>{A_nameDef} sat alone behind the storehouse with {A_possessive} head in {A_possessive} hands. After a while {X_definite} came and leaned against {A_objective}, and stayed there until {A_nameDef} got up.</li>
+      <li>For days now {A_nameDef} has barely said a word, and in all that time {X_definite} has not left {A_possessive} side.</li>
+      <li>Out by the pens, {A_nameDef} cried into the warm side of {X_definite} until it passed.</li>
       <li>{A_nameDef} skipped supper and lay facing the wall. Some time later {X_definite} pushed the door open with {X_possessive} head and lay down beside the bed with a heavy sigh.</li>
     </texts>
     <effects>
@@ -153,9 +153,9 @@
     <weight>1.0</weight>
     <cooldownDays>8</cooldownDays>
     <texts>
-      <li>{A_nameDef} came back to find {A_possessive} spare boots reduced to a damp heap of leather, and {X_definite} asleep on the heap, worn out from the effort.</li>
-      <li>Something got at {A_nameDef}'s bedroll overnight and went straight through the middle. The evidence points, as it always does, to {X_definite}.</li>
-      <li>{A_nameDef} spent a week carving a decent spoon, and {X_definite} spent about a minute turning it back into kindling.</li>
+      <li>{A_nameDef} came back to find {A_possessive} spare boots chewed to a damp heap of leather, and {X_definite} asleep on top of it.</li>
+      <li>{A_nameDef}'s bedroll was chewed through the middle overnight, and the stuffing lay in a trail to {X_definite}'s sleeping spot.</li>
+      <li>{A_nameDef} found the spoon {A_pronoun} had spent a week carving in splinters under the table, and {X_definite} gnawing on the handle.</li>
     </texts>
     <effects>
       <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncC_ThingsChewed</thought></li>
@@ -172,9 +172,9 @@
     <weight>0.6</weight>
     <cooldownDays>14</cooldownDays>
     <texts>
-      <li>{A_nameDef} opened the storeroom and found {X_definite} sitting in the ruin of a sack of vegetables, very round and not the least bit sorry.</li>
-      <li>Somebody left the larder door open. By the time {A_nameDef} noticed, {X_definite} had eaten a respectable share of the raw stores and was working on the rest.</li>
-      <li>{A_nameDef} followed a trail of gnawed peel from the storeroom to the barn, where {X_definite} lay on {X_possessive} side, groaning, and deserving every bit of it.</li>
+      <li>{A_nameDef} opened the storeroom and found {X_definite} sitting in a torn sack of vegetables, eating steadily.</li>
+      <li>Somebody left the larder door open. By the time {A_nameDef} noticed, {X_definite} had been through a good part of the raw food.</li>
+      <li>{A_nameDef} followed a trail of gnawed peel from the storeroom to the barn, where {X_definite} lay on {X_possessive} side with a swollen belly.</li>
     </texts>
     <effects>
       <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>rawfood</what><count>6</count></li>
@@ -194,10 +194,10 @@
     <weight>1.3</weight>
     <cooldownDays>5</cooldownDays>
     <texts>
-      <li>{A_nameDef} and {X_definite} spent the whole afternoon chasing each other round the yard. By the end, nobody could tell who was chasing whom.</li>
-      <li>{A_nameDef} tied a ribbon on {X_definite} and declared {X_objective} a knight of the colony, with full honors. The knight ate the ribbon.</li>
-      <li>{A_nameDef} built {X_definite} a little house out of sticks and an old blanket. It stood proudly until {X_definite} tried to go inside.</li>
-      <li>{A_nameDef} is teaching {X_definite} to count, by holding up fingers and waiting for an answer. So far the only one learning anything is {A_nameDef}, and it's patience.</li>
+      <li>{A_nameDef} and {X_definite} chased each other round the yard all afternoon, until neither of them could run another step.</li>
+      <li>{A_nameDef} tied a ribbon round {X_definite}'s neck and declared {X_objective} a knight of the colony.</li>
+      <li>{A_nameDef} built {X_definite} a house out of sticks and an old blanket, and spent the evening trying to coax {X_objective} inside.</li>
+      <li>All afternoon {A_nameDef} held up fingers in front of {X_definite}, trying to teach {X_objective} to count.</li>
     </texts>
     <effects>
       <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncC_Playmate</thought></li>
@@ -215,9 +215,9 @@
     <weight>0.8</weight>
     <cooldownDays>10</cooldownDays>
     <texts>
-      <li>On paper, {X_definite} isn't {A_nameDef}'s animal. Lately, though, {X_pronoun} follows {A_nameDef} from room to room and sleeps across {A_possessive} doorway.</li>
-      <li>{A_nameDef} never fed {X_definite}, never trained {X_objective}, never so much as scratched {X_possessive} ears. None of that matters, apparently: {X_definite} now waits under {A_possessive} chair at every meal.</li>
-      <li>Nobody can work out why {X_definite} picked {A_nameDef}, least of all {A_nameDef}, who has been escorted to the latrine and back twice today.</li>
+      <li>{A_nameDef} isn't the one who looks after {X_definite}, but lately {X_pronoun} follows {A_nameDef} from room to room and sleeps across {A_possessive} doorway.</li>
+      <li>{A_nameDef} has never fed or trained {X_definite}, yet {X_pronoun} now waits under {A_possessive} chair at every meal.</li>
+      <li>{A_nameDef} can't work out why {X_definite} has picked {A_objective}. Today {X_pronoun} walked {A_objective} to the latrine and waited outside.</li>
     </texts>
     <effects>
       <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncC_ChosenByAnimal</thought></li>
@@ -235,9 +235,9 @@
     <weight>1.0</weight>
     <cooldownDays>7</cooldownDays>
     <texts>
-      <li>{A_nameDef} was overheard in the pens, telling {X_definite} everything that has gone wrong this season, in order. The animal listened to all of it and asked only for a scratch.</li>
-      <li>{A_nameDef} talks to {X_definite} at night about the things {A_pronoun} won't say at the table. So far, the secrets are safe.</li>
-      <li>{A_nameDef} asked {X_definite} whether {A_pronoun} was doing a good job out here, and got a long yawn in reply. {A_nameDef} has decided to take that as a yes.</li>
+      <li>{A_nameDef} was overheard in the pens, telling {X_definite} everything that has gone wrong this season and scratching behind {X_possessive} ears.</li>
+      <li>At night, {A_nameDef} talks to {X_definite} about the things {A_pronoun} won't say at the table.</li>
+      <li>{A_nameDef} asked {X_definite} whether {A_pronoun} was doing all right out here, and got a long yawn in reply.</li>
     </texts>
     <effects>
       <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncC_ToldItEverything</thought></li>
@@ -254,9 +254,9 @@
     <weight>0.8</weight>
     <cooldownDays>12</cooldownDays>
     <texts>
-      <li>Everyone in the colony can walk past {X_definite} in peace except {A_nameDef}, who gets a long, flat, unblinking stare every single time.</li>
+      <li>Whenever {A_nameDef} walks past, {X_definite} stops what {X_pronoun} is doing and stares at {A_objective} until {A_pronoun} is out of sight.</li>
       <li>{A_nameDef} has tried scraps, soft words and a respectful distance. None of it has worked on {X_definite}, who still goes for {A_possessive} ankles on sight.</li>
-      <li>{A_nameDef} swears {X_definite} lies in wait behind the barn door for {A_objective} and nobody else. Nobody believed it until they saw it happen twice before breakfast.</li>
+      <li>{A_nameDef} says {X_definite} waits behind the barn door for {A_objective} and no one else. It happened twice before breakfast today.</li>
     </texts>
     <effects>
       <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncC_HatedByAnimal</thought></li>
@@ -273,9 +273,9 @@
     <weight>1.0</weight>
     <cooldownDays>7</cooldownDays>
     <texts>
-      <li>Every morning {X_definite} follows {A_nameDef} out to work, lies down just out of the way, and supervises. The work goes no faster. {A_nameDef} is in a far better mood.</li>
-      <li>{A_nameDef} tried to leave {X_definite} shut in today and found {X_objective} at the work site half an hour later, very pleased about it. Nobody knows how.</li>
-      <li>{A_nameDef} spent the day hauling with {X_definite} at {A_possessive} heels, carrying nothing, underfoot at every turn, and plainly having the best day of {X_possessive} life.</li>
+      <li>Every morning {X_definite} follows {A_nameDef} out to work and lies down just out of the way to watch.</li>
+      <li>{A_nameDef} shut {X_definite} in this morning, and half an hour later found {X_objective} waiting at the work site, muddy to the belly.</li>
+      <li>{A_nameDef} spent the day hauling with {X_definite} at {A_possessive} heels, underfoot at every turn and plainly enjoying it.</li>
     </texts>
     <effects>
       <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncC_WorkCompanion</thought></li>
@@ -294,8 +294,8 @@
     <cooldownDays>15</cooldownDays>
     <texts>
       <li>This morning it took {X_definite} a long time to get up, and longer to manage the step. {A_nameDef} waited at the bottom and didn't say a word.</li>
-      <li>{A_nameDef} noticed today that {X_definite} walks to meet {A_objective} now instead of running. It's still every day. That part hasn't changed.</li>
-      <li>{A_nameDef} moved {X_definite}'s sleeping spot closer to the fire and says it's because of the draft. Nobody believes that, and nobody says so.</li>
+      <li>{A_nameDef} noticed today that {X_definite} walks to meet {A_objective} now instead of running, though {X_pronoun} still comes every evening.</li>
+      <li>{A_nameDef} moved {X_definite}'s bed closer to the fire and says it's because of the draft.</li>
     </texts>
     <effects>
       <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncC_OldFriendSlowing</thought></li>
@@ -319,9 +319,9 @@
       <li>PermanentSummer</li>
     </seasons>
     <texts>
-      <li>{A_nameDef} found a heap of tiny, squalling newborns in the straw this morning, with {X_definite} standing over them like an anxious relative who wants no visitors.</li>
+      <li>In the straw this morning {A_nameDef} found a heap of squalling newborns, with {X_definite} standing over them and watching {A_objective} closely.</li>
       <li>There are new mouths in the barn. {A_nameDef} tried to count them under the hard stare of {X_definite}, lost track because they kept moving, and came in grinning.</li>
-      <li>{A_nameDef} spent half the evening in the barn naming the newborns after members of the council, while {X_definite} dozed beside the pile. The runt got the loudest councilor's name.</li>
+      <li>{A_nameDef} spent the evening in the barn naming the newborns after members of the council, while {X_definite} dozed beside them.</li>
     </texts>
     <effects>
       <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncC_NewLitter</thought><exceptTrait><li>Psychopath</li></exceptTrait></li>
@@ -339,7 +339,7 @@
     <weight>0.7</weight>
     <cooldownDays>12</cooldownDays>
     <texts>
-      <li>A traveler reached out to clap {A_nameDef} on the shoulder and found {X_definite} suddenly in the way, very still, very attentive. The traveler kept their hands to themselves after that.</li>
+      <li>A traveler reached out to clap {A_nameDef} on the shoulder and found {X_definite} in the way, standing very still and watching the hand.</li>
       <li>{A_nameDef} never asked {X_definite} to guard {A_objective}. But whenever a stranger comes near, there {X_pronoun} is, standing just in front of {A_nameDef}, as if by accident.</li>
       <li>Words got sharp between {A_nameDef} and an outsider at the gate, and before the second sentence {X_definite} was planted between them, silent, eyes fixed on the stranger.</li>
     </texts>
@@ -361,8 +361,8 @@
     <cooldownDays>7</cooldownDays>
     <texts>
       <li>Well after dark, {X_definite} started making an unholy noise at nothing, and kept at it until {A_nameDef} went out in a blanket to sit with {X_objective}.</li>
-      <li>{A_nameDef} is awake because {X_definite} is awake, and {X_definite} is awake because of something past the wall that nobody else can see.</li>
-      <li>{A_nameDef} lay listening to {X_definite} cry out toward the tree line, over and over, and tried very hard not to wonder what {X_pronoun} was crying at.</li>
+      <li>{A_nameDef} is awake because {X_definite} is awake, standing stiff by the wall and staring into the dark.</li>
+      <li>{A_nameDef} lay listening to {X_definite} cry out toward the tree line, over and over, and tried not to think about what was out there.</li>
     </texts>
     <effects>
       <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncC_KeptAwake</thought></li>
@@ -385,9 +385,9 @@
     <weight>0.8</weight>
     <cooldownDays>12</cooldownDays>
     <texts>
-      <li>Work stopped all over the colony when {X_indefinite} crossed the far meadow, slow and enormous. {A_nameDef} saw {X_objective} first and has not stopped talking about it.</li>
-      <li>{A_nameDef} looked up from {A_possessive} work and there was {X_indefinite} at the edge of the trees, looking back. Neither moved for a long moment. Then {X_pronoun} was simply gone.</li>
-      <li>{A_nameDef} watched {X_definite} drink from the stream for the better part of an hour and came back with nothing done and no apology whatsoever.</li>
+      <li>Work stopped all over the colony when {X_indefinite} crossed the far meadow, slow and enormous. {A_nameDef} had seen {X_objective} first and called the others out to look.</li>
+      <li>{A_nameDef} looked up from {A_possessive} work and saw {X_indefinite} among the trees, looking back. Neither of them moved until {X_pronoun} turned and walked off.</li>
+      <li>{A_nameDef} watched {X_definite} drink from the stream for most of the morning and got nothing else done.</li>
     </texts>
     <effects>
       <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncC_GreatBeast</thought></li>
@@ -410,9 +410,9 @@
     <weight>0.6</weight>
     <cooldownDays>15</cooldownDays>
     <texts>
-      <li>{A_nameDef} crept closer to {X_definite} than anyone has dared, close enough to hear {X_objective} breathe, and came back trembling, with the look of someone who has made a decision.</li>
+      <li>{A_nameDef} crept close enough to {X_definite} to hear {X_objective} breathe, and came back shaking and grinning.</li>
       <li>{A_nameDef} lay flat in the grass most of the afternoon, studying {X_definite}: how {X_pronoun} moved, where {X_pronoun} set {X_possessive} feet, what made {X_objective} lift {X_possessive} head.</li>
-      <li>{A_nameDef} has seen {X_indefinite} up close now, close enough to count the scars, and talks about nothing else. {A_nameDef} has also started pacing out a very large pen.</li>
+      <li>{A_nameDef} spent the morning a few paces from {X_indefinite}, near enough to count the scars on {X_possessive} hide, and that evening started pacing out ground for a pen.</li>
     </texts>
     <effects>
       <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncC_GreatBeastClose</thought></li>
@@ -436,8 +436,8 @@
     <weight>1.0</weight>
     <cooldownDays>7</cooldownDays>
     <texts>
-      <li>{A_nameDef} was first up this morning and found {X_indefinite} grazing in the mist past the fence. Neither of them moved for a long while. Then somebody slammed a door.</li>
-      <li>In the gray light before breakfast, {A_nameDef} watched {X_indefinite} step out of the trees, nose at the wet grass, and step back in. {A_nameDef} told nobody, as if telling would spend it.</li>
+      <li>First up this morning, {A_nameDef} found {X_indefinite} grazing in the mist just past the fence and stood listening to {X_objective} tear at the grass.</li>
+      <li>In the gray light before breakfast, {A_nameDef} watched {X_indefinite} step out of the trees, nose at the wet grass, and step back in.</li>
       <li>{A_nameDef} stood very still at the well while {X_indefinite} drank from the runoff not ten paces away. The bucket grew heavy in {A_possessive} hands. {A_nameDef} didn't set it down.</li>
     </texts>
     <effects>
@@ -462,9 +462,9 @@
       <li>Fall</li>
     </seasons>
     <texts>
-      <li>{A_nameDef} gave up counting at forty: {X_indefinite} and all {X_possessive} kind, moving past the colony in a long, unhurried line that took most of the afternoon.</li>
+      <li>{A_nameDef} gave up counting at forty. The herd, {X_indefinite} and dozens more like {X_objective}, took most of the afternoon to pass the colony.</li>
       <li>A herd went by to the south today, {X_definite} straggling at the back. {A_nameDef} stopped work to watch and was the last one back to it.</li>
-      <li>The ground hummed for an hour as the herd went past. {A_nameDef} stood at the edge of the fields with {A_possessive} mouth slightly open, like a child at a parade.</li>
+      <li>The ground shook while the herd went past. {A_nameDef} leaned on the fence and watched until the dust settled.</li>
     </texts>
     <effects>
       <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncC_HerdPassed</thought></li>
@@ -488,9 +488,9 @@
       <li>PermanentSummer</li>
     </seasons>
     <texts>
-      <li>{A_nameDef} worked all morning to birdsong from the hedges, with {X_indefinite} dozing on a warm rock nearby. For a few hours the world seemed to have forgotten to be dangerous.</li>
-      <li>The hedges are full of song this time of year. {A_nameDef} ate lunch on an upturned bucket, watching {X_indefinite} poke through the new grass, and felt, briefly, like a person again.</li>
-      <li>{A_nameDef} whistled back at the birds for most of the afternoon. They ignored {A_objective}, but {X_indefinite} crept out of the grass to see what all the fuss was about.</li>
+      <li>{A_nameDef} worked all morning to birdsong from the hedges, with {X_indefinite} dozing on a warm rock nearby.</li>
+      <li>The hedges are loud with birds this time of year. {A_nameDef} ate lunch on an upturned bucket, watching {X_indefinite} poke through the new grass, and took {A_possessive} time over it.</li>
+      <li>{A_nameDef} whistled back at the birds for most of the afternoon. They ignored {A_objective}, but {X_indefinite} crept out of the grass to listen.</li>
     </texts>
     <effects>
       <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncC_Birdsong</thought></li>
@@ -513,7 +513,7 @@
       <li>PermanentWinter</li>
     </seasons>
     <texts>
-      <li>Out past the fields {X_indefinite} called into the cold dark, and something farther off called back. {A_nameDef} checked the gate twice, and then once more.</li>
+      <li>Out past the fields {X_indefinite} called into the cold dark, and another answered from farther off. {A_nameDef} went out twice to check the gate.</li>
       <li>{A_nameDef} lay awake listening to {X_indefinite} somewhere in the bare trees, calling and calling, and could not decide whether the sound was lonely or hungry.</li>
       <li>The calling went on half the night. {A_nameDef} swears that at one point {X_indefinite} was right outside the fence, close enough to hear the breath between calls.</li>
     </texts>
@@ -537,9 +537,9 @@
     <cooldownDays>8</cooldownDays>
     <texts>
       <li>For most of the afternoon {X_indefinite} paced the far side of the fence, keeping exactly level with {A_nameDef} as {A_pronoun} worked. {A_nameDef} found a reason to finish early.</li>
-      <li>{A_nameDef} went out for firewood and came face to face with {X_indefinite} nosing at the woodpile. Both backed away slowly. Only one of them looked embarrassed about it.</li>
-      <li>There are fresh prints right up to the edge of the fields, and {X_indefinite} lying in the shade just past them, yawning, watching {A_nameDef} like someone taking measurements.</li>
-      <li>{A_nameDef} felt it before seeing it: {X_indefinite}, low in the long grass, eyes on {A_objective}. When {A_nameDef} stood up straight, the animal didn't run. That was the worst part.</li>
+      <li>{A_nameDef} went out for firewood and came face to face with {X_indefinite} nosing at the woodpile. They both backed away slowly, and {A_nameDef} came in without the wood.</li>
+      <li>There are fresh prints right up to the fields, and {X_indefinite} lying in the shade just past them, watching {A_nameDef} work.</li>
+      <li>{A_nameDef} looked up and found {X_indefinite} low in the long grass, eyes on {A_objective}. When {A_nameDef} stood up and shouted, the animal didn't run.</li>
     </texts>
     <effects>
       <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncC_Watched</thought><exceptTrait><li>Bloodlust</li></exceptTrait></li>
@@ -570,7 +570,7 @@
     <texts>
       <li>{A_nameDef} walked out to the fields at first light and found a whole row of seedlings bitten off at the root, with {X_indefinite} at the end of the row, still chewing.</li>
       <li>{A_nameDef} chased {X_indefinite} out of the crops three times before noon. The fourth time, {A_nameDef} sat down in the dirt and let {X_objective} have the corner.</li>
-      <li>{A_nameDef} has a new enemy: {X_indefinite} that lives under the hedge and eats exactly the plants {A_nameDef} cares about most, and nothing else.</li>
+      <li>There's {X_indefinite} living under the hedge, and {X_pronoun} eats only from the rows {A_nameDef} tends.</li>
     </texts>
     <effects>
       <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncC_CropsRaided</thought></li>
@@ -590,8 +590,8 @@
     <cooldownDays>8</cooldownDays>
     <texts>
       <li>{A_nameDef} has been leaving crusts on the same flat stone every day. Today {X_indefinite} was already waiting beside it, looking pointedly at {A_possessive} pocket.</li>
-      <li>{A_nameDef} held out a handful of grain and kept still for a very long time, and at the end of it {X_indefinite} ate out of {A_possessive} palm, then bolted.</li>
-      <li>{A_nameDef} has been sharing lunch with {X_indefinite} at the edge of the field all week. The gap between them shrinks a little every day. {A_nameDef} pretends not to notice.</li>
+      <li>{A_nameDef} crouched with a handful of grain held out until {A_possessive} knees ached, and at last {X_indefinite} ate from {A_possessive} palm, then bolted.</li>
+      <li>Each noon this week {A_nameDef} has split {A_possessive} lunch with {X_indefinite} beside the field, and each day {X_pronoun} sits a step closer.</li>
     </texts>
     <ways><generosity>2</generosity></ways>
     <effects>
@@ -616,9 +616,9 @@
     <weight>1.0</weight>
     <cooldownDays>8</cooldownDays>
     <texts>
-      <li>{A_nameDef} stood perfectly still in the long grass while {X_indefinite} came right up and sniffed {A_possessive} hair. {A_nameDef} has told everyone. Some people twice.</li>
-      <li>The adults saw {X_indefinite} wander toward {A_nameDef} and froze. {A_nameDef} didn't, and held out half an apple, and {X_definite} took it gently and wandered off again.</li>
-      <li>{A_nameDef} came running in out of breath: {X_indefinite} had touched noses with {A_objective} down by the water. There is now a drawing of it on the wall above {A_possessive} bed.</li>
+      <li>In the long grass, {X_indefinite} came right up to {A_nameDef} and sniffed {A_possessive} hair before wandering off.</li>
+      <li>The adults froze when {X_indefinite} came toward {A_nameDef}. {A_nameDef} held out half an apple, and {X_definite} took it gently and went on {X_possessive} way.</li>
+      <li>{A_nameDef} came running in out of breath to say {X_indefinite} had touched noses with {A_objective} down by the water. That night {A_nameDef} drew it on the wall above {A_possessive} bed.</li>
     </texts>
     <effects>
       <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncC_WildTouchedNoses</thought></li>
@@ -636,9 +636,9 @@
     <weight>0.7</weight>
     <cooldownDays>12</cooldownDays>
     <texts>
-      <li>{A_nameDef} found prints by the water deep enough to hold rain and wide enough to stand in. Somewhere out there, {X_indefinite} is going about {X_possessive} business, and the business is enormous.</li>
-      <li>Snapped saplings, flattened brush, and tracks the size of serving platters lead toward the hills. {A_nameDef} followed them a hundred paces, glimpsed {X_indefinite} through the trees, and decided that was plenty.</li>
-      <li>{A_nameDef} laid a hand flat in one of {X_definite}'s footprints. Then the other hand beside it. There was still room left over, and {A_nameDef} came home rather quiet.</li>
+      <li>{A_nameDef} found prints by the water deep enough to hold rain and wide enough to stand in, left by {X_indefinite} some time in the night.</li>
+      <li>Snapped saplings, flattened brush, and tracks the size of serving platters lead toward the hills. {A_nameDef} followed them a hundred paces, glimpsed {X_indefinite} through the trees, and turned back.</li>
+      <li>{A_nameDef} laid both hands flat in one of {X_definite}'s footprints, side by side, and there was still room left over.</li>
     </texts>
     <effects>
       <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncC_BigTracks</thought><exceptTrait><li>Bloodlust</li></exceptTrait></li>
@@ -664,9 +664,9 @@
     <weight>0.5</weight>
     <cooldownDays>15</cooldownDays>
     <texts>
-      <li>{A_nameDef} wanted to know what {X_indefinite} felt like up close, so {A_pronoun} walked straight up and laid a hand on {X_possessive} flank. Everyone watching stopped breathing.</li>
+      <li>{A_nameDef} wanted to know what {X_indefinite} felt like up close, so {A_pronoun} walked straight up and laid a hand on {X_possessive} flank while the others held their breath at the fence.</li>
       <li>On a dare, {A_nameDef} crept up behind {X_definite} and poked {X_objective} with a stick, then stood there just long enough to watch {X_possessive} head come round, very slowly.</li>
-      <li>{A_nameDef} tried to hand-feed {X_indefinite} a turnip. It isn't clear yet whether the colony will remember that as brave, or as the last thing {A_nameDef} ever did.</li>
+      <li>{A_nameDef} walked up to {X_indefinite} holding out a turnip, and stood there while {X_pronoun} made up {X_possessive} mind about it.</li>
     </texts>
     <effects>
       <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncC_TouchedTheBeast</thought></li>
@@ -687,9 +687,9 @@
     <weight>1.5</weight>
     <cooldownDays>10</cooldownDays>
     <texts>
-      <li>{A_nameDef} saw {X_definite} at the tree line today, standing just where {X_pronoun} stood the day it all went wrong. They looked at each other until {X_pronoun} lost interest.</li>
-      <li>{A_nameDef} dropped a full bucket in the yard and didn't notice. Out past the fence, {X_definite} was pacing, unhurried, the way a thing paces once it has already won.</li>
-      <li>{A_nameDef} knew the shape at once, even at that distance: {X_definite}, back again, nosing along the edge of the trees as if the place belonged to {X_objective}.</li>
+      <li>{A_nameDef} saw {X_definite} at the tree line today, in the same spot as on the day of the attack. They looked at each other until {X_pronoun} turned away.</li>
+      <li>{A_nameDef} dropped a full bucket in the yard and didn't notice. Out past the fence, {X_definite} was pacing slowly back and forth.</li>
+      <li>Even at that distance, {A_nameDef} knew {X_definite} by the way {X_pronoun} moved, nosing along the tree line as if the land were {X_possessive}.</li>
     </texts>
     <effects>
       <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncC_BeastDread</thought><exceptTrait><li>Bloodlust</li><li>Brawler</li><li>Tough</li></exceptTrait></li>
@@ -711,9 +711,9 @@
     <weight>1.0</weight>
     <cooldownDays>8</cooldownDays>
     <texts>
-      <li>{A_nameDef} spotted {X_definite} drinking at the far water and came back fast, without the water. Everyone here knows that name, and what goes with it.</li>
-      <li>Word went round the colony in minutes: {X_definite} has been seen again at the edge of the trees. {A_nameDef} was the one who spotted {X_objective}, and keeps checking over {A_possessive} shoulder.</li>
-      <li>{A_nameDef} has started carrying a blade to the latrine, ever since {X_definite} was seen circling the fields again in broad daylight.</li>
+      <li>{A_nameDef} spotted {X_definite} drinking at the far water and came back at a run, leaving the buckets behind.</li>
+      <li>{A_nameDef} saw {X_definite} in the trees this morning, and by noon the news had gone all round the colony. {A_nameDef} has been looking over {A_possessive} shoulder since.</li>
+      <li>Since {X_definite} was seen circling the fields again in broad daylight, {A_nameDef} carries a blade even to the latrine.</li>
     </texts>
     <effects>
       <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncC_BeastUnease</thought><exceptTrait><li>Bloodlust</li></exceptTrait></li>
@@ -733,9 +733,9 @@
     <weight>0.8</weight>
     <cooldownDays>10</cooldownDays>
     <texts>
-      <li>{A_nameDef} set {A_possessive} hat down on a fence post for one moment, and {X_indefinite} made off with it into the brush. The hat has not been seen since.</li>
-      <li>{A_nameDef} chased {X_indefinite} halfway to the hills for a stolen glove, lost {X_objective} in a thicket, and came back with burrs, scratches and one glove.</li>
-      <li>{A_nameDef}'s lunch was wrapped, set aside, and then gone. A trail of crumbs led to {X_indefinite} under a bush, looking fat and unbothered.</li>
+      <li>{A_nameDef} set {A_possessive} hat on a fence post for a moment, and {X_indefinite} made off with it into the brush.</li>
+      <li>{A_nameDef} chased {X_indefinite} halfway to the hills for a stolen glove, lost {X_objective} in a thicket, and came back scratched and covered in burrs.</li>
+      <li>{A_nameDef}'s lunch went missing from the wall where {A_pronoun} had left it, and a trail of crumbs led to {X_indefinite} under a bush.</li>
     </texts>
     <effects>
       <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncC_RobbedByAnimal</thought></li>
@@ -757,9 +757,9 @@
     <weight>0.8</weight>
     <cooldownDays>8</cooldownDays>
     <texts>
-      <li>{A_nameDef} was on {A_possessive} usual midnight walk when {X_indefinite} crossed the path ahead, pale in the starlight. They regarded each other like two people who keep the same hours.</li>
-      <li>While the rest of the colony slept, {A_nameDef} sat on the step and watched {X_indefinite} go about {X_possessive} night's business in the yard. Good company: quiet, and no talk of chores.</li>
-      <li>{A_nameDef} likes the colony best at night. Tonight {X_indefinite} came to the edge of the light to see who else was awake, and stayed a while.</li>
+      <li>{A_nameDef} was on {A_possessive} usual midnight walk when {X_indefinite} crossed the path ahead, pale in the starlight, and stopped to look at {A_objective} before going on.</li>
+      <li>While the others slept, {A_nameDef} sat on the step and watched {X_indefinite} nose around the yard, turning over whatever had been left out.</li>
+      <li>{A_nameDef} likes the colony best at night. Tonight {X_indefinite} came up close to the doorway where {A_pronoun} sat, and stayed a while.</li>
     </texts>
     <effects>
       <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncC_Moonlit</thought></li>
@@ -781,9 +781,9 @@
       <li>Fall</li>
     </seasons>
     <texts>
-      <li>{A_nameDef} watched {X_indefinite} and a rival go at each other in the meadow for the best part of an hour, heads down, churning the mud to soup. Neither won. Both limped off proud.</li>
-      <li>The whole colony could hear {X_definite} and a challenger colliding, over and over, out past the fields. {A_nameDef} went to watch and came back with opinions about technique.</li>
-      <li>{A_nameDef} bet a week of washing-up on {X_definite} against the bigger one, and lost, narrowly, in the mud. {A_nameDef} is demanding a rematch from the animals.</li>
+      <li>{A_nameDef} watched {X_indefinite} and a rival go at each other in the meadow for most of the morning, heads down, churning the mud to soup, until both limped off.</li>
+      <li>The crack of {X_definite} and a challenger colliding carried all the way from the far fields. {A_nameDef} went out to watch and stayed until it was over.</li>
+      <li>{A_nameDef} bet a week of washing-up on {X_definite} against the bigger animal, and lost.</li>
     </texts>
     <effects>
       <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncC_RutFight</thought></li>

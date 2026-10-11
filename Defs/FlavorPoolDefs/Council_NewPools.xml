@@ -17,61 +17,61 @@
       <plain>
         <li>I spend a third of my life in that room. It can have {THING}.</li>
         <li>Nothing big. Just {THING}, so the room stops feeling borrowed.</li>
-        <li>There's an empty corner in my room that's been staring at me for weeks. I've given it {THING} to think about.</li>
-        <li>[touch:plantpot] My room smells like boots and old sweat. A plant won't fix that, but it'll put up a fight.</li>
-        <li>[touch:light] I've been finding my bed by memory and bruised shins. A light should put an end to that.</li>
+        <li>There's been an empty corner in my room for weeks. I've marked it out for {THING}.</li>
+        <li>[touch:plantpot] My room smells like boots and old sweat. A plant might help.</li>
+        <li>[touch:light] I find my bed every night by memory and bruised shins. I'd like a light.</li>
         <li>[touch:endtable] I keep putting my things on the floor and then stepping on them. I've marked a spot by the bed.</li>
-        <li>[touch:dresser] Everything I own lives in a heap at the foot of my bed. It deserves {THING}.</li>
+        <li>[touch:dresser] Everything I own lives in a heap at the foot of my bed. I've planned {THING} for it.</li>
         <li>[skill:Plants,touch:plantpot] I grow food for everyone all day. This one's just for me.</li>
         <li>[trait:NightOwl,touch:light] I'm up all night anyway. I'd like to see what I'm doing.</li>
         <li>[winter] Long winter ahead, and I'll spend half of it in that room. It's getting {THING}.</li>
         <li>[afterraid] We nearly lost everything this week. I want something in my room that's worth keeping.</li>
         <li>[poor] I know we're scraping by, but {THING} barely costs anything. I checked.</li>
         <li>[newcomer] If I'm staying, my room should look like somebody lives there. I've planned {THING}.</li>
-        <li>[trait:Greedy] Everyone else's room has something nice in it. Mine's getting {THING}. Then we'll see.</li>
-        <li>[skill:Artistic] My room's a blank canvas. I'm starting with {THING} and working outwards.</li>
+        <li>[trait:Greedy] I've seen the other rooms. Mine's getting {THING}, to start with.</li>
+        <li>[skill:Artistic] My room's a blank canvas. I'm starting with {THING} and working outward.</li>
         <li>[lowmood] I need something in that room besides four walls and bad dreams.</li>
-        <li>[child] I want {THING} in my room! A real one! I drew where it goes!</li>
+        <li>[child] I want {THING} in my room, a real one! I drew where it goes.</li>
         <li>[old] At my age, you stop waiting for the right moment to make a place your own.</li>
       </plain>
       <warm>
         <li>Would anyone mind if my room got {THING}? I've marked a spot where it won't be in anyone's way.</li>
-        <li>Small comforts add up. I've planned {THING} for my room, whenever someone has a spare hour.</li>
+        <li>I've planned {THING} for my room, whenever someone has a spare hour. There's no rush.</li>
         <li>[touch:plantpot] I'd like to look after something small for a change. A plant seems like a good start.</li>
-        <li>[touch:light] I like to read a little before sleep, when there's time. A light would save my eyes.</li>
+        <li>[touch:light] I like to read before sleep when there's time. A light would save my eyes.</li>
         <li>[touch:endtable] Somewhere beside the bed for a cup of water and a keepsake or two. I've marked the spot.</li>
         <li>[touch:dresser] I'd love a place to fold things properly. It's how I was raised.</li>
       </warm>
       <blunt>
         <li>My room, my corner, my {THINGBARE}. Any questions?</li>
         <li>Blueprint's down. If anyone cancels it, I'll find out who.</li>
-        <li>[touch:plantpot] A plant. In my room. Yes, me. Don't make it weird.</li>
-        <li>[touch:light] I've stubbed every toe I own in that room. Light. Soon.</li>
+        <li>[touch:plantpot] Yes, I want a plant. Don't look at me like that.</li>
+        <li>[touch:light] I've stubbed every toe I own in that room. I want a light.</li>
         <li>[touch:endtable] I need somewhere to put things that isn't the floor or my boots.</li>
-        <li>[touch:dresser] My clothes live on the floor. The floor has had enough.</li>
+        <li>[touch:dresser] My clothes have been on the floor long enough.</li>
       </blunt>
       <cheerful>
-        <li>I've marked a spot for {THING}! My room's about to have a lot more me in it!</li>
-        <li>Decorating! The one project nobody's going to shoot at!</li>
-        <li>[touch:plantpot] A plant pot! Something in my room that's even happier to see the sun than I am!</li>
-        <li>[touch:light] A light in my room! I'll finally find out what color the walls are!</li>
-        <li>[touch:endtable] A bedside table! I can put a drink down at night like a civilized person!</li>
-        <li>[touch:dresser] Drawers! Real drawers! Now I can lose my socks in an organized way!</li>
+        <li>I've marked a spot for {THING}! My room is finally going to feel like mine.</li>
+        <li>I'm decorating my room! It's the nicest job I've had all season.</li>
+        <li>[touch:plantpot] A plant pot! I'm going to talk to it every morning.</li>
+        <li>[touch:light] A light in my room! I'll finally see what color the walls are.</li>
+        <li>[touch:endtable] A bedside table! Somewhere to put my cup at night, like a civilized person.</li>
+        <li>[touch:dresser] Real drawers! I can lose my socks in an organized way now.</li>
       </cheerful>
       <gloomy>
         <li>I'll probably be dead before anyone builds it, but I've marked out {THING} anyway.</li>
         <li>Maybe if the room looks lived-in, I'll feel like I live there.</li>
-        <li>[touch:plantpot] Something in my room ought to get to grow. It isn't going to be me.</li>
+        <li>[touch:plantpot] I'd like one living thing in that room besides me.</li>
         <li>[touch:light] The dark in my room is starting to feel like company. I'd rather have a light.</li>
-        <li>[touch:endtable] A table by the bed. For the water glass, and the long nights.</li>
+        <li>[touch:endtable] A table by the bed, for the water cup and the long nights.</li>
         <li>[touch:dresser] Somewhere to keep my things. It'll be easier for whoever clears out my room.</li>
       </gloomy>
       <cold>
         <li>My room has an unused wall. I've assigned it {THING}.</li>
-        <li>A rested worker is a useful worker. I've planned {THING} for my room.</li>
+        <li>I sleep better with {THING} in the room, and I work better when I've slept.</li>
         <li>[touch:plantpot] I'm told plants calm people. I'll test it on myself first.</li>
         <li>[touch:light] I lose minutes every night looking for things in the dark. A light gets them back.</li>
-        <li>[touch:endtable] An end table keeps everything I need within reach of the bed. Everything.</li>
+        <li>[touch:endtable] An end table keeps everything I need within reach of the bed.</li>
         <li>[touch:dresser] Clothes last longer folded than heaped. A dresser is just maintenance.</li>
       </cold>
     </lines>
@@ -86,10 +86,10 @@
         <li>It's a small thing, but it's my small thing.</li>
         <li>[touch:plantpot] There's dirt in a pot in my room, and I'm unreasonably pleased about it.</li>
         <li>[touch:light] First night with a light in my room, and I didn't trip over a single thing.</li>
-        <li>[touch:endtable] Put my cup down on the new table, picked it up, put it down again; still works.</li>
-        <li>[touch:dresser] My clothes are folded and my floor is visible, both for the first time.</li>
+        <li>[touch:endtable] My cup sits on the new table at night now, instead of the floor.</li>
+        <li>[touch:dresser] My clothes are folded away and I can see the floor again.</li>
         <li>[night] Lay awake looking at it, which beat lying awake looking at nothing.</li>
-        <li>[lowmood] It helps, a little more than I thought it would.</li>
+        <li>[lowmood] It helps more than I thought it would.</li>
         <li>[old] That's how a room should look, and I've lived in enough of them to know.</li>
         <li>[child] Come and see my room, come and see, there's a {THINGBARE} in it now!</li>
         <li>[trait:Greedy] Lovely, so what's next for my room?</li>
@@ -101,21 +101,21 @@
         <li>[touch:dresser] Everything folded and put away, the way it should be in a home.</li>
       </warm>
       <blunt>
-        <li>It's in, it's mine, and nobody touches it.</li>
+        <li>It's in, it's mine, and it stays where it is.</li>
         <li>About time, and it's not even crooked.</li>
-        <li>[touch:light] Light, finally, and it only took forever.</li>
-        <li>[touch:endtable] Good, now my stuff has somewhere to live that isn't my boots.</li>
+        <li>[touch:light] I have a light, finally.</li>
+        <li>[touch:endtable] Good, my things have somewhere to go besides the floor.</li>
       </blunt>
       <cheerful>
         <li>My new {THINGBARE} is perfect and I've already shown it to three people!</li>
         <li>[touch:plantpot] It's growing, or at least the dirt looks very ambitious!</li>
         <li>[touch:light] Light in my room whenever I want it, like royalty!</li>
-        <li>[touch:dresser] I've opened every drawer twice and closed them all three times!</li>
+        <li>[touch:dresser] Every drawer has something in it already!</li>
       </cheerful>
       <gloomy>
         <li>It's nice, and it'll outlast me, which is something.</li>
-        <li>Doesn't fix anything, but it's nicer to look at while nothing's fixed.</li>
-        <li>[touch:plantpot] Something in my room is alive and thriving, which makes one of us.</li>
+        <li>It doesn't fix anything, but it's nice to look at.</li>
+        <li>[touch:plantpot] The plant is doing better than I am.</li>
         <li>[touch:endtable] Nice table; it'll hold my things just fine after I'm gone.</li>
       </gloomy>
       <cold>
@@ -135,21 +135,21 @@
     <defName>Council_Pool_Heckle</defName>
     <lines>
       <plain>
-        <li>{PAWN_nameDef} asked how long "{AMBITION}" would take, then asked again, as if the first answer had been a joke.</li>
-        <li>{PAWN_nameDef} wanted to know who would actually be doing the hauling for "{AMBITION}". Nobody met {PAWN_possessive} eye.</li>
-        <li>{PAWN_nameDef} sat with folded arms through the whole of {OTHER_nameDef}'s pitch, then said "Fine," which could have meant anything.</li>
+        <li>{PAWN_nameDef} asked how long "{AMBITION}" would take, and didn't like the answer.</li>
+        <li>{PAWN_nameDef} wanted to know who would actually do the hauling for "{AMBITION}", and got no volunteers.</li>
+        <li>{PAWN_nameDef} sat with folded arms through all of {OTHER_nameDef}'s pitch.</li>
         <li>{PAWN_nameDef} asked whether anyone had measured anything, or whether "{AMBITION}" was more of a feeling.</li>
         <li>{PAWN_nameDef} muttered something about "{AMBITION}" into {PAWN_possessive} cup and refused to repeat it.</li>
         <li>{PAWN_nameDef} kept asking questions about "{AMBITION}" until {OTHER_nameDef} looked ready to throw a chair.</li>
-        <li>[poor] {PAWN_nameDef} asked where the materials for "{AMBITION}" were supposed to come from, since the stockpile was mostly rocks and good intentions.</li>
-        <li>[afterraid] {PAWN_nameDef} pointed out that the last raiders were still lying where they fell, and suggested "{AMBITION}" could wait until they weren't.</li>
-        <li>[winter] {PAWN_nameDef} said "{AMBITION}" sounded lovely. For spring.</li>
+        <li>[poor] {PAWN_nameDef} asked where the materials for "{AMBITION}" were supposed to come from, since the stockpile was mostly rocks.</li>
+        <li>[afterraid] {PAWN_nameDef} pointed out that the dead raiders were still lying outside, and said "{AMBITION}" could wait until they were buried.</li>
+        <li>[winter] {PAWN_nameDef} said "{AMBITION}" sounded like a fine idea for spring.</li>
         <li>[night] {PAWN_nameDef} yawned through most of {OTHER_nameDef}'s pitch, but woke up in time to argue with it.</li>
-        <li>[trait:Greedy] {PAWN_nameDef} asked what {PAWN_pronoun} would personally get out of "{AMBITION}", and seemed honestly surprised by the answer.</li>
+        <li>[trait:Greedy] {PAWN_nameDef} asked what {PAWN_pronoun} would personally get out of "{AMBITION}", and wasn't satisfied with "not much."</li>
         <li>[trait:Jealous] {PAWN_nameDef} listened to {OTHER_nameDef} pitch "{AMBITION}" with the face of someone who'd had the same idea a week ago.</li>
-        <li>[trait:Gourmand] {PAWN_nameDef} asked whether "{AMBITION}" came with snacks, and seemed to take the answer personally.</li>
+        <li>[trait:Gourmand] {PAWN_nameDef} asked whether "{AMBITION}" would mean better food, and lost interest when it wouldn't.</li>
         <li>[trait:Pyromaniac] {PAWN_nameDef} asked, very casually, how flammable "{AMBITION}" would be.</li>
-        <li>[trait:Bloodlust] {PAWN_nameDef} asked whether "{AMBITION}" would get anyone killed, in a tone that was a little too hopeful.</li>
+        <li>[trait:Bloodlust] {PAWN_nameDef} asked whether "{AMBITION}" would get anyone killed, and sounded hopeful.</li>
         <li>[trait:TooSmart] {PAWN_nameDef} corrected {OTHER_nameDef}'s arithmetic twice, then {PAWN_possessive} own once.</li>
         <li>[trait:Ascetic] {PAWN_nameDef} asked why anyone needed "{AMBITION}" when there was perfectly good floor to sleep on.</li>
         <li>[old] {PAWN_nameDef} said {PAWN_pronoun} had seen three colonies try something like "{AMBITION}", and one of them was still standing.</li>
@@ -159,23 +159,23 @@
       </plain>
       <warm>
         <li>{PAWN_nameDef} squeezed {OTHER_nameDef}'s shoulder after the pitch and said it was a good idea, whatever the vote said.</li>
-        <li>{PAWN_nameDef} quietly offered to help with "{AMBITION}" whichever way things went.</li>
+        <li>{PAWN_nameDef} offered to help with "{AMBITION}" however the vote went.</li>
         <li>{PAWN_nameDef} asked {OTHER_nameDef} a gentle question about "{AMBITION}" that turned out to have no good answer, and looked sorry about it.</li>
       </warm>
       <blunt>
         <li>{PAWN_nameDef} asked {OTHER_nameDef} whether {OTHER_pronoun} planned to lift a finger for "{AMBITION}", or just point at things.</li>
-        <li>{PAWN_nameDef} laughed out loud at "{AMBITION}". It was not a kind laugh.</li>
-        <li>{PAWN_nameDef} called "{AMBITION}" a waste of time, food, effort and {PAWN_possessive} evening, in that order.</li>
-        <li>{PAWN_nameDef} told {OTHER_nameDef} to sit down. {OTHER_nameDef} was already sitting down.</li>
+        <li>{PAWN_nameDef} laughed out loud at "{AMBITION}", and not kindly.</li>
+        <li>{PAWN_nameDef} called "{AMBITION}" a waste of good stone and a whole season.</li>
+        <li>{PAWN_nameDef} told {OTHER_nameDef} to sit down before the pitch was half over.</li>
       </blunt>
       <cheerful>
         <li>{PAWN_nameDef} started clapping halfway through {OTHER_nameDef}'s pitch for "{AMBITION}" and had to be asked to stop.</li>
         <li>{PAWN_nameDef} volunteered for "{AMBITION}" before anyone had explained what it involved.</li>
-        <li>{PAWN_nameDef} proposed a toast to "{AMBITION}". Nobody had anything to drink, so they raised their empty cups anyway.</li>
+        <li>{PAWN_nameDef} raised {PAWN_possessive} cup to "{AMBITION}", though it was empty.</li>
       </cheerful>
       <gloomy>
         <li>{PAWN_nameDef} said "{AMBITION}" was a fine idea, the sort of thing they'd carve on the colony's grave marker.</li>
-        <li>{PAWN_nameDef} asked who would still be alive to enjoy "{AMBITION}". Nobody had a good answer.</li>
+        <li>{PAWN_nameDef} asked how many of them would still be alive to enjoy "{AMBITION}".</li>
         <li>{PAWN_nameDef} stared at the floor through the whole of {OTHER_nameDef}'s pitch, and at the end said only "Hm."</li>
       </gloomy>
       <cold>
@@ -198,15 +198,15 @@
         <li>Put my name next to {OTHER_nameDef}'s on this one.</li>
         <li>{OTHER_nameDef} said it first, but I've been thinking it for weeks.</li>
         <li>Count me in on "{WISH}"; it isn't just {OTHER_nameDef} who wants it.</li>
-        <li>One person asking is a complaint; a few of us asking is a movement.</li>
+        <li>Add me to that; I've wanted the same for a while.</li>
         <li>[trigger:raid] I was on the line next to {OTHER_nameDef} in that raid, and I'm asking too.</li>
         <li>[trigger:floor] I ate my dinner off my knees as well, so add me to the list.</li>
         <li>[trigger:rawfood|trigger:sick] My stomach agrees with {OTHER_nameDef}, loudly, and all night.</li>
         <li>[trigger:cabin] I've been staring at the same four walls as {OTHER_nameDef}, so yes, me too.</li>
         <li>[trigger:death] I knew them too, and I want to be standing at that grave with {OTHER_nameDef}.</li>
-        <li>[promised] It's already promised to {OTHER_nameDef}, so I'm just joining the queue behind it.</li>
+        <li>[promised] It's already promised to {OTHER_nameDef}, so I'm only adding my name to it.</li>
         <li>[repeat] {OTHER_nameDef} has asked more than once, and this time not alone.</li>
-        <li>[old] I wanted this before {OTHER_nameDef} ever got here, but nobody asked me.</li>
+        <li>[old] I wanted this before {OTHER_nameDef} ever got here, but I never said so.</li>
         <li>[newcomer] I'm new, so maybe it isn't my place, but {OTHER_nameDef} is right.</li>
         <li>[child] Me too, and {OTHER_nameDef} said I was allowed to ask!</li>
         <li>[trait:Jealous] If {OTHER_nameDef} gets it, I want it too, so I'm asking now instead of sulking later.</li>
@@ -224,13 +224,13 @@
       </blunt>
       <cheerful>
         <li>Me too, me too, put me down twice if that's allowed!</li>
-        <li>{OTHER_nameDef} had a great idea and I'm officially its biggest fan!</li>
+        <li>{OTHER_nameDef} had a great idea, and I want my name on it too!</li>
         <li>A petition, how official, I'm signing it with a flourish!</li>
       </cheerful>
       <gloomy>
         <li>I'll ask too, for all the good it'll do either of us.</li>
-        <li>One more voice; maybe now we'll be ignored more slowly.</li>
-        <li>[bitter] Nobody listens to me, but maybe they'll listen to {OTHER_nameDef} with me standing behind.</li>
+        <li>One more voice, for whatever that's worth around here.</li>
+        <li>[bitter] They never listen to me, but maybe they'll listen to {OTHER_nameDef}.</li>
       </gloomy>
       <cold>
         <li>Supporting {OTHER_nameDef} costs me nothing and doubles the pressure, so count me in.</li>

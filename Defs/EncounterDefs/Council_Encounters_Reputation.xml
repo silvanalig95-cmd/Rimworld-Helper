@@ -20,9 +20,9 @@
     <colonyIs><li>Merciful</li></colonyIs>
     <stranger><kind>Visitor</kind><adult>true</adult></stranger>
     <texts>
-      <li>{X_nameDef} asked {A_nameDef} if it was true what they say on the road: that this colony patches up the raiders it beats and sends them home with bread. {A_nameDef} said it was mostly true. {X_nameDef} said that was the strangest thing {X_pronoun} had heard all year.</li>
-      <li>Over supper, {X_nameDef} told {A_nameDef} that {FACTION} folk call this "the place that lets them go". {X_nameDef} meant it kindly, mostly. {A_nameDef} has been turning it over ever since.</li>
-      <li>{X_nameDef} said {X_pronoun} slept better here than anywhere on the road, because a colony that spares its own prisoners probably won't knife its guests. {A_nameDef} decided to take that as praise.</li>
+      <li>{X_nameDef} asked {A_nameDef} whether it was true what they say on the road, that this colony patches up the raiders it beats and sends them home with bread. {A_nameDef} said it was, mostly, and {X_nameDef} wanted to hear about every one of them.</li>
+      <li>Over supper, {X_nameDef} told {A_nameDef} that {FACTION} folk call this "the place that lets them go", and couldn't say whether they meant it as praise.</li>
+      <li>{X_nameDef} told {A_nameDef} that {X_pronoun} slept better here than anywhere on the road, because a colony that spares its own prisoners probably won't knife its guests.</li>
     </texts>
     <effects>
       <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncR_KnownForMercy</thought><exceptTrait><li>Bloodlust</li><li>Psychopath</li></exceptTrait></li>
@@ -43,8 +43,8 @@
     <stranger><kind>Trader</kind></stranger>
     <texts>
       <li>{X_nameDef} pressed a few coins and a twist of healroot on {A_nameDef} and wouldn't hear a word about it. A cousin of {X_possessive} was one of the raiders the colony patched up and sent home. "Didn't deserve it," {X_nameDef} said. "Thanks all the same."</li>
-      <li>{X_nameDef} tucked some healroot and a little silver into {A_nameDef}'s basket after the trading was done. Word on the road is the colony sets its prisoners free, and {X_nameDef} once had a brother in a cell somewhere much worse.</li>
-      <li>{X_nameDef} gave {A_nameDef} a twist of healroot and a few coins "for the mercy". {A_nameDef} asked which mercy. {X_nameDef} said it didn't matter, people talk about all of them.</li>
+      <li>{X_nameDef} tucked some healroot and a few coins into {A_nameDef}'s basket after the trading was done. Word on the road is the colony sets its prisoners free, and {X_nameDef} once had a brother in a cell somewhere much worse.</li>
+      <li>{X_nameDef} gave {A_nameDef} a bundle of healroot and a few coins "for the mercy". {A_nameDef} asked which mercy. {X_nameDef} said it didn't matter, people talk about all of them.</li>
     </texts>
     <effects>
       <li Class="ColonyCouncil.DilemmaEffect_Spawn"><thing>Silver</thing><count>10</count></li>
@@ -65,7 +65,7 @@
     <texts>
       <li>The {FACTION} visitors keep their children on a short rope here. When one wandered toward {A_nameDef}, {X_nameDef} snatched the child back by the collar without a word. {A_nameDef} had only been going to wave.</li>
       <li>{X_nameDef} told {A_nameDef}, half joking, that {FACTION} parents use the colony's name to get their children indoors before dark. {X_nameDef} stopped smiling when {A_nameDef} didn't laugh.</li>
-      <li>{A_nameDef} offered a visiting child a heel of sweet bread. {X_nameDef} took it first, turned it over twice, and only then let the child have it. Nobody said why. Everybody knew why.</li>
+      <li>{A_nameDef} offered a visiting child a heel of sweet bread. {X_nameDef} took it first, turned it over twice, and only then let the child have it.</li>
     </texts>
     <effects>
       <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncR_TheyFearUs</thought><exceptTrait><li>Bloodlust</li><li>Psychopath</li></exceptTrait></li>
@@ -84,7 +84,7 @@
     <stranger><kind>Trader</kind></stranger>
     <texts>
       <li>{X_nameDef} didn't haggle once. {X_nameDef} named a fair price, then a better one before {A_nameDef} could open {A_possessive} mouth, and kept glancing at the gate the whole time.</li>
-      <li>{X_nameDef} has heard what happens to people who cheat this colony, or at least the stories. {A_nameDef} came away from the trade with a little extra silver and the uncomfortable feeling of having frightened someone.</li>
+      <li>{X_nameDef} has heard what happens to people who cheat this colony, or at least the stories. {A_nameDef} came away from the trade with more silver than expected, and the feeling of having frightened someone.</li>
       <li>{X_nameDef} counted {A_nameDef}'s change out twice, very carefully, then added a few coins "in case I miscounted". {A_nameDef} hadn't said a word.</li>
     </texts>
     <effects>
@@ -105,7 +105,7 @@
     <stranger><kind>Visitor</kind><adult>true</adult></stranger>
     <texts>
       <li>{X_nameDef} hung around the kitchen door at suppertime, not quite asking. "Heard there's always a bowl here," {X_nameDef} said eventually. {A_nameDef} found one, and then found another for the road.</li>
-      <li>{X_nameDef} told {A_nameDef} that {FACTION} folk say nobody leaves this colony hungry, and then waited, hopefully. {A_nameDef} laughed and fetched the bread.</li>
+      <li>{X_nameDef} told {A_nameDef} that {FACTION} folk say no one leaves this colony hungry, and then waited, hopefully. {A_nameDef} laughed and fetched the bread.</li>
       <li>{X_nameDef} had walked an extra day out of {X_possessive} way because someone said the colony feeds travelers. {A_nameDef} filled {X_possessive} bowl twice and didn't ask for anything back.</li>
     </texts>
     <effects>
@@ -126,9 +126,9 @@
     <colonyIs><li>Generous</li></colonyIs>
     <stranger><kind>Trader</kind></stranger>
     <texts>
-      <li>{X_nameDef} said {FACTION} villages still talk about what this colony gave away in the lean months. Someone there has started calling the place "the full pot". {A_nameDef} has decided to like it.</li>
-      <li>{X_nameDef} told {A_nameDef} that every settlement along the road has heard about the colony's charity, and half of them think it's a trick. "What's the catch?" {X_nameDef} asked. {A_nameDef} said there wasn't one, and {X_nameDef} didn't believe that either.</li>
-      <li>{X_nameDef} knocked a little off every price for {A_nameDef}. "You fed my sister's lot through a bad winter," {X_nameDef} said. "Don't argue." {A_nameDef} didn't.</li>
+      <li>{A_nameDef} heard from {X_nameDef} that {FACTION} villages still talk about what this colony gave away in the lean months. Someone there has started calling the place "the full pot".</li>
+      <li>{X_nameDef} told {A_nameDef} that every settlement along the road has heard about the colony's charity, and half of them think it's a trick. "What's the catch?" {X_nameDef} asked. {A_nameDef} said there wasn't one.</li>
+      <li>{X_nameDef} knocked a few coins off every price for {A_nameDef}. "You fed my sister's lot through a bad winter," {X_nameDef} said. "Don't argue."</li>
     </texts>
     <effects>
       <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncR_SpokenWellOf</thought></li>
@@ -167,7 +167,7 @@
     <stranger><kind>Visitor</kind><adult>true</adult></stranger>
     <colonist><notTrait><li>Greedy</li></notTrait></colonist>
     <texts>
-      <li>{X_nameDef} sat down at the colony's table and unwrapped {X_possessive} own bread and cheese. "Heard you count every crumb here," {X_nameDef} said, not unkindly. {A_nameDef} went and fetched a bowl of stew anyway, to prove a point.</li>
+      <li>{X_nameDef} sat down at the colony's table and unwrapped {X_possessive} own bread and cheese. "Heard you count every crumb here," {X_nameDef} said. {A_nameDef} got up and fetched {X_objective} a bowl of stew.</li>
       <li>The {FACTION} visitors brought their own water skins and their own firewood. {A_nameDef} asked why. {X_nameDef} said they'd heard the colony charges for both, and {A_nameDef} spent the evening carrying wood over to their fire for nothing.</li>
       <li>{X_nameDef} offered to pay {A_nameDef} for a cup of water. {A_nameDef} was so put out that {A_pronoun} gave {X_objective} a jug of beer instead, and wouldn't take a coin for it.</li>
     </texts>
@@ -190,9 +190,9 @@
     <colonyIs><li>Traditional</li></colonyIs>
     <stranger><kind>Visitor</kind><adult>true</adult></stranger>
     <texts>
-      <li>{X_nameDef}, grey to the eyebrows, watched the colony bless the bread at supper and went quiet. "Nobody does that anymore," {X_nameDef} told {A_nameDef} afterwards. "My mother did that."</li>
-      <li>{X_nameDef} said the colony keeps the old customs better than half the towns on the road, where everyone has forgotten why anything is done. {A_nameDef} didn't know what to say, so {A_pronoun} poured the guest's cup first, the old way.</li>
-      <li>{X_nameDef} knew the words to the colony's evening song, an old one, and sang them a little off. {A_nameDef} sang along, and for a minute the two of them were somewhere else entirely.</li>
+      <li>{X_nameDef}, gray to the eyebrows, watched the colony bless the bread at supper and went quiet. "No one does that anymore," {X_nameDef} told {A_nameDef} afterwards. "My mother did that."</li>
+      <li>{X_nameDef} said the colony keeps the old customs better than most towns on the road, where people have forgotten why anything is done. {A_nameDef} poured the guest's cup first, the old way.</li>
+      <li>{X_nameDef} knew the words to the colony's evening song, an old one, though {X_pronoun} sang them slightly off. {A_nameDef} sang along with {X_objective} to the last verse.</li>
     </texts>
     <effects>
       <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncR_OurWaysPraised</thought></li>
@@ -211,7 +211,7 @@
     <stranger><kind>Trader</kind></stranger>
     <texts>
       <li>{X_nameDef} stopped at the gate and waited for the bread and salt before stepping in, the way the colony does things. "Heard you're particular," {X_nameDef} told {A_nameDef}. "I like particular. Particular pays its debts."</li>
-      <li>{X_nameDef} refused to talk prices until {X_pronoun} had shared a cup with {A_nameDef}, the old way. "Your sort of place," {X_nameDef} said, "you do things in order."</li>
+      <li>{X_nameDef} wouldn't talk prices until {X_pronoun} had sat down and shared a cup with {A_nameDef}. "Your sort of place," {X_nameDef} said, "you do things in order."</li>
       <li>{X_nameDef} made a point of greeting the colony's eldest first and nodding to the graves on the way in. {A_nameDef} noticed, and gave {X_objective} the good stool.</li>
     </texts>
     <effects>
@@ -230,9 +230,9 @@
     <colonyIs><li>Restless</li></colonyIs>
     <stranger><kind>Visitor</kind><adult>true</adult></stranger>
     <texts>
-      <li>{X_nameDef} had heard the colony is always trying something new, and asked to see all of it: the oven with two doors, the furrows that run the wrong way, the bread with seeds in. {A_nameDef} gave the tour, and was surprised by how proud {A_pronoun} sounded.</li>
-      <li>{X_nameDef} asked {A_nameDef} what the colony was trying this season. {A_nameDef} talked for an hour. {X_nameDef} wrote some of it down, and asked whether anyone would mind if {FACTION} stole a few ideas.</li>
-      <li>On the road, {X_nameDef} said, they call this the place that never does anything the same way twice. {A_nameDef} showed {X_objective} the new drying racks to prove it, and then the even newer ones next to them.</li>
+      <li>{X_nameDef} had heard the colony is always trying new things, and asked to see the oven with two doors, the furrows that run across the slope and the bread with seeds in it. {A_nameDef} gave the tour, and sounded prouder than {A_pronoun} expected.</li>
+      <li>{X_nameDef} asked {A_nameDef} what the colony was trying this season, and {A_nameDef} talked until supper. Before leaving, {X_nameDef} asked whether anyone would mind if {FACTION} borrowed a few of the ideas.</li>
+      <li>On the road, {X_nameDef} said, they call this the place that never does anything the same way twice. {A_nameDef} took {X_objective} to see the new drying racks.</li>
     </texts>
     <effects>
       <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncR_ShowedOffNewWays</thought></li>
@@ -253,7 +253,7 @@
     <texts>
       <li>{X_nameDef} complained that every time {X_pronoun} comes through, the gate is somewhere else. {A_nameDef} pointed out that it had only moved twice. {X_nameDef} said three times, and that the well had moved too.</li>
       <li>{X_nameDef} asked {A_nameDef} where the storeroom was, then where it used to be, then why. {A_nameDef} explained the new plan. {X_nameDef} said the old plan had been fine.</li>
-      <li>{X_nameDef} looked around the yard and sighed. "You lot can't leave anything alone, can you?" {A_nameDef} wasn't sure whether that was a complaint or a compliment. Neither was {X_nameDef}.</li>
+      <li>{X_nameDef} looked around the yard and sighed. "You lot can't leave anything alone, can you?" {A_nameDef} wasn't sure whether that was a complaint or a compliment.</li>
     </texts>
     <effects>
       <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncR_AlwaysChanging</thought></li>
@@ -271,8 +271,8 @@
     <colonyIs><li>Open</li></colonyIs>
     <stranger><kind>Visitor</kind><adult>true</adult></stranger>
     <texts>
-      <li>The {FACTION} visitors put their packs down, took their boots off and stayed up half the night swapping songs with the colony. {X_nameDef} said it was the first place in weeks {X_pronoun} hadn't slept with one eye open. {A_nameDef} sang the loudest.</li>
-      <li>{X_nameDef} told {A_nameDef} all the news from the road, the true parts and the good parts, and taught {A_objective} a song about a miller's terrible luck. Nobody here keeps a guest at arm's length, {X_nameDef} said, and it shows.</li>
+      <li>The {FACTION} visitors took their boots off and stayed up late swapping songs with {A_nameDef} and the others. {X_nameDef} said it was the first place in weeks {X_pronoun} hadn't slept with one eye open.</li>
+      <li>{X_nameDef} told {A_nameDef} all the news from the road, the true parts and the good parts, and taught {A_objective} a song about a tinker's terrible luck. It was the warmest welcome {X_pronoun} had had all season, {X_nameDef} said.</li>
       <li>{X_nameDef} said people on the road call this the friendly place, then proved it by falling asleep in the middle of a story by the fire. {A_nameDef} put a blanket over {X_objective} and finished the story for the others.</li>
     </texts>
     <effects>
@@ -294,8 +294,8 @@
     <stranger><kind>Trader</kind></stranger>
     <texts>
       <li>{X_nameDef} lowered {X_possessive} voice and told {A_nameDef} which roads have bandits on them this season, and which towns water their beer. "I don't tell everyone," {X_nameDef} said. "But you lot always let us in."</li>
-      <li>{X_nameDef} told {A_nameDef} where salt is cheap and which lords are greedy, as freely as if {A_nameDef} were family. A colony with an open gate, {X_nameDef} said, hears everything sooner or later.</li>
-      <li>{X_nameDef} spent an hour after the trading was done just talking with {A_nameDef}: prices, feuds, who is marrying whom. "It's nice to be somewhere nobody's counting my knives," {X_nameDef} said.</li>
+      <li>{X_nameDef} told {A_nameDef} where salt is cheap and which lords are greedy, as freely as if {A_nameDef} were family.</li>
+      <li>After the trading was done, {X_nameDef} stayed to talk with {A_nameDef} about prices, feuds and who is marrying whom. "It's nice to be somewhere no one counts my knives," {X_nameDef} said.</li>
     </texts>
     <effects>
       <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncR_TrustedWithNews</thought></li>
@@ -334,8 +334,8 @@
     <stranger><kind>Trader</kind></stranger>
     <texts>
       <li>{X_nameDef} set up {X_possessive} goods outside the walls, as the colony prefers. {A_nameDef} felt foolish haggling across the gate, and in the end walked {X_nameDef} inside to look at the stores properly.</li>
-      <li>{X_nameDef} made a joke about being searched for the third time. {A_nameDef} didn't laugh, and told the gate watch to let the trader be. {X_nameDef} looked at {A_nameDef} as if {A_pronoun} had grown a second head.</li>
-      <li>{X_nameDef} said {X_pronoun} usually trades with this colony through a crack in the gate. {A_nameDef} opened it the rest of the way and handed {X_objective} a cup of something warm. It seemed to confuse {X_nameDef} more than anything.</li>
+      <li>{X_nameDef} made a joke about being searched for the third time. {A_nameDef} didn't laugh, and told the gate watch to let the trader be. {X_nameDef} looked at {A_objective} for a long moment before thanking {A_objective}.</li>
+      <li>{X_nameDef} said {X_pronoun} usually trades with this colony through a crack in the gate. {A_nameDef} opened it the rest of the way and handed {X_objective} a cup of hot broth.</li>
     </texts>
     <effects>
       <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncR_OpenedTheGate</thought></li>
@@ -356,8 +356,8 @@
     <colonyIs><li>Hardworking</li></colonyIs>
     <stranger><kind>Trader</kind></stranger>
     <texts>
-      <li>{X_nameDef} stood at the edge of the fields shaking {X_possessive} head. "Not a weed," {X_nameDef} said to {A_nameDef}. "I've seen monasteries with less discipline."</li>
-      <li>{X_nameDef} said the colony is known on the road for working from dark to dark, and having seen the woodpile, {X_nameDef} believes it. {A_nameDef} tried not to look pleased, and failed.</li>
+      <li>{X_nameDef} stood by the fields shaking {X_possessive} head. "Not a weed," {X_nameDef} said to {A_nameDef}. "I've seen monasteries with less discipline."</li>
+      <li>{X_nameDef} told {A_nameDef} the colony is known on the road for working from dark to dark, and that having seen the woodpile, {X_pronoun} believed it.</li>
       <li>{X_nameDef} asked {A_nameDef} how many hands the colony has. When {A_nameDef} told {X_objective}, {X_nameDef} counted the fields and the stacked stone twice, and called {A_nameDef} a liar, admiringly.</li>
     </texts>
     <effects>
@@ -375,9 +375,9 @@
     <colonyIs><li>Hardworking</li></colonyIs>
     <stranger><kind>Visitor</kind><adult>true</adult></stranger>
     <texts>
-      <li>{X_nameDef} asked {A_nameDef} what the colony does for fun. {A_nameDef} thought about it for so long that {X_nameDef} took {A_objective} down to the water and taught {A_objective} to skip stones. {A_nameDef} skipped stones for an hour and felt guilty for most of it.</li>
-      <li>{X_nameDef} watched {A_nameDef} hurry from one job to the next and finally stepped into {A_possessive} path with two cups. "Sit," {X_nameDef} said. {A_nameDef} sat, and didn't get up again for an hour.</li>
-      <li>{X_nameDef} had heard nobody in this colony ever sits down, and challenged {A_nameDef} to prove it wrong over a game of knucklebones. {A_nameDef} won three games, and lost the afternoon.</li>
+      <li>{X_nameDef} asked {A_nameDef} what the colony does for fun. {A_nameDef} thought about it for so long that {X_nameDef} took {A_objective} down to the water and taught {A_objective} to skip stones. {A_nameDef} skipped stones all afternoon, and felt guilty about it the whole time.</li>
+      <li>{X_nameDef} watched {A_nameDef} hurry from one job to the next and finally stepped into {A_possessive} path with two cups. "Sit," {X_nameDef} said. {A_nameDef} sat, and didn't get up again until the cups were empty.</li>
+      <li>{X_nameDef} had heard that people in this colony never sit down, and talked {A_nameDef} into a game of stones to prove otherwise. They played until the shadows were long.</li>
     </texts>
     <effects>
       <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncR_StoleAnHour</thought></li>
@@ -396,9 +396,9 @@
     <colonyIs><li>Easygoing</li></colonyIs>
     <stranger><kind>Visitor</kind><adult>true</adult></stranger>
     <texts>
-      <li>{X_nameDef} watched half the colony doze in the shade at midday and asked {A_nameDef}, very seriously, whether the colony needed anyone else. Where {X_nameDef} comes from, a nap like that earns you a beating.</li>
+      <li>{X_nameDef} watched the colonists doze in the shade at midday and asked {A_nameDef}, very seriously, whether the colony needed anyone else. Where {X_nameDef} comes from, a nap like that earns you a beating.</li>
       <li>{X_nameDef} said {FACTION} works from first bell to last and still goes hungry. {X_nameDef} watched the colony take its long, slow lunch, and {A_nameDef} thought for a moment that {X_pronoun} might cry.</li>
-      <li>{X_nameDef} asked {A_nameDef} what time the colony starts work. {A_nameDef} said "after breakfast". {X_nameDef} asked what time breakfast was. {A_nameDef} said "when everyone's up". {X_nameDef} wrote it down.</li>
+      <li>{X_nameDef} asked {A_nameDef} when the colony starts work. "After breakfast," {A_nameDef} said, "and breakfast is when we're all up."</li>
     </texts>
     <effects>
       <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncR_WeLiveWell</thought><exceptTrait><li>Industriousness</li></exceptTrait></li>
@@ -419,9 +419,9 @@
     <colonyIs><li>Easygoing</li></colonyIs>
     <stranger><kind>Trader</kind></stranger>
     <texts>
-      <li>{X_nameDef} rang the trade bell three times before {A_nameDef} turned up. Everyone else, {A_nameDef} explained, was at second lunch. {X_nameDef} asked what second lunch was, and was invited.</li>
-      <li>{X_nameDef} found half the colony asleep in the shade and asked {A_nameDef} whether there had been a sickness. {A_nameDef} explained that it was just the middle of the day.</li>
-      <li>{X_nameDef} told {A_nameDef} that this colony is known for two things on the road: fair prices and never being in a hurry. Then {X_nameDef} waited most of the afternoon for someone to fetch the silver.</li>
+      <li>{X_nameDef} rang the trade bell three times before {A_nameDef} turned up and explained that the others were at second lunch. {X_nameDef} was invited to join them.</li>
+      <li>{X_nameDef} found the yard empty and the workshops quiet, and asked {A_nameDef} whether there had been a sickness. {A_nameDef} explained that it was just the middle of the day.</li>
+      <li>{X_nameDef} told {A_nameDef} that on the road this colony is known for fair prices and for never being in a hurry, and then waited most of the afternoon for the silver to be fetched.</li>
     </texts>
     <effects>
       <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncR_NoHurry</thought><exceptTrait><li>Industriousness</li></exceptTrait></li>

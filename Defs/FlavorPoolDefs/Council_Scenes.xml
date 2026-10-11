@@ -16,68 +16,68 @@
     <defName>Council_Pool_Scene</defName>
     <lines>
       <plain>
-        <li>{PAWN_nameDef} sets down {PAWN_possessive} tools and asks for a word. It turns out to be several.</li>
+        <li>{PAWN_nameDef} sets down {PAWN_possessive} tools and asks for a word.</li>
         <li>{PAWN_nameDef} has clearly been working up to this all day.</li>
         <li>Over the scrape of shovels and the hiss of the cookfire, {PAWN_nameDef} makes {PAWN_possessive} case.</li>
-        <li>{PAWN_nameDef} catches up with whoever's nearest the stockpile and doesn't let go of the subject.</li>
-        <li>It comes out sideways, the way important things do, in the middle of a conversation about something else entirely.</li>
+        <li>{PAWN_nameDef} corners whoever happens to be at the stockpile.</li>
+        <li>It comes up halfway through a conversation about fence posts.</li>
         <li>{PAWN_nameDef} has a request, and has rehearsed it, and still fumbles the opening.</li>
         <li>Somewhere between one chore and the next, {PAWN_nameDef} stops and says it out loud.</li>
-        <li>{PAWN_nameDef} leans against the doorframe with the air of someone who isn't leaving until this is said.</li>
+        <li>{PAWN_nameDef} leans in the doorway and doesn't move until {PAWN_pronoun}'s been heard.</li>
         <li>[morning] {PAWN_nameDef} brings it up over breakfast, between two mouthfuls.</li>
-        <li>[morning] Before the day's work has properly started, {PAWN_nameDef} is already asking for something.</li>
+        <li>[morning] Before the day's work has properly started, {PAWN_nameDef} has a request.</li>
         <li>[morning,winter] Breath steaming in the morning cold, {PAWN_nameDef} clears {PAWN_possessive} throat.</li>
         <li>[day] {PAWN_nameDef} wipes {PAWN_possessive} hands on {PAWN_possessive} trousers and walks over with purpose.</li>
-        <li>[evening] It comes out at supper, the way these things do once the work is done and the bowls are empty.</li>
+        <li>[evening] It comes out at supper, once the work is done and the bowls are empty.</li>
         <li>[evening] As the light goes amber, {PAWN_nameDef} finally says what's been sitting on {PAWN_possessive} chest all day.</li>
-        <li>[night] {PAWN_nameDef} can't sleep, and has decided this is the moment to discuss it.</li>
-        <li>[night] Long after the lamps are out, {PAWN_nameDef} is still awake, staring at the ceiling and composing a speech. This is the speech.</li>
+        <li>[night] {PAWN_nameDef} can't sleep, and gets up to say what's been keeping {PAWN_objective} awake.</li>
+        <li>[night] Long after the others have gone to bed, {PAWN_nameDef} is still awake, going over what {PAWN_pronoun} wants to say.</li>
         <li>[rain] With the rain drumming on the roof and nowhere to be, {PAWN_nameDef} finally says it.</li>
         <li>[rain,!summer] Cold rain sheets past the door. {PAWN_nameDef} watches it for a while, then turns around.</li>
         <li>[snow] Stamping snow off {PAWN_possessive} boots, {PAWN_nameDef} decides today is the day to ask.</li>
-        <li>[snow] Snow piles up against the walls. Inside, {PAWN_nameDef} brings up something that has nothing to do with snow, and everything to do with being stuck indoors.</li>
+        <li>[snow] Snow is piled against the walls, and after three days indoors {PAWN_nameDef} has had time to think it over.</li>
         <li>[storm] Thunder cracks overhead. {PAWN_nameDef} waits for it to roll past, then says what's been on {PAWN_possessive} mind.</li>
-        <li>[fog] Out of the fog comes {PAWN_nameDef}, with the look of someone who has been rehearsing.</li>
+        <li>[fog] {PAWN_nameDef} comes in out of the fog, damp to the knees, and gets straight to it.</li>
         <li>[hot] Wiping sweat out of {PAWN_possessive} eyes, {PAWN_nameDef} stops work long enough to make a point.</li>
         <li>[cold,!snow] Hands jammed under {PAWN_possessive} armpits for warmth, {PAWN_nameDef} raises a matter.</li>
-        <li>[spring] The thaw has everyone thinking about what comes next. {PAWN_nameDef} has thought about it more than most.</li>
-        <li>[fall] With the harvest coming in and the evenings drawing close, {PAWN_nameDef} speaks up.</li>
-        <li>[lowmood] {PAWN_nameDef} has been quiet for days. Today, something gives.</li>
-        <li>[lowmood] There are dark circles under {PAWN_nameDef}'s eyes, and a request on {PAWN_possessive} lips.</li>
+        <li>[spring] The ground is thawing, and {PAWN_nameDef} has been making plans.</li>
+        <li>[fall] With the harvest coming in and the evenings getting shorter, {PAWN_nameDef} speaks up.</li>
+        <li>[lowmood] {PAWN_nameDef} has hardly spoken in days, and when {PAWN_pronoun} does, it's this.</li>
+        <li>[lowmood] There are dark circles under {PAWN_nameDef}'s eyes when {PAWN_pronoun} comes to ask.</li>
         <li>[highmood] In a rare good mood, {PAWN_nameDef} decides to push {PAWN_possessive} luck.</li>
-        <li>[highmood] {PAWN_nameDef} is practically humming. Then comes the ask.</li>
+        <li>[highmood] {PAWN_nameDef} is humming as {PAWN_pronoun} comes over to ask.</li>
         <li>[trait:Abrasive] {PAWN_nameDef} doesn't so much ask as announce.</li>
         <li>[trait:Abrasive] {PAWN_nameDef} interrupts someone else's conversation to start this one.</li>
-        <li>[trait:Kind] {PAWN_nameDef} waits until nobody's busy, then asks, almost apologetically.</li>
-        <li>[trait:Greedy] {PAWN_nameDef} has been taking stock of what everyone else has. Now it's {PAWN_possessive} turn.</li>
-        <li>[trait:Jealous] {PAWN_nameDef} has been keeping count. It shows.</li>
-        <li>[trait:Psychopath] {PAWN_nameDef} states it the way one might state the weather.</li>
-        <li>[trait:Ascetic] For once, {PAWN_nameDef} wants something. People actually stop to listen.</li>
-        <li>[trait:Industrious|trait:HardWorker] {PAWN_nameDef} asks without stopping work, which is either efficient or rude.</li>
-        <li>[trait:Bloodlust] {PAWN_nameDef} is cleaning a blade while asking. It may not be deliberate.</li>
-        <li>[trait:Pyromaniac] {PAWN_nameDef} is fiddling with a tinderbox the entire time. Nobody comments.</li>
+        <li>[trait:Kind] {PAWN_nameDef} waits for a free moment, then asks, almost apologetically.</li>
+        <li>[trait:Greedy] {PAWN_nameDef} has been taking stock of what the others have, and comes with a list.</li>
+        <li>[trait:Jealous] {PAWN_nameDef} has been keeping count of who got what.</li>
+        <li>[trait:Psychopath] {PAWN_nameDef} says it in the same flat voice {PAWN_pronoun} uses for the weather.</li>
+        <li>[trait:Ascetic] {PAWN_nameDef} almost never asks for anything, so people stop to listen.</li>
+        <li>[trait:Industrious|trait:HardWorker] {PAWN_nameDef} asks without putting down {PAWN_possessive} work.</li>
+        <li>[trait:Bloodlust] {PAWN_nameDef} talks with a knife in one hand and a whetstone in the other.</li>
+        <li>[trait:Pyromaniac] {PAWN_nameDef} keeps striking sparks off a flint while {PAWN_pronoun} talks.</li>
         <li>[trait:Nervous|trait:Volatile] {PAWN_nameDef}'s voice cracks halfway through, but {PAWN_pronoun} gets there.</li>
-        <li>[old] With the creak of old knees, {PAWN_nameDef} lowers into a chair and says "Now listen."</li>
+        <li>[old] {PAWN_nameDef} sinks into a chair, knees creaking, and says, "Now listen."</li>
         <li>[old] {PAWN_nameDef} has outlived worse than this colony, and is not shy about mentioning it.</li>
         <li>[child] {PAWN_nameDef} tugs at the nearest sleeve until someone listens.</li>
-        <li>[child] {PAWN_nameDef} has drawn a picture of what {PAWN_pronoun} wants. It is surprisingly clear.</li>
-        <li>[teen] {PAWN_nameDef} rolls {PAWN_possessive} eyes before saying it, to make it clear this is not a big deal. It is a big deal.</li>
+        <li>[child] {PAWN_nameDef} has drawn a picture of what {PAWN_pronoun} wants, in charcoal, on the wall.</li>
+        <li>[teen] {PAWN_nameDef} rolls {PAWN_possessive} eyes as if it's no big deal, then asks anyway.</li>
         <li>[hurt] Still bandaged, {PAWN_nameDef} limps over to make a request.</li>
-        <li>[hurt] {PAWN_nameDef} winces when {PAWN_pronoun} sits down, and makes sure everyone notices.</li>
+        <li>[hurt] {PAWN_nameDef} winces when {PAWN_pronoun} sits down, and makes sure the others notice.</li>
         <li>[newcomer] Barely unpacked, {PAWN_nameDef} already has opinions about the place.</li>
         <li>[afterraid] The smoke from the last attack has barely cleared when {PAWN_nameDef} speaks up.</li>
-        <li>[afterraid] There's still blood being scrubbed off the floor. {PAWN_nameDef} has had time to think.</li>
-        <li>[grieving] Grief makes people blunt. {PAWN_nameDef} doesn't bother with pleasantries.</li>
-        <li>[repeat] {PAWN_nameDef} raises the matter again. Not for the first time.</li>
-        <li>[repeat] It's the same request as before. {PAWN_nameDef} has simply decided to be heard this time.</li>
-        <li>[repeat,trait:Abrasive] Again. {PAWN_nameDef} is bringing it up again, louder.</li>
-        <li>[bitter] {PAWN_nameDef} asks without much hope, the way one asks the sky for rain.</li>
+        <li>[afterraid] Someone is still scrubbing blood off the floor when {PAWN_nameDef} comes to talk.</li>
+        <li>[grieving] Since the funeral, {PAWN_nameDef} hasn't bothered with pleasantries.</li>
+        <li>[repeat] {PAWN_nameDef} raises the matter again.</li>
+        <li>[repeat] {PAWN_nameDef} makes the same request as last time, nearly word for word.</li>
+        <li>[repeat,trait:Abrasive] {PAWN_nameDef} brings it up again, louder this time.</li>
+        <li>[bitter] {PAWN_nameDef} asks without much hope, already half turned to leave.</li>
         <li>[bitter] "I know how this goes," {PAWN_nameDef} says, before asking anyway.</li>
         <li>[trusting] {PAWN_nameDef} asks with the easy confidence of someone who's been listened to before.</li>
         <li>[doubtful] {PAWN_nameDef} asks, but the tone says {PAWN_pronoun} isn't expecting much.</li>
-        <li>[small] In a colony this small, there's no such thing as a private request. {PAWN_nameDef} makes one anyway.</li>
+        <li>[small] In a colony this small, every request is overheard, and {PAWN_nameDef} knows it.</li>
         <li>[large] {PAWN_nameDef} has to wait in line behind two other complaints, but gets there.</li>
-        <li>[poor] Everyone knows the colony is scraping by. {PAWN_nameDef} asks anyway, and looks a little ashamed of it.</li>
+        <li>[poor] The colony is scraping by, and {PAWN_nameDef} looks ashamed to be asking at all.</li>
         <li>[rich] With the storerooms full, {PAWN_nameDef} sees no reason not to ask.</li>
         <li>[tribal|medieval] At the fire that evening, {PAWN_nameDef} speaks before the elders can.</li>
         <li>[forother] {PAWN_nameDef} glances over at {FOR_nameDef} before speaking, as if checking it's all right.</li>
@@ -92,33 +92,33 @@
     <lines>
       <plain>
         <li>[trigger:raid] The wounded are still being carried in when {PAWN_nameDef} grabs someone's arm.</li>
-        <li>[trigger:raid] {PAWN_nameDef} stands over the spent casings and broken bodies, shaking, and says what everyone is thinking.</li>
+        <li>[trigger:raid] {PAWN_nameDef} hasn't stopped shaking since the fighting ended.</li>
         <li>[trigger:raid,lowtech] Arrows still stick out of the walls. {PAWN_nameDef} pulls one free and holds it up as {PAWN_possessive} argument.</li>
-        <li>[trigger:raid] Nobody has washed the blood off yet. {PAWN_nameDef} doesn't wait for that.</li>
-        <li>[trigger:death] They buried no one yet. {PAWN_nameDef} keeps looking at the body, then away, then back.</li>
+        <li>[trigger:raid] {PAWN_nameDef} comes to talk with someone else's blood still on {PAWN_possessive} hands.</li>
+        <li>[trigger:death] The body hasn't been buried yet. {PAWN_nameDef} keeps looking at it, then away, then back.</li>
         <li>[trigger:death] The news has gone around the colony twice already. {PAWN_nameDef} hasn't said a word until now.</li>
-        <li>[trigger:death] {PAWN_nameDef} has been sitting in the same spot for an hour. When {PAWN_pronoun} finally speaks, it's quiet.</li>
+        <li>[trigger:death] {PAWN_nameDef} has been sitting in the same spot since morning, and speaks without looking up.</li>
         <li>[trigger:cold] {PAWN_nameDef} spent the night shivering under a blanket that was not up to the job.</li>
         <li>[trigger:cold] Frost on the inside of the walls. {PAWN_nameDef} wakes up angry about it.</li>
         <li>[trigger:cold] Blue-lipped and stamping {PAWN_possessive} feet, {PAWN_nameDef} has had enough of the cold.</li>
         <li>[trigger:heat] {PAWN_nameDef} lay awake half the night in a puddle of {PAWN_possessive} own sweat.</li>
         <li>[trigger:heat] The air in the sleeping quarters is like soup. {PAWN_nameDef} emerges red-faced and short-tempered.</li>
-        <li>[trigger:floor] {PAWN_nameDef} finishes a meal eaten hunched on the floor, and stands with crumbs on {PAWN_possessive} knees and a complaint on {PAWN_possessive} lips.</li>
+        <li>[trigger:floor] {PAWN_nameDef} finishes another meal hunched on the floor and gets up brushing crumbs off {PAWN_possessive} knees.</li>
         <li>[trigger:floor] Another dinner off the dirt. {PAWN_nameDef} sets the bowl down very deliberately.</li>
-        <li>[trigger:barracks] {PAWN_nameDef} slept badly again. Someone snored. Someone always snores.</li>
+        <li>[trigger:barracks] {PAWN_nameDef} slept badly again. The snoring in the barracks went on until dawn.</li>
         <li>[trigger:barracks] Woken for the third time by someone's elbow, {PAWN_nameDef} is ready to talk about living arrangements.</li>
         <li>[trigger:rawfood] {PAWN_nameDef} is still chewing something raw and unidentifiable when {PAWN_pronoun} speaks.</li>
-        <li>[trigger:sick] Pale and sweating, {PAWN_nameDef} drags {PAWN_objective} upright long enough to make a point.</li>
+        <li>[trigger:sick] Pale and sweating, {PAWN_nameDef} sits up in bed long enough to make a point.</li>
         <li>[trigger:sick] Between bouts of being violently ill, {PAWN_nameDef} has had time to think about the kitchen.</li>
-        <li>[trigger:dark] {PAWN_nameDef} stubbed a toe on something in the dark. The something was {PAWN_possessive} own bed.</li>
+        <li>[trigger:dark] {PAWN_nameDef} stubbed a toe on {PAWN_possessive} own bed in the dark last night.</li>
         <li>[trigger:naked] Shivering and trying to keep some dignity, {PAWN_nameDef} makes a request.</li>
-        <li>[trigger:cabin] Days indoors have worn {PAWN_nameDef} down to a fine, brittle edge.</li>
-        <li>[trigger:corpse] The smell drifts in from outside. {PAWN_nameDef} wants something done about it, and also something else.</li>
+        <li>[trigger:cabin] After days indoors, {PAWN_nameDef} snaps at anyone who speaks to {PAWN_objective}.</li>
+        <li>[trigger:corpse] The smell drifts in from outside, and {PAWN_nameDef} has had enough of it.</li>
         <li>[trigger:envy] {PAWN_nameDef} has been looking at {ENVIED_nameDef}'s new arrangement all morning.</li>
-        <li>[trigger:envy] {PAWN_nameDef} watched {ENVIED_nameDef} get what {ENVIED_pronoun} asked for. Now {PAWN_nameDef} is doing the arithmetic.</li>
-        <li>[trigger:passion] {PAWN_nameDef} has the itch again: hands that want to be doing the thing {PAWN_pronoun} loves.</li>
-        <li>[trigger:injury] {PAWN_nameDef} is still learning to walk without the old leg. Or hand. Or eye. It shows.</li>
-        <li>[trigger:title] Fresh from receiving a title, {PAWN_nameDef} looks around the colony with new and critical eyes.</li>
+        <li>[trigger:envy] {PAWN_nameDef} watched {ENVIED_nameDef} get what {ENVIED_pronoun} asked for, and has been thinking about it ever since.</li>
+        <li>[trigger:passion] {PAWN_nameDef} hasn't had time for the work {PAWN_pronoun} loves in days, and it shows.</li>
+        <li>[trigger:injury] {PAWN_nameDef} is still learning to manage without what the injury took.</li>
+        <li>[trigger:title] Since receiving {PAWN_possessive} title, {PAWN_nameDef} has been looking at the colony with a critical eye.</li>
       </plain>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
@@ -129,17 +129,17 @@
       <plain>
         <li>{PAWN_nameDef} stands in the doorway for a long moment before saying anything.</li>
         <li>{PAWN_nameDef} walks around it twice, touches it once, and only then turns around.</li>
-        <li>{PAWN_nameDef} finds whoever made it happen and says so, more or less.</li>
-        <li>It takes {PAWN_nameDef} a while to notice. When {PAWN_pronoun} does, the whole colony hears about it.</li>
-        <li>[evening|night] That night, {PAWN_nameDef} lingers by the fire a little longer than usual, smiling at nothing.</li>
+        <li>{PAWN_nameDef} finds the people who made it happen and thanks them, awkwardly.</li>
+        <li>It takes {PAWN_nameDef} a while to notice, and then {PAWN_pronoun} tells anyone who'll listen.</li>
+        <li>[evening|night] {PAWN_nameDef} hums all through supper.</li>
         <li>[trait:Abrasive] {PAWN_nameDef} inspects it with narrowed eyes, looking for a flaw, and fails to find one.</li>
         <li>[trait:Kind] {PAWN_nameDef} thanks everyone who touched it, by name, including the hauler who just carried the wood.</li>
-        <li>[trait:Psychopath] {PAWN_nameDef} nods once. From {PAWN_objective}, it's practically a parade.</li>
-        <li>[promised] A promise, kept. {PAWN_nameDef} remembers that sort of thing.</li>
-        <li>[petition] Everyone who asked for it crowds round at once, talking over each other.</li>
-        <li>[bitter] {PAWN_nameDef} had stopped expecting anything. It shows on {PAWN_possessive} face, which doesn't quite know what to do.</li>
+        <li>[trait:Psychopath] {PAWN_nameDef} looks it over, says "Good," and goes back to work.</li>
+        <li>[promised] The council kept its promise, and {PAWN_nameDef} will remember that.</li>
+        <li>[petition] Those who signed on to the request crowd around it, talking over one another.</li>
+        <li>[bitter] {PAWN_nameDef} had stopped expecting anything, and doesn't seem to know what to say.</li>
         <li>[child] {PAWN_nameDef} runs to tell everyone, then runs back to make sure it's still there.</li>
-        <li>[old] {PAWN_nameDef} nods slowly, the way old people do when something is right.</li>
+        <li>[old] {PAWN_nameDef} nods slowly and says, "That'll do."</li>
       </plain>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
@@ -151,24 +151,24 @@
       <plain>
         <li>I saw what {ENVIED_nameDef} got.</li>
         <li>Since we're handing things out now, and {ENVIED_nameDef} got one...</li>
-        <li>No offence to {ENVIED_nameDef}, but I've been here just as long.</li>
+        <li>No offense to {ENVIED_nameDef}, but I've been here just as long.</li>
       </plain>
       <warm>
-        <li>I'm glad for {ENVIED_nameDef}, truly. It just made me realize I'd love the same.</li>
+        <li>I'm glad for {ENVIED_nameDef}, I really am. It made me realize I'd like one too.</li>
         <li>Seeing {ENVIED_nameDef} so happy got me thinking.</li>
       </warm>
       <blunt>
-        <li>So {ENVIED_nameDef} gets one and I don't? Funny.</li>
+        <li>So {ENVIED_nameDef} gets one and I don't?</li>
         <li>Right. {ENVIED_nameDef} asked, {ENVIED_nameDef} got. My turn.</li>
-        <li>What's {ENVIED_nameDef} got that I haven't? Apart from the obvious, now.</li>
+        <li>What's {ENVIED_nameDef} done to earn it that I haven't?</li>
       </blunt>
       <cheerful>
-        <li>{ENVIED_nameDef}'s gave me ideas!</li>
-        <li>Okay, I saw {ENVIED_nameDef}'s and I'm officially jealous. Happily jealous!</li>
+        <li>Seeing {ENVIED_nameDef}'s gave me an idea!</li>
+        <li>I saw {ENVIED_nameDef}'s and now I want one too!</li>
       </cheerful>
       <gloomy>
         <li>{ENVIED_nameDef} got one. Of course.</li>
-        <li>Some people ask and get. I notice these things.</li>
+        <li>Some people only have to ask once.</li>
       </gloomy>
       <cold>
         <li>{ENVIED_nameDef} set a precedent. I'm invoking it.</li>
@@ -182,11 +182,11 @@
     <lines>
       <plain>
         <li>I'll hold you to that.</li>
-        <li>A promise, then. Good. I'll stop asking. For now.</li>
-        <li>Right. I'll believe it when I see it, but I'll believe it.</li>
+        <li>A promise, then. Good. I'll stop asking.</li>
+        <li>Right. I'll believe it when I see it.</li>
       </plain>
       <warm>
-        <li>Thank you. Really. Take the time you need.</li>
+        <li>Thank you. Take the time you need.</li>
         <li>That's all I wanted to hear.</li>
       </warm>
       <blunt>
@@ -194,17 +194,17 @@
         <li>Fine. Don't make me bring it up again.</li>
       </blunt>
       <cheerful>
-        <li>A promise! I'm writing that down. Somewhere. In my heart.</li>
-        <li>You won't regret it! Probably!</li>
+        <li>A promise! I can hardly wait.</li>
+        <li>Thank you! You won't regret it.</li>
       </cheerful>
       <gloomy>
-        <li>Everyone promises. We'll see.</li>
+        <li>People promise things all the time out here. We'll see.</li>
         <li>[bitter] I've heard that before.</li>
-        <li>Promises are cheap out here. Still. Thanks.</li>
+        <li>Thanks. I won't get my hopes up.</li>
       </gloomy>
       <cold>
         <li>Noted. I will check on progress.</li>
-        <li>An agreement, then. Agreements are kept or they aren't.</li>
+        <li>An agreement, then. I'll be watching to see if it's kept.</li>
       </cold>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
@@ -214,7 +214,7 @@
     <lines>
       <plain>
         <li>No? Well. At least you said so.</li>
-        <li>I suppose there are bigger problems. There always are.</li>
+        <li>I suppose there are bigger problems right now.</li>
         <li>[trusting] I understand. I don't like it, but I understand.</li>
         <li>[poor] I know we're stretched thin. Doesn't make it easier.</li>
         <li>[afterraid] Right. Walls first. I get it.</li>
@@ -225,12 +225,12 @@
       </warm>
       <blunt>
         <li>Fine. Remember this next time you need something hauled.</li>
-        <li>Great. Wonderful. Thrilled.</li>
-        <li>[bitter] Didn't even pretend to think about it, did you?</li>
+        <li>Great. Just great.</li>
+        <li>[bitter] You didn't even think about it, did you?</li>
       </blunt>
       <cheerful>
-        <li>Oh. Well! Can't win them all. I'll ask again when you're in a better mood.</li>
-        <li>Rejected! A new personal record.</li>
+        <li>Oh well, can't win them all! I'll ask again another day.</li>
+        <li>No? That's all right! I'll think of something else to ask for.</li>
       </cheerful>
       <gloomy>
         <li>Of course not.</li>
@@ -248,34 +248,34 @@
     <defName>Council_Pool_Reminder</defName>
     <lines>
       <plain>
-        <li>Not to nag, but... about {WISH}.</li>
-        <li>Just checking: has anyone thought about {WISH}?</li>
-        <li>Still hoping for {WISH}, in case anyone forgot.</li>
-        <li>[promised] You did promise. I'm not saying anything. I'm just saying.</li>
-        <li>[winter] It's a long winter to spend wishing. {WISH}, remember?</li>
-        <li>[night] Can't sleep. Thinking about {WISH}. Again.</li>
-        <li>[petition] We're all still waiting on {WISH}. All of us.</li>
+        <li>Not to nag, but "{WISH}" is still waiting.</li>
+        <li>Has anyone had a chance to think about "{WISH}"?</li>
+        <li>I'm still hoping for "{WISH}", in case it slipped anyone's mind.</li>
+        <li>[promised] You did promise. I haven't forgotten, even if you have.</li>
+        <li>[winter] It's a long winter, and I'm still waiting on "{WISH}".</li>
+        <li>[night] I was lying awake thinking about "{WISH}" again.</li>
+        <li>[petition] There are several of us still waiting on "{WISH}".</li>
       </plain>
       <warm>
-        <li>No rush, truly. But if there's ever a spare moment, {WISH} would mean a lot.</li>
+        <li>No rush. But if there's ever a spare day, "{WISH}" would mean a lot to me.</li>
         <li>I don't want to be a bother. I'm just still hoping, that's all.</li>
       </warm>
       <blunt>
-        <li>{WISH}. Still nothing. Just so we're clear.</li>
-        <li>I asked. Days ago. Anyone?</li>
-        <li>Is this thing on? {WISH}. Hello?</li>
+        <li>{WISH}. Still waiting.</li>
+        <li>I asked days ago. Anyone?</li>
+        <li>I'm asking about "{WISH}" again. Did anyone hear me the first time?</li>
       </blunt>
       <cheerful>
-        <li>Friendly reminder! {WISH}! Still the dream!</li>
-        <li>Day whatever of waiting for {WISH}. Morale: holding.</li>
+        <li>Just a friendly reminder about "{WISH}"!</li>
+        <li>Still waiting on "{WISH}", and still in a good mood about it.</li>
       </cheerful>
       <gloomy>
-        <li>I suppose {WISH} isn't happening. I'll stop mentioning it. After this.</li>
-        <li>Everyone's too busy for {WISH}. Everyone's always too busy.</li>
+        <li>I suppose "{WISH}" isn't going to happen. I'll stop mentioning it.</li>
+        <li>There's always something more important than "{WISH}".</li>
       </gloomy>
       <cold>
-        <li>Status report requested regarding {WISH}.</li>
-        <li>I note that {WISH} remains outstanding.</li>
+        <li>I'd like to know where things stand on "{WISH}".</li>
+        <li>I note that "{WISH}" is still outstanding.</li>
       </cold>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
@@ -284,31 +284,31 @@
     <defName>Council_Pool_LastCall</defName>
     <lines>
       <plain>
-        <li>I won't ask about {WISH} again. Make of that what you will.</li>
-        <li>Last time I bring up {WISH}. After this, I'm done asking.</li>
-        <li>[promised] You promised me {WISH}. Time's nearly up on that promise.</li>
-        <li>[petition] There are a few of us waiting on {WISH} now. We're starting to talk.</li>
+        <li>I won't ask about "{WISH}" again.</li>
+        <li>I've asked about "{WISH}" for long enough. After this, I'm done.</li>
+        <li>[promised] You promised me "{WISH}". Time's nearly up on that promise.</li>
+        <li>[petition] There are a few of us waiting on "{WISH}" now, and we've started talking among ourselves.</li>
       </plain>
       <warm>
-        <li>I've been patient about {WISH}. I'm trying to stay patient.</li>
-        <li>I don't want to make a fuss. But {WISH}... it matters to me.</li>
+        <li>I've been patient about "{WISH}". I'm trying to stay patient.</li>
+        <li>I've tried not to make a fuss, but "{WISH}" matters to me.</li>
       </warm>
       <blunt>
-        <li>{WISH}. Now, or forget I ever asked. I won't forget, though.</li>
-        <li>I'm done being polite about {WISH}.</li>
+        <li>{WISH}. Now, or forget I ever asked.</li>
+        <li>I'm done being polite about "{WISH}".</li>
         <li>You've got a few days. Then I stop caring what you think of me.</li>
       </blunt>
       <cheerful>
-        <li>So, funny story, I'm actually getting a bit upset about {WISH}! Ha. Ha.</li>
-        <li>My famous good mood has limits, and {WISH} is finding them.</li>
+        <li>I'm still smiling, but I'm getting upset about "{WISH}"!</li>
+        <li>Even my good mood has limits, and "{WISH}" is finding them.</li>
       </cheerful>
       <gloomy>
         <li>I'll just keep waiting, then. It's what I'm good at.</li>
-        <li>Nobody cares about {WISH}. That's fine. That's fine.</li>
+        <li>I seem to be the only one who cares about "{WISH}".</li>
       </gloomy>
       <cold>
-        <li>Final request regarding {WISH}. I will draw my own conclusions afterwards.</li>
-        <li>You are running out of time to address {WISH}.</li>
+        <li>This is my final request about "{WISH}". I'll draw my own conclusions afterward.</li>
+        <li>You are running out of time to address "{WISH}".</li>
       </cold>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
@@ -318,8 +318,8 @@
     <lines>
       <plain>
         <li>If you want something done around here, apparently you do it yourself.</li>
-        <li>Nobody else was going to. So.</li>
-        <li>[trait:Industrious|trait:HardWorker] Waiting is worse than working. Done.</li>
+        <li>I waited long enough, so I did it myself.</li>
+        <li>[trait:Industrious|trait:HardWorker] I'd rather work than wait. It's done.</li>
       </plain>
       <warm>
         <li>I didn't want to bother anyone. I hope that's all right.</li>
@@ -330,16 +330,16 @@
         <li>Next time I ask for something, maybe just say yes. Saves time.</li>
       </blunt>
       <cheerful>
-        <li>Took matters into my own hands! They're very capable hands.</li>
+        <li>I took care of it myself! It came out pretty well, too.</li>
         <li>Look at me, solving problems!</li>
       </cheerful>
       <gloomy>
-        <li>Like always. On my own.</li>
+        <li>On my own, like always.</li>
         <li>Doesn't feel as good when you have to do it yourself.</li>
       </gloomy>
       <cold>
         <li>The request was not addressed. I addressed it.</li>
-        <li>Efficiency demanded it.</li>
+        <li>Waiting was costing me more than the work.</li>
       </cold>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
@@ -349,19 +349,19 @@
     <defName>Council_Pool_PassedOver</defName>
     <lines>
       <plain>
-        <li>I asked for {MINE} first.</li>
-        <li>So {OTHER_nameDef} jumps the queue. Good to know.</li>
-        <li>Funny how some requests get answered.</li>
+        <li>I asked for "{MINE}" first.</li>
+        <li>So {OTHER_nameDef} gets to skip the line. Good to know.</li>
+        <li>Some requests get answered fast, I see.</li>
       </plain>
       <warm>
-        <li>Good for {OTHER_nameDef}. Really. I'll just keep waiting.</li>
+        <li>Good for {OTHER_nameDef}, really. I can wait a bit longer.</li>
       </warm>
       <blunt>
-        <li>{OTHER_nameDef} asks, {OTHER_nameDef} gets. I ask, I get nothing.</li>
-        <li>I was here first. With {MINE}. Remember?</li>
+        <li>{OTHER_nameDef} asked after me and got it first.</li>
+        <li>I was first in line, with "{MINE}". Remember?</li>
       </blunt>
       <cheerful>
-        <li>Happy for {OTHER_nameDef}! Also, gently, me! Remember me?</li>
+        <li>Happy for {OTHER_nameDef}! I'm sure my turn is next.</li>
       </cheerful>
       <gloomy>
         <li>Someone's always ahead of me.</li>
@@ -382,17 +382,17 @@
         <li>Remember this the next time you ask me to trust you.</li>
       </plain>
       <warm>
-        <li>I believed you. I'm not angry. I'm just... I believed you.</li>
+        <li>I believed you, that's all. I really did.</li>
       </warm>
       <blunt>
-        <li>Your word's worth less than a rotten potato. At least the potato's honest about it.</li>
-        <li>Never again. Never.</li>
+        <li>Don't bother promising me anything else.</li>
+        <li>Never again.</li>
       </blunt>
       <cheerful>
-        <li>Ha! Fooled me. Good one. Really. Great.</li>
+        <li>Well, you fooled me! I'll know better next time.</li>
       </cheerful>
       <gloomy>
-        <li>I knew it. I knew it and I believed it anyway.</li>
+        <li>I knew better, and I believed you anyway.</li>
       </gloomy>
       <cold>
         <li>A promise was made and not kept. I have updated my assessment of you.</li>
@@ -408,22 +408,22 @@
         <li>Ask the council? Might as well ask the rocks.</li>
         <li>Don't bother asking for anything. I've tried.</li>
         <li>They'll listen to you right up until you need something.</li>
-        <li>[winter] Long winter. Longer when nobody listens.</li>
-        <li>[afterraid] We bleed for this place, and for what?</li>
+        <li>[winter] It's a long winter, and the council doesn't hear a word I say.</li>
+        <li>[afterraid] I held the wall yesterday, and I still can't get a straight answer out of the council.</li>
       </plain>
       <blunt>
-        <li>I'm not asking for anything. Ever again. Write that down.</li>
-        <li>Council. Ha. Talking shop for people who never have to haul.</li>
+        <li>I'm not asking for anything ever again.</li>
+        <li>The council is a lot of talk from people who never haul anything.</li>
       </blunt>
       <gloomy>
         <li>I used to think it mattered what I wanted.</li>
-        <li>Nobody here cares. I've made my peace with it. Mostly.</li>
+        <li>I've stopped expecting anyone here to care.</li>
       </gloomy>
       <cold>
         <li>This colony's leadership has consistently failed to meet my requests. I've noted each instance.</li>
       </cold>
       <cheerful>
-        <li>You know what's great? Expecting nothing. Can't be disappointed!</li>
+        <li>I've stopped asking the council for things! It saves so much time.</li>
       </cheerful>
       <warm>
         <li>I try not to take it personally. It's getting harder.</li>

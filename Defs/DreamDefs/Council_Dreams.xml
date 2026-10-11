@@ -92,10 +92,11 @@
     <weight>0.4</weight>
     <lines>
       <plain>
-        <li>I dreamt I was lying in tall grass in the sun. That's all. I feel like I slept for a week.</li>
-        <li>I dreamt of nothing at all, and it was wonderful.</li>
+        <li>Tall grass and warm sun, all night long. I feel like I slept for a week.</li>
+        <li>No dreams at all, just warm and dark straight through to morning.</li>
+        <li>In the dream I was floating down a slow river on my back, watching the leaves go over.</li>
       </plain>
-      <cheerful><li>I slept like a rock and dreamt of sunshine! Today is going to be GREAT!</li></cheerful>
+      <cheerful><li>Slept like a rock and dreamt of sunshine. Today's going to be a good day!</li></cheerful>
       <cold><li>Uninterrupted sleep and a calm dream. Optimal.</li></cold>
     </lines>
     <effects>
@@ -112,11 +113,12 @@
     <afterThreat>true</afterThreat>
     <lines>
       <plain>
-        <li>I dreamt the fight wasn't over. They kept coming over the wall and my gun wouldn't fire.</li>
-        <li>I dreamt I was back behind the sandbags. Everyone else had gone home. I hadn't been told.</li>
+        <li>In my dream the fight never ended. They kept coming over the wall, and my arms were too heavy to lift.</li>
+        <li>Dreamt I was still behind the sandbags, keeping watch, long after the others had gone in to eat.</li>
         <li>[again] The same fight, every night. I know every shot by now.</li>
+        <li>Last night I dreamt the raiders were back at the door, and I couldn't remember where I'd put my weapon.</li>
       </plain>
-      <gloomy><li>I dreamt we lost. It felt more real than the day.</li></gloomy>
+      <gloomy><li>We lost, in the dream. It felt more real than the day did.</li></gloomy>
       <cold><li>I replayed the engagement in my sleep. My positioning was poor. I'll correct it.</li></cold>
     </lines>
     <effects>
@@ -132,11 +134,11 @@
     <dreamer><canFight>true</canFight><notTrait><li>Wimp</li></notTrait></dreamer>
     <lines>
       <plain>
-        <li>I dreamt the fight again, but this time I saw every move before it came. I woke up calm.</li>
-        <li>I dreamt we held the line and they broke against it like water on rock.</li>
+        <li>Fought it all again in my sleep, and this time I saw every move before it came. I woke up calm.</li>
+        <li>We held the line, and they broke against it like water on rock.</li>
       </plain>
       <blunt><li>Dreamt I won the fight on my own. Woke up ready for the next one.</li></blunt>
-      <cold><li>I rehearsed the fight in my sleep. Every angle covered. I'm ready.</li></cold>
+      <cold><li>The fight again, in my sleep, with every angle covered. I'm ready.</li></cold>
     </lines>
     <effects>
       <li Class="ColonyCouncil.DilemmaEffect_Hediff"><target>A</target><hediff>Council_Dream_Steeled</hediff></li>
@@ -151,11 +153,12 @@
     <withinDays>4</withinDays>
     <lines>
       <plain>
-        <li>I dreamt I was there again, at the end. I kept saying the wrong thing.</li>
-        <li>I dreamt the grave was empty and everyone was looking for the body but me.</li>
+        <li>Back there again last night, at the end. I kept saying the wrong thing.</li>
+        <li>In the dream the grave was empty when we came back to fill it, and the dirt was still piled neatly beside it.</li>
+        <li>I kept trying to stop the bleeding all night, and my hands went straight through.</li>
       </plain>
-      <warm><li>I dreamt I held their hand at the end. I didn't, in life. I wish I had.</li></warm>
-      <gloomy><li>I dreamt it was me in the ground. It didn't seem so bad. That scares me.</li></gloomy>
+      <warm><li>I held their hand at the end, in my dream. I didn't do that, really. I wish I had.</li></warm>
+      <gloomy><li>It was me in the grave last night, and I lay there and didn't mind it.</li></gloomy>
     </lines>
   </ColonyCouncil.DreamDef>
 
@@ -166,11 +169,11 @@
     <afterThoughts><li>Insulted</li><li>HadAngeringFight</li></afterThoughts>
     <lines>
       <plain>
-        <li>I dreamt I finally said the perfect thing back to {OTHER_nameDef}. I can't remember what it was now.</li>
-        <li>I dreamt {OTHER_nameDef} apologised. Then I woke up and remembered.</li>
+        <li>In my dream I had the perfect answer for {OTHER_nameDef}. I've been trying to remember it all morning.</li>
+        <li>{OTHER_nameDef} came to my door in the dream to apologize. I let {OTHER_objective} stand there a while.</li>
       </plain>
       <blunt><li>Dreamt I knocked {OTHER_nameDef} flat. Felt good. Still angry.</li></blunt>
-      <warm><li>I dreamt {OTHER_nameDef} and I talked it all out. Maybe I should try that awake.</li></warm>
+      <warm><li>{OTHER_nameDef} and I sat down and talked it through, in the dream. Maybe we could do that for real.</li></warm>
     </lines>
     <changeTie>Rivals</changeTie>
     <change>3</change>
@@ -184,11 +187,11 @@
     <withinDays>3</withinDays>
     <lines>
       <plain>
-        <li>I dreamt I stood in front of the council and spoke, and no sound came out. They nodded anyway.</li>
-        <li>I dreamt I asked for something small and they built a wall around me instead.</li>
+        <li>Dreamt I stood before the council and talked until my throat hurt, and no sound came out of me at all.</li>
+        <li>Last night I asked the council for one small thing, and they built a wall around me, stone by stone.</li>
       </plain>
-      <blunt><li>Dreamt about the council ignoring me. Didn't need to dream it. It's true.</li></blunt>
-      <gloomy><li>I dreamt they'd forgotten my name. In the dream I'd forgotten it too.</li></gloomy>
+      <blunt><li>Dreamt about the council ignoring me. It's not far off.</li></blunt>
+      <gloomy><li>In the dream the council had forgotten my name, and by the end I'd forgotten it as well.</li></gloomy>
     </lines>
     <effects>
       <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>-2</amount></li>
@@ -203,10 +206,10 @@
     <withinDays>3</withinDays>
     <lines>
       <plain>
-        <li>I dreamt we were all at a long table and someone stood up to thank me. Then I stood up to thank them.</li>
-        <li>I dreamt the colony was a ship and we were all rowing the same way.</li>
+        <li>Dreamt the council came to my door just to say thank you. I didn't know what to do with my hands.</li>
+        <li>The colony was a cart in my dream, and we were all pulling it the same way.</li>
       </plain>
-      <cheerful><li>I dreamt the council gave me a medal made of cake! I ate it! It was a good dream!</li></cheerful>
+      <cheerful><li>The council gave me a medal made of cake, and I ate it right there in the meeting!</li></cheerful>
     </lines>
     <effects>
       <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>2</amount></li>
@@ -220,10 +223,10 @@
     <hediffs><li>MissingBodyPart</li></hediffs>
     <lines>
       <plain>
-        <li>I dreamt I was whole again. I reached for my cup with a hand I don't have anymore.</li>
+        <li>I was whole again in the dream. This morning I reached for my cup with a hand I don't have anymore.</li>
         <li>[again] Whole again, in the dream. Waking up is like losing it twice.</li>
       </plain>
-      <blunt><li>Dreamt I had all my parts back. Woke up. Didn't.</li></blunt>
+      <blunt><li>Had all my parts back in the dream. Doesn't change anything. Let's get on with the day.</li></blunt>
     </lines>
   </ColonyCouncil.DreamDef>
 
@@ -234,8 +237,8 @@
     <hediffs><li>AlcoholAddiction</li><li>PsychiteAddiction</li><li>SmokeleafAddiction</li><li>GoJuiceAddiction</li><li>WakeUpAddiction</li><li>LuciferiumAddiction</li></hediffs>
     <lines>
       <plain>
-        <li>I dreamt about it all night. Just one more. I woke up with my hands shaking.</li>
-        <li>I dreamt someone had hidden a stash in the walls and I tore the whole colony down looking for it.</li>
+        <li>All night I dreamt about it. Just one more. My hands were shaking when I got up.</li>
+        <li>Dreamt there was a stash hidden in the walls, and I pulled out every stone looking for it.</li>
       </plain>
       <gloomy><li>Even my dreams want it. There's nowhere left to hide from it.</li></gloomy>
     </lines>
@@ -251,8 +254,9 @@
     <lines>
       <plain>
         <li>I was somewhere white and bright, and someone kept asking me my name. I kept getting it wrong.</li>
-        <li>I dreamt I was the colony. Every wall was a bone. Someone was building on me.</li>
-        <li>I dreamt I was walking home across a frozen lake, and the ice kept talking.</li>
+        <li>I was the colony, and the walls were my bones, and they kept building on me.</li>
+        <li>Walking home across a frozen lake, and the ice was talking under my feet, and I couldn't stop.</li>
+        <li>So hot. The ceiling kept coming down to look at me, then going back up.</li>
       </plain>
     </lines>
   </ColonyCouncil.DreamDef>
@@ -266,11 +270,11 @@
     <about>Friend</about>
     <lines>
       <plain>
-        <li>I dreamt {OTHER_nameDef} and I were children together, running through a field I've never seen.</li>
-        <li>I dreamt {OTHER_nameDef} and I built a boat and sailed it across the desert.</li>
-        <li>[winter] I dreamt {OTHER_nameDef} brought me soup when I was sick. I'm not even sick.</li>
+        <li>{OTHER_nameDef} and I were children again, running through a field I've never seen.</li>
+        <li>Dreamt {OTHER_nameDef} and I built a boat and rowed it down a river that ran right through the dining room.</li>
+        <li>[winter] {OTHER_nameDef} brought me hot soup in my dream and sat on the end of the bed while I ate it.</li>
       </plain>
-      <warm><li>I dreamt {OTHER_nameDef} was laughing at something I said. I'd like to make that happen today.</li></warm>
+      <warm><li>{OTHER_nameDef} was laughing at something I said, in the dream. I want to hear that laugh today.</li></warm>
       <blunt><li>Dreamt about {OTHER_nameDef}. We were fishing. It was fine.</li></blunt>
     </lines>
     <changeTie>Friends</changeTie>
@@ -285,10 +289,10 @@
     <weight>0.6</weight>
     <lines>
       <plain>
-        <li>I dreamt {OTHER_nameDef} walked out into the snow and didn't look back. I couldn't move.</li>
-        <li>I dreamt I called for {OTHER_nameDef} and {OTHER_pronoun} didn't know who I was.</li>
+        <li>{OTHER_nameDef} walked out into the snow and didn't look back. I couldn't move my legs.</li>
+        <li>Called out to {OTHER_nameDef} in the dream, and {OTHER_pronoun} looked at me like a stranger.</li>
       </plain>
-      <warm><li>I dreamt I lost {OTHER_nameDef}. First thing this morning, I went to find {OTHER_objective}. Just to see.</li></warm>
+      <warm><li>Dreamt I lost {OTHER_nameDef}. First thing this morning I went and found {OTHER_objective}, just to see.</li></warm>
     </lines>
     <changeTie>Friends</changeTie>
     <change>4</change>
@@ -301,11 +305,11 @@
     <about>Rival</about>
     <lines>
       <plain>
-        <li>I dreamt {OTHER_nameDef} was on the council and the first decree was about me.</li>
-        <li>I dreamt {OTHER_nameDef} was following me around, just watching, all day.</li>
+        <li>In my dream {OTHER_nameDef} sat on the council, and the first decree was about me.</li>
+        <li>{OTHER_nameDef} followed me around all night, never saying a word, just watching.</li>
       </plain>
       <blunt><li>Even in my sleep, {OTHER_nameDef}. Can't get away from {OTHER_objective}.</li></blunt>
-      <cold><li>{OTHER_nameDef} appeared in my dream. I'll consider that a sign I'm spending too much thought on {OTHER_objective}.</li></cold>
+      <cold><li>{OTHER_nameDef} appeared in my dream. I don't care for the company.</li></cold>
     </lines>
     <changeTie>Rivals</changeTie>
     <change>3</change>
@@ -320,10 +324,10 @@
     <dreamer><minMood>0.45</minMood></dreamer>
     <lines>
       <plain>
-        <li>I dreamt {OTHER_nameDef} and I were stranded together and had to share the last of the water. We were fine. We were friends, even.</li>
-        <li>I dreamt {OTHER_nameDef} pulled me out of a river. I don't know what to do with that.</li>
+        <li>{OTHER_nameDef} and I were stranded somewhere dry, passing the last waterskin back and forth. We got along fine.</li>
+        <li>Dreamt {OTHER_nameDef} pulled me out of a river. I don't know what to do with that.</li>
       </plain>
-      <warm><li>I dreamt {OTHER_nameDef} and I made peace. Maybe the dream knows something I don't.</li></warm>
+      <warm><li>In the dream {OTHER_nameDef} and I shook hands and meant it. Maybe we could.</li></warm>
     </lines>
     <changeTie>Rivals</changeTie>
     <change>-10</change>
@@ -337,11 +341,11 @@
     <about>Lover</about>
     <lines>
       <plain>
-        <li>I dreamt {OTHER_nameDef} and I were old, really old, sitting outside a house we'd built.</li>
-        <li>I dreamt {OTHER_nameDef} was singing in another room. I just listened.</li>
+        <li>{OTHER_nameDef} and I were old, really old, sitting outside a house we'd built.</li>
+        <li>Dreamt {OTHER_nameDef} was singing in the next room. I lay there and listened.</li>
       </plain>
       <blunt><li>Dreamt about {OTHER_nameDef}. Not telling anyone the details.</li></blunt>
-      <gloomy><li>I dreamt I lost {OTHER_nameDef}. I held on a little tighter this morning.</li></gloomy>
+      <gloomy><li>Dreamt I lost {OTHER_nameDef}. I held on tighter than usual this morning.</li></gloomy>
     </lines>
   </ColonyCouncil.DreamDef>
 
@@ -353,8 +357,9 @@
     <children>true</children>
     <lines>
       <plain>
-        <li>I dreamt {OTHER_nameDef} was showing me {SKILL} again, but slower, and this time I understood all of it.</li>
-        <li>I dreamt I was doing {SKILL} and {OTHER_nameDef} was watching and didn't say a word. I think I got it right.</li>
+        <li>{OTHER_nameDef} went over {SKILL} with me again, slower this time, and I understood every step.</li>
+        <li>Dreamt I was doing {SKILL} while {OTHER_nameDef} watched, and {OTHER_pronoun} didn't correct me once.</li>
+        <li>Last night {OTHER_nameDef} and I did {SKILL} side by side, and I kept up the whole way.</li>
       </plain>
     </lines>
     <effects>
@@ -374,14 +379,14 @@
     <lines>
       <plain>
         <li>{LOST} was sitting at our table when I came in, like nothing had happened. We talked for hours. I don't remember a word.</li>
-        <li>I dreamt {LOST} was waiting for me at the edge of the fields, waving. I woke up before I got there.</li>
-        <li>[again] {LOST} came again last night. Same spot, same smile. I think I'll keep these.</li>
-        <li>[winter] I dreamt {LOST} was building a snowman outside. It looked like me.</li>
+        <li>{LOST} was out past the fields, waving me over. I walked and walked and never got any closer.</li>
+        <li>[again] {LOST} came again last night. Same spot by the door, same smile.</li>
+        <li>[winter] {LOST} was out in the snow building a snowman, and called me over to help with the head.</li>
       </plain>
       <warm><li>{LOST} came to see me last night. Told me not to worry so much. I'll try.</li></warm>
       <blunt><li>Dreamt about {LOST}. Woke up angry. Not at {LOST}.</li></blunt>
       <gloomy><li>{LOST} came back in my dream and asked why I let it happen. I didn't have an answer.</li></gloomy>
-      <cold><li>{LOST} appeared in a dream. Grief processing, presumably. It helped, which irritates me.</li></cold>
+      <cold><li>{LOST} was in my dream last night. Grief, I suppose. I'm steadier this morning than I'd like to admit.</li></cold>
     </lines>
   </ColonyCouncil.DreamDef>
 
@@ -393,8 +398,9 @@
     <children>true</children>
     <lines>
       <plain>
-        <li>I dreamt {PET_nameDef} could talk. {PET_nameDef} mostly wanted to talk about food.</li>
-        <li>I dreamt {PET_nameDef} and I were running across open country with nothing chasing us.</li>
+        <li>Dreamt {PET_nameDef} could talk, and wanted to know when dinner was.</li>
+        <li>Ran across open country with {PET_nameDef} all night, nothing chasing us and nowhere to be.</li>
+        <li>Last night {PET_nameDef} curled up on my chest, heavy and warm, and I didn't move until morning.</li>
       </plain>
       <cheerful><li>{PET_nameDef} was the size of a house in my dream and we went everywhere together!</li></cheerful>
     </lines>
@@ -409,8 +415,8 @@
     <weight>0.5</weight>
     <lines>
       <plain>
-        <li>I dreamt about {SKILL} all night. Every step, over and over. I think I see what I've been doing wrong.</li>
-        <li>I dreamt I was teaching {SKILL} to a room full of strangers. I knew more than I thought.</li>
+        <li>Went through {SKILL} step by step all night in my sleep. I think I see what I've been doing wrong.</li>
+        <li>Dreamt I was teaching {SKILL} to a room full of strangers, and I had an answer for every question.</li>
       </plain>
       <cold><li>I solved a {SKILL} problem in my sleep. I'll test the solution today.</li></cold>
     </lines>
@@ -428,10 +434,10 @@
     <dreamer><minMood>0.4</minMood></dreamer>
     <lines>
       <plain>
-        <li>I dreamt the answer. Not to anything in particular. To everything, for a moment. I have to get to work.</li>
-        <li>I dreamt I was doing my work perfectly and it felt like flying. I'm going to try to make that real today.</li>
+        <li>Dreamt I had the answer to everything, just for a moment. I'm getting to work before it fades.</li>
+        <li>My work came out perfect in the dream, every piece of it. I want to try it for real today.</li>
       </plain>
-      <cheerful><li>I woke up with the BEST idea! I'm not even going to have breakfast!</li></cheerful>
+      <cheerful><li>Woke up with the best idea! Breakfast can wait.</li></cheerful>
     </lines>
     <effects>
       <li Class="ColonyCouncil.DilemmaEffect_Inspiration"><target>A</target></li>
@@ -446,9 +452,10 @@
     <weight>0.3</weight>
     <lines>
       <plain>
-        <li>I dreamt of a feast. Everyone, every dish, music, nobody on watch. We should do that. Really.</li>
+        <li>Dreamt of a feast with every dish we know how to cook, and music, and no one on watch. We should do that.</li>
+        <li>In the dream the tables ran the length of the hall, and the plates kept coming.</li>
       </plain>
-      <cheerful><li>I dreamt we had a party that lasted three days! We NEED that!</li></cheerful>
+      <cheerful><li>We had a party in my dream that went on for three days! We need one.</li></cheerful>
     </lines>
     <wish>Council_Wish_Party</wish>
   </ColonyCouncil.DreamDef>
@@ -462,8 +469,8 @@
     <weight>0.25</weight>
     <lines>
       <plain>
-        <li>I dreamt of bells, and animals loaded with packs, coming over the hill from the east. They were smiling.</li>
-        <li>I dreamt strangers came with carts full of things we needed, and asked only for what we had too much of.</li>
+        <li>Bells, and pack animals coming over the hill from the east, loaded down.</li>
+        <li>Strangers came with carts full of what we needed, and they only wanted what we had too much of.</li>
       </plain>
     </lines>
     <omen><incident>TraderCaravanArrival</incident><days>1~3</days><good>true</good></omen>
@@ -476,8 +483,8 @@
     <weight>0.2</weight>
     <lines>
       <plain>
-        <li>I dreamt someone walked out of the trees and sat down at our fire like they'd always lived here. We gave them a bowl.</li>
-        <li>I dreamt there was one more chair at the table, and soon someone would sit in it.</li>
+        <li>A stranger walked out of the trees and sat down at our fire like they'd always lived here. We handed them a bowl.</li>
+        <li>There was an extra chair at the table in my dream, and I knew someone was coming to sit in it.</li>
       </plain>
     </lines>
     <omen><incident>WandererJoin</incident><days>2~4</days><good>true</good></omen>
@@ -490,8 +497,8 @@
     <weight>0.2</weight>
     <lines>
       <plain>
-        <li>I dreamt of torches in the dark, a lot of them, coming closer. Nobody else could see them.</li>
-        <li>I dreamt wolves were circling the colony, but they walked on two legs and carried guns.</li>
+        <li>Torches in the dark, dozens of them, coming closer. I was the only one awake to see them.</li>
+        <li>Dreamt of wolves circling the walls, walking on two legs and carrying weapons.</li>
       </plain>
       <cold><li>I dreamt of an attack, in detail. Probably anxiety. I'd still check the defenses.</li></cold>
     </lines>
@@ -509,7 +516,8 @@
     <seasons><li>Fall</li><li>Winter</li></seasons>
     <lines>
       <plain>
-        <li>I dreamt the sky turned white and the birds froze where they flew. We should bring the animals in.</li>
+        <li>The sky went white and the birds froze where they flew. We should bring the animals in.</li>
+        <li>Dreamt the well froze solid and our breath fell to the ground like sand.</li>
       </plain>
     </lines>
     <omen><incident>ColdSnap</incident><days>1~3</days><good>false</good></omen>
@@ -522,7 +530,8 @@
     <weight>0.2</weight>
     <lines>
       <plain>
-        <li>I dreamt stars fell into the field, and when we went to look, they were full of gifts.</li>
+        <li>Stars fell into the field. When we went out to look, they were full of gifts.</li>
+        <li>Last night crates came down out of the clouds, slow as seeds, and landed in the grass.</li>
       </plain>
     </lines>
     <omen><incident>ResourcePodCrash</incident><days>1~3</days><good>true</good></omen>

@@ -11,24 +11,24 @@
     <defName>Council_Journal_EncR_Merciful</defName>
     <lines>
       <plain>
-        <li>{X_nameDef} says out on the road they call us "the place that lets them go". I've been saying it under my breath all day. There are worse things to be called.</li>
+        <li>According to {X_nameDef}, out on the road we're known as "the place that lets them go." There are worse names.</li>
         <li>A traveler asked me if it's true we patch up raiders and send them home. I said yes. {X_nameDef} looked at me as if I'd said we feed wolves by hand.</li>
-        <li>[trait:Kind] {X_nameDef} slept well here because we spare our prisoners. Mercy as a reason to trust someone. I'll take that.</li>
-        <li>[afterraid] The fighting was two days ago and {X_nameDef} has already heard we tended the wounded ones. Word travels faster than the wounded do.</li>
-        <li>[old] I've lived long enough to see a lot of hard places. Being known as the soft one is new. I find I don't mind it.</li>
-        <li>[trait:Bloodlust|trait:Psychopath] {X_nameDef} called us merciful, to my face, as if it were a compliment. I smiled. It took some doing.</li>
+        <li>[trait:Kind] {X_nameDef} told me {X_pronoun} slept soundly here because {X_pronoun} knew we spare our prisoners. I was glad to hear it.</li>
+        <li>[afterraid] The fighting was two days ago, and {X_nameDef} has already heard that we tended their wounded.</li>
+        <li>[old] I've lived in a lot of hard places. This is the first one people call soft. I don't mind it.</li>
+        <li>[trait:Bloodlust|trait:Psychopath] {X_nameDef} called us merciful to my face, as if it were a compliment. I smiled and said nothing.</li>
       </plain>
       <warm>
-        <li>{X_nameDef} thanked us for something we did for people {X_pronoun} never met. That's how you know a name has gone out ahead of you.</li>
+        <li>{X_nameDef} thanked me for the prisoners we let go last season, though {X_pronoun} never met any of them.</li>
       </warm>
       <blunt>
-        <li>Apparently we're famous for not killing people. Low bar. Glad we clear it.</li>
+        <li>Word is we don't kill prisoners. It's true. I don't see why it's news.</li>
       </blunt>
       <cheerful>
-        <li>They talk about us on the road! The kind things! {X_nameDef} said so!</li>
+        <li>They talk about us out on the road, and {X_nameDef} says it's all good things!</li>
       </cheerful>
       <gloomy>
-        <li>{X_nameDef} says we're known for mercy. Someday someone will come to test that. I hope we pass.</li>
+        <li>{X_nameDef} says we're known for mercy. Sooner or later a raider will count on it.</li>
       </gloomy>
       <cold>
         <li>{X_nameDef} trusts us because we're merciful. Useful. People who trust you tell you things.</li>
@@ -43,13 +43,13 @@
       <plain>
         <li>A visitor pulled a child back when I came near. I was going to wave. I kept my hand in my pocket the rest of the day.</li>
         <li>{X_nameDef} says the people back home use our name to scare children indoors. I keep wondering which of us they mean.</li>
-        <li>[trait:Kind] I live in a colony people are afraid of. I don't know when that happened. I was here the whole time.</li>
-        <li>[night] Couldn't sleep. Kept seeing the way {X_nameDef} looked at me, as if I might do something.</li>
+        <li>[trait:Kind] Visitors are afraid of us now. I keep going back over the last year, trying to work out where it started.</li>
+        <li>[night] Couldn't sleep. I kept seeing the way {X_nameDef} flinched when I reached past {X_objective} for the bread.</li>
         <li>[afterraid] After what we did to the last raiders, I suppose the stories are fair. I just didn't expect to hear them over supper.</li>
-        <li>[trait:Bloodlust] The visitors went quiet whenever I walked by. Best day in weeks.</li>
+        <li>[trait:Bloodlust] The visitors went quiet whenever I walked past. I liked that.</li>
       </plain>
       <warm>
-        <li>{X_nameDef}'s child smiled at me before being pulled away. One of them, at least, hasn't heard the stories yet.</li>
+        <li>{X_nameDef}'s child smiled at me before being pulled away. I smiled back.</li>
       </warm>
       <blunt>
         <li>They're scared of us. Fine. Scared people don't raid.</li>
@@ -68,26 +68,26 @@
     <defName>Council_Journal_EncR_Generous</defName>
     <lines>
       <plain>
-        <li>{X_nameDef} walked a day out of {X_possessive} way to eat at our table, on the strength of a rumor. The rumor was right. I made sure of it.</li>
+        <li>{X_nameDef} walked a day out of {X_possessive} way to eat at our table, because of what {X_pronoun} heard on the road. I gave {X_objective} the biggest bowl.</li>
         <li>Fed a traveler today. {X_nameDef} ate like {X_pronoun} hadn't in a week, and maybe hadn't.</li>
-        <li>[winter] A bowl of stew in winter, for a stranger. It's not much. Out there it's everything.</li>
-        <li>[trait:Greedy] Another stranger at the kitchen door. They come because they know we'll give. That's the trouble with being known for something.</li>
-        <li>[poor] We don't have much. We gave {X_nameDef} some of it anyway. That's the whole idea, I think.</li>
+        <li>[winter] Gave a stranger hot stew and a place to thaw out. The road must be bad this time of year.</li>
+        <li>[trait:Greedy] Another stranger at the kitchen door with an empty bowl. Every one we feed tells two more.</li>
+        <li>[poor] We don't have much, and we gave {X_nameDef} some of it anyway. I'll eat a bit less this week.</li>
       </plain>
       <warm>
-        <li>{X_nameDef} said {X_pronoun} would tell everyone about our bread. I hope {X_pronoun} tells them about the stew too. The stew is better.</li>
+        <li>{X_nameDef} promised to tell people about our bread. I hope {X_pronoun} mentions the stew as well. The stew is better.</li>
       </warm>
       <blunt>
-        <li>Fed {X_nameDef}. Didn't ask for anything. That's the deal here, apparently.</li>
+        <li>Fed {X_nameDef}. Didn't charge. That's how we do it here.</li>
       </blunt>
       <cheerful>
-        <li>{X_nameDef} had seconds AND thirds! I'm counting that as a review!</li>
+        <li>{X_nameDef} had seconds and thirds! I'm taking that as praise for my cooking.</li>
       </cheerful>
       <gloomy>
-        <li>{X_nameDef} ate everything I gave {X_objective} and looked at the pot for more. I gave more. Winter will remember.</li>
+        <li>{X_nameDef} ate everything I gave {X_objective} and looked at the pot for more. I gave more. We'll feel it in winter.</li>
       </gloomy>
       <cold>
-        <li>A bowl of stew buys more goodwill than a cartload of silver. Cheapest trade we make.</li>
+        <li>Fed another traveler. A bowl of stew costs us next to nothing, and they all go home and talk.</li>
       </cold>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
@@ -97,26 +97,26 @@
     <defName>Council_Journal_EncR_Thrifty</defName>
     <lines>
       <plain>
-        <li>{X_nameDef} brought {X_possessive} own bread to our table because {X_pronoun} heard we wouldn't share. I shared. On purpose. Loudly.</li>
-        <li>We have a name on the road for counting every grain. I counted mine, and gave {X_nameDef} some anyway.</li>
-        <li>[trait:Kind] A guest thought we'd charge for water. I don't want to be the kind of place people think that about.</li>
-        <li>Somebody out there is telling people we're misers. I'd like to know who. I'd like to give them something, out of spite.</li>
-        <li>[rich] We've got full storerooms and a name for stinginess. Both can't be right forever.</li>
+        <li>{X_nameDef} brought {X_possessive} own bread to our table because {X_pronoun} heard we wouldn't share. I put a bowl of stew in front of {X_objective} anyway.</li>
+        <li>Apparently we're known on the road for counting every grain of rice. I gave {X_nameDef} a cup of mine.</li>
+        <li>[trait:Kind] A guest thought we'd charge for water. I don't want us to be that kind of place.</li>
+        <li>Somebody out on the road has been calling us misers. I'd like to know who started it.</li>
+        <li>[rich] Our storerooms are full to the roof, and travelers think we're stingy. They aren't entirely wrong.</li>
       </plain>
       <warm>
-        <li>I gave {X_nameDef} the good stew and wouldn't take a coin. {X_nameDef} looked surprised. Good. Let {X_objective} be surprised all the way home.</li>
+        <li>I gave {X_nameDef} the good stew and wouldn't take a coin for it. I hope {X_pronoun} tells people that.</li>
       </warm>
       <blunt>
         <li>{X_nameDef} offered to pay for a cup of water. A cup of water. I'm still annoyed.</li>
       </blunt>
       <cheerful>
-        <li>Showed {X_nameDef} we're not stingy at all! Gave {X_objective} everything! Well. Some things.</li>
+        <li>Showed {X_nameDef} we're not stingy at all! I sent {X_objective} off with a full waterskin and two apples.</li>
       </cheerful>
       <gloomy>
         <li>Maybe we have become misers. Maybe I only noticed today.</li>
       </gloomy>
       <cold>
-        <li>A stranger thinks we're tight-fisted. Fine. It keeps the beggars off. I gave {X_objective} a cup anyway, since a cup costs nothing.</li>
+        <li>{X_nameDef} thinks we're tight-fisted. Good. It keeps the beggars away.</li>
       </cold>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
@@ -126,23 +126,23 @@
     <defName>Council_Journal_EncR_Traditional</defName>
     <lines>
       <plain>
-        <li>{X_nameDef} watched us bless the bread and went quiet. Said {X_possessive} mother used to do that. Some things are worth keeping just so somebody can remember.</li>
-        <li>An old traveler sang our evening song with us. Wrong words in the second verse. Right in every way that counts.</li>
-        <li>[old] {X_nameDef} said we keep the old ways better than the towns do. I've been saying that for years. Nice to have a witness.</li>
-        <li>[teen] A traveler got misty over the way we say grace. It's just grace. Isn't it?</li>
-        <li>[evening] We sang the old song at supper and a stranger knew it. For a minute nobody was a stranger.</li>
+        <li>{X_nameDef} watched us bless the bread and went quiet. Later {X_pronoun} told me {X_possessive} mother used to do the same.</li>
+        <li>An old traveler sang our evening song with us, and knew a verse we'd lost.</li>
+        <li>[old] {X_nameDef} said we keep the old ways better than the towns do. I've been saying that for years.</li>
+        <li>[teen] A traveler got teary over the way we say grace. I've never really listened to the words.</li>
+        <li>[evening] We sang the old song at supper, and the stranger at the end of the table knew every word.</li>
       </plain>
       <warm>
-        <li>{X_nameDef} thanked us for keeping the old customs, as if we were keeping them for {X_objective}. Maybe we are.</li>
+        <li>{X_nameDef} thanked us for keeping the old customs going. It meant a lot to {X_objective}, I could tell.</li>
       </warm>
       <blunt>
         <li>{X_nameDef} praised our customs. Good. Somebody should.</li>
       </blunt>
       <cheerful>
-        <li>A real old traveler knew our song! We're keeping something alive here!</li>
+        <li>An old traveler knew all the words to our evening song! We sang it three times through.</li>
       </cheerful>
       <gloomy>
-        <li>{X_nameDef} said nobody does the old things anymore, except us. It's a lonely sort of compliment.</li>
+        <li>{X_nameDef} says hardly anyone keeps the old ways now, except us. When we're gone, that's the end of them.</li>
       </gloomy>
       <cold>
         <li>Visitors trust old customs. {X_nameDef} trusted us within the hour.</li>
@@ -156,19 +156,19 @@
     <lines>
       <plain>
         <li>{X_nameDef} came all this way to see what we're trying. I showed {X_objective} everything. I didn't know I was this proud of the drying racks.</li>
-        <li>Somebody on the road has been telling people we're the place where new things happen. I'd like to thank them.</li>
-        <li>[teen] A traveler wanted to see our new ideas! I gave the tour and made some of it up as I went, which is very much the spirit of the place.</li>
-        <li>[old] A visitor wanted to see all our new things. I showed {X_objective} around, then went and sat by the old well, which hasn't moved yet.</li>
-        <li>[skill:Crafting|skill:Construction] {X_nameDef} asked how we built the new oven. I explained. {X_nameDef} wrote it down. Somebody wrote down my idea.</li>
+        <li>Word on the road is that we're the place where new things get tried. I didn't know we had a reputation.</li>
+        <li>[teen] A traveler wanted to see our new ideas, so I gave the tour. I made up some of it as I went.</li>
+        <li>[old] A visitor wanted to see all our new things. I showed {X_objective} around, then sat down on the old bench by the well for a rest.</li>
+        <li>[skill:Crafting|skill:Construction] {X_nameDef} asked how we built the new oven and wrote my answer down word for word.</li>
       </plain>
       <warm>
-        <li>{X_nameDef} might take some of our ideas home. Good. Ideas are for sharing.</li>
+        <li>I hope {X_nameDef} takes some of our ideas home. I drew {X_objective} a plan of the new oven to carry along.</li>
       </warm>
       <blunt>
         <li>{X_nameDef} asked why we change everything. Because the old way was worse. Next question.</li>
       </blunt>
       <cheerful>
-        <li>{X_nameDef} said our furrows were MAD. In a good way! I think!</li>
+        <li>{X_nameDef} called our furrows mad! I'm choosing to hear that as a compliment.</li>
       </cheerful>
       <gloomy>
         <li>{X_nameDef} admired everything we're trying. Half of it won't work. I didn't mention that.</li>
@@ -184,11 +184,11 @@
     <defName>Council_Journal_EncR_Open</defName>
     <lines>
       <plain>
-        <li>The visitors took their boots off tonight. That's how you know a place is safe: boots off, songs on.</li>
+        <li>The visitors took their boots off tonight and sang with us until late.</li>
         <li>{X_nameDef} told me all the news from the road and taught me a song I won't get out of my head for a week.</li>
-        <li>[night] {X_nameDef} fell asleep by the fire in the middle of a story. I finished it for the others. I think I told it better.</li>
-        <li>[large] So many voices at the fire tonight, ours and theirs, that I couldn't tell where the colony stopped.</li>
-        <li>[trait:Abrasive] The visitors sang until midnight. Every one of them. Every verse.</li>
+        <li>[night] {X_nameDef} fell asleep halfway through a story, so I finished it for the others.</li>
+        <li>[large] With all of us and all the visitors at supper, people were eating standing up.</li>
+        <li>[trait:Abrasive] The visitors sang until midnight, right outside my door.</li>
       </plain>
       <warm>
         <li>{X_nameDef} said this is the friendliest place on the road. I'm writing that down so I remember it in winter.</li>
@@ -197,10 +197,10 @@
         <li>Guests stayed up late singing. Fine. They can sing while they chop wood next time.</li>
       </blunt>
       <cheerful>
-        <li>Songs! News! {X_nameDef} knows one about a miller with the worst luck in the world! Best night all season!</li>
+        <li>{X_nameDef} knows a song about a miller with the worst luck in the world, and now so do I! Best night all season.</li>
       </cheerful>
       <gloomy>
-        <li>Everyone was happy at the fire tonight. I kept wondering which of the visitors we'll never see again.</li>
+        <li>The visitors were singing tonight. I kept wondering which of them we'll never see again.</li>
       </gloomy>
       <cold>
         <li>Relaxed guests talk. {X_nameDef} told me more in one evening than a trader would in a year.</li>
@@ -215,21 +215,21 @@
       <plain>
         <li>The visitors kept their hands where we could see them all day. {X_nameDef} even asked before walking to the well. I don't know if I'm proud or ashamed.</li>
         <li>{X_nameDef} asked where guests are allowed to stand. I knew the answer. That bothered me more than the question.</li>
-        <li>[trait:Kind] A guest asked my leave to sit down. In our yard. Is that who we are now?</li>
-        <li>[trait:Abrasive] Visitors who don't touch anything and leave on time. Perfect guests. More places should be like ours.</li>
-        <li>[afterraid] After the last raid, nobody gets past the gate without being looked over. {X_nameDef} understood. Didn't make it pleasant for either of us.</li>
+        <li>[trait:Kind] A guest asked my leave to sit down in our own yard. I said of course, and then didn't know what else to say.</li>
+        <li>[trait:Abrasive] Visitors who don't touch anything and leave on time. I could get used to this.</li>
+        <li>[afterraid] After the last raid, every visitor gets looked over at the gate. {X_nameDef} understood. It wasn't pleasant for either of us.</li>
       </plain>
       <warm>
-        <li>I brought {X_nameDef} a cup of something warm, since {X_pronoun} wasn't to come further in. {X_nameDef} looked surprised. Somehow that made it worse.</li>
+        <li>I brought {X_nameDef} a cup of hot tea, since {X_pronoun} wasn't allowed any further in. {X_nameDef} thanked me three times.</li>
       </warm>
       <blunt>
         <li>Strangers stay where we put them. That's the rule. It's a good rule.</li>
       </blunt>
       <cheerful>
-        <li>The visitors were SO polite today. A bit scared, maybe. But so polite!</li>
+        <li>The visitors were so polite today! A bit scared of us, maybe, but very polite.</li>
       </cheerful>
       <gloomy>
-        <li>{X_nameDef} wasn't afraid of what we'd do. {X_nameDef} was afraid of what we'd think {X_pronoun} was going to do.</li>
+        <li>{X_nameDef} sat very still the whole visit, as if one sudden move would get {X_objective} shot.</li>
       </gloomy>
       <cold>
         <li>{X_nameDef} kept {X_possessive} hands visible the whole visit. Sensible.</li>
@@ -242,20 +242,20 @@
     <defName>Council_Journal_EncR_Hardworking</defName>
     <lines>
       <plain>
-        <li>A trader stood at the edge of the fields and said, "Not a weed." Three words. I've been carrying them around all day.</li>
+        <li>A trader looked over our fields and said, "Not a weed." I've been thinking about it all day.</li>
         <li>{X_nameDef} said we're known for working dark to dark. I was going to argue, but I'd been up since before dawn.</li>
-        <li>[trait:Industrious|trait:HardWorker] {X_nameDef} counted our woodpile twice. I only counted it once, but I stacked it.</li>
+        <li>[trait:Industrious|trait:HardWorker] {X_nameDef} stopped to admire our woodpile. I stacked every log of it.</li>
         <li>[trait:Lazy|trait:Slothful] A trader admired how hard we all work. I nodded along from the shade.</li>
-        <li>[skill:Plants] {X_nameDef} admired the rows. I planted those rows. I wanted to say so. I didn't. I'm saying it here.</li>
+        <li>[skill:Plants] {X_nameDef} admired the rows. I planted those rows, and I didn't say so. I'm saying it here.</li>
       </plain>
       <warm>
-        <li>{X_nameDef} said our fields would shame a monastery. I'll tell the others at supper, when they're too tired to argue.</li>
+        <li>To hear {X_nameDef} tell it, our fields would shame a monastery. I'll pass that on at supper. The others have earned it.</li>
       </warm>
       <blunt>
         <li>Trader liked the fields. Of course {X_pronoun} did. We work.</li>
       </blunt>
       <cheerful>
-        <li>A trader said our fields are the tidiest {X_pronoun} has EVER seen! Not a weed!</li>
+        <li>A trader said our fields are the tidiest {X_pronoun} has ever seen!</li>
       </cheerful>
       <gloomy>
         <li>{X_nameDef} admired our work. Didn't see our hands, though.</li>
@@ -272,19 +272,19 @@
     <lines>
       <plain>
         <li>{X_nameDef} watched us nap at midday and asked if we needed anyone else. Where {X_nameDef} comes from, naps get you beaten.</li>
-        <li>A traveler envies how we live. Long lunches, no bells, no one counting. I'd never thought of it as something to envy.</li>
+        <li>A traveler wanted to know how we get away with such long lunches. I'd never thought of them as getting away with anything.</li>
         <li>[trait:Industrious|trait:HardWorker] A traveler envies our slow pace. I don't. I'm the reason it isn't slower.</li>
-        <li>[trait:Lazy|trait:Slothful] A stranger envies us. Of course. We've got it worked out here.</li>
-        <li>[summer] Shade, a cup of something, and a stranger telling me I've got the best life on the road. Could be worse.</li>
+        <li>[trait:Lazy|trait:Slothful] A stranger envies the way we live. I can see why.</li>
+        <li>[summer] Sat in the shade with a cold drink while a stranger told me I've got the best life on the road. I didn't argue.</li>
       </plain>
       <warm>
         <li>I told {X_nameDef} {X_pronoun} could stay a while and rest. {X_nameDef} looked as if nobody had said that to {X_objective} in years.</li>
       </warm>
       <blunt>
-        <li>{X_nameDef} wrote down when we eat breakfast. When everyone's up. It's not complicated.</li>
+        <li>{X_nameDef} asked what time we eat breakfast. Whenever we're up. It's not complicated.</li>
       </blunt>
       <cheerful>
-        <li>A traveler wants to LIVE here because of our lunches! Our lunches are excellent!</li>
+        <li>A traveler wants to move here just for our lunches! They are very good lunches.</li>
       </cheerful>
       <gloomy>
         <li>{X_nameDef} envies how slow we are. I hope nothing ever comes fast enough to catch us.</li>

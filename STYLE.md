@@ -61,6 +61,10 @@ Mostly flat statements. The humor is in the situation and the occasional dry asi
   Avoid modern idioms everywhere ("vibe", "processing", "waiting room", "okay" in a medieval mouth).
 - **Keep what works.** A line that is already plain, specific and true stays. Rewriting isn't the goal; reading
   well is.
+- **Don't flatten.** Cut the reflexive gag, not all humor. Specific humor that comes out of the situation stays:
+  "I've counted the snores in that barracks. There are eleven distinct snores." About one line in four can carry a
+  light touch (an odd concrete detail, a dry aside). A plain line still needs a concrete detail; "I'd show it to
+  anyone who asked" is too generic. Avoid stiff connectors in speech ("yet", "thus", "however").
 
 ## By kind of text
 

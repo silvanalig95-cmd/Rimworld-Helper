@@ -17,22 +17,22 @@
     <fulfilledWhen>{PAWN_nameDef} gets enough time under the open sky.</fulfilledWhen>
     <request>
       <plain>
-        <li>I haven't seen the sky in days. I've started talking to the ceiling. It doesn't answer, which is the only reason it's a good listener.</li>
+        <li>I haven't seen the sky in days. I'd settle for standing in the doorway.</li>
         <li>Put me on hauling, hunting, anything. Just somewhere with weather.</li>
         <li>[winter] I know it's freezing. I don't care. I need to see something that isn't a wall.</li>
         <li>[indoors,night] I can hear the wind outside and I'm jealous of it.</li>
       </plain>
       <warm>
-        <li>Could I take the next outdoor job? I'm getting a little grey around the edges in here.</li>
+        <li>Could I take the next outdoor job? I'm going pale in here.</li>
       </warm>
       <blunt>
-        <li>Let me out or I start breaking things to get out.</li>
+        <li>Let me outside, or I'll start breaking things.</li>
       </blunt>
       <cheerful>
-        <li>Fresh air! Remember fresh air? I'd love to be reintroduced!</li>
+        <li>Fresh air! Remember fresh air? I'd love a breath of it.</li>
       </cheerful>
       <gloomy>
-        <li>We live in a hole in a rock. Very sensible. I'd still like to see the sun before I die.</li>
+        <li>These walls are all I've seen for days. I'd like to see the sun again before I die.</li>
       </gloomy>
       <cold>
         <li>My productivity is falling. The cause is the walls. Assign me outdoors.</li>
@@ -41,14 +41,14 @@
     <thanks>
       <plain>
         <li>Wind in my face. I forgot how much I missed it.</li>
-        <li>Sky's still there. Good. I was starting to wonder.</li>
+        <li>The sky's still there. I'd started to wonder.</li>
       </plain>
-      <cheerful><li>The SUN! Hello, sun! I missed you!</li></cheerful>
-      <gloomy><li>It was cold and grey and wonderful.</li></gloomy>
+      <cheerful><li>Hello, sun! I missed you.</li></cheerful>
+      <gloomy><li>Cold and gray out there. Still better than in here.</li></gloomy>
     </thanks>
     <expired>
-      <plain><li>Another day staring at the same wall. I've named the cracks.</li></plain>
-      <blunt><li>Fine. I live here now. In the dark. Like a mushroom.</li></blunt>
+      <plain><li>Another day staring at the same wall.</li></plain>
+      <blunt><li>Fine. I'll stay in the dark like a mushroom.</li></blunt>
     </expired>
   </ColonyCouncil.WishDef>
 
@@ -71,7 +71,7 @@
     <fulfilledWhen>At least {TARGET} doses of {SUBJECT} in stock.</fulfilledWhen>
     <request>
       <plain>
-        <li>I know what you're thinking. I don't care. Keep {SUBJECT} in the stores, or watch me come apart.</li>
+        <li>I know what you're thinking, and I don't care. Keep {SUBJECT} in the stores, or watch me come apart.</li>
         <li>I'm not asking for a party. Just enough {SUBJECT} that my hands stop shaking.</li>
         <li>[lowmood] Every day without it is a week. Please.</li>
       </plain>
@@ -79,16 +79,16 @@
         <li>I'm sorry. I know it's not good for me. But I can't do my work like this.</li>
       </warm>
       <blunt>
-        <li>Get me {SUBJECT}. In stock. Soon. Or I'll go find some, and you won't like where.</li>
+        <li>Keep {SUBJECT} in stock, or I'll go and find some myself. You won't like where.</li>
       </blunt>
       <cheerful>
-        <li>A little {SUBJECT} and I'm the best worker you've got! Without it, I'm, well, this!</li>
+        <li>With some {SUBJECT} in me, I'm the best worker you've got! Without it, you get this.</li>
       </cheerful>
       <gloomy>
         <li>I've accepted what I am. I'd appreciate it if the colony would too.</li>
       </gloomy>
       <cold>
-        <li>Withdrawal will cost you more labor than {SUBJECT} costs to make. Do the arithmetic.</li>
+        <li>Withdrawal will cost you more labor than {SUBJECT} costs to make.</li>
       </cold>
     </request>
     <thanks>
@@ -97,7 +97,7 @@
       <cold><li>Supply secured. My output will normalize.</li></cold>
     </thanks>
     <expired>
-      <plain><li>No {SUBJECT}. Fine. Watch me fall apart, then.</li></plain>
+      <plain><li>No {SUBJECT}, then. The shakes will start by tomorrow.</li></plain>
       <blunt><li>Remember you chose this when I'm screaming at the walls.</li></blunt>
     </expired>
   </ColonyCouncil.WishDef>
@@ -121,7 +121,7 @@
     <fulfilledWhen>{PAWN_nameDef} is no longer addicted to {SUBJECT}.</fulfilledWhen>
     <request>
       <plain>
-        <li>I want off {SUBJECT}. Lock it away from me. Don't listen when I beg. I will beg.</li>
+        <li>I want off {SUBJECT}. Lock it away, and don't listen when I beg for it.</li>
         <li>I keep promising myself it's the last time. I need someone else to hold me to it.</li>
         <li>[old] I've wasted enough years on {SUBJECT}. I'd like the rest of them back.</li>
       </plain>
@@ -132,7 +132,7 @@
         <li>Take {SUBJECT} off my list. If I yell at you about it, yell back.</li>
       </blunt>
       <cheerful>
-        <li>New me! Clean me! It's going to be awful and then great! Mostly awful at first!</li>
+        <li>I'm getting clean! The first weeks will be awful, but I'm ready for them.</li>
       </cheerful>
       <gloomy>
         <li>It'll be the worst few weeks of my life. Still better than the rest of my life like this.</li>
@@ -144,14 +144,14 @@
     <thanks>
       <plain>
         <li>Clean. I didn't think I could. Thank you for not giving in when I did.</li>
-        <li>It's gone. The craving, the shaking, all of it. I feel like a person again.</li>
+        <li>The craving's gone, and the shaking with it. I can think straight again.</li>
       </plain>
       <warm><li>You got me through it. All of you. I won't forget it.</li></warm>
-      <cheerful><li>I'm FREE! I'm going to celebrate with a nice glass of water!</li></cheerful>
+      <cheerful><li>I'm free of it! I'm celebrating with a nice glass of water.</li></cheerful>
       <cold><li>Dependency eliminated. Thank you for your discipline.</li></cold>
     </thanks>
     <expired>
-      <plain><li>Still hooked. Maybe next time. There's always a next time with this stuff.</li></plain>
+      <plain><li>Still hooked. I'll try again, if I can face it.</li></plain>
       <gloomy><li>I tried. Or you didn't. Either way, here I am.</li></gloomy>
     </expired>
     <reminder>
@@ -179,17 +179,17 @@
     <request>
       <plain>
         <li>{OTHER_nameDef} snores, mutters, and steals blankets. I'd forgive one. Not all three.</li>
-        <li>I lie awake every night listening to {OTHER_nameDef} breathe. Hatefully. Move one of us.</li>
+        <li>Every night I lie there listening to {OTHER_nameDef} breathe through {OTHER_possessive} mouth. Move one of us.</li>
         <li>Sharing a room is bad enough. Sharing it with {OTHER_nameDef} is a punishment.</li>
       </plain>
       <warm>
         <li>I'm trying with {OTHER_nameDef}, I really am. It'd be easier if we didn't share a room.</li>
       </warm>
       <blunt>
-        <li>Move {OTHER_nameDef} or I'll move {OTHER_objective} myself. Out a window, maybe.</li>
+        <li>Move {OTHER_nameDef} out of my room, or I'll do it myself.</li>
       </blunt>
       <cheerful>
-        <li>I'm sure {OTHER_nameDef} is lovely to someone! Somewhere! Far from my bed, ideally!</li>
+        <li>I'm sure {OTHER_nameDef} is lovely company for someone! Just not at night, in my room.</li>
       </cheerful>
       <gloomy>
         <li>I spend all day being miserable. I'd like to sleep without {OTHER_nameDef} watching me do it.</li>
@@ -201,7 +201,7 @@
     <thanks>
       <plain><li>A whole night without {OTHER_nameDef}. I slept like the dead.</li></plain>
       <blunt><li>Peace and quiet. Finally.</li></blunt>
-      <cheerful><li>I can hear myself think! It turns out I think a lot about breakfast!</li></cheerful>
+      <cheerful><li>I slept right through until morning! I'd forgotten I could do that.</li></cheerful>
     </thanks>
     <expired>
       <plain><li>Another night with {OTHER_nameDef}. Someone's going to get hurt, and I'm not saying who.</li></plain>
@@ -237,7 +237,7 @@
       <plain>
         <li>I have bandages for one bad day. We get two a week.</li>
         <li>Herbs, kits, anything. I can stitch with string, but I'd rather not have to.</li>
-        <li>[trigger:raid] I used the last of the good stuff on the wounded today. Next time I'll be using prayers.</li>
+        <li>[trigger:raid] I used the last of the good medicine on the wounded today. There's almost nothing left for the next lot.</li>
         <li>[lowtech] Healroot. A whole field of it. Trust me on this.</li>
       </plain>
       <warm>
@@ -247,10 +247,10 @@
         <li>Get me medicine or start practicing your death rattle.</li>
       </blunt>
       <cheerful>
-        <li>A full medicine shelf! It's the most beautiful thing a doctor can imagine! Well, second to nobody getting hurt!</li>
+        <li>A full medicine shelf! I'd sleep so much better knowing it's there.</li>
       </cheerful>
       <gloomy>
-        <li>Someone's going to bleed out on my table because we were saving silver. I'd like it not to be soon.</li>
+        <li>Someone's going to bleed out on my table because we were saving silver.</li>
       </gloomy>
       <cold>
         <li>Medicine stock per colonist is below safe levels. Treatment quality will suffer, and so will survival rates.</li>
@@ -258,8 +258,8 @@
     </request>
     <thanks>
       <plain><li>Shelves full. Now I can actually do my job.</li></plain>
-      <warm><li>Now nobody has to wait while I decide who gets the last kit.</li></warm>
-      <cold><li>Adequate. Try not to need it.</li></cold>
+      <warm><li>Now I don't have to decide who gets the last kit.</li></warm>
+      <cold><li>Good. Now try not to need it.</li></cold>
     </thanks>
     <expired>
       <plain><li>When someone dies of a scratch, remember this conversation.</li></plain>

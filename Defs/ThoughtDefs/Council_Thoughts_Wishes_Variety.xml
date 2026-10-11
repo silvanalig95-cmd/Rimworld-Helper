@@ -9,7 +9,7 @@
     <stages>
       <li>
         <label>a fire in my room</label>
-        <description>There's a fire crackling a few steps from my bed. I fall asleep warm and wake up with all my toes.</description>
+        <description>There's a fire burning a few steps from my bed. I fall asleep warm and wake up warm.</description>
         <baseMoodEffect>5</baseMoodEffect>
       </li>
     </stages>
@@ -21,7 +21,7 @@
     <stages>
       <li>
         <label>books on a proper shelf</label>
-        <description>Our books finally have a home that isn't the floor. I keep straightening the spines when nobody's looking.</description>
+        <description>Our books are on a proper shelf now instead of stacked on the floor. I keep straightening the spines.</description>
         <baseMoodEffect>4</baseMoodEffect>
       </li>
     </stages>
@@ -33,7 +33,7 @@
     <stages>
       <li>
         <label>new books to read</label>
-        <description>There are pages in this colony I haven't read yet. I'm rationing them like fine meals.</description>
+        <description>There are books in the colony I haven't read yet. I'm trying to make them last.</description>
         <baseMoodEffect>4</baseMoodEffect>
       </li>
     </stages>
@@ -45,7 +45,7 @@
     <stages>
       <li>
         <label>somewhere to train</label>
-        <description>I've got something to practice on between raids now. My arms ache the good way, and I'm quicker than I was.</description>
+        <description>I can practice properly between raids now. My arms ache, and I'm quicker than I was.</description>
         <baseMoodEffect>4</baseMoodEffect>
       </li>
     </stages>
@@ -57,7 +57,7 @@
     <stages>
       <li>
         <label>my baby has a proper bed</label>
-        <description>My little one sleeps in a real crib now, not a crate on the floor. I still check every hour. But I check less.</description>
+        <description>My little one sleeps in a real crib now, not a crate on the floor. I still get up to check, but not as often.</description>
         <baseMoodEffect>6</baseMoodEffect>
       </li>
     </stages>
@@ -81,7 +81,7 @@
     <stages>
       <li>
         <label>the animals will eat this winter</label>
-        <description>The feed is stacked for winter. Nobody has to choose which animals go hungry, and I sleep better for it.</description>
+        <description>There's enough feed stacked to see the animals through winter. We won't have to slaughter any of them early.</description>
         <baseMoodEffect>4</baseMoodEffect>
       </li>
     </stages>
@@ -93,7 +93,7 @@
     <stages>
       <li>
         <label>honey in the larder</label>
-        <description>There's real honey in storage. I've had a spoonful already. Life tastes a little less like dust.</description>
+        <description>There's real honey in storage. I've had a spoonful already, and I'm thinking about a second.</description>
         <baseMoodEffect>4</baseMoodEffect>
       </li>
     </stages>
@@ -105,7 +105,7 @@
     <stages>
       <li>
         <label>a proper treasury</label>
-        <description>I went and looked at our silver today. There's a lot of it now. I may go and look again tomorrow.</description>
+        <description>I went and looked at our silver today. There's a good pile of it now, and I like knowing it's there.</description>
         <baseMoodEffect>5</baseMoodEffect>
       </li>
     </stages>
@@ -117,7 +117,7 @@
     <stages>
       <li>
         <label>dressed for the cold</label>
-        <description>I finally own something that keeps the cold out. I can go outside without my teeth chattering a tune.</description>
+        <description>I finally own something that keeps the cold out. I can work outside without shivering.</description>
         <baseMoodEffect>4</baseMoodEffect>
       </li>
     </stages>
@@ -141,7 +141,7 @@
     <stages>
       <li>
         <label>dressed finely</label>
-        <description>I'm wearing something truly well made. People look twice when I walk past. I've noticed every time.</description>
+        <description>My clothes are finely made, and people look twice when I walk past.</description>
         <baseMoodEffect>5</baseMoodEffect>
       </li>
     </stages>
@@ -152,8 +152,8 @@
     <durationDays>5</durationDays>
     <stages>
       <li>
-        <label>a little shine</label>
-        <description>I'm wearing a lovely piece of jewelry. It catches the light whenever I move. Out here, of all places.</description>
+        <label>a piece of jewelry</label>
+        <description>I'm wearing a lovely piece of jewelry. It catches the light whenever I move.</description>
         <baseMoodEffect>4</baseMoodEffect>
       </li>
     </stages>
@@ -165,7 +165,7 @@
     <stages>
       <li>
         <label>saw something of the world</label>
-        <description>I went out past the hills with a caravan and saw other places and other people. These walls feel less like a cage now.</description>
+        <description>I went out with a caravan and saw new places and new faces. I can't stop talking about it.</description>
         <baseMoodEffect>7</baseMoodEffect>
       </li>
     </stages>
@@ -177,7 +177,7 @@
     <stages>
       <li>
         <label>got what I had my eye on</label>
-        <description>The thing I couldn't stop staring at in the trader's packs is ours now. Mine, really. The colony paid for it anyway.</description>
+        <description>We bought the thing I had my eye on from the trader. It belongs to the colony, but I think of it as mine.</description>
         <baseMoodEffect>6</baseMoodEffect>
       </li>
     </stages>
@@ -201,7 +201,7 @@
     <stages>
       <li>
         <label>learned from the best</label>
-        <description>Someone who really knows the work took the time to teach me. I'm finally getting good at the thing I love.</description>
+        <description>Someone who really knows the work took the time to teach me. I'm getting better at it every day.</description>
         <baseMoodEffect>5</baseMoodEffect>
       </li>
     </stages>
@@ -213,7 +213,7 @@
     <stages>
       <li>
         <label>flowers around the colony</label>
-        <description>There are flowers growing by the paths, and nobody is going to eat them. Something here is pretty on purpose.</description>
+        <description>There are flowers growing by the paths now, planted just for the look of them.</description>
         <baseMoodEffect>4</baseMoodEffect>
       </li>
     </stages>
@@ -225,7 +225,7 @@
     <stages>
       <li>
         <label>a place to pray</label>
-        <description>There's a shrine in the colony now. A quiet place to kneel and say what I can't say to anyone else.</description>
+        <description>There's a shrine in the colony now, somewhere to kneel and say what I can't say to anyone else.</description>
         <baseMoodEffect>5</baseMoodEffect>
       </li>
     </stages>
@@ -237,7 +237,7 @@
     <stages>
       <li>
         <label>a proper bath</label>
-        <description>We have somewhere to get properly clean now. I soaked until my fingers wrinkled. I feel like a person again.</description>
+        <description>We have somewhere to get properly clean now. I soaked until my fingers wrinkled.</description>
         <baseMoodEffect>6</baseMoodEffect>
       </li>
     </stages>
@@ -249,7 +249,7 @@
     <stages>
       <li>
         <label>a way to keep the meat</label>
-        <description>We can cure meat now instead of watching it rot. Every hunt finally counts for something.</description>
+        <description>We can cure meat now instead of watching it rot. None of the hunt goes to waste.</description>
         <baseMoodEffect>4</baseMoodEffect>
       </li>
     </stages>
@@ -261,7 +261,7 @@
     <stages>
       <li>
         <label>bees in the colony</label>
-        <description>We keep bees now. I can hear them humming over the fields, working away for us and asking nothing back.</description>
+        <description>We keep bees now. I can hear them humming over the fields on warm days.</description>
         <baseMoodEffect>4</baseMoodEffect>
       </li>
     </stages>
@@ -273,7 +273,7 @@
     <stages>
       <li>
         <label>a fountain in the colony</label>
-        <description>There's a fountain in the colony. Water going up and coming down, for no reason except that it's beautiful.</description>
+        <description>There's a fountain in the colony now. I like to stop by it and listen to the water.</description>
         <baseMoodEffect>5</baseMoodEffect>
       </li>
     </stages>
@@ -285,7 +285,7 @@
     <stages>
       <li>
         <label>our colors are flying</label>
-        <description>Our banner flies over the colony. Anyone coming over the hill knows people live here, and who.</description>
+        <description>Our banner flies over the colony now. Anyone coming over the hill can see who lives here.</description>
         <baseMoodEffect>4</baseMoodEffect>
       </li>
     </stages>
@@ -297,7 +297,7 @@
     <stages>
       <li>
         <label>an orderly armory</label>
-        <description>Our weapons hang where anyone can grab them. Next time the alarm goes, nobody's digging under beds.</description>
+        <description>Our weapons hang on a rack now, ready to grab. When the alarm goes, we won't be digging under beds for them.</description>
         <baseMoodEffect>3</baseMoodEffect>
       </li>
     </stages>
@@ -309,7 +309,7 @@
     <stages>
       <li>
         <label>more art in the colony</label>
-        <description>There's a new sculpture in the colony. I keep finding reasons to walk past it.</description>
+        <description>There's a new sculpture in the colony. I take the long way around just to see it.</description>
         <baseMoodEffect>4</baseMoodEffect>
       </li>
     </stages>

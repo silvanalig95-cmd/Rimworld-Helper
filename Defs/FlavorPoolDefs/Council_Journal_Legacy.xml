@@ -6,13 +6,13 @@
     <defName>Council_Journal_Heirloom</defName>
     <lines>
       <plain>
-        <li>I'm keeping {OTHER_nameDef}'s {ITEM}. It still smells like {OTHER_objective}. I hope that never fades.</li>
+        <li>I'm keeping {OTHER_nameDef}'s {ITEM}. It still smells like {OTHER_objective}.</li>
         <li>They gave me {OTHER_nameDef}'s {ITEM}. I'll carry it as long as I live.</li>
       </plain>
       <warm><li>{OTHER_nameDef}'s {ITEM} is mine to look after now. I'll keep it the way {OTHER_nameDef} would have.</li></warm>
-      <blunt><li>Took {OTHER_nameDef}'s {ITEM}. Nobody else is having it.</li></blunt>
+      <blunt><li>Took {OTHER_nameDef}'s {ITEM}. It's mine now, and I'm not discussing it.</li></blunt>
       <gloomy><li>All that's left of {OTHER_nameDef} is a {ITEM}. I'm holding on to it anyway.</li></gloomy>
-      <cold><li>I've taken custody of {OTHER_nameDef}'s {ITEM}. Practical, and something more than practical.</li></cold>
+      <cold><li>I've taken custody of {OTHER_nameDef}'s {ITEM}. It's in good condition.</li></cold>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
 
@@ -21,7 +21,8 @@
     <defName>Council_Journal_HeirloomLost</defName>
     <lines>
       <plain>
-        <li>{LOST}'s things are gone. The last piece of {LOST} I had. I keep reaching for it.</li>
+        <li>{LOST}'s things are gone, the last of {LOST} I had. I keep reaching for them.</li>
+        <li>I've looked everywhere for {LOST}'s things. They're gone, and I can't even say how.</li>
       </plain>
       <blunt><li>Lost {LOST}'s things. Don't want to talk about it.</li></blunt>
       <gloomy><li>First I lost {LOST}. Now I've lost what {LOST} left me.</li></gloomy>
@@ -32,12 +33,12 @@
     <defName>Council_Journal_ComingOfAge</defName>
     <lines>
       <plain>
-        <li>They say I'm grown now. I don't feel different. Maybe that's what grown feels like.</li>
+        <li>They say I'm grown now. I don't feel any different.</li>
         <li>I'm an adult today. I get a vote at the council. I'm going to use it.</li>
-        <li>[winter] Grown up in the middle of winter. Nobody threw a party. Somebody gave me extra soup, though.</li>
+        <li>[winter] Grown up in the middle of winter. There wasn't a party, but I got extra soup at supper.</li>
       </plain>
-      <cheerful><li>I'M GROWN UP! Nobody can tell me when to go to bed! (Somebody still will.)</li></cheerful>
-      <gloomy><li>Grown now. Childhood went fast out here. Everything does.</li></gloomy>
+      <cheerful><li>I'm grown up! I can go to bed whenever I like now.</li></cheerful>
+      <gloomy><li>Grown now. Childhood went fast out here.</li></gloomy>
       <cold><li>Adulthood reached. My contributions will be measured differently now. Good.</li></cold>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
@@ -47,7 +48,7 @@
     <defName>Council_Journal_ChildGrown</defName>
     <lines>
       <plain>
-        <li>{OTHER_nameDef} is grown. I remember the first steps, right over there. I'm not crying. I'm a little crying.</li>
+        <li>{OTHER_nameDef} is grown. I remember {OTHER_possessive} first steps, right over there by the storeroom door.</li>
         <li>My child is an adult today. Out here. We made it this far, the two of us.</li>
       </plain>
       <blunt><li>{OTHER_nameDef} is grown. Did a good job, if I say so myself.</li></blunt>

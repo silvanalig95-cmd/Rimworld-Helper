@@ -6,14 +6,15 @@
     <defName>Council_Pool_DreamWish</defName>
     <lines>
       <plain>
-        <li>I dreamt about it last night, and now I can't stop thinking about it.</li>
+        <li>It was in my dream last night, and I've been thinking about it all day.</li>
         <li>This is going to sound silly, but I had a dream.</li>
         <li>It came to me in a dream. I know how that sounds.</li>
+        <li>I keep seeing it when I close my eyes.</li>
       </plain>
       <warm><li>I woke up this morning knowing what would make me happy.</li></warm>
-      <blunt><li>Had a dream. Now I want something. Here it is.</li></blunt>
-      <cheerful><li>I had the BEST dream and I want it to be real!</li></cheerful>
-      <gloomy><li>I dreamt about it. Dreams are all I usually get.</li></gloomy>
+      <blunt><li>Dreamt about it. Here's what I want.</li></blunt>
+      <cheerful><li>I had the best dream, and I want it to come true!</li></cheerful>
+      <gloomy><li>I saw it in a dream. Usually that's as close as I get.</li></gloomy>
       <cold><li>A dream clarified my priorities.</li></cold>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
@@ -23,13 +24,13 @@
     <defName>Council_Journal_DreamCameTrue</defName>
     <lines>
       <plain>
-        <li>I dreamt it, and then it happened: {DREAM}. I don't know what to do with that.</li>
-        <li>They're looking at me differently since it came true. I'm looking at myself differently.</li>
+        <li>I had {DREAM}, and now it's happened. I don't know what to make of it.</li>
+        <li>The others look at me differently since it came true.</li>
       </plain>
       <warm><li>It came true, just like the dream. Maybe someone is looking out for us.</li></warm>
       <blunt><li>Told them it would happen. It happened. Next time they'll listen.</li></blunt>
-      <cheerful><li>MY DREAM CAME TRUE! I'm basically a prophet now!</li></cheerful>
-      <gloomy><li>It came true. I'd rather not dream at all, if this is what dreams are.</li></gloomy>
+      <cheerful><li>My dream came true! I keep telling people about it.</li></cheerful>
+      <gloomy><li>Now that it's come true, I'm not sure I want to dream anymore.</li></gloomy>
       <cold><li>Coincidence, most likely. I'll record my dreams more carefully from now on.</li></cold>
     </lines>
   </ColonyCouncil.FlavorPoolDef>

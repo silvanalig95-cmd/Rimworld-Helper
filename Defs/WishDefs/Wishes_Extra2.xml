@@ -17,9 +17,9 @@
     <fulfilledWhen>No more than {TARGET} pieces of filth left in the home area.</fulfilledWhen>
     <request>
       <plain>
-        <li>There's blood in the hallway, mud in the dining room and something I won't name in the corner. Can we clean?</li>
-        <li>We live like animals. Animals keep their dens cleaner.</li>
-        <li>[afterraid] The raid's over. The mess isn't. Somebody fetch a broom.</li>
+        <li>There's blood in the hallway, mud in the dining room and worse in the corners. Can we clean?</li>
+        <li>The vomit by the door has been there for three days. Could somebody clean it up?</li>
+        <li>[afterraid] The raid left blood all over the floors. Let's get it scrubbed before it sets.</li>
         <li>[rain] Every pair of boots in this colony has brought half the yard inside.</li>
       </plain>
       <warm>
@@ -29,10 +29,10 @@
         <li>This place is filthy. I'm not eating in it again until somebody cleans.</li>
       </blunt>
       <cheerful>
-        <li>Cleaning day! Everyone grab a broom! It'll be fun! It won't be fun. But clean!</li>
+        <li>Cleaning day! If we each take a room, it'll be done by supper.</li>
       </cheerful>
       <gloomy>
-        <li>Dirt everywhere. Fitting, really. Still, I'd like to not live in it.</li>
+        <li>The dirt keeps piling up, and so does everything else. I'd like the floors clean, at least.</li>
       </gloomy>
       <cold>
         <li>Filth spreads disease and lowers morale. It also offends me.</li>
@@ -40,7 +40,7 @@
     </request>
     <thanks>
       <plain>
-        <li>Clean floors. I could weep. I won't, I'd make a mess.</li>
+        <li>Clean floors. I walked through the whole place twice just to look at them.</li>
       </plain>
       <cold>
         <li>Acceptable. Maintain it.</li>
@@ -71,9 +71,9 @@
     <fulfilledWhen>The colony has {THING} or another instrument.</fulfilledWhen>
     <request>
       <plain>
-        <li>We have walls, beds and guns. What we don't have is music. Build {THING}.</li>
-        <li>[evening] The evenings are so quiet you can hear the raiders thinking. Some music would help.</li>
-        <li>[winter] A long winter needs songs. Let me have {THING}.</li>
+        <li>We have walls, beds and weapons, and not one note of music. Build {THING}.</li>
+        <li>[evening] Our evenings are just people sitting and staring at the walls. Some music would help.</li>
+        <li>[winter] Winter evenings go on forever. With {THING}, I could at least play through them.</li>
       </plain>
       <warm>
         <li>I'd play for everyone, every evening. Just give me {THING}.</li>
@@ -82,21 +82,21 @@
         <li>If I have to listen to one more person whistle, I'll snap. Get me {THING}.</li>
       </blunt>
       <cheerful>
-        <li>Music! Dancing! Terrible singing! The colony needs it, and I need {THING}!</li>
+        <li>We could have dancing and terrible singing every night! All I need is {THING}.</li>
       </cheerful>
       <gloomy>
         <li>Some sad songs would suit this place. I'd need {THING} for that.</li>
       </gloomy>
       <cold>
-        <li>Music measurably improves morale. {THING} would be an efficient investment.</li>
+        <li>Music measurably improves morale. Building {THING} would be an efficient investment.</li>
       </cold>
     </request>
     <thanks>
       <plain>
-        <li>Listen to that. Out here, of all places.</li>
+        <li>Listen to that. I'd forgotten how much I missed music.</li>
       </plain>
       <cheerful>
-        <li>First song's for everyone who built it! Second song's for me!</li>
+        <li>This first song's for whoever built it!</li>
       </cheerful>
     </thanks>
   </ColonyCouncil.WishDef>
@@ -124,18 +124,18 @@
     </triggers>
     <request>
       <plain>
-        <li>I'm the one standing in front when they come. I'd like something between me and their bullets.</li>
-        <li>[trigger:raid] That arrow went straight through my shirt. My shirt was not consulted.</li>
+        <li>I'm the one standing in front when they come. I'd like something between me and their weapons.</li>
+        <li>[trigger:raid] That shot went straight through my shirt. An inch to the left and you'd be burying me.</li>
         <li>[lowtech] Leather, plate, anything. I'm tired of fighting in a tunic.</li>
       </plain>
       <warm>
         <li>I don't mind being the one who fights. I'd just like to come back from it.</li>
       </warm>
       <blunt>
-        <li>Armor. For me. Before the next raid, not after my funeral.</li>
+        <li>I need armor before the next raid, not after my funeral.</li>
       </blunt>
       <cheerful>
-        <li>Picture me in shining armor! Now picture me surviving! Both good!</li>
+        <li>Picture me in a proper set of armor! I'd be the best-dressed one at the next raid.</li>
       </cheerful>
       <gloomy>
         <li>One of these raids is going to kill me. Armor would make it a later one.</li>
@@ -146,10 +146,10 @@
     </request>
     <thanks>
       <plain>
-        <li>Fits. Heavy. Perfect. Let them come.</li>
+        <li>It's heavy, but it fits. I'll get used to the weight.</li>
       </plain>
       <blunt>
-        <li>Good. Now point me at the next idiot with a gun.</li>
+        <li>Good. Now point me at the next raider.</li>
       </blunt>
     </thanks>
     <expired>

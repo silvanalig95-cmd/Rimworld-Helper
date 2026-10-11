@@ -9,7 +9,7 @@
     <stages>
       <li>
         <label>they got away</label>
-        <description>The one who did this to me is out there, walking around, eating, sleeping. I keep seeing the face.</description>
+        <description>The one who did this to me is still out there, eating and sleeping like nothing happened. I keep seeing their face.</description>
         <baseMoodEffect>-4</baseMoodEffect>
       </li>
     </stages>
@@ -21,7 +21,7 @@
     <stages>
       <li>
         <label>they came back</label>
-        <description>I knew it. I knew they'd come back. My hands won't stop shaking.</description>
+        <description>I knew they'd come back. My hands won't stop shaking.</description>
         <baseMoodEffect>-6</baseMoodEffect>
       </li>
     </stages>
@@ -33,7 +33,7 @@
     <stages>
       <li>
         <label>let them come</label>
-        <description>They came back. Good. This time I'm the one who knows what's coming.</description>
+        <description>They came back, and this time I'm ready for them.</description>
         <baseMoodEffect>4</baseMoodEffect>
       </li>
     </stages>
@@ -45,7 +45,7 @@
     <stages>
       <li>
         <label>my nemesis in chains</label>
-        <description>The one who hurt me sleeps behind a door I can lock. I walked past it twice today, just to hear it hold.</description>
+        <description>The one who hurt me is locked in a cell now. I walked past the door twice today just to check it.</description>
         <baseMoodEffect>6</baseMoodEffect>
       </li>
     </stages>
@@ -57,7 +57,7 @@
     <stages>
       <li>
         <label>I had my revenge</label>
-        <description>It was me. At the end it was my hand. I thought I'd feel more. I feel lighter, which is close enough.</description>
+        <description>I killed the one who hurt me, with my own hands. I feel lighter than I have in years.</description>
         <baseMoodEffect>14</baseMoodEffect>
       </li>
     </stages>
@@ -69,7 +69,7 @@
     <stages>
       <li>
         <label>my nemesis is dead</label>
-        <description>Someone finished it. I wish it had been me, but I'll take dead over waiting.</description>
+        <description>The one who hurt me is dead. I wish it had been my hand, but it's over.</description>
         <baseMoodEffect>7</baseMoodEffect>
       </li>
     </stages>
@@ -81,7 +81,7 @@
     <stages>
       <li>
         <label>ended someone's nightmare</label>
-        <description>That one had been haunting one of ours. Not anymore. People keep buying me drinks with their eyes.</description>
+        <description>I killed the one who'd been haunting one of ours. The others look at me differently now.</description>
         <baseMoodEffect>4</baseMoodEffect>
       </li>
     </stages>
@@ -95,7 +95,7 @@
     <stages>
       <li>
         <label>my animal fought for me</label>
-        <description>When it went bad, my animal didn't run. It came straight at them. I owe it more than scraps.</description>
+        <description>When the fight turned bad, my animal didn't run. It went straight at them.</description>
         <baseMoodEffect>6</baseMoodEffect>
       </li>
     </stages>
@@ -107,7 +107,7 @@
     <stages>
       <li>
         <label>lost my animal</label>
-        <description>I keep listening for it at the door. It was only an animal. That's what I keep telling myself.</description>
+        <description>My animal is gone. I keep listening for it at the door.</description>
         <baseMoodEffect>-4</baseMoodEffect>
       </li>
     </stages>
