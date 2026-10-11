@@ -101,7 +101,7 @@
       </li>
       <li>
         <label>Let {X_objective} go, then</label>
-        <outcome>The wardens have orders to let {X_nameDef} go. {X_nameDef} looked almost disappointed to be proven right. {FACTION} will hear that the stories are true.</outcome>
+        <outcome>The wardens have orders to let {X_nameDef} go. {X_nameDef} looked almost disappointed to be proven right. Word will get around that the stories are true.</outcome>
         <ways><mercy>5</mercy></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_PrisonerOrder"><mode>Release</mode></li>
@@ -612,7 +612,6 @@
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_DlmR_RestDay</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_DlmR_IdleDay</thought><degreeTrait>Industriousness</degreeTrait><minDegree>1</minDegree></li>
-          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_DlmR_DayOff</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>5</amount></li>
         </effects>
       </li>
