@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- Camps: the duty and jobs of the people who camp on the colony's map, the letter that asks the colony about them,
+       and how the colonists feel and write about it (Source/ColonyCouncil/Camps). -->
+
+  <!-- ===================== Life at the camp ===================== -->
+
+  <!-- Everything they do at the camp comes from JobGiver_CampLife (eating, sleeping, building, fetching, cooking,
+       hunting, felling trees, their own work); otherwise they wander near their fire. -->
+  <DutyDef>
+    <defName>Council_CampLife</defName>
+    <thinkNode Class="ThinkNode_Priority">
+      <subNodes>
+        <li Class="ColonyCouncil.JobGiver_CampLife" />
+        <li Class="JobGiver_WanderNearDutyLocation">
+          <wanderRadius>6</wanderRadius>
+        </li>
+      </subNodes>
+    </thinkNode>
+  </DutyDef>
+
+  <JobDef Name="Council_CampJobBase" Abstract="True">
+    <driverClass>ColonyCouncil.JobDriver_CampTask</driverClass>
+    <casualInterruptible>true</casualInterruptible>
+  </JobDef>
+
+  <JobDef ParentName="Council_CampJobBase">
+    <defName>Council_CampEat</defName>
+    <reportString>eating by the camp fire.</reportString>
+    <modExtensions>
+      <li Class="ColonyCouncil.CampJobExtension"><ticks>500</ticks><social>true</social></li>
+    </modExtensions>
+  </JobDef>
+
+  <JobDef ParentName="Council_CampJobBase">
+    <defName>Council_CampCook</defName>
+    <reportString>cooking supper at the camp fire.</reportString>
+    <modExtensions>
+      <li Class="ColonyCouncil.CampJobExtension"><ticks>1500</ticks></li>
+    </modExtensions>
+  </JobDef>
+
+  <JobDef ParentName="Council_CampJobBase">
+    <defName>Council_CampButcher</defName>
+    <reportString>butchering TargetA.</reportString>
+    <modExtensions>
+      <li Class="ColonyCouncil.CampJobExtension"><ticks>1300</ticks></li>
+    </modExtensions>
+  </JobDef>
+
+  <JobDef ParentName="Council_CampJobBase">
+    <defName>Council_CampTend</defName>
+    <reportString>tending TargetA.</reportString>
+    <modExtensions>
+      <li Class="ColonyCouncil.CampJobExtension"><ticks>450</ticks></li>
+    </modExtensions>
+  </JobDef>
+
+  <JobDef ParentName="Council_CampJobBase">
+    <defName>Council_CampSit</defName>
+    <reportString>sitting by the camp fire.</reportString>
+    <modExtensions>
+      <li Class="ColonyCouncil.CampJobExtension"><ticks>2000</ticks><social>true</social></li>
+    </modExtensions>
+  </JobDef>
+
+  <JobDef ParentName="Council_CampJobBase">
+    <defName>Council_CampPray</defName>
+    <reportString>praying.</reportString>
+    <modExtensions>
+      <li Class="ColonyCouncil.CampJobExtension"><ticks>2500</ticks></li>
+    </modExtensions>
+  </JobDef>
+
+  <JobDef ParentName="Council_CampJobBase">
+    <defName>Council_CampProspect</defName>
+    <reportString>digging for ore.</reportString>
+    <modExtensions>
+      <li Class="ColonyCouncil.CampJobExtension"><ticks>3000</ticks></li>
+    </modExtensions>
+  </JobDef>
+
+  <JobDef ParentName="Council_CampJobBase">
+    <defName>Council_CampSmith</defName>
+    <reportString>mending and making things.</reportString>
+    <modExtensions>
+      <li Class="ColonyCouncil.CampJobExtension"><ticks>2500</ticks></li>
+    </modExtensions>
+  </JobDef>
+
+  <JobDef ParentName="Council_CampJobBase">
+    <defName>Council_CampKeepStall</defName>
+    <reportString>keeping the stall.</reportString>
+    <modExtensions>
+      <li Class="ColonyCouncil.CampJobExtension"><ticks>2500</ticks><social>true</social></li>
+    </modExtensions>
+  </JobDef>
+
+  <JobDef ParentName="Council_CampJobBase">
+    <defName>Council_CampWork</defName>
+    <reportString>working around the camp.</reportString>
+    <modExtensions>
+      <li Class="ColonyCouncil.CampJobExtension"><ticks>2000</ticks></li>
+    </modExtensions>
+  </JobDef>
+
+  <!-- ===================== The camp's letters ===================== -->
+
+  <LetterDef>
+    <defName>Council_CampLetter</defName>
+    <letterClass>ColonyCouncil.ChoiceLetter_Camp</letterClass>
+    <color>(150, 190, 140)</color>
+    <flashColor>(185, 220, 170)</flashColor>
+    <flashInterval>90</flashInterval>
+    <arriveSound>LetterArrive</arriveSound>
+    <bounce>true</bounce>
+  </LetterDef>
+
+  <!-- ===================== How the colonists feel ===================== -->
+
+  <ThoughtDef>
+    <defName>Council_Camp_GoodNeighbors</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
+    <durationDays>4</durationDays>
+    <stackLimit>1</stackLimit>
+    <stages><li><label>good neighbors for a while</label><description>The people who camped near us traded with us, helped where they could, and left on good terms.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Council_Camp_Crowded</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
+    <durationDays>2</durationDays>
+    <stackLimit>1</stackLimit>
+    <stages><li><label>strangers on our land</label><description>They cut our trees and shoot our game, and nobody asked us first.</description><baseMoodEffect>-2</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Council_Camp_DroveThemOff</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
+    <durationDays>4</durationDays>
+    <stackLimit>1</stackLimit>
+    <stages><li><label>we drove off the camp</label><description>They hadn't done anything to us, and we sent them running anyway.</description><baseMoodEffect>-3</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Council_Camp_Helped</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
+    <durationDays>3</durationDays>
+    <stackLimit>1</stackLimit>
+    <stages><li><label>the camp helped us</label><description>The people at the camp did us a good turn and asked for nothing in return.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Council_Camp_FriendLeft</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
+    <durationDays>3</durationDays>
+    <stackLimit>1</stackLimit>
+    <stages><li><label>a friend moved on with the camp</label><description>I got to know someone at the camp. Now they've moved on, and I don't know if I'll see them again.</description><baseMoodEffect>-2</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <!-- ===================== Journals ===================== -->
+
+  <!-- Written when a camp ends, by a colonist who made a friend there ([friend], {X} is the friend) or one who resented
+       them ([resent]). Also tagged with how it ended ([left], [forced], [fled], [fight], [fallout]) and what happened
+       ([traded], [helped], [hired]). -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Journal_Camp</defName>
+    <lines>
+      <plain>
+        <li>[friend] {X_nameDef} from the camp left today. We used to sit at their fire after supper while {X_pronoun} told me about the places {X_pronoun}'d been.</li>
+        <li>[friend,left] The camp packed up this morning. {X_nameDef} gave me a carved spoon before going. I didn't have anything to give back.</li>
+        <li>[friend,traded] Traded with the camp one last time. {X_nameDef} talked me into a worse deal than I meant to make, and I didn't mind.</li>
+        <li>[friend,forced] We chased the camp off today. {X_nameDef} looked straight at me on the way out, and I couldn't look back.</li>
+        <li>[friend,fled] The camp scattered after what happened. I hope {X_nameDef} got away all right.</li>
+        <li>[friend,fight] I knew {X_nameDef} from the camp. Then we were on opposite sides of a fight, and I never saw what happened to {X_objective}.</li>
+        <li>[friend,fallout] The camp left angry. {X_nameDef} didn't say goodbye to me, and I'm not sure I blame {X_objective}.</li>
+        <li>[friend,hired] One of the camp stayed on with us when the rest left. I'd hoped it would be {X_nameDef}.</li>
+        <li>[resent] The camp is gone, and so are a good many of the trees out that way.</li>
+        <li>[resent] Strangers shooting deer within sight of our fields, for days. Nobody asked us.</li>
+        <li>[resent,forced] We ran the camp off today. About time.</li>
+        <li>[resent,fallout] The camp left in a temper. I won't miss them.</li>
+        <li>[resent,fight] They chose to fight us over a patch of woods. Now that's done.</li>
+        <li>[resent,helped] The camp left us some meat once. It was our meat to begin with, if you think about it.</li>
+      </plain>
+      <warm>
+        <li>[friend] {X_nameDef} showed me how to keep a fire going all night on almost nothing. I'll miss that camp.</li>
+        <li>[friend,helped] The people at the camp left us medicine and meat and asked for nothing. {X_nameDef} was the one who thought of it.</li>
+      </warm>
+      <blunt>
+        <li>[resent] Camp's gone. Fine by me.</li>
+        <li>[friend] Liked {X_nameDef}. Shame about the camp moving on.</li>
+      </blunt>
+      <cheerful>
+        <li>[friend,traded] Bought a whole sack of things from the camp's trader! {X_nameDef} threw in a spare whetstone.</li>
+        <li>[friend] {X_nameDef} taught me a song from the road. I've been humming it all day.</li>
+      </cheerful>
+      <gloomy>
+        <li>[friend] {X_nameDef} moved on with the camp. People always move on.</li>
+        <li>[resent] Another lot of strangers living off our land. Next time it'll be raiders.</li>
+      </gloomy>
+      <cold>
+        <li>[friend] The camp has left. {X_nameDef} was useful company while it lasted.</li>
+        <li>[resent] The camp took more than it gave. I kept count.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+</Defs>

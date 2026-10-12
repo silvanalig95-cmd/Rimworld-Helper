@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- Rimfolk world event: a group that isn't hostile makes camp on the colony's map (Source/ColonyCouncil/Camps).
+       The kind of camp (Defs/CampDefs/Council_CampKinds.xml) picks the letter's title and text; the answers here are
+       the colony's first word on it. Later letters (tension, terms bent, someone asking to join, more time) and the
+       camp's card on the World page come from the camp itself. One camp at a time, never in the first twenty days,
+       only with room on the map; Settings: World events, camps. -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Council_Evt_Camp</defName>
+    <label>strangers make camp</label>
+    <workerClass>ColonyCouncil.HappeningWorker_Camp</workerClass>
+    <baseChance>0.7</baseChance>
+    <minRefireDays>45</minRefireDays>
+    <earliestDay>20</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Visitors</group>
+        <answerDays>0.75</answerDays>
+        <titles>
+          <li>Strangers make camp</li>
+        </titles>
+        <texts>
+          <li>Strangers of {FACTION} are making camp {PLACE}.</li>
+        </texts>
+        <defaultOption>0</defaultOption>
+        <options>
+          <li>
+            <label>Let them stay</label>
+            <outcome>The colony lets them be. They will camp {PLACE} for a while.</outcome>
+            <ways><openness>2</openness></ways>
+          </li>
+          <li>
+            <label>Let them stay, on terms</label>
+            <outcome>The colony will let them stay, on terms it sets.</outcome>
+            <ways><openness>1</openness></ways>
+          </li>
+          <li>
+            <label>Ask them to move on, with {COUNT} silver</label>
+            <outcome>They take the silver with thanks and go.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>silver</what><onlyIfChosen>true</onlyIfChosen></li>
+            </effects>
+            <ways><generosity>2</generosity><openness>-1</openness></ways>
+          </li>
+          <li>
+            <label>Ask them to move on</label>
+            <outcome>They take it badly, but they go.</outcome>
+            <ways><openness>-2</openness></ways>
+          </li>
+          <li>
+            <label>Drive them off</label>
+            <outcome>Armed colonists walk out to meet them, and the strangers hurry off the colony's land.</outcome>
+            <ways><mercy>-3</mercy><openness>-3</openness></ways>
+          </li>
+        </options>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+</Defs>

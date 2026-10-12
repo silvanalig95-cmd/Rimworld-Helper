@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!-- Camps: groups who settle part of the colony's map for a while (Source/ColonyCouncil/Camps). Camp texts may use
+       {X_nameDef} (whoever speaks for them, or the one it's about), {A_nameDef} (a colonist), {FACTION}, {NAME} (the
+       kind of camp: "hunting party"), {PLACE} ("east of the colony"), {DAYS}, {COUNT} and {THING}. {NAME} may be one
+       person or several, so sentences about it are written in the past tense or with "they". -->
+
+  <!-- Settings -->
+  <CC_Settings_Camps>... including groups who make camp on the map</CC_Settings_Camps>
+  <CC_Settings_Camps_Tip>Now and then a group that isn't hostile (hunters, refugees, prospectors, pilgrims, traders, a smith, a hermit) makes camp on the colony's map for a few days to a season. They build a small camp, hunt and cut wood around it, and can be traded with, given terms, hired, asked to leave or driven off. At most one camp at a time, never in a colony's first weeks. Off: no new camps (one already here stays until its time is up).</CC_Settings_Camps_Tip>
+
+  <!-- Where -->
+  <CC_Camp_Dir_E>east of the colony</CC_Camp_Dir_E>
+  <CC_Camp_Dir_NE>northeast of the colony</CC_Camp_Dir_NE>
+  <CC_Camp_Dir_N>north of the colony</CC_Camp_Dir_N>
+  <CC_Camp_Dir_NW>northwest of the colony</CC_Camp_Dir_NW>
+  <CC_Camp_Dir_W>west of the colony</CC_Camp_Dir_W>
+  <CC_Camp_Dir_SW>southwest of the colony</CC_Camp_Dir_SW>
+  <CC_Camp_Dir_S>south of the colony</CC_Camp_Dir_S>
+  <CC_Camp_Dir_SE>southeast of the colony</CC_Camp_Dir_SE>
+
+  <!-- The first letter -->
+  <CC_Camp_Facts>They mean to stay about {DAYS}.</CC_Camp_Facts>
+  <CC_Camp_Facts_Both>They will hunt and cut wood around their camp.</CC_Camp_Facts_Both>
+  <CC_Camp_Facts_Wood>They will cut wood around their camp.</CC_Camp_Facts_Wood>
+  <CC_Camp_Facts_Game>They will hunt around their camp.</CC_Camp_Facts_Game>
+  <CC_Camp_Facts_Trader>{X_nameDef} will trade from the camp.</CC_Camp_Facts_Trader>
+  <CC_Camp_Facts_Talk>Once they are settled, the World page has their camp: trade, terms, gifts, hiring, and asking them to move on.</CC_Camp_Facts_Talk>
+
+  <!-- Arriving and building -->
+  <CC_Camp_Arrived>The {NAME} from {FACTION} reached their spot {PLACE} and started putting up a camp.</CC_Camp_Arrived>
+  <CC_Camp_Built>The {NAME} from {FACTION} finished their camp {PLACE}.</CC_Camp_Built>
+
+  <!-- Day to day -->
+  <CC_Camp_Traded>The colony traded with {X_nameDef} at the camp. Trade makes for easier neighbors.</CC_Camp_Traded>
+  <CC_Camp_Taken>The camp's {THING} turned up in the colony's stockpile, and the {NAME} noticed.</CC_Camp_Taken>
+  <CC_Camp_FeePaid>The {NAME} paid their fee: {COUNT} silver, left where the colony can collect it.</CC_Camp_FeePaid>
+  <CC_Camp_Shared>The {NAME} left {COUNT} meat from their hunt for the colony, as agreed.</CC_Camp_Shared>
+  <CC_Camp_Found>{X_nameDef} found {COUNT} {THING} at the diggings.</CC_Camp_Found>
+  <CC_Camp_Tended>{X_nameDef} from the camp tended {A_nameDef}'s wounds where {A_pronoun} lay.</CC_Camp_Tended>
+  <CC_Camp_HelpTitle>A good turn from the camp</CC_Camp_HelpTitle>
+  <CC_Camp_Help_meat>The {NAME} had a good day's hunting and left {COUNT} meat where the colony can collect it.</CC_Camp_Help_meat>
+  <CC_Camp_Help_wood>The {NAME} cut more wood than they needed and left {COUNT} logs where the colony can collect them.</CC_Camp_Help_wood>
+  <CC_Camp_Help_medicine>The {NAME} gathered healing herbs and left {COUNT} bundles of herbal medicine for the colony.</CC_Camp_Help_medicine>
+  <CC_Camp_Help_mend>{X_nameDef} from the camp saw {A_nameDef}'s worn {THING} and mended it, asking nothing for the work.</CC_Camp_Help_mend>
+
+  <!-- Tension -->
+  <CC_Camp_Tension_Low>easy</CC_Camp_Tension_Low>
+  <CC_Camp_Tension_Some>uneasy</CC_Camp_Tension_Some>
+  <CC_Camp_Tension_Raised>tense</CC_Camp_Tension_Raised>
+  <CC_Camp_Tension_High>near breaking</CC_Camp_Tension_High>
+  <CC_Camp_TensionLabel>Between the colony and the camp</CC_Camp_TensionLabel>
+  <CC_Camp_TensionTip>It grows the longer they stay, the more they take from the land, and when either side breaks the terms. Trade, gifts and friendships ease it. If it breaks, they leave, and their people think less of the colony.</CC_Camp_TensionTip>
+  <CC_Camp_TensionTitle>Unease with the camp</CC_Camp_TensionTitle>
+  <CC_Camp_Tension>Things are getting tense between the colony and the {NAME} {PLACE}. There have been sharp words over firewood and game, and some colonists would like the camp gone. The council could set terms, smooth things over with a gift, or ask them to move on.</CC_Camp_Tension>
+  <CC_Camp_TensionHighTitle>Trouble with the camp</CC_Camp_TensionHighTitle>
+  <CC_Camp_TensionHigh>Relations with the {NAME} {PLACE} are close to breaking. {X_nameDef} has stopped returning greetings, and the colonists talk about the camp at every meal. If nothing changes, the {NAME} will leave on bad terms, and {FACTION} will hear about it.</CC_Camp_TensionHigh>
+  <CC_Camp_Took>So far they have felled {0} trees and hunted {1} animals.</CC_Camp_Took>
+
+  <!-- Terms -->
+  <CC_Camp_Term_Fee>a fee every few days</CC_Camp_Term_Fee>
+  <CC_Camp_Term_FeeAmount>a fee of {0} silver every five days</CC_Camp_Term_FeeAmount>
+  <CC_Camp_Term_Share>a third of their meat</CC_Camp_Term_Share>
+  <CC_Camp_Term_Boundary>keeping to their side</CC_Camp_Term_Boundary>
+  <CC_Camp_Term_Limit>leaving within three days</CC_Camp_Term_Limit>
+  <CC_Camp_Term_Fee_Tip>They pay silver every five days for the use of the land, left where the colony can collect it.</CC_Camp_Term_Fee_Tip>
+  <CC_Camp_Term_Share_Tip>A third of the meat from every animal they bring in is left for the colony.</CC_Camp_Term_Share_Tip>
+  <CC_Camp_Term_Boundary_Tip>They cut wood and hunt only on the far side of their camp from the colony, closer in, and less of it each day.</CC_Camp_Term_Boundary_Tip>
+  <CC_Camp_Term_Limit_Tip>They leave within three days. Asking them to go before then breaks the colony's own word.</CC_Camp_Term_Limit_Tip>
+  <CC_Camp_Term_NotForThem>This group can't agree to that.</CC_Camp_Term_NotForThem>
+  <CC_Camp_TermsNow>Terms: {0}.</CC_Camp_TermsNow>
+  <CC_Camp_NoTerms>No terms set.</CC_Camp_NoTerms>
+  <CC_Camp_TermsSame>Nothing changed in the terms.</CC_Camp_TermsSame>
+  <CC_Camp_TermsTook>They agreed to {0}.</CC_Camp_TermsTook>
+  <CC_Camp_TermsRefused>They refused {0}.</CC_Camp_TermsRefused>
+  <CC_Camp_BrokenTitle>The camp bends the terms</CC_Camp_BrokenTitle>
+  <CC_Camp_Broken_boundary>The {NAME} {PLACE} cut wood on the colony's side of their camp today, against the terms they agreed to.</CC_Camp_Broken_boundary>
+  <CC_Camp_Broken_share>The {NAME} {PLACE} kept all the meat from their last hunt, though they agreed to share a third of it.</CC_Camp_Broken_share>
+  <CC_Camp_Broken_fee>Word came from the camp {PLACE}: their fee will be late this time.</CC_Camp_Broken_fee>
+  <CC_Camp_Reminded>{X_nameDef} agrees to keep to the terms.</CC_Camp_Reminded>
+  <CC_Camp_RemindedStiff>{X_nameDef} agrees to keep to the terms, stiffly. The camp didn't like being told.</CC_Camp_RemindedStiff>
+
+  <!-- Joining -->
+  <CC_Camp_JoinTitle>{X_nameDef} asks to stay</CC_Camp_JoinTitle>
+  <CC_Camp_JoinText>{X_nameDef}, from the camp {PLACE}, has been spending evenings with the colonists, and asks whether the colony would take {X_objective} in.</CC_Camp_JoinText>
+  <CC_Camp_JoinDeclined>{X_nameDef} nods and goes back to the camp.</CC_Camp_JoinDeclined>
+  <CC_Camp_JoinedTitle>{X_nameDef} joins</CC_Camp_JoinedTitle>
+  <CC_Camp_Hired>{X_nameDef} from the camp took {COUNT} silver to work for the colony and moved in.</CC_Camp_Hired>
+  <CC_Camp_Welcomed>{X_nameDef} left the camp and moved in with the colony.</CC_Camp_Welcomed>
+
+  <!-- Staying longer -->
+  <CC_Camp_OverstayTitle>The camp asks for more time</CC_Camp_OverstayTitle>
+  <CC_Camp_Overstay>The {NAME} {PLACE} meant to be gone by now. {X_nameDef} asks whether they could stay a few more days.</CC_Camp_Overstay>
+  <CC_Camp_Extended>The {NAME} will stay a few days more.</CC_Camp_Extended>
+
+  <!-- Asking them to go -->
+  <CC_Camp_RefusedTitle>The camp won't go</CC_Camp_RefusedTitle>
+  <CC_Camp_Refused>{X_nameDef} heard the colony out and said no. They came a long way, the land isn't the colony's to give, and they will leave when they're ready.\n\nA gift of {COUNT} silver might change their minds. Insisting will cost goodwill with {FACTION}.</CC_Camp_Refused>
+  <CC_Camp_LetStay>The camp stays, and nobody brings it up again for now.</CC_Camp_LetStay>
+  <CC_Camp_Force_War>The camp took it as an attack. They are arming themselves, and their people now count the colony as an enemy.</CC_Camp_Force_War>
+  <CC_Camp_Gifted>The camp accepted the gift of {COUNT} silver.</CC_Camp_Gifted>
+
+  <!-- Answers -->
+  <CC_Camp_Opt_Welcome>Welcome {X_objective}</CC_Camp_Opt_Welcome>
+  <CC_Camp_Opt_NotNow>Not now</CC_Camp_Opt_NotNow>
+  <CC_Camp_Opt_Terms>Talk terms</CC_Camp_Opt_Terms>
+  <CC_Camp_Opt_Gift>Send a gift of {COUNT} silver</CC_Camp_Opt_Gift>
+  <CC_Camp_Opt_AskLeave>Ask them to move on</CC_Camp_Opt_AskLeave>
+  <CC_Camp_Opt_AskLeave_Tip>Without a gift, their people take it badly (goodwill falls), and a proud group may refuse.</CC_Camp_Opt_AskLeave_Tip>
+  <CC_Camp_Opt_AskGift>Ask them to move on, with {COUNT} silver</CC_Camp_Opt_AskGift>
+  <CC_Camp_Opt_LetBe>Let it be</CC_Camp_Opt_LetBe>
+  <CC_Camp_Opt_Remind>Remind them of the terms</CC_Camp_Opt_Remind>
+  <CC_Camp_Opt_LetGo>Let it go</CC_Camp_Opt_LetGo>
+  <CC_Camp_Opt_Extend>Let them stay a few more days</CC_Camp_Opt_Extend>
+  <CC_Camp_Opt_TimeToGo>Time to go</CC_Camp_Opt_TimeToGo>
+  <CC_Camp_Opt_Insist>Insist</CC_Camp_Opt_Insist>
+  <CC_Camp_Opt_LetStay>Let them stay</CC_Camp_Opt_LetStay>
+  <CC_Camp_Opt_Force>Drive them off</CC_Camp_Opt_Force>
+  <CC_Camp_Opt_Force_Tip>Their people will take it as an attack, and goodwill with them falls sharply. If that makes them enemies, the camp will fight. Otherwise they leave right away.</CC_Camp_Opt_Force_Tip>
+  <CC_Camp_Opt_Force_Confirm>Drive off the camp by force? {0} will take it as an attack on their people.</CC_Camp_Opt_Force_Confirm>
+  <CC_Camp_Deadline>The colony has {0} to answer. If nobody does: "{1}".</CC_Camp_Deadline>
+
+  <!-- Fighting -->
+  <CC_Camp_FightTitle>The camp fights</CC_Camp_FightTitle>
+  <CC_Camp_Fight>The camp {PLACE} is at war with the colony now. Its people are holding it, and will fight anyone who comes near.</CC_Camp_Fight>
+
+  <!-- Endings -->
+  <CC_Camp_EndTitle>The camp is gone</CC_Camp_EndTitle>
+  <CC_Camp_TurnedBack>The {NAME} from {FACTION} turned back before they made camp.</CC_Camp_TurnedBack>
+  <CC_Camp_End_time>The {NAME} from {FACTION} packed up their camp {PLACE} and moved on.</CC_Camp_End_time>
+  <CC_Camp_End_asked>The {NAME} from {FACTION} did as the colony asked. They packed up their camp {PLACE} and moved on.</CC_Camp_End_asked>
+  <CC_Camp_End_forced>Faced with armed colonists, the {NAME} from {FACTION} left their camp {PLACE} in a hurry. Their people will remember it.</CC_Camp_End_forced>
+  <CC_Camp_End_raid>With raiders about, the {NAME} from {FACTION} gathered what they could carry and left their camp {PLACE}. They wanted no part in the colony's fight.</CC_Camp_End_raid>
+  <CC_Camp_End_weather>The weather turned, and the {NAME} from {FACTION} packed up their camp {PLACE} to look for better shelter.</CC_Camp_End_weather>
+  <CC_Camp_End_hunger>The {NAME} from {FACTION} ran out of food. With the hunting poor, they packed up their camp {PLACE} and moved on.</CC_Camp_End_hunger>
+  <CC_Camp_End_crowded>The colony has spread out toward the camp {PLACE}. The {NAME} took the hint, packed up and moved on.</CC_Camp_End_crowded>
+  <CC_Camp_End_fallout>The {NAME} from {FACTION} had enough of the colony. They broke camp {PLACE} and left without a word to anyone, and their people will hear about it.</CC_Camp_End_fallout>
+  <CC_Camp_End_harmed>After the colony hurt one of their own, the {NAME} from {FACTION} fled their camp {PLACE}, leaving most of their things behind.</CC_Camp_End_harmed>
+  <CC_Camp_End_arrest>After the colony took one of them prisoner, the rest of the {NAME} fled their camp {PLACE}, leaving most of their things behind.</CC_Camp_End_arrest>
+  <CC_Camp_End_fight>The {NAME} from {FACTION} fought the colony at their camp {PLACE}.</CC_Camp_End_fight>
+  <CC_Camp_End_fightOver>The fight at the camp {PLACE} is over. Those of the {NAME} who could still walk have fled, and the camp stands empty.</CC_Camp_End_fightOver>
+  <CC_Camp_End_lost>The {NAME} from {FACTION} couldn't reach the spot they wanted and moved on.</CC_Camp_End_lost>
+  <CC_Camp_End_empty>The camp {PLACE} stands empty now. Nobody from it is left there.</CC_Camp_End_empty>
+  <CC_Camp_Stayed>Staying on with the colony: {0}.</CC_Camp_Stayed>
+  <CC_Camp_Past>{0} from {1}, here {2}</CC_Camp_Past>
+
+  <!-- The World page -->
+  <CC_Camp_Section>Camped on our land</CC_Camp_Section>
+  <CC_Camp_AndMore>and {0} more</CC_Camp_AndMore>
+  <CC_Camp_Status_Coming>On the way to their spot {1}: {0}.</CC_Camp_Status_Coming>
+  <CC_Camp_Status_Building>Putting up their camp {1}: {0}.</CC_Camp_Status_Building>
+  <CC_Camp_Status_Living>Camped {1}: {0}. Here for {2}, with about {3} to go.</CC_Camp_Status_Living>
+  <CC_Camp_Status_Overstaying>Camped {1}: {0}. Here for {2}, and past the time they meant to leave.</CC_Camp_Status_Overstaying>
+  <CC_Camp_Status_Fighting>Holding their camp against the colony: {0}.</CC_Camp_Status_Fighting>
+  <CC_Camp_Status_Leaving>Leaving: {0}.</CC_Camp_Status_Leaving>
+  <CC_Camp_TakenSoFar>Taken from the land so far: {0} trees, {1} animals.</CC_Camp_TakenSoFar>
+  <CC_Camp_TraderLine>{X_nameDef} trades from the camp.</CC_Camp_TraderLine>
+  <CC_Camp_Talk>Talk to them</CC_Camp_Talk>
+  <CC_Camp_Show>Show the camp</CC_Camp_Show>
+
+  <!-- Talking to them -->
+  <CC_Camp_Dlg_Trade>Trade</CC_Camp_Dlg_Trade>
+  <CC_Camp_Dlg_TradeHow>{X_nameDef} trades from the camp. Select a colonist and right-click {X_objective} to trade.</CC_Camp_Dlg_TradeHow>
+  <CC_Camp_Dlg_ShowTrader>Find {X_nameDef}</CC_Camp_Dlg_ShowTrader>
+  <CC_Camp_Dlg_Terms>Terms of their stay</CC_Camp_Dlg_Terms>
+  <CC_Camp_Dlg_TermsHow>Each term they accept makes things tenser between the two. They may refuse some, and proud groups refuse more.</CC_Camp_Dlg_TermsHow>
+  <CC_Camp_Dlg_PutTerms>Put these terms to them</CC_Camp_Dlg_PutTerms>
+  <CC_Camp_Dlg_NotYet>They aren't settled yet.</CC_Camp_Dlg_NotYet>
+  <CC_Camp_Dlg_Goodwill>Gifts and hiring</CC_Camp_Dlg_Goodwill>
+  <CC_Camp_Dlg_NoHire>Nobody at the camp wants to work for the colony.</CC_Camp_Dlg_NoHire>
+  <CC_Camp_Dlg_Hire>Hire {X_nameDef} ({COUNT} silver)</CC_Camp_Dlg_Hire>
+  <CC_Camp_Dlg_Leave>Asking them to go</CC_Camp_Dlg_Leave>
+  <CC_Camp_Dlg_Arrest>To arrest one of them, select a colonist and right-click them, as with any visitor. Their people will take it badly, and the rest of the camp will flee.</CC_Camp_Dlg_Arrest>
+
+</LanguageData>
