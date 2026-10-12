@@ -58,7 +58,13 @@ Things that happen to the colony from outside, on Rimfolk's own rhythm, written 
   crashed drone, signal), pasts knocking (recognized, old commander, former patient, old map), small finds (child's
   find, pet's present, sealed crate) and an arcane tome (A RimWorld of Magic). Outcomes ride on who is sent and what
   the colony has; two can end in a fight, only as the risk of an answer; several leave memos for later events.
-- Next: more events per group.
+- Done: five story chains told in stages over days and weeks (the door in the hill, the fugitive's debt, bad blood,
+  the preacher, the lost expedition), branching on the colony's answers and luck, each with several endings in
+  letters and the chronicle; pending stages on the World page. Three missions (goods for a neighbor's funeral or
+  wedding, a runaway animal to tame, a shrine for pilgrims) offered as real quests in the Quests tab (or letters),
+  tracked by Rimfolk with progress on the World page.
+- Next: more events per group; more chains (hooking the storyteller batch's memos: the peace bought, the survivor,
+  the star-iron blade) and missions (an apprentice to train, a dignitary to host, refugees to see safely through).
 
 ## Phase H2: Scenarios with stakes (done)
 - Done: six scenarios (Hot Money, Marooned, Deserters, Bad Blood, Borrowed Time, The Fallen Tyrant) built from six
