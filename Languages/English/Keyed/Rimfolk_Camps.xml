@@ -136,8 +136,8 @@
   <CC_Camp_End_hunger>The {NAME} from {FACTION} ran out of food. With the hunting poor, they packed up their camp {PLACE} and moved on.</CC_Camp_End_hunger>
   <CC_Camp_End_crowded>The colony has spread out toward the camp {PLACE}. The {NAME} took the hint, packed up and moved on.</CC_Camp_End_crowded>
   <CC_Camp_End_fallout>The {NAME} from {FACTION} had enough of the colony. They broke camp {PLACE} and left without a word to anyone, and their people will hear about it.</CC_Camp_End_fallout>
-  <CC_Camp_End_harmed>After the colony hurt one of their own, the {NAME} from {FACTION} fled their camp {PLACE}, leaving most of their things behind.</CC_Camp_End_harmed>
-  <CC_Camp_End_arrest>After the colony took one of them prisoner, the rest of the {NAME} fled their camp {PLACE}, leaving most of their things behind.</CC_Camp_End_arrest>
+  <CC_Camp_End_harmed>After the colony turned on them, the {NAME} from {FACTION} fled their camp {PLACE}, leaving most of their things behind.</CC_Camp_End_harmed>
+  <CC_Camp_End_arrest>When the colony moved to arrest one of them, the {NAME} from {FACTION} fled their camp {PLACE}, leaving most of their things behind.</CC_Camp_End_arrest>
   <CC_Camp_End_fight>The {NAME} from {FACTION} fought the colony at their camp {PLACE}.</CC_Camp_End_fight>
   <CC_Camp_End_fightOver>The fight at the camp {PLACE} is over. Those of the {NAME} who could still walk have fled, and the camp stands empty.</CC_Camp_End_fightOver>
   <CC_Camp_End_lost>The {NAME} from {FACTION} couldn't reach the spot they wanted and moved on.</CC_Camp_End_lost>

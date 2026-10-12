@@ -823,7 +823,8 @@ namespace ColonyCouncil
         private void Scattered()
         {
             phase = CampPhase.Leaving;
-            ending ??= arrested.Count > 0 ? "arrest" : "harmed";
+            bool arrest = arrested.Count > 0 || map.mapPawns.FreeColonistsSpawned.Any(c => c.CurJobDef == JobDefOf.Arrest && c.CurJob.targetA.Thing is Pawn t && members.Contains(t));
+            ending ??= arrest ? "arrest" : "harmed";
             leftTick = Now;
             AbandonGoods();
             foreach (var t in Unfinished())
