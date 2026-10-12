@@ -155,7 +155,8 @@ namespace ColonyCouncil
             if (f == null || f.defeated || ending == null) return;
             var winner = s.Has("heirWon") ? s.ctx.stranger : s.Has("captainWon") ? s.ctx.other : null;
             var loser = winner == s.ctx.stranger ? s.ctx.other : s.ctx.stranger;
-            if (winner == null || winner.Dead) return;
+            // Only one of their own, free to take it: never someone who has since joined the colony or sits in its cells.
+            if (winner == null || winner.Dead || winner.Discarded || winner.Faction != f || winner.IsPrisoner) return;
             var old = Old(s);
             try
             {
@@ -261,6 +262,9 @@ namespace ColonyCouncil
             if (t.GetComponent<TradeRequestComp>()?.ActiveRequest ?? false) return false;
             foreach (var c in Find.WorldObjects.Caravans)
                 if (c.Tile == t.Tile || c.pather != null && c.pather.Moving && c.pather.Destination == t.Tile) return false;
+            // Transport pods or a shuttle on their way there.
+            foreach (var pods in Find.WorldObjects.TravellingTransporters)
+                if (pods.destinationTile == t.Tile) return false;
             foreach (var q in Find.QuestManager.QuestsListForReading)
             {
                 if (q.State != QuestState.Ongoing && q.State != QuestState.NotYetAccepted) continue;
@@ -684,7 +688,12 @@ namespace ColonyCouncil
     public class SituationWorker_PeaceTalks : WorldSituationWorker
     {
         private static bool CanMakePeace(Faction f) =>
-            f != null && f.HasGoodwill && !f.def.permanentEnemy && f.def.permanentEnemyToEveryoneExcept.NullOrEmpty() && !f.def.HasRoyalTitles;
+            f != null && f.HasGoodwill && !f.def.permanentEnemy && !f.def.permanentEnemyToEveryoneExceptPlayer && f.def.permanentEnemyToEveryoneExcept.NullOrEmpty()
+            && !f.def.HasRoyalTitles;
+
+        /// <summary>Two peoples who could make peace: neither is anyone's enemy for good, nor the other's.</summary>
+        private static bool CanMakePeace(Faction a, Faction b) =>
+            a != b && CanMakePeace(a) && CanMakePeace(b) && !a.defeated && !b.defeated && !a.def.PermanentlyHostileTo(b.def) && !b.def.PermanentlyHostileTo(a.def);
 
         /// <summary>Two neighbors at peace with the colony and at war with each other.</summary>
         private static List<(Faction, Faction)> Pairs(Map map)
@@ -693,7 +702,7 @@ namespace ColonyCouncil
             var pairs = new List<(Faction, Faction)>();
             foreach (var a in friends)
                 foreach (var b in friends)
-                    if (a != b && a.HostileTo(b)) pairs.Add((a, b));
+                    if (a.HostileTo(b) && CanMakePeace(a, b)) pairs.Add((a, b));
             return pairs;
         }
 
@@ -723,7 +732,7 @@ namespace ColonyCouncil
             {
                 var a = s.ctx.faction;
                 var b = s.ctx.enemy;
-                if (a == null || b == null || a.defeated || b.defeated || !a.HostileTo(b)) return false;
+                if (a == null || b == null || !a.HostileTo(b) || !CanMakePeace(a, b)) return false;
                 var talker = VarietyUtil.Best(map, SkillDefOf.Social);
                 s.ctx.a = talker;
                 int level = talker?.skills?.GetSkill(SkillDefOf.Social)?.Level ?? 0;
