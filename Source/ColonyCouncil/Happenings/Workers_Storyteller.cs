@@ -438,7 +438,8 @@ namespace ColonyCouncil
                     var seam = StorytellerEvents.Seam(ctx.map, cell, ore, option == 0 ? Rand.RangeInclusive(6, 10) : Rand.RangeInclusive(3, 6));
                     if (seam.Count > 0)
                     {
-                        ctx.thing = ore.building.mineableThing;
+                        // By the name the map shows it under: "compacted steel", "silver", "jade".
+                        ctx.thing = ore;
                         ctx.placeName = StorytellerEvents.Direction(ctx.map, cell);
                         var more = StorytellerEvents.More(def);
                         LivingEvents.Tell(ctx, more?.doneTitles, more?.done, null, LetterDefOf.PositiveEvent, new LookTargets(seam[0]));

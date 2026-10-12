@@ -62,8 +62,7 @@ namespace ColonyCouncil
             ctx.spot = center;
             ctx.count = cells.Count;
             ctx.placeName = StorytellerEvents.Direction(map, center);
-            // What the seam gives: "steel", "silver", "jade"...
-            ctx.thing = ore.building?.mineableThing ?? ore;
+            // {THING} is the ore by the name the map shows it under: "compacted steel", "silver", "jade".
             return true;
         }
     }
@@ -443,13 +442,13 @@ namespace ColonyCouncil
     {
         private static QuestScriptDef Quest => DefDatabase<QuestScriptDef>.GetNamedSilentFail("OpportunitySite_ItemStash");
 
-        private static bool QuestPossible()
+        private static bool QuestPossible(Map map)
         {
             var q = Quest;
             if (q == null) return false;
             try
             {
-                return q.CanRun(StorytellerUtility.DefaultSiteThreatPointsNow(), Find.World);
+                return q.CanRun(StorytellerUtility.DefaultSiteThreatPointsNow(), (IIncidentTarget)map ?? Find.World);
             }
             catch
             {
@@ -459,7 +458,7 @@ namespace ColonyCouncil
 
         private static readonly Past[] Told = { Past.Outlaw, Past.Soldier, Past.Trader, Past.Noble, Past.Scholar };
 
-        protected override bool CanHappen(Map map, HappeningExtension ext) => StorytellerEvents.Adults(map).Any() && QuestPossible();
+        protected override bool CanHappen(Map map, HappeningExtension ext) => StorytellerEvents.Adults(map).Any() && QuestPossible(map);
 
         protected override bool Cast(HappeningContext ctx, HappeningExtension ext)
         {
@@ -487,7 +486,7 @@ namespace ColonyCouncil
                 Quest quest = null;
                 try
                 {
-                    if (QuestPossible()) quest = QuestUtility.GenerateQuestAndMakeAvailable(Quest, StorytellerUtility.DefaultSiteThreatPointsNow());
+                    if (QuestPossible(ctx.map)) quest = QuestUtility.GenerateQuestAndMakeAvailable(Quest, StorytellerUtility.DefaultSiteThreatPointsNow());
                     if (quest != null) QuestUtility.SendLetterQuestAvailable(quest);
                 }
                 catch (System.Exception e)
