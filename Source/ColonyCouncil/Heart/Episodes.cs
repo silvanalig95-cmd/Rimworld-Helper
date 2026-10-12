@@ -11,7 +11,8 @@ namespace ColonyCouncil
     /// <summary>
     /// "Worn out: needs a day." Started on purpose by the heart layer, never by the game's break picker (no MentalBreakDef
     /// names it): the colonist keeps to their room for six to twelve hours, eating, sleeping and resting as they need.
-    /// It ends early if a threat appears. When it's over, strain drops by about 40 and they feel lighter for a while.
+    /// It ends early if a threat appears, or if they need a doctor or are getting too cold or too hot. When it's over,
+    /// strain drops by about 40 and they feel lighter for a while.
     /// Built on vanilla's hide-in-room state, so its room and wandering work as they do there. The only trace it leaves
     /// in a save is a colonist in the middle of one.
     /// </summary>
@@ -38,8 +39,10 @@ namespace ColonyCouncil
                 RecoverFromState();
                 return;
             }
-            // So does a wound or an illness that needs a doctor now: the doctor only tends those lying in bed.
-            if (HealthAIUtility.ShouldSeekMedicalRestUrgent(pawn)) RecoverFromState();
+            // So does a wound or an illness that needs a doctor now (the doctor only tends those lying in bed), and a room
+            // too cold or too hot to sit out the day in (nobody here seeks a warmer place on their own).
+            if (HealthAIUtility.ShouldSeekMedicalRestUrgent(pawn) || (pawn.health?.hediffSet?.HasTemperatureInjury(TemperatureInjuryStage.Minor) ?? false))
+                RecoverFromState();
         }
 
         public override void PostEnd()
@@ -101,7 +104,7 @@ namespace ColonyCouncil
             if (p.mindState?.mentalStateHandler == null || p.mindState.mentalStateHandler.MentalBreaksBlocked()) return "blocked";
             // A gathering, a ritual, a caravan forming: it waits until that's over.
             if (p.GetLord() != null) return "with others";
-            if (HealthAIUtility.ShouldSeekMedicalRest(p)) return "needs care";
+            if (HealthAIUtility.ShouldSeekMedicalRest(p) || (p.health?.hediffSet?.HasTemperatureInjury(TemperatureInjuryStage.Initial) ?? false)) return "needs care";
             if (Busy(p)) return "busy";
             if (m.threat || GenHostility.AnyHostileActiveThreatToPlayer(p.Map, false, false)) return "danger";
             if (now - h.lastEpisodeTick < PawnCooldown) return "pawn cooldown";
