@@ -356,14 +356,16 @@ namespace ColonyCouncil
             var map = HomeMap(pawn);
             if (map == null) yield break;
             var gourmand = DefDatabase<TraitDef>.GetNamedSilentFail("Gourmand");
-            bool isGourmand = HasTrait(pawn, gourmand);
+            // Fussy eaters from trait mods count too (the "gourmet" tag group).
+            bool trueGourmand = HasTrait(pawn, gourmand);
+            bool isGourmand = trueGourmand || PeopleTags.Has(pawn, "gourmet");
             bool ateRaw = HasMemory(pawn, ThoughtDefOf.AteRawFood) || HasMemory(pawn, "AteNutrientPasteMeal");
             bool particular = Standards.Of(pawn) >= 0.6f && !HasTrait(pawn, TraitDefOf.Ascetic);
             if (!isGourmand && !ateRaw && !particular) yield break;
             var want = ateRaw && !isGourmand && !particular ? FoodPreferability.MealSimple : FoodPreferability.MealFine;
             if (!CanCook(map, want)) yield break;
             if (MealStock(map, want) >= RoomUtil.ColonistCount(map) * 2) yield break;
-            var c = Candidate(isGourmand ? 1.4f : 1.1f, isGourmand ? "CC_Reason_Gourmand".Translate(pawn.Named("PAWN"))
+            var c = Candidate(isGourmand ? 1.4f : 1.1f, isGourmand ? (trueGourmand ? "CC_Reason_Gourmand" : "CC_PM_Reason_Gourmet").Translate(pawn.Named("PAWN"))
                 : ateRaw ? "CC_Reason_AteRaw".Translate(pawn.Named("PAWN")) : "CC_Reason_StandardsFood".Translate(pawn.Named("PAWN")));
             c.subjectKey = want.ToString();
             c.subjectLabel = (want == FoodPreferability.MealFine ? "CC_FineMeals" : "CC_ProperMeals").Translate();

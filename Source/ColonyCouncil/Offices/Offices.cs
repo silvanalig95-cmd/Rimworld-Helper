@@ -41,7 +41,8 @@ namespace ColonyCouncil
                 if (goodTraits != null) c += goodTraits.Count(traits.HasTrait) * 2f;
                 if (badTraits != null) c -= badTraits.Count(traits.HasTrait) * 3f;
             }
-            return c;
+            // Other mods' traits and classes, by name (ModPeopleDef): a healer for physician, a fighter for marshal.
+            return c + ModPeople.OfficeBonus(this, p);
         }
     }
 
@@ -121,11 +122,15 @@ namespace ColonyCouncil
             using var _cause = Causes.Push("CC_Cause_Election".Translate().Resolve());
             var voters = Eligible();
             if (voters.Count < 2) return;
+            // Beliefs that put a ruler above the vote (aristocratic, royal): the leader names the officers.
+            var ruler = CouncilCustoms.Appointer(voters);
+            var ballots = ruler != null ? new List<Pawn> { ruler } : voters;
             lastElectionYear = year;
             lastElectionTick = Find.TickManager.TicksGame;
             var taken = new HashSet<Pawn>();
             var text = new StringBuilder();
-            text.Append((byElection ? "CC_Election_ByText" : "CC_Election_Text").Translate(year).Resolve());
+            text.Append(ruler != null ? (byElection ? "CC_PM_Appoint_ByText" : "CC_PM_Appoint_Text").Translate(ruler.Named("PAWN")).Resolve()
+                : (byElection ? "CC_Election_ByText" : "CC_Election_Text").Translate(year).Resolve());
             foreach (var office in Offices)
             {
                 if (byElection && HolderOf(office) != null)
@@ -136,7 +141,7 @@ namespace ColonyCouncil
                 var candidates = voters.Where(p => !taken.Contains(p)).ToList();
                 if (candidates.Count == 0) break;
                 var tally = new Dictionary<Pawn, int>();
-                foreach (var voter in voters)
+                foreach (var voter in ballots)
                 {
                     var pick = candidates.OrderByDescending(c => Score(office, voter, c)).First();
                     tally[pick] = (tally.TryGetValue(pick, out int n) ? n : 0) + 1;
@@ -147,7 +152,8 @@ namespace ColonyCouncil
                 holders[office.defName] = winner;
                 elected[office.defName] = winner;
                 taken.Add(winner);
-                text.Append("\n\n").Append("CC_Election_Line".Translate(office.LabelCap, winner.Named("PAWN"), ranked[0].Value, voters.Count).Resolve());
+                text.Append("\n\n").Append(ruler != null ? "CC_PM_Appoint_Line".Translate(office.LabelCap, winner.Named("PAWN")).Resolve()
+                    : "CC_Election_Line".Translate(office.LabelCap, winner.Named("PAWN"), ranked[0].Value, voters.Count).Resolve());
                 var losers = ranked.Skip(1).Where(kv => kv.Value > 0).Select(kv => kv.Key.LabelShort + " (" + kv.Value + ")").ToList();
                 if (losers.Count > 0) text.Append(" ").Append("CC_Election_Others".Translate(string.Join(", ", losers)).Resolve());
                 CouncilGameComponent.GiveThought(winner, CouncilDefOf.Council_ElectedToOffice);
@@ -166,10 +172,14 @@ namespace ColonyCouncil
                         comp.social.Bump(kv.Key, winner, TieKind.Rivals, 10f, "CC_TieNote_Election".Translate(office.label));
                     }
                 }
-                comp.AddChronicle(new ChronicleEntry(ChronicleKind.Council, "CC_Chronicle_Elected".Translate(winner.LabelShort, office.label).Resolve(), winner));
+                comp.AddChronicle(new ChronicleEntry(ChronicleKind.Council, ruler != null
+                    ? "CC_PM_Chronicle_Named".Translate(ruler.LabelShort, winner.LabelShort, office.label).Resolve()
+                    : "CC_Chronicle_Elected".Translate(winner.LabelShort, office.label).Resolve(), winner));
             }
             SyncHediffs();
-            Find.LetterStack.ReceiveLetter((byElection ? "CC_Election_ByTitle" : "CC_Election_Title").Translate(year).Resolve(), text.ToString(), LetterDefOf.NeutralEvent);
+            string title = ruler != null ? (byElection ? "CC_PM_Appoint_ByTitle" : "CC_PM_Appoint_Title").Translate(year).Resolve()
+                : (byElection ? "CC_Election_ByTitle" : "CC_Election_Title").Translate(year).Resolve();
+            Find.LetterStack.ReceiveLetter(title, text.ToString(), LetterDefOf.NeutralEvent);
         }
 
         /// <summary>How much this voter wants this candidate in this office.</summary>

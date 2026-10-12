@@ -19,6 +19,10 @@ The most promising ways Rimfolk could work with the mods in the main medieval mo
   its ruined grills don't count as meals in stock.
 - The advisor explains Vanilla Events Expanded, Alpha Biomes and Seasonal Weather world events.
 - Taming self-help and the predator den dilemma stay away from dangerous beasts.
+- Danger is read from combat power too: the hunting wish picks only ordinary game, a beast nemesis too big to take
+  on alone waits for the council's order, and a creature size limit also caps how hard it fights.
+- Xenotypes that never sleep or never eat aren't asked about beds or meals; long-lived genes stretch only the adult
+  years, so a grown dwarf isn't read as a teenager.
 
 ## Medieval life (Medieval Overhaul, Rimedieval, Medieval Total Rim, Divine Order)
 - Wine and cheese aging as council material: a vintners' ambition, a dilemma about opening the legendary cask for a
@@ -41,12 +45,18 @@ The most promising ways Rimfolk could work with the mods in the main medieval mo
   whiteout refugees as a mercy-versus-food dilemma; Rimfolk achievements for Vanilla Achievements Expanded.
 
 ## People, magic and beliefs (RimWorld of Magic, VSE, VTE, VIE, races)
-- Magic classes (traits) in wishes, offices (physician prefers Priest or Druid) and necromancy dilemmas.
+- Done: magic classes as tags (mage, fighter, healer, gifted) in offices (physician favors healers, marshal
+  fighters), decree reactions, a magic circle wish, dreams, tones and a class-level life goal. Still open:
+  necromancy dilemmas, an epithet for magic deeds (RWoM keeps no records to count).
 - Merren charm outcomes as a secret or "the song is fading" dilemma.
-- Vanilla Skills Expanded expertise as a life goal and in titles ("the Weaponsmith"); Alpha Skills' conditional
-  passions as wishes.
-- VIE Memes' republic, aristocratic and royal memes changing council rules (elections or appointments).
-- Vanilla Traits Expanded traits in decree reactions and wishes (workaholic, rebel, wanderlust, snob, kleptomaniac).
+- Done: Vanilla Skills Expanded expertise as a life goal. Still open: expertise titles ("the Weaponsmith"), Alpha
+  Skills' conditional passions as wishes.
+- Done: aristocratic, royal and god-emperor memes (VIE Memes) make the leader appoint the council; memes from
+  Ideology, VIE Memes and Alpha Memes in decree reactions and the colony's ways.
+- Done: Vanilla Traits Expanded traits in decree reactions, offices, the colony's ways, wishes (academian, snob,
+  tycoon, wanderlust, neat, animal lover, martial artist) and tones.
+- Done: Vanilla Social Interactions Expanded's teaching, venting, memories and best friends feed the social web;
+  Rimfolk's own cheering-up and plain lessons step back while it's on.
 
 ## Nature and beasts (Alpha Animals, Megafauna, Dinosauria, biomes, weather)
 - Alpha Animals' stalking arctic lion as a pre-announced beast nemesis with dread and a dream omen; the big

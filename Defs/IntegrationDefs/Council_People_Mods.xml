@@ -1,0 +1,295 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    What Rimfolk knows about the people other mods add. Every "who" is a tag expression (see the tag groups in
+    Council_People_TagGroups.xml): trait:DefName, meme:DefName, xeno:DefName, a group like mage or fighter, needs like
+    nosleep. They are matched by name while the game runs, so an entry whose mod is missing never fits anyone.
+
+    decrees: decree, who, reaction (Hate, Dislike, Neutral, Like, Love). first = true: checked before the decree's
+      own reactions (a personal trait that outweighs everything else); otherwise only for people the decree's own
+      list says nothing about (a belief, a class).
+    offices: office, good, bad (tag expressions). Each one that fits counts like one of the office's own good (+2)
+      or bad (-3) traits in an election.
+    character: who, affinity (mercy, generosity, tradition, openness, toil: how much they care for each of the
+      colony's ways, about -1..1 like a trait).
+    wishes: wish, alsoWho (also wants it, whatever the wish's own traits and passions say; alsoReason is their why,
+      {PAWN}), favoredBy and favorFactor (wants it more often).
+    needs: need, wishes. Those wishes only come up for someone who has that need (no bed wishes for a xenotype that
+      never sleeps, no meal wishes for one that never eats).
+    notFor: who, wishes. Those wishes never come up for someone this fits.
+  -->
+
+  <!-- ========================= A RimWorld of Magic (torann.arimworldofmagic) ========================= -->
+
+  <ColonyCouncil.ModPeopleDef>
+    <defName>Council_ModPeople_Magic</defName>
+    <label>magic classes (A RimWorld of Magic)</label>
+    <offices>
+      <li>
+        <office>Council_Office_Physician</office>
+        <good><li>healer</li></good>
+      </li>
+      <li>
+        <office>Council_Office_Marshal</office>
+        <good><li>fighter</li><li>trait:Paladin</li></good>
+      </li>
+      <li>
+        <office>Council_Office_Speaker</office>
+        <good><li>trait:TM_Commander</li><li>trait:TM_Bard</li></good>
+      </li>
+      <li>
+        <office>Council_Office_Steward</office>
+        <good><li>trait:TM_Bard</li><li>trait:TM_Empath</li></good>
+      </li>
+    </offices>
+    <decrees>
+      <li><decree>Council_Decree_Festival</decree><who>trait:TM_Bard</who><reaction>Love</reaction><first>true</first></li>
+      <li><decree>Council_Decree_Drills</decree><who>fighter</who><reaction>Like</reaction></li>
+      <li><decree>Council_Decree_OnGuard</decree><who>fighter</who><reaction>Like</reaction></li>
+      <li><decree>Council_Decree_Study</decree><who>mage</who><reaction>Like</reaction></li>
+      <li><decree>Council_Decree_CleanSweep</decree><who>healer</who><reaction>Like</reaction></li>
+    </decrees>
+    <character>
+      <li><who>trait:Priest</who><affinity><mercy>0.6</mercy></affinity></li>
+      <li><who>trait:Paladin</who><affinity><mercy>0.4</mercy></affinity></li>
+      <li><who>trait:TM_Commander</who><affinity><toil>0.4</toil></affinity></li>
+    </character>
+    <wishes>
+      <li>
+        <wish>Council_Wish_TrainingDummy</wish>
+        <alsoWho>fighter</alsoWho>
+      </li>
+      <li>
+        <wish>Council_Wish_WeaponRack</wish>
+        <alsoWho>fighter</alsoWho>
+      </li>
+      <li>
+        <wish>Council_Wish_Shrine</wish>
+        <favoredBy>trait:Priest|trait:Paladin|trait:TM_Brightmage</favoredBy>
+      </li>
+    </wishes>
+  </ColonyCouncil.ModPeopleDef>
+
+  <!-- ========================= Vanilla Traits Expanded (vanillaexpanded.vanillatraitsexpanded) ========================= -->
+
+  <ColonyCouncil.ModPeopleDef>
+    <defName>Council_ModPeople_VTE</defName>
+    <label>traits (Vanilla Traits Expanded)</label>
+    <decrees>
+      <!-- Long hours -->
+      <li><decree>Council_Decree_LongHours</decree><who>trait:VTE_Workaholic</who><reaction>Love</reaction><first>true</first></li>
+      <li><decree>Council_Decree_LongHours</decree><who>trait:VTE_Rebel</who><reaction>Hate</reaction><first>true</first></li>
+      <li><decree>Council_Decree_LongHours</decree><who>trait:VTE_Submissive</who><reaction>Like</reaction><first>true</first></li>
+      <!-- Rationing -->
+      <li><decree>Council_Decree_Rationing</decree><who>trait:VTE_RefinedPalate|trait:VTE_Gastronomist</who><reaction>Hate</reaction><first>true</first></li>
+      <!-- Drills -->
+      <li><decree>Council_Decree_Drills</decree><who>trait:VTE_Rebel</who><reaction>Hate</reaction><first>true</first></li>
+      <li><decree>Council_Decree_Drills</decree><who>trait:VTE_Coward</who><reaction>Hate</reaction><first>true</first></li>
+      <li><decree>Council_Decree_Drills</decree><who>trait:VTE_Brave|trait:VTE_MartialArtist|trait:VTE_DrunkenMaster</who><reaction>Like</reaction><first>true</first></li>
+      <!-- Study hours -->
+      <li><decree>Council_Decree_Study</decree><who>trait:VTE_Academian</who><reaction>Love</reaction><first>true</first></li>
+      <li><decree>Council_Decree_Study</decree><who>trait:VTE_Prodigy|trait:VTE_Eccentric</who><reaction>Like</reaction><first>true</first></li>
+      <li><decree>Council_Decree_Study</decree><who>trait:VTE_Dunce|trait:VTE_Technophobe</who><reaction>Hate</reaction><first>true</first></li>
+      <!-- Austerity -->
+      <li><decree>Council_Decree_Austerity</decree><who>trait:VTE_Snob|trait:VTE_RefinedPalate|trait:VTE_Tycoon</who><reaction>Hate</reaction><first>true</first></li>
+      <!-- Festival days -->
+      <li><decree>Council_Decree_Festival</decree><who>trait:VTE_FunLoving|trait:VTE_Lush</who><reaction>Love</reaction><first>true</first></li>
+      <li><decree>Council_Decree_Festival</decree><who>trait:VTE_Workaholic</who><reaction>Dislike</reaction><first>true</first></li>
+      <li><decree>Council_Decree_Festival</decree><who>trait:VTE_Anxious</who><reaction>Dislike</reaction><first>true</first></li>
+      <!-- Harvest push -->
+      <li><decree>Council_Decree_Harvest</decree><who>trait:VTE_Rebel</who><reaction>Hate</reaction><first>true</first></li>
+      <li><decree>Council_Decree_Harvest</decree><who>trait:VTE_Workaholic|trait:VTE_Ecologist</who><reaction>Like</reaction><first>true</first></li>
+      <!-- Building season -->
+      <li><decree>Council_Decree_Building</decree><who>trait:VTE_Rebel</who><reaction>Hate</reaction><first>true</first></li>
+      <li><decree>Council_Decree_Building</decree><who>trait:VTE_Groundbreaker</who><reaction>Love</reaction><first>true</first></li>
+      <li><decree>Council_Decree_Building</decree><who>trait:VTE_Workaholic|trait:VTE_ChildOfMountain</who><reaction>Like</reaction><first>true</first></li>
+      <!-- Best behavior -->
+      <li><decree>Council_Decree_Manners</decree><who>trait:VTE_Rebel</who><reaction>Hate</reaction><first>true</first></li>
+      <li><decree>Council_Decree_Manners</decree><who>trait:VTE_Snob|trait:VTE_Prude</who><reaction>Like</reaction><first>true</first></li>
+      <li><decree>Council_Decree_Manners</decree><who>trait:VTE_Kleptomaniac</who><reaction>Dislike</reaction><first>true</first></li>
+      <!-- Days of mourning -->
+      <li><decree>Council_Decree_Mourning</decree><who>trait:VTE_Desensitized|trait:VTE_Workaholic</who><reaction>Dislike</reaction><first>true</first></li>
+      <!-- On guard -->
+      <li><decree>Council_Decree_OnGuard</decree><who>trait:VTE_Coward|trait:VTE_HeavySleeper</who><reaction>Hate</reaction><first>true</first></li>
+      <li><decree>Council_Decree_OnGuard</decree><who>trait:VTE_Brave</who><reaction>Like</reaction><first>true</first></li>
+      <!-- Clean sweep -->
+      <li><decree>Council_Decree_CleanSweep</decree><who>trait:VTE_Neat</who><reaction>Love</reaction><first>true</first></li>
+      <li><decree>Council_Decree_CleanSweep</decree><who>trait:VTE_Slob</who><reaction>Hate</reaction><first>true</first></li>
+    </decrees>
+    <offices>
+      <li>
+        <office>Council_Office_Speaker</office>
+        <bad><li>trait:VTE_Anxious</li></bad>
+      </li>
+      <li>
+        <office>Council_Office_Marshal</office>
+        <good><li>trait:VTE_Brave</li><li>trait:VTE_MartialArtist</li></good>
+        <bad><li>trait:VTE_Coward</li></bad>
+      </li>
+      <li>
+        <office>Council_Office_Quartermaster</office>
+        <good><li>trait:VTE_Tycoon</li></good>
+        <bad><li>trait:VTE_Kleptomaniac</li></bad>
+      </li>
+      <li>
+        <office>Council_Office_Physician</office>
+        <good><li>trait:VTE_Academian</li></good>
+        <bad><li>trait:VTE_Squeamish</li><li>trait:VTE_MadSurgeon</li></bad>
+      </li>
+      <li>
+        <office>Council_Office_Steward</office>
+        <good><li>trait:VTE_FunLoving</li></good>
+        <bad><li>trait:VTE_Snob</li></bad>
+      </li>
+    </offices>
+    <character>
+      <li><who>trait:VTE_Workaholic</who><affinity><toil>0.8</toil></affinity></li>
+      <li><who>trait:VTE_FunLoving|trait:VTE_CouchPotato</who><affinity><toil>-0.4</toil></affinity></li>
+      <li><who>trait:VTE_Rebel</who><affinity><tradition>-0.6</tradition></affinity></li>
+      <li><who>trait:VTE_Wanderlust</who><affinity><tradition>-0.4</tradition></affinity></li>
+      <li><who>trait:VTE_Tycoon</who><affinity><generosity>-0.5</generosity></affinity></li>
+      <li><who>trait:VTE_AnimalLover</who><affinity><mercy>0.4</mercy></affinity></li>
+      <li><who>trait:VTE_Vengeful</who><affinity><mercy>-0.6</mercy></affinity></li>
+      <li><who>trait:VTE_Desensitized</who><affinity><mercy>-0.3</mercy></affinity></li>
+      <li><who>trait:VTE_Anxious</who><affinity><openness>-0.4</openness></affinity></li>
+    </character>
+    <wishes>
+      <li>
+        <wish>Council_Wish_Bookcase</wish>
+        <alsoWho>trait:VTE_Academian</alsoWho>
+      </li>
+      <li>
+        <wish>Council_Wish_Books</wish>
+        <alsoWho>trait:VTE_Academian</alsoWho>
+      </li>
+      <li>
+        <wish>Council_Wish_FineClothes</wish>
+        <alsoWho>trait:VTE_Snob</alsoWho>
+      </li>
+      <li>
+        <wish>Council_Wish_NestEgg</wish>
+        <alsoWho>trait:VTE_Tycoon</alsoWho>
+        <alsoReason>{PAWN_nameDef} has an eye for silver, and the colony's coffers are thinner than {PAWN_pronoun} can stand.</alsoReason>
+      </li>
+      <li>
+        <wish>Council_Wish_TrainingDummy</wish>
+        <alsoWho>trait:VTE_MartialArtist</alsoWho>
+      </li>
+      <li>
+        <wish>Council_Wish_Hay</wish>
+        <alsoWho>trait:VTE_Menagerist</alsoWho>
+      </li>
+      <li>
+        <wish>Council_Wish_Beehive</wish>
+        <alsoWho>trait:VTE_Ecologist</alsoWho>
+      </li>
+      <li>
+        <wish>Council_Wish_Travel</wish>
+        <favoredBy>trait:VTE_Wanderlust</favoredBy>
+        <favorFactor>3</favorFactor>
+      </li>
+    </wishes>
+  </ColonyCouncil.ModPeopleDef>
+
+  <!-- ===== Beliefs: Ideology's own memes, Vanilla Ideology Expanded - Memes and Structures (VME_), Alpha Memes (AM_) ===== -->
+  <!-- VME_ and AM_ defNames checked against the mods' 1.6 MemeDefs; Collectivist against a VIE Memes patch; Individualist from memory. -->
+
+  <ColonyCouncil.ModPeopleDef>
+    <defName>Council_ModPeople_Memes</defName>
+    <label>memes</label>
+    <decrees>
+      <!-- Long hours -->
+      <li><decree>Council_Decree_LongHours</decree><who>meme:VME_HardcoreIndustrialism|meme:Collectivist</who><reaction>Like</reaction></li>
+      <li><decree>Council_Decree_LongHours</decree><who>meme:VME_PartyLife</who><reaction>Hate</reaction></li>
+      <!-- Rationing -->
+      <li><decree>Council_Decree_Rationing</decree><who>meme:AM_Monastic</who><reaction>Like</reaction></li>
+      <li><decree>Council_Decree_Rationing</decree><who>meme:Collectivist</who><reaction>Neutral</reaction></li>
+      <li><decree>Council_Decree_Rationing</decree><who>meme:Individualist</who><reaction>Hate</reaction></li>
+      <!-- Drills and standing guard -->
+      <li><decree>Council_Decree_Drills</decree><who>meme:VME_Bushido</who><reaction>Love</reaction></li>
+      <li><decree>Council_Decree_Drills</decree><who>meme:VME_BloodCourt|meme:AM_Gladiator|meme:AM_Sharpshooter|meme:AM_Bulwark</who><reaction>Like</reaction></li>
+      <li><decree>Council_Decree_Drills</decree><who>meme:VME_Pacifist</who><reaction>Hate</reaction></li>
+      <li><decree>Council_Decree_OnGuard</decree><who>meme:AM_Bulwark</who><reaction>Love</reaction></li>
+      <li><decree>Council_Decree_OnGuard</decree><who>meme:VME_Bushido|meme:VME_BloodCourt</who><reaction>Like</reaction></li>
+      <!-- Austerity and festivals -->
+      <li><decree>Council_Decree_Austerity</decree><who>meme:AM_Monastic</who><reaction>Love</reaction></li>
+      <li><decree>Council_Decree_Austerity</decree><who>meme:Collectivist</who><reaction>Neutral</reaction></li>
+      <li><decree>Council_Decree_Festival</decree><who>meme:VME_PartyLife</who><reaction>Love</reaction></li>
+      <li><decree>Council_Decree_Festival</decree><who>meme:AM_Monastic|meme:VME_HardcoreIndustrialism</who><reaction>Dislike</reaction></li>
+      <!-- Work seasons -->
+      <li><decree>Council_Decree_Building</decree><who>meme:VME_CityBuilders</who><reaction>Love</reaction></li>
+      <li><decree>Council_Decree_Building</decree><who>meme:VME_CraftCulture|meme:Collectivist</who><reaction>Like</reaction></li>
+      <li><decree>Council_Decree_Harvest</decree><who>meme:Collectivist</who><reaction>Like</reaction></li>
+      <!-- Manners and cleanliness -->
+      <li><decree>Council_Decree_Manners</decree><who>meme:VME_Aristocratic|meme:VME_Royal</who><reaction>Like</reaction></li>
+      <li><decree>Council_Decree_CleanSweep</decree><who>meme:VME_Healthcare</who><reaction>Like</reaction></li>
+    </decrees>
+    <character>
+      <li><who>meme:Collectivist</who><affinity><generosity>0.5</generosity><toil>0.3</toil></affinity></li>
+      <li><who>meme:VME_HardcoreIndustrialism</who><affinity><toil>0.8</toil></affinity></li>
+      <li><who>meme:VME_PartyLife</who><affinity><toil>-0.5</toil></affinity></li>
+      <li><who>meme:VME_Pacifist</who><affinity><mercy>0.8</mercy></affinity></li>
+      <li><who>meme:VME_BloodCourt|meme:AM_Sadist</who><affinity><mercy>-0.8</mercy></affinity></li>
+      <li><who>meme:VME_Egalitarian|meme:VME_Trader</who><affinity><openness>0.5</openness></affinity></li>
+      <li><who>meme:VFEA_Isolationist</who><affinity><openness>-0.8</openness></affinity></li>
+      <li><who>meme:VME_Elders|meme:VME_CityBuilders</who><affinity><tradition>0.5</tradition></affinity></li>
+      <li><who>meme:VME_Nomad</who><affinity><tradition>-0.6</tradition></affinity></li>
+      <li><who>meme:AM_Monastic</who><affinity><generosity>0.4</generosity></affinity></li>
+    </character>
+    <wishes>
+      <li>
+        <wish>Council_Wish_Travel</wish>
+        <favoredBy>meme:VME_Nomad</favoredBy>
+        <favorFactor>2</favorFactor>
+      </li>
+    </wishes>
+  </ColonyCouncil.ModPeopleDef>
+
+  <!-- ========================= Xenotypes (Biotech, Alpha Genes and the like): what their bodies need ========================= -->
+
+  <ColonyCouncil.ModPeopleDef>
+    <defName>Council_ModPeople_Xenotypes</defName>
+    <label>xenotypes</label>
+    <needs>
+      <!-- Never sleeps (a neversleep gene, or deathrest instead of sleep): no wishes about beds and bedrooms. -->
+      <li>
+        <need>Rest</need>
+        <wishes>
+          <li>Council_Wish_OwnRoom</li>
+          <li>Council_Wish_NicerBedroom</li>
+          <li>Council_Wish_Spacious</li>
+          <li>Council_Wish_ShareBed</li>
+          <li>Council_Wish_BedroomFurniture</li>
+          <li>Council_Wish_ComfortTemperature</li>
+          <li>Council_Wish_ArtInRoom</li>
+        </wishes>
+      </li>
+      <!-- Never eats: no wishes about meals. -->
+      <li>
+        <need>Food</need>
+        <wishes>
+          <li>Council_Wish_BetterFood</li>
+          <li>Council_Wish_DiningTable</li>
+          <li>Council_Wish_Honey</li>
+        </wishes>
+      </li>
+    </needs>
+    <!-- Lives on sunlight more than on meals (Alpha Genes): no wishes for finer food. -->
+    <notFor>
+      <li>
+        <who>sunfed</who>
+        <wishes>
+          <li>Council_Wish_BetterFood</li>
+          <li>Council_Wish_Honey</li>
+        </wishes>
+      </li>
+    </notFor>
+    <decrees>
+      <li><decree>Council_Decree_Rationing</decree><who>nofood|sunfed</who><reaction>Neutral</reaction><first>true</first></li>
+      <li><decree>Council_Decree_LongHours</decree><who>nosleep</who><reaction>Neutral</reaction></li>
+      <li><decree>Council_Decree_OnGuard</decree><who>nosleep</who><reaction>Neutral</reaction></li>
+    </decrees>
+  </ColonyCouncil.ModPeopleDef>
+
+</Defs>

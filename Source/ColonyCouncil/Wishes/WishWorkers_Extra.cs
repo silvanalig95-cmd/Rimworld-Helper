@@ -54,8 +54,9 @@ namespace ColonyCouncil
     /// <summary>A birthday coming up: they'd like a feast, or at least a party.</summary>
     public class WishWorker_Birthday : WishWorker
     {
+        // VSIE_HadBirthdayParty: Vanilla Social Interactions Expanded's birthday party.
         private static readonly string[] Treats = Cuisine.FineMealThoughts.Concat(Cuisine.LavishMealThoughts)
-            .Concat(new[] { "AttendedParty", "AteInImpressiveDiningRoom" }).ToArray();
+            .Concat(new[] { "AttendedParty", "AteInImpressiveDiningRoom", "VSIE_HadBirthdayParty" }).ToArray();
 
         public override IEnumerable<WishCandidate> CandidatesFor(Pawn pawn)
         {
@@ -220,7 +221,8 @@ namespace ColonyCouncil
             var map = HomeMap(pawn);
             if (map == null || Filth(map) < Dirty) yield break;
             bool picky = RoomUtil.ExpectationOrder(pawn) >= 2 || HasTrait(pawn, TraitDefOf.Greedy)
-                         || (pawn.story?.traits?.allTraits.Any(t => t.def.defName == "Beauty" && t.Degree > 0) ?? false);
+                         || (pawn.story?.traits?.allTraits.Any(t => t.def.defName == "Beauty" && t.Degree > 0) ?? false)
+                         || PeopleTags.Has(pawn, "neat");
             if (!picky) yield break;
             var c = Candidate(1f, "CC_Reason_Tidy".Translate(pawn.Named("PAWN"), Filth(map).Named("COUNT")));
             c.targetValue = Clean;

@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Life goals that only come up with another mod. Their workers read the mod by name (see Source/.../Integrations),
+    and their who tags fit nobody without it, so without the mod nobody ever picks them.
+    AspirationWorker_MagicLevel / _MightLevel (A RimWorld of Magic): amount = levels beyond where they stand now.
+    AspirationWorker_Expertise (Vanilla Skills Expanded): earn an expertise in a skill they love and are close to it in.
+  -->
+
+  <!-- ===================== A RimWorld of Magic: grow in one's class ===================== -->
+
+  <ColonyCouncil.AspirationDef>
+    <defName>Council_Asp_PM_MagicLevel</defName>
+    <label>a mage's growth</label>
+    <workerClass>ColonyCouncil.AspirationWorker_MagicLevel</workerClass>
+    <weight>1.5</weight>
+    <amount>10</amount>
+    <who><tags>mage</tags></who>
+    <goal>reach level {COUNT} as a mage</goal>
+    <sparks><li>battle</li><li>fulfilled</li></sparks>
+    <chosen>
+      <plain>
+        <li>I know a handful of workings well and the rest badly. I want to reach level {COUNT} before the next winter is out.</li>
+        <li>[spark:battle] I held back in the fight because I didn't trust myself with more. That has to change.</li>
+        <li>[inherited] {NAME} was teaching me the deeper workings when the end came. I'll {GOAL} and finish what we started.</li>
+        <li>[trait:Druid|trait:TM_Shaman] The land has more to teach me than I've had the patience to learn. I'm listening now.</li>
+      </plain>
+      <cold><li>My power is a resource the colony underuses. I'll develop it.</li></cold>
+      <cheerful><li>I'm going to get much better at this! Fewer singed eyebrows, more actual magic.</li></cheerful>
+      <gloomy><li>The gift is wasted on someone who doesn't practice. I'll practice.</li></gloomy>
+    </chosen>
+    <achieved>
+      <plain>
+        <li>Today a working came as easily as breathing, one I couldn't even attempt a year ago.</li>
+        <li>I've reached level {COUNT}. The power answers faster now, and it tires me less.</li>
+      </plain>
+      <warm><li>I'm stronger now, and all of it is for the people here.</li></warm>
+      <cold><li>Level {COUNT}. There is always more, and I'll take it.</li></cold>
+      <gloomy><li>I've grown stronger. I hope I never need all of it.</li></gloomy>
+    </achieved>
+  </ColonyCouncil.AspirationDef>
+
+  <ColonyCouncil.AspirationDef>
+    <defName>Council_Asp_PM_MightLevel</defName>
+    <label>a fighter's growth</label>
+    <workerClass>ColonyCouncil.AspirationWorker_MightLevel</workerClass>
+    <weight>1.5</weight>
+    <amount>10</amount>
+    <who><tags>fighter</tags></who>
+    <goal>reach level {COUNT} as a fighter</goal>
+    <sparks><li>battle</li><li>downed</li><li>fulfilled</li></sparks>
+    <chosen>
+      <plain>
+        <li>I know the forms, but I don't own them yet. I want to reach level {COUNT}.</li>
+        <li>[spark:downed] I went down too easily last time. I'm going to train until that can't happen again.</li>
+        <li>[spark:battle] We won, but I was slow. Every morning from now on, I train.</li>
+        <li>[inherited] {NAME} drilled me every morning until the end. I'll {GOAL}, the way {NAME} wanted.</li>
+      </plain>
+      <blunt><li>I'm going to get better. That's all there is to say.</li></blunt>
+      <cold><li>A sharper fighter costs the colony nothing but my time. I'll spend it.</li></cold>
+    </chosen>
+    <achieved>
+      <plain>
+        <li>The forms are mine now. My body knows them before I think of them.</li>
+        <li>Level {COUNT}. Years of drills, and today I felt every one of them pay off.</li>
+      </plain>
+      <blunt><li>Level {COUNT}. Next.</li></blunt>
+      <warm><li>Whatever comes over that wall now, I can stand in front of the others.</li></warm>
+    </achieved>
+  </ColonyCouncil.AspirationDef>
+
+  <!-- ===================== Vanilla Skills Expanded: earn an expertise ===================== -->
+
+  <ColonyCouncil.AspirationDef>
+    <defName>Council_Asp_PM_Expertise</defName>
+    <label>an expertise</label>
+    <workerClass>ColonyCouncil.AspirationWorker_Expertise</workerClass>
+    <weight>1.2</weight>
+    <goal>become a true expert in {SKILL}</goal>
+    <sparks><li>fulfilled</li></sparks>
+    <chosen>
+      <plain>
+        <li>Being good at {SKILL} isn't enough anymore. I want to know one corner of it better than anyone.</li>
+        <li>[spark:fulfilled] I watched {NAME} become the colony's expert, and I knew I wanted that for myself.</li>
+        <li>[inherited] {NAME} was close to it, so close. I'll {GOAL} in {NAME}'s place.</li>
+      </plain>
+      <cold><li>Specialists are worth more than generalists. I'll specialize in {SKILL}.</li></cold>
+      <cheerful><li>I'm going to be the person everyone comes to about {SKILL}!</li></cheerful>
+    </chosen>
+    <achieved>
+      <plain>
+        <li>I've found my corner of {SKILL}, and I know it better than anyone here.</li>
+        <li>People ask me first now when it comes to {SKILL}. I like that more than I expected.</li>
+      </plain>
+      <warm><li>I'm an expert in {SKILL} now. Anyone who wants to learn only has to ask.</li></warm>
+      <blunt><li>Expert in {SKILL}. Now leave me to work.</li></blunt>
+    </achieved>
+  </ColonyCouncil.AspirationDef>
+
+</Defs>

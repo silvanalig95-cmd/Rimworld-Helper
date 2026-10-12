@@ -1,0 +1,264 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Lines for other mods' people. Journal pools Rimfolk writes from when Vanilla Social Interactions Expanded's
+    moments feed the social web ({PAWN_...} writes, {OTHER_...} is the friend), and more lines for existing wishes and
+    decrees, tagged for the mod traits, classes and memes that now ask for them (see Council_People_Mods.xml). A tagged
+    line only ever shows for someone the tag fits, so without the mod these lines never come up.
+  -->
+
+  <!-- ===================== Vanilla Social Interactions Expanded ===================== -->
+
+  <!-- Someone low talked a bad day through with a friend (VSIE's venting). -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Journal_PM_Vented</defName>
+    <lines>
+      <plain>
+        <li>Told {OTHER_nameDef} everything that's been eating at me. {OTHER_nameDef} just listened, and that was enough.</li>
+        <li>Bad day. Sat with {OTHER_nameDef} after supper and talked until it was smaller.</li>
+        <li>[night] Couldn't sleep, so I found {OTHER_nameDef} still up and talked it all out. I feel lighter.</li>
+        <li>[grieving] I said the name out loud to {OTHER_nameDef} tonight, for the first time since the burial.</li>
+        <li>[afterraid] Still shaking from the raid. {OTHER_nameDef} let me talk about it without telling me I was lucky.</li>
+      </plain>
+      <warm><li>{OTHER_nameDef} is a good friend. I unloaded all of it tonight and got only kindness back.</li></warm>
+      <blunt><li>Complained to {OTHER_nameDef} for an hour. Helped more than I'd like to admit.</li></blunt>
+      <gloomy><li>Poured it all out to {OTHER_nameDef}. Nothing's changed, but I'm not carrying it alone now.</li></gloomy>
+      <cold><li>Talking to {OTHER_nameDef} cleared my head. I'll remember that it works.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- Best friends now (VSIE's best friend relation). -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Journal_PM_BestFriend</defName>
+    <lines>
+      <plain>
+        <li>{OTHER_nameDef} is my best friend. I don't remember when it happened, only that it has.</li>
+        <li>If anything happens to me, {OTHER_nameDef} knows where I keep my things and what to do with them. That's what a best friend is.</li>
+        <li>[winter] Long winter evenings with {OTHER_nameDef}. I've never had a friend like this.</li>
+        <li>[old] At my age I didn't expect to make a best friend. {OTHER_nameDef} didn't ask my permission.</li>
+      </plain>
+      <warm><li>{OTHER_nameDef} and I are as close as family now. Closer than some of my family ever was.</li></warm>
+      <blunt><li>{OTHER_nameDef}'s my best friend. Anyone who has a problem with that can take it up with both of us.</li></blunt>
+      <cheerful><li>{OTHER_nameDef} and I finish each other's sentences now! It drives the others mad.</li></cheerful>
+      <gloomy><li>{OTHER_nameDef} is the best friend I've ever had. Out here, that's one more thing to lose.</li></gloomy>
+      <cold><li>{OTHER_nameDef} is the one person here I trust without reservation. I didn't plan that.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- ===================== Wishes: lines for the people who now also ask ===================== -->
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Council_Ext_PM_Wish_Bookcase</defName>
+    <wish>Council_Wish_Bookcase</wish>
+    <request>
+      <plain><li>[trait:VTE_Academian] I've read everything we own twice, and it's all stacked on the floor. Could we build {THING}?</li></plain>
+    </request>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Council_Ext_PM_Wish_Books</defName>
+    <wish>Council_Wish_Books</wish>
+    <request>
+      <plain><li>[trait:VTE_Academian] I can recite most of our books by now. I need something new to read.</li></plain>
+    </request>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Council_Ext_PM_Wish_FineClothes</defName>
+    <wish>Council_Wish_FineClothes</wish>
+    <request>
+      <plain><li>[trait:VTE_Snob] I can't be seen in this. Nobody of any standing would be.</li></plain>
+    </request>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Council_Ext_PM_Wish_NestEgg</defName>
+    <wish>Council_Wish_NestEgg</wish>
+    <request>
+      <plain><li>[trait:VTE_Tycoon] Silver in the strongbox means a better price from every trader. Ours is nearly empty.</li></plain>
+    </request>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Council_Ext_PM_Wish_TrainingDummy</defName>
+    <wish>Council_Wish_TrainingDummy</wish>
+    <request>
+      <plain>
+        <li>[fighter] My forms are slipping between raids. I need something to practice them on.</li>
+        <li>[trait:VTE_MartialArtist] I've been practicing my holds on the doorframe. Could we build {THING}?</li>
+      </plain>
+    </request>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Council_Ext_PM_Wish_WeaponRack</defName>
+    <wish>Council_Wish_WeaponRack</wish>
+    <request>
+      <plain><li>[fighter] A fighter should know where the weapons are without thinking. Right now I'd have to think.</li></plain>
+    </request>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Council_Ext_PM_Wish_Travel</defName>
+    <wish>Council_Wish_Travel</wish>
+    <request>
+      <plain>
+        <li>[trait:VTE_Wanderlust] I've never stayed this long anywhere. Put me on the next caravan, wherever it goes.</li>
+        <li>[meme:VME_Nomad] Our people were never meant to stay put this long. Let me go out with the next caravan.</li>
+      </plain>
+    </request>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Council_Ext_PM_Wish_Shrine</defName>
+    <wish>Council_Wish_Shrine</wish>
+    <request>
+      <plain><li>[trait:Priest|trait:Paladin|trait:TM_Brightmage] I pray every morning and every night. I'd like a better place for it than behind the storeroom.</li></plain>
+    </request>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Council_Ext_PM_Wish_BetterFood</defName>
+    <wish>Council_Wish_BetterFood</wish>
+    <request>
+      <plain><li>[gourmet] I can taste every shortcut the cook takes. Something finer now and then, please.</li></plain>
+    </request>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Council_Ext_PM_Wish_Tidy</defName>
+    <wish>Council_Wish_Tidy</wish>
+    <request>
+      <plain><li>[neat] I've cleaned my corner three times today, and the mess keeps creeping back in from everywhere else.</li></plain>
+    </request>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Council_Ext_PM_Wish_Companion</defName>
+    <wish>Council_Wish_Companion</wish>
+    <request>
+      <plain><li>[animallover] I'm better company with an animal around. Let me try taming that {SUBJECT}.</li></plain>
+    </request>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <!-- ===================== Decrees: lines for the people who now care ===================== -->
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Council_Ext_PM_Decree_LongHours</defName>
+    <decree>Council_Decree_LongHours</decree>
+    <support>
+      <plain>
+        <li>[trait:VTE_Workaholic] I'd have worked the extra hours anyway. Now I don't have to hide it.</li>
+        <li>[trait:VTE_Submissive] Good. Tell me what needs doing and I'll do it.</li>
+        <li>[meme:VME_HardcoreIndustrialism] A full day's work, every day. That's what we're here for.</li>
+      </plain>
+    </support>
+    <oppose>
+      <plain><li>[trait:VTE_Rebel] Nobody tells me how long my day is.</li></plain>
+    </oppose>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Council_Ext_PM_Decree_Festival</defName>
+    <decree>Council_Decree_Festival</decree>
+    <support>
+      <plain>
+        <li>[trait:VTE_FunLoving|trait:VTE_Lush] I've been waiting all season for an excuse.</li>
+        <li>[meme:VME_PartyLife] Music tonight, and tomorrow, and the night after.</li>
+        <li>[trait:TM_Bard] Three nights of music, and I know exactly what I'm playing first.</li>
+      </plain>
+    </support>
+    <oppose>
+      <plain>
+        <li>[trait:VTE_Workaholic] Days of nothing to do. I'll go mad.</li>
+        <li>[trait:VTE_Anxious] All those people in one room, every night. I'll be in my room.</li>
+      </plain>
+    </oppose>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Council_Ext_PM_Decree_Drills</defName>
+    <decree>Council_Decree_Drills</decree>
+    <support>
+      <plain>
+        <li>[fighter] Good. My forms get sloppy between raids.</li>
+        <li>[trait:VTE_Brave] We'll be ready this time.</li>
+        <li>[meme:VME_Bushido] Training is how we honor the fight before it comes.</li>
+      </plain>
+    </support>
+    <oppose>
+      <plain>
+        <li>[trait:VTE_Coward] I'd rather not practice for something I'm hoping never happens.</li>
+        <li>[meme:VME_Pacifist] I won't learn to hurt people faster.</li>
+      </plain>
+    </oppose>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Council_Ext_PM_Decree_Study</defName>
+    <decree>Council_Decree_Study</decree>
+    <support>
+      <plain>
+        <li>[mage] Evenings for study. My books have been gathering dust.</li>
+        <li>[trait:VTE_Academian] Finally, time to read properly.</li>
+      </plain>
+    </support>
+    <oppose>
+      <plain><li>[trait:VTE_Dunce] The words swim when I look at them too long.</li></plain>
+    </oppose>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Council_Ext_PM_Decree_Austerity</defName>
+    <decree>Council_Decree_Austerity</decree>
+    <support>
+      <plain><li>[meme:AM_Monastic] We need far less than we think we do.</li></plain>
+    </support>
+    <oppose>
+      <plain><li>[trait:VTE_Snob] We already live like peasants.</li></plain>
+    </oppose>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Council_Ext_PM_Decree_Manners</defName>
+    <decree>Council_Decree_Manners</decree>
+    <support>
+      <plain><li>[trait:VTE_Snob] About time this colony learned some manners.</li></plain>
+    </support>
+    <oppose>
+      <plain><li>[trait:VTE_Rebel] I'll be polite when I feel like it.</li></plain>
+    </oppose>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Council_Ext_PM_Decree_Building</defName>
+    <decree>Council_Decree_Building</decree>
+    <support>
+      <plain>
+        <li>[trait:VTE_Groundbreaker] Every hand on the walls. I'll show you how to lay them straight.</li>
+        <li>[meme:VME_CityBuilders] Walls first, then streets. This place will look like a town by spring.</li>
+      </plain>
+    </support>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Council_Ext_PM_Decree_CleanSweep</defName>
+    <decree>Council_Decree_CleanSweep</decree>
+    <support>
+      <plain><li>[trait:VTE_Neat] I've been waiting for this since the day I got here.</li></plain>
+    </support>
+    <oppose>
+      <plain><li>[trait:VTE_Slob] It was fine the way it was.</li></plain>
+    </oppose>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Council_Ext_PM_Decree_Rationing</defName>
+    <decree>Council_Decree_Rationing</decree>
+    <oppose>
+      <plain><li>[gourmet] Smaller portions of food that was barely worth eating whole.</li></plain>
+    </oppose>
+  </ColonyCouncil.FlavorExtensionDef>
+
+</Defs>

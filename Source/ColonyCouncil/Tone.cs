@@ -134,6 +134,9 @@ namespace ColonyCouncil
                     if (degree < 0) return Tone.Gloomy;
                 }
                 if (TraitDefOf.Joyous != null && traits.HasTrait(TraitDefOf.Joyous)) return Tone.Cheerful;
+                // Other mods' traits and classes with a voice of their own (TagGroupDef.tone).
+                var modded = PeopleTags.ToneOf(pawn);
+                if (modded != null) return modded.Value;
             }
 
             float mood = pawn?.needs?.mood?.CurLevelPercentage ?? 0.5f;
