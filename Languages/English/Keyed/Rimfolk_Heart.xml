@@ -300,11 +300,11 @@
   <!-- The episode -->
   <CC_Heart_Episode_Reason>worn out by strain</CC_Heart_Episode_Reason>
   <CC_Heart_Episode_Title>{PAWN_nameDef} needs a day</CC_Heart_Episode_Title>
-  <CC_Heart_Episode_Text>{PAWN_nameDef} has been carrying too much for too long: {SOURCES}. Today it was enough. {PAWN_nameDef} put down {PAWN_possessive} tools, went to {PAWN_possessive} room and won't be working for the rest of the day.\n\nNobody is in danger. {PAWN_nameDef} will still eat and sleep, and will mostly stay out of everyone's way. It passes in six to twelve hours, and afterwards most of the strain will have lifted. If trouble comes, it ends early.</CC_Heart_Episode_Text>
+  <CC_Heart_Episode_Text>{PAWN_nameDef} has been carrying too much for too long: {SOURCES}. Today it was enough. {PAWN_nameDef} put down {PAWN_possessive} tools, went to {PAWN_possessive} room and won't be working for the rest of the day.\n\n{PAWN_nameDef} will still eat and sleep, and will mostly stay out of the way. It passes in six to twelve hours, and afterwards most of the strain will have lifted. If trouble comes, it ends early.</CC_Heart_Episode_Text>
   <CC_Heart_Episode_NoSources>one hard thing after another</CC_Heart_Episode_NoSources>
   <CC_Heart_Episode_Helps>What would help {PAWN_objective} after this: {HELP}.</CC_Heart_Episode_Helps>
   <CC_Heart_Episode_Chronicle>{PAWN_nameDef} was worn out and took a day away from work.</CC_Heart_Episode_Chronicle>
-  <CC_Heart_Episode_Journal>Couldn't face the work today. I went to my room and shut the door, and nobody came knocking.</CC_Heart_Episode_Journal>
+  <CC_Heart_Episode_Journal>Couldn't face the work today. I went to my room and shut the door.</CC_Heart_Episode_Journal>
   <CC_Heart_Episode_Interrupted>{PAWN_nameDef} came out of {PAWN_possessive} room to face the danger.</CC_Heart_Episode_Interrupted>
   <CC_Heart_Episode_Over>{PAWN_nameDef} spent the day in {PAWN_possessive} room and is ready to work again. The worst of the strain has lifted.</CC_Heart_Episode_Over>
 
