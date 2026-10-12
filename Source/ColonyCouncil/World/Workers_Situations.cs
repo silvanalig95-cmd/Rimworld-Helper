@@ -186,8 +186,25 @@ namespace ColonyCouncil
             tile = PlanetTile.Invalid;
             if (map == null || !map.Tile.Valid) return false;
             var layer = map.Tile.Layer;
-            return TileFinder.TryFindPassableTileWithTraversalDistance(map.Tile, 3, 10, out tile,
-                t => t.Layer == layer && !Find.WorldObjects.AnyWorldObjectAt(t) && TileFinder.IsValidTileForNewSettlement(t, null, false));
+            int min = Mathf.Max(3, SettlementProximityGoodwillUtility.MaxDist + 1);
+            return TileFinder.TryFindPassableTileWithTraversalDistance(map.Tile, min, min + 7, out tile,
+                t => t.Layer == layer && !Find.WorldObjects.AnyWorldObjectAt(t) && TileFinder.IsValidTileForNewSettlement(t, null, false) && ClearOfColony(t));
+        }
+
+        /// <summary>
+        /// Far enough from every one of the colony's homes that the game doesn't hold the town's nearness against the
+        /// colony (it takes goodwill every quadrum from a colony settled close to a people's town, and that can end in war).
+        /// </summary>
+        private static bool ClearOfColony(PlanetTile t)
+        {
+            int max = SettlementProximityGoodwillUtility.MaxDist;
+            foreach (var home in Find.WorldObjects.Settlements)
+            {
+                if (home.Faction != Faction.OfPlayer || home.Tile.Layer != t.Layer) continue;
+                if (Find.WorldGrid.ApproxDistanceInTiles(t, home.Tile) > max + 2f) continue;
+                if (Find.WorldGrid.TraversalDistanceBetween(t, home.Tile, true, max + 1) <= max) return false;
+            }
+            return true;
         }
 
         protected override bool CanHappen(Map map) => TryTile(map, out _);
