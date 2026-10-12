@@ -1,0 +1,401 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- Kinds of camp (ColonyCouncil.CampKindDef): who makes camp on the colony's map, how long they stay, what they build,
+       what they take from the land, and what they say. The arrival event is Council_Evt_Camp
+       (Defs/IncidentDefs/Council_Events_Camps.xml). Buildings are found by defName at runtime, the first that exists. -->
+
+  <!-- ===================== A hunting party ===================== -->
+
+  <ColonyCouncil.CampKindDef>
+    <defName>Council_Camp_Hunters</defName>
+    <label>hunting party</label>
+    <minTech>Neolithic</minTech>
+    <weight>1.2</weight>
+    <people>3~5</people>
+    <days>4~9</days>
+    <ages>17~50</ages>
+    <huntsPerDay>1.2</huntsPerDay>
+    <chopsPerDay>0.6</chopsPerDay>
+    <armedHunters>true</armedHunters>
+    <task>Council_CampWork</task>
+    <taskAt>butcher</taskAt>
+    <hireChance>0.3</hireChance>
+    <joinChance>0.04</joinChance>
+    <helpChance>0.25</helpChance>
+    <help>
+      <li>meat</li>
+    </help>
+    <pride>0.35</pride>
+    <breakTerms>0.15</breakTerms>
+    <tensionPerDay>1.5</tensionPerDay>
+    <extendChance>0.4</extendChance>
+    <structures>
+      <li><role>fire</role><defs><li>Campfire</li></defs></li>
+      <li><role>bed</role><defs><li>Bedroll</li><li>SleepingSpot</li></defs><stuff><li>Leather_Plain</li><li>Cloth</li></stuff></li>
+      <li><role>butcher</role><defs><li>ButcherSpot</li></defs></li>
+    </structures>
+    <titles>
+      <li>Hunters make camp</li>
+    </titles>
+    <texts>
+      <li>[lowtech] A hunting party of {FACTION} has followed a herd onto the colony's land. Their leader, {X_nameDef}, told {A_nameDef} they mean to camp {PLACE} until the herd moves on, and to take what game they need while it's here.</li>
+      <li>[!lowtech] A hunting party of {FACTION} has tracked game onto the colony's land, rifles slung and packs heavy. {X_nameDef} told {A_nameDef} they'll set up camp {PLACE} and stay until the hunting thins out.</li>
+      <li>Hunters of {FACTION} came through the trees this morning and stopped to look the land over. {X_nameDef} says the game here is too good to pass up. They are heading for a spot {PLACE} to make camp.</li>
+    </texts>
+    <settled>
+      <li>The hunters from {FACTION} finished their camp {PLACE}: bedrolls around a fire, and a spot for dressing game.</li>
+    </settled>
+    <joinTexts>
+      <li>{X_nameDef} from the hunters' camp has spent more evenings at the colony than at the camp fire lately. The colony feeds people better than the trail does, {X_pronoun} says, and {X_nameDef} would like to stay.</li>
+    </joinTexts>
+    <farewell>
+      <li>The herd moved on, and the hunters from {FACTION} went with it. Their camp {PLACE} is packed up and gone, and the land is quieter.</li>
+      <li>The hunters from {FACTION} packed up their camp {PLACE} and moved on after the game, as hunters do.</li>
+    </farewell>
+    <lines>
+      <li>Downwind, always downwind.</li>
+      <li>Saw tracks by the stream.</li>
+      <li>Good country for deer.</li>
+      <li>Whose turn is it to skin?</li>
+      <li>[lowtech] Check your bowstrings.</li>
+      <li>[!lowtech] Keep your powder dry.</li>
+    </lines>
+  </ColonyCouncil.CampKindDef>
+
+  <!-- ===================== A refugee family ===================== -->
+
+  <ColonyCouncil.CampKindDef>
+    <defName>Council_Camp_Refugees</defName>
+    <label>refugee family</label>
+    <weight>1</weight>
+    <people>3~6</people>
+    <days>6~14</days>
+    <ages>16~65</ages>
+    <family>true</family>
+    <huntsPerDay>0.3</huntsPerDay>
+    <chopsPerDay>1</chopsPerDay>
+    <hireChance>0.6</hireChance>
+    <joinChance>0.12</joinChance>
+    <helpChance>0.12</helpChance>
+    <help>
+      <li>wood</li>
+    </help>
+    <pride>0.05</pride>
+    <breakTerms>0.05</breakTerms>
+    <tensionPerDay>0.8</tensionPerDay>
+    <canPay>false</canPay>
+    <extendChance>0.6</extendChance>
+    <structures>
+      <li><role>fire</role><defs><li>Campfire</li></defs></li>
+      <li><role>bed</role><defs><li>SleepingSpot</li><li>Bedroll</li></defs><stuff><li>Cloth</li></stuff></li>
+      <li><role>wall</role><defs><li>Wall</li></defs><stuff><li>WoodLog</li></stuff><count>4</count></li>
+    </structures>
+    <titles>
+      <li>A family makes camp</li>
+    </titles>
+    <texts>
+      <li>A family of {FACTION} has come down the road with everything they own on their backs. Their home is gone, burned or taken, and {X_nameDef} would rather not say which. They ask only for a patch of ground {PLACE} to rest on for a while.</li>
+      <li>[lowtech] Refugees of {FACTION}, a family by the look of them, have stopped near the colony with a cart and a few bundles. {X_nameDef} asked {A_nameDef}, politely, whether anyone would mind if they camped {PLACE} for a time.</li>
+      <li>[!lowtech] A family of {FACTION} has turned up on foot, carrying what they could save. {X_nameDef} told {A_nameDef} they need a few days, maybe longer, to work out where to go next, and they'll camp {PLACE} if the colony doesn't object.</li>
+    </texts>
+    <settled>
+      <li>The family from {FACTION} put up a windbreak and laid out their beds around a fire {PLACE}. It almost looks like a home.</li>
+    </settled>
+    <joinTexts>
+      <li>{X_nameDef}, from the family camped {PLACE}, came up to the colony this evening with a question {X_pronoun} has clearly been rehearsing. {X_nameDef} works hard, {X_pronoun} says, and would like to stay.</li>
+    </joinTexts>
+    <farewell>
+      <li>The family from {FACTION} packed up their camp {PLACE} and went on down the road. {X_nameDef} waved until the colony was out of sight.</li>
+      <li>The family from {FACTION} found somewhere to go, or decided to look for it. Their camp {PLACE} is empty now.</li>
+    </farewell>
+    <lines>
+      <li>Stay where I can see you.</li>
+      <li>It's warm, at least.</li>
+      <li>We'll manage.</li>
+      <li>Put another log on.</li>
+      <li>Tomorrow we'll think about it.</li>
+    </lines>
+  </ColonyCouncil.CampKindDef>
+
+  <!-- ===================== Prospectors ===================== -->
+
+  <ColonyCouncil.CampKindDef>
+    <defName>Council_Camp_Prospectors</defName>
+    <label>prospectors</label>
+    <eras>
+      <li>medieval</li>
+      <li>industrial</li>
+      <li>spacer</li>
+    </eras>
+    <minTech>Medieval</minTech>
+    <weight>0.8</weight>
+    <people>3~5</people>
+    <days>5~12</days>
+    <ages>18~60</ages>
+    <huntsPerDay>0.4</huntsPerDay>
+    <chopsPerDay>1.2</chopsPerDay>
+    <trader>true</trader>
+    <task>Council_CampProspect</task>
+    <hireChance>0.25</hireChance>
+    <joinChance>0.03</joinChance>
+    <helpChance>0</helpChance>
+    <pride>0.5</pride>
+    <breakTerms>0.2</breakTerms>
+    <tensionPerDay>1.5</tensionPerDay>
+    <extendChance>0.5</extendChance>
+    <structures>
+      <li><role>fire</role><defs><li>Campfire</li></defs></li>
+      <li><role>bed</role><defs><li>Bedroll</li><li>SleepingSpot</li></defs><stuff><li>Cloth</li><li>Leather_Plain</li></stuff></li>
+      <li><role>wall</role><defs><li>Wall</li></defs><stuff><li>WoodLog</li></stuff><count>5</count></li>
+      <li><role>light</role><defs><li>TorchLamp</li></defs></li>
+    </structures>
+    <titles>
+      <li>Prospectors make camp</li>
+    </titles>
+    <texts>
+      <li>A band of prospectors of {FACTION} has come onto the colony's land with picks, pans and a lot of confidence. {X_nameDef} told {A_nameDef} there's ore in this ground, and they mean to camp {PLACE} until they find it.</li>
+      <li>[lowtech] Prospectors of {FACTION} have arrived with mules' worth of tools on their own backs. {X_nameDef} says an old map brought them here. They will camp {PLACE} and dig, and they'll sell whatever they find.</li>
+      <li>[!lowtech] Prospectors of {FACTION} have turned up with sample bags and a battered ground scanner that {X_nameDef} swears still works. They plan to camp {PLACE} and dig test holes until they hit something.</li>
+    </texts>
+    <settled>
+      <li>The prospectors from {FACTION} finished their camp {PLACE}, with a windbreak against the weather and a torch to dig by.</li>
+    </settled>
+    <joinTexts>
+      <li>{X_nameDef} from the prospectors' camp is tired of digging holes for other people's fortunes, and asks whether the colony could use a steady pair of hands.</li>
+    </joinTexts>
+    <farewell>
+      <li>The prospectors from {FACTION} filled in their last holes, packed up their camp {PLACE} and moved on, still sure the big find is over the next hill.</li>
+      <li>The prospectors from {FACTION} broke camp {PLACE} and left, arguing about where to dig next.</li>
+    </farewell>
+    <lines>
+      <li>Nothing. Again.</li>
+      <li>There's a seam here, I can feel it.</li>
+      <li>Who moved my pick?</li>
+      <li>Color in the pan!</li>
+      <li>Dig, sift, dig.</li>
+    </lines>
+  </ColonyCouncil.CampKindDef>
+
+  <!-- ===================== Pilgrims at rest ===================== -->
+
+  <ColonyCouncil.CampKindDef>
+    <defName>Council_Camp_Pilgrims</defName>
+    <label>pilgrims</label>
+    <weight>0.9</weight>
+    <people>3~6</people>
+    <days>3~6</days>
+    <ages>18~75</ages>
+    <chopsPerDay>0.4</chopsPerDay>
+    <task>Council_CampPray</task>
+    <taskAt>spot</taskAt>
+    <hireChance>0.1</hireChance>
+    <joinChance>0.06</joinChance>
+    <helpChance>0.25</helpChance>
+    <help>
+      <li>medicine</li>
+    </help>
+    <pride>0.1</pride>
+    <breakTerms>0.03</breakTerms>
+    <tensionPerDay>0.5</tensionPerDay>
+    <canPay>false</canPay>
+    <extendChance>0.2</extendChance>
+    <structures>
+      <li><role>fire</role><defs><li>Campfire</li></defs></li>
+      <li><role>bed</role><defs><li>SleepingSpot</li></defs></li>
+      <li><role>spot</role><defs><li>MeditationSpot</li><li>PartySpot</li></defs></li>
+    </structures>
+    <titles>
+      <li>Pilgrims at rest</li>
+    </titles>
+    <texts>
+      <li>Pilgrims of {FACTION} have stopped on the colony's land to rest. {X_nameDef}, who leads them, told {A_nameDef} their road is long and their feet are sore, and they'd like to camp {PLACE} for a few days before they go on.</li>
+      <li>A small band of pilgrims of {FACTION} is walking toward a holy place far from here. They've asked to rest {PLACE} for a few days, to pray and mend their sandals. {X_nameDef} promises they'll take very little.</li>
+    </texts>
+    <settled>
+      <li>The pilgrims from {FACTION} made a simple camp {PLACE}, with a place set aside for prayer.</li>
+    </settled>
+    <joinTexts>
+      <li>{X_nameDef}, one of the pilgrims camped {PLACE}, says the road has given {X_objective} what {X_pronoun} came for, and asks whether {X_pronoun} might stay with the colony instead of walking on.</li>
+    </joinTexts>
+    <farewell>
+      <li>The pilgrims from {FACTION} rested, prayed, and went on their way. {X_nameDef} said they'd remember the colony in their prayers.</li>
+      <li>The pilgrims from {FACTION} broke camp {PLACE} at dawn and walked on toward their holy place.</li>
+    </farewell>
+    <lines>
+      <li>Rest is a blessing too.</li>
+      <li>Not far now.</li>
+      <li>We'll pray for this place.</li>
+      <li>Mind your feet, they're all you have.</li>
+    </lines>
+  </ColonyCouncil.CampKindDef>
+
+  <!-- ===================== A market stall ===================== -->
+
+  <ColonyCouncil.CampKindDef>
+    <defName>Council_Camp_Market</defName>
+    <label>traders</label>
+    <weight>1</weight>
+    <people>3~5</people>
+    <days>3~7</days>
+    <ages>20~65</ages>
+    <chopsPerDay>0.5</chopsPerDay>
+    <trader>true</trader>
+    <task>Council_CampKeepStall</task>
+    <taskAt>stall</taskAt>
+    <hireChance>0.2</hireChance>
+    <joinChance>0.03</joinChance>
+    <helpChance>0</helpChance>
+    <pride>0.25</pride>
+    <breakTerms>0.1</breakTerms>
+    <tensionPerDay>0.6</tensionPerDay>
+    <extendChance>0.3</extendChance>
+    <structures>
+      <li><role>fire</role><defs><li>Campfire</li></defs></li>
+      <li><role>bed</role><defs><li>Bedroll</li><li>SleepingSpot</li></defs><stuff><li>Cloth</li><li>Leather_Plain</li></stuff></li>
+      <li><role>stall</role><defs><li>Table1x2c</li></defs><stuff><li>WoodLog</li></stuff></li>
+      <li><role>light</role><defs><li>TorchLamp</li></defs></li>
+    </structures>
+    <titles>
+      <li>Traders set up a stall</li>
+    </titles>
+    <texts>
+      <li>Traders of {FACTION} have decided the colony is worth more than a day's visit. {X_nameDef} told {A_nameDef} they'll set up a stall {PLACE} and stay a few days, and anyone with silver is welcome.</li>
+      <li>[lowtech] A small band of traders of {FACTION} has stopped on the colony's land with packs full of goods. They mean to put up a stall {PLACE} and sell to the colony for a few days, the way market folk do.</li>
+      <li>[!lowtech] Traders of {FACTION} have arrived with packs, a folding table and a hand-painted sign. {X_nameDef} says they'll camp {PLACE} and keep the stall open for a few days.</li>
+    </texts>
+    <settled>
+      <li>The traders from {FACTION} have their stall up {PLACE}, with a torch to see the goods by.</li>
+    </settled>
+    <joinTexts>
+      <li>{X_nameDef}, who carries the traders' packs, has had enough of the road, and asks whether the colony would take on someone who can count and lift.</li>
+    </joinTexts>
+    <farewell>
+      <li>The traders from {FACTION} packed their stall and moved on to the next settlement.</li>
+      <li>Business was what it was. The traders from {FACTION} folded up their stall {PLACE} and left.</li>
+    </farewell>
+    <lines>
+      <li>Fair prices, best on the road!</li>
+      <li>Look, don't touch.</li>
+      <li>For you, a special price.</li>
+      <li>Tell your friends.</li>
+      <li>Quiet day.</li>
+    </lines>
+  </ColonyCouncil.CampKindDef>
+
+  <!-- ===================== A traveling smith ===================== -->
+
+  <ColonyCouncil.CampKindDef>
+    <defName>Council_Camp_Smith</defName>
+    <label>traveling smith</label>
+    <eras>
+      <li>medieval</li>
+      <li>industrial</li>
+    </eras>
+    <minTech>Medieval</minTech>
+    <maxTech>Industrial</maxTech>
+    <weight>0.7</weight>
+    <people>3~4</people>
+    <days>4~8</days>
+    <ages>20~60</ages>
+    <chopsPerDay>1</chopsPerDay>
+    <trader>true</trader>
+    <traderKind>Combat</traderKind>
+    <task>Council_CampSmith</task>
+    <taskAt>spot</taskAt>
+    <hireChance>0.25</hireChance>
+    <joinChance>0.04</joinChance>
+    <helpChance>0.3</helpChance>
+    <help>
+      <li>mend</li>
+    </help>
+    <pride>0.3</pride>
+    <breakTerms>0.1</breakTerms>
+    <tensionPerDay>1</tensionPerDay>
+    <extendChance>0.3</extendChance>
+    <structures>
+      <li><role>fire</role><defs><li>Campfire</li></defs></li>
+      <li><role>bed</role><defs><li>Bedroll</li><li>SleepingSpot</li></defs><stuff><li>Leather_Plain</li><li>Cloth</li></stuff></li>
+      <li><role>spot</role><defs><li>CraftingSpot</li></defs></li>
+      <li><role>stall</role><defs><li>Table1x2c</li></defs><stuff><li>WoodLog</li></stuff></li>
+    </structures>
+    <titles>
+      <li>A traveling smith</li>
+    </titles>
+    <texts>
+      <li>{X_nameDef}, a traveling smith of {FACTION}, has come onto the colony's land with helpers and a cart of tools. {X_nameDef} told {A_nameDef} they'll camp {PLACE} for a few days, sell what they've made, and mend what they can.</li>
+      <li>[medieval] A smith of {FACTION} has stopped near the colony with an anvil on a cart and apprentices to push it. {X_nameDef} means to camp {PLACE}, burn some charcoal and sell blades and mail to anyone who can pay.</li>
+    </texts>
+    <settled>
+      <li>The smith from {FACTION} set up a work spot and a table of wares at the camp {PLACE}. The ringing of a hammer carries all the way to the colony.</li>
+    </settled>
+    <joinTexts>
+      <li>{X_nameDef}, who has been working the smith's bellows, wants to stop moving, and asks whether the colony needs someone who knows metal.</li>
+    </joinTexts>
+    <farewell>
+      <li>The smith from {FACTION} loaded the cart and moved on, the anvil ringing faintly over every bump in the road.</li>
+    </farewell>
+    <lines>
+      <li>Hotter. Hotter!</li>
+      <li>Hold it steady.</li>
+      <li>Good iron, this.</li>
+      <li>Mind the sparks.</li>
+    </lines>
+  </ColonyCouncil.CampKindDef>
+
+  <!-- ===================== A hermit ===================== -->
+
+  <ColonyCouncil.CampKindDef>
+    <defName>Council_Camp_Hermit</defName>
+    <label>hermit</label>
+    <weight>0.6</weight>
+    <people>1~1</people>
+    <days>12~15</days>
+    <ages>35~75</ages>
+    <huntsPerDay>0.4</huntsPerDay>
+    <chopsPerDay>0.8</chopsPerDay>
+    <armedHunters>true</armedHunters>
+    <task>Council_CampWork</task>
+    <hireChance>0</hireChance>
+    <joinChance>0.08</joinChance>
+    <helpChance>0.15</helpChance>
+    <help>
+      <li>medicine</li>
+      <li>meat</li>
+    </help>
+    <pride>0.45</pride>
+    <breakTerms>0.1</breakTerms>
+    <tensionPerDay>0.6</tensionPerDay>
+    <canPay>false</canPay>
+    <extendChance>0.5</extendChance>
+    <leaveBuildings>true</leaveBuildings>
+    <structures>
+      <li><role>fire</role><defs><li>Campfire</li></defs></li>
+      <li><role>hut</role><defs><li>Wall</li></defs><stuff><li>WoodLog</li></stuff></li>
+      <li><role>bed</role><defs><li>Bedroll</li><li>SleepingSpot</li></defs><stuff><li>Leather_Plain</li><li>Cloth</li></stuff></li>
+    </structures>
+    <titles>
+      <li>A hermit moves in</li>
+    </titles>
+    <texts>
+      <li>A hermit called {X_nameDef}, once of {FACTION}, has walked onto the colony's land and started pacing out a spot {PLACE}. {X_nameDef} told {A_nameDef}, in very few words, that {X_pronoun} means to build a hut and stay the season.</li>
+      <li>{X_nameDef}, a hermit who left {FACTION} years ago, has chosen a spot {PLACE} to build a hut for the season. {X_nameDef} asks nothing of the colony and seems to hope the colony will ask nothing back.</li>
+    </texts>
+    <settled>
+      <li>{X_nameDef} finished a small hut {PLACE}, with a door, a roof and a fire outside it.</li>
+    </settled>
+    <joinTexts>
+      <li>{X_nameDef}, the hermit camped {PLACE}, came to the colony's door this evening. After a long silence, {X_pronoun} asked whether there might be room for one more.</li>
+    </joinTexts>
+    <farewell>
+      <li>{X_nameDef} shut the door of the hut {PLACE} one last time and walked off without looking back. The hut is the colony's now, if it wants it.</li>
+    </farewell>
+    <lines>
+      <li>Hm.</li>
+      <li>Quiet out here.</li>
+      <li>Rain tonight.</li>
+      <li>Leave me be.</li>
+    </lines>
+  </ColonyCouncil.CampKindDef>
+
+</Defs>
