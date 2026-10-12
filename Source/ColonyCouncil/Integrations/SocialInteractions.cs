@@ -280,10 +280,12 @@ namespace ColonyCouncil
             var comp = CouncilGameComponent.Instance;
             if (comp == null) return;
             var now = new HashSet<string>();
+            var seen = new HashSet<int>();
             var found = new List<(Pawn, Pawn)>();
             foreach (var p in PawnsFinder.AllMaps_FreeColonists)
             {
                 if (!Ours(p) || p.relations == null) continue;
+                seen.Add(p.thingIDNumber);
                 var other = p.relations.GetFirstDirectRelationPawn(bestFriend);
                 if (!Ours(other) || p.thingIDNumber > other.thingIDNumber) continue;
                 string key = p.thingIDNumber + "|" + other.thingIDNumber;
@@ -292,8 +294,9 @@ namespace ColonyCouncil
             }
             bool first = !state.bestFriendsSeeded;
             state.bestFriendsSeeded = true;
-            // Pairs that fell out can be noted again if they find their way back.
-            state.bestFriends.RemoveAll(k => !now.Contains(k));
+            // Pairs that fell out can be noted again if they find their way back. Only a pair both seen at home without
+            // the bond has fallen out: one of them away on a caravan or at an outpost hasn't.
+            state.bestFriends.RemoveAll(k => !now.Contains(k) && k.Split('|').All(id => int.TryParse(id, out int n) && seen.Contains(n)));
             foreach (var (a, b) in found)
             {
                 state.bestFriends.Add(a.thingIDNumber + "|" + b.thingIDNumber);

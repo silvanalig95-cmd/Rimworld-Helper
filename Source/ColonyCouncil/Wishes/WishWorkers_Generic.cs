@@ -254,7 +254,8 @@ namespace ColonyCouncil
         /// <summary>Built already, or something that fits can still be built (the suggested thing's mod may be gone).</summary>
         public override bool StillObtainable(Wish wish)
         {
-            if (!base.StillObtainable(wish) || wish.thingDef == null) return false;
+            // A wish for something that no longer counts (its matching rules changed since it was made) is dropped.
+            if (!base.StillObtainable(wish) || wish.thingDef == null || !P.Matches(wish.thingDef)) return false;
             var map = wish.Beneficiary.MapHeld;
             if (map == null) return true;
             return Avail.CanBuild(wish.thingDef, map) || Count(wish.Beneficiary, map) >= wish.targetValue || Avail.AnyBuildable(map, P.Matches);

@@ -678,7 +678,9 @@ namespace ColonyCouncil
             if (r.royalty != null && r.royalty.AllTitlesForReading.Count > 0) return false;
             if (r.IsPrisoner || People.Kidnapped(r) || r.GetCaravan() != null || QuestUtility.IsReservedByQuestOrQuestBeingGenerated(r)) return false;
             var comp = CouncilGameComponent.Instance;
-            if (comp != null && (comp.nemeses.IsNemesis(r) || comp.happenings.Holds(r) || comp.happenings.departed.Any(d => d.pawn == r))) return false;
+            // A relative who may write after their last visit (a "kin" memo) can still come again; the new visit replaces it.
+            if (comp != null && (comp.nemeses.IsNemesis(r) || comp.happenings.memos.Any(m => !m.used && m.pawn == r && m.kind != LivingEvents.Kin)
+                                 || comp.happenings.departed.Any(d => d.pawn == r))) return false;
             return !Find.LetterStack.LettersListForReading.Any(l => l is ChoiceLetter_Happening h && !h.resolved && h.ctx?.stranger == r);
         }
 

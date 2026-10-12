@@ -221,8 +221,15 @@ namespace ColonyCouncil
 
         public static void Hourly(HappeningTracker t, CouncilGameComponent comp, int now)
         {
+            bool home = HappeningTracker.HomeMap() != null;
             foreach (var m in t.memos.Where(m => IsPending(m) && now >= m.due).ToList())
             {
+                // No home to come back to right now (a gravship in flight, a caravan life): what's on its way waits.
+                if (!home)
+                {
+                    m.due = now + GenDate.TicksPerHour;
+                    continue;
+                }
                 // Used first, so one that throws can't come round every hour.
                 t.Use(m);
                 try
@@ -552,10 +559,12 @@ namespace ColonyCouncil
         protected override bool Begin(HappeningContext ctx, HappeningExtension ext)
         {
             bool ok = Arrivals.Visit(new List<Pawn> { ctx.stranger }, ctx.map, ctx.faction, null, ext.stayHours.RandomInRange) != null;
-            if (ok) CouncilGameComponent.Instance?.happenings.Use(chosen);
+            // On failure Abort still needs to know whether this parent was made for the visit, to unmake them.
+            if (!ok) return false;
+            CouncilGameComponent.Instance?.happenings.Use(chosen);
             chosen = null;
             made = false;
-            return ok;
+            return true;
         }
 
         /// <summary>A parent made for this visit is unmade; one who existed before goes home.</summary>
