@@ -154,10 +154,10 @@ namespace ColonyCouncil
                 // Terms
                 y += UiKit.SectionTitle(0f, y, w, "CC_Camp_Dlg_Terms".Translate(), Icons.Decree, UiKit.Info);
                 y += UiKit.Paragraph(0f, y, w, "CC_Camp_Dlg_TermsHow".Translate(), UiKit.Faint) + 4f;
-                Check(ref y, w, "CC_Camp_Term_Fee".Translate(), ref fee, "CC_Camp_Term_Fee_Tip".Translate(), camp.kind.canPay);
-                Check(ref y, w, "CC_Camp_Term_Share".Translate(), ref share, "CC_Camp_Term_Share_Tip".Translate(), camp.kind.huntsPerDay > 0f);
-                Check(ref y, w, "CC_Camp_Term_Boundary".Translate(), ref boundary, "CC_Camp_Term_Boundary_Tip".Translate(), true);
-                Check(ref y, w, "CC_Camp_Term_Limit".Translate(), ref limit, "CC_Camp_Term_Limit_Tip".Translate(), true);
+                Check(ref y, w, "CC_Camp_Term_Fee".Translate().CapitalizeFirst(), ref fee, "CC_Camp_Term_Fee_Tip".Translate(), camp.kind.canPay);
+                Check(ref y, w, "CC_Camp_Term_Share".Translate().CapitalizeFirst(), ref share, "CC_Camp_Term_Share_Tip".Translate(), camp.kind.huntsPerDay > 0f);
+                Check(ref y, w, "CC_Camp_Term_Boundary".Translate().CapitalizeFirst(), ref boundary, "CC_Camp_Term_Boundary_Tip".Translate(), true);
+                Check(ref y, w, "CC_Camp_Term_Limit".Translate().CapitalizeFirst(), ref limit, "CC_Camp_Term_Limit_Tip".Translate(), true);
                 bool changed = fee != camp.termFee || share != camp.termShare || boundary != camp.termBoundary || limit != camp.termLimit;
                 if (Button(ref y, "CC_Camp_Dlg_PutTerms".Translate(), changed && here, here ? null : "CC_Camp_Dlg_NotYet".Translate().ToString()))
                 {

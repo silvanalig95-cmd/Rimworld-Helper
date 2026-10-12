@@ -28,6 +28,11 @@ namespace ColonyCouncil
 
         public override bool AddFleeToil => false;
 
+        // The group ends when its people are gone, whatever is left standing at the camp.
+        public override bool KeepExistingWhileHasAnyBuilding => false;
+
+        public override bool ShouldExistWithoutPawns => false;
+
         public override StateGraph CreateGraph()
         {
             var graph = new StateGraph();
@@ -61,6 +66,7 @@ namespace ColonyCouncil
             scatter.AddSources(camp, leave);
             scatter.AddTrigger(new Trigger_Memo(MemoFlee));
             scatter.AddTrigger(new Trigger_PawnHarmed(1f, true, Faction.OfPlayer, null, null));
+            scatter.AddTrigger(new Trigger_ChanceOnPlayerHarmNPCBuilding(1f));
             scatter.AddPostAction(new TransitionAction_EndAllJobs());
             graph.AddTransition(scatter);
 

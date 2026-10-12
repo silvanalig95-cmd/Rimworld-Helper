@@ -252,6 +252,8 @@ namespace ColonyCouncil
             // Fires and torches burn down; they keep them going.
             foreach (var b in Buildings())
             {
+                // Theirs as a group: the colony damaging the camp counts as an attack on them.
+                if (b.GetLord() == null && LordAlive) lord.AddBuilding(b);
                 var fuel = b.TryGetComp<CompRefuelable>();
                 if (fuel == null || fuel.FuelPercentOfMax > 0.5f) continue;
                 var wood = goods.FirstOrDefault(t => t.def == ThingDefOf.WoodLog);
@@ -751,6 +753,12 @@ namespace ColonyCouncil
         {
             float temp = map.mapTemperature.OutdoorTemp;
             if (temp < -14f || temp > 43f) return true;
+            // Colder or hotter than any of them can sleep out in, dressed as they are.
+            foreach (var p in Here)
+            {
+                var comfy = GenTemperature.ComfortableTemperatureRange(p);
+                if (temp < comfy.min - 4f || temp > comfy.max + 4f) return true;
+            }
             foreach (var c in map.gameConditionManager.ActiveConditions)
             {
                 var d = c.def;

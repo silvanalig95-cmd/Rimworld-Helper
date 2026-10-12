@@ -113,6 +113,13 @@ namespace ColonyCouncil
                 if (plans == null) return null;
                 var pawns = MakePeople(kind, f, n);
                 if (pawns.Count == 0) continue;
+                // Not dressed for this weather: they wouldn't stop here now.
+                float temp = map.mapTemperature.OutdoorTemp;
+                if (pawns.Any(p => temp < GenTemperature.ComfortableTemperatureRange(p).min || temp > GenTemperature.ComfortableTemperatureRange(p).max))
+                {
+                    foreach (var p in pawns) Arrivals.Discard(p);
+                    continue;
+                }
                 return new CampSetup
                 {
                     kind = kind, faction = f, map = map, center = center, stash = stash, share = share, colony = colony, plans = plans, pawns = pawns,

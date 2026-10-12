@@ -333,11 +333,14 @@ namespace ColonyCouncil
             var map = hunter.Map;
             Pawn best = null;
             float bestD = float.MaxValue;
+            var people = map.mapPawns.FreeColonistsSpawned.Select(c => c.Position).ToList();
             foreach (var a in map.mapPawns.AllPawnsSpawned)
             {
                 if (a.Faction != null || a.RaceProps == null || !a.RaceProps.Animal || a.Dead || a.Downed || a.InMentalState || a.RaceProps.predator) continue;
                 if (a.BodySize > 2.5f || a.IsPrisoner || map.designationManager.DesignationOn(a) != null) continue;
                 if (!camp.MayWork(a.Position)) continue;
+                // Nobody of the colony anywhere near the line of fire.
+                if (people.Any(c => c.InHorDistOf(a.Position, 12f))) continue;
                 if (PawnUtility.GetManhunterOnDamageChance(a, hunter) > 0.04f) continue;
                 float d = a.Position.DistanceToSquared(camp.center);
                 if (d >= bestD || !hunter.CanReserveAndReach(a, PathEndMode.Touch, Danger.Some)) continue;
