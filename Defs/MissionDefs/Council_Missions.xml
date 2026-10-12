@@ -1,0 +1,295 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- Missions: tracked objectives a neighbor asks of the colony (Source/ColonyCouncil/Missions/). Each offer is a Rimfolk
+       event drawn by the storyteller; it shows up in the game's Quests tab as a real quest to accept or let expire
+       (Settings: missions in the Quests tab; otherwise it comes as a letter with the options below). Rimfolk keeps the
+       mission itself, checks it, ends the quest, and shows it with its progress on the World page.
+       Texts may use {A} (who dealt with the neighbor), {FACTION}, {PLACE} (their town), {COUNT} (the reward), {TALE}
+       (the goods, or the shrine's quality), {DEAD} (who the funeral or the wedding is for), {BEAST} and {THING} (the
+       runaway's name and kind). In terms, reminders and accepted lines, {ITEM} is the goods and {DAYS} the time; in
+       endings, {ITEM} is the silver paid. Lines are tagged with the mission (feast, runaway, shrine), its variant and,
+       for endings, how it ended. -->
+
+  <!-- The quest a mission shows up as. It has no steps of its own: Rimfolk ends it when the mission is done. -->
+  <QuestScriptDef>
+    <defName>Council_MissionQuest</defName>
+    <root Class="QuestNode_Sequence">
+      <nodes />
+    </root>
+    <autoAccept>false</autoAccept>
+    <sendAvailableLetter>true</sendAvailableLetter>
+    <endOnColonyMove>false</endOnColonyMove>
+  </QuestScriptDef>
+
+  <!-- ===================== Goods for a funeral, or a wedding ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Council_Mission_Feast</defName>
+    <label>a neighbor's great day</label>
+    <workerClass>ColonyCouncil.HappeningWorker_MissionFeast</workerClass>
+    <baseChance>0.6</baseChance>
+    <minRefireDays>45</minRefireDays>
+    <earliestDay>12</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Challenge</group>
+        <answerDays>3</answerDays>
+        <notable>false</notable>
+        <titles>
+          <li>[funeral] A funeral at {PLACE}</li>
+          <li>[wedding] A wedding at {PLACE}</li>
+        </titles>
+        <texts>
+          <li>[funeral,lowtech] Old {DEAD}, who led {PLACE} for thirty years, died in the night at a great age, and {FACTION} mean to give the old headman the burial the town has talked about for years: a feast for every mourner, and a grave fit for the one who kept them all alive through the bad winters.\n\nThey can't make it all in time. A rider has come to the colony with a list, asking it to supply what the town can't, by the day of the burial.</li>
+          <li>[funeral,!lowtech] {DEAD}, mayor of {PLACE} for thirty years, died in the night at a great age, and {FACTION} mean to give the old mayor the funeral the town has talked about for years: a feast for every mourner, and a grave fit for the one who kept them all going through the bad winters.\n\nThey can't make it all in time. A rider has come to the colony with a list, asking it to supply what the town can't, by the day of the funeral.</li>
+          <li>[wedding,lowtech] {DEAD}, the only daughter of {PLACE}'s headman, is to be married, and {FACTION} want a wedding the valley will remember: food for every guest, drink, and something fine for the couple's new house.\n\nThey can't make it all in time. A rider has come to the colony with a list, asking it to supply what the town can't, by the day of the wedding.</li>
+          <li>[wedding,!lowtech] {DEAD}, the only daughter of {PLACE}'s mayor, is to be married, and {FACTION} want a wedding the region will remember: food for every guest, drink, and something fine for the couple's new house.\n\nThey can't make it all in time. A rider has come to the colony with a list, asking it to supply what the town can't, by the day of the wedding.</li>
+        </texts>
+        <defaultOption>1</defaultOption>
+        <options>
+          <li>
+            <label>Accept the terms</label>
+            <outcome>The colony has agreed.</outcome>
+          </li>
+          <li>
+            <label>Decline</label>
+            <outcome>{FACTION} will look elsewhere.</outcome>
+          </li>
+        </options>
+      </li>
+      <li Class="ColonyCouncil.MissionText">
+        <terms>
+          <li>What they need: {ITEM}. Everything has to be in the colony's stockpiles (sculptures can be anywhere on the map, as long as they aren't forbidden) within {DAYS} of the colony agreeing.\n\nFor all of it, {FACTION} will pay {COUNT} silver, well over its worth. If at least half of everything is ready, they'll take that and pay its plain worth. With less, they'll go elsewhere, and think less of the colony for it.</li>
+        </terms>
+        <accepted>
+          <li>[funeral] The colony has agreed to provide for {DEAD}'s funeral at {PLACE}: {ITEM}, within {DAYS}. {FACTION}'s carts will come for it.</li>
+          <li>[wedding] The colony has agreed to provide for {DEAD}'s wedding at {PLACE}: {ITEM}, within {DAYS}. {FACTION}'s carts will come for it.</li>
+        </accepted>
+        <ready>
+          <li>Everything {FACTION} asked for is ready. Their carts will come for it in {DAYS}.</li>
+        </ready>
+        <reminder>
+          <li>{FACTION}'s carts come for the goods within {DAYS}: {ITEM}.</li>
+        </reminder>
+        <doneTitles>
+          <li>[delivered] The goods for {PLACE}</li>
+          <li>[partial] Part of the goods for {PLACE}</li>
+        </doneTitles>
+        <done>
+          <li>[delivered,funeral] {FACTION}'s carts came at dawn and loaded everything the colony had set aside, and their driver counted out {ITEM} silver. {DEAD} was buried two days later, with every family of {PLACE} at the graveside and food enough for all of them.\n\n{FACTION} won't forget who made it possible.</li>
+          <li>[delivered,wedding] {FACTION}'s carts came at dawn and loaded everything the colony had set aside, and their driver counted out {ITEM} silver. {DEAD} was married two days later, and people in {PLACE} say it was the best wedding they've ever been to.\n\n{FACTION} won't forget who made it possible.</li>
+          <li>[partial] {FACTION}'s carts came for the goods and found only part of them ready. They loaded what there was, paid its plain worth, {ITEM} silver, and drove off to find the rest somewhere else.</li>
+        </done>
+        <failTitles>
+          <li>[missed] Nothing for {PLACE}</li>
+          <li>[cancelled] The order is off</li>
+        </failTitles>
+        <fail>
+          <li>[missed,funeral] {FACTION}'s carts came for the goods and found far too little ready. They left empty, and went looking for what they needed elsewhere. {DEAD}'s funeral will be a smaller one than the town hoped for.\n\n{FACTION} think less of the colony for the broken promise.</li>
+          <li>[missed,wedding] {FACTION}'s carts came for the goods and found far too little ready. They left empty, and went looking for what they needed elsewhere. {DEAD}'s wedding will be a smaller one than the town hoped for.\n\n{FACTION} think less of the colony for the broken promise.</li>
+        </fail>
+        <cancelled>
+          <li>{FACTION} are no longer on terms with the colony, and the order for {PLACE} is off.</li>
+        </cancelled>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== The runaway ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Council_Mission_Runaway</defName>
+    <label>a runaway</label>
+    <workerClass>ColonyCouncil.HappeningWorker_MissionRunaway</workerClass>
+    <baseChance>0.6</baseChance>
+    <minRefireDays>45</minRefireDays>
+    <earliestDay>10</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Challenge</group>
+        <answerDays>1.5</answerDays>
+        <notable>false</notable>
+        <titles>
+          <li>{BEAST} has bolted</li>
+        </titles>
+        <texts>
+          <li>[lowtech] A herder of {FACTION} came to the colony out of breath. {BEAST}, the prize {THING} of {PLACE}, broke through a fence three nights ago and has run wild onto the colony's land, and none of the town's people can get near {BEAST}.\n\nIf the colony can tame {BEAST} and hand {BEAST} back, {FACTION} will pay {COUNT} silver, and be grateful besides. {A_nameDef} thinks it can be done.</li>
+          <li>[!lowtech] A herder of {FACTION} came to the colony out of breath. {BEAST}, a breeder's prize {THING} from {PLACE}, jumped a fence three nights ago and has run wild onto the colony's land, and none of the town's people can get near {BEAST}.\n\nIf the colony can tame {BEAST} and hand {BEAST} back, {FACTION} will pay {COUNT} silver, and be grateful besides. {A_nameDef} thinks it can be done.</li>
+        </texts>
+        <defaultOption>1</defaultOption>
+        <options>
+          <li>
+            <label>Accept the terms</label>
+            <outcome>The colony has agreed.</outcome>
+          </li>
+          <li>
+            <label>Decline</label>
+            <outcome>The herder goes looking for help elsewhere.</outcome>
+          </li>
+        </options>
+      </li>
+      <li Class="ColonyCouncil.MissionText">
+        <names>
+          <li>Bramble</li>
+          <li>Old Gray</li>
+          <li>Duchess</li>
+          <li>Thistle</li>
+          <li>Pepper</li>
+          <li>Ironfoot</li>
+          <li>Clover</li>
+          <li>Smoke</li>
+          <li>Barley</li>
+          <li>Marigold</li>
+          <li>Captain</li>
+          <li>Sorrel</li>
+        </names>
+        <terms>
+          <li>What they ask: tame {BEAST} within {DAYS} of the colony agreeing. {BEAST} will be loose somewhere on the colony's land; mark {BEAST} to be tamed, and send {A_nameDef} or another good handler.\n\nHanded back unharmed, {BEAST} is worth {COUNT} silver to {FACTION}. If {BEAST} gets away, they'll be disappointed. If {BEAST} is killed, they'll take it hard.</li>
+        </terms>
+        <accepted>
+          <li>The colony will try to tame {BEAST} for {FACTION}. {BEAST} is somewhere on the colony's land now: mark {BEAST} to be tamed. Time: {DAYS}.</li>
+        </accepted>
+        <reminder>
+          <li>{BEAST} is still wild, and will wander off for good unless tamed within {DAYS}.</li>
+        </reminder>
+        <doneTitles>
+          <li>[returned] {BEAST} goes home</li>
+          <li>[bought] {BEAST} stays</li>
+        </doneTitles>
+        <done>
+          <li>[returned] {FACTION}'s herder came for {BEAST} at dawn and led {BEAST} home on a rope. The herder left {ITEM} silver at the gate, and the thanks of {PLACE}.</li>
+          <li>[bought] {FACTION} took the colony's silver for {BEAST}, and {BEAST} is the colony's now, bought and paid for. The herder walked home alone, and didn't seem to mind.</li>
+        </done>
+        <failTitles>
+          <li>[killed] {BEAST} is dead</li>
+          <li>[escaped] {BEAST} got away</li>
+          <li>[lost] {BEAST} is gone</li>
+          <li>[kept] {BEAST} kept</li>
+          <li>[cancelled] The runaway</li>
+        </failTitles>
+        <fail>
+          <li>[killed] {BEAST}, the prize {THING} of {PLACE}, lies dead on the colony's land. {FACTION} took the news badly: {BEAST} was worth more to them than silver.</li>
+          <li>[escaped] {BEAST} slipped away into the hills before anyone could win {BEAST} over. {FACTION} are disappointed, and say so.</li>
+          <li>[lost] {BEAST} is gone from the colony's land, and {FACTION} have no idea where. They're disappointed, and say so.</li>
+          <li>[kept] The colony tamed {BEAST} and kept {BEAST} without paying a thing. {FACTION} will be telling that story at every market for years.</li>
+        </fail>
+        <cancelled>
+          <li>{FACTION} are no longer on terms with the colony. Whatever becomes of {BEAST} now is the colony's own business.</li>
+        </cancelled>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- Told when the runaway is tamed: hand it back, buy it, or keep it. -->
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Council_Mission_RunawayTamed</defName>
+    <label>the runaway tamed</label>
+    <workerClass>ColonyCouncil.HappeningWorker_MissionTamed</workerClass>
+    <baseChance>0</baseChance>
+    <minRefireDays>0</minRefireDays>
+    <earliestDay>0</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Challenge</group>
+        <answerDays>1</answerDays>
+        <notable>false</notable>
+        <titles>
+          <li>{BEAST} is tamed</li>
+        </titles>
+        <texts>
+          <li>{BEAST} has been tamed, and follows the colony's handlers around the yard as if {BEAST} had always lived here. {FACTION}'s herder is waiting at the gate with a rope.\n\nThe colony can hand {BEAST} back for the {TALE} silver promised, or keep {BEAST}: {FACTION} would sell {BEAST} for {COUNT} silver. Keeping {BEAST} without paying would be another thing entirely.</li>
+        </texts>
+        <defaultOption>0</defaultOption>
+        <options>
+          <li>
+            <label>Hand {BEAST} back ({TALE} silver)</label>
+            <outcome>{BEAST} goes home.</outcome>
+            <ways><generosity>1</generosity></ways>
+          </li>
+          <li>
+            <label>Keep {BEAST}, and pay {COUNT} silver</label>
+            <outcome>{BEAST} stays.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>silver</what></li>
+            </effects>
+          </li>
+          <li>
+            <label>Keep {BEAST} without paying</label>
+            <outcome>{BEAST} stays.</outcome>
+            <ways><generosity>-3</generosity></ways>
+          </li>
+        </options>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== A shrine for the pilgrims ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Council_Mission_Shrine</defName>
+    <label>a shrine for the pilgrims</label>
+    <workerClass>ColonyCouncil.HappeningWorker_MissionShrine</workerClass>
+    <baseChance>0.5</baseChance>
+    <minRefireDays>60</minRefireDays>
+    <earliestDay>15</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Challenge</group>
+        <answerDays>3</answerDays>
+        <notable>false</notable>
+        <titles>
+          <li>A shrine for the pilgrims</li>
+        </titles>
+        <texts>
+          <li>[lowtech] Every year, pilgrims of {FACTION} walk from {PLACE} to a holy spring in the far hills, and their road passes the colony. The elders of {PLACE} have sent to ask a favor: a place on the colony's land where the pilgrims can stop and pray, marked with something made by human hands and open to the sky.\n\nIf a shrine is waiting for them, the pilgrims will pray there, leave an offering, and remember who raised it. {A_nameDef} already has an idea for it.</li>
+          <li>[!lowtech] Every year, pilgrims of {FACTION} walk from {PLACE} to an old monastery in the far hills, and their road passes the colony. The elders of {PLACE} have sent to ask a favor: a place on the colony's land where the pilgrims can stop and pray, marked with something made by human hands and open to the sky.\n\nIf a shrine is waiting for them, the pilgrims will pray there, leave an offering, and remember who raised it. {A_nameDef} already has an idea for it.</li>
+        </texts>
+        <defaultOption>1</defaultOption>
+        <options>
+          <li>
+            <label>Accept the terms</label>
+            <outcome>The colony has agreed.</outcome>
+          </li>
+          <li>
+            <label>Decline</label>
+            <outcome>The pilgrims will pray by the roadside, as they always have.</outcome>
+          </li>
+        </options>
+      </li>
+      <li Class="ColonyCouncil.MissionText">
+        <terms>
+          <li>What they ask: a sculpture of {TALE} quality or better, standing under the open sky (not under a roof) on the colony's land, within {DAYS} of the colony agreeing. As soon as it stands, word goes out and the pilgrims set out; they arrive a day or so later.\n\nTheir offering will be about {COUNT} silver, and {FACTION} will think well of the colony. If there's no shrine when they come, they'll walk on past, and their elders will hear of it.</li>
+        </terms>
+        <accepted>
+          <li>The colony will raise a shrine for the pilgrims of {FACTION}: a sculpture of {TALE} quality or better, under the open sky, within {DAYS}.</li>
+        </accepted>
+        <ready>
+          <li>Word of the colony's shrine has reached {PLACE}: {ITEM} stands ready, and the pilgrims have set out. They'll arrive in about {DAYS}.</li>
+        </ready>
+        <reminder>
+          <li>The pilgrims of {FACTION} are coming within {DAYS}, and there's no shrine for them yet: a sculpture of {TALE} quality or better, under the open sky.</li>
+        </reminder>
+        <doneTitles>
+          <li>[blessed] Pilgrims at the shrine</li>
+        </doneTitles>
+        <done>
+          <li>[blessed] The pilgrims of {FACTION} came singing up the road and stopped at the colony's shrine to pray, as their elders asked. They left an offering at its foot, {ITEM} silver, and will carry word of the colony home to {PLACE}.\n\nThey say they'll stop here every year now.</li>
+        </done>
+        <failTitles>
+          <li>[noshrine] No shrine</li>
+          <li>[gone] The shrine is gone</li>
+          <li>[cancelled] The pilgrims</li>
+        </failTitles>
+        <fail>
+          <li>[noshrine] The pilgrims of {FACTION} came up the road and found no shrine waiting for them. They prayed by the roadside and walked on, and the elders of {PLACE} will hear of it.</li>
+          <li>[gone] The pilgrims of {FACTION} came to pray at the colony's shrine and found it gone. They walked on, puzzled, and the elders of {PLACE} will hear of it.</li>
+        </fail>
+        <cancelled>
+          <li>{FACTION} are no longer on terms with the colony, and their pilgrims will take another road.</li>
+        </cancelled>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+</Defs>

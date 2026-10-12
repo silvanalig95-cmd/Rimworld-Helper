@@ -71,6 +71,8 @@ namespace ColonyCouncil
                     UiKit.Icon(new Rect(4f, y + 3f, 16f, 16f), Icons.WorldEvent, UiKit.Faint);
                     y += UiKit.Paragraph(26f, y, w - 26f, m.next, UiKit.Faint) + 4f;
                 }
+                // Missions offered or under way, with their progress (Missions/MissionPanel.cs).
+                y = MissionPanel.Draw(y, w);
                 y += 14f;
                 y += UiKit.SectionTitle(0f, y, w, "CC_World_OutThere".Translate(), Icons.Visitor, Calm);
                 if (m.outThere.Count == 0) y += UiKit.EmptyState(0f, y, w, Icons.Visitor, "CC_World_NobodyOut".Translate(), 70f);

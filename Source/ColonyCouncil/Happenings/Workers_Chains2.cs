@@ -1310,7 +1310,7 @@ namespace ColonyCouncil
             ctx.beast = StoryChains.Family(ctx.b);
             // Two families of the same name would read oddly: the second goes by its head's own name.
             if (ctx.beast == ctx.dead) ctx.beast = ctx.b.LabelShort;
-            // What they say do the selling of grain and blades to both sides is worth.
+            // What selling supplies to both sides would bring in.
             ctx.count = StoryChains.Silver(map, 150f, 300f);
             c.Set(Grievances.RandomElement());
             return true;
@@ -1792,12 +1792,17 @@ namespace ColonyCouncil
             if (ctx.stranger == null) return false;
             StorytellerEvents.Skilled(ctx.stranger, SkillDefOf.Intellectual, new IntRange(8, 14));
             ctx.relation = ctx.stranger.LabelShort;
-            ctx.a = VarietyUtil.Best(map, SkillDefOf.Social) ?? StorytellerEvents.Adults(map).RandomElementWithFallback();
+            // The old adventurer who settled here (Workers_Storyteller.cs) knows the roads, and draws the rescue a better map.
+            var adventurer = CouncilGameComponent.Instance?.happenings.Memos(StorytellerEvents.Adventurer)
+                .Select(m => m.pawn).FirstOrDefault(p => StorytellerEvents.Able(p) && p.IsColonist && p.Map == map);
+            if (adventurer != null) c.Set("adventurer");
+            ctx.a = adventurer ?? VarietyUtil.Best(map, SkillDefOf.Social) ?? StorytellerEvents.Adults(map).RandomElementWithFallback();
             if (ctx.a == null) return false;
             ctx.placeName = StoryChains.Line(Story?.names, ctx, null, null) ?? "";
             // What became of the others is settled now.
             float roll = Rand.Value;
-            c.Set(roll < 0.45f ? "alive" : roll < 0.8f ? "half" : "lost");
+            float alive = adventurer != null ? 0.55f : 0.45f, half = adventurer != null ? 0.3f : 0.35f;
+            c.Set(roll < alive ? "alive" : roll < alive + half ? "half" : "lost");
             // The guides' pay, on top of the food.
             ctx.count = StoryChains.Silver(map, 80f, 160f);
             c.value = Mathf.RoundToInt(Rand.Range(500f, 900f) * LivingEvents.WealthFactor(map));

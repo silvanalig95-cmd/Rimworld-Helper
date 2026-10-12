@@ -83,6 +83,8 @@ namespace ColonyCouncil
         public bool worldEvents = true;
         /// <summary>World events that can end in a fight (bounty hunters, revenge, tribute refused).</summary>
         public bool worldEventBattles = true;
+        /// <summary>Missions a neighbor offers show up in the game's Quests tab, to accept or let expire there (else as a letter).</summary>
+        public bool missionsAsQuests = true;
         public float daysBetweenWorldEvents = 4f;
         /// <summary>Rimfolk's colony events join the storyteller's own random events (else they come on Rimfolk's own timer).</summary>
         public bool eventsFromStoryteller = true;
@@ -185,6 +187,7 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref autonomyPlans, "autonomyPlans", true);
             Scribe_Values.Look(ref worldEvents, "worldEvents", true);
             Scribe_Values.Look(ref worldEventBattles, "worldEventBattles", true);
+            Scribe_Values.Look(ref missionsAsQuests, "missionsAsQuests", true);
             Scribe_Values.Look(ref daysBetweenWorldEvents, "daysBetweenWorldEvents", 4f);
             Scribe_Values.Look(ref eventsFromStoryteller, "eventsFromStoryteller", true);
             Scribe_Values.Look(ref storytellerEventWeight, "storytellerEventWeight", 1f);
@@ -415,6 +418,7 @@ namespace ColonyCouncil
             if (worldEvents)
             {
                 l.CheckboxLabeled("  " + "CC_Settings_WorldEventBattles".Translate(), ref worldEventBattles, "CC_Settings_WorldEventBattles_Tip".Translate());
+                l.CheckboxLabeled("  " + "CC_Settings_MissionsAsQuests".Translate(), ref missionsAsQuests, "CC_Settings_MissionsAsQuests_Tip".Translate());
                 bool fromStoryteller = eventsFromStoryteller;
                 l.CheckboxLabeled("  " + "CC_Settings_EventsFromStoryteller".Translate(), ref eventsFromStoryteller, "CC_Settings_EventsFromStoryteller_Tip".Translate());
                 if (fromStoryteller != eventsFromStoryteller) HappeningTracker.ApplyEventMode();
@@ -568,6 +572,7 @@ namespace ColonyCouncil
             autonomyPlans = d.autonomyPlans;
             worldEvents = d.worldEvents;
             worldEventBattles = d.worldEventBattles;
+            missionsAsQuests = d.missionsAsQuests;
             daysBetweenWorldEvents = d.daysBetweenWorldEvents;
             eventsFromStoryteller = d.eventsFromStoryteller;
             storytellerEventWeight = d.storytellerEventWeight;
