@@ -1,0 +1,418 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- Rimfolk world events, the storyteller batch: closer to home. A colonist's past knocking (a face from the wanted
+       posters, an old commander's call, a former patient, an old map), and the colony's own small finds (a child's
+       treasure, a pet's present, a sealed crate). None ends in a fight. Code:
+       Source/ColonyCouncil/Happenings/Workers_Storyteller*.cs. -->
+
+  <!-- ===================== Recognized (an outlaw's past) ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Council_Evt_Recognized</defName>
+    <label>recognized</label>
+    <workerClass>ColonyCouncil.HappeningWorker_Recognized</workerClass>
+    <baseChance>1.2</baseChance>
+    <minRefireDays>75</minRefireDays>
+    <earliestDay>12</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Past</group>
+        <ages>28~60</ages>
+        <stayHours>12~18</stayHours>
+        <answerDays>0.5</answerDays>
+        <value>70~220</value>
+        <riskSkill>Social</riskSkill>
+        <riskSkillOption>2</riskSkillOption>
+        <journal>Council_Journal_Evt_Recognized</journal>
+        <titles>
+          <li>Recognized</li>
+        </titles>
+        <!-- {TALE}: who the colonist used to be, from their backstory ("a smuggler"). -->
+        <texts>
+          <li>{X_nameDef}, a traveler of {FACTION}, stopped {A_nameDef} by the well and said a name {A_nameDef} hasn't used in years. {X_nameDef} remembers the face from the wanted posters, from when {A_nameDef} was {TALE}, and remembers the reward on it.\n\n{X_nameDef} would forget all about it for {COUNT} silver.</li>
+          <li>[lowtech] A traveler of {FACTION}, {X_nameDef}, kept staring at {A_nameDef} all morning, and finally took {A_objective} aside. There used to be a price on {A_nameDef}'s head, back when {A_pronoun} was {TALE}, and {X_nameDef} still remembers the drawing on the notice.\n\nFor {COUNT} silver, {X_nameDef} will forget it.</li>
+          <li>[!lowtech] {X_nameDef} of {FACTION} spent a long time looking at {A_nameDef} across the yard before coming over. {X_nameDef} has seen that face on a bounty list, from when {A_nameDef} was {TALE}, and thinks keeping it off the comms is worth {COUNT} silver.</li>
+        </texts>
+        <defaultOption>1</defaultOption>
+        <options>
+          <li>
+            <label>Pay {X_objective} {COUNT} silver</label>
+            <outcome>{X_nameDef} pockets the silver, nods to {A_nameDef} and leaves before supper.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>silver</what></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Thought"><thought>Council_Evt_PaidForSilence</thought></li>
+              <li Class="ColonyCouncil.DilemmaEffect_SendAway" />
+            </effects>
+            <ways><generosity>-1</generosity></ways>
+          </li>
+          <li>
+            <label>Call the bluff (they may talk)</label>
+            <outcome>The colony tells {X_nameDef} to say whatever {X_pronoun} likes. {X_nameDef} shrugs and leaves without another word, and that seems to be the end of it.</outcome>
+            <riskChance>0.5</riskChance>
+            <riskReplaces>true</riskReplaces>
+            <riskOutcome>The colony tells {X_nameDef} to say whatever {X_pronoun} likes, and {X_pronoun} does. Within days {FACTION} have heard all about what {A_nameDef} used to be.</riskOutcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_SendAway" />
+            </effects>
+            <riskEffects>
+              <li Class="ColonyCouncil.DilemmaEffect_FairGoodwill"><amount>-8</amount></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Thought"><thought>Council_Evt_PastOut</thought></li>
+              <li Class="ColonyCouncil.DilemmaEffect_RevealSecret" />
+              <li Class="ColonyCouncil.DilemmaEffect_SendAway" />
+            </riskEffects>
+            <ways><openness>1</openness></ways>
+          </li>
+          <li>
+            <label>Let {A_nameDef} talk to {X_objective}</label>
+            <outcome>{A_nameDef} takes {X_nameDef} for a long walk around the fields. Whatever is said out there, {X_nameDef} comes back pale and leaves without asking for anything.</outcome>
+            <riskChance>0.55</riskChance>
+            <riskReplaces>true</riskReplaces>
+            <riskOutcome>{A_nameDef} and {X_nameDef} talk behind the storehouse, and it goes badly. {X_nameDef} leaves in a hurry, promising that {FACTION} will hear about it.</riskOutcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Thought"><thought>Council_Evt_FacedMyPast</thought></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Learn"><skill>Social</skill><xp>400</xp></li>
+              <li Class="ColonyCouncil.DilemmaEffect_SendAway" />
+            </effects>
+            <riskEffects>
+              <li Class="ColonyCouncil.DilemmaEffect_FairGoodwill"><amount>-5</amount></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Thought"><thought>Council_Evt_PastOut</thought></li>
+              <li Class="ColonyCouncil.DilemmaEffect_SendAway" />
+            </riskEffects>
+          </li>
+        </options>
+      </li>
+      <li Class="ColonyCouncil.HappeningLivingText">
+        <remembered>
+          <li>[quiet] {X_nameDef} of {FACTION} knows what {A_nameDef} used to be, and has kept quiet so far.</li>
+          <li>[talked] {X_nameDef} of {FACTION} told {X_possessive} people what {A_nameDef} used to be.</li>
+        </remembered>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== An old commander's call (a soldier's past) ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Council_Evt_OldCommander</defName>
+    <label>an old commander's call</label>
+    <workerClass>ColonyCouncil.HappeningWorker_OldCommander</workerClass>
+    <baseChance>1</baseChance>
+    <minRefireDays>90</minRefireDays>
+    <earliestDay>20</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Past</group>
+        <ages>45~65</ages>
+        <answerDays>1</answerDays>
+        <journal>Council_Journal_Evt_OldCommander</journal>
+        <titles>
+          <li>An old commander's call</li>
+        </titles>
+        <!-- {X}: the commander (never seen, only written about); {TALE}: what they ask for. -->
+        <texts>
+          <li>A rider of {FACTION} brought a letter for {A_nameDef}, sealed with an old unit badge. It's from {X_nameDef}, who commanded {A_objective} years ago and now leads {FACTION}'s fighters against {ENEMY}. The campaign is short of supplies, and {X_nameDef} asks, as a favor to an old comrade, for {TALE}.\n\nIf it goes well, {X_nameDef} writes, the colony will get a share of the spoils.</li>
+          <li>[lowtech] A rider brought {A_nameDef} a letter in a hand {A_pronoun} knew from the first line: {X_nameDef}, {A_possessive} old captain, who now leads the fighters of {FACTION} against {ENEMY}. They're short of everything, {X_nameDef} writes, and {TALE} would make a difference.\n\nA share of the spoils will come back to the colony, if they win.</li>
+          <li>[!lowtech] {A_nameDef}'s old commander, {X_nameDef}, has sent a message over the comms. {X_nameDef} now leads {FACTION}'s militia against {ENEMY}, and the campaign is short of supplies: {TALE} would keep them going.\n\nA share of whatever they take will come back to the colony, if they win.</li>
+        </texts>
+        <defaultOption>1</defaultOption>
+        <options>
+          <li>
+            <label>Send {TALE} (they may lose)</label>
+            <outcome>The supplies go out with {FACTION}'s rider, along with a note from {A_nameDef} to {A_possessive} old commander.</outcome>
+            <ways><generosity>2</generosity></ways>
+          </li>
+          <li>
+            <label>Send good wishes only</label>
+            <outcome>{A_nameDef} writes back with good wishes and no supplies, and doesn't say much at supper.</outcome>
+            <ways><generosity>-1</generosity></ways>
+          </li>
+        </options>
+      </li>
+      <li Class="ColonyCouncil.HappeningLivingText">
+        <extra>
+          <li>In the colony's stores now: {ITEM}.</li>
+        </extra>
+        <!-- After the answer, {TALE} is the commander's name. -->
+        <coming>
+          <li>Word from {TALE}'s campaign against {ENEMY} is due in about {DAYS}.</li>
+        </coming>
+        <doneTitles>
+          <li>[won] Word from the campaign</li>
+          <li>[lost] Bad news from the campaign</li>
+        </doneTitles>
+        <done>
+          <li>[won,lowtech] {TALE} has written from the field: {FACTION} broke {ENEMY}'s line, and the supplies from the colony helped do it. A wagon came with the letter, loaded with the colony's share of the spoils: {ITEM}.</li>
+          <li>[won,!lowtech] A message from {TALE}: {FACTION}'s militia drove {ENEMY} back, and the colony's supplies kept them going when it counted. The colony's share of the spoils came with it: {ITEM}.</li>
+          <li>[lost] {TALE} has written from the field, briefly. The campaign against {ENEMY} went badly, and {FACTION} have fallen back to their own lands. The colony's supplies were well used, {TALE} writes, and won't be forgotten.</li>
+        </done>
+        <cancelled>
+          <li>No word has come back from {TALE}'s campaign, and with things as they are between the colony and {FACTION}, none will.</li>
+        </cancelled>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== A former patient (a healer's past) ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Council_Evt_FormerPatient</defName>
+    <label>a former patient</label>
+    <workerClass>ColonyCouncil.HappeningWorker_FormerPatient</workerClass>
+    <baseChance>1</baseChance>
+    <minRefireDays>75</minRefireDays>
+    <earliestDay>10</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Past</group>
+        <addsPeople>true</addsPeople>
+        <ages>18~60</ages>
+        <stayHours>16~24</stayHours>
+        <answerDays>0.6</answerDays>
+        <value>200~450</value>
+        <journal>Council_Journal_Evt_FormerPatient</journal>
+        <titles>
+          <li>A former patient</li>
+        </titles>
+        <texts>
+          <li>[healer] {X_nameDef} of {FACTION} walked a long way to find {A_nameDef}. Years ago, when {A_nameDef} was still a healer by trade, {A_pronoun} set {X_nameDef}'s broken leg and sat up three nights with the fever after. {X_nameDef} never forgot it, and has come with a gift.</li>
+          <li>[doctor] A traveler of {FACTION}, {X_nameDef}, asked at the gate for {A_nameDef} by name. {A_nameDef} pulled {X_nameDef} through a bad fever on the road, years ago, and had nearly forgotten. {X_nameDef} hadn't, and has come with a gift.</li>
+          <li>{X_nameDef} of {FACTION} has come to see {A_nameDef}, who once saved {X_possessive} life with a needle, a lamp and a long night. {X_nameDef} has brought a gift, and says the debt is bigger than any gift.</li>
+        </texts>
+        <defaultOption>0</defaultOption>
+        <options>
+          <li>
+            <label>Accept the gift</label>
+            <outcome>{X_nameDef} sets the gift out on {A_nameDef}'s table piece by piece, and won't hear a word against it.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Thought"><thought>Council_Evt_FormerPatient</thought></li>
+            </effects>
+          </li>
+          <li>
+            <label>Ask {X_objective} to stay on (may say no)</label>
+            <outcome>{X_nameDef} says yes before the question is finished, and asks {A_nameDef} where {X_pronoun} can sleep.</outcome>
+            <riskChance>0.4</riskChance>
+            <riskReplaces>true</riskReplaces>
+            <riskOutcome>{X_nameDef} would like nothing better, but there's family waiting at home. The gift stays, though, and so does the thanks.</riskOutcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Join" />
+              <li Class="ColonyCouncil.DilemmaEffect_Tie"><kind>Friends</kind><amount>20</amount></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Thought"><thought>Council_Evt_FormerPatient</thought></li>
+            </effects>
+            <riskEffects>
+              <li Class="ColonyCouncil.DilemmaEffect_Thought"><thought>Council_Evt_FormerPatient</thought></li>
+            </riskEffects>
+            <ways><openness>2</openness></ways>
+          </li>
+          <li>
+            <label>Ask {X_objective} to spread the word</label>
+            <outcome>{X_nameDef} promises to tell every settlement on the road home about the colony's healer. The neighbors will hear of {A_nameDef}.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Thought"><thought>Council_Evt_FormerPatient</thought></li>
+            </effects>
+            <ways><openness>1</openness></ways>
+          </li>
+        </options>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== An old map ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Council_Evt_OldMap</defName>
+    <label>an old map</label>
+    <workerClass>ColonyCouncil.HappeningWorker_OldMap</workerClass>
+    <baseChance>0.7</baseChance>
+    <minRefireDays>120</minRefireDays>
+    <earliestDay>20</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Past</group>
+        <answerDays>1</answerDays>
+        <journal>Council_Journal_Evt_OldMap</journal>
+        <titles>
+          <li>An old map</li>
+        </titles>
+        <!-- {TALE}: who the colonist used to be ("a smuggler"). -->
+        <texts>
+          <li>[outlaw] Mending the lining of an old coat, {A_nameDef} found a map folded into the seam. {A_nameDef} drew it years ago, as {TALE}, to mark where a share of the takings was buried, and had forgotten it was there.\n\nThe place is a few days' travel from the colony. Whatever was hidden there may still be there.</li>
+          <li>[soldier] In the bottom of an old kitbag, {A_nameDef} found a map from the war, with a supply cache marked on it in a hand {A_pronoun} doesn't recognize. The unit that buried it never came back for it, as far as {A_nameDef} knows.\n\nIt's a few days' travel from here.</li>
+          <li>[trader] {A_nameDef} found an old ledger at the bottom of a chest, and pressed between its pages a map from {A_possessive} trading days, with a stash of goods marked on it. It's a few days' travel, and {A_nameDef} never told anyone else where it was.</li>
+          <li>[noble] Among the few things {A_nameDef} brought from {A_possessive} family's house is a book of old estate maps. Tucked in the back is one {A_nameDef} had never noticed: an old lodge a few days' travel from the colony, with something marked beneath its cellar.</li>
+          <li>[scholar] Sorting through old notes, {A_nameDef} found a map copied from an archive years ago, of a ruin {A_pronoun} always meant to visit. It's a few days' travel from the colony, and the archive's notes say something was left there.</li>
+          <li>{A_nameDef} found an old map among {A_possessive} things, from before {A_pronoun} came here. A spot is marked on it, a few days' travel from the colony. {A_nameDef} can't remember who drew it, but it still looks like it means something.</li>
+        </texts>
+        <defaultOption>1</defaultOption>
+        <options>
+          <li>
+            <label>Follow it up</label>
+            <outcome>{A_nameDef} copies the old marks onto the colony's own map. Whoever goes will need to travel.</outcome>
+            <ways><openness>1</openness></ways>
+          </li>
+          <li>
+            <label>Keep it as a keepsake</label>
+            <outcome>{A_nameDef} folds the map back up and puts it away with {A_possessive} things.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Thought"><thought>Council_Evt_OldMapKept</thought></li>
+            </effects>
+          </li>
+        </options>
+      </li>
+      <li Class="ColonyCouncil.HappeningLivingText">
+        <outcomes>
+          <li>[gone] {A_nameDef} compares the old map with the colony's own and can't make them agree. Whatever it marked isn't there any more.</li>
+        </outcomes>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== A child's find (Biotech children) ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Council_Evt_ChildFind</defName>
+    <label>a child's find</label>
+    <workerClass>ColonyCouncil.HappeningWorker_ChildFind</workerClass>
+    <baseChance>1.2</baseChance>
+    <minRefireDays>45</minRefireDays>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Nature</group>
+        <minColonists>2</minColonists>
+        <answerDays>1</answerDays>
+        <notable>false</notable>
+        <journal>Council_Journal_Evt_ChildFind</journal>
+        <titles>
+          <li>A child's find</li>
+        </titles>
+        <texts>
+          <li>[fossil] {A_nameDef} came running in with a split stone held in both hands. Pressed into the inside is the shape of a shell, perfectly clear, from some sea that dried up long before anyone lived here.\n\n{A_nameDef} wants to know everything about it. {B_nameDef} knows more than most, if {B_pronoun} can spare the time.</li>
+          <li>[coin] {A_nameDef} dug an old coin out of the mud by the path, green with age, stamped with a face that none of the adults recognize.\n\n{A_nameDef} has polished it on {A_possessive} sleeve until it shines, and wants to know whose face it is. {B_nameDef} might be able to guess.</li>
+          <li>[skull] {A_nameDef} brought home a bird's skull from the woods, white and light as paper, and set it beside {A_possessive} plate at supper. {A_nameDef} wants to know what kind of bird it was and how it flew.\n\n{B_nameDef} has offered to look at it with {A_objective}.</li>
+          <li>[geode] {A_nameDef} cracked open a round gray stone by the stream and found it full of purple crystal inside. {A_nameDef} has shown it to every person in the colony at least twice.\n\n{B_nameDef} could explain how the crystals got in there.</li>
+          <li>[machine] {A_nameDef} pulled something out of an old junk pile: a scorched circuit board with a tiny screen that still glows faintly when it's tilted. {A_nameDef} is sure it's important.\n\n{B_nameDef} could take it apart with {A_objective} and explain what it was.</li>
+        </texts>
+        <defaultOption>1</defaultOption>
+        <options>
+          <li>
+            <label>Let {B_nameDef} study it with {A_objective}</label>
+            <outcome>{B_nameDef} and {A_nameDef} spend the evening bent over it, and {A_nameDef} goes to bed with a head full of questions and a page of drawings.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Learn"><skill>Intellectual</skill><xp>500</xp></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Learn"><target>B</target><skill>Intellectual</skill><xp>200</xp></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Tie"><kind>Friends</kind><amount>15</amount><withB>true</withB></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Thought"><thought>Council_Evt_FindStudied</thought></li>
+            </effects>
+            <ways><openness>1</openness></ways>
+          </li>
+          <li>
+            <label>Let {A_objective} keep it</label>
+            <outcome>{A_nameDef} puts it on the shelf over {A_possessive} bed, and checks on it every morning.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Thought"><thought>Council_Evt_FindKept</thought></li>
+            </effects>
+          </li>
+          <li>
+            <label>Trade it ({COUNT} silver)</label>
+            <outcome>The find goes to the next trader for {COUNT} silver. {A_nameDef} watches it go.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Thought"><thought>Council_Evt_FindSold</thought></li>
+            </effects>
+            <ways><generosity>-1</generosity></ways>
+          </li>
+        </options>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== A pet's present ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Council_Evt_PetFind</defName>
+    <label>a pet's present</label>
+    <workerClass>ColonyCouncil.HappeningWorker_PetFind</workerClass>
+    <baseChance>1.5</baseChance>
+    <minRefireDays>30</minRefireDays>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Nature</group>
+        <letter>PositiveEvent</letter>
+        <notable>false</notable>
+        <titles>
+          <li>A present from {PET_nameDef}</li>
+        </titles>
+        <texts>
+          <li>[game] {PET_nameDef} trotted in from the fields with {BEAST} in {PET_possessive} jaws and laid it at {A_nameDef}'s feet. {A_nameDef} has been praising {PET_objective} all morning, and there's fresh meat for the pot.</li>
+          <li>[herbs] {PET_nameDef} came back from the woods with a muddy mouthful of healing herbs, roots and all, and dropped them in {A_nameDef}'s lap. {A_nameDef} is telling anyone who'll listen that {PET_nameDef} knew exactly what {PET_pronoun} was doing.</li>
+          <li>[purse] {PET_nameDef} came home with a small leather purse, chewed at one corner, and wouldn't give it up until {A_nameDef} traded a bone for it. Inside: {COUNT} silver. Some traveler on the road will be patting their pockets tonight.</li>
+          <li>[component] {PET_nameDef} dug something out of the scrap heap and carried it proudly to {A_nameDef}: a component, slightly chewed and still in working order.</li>
+          <li>[nothing] {PET_nameDef} came back from the fields carrying an old boot that doesn't belong to anyone in the colony, and laid it at {A_nameDef}'s feet like a trophy. {A_nameDef} has put it on a shelf.</li>
+        </texts>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== A sealed crate ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Council_Evt_SealedCrate</defName>
+    <label>a sealed crate</label>
+    <workerClass>ColonyCouncil.HappeningWorker_SealedCrate</workerClass>
+    <baseChance>1</baseChance>
+    <minRefireDays>50</minRefireDays>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Challenge</group>
+        <answerDays>1</answerDays>
+        <value>120~220</value>
+        <titles>
+          <li>A sealed crate</li>
+          <li>[lowtech] An iron-bound chest</li>
+        </titles>
+        <texts>
+          <li>[lowtech,other] {A_nameDef} struck wood while digging and uncovered an old chest bound in iron, its lock rusted solid. It's heavy, and something inside shifts when it's tilted.\n\n{B_nameDef} thinks the lock can be worked open without damage, given time. It could also be broken open, or sold sealed to a rider of {FACTION} for {COUNT} silver.</li>
+          <li>[!lowtech,other] {A_nameDef} turned up a sealed supply crate, buried long ago, with a dead keypad and its seals intact. Whatever is inside has been dry all this time.\n\n{B_nameDef} could try to open it properly. It could also be pried open, or sold to {FACTION} for {COUNT} silver, unopened.</li>
+          <li>[mining,other] Cutting into the hillside, {A_nameDef} broke into a small hollow with a crate in it, sealed and stacked as neatly as the day someone left it there.\n\n{B_nameDef} thinks the lock can be opened without breaking anything. It could also be broken open, or sold sealed to {FACTION} for {COUNT} silver.</li>
+          <li>[same] Digging outside, {A_nameDef} found an old sealed crate with a stubborn lock. {A_nameDef} has the best hands in the colony, and thinks the lock could be worked open without breaking anything.\n\nIt could also be broken open, or sold sealed to {FACTION} for {COUNT} silver.</li>
+        </texts>
+        <defaultOption>1</defaultOption>
+        <options>
+          <li>
+            <label>Let {B_nameDef} work the lock open</label>
+            <outcome>{B_nameDef} spends the afternoon on the lock.</outcome>
+            <riskChance>0.6</riskChance>
+            <riskReplaces>true</riskReplaces>
+            <riskOutcome>{B_nameDef} spends the afternoon on the lock.</riskOutcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Learn"><target>B</target><skill>Crafting</skill><xp>400</xp></li>
+            </effects>
+            <riskEffects>
+              <li Class="ColonyCouncil.DilemmaEffect_Learn"><target>B</target><skill>Crafting</skill><xp>300</xp></li>
+            </riskEffects>
+          </li>
+          <li>
+            <label>Break it open (it may break what's inside)</label>
+            <outcome>The lid comes off.</outcome>
+            <riskChance>0.5</riskChance>
+            <riskReplaces>true</riskReplaces>
+            <riskOutcome>The lid comes off.</riskOutcome>
+          </li>
+          <li>
+            <label>Sell it sealed ({COUNT} silver)</label>
+            <outcome>A rider of {FACTION} pays {COUNT} silver for the crate and hauls it away, still sealed. The colony will never know what was in it.</outcome>
+          </li>
+        </options>
+      </li>
+      <li Class="ColonyCouncil.HappeningLivingText">
+        <!-- Told instead of the outcomes above: how it was opened, how it went, and what was inside ({ITEM}). -->
+        <outcomes>
+          <li>[careful,safe] {B_nameDef} spends the afternoon on the lock and opens it without a scratch. Everything inside is dry and whole: {ITEM}.</li>
+          <li>[careful,risk] {B_nameDef} gets the lock open cleanly, but the seal had failed years ago and most of what was inside has rotted. What's left: {ITEM}.</li>
+          <li>[broken,safe] A few good swings and the lid comes off. Inside: {ITEM}.</li>
+          <li>[broken,risk] The lid gives on the third blow, and so does a good deal of what was under it. What survived: {ITEM}.</li>
+        </outcomes>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+</Defs>

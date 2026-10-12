@@ -423,8 +423,9 @@ didn't), which council decision, which decree and how long it has left, which vi
 moment. The trust mood lists what moved it lately.
 
 ## World events
-Every few days (you choose how often), something happens out in the world: Rimfolk's own events, on their own
-rhythm, so they never take a slot from your storyteller's events. Each is written for tribal, medieval, industrial
+Rimfolk's own events join your storyteller's random events, with about the odds of one of the game's own (a setting
+scales this, and they never make up more than half of its everyday events, so traders and travelers keep coming;
+they can also come on Rimfolk's own timer instead). Each is written for tribal, medieval, industrial
 and spacer colonies alike, and finds and visitors fit your era (a medieval colony meets medieval folk and digs up
 medieval things). Many ask the council what to do, with a day or so to answer.
 - **Pasts catch up.** Who a colonist used to be (read from their backstory: soldier, outlaw, noble, trader...)
@@ -477,6 +478,15 @@ medieval things). Many ask the council what to do, with a day or so to answer.
   Magic), a **strange creature** your best handler can try to win over (Alpha Animals), travelers asking to use your
   **bath** or sauna (Dubs Bad Hygiene), and a **guest of note** who writes ahead and judges your guest room when they
   come (Hospitality).
+- **More of the world (26 more).** A **rockslide** that closes a way through the hills and bares a seam of ore, a
+  **warm spring** or steam vent after a tremor, a **lightning-struck tree**, **wild bees**, a **fallen star** to forge,
+  driftwood after **high water**, a **sign at dawn** (tribal and medieval); an **old adventurer** selling their gear, a
+  **mapmaker**, a **silent guest**, a **limb-maker**, a **merchant's venture** that pays back later (or never), a
+  neighbor who wants your **prisoner**, a **wounded stranger**, an **envoy** offering peace at a price, the **lord's
+  tithe** (medieval), a **crashed drone** and a **signal** (industrial and spacer); a past that knocks (**recognized**
+  from a wanted poster, an **old commander**, a **former patient**, an **old map**), a **child's find**, a **pet's
+  present**, a **sealed crate**, and an **arcane tome** for sale (A RimWorld of Magic). In many, who you send decides
+  the odds: a skilled hand makes a gamble likelier to pay.
 
 Some events pick up where an earlier one left off: the **deserter**'s old unit tracks them down; the **lost child**
 you walked home comes back years later, grown, with a gift; a **champion** you beat comes back for a rematch (or one

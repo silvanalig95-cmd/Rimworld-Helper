@@ -52,6 +52,12 @@ Things that happen to the colony from outside, on Rimfolk's own rhythm, written 
   colony's founding day, seasonal ones (a harvest fair, a winter-night traveler, the thaw), a caravan to a far
   market, and four that need a mod (A RimWorld of Magic, Alpha Animals, Dubs Bad Hygiene, Hospitality). Things on
   their way show on the World page.
+- Done: a fifth batch of twenty-six for the storyteller's pool: the land (rockslide, warm spring, lightning-struck
+  tree, wild bees, fallen star, high water, a sign at dawn), people passing through (old adventurer, mapmaker, silent
+  guest, limb-maker, merchant's venture, a prisoner wanted, wounded stranger, envoy), each era's own (lord's tithe,
+  crashed drone, signal), pasts knocking (recognized, old commander, former patient, old map), small finds (child's
+  find, pet's present, sealed crate) and an arcane tome (A RimWorld of Magic). Outcomes ride on who is sent and what
+  the colony has; two can end in a fight, only as the risk of an answer; several leave memos for later events.
 - Next: more events per group.
 
 ## Phase H2: Scenarios with stakes (done)

@@ -1,0 +1,367 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- Rimfolk world events, the storyteller batch: the land and the seasons. A rockslide that closes a way through the
+       hills (and opens a seam of ore), a warm spring after a tremor, a lightning-struck tree, a wild swarm, a fallen
+       star, high water on the river, and a sign at dawn for tribal and medieval colonies. None ends in a fight. Code:
+       Source/ColonyCouncil/Happenings/Workers_Storyteller_Land.cs. -->
+
+  <!-- ===================== Rockslide ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Council_Evt_Rockslide</defName>
+    <label>rockslide</label>
+    <workerClass>ColonyCouncil.HappeningWorker_Rockslide</workerClass>
+    <baseChance>0.7</baseChance>
+    <minRefireDays>75</minRefireDays>
+    <earliestDay>10</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Nature</group>
+        <letter>NeutralEvent</letter>
+        <titles>
+          <li>A rockslide</li>
+          <li>[spring] A slide in the thaw</li>
+        </titles>
+        <texts>
+          <li>[spring] The thaw loosened the hillside {PLACE}, and early this morning it came down. A long tongue of broken rock now lies across the low ground there, and that way is closed until someone digs through it.\n\nWhere the slope tore open, {A_nameDef} spotted a seam of {THING} in the fresh rock.</li>
+          <li>[summer|fall] Days of rain soaked the hills {PLACE} until a slope gave way in the night, with a roar that woke {A_nameDef} from a sound sleep. Broken rock now covers a stretch of ground there, and it will have to be mined away before anyone gets through.\n\nThe slide also opened up the hillside, and there's a seam of {THING} showing in the new rock face.</li>
+          <li>[winter] Frost worked into the cracks of the hills {PLACE} all season, and last night a slab of hillside broke away. The rubble has closed off a stretch of ground there until someone mines a way through.\n\n{A_nameDef} went out to look and came back with news: the broken face shows a seam of {THING}.</li>
+          <li>A slope came down in the hills {PLACE} with a long, grinding rumble, well away from anyone. The heap of broken rock closes off the ground there until it's mined away.\n\nThe torn slope shows a seam of {THING}, and {A_nameDef} has already been out to chip at it.</li>
+        </texts>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== A warm spring ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Council_Evt_WarmVent</defName>
+    <label>a warm spring</label>
+    <workerClass>ColonyCouncil.HappeningWorker_WarmVent</workerClass>
+    <baseChance>0.5</baseChance>
+    <minRefireDays>120</minRefireDays>
+    <earliestDay>20</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Nature</group>
+        <letter>PositiveEvent</letter>
+        <titles>
+          <li>[lowtech] A warm spring</li>
+          <li>[!lowtech] A new steam vent</li>
+        </titles>
+        <texts>
+          <li>[lowtech] The ground shook for a moment in the night, and by morning there was steam rising from the land {PLACE}. A crack has opened there, and the water welling up out of it is warm enough to soak in.\n\n{A_nameDef} has already been out to put {A_possessive} feet in it.</li>
+          <li>[lowtech,winter] A tremor in the night opened a crack in the frozen ground {PLACE}. By dawn it was steaming, and the snow around it had melted back to bare mud. The water bubbling up is warm.\n\nPeople have been finding reasons to walk past it all day.</li>
+          <li>[!lowtech] A small tremor rattled the colony in the night. This morning {A_nameDef} found a new steam vent {PLACE}, hissing out of a fresh crack in the ground.\n\nIt's the kind of vent a geothermal generator is built over.</li>
+          <li>[!lowtech] Steam has been rising from the ground {PLACE} since a tremor in the small hours: a new geyser, venting in long, hot breaths. A geothermal generator built over it would run day and night.</li>
+        </texts>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_Evt_WarmSpring</thought></li>
+        </effects>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== A lightning-struck tree ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Council_Evt_StruckTree</defName>
+    <label>a lightning-struck tree</label>
+    <workerClass>ColonyCouncil.HappeningWorker_StruckTree</workerClass>
+    <baseChance>0.9</baseChance>
+    <minRefireDays>60</minRefireDays>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Nature</group>
+        <seasons>
+          <li>Spring</li>
+          <li>Summer</li>
+          <li>Fall</li>
+          <li>PermanentSummer</li>
+        </seasons>
+        <answerDays>1</answerDays>
+        <journal>Council_Journal_Evt_StruckTree</journal>
+        <titles>
+          <li>A lightning-struck tree</li>
+          <li>[tribal] Struck by the sky</li>
+        </titles>
+        <texts>
+          <li>Lightning hit the old {BEAST} near the colony in the night's storm and split it down the middle. The tree is dead, but the heartwood has dried hard and dark, with a grain {A_nameDef} says {A_pronoun} has never seen in timber.\n\n{A_nameDef} wants to carve something from it. It would also cut into about {COUNT} wood of seasoned timber, or it could be left standing as it is.</li>
+          <li>[tribal] The storm's lightning came down on the old {BEAST} by the camp and split it from crown to root. The elders say a tree the sky has touched is not like other wood. Its heartwood has burned dark and hard.\n\n{A_nameDef} wants to carve something from it. Felled, it would give about {COUNT} wood, or it could be left to stand as a mark of the place.</li>
+          <li>[medieval] Lightning struck the old {BEAST} by the colony in last night's storm and split it in two. Folk say lightning-wood is lucky, and {A_nameDef} has been running {A_possessive} hands over the scorched heartwood all morning.\n\n{A_nameDef} wants to carve something from it. Felled, it would give about {COUNT} wood of seasoned timber, or it could be left standing.</li>
+          <li>[summer] A dry storm came over the colony last night, more lightning than rain, and one bolt split the old {BEAST} near the fields. The heartwood has baked hard and dark.\n\n{A_nameDef} wants to carve from it. It would also cut into about {COUNT} wood, or it could be left standing.</li>
+        </texts>
+        <defaultOption>2</defaultOption>
+        <options>
+          <li>
+            <label>Let {A_nameDef} carve from the heartwood</label>
+            <outcome>{A_nameDef} spends the day splitting out the best of the heartwood, and comes back with it under one arm and an idea {A_pronoun} can't stop talking about. The rest of the tree is cut for wood.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Inspiration"><inspiration>Inspired_Creativity</inspiration></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Learn"><skill>Artistic</skill><xp>300</xp></li>
+            </effects>
+            <ways><openness>1</openness></ways>
+          </li>
+          <li>
+            <label>Cut it for timber</label>
+            <outcome>The tree is felled and cut up: {COUNT} wood, seasoned on the stump and ready to use.</outcome>
+            <ways><toil>1</toil></ways>
+          </li>
+          <li>
+            <label>Leave it standing</label>
+            <outcome>The split tree is left as it stands. {A_nameDef} has already started calling it the lightning tree.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_Evt_LightningTree</thought></li>
+            </effects>
+            <ways><tradition>2</tradition></ways>
+          </li>
+        </options>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== Wild bees ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Council_Evt_WildBees</defName>
+    <label>wild bees</label>
+    <workerClass>ColonyCouncil.HappeningWorker_WildBees</workerClass>
+    <baseChance>1</baseChance>
+    <minRefireDays>60</minRefireDays>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Nature</group>
+        <seasons>
+          <li>Spring</li>
+          <li>Summer</li>
+          <li>PermanentSummer</li>
+        </seasons>
+        <minTemp>12</minTemp>
+        <answerDays>0.75</answerDays>
+        <riskSkill>Animals</riskSkill>
+        <riskSkillOption>0</riskSkillOption>
+        <notable>false</notable>
+        <journal>Council_Journal_Evt_WildBees</journal>
+        <titles>
+          <li>Wild bees</li>
+          <li>[spring] A swarm in the hollow tree</li>
+        </titles>
+        <texts>
+          <li>[fields] A wild swarm has settled in a hollow tree near the fields. On a warm afternoon the hum carries all the way to the houses.\n\n{A_nameDef}, the colony's best hand with animals, thinks {A_pronoun} could smoke them out and take the comb, if they don't take offense first. Left alone, they'll work the colony's fields all season.</li>
+          <li>[spring,fields] A swarm of wild bees came over the colony in a dark, buzzing cloud this morning and settled in a hollow tree by the fields. They've been carrying pollen back and forth ever since.\n\n{A_nameDef} thinks {A_pronoun} could smoke them out and take the comb. Left alone, they'll work the colony's crops until fall.</li>
+          <li>[nofields] Wild bees have moved into a hollow tree near the colony, and the hollow is already heavy with comb. {A_nameDef} thinks {A_pronoun} could smoke them out and take it, if {A_pronoun} is careful.\n\nOr they could be left alone.</li>
+        </texts>
+        <defaultOption>1</defaultOption>
+        <options>
+          <li>
+            <label>Let {A_nameDef} smoke them out (they may not like it)</label>
+            <outcome>{A_nameDef} smokes the swarm into a stupor and cuts out the comb.</outcome>
+            <riskChance>0.55</riskChance>
+            <riskReplaces>true</riskReplaces>
+            <riskOutcome>{A_nameDef} gets the smoke going, but the swarm boils out of the hollow and chases {A_objective} most of the way back to the colony. There's no honey, and the bees are still in the tree.</riskOutcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_Evt_Honeycomb</thought></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Learn"><skill>Animals</skill><xp>300</xp></li>
+            </effects>
+            <riskEffects>
+              <li Class="ColonyCouncil.DilemmaEffect_Thought"><thought>Council_Evt_ChasedByBees</thought></li>
+            </riskEffects>
+          </li>
+          <li>
+            <label>Leave them to work the fields</label>
+            <outcome>The bees are left alone.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Thought"><thought>Council_Evt_BeesInFields</thought></li>
+            </effects>
+          </li>
+        </options>
+      </li>
+      <li Class="ColonyCouncil.HappeningLivingText">
+        <!-- Told instead of the outcomes above: [honey] when a mod has honey to bring in, [comb] otherwise; [fields] and [nofields] for leaving them. -->
+        <outcomes>
+          <li>[honey] {A_nameDef} smokes the swarm into a stupor, cuts out the comb and carries the honey back to the stores, with a plate of comb saved for supper.</li>
+          <li>[comb] {A_nameDef} smokes the swarm into a stupor and cuts out the comb. There's honeycomb with supper tonight, sticky on every plate.</li>
+          <li>[fields] The bees are left alone, and they work the open fields from first light to dusk. The crops come on noticeably faster for it.</li>
+          <li>[nofields] The bees are left alone. They work the wild flowers past the colony and keep to themselves.</li>
+        </outcomes>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== A fallen star ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Council_Evt_StarIron</defName>
+    <label>a fallen star</label>
+    <workerClass>ColonyCouncil.HappeningWorker_StarIron</workerClass>
+    <baseChance>0.7</baseChance>
+    <minRefireDays>90</minRefireDays>
+    <earliestDay>10</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Nature</group>
+        <answerDays>1</answerDays>
+        <riskSkill>Crafting</riskSkill>
+        <riskSkillOption>0</riskSkillOption>
+        <journal>Council_Journal_Evt_StarIron</journal>
+        <titles>
+          <li>A fallen star</li>
+          <li>[tribal] A stone from the sky</li>
+        </titles>
+        <texts>
+          <li>Something came down out of the night sky with a long white streak and a thump that rattled the shutters. In the morning {A_nameDef} found it {PLACE}: a lump of black, pitted metal in a scorched hollow, still too hot to touch.\n\nIt's iron, and good iron. {A_nameDef} thinks {A_pronoun} could forge a {TALE} from it once it cools.</li>
+          <li>[tribal] A star fell last night, a streak of white fire that ended with a thud out on the land {PLACE}. {A_nameDef} found it at dawn in a ring of burnt grass: a lump of heavy black stone, too hot to hold.\n\nIt's sky-iron. {A_nameDef} thinks it could be hammered into a {TALE} that no other tribe has the like of.</li>
+          <li>[medieval] A falling star lit up the whole sky last night and came down {PLACE}. By morning {A_nameDef} had found it, a fist of black star-iron sitting in a scorched hollow, still ticking as it cooled.\n\nSmiths prize star-iron above anything dug from the ground, and {A_nameDef} wants to forge a {TALE} from it.</li>
+          <li>[!lowtech] A small meteorite came down {PLACE} overnight. It left a shallow crater and a lump of nickel-iron, still warm at noon.\n\n{A_nameDef} wants to forge a {TALE} from it by hand, the old way, instead of sending it to the smelter.</li>
+        </texts>
+        <defaultOption>2</defaultOption>
+        <options>
+          <li>
+            <label>Let {A_nameDef} forge a {TALE} (the metal may crack)</label>
+            <outcome>{A_nameDef} works the star-iron for two days and quenches it at dusk.</outcome>
+            <riskChance>0.5</riskChance>
+            <riskReplaces>true</riskReplaces>
+            <riskOutcome>{A_nameDef} works the star-iron for two days, but it cracks in the quench. What's left goes into the stores as ordinary steel.</riskOutcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Thought"><thought>Council_Evt_StarBlade</thought></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Learn"><skill>Crafting</skill><xp>1000</xp></li>
+            </effects>
+            <riskEffects>
+              <li Class="ColonyCouncil.DilemmaEffect_Learn"><skill>Crafting</skill><xp>400</xp></li>
+            </riskEffects>
+            <ways><toil>1</toil></ways>
+          </li>
+          <li>
+            <label>Break it up for the metal</label>
+            <outcome>The fallen star is broken up and carried in: good steel for the colony's stores.</outcome>
+            <ways><toil>1</toil></ways>
+          </li>
+          <li>
+            <label>Leave it where it fell</label>
+            <outcome>The star is left in its hollow. People walk out to look at it in the evenings.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_Evt_FallenStar</thought></li>
+            </effects>
+            <ways><tradition>1</tradition></ways>
+          </li>
+        </options>
+      </li>
+      <li Class="ColonyCouncil.HappeningLivingText">
+        <!-- Told instead of the first answer's outcome when the forging works ({ITEM}: how good the blade is). -->
+        <outcomes>
+          <li>{A_nameDef} works the star-iron for two days and quenches it at dusk. The {TALE} that comes out of the water is {ITEM}, with a faint ripple in the steel that no ordinary blade has.</li>
+          <li>{A_nameDef} hardly sleeps for two days. The {TALE} that comes off the anvil is {ITEM}, dark gray, and rings for a long time when it's struck.</li>
+        </outcomes>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== High water ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Council_Evt_HighWater</defName>
+    <label>high water</label>
+    <workerClass>ColonyCouncil.HappeningWorker_HighWater</workerClass>
+    <baseChance>0.8</baseChance>
+    <minRefireDays>60</minRefireDays>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Nature</group>
+        <letter>PositiveEvent</letter>
+        <seasons>
+          <li>Spring</li>
+          <li>Fall</li>
+        </seasons>
+        <notable>false</notable>
+        <titles>
+          <li>[spring] Spring flood</li>
+          <li>High water</li>
+        </titles>
+        <texts>
+          <li>[spring,wood] The river ran high with meltwater all week and has finally dropped back between its banks. It left driftwood stranded all along them, {COUNT} wood in all, from whole logs to bundles of branches.</li>
+          <li>[fall,wood] Days of autumn rain sent the river over its banks. Now the water has gone down again, and the banks are littered with driftwood: {COUNT} wood, for whoever hauls it in.</li>
+          <li>[snag] The river ran high and brown for days, and when it fell back it left driftwood all along its banks, {COUNT} wood in all. Caught in one of the piles was something else, which {A_nameDef} pulled out of the mud: {TALE}.</li>
+          <li>[wood] High water on the river carried down a winter's worth of fallen timber and left it on the banks when it dropped. {A_nameDef} counts {COUNT} wood there for the hauling.</li>
+        </texts>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== A sign at dawn (tribal and medieval) ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Council_Evt_OmenBeast</defName>
+    <label>a sign at dawn</label>
+    <workerClass>ColonyCouncil.HappeningWorker_OmenBeast</workerClass>
+    <baseChance>0.8</baseChance>
+    <minRefireDays>90</minRefireDays>
+    <earliestDay>10</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Nature</group>
+        <answerDays>0.4</answerDays>
+        <riskSkill>Animals</riskSkill>
+        <riskSkillOption>0</riskSkillOption>
+        <journal>Council_Journal_Evt_OmenBeast</journal>
+        <titles>
+          <li>[tribal] A sign at dawn</li>
+          <li>[medieval] An omen at the gate</li>
+          <li>A sign at dawn</li>
+        </titles>
+        <texts>
+          <li>[tribal] At first light an old {BEAST} walked out of the mist and stopped just short of the camp. It has stood there since, watching the colony, and it doesn't run when people come near. The old ones would have called it a sign.\n\n{A_nameDef} thinks it wants to be followed. It could also be left an offering, or hunted.</li>
+          <li>[medieval] An old {BEAST} came out of the trees at dawn and stopped by the fields, looking at the colony. It didn't bolt when the dogs barked, and it hasn't moved since. People are calling it an omen, and arguing over what kind.\n\n{A_nameDef} wants to follow it when it goes. Some want to leave it an offering, and the hunters want it for the pot.</li>
+          <li>[winter] In the blue light before dawn, a lone {BEAST} came across the snow almost to the gate and stood still, breath steaming, looking at the houses. It's still there.\n\n{A_nameDef} wants to follow it when it moves. It could also be left an offering, or hunted.</li>
+        </texts>
+        <defaultOption>3</defaultOption>
+        <options>
+          <li>
+            <label>Let {A_nameDef} follow it (it may lose the trail)</label>
+            <outcome>{A_nameDef} follows the {BEAST} into the hills, and comes back at dusk with something to show for it.</outcome>
+            <riskChance>0.45</riskChance>
+            <riskReplaces>true</riskReplaces>
+            <riskOutcome>{A_nameDef} follows the {BEAST} into the hills, but loses it in a thicket around noon and walks home empty-handed.</riskOutcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Thought"><thought>Council_Evt_FollowedSign</thought></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Learn"><skill>Animals</skill><xp>300</xp></li>
+            </effects>
+            <riskEffects>
+              <li Class="ColonyCouncil.DilemmaEffect_Learn"><skill>Animals</skill><xp>200</xp></li>
+            </riskEffects>
+          </li>
+          <li>
+            <label>Leave it an offering</label>
+            <outcome>A share of the colony's food is set out past the fields. By evening the {BEAST} is gone, and so is the food.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>rawfood</what></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_Evt_SignHonored</thought><exceptTrait><li>Psychopath</li></exceptTrait></li>
+            </effects>
+            <ways><tradition>2</tradition><generosity>1</generosity></ways>
+          </li>
+          <li>
+            <label>Hunt it</label>
+            <outcome>The {BEAST} is marked for the hunters. Not everyone is happy about it.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Designate"><designation>Hunt</designation></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_Evt_SignHunted</thought><chance>0.5</chance><exceptTrait><li>Psychopath</li><li>Bloodlust</li></exceptTrait></li>
+            </effects>
+            <ways><tradition>-3</tradition></ways>
+          </li>
+          <li>
+            <label>Let it go its way</label>
+            <outcome>The {BEAST} is left alone. Sometime after noon it turns and walks back the way it came.</outcome>
+          </li>
+        </options>
+      </li>
+      <li Class="ColonyCouncil.HappeningLivingText">
+        <!-- Told instead of the first answer's outcome: where the animal led. -->
+        <outcomes>
+          <li>[herbs] {A_nameDef} follows the {BEAST} into the hills until midday, when it vanishes into a hollow thick with healing herbs. {A_nameDef} comes home with an armful of them.</li>
+          <li>[offering] {A_nameDef} follows the {BEAST} until it stops beside an old ring of stones, half buried in moss, and walks off. Under the stones is a cache of offerings left long ago: {TALE}.</li>
+        </outcomes>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+</Defs>
