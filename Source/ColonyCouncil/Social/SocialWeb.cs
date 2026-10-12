@@ -89,6 +89,8 @@ namespace ColonyCouncil
     {
         public List<SocialTie> ties = new List<SocialTie>();
         public List<LostBond> lost = new List<LostBond>();
+        /// <summary>How things stand between pairs lately, so moments between them make sense over time (Social/Moments.cs).</summary>
+        public MomentTones tones = new MomentTones();
         [Unsaved] public List<Clique> cliques = new List<Clique>();
         [Unsaved] private bool cliquesBuilt;
         /// <summary>The fight going on now: who has fought in it so far, and who it's against.</summary>
@@ -355,6 +357,7 @@ namespace ColonyCouncil
                 while (lost.Count > 40) lost.RemoveAt(0);
             }
             ties.RemoveAll(t => t.a == null || t.b == null || t.a.Dead || t.b.Dead || t.a.Destroyed || t.b.Destroyed);
+            tones.Prune();
             if (!S.socialWeb)
             {
                 cliques.Clear();
@@ -663,8 +666,10 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref battleKidnapped, "battleKidnapped");
             Scribe_Values.Look(ref lastVictoryTick, "lastVictoryTick", -999999);
             Scribe_Values.Look(ref seeded, "seeded");
+            Scribe_Deep.Look(ref tones, "tones");
             if (Scribe.mode == LoadSaveMode.PostLoadInit)
             {
+                if (tones == null) tones = new MomentTones();
                 if (ties == null) ties = new List<SocialTie>();
                 ties.RemoveAll(t => t == null || t.a == null || t.b == null);
                 if (lost == null) lost = new List<LostBond>();

@@ -65,6 +65,24 @@ namespace ColonyCouncil
         /// <summary>Afterwards: a bond grows (Friends, Rivals, Comrades, Mentor).</summary>
         public string bumpTie;
         public float bumpAmount = 2f;
+        /// <summary>What they share: "bedroom" (they sleep in the same room: a barracks, a shared bedroom or bed) or "work" (the same kind of work, right now).</summary>
+        public string shares;
+        /// <summary>The initiator is clearly better (4 levels or more) at the work the recipient is doing right now.</summary>
+        public bool moreSkilled;
+        /// <summary>
+        /// What the moment does between the two: "warm" (the default), "friction" (a small irritation), "mend" (making up
+        /// after a friction) or "neutral". See <see cref="MomentTones"/>: after a friction, warm moments between the same
+        /// two wait until it has worn off or they have made up; after a warm one, a friction is less likely for a while.
+        /// </summary>
+        public string tone = "warm";
+        /// <summary>A friction: how long warm moments between the two stay off afterwards (longer with abrasive or volatile people).</summary>
+        public float soreHours = 12f;
+        /// <summary>Only between two who had a friction lately and haven't made up yet.</summary>
+        public bool stillSore;
+
+        public bool Friction => tone == "friction";
+        public bool Mend => tone == "mend";
+        public bool Warm => tone.NullOrEmpty() || tone == "warm";
 
         [Unsaved] private bool? available;
         [Unsaved] private string initiatorExpr, recipientExpr;
@@ -96,6 +114,9 @@ namespace ColonyCouncil
                 if (!t.NullOrEmpty() && !System.Enum.TryParse(t, out TieKind _)) yield return "unknown tie kind " + t;
             if (!ways.NullOrEmpty() && ways != "proud" && ways != "chafing" && ways != "clash") yield return "ways must be proud, chafing or clash";
             if (contestSkill != null && (winnerThought == null || loserThought == null)) yield return "a contest needs winnerThought and loserThought";
+            if (!shares.NullOrEmpty() && shares != "bedroom" && shares != "work") yield return "shares must be bedroom or work";
+            if (!tone.NullOrEmpty() && tone != "warm" && tone != "friction" && tone != "mend" && tone != "neutral") yield return "tone must be warm, friction, mend or neutral";
+            if (stillSore && !Friction) yield return "stillSore is for frictions (a mend always follows one)";
         }
     }
 
@@ -115,12 +136,27 @@ namespace ColonyCouncil
 
         private MomentExtension Ext => interaction.GetModExtension<MomentExtension>();
 
+        /// <summary>
+        /// A hook for other parts of the mod to nudge how likely moments are (a colonist's mood of the day, say): a factor
+        /// on the weight, given the initiator, the recipient and whether it's a friction. Unset, it changes nothing.
+        /// </summary>
+        public static System.Func<Pawn, Pawn, bool, float> WeightHook;
+
+        /// <summary>The factor from <see cref="WeightHook"/>: 1 when nothing is hooked in, never below 0.</summary>
+        public static float MomentWeightFactor(Pawn initiator, Pawn recipient, bool friction)
+        {
+            if (WeightHook == null) return 1f;
+            float f = WeightHook(initiator, recipient, friction);
+            return f > 0f ? f : 0f;
+        }
+
         public override float RandomSelectionWeight(Pawn initiator, Pawn recipient)
         {
             try
             {
                 var ext = Ext;
                 if (ext == null || !ColonyCouncilMod.Settings.colonistMoments || !ext.Available) return 0f;
+                if (ext.Friction && !ColonyCouncilMod.Settings.frictions) return 0f;
                 if (initiator == null || recipient == null || !recipient.RaceProps.Humanlike || !initiator.RaceProps.Humanlike) return 0f;
                 if (!Ours(initiator) || !Ours(recipient) || !People.HasInnerLife(initiator) || !People.HasInnerLife(recipient)) return 0f;
                 int now = Find.TickManager.TicksGame;
@@ -128,7 +164,9 @@ namespace ColonyCouncil
                 if (lastAny.TryGetValue(initiator.thingIDNumber, out int any) && any <= now && now - any < MinGapTicks) return 0f;
                 if (lastStarted.TryGetValue((initiator.thingIDNumber, interaction.shortHash), out int last) && last <= now && now - last < ext.cooldownDays * GenDate.TicksPerDay) return 0f;
                 if (!Fits(ext, initiator, recipient)) return 0f;
-                return ext.weight * ColonyCouncilMod.Settings.momentFrequency;
+                float tone = MomentTones.Factor(ext, initiator, recipient);
+                if (tone <= 0f) return 0f;
+                return ext.weight * tone * ColonyCouncilMod.Settings.momentFrequency * MomentWeightFactor(initiator, recipient, ext.Friction);
             }
             catch (System.Exception e)
             {
@@ -145,6 +183,7 @@ namespace ColonyCouncil
             lastStarted.Clear();
             lastAny.Clear();
             tagCache.Clear();
+            MomentTones.ResetCache();
         }
 
         private static bool Fits(MomentExtension x, Pawn a, Pawn b)
@@ -197,7 +236,38 @@ namespace ColonyCouncil
             }
             if (!x.initiatorTags.NullOrEmpty() && Flavor.Match(x.InitiatorExpr, TagsOf(a)) < 0) return false;
             if (!x.recipientTags.NullOrEmpty() && Flavor.Match(x.RecipientExpr, TagsOf(b)) < 0) return false;
+            if (x.shares == "bedroom" && !SameBedroom(a, b)) return false;
+            if (x.shares == "work" && !SameWork(a, b)) return false;
+            if (x.moreSkilled && !MoreSkilled(a, b)) return false;
             return true;
+        }
+
+        /// <summary>They sleep in the same room: a barracks, a shared bedroom, or the same bed.</summary>
+        private static bool SameBedroom(Pawn a, Pawn b)
+        {
+            var room = RoomUtil.BedRoom(a);
+            return room != null && !room.PsychologicallyOutdoors && room == RoomUtil.BedRoom(b);
+        }
+
+        /// <summary>They're doing the same kind of work right now (two cooks in the kitchen, two crafters at the benches).</summary>
+        private static bool SameWork(Pawn a, Pawn b)
+        {
+            var work = a.CurJob?.workGiverDef?.workType;
+            return work != null && work == b.CurJob?.workGiverDef?.workType;
+        }
+
+        /// <summary>The initiator is 4 or more levels better at a skill the recipient's work right now uses.</summary>
+        private static bool MoreSkilled(Pawn a, Pawn b)
+        {
+            var skills = b.CurJob?.workGiverDef?.workType?.relevantSkills;
+            if (skills.NullOrEmpty() || a.skills == null || b.skills == null) return false;
+            foreach (var s in skills)
+            {
+                var mine = a.skills.GetSkill(s);
+                var theirs = b.skills.GetSkill(s);
+                if (mine != null && theirs != null && !mine.TotallyDisabled && !theirs.TotallyDisabled && mine.Level >= theirs.Level + 4) return true;
+            }
+            return false;
         }
 
         private static Thought_Memory Remembered(Pawn p, List<string> names, float days)
@@ -268,6 +338,7 @@ namespace ColonyCouncil
                 if (ext.contestSkill != null) Contest(ext, initiator, recipient, extraSentencePacks);
                 if (!ext.bumpTie.NullOrEmpty() && System.Enum.TryParse(ext.bumpTie, out TieKind kind))
                     CouncilGameComponent.Instance?.social?.Bump(initiator, recipient, kind, ext.bumpAmount, interaction.label, true);
+                MomentTones.Record(ext, initiator, recipient, extraSentencePacks);
             }
             catch (System.Exception e)
             {
@@ -288,6 +359,226 @@ namespace ColonyCouncil
             CouncilGameComponent.GiveThought(loser, x.loserThought, winner, -1f, "CC_Cause_Contest".Translate(interaction.label, winner.LabelShort).Resolve());
             winner.skills?.Learn(x.contestSkill, 30f);
             loser.skills?.Learn(x.contestSkill, 30f);
+        }
+    }
+
+    /// <summary>How things stand between two colonists lately (see <see cref="MomentTones"/>). Ticks; -1 for never.</summary>
+    public class PairTone : IExposable
+    {
+        /// <summary>The two, by thingIDNumber, lower first.</summary>
+        public int a, b;
+        public int friction = -1;
+        public int soreUntil = -1;
+        public int warm = -1;
+        public int mend = -1;
+
+        public int Latest => Mathf.Max(Mathf.Max(friction, soreUntil), Mathf.Max(warm, mend));
+
+        public void ExposeData()
+        {
+            Scribe_Values.Look(ref a, "a");
+            Scribe_Values.Look(ref b, "b");
+            Scribe_Values.Look(ref friction, "friction", -1);
+            Scribe_Values.Look(ref soreUntil, "soreUntil", -1);
+            Scribe_Values.Look(ref warm, "warm", -1);
+            Scribe_Values.Look(ref mend, "mend", -1);
+        }
+    }
+
+    /// <summary>
+    /// Keeps moments between the same two colonists making sense over time. Each pair remembers its last friction (a
+    /// Rimfolk one, or the game's own insult, slight or social fight), how long it stays sore, its last warm moment (or a
+    /// deep talk or kind words) and when they last made up.
+    /// <list type="bullet">
+    /// <item>After a friction, warm moments between them wait until it has worn off (half a day to a day, half as long
+    /// again when one of them is abrasive or volatile), unless they make up first.</item>
+    /// <item>Making up ("mend" moments) needs a friction they haven't made up for, a few hours old at least, and is
+    /// likelier between friends and when one of them is kind.</item>
+    /// <item>After a warm moment or making up, a friction between them is much less likely for a few hours (less so
+    /// when the one starting it is abrasive or volatile).</item>
+    /// <item>A friction soon after another gets a line saying things have been tense; the first warm moment after
+    /// making up gets one saying they've patched things up.</item>
+    /// </list>
+    /// Pairs are kept a few days, saved with the social web and pruned daily.
+    /// </summary>
+    public class MomentTones : IExposable
+    {
+        private List<PairTone> pairs = new List<PairTone>();
+        [Unsaved] private Dictionary<(int, int), PairTone> byPair;
+
+        private const int KeepTicks = GenDate.TicksPerDay * 4;
+        private const int MendAfterTicks = GenDate.TicksPerHour * 3;
+        private const int UnmendedTicks = GenDate.TicksPerDay * 2;
+        private const int CalmTicks = GenDate.TicksPerHour * 6;
+
+        private struct State
+        {
+            public int friction, soreUntil, warm, mend;
+        }
+
+        // Every moment's weight is asked for one pair at a time, so a pair's state is worked out once per tick.
+        private static int cacheTick = -1, cacheA = -1, cacheB = -1;
+        private static State cached;
+
+        private static MomentTones Current => CouncilGameComponent.Instance?.social?.tones;
+
+        private static (int, int) Key(Pawn x, Pawn y) =>
+            x.thingIDNumber < y.thingIDNumber ? (x.thingIDNumber, y.thingIDNumber) : (y.thingIDNumber, x.thingIDNumber);
+
+        /// <summary>Abrasive or volatile: slower to let a friction go, quicker to start one.</summary>
+        private static bool Temper(Pawn p) => PeopleTags.Has(p, "trait:Abrasive") || PeopleTags.Has(p, "trait:Volatile");
+
+        public static void ResetCache() => cacheTick = -1;
+
+        public PairTone Get(Pawn x, Pawn y, bool create)
+        {
+            if (byPair == null)
+            {
+                byPair = new Dictionary<(int, int), PairTone>();
+                foreach (var p in pairs) byPair[(p.a, p.b)] = p;
+            }
+            var key = Key(x, y);
+            if (byPair.TryGetValue(key, out var t) || !create) return t;
+            t = new PairTone { a = key.Item1, b = key.Item2 };
+            pairs.Add(t);
+            byPair[key] = t;
+            return t;
+        }
+
+        private static State StateOf(Pawn x, Pawn y)
+        {
+            int now = Find.TickManager.TicksGame;
+            var key = Key(x, y);
+            if (cacheTick == now && cacheA == key.Item1 && cacheB == key.Item2) return cached;
+            var t = Current?.Get(x, y, false);
+            var s = new State { friction = t?.friction ?? -1, soreUntil = t?.soreUntil ?? -1, warm = t?.warm ?? -1, mend = t?.mend ?? -1 };
+            bool hot = Temper(x) || Temper(y);
+            FromGame(x, y, now, hot, ref s);
+            FromGame(y, x, now, hot, ref s);
+            cacheTick = now;
+            cacheA = key.Item1;
+            cacheB = key.Item2;
+            cached = s;
+            return s;
+        }
+
+        /// <summary>The game's own signals, from p's memories of the other: an insult, slight or social fight is a friction; a deep talk or kind words are warm.</summary>
+        private static void FromGame(Pawn p, Pawn other, int now, bool hot, ref State s)
+        {
+            var memories = p.needs?.mood?.thoughts?.memories?.Memories;
+            if (memories == null) return;
+            for (int i = 0; i < memories.Count; i++)
+            {
+                var m = memories[i];
+                if (m?.def == null || m.otherPawn != other || m.age > UnmendedTicks) continue;
+                int when = now - m.age;
+                float soreDays;
+                switch (m.def.defName)
+                {
+                    case "Insulted":
+                    case "HadAngeringFight":
+                        soreDays = 1f;
+                        break;
+                    case "Slighted":
+                    case "HadCatharticFight":
+                        soreDays = 0.5f;
+                        break;
+                    case "DeepTalk":
+                    case "KindWords":
+                    case "KindWordsMood":
+                        if (when > s.warm) s.warm = when;
+                        continue;
+                    default:
+                        continue;
+                }
+                if (when > s.friction) s.friction = when;
+                int until = when + Mathf.RoundToInt(soreDays * GenDate.TicksPerDay * (hot ? 1.5f : 1f));
+                if (until > s.soreUntil) s.soreUntil = until;
+            }
+        }
+
+        private static bool Unmended(State s, int now) => s.friction >= 0 && s.mend < s.friction && now - s.friction < UnmendedTicks;
+
+        /// <summary>A factor on a moment's weight from how things stand between the two (0 = not now).</summary>
+        public static float Factor(MomentExtension x, Pawn a, Pawn b)
+        {
+            if (x.tone == "neutral") return 1f;
+            int now = Find.TickManager.TicksGame;
+            var s = StateOf(a, b);
+            bool unmended = Unmended(s, now);
+            bool sore = unmended && now < s.soreUntil;
+            if (x.Mend)
+            {
+                if (!unmended || now - s.friction < MendAfterTicks) return 0f;
+                float f = 1f;
+                int ab = a.relations?.OpinionOf(b) ?? 0, ba = b.relations?.OpinionOf(a) ?? 0;
+                if (ab >= 20 && ba >= 20) f *= 2f;
+                else if (Mathf.Min(ab, ba) < 0) f *= 0.5f;
+                if (PeopleTags.Has(a, "trait:Kind") || PeopleTags.Has(b, "trait:Kind")) f *= 2f;
+                return f;
+            }
+            if (x.Friction)
+            {
+                if (x.stillSore && !sore) return 0f;
+                int calm = Mathf.Max(s.warm, s.mend);
+                if (calm >= 0 && now - calm < CalmTicks) return Temper(a) ? 0.6f : 0.2f;
+                return 1f;
+            }
+            return sore ? 0f : 1f;
+        }
+
+        /// <summary>A moment happened between them: remember it, and add a line about how things have been lately.</summary>
+        public static void Record(MomentExtension x, Pawn a, Pawn b, List<RulePackDef> packs)
+        {
+            var tones = Current;
+            if (tones == null || x.tone == "neutral") return;
+            int now = Find.TickManager.TicksGame;
+            var s = StateOf(a, b);
+            var t = tones.Get(a, b, true);
+            if (x.Friction)
+            {
+                if (!x.stillSore && Unmended(s, now)) AddPack(packs, "Council_Sent_StillTense");
+                t.friction = now;
+                bool hot = Temper(a) || Temper(b);
+                int until = now + Mathf.RoundToInt(x.soreHours * GenDate.TicksPerHour * (hot ? 1.5f : 1f));
+                if (until > t.soreUntil) t.soreUntil = until;
+            }
+            else if (x.Mend) t.mend = now;
+            else
+            {
+                if (x.contestSkill == null && s.mend >= 0 && s.mend >= s.friction && s.warm < s.mend && now - s.mend < GenDate.TicksPerDay)
+                    AddPack(packs, "Council_Sent_MadeUp");
+                t.warm = now;
+            }
+            cacheTick = -1;
+        }
+
+        private static void AddPack(List<RulePackDef> packs, string name)
+        {
+            var pack = DefDatabase<RulePackDef>.GetNamedSilentFail(name);
+            if (pack != null && packs != null && !packs.Contains(pack)) packs.Add(pack);
+        }
+
+        /// <summary>Once a day: forget pairs with nothing in the last few days, and pairs with someone who's no longer ours or alive.</summary>
+        public void Prune()
+        {
+            int now = Find.TickManager.TicksGame;
+            var ours = new HashSet<int>(PawnsFinder.AllMapsCaravansAndTravellingTransporters_Alive
+                .Where(p => p != null && (p.IsColonist || p.IsSlaveOfColony)).Select(p => p.thingIDNumber));
+            pairs.RemoveAll(p => p == null || now - p.Latest > KeepTicks || !ours.Contains(p.a) || !ours.Contains(p.b));
+            byPair = null;
+        }
+
+        public void ExposeData()
+        {
+            if (Scribe.mode == LoadSaveMode.Saving) pairs.RemoveAll(p => p == null || Find.TickManager.TicksGame - p.Latest > KeepTicks);
+            Scribe_Collections.Look(ref pairs, "pairs", LookMode.Deep);
+            if (Scribe.mode == LoadSaveMode.PostLoadInit)
+            {
+                if (pairs == null) pairs = new List<PairTone>();
+                pairs.RemoveAll(p => p == null);
+                byPair = null;
+            }
         }
     }
 }
