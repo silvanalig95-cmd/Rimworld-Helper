@@ -796,7 +796,7 @@ namespace ColonyCouncil
             ctx.a = (Rand.Chance(0.5f) ? VarietyUtil.Best(map, SkillDefOf.Mining) : null) ?? StorytellerEvents.Adults(map).RandomElementWithFallback();
             if (ctx.a == null) return false;
             ctx.placeName = StoryChains.Direction();
-            ctx.faction = Arrivals.Friendly(VarietyUtil.OnGoodTerms);
+            ctx.faction = Arrivals.Friendly(VarietyUtil.OnGoodTerms) ?? Arrivals.Friendly();
             ctx.count = StoryChains.Silver(map, 120f, 260f);
             // What is behind the door is settled now; studying it only finds out first.
             float roll = Rand.Value;

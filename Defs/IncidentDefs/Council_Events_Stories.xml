@@ -423,8 +423,8 @@
           <li>A stranger at night</li>
         </titles>
         <texts>
-          <li>[lowtech] Long after dark, {A_nameDef} heard someone at the gate: a young traveler named {X_nameDef}, soaked to the knees from fording the river, with a pack and no torch. {X_nameDef} asked for something to eat, a dry place to sleep and a change of coat.\n\n"Someone is following me," {X_nameDef} said. "If they ask, I was never here." There was nothing more, unless the colony asks.</li>
-          <li>[!lowtech] Long after dark, {A_nameDef} heard someone at the gate: a young traveler named {X_nameDef}, soaked to the knees from fording the river, with a pack and a dead flashlight. {X_nameDef} asked for something to eat, a dry place to sleep and a change of coat.\n\n"Someone is following me," {X_nameDef} said. "If they ask, I was never here." There was nothing more, unless the colony asks.</li>
+          <li>[lowtech] Long after dark, {A_nameDef} heard someone at the gate: a young traveler named {X_nameDef}, soaked to the knees from fording the river, with a pack and no torch. {X_nameDef} asked for something to eat, a dry place to sleep and a change of coat.\n\n"Someone is following me," {X_nameDef} said. "If they ask, I was never here." {X_nameDef} will say nothing more unless the colony asks.</li>
+          <li>[!lowtech] Long after dark, {A_nameDef} heard someone at the gate: a young traveler named {X_nameDef}, soaked to the knees from fording the river, with a pack and a dead flashlight. {X_nameDef} asked for something to eat, a dry place to sleep and a change of coat.\n\n"Someone is following me," {X_nameDef} said. "If they ask, I was never here." {X_nameDef} will say nothing more unless the colony asks.</li>
         </texts>
         <defaultOption>2</defaultOption>
         <options>
