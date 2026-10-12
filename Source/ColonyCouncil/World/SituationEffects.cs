@@ -217,6 +217,12 @@ namespace ColonyCouncil
             try
             {
                 var parms = StorytellerUtility.DefaultParmsNow(def.category, map);
+                // Only a people the game would send this way itself (a trader caravan needs caravan traders, and the weather has to suit them).
+                if (f != null && def.Worker is IncidentWorker_PawnsArrive arrive && !arrive.FactionCanBeGroupSource(f, parms, false))
+                {
+                    if (!anyFaction) return;
+                    f = null;
+                }
                 parms.faction = f;
                 if (def.Worker.CanFireNow(parms) && def.Worker.TryExecute(parms)) return;
                 if (f != null && anyFaction)
