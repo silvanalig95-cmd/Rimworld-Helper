@@ -680,9 +680,13 @@ Keep a medicine shelf inside, and add a sculpture and a TV the patients can see 
     <sections>
       <li>
         <heading>Feed for winter</heading>
-        <text>Hay is 0.05 nutrition per unit, and one haygrass plant yields 18 hay. Eaten standing in the field, haygrass gives about 0.30 nutrition per plant; harvested, it gives 0.90. Plant haygrass next to the barn and harvest it rather than letting the animals graze it.
-
-Kibble is made 50 at a time from meat or animal products plus vegetables or hay. Stockpile hay or kibble inside the barn before winter.</text>
+        <text>Hay is 0.05 nutrition per unit, and one haygrass plant yields 18 hay. Harvesting a plant triples what it is worth:</text>
+        <table>
+          <li>Haygrass | Nutrition per plant</li>
+          <li>Eaten standing in the field | about 0.30</li>
+          <li>Harvested | 0.90</li>
+        </table>
+        <after>Plant haygrass next to the barn and harvest it rather than letting the animals graze it. Kibble is made 50 at a time from meat or animal products plus vegetables or hay. Stockpile hay or kibble inside the barn before winter.</after>
       </li>
       <li>
         <heading>Fences, doors and warmth</heading>
@@ -1010,15 +1014,12 @@ Beer carries a small risk of addiction with every bottle, so set a drug policy t
     <order>150</order>
     <summary>Weapons and armor on shelves near the defenses, far from the cells</summary>
     <tip>Store spare weapons where fighters pass on their way to the walls.</tip>
-    <description>Spare weapons and armor on the floor deteriorate and clutter corridors; in an armory they're ready when the raid letter arrives. Put it between the bedrooms or barracks and the defensive line, where colonists can grab gear on the way, and keep it far from prison cells and slave quarters.</description>
+    <description>Spare weapons and armor on the floor clutter corridors; in an armory they're ready when the raid letter arrives. Put it between the bedrooms or barracks and the defensive line, where colonists can grab gear on the way, and keep it far from prison cells and slave quarters.</description>
     <sections>
       <li>
-        <heading>Shelves and wealth</heading>
-        <text>Weapons left outdoors deteriorate. Roof the armory, give it a door and line it with shelves, with weapons and armor sorted apart. Stored weapons and armor count toward colony wealth, and so toward raid size, so sell or scrap weapons you'll never use.</text>
-      </li>
-      <li>
-        <heading>Slaves and weapons</heading>
-        <text>With Ideology, a usable weapon within 7 tiles of a slave, or in the same indoor room, makes rebellion 4 times as likely.</text>
+        <text>Weapons left outdoors deteriorate, so the armory needs a roof, a door and shelves, with weapons and armor sorted apart. Stored weapons and armor count toward colony wealth, and so toward raid size; sell or scrap weapons you'll never use.
+
+The distance from slaves matters with Ideology: a usable weapon within 7 tiles of a slave, or in the same indoor room, makes rebellion 4 times as likely.</text>
       </li>
     </sections>
     <keywords>

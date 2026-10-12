@@ -10,19 +10,16 @@
     <order>5</order>
     <summary>Expect the first colony to go wrong, learn the base game, and don't get attached</summary>
     <tip>Treat the first colony as practice for the second.</tip>
-    <description>Almost nobody's first colony survives in good shape, and that's normal. Veterans suggest learning the base game before piling on every expansion, and treating early runs as practice.</description>
-    <facts>
-      <li>Veterans advise learning the base game before adding DLCs. Each expansion adds systems with their own rules and their own ways to fail.</li>
-      <li>Early colonies are rarely tidy. Restarting after a bad run is normal, not failure.</li>
-      <li>Many players are on their third or fourth colony by the time they understand the mid-game.</li>
-      <li>RimWorld is built as a story generator: its storytellers send setbacks on purpose, and losses are part of the story.</li>
-    </facts>
-    <advice>
-      <li>Play your first colony with no DLCs, or just one, until food, mood and defense make sense.</li>
-      <li>Pick a gentler difficulty for the first run; you can raise it once the basics are second nature.</li>
-      <li>Don't get too attached to the first colonists. When a colony falls, note what went wrong before you start the next one.</li>
-      <li>Skim the other pages in this category once; each one covers a mistake that often ends early colonies.</li>
-    </advice>
+    <description>Almost nobody's first colony survives in good shape, and that's normal. RimWorld is built as a story generator: its storytellers send setbacks on purpose, and losses are part of the story. Many players are on their third or fourth colony by the time they understand the mid-game.</description>
+    <sections>
+      <li>
+        <text>Veterans advise learning the base game before adding DLCs. Each expansion adds systems with their own rules and their own ways to fail, so play your first colony with no DLCs, or just one, until food, mood and defense make sense. Pick a gentler difficulty for that first run too; you can raise it once the basics are second nature.
+
+Early colonies are rarely tidy, and restarting after a bad run is normal, not failure. Don't get too attached to the first colonists. When a colony falls, note what went wrong before you start the next one.
+
+The other pages in this category are worth skimming once. Each covers a mistake that often ends early colonies.</text>
+      </li>
+    </sections>
     <keywords>
       <li>beginner</li>
       <li>first colony</li>
@@ -48,18 +45,27 @@
     <summary>Starving in the first winter is the classic way a first colony ends</summary>
     <tip>Count the meals in late summer, while there's still time to plant.</tip>
     <description>Fields stop growing in the cold, and a colony that ate everything it grew all summer has nothing left by midwinter. Starvation in the first winter is one of the most common ways first colonies die. The fix is to do the arithmetic early and build a freezer to keep the food.</description>
-    <facts>
-      <li>A colonist eats about 1.78 simple meals a day, so a 15-day winter needs roughly 27 meals each, plus whatever spoils.</li>
-      <li>Crops need about 65% growth before they can be harvested, and most die below -10 °C.</li>
-      <li>Rice matures in 3 listed days (about 5.5 real days), which makes it the best last crop before the frost.</li>
-      <li>Simple meals rot in 4 days without a freezer, so a winter stock needs cold storage or long-lasting food.</li>
-    </facts>
-    <advice>
-      <li>Check the Resources panel by late summer. Aim for at least 15 days of meals per colonist by the end of the growing season.</li>
-      <li>Time the last rice sowing so it's at least 65% grown before the first frost.</li>
-      <li>Build a freezer, or stock food that keeps: pemmican lasts 70 days, corn 60, rice 40, potatoes 30.</li>
-      <li>Leave a buffer for a blight, toxic fallout or a late raid on the fields.</li>
-    </advice>
+    <sections>
+      <li>
+        <heading>Before the frost</heading>
+        <points>
+          <li>Check the Resources panel by late summer. A colonist eats about 1.78 simple meals a day, so a 15-day winter needs roughly 27 meals each, plus whatever spoils. Aim for at least 15 days of meals per colonist by the end of the growing season.</li>
+          <li>Make rice the last crop. It matures in 3 listed days (about 5.5 real days), faster than anything else. Time the sowing so it's at least 65% grown, the minimum for a harvest, before the first frost; most crops die below -10 °C.</li>
+          <li>Leave a buffer for a blight, toxic fallout or a late raid on the fields.</li>
+        </points>
+      </li>
+      <li>
+        <heading>Keeping it through winter</heading>
+        <text>Simple meals rot in 4 days without a freezer, so a winter stock needs cold storage or long-lasting food. Build a freezer, or stock food that keeps:</text>
+        <table>
+          <li>Food | Keeps without a freezer</li>
+          <li>Pemmican | 70 days</li>
+          <li>Corn | 60 days</li>
+          <li>Rice | 40 days</li>
+          <li>Potatoes | 30 days</li>
+        </table>
+      </li>
+    </sections>
     <keywords>
       <li>winter</li>
       <li>starvation</li>
@@ -85,17 +91,17 @@
     <order>20</order>
     <summary>Starting supplies can land forbidden, and nobody touches them until you allow them</summary>
     <tip>Unforbid the starting supplies before you do anything else.</tip>
-    <description>The supplies you start with can arrive forbidden, marked with a red X. Colonists walk right past forbidden items, so the first day can be lost to idle colonists. It takes one click to fix once you notice.</description>
-    <facts>
-      <li>Starting items can arrive forbidden, marked with a red X.</li>
-      <li>Colonists won't haul, eat or use forbidden items.</li>
-      <li>The usual sign is idle colonists standing next to a pile they "can't reach", and a wasted first day.</li>
-    </facts>
-    <advice>
-      <li>On the very first pause, select the starting supplies and allow them all.</li>
-      <li>Then scan the map for predators before you send anyone out to work.</li>
-      <li>Make a stockpile under a roof and let the haulers bring everything in.</li>
-    </advice>
+    <description>The supplies you start with can arrive forbidden, marked with a red X. Colonists won't haul, eat or use forbidden items, so they walk right past them. The usual sign is idle colonists standing next to a pile they "can't reach", and a wasted first day. It takes one click to fix once you notice.</description>
+    <sections>
+      <li>
+        <heading>On the first pause</heading>
+        <points>
+          <li>Select the starting supplies and allow them all.</li>
+          <li>Scan the map for predators before you send anyone out to work.</li>
+          <li>Make a stockpile under a roof and let the haulers bring everything in.</li>
+        </points>
+      </li>
+    </sections>
     <keywords>
       <li>forbidden</li>
       <li>red X</li>
@@ -119,17 +125,21 @@
     <order>30</order>
     <summary>Firefighting, Patient and Doctor belong at priority 1</summary>
     <tip>Fires and patients wait their turn unless their work is at priority 1.</tip>
-    <description>Colonists do their work in priority order, so anything left low on the list waits until everything above it is done. That's fine for hauling, but not for fires, sick colonists or bleeding patients.</description>
-    <facts>
-      <li>Leaving Firefighting, Patient and Doctor below priority 1 is a common beginner mistake.</li>
-      <li>Work priorities run from 1 (highest) to 4; a blank box means the pawn won't do that work at all.</li>
-      <li>Without priority 1, fires burn while colonists finish other jobs, and sick pawns keep working instead of resting.</li>
-    </facts>
-    <advice>
-      <li>Turn on manual priorities in the Work tab.</li>
-      <li>Set Firefighting and Patient (and Bed rest) to 1 for everyone, and Doctor to 1 for your doctors.</li>
-      <li>Back up the key jobs: about one cook and one grower per 5 colonists, with a second pawn on each.</li>
-    </advice>
+    <description>Colonists do their work in priority order, so anything left low on the list waits until everything above it is done. That's fine for hauling, but not for fires, sick colonists or bleeding patients. Without priority 1, fires burn while colonists finish other jobs, and sick pawns keep working instead of resting. Leaving Firefighting, Patient and Doctor below priority 1 is a common beginner mistake.</description>
+    <sections>
+      <li>
+        <heading>In the Work tab</heading>
+        <text>Turn on manual priorities. Priorities run from 1 (highest) to 4; a blank box means the pawn won't do that work at all.</text>
+        <table>
+          <li>Work | Priority | For</li>
+          <li>Firefighting | 1 | Everyone</li>
+          <li>Patient | 1 | Everyone</li>
+          <li>Bed rest | 1 | Everyone</li>
+          <li>Doctor | 1 | Your doctors</li>
+        </table>
+        <after>Back up the key jobs as well: about one cook and one grower per 5 colonists, with a second pawn on each.</after>
+      </li>
+    </sections>
     <keywords>
       <li>work priorities</li>
       <li>work tab</li>
@@ -153,18 +163,15 @@
     <order>40</order>
     <summary>Packaged survival meals are your emergency food; don't eat them in the first week</summary>
     <tip>Cook the fresh food first and keep the survival meals packed.</tip>
-    <description>The packaged survival meals you start with are the only food that practically never rots. Eat them in the first few days and the emergency food is gone before any emergency. Cook fresh food from the first harvest or hunt and keep the packets for raids, caravans and bad weather.</description>
-    <facts>
-      <li>A packaged survival meal gives 0.9 nutrition and barely deteriorates, so it is effectively permanent.</li>
-      <li>A simple meal rots in 4 days without a freezer.</li>
-      <li>Survival meals taste "Simple", the same as a simple meal, so eating them gains you nothing in mood.</li>
-      <li>The usual sign: the survival meal count dropping while a stove and raw food sit unused.</li>
-    </facts>
-    <advice>
-      <li>Set a food restriction that leaves out survival meals for now.</li>
-      <li>Cook simple meals from the first harvest or hunt.</li>
-      <li>Keep the survival meals for caravans, sieges, a blight or the end of winter.</li>
-    </advice>
+    <description>The packaged survival meals you start with are the only food that practically never rots. Each gives 0.9 nutrition and barely deteriorates, so it is effectively permanent. Eat them in the first few days and the emergency food is gone before any emergency, for nothing: they taste "Simple", the same as a simple meal, so they gain you nothing in mood.</description>
+    <sections>
+      <li>
+        <heading>Keeping them packed</heading>
+        <text>The usual sign is the survival meal count dropping while a stove and raw food sit unused. Set a food restriction that leaves out survival meals for now, and cook simple meals from the first harvest or hunt. A simple meal rots in 4 days without a freezer, so it should be eaten first anyway.
+
+Keep the survival meals for caravans, sieges, a blight or the end of winter.</text>
+      </li>
+    </sections>
     <keywords>
       <li>survival meal</li>
       <li>packaged meal</li>
@@ -187,17 +194,21 @@
     <summary>Corn takes almost four times as long as rice; plant rice first</summary>
     <tip>Rice is ready in about 5.5 days. Corn takes about 21.</tip>
     <description>A new colony needs food soon, not food eventually. Corn is a great winter crop, but its first harvest is weeks away, and a colony living off its starting supplies can't wait that long. Rice comes in fast and gets the kitchen running.</description>
-    <facts>
-      <li>Rice matures in 3 listed days (about 5.5 real days).</li>
-      <li>Corn takes 11.3 listed days, about 21 real days, because plants only grow part of the day.</li>
-      <li>A corn-only start can leave you with no harvest at all in the first quadrum.</li>
-      <li>Rice rots in 40 days raw, corn in 60, so corn is still the better crop for storing.</li>
-    </facts>
-    <advice>
-      <li>Plant rice first, and add corn or potatoes once meals are flowing.</li>
-      <li>Sow corn early in the season, so it ripens well before the frost.</li>
-      <li>Use rice again for the last harvest before winter.</li>
-    </advice>
+    <sections>
+      <li>
+        <heading>Rice against corn</heading>
+        <table>
+          <li>Crop | Listed grow days | Real days | Rots raw after</li>
+          <li>Rice | 3 | about 5.5 | 40 days</li>
+          <li>Corn | 11.3 | about 21 | 60 days</li>
+        </table>
+        <after>Real days are longer because plants only grow part of the day. A corn-only start can leave you with no harvest at all in the first quadrum, though corn is still the better crop for storing.</after>
+      </li>
+      <li>
+        <heading>The order to plant in</heading>
+        <text>Plant rice first, and add corn or potatoes once meals are flowing. Sow corn early in the season, so it ripens well before the frost, and use rice again for the last harvest before winter.</text>
+      </li>
+    </sections>
     <keywords>
       <li>rice</li>
       <li>corn</li>
@@ -220,19 +231,18 @@
     <order>60</order>
     <summary>Meat rots in 2 days and meals in 4; leave room for a freezer from the start</summary>
     <tip>Meat keeps 2 days outside a freezer and doesn't rot inside one.</tip>
-    <description>Fresh food doesn't last long without cold storage. A freezer is easy to add later only if you left space for it next to the kitchen; squeezing one in afterward usually means a long walk for every meal.</description>
-    <facts>
-      <li>Without cold storage, meat and fish rot in 2 days and simple meals in 4.</li>
-      <li>Spoilage stops completely at or below 0 °C.</li>
-      <li>A passive cooler can't go below 17 °C, so it can't keep food frozen.</li>
-      <li>A 6x6 freezer with space for coolers later is a good starting size.</li>
-      <li>Electric coolers stop in a solar flare, so even a freezer needs a plan for the dark days.</li>
-    </facts>
-    <advice>
-      <li>Mark out the 6x6 freezer next to the kitchen on the first day, even before you can cool it.</li>
-      <li>Once you have power, add coolers, double the walls and put two doors in sequence at the entrance.</li>
-      <li>Without power, lean on food that keeps: pemmican, rice, corn and potatoes, and the cold season itself.</li>
-    </advice>
+    <description>Fresh food doesn't last long without cold storage: meat and fish rot in 2 days and simple meals in 4. Spoilage stops completely at or below 0 °C, but a passive cooler can't go below 17 °C, so it can't keep food frozen. A freezer is easy to add later only if you left space for it next to the kitchen; squeezing one in afterward usually means a long walk for every meal.</description>
+    <sections>
+      <li>
+        <heading>A freezer in stages</heading>
+        <points>
+          <li>First day: mark out a 6x6 freezer next to the kitchen, even before you can cool it. That's a good starting size, with space for coolers later.</li>
+          <li>Once you have power: add coolers, double the walls and put two doors in sequence at the entrance.</li>
+          <li>Without power: lean on food that keeps (pemmican, rice, corn and potatoes) and on the cold season itself.</li>
+        </points>
+        <after>Electric coolers stop in a solar flare, so even a finished freezer needs a plan for the dark days.</after>
+      </li>
+    </sections>
     <keywords>
       <li>freezer</li>
       <li>cooler</li>
@@ -259,18 +269,23 @@
     <summary>A dirty kitchen and a clumsy cook poison the colony; butcher somewhere else</summary>
     <tip>Butcher in one room and cook in another.</tip>
     <description>Food poisoning from cooked meals comes from two things: an unskilled cook and a dirty kitchen. The quickest way to make a kitchen dirty is to butcher in it. A separate butcher room and a good cook at the stove stop most poisoning outright.</description>
-    <facts>
-      <li>The chance of poisoning a cooked meal depends on the cook's skill and the cleanliness of the stove's room.</li>
-      <li>Roughly 5% at Cooking 0, 0.5% at Cooking 6, and 0.1% at Cooking 9 and above.</li>
-      <li>The dirty-room risk switches off once the kitchen's cleanliness is -2 or better.</li>
-      <li>A butcher table lowers cleanliness by about 15, and butchering spills blood: -10 cleanliness and -30 beauty per tile.</li>
-      <li>A batch bill poisons the whole batch at once. Nutrient paste can never cause food poisoning.</li>
-    </facts>
-    <advice>
-      <li>Move the butcher table into its own room, next to the freezer and away from the stove.</li>
-      <li>Give Cooking to your best cook at priority 1, and keep unskilled pawns off the stove.</li>
-      <li>Have someone clean the kitchen often. Sterile tiles (+0.6 cleanliness each) help.</li>
-    </advice>
+    <sections>
+      <li>
+        <heading>Skill and cleanliness</heading>
+        <text>The chance of poisoning a cooked meal depends on the cook's skill and the cleanliness of the stove's room. It's roughly 5% at Cooking 0, 0.5% at Cooking 6, and 0.1% at Cooking 9 and above. The dirty-room risk switches off once the kitchen's cleanliness is -2 or better.
+
+A butcher table lowers cleanliness by about 15, and butchering spills blood: -10 cleanliness and -30 beauty per tile.</text>
+      </li>
+      <li>
+        <heading>Splitting butcher and cook</heading>
+        <points>
+          <li>Move the butcher table into its own room, next to the freezer and away from the stove.</li>
+          <li>Give Cooking to your best cook at priority 1, and keep unskilled pawns off the stove.</li>
+          <li>Have someone clean the kitchen often. Sterile tiles (+0.6 cleanliness each) help.</li>
+        </points>
+        <after>A batch bill poisons the whole batch at once, so one bad batch can sicken several colonists. Nutrient paste can never cause food poisoning.</after>
+      </li>
+    </sections>
     <keywords>
       <li>food poisoning</li>
       <li>dirty kitchen</li>
@@ -296,18 +311,17 @@
     <order>80</order>
     <summary>Each new colonist eats 1.6 nutrition a day; check the food before you say yes</summary>
     <tip>Fields that fed four colonists won't feed a fifth.</tip>
-    <description>Fields that fed everyone last season don't grow just because someone new joined. Every recruit, prisoner and refugee eats from the same store, and the shortfall often shows only weeks later, when it's harder to fix.</description>
-    <facts>
-      <li>Each adult needs 1.6 nutrition a day.</li>
-      <li>A fifth mouth can starve a colony that was just about feeding four.</li>
-      <li>Prisoners eat too, and take the best food they can reach.</li>
-      <li>The usual sign: hungry icons a few weeks after a recruit, from fields that fed everyone last quadrum.</li>
-    </facts>
-    <advice>
-      <li>Before accepting anyone, work out days of food left: total nutrition divided by 1.6 times the number of mouths.</li>
-      <li>Expand the fields before you recruit, not after.</li>
-      <li>Count prisoners you plan to recruit as colonists already.</li>
-    </advice>
+    <description>Each adult needs 1.6 nutrition a day, and fields that fed everyone last season don't grow just because someone new joined. Every recruit, prisoner and refugee eats from the same store, and a fifth mouth can starve a colony that was just about feeding four. The shortfall often shows only weeks later, when it's harder to fix: hungry icons a few weeks after a recruit, from fields that fed everyone last quadrum.</description>
+    <sections>
+      <li>
+        <heading>Before you say yes</heading>
+        <points>
+          <li>Count every mouth. Prisoners eat too, and take the best food they can reach; count the ones you plan to recruit as colonists already.</li>
+          <li>Work out days of food left: total nutrition divided by 1.6 times the number of mouths.</li>
+          <li>If it comes up short, expand the fields before you recruit, not after.</li>
+        </points>
+      </li>
+    </sections>
     <keywords>
       <li>recruit</li>
       <li>food</li>
@@ -331,17 +345,14 @@
     <order>90</order>
     <summary>No table costs every colonist -3 mood, every day; build one first</summary>
     <tip>A wooden table saves every colonist 3 mood a day.</tip>
-    <description>Eating on the floor costs every colonist a small mood penalty, every single day. It's one of the cheapest problems in the game to fix, and one of the most common to leave unfixed. A rough table and a few chairs in the first shelter do the job.</description>
-    <facts>
-      <li>"Ate without table" gives -3 mood for a day.</li>
-      <li>It comes back every day a colonist eats on the floor.</li>
-      <li>A clean, decorated dining room can instead give up to +8 through its impressiveness.</li>
-    </facts>
-    <advice>
-      <li>Build a table and chairs in the first shelter, even rough wooden ones.</li>
-      <li>Add seats as the colony grows, so nobody eats standing.</li>
-      <li>Later, give the table its own room next to the kitchen.</li>
-    </advice>
+    <description>Eating on the floor costs every colonist a small mood penalty, every single day. It's one of the cheapest problems in the game to fix, and one of the most common to leave unfixed.</description>
+    <sections>
+      <li>
+        <text>The thought is "Ate without table": -3 mood for a day, and it comes back every day a colonist eats on the floor. Build a table and chairs in the first shelter; rough wooden ones do the job. Add seats as the colony grows, so nobody eats standing.
+
+Later, give the table its own room next to the kitchen. A clean, decorated dining room can then give up to +8 through its impressiveness, instead of a penalty.</text>
+      </li>
+    </sections>
     <keywords>
       <li>table</li>
       <li>chair</li>
@@ -365,17 +376,23 @@
     <summary>Shared rooms disturb sleep, and cramped rooms never give a mood bonus</summary>
     <tip>Colonists in a shared room wake each other up.</tip>
     <description>A barracks is fine for the first weeks, but colonists sleeping together wake each other and take small mood penalties. A bedroom that's too small or too bare gives a penalty of its own. Private rooms of a decent size are one of the best mood investments you can make.</description>
-    <facts>
-      <li>Colonists sharing sleeping quarters disturb each other and take mood penalties, including "Disturbed sleep" (-1).</li>
-      <li>A bedroom with impressiveness under 20 gives -2. 30 to 39 gives +1, and 85 or more gives +5.</li>
-      <li>A 4x2 bedroom is too small to give the bedroom mood bonus.</li>
-      <li>A good target is Space 25 or more, a real floor, a dresser or end table, and a plant or sculpture.</li>
-    </facts>
-    <advice>
-      <li>Give each colonist their own bedroom as soon as materials allow; keep the barracks for the early days.</li>
-      <li>Build bedrooms big enough to reach Space 25 once furnished; 5x5 is usually enough.</li>
-      <li>Add a floor, an end table, a dresser and a plant, then keep improving the room until its impressiveness passes 30.</li>
-    </advice>
+    <sections>
+      <li>
+        <heading>Sharing a room</heading>
+        <text>Colonists sharing sleeping quarters disturb each other and take mood penalties, including "Disturbed sleep" (-1). Keep the barracks for the early days, and give each colonist their own bedroom as soon as materials allow.</text>
+      </li>
+      <li>
+        <heading>Too small or too bare</heading>
+        <text>A bedroom with impressiveness under 20 gives -2. Impressiveness from 30 to 39 gives +1, and 85 or more gives +5. A 4x2 bedroom is too small to give the bedroom mood bonus at all. Aim for this in each room:</text>
+        <points>
+          <li>Space 25 or more once furnished; 5x5 is usually big enough.</li>
+          <li>A real floor.</li>
+          <li>An end table, a dresser, or both.</li>
+          <li>A plant or a sculpture.</li>
+        </points>
+        <after>Then keep improving the room until its impressiveness passes 30.</after>
+      </li>
+    </sections>
     <keywords>
       <li>bedroom</li>
       <li>barracks</li>
@@ -401,17 +418,16 @@
     <summary>A colonist with no recreation loses up to 20 mood; schedule an hour or two a day</summary>
     <tip>A colony with only a horseshoes pin soon gets bored of horseshoes.</tip>
     <description>Recreation drains all day, and a colonist who never gets any slides toward a mental break. Two things go wrong: no time for it in the schedule, or only one kind of fun so everyone gets bored of it. Both are cheap to fix.</description>
-    <facts>
-      <li>Recreation below 15% gives -10 mood, and at 0 it gives -20.</li>
-      <li>Recreation falls 2.5% per hour while it's above 30%.</li>
-      <li>1 to 2 hours of recreation a day keeps most colonists out of trouble.</li>
-      <li>Colonists get bored of one kind of recreation once its tolerance passes 50%. A colony with moderate expectations wants about 4 different kinds.</li>
-    </facts>
-    <advice>
-      <li>In the Schedule tab, give everyone 1 to 2 Joy hours a day, ideally in the evening.</li>
-      <li>Build several kinds of recreation: horseshoes, chess, a billiards table, a television later.</li>
-      <li>Add more variety as the colony gets richer and expectations rise.</li>
-    </advice>
+    <sections>
+      <li>
+        <heading>Time in the schedule</heading>
+        <text>Recreation falls 2.5% per hour while it's above 30%. Below 15% it gives -10 mood, and at 0 it gives -20. In the Schedule tab, give everyone 1 to 2 Joy hours a day, ideally in the evening; that much keeps most colonists out of trouble.</text>
+      </li>
+      <li>
+        <heading>More than one kind of fun</heading>
+        <text>Colonists get bored of one kind of recreation once its tolerance passes 50%. A colony with moderate expectations wants about 4 different kinds, so build several: horseshoes, chess, a billiards table, a television later. Add more variety as the colony gets richer and expectations rise.</text>
+      </li>
+    </sections>
     <keywords>
       <li>recreation</li>
       <li>joy</li>
@@ -437,17 +453,16 @@
     <summary>Expensive building early raises your raids before you can defend against them</summary>
     <tip>Build the wall before the statue.</tip>
     <description>Raids grow with your colony's wealth, and buildings count toward it. Spend the early weeks on marble halls and gold statues and the storyteller sends raiders sized for a rich colony at a colony that can't fight them yet.</description>
-    <facts>
-      <li>Raid strength grows with colony wealth.</li>
-      <li>Buildings count at half their value toward the wealth raids are scaled on.</li>
-      <li>Raids are scaled down to 0.7 until day 10, and reach full strength by day 40.</li>
-      <li>The usual sign: raids stepping up right after a building spree, with buildings filling the Wealth tab.</li>
-    </facts>
-    <advice>
-      <li>Build what the colony uses first: shelter, food, beds and defenses.</li>
-      <li>Hold off on expensive decoration until you can defend it.</li>
-      <li>Check the Wealth tab after any big building project.</li>
-    </advice>
+    <sections>
+      <li>
+        <heading>How buildings count</heading>
+        <text>Buildings count at half their value toward the wealth raids are scaled on. Raids are also scaled down to 0.7 until day 10, and reach full strength by day 40. The usual sign of overbuilding is raids stepping up right after a building spree, with buildings filling the Wealth tab.</text>
+      </li>
+      <li>
+        <heading>Building in order</heading>
+        <text>Build what the colony uses first: shelter, food, beds and defenses. Hold off on expensive decoration until you can defend it, and check the Wealth tab after any big building project.</text>
+      </li>
+    </sections>
     <keywords>
       <li>wealth</li>
       <li>raid points</li>
@@ -472,17 +487,23 @@
     <summary>Unused gold, art and spare weapons raise raids and expectations for nothing</summary>
     <tip>Spare weapons in storage add to raids without defending anything.</tip>
     <description>Everything in your stockpiles counts toward colony wealth, whether you use it or not. Wealth makes raids bigger and makes your colonists expect more comfort. Keep the tools that keep you alive; sell or use the rest.</description>
-    <facts>
-      <li>Items count in full toward the wealth raids are scaled on; buildings count half.</li>
-      <li>Gold, art and unused weapons all raise raid strength.</li>
-      <li>Wealth also lowers the expectations mood bonus: +24 at very low wealth (15,000 to 31,000) falls to +12 at moderate (81,000 to 182,000).</li>
-      <li>Strict wealth management only really matters on the hardest difficulties.</li>
-    </facts>
-    <advice>
-      <li>Sell what you don't use: spare weapons, surplus art, gold and silver hoards.</li>
-      <li>Turn surplus into things that help: medicine, armor, better meals.</li>
-      <li>Don't sell your colony's working tools just to look poor.</li>
-    </advice>
+    <sections>
+      <li>
+        <heading>What it costs you</heading>
+        <text>Items count in full toward the wealth raids are scaled on, while buildings count half, so gold, art and unused weapons in storage all raise raid strength.
+
+Wealth also lowers the expectations mood bonus: +24 at very low wealth (15,000 to 31,000) falls to +12 at moderate (81,000 to 182,000).</text>
+      </li>
+      <li>
+        <heading>Sell, use or keep</heading>
+        <points>
+          <li>Sell what you don't use: spare weapons, surplus art, gold and silver hoards.</li>
+          <li>Turn surplus into things that help: medicine, armor, better meals.</li>
+          <li>Don't sell your colony's working tools just to look poor.</li>
+        </points>
+        <after>Strict wealth management only really matters on the hardest difficulties.</after>
+      </li>
+    </sections>
     <keywords>
       <li>wealth</li>
       <li>hoarding</li>
@@ -505,18 +526,17 @@
     <order>140</order>
     <summary>Turrets raise your raids, explode when damaged and go dark in a solar flare</summary>
     <tip>A badly damaged autocannon turret can explode next to the people it was covering.</tip>
-    <description>A wall of turrets feels safe, but every turret adds to colony wealth and so to the next raid. Turrets also explode when badly damaged and stop working in a solar flare. They're good support for colonists in cover, not a replacement for them.</description>
-    <facts>
-      <li>Turrets count toward wealth like other buildings, so a turret farm raises raid strength.</li>
-      <li>An autocannon turret costs 350 steel, 40 plasteel and 6 components, and draws 150 W.</li>
-      <li>Below 20% HP an autocannon turret has a 50% chance to explode.</li>
-      <li>Powered turrets stop firing during a solar flare.</li>
-    </facts>
-    <advice>
-      <li>Use turrets to support colonists behind cover, not instead of them.</li>
-      <li>Space turrets apart so one explosion doesn't set off the next.</li>
-      <li>Keep colonists armed and trained for fights during a solar flare, when the turrets go dark.</li>
-    </advice>
+    <description>A wall of turrets feels safe, but turrets raise the raids they're meant to stop, explode when badly damaged and go dark in a solar flare. They're good support for colonists behind cover, not a replacement for them.</description>
+    <sections>
+      <li>
+        <heading>Where turrets let you down</heading>
+        <points>
+          <li>Wealth. Turrets count toward wealth like other buildings, so a turret farm raises raid strength. An autocannon turret costs 350 steel, 40 plasteel and 6 components, and draws 150 W.</li>
+          <li>Explosions. Below 20% HP an autocannon turret has a 50% chance to explode. Space turrets apart so one explosion doesn't set off the next.</li>
+          <li>Solar flares. Powered turrets stop firing during a solar flare, so keep colonists armed and trained for the fights when the turrets go dark.</li>
+        </points>
+      </li>
+    </sections>
     <keywords>
       <li>turret</li>
       <li>autocannon</li>
@@ -540,18 +560,17 @@
     <order>150</order>
     <summary>Every new colonist costs food, a bed and raid strength; check traits and skills first</summary>
     <tip>Read the traits before you open the gate.</tip>
-    <description>Refugees, wanderers and prisoners all look like free help. Each one also needs a bed, a seat at the table and a share of the food, and adds to raid strength. A skilled, stable recruit is worth it; an unskilled one with bad traits can sink a small colony.</description>
-    <facts>
-      <li>Each colonist adds to raid strength: 15 raid points each up to 10,000 wealth, rising to 140 at 400,000 wealth.</li>
-      <li>Each one needs a bed, a seat at the table, food, and a share of the colony's comfort.</li>
-      <li>Extra colonists also add defenders, which usually outweighs the raid points they bring.</li>
-      <li>A colony full of unskilled pawns with bad traits eats like a big colony and works like a small one.</li>
-    </facts>
-    <advice>
-      <li>Read traits and skills in the quest or prisoner window before you say yes.</li>
-      <li>Prefer recruits with skills you lack, and turn down the ones who would add little.</li>
-      <li>Have a bed and enough food ready before anyone joins.</li>
-    </advice>
+    <description>Refugees, wanderers and prisoners all look like free help. Each one also needs a bed, a seat at the table, food and a share of the colony's comfort, and adds to raid strength. A skilled, stable recruit is worth it; an unskilled one with bad traits can sink a small colony.</description>
+    <sections>
+      <li>
+        <heading>What a recruit adds</heading>
+        <text>Each colonist adds to raid strength: 15 raid points each up to 10,000 wealth, rising to 140 at 400,000 wealth. Extra colonists also add defenders, which usually outweighs the raid points they bring. The trouble is recruits who add little else. A colony full of unskilled pawns with bad traits eats like a big colony and works like a small one.</text>
+      </li>
+      <li>
+        <heading>Choosing who to take</heading>
+        <text>Read traits and skills in the quest or prisoner window before you say yes. Prefer recruits with skills you lack, and turn down the ones who would add little. Have a bed and enough food ready before anyone joins.</text>
+      </li>
+    </sections>
     <keywords>
       <li>refugee</li>
       <li>recruit</li>
@@ -576,18 +595,21 @@
     <summary>Packed batteries, wooden floors and bare wiring make a power room a fire waiting to happen</summary>
     <tip>Batteries belong on stone floors, in pairs, under a roof.</tip>
     <description>Generators, batteries and conduits can short-circuit or explode, and what happens next depends on what's around them. On a wooden floor, with batteries packed shoulder to shoulder, one spark can take the whole power room. Stone floors, gaps between batteries and hidden conduits keep a fault from spreading.</description>
-    <facts>
-      <li>Items and structures catch fire above 235 °C, and embers travel up to 2 tiles.</li>
-      <li>A stone floor doesn't catch fire when a generator or battery explodes.</li>
-      <li>Battery explosions can chain. Built in pairs with gaps between, at most two go up at once.</li>
-      <li>Unroofed batteries and ordinary conduits can short-circuit, starting fires and draining the batteries. In recent versions, roofed batteries and hidden conduits prevent this.</li>
-      <li>Exposed conduits also lower the beauty of the rooms they cross.</li>
-    </facts>
-    <advice>
-      <li>Put generators and batteries on stone floors, behind stone walls.</li>
-      <li>Roof the battery room and keep a gap between each pair of batteries; check the gaps again whenever you add more.</li>
-      <li>Run power through hidden conduits inside walls, not across living rooms.</li>
-    </advice>
+    <sections>
+      <li>
+        <heading>How a fault spreads</heading>
+        <text>Items and structures catch fire above 235 °C, and embers travel up to 2 tiles. Battery explosions can chain. Unroofed batteries and ordinary conduits can short-circuit, starting fires and draining the batteries.</text>
+      </li>
+      <li>
+        <heading>A safer power room</heading>
+        <points>
+          <li>Floors and walls: put generators and batteries on stone floors, behind stone walls. A stone floor doesn't catch fire when a generator or battery explodes.</li>
+          <li>Spacing: build batteries in pairs with a gap between each pair, so at most two go up at once. Check the gaps again whenever you add more.</li>
+          <li>Roof: roof the battery room. In recent versions, roofed batteries and hidden conduits don't short-circuit.</li>
+          <li>Wiring: run power through hidden conduits inside walls, not across living rooms. Exposed conduits also lower the beauty of the rooms they cross.</li>
+        </points>
+      </li>
+    </sections>
     <keywords>
       <li>battery</li>
       <li>generator</li>
@@ -615,17 +637,25 @@
     <summary>Solar alone drains the batteries every eclipse; mix two or more kinds of power</summary>
     <tip>An eclipse can last more than a day, and solar panels give almost nothing through it.</tip>
     <description>Every kind of generator has a bad day: solar at night and in an eclipse, wind in still weather, fueled generators when the fuel runs out. A colony on one kind of power goes dark when that kind fails, freezer and all. Two different sources and a bank of batteries cover each other's gaps.</description>
-    <facts>
-      <li>Solar panels barely work during an eclipse, which lasts 0.75 to 1.25 days, and produce nothing at night.</li>
-      <li>Output per generator: wood-fired 1,000 W (22 wood a day), chemfuel 1,000 W (4.5 chemfuel a day), solar 1,700 W in daylight, wind 2,300 W depending on weather, geothermal 3,600 W on a steam geyser, watermill 1,100 W on a river.</li>
-      <li>A battery stores 600 Wd and loses 5 Wd a day.</li>
-      <li>A solar flare stops everything powered, whatever the source.</li>
-    </facts>
-    <advice>
-      <li>Mix at least two kinds of power, such as solar with wind, or solar with a wood-fired generator for dark days.</li>
-      <li>Keep enough batteries to carry the night and an eclipse.</li>
-      <li>Build a geothermal generator on any steam geyser you have: it doesn't care about weather or daylight.</li>
-    </advice>
+    <sections>
+      <li>
+        <heading>The generators</heading>
+        <table>
+          <li>Generator | Output | What it depends on</li>
+          <li>Wood-fired | 1,000 W | 22 wood a day</li>
+          <li>Chemfuel | 1,000 W | 4.5 chemfuel a day</li>
+          <li>Solar | 1,700 W in daylight | Daylight: nothing at night, and barely anything during an eclipse</li>
+          <li>Wind | 2,300 W | The weather</li>
+          <li>Geothermal | 3,600 W | A steam geyser</li>
+          <li>Watermill | 1,100 W | A river</li>
+        </table>
+        <after>An eclipse lasts 0.75 to 1.25 days. A battery stores 600 Wd and loses 5 Wd a day. A solar flare stops everything powered, whatever the source.</after>
+      </li>
+      <li>
+        <heading>Covering the gaps</heading>
+        <text>Mix at least two kinds of power, such as solar with wind, or solar with a wood-fired generator for dark days, and keep enough batteries to carry the night and an eclipse. Build a geothermal generator on any steam geyser you have: it doesn't care about weather or daylight.</text>
+      </li>
+    </sections>
     <keywords>
       <li>power</li>
       <li>solar</li>
@@ -651,17 +681,18 @@
     <summary>Sun lamps and idle benches eat power, and every device is a future repair bill</summary>
     <tip>One sun lamp draws more than two wood-fired generators produce.</tip>
     <description>Electricity runs out faster than beginners expect, because some devices are enormously hungry and idle workbenches still draw power. Every electrical device can also break down, and repairs eat components you can't easily replace. Power only what you use.</description>
-    <facts>
-      <li>A sun lamp draws 2,900 W, almost three wood-fired generators' worth.</li>
-      <li>Idle workstations still draw power.</li>
-      <li>Each battery loses 5 Wd a day, so batteries you don't need waste power.</li>
-      <li>Broken electrical devices need components to repair, and components are scarce. Short circuits break devices too.</li>
-    </facts>
-    <advice>
-      <li>Switch off sun lamps and workbenches you aren't using.</li>
-      <li>Build only the batteries a night needs: what you use after sunset, times the hours until dawn.</li>
-      <li>Skip electrical devices you don't really need, and keep a few components in reserve for repairs.</li>
-    </advice>
+    <sections>
+      <li>
+        <heading>Where the power goes</heading>
+        <text>A sun lamp draws 2,900 W, almost three wood-fired generators' worth. Idle workstations still draw power, so switch off sun lamps and workbenches you aren't using.
+
+Batteries cost power too. Each loses 5 Wd a day, so batteries you don't need waste power. Build only the batteries a night needs: what you use after sunset, times the hours until dawn.</text>
+      </li>
+      <li>
+        <heading>Breakdowns</heading>
+        <text>Broken electrical devices need components to repair, and components are scarce. Short circuits break devices too. Skip electrical devices you don't really need, and keep a few components in reserve for repairs.</text>
+      </li>
+    </sections>
     <keywords>
       <li>power use</li>
       <li>sun lamp</li>
@@ -685,18 +716,21 @@
     <order>190</order>
     <summary>Wood for the first shed, stone as soon as you can cut it, steel for neither</summary>
     <tip>Wood for the first shed, stone for everything after, and steel for components and weapons.</tip>
-    <description>Veterans disagree here. One camp says building the first shelter from steel wastes a scarce metal you'll need for components and tools; another says building in wood is asking for a fire. Both points are fair, and together they suggest an order: wood first, stone as soon as you can cut it, and steel kept for other uses.</description>
-    <facts>
-      <li>Steel is scarce early and needed for components, tools and weapons, so spending it on walls is a common regret.</li>
-      <li>Wood burns: items and structures ignite above 235 °C, and embers jump up to 2 tiles.</li>
-      <li>Stone walls don't burn.</li>
-      <li>A wooden base with a campfire or generator inside is the classic first house fire.</li>
-    </facts>
-    <advice>
-      <li>Build the first shed from wood, and switch to stone blocks as soon as you can cut them.</li>
-      <li>Never put wooden floors near generators, stoves or campfires.</li>
-      <li>Keep a 2-tile firebreak between wooden buildings.</li>
-    </advice>
+    <description>Veterans disagree here. One camp says building the first shelter from steel wastes a scarce metal you'll need for components and tools; another says building in wood is asking for a fire. Both points are fair, and together they suggest an order.</description>
+    <sections>
+      <li>
+        <heading>Wood, then stone, and steel for later</heading>
+        <points>
+          <li>Wood for the first shed. It burns, though: items and structures ignite above 235 °C, and embers jump up to 2 tiles.</li>
+          <li>Stone blocks as soon as you can cut them. Stone walls don't burn.</li>
+          <li>Steel for components, tools and weapons. It's scarce early, and spending it on walls is a common regret.</li>
+        </points>
+      </li>
+      <li>
+        <heading>Keeping a wooden base from burning</heading>
+        <text>A wooden base with a campfire or generator inside is the classic first house fire. Never put wooden floors near generators, stoves or campfires, and keep a 2-tile firebreak between wooden buildings.</text>
+      </li>
+    </sections>
     <keywords>
       <li>wood</li>
       <li>steel</li>
@@ -720,19 +754,24 @@
     <order>200</order>
     <summary>Most items wear away outdoors; a roof or shelves stop it</summary>
     <tip>Loot left outside after a raid is worth less every day.</tip>
-    <description>Items left under the open sky slowly lose hit points until they're ruined. That's deterioration, and it's separate from food rotting: a freezing winter stops rot, but not wear. A roof or a shelf protects almost everything.</description>
-    <facts>
-      <li>Most items deteriorate outdoors unless covered. Roofs and shelves stop it.</li>
-      <li>Deterioration is separate from rot: a meal left out in freezing weather won't spoil, but it still loses hit points.</li>
-      <li>Daily deterioration outdoors: meals 10, meat 6, fish 3, pemmican 2.</li>
-      <li>With Biotech, acidic smog makes outdoor items deteriorate at 300%.</li>
-      <li>Loose items on the floor give -5 beauty; on shelves they don't.</li>
-    </facts>
-    <advice>
-      <li>Build a roofed storeroom early and make it your main stockpile.</li>
-      <li>Keep a dumping stockpile outside only for chunks and junk.</li>
-      <li>Put shelves in the storeroom and next to workbenches.</li>
-    </advice>
+    <description>Items left under the open sky slowly lose hit points until they're ruined. That's deterioration, and it's separate from rot: a meal left out in freezing weather won't spoil, but it still loses hit points. A roof or a shelf protects almost everything.</description>
+    <sections>
+      <li>
+        <heading>How fast things wear</heading>
+        <table>
+          <li>Left outdoors | Lost per day</li>
+          <li>Meals | 10</li>
+          <li>Meat | 6</li>
+          <li>Fish | 3</li>
+          <li>Pemmican | 2</li>
+        </table>
+        <after>Most items deteriorate outdoors unless covered. With Biotech, acidic smog makes outdoor items deteriorate at 300%.</after>
+      </li>
+      <li>
+        <heading>Storing things properly</heading>
+        <text>Build a roofed storeroom early and make it your main stockpile, and keep a dumping stockpile outside only for chunks and junk. Put shelves in the storeroom and next to workbenches. Like a roof, they stop deterioration, and loose items on the floor give -5 beauty while items on shelves don't.</text>
+      </li>
+    </sections>
     <keywords>
       <li>deterioration</li>
       <li>stockpile</li>
@@ -757,19 +796,25 @@
     <order>210</order>
     <summary>Warm, dark rock near your rooms invites infestations; wall it or chill it</summary>
     <tip>Insects choose warm, dark rock close to where people live.</tip>
-    <description>Mountain bases are safe from mortars and drop pods, but insects love warm, dark rock near people. One warm spot of open mountain near your rooms is all an infestation needs, and once it starts it spreads. Fill or chill the spaces you aren't using.</description>
-    <facts>
-      <li>Infestations need a spot under overhead mountain, warmer than -17 °C, within 30 tiles of something you built.</li>
-      <li>A single warm tile is enough to start one, and an infestation left alone keeps spreading.</li>
-      <li>Insects prefer dark spots far from open sky.</li>
-      <li>Only walls stop spawns; doors and columns don't. A wall on every second tile is enough, because a valid spot needs more than 1x1 of open mountain.</li>
-      <li>Keeping all overhead rock at or below -17 °C also prevents them, until a solar flare stops the coolers.</li>
-    </facts>
-    <advice>
-      <li>Don't leave dark, empty rock rooms next to living areas.</li>
-      <li>Wall off or fill unused cave space, a wall on every second tile.</li>
-      <li>Light up the mountain rooms you do use, and keep a fallback position ready.</li>
-    </advice>
+    <description>Mountain bases are safe from mortars and drop pods, but insects love warm, dark rock near people. One warm spot of open mountain near your rooms is all an infestation needs, and once it starts it spreads.</description>
+    <sections>
+      <li>
+        <heading>Where they can appear</heading>
+        <text>An infestation needs a spot that is all of these:</text>
+        <points>
+          <li>Under overhead mountain.</li>
+          <li>Warmer than -17 °C.</li>
+          <li>Within 30 tiles of something you built.</li>
+        </points>
+        <after>A single warm tile is enough to start one, and an infestation left alone keeps spreading. Insects prefer dark spots far from open sky.</after>
+      </li>
+      <li>
+        <heading>Walls or cold</heading>
+        <text>Only walls stop spawns; doors and columns don't. A wall on every second tile is enough, because a valid spot needs more than 1x1 of open mountain. Wall off or fill unused cave space that way, and don't leave dark, empty rock rooms next to living areas.
+
+Keeping all overhead rock at or below -17 °C also prevents infestations, until a solar flare stops the coolers. Light up the mountain rooms you do use, and keep a fallback position ready.</text>
+      </li>
+    </sections>
     <keywords>
       <li>infestation</li>
       <li>insects</li>
@@ -792,17 +837,17 @@
     <order>220</order>
     <summary>Long hours in darkness sour moods, spoil surgery and invite insects</summary>
     <tip>Light the corridors as well as the rooms; colonists spend hours walking them.</tip>
-    <description>Colonists who spend a long time in the dark take mood penalties, and plenty of beginner bases have unlit bedrooms, corridors and workshops. Darkness also hurts surgery and attracts insects in mountain bases. Lighting is cheap compared with the mood it saves.</description>
-    <facts>
-      <li>Long periods in darkness cause mood penalties, shown as "In darkness" in the Mood tab.</li>
-      <li>Surgery on a bed whose head has under 50% light gets a penalty, down to x0.75 in total darkness.</li>
-      <li>Insects prefer dark spots when picking where to dig in.</li>
-    </facts>
-    <advice>
-      <li>Light every bedroom, workshop, corridor and the hospital.</li>
-      <li>Use torch lamps early or without power; standing lamps once you have electricity.</li>
-      <li>Check the base at night for rooms you forgot.</li>
-    </advice>
+    <description>Plenty of beginner bases have unlit bedrooms, corridors and workshops, and colonists who spend a long time in the dark take mood penalties. Lighting is cheap compared with the mood it saves.</description>
+    <sections>
+      <li>
+        <heading>What darkness costs</heading>
+        <text>Long periods in darkness show up as "In darkness" in the Mood tab. Surgery suffers too: on a bed whose head has under 50% light, operations get a penalty, down to x0.75 in total darkness. And in a mountain base, insects prefer dark spots when picking where to dig in.</text>
+      </li>
+      <li>
+        <heading>Lighting the base</heading>
+        <text>Light every bedroom, workshop, corridor and the hospital. Use torch lamps early or without power, and standing lamps once you have electricity. Then check the base at night for rooms you forgot.</text>
+      </li>
+    </sections>
     <keywords>
       <li>darkness</li>
       <li>light</li>
@@ -826,16 +871,16 @@
     <summary>Paths through puddles sour moods, and blood left after raids drags rooms down</summary>
     <tip>A path through shallow water costs mood on every crossing.</tip>
     <description>The routes your colonists walk all day matter more than they look. A path through shallow water makes everyone wet and grumpy, and the blood left in corridors after a raid makes every room it touches uglier and dirtier. Both are easy to fix with some planning.</description>
-    <facts>
-      <li>Colonists walking through shallow water get wet and take a mood penalty each time.</li>
-      <li>Blood is -10 cleanliness and -30 beauty per tile.</li>
-      <li>Cleaning up after a raid takes a long time, and red tiles on the main paths drag down every room they touch.</li>
-    </facts>
-    <advice>
-      <li>Route doors and main paths over dry ground, and move stockpiles or beds if the shortest path crosses water.</li>
-      <li>After a raid, raise Cleaning priority, ideally on a pawn whose skills are needed less elsewhere.</li>
-      <li>Fight raiders outside the base where you can, so the mess stays outdoors.</li>
-    </advice>
+    <sections>
+      <li>
+        <heading>Paths through water</heading>
+        <text>Colonists walking through shallow water get wet and take a mood penalty each time. Route doors and main paths over dry ground, and move stockpiles or beds if the shortest path crosses water.</text>
+      </li>
+      <li>
+        <heading>Blood after a raid</heading>
+        <text>Blood is -10 cleanliness and -30 beauty per tile. Cleaning up after a raid takes a long time, and red tiles on the main paths drag down every room they touch. Fight raiders outside the base where you can, so the mess stays outdoors. After a raid, raise Cleaning priority, ideally on a pawn whose skills are needed less elsewhere.</text>
+      </li>
+    </sections>
     <keywords>
       <li>wet</li>
       <li>water</li>
@@ -859,17 +904,19 @@
     <order>240</order>
     <summary>Ordinary medicine already reaches the surgery cap; save the best for the worst cases</summary>
     <tip>Glitterworld medicine used on a scratch isn't there for the next hard surgery.</tip>
-    <description>Glitterworld medicine is the best there is and almost impossible to replace. In a clean hospital with a good doctor, industrial medicine already reaches the surgery cap, so glitterworld medicine adds nothing. Keep it for the cases where conditions are poor or the stakes are high.</description>
-    <facts>
-      <li>Industrial medicine can already reach the 98% surgery success cap.</li>
-      <li>Glitterworld medicine's 1.6 potency is wasted when conditions are already good.</li>
-      <li>Infections need a competent doctor with herbal medicine or better, tended about every 12 hours.</li>
-    </facts>
-    <advice>
-      <li>Default patients to industrial medicine in the Health tab.</li>
-      <li>Save glitterworld medicine for a dirty room, a poor bed, an unskilled doctor, or the worst infections.</li>
-      <li>Use herbal medicine for animals and minor wounds.</li>
-    </advice>
+    <description>Glitterworld medicine is the best there is and almost impossible to replace. In a clean hospital with a good doctor, industrial medicine already reaches the 98% surgery success cap, so glitterworld medicine's 1.6 potency is wasted. Keep it for the cases where conditions are poor or the stakes are high.</description>
+    <sections>
+      <li>
+        <heading>Which medicine for what</heading>
+        <table>
+          <li>Medicine | Use it for</li>
+          <li>Herbal | Animals and minor wounds</li>
+          <li>Industrial | Everything else; set it as the patients' default in the Health tab</li>
+          <li>Glitterworld | A dirty room, a poor bed, an unskilled doctor, or the worst infections</li>
+        </table>
+        <after>Infections need a competent doctor with herbal medicine or better, tended about every 12 hours.</after>
+      </li>
+    </sections>
     <keywords>
       <li>glitterworld medicine</li>
       <li>medicine</li>
@@ -891,19 +938,23 @@
     <order>250</order>
     <summary>Dirt, darkness and open sky all cut surgery success</summary>
     <tip>Never operate under the open sky, not even in an emergency.</tip>
-    <description>Surgery in a dirty, dark or outdoor spot fails far more often than the same operation in a clean, lit hospital. The penalties multiply together. A small, clean, well-lit room with a good bed fixes all three.</description>
-    <facts>
-      <li>Cleanliness multiplies the surgery bed factor: 1.0 at cleanliness 0, about 1.018 with sterile floors, down to 0.6 at -5.</li>
-      <li>Outdoor surgery always takes the 0.6 floor, then a further x0.85.</li>
-      <li>If the head of the bed has under 50% light, a penalty applies, down to x0.75 in total darkness.</li>
-      <li>Bed quality multiplies the chance; the bed's material doesn't matter.</li>
-      <li>Bionic installs are more sensitive to these factors.</li>
-    </facts>
-    <advice>
-      <li>Operate only in a roofed, lit hospital, never outdoors.</li>
-      <li>Clean the room before surgery, and lay sterile tiles when you can.</li>
-      <li>Put a light right at the head of each hospital bed.</li>
-    </advice>
+    <description>Surgery in a dirty, dark or outdoor spot fails far more often than the same operation in a clean, lit hospital. The penalties multiply together, and bionic installs are more sensitive to them. A small, clean, well-lit room with a good bed fixes all three.</description>
+    <sections>
+      <li>
+        <heading>What changes the odds</heading>
+        <table>
+          <li>Condition | Effect on surgery</li>
+          <li>Cleanliness | Multiplies the surgery bed factor: 1.0 at cleanliness 0, about 1.018 with sterile floors, down to 0.6 at -5</li>
+          <li>Outdoors | Always takes the 0.6 floor, then a further x0.85</li>
+          <li>Light | Under 50% at the head of the bed gives a penalty, down to x0.75 in total darkness</li>
+          <li>Bed | Its quality multiplies the chance; its material doesn't matter</li>
+        </table>
+      </li>
+      <li>
+        <heading>The operating room</heading>
+        <text>Operate only in a roofed, lit hospital, never outdoors. Clean the room before surgery, lay sterile tiles when you can, and put a light right at the head of each hospital bed.</text>
+      </li>
+    </sections>
     <keywords>
       <li>surgery</li>
       <li>operation</li>
@@ -927,17 +978,23 @@
     <order>260</order>
     <summary>A weapon within 7 tiles of a slave makes a rebellion 4 times as likely</summary>
     <tip>Haul away the raiders' weapons before the slaves come through.</tip>
-    <description>Slaves rebel from time to time, and nothing speeds that up like a gun within reach. A weapons shelf next to the workshop, or rifles dropped in the hallway after a raid, can turn a work crew into a rebellion. Keep the guns far from the slaves.</description>
-    <facts>
-      <li>A usable weapon within 7 tiles of a slave, or in the same indoor room, makes a rebellion 4 times as likely.</li>
-      <li>Rebellion has a base mean time of 45 days.</li>
-      <li>No free colonist on the map makes it 20 times as likely, and a room touching the map edge 1.7 times.</li>
-    </facts>
-    <advice>
-      <li>Keep the armory far from where slaves work, eat and sleep.</li>
-      <li>Haul away weapons dropped after every raid.</li>
-      <li>Use allowed areas to keep slaves away from the armory and any weapon shelves.</li>
-    </advice>
+    <description>Slaves rebel from time to time, and nothing speeds that up like a gun within reach. A weapons shelf next to the workshop, or rifles dropped in the hallway after a raid, can turn a work crew into a rebellion.</description>
+    <sections>
+      <li>
+        <heading>What makes a rebellion likelier</heading>
+        <text>Rebellion has a base mean time of 45 days. These make it more likely:</text>
+        <table>
+          <li>Rebellion | When</li>
+          <li>4 times as likely | A usable weapon is within 7 tiles of a slave, or in the same indoor room</li>
+          <li>20 times as likely | No free colonist is on the map</li>
+          <li>1.7 times as likely | The room touches the map edge</li>
+        </table>
+      </li>
+      <li>
+        <heading>Keeping guns away</heading>
+        <text>Keep the armory far from where slaves work, eat and sleep, and use allowed areas to keep slaves away from it and from any weapon shelves. After every raid, haul away the weapons the raiders dropped.</text>
+      </li>
+    </sections>
     <keywords>
       <li>slave</li>
       <li>rebellion</li>

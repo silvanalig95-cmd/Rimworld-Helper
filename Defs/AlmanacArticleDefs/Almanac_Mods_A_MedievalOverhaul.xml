@@ -566,7 +566,7 @@ The Order's warhorse is larger, stronger and faster than a regular horse. The Or
       <li>
         <heading>The new names</heading>
         <table>
-          <li>In vanilla | Here | Mod</li>
+          <li>In vanilla | Renamed | Mod</li>
           <li>Persona weapons | possessed weapons | Quest Rewards</li>
           <li>Shield belt | shield talisman | Quest Rewards</li>
           <li>Luciferium | demon blood potion | Quest Rewards</li>
@@ -631,11 +631,7 @@ The Order's warhorse is larger, stronger and faster than a regular horse. The Or
           <li>Late medieval | adds alcohol; made at the alchemy bench</li>
           <li>Paresian | neutroamine, late medicine, mithril and cloth</li>
         </table>
-        <after>They range from slightly better than herbal medicine to slightly better than industrial medicine. The late medieval recipe accepts Medieval Overhaul's drinks, so turn spare ale and wine into medicine.</after>
-      </li>
-      <li>
-        <heading>If doctors ignore them</heading>
-        <text>Watch your doctors for a day after adding this mod. If pawns don't use these medicines on their own, the author suggests the Mod Medicines Patch.</text>
+        <after>They range from slightly better than herbal medicine to slightly better than industrial medicine. The late medieval recipe accepts Medieval Overhaul's drinks, so turn spare ale and wine into medicine. Watch your doctors for a day after adding the mod: if pawns don't use these medicines on their own, the author suggests the Mod Medicines Patch.</after>
       </li>
       <li>
         <heading>Limbs and potions</heading>
