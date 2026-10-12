@@ -1002,7 +1002,7 @@ Give Warden work to your most social colonist and keep it at a high priority, an
         <heading>Storing power</heading>
         <text>A battery holds up to 600 Wd. Charging is 50% efficient, so 1 W of surplus for 24 hours stores only 0.5 Wd, and each battery loses 5 Wd a day, even when it's disconnected or packed up. Stored power is only drawn when demand is higher than generation.
 
-Size the bank for a night: what you use after sunset, times the hours until dawn. Don't overbuild; past that, each extra battery only costs materials and 5 Wd a day.</text>
+Size the bank for a night: the watts you draw after sunset, times the hours until dawn, divided by 24 gives the Wd to store. Don't overbuild; past that, each extra battery only costs materials and 5 Wd a day.</text>
       </li>
       <li>
         <heading>Building them safely</heading>
