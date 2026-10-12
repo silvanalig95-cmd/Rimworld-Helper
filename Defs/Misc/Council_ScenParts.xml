@@ -61,7 +61,7 @@
 
   <ScenPartDef>
     <defName>Council_ScenEvent</defName>
-    <label>Rimfolk: a world event around a set day</label>
+    <label>Rimfolk: an event around a set day</label>
     <category>Misc</category>
     <scenPartClass>ColonyCouncil.ScenPart_CouncilEvent</scenPartClass>
     <selectionWeight>0</selectionWeight>

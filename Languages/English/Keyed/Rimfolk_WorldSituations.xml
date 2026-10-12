@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+  <!-- World events: rare, region-wide situations that last a while (Source/ColonyCouncil/World/). The situations'
+       own text is in their defs (Defs/WorldSituationDefs/). -->
+
+  <!-- Letters and the chronicle -->
+  <CC_WS_Cause>{0}, in the region</CC_WS_Cause>
+  <CC_WS_ForTheColony>For the colony: {0} It may last about {1}.</CC_WS_ForTheColony>
+  <CC_WS_YourPart>What the colony did: {0}.</CC_WS_YourPart>
+  <CC_WS_ChronicleStart>{0}: {1}</CC_WS_ChronicleStart>
+  <CC_WS_ChronicleEnd>{0}, after {1}: {2}</CC_WS_ChronicleEnd>
+  <CC_WS_ChroniclePart>The colony {0}.</CC_WS_ChroniclePart>
+  <CC_WS_ChronicleQuiet>{0} faded from the news after {1}.</CC_WS_ChronicleQuiet>
+  <CC_WS_Medicine>medicine</CC_WS_Medicine>
+  <CC_WS_NothingToSell>There's nothing left to send.</CC_WS_NothingToSell>
+  <CC_WS_NoLongerCaptive>{0} isn't the colony's prisoner any more.</CC_WS_NoLongerCaptive>
+
+  <!-- Where a place lies: "a few days' walk to the north" -->
+  <CC_WS_Dir_N>north</CC_WS_Dir_N>
+  <CC_WS_Dir_NE>northeast</CC_WS_Dir_NE>
+  <CC_WS_Dir_E>east</CC_WS_Dir_E>
+  <CC_WS_Dir_SE>southeast</CC_WS_Dir_SE>
+  <CC_WS_Dir_S>south</CC_WS_Dir_S>
+  <CC_WS_Dir_SW>southwest</CC_WS_Dir_SW>
+  <CC_WS_Dir_W>west</CC_WS_Dir_W>
+  <CC_WS_Dir_NW>northwest</CC_WS_Dir_NW>
+  <CC_WS_Where_Near>close by to the {0}</CC_WS_Where_Near>
+  <CC_WS_Where_Days>a few days' travel to the {0}</CC_WS_Where_Days>
+  <CC_WS_Where_Far>a long way off to the {0}</CC_WS_Where_Far>
+
+  <!-- The World page -->
+  <CC_WS_InTheWorld>In the world</CC_WS_InTheWorld>
+  <CC_WS_Quiet>Nothing out of the ordinary in the region.</CC_WS_Quiet>
+  <CC_WS_ColonyPart>The colony so far: {0}.</CC_WS_ColonyPart>
+  <CC_WS_MayLast>May last</CC_WS_MayLast>
+  <CC_WS_Likelier>Likelier while it lasts: {0}.</CC_WS_Likelier>
+  <CC_WS_Rarer>Rarer while it lasts: {0}.</CC_WS_Rarer>
+  <CC_WS_About>The people at the heart of it: {0}.</CC_WS_About>
+  <CC_WS_Group_Past>pasts catching up</CC_WS_Group_Past>
+  <CC_WS_Group_Challenge>challenges and offers</CC_WS_Group_Challenge>
+  <CC_WS_Group_Battle>old enemies</CC_WS_Group_Battle>
+  <CC_WS_Group_Nature>wonders of the land and sky</CC_WS_Group_Nature>
+  <CC_WS_Group_Visitors>visitors</CC_WS_Group_Visitors>
+
+  <!-- Settings -->
+  <CC_Settings_WorldSituationsHeader>World events</CC_Settings_WorldSituationsHeader>
+  <CC_Settings_WorldSituations>World events</CC_Settings_WorldSituations>
+  <CC_Settings_WorldSituations_Tip>Rare happenings across the whole region that last from a few days to a month: a plague or a famine among the neighbors, a warlord rising among a hostile people, a chief's death and the fight over the seat, a town founded or abandoned, a great fair, a hard winter. While one lasts, it changes which events come (fewer caravans in a plague year, more raids from the warlord's people), puts questions to the council, and ends in a way that depends on what the colony did. At most two run at the same time. They come on Rimfolk's own slow rhythm, apart from the storyteller. The council's World page shows what's going on. Dev mode can start any of them (Debug actions, Rimfolk).</CC_Settings_WorldSituations_Tip>
+  <CC_Settings_DaysBetweenWorldSituations>About one world event every {0} days</CC_Settings_DaysBetweenWorldSituations>
+  <CC_Settings_DaysBetweenWorldSituations_Tip>On average; it varies by a third either way, and the first comes sooner. Each world event also waits a long while before it can come again.</CC_Settings_DaysBetweenWorldSituations_Tip>
+</LanguageData>

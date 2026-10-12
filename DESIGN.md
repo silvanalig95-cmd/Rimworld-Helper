@@ -239,7 +239,7 @@ Design rules:
 - Social events are small and frequent (about one per five colonists per day), mostly worth a few points of
   opinion; the dramatic ones are rare and go in the chronicle.
 
-## Layer 5: World events
+## Layer 5: Rimfolk events
 
 Rimfolk's own incidents: things that happen *to* the colony from outside, as opposed to the wishes and dilemmas
 that come from inside it. They can stand on their own, but most reach into the rest of Rimfolk.
@@ -271,12 +271,37 @@ that come from inside it. They can stand on their own, but most reach into the r
 
 ### Scenarios with stakes
 Rimfolk's scenarios use the same machinery to start a game with stakes in play: a nemesis from day one, a debt
-that comes due as a world event, a "hunt" (a promised raid that comes back every few weeks while the one leading it
+that comes due as a Rimfolk event, a "hunt" (a promised raid that comes back every few weeks while the one leading it
 lives), deserters whose old unit finds them, two families seeded with kin and feud opinions, a starting reputation,
 a scenario-only secret. Everything is set up once, a few seconds into the game, and kept in Rimfolk's own save data
 (the scenario parts hold no state). The one exception to the battle switch: fights a scenario promises ignore the
-world-event battles setting, because the player picked the scenario for them, but they still need a storyteller
+Rimfolk-event battles setting, because the player picked the scenario for them, but they still need a storyteller
 that sends threats.
+
+## Layer 6: World events
+
+Rimfolk events happen to the colony; world events happen to the region, and last. A plague among the neighbors, a
+warlord's rise, a chief's death: rare (about one every 30 to 60 days, at most two at once, never two of one kind),
+from a week to a month long, and on Rimfolk's own rhythm rather than the storyteller's.
+
+- **Plumbing.** Each is a `WorldSituationDef` (Defs/WorldSituationDefs/): who it's about (a people, a second people, a
+  colonist), its letters, its *modifiers* (factors on the storyteller weight of Rimfolk events, through
+  `HappeningTracker.StorytellerFactor`, and of the game's own incidents, through a Harmony postfix on
+  `IncidentWorker.BaseChanceThisGame` behind the deeper-hooks switch), its *beats* (letters, questions, arrivals,
+  fights on set days or brought on by an answer) and its *endings*. A `WorldSituationWorker` adds what data can't say.
+  The tracker is a game component of its own (`WorldSituations`).
+- **What the colony did.** Answers set flags and count as the colony's part; endings, effects and every line of text
+  can read both, so an ending pays off the choices. The region remembers: a people the colony helped is helped-before
+  in every later world event (the [remembered] lines, a healer's half price).
+- **Real changes, carefully.** A new town is the game's own settlement, made the way world generation makes them; an
+  abandoned town is removed only when nothing of the player's depends on it (no map, no caravan on the way, no quest,
+  not the people's last town), else a few families stay. A leader is replaced through the game's own
+  `TryGenerateNewLeader`, and the old one dies only after, so the game sends no letter of its own. Peace between two
+  peoples is the game's own relation. Goodwill losses stop short of hostility.
+- **The warlord.** Resolvable without storming his town: the neighbors at war with his people hunt him off-screen
+  (a daily chance growing with time and their strength, raised by the colony's silver or a bounty), an ally can march,
+  his band breaks up without plunder, or the colony ends it at home. His people's raids are stronger and likelier while
+  he rises (Harmony, behind the deeper hooks), and he walks in with some of them.
 
 ## Building help: how far should the mod build things itself?
 

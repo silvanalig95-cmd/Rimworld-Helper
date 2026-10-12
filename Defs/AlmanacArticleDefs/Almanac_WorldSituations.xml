@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- The Almanac page on world events (Defs/WorldSituationDefs/, Source/ColonyCouncil/World/). -->
+
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Council_Alm_C_WorldSituations</defName>
+    <label>world events</label>
+    <category>Council</category>
+    <order>16</order>
+    <summary>Rare happenings across the region that last a while: a plague, a famine, a warlord's rise, a chief's death, a new town.</summary>
+    <tip>When the neighbors have a hard year, what you send them is remembered.</tip>
+    <description>Rimfolk events happen to the colony. World events happen to the whole region around it, and last: a plague among the neighbors, a famine, a warlord rising among a hostile people, a chief's death and the quarrel over the seat, a town founded or abandoned, a great fair. Each lasts from about a week to a month, changes what the colony meets while it lasts, puts a few questions to the council along the way, and ends in a way that depends on what the colony did.
+
+They come on Rimfolk's own slow rhythm, apart from the storyteller: about one every 30 to 60 days (the setting is the average, 45 days by default, and it varies by a third either way). At most two run at the same time, never two of one kind, and a new one waits while a fight is going on at home or a world event's question is still unanswered. Each one also waits a long while before it can come again.</description>
+    <sections>
+      <li>
+        <heading>Reading one</heading>
+        <text>The first letter says what is happening, where, and to whom, and ends with what it means for the colony and about how long it may last. The council window's World page shows each running world event at the top, under "In the world": the people at the heart of it, what it means for the colony, what the colony has done so far, and a bar for the time it may still last. Hover over it for what it makes likelier or rarer. It can end sooner than the bar says: a warlord can fall tomorrow.
+
+While it lasts, Rimfolk events that fit it come more or less often, and so do some of the game's own: more herds in a migration, more cold snaps in a hard winter, plague likelier in a plague year, fewer caravans on a bandit road. The game's own only change with the deeper game hooks on, and only where your storyteller picks among a kind of event by weight; some storytellers send traders on a fixed rhythm whatever the weights say. The arrivals a world event sends itself (a new town's first traders, pilgrims, a herd) come either way.</text>
+      </li>
+      <li>
+        <heading>The world events</heading>
+        <table>
+          <li>World event | While it lasts | The colony's part</li>
+          <li>A warlord rises | His people raid harder and more often, and he leads some raids | Pay him off, post a bounty, help his hunters, ask an ally to march, wait him out, or bring him down at home</li>
+          <li>Plague in the region | Fewer caravans and visitors, refugees, sickness likelier at home | Medicine for the sick, shelter for refugees, the colony's doctor's advice</li>
+          <li>Famine | Hungry pilgrims and travelers, now and then a desperate raid | Food at a gift, a fair price or famine prices, shelter for the hungry</li>
+          <li>Hard winter | Cold snaps, fewer traders, travelers caught by the snow | Firewood for the neighbors, a roof for the snowbound</li>
+          <li>Locust swarm | The swarm may strip the open fields; a famine can follow | Smudge fires, an early harvest, or both</li>
+          <li>Flood downriver (by a river) | Refugees, things washed up on the bank | Shelter, and timber to rebuild</li>
+          <li>A new leader | The new leader's nature (kind, greedy, harsh or steady) changes trade and goodwill | A gift or a few words for the funeral</li>
+          <li>A contested seat | Two claimants fight over a neighbor's seat | Back one, or stay out of it</li>
+          <li>A war of words (Ideology) | Two neighbors' creeds quarrel in public | Speak for one, host a debate, or stay out</li>
+          <li>Peace talks | Two neighbors at war ask the colony to host talks | Host them, and maybe end their war for good</li>
+          <li>Sellswords | A mercenary company looks for work | Hire them against a hostile people, feed them, or send them on</li>
+          <li>Bandit road | Fewer caravans and visitors, merchants stranded, a bandit raid now and then | Pay for guards, look after the robbed</li>
+          <li>A new town | A real new settlement nearby, its first traders, more caravans | A welcome gift, or timber to sell</li>
+          <li>A town abandoned | Families leaving; the town is gone when it ends | Shelter, and what's left behind</li>
+          <li>A trading season | Many more caravans and merchants' offers | A toll, or a rest stop for traders</li>
+          <li>A great fair | More visitors and traders, music and contests | A cart of surplus to sell, an entry in a contest</li>
+          <li>A great pilgrimage | Many more pilgrims and travelers | A camp for the pilgrims, free or for a fee</li>
+          <li>A silver rush | Prospectors and travelers; some want to stay | Let them dig for a share or a fee</li>
+          <li>A famous healer | A healer tours the region | Invite them to mend a colonist's worst lasting condition</li>
+          <li>The great herds | Herds and rare beasts pass far more often | Let the neighbors' hunters across, or charge them</li>
+          <li>Strange herds (Alpha Animals) | Strange creatures and herds pass far more often | A skilled handler may win one over</li>
+          <li>A season of wild magic (A RimWorld of Magic) | Shards fall from the sky more often | Let a mage study the surge</li>
+        </table>
+        <after>Questions come with a deadline, like Rimfolk events, and an unanswered one falls to its default, which is usually doing nothing.</after>
+      </li>
+      <li>
+        <heading>The warlord</heading>
+        <text>While he rises, his people's raids hit 20% harder, and about 3 in 10 of the raids the storyteller would have sent from someone else come from his people instead. He walks in with about 4 in 10 of their raids, and his band attacks the colony on its own every 8 to 12 days, up to three times, at about the storyteller's usual strength. Those fights only come with battles in Rimfolk events switched on.
+
+None of it needs the colony to storm his town. The peoples at war with his hunt him, and from the fifth day the chance that they bring him down grows every day, faster the more towns they have against his. A bounty adds 3% a day and brings bounty hunters too; silver sent to his hunters adds 1.5% a day each time. An ally of the colony at war with his people can be asked to march: it costs 20 goodwill with them, and they win between 3 and 8 times in 10, depending on their towns and arms against his. A truce bought with silver stops his band's raids, but 3 times in 10 he breaks it within about a week. And after half his time is up, a band that gets nothing breaks up, 2% a day, 4% more for every raid of his people the colony has beaten off.
+
+Killed at home, he's finished, and whoever struck the blow and anyone his raiders hurt feel it. Taken alive, the council chooses: keep him, hand him to his enemies for trial (15 goodwill with them), or let his people ransom him. If he simply rides away, the colonists his raiders hurt won't like it.</text>
+      </li>
+      <li>
+        <heading>The region remembers</heading>
+        <text>Most world events keep count of what the colony gave: medicine, food, firewood, shelter, a gift, a word in the right place. Endings pay that off, usually with goodwill on top of what each answer gave (10 more with the people the colony stood by in a plague or a famine). A people the colony helped through a hard year is remembered as helped from then on: the letters say so when their next hard year comes, and a famous healer from among them asks half the usual price.
+
+Not every answer is kind, and that's remembered too. Famine prices fill the stores with silver and cost goodwill when the hungry year ends. Backing the losing claimant for a seat costs more than staying out of it. Goodwill lost to a world event stops short of turning a people hostile; only the colony's own choices start wars.</text>
+      </li>
+      <li>
+        <heading>The world map</heading>
+        <text>Some world events change the world for good. A new town is a real settlement, founded a few days' travel from the colony on open land, and it stays. An abandoned town is gone from the map when the world event ends, with an abandoned settlement in its place, unless the colony has a caravan on its way there or a quest about it then; in that case a few families stay on and the town remains. A neighbor's new leader is the one the game itself chooses. Peace made at the colony's table is real peace between the two peoples. With Factional War running, which has wars and peace of its own, peace talks never come.</text>
+      </li>
+    </sections>
+    <keywords><li>world event</li><li>region</li><li>situation</li><li>warlord</li><li>warband</li><li>bounty</li><li>truce</li><li>ransom</li><li>plague</li><li>famine</li><li>winter</li><li>locusts</li><li>flood</li><li>leader</li><li>succession</li><li>claimant</li><li>creed</li><li>peace</li><li>mercenaries</li><li>bandits</li><li>town</li><li>abandoned</li><li>trade</li><li>fair</li><li>pilgrimage</li><li>silver rush</li><li>healer</li><li>herds</li><li>migration</li><li>magic</li></keywords>
+    <seeAlso><li>Council_Alm_C_WorldEvents</li><li>Council_Alm_C_Strangers</li><li>Council_Alm_C_Ways</li></seeAlso>
+  </ColonyCouncil.AlmanacArticleDef>
+
+</Defs>

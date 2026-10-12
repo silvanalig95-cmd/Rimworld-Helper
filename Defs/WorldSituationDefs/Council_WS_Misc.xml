@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- World events (world situations): rare, region-wide happenings that last a while. Their own letters are a
+       sea-green, so news from the wider world stands apart from the colony's own events. Code:
+       Source/ColonyCouncil/World/. The def format is documented on WorldSituationDef (WorldSituationDef.cs). -->
+
+  <LetterDef>
+    <defName>Council_WorldNews</defName>
+    <letterClass>StandardLetter</letterClass>
+    <color>(105, 185, 165)</color>
+    <flashColor>(150, 220, 200)</flashColor>
+    <flashInterval>90</flashInterval>
+    <arriveSound>LetterArrive</arriveSound>
+  </LetterDef>
+
+  <LetterDef>
+    <defName>Council_WorldNewsBad</defName>
+    <letterClass>StandardLetter</letterClass>
+    <color>(195, 110, 75)</color>
+    <flashColor>(235, 150, 110)</flashColor>
+    <flashInterval>90</flashInterval>
+    <arriveSound>LetterArrive_BadUrgentSmall</arriveSound>
+    <bounce>true</bounce>
+  </LetterDef>
+
+  <LetterDef>
+    <defName>Council_WorldChoice</defName>
+    <letterClass>ColonyCouncil.ChoiceLetter_Situation</letterClass>
+    <color>(105, 185, 165)</color>
+    <flashColor>(150, 220, 200)</flashColor>
+    <flashInterval>90</flashInterval>
+    <arriveSound>LetterArrive</arriveSound>
+    <bounce>true</bounce>
+  </LetterDef>
+
+  <LetterDef>
+    <defName>Council_WorldChoiceThreat</defName>
+    <letterClass>ColonyCouncil.ChoiceLetter_Situation</letterClass>
+    <color>(195, 110, 75)</color>
+    <flashColor>(235, 150, 110)</flashColor>
+    <flashInterval>90</flashInterval>
+    <arriveSound>LetterArrive_BadUrgentSmall</arriveSound>
+    <bounce>true</bounce>
+  </LetterDef>
+
+</Defs>

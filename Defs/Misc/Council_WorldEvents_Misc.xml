@@ -5,7 +5,7 @@
        so they never take a slot from the storyteller's own events. Dev mode can fire any of them. -->
   <IncidentCategoryDef>
     <defName>Council_WorldEvent</defName>
-    <label>Rimfolk world event</label>
+    <label>Rimfolk event</label>
   </IncidentCategoryDef>
 
   <LetterDef>

@@ -422,11 +422,12 @@ Every mood Rimfolk gives says what caused it, under the description in its toolt
 didn't), which council decision, which decree and how long it has left, which visitor, secret, nemesis or
 moment. The trust mood lists what moved it lately.
 
-## World events
-Rimfolk's own events join your storyteller's random events, with about the odds of one of the game's own (a setting
-scales this, and they never make up more than half of its everyday events, so traders and travelers keep coming;
-they can also come on Rimfolk's own timer instead). Each is written for tribal, medieval, industrial
-and spacer colonies alike, and finds and visitors fit your era (a medieval colony meets medieval folk and digs up
+## Rimfolk events
+Every few days, something happens to the colony from outside: Rimfolk's own events. They join your storyteller's own
+random events with about the odds of one of the game's own (a setting scales this, and they never make up more than
+half of its everyday events, so traders and travelers keep coming; they can also come on Rimfolk's own timer instead,
+as often as you choose). Each is written for tribal, medieval, industrial and spacer colonies alike, and finds and
+visitors fit your era (a medieval colony meets medieval folk and digs up
 medieval things). Many ask the council what to do, with a day or so to answer.
 - **Pasts catch up.** Who a colonist used to be (read from their backstory: soldier, outlaw, noble, trader...)
   decides what finds them: an **old comrade** or partner in crime asking to stay, **lost family** (a sibling, a
@@ -514,6 +515,60 @@ chronicle. Fights come only with **battles** switched on in the settings, when t
 all, never on top of another fight, and at a share of the storyteller's own raid strength. In dev mode, every
 event can be fired from **Debug actions → Incidents** (they're named `Council_Evt_...`).
 
+## World events
+Now and then, something bigger than the colony happens in the region around it, and lasts: a plague among the
+neighbors, a famine, a warlord's rise, a chief's death and the quarrel over the seat, a town founded or abandoned, a
+great fair. These are **world events**, on Rimfolk's own slow rhythm, apart from the storyteller: about one every 30
+to 60 days (you choose how often), at most two at a time and never two of one kind. Each lasts from about a week to a
+month, names real places, peoples and people (the neighbors' towns, the warlord and his band, your own colonists),
+and is written for every era and season.
+
+While one lasts, it changes what the colony meets: Rimfolk events that fit it come more or less often (more traveling
+doctors and neighbors asking for medicine in a plague year, more hungry pilgrims in a famine, more old enemies while a
+warlord rises), and so do some of the game's own (more herds in a migration, more cold snaps in a hard winter, plague
+likelier in a plague year; this needs the deeper game hooks, and only matters where your storyteller picks by
+weight). It puts two or three questions to the council along the way, sends its own visitors and caravans, and ends in
+a way that depends on what the colony did, with a letter that pays off what came before. The region remembers who
+helped: a people the colony stood by in a plague says so when the next hard year comes, and a famous healer charges
+the colony half.
+
+- **A warlord rises** among a hostile people: a named war leader with a warband (a world pawn, like a nemesis). While
+  he rises, his people's raids hit harder and come more often, he leads some of them himself, and his band raids the
+  colony now and then (with battles on). It never needs you to storm his town:
+  - **The neighbors can end him.** Peoples at war with his hunt him; the chance they bring him down grows every day
+    and with their strength, and the letter says where ("riders of Ashwood brought him down at the ford below
+    Kettleford"). Silver sent to the hunters, or a **bounty** on his head, makes it likelier (a bounty hunter may
+    collect).
+  - **Answers in his letter:** pay him off for a truce (it may not hold), post a bounty, send silver to the hunters,
+    **ask an ally to march** (costs their goodwill; they may win, or be thrown back), or **wait him out**: a band that
+    gets no plunder breaks up, sooner if the colony beats off his raids.
+  - **At home:** kill him and it's over (the one who struck the blow, and anyone his raiders hurt, feel it); take him
+    alive and choose: keep him, hand him to his enemies for trial, or let his people ransom him.
+  - Every ending has its own letter and chronicle line. Colonists his raiders hurt are glad when he falls, and bitter if
+    he simply rides away or is bought back.
+- **Hard times:** a **plague** (medicine asked for, refugees, your best doctor sought out by name), a **famine** (food
+  asked for, hungry families at the gate, famine prices if you want them, a desperate raid now and then), a **hard
+  winter** (firewood, snowbound travelers), **locusts** that may strip the open fields (smudge fires and an early
+  harvest help; a famine can follow), a **flood** downriver (only by a river).
+- **The powers:** a neighbor's **leader dies** and the next one takes over (kind, greedy, harsh or steady, and it shows),
+  **two claimants** fight over a seat and the colony may back one, a **war of words** between two creeds (Ideology),
+  **peace talks** the colony can host to end a war between two neighbors for good, a **mercenary company** for hire
+  (against a rising warlord's people, if there is one), **bandits** on the road to a neighbor's town.
+- **Places:** a **new town** founded nearby (a real settlement on the world map, with its first traders), a **town
+  abandoned** (gone from the map when it ends, unless you have a caravan on its way or a quest there), a **trading
+  season**, a **great fair** (send a cart of surplus, enter your best in a contest), a **pilgrimage**, a **silver
+  rush**.
+- **The land:** a **famous healer** touring the region, who can mend a colonist's worst lasting condition (a lost
+  limb, a chronic illness, an old scar) and teach your doctor; the **great herds**; and with your mods, **strange
+  herds** (Alpha Animals) and a **season of wild magic** (A RimWorld of Magic).
+
+The **World** page shows what's going on at the top, under "In the world": each world event with the people it's
+about, what it means for the colony, what the colony has done so far, and how long it may last (hover for what it
+makes likelier or rarer). The chronicle records how each began and ended, and the colony's part in it. Settings →
+**World events** turns them off or changes how often they come; in dev mode, **Debug actions → Rimfolk** can start,
+hurry or end any of them. Modders can add more with a def and no code (see `WorldSituationDef` in
+`Source/ColonyCouncil/World/`).
+
 ## Scenarios with stakes
 Ten scenarios, marked "(Rimfolk)" on the scenario page with how hard they are. Each starts the game with
 something already in motion, and a few seconds in, a letter says how things stand.
@@ -548,11 +603,11 @@ something already in motion, and a few seconds in, a letter says how things stan
 The pieces are **scenario parts** you can add to any scenario in the scenario editor: *a sworn enemy* (who hunts,
 was robbed by, betrayed or held the colonists in chains, can start as your prisoner, and attacks a set number of
 times or until they fall), *a debt*, *deserters*, *two feuding families*, *a bond from the start* (a couple, old
-friends, or a master and apprentice), *a world event around a set day* (someone from the past, a visitor, a great
+friends, or a master and apprentice), *an event around a set day* (someone from the past, a visitor, a great
 beast...), *a reputation* and *a secret*. Enemies are nemeses from the first day; debts and hunts show on the
 **World** page. A hunt ends when its attacks run out, or when the one leading it dies, joins you, is sold off, or
 their people make peace or are wiped out, and the colony gets to feel that. Settings → **Fights in Rimfolk's
-scenarios** makes those attacks weaker or stronger (25% to 200%). They come even with Rimfolk's world-event battles
+scenarios** makes those attacks weaker or stronger (25% to 200%). They come even with battles in Rimfolk events
 switched off (you chose the scenario for them), but only when your storyteller sends threats at all.
 
 ## The colony notices what happens
@@ -620,8 +675,9 @@ journals, the Story tab and History) or **Important only**.
 - **council life**: decrees, dilemmas, petitions, annals, names, journals, offices, the social web, social
   events, life goals, secrets, vendettas, eulogies, heirlooms, coming of age, quirks, dreams and dream omens, encounters with strangers, nemeses (and whether they return), pets, the
   colony's character, each on its own switch
-- **world events**: on or off, whether they may bring fights, whether groups may make camp on the map, and how often
-  (about every 4 days by default)
+- **Rimfolk events**: on or off, whether they may bring fights, whether groups may make camp on the map, and whether
+  the storyteller draws them (and how likely each is) or Rimfolk's own timer does (and how often)
+- **world events**: on or off, and how often (about one every 45 days by default)
 - **how often** the smaller things happen: moments with strangers and animals, moments between colonists, social
   events and dreams, each from a quarter as often to three times as often
 

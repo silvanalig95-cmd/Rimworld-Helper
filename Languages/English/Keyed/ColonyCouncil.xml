@@ -1587,16 +1587,16 @@ Those against it ({WHO}) will trust the council less and resent it more than usu
 
   <!-- ===================== World events ===================== -->
   <CC_ChronicleFilter_World>World</CC_ChronicleFilter_World>
-  <CC_Settings_WorldEventsHeader>World events</CC_Settings_WorldEventsHeader>
-  <CC_Settings_WorldEvents>World events</CC_Settings_WorldEvents>
-  <CC_Settings_WorldEvents_Tip>Rimfolk's own events: colonists' pasts catching up with them (old comrades, lost family, creditors, bounty hunters, news from home), challenges (a traveling champion, a legendary beast, a treasure map, a demand for tribute), wonders and nuisances of the land, neighbors who want something, and visitors with a purpose. Many follow up on earlier ones. Each fits the colony's era, and many touch Rimfolk's other systems: nemeses, secrets, mentors, the colony's character. Dev mode can fire any of them (Debug actions, incidents, "Council_Evt_...").</CC_Settings_WorldEvents_Tip>
+  <CC_Settings_WorldEventsHeader>Rimfolk events</CC_Settings_WorldEventsHeader>
+  <CC_Settings_WorldEvents>Rimfolk events</CC_Settings_WorldEvents>
+  <CC_Settings_WorldEvents_Tip>Rimfolk's own events: colonists' pasts catching up with them (old comrades, lost family, creditors, bounty hunters, news from home), challenges (a traveling champion, a legendary beast, a treasure map, a demand for tribute), wonders and nuisances of the land, neighbors who want something, and visitors with a purpose. Many follow up on earlier ones. Each fits the colony's era, and many touch Rimfolk's other systems: nemeses, secrets, mentors, the colony's character. Dev mode can fire any of them (Debug actions, incidents, "Council_Evt_..."). The bigger happenings across the whole region are world events, with their own switch below.</CC_Settings_WorldEvents_Tip>
   <CC_Settings_EventsFromStoryteller>... drawn by the storyteller</CC_Settings_EventsFromStoryteller>
   <CC_Settings_EventsFromStoryteller_Tip>On: Rimfolk's events join your storyteller's own random events and follow its rhythm, quiet spells and threat cycles; the ones that can end in a fight go in with its small threats. Off: they come on Rimfolk's own timer instead, and never take a slot from the storyteller.</CC_Settings_EventsFromStoryteller_Tip>
   <CC_Settings_StorytellerEventWeight>... how often, compared with the game's own: {0}</CC_Settings_StorytellerEventWeight>
   <CC_Settings_StorytellerEventWeight_Tip>At 100%, each of Rimfolk's events is about as likely as one of the game's own. However many there are, they never make up more than half of the storyteller's everyday events (a quarter of its small threats), so traders and travelers keep coming.</CC_Settings_StorytellerEventWeight_Tip>
   <CC_Settings_WorldEventBattles>... including ones that can end in a fight</CC_Settings_WorldEventBattles>
   <CC_Settings_WorldEventBattles_Tip>Bounty hunters, a nemesis returning, revenge for a prisoner who died in the colony's hands, a refused tribute, creditors' thugs, a deserter's pursuers. Only when the storyteller sends threats at all, never on top of another fight, and at a share of the storyteller's own raid strength. Off: none of these come (and promised fights never arrive).</CC_Settings_WorldEventBattles_Tip>
-  <CC_Settings_DaysBetweenWorldEvents>About one world event every {0} days</CC_Settings_DaysBetweenWorldEvents>
+  <CC_Settings_DaysBetweenWorldEvents>About one Rimfolk event every {0} days</CC_Settings_DaysBetweenWorldEvents>
   <CC_Settings_ScenarioThreat>Fights in Rimfolk's scenarios: {0} strength</CC_Settings_ScenarioThreat>
   <CC_Settings_ScenarioThreat_Tip>How hard the attacks a Rimfolk scenario promises hit (a hunt, debt collectors, a deserter's old unit), compared with their usual strength. Your storyteller's difficulty scales them as well.</CC_Settings_ScenarioThreat_Tip>
   <CC_Settings_DaysBetweenWorldEvents_Tip>On average; it varies. Each event also has its own cooldown, so the same one won't come back soon.</CC_Settings_DaysBetweenWorldEvents_Tip>
@@ -1662,13 +1662,13 @@ Those against it ({WHO}) will trust the council less and resent it more than usu
   <CC_Tab_World>World</CC_Tab_World>
   <CC_Tab_WorldComing>World ({0})</CC_Tab_WorldComing>
   <CC_World_Header>The world around the colony</CC_World_Header>
-  <CC_World_Intro>What's coming, who's out there with the colony on their mind, and what the world has brought lately. Fights and questions show up here as soon as the colony knows of them.</CC_World_Intro>
+  <CC_World_Intro>What's going on in the region, what's coming, who's out there with the colony on their mind, and what the world has brought lately. Fights and questions show up here as soon as the colony knows of them.</CC_World_Intro>
   <CC_World_Coming>Coming</CC_World_Coming>
   <CC_World_AFight>A fight</CC_World_AFight>
   <CC_World_Raid>{0}: {1}, in about {2}.</CC_World_Raid>
   <CC_World_RaidSoon>{0}: {1}, any time now.</CC_World_RaidSoon>
   <CC_World_Waiting>{0}: waiting for an answer ({1} left). Click to read it.</CC_World_Waiting>
-  <CC_World_NextEvent>The next world event is due in about {0}.</CC_World_NextEvent>
+  <CC_World_NextEvent>The next Rimfolk event is due in about {0}.</CC_World_NextEvent>
   <CC_World_NothingComing>Nothing the colony knows of.</CC_World_NothingComing>
   <CC_World_OutThere>Out there</CC_World_OutThere>
   <CC_World_Beast>{0}, the great beast, roams the colony's land for about {1} more. Click to find it.</CC_World_Beast>
@@ -1834,7 +1834,7 @@ Those against it ({WHO}) will trust the council less and resent it more than usu
   <CC_ScenPart_PickSecret>Pick a secret</CC_ScenPart_PickSecret>
   <CC_ScenPart_Times>Attacks in all (0: until they fall)</CC_ScenPart_Times>
   <CC_ScenPart_Event>Rimfolk: {0} around day {1}-{2}.</CC_ScenPart_Event>
-  <CC_ScenPart_PickEvent>Pick a world event</CC_ScenPart_PickEvent>
+  <CC_ScenPart_PickEvent>Pick a Rimfolk event</CC_ScenPart_PickEvent>
   <CC_ScenPart_AroundDay>Around day {0}</CC_ScenPart_AroundDay>
   <CC_ScenPart_Bond_lovers>Rimfolk: two of the colonists are a couple (or close friends, if they couldn't be).</CC_ScenPart_Bond_lovers>
   <CC_ScenPart_Bond_friends>Rimfolk: two of the colonists are old friends.</CC_ScenPart_Bond_friends>
