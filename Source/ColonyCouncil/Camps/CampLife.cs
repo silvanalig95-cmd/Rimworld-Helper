@@ -140,6 +140,11 @@ namespace ColonyCouncil
                 if (Now - startTick > GenDate.TicksPerDay * 1.5f) Leave("lost");
                 return;
             }
+            if (LeavingTooLong())
+            {
+                SendOff();
+                return;
+            }
             if (!Settled) return;
             int day = GenDate.DaysPassed;
             if (day != dayKey) NewDay(day);
@@ -398,7 +403,8 @@ namespace ColonyCouncil
             }
             catch (Exception e)
             {
-                CouncilLog.ErrorOnce("camp blueprint " + p.def?.defName, e);
+                // Another mod's placement rules can fail off the map being viewed: that building is simply left out.
+                CouncilLog.WarnOnce("camp blueprint for " + p.def?.defName + " left out: " + e.Message);
                 p.dropped = true;
             }
         }
@@ -778,12 +784,16 @@ namespace ColonyCouncil
         {
             float temp = map.mapTemperature.OutdoorTemp;
             if (temp < -14f || temp > 43f) return true;
-            // Colder or hotter than any of them can sleep out in, dressed as they are.
-            foreach (var p in Here)
+            // Well colder or hotter than most of them can sleep out in, dressed as they are (one of them dressed for
+            // another season doesn't send them all off).
+            var here = Here;
+            int exposed = 0;
+            foreach (var p in here)
             {
                 var comfy = GenTemperature.ComfortableTemperatureRange(p);
-                if (temp < comfy.min - 4f || temp > comfy.max + 4f) return true;
+                if (temp < comfy.min - 6f || temp > comfy.max + 6f) exposed++;
             }
+            if (here.Count > 0 && exposed * 2 > here.Count) return true;
             foreach (var c in map.gameConditionManager.ActiveConditions)
             {
                 var d = c.def;
@@ -823,17 +833,34 @@ namespace ColonyCouncil
             foreach (var t in Unfinished())
                 if (!t.Destroyed) t.Destroy(DestroyMode.Vanish);
             if (!peaceful) return;
+            // A hut taken down loses its roof first: left without walls, the roof would fall in on whoever is below.
+            if (!kind.leaveBuildings)
+                foreach (var c in CampSite.HutInside(plans))
+                    if (c.InBounds(map) && map.roofGrid.RoofAt(c) == RoofDefOf.RoofConstructed) map.roofGrid.SetRoof(c, null);
             foreach (var b in Buildings())
             {
                 if (b.Destroyed) continue;
-                if (b.def.Minifiable && carriers.Count > 0)
+                try
                 {
-                    var mini = MinifyUtility.MakeMinified(b);
-                    if (mini != null && !carriers.RandomElement().inventory.innerContainer.TryAdd(mini) && !mini.Destroyed) mini.Destroy();
-                    continue;
+                    if (b.def.Minifiable && carriers.Count > 0)
+                    {
+                        // Off the map before it's packed, whether or not the game's own packing takes it off itself.
+                        if (b.Spawned) b.DeSpawn();
+                        var mini = MinifyUtility.MakeMinified(b);
+                        if (mini == null)
+                        {
+                            if (!b.Destroyed) b.Destroy();
+                        }
+                        else if (!carriers.RandomElement().inventory.innerContainer.TryAdd(mini) && !mini.Destroyed) mini.Destroy();
+                        continue;
+                    }
+                    if (kind.leaveBuildings) b.SetFaction(null);
+                    else b.Destroy(DestroyMode.Vanish);
                 }
-                if (kind.leaveBuildings) b.SetFaction(null);
-                else b.Destroy(DestroyMode.Vanish);
+                catch (Exception e)
+                {
+                    CouncilLog.ErrorOnce("camp packing " + b.def.defName, e);
+                }
             }
             foreach (var t in Goods())
             {
@@ -842,6 +869,39 @@ namespace ColonyCouncil
                 if (t.Spawned) t.DeSpawn();
                 if (!carriers.RandomElement().inventory.innerContainer.TryAdd(t) && !t.Destroyed) t.Destroy();
             }
+        }
+
+        /// <summary>Half a day after they set off (or broke out of a fight), whoever is still here is stuck: walled in, or lost.</summary>
+        private bool LeavingTooLong()
+        {
+            int limit = GenDate.TicksPerDay / 2;
+            if (phase == CampPhase.Leaving) return leftTick >= 0 && Now - leftTick > limit;
+            if (phase == CampPhase.Fighting) return lord.CurLordToil is LordToil_ExitMapAndDefendSelf && lord.ticksInToil > limit;
+            return false;
+        }
+
+        /// <summary>
+        /// Too long on the way out: the game's own leaving takes over for those who can still find a way off the map (the
+        /// hurt go with them once they can walk), and anyone with no way out at all slips away. The books close.
+        /// </summary>
+        private void SendOff()
+        {
+            var walkers = new List<Pawn>();
+            foreach (var p in Here)
+            {
+                try
+                {
+                    lord.RemovePawn(p);
+                    if (p.Downed || p.CanReachMapEdge()) walkers.Add(p);
+                    else p.ExitMap(false, Rot4.Invalid);
+                }
+                catch (Exception e)
+                {
+                    CouncilLog.ErrorOnce("camp send-off", e);
+                }
+            }
+            if (walkers.Count > 0) LordMaker.MakeNewLord(faction ?? walkers[0].Faction, new LordJob_ExitMapBest(LocomotionUrgency.Jog, false, true), map, walkers);
+            Finish();
         }
 
         /// <summary>The colony attacked them while at peace, or arrested one of them: they scattered.</summary>
@@ -900,9 +960,38 @@ namespace ColonyCouncil
                     AbandonGoods();
                 }
             }
+            try
+            {
+                ClearUp();
+            }
+            catch (Exception e)
+            {
+                CouncilLog.ErrorOnce("camp clearing up", e);
+            }
             phase = CampPhase.Over;
             if (!told || ending == "fight") TellEnding(true);
             CampTracker.Instance?.Ended(this);
+        }
+
+        /// <summary>
+        /// Nobody of theirs is left: nothing of the camp stays forbidden or half-built on the colony's map. Their goods
+        /// still lying about are anyone's, and what still stands of the camp (left when they fled or fought) belongs to
+        /// nobody, so the colony can use it or take it down.
+        /// </summary>
+        private void ClearUp()
+        {
+            foreach (var t in Unfinished())
+                if (!t.Destroyed) t.Destroy(DestroyMode.Vanish);
+            foreach (var t in map.listerThings.ThingsInGroup(ThingRequestGroup.HaulableEver).ToList())
+            {
+                if (!Owns(t)) continue;
+                if (t.Spawned) t.SetForbidden(false, false);
+                Disown(t);
+            }
+            if (faction == null || faction == Faction.OfPlayer) return;
+            if (LordAlive) lord.RemoveAllBuildings();
+            foreach (var b in Buildings())
+                if (!b.Destroyed) b.SetFaction(null);
         }
 
         /// <summary>The ending's letter, its chronicle line and how the colonists took it.</summary>

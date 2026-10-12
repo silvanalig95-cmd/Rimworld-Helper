@@ -199,7 +199,8 @@ namespace ColonyCouncil
             }
             catch (Exception e)
             {
-                CouncilLog.ErrorOnce("camp placement " + def.defName, e);
+                // Another mod's placement rules can fail off the map being viewed: the spot just doesn't fit.
+                CouncilLog.WarnOnce("camp placement of " + def.defName + " skipped: " + e.Message);
                 return false;
             }
         }

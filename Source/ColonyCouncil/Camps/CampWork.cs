@@ -440,7 +440,20 @@ namespace ColonyCouncil
             var need = pawn.needs?.food;
             var meal = pawn.inventory?.innerContainer?.FirstOrDefault(t => Camp.IsMeal(pawn, t));
             if (need == null || meal == null) return;
-            float got = meal.Ingested(pawn, need.NutritionWanted);
+            float per = meal.GetStatValue(StatDefOf.Nutrition);
+            float got;
+            try
+            {
+                got = meal.Ingested(pawn, need.NutritionWanted);
+            }
+            catch (Exception e)
+            {
+                // The game's eating balked at food from a pack (a mod's meal, say): one meal eaten, plainly, so they
+                // don't sit down to eat again and again.
+                CouncilLog.WarnOnce("camp meal (" + meal.def.defName + ") eaten the plain way: " + e.Message);
+                got = per;
+                if (!meal.Destroyed) meal.SplitOff(1).Destroy();
+            }
             need.CurLevel += got;
         }
     }
