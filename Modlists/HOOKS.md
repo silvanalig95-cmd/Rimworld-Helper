@@ -11,7 +11,12 @@ The most promising ways Rimfolk could work with the mods in the main medieval mo
 - Vanilla Skills Expanded and Alpha Skills passions are read from their definitions.
 - Vehicle Framework passengers in flight are still the colony's.
 - Long-lived genes (Stoneborn, elves) age at their own pace.
-- Hospitality guests can't be thrown out by the council.
+- Hospitality guests can't be thrown out by the council, and a guest bed isn't a free bed for a colonist.
+- Dubs Bad Hygiene's burn pit and sauna heater are never a heater for a bedroom or a room plan; its water tub, bath
+  mat and sauna don't fulfil the bath wish.
+- Vanilla Brewing Expanded's tea, coffee and soda (teetotalers may drink them) aren't "something to drink" for the
+  brewery and drink wishes; Vanilla Cooking Expanded's grill and gourmet memories count as fine and lavish meals, and
+  its ruined grills don't count as meals in stock.
 - The advisor explains Vanilla Events Expanded, Alpha Biomes and Seasonal Weather world events.
 - Taming self-help and the predator den dilemma stay away from dangerous beasts.
 
@@ -25,10 +30,10 @@ The most promising ways Rimfolk could work with the mods in the main medieval mo
   cultist hideouts for a "root out the cult" ambition and vendettas against the Cultists.
 
 ## Guests, factions and the world (Hospitality, Outposts, Factional War, Diplomatic Marriage, VEE)
-- Hospitality: a guest-wing room plan, wishes for better guest rooms, a "renowned hosts" ambition, a council
-  dilemma when a happy guest asks to join.
-- Outposts: posting a bitter or quarrelsome colonist away by decree or dilemma; "letter from the outpost" journals;
-  a fair rule for officers away at election time.
+- Hospitality: a guest-wing room plan (done: a guest room plan), wishes for better guest rooms, a "renowned hosts"
+  ambition, a council dilemma when a happy guest asks to join.
+- Outposts: posting a bitter or quarrelsome colonist away by decree or dilemma; "letter from the outpost" journals
+  (done); wishes wait while their colonist is posted away (done); a fair rule for officers away at election time.
 - Diplomatic Marriage: "married into X" instead of "gone"; proposals put to a council vote.
 - Factional War and Faction Territories: ride out for allies or bar the gates; vassal tithes as mercy-versus-greed
   decisions; a "hold N vassals" ambition.
@@ -51,15 +56,19 @@ The most promising ways Rimfolk could work with the mods in the main medieval mo
 - Honey wishes by category; ReGrowth hot springs for the bath wish; planter boxes need daylight in a medieval colony.
 
 ## Making things (VE Cooking and Brewing, VFE, Dubs Bad Hygiene, VE Books)
-- Bathroom and sauna room plans; a bath wish that prefers bathtub, hot tub or sauna.
+- Bathroom and sauna room plans; a bath wish that prefers bathtub, hot tub or sauna. (Done: bathroom, bathhouse and
+  sauna plans; the bath wish asks for a bathtub or hot tub; toilet, wash-place and hot-water wishes; advisor checks
+  for toilets, washing and water sickness; mood hints and journal entries for the mod's moods.)
 - Processor awareness: a stew pot out of wood, a barrel spoiling from heat, legendary wine ready.
 - A noble bedroom plan with artisan furniture, a library plan with VE Books' writer's table, a "write my memoir"
   life goal.
 - Medieval defense: VFE Security's catapults, ballistas and spikes for a "man the walls" decree or siege dilemma.
 
 ## Interface and play (Interaction Bubbles, RimHUD, Melee Animation, Snap Out!, Replace Stuff)
-- More Rimfolk moments in the social log, so Interaction Bubbles shows them.
-- A RimHUD widget with trust, the open wish, office and life goal.
+- More Rimfolk moments in the social log, so Interaction Bubbles shows them. (Done: social events and encounters
+  with strangers now go into the social log; moments, wish talk, gossip and dreams already did.)
+- A RimHUD widget with trust, the open wish, office and life goal. (Done: four "custom value" lines through RimHUD's
+  def API, loaded only with RimHUD.)
 - Melee Animation duels: the duel spot for the training wish, friendly duels between rivals, a duel win over a
   nemesis settles the score.
 - A Snap Out! calm-down as a social moment that builds a bond.

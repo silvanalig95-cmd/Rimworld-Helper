@@ -31,8 +31,9 @@ namespace ColonyCouncil
             // Food
             M("NoTable", 1f, "AteWithoutTable"),
             M("RawFood", 1.2f, "AteRawFood"),
-            M("FineMeal", 0.6f, "AteFineMeal"),
-            M("LavishMeal", 1f, "AteLavishMeal"),
+            // Vanilla Cooking Expanded's grills and gourmet dishes leave memories of their own.
+            M("FineMeal", 0.6f, "AteFineMeal", "VCE_AteFineGrill"),
+            M("LavishMeal", 1f, "AteLavishMeal", "VCE_AteLavishGrill", "VCE_AteGourmetGrill", "VCE_AteGourmetMeal"),
             M("Paste", 0.8f, "AteNutrientPasteMeal"),
             Bad("Hungry", 1.2f, "NeedFood"),
             // Sleep
@@ -74,6 +75,18 @@ namespace ColonyCouncil
             M("Speech", 1f, "InspirationalSpeech", "EncouragingSpeech"),
             M("Catharsis", 1.5f, "Catharsis"),
             M("Optimism", 0.5f, "NewColonyOptimism"),
+            // Dubs Bad Hygiene (pools in Council_Journal_Everyday_Hygiene.xml); without it these are never on anyone's mind.
+            M("OpenGround", 1.2f, "openDefecation"),
+            M("SoiledSelf", 1.5f, "SoiledSelf"),
+            M("WalkedIn", 1.2f, "ToiletPrivacy", "WashPrivacy"),
+            M("HotBath", 1f, "HotBath", "HotShower", "HeatedPool"),
+            M("ColdWash", 0.8f, "ColdBath", "ColdShower", "ColdWater"),
+            M("Grimy", 0.8f, "HygieneLevel"),
+            M("DirtyWater", 1.2f, "DrankDirtyWater", "DrankUrine"),
+            M("OwnBathroom", 0.6f, "UsedPrivateBathroom"),
+            Bad("Bursting", 0.6f, "BowelLevel"),
+            // Vanilla Brewing Expanded
+            M("Tea", 0.6f, "VBE_DrankTea"),
         };
 
         private static Dictionary<string, Moment> byThought;
@@ -120,6 +133,8 @@ namespace ColonyCouncil
                 else journals.WriteTagged(p, "Council_Journal_Day_" + pick.moment.key, tags);
             }
             foreach (var k in seen.Where(kv => now - kv.Value > GenDate.TicksPerDay * RepeatDays * 2).Select(kv => kv.Key).ToList()) seen.Remove(k);
+            // Colonists posted at an outpost write home now and then (Integrations/Outposts.cs).
+            OutpostLife.Letters(journals, seen);
         }
 
         private static (Moment moment, Pawn other, bool good) Pick(Pawn p, Dictionary<string, int> seen, int now)

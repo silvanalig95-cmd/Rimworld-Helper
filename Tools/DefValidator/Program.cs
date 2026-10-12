@@ -88,6 +88,8 @@ foreach (var (file, doc) in docs)
     foreach (var el in doc.Root!.Elements())
     {
         var t = ResolveType(el.Name.LocalName);
+        // A def of another mod's type (RimHUD's widgets) loads only with that mod (MayRequire): it can't be checked here.
+        if (t == null && el.Attribute("MayRequire") != null) { warnings.Add($"{Rel(file)}:{Line(el)}: <{el.Name.LocalName}> is another mod's def type (MayRequire), not checked"); continue; }
         if (t == null) { errors.Add($"{Rel(file)}:{Line(el)}: unknown def type <{el.Name.LocalName}>"); continue; }
         if (!IsDef(t)) { errors.Add($"{Rel(file)}:{Line(el)}: <{el.Name.LocalName}> is not a Def"); continue; }
         var nameAttr = el.Attribute("Name")?.Value;

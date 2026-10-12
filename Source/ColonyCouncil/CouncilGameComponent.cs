@@ -692,6 +692,8 @@ namespace ColonyCouncil
                 var home = w.Beneficiary.MapHeld;
                 if (home == null || !home.IsPlayerHome)
                 {
+                    // Posted at an outpost (Vanilla Outposts Expanded): the wish waits for them (Integrations/Outposts.cs).
+                    if (OutpostLife.WaitWhilePosted(this, w, HourTicks)) continue;
                     try
                     {
                         w.Worker.WhileAway(w);

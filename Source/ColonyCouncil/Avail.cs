@@ -334,7 +334,8 @@ namespace ColonyCouncil
 
         public static bool IsHeater(ThingDef d)
         {
-            if (d == null) return false;
+            // Dubs Bad Hygiene's burn pit and sauna heater give off heat, but nobody should warm a bedroom with them.
+            if (d == null || Hygiene.NotAHomeHeater(d)) return false;
             if (d.thingClass != null && typeof(Building_Heater).IsAssignableFrom(d.thingClass)) return true;
             var hp = d.GetCompProperties<CompProperties_HeatPusher>();
             return hp != null && hp.heatPerSecond >= 10f && !IsCooler(d);

@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- Ordinary days in a colonist's journal (Lives/EverydayJournal.cs), for Dubs Bad Hygiene's moods: a trip to the
+       bushes, a hot bath, a cold one, being walked in on. Without the mod nobody has these moods, so these pools are
+       never used. Moments that can go either way (Grimy, ColdWash, OwnBathroom) tag every line good or bad. -->
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Journal_Day_OpenGround</defName>
+    <lines>
+      <plain>
+        <li>Had to go behind the woodpile again.</li>
+        <li>Went out past the fields to relieve myself, and took the long way back so I wouldn't have to explain.</li>
+        <li>[winter] Squatted in the snow this morning. My legs still haven't warmed up.</li>
+        <li>[night] Went out in the dark to relieve myself and heard something moving in the brush. I didn't stay long.</li>
+        <li>[child] I had to go in the bushes. A beetle crawled on my foot.</li>
+      </plain>
+      <warm><li>Went out behind the storeroom at dawn. Not the worst view of the sunrise, I'll admit.</li></warm>
+      <blunt><li>Bushes again. We need somewhere to go.</li></blunt>
+      <cheerful><li>Went in the bushes and found wild berries on the way back.</li></cheerful>
+      <gloomy><li>Squatting in the open like an animal. This is what we've come to.</li></gloomy>
+      <cold><li>Waste left in the open. It will draw flies, and the flies will find the kitchen.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Journal_Day_SoiledSelf</defName>
+    <lines>
+      <plain>
+        <li>Didn't make it in time today. Washed my trousers out and said nothing to anyone.</li>
+        <li>An accident on the way to the latrine. I'd rather not write more than that.</li>
+        <li>[old] My body doesn't give me as much warning as it used to. Today it gave me none.</li>
+        <li>[child] I had an accident. I didn't want anybody to see.</li>
+      </plain>
+      <warm><li>Had an accident today. Nobody laughed, and I won't forget that.</li></warm>
+      <blunt><li>Didn't make it. Not talking about it.</li></blunt>
+      <cheerful><li>Worst day in a while. Tomorrow can only be better.</li></cheerful>
+      <gloomy><li>Soiled myself, at my age. I hid until dark.</li></gloomy>
+      <cold><li>Too far from a toilet, and too much work to leave. Next time the work can wait.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Journal_Day_WalkedIn</defName>
+    <lines>
+      <plain>
+        <li>Somebody walked in while I was washing. We both said sorry about four times.</li>
+        <li>Got walked in on at the latrine. There's no door, so I can't even blame them.</li>
+        <li>Somebody saw me in the bath. I'm going to bathe at night from now on.</li>
+        <li>[child] Someone came in while I was in the bath and I yelled at them.</li>
+      </plain>
+      <warm><li>Got walked in on while I was washing. We laughed about it afterward, mostly.</li></warm>
+      <blunt><li>We need doors. Real ones.</li></blunt>
+      <cheerful><li>Someone walked in on my bath. I'm choosing to find it funny.</li></cheerful>
+      <gloomy><li>There's no privacy here. Not even for that.</li></gloomy>
+      <cold><li>Interrupted while washing. A door between the tubs would end it.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Journal_Day_HotBath</defName>
+    <lines>
+      <plain>
+        <li>Hot bath tonight. Sat in it until the water went lukewarm.</li>
+        <li>The water was properly hot this morning. Best wash in weeks.</li>
+        <li>[winter] A hot bath on a day like this. I could feel my toes again afterward.</li>
+        <li>[afterraid] Soaked the raid out of my shoulders in hot water.</li>
+        <li>[child] I had a hot bath and stayed in until my fingers went wrinkly.</li>
+      </plain>
+      <warm><li>Had my hot bath, then left the water for the next person while it was still warm.</li></warm>
+      <blunt><li>Hot water. Good.</li></blunt>
+      <cheerful><li>Hot bath! I may never get out.</li></cheerful>
+      <gloomy><li>A hot bath. For a while I forgot everything else.</li></gloomy>
+      <cold><li>Hot water loosens the back. I'll work better tomorrow.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Journal_Day_ColdWash</defName>
+    <lines>
+      <plain>
+        <li>[good] A cold wash this morning. Woke me up better than anything.</li>
+        <li>[good,hot] Rinsed off in cold water after work. Just what I needed in this heat.</li>
+        <li>[bad] No hot water again. I washed in about ten seconds.</li>
+        <li>[bad,winter] The water was so cold it hurt. I'm not sure I'm any cleaner.</li>
+        <li>[good,child] The water was cold and I squealed, but it was fun.</li>
+        <li>[bad,child] The bath was freezing. I got out as fast as I could.</li>
+      </plain>
+      <warm>
+        <li>[good] Cold water first thing. It cleared my head.</li>
+        <li>[bad] The water was ice cold. Next time I'll warm a pot on the fire for whoever comes after me.</li>
+      </warm>
+      <blunt>
+        <li>[good] Cold wash. Fine by me.</li>
+        <li>[bad] Cold water. Again.</li>
+      </blunt>
+      <cheerful>
+        <li>[good] A cold splash to start the day!</li>
+        <li>[bad] Freezing bath, but I'm clean, so it counts.</li>
+      </cheerful>
+      <gloomy>
+        <li>[good] Cold water. At least it woke me up.</li>
+        <li>[bad] Washed in water cold enough to stop a heart.</li>
+      </gloomy>
+      <cold>
+        <li>[good] Cold water. Quick and efficient.</li>
+        <li>[bad] No hot water. Somebody let the fire go out.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Journal_Day_Grimy</defName>
+    <lines>
+      <plain>
+        <li>[bad] Haven't washed in days. I can smell myself when I lean over the workbench.</li>
+        <li>[bad] My hair's stiff with dirt. I keep my hat on.</li>
+        <li>[bad,hot] Everyone smells in this heat, and I smell worst.</li>
+        <li>[good] Washed properly today. Clean shirt, clean hands.</li>
+        <li>[good] Scrubbed myself pink this morning.</li>
+        <li>[good,child] I had a bath and now I smell like soap.</li>
+        <li>[bad,child] I'm dirty all over and I don't want a bath.</li>
+      </plain>
+      <warm>
+        <li>[good] Clean at last. I lent my comb to whoever wanted it.</li>
+        <li>[bad] I'm grimy, but so is everyone I work with.</li>
+      </warm>
+      <blunt>
+        <li>[good] Clean.</li>
+        <li>[bad] I stink.</li>
+      </blunt>
+      <cheerful>
+        <li>[good] Squeaky clean today!</li>
+        <li>[bad] I'm filthy, but it's honest dirt.</li>
+      </cheerful>
+      <gloomy>
+        <li>[good] Clean. It won't last.</li>
+        <li>[bad] I smell like the latrine. Maybe I just live there now.</li>
+      </gloomy>
+      <cold>
+        <li>[good] Clean. People are easier to deal with when you don't smell.</li>
+        <li>[bad] Dirty. It's starting to cost me in conversations.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Journal_Day_DirtyWater</defName>
+    <lines>
+      <plain>
+        <li>The water tasted wrong today. I drank it anyway; I was too thirsty not to.</li>
+        <li>Drank water that smelled of the latrine. My stomach's been grumbling since.</li>
+        <li>[hot] It was so hot I drank whatever I could find. I'm trying not to think about where it came from.</li>
+        <li>[child] The water tasted like dirt.</li>
+      </plain>
+      <warm><li>The water's gone bad somewhere. I warned the others before they drank any.</li></warm>
+      <blunt><li>Bad water. Fix the well.</li></blunt>
+      <cheerful><li>Drank some questionable water. Still standing!</li></cheerful>
+      <gloomy><li>I drank things today I won't write down.</li></gloomy>
+      <cold><li>Dirty water. Someone will get sick from it before long.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Journal_Day_OwnBathroom</defName>
+    <lines>
+      <plain>
+        <li>[good] Washed in my own bathroom this morning. Door shut, no line.</li>
+        <li>[good] No one else's hair in the basin. I could get used to this.</li>
+        <li>[bad] My bathroom is a dark, damp hole. I wash as fast as I can.</li>
+        <li>[bad] The bathroom stinks, and the floor is still bare dirt.</li>
+      </plain>
+      <warm>
+        <li>[good] I put a plant in my bathroom. It's doing well in the damp.</li>
+        <li>[bad] Tidied my bathroom tonight. It needs more than tidying.</li>
+      </warm>
+      <blunt>
+        <li>[good] Good bathroom.</li>
+        <li>[bad] The bathroom's awful.</li>
+      </blunt>
+      <cheerful>
+        <li>[good] I sang in the bath. The room has a nice echo.</li>
+        <li>[bad] My bathroom's grim. I sing louder to make up for it.</li>
+      </cheerful>
+      <gloomy>
+        <li>[good] A fine bathroom. The finest thing I have.</li>
+        <li>[bad] Even my bathroom is miserable.</li>
+      </gloomy>
+      <cold>
+        <li>[good] A good bathroom. Worth what it cost.</li>
+        <li>[bad] The bathroom is substandard. I'll raise it with the council.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Journal_Day_Bursting</defName>
+    <lines>
+      <plain>
+        <li>Spent the afternoon needing to go, with no time to. The work wouldn't wait.</li>
+        <li>There was a line for the latrine again. I held on.</li>
+        <li>[night] Lay awake needing to go and not wanting to walk out in the dark.</li>
+        <li>[child] I needed to go really badly and somebody was in there.</li>
+      </plain>
+      <warm><li>Let someone go ahead of me in the line. Regretted it within the minute.</li></warm>
+      <blunt><li>Too few latrines. Too many people.</li></blunt>
+      <cheerful><li>Held it all afternoon. A personal record.</li></cheerful>
+      <gloomy><li>Bursting all day, and the line never moved.</li></gloomy>
+      <cold><li>Time spent waiting in line is time not working.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+</Defs>

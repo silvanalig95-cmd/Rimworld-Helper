@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Conversations for the home-life integrations (Source/ColonyCouncil/Integrations). They go into the social log like
+    any other, so Interaction Bubbles shows them above the colonists' heads.
+  -->
+
+  <!-- Colonists with an open hygiene wish grumble about it (only with Dubs Bad Hygiene, whose wishes these are). It
+       always loads, so the social log still finds it if the mod is removed later. -->
+  <InteractionDef ParentName="Council_WishTalkBase">
+    <defName>Council_Talk_Hygiene</defName>
+    <label>grumbled about washing and latrines</label>
+    <logRulesInitiator>
+      <rulesStrings>
+        <li>r_logentry->[INITIATOR_nameDef] complained to [RECIPIENT_nameDef] about [gripe].</li>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] agreed that [gripe] was getting to be too much.</li>
+        <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] to back [INITIATOR_objective] up next time [INITIATOR_pronoun] raised [gripe] with the council.</li>
+        <li>r_logentry->[INITIATOR_nameDef] described to [RECIPIENT_nameDef], in more detail than anyone wanted, [gripe].</li>
+        <li>gripe->the walk out to the bushes every morning</li>
+        <li>gripe->the line outside the latrine</li>
+        <li>gripe->the smell drifting over from behind the woodpile</li>
+        <li>gripe->washing in water cold enough to stop a heart</li>
+        <li>gripe->going a week without a proper wash</li>
+        <li>gripe->having nowhere to rinse off after work</li>
+      </rulesStrings>
+    </logRulesInitiator>
+  </InteractionDef>
+
+  <!--
+    A social event or an encounter with a stranger as it appears in the social log. Its text is written by the event
+    itself (ColonyCouncil.PlayLogEntry_CouncilEvent), so the rules below are only a fallback. Never picked as a
+    conversation.
+  -->
+  <InteractionDef>
+    <defName>Council_SocialEvent</defName>
+    <label>a moment between them</label>
+    <workerClass>ColonyCouncil.InteractionWorker_LogOnly</workerClass>
+    <symbol>ColonyCouncil/Symbols/Moment</symbol>
+    <logRulesInitiator>
+      <rulesStrings>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] spent some time together.</li>
+      </rulesStrings>
+    </logRulesInitiator>
+  </InteractionDef>
+
+</Defs>

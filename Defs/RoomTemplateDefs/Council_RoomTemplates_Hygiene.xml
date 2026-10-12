@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Room plans for Dubs Bad Hygiene; they load only with it (MayRequire). Each slot lists the era's fixture first and
+    takes the first one the colony can build: a toilet once Modern Fixtures is researched, a latrine before it; a basin
+    with Plumbing, a water tub before it; a shower, or a bathtub. The roles (toilet, wash, bath, saunaheater) match the
+    mod's own classes (Source/ColonyCouncil/Integrations/Hygiene.cs), so add-ons such as DBH for Medieval count too.
+  -->
+
+  <ColonyCouncil.RoomTemplateDef MayRequire="dubwise.dubsbadhygiene">
+    <defName>Council_Bathroom</defName>
+    <label>bathroom</label>
+    <description>A small bathroom: a toilet or latrine, a basin or water tub, and a shower or bathtub once the colony knows plumbing.</description>
+    <order>13</order>
+    <group>Living</group>
+    <size>(3,3)</size>
+    <iconDefs><li>ToiletStuff</li><li>PitLatrine</li></iconDefs>
+    <floors><li>TileSandstone</li><li>TileGranite</li><li>TileLimestone</li><li>TileSlate</li><li>TileMarble</li><li>WoodPlankFloor</li></floors>
+    <near><li>Bedroom</li><li>Barracks</li></near>
+    <avoid><li>Kitchen</li><li>DiningRoom</li></avoid>
+    <tips>
+      <li>A colonist who can't reach a toilet in time goes outside (-3 mood) or soils themselves (-8). Put toilets close to the bedrooms.</li>
+      <li>One toilet to a room, or stall doors between them: someone walked in on feels embarrassed (-3 mood).</li>
+      <li>A rough rule: one toilet for every six colonists. Rimfolk's advisor counts them for you.</li>
+      <li>[lowtech] A latrine needs no research. It fills up and has to be emptied by hand, unless it is plumbed in.</li>
+      <li>[lowtech] Until the colony has Plumbing, a water tub does for washing. It has to be filled by hand, though rain fills it too.</li>
+      <li>Basins, toilets, showers and bathtubs need piped water from a water tower, which a well or a pump fills. Showers and bathtubs don't need a sewage outlet; toilets do.</li>
+      <li>A shower is quicker and uses about a third of the water a bathtub does. A bathtub is slower, but very comfortable.</li>
+      <li>Dubs Bad Hygiene rates a private bathroom like a bedroom: from awful (-4 mood) to wondrous (+8), by its impressiveness.</li>
+    </tips>
+    <things>
+      <li><defs><li>ToiletStuff</li><li>PitLatrine</li></defs><role>toilet</role><pos>(0,2)</pos><rot>South</rot><optional>false</optional></li>
+      <li><defs><li>BasinStuff</li><li>WashBucket</li></defs><role>wash</role><pos>(1,2)</pos></li>
+      <li><defs><li>ShowerStuff</li><li>ShowerSimple</li><li>BathtubStuff</li></defs><role>bath</role><pos>(2,1)</pos></li>
+      <li><defs><li>StandingLamp</li><li>TorchLamp</li></defs><role>light</role><pos>(0,0)</pos></li>
+    </things>
+  </ColonyCouncil.RoomTemplateDef>
+
+  <ColonyCouncil.RoomTemplateDef MayRequire="dubwise.dubsbadhygiene">
+    <defName>Council_Bathhouse</defName>
+    <label>bathhouse</label>
+    <description>Two bathtubs with a campfire between them to heat the water, and a basin. Needs Plumbing for the bathtubs.</description>
+    <order>27</order>
+    <group>Leisure</group>
+    <size>(5,4)</size>
+    <iconDefs><li>BathtubStuff</li></iconDefs>
+    <floors><li>TileSandstone</li><li>TileGranite</li><li>TileLimestone</li><li>TileSlate</li><li>TileMarble</li><li>WoodPlankFloor</li></floors>
+    <near><li>RecRoom</li></near>
+    <avoid><li>Kitchen</li><li>Hospital</li></avoid>
+    <tips>
+      <li>A campfire right next to a bathtub heats its water. Hot baths lift the mood (+3), and you need no boiler or hot water tank for them.</li>
+      <li>The bathtubs still need water: pipes from a water tower, which a well or a wind pump fills.</li>
+      <li>Someone seen bathing is embarrassed (-3 mood). Keep the bathhouse off the busy paths, and give the shy a bathroom of their own.</li>
+      <li>Keep the campfire stocked with wood, or the next bath is a cold one.</li>
+    </tips>
+    <things>
+      <li><defs><li>BathtubStuff</li></defs><role>bath</role><pos>(0,2)</pos><optional>false</optional></li>
+      <li><defs><li>Campfire</li></defs><pos>(1,3)</pos></li>
+      <li><defs><li>BathtubStuff</li></defs><role>bath</role><pos>(2,2)</pos></li>
+      <li><defs><li>BasinStuff</li><li>WashBucket</li></defs><role>wash</role><pos>(4,3)</pos></li>
+      <li><defs><li>StandingLamp</li><li>TorchLamp</li></defs><role>light</role><pos>(0,0)</pos></li>
+      <li><defs><li>PlantPot</li></defs><role>plantpot</role><pos>(4,0)</pos></li>
+    </things>
+  </ColonyCouncil.RoomTemplateDef>
+
+  <ColonyCouncil.RoomTemplateDef MayRequire="dubwise.dubsbadhygiene">
+    <defName>Council_Sauna</defName>
+    <label>sauna</label>
+    <description>A small, closed room with a sauna heater and slatted seating. Needs the Saunas research.</description>
+    <order>28</order>
+    <group>Leisure</group>
+    <size>(3,3)</size>
+    <iconDefs><li>DBHSaunaHeaterLog</li></iconDefs>
+    <floors><li>WoodPlankFloor</li></floors>
+    <near><li>RecRoom</li></near>
+    <tips>
+      <li>The fueled sauna heater burns wood and drives a small room to about 60 °C. Keep the room small and the door shut.</li>
+      <li>Colonists use a sauna for recreation. The heater's own description says regular use lowers the risk of heart attacks.</li>
+      <li>The heater takes 200 stone blocks to build; the seating costs next to nothing.</li>
+      <li>The heater only burns wood while someone is using the sauna.</li>
+    </tips>
+    <things>
+      <li><defs><li>DBHSaunaHeaterLog</li><li>DBHSaunaHeaterElec</li></defs><role>saunaheater</role><pos>(0,0)</pos><optional>false</optional></li>
+      <li><defs><li>DBHSaunaSeating</li></defs><pos>(0,2)</pos></li>
+      <li><defs><li>DBHSaunaSeating</li></defs><pos>(1,2)</pos></li>
+      <li><defs><li>DBHSaunaSeating</li></defs><pos>(2,2)</pos></li>
+      <li><defs><li>DBHSaunaSeating</li></defs><pos>(2,1)</pos></li>
+    </things>
+  </ColonyCouncil.RoomTemplateDef>
+
+</Defs>

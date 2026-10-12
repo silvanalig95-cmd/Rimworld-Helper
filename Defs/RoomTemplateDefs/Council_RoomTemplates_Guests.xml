@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- A room for Hospitality's guests; loads only with Hospitality (MayRequire). It places an ordinary bed: switch it to a
+       guest bed once it's built. -->
+
+  <ColonyCouncil.RoomTemplateDef MayRequire="orion.hospitality">
+    <defName>Council_GuestRoom</defName>
+    <label>guest room</label>
+    <description>A small room for one visitor: a bed to switch to a guest bed, a bedside table, a dresser and a light.</description>
+    <order>14</order>
+    <group>Living</group>
+    <size>(4,4)</size>
+    <iconDefs><li>Bed</li></iconDefs>
+    <floors><li>WoodPlankFloor</li></floors>
+    <near><li>DiningRoom</li><li>RecRoom</li></near>
+    <avoid><li>PrisonCell</li><li>Hospital</li></avoid>
+    <tips>
+      <li>Once the bed is built, select it and switch it to a guest bed. Guests sleep only in guest beds, and you can set a fee for each.</li>
+      <li>Guests pick the best bed they can afford: an impressive room, a good, comfortable bed, a pleasant temperature and a fair fee all count. Sharing a room with strangers counts against it.</li>
+      <li>A bedside table and a dresser next to the bed count in its favor too.</li>
+      <li>One or two guest rooms are enough to start. Hospitality's settings can turn visitors away until the colony has guest beds.</li>
+    </tips>
+    <things>
+      <li><defs><li>Bed</li><li>Bedroll</li></defs><role>bed</role><pos>(0,2)</pos><optional>false</optional></li>
+      <li><defs><li>EndTable</li></defs><role>endtable</role><pos>(1,3)</pos></li>
+      <li><defs><li>Dresser</li></defs><role>dresser</role><pos>(2,3)</pos></li>
+      <li><defs><li>StandingLamp</li><li>TorchLamp</li></defs><role>light</role><pos>(0,0)</pos></li>
+      <li><defs><li>PlantPot</li></defs><role>plantpot</role><pos>(3,0)</pos></li>
+    </things>
+  </ColonyCouncil.RoomTemplateDef>
+
+</Defs>

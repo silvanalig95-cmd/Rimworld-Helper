@@ -134,7 +134,8 @@ namespace ColonyCouncil
                 case "school": return d => d.defName.Contains("SchoolDesk") || d.defName.Contains("Blackboard");
                 case "toybox": return d => d.defName.Contains("ToyBox");
                 case "crib": return d => Avail.IsHumanBed(d) && d.building.bed_maxBodySize > 0f && d.building.bed_maxBodySize < 0.5f;
-                default: return null;
+                // Mod furniture (toilets, baths, sauna heaters): Integrations/HomeLife.cs.
+                default: return HomeLife.RolePredicate(role);
             }
         }
 

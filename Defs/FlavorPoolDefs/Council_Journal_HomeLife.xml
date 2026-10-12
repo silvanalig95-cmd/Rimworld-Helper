@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- Journal pools for the home-life mods (Source/ColonyCouncil/Integrations). Never used without their mod. -->
+
+  <!-- Vanilla Brewing Expanded: a cup of tea (its "drank tea" mood), as an everyday entry (Lives/EverydayJournal.cs). -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Journal_Day_Tea</defName>
+    <lines>
+      <plain>
+        <li>Cup of tea after supper. Sat with it until it went cold.</li>
+        <li>Tea in the morning, before anyone else was up.</li>
+        <li>[winter] Held a hot cup of tea in both hands and watched the snow come down.</li>
+        <li>[rain] Tea, and rain on the roof. Not a bad evening.</li>
+        <li>[child] I had tea. I put too much sugar in it.</li>
+      </plain>
+      <warm><li>Made tea for whoever was still up. We sat and talked for a while.</li></warm>
+      <blunt><li>Tea. Good.</li></blunt>
+      <cheerful><li>Tea! The best part of the day.</li></cheerful>
+      <gloomy><li>A cup of tea. The one thing that went right today.</li></gloomy>
+      <cold><li>Tea keeps the head clear. I'll have another tomorrow.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!--
+    Vanilla Outposts Expanded: now and then a colonist posted at an outpost writes home (Integrations/Outposts.cs). The
+    kind of outpost comes as a tag, e.g. [outpost:Mining], [outpost:Logging], [outpost:Farming], [outpost:Hunting].
+  -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Journal_Outpost</defName>
+    <lines>
+      <plain>
+        <li>Another quiet week at the outpost. I miss the noise of home more than I expected.</li>
+        <li>Started a letter home tonight. Kept it short: still alive, still working, food's fine.</li>
+        <li>The outpost is so quiet at night that I can hear every animal for a mile around.</li>
+        <li>[winter] Snowed in at the outpost. We're keeping the fire going, and the food is holding out.</li>
+        <li>[outpost:Mining] Hauled stone all day. My hands are raw, and the pile keeps growing.</li>
+        <li>[outpost:Logging] Felled six trees before noon. My shoulders will feel it tomorrow.</li>
+        <li>[outpost:Farming] The rows are coming up green. I'd like the others to see them.</li>
+        <li>[outpost:Hunting] Tracked a herd for two days. Brought back enough meat to make it worth it.</li>
+        <li>[outpost:Defensive] Stood watch all night. Nothing came, which is the point.</li>
+        <li>[outpost:Trading] Haggled with a caravan most of the morning. Got a fair price in the end.</li>
+        <li>[outpost:Science] Worked through my notes until the light went.</li>
+        <li>[outpost:Town] The town is busier than home. Too many new faces to learn.</li>
+        <li>[outpost:Scavenging] Dug through ruins all day. Found a few things worth carrying back.</li>
+        <li>[outpost:Encampment] A caravan stopped for the night. It was good to hear some news.</li>
+      </plain>
+      <warm><li>I keep a list of things to tell everyone when I'm home. It's getting long.</li></warm>
+      <blunt><li>Outpost. Work. Sleep.</li></blunt>
+      <cheerful><li>The outpost is coming along nicely! I'd show it off if anyone visited.</li></cheerful>
+      <gloomy><li>Out here the days run together. I've lost count of how long I've been away.</li></gloomy>
+      <cold><li>The outpost pays its way. I'll stay as long as it does.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+</Defs>

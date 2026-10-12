@@ -34,6 +34,7 @@
       <li>If guests have nothing to eat, put simple meals on sale in the shopping area or allow them to take food for free in the Guests tab's map settings.</li>
       <li>With Rimfolk: Hospitality guests count as visitors, so your colonists chat, swap stories, flirt and trade insults with them in Rimfolk's encounters. A warm moment makes the guest like that colonist more, which helps toward the friends Hospitality wants before a guest can join.</li>
       <li>With Rimfolk: the council leaves recruiting and sending away to Hospitality. If a guest asks to stay in a council dilemma, the "welcome them in" answer is grayed out; invite them from their Guest tab instead.</li>
+      <li>With Rimfolk: the guest room plan builds a small room for one visitor; switch its bed to a guest bed once it's built. A colonist with no bed never counts a guest bed as free.</li>
     </advice>
     <keywords>
       <li>guest</li>
@@ -81,6 +82,7 @@
       <li>Post colonists whose skills are already where you want them, and keep the ones still learning at home.</li>
       <li>With Rimfolk: someone away at an outpost is still one of the colony. Their friends don't mourn them as lost, the annals don't list them as gone, and their journal and story are kept. If they die out there, the colony mourns them like any other loss.</li>
       <li>With Rimfolk: only people at home voice wishes, come to council meetings and vote, so an officer posted to an outpost keeps the seat only until the next yearly election.</li>
+      <li>With Rimfolk: a wish waits while its colonist is posted away, for up to five days; after that it lapses, and nobody is blamed for it. Now and then someone at an outpost writes home in their journal.</li>
     </advice>
     <keywords>
       <li>outpost</li>

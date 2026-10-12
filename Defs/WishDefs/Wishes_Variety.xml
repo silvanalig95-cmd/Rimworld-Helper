@@ -1305,7 +1305,7 @@
   <ColonyCouncil.WishDef>
     <defName>Council_Wish_Bath</defName>
     <label>{THING}</label>
-    <description>Someone wants a bath, tub or sauna in the colony, somewhere to get properly clean and warm.</description>
+    <description>Someone wants a real bath in the colony, somewhere to get properly clean and warm.</description>
     <workerClass>ColonyCouncil.WishWorker_Have</workerClass>
     <category>Comfort</category>
     <weight>0.8</weight>
@@ -1315,10 +1315,12 @@
     <allowPetition>true</allowPetition>
     <envy>0</envy>
     <talkInteraction>Council_Talk_Comfort</talkInteraction>
-    <fulfilledWhen>The colony has {THING}, or any other bath, tub or sauna.</fulfilledWhen>
+    <fulfilledWhen>The colony has {THING}, or any other bathtub or hot tub.</fulfilledWhen>
     <wants>
-      <nameContains><li>bath</li><li>tub</li><li>sauna</li></nameContains>
-      <notContains><li>bathroom</li></notContains>
+      <!-- A real bath: Dubs Bad Hygiene's bathtub or hot tub (or a modded one). Not its water tub (a bucket to wash at)
+           or bath mat, and not a sauna (heater and seating): they get nobody properly clean. -->
+      <nameContains><li>bath</li><li>tub</li></nameContains>
+      <notContains><li>bathroom</li><li>water tub</li><li>washbucket</li><li>bath mat</li><li>bathmat</li><li>sauna</li></notContains>
       <reason>{PAWN_nameDef} hasn't been properly clean in a long time and can smell it.</reason>
     </wants>
     <request>

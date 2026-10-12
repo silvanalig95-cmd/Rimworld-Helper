@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- Advisor checks for Dubs Bad Hygiene (Integrations/Hygiene.cs); they load only with it. -->
+
+  <ColonyCouncil.AdvisorSignalDef MayRequire="dubwise.dubsbadhygiene">
+    <defName>Council_Adv_Toilets</defName>
+    <label>toilets</label>
+    <workerClass>ColonyCouncil.AdvisorWorker_Toilets</workerClass>
+    <article>Council_AlmMod_E_DBH</article>
+    <category>Health</category>
+    <importance>1</importance>
+    <template>Council_Bathroom</template>
+    <tips>
+      <li>A colonist who can't reach a toilet in time goes outside (-3 mood) or soils themselves (-8).</li>
+      <li>A rough rule: one toilet for every six colonists, close to the bedrooms and the main workrooms.</li>
+      <li>[lowtech] A latrine needs no research. It fills up and has to be emptied by hand, unless it is plumbed in.</li>
+      <li>Keep latrines, sewage outlets and burn pits away from wells. Sewage near a well spoils the water.</li>
+      <li>One toilet to a room, or stall doors between them: someone walked in on feels embarrassed (-3 mood).</li>
+    </tips>
+  </ColonyCouncil.AdvisorSignalDef>
+
+  <ColonyCouncil.AdvisorSignalDef MayRequire="dubwise.dubsbadhygiene">
+    <defName>Council_Adv_Washing</defName>
+    <label>washing</label>
+    <workerClass>ColonyCouncil.AdvisorWorker_Washing</workerClass>
+    <article>Council_AlmMod_E_DBH</article>
+    <category>Health</category>
+    <importance>0.9</importance>
+    <template>Council_Bathroom</template>
+    <tips>
+      <li>A grimy colonist is unhappy (down to -6 mood when filthy). Bad hygiene also raises the chance of food poisoning and makes conversations go worse.</li>
+      <li>[lowtech] A water tub needs no research. Someone has to keep it filled, though rain fills it too.</li>
+      <li>A shower is quicker and uses about a third of the water a bathtub does. A bathtub is slower, but very comfortable.</li>
+      <li>A campfire next to a bathtub heats the water, and a hot bath is a small mood boost (+3).</li>
+    </tips>
+  </ColonyCouncil.AdvisorSignalDef>
+
+  <ColonyCouncil.AdvisorSignalDef MayRequire="dubwise.dubsbadhygiene">
+    <defName>Council_Adv_WaterSickness</defName>
+    <label>dirty water</label>
+    <workerClass>ColonyCouncil.AdvisorWorker_WaterSickness</workerClass>
+    <article>Council_AlmMod_E_DBH</article>
+    <category>Health</category>
+    <importance>1.1</importance>
+    <tips>
+      <li>Dubs Bad Hygiene warns when a well is contaminated and lists what is spoiling it. Move the well or the sources, or build water treatment.</li>
+      <li>A contaminated water tower stays dirty until it is drained, or until a water treatment system cleans it.</li>
+      <li>Cholera can kill through dehydration if it isn't treated. Keep the sick in bed with a doctor tending them.</li>
+      <li>[!lowtech] Two days of toxic fallout spoil the water from ordinary wells. A deep well still draws clean water.</li>
+    </tips>
+  </ColonyCouncil.AdvisorSignalDef>
+
+</Defs>
