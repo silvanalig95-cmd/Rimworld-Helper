@@ -118,6 +118,11 @@ namespace ColonyCouncil
             if (kills < 3 && !(foe != null && kills >= 1)) return;
             var home = Find.Maps.Where(m => m.IsPlayerHome).ToList();
             if (home.Count == 0 || home.All(m => m.mapPawns.FreeColonistsSpawnedCount == 0)) return;
+            // With raids every couple of days (a hard storyteller), a clean win is routine: told in the chronicle, not
+            // celebrated each time. A costly one is always felt.
+            int now = Find.TickManager.TicksGame;
+            bool routine = fallen.Count == 0 && now - comp.social.lastVictoryTick < GenDate.TicksPerDay * 4;
+            if (!routine) comp.social.lastVictoryTick = now;
             var hero = killsBy.Where(kv => kv.Key != null && !kv.Key.Dead && kv.Key.IsColonist && kv.Value >= 2).OrderByDescending(kv => kv.Value).Select(kv => kv.Key).FirstOrDefault();
             // Peoples nobody can talk to (mechanoids, insects) go by what they are.
             string foeName = foe == null ? "CC_Victory_Beasts".Translate().ToString() : foe.Hidden ? foe.def.pawnsPlural : foe.Name;
@@ -126,8 +131,9 @@ namespace ColonyCouncil
                 ? "CC_Victory_Costly".Translate(foeName, kills, TextUtil.JoinAnd(fallen)).Resolve()
                 : "CC_Victory_Clean".Translate(foeName, kills).Resolve();
             if (hero != null) text += " " + "CC_Victory_Hero".Translate(hero.Named("PAWN"), killsBy[hero]).Resolve();
-            Notify.Message(text, new LookTargets(fighters.Where(p => p.Spawned)), MessageTypeDefOf.PositiveEvent, Importance.Notable);
             comp.AddChronicle(new ChronicleEntry(ChronicleKind.World, text, hero ?? fighters[0]));
+            if (routine) return;
+            Notify.Message(text, new LookTargets(fighters.Where(p => p.Spawned)), MessageTypeDefOf.PositiveEvent, Importance.Notable);
             using var _cause = Causes.Push("CC_Cause_Victory".Translate(foeName).Resolve());
             var thought = costly ? CouncilDefOf.Council_VictoryCostly : CouncilDefOf.Council_Victory;
             foreach (var map in home)

@@ -465,7 +465,9 @@ namespace ColonyCouncil
             {
                 if (p.Faction != Faction.OfPlayer) continue;
                 if (p.apparel?.WornApparel.FirstOrDefault(a => a.ThingID == wish.subjectKey) is Thing worn) return worn;
-                if (p.equipment?.Primary != null && p.equipment.Primary.ThingID == wish.subjectKey) return p.equipment.Primary;
+                // Off-hand weapons too (Dual Wield).
+                var held = p.equipment?.AllEquipmentListForReading.FirstOrDefault(e => e.ThingID == wish.subjectKey);
+                if (held != null) return held;
                 if (p.inventory?.innerContainer.FirstOrDefault(i => i.ThingID == wish.subjectKey) is Thing inv) return inv;
             }
             foreach (var t in WishWorker_Stock.HeldInBuildings(map))

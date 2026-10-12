@@ -22,9 +22,21 @@ namespace ColonyCouncil
         {
             var tech = Avail.EffectiveTech;
             return Find.FactionManager.AllFactionsListForReading
-                .Where(f => !f.IsPlayer && !f.Hidden && !f.defeated && !f.temporary && f.def.humanlikeFaction && f.def.basicMemberKind != null
+                .Where(f => !f.IsPlayer && !f.Hidden && !f.defeated && !f.temporary && f.def.humanlikeFaction && PersonKind(f) != null
                             && !f.HostileTo(Faction.OfPlayer) && (pred == null || pred(f)))
                 .RandomElementByWeightWithFallback(f => TechWeight(f, tech));
+        }
+
+        /// <summary>
+        /// The kind of person a faction sends to talk, trade or visit: its ordinary member, or, when that isn't a person
+        /// (some modded factions are mostly machines or beasts), the most ordinary person it has. Null if it has none.
+        /// </summary>
+        public static PawnKindDef PersonKind(Faction f)
+        {
+            var basic = f?.def?.basicMemberKind;
+            if (basic?.RaceProps?.Humanlike == true) return basic;
+            return f?.def?.pawnGroupMakers?.Where(m => m.options != null).SelectMany(m => m.options).Select(o => o.kind)
+                .Where(k => k?.RaceProps?.Humanlike == true).OrderBy(k => k.combatPower).FirstOrDefault();
         }
 
         /// <summary>What a newcomer is generated as: dressed and armed for the colony's era.</summary>
@@ -42,12 +54,19 @@ namespace ColonyCouncil
         }
 
         public static Pawn Make(PawnKindDef kind, Faction faction, FloatRange? age = null, Gender? gender = null, string lastName = null, bool child = false)
+            => Make(kind, faction, age, gender, lastName, child, null);
+
+        /// <summary>Like the other Make, as <paramref name="kinOf"/>'s family: the same xenotype as them (a Bogleg's sister is a Bogleg).</summary>
+        public static Pawn Make(PawnKindDef kind, Faction faction, FloatRange? age, Gender? gender, string lastName, bool child, Pawn kinOf)
         {
+            var genes = ModsConfig.BiotechActive ? kinOf?.genes : null;
             var req = new PawnGenerationRequest(kind, faction, PawnGenerationContext.NonPlayer,
                 forceGenerateNewPawn: true, canGeneratePawnRelations: false, colonistRelationChanceFactor: 0f,
                 fixedGender: gender, fixedLastName: lastName, biologicalAgeRange: age,
                 developmentalStages: child ? DevelopmentalStage.Child : DevelopmentalStage.Adult,
-                dontGiveWeapon: child || Avail.IsPreIndustrial && (faction == null || faction.def.techLevel > TechLevel.Medieval));
+                dontGiveWeapon: child || Avail.IsPreIndustrial && (faction == null || faction.def.techLevel > TechLevel.Medieval),
+                forcedXenotype: genes?.CustomXenotype == null ? genes?.Xenotype : null,
+                forcedCustomXenotype: genes?.CustomXenotype);
             return PawnGenerator.GeneratePawn(req);
         }
 

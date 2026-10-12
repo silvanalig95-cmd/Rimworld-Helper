@@ -16,7 +16,7 @@ namespace ColonyCouncil
         protected List<Pawn> MakeGroup(HappeningContext ctx, HappeningExtension ext, int n, FloatRange ages, string lastName = null)
         {
             var list = new List<Pawn>();
-            for (int i = 0; i < n; i++) list.Add(Arrivals.Make(ctx.faction.def.basicMemberKind, ctx.faction, ages, null, lastName));
+            for (int i = 0; i < n; i++) list.Add(Arrivals.Make(Arrivals.PersonKind(ctx.faction), ctx.faction, ages, null, lastName));
             ctx.stranger = list.FirstOrDefault();
             ctx.group = list.Skip(1).ToList();
             return list;
@@ -247,7 +247,7 @@ namespace ColonyCouncil
             Pawn x;
             try
             {
-                x = Arrivals.Make(ctx.faction.def.basicMemberKind, ctx.faction, ext.ages, null, null, true);
+                x = Arrivals.Make(Arrivals.PersonKind(ctx.faction), ctx.faction, ext.ages, null, null, true);
             }
             catch
             {

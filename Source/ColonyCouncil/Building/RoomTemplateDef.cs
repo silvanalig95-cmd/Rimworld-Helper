@@ -266,12 +266,51 @@ namespace ColonyCouncil
         public TerrainDef ResolveFloor(Map map)
         {
             if (floors == null) return null;
+            List<TerrainDef> listed = null;
             foreach (var name in floors)
             {
                 var f = DefDatabase<TerrainDef>.GetNamedSilentFail(name);
-                if (f != null && Avail.CanBuild(f, map) && Avail.MaterialsWithinReach(f, map)) return f;
+                if (f == null) continue;
+                if (Avail.CanBuild(f, map) && Avail.MaterialsWithinReach(f, map)) return f;
+                (listed ??= new List<TerrainDef>()).Add(f);
             }
+            // A floor mod (Stuffed Floors) may have retired the listed floors for its own versions: same material, new def.
+            if (listed != null)
+                foreach (var f in listed)
+                {
+                    var sub = FloorSubstitute(f, map);
+                    if (sub != null) return sub;
+                }
             return null;
+        }
+
+        private static readonly Dictionary<TerrainDef, (float time, Map map, TerrainDef sub)> substitutes = new Dictionary<TerrainDef, (float, Map, TerrainDef)>();
+
+        /// <summary>A buildable floor made of the same material as <paramref name="f"/>, as close to it in beauty as there is.</summary>
+        private static TerrainDef FloorSubstitute(TerrainDef f, Map map)
+        {
+            float now = UnityEngine.Time.realtimeSinceStartup;
+            if (substitutes.TryGetValue(f, out var cached) && cached.map == map && now - cached.time < 5f) return cached.sub;
+            TerrainDef best = null;
+            var material = f.costList?.FirstOrDefault()?.thingDef;
+            if (material != null)
+            {
+                float beauty = f.GetStatValueAbstract(StatDefOf.Beauty);
+                float bestGap = float.MaxValue;
+                foreach (var t in DefDatabase<TerrainDef>.AllDefsListForReading)
+                {
+                    if (t == f || t.designationCategory == null || t.costList == null || !t.costList.Any(c => c.thingDef == material)) continue;
+                    if (!Avail.CanBuild(t, map) || !Avail.MaterialsWithinReach(t, map)) continue;
+                    float gap = System.Math.Abs(t.GetStatValueAbstract(StatDefOf.Beauty) - beauty);
+                    if (gap < bestGap)
+                    {
+                        best = t;
+                        bestGap = gap;
+                    }
+                }
+            }
+            substitutes[f] = (now, map, best);
+            return best;
         }
 
         [Unsaved] private Map cachedMap;

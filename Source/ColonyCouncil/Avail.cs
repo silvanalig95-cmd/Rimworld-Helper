@@ -341,6 +341,74 @@ namespace ColonyCouncil
         }
 
         /// <summary>
+        /// Medicine the colony can use on this map: in storage and on the ground (not forbidden), and in the pockets of
+        /// colonists who are here (doctors carry their own with Smart Medicine and similar mods).
+        /// </summary>
+        public static int MedicineCount(Map map)
+        {
+            if (map == null) return 0;
+            int n = 0;
+            foreach (var t in map.listerThings.ThingsInGroup(ThingRequestGroup.Medicine))
+                if (!t.IsForbidden(Faction.OfPlayer)) n += t.stackCount;
+            foreach (var p in map.mapPawns.FreeColonistsSpawned)
+            {
+                var inv = p.inventory?.innerContainer;
+                if (inv == null) continue;
+                foreach (var t in inv)
+                    if (t.def.IsMedicine) n += t.stackCount;
+            }
+            return n;
+        }
+
+        private static readonly Dictionary<System.Type, System.Func<object, float>> storedReaders = new Dictionary<System.Type, System.Func<object, float>>();
+
+        /// <summary>
+        /// Nutrition held as paste in pipe-network vats (Vanilla Nutrient Paste Expanded): not items, so the game's own
+        /// food count misses it. One stored unit makes one paste meal.
+        /// </summary>
+        public static float StoredPasteNutrition(Map map)
+        {
+            if (map == null) return 0f;
+            float units = 0f;
+            foreach (var b in map.listerBuildings.allBuildingsColonist)
+            {
+                if (b.def.comps == null || !(b is ThingWithComps twc)) continue;
+                foreach (var comp in twc.AllComps)
+                {
+                    if (comp?.props == null || comp.GetType().Name != "CompResourceStorage") continue;
+                    var net = comp.props.GetType().GetField("pipeNet")?.GetValue(comp.props) as Def;
+                    if (net == null || net.defName.IndexOf("NutrientPaste", System.StringComparison.OrdinalIgnoreCase) < 0) continue;
+                    units += StoredAmount(comp);
+                }
+            }
+            if (units <= 0f) return 0f;
+            return units * ThingDefOf.MealNutrientPaste.GetStatValueAbstract(StatDefOf.Nutrition);
+        }
+
+        private static float StoredAmount(object comp)
+        {
+            var type = comp.GetType();
+            if (!storedReaders.TryGetValue(type, out var read))
+            {
+                var flags = System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.NonPublic;
+                var prop = type.GetProperty("AmountStored", flags);
+                var field = type.GetField("amountStored", flags);
+                if (prop != null) read = o => System.Convert.ToSingle(prop.GetValue(o));
+                else if (field != null) read = o => System.Convert.ToSingle(field.GetValue(o));
+                else read = o => 0f;
+                storedReaders[type] = read;
+            }
+            try
+            {
+                return read(comp);
+            }
+            catch
+            {
+                return 0f;
+            }
+        }
+
+        /// <summary>
         /// A refrigerator from a mod (RimFridge and the like): storage that keeps its own contents cold wherever it stands,
         /// so a colony with one doesn't need a freezer room.
         /// </summary>
@@ -382,9 +450,25 @@ namespace ColonyCouncil
             d != null && d.IsBed && d.building != null && d.building.bed_humanlike && !d.building.bed_slabBed
             && (d.building.bed_humanlike && d.size.z >= 2);
 
-        public static bool IsDoubleBed(ThingDef d) => IsHumanBed(d) && d.size.x >= 2;
+        public static bool IsDoubleBed(ThingDef d) => IsHumanBed(d) && d.size.x >= 2 && !IsBunkBed(d);
 
-        public static bool IsSingleBed(ThingDef d) => IsHumanBed(d) && d.size.x == 1;
+        public static bool IsSingleBed(ThingDef d) => IsHumanBed(d) && d.size.x == 1 && !IsBunkBed(d);
+
+        /// <summary>
+        /// A bed stacked for several sleepers (Bunk Beds, Vanilla Gravship Expanded): a bed, but never a private
+        /// bedroom's bed or a bed for two partners.
+        /// </summary>
+        public static bool IsBunkBed(ThingDef d)
+        {
+            if (d?.comps == null) return false;
+            foreach (var c in d.comps)
+            {
+                if (c == null) continue;
+                if (c.GetType().Name.IndexOf("BunkBed", System.StringComparison.OrdinalIgnoreCase) >= 0) return true;
+                if (c.compClass != null && c.compClass.Name.IndexOf("BunkBed", System.StringComparison.OrdinalIgnoreCase) >= 0) return true;
+            }
+            return false;
+        }
 
         public static bool IsAnimalBed(ThingDef d) => d != null && d.IsBed && d.building != null && !d.building.bed_humanlike;
 

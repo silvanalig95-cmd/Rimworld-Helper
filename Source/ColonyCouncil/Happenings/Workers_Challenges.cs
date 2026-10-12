@@ -47,7 +47,7 @@ namespace ColonyCouncil
             int level = ctx.a.skills.GetSkill(ctx.skill).Level;
             for (int i = 0; i < 4 && ctx.stranger == null; i++)
             {
-                var x = Arrivals.Make(ctx.faction.def.basicMemberKind, ctx.faction, ext.ages);
+                var x = Arrivals.Make(Arrivals.PersonKind(ctx.faction), ctx.faction, ext.ages);
                 var r = x.skills?.GetSkill(ctx.skill);
                 if (r == null || r.TotallyDisabled)
                 {

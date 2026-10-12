@@ -94,7 +94,7 @@ namespace ColonyCouncil
                 {
                     var range = new FloatRange(Mathf.Max(16f, age - 12f), Mathf.Min(70f, age + 12f));
                     if (!Sane(range)) return null;
-                    var x = Arrivals.Make(kind, null, range, null, last);
+                    var x = Arrivals.Make(kind, null, range, null, last, false, a);
                     if (father != null) x.SetFather(father);
                     if (mother != null) x.SetMother(mother);
                     return x;
@@ -104,7 +104,7 @@ namespace ColonyCouncil
                     var g = father == null && mother == null ? (Rand.Bool ? Gender.Male : Gender.Female) : father == null ? Gender.Male : Gender.Female;
                     var range = new FloatRange(age + 18f, Mathf.Min(age + 40f, 88f));
                     if (!Sane(range)) return null;
-                    var x = Arrivals.Make(kind, null, range, g, g == Gender.Male ? last : null);
+                    var x = Arrivals.Make(kind, null, range, g, g == Gender.Male ? last : null, false, a);
                     a.relations.AddDirectRelation(PawnRelationDefOf.Parent, x);
                     return x;
                 }
@@ -112,7 +112,7 @@ namespace ColonyCouncil
                 {
                     var range = new FloatRange(16f, age - 18f);
                     if (!Sane(range)) return null;
-                    var x = Arrivals.Make(kind, null, range, null, a.gender == Gender.Male ? last : null);
+                    var x = Arrivals.Make(kind, null, range, null, a.gender == Gender.Male ? last : null, false, a);
                     x.relations.AddDirectRelation(PawnRelationDefOf.Parent, a);
                     return x;
                 }
@@ -228,7 +228,7 @@ namespace ColonyCouncil
         protected override Pawn MakeX(HappeningContext ctx, HappeningExtension ext)
         {
             var f = ctx.enemy;
-            var kind = f.def.basicMemberKind ?? f.RandomPawnKind();
+            var kind = Arrivals.PersonKind(f);
             if (kind == null || kind.RaceProps?.Humanlike != true) return null;
             var x = Arrivals.Make(kind, f, ext.ages);
             // They belong to no one now.

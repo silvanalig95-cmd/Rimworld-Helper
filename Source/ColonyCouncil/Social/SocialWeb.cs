@@ -143,6 +143,8 @@ namespace ColonyCouncil
         private int quietHours;
         /// <summary>Colonists held by other peoples when the fight began: if that went up, the fight wasn't won.</summary>
         private int battleKidnapped;
+        /// <summary>When the colony last celebrated a victory (clean wins within a few days of it are only chronicled).</summary>
+        public int lastVictoryTick = -999999;
         /// <summary>Hours the end of a fight was held back while one of ours lay bleeding (or the enemy lingered).</summary>
         [Unsaved] private int heldHours;
 
@@ -659,6 +661,7 @@ namespace ColonyCouncil
             if (Scribe.mode == LoadSaveMode.PostLoadInit && battleFallen == null) battleFallen = new List<string>();
             Scribe_Values.Look(ref quietHours, "quietHours");
             Scribe_Values.Look(ref battleKidnapped, "battleKidnapped");
+            Scribe_Values.Look(ref lastVictoryTick, "lastVictoryTick", -999999);
             Scribe_Values.Look(ref seeded, "seeded");
             if (Scribe.mode == LoadSaveMode.PostLoadInit)
             {

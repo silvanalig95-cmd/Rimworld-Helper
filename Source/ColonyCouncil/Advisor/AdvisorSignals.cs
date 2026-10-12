@@ -105,7 +105,7 @@ namespace ColonyCouncil
         {
             float eaters = map.mapPawns.FreeColonistsSpawnedCount + map.mapPawns.PrisonersOfColonySpawnedCount;
             if (eaters <= 0) return 999f;
-            return map.resourceCounter.TotalHumanEdibleNutrition / (eaters * 1.6f);
+            return (map.resourceCounter.TotalHumanEdibleNutrition + Avail.StoredPasteNutrition(map)) / (eaters * 1.6f);
         }
 
         public override IEnumerable<AdvisorSignal> Evaluate(Map map)
@@ -262,9 +262,7 @@ namespace ColonyCouncil
             if (!anyDoctor)
                 yield return Signal(0.6f, "CC_Adv_NoDoctor_Title".Translate(), "CC_Adv_NoDoctor_Detail".Translate());
 
-            int meds = 0;
-            foreach (var t in map.listerThings.ThingsInGroup(ThingRequestGroup.Medicine))
-                if (!t.IsForbidden(Faction.OfPlayer)) meds += t.stackCount;
+            int meds = Avail.MedicineCount(map);
             if (meds < colonists.Count * 2)
             {
                 var healroot = DefDatabase<ThingDef>.GetNamedSilentFail("Plant_Healroot");

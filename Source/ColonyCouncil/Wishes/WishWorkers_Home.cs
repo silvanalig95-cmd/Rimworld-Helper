@@ -205,7 +205,8 @@ namespace ColonyCouncil
         public override bool IsFulfilled(Wish wish)
         {
             var bed = wish.Beneficiary.ownership?.OwnedBed;
-            return bed != null && wish.other != null && wish.other.ownership?.OwnedBed == bed;
+            // Two bunks of one bunk bed are still two beds.
+            return bed != null && wish.other != null && wish.other.ownership?.OwnedBed == bed && !Avail.IsBunkBed(bed.def);
         }
 
         public override bool StillValid(Wish wish)
@@ -220,7 +221,7 @@ namespace ColonyCouncil
         {
             var bed = wish.other?.ownership?.OwnedBed;
             var me = wish.Beneficiary;
-            if (bed == null || me.ownership == null || bed.Medical || !bed.AnyUnownedSleepingSlot) return null;
+            if (bed == null || me.ownership == null || bed.Medical || !bed.AnyUnownedSleepingSlot || Avail.IsBunkBed(bed.def)) return null;
             me.ownership.ClaimBedIfNonMedical(bed);
             return me.ownership.OwnedBed == bed ? "CC_SelfHelp_ShareBed" : null;
         }

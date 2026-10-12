@@ -242,12 +242,7 @@ namespace ColonyCouncil
                 case "firewood":
                     return Goal_Woodpile.Firewood(map);
                 case "medicine":
-                {
-                    int n = 0;
-                    foreach (var t in map.listerThings.ThingsInGroup(ThingRequestGroup.Medicine))
-                        if (!t.IsForbidden(Faction.OfPlayer)) n += t.stackCount;
-                    return n;
-                }
+                    return Avail.MedicineCount(map);
                 case "meals":
                     return WishWorker_BetterFood.MealStock(map, FoodPreferability.MealSimple);
                 case "finemeals":

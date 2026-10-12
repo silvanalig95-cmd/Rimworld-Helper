@@ -169,13 +169,7 @@ namespace ColonyCouncil
     /// <summary>A doctor wants the infirmary stocked: enough medicine for everyone, twice over.</summary>
     public class WishWorker_Infirmary : WishWorker
     {
-        public static int Medicine(Map map)
-        {
-            int n = 0;
-            foreach (var t in map.listerThings.ThingsInGroup(ThingRequestGroup.Medicine))
-                if (!t.IsForbidden(Faction.OfPlayer)) n += t.stackCount;
-            return n;
-        }
+        public static int Medicine(Map map) => Avail.MedicineCount(map);
 
         public override IEnumerable<WishCandidate> CandidatesFor(Pawn pawn)
         {
