@@ -841,6 +841,9 @@ Granting one of {PAWN_possessive} wishes, or keeping a promise, can win {PAWN_ob
   <CC_Settings_CouncilLife>Council life</CC_Settings_CouncilLife>
   <CC_Settings_Standards>Rising standards: the happy grow harder to please</CC_Settings_Standards>
   <CC_Settings_Standards_Tip>While colonists are happy, their standards creep up: the council's mood rewards shrink, letdowns sting more, and wishes come more often and ask for more. Hard times, and the austerity decree, bring standards back down.</CC_Settings_Standards_Tip>
+  <CC_Settings_SmallJoys>Small joys add up slowly</CC_Settings_SmallJoys>
+  <CC_Settings_SmallJoys_Tip>Rimfolk's small good moments (a laugh, a good talk, a contest won, an animal on warm feet) count with diminishing returns: the two biggest on a colonist's mind count in full, each one after that half as much as the one before. Bigger rewards, bad moods, and everything the game and other mods give are left alone.</CC_Settings_SmallJoys_Tip>
+  <CC_SmallJoy_Less>One of several small good things lately, so it counts for {0} of its full value.</CC_SmallJoy_Less>
   <CC_Reason_Standards>{PAWN_nameDef} has grown used to comfort, and the bedroom doesn't feel good enough anymore.</CC_Reason_Standards>
   <CC_Reason_StandardsFood>{PAWN_nameDef} has grown used to good food, and simple meals aren't enough anymore.</CC_Reason_StandardsFood>
   <CC_Standards_Modest>modest</CC_Standards_Modest>

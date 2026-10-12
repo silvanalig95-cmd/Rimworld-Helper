@@ -51,6 +51,8 @@ namespace ColonyCouncil
         public bool selfHelp = true;
         public bool allowQuitting = true;
         public bool risingStandards = true;
+        /// <summary>Small good moments count with diminishing returns when several are on a colonist's mind (SmallJoys).</summary>
+        public bool smallJoysDiminish = true;
         public bool enableDilemmas = true;
         public bool annals = true;
         public bool decreeRequests = true;
@@ -165,6 +167,7 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref selfHelp, "selfHelp", true);
             Scribe_Values.Look(ref allowQuitting, "allowQuitting", true);
             Scribe_Values.Look(ref risingStandards, "risingStandards", true);
+            Scribe_Values.Look(ref smallJoysDiminish, "smallJoysDiminish", true);
             Scribe_Values.Look(ref enableDilemmas, "enableDilemmas", true);
             Scribe_Values.Look(ref annals, "annals", true);
             Scribe_Values.Look(ref decreeRequests, "decreeRequests", true);
@@ -365,6 +368,7 @@ namespace ColonyCouncil
             l.CheckboxLabeled("CC_Settings_SelfHelp".Translate(), ref selfHelp, "CC_Settings_SelfHelp_Tip".Translate());
             l.CheckboxLabeled("CC_Settings_Quitting".Translate(), ref allowQuitting, "CC_Settings_Quitting_Tip".Translate());
             l.CheckboxLabeled("CC_Settings_Standards".Translate(), ref risingStandards, "CC_Settings_Standards_Tip".Translate());
+            l.CheckboxLabeled("CC_Settings_SmallJoys".Translate(), ref smallJoysDiminish, "CC_Settings_SmallJoys_Tip".Translate());
             l.CheckboxLabeled("CC_Settings_ForOthers".Translate(), ref wishesForOthers, "CC_Settings_ForOthers_Tip".Translate());
             l.CheckboxLabeled("CC_Settings_Petitions".Translate(), ref petitions, "CC_Settings_Petitions_Tip".Translate());
 
@@ -563,6 +567,7 @@ namespace ColonyCouncil
             selfHelp = d.selfHelp;
             allowQuitting = d.allowQuitting;
             risingStandards = d.risingStandards;
+            smallJoysDiminish = d.smallJoysDiminish;
             enableDilemmas = d.enableDilemmas;
             annals = d.annals;
             decreeRequests = d.decreeRequests;

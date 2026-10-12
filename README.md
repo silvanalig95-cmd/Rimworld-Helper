@@ -124,6 +124,13 @@ sting more, their patience runs shorter, and their wishes come more often and as
 level after that, fine meals instead of simple ones, luxuries. Hard times bring standards back down, and so does the
 austerity decree.
 
+**Small joys add up slowly.** Rimfolk's small good moments (a laugh, a good talk, a contest won, an animal asleep on
+someone's feet) are texture, not a mood engine: the two biggest on a colonist's mind count in full, and each one after
+that half as much as the one before, so a dozen of them lift a colonist about as much as three or four. Bigger
+rewards, bad moods and everything the game and other mods give count as they are. The reward strength setting and
+rising standards apply to these moments too. Hover a moment in the Needs tab to see when it counts for less; a
+setting turns this off.
+
 ### Decrees: spend the good mood
 When the colony is doing well, put that goodwill to work. The Decrees tab lets you declare up to two policies at a
 time for a few days: **long hours** (work faster), **rationing** (eat less), **drills** (everyone who can fight
@@ -687,7 +694,8 @@ journals, the Story tab and History) or **Important only**.
   - **Demanding**: downsides 50% stronger; bitter colonists may sulk
   - **Advisor only**: no mood effects at all
 - strength of downsides, jealousy and favoritism, wishes after events, reminders, self-help
-- wish frequency, how many can be open at once, how long they last, reward strength
+- wish frequency, how many can be open at once, how long they last, reward strength, and whether small joys add up
+  slowly
 - meeting interval and ambition deadlines
 - letters vs. messages, floating speech text, alerts
 - where the council button sits in the bottom bar

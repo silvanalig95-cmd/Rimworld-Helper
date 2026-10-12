@@ -75,9 +75,12 @@ namespace ColonyCouncil
     }
 
     /// <summary>The mod's memory thoughts: an ordinary memory that remembers why.</summary>
-    public class Thought_CouncilMemory : Thought_Memory, ICausedThought
+    public class Thought_CouncilMemory : Thought_Memory, ICausedThought, ICouncilMood
     {
         public string cause;
+
+        /// <summary>The council's scale was applied when it was given (else, a good one is scaled as it's felt).</summary>
+        public bool scaled;
 
         public string Cause
         {
@@ -85,7 +88,24 @@ namespace ColonyCouncil
             set => cause = value;
         }
 
-        public override string Description => Causes.Append(base.Description, cause);
+        public bool Scaled
+        {
+            set => scaled = value;
+        }
+
+        public float OwnOffset()
+        {
+            float own = base.MoodOffset();
+            return own > 0f && !scaled ? own * SmallJoys.LiveScale(pawn) : own;
+        }
+
+        public override float MoodOffset()
+        {
+            float own = OwnOffset();
+            return own > 0f ? own * SmallJoys.Factor(this) : own;
+        }
+
+        public override string Description => SmallJoys.Note(this, Causes.Append(base.Description, cause));
 
         public override bool TryMergeWithExistingMemory(out bool showBubble)
         {
@@ -97,13 +117,18 @@ namespace ColonyCouncil
         {
             base.ExposeData();
             Scribe_Values.Look(ref cause, "cause");
+            // Memories from before this was saved were all given through the council.
+            Scribe_Values.Look(ref scaled, "scaled", true);
         }
     }
 
     /// <summary>The mod's social memories (about someone): same, with the opinion effect.</summary>
-    public class Thought_CouncilSocial : Thought_MemorySocial, ICausedThought
+    public class Thought_CouncilSocial : Thought_MemorySocial, ICausedThought, ICouncilMood
     {
         public string cause;
+
+        /// <summary>The council's scale was applied when it was given (else, a good one is scaled as it's felt).</summary>
+        public bool scaled;
 
         public string Cause
         {
@@ -111,7 +136,24 @@ namespace ColonyCouncil
             set => cause = value;
         }
 
-        public override string Description => Causes.Append(base.Description, cause);
+        public bool Scaled
+        {
+            set => scaled = value;
+        }
+
+        public float OwnOffset()
+        {
+            float own = base.MoodOffset();
+            return own > 0f && !scaled ? own * SmallJoys.LiveScale(pawn) : own;
+        }
+
+        public override float MoodOffset()
+        {
+            float own = OwnOffset();
+            return own > 0f ? own * SmallJoys.Factor(this) : own;
+        }
+
+        public override string Description => SmallJoys.Note(this, Causes.Append(base.Description, cause));
 
         public override bool TryMergeWithExistingMemory(out bool showBubble)
         {
@@ -123,6 +165,8 @@ namespace ColonyCouncil
         {
             base.ExposeData();
             Scribe_Values.Look(ref cause, "cause");
+            // Memories from before this was saved were all given through the council.
+            Scribe_Values.Look(ref scaled, "scaled", true);
         }
     }
 }
