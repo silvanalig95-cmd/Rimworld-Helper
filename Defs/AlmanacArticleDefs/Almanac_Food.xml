@@ -713,7 +713,7 @@ In hydroponics they reach 1.77, only about 58% of what rice does, so keep potato
           <li>Pemmican | about 160% | Rots after 70 days; deteriorates 2 a day outdoors</li>
           <li>Packaged survival meal | 150% | Effectively never rots; deteriorates only 0.25 a day</li>
         </table>
-        <after>So pemmican and survival meals cost you some food for their long life.</after>
+        <after>Compared with an ordinary meal, pemmican and survival meals cost you some food for their long life.</after>
       </li>
       <li>
         <heading>Kibble</heading>
@@ -1206,7 +1206,7 @@ Sowing it needs Plants 10. Each plant yields 6, only 0.14 per tile per day on so
     <order>280</order>
     <summary>The drug crops: leaves for joints, psychite tea, flake and yayo</summary>
     <tip>Yayo takes twice as many psychoid leaves as flake or tea.</tip>
-    <description>Smokeleaf and psychoid are the drug crops. Their leaves feed the drug lab: smokeleaf becomes joints, and psychoid becomes psychite tea and flake (4 leaves each) or yayo (8 leaves). Grow them only if you mean to use or sell the drugs.</description>
+    <description>Smokeleaf and psychoid are the drug crops. Their leaves feed the drug lab: smokeleaf becomes joints, and psychoid becomes psychite tea (4 leaves), flake (4 leaves) or yayo (8 leaves). Grow them only if you mean to use or sell the drugs.</description>
     <sections>
       <li>
         <heading>The two crops</heading>

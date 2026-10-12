@@ -163,7 +163,7 @@ The other pages in this category are worth skimming once. Each covers a mistake 
     <order>40</order>
     <summary>Packaged survival meals are your emergency food; don't eat them in the first week</summary>
     <tip>Cook the fresh food first and keep the survival meals packed.</tip>
-    <description>The packaged survival meals you start with are the only food that practically never rots. Each gives 0.9 nutrition and barely deteriorates, so it is effectively permanent. Eat them in the first few days and the emergency food is gone before any emergency, for nothing: they taste "Simple", the same as a simple meal, so they gain you nothing in mood.</description>
+    <description>The packaged survival meals you start with are the only food that practically never rots. Each gives 0.9 nutrition and barely deteriorates, so it is effectively permanent. Eat them in the first few days and the emergency food is gone before any emergency. They taste "Simple", the same as a simple meal, so eating them early gains you nothing in mood either.</description>
     <sections>
       <li>
         <heading>Keeping them packed</heading>
@@ -283,7 +283,7 @@ A butcher table lowers cleanliness by about 15, and butchering spills blood: -10
           <li>Give Cooking to your best cook at priority 1, and keep unskilled pawns off the stove.</li>
           <li>Have someone clean the kitchen often. Sterile tiles (+0.6 cleanliness each) help.</li>
         </points>
-        <after>A batch bill poisons the whole batch at once, so one bad batch can sicken several colonists. Nutrient paste can never cause food poisoning.</after>
+        <after>A batch bill poisons the whole batch at once, which can make several colonists sick on the same day. Nutrient paste can never cause food poisoning.</after>
       </li>
     </sections>
     <keywords>
@@ -987,7 +987,7 @@ Keeping all overhead rock at or below -17 °C also prevents infestations, until 
           <li>Rebellion | When</li>
           <li>4 times as likely | A usable weapon is within 7 tiles of a slave, or in the same indoor room</li>
           <li>20 times as likely | No free colonist is on the map</li>
-          <li>1.7 times as likely | The room touches the map edge</li>
+          <li>1.7 times as likely | The slave is in a room touching the map edge</li>
         </table>
       </li>
       <li>
