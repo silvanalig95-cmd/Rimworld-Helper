@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Small irritations from the colony itself (Defs/EncounterDefs/Council_Encounters_Home.xml): a sticking door, a
+    leaking roof, a smoky room. One of each at a time, half a day to a day, never more than 2 mood. Fixing the cause
+    is the cure.
+  -->
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_Nuisance_StuckDoor</defName>
+    <durationDays>0.5</durationDays>
+    <stages><li><label>a door that sticks</label><description>That battered door sticks every time. Somebody ought to fix it before I take it off its hinges.</description><baseMoodEffect>-1</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_Nuisance_LeakyRoof</defName>
+    <durationDays>1</durationDays>
+    <stages><li><label>a leaking roof</label><description>There's a hole in the roof, and the weather knows exactly where it is.</description><baseMoodEffect>-2</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_Nuisance_SpoilingFood</defName>
+    <durationDays>0.5</durationDays>
+    <stages><li><label>a smell of spoiling food</label><description>Something in there is going off, and the flies have already moved in.</description><baseMoodEffect>-1</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_Nuisance_Cramped</defName>
+    <durationDays>1</durationDays>
+    <stages><li><label>no room to turn around</label><description>There's barely space to stand up where I sleep. I bang my shin on something every morning.</description><baseMoodEffect>-1</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_Nuisance_NoisyGenerator</defName>
+    <durationDays>1</durationDays>
+    <stages><li><label>a machine droning by my bed</label><description>That machine never stops. I can feel it in my teeth when I try to sleep.</description><baseMoodEffect>-2</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_Nuisance_SmokyRoom</defName>
+    <durationDays>0.5</durationDays>
+    <stages><li><label>a smoky room</label><description>The fire fills that small room with smoke. My eyes are still stinging.</description><baseMoodEffect>-1</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_Nuisance_LongWalk</defName>
+    <durationDays>0.5</durationDays>
+    <stages><li><label>a long walk to the table</label><description>My bed is at one end of the colony and the table is at the other. I'm starving before I get there.</description><baseMoodEffect>-1</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_Nuisance_Insects</defName>
+    <durationDays>0.5</durationDays>
+    <stages><li><label>bitten by insects</label><description>This place breeds mosquitoes by the cloud, and every one of them has found me.</description><baseMoodEffect>-1</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_Nuisance_AnimalFilth</defName>
+    <durationDays>0.5</durationDays>
+    <stages><li><label>stepped in animal filth</label><description>I stepped right in it. Somebody should be cleaning up after the animals.</description><baseMoodEffect>-1</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_Nuisance_Clutter</defName>
+    <durationDays>0.5</durationDays>
+    <stages><li><label>things lying everywhere</label><description>Nothing's where it should be. I spent the morning looking for things and tripping over others.</description><baseMoodEffect>-1</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_Nuisance_ShoddyClothes</defName>
+    <durationDays>1</durationDays>
+    <stages><li><label>shoddy clothes</label><description>Whoever made these was in a hurry. They pinch, they itch, and they come apart at the seams.</description><baseMoodEffect>-1</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_Nuisance_HardBed</defName>
+    <durationDays>1</durationDays>
+    <stages><li><label>slept on something hard</label><description>I could feel every lump in the floor through it. My back hasn't forgiven me yet.</description><baseMoodEffect>-1</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+</Defs>

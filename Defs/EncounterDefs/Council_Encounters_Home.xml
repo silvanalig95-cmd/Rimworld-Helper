@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Small irritations from the colony itself, the encounter system's solo category (Source/ColonyCouncil/Strangers/
+    Nuisances.cs). Each check reads the real map for one colonist (see NuisanceCheck), so a well-kept, roomy colony
+    rarely has these and a messy or cramped one has them often: fixing the door, the roof or the bed is the cure.
+    who: flavor tags for the colonist and the moment ("morning", "!trait:Ascetic"). children: kids can have it too.
+    Texts: {A_...} the colonist, {THING} the thing in question (door, shirt, generator, campfire). Third person, one or
+    two sentences, shown as a message and as a thought bubble. Never start a sentence with {A_pronoun}.
+  -->
+
+  <ColonyCouncil.NuisanceDef>
+    <defName>Council_Nuisance_StuckDoor</defName>
+    <label>a door that sticks</label>
+    <check>StuckDoor</check>
+    <children>true</children>
+    <weight>1</weight>
+    <cooldownDays>5</cooldownDays>
+    <thought>Council_Nuisance_StuckDoor</thought>
+    <texts>
+      <li>{A_nameDef} had to put {A_possessive} shoulder to the battered {THING} twice before it gave.</li>
+      <li>The damaged {THING} stuck again, and {A_nameDef} kicked it open, muttering.</li>
+      <li>{A_nameDef} lost a good minute wrestling with the warped {THING}.</li>
+    </texts>
+  </ColonyCouncil.NuisanceDef>
+
+  <ColonyCouncil.NuisanceDef>
+    <defName>Council_Nuisance_LeakyRoof</defName>
+    <label>a leaking roof</label>
+    <check>LeakyRoof</check>
+    <children>true</children>
+    <weight>1.2</weight>
+    <cooldownDays>3</cooldownDays>
+    <thought>Council_Nuisance_LeakyRoof</thought>
+    <texts>
+      <li>{A_nameDef} spent part of the day moving things out from under the drip in the roof.</li>
+      <li>{A_nameDef} set a bucket under the leak in the roof, and then a second bucket for the second leak.</li>
+      <li>[rain] Water dripping through the roof landed on the back of {A_nameDef}'s neck every time {A_pronoun} sat down.</li>
+      <li>[snow] Snow sifted in through the hole in the roof and settled in a cold drift where {A_nameDef} had to walk.</li>
+    </texts>
+  </ColonyCouncil.NuisanceDef>
+
+  <ColonyCouncil.NuisanceDef>
+    <defName>Council_Nuisance_SpoilingFood</defName>
+    <label>a smell of spoiling food</label>
+    <check>SpoilingFood</check>
+    <children>true</children>
+    <weight>1</weight>
+    <cooldownDays>4</cooldownDays>
+    <thought>Council_Nuisance_SpoilingFood</thought>
+    <texts>
+      <li>Flies found the {THING} before anyone else did, and {A_nameDef} spent the afternoon swatting them.</li>
+      <li>{A_nameDef} followed a sour smell to the {THING}, which should have gone somewhere cold days ago.</li>
+      <li>[summer|hot] The {THING} had started to turn in the heat, and {A_nameDef} could smell it from the doorway.</li>
+    </texts>
+  </ColonyCouncil.NuisanceDef>
+
+  <ColonyCouncil.NuisanceDef>
+    <defName>Council_Nuisance_Cramped</defName>
+    <label>no room to turn around</label>
+    <check>CrampedBedroom</check>
+    <who>morning|evening</who>
+    <children>true</children>
+    <weight>0.8</weight>
+    <cooldownDays>5</cooldownDays>
+    <thought>Council_Nuisance_Cramped</thought>
+    <texts>
+      <li>{A_nameDef} banged a shin on the bed frame getting up. There was no room to turn around in there.</li>
+      <li>{A_nameDef} got dressed with one elbow against the wall, as {A_pronoun} does every morning in that cramped room.</li>
+      <li>{A_nameDef} stubbed a toe on the furniture crammed in around {A_possessive} bed, for the third time this week.</li>
+    </texts>
+  </ColonyCouncil.NuisanceDef>
+
+  <ColonyCouncil.NuisanceDef>
+    <defName>Council_Nuisance_NoisyGenerator</defName>
+    <label>a machine droning by the bed</label>
+    <check>NoisyGenerator</check>
+    <who>morning</who>
+    <children>true</children>
+    <weight>1</weight>
+    <cooldownDays>4</cooldownDays>
+    <thought>Council_Nuisance_NoisyGenerator</thought>
+    <texts>
+      <li>The {THING} droned on the other side of the wall all night, and {A_nameDef} heard every minute of it.</li>
+      <li>{A_nameDef} lay awake listening to the {THING} rattle and hum, and got up tired.</li>
+      <li>{A_nameDef} stuffed cloth in {A_possessive} ears against the noise of the {THING} by {A_possessive} bed.</li>
+    </texts>
+  </ColonyCouncil.NuisanceDef>
+
+  <ColonyCouncil.NuisanceDef>
+    <defName>Council_Nuisance_SmokyRoom</defName>
+    <label>a smoky room</label>
+    <check>SmokyRoom</check>
+    <children>true</children>
+    <weight>1</weight>
+    <cooldownDays>4</cooldownDays>
+    <thought>Council_Nuisance_SmokyRoom</thought>
+    <texts>
+      <li>Smoke from the {THING} hung under the ceiling, and {A_nameDef}'s eyes were streaming within minutes.</li>
+      <li>{A_nameDef} came out of the room coughing and smelling of the {THING}.</li>
+      <li>[cold|winter] {A_nameDef} propped the door open to let the smoke from the {THING} out, and let the cold in instead.</li>
+    </texts>
+  </ColonyCouncil.NuisanceDef>
+
+  <ColonyCouncil.NuisanceDef>
+    <defName>Council_Nuisance_LongWalk</defName>
+    <label>a long walk to the table</label>
+    <check>LongWalk</check>
+    <who>morning|evening</who>
+    <children>true</children>
+    <weight>0.7</weight>
+    <cooldownDays>6</cooldownDays>
+    <thought>Council_Nuisance_LongWalk</thought>
+    <texts>
+      <li>{A_nameDef} made the long walk from bed to breakfast again, and was hungry and short-tempered by the time {A_pronoun} reached the table.</li>
+      <li>{A_nameDef} grumbled that it took longer to walk to the table than to eat at it.</li>
+      <li>[winter|cold] It was a long, cold walk from {A_nameDef}'s bed to the table, and {A_pronoun} made it with numb feet.</li>
+    </texts>
+  </ColonyCouncil.NuisanceDef>
+
+  <ColonyCouncil.NuisanceDef>
+    <defName>Council_Nuisance_Insects</defName>
+    <label>bitten by insects</label>
+    <check>Insects</check>
+    <who>morning|evening|night</who>
+    <children>true</children>
+    <weight>1</weight>
+    <cooldownDays>3</cooldownDays>
+    <thought>Council_Nuisance_Insects</thought>
+    <texts>
+      <li>Mosquitoes found {A_nameDef} the moment {A_pronoun} stepped outside, and followed {A_objective} all the way back in.</li>
+      <li>{A_nameDef} spent the evening slapping at biting flies and scratching the bites.</li>
+      <li>[night] The whine of mosquitoes kept {A_nameDef} swatting at the dark.</li>
+    </texts>
+  </ColonyCouncil.NuisanceDef>
+
+  <ColonyCouncil.NuisanceDef>
+    <defName>Council_Nuisance_AnimalFilth</defName>
+    <label>stepped in animal filth</label>
+    <check>AnimalFilth</check>
+    <children>true</children>
+    <weight>1</weight>
+    <cooldownDays>4</cooldownDays>
+    <thought>Council_Nuisance_AnimalFilth</thought>
+    <texts>
+      <li>{A_nameDef} stepped right in a pile of animal filth and had to scrape {A_possessive} boot on the doorstep.</li>
+      <li>{A_nameDef} found out where the animals had been the hard way, with {A_possessive} foot.</li>
+      <li>{A_nameDef} tracked animal filth across two rooms before noticing.</li>
+    </texts>
+  </ColonyCouncil.NuisanceDef>
+
+  <ColonyCouncil.NuisanceDef>
+    <defName>Council_Nuisance_Clutter</defName>
+    <label>things lying everywhere</label>
+    <check>Clutter</check>
+    <who>working</who>
+    <weight>0.8</weight>
+    <cooldownDays>5</cooldownDays>
+    <thought>Council_Nuisance_Clutter</thought>
+    <texts>
+      <li>{A_nameDef} picked a way through the things lying everywhere and still couldn't find what {A_pronoun} needed.</li>
+      <li>{A_nameDef} tripped over something that should have been put away days ago.</li>
+      <li>{A_nameDef} spent the start of {A_possessive} shift hunting through the mess for the right tools.</li>
+    </texts>
+  </ColonyCouncil.NuisanceDef>
+
+  <ColonyCouncil.NuisanceDef>
+    <defName>Council_Nuisance_ShoddyClothes</defName>
+    <label>shoddy clothes</label>
+    <check>ShoddyClothes</check>
+    <who>!trait:Ascetic</who>
+    <children>true</children>
+    <weight>0.6</weight>
+    <cooldownDays>6</cooldownDays>
+    <thought>Council_Nuisance_ShoddyClothes</thought>
+    <texts>
+      <li>The seams of {A_nameDef}'s {THING} split again, and {A_pronoun} spent the evening sewing them shut.</li>
+      <li>{A_nameDef}'s badly made {THING} itched and pinched all day.</li>
+      <li>{A_nameDef} caught {A_possessive} poorly stitched {THING} on a splinter and tore it again.</li>
+    </texts>
+  </ColonyCouncil.NuisanceDef>
+
+  <ColonyCouncil.NuisanceDef>
+    <defName>Council_Nuisance_HardBed</defName>
+    <label>slept on something hard</label>
+    <check>HardBed</check>
+    <who>morning,!trait:Ascetic</who>
+    <children>true</children>
+    <weight>0.8</weight>
+    <cooldownDays>6</cooldownDays>
+    <thought>Council_Nuisance_HardBed</thought>
+    <texts>
+      <li>{A_nameDef} woke up stiff from another night on the {THING}.</li>
+      <li>{A_nameDef} rubbed {A_possessive} back after a night on the {THING} and talked wistfully about real beds.</li>
+      <li>[cold|winter] The cold came up through the {THING} all night, and {A_nameDef} got up aching.</li>
+    </texts>
+  </ColonyCouncil.NuisanceDef>
+
+</Defs>
