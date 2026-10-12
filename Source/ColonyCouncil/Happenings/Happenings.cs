@@ -515,6 +515,8 @@ namespace ColonyCouncil
             Safe("orders", () => HappeningWorker_Order.Hourly(this, comp, now));
             // Later parts of the fourth batch: arrivals, caravans and fairs coming back, old memories fading, founding day.
             Safe("living", () => LivingEvents.Hourly(this, comp, now));
+            // The storyteller batch's own: ventures, campaigns and gifts coming back (Workers_Storyteller.cs).
+            Safe("storyteller events", () => StorytellerEvents.Hourly(this, comp, now));
             // Before the daily tidy-up, so a hunt whose leader just died is told before its memo goes.
             Safe("scenario", () => ScenarioStakes.Hourly(this, comp, now));
             if (now % GenDate.TicksPerDay < GenDate.TicksPerHour) Safe("event memory", Prune);
@@ -880,7 +882,7 @@ namespace ColonyCouncil
         /// Memos that are promises still running (a scenario's hunt or debt, an order, a caravan or a guest on the way):
         /// never dropped to make room, or the goods and people they stand for would vanish without a word.
         /// </summary>
-        private static bool Keeps(Memo m) => ScenarioStakes.Lasting(m) || LivingEvents.IsPending(m) || (m != null && !m.used && m.kind == "order");
+        private static bool Keeps(Memo m) => ScenarioStakes.Lasting(m) || LivingEvents.IsPending(m) || StorytellerEvents.IsPending(m) || (m != null && !m.used && m.kind == "order");
 
         private void Prune()
         {

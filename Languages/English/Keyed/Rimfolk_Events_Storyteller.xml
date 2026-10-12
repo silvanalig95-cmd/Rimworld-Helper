@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!-- The storyteller batch of world events (Source/ColonyCouncil/Happenings/Workers_Storyteller*.cs). Most of their
+       text is in their defs; these are the few words the code puts together. -->
+
+  <!-- Where something is, seen from the colony ({PLACE} in the event texts). -->
+  <CC_St_Dir_North>to the north</CC_St_Dir_North>
+  <CC_St_Dir_NorthEast>to the northeast</CC_St_Dir_NorthEast>
+  <CC_St_Dir_East>to the east</CC_St_Dir_East>
+  <CC_St_Dir_SouthEast>to the southeast</CC_St_Dir_SouthEast>
+  <CC_St_Dir_South>to the south</CC_St_Dir_South>
+  <CC_St_Dir_SouthWest>to the southwest</CC_St_Dir_SouthWest>
+  <CC_St_Dir_West>to the west</CC_St_Dir_West>
+  <CC_St_Dir_NorthWest>to the northwest</CC_St_Dir_NorthWest>
+  <CC_St_Dir_Near>close by</CC_St_Dir_Near>
+
+  <!-- Why an answer can't be given any more. -->
+  <CC_St_Gone>{0} is gone.</CC_St_Gone>
+  <CC_St_TheWreck>the wreck</CC_St_TheWreck>
+  <CC_St_TheStar>the fallen star</CC_St_TheStar>
+  <CC_St_NotPrisoner>{0} is no longer the colony's prisoner.</CC_St_NotPrisoner>
+  <CC_St_NoLongerAtWar>The colony is no longer at war with {0}.</CC_St_NoLongerAtWar>
+
+</LanguageData>

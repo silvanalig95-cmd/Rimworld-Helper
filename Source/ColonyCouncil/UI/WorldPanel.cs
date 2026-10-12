@@ -157,6 +157,11 @@ namespace ColonyCouncil
                     if (mm.kind == LivingEvents.KinComing || mm.kind == LivingEvents.Guest) icon = Icons.Visitor;
                     else if (mm.kind == LivingEvents.Market || mm.kind == LivingEvents.Fair) icon = Icons.Trader;
                 }
+                else if (StorytellerEvents.IsPending(mm))
+                {
+                    line = StorytellerEvents.WorldLine(mm, now);
+                    if (mm.kind == StorytellerEvents.Venture) icon = Icons.Trader;
+                }
                 if (line == null) continue;
                 timed.Add(new Entry
                 {
@@ -245,7 +250,7 @@ namespace ColonyCouncil
                 case "pilgrims":
                     return m.faction == null ? null : "CC_World_Pilgrims".Translate(m.faction.Name).Resolve();
                 default:
-                    return LivingEvents.MemoLine(m);
+                    return LivingEvents.MemoLine(m) ?? StorytellerEvents.MemoLine(m);
             }
         }
 
