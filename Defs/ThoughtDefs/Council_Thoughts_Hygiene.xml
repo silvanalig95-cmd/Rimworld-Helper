@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- Granted-wish memories for the Dubs Bad Hygiene wishes (Wishes_Hygiene.xml). They always load, so a saved memory
+       still finds its def if the mod is removed later; without the mod nobody gets them. -->
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_Granted_Toilet</defName>
+    <durationDays>5</durationDays>
+    <stages>
+      <li>
+        <label>somewhere to go</label>
+        <description>We have a proper place to go now, with walls around it. No more squatting behind the woodpile.</description>
+        <baseMoodEffect>4</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_Granted_WashPlace</defName>
+    <durationDays>4</durationDays>
+    <stages>
+      <li>
+        <label>somewhere to wash</label>
+        <description>There's somewhere to wash now. I finally got the dirt out from under my nails.</description>
+        <baseMoodEffect>4</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_Granted_HotWater</defName>
+    <durationDays>6</durationDays>
+    <stages>
+      <li>
+        <label>hot water</label>
+        <description>The water comes out hot now. Washing doesn't feel like a punishment anymore.</description>
+        <baseMoodEffect>4</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+</Defs>

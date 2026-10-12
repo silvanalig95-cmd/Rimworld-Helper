@@ -162,6 +162,8 @@ namespace ColonyCouncil
                 else comp.social.Weaken(a, b, def.changeTie, -def.change, note);
             }
             Notify.Message(text, new LookTargets(a, b), MessageTypeDefOf.SilentInput, def.notable ? Importance.Notable : Importance.Flavor);
+            // Into the social log too, where Interaction Bubbles picks it up (Integrations/SocialLog.cs).
+            SocialLog.Add(a, b, text);
             if (def.notable) comp.AddChronicle(new ChronicleEntry(ChronicleKind.Bond, text, a));
         }
     }

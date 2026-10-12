@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Wishes for Dubs Bad Hygiene. They always load (a saved wish must find its def even if the mod is removed later),
+    but their workers (Integrations/Hygiene.cs) need the mod's needs and fixtures, so without it they never come up.
+    They only ask for what the colony can build now: a latrine before Modern Fixtures, a water tub before Plumbing, a
+    hot water tank once Heating and Plumbing are done. {THING} is that fixture. The workers offer the bathroom plan
+    (which loads only with the mod). The bath wish (Wishes_Variety.xml) covers a real bath.
+  -->
+
+  <!-- ===================== Somewhere to go ===================== -->
+
+  <ColonyCouncil.WishDef>
+    <defName>Council_Wish_Toilet</defName>
+    <label>{THING}</label>
+    <description>Someone wants a latrine or toilet within reach, so nobody has to use the bushes or wait in line.</description>
+    <workerClass>ColonyCouncil.WishWorker_Toilets</workerClass>
+    <category>Comfort</category>
+    <weight>1</weight>
+    <expiryDays>8</expiryDays>
+    <cooldownDays>20</cooldownDays>
+    <grantedThought>Council_Granted_Toilet</grantedThought>
+    <allowPetition>true</allowPetition>
+    <envy>0</envy>
+    <talkInteraction>Council_Talk_Hygiene</talkInteraction>
+    <triggers>
+      <li>
+        <key>outside</key>
+        <thoughts><li>openDefecation</li><li>SoiledSelf</li></thoughts>
+        <boost>3</boost>
+      </li>
+    </triggers>
+    <fulfilledWhen>The colony builds {THING}, or any other latrine or toilet.</fulfilledWhen>
+    <request>
+      <plain>
+        <li>I'd like {THING} somewhere I don't have to cross half the map to reach.</li>
+        <li>[trigger:outside] I had to go behind the woodpile again this morning. Could we build {THING}?</li>
+        <li>[winter] Squatting in the snow is a miserable way to start the day. {THING}, please.</li>
+        <li>[night] Going out alone in the dark to relieve myself is how people get eaten. {THING} near the beds would do.</li>
+        <li>[large] There are too many of us for what we have. The line in the morning goes out the door.</li>
+        <li>[rain] Came back soaked to the knees from a trip that should have taken a minute.</li>
+        <li>[old] My knees don't like squatting anymore. A seat with walls around it would be a mercy.</li>
+      </plain>
+      <warm>
+        <li>It's not a glamorous thing to ask for, I know. {THING} would make everyone's mornings easier.</li>
+      </warm>
+      <blunt>
+        <li>Build {THING}. I'm done with the bushes.</li>
+      </blunt>
+      <cheerful>
+        <li>Picture it: {THING}, with walls and a door. I'd even take my turn cleaning it.</li>
+      </cheerful>
+      <gloomy>
+        <li>One day something will bite me out there while I'm squatting. Then maybe we'll get {THING}.</li>
+      </gloomy>
+      <cold>
+        <li>Waste left in the open draws flies and spreads sickness. {THING} costs less than an outbreak.</li>
+      </cold>
+    </request>
+    <thanks>
+      <plain>
+        <li>A seat, four walls and nobody watching. Thank you.</li>
+        <li>[large] No more line in the morning.</li>
+      </plain>
+      <warm><li>Thank you. I didn't think anyone wanted to hear about it.</li></warm>
+      <blunt><li>Good. About time.</li></blunt>
+      <cheerful><li>It has a door and everything!</li></cheerful>
+      <gloomy><li>One less thing to dread in the morning.</li></gloomy>
+      <cold><li>Sanitation sorted. Fewer of us will get sick.</li></cold>
+    </thanks>
+    <expired>
+      <plain><li>Back to the bushes, then.</li></plain>
+      <blunt><li>Fine. I'll keep using the woodpile.</li></blunt>
+      <gloomy><li>We'll all keep going outside until somebody gets sick.</li></gloomy>
+    </expired>
+    <reminder>
+      <plain>
+        <li>Still going behind the woodpile. Still hoping for {THING}.</li>
+        <li>[promised] You said we'd get {THING}. I've been counting the days, and the trips.</li>
+      </plain>
+      <blunt><li>The {THINGBARE}. You remember.</li></blunt>
+    </reminder>
+  </ColonyCouncil.WishDef>
+
+  <!-- ===================== Anywhere to wash ===================== -->
+
+  <ColonyCouncil.WishDef>
+    <defName>Council_Wish_WashPlace</defName>
+    <label>{THING}</label>
+    <description>A colonist who has gone grimy wants anywhere at all to wash.</description>
+    <workerClass>ColonyCouncil.WishWorker_WashPlace</workerClass>
+    <category>Comfort</category>
+    <weight>1</weight>
+    <expiryDays>8</expiryDays>
+    <cooldownDays>20</cooldownDays>
+    <grantedThought>Council_Granted_WashPlace</grantedThought>
+    <allowPetition>true</allowPetition>
+    <envy>0</envy>
+    <talkInteraction>Council_Talk_Hygiene</talkInteraction>
+    <fulfilledWhen>The colony has {THING}, or anywhere else to wash: a bathtub or a shower.</fulfilledWhen>
+    <wants>
+      <reason>{PAWN_nameDef} hasn't been able to wash in days and is starting to smell it.</reason>
+    </wants>
+    <request>
+      <plain>
+        <li>There's nowhere to wash. Not even a bucket. Could we build {THING}?</li>
+        <li>[hot] I've sweated through the same shirt for three days, and there's nowhere to rinse it out, or me.</li>
+        <li>[afterraid] The raid is still on my hands. I'd like somewhere to wash it off.</li>
+        <li>[work:Growing] I come in from the fields with half the field on me, and there's nowhere to wash it off.</li>
+        <li>[child] I'm all sticky and there's nowhere to wash.</li>
+      </plain>
+      <warm><li>{THING} would do for now. I'll fill it myself if I have to.</li></warm>
+      <blunt><li>I stink. Give me {THING}.</li></blunt>
+      <cheerful><li>A tub of water is all I'm asking for. I'll even share it.</li></cheerful>
+      <gloomy><li>I've started to smell like the midden. Maybe that's just who I am now.</li></gloomy>
+      <cold><li>Filth breeds disease, and {THING} is cheap.</li></cold>
+    </request>
+    <thanks>
+      <plain><li>I scrubbed until the water went gray. Thank you.</li></plain>
+      <warm><li>I feel like myself again.</li></warm>
+      <blunt><li>Better.</li></blunt>
+      <cheerful><li>Clean hands, clean face, clean everything!</li></cheerful>
+      <gloomy><li>Clean for now. It won't last.</li></gloomy>
+      <cold><li>Acceptable.</li></cold>
+    </thanks>
+    <expired>
+      <plain><li>I'll wash in the rain, then.</li></plain>
+      <gloomy><li>So I stay dirty.</li></gloomy>
+    </expired>
+    <reminder>
+      <plain><li>Still nowhere to wash. People have started standing upwind of me.</li></plain>
+    </reminder>
+  </ColonyCouncil.WishDef>
+
+  <!-- ===================== Hot water ===================== -->
+
+  <ColonyCouncil.WishDef>
+    <defName>Council_Wish_HotWater</defName>
+    <label>hot water</label>
+    <description>A bath or shower that should have been warm came out cold, and the colony knows how to heat water.</description>
+    <workerClass>ColonyCouncil.WishWorker_HotWater</workerClass>
+    <category>Comfort</category>
+    <weight>0.8</weight>
+    <expiryDays>12</expiryDays>
+    <cooldownDays>30</cooldownDays>
+    <grantedThought>Council_Granted_HotWater</grantedThought>
+    <allowPetition>true</allowPetition>
+    <envy>0</envy>
+    <talkInteraction>Council_Talk_Hygiene</talkInteraction>
+    <triggers>
+      <li>
+        <key>coldwater</key>
+        <thoughts><li>ColdWater</li></thoughts>
+        <boost>4</boost>
+      </li>
+    </triggers>
+    <fulfilledWhen>The colony has {THING} and a boiler to heat it.</fulfilledWhen>
+    <wants>
+      <reason>{PAWN_nameDef} washed in cold water today, and the colony knows how to heat it.</reason>
+    </wants>
+    <request>
+      <plain>
+        <li>[trigger:coldwater] The water was ice cold this morning. Could we get {THING} and a boiler to go with it?</li>
+        <li>[winter] Washing in cold water in winter is how people catch their death. We know how to heat it now.</li>
+        <li>A boiler and {THING}. Then a bath would actually be a bath.</li>
+      </plain>
+      <warm><li>Hot water would make the mornings kinder, for all of us.</li></warm>
+      <blunt><li>Cold water again. Heat it.</li></blunt>
+      <cheerful><li>Hot water, with steam coming off it! Imagine.</li></cheerful>
+      <gloomy><li>My teeth are still chattering from this morning's wash.</li></gloomy>
+      <cold><li>A cold wash puts people off washing. Heated water pays for itself.</li></cold>
+    </request>
+    <thanks>
+      <plain><li>The water came out steaming this morning. Thank you.</li></plain>
+      <warm><li>Everyone's in a better mood since the water got warm.</li></warm>
+      <blunt><li>Good. Hot.</li></blunt>
+      <cheerful><li>It steams! I stayed in until somebody knocked.</li></cheerful>
+      <gloomy><li>Warm, for once.</li></gloomy>
+      <cold><li>Good. Worth the wood.</li></cold>
+    </thanks>
+    <expired>
+      <plain><li>Cold water it is.</li></plain>
+      <blunt><li>Fine. I'll freeze.</li></blunt>
+    </expired>
+    <reminder>
+      <plain><li>The water's still cold.</li></plain>
+    </reminder>
+  </ColonyCouncil.WishDef>
+
+</Defs>

@@ -36,8 +36,8 @@
       <li>Keep a stack of wood beside every stew pot and leave auto-refuel on. Refueling is hauling work, so check the pots during a long raid, when nobody is hauling.</li>
       <li>Medieval Overhaul has its own cheese press and cheese. Build both presses only if you keep enough milk animals to supply them.</li>
       <li>Save gourmet meals for feasts, rituals and the noble's table, where their 12-hour effect counts most.</li>
-      <li>With Rimfolk: stews, grilled and baked meals, sushi and cheese count toward a gourmand's wish for better meals, each at its own meal grade. A bout of food poisoning makes that wish more likely.</li>
-      <li>With Rimfolk: the soy sauce fermenter counts as a brewing barrel for a colonist's wish for a brewery, even though it brews no drink.</li>
+      <li>With Rimfolk: stews, grilled and baked meals, sushi and cheese count toward a gourmand's wish for better meals, each at its own meal grade; a grill ruined by the cold doesn't. A fine grill or a gourmet dish counts as a birthday feast. A bout of food poisoning makes the better-meals wish more likely.</li>
+      <li>With Rimfolk: the soy sauce fermenter and the cheese press aren't brewing barrels, so they don't meet a colonist's wish for a brewery.</li>
     </advice>
     <keywords>
       <li>cooking</li>
@@ -86,8 +86,8 @@
       <li>If you mean to brew, plant extra corn, potatoes and berries. The casks take large batches.</li>
       <li>Give fighters vodka or tequila before a fight you can see coming, and workers whiskey on a day of heavy building. Set the drug policy so nobody drinks every day.</li>
       <li>Allow coffee every few days in the drug policy, not daily, to keep caffeine addiction away. It does the most good for colonists who are still raising their skills.</li>
-      <li>With Rimfolk: the whiskey cask, tequila barrel, gin still and ambrandy distillery count for a colonist's wish for a brewery; the vodka drum does not. The brewery room plan can swap its barrels for a tequila barrel or a gin still.</li>
-      <li>With Rimfolk: the liquors, tea, coffee, cigarettes and cigars all count for a colonist's wish for "something to drink or smoke" in the stores.</li>
+      <li>With Rimfolk: the whiskey cask, tequila barrel, gin still, vodka drum and ambrandy distillery count for a colonist's wish for a brewery. The brewery room plan can swap its barrels for a tequila barrel, a gin still or a vodka drum.</li>
+      <li>With Rimfolk: the liquors, cigarettes and cigars count for a colonist's wish for "something to drink or smoke" in the stores. Tea, coffee and soda don't: a teetotaler may drink them, so they aren't what that colonist is asking for. A cup of tea now and then makes it into someone's journal.</li>
     </advice>
     <keywords>
       <li>whiskey</li>
@@ -535,8 +535,8 @@
       <li>On day one, build a latrine, a water tub and a primitive well. Research Plumbing early so water comes by pipe instead of by bucket.</li>
       <li>Keep latrines, sewage outlets and burn pits away from wells, the kitchen and the hospital.</li>
       <li>DBH for Medieval, also in your list, adds pumps, toilets and baths that need no power. Its own page covers them.</li>
-      <li>With Rimfolk: a wish for a bath is met by a bathtub, hot tub or sauna, but also by a plain water tub or even a bath mat, so the wish often asks for one of those. There is no bathroom room plan yet, so place toilets and baths yourself.</li>
-      <li>With Rimfolk: a burn pit counts as a fire for a colonist who wants one in their bedroom. Don't build one there; a campfire, brazier or firepit meets the wish without making the sleeper sick.</li>
+      <li>With Rimfolk: the bathroom, bathhouse and sauna room plans place the fixtures the colony can build now, and the advisor counts toilets and places to wash. Colonists ask for a latrine, a water tub, a real bath or hot water when they need one.</li>
+      <li>With Rimfolk: the burn pit and the sauna heater never count as a heater for a bedroom. A campfire, brazier or firepit meets the wish for a fire of one's own.</li>
     </advice>
     <keywords>
       <li>hygiene</li>

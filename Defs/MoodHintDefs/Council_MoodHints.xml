@@ -584,7 +584,7 @@
   <ColonyCouncil.MoodHintDef>
     <defName>Council_Mood_Mod_Hygiene</defName>
     <nameContains><li>hygiene</li><li>bladder</li><li>toilet</li><li>bathroom</li><li>shower</li><li>washed</li></nameContains>
-    <fix>Dubs Bad Hygiene: build toilets and something to wash at (a wash bucket, bath or shower), keep water flowing, and give them time to wash.</fix>
+    <fix>Dubs Bad Hygiene: build toilets and something to wash at (a water tub, bath or shower), keep water flowing, and give them time to wash.</fix>
   </ColonyCouncil.MoodHintDef>
 
   <ColonyCouncil.MoodHintDef>

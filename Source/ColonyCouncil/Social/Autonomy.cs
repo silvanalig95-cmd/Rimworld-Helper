@@ -301,7 +301,8 @@ namespace ColonyCouncil
 
         private static bool AnyFreeBed(Pawn p) =>
             p.Map.listerBuildings.allBuildingsColonist.OfType<Building_Bed>()
-                .Any(b => !b.Medical && b.def.building.bed_humanlike && !b.ForPrisoners && b.OwnersForReading.Count < b.SleepingSlotsCount && !b.IsBurning());
+                .Any(b => !b.Medical && b.def.building.bed_humanlike && !b.ForPrisoners && b.OwnersForReading.Count < b.SleepingSlotsCount && !b.IsBurning()
+                          && !GuestBeds.IsGuestBed(b));
 
         /// <summary>A sheltered room to sleep in: indoors, in the home area, not a kitchen, hospital, prison or the like.</summary>
         private static Room Shelter(Pawn p)

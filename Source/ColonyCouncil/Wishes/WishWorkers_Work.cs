@@ -388,7 +388,7 @@ namespace ColonyCouncil
             foreach (var t in map.listerThings.ThingsInGroup(ThingRequestGroup.FoodSourceNotPlantOrTree))
             {
                 if (t.def.ingestible != null && t.def.ingestible.preferability >= atLeast && t.def.ingestible.preferability <= FoodPreferability.MealLavish
-                    && !t.IsForbidden(Faction.OfPlayer)) n += t.stackCount;
+                    && !t.IsForbidden(Faction.OfPlayer) && !Cuisine.IsSpoiledMeal(t.def)) n += t.stackCount;
             }
             return n;
         }
@@ -397,8 +397,8 @@ namespace ColonyCouncil
         {
             var pref = wish.subjectKey == FoodPreferability.MealSimple.ToString() ? FoodPreferability.MealSimple : FoodPreferability.MealFine;
             return MealStock(wish.Beneficiary.MapHeld, pref) >= wish.targetValue
-                   || (pref == FoodPreferability.MealFine && HasMemory(wish.Beneficiary, "AteFineMeal"))
-                   || HasMemory(wish.Beneficiary, "AteLavishMeal");
+                   || (pref == FoodPreferability.MealFine && Cuisine.FineMealThoughts.Any(t => HasMemory(wish.Beneficiary, t)))
+                   || Cuisine.LavishMealThoughts.Any(t => HasMemory(wish.Beneficiary, t));
         }
 
         public override string ProgressText(Wish wish)

@@ -279,7 +279,8 @@ everyone's mood and trust.
 32 ready-made rooms, grouped by purpose: bedrooms of three sizes, barracks, dining room, rec room, kitchen,
 butcher's room, freezer, heat shelter (no power needed), storeroom, brewery, greenhouse, barn, workshop, smithy,
 tailor's shop, art studio, laboratory, drug lab, hospitals, crypt, crematorium, prison cell and barracks,
-armory, battery room, meditation and throne rooms (Royalty), classroom and nursery (Biotech).
+armory, battery room, meditation and throne rooms (Royalty), classroom and nursery (Biotech). With Dubs Bad
+Hygiene also a bathroom, bathhouse and sauna; with Hospitality a guest room.
 
 Pick one from this tab or from the **"rooms"** button in the bottom bar. A color-coded preview
 follows the mouse, and a planner panel lets you:
@@ -365,6 +366,25 @@ defs are edited. A few things it does on purpose:
   talk.
 - **Removing a mod mid-game:** room plans that used a material from that mod fall back to a default material,
   and people who vanished with it are quietly forgotten.
+
+### Home life mods
+Each of these switches itself on only when its mod is there, and only asks for what the colony can build now:
+- **Dubs Bad Hygiene:** bathroom, bathhouse and sauna room plans that pick the era's fixtures (a latrine and a
+  water tub at first, a basin and a bathtub with Plumbing, a toilet and a shower with Modern Fixtures). The advisor
+  counts toilets (about one for every six colonists) and notices when nobody can wash or people fall sick from dirty
+  water. Colonists ask for a latrine, somewhere to wash, a real bath (a water tub or a sauna isn't one) or, once
+  Heating is researched, hot water; their journals mention hot baths, cold water and the walk to the bushes. The
+  burn pit and the sauna heater are never offered as a bedroom heater.
+- **Hospitality:** a guest room plan. A guest bed never counts as a free bed for a colonist.
+- **Vanilla Cooking and Brewing Expanded:** grills and gourmet dishes count as fine or lavish meals for birthday
+  feasts, better-meal wishes and journals; grills ruined by the cold don't count. Tea, coffee and soda aren't
+  "something to drink" for a brewer or a colonist with a taste for chemicals.
+- **Vanilla Outposts Expanded:** a wish waits while its colonist is posted at an outpost (up to five days, then it
+  lapses and nobody is blamed), and people out there write home in their journals now and then.
+- **RimHUD:** four lines for its pawn panel (trust, open wish, office, life goal). In RimHUD's settings, Content tab,
+  use "Add third-party".
+- **Interaction Bubbles:** social events and encounters with visitors, traders and animals now go into the social
+  log too, so they show as bubbles like Rimfolk's moments and wish talk.
 
 ## Why am I feeling this?
 Every mood Rimfolk gives says what caused it, under the description in its tooltip: whose wish came true (or
@@ -540,7 +560,8 @@ journals, the Story tab and History) or **Important only**.
 ## Optional mods that go well with it
 
 - **Interaction Bubbles** by Jaxe (search the Steam Workshop): shows social-log conversations as speech
-  bubbles, so colonists grumbling about their wishes appears above their heads.
+  bubbles, so colonists grumbling about their wishes, Rimfolk's moments and social events appear above their heads.
+- **RimHUD** by Jaxe: can show trust, the open wish, office and life goal in its pawn panel (see above).
 
 ## Status and feedback
 

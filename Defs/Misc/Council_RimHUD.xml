@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    RimHUD widgets (RimHUD 1.6, its "custom value" API, version 1). They load only with RimHUD (MayRequire). RimHUD calls
+    the static GetParameters(Pawn) of each defClass (Source/ColonyCouncil/Integrations/RimHud.cs) by reflection, so
+    Rimfolk needs no reference to it. Add them to a layout in RimHUD's settings, among the third-party widgets.
+  -->
+
+  <RimHUD.CustomValueDef MayRequire="jaxe.rimhud">
+    <defName>Council_Hud_Trust</defName>
+    <label>Rimfolk: trust in the council</label>
+    <textStyle>Small</textStyle>
+    <defClass>ColonyCouncil.RimHud_Trust</defClass>
+    <apiVersion>1</apiVersion>
+  </RimHUD.CustomValueDef>
+
+  <RimHUD.CustomValueDef MayRequire="jaxe.rimhud">
+    <defName>Council_Hud_Wish</defName>
+    <label>Rimfolk: open wish</label>
+    <textStyle>Small</textStyle>
+    <defClass>ColonyCouncil.RimHud_Wish</defClass>
+    <apiVersion>1</apiVersion>
+  </RimHUD.CustomValueDef>
+
+  <RimHUD.CustomValueDef MayRequire="jaxe.rimhud">
+    <defName>Council_Hud_Office</defName>
+    <label>Rimfolk: office</label>
+    <textStyle>Small</textStyle>
+    <defClass>ColonyCouncil.RimHud_Office</defClass>
+    <apiVersion>1</apiVersion>
+  </RimHUD.CustomValueDef>
+
+  <RimHUD.CustomValueDef MayRequire="jaxe.rimhud">
+    <defName>Council_Hud_Goal</defName>
+    <label>Rimfolk: life goal</label>
+    <textStyle>Small</textStyle>
+    <defClass>ColonyCouncil.RimHud_Goal</defClass>
+    <apiVersion>1</apiVersion>
+  </RimHUD.CustomValueDef>
+
+</Defs>

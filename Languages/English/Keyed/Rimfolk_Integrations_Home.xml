@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!-- ===================== Home-life mods (Source/ColonyCouncil/Integrations) ===================== -->
+
+  <!-- Room plan roles for mod furniture (what a plan can't build yet: "The colony can't build ... yet") -->
+  <CC_Role_toilet>toilets or latrines</CC_Role_toilet>
+  <CC_Role_wash>basins or water tubs</CC_Role_wash>
+  <CC_Role_bath>showers or bathtubs</CC_Role_bath>
+  <CC_Role_saunaheater>sauna heaters</CC_Role_saunaheater>
+
+  <!-- Dubs Bad Hygiene: advisor -->
+  <CC_Hyg_Adv_NoToilet_Title>No latrine or toilet</CC_Hyg_Adv_NoToilet_Title>
+  <CC_Hyg_Adv_NoToilet_Detail>{0} colonist(s) have nowhere to go but out in the open, at a mood penalty each time. Even {1} would put a stop to it.</CC_Hyg_Adv_NoToilet_Detail>
+  <CC_Hyg_Adv_FewToilets_Title>Too few toilets</CC_Hyg_Adv_FewToilets_Title>
+  <CC_Hyg_Adv_FewToilets_Detail>{0} colonists share {1} toilet(s). Someone is always waiting, and whoever can't wait goes outside. About one for every six keeps the line short; build {2} near the bedrooms.</CC_Hyg_Adv_FewToilets_Detail>
+  <CC_Hyg_Adv_NoWash_Title>Nowhere to wash</CC_Hyg_Adv_NoWash_Title>
+  <CC_Hyg_Adv_NoWash_Detail>{0} colonist(s) have nowhere to get clean. Hygiene falls and mood with it, and bad hygiene raises the chance of food poisoning. Even {1} would do for now.</CC_Hyg_Adv_NoWash_Detail>
+  <CC_Hyg_Adv_SickWater_Title>{0} colonist(s) sick from dirty water</CC_Hyg_Adv_SickWater_Title>
+  <CC_Hyg_Adv_SickWater_Detail>{0} have dysentery, cholera or diarrhea. Dubs Bad Hygiene spreads them through dirty water and poor hygiene: look for a well near sewage, a latrine or a burn pit, or a contaminated water tower.</CC_Hyg_Adv_SickWater_Detail>
+
+  <!-- Dubs Bad Hygiene: why a colonist wants a toilet -->
+  <CC_Hyg_Reason_NoToilet>There's no latrine or toilet in the colony, so {PAWN_nameDef} has to go out in the open.</CC_Hyg_Reason_NoToilet>
+  <CC_Hyg_Reason_FewToilets>{COUNT} people share {HAVE} toilet(s), and {PAWN_nameDef} is tired of waiting.</CC_Hyg_Reason_FewToilets>
+
+  <!-- RimHUD lines -->
+  <CC_Hud_Trust>Trust</CC_Hud_Trust>
+  <CC_Hud_Trust_Tip>{0}'s trust in the council: {1}. Bitter at -45 or lower, devoted at 60 or higher.</CC_Hud_Trust_Tip>
+  <CC_Hud_Wish>Wish</CC_Hud_Wish>
+  <CC_Hud_Office>Office</CC_Hud_Office>
+  <CC_Hud_Goal>Life goal</CC_Hud_Goal>
+  <CC_Hud_None>none</CC_Hud_None>
+
+</LanguageData>

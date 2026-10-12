@@ -54,7 +54,8 @@ namespace ColonyCouncil
     /// <summary>A birthday coming up: they'd like a feast, or at least a party.</summary>
     public class WishWorker_Birthday : WishWorker
     {
-        private static readonly string[] Treats = { "AteFineMeal", "AteLavishMeal", "AttendedParty", "AteInImpressiveDiningRoom" };
+        private static readonly string[] Treats = Cuisine.FineMealThoughts.Concat(Cuisine.LavishMealThoughts)
+            .Concat(new[] { "AttendedParty", "AteInImpressiveDiningRoom" }).ToArray();
 
         public override IEnumerable<WishCandidate> CandidatesFor(Pawn pawn)
         {
@@ -144,9 +145,12 @@ namespace ColonyCouncil
 
         private static HashSet<ThingDef> socialDrugs;
 
-        /// <summary>Beer, smokeleaf and the like (worked out once; big mod lists have a lot of things to look through).</summary>
+        /// <summary>
+        /// Beer, smokeleaf and the like (worked out once; big mod lists have a lot of things to look through). Not tea,
+        /// coffee or soda, which teetotalers may drink (Vanilla Brewing Expanded makes them social drugs).
+        /// </summary>
         public static HashSet<ThingDef> SocialDrugs => socialDrugs ?? (socialDrugs = new HashSet<ThingDef>(DefDatabase<ThingDef>.AllDefsListForReading
-            .Where(d => d.IsDrug && d.ingestible != null && d.ingestible.drugCategory == DrugCategory.Social)));
+            .Where(d => d.IsDrug && d.ingestible != null && d.ingestible.drugCategory == DrugCategory.Social && !Cuisine.IsSoftDrink(d))));
 
         public static int Stock(Map map) => SocialDrugs.Sum(d => map.resourceCounter.GetCount(d));
 
