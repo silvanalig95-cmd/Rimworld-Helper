@@ -623,5 +623,9 @@ Please share them so they can be fixed.
   dotnet run --project Tools/DefValidator -- . ~/.nuget/packages/krafs.rimworld.ref/<version>/ref/net472 1.6/Assemblies/ColonyCouncil.dll
   ```
 - `Tools/Tests/`: tests for the room rotation and mirroring math (`dotnet run --project Tools/Tests`).
+- `Source/ColonyCouncil/UI/UiKit.cs`: the small interface kit every council page is drawn with (colors, spacing,
+  page headers, cards, tags, meters, portraits). New pages should use it so they look like the rest.
+- `Tools/make_icons.py`: draws the interface icons into `Textures/ColonyCouncil/Icons/` and a contact sheet of
+  them, `Tools/icons_preview.png` (needs Pillow: `pip install pillow`).
 - Wishes, advice checks, ambitions, room templates, flavor pools and almanac pages are all data-driven XML.
   Lines can carry tags (`[winter,trigger:raid]`) so they're used when they fit. See [DESIGN.md](DESIGN.md).
