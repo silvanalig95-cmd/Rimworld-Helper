@@ -477,6 +477,14 @@ medieval things). Many ask the council what to do, with a day or so to answer.
   Magic), a **strange creature** your best handler can try to win over (Alpha Animals), travelers asking to use your
   **bath** or sauna (Dubs Bad Hygiene), and a **guest of note** who writes ahead and judges your guest room when they
   come (Hospitality).
+- **Strangers who make camp.** Now and then a group that isn't hostile settles part of your map for days to a
+  season: a **hunting party** following a herd, a **refugee family**, **prospectors**, **pilgrims** at rest,
+  **traders** with a stall, a **traveling smith**, a **hermit** who builds a hut. They build the camp themselves,
+  cook at their fire, hunt and fell trees around it (never near your home area), trade, sometimes help, and may ask
+  to join. Let them stay, set terms (a fee, a share of their meat, keeping to their side, a time limit), hire some of
+  them, ask them to move on (a gift helps), or drive them off. Tension grows the longer they stay and the more they
+  take; trade, gifts and friendships ease it. The World page shows the camp and lets you talk to them. One camp at a
+  time, never in a colony's first twenty days, with its own switch.
 
 Some events pick up where an earlier one left off: the **deserter**'s old unit tracks them down; the **lost child**
 you walked home comes back years later, grown, with a gift; a **champion** you beat comes back for a rematch (or one
@@ -602,7 +610,8 @@ journals, the Story tab and History) or **Important only**.
 - **council life**: decrees, dilemmas, petitions, annals, names, journals, offices, the social web, social
   events, life goals, secrets, vendettas, eulogies, heirlooms, coming of age, quirks, dreams and dream omens, encounters with strangers, nemeses (and whether they return), pets, the
   colony's character, each on its own switch
-- **world events**: on or off, whether they may bring fights, and how often (about every 4 days by default)
+- **world events**: on or off, whether they may bring fights, whether groups may make camp on the map, and how often
+  (about every 4 days by default)
 - **how often** the smaller things happen: moments with strangers and animals, moments between colonists, social
   events and dreams, each from a quarter as often to three times as often
 

@@ -52,7 +52,11 @@ Things that happen to the colony from outside, on Rimfolk's own rhythm, written 
   colony's founding day, seasonal ones (a harvest fair, a winter-night traveler, the thaw), a caravan to a far
   market, and four that need a mod (A RimWorld of Magic, Alpha Animals, Dubs Bad Hygiene, Hospitality). Things on
   their way show on the World page.
-- Next: more events per group.
+- Done: camps. Seven kinds of group (hunters, refugees, prospectors, pilgrims, traders, a smith, a hermit) settle
+  part of the map for days to a season: they build their camp from blueprints, live there, hunt and fell trees
+  around it, trade, help, ask to join, and bend terms; the colony sets terms, hires, gives gifts, asks them to go or
+  drives them off. Tension, letters, chronicle lines, journals and the World page follow it.
+- Next: more events per group; camps that use tent mods' tents when present.
 
 ## Phase H2: Scenarios with stakes (done)
 - Done: six scenarios (Hot Money, Marooned, Deserters, Bad Blood, Borrowed Time, The Fallen Tyrant) built from six
