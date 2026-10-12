@@ -13,8 +13,8 @@
     <order>300</order>
     <mods><li>torann.arimworldofmagic</li></mods>
     <summary>Mage and fighter classes, a Magic research tab, enchanting, golems and magical threats</summary>
-    <tip>The fire mage is worth three archers until his mana runs dry. Then he's worth one cook.</tip>
-    <description>A RimWorld of Magic gives some colonists a class. Mages spend mana on spells, fighters spend stamina on combat techniques, and every class levels up its own ability tree. The mod also adds a Magic research tab, enchanting, golems, portals and new magical dangers, and enemy classes use their powers against you. Nearly all of it sits at tribal or medieval tech, so it fits a medieval game well.</description>
+    <tip>A mage who runs out of mana has to wait for it to refill, so keep archers on the wall beside them.</tip>
+    <description>A RimWorld of Magic gives some colonists a class. Mages spend mana on spells, fighters spend stamina on combat techniques, and every class levels up its own ability tree. The mod also adds a Magic research tab, enchanting, golems, portals and new magical dangers, and enemy classes use their powers against you. Nearly all of it is tribal or medieval tech, so it suits a medieval game.</description>
     <facts>
       <li>Classes are traits. The mod lists over 35 of them, from fire, ice and lightning mages to druids, priests, necromancers, paladins, rangers, gladiators and monks.</li>
       <li>A colonist who is "magically gifted" or "physically adept" has the talent but no class yet. An arcane tome (such as Arcane Tome: Fire) or a combat manual (such as Combat Style: Ranger) teaches them one.</li>
@@ -26,7 +26,7 @@
     <advice>
       <li>Check every newcomer's traits for magically gifted or physically adept, and keep any tome or manual you find for them.</li>
       <li>Keep someone mining rock by hand: it is the only steady source of magicyte for enchanting.</li>
-      <li>In a raid, find the enemy mage first. A single caster can do more damage than the rest of the raid.</li>
+      <li>In a raid, target enemy mages first: one caster can do more damage than the rest of the raid.</li>
       <li>Psycasts from Vanilla Psycasts Expanded run on their own, so a colony can have both mages and psycasters.</li>
       <li>With Rimfolk: raised undead and spirits are not counted as people, so they make no wishes, keep no journals and form no friendships, and an enemy undead can't become a nemesis.</li>
     </advice>
@@ -55,7 +55,7 @@
     <order>305</order>
     <mods><li>vanillaexpanded.vpsycastse</li></mods>
     <summary>Psycasts rebuilt as a level-up tree with fifteen paths, from empath to conflagrator</summary>
-    <tip>Meditate, they said. It'll calm you, they said. Then he learned to throw fire tornadoes.</tip>
+    <tip>Meditation gives a psycaster experience, and each new level brings points to spend.</tip>
     <description>Vanilla Psycasts Expanded replaces Royalty's fixed list of psycasts with a role-playing system. A psycaster gains experience by meditating, levels up, and spends points on abilities in one or more paths or on their own psychic stats. Rarely, enemies send their own psycasters against you. It needs Royalty, and it can't be removed from a save.</description>
     <facts>
       <li>Fifteen paths: empath, skipmaster, conflagrator, protector, warlord, chronopath, archotechist, necropath, staticlord, archon, frostshaper, wildspeaker, harmonist, technomancer and nightstalker.</li>
@@ -98,7 +98,7 @@
     <order>310</order>
     <mods><li>devdesigner.elves.continued</li></mods>
     <summary>Wood, dark and high elves as xenotypes, with six factions, elven gear and two new beasts</summary>
-    <tip>An elf stops aging at thirty. Her opinion of your carpentry stopped long before that.</tip>
+    <tip>An elf stops aging at thirty and keeps that face for the rest of a long life.</tip>
     <description>Elves (Continued) adds wood, dark and high elves as Biotech xenotypes, six medieval elven factions, three playable elven starts, elven weapons and armor, the ancient deer and the Cold One. These elves are long-lived humans: their ageless gene slows aging from age 13 and stops it entirely at 30.</description>
     <facts>
       <li>Three xenotypes: wood elf, dark elf (aggressive) and high elf. All are pretty, long-haired, beardless and point-eared.</li>
@@ -108,7 +108,7 @@
       <li>New animals: the ancient deer, which gives milk and wool, and the Cold One, an egg-laying reptile its description calls a dark elf mount.</li>
     </facts>
     <advice>
-      <li>Research your own house's equipment early: the gear is medieval and fits right into this modlist.</li>
+      <li>Research your own house's equipment early: the gear is medieval and fits the rest of this modlist.</li>
       <li>Expect raids from the savage and rough elves. They carry bows and crossbows, so build cover along your walls.</li>
       <li>Before recruiting an elf, check their genes with Xenotype Summary's button.</li>
       <li>With Rimfolk: the council reads biological age, which the ageless gene holds at about 30, so elves never count as old and stay able to set their heart on having a child.</li>
@@ -139,7 +139,7 @@
     <order>315</order>
     <mods><li>det.stoneborn</li></mods>
     <summary>Short, bearded, short-tempered master miners and builders, with their own dwarven clan</summary>
-    <tip>Never insult a stoneborn's beard. Never praise it either. Just leave the beard alone.</tip>
+    <tip>Put a stoneborn in the mine and leave them to it; they're happiest underground.</tip>
     <description>The Stoneborn are a Biotech xenotype of stout, bearded dwarves who live for mining, building and crafting. They are superb at all three, but slow, nearsighted, poor with people and quick to fight. The mod also adds a stoneborn clan faction made up entirely of dwarves.</description>
     <facts>
       <li>Strong aptitude for mining and construction and a remarkable one for crafting; terrible at social work and poor with animals.</li>
@@ -181,7 +181,7 @@
     <order>320</order>
     <mods><li>arquebus.stagzmerfolk</li></mods>
     <summary>Two merfolk xenotypes who need water, swim fast, sing and charm</summary>
-    <tip>Keep the merren near the river. A dry merren is a sad merren, and soon a dead one.</tip>
+    <tip>A merren far from water goes looking for rain or a river, and if she finds none she can die.</tip>
     <description>Merren are merfolk. Coastal merren are friendly swimmers and singers; abyssal merren are aggressive storm-callers with great psychic power. Both have fish tails and a hydration need, so they must reach rain or open water regularly. Its package id still carries the project's working name, Stagz Merfolk.</description>
     <facts>
       <li>Hydration refills in rain, marsh and rivers. At zero a merren dehydrates and can die; they go looking for water on their own when it runs low.</li>
@@ -193,8 +193,8 @@
     </facts>
     <advice>
       <li>Settle merren near a river or marsh, or in a rainy biome, and keep their work close to water.</li>
-      <li>You run Dubs Bad Hygiene: turn on the bath option in the mod settings if you want baths to keep merren watered.</li>
-      <li>Charm people sparingly. Two times in three, a charmed recruit will eventually walk out or turn on you.</li>
+      <li>Dubs Bad Hygiene is in your list: turn on the bath option in the mod settings if you want baths to keep merren watered.</li>
+      <li>Charm people sparingly, and watch a charmed recruit closely for the first 15 days: two times in three, they leave or turn on you.</li>
       <li>Keep abyssal merren out of the midday sun where you can.</li>
     </advice>
     <keywords>
@@ -221,7 +221,7 @@
     <order>325</order>
     <mods><li>onlymonkey.awakenedapes</li></mods>
     <summary>Five sapient ape xenotypes, from gentle gorillas to jittery monkeys</summary>
-    <tip>The orangutan built the finest chair in the colony. The chimp broke it over a raider.</tip>
+    <tip>The bonobo settled the quarrel in the kitchen before it came to blows.</tip>
     <description>Awakened Apes adds five playable ape xenotypes, each with its own strengths and temper. They speak broken English, so their social skills count for half, and they can only have children with their own species. It is a community update of an older monkey xenotype mod.</description>
     <facts>
       <li>Gorillas: strong, gentle haulers who are peaceful until provoked.</li>
@@ -261,8 +261,8 @@
     <order>330</order>
     <mods><li>sarg.alphagenes</li></mods>
     <summary>Over 300 new genes, new xenotypes, abandoned biotech labs and gene tools</summary>
-    <tip>One more gene, she said. Now the cook glows in the dark and eats gravel.</tip>
-    <description>Alpha Genes floods Biotech with new genes, from small tweaks to game changers, and more than a dozen new xenotypes. Two new factions are built from xenotypes you design yourself. Abandoned biotech lab quests and genetic tools let you collect and change genes during play, which matters in a medieval game where gene machines are probably out of reach.</description>
+    <tip>Strangers from the xenohuman union may carry xenotypes you designed yourself.</tip>
+    <description>Alpha Genes adds a great many genes to Biotech, from small tweaks to very strong ones, and more than a dozen new xenotypes. Two new factions are built from xenotypes you design yourself. Abandoned biotech lab quests and genetic tools let you collect and change genes during play, which matters in a medieval game where gene machines are probably out of reach.</description>
     <facts>
       <li>More than 300 new genes, by the mod's own count.</li>
       <li>A "custom random" xenotype puts your own xenotype designs into two new factions: the civil xenohuman union and the xenohuman pirate gang.</li>
@@ -299,7 +299,7 @@
     <order>335</order>
     <mods><li>vanillaexpanded.vgeneticse</li></mods>
     <summary>Hybrid animals from mixed genomes; in a medieval game, mostly a source of monsters</summary>
-    <tip>Somewhere out there is a lab that crossed a boomalope with a warg. Don't go looking for it.</tip>
+    <tip>We can't build the genetics labs, but the hybrid monstrosities still find their way to us.</tip>
     <description>Vanilla Genetics Expanded lets a colony extract animal genomes and grow hybrid creatures in a genetics lab. All of its research is industrial or spacer tier, and Rimedieval limits your research to medieval, so you won't build the labs. What still reaches you are abandoned lab quests and the occasional pack of roaming monstrosities.</description>
     <facts>
       <li>Its five genetics projects are industrial tier and mechahybridization is spacer tier.</li>
@@ -337,7 +337,7 @@
     <order>340</order>
     <mods><li>sarg.alphamemes</li></mods>
     <summary>New memes, structures, styles and rituals, including a whole set of funerals</summary>
-    <tip>We buried him in a pyramid. He'd have complained about the stairs.</tip>
+    <tip>We buried him in a pyramid, as our creed asks.</tip>
     <description>Alpha Memes adds new memes, ideoligion structures and a huge number of building and apparel styles, plus rituals such as sparring matches, rodeos, baptisms and many kinds of funeral. Memes are chosen when you found your ideoligion, so plan them before the game starts.</description>
     <facts>
       <li>Its heaviest memes reshape a colony: deep devotion (live underground), pain is divine and naked truth.</li>
@@ -378,7 +378,7 @@
     <order>345</order>
     <mods><li>vanillaexpanded.vmemese</li></mods>
     <summary>Dozens of memes and structures, from aristocratic and republic to craft culture, with rituals to match</summary>
-    <tip>The wicker man burned for an hour. The argument over who builds next year's lasted all winter.</tip>
+    <tip>We built a wicker man from our own lumber and burned it for the ritual.</tip>
     <description>Memes and Structures adds a long list of memes and religious structures to pick when you found your ideoligion, many with their own rituals, buildings, roles and needs. Plenty suit a medieval realm: aristocratic, royal, republic, craft culture, city builders, bushido, fire worship, nomad and elders.</description>
     <facts>
       <li>Leadership memes: aristocratic, royal, god emperor, exalted priesthood, and republic, which adds a second and a third triumvir.</li>
@@ -419,7 +419,7 @@
     <order>350</order>
     <mods><li>vanillaexpanded.viesas</li></mods>
     <summary>A big colony can split into two rival ideoligions</summary>
-    <tip>Two creeds, one dining table. Pass the salt carefully.</tip>
+    <tip>After the schism, some of our people followed the new creed and the rest kept the old one.</tip>
     <description>Splits and Schisms adds the ideological schism: once your colony is big enough, part of it can break away into a new ideoligion that differs from yours by a meme or two. The two creeds then compete inside the colony until one of them is gone, and only then can another schism happen.</description>
     <facts>
       <li>The new ideoligion is close to the old one, with one or two different memes.</li>
@@ -458,7 +458,7 @@
       <li>vanillaexpanded.ideo.relicsandartifacts</li>
     </mods>
     <summary>More ideoligion symbols, and dozens of new relics including helmets and armor</summary>
-    <tip>Our relic is a rusty gauntlet. Theirs is a gauntlet too, but they polish it.</tip>
+    <tip>Our relic is an old knight's helmet, chosen when the creed was founded.</tip>
     <description>Two small Vanilla Ideology Expanded modules that widen your choices when you design an ideoligion. Both take effect when an ideoligion is created, so they matter most at the start of a game.</description>
     <facts>
       <li>Icons and Symbols: over 200 new ideoligion icons, tagged so they only appear on fitting ideoligions.</li>
@@ -466,7 +466,7 @@
     </facts>
     <advice>
       <li>A crown, helmet or blade shard makes a fitting relic for a medieval creed.</li>
-      <li>Use the relic picker's search bar to find a fitting item among the hundreds on offer.</li>
+      <li>Use the relic picker's search bar to find a particular item among the hundreds on offer.</li>
       <li>Both can be added mid-game, but they only affect ideoligions created afterwards.</li>
     </advice>
     <keywords>
@@ -492,7 +492,7 @@
     <order>360</order>
     <mods><li>vanillaexpanded.vanillatraitsexpanded</li></mods>
     <summary>More than 50 new traits, and a switch to stop any trait from appearing</summary>
-    <tip>The kleptomaniac swears the silver jumped into his pocket. All of it. Twice.</tip>
+    <tip>A drunken master hits harder with every drink in him.</tip>
     <description>Vanilla Traits Expanded adds dozens of traits: some bring new mechanics, some are quirky story traits and some are plain stat boosts. Its mod options can also switch off any trait, from the base game or another mod, so it stops appearing on new pawns.</description>
     <facts>
       <li>More than 50 new traits, such as drunken master, mad surgeon, heavy sleeper, kleptomaniac, perfectionist, snob, vengeful, wanderlust and workaholic.</li>
@@ -533,7 +533,7 @@
       <li>sierra.rt.vanillatraitcolors</li>
     </mods>
     <summary>46 smaller attribute traits, and trait labels colored by how rare they are</summary>
-    <tip>A green trait means it's common. It doesn't mean he's any good.</tip>
+    <tip>The rarer the trait, the stronger it tends to be.</tip>
     <description>RimTraits - General Traits adds smaller traits that describe a pawn's body and mind, in tiers that get rarer as they get stronger. RimTraits - Vanilla Trait Colors recolors trait labels by how common they are, using the same scheme, for the base game and a few supported mods.</description>
     <facts>
       <li>General Traits: 46 traits; some exclude each other, and the stronger tiers are rarer.</li>
@@ -566,7 +566,7 @@
     <order>365</order>
     <mods><li>battlemage64.peoplecanchange</li></mods>
     <summary>Colonists slowly gain, lose or shift traits as the years go by</summary>
-    <tip>He came here a pessimist. Three good harvests later, he hums.</tip>
+    <tip>After a long stretch of good moods, she turned optimist.</tip>
     <description>People Can Change lets colonists change over time: they can gain a trait, lose one, or move up or down a trait's scale. Some changes follow from what they live through, such as long happiness or misery, eating human meat or getting used to a new body.</description>
     <facts>
       <li>New traits stop at a maximum, 4 by default; a minimum can be set as well.</li>
@@ -606,7 +606,7 @@
       <li>sarg.alphaskills</li>
     </mods>
     <summary>Permanent expertise, and new passions like natural, critical, apathy and many conditional ones</summary>
-    <tip>Critical passion for cooking. Can't hold a sword to save his life, but my word, the stew.</tip>
+    <tip>A critical passion for cooking makes a fast-learning cook and a slow learner at everything else.</tip>
     <description>Vanilla Skills Expanded lets a colonist with a passion and a high skill pick one permanent expertise, a specialty within that skill. It also adds three passions: apathy, natural and critical. Alpha Skills builds on it with dozens more passions, many of which switch on only under certain conditions, and more expertises.</description>
     <facts>
       <li>Learning speed by passion: none 35%, interested 100%, burning 150%, apathy 25%, natural 200% and critical 300%.</li>
@@ -618,7 +618,7 @@
     <advice>
       <li>Choose expertise carefully, as it can't be undone; pick what the colony lacks, such as weaponsmithing or surgery.</li>
       <li>Keep natural-passion colonists working at their skill, or they lose it fast.</li>
-      <li>Match conditional passions to the job: night owls on night shifts, rainy-day learners outdoors in the rain.</li>
+      <li>Match conditional passions to the work: put colonists with the night passion on night shifts, and those with the rainy day passion outdoors when it rains.</li>
       <li>With Rimfolk: passions are judged by how fast they make someone learn. Apathy counts as no passion, natural and critical count as burning, and an Alpha Skills passion that switches on and off counts by its current state.</li>
     </advice>
     <keywords>
@@ -646,8 +646,8 @@
     <order>375</order>
     <mods><li>vanillaexpanded.vanillasocialinteractionsexpanded</li></mods>
     <summary>Richer free time: best friends, venting, teaching, dates, gatherings and aspirations</summary>
-    <tip>Two best friends, one jug of beer, and a long talk about the cook behind his back.</tip>
-    <description>Vanilla Social Interactions Expanded changes what colonists do in their spare time. They make best friends, vent to friends, teach each other, go on dates, and gather for meals, walks, drinks and parties. Aspirations and a reworked inspiration system add moods to chase. Every mechanic can be switched off in the mod options.</description>
+    <tip>After supper, a few of them went out together to look at the stars.</tip>
+    <description>Vanilla Social Interactions Expanded changes what colonists do in their spare time. They make best friends, vent to friends, teach each other, go on dates, and gather for meals, walks, drinks and parties. Aspirations give colonists short goals to chase, and inspirations are reworked. Every mechanic can be switched off in the mod options.</description>
     <facts>
       <li>Mechanics: memories, inspiration changes, gaining new traits, venting, friends and best friends, teaching, discord, group activities, dating and more.</li>
       <li>Group activities include a meal together, a walk, grabbing a beer, skygazing, viewing art, building snowmen, parties, birthday parties and funerals.</li>
@@ -684,7 +684,7 @@
     <order>380</order>
     <mods><li>rince.gaulishgojuice</li></mods>
     <summary>A druid's Gaulish potion: go-juice for colonies with no drug lab</summary>
-    <tip>Only the druid knows what goes in it. The druid also won't drink it. Make of that what you will.</tip>
+    <tip>Our druid brews the potion over the fire, and only she knows the rest of the recipe.</tip>
     <description>Medieval Go-juice adds a Gaulish potion brewed by druids, so medieval and tribal colonies, and their go-juice-hungry Hussars, aren't left without it. It needs no research, but it needs a rare brewer: a good cook who is also a scholar. The potion doesn't keep for long, so brew it shortly before you need it.</description>
     <facts>
       <li>Brewed at a fueled cooking station, with no research needed.</li>
@@ -730,7 +730,7 @@
       <li>vanillaracesexpanded.customicons</li>
     </mods>
     <summary>Small helpers that make traits, xenotypes and skill gains easier to read</summary>
-    <tip>The little icon next to his name is a skull. Maybe don't make him the cook.</tip>
+    <tip>With the trait icons, you can read a newcomer's bio tab at a glance.</tip>
     <description>Four small interface mods in your list. None of them change the game's balance; they make it easier to see who your people are and what they can do.</description>
     <facts>
       <li>Level Up!: a notice whenever a colonist gains a skill level, with a cooldown so skill decay doesn't flood you with messages.</li>
@@ -768,7 +768,7 @@
       <li>vanillaexpanded.backgrounds</li>
     </mods>
     <summary>New hairstyles and a barber's table, sharper vanilla hair, and new menu backgrounds</summary>
-    <tip>New hair, same colonist. He still won't haul.</tip>
+    <tip>The barber's table can trim a beard, change a hairstyle or dye hair a new color.</tip>
     <description>Three cosmetic mods in your list. They change how your people and the game's menus look, not how the game plays.</description>
     <facts>
       <li>Vanilla Hair Expanded: about a hundred new hairstyles in the base game's style, and a barber's table in the Misc tab (75 wood or metal plus 20 steel) to change hair, hair color and beard.</li>
@@ -776,7 +776,7 @@
       <li>Vanilla Backgrounds Expanded: new main menu and loading screen backgrounds, which you can pick and cycle in the mod options. It adds menu art, not pawn backstories.</li>
     </facts>
     <advice>
-      <li>Build the barber's table from wood if steel is scarce; it still needs its 20 steel.</li>
+      <li>Build the barber's table from wood to save metal, but have its 20 steel ready.</li>
       <li>Use the barber's table to tell lookalike colonists apart at a glance.</li>
       <li>Vanilla Hair Expanded can be added or removed mid-game, and its barber's table finds hairstyles from every hair mod.</li>
     </advice>

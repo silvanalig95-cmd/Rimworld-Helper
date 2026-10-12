@@ -9,19 +9,19 @@
     <category>Council</category>
     <order>1</order>
     <summary>How wishes work, and what granting, promising, refusing and ignoring do.</summary>
-    <tip>A promise kept is worth three wishes granted. A promise broken costs more than all three.</tip>
-    <description>Colonists voice wishes that fit their situation, their traits and what the colony can actually build. Each wish has a deadline. Grant it and they're pleased, motivated and trust the council more; let it lapse and it stings. Promising buys patience but raises the stakes; refusing honestly hurts a little now and is over.</description>
+    <tip>Don't promise a bed you don't have the wood for.</tip>
+    <description>Colonists make wishes that fit their situation, their traits and what the colony can actually build. Each wish has a deadline. Grant it and the colonist is pleased, gets motivated and trusts the council more; let it lapse and they take it badly. Promising buys more time, but a broken promise costs more than a lapse. Refusing costs a little now, and then it's settled.</description>
     <facts>
-      <li>A granted wish always makes the colonist motivated (faster work for a few days), more so if promised.</li>
-      <li>The happier a colonist already is, the more likely a granted wish inspires them instead: creativity, a work or shooting frenzy, recruiting, surgery.</li>
-      <li>Promising adds half the remaining time plus two days, and +4 trust now; breaking it costs far more than an ordinary lapse.</li>
-      <li>Some wishes act on a promise straight away: promising a party calls one, promising a hunt marks the prey.</li>
-      <li>Out of patience, colonists sometimes do it themselves: plan the lamp, take the bed, set their own work priorities. They trust the council less for it.</li>
-      <li>Others react: friends are happy for them, the jealous feel passed over, and some will object out loud.</li>
+      <li>A granted wish always makes the colonist motivated (faster work for a few days), more so if it was promised.</li>
+      <li>The happier a colonist already is, the more likely a granted wish gives them an inspiration instead: creativity, a work or shooting frenzy, recruiting, surgery.</li>
+      <li>Promising adds half the remaining time plus two days to the deadline, and gives +4 trust right away; breaking the promise costs far more than an ordinary lapse.</li>
+      <li>Some wishes are acted on as soon as you promise them: promising a party calls one, and promising a hunt marks the prey.</li>
+      <li>Colonists who run out of patience sometimes do it themselves: they plan the lamp, take the bed or set their own work priorities, and trust the council less for it.</li>
+      <li>Other colonists react too: friends are happy for them, the jealous feel passed over, and some object openly.</li>
     </facts>
     <advice>
       <li>Promise only what you'll actually do in time.</li>
-      <li>Refuse what you won't do. A clean no beats a lapse.</li>
+      <li>Refuse what you won't do. A refusal costs less than letting the wish lapse.</li>
       <li>Watch for wishes that come with objections: granting them pleases one colonist and annoys another.</li>
     </advice>
     <keywords><li>wish</li><li>promise</li><li>refuse</li><li>trust</li><li>inspiration</li></keywords>
@@ -34,17 +34,17 @@
     <category>Council</category>
     <order>2</order>
     <summary>Bitter to devoted: what trust does to mood, work and loyalty.</summary>
-    <tip>People forgive a poor colony. They don't forgive being ignored.</tip>
-    <description>Every colonist has a level of trust in the council: bitter, doubtful, neutral, trusting or devoted. It rises with granted wishes, kept promises and heeded petitions, falls with lapses, refusals and broken promises, and slowly drifts back towards neutral. It shows in the Wishes tab, with its history in the tooltip.</description>
+    <tip>Answer every wish, even when the answer is no.</tip>
+    <description>Every colonist has a level of trust in the council: bitter, doubtful, neutral, trusting or devoted. It rises with granted wishes, kept promises and heeded petitions, falls with lapses, refusals and broken promises, and slowly drifts back toward neutral. It shows in the Wishes tab, with its history in the tooltip.</description>
     <facts>
-      <li>Trusting and devoted colonists work and learn faster and break less (shown in the health tab as "loyal to the council").</li>
-      <li>Doubtful and bitter colonists work slower and snap sooner ("grudge against the council").</li>
+      <li>Trusting and devoted colonists work and learn faster and have fewer mental breaks (shown in the Health tab as "loyal to the council").</li>
+      <li>Doubtful and bitter colonists work slower and break sooner ("grudge against the council").</li>
       <li>Trusting colonists are more patient with their wishes; bitter ones less so.</li>
       <li>On Demanding stakes, a colonist who stays bitter for days may announce they're leaving, and walk out three days later unless their trust recovers. Children, anyone whose partner stays, and colonies of fewer than four never lose someone this way.</li>
       <li>Living under a decree they hate wears trust down day by day; one they love builds it.</li>
     </facts>
     <advice>
-      <li>When someone announces they're leaving, grant one of their wishes or keep a promise: that's usually enough.</li>
+      <li>When someone announces they're leaving, grant one of their wishes or keep a promise to them. That is usually enough to make them stay.</li>
       <li>Check the trust list before big decisions: it tells you who can take a disappointment and who can't.</li>
     </advice>
     <keywords><li>trust</li><li>bitter</li><li>devoted</li><li>quit</li><li>leave</li><li>loyalty</li></keywords>
@@ -56,19 +56,19 @@
     <label>rising standards</label>
     <category>Council</category>
     <order>3</order>
-    <summary>Comfort breeds expectations: why a happy colony gets harder to please.</summary>
-    <tip>Feed them fine meals for a season and simple ones start to taste like an insult.</tip>
-    <description>While a colonist is happy, their standards creep up from modest to comfortable, particular and spoiled. High standards shrink the council's rewards and sharpen its disappointments. Hard times bring them back down, and so does the austerity decree.</description>
+    <summary>Why a happy colony gets harder to please, and how to bring its standards back down.</summary>
+    <tip>Feed them fine meals for a season and they'll start complaining about simple ones.</tip>
+    <description>While a colonist is happy, their standards creep up from modest to comfortable, particular and spoiled. High standards make the council's rewards count for less and its letdowns hurt more. Hard times bring them back down, and so does the austerity decree.</description>
     <facts>
       <li>Standards rise while mood is above about 70%, faster above 85%; ascetics barely rise, the greedy and jealous rise faster.</li>
       <li>They fall while mood is below 40%, slowly in between, and quickly under austerity.</li>
       <li>Spoiled colonists get half the mood from the council's rewards and about 40% more from its letdowns.</li>
-      <li>They're less patient, voice wishes more often, reach for luxuries, and ask for more: two impressiveness levels instead of one, fine meals instead of simple ones.</li>
+      <li>Spoiled colonists are less patient, make wishes more often, reach for luxuries, and ask for more: two impressiveness levels instead of one, fine meals instead of simple ones.</li>
       <li>Feasts, festivals and bonfires raise everyone's standards a little.</li>
     </facts>
     <advice>
       <li>If the whole colony is particular or spoiled, a week of austerity resets expectations cheaply.</li>
-      <li>Not every celebration has to happen. Saying no now keeps the next yes worth something.</li>
+      <li>You don't have to hold every celebration. Turning down a feast or a festival now and then keeps standards from climbing.</li>
     </advice>
     <keywords><li>standards</li><li>spoiled</li><li>expectations</li><li>austerity</li></keywords>
     <seeAlso><li>Council_Alm_C_Decrees</li><li>Council_Alm_2_14_Expectations</li></seeAlso>
@@ -79,24 +79,24 @@
     <label>decrees</label>
     <category>Council</category>
     <order>4</order>
-    <summary>Trade mood for output: long hours, rationing, drills and the rest.</summary>
-    <tip>A happy colony is a colony you can push. Push it before something else does.</tip>
-    <description>The Decrees tab puts policies in force for a few days: up to two at once, each with a cooldown afterwards. Each trades mood (and sometimes trust) for something the colony needs, or, like festival days and days of mourning, the other way round. The tab shows who will love or hate each one before you decide.</description>
+    <summary>Policies that trade mood for output: long hours, rationing, drills and more.</summary>
+    <tip>Call long hours while the colony is happy, not once it's already miserable.</tip>
+    <description>The Decrees tab puts policies in force for a few days: up to two at once, each with a cooldown afterwards. Each trades mood (and sometimes trust) for something the colony needs, or, like festival days and days of mourning, the other way around. The tab shows who will love or hate each one before you decide.</description>
     <facts>
       <li>Long hours: work 15% faster. Rationing: hunger 25% slower. Drills: everyone who can fight trains shooting and melee every waking hour.</li>
       <li>Study hours: learning 30% and research 20% faster. Harvest push, building season, clean sweep: faster at one kind of work.</li>
       <li>Best behavior: better negotiating, recruiting and trade prices. On guard: better aim and melee, more tiredness.</li>
       <li>Austerity: no new wishes, standards fall fast. Festival days: a big mood lift, work much slower, standards rise.</li>
-      <li>Days of mourning: only while someone grieves; grief fades much faster and nobody breaks as easily.</li>
+      <li>Days of mourning: only while someone grieves; grief fades much faster and mental breaks are less likely.</li>
       <li>Colonists sometimes petition for a decree when the moment fits. Declaring it within five days wins their trust.</li>
-      <li>The same decree again within 30 days wears thin. For each recent time, those against it lose more trust in the council and resent it 35% more while it lasts.</li>
+      <li>Repeating a decree within 30 days makes it harder to bear. For each recent time, those against it lose more trust in the council and resent it 35% more while it lasts.</li>
       <li>A decree still on cooldown can be forced through, at a price: it counts as one more recent time, and those against it take it badly.</li>
       <li>Each repeat can make someone snap: a 20% chance per recent time, 15% more when forced, at most 80%. The hot-tempered throw a tantrum; others wander off in a daze.</li>
       <li>Each decree also says something about the colony: long hours make it more hard-working, festivals more easygoing and traditional, being on guard more guarded.</li>
     </facts>
     <advice>
       <li>Pair a hated decree with a short one people love, or follow it with festival days.</li>
-      <li>Ration before winter, not during it. Drill before raids grow, not after.</li>
+      <li>Start rationing before winter, while there's still food to save, and run drills while raids are still small.</li>
       <li>Space out the decrees people hate. If you must repeat one, the tab shows how many times it was used this month and the chance someone snaps.</li>
       <li>Force a decree through only in an emergency, and keep the hot-tempered busy and away from the stores while it lasts.</li>
     </advice>
@@ -110,16 +110,16 @@
     <category>Council</category>
     <order>5</order>
     <summary>Hard choices where every answer costs someone something.</summary>
-    <tip>There's no right answer. There's only the answer you can live with, and the people who can't.</tip>
-    <description>Every week or so, more often while everyone is content, the council is asked to settle something: a thief, a feud, a stash, a feast, a confession, a duel, the spoils of a raid. A letter lists the answers. Colonists react according to their nature, and some answers are gambles. Answer within the time given, or the council's silence decides.</description>
+    <tip>Whatever the council decides, someone at the table will hold it against them.</tip>
+    <description>Every week or so, more often while everyone is content, the council is asked to settle something: a thief, a feud, a stash, a feast, a confession, a duel, the spoils of a raid. A letter lists the answers. Colonists react according to their nature, and some answers are gambles. If you don't answer in time, the default answer is taken.</description>
     <facts>
-      <li>Some answers take real things from the stores: food, wood, silver. They're greyed out if you can't afford them.</li>
+      <li>Some answers take real things from the stores: food, wood, silver. They're grayed out if you can't afford them.</li>
       <li>Seasonal dilemmas (midsummer, harvest home, the longest night, naming the year) and after-battle ones (the spoils, the enemy dead, a victory feast) come up at their moment.</li>
       <li>Every dilemma and its answer is written into the chronicle and counted in the year's annals.</li>
     </facts>
     <advice>
       <li>Check the trust list first: a colonist who is already doubtful takes being overruled much harder.</li>
-      <li>When kind colonists and hard ones are both present, the "fair" answer usually upsets fewest.</li>
+      <li>When kind colonists and hard ones are both present, the "fair" answer usually upsets the fewest people.</li>
     </advice>
     <keywords><li>dilemma</li><li>choice</li><li>letter</li><li>feud</li><li>thief</li></keywords>
     <seeAlso><li>Council_Alm_C_Trust</li></seeAlso>
@@ -131,8 +131,8 @@
     <category>Council</category>
     <order>6</order>
     <summary>How the colony remembers its people and its years.</summary>
-    <tip>Write it down. In a hundred years, the annals are all anyone will know about us.</tip>
-    <description>Whoever has done the most of something earns a name for it (the Healer, Deadeye, the Kindling) until someone overtakes them. Each year since a colonist joined is marked. And when a new year begins, the colony's best reader or talker writes the annals of the year that ended.</description>
+    <tip>Write the year down before people start remembering it differently.</tip>
+    <description>Whoever has done the most of something earns a name for it (the Healer, Deadeye, the Kindling) until someone overtakes them. Each year since a colonist joined is marked. When a new year begins, the colony's best reader or talker writes the annals of the year that ended.</description>
     <facts>
       <li>Names come from the colonist's records: wounds tended, operations, kills, headshots, things built, rock mined, harvests, meals, animals tamed, prisoners recruited, research, crafting, fires fought, and less flattering ones like messes cleaned, times on fire or mental breaks.</li>
       <li>A name moves to someone else only when they're clearly ahead (by about 15%).</li>
@@ -148,8 +148,8 @@
     <category>Council</category>
     <order>7</order>
     <summary>Speaker, marshal, quartermaster, physician, steward: who holds them and what they do.</summary>
-    <tip>The colony votes for who it likes. Sometimes that's even who it needs.</tip>
-    <description>The council has five seats. Each gives its holder an edge and does a job for the whole colony. Colonists elect them once a year, voting for whoever is good at the job, has the right nature for it, and is liked. The council can appoint or dismiss anyone from the Decrees tab, but overruling the vote has a price.</description>
+    <tip>The colony votes for the people it likes, not always the ones who are best at the job.</tip>
+    <description>The council has five seats. Each gives its holder a bonus and helps the whole colony in some way. Colonists elect them once a year, voting for whoever is good at the job, has the right nature for it, and is liked. The council can appoint or dismiss anyone from the Decrees tab, but overruling the vote has a cost.</description>
     <facts>
       <li>Speaker: chairs every council meeting; everyone's trust rises a little each day.</li>
       <li>Marshal: drills train half again as fast; the colony aims and strikes a little better.</li>
@@ -157,13 +157,13 @@
       <li>Physician: everyone heals and fights off illness a little faster.</li>
       <li>Steward: standards rise a quarter more slowly; the steward gets more out of recreation.</li>
       <li>The first election comes after about a week, then one every new year. An empty seat is refilled by a by-election a few days later.</li>
-      <li>Nobody holds two offices. Children, slaves and lodgers can't stand.</li>
+      <li>No one can hold two offices. Children, slaves and lodgers can't run.</li>
       <li>Votes follow skill, traits and friendship: friends and members of the same circle vote for each other, rivals against.</li>
       <li>Losing an election or a seat sours the loser on the winner, and can start a rivalry.</li>
     </facts>
     <advice>
-      <li>Appoint over the vote only when the difference matters. The one who was elected will remember.</li>
-      <li>A good speaker is the cheapest trust you'll ever buy.</li>
+      <li>Overrule the vote only when the difference matters. The colonist who won the election will remember it.</li>
+      <li>A good speaker slowly raises everyone's trust, at no cost to you.</li>
     </advice>
     <keywords><li>office</li><li>election</li><li>vote</li><li>speaker</li><li>marshal</li><li>quartermaster</li><li>physician</li><li>steward</li></keywords>
     <seeAlso><li>Council_Alm_C_Trust</li><li>Council_Alm_C_Social</li></seeAlso>
@@ -175,7 +175,7 @@
     <category>Council</category>
     <order>8</order>
     <summary>What the colony keeps doing becomes expected.</summary>
-    <tip>Do something twice and it's a habit. Do it three times and you'll never hear the end of it if you stop.</tip>
+    <tip>Hold the midsummer feast two years running and they'll expect it every year after.</tip>
     <description>Some seasonal dilemmas have an answer the colony can make its own: a midsummer feast, a harvest celebration, a vigil on the longest night. Choose the same answer two years running and it becomes a tradition. From then on it comes up first every year, keeping it pleases everyone, and breaking it disappoints them.</description>
     <facts>
       <li>The letter says when a choice is a tradition, and when choosing it again will make one.</li>
@@ -195,25 +195,25 @@
     <category>Council</category>
     <order>9</order>
     <summary>The bonds between colonists: how they form, grow, sour and end, and what they change.</summary>
-    <tip>You can order people to work together. You can't order them to like it.</tip>
+    <tip>Colonists who work side by side don't always end up friends.</tip>
     <description>Colonists form lasting bonds out of how they feel about each other and what they go through. Steady liking turns into friendship, steady loathing into rivalry, fighting side by side into comradeship, and a skilled colonist may take an eager learner under their wing. Every bond has a strength and a short history, shown in the Social tab of the council window.</description>
     <facts>
       <li>Friends and rivals form when two colonists' opinions of each other stay high (or low) enough. A bond then drifts with how they feel, and ends when it fades to nothing.</li>
       <li>Everyone who fights in the same battle (drafted, manning a turret or attacking the enemy) becomes comrades. Comradeship slowly fades between battles.</li>
       <li>A mentor (skill 12+, with a passion) teaches a student (skill 7 or less, with a passion) every day until the student reaches level 11. Both are proud when the student graduates.</li>
-      <li>Bonds give opinion: new, solid and deep bonds count for more each step.</li>
+      <li>Bonds add opinion, more at each stage: new, solid, deep.</li>
       <li>Small social events happen most days: late talks, pranks, snubs, squabbles, war stories, lessons, contests, gifts, gossip and the odd truce. Each moves the bond a little.</li>
       <li>Three to six colonists held together by strong friendships form a circle. Colonists outside every circle, with no close friend, sometimes feel left out.</li>
       <li>The council's decisions feed back: losing an election to someone, having your wish passed over for theirs, a fight, a grudge from a dilemma or arguing over a decree can start rivalries; backing the same petition, making up or going through something together builds friendships.</li>
       <li>Bonds change how people act: friends and circle members back each other's wishes and petitions and vote for each other; rivals object to each other's wishes and vote against each other.</li>
-      <li>Let someone's wish lapse and their close friends trust the council a little less, the rest of their circle more so.</li>
+      <li>Let someone's wish lapse and their close friends trust the council a little less, and those in the same circle lose slightly more.</li>
       <li>A colonist's bonds and circle are listed in their trust tooltip in the Wishes tab.</li>
       <li>When a bonded colonist dies, the ones left behind write about it.</li>
     </facts>
     <advice>
-      <li>Two rivals on the same work shift is a squabble waiting to happen. Two friends on a raid is a comradeship waiting to happen.</li>
-      <li>Want a skill to survive a death? Look for a mentorship in the Social tab, or make sure a passionate learner works next to your best.</li>
-      <li>A strong circle is a voting bloc. Keep its members happy, or they'll be unhappy together.</li>
+      <li>Keep rivals on different work shifts to avoid squabbles. Colonists who fight through a raid together become comrades.</li>
+      <li>To keep a skill in the colony after your best worker dies, look for a mentorship in the Social tab, or have a learner with a passion work alongside them.</li>
+      <li>A strong circle votes as a bloc. Let one member's wish lapse and the others trust the council less too.</li>
     </advice>
     <keywords><li>friend</li><li>rival</li><li>comrade</li><li>mentor</li><li>student</li><li>circle</li><li>social</li><li>bond</li><li>relationship</li></keywords>
     <seeAlso><li>Council_Alm_C_Offices</li><li>Council_Alm_C_Wishes</li><li>Council_Alm_C_Dilemmas</li></seeAlso>
@@ -225,19 +225,19 @@
     <category>Council</category>
     <order>10</order>
     <summary>What colonists dream about, and the rare dream that changes something or comes true.</summary>
-    <tip>Ask them what they dreamt. You'll learn more than from a month of work reports.</tip>
-    <description>A colonist who sleeps (or lies unconscious) for four hours or more may wake from a dream. Dreams grow out of their life: the battle two days ago, the friend they lost, the rival who insulted them, the wish the council ignored, the leg they no longer have, the skill they're learning. Most dreams are just a passing mood and a line in their journal. Hover the mood in their needs tab to read the dream itself.</description>
+    <tip>What a colonist dreams about is usually what's been bothering them.</tip>
+    <description>A colonist who sleeps (or lies unconscious) for four hours or more may wake from a dream. Dreams grow out of their life: the battle two days ago, the friend they lost, the rival who insulted them, the wish the council ignored, the leg they no longer have, the skill they're learning. Most dreams are just a passing mood and a line in their journal. Hover over the mood in their Needs tab to read the dream itself.</description>
     <facts>
       <li>Dreams about what really happened (a raid, a death, an insult, a broken promise, an illness, an addiction) are far more likely than others. Unhappy colonists have more nightmares, and volatile ones more still.</li>
       <li>People in their lives turn up: friends, rivals, partners, family, comrades, teachers and students, bonded animals, and the dead they loved.</li>
       <li>Now and then a dream changes something: an inspiration, a lesson in a skill, a good night's rest, a nightmare that leaves them shaken, a dream of a won fight that steadies their aim, a softened rivalry, a wish.</li>
-      <li>Rarely, a dream is an omen, and a few days later it comes true: a caravan, a newcomer, falling cargo pods, a cold snap, a raid. Only one omen waits at a time. You can turn omens off in the settings.</li>
+      <li>Rarely, a dream is an omen, and a few days later it comes true: a caravan, a newcomer, falling cargo pods, a cold snap, a raid. Only one omen waits at a time. You can turn omens off with "Dreams that come true" in the settings.</li>
       <li>Colonists tell each other their dreams. Telling someone you dreamt about them makes them like you a little more.</li>
       <li>Recent dreams are listed at the bottom of the Social tab, and dreams that came true go in the chronicle and the year's annals.</li>
     </facts>
     <advice>
-      <li>When a colonist wakes up talking about torches in the dark, check your defenses. It costs nothing.</li>
-      <li>A colonist with recurring nightmares is telling you something about their life. Look at their mood.</li>
+      <li>When a colonist wakes up talking about torches in the dark, check your defenses: it may be an omen of a raid.</li>
+      <li>Recurring nightmares usually mean a colonist is unhappy. Check their Mood tab for the cause.</li>
     </advice>
     <keywords><li>dream</li><li>nightmare</li><li>omen</li><li>prophecy</li><li>sleep</li><li>fever</li></keywords>
     <seeAlso><li>Council_Alm_C_Social</li><li>Council_Alm_C_Names</li></seeAlso>
@@ -249,14 +249,14 @@
     <category>Council</category>
     <order>11</order>
     <summary>What each colonist has set their heart on doing before they die.</summary>
-    <tip>Wishes are what they want this week. Life goals are what they'll want written on their grave.</tip>
+    <tip>A wish takes a few days to grant. A life goal can take years.</tip>
     <description>A few days after settling in, each colonist sets their heart on something: master a craft, marry for love, have a child, find three true friends, train a student, make peace with a rival, earn a seat on the council or a name the colony remembers, a bedroom fit for a noble, a warrior's or a builder's record, or simply to live three more years. The Social tab shows everyone's goal and how close they are.</description>
     <facts>
       <li>Goals fit the person: passions, traits and situation decide what they want. A psychopath doesn't dream of true friends; an ascetic doesn't want a noble's bedroom.</li>
       <li>Life sets them, too: a battle can make a warrior, a brush with death a healer or someone who just wants more years, a wedding someone who wants to marry, a birth someone who wants a child, a lost election someone who wants a seat, loneliness someone who wants friends, and seeing a friend achieve their goal can make them want the same.</li>
       <li>Something big can change their mind about a goal they've barely started.</li>
       <li>When someone dies before reaching their goal, the person who loved them most may take it up and finish it for them.</li>
-      <li>Within reach (three quarters of the way), they feel it: a small, steady lift.</li>
+      <li>Once they're three quarters of the way there, they get a small, steady mood lift.</li>
       <li>Achieving it brings a letter, a long good mood, a big jump in trust, often an inspiration, and gladness among their friends. It goes into the chronicle and the year's annals.</li>
       <li>After a while they may choose another goal, never the same one twice.</li>
       <li>A colonist who dies before reaching their goal is remembered for it: the chronicle notes what they never got to do, and their friends write about it.</li>
@@ -264,7 +264,7 @@
     </facts>
     <advice>
       <li>Check the Social tab now and then. A colonist one level short of mastery is worth a few days at their workbench.</li>
-      <li>Goals like marriage, friends or peace with a rival can't be ordered. They can be helped along: shared work, shared rooms, shared battles.</li>
+      <li>Goals like marriage, friends or peace with a rival can't be ordered, but shared work, shared rooms and shared battles help them along.</li>
     </advice>
     <keywords><li>goal</li><li>aspiration</li><li>dream</li><li>ambition</li><li>mastery</li><li>marriage</li><li>legacy</li></keywords>
     <seeAlso><li>Council_Alm_C_Social</li><li>Council_Alm_C_Dreams</li></seeAlso>
@@ -276,22 +276,22 @@
     <category>Council</category>
     <order>12</order>
     <summary>What colonists hide, who they can't forgive, and how they say goodbye.</summary>
-    <tip>Everyone out here is running from something. Some of them are still running.</tip>
-    <description>Some colonists carry a secret, often from the life their backstory hints at: a raider's past, noble blood, a deserter's shame, a child left behind, a borrowed name, a hidden kindness. You don't know what it is. You only see, in the Social tab, when they confide in a close friend.</description>
+    <tip>Not everyone talks about where they came from.</tip>
+    <description>Some colonists carry a secret, often from the life their backstory hints at: a raider's past, noble blood, a deserter's shame, a child left behind, a borrowed name, a hidden kindness. You won't know what it is; the Social tab only shows when they confide in a close friend.</description>
     <facts>
       <li>Confiding brings relief and brings them closer. A confidant who later becomes their rival is likely to let it slip; a close friend rarely does. Someone at rock bottom may blurt it out themselves.</li>
       <li>When a secret comes out, everyone reacts according to their nature: the kind forgive, the hard despise, the greedy envy, the abrasive mock. Betraying a confidence makes enemies.</li>
       <li>Some secrets put the council on the spot with a dilemma.</li>
-      <li>A secret nobody was told dies with its keeper. One that somebody was told comes out at the funeral.</li>
-      <li>When raiders kill or carry off someone, the people who loved them swear vengeance on that faction. They carry it as a weight, fight harder when those colours show up again, and are avenged after three of the enemy fall to them. Peace with the killers is taken as a betrayal.</li>
+      <li>A secret the colonist never told anyone dies with them. If they told someone, it comes out at the funeral.</li>
+      <li>When raiders kill or carry off someone, the people who loved them swear vengeance on that faction. They carry it as a weight, fight harder when that faction shows up again, and are avenged once three of the enemy fall to them. Peace with the killers is taken as a betrayal.</li>
       <li>Colonists also pick up quirks from what they live through (at most two at a time): a lucky helmet worn through a fight (good mood with it, bad without), a dread of storms after a death, a battle ritual, night prayers after a dream came true, a fear of the dark after lying downed, grief that returns every winter, and harmless habits like knocking on wood or talking to the dead. Most fade after a season or two. They're listed in the trust tooltip.</li>
       <li>A dead colonist's weapon or hat passes to the person who loved them most: carrying it is a comfort (to anyone, more to the heir), and losing it hurts.</li>
       <li>With children (Biotech), coming of age is marked: parents are proud, the colony remembers the child they were, and the council is asked to help choose a path, often an apprenticeship that starts a real mentorship with the colony's best.</li>
       <li>Half a day or so after someone dies, the person closest to them speaks at the grave. What they say depends on who the dead were: their years here, the name they earned, the goal they never reached, who killed them.</li>
     </facts>
     <advice>
-      <li>Think twice before making peace with a faction that killed someone well loved. It may be worth it. It won't be free.</li>
-      <li>Watch who confides in whom. A falling-out between those two is a secret waiting to come out.</li>
+      <li>Think twice before making peace with a faction that killed someone well loved. It may be worth it, but those who swore vengeance will take it as a betrayal.</li>
+      <li>Watch who confides in whom. If those two fall out, the secret will probably come out.</li>
     </advice>
     <keywords><li>secret</li><li>confide</li><li>vendetta</li><li>revenge</li><li>eulogy</li><li>funeral</li><li>grave</li></keywords>
     <seeAlso><li>Council_Alm_C_Social</li><li>Council_Alm_C_Goals</li></seeAlso>
@@ -303,19 +303,19 @@
     <category>Council</category>
     <order>13</order>
     <summary>Visitors, traders, prisoners, fallen enemies, nemeses, wild animals and the colony's own animals.</summary>
-    <tip>The raider who ran away is the one your colonists will dream about.</tip>
-    <description>Colonists don't only live among themselves. While visitors, a trade caravan, guests or prisoners are around, and every day among the colony's animals and the wildlife, small moments happen: news from the road, haggling, words through a cell door, a fallen raider's plea, a pet's mischief, a stag at dawn. Some put a hard choice to the council. And an enemy who badly hurts one of yours and gets away becomes that colonist's nemesis.</description>
+    <tip>A raider who gets away may come back with the next raid.</tip>
+    <description>Colonists don't only deal with each other. While visitors, a trade caravan, guests or prisoners are around, and every day among the colony's animals and the wildlife, small moments happen: news from the road, haggling, words through a cell door, a fallen raider's plea, a pet's mischief, a stag at dawn. Some put a hard choice to the council. And an enemy who badly hurts one of yours and gets away becomes that colonist's nemesis.</description>
     <facts>
       <li>Encounters happen a few times a day at most, and never during a fight. Visitors and traders make them likelier while they're here.</li>
-      <li>Warm moments make visitors like the colonist (their opinion of them rises), sometimes improve goodwill with their people, and count towards the "known far and wide" life goal.</li>
+      <li>Warm moments make visitors like the colonist (their opinion of them rises), sometimes improve goodwill with their people, and count toward the "known far and wide" life goal.</li>
       <li>Kind words soften prisoners (less resistance); taunts and cruelty sour moods on both sides.</li>
       <li>Council choices about strangers come with short deadlines when the stranger is only passing through: a visitor who wants to stay, a trader who wants an heirloom, beggars at the gate, a wounded raider who's still breathing.</li>
       <li>A nemesis is an enemy who struck down, maimed or killed a colonist and lived. A raider who flees is remembered, and may ride with the next raid from their people. A wild animal that mauls someone and slinks off gets a name and keeps prowling.</li>
-      <li>Capturing a nemesis, or seeing them dead, lifts the one they hurt. Doing it by their own hand lifts them most, and settles the "settle the score" life goal.</li>
+      <li>Capturing a nemesis, or seeing them dead, lifts the mood of the one they hurt. Doing it by their own hand lifts them most, and completes the "settle the score" life goal.</li>
       <li>An animal that fights beside its person in a battle is remembered for it. A named animal that dies gets a farewell from the one who loved it.</li>
     </facts>
     <advice>
-      <li>When a nemesis returns, put the one they hurt somewhere safe, or somewhere they can finish it. Their mood will swing either way.</li>
+      <li>When a nemesis returns, put the one they hurt somewhere safe, or somewhere they can finish it themselves. Either way, expect a big swing in their mood.</li>
       <li>Capture fallen raiders who downed your people: a nemesis in your cells can't come back with the next raid.</li>
       <li>Hunt a named beast as a group. It already beat one of you.</li>
       <li>Let your most sociable colonists host visitors. Good impressions add up to goodwill, and sometimes to a new recruit.</li>
@@ -330,7 +330,7 @@
     <category>Council</category>
     <order>14</order>
     <summary>How the council's choices add up to a reputation: merciful or harsh, generous or thrifty, and more.</summary>
-    <tip>Nobody decides to be known as harsh. They just keep choosing it.</tip>
+    <tip>Turn away enough beggars and word gets around.</tip>
     <description>Every answer to a dilemma, every decree and many granted wishes say something about who the colony is. Lean far enough one way and word spreads: the colony becomes known as merciful, thrifty, hard-working or guarded, and later renowned for it. Colonists are proud of ways that suit their nature and chafe at ways that don't. Old deeds slowly fade, so a colony can change its name. The "Our ways" page in the council window shows where the colony stands, who is proud, who chafes, and what shaped it.</description>
     <facts>
       <li>Five ways, each with two sides: merciful or harsh, generous or thrifty, traditional or restless, open or guarded, hard-working or easygoing.</li>
@@ -343,7 +343,7 @@
       <li>Some encounters and dilemmas only come up for a colony with a certain name: refugees seeking a merciful colony, traders who heard you count every grain.</li>
     </facts>
     <advice>
-      <li>Decide what kind of colony you want to be, and let the council's answers follow. A consistent colony makes the colonists who fit it happy.</li>
+      <li>Decide what kind of colony you want to be, and let the council's answers follow. A colony that sticks to its ways keeps the colonists who share them happy.</li>
       <li>Check "Our ways" before recruiting: a kind recruit will chafe in a harsh colony.</li>
       <li>To change the colony's name, choose the other way for a while. Old deeds fade on their own too.</li>
       <li>Being open and generous is a slow, cheap way to keep neighbors friendly.</li>
@@ -358,7 +358,7 @@
     <category>Council</category>
     <order>15</order>
     <summary>The Mood tab and the Moods page: what weighs on your colonists, why, and what to do about it.</summary>
-    <tip>Don't ask why they're sad. Look it up, then fix the table.</tip>
+    <tip>Most bad moods come from something you can build: a table, a light, a bed.</tip>
     <description>Every colonist has a Mood tab next to their Needs: each mood with its size, why it's there, when it fades, which mod it comes from, and what you can do about it. The council window's Moods page adds up every mood in the colony, so you can see what weighs on everyone at once, who feels it, and who is closest to breaking.</description>
     <facts>
       <li>The mood bar shows where a colonist is, where their mood is heading, and the lines below which minor, major and extreme breaks become possible.</li>
@@ -371,7 +371,7 @@
     <advice>
       <li>Start at the top of "Weighing on the colony": the biggest totals usually have the cheapest fixes, like a dining table, lights or a bedroom.</li>
       <li>Check "Closest to breaking" before a long job or a caravan, and give the shakiest colonists something good first.</li>
-      <li>A colonist sinking towards a break line needs help now: a fine meal, recreation, a party or rest, while you fix the cause.</li>
+      <li>A colonist sinking toward a break line needs help now: a fine meal, recreation, a party or rest, while you fix the cause.</li>
     </advice>
     <keywords><li>mood</li><li>thoughts</li><li>break</li><li>mental break</li><li>sad</li><li>unhappy</li><li>why</li><li>fix</li></keywords>
     <seeAlso><li>Council_Alm_2_15_MentalBreaks</li><li>Council_Alm_10_MoodNumbers</li><li>Council_Alm_C_Ways</li></seeAlso>
@@ -383,28 +383,28 @@
     <category>Council</category>
     <order>16</order>
     <summary>What comes to the colony from outside: pasts catching up, challenges, old enemies, the land and the sky, visitors with a purpose.</summary>
-    <tip>The past doesn't stay buried. Sometimes it brings a casserole.</tip>
-    <description>Every few days something happens out in the world: an old comrade asks for a colonist by name, a travelling champion wants a contest, a comet hangs in the sky, mourners come to a grave. These are Rimfolk's own events, on their own rhythm, so they never take a slot from your storyteller's. Many ask the council what to do; the answer shapes the colony's character, and often a colonist's life.</description>
+    <tip>Sooner or later, someone from a colonist's old life comes looking for them.</tip>
+    <description>Every few days something happens out in the world: an old comrade asks for a colonist by name, a traveling champion wants a contest, a comet hangs in the sky, mourners come to a grave. These are Rimfolk's own events, on their own rhythm, so they never take a slot from your storyteller's. Many ask the council what to do; the answer shapes the colony's character, and often a colonist's life.</description>
     <facts>
       <li>Who a colonist used to be (read from their backstory: soldier, outlaw, noble, trader, healer, scholar, farmer, artisan) decides which pasts can catch up with them. Bounty hunters only come for someone with a violent past.</li>
       <li>Strangers who ask to join wait at the edge of the map until you answer. Use "Look at" in the letter to see who they are before you decide.</li>
       <li>Visitors, finds and inheritances fit the colony's era: a medieval colony meets medieval folk and digs up medieval things.</li>
-      <li>Fights come only with "battles" on in the settings, when the storyteller sends threats at all, never on top of another fight, and at a share of the storyteller's own raid strength.</li>
+      <li>Fights only come if the settings allow world events that can end in a fight, only when the storyteller sends threats at all, never on top of another fight, and at a share of the storyteller's own raid strength.</li>
       <li>A colonist who walked out or was banished may come back one day. A prisoner who dies in the colony's hands may be avenged by their people.</li>
-      <li>Contests with a travelling champion never hurt anyone: target shooting, wrestling without weapons, crafts, cooking, art, debate. The better one usually wins.</li>
+      <li>Contests with a traveling champion never hurt anyone: target shooting, wrestling without weapons, crafts, cooking, art, debate. The better one usually wins.</li>
       <li>Hail only hurts crops out in the open. Vermin only get into food that isn't kept cold, and a cat or dog may catch them first.</li>
       <li>The great beast is tougher than any of its kind. It leaves in a few days, and only fights if provoked.</li>
-      <li>Some events follow from earlier ones: a deserter's old unit, a lost child back grown, a rematch with a champion, the great beast's young, grateful pilgrims.</li>
+      <li>Some events follow from earlier ones: a deserter's old unit, a lost child come back grown, a rematch with a champion, the great beast's young, grateful pilgrims.</li>
       <li>The council window's World page shows fights on their way, questions waiting for an answer, and who's out there with the colony on their mind.</li>
       <li>What a journalist or chronicler writes depends on the colony's character: mercy, generosity and openness make for a kind article, and their opposites for an unkind one.</li>
-      <li>A travelling doctor's shots (or a herbalist's tonic) help everyone fight off sickness faster for a month.</li>
+      <li>A traveling doctor's shots (or a herbalist's tonic) help everyone fight off sickness faster for a month.</li>
     </facts>
     <advice>
       <li>Answer the letters: an unanswered one falls to a default, which is rarely the best choice.</li>
       <li>Read the odds before betting on a contest: the letter says how good each side is.</li>
       <li>Keep some silver in the stores. Debts, bounties, tribute and treasure maps all ask for it.</li>
-      <li>Roof a field or two, and keep food cold, and two of the nastier natural events lose their teeth.</li>
-      <li>Take a group, not a hero, to hunt the great beast.</li>
+      <li>Roof a field or two and keep food cold. That takes most of the harm out of hail and vermin.</li>
+      <li>Hunt the great beast with a group, not a lone colonist.</li>
     </advice>
     <keywords><li>event</li><li>incident</li><li>comrade</li><li>family</li><li>bounty</li><li>debt</li><li>champion</li><li>contest</li><li>beast</li><li>tribute</li><li>revenge</li><li>deserter</li><li>comet</li><li>fireflies</li><li>hail</li><li>vermin</li><li>cache</li><li>treasure</li><li>storyteller</li><li>pilgrims</li><li>scholar</li><li>apprentice</li><li>stray</li><li>mourners</li><li>cargo</li><li>scout</li><li>journalist</li><li>doctor</li><li>herbalist</li><li>music</li><li>celebrity</li></keywords>
     <seeAlso><li>Council_Alm_C_Strangers</li><li>Council_Alm_C_Ways</li><li>Council_Alm_C_Dilemmas</li></seeAlso>
@@ -416,23 +416,23 @@
     <category>Council</category>
     <order>17</order>
     <summary>Rimfolk's scenarios start the game with something already in motion: a friend on the way, a mentorship, an enemy, a debt, a feud, a prisoner.</summary>
-    <tip>Every colony has a past. Some of them have a past with a price on it.</tip>
-    <description>Ten scenarios, marked "(Rimfolk)" on the scenario page with how hard they are. Four are small, gentle starts with one or two colonists and no attacks of their own (The Inheritance, Master and Apprentice, Runaway Hearts, The Lone Hunter); six come with stakes (Hot Money, Marooned, Deserters, Bad Blood, Borrowed Time, The Fallen Tyrant). A few seconds into the game a letter says how things stand. Their pieces are scenario parts you can add to any scenario in the editor.</description>
+    <tip>Not every colony starts with a clean slate.</tip>
+    <description>Rimfolk adds ten scenarios, marked "(Rimfolk)" on the scenario page along with how hard they are. Four are small, gentle starts with one or two colonists and no attacks of their own (The Inheritance, Master and Apprentice, Runaway Hearts, The Lone Hunter); six come with stakes (Hot Money, Marooned, Deserters, Bad Blood, Borrowed Time, The Fallen Tyrant). A few seconds into the game a letter says how things stand. Their pieces are scenario parts you can add to any scenario in the editor.</description>
     <facts>
-      <li>A sworn enemy is a nemesis from the first day. If their people hunt the colony, they come a set number of times, a month or so apart, or sooner over if that enemy dies, joins the colony, is sold off, or their people make peace or are wiped out.</li>
-      <li>Settings, "Fights in Rimfolk's scenarios", makes those attacks weaker or stronger. Your storyteller's difficulty scales them too.</li>
+      <li>A sworn enemy is a nemesis from the first day. If their people hunt the colony, they come a set number of times, a month or so apart. The hunt ends sooner if that enemy dies, joins the colony or is sold off, or if their people make peace or are wiped out.</li>
+      <li>The "Fights in Rimfolk's scenarios" setting makes those attacks weaker or stronger. Your storyteller's difficulty scales them too.</li>
       <li>Someone from the past, a visiting scholar or a great beast arriving "around a set day" waits for a quiet moment, and if they can't come yet (the wrong season, nobody fits), they try again the next day.</li>
       <li>A debt comes due as a letter: pay it, pay half and ask for more time (the rest grows by about a third, and they only wait twice), or refuse and meet the collectors.</li>
       <li>Unanswered, a debt counts as refused.</li>
       <li>Two feuding families each take one surname. Family members like each other more, and dislike the other family; the grudge fades over a couple of months if nothing feeds it.</li>
-      <li>The Fallen Tyrant starts out cold for a few hours. Build a cell with a bed before the drug wears off.</li>
-      <li>Fights a scenario promises come even with world-event battles switched off, but only when the storyteller sends threats at all.</li>
+      <li>In The Fallen Tyrant, the tyrant is out cold for the first few hours. Build a cell with a bed before the drug wears off.</li>
+      <li>Fights a scenario promises come even with world events that can end in a fight switched off, but only when the storyteller sends threats at all.</li>
       <li>Debts and hunts are on the World page.</li>
     </facts>
     <advice>
-      <li>Hot Money: decide early whether you're keeping the silver. Spending it and then refusing is the worst of both.</li>
+      <li>Hot Money: decide early whether you're keeping the silver. Spending it and then refusing to pay it back is the worst of both.</li>
       <li>Borrowed Time: trade from day one. Half the debt paid on time buys three weeks.</li>
-      <li>Bad Blood: friendships across the families are worth more than anything. Shared work, shared meals and a common enemy all help.</li>
+      <li>Bad Blood: friendships across the two families matter most. Shared work, shared meals and a common enemy all help.</li>
       <li>Marooned: someone in the pods is lying. Keep the friendships strong and the truth will come out sooner.</li>
     </advice>
     <keywords><li>scenario</li><li>start</li><li>debt</li><li>loan</li><li>heist</li><li>mutiny</li><li>deserter</li><li>family</li><li>feud</li><li>tyrant</li><li>prisoner</li><li>hunt</li><li>gentle</li><li>mentor</li><li>lovers</li><li>small start</li></keywords>

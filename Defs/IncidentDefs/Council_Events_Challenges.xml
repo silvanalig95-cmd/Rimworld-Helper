@@ -9,7 +9,7 @@
 
   <IncidentDef ParentName="Council_EventBase">
     <defName>Council_Evt_Champion</defName>
-    <label>travelling champion</label>
+    <label>traveling champion</label>
     <workerClass>ColonyCouncil.HappeningWorker_Champion</workerClass>
     <baseChance>1.2</baseChance>
     <minRefireDays>25</minRefireDays>
@@ -23,29 +23,29 @@
           <li>A challenger</li>
         </titles>
         <texts>
-          <li>[Shooting,lowtech] {X_nameDef} of {FACTION}, an archer who has won every contest from here to the coast, has heard the colony has a good eye in {A_nameDef}. {X_nameDef} proposes a match: arrows at straw targets, best of ten. Nobody aims at anybody.</li>
-          <li>[Shooting,!lowtech] {X_nameDef} of {FACTION}, a marksman with a bag of medals and an ego to match, challenges the colony's best shot to a match at tin cans. That's {A_nameDef}. Nobody aims at anybody; there's silver on it if the colony likes.</li>
-          <li>[Melee] {X_nameDef} of {FACTION}, a wrestler built like a door, is touring the settlements looking for anyone willing to try a fall. No weapons, no grudges, a ring drawn in the dirt. The colony's champion would be {A_nameDef}.</li>
-          <li>[Crafting] {X_nameDef}, a travelling artisan of {FACTION}, says {X_possessive} work is the finest in the region and would like to prove it against {A_nameDef}'s. Same materials, same time, and the onlookers judge.</li>
-          <li>[Artistic] {X_nameDef}, a wandering artist of {FACTION}, has heard of {A_nameDef}'s work and doesn't believe it. A contest, then: one afternoon, one piece each, and the colony judges.</li>
-          <li>[Cooking] {X_nameDef}, a travelling cook of {FACTION} who claims to have fed kings, challenges {A_nameDef} to a cook-off. One kitchen, one afternoon, and everyone at the table gets a vote.</li>
-          <li>[Social] {X_nameDef} of {FACTION}, a famous talker, challenges the colony to a debate, a war of words in front of everyone. The colony's voice would be {A_nameDef}.</li>
+          <li>[Shooting,lowtech] {X_nameDef} of {FACTION}, an archer who has won every contest from here to the coast, has heard that {A_nameDef} is a good shot. {X_nameDef} proposes a friendly match at straw targets, best of ten.</li>
+          <li>[Shooting,!lowtech] {X_nameDef} of {FACTION}, a marksman with a bag of medals and an ego to match, wants to shoot tin cans against {A_nameDef}, the colony's best shot. It's a friendly match, and the colony can put silver on it if it likes.</li>
+          <li>[Melee] {X_nameDef} of {FACTION}, a wrestler built like a door, is touring the settlements looking for anyone willing to try a fall in a ring drawn in the dirt, with no weapons and no hard feelings. The colony's champion would be {A_nameDef}.</li>
+          <li>[Crafting] {X_nameDef}, a traveling artisan of {FACTION}, says {X_possessive} work is the finest in the region and would like to prove it against {A_nameDef}'s. Both get the same materials and the same time, and the onlookers judge.</li>
+          <li>[Artistic] {X_nameDef}, a wandering artist of {FACTION}, has heard about {A_nameDef}'s work and doesn't believe a word of it. {X_nameDef} proposes one piece each, made in a single afternoon, with the colony as judge.</li>
+          <li>[Cooking] {X_nameDef}, a traveling cook of {FACTION} who claims to have fed kings, challenges {A_nameDef} to a cook-off. They'll share one kitchen for an afternoon, and whoever eats gets a vote.</li>
+          <li>[Social] {X_nameDef} of {FACTION}, a talker known up and down the roads, challenges the colony to a public debate. {A_nameDef} would speak for the colony.</li>
           <li>[Animals] {X_nameDef}, a drover of {FACTION}, swears no one can handle a stubborn animal like {X_pronoun} can, and challenges {A_nameDef} to prove otherwise.</li>
-          <li>[Intellectual] {X_nameDef} of {FACTION} challenges the colony's sharpest mind to a contest of riddles and puzzles. That's {A_nameDef}. Loser buys the drinks, or the colony can put real silver on it.</li>
-          <li>[Plants] {X_nameDef}, a gardener of {FACTION}, has heard about the colony's fields and challenges {A_nameDef}: who can judge seed, soil and sprout better? The onlookers decide.</li>
+          <li>[Intellectual] {X_nameDef} of {FACTION} challenges the colony's sharpest mind, {A_nameDef}, to a contest of riddles and puzzles. The loser buys the drinks, unless the colony wants to put real silver on it.</li>
+          <li>[Plants] {X_nameDef}, a gardener of {FACTION}, has heard about the colony's fields and wants to test {A_nameDef}'s eye for seed, soil and sprout against {X_possessive} own. The onlookers will decide who's better.</li>
         </texts>
         <defaultOption>2</defaultOption>
         <options>
           <li>
             <label>Accept: {COUNT} silver on {A_nameDef}</label>
-            <outcome>The challenge is on. Word goes round, and in a couple of hours half the colony will have found a reason to be nearby.</outcome>
+            <outcome>The challenge is on, with silver riding on it. It starts in a couple of hours, and word is already going around.</outcome>
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_Contest"><stake>true</stake></li>
             </effects>
           </li>
           <li>
-            <label>Accept, for honour only</label>
-            <outcome>The challenge is on, for nothing but bragging rights, which are worth more anyway.</outcome>
+            <label>Accept, for honor only</label>
+            <outcome>The challenge is on, for bragging rights only. It starts in a couple of hours.</outcome>
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_Contest" />
             </effects>
@@ -79,9 +79,9 @@
           <li>The great beast</li>
         </titles>
         <texts>
-          <li>Travellers have been talking about it for weeks, and now it's here: {BEAST}, an old {THING} out of the stories, huge and scarred and older than anyone can say, is roaming the colony's land. It has never gone looking for trouble, but it has never walked away from any either. Whoever brings it down will be talked about for years. It'll move on in a few days.</li>
-          <li>[lowtech] Hunters' tales speak of {BEAST}, an old {THING} that has outlived every spear thrown at it. It's on the colony's land now. {A_nameDef} has already been out to look at it, and came back very quiet and very excited. It'll move on in a few days, whether anyone tries their luck or not.</li>
-          <li>[!lowtech] Trappers on the road call it {BEAST}: an old {THING}, now roaming the colony's land. Bullets have bounced off it before. It has never bothered anyone who left it alone, and it'll be gone in a few days. {A_nameDef} is already cleaning a weapon.</li>
+          <li>Travelers have talked about it for weeks, and now it's here. {BEAST}, an old {THING} out of the stories, huge and scarred, is roaming the colony's land. It doesn't go looking for trouble, but it fights back hard when hunted. Whoever brings it down will be talked about for years. It will move on in a few days.</li>
+          <li>[lowtech] Hunters tell stories about {BEAST}, an old {THING} that has outlived every spear ever thrown at it. Now it's wandering the colony's land. {A_nameDef} has already been out to look at it from a distance. It will move on in a few days, whether anyone tries their luck or not.</li>
+          <li>[!lowtech] An old {THING} that trappers on the road call {BEAST} has wandered onto the colony's land. Bullets have bounced off it before. It has never bothered anyone who left it alone, and it will be gone in a few days. {A_nameDef} is already cleaning a weapon.</li>
         </texts>
         <lines>
           <li>Old Greymane</li>
@@ -119,17 +119,17 @@
           <li>A treasure map</li>
         </titles>
         <texts>
-          <li>{X_nameDef} of {FACTION}, one of the colony's guests, takes {A_nameDef} aside with a grin. {X_nameDef} has a map, old and creased, that shows something buried right here on the colony's land. {X_nameDef} would sell it for {COUNT} silver, being in no position to dig it up. It might even be true.</li>
-          <li>[lowtech] {X_nameDef} of {FACTION} pulls a scrap of old hide from {X_possessive} coat and spreads it out for {A_nameDef}: a map, with an X on it, somewhere on the colony's land. {COUNT} silver, says {X_nameDef}, and it's yours. Treasure maps are always true, aren't they?</li>
-          <li>[!lowtech] {X_nameDef} of {FACTION} shows {A_nameDef} an old survey printout with one spot circled in faded ink, right here on the colony's land. "Supply cache," {X_nameDef} says. "Pre-war. Never dug up." For {COUNT} silver it's the colony's. Probably.</li>
+          <li>{X_nameDef} of {FACTION}, one of the colony's guests, takes {A_nameDef} aside. {X_nameDef} has an old, creased map that shows a cache buried out on the colony's land, and will sell it for {COUNT} silver, not being in a position to dig it up. There's no telling if the map is genuine without digging.</li>
+          <li>[lowtech] {X_nameDef} of {FACTION} pulls a scrap of old hide from {X_possessive} coat and spreads it out for {A_nameDef}. It's a map, with a mark scratched on a spot out on the colony's land. {X_nameDef} will part with it for {COUNT} silver, and swears it's genuine.</li>
+          <li>[!lowtech] {X_nameDef} of {FACTION} shows {A_nameDef} an old survey printout with one spot circled in faded ink, right here on the colony's land. "Supply cache," {X_nameDef} says. "Pre-war. Never dug up." {X_nameDef} wants {COUNT} silver for it.</li>
         </texts>
         <defaultOption>1</defaultOption>
         <options>
           <li>
             <label>Buy it ({COUNT} silver)</label>
-            <outcome>The map is ours. {A_nameDef} sets off at once with a shovel.</outcome>
+            <outcome>The map is ours. {A_nameDef} heads out with a shovel to find the spot.</outcome>
             <riskChance>0.3</riskChance>
-            <riskOutcome>The map leads to a hole, which {A_nameDef} digs, and then to another hole, which {A_nameDef} also digs. There's nothing in either. {X_nameDef}, when asked, says maps are like that.</riskOutcome>
+            <riskOutcome>{A_nameDef} digs where the map says, then digs again a few paces over, and finds nothing but stones in either hole. The silver is gone.</riskOutcome>
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>silver</what></li>
             </effects>
@@ -139,7 +139,7 @@
           </li>
           <li>
             <label>No, thank you</label>
-            <outcome>{X_nameDef} folds the map away with a sigh. Somebody else's lucky day, then.</outcome>
+            <outcome>{X_nameDef} folds the map away and goes looking for another buyer.</outcome>
           </li>
         </options>
       </li>
@@ -167,15 +167,15 @@
           <li>Tribute demanded</li>
         </titles>
         <texts>
-          <li>[tribal] A runner of {ENEMY}, painted for war, plants a spear at the edge of the colony and names the price of peace: {COUNT} silver, by tomorrow. If it isn't paid, {ENEMY} will come and take it, and whatever else they like.</li>
-          <li>[lowtech,!tribal] A herald of {ENEMY} rides up under a banner of truce, reads out a list of the colony's sins against no one in particular, and names the price of peace: {COUNT} silver, by tomorrow. Otherwise {ENEMY} will come and take it, and whatever else they like.</li>
+          <li>[tribal] A runner of {ENEMY}, painted for war, has planted a spear outside the colony and named the price of peace: {COUNT} silver, by tomorrow. If it isn't paid, {ENEMY} will come and take it, along with whatever else they like.</li>
+          <li>[lowtech,!tribal] A herald of {ENEMY} rides up under a banner of truce, reads out a list of the colony's sins against no one in particular, and demands {COUNT} silver by tomorrow as the price of peace. Otherwise {ENEMY} will come and take it, and whatever else they like.</li>
           <li>[!lowtech] The comms light up with a message from {ENEMY}: the colony is "under their protection" now, and protection costs {COUNT} silver. They'll wait a day for it. After that, they'll come and collect it themselves.</li>
         </texts>
         <defaultOption>2</defaultOption>
         <options>
           <li>
             <label>Pay the {COUNT} silver</label>
-            <outcome>The tribute is handed over. Whether it buys any peace, nobody can say. Nobody looks very proud.</outcome>
+            <outcome>The tribute is handed over. They take it and leave, and the colony goes back to work in a sour mood.</outcome>
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>silver</what></li>
               <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_Evt_PaidTribute</thought><exceptTrait><li>Ascetic</li></exceptTrait></li>
@@ -183,10 +183,10 @@
           </li>
           <li>
             <label>Let {A_nameDef} haggle</label>
-            <outcome>{A_nameDef} argues them down to half, somehow, and they go away almost pleased. Half the tribute is handed over.</outcome>
+            <outcome>{A_nameDef} argues them down to half the tribute, and they leave almost pleased with the deal.</outcome>
             <riskChance>0.6</riskChance>
             <riskReplaces>true</riskReplaces>
-            <riskOutcome>{A_nameDef} argues, and {ENEMY} take offence. There will be no tribute now. There will be a war party instead, and soon.</riskOutcome>
+            <riskOutcome>{A_nameDef} pushes too hard, and {ENEMY} take offense. They no longer want the tribute. A war party is coming instead, and soon.</riskOutcome>
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>silver</what><factor>0.5</factor></li>
             </effects>

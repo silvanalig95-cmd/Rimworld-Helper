@@ -15,15 +15,15 @@
     <category>Basics</category>
     <order>0</order>
     <summary>What's in here, and how the council uses it.</summary>
-    <tip>Most colonies don't die of raiders. They die of small things nobody wrote down.</tip>
+    <tip>More colonies are lost to a bad harvest or an untreated infection than to raiders.</tip>
     <description>This almanac collects what experienced colonists know: the numbers behind food, mood, defense and health, how to lay out each kind of room, and the mistakes that end colonies. When the council warns you about something on the Priorities tab, "Read more" opens the matching page here.</description>
     <facts>
-      <li>Pages marked "some numbers are approximate" use figures from community testing or sources that disagree. Treat them as good guides, not law.</li>
+      <li>Pages marked "some numbers are approximate" use figures from community testing or sources that disagree. Treat them as close estimates, not exact values.</li>
       <li>Pages for DLCs you don't have are hidden unless you tick the box under the categories.</li>
       <li>Game time: an hour is 2,500 ticks, a day 60,000 ticks, a quadrum 15 days and a year 60 days.</li>
     </facts>
     <advice>
-      <li>Skim "Hard lessons" once: it's the cheapest way to avoid the classic colony-enders.</li>
+      <li>Read through "Hard lessons" once. It covers the mistakes that most often end a colony.</li>
       <li>Use the search box: it looks through titles, text and numbers.</li>
     </advice>
     <keywords>

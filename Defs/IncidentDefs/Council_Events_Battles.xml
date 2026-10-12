@@ -24,13 +24,13 @@
           <li>{X_nameDef} returns</li>
         </titles>
         <texts>
-          <li>[victim] {X_nameDef} is back. The one who left {A_nameDef} bleeding in the dirt is marching at the head of a war party of {ENEMY}, and this time {X_nameDef} means to finish it.</li>
-          <li>[killed] {X_nameDef}, who killed {DEAD}, has come back with {ENEMY} behind {X_objective}. The colony remembers. So, it seems, does {X_nameDef}.</li>
-          <li>[maimed] {X_nameDef}, who maimed {DEAD}, is leading a war party of {ENEMY} against the colony. Whatever {X_nameDef} wants, it isn't peace.</li>
-          <li>[fled] {X_nameDef} is back, leading a war party of {ENEMY}. Last time {X_nameDef} got away. Nobody here intends to let that happen twice.</li>
-          <li>[hunts] {X_nameDef} of {ENEMY}, who swore to hunt down {DEAD}, has found the colony again, and brought a war party to settle it.</li>
+          <li>[victim] {A_nameDef} knows the face at the head of this war party. {X_nameDef} left {A_objective} bleeding in the dirt once, and has come back with {ENEMY} to finish the job.</li>
+          <li>[killed] {X_nameDef}, who killed {DEAD}, is leading a war party of {ENEMY} against the colony. {DEAD} has not been forgotten here.</li>
+          <li>[maimed] A war party of {ENEMY} is on its way, led by {X_nameDef}, the one who maimed {DEAD}.</li>
+          <li>[fled] {X_nameDef} got away after the last fight, and has spent the time since gathering a war party of {ENEMY}. They are marching on the colony now.</li>
+          <li>[hunts] {X_nameDef} of {ENEMY} swore to hunt down {DEAD}, and never stopped looking. Now {X_nameDef} has found the colony, and brought a war party.</li>
           <li>[robbed] {X_nameDef} hasn't forgotten the money. {ENEMY} are marching on the colony with {X_nameDef} at their head, asking for {DEAD} by name.</li>
-          <li>[betrayed] {X_nameDef}, who turned a crew against {DEAD} and threw {DEAD} off the ship, is back to finish the job, with {ENEMY} behind {X_objective}.</li>
+          <li>[betrayed] {X_nameDef} turned the crew against {DEAD} and had {DEAD} put off the ship. Now {X_nameDef} has come with {ENEMY} to finish the job.</li>
           <li>[enslaved] {X_nameDef}, who once held {DEAD} in chains, is coming back with {ENEMY} to take back what {X_pronoun} still thinks is {X_possessive}.</li>
         </texts>
       </li>
@@ -57,8 +57,8 @@
         </titles>
         <texts>
           <li>{ENEMY} have not forgotten {DEAD}, who died in the colony's hands. A war party has come to settle the matter.</li>
-          <li>[lowtech] Blood calls for blood, the old saying goes. Kin of {DEAD}, who died a prisoner here, have come with {ENEMY} to answer the call.</li>
-          <li>[!lowtech] {ENEMY} are broadcasting one name, over and over, as they march on the colony: {DEAD}. They know {DEAD} died here, a prisoner. They've come to make someone pay for it.</li>
+          <li>[lowtech] {DEAD} died a prisoner here. Among {ENEMY}, a death like that is paid for in blood, and {DEAD}'s kin have come with a war party to collect.</li>
+          <li>[!lowtech] {ENEMY} are marching on the colony, broadcasting the same name over and over on an open channel. It belongs to {DEAD}, who died a prisoner here, and they've come to make someone pay for it.</li>
         </texts>
       </li>
     </modExtensions>
@@ -82,7 +82,7 @@
           <li>A deserter</li>
         </titles>
         <texts>
-          <li>[lowtech] A young soldier in the colours of {ENEMY} stumbles up to the colony with empty hands raised. {X_nameDef} has deserted, and {ENEMY} hang deserters. {X_nameDef} begs to be taken in. {A_nameDef} found {X_objective} first, and thinks the fear is real.</li>
+          <li>[lowtech] A young soldier in the colors of {ENEMY} stumbles up to the colony with empty hands raised. {X_nameDef} has deserted, and {ENEMY} hang deserters. {X_nameDef} begs to be taken in. {A_nameDef} found {X_objective} first, and thinks the fear is real.</li>
           <li>[!lowtech] A figure in {ENEMY} gear walks up to the colony with hands raised and weapon slung. {X_nameDef} has had enough of {ENEMY}, and they are not the forgiving kind. {X_nameDef} asks for shelter. {A_nameDef} found {X_objective} first, and believes the story.</li>
           <li>{X_nameDef}, who fought for {ENEMY} until three days ago, is hiding in the scrub near the colony and has asked {A_nameDef} for help. Deserters don't live long among {ENEMY}. {X_nameDef} asks for shelter, and swears {X_pronoun} is done with fighting for anyone but friends.</li>
         </texts>
@@ -92,7 +92,7 @@
             <label>Take {X_objective} in</label>
             <outcome>{X_nameDef} is one of us now. With any luck, {ENEMY} will never learn where {X_pronoun} went.</outcome>
             <riskChance>0.45</riskChance>
-            <riskOutcome>{X_nameDef} is one of us now. {ENEMY} won't let it go, though: sooner or later they'll come looking.</riskOutcome>
+            <riskOutcome>{X_nameDef} is one of us now, but {ENEMY} won't let it go. They'll come looking for {X_objective} within a few days.</riskOutcome>
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_Join" />
               <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>X</target><thought>Council_Evt_Sheltered</thought></li>
@@ -114,7 +114,7 @@
           </li>
           <li>
             <label>Hand {X_objective} back to {ENEMY}</label>
-            <outcome>{X_nameDef} is marched back to {ENEMY} under guard. {ENEMY} are pleased. {X_nameDef} is not.</outcome>
+            <outcome>{X_nameDef} is marched back to {ENEMY} under guard, begging the whole way. {ENEMY} are pleased with the colony.</outcome>
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_EventGoodwill"><amount>12</amount><enemy>true</enemy></li>
             </effects>

@@ -16,8 +16,8 @@
     <defName>Council_Bedroom</defName>
     <group>Living</group>
     <tips>
-      <li>A 5x5 bedroom is the comfortable size: big enough to feel spacious, small enough to make impressive cheaply.</li>
-      <li>A bedroom's impressiveness gives a mood bonus every morning. Floor, light and a bit of art go a long way.</li>
+      <li>A 5x5 bedroom feels spacious and is still small enough to make impressive cheaply.</li>
+      <li>A bedroom's impressiveness gives a mood bonus every morning. A floor, a light and a piece of art go a long way.</li>
     </tips>
     <label>bedroom</label>
     <description>A private bedroom for one: bed, bedside table, dresser, a light and a plant.</description>
@@ -60,8 +60,8 @@
     <defName>Council_CoupleBedroom</defName>
     <group>Living</group>
     <tips>
-      <li>Lovers sleeping apart grumble about it. A double bed in a shared room keeps couples happy.</li>
-      <li>Two end tables, one each side, and the room counts as properly furnished for both.</li>
+      <li>Lovers who sleep apart get a mood penalty. A double bed in a shared room keeps couples happy.</li>
+      <li>With an end table on each side, the room counts as properly furnished for both.</li>
     </tips>
     <label>couple's bedroom</label>
     <description>A bedroom for two: a double bed with a table on each side, a dresser, a light and a plant.</description>
@@ -111,11 +111,11 @@
     <near><li>Kitchen</li></near>
     <tips>
       <li>Eating without a table costs mood at every meal. One chair per colonist, or at least one per two if meals are staggered.</li>
-      <li>An impressive dining room gives a mood bonus with every meal. It's the room everyone sees most: make it nice.</li>
+      <li>An impressive dining room gives a mood bonus with every meal. It's the room colonists see most, so it's worth decorating.</li>
       <li>Put it next to the kitchen and freezer so meals travel a few steps, not across the base.</li>
     </tips>
     <label>dining room</label>
-    <description>A table for eight with chairs all round, lights and plants. Everyone eats three times a day, so this pays off fast.</description>
+    <description>A table for eight with chairs all around, lights and plants. Everyone eats three times a day, so this pays off fast.</description>
     <order>20</order>
     <size>(6,5)</size>
     <floors>
@@ -148,7 +148,7 @@
     <group>Leisure</group>
     <near><li>DiningRoom</li></near>
     <tips>
-      <li>Colonists tire of doing the same fun thing. Different kinds of recreation keep the need full.</li>
+      <li>Colonists get bored of doing the same thing for fun. Different kinds of recreation keep the need full.</li>
       <li>A rec room next to the dining room means colonists relax right after eating instead of walking across the map.</li>
     </tips>
     <label>recreation room</label>
@@ -213,7 +213,7 @@
     <near><li>DiningRoom</li></near>
     <tips>
       <li>A clean kitchen means fewer food poisonings. Lay tiles, keep a cleaner busy, and keep the butcher table in another room.</li>
-      <li>Kitchen, freezer and dining room side by side: the cook walks a few steps, and meals arrive hot.</li>
+      <li>Put the kitchen, freezer and dining room side by side, so the cook and the diners only walk a few steps.</li>
     </tips>
     <label>kitchen</label>
     <description>A cooking station, a shelf for ingredients and a clean floor. Keep butchering in a separate room: blood and guts make kitchens filthy and meals risky.</description>
@@ -269,7 +269,7 @@
     <avoid><li>Kitchen</li></avoid>
     <tips>
       <li>Hospital beds and sterile floors improve treatment and reduce infections.</li>
-      <li>Build the hospital near the entrance: the wounded shouldn't be carried across the base.</li>
+      <li>Build the hospital near the entrance, so the wounded don't have to be carried across the base.</li>
     </tips>
     <label>hospital</label>
     <description>Three beds along the back wall and a shelf for medicine. Set the beds to "medical" once built. A clean floor lowers infection risk.</description>
@@ -346,7 +346,7 @@
       <li>Shelves hold more per tile and items on them don't count as clutter.</li>
     </tips>
     <label>storeroom</label>
-    <description>A roofed room lined with shelves, so materials stop rotting in the rain.</description>
+    <description>A roofed room lined with shelves, so materials stop deteriorating in the rain.</description>
     <order>51</order>
     <size>(6,5)</size>
     <things>
@@ -398,7 +398,7 @@
     </tips>
     <keepPlants>true</keepPlants>
     <label>greenhouse</label>
-    <description>Four hydroponics basins under a sun lamp, with a heat source for the cold months. Grows food whatever the season.</description>
+    <description>Four hydroponics basins under a sun lamp, with a heat source for the cold months. It grows food in any season.</description>
     <order>61</order>
     <size>(7,5)</size>
     <things>

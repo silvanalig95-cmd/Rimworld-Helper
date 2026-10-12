@@ -21,11 +21,11 @@
   <CC_PlanIt>Plan the room</CC_PlanIt>
   <CC_BuildThing>Build {0}</CC_BuildThing>
   <CC_NotNow>Not now</CC_NotNow>
-  <CC_NotNow_Tip>Politely set this wish aside. No mood penalty. They won't ask for the same thing again for a while.</CC_NotNow_Tip>
+  <CC_NotNow_Tip>Set this wish aside. There's no mood penalty, and they won't ask for the same thing again for a while.</CC_NotNow_Tip>
   <CC_Refresh>Ask the council again</CC_Refresh>
   <CC_NoGame>Start or load a game to hear from the council.</CC_NoGame>
   <CC_NoHomeMap>The council meets in your home settlement. Open a colony map to see its advice.</CC_NoHomeMap>
-  <CC_Era>Era: {0}. Electricity: {1}. Advice only suggests things your colony can actually build.</CC_Era>
+  <CC_Era>Era: {0}. Electricity: {1}. Advice only suggests things your colony can build.</CC_Era>
 
   <CC_Tone_Plain>plain</CC_Tone_Plain>
   <CC_Tone_Warm>warm</CC_Tone_Warm>
@@ -43,7 +43,7 @@
 
   <!-- ===================== Priorities ===================== -->
   <CC_Priorities_Header>What the colony needs</CC_Priorities_Header>
-  <CC_Priorities_AllGood>Nothing pressing right now. The council is pleasantly bored. Check the Ambition tab for something to work towards.</CC_Priorities_AllGood>
+  <CC_Priorities_AllGood>Nothing pressing right now. See the Ambition page for a bigger goal to work toward.</CC_Priorities_AllGood>
   <CC_AdvisorDisabled>The advisor is switched off in the mod settings.</CC_AdvisorDisabled>
   <CC_Level_Critical>Urgent</CC_Level_Critical>
   <CC_Level_High>Important</CC_Level_High>
@@ -69,7 +69,7 @@
 
   <!-- Advisor: food -->
   <CC_Adv_FoodLow_Title>Food runs out in about {0} days</CC_Adv_FoodLow_Title>
-  <CC_Adv_FoodLow_Detail>Hunt, forage, harvest anything ripe, or buy food from traders. Cooking meals stretches raw food further than eating it raw.</CC_Adv_FoodLow_Detail>
+  <CC_Adv_FoodLow_Detail>Hunt, forage, harvest anything ripe, or buy food from traders. Cooked meals make raw food go further.</CC_Adv_FoodLow_Detail>
   <CC_Adv_Winter_Title>The growing season ends in about {0} days</CC_Adv_Winter_Title>
   <CC_Adv_WinterNow_Title>Lean season: about {0} days until crops grow again</CC_Adv_WinterNow_Title>
   <CC_Adv_Winter_Detail>You have about {0} days of food. To get through the {2}-day cold spell you'll want around {1}.</CC_Adv_Winter_Detail>
@@ -105,7 +105,7 @@
   <CC_Adv_Medicine_Detail>Buy medicine from traders, or research how to make it. Even a few doses save lives.</CC_Adv_Medicine_Detail>
   <CC_Adv_Medicine_Grow>Grow {0} to make herbal medicine, and buy better medicine when traders visit.</CC_Adv_Medicine_Grow>
   <CC_Adv_Hospital_Title>No medical beds</CC_Adv_Hospital_Title>
-  <CC_Adv_Hospital_Detail>After one bad raid, the injured will lie wherever they fall. A small hospital (a few beds set to "medical") is a lifesaver.</CC_Adv_Hospital_Detail>
+  <CC_Adv_Hospital_Detail>After a bad raid, the wounded need somewhere to recover. A few beds set to "medical" in a clean room make a small hospital.</CC_Adv_Hospital_Detail>
 
   <!-- Advisor: power -->
   <CC_Adv_PowerShort_Title>The power grid is running out</CC_Adv_PowerShort_Title>
@@ -113,7 +113,7 @@
   <CC_Adv_SolarOnly_Title>Solar-only grid without batteries</CC_Adv_SolarOnly_Title>
   <CC_Adv_SolarOnly_Detail>Every night (and every eclipse) the power goes out. Batteries or a second kind of generator fix that.</CC_Adv_SolarOnly_Detail>
   <CC_Adv_NoBattery_Title>No batteries on the grid</CC_Adv_NoBattery_Title>
-  <CC_Adv_NoBattery_Detail>Batteries store surplus power for when generators dip. Handy for freezers.</CC_Adv_NoBattery_Detail>
+  <CC_Adv_NoBattery_Detail>Batteries store surplus power for when the generators fall short, so the freezer keeps running.</CC_Adv_NoBattery_Detail>
   <CC_Adv_NoPower_Title>The colony has electricity research but no power</CC_Adv_NoPower_Title>
   <CC_Adv_NoPower_Detail>Something like {0} would power lights, better workbenches and coolers.</CC_Adv_NoPower_Detail>
 
@@ -136,28 +136,28 @@
   <!-- Advisor: progress -->
   <CC_Adv_Research_Title>The research bench is idle</CC_Adv_Research_Title>
   <CC_Adv_Research_Detail>Suggested next project for your era: {0} (cost {1}).</CC_Adv_Research_Detail>
-  <CC_Adv_Research_DetailLaterEra>Nothing from your own era is left to research right now. What remains belongs to a later age, such as {0} (cost {1}): only worth it if that is the road you want to take.</CC_Adv_Research_DetailLaterEra>
+  <CC_Adv_Research_DetailLaterEra>Everything from your own era has been researched. What's left belongs to a later age, such as {0} (cost {1}). Research it only if you want the colony to move on to that age.</CC_Adv_Research_DetailLaterEra>
 
   <!-- Advisor: ideas -->
-  <CC_Idea_RecRoom_Title>Idea: a room just for fun</CC_Idea_RecRoom_Title>
+  <CC_Idea_RecRoom_Title>Idea: a recreation room</CC_Idea_RecRoom_Title>
   <CC_Idea_RecRoom_Detail>A dedicated recreation room gives a mood bonus every time someone relaxes there.</CC_Idea_RecRoom_Detail>
   <CC_Idea_Dining_Title>Idea: dress up the dining room</CC_Idea_Dining_Title>
   <CC_Idea_Dining_Detail>A more impressive dining room gives a mood boost after every meal. Floors, art and good furniture help.</CC_Idea_Dining_Detail>
   <CC_Idea_Barn_Title>Idea: give the animals a barn</CC_Idea_Barn_Title>
-  <CC_Idea_Barn_Detail>Animals sleeping outside get cold and sick. A barn with sleeping spots keeps them healthy.</CC_Idea_Barn_Detail>
+  <CC_Idea_Barn_Detail>Animals sleeping outside suffer in the cold. A roofed barn with animal sleeping spots keeps them healthy.</CC_Idea_Barn_Detail>
   <CC_Idea_Era_Title>Idea: the next step forward</CC_Idea_Era_Title>
-  <CC_Idea_Era_Detail>Your colony is settled. Research like {0} opens new possibilities.</CC_Idea_Era_Detail>
-  <CC_Idea_Empire_Title>Idea: friends in high places</CC_Idea_Empire_Title>
-  <CC_Idea_Empire_Detail>The Empire hands out titles for favours. A noble colonist brings powerful perks, and expensive tastes.</CC_Idea_Empire_Detail>
+  <CC_Idea_Era_Detail>The colony is settled. Research such as {0} would open up new buildings and equipment.</CC_Idea_Era_Detail>
+  <CC_Idea_Empire_Title>Idea: an imperial title</CC_Idea_Empire_Title>
+  <CC_Idea_Empire_Detail>The Empire grants titles to those who earn its honor. A titled colonist gains permits and psycasts, but expects a fine bedroom, a throne room and better food.</CC_Idea_Empire_Detail>
 
   <!-- ===================== Wishes ===================== -->
   <CC_Wishes_Header>What your colonists wish for</CC_Wishes_Header>
-  <CC_Wishes_None>Nobody is asking for anything right now. Enjoy it while it lasts.</CC_Wishes_None>
+  <CC_Wishes_None>No one is asking for anything right now.</CC_Wishes_None>
   <CC_Wishes_Recent>Recently</CC_Wishes_Recent>
   <CC_WishesDisabled>Wishes are switched off in the mod settings.</CC_WishesDisabled>
   <CC_Listen>Listen to the colonists</CC_Listen>
-  <CC_Listen_Tip>Ask around. If anyone has a wish, they'll speak up now. (Once a day.)</CC_Listen_Tip>
-  <CC_Listen_Cooldown>You already asked today. Give them some time.</CC_Listen_Cooldown>
+  <CC_Listen_Tip>Ask around. Anyone with a wish will speak up now. You can do this once a day.</CC_Listen_Tip>
+  <CC_Listen_Cooldown>You already asked today. Ask again tomorrow.</CC_Listen_Cooldown>
   <CC_Listen_Nothing>You asked around, but nobody wants anything right now.</CC_Listen_Nothing>
   <CC_Stakes_Short_Gentle>Gentle mode: granted wishes lift mood, ignored ones cost nothing.</CC_Stakes_Short_Gentle>
   <CC_Stakes_Short_Balanced>Balanced mode: granting helps, ignoring stings, and others notice who gets what.</CC_Stakes_Short_Balanced>
@@ -178,8 +178,8 @@
   <CC_PetitionJoined>{PAWN_labelShort} backs {OTHER_labelShort}'s wish: {WISH} ({COUNT} colonists now)</CC_PetitionJoined>
   <CC_CoSignLine_Plain>I'm with {PAWN_nameDef} on this one.</CC_CoSignLine_Plain>
   <CC_CoSignLine_Warm>{PAWN_nameDef} is right, you know. I'd love that too.</CC_CoSignLine_Warm>
-  <CC_CoSignLine_Blunt>Listen to {PAWN_nameDef}. For once.</CC_CoSignLine_Blunt>
-  <CC_CoSignLine_Cheerful>Ooh, yes! What {PAWN_nameDef} said!</CC_CoSignLine_Cheerful>
+  <CC_CoSignLine_Blunt>Do what {PAWN_nameDef} asked.</CC_CoSignLine_Blunt>
+  <CC_CoSignLine_Cheerful>Oh, yes, what {PAWN_nameDef} said!</CC_CoSignLine_Cheerful>
   <CC_CoSignLine_Gloomy>{PAWN_nameDef} asked. I'm asking too. Not that it'll help.</CC_CoSignLine_Gloomy>
   <CC_CoSignLine_Cold>{PAWN_nameDef}'s request is sensible. I support it.</CC_CoSignLine_Cold>
   <CC_RewardMood>{0} mood for {1} days</CC_RewardMood>
@@ -196,9 +196,9 @@
 
   <!-- Wish reasons -->
   <CC_Reason_NoBed>{PAWN_nameDef} has no bed and sleeps wherever {PAWN_pronoun} drops.</CC_Reason_NoBed>
-  <CC_Reason_SleepsOutside>{PAWN_nameDef}'s bed isn't even inside a room.</CC_Reason_SleepsOutside>
+  <CC_Reason_SleepsOutside>{PAWN_nameDef}'s bed stands out in the open, not in a room.</CC_Reason_SleepsOutside>
   <CC_Reason_Barracks>{PAWN_nameDef} sleeps in a shared room.</CC_Reason_Barracks>
-  <CC_Reason_Jealous>{PAWN_nameDef} is jealous: someone else has a nicer bedroom.</CC_Reason_Jealous>
+  <CC_Reason_Jealous>{PAWN_nameDef} is jealous of someone else's nicer bedroom.</CC_Reason_Jealous>
   <CC_Reason_Greedy>{PAWN_nameDef} is greedy and wants a bedroom that shows it.</CC_Reason_Greedy>
   <CC_Reason_HighExpectations>The colony is doing well, and {PAWN_nameDef}'s expectations have risen with it.</CC_Reason_HighExpectations>
   <CC_Reason_Cramped>{PAWN_nameDef}'s bedroom is {1}.</CC_Reason_Cramped>
@@ -209,7 +209,7 @@
   <CC_Reason_SleptCold>{PAWN_nameDef} slept in the cold recently.</CC_Reason_SleptCold>
   <CC_Reason_SleptHot>{PAWN_nameDef} slept in sweltering heat recently.</CC_Reason_SleptHot>
   <CC_Reason_AteWithoutTable>{PAWN_nameDef} had to eat without a table.</CC_Reason_AteWithoutTable>
-  <CC_Reason_Bored>{PAWN_nameDef} is bored: the colony has {1} kinds of recreation, {PAWN_pronoun} wants {2}.</CC_Reason_Bored>
+  <CC_Reason_Bored>{PAWN_nameDef} is bored. The colony has {1} kinds of recreation, and {PAWN_pronoun} wants {2}.</CC_Reason_Bored>
   <CC_Reason_Greenery>{PAWN_nameDef} loves growing things.</CC_Reason_Greenery>
   <CC_Reason_Passion>{SKILL} is {PAWN_nameDef}'s {PASSION}, but the colony has no proper place for it.</CC_Reason_Passion>
   <CC_PassionBurning>burning passion</CC_PassionBurning>
@@ -219,7 +219,7 @@
   <CC_Reason_BlandWalls>{PAWN_nameDef} finds the common rooms drab.</CC_Reason_BlandWalls>
   <CC_Reason_Brawler>{PAWN_nameDef} is a brawler and hates being stuck with a ranged weapon.</CC_Reason_Brawler>
   <CC_Reason_Fighter>{PAWN_nameDef} lives to fight and wants a weapon worthy of it.</CC_Reason_Fighter>
-  <CC_Reason_Chemical>{PAWN_nameDef} has a chemical interest. Strong drink is a long-standing hobby.</CC_Reason_Chemical>
+  <CC_Reason_Chemical>{PAWN_nameDef} has a chemical interest and likes a strong drink.</CC_Reason_Chemical>
   <CC_Reason_Gourmand>{PAWN_nameDef} is a gourmand.</CC_Reason_Gourmand>
   <CC_Reason_AteRaw>{PAWN_nameDef} has been eating raw food or paste.</CC_Reason_AteRaw>
   <CC_Reason_AteRotten>{PAWN_nameDef} just ate rotten food.</CC_Reason_AteRotten>
@@ -263,7 +263,7 @@
   <CC_When_Passion_Medicine>The colony has a room that counts as a hospital (beds set to medical).</CC_When_Passion_Medicine>
   <CC_When_Passion_Plants>The colony has hydroponics, or a roofed grow zone under a sun lamp.</CC_When_Passion_Plants>
   <CC_When_Passion_Animals>The colony has a room that counts as a barn.</CC_When_Passion_Animals>
-  <CC_When_Defenses>Build {0} more like this: {1}.</CC_When_Defenses>
+  <CC_When_Defenses>{0} more built ({1}).</CC_When_Defenses>
 
   <!-- Wish progress -->
   <CC_Progress_NoBed>no bed yet</CC_Progress_NoBed>
@@ -288,19 +288,19 @@
   <CC_Ambition_Chosen>The council chose: {0}, proposed by {1}.</CC_Ambition_Chosen>
   <CC_Ambition_ChosenSpeech>They picked my idea!</CC_Ambition_ChosenSpeech>
   <CC_Ambition_AchievedTitle>Ambition achieved: {0}</CC_Ambition_AchievedTitle>
-  <CC_Ambition_AchievedText>The colony set out to achieve "{0}" and did it in {1} days. Everyone feels the lift.</CC_Ambition_AchievedText>
+  <CC_Ambition_AchievedText>The colony set out to achieve "{0}" and did it in {1} days. Every colonist gets a mood boost.</CC_Ambition_AchievedText>
   <CC_Ambition_Inspired>{PAWN_nameDef} is inspired after seeing {PAWN_possessive} proposal come true.</CC_Ambition_Inspired>
   <CC_Ambition_Failed>The colony fell short of its ambition "{0}" ({1} done). The council will meet again soon.</CC_Ambition_Failed>
   <CC_Meeting_BusyAmbition>The colony is already working on an ambition.</CC_Meeting_BusyAmbition>
   <CC_Meeting_TooSoon>The council met very recently. Try again in {0}.</CC_Meeting_TooSoon>
   <CC_Meeting_NoOne>Nobody is free to attend a meeting right now.</CC_Meeting_NoOne>
-  <CC_Meeting_NothingToPropose>The council met, but nobody had anything new to propose. Things must be going well.</CC_Meeting_NothingToPropose>
+  <CC_Meeting_NothingToPropose>The council met, but no one had anything new to propose.</CC_Meeting_NothingToPropose>
   <CC_Meeting_Title>The council has met</CC_Meeting_Title>
   <CC_Meeting_Intro>The colonists talked it over {0}, in between other things. These proposals stood out:</CC_Meeting_Intro>
-  <CC_Meeting_IntroGathered>The council met {VENUE}, with {CHAIR} keeping order. {COUNT} turned up: {NAMES}. They argued, they joked, somebody brought snacks. These proposals stood out:</CC_Meeting_IntroGathered>
+  <CC_Meeting_IntroGathered>The council met {VENUE}, with {CHAIR} keeping order. {COUNT} came: {NAMES}. After some argument, these proposals stood out:</CC_Meeting_IntroGathered>
   <CC_Meeting_Votes>Backed by {0}: {1}</CC_Meeting_Votes>
-  <CC_Meeting_Leans>The room leans towards {AMBITION}, {PAWN_nameDef}'s idea. Go with it and its backers will be pleased; overrule a clear majority and they'll remember.</CC_Meeting_Leans>
-  <CC_Meeting_Split>The room is split. Nobody will hold the decision against you.</CC_Meeting_Split>
+  <CC_Meeting_Leans>Most of the room favors {AMBITION}, {PAWN_nameDef}'s idea. Choosing it will please its backers; overruling a clear majority will cost their trust.</CC_Meeting_Leans>
+  <CC_Meeting_Split>The room is split. Whatever you choose, it won't be held against you.</CC_Meeting_Split>
   <CC_Meeting_Remark>{0}: "{1}"</CC_Meeting_Remark>
   <CC_Meeting_Report>attending a council meeting.</CC_Meeting_Report>
   <CC_Meeting_AlreadyCalled>A meeting has already been called.</CC_Meeting_AlreadyCalled>
@@ -320,7 +320,7 @@
   <CC_Venue_GatherSpot>by the {0}</CC_Venue_GatherSpot>
   <CC_Venue_Outside>in the open, on crates and rocks</CC_Venue_Outside>
   <CC_Log_VoteWon>their side won: {0}</CC_Log_VoteWon>
-  <CC_Log_Overruled>outvoted the council, yet {0} was overruled</CC_Log_Overruled>
+  <CC_Log_Overruled>had the votes for {0}, but was overruled</CC_Log_Overruled>
   <CC_Log_IdeaChosen>their idea was chosen: {0}</CC_Log_IdeaChosen>
   <CC_Log_AmbitionHelped>a wish helped {0}</CC_Log_AmbitionHelped>
   <CC_Ambition_WishHelped>That gets us closer to {0}!</CC_Ambition_WishHelped>
@@ -337,7 +337,7 @@
   <CC_Heckle_Blunt>{PAWN_nameDef} snorted at {OTHER_nameDef}'s "{AMBITION}" and asked who was going to do the actual work.</CC_Heckle_Blunt>
   <CC_Heckle_Cheerful>{PAWN_nameDef} cheered so loudly for "{AMBITION}" that {OTHER_nameDef} looked embarrassed.</CC_Heckle_Cheerful>
   <CC_Heckle_Gloomy>{PAWN_nameDef} muttered that "{AMBITION}" wouldn't matter when the next raid came.</CC_Heckle_Gloomy>
-  <CC_Heckle_Cold>{PAWN_nameDef} calmly pointed out every flaw in {OTHER_nameDef}'s "{AMBITION}". Twice.</CC_Heckle_Cold>
+  <CC_Heckle_Cold>{PAWN_nameDef} listed every flaw in {OTHER_nameDef}'s "{AMBITION}", one by one, in an even voice.</CC_Heckle_Cold>
 
   <!-- Goals -->
   <CC_Goal_CleanKitchens>Every kitchen at cleanliness {0} or better, with no butcher table inside</CC_Goal_CleanKitchens>
@@ -410,15 +410,15 @@
   <CC_Chronicle_Meeting>The council met. Proposals: {0}.</CC_Chronicle_Meeting>
   <CC_Chronicle_MeetingPostponed>The council decided not to commit to anything for now.</CC_Chronicle_MeetingPostponed>
   <CC_Chronicle_AmbitionChosen>The colony set out to achieve: {0} (proposed by {1}).</CC_Chronicle_AmbitionChosen>
-  <CC_Chronicle_AmbitionAchieved>Ambition achieved: {0}!</CC_Chronicle_AmbitionAchieved>
+  <CC_Chronicle_AmbitionAchieved>Ambition achieved: {0}.</CC_Chronicle_AmbitionAchieved>
   <CC_Chronicle_AmbitionFailed>The colony fell short of {0} ({1} done).</CC_Chronicle_AmbitionFailed>
   <CC_Chronicle_AmbitionAbandoned>The colony abandoned the ambition: {0}.</CC_Chronicle_AmbitionAbandoned>
   <CC_Chronicle_Header>The colony chronicle</CC_Chronicle_Header>
-  <CC_Chronicle_Empty>Nothing has happened yet. Give it time; something always does.</CC_Chronicle_Empty>
+  <CC_Chronicle_Empty>Nothing has happened yet.</CC_Chronicle_Empty>
 
   <!-- ===================== Room plans ===================== -->
   <CC_Build_Header>Room plans</CC_Build_Header>
-  <CC_Build_Sub>Templates adapt to your tech and materials. Click "Plan": a panel lets you turn and mirror the room, move the door, pick materials and furniture. The same rooms are one click away under the "rooms" button in the bottom bar.</CC_Build_Sub>
+  <CC_Build_Sub>Plans adapt to your research and materials. Click "Plan" to turn the room, move the door and choose materials and furniture.</CC_Build_Sub>
   <CC_Build_Plan>Plan</CC_Build_Plan>
   <CC_Build_OnlyAvailable>Only rooms we can build now</CC_Build_OnlyAvailable>
   <CC_Build_Hidden>{0} more room plan(s) need research, a DLC or materials the colony can't use yet. Untick the box above to see them.</CC_Build_Hidden>
@@ -430,7 +430,7 @@
   <CC_BuildGroup_Security>Security and power</CC_BuildGroup_Security>
   <CC_Build_Contains>Contains: {0}</CC_Build_Contains>
   <CC_Template_NoWalls>The colony can't build walls yet.</CC_Template_NoWalls>
-  <CC_Template_Missing>Not yet possible: the colony can't build {0}.</CC_Template_Missing>
+  <CC_Template_Missing>The colony can't build {0} yet.</CC_Template_Missing>
   <CC_PlanRoom>Plan {0}</CC_PlanRoom>
   <CC_Plan_Blocked>Something is in the way (red cells).</CC_Plan_Blocked>
   <CC_Plan_DoorBlocked>The door can't go there.</CC_Plan_DoorBlocked>
@@ -448,16 +448,16 @@
   <CC_Plan_Removed>{0} building(s) of yours marked for deconstruction.</CC_Plan_Removed>
   <CC_Plan_Smoothed>{0} stone surface(s) marked for smoothing.</CC_Plan_Smoothed>
   <CC_Plan_Queued>{0} piece(s) will be planned as soon as the way is clear.</CC_Plan_Queued>
-  <CC_Plan_QueueGaveUp>{0} waiting room-plan piece(s) dropped: what was in the way is staying put.</CC_Plan_QueueGaveUp>
+  <CC_Plan_QueueGaveUp>Dropped {0} waiting piece(s) of a room plan. Something is still in the way.</CC_Plan_QueueGaveUp>
   <CC_Plan_Block_Edge>Too close to the map edge or unexplored ground.</CC_Plan_Block_Edge>
   <CC_Plan_Block_Rock>Rock is in the way. Tick "mine rock" to dig it out.</CC_Plan_Block_Rock>
   <CC_Plan_Block_Own>Your own buildings are in the way. Tick "replace my buildings" to take them down first.</CC_Plan_Block_Own>
-  <CC_Plan_Block_Ground>The ground can't carry walls here (water, marsh, mud?).</CC_Plan_Block_Ground>
+  <CC_Plan_Block_Ground>The ground here can't hold walls (water, marsh or mud).</CC_Plan_Block_Ground>
   <CC_Plan_Block_Other>Something you can't remove is in the way.</CC_Plan_Block_Other>
   <CC_Plan_Block_DoorRock>Rock where the door goes. Tick "mine rock".</CC_Plan_Block_DoorRock>
   <CC_Plan_Block_DoorOwn>One of your buildings sits where the door goes. Tick "replace my buildings", or move the door.</CC_Plan_Block_DoorOwn>
   <CC_Plan_Block_Thing>{0} is in the way.</CC_Plan_Block_Thing>
-  <CC_Plan_Warn_Mountain>Under overhead mountain: insects can dig in here.</CC_Plan_Warn_Mountain>
+  <CC_Plan_Warn_Mountain>Under overhead mountain. Insects can dig in here.</CC_Plan_Warn_Mountain>
   <CC_Plan_Warn_Zone>{0} growing-zone cell(s) will be removed from the field.</CC_Plan_Warn_Zone>
   <CC_Plan_Warn_Mine>{0} cell(s) to mine first.</CC_Plan_Warn_Mine>
   <CC_Plan_Warn_Deconstruct>{0} of your buildings will be taken down.</CC_Plan_Warn_Deconstruct>
@@ -483,15 +483,15 @@
   <CC_Planner_MineRock>Mine rock</CC_Planner_MineRock>
   <CC_Planner_MineRock_Tip>Rock inside the room, in the doorway and right outside the door is marked for mining. Rock in the walls is kept as wall. Furniture on mined cells is planned once the rock is gone.</CC_Planner_MineRock_Tip>
   <CC_Planner_ReplaceOwn>Replace my buildings in the way</CC_Planner_ReplaceOwn>
-  <CC_Planner_ReplaceOwn_Tip>Your own buildings inside the room or in its walls are marked for deconstruction, and the plan follows once they're gone. Off by default for a reason.</CC_Planner_ReplaceOwn_Tip>
+  <CC_Planner_ReplaceOwn_Tip>Your own buildings inside the room or in its walls are marked for deconstruction, and the plan follows once they're gone. Off by default, so nothing gets torn down by accident.</CC_Planner_ReplaceOwn_Tip>
   <CC_Planner_Smooth>Smooth the stone</CC_Planner_Smooth>
   <CC_Planner_Smooth_Tip>Natural rock walls and rough stone floors are marked for smoothing. Smooth stone is pretty and costs nothing but time.</CC_Planner_Smooth_Tip>
   <CC_Planner_Cost>COST HERE (NEEDED / IN STOCK)</CC_Planner_Cost>
-  <CC_Planner_Free>Nothing to buy: it's all there already.</CC_Planner_Free>
+  <CC_Planner_Free>Costs nothing. Everything needed is already there.</CC_Planner_Free>
   <CC_Planner_CostLine>{0}: {1} / {2}</CC_Planner_CostLine>
   <CC_Settings_Interface>Interface</CC_Settings_Interface>
   <CC_Settings_ButtonPosition>Council button in the bottom bar</CC_Settings_ButtonPosition>
-  <CC_Settings_ButtonPosition_Note>Moves straight away in a running game.</CC_Settings_ButtonPosition_Note>
+  <CC_Settings_ButtonPosition_Note>Takes effect right away, even in a running game.</CC_Settings_ButtonPosition_Note>
   <CC_ButtonPos_BeforeMenu>At the right end (before Menu)</CC_ButtonPos_BeforeMenu>
   <CC_ButtonPos_AfterResearch>After Research</CC_ButtonPos_AfterResearch>
   <CC_ButtonPos_AfterHistory>After History</CC_ButtonPos_AfterHistory>
@@ -501,7 +501,7 @@
   <!-- ===================== Personal touches ===================== -->
   <CC_Touch_Message>{PAWN_labelShort} planned {THING} for {PAWN_possessive} bedroom (cancel the blueprint if you'd rather not).</CC_Touch_Message>
   <CC_Touch_Plain>My room needs {THING}. I've marked the spot.</CC_Touch_Plain>
-  <CC_Touch_Warm>I thought {THING} would make my room a little cozier. I hope that's alright.</CC_Touch_Warm>
+  <CC_Touch_Warm>I thought {THING} would make my room cozier. I hope that's all right.</CC_Touch_Warm>
   <CC_Touch_Blunt>I'm putting {THING} in my room. Don't argue.</CC_Touch_Blunt>
   <CC_Touch_Cheerful>Ooh, {THING} would look perfect right there!</CC_Touch_Cheerful>
   <CC_Touch_Gloomy>Maybe {THING} will make my room feel less like a cell.</CC_Touch_Gloomy>
@@ -509,8 +509,8 @@
   <CC_TouchDone_Plain>The {THINGBARE} is in. My room feels like mine now.</CC_TouchDone_Plain>
   <CC_TouchDone_Warm>The {THINGBARE} is perfect. Thank you to whoever built it!</CC_TouchDone_Warm>
   <CC_TouchDone_Blunt>Good. The {THINGBARE} is where it belongs.</CC_TouchDone_Blunt>
-  <CC_TouchDone_Cheerful>My {THINGBARE}! It's even better than I imagined!</CC_TouchDone_Cheerful>
-  <CC_TouchDone_Gloomy>The {THINGBARE} helps. A little.</CC_TouchDone_Gloomy>
+  <CC_TouchDone_Cheerful>My {THINGBARE}! It looks even better than I imagined.</CC_TouchDone_Cheerful>
+  <CC_TouchDone_Gloomy>The {THINGBARE} helps, I suppose.</CC_TouchDone_Gloomy>
   <CC_TouchDone_Cold>Arrangement complete.</CC_TouchDone_Cold>
   <CC_Chronicle_Touch>{0} planned a new {1} for their bedroom.</CC_Chronicle_Touch>
   <CC_Chronicle_TouchDone>{0}'s new {1} is finished.</CC_Chronicle_TouchDone>
@@ -524,7 +524,7 @@
   <!-- ===================== Settings ===================== -->
   <CC_Settings_Layers>What should the council do?</CC_Settings_Layers>
   <CC_Settings_EnableAdvisor>Advisor: rank what the colony needs</CC_Settings_EnableAdvisor>
-  <CC_Settings_EnableAdvisor_Tip>Shows prioritized, explained advice on the Council tab's Priorities page.</CC_Settings_EnableAdvisor_Tip>
+  <CC_Settings_EnableAdvisor_Tip>Shows ranked advice, with the reasons behind it, on the council window's Priorities page.</CC_Settings_EnableAdvisor_Tip>
   <CC_Settings_EnableWishes>Wishes: colonists make requests</CC_Settings_EnableWishes>
   <CC_Settings_EnableWishes_Tip>Colonists voice wishes based on their traits, passions, relationships and mood.</CC_Settings_EnableWishes_Tip>
   <CC_Settings_EnableAmbitions>Council meetings and ambitions</CC_Settings_EnableAmbitions>
@@ -579,25 +579,25 @@
 
   <!-- Promises, refusals, reminders -->
   <CC_Promise>Promise</CC_Promise>
-  <CC_Promise_Tip>Tell them you'll see to it. They wait half again as long and trust the council a little more. If it doesn't happen in time, it's a broken promise: much worse than never promising.</CC_Promise_Tip>
+  <CC_Promise_Tip>Tell them you'll see to it. They'll wait half again as long and trust the council more. If it doesn't happen in time, the promise is broken, and that hurts far more than never promising.</CC_Promise_Tip>
   <CC_Refuse>Refuse</CC_Refuse>
-  <CC_Refuse_Tip>Say no, honestly. It stings now (less for kind or ascetic colonists) but it's over: no reminders, no slow souring, and they won't ask again for a long while.</CC_Refuse_Tip>
+  <CC_Refuse_Tip>Say no. It hurts now (less for kind or ascetic colonists), but then it's over: no reminders, no slow souring, and they won't ask again for a long while.</CC_Refuse_Tip>
   <CC_Refuse_Confirm>Refuse {PAWN_nameDef}'s wish for {WISH}? It will disappoint {PAWN_objective}, and {PAWN_pronoun} won't ask for it again for a while.</CC_Refuse_Confirm>
   <CC_PromisedMessage>Promised {PAWN_nameDef}: {WISH}.</CC_PromisedMessage>
   <CC_PromisedFallback>I'll hold you to that.</CC_PromisedFallback>
-  <CC_RefusedMessage>{PAWN_nameDef} hears no to {WISH}.</CC_RefusedMessage>
+  <CC_RefusedMessage>The council refused {PAWN_nameDef}'s wish for {WISH}.</CC_RefusedMessage>
   <CC_RefusedFallback>Right. Well.</CC_RefusedFallback>
   <CC_ReminderMessage>{PAWN_nameDef} brings up {WISH} again.</CC_ReminderMessage>
   <CC_LastCallMessage>{PAWN_nameDef} is running out of patience about {WISH} ({TIME} left).</CC_LastCallMessage>
   <CC_SelfHelpTitle>{PAWN_nameDef} took matters into {PAWN_possessive} own hands</CC_SelfHelpTitle>
   <CC_SelfHelp_Plan>Tired of waiting, {PAWN_nameDef} planned {THING} for the room {PAWN_pronoun} sleeps in. The builders will find the blueprint; cancel it if you object.</CC_SelfHelp_Plan>
-  <CC_SelfHelp_ShareBed>{PAWN_nameDef} has moved into {OTHER_nameDef}'s bed. Nobody asked the council. Nobody had to.</CC_SelfHelp_ShareBed>
+  <CC_SelfHelp_ShareBed>{PAWN_nameDef} has moved into {OTHER_nameDef}'s bed without waiting for the council.</CC_SelfHelp_ShareBed>
   <CC_SelfHelp_Grave>{PAWN_nameDef} marked out a grave for {OTHER_nameDef}. Once it's dug, the body can be laid to rest.</CC_SelfHelp_Grave>
   <CC_SelfHelp_Tame>{PAWN_nameDef} picked out an animal ({SUBJECT}) and marked it for taming. If {PAWN_pronoun} isn't allowed to handle animals, someone else will have to.</CC_SelfHelp_Tame>
-  <CC_SelfHelp_Work>{PAWN_nameDef} switched {PAWN_possessive} own {SUBJECT} work back on. You can switch it off again in the Work tab, if you're willing to have that conversation.</CC_SelfHelp_Work>
-  <CC_PromiseKeptNote>A promise kept. {PAWN_nameDef} won't forget it.</CC_PromiseKeptNote>
+  <CC_SelfHelp_Work>{PAWN_nameDef} switched {PAWN_possessive} own {SUBJECT} work back on. You can switch it off again in the Work tab.</CC_SelfHelp_Work>
+  <CC_PromiseKeptNote>The council kept its promise, and {PAWN_nameDef} trusts it more for that.</CC_PromiseKeptNote>
   <CC_PromiseBrokenTitle>Broken promise to {PAWN_nameDef}: {WISH}</CC_PromiseBrokenTitle>
-  <CC_MentalReason>Nobody listened about {WISH}.</CC_MentalReason>
+  <CC_MentalReason>The wish for {WISH} came to nothing.</CC_MentalReason>
   <CC_MentalReasonGeneral>The council never listens.</CC_MentalReasonGeneral>
   <CC_BitterMessage>{PAWN_nameDef} is bitter about the council.</CC_BitterMessage>
   <CC_PromisedTag>promised</CC_PromisedTag>
@@ -612,7 +612,7 @@
   <CC_Trust_Trusting>trusting</CC_Trust_Trusting>
   <CC_Trust_Devoted>devoted</CC_Trust_Devoted>
   <CC_Trust_Header>Trust in the council</CC_Trust_Header>
-  <CC_Trust_Sub>Grows when wishes come true and promises are kept; falls when they're ignored, refused or broken. Trusting colonists are patient and content; bitter ones grumble, stop asking and (on Demanding) may sulk. Hover a name for the history.</CC_Trust_Sub>
+  <CC_Trust_Sub>Trust grows when wishes come true and promises are kept, and falls when wishes are ignored or refused and promises are broken. Trusting colonists are patient and content; bitter ones grumble, stop asking and (on Demanding) may sulk. Hover over a name for that colonist's history, or click it to open their page.</CC_Trust_Sub>
   <CC_Trust_Tip>{0}: trust {1}\nGranted {2}, let go {3}, refused {4}\nPromises kept {5}, broken {6}</CC_Trust_Tip>
   <CC_Log_Promised>promised {0}</CC_Log_Promised>
   <CC_Log_Refused>refused {0}</CC_Log_Refused>
@@ -640,7 +640,7 @@
   <CC_Almanac_Search>Search the almanac...</CC_Almanac_Search>
   <CC_Almanac_All>Everything</CC_Almanac_All>
   <CC_Almanac_AllDlc>Show pages for DLCs and mods I don't have</CC_Almanac_AllDlc>
-  <CC_Almanac_NothingFound>Nothing written about that. Yet.</CC_Almanac_NothingFound>
+  <CC_Almanac_NothingFound>No pages match your search.</CC_Almanac_NothingFound>
   <CC_Almanac_Pick>Pick a page.</CC_Almanac_Pick>
   <CC_Almanac_NotActive>not active</CC_Almanac_NotActive>
   <CC_Almanac_Approximate>some numbers are approximate</CC_Almanac_Approximate>
@@ -680,14 +680,14 @@
   <CC_Adv_Fire_Title>Fire risk</CC_Adv_Fire_Title>
   <CC_Adv_Fire_Rooms>{0} room(s) have an open flame inside wooden walls.</CC_Adv_Fire_Rooms>
   <CC_Adv_Fire_Walls>{0} of the colony's walls are wooden.</CC_Adv_Fire_Walls>
-  <CC_Adv_Fire_Detail>One stray spark and it all goes up. Rebuild the walls around fires, storerooms and bedrooms in {0}.</CC_Adv_Fire_Detail>
+  <CC_Adv_Fire_Detail>A single spark can set a wooden room alight. Rebuild the walls around fires, storerooms and bedrooms in {0}.</CC_Adv_Fire_Detail>
   <CC_StoneGeneric>stone blocks</CC_StoneGeneric>
   <CC_Adv_Infestation_Title>Insects could dig in</CC_Adv_Infestation_Title>
   <CC_Adv_Infestation_Detail>{0} cells of the home area lie under overhead mountain. Hives can appear there when it's warmer than -17 °C, preferring dark spots far from open sky. Walling up unused mountain rooms (every second tile is enough) prevents them.</CC_Adv_Infestation_Detail>
   <CC_Adv_Infestation_Turret>A {0} or two covering the deep rooms would help when they come.</CC_Adv_Infestation_Turret>
   <CC_Adv_Infestation_LowTech>Keep fighters with good melee weapons near the deep rooms, and don't store anything precious there.</CC_Adv_Infestation_LowTech>
   <CC_Adv_Corpses_Title>{0} bodies lying around the colony</CC_Adv_Corpses_Title>
-  <CC_Adv_Corpses_Detail>Seeing the dead sours everyone's mood, and the smell of rot is worse.</CC_Adv_Corpses_Detail>
+  <CC_Adv_Corpses_Detail>Seeing corpses hurts colonists' mood, and rotting ones hurt it more.</CC_Adv_Corpses_Detail>
   <CC_Adv_Corpses_GraveOrBurn>Bury colonists in a {0}; burn strangers in a {1} or dump them far away.</CC_Adv_Corpses_GraveOrBurn>
   <CC_Adv_Corpses_Grave>Bury them in a {0}, or set up a dumping stockpile far from the base.</CC_Adv_Corpses_Grave>
   <CC_Adv_Corpses_Dump>Set up a dumping stockpile far from the base, out of sight.</CC_Adv_Corpses_Dump>
@@ -707,7 +707,7 @@
   <CC_Adv_Dark_Detail>Colonists in the dark work slower and get a mood penalty. {0} in each would fix it.</CC_Adv_Dark_Detail>
   <CC_Adv_Cond_Unknown>an unknown time</CC_Adv_Cond_Unknown>
   <CC_Adv_Cond_ToxicFallout_Title>Toxic fallout</CC_Adv_Cond_ToxicFallout_Title>
-  <CC_Adv_Cond_ToxicFallout_Detail>Poison is falling from the sky ({0} left). Everyone outdoors slowly builds up toxic buildup. Restrict colonists to roofed areas, bring animals inside if you can, and expect outdoor plants to die.</CC_Adv_Cond_ToxicFallout_Detail>
+  <CC_Adv_Cond_ToxicFallout_Detail>Toxic dust is falling from the sky ({0} left). Anyone outdoors slowly gains toxic buildup. Restrict colonists to roofed areas, bring animals inside if you can, and expect outdoor plants to die.</CC_Adv_Cond_ToxicFallout_Detail>
   <CC_Adv_Cond_VolcanicWinter_Title>Volcanic winter</CC_Adv_Cond_VolcanicWinter_Title>
   <CC_Adv_Cond_VolcanicWinter_Detail>Ash dims the sun for a long while ({0} left): it's colder and crops grow slower. Stock extra food and fuel.</CC_Adv_Cond_VolcanicWinter_Detail>
   <CC_Adv_Cond_SolarFlare_Title>Solar flare</CC_Adv_Cond_SolarFlare_Title>
@@ -745,7 +745,7 @@
   <CC_Adv_Cond_Eclipse_Detail>The sun is gone for a while ({0} left). Solar panels are useless and outdoor crops stall; lean on batteries and other power.</CC_Adv_Cond_Eclipse_Detail>
   <CC_Adv_Cond_Eclipse_DetailLow>The sun is gone for a while ({0} left). Outdoor crops stop growing and the dark sets people on edge; keep the torches lit and the work indoors.</CC_Adv_Cond_Eclipse_DetailLow>
   <CC_Adv_Cond_Aurora_Title>Aurora</CC_Adv_Cond_Aurora_Title>
-  <CC_Adv_Cond_Aurora_Detail>Lights dance across the sky ({0} left). Colonists who see it feel better; a good night for a walk outside.</CC_Adv_Cond_Aurora_Detail>
+  <CC_Adv_Cond_Aurora_Detail>Lights dance across the sky ({0} left). Colonists who see them get a mood boost, so it's a good night to be outdoors.</CC_Adv_Cond_Aurora_Detail>
 
   <!-- Extra wishes -->
   <CC_Reason_Wedding>{PAWN_nameDef} and {OTHER_nameDef} are engaged.</CC_Reason_Wedding>
@@ -755,12 +755,12 @@
   <CC_Reason_ArtInRoom_Artist>{PAWN_nameDef} is an artist with nothing beautiful in {PAWN_possessive} own room.</CC_Reason_ArtInRoom_Artist>
   <CC_Reason_ArtInRoom>{PAWN_nameDef}'s expectations have grown, and {PAWN_possessive} room has no art.</CC_Reason_ArtInRoom>
   <CC_Reason_DayOff_Tired>{PAWN_nameDef}'s recreation is almost empty and {PAWN_possessive} schedule barely allows any.</CC_Reason_DayOff_Tired>
-  <CC_Reason_DayOff_Lazy>{PAWN_nameDef} is not one for hard work, and the schedule has noticed.</CC_Reason_DayOff_Lazy>
+  <CC_Reason_DayOff_Lazy>{PAWN_nameDef} is not one for hard work, and would like a day off.</CC_Reason_DayOff_Lazy>
   <CC_Progress_JoyHours>{0} of {1} recreation hours</CC_Progress_JoyHours>
   <CC_Reason_LittleSomething>{PAWN_nameDef} has a taste for chemicals, and the colony has almost none in stock.</CC_Reason_LittleSomething>
   <CC_Progress_Stock>{0} of {1} in stock</CC_Progress_Stock>
   <CC_Reason_Recruit>{PAWN_nameDef} has taken a liking to the prisoner {OTHER_nameDef}.</CC_Reason_Recruit>
-  <CC_Reason_Tidy>{PAWN_nameDef} counted {COUNT} patches of filth in the home area and has opinions about it.</CC_Reason_Tidy>
+  <CC_Reason_Tidy>{PAWN_nameDef} counted {COUNT} patches of filth in the home area and wants them cleaned up.</CC_Reason_Tidy>
   <CC_Progress_Filth>{0} pieces of filth (goal: {1} or fewer)</CC_Progress_Filth>
   <CC_SelfHelp_Tidy>{PAWN_nameDef} picked up a broom and made cleaning {PAWN_possessive} top priority. You can change it back in the Work tab.</CC_SelfHelp_Tidy>
   <CC_Reason_Music>{PAWN_nameDef} has music in {PAWN_objective} and nothing to play it on.</CC_Reason_Music>
@@ -772,7 +772,7 @@
   <CC_Rooms_Hint>Click a room to plan it. Right-click to plan it at a good spot. Highlighted rooms are what the council is asking for.</CC_Rooms_Hint>
   <CC_Rooms_Suggested>The council suggests this: {0}</CC_Rooms_Suggested>
   <CC_Settings_RoomsButton>Show the "rooms" button in the bottom bar</CC_Settings_RoomsButton>
-  <CC_Settings_RoomsButton_Tip>A shortcut to all room plans. The same plans are always in the council's Build tab.</CC_Settings_RoomsButton_Tip>
+  <CC_Settings_RoomsButton_Tip>A shortcut to all room plans. The same plans are always on the council window's Room plans page.</CC_Settings_RoomsButton_Tip>
   <CC_Floor_Title>Floor for the {0}</CC_Floor_Title>
   <CC_Floor_Suggested>Suggested: {0}</CC_Floor_Suggested>
   <CC_Floor_OnlyAffordable>Only floors we have the materials for ({0} tiles)</CC_Floor_OnlyAffordable>
@@ -797,23 +797,23 @@
 
   <!-- Justice, mercy, parties, rescues, hunts -->
   <CC_Reason_Justice>{PAWN_nameDef} hasn't forgiven the raid, and {OTHER_nameDef} is the only raider still breathing.</CC_Reason_Justice>
-  <CC_Reason_JusticeBlood>{PAWN_nameDef} is bloodthirsty, and {OTHER_nameDef} is sitting in a cell doing nothing about it.</CC_Reason_JusticeBlood>
+  <CC_Reason_JusticeBlood>{PAWN_nameDef} is bloodthirsty, and {OTHER_nameDef} is still alive in a cell.</CC_Reason_JusticeBlood>
   <CC_Reason_JusticeGrief>{PAWN_nameDef} is grieving, and blames {OTHER_nameDef}'s people for it.</CC_Reason_JusticeGrief>
   <CC_Reason_JusticeCold>{PAWN_nameDef} sees no use in feeding {OTHER_nameDef} any longer.</CC_Reason_JusticeCold>
-  <CC_Progress_Justice>Set {OTHER_nameDef} to be executed in the prisoner tab, or leave it.</CC_Progress_Justice>
+  <CC_Progress_Justice>Set {OTHER_nameDef} to be executed in the Prisoner tab, or let the wish go.</CC_Progress_Justice>
   <CC_Reason_Mercy>{PAWN_nameDef} is kind, and thinks keeping {OTHER_nameDef} locked up has gone on long enough.</CC_Reason_Mercy>
   <CC_Reason_MercyChild>{PAWN_nameDef} can't stand seeing a child like {OTHER_nameDef} behind bars.</CC_Reason_MercyChild>
-  <CC_Reason_MercyHurt>{PAWN_nameDef} has seen the state {OTHER_nameDef} is in, and wants them let go.</CC_Reason_MercyHurt>
+  <CC_Reason_MercyHurt>{PAWN_nameDef} has seen the state {OTHER_nameDef} is in, and wants {OTHER_objective} released.</CC_Reason_MercyHurt>
   <CC_Reason_MercyFriend>{PAWN_nameDef} has become friends with the prisoner {OTHER_nameDef}.</CC_Reason_MercyFriend>
-  <CC_Progress_Mercy>Release {OTHER_nameDef} (or recruit them) from the prisoner tab.</CC_Progress_Mercy>
+  <CC_Progress_Mercy>Release or recruit {OTHER_nameDef} from the Prisoner tab.</CC_Progress_Mercy>
   <CC_Reason_Party>{PAWN_nameDef} thinks the colony is overdue for some fun.</CC_Reason_Party>
-  <CC_Reason_PartyGloom>The whole colony is miserable, and {PAWN_nameDef} thinks a party would help.</CC_Reason_PartyGloom>
+  <CC_Reason_PartyGloom>Spirits are low all over the colony, and {PAWN_nameDef} thinks a party would help.</CC_Reason_PartyGloom>
   <CC_Progress_Party>Promise it and the council calls a party right away. Otherwise, wait for one.</CC_Progress_Party>
   <CC_Progress_NoGatherSpot>A party needs somewhere to gather: build a party spot, or a table people can sit at.</CC_Progress_NoGatherSpot>
   <CC_Promise_Party>The council calls a party, and {PAWN_nameDef} is throwing it.</CC_Promise_Party>
   <CC_SelfHelp_Party>{PAWN_nameDef} got tired of waiting and started a party {PAWN_objective}self.</CC_SelfHelp_Party>
   <CC_Reason_Rescue>{OTHER_nameDef} was carried off by {FACTION}, and {PAWN_nameDef} can't stop thinking about it.</CC_Reason_Rescue>
-  <CC_Progress_Rescue>{OTHER_nameDef} is held by {FACTION}. Bring them home: a rescue, a ransom, or a trade.</CC_Progress_Rescue>
+  <CC_Progress_Rescue>{OTHER_nameDef} is held by {FACTION}. Bring {OTHER_objective} home by rescue, ransom or trade.</CC_Progress_Rescue>
   <CC_Reason_Hunt>{PAWN_nameDef} loves to shoot and has been eyeing the wildlife.</CC_Reason_Hunt>
   <CC_Reason_HuntBlood>{PAWN_nameDef} is bloodthirsty and wants something to kill. Better an animal than a colonist.</CC_Reason_HuntBlood>
   <CC_Progress_Hunt>Mark an animal for hunting and let {PAWN_nameDef} do the Hunting work.</CC_Progress_Hunt>
@@ -829,7 +829,7 @@ Granting one of {PAWN_possessive} wishes, or keeping a promise, can win {PAWN_ob
   <CC_StayingTitle>{PAWN_nameDef} is staying</CC_StayingTitle>
   <CC_StayingText>{PAWN_nameDef} no longer feels ignored, and has decided to stay.</CC_StayingText>
   <CC_QuitTitle>{PAWN_nameDef} left the colony</CC_QuitTitle>
-  <CC_QuitText>Nobody listened, so {PAWN_nameDef} walked out, and is no longer part of the colony.</CC_QuitText>
+  <CC_QuitText>Tired of being ignored by the council, {PAWN_nameDef} has walked out and is no longer part of the colony.</CC_QuitText>
   <CC_Chronicle_Quitting>{0} announced they were leaving the colony.</CC_Chronicle_Quitting>
   <CC_Chronicle_Staying>{0} decided to stay after all.</CC_Chronicle_Staying>
   <CC_Chronicle_Quit>{0} walked out on the colony.</CC_Chronicle_Quit>
@@ -841,8 +841,8 @@ Granting one of {PAWN_possessive} wishes, or keeping a promise, can win {PAWN_ob
   <CC_Settings_CouncilLife>Council life</CC_Settings_CouncilLife>
   <CC_Settings_Standards>Rising standards: the happy grow harder to please</CC_Settings_Standards>
   <CC_Settings_Standards_Tip>While colonists are happy, their standards creep up: the council's mood rewards shrink, letdowns sting more, and wishes come more often and ask for more. Hard times, and the austerity decree, bring standards back down.</CC_Settings_Standards_Tip>
-  <CC_Reason_Standards>{PAWN_nameDef} has grown used to comfort, and the bedroom doesn't feel good enough any more.</CC_Reason_Standards>
-  <CC_Reason_StandardsFood>{PAWN_nameDef} has grown used to good food. Simple meals don't cut it any more.</CC_Reason_StandardsFood>
+  <CC_Reason_Standards>{PAWN_nameDef} has grown used to comfort, and the bedroom doesn't feel good enough anymore.</CC_Reason_Standards>
+  <CC_Reason_StandardsFood>{PAWN_nameDef} has grown used to good food, and simple meals aren't enough anymore.</CC_Reason_StandardsFood>
   <CC_Standards_Modest>modest</CC_Standards_Modest>
   <CC_Standards_Comfortable>comfortable</CC_Standards_Comfortable>
   <CC_Standards_Particular>particular</CC_Standards_Particular>
@@ -853,7 +853,7 @@ Granting one of {PAWN_possessive} wishes, or keeping a promise, can win {PAWN_ob
   <!-- Decrees -->
   <CC_Tab_Decrees>Decrees</CC_Tab_Decrees>
   <CC_Decrees_Header>Decrees</CC_Decrees_Header>
-  <CC_Decrees_Sub>Spend the colony's good mood on what it needs, or the other way round. Up to {0} decrees at a time. Everyone reacts according to their nature, and living under a decree they hate wears down their trust.</CC_Decrees_Sub>
+  <CC_Decrees_Sub>Spend the colony's good mood on what it needs, or the other way around. Up to {0} decrees at a time. Everyone reacts according to their nature, and living under a decree they hate wears down their trust.</CC_Decrees_Sub>
   <CC_Decrees_State>Average mood: {0}. Standards: {1}.</CC_Decrees_State>
   <CC_Decree_InForce>(in force, {0} left)</CC_Decree_InForce>
   <CC_Decree_Enact>Enact for {0}</CC_Decree_Enact>
@@ -897,17 +897,17 @@ Granting one of {PAWN_possessive} wishes, or keeping a promise, can win {PAWN_ob
   <CC_Settings_Annals_Tip>When a new year begins, the colony's best reader or talker writes up the year that ended: who came, who was lost, raids, the council's decisions, friendships and feuds. Past years can be reread from the Chronicle tab.</CC_Settings_Annals_Tip>
   <CC_Annals_Title>The annals of {0}</CC_Annals_Title>
   <CC_Annals_Button>Annals of {0}</CC_Annals_Button>
-  <CC_Annals_Opening>The year {0} is over. {PAWN_nameDef} sat down by the fire and wrote it all down, so that somebody would remember.</CC_Annals_Opening>
+  <CC_Annals_Opening>The year {0} is over, and {PAWN_nameDef} has written down what happened in it.</CC_Annals_Opening>
   <CC_Annals_OpeningPartial>The year {0} is over. {PAWN_nameDef} wrote down what the council saw of it, from the day it began keeping records.</CC_Annals_OpeningPartial>
   <CC_Annals_Count>We began the year as {0} and end it as {1}.</CC_Annals_Count>
   <CC_Annals_Joined>New faces: {0}.</CC_Annals_Joined>
   <CC_Annals_Died>{0} did not live to see the new year.</CC_Annals_Died>
   <CC_Annals_Gone>Gone from us, but not dead as far as we know: {0}.</CC_Annals_Gone>
   <CC_Annals_Quit>Walked out on the council: {0}.</CC_Annals_Quit>
-  <CC_Annals_NoRaids>Nobody came to kill us this year. Nobody.</CC_Annals_NoRaids>
-  <CC_Annals_Raids>Trouble came {0} time(s): raiders, beasts, worse.</CC_Annals_Raids>
-  <CC_Annals_Richer>We grew richer: the colony was worth about {0} silver at the start of the year and {1} now. Somebody will have noticed.</CC_Annals_Richer>
-  <CC_Annals_Poorer>We grew poorer: from about {0} silver of worth to {1}.</CC_Annals_Poorer>
+  <CC_Annals_NoRaids>No one attacked us all year.</CC_Annals_NoRaids>
+  <CC_Annals_Raids>We were attacked {0} time(s), by raiders, beasts and worse.</CC_Annals_Raids>
+  <CC_Annals_Richer>We grew richer. The colony was worth about {0} silver when the year began, and {1} now.</CC_Annals_Richer>
+  <CC_Annals_Poorer>We grew poorer. The colony was worth about {0} silver when the year began, and only {1} now.</CC_Annals_Poorer>
   <CC_Annals_Steady>The colony's worth held about steady, near {1} silver.</CC_Annals_Steady>
   <CC_Annals_Wishes>The council granted {0} wish(es) and let {1} slip away.</CC_Annals_Wishes>
   <CC_Annals_Ambitions>Ambitions achieved: {0}. Ambitions failed or abandoned: {1}.</CC_Annals_Ambitions>
@@ -915,7 +915,7 @@ Granting one of {PAWN_possessive} wishes, or keeping a promise, can win {PAWN_ob
   <CC_Annals_Times>{0} ({1} times)</CC_Annals_Times>
   <CC_Annals_Dilemmas>The council was asked to settle {0} hard question(s).</CC_Annals_Dilemmas>
   <CC_Annals_Friends>Closest of all: {A_nameDef} and {B_nameDef}.</CC_Annals_Friends>
-  <CC_Annals_Rivals>Worst of enemies: {A_nameDef} and {B_nameDef}. Keep them on different shifts.</CC_Annals_Rivals>
+  <CC_Annals_Rivals>Worst of enemies: {A_nameDef} and {B_nameDef}.</CC_Annals_Rivals>
   <CC_Annals_Devoted>Nobody trusts the council more than {PAWN_nameDef}.</CC_Annals_Devoted>
   <CC_Annals_Bitter>Nobody trusts it less than {PAWN_nameDef}.</CC_Annals_Bitter>
   <CC_Annals_Spoiled>Grown hard to please: {0}.</CC_Annals_Spoiled>
@@ -930,7 +930,7 @@ Granting one of {PAWN_possessive} wishes, or keeping a promise, can win {PAWN_ob
   <CC_Progress_Quit>Keep {PAWN_nameDef} away from {1} (Assign tab, drug policy) until the addiction passes.</CC_Progress_Quit>
   <CC_Reason_Separate>{PAWN_nameDef} shares a bedroom with {OTHER_nameDef} and can't stand {OTHER_objective}.</CC_Reason_Separate>
   <CC_Progress_Separate>Give {PAWN_nameDef} or {OTHER_nameDef} a bed in another room.</CC_Progress_Separate>
-  <CC_Reason_Infirmary>{PAWN_nameDef} counted the medicine: {COUNT} doses for the whole colony.</CC_Reason_Infirmary>
+  <CC_Reason_Infirmary>{PAWN_nameDef} counted only {COUNT} doses of medicine in the stores.</CC_Reason_Infirmary>
   <CC_Progress_Infirmary>{0} / {1} medicine in stock</CC_Progress_Infirmary>
 
   <!-- Decree petitions -->
@@ -938,11 +938,11 @@ Granting one of {PAWN_possessive} wishes, or keeping a promise, can win {PAWN_ob
   <CC_Decree_RepealRequested>{PAWN_nameDef} asks the council to lift {DECREE}.</CC_Decree_RepealRequested>
   <CC_Decree_RepealLine>{PAWN_nameDef} wants this lifted:</CC_Decree_RepealLine>
   <CC_Log_RepealHeeded>the council lifted {0}, as asked</CC_Log_RepealHeeded>
-  <CC_Log_RepealIgnored>asked for {0} to be lifted, nobody listened</CC_Log_RepealIgnored>
+  <CC_Log_RepealIgnored>asked for {0} to be lifted, and was ignored</CC_Log_RepealIgnored>
   <CC_Decree_PetitionLine>{PAWN_nameDef} has asked for this:</CC_Decree_PetitionLine>
   <CC_Tab_DecreesAsked>Decrees ({0} asked)</CC_Tab_DecreesAsked>
   <CC_Log_DecreeHeeded>the council declared {0}, as asked</CC_Log_DecreeHeeded>
-  <CC_Log_DecreeIgnored>asked for {0}, nobody listened</CC_Log_DecreeIgnored>
+  <CC_Log_DecreeIgnored>asked for {0}, and was ignored</CC_Log_DecreeIgnored>
   <CC_Settings_DecreeRequests>Colonists petition for decrees</CC_Settings_DecreeRequests>
   <CC_Settings_DecreeRequests_Tip>When the moment fits (food running low, right after a raid, while people grieve, when everyone is spoiled), a colonist who would like a decree asks the council for it. Declaring it within a few days wins their trust; ignoring it costs a little.</CC_Settings_DecreeRequests_Tip>
 
@@ -970,11 +970,11 @@ Granting one of {PAWN_possessive} wishes, or keeping a promise, can win {PAWN_ob
 
   <!-- Advisor: standards and trust -->
   <CC_Adv_Spoiled_Title>The colony has grown hard to please</CC_Adv_Spoiled_Title>
-  <CC_Adv_Spoiled_Detail>{0} of {1} colonists are spoiled. Rewards barely lift their mood, letdowns hit hard, and they keep asking for more. Austerity, or a little hardship, resets it.</CC_Adv_Spoiled_Detail>
+  <CC_Adv_Spoiled_Detail>{0} of {1} colonists are spoiled. Rewards barely lift their mood, letdowns hit hard, and they keep asking for more. The austerity decree, or some hardship, brings their standards back down.</CC_Adv_Spoiled_Detail>
   <CC_Adv_Leaving_Title>{PAWN_nameDef} is about to leave</CC_Adv_Leaving_Title>
   <CC_Adv_Leaving_Detail>{PAWN_nameDef} will walk out in {TIME} unless their trust recovers. Grant one of their wishes or keep a promise.</CC_Adv_Leaving_Detail>
   <CC_Adv_Bitter_Title>{0} colonist(s) bitter about the council</CC_Adv_Bitter_Title>
-  <CC_Adv_Bitter_Detail>Bitter: {0}. They work slower, break sooner and have stopped expecting anything.</CC_Adv_Bitter_Detail>
+  <CC_Adv_Bitter_Detail>Bitter: {0}. They work slower, break sooner and have stopped bringing their wishes to the council.</CC_Adv_Bitter_Detail>
 
   <!-- Animal wishes -->
   <CC_Reason_PetBed>{PAWN_nameDef} is bonded to {OTHER_nameDef} and wants {OTHER_objective} close at night.</CC_Reason_PetBed>
@@ -990,13 +990,13 @@ Granting one of {PAWN_possessive} wishes, or keeping a promise, can win {PAWN_ob
   <CC_Journal_Departed>Journals of the departed</CC_Journal_Departed>
   <CC_Journal_Empty>Nothing written yet.</CC_Journal_Empty>
   <CC_Settings_Journals>Colonists keep journals</CC_Settings_Journals>
-  <CC_Settings_Journals_Tip>Each colonist writes a line in their own voice when something happens to them: wishes granted or ignored, promises, decrees, raids, losses, names earned. Click a name in the Wishes tab's trust list to read it.</CC_Settings_Journals_Tip>
+  <CC_Settings_Journals_Tip>Each colonist writes a line in their own voice when something happens to them: wishes granted or ignored, promises, decrees, raids, losses, names earned. Read them on the Journals page under History, or on a colonist's page in the Roster.</CC_Settings_Journals_Tip>
 
   <!-- Traditions -->
-  <CC_Tradition_Note>It's tradition now: {0}. Everyone expects "{1}", and skipping it will be felt.</CC_Tradition_Note>
+  <CC_Tradition_Note>This is a tradition now ({0}). The colonists expect "{1}", and anything else will disappoint them.</CC_Tradition_Note>
   <CC_Tradition_BornTitle>A new tradition: {0}</CC_Tradition_BornTitle>
-  <CC_Tradition_BornText>The colony has done it often enough that it's become a tradition: {0}.\n\nFrom now on it will come round every time its moment does. Keeping it lifts everyone's spirits; skipping it disappoints them, and skipping it twice in a row lets it die out.</CC_Tradition_BornText>
-  <CC_Tradition_Broken>A tradition broken: {0}. People noticed.</CC_Tradition_Broken>
+  <CC_Tradition_BornText>The colony has done it often enough that it's become a tradition: {0}.\n\nFrom now on the colonists will expect it whenever the occasion comes around. Keeping it lifts everyone's spirits; skipping it disappoints them, and skipping it twice in a row lets it die out.</CC_Tradition_BornText>
+  <CC_Tradition_Broken>The council broke a tradition: {0}. The colonists are disappointed.</CC_Tradition_Broken>
   <CC_Tradition_Lapsed>{0} is no longer a tradition. The colony let it go.</CC_Tradition_Lapsed>
   <CC_Chronicle_TraditionBorn>{0} became a tradition.</CC_Chronicle_TraditionBorn>
   <CC_Chronicle_TraditionBroken>The council broke a tradition: {0}.</CC_Chronicle_TraditionBroken>
@@ -1016,7 +1016,7 @@ Granting one of {PAWN_possessive} wishes, or keeping a promise, can win {PAWN_ob
   <CC_Election_Others>Also ran: {0}.</CC_Election_Others>
   <CC_Office_Vacant>{1} no longer holds the seat of {0}. It will be filled soon.</CC_Office_Vacant>
   <CC_Office_Appointed>The council appointed {PAWN_nameDef} as {OFFICE}.</CC_Office_Appointed>
-  <CC_Office_Overruled>The council overruled the vote and made {PAWN_nameDef} {OFFICE} instead of {OTHER_nameDef}. Some people won't forget it.</CC_Office_Overruled>
+  <CC_Office_Overruled>The council overruled the vote and made {PAWN_nameDef} {OFFICE} instead of {OTHER_nameDef}. Those who voted for {OTHER_objective} trust the council less for it.</CC_Office_Overruled>
   <CC_Log_RemovedFromOffice>removed as {0}</CC_Log_RemovedFromOffice>
   <CC_Log_VoteOverruled>the council overruled the vote for {0}</CC_Log_VoteOverruled>
   <CC_Chronicle_Elected>{0} was elected {1}.</CC_Chronicle_Elected>
@@ -1045,16 +1045,16 @@ Granting one of {PAWN_possessive} wishes, or keeping a promise, can win {PAWN_ob
   <CC_TieKind_Rivals>Rivalries</CC_TieKind_Rivals>
   <CC_TieKind_Comrades>Comrades in arms</CC_TieKind_Comrades>
   <CC_TieKind_Mentor>Mentorships</CC_TieKind_Mentor>
-  <CC_Tie_Formed_Friends>{A_nameDef} and {B_nameDef} have become real friends.</CC_Tie_Formed_Friends>
+  <CC_Tie_Formed_Friends>{A_nameDef} and {B_nameDef} have become close friends.</CC_Tie_Formed_Friends>
   <CC_Tie_Formed_Rivals>{A_nameDef} and {B_nameDef} are rivals now. Neither will give the other an inch.</CC_Tie_Formed_Rivals>
   <CC_Tie_Formed_Comrades>{A_nameDef} and {B_nameDef} fought side by side. They're comrades now.</CC_Tie_Formed_Comrades>
   <CC_Tie_Formed_Mentor>{A_nameDef} has taken {B_nameDef} under {A_possessive} wing to teach {B_objective} {SKILL}.</CC_Tie_Formed_Mentor>
-  <CC_Tie_Ended_Friends>{A_nameDef} and {B_nameDef} have drifted apart. They aren't really friends any more.</CC_Tie_Ended_Friends>
+  <CC_Tie_Ended_Friends>{A_nameDef} and {B_nameDef} have drifted apart and are no longer close.</CC_Tie_Ended_Friends>
   <CC_Tie_Ended_Rivals>{A_nameDef} and {B_nameDef} have let their rivalry go.</CC_Tie_Ended_Rivals>
   <CC_Tie_Ended_Comrades>The battles {A_nameDef} and {B_nameDef} shared are fading into the past.</CC_Tie_Ended_Comrades>
   <CC_Tie_Ended_Mentor>{A_nameDef} has stopped teaching {B_nameDef} {SKILL}.</CC_Tie_Ended_Mentor>
-  <CC_Tie_Battle>{0} fought side by side. They won't forget it.</CC_Tie_Battle>
-  <CC_Tie_Graduated>{B_nameDef} has learned all {A_nameDef} could teach about {SKILL}. The student is ready to stand alone.</CC_Tie_Graduated>
+  <CC_Tie_Battle>Fighting side by side has brought {0} closer together.</CC_Tie_Battle>
+  <CC_Tie_Graduated>{B_nameDef} has learned everything {A_nameDef} had to teach about {SKILL}.</CC_Tie_Graduated>
 
   <CC_TieNote_Grew>grew close over time</CC_TieNote_Grew>
   <CC_TieNote_Soured>couldn't stand each other any longer</CC_TieNote_Soured>
@@ -1078,7 +1078,7 @@ Granting one of {PAWN_possessive} wishes, or keeping a promise, can win {PAWN_ob
 
   <CC_Tab_Social>Social</CC_Tab_Social>
   <CC_Social_Intro>Who is close to whom, who can't stand whom, and who is teaching whom. Bonds grow out of how people feel about each other and what they go through together. They shape votes, objections, petitions and elections.</CC_Social_Intro>
-  <CC_Social_None>No lasting bonds yet. Give them time, and things to live through together.</CC_Social_None>
+  <CC_Social_None>No lasting bonds yet. They form over time, through shared work, fights and hardship.</CC_Social_None>
   <CC_Social_Cliques>Circles</CC_Social_Cliques>
   <CC_Social_CliqueTip>A circle: three to six people held together by strong friendships. They back each other's wishes and petitions and vote together.</CC_Social_CliqueTip>
   <CC_Social_Since>Since {0}.</CC_Social_Since>
@@ -1103,7 +1103,7 @@ Granting one of {PAWN_possessive} wishes, or keeping a promise, can win {PAWN_ob
   <CC_Settings_DreamOmens>Dreams that come true</CC_Settings_DreamOmens>
   <CC_Settings_DreamOmens_Tip>Rarely, a dream is an omen: a visitor, a trader, a newcomer, a storm or a raid, and a few days later it happens. At most one omen waits at a time.</CC_Settings_DreamOmens_Tip>
   <CC_Settings_AllDreamMessages>A message for every dream</CC_Settings_AllDreamMessages>
-  <CC_Settings_AllDreamMessages_Tip>Off: only dreams that change something get a message; the rest are in the journals, the mood tooltip and the Social tab. On: every dream.</CC_Settings_AllDreamMessages_Tip>
+  <CC_Settings_AllDreamMessages_Tip>Off: only dreams that change something get a message; the rest are in the journals, the mood tooltip and the Dreams page. On: every dream.</CC_Settings_AllDreamMessages_Tip>
   <CC_Dream_Message>{PAWN_nameDef} woke from a dream: "{DREAM}"</CC_Dream_Message>
   <CC_Dream_CameTrue>{PAWN_nameDef}'s dream came true. Days ago {PAWN_pronoun} woke up saying: "{DREAM}"</CC_Dream_CameTrue>
   <CC_TieNote_Dream>{0} dreamt about it</CC_TieNote_Dream>
@@ -1122,8 +1122,8 @@ Granting one of {PAWN_possessive} wishes, or keeping a promise, can win {PAWN_ob
 
   <!-- Life goals -->
   <CC_Settings_Aspirations>Life goals</CC_Settings_Aspirations>
-  <CC_Settings_Aspirations_Tip>After settling in, each colonist sets their heart on something to do before they die: master a craft, marry, raise a child, earn a name, teach someone everything they know, see the colony grow. Achieving it is a big moment (a lasting good mood, trust, maybe an inspiration). Dying before it is mourned.</CC_Settings_Aspirations_Tip>
-  <CC_Asp_Chosen>{PAWN_nameDef} has set {PAWN_possessive} heart on something: to {GOAL}.</CC_Asp_Chosen>
+  <CC_Settings_Aspirations_Tip>After settling in, each colonist sets their heart on something to do before they die: master a craft, marry, raise a child, earn a name, teach someone everything they know, see the colony grow. Achieving it is a big moment (a lasting good mood, trust, maybe an inspiration). Dying before achieving it is mourned.</CC_Settings_Aspirations_Tip>
+  <CC_Asp_Chosen>{PAWN_nameDef} has set {PAWN_possessive} heart on a life goal: to {GOAL}.</CC_Asp_Chosen>
   <CC_Asp_FulfilledLabel>A life goal: {0}</CC_Asp_FulfilledLabel>
   <CC_Asp_FulfilledText>{PAWN_nameDef} has done what {PAWN_pronoun} set out to do: {GOAL}.</CC_Asp_FulfilledText>
   <CC_Asp_DiedBefore>{PAWN_nameDef} died before {PAWN_pronoun} could {GOAL}.</CC_Asp_DiedBefore>
@@ -1159,9 +1159,9 @@ Granting one of {PAWN_possessive} wishes, or keeping a promise, can win {PAWN_ob
   <CC_Secret_Confided>{A_nameDef} confided something in {B_nameDef}. Whatever it was, {B_nameDef} isn't saying.</CC_Secret_Confided>
   <CC_Secret_Label>A secret: {0}</CC_Secret_Label>
   <CC_Secret_Short>A secret about {PAWN_nameDef} is out.</CC_Secret_Short>
-  <CC_Secret_HowConfessed>{PAWN_nameDef} said it out loud at dinner, to everyone, and then went very quiet.</CC_Secret_HowConfessed>
+  <CC_Secret_HowConfessed>{PAWN_nameDef} said it out loud at dinner, then didn't say another word all evening.</CC_Secret_HowConfessed>
   <CC_Secret_HowLeaked>{LEAKER_nameDef} let it slip. {PAWN_nameDef} had trusted {LEAKER_objective} with it.</CC_Secret_HowLeaked>
-  <CC_Secret_ToTheGrave>{PAWN_nameDef} took a secret to the grave. Nobody will ever know what it was.</CC_Secret_ToTheGrave>
+  <CC_Secret_ToTheGrave>{PAWN_nameDef} took a secret to the grave.</CC_Secret_ToTheGrave>
   <CC_Secret_Posthumous>{TELLER_nameDef} kept {PAWN_nameDef}'s secret while {PAWN_pronoun} lived. Now {TELLER_pronoun} has told it:</CC_Secret_Posthumous>
   <CC_TieNote_Confided>shared a secret</CC_TieNote_Confided>
   <CC_TieNote_Betrayed>a secret betrayed</CC_TieNote_Betrayed>
@@ -1172,8 +1172,8 @@ Granting one of {PAWN_possessive} wishes, or keeping a promise, can win {PAWN_ob
   <CC_Social_SecretOut>{0}: {1} (out in the open)</CC_Social_SecretOut>
 
   <CC_Vendetta_Sworn>{0} swore vengeance on {FACTION} for {LOST_nameDef}.</CC_Vendetta_Sworn>
-  <CC_Vendetta_SwornTaken>{FACTION} carried off {LOST_nameDef}. {0} won't forget it.</CC_Vendetta_SwornTaken>
-  <CC_Vendetta_Fury>{0} recognised the colours of {FACTION}. This fight is personal.</CC_Vendetta_Fury>
+  <CC_Vendetta_SwornTaken>{FACTION} carried off {LOST_nameDef}, and {0} means to make them pay.</CC_Vendetta_SwornTaken>
+  <CC_Vendetta_Fury>{0} recognized the colors of {FACTION}. This fight is personal.</CC_Vendetta_Fury>
   <CC_Vendetta_Avenged>{PAWN_nameDef} has avenged {LOST} on {FACTION}.</CC_Vendetta_Avenged>
   <CC_Log_PeaceWithKillers>peace with {0}</CC_Log_PeaceWithKillers>
   <CC_Social_Vendettas>Vendettas</CC_Social_Vendettas>
@@ -1245,7 +1245,7 @@ Granting one of {PAWN_possessive} wishes, or keeping a promise, can win {PAWN_ob
   <CC_People_Vendetta>vendetta</CC_People_Vendetta>
   <CC_People_SecretOut>secret out</CC_People_SecretOut>
   <CC_People_Confided>has confided</CC_People_Confided>
-  <CC_Story_Empty>Nothing to tell about {0} yet. Give it time.</CC_Story_Empty>
+  <CC_Story_Empty>Nothing to tell about {0} yet.</CC_Story_Empty>
   <CC_Story_OpenCouncil>In the council</CC_Story_OpenCouncil>
 
   <CC_ChronicleFilter_All>All</CC_ChronicleFilter_All>
@@ -1305,23 +1305,23 @@ Granting one of {PAWN_possessive} wishes, or keeping a promise, can win {PAWN_ob
   <CC_Stranger_Gone>{0} is no longer here.</CC_Stranger_Gone>
   <CC_Stranger_NoPrisonBed>{PAWN_nameDef} can't take {X_nameDef} prisoner: there's no free prisoner bed.</CC_Stranger_NoPrisonBed>
   <CC_Stranger_Away>{0} is away from home.</CC_Stranger_Away>
-  <CC_Stranger_PetGone>The animal isn't the colony's any more.</CC_Stranger_PetGone>
-  <CC_Stranger_HospitalitySendAway>{0} is a guest of the house: Hospitality decides when guests leave, not the council.</CC_Stranger_HospitalitySendAway>
-  <CC_Stranger_HospitalityRecruit>{0} is a Hospitality guest: invite them to stay the Hospitality way, from their guest tab.</CC_Stranger_HospitalityRecruit>
-  <CC_Stranger_NoHeirloom>{0} isn't carrying the heirloom any more.</CC_Stranger_NoHeirloom>
+  <CC_Stranger_PetGone>The animal no longer belongs to the colony.</CC_Stranger_PetGone>
+  <CC_Stranger_HospitalitySendAway>{0} is a Hospitality guest. Hospitality decides when guests leave, not the council.</CC_Stranger_HospitalitySendAway>
+  <CC_Stranger_HospitalityRecruit>{0} is a Hospitality guest. To invite them to stay, use their Guest tab.</CC_Stranger_HospitalityRecruit>
+  <CC_Stranger_NoHeirloom>{0} no longer has the heirloom.</CC_Stranger_NoHeirloom>
 
   <CC_Nemesis_Deed_downed>struck down {0}</CC_Nemesis_Deed_downed>
   <CC_Nemesis_Deed_maimed>maimed {0}</CC_Nemesis_Deed_maimed>
   <CC_Nemesis_Deed_killed>killed {0}</CC_Nemesis_Deed_killed>
   <CC_Nemesis_Label>Nemesis: {0}</CC_Nemesis_Label>
-  <CC_Nemesis_Escaped>{X_nameDef}, who {DEED}, got away. {VICTIM} won't forget that face, and neither will the colony.
+  <CC_Nemesis_Escaped>{X_nameDef}, who {DEED}, got away. {VICTIM} remembers that face.
 
-If {X_nameDef} ever rides with those people again, you'll know.</CC_Nemesis_Escaped>
+If {X_nameDef} ever comes back with another raid, you'll be told.</CC_Nemesis_Escaped>
   <CC_Nemesis_EscapedBeast>The animal that {DEED} has slunk off into the wild. The colony has started calling it {X_nameDef}.
 
-It's still out there. Hunting it down would settle a lot of nerves.</CC_Nemesis_EscapedBeast>
+It's still out there somewhere. Hunting it down would settle the matter.</CC_Nemesis_EscapedBeast>
   <CC_Nemesis_ReturnedLabel>{0} returns</CC_Nemesis_ReturnedLabel>
-  <CC_Nemesis_Returned>{X_nameDef} is back: the one who {DEED}.</CC_Nemesis_Returned>
+  <CC_Nemesis_Returned>{X_nameDef}, who {DEED}, is back.</CC_Nemesis_Returned>
   <CC_Nemesis_Captured>{X_nameDef}, who {DEED}, is now the colony's prisoner.</CC_Nemesis_Captured>
   <CC_Nemesis_EndLabel>{0} is dead</CC_Nemesis_EndLabel>
   <CC_Nemesis_Revenge>{PAWN_nameDef} has had {PAWN_possessive} revenge. {X_nameDef}, who {DEED}, died by {PAWN_possessive} own hand.</CC_Nemesis_Revenge>
@@ -1329,7 +1329,7 @@ It's still out there. Hunting it down would settle a lot of nerves.</CC_Nemesis_
   <CC_Nemesis_Dead>{X_nameDef}, who {DEED}, is dead.</CC_Nemesis_Dead>
   <CC_Nemesis_End_Vanished>Never seen again.</CC_Nemesis_End_Vanished>
   <CC_Nemesis_End_Paid>Paid back in full. {0} counted every coin and called it square.</CC_Nemesis_End_Paid>
-  <CC_Nemesis_End_Joined>{X_nameDef} is one of the colony's own now. Some grudges don't survive living together; some just go quiet.</CC_Nemesis_End_Joined>
+  <CC_Nemesis_End_Joined>{X_nameDef} is one of the colony's own now, and eats at the same table as the people {X_pronoun} once hurt.</CC_Nemesis_End_Joined>
   <CC_Nemesis_Status_Joined>one of us now</CC_Nemesis_Status_Joined>
   <CC_Nemesis_Status_Loose>still out there</CC_Nemesis_Status_Loose>
   <CC_Nemesis_Status_Here>here, now</CC_Nemesis_Status_Here>
@@ -1341,7 +1341,7 @@ It's still out there. Hunting it down would settle a lot of nerves.</CC_Nemesis_
   <CC_Social_Nemeses>Nemeses</CC_Social_Nemeses>
   <CC_Asp_Spark_nemesis>because of a nemesis</CC_Asp_Spark_nemesis>
 
-  <CC_Pet_Defended>In the battle, {PET_definite} fought to defend {PAWN_nameDef}. {PAWN_nameDef} won't forget it.</CC_Pet_Defended>
+  <CC_Pet_Defended>{PAWN_nameDef} was hurt in the battle, and {PET_definite} fought to defend {PAWN_objective}.</CC_Pet_Defended>
   <CC_Pet_Fought>In the fighting, {PET_definite} went for the enemy alongside {PAWN_nameDef}.</CC_Pet_Fought>
 
   <CC_Promise_Planned>The council plans {THING} for {FOR_nameDef}'s room.</CC_Promise_Planned>
@@ -1354,10 +1354,10 @@ It's still out there. Hunting it down would settle a lot of nerves.</CC_Nemesis_
   <!-- Slow speeds -->
   <CC_Slow_Level_1>½×</CC_Slow_Level_1>
   <CC_Slow_Level_2>¼×</CC_Slow_Level_2>
-  <CC_Slow_Level_1_Tip>Half speed: time keeps moving, gently. Click again for normal speed.
+  <CC_Slow_Level_1_Tip>Half speed. Click again for normal speed.
 
 Keys: the game's "slower" key ({0}) steps below normal speed, "faster" ({1}) steps back up. The normal-speed key or any faster speed ends it.</CC_Slow_Level_1_Tip>
-  <CC_Slow_Level_2_Tip>Quarter speed: for planning while the colony slowly lives. Click again for normal speed.
+  <CC_Slow_Level_2_Tip>Quarter speed, for planning without pausing. Click again for normal speed.
 
 Keys: the game's "slower" key ({0}) steps below normal speed, "faster" ({1}) steps back up. The normal-speed key or any faster speed ends it.</CC_Slow_Level_2_Tip>
   <CC_Slow_Grip>Drag to move these buttons.</CC_Slow_Grip>
@@ -1411,7 +1411,7 @@ Keys: the game's "slower" key ({0}) steps below normal speed, "faster" ({1}) ste
   <CC_Cause_Trust>lately, with the council:\n{0}</CC_Cause_Trust>
 
   <!-- Decree fatigue: the same decree again, or forced through its cooldown -->
-  <CC_Decree_FatigueWarn>Enacted {0} time(s) in the last {1} days. Again, and those against it will trust the council less and resent it more; {2} chance someone snaps.</CC_Decree_FatigueWarn>
+  <CC_Decree_FatigueWarn>Enacted {0} time(s) in the last {1} days. Enacting it again costs the trust of those against it and makes them resent it more, with a {2} chance someone snaps.</CC_Decree_FatigueWarn>
   <CC_Decree_Force>Force it through</CC_Decree_Force>
   <CC_Decree_ForceTip>People aren't ready for this again yet. You can push it through anyway: those against it lose trust in the council and resent it more for every recent time, and there's a {0} chance someone snaps.</CC_Decree_ForceTip>
   <CC_Decree_ForceNobody>nobody yet</CC_Decree_ForceNobody>
@@ -1447,19 +1447,19 @@ Those against it ({WHO}) will trust the council less and resent it more than usu
 
   <CC_Ways_KnownLabel>Known as {0}</CC_Ways_KnownLabel>
   <CC_Ways_RenownedLabel>Renowned as {0}</CC_Ways_RenownedLabel>
-  <CC_Ways_Known>Word has spread: the colony is becoming known as {0}. The council's choices have added up to a name.</CC_Ways_Known>
-  <CC_Ways_Renowned>The colony is renowned as {0}. Travelers repeat it at every fire, and the colonists hear it said of them.</CC_Ways_Renowned>
+  <CC_Ways_Known>The council's choices have added up, and the colony is becoming known as {0}.</CC_Ways_Known>
+  <CC_Ways_Renowned>The colony is renowned as {0}. Travelers talk about it wherever they stop, and the colonists hear it said of them.</CC_Ways_Renowned>
   <CC_Ways_Meaning_Mercy_Pos>Kind souls are proud of it; the bloodthirsty think the colony has gone soft. Desperate strangers may come looking for sanctuary.</CC_Ways_Meaning_Mercy_Pos>
   <CC_Ways_Meaning_Mercy_Neg>The bloodthirsty approve; kind souls are troubled by it. Some will think twice before crossing the colony, and some will never trust it.</CC_Ways_Meaning_Mercy_Neg>
   <CC_Ways_Meaning_Generosity_Pos>Kind and simple souls approve; the greedy grumble. Neighbors warm to the colony over time, and those in need remember it.</CC_Ways_Meaning_Generosity_Pos>
-  <CC_Ways_Meaning_Generosity_Neg>The greedy approve; the kind find it mean. Neighbors cool a little towards a colony that keeps everything for itself.</CC_Ways_Meaning_Generosity_Neg>
+  <CC_Ways_Meaning_Generosity_Neg>The greedy approve; the kind find it mean. Neighbors cool toward a colony that keeps everything for itself.</CC_Ways_Meaning_Generosity_Neg>
   <CC_Ways_Meaning_Tradition_Pos>The old are glad of it; the young find it stifling. Customs and celebrations matter more here.</CC_Ways_Meaning_Tradition_Pos>
-  <CC_Ways_Meaning_Tradition_Neg>The young love it; the old miss how things were. Something is always being tried for the first time.</CC_Ways_Meaning_Tradition_Neg>
+  <CC_Ways_Meaning_Tradition_Neg>The young love it; the old miss how things were. Old habits get dropped and new ones tried.</CC_Ways_Meaning_Tradition_Neg>
   <CC_Ways_Meaning_Openness_Pos>Kind and sociable souls approve; the abrasive don't. Neighbors warm to the colony, and more strangers stop by.</CC_Ways_Meaning_Openness_Pos>
   <CC_Ways_Meaning_Openness_Neg>The abrasive approve; kind and sociable souls feel hemmed in. Neighbors cool a little, and strangers keep their distance.</CC_Ways_Meaning_Openness_Neg>
   <CC_Ways_Meaning_Toil_Pos>The industrious are proud of it; the lazy feel ground down.</CC_Ways_Meaning_Toil_Pos>
   <CC_Ways_Meaning_Toil_Neg>The lazy love it; the industrious wonder when anyone gets anything done.</CC_Ways_Meaning_Toil_Neg>
-  <CC_Ways_Fading>The colony is no longer known as {0}. Memories are short.</CC_Ways_Fading>
+  <CC_Ways_Fading>People have stopped calling the colony {0}.</CC_Ways_Fading>
   <CC_Ways_WordGood>Word of the colony's {1} ways reached {0}. Goodwill {2}.</CC_Ways_WordGood>
   <CC_Ways_WordBad>{0} heard the colony is {1}. Goodwill {2}.</CC_Ways_WordBad>
 
@@ -1488,8 +1488,8 @@ Those against it ({WHO}) will trust the council less and resent it more than usu
   <CC_Mood_Title>{0}'s mood</CC_Mood_Title>
   <CC_Mood_State>Mood {0}, {1}.</CC_Mood_State>
   <CC_Mood_Steady>holding steady</CC_Mood_Steady>
-  <CC_Mood_HeadingUp>rising towards {0}</CC_Mood_HeadingUp>
-  <CC_Mood_HeadingDown>sinking towards {0}</CC_Mood_HeadingDown>
+  <CC_Mood_HeadingUp>rising toward {0}</CC_Mood_HeadingUp>
+  <CC_Mood_HeadingDown>sinking toward {0}</CC_Mood_HeadingDown>
   <CC_Mood_Above>{0} above the line where minor breaks become possible ({1}).</CC_Mood_Above>
   <CC_Mood_BelowMinor>Below the minor break line ({0}): small breaks like binges or sad wandering can happen.</CC_Mood_BelowMinor>
   <CC_Mood_BelowMajor>Below the major break line ({0}): serious breaks like tantrums or running wild can happen.</CC_Mood_BelowMajor>
@@ -1511,7 +1511,7 @@ Those against it ({WHO}) will trust the council less and resent it more than usu
   <CC_Mood_Belief>their belief "{0}" ({1}).</CC_Mood_Belief>
   <CC_Mood_Fix>What to do: {0}</CC_Mood_Fix>
   <CC_Mood_Keep>To keep it: {0}</CC_Mood_Keep>
-  <CC_Mood_Generic_Memory>A memory: it fades on its own. Until then, good moments balance it out: fine meals, recreation, a nice room, time with friends.</CC_Mood_Generic_Memory>
+  <CC_Mood_Generic_Memory>This is a memory and fades on its own. Until then, good moments balance it out: fine meals, recreation, a nice room, time with friends.</CC_Mood_Generic_Memory>
   <CC_Mood_Generic_Situation>This lasts as long as its cause does. Hover over it to read the game's description of what it is, then remove the cause.</CC_Mood_Generic_Situation>
   <CC_Mood_Generic_Precept>This comes from their ideoligion's beliefs. Honor the belief, or change it the next time the ideoligion is reformed.</CC_Mood_Generic_Precept>
   <CC_Mood_Advisor>Advisor: {0}</CC_Mood_Advisor>
@@ -1533,20 +1533,20 @@ Those against it ({WHO}) will trust the council less and resent it more than usu
 
   <!-- Moments between colonists -->
   <CC_Settings_Moments>Moments between colonists</CC_Settings_Moments>
-  <CC_Settings_Moments_Tip>Colonists share small moments in conversation: grieving together, talking shop, praising the cook, old stories by the fire, friendly contests that hurt nobody. They show in the social log, and as speech bubbles with Interaction Bubbles.</CC_Settings_Moments_Tip>
+  <CC_Settings_Moments_Tip>Colonists share small moments in conversation: grieving together, talking shop, praising the cook, telling old stories, friendly contests. They show in the social log, and as speech bubbles with Interaction Bubbles.</CC_Settings_Moments_Tip>
   <CC_Cause_Contest>{0} with {1}.</CC_Cause_Contest>
   <!-- Colonists helping themselves -->
   <CC_Settings_Autonomy>Colonists fix what bothers them</CC_Settings_Autonomy>
   <CC_Settings_Autonomy_Tip>Now and then, a colonist fixes a small thing that hurts their mood, in their own time: cleans their room, visits a grave, takes a short break when they're starved of recreation. Never in danger, never anything that harms anyone. You get a message each time.</CC_Settings_Autonomy_Tip>
   <CC_Settings_AutonomyPlans>... and may place plans for small things</CC_Settings_AutonomyPlans>
   <CC_Settings_AutonomyPlans_Tip>They may also place a building plan for one cheap thing the colony can already build, with materials in stock, in their own room: a light for a dark room, a plant pot for an ugly one, a passive cooler for a hot one, or a free sleeping spot when there's no bed. At most two such plans at a time; cancel any you don't want.</CC_Settings_AutonomyPlans_Tip>
-  <CC_Auto_JoyBreak>{PAWN_nameDef} was worn down to nothing and took a short break.</CC_Auto_JoyBreak>
+  <CC_Auto_JoyBreak>{PAWN_nameDef} was starved of recreation and took a short break.</CC_Auto_JoyBreak>
   <CC_Auto_Grave>{PAWN_nameDef} went to sit by {1}'s grave for a while.</CC_Auto_Grave>
   <CC_Auto_Clean>{PAWN_nameDef} got fed up with the mess and started tidying {PAWN_possessive} own room.</CC_Auto_Clean>
   <CC_Auto_Light>{PAWN_nameDef} is tired of the dark and planned {THING} for {PAWN_possessive} room. (It's only a plan: cancel it if you'd rather not.)</CC_Auto_Light>
   <CC_Auto_Cooler>{PAWN_nameDef} can't sleep in the heat and planned {THING} for {PAWN_possessive} room. (It's only a plan: cancel it if you'd rather not.)</CC_Auto_Cooler>
   <CC_Auto_PlantPot>{PAWN_nameDef} wants something living in {PAWN_possessive} room and planned {THING}. (It's only a plan: cancel it if you'd rather not.)</CC_Auto_PlantPot>
-  <CC_Auto_SleepingSpot>{PAWN_nameDef} is done sleeping on the ground and marked a sleeping spot somewhere sheltered. (Cancel it if you'd rather not.)</CC_Auto_SleepingSpot>
+  <CC_Auto_SleepingSpot>{PAWN_nameDef} is tired of sleeping out in the open and marked a sleeping spot somewhere sheltered. (Cancel it if you'd rather not.)</CC_Auto_SleepingSpot>
   <!-- Harmony -->
   <CC_Settings_DeepHooks>Deeper game hooks</CC_Settings_DeepHooks>
   <CC_Settings_DeepHooks_Tip>Small, careful changes to how the game itself behaves (through Harmony), such as Rimfolk's hints in the game's own Needs tab. Each one switches itself off if it can't work with your other mods. Active now: {0}; skipped: {1}. Turning this off takes effect at once.</CC_Settings_DeepHooks_Tip>
@@ -1567,7 +1567,7 @@ Those against it ({WHO}) will trust the council less and resent it more than usu
   <CC_ChronicleFilter_World>World</CC_ChronicleFilter_World>
   <CC_Settings_WorldEventsHeader>World events</CC_Settings_WorldEventsHeader>
   <CC_Settings_WorldEvents>World events</CC_Settings_WorldEvents>
-  <CC_Settings_WorldEvents_Tip>Rimfolk's own events, on their own rhythm (they never take a slot from your storyteller's events): colonists' pasts catching up with them (old comrades, lost family, creditors, bounty hunters, news from home), challenges (a travelling champion, a legendary beast, a treasure map, a demand for tribute), wonders and nuisances of the land (comets, fireflies, hail, vermin, wild harvests, buried caches) and visitors with a purpose (storytellers, mourners, pilgrims, scholars, apprentices, strays). Each fits the colony's era, and many touch Rimfolk's other systems: nemeses, secrets, mentors, the colony's character. Dev mode can fire any of them (Debug actions, incidents, "Council_Evt_...").</CC_Settings_WorldEvents_Tip>
+  <CC_Settings_WorldEvents_Tip>Rimfolk's own events, on their own rhythm (they never take a slot from your storyteller's events): colonists' pasts catching up with them (old comrades, lost family, creditors, bounty hunters, news from home), challenges (a traveling champion, a legendary beast, a treasure map, a demand for tribute), wonders and nuisances of the land (comets, fireflies, hail, vermin, wild harvests, buried caches) and visitors with a purpose (storytellers, mourners, pilgrims, scholars, apprentices, strays). Each fits the colony's era, and many touch Rimfolk's other systems: nemeses, secrets, mentors, the colony's character. Dev mode can fire any of them (Debug actions, incidents, "Council_Evt_...").</CC_Settings_WorldEvents_Tip>
   <CC_Settings_WorldEventBattles>... including ones that can end in a fight</CC_Settings_WorldEventBattles>
   <CC_Settings_WorldEventBattles_Tip>Bounty hunters, a nemesis returning, revenge for a prisoner who died in the colony's hands, a refused tribute, creditors' thugs, a deserter's pursuers. Only when the storyteller sends threats at all, never on top of another fight, and at a share of the storyteller's own raid strength. Off: none of these come (and promised fights never arrive).</CC_Settings_WorldEventBattles_Tip>
   <CC_Settings_DaysBetweenWorldEvents>About one world event every {0} days</CC_Settings_DaysBetweenWorldEvents>
@@ -1587,30 +1587,30 @@ Those against it ({WHO}) will trust the council less and resent it more than usu
   <CC_Evt_PilgrimsFood>Feeding them takes {1} raw food (vegetables, berries, meat) from the stores; the colony has {0}.</CC_Evt_PilgrimsFood>
   <CC_Evt_ChampionOdds>At {4}, the colony's best is {A_nameDef} (skill {2}). The challenger, {X_nameDef}, is about {3}. The better one usually wins, but not always.</CC_Evt_ChampionOdds>
   <CC_Evt_ContestOff>The contest never happened: the challenger moved on.</CC_Evt_ContestOff>
-  <CC_Cause_Challenge>the {0} contest with a travelling champion.</CC_Cause_Challenge>
+  <CC_Cause_Challenge>the {0} contest with a traveling champion.</CC_Cause_Challenge>
   <CC_Evt_Contest_Won>Victory!</CC_Evt_Contest_Won>
   <CC_Evt_Contest_Lost>Beaten!</CC_Evt_Contest_Lost>
   <CC_Evt_ContestWonTitle>{A_nameDef} wins</CC_Evt_ContestWonTitle>
   <CC_Evt_ContestLostTitle>{A_nameDef} is beaten</CC_Evt_ContestLostTitle>
-  <CC_Evt_ContestWon>{A_nameDef} beat {X_nameDef} at {2}, in front of half the colony. There will be no living with {A_objective} now.</CC_Evt_ContestWon>
-  <CC_Evt_ContestWonStake>{A_nameDef} beat {X_nameDef} at {2}, in front of half the colony, and won the colony {3} silver. There will be no living with {A_objective} now.</CC_Evt_ContestWonStake>
+  <CC_Evt_ContestWon>{A_nameDef} beat {X_nameDef} at {2} while the colonists cheered.</CC_Evt_ContestWon>
+  <CC_Evt_ContestWonStake>{A_nameDef} beat {X_nameDef} at {2} and won the colony {3} silver.</CC_Evt_ContestWonStake>
   <CC_Evt_ContestLost>{X_nameDef} beat {A_nameDef} at {2}, fair and square. {A_nameDef} took it well, mostly, and learned a lot.</CC_Evt_ContestLost>
   <CC_Evt_ContestLostStake>{X_nameDef} beat {A_nameDef} at {2}, fair and square, and walked off with the colony's {3} silver. {A_nameDef} learned a lot, at least.</CC_Evt_ContestLostStake>
   <CC_Evt_BeastSlainTitle>{0} is dead</CC_Evt_BeastSlainTitle>
-  <CC_Evt_BeastSlain>{PAWN_nameDef} has brought down {0}, the great beast. They'll be telling this one for years, and {PAWN_nameDef} will be telling it loudest.</CC_Evt_BeastSlain>
+  <CC_Evt_BeastSlain>{PAWN_nameDef} has brought down {0}, the great beast. The colonists will be telling this one for years.</CC_Evt_BeastSlain>
   <CC_Evt_BeastDied>{0}, the great beast, is dead.</CC_Evt_BeastDied>
   <CC_Evt_BeastGone>{0}, the great beast, has moved on into the wilds.</CC_Evt_BeastGone>
   <CC_Evt_BeastTamedTitle>{0} is tamed</CC_Evt_BeastTamedTitle>
-  <CC_Evt_BeastTamed>{0}, the great beast that outlived every hunter, has been tamed. It answers to {PAWN} now. Nobody quite believes it.</CC_Evt_BeastTamed>
+  <CC_Evt_BeastTamed>{0}, the great beast that outlived every hunter, has been tamed. It answers to {PAWN} now.</CC_Evt_BeastTamed>
   <CC_Cause_Beast>{0}, the great beast.</CC_Cause_Beast>
   <CC_Evt_TreasureTitle>The map was true</CC_Evt_TreasureTitle>
-  <CC_Evt_TreasureText>Right where the X was, under a foot of earth: a cache. Inside: {0}.</CC_Evt_TreasureText>
+  <CC_Evt_TreasureText>Under a foot of earth, right where the map's X was, the colonists found a cache. It held {0}.</CC_Evt_TreasureText>
   <CC_Evt_PestsTip>Food kept cold draws no vermin, and a cat or a dog keeps them away.</CC_Evt_PestsTip>
   <CC_Evt_Found>Inside: {0}.</CC_Evt_Found>
   <CC_Cause_Tales>an evening of {0}'s tales.</CC_Cause_Tales>
   <CC_Cause_Mourners>mourners at {0}'s grave.</CC_Cause_Mourners>
-  <CC_Evt_Mourners>Mourners stood at {0}'s grave for a while, and moved on.</CC_Evt_Mourners>
-  <CC_Evt_MournersGift>Mourners stood at {0}'s grave for a while, and left {1} silver there, for the colony that buried {0} properly.</CC_Evt_MournersGift>
+  <CC_Evt_Mourners>Mourners stopped at {0}'s grave to pay their respects, then moved on.</CC_Evt_Mourners>
+  <CC_Evt_MournersGift>Mourners stopped at {0}'s grave to pay their respects, and left {1} silver there for the colony that buried {0} properly.</CC_Evt_MournersGift>
   <CC_SkillNoun_Shooting>shooting</CC_SkillNoun_Shooting>
   <CC_SkillNoun_Melee>fighting</CC_SkillNoun_Melee>
   <CC_SkillNoun_Construction>building</CC_SkillNoun_Construction>
@@ -1628,8 +1628,8 @@ Those against it ({WHO}) will trust the council less and resent it more than usu
   <CC_SkillContest_Social>debating</CC_SkillContest_Social>
   <CC_SkillContest_Intellectual>riddles</CC_SkillContest_Intellectual>
   <CC_SkillContest_Plants>judging the harvest</CC_SkillContest_Plants>
-  <CC_Evt_ContestWonB>It was close for a while, and then it wasn't: {A_nameDef} beat {X_nameDef} at {2}. {X_nameDef} shook hands like a good sport, and left muttering about a rematch.</CC_Evt_ContestWonB>
-  <CC_Evt_ContestWonStakeB>It was close for a while, and then it wasn't: {A_nameDef} beat {X_nameDef} at {2}, and {3} silver changed hands in the colony's favour. {X_nameDef} left muttering about a rematch.</CC_Evt_ContestWonStakeB>
+  <CC_Evt_ContestWonB>It was close for a while, and then {A_nameDef} pulled ahead and beat {X_nameDef} at {2}. {X_nameDef} shook hands and left muttering about a rematch.</CC_Evt_ContestWonB>
+  <CC_Evt_ContestWonStakeB>It was close for a while, and then {A_nameDef} pulled ahead and beat {X_nameDef} at {2}, winning {3} silver for the colony. {X_nameDef} left muttering about a rematch.</CC_Evt_ContestWonStakeB>
   <CC_Evt_ContestLostB>{A_nameDef} gave {X_nameDef} a real contest at {2}, and lost by a whisker. The onlookers are already arguing about how close it was.</CC_Evt_ContestLostB>
   <CC_Evt_ContestLostStakeB>{A_nameDef} gave {X_nameDef} a real contest at {2}, and lost by a whisker. The colony's {3} silver went with {X_nameDef}, and the onlookers are still arguing about how close it was.</CC_Evt_ContestLostStakeB>
   <!-- World page, chains, victories, quests -->
@@ -1657,10 +1657,10 @@ Those against it ({WHO}) will trust the council less and resent it more than usu
   <CC_World_Deserter>{0} deserted {1}, who may not have stopped looking.</CC_World_Deserter>
   <CC_World_BeastLine>{0} is dead, but its young may still be out there.</CC_World_BeastLine>
   <CC_World_Pilgrims>Pilgrims of {0} remember the colony's kindness.</CC_World_Pilgrims>
-  <CC_World_NobodyOut>Nobody out there has the colony on their mind, as far as anyone knows.</CC_World_NobodyOut>
+  <CC_World_NobodyOut>As far as anyone knows, no one out there has the colony on their mind.</CC_World_NobodyOut>
   <CC_World_Lately>Lately</CC_World_Lately>
   <CC_World_NothingLately>Nothing yet.</CC_World_NothingLately>
-  <CC_Evt_DeserterGone>{0} isn't here any more</CC_Evt_DeserterGone>
+  <CC_Evt_DeserterGone>{0} isn't here anymore</CC_Evt_DeserterGone>
   <CC_Evt_HeirName>{0} the Younger</CC_Evt_HeirName>
   <!-- Words dropped from a great beast's name when its young is named after it, comma-separated. -->
   <CC_Evt_HeirDrop>Old,Grandmother,Grandfather</CC_Evt_HeirDrop>
@@ -1707,19 +1707,19 @@ Those against it ({WHO}) will trust the council less and resent it more than usu
   <CC_Settings_FreqMoments>Moments between colonists: {0}</CC_Settings_FreqMoments>
   <CC_Settings_FreqMoments_Tip>How often colonists have Rimfolk's conversations and friendly contests with each other, compared to ordinary chit-chat. 100% is as designed.</CC_Settings_FreqMoments_Tip>
   <CC_Settings_FreqSocial>Social events: {0}</CC_Settings_FreqSocial>
-  <CC_Settings_FreqSocial_Tip>How many social events (favours, quarrels, confidences) happen each day. 100% is about one a day for every five colonists.</CC_Settings_FreqSocial_Tip>
+  <CC_Settings_FreqSocial_Tip>How many social events (favors, quarrels, confidences) happen each day. 100% is about one a day for every five colonists.</CC_Settings_FreqSocial_Tip>
   <CC_Settings_FreqDreams>Dreams: {0}</CC_Settings_FreqDreams>
   <CC_Settings_FreqDreams_Tip>How often colonists remember a dream when they wake. 100% is about one night in three.</CC_Settings_FreqDreams_Tip>
   <CC_Evt_CargoPartly>(Some of it was already used up. What was left went back.)</CC_Evt_CargoPartly>
   <CC_Evt_Article_Unknown>a colony still finding out who it is</CC_Evt_Article_Unknown>
-  <CC_Evt_Article_Good>{0}'s piece calls the colony {1}, and means it kindly. Neighbours who read it think better of the colony.</CC_Evt_Article_Good>
-  <CC_Evt_Article_Bad>{0}'s piece calls the colony {1}, and doesn't mean it kindly. Neighbours who read it think a little worse of the colony.</CC_Evt_Article_Bad>
-  <CC_Evt_Article_Plain>{0}'s piece calls the colony {1}: fair, plain, and a little dull. A few neighbours remember the name.</CC_Evt_Article_Plain>
+  <CC_Evt_Article_Good>{0}'s piece calls the colony {1}, and means it kindly. Neighbors who read it think better of the colony.</CC_Evt_Article_Good>
+  <CC_Evt_Article_Bad>{0}'s piece calls the colony {1}, and doesn't mean it kindly. Neighbors who read it think less of the colony.</CC_Evt_Article_Bad>
+  <CC_Evt_Article_Plain>{0}'s piece calls the colony {1}. It's fair and plain, and rather dull. A few neighbors remember the name.</CC_Evt_Article_Plain>
 
   <!-- Scenarios: the letter that says how things stand -->
   <CC_Scen_LetterLabel>How things stand</CC_Scen_LetterLabel>
   <CC_Scen_LetterIntro>The colony didn't start with a clean slate.</CC_Scen_LetterIntro>
-  <CC_Scen_NoEnemy>Whoever this colony crossed, there's nobody in this world hostile enough to come after it. Lucky.</CC_Scen_NoEnemy>
+  <CC_Scen_NoEnemy>Whoever this colony crossed, there's nobody in this world hostile enough to come after it.</CC_Scen_NoEnemy>
   <CC_Scen_Foe_hunts>{FOE_nameDef} of {FACTION} has sworn to hunt down {VICTIM_nameDef}, and has the people to do it.</CC_Scen_Foe_hunts>
   <CC_Scen_Foe_robbed>The silver was taken from {FOE_nameDef} of {FACTION}, and {FOE_nameDef} knows exactly who took it: {VICTIM_nameDef} planned the job.</CC_Scen_Foe_robbed>
   <CC_Scen_Foe_betrayed>{FOE_nameDef} turned the crew against {VICTIM_nameDef}, and has friends among {FACTION} down here.</CC_Scen_Foe_betrayed>
@@ -1728,10 +1728,10 @@ Those against it ({WHO}) will trust the council less and resent it more than usu
   <CC_Scen_Foe_Once>They'll come for the colony once, before long.</CC_Scen_Foe_Once>
   <CC_Scen_Foe_Again>They'll come for the colony before long, and a couple more times after that, unless {FOE_nameDef} falls first.</CC_Scen_Foe_Again>
   <CC_Scen_Foe_Always>They'll come for the colony before long, and keep coming every so often for as long as {FOE_nameDef} lives.</CC_Scen_Foe_Always>
-  <CC_Scen_Debt_loan>The colony owes {FACTION} {AMOUNT} silver: the price of everything it landed with. They'll want it in about {DAYS} days.</CC_Scen_Debt_loan>
+  <CC_Scen_Debt_loan>The colony owes {FACTION} {AMOUNT} silver, the price of everything it landed with. They'll want it in about {DAYS} days.</CC_Scen_Debt_loan>
   <CC_Scen_Debt_heist>The {AMOUNT} silver in the colony's packs belongs to {FOE}, by any reasonable account. {FACTION} will come asking for it in about {DAYS} days.</CC_Scen_Debt_heist>
   <CC_Scen_Deserters>{NAMES} deserted from {FACTION}. Their old unit still has their names, and is still looking.</CC_Scen_Deserters>
-  <CC_Scen_Families>The {NAMEA} family: {FAMILYA}. The {NAMEB} family: {FAMILYB}. The two have never got on, and nobody expects that to change soon.</CC_Scen_Families>
+  <CC_Scen_Families>The {NAMEA} family: {FAMILYA}. The {NAMEB} family: {FAMILYB}. The two families have never gotten along.</CC_Scen_Families>
   <CC_Scen_SecretHint>Not everyone here is telling the whole truth.</CC_Scen_SecretHint>
   <CC_Scen_WaysWhy>how the colony began ({0})</CC_Scen_WaysWhy>
 
@@ -1740,15 +1740,15 @@ Those against it ({WHO}) will trust the council less and resent it more than usu
   <CC_Scen_Hunt_hunt_Label>{FACTION} are back</CC_Scen_Hunt_hunt_Label>
   <CC_Scen_Hunt_hunt_Text>{FACTION} are coming for the colony again, on {FOE}'s word.</CC_Scen_Hunt_hunt_Text>
   <CC_Scen_Hunt_hunt_Led_Label>{FOE} is back</CC_Scen_Hunt_hunt_Led_Label>
-  <CC_Scen_Hunt_hunt_Led_Text>{FOE} has found the colony again, with a war party of {FACTION} behind. There's only one way this ends.</CC_Scen_Hunt_hunt_Led_Text>
+  <CC_Scen_Hunt_hunt_Led_Text>{FOE} has found the colony again, and leads a war party of {FACTION}.</CC_Scen_Hunt_hunt_Led_Text>
   <CC_Scen_Hunt_hunt_Captive_Label>They've come for {FOE}</CC_Scen_Hunt_hunt_Captive_Label>
   <CC_Scen_Hunt_hunt_Captive_Text>{FACTION} have come to take {FOE} back from the colony, by force.</CC_Scen_Hunt_hunt_Captive_Text>
   <CC_Scen_Hunt_mutiny_Label>The mutineers</CC_Scen_Hunt_mutiny_Label>
-  <CC_Scen_Hunt_mutiny_Text>{FACTION} have sent their people after the colony again, on {FOE}'s orders. The ringleader doesn't leave loose ends.</CC_Scen_Hunt_mutiny_Text>
+  <CC_Scen_Hunt_mutiny_Text>{FACTION} have sent their people after the colony again, on the orders of {FOE}, the mutiny's ringleader.</CC_Scen_Hunt_mutiny_Text>
   <CC_Scen_Hunt_mutiny_Led_Label>{FOE} comes to finish it</CC_Scen_Hunt_mutiny_Led_Label>
   <CC_Scen_Hunt_mutiny_Led_Text>{FOE}, the mutiny's ringleader, is leading {FACTION} against the colony in person. Whatever happened on that ship, {FOE} means to finish it here.</CC_Scen_Hunt_mutiny_Led_Text>
   <CC_Scen_Hunt_heist_Label>They want the money</CC_Scen_Hunt_heist_Label>
-  <CC_Scen_Hunt_heist_Text>{FACTION} have come for the money again, on {FOE}'s orders, and they've stopped asking nicely.</CC_Scen_Hunt_heist_Text>
+  <CC_Scen_Hunt_heist_Text>{FACTION} have come for the money again, on {FOE}'s orders, and this time they mean to take it by force.</CC_Scen_Hunt_heist_Text>
   <CC_Scen_Hunt_heist_Led_Label>{FOE} comes to collect</CC_Scen_Hunt_heist_Led_Label>
   <CC_Scen_Hunt_heist_Led_Text>{FOE} still hasn't been paid back, and has come to collect in person, with {FACTION} behind.</CC_Scen_Hunt_heist_Led_Text>
   <CC_Scen_Hunt_tyrant_Label>{FOE}'s loyalists</CC_Scen_Hunt_tyrant_Label>
@@ -1760,13 +1760,13 @@ Those against it ({WHO}) will trust the council less and resent it more than usu
   <CC_Scen_Hunt_loan_Label>Debt collectors</CC_Scen_Hunt_loan_Label>
   <CC_Scen_Hunt_loan_Text>{FACTION} have come to collect what the colony owes them, one way or another.</CC_Scen_Hunt_loan_Text>
   <CC_Scen_HuntOver_Label>The hunt is over</CC_Scen_HuntOver_Label>
-  <CC_Scen_HuntOver_dead>{FOE} is dead. {FACTION} have no reason left to come for the colony, and for the first time since it began, nobody here needs to look over their shoulder.</CC_Scen_HuntOver_dead>
+  <CC_Scen_HuntOver_dead>{FOE} is dead. {FACTION} have no reason left to come for the colony, and the hunt is over.</CC_Scen_HuntOver_dead>
   <CC_Scen_HuntOver_gone>{FOE} is gone, and with {FOE} went the reason {FACTION} kept coming. The hunt is over.</CC_Scen_HuntOver_gone>
   <CC_Scen_HuntOver_joined>{FOE} is one of the colony now. Strange as that is, it means {FACTION} have stopped coming.</CC_Scen_HuntOver_joined>
-  <CC_Scen_HuntOver_enslaved>{FOE} wears the colony's collar now. {FACTION} have stopped coming: there's nobody left for them to follow.</CC_Scen_HuntOver_enslaved>
-  <CC_Scen_HuntOver_peace>{FACTION} have made peace with the colony. Whatever {FOE} wants, {FACTION} won't be fighting for it any more.</CC_Scen_HuntOver_peace>
+  <CC_Scen_HuntOver_enslaved>{FOE} wears the colony's collar now, and with no one left to follow, {FACTION} have stopped coming.</CC_Scen_HuntOver_enslaved>
+  <CC_Scen_HuntOver_peace>{FACTION} have made peace with the colony. Whatever {FOE} wants, {FACTION} won't be fighting for it anymore.</CC_Scen_HuntOver_peace>
   <CC_Scen_HuntOver_defeated>{FACTION} are no more, and the hunt died with them.</CC_Scen_HuntOver_defeated>
-  <CC_Scen_HuntOver_gaveup>{FACTION} seem to have given up on the colony. {FOE} is still out there somewhere, but the attacks have stopped, and the colony can finally breathe.</CC_Scen_HuntOver_gaveup>
+  <CC_Scen_HuntOver_gaveup>{FACTION} seem to have given up on the colony. {FOE} is still out there somewhere, but the attacks have stopped.</CC_Scen_HuntOver_gaveup>
   <CC_Scen_HuntOver_settled>{FACTION} have taken what they think they're owed out of the colony's hide. As far as they're concerned, the debt is settled.</CC_Scen_HuntOver_settled>
 
   <!-- Scenarios: debts -->
@@ -1802,7 +1802,7 @@ Those against it ({WHO}) will trust the council less and resent it more than usu
   <CC_ScenPart_DueDays>Due after {0} days</CC_ScenPart_DueDays>
   <CC_ScenPart_Deserters>Rimfolk: {0} of the colonists deserted from a hostile army, which is still looking for them.</CC_ScenPart_Deserters>
   <CC_ScenPart_Count>How many</CC_ScenPart_Count>
-  <CC_ScenPart_Families>Rimfolk: the colonists are two families who have never got on.</CC_ScenPart_Families>
+  <CC_ScenPart_Families>Rimfolk: the colonists are two families who have never gotten along.</CC_ScenPart_Families>
   <CC_ScenPart_Ways>Rimfolk: the colony starts out with a reputation ({0}).</CC_ScenPart_Ways>
   <CC_ScenPart_Secret>Rimfolk: someone is keeping a secret ({0}).</CC_ScenPart_Secret>
   <CC_ScenPart_PickSecret>Pick a secret</CC_ScenPart_PickSecret>
@@ -1817,10 +1817,10 @@ Those against it ({WHO}) will trust the council less and resent it more than usu
   <!-- Scenarios: bonds and things to come -->
   <CC_TieNote_Scenario>came out here together</CC_TieNote_Scenario>
   <CC_Scen_Bond_lovers>{A_nameDef} and {B_nameDef} are together, and gave up a great deal to stay that way.</CC_Scen_Bond_lovers>
-  <CC_Scen_Bond_friends>{A_nameDef} and {B_nameDef} go back a long way. Whatever comes, they'll face it together.</CC_Scen_Bond_friends>
+  <CC_Scen_Bond_friends>{A_nameDef} and {B_nameDef} go back a long way, and look out for each other.</CC_Scen_Bond_friends>
   <CC_Scen_Bond_mentor>{A_nameDef} is teaching {B_nameDef} {SKILL}: everything {A_pronoun} knows, one lesson at a time.</CC_Scen_Bond_mentor>
   <CC_Scen_Hint_Follower>Someone will find their way here before long, and ask to stay.</CC_Scen_Hint_Follower>
-  <CC_Scen_Hint_Visitor>A travelling scholar has heard about the workshop, and means to visit soon.</CC_Scen_Hint_Visitor>
+  <CC_Scen_Hint_Visitor>A traveling scholar has heard about the workshop, and means to visit soon.</CC_Scen_Hint_Visitor>
   <CC_Scen_Hint_Beast>The great beast's trail leads here. It will pass through in a couple of weeks, and it only fights if provoked.</CC_Scen_Hint_Beast>
 
   <!-- Nemeses a scenario starts with -->

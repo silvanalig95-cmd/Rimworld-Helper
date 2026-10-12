@@ -5,7 +5,7 @@
   <ColonyCouncil.DecreeDef>
     <defName>Council_Decree_LongHours</defName>
     <label>long hours</label>
-    <description>Everyone works harder and longer until the decree ends. Faster building, harvesting and crafting, paid for in mood. Hard workers take it in stride; the lazy take it personally.</description>
+    <description>Everyone works longer, harder days until the decree ends. Building, harvesting and crafting go faster, at a cost in mood. The industrious like it and hard workers don't mind; the lazy and slothful hate it.</description>
     <requestWhen><li>ColonyHappy</li></requestWhen>
     <order>1</order>
     <durationDays>5</durationDays>
@@ -23,20 +23,20 @@
     <effects>
       <li>Everyone works 15% faster.</li>
       <li>Everyone tires a little faster.</li>
-      <li>Most colonists resent it; the industrious don't mind.</li>
+      <li>Most colonists resent it; the industrious and hard workers don't mind.</li>
     </effects>
     <support>
       <plain><li>Finally, some urgency around here.</li></plain>
-      <cheerful><li>Let's get it all done! Everything! Today!</li></cheerful>
+      <cheerful><li>Good! Let's get the barn finished before the weather turns.</li></cheerful>
       <cold><li>Output will rise. Good.</li></cold>
     </support>
     <oppose>
       <plain>
         <li>My back already hurts and we haven't started.</li>
-        <li>Longer days. Same rice. Wonderful.</li>
+        <li>Longer days, and the same rice at the end of them.</li>
       </plain>
-      <blunt><li>I'll work longer. I won't work happier.</li></blunt>
-      <gloomy><li>We'll work ourselves into the graves we've been digging.</li></gloomy>
+      <blunt><li>Fine. I'm counting every extra hour.</li></blunt>
+      <gloomy><li>By the end of this we'll be too tired to eat.</li></gloomy>
       <warm><li>I'll do it. But please don't make this a habit.</li></warm>
     </oppose>
   </ColonyCouncil.DecreeDef>
@@ -45,7 +45,7 @@
   <ColonyCouncil.DecreeDef>
     <defName>Council_Decree_Rationing</defName>
     <label>rationing</label>
-    <description>Smaller portions for everyone. The stores last a good deal longer, and stomachs grumble. Ascetics hardly notice; gourmands suffer.</description>
+    <description>Smaller portions for everyone. The food stores last a good deal longer, but most colonists resent going hungry. Ascetics approve; gourmands and the greedy hate it.</description>
     <requestWhen><li>FoodLow</li></requestWhen>
     <order>2</order>
     <durationDays>7</durationDays>
@@ -66,7 +66,7 @@
     <support>
       <plain><li>Better hungry now than starving in winter.</li></plain>
       <cold><li>Consumption down a quarter. Sensible.</li></cold>
-      <gloomy><li>I'm always hungry anyway. Now it's official.</li></gloomy>
+      <gloomy><li>I was hungry most days already. Not much changes for me.</li></gloomy>
     </support>
     <oppose>
       <plain>
@@ -74,7 +74,7 @@
         <li>I can hear my stomach from across the room.</li>
       </plain>
       <blunt><li>Cut my food and see how fast I work.</li></blunt>
-      <cheerful><li>Smaller meals! Well, more chewing per bite, I suppose!</li></cheerful>
+      <cheerful><li>Smaller bowls? Then I'll eat slowly and make mine last!</li></cheerful>
       <warm><li>Give my share to the children. I'll manage.</li></warm>
     </oppose>
   </ColonyCouncil.DecreeDef>
@@ -83,7 +83,7 @@
   <ColonyCouncil.DecreeDef>
     <defName>Council_Decree_Drills</defName>
     <label>drills</label>
-    <description>Daily weapons drills for everyone who can fight. Shooting and melee improve steadily, other work slows, and most people find it exhausting. The bloodthirsty love it.</description>
+    <description>Daily weapons drills for everyone who can fight. Shooting and melee improve steadily while other work slows. Most colonists find it exhausting, but the bloodthirsty love it.</description>
     <requestWhen><li>RecentThreat</li></requestWhen>
     <order>3</order>
     <durationDays>5</durationDays>
@@ -111,12 +111,12 @@
     <support>
       <plain><li>Next raid, they'll find us ready.</li></plain>
       <blunt><li>About time somebody taught you lot which end goes bang.</li></blunt>
-      <cheerful><li>Target practice! I'm going to name the targets!</li></cheerful>
+      <cheerful><li>Target practice! I'm painting faces on the targets.</li></cheerful>
     </support>
     <oppose>
       <plain><li>I came here to farm, not to march.</li></plain>
       <warm><li>I don't want to get good at this. I really don't.</li></warm>
-      <gloomy><li>Practice dying, basically. Lovely.</li></gloomy>
+      <gloomy><li>All this practice, and the raiders will still have more guns.</li></gloomy>
       <cold><li>Training a cook to shoot is an inefficient use of a cook.</li></cold>
     </oppose>
   </ColonyCouncil.DecreeDef>
@@ -125,7 +125,7 @@
   <ColonyCouncil.DecreeDef>
     <defName>Council_Decree_Study</defName>
     <label>study hours</label>
-    <description>Evenings of lessons and reading for everyone. Skills improve faster and research picks up, at the cost of some work and patience. Thinkers love it; brawlers count the minutes.</description>
+    <description>Evenings of lessons and reading for everyone. Skills improve faster and research picks up, but other work slows. Most colonists find it tedious; thinkers love it and brawlers hate it.</description>
     <requestWhen><li>ColonyHappy</li></requestWhen>
     <order>4</order>
     <durationDays>5</durationDays>
@@ -146,13 +146,13 @@
     </effects>
     <support>
       <plain><li>I've been waiting years for someone to make everyone read.</li></plain>
-      <cheerful><li>School! For grown-ups! I'll bring the chalk!</li></cheerful>
+      <cheerful><li>School for grown-ups! I'll bring the chalk.</li></cheerful>
       <cold><li>Skills compound. This is an investment.</li></cold>
     </support>
     <oppose>
       <plain><li>I didn't survive a crash landing to sit through lectures.</li></plain>
       <blunt><li>Wake me when it's over.</li></blunt>
-      <gloomy><li>Learning things just means knowing exactly how we'll die.</li></gloomy>
+      <gloomy><li>The more I read about medicine, the more I find to worry about.</li></gloomy>
     </oppose>
   </ColonyCouncil.DecreeDef>
 
@@ -160,7 +160,7 @@
   <ColonyCouncil.DecreeDef>
     <defName>Council_Decree_Austerity</defName>
     <label>austerity</label>
-    <description>The council takes no new wishes, and everyone is asked to make do. Standards come back down to earth, which makes everyone easier to please afterwards. Ascetics are delighted; the greedy are not.</description>
+    <description>The council takes no new wishes while it lasts, and everyone makes do with what they have. Standards fall quickly, so colonists are easier to please afterward. Ascetics love it; the greedy and jealous hate it.</description>
     <requestWhen><li>Spoiled</li></requestWhen>
     <order>5</order>
     <durationDays>7</durationDays>
@@ -181,7 +181,7 @@
       <li>Ascetics love it; the greedy and jealous hate it.</li>
     </effects>
     <support>
-      <plain><li>We've been living soft. A little hardship never killed anyone. Well. Rarely.</li></plain>
+      <plain><li>We've been living soft. Some hardship will do us good.</li></plain>
       <cold><li>Expectations had become unsustainable. This corrects them.</li></cold>
       <warm><li>We have each other. That's enough for a while.</li></warm>
     </support>
@@ -196,7 +196,7 @@
   <ColonyCouncil.DecreeDef>
     <defName>Council_Decree_Festival</defName>
     <label>festival days</label>
-    <description>A few days of rest, music and late nights. Moods lift and work slows to a crawl. Good for a colony on the edge; standards rise afterwards, so don't make it a habit.</description>
+    <description>A few days of rest, music and late nights. Moods lift and all work slows down. Useful when the colony is close to breaking, but standards rise while it lasts, so don't make it a habit.</description>
     <requestWhen><li>ColonyMiserable</li></requestWhen>
     <order>6</order>
     <durationDays>3</durationDays>
@@ -219,9 +219,9 @@
     </effects>
     <support>
       <plain><li>Nobody touch a shovel for three days. That's an order.</li></plain>
-      <cheerful><li>FESTIVAL! I've been practicing my dancing! Badly, but practicing!</li></cheerful>
-      <gloomy><li>Fine. One last good week before whatever comes next.</li></gloomy>
-      <warm><li>Everyone deserves this. Everyone.</li></warm>
+      <cheerful><li>A festival! I've been practicing my dancing, badly.</li></cheerful>
+      <gloomy><li>Fine. A few good days before whatever comes next.</li></gloomy>
+      <warm><li>We've earned this, all of us.</li></warm>
     </support>
     <oppose>
       <plain><li>The fields don't take holidays.</li></plain>

@@ -23,9 +23,9 @@
           <li>{ENEMY} found {A_nameDef}</li>
         </titles>
         <texts>
-          <li>[lowtech] Riders in the colours of {ENEMY} have been asking at every village and crossroads for a deserter. Today they found the colony, and {A_nameDef} went pale at the sound of {A_possessive} own name. They want {A_objective} back, to answer for it. They'll take {COUNT} silver in {A_possessive} place, or {A_objective} by force.</li>
-          <li>[!lowtech,tribalfoe] A runner of {ENEMY} comes out of the trees with a message, cold and short: they know {A_nameDef} is here. A warrior who runs belongs to the war band until the band says otherwise. Hand {A_objective} over, buy out {A_possessive} oath for {COUNT} silver, or they'll come and take {A_objective}.</li>
-          <li>[!lowtech,!tribalfoe] A message from {ENEMY} comes over the comms, cold and short: they know {A_nameDef} is here. A deserter belongs to the unit until the unit says otherwise. Hand {A_objective} over, buy out {A_possessive} service for {COUNT} silver, or they'll come and take {A_objective}.</li>
+          <li>[lowtech] Riders in the colors of {ENEMY} have been asking at every village and crossroads for a deserter, and today they reached the colony. {A_nameDef} went pale at the sound of {A_possessive} own name. They want {A_objective} back to answer for it. They'll take {COUNT} silver in {A_possessive} place, or take {A_objective} by force.</li>
+          <li>[!lowtech,tribalfoe] A runner of {ENEMY} came out of the trees with a short message. They know {A_nameDef} is here, and a warrior who runs from the war band still belongs to it. The colony can hand {A_objective} over, buy out {A_possessive} oath for {COUNT} silver, or watch them come and take {A_objective}.</li>
+          <li>[!lowtech,!tribalfoe] {ENEMY} have sent a short message over the comms. They know {A_nameDef} is here, and as far as they're concerned, a deserter belongs to the unit until the unit says otherwise. Hand {A_objective} over, buy out {A_possessive} service for {COUNT} silver, or they'll come and take {A_objective}.</li>
         </texts>
         <defaultOption>0</defaultOption>
         <options>
@@ -47,7 +47,7 @@
           </li>
           <li>
             <label>Buy out {A_possessive} service ({COUNT} silver)</label>
-            <outcome>{ENEMY} take the silver and strike {A_nameDef}'s name from their rolls. {A_nameDef} is free, properly free, for the first time in years.</outcome>
+            <outcome>{ENEMY} take the silver and strike {A_nameDef}'s name from their rolls. After years of looking over {A_possessive} shoulder, {A_nameDef} is free of them.</outcome>
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>silver</what></li>
               <li Class="ColonyCouncil.DilemmaEffect_Thought"><thought>Council_Evt_BoughtFreedom</thought></li>
@@ -57,7 +57,7 @@
           </li>
           <li>
             <label>Hand {A_nameDef} back</label>
-            <outcome>{A_nameDef} walks out to them without a word. Nobody in the colony looks at anyone else for the rest of the day.</outcome>
+            <outcome>{A_nameDef} walks out to them without a word and doesn't look back. Supper that night is a quiet one.</outcome>
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Others</target><thought>Council_Evt_GaveUpOneOfUs</thought><exceptTrait><li>Psychopath</li></exceptTrait></li>
               <li Class="ColonyCouncil.DilemmaEffect_EventGoodwill"><amount>10</amount><enemy>true</enemy></li>
@@ -89,7 +89,7 @@
           <li>{X_nameDef} comes back</li>
         </titles>
         <texts>
-          <li>A young traveller of {FACTION} has come asking for {A_nameDef} by name. It takes a moment to recognise {X_objective}: {X_nameDef}, the lost child the colony once walked home, all grown up. {X_nameDef} has brought a gift, and a question: is there room here for someone who never forgot this place?</li>
+          <li>A young traveler of {FACTION} has come asking for {A_nameDef} by name. It takes {A_objective} a moment to place the face. It's {X_nameDef}, the lost child the colony once walked home, grown up now. {X_nameDef} has brought a gift, and would like to know if there's room here to stay.</li>
         </texts>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Loot"><value>150~400</value></li>
@@ -99,7 +99,7 @@
         <options>
           <li>
             <label>Ask {X_objective} to stay</label>
-            <outcome>{X_nameDef} stays. {A_nameDef} pretends not to be moved, and fools nobody.</outcome>
+            <outcome>{X_nameDef} stays. {A_nameDef} spends the evening showing {X_objective} everything that has changed since {X_pronoun} was small.</outcome>
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_Join" />
               <li Class="ColonyCouncil.DilemmaEffect_Tie"><kind>Friends</kind><amount>25</amount></li>
@@ -108,7 +108,7 @@
           </li>
           <li>
             <label>Thank {X_objective} and wish {X_objective} well</label>
-            <outcome>{X_nameDef} stays for supper, tells everyone about home, and leaves in the morning with a full pack. {FACTION} speak well of the colony.</outcome>
+            <outcome>{X_nameDef} stays for supper, talks about home until late, and leaves in the morning with a full pack. {FACTION} speak well of the colony.</outcome>
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_EventGoodwill"><amount>6</amount></li>
             </effects>
@@ -135,28 +135,28 @@
           <li>A rematch</li>
         </titles>
         <texts>
-          <li>[won] {X_nameDef} of {FACTION}, who lost to the colony at {SKILL}, is back, and has very clearly been practising. {X_nameDef} wants a rematch against {A_nameDef}. Same rules as before: nobody gets hurt, and the colony can put silver on it.</li>
-          <li>[lost] {X_nameDef} of {FACTION}, who beat the colony at {SKILL} last time, has come back to defend the title against {A_nameDef}. {X_nameDef} is all smiles. The colony can put silver on it, if it fancies its chances this time.</li>
+          <li>[won] {X_nameDef} of {FACTION}, who lost to the colony at {SKILL}, is back and has clearly been practicing. {X_nameDef} wants a rematch against {A_nameDef}, on the same terms as before. It's a friendly contest, and the colony can put silver on it if it likes.</li>
+          <li>[lost] {X_nameDef} of {FACTION}, who beat the colony at {SKILL} last time, is back to defend the title against {A_nameDef}, and seems very relaxed about it. The colony can put silver on the match if it likes its chances this time.</li>
         </texts>
         <defaultOption>2</defaultOption>
         <options>
           <li>
             <label>Accept: {COUNT} silver on {A_nameDef}</label>
-            <outcome>The rematch is on. Half the colony has already picked a side.</outcome>
+            <outcome>The rematch is on, with silver riding on it. It starts in a couple of hours.</outcome>
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_Contest"><stake>true</stake></li>
             </effects>
           </li>
           <li>
-            <label>Accept, for honour only</label>
-            <outcome>The rematch is on, for bragging rights. Which, this time, everyone agrees, matter a great deal.</outcome>
+            <label>Accept, for honor only</label>
+            <outcome>The rematch is on, for bragging rights only. Both sides want this one badly.</outcome>
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_Contest" />
             </effects>
           </li>
           <li>
             <label>Decline politely</label>
-            <outcome>{X_nameDef} looks disappointed, and moves on. The question of who's really better will have to wait.</outcome>
+            <outcome>{X_nameDef} is disappointed, and moves on without a match.</outcome>
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_SendAway" />
             </effects>
@@ -183,8 +183,8 @@
           <li>{BEAST}</li>
         </titles>
         <texts>
-          <li>Hunters swear they've seen it: {BEAST}, the young of {DEAD}, the great beast the colony brought down. Nearly as big as its parent was and every bit as stubborn, it's roaming the colony's land now. It'll move on in a few days, unless someone makes a second legend of it.</li>
-          <li>[lowtech] The old hunters always said {DEAD} had young somewhere out there. They were right. {BEAST} has come down to the colony's land, scarred already and growing into its parent's size. It'll move on in a few days. {A_nameDef} has heard, and has gone very quiet.</li>
+          <li>Hunters have seen {BEAST}, the young of {DEAD}, the great beast the colony brought down. It's nearly as big as its parent was, just as tough, and roaming the colony's land now. It will move on in a few days, unless someone hunts it first.</li>
+          <li>[lowtech] The old hunters always said {DEAD} had young somewhere out there, and now {BEAST} has come down onto the colony's land, already scarred and growing into its parent's size. It will move on in a few days. {A_nameDef} has already been out to look at its tracks.</li>
         </texts>
       </li>
     </modExtensions>
@@ -206,8 +206,8 @@
           <li>Kindness repaid</li>
         </titles>
         <texts>
-          <li>[lowtech] A pedlar arrives with a bundle and a message: the pilgrims of {FACTION} the colony once fed made it to the end of their road, and they haven't forgotten. They've sent what they could spare, with their blessings.</li>
-          <li>[!lowtech] A drop pod arrives with a short note from the pilgrims of {FACTION} the colony once fed: they made it, and they haven't forgotten. Inside is what they could spare.</li>
+          <li>[lowtech] A peddler has arrived with a bundle and a message. The pilgrims of {FACTION} the colony once fed made it to the end of their road, and they've sent back what they could spare, with their blessings.</li>
+          <li>[!lowtech] A drop pod has come down with a short note from the pilgrims of {FACTION} the colony once fed. They made it where they were going, and they've sent what they could spare.</li>
         </texts>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Loot"><value>200~500</value><pod>true</pod></li>

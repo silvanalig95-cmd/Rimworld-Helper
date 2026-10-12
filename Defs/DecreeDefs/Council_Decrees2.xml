@@ -5,7 +5,7 @@
   <ColonyCouncil.DecreeDef>
     <defName>Council_Decree_Harvest</defName>
     <label>harvest push</label>
-    <description>Everyone to the fields: sow, tend and harvest from first light to last. Crops come in faster and fuller; backs ache. Growers love it, the lazy curse it.</description>
+    <description>Everyone to the fields to sow, tend and harvest from first light to last. Crops come in faster and fuller, and backs ache. Growers enjoy it; the lazy and undergrounders hate it.</description>
     <requestWhen><li>Autumn</li><li>FoodLow</li></requestWhen>
     <order>7</order>
     <durationDays>4</durationDays>
@@ -25,13 +25,13 @@
       <li>Growers like it; the lazy and undergrounders hate it.</li>
     </effects>
     <support>
-      <plain><li>Every hour in the field now is a meal in winter.</li></plain>
-      <cheerful><li>Dirt under every fingernail! My favorite kind of week!</li></cheerful>
+      <plain><li>If we don't get the corn in this week, we'll be eating bark by midwinter.</li></plain>
+      <cheerful><li>Dirt under my fingernails all week. My favorite kind of week!</li></cheerful>
       <cold><li>Yield per day up a third. Correct priority.</li></cold>
     </support>
     <oppose>
       <plain><li>I'll be picking corn in my dreams.</li></plain>
-      <blunt><li>My back. My back is going to sue the council.</li></blunt>
+      <blunt><li>My back's done. Find someone younger.</li></blunt>
       <gloomy><li>Bent double for days, and the blight will come anyway.</li></gloomy>
     </oppose>
   </ColonyCouncil.DecreeDef>
@@ -40,7 +40,7 @@
   <ColonyCouncil.DecreeDef>
     <defName>Council_Decree_Building</defName>
     <label>building season</label>
-    <description>Every spare hand on walls, floors and tunnels. Construction and mining go much faster, and everyone goes to bed covered in dust.</description>
+    <description>Every spare hand goes to walls, floors and tunnels. Construction and mining go much faster, and most colonists go to bed sore and covered in dust.</description>
     <requestWhen><li>ColonyHappy</li></requestWhen>
     <order>8</order>
     <durationDays>5</durationDays>
@@ -62,13 +62,13 @@
     </effects>
     <support>
       <plain><li>Give me a week and you won't recognize the place.</li></plain>
-      <cheerful><li>Walls! Floors! A whole new wing! Hand me a hammer!</li></cheerful>
-      <cold><li>Concentrated labor finishes projects. Scattered labor starts them.</li></cold>
+      <cheerful><li>A whole new wing! Someone hand me a hammer.</li></cheerful>
+      <cold><li>Two finished rooms are worth more than five half-built ones.</li></cold>
     </support>
     <oppose>
       <plain><li>I've had rock dust in my teeth for three days straight.</li></plain>
       <warm><li>I'll help. I just wish someone would build a bath first.</li></warm>
-      <blunt><li>Build it yourselves. Oh wait, we are. All of us. Constantly.</li></blunt>
+      <blunt><li>I've laid enough stone this year.</li></blunt>
     </oppose>
   </ColonyCouncil.DecreeDef>
 
@@ -76,7 +76,7 @@
   <ColonyCouncil.DecreeDef>
     <defName>Council_Decree_Manners</defName>
     <label>best behavior</label>
-    <description>Everyone on their best behavior: polite to traders, patient with prisoners, charming to visitors. Trading, recruiting and talking people round all go better. The abrasive find it exhausting.</description>
+    <description>Everyone is on their best behavior: polite to traders, patient with prisoners, friendly to visitors. Trading, recruiting and talking people around all go better. The abrasive find it exhausting.</description>
     <requestWhen><li>Prisoners</li></requestWhen>
     <order>9</order>
     <durationDays>5</durationDays>
@@ -92,19 +92,19 @@
       <li><trait>Psychopath</trait><reaction>Neutral</reaction></li>
     </reactions>
     <effects>
-      <li>Negotiation and social impact up 25%: better recruiting, taming talk and diplomacy.</li>
+      <li>Negotiation ability and social impact up 25%: better recruiting, taming and diplomacy.</li>
       <li>Trade prices improve a little.</li>
       <li>The kind and the sociable like it; the abrasive hate it.</li>
     </effects>
     <support>
-      <plain><li>A smile costs nothing. Unlike our last trade.</li></plain>
+      <plain><li>Be polite to the traders. We need better prices than we got last time.</li></plain>
       <warm><li>It's nice, everyone being nice. Can we keep it?</li></warm>
       <cold><li>Courtesy is a negotiating tool. Use it.</li></cold>
     </support>
     <oppose>
-      <blunt><li>If I have to say "please" one more time I'll bite someone. Politely.</li></blunt>
+      <blunt><li>If I have to say "please" one more time, I'll bite someone.</li></blunt>
       <plain><li>My face hurts from all the smiling.</li></plain>
-      <gloomy><li>Pretending to like people. Exhausting. Same as usual, but out loud.</li></gloomy>
+      <gloomy><li>Smiling at strangers all day. I'm worn out by noon.</li></gloomy>
     </oppose>
   </ColonyCouncil.DecreeDef>
 
@@ -112,7 +112,7 @@
   <ColonyCouncil.DecreeDef>
     <defName>Council_Decree_Mourning</defName>
     <label>days of mourning</label>
-    <description>Work stops, mostly, so the colony can grieve together. Those who lost someone heal faster and are less likely to break. Only possible while someone is grieving.</description>
+    <description>Most work stops so the colony can grieve together. Grief fades faster for those who lost someone, and they are less likely to break. Only possible while someone is grieving.</description>
     <requestWhen><li>Grief</li></requestWhen>
     <order>10</order>
     <durationDays>2</durationDays>
@@ -130,7 +130,7 @@
     </reactions>
     <effects>
       <li>Everyone works 30% slower.</li>
-      <li>Grief fades much faster, and nobody breaks as easily.</li>
+      <li>Grief fades much faster, and mental breaks are less likely.</li>
       <li>The grieving are grateful; psychopaths and the industrious find it a waste.</li>
     </effects>
     <support>
@@ -139,7 +139,7 @@
       <gloomy><li>We should do this more. We lose people often enough.</li></gloomy>
     </support>
     <oppose>
-      <cold><li>The dead don't need our labor-hours. The living do.</li></cold>
+      <cold><li>Two days of lost work won't bring anyone back.</li></cold>
       <plain><li>I grieve better with a shovel in my hand.</li></plain>
     </oppose>
   </ColonyCouncil.DecreeDef>
@@ -148,7 +148,7 @@
   <ColonyCouncil.DecreeDef>
     <defName>Council_Decree_OnGuard</defName>
     <label>on guard</label>
-    <description>Weapons within reach, eyes on the horizon, sleep in shifts. Everyone fights a little better and tires a little faster. Fighters like the edge; the nervous jump at every shadow.</description>
+    <description>Weapons within reach, eyes on the horizon, sleep in shifts. Everyone fights a little better and tires faster. The bloodthirsty like it; the nervous, the volatile and wimps hate it.</description>
     <requestWhen><li>RecentThreat</li></requestWhen>
     <order>11</order>
     <durationDays>4</durationDays>
@@ -173,11 +173,11 @@
     <support>
       <plain><li>Let them come. We'll see them first.</li></plain>
       <blunt><li>Finally. I've been sleeping with a knife anyway.</li></blunt>
-      <cold><li>Readiness is cheaper than recovery.</li></cold>
+      <cold><li>A raid we see coming costs us less.</li></cold>
     </support>
     <oppose>
       <plain><li>Every snapped twig sounds like a raid now.</li></plain>
-      <gloomy><li>Waiting for death, but in shifts.</li></gloomy>
+      <gloomy><li>Sitting up all night waiting for raiders. I don't sleep much anyway.</li></gloomy>
       <warm><li>Can we at least take turns being scared?</li></warm>
     </oppose>
   </ColonyCouncil.DecreeDef>
@@ -186,7 +186,7 @@
   <ColonyCouncil.DecreeDef>
     <defName>Council_Decree_CleanSweep</defName>
     <label>clean sweep</label>
-    <description>Scrub everything: floors, tables, bedding, the hospital twice. Cleaning goes much faster, wounds are tended more carefully, and bodies fight off illness better. Nobody enjoys it except the fastidious.</description>
+    <description>Scrub everything: floors, tables, bedding, the hospital twice. Cleaning goes much faster, wounds are tended more carefully, and bodies fight off illness better. Most colonists dislike it, but doctors like it.</description>
     <requestWhen><li>Dirty</li></requestWhen>
     <order>12</order>
     <durationDays>3</durationDays>
@@ -207,13 +207,13 @@
       <li>Doctors like it; the lazy hate it.</li>
     </effects>
     <support>
-      <plain><li>I've been waiting years for someone to order this.</li></plain>
-      <cold><li>Infection rates will drop. Good.</li></cold>
+      <plain><li>About time. The hospital floor was a disgrace.</li></plain>
+      <cold><li>Fewer infections means fewer graves to dig.</li></cold>
     </support>
     <oppose>
-      <plain><li>I scrubbed the same floor three times. It's still a floor.</li></plain>
-      <blunt><li>Dirt never killed anyone. Probably.</li></blunt>
-      <cheerful><li>Bubbles! Lots of bubbles! I'm trying to make this fun!</li></cheerful>
+      <plain><li>I've scrubbed the kitchen floor three times today.</li></plain>
+      <blunt><li>I've lived with dirt all my life. I'm fine.</li></blunt>
+      <cheerful><li>I'm making it a game. Whoever finds the most mud wins!</li></cheerful>
     </oppose>
   </ColonyCouncil.DecreeDef>
 

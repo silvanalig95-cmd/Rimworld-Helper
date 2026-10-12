@@ -6,7 +6,7 @@
   <ColonyCouncil.OfficeDef>
     <defName>Council_Office_Speaker</defName>
     <label>speaker</label>
-    <description>Chairs the council's meetings and speaks for the colony. A good speaker keeps people feeling heard.</description>
+    <description>Chairs the council's meetings and speaks for the colony. A good speaker slowly builds the colony's trust in the council.</description>
     <order>1</order>
     <skills><li>Social</li></skills>
     <goodTraits><li>Kind</li></goodTraits>
@@ -22,7 +22,7 @@
   <ColonyCouncil.OfficeDef>
     <defName>Council_Office_Marshal</defName>
     <label>marshal</label>
-    <description>Leads the colony's defense: drills, watches, and the first weapon on the wall.</description>
+    <description>Leads the colony's defense: runs the drills, sets the watches and is first to the wall when raiders come.</description>
     <order>2</order>
     <skills><li>Shooting</li><li>Melee</li></skills>
     <goodTraits><li>Tough</li><li>Bloodlust</li></goodTraits>
@@ -31,8 +31,8 @@
     <colonyHediff>Council_Office_MarshalColony</colonyHediff>
     <duties>
       <li>Drills train everyone half again as fast.</li>
-      <li>The whole colony aims and strikes a little better.</li>
-      <li>The marshal fights better and holds together under fire.</li>
+      <li>Colonists aim and strike a little better.</li>
+      <li>The marshal fights better and holds steady under fire.</li>
     </duties>
   </ColonyCouncil.OfficeDef>
 
@@ -53,7 +53,7 @@
   <ColonyCouncil.OfficeDef>
     <defName>Council_Office_Physician</defName>
     <label>physician</label>
-    <description>The colony's chief doctor: keeps the infirmary, sets the bones, decides who's fit to work.</description>
+    <description>The colony's chief doctor: runs the hospital, sets bones and decides who's fit to work.</description>
     <order>4</order>
     <skills><li>Medicine</li></skills>
     <goodTraits><li>Kind</li></goodTraits>

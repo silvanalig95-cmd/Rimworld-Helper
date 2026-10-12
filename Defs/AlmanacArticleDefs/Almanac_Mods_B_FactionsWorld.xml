@@ -16,24 +16,24 @@
     <order>200</order>
     <mods><li>orion.hospitality</li></mods>
     <summary>Host visiting factions as guests: guest beds, shopping, entertaining and recruiting</summary>
-    <tip>Feed them, bed them, sell them your second-worst chair at a fair price. That's diplomacy out here.</tip>
+    <tip>The guests bought two old swords and a tunic before they left, and paid in silver.</tip>
     <description>Hospitality turns visiting groups into proper guests. They stay a few days, sleep in beds you mark for guests, shop in an area you choose and judge their stay when they leave. Treat them well and their faction thinks better of you, and a guest who has made enough friends among your people can be invited to join.</description>
     <facts>
       <li>Any bed can be marked "For guests" from its buttons, with an optional fee. A free bed pleases guests; an overpriced one sours their visit.</li>
       <li>The Guests tab gives each guest an allowed area and a shopping area. Guests buy items lying in the shopping area and pay in silver.</li>
-      <li>The new Entertain work type sends colonists to cheer guests up or befriend them. Good diplomats do well; poor ones can offend the guest.</li>
+      <li>The new Entertain work type sends colonists to cheer guests up or befriend them. Colonists with good Social skill do well; poor ones can offend the guest.</li>
       <li>A guest can be recruited once they have enough friends in the colony: one friend while you have three colonists or fewer, more as you grow. Every colonist they dislike raises the bar, and relatives count double.</li>
       <li>Forcing a guest to join before they have enough friends costs much more goodwill with their faction.</li>
       <li>Guests help with chores only where their skill is 7 or more (a setting), and satisfied guests may leave gifts behind.</li>
       <li>When you talk to a faction, Hospitality adds an option to invite them for a visit.</li>
     </facts>
     <advice>
-      <li>Build a small guest wing next to the dining room: a few beds marked for guests, a table and chairs, and something to do inside their allowed area.</li>
-      <li>Give your best talker the Entertain job and keep low-Social colonists off it.</li>
-      <li>Put spare crafts in a stockpile inside the shopping area: old armor, extra clothes, middling sculptures. Guests turn them into silver.</li>
+      <li>Build a small guest wing next to the dining room: a few beds marked for guests, a table and chairs, and some recreation, such as a horseshoes pin or a chess table, inside their allowed area.</li>
+      <li>In the Work tab, put your best talker on Entertain and untick it for colonists with low Social.</li>
+      <li>Put spare crafts in a stockpile inside the shopping area, such as old armor, extra clothes and middling sculptures, and keep anything you can't spare outside it.</li>
       <li>If guests have nothing to eat, put simple meals on sale in the shopping area or allow them to take food for free in the Guests tab's map settings.</li>
       <li>With Rimfolk: Hospitality guests count as visitors, so your colonists chat, swap stories, flirt and trade insults with them in Rimfolk's encounters. A warm moment makes the guest like that colonist more, which helps toward the friends Hospitality wants before a guest can join.</li>
-      <li>With Rimfolk: the council leaves recruiting and sending away to Hospitality. If a guest asks to stay in a council dilemma, the "welcome them in" answer is greyed out: invite them from their Guest tab instead.</li>
+      <li>With Rimfolk: the council leaves recruiting and sending away to Hospitality. If a guest asks to stay in a council dilemma, the "welcome them in" answer is grayed out; invite them from their Guest tab instead.</li>
     </advice>
     <keywords>
       <li>guest</li>
@@ -64,8 +64,8 @@
     <order>205</order>
     <mods><li>vanillaexpanded.outposts</li></mods>
     <summary>Settle colonists in camps on the world map that run themselves and send goods home</summary>
-    <tip>Every colony has someone better loved at a distance. Give them a logging camp and a long road.</tip>
-    <description>Vanilla Outposts Expanded lets a caravan settle a spot on the world map as an outpost: a farm, a mine, a hunting or logging camp, a trading post, a town. The people there look after themselves with no upkeep, and every so often the outpost sends its produce home. Outposts can be raided, and nobody learns anything while they're out there.</description>
+    <tip>Every sixty days a load of timber comes in from the logging camp.</tip>
+    <description>Vanilla Outposts Expanded lets a caravan settle a spot on the world map as an outpost: a farm, a mine, a hunting or logging camp, a trading post, a town. The people there look after themselves with no upkeep, and every so often the outpost sends its produce home. Outposts can be raided, and the people posted there don't improve their skills while away.</description>
     <facts>
       <li>To found one, take a caravan to an empty tile at least one tile away from any settlement or other outpost and choose Create outpost. Each type checks the combined skill of everyone you leave there.</li>
       <li>Types that suit a medieval world: farming (Plants 10, needs a growing season), hunting, logging (3 people or more), mining (hills or mountains, Mining 10; metals need more), trading (Social 10, earns silver), encampment (a rest stop for caravans), defensive (3 or more armed fighters) and town (5 people, 3 settlements within 10 tiles).</li>
@@ -75,12 +75,12 @@
       <li>Packing an outpost up turns it back into a caravan; by default that takes seven days.</li>
     </facts>
     <advice>
-      <li>Logging and mining feed your builders, hunting and farming your larder, trading your treasury. Drilling, production and artillery outposts lean on chemfuel, components and mortars, so skip them in an early medieval world.</li>
+      <li>Logging and mining outposts supply your builders, hunting and farming outposts your kitchen, and a trading post your silver. Drilling, production and artillery outposts deal in chemfuel, components and mortar strikes, so skip them in an early medieval world.</li>
       <li>Build an outpost delivery spot inside your walls so deliveries don't sit out at the map edge in the rain.</li>
-      <li>Leave at least one capable fighter at every outpost. A raid on three lone farmers goes badly.</li>
-      <li>Post your steady, finished workers, not the apprentices: nobody improves while away.</li>
-      <li>With Rimfolk: someone away at an outpost is still one of the colony. Nobody grieves for them, the annals don't list them as gone, and their journal and story are kept. If they die out there, it's mourned like any other loss.</li>
-      <li>With Rimfolk: only people at home voice wishes, come to council meetings and vote, so an officer posted to an outpost will lose the seat at the next yearly election.</li>
+      <li>Leave at least one capable fighter at every outpost. When an outpost is raided, the people posted there do the fighting.</li>
+      <li>Post colonists whose skills are already where you want them, and keep the ones still learning at home.</li>
+      <li>With Rimfolk: someone away at an outpost is still one of the colony. Their friends don't mourn them as lost, the annals don't list them as gone, and their journal and story are kept. If they die out there, the colony mourns them like any other loss.</li>
+      <li>With Rimfolk: only people at home voice wishes, come to council meetings and vote, so an officer posted to an outpost keeps the seat only until the next yearly election.</li>
     </advice>
     <keywords>
       <li>outpost</li>
@@ -110,21 +110,21 @@
     <order>210</order>
     <mods><li>neronix17.outland.core</li></mods>
     <summary>Early workbenches, clay and brick, manned siege engines and hidden traps</summary>
-    <tip>Clay is free if you don't mind the mud. Brick walls don't burn, and that's worth a lot of mud.</tip>
-    <description>Outland is a series of medieval fantasy mods, and Core holds what the other modules share: early workbenches, a clay and brick chain, siege engines for your walls and traps hidden in the ground. It adds to the game rather than locking any tech away, and its buildings sit in their own Outland tab with subcategories.</description>
+    <tip>Clay from the riverbank, fired in the kiln, makes a wall that won't burn.</tip>
+    <description>Outland is a series of medieval fantasy mods, and Core holds what the other modules share: early workbenches, clay and brick making, siege engines for your walls and traps hidden in the ground. It adds to the game without locking any tech away, and its buildings sit in their own Outland tab with subcategories.</description>
     <facts>
       <li>A digging spot, placed on mud or on soil next to water, gives clay and adobe bricks. A kiln fires clay into clay bricks, which are fireproof but weaker than cut stone.</li>
-      <li>Siege engines: the bolt thrower, the ballista and the mangonel, all manned by a colonist. The ballista is loaded with ballista bolts and the mangonel with round shot; the mangonel lobs its shots far, like a mortar.</li>
+      <li>Siege engines: the bolt thrower, the ballista and the mangonel, all manned by a colonist. The ballista is loaded with ballista bolts and the mangonel with round shot; the mangonel lobs its shots a long way, like a mortar.</li>
       <li>Hidden pot traps (chemfuel fire, smoke and knockout gas) can't sit next to other traps, and calm animals can sense them. A rock collapse trap brings down a chunk of roof.</li>
       <li>The basic workbench makes what the crafting spot makes. A grindstone placed by the forge raises the quality of what the forge produces.</li>
-      <li>Also: crossbows, ration packs that never rot, timber frame and tent walls, wide doors, backpacks, tribal clothing and the fockatt, a bear-like animal.</li>
+      <li>It also adds crossbows, ration packs that never rot, timber frame and tent walls, wide doors, backpacks, tribal clothing and the fockatt, a bear-like animal.</li>
       <li>Outland's author lists Medieval Overhaul as overlapping: the two run together but aren't specially supported, so expect some duplicate materials and benches.</li>
     </facts>
     <advice>
       <li>Set a digging spot by the river early: clay bricks give you fireproof walls before you have much stone.</li>
-      <li>Put a grindstone beside the forge before you smith anything that matters.</li>
-      <li>Craft bolts and round shot before a siege, and keep a gunner beside each engine: they don't fire on their own.</li>
-      <li>Use pot traps at the mouth of a killbox, spaced apart, where raiders have to walk.</li>
+      <li>Put a grindstone beside the forge before you make weapons and armor there.</li>
+      <li>Craft bolts and round shot before a siege, and have a colonist man each engine as soon as raiders appear.</li>
+      <li>Place pot traps at the mouth of a killbox where raiders have to walk, with a gap between each one.</li>
       <li>With Rimfolk: workshops are recognized by what their benches make, so Outland's basic workbench and forge count when a colonist wishes for a place to craft.</li>
     </advice>
     <keywords>
@@ -162,7 +162,7 @@
       <li>neronix17.outland.vathunnobles</li>
     </mods>
     <summary>Four fantasy peoples as factions: elves, moth-folk, goblinoids and fauns</summary>
-    <tip>Elves live long, orcs live loud, and fauns bow politely before the axe comes down. Learn the faces before the war cries.</tip>
+    <tip>Each of the four peoples carries its own weapons: katanas from the east, war axes from the faun lords.</tip>
     <description>These Outland modules each add a medieval faction with its own people, built as Biotech xenotypes, plus their weapons, armor and a few buildings you can make yourself. They live in your world like any other faction, so they may trade, visit, ally with you or raid you.</description>
     <facts>
       <li>Eastborn Empire: elves with a culture inspired by Japan, led by an emperor. The elves are fragile but long-lived. Brings katanas, naginata, yumi bows, matchlocks, torii gates, shoji doors and lanterns.</li>
@@ -174,8 +174,8 @@
     </facts>
     <advice>
       <li>Check each new faction's goodwill in the Factions tab early, and decide who you want as a trading partner before the first caravan arrives.</li>
-      <li>Keep elf colonists out of the front rank: they're fragile, and they'll be around a long time if you let them.</li>
-      <li>Build Outland's forge if you want their gear for your own soldiers.</li>
+      <li>Keep elf colonists out of the front rank. They're fragile, and an elf who stays alive can work for the colony far longer than most people.</li>
+      <li>To arm your own soldiers with katanas, rapiers or war axes, build the forge from Outland - Core.</li>
       <li>With Rimfolk: their people are humanlike pawns like any other, so visitors from these factions take part in Rimfolk's encounters, and their raiders can earn vendettas and become nemeses.</li>
     </advice>
     <keywords>
@@ -212,11 +212,11 @@
       <li>neronix17.outland.terrain</li>
     </mods>
     <summary>Wood and stone furniture sets, wood-burning lights, new floors and a fresh look for the land</summary>
-    <tip>A stone table outlasts the cook, the fire and the raid. The chairs, less so.</tip>
+    <tip>We put wooden beds in the bedrooms, a stone table in the hall and a sconce on every wall.</tip>
     <description>Three Outland modules about how your colony looks. Furniture and Decor adds matching wood and stone furniture, rugs and lights that burn wood instead of power. More Floors adds wooden and stone floors, and Terrain repaints the ground itself.</description>
     <facts>
       <li>Furniture and Decor: wood and stone beds, tables (up to a 3x3 table with a fire in the middle), chairs, benches, stools, end tables, dressers, wardrobes, bookshelves, shelves and wine racks, plus rugs, barrels, buckets, pots and gravestones.</li>
-      <li>Its lanterns, street lamps and wall sconces burn wood or chemfuel and need refueling: no electricity required.</li>
+      <li>Its lanterns, street lamps and wall sconces burn wood or chemfuel and need refueling, but no electricity.</li>
       <li>Everything sits in the Outland architect tab. Click the first button there to open the subcategories.</li>
       <li>More Floors: new buildable wooden and stone floors. It works without the other Outland modules.</li>
       <li>Terrain: a retexture of the natural ground with some new terrain, with settings for alternatives such as still water. It also works on its own.</li>
@@ -224,7 +224,7 @@
     <advice>
       <li>Light bedrooms with wall sconces: they hang on the wall and leave floor space free.</li>
       <li>A hearth table warms and lights a winter dining hall, but it burns through wood quickly. Keep a log stockpile close by.</li>
-      <li>Stone furniture won't catch fire. Use it near hearths and torches.</li>
+      <li>Use stone furniture near hearths and torches, where wooden pieces could catch fire.</li>
       <li>With Rimfolk: furniture is recognized by what it does, so Outland's wood-burning lights count as lights for bedroom wishes and dark-room warnings, and its beds, tables and chairs count like vanilla ones.</li>
     </advice>
     <keywords>
@@ -258,7 +258,7 @@
       <li>neronix17.outland.genetics</li>
     </mods>
     <summary>Dozens of fantasy peoples as xenotypes: dwarves, elves, tieflings, dragonborn and more</summary>
-    <tip>The dwarf wants ale, the tiefling wants respect, the kobold wants your silver. Two out of three is a good day.</tip>
+    <tip>The next band of tribal visitors might include a dwarf, a halfling and a dragonborn.</tip>
     <description>Forgotten Realms brings the peoples of a famous fantasy setting into RimWorld as Biotech xenotypes, and Outland - Genetics supplies the big library of genes they're built from. There are no new factions: these peoples turn up among outlander and tribal factions, so your visitors, raiders and recruits become far more varied.</description>
     <facts>
       <li>Peoples include dwarves (shield, gold, arctic, wild and duergar), elves (high, wood, moon, sun, wild, snow and drow), gnomes, halflings, tieflings, aasimar, genasi of the four elements, dragonborn in nine colors, goliaths, firbolgs, satyrs, tabaxi, kobolds, half-orcs, gith and thri-kreen.</li>
@@ -268,7 +268,7 @@
       <li>Outland - Genetics adds many genes, mostly cosmetic and some very strong. The strongest never appear on pawns unless another mod puts them there.</li>
     </facts>
     <advice>
-      <li>Open a newcomer's xenotype before you count on them: these peoples come with real strengths and real weaknesses.</li>
+      <li>Read a newcomer's genes before you give them a job: many of these peoples are very good at some things and poor at others.</li>
       <li>Think hard before implanting a tadpole. The change is permanent, though the person keeps their sense of self.</li>
       <li>If you dislike a people, the author suggests a mod like Cherry Picker to remove that xenotype.</li>
       <li>With Rimfolk: these are ordinary humanlike pawns with moods, so a recruited dwarf or tiefling gets wishes, bonds, life goals and a journal like anyone else.</li>
@@ -306,8 +306,8 @@
       <li>al9000.sengoku</li>
     </mods>
     <summary>Historical weapons and armor in five packs, from Norse raiders to samurai and pike and shot</summary>
-    <tip>A helmet only has to be right once. Make sure it's the right once.</tip>
-    <description>Tasty Armory is a set of item packs built on a shared core: historical clothing, armor and weapons, and nothing else. Your list has the Core plus High Medieval, In Shining Armor, Fire and Steel, Steppe Warriors and Sengoku, so your smiths and tailors have a huge catalog to work from.</description>
+    <tip>Our smith can make anything from a nasal helm to a matchlock musket, given the research.</tip>
+    <description>Tasty Armory is a set of item packs built on a shared core: historical clothing, armor and weapons, and nothing else. Your list has the Core plus High Medieval, In Shining Armor, Fire and Steel, Steppe Warriors and Sengoku, so your smiths and tailors have a long list of pieces to choose from.</description>
     <facts>
       <li>High Medieval: gambesons, maille, coats of plates, nasal helms and great helms, arming swords, billhooks, greataxes and crossbows.</li>
       <li>In Shining Armor: late medieval western Europe, with bascinets, sallets and armets, reinforced gambesons, pollaxes, halberds and other polearms, falchions, warhammers, heavy crossbows and early handgonnes.</li>
@@ -319,7 +319,7 @@
     <advice>
       <li>Pick an era for your colony's look and research toward it. Gunpowder pieces may feel out of place in an early medieval colony.</li>
       <li>Compare armor values in the info card before you mass-produce: the author balances for Combat Extended first, so plain vanilla values can be uneven.</li>
-            <li>With Rimfolk: a fighter's wish for proper armor is met by any worn piece with at least 35% sharp armor, so a good Tasty Armory helmet or cuirass can settle it. Check the info card.</li>
+      <li>With Rimfolk: a fighter's wish for proper armor is met by any worn piece with at least 35% sharp armor, so a good Tasty Armory helmet or cuirass can settle it. The info card shows each piece's sharp armor.</li>
     </advice>
     <keywords>
       <li>armor</li>
@@ -350,8 +350,8 @@
     <order>235</order>
     <mods><li>ods.tavern</li></mods>
     <summary>Cozy medieval furniture for an inn or a home, plus a home kitchen set</summary>
-    <tip>A good tavern needs three things: a fire, a long bench, and somebody else paying.</tip>
-    <description>Tavern is a large set of medieval furniture for furnishing an inn or a cozy home, with a home kitchen set and some home-style meals. Many pieces come in several looks you can pick in game. It's furniture, not a system: pair it with Hospitality if you want guests who actually stay the night.</description>
+    <tip>The inn has a long table, candles on the walls and a soft bed for every guest.</tip>
+    <description>Tavern is a large set of medieval furniture for an inn or a cozy home, with a home kitchen set and some home-style meals. Many pieces come in several looks you can pick in game. It adds furniture only: pair it with Hospitality if you want guests who stay the night.</description>
     <facts>
       <li>It needs the Vanilla Expanded Framework, which handles the alternative looks: use a piece's choose graphic button rather than paint to change its style and color.</li>
       <li>It has its own architect tab.</li>
@@ -392,20 +392,20 @@
     <order>240</order>
     <mods><li>sr.modrimworld.factionalwarcontinued</li></mods>
     <summary>Rival factions fight each other on and near your map; you choose whether to join in</summary>
-    <tip>Two armies, one field, and neither came for you. Stay behind the wall and wait for the crows.</tip>
-    <description>Factional War adds four events where you're the bystander: two factions fight each other, and it's up to you whether to step in. Their soldiers fight with their own tactics: they finish off wounded enemies, rescue their own, loot and take captives.</description>
+    <tip>The battle in the south field was between two other factions. We watched it from the wall.</tip>
+    <description>Factional War adds four events in which two other factions fight each other and you decide whether to step in. Their soldiers follow their own tactics: they finish off wounded enemies, rescue their own, loot and take captives.</description>
     <facts>
       <li>Faction Assault: forces of two rival factions fight on your map. They go after each other, not you.</li>
       <li>Faction Bombardment: two factions dig in at the corners of your map and shell each other.</li>
       <li>Faction Contention: a valuable cargo comes down near a mechanoid cluster and two factions fight over it. Reach it first and it's yours.</li>
-      <li>Faction Defense: one of your rivals' bases is under attack. It's dangerous, but you can join the chaos for a rich share of the spoils.</li>
+      <li>Faction Defense: one of your rivals' bases is under attack. It's dangerous, but joining the fight can earn you a rich share of the spoils.</li>
       <li>After a battle their soldiers tend themselves, kill the enemy's wounded, rescue their own and carry off loot. They may kidnap colonists of a faction they're hostile to.</li>
-      <li>This is a fork of the mod; in it, a fight between two factions on your map counts as a minor threat rather than a big one. An ally dying on your map can still cost goodwill, as in vanilla.</li>
+      <li>Your list has a fork of the mod, in which a fight between two factions on your map counts as a minor threat rather than a big one. An ally dying on your map can still cost goodwill, as in vanilla.</li>
     </facts>
     <advice>
       <li>Close the gates and let them thin each other out, then collect what the dead leave behind.</li>
       <li>If a friendly faction is losing, a few archers on the wall can tip the fight. Keep your people out of melee and crossfire.</li>
-      <li>Bring children and non-fighters indoors: soldiers hostile to you will grab anyone they can carry.</li>
+      <li>Bring children and non-fighters indoors until the battle is over, out of reach of soldiers who might carry them off.</li>
       <li>With Rimfolk: downed soldiers of a faction hostile to you count as fallen enemies in Rimfolk's encounters. One who hurts or kills one of yours and escapes can become a nemesis, and a colonist they carry off sets off a vendetta against their faction.</li>
     </advice>
     <keywords>
@@ -433,7 +433,7 @@
     <order>245</order>
     <mods><li>jaeger972.factionterritories</li></mods>
     <summary>See who holds the land on the world map, and turn defeated bases into tithe-paying vassals</summary>
-    <tip>Every hill out there belongs to somebody. The map just finally admits it.</tip>
+    <tip>The colored borders on the world map show which faction holds each stretch of land.</tip>
     <description>This mod paints territory around every settlement on the world map, so you can see whose land you're crossing and where borders are contested. Factions send more caravans, patrols and ambushes through their own land and invade each other, and you can turn defeated bases into vassals that pay tithes and supply recruits.</description>
     <facts>
       <li>A world map mode shows each faction's territory and contested ground. It needs Map Mode Framework, which is in your list.</li>
@@ -444,7 +444,7 @@
     </facts>
     <advice>
       <li>Check the territory map before routing a caravan: crossing a hostile faction's land invites ambushes.</li>
-      <li>Vassalize rather than raze when you can. A tithe now and then beats a single pile of loot.</li>
+      <li>Make a defeated base a vassal rather than destroying it when you can: a vassal keeps paying tithes, while a razed base pays out once.</li>
       <li>Watch for invasions of your vassals and decide early whether you'll ride out to defend them.</li>
     </advice>
     <keywords>
@@ -471,21 +471,21 @@
     <order>250</order>
     <mods><li>ionfrigate12345.diplomaticmarriageplus</li></mods>
     <summary>Marry your leader's child into an allied faction for a permanent alliance</summary>
-    <tip>In the old songs the princess married for peace. On the Rim she also packs a knife.</tip>
-    <description>Inspired by Crusader Kings, this mod lets an allied faction propose a marriage to the child of your ideoligion's leader. Accept, and the child goes to live with their new family, and you gain a permanent alliance that grows warmer every day, until the couple dies or divorces, goodwill collapses, or your leader is replaced.</description>
+    <tip>Our leader's son married into the allied house, and their goodwill has risen every day since.</tip>
+    <description>Inspired by Crusader Kings, this mod lets an allied faction propose a marriage to a child of your ideoligion's leader. If you accept, the child goes to live with their new family and you gain a permanent alliance whose goodwill grows every day. It lasts until either spouse dies, the couple divorces, goodwill collapses or your leader is replaced.</description>
     <facts>
       <li>You can't start it yourself. You need an ideoligion leader with an adult, unmarried child of their own, and an allied faction at 75 goodwill or more. Then the ally proposes.</li>
       <li>Accepting brings the other spouse to your colony with guards. If your child is there, the wedding is held on the spot before the couple leaves together.</li>
-      <li>Goodwill with the permanent ally rises every day, faster when the couple is good with people, and the ally may convert to your ideoligion over time.</li>
+      <li>Goodwill with the permanent ally rises every day, faster when the couple has good Social skill, and the ally may convert to your ideoligion over time.</li>
       <li>The alliance ends if either spouse dies, they divorce, goodwill falls too low, or your new leader isn't the child's parent.</li>
-      <li>Later events: the couple may come home on a homesick visit, or flee to you with raiders on their heels. It needs Ideology.</li>
+      <li>Later events: the couple may come home for a homesick visit, or flee to you with raiders behind them. The mod needs Ideology.</li>
     </facts>
     <advice>
       <li>Raise your leader's children to be good talkers: Social speeds up the goodwill and the conversion.</li>
-      <li>Treat the couple like royalty whenever they're on your map, because their deaths end the alliance. A setting warns you when they're there.</li>
+      <li>Guard the couple whenever they're on your map, and keep them out of any fighting. A setting warns you when they arrive.</li>
       <li>Never recruit the couple if they turn up as Hospitality guests; the author warns against it.</li>
-      <li>Think twice before choosing a new ideoligion leader.</li>
-      <li>With Rimfolk: the child who marries away leaves your faction, so Rimfolk sees them as someone who left: the annals list them as gone and their journal moves to the departed. During a homesick visit the couple briefly joins your colony, and Rimfolk treats them as colonists while they stay.</li>
+      <li>Keep the married child's parent as ideoligion leader for as long as you can, and avoid rituals or roles that could replace them.</li>
+      <li>With Rimfolk: the child who marries away leaves your faction, so Rimfolk counts them as someone who left. The annals list them as gone and their journal moves to the departed. During a homesick visit the couple briefly joins your colony, and Rimfolk treats them as colonists while they stay.</li>
     </advice>
     <keywords>
       <li>marriage</li>
@@ -512,8 +512,8 @@
     <order>255</order>
     <mods><li>albion.goexplore</li></mods>
     <summary>Lost cities, prison camps, research requests and other places worth a caravan</summary>
-    <tip>A ruined city is just a storehouse with bad neighbors. Bring sacks, and bring archers.</tip>
-    <description>Go Explore adds events that point you at places on the world map: ruined cities full of loot and danger, a friendly faction's prisoners to free, a neighbor asking for your best scholar. Nothing forces you to go, but each one is a reason to load up a caravan.</description>
+    <tip>A neighboring faction asked for our best researcher, and the visit earned us their goodwill.</tip>
+    <description>Go Explore adds events that point you at places on the world map: ruined cities full of loot and danger, a friendly faction's prisoners to free, a neighbor asking for your best researcher. None of them is required, and each one gives a caravan a reason to set out.</description>
     <facts>
       <li>Lost cities come in three kinds: a city under constant bombardment from orbit, a city infested with insect hives, and a city under toxic rain whose inhabitants left sealed shelters behind.</li>
       <li>Prison camp: a non-hostile faction asks you to free its people from a camp near your colony.</li>
@@ -552,7 +552,7 @@
     <order>260</order>
     <mods><li>vanillaexpanded.vee</li></mods>
     <summary>More events, from earthquakes and droughts to long purple world events</summary>
-    <tip>The sky has more moods than the cook. Stock up for both.</tip>
+    <tip>The whiteout went on for days, and the woodpile got smaller every morning.</tip>
     <description>Vanilla Events Expanded adds a batch of new events in the game's own style, from small surprises to long purple world events that run as chains over many days. Every event can be tuned or switched off in its mod options.</description>
     <facts>
       <li>Long world events: whiteout (a deep global freeze), scorch (a global heatwave), long night (an endless eclipse) and psychic bloom. They can't start in your first 180 days, and after one, no other comes for 300 days.</li>
@@ -563,10 +563,10 @@
       <li>Hunting parties from other factions come to hunt your wildlife. They're peaceful and leave once each hunter has a kill.</li>
     </facts>
     <advice>
-      <li>After your first half year, keep more food and firewood than you think you need: the long world events last a long time.</li>
-      <li>Keep a little stone and wood in reserve for repairs after an earthquake.</li>
+      <li>After your first half year, keep more food and firewood than you think you need: the long world events can run for many days.</li>
+      <li>Keep some stone and wood in reserve for repairs after an earthquake.</li>
       <li>In a medieval run you can switch off the space-flavored events (the orbital ship crash, the shuttle crash, cargo pods) in the mod options.</li>
-      <li>With Rimfolk: the advisor warns about vanilla weather events such as heat waves, cold snaps and droughts, but not yet about this mod's own drought, whiteout, scorch and long night. Watch those yourself.</li>
+      <li>With Rimfolk: the advisor warns about vanilla weather events such as heat waves, cold snaps and droughts, but not yet about this mod's own drought, whiteout, scorch and long night, so watch for those letters yourself.</li>
     </advice>
     <keywords>
       <li>events</li>
@@ -596,11 +596,11 @@
     <order>265</order>
     <mods><li>vanillaexpanded.achievements</li></mods>
     <summary>Achievements for each colony, with points you can spend on events</summary>
-    <tip>Nobody on the Rim was ever fed by a trophy. The bards like them, though.</tip>
-    <description>This mod watches what your colony does and hands out achievements for milestones: kills, harvests, trades, research, wealth and stranger things. Each one is worth points you can spend on events, such as calling a trade caravan.</description>
+    <tip>Fifteen achievement points will call a trade caravan to the colony.</tip>
+    <description>This mod watches what your colony does and hands out achievements for milestones: kills, harvests, trades, research, wealth and many more. Each one is worth points you can spend on events, like calling a trade caravan.</description>
     <facts>
       <li>Achievements and points are kept per save, not per Steam account. Every new colony starts from zero.</li>
-      <li>Added to a running game, some achievements unlock at once (such as colonist count) while others only count from then on.</li>
+      <li>Added to a running game, some achievements unlock right away (such as colonist count) while others only count from then on.</li>
       <li>Rewards cost points: a raid 10, a trade caravan 15, a random event 25, cargo pods 25, a random quest 50, a random quest item 100, and a man in black joining 150.</li>
       <li>A reward shows as unavailable when the game itself wouldn't allow that event right now.</li>
       <li>Other mods can add achievements of their own, and some Vanilla Expanded mods do.</li>
@@ -636,8 +636,8 @@
       <li>ninagoblin.alliesarehelpful</li>
     </mods>
     <summary>Raids that go wrong, raiders' animals, safer fistfights and allies who tend your wounded</summary>
-    <tip>Half the raiders arrived drunk and the other half arrived on fire. Count your blessings, then count the raiders.</tip>
-    <description>Four smaller mods that change how fights play out. Some raids go comically wrong, raiders bring their animals, social fights stop before anyone is killed, and allied soldiers patch up and carry off your wounded.</description>
+    <tip>One raid arrived drunk, and the next one arrived with manhunters chasing it.</tip>
+    <description>Four smaller mods that change how fights play out. Some raids go comically wrong, raiders bring their animals, social fights stop before anyone is killed, and allied soldiers tend your wounded and carry them to bed.</description>
     <facts>
       <li>Sometimes Raids Go Wrong: the storyteller can give a raid a twist, such as raiders arriving drunk, meteorites falling near them, manhunters chasing them, drop pods crashing, raiders running wild, raiders on fire chased by mechanoids, or mechanites that age them fast. Each twist can be weighted or switched off in the settings.</li>
       <li>Animal Husbandry Raids: raiders bring domestic animals, from 10 to 30 percent of the raid depending on the faction, and the animals carry no loot. Only factions it knows get them (vanilla empire, outlanders, tribes and pirates, and some Vanilla Factions Expanded factions), unless you turn on its venerated animals setting.</li>
@@ -645,9 +645,9 @@
       <li>Allies are Helpful: allied soldiers tend your wounded colonists and carry the downed to an empty medical bed once there are no enemies close by. Settings cover a minimum Medicine skill and the danger radius, 10 cells by default.</li>
     </facts>
     <advice>
-      <li>If your world has no mechanoids or drop pods, set the burning men, pod malfunction and rapid ageing twists to zero so they never misfire.</li>
+      <li>If your world has no mechanoids or drop pods, set the burning men, pod malfunction and rapid aging twists to zero so they never misfire.</li>
       <li>Turn on venerated animals in Animal Husbandry Raids if you want factions from other mods to bring animals too.</li>
-      <li>Keep a medical bed free near the gate when allies fight beside you: that's where they'll carry your wounded.</li>
+      <li>Keep a medical bed free when allies fight beside you, ideally near the gate, so they have somewhere close to carry your wounded.</li>
       <li>With Rimfolk: brawls that start from Rimfolk's quarrels and encounters are ordinary social fights, so Ugh You Got Me ends them once someone is badly hurt.</li>
       <li>With Rimfolk: a colonist killed by a raider's animal still sets off a vendetta against that faction. Only wild animals become named beasts.</li>
     </advice>
