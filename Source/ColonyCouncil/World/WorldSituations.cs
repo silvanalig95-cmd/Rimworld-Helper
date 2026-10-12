@@ -583,7 +583,9 @@ namespace ColonyCouncil
         private static int version;
         private static int cacheVersion = -1;
         private static int cacheHour = -1;
-        private static readonly Dictionary<IncidentDef, float> factorCache = new Dictionary<IncidentDef, float>();
+        // Rimfolk's events and the game's own are weighed apart (a Rimfolk event's own weight passes through the game's too).
+        private static readonly Dictionary<IncidentDef, float> eventCache = new Dictionary<IncidentDef, float>();
+        private static readonly Dictionary<IncidentDef, float> incidentCache = new Dictionary<IncidentDef, float>();
         private static bool anyVanilla;
 
         /// <summary>Something changed (a situation began or ended, a flag): weights are worked out again.</summary>
@@ -595,7 +597,8 @@ namespace ColonyCouncil
             if (cacheVersion == version && cacheHour == hour) return;
             cacheVersion = version;
             cacheHour = hour;
-            factorCache.Clear();
+            eventCache.Clear();
+            incidentCache.Clear();
             var inst = Instance;
             anyVanilla = inst != null && S.worldSituations && inst.active.Any(s => !s.ended && s.def.modifiers.Any(m => !m.incident.NullOrEmpty()));
         }
@@ -605,7 +608,8 @@ namespace ColonyCouncil
             var inst = Instance;
             if (def == null || inst == null || S == null || !S.worldSituations || inst.active.Count == 0) return 1f;
             Refresh();
-            if (factorCache.TryGetValue(def, out float f)) return f;
+            var cache = ext != null ? eventCache : incidentCache;
+            if (cache.TryGetValue(def, out float f)) return f;
             f = 1f;
             foreach (var s in inst.active)
             {
@@ -620,7 +624,7 @@ namespace ColonyCouncil
                 }
             }
             f = Mathf.Clamp(f, 0.05f, 6f);
-            factorCache[def] = f;
+            cache[def] = f;
             return f;
         }
 

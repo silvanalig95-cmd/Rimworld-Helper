@@ -140,6 +140,9 @@ namespace ColonyCouncil
             if (x.Faction != f) return "brokeup";
             if (!x.Spawned && Find.WorldPawns.Contains(x)) Find.WorldPawns.ForcefullyKeptPawns.Add(x);
             if (x.Spawned && x.Map.IsPlayerHome) s.flags.AddDistinct("led");
+            // Brought down far away (an ally's army, hired swords) while he's here at the colony: that news can wait.
+            if (x.Spawned && s.pendingTick > 0 && (s.pendingEnding == "allies" || s.pendingEnding == "mercenaries"))
+                s.pendingTick = Find.TickManager.TicksGame + GenDate.TicksPerHour * 6;
             WatchRaids(s);
             return null;
         }
