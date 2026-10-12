@@ -20,7 +20,8 @@ namespace ColonyCouncil
         {
             public List<PawnMood> pawns;
             public List<ColonyMoodLine> bad, good;
-            public string summary, sources, badHeader, goodHeader;
+            public string summary, sources, badHeader, goodHeader, average;
+            public Color averageColor;
             public List<PawnMood> shaky;
         }
 
@@ -48,7 +49,10 @@ namespace ColonyCouncil
             {
                 int near = r.pawns.Count(m => !m.pawn.InMentalState && m.now < m.minor + 0.05f);
                 int inBreak = r.pawns.Count(m => m.pawn.InMentalState);
-                r.summary = "CC_Moods_Summary".Translate(r.pawns.Average(m => m.now).ToStringPercent(), near, r.pawns.Count).Resolve();
+                float avg = r.pawns.Average(m => m.now);
+                r.average = "CC_UI_Stat_AverageMood".Translate(avg.ToStringPercent()).Resolve();
+                r.averageColor = near + inBreak > 0 ? UiKit.Warn : UiKit.Good;
+                r.summary = "CC_Moods_Summary".Translate(avg.ToStringPercent(), near, r.pawns.Count).Resolve();
                 if (inBreak > 0) r.summary += " " + "CC_Moods_InBreak".Translate(inBreak).Resolve();
                 string sources = MoodView.Sources(r.pawns.SelectMany(m => m.lines), r.pawns.Count);
                 if (sources != null) r.sources = sources + " " + "CC_Moods_PerColonist".Translate();
@@ -60,7 +64,7 @@ namespace ColonyCouncil
         {
             if (!ColonyCouncilMod.Settings.moodInsight)
             {
-                Widgets.Label(rect, "CC_Moods_Off".Translate());
+                UiKit.EmptyState(rect, Icons.Moods, "CC_Moods_Off".Translate());
                 return;
             }
             if (report == null || Time.realtimeSinceStartup - reportAt > 1f)
@@ -69,54 +73,49 @@ namespace ColonyCouncil
                 reportAt = Time.realtimeSinceStartup;
             }
             var r = report;
-            var view = new Rect(0f, 0f, rect.width - 16f, height);
-            Widgets.BeginScrollView(rect, ref scroll, view);
+            float top = UiKit.PageHeader(rect, Icons.Moods, "CC_Moods_Header".Translate(), "CC_UI_Sub_Moods".Translate(), r.average, r.averageColor);
+            var outRect = new Rect(rect.x, rect.y + top, rect.width, rect.height - top);
+            var view = new Rect(0f, 0f, outRect.width - 16f, height);
+            Widgets.BeginScrollView(outRect, ref scroll, view);
             try
             {
                 float y = 0f;
                 float w = view.width;
-                Text.Font = GameFont.Medium;
-                Widgets.Label(new Rect(0f, y, w, 32f), "CC_Moods_Header".Translate());
-                Text.Font = GameFont.Small;
-                y += 34f;
                 if (r.pawns.Count == 0)
                 {
-                    Widgets.Label(new Rect(0f, y, w, 24f), "CC_Moods_NoColonists".Translate());
+                    UiKit.EmptyState(0f, y, w, Icons.Moods, "CC_Moods_NoColonists".Translate(), 140f);
                     return;
                 }
-                y += Label(0f, y, w, r.summary, Color.white) + 2f;
-                y += Label(0f, y, w, r.sources, MoodView.Faint) + 2f;
-                y += Label(0f, y, w, "CC_Moods_Intro".Translate(), MoodView.Faint) + 10f;
+                y += UiKit.Paragraph(0f, y, w, r.summary, Color.white) + 2f;
+                y += UiKit.Paragraph(0f, y, w, r.sources, MoodView.Faint) + 2f;
+                y += UiKit.Paragraph(0f, y, w, "CC_Moods_Intro".Translate(), MoodView.Faint) + 10f;
 
                 // Who's closest to breaking.
-                y = Header(y, w, "CC_Moods_Closest".Translate(), Color.white);
-                foreach (var m in r.shaky)
+                y += UiKit.SectionTitle(0f, y, w, "CC_Moods_Closest".Translate(), Icons.Warning, Color.white);
+                for (int i = 0; i < r.shaky.Count; i++)
                 {
-                    var row = new Rect(0f, y, w, 30f);
-                    Widgets.DrawLightHighlight(row);
-                    if (Mouse.IsOver(row)) Widgets.DrawHighlight(row);
-                    Widgets.ThingIcon(new Rect(4f, y + 3f, 24f, 24f), m.pawn);
-                    Widgets.Label(new Rect(34f, y + 5f, 130f, 24f), m.pawn.LabelShort);
-                    MoodView.DrawBar(new Rect(170f, y + 8f, 160f, 14f), m);
-                    GUI.color = MoodView.Faint;
-                    Text.Font = GameFont.Tiny;
-                    Widgets.Label(new Rect(340f, y + 7f, w - 344f, 22f), m.worst);
-                    Text.Font = GameFont.Small;
-                    GUI.color = Color.white;
+                    var m = r.shaky[i];
+                    var row = new Rect(0f, y, w, 34f);
+                    UiKit.Zebra(row, i);
+                    Widgets.DrawHighlightIfMouseover(row);
+                    UiKit.Portrait(new Rect(4f, y + 3f, 28f, 28f), m.pawn, StateColor(m));
+                    UiKit.LabelFit(new Rect(40f, y + 2f, 130f, 30f), m.pawn.LabelShort, Color.white);
+                    MoodView.DrawBar(new Rect(176f, y + 10f, 160f, 14f), m);
+                    UiKit.LabelFit(new Rect(346f, y + 2f, Mathf.Max(0f, w - 350f), 30f), m.worst, MoodView.Faint, GameFont.Tiny);
                     var pm = m;
                     TooltipHandler.TipRegion(row, () => pm.state + "\n\n" + "CC_Moods_ClickPerson".Translate(), Gen.HashCombineInt(m.pawn.thingIDNumber, 0x300D));
                     if (Widgets.ButtonInvisible(row)) MoodView.ShowMoodTab(m.pawn);
-                    y += 32f;
+                    y += 36f;
                 }
-                y += 10f;
+                y += 12f;
 
-                y = Header(y, w, r.badHeader, MoodView.BadColor);
-                if (r.bad.Count == 0) y += Label(0f, y, w, "CC_Mood_Nothing".Translate(), MoodView.Faint) + 4f;
-                y = MoodView.DrawList(r.bad, y, w, scroll.y, rect.height, c => c.texts, c => c.total, c => () => MoodInsight.Description(c.sample));
-                y += 10f;
-                y = Header(y, w, r.goodHeader, MoodView.GoodColor);
-                if (r.good.Count == 0) y += Label(0f, y, w, "CC_Mood_Nothing".Translate(), MoodView.Faint) + 4f;
-                y = MoodView.DrawList(r.good, y, w, scroll.y, rect.height, c => c.texts, c => c.total, c => () => MoodInsight.Description(c.sample));
+                y += UiKit.SectionTitle(0f, y, w, r.badHeader, Icons.TrendDown, MoodView.BadColor);
+                if (r.bad.Count == 0) y += UiKit.Paragraph(0f, y, w, "CC_Mood_Nothing".Translate(), MoodView.Faint) + 4f;
+                y = MoodView.DrawList(r.bad, y, w, scroll.y, outRect.height, c => c.texts, c => c.total, c => () => MoodInsight.Description(c.sample));
+                y += 12f;
+                y += UiKit.SectionTitle(0f, y, w, r.goodHeader, Icons.TrendUp, MoodView.GoodColor);
+                if (r.good.Count == 0) y += UiKit.Paragraph(0f, y, w, "CC_Mood_Nothing".Translate(), MoodView.Faint) + 4f;
+                y = MoodView.DrawList(r.good, y, w, scroll.y, outRect.height, c => c.texts, c => c.total, c => () => MoodInsight.Description(c.sample));
                 height = Mathf.Max(y + 10f, 100f);
             }
             finally
@@ -128,24 +127,8 @@ namespace ColonyCouncil
             }
         }
 
-        private static float Header(float y, float w, string text, Color color)
-        {
-            Text.Font = GameFont.Medium;
-            GUI.color = color;
-            Widgets.Label(new Rect(0f, y, w, 30f), text);
-            GUI.color = Color.white;
-            Text.Font = GameFont.Small;
-            return y + 32f;
-        }
-
-        private static float Label(float x, float y, float w, string text, Color color)
-        {
-            if (text.NullOrEmpty()) return 0f;
-            float h = Text.CalcHeight(text, w);
-            GUI.color = color;
-            Widgets.Label(new Rect(x, y, w, h), text);
-            GUI.color = Color.white;
-            return h;
-        }
+        /// <summary>Red when breaking or below the major break line, orange below the minor one, gray otherwise.</summary>
+        private static Color StateColor(PawnMood m) =>
+            m.pawn.InMentalState || m.now < m.major ? MoodView.BadColor : m.now < m.minor ? UiKit.Warn : UiKit.Neutral;
     }
 }
