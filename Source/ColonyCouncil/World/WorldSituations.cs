@@ -589,8 +589,24 @@ namespace ColonyCouncil
                         CouncilLog.ErrorOnce("world situation end " + def.defName, e);
                     }
                 }
-                else if (key == Quietly)
-                    comp?.AddChronicle(new ChronicleEntry(ChronicleKind.World, "CC_WS_ChronicleQuiet".Translate(s.Label, TextUtil.DaysString(days * GenDate.TicksPerDay)).Resolve(), null));
+                else
+                {
+                    // Ended without its letter: the silver still comes, since the colony's goods already went out for it.
+                    if (owed > 0 && map != null)
+                    {
+                        try
+                        {
+                            VarietyUtil.PaySilver(map, IntVec3.Invalid, owed);
+                            Notify.Message("CC_WS_OwedPaid".Translate(owed, s.Label).Resolve(), LookTargets.Invalid, MessageTypeDefOf.PositiveEvent, Importance.Notable);
+                        }
+                        catch (Exception e)
+                        {
+                            CouncilLog.ErrorOnce("world situation owed " + def.defName, e);
+                        }
+                    }
+                    if (key == Quietly)
+                        comp?.AddChronicle(new ChronicleEntry(ChronicleKind.World, "CC_WS_ChronicleQuiet".Translate(s.Label, TextUtil.DaysString(days * GenDate.TicksPerDay)).Resolve(), null));
+                }
                 try
                 {
                     worker.Ended(s, ending);
