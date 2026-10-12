@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- Defs for the third batch of world events (Defs/IncidentDefs/Council_Events_Variety.xml). -->
+
+  <!-- A few warm days out of season, in spring or fall. -->
+  <GameConditionDef>
+    <defName>Council_WarmSpell</defName>
+    <conditionClass>ColonyCouncil.GameCondition_WarmSpell</conditionClass>
+    <label>warm spell</label>
+    <description>Warm air has settled over the region, and it's noticeably warmer than usual for the season.</description>
+    <endMessage>The warm spell is over.</endMessage>
+    <canBePermanent>false</canBePermanent>
+  </GameConditionDef>
+
+</Defs>
