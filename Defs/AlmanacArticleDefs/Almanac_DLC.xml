@@ -12,20 +12,29 @@
     <order>10</order>
     <summary>How much honor each Imperial title needs, and what a promotion brings with it</summary>
     <tip>Archon takes 65 honor in total, earned mostly from Empire quests.</tip>
-    <description>With Royalty, your colonists can earn honor with the Empire and rise through its titles. Each new title adds demands: a throne room, a better bedroom, title apparel and better food. Check what the next title asks for before you accept it, because every requirement you can't meet costs the noble mood.</description>
-    <facts>
-      <li>Total honor needed: Freeholder 1, Novice 7, Acolyte 13.</li>
-      <li>Higher titles: Knight or Dame 21, Praetor 31, Baron or Baroness 45, Archon 65.</li>
-      <li>Freeholder and Novice need no throne room. From Acolyte up, every title has rules for its throne room and its bedroom.</li>
-      <li>Dominus has the same requirements as Archon, but it can't be reached through honor.</li>
-      <li>Conceited nobles also raise their own expectations as they climb, costing up to -12 mood at Archon.</li>
-    </facts>
-    <advice>
-      <li>Before you accept a promotion, open the Royalty tab and read the next title's room and apparel rules.</li>
-      <li>Build the throne room and the noble's bedroom with space to spare, so a promotion means new furniture, not new walls.</li>
-      <li>Stock fine meals and make the title apparel before the ceremony.</li>
-      <li>Choose carefully who accepts a title, since its requirements stay with that pawn for the rest of the game.</li>
-    </advice>
+    <description>With Royalty, your colonists can earn honor with the Empire and rise through its titles. Each new title adds demands: a throne room, a better bedroom, title apparel and better food. Every requirement you can't meet costs the noble mood, so check what the next title asks for before you accept it.</description>
+    <sections>
+      <li>
+        <heading>The titles</heading>
+        <table>
+          <li>Title | Total honor</li>
+          <li>Freeholder | 1</li>
+          <li>Novice | 7</li>
+          <li>Acolyte | 13</li>
+          <li>Knight or Dame | 21</li>
+          <li>Praetor | 31</li>
+          <li>Baron or Baroness | 45</li>
+          <li>Archon | 65</li>
+        </table>
+        <after>The numbers are running totals, not the honor between one title and the next. Freeholder and Novice need no throne room. From Acolyte up, every title has rules for its throne room and its bedroom. Dominus has the same requirements as Archon, but it can't be reached through honor.</after>
+      </li>
+      <li>
+        <heading>Before you accept</heading>
+        <text>A title stays with the pawn who accepts it for the rest of the game, and so do its requirements, so choose that pawn carefully. Conceited nobles also raise their own expectations as they climb, costing up to -12 mood at Archon.
+
+Before you accept a promotion, open the Royalty tab and read the next title's room and apparel rules. If the throne room and the noble's bedroom were built with space to spare, a promotion means new furniture, not new walls. Stock fine meals and make the title apparel before the ceremony.</text>
+      </li>
+    </sections>
     <keywords>
       <li>title</li>
       <li>honor</li>
@@ -53,21 +62,25 @@
     <order>20</order>
     <summary>The area, impressiveness and furniture each title wants in its throne room</summary>
     <tip>An Archon's throne room needs area 80, more than three times an Acolyte's 24.</tip>
-    <description>Every titled noble from Acolyte up needs a throne room, and the rules grow with each promotion: more area, more impressiveness, more columns and finer furnishings. A missing item costs the noble mood until it's fixed. Building the room large from the start saves you from rebuilding it at every promotion.</description>
-    <facts>
-      <li>Acolyte: area 24; a throne, every tile floored, 2 lit braziers and a roof. No impressiveness rule is listed.</li>
-      <li>Knight or Dame: area 30, impressiveness 60; add 2 columns and a harp (a harpsichord or piano also counts).</li>
-      <li>Praetor: area 40, impressiveness 90; 4 columns and a harp (or better).</li>
-      <li>Baron or Baroness: area 60, impressiveness 120; a grand throne, fine floors throughout, 4 columns, 2 drapes and a harpsichord (a piano also counts).</li>
-      <li>Archon: area 80, impressiveness 160; a grand throne, fine floors, 6 columns, 2 drapes and a piano.</li>
-      <li>Every rank needs 2 lit braziers and a full roof. Freeholder and Novice need no throne room at all.</li>
-    </facts>
-    <advice>
-      <li>Build for the title after the next one, since enlarging the room later means tearing down walls.</li>
-      <li>Keep the braziers fueled, because an unlit brazier doesn't count, and keep the room clean and decorated to hold its impressiveness up.</li>
-      <li>Keep beds, workbenches and dining tables out of the throne room.</li>
-      <li>After every promotion, check the Royalty tab for unmet requirements.</li>
-    </advice>
+    <description>Every titled noble from Acolyte up needs a throne room, and the rules grow with each promotion: more area, more impressiveness, more columns and finer furnishings. A missing item costs the noble mood until it's fixed.</description>
+    <sections>
+      <li>
+        <heading>What each title asks for</heading>
+        <table>
+          <li>Title | Area | Impressiveness | Furnishings</li>
+          <li>Acolyte | 24 | None listed | A throne, and every tile floored</li>
+          <li>Knight or Dame | 30 | 60 | Adds 2 columns and a harp (a harpsichord or piano also counts)</li>
+          <li>Praetor | 40 | 90 | 4 columns and a harp (or better)</li>
+          <li>Baron or Baroness | 60 | 120 | A grand throne, fine floors throughout, 4 columns, 2 drapes and a harpsichord (a piano also counts)</li>
+          <li>Archon | 80 | 160 | A grand throne, fine floors, 6 columns, 2 drapes and a piano</li>
+        </table>
+        <after>Every rank also needs 2 lit braziers and a full roof. Freeholder and Novice need no throne room at all.</after>
+      </li>
+      <li>
+        <heading>Building it</heading>
+        <text>Build for the title after the next one, since enlarging the room later means tearing down walls. An unlit brazier doesn't count, so keep the braziers fueled, and keep the room clean and decorated to hold its impressiveness up. Keep beds, workbenches and dining tables out of it. After every promotion, check the Royalty tab for unmet requirements.</text>
+      </li>
+    </sections>
     <keywords>
       <li>throne room</li>
       <li>throne</li>
@@ -96,20 +109,24 @@
     <summary>The bedroom each title expects: area, impressiveness, bed and furniture</summary>
     <tip>From Baron up, a double bed no longer counts. The noble wants a royal bed.</tip>
     <description>From Acolyte up, a titled noble's bedroom has to meet the title's rules: a minimum area, a minimum impressiveness and particular furniture, ending with a royal bed and fine floors at Archon. If the room is big enough from the start, a promotion only means new furniture.</description>
-    <facts>
-      <li>Acolyte: area 16; every tile floored and a double bed.</li>
-      <li>Knight or Dame: area 24, impressiveness 40; floored, a double bed, an end table and a dresser.</li>
-      <li>Praetor: area 24, impressiveness 50; the same furniture.</li>
-      <li>Baron or Baroness: area 30, impressiveness 70; floored, a royal bed, an end table, a dresser and a drape.</li>
-      <li>Archon: area 30, impressiveness 80; fine floors throughout, a royal bed, an end table, a dresser and a drape.</li>
-      <li>Area counts the room's floor tiles. It is a different number from the Space stat in the room panel.</li>
-    </facts>
-    <advice>
-      <li>Build a room with at least 30 floor tiles inside, such as 5x6. That covers the area rule for every title.</li>
-      <li>Use a double bed from the start: every title from Acolyte to Praetor asks for one.</li>
-      <li>Raise impressiveness with a good-quality bed, a sculpture, clean floors and good light.</li>
-      <li>Check the Royalty tab after each promotion: it lists exactly what's missing.</li>
-    </advice>
+    <sections>
+      <li>
+        <heading>Title by title</heading>
+        <text>An Acolyte needs only an area of 16, every tile floored, and a double bed. From Knight or Dame on, the rules add impressiveness and more furniture:</text>
+        <table>
+          <li>Title | Area | Impressiveness | Bed</li>
+          <li>Knight or Dame | 24 | 40 | Double bed</li>
+          <li>Praetor | 24 | 50 | Double bed</li>
+          <li>Baron or Baroness | 30 | 70 | Royal bed</li>
+          <li>Archon | 30 | 80 | Royal bed</li>
+        </table>
+        <after>Each of these also needs an end table and a dresser, and from Baron or Baroness a drape as well. Every tile must be floored, and at Archon the floors must be fine throughout. Area counts the room's floor tiles; it is a different number from the Space stat in the room panel.</after>
+      </li>
+      <li>
+        <heading>One room for every title</heading>
+        <text>A room with at least 30 floor tiles inside, such as 5x6, covers the area rule for every title. Put a double bed in from the start, since every title from Acolyte to Praetor asks for one, and replace it with a royal bed at Baron or Baroness. Raise impressiveness with a good-quality bed, a sculpture, clean floors and good light. After each promotion, the Royalty tab lists exactly what's missing.</text>
+      </li>
+    </sections>
     <keywords>
       <li>noble bedroom</li>
       <li>royal bed</li>
@@ -137,19 +154,22 @@
     <summary>The apparel and food each title expects, and the mood cost of going without</summary>
     <tip>Missing title apparel and low-class food are separate penalties, and a noble can have both.</tip>
     <description>Each title names the headgear and body apparel its holder must wear, and conceited nobles take a mood penalty for eating low-class food. The penalties are small on their own, but they add up with the higher expectations that come with rank.</description>
-    <facts>
-      <li>Missing title apparel costs -4 mood, and missing quality apparel another -4.</li>
-      <li>A conceited noble eating low-class food gets -8.</li>
-      <li>Acolyte and Knight or Dame need one headgear and one body item from their title's list. From Praetor, all apparel must also be at least Normal quality.</li>
-      <li>Conceited nobles bring their own expectations: at least Moderate at Acolyte, Noble at Baron or Baroness (-6) and Royal at Archon (-12).</li>
-      <li>With Biotech, a prestige robe also gives +20% toxic environment resistance.</li>
-    </facts>
-    <advice>
-      <li>Read the title's apparel list in the Royalty tab, and buy or craft the pieces before the bestowing.</li>
-      <li>Set a food restriction in the Assign tab so nobles eat fine or lavish meals, and keep a stock of them.</li>
-      <li>From Praetor on, check the quality of anything you make or buy for the noble: one piece below Normal brings the second -4.</li>
-      <li>Keep a spare set of title apparel, so a robe ruined in a raid can be replaced the same day.</li>
-    </advice>
+    <sections>
+      <li>
+        <heading>Apparel</heading>
+        <text>Acolyte and Knight or Dame need one headgear and one body item from their title's list. From Praetor, all apparel must also be at least Normal quality. Missing title apparel costs -4 mood, and missing quality apparel another -4.
+
+Read the title's apparel list in the Royalty tab, and buy or craft the pieces before the bestowing. From Praetor on, check the quality of anything you make or buy for the noble, since one piece below Normal brings the second -4. A spare set of title apparel lets you replace a robe ruined in a raid the same day. With Biotech, a prestige robe also gives +20% toxic environment resistance.</text>
+      </li>
+      <li>
+        <heading>Meals</heading>
+        <text>A conceited noble eating low-class food gets -8. Set a food restriction in the Assign tab so nobles eat fine or lavish meals, and keep a stock of them.</text>
+      </li>
+      <li>
+        <heading>Rising expectations</heading>
+        <text>Conceited nobles bring their own expectations as well: at least Moderate at Acolyte, Noble at Baron or Baroness (-6) and Royal at Archon (-12).</text>
+      </li>
+    </sections>
     <keywords>
       <li>title apparel</li>
       <li>noble clothes</li>
@@ -175,18 +195,19 @@
     <order>50</order>
     <summary>Getting the most out of a bestowing ceremony and the noble's throne speech</summary>
     <tip>A throne speech takes about 2 hours of the noble's time and no materials.</tip>
-    <description>A new title is granted at a bestowing ceremony, which arrives as a quest. More participants and a more impressive room raise the ceremony's quality, which earns up to 3 extra honor. Once titled, a noble can also give a throne speech now and then, which can inspire or convert the listeners.</description>
-    <facts>
-      <li>Bestowing quality: 17 participants give +60%, and a room of impressiveness 170 gives +40%.</li>
-      <li>The ceremony grants 1 honor at 30% quality, 2 at 60% and 3 at 90%. At 0% it grants none.</li>
-      <li>A throne speech takes about 2 hours and has a 10-day cooldown.</li>
-      <li>A speech can give a listener an inspiration (5% chance) or convert them (2%).</li>
-    </facts>
-    <advice>
-      <li>Hold the bestowing in your best room, freshly cleaned and lit, usually the throne room.</li>
-      <li>Pull everyone you can spare off work for it; participants keep adding quality up to 17.</li>
-      <li>Give a throne speech whenever the 10-day cooldown is up and the noble is free.</li>
-    </advice>
+    <description>A new title is granted at a bestowing ceremony, which arrives as a quest. Once titled, a noble can also give a throne speech now and then, which can inspire or convert the listeners.</description>
+    <sections>
+      <li>
+        <heading>The bestowing</heading>
+        <text>More participants and a more impressive room raise the ceremony's quality: 17 participants give +60%, and a room of impressiveness 170 gives +40%. Quality earns up to 3 extra honor: 1 at 30% quality, 2 at 60% and 3 at 90%. At 0% it grants none.
+
+Hold the ceremony in your best room, usually the throne room, freshly cleaned and lit. Pull everyone you can spare off work for it, since participants keep adding quality up to 17.</text>
+      </li>
+      <li>
+        <heading>Throne speeches</heading>
+        <text>A throne speech takes about 2 hours and has a 10-day cooldown. It can give a listener an inspiration (5% chance) or convert them (2%). Give one whenever the cooldown is up and the noble is free.</text>
+      </li>
+    </sections>
     <keywords>
       <li>bestowing</li>
       <li>ceremony</li>
@@ -212,18 +233,18 @@
     <summary>Psycasters run on psyfocus, and psyfocus comes from meditation</summary>
     <tip>Neural heat drains away on its own. Psyfocus comes back through meditation.</tip>
     <description>Psycasters spend psyfocus to cast and refill it by meditating, so a psycaster with no meditation spot, or no time in the schedule to use one, soon runs dry. A few drugs and rituals also help, and some psycasts are useful well outside combat.</description>
-    <facts>
-      <li>Royal meditation also fills recreation, with a multiplier of 1.</li>
-      <li>Go-juice gives +15% psyfocus. Wake-up gives +20% psyfocus meditation rate.</li>
-      <li>Word of Trust lowers a prisoner's resistance by 12 times their psychic sensitivity.</li>
-      <li>With Ideology, a good ritual can carry a psyfocus recharge as its reward.</li>
-    </facts>
-    <advice>
-      <li>Give every psycaster a meditation spot in a quiet room, and time to use it in their schedule.</li>
-      <li>Watch the psyfocus bar, and keep it full for raids instead of spending it on chores.</li>
-      <li>Keep go-juice and wake-up for emergencies: both carry an addiction risk (2.6% and 2%).</li>
-      <li>Cast Word of Trust on prisoners with high psychic sensitivity, where it removes the most resistance.</li>
-    </advice>
+    <sections>
+      <li>
+        <heading>Keeping psyfocus up</heading>
+        <text>Give every psycaster a meditation spot in a quiet room, and time in their schedule to use it. Royal meditation also fills recreation, with a multiplier of 1. Watch the psyfocus bar, and keep it full for raids instead of spending it on chores.
+
+Go-juice gives +15% psyfocus, and wake-up gives +20% psyfocus meditation rate. Both carry an addiction risk (2.6% and 2%), so keep them for emergencies. With Ideology, a good ritual can carry a psyfocus recharge as its reward.</text>
+      </li>
+      <li>
+        <heading>Word of Trust</heading>
+        <text>Word of Trust lowers a prisoner's resistance by 12 times their psychic sensitivity. Cast it on prisoners with high psychic sensitivity, where it removes the most resistance.</text>
+      </li>
+    </sections>
     <keywords>
       <li>psycast</li>
       <li>psyfocus</li>
@@ -250,20 +271,25 @@
     <order>10</order>
     <summary>Quality isn't the chance of success: it shifts the odds between four outcomes</summary>
     <tip>Even at 100% quality, one ritual in five ends terrible or boring.</tip>
-    <description>Every ritual ends as terrible, boring, fun or unforgettable, and the quality bar only moves the odds between them. Low quality makes a bad outcome likely; high quality makes a good one likely but never certain. The ritual dialog shows the chances, so read it before you start.</description>
-    <facts>
-      <li>At 0% quality, the outcome is about 25% terrible and 75% boring.</li>
-      <li>At 50% quality: about 8% terrible, 25% boring, 50% fun and 17% unforgettable.</li>
-      <li>At 100% quality: 60% fun and 20% unforgettable. The other 20% is still terrible (5%) or boring (15%).</li>
-      <li>Quality comes from the number of participants, the moral guide, an altar, a lectern and the room's impressiveness.</li>
-      <li>Any pawn can watch any ritual, whatever their ideoligion.</li>
-    </facts>
-    <advice>
-      <li>Hold rituals in an impressive room with an altar and a lectern, led by the role the ritual asks for.</li>
-      <li>Invite everyone who can come: more participants means more quality.</li>
-      <li>Read the outcome chances in the ritual dialog, and fix the cheapest missing factor first.</li>
-      <li>Skip a low-quality ritual during a mood crisis, when a terrible result could push someone into a mental break.</li>
-    </advice>
+    <description>Every ritual ends as terrible, boring, fun or unforgettable, and the quality bar only moves the odds between them. Low quality makes a bad outcome likely; high quality makes a good one likely but never certain.</description>
+    <sections>
+      <li>
+        <heading>The odds</heading>
+        <table>
+          <li>Quality | Terrible | Boring | Fun | Unforgettable</li>
+          <li>0% | 25% | 75% | 0% | 0%</li>
+          <li>50% | 8% | 25% | 50% | 17%</li>
+          <li>100% | 5% | 15% | 60% | 20%</li>
+        </table>
+        <after>The figures are approximate. The ritual dialog shows the chances for the ritual you're about to hold, so read it before you start.</after>
+      </li>
+      <li>
+        <heading>Raising quality</heading>
+        <text>Quality comes from the number of participants, the moral guide, an altar, a lectern and the room's impressiveness. Hold rituals in an impressive room with an altar and a lectern, led by the role the ritual asks for, and invite everyone who can come. Any pawn can watch any ritual, whatever their ideoligion. When the dialog shows poor odds, fix the cheapest missing factor first.
+
+During a mood crisis, skip a low-quality ritual: a terrible result could push someone into a mental break.</text>
+      </li>
+    </sections>
     <keywords>
       <li>ritual</li>
       <li>ritual quality</li>
@@ -289,22 +315,39 @@
     <order>20</order>
     <summary>What each common ritual needs, and the mood it gives for each outcome</summary>
     <tip>Tribal colonies hold drum parties; other colonies hold dance parties with speakers.</tip>
-    <description>Each ritual has its own quality factors and its own mood payout. Moods below are listed as terrible / boring / fun / unforgettable. Parties pay the best, while a bad leader speech hurts more than anything else on the list.</description>
-    <facts>
-      <li>Funeral: -3 / -1 / +5 / +8. 10 participants give +70% quality and a moral guide +30%. The corpse must be in a grave.</li>
-      <li>Social festival: -3 / -1 / +5 / +8. Participants +25%, leader +25%, altar +20%, lectern +20%, seats +20%.</li>
-      <li>Dance party (non-tribal) and drum party (tribal): -3 / -1 / +8 / +16. Participants +30%, 6 speakers or 6 drums +30%, a lightball or campfire +20%, room impressiveness 120 +20%.</li>
-      <li>Skylantern festival: -3 / -1 / +6 / +10. 10 participants give +100%; each participant uses 4 wood.</li>
-      <li>Leader speech: -8 / -4 / +5 / +8. Participants +40%, the leader's social impact +40%, room impressiveness 120 +20%.</li>
-      <li>Smaller rites: scarification and blinding -2 / -1 / +1 / +3; animal sacrifice -3 / -1 / +5 / +8; conversion 0 / 0 / +3 / +6.</li>
-      <li>A fun or unforgettable dance or drum party has a 10% chance of +20% global work speed for 24 hours.</li>
-    </facts>
-    <advice>
-      <li>For a mood boost, hold a party: build 6 speakers or 6 drums and use a room of impressiveness 120.</li>
-      <li>Only give a leader speech when quality is high, since a terrible one costs -8. A leader with strong social impact adds up to 40% quality.</li>
-      <li>Stock wood before a skylantern festival: 4 per participant, or 40 for the 10 participants that give full quality.</li>
-      <li>Put the body in a grave or sarcophagus before you schedule the funeral, and have a moral guide there for the extra 30%.</li>
-    </advice>
+    <description>Each ritual has its own quality factors and its own mood payout. Parties pay the best, while a bad leader speech hurts more than anything else on the list.</description>
+    <sections>
+      <li>
+        <heading>Mood by outcome</heading>
+        <table>
+          <li>Ritual | Terrible | Boring | Fun | Unforgettable</li>
+          <li>Funeral | -3 | -1 | +5 | +8</li>
+          <li>Social festival | -3 | -1 | +5 | +8</li>
+          <li>Dance or drum party | -3 | -1 | +8 | +16</li>
+          <li>Skylantern festival | -3 | -1 | +6 | +10</li>
+          <li>Leader speech | -8 | -4 | +5 | +8</li>
+          <li>Scarification or blinding | -2 | -1 | +1 | +3</li>
+          <li>Animal sacrifice | -3 | -1 | +5 | +8</li>
+          <li>Conversion | 0 | 0 | +3 | +6</li>
+        </table>
+      </li>
+      <li>
+        <heading>What raises quality</heading>
+        <points>
+          <li>Funeral: 10 participants give +70% and a moral guide +30%. The corpse must be in a grave.</li>
+          <li>Social festival: participants +25%, leader +25%, altar +20%, lectern +20%, seats +20%.</li>
+          <li>Dance party (non-tribal) or drum party (tribal): participants +30%, 6 speakers or 6 drums +30%, a lightball or campfire +20%, room impressiveness 120 +20%.</li>
+          <li>Skylantern festival: 10 participants give +100%. Each participant uses 4 wood.</li>
+          <li>Leader speech: participants +40%, the leader's social impact +40%, room impressiveness 120 +20%.</li>
+        </points>
+      </li>
+      <li>
+        <heading>Which to hold</heading>
+        <text>For a mood boost, hold a party: build 6 speakers or 6 drums and use a room of impressiveness 120. A fun or unforgettable dance or drum party also has a 10% chance of +20% global work speed for 24 hours.
+
+Give a leader speech only when quality is high, since a terrible one costs -8; a leader with strong social impact adds up to 40% quality. Stock wood before a skylantern festival: 4 per participant, or 40 for the 10 participants that give full quality. Put the body in a grave or sarcophagus before you schedule a funeral, and have a moral guide there for the extra 30%.</text>
+      </li>
+    </sections>
     <keywords>
       <li>funeral</li>
       <li>festival</li>
@@ -331,20 +374,35 @@
     <summary>Six rituals per faith, one bonus reward each, and the rules that stop them running</summary>
     <tip>A funeral can't be held until the body is in a grave or sarcophagus.</tip>
     <description>An ideoligion can hold only a limited number of rituals, so choose the ones your colony will use. Each ritual can also carry an extra reward that pays out only on a good outcome. When a ritual won't start, the cause is usually simple, such as a missing body, an empty role or a speaker who can't speak.</description>
-    <facts>
-      <li>An ideoligion can hold up to 6 rituals. The Raider or Supremacist meme adds a gladiator duel on top of that cap.</li>
-      <li>One extra reward can be attached to a ritual, and it only triggers on a fun or unforgettable outcome.</li>
-      <li>Rewards include faction goodwill, a 50% chance of a recruit, an ancient complex, farm animals, a Gauranlen pod, insect jelly, or a psyfocus recharge with Royalty.</li>
-      <li>A funeral needs the corpse in a grave or sarcophagus and a moral guide of the dead pawn's faith.</li>
-      <li>A gladiator duel ends at a pain-shock down or a mental break. Child slaves and child prisoners can't fight.</li>
-      <li>A defendant convicted in a trial stays guilty for 15 days.</li>
-      <li>A moral guide who can't speak can't run a conversion.</li>
-    </facts>
-    <advice>
-      <li>Pick your 6 rituals for what the colony needs most: mood, recruits or converts.</li>
-      <li>Attach a reward you actually want, then push quality high so a good outcome is likely.</li>
-      <li>Before you start, check the requirements: a body in the grave, the right role assigned, a guide who can talk.</li>
-    </advice>
+    <sections>
+      <li>
+        <heading>Six rituals</heading>
+        <text>An ideoligion can hold up to 6 rituals. The Raider or Supremacist meme adds a gladiator duel on top of that cap. Pick your 6 for what the colony needs most: mood, recruits or converts.</text>
+      </li>
+      <li>
+        <heading>Rewards</heading>
+        <text>One extra reward can be attached to a ritual, and it only triggers on a fun or unforgettable outcome. Attach a reward you actually want, then push quality high so a good outcome is likely. The rewards include:</text>
+        <points>
+          <li>Faction goodwill.</li>
+          <li>A 50% chance of a recruit.</li>
+          <li>An ancient complex.</li>
+          <li>Farm animals.</li>
+          <li>A Gauranlen pod.</li>
+          <li>Insect jelly.</li>
+          <li>A psyfocus recharge, with Royalty.</li>
+        </points>
+      </li>
+      <li>
+        <heading>Ritual by ritual</heading>
+        <points>
+          <li>Funeral: needs the corpse in a grave or sarcophagus and a moral guide of the dead pawn's faith.</li>
+          <li>Conversion: a moral guide who can't speak can't run one.</li>
+          <li>Gladiator duel: ends at a pain-shock down or a mental break. Child slaves and child prisoners can't fight.</li>
+          <li>Trial: a convicted defendant stays guilty for 15 days.</li>
+        </points>
+        <after>Before you start any ritual, check what it needs: a body in the grave, the right role assigned, a guide who can talk.</after>
+      </li>
+    </sections>
     <keywords>
       <li>ritual limit</li>
       <li>ritual reward</li>
@@ -369,21 +427,25 @@
     <order>30</order>
     <summary>Fill the leader and moral guide first, and read each precept's mood rules</summary>
     <tip>Some precepts turn everyday work, such as cutting trees, into a mood penalty.</tip>
-    <description>Precepts decide what your colonists find pleasing or offensive, from diet to executions to eclipses. Roles such as the leader and the moral guide run rituals and raise their quality, but they also expect more from the colony. Precepts that forbid things your colony relies on, such as meat or drugs, mean mood penalties until the colony changes its habits.</description>
-    <facts>
-      <li>Leaders and moral guides have expectations two levels higher than ordinary colonists. The extra Elite and Supreme tiers cost -6 and -12.</li>
-      <li>The Gauranlen Connection precept gives +25% pruning speed and +3 mood while connected.</li>
-      <li>Respected if Guilty gives +3 for executing a guilty pawn, and +10 to the executioner.</li>
-      <li>The Eclipse precept makes eclipses affect mood.</li>
-      <li>The Rough Living precept turns off some expectation effects.</li>
-      <li>The Slavery precept decides whether colonists see slavery as abhorrent or honorable.</li>
-    </facts>
-    <advice>
-      <li>Fill the leader and moral guide roles first: they raise ritual quality and the guide does the conversion work.</li>
-      <li>Give role holders a bedroom and food that match their higher expectations.</li>
-      <li>Read every precept's mood effects before adopting it, and don't stack restrictive ones early.</li>
-      <li>Don't break your own taboos to save time: many precepts give a mood penalty to every believer who hears about it.</li>
-    </advice>
+    <description>Precepts decide what your colonists find pleasing or offensive, from diet to executions to eclipses. Roles such as the leader and the moral guide run rituals and raise their quality, but they also expect more from the colony.</description>
+    <sections>
+      <li>
+        <heading>The leader and moral guide</heading>
+        <text>Fill these two roles first: they raise ritual quality, and the moral guide does the conversion work. Leaders and moral guides have expectations two levels higher than ordinary colonists, and the extra Elite and Supreme tiers cost -6 and -12, so give role holders a bedroom and food that match.</text>
+      </li>
+      <li>
+        <heading>Some precepts and their effects</heading>
+        <table>
+          <li>Precept | Effect</li>
+          <li>Gauranlen Connection | +25% pruning speed, and +3 mood while connected</li>
+          <li>Respected if Guilty | +3 for executing a guilty pawn, and +10 to the executioner</li>
+          <li>Eclipse | Eclipses affect mood</li>
+          <li>Rough Living | Turns off some expectation effects</li>
+          <li>Slavery | Decides whether colonists see slavery as abhorrent or honorable</li>
+        </table>
+        <after>Precepts that forbid things your colony relies on, such as meat or drugs, mean mood penalties until the colony changes its habits. Read every precept's mood effects before you adopt it, and don't stack restrictive ones early. Once they're adopted, don't break your own taboos to save time: many precepts give a mood penalty to every believer who hears about it.</after>
+      </li>
+    </sections>
     <keywords>
       <li>precept</li>
       <li>role</li>
@@ -410,21 +472,29 @@
     <summary>Slaves work, but suppression slips daily and weapons nearby invite a rebellion</summary>
     <tip>A usable weapon within 7 tiles makes a slave rebellion 4 times as likely.</tip>
     <description>Slaves are cheap labor, but they need watching. Their suppression drains every day, and the odds of a rebellion rise with weapons nearby, poor suppression, or no free colonist at home. Slaves kept suppressed, unarmed and away from the map edge rarely rebel.</description>
-    <facts>
-      <li>Slaves work at 85% speed and have no recreation need. They can't do Warden, Hunting, Art or Research work.</li>
-      <li>Suppression falls 20% a day while above 30%.</li>
-      <li>Rebellion has a base mean time of 45 days. A usable weapon within 7 tiles makes it 4 times as likely, and no free colonist on the map 20 times.</li>
-      <li>Suppression changes the odds too: 5 times as likely at 0% suppression, and a quarter as likely at 100%.</li>
-      <li>A slave's room touching the map edge makes a rebellion 1.7 times as likely.</li>
-      <li>A slave collar or slave body strap adds +15% suppression each.</li>
-      <li>A colonist sharing a bedroom with a slave gets -3, unless they're in a relationship.</li>
-    </facts>
-    <advice>
-      <li>Keep weapons at least 7 tiles from where slaves work and sleep, and haul dropped guns away after raids.</li>
-      <li>Assign a warden with good Social to suppress them, and keep suppression above 50%.</li>
-      <li>House slaves in rooms that don't touch the map edge, and give them collars or body straps.</li>
-      <li>Always leave at least one free colonist on the map, even when a caravan or a war party is out.</li>
-    </advice>
+    <sections>
+      <li>
+        <heading>What slaves do</heading>
+        <text>Slaves work at 85% speed and have no recreation need. They can't do Warden, Hunting, Art or Research work. A colonist sharing a bedroom with a slave gets -3, unless they're in a relationship.</text>
+      </li>
+      <li>
+        <heading>Suppression</heading>
+        <text>Suppression falls 20% a day while above 30%. Assign a warden with good Social to suppress them, and keep suppression above 50%. A slave collar or slave body strap adds +15% suppression each, so give slaves collars or body straps.</text>
+      </li>
+      <li>
+        <heading>Rebellion</heading>
+        <text>A rebellion has a base mean time of 45 days. These conditions change the odds:</text>
+        <table>
+          <li>Condition | Rebellion</li>
+          <li>A usable weapon within 7 tiles | 4 times as likely</li>
+          <li>No free colonist on the map | 20 times as likely</li>
+          <li>Suppression at 0% | 5 times as likely</li>
+          <li>Suppression at 100% | A quarter as likely</li>
+          <li>The slave's room touches the map edge | 1.7 times as likely</li>
+        </table>
+        <after>Keep weapons at least 7 tiles from where slaves work and sleep, and haul dropped guns away after raids. House slaves in rooms that don't touch the map edge, and always leave at least one free colonist on the map, even when a caravan or a war party is out.</after>
+      </li>
+    </sections>
     <keywords>
       <li>slave</li>
       <li>slavery</li>
@@ -450,19 +520,28 @@
     <summary>Linking a Gauranlen tree, keeping the connection up, and what buildings do to it</summary>
     <tip>Pruning the tree is a daily chore, and with 4 dryads it takes hours.</tip>
     <description>A Gauranlen tree is linked to one colonist in a ritual, and the strength of that connection decides how many dryads it supports. The connection drains every day, faster when it's high and faster still with buildings nearby, so the connected colonist has to keep pruning. Plan the tree's surroundings before you link it.</description>
-    <facts>
-      <li>Linking starts the connection at 25% to 45% depending on ritual quality; each spectator adds 10% quality. The connector needs Plant Cutting and psychic sensitivity above 0%.</li>
-      <li>Daily loss: none below 0.1%, then rising from 2% to 4% by 33%, to 6% by 66%, and 6% a day above that.</li>
-      <li>Artificial structures nearby add to the daily loss: 6.24% at 1 tile, 3.96% at 4 tiles, 1.68% at 7 tiles, none from 8 tiles.</li>
-      <li>Pruning at Plants 8 restores 1% connection per hour. Holding 4 dryads takes about 6 hours of pruning a day, or about 3.6 hours at Plants 20 with the Gauranlen Connection precept.</li>
-      <li>After unlinking there is a 30-day cooldown. Destroying a connected tree gives -15 mood for 10 days.</li>
-    </facts>
-    <advice>
-      <li>Keep every building, wall and floor at least 8 tiles from the tree.</li>
-      <li>Choose a connector with decent Plants skill and time to spare in their schedule.</li>
-      <li>Fill the linking ritual with spectators to start as high as possible.</li>
-      <li>Aim for the connection you need for your dryad count, not 100%: higher connection drains faster.</li>
-    </advice>
+    <sections>
+      <li>
+        <heading>Linking</heading>
+        <text>The linking ritual starts the connection at 25% to 45%, depending on ritual quality, and each spectator adds 10% quality, so fill it with spectators to start as high as possible. The connector needs Plant Cutting and psychic sensitivity above 0%. After unlinking there is a 30-day cooldown, and destroying a connected tree gives -15 mood for 10 days.</text>
+      </li>
+      <li>
+        <heading>What drains it</heading>
+        <text>The connection loses nothing below 0.1%. Above that, the daily loss rises from 2% to 4% by 33% connection, to 6% by 66%, and stays at 6% a day above that. Artificial structures nearby add to the loss:</text>
+        <table>
+          <li>Nearest structure | Extra loss per day</li>
+          <li>1 tile away | 6.24%</li>
+          <li>4 tiles away | 3.96%</li>
+          <li>7 tiles away | 1.68%</li>
+          <li>8 tiles or more | None</li>
+        </table>
+        <after>Keep every building, wall and floor at least 8 tiles from the tree.</after>
+      </li>
+      <li>
+        <heading>Pruning</heading>
+        <text>Pruning at Plants 8 restores 1% connection per hour. Holding 4 dryads takes about 6 hours of pruning a day, or about 3.6 hours at Plants 20 with the Gauranlen Connection precept. Choose a connector with decent Plants skill and time to spare in their schedule, and aim for the connection your dryad count needs rather than 100%, since higher connection drains faster.</text>
+      </li>
+    </sections>
     <keywords>
       <li>gauranlen</li>
       <li>tree</li>
@@ -486,21 +565,23 @@
     <order>70</order>
     <summary>How many dryads a tree supports, their castes, and where to plant a pod</summary>
     <tip>Clawers and barkskins are the fighting castes.</tip>
-    <description>A connected Gauranlen tree grows dryads, and the connection level decides how many. You choose one caste per tree, from wood and berry makers to fighters. New pods appear from time to time. Choose where to plant them carefully, because a tree can never be moved.</description>
-    <facts>
-      <li>Dryads supported: 1 at 5% connection, 2 at 25%, 3 at 50%, 4 at 75%.</li>
-      <li>Each tree supports one caste: woodmaker, berrymaker, medicinemaker, barkskin, clawer, carrier or gaumaker. Changing caste takes 5 days, and a new dryad spawns every 6 days.</li>
-      <li>An unlinked tree spawns up to 2 immature dryads.</li>
-      <li>A pod needs ground with at least 5% fertility, 4 or more tiles from another Gauranlen tree, and at least 1 tile from any other tree, cactus or growing zone.</li>
-      <li>The tree grows in 10 days (18.46 counting rest time), dies on polluted ground and is immune to blight. It can't be moved.</li>
-      <li>Pods turn up about every 60 days, or every 30 with the Tree Connection meme.</li>
-    </facts>
-    <advice>
-      <li>Plant the pod at least 8 tiles from any building, wall or floor, so nearby structures don't drain the connection.</li>
-      <li>Keep it off polluted ground, and away from where wastepacks are stored or destroyed.</li>
-      <li>Pick the caste for what you lack and stick with it: each switch costs 5 days.</li>
-      <li>Don't cut down a connected tree for its wood: it gives -15 mood for 10 days.</li>
-    </advice>
+    <description>A connected Gauranlen tree grows dryads, and the connection level decides how many: 1 at 5% connection, 2 at 25%, 3 at 50% and 4 at 75%. You choose one caste per tree, from wood and berry makers to fighters. New pods appear from time to time, and a tree can never be moved, so choose where to plant them carefully.</description>
+    <sections>
+      <li>
+        <heading>Castes</heading>
+        <text>Each tree supports one caste: woodmaker, berrymaker, medicinemaker, barkskin, clawer, carrier or gaumaker. A new dryad spawns every 6 days, and changing caste takes 5 days, so pick the caste for what you lack and stick with it. An unlinked tree spawns up to 2 immature dryads.</text>
+      </li>
+      <li>
+        <heading>Planting a pod</heading>
+        <text>Pods turn up about every 60 days, or every 30 with the Tree Connection meme. The tree grows in 10 days (18.46 counting rest time), is immune to blight and can't be moved. The spot for a pod needs:</text>
+        <points>
+          <li>Ground with at least 5% fertility.</li>
+          <li>4 or more tiles to the nearest other Gauranlen tree.</li>
+          <li>At least 1 tile to any other tree, cactus or growing zone.</li>
+        </points>
+        <after>Plant it at least 8 tiles from any building, wall or floor as well, so nearby structures don't drain the connection. The tree dies on polluted ground, so keep it away from where wastepacks are stored or destroyed. Once it's connected, don't cut it down for its wood: that gives -15 mood for 10 days.</after>
+      </li>
+    </sections>
     <keywords>
       <li>dryad</li>
       <li>gauranlen pod</li>
@@ -528,19 +609,22 @@
     <summary>Babies eat twice a day, children learn from adults, and neither counts much for raids</summary>
     <tip>Children under 13 count for less than half a colonist in raid strength.</tip>
     <description>With Biotech, colonists can have babies, and babies grow into children who need feeding, a proper bedroom and lessons. Children barely raise raid strength until their teens, so a growing family is cheap in raid terms. They do need adults around: to feed them, to teach them, and to share a room with them.</description>
-    <facts>
-      <li>Babies need less food per feeding, but must be fed twice a day.</li>
-      <li>For raid strength, babies count 0%. Children count 0% at age 3, 50% at 13 and 100% at 18.</li>
-      <li>A room with an assigned child isn't a valid bedroom unless a parent is also assigned.</li>
-      <li>Children learn at school desks and in growth vats.</li>
-      <li>Child slaves and child prisoners can't fight in gladiator duels. Children are easier to suppress as slaves: +50% at age 3, +30% at 13, nothing from 16.</li>
-    </facts>
-    <advice>
-      <li>Put a baby's crib in the parents' bedroom, or build a warm nursery nearby.</li>
-      <li>Make baby food from vegetables at a campfire or stove when no one can breastfeed.</li>
-      <li>Build a school desk with blackboards before the first child is old enough to learn.</li>
-      <li>Keep an adult working near the children so feeding and lessons happen.</li>
-    </advice>
+    <sections>
+      <li>
+        <heading>Babies</heading>
+        <text>Babies need less food per feeding, but must be fed twice a day. When no one can breastfeed, make baby food from vegetables at a campfire or stove. Put the crib in the parents' bedroom, or build a warm nursery nearby. A room with an assigned child isn't a valid bedroom unless a parent is also assigned.</text>
+      </li>
+      <li>
+        <heading>Lessons</heading>
+        <text>Children learn at school desks and in growth vats. Build a school desk with blackboards before the first child is old enough to learn, and keep an adult working nearby so feeding and lessons happen.</text>
+      </li>
+      <li>
+        <heading>Raids and slavery</heading>
+        <text>For raid strength, babies count 0%. Children count 0% at age 3, 50% at 13 and 100% at 18.
+
+As slaves, children are easier to suppress: +50% at age 3, +30% at 13, nothing from 16. Child slaves and child prisoners can't fight in gladiator duels.</text>
+      </li>
+    </sections>
     <keywords>
       <li>child</li>
       <li>children</li>
@@ -568,20 +652,21 @@
     <order>20</order>
     <summary>A school desk with three blackboards and an adult nearby makes children learn faster</summary>
     <tip>Three blackboards around one desk raise learning to 160%.</tip>
-    <description>Children do their lessons at a school desk, and blackboards next to it make each lesson worth more. The desk is cheap and quick to build. Lessons only start when an adult who can teach is awake and nearby.</description>
-    <facts>
-      <li>A school desk costs 30 wood, stone or metal and 750 ticks of work, and needs Complex furniture research.</li>
-      <li>A desk links to up to 3 nearby blackboards, each adding 20% to the learning rate (up to +60%).</li>
-      <li>With 3 blackboards, children taught by adults learn skill XP at 160%.</li>
-      <li>One blackboard can serve several desks, and facing doesn't matter.</li>
-      <li>An awake adult able to teach must be present for lessons to start. Adults working beside the children also boost XP in a random skill.</li>
-      <li>The desk is 2x1 with 75 HP, and the room counts as a classroom.</li>
-    </facts>
-    <advice>
-      <li>With several desks, place the three blackboards between them so each board links to every desk.</li>
-      <li>Build the classroom next to where adults work, so a teacher is always close by.</li>
-      <li>Build the desk and its blackboards as soon as you have a child.</li>
-    </advice>
+    <description>Children do their lessons at a school desk, and blackboards next to it make each lesson worth more. The desk is cheap and quick to build, so set it up with its blackboards as soon as you have a child.</description>
+    <sections>
+      <li>
+        <heading>The desk</heading>
+        <text>A school desk costs 30 wood, stone or metal and 750 ticks of work, and needs Complex furniture research. It is 2x1 with 75 HP, and the room it stands in counts as a classroom.</text>
+      </li>
+      <li>
+        <heading>Blackboards</heading>
+        <text>A desk links to up to 3 nearby blackboards, each adding 20% to the learning rate (up to +60%). With all 3, children taught by adults learn skill XP at 160%. One blackboard can serve several desks, and facing doesn't matter. With several desks, place the three blackboards between them so each board links to every desk.</text>
+      </li>
+      <li>
+        <heading>Teachers</heading>
+        <text>Lessons only start when an awake adult able to teach is present. Adults working beside the children also boost XP in a random skill. Build the classroom next to where adults work, so a teacher is always close by.</text>
+      </li>
+    </sections>
     <keywords>
       <li>school desk</li>
       <li>blackboard</li>
@@ -606,19 +691,14 @@
     <order>30</order>
     <summary>Growth vats need steady power and a lot of food to age a child or grow an embryo</summary>
     <tip>A growth vat raising a child eats as much as two adults.</tip>
-    <description>A growth vat ages a child or gestates an embryo, but only while it has power and food. It uses far more nutrition than the same child would eat at the table. Plan the food and power before you fill one.</description>
-    <facts>
-      <li>A growth vat draws 200 W.</li>
-      <li>It uses 3 nutrition a day to age a child, about as much as two adults eat.</li>
-      <li>Gestating an embryo uses 6 nutrition a day, nearly as much as four adults.</li>
-      <li>A power cut or a solar flare stops the vat until power returns.</li>
-    </facts>
-    <advice>
-      <li>Count each busy vat as two to four extra mouths when you plan crops and stock.</li>
-      <li>Put vats on your most reliable grid. Nothing keeps them running through a solar flare, so expect pauses.</li>
-      <li>Check the vats whenever one shows "needs power" or "needs food".</li>
-      <li>Use the vat when you need working adults quickly. A child raised outside it gets lessons at a school desk and company from the adults around them.</li>
-    </advice>
+    <description>A growth vat ages a child or gestates an embryo, but only while it has power and food. It uses far more nutrition than the same child would eat at the table, so plan the food and power before you fill one.</description>
+    <sections>
+      <li>
+        <text>The vat draws 200 W. Aging a child uses 3 nutrition a day, about as much as two adults eat, and gestating an embryo uses 6, nearly as much as four adults. Count each busy vat as two to four extra mouths when you plan crops and stock. A power cut or a solar flare stops the vat until power returns, and nothing keeps it running through a flare, so put vats on your most reliable grid and expect pauses. Check the vats whenever one shows "needs power" or "needs food".
+
+Use the vat when you need working adults quickly. A child raised outside it gets lessons at a school desk and company from the adults around them.</text>
+      </li>
+    </sections>
     <keywords>
       <li>growth vat</li>
       <li>vat</li>
@@ -644,20 +724,27 @@
     <summary>Bandwidth caps how many mechs you control; go over and the extras turn uncontrolled</summary>
     <tip>The mechlink alone gives 6 bandwidth. The rest comes from gear and band nodes.</tip>
     <description>A mechanitor can control mechs up to their bandwidth, and each mech costs some of it. Gear and band nodes raise bandwidth, but band nodes only count while powered. If bandwidth drops below what your mechs cost, the extras go uncontrolled and may turn feral.</description>
-    <facts>
-      <li>The mechlink gives 6 bandwidth.</li>
-      <li>Without band nodes the maximum is 39: mechlink 6, bandwidth pack 9, mechlord helmet 12, mechlord suit 12.</li>
-      <li>With Odyssey the maximum is 45, because the cerebrex node (+15) replaces the bandwidth pack.</li>
-      <li>Band nodes add 1 each, but only while powered and tuned. The first tuning takes 5 seconds; retuning takes 3 days.</li>
-      <li>Mechs beyond your bandwidth go uncontrolled. After 1 game day they can turn feral, with a mean time of about 10 days.</li>
-      <li>Uncontrolled mechs within 25 tiles can also turn feral.</li>
-    </facts>
-    <advice>
-      <li>Keep a point or two of bandwidth spare before gestating another mech.</li>
-      <li>Put band nodes on a reliable power line, since a power cut lowers your bandwidth straight away.</li>
-      <li>If bandwidth drops, fix it within a day: restore power, or re-equip the mechanitor's gear.</li>
-      <li>Keep the mechanitor behind the line. When the mechanitor dies, every mech goes uncontrolled.</li>
-    </advice>
+    <sections>
+      <li>
+        <heading>Where bandwidth comes from</heading>
+        <table>
+          <li>Source | Bandwidth</li>
+          <li>Mechlink | 6</li>
+          <li>Bandwidth pack | +9</li>
+          <li>Mechlord helmet | +12</li>
+          <li>Mechlord suit | +12</li>
+          <li>Cerebrex node (Odyssey) | +15, in place of the bandwidth pack</li>
+          <li>Band node | +1 each, only while powered and tuned</li>
+        </table>
+        <after>Without band nodes the maximum is 39, or 45 with Odyssey. A band node's first tuning takes 5 seconds; retuning takes 3 days.</after>
+      </li>
+      <li>
+        <heading>Going over</heading>
+        <text>Mechs beyond your bandwidth go uncontrolled. After 1 game day they can turn feral, with a mean time of about 10 days, and uncontrolled mechs within 25 tiles can also turn feral. Keep a point or two of bandwidth spare before gestating another mech.
+
+A power cut lowers your bandwidth straight away, so put band nodes on a reliable power line. If bandwidth drops, fix it within a day: restore power, or re-equip the mechanitor's gear. When the mechanitor dies, every mech goes uncontrolled, so keep the mechanitor behind the line.</text>
+      </li>
+    </sections>
     <keywords>
       <li>mechanitor</li>
       <li>bandwidth</li>
@@ -682,19 +769,24 @@
     <summary>What each mech costs in bandwidth, and how many wastepacks it makes per recharge</summary>
     <tip>A war queen costs as much bandwidth as five lifters and leaves as many wastepacks.</tip>
     <description>Every mech costs bandwidth, and the bigger ones cost more. Each one also leaves toxic wastepacks behind every time it recharges, five for every point of bandwidth. Choose your roster with both numbers in mind.</description>
-    <facts>
-      <li>1 bandwidth, 5 wastepacks per recharge: agrihand, cleansweeper, constructoid, fabricor, lifter, militor, paramedic, scorcher.</li>
-      <li>2 bandwidth, 10 wastepacks: cyclops, legionary, pikeman, scyther.</li>
-      <li>3 bandwidth, 15 wastepacks: lancer, tesseron, tunneler.</li>
-      <li>4 bandwidth, 20 wastepacks: centipede blaster, burner, gunner.</li>
-      <li>5 bandwidth, 25 wastepacks: centurion, diabolus, war queen.</li>
-      <li>You start with 2 control groups. Each control sublink adds 1 more (up to +6), and each sublink adds +6% work speed (up to +36%).</li>
-    </facts>
-    <advice>
-      <li>Start with cheap 1-bandwidth labor mechs such as lifters and constructoids.</li>
-      <li>Plan wastepack disposal before you build big: a heavy roster fills a stockpile quickly.</li>
-      <li>Use control groups to keep fighters and workers on separate orders.</li>
-    </advice>
+    <sections>
+      <li>
+        <heading>Cost by mech</heading>
+        <table>
+          <li>Bandwidth | Wastepacks per recharge | Mechs</li>
+          <li>1 | 5 | Agrihand, cleansweeper, constructoid, fabricor, lifter, militor, paramedic, scorcher</li>
+          <li>2 | 10 | Cyclops, legionary, pikeman, scyther</li>
+          <li>3 | 15 | Lancer, tesseron, tunneler</li>
+          <li>4 | 20 | Centipede blaster, burner, gunner</li>
+          <li>5 | 25 | Centurion, diabolus, war queen</li>
+        </table>
+        <after>Start with cheap 1-bandwidth labor mechs such as lifters and constructoids. Plan wastepack disposal before you build big, because a heavy roster fills a stockpile quickly.</after>
+      </li>
+      <li>
+        <heading>Control groups</heading>
+        <text>You start with 2 control groups. Each control sublink adds 1 more (up to +6), and each sublink also adds +6% work speed (up to +36%). Use the groups to keep fighters and workers on separate orders.</text>
+      </li>
+    </sections>
     <keywords>
       <li>mech</li>
       <li>bandwidth cost</li>
@@ -720,20 +812,31 @@
     <summary>How fast mechs drain and recharge, what repairs cost, and how long gestation takes</summary>
     <tip>A mech works about five days for every day it spends on the recharger.</tip>
     <description>Mechs run on their own power bar and recharge at a recharger, which is where the wastepacks come from. Damaged mechs are repaired by the mechanitor, and dead ones can be brought back for steel. New mechs are gestated over a few days of the mechanitor's work.</description>
-    <facts>
-      <li>A recharger gives +50% power per day. A mech runs about 5 days for every 1 day charging, about 83.3% uptime.</li>
-      <li>Idle labor mechs use 3% power a day, active mechs 10%; downed or caravan mechs use none. A dormant self-charging mech gains 1% a day and wakes at 15%.</li>
-      <li>Repair energy per 100 damage: light 66, medium 33, heavy 20, ultraheavy 33. Steel to resurrect: 25, 50, 100 and 150.</li>
-      <li>Repair speed starts at 80% at Crafting 0 and rises 10% per level, up to 280% at 20.</li>
-      <li>Gestation takes 64 hours at Crafting 0 with no processors, down to 14.77 hours at Crafting 20 with 6 processors. Each processor adds 33.3%.</li>
-      <li>Losing power pauses gestation without harm.</li>
-      <li>Psychically deaf pawns can't become mechanitors. A pawn who can't do Smithing can't gestate or repair mechs.</li>
-    </facts>
-    <advice>
-      <li>Put rechargers close to where the mechs work, so they don't waste charge walking.</li>
-      <li>Pick a mechanitor with decent Crafting, and add gestation processors if you build mechs often.</li>
-      <li>Haul dead mechs home: bringing one back costs only steel.</li>
-    </advice>
+    <sections>
+      <li>
+        <heading>Power and recharging</heading>
+        <text>A recharger gives +50% power per day. Active mechs use 10% power a day and idle labor mechs 3%; downed or caravan mechs use none. A mech runs about 5 days for every 1 day charging, about 83.3% uptime. Put rechargers close to where the mechs work, so they don't waste charge walking.
+
+A dormant self-charging mech gains 1% a day and wakes at 15%.</text>
+      </li>
+      <li>
+        <heading>Repair and resurrection</heading>
+        <table>
+          <li>Weight class | Repair energy per 100 damage | Steel to resurrect</li>
+          <li>Light | 66 | 25</li>
+          <li>Medium | 33 | 50</li>
+          <li>Heavy | 20 | 100</li>
+          <li>Ultraheavy | 33 | 150</li>
+        </table>
+        <after>Repair speed starts at 80% at Crafting 0 and rises 10% per level, up to 280% at 20. Haul dead mechs home: bringing one back costs only steel.</after>
+      </li>
+      <li>
+        <heading>Gestation</heading>
+        <text>Gestation takes 64 hours at Crafting 0 with no processors, down to 14.77 hours at Crafting 20 with 6 processors. Each processor adds 33.3%. Losing power pauses gestation without harm. Pick a mechanitor with decent Crafting, and add gestation processors if you build mechs often.
+
+Psychically deaf pawns can't become mechanitors, and a pawn who can't do Smithing can't gestate or repair mechs.</text>
+      </li>
+    </sections>
     <keywords>
       <li>mech recharger</li>
       <li>recharge</li>
@@ -758,20 +861,24 @@
     <summary>Each lost wastepack pollutes 6 tiles, and polluted ground poisons pawns and halves crops</summary>
     <tip>A wastepack left outdoors until it falls apart pollutes the ground just as if it had been destroyed.</tip>
     <description>Toxic wastepacks come from mech recharging and some industry. Destroy one carelessly, or leave one to fall apart outdoors, and it spreads pollution that poisons anyone standing on it and halves the soil's fertility. Cleaning polluted ground turns it back into wastepacks, so it's far easier to keep the packs intact in the first place.</description>
-    <facts>
-      <li>Each wastepack destroyed or disintegrated pollutes 6 tiles; the wastepack atomizer is the exception. A toxifier generator pollutes 6 tiles every 3 days.</li>
-      <li>Pollution spreads in a widening circle. Natural rock walls stop it; walls you build don't.</li>
-      <li>Pawns on polluted tiles gain toxic buildup at 40% a day, and a roof doesn't help.</li>
-      <li>Polluted soil has 50% fertility. Toxipotato, devilstrand, psychoid and gray pine still grow on it.</li>
-      <li>Dumping wastepacks by transport pod raises world pollution 0.05% each (1.3% per full pod). Settlements within 15 tiles take offense, and the raid chance matches the penalty.</li>
-      <li>Destroying a wastepack can spawn insect cocoons.</li>
-    </facts>
-    <advice>
-      <li>Build a wastepack atomizer and destroy packs only in it.</li>
-      <li>Store wastepacks under a roof, far from farms and bedrooms, so they don't fall apart into pollution.</li>
-      <li>Never fight, burn or shoot near the wastepack store.</li>
-      <li>Clean polluted ground with pollution pumps or a pollution removal area, and dispose of the extra packs they make.</li>
-    </advice>
+    <sections>
+      <li>
+        <heading>How ground gets polluted</heading>
+        <text>Each wastepack destroyed or disintegrated pollutes 6 tiles, unless it was destroyed in a wastepack atomizer. A toxifier generator pollutes 6 tiles every 3 days. Pollution spreads in a widening circle: natural rock walls stop it, but walls you build don't. Destroying a wastepack can also spawn insect cocoons.</text>
+      </li>
+      <li>
+        <heading>On polluted ground</heading>
+        <text>Pawns on polluted tiles gain toxic buildup at 40% a day, and a roof doesn't help. Polluted soil has 50% fertility, though toxipotato, devilstrand, psychoid and gray pine still grow on it.</text>
+      </li>
+      <li>
+        <heading>Handling wastepacks</heading>
+        <text>Build a wastepack atomizer and destroy packs only in it. Store the rest under a roof, far from farms and bedrooms, so they don't fall apart into pollution, and never fight, burn or shoot near the store.
+
+Dumping wastepacks by transport pod raises world pollution 0.05% each, or 1.3% per full pod. Settlements within 15 tiles take offense, and the raid chance matches the penalty.
+
+To clean ground that's already polluted, use pollution pumps or a pollution removal area, then dispose of the extra packs they make.</text>
+      </li>
+    </sections>
     <keywords>
       <li>pollution</li>
       <li>wastepack</li>
@@ -797,18 +904,30 @@
     <summary>Masks, organs and genes that keep toxic buildup down, and how they stack</summary>
     <tip>A gas mask alone blocks 80% of the toxic buildup from polluted ground.</tip>
     <description>Pawns working on polluted ground build up toxins, but gear, implants and genes can slow or stop it. Two different stats are involved: toxic resistance and toxic environment resistance. They stack differently, so some combinations give full protection and others don't.</description>
-    <facts>
-      <li>Toxic environment resistance: face mask +50%, gas mask +80%, prestige robe +20%, detoxifier lung +60%.</li>
-      <li>Toxic resistance: detoxifier kidney +50%, tox resistance gene +50%.</li>
-      <li>Bonuses of the same kind add up, while the two kinds multiply. A face mask plus a detoxifier lung (both environmental) reaches 100%; a face mask plus a detoxifier kidney reaches 75%.</li>
-      <li>The pollution stimulus gene sets Moving to 110%, 115% or 120% by tier, and adds +5% consciousness.</li>
-      <li>With Odyssey, the vacuum resistant and breathless genes help in orbit.</li>
-    </facts>
-    <advice>
-      <li>Hand a gas mask, or at least a face mask, to anyone working on polluted ground.</li>
-      <li>For a pawn who lives on polluted ground, install a detoxifier lung rather than a kidney: with a face mask, it gives full protection.</li>
-      <li>Don't count on a roof: buildup keeps rising indoors on polluted tiles.</li>
-    </advice>
+    <sections>
+      <li>
+        <heading>What each gives</heading>
+        <table>
+          <li>Source | Bonus | Stat</li>
+          <li>Face mask | +50% | Toxic environment resistance</li>
+          <li>Gas mask | +80% | Toxic environment resistance</li>
+          <li>Prestige robe | +20% | Toxic environment resistance</li>
+          <li>Detoxifier lung | +60% | Toxic environment resistance</li>
+          <li>Detoxifier kidney | +50% | Toxic resistance</li>
+          <li>Tox resistance gene | +50% | Toxic resistance</li>
+        </table>
+      </li>
+      <li>
+        <heading>How they stack</heading>
+        <text>Bonuses of the same kind add up, while the two kinds multiply. A face mask plus a detoxifier lung, both environmental, reaches 100%. A face mask plus a detoxifier kidney reaches only 75%.
+
+Hand a gas mask, or at least a face mask, to anyone working on polluted ground. For a pawn who lives on polluted ground, install a detoxifier lung rather than a kidney: with a face mask, it gives full protection. Don't count on a roof, because buildup keeps rising indoors on polluted tiles.</text>
+      </li>
+      <li>
+        <heading>Pollution stimulus and orbit genes</heading>
+        <text>The pollution stimulus gene sets Moving to 110%, 115% or 120% by tier, and adds +5% consciousness. With Odyssey, the vacuum resistant and breathless genes help in orbit.</text>
+      </li>
+    </sections>
     <keywords>
       <li>toxic resistance</li>
       <li>gas mask</li>
@@ -836,19 +955,16 @@
     <summary>What makes a holding cell strong enough to keep an entity in</summary>
     <tip>An entity alone in its cell is easier to hold than two sharing one.</tip>
     <description>Captured entities sit in holding cells, and containment strength is how well that cell holds them. Strong walls and doors, good light and an entity with the room to itself all help. Harvesting devices produce bioferrite or power, but they lower containment.</description>
-    <facts>
-      <li>Strength rises with stronger walls and doors, more light, fewer other entities in the room, and special containment devices.</li>
-      <li>Damaged walls and doors lower it.</li>
-      <li>A bioferrite harvester lowers it by 15, an electroharvester by 25.</li>
-      <li>Some entities are easier to hold in the cold.</li>
-      <li>Strength never drops below 0.</li>
-    </facts>
-    <advice>
-      <li>Build cells from stone or better, and repair any damage straight away.</li>
-      <li>Light every cell well, and check the lights after a power cut.</li>
-      <li>Hold one entity per cell.</li>
-      <li>Check the strength in the cell's inspect pane after adding a harvester or anything else.</li>
-    </advice>
+    <sections>
+      <li>
+        <heading>What raises it</heading>
+        <text>Strength rises with stronger walls and doors, more light, fewer other entities in the room, and special containment devices. Some entities are also easier to hold in the cold. Build cells from stone or better, light every cell well, and hold one entity per cell.</text>
+      </li>
+      <li>
+        <heading>What lowers it</heading>
+        <text>Damaged walls and doors lower it, so repair any damage straight away, and check the lights after a power cut. A bioferrite harvester lowers it by 15 and an electroharvester by 25. Strength never drops below 0. After adding a harvester or anything else, check the strength in the cell's inspect pane.</text>
+      </li>
+    </sections>
     <keywords>
       <li>containment</li>
       <li>entity</li>
@@ -872,20 +988,19 @@
     <order>20</order>
     <summary>The platform that holds entities, and the room it needs around it</summary>
     <tip>A holding spot costs nothing to make, but a platform holds far better.</tip>
-    <description>A holding platform keeps a captured entity in place while you study or harvest it. Its containment depends mostly on the room: the hit points of its walls and doors, plus light. A platform holds far better than a holding spot.</description>
-    <facts>
-      <li>Costs 40 steel and 2,000 ticks of work, and needs Entity containment research (which needs dark study).</li>
-      <li>It is 3x3 with 500 HP, and can be uninstalled and moved.</li>
-      <li>Containment adds the room's average door hit points and average wall hit points, plus a bonus for light.</li>
-      <li>A platform has no containment penalty, unlike a holding spot, and gives roughly 142% more containment than one.</li>
-      <li>A bioferrite harvester lowers containment by 15 and an electroharvester by 25. More entities in one room weaken it.</li>
-    </facts>
-    <advice>
-      <li>Build the cell from stone or better. A cell carved into a mountain is a cheap boost.</li>
-      <li>Use a platform, not a spot, for anything dangerous.</li>
-      <li>Repair doors and walls after every breakout or raid.</li>
-      <li>Check the containment number in the game after building, since the exact formula is uncertain.</li>
-    </advice>
+    <description>A holding platform keeps a captured entity in place while you study or harvest it. Its containment depends mostly on the room: the hit points of its walls and doors, plus light.</description>
+    <sections>
+      <li>
+        <heading>Platform or spot</heading>
+        <text>A platform costs 40 steel and 2,000 ticks of work, and needs Entity containment research (which needs dark study). It is 3x3 with 500 HP, and can be uninstalled and moved. Unlike a holding spot, a platform has no containment penalty, and it gives roughly 142% more containment than one. Use a platform, not a spot, for anything dangerous.</text>
+      </li>
+      <li>
+        <heading>The room around it</heading>
+        <text>Containment adds the room's average door hit points and average wall hit points, plus a bonus for light. Build the cell from stone or better; a cell carved into a mountain is a cheap boost. A bioferrite harvester lowers containment by 15 and an electroharvester by 25, and more entities in one room weaken it. Repair doors and walls after every breakout or raid.
+
+The exact formula is uncertain, so check the containment number in the game after building.</text>
+      </li>
+    </sections>
     <keywords>
       <li>holding platform</li>
       <li>holding spot</li>
@@ -910,18 +1025,26 @@
     <summary>Better containment means fewer escapes and faster study</summary>
     <tip>A permanently downed entity that can't regenerate stays in its cell for good.</tip>
     <description>Captured entities can be studied for Anomaly knowledge, and some yield bioferrite or power. Good containment cuts escapes and speeds up study. Some entities can be disabled for good, which turns them into a safe, endless source of research.</description>
-    <facts>
-      <li>Containment lowers the escape chance and raises the study rate.</li>
-      <li>An entity that is permanently downed (severe brain damage, all moving limbs lost, or permanent unconsciousness) and can't regenerate never escapes. This doesn't work on ghouls.</li>
-      <li>Fleshbeasts, sightstealers and noctols are suitable for this. A permanently downed entity gives effectively unlimited research, bioferrite and sometimes power.</li>
-      <li>Some entities die in an electroharvester.</li>
-      <li>Cold slows fleshbeasts, shamblers and ghouls without raising the escape chance of other entities.</li>
-    </facts>
-    <advice>
-      <li>Study held entities regularly; better containment makes each session count for more.</li>
-      <li>Put a cooler in cells that hold fleshbeasts, shamblers or ghouls.</li>
-      <li>For a long-term research source, keep a permanently downed fleshbeast, sightstealer or noctol, and check its health tab to make sure it can't regenerate.</li>
-    </advice>
+    <sections>
+      <li>
+        <heading>Escapes and study</heading>
+        <text>Containment lowers the escape chance and raises the study rate, so better containment makes each study session count for more. Study held entities regularly. Some entities die in an electroharvester.</text>
+      </li>
+      <li>
+        <heading>Disabling an entity for good</heading>
+        <text>An entity that is permanently downed and can't regenerate never escapes. Permanently downed means one of these:</text>
+        <points>
+          <li>Severe brain damage.</li>
+          <li>All moving limbs lost.</li>
+          <li>Permanent unconsciousness.</li>
+        </points>
+        <after>This doesn't work on ghouls. Fleshbeasts, sightstealers and noctols are suitable, and one kept permanently downed gives effectively unlimited research, bioferrite and sometimes power. Check its health tab to make sure it can't regenerate.</after>
+      </li>
+      <li>
+        <heading>Cold cells</heading>
+        <text>Cold slows fleshbeasts, shamblers and ghouls without raising the escape chance of other entities, so put a cooler in cells that hold them.</text>
+      </li>
+    </sections>
     <keywords>
       <li>entity</li>
       <li>escape</li>
@@ -947,17 +1070,20 @@
     <summary>The gray pall, void catharsis and other Anomaly effects on mood</summary>
     <tip>During a gray pall, a roof halves the mood penalty.</tip>
     <description>Anomaly brings a few strange effects on mood and prisoners. The gray pall is a short mood penalty that a roof softens. An anomalous mental break leaves void catharsis behind, a large mood bonus that lasts 3 days.</description>
-    <facts>
-      <li>Void catharsis after an anomalous break gives +30 mood per stack, up to 5 stacks (150), for 3 days.</li>
-      <li>The gray pall lowers mood for 1 to 2 days: -6 outdoors, half that under a roof.</li>
-      <li>The gray pall is rarely dangerous unless a pawn is already unhappy.</li>
-      <li>Solar flares can't happen during unnatural darkness.</li>
-      <li>A bliss lobotomy makes a prisoner try to escape less often, but the pawn can no longer do skilled work.</li>
-    </facts>
-    <advice>
-      <li>During a gray pall, keep colonists under roofs and watch anyone already near a break.</li>
-      <li>Use the 3 days of void catharsis to fix whatever pushed the pawn to break, because it will still be there afterward.</li>
-    </advice>
+    <sections>
+      <li>
+        <heading>The gray pall</heading>
+        <text>A gray pall lowers mood for 1 to 2 days: -6 outdoors, half that under a roof. It is rarely dangerous unless a pawn is already unhappy, so keep colonists under roofs while it lasts and watch anyone already near a break.</text>
+      </li>
+      <li>
+        <heading>Void catharsis</heading>
+        <text>After an anomalous break, void catharsis gives +30 mood per stack, up to 5 stacks (150), for 3 days. Use those days to fix whatever pushed the pawn to break, because it will still be there afterward.</text>
+      </li>
+      <li>
+        <heading>Darkness and lobotomies</heading>
+        <text>Solar flares can't happen during unnatural darkness. A bliss lobotomy makes a prisoner try to escape less often, but the pawn can no longer do skilled work.</text>
+      </li>
+    </sections>
     <keywords>
       <li>gray pall</li>
       <li>void catharsis</li>
@@ -983,20 +1109,25 @@
     <summary>What a gravship needs: engine, substructure, thrusters, fuel tanks and a pilot console</summary>
     <tip>A grav engine alone lifts up to 500 tiles of substructure.</tip>
     <description>A gravship is a piece of your base that can fly. The grav engine sets how much substructure you can carry and how far from the engine it can reach; thrusters set the range. Extenders, optimizers and subpersona cores improve it once the basics work.</description>
-    <facts>
-      <li>Grav engine: up to 500 substructure tiles, all within 19 tiles of the engine's center.</li>
-      <li>Grav field extenders: +250 tiles each, up to 2,000 with 6, in a 17-tile radius.</li>
-      <li>Small thrusters: up to 4, 10 tiles of range each. Large thrusters: up to 6, 16 tiles each. Combined maximum: 136 tiles.</li>
-      <li>Required: a pilot console and chemfuel tanks (small or large).</li>
-      <li>Fuel optimizers: up to 2, each -30% fuel (they add up).</li>
-      <li>Pilot subpersona cores: up to 2, each +15% launch ritual quality.</li>
-      <li>Optional modules include a gravcore power cell, signal jammer, shield generator, oxygen pump, vac barrier and heaters.</li>
-    </facts>
-    <advice>
-      <li>Lay out substructure around the engine first, and keep everything within its range.</li>
-      <li>Fit thrusters for the distance you'll actually fly; large ones also raise launch quality.</li>
-      <li>Add fuel optimizers early if you fly often.</li>
-    </advice>
+    <sections>
+      <li>
+        <heading>The parts</heading>
+        <table>
+          <li>Part | What it does</li>
+          <li>Grav engine | Carries up to 500 substructure tiles, all within 19 tiles of the engine's center</li>
+          <li>Grav field extender | +250 tiles each, up to 2,000 with 6, in a 17-tile radius</li>
+          <li>Small thruster | 10 tiles of range each, up to 4</li>
+          <li>Large thruster | 16 tiles of range each, up to 6; also raises launch quality</li>
+          <li>Fuel optimizer | -30% fuel each, up to 2 (they add up)</li>
+          <li>Pilot subpersona core | +15% launch ritual quality each, up to 2</li>
+        </table>
+        <after>Thrusters combine to a maximum of 136 tiles. Every ship also needs a pilot console and chemfuel tanks (small or large). Optional modules include a gravcore power cell, signal jammer, shield generator, oxygen pump, vac barrier and heaters.</after>
+      </li>
+      <li>
+        <heading>Laying it out</heading>
+        <text>Lay out substructure around the engine first, and keep everything within its range. Fit thrusters for the distance you'll actually fly, and add fuel optimizers early if you fly often.</text>
+      </li>
+    </sections>
     <keywords>
       <li>gravship</li>
       <li>grav engine</li>
@@ -1023,18 +1154,26 @@
     <summary>Chemfuel per tile, the minimum per trip, and the smallest ship that can fly</summary>
     <tip>A one-tile hop still costs the 50-chemfuel minimum.</tip>
     <description>A gravship burns chemfuel for every world tile it crosses, with a minimum per trip however short. There's no weight limit, so fuel is the only thing that limits a trip.</description>
-    <facts>
-      <li>A gravship uses 10 chemfuel per tile traveled, with a minimum of 50 chemfuel per trip.</li>
-      <li>Fuel optimizers cut the per-tile cost (about 3 chemfuel per tile each), but not the 50 minimum.</li>
-      <li>The smallest flightworthy ship: a grav engine, substructure joining every part, one small thruster, one small chemfuel tank and one pilot console.</li>
-      <li>There is no weight limit, and any number of pawns can ride along.</li>
-      <li>For short trips and trading, a passenger shuttle is often cheaper and faster.</li>
-    </facts>
-    <advice>
-      <li>Compare the fuel cost in the launch dialog with what's in your tanks, and carry enough to get home.</li>
-      <li>Pack chemfuel, food, medicine and components before you go.</li>
-      <li>Send a shuttle on trading runs, and keep the gravship's chemfuel for moving the colony.</li>
-    </advice>
+    <sections>
+      <li>
+        <heading>Fuel per trip</heading>
+        <text>A gravship uses 10 chemfuel per tile traveled, with a minimum of 50 chemfuel per trip. Fuel optimizers cut the per-tile cost by about 3 chemfuel per tile each, but not the 50 minimum. The launch dialog shows the cost: compare it with what's in your tanks, and carry enough to get home.</text>
+      </li>
+      <li>
+        <heading>The smallest ship that flies</heading>
+        <points>
+          <li>A grav engine.</li>
+          <li>Substructure joining every part.</li>
+          <li>One small thruster.</li>
+          <li>One small chemfuel tank.</li>
+          <li>One pilot console.</li>
+        </points>
+      </li>
+      <li>
+        <heading>Gravship or shuttle</heading>
+        <text>There is no weight limit, and any number of pawns can ride along, so pack chemfuel, food, medicine and components before you go. For short trips and trading, a passenger shuttle is often cheaper and faster. Send a shuttle on trading runs, and keep the gravship's chemfuel for moving the colony.</text>
+      </li>
+    </sections>
     <keywords>
       <li>gravship fuel</li>
       <li>chemfuel</li>
@@ -1059,19 +1198,27 @@
     <summary>Where a gravship can land, what launch quality depends on, and what goes wrong</summary>
     <tip>Anything that isn't on the substructure at launch stays behind.</tip>
     <description>Where you land decides what happens next: a new colony, a quest site, or an attack. Leaving a map without a grav anchor deletes it, along with any pawns still on it. Each launch is a ritual whose quality decides how likely a mishap is.</description>
-    <facts>
-      <li>Landing on an ordinary tile starts a new colony; a quest site opens its own temporary map; landing on a faction base starts an attack, with no trade.</li>
-      <li>You can't land on peace-talk or impassable tiles. The landing spot can't hold walls, deep water, steles, roofs, steam geysers or toxic wastepacks.</li>
-      <li>Leaving a tile without a grav anchor deletes that map for good. Pawns left behind are lost.</li>
-      <li>Launch quality (up to 100%): crew 2% each up to 5, small thrusters 1% each up to 4, large thrusters 3% each up to 6, pilot subpersona cores 15% each up to 2.</li>
-      <li>There are four equally likely mishaps: a minor crash, a thruster breakdown, an overheated engine (longer cooldown) or grav nausea (2 to 5 hours). Higher quality makes a mishap less likely.</li>
-      <li>You can only have one gravship.</li>
-    </facts>
-    <advice>
-      <li>Count heads and animals on the deck before every launch.</li>
-      <li>Leave a grav anchor on any map you want to come back to.</li>
-      <li>Fly with at least 5 crew and fit large thrusters to push launch quality up.</li>
-    </advice>
+    <sections>
+      <li>
+        <heading>Landing</heading>
+        <text>Landing on an ordinary tile starts a new colony. A quest site opens its own temporary map, and landing on a faction base starts an attack, with no trade. You can't land on peace-talk or impassable tiles, and the landing spot can't hold walls, deep water, steles, roofs, steam geysers or toxic wastepacks.</text>
+      </li>
+      <li>
+        <heading>Leaving a map behind</heading>
+        <text>Leaving a tile without a grav anchor deletes that map for good, and pawns left behind are lost. Count heads and animals on the deck before every launch, and leave a grav anchor on any map you want to come back to. You can only have one gravship.</text>
+      </li>
+      <li>
+        <heading>Launch quality and mishaps</heading>
+        <table>
+          <li>Factor | Each adds | Counts up to</li>
+          <li>Crew | 2% | 5</li>
+          <li>Small thruster | 1% | 4</li>
+          <li>Large thruster | 3% | 6</li>
+          <li>Pilot subpersona core | 15% | 2</li>
+        </table>
+        <after>Launch quality goes up to 100%, and higher quality makes a mishap less likely. There are four equally likely mishaps: a minor crash, a thruster breakdown, an overheated engine (longer cooldown) or grav nausea (2 to 5 hours). Fly with at least 5 crew and fit large thrusters to push quality up.</after>
+      </li>
+    </sections>
     <keywords>
       <li>landing</li>
       <li>launch ritual</li>
@@ -1096,18 +1243,21 @@
     <order>70</order>
     <summary>A big gravship is a lot of wealth, and wealth draws bigger raids</summary>
     <tip>Substructure and ship modules are buildings, so they count at half value toward raids.</tip>
-    <description>Every tile of substructure and every module counts toward your colony's wealth, so a bigger gravship brings bigger raids. The ship can also carry you into a fight. Protect its vital parts, and move it out of harm's way before big events.</description>
-    <facts>
-      <li>Gravship colonies build up wealth from their tile materials, which can bring larger raids.</li>
-      <li>Buildings count half toward the wealth raids are scaled on.</li>
-      <li>When you raid by gravship you can bring most of your resources, but a mishap can give your crew grav nausea.</li>
-    </facts>
-    <advice>
-      <li>Watch the Wealth tab as the ship grows, especially on higher difficulties.</li>
-      <li>Wall in power cells and modules so a raid can't knock them out.</li>
-      <li>Pair a vac barrier with a regular door to keep the ship pressurized.</li>
-      <li>Park the ship somewhere safe, such as an asteroid, before a major event like the Anomaly ending.</li>
-    </advice>
+    <description>Every tile of substructure and every module counts toward your colony's wealth, so a bigger gravship brings bigger raids. Gravship colonies build up wealth from their tile materials, though buildings count only half toward the wealth raids are scaled on. Watch the Wealth tab as the ship grows, especially on higher difficulties.</description>
+    <sections>
+      <li>
+        <heading>Protecting the ship</heading>
+        <points>
+          <li>Wall in power cells and modules so a raid can't knock them out.</li>
+          <li>Pair a vac barrier with a regular door to keep the ship pressurized.</li>
+          <li>Before a major event such as the Anomaly ending, park the ship somewhere safe, such as an asteroid.</li>
+        </points>
+      </li>
+      <li>
+        <heading>Raiding by gravship</heading>
+        <text>The ship can also carry you into a fight. When you raid by gravship you can bring most of your resources, but a mishap can give your crew grav nausea.</text>
+      </li>
+    </sections>
     <keywords>
       <li>gravship</li>
       <li>wealth</li>
@@ -1131,20 +1281,27 @@
     <order>40</order>
     <summary>How vacuum works in orbit, and what makes a room airtight</summary>
     <tip>Stone walls don't hold air in orbit. Build them from metal.</tip>
-    <description>In orbit, every tile has a vacuum level, and only sealed rooms hold air. A room is sealed when metal walls and doors surround it, a roof covers it, and no open space shows through the floor. Every door you open trades air with the room next door.</description>
-    <facts>
-      <li>Vacuum is a percentage per tile: 100% is fully depressurized, 0% fully pressurized. All tiles in a room share one level.</li>
-      <li>Outdoor tiles in orbit are always at 100%. Maps on a planet are always pressurized.</li>
-      <li>A sealed room needs airtight walls and doors all round, a full roof, and no Space tiles on the ground.</li>
-      <li>Walls and doors are airtight when made of metal. Bioferrite counts; obsidian doesn't.</li>
-      <li>Opening a door or vent mixes vacuum between rooms. Powered vac barriers let people pass and keep the pressure in.</li>
-      <li>Oxygen pumps and archean trees pressurize a room. Airtight rooms at 50% vacuum or more show an overlay.</li>
-    </facts>
-    <advice>
-      <li>Build orbital rooms from steel or another metal, roof them fully, and check the vacuum overlay afterward.</li>
-      <li>Use two doors in sequence, or a powered vac barrier, wherever people pass to the outside.</li>
-      <li>Keep vac barriers and oxygen pumps on reliable power.</li>
-    </advice>
+    <description>In orbit, every tile has a vacuum level, and only sealed rooms hold air. Every door you open trades air with the room next door, so where people pass matters as much as the walls.</description>
+    <sections>
+      <li>
+        <heading>How vacuum works</heading>
+        <text>Vacuum is a percentage per tile: 100% is fully depressurized, 0% fully pressurized. All tiles in a room share one level. Outdoor tiles in orbit are always at 100%, and maps on a planet are always pressurized.</text>
+      </li>
+      <li>
+        <heading>Sealing a room</heading>
+        <text>A room is sealed when it has:</text>
+        <points>
+          <li>Airtight walls and doors all round. They are airtight when made of metal; bioferrite counts, obsidian doesn't.</li>
+          <li>A full roof.</li>
+          <li>No Space tiles on the ground.</li>
+        </points>
+        <after>Build orbital rooms from steel or another metal, roof them fully, and check the vacuum overlay afterward: airtight rooms at 50% vacuum or more show on it. Oxygen pumps and archean trees pressurize a room.</after>
+      </li>
+      <li>
+        <heading>Doors and airlocks</heading>
+        <text>Opening a door or vent mixes vacuum between rooms. Wherever people pass to the outside, use two doors in sequence, or a powered vac barrier, which lets people pass and keeps the pressure in. Keep vac barriers and oxygen pumps on reliable power.</text>
+      </li>
+    </sections>
     <keywords>
       <li>vacuum</li>
       <li>airtight</li>
@@ -1170,18 +1327,20 @@
     <summary>An unprotected pawn in full vacuum passes out in under a minute and dies soon after</summary>
     <tip>In full vacuum, an unprotected pawn dies about 7.5 seconds after passing out.</tip>
     <description>A pawn standing in heavy vacuum builds up exposure fast, and without protection that ends in unconsciousness and death within a minute at normal speed. Vacuum also burns skin and kills most plants. A downed pawn can still be carried to safety if you move quickly.</description>
-    <facts>
-      <li>Exposure starts at 50% vacuum or more, and builds faster in harder vacuum and slower with vacuum resistance.</li>
-      <li>Unprotected on a 100% tile, a pawn falls unconscious after 2,550 ticks (42.5 seconds) and dies at 3,000 ticks (50 seconds).</li>
-      <li>Unconsciousness comes at 85% exposure, death at 100%.</li>
-      <li>Vacuum burns hit at 50% vacuum or more: one every 1,200 ticks at 50%, down to one every 300 ticks at 100%. Each deals 1 to 2 damage and never scars or infects.</li>
-      <li>Plants other than archean trees die within about an hour at 50% vacuum or more.</li>
-    </facts>
-    <advice>
-      <li>When a seal breaks, get everyone out immediately: unprotected pawns have well under a minute.</li>
-      <li>Send a suited rescuer to carry downed pawns into a sealed room.</li>
-      <li>Grow food in orbit only inside a sealed, pressurized room.</li>
-    </advice>
+    <sections>
+      <li>
+        <heading>How fast it kills</heading>
+        <text>Exposure starts at 50% vacuum or more. It builds faster in harder vacuum and slower with vacuum resistance. A pawn falls unconscious at 85% exposure and dies at 100%. Unprotected on a 100% tile, that means unconscious after 2,550 ticks (42.5 seconds) and dead at 3,000 ticks (50 seconds).</text>
+      </li>
+      <li>
+        <heading>When a seal breaks</heading>
+        <text>Get everyone out immediately: unprotected pawns have well under a minute. Send a suited rescuer to carry downed pawns into a sealed room.</text>
+      </li>
+      <li>
+        <heading>Burns and plants</heading>
+        <text>Vacuum burns hit at 50% vacuum or more: one every 1,200 ticks at 50%, down to one every 300 ticks at 100%. Each deals 1 to 2 damage and never scars or infects. Plants other than archean trees die within about an hour at 50% vacuum or more, so grow food in orbit only inside a sealed, pressurized room.</text>
+      </li>
+    </sections>
     <keywords>
       <li>vacuum exposure</li>
       <li>suffocation</li>
@@ -1204,19 +1363,24 @@
     <summary>Vacsuits, power armor and genes: how long each keeps a pawn alive in vacuum</summary>
     <tip>The breathless gene protects against vacuum, not cold, and orbit sits at about -75 °C.</tip>
     <description>Pawns who work outside a sealed room need protection. A vacsuit is cheap but slow; power armor with the right helmet lasts much longer; a few genes go further still. Orbit is also bitterly cold, so pawns need protection from the temperature as well.</description>
-    <facts>
-      <li>The vacsuit and helmet are the cheapest and easiest vacuum gear to research, but carry a big move speed penalty.</li>
-      <li>Power armor with a recon helmet lasts about 51,000 ticks (0.85 days) before unconsciousness.</li>
-      <li>Power armor with a cataphract helmet (Royalty) lasts about 127,500 ticks (2.13 days).</li>
-      <li>The vacuum resistant gene covers short exposures and brings power armor to 100% resistance. The breathless gene gives full vacuum immunity.</li>
-      <li>Orbit is about -75 °C, so even immune pawns need protection from the cold.</li>
-      <li>Pawns in vacuum gear can eat and sleep without extra exposure. The vacuum resistant or breathless gene, or a vacskin gland, prevents vacuum burns.</li>
-    </facts>
-    <advice>
-      <li>Use vacsuits for short jobs outside, and power armor for long shifts or fighting.</li>
-      <li>Give breathless pawns the warmest apparel you have, and keep their trips outside short.</li>
-      <li>Keep spare suits by every airlock.</li>
-    </advice>
+    <sections>
+      <li>
+        <heading>Gear and genes</heading>
+        <table>
+          <li>Protection | In vacuum</li>
+          <li>Vacsuit and helmet | The cheapest and easiest vacuum gear to research, with a big move speed penalty</li>
+          <li>Power armor, recon helmet | About 51,000 ticks (0.85 days) before unconsciousness</li>
+          <li>Power armor, cataphract helmet (Royalty) | About 127,500 ticks (2.13 days)</li>
+          <li>Vacuum resistant gene | Covers short exposures, and brings power armor to 100% resistance</li>
+          <li>Breathless gene | Full vacuum immunity</li>
+        </table>
+        <after>Pawns in vacuum gear can eat and sleep without extra exposure. The vacuum resistant or breathless gene, or a vacskin gland, prevents vacuum burns. Use vacsuits for short jobs outside and power armor for long shifts or fighting, and keep spare suits by every airlock.</after>
+      </li>
+      <li>
+        <heading>The cold</heading>
+        <text>Orbit is about -75 °C, so even immune pawns need protection from the cold. Give breathless pawns the warmest apparel you have, and keep their trips outside short.</text>
+      </li>
+    </sections>
     <keywords>
       <li>vacsuit</li>
       <li>power armor</li>
@@ -1240,19 +1404,30 @@
     <order>80</order>
     <summary>How fishing works, where it doesn't, and what a rare catch can be</summary>
     <tip>A pond's fish regrow by only 2.5% a day, so heavy fishing empties it.</tip>
-    <description>Fishing gives you food from shallow water with only a fishing zone and a colonist to work it. Every pond or river has a shared stock of fish that regrows slowly, so each body of water feeds a limited number of people. Now and then a catch is something other than fish, such as a map or a book.</description>
-    <facts>
-      <li>A fishing zone is 1x1 on shallow, non-toxic water that holds fish, and uses the Animals skill.</li>
-      <li>The fish in a body of water regrow by 2.5% of the maximum per day.</li>
-      <li>A catch is rolled roughly every 7,500 ticks, about every 3 hours.</li>
-      <li>Fish lists cover hot, cold, temperate and tropical biomes, with a separate list for the glowforest. You can't fish in the scarlands.</li>
-      <li>A rare catch can be a map (20%), a book (10%), a drug (10%), a human corpse (6%), vacstone blocks (6%) or obsidian (6%).</li>
-    </facts>
-    <advice>
-      <li>Put fishing zones on the biggest body of water you have.</li>
-      <li>Freeze the catch: raw fish rot in 2 days.</li>
-      <li>Spread zones over several ponds rather than emptying one.</li>
-    </advice>
+    <description>Fishing gives you food from shallow water with only a fishing zone and a colonist to work it. Every pond or river has a shared stock of fish that regrows slowly, so each body of water feeds a limited number of people.</description>
+    <sections>
+      <li>
+        <heading>Fishing zones</heading>
+        <text>A fishing zone is 1x1 on shallow, non-toxic water that holds fish, and uses the Animals skill. A catch is rolled roughly every 7,500 ticks, about every 3 hours. The fish in a body of water regrow by 2.5% of the maximum per day, so put fishing zones on the biggest body of water you have, and spread them over several ponds rather than emptying one. Raw fish rot in 2 days, so freeze the catch.</text>
+      </li>
+      <li>
+        <heading>Where the fish are</heading>
+        <text>Fish lists cover hot, cold, temperate and tropical biomes, with a separate list for the glowforest. You can't fish in the scarlands.</text>
+      </li>
+      <li>
+        <heading>Rare catches</heading>
+        <text>Now and then a catch is something other than fish:</text>
+        <table>
+          <li>Rare catch | Chance</li>
+          <li>A map | 20%</li>
+          <li>A book | 10%</li>
+          <li>A drug | 10%</li>
+          <li>A human corpse | 6%</li>
+          <li>Vacstone blocks | 6%</li>
+          <li>Obsidian | 6%</li>
+        </table>
+      </li>
+    </sections>
     <keywords>
       <li>fishing</li>
       <li>fish</li>
