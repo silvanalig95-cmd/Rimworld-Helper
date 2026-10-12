@@ -84,6 +84,28 @@ Mostly flat statements. The humor is in the situation and the occasional dry asi
 - **Explanations** (Almanac, tooltips, settings, advisor tips): clear second person, concrete numbers, the same
   names the interface uses. No quips tacked on ("Most days."), no slogans, no rhetorical questions.
 
+## Almanac pages
+
+Each page is written for its subject; there is no template. Choose the shape the content needs:
+
+- **Prose first.** The `description` explains what the thing is and why it matters, in a short paragraph or two.
+  How a mechanic works is usually best told in sentences, not cut into bullets.
+- **Sections with their own headings** (`<sections>`), named for this page's content ("The steps", "Setting it
+  up", "In a siege", "With Rimfolk"), never generic labels like "Facts", "Good to know" or "What to do". A short
+  page may need no sections at all; a long one may need four.
+- **A table** (`<table>`, cells split by `|`, the first row is the header) for anything you'd look up by row: tiers
+  and thresholds, stats per item, costs per research project, one row per building or animal.
+- **Points** (`<points>`) only for things that really are a list: separate tips, a set of options, steps in order.
+- **Advice inside the text** where it follows from the explanation ("so build the freezer before the first
+  summer"), instead of a separate list of commands.
+- **Mod pages** explain what the mod adds and how it changes play first, then what to watch out for, then a "With
+  Rimfolk" section if Rimfolk does something with it.
+- Keep every number, name and fact; this is about form, not content. `python3 Tools/almanaccheck.py` checks that
+  nothing was lost.
+
+See `Council_Alm_2_14_Expectations` (Almanac_RoomsMood.xml) for an example: a paragraph, a table of the steps
+with a closing line, and two short sections in prose.
+
 ## Before and after
 
 | Before | After |

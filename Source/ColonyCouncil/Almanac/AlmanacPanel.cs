@@ -78,14 +78,16 @@ namespace ColonyCouncil
                 y += 28f;
             }
             y += 8f;
-            Widgets.CheckboxLabeled(new Rect(rect.x, y, rect.width, 24f), "CC_Almanac_AllDlc".Translate(), ref showAllDlc);
+            string allLabel = "CC_Almanac_AllDlc".Translate();
+            float allH = Mathf.Max(24f, Text.CalcHeight(allLabel, rect.width - 30f));
+            Widgets.CheckboxLabeled(new Rect(rect.x, y, rect.width, allH), allLabel, ref showAllDlc);
         }
 
         private static bool DrawCategoryButton(Rect r, string label, int count, bool active)
         {
             if (active) Widgets.DrawHighlightSelected(r);
             else if (Mouse.IsOver(r)) Widgets.DrawHighlight(r);
-            Widgets.Label(new Rect(r.x + 6f, r.y + 3f, r.width - 40f, r.height), label);
+            Widgets.Label(new Rect(r.x + 6f, r.y + 3f, r.width - 40f, r.height), label.Truncate(r.width - 40f));
             GUI.color = Faint;
             Text.Anchor = TextAnchor.UpperRight;
             Widgets.Label(new Rect(r.x, r.y + 3f, r.width - 6f, r.height), count.ToString());
@@ -221,15 +223,11 @@ namespace ColonyCouncil
                 foreach (var sec in a.sections)
                 {
                     if (sec == null) continue;
-                    if (!sec.text.NullOrEmpty())
-                    {
-                        y = Heading(y, w, sec.heading);
-                        h = Text.CalcHeight(sec.text, w);
-                        Widgets.Label(new Rect(0f, y, w, h), sec.text);
-                        y += h + 6f;
-                        y = Points(y, w, null, sec.points);
-                    }
-                    else y = Points(y, w, sec.heading, sec.points);
+                    y = Heading(y + 4f, w, sec.heading);
+                    y = Paragraph(y, w, sec.text);
+                    y = Points(y, w, null, sec.points);
+                    y = Table(y, w, sec.table);
+                    y = Paragraph(y, w, sec.after);
                 }
             }
             // No fixed "facts" and "advice" headings: the page reads on from its description. What Rimfolk itself does
@@ -284,6 +282,53 @@ namespace ColonyCouncil
 
         /// <summary>How the mod pages mark what Rimfolk does with a mod ("With Rimfolk: ...").</summary>
         private static string RimfolkPrefix => "CC_Almanac_WithRimfolkPrefix".Translate();
+
+        private static float Paragraph(float y, float w, string text)
+        {
+            if (text.NullOrEmpty()) return y;
+            float h = Text.CalcHeight(text, w);
+            Widgets.Label(new Rect(0f, y, w, h), text);
+            return y + h + 8f;
+        }
+
+        private static readonly Color TableHeader = new Color(0.85f, 0.8f, 0.6f);
+
+        /// <summary>A small table: columns as wide as their text where they fit, the last one wraps.</summary>
+        private static float Table(float y, float w, List<string> rows)
+        {
+            if (rows.NullOrEmpty()) return y;
+            var cells = rows.Select(r => r.Split('|').Select(c => c.Trim()).ToArray()).ToList();
+            int cols = cells.Max(r => r.Length);
+            var widths = new float[cols];
+            for (int c = 0; c < cols; c++)
+                widths[c] = cells.Where(r => c < r.Length).Max(r => Text.CalcSize(r[c]).x) + 14f;
+            if (widths.Sum() > w)
+            {
+                // Earlier columns keep their width up to a share of the page; the last one takes what's left and wraps.
+                float cap = w * (cols > 2 ? 0.3f : 0.42f);
+                for (int c = 0; c < cols - 1; c++) widths[c] = Mathf.Min(widths[c], cap);
+                widths[cols - 1] = Mathf.Max(60f, w - widths.Take(cols - 1).Sum());
+            }
+            for (int i = 0; i < cells.Count; i++)
+            {
+                var row = cells[i];
+                float rh = 22f;
+                for (int c = 0; c < row.Length; c++) rh = Mathf.Max(rh, Text.CalcHeight(row[c], widths[c] - 10f) + 4f);
+                var rr = new Rect(0f, y, Mathf.Min(w, widths.Sum()), rh);
+                if (i == 0) Widgets.DrawBoxSolid(rr, new Color(1f, 1f, 1f, 0.06f));
+                else if (i % 2 == 0) Widgets.DrawLightHighlight(rr);
+                float x = 0f;
+                for (int c = 0; c < row.Length; c++)
+                {
+                    if (i == 0) GUI.color = TableHeader;
+                    Widgets.Label(new Rect(x + 5f, y + 2f, widths[c] - 10f, rh), row[c]);
+                    GUI.color = Color.white;
+                    x += widths[c];
+                }
+                y += rh;
+            }
+            return y + 10f;
+        }
 
         private static float Heading(float y, float w, string title)
         {

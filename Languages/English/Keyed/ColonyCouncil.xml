@@ -639,7 +639,7 @@
   <CC_ReadMore>Read more</CC_ReadMore>
   <CC_Almanac_Search>Search the almanac...</CC_Almanac_Search>
   <CC_Almanac_All>Everything</CC_Almanac_All>
-  <CC_Almanac_AllDlc>Show pages for DLCs and mods I don't have</CC_Almanac_AllDlc>
+  <CC_Almanac_AllDlc>Show all DLC and mod pages</CC_Almanac_AllDlc>
   <CC_Almanac_NothingFound>No pages match your search.</CC_Almanac_NothingFound>
   <CC_Almanac_Pick>Pick a page.</CC_Almanac_Pick>
   <CC_Almanac_NotActive>not active</CC_Almanac_NotActive>
@@ -649,7 +649,7 @@
   <CC_Almanac_PlanRoom>Plan a {0}</CC_Almanac_PlanRoom>
   <CC_Almanac_SeeAlso>See also</CC_Almanac_SeeAlso>
   <CC_AlmanacCat_Basics>First steps</CC_AlmanacCat_Basics>
-  <CC_AlmanacCat_Council>How the council works</CC_AlmanacCat_Council>
+  <CC_AlmanacCat_Council>The council</CC_AlmanacCat_Council>
   <CC_AlmanacCat_Food>Food and farming</CC_AlmanacCat_Food>
   <CC_AlmanacCat_Rooms>Rooms</CC_AlmanacCat_Rooms>
   <CC_AlmanacCat_Mood>Mood and minds</CC_AlmanacCat_Mood>

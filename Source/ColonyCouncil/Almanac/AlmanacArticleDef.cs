@@ -30,12 +30,18 @@ namespace ColonyCouncil
     /// One page of the council's almanac: good practice, the numbers behind it, and what to do. Written in the
     /// game's voice, linked to the advisor's warnings and to room plans.
     /// </summary>
-    /// <summary>A part of an almanac page with its own heading (optional), a paragraph and/or points.</summary>
+    /// <summary>
+    /// A part of an almanac page: an optional heading, then any of a paragraph (blank lines start new paragraphs),
+    /// points, and a table, in that order, then an optional closing paragraph. Use whichever suits the content.
+    /// </summary>
     public class AlmanacSection
     {
         [MustTranslate] public string heading;
         [MustTranslate] public string text;
         [MustTranslate] public List<string> points;
+        /// <summary>Rows of cells separated by "|"; the first row is the header.</summary>
+        [MustTranslate] public List<string> table;
+        [MustTranslate] public string after;
     }
 
     public class AlmanacArticleDef : Def

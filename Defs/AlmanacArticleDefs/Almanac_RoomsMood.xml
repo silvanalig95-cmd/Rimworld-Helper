@@ -173,21 +173,32 @@
     <order>25</order>
     <summary>A poor colony gets +30 mood for free; a rich one gets nothing</summary>
     <tip>The free mood a new colony enjoys shrinks as the storeroom fills.</tip>
-    <description>Every colonist gets a flat mood bonus that depends on how wealthy the whole colony is. A young, poor colony enjoys +30, which shrinks step by step as wealth grows, so the comforts that kept people happy at the start stop being enough. Plan rooms, food and recreation to grow along with your wealth.</description>
-    <facts>
-      <li>Extremely low (0-15,000 wealth): +30. Very low (15,000-31,000): +24. Low (31,000-81,000): +18.</li>
-      <li>Moderate (81,000-182,000): +12. High (182,000-308,000): +6. Sky-high (308,000 and up): 0.</li>
-      <li>Growing from 30,000 to 100,000 wealth takes every colonist from +24 to +12.</li>
-      <li>Royalty and Ideology add higher tiers (Noble, Royal, Elite, Supreme) worth -6 or -12.</li>
-      <li>Conceited nobles start at moderate and climb one level per title: -6 at Baron, -12 at Archon or above.</li>
-      <li>Higher expectations also want more kinds of recreation: 2 at extremely low, up to 6 at sky-high. Slaves have expectations of their own.</li>
-    </facts>
-    <advice>
-      <li>Watch the expectations thought in the Needs tab; a mood drop right after wealth crosses a threshold usually comes from it.</li>
-      <li>Before a big trade or loot haul, make sure rooms and meals can carry the drop.</li>
-      <li>Don't hoard silver and materials you'll never use: they raise wealth without making anyone happier.</li>
-      <li>Move from barracks to private rooms, and from simple to fine meals, as wealth climbs.</li>
-    </advice>
+    <description>Every colonist gets a flat mood bonus from the colony's expectations, which depend on how wealthy the whole colony is. A young, poor colony enjoys +30. As wealth grows the bonus shrinks step by step, until the comforts that kept people happy at the start are no longer enough.</description>
+    <sections>
+      <li>
+        <heading>The steps</heading>
+        <table>
+          <li>Expectations | Colony wealth | Mood</li>
+          <li>Extremely low | 0-15,000 | +30</li>
+          <li>Very low | 15,000-31,000 | +24</li>
+          <li>Low | 31,000-81,000 | +18</li>
+          <li>Moderate | 81,000-182,000 | +12</li>
+          <li>High | 182,000-308,000 | +6</li>
+          <li>Sky-high | 308,000 and up | 0</li>
+        </table>
+        <after>Growing from 30,000 to 100,000 wealth takes every colonist from +24 to +12. Higher expectations also want more kinds of recreation: 2 at extremely low, up to 6 at sky-high.</after>
+      </li>
+      <li>
+        <heading>Nobles and slaves</heading>
+        <text>Royalty and Ideology add higher tiers (Noble, Royal, Elite, Supreme) worth -6 or -12. Conceited nobles start at moderate and climb one level per title: -6 at Baron, -12 at Archon or above. Slaves have expectations of their own.</text>
+      </li>
+      <li>
+        <heading>Keeping up</heading>
+        <text>A mood drop right after wealth crosses a threshold usually comes from expectations; the thought shows in the Needs tab. Before a big trade or loot haul, make sure rooms and meals can carry the drop, and move from barracks to private rooms and from simple to fine meals as wealth climbs.
+
+Silver and materials you'll never use raise wealth without making anyone happier, so don't hoard them.</text>
+      </li>
+    </sections>
     <keywords>
       <li>expectations</li>
       <li>wealth</li>
