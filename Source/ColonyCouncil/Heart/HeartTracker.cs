@@ -149,6 +149,7 @@ namespace ColonyCouncil
         }
 
         private readonly List<Pawn> sliceTmp = new List<Pawn>();
+        private static readonly int PawnErrorKey = "ColonyCouncilheart of a colonist".GetHashCode();
 
         private void Slice(int slice, int now)
         {
@@ -166,7 +167,8 @@ namespace ColonyCouncil
                 }
                 catch (Exception e)
                 {
-                    CouncilLog.ErrorOnce("heart of " + p.LabelShort, e);
+                    // Logged once for the whole colony: the same fault would otherwise come up once per colonist.
+                    Log.ErrorOnce("[Rimfolk] heart of " + p.LabelShort + ": " + e, PawnErrorKey);
                 }
             }
             sliceTmp.Clear();
