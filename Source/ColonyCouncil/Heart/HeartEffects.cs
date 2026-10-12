@@ -7,12 +7,14 @@ namespace ColonyCouncil
 {
     /// <summary>
     /// Strain as a mood: a situational thought that reads the colonist's band each time the game asks, so nothing is
-    /// stored in their memories. Strained -3, worn -5, breaking -8; nothing while steady or with the feature off.
+    /// stored in their memories. Strained -3, worn -5, breaking -8; nothing while steady, with the feature off, or on
+    /// "Advisor only" stakes (no mood effects at all).
     /// </summary>
     public class ThoughtWorker_HeartStrain : ThoughtWorker
     {
         protected override ThoughtState CurrentStateInternal(Pawn p)
         {
+            if (!ColonyCouncilMod.Settings.MoodEffects) return ThoughtState.Inactive;
             var h = Heart.Of(p);
             if (h == null || !Heart.Eligible(p)) return ThoughtState.Inactive;
             switch (h.Band)

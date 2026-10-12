@@ -140,7 +140,7 @@ namespace ColonyCouncil
                         f.target = other;
                         f.targetAmount = amount;
                     }
-                    if (group.def.defName.StartsWith("Council_", StringComparison.Ordinal)) f.fromCouncil = true;
+                    if (CouncilDidIt(group.def)) f.fromCouncil = true;
                 }
             }
 
@@ -224,6 +224,21 @@ namespace ColonyCouncil
                     h.feelingSinceKeys.RemoveAt(k);
                     h.feelingSinceTicks.RemoveAt(k);
                 }
+        }
+
+        /// <summary>The council's own doing: a wish granted, a promise kept, a petition heeded, someone brought home.</summary>
+        private static readonly string[] CouncilDeeds =
+        {
+            "Council_Granted_", "Council_PromiseKept", "Council_SpokeUpForMe", "Council_DecreeHeeded", "Council_ObjectionHeard",
+            "Council_Dlm_Understood", "Council_Secret2_Protected", "Council_Secret2_HeardOut", "Council_Secret2_DebtPaid", "Council_BroughtHome"
+        };
+
+        private static bool CouncilDidIt(ThoughtDef def)
+        {
+            string name = def.defName;
+            for (int i = 0; i < CouncilDeeds.Length; i++)
+                if (name.StartsWith(CouncilDeeds[i], StringComparison.Ordinal)) return true;
+            return false;
         }
 
         private static bool Holds(FeelingFeed feed, float off, Pawn other, Pawn p)

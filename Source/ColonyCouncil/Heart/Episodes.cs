@@ -42,7 +42,7 @@ namespace ColonyCouncil
             base.PostEnd();
             try
             {
-                Episodes.Ended(pawn, interrupted);
+                Episodes.Ended(pawn, interrupted, Age);
             }
             catch (System.Exception e)
             {
@@ -140,18 +140,22 @@ namespace ColonyCouncil
             return true;
         }
 
-        /// <summary>The episode is over: strain drops, and if it ran its course they feel lighter.</summary>
-        public static void Ended(Pawn p, bool interrupted)
+        /// <summary>
+        /// The episode is over: strain drops, and if it ran its course they feel lighter. Cut short (danger, downed,
+        /// captured), it counts for half, without the lighter mood.
+        /// </summary>
+        public static void Ended(Pawn p, bool interrupted, int age)
         {
-            if (p == null || p.Dead || !Heart.On) return;
+            if (p == null || p.Dead || !Heart.On || !Heart.Eligible(p)) return;
             Look();
-            LogicChange(p, interrupted ? -HeartMath.EpisodeRelief * 0.5f : -HeartMath.EpisodeRelief);
-            if (interrupted)
+            bool full = !interrupted && age >= GenDate.TicksPerHour * 5 && p.Spawned && !p.Downed;
+            LogicChange(p, full ? -HeartMath.EpisodeRelief : -HeartMath.EpisodeRelief * 0.5f);
+            if (!full)
             {
-                Messages.Message("CC_Heart_Episode_Interrupted".Translate(p.Named("PAWN")).Resolve(), p, MessageTypeDefOf.NeutralEvent, false);
+                if (interrupted && p.Spawned) Messages.Message("CC_Heart_Episode_Interrupted".Translate(p.Named("PAWN")).Resolve(), p, MessageTypeDefOf.NeutralEvent, false);
                 return;
             }
-            if (letItOut != null && p.needs?.mood?.thoughts?.memories != null) p.needs.mood.thoughts.memories.TryGainMemory(letItOut);
+            if (letItOut != null && S.MoodEffects && p.needs?.mood?.thoughts?.memories != null) p.needs.mood.thoughts.memories.TryGainMemory(letItOut);
             Messages.Message("CC_Heart_Episode_Over".Translate(p.Named("PAWN")).Resolve(), p, MessageTypeDefOf.PositiveEvent, false);
         }
 
