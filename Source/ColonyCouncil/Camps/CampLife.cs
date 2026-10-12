@@ -724,7 +724,7 @@ namespace ColonyCouncil
             var found = ThingMaker.MakeThing(what);
             found.stackCount = n;
             // Their trader has it to sell; otherwise it goes in their stash.
-            if (trader != null && trader.inventory != null && trader.inventory.innerContainer.TryAdd(found))
+            if (trader != null && trader.inventory != null && Here.Contains(trader) && trader.inventory.innerContainer.TryAdd(found))
             {
                 traderSilver = trader.inventory.innerContainer.TotalStackCountOfDef(ThingDefOf.Silver);
             }
