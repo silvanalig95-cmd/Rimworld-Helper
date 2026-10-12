@@ -88,6 +88,9 @@ namespace ColonyCouncil
         public bool eventsFromStoryteller = true;
         /// <summary>How likely each of them is, compared with one of the game's own events.</summary>
         public float storytellerEventWeight = 1f;
+        /// <summary>World events: rare, region-wide situations that last a while (a plague, a warlord, a succession).</summary>
+        public bool worldSituations = true;
+        public float daysBetweenWorldSituations = 45f;
         /// <summary>How hard the fights a Rimfolk scenario promises hit (share of their usual strength).</summary>
         public float scenarioThreat = 1f;
         /// <summary>How often the smaller things happen: 1 = as designed, 0.25 = rarely, 3 = often.</summary>
@@ -188,6 +191,8 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref daysBetweenWorldEvents, "daysBetweenWorldEvents", 4f);
             Scribe_Values.Look(ref eventsFromStoryteller, "eventsFromStoryteller", true);
             Scribe_Values.Look(ref storytellerEventWeight, "storytellerEventWeight", 1f);
+            Scribe_Values.Look(ref worldSituations, "worldSituations", true);
+            Scribe_Values.Look(ref daysBetweenWorldSituations, "daysBetweenWorldSituations", 45f);
             Scribe_Values.Look(ref scenarioThreat, "scenarioThreat", 1f);
             Scribe_Values.Look(ref encounterFrequency, "encounterFrequency", 1f);
             Scribe_Values.Look(ref momentFrequency, "momentFrequency", 1f);
@@ -435,6 +440,15 @@ namespace ColonyCouncil
                 "CC_Settings_ScenarioThreat_Tip".Translate());
             scenarioThreat = Mathf.Round(scenarioThreat * 4f) / 4f;
 
+            Header(l, "CC_Settings_WorldSituationsHeader".Translate());
+            l.CheckboxLabeled("CC_Settings_WorldSituations".Translate(), ref worldSituations, "CC_Settings_WorldSituations_Tip".Translate());
+            if (worldSituations)
+            {
+                daysBetweenWorldSituations = l.SliderLabeled("CC_Settings_DaysBetweenWorldSituations".Translate(daysBetweenWorldSituations.ToString("0")), daysBetweenWorldSituations, 15f, 120f, 0.6f,
+                    "CC_Settings_DaysBetweenWorldSituations_Tip".Translate());
+                daysBetweenWorldSituations = Mathf.Round(daysBetweenWorldSituations / 5f) * 5f;
+            }
+
             Header(l, "CC_Settings_HowOften".Translate());
             encounterFrequency = Frequency(l, "CC_Settings_FreqEncounters", encounterFrequency);
             momentFrequency = Frequency(l, "CC_Settings_FreqMoments", momentFrequency);
@@ -500,7 +514,7 @@ namespace ColonyCouncil
         private void SetPeople(bool on, bool councilOn)
         {
             socialWeb = socialEvents = secrets = vendettas = aspirations = quirks = heirlooms = comingOfAge = dreams = dreamOmens = eulogies = on;
-            strangers = nemeses = nemesisReturns = petMoments = colonistMoments = autonomy = worldReactions = worldEvents = on;
+            strangers = nemeses = nemesisReturns = petMoments = colonistMoments = autonomy = worldReactions = worldEvents = worldSituations = on;
             enableDilemmas = decreeRequests = offices = colonyCharacter = councilOn;
             enableWishes = enableAmbitions = councilOn || on;
             journals = epithets = anniversaries = annals = on || councilOn;
@@ -571,6 +585,8 @@ namespace ColonyCouncil
             daysBetweenWorldEvents = d.daysBetweenWorldEvents;
             eventsFromStoryteller = d.eventsFromStoryteller;
             storytellerEventWeight = d.storytellerEventWeight;
+            worldSituations = d.worldSituations;
+            daysBetweenWorldSituations = d.daysBetweenWorldSituations;
             scenarioThreat = d.scenarioThreat;
             encounterFrequency = d.encounterFrequency;
             momentFrequency = d.momentFrequency;

@@ -468,6 +468,8 @@ namespace ColonyCouncil
             var t = CouncilGameComponent.Instance?.happenings;
             if (ext != null && t != null && ext.group == t.lastGroup) f *= 0.5f;
             if (ext != null && ext.addsPeople) f *= Mathf.Clamp(StorytellerUtilityPopulation.PopulationIntent + 0.35f, 0.05f, 1.5f);
+            // A world event running in the region (a plague, a warlord) makes some likelier and others rarer.
+            f *= WorldSituations.EventFactor(def, ext);
             return f;
         }
 
@@ -580,6 +582,7 @@ namespace ColonyCouncil
             if (ext.group == lastGroup) w *= 0.35f;
             // Newcomers follow the storyteller's sense of how big the colony should be.
             if (ext.addsPeople) w *= Mathf.Clamp(StorytellerUtilityPopulation.PopulationIntent + 0.35f, 0.05f, 1.5f);
+            w *= WorldSituations.EventFactor(d, ext);
             return Mathf.Max(0.001f, w);
         }
 

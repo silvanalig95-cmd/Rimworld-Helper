@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- Moods from world events (Defs/WorldSituationDefs/). -->
+
+  <!-- ===================== A warlord rises ===================== -->
+
+  <ThoughtDef>
+    <defName>Council_WS_WarlordFell</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
+    <durationDays>8</durationDays>
+    <stackLimit>1</stackLimit>
+    <stages><li><label>the warlord is finished</label><description>The warlord who had the colony on a list is finished. I've stopped listening for horses on the road at night.</description><baseMoodEffect>4</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Council_WS_WarlordAvenged</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
+    <durationDays>12</durationDays>
+    <stackLimit>1</stackLimit>
+    <stages><li><label>the warlord paid for it</label><description>The warlord whose raiders hurt me has paid for it. I still have the scar. It aches less.</description><baseMoodEffect>8</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Council_WS_WarlordSlayer</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
+    <durationDays>10</durationDays>
+    <stackLimit>1</stackLimit>
+    <stages><li><label>brought down the warlord</label><description>I brought the warlord down myself. People in towns I've never seen will be telling that story.</description><baseMoodEffect>8</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Council_WS_WarlordEscaped</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
+    <durationDays>10</durationDays>
+    <stackLimit>1</stackLimit>
+    <stages><li><label>the warlord got away</label><description>The warlord whose raiders hurt me just rode off somewhere with a few friends. No reckoning, nothing.</description><baseMoodEffect>-4</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Council_WS_WarlordFreed</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
+    <durationDays>12</durationDays>
+    <stackLimit>1</stackLimit>
+    <stages><li><label>the warlord was ransomed</label><description>We had the warlord in a cell, after what those raiders did to me, and sold the key back for silver.</description><baseMoodEffect>-6</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Council_WS_WarbandGone</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
+    <durationDays>5</durationDays>
+    <stackLimit>1</stackLimit>
+    <stages><li><label>the warband broke up</label><description>The warband that was coming for us has broken up. The roads will be safer for a while.</description><baseMoodEffect>2</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+</Defs>

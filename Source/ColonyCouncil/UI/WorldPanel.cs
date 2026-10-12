@@ -63,6 +63,8 @@ namespace ColonyCouncil
             {
                 float y = 0f;
                 float w = view.width;
+                // What's going on in the region (world events), above what's coming to the colony itself.
+                y = WorldSituationsPanel.Draw(0f, y, w);
                 y += UiKit.SectionTitle(0f, y, w, "CC_World_Coming".Translate(), Icons.Raid, Threat);
                 if (m.coming.Count == 0) y += UiKit.EmptyState(0f, y, w, Icons.World, "CC_World_NothingComing".Translate(), 70f);
                 else y = Timeline(y + 4f, w, m.coming);
