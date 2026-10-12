@@ -192,13 +192,14 @@ namespace ColonyCouncil
 
         /// <summary>
         /// Safe to go after without anyone's say-so: not too wild, not a predator, not huge, and unlikely to turn on a
-        /// tamer who fails. Animal mods add plenty of beasts that look tameable and aren't safe to try.
+        /// tamer who fails. Animal mods add plenty of beasts that look tameable and aren't safe to try, and some that
+        /// can't be tamed by hand at all (PokéWorld's Pokémon are caught in Poké Balls), which the game's own check knows.
         /// </summary>
         private static bool SafeToTame(Pawn a)
         {
             var r = a.RaceProps;
             return r != null && !r.predator && r.baseBodySize <= 2.5f && r.manhunterOnTameFailChance <= 0.05f
-                   && a.GetStatValue(StatDefOf.Wildness) < 0.85f;
+                   && a.GetStatValue(StatDefOf.Wildness) < 0.85f && TameUtility.CanTame(a);
         }
 
         public override InspirationDef InspirationFor(Wish wish) => InspirationDefOf.Inspired_Taming;
