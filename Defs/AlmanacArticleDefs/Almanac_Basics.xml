@@ -17,15 +17,20 @@
     <summary>What's in here, and how the council uses it.</summary>
     <tip>A failed harvest or an untreated infection can end a colony as surely as a raid.</tip>
     <description>This almanac collects what experienced colonists know: the numbers behind food, mood, defense and health, how to lay out each kind of room, and the mistakes that end colonies. When the council warns you about something on the Priorities page, "Read more" opens the matching page here.</description>
-    <facts>
-      <li>Pages marked "some numbers are approximate" use figures from community testing or sources that disagree. Treat them as close estimates, not exact values.</li>
-      <li>Pages for DLCs you don't have are hidden unless you tick the box under the categories.</li>
-      <li>Game time: an hour is 2,500 ticks, a day 60,000 ticks, a quadrum 15 days and a year 60 days.</li>
-    </facts>
-    <advice>
-      <li>Read through "Hard lessons" once. It covers the mistakes that most often end a colony.</li>
-      <li>Use the search box: it looks through titles, text and numbers.</li>
-    </advice>
+    <sections>
+      <li>
+        <heading>Finding a page</heading>
+        <text>Use the search box: it looks through titles, text and numbers. Pages for DLCs you don't have are hidden unless you tick the box under the categories.
+
+If you read only one category through, make it "Hard lessons". It covers the mistakes that most often end a colony.</text>
+      </li>
+      <li>
+        <heading>Reading the numbers</heading>
+        <text>Pages marked "some numbers are approximate" use figures from community testing or sources that disagree. Treat them as close estimates, not exact values.
+
+Durations are given in game time: an hour is 2,500 ticks, a day 60,000 ticks, a quadrum 15 days and a year 60 days.</text>
+      </li>
+    </sections>
     <keywords>
       <li>help</li>
       <li>guide</li>

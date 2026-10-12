@@ -11,21 +11,34 @@
     <summary>How the storyteller decides how big the next raid will be</summary>
     <tip>Raid size is worked out from your wealth and colonists on the day the raid arrives.</tip>
     <description>Every raid is bought with raid points. The storyteller adds points for your wealth and for your people, then scales the total by difficulty, by how old the colony is and by how well things have been going. This is why the raid after a big trade is larger. These figures may have shifted slightly in recent versions, so treat them as close guides.</description>
-    <facts>
-      <li>Raid points = (wealth points + pawn points) × difficulty × starting factor × adaptation factor. The result is never below 35 or above 10,000.</li>
-      <li>Wealth points: none up to 14,000 colony wealth, 2,400 at 400,000, 3,600 at 700,000 and 4,200 at 1,000,000 and above. Items and creatures count in full, buildings at half.</li>
-      <li>Each colonist adds 15 pawn points while wealth is under 10,000, rising to 140 at 400,000 and 200 at 1,000,000.</li>
-      <li>Difficulty multiplier: peaceful 0.10, community builder 0.30, adventure story 0.60, strive to survive 1.00, blood and dust 1.55, losing is fun 2.20.</li>
-      <li>Starting factor: 0.7 up to day 10, rising to 1.0 by day 40, so early raids are smaller.</li>
-      <li>Adaptation starts at 0.8 and climbs while you avoid losses: 1.0 at 30 adaptation days, 1.2 at 60, and 1.47 is the most you can reach in practice.</li>
-      <li>Some storytellers change the result after the cap: Randy Random multiplies it by anything from 50% to 150%.</li>
-    </facts>
-    <advice>
-      <li>Watch your colony wealth before a big trade, loot haul or art spree: the next raid is priced on it.</li>
-      <li>Have your defenses ready before day 40, when the early discount runs out.</li>
-      <li>Turn idle silver, gold and art into armor, weapons and medicine: they count toward wealth just the same, but they help you win the fight.</li>
-      <li>Use the same sums for a tribal colony: its stone huts count at half value, and its stockpiles in full.</li>
-    </advice>
+    <sections>
+      <li>
+        <heading>The formula</heading>
+        <text>Raid points = (wealth points + pawn points) × difficulty × starting factor × adaptation factor. The result is never below 35 or above 10,000. The difficulty you picked sets one of the multipliers:</text>
+        <table>
+          <li>Difficulty | Multiplier</li>
+          <li>Peaceful | 0.10</li>
+          <li>Community builder | 0.30</li>
+          <li>Adventure story | 0.60</li>
+          <li>Strive to survive | 1.00</li>
+          <li>Blood and dust | 1.55</li>
+          <li>Losing is fun | 2.20</li>
+        </table>
+        <after>Some storytellers change the result after the cap. Randy Random multiplies it by anything from 50% to 150%.</after>
+      </li>
+      <li>
+        <heading>Wealth and people</heading>
+        <text>Wealth points are zero up to 14,000 colony wealth, then climb to 2,400 at 400,000, 3,600 at 700,000 and 4,200 at 1,000,000 and above. Items and creatures count in full, buildings at half. On top of that, each colonist adds pawn points: 15 while wealth is under 10,000, rising to 140 at 400,000 and 200 at 1,000,000.
+
+The next raid is priced on what you own when it arrives, so watch your colony wealth before a big trade, loot haul or art spree. Idle silver, gold and art count toward wealth just the same as armor, weapons and medicine, but only the second kind helps you win the fight, so turn the one into the other. A tribal colony works by the same sums: its stone huts count at half value, and its stockpiles in full.</text>
+      </li>
+      <li>
+        <heading>Early days and adaptation</heading>
+        <text>Early raids come at a discount. The starting factor is 0.7 up to day 10 and rises to 1.0 by day 40, so have your defenses ready before day 40, when the discount runs out.
+
+Adaptation follows how well things have been going. It starts at 0.8 and climbs while you avoid losses: 1.0 at 30 adaptation days and 1.2 at 60. In practice, 1.47 is the most you can reach.</text>
+      </li>
+    </sections>
     <keywords>
       <li>raid points</li>
       <li>threat</li>
@@ -52,21 +65,33 @@
     <summary>What the storyteller counts toward raids, and what it barely notices</summary>
     <tip>Silver in the stockpile counts in full toward the next raid.</tip>
     <description>Not everything you own weighs the same when the storyteller prices a raid. Items and animals count in full, buildings at half, and each person counts according to their status and age. The cheapest way to keep raids manageable is to hold wealth in useful things and to add people who can fight.</description>
-    <facts>
-      <li>Buildings count at half their value, and their hit points are ignored.</li>
-      <li>Slaves count 75% as pawns, colonists in cryptosleep 30% and babies 0%. Children count 0% at age 3, 50% at 13 and 100% at 18.</li>
-      <li>Tamed animals that can learn Attack count 8% of their combat power, whatever your wealth.</li>
-      <li>Friendly mechs and entities count 20% at low wealth, 30% at 400,000 and 40% at 1,000,000.</li>
-      <li>A colonist's death removes 30 adaptation days in a small colony (20 in a colony of 20), so the next raids are somewhat smaller. A downed colonist removes 3.5 to 8.</li>
-      <li>The loot raiders carry stops getting better past 4,000 raid points.</li>
-      <li>The "wealth-independent progress" difficulty option stops wealth from driving raid size.</li>
-    </facts>
-    <advice>
-      <li>Sell or use piles of silver, gold and art you don't need before the next raid is priced on them.</li>
-      <li>Recruit good fighters: an extra colonist usually adds more defense than the pawn points they cost.</li>
-      <li>Train attack animals: at 8% of their combat power, they give a tribe without turrets extra fighters for very few raid points.</li>
-      <li>Build the walls and defenses you need. At half value, a stone wall adds few raid points for the protection it gives.</li>
-    </advice>
+    <sections>
+      <li>
+        <heading>What counts, and how much</heading>
+        <table>
+          <li>What | How it counts</li>
+          <li>Items and animals | In full</li>
+          <li>Buildings | Half their value; hit points are ignored</li>
+          <li>Slaves | 75% as pawns</li>
+          <li>Colonists in cryptosleep | 30%</li>
+          <li>Babies | 0%</li>
+          <li>Children | 0% at age 3, 50% at 13, 100% at 18</li>
+          <li>Tamed animals that can learn Attack | 8% of their combat power, whatever your wealth</li>
+          <li>Friendly mechs and entities | 20% at low wealth, 30% at 400,000, 40% at 1,000,000</li>
+        </table>
+        <after>The "wealth-independent progress" difficulty option stops wealth from driving raid size.</after>
+      </li>
+      <li>
+        <heading>Losses and loot</heading>
+        <text>Losing people makes the next raids somewhat smaller. A colonist's death removes 30 adaptation days in a small colony (20 in a colony of 20), and a downed colonist removes 3.5 to 8. Bigger raids don't keep bringing better loot, either: what raiders carry stops getting better past 4,000 raid points.</text>
+      </li>
+      <li>
+        <heading>Where to keep your wealth</heading>
+        <text>Sell or use the piles of silver, gold and art you don't need before the next raid is priced on them. Walls and defenses are a better place for it: at half value, a stone wall adds few raid points for the protection it gives, so build the ones you need.
+
+People are usually the best buy. A good fighter adds more defense than the pawn points they cost, so recruit them. Attack animals cost even less: at 8% of their combat power, they give a tribe without turrets extra fighters for very few raid points.</text>
+      </li>
+    </sections>
     <keywords>
       <li>wealth</li>
       <li>colony wealth</li>
@@ -92,19 +117,26 @@
     <summary>Raiders are bought by combat power and come in several styles</summary>
     <tip>The raid letter names the faction and how they are arriving.</tip>
     <description>The storyteller spends a raid's points on attackers, each with a combat power price. Most raiders walk in from the map edge, but some dig in with mortars, tunnel through your walls or drop out of the sky. Read the raid letter and note where they arrive before you decide where to fight.</description>
-    <facts>
-      <li>Combat power examples: tribal villager 30, archer 45, warrior 50, hunter 60; pirate drifter 35, scavenger 50; scyther 150. The weakest raider costs 30.</li>
-      <li>Human raiders fight until something breaks the raid, and pirates may give up and leave. Mechanoid raiders attack indefinitely.</li>
-      <li>Raid styles: an assault from the edge, a siege, sappers, breachers, a center drop by pod and a scattered drop by pod. Manhunter packs are a separate threat.</li>
-      <li>Tribal-level factions cannot use drop pods.</li>
-      <li>Sapper and center drop raids are smaller than their raid points suggest.</li>
-    </facts>
-    <advice>
-      <li>Check where the enemy appears: the map edge, a camp being built, or pods inside your walls. Each needs a different answer.</li>
-      <li>Edge assault: man your chokepoint. Siege: break the camp or force the attack. Sappers: wait behind inner walls. Pods: spread out near cover.</li>
-      <li>Against mechanoids, bring EMP weapons and plan to destroy every one.</li>
-      <li>As a tribe, still prepare for pods and sieges: pirates and outlanders use them, even though enemy tribes can't.</li>
-    </advice>
+    <sections>
+      <li>
+        <heading>What the points buy</heading>
+        <text>A tribal villager costs 30 combat power, an archer 45, a warrior 50 and a hunter 60. A pirate drifter costs 35 and a scavenger 50; a scyther costs 150. The weakest raider costs 30. Sapper and center drop raids are smaller than their raid points suggest.
+
+Human raiders fight until something breaks the raid, and pirates may give up and leave. Mechanoid raiders attack indefinitely, so against mechanoids bring EMP weapons and plan to destroy every one.</text>
+      </li>
+      <li>
+        <heading>Raid styles</heading>
+        <table>
+          <li>Style | Where they appear | How to meet them</li>
+          <li>Assault | The map edge | Man your chokepoint</li>
+          <li>Siege | A camp being built | Break the camp or force the attack</li>
+          <li>Sappers, breachers | Through your walls | Wait behind inner walls</li>
+          <li>Center drop | Pods inside your walls | Spread out near cover</li>
+          <li>Scattered drop | Pods across the map | Spread out near cover</li>
+        </table>
+        <after>Manhunter packs are a separate threat with their own page. Tribal-level factions cannot use drop pods, but pirates and outlanders use them, so a tribe still has to prepare for pods and sieges.</after>
+      </li>
+    </sections>
     <keywords>
       <li>raid</li>
       <li>raiders</li>
@@ -131,19 +163,27 @@
     <summary>Make raiders walk one long path into your guns</summary>
     <tip>Raiders take the easiest open path, so make that path your killbox.</tip>
     <description>A chokepoint makes the raiders' easiest path a long corridor or a single doorway, so only a few of them can shoot at once while your people fight from cover. It is the cheapest defense in the game and works at any tech level. Sappers, breachers and drop pods ignore it, so keep a second line of defense inside the base.</description>
-    <facts>
-      <li>Raiders take the easiest open route. Each trap they know about adds a path cost of 40, so a heavily trapped lane can push them to another way in.</li>
-      <li>Walls, doors and natural rock give 75% cover; sandbags and barricades 55%.</li>
-      <li>Sapper, smart and breaching raiders know where about 30% of your traps are.</li>
-      <li>Wood in a killbox is a fire trap for you: things ignite above 235 °C and embers jump 2 tiles.</li>
-    </facts>
-    <advice>
-      <li>Leave one inviting entrance and close every other route with walls and doors. The attackers treat a door they'd have to break as a waste of effort.</li>
-      <li>Line the approach with traps, and keep explosive traps away from where your own people stand.</li>
-      <li>Fight from behind sandbags or walls with a clear firing lane, and keep an inner fallback line.</li>
-      <li>Without turrets, put archers behind sandbags or stone walls, and up to three melee fighters just outside a one-tile doorway so raiders come through one at a time.</li>
-      <li>Build the killbox in stone, never wood, and keep weapons and armor in an armory close to the line.</li>
-    </advice>
+    <sections>
+      <li>
+        <heading>How raiders pick a path</heading>
+        <text>Raiders take the easiest open route. They treat a door they would have to break as a waste of effort, and each trap they know about adds a path cost of 40, so a heavily trapped lane can push them to another way in. Sapper, smart and breaching raiders know where about 30% of your traps are.</text>
+      </li>
+      <li>
+        <heading>Building one</heading>
+        <points>
+          <li>Leave one inviting entrance and close every other route with walls and doors.</li>
+          <li>Line the approach with traps, keeping explosive traps away from where your own people will stand.</li>
+          <li>Give your shooters cover with a clear firing lane. Walls, doors and natural rock give 75% cover; sandbags and barricades 55%.</li>
+          <li>Keep an inner fallback line behind the first.</li>
+          <li>Build it in stone, never wood. Things ignite above 235 °C and embers jump 2 tiles, so wood in a killbox is a fire trap for you.</li>
+          <li>Keep weapons and armor in an armory close to the line.</li>
+        </points>
+      </li>
+      <li>
+        <heading>Without turrets</heading>
+        <text>Put archers behind sandbags or stone walls, and up to three melee fighters just outside a one-tile doorway, so raiders come through one at a time.</text>
+      </li>
+    </sections>
     <keywords>
       <li>killbox</li>
       <li>chokepoint</li>
@@ -172,21 +212,42 @@
     <summary>What stops bullets, by how much, and from which angle</summary>
     <tip>Cover works best when the shot comes straight at it.</tip>
     <description>Cover lowers the chance a shot reaches whoever is behind it. How much depends on what the cover is, the angle of the shot and how close the shooter stands. Raiders use it as well as your colonists, so a tree in your firing lane gives them 25% cover.</description>
-    <facts>
-      <li>Walls, natural rock and doors: 75%. Sandbags and barricades: 55%. Chunks and rubble: 50%.</li>
-      <li>Furniture such as beds, armchairs, bookcases and game tables: 40%. Saguaro cactus 35%, trees 25%, bushes 20%.</li>
-      <li>Turrets give 50% cover, the auto mortar 40%.</li>
-      <li>Angle matters: under 15° off the line of fire the cover counts 100%, then 80% to 27°, 60% to 40°, 40% to 52°, 20% to 65°, and nothing beyond.</li>
-      <li>Cover only works at 33% when the shooter stands right in front of it, and 67% from one tile away.</li>
-      <li>Hit points: walls, sandbags, barricades and chunks 300; doors 160; rubble 50.</li>
-      <li>Fence values are disputed: one list gives 25%, another gives fence gates 75% and ancient fences 55%.</li>
-    </facts>
-    <advice>
-      <li>Put sandbags or barricades where your shooters stand, facing the expected approach head-on.</li>
-      <li>Cut trees and haul chunks and rubble out of your firing lanes before a raid.</li>
-      <li>Stop raiders before they reach your sandbags, with traps or melee fighters on the approach.</li>
-      <li>Sandbags and barricades need no power, so they are the backbone of any defense without turrets.</li>
-    </advice>
+    <sections>
+      <li>
+        <heading>Cover values</heading>
+        <table>
+          <li>What | Cover</li>
+          <li>Walls, natural rock, doors | 75%</li>
+          <li>Sandbags, barricades | 55%</li>
+          <li>Chunks, rubble | 50%</li>
+          <li>Turrets | 50%</li>
+          <li>Furniture (beds, armchairs, bookcases, game tables) | 40%</li>
+          <li>Auto mortar | 40%</li>
+          <li>Saguaro cactus | 35%</li>
+          <li>Trees | 25%</li>
+          <li>Bushes | 20%</li>
+        </table>
+        <after>Hit points decide how long the cover lasts: walls, sandbags, barricades and chunks have 300, doors 160 and rubble 50. Fence values are disputed. One list gives 25%; another gives fence gates 75% and ancient fences 55%.</after>
+      </li>
+      <li>
+        <heading>Angle and distance</heading>
+        <text>Cover counts in full only when the shot comes nearly straight at it. The further the shot is off the line, the less it gives:</text>
+        <table>
+          <li>Angle off the line of fire | Cover counts</li>
+          <li>Under 15° | 100%</li>
+          <li>Up to 27° | 80%</li>
+          <li>Up to 40° | 60%</li>
+          <li>Up to 52° | 40%</li>
+          <li>Up to 65° | 20%</li>
+          <li>Beyond 65° | Nothing</li>
+        </table>
+        <after>Distance matters too. Cover only works at 33% when the shooter stands right in front of it, and at 67% from one tile away. Stop raiders before they reach your sandbags, with traps or melee fighters on the approach.</after>
+      </li>
+      <li>
+        <heading>Setting up a firing line</heading>
+        <text>Put sandbags or barricades where your shooters stand, facing the expected approach head-on. Before a raid, cut the trees and haul chunks and rubble out of your firing lanes. Sandbags and barricades need no power, so they are the backbone of any defense without turrets.</text>
+      </li>
+    </sections>
     <keywords>
       <li>cover</li>
       <li>sandbags</li>
@@ -213,22 +274,32 @@
     <summary>Cheap single-use defenses, and the main defense of a colony without power</summary>
     <tip>Your own colonists spring a trap about 1 time in 200.</tip>
     <description>A trap fires once when a pawn steps on it, then must be rearmed or rebuilt. Enemies almost always set them off and your own people almost never do. For a colony without power, spike traps along the approach do much of a turret's job.</description>
-    <facts>
-      <li>Trigger chance: enemies, including mechanoids and manhunting animals, 100%. Wild animals 20% for spike traps and 5% for IEDs. Wild men 30%. Colonists, tame animals, slaves and friendly mechs 0.5% (1 in 200).</li>
-      <li>Nimble pawns are a tenth as likely to set one off.</li>
-      <li>Friendly visitors never trigger traps. Sapper, smart and breaching raiders know about 30% of them and step around those.</li>
-      <li>Traps can't be built next to each other, and each known trap adds a path cost of 40.</li>
-      <li>A wooden spike trap deals about 40 damage.</li>
-      <li>IEDs explode when bullets hit them. Types include high-explosive, incendiary, EMP, firefoam, smoke and antigrain; tox needs Biotech and deadlife needs Anomaly.</li>
-      <li>Colonists can still spring a trap while uninstalling it, hauling on its tile or when you draft them onto it.</li>
-    </facts>
-    <advice>
-      <li>Put traps on the easy approach routes, and protect your own path with doors so raiders prefer the trapped one.</li>
-      <li>Keep IEDs away from your firing positions and from walls you care about.</li>
-      <li>Route drafted colonists around trap tiles, and keep haulers out of trap lanes with an allowed area.</li>
-      <li>Without power, line the corridor that leads to your doorway with spike traps, leaving a gap between each.</li>
-      <li>Rebuild spike traps in steel or better once you have it to spare.</li>
-    </advice>
+    <sections>
+      <li>
+        <heading>Who sets them off</heading>
+        <table>
+          <li>Who steps on it | Chance</li>
+          <li>Enemies, including mechanoids and manhunting animals | 100%</li>
+          <li>Wild men | 30%</li>
+          <li>Wild animals | 20% for spike traps, 5% for IEDs</li>
+          <li>Colonists, tame animals, slaves, friendly mechs | 0.5% (1 in 200)</li>
+          <li>Friendly visitors | Never</li>
+        </table>
+        <after>Nimble pawns are a tenth as likely to set one off. Sapper, smart and breaching raiders know about 30% of your traps and step around those.
+
+Your own colonists can still spring a trap while uninstalling it, hauling on its tile or when you draft them onto it. Route drafted colonists around trap tiles, and keep haulers out of trap lanes with an allowed area.</after>
+      </li>
+      <li>
+        <heading>Spike traps and IEDs</heading>
+        <text>A wooden spike trap deals about 40 damage. Rebuild yours in steel or better once you have it to spare.
+
+IEDs explode when bullets hit them, so keep them away from your firing positions and from walls you care about. Types include high-explosive, incendiary, EMP, firefoam, smoke and antigrain; tox needs Biotech and deadlife needs Anomaly.</text>
+      </li>
+      <li>
+        <heading>Laying them out</heading>
+        <text>Traps can't be built next to each other, and each known trap adds a path cost of 40. Put them on the easy approach routes, and protect your own path with doors so raiders prefer the trapped one. Without power, line the corridor that leads to your doorway with spike traps, leaving a gap between each.</text>
+      </li>
+    </sections>
     <keywords>
       <li>trap</li>
       <li>spike trap</li>
@@ -254,20 +325,33 @@
     <summary>Powered guns that need no colonist, and what they cost to keep</summary>
     <tip>Every turret you build adds to the size of the next raid.</tip>
     <description>Turrets give you guns that don't need a colonist, but every one needs power and steel to keep firing. They also add to your wealth and go silent in a solar flare. Use a few at your chokepoint to support your shooters, not as your whole defense.</description>
-    <facts>
-      <li>Every turret needs power and uses resources to rearm; the cost depends on difficulty.</li>
-      <li>Mini-turret: weak, short-ranged, small and cheap. Uranium slug turret: slow and costly, with very high damage, range and accuracy.</li>
-      <li>Autocannon turret: 380 HP, range 32.9 tiles (minimum 8.9), 150 W. Costs 350 steel, 40 plasteel and 6 components.</li>
-      <li>The autocannon fires 3-shot bursts and rearms with 180 steel per 90 rounds. It gives 50% cover and is 70% flammable.</li>
-      <li>Turrets are buildings, so they count at half value toward raid strength.</li>
-      <li>A solar flare shuts every turret down.</li>
-    </facts>
-    <advice>
-      <li>Place turrets behind your chokepoint where your shooters can cover them, and keep spare steel for rearming.</li>
-      <li>Build only as many turrets as your shooters can support and keep supplied.</li>
-      <li>Arm your colonists as if the turrets weren't there, so a flare during a raid doesn't leave the line empty.</li>
-      <li>Without power, use spike traps, sandbags, archers behind cover and melee fighters at the door. Mortars need no power either, once researched.</li>
-    </advice>
+    <sections>
+      <li>
+        <heading>The three turrets</heading>
+        <text>The mini-turret is weak, short-ranged, small and cheap. The uranium slug turret is slow and costly, with very high damage, range and accuracy. The autocannon turret in numbers:</text>
+        <table>
+          <li>Autocannon turret | Value</li>
+          <li>Hit points | 380</li>
+          <li>Range | 32.9 tiles (minimum 8.9)</li>
+          <li>Power | 150 W</li>
+          <li>Cost | 350 steel, 40 plasteel, 6 components</li>
+          <li>Fire | 3-shot bursts</li>
+          <li>Rearming | 180 steel per 90 rounds</li>
+          <li>Cover | 50%</li>
+          <li>Flammability | 70%</li>
+        </table>
+      </li>
+      <li>
+        <heading>Keeping them firing</heading>
+        <text>Every turret needs power and uses resources to rearm; the cost depends on difficulty. Place turrets behind your chokepoint where your shooters can cover them, keep spare steel for rearming, and build only as many as your shooters can support and keep supplied. Turrets are buildings, so they count at half value toward raid strength.
+
+A solar flare shuts every turret down. Arm your colonists as if the turrets weren't there, so a flare during a raid doesn't leave the line empty.</text>
+      </li>
+      <li>
+        <heading>Without power</heading>
+        <text>Use spike traps, sandbags, archers behind cover and melee fighters at the door. Mortars need no power either, once researched.</text>
+      </li>
+    </sections>
     <keywords>
       <li>turret</li>
       <li>mini-turret</li>
@@ -293,18 +377,24 @@
     <summary>Badly damaged turrets can blow up, so space them out</summary>
     <tip>A badly damaged autocannon turret gives about 4 seconds of warning before it explodes.</tip>
     <description>A badly damaged turret may explode a few seconds later and hurt everything nearby, including the next turret along. In a tight row, one explosion can set off the next turret and the one after it. Space them out and repair them between waves.</description>
-    <facts>
-      <li>Autocannon turret: once its health falls below 20% there is a 50% chance it explodes for 50 Bomb damage in a 5.9-tile radius, 240 ticks (about 4 seconds) later.</li>
-      <li>The mini-turret also explodes when badly damaged, over a smaller radius of about 3 tiles.</li>
-      <li>A mortar damaged below a third of its health may explode for 50 Bomb damage in 4.9 tiles.</li>
-      <li>Bomb damage is ×8 against walls, ×4 against other solid structures and plants, and ×2 against buildings you can walk through.</li>
-    </facts>
-    <advice>
-      <li>Keep autocannon turrets about 6 tiles or more apart so one blast can't reach the next.</li>
-      <li>Keep turrets off wooden floors and away from where your colonists stand to fight.</li>
-      <li>Repair turrets with low health bars right after each wave.</li>
-      <li>IEDs behave the same way under fire: a stray bullet sets them off, so keep them clear of your own lines.</li>
-    </advice>
+    <sections>
+      <li>
+        <heading>What explodes, and how far</heading>
+        <table>
+          <li>Building | When it goes | Blast</li>
+          <li>Autocannon turret | Below 20% health: a 50% chance, 240 ticks (about 4 seconds) later | 50 Bomb damage in a 5.9-tile radius</li>
+          <li>Mini-turret | When badly damaged | A smaller radius of about 3 tiles</li>
+          <li>Mortar | Below a third of its health, it may explode | 50 Bomb damage in 4.9 tiles</li>
+        </table>
+        <after>Bomb damage is ×8 against walls, ×4 against other solid structures and plants, and ×2 against buildings you can walk through.</after>
+      </li>
+      <li>
+        <heading>Spacing and repair</heading>
+        <text>Keep autocannon turrets about 6 tiles or more apart, so one blast can't reach the next. Keep turrets off wooden floors and away from where your colonists stand to fight, and repair any with a low health bar right after each wave.
+
+IEDs behave the same way under fire: a stray bullet sets them off, so keep them clear of your own lines.</text>
+      </li>
+    </sections>
     <keywords>
       <li>turret explosion</li>
       <li>blast radius</li>
@@ -328,21 +418,33 @@
     <summary>Map-wide artillery that needs no power, only a gunner and shells</summary>
     <tip>A mortar needs a gunner, shells and open sky, but no power.</tip>
     <description>A mortar can shell anywhere on the map, ignoring line of sight, as long as someone mans it. It is slow and inaccurate, but it is the best answer to a siege and to a mechanoid cluster you'd rather not walk up to. It needs no electricity, so a medieval colony can use one once it has the research.</description>
-    <facts>
-      <li>Range 500 tiles, minimum 29.9. Warm-up 240 ticks; cooldown 1,680 ticks, which only counts down while manned.</li>
-      <li>Cost: 50 metal (500 for small-volume metals), 1 reinforced barrel and 6 components; 2,000 ticks of work at Construction 5. It can't be bought.</li>
-      <li>Each reinforced barrel lasts 20 shots. Sieges are a good source of barrels.</li>
-      <li>A mortar can't fire from under a roof, and incoming shells are stopped only by overhead mountain.</li>
-      <li>Shells: high-explosive 50 Bomb in 2.9 tiles; EMP 50 in 8.9; incendiary 10 Flame in 2.9; firefoam 5 tiles; smoke 7.2; antigrain warhead 550 in 14.9.</li>
-      <li>Accuracy is poor: the base miss radius is 9 tiles.</li>
-      <li>The mortar research costs 2,000, or 4,000 on a tribal start.</li>
-    </facts>
-    <advice>
-      <li>Build mortars in the open, never under a roof, and use several so their misses overlap on the target.</li>
-      <li>Store shells in small stone rooms away from the mortars, so one hit doesn't set off the whole stack.</li>
-      <li>Use EMP shells on mechanoids and high-explosive on camps.</li>
-      <li>On a tribal start, budget for the 4,000-point research early: a mortar is your only long-range answer to a siege.</li>
-    </advice>
+    <sections>
+      <li>
+        <heading>Getting one</heading>
+        <text>The mortar research costs 2,000, or 4,000 on a tribal start. A tribe should budget for it early, because a mortar is its only long-range answer to a siege.
+
+Building one takes 50 metal (500 for small-volume metals), 1 reinforced barrel and 6 components, and 2,000 ticks of work at Construction 5. Mortars can't be bought. Each reinforced barrel lasts 20 shots, and sieges are a good source of barrels.</text>
+      </li>
+      <li>
+        <heading>Firing</heading>
+        <text>Range is 500 tiles, with a minimum of 29.9. Warm-up takes 240 ticks, and the cooldown of 1,680 ticks only counts down while the mortar is manned. Accuracy is poor, with a base miss radius of 9 tiles, so use several mortars and let their misses overlap on the target.
+
+A mortar can't fire from under a roof, so build it in the open. Incoming shells are stopped only by overhead mountain.</text>
+      </li>
+      <li>
+        <heading>Shells</heading>
+        <table>
+          <li>Shell | Effect</li>
+          <li>High-explosive | 50 Bomb in 2.9 tiles</li>
+          <li>EMP | 50 in 8.9 tiles</li>
+          <li>Incendiary | 10 Flame in 2.9 tiles</li>
+          <li>Firefoam | 5 tiles</li>
+          <li>Smoke | 7.2 tiles</li>
+          <li>Antigrain warhead | 550 in 14.9 tiles</li>
+        </table>
+        <after>Use EMP shells on mechanoids and high-explosive on camps. Store shells in small stone rooms away from the mortars, so one hit doesn't set off the whole stack.</after>
+      </li>
+    </sections>
     <keywords>
       <li>mortar</li>
       <li>artillery</li>
@@ -366,19 +468,25 @@
     <order>100</order>
     <summary>Raiders who dig in at the edge of the map and shell you</summary>
     <tip>A siege camp keeps getting fresh shells, so waiting it out doesn't work.</tip>
-    <description>Siegers walk in from the map edge, have their supplies dropped in by pod, build sandbags and mortars, and shells your colony from a distance. It keeps getting resupplied and attacks after a few days anyway. Your chokepoint does nothing against shells, so you need to break the camp or make them attack early on your terms.</description>
-    <facts>
-      <li>The besiegers build sandbags and mortars, receive food and shells, and fire at colonists, buildings and other hostiles.</li>
-      <li>They assault directly after a few days, as soon as their mortars are destroyed or can't be built, or after heavy casualties.</li>
-      <li>Stealing a material they need, such as their components, can disrupt the siege.</li>
-      <li>Mortar shells are stopped only by overhead mountain. Built roofs and thin rock roofs don't stop them.</li>
-    </facts>
-    <advice>
-      <li>Shell the camp with your own mortars, or snipe it with your longest-range gun to force an early assault. A psychic animal pulser also works.</li>
-      <li>Keep colonists under overhead mountain or out of shell range while the camp stands.</li>
-      <li>Without mortars, provoke them with your longest bows, or slip in and steal their components, then meet the assault at your chokepoint.</li>
-      <li>Afterward, deconstruct or salvage what they leave: their mortars are a source of reinforced barrels.</li>
-    </advice>
+    <description>Siegers walk in from the map edge, have their supplies dropped in by pod, build sandbags and mortars, and shell your colony from a distance. The camp keeps getting resupplied and attacks after a few days anyway. Your chokepoint does nothing against shells, so you need to break the camp or make them attack early on your terms.</description>
+    <sections>
+      <li>
+        <heading>How a siege goes</heading>
+        <text>The besiegers build sandbags and mortars, receive food and shells, and fire at colonists, buildings and other hostiles. Their shells are stopped only by overhead mountain; built roofs and thin rock roofs don't stop them. While the camp stands, keep colonists under overhead mountain or out of shell range.
+
+They assault directly after a few days, as soon as their mortars are destroyed or can't be built, or after heavy casualties. Stealing a material they need, such as their components, can disrupt the siege.</text>
+      </li>
+      <li>
+        <heading>Breaking the camp</heading>
+        <points>
+          <li>Shell the camp with your own mortars.</li>
+          <li>Snipe it with your longest-range gun to force an early assault. Without mortars or guns, provoke them with your longest bows.</li>
+          <li>Set off a psychic animal pulser.</li>
+          <li>Slip in and steal their components.</li>
+        </points>
+        <after>Whichever you choose, meet the assault at your chokepoint. Afterward, deconstruct or salvage what they leave: their mortars are a source of reinforced barrels.</after>
+      </li>
+    </sections>
     <keywords>
       <li>siege</li>
       <li>mortar</li>
@@ -403,19 +511,22 @@
     <summary>Raiders who dig or smash through your walls instead of using the door</summary>
     <tip>Sappers dig toward your bedrooms, not your front gate.</tip>
     <description>Sappers dig through walls and rock to make the shortest route to a colonist's bedroom, ignoring your killbox entirely. Breachers smash any wall in their way instead of aiming for a particular spot. Either way, the fight happens inside your walls rather than at the gate.</description>
-    <facts>
-      <li>Sappers mine or destroy walls to open the shortest route to a colonist's bedroom.</li>
-      <li>Sapper groups are smaller than other raid types for the same raid points.</li>
-      <li>Breachers attack walls in their path indiscriminately rather than targeting one spot.</li>
-      <li>Sapper, smart and breaching raiders know where about 30% of your traps are.</li>
-    </facts>
-    <advice>
-      <li>Keep shooters behind inner walls near the likely breach points, and make outer walls tough.</li>
-      <li>Double important walls with a one-tile gap between them, so repairers aren't standing in the fire.</li>
-      <li>Leave an open route in, so the shortest path doesn't run through your bedrooms.</li>
-      <li>Keep a mobile squad ready to intercept the group before it reaches the beds.</li>
-      <li>Without turrets, station melee fighters inside the wall nearest the bedrooms with archers behind them.</li>
-    </advice>
+    <sections>
+      <li>
+        <heading>How they get in</heading>
+        <text>Sappers mine or destroy walls to open the shortest route to a colonist's bedroom, and their groups are smaller than other raid types for the same raid points. Breachers attack walls in their path indiscriminately rather than targeting one spot. Sapper, smart and breaching raiders all know where about 30% of your traps are.</text>
+      </li>
+      <li>
+        <heading>Defending the inside</heading>
+        <points>
+          <li>Leave an open route in, so the shortest path doesn't run through your bedrooms.</li>
+          <li>Make outer walls tough, and double important ones with a one-tile gap between them, so repairers aren't standing in the fire.</li>
+          <li>Keep shooters behind inner walls near the likely breach points.</li>
+          <li>Keep a mobile squad ready to intercept the group before it reaches the beds.</li>
+          <li>Without turrets, station melee fighters inside the wall nearest the bedrooms, with archers behind them.</li>
+        </points>
+      </li>
+    </sections>
     <keywords>
       <li>sappers</li>
       <li>breachers</li>
@@ -440,19 +551,20 @@
     <summary>Raids that land by pod in the middle of your base or across the map</summary>
     <tip>Only overhead mountain stops a drop pod. Built roofs don't.</tip>
     <description>Drop pod raids skip the map edge. A center drop lands right on top of a colonist and attacks immediately; a scatter drop spreads its pods all over the map. Your killbox won't help, so your people need weapons and cover close to where they live and work.</description>
-    <facts>
-      <li>Center drop: attacks immediately, centered on a colonist.</li>
-      <li>If you have an unroofed orbital trade beacon, a center drop has a 40% chance to land on it instead.</li>
-      <li>Scatter drop: the pods go haywire and land all across the map.</li>
-      <li>Pods break through built roofs and thin rock roofs, but not overhead mountain.</li>
-      <li>Tribal-level factions cannot use drop pods. Center drop raids are smaller than their raid points suggest.</li>
-    </facts>
-    <advice>
-      <li>Keep your people spread out near cover inside the base rather than bunched in one room.</li>
-      <li>Put an unroofed orbital trade beacon somewhere you can defend, away from the bedrooms, or roof it.</li>
-      <li>Store weapons near the living quarters, not only at the front gate.</li>
-      <li>Even a tribe gets pods from pirates: keep spears and bows within reach of the beds.</li>
-    </advice>
+    <sections>
+      <li>
+        <heading>Where they land</heading>
+        <text>A center drop is centered on a colonist and attacks immediately. If you have an unroofed orbital trade beacon, it has a 40% chance to land on the beacon instead, so put the beacon somewhere you can defend, away from the bedrooms, or roof it. Center drop raids are smaller than their raid points suggest.
+
+In a scatter drop the pods go haywire and land all across the map. Either kind breaks through built roofs and thin rock roofs, but not overhead mountain.</text>
+      </li>
+      <li>
+        <heading>Being ready</heading>
+        <text>Keep your people spread out near cover inside the base rather than bunched in one room, and store weapons near the living quarters, not only at the front gate.
+
+Tribal-level factions cannot use drop pods, but even a tribe gets pods from pirates. Keep spears and bows within reach of the beds.</text>
+      </li>
+    </sections>
     <keywords>
       <li>drop pods</li>
       <li>center drop</li>
@@ -476,20 +588,21 @@
     <summary>Mad animals circle the base for a day or two, then wander off</summary>
     <tip>Manhunters can't open doors, but they will break one down to reach a colonist they saw go in.</tip>
     <description>A manhunter pack is a group of maddened animals that attacks any human it can reach. They can't open doors, so the safest answer is usually to stay inside and shoot from behind walls until they leave. The danger is the colonist caught outside, or the one who bolts indoors in plain sight.</description>
-    <facts>
-      <li>A pack gets 40% more points than a normal raid, and even a single animal can count as a pack.</li>
-      <li>The species is picked from the local wildlife, limited to animals that can pass fences.</li>
-      <li>The animals hang around the base for 24 to 54 in-game hours, then leave if they aren't killed.</li>
-      <li>They can't pass doors, but they will break one down if they see a colonist run behind it.</li>
-      <li>Manhunting animals trigger traps 100% of the time.</li>
-      <li>Animals killed while carrying scaria can rot instantly, which ruins the meat.</li>
-    </facts>
-    <advice>
-      <li>Restrict everyone to an indoor allowed area until the pack leaves.</li>
-      <li>Shoot through a doorway or from behind walls, and let the traps do some work.</li>
-      <li>Call colonists home as soon as the letter arrives, before the pack sees them.</li>
-      <li>Even a tribe with only bows does well here, because animals can't shoot back at a colonist behind a wall.</li>
-    </advice>
+    <sections>
+      <li>
+        <heading>The pack</heading>
+        <text>A pack gets 40% more points than a normal raid, and even a single animal can count as a pack. The species is picked from the local wildlife, limited to animals that can pass fences. The animals hang around the base for 24 to 54 in-game hours, then leave if they aren't killed. Animals killed while carrying scaria can rot instantly, which ruins the meat.</text>
+      </li>
+      <li>
+        <heading>When the letter arrives</heading>
+        <points>
+          <li>Call colonists home right away, before the pack sees them.</li>
+          <li>Restrict everyone to an indoor allowed area until the pack leaves.</li>
+          <li>Shoot through a doorway or from behind walls, and let the traps do some work: manhunting animals trigger them 100% of the time.</li>
+        </points>
+        <after>The animals can't pass doors, but they will break one down if they see a colonist run behind it. Even a tribe with only bows does well here, because animals can't shoot back at a colonist behind a wall.</after>
+      </li>
+    </sections>
     <keywords>
       <li>manhunter</li>
       <li>mad animals</li>
@@ -514,19 +627,26 @@
     <summary>A sleeping mechanoid base lands nearby; wake it on your terms</summary>
     <tip>A proximity activator wakes the cluster when a human comes within about 13 tiles.</tip>
     <description>A mechanoid cluster drops a small fortified base of walls, turrets and mechanoids near your colony. It arrives asleep and wakes when you come close, when you damage it, or when a timer runs out. The mechanoids never leave, so you choose when and how to fight.</description>
-    <facts>
-      <li>With Royalty, clusters can appear once raid points reach 400.</li>
-      <li>A cluster has walls, turrets and unstable power cells, and may carry condition causers such as sun blockers or EMP dynamos.</li>
-      <li>Activators wake it by proximity or over time. A proximity activator goes off when a human comes within about 13 tiles.</li>
-      <li>Any damage to any part, or construction within 2 tiles of a mechanoid or mech building, also wakes it.</li>
-      <li>Auto charge turrets guard the cluster: always hostile, and they never need rearming.</li>
-      <li>The mechanoids stay until they are destroyed.</li>
-    </facts>
-    <advice>
-      <li>Leave it asleep until you are ready, and keep colonists, haulers and blueprints well clear.</li>
-      <li>Shell it from out of its range with mortars; EMP shells are best against mechanoids.</li>
-      <li>Without mortars, prepare a fallback line before it wakes: some clusters wake on a timer whatever you do.</li>
-    </advice>
+    <sections>
+      <li>
+        <heading>What lands</heading>
+        <text>With Royalty, clusters can appear once raid points reach 400. A cluster has walls, turrets and unstable power cells, and may carry condition causers such as sun blockers or EMP dynamos. Auto charge turrets guard it; they are always hostile and never need rearming. The mechanoids stay until they are destroyed.</text>
+      </li>
+      <li>
+        <heading>What wakes it</heading>
+        <table>
+          <li>Trigger | Wakes the cluster when</li>
+          <li>Proximity activator | A human comes within about 13 tiles</li>
+          <li>Activator on a timer | Enough time has passed</li>
+          <li>Damage | Any part of it takes damage</li>
+          <li>Construction | Anything is built within 2 tiles of a mechanoid or mech building</li>
+        </table>
+      </li>
+      <li>
+        <heading>Taking it apart</heading>
+        <text>Leave it asleep until you are ready, and keep colonists, haulers and blueprints well clear. Then shell it from out of its range with mortars; EMP shells are best against mechanoids. Without mortars, prepare a fallback line before it wakes, because some clusters wake on a timer whatever you do.</text>
+      </li>
+    </sections>
     <keywords>
       <li>mech cluster</li>
       <li>mechanoid cluster</li>
@@ -551,21 +671,31 @@
     <summary>Insect hives that grow under warm, dark mountain rock</summary>
     <tip>Overhead mountain stops drop pods and shells, and it is also where insects nest.</tip>
     <description>Insects can burrow up under overhead mountain near your colony and build hives that keep spreading. Every mountain base carries this risk. Walls or deep cold can make your rock almost insect-proof.</description>
-    <facts>
-      <li>A natural infestation needs a spot under overhead mountain, warmer than -17 °C, within 30 tiles of your buildings, and not inside a 1×1 enclosed space.</li>
-      <li>Insects prefer dark areas far from open sky. Below -8 °C the chance gradually drops.</li>
-      <li>Random infestations come at most once every 20 days, and never once the map has 30 or more hives.</li>
-      <li>Size scales with raid points. Left alone, an infestation grows past 30 hives.</li>
-      <li>Only walls stop spawns; doors and columns don't. A wall on every second tile is enough, because a valid spot needs more than 1×1 of open mountain.</li>
-      <li>Deep drilling can also bring insects, with no hives and no mountain needed. With Biotech, wastepack infestations hatch from stasis cocoons.</li>
-    </facts>
-    <advice>
-      <li>Wall off or fill unused mountain space, including old mining tunnels.</li>
-      <li>Alternatively, keep every overhead-mountain tile at or below -17 °C with coolers. A solar flare breaks this, so walls are safer.</li>
-      <li>Light the mountain rooms you use and keep them close to open sky where you can.</li>
-      <li>Without power you can't freeze the rock: build walls, and don't dig out more mountain than you need.</li>
-      <li>Fight hives from a doorway at range. Insect bites carry a high infection risk.</li>
-    </advice>
+    <sections>
+      <li>
+        <heading>Where insects can spawn</heading>
+        <text>A natural infestation needs a spot that is all of these:</text>
+        <points>
+          <li>Under overhead mountain</li>
+          <li>Warmer than -17 °C</li>
+          <li>Within 30 tiles of your buildings</li>
+          <li>Not inside a 1×1 enclosed space</li>
+        </points>
+        <after>Insects prefer dark areas far from open sky, and below -8 °C the chance gradually drops. Deep drilling can also bring insects, with no hives and no mountain needed. With Biotech, wastepack infestations hatch from stasis cocoons.</after>
+      </li>
+      <li>
+        <heading>How often, how big</heading>
+        <text>Random infestations come at most once every 20 days, and never once the map has 30 or more hives. Their size scales with raid points, and left alone, an infestation grows past 30 hives.</text>
+      </li>
+      <li>
+        <heading>Insect-proofing the rock</heading>
+        <text>Only walls stop spawns; doors and columns don't. A wall on every second tile is enough, because a valid spot needs more than 1×1 of open mountain. Wall off or fill unused mountain space, including old mining tunnels, and don't dig out more mountain than you need. Light the mountain rooms you use and keep them close to open sky where you can.
+
+With power, you can instead keep every overhead-mountain tile at or below -17 °C with coolers, but a solar flare breaks this, so walls are safer. Without power you can't freeze the rock, so build walls.
+
+When hives do appear, fight them from a doorway at range. Insect bites carry a high infection risk.</text>
+      </li>
+    </sections>
     <keywords>
       <li>infestation</li>
       <li>insects</li>
@@ -591,20 +721,18 @@
     <summary>Days of poison from the sky: stay under a roof</summary>
     <tip>Every hour outdoors during fallout adds to toxic buildup.</tip>
     <description>Toxic fallout poisons everything outdoors for days. Pawns build up toxins, outdoor crops wither, and long exposure can leave permanent brain damage or cancer. The fix is to roof the walkways, the workplaces and the barn.</description>
-    <facts>
-      <li>Lasts 2.5 to 10.5 days, never before day 60, with a 90-day cooldown.</li>
-      <li>Pawns outside build toxic buildup at 40% per day. Animals have 50% toxic resistance; insects and mechanoids are immune.</li>
-      <li>Being outdoors during fallout costs -5 mood.</li>
-      <li>From 40% buildup (about 24 hours outside) there is a risk of permanent dementia or carcinoma. 100% kills.</li>
-      <li>All outdoor plants wither except anima trees, anima grass, Gauranlen trees and pods, and polux trees. Roofed crops survive, but rot without a sun lamp.</li>
-      <li>With Biotech, a face mask gives +50% and a gas mask +80% toxic environment resistance.</li>
-    </facts>
-    <advice>
-      <li>Build roofed walkways between the places people work, and set an allowed area that stays under roofs.</li>
-      <li>Pull anyone whose buildup reaches "moderate" indoors and keep them there.</li>
-      <li>Keep a backup sun lamp over a roofed field so you can still grow food.</li>
-      <li>Without sun lamps, harvest whatever is ready when the fallout starts, eat from your preserved stores and keep animals in a roofed barn.</li>
-    </advice>
+    <sections>
+      <li>
+        <heading>People outdoors</heading>
+        <text>Fallout lasts 2.5 to 10.5 days. It never comes before day 60 and has a 90-day cooldown. Pawns outside build toxic buildup at 40% per day, and being outdoors during fallout costs -5 mood. From 40% buildup, about 24 hours outside, there is a risk of permanent dementia or carcinoma; 100% kills. Animals have 50% toxic resistance, and insects and mechanoids are immune. With Biotech, a face mask gives +50% and a gas mask +80% toxic environment resistance.
+
+Build roofed walkways between the places people work, and set an allowed area that stays under roofs. Pull anyone whose buildup reaches "moderate" indoors and keep them there.</text>
+      </li>
+      <li>
+        <heading>Crops and animals</heading>
+        <text>All outdoor plants wither except anima trees, anima grass, Gauranlen trees and pods, and polux trees. Roofed crops survive, but rot without a sun lamp, so keep a backup sun lamp over a roofed field to go on growing food. Without sun lamps, harvest whatever is ready when the fallout starts, eat from your preserved stores and keep animals in a roofed barn.</text>
+      </li>
+    </sections>
     <keywords>
       <li>toxic fallout</li>
       <li>toxic buildup</li>
@@ -630,19 +758,20 @@
     <summary>Every powered device stops, for up to half a day</summary>
     <tip>Campfires, fueled stoves and torches keep working through a solar flare.</tip>
     <description>A solar flare shuts down every powered device on the map: lights, benches, coolers, turrets and hydroponics. It doesn't last long, but a warming freezer and silent turrets at the wrong moment can cost you food or colonists.</description>
-    <facts>
-      <li>Lasts 0.15 to 0.5 days, and can't be prevented in the base game.</li>
-      <li>Unpowered devices are immune.</li>
-      <li>Freezers stop cooling and turrets don't fire. With Biotech, combat mechs may wander when band nodes are off.</li>
-      <li>Passive coolers can't go below 17 °C, so they won't save a freezer.</li>
-      <li>Soil crops in a greenhouse survive a power cut if they stay warm, so the cold is the real danger there. One campfire in the room, lit only when needed, can keep a greenhouse warm at -40 °C outside.</li>
-    </facts>
-    <advice>
-      <li>Double-wall your freezer so it holds the cold through a flare, and freeze food promptly after collecting it.</li>
-      <li>Keep wood-fueled versions of key buildings, such as a fueled stove and fueled smithy, as backups.</li>
-      <li>Keep colonists armed: turrets are useless during a flare.</li>
-      <li>A tribal colony can ignore flares until its first powered building goes up.</li>
-    </advice>
+    <sections>
+      <li>
+        <heading>What stops, and the backup for each</heading>
+        <text>A flare lasts 0.15 to 0.5 days and can't be prevented in the base game. Unpowered devices are immune, so a tribal colony can ignore flares until its first powered building goes up. Everyone else needs an unpowered backup for what matters most:</text>
+        <table>
+          <li>In a flare | Have ready</li>
+          <li>The freezer stops cooling | A double-walled freezer that holds the cold, with food frozen promptly after collecting it</li>
+          <li>Turrets don't fire | Armed colonists</li>
+          <li>Powered work buildings stop | Wood-fueled versions, such as a fueled stove and fueled smithy</li>
+          <li>A greenhouse loses its heat | One campfire in the room, lit only when needed, which can keep it warm at -40 °C outside</li>
+        </table>
+        <after>Passive coolers can't go below 17 °C, so they won't save a freezer. Soil crops in a greenhouse survive a power cut if they stay warm, so the cold is the real danger there. With Biotech, combat mechs may wander when band nodes are off.</after>
+      </li>
+    </sections>
     <keywords>
       <li>solar flare</li>
       <li>power outage</li>
@@ -668,19 +797,27 @@
     <summary>A few days of brutal temperature, and how to ride them out</summary>
     <tip>Heat waves hit the freezer hardest; cold snaps hit crops and anyone working outside.</tip>
     <description>A heat wave pushes temperatures up to 17 °C higher for a few days; a cold snap drops them by 20 °C. Both threaten people working outside, the freezer and the crops. With coolers, heaters and warm clothes ready in advance, neither does much harm.</description>
-    <facts>
-      <li>Heat wave: up to +17 °C for 1.5 to 3.5 days, 30-day cooldown. It only happens where summers go above 20 °C.</li>
-      <li>Cold snap: -20 °C for 1.5 to 3.5 days, 30-day cooldown. It only happens where summer temperatures sit between 0 and 15 °C.</li>
-      <li>Crops begin dying at -10 °C. Harvest exposed crops that are at least 65% grown.</li>
-      <li>Passive coolers only work in an enclosed room and can't cool below 17 °C.</li>
-      <li>Simple meals can feed any animal except wargs.</li>
-    </facts>
-    <advice>
-      <li>Heat: set two electric coolers to different temperatures, such as -5 °C and -10 °C, so one can idle, and double-wall the freezer.</li>
-      <li>Without power, put passive coolers in bedrooms and work rooms to keep people out of heatstroke.</li>
-      <li>Cold: light campfires or heaters indoors, and make jackets, dusters or parkas for anyone who works outside.</li>
-      <li>Keep haygrass or kibble stocked for the animals before the cold comes.</li>
-    </advice>
+    <sections>
+      <li>
+        <table>
+          <li> | Heat wave | Cold snap</li>
+          <li>Temperature | Up to +17 °C | -20 °C</li>
+          <li>Lasts | 1.5 to 3.5 days | 1.5 to 3.5 days</li>
+          <li>Cooldown | 30 days | 30 days</li>
+          <li>Only where | Summers go above 20 °C | Summer temperatures sit between 0 and 15 °C</li>
+        </table>
+      </li>
+      <li>
+        <heading>In a heat wave</heading>
+        <text>The freezer is the first thing at risk. Set two electric coolers to different temperatures, such as -5 °C and -10 °C, so one can idle, and double-wall the freezer.
+
+Without power, put passive coolers in bedrooms and work rooms to keep people out of heatstroke. Passive coolers only work in an enclosed room and can't cool below 17 °C.</text>
+      </li>
+      <li>
+        <heading>In a cold snap</heading>
+        <text>Crops begin dying at -10 °C, so harvest exposed crops that are at least 65% grown. Light campfires or heaters indoors, and make jackets, dusters or parkas for anyone who works outside. Stock haygrass or kibble for the animals before the cold comes; simple meals can feed any animal except wargs.</text>
+      </li>
+    </sections>
     <keywords>
       <li>heat wave</li>
       <li>cold snap</li>
@@ -705,17 +842,22 @@
     <summary>When the sun goes dim for a day, or for a whole season</summary>
     <tip>An eclipse leaves solar panels nearly useless for about a day.</tip>
     <description>An eclipse darkens the sky for about a day: solar panels barely work and outdoor crops slow down. A volcanic winter is the long version, with weeks of dimmer and colder days. Neither kills plants outright, but the cold and empty batteries can.</description>
-    <facts>
-      <li>Eclipse: 0.75 to 1.25 days, 15-day cooldown. Solar panels barely work and outdoor crops grow slightly slower.</li>
-      <li>With Ideology, an eclipse only affects mood under the eclipse precept.</li>
-      <li>Volcanic winter: 7.5 to 40 days, never before day 60, 140-day cooldown. Plants grow slower, solar output falls and temperatures drop.</li>
-      <li>Sources disagree on how dark a volcanic winter gets: one says daylight falls to 86% of normal, another describes 30% less light and a 7 °C drop.</li>
-    </facts>
-    <advice>
-      <li>Don't rely on solar alone: add wind, wood-fired, chemfuel or geothermal power, plus extra batteries.</li>
-      <li>Heated, lit greenhouses keep food growing through a volcanic winter.</li>
-      <li>A tribal colony has no solar power to lose; watch the crops and stock fuel for the colder weeks.</li>
-    </advice>
+    <sections>
+      <li>
+        <heading>Eclipse</heading>
+        <text>An eclipse lasts 0.75 to 1.25 days and has a 15-day cooldown. Solar panels barely work and outdoor crops grow slightly slower. With Ideology, an eclipse only affects mood under the eclipse precept.</text>
+      </li>
+      <li>
+        <heading>Volcanic winter</heading>
+        <text>A volcanic winter lasts 7.5 to 40 days. It never comes before day 60 and has a 140-day cooldown. Plants grow slower, solar output falls and temperatures drop. Sources disagree on how dark it gets: one says daylight falls to 86% of normal, another describes 30% less light and a 7 °C drop.</text>
+      </li>
+      <li>
+        <heading>Power and food through the dark</heading>
+        <text>Don't rely on solar alone. Add wind, wood-fired, chemfuel or geothermal power, plus extra batteries. Heated, lit greenhouses keep food growing through a volcanic winter.
+
+A tribal colony has no solar power to lose. Watch the crops and stock fuel for the colder weeks.</text>
+      </li>
+    </sections>
     <keywords>
       <li>eclipse</li>
       <li>volcanic winter</li>
@@ -740,20 +882,31 @@
     <summary>Build in stone, keep firebreaks and catch fires early</summary>
     <tip>Stone walls don't burn, but whatever is stored against them still can.</tip>
     <description>Fire races through wooden walls, wooden floors and anything stored on them. Most colony fires start at a generator, a battery, a campfire or a stray incendiary. Build important rooms from stone and have a way to put fires out before they reach the stockpile.</description>
-    <facts>
-      <li>Items and structures ignite above 235 °C. Embers travel up to 2 tiles, so firebreaks should be 2 tiles wide.</li>
-      <li>Burning deals 2 heat damage per second however big the flames, ignoring armor penetration. Heat-resistant clothing such as devilstrand helps.</li>
-      <li>Fires are put out by colonists beating them (only inside the home area unless drafted), firefoam, rain on unroofed tiles and explosions.</li>
-      <li>A firefoam popper reaches 10 tiles and a foam turret 20. With Biotech, the foam spray gene covers 3×3.</li>
-      <li>Items on stone shelves can still burn.</li>
-      <li>Firefoam needs the Electricity research first; on a tribal start the Firefoam research costs 1,200.</li>
-    </facts>
-    <advice>
-      <li>Build walls from stone or other non-flammable materials, above all around generators, batteries and kitchens.</li>
-      <li>Put generators and batteries on stone floors, and a firefoam popper in rooms with valuable stock or power equipment.</li>
-      <li>Make the home area cover the whole base so colonists fight fires everywhere.</li>
-      <li>Without firefoam, rely on stone walls, stone floors under campfires and torches, 2-tile firebreaks and plenty of colonists set to firefight.</li>
-    </advice>
+    <sections>
+      <li>
+        <heading>How fire spreads</heading>
+        <text>Items and structures ignite above 235 °C. Embers travel up to 2 tiles, so firebreaks should be 2 tiles wide. Items on stone shelves can still burn.
+
+Burning deals 2 heat damage per second however big the flames, ignoring armor penetration. Heat-resistant clothing such as devilstrand helps.</text>
+      </li>
+      <li>
+        <heading>Putting fires out</heading>
+        <text>Fires are put out by colonists beating them, by firefoam, by rain on unroofed tiles and by explosions. Colonists only fight fires inside the home area unless drafted, so make the home area cover the whole base. Firefoam comes from three places:</text>
+        <table>
+          <li>Source | Reach</li>
+          <li>Firefoam popper | 10 tiles</li>
+          <li>Foam turret | 20 tiles</li>
+          <li>Foam spray gene (Biotech) | 3×3</li>
+        </table>
+        <after>Firefoam needs the Electricity research first; on a tribal start the Firefoam research costs 1,200.</after>
+      </li>
+      <li>
+        <heading>Building against it</heading>
+        <text>Build walls from stone or other non-flammable materials, above all around generators, batteries and kitchens. Put generators and batteries on stone floors, and a firefoam popper in rooms with valuable stock or power equipment.
+
+Without firefoam, rely on stone walls, stone floors under campfires and torches, 2-tile firebreaks and plenty of colonists set to firefight.</text>
+      </li>
+    </sections>
     <keywords>
       <li>fire</li>
       <li>firefighting</li>
@@ -779,19 +932,22 @@
     <summary>Why batteries explode, and how to make them stop</summary>
     <tip>One short circuit can drain your batteries and start a fire.</tip>
     <description>A short circuit ("Zzztt") starts a fire and can drain your batteries in a single blast. In recent versions you can almost rule it out with hidden conduits and roofed batteries. Until your wiring is safe, keep the batteries in a stone room where a fire has nowhere to go.</description>
-    <facts>
-      <li>"Zzztt" is a random bad event with an 8-day cooldown. Shorts caused by rain or snow ignore the cooldown.</li>
-      <li>Causes: regular power conduits, and batteries that aren't roofed. Effects: fires and drained batteries.</li>
-      <li>Since version 1.5, hidden conduits and roofed batteries prevent it.</li>
-      <li>Powered buildings and appliances can short out in rain or snow.</li>
-      <li>A battery stores 600 Wd, charges at 50% efficiency and loses 5 Wd a day.</li>
-    </facts>
-    <advice>
-      <li>Use hidden conduits and roof every battery.</li>
-      <li>Build batteries in pairs, away from generators and never on wood, so at most two go up at once.</li>
-      <li>Put a firefoam popper in the battery room.</li>
-      <li>A colony without power has nothing to short out; plan the battery room before the first battery goes in.</li>
-    </advice>
+    <sections>
+      <li>
+        <heading>What causes a short</heading>
+        <text>"Zzztt" is a random bad event with an 8-day cooldown. It comes from regular power conduits and from batteries that aren't roofed, and it causes fires and drained batteries. Powered buildings and appliances can also short out in rain or snow, and shorts caused by rain or snow ignore the cooldown. Since version 1.5, hidden conduits and roofed batteries prevent it.</text>
+      </li>
+      <li>
+        <heading>A safe battery room</heading>
+        <points>
+          <li>Use hidden conduits.</li>
+          <li>Roof every battery.</li>
+          <li>Build batteries in pairs, away from generators and never on wood, so at most two go up at once.</li>
+          <li>Put a firefoam popper in the room.</li>
+        </points>
+        <after>A battery stores 600 Wd, charges at 50% efficiency and loses 5 Wd a day. A colony without power has nothing to short out, but plan the battery room before the first battery goes in.</after>
+      </li>
+    </sections>
     <keywords>
       <li>short circuit</li>
       <li>zzztt</li>
@@ -816,20 +972,39 @@
     <order>900</order>
     <summary>The key defense and disaster numbers on one page</summary>
     <tip>These figures are approximate and may shift between game versions.</tip>
-    <description>The numbers you'll look up most when planning a defense or riding out a disaster, gathered in one place. Each one has its own page with what to do about it.</description>
-    <facts>
-      <li>Raid points: (wealth points + pawn points) × difficulty × starting factor × adaptation; minimum 35, maximum 10,000. Difficulty 0.1 / 0.3 / 0.6 / 1.0 / 1.55 / 2.2. Buildings count ×0.5.</li>
-      <li>Wealth points: 0 at 14,000 wealth; 2,400 at 400,000; 3,600 at 700,000; 4,200 at 1,000,000.</li>
-      <li>Cover: walls, rock and doors 75%; sandbags and barricades 55%; chunks and rubble 50%; furniture 40%; trees 25%; bushes 20%.</li>
-      <li>Traps trigger for enemies 100%, wild animals 20% (spike) or 5% (IED), colonists 0.5%.</li>
-      <li>Autocannon turret: 380 HP, range 32.9 (minimum 8.9), 150 W, explodes for 50 in 5.9 tiles. Mortar: minimum range 29.9, 20 shots per barrel.</li>
-      <li>Infestation: overhead mountain, warmer than -17 °C, within 30 tiles; at most every 20 days; none past 30 hives.</li>
-      <li>Events: manhunters +40% points for 24-54 hours; toxic fallout 2.5-10.5 days; solar flare 0.15-0.5 days; heat wave +17 °C and cold snap -20 °C for 1.5-3.5 days; eclipse 0.75-1.25 days; fire above 235 °C; short circuit cooldown 8 days.</li>
-    </facts>
-    <advice>
-      <li>Open the matching page for any number to see what to do about it.</li>
-      <li>Re-check your defenses after big trades, loot hauls or a new row of turrets: the next raid will be priced on them.</li>
-    </advice>
+    <description>The numbers you'll look up most when planning a defense or riding out a disaster, gathered in one place. Each one has its own page, linked below, with what to do about it.</description>
+    <sections>
+      <li>
+        <heading>Raids and defenses</heading>
+        <table>
+          <li>Topic | Numbers</li>
+          <li>Raid points | (wealth points + pawn points) × difficulty × starting factor × adaptation; minimum 35, maximum 10,000</li>
+          <li>Difficulty | 0.1 / 0.3 / 0.6 / 1.0 / 1.55 / 2.2</li>
+          <li>Wealth points | 0 at 14,000 wealth; 2,400 at 400,000; 3,600 at 700,000; 4,200 at 1,000,000</li>
+          <li>Buildings | Count ×0.5</li>
+          <li>Cover | Walls, rock and doors 75%; sandbags and barricades 55%; chunks and rubble 50%; furniture 40%; trees 25%; bushes 20%</li>
+          <li>Traps | Trigger for enemies 100%, wild animals 20% (spike) or 5% (IED), colonists 0.5%</li>
+          <li>Autocannon turret | 380 HP, range 32.9 (minimum 8.9), 150 W; explodes for 50 in 5.9 tiles</li>
+          <li>Mortar | Minimum range 29.9; 20 shots per barrel</li>
+        </table>
+        <after>Re-check your defenses after big trades, loot hauls or a new row of turrets. The next raid will be priced on them.</after>
+      </li>
+      <li>
+        <heading>Events and disasters</heading>
+        <table>
+          <li>Event | Numbers</li>
+          <li>Infestation | Overhead mountain, warmer than -17 °C, within 30 tiles; at most every 20 days; none past 30 hives</li>
+          <li>Manhunters | +40% points, for 24-54 hours</li>
+          <li>Toxic fallout | 2.5-10.5 days</li>
+          <li>Solar flare | 0.15-0.5 days</li>
+          <li>Heat wave | +17 °C for 1.5-3.5 days</li>
+          <li>Cold snap | -20 °C for 1.5-3.5 days</li>
+          <li>Eclipse | 0.75-1.25 days</li>
+          <li>Fire | Ignites above 235 °C</li>
+          <li>Short circuit | Cooldown 8 days</li>
+        </table>
+      </li>
+    </sections>
     <keywords>
       <li>numbers</li>
       <li>cheat sheet</li>

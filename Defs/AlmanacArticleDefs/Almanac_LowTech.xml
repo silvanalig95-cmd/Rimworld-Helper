@@ -10,20 +10,22 @@
     <order>5</order>
     <summary>The numbers a tribal or medieval colony checks most</summary>
     <tip>Without power, a cold winter is the only freezer you get.</tip>
-    <description>These are the numbers that matter most when you play without electricity, whether you started as a tribe or chose to stay medieval. Each one has its own page with what to do about it.</description>
-    <facts>
-      <li>Days before food rots without cold: meat and fish 2, simple meal 4, potatoes 30, rice 40, corn 60, pemmican 70. Rot stops at or below 0 °C.</li>
-      <li>Passive coolers can't cool below 17 °C.</li>
-      <li>Tribal research costs: Battery 800; Cooler 1,000; Smithing 1,050; Firefoam 1,200; Prosthetics 1,200; Hydroponics 1,400; Medicine production 3,000; Electricity 3,200; Mortar 4,000.</li>
-      <li>Cold snaps drop temperatures by 20 °C for 1.5-3.5 days; crops start dying at -10 °C.</li>
-      <li>Fire: things ignite above 235 °C and embers travel 2 tiles; firebreaks should be 2 tiles wide.</li>
-      <li>Cover: doors and rock 75%; sandbags and barricades 55%; chunks 50%. Traps always trigger on enemies.</li>
-      <li>Raids: the starting factor is 0.7 up to day 10 and reaches 1.0 by day 40.</li>
-    </facts>
-    <advice>
-      <li>Use the See also links below to open the full page for any of these numbers.</li>
-      <li>Check the wood pile before winter: heat, light and cooking all burn it.</li>
-    </advice>
+    <description>These are the numbers that matter most when you play without electricity, whether you started as a tribe or chose to stay medieval. Each one has its own page, linked under See also, with what to do about it.</description>
+    <sections>
+      <li>
+        <table>
+          <li>Subject | The numbers</li>
+          <li>Food | Without cold, meat and fish rot in 2 days, a simple meal in 4, potatoes in 30, rice in 40, corn in 60 and pemmican in 70. Rot stops at or below 0 °C.</li>
+          <li>Cooling | Passive coolers can't cool below 17 °C.</li>
+          <li>Research | Tribal costs: Battery 800; Cooler 1,000; Smithing 1,050; Firefoam 1,200; Prosthetics 1,200; Hydroponics 1,400; Medicine production 3,000; Electricity 3,200; Mortar 4,000.</li>
+          <li>Cold | Cold snaps drop temperatures by 20 °C for 1.5-3.5 days; crops start dying at -10 °C.</li>
+          <li>Fire | Things ignite above 235 °C and embers travel 2 tiles, so firebreaks should be 2 tiles wide.</li>
+          <li>Cover | Doors and rock 75%; sandbags and barricades 55%; chunks 50%. Traps always trigger on enemies.</li>
+          <li>Raids | The starting factor is 0.7 up to day 10 and reaches 1.0 by day 40.</li>
+        </table>
+        <after>Check the wood pile before winter: heat, light and cooking all burn it.</after>
+      </li>
+    </sections>
     <keywords>
       <li>tribal</li>
       <li>medieval</li>
@@ -52,19 +54,24 @@
     <summary>Neolithic and medieval benches, and why industrial research costs double</summary>
     <tip>A tribal workshop starts as a crafting spot on bare ground.</tip>
     <description>A tribal start has no electricity and a short build menu: campfires, crafting spots, fueled stoves and a simple research bench. Medieval research adds the fueled smithy, hand tailor bench and stonecutter's table. Industrial tech is open to you, but a tribe pays double research for it.</description>
-    <facts>
-      <li>Neolithic: art bench, brewery, butcher spot, butcher table, campfire, crafting spot, fueled stove, fermenting barrel, simple research bench.</li>
-      <li>Medieval: fueled smithy, hand tailor bench, stonecutter's table.</li>
-      <li>Industrial buildings such as the electric stove, electric smithy, machining table, drug lab, nutrient paste dispenser and hi-tech research bench need research first.</li>
-      <li>Tribal starts begin with some Neolithic research done, and a new tribe also starts with Fishing.</li>
-      <li>Industrial research costs tribes more: Electricity is 3,200 instead of 1,600.</li>
-    </facts>
-    <advice>
-      <li>Build a crafting spot, butcher spot and campfire on day one, then move up to a fueled stove and butcher table.</li>
-      <li>Pick research that fixes today's problem before chasing electricity.</li>
-      <li>Keep wood stockpiled under a roof: stoves, the smithy and torch lamps all run on it.</li>
-      <li>Put fires and fueled benches on stone floors.</li>
-    </advice>
+    <sections>
+      <li>
+        <heading>The benches by era</heading>
+        <table>
+          <li>Era | What it gives you</li>
+          <li>Neolithic | Art bench, brewery, butcher spot, butcher table, campfire, crafting spot, fueled stove, fermenting barrel, simple research bench</li>
+          <li>Medieval | Fueled smithy, hand tailor bench, stonecutter's table</li>
+          <li>Industrial | The electric stove, electric smithy, machining table, drug lab, nutrient paste dispenser, hi-tech research bench and more, each after its research</li>
+        </table>
+        <after>Tribal starts begin with some Neolithic research done, and a new tribe also starts with Fishing. Industrial research costs tribes more: Electricity is 3,200 instead of 1,600.</after>
+      </li>
+      <li>
+        <heading>The first days</heading>
+        <text>Build a crafting spot, butcher spot and campfire on day one, then move up to a fueled stove and butcher table. Put fires and fueled benches on stone floors, and keep wood stockpiled under a roof: stoves, the smithy and torch lamps all run on it.
+
+When you choose research, pick what fixes today's problem before chasing electricity.</text>
+      </li>
+    </sections>
     <keywords>
       <li>tribal</li>
       <li>neolithic</li>
@@ -89,19 +96,30 @@
     <order>15</order>
     <summary>What to research first when everything industrial costs double</summary>
     <tip>Electricity costs a tribe 3,200 research, twice what other starts pay.</tip>
-    <description>Tribal starts pay more for every industrial project, so research order matters more than usual. Spend early research on what keeps people alive and comfortable, and save electricity for when you can afford it. Some essentials, like herbal medicine, need no research at all.</description>
-    <facts>
-      <li>Tribal research costs: Battery 800; Cooler 1,000; Smithing 1,050; Firefoam 1,200; Prosthetics 1,200; Hydroponics 1,400.</li>
-      <li>Medicine production 3,000; Electricity 3,200 (1,600 for other starts); Mortar 4,000.</li>
-      <li>Herbal medicine from healroot needs no research.</li>
-      <li>Veterans suggest researching Complex Furniture first, then Electricity.</li>
-    </facts>
-    <advice>
-      <li>Plant a healroot field on day one.</li>
-      <li>Research Complex Furniture first for dressers and end tables, then Electricity if you plan to modernize.</li>
-      <li>Research Smithing when you need metal weapons and armor.</li>
-      <li>Pick each project to fix a problem you have now, rather than to fill out the tech tree.</li>
-    </advice>
+    <description>Tribal starts pay more for every industrial project, so research order matters more than usual. Spend early research on what keeps people alive and comfortable, and save electricity for when you can afford it.</description>
+    <sections>
+      <li>
+        <heading>An order that works</heading>
+        <text>Some essentials need no research at all. Herbal medicine from healroot is one, so plant a healroot field on day one.
+
+Veterans suggest researching Complex Furniture first, for dressers and end tables, then Electricity if you plan to modernize. Research Smithing when you need metal weapons and armor. Past that, pick each project to fix a problem you have now, rather than to fill out the tech tree.</text>
+      </li>
+      <li>
+        <heading>What it costs a tribe</heading>
+        <table>
+          <li>Project | Research</li>
+          <li>Battery | 800</li>
+          <li>Cooler | 1,000</li>
+          <li>Smithing | 1,050</li>
+          <li>Firefoam | 1,200</li>
+          <li>Prosthetics | 1,200</li>
+          <li>Hydroponics | 1,400</li>
+          <li>Medicine production | 3,000</li>
+          <li>Electricity | 3,200 (1,600 for other starts)</li>
+          <li>Mortar | 4,000</li>
+        </table>
+      </li>
+    </sections>
     <keywords>
       <li>research</li>
       <li>tribal research</li>
@@ -128,19 +146,29 @@
     <summary>Pemmican lasts 70 days, meals 4: cook as needed and let winter do the freezing</summary>
     <tip>Pemmican keeps 70 days, long enough to outlast a winter.</tip>
     <description>Without electricity there's no freezer, so you plan around how long each food lasts. Crops like rice, corn and potatoes keep for weeks; meat and cooked meals keep for days. Pemmican turns food that would rot into something that lasts more than two months.</description>
-    <facts>
-      <li>Days before rotting: meat and fish 2, simple meal 4, potatoes 30, rice 40, corn 60, pemmican 70.</li>
-      <li>Pemmican gives 0.05 nutrition per unit, the same as raw food.</li>
-      <li>Food stops rotting at or below 0 °C, so a cold winter can do a freezer's job for free.</li>
-      <li>Tribal travelers carry pemmican as their own food.</li>
-    </facts>
-    <advice>
-      <li>Cook meals only as needed and keep a buffer of a few days, not a big pile.</li>
-      <li>Turn surplus meat into pemmican before it rots.</li>
-      <li>Hunt and butcher only what you can eat or preserve within two days.</li>
-      <li>In winter, store food in a roofed, unheated room; while it stays at or below 0 °C, nothing in it rots.</li>
-      <li>Grow corn for winter stores: at 60 days it keeps longer than rice or potatoes.</li>
-    </advice>
+    <sections>
+      <li>
+        <heading>How long food keeps</heading>
+        <table>
+          <li>Food | Days before it rots</li>
+          <li>Meat and fish | 2</li>
+          <li>Simple meal | 4</li>
+          <li>Potatoes | 30</li>
+          <li>Rice | 40</li>
+          <li>Corn | 60</li>
+          <li>Pemmican | 70</li>
+        </table>
+        <after>Meat and meals go first. Cook meals only as needed and keep a buffer of a few days, not a big pile, and hunt and butcher only what you can eat or preserve within two days.</after>
+      </li>
+      <li>
+        <heading>Pemmican</heading>
+        <text>Pemmican gives 0.05 nutrition per unit, the same as raw food, and keeps 70 days instead of 2. Turn surplus meat into it before the meat rots. Tribal travelers carry pemmican as their own food.</text>
+      </li>
+      <li>
+        <heading>Letting winter do the freezing</heading>
+        <text>Food stops rotting at or below 0 °C, so a cold winter can do a freezer's job for free. Store food in a roofed, unheated room; while it stays at or below 0 °C, nothing in it rots. For the winter stores themselves, grow corn: at 60 days it keeps longer than rice or potatoes.</text>
+      </li>
+    </sections>
     <keywords>
       <li>pemmican</li>
       <li>spoilage</li>
@@ -166,18 +194,20 @@
     <summary>Embers jump 2 tiles: keep fires on stone and firebreaks 2 tiles wide</summary>
     <tip>Keep the campfire on stone, and the woodpile two tiles away.</tip>
     <description>Tribal colonies are built of wood and heated by fire, a dangerous pair. Without electricity there are no firefoam poppers, so fires are fought by colonists beating them out, by rain, and by stone walls that won't burn. Veterans disagree about wood itself: some call wooden building a mistake, others say wood is the right first shelter.</description>
-    <facts>
-      <li>Things ignite above 235 °C, and embers travel 2 tiles.</li>
-      <li>A firebreak is a 2-tile-wide strip with no plants, wood or other fuel on it.</li>
-      <li>Firefoam poppers need Firefoam research (1,200 for tribes), which needs Electricity first.</li>
-      <li>Colonists only beat out fires inside the home area.</li>
-    </facts>
-    <advice>
-      <li>Put campfires and torch lamps on stone floors, away from wooden walls and stored wood.</li>
-      <li>Build a wooden first shelter if you must, then replace the walls nearest your fires with stone.</li>
-      <li>Keep the home area over your whole base so colonists will fight fires everywhere.</li>
-      <li>Leave 2-tile firebreaks between buildings, fields and woodpiles.</li>
-    </advice>
+    <sections>
+      <li>
+        <heading>How fire spreads</heading>
+        <text>Things ignite above 235 °C, and embers travel 2 tiles. A firebreak is a 2-tile-wide strip with no plants, wood or other fuel on it. Leave one between buildings, fields and woodpiles.</text>
+      </li>
+      <li>
+        <heading>Fighting it without firefoam</heading>
+        <text>Colonists only beat out fires inside the home area, so keep the home area over your whole base and they'll fight fires everywhere. Firefoam poppers need Firefoam research (1,200 for tribes), which needs Electricity first.</text>
+      </li>
+      <li>
+        <heading>Building with wood</heading>
+        <text>Put campfires and torch lamps on stone floors, away from wooden walls and stored wood. Build a wooden first shelter if you must, then replace the walls nearest your fires with stone.</text>
+      </li>
+    </sections>
     <keywords>
       <li>fire</li>
       <li>wood</li>
@@ -203,18 +233,20 @@
     <summary>Cook on wood: a fueled stove makes a proper kitchen without power</summary>
     <tip>A fueled stove needs no power, only wood and someone to haul it.</tip>
     <description>You can cook at an electric stove, a fueled stove or a campfire. The fueled stove is the heart of a tribal kitchen: it burns wood, needs no power and makes its room a proper kitchen. A campfire works from day one, but it's a fire risk inside wooden buildings.</description>
-    <facts>
-      <li>A room becomes a kitchen at 28 points per cooking station, and a fueled stove counts just like an electric one.</li>
-      <li>A bed in the same room outscores the stove, so the room becomes a bedroom, not a kitchen.</li>
-      <li>Baby food can be cooked at a campfire or stove from vegetables (Biotech).</li>
-      <li>Cooking over an open campfire inside a wooden building is a classic fire risk; things ignite above 235 °C.</li>
-    </facts>
-    <advice>
-      <li>Move cooking from the campfire to a fueled stove in its own room as soon as you can.</li>
-      <li>Keep wood in a roofed stockpile next to the kitchen so cooks never stand idle.</li>
-      <li>Floor the kitchen with stone, not wood, and keep it clean.</li>
-      <li>If a campfire must be indoors, put it on a stone floor in a room with stone walls.</li>
-    </advice>
+    <sections>
+      <li>
+        <heading>From campfire to stove</heading>
+        <text>Cooking over an open campfire inside a wooden building is a classic fire risk; things ignite above 235 °C. Move cooking to a fueled stove in its own room as soon as you can. If a campfire must be indoors, put it on a stone floor in a room with stone walls.
+
+With Biotech, baby food can be cooked from vegetables at a campfire or a stove.</text>
+      </li>
+      <li>
+        <heading>Making the room a kitchen</heading>
+        <text>A room becomes a kitchen at 28 points per cooking station, and a fueled stove counts just like an electric one. A bed in the same room outscores the stove, so the room becomes a bedroom, not a kitchen.
+
+Floor the kitchen with stone, not wood, and keep it clean. Keep wood in a roofed stockpile next to it so cooks never stand idle.</text>
+      </li>
+    </sections>
     <keywords>
       <li>campfire</li>
       <li>fueled stove</li>
@@ -240,19 +272,21 @@
     <summary>Cold snaps drop 20 °C for days: wall, roof and stock wood before winter</summary>
     <tip>A cold snap comes without warning, so stack the wood before it does.</tip>
     <description>A tribal colony stays warm with walls, roofs, campfires and clothing. A cold snap can drop the temperature by 20 °C for days, killing crops and sending people to bed with hypothermia. Prepare before the first winter arrives.</description>
-    <facts>
-      <li>Cold snaps drop temperatures by 20 °C for 1.5-3.5 days.</li>
-      <li>Crops begin dying at -10 °C.</li>
-      <li>Sleeping in the cold: -4 for a day.</li>
-      <li>Workbenches slow to 70% speed outside 10-35 °C.</li>
-      <li>Indoor campfires or heaters, plus jackets, dusters or parkas for anyone working outside, are enough to see most colonies through.</li>
-    </facts>
-    <advice>
-      <li>Roof and wall the sleeping area before the first winter.</li>
-      <li>Keep a big stack of wood under a roof for fires and torches.</li>
-      <li>Make parkas and tuques from heavy leather or wool before it turns cold; tribalwear is thin.</li>
-      <li>Harvest whatever is ripe when a cold snap hits.</li>
-    </advice>
+    <sections>
+      <li>
+        <heading>What a cold snap does</heading>
+        <text>Temperatures drop by 20 °C for 1.5-3.5 days. Crops begin dying at -10 °C, so harvest whatever is ripe when a snap hits. Sleeping in the cold costs -4 mood for a day, and workbenches slow to 70% speed outside 10-35 °C.</text>
+      </li>
+      <li>
+        <heading>Before the first winter</heading>
+        <points>
+          <li>Roof and wall the sleeping area.</li>
+          <li>Keep a big stack of wood under a roof for fires and torches.</li>
+          <li>Make parkas and tuques from heavy leather or wool before it turns cold; tribalwear is thin.</li>
+        </points>
+        <after>Indoor campfires or heaters, plus jackets, dusters or parkas for anyone working outside, are enough to see most colonies through.</after>
+      </li>
+    </sections>
     <keywords>
       <li>cold snap</li>
       <li>winter</li>
@@ -278,20 +312,28 @@
     <order>50</order>
     <summary>Archers behind cover, spears at the door, and traps in the corridor</summary>
     <tip>Raiders who have to come through one door come one at a time.</tip>
-    <description>Turrets need power, so a tribal defense is built from people, walls and traps. Funnel raiders through a single doorway, put melee fighters beside it and archers behind cover, and line the approach with traps. Tribal raiders are poorly equipped but numerous, and they will break through a wooden wall if it's the easiest way in.</description>
-    <facts>
-      <li>Cover: doors and rock 75%; sandbags and barricades 55%; chunks 50%.</li>
-      <li>Traps always trigger on enemies; a wooden spike trap deals about 40 damage.</li>
-      <li>Tribal raiders never carry silver or medicine, and they bring pemmican.</li>
-      <li>Their weapons include recurve bows and, with Biotech, flamebows.</li>
-      <li>Mortar research costs tribes 4,000 (2,000 for others), so mortars come late.</li>
-    </facts>
-    <advice>
-      <li>Make one door the only way in, and fight from there.</li>
-      <li>Stand melee fighters beside the doorway so raiders come through one at a time.</li>
-      <li>Line the approach with spike traps, and keep your haulers' paths clear of them.</li>
-      <li>Keep wooden walls out of the fighting line, and shoot from behind walls when archers outrange you.</li>
-    </advice>
+    <description>Turrets need power, so a tribal defense is built from people, walls and traps. Tribal raiders are poorly equipped but numerous, and they will break through a wooden wall if it's the easiest way in.</description>
+    <sections>
+      <li>
+        <heading>Holding one door</heading>
+        <text>Make one door the only way in, and fight from there. Stand melee fighters beside the doorway so raiders come through one at a time, and put archers behind cover. Line the approach with spike traps, keeping your haulers' paths clear of them: traps always trigger on enemies, and a wooden spike trap deals about 40 damage.
+
+Keep wooden walls out of the fighting line. When enemy archers outrange you, shoot from behind walls.</text>
+      </li>
+      <li>
+        <heading>Cover</heading>
+        <table>
+          <li>Cover | Value</li>
+          <li>Doors and rock | 75%</li>
+          <li>Sandbags and barricades | 55%</li>
+          <li>Chunks | 50%</li>
+        </table>
+      </li>
+      <li>
+        <heading>What tribal raiders bring</heading>
+        <text>They never carry silver or medicine, and they bring pemmican. Their weapons include recurve bows and, with Biotech, flamebows. On your side, mortars come late: Mortar research costs tribes 4,000 (2,000 for others).</text>
+      </li>
+    </sections>
     <keywords>
       <li>tribal defense</li>
       <li>traps</li>
@@ -318,18 +360,16 @@
     <summary>A torch lamp in every room, kept well away from wood</summary>
     <tip>A torch lamp in every room, and none of them on a wooden floor.</tip>
     <description>Darkness costs mood and slows work, and without electricity the answer is fire. Torch lamps light a room on wood and are part of most good tribal openings. The catch is that they're open flames and can start fires.</description>
-    <facts>
-      <li>Veterans light the first big room with a torch on day one.</li>
-      <li>Darkness brings a mood penalty and slows work.</li>
-      <li>Torch lamps burn wood and need refueling.</li>
-      <li>Surgery in the dark goes worse, down to ×0.75 success in total darkness.</li>
-    </facts>
-    <advice>
-      <li>Put a torch lamp in every bedroom, workshop and the hospital.</li>
-      <li>Keep torches off wooden floors and away from wooden walls.</li>
-      <li>Stock wood under a roof so the lights don't go out in midwinter.</li>
-      <li>Switch to standing lamps once you have power.</li>
-    </advice>
+    <sections>
+      <li>
+        <heading>Where the torches go</heading>
+        <text>Veterans light the first big room with a torch on day one. After that, put a torch lamp in every bedroom and workshop, and in the hospital: surgery in the dark goes worse, down to ×0.75 success in total darkness. Keep torches off wooden floors and away from wooden walls.</text>
+      </li>
+      <li>
+        <heading>Keeping them lit</heading>
+        <text>Torch lamps burn wood and need refueling. Stock wood under a roof so the lights don't go out in midwinter, and switch to standing lamps once you have power.</text>
+      </li>
+    </sections>
     <keywords>
       <li>torch</li>
       <li>torch lamp</li>
@@ -353,20 +393,17 @@
     <order>70</order>
     <summary>Good for heat waves, useless for food: they stop at 17 °C</summary>
     <tip>A passive cooler is for people, not for food.</tip>
-    <description>A passive cooler cools a room without electricity, which makes it the tribal answer to summer heat and heat waves. It can't bring a room below 17 °C, so it will never keep food from rotting. Use it to keep people out of heatstroke, not as a freezer.</description>
-    <facts>
-      <li>A passive cooler can't cool below 17 °C, so it can't refrigerate or freeze food.</li>
-      <li>Food keeps rotting at any temperature above 0 °C.</li>
-      <li>The electric cooler is the upgrade, with no 17 °C limit.</li>
-      <li>It needs no power, so it keeps working through a solar flare.</li>
-      <li>It still works in a heat wave (up to +17 °C), but only in an enclosed room.</li>
-    </facts>
-    <advice>
-      <li>Put passive coolers in bedrooms and the hospital through summer and heat waves.</li>
-      <li>Keep the doors shut and the room fully walled and roofed.</li>
-      <li>Keep torches and campfires out of the room you're trying to cool.</li>
-      <li>For food, plan on pemmican and cold-season storage instead.</li>
-    </advice>
+    <description>A passive cooler cools a room without electricity, which makes it the tribal answer to summer heat and heat waves. It needs no power, so it keeps working through a solar flare. What it can't do is keep food.</description>
+    <sections>
+      <li>
+        <heading>For people</heading>
+        <text>Put passive coolers in bedrooms and the hospital through summer and heat waves to keep people out of heatstroke. A cooler still works in a heat wave (up to +17 °C), but only in an enclosed room: keep the doors shut, the room fully walled and roofed, and torches and campfires out of it.</text>
+      </li>
+      <li>
+        <heading>Not for food</heading>
+        <text>A passive cooler can't bring a room below 17 °C, and food keeps rotting at any temperature above 0 °C, so it can never refrigerate or freeze food. Plan on pemmican and cold-season storage instead. The electric cooler is the upgrade, with no 17 °C limit.</text>
+      </li>
+    </sections>
     <keywords>
       <li>passive cooler</li>
       <li>cooling</li>
@@ -391,18 +428,17 @@
     <order>80</order>
     <summary>Wood-burning benches keep working when a solar flare kills the power</summary>
     <tip>A fueled stove keeps cooking through a solar flare.</tip>
-    <description>Some production buildings come in a wood-fueled version as well as an electric one. They take more space and need wood hauled to them, but they keep working through a solar flare while every electric bench goes dark. Even an industrial colony can keep one or two as a backup.</description>
-    <facts>
-      <li>The fueled smithy and fueled stove are the main non-electric production benches.</li>
-      <li>Wood-fueled versions keep working during a solar flare, at the cost of extra space.</li>
-      <li>A solar flare lasts 0.15-0.5 days.</li>
-      <li>A campfire gives off heat without power, so one in a hydroponics room can keep the plants from freezing during a flare.</li>
-    </facts>
-    <advice>
-      <li>Keep a fueled stove in the kitchen as a backup, even in an electric base.</li>
-      <li>Keep a roofed wood stockpile near every fueled bench.</li>
-      <li>In cold weather, keep an empty campfire in the hydroponics room and fuel it only during a flare.</li>
-    </advice>
+    <description>Some production buildings come in a wood-fueled version as well as an electric one. The fueled smithy and fueled stove are the main ones. They take more space and need wood hauled to them, but they keep working through a solar flare while every electric bench goes dark.</description>
+    <sections>
+      <li>
+        <heading>During a solar flare</heading>
+        <text>A flare lasts 0.15-0.5 days. The fueled stove keeps cooking and the fueled smithy keeps working the whole time. A campfire gives off heat without power, so one in a hydroponics room can keep the plants from freezing: in cold weather, keep an empty campfire there and fuel it only during a flare.</text>
+      </li>
+      <li>
+        <heading>In an electric base</heading>
+        <text>Even an industrial colony can keep one or two as a backup, starting with a fueled stove in the kitchen. Keep a roofed wood stockpile near every fueled bench.</text>
+      </li>
+    </sections>
     <keywords>
       <li>fueled smithy</li>
       <li>fueled stove</li>
@@ -425,18 +461,17 @@
     <order>90</order>
     <summary>Give the best weapons to the best fighters, and make steel a priority</summary>
     <tip>A great bow outranges most tribal weapons.</tip>
-    <description>Tribes are nominally neolithic but field medieval gear, and metal weapons are rare and expensive for them. The fueled smithy and hand tailor bench are your medieval workshops for weapons, armor and clothing. Until you can make your own, hand out what you have to the people best able to use it.</description>
-    <facts>
-      <li>Metal weapons are rare and expensive for tribes.</li>
-      <li>The fueled smithy and hand tailor bench are the medieval-tier production buildings.</li>
-      <li>Smithing costs tribes 1,050 research.</li>
-    </facts>
-    <advice>
-      <li>Give your best ranged weapon to your best shooter and your best blade to your best melee fighter.</li>
-      <li>Research Smithing early so you can make metal weapons and armor.</li>
-      <li>Make melee weapons and armor from steel or better; wood is a last resort.</li>
-      <li>Collect raiders' weapons after a fight; they're often better than yours.</li>
-    </advice>
+    <description>Tribes are nominally neolithic but field medieval gear, and metal weapons are rare and expensive for them. The fueled smithy and hand tailor bench, the medieval-tier production buildings, are your workshops for weapons, armor and clothing.</description>
+    <sections>
+      <li>
+        <heading>Until you can make your own</heading>
+        <text>Hand out what you have to the people best able to use it: your best ranged weapon to your best shooter, your best blade to your best melee fighter. Collect raiders' weapons after a fight; they're often better than yours.</text>
+      </li>
+      <li>
+        <heading>Making your own</heading>
+        <text>Research Smithing early. It costs tribes 1,050 and lets you make metal weapons and armor. Make melee weapons and armor from steel or better; wood is a last resort.</text>
+      </li>
+    </sections>
     <keywords>
       <li>weapons</li>
       <li>armor</li>
@@ -461,18 +496,27 @@
     <summary>Pack animals from tribal traders, and haygrass put by for the cold</summary>
     <tip>A muffalo carries far more than a colonist and grazes along the way.</tip>
     <description>Animals do much of a tribe's heavy lifting: hauling, carrying caravans, and sometimes fighting. Tribal traders often bring pack animals with them, and grazing animals can be fed cheaply if you plan for winter. A closed door won't always stop a manhunter pack.</description>
-    <facts>
-      <li>Tribal trader groups bring muffalo (about 17.9% of groups), dromedaries (about 14.9%), alpacas (about 7.5%) and elephants (about 6%).</li>
-      <li>Simple meals can feed any animal except wargs.</li>
-      <li>Manhunter packs break doors they've seen a colonist run behind.</li>
-      <li>Wild men can be tamed with Animals skill 7.</li>
-    </facts>
-    <advice>
-      <li>Grow haygrass and keep a stack forbidden for cold snaps.</li>
-      <li>Feed grazers hay or kibble when the grass runs out.</li>
-      <li>When manhunters arrive, keep colonists from running indoors where the pack can see them, and have shooters and traps ready.</li>
-      <li>Buy pack animals from tribal traders for hauling and caravans.</li>
-    </advice>
+    <sections>
+      <li>
+        <heading>Getting animals</heading>
+        <table>
+          <li>Pack animal | Share of tribal trader groups that bring it</li>
+          <li>Muffalo | About 17.9%</li>
+          <li>Dromedary | About 14.9%</li>
+          <li>Alpaca | About 7.5%</li>
+          <li>Elephant | About 6%</li>
+        </table>
+        <after>Buy them for hauling and caravans. Wild men can be tamed too, with Animals skill 7.</after>
+      </li>
+      <li>
+        <heading>Feeding them through winter</heading>
+        <text>Grow haygrass and keep a stack forbidden for cold snaps. When the grass runs out, feed grazers hay or kibble. Simple meals can feed any animal except wargs.</text>
+      </li>
+      <li>
+        <heading>Manhunters</heading>
+        <text>Manhunter packs break doors they've seen a colonist run behind. When one arrives, keep colonists from running indoors where the pack can see them, and have shooters and traps ready.</text>
+      </li>
+    </sections>
     <keywords>
       <li>animals</li>
       <li>muffalo</li>
@@ -496,17 +540,14 @@
     <order>110</order>
     <summary>Raids ramp up from day 10 to day 40, and tribal enemies walk in from the edge</summary>
     <tip>The first raids are kept small on purpose. They start growing after day 10.</tip>
-    <description>The game starts gently and ramps raids up over your first 40 days. Tribal-level enemies can't drop from the sky, so early raids walk in from the map edge and you'll see them coming. Everything you build or stockpile raises the size of later raids, so grow your defense along with your wealth.</description>
-    <facts>
-      <li>The starting factor on raid size is 0.7 up to day 10 and reaches 1.0 at day 40.</li>
-      <li>Tribal-level factions can't use drop pods.</li>
-      <li>All wealth counts toward raid size, including stone blocks and wood stockpiles; buildings count at half their value.</li>
-    </facts>
-    <advice>
-      <li>Use the first 40 days to build walls, a chokepoint and traps.</li>
-      <li>Watch the map edges: tribal raiders arrive on foot.</li>
-      <li>Don't stockpile far more than you need; all of it adds to the size of the next raid.</li>
-    </advice>
+    <description>The game starts gently and ramps raids up over your first 40 days. Tribal-level factions can't use drop pods, so early raids walk in from the map edge, and if you watch the edges you'll see them coming.</description>
+    <sections>
+      <li>
+        <text>The starting factor on raid size is 0.7 up to day 10 and reaches 1.0 at day 40. Use those first 40 days to build walls, a chokepoint and traps.
+
+Everything you build or stockpile raises the size of later raids. All wealth counts, including stone blocks and wood stockpiles, and buildings count at half their value. Grow your defense along with your wealth, and don't stockpile far more than you need: all of it adds to the size of the next raid.</text>
+      </li>
+    </sections>
     <keywords>
       <li>raids</li>
       <li>raid size</li>

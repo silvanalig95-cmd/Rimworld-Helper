@@ -11,19 +11,38 @@
     <order>10</order>
     <summary>Ticks, hours, days, quadrums and years, and how to convert them</summary>
     <tip>A year on the Rim is only 60 days long, so birthdays come around fast.</tip>
-    <description>Many numbers in the game and in this almanac are given in ticks or days. This page lists the conversions and the durations that come up most often.</description>
-    <facts>
-      <li>1 hour is 2,500 ticks. 1 day is 24 hours, or 60,000 ticks.</li>
-      <li>1 quadrum (a season) is 15 days. 1 year is 4 quadrums, or 60 days.</li>
-      <li>Plants rest from about 19:12 to 6:00 and grow the other 13.2 hours, so real growth takes about 1.82 times the listed grow days.</li>
-      <li>15,000 ticks is 6 hours and 45,000 ticks is 18 hours, so a wound's infection roll comes 6 to 18 hours after it can become infected.</li>
-      <li>The sleep penalties and eating without a table last 1 day, seeing a corpse half a day, and catharsis 3 days.</li>
-      <li>Longer timers: luciferium is needed every 6 days, penoxycyline lasts about 5.5 days, random infestations come at most once every 20 days, and slave rebellions have a 45-day base average.</li>
-    </facts>
-    <advice>
-      <li>To turn ticks into hours, divide by 2,500; into days, divide by 60,000.</li>
-      <li>Plan in 15-day quadrums: before a winter quadrum starts, have 15 days of food in store.</li>
-    </advice>
+    <description>Many numbers in the game and in this almanac are given in ticks or days. The conversions come first, then the durations that come up most often.</description>
+    <sections>
+      <li>
+        <heading>From ticks to years</heading>
+        <table>
+          <li>Unit | Length</li>
+          <li>1 hour | 2,500 ticks</li>
+          <li>1 day | 24 hours, or 60,000 ticks</li>
+          <li>1 quadrum (a season) | 15 days</li>
+          <li>1 year | 4 quadrums, or 60 days</li>
+        </table>
+        <after>To turn ticks into hours, divide by 2,500; into days, divide by 60,000. Seasons are the easiest unit to plan in: before a winter quadrum starts, have 15 days of food in store.</after>
+      </li>
+      <li>
+        <heading>Durations worth knowing</heading>
+        <table>
+          <li>What | How long</li>
+          <li>Infection roll on a wound | 15,000 to 45,000 ticks (6 to 18 hours) after it can become infected</li>
+          <li>Seeing a corpse | Half a day</li>
+          <li>Sleep penalties, eating without a table | 1 day</li>
+          <li>Catharsis | 3 days</li>
+          <li>Penoxycyline | Lasts about 5.5 days</li>
+          <li>Luciferium | Needed every 6 days</li>
+          <li>Random infestations | At most once every 20 days</li>
+          <li>Slave rebellions | 45-day base average</li>
+        </table>
+      </li>
+      <li>
+        <heading>Growing time</heading>
+        <text>Plants rest from about 19:12 to 6:00 and grow during the other 13.2 hours, so real growth takes about 1.82 times the listed grow days.</text>
+      </li>
+    </sections>
     <keywords>
       <li>ticks</li>
       <li>time</li>
@@ -49,21 +68,34 @@
     <order>20</order>
     <summary>The temperatures that matter for crops, food, work, comfort, bugs and fire</summary>
     <tip>Below 0 °C the meat keeps. Below -10 °C most crops start dying.</tip>
-    <description>Temperature decides whether crops grow, whether food rots, how fast people work and whether insects can nest under a mountain. The thresholds for each are below.</description>
-    <facts>
-      <li>Crops grow normally at 6-42 °C, stop outside 0-58 °C, and most start dying below -10 °C.</li>
-      <li>Food stops spoiling at 0 °C or below and starts again above it.</li>
-      <li>A passive cooler can't bring a room below 17 °C, so it can't keep food.</li>
-      <li>Many workbenches, the electric stove and stonecutter's table among them, are comfortable at 10-35 °C and work at 70% speed outside that range.</li>
-      <li>Most colonists are comfortable at about 16-26 °C.</li>
-      <li>Heat waves add up to 17 °C and cold snaps take 20 °C away, each for 1.5-3.5 days.</li>
-      <li>Infestations need overhead mountain warmer than -17 °C and grow less likely below -8 °C. Things catch fire above 235 °C.</li>
-    </facts>
-    <advice>
-      <li>Keep the freezer well below 0 °C, for example with coolers set to -5 °C and -10 °C.</li>
-      <li>Heat workrooms in winter and cool them in summer so benches stay between 10 and 35 °C.</li>
-      <li>Harvest anything at least 65% grown before a cold snap or the first hard frost.</li>
-    </advice>
+    <description>Temperature decides whether crops grow, whether food rots, how fast people work and whether insects can nest under a mountain. Look up what you're worried about in the table below.</description>
+    <sections>
+      <li>
+        <heading>The thresholds</heading>
+        <table>
+          <li>For | Temperature | What happens</li>
+          <li>Crops | 6-42 °C | Grow normally</li>
+          <li>Crops | Below 0 °C or above 58 °C | Stop growing</li>
+          <li>Crops | Below -10 °C | Most start dying</li>
+          <li>Food | 0 °C or below | Stops spoiling, and starts again above it</li>
+          <li>Passive cooler | 17 °C | The lowest it can bring a room, so it can't keep food</li>
+          <li>Workbenches | 10-35 °C | Comfortable for many, the electric stove and stonecutter's table among them; 70% speed outside that range</li>
+          <li>Colonists | About 16-26 °C | Comfortable for most</li>
+          <li>Heat wave | Up to +17 °C | Lasts 1.5-3.5 days</li>
+          <li>Cold snap | -20 °C | Lasts 1.5-3.5 days</li>
+          <li>Infestations | Above -17 °C | Possible under overhead mountain; less likely below -8 °C</li>
+          <li>Fire | Above 235 °C | Things catch fire</li>
+        </table>
+      </li>
+      <li>
+        <heading>Freezer, workrooms and fields</heading>
+        <points>
+          <li>Keep the freezer well below 0 °C, for example with coolers set to -5 °C and -10 °C.</li>
+          <li>Heat workrooms in winter and cool them in summer so benches stay between 10 and 35 °C.</li>
+          <li>Before a cold snap or the first hard frost, harvest anything at least 65% grown.</li>
+        </points>
+      </li>
+    </sections>
     <keywords>
       <li>temperature</li>
       <li>cold</li>
@@ -92,21 +124,43 @@
     <order>30</order>
     <summary>Break points, expectations, recreation and the everyday thoughts that add up</summary>
     <tip>A missing table and a cold night already add up to -7 mood.</tip>
-    <description>Mood is the sum of many small thoughts, and the break thresholds decide when a low mood turns into a mental break. Below are the thresholds and the everyday thoughts that push colonists toward them or away from them.</description>
-    <facts>
-      <li>Mental breaks: minor below 35% mood, major below 20%, extreme below 5%. Traits move the minor line, but never below 1% or above 50%.</li>
-      <li>Average time between breaks once under the line: minor 4 days, major 0.8 days, extreme 0.5 days.</li>
-      <li>Catharsis after a break: +40 per stack, up to 5 stacks (122 at most), for 3 days.</li>
-      <li>Expectations by colony wealth: +30 below 15,000, +24 up to 31,000, +18 up to 81,000, +12 up to 182,000, +6 up to 308,000, 0 above.</li>
-      <li>Recreation: +10 at 85-100%, +5 at 70-85%, -5 at 15-30%, -10 below 15%, -20 when empty. It falls 2.5% an hour while above 30%.</li>
-      <li>Surroundings: beauty 6 or more gives +15, 4.5 gives +10, 2.5 gives +5, nothing from -0.5, then -5, -10, and -15 at -4.</li>
-      <li>Everyday thoughts: slept on the ground, outside, cold or hot -4 each; ate without a table -3; disturbed sleep -1; saw a corpse -4, a rotting one -6; raw food -7, nutrient paste -4, fine meal +5, lavish meal +12.</li>
-    </facts>
-    <advice>
-      <li>Keep everyone well above 35%, so one bad day doesn't push them under the line.</li>
-      <li>Fix the cheap thoughts first: a table, a bed, a roof and buried bodies are worth 3 to 6 mood each.</li>
-      <li>Raise comfort as wealth grows: each expectations step takes 6 mood from everyone.</li>
-    </advice>
+    <description>Mood is the sum of many small thoughts, and the break thresholds decide when a low mood turns into a mental break. The break lines come first, then the everyday thoughts that push colonists toward them or away from them.</description>
+    <sections>
+      <li>
+        <heading>Break lines</heading>
+        <table>
+          <li>Break | Possible below | Average time between breaks</li>
+          <li>Minor | 35% mood | 4 days</li>
+          <li>Major | 20% mood | 0.8 days</li>
+          <li>Extreme | 5% mood | 0.5 days</li>
+        </table>
+        <after>Traits move the minor line, but never below 1% or above 50%. A break is followed by catharsis: +40 per stack, up to 5 stacks (122 at most), for 3 days. Keep everyone well above 35%, so one bad day doesn't push them under the line.</after>
+      </li>
+      <li>
+        <heading>Everyday thoughts</heading>
+        <table>
+          <li>Thought | Mood</li>
+          <li>Slept on the ground, outside, in the cold or in the heat | -4 each</li>
+          <li>Ate without a table | -3</li>
+          <li>Disturbed sleep | -1</li>
+          <li>Saw a corpse | -4</li>
+          <li>Saw a rotting corpse | -6</li>
+          <li>Raw food | -7</li>
+          <li>Nutrient paste | -4</li>
+          <li>Fine meal | +5</li>
+          <li>Lavish meal | +12</li>
+        </table>
+        <after>Fix the cheap thoughts first: a table, a bed, a roof and buried bodies are worth 3 to 6 mood each.</after>
+      </li>
+      <li>
+        <heading>Wealth, recreation and beauty</heading>
+        <text>Expectations follow colony wealth: +30 below 15,000, +24 up to 31,000, +18 up to 81,000, +12 up to 182,000, +6 up to 308,000, and 0 above that. Each step takes 6 mood from everyone, so raise comfort as wealth grows.
+
+Recreation gives +10 at 85-100%, +5 at 70-85%, -5 at 15-30%, -10 below 15% and -20 when it's empty. It falls 2.5% an hour while above 30%.
+
+Surroundings with beauty 6 or more give +15, 4.5 gives +10 and 2.5 gives +5. From -0.5 up to that there's nothing either way; below it the mood turns to -5, then -10, and -15 at -4.</text>
+      </li>
+    </sections>
     <keywords>
       <li>mood</li>
       <li>mental break</li>
@@ -137,20 +191,44 @@
     <summary>Impressiveness, space, cleanliness, beauty and wealth bands, and room roles</summary>
     <tip>A marble room with blood on the floor still scores as a dirty room.</tip>
     <description>Every room has four stats that combine into impressiveness, and impressiveness sets the mood bonus for bedrooms, dining rooms and rec rooms. The lowest of the four counts extra, so one weak stat pulls the whole score down.</description>
-    <facts>
-      <li>Impressiveness = 65 x the average of four factors + 35 x the smallest. The factors: wealth / 1,500, beauty / 3, space / 125, and 1 + cleanliness / 2.5.</li>
-      <li>Mood from impressiveness: under 20 -2 and 30-39 +1 (bedrooms only), 40-49 +2, 50-64 +3, 65-84 +4, 85-119 +5, 120-169 +6, 170-239 +7, 240 or more +8.</li>
-      <li>Space is 1.4 per tile, minus 0.9 for each tile furniture blocks. Under 12.5 is cramped, 12.5 rather tight, 29 average-sized, 55 somewhat spacious, 70 quite spacious, 130 very spacious.</li>
-      <li>Cleanliness: 0.4 or more sterile, -0.05 to 0.39 clean, below -1.1 very dirty. Per tile: sterile tile +0.6, filth -5, blood -10, vomit -15.</li>
-      <li>Beauty: below -3.5 hideous, below 0 ugly, 0-2.39 neutral, 2.4 pretty, 5 beautiful, 15 very beautiful, 50 extremely beautiful.</li>
-      <li>Wealth: under 500 impoverished, 700 mediocre, 2,000 somewhat rich, 4,000 rich, 10,000 luxurious, 40,000 very luxurious.</li>
-      <li>Room roles, highest score wins: prison cell 170,000; barracks 100,100 per bed; bedroom and hospital 100,000; lab 60 per item; kitchen 28 per stove; workshop 27 per bench; dining room 12 per table; rec room 7 per item; storeroom 1 per shelf.</li>
-    </facts>
-    <advice>
-      <li>Check the room's stats and raise the lowest of the four first.</li>
-      <li>Keep beds out of kitchens and workshops: a bed's 100,000 beats any bench and turns the room into a bedroom.</li>
-      <li>Count Space after the furniture goes in: a furnished 5x5 bedroom comes to about 31.</li>
-    </advice>
+    <sections>
+      <li>
+        <heading>The formula</heading>
+        <text>Impressiveness = 65 x the average of four factors + 35 x the smallest. The factors are wealth / 1,500, beauty / 3, space / 125, and 1 + cleanliness / 2.5. Check the room's stats and raise the lowest of the four first.</text>
+      </li>
+      <li>
+        <heading>Impressiveness and mood</heading>
+        <table>
+          <li>Impressiveness | Mood</li>
+          <li>Under 20 | -2 (bedrooms only)</li>
+          <li>30-39 | +1 (bedrooms only)</li>
+          <li>40-49 | +2</li>
+          <li>50-64 | +3</li>
+          <li>65-84 | +4</li>
+          <li>85-119 | +5</li>
+          <li>120-169 | +6</li>
+          <li>170-239 | +7</li>
+          <li>240 or more | +8</li>
+        </table>
+      </li>
+      <li>
+        <heading>The four stats</heading>
+        <table>
+          <li>Stat | Bands</li>
+          <li>Space | Under 12.5 cramped, 12.5 rather tight, 29 average-sized, 55 somewhat spacious, 70 quite spacious, 130 very spacious</li>
+          <li>Cleanliness | Below -1.1 very dirty, -0.05 to 0.39 clean, 0.4 or more sterile</li>
+          <li>Beauty | Below -3.5 hideous, below 0 ugly, 0-2.39 neutral, 2.4 pretty, 5 beautiful, 15 very beautiful, 50 extremely beautiful</li>
+          <li>Wealth | Under 500 impoverished, 700 mediocre, 2,000 somewhat rich, 4,000 rich, 10,000 luxurious, 40,000 very luxurious</li>
+        </table>
+        <after>Space is 1.4 per tile, minus 0.9 for each tile furniture blocks, so count it after the furniture goes in: a furnished 5x5 bedroom comes to about 31. Cleanliness is counted per tile too: sterile tile +0.6, filth -5, blood -10, vomit -15.</after>
+      </li>
+      <li>
+        <heading>Room roles</heading>
+        <text>A room takes whichever role scores highest: prison cell 170,000; barracks 100,100 per bed; bedroom and hospital 100,000; lab 60 per item; kitchen 28 per stove; workshop 27 per bench; dining room 12 per table; rec room 7 per item; storeroom 1 per shelf.
+
+That's why beds stay out of kitchens and workshops: a bed's 100,000 beats any bench and turns the room into a bedroom.</text>
+      </li>
+    </sections>
     <keywords>
       <li>impressiveness</li>
       <li>room stats</li>
@@ -178,20 +256,31 @@
     <summary>How your wealth and your people turn into raid points</summary>
     <tip>Every silver coin in storage counts toward the next raid.</tip>
     <description>Raid size is priced from your wealth and your people, then scaled by difficulty and by how the colony has been doing. These are the base numbers in recent versions; treat them as close guides, not exact values.</description>
-    <facts>
-      <li>Raid points = (wealth points + pawn points) x difficulty x starting factor x adaptation, never below 35 or above 10,000.</li>
-      <li>Wealth counted for raids = items + creatures + half of buildings.</li>
-      <li>Wealth points: 0 up to 14,000 wealth, 2,400 at 400,000, 3,600 at 700,000, 4,200 at 1,000,000.</li>
-      <li>Pawn points per colonist: 15 up to 10,000 wealth, 140 at 400,000, 200 at 1,000,000.</li>
-      <li>Difficulty: peaceful 0.1, community builder 0.3, adventure story 0.6, strive to survive 1.0, blood and dust 1.55, losing is fun 2.2.</li>
-      <li>Starting factor: 0.7 up to day 10, 1.0 from day 40. Adaptation starts at 0.8, can reach about 1.47 while things go well, and drops after colonists die.</li>
-      <li>Slaves count 75% of a colonist, babies 0%, children from 0% at age 3 to 100% at 18.</li>
-    </facts>
-    <advice>
-      <li>Before a big trade or loot haul, work out what it adds to the next raid.</li>
-      <li>Spend wealth on defenders and defenses first: they add raid points too, but they also help you fight.</li>
-      <li>Sell or use idle silver, gold and art. Items count in full toward raid points and don't help you defend.</li>
-    </advice>
+    <sections>
+      <li>
+        <heading>How the points add up</heading>
+        <text>Raid points = (wealth points + pawn points) x difficulty x starting factor x adaptation, never below 35 or above 10,000.
+
+The wealth counted for raids is items + creatures + half of buildings. It turns into wealth points on a curve: 0 up to 14,000 wealth, 2,400 at 400,000, 3,600 at 700,000 and 4,200 at 1,000,000. Each colonist adds pawn points: 15 up to 10,000 wealth, 140 at 400,000 and 200 at 1,000,000. Slaves count 75% of a colonist, babies 0%, and children from 0% at age 3 to 100% at 18.</text>
+      </li>
+      <li>
+        <heading>Difficulty and timing</heading>
+        <table>
+          <li>Difficulty | Factor</li>
+          <li>Peaceful | 0.1</li>
+          <li>Community builder | 0.3</li>
+          <li>Adventure story | 0.6</li>
+          <li>Strive to survive | 1.0</li>
+          <li>Blood and dust | 1.55</li>
+          <li>Losing is fun | 2.2</li>
+        </table>
+        <after>The starting factor is 0.7 up to day 10 and 1.0 from day 40. Adaptation starts at 0.8, can reach about 1.47 while things go well, and drops after colonists die.</after>
+      </li>
+      <li>
+        <heading>Where the wealth should go</heading>
+        <text>Items count in full toward raid points and don't help you defend, so sell or use idle silver, gold and art. Spend wealth on defenders and defenses first: they add raid points too, but they also help you fight. Before a big trade or loot haul, work out what it adds to the next raid.</text>
+      </li>
+    </sections>
     <keywords>
       <li>raid points</li>
       <li>wealth</li>
@@ -219,20 +308,42 @@
     <summary>Medicine potency, hospital beds, infection, surgery and disease at a glance</summary>
     <tip>Glitterworld medicine is 1.6 times as strong as industrial, and much harder to replace.</tip>
     <description>The numbers behind tending, infection and surgery. Most of them improve with a skilled doctor, real medicine, and a clean, lit room with a hospital bed.</description>
-    <facts>
-      <li>Medicine potency: none 0.3, herbal 0.6, industrial 1.0, glitterworld 1.6. It multiplies both tend quality and surgery success.</li>
-      <li>Hospital bed: +10% tend quality and 1.11x immunity gain; with a vitals monitor, +17% and 1.13x.</li>
-      <li>Infection chance per wound: bites and burns 30%, frostbite 25%, shredding 20%, most other wounds 15%. Tending cuts it to between 85% and 5% of that; a clean, floored room halves it and a sterile one takes it to 32%.</li>
-      <li>An untreated infection grows +0.84 severity a day. Amputate before 90%; past 97% the operation rarely succeeds.</li>
-      <li>Surgery success = surgeon x bed x medicine x operation x inspiration, capped at 98%. Industrial medicine can reach the cap in a good room.</li>
-      <li>Disease severity per day: flu +0.249, plague +0.666, malaria +0.370, sleeping sickness +0.12. Gut worms and muscle parasites are cured at 300% total tend quality.</li>
-      <li>Luciferium always causes addiction and must then be taken every 6 days.</li>
-    </facts>
-    <advice>
-      <li>Use industrial medicine for serious wounds and surgery, herbal for the rest, and glitterworld only when conditions are bad.</li>
-      <li>Tend infections and diseases about every 12 hours.</li>
-      <li>Clean the hospital floor and light the beds before any operation.</li>
-    </advice>
+    <sections>
+      <li>
+        <heading>Medicine and beds</heading>
+        <table>
+          <li>Medicine | Potency</li>
+          <li>None | 0.3</li>
+          <li>Herbal | 0.6</li>
+          <li>Industrial | 1.0</li>
+          <li>Glitterworld | 1.6</li>
+        </table>
+        <after>Potency multiplies both tend quality and surgery success. Use industrial medicine for serious wounds and surgery, herbal for the rest, and glitterworld only when conditions are bad. A hospital bed adds +10% tend quality and 1.11x immunity gain; with a vitals monitor, +17% and 1.13x.</after>
+      </li>
+      <li>
+        <heading>Infection</heading>
+        <text>Each wound has its own chance of infection: 30% for bites and burns, 25% for frostbite, 20% for shredding and 15% for most others. Tending cuts that to between 85% and 5% of it; a clean, floored room halves it and a sterile one takes it to 32%.
+
+An untreated infection grows +0.84 severity a day. Amputate before 90%; past 97% the operation rarely succeeds.</text>
+      </li>
+      <li>
+        <heading>Surgery</heading>
+        <text>Surgery success = surgeon x bed x medicine x operation x inspiration, capped at 98%. Industrial medicine can reach the cap in a good room, so clean the hospital floor and light the beds before any operation.</text>
+      </li>
+      <li>
+        <heading>Diseases and addiction</heading>
+        <table>
+          <li>Disease | Severity per day</li>
+          <li>Flu | +0.249</li>
+          <li>Plague | +0.666</li>
+          <li>Malaria | +0.370</li>
+          <li>Sleeping sickness | +0.12</li>
+        </table>
+        <after>Tend infections and diseases about every 12 hours. Gut worms and muscle parasites are cured at 300% total tend quality.
+
+Luciferium always causes addiction and must then be taken every 6 days.</after>
+      </li>
+    </sections>
     <keywords>
       <li>medicine</li>
       <li>infection</li>
@@ -263,18 +374,37 @@
     <summary>Generator output, battery storage, reach, and the big power draws</summary>
     <tip>A battery gives back only half of the power sent into it.</tip>
     <description>The figures to check when you plan a power grid: what each generator produces, what batteries hold, how far appliances reach, and which devices draw the most.</description>
-    <facts>
-      <li>Generators: wood-fired 1,000 W (22 wood a day), chemfuel 1,000 W (4.5 chemfuel a day), solar up to 1,700 W by day, wind up to 2,300 W, geothermal 3,600 W, watermill 1,100 W.</li>
-      <li>Battery: stores 600 Wd, charges at 50% efficiency and loses 5 Wd a day.</li>
-      <li>Appliances connect from up to 6 tiles away; conduits, switches, batteries and generators must touch.</li>
-      <li>Draws worth planning for: sun lamp 2,900 W, autocannon turret 150 W, hydroponics basin 70 W, mech recharger 200 W (large 400 W).</li>
-      <li>A solar flare lasts 0.15-0.5 days and shuts down every powered device. An eclipse lasts 0.75-1.25 days and starves solar panels.</li>
-      <li>Random short circuits have an 8-day cooldown. In recent versions, roofed batteries and hidden conduits prevent them.</li>
-    </facts>
-    <advice>
-      <li>Add up your draw and compare it with what you generate at night, not at noon.</li>
-      <li>Use more than one kind of generator, plus a few batteries, so a dark night or a still day doesn't black out the grid.</li>
-    </advice>
+    <sections>
+      <li>
+        <heading>Generators</heading>
+        <table>
+          <li>Generator | Output</li>
+          <li>Wood-fired | 1,000 W, burning 22 wood a day</li>
+          <li>Chemfuel | 1,000 W, burning 4.5 chemfuel a day</li>
+          <li>Solar | Up to 1,700 W, by day</li>
+          <li>Wind | Up to 2,300 W</li>
+          <li>Geothermal | 3,600 W</li>
+          <li>Watermill | 1,100 W</li>
+        </table>
+        <after>Add up your draw and compare it with what you generate at night, not at noon. Use more than one kind of generator, plus a few batteries, so a dark night or a still day doesn't black out the grid. An eclipse lasts 0.75-1.25 days and starves solar panels; a solar flare lasts 0.15-0.5 days and shuts down every powered device.</after>
+      </li>
+      <li>
+        <heading>Draws worth planning for</heading>
+        <table>
+          <li>Device | Draw</li>
+          <li>Sun lamp | 2,900 W</li>
+          <li>Mech recharger | 200 W (large 400 W)</li>
+          <li>Autocannon turret | 150 W</li>
+          <li>Hydroponics basin | 70 W</li>
+        </table>
+      </li>
+      <li>
+        <heading>Batteries and wiring</heading>
+        <text>A battery stores 600 Wd, charges at 50% efficiency and loses 5 Wd a day. Appliances connect from up to 6 tiles away; conduits, switches, batteries and generators must touch.
+
+Random short circuits have an 8-day cooldown. In recent versions, roofed batteries and hidden conduits prevent them.</text>
+      </li>
+    </sections>
     <keywords>
       <li>power</li>
       <li>watts</li>
@@ -301,20 +431,36 @@
     <order>80</order>
     <summary>Work priorities, research costs, prisoners and slaves at a glance</summary>
     <tip>A prisoner eats from the colony's stores every day it takes to recruit them.</tip>
-    <description>The quick figures for running the colony day to day. They cover how work priorities count, what key research costs, how prisoners are won over and what keeps slaves in line.</description>
-    <facts>
-      <li>Work priorities run from 1 (first) to 4 (last); a blank box means never.</li>
-      <li>Research, base / tribal: Electricity 1,600 / 3,200; Battery 400 / 800; Smithing 700 / 1,050; Machining 1,000 / 2,000; Hydroponics 700 / 1,400; Mortar 2,000 / 4,000.</li>
-      <li>Prisoner recruitment: each chat removes 1.0 resistance x warden opinion (50-150%) x prisoner mood (20-150%).</li>
-      <li>Restraints slow a prisoner by 65%. A prison break can spread to rooms within 20 tiles.</li>
-      <li>Slaves (Ideology): suppression falls 20% a day at 30-100%, 10% at 15-30% and 5% below 15%.</li>
-      <li>Slave rebellions: a 45-day base average, 5x as often at 0% suppression, 4x with a weapon within 7 tiles, 20x with no free colonist on the map.</li>
-      <li>Slaves work at 85% speed, and their own expectations give +28 to +46 mood.</li>
-    </facts>
-    <advice>
-      <li>Open the matching Management page for what to do about each number.</li>
-      <li>On a tribal start, read research costs from the research tab: they already include the tribal increase.</li>
-    </advice>
+    <description>The quick figures for running the colony day to day: what key research costs, how prisoners are won over and what keeps slaves in line. Work priorities run from 1 (first) to 4 (last), and a blank box means never. The matching Management page says what to do about each number.</description>
+    <sections>
+      <li>
+        <heading>Research costs</heading>
+        <table>
+          <li>Project | Base | Tribal</li>
+          <li>Battery | 400 | 800</li>
+          <li>Smithing | 700 | 1,050</li>
+          <li>Hydroponics | 700 | 1,400</li>
+          <li>Machining | 1,000 | 2,000</li>
+          <li>Electricity | 1,600 | 3,200</li>
+          <li>Mortar | 2,000 | 4,000</li>
+        </table>
+        <after>On a tribal start, read research costs from the research tab: they already include the tribal increase.</after>
+      </li>
+      <li>
+        <heading>Prisoners</heading>
+        <text>Each chat removes 1.0 resistance x warden opinion (50-150%) x prisoner mood (20-150%). Restraints slow a prisoner by 65%. A prison break can spread to rooms within 20 tiles.</text>
+      </li>
+      <li>
+        <heading>Slaves (Ideology)</heading>
+        <table>
+          <li>Suppression | Falls per day</li>
+          <li>30-100% | 20%</li>
+          <li>15-30% | 10%</li>
+          <li>Below 15% | 5%</li>
+        </table>
+        <after>Slave rebellions have a 45-day base average. They come 5x as often at 0% suppression, 4x with a weapon within 7 tiles, and 20x with no free colonist on the map. Slaves work at 85% speed, and their own expectations give +28 to +46 mood.</after>
+      </li>
+    </sections>
     <keywords>
       <li>research cost</li>
       <li>prisoner</li>

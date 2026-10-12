@@ -22,23 +22,39 @@
     <summary>Grills, cheese, stews, sushi and condiments, and what a medieval kitchen can use</summary>
     <tip>Leave the cheese in the press a while longer. It only gets better.</tip>
     <description>Vanilla Cooking Expanded and its add-ons give your cooks new kinds of food: grilled, baked and stewed meals, cheese and sushi, plus condiments that turn a meal into a gourmet one. The Stews and Sushi add-ons are both in your modlist, and Vanilla Fishing Expanded adds its fish to Odyssey's fishing. Much of it runs on wood, which makes it one of the best sources of mood a kitchen has before electricity.</description>
-    <facts>
-      <li>The grill burns wood and needs the Grilling research, which needs Smithing. Grilled meals kept below 10 °C turn into ruined versions and lose their bonus, so cook them to be eaten, not frozen.</li>
-      <li>The cheese press (Cheese Making, a medieval research) turns milk or insect jelly into cheese, which gains quality and value the longer it stays in the press. Cheese keeps for 120 days.</li>
-      <li>Stew Cooking is a medieval research. A cook prepares an uncooked stew at a campfire or stove, and the wood-fired stew pot turns it into 10 stews over 3 days. If the pot runs out of wood, the batch is ruined after a short warning.</li>
-      <li>The condiment table (a neolithic research) makes salt, mayo, syrups and preserves. A meal cooked with a condiment becomes a gourmet meal, which gives an effect that lasts 12 hours.</li>
-      <li>The sushi prep table needs no research and makes sushi from fish and rice, from simple to gourmet. The soy sauce fermenter turns 30 soybeans into 15 soy sauce in 10 days.</li>
-      <li>Soups, deep frying and canning need electricity, so a medieval colony can ignore them.</li>
-      <li>With Odyssey active, Vanilla Fishing Expanded adds its fish to Odyssey's fishing, along with settings to tune it. Fishing zones need Odyssey's research.</li>
-    </facts>
-    <advice>
-      <li>Research Grilling and Stew Cooking early. Both run on wood, so your cooks can make fine meals long before you have power.</li>
-      <li>Keep a stack of wood beside every stew pot and leave auto-refuel on. Refueling is hauling work, so check the pots during a long raid, when nobody is hauling.</li>
-      <li>Medieval Overhaul has its own cheese press and cheese. Build both presses only if you keep enough milk animals to supply them.</li>
-      <li>Save gourmet meals for feasts, rituals and the noble's table, where their 12-hour effect counts most.</li>
-      <li>With Rimfolk: stews, grilled and baked meals, sushi and cheese count toward a gourmand's wish for better meals, each at its own meal grade; a grill ruined by the cold doesn't. A fine grill or a gourmet dish counts as a birthday feast. A bout of food poisoning makes the better-meals wish more likely.</li>
-      <li>With Rimfolk: the soy sauce fermenter and the cheese press aren't brewing barrels, so they don't meet a colonist's wish for a brewery.</li>
-    </advice>
+    <sections>
+      <li>
+        <heading>The new kitchen buildings</heading>
+        <table>
+          <li>Building | Research | What it does</li>
+          <li>Grill | Grilling, which needs Smithing | Burns wood. Grilled meals kept below 10 °C turn into ruined versions and lose their bonus, so cook them to be eaten, not frozen.</li>
+          <li>Stew pot | Stew Cooking (medieval) | A cook prepares an uncooked stew at a campfire or stove, and the wood-fired pot turns it into 10 stews over 3 days. If the pot runs out of wood, the batch is ruined after a short warning.</li>
+          <li>Cheese press | Cheese Making (medieval) | Turns milk or insect jelly into cheese, which gains quality and value the longer it stays in the press. Cheese keeps for 120 days.</li>
+          <li>Condiment table | A neolithic research | Makes salt, mayo, syrups and preserves. A meal cooked with a condiment becomes a gourmet meal, which gives an effect that lasts 12 hours.</li>
+          <li>Sushi prep table | None | Makes sushi from fish and rice, from simple to gourmet.</li>
+        </table>
+        <after>The soy sauce fermenter turns 30 soybeans into 15 soy sauce in 10 days. Soups, deep frying and canning need electricity, so a medieval colony can ignore them.</after>
+      </li>
+      <li>
+        <heading>Cooking on wood</heading>
+        <text>Research Grilling and Stew Cooking early. Both run on wood, so your cooks can make fine meals long before you have power. Keep a stack of wood beside every stew pot and leave auto-refuel on. Refueling is hauling work, so check the pots during a long raid, when nobody is hauling.
+
+Medieval Overhaul has its own cheese press and cheese, so build both presses only if you keep enough milk animals to supply them. Save gourmet meals for feasts, rituals and the noble's table, where their 12-hour effect counts most.</text>
+      </li>
+      <li>
+        <heading>Fishing</heading>
+        <text>With Odyssey active, Vanilla Fishing Expanded adds its fish to Odyssey's fishing, along with settings to tune it. Fishing zones need Odyssey's research.</text>
+      </li>
+      <li>
+        <heading>With Rimfolk</heading>
+        <points>
+          <li>Stews, grilled and baked meals, sushi and cheese count toward a gourmand's wish for better meals, each at its own meal grade; a grill ruined by the cold doesn't.</li>
+          <li>A fine grill or a gourmet dish counts as a birthday feast.</li>
+          <li>A bout of food poisoning makes the better-meals wish more likely.</li>
+          <li>The soy sauce fermenter and the cheese press aren't brewing barrels, so they don't meet a colonist's wish for a brewery.</li>
+        </points>
+      </li>
+    </sections>
     <keywords>
       <li>cooking</li>
       <li>grill</li>
@@ -73,22 +89,40 @@
     <summary>Whiskey, vodka, gin and tequila with real buffs, plus tea, coffee and tobacco</summary>
     <tip>We save the whiskey for building days. The walls go up faster, and nobody gets a taste for it.</tip>
     <description>Vanilla Brewing Expanded adds liquors that each age in their own building and each give a different buff, from faster work to better melee accuracy. Tea and coffee are made at a campfire and help against sickness, tiredness and the weather, and the Coffees and Teas add-on brings many more blends. All of them are drugs, so set up a drug policy for them before the first batch is ready.</description>
-    <facts>
-      <li>Liquor Brewing is a medieval research. The brewery makes the mash, which then ages in its own building: whiskey (from corn) for 12 days in a whiskey cask, vodka (potatoes) for 5 in a vodka drum, gin (berries) for 15 in a gin still, and tequila (agave and insect meat) for 10 in a tequila barrel.</li>
-      <li>Whiskey gives +15% global work speed. Aged another 12 days into double-aged whiskey, it gives +20% work speed and better trade prices.</li>
-      <li>Vodka raises melee accuracy, gin raises social impact, and tequila helps in long fights.</li>
-      <li>Tea and coffee are made at a campfire or stove after the vanilla Brewing research. Tea helps the immune system; coffee speeds learning by 15%, slows tiredness, and can cause caffeine addiction.</li>
-      <li>Hot coffee helps against hypothermia. Coffee kept in a freezer turns into iced coffee, which helps against heatstroke and can't be warmed again.</li>
-      <li>Cigarettes and cigars are very addictive. The bar, cocktails, soda and energy drinks need Mixology, an industrial research.</li>
-      <li>Coffees and Teas adds 8 coffees, 9 teas and lemonade, each with its own effect.</li>
-    </facts>
-    <advice>
-      <li>If you mean to brew, plant extra corn, potatoes and berries. The casks take large batches.</li>
-      <li>Give fighters vodka or tequila before a fight you can see coming, and workers whiskey on a day of heavy building. Set the drug policy so nobody drinks every day.</li>
-      <li>Allow coffee every few days in the drug policy, not daily, to keep caffeine addiction away. It does the most good for colonists who are still raising their skills.</li>
-      <li>With Rimfolk: the whiskey cask, tequila barrel, gin still, vodka drum and ambrandy distillery count for a colonist's wish for a brewery. The brewery room plan can swap its barrels for a tequila barrel, a gin still or a vodka drum.</li>
-      <li>With Rimfolk: the liquors, cigarettes and cigars count for a colonist's wish for "something to drink or smoke" in the stores. Tea, coffee and soda don't: a teetotaler may drink them, so they aren't what that colonist is asking for. A cup of tea now and then makes it into someone's journal.</li>
-    </advice>
+    <sections>
+      <li>
+        <heading>The liquors</heading>
+        <text>Liquor Brewing is a medieval research. The brewery makes the mash, which then ages in a building of its own.</text>
+        <table>
+          <li>Liquor | Made from | Ages in | Days | Effect</li>
+          <li>Whiskey | Corn | Whiskey cask | 12 | +15% global work speed</li>
+          <li>Vodka | Potatoes | Vodka drum | 5 | Raises melee accuracy</li>
+          <li>Gin | Berries | Gin still | 15 | Raises social impact</li>
+          <li>Tequila | Agave and insect meat | Tequila barrel | 10 | Helps in long fights</li>
+        </table>
+        <after>Whiskey aged another 12 days becomes double-aged whiskey, which gives +20% work speed and better trade prices. If you mean to brew, plant extra corn, potatoes and berries, since the casks take large batches.</after>
+      </li>
+      <li>
+        <heading>Tea and coffee</heading>
+        <text>Tea and coffee are made at a campfire or stove after the vanilla Brewing research. Tea helps the immune system. Coffee speeds learning by 15% and slows tiredness, which does the most good for colonists who are still raising their skills, but it can cause caffeine addiction.
+
+Hot coffee helps against hypothermia. Coffee kept in a freezer turns into iced coffee, which helps against heatstroke and can't be warmed again. The Coffees and Teas add-on brings 8 coffees, 9 teas and lemonade, each with its own effect.</text>
+      </li>
+      <li>
+        <heading>Tobacco and the bar</heading>
+        <text>Cigarettes and cigars are very addictive. The bar, cocktails, soda and energy drinks need Mixology, an industrial research.</text>
+      </li>
+      <li>
+        <heading>Setting the drug policy</heading>
+        <text>Everything here is a drug, so plan the policy before the first batch is ready. Give fighters vodka or tequila before a fight you can see coming, and workers whiskey on a day of heavy building, but set the policy so nobody drinks every day. Allow coffee every few days, not daily, to keep caffeine addiction away.</text>
+      </li>
+      <li>
+        <heading>With Rimfolk</heading>
+        <text>The whiskey cask, tequila barrel, gin still, vodka drum and ambrandy distillery count for a colonist's wish for a brewery. The brewery room plan can swap its barrels for a tequila barrel, a gin still or a vodka drum.
+
+The liquors, cigarettes and cigars count for a colonist's wish for "something to drink or smoke" in the stores. Tea, coffee and soda don't: a teetotaler may drink them, so they aren't what that colonist is asking for. A cup of tea now and then makes it into someone's journal.</text>
+      </li>
+    </sections>
     <keywords>
       <li>whiskey</li>
       <li>vodka</li>
@@ -122,20 +156,33 @@
     <summary>Dwarven ale, sweetwine and mead from one big cask, and stranger drugs besides</summary>
     <tip>Sweetwine takes 30 days in the cask, twice as long as the ale.</tip>
     <description>Stoneborn - Delights is a dwarven brewing and drug pack. Its dwarven cask brews shroom ale from cave mushrooms, sweetwine from glimmerquartz and hive mead from insect jelly, and three new underground plants are the base for a range of other drugs. Its author calls almost all of it medieval-friendly, except beard wax and alkahest.</description>
-    <facts>
-      <li>The mod has its own research tab. Underground herbs comes first, then dwarven fermentation, which unlocks the dwarven cask (2x2, 120 wood and 30 steel).</li>
-      <li>The cask brews shroom ale from stoutcap in 15 days, hive mead from insect jelly in 18 and sweetwine from glimmerquartz chunks in 30. Sweetwine comes out with a quality level.</li>
-      <li>Glimmerquartz is a pink crystal mined from deposits on the map. Cut into pieces, it is also a hard drug that lifts mood but saps the will to work.</li>
-      <li>Dwarven drinks give hangovers. Redspice, ground from bull's horns, clears them.</li>
-      <li>A fey may fly out of a cask when a drink is finished. Feys are fast, and their wings are rolled into feywing joints.</li>
-      <li>Forge liquor and the elixir need complex concoctions, an industrial research.</li>
-    </facts>
-    <advice>
-      <li>In Medieval Overhaul steel comes from smelting, so set aside 30 steel per cask before you research dwarven fermentation.</li>
-      <li>Store redspice next to the drinks, so the day after a feast isn't lost to hangovers.</li>
-      <li>Keep a hunter working near the casks when a batch is due to finish, so someone is on the spot if a fey flies out.</li>
-      <li>With Rimfolk: the dwarven cask counts for a colonist's wish for a brewery, and its ale, sweetwine and mead count for the wish for "something to drink or smoke".</li>
-    </advice>
+    <sections>
+      <li>
+        <heading>The dwarven cask</heading>
+        <text>The mod has its own research tab. Underground herbs comes first, then dwarven fermentation, which unlocks the dwarven cask (2x2, 120 wood and 30 steel). In Medieval Overhaul steel comes from smelting, so set aside 30 steel per cask before you research it.</text>
+        <table>
+          <li>Drink | Brewed from | Days in the cask</li>
+          <li>Shroom ale | Stoutcap | 15</li>
+          <li>Hive mead | Insect jelly | 18</li>
+          <li>Sweetwine | Glimmerquartz chunks | 30</li>
+        </table>
+        <after>Sweetwine comes out with a quality level.</after>
+      </li>
+      <li>
+        <heading>After the drinking</heading>
+        <text>Dwarven drinks give hangovers. Redspice, ground from bull's horns, clears them; store it next to the drinks, so the day after a feast isn't lost.
+
+A fey may fly out of a cask when a drink is finished. Feys are fast, and their wings are rolled into feywing joints, so keep a hunter working near the casks when a batch is due to finish.</text>
+      </li>
+      <li>
+        <heading>Glimmerquartz and the stronger stuff</heading>
+        <text>Glimmerquartz is a pink crystal mined from deposits on the map. Cut into pieces, it is also a hard drug that lifts mood but saps the will to work. Forge liquor and the elixir need complex concoctions, an industrial research.</text>
+      </li>
+      <li>
+        <heading>With Rimfolk</heading>
+        <text>The dwarven cask counts for a colonist's wish for a brewery, and its ale, sweetwine and mead count for the wish for "something to drink or smoke".</text>
+      </li>
+    </sections>
     <keywords>
       <li>stoneborn</li>
       <li>dwarf</li>
@@ -167,19 +214,22 @@
     <summary>Incense for a calmer mood, and clay for pots, bricks and walls</summary>
     <tip>We keep an incense burner in the hospital. The patients complain less.</tip>
     <description>Two small Epochs mods by DetVisor for tribal and medieval colonies. Incense adds burners that lift the mood of anyone nearby and help with meditation, and Pottery turns stone chunks into clay for decorative pots, clay bricks and clay walls. Neither needs electricity.</description>
-    <facts>
-      <li>The incense burner and incense tower need no research and are made of stone or metal plus 5 wood. The burner can stand on other furniture.</li>
-      <li>Anyone within 4 cells of either one gets a "pleasant smell" mood of +2. Both also work as an artistic and natural meditation focus.</li>
-      <li>One stone chunk makes 40 clay at a crafting spot or stonecutter's table, and 20 clay make 10 clay bricks at the stonecutter's table.</li>
-      <li>Clay bricks are a stone-like building material. The mod also adds raw clay, cobb clay and carved clay walls.</li>
-      <li>Pots can be made at a crafting spot; big pots need the potter's wheel (Stonecutting research) or the electric clay-turning table.</li>
-    </facts>
-    <advice>
-      <li>Put an incense burner in the temple, the hospital and shared bedrooms. It needs no fuel, so the +2 lasts as long as the burner stands.</li>
-      <li>Turn the stone chunks lying around into clay instead of hauling them away. Each chunk makes enough clay for 20 bricks.</li>
-      <li>Pots have quality like other furniture, so a skilled potter's work adds real beauty to the dining hall.</li>
-      <li>With Rimfolk: clay bricks count as a stone material, so once you have a stack, the room planner offers them for walls and stone furniture.</li>
-    </advice>
+    <sections>
+      <li>
+        <heading>Incense</heading>
+        <text>The incense burner and incense tower need no research and are made of stone or metal plus 5 wood; the burner can stand on other furniture. Anyone within 4 cells of either one gets a "pleasant smell" mood of +2, and both work as an artistic and natural meditation focus. They need no fuel, so the +2 lasts as long as the burner stands. Put one in the temple, the hospital and shared bedrooms.</text>
+      </li>
+      <li>
+        <heading>Clay and pottery</heading>
+        <text>One stone chunk makes 40 clay at a crafting spot or stonecutter's table, and 20 clay make 10 clay bricks at the stonecutter's table, so each chunk lying around is enough for 20 bricks. Turn them into clay instead of hauling them away. Clay bricks are a stone-like building material, and the mod also adds raw clay, cobb clay and carved clay walls.
+
+Pots can be made at a crafting spot; big pots need the potter's wheel (Stonecutting research) or the electric clay-turning table. Pots have quality like other furniture, so a skilled potter's work adds real beauty to the dining hall.</text>
+      </li>
+      <li>
+        <heading>With Rimfolk</heading>
+        <text>Clay bricks count as a stone material, so once you have a stack, the room planner offers them for walls and stone furniture.</text>
+      </li>
+    </sections>
     <keywords>
       <li>incense</li>
       <li>burner</li>
@@ -208,19 +258,34 @@
     <summary>Basic and artisan furniture for every era, from firepits to the royal poster bed</summary>
     <tip>The baron stopped complaining once we built him the royal poster bed.</tip>
     <description>Vanilla Furniture Expanded, the base mod of the series, adds over 30 pieces of furniture with their own small perks, unlocked by modular research. For a medieval colony the useful pieces are the stone firepit, simple beds and benches early on, and later the artisan set: a royal poster bed, end tables, dressers, wardrobes, chairs and tables fit for a noble. Its package id ends in "core", but it is a content mod, not a library.</description>
-    <facts>
-      <li>Basic Furniture (neolithic) and Artisan Furniture (medieval, after Complex Furniture) are the projects that matter before electricity. Modern Furniture and Waste Disposal are industrial.</li>
-      <li>The firepit is a stone campfire that burns wood and warms its room. It also comes as a dark firepit.</li>
-      <li>The artisan set has the 2x2 royal poster bed, a royal end table, dresser and wardrobe that link to beds, royal chairs and armchairs, and royal tables from 1x1 to 3x3.</li>
-      <li>The royal standing lamp needs power, so it is no use before electricity.</li>
-      <li>Complex Furniture also unlocks a weapon rack, a darts board and a punching bag. An animal sarcophagus gives a beloved pet a grave.</li>
-    </facts>
-    <advice>
-      <li>Research Artisan Furniture before your first noble title. The royal poster bed, end table and dresser make an impressive bedroom much easier to build.</li>
-      <li>Use firepits for warmth and light in an early camp. Each one also serves as a meditation focus.</li>
-      <li>Build the darts board and punching bag when colonists tire of the same pastimes; each adds a new kind of recreation.</li>
-      <li>With Rimfolk: wishes and room plans judge these pieces by what they do. Royal end tables and dressers count as bedside furniture, the poster bed as a double bed, the firepit as a fire for a colonist's room, the bench as a seat and the weapon rack as a rack for the armory.</li>
-    </advice>
+    <sections>
+      <li>
+        <heading>Before electricity</heading>
+        <text>Basic Furniture (neolithic) and Artisan Furniture (medieval, after Complex Furniture) are the projects that matter before electricity. Modern Furniture and Waste Disposal are industrial.
+
+The firepit is a stone campfire that burns wood and warms its room, and it also comes as a dark firepit. Firepits give an early camp warmth and light, and each one serves as a meditation focus.</text>
+      </li>
+      <li>
+        <heading>The artisan set</heading>
+        <text>The set has the 2x2 royal poster bed, a royal end table, dresser and wardrobe that link to beds, royal chairs and armchairs, and royal tables from 1x1 to 3x3. Research Artisan Furniture before your first noble title: the poster bed, end table and dresser make an impressive bedroom much easier to build. The royal standing lamp needs power, so it is no use before electricity.</text>
+      </li>
+      <li>
+        <heading>Recreation and the rest</heading>
+        <text>Complex Furniture also unlocks a weapon rack, a darts board and a punching bag. The darts board and punching bag each add a new kind of recreation, so build them when colonists tire of the same pastimes. An animal sarcophagus gives a beloved pet a grave.</text>
+      </li>
+      <li>
+        <heading>With Rimfolk</heading>
+        <text>Wishes and room plans judge these pieces by what they do.</text>
+        <table>
+          <li>Piece | Counts as</li>
+          <li>Royal end table, royal dresser | Bedside furniture</li>
+          <li>Royal poster bed | A double bed</li>
+          <li>Firepit | A fire for a colonist's room</li>
+          <li>Bench | A seat</li>
+          <li>Weapon rack | A rack for the armory</li>
+        </table>
+      </li>
+    </sections>
     <keywords>
       <li>furniture</li>
       <li>firepit</li>
@@ -252,19 +317,20 @@
     <summary>Statues, reliefs, pottery and rugs that give artists work in every era</summary>
     <tip>The relief in the dining hall took our artist most of a season. People still stop to look at it.</tip>
     <description>VFE Art gives artists far more to make than the vanilla sculptures: small, large and grand statues, reliefs, pillars, obelisks and monuments, plus pottery for tribes and embroidered rugs for the tailor. An artist who is good at little else now has steady work in every era.</description>
-    <facts>
-      <li>Pottery, obelisks and carvings are neolithic research; artful display, statues, monuments and rugs are medieval. Wallpaper and holograms come later.</li>
-      <li>Pottery is made at a crafting spot and is meant as early art to sell.</li>
-      <li>Rugs are made at a tailoring bench in three sizes, up to a 3x5 grand rug.</li>
-      <li>The relief is 3x1 and the monument 3x3. The plinth holds an item and puts it on display.</li>
-      <li>Archotech sculptures can turn up as quest rewards.</li>
-    </facts>
-    <advice>
-      <li>Have tribal artists make pottery to sell to the first caravans.</li>
-      <li>Put a large statue or a relief in the dining hall or throne room, where most colonists pass it every day.</li>
-      <li>Lay rugs in bedrooms and the hall for beauty without replacing the floor.</li>
-      <li>With Rimfolk: VFE statues count for an artist's wish for "another sculpture for the colony", and any VFE sculpture in a colonist's bedroom fulfills their wish for "art for their bedroom".</li>
-    </advice>
+    <sections>
+      <li>
+        <heading>From pottery to monuments</heading>
+        <text>Pottery, obelisks and carvings are neolithic research; artful display, statues, monuments and rugs are medieval. Wallpaper and holograms come later.
+
+Pottery is made at a crafting spot and is meant as early art to sell, so have tribal artists make some for the first caravans. Further up, the relief is 3x1 and the monument 3x3. Put a large statue or a relief in the dining hall or throne room, where most colonists pass it every day. The plinth holds an item and puts it on display, and archotech sculptures can turn up as quest rewards.
+
+Rugs are made at a tailoring bench in three sizes, up to a 3x5 grand rug. Lay them in bedrooms and the hall for beauty without replacing the floor.</text>
+      </li>
+      <li>
+        <heading>With Rimfolk</heading>
+        <text>VFE statues count for an artist's wish for "another sculpture for the colony", and any VFE sculpture in a colonist's bedroom fulfills their wish for "art for their bedroom".</text>
+      </li>
+    </sections>
     <keywords>
       <li>art</li>
       <li>statue</li>
@@ -295,19 +361,27 @@
     <summary>Catapults, ballistas, cavalry spikes and bear traps for a castle without guns</summary>
     <tip>Put the spikes where raiders have to slow down, and aim the catapult where they gather.</tip>
     <description>VFE Security reworks and expands defenses for every era. A medieval colony gets catapults and ballistas from the Siege Equipment research, plus cavalry spikes and bear traps that can be re-armed; trenches, turrets and charge weapons come later in the research tree. Before electricity, these are the closest thing you have to turrets.</description>
-    <facts>
-      <li>Siege Equipment is a medieval research that needs Smithing. It unlocks the catapult, the ballista and cavalry spikes.</li>
-      <li>The catapult must be manned. It hurls stone chunks as boulders and needs no line of sight, but it can't hit anything closer than about 15 cells.</li>
-      <li>The ballista must be manned and is reloaded with wood; its bolts burst into splinters on impact.</li>
-      <li>The bear trap (Complex Furniture) can be re-armed after it springs, and can't be placed next to other traps.</li>
-      <li>Trenches, razor wire, turrets and spacer weapons need industrial or later research.</li>
-    </facts>
-    <advice>
-      <li>Set catapults behind your walls with a stack of stone chunks beside them, so they can hit enemies gathering out of bow range.</li>
-      <li>Keep wood by each ballista, and decide before a raid who mans which engine.</li>
-      <li>Lay bear traps and cavalry spikes where raiders walk to the gate, and re-arm the bear traps after every fight.</li>
-      <li>With Rimfolk: bear traps and cavalry spikes count as traps, both in the advisor's defense check and for a colonist's wish for stronger defenses. Catapults and ballistas also count toward the defense check, manned or not.</li>
-    </advice>
+    <sections>
+      <li>
+        <heading>The medieval defenses</heading>
+        <table>
+          <li>Defense | Research | How it works</li>
+          <li>Catapult | Siege Equipment | Must be manned. It hurls stone chunks as boulders and needs no line of sight, but it can't hit anything closer than about 15 cells.</li>
+          <li>Ballista | Siege Equipment | Must be manned and is reloaded with wood. Its bolts burst into splinters on impact.</li>
+          <li>Cavalry spikes | Siege Equipment | A trap you lay where raiders walk.</li>
+          <li>Bear trap | Complex Furniture | Can be re-armed after it springs. It can't be placed next to other traps.</li>
+        </table>
+        <after>Siege Equipment is a medieval research that needs Smithing. Trenches, razor wire, turrets and spacer weapons need industrial or later research.</after>
+      </li>
+      <li>
+        <heading>Before a raid</heading>
+        <text>Set catapults behind your walls with a stack of stone chunks beside them, so they can hit enemies gathering out of bow range. Keep wood by each ballista, and decide before a raid who mans which engine. Lay bear traps and cavalry spikes where raiders walk to the gate, and re-arm the bear traps after every fight.</text>
+      </li>
+      <li>
+        <heading>With Rimfolk</heading>
+        <text>Bear traps and cavalry spikes count as traps, both in the advisor's defense check and for a colonist's wish for stronger defenses. Catapults and ballistas also count toward the defense check, manned or not.</text>
+      </li>
+    </sections>
     <keywords>
       <li>catapult</li>
       <li>ballista</li>
@@ -338,21 +412,29 @@
     <summary>Workbench cabinets, a wood-fired smelter, an operating table, and power for later</summary>
     <tip>A smithing cabinet next to the smithy speeds up work there by 10%.</tip>
     <description>Three Vanilla Furniture Expanded modules for working rooms. Production adds cabinets that speed up one kind of bench, a wood-fired smelter and big industrial workbenches; Medical adds medical furniture, including an operating table a medieval colony can build; Power adds generators, batteries and helixien gas for colonies that reach electricity.</description>
-    <facts>
-      <li>Production's cabinets each add 10% work speed to one kind of bench (kitchen, tailor, smithy, drug lab, machining, fabrication), stack with tool cabinets and need no power.</li>
-      <li>The kitchen sink, tailor and drug cabinets need Complex Furniture; the smithing cabinet needs Smithing.</li>
-      <li>The fueled smelter burns wood and needs only Smithing. It recovers metal from slag and old weapons.</li>
-      <li>The large workbenches and the electric butcher, stonecutter and drug lab need Manufacturing or electricity.</li>
-      <li>Medical's operating table needs Complex Furniture and no power. It gives surgery success x1.25 and tend quality +5%, but patients gain immunity more slowly on it.</li>
-      <li>Power's generators, batteries and helixien gas only matter once you have researched electricity.</li>
-    </facts>
-    <advice>
-      <li>Put a cabinet beside each busy bench in the smithy, tailor's shop and kitchen. It is the cheapest speed boost before electricity.</li>
-      <li>Operate on the operating table, then move the patient to a hospital bed to recover. The table is a poor bed to rest in.</li>
-      <li>Keep a fueled smelter near the scrap pile to turn slag and raiders' spare weapons into metal.</li>
-      <li>With Rimfolk: the hospital room plan can put an operating table in place of a bed.</li>
-      <li>With Rimfolk: a working generator that feeds a power grid tells the council you have electricity. Until then, unless you set the era by hand, the council treats a medieval colony as pre-industrial.</li>
-    </advice>
+    <sections>
+      <li>
+        <heading>Production</heading>
+        <text>Each cabinet adds 10% work speed to one kind of bench (kitchen, tailor, smithy, drug lab, machining, fabrication). Cabinets stack with tool cabinets and need no power, which makes them the cheapest speed boost before electricity: put one beside each busy bench in the smithy, tailor's shop and kitchen. The kitchen sink, tailor and drug cabinets need Complex Furniture; the smithing cabinet needs Smithing.
+
+The fueled smelter burns wood and needs only Smithing. It recovers metal from slag and old weapons, so keep one near the scrap pile for slag and raiders' spare weapons. The large workbenches and the electric butcher, stonecutter and drug lab need Manufacturing or electricity.</text>
+      </li>
+      <li>
+        <heading>Medical</heading>
+        <text>The operating table needs Complex Furniture and no power. It gives surgery success x1.25 and tend quality +5%, but patients gain immunity more slowly on it. Operate on the table, then move the patient to a hospital bed to recover; the table is a poor bed to rest in.</text>
+      </li>
+      <li>
+        <heading>Power</heading>
+        <text>Generators, batteries and helixien gas only matter once you have researched electricity.</text>
+      </li>
+      <li>
+        <heading>With Rimfolk</heading>
+        <points>
+          <li>The hospital room plan can put an operating table in place of a bed.</li>
+          <li>A working generator that feeds a power grid tells the council you have electricity. Until then, unless you set the era by hand, the council treats a medieval colony as pre-industrial.</li>
+        </points>
+      </li>
+    </sections>
     <keywords>
       <li>cabinet</li>
       <li>workbench</li>
@@ -384,20 +466,26 @@
     <summary>New floors, walls and fences, and hundreds of props bought with silver</summary>
     <tip>The log cabins went up in a day. We rebuilt them in stone after the first fire.</tip>
     <description>VFE Architect adds a tailored set of floors, walls, fences and bridges: cobblestone, polished stone and slabs in every stone, wood floors in four colors, log and hedge walls, animal gates and more. VFE Props and Decor adds hundreds of purely decorative props in their own palette, paid for in silver and placed at once.</description>
-    <facts>
-      <li>Wood can be built in four colors from the same wood; there are no new wood types.</li>
-      <li>Stone floors come as cobblestone, polished stone and slabs in each vanilla stone. Fine wooden floors need Royalty.</li>
-      <li>Log walls cost 5 wood. There are also hedge walls, picket and brick fences, animal gates and single doors.</li>
-      <li>Architect can't be removed from a running save, because every floor it added would be left as missing terrain.</li>
-      <li>Props open from the Build Props button in the Furniture tab. They cost silver instead of materials and do nothing but look good. A prop sink washes nothing, and a prop shelf holds nothing.</li>
-    </facts>
-    <advice>
-      <li>Lay cobblestone or slabs in halls and workshops. They need only stone blocks and suit a medieval hall.</li>
-      <li>Use log walls for early cabins when you have wood but no stone blocks. They burn, so keep campfires out of log rooms.</li>
-      <li>Use props to dress up rooms, such as tools in the smithy or barrels in a tavern. Some props block movement and can box raiders in, but that is closer to an exploit than a defense.</li>
-      <li>With Rimfolk: the room planner's floor picker shows these floors too, grouped into families, with each floor's beauty and cleanliness.</li>
-      <li>With Rimfolk: some wishes go by what a thing is called, so a prop banner, statue or weapon rack counts as the real thing. A prop weapon rack still holds no weapons, so build the real one where it has a job to do.</li>
-    </advice>
+    <sections>
+      <li>
+        <heading>Floors, walls and fences</heading>
+        <text>Stone floors come as cobblestone, polished stone and slabs in each vanilla stone. They need only stone blocks and suit a medieval hall or workshop. Wood can be built in four colors from the same wood, but there are no new wood types, and fine wooden floors need Royalty.
+
+Log walls cost 5 wood, so they work for early cabins when you have wood but no stone blocks. They burn, so keep campfires out of log rooms. There are also hedge walls, picket and brick fences, animal gates and single doors.
+
+Architect can't be removed from a running save, because every floor it added would be left as missing terrain.</text>
+      </li>
+      <li>
+        <heading>Props</heading>
+        <text>Props open from the Build Props button in the Furniture tab. They cost silver instead of materials and do nothing but look good: a prop sink washes nothing, and a prop shelf holds nothing. Use them to dress up rooms, such as tools in the smithy or barrels in a tavern. Some props block movement and can box raiders in, but that is closer to an exploit than a defense.</text>
+      </li>
+      <li>
+        <heading>With Rimfolk</heading>
+        <text>The room planner's floor picker shows these floors too, grouped into families, with each floor's beauty and cleanliness.
+
+Some wishes go by what a thing is called, so a prop banner, statue or weapon rack counts as the real thing. A prop weapon rack still holds no weapons, so build the real one where it has a job to do.</text>
+      </li>
+    </sections>
     <keywords>
       <li>floor</li>
       <li>cobblestone</li>
@@ -432,21 +520,32 @@
     <summary>Tunics, aprons, chainmail, plate and quivers for a medieval wardrobe</summary>
     <tip>An apron for the cook, boots for the hauler, a quiver for every archer.</tip>
     <description>Three Vanilla Expanded clothing mods. Apparel adds about 40 pieces, most of them industrial, but medieval colonies get tunics, blouses, aprons and boots, and tribes get pelt coats, ponchos and kilts. Armour adds wooden armor for tribes and a medieval set from gambeson and chainmail to full plate, and Accessories adds belt items such as the quiver and the backpack.</description>
-    <facts>
-      <li>Complex Clothing unlocks the medieval pieces: tunic, blouse, apron and boots. The apron gives +10% global work speed and +10% general labor speed, and boots add +0.1 move speed.</li>
-      <li>Tribal pieces need no research: pelt coat, tribal poncho and kilt, wooden armor and the stone war mask.</li>
-      <li>Gambeson and quilted vest need Leather Tanning. Chainmail, chestplate, light plate armor, shoulderpads, plate helmet, boots and gloves need Plate Armor and a smithy.</li>
-      <li>The quiver (30 leather and 15 wood, at a crafting spot or smithy) halves the wearer's ranged cooldown. It takes the belt slot.</li>
-      <li>The backpack greatly raises carry weight and the battle banner gives its wearer fighting spirit; both are tribal-tier.</li>
-      <li>Most other pieces, from jeans and suits to riot gear and ghillie suits, need industrial research.</li>
-    </facts>
-    <advice>
-      <li>Give every archer a quiver. The quiver, backpack and battle banner all take the belt slot, so save backpacks for haulers and caravans.</li>
-      <li>Dress crafters and haulers in aprons; the work speed adds up over a season.</li>
-      <li>Layer your fighters: chainmail or a gambeson on the skin, a chestplate over it, and a plate helmet on top.</li>
-      <li>With Rimfolk: a fighter's wish for "proper armor" wants a worn piece with a solid sharp armor rating. Decent wooden armor already meets it, and metal plate easily does.</li>
-      <li>With Rimfolk: a plate helmet also fulfills a colonist's wish for "a hat of their own".</li>
-    </advice>
+    <sections>
+      <li>
+        <heading>What each research unlocks</heading>
+        <table>
+          <li>Research | Pieces</li>
+          <li>None | Pelt coat, tribal poncho and kilt, wooden armor, stone war mask</li>
+          <li>Complex Clothing | Tunic, blouse, apron, boots</li>
+          <li>Leather Tanning | Gambeson, quilted vest</li>
+          <li>Plate Armor, and a smithy | Chainmail, chestplate, light plate armor, shoulderpads, plate helmet, boots, gloves</li>
+          <li>Industrial research | Most other pieces, from jeans and suits to riot gear and ghillie suits</li>
+        </table>
+        <after>The apron gives +10% global work speed and +10% general labor speed, and boots add +0.1 move speed. Dress crafters and haulers in aprons; the work speed adds up over a season.</after>
+      </li>
+      <li>
+        <heading>The belt slot</heading>
+        <text>The quiver (30 leather and 15 wood, at a crafting spot or smithy) halves the wearer's ranged cooldown, so give every archer one. The backpack greatly raises carry weight, and the battle banner gives its wearer fighting spirit; both are tribal-tier. All three take the belt slot, so save backpacks for haulers and caravans.</text>
+      </li>
+      <li>
+        <heading>Dressing a fighter</heading>
+        <text>Layer your fighters: chainmail or a gambeson on the skin, a chestplate over it, and a plate helmet on top.</text>
+      </li>
+      <li>
+        <heading>With Rimfolk</heading>
+        <text>A fighter's wish for "proper armor" wants a worn piece with a solid sharp armor rating. Decent wooden armor already meets it, and metal plate easily does. A plate helmet also fulfills a colonist's wish for "a hat of their own".</text>
+      </li>
+    </sections>
     <keywords>
       <li>apparel</li>
       <li>clothing</li>
@@ -480,19 +579,31 @@
     <summary>Vanilla Books Expanded and [sbz] Bookcase: write your own skill books, shelve them neatly</summary>
     <tip>Our new cook learned more from the old cook's book than from the old cook.</tip>
     <description>Vanilla Books Expanded lets your colonists write books: at a writer's table, an expert turns cloth into a textbook about their skill and passes it on to readers. [sbz] Bookcase adds four bookcases that work like the vanilla one but line up and layer properly, including small ones that sit on tables.</description>
-    <facts>
-      <li>Writing is a medieval research that unlocks the writer's table. The typewriter table and newspapers need Printing, an industrial research.</li>
-      <li>A skill book costs 100 cloth and a very long stretch of work. The writer's skill in that subject decides its quality.</li>
-      <li>The result is a normal textbook for the chosen skill, so readers learn from it as usual.</li>
-      <li>Blueprints and maps come only from traders. Reading a blueprint long enough finishes a research project.</li>
-      <li>[sbz] Bookcase: the 2-tier bookcase (2x1) and narrow 2-tier bookcase (1x1) hold up to 12 items per cell, the bookshelf (2x1) and small bookshelf (1x1) up to 6. They are in the Furniture tab.</li>
-    </facts>
-    <advice>
-      <li>Have your best doctor, crafter or fighter write a book while their skill is at its peak, so the colony keeps what they know after they are gone.</li>
-      <li>Set cloth aside for writing. At 100 cloth per book, the writer competes with the tailor.</li>
-      <li>Keep books in bookcases, where they don't deteriorate.</li>
-      <li>With Rimfolk: written books count toward a reader's wish for "more books to read", including books kept in a bookcase, and [sbz]'s bookcases count for a wish for a bookcase.</li>
-    </advice>
+    <sections>
+      <li>
+        <heading>Writing a book</heading>
+        <text>Writing is a medieval research that unlocks the writer's table; the typewriter table and newspapers need Printing, an industrial research. A skill book costs 100 cloth and a very long stretch of work, so the writer competes with the tailor for cloth. The writer's skill in that subject decides its quality, and the result is a normal textbook for the chosen skill, so readers learn from it as usual.
+
+Have your best doctor, crafter or fighter write one while their skill is at its peak, so the colony keeps what they know after they are gone.
+
+Blueprints and maps come only from traders. Reading a blueprint long enough finishes a research project.</text>
+      </li>
+      <li>
+        <heading>The bookcases</heading>
+        <table>
+          <li>Piece | Size | Holds per cell</li>
+          <li>2-tier bookcase | 2x1 | Up to 12 items</li>
+          <li>Narrow 2-tier bookcase | 1x1 | Up to 12 items</li>
+          <li>Bookshelf | 2x1 | Up to 6 items</li>
+          <li>Small bookshelf | 1x1 | Up to 6 items</li>
+        </table>
+        <after>They are in the Furniture tab. Keep your books in them, where they don't deteriorate.</after>
+      </li>
+      <li>
+        <heading>With Rimfolk</heading>
+        <text>Written books count toward a reader's wish for "more books to read", including books kept in a bookcase, and [sbz]'s bookcases count for a wish for a bookcase.</text>
+      </li>
+    </sections>
     <keywords>
       <li>books</li>
       <li>writing</li>
@@ -523,21 +634,44 @@
     <summary>Hygiene, bladder and thirst needs, latrines, wells, baths and plumbing</summary>
     <tip>Burn the sludge and walk away. Standing by the burn pit makes people sick.</tip>
     <description>Dubs Bad Hygiene gives colonists hygiene and bladder needs (and thirst, if you switch it on) and builds a whole water, sewage and heating system around them. A medieval colony starts with latrines, water tubs, wells and burn pits, and medieval research brings plumbing, bathtubs, septic tanks, log boilers, saunas and swimming pools. It is hard to remove from a save, so decide early.</description>
-    <facts>
-      <li>Without any research you can build a latrine (emptied by hand or plumbed in), a water tub for washing and, with thirst on, drinking (filled by hand or by rain), a primitive well (its water is hauled to the tub), a burn pit, a water trough and a litter box.</li>
-      <li>The burn pit burns fecal sludge and can cremate corpses, but colonists who spend too long near it can get sick.</li>
-      <li>Plumbing (medieval) brings pipes, basins, bathtubs, the water well, wind pump, water tower and sewage outlet. Septic Tanks, Heating (log boiler, hot water tank), Saunas and Swimming Pools are medieval too.</li>
-      <li>The fueled sauna heater heats its room to 60 °C. The mod knows saunas, public bathrooms and private bathrooms as room types.</li>
-      <li>Toilets, showers, kitchen sinks, fountains, hot tubs, washing machines, irrigation and air conditioning are industrial.</li>
-      <li>The settings offer a Lite mode, applied after a restart, if the full system is too much.</li>
-    </facts>
-    <advice>
-      <li>On day one, build a latrine, a water tub and a primitive well. Research Plumbing early so water comes by pipe instead of by bucket.</li>
-      <li>Keep latrines, sewage outlets and burn pits away from wells, the kitchen and the hospital.</li>
-      <li>DBH for Medieval, also in your list, adds pumps, toilets and baths that need no power. Its own page covers them.</li>
-      <li>With Rimfolk: the bathroom, bathhouse and sauna room plans place the fixtures the colony can build now, and the advisor counts toilets and places to wash. Colonists ask for a latrine, a water tub, a real bath or hot water when they need one.</li>
-      <li>With Rimfolk: the burn pit and the sauna heater never count as a heater for a bedroom. A campfire, brazier or firepit meets the wish for a fire of one's own.</li>
-    </advice>
+    <sections>
+      <li>
+        <heading>Day one</heading>
+        <text>Without any research you can build:</text>
+        <points>
+          <li>a latrine, emptied by hand or plumbed in</li>
+          <li>a water tub for washing and, with thirst on, drinking, filled by hand or by rain</li>
+          <li>a primitive well, whose water is hauled to the tub</li>
+          <li>a burn pit</li>
+          <li>a water trough and a litter box</li>
+        </points>
+        <after>Build a latrine, a water tub and a primitive well on the first day, then research Plumbing early so water comes by pipe instead of by bucket.</after>
+      </li>
+      <li>
+        <heading>Medieval research</heading>
+        <table>
+          <li>Research | Brings</li>
+          <li>Plumbing | Pipes, basins, bathtubs, the water well, wind pump, water tower and sewage outlet</li>
+          <li>Heating | The log boiler and hot water tank</li>
+          <li>Saunas | The fueled sauna heater, which heats its room to 60 °C</li>
+        </table>
+        <after>Septic Tanks and Swimming Pools are medieval research too. Toilets, showers, kitchen sinks, fountains, hot tubs, washing machines, irrigation and air conditioning are industrial. The mod knows saunas, public bathrooms and private bathrooms as room types.</after>
+      </li>
+      <li>
+        <heading>Sludge and sickness</heading>
+        <text>The burn pit burns fecal sludge and can cremate corpses, but colonists who spend too long near it can get sick. Keep latrines, sewage outlets and burn pits away from wells, the kitchen and the hospital.</text>
+      </li>
+      <li>
+        <heading>If it's too much</heading>
+        <text>The settings offer a Lite mode, applied after a restart. DBH for Medieval, also in your list, adds pumps, toilets and baths that need no power; its own page covers them.</text>
+      </li>
+      <li>
+        <heading>With Rimfolk</heading>
+        <text>The bathroom, bathhouse and sauna room plans place the fixtures the colony can build now, and the advisor counts toilets and places to wash. Colonists ask for a latrine, a water tub, a real bath or hot water when they need one.
+
+The burn pit and the sauna heater never count as a heater for a bedroom. A campfire, brazier or firepit meets the wish for a fire of one's own.</text>
+      </li>
+    </sections>
     <keywords>
       <li>hygiene</li>
       <li>bladder</li>
@@ -570,18 +704,22 @@
     <summary>Candles, ossuary walls, wall tombs, a reliquary and statues for the dead</summary>
     <tip>Keep candles lit in the crypt. It's a cold place to visit in the dark.</tip>
     <description>Dark Ages: Crypts and Tombs adds furniture and decoration for your colony's crypt: candles and candelabra, ossuary walls, a wall tomb, a sepulchral brazier, a reliquary for a relic, and grim statues. It is made to sit beside Medieval Overhaul and adds nothing MO already covers.</description>
-    <facts>
-      <li>Candles and candelabra light the crypt; with Medieval Overhaul the candles use its tallow.</li>
-      <li>The sepulchral brazier counts as a brazier for Royalty's throne room requirements.</li>
-      <li>The reliquary holds a relic and glows. Right-click the reliquary or the relic to put it in.</li>
-      <li>Ossuary walls, a wall tomb, a sepulchral statue and a 2x2 demon statue round out the set.</li>
-      <li>There are bloodflame and darklight versions. With VE Framework, which is in your list, sanguophages enjoy bloodflame candles.</li>
-    </facts>
-    <advice>
-      <li>Lay out the crypt with the council's room plan, then add candles, a brazier and a statue by hand.</li>
-      <li>Keep a relic in a reliquary in the temple or the crypt, where people can see it.</li>
-      <li>With Rimfolk: the sepulchral and demon statues count for an artist's wish for "another sculpture for the colony".</li>
-    </advice>
+    <sections>
+      <li>
+        <heading>Candles and braziers</heading>
+        <text>Candles and candelabra light the crypt; with Medieval Overhaul the candles use its tallow. There are bloodflame and darklight versions, and with VE Framework, which is in your list, sanguophages enjoy bloodflame candles. The sepulchral brazier counts as a brazier for Royalty's throne room requirements.</text>
+      </li>
+      <li>
+        <heading>Tombs, relics and statues</heading>
+        <text>Ossuary walls, a wall tomb, a sepulchral statue and a 2x2 demon statue round out the set. The reliquary holds a relic and glows: right-click the reliquary or the relic to put it in, and keep it in the temple or the crypt, where people can see it.
+
+Lay out the crypt with the council's room plan, then add candles, a brazier and a statue by hand.</text>
+      </li>
+      <li>
+        <heading>With Rimfolk</heading>
+        <text>The sepulchral and demon statues count for an artist's wish for "another sculpture for the colony".</text>
+      </li>
+    </sections>
     <keywords>
       <li>crypt</li>
       <li>tomb</li>
@@ -615,19 +753,29 @@
     <summary>Shelves, hooks, hampers and racks that hold several stacks per cell</summary>
     <tip>The meat hooks freed up the whole back wall of the freezer.</tip>
     <description>LWM's Deep Storage adds storage that holds several stacks on one cell, each piece made for a kind of thing: meat hooks, hampers for clothes, weapon cabinets, medicine cabinets, food baskets, pallets, skips and taller shelves. Deep Storage Plus fills the gaps with a barrel for liquids, a firewood rack, bins and an organ fridge. Together they fit a sprawling storeroom into a few rooms.</description>
-    <facts>
-      <li>Most units need Complex Furniture. The meat hook needs Smithing, the food basket needs no research, and the safe and weapons locker need Machining.</li>
-      <li>The double shelf and tall shelves take anything; the other units only take their own kind of item. Hampers hold clothes, not cloth.</li>
-      <li>Colonists take a moment to put each item into deep storage, and animals can't haul there unless you allow it in the settings.</li>
-      <li>Deep Storage Plus: the barrel (Complex Furniture) holds up to 8 stacks of one liquid, such as beer, wort, milk or Vanilla Brewing drinks. With Dubs Bad Hygiene it also comes as a water barrel.</li>
-      <li>The firewood rack (Complex Furniture) holds 14 stacks of wood, 7 per tile, and stops it deteriorating.</li>
-    </facts>
-    <advice>
-      <li>Hang meat on hooks in the freezer and put meals on tray racks next to the dining room.</li>
-      <li>Keep medicine in a cabinet by the hospital and weapons in cabinets by the gate.</li>
-      <li>Build a firewood rack near the hearths before autumn, so the winter's wood doesn't rot while it waits.</li>
-      <li>With Rimfolk: the storeroom room plan can use the double shelf or tall shelves in place of plain shelves, and wishes that want the stores full (firewood, hay, honey, books) count what is kept in deep storage.</li>
-    </advice>
+    <sections>
+      <li>
+        <heading>What fits where</heading>
+        <text>The double shelf and tall shelves take anything; the other units only take their own kind of item, and hampers hold clothes, not cloth. Most units need Complex Furniture. The meat hook needs Smithing, the food basket needs no research, and the safe and weapons locker need Machining.</text>
+        <table>
+          <li>Keep | In</li>
+          <li>Meat | Hooks in the freezer</li>
+          <li>Meals | Tray racks next to the dining room</li>
+          <li>Medicine | A cabinet by the hospital</li>
+          <li>Weapons | Cabinets by the gate</li>
+          <li>Firewood | A firewood rack near the hearths, built before autumn</li>
+        </table>
+        <after>Colonists take a moment to put each item into deep storage, and animals can't haul there unless you allow it in the settings.</after>
+      </li>
+      <li>
+        <heading>Deep Storage Plus</heading>
+        <text>The barrel (Complex Furniture) holds up to 8 stacks of one liquid, such as beer, wort, milk or Vanilla Brewing drinks; with Dubs Bad Hygiene it also comes as a water barrel. The firewood rack (Complex Furniture) holds 14 stacks of wood, 7 per tile, and stops it deteriorating, so the winter's wood doesn't rot while it waits.</text>
+      </li>
+      <li>
+        <heading>With Rimfolk</heading>
+        <text>The storeroom room plan can use the double shelf or tall shelves in place of plain shelves, and wishes that want the stores full (firewood, hay, honey, books) count what is kept in deep storage.</text>
+      </li>
+    </sections>
     <keywords>
       <li>storage</li>
       <li>shelf</li>
@@ -666,19 +814,28 @@
     <summary>Field Medic, Quality Surgeon Reborn, Deafness and Blindness, Food Alert, Food Poisoning Stack Fix</summary>
     <tip>Once autumn comes, check the days of food every morning.</tip>
     <description>Five small mods for the infirmary and the larder. Two help your doctors, one makes old age harder on eyes and ears, and two deal with food: a readout of how long your stores will last, and a fix for how food poisoning spreads through a stack of meals.</description>
-    <facts>
-      <li>Field Medic: a medic bag lets its wearer stop a colonist's bleeding in the field for a while. It costs 30 cloth, 5 medicine and 2 components and needs Medicine Production, so a medieval colony will mostly buy one.</li>
-      <li>Quality Surgeon Reborn: only the doctor with the best surgery success chance operates. If that doctor is the patient or can't use their hands, order another doctor yourself.</li>
-      <li>Deafness and Blindness: old colonists can slowly go blind or deaf in both eyes or both ears. It starts mild and gets worse over time.</li>
-      <li>Food Alert: a constant readout of the food in storage and how many days it will last. The settings choose which foods count.</li>
-      <li>Food Poisoning Stack Fix: one poisoned meal no longer taints a whole stack; the game tracks how many bad meals a stack holds.</li>
-    </facts>
-    <advice>
-      <li>Keep your other doctors on tending, since Quality Surgeon leaves every operation to the best one.</li>
-      <li>Only prosthetics or bionics fix failing eyes and ears, so in a medieval colony, move fading elders to work that needs them less.</li>
-      <li>Compare Food Alert's days of food with the season. Going into winter, you need enough to last until the next harvest.</li>
-      <li>With Rimfolk: the council's Priorities page separately forecasts your food against the coming winter, and a bout of food poisoning makes a colonist likelier to ask for better meals.</li>
-    </advice>
+    <sections>
+      <li>
+        <heading>For the doctors</heading>
+        <text>Field Medic adds a medic bag that lets its wearer stop a colonist's bleeding in the field for a while. It costs 30 cloth, 5 medicine and 2 components and needs Medicine Production, so a medieval colony will mostly buy one.
+
+Quality Surgeon Reborn leaves every operation to the doctor with the best surgery success chance, so keep your other doctors on tending. If that doctor is the patient or can't use their hands, order another doctor yourself.</text>
+      </li>
+      <li>
+        <heading>Failing eyes and ears</heading>
+        <text>With Deafness and Blindness, old colonists can slowly go blind or deaf in both eyes or both ears. It starts mild and gets worse over time. Only prosthetics or bionics fix it, so in a medieval colony, move fading elders to work that needs their eyes and ears less.</text>
+      </li>
+      <li>
+        <heading>For the larder</heading>
+        <text>Food Alert keeps a constant readout of the food in storage and how many days it will last, and the settings choose which foods count. Compare the days of food with the season: going into winter, you need enough to last until the next harvest.
+
+Food Poisoning Stack Fix stops one poisoned meal from tainting a whole stack. The game tracks how many bad meals a stack holds.</text>
+      </li>
+      <li>
+        <heading>With Rimfolk</heading>
+        <text>The council's Priorities page separately forecasts your food against the coming winter, and a bout of food poisoning makes a colonist likelier to ask for better meals.</text>
+      </li>
+    </sections>
     <keywords>
       <li>medic bag</li>
       <li>stabilize</li>
@@ -716,21 +873,29 @@
     <summary>More Floors, Floors Are Worthless, QualityBuilder, MinifyEverything, Tucked Furniture, signs, No Burn Metal</summary>
     <tip>The workshop is in the wrong spot again. Uninstall the bench and carry it over.</tip>
     <description>Seven small mods for builders: more floors and a rule that floors add no wealth, a way to make your best builder do the quality work, the power to move any building, furniture that tucks against walls, extra signs, and metal that doesn't burn.</description>
-    <facts>
-      <li>More Floors: dozens of wood, stone, checkered and carpet floors, plus wool carpets from a loom. The stone floors need Stonecutting.</li>
-      <li>Floors Are (Absolutely) Worthless: built floors add no colony wealth (smoothed stone aside), so fine floors don't bring bigger raids. They still add beauty, but no room wealth.</li>
-      <li>QualityBuilder: mark things so only your best builder builds them, and set a minimum quality. Anything worse is torn down and rebuilt with the same material.</li>
-      <li>MinifyEverything: any building can be uninstalled and moved. It is experimental: if a reinstall fails, uninstall it and install it again.</li>
-      <li>Tucked Furniture: nudge furniture toward walls and tuck chairs under tables to clear walkways; chairs pull out when someone sits.</li>
-      <li>Medieval Overhaul Extra Signs: a few more shop signs in Medieval Overhaul's style, and every sign can be reinstalled.</li>
-      <li>No Burn Metal: steel, silver, gold, Medieval Overhaul's iron and other metals no longer burn. In 1.6 the settings have a switch for each metal.</li>
-    </facts>
-    <advice>
-      <li>Since floors add no wealth, floor every room people live in. You get the beauty and cleanliness without bigger raids.</li>
-      <li>Use QualityBuilder for beds and furniture people use every day. A minimum of good is a sensible start; demanding masterwork will eat materials.</li>
-      <li>Use MinifyEverything to rearrange a workshop instead of rebuilding it, and save first.</li>
-      <li>With Rimfolk: the room planner's floor picker lists More Floors' floors in their families and shows each one's beauty and cleanliness.</li>
-    </advice>
+    <sections>
+      <li>
+        <heading>The seven mods</heading>
+        <table>
+          <li>Mod | What it does</li>
+          <li>More Floors | Dozens of wood, stone, checkered and carpet floors, plus wool carpets from a loom. The stone floors need Stonecutting.</li>
+          <li>Floors Are (Absolutely) Worthless | Built floors add no colony wealth (smoothed stone aside), so fine floors don't bring bigger raids. They still add beauty, but no room wealth.</li>
+          <li>QualityBuilder | Mark things so only your best builder builds them, and set a minimum quality. Anything worse is torn down and rebuilt with the same material.</li>
+          <li>MinifyEverything | Any building can be uninstalled and moved. It is experimental: if a reinstall fails, uninstall it and install it again.</li>
+          <li>Tucked Furniture | Nudge furniture toward walls and tuck chairs under tables to clear walkways. Chairs pull out when someone sits.</li>
+          <li>Medieval Overhaul Extra Signs | A few more shop signs in Medieval Overhaul's style, and every sign can be reinstalled.</li>
+          <li>No Burn Metal | Steel, silver, gold, Medieval Overhaul's iron and other metals no longer burn. In 1.6 the settings have a switch for each metal.</li>
+        </table>
+      </li>
+      <li>
+        <heading>Putting them to work</heading>
+        <text>Since floors add no wealth, floor every room people live in: you get the beauty and cleanliness without bigger raids. Use QualityBuilder for beds and furniture people use every day. A minimum of good is a sensible start; demanding masterwork will eat materials. To rearrange a workshop, save first, then move the benches with MinifyEverything instead of rebuilding them.</text>
+      </li>
+      <li>
+        <heading>With Rimfolk</heading>
+        <text>The room planner's floor picker lists More Floors' floors in their families and shows each one's beauty and cleanliness.</text>
+      </li>
+    </sections>
     <keywords>
       <li>floors</li>
       <li>wealth</li>
@@ -765,18 +930,21 @@
     <summary>Vanilla Textures Expanded and Variations, Animal Variety Coats, FEB's medicine, Layered Apparel</summary>
     <tip>The new muffalo calves came out spotted. The old herd is still plain brown.</tip>
     <description>Five mods that change how things look and never how they work: sharper vanilla textures, random looks for common furniture, coat colors for animals, new medicine icons, and a wardrobe that lets colonists wear one thing and look like another.</description>
-    <facts>
-      <li>Vanilla Textures Expanded: over 450 vanilla textures redrawn at twice the size. Its settings also switch the bottom menu bar between icons, text or both.</li>
-      <li>Vanilla Textures Expanded - Variations: more than 150 alternative looks for 35 vanilla buildings, picked at random when built, with a button to choose another.</li>
-      <li>Animal Variety Coats: many vanilla animals, such as muffalo, huskies, cats, boomalopes and thrumbos, come in varied coat colors and patterns. Only newly spawned animals change, and their leather stays the same.</li>
-      <li>FEB's Medicine Retexture: a matching new look for herbal, industrial and glitterworld medicine and several modded medicines, including Medieval Medicines.</li>
-      <li>Layered Apparel: give a colonist a cosmetic look, with separate everyday and drafted outfits, colors, and presets for whole groups, without changing their real gear or stats.</li>
-    </facts>
-    <advice>
-      <li>Load other texture mods after Vanilla Textures Expanded so theirs win.</li>
-      <li>Use Layered Apparel presets to put your soldiers in the colony's colors while they wear whatever armor is best.</li>
-      <li>With Rimfolk: the wishes for "new clothes", "a hat of their own" and "something fine to wear" look at what a colonist really wears, so a cosmetic look doesn't fulfill them.</li>
-    </advice>
+    <sections>
+      <li>
+        <points>
+          <li>Vanilla Textures Expanded redraws over 450 vanilla textures at twice the size. Its settings also switch the bottom menu bar between icons, text or both. Load other texture mods after it so theirs win.</li>
+          <li>Vanilla Textures Expanded - Variations adds more than 150 alternative looks for 35 vanilla buildings, picked at random when built, with a button to choose another.</li>
+          <li>Animal Variety Coats gives many vanilla animals, such as muffalo, huskies, cats, boomalopes and thrumbos, varied coat colors and patterns. Only newly spawned animals change, and their leather stays the same.</li>
+          <li>FEB's Medicine Retexture gives herbal, industrial and glitterworld medicine a matching new look, along with several modded medicines, including Medieval Medicines.</li>
+          <li>Layered Apparel lets you give a colonist a cosmetic look, with separate everyday and drafted outfits, colors, and presets for whole groups, without changing their real gear or stats. Use the presets to put your soldiers in the colony's colors while they wear whatever armor is best.</li>
+        </points>
+      </li>
+      <li>
+        <heading>With Rimfolk</heading>
+        <text>The wishes for "new clothes", "a hat of their own" and "something fine to wear" look at what a colonist really wears, so a cosmetic look doesn't fulfill them.</text>
+      </li>
+    </sections>
     <keywords>
       <li>textures</li>
       <li>retexture</li>
