@@ -433,7 +433,12 @@ namespace ColonyCouncil
                         continue;
                     }
                     var map = HappeningTracker.HomeMap();
-                    if (map == null) continue;
+                    if (map == null)
+                    {
+                        // No home to do it from (the colony packed up and left): once its time is well past, it lapses.
+                        if (m.deadline > 0 && now > m.deadline + GenDate.TicksPerDay * 2) Finish(m, MissionState.Failed, "ended", null);
+                        continue;
+                    }
                     if (!LivingEvents.Friendly(m.faction))
                     {
                         Finish(m, MissionState.Failed, "cancelled", null);
