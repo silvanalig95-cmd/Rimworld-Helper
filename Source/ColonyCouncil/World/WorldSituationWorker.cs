@@ -160,7 +160,7 @@ namespace ColonyCouncil
             if (def.second != null)
             {
                 ctx.enemy = PickFaction(def.second, ctx.faction, map);
-                if (ctx.enemy == null) return false;
+                if (ctx.enemy == null && !def.second.optional) return false;
             }
             if (def.colonist != null)
             {
@@ -337,6 +337,11 @@ namespace ColonyCouncil
             tags.Add(s.help > 0 ? "helped" : "ignored");
             if (s.ctx.faction != null && (WorldSituations.Instance?.Helped(s.ctx.faction) ?? false)) tags.Add("remembered");
             if (ModsConfig.IdeologyActive) tags.Add("ideology");
+            if (s.ctx.enemy == null) tags.Add("noenemy");
+            // The peoples' own era, for lines about how they live (a tribe has no radio, whatever the colony has).
+            if (s.ctx.faction != null) tags.Add(s.ctx.faction.def.techLevel <= TechLevel.Medieval ? "theirLowtech" : "theirHightech");
+            if (s.ctx.enemy != null) tags.Add(s.ctx.enemy.def.techLevel <= TechLevel.Medieval ? "enemyLowtech" : "enemyHightech");
+            if (s.ctx.a != null) tags.Add(s.ctx.a.gender == Gender.Female ? "aFemale" : "aMale");
             AddTags(s, tags);
             return tags;
         }
@@ -352,18 +357,42 @@ namespace ColonyCouncil
             return Flavor.Pick(lines, Tags(s)) ?? Flavor.PickText(lines);
         }
 
-        /// <summary>A line that fits, with its placeholders filled in.</summary>
+        /// <summary>A line that fits, with its placeholders filled in (and every sentence starting with a capital).</summary>
         public string Line(List<string> lines, WorldSituation s, SituationContext ctx = null)
         {
             string line = Pick(lines, s);
-            return line.NullOrEmpty() ? null : (ctx ?? s.ctx).Format(line);
+            return line.NullOrEmpty() ? null : Sentences((ctx ?? s.ctx).Format(line));
+        }
+
+        /// <summary>
+        /// Capitals at the start of every sentence and paragraph, so a name that comes in lowercase ("the Ashen
+        /// Banner", "the gray cough", a leader's title) can open a sentence.
+        /// </summary>
+        public static string Sentences(string text)
+        {
+            if (text.NullOrEmpty()) return text;
+            var c = text.ToCharArray();
+            bool start = true;
+            for (int i = 0; i < c.Length; i++)
+            {
+                char ch = c[i];
+                if (start && char.IsLetter(ch))
+                {
+                    c[i] = char.ToUpperInvariant(ch);
+                    start = false;
+                }
+                else if (ch == '.' || ch == '!' || ch == '?') start = i + 1 < c.Length && char.IsWhiteSpace(c[i + 1]);
+                else if (ch == '\n') start = true;
+                else if (start && !char.IsWhiteSpace(ch) && ch != '"' && ch != '(' && ch != '\'') start = false;
+            }
+            return new string(c);
         }
 
         /// <summary>The line on the World page and under the start letter.</summary>
         public virtual string Summary(WorldSituation s) => Line(def.summaries, s);
 
-        /// <summary>More to say under the start letter (who's hunting the warlord, the new leader's nature).</summary>
-        public virtual string StartExtra(WorldSituation s) => null;
+        /// <summary>More to say under the start letter (who's hunting the warlord, the new leader's nature): the "extra" lines of its SituationText.</summary>
+        public virtual string StartExtra(WorldSituation s) => Text("extra", s);
 
         /// <summary>Where the start letter points (a town on the world map, a visitor).</summary>
         public virtual LookTargets StartLook(WorldSituation s)

@@ -123,7 +123,7 @@ namespace ColonyCouncil
 
         public override string Hourly(WorldSituation s)
         {
-            if (s.ctx.faction == null || s.ctx.faction.defeated) return GoneEnding(s);
+            if (!StillPossible(s)) return GoneEnding(s);
             var heir = s.ctx.stranger;
             var captain = s.ctx.other;
             bool heirOk = heir != null && !heir.Dead && !heir.Discarded;
@@ -397,7 +397,8 @@ namespace ColonyCouncil
                 if (ctx.a == null) return false;
                 ctx.b = VarietyUtil.Best(map, SkillDefOf.Medicine);
                 ctx.count = Silver(map, new IntRange(800, 1300));
-                if (s.Has("remembered") || (WorldSituations.Instance?.Helped(s.ctx.faction) ?? false)) ctx.count = Mathf.RoundToInt(ctx.count * 0.5f / 10f) * 10;
+                if (WorldSituations.Instance?.Helped(s.ctx.faction) ?? false) ctx.count = Mathf.RoundToInt(ctx.count * 0.5f / 10f) * 10;
+                s.SetNum("price", ctx.count);
                 return true;
             }
             if (beat.key == "visit")
@@ -413,7 +414,12 @@ namespace ColonyCouncil
                     if (lord == null && x.Spawned) Arrivals.SendAway(new[] { x });
                 }
                 ctx.item = Treat(patient);
-                if (ctx.item.NullOrEmpty()) s.flags.AddDistinct("nothingToMend");
+                if (ctx.item.NullOrEmpty())
+                {
+                    // Nothing left to mend (it healed, or they're gone): the healer won't take the colony's silver.
+                    s.flags.AddDistinct("nothingToMend");
+                    VarietyUtil.PaySilver(map, IntVec3.Invalid, s.Num("price"));
+                }
                 if (ctx.b != null)
                 {
                     ctx.b.skills?.GetSkill(SkillDefOf.Medicine)?.Learn(4000f, true);
@@ -422,6 +428,9 @@ namespace ColonyCouncil
                 s.ctx.a = patient;
                 s.ctx.b = ctx.b;
                 s.ctx.item = ctx.item;
+                // The healer leaves the next morning, and that's the end of it.
+                s.pendingEnding = "visited";
+                s.pendingTick = Find.TickManager.TicksGame + GenDate.TicksPerDay;
                 return true;
             }
             return true;
@@ -609,7 +618,8 @@ namespace ColonyCouncil
                 int level = ctx.a.skills?.GetSkill(ctx.skill)?.Level ?? 0;
                 bool won = Rand.Chance(Mathf.Clamp(0.15f + (level - 6) * 0.07f, 0.1f, 0.85f));
                 s.Set(won ? "prize" : "noPrize");
-                s.ctx.a = ctx.a;
+                // The contestant, for the closing letter (A belongs to whichever question came last).
+                s.ctx.b = ctx.a;
             }
             return outcome;
         }
@@ -624,11 +634,27 @@ namespace ColonyCouncil
     /// </summary>
     public class SituationWorker_HolyWar : WorldSituationWorker
     {
-        protected override bool CanHappen(Map map) => ModsConfig.IdeologyActive && base.CanHappen(map);
+        /// <summary>Two neighbors at peace with the colony whose creeds differ.</summary>
+        private static List<(Faction, Faction)> Pairs(Map map)
+        {
+            var list = Candidates(new SituationFactionNeed { friendly = true, ideo = true }, null, map).ToList();
+            var pairs = new List<(Faction, Faction)>();
+            foreach (var a in list)
+                foreach (var b in list)
+                    if (a != b && a.ideos.PrimaryIdeo != b.ideos.PrimaryIdeo) pairs.Add((a, b));
+            return pairs;
+        }
+
+        protected override bool CanHappen(Map map) => ModsConfig.IdeologyActive && Pairs(map).Count > 0;
 
         public override bool Cast(WorldSituation s, Map map)
         {
             if (!ModsConfig.IdeologyActive || !base.Cast(s, map)) return false;
+            var pair = Pairs(map).RandomElementWithFallback();
+            if (pair.Item1 == null) return false;
+            s.ctx.faction = pair.Item1;
+            s.ctx.enemy = pair.Item2;
+            s.ctx.placeName = NearestTown(pair.Item1, map)?.Name ?? pair.Item1.Name;
             var a = s.ctx.faction.ideos?.PrimaryIdeo;
             var b = s.ctx.enemy?.ideos?.PrimaryIdeo;
             if (a == null || b == null || a == b) return false;
@@ -660,17 +686,27 @@ namespace ColonyCouncil
         private static bool CanMakePeace(Faction f) =>
             f != null && f.HasGoodwill && !f.def.permanentEnemy && f.def.permanentEnemyToEveryoneExcept.NullOrEmpty() && !f.def.HasRoyalTitles;
 
-        protected override bool CanHappen(Map map)
+        /// <summary>Two neighbors at peace with the colony and at war with each other.</summary>
+        private static List<(Faction, Faction)> Pairs(Map map)
         {
-            var friends = Find.FactionManager.AllFactionsListForReading.Where(f => !f.IsPlayer && !f.Hidden && !f.defeated && !f.temporary && f.def.humanlikeFaction
-                                                                                  && CanMakePeace(f) && !f.HostileTo(Faction.OfPlayer) && TownsOf(f, map).Any()).ToList();
-            return friends.Any(a => friends.Any(b => b != a && a.HostileTo(b)));
+            var friends = Candidates(new SituationFactionNeed { friendly = true }, null, map).Where(CanMakePeace).ToList();
+            var pairs = new List<(Faction, Faction)>();
+            foreach (var a in friends)
+                foreach (var b in friends)
+                    if (a != b && a.HostileTo(b)) pairs.Add((a, b));
+            return pairs;
         }
+
+        protected override bool CanHappen(Map map) => Pairs(map).Count > 0;
 
         public override bool Cast(WorldSituation s, Map map)
         {
             if (!base.Cast(s, map)) return false;
-            if (!CanMakePeace(s.ctx.faction) || !CanMakePeace(s.ctx.enemy)) return false;
+            var pair = Pairs(map).RandomElementWithFallback();
+            if (pair.Item1 == null) return false;
+            s.ctx.faction = pair.Item1;
+            s.ctx.enemy = pair.Item2;
+            s.ctx.placeName = NearestTown(pair.Item1, map)?.Name ?? pair.Item1.Name;
             return true;
         }
 

@@ -1,0 +1,399 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- World events: the land, its beasts and its wonders (a famous healer, the great herds, and two that need a mod:
+       strange herds with Alpha Animals, a season of wild magic with A RimWorld of Magic). -->
+
+  <!-- ===================== A famous healer ===================== -->
+
+  <ColonyCouncil.WorldSituationDef>
+    <defName>Council_WS_Healer</defName>
+    <label>a famous healer</label>
+    <workerClass>ColonyCouncil.SituationWorker_Healer</workerClass>
+    <weight>0.9</weight>
+    <earliestDay>25</earliestDay>
+    <cooldownDays>150</cooldownDays>
+    <durationDays>8~12</durationDays>
+    <kind>healer</kind>
+    <faction>
+      <friendly>true</friendly>
+    </faction>
+    <titles>
+      <li>{X_nameDef} comes to the region</li>
+      <li>A famous healer</li>
+    </titles>
+    <texts>
+      <li>[theirLowtech] {X_nameFull} is touring the region. Twenty years ago {X_nameDef} was a village healer; now there are songs about {X_objective}, and people walk for days to be seen. {X_nameDef} is in {PLACE} this week and will move on soon.\n\nThey say {X_nameDef} has put back a hand that was gone and cured fevers nobody else could name. Some of that may even be true.</li>
+      <li>[theirHightech] {X_nameFull}, the surgeon, is touring the region with a van full of equipment and a waiting list longer than the road. {X_nameDef} is in {PLACE} this week and will move on soon.\n\nThey say {X_nameDef} has rebuilt a hand that was gone and cured things other doctors had given up on. Some of that may even be true.</li>
+    </texts>
+    <summaries>
+      <li>{X_nameDef} could be invited to the colony for a day, to treat {A_nameDef} and teach the colony's own doctor. It costs silver, and the chance won't come again soon.</li>
+      <li>[invited] {X_nameDef} is on the way to the colony.</li>
+    </summaries>
+    <beats>
+      <li>
+        <key>offer</key>
+        <day>1~3</day>
+        <answerDays>2</answerDays>
+        <titles>
+          <li>Inviting {X_nameDef}</li>
+        </titles>
+        <texts>
+          <li>[!remembered] {X_nameDef}'s assistant has sent word that the healer could stop at the colony on the way to the next town, for {COUNT} silver. {A_nameDef} has lived with {A_possessive} condition a long time, and {X_nameDef} might be able to do something about it.\n\n{B_nameDef} would give a lot to watch {X_nameDef} work.</li>
+          <li>[remembered] {X_nameDef} has heard how the colony helped {FACTION} when times were hard, and has sent word: the healer will stop at the colony on the way to the next town, for {COUNT} silver, half what others pay. {A_nameDef} has lived with {A_possessive} condition a long time.\n\n{B_nameDef} would give a lot to watch {X_nameDef} work.</li>
+        </texts>
+        <defaultOption>1</defaultOption>
+        <options>
+          <li>
+            <label>Invite {X_objective} ({COUNT} silver)</label>
+            <outcome>The silver goes to {PLACE} with a rider. {X_nameDef} will come within a few days.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.WorldEffect_Pay" />
+            </effects>
+            <flags><li>invited</li></flags>
+            <deed>brought {X_nameDef} to the colony</deed>
+            <next>visit</next>
+            <nextDays>1.5~3</nextDays>
+          </li>
+          <li>
+            <label>Not now</label>
+            <outcome>The colony sends its regrets. {X_nameDef} will be gone from the region soon.</outcome>
+          </li>
+        </options>
+      </li>
+      <li>
+        <key>visit</key>
+        <called>true</called>
+        <titles>
+          <li>{X_nameDef} at the colony</li>
+        </titles>
+        <texts>
+          <li>[!nothingToMend,taught] {X_nameDef} arrived at noon, looked at {A_nameDef} for a long time without saying anything, and asked for hot water and the colony's best light. By evening it was done. {ITEM}\n\n{B_nameDef} watched every step and asked a hundred questions, and {X_nameDef} answered most of them.</li>
+          <li>[!nothingToMend,!taught] {X_nameDef} arrived at noon, looked at {A_nameDef} for a long time without saying anything, and asked for hot water and the colony's best light. By evening it was done. {ITEM}</li>
+          <li>[nothingToMend] {X_nameDef} arrived at noon and looked {A_nameDef} over carefully, twice, then said there was nothing left that needed a healer's hands. The colony's silver was handed back at the gate.</li>
+        </texts>
+        <effects>
+          <li Class="ColonyCouncil.WorldEffect_ThoughtFor"><thought>Council_WS_HealerMended</thought><forbids>nothingToMend</forbids></li>
+          <li Class="ColonyCouncil.WorldEffect_ThoughtFor"><thought>Council_WS_HealerTaught</thought><b>true</b><requires>taught</requires></li>
+        </effects>
+      </li>
+    </beats>
+    <endings>
+      <li>
+        <key>visited</key>
+        <timeout>false</timeout>
+        <titles>
+          <li>{X_nameDef} moves on</li>
+        </titles>
+        <texts>
+          <li>[!nothingToMend] {X_nameDef} left the colony at dawn for the next town, with the colony's silver and its thanks. {A_nameDef} walked the healer to the edge of the colony's land and stood there a while after.</li>
+          <li>[nothingToMend] {X_nameDef} left the colony at dawn for the next town. Whatever ailed {A_nameDef} had mended on its own, and the colony will take that.</li>
+        </texts>
+        <chronicle>{X_nameDef}, the famous healer, came to the colony.</chronicle>
+      </li>
+      <li>
+        <key>passed</key>
+        <titles>
+          <li>{X_nameDef} moves on</li>
+        </titles>
+        <texts>
+          <li>{X_nameDef} has left the region, and the crowds that followed the healer from town to town have gone home. The songs will last longer than the visit did.</li>
+        </texts>
+        <chronicle>{X_nameDef}, the famous healer, passed through the region.</chronicle>
+      </li>
+    </endings>
+  </ColonyCouncil.WorldSituationDef>
+
+  <!-- ===================== The great herds ===================== -->
+
+  <ColonyCouncil.WorldSituationDef>
+    <defName>Council_WS_Migration</defName>
+    <label>the great herds</label>
+    <weight>0.9</weight>
+    <earliestDay>15</earliestDay>
+    <cooldownDays>120</cooldownDays>
+    <durationDays>8~14</durationDays>
+    <kind>herds</kind>
+    <seasons>
+      <li>Spring</li>
+      <li>Fall</li>
+    </seasons>
+    <faction>
+      <friendly>true</friendly>
+    </faction>
+    <titles>
+      <li>The herds are moving</li>
+      <li>The great herds</li>
+    </titles>
+    <texts>
+      <li>Every few years the herds of the region move together, and this is one of those years. The ground shakes at dusk, the birds follow the dust, and the hunters of {FACTION} have come out of {PLACE} in force.\n\nThere will be meat for anyone who wants it, and trouble for anyone who gets in the way.</li>
+      <li>[fall] The herds are going south ahead of the cold, all of them together, the way they do every few years. The hunters of {FACTION} have come out of {PLACE} to meet them, and the valleys are full of dust and noise.</li>
+      <li>[spring] The herds are coming back north with the new grass, all of them together, the way they do every few years. The hunters of {FACTION} have come out of {PLACE} to meet them.</li>
+    </texts>
+    <summaries>
+      <li>Herds pass the colony far more often, and rare beasts with them. {FACTION}'s hunters may ask to hunt on the colony's land.</li>
+    </summaries>
+    <modifiers>
+      <li><incident>HerdMigration</incident><factor>4</factor></li>
+      <li><incident>ThrumboPasses</incident><factor>2</factor></li>
+      <li><incident>FarmAnimalsWanderIn</incident><factor>1.5</factor></li>
+      <li><rimfolk>Council_Evt_GreatBeast</rimfolk><factor>2</factor></li>
+      <li><rimfolk>Council_Evt_WildBounty</rimfolk><factor>1.5</factor></li>
+    </modifiers>
+    <beats>
+      <li>
+        <key>herd</key>
+        <day>0.5~3</day>
+        <effects>
+          <li Class="ColonyCouncil.WorldEffect_Incident"><incident>HerdMigration</incident></li>
+        </effects>
+      </li>
+      <li>
+        <key>hunters</key>
+        <day>2~5</day>
+        <count>80~150</count>
+        <wealthScaled>true</wealthScaled>
+        <titles>
+          <li>{FACTION}'s hunters</li>
+        </titles>
+        <texts>
+          <li>A party of hunters from {PLACE} has asked to follow the herds across the colony's land. They will keep clear of the fields and the buildings, they say, and they would pay {COUNT} silver for the right, or ask nothing but the colony's goodwill.\n\n{A_nameDef} thinks they know what they're doing.</li>
+        </texts>
+        <defaultOption>2</defaultOption>
+        <options>
+          <li>
+            <label>Let them hunt</label>
+            <outcome>The hunters thank the colony and go after the herds. Their horns can be heard at dawn for days.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>6</amount></li>
+            </effects>
+            <flags><li>allowed</li></flags>
+            <help>1</help>
+            <deed>let {FACTION}'s hunters cross its land</deed>
+            <ways><openness>2</openness></ways>
+          </li>
+          <li>
+            <label>Let them hunt, for {COUNT} silver</label>
+            <outcome>The hunters pay without arguing and go after the herds.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.WorldEffect_Silver" />
+            </effects>
+            <flags><li>paid</li></flags>
+            <deed>charged {FACTION}'s hunters to cross its land</deed>
+          </li>
+          <li>
+            <label>Keep them off the land</label>
+            <outcome>The hunters are told to go around. They do, the long way.</outcome>
+            <ways><openness>-1</openness></ways>
+          </li>
+        </options>
+      </li>
+      <li>
+        <key>herd2</key>
+        <day>6~11</day>
+        <chance>0.6</chance>
+        <effects>
+          <li Class="ColonyCouncil.WorldEffect_Incident"><incident>HerdMigration</incident></li>
+        </effects>
+      </li>
+    </beats>
+    <endings>
+      <li>
+        <key>passed</key>
+        <titles>
+          <li>The herds pass</li>
+        </titles>
+        <texts>
+          <li>[allowed] The herds have passed, and the hunters of {FACTION} have gone home with full packs. They sent their thanks on the way, and a promise to remember the welcome.</li>
+          <li>[!allowed] The herds have passed, and the land around the colony is quiet again: trampled in places, greener in others. They'll be back in a few years.</li>
+        </texts>
+        <chronicle>The great herds passed through the region.</chronicle>
+        <effects>
+          <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>3</amount><requires>allowed</requires></li>
+        </effects>
+      </li>
+    </endings>
+  </ColonyCouncil.WorldSituationDef>
+
+  <!-- ===================== Strange herds (Alpha Animals) ===================== -->
+
+  <ColonyCouncil.WorldSituationDef>
+    <defName>Council_WS_StrangeHerds</defName>
+    <label>strange herds</label>
+    <weight>0.8</weight>
+    <earliestDay>20</earliestDay>
+    <cooldownDays>150</cooldownDays>
+    <durationDays>10~15</durationDays>
+    <kind>herds</kind>
+    <mods>
+      <li>sarg.alphaanimals</li>
+    </mods>
+    <faction>
+      <friendly>true</friendly>
+    </faction>
+    <titles>
+      <li>Strange herds</li>
+      <li>Beasts from the far country</li>
+    </titles>
+    <texts>
+      <li>Something has driven the strange beasts of the far country into the region: animals the old hunters of {FACTION} only know from stories, moving in loose bands and eating anything green.\n\nSome are harmless, and some very much aren't. The hunters of {PLACE} are staying close to home until they know which are which.</li>
+      <li>[winter] The cold has driven the strange beasts of the far country down out of the high places: animals nobody in {PLACE} has a name for, moving in loose bands through the snow.\n\nSome are harmless, and some very much aren't.</li>
+    </texts>
+    <summaries>
+      <li>Strange creatures turn up far more often, with herds behind them. A skilled handler may win one over; a careless one may regret trying.</li>
+    </summaries>
+    <modifiers>
+      <li><rimfolk>Council_Evt_RareCreature</rimfolk><factor>3</factor></li>
+      <li><incident>HerdMigration</incident><factor>2.5</factor></li>
+      <li><incident>ThrumboPasses</incident><factor>1.5</factor></li>
+    </modifiers>
+    <beats>
+      <li>
+        <key>creature</key>
+        <day>1~4</day>
+        <effects>
+          <li Class="ColonyCouncil.WorldEffect_Event"><incident>Council_Evt_RareCreature</incident></li>
+        </effects>
+      </li>
+      <li>
+        <key>herd</key>
+        <day>3~6</day>
+        <effects>
+          <li Class="ColonyCouncil.WorldEffect_Incident"><incident>HerdMigration</incident></li>
+        </effects>
+      </li>
+      <li>
+        <key>tracks</key>
+        <day>4~8</day>
+        <skill>Animals</skill>
+        <minLevel>6</minLevel>
+        <message>true</message>
+        <texts>
+          <li>{A_nameDef} found tracks by the water this morning that don't match anything in the colony's books, and has been out sketching them since.</li>
+        </texts>
+        <effects>
+          <li Class="ColonyCouncil.WorldEffect_Learn"><skill>Animals</skill><xp>800</xp></li>
+        </effects>
+      </li>
+      <li>
+        <key>creature2</key>
+        <day>7~11</day>
+        <chance>0.6</chance>
+        <effects>
+          <li Class="ColonyCouncil.WorldEffect_Event"><incident>Council_Evt_RareCreature</incident></li>
+        </effects>
+      </li>
+    </beats>
+    <endings>
+      <li>
+        <key>moved</key>
+        <titles>
+          <li>The strange herds move on</li>
+        </titles>
+        <texts>
+          <li>The strange beasts have drifted back toward the far country, or wherever they came from. The hunters of {FACTION} are out again, and the stories about this season are getting bigger by the day.</li>
+        </texts>
+        <chronicle>The strange herds left the region.</chronicle>
+      </li>
+    </endings>
+  </ColonyCouncil.WorldSituationDef>
+
+  <!-- ===================== A season of wild magic (A RimWorld of Magic) ===================== -->
+
+  <ColonyCouncil.WorldSituationDef>
+    <defName>Council_WS_WildMagic</defName>
+    <label>a season of wild magic</label>
+    <weight>0.8</weight>
+    <earliestDay>20</earliestDay>
+    <cooldownDays>150</cooldownDays>
+    <durationDays>10~15</durationDays>
+    <kind>sky</kind>
+    <mods>
+      <li>torann.arimworldofmagic</li>
+    </mods>
+    <faction>
+      <friendly>true</friendly>
+    </faction>
+    <titles>
+      <li>Wild magic</li>
+      <li>The ley lines stir</li>
+    </titles>
+    <texts>
+      <li>The ley lines are restless. Mages in {PLACE} report spells going wrong and spells going far too right, and on clear nights the sky is streaked with colors nobody can name.\n\n{FACTION} have shut their mage towers until it passes. Anyone with the gift will feel it.</li>
+      <li>[winter] The winter nights have turned strange. The sky over the region burns green and violet after dark, mages in {PLACE} wake up with frost on the inside of their windows, and {FACTION} have shut their mage towers until it passes.\n\nAnyone with the gift will feel it.</li>
+    </texts>
+    <summaries>
+      <li>Shards fall from the sky more often, and the colony's mages may learn more in these weeks than in a year, if they dare to study the surge.</li>
+    </summaries>
+    <modifiers>
+      <li><rimfolk>Council_Evt_Starfall</rimfolk><factor>3</factor></li>
+      <li><rimfolk>Council_Evt_Comet</rimfolk><factor>1.5</factor></li>
+      <li><group>Nature</group><factor>1.3</factor></li>
+    </modifiers>
+    <beats>
+      <li>
+        <key>starfall</key>
+        <day>1~4</day>
+        <effects>
+          <li Class="ColonyCouncil.WorldEffect_Event"><incident>Council_Evt_Starfall</incident></li>
+        </effects>
+      </li>
+      <li>
+        <key>study</key>
+        <day>3~7</day>
+        <colonist>
+          <tags>mage</tags>
+        </colonist>
+        <titles>
+          <li>{A_nameDef} and the surge</li>
+        </titles>
+        <texts>
+          <li>{A_nameDef} hasn't slept properly since the sky turned. {A_nameDef} wants to spend a few nights out at the old stones on the hill, where the ley lines cross, and see what the surge can teach.\n\nIt could be a year's study in a week. The mages of {PLACE} say it could also go badly.</li>
+        </texts>
+        <defaultOption>1</defaultOption>
+        <options>
+          <li>
+            <label>Let {A_objective} study it</label>
+            <outcome>{A_nameDef} comes back from the stones after three nights, red-eyed and talking too fast, with a notebook full of things nobody else at the colony can read.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.WorldEffect_Learn"><skill>Intellectual</skill><xp>2000</xp></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Inspiration" />
+            </effects>
+            <riskChance>0.3</riskChance>
+            <riskOutcome>{A_nameDef} comes back from the stones pale and quiet, and won't say what happened out there. The notebook is full, though.</riskOutcome>
+            <riskEffects>
+              <li Class="ColonyCouncil.WorldEffect_ThoughtFor"><thought>Council_WS_SurgeShaken</thought></li>
+            </riskEffects>
+            <deed>let {A_nameDef} study the surge</deed>
+            <ways><tradition>-1</tradition></ways>
+          </li>
+          <li>
+            <label>Not this time</label>
+            <outcome>{A_nameDef} stays at the colony, and spends the nights at the window watching the sky.</outcome>
+          </li>
+        </options>
+      </li>
+      <li>
+        <key>starfall2</key>
+        <day>7~11</day>
+        <chance>0.5</chance>
+        <effects>
+          <li Class="ColonyCouncil.WorldEffect_Event"><incident>Council_Evt_Starfall</incident></li>
+        </effects>
+      </li>
+    </beats>
+    <endings>
+      <li>
+        <key>settles</key>
+        <titles>
+          <li>The ley lines settle</li>
+        </titles>
+        <texts>
+          <li>The sky has gone back to its usual colors, and the mages of {PLACE} have opened their towers again. Whatever stirred the ley lines has settled, for now.</li>
+        </texts>
+        <chronicle>A season of wild magic passed.</chronicle>
+      </li>
+    </endings>
+  </ColonyCouncil.WorldSituationDef>
+
+</Defs>

@@ -23,7 +23,8 @@ namespace ColonyCouncil
     /// ([tribal], [medieval], [industrial], [spacer], [lowtech], [!lowtech]), season ([spring], [summer], [fall],
     /// [winter]), every flag set so far ([truce], [bounty]...), [helped] or [ignored] (whether the colony has taken
     /// part), [remembered] (the colony helped this people in an earlier world event) and whatever the worker adds.
-    /// Placeholders: {FACTION} (the people it's about), {ENEMY} (the second people), {PLACE} (a town, usually
+    /// Every sentence gets a capital once the placeholders are filled in, so a name that comes in lowercase ({NAME},
+    /// {TITLE}) may open one. Placeholders: {FACTION} (the people it's about), {ENEMY} (the second people), {PLACE} (a town, usually
     /// {FACTION}'s nearest), {NAME} (the situation's name: a warband, a fever, a fair), {TITLE} ({FACTION}'s word for
     /// its leader), {X_...} (its main person: the warlord, a new leader, a healer), {OTHER_...} (a second one), {A_...}
     /// and {B_...} (colonists), {COUNT}, {THING}, {ITEM}, {DAYS}, {TALE} and {DEAD} (what the worker fills in).</para>
@@ -168,6 +169,8 @@ namespace ColonyCouncil
         public bool hostileToFirst;
         /// <summary>The second people only: not at war with the first.</summary>
         public bool friendlyToFirst;
+        /// <summary>It can happen without one (the beats and lines that need them check for it).</summary>
+        public bool optional;
     }
 
     /// <summary>

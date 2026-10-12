@@ -277,7 +277,8 @@ namespace ColonyCouncil
             }
             try
             {
-                string text = worker.Line(def.texts, s) ?? "";
+                string body = worker.Line(def.texts, s) ?? "";
+                string text = body;
                 string extra = worker.StartExtra(s);
                 if (!extra.NullOrEmpty()) text += "\n\n" + extra;
                 string summary = WorldSituationsPanel.Summary(s);
@@ -285,7 +286,7 @@ namespace ColonyCouncil
                 var letterDef = def.letter ?? (def.bad ? WorldSituationDefOf.Council_WorldNewsBad : WorldSituationDefOf.Council_WorldNews);
                 Find.LetterStack.ReceiveLetter(label, text, letterDef, worker.StartLook(s));
                 CouncilGameComponent.Instance?.AddChronicle(new ChronicleEntry(ChronicleKind.World,
-                    "CC_WS_ChronicleStart".Translate(label, Flavor.Strip(FirstSentence(worker.Line(def.texts, s) ?? ""))).Resolve(), s.ctx.a));
+                    "CC_WS_ChronicleStart".Translate(label, FirstSentence(body)).Resolve(), s.ctx.a));
             }
             catch (Exception e)
             {
@@ -481,7 +482,7 @@ namespace ColonyCouncil
                 }
                 outcome = worker.Chosen(s, ctx, beat, i, risk, byDefault, outcome);
                 comp?.character.Shift(byDefault ? o.ways?.Scaled(0.5f) : o.ways, "CC_Ways_Why_Event".Translate(s.def.label, ctx.Format(o.label)).Resolve());
-                string told = ctx.Format(outcome);
+                string told = WorldSituationWorker.Sentences(ctx.Format(outcome));
                 if (byDefault) told = "CC_Evt_NoAnswer".Translate() + " " + told;
                 if (!told.NullOrEmpty())
                     Messages.Message(told, new LookTargets(new[] { ctx.a, ctx.stranger, ctx.other }.Where(p => p != null && p.Spawned)), MessageTypeDefOf.NeutralEvent, false);
@@ -538,7 +539,7 @@ namespace ColonyCouncil
                         if (s.deeds.Count > 0) text += "\n\n" + "CC_WS_YourPart".Translate(TextUtil.JoinAnd(s.deeds.Distinct().ToList())).Resolve();
                         var look = new LookTargets(new[] { s.ctx.stranger, s.ctx.other }.Where(p => p != null && p.Spawned));
                         Find.LetterStack.ReceiveLetter(label, text, ending.letter ?? WorldSituationDefOf.Council_WorldNews, look);
-                        string line = ending.chronicle.NullOrEmpty() ? Flavor.Strip(FirstSentence(text)) : s.ctx.Format(ending.chronicle);
+                        string line = ending.chronicle.NullOrEmpty() ? Flavor.Strip(FirstSentence(text)) : WorldSituationWorker.Sentences(s.ctx.Format(ending.chronicle));
                         string part = s.deeds.Count > 0 ? " " + "CC_WS_ChroniclePart".Translate(TextUtil.JoinAnd(s.deeds.Distinct().ToList())).Resolve() : "";
                         comp?.AddChronicle(new ChronicleEntry(ChronicleKind.World, "CC_WS_ChronicleEnd".Translate(s.Label, TextUtil.DaysString(days * GenDate.TicksPerDay), line).Resolve() + part, s.ctx.a));
                     }

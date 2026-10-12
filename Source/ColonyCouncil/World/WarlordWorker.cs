@@ -92,8 +92,6 @@ namespace ColonyCouncil
             if (x != null && x.gender == Gender.Female) tags.Add("female");
         }
 
-        public override string StartExtra(WorldSituation s) => Text("extra", s);
-
         public override LookTargets StartLook(WorldSituation s)
         {
             var town = s.ctx.faction != null ? NearestTown(s.ctx.faction, s.ctx.map) : null;
@@ -331,7 +329,7 @@ namespace ColonyCouncil
             if (lead) tags.Add("leads");
             var label = Flavor.Pick(def.GetModExtension<SituationText>()?.Get(labelKey), tags);
             var text = Flavor.Pick(def.GetModExtension<SituationText>()?.Get(textKey), tags);
-            tracker.AddRaid(ctx.map, s.ctx.faction, factor, Rand.Range(2f, 6f), ctx.Format(label ?? ""), ctx.Format(text ?? ""), lead ? x : null);
+            tracker.AddRaid(ctx.map, s.ctx.faction, factor, Rand.Range(2f, 6f), Sentences(ctx.Format(label ?? "")), Sentences(ctx.Format(text ?? "")), lead ? x : null);
             if (lead) s.flags.AddDistinct("led");
         }
 

@@ -404,13 +404,15 @@ namespace ColonyCouncil
     {
         public FloatRange value = new FloatRange(300f, 600f);
         public bool fancy;
+        /// <summary>Sent by drop pod in an industrial colony (a gift from afar); else carried to where traders drop their goods.</summary>
+        public bool pod;
 
         public override void Apply(DilemmaContext ctx)
         {
             var map = SituationEffectUtil.MapOf(ctx);
             if (map == null || !Gate(ctx)) return;
             var things = Loot.Make(value.RandomInRange * LivingEvents.WealthFactor(map), fancy);
-            Loot.Deliver(things, map, IntVec3.Invalid, true);
+            Loot.Deliver(things, map, pod ? IntVec3.Invalid : DropCellFinder.TradeDropSpot(map), pod);
         }
     }
 

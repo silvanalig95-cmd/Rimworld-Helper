@@ -29,13 +29,13 @@
       <li>the Gallows Riders</li>
       <li>the Crow Company</li>
       <li>the Burnt Oath</li>
-      <li>[lowtech] the Wolves of the Pass</li>
-      <li>[lowtech] the Hundred Spears</li>
-      <li>[lowtech] the Red Brand</li>
-      <li>[!lowtech] the Rust Company</li>
-      <li>[!lowtech] the Long Guns</li>
-      <li>[!lowtech] the Dust Riders</li>
-      <li>[!lowtech] the Iron Dogs</li>
+      <li>[theirLowtech] the Wolves of the Pass</li>
+      <li>[theirLowtech] the Hundred Spears</li>
+      <li>[theirLowtech] the Red Brand</li>
+      <li>[theirHightech] the Rust Company</li>
+      <li>[theirHightech] the Long Guns</li>
+      <li>[theirHightech] the Dust Riders</li>
+      <li>[theirHightech] the Iron Dogs</li>
     </names>
     <titles>
       <li>A warlord rises: {X_nameDef}</li>
@@ -43,8 +43,8 @@
       <li>The rise of {X_nameDef}</li>
     </titles>
     <texts>
-      <li>[lowtech] Travelers on the roads talk of little else. Among {FACTION}, a war leader called {X_nameFull} has gathered the hardest of their fighters into one band, {NAME}, and burned two villages before the elders could agree what to do about it.\n\nThe band rides out of {PLACE} and comes back with grain, cattle and horses. Every raid makes it larger. {X_nameDef} has let it be known that the colony is on the list.</li>
-      <li>[!lowtech] The traders' radio has carried one name all week: {X_nameFull}. A raider of {FACTION} who started with one truck and a handful of guns, {X_nameDef} now leads {NAME}, the largest band anyone in the region remembers, out of {PLACE}.\n\nTwo outposts have gone quiet this season. The last message from one of them mentioned the colony by name, as the next place worth a visit.</li>
+      <li>[theirLowtech] Travelers on the roads talk of little else. Among {FACTION}, a war leader called {X_nameFull} has gathered the hardest of their fighters into one band, {NAME}, and burned two villages before the elders could agree what to do about it.\n\nThe band rides out of {PLACE} and comes back with grain, cattle and horses. Every raid makes it larger. {X_nameDef} has let it be known that the colony is on the list.</li>
+      <li>[theirHightech,!lowtech] The traders' radio has carried one name all week: {X_nameFull}. A raider of {FACTION} who started with one truck and a handful of guns, {X_nameDef} now leads {NAME}, the largest band anyone in the region remembers, out of {PLACE}.\n\nTwo outposts have gone quiet this season. The last message from one of them mentioned the colony by name, as the next place worth a visit.</li>
       <li>{FACTION} have a new war leader. {X_nameFull} rose by beating every rival in the open, and the band that follows {X_objective} calls itself {NAME}. From {PLACE} they have struck at caravans, outposts and farms, and they are not short of reasons to come further.\n\nWord on the road is that {X_nameDef} counts the colony among the places that owe {X_objective} something.</li>
       <li>[winter] Winter hasn't slowed {FACTION}. A war leader among them, {X_nameFull}, has taken their hungriest fighters and made them into a band called {NAME}. They raid wherever the snow lets them through, and take what they need to last the cold.\n\nThe colony has food in its stores. {X_nameDef} will know that by now.</li>
       <li>[summer] With the roads dry and the nights short, {FACTION} have found a leader worth following. {X_nameFull} has pulled their raiding parties together into one band, {NAME}, and spent the summer so far stripping the farms around {PLACE} bare.\n\nThe colony is next on the road. Nobody expects {X_nameDef} to pass it by.</li>
@@ -169,7 +169,7 @@
         </titles>
         <texts>
           <li>The army of {ENEMY} met {NAME} in the hills beyond {PLACE}, and came off worse. They are back behind their walls counting their dead, and some of them lay that at the colony's door.\n\n{X_nameDef} is still out there, and prouder for it.</li>
-          <li>[lowtech] {ENEMY} marched against {NAME} with banners flying and came home three days later with their wounded in carts. {X_nameDef} met them at a river crossing and held it.\n\nThe band will be bolder for this. {ENEMY} will not be asked again soon.</li>
+          <li>[enemyLowtech] {ENEMY} marched against {NAME} with banners flying and came home three days later with their wounded in carts. {X_nameDef} met them at a river crossing and held it.\n\nThe band will be bolder for this. {ENEMY} will not be asked again soon.</li>
         </texts>
       </li>
       <!-- He's in our cells: keep him, hand him over, or let his people buy him back. -->
@@ -250,7 +250,7 @@
         </titles>
         <texts>
           <li>{X_nameDef} stays in the colony's cells, and {NAME} is finished. The band's fighters have gone home in twos and threes, and nobody in {FACTION} is in a hurry to take up {X_possessive} banner.\n\nWhat becomes of {X_nameDef} is up to the colony now.</li>
-          <li>[lowtech] {NAME} waited three days outside {PLACE} for a leader who wasn't coming back. Then the fighters started to leave. {X_nameDef} sits in the colony's cells and hears the news from whoever brings the food.</li>
+          <li>{NAME} waited three days outside {PLACE} for a leader who wasn't coming back. Then the fighters started to leave. {X_nameDef} sits in the colony's cells and hears the news from whoever brings the food.</li>
         </texts>
         <chronicle>The colony took {X_nameDef} of {NAME} alive.</chronicle>
         <effects>
@@ -269,7 +269,7 @@
         </titles>
         <texts>
           <li>Riders of {ENEMY} took {X_nameDef} to {PLACE} to answer for {NAME}'s raids. Whatever they decide, {X_nameDef} won't trouble the region again.\n\n{ENEMY} won't forget who handed {X_objective} over. Neither will {FACTION}.</li>
-          <li>[lowtech] {X_nameDef} went to {PLACE} in a cart, in irons, with half of {ENEMY} lining the road to watch. The trial will be short.\n\nThe colony's part in it is the talk of every hall between here and there.</li>
+          <li>[enemyLowtech] {X_nameDef} went to {PLACE} in a cart, in irons, with half of {ENEMY} lining the road to watch. The trial will be short.\n\nThe colony's part in it is the talk of every hall between here and there.</li>
         </texts>
         <chronicle>The colony handed {X_nameDef} over to {ENEMY} for trial.</chronicle>
         <effects>
@@ -305,8 +305,8 @@
         <texts>
           <li>[takenAlive] Riders of {ENEMY} caught up with {X_nameDef} at the ford below {PLACE} and took {X_objective} alive. The rest of {NAME} scattered into the hills without a fight.\n\n{ENEMY} mean to put {X_nameDef} on trial. Either way, the colony has seen the last of {X_objective}.</li>
           <li>[!takenAlive] Riders of {ENEMY} brought {X_nameDef} down at the ford below {PLACE}. It was over in an afternoon: {NAME} broke and ran as soon as its leader fell.\n\nThe news reached the colony with a trader two days later.</li>
-          <li>[gifts,!takenAlive,lowtech] {ENEMY} cornered {X_nameDef} in the hills above {PLACE}, on horses and with bread the colony's silver paid for. {X_nameDef} did not come down again.\n\n{ENEMY} have sent a rider to tell the colony so, and to say thank you.</li>
-          <li>[gifts,!takenAlive,!lowtech] {ENEMY} ran {X_nameDef} to ground near {PLACE}, in trucks and with ammunition the colony's silver paid for. {NAME} is finished.\n\n{ENEMY} have sent word to say so, and to say thank you.</li>
+          <li>[gifts,!takenAlive,enemyLowtech] {ENEMY} cornered {X_nameDef} in the hills above {PLACE}, on horses and with bread the colony's silver paid for. {X_nameDef} did not come down again.\n\n{ENEMY} have sent a rider to tell the colony so, and to say thank you.</li>
+          <li>[gifts,!takenAlive,enemyHightech] {ENEMY} ran {X_nameDef} to ground near {PLACE}, in trucks and with ammunition the colony's silver paid for. {NAME} is finished.\n\n{ENEMY} have sent word to say so, and to say thank you.</li>
           <li>[winter] The snow did half the work. {ENEMY} found {X_nameDef}'s camp by its smoke, in the hills near {PLACE}, and {NAME} had no fight left in it after a cold month of short rations.</li>
         </texts>
         <chronicle>{ENEMY} brought down {X_nameDef} of {NAME} near {PLACE}.</chronicle>
@@ -372,8 +372,8 @@
           <li>{NAME} breaks up</li>
         </titles>
         <texts>
-          <li>[truce,lowtech] {X_nameDef} kept the bargain, more or less. {NAME} raided elsewhere all season, and now the band has broken up: fighters gone home, horses sold, {X_nameDef} gone with a few loyal riders and nobody sure where.\n\nThe colony paid for its quiet. Some say that was wise. Some say it was the price of looking weak.</li>
-          <li>[truce,!lowtech] {X_nameDef} kept the bargain, more or less. {NAME} raided elsewhere all season, and now the band has broken up: fighters gone home, trucks sold for parts, {X_nameDef} gone with a few loyal followers and nobody sure where.\n\nThe colony paid for its quiet. Some say that was wise. Some say it was the price of looking weak.</li>
+          <li>[truce,theirLowtech] {X_nameDef} kept the bargain, more or less. {NAME} raided elsewhere all season, and now the band has broken up: fighters gone home, horses sold, {X_nameDef} gone with a few loyal riders and nobody sure where.\n\nThe colony paid for its quiet. Some say that was wise. Some say it was the price of looking weak.</li>
+          <li>[truce,theirHightech] {X_nameDef} kept the bargain, more or less. {NAME} raided elsewhere all season, and now the band has broken up: fighters gone home, trucks sold for parts, {X_nameDef} gone with a few loyal followers and nobody sure where.\n\nThe colony paid for its quiet. Some say that was wise. Some say it was the price of looking weak.</li>
           <li>[broken] After the broken truce, {NAME} never found its feet again. Its fighters wanted plunder and got hard knocks, and one by one they went home. {X_nameDef} rode out of the region with a handful of the loyal.\n\nThe colony's silver is gone, but so is the band.</li>
           <li>[repelled,!truce,!broken] {NAME} has broken up. Every raid it sent at the colony came back with less than it cost to send, and that is the kind of story that ends a band. {X_nameDef} left the region with a handful of loyal riders.\n\nThe colony never paid a coin. It didn't have to.</li>
           <li>[!repelled,!truce,!broken] {NAME} has broken up. A season of raiding brought it less than it promised, and fighters who aren't paid in plunder go home. {X_nameDef} left the region with a handful of loyal riders.\n\nThe colony waited {X_objective} out, and it worked.</li>
@@ -443,18 +443,18 @@
               <li>Hollowtooth</li>
               <li>Cinder</li>
               <li>Hatchet</li>
-              <li>[lowtech] Wolfsbane</li>
-              <li>[lowtech] Greywater</li>
-              <li>[!lowtech] Rust</li>
-              <li>[!lowtech] Static</li>
-              <li>[!lowtech] Brass</li>
+              <li>[theirLowtech] Wolfsbane</li>
+              <li>[theirLowtech] Greywater</li>
+              <li>[theirHightech] Rust</li>
+              <li>[theirHightech] Static</li>
+              <li>[theirHightech] Brass</li>
             </texts>
           </li>
           <li>
             <key>extra</key>
             <texts>
-              <li>[!nohunters] {FACTION} have enemies of their own. {ENEMY} have been fighting them for years, and their riders are already out looking for {X_nameDef}. Every day the band stays in the field, the hunters get a little closer.</li>
-              <li>[!nohunters,!lowtech] {FACTION} have enemies of their own. {ENEMY} have scouts out on every road from {PLACE}, and they want {X_nameDef} more than anyone. Every day the band stays in the field, the hunters get a little closer.</li>
+              <li>[!nohunters] {FACTION} have enemies of their own. {ENEMY} have been fighting them for years, and their riders are already out looking for {X_nameDef}. Every day the band stays in the field, the hunters get closer.</li>
+              <li>[!nohunters] {FACTION} have enemies of their own. {ENEMY} have scouts out on every road from {PLACE}, and they want {X_nameDef} more than anyone. The longer the band stays in the field, the likelier they are to catch it.</li>
               <li>[nohunters] Nobody in the region is at war with {FACTION} openly enough to go after {X_nameDef}. Bands like this one break up when the plunder runs dry, or when someone puts a price on the leader's head.</li>
             </texts>
           </li>
@@ -470,9 +470,9 @@
             <key>raidTexts</key>
             <texts>
               <li>[leads] {NAME} has come for the colony, and {X_nameDef} rides at the front. Bring {X_objective} down here and the band is finished.</li>
-              <li>[leads,lowtech] Horns on the road: {NAME} has come for the colony, with {X_nameDef}'s banner in the middle of it. Every fighter here knows what it would mean to bring {X_objective} down today.</li>
+              <li>[leads,theirLowtech] Horns on the road: {NAME} has come for the colony, with {X_nameDef}'s banner in the middle of it. Every fighter here knows what it would mean to bring {X_objective} down today.</li>
               <li>[!leads] Riders of {NAME} have come to the colony. {X_nameDef} isn't with them this time, but they are {X_possessive} people, and they will tell {X_objective} how it went.</li>
-              <li>[!leads,!lowtech] A war party of {NAME} is moving on the colony. {X_nameDef} stayed behind at {PLACE} and sent the hungriest. How they do here decides how big the band is next month.</li>
+              <li>[!leads] A war party of {NAME} is moving on the colony. {X_nameDef} stayed behind at {PLACE} and sent the hungriest. How they do here decides how big the band is next month.</li>
             </texts>
           </li>
           <li>
@@ -485,7 +485,7 @@
             <key>brokenTexts</key>
             <texts>
               <li>The silver bought less time than the council hoped. {X_nameDef} has spent it, and {NAME} is back at the colony with {X_objective} at its head.\n\nThere won't be another offer.</li>
-              <li>[lowtech] {X_nameDef}'s word was worth exactly what the colony paid for it, and not a day more. {NAME} is on the road again, and the road leads here.</li>
+              <li>[theirLowtech] {X_nameDef}'s word was worth exactly what the colony paid for it, and not a day more. {NAME} is on the road again, and the road leads here.</li>
             </texts>
           </li>
           <li>
