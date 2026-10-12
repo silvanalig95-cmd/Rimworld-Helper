@@ -84,6 +84,10 @@ namespace ColonyCouncil
         /// <summary>World events that can end in a fight (bounty hunters, revenge, tribute refused).</summary>
         public bool worldEventBattles = true;
         public float daysBetweenWorldEvents = 4f;
+        /// <summary>Rimfolk's colony events join the storyteller's own random events (else they come on Rimfolk's own timer).</summary>
+        public bool eventsFromStoryteller = true;
+        /// <summary>How likely each of them is, compared with one of the game's own events.</summary>
+        public float storytellerEventWeight = 1f;
         /// <summary>How hard the fights a Rimfolk scenario promises hit (share of their usual strength).</summary>
         public float scenarioThreat = 1f;
         /// <summary>How often the smaller things happen: 1 = as designed, 0.25 = rarely, 3 = often.</summary>
@@ -182,6 +186,8 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref worldEvents, "worldEvents", true);
             Scribe_Values.Look(ref worldEventBattles, "worldEventBattles", true);
             Scribe_Values.Look(ref daysBetweenWorldEvents, "daysBetweenWorldEvents", 4f);
+            Scribe_Values.Look(ref eventsFromStoryteller, "eventsFromStoryteller", true);
+            Scribe_Values.Look(ref storytellerEventWeight, "storytellerEventWeight", 1f);
             Scribe_Values.Look(ref scenarioThreat, "scenarioThreat", 1f);
             Scribe_Values.Look(ref encounterFrequency, "encounterFrequency", 1f);
             Scribe_Values.Look(ref momentFrequency, "momentFrequency", 1f);
@@ -409,9 +415,21 @@ namespace ColonyCouncil
             if (worldEvents)
             {
                 l.CheckboxLabeled("  " + "CC_Settings_WorldEventBattles".Translate(), ref worldEventBattles, "CC_Settings_WorldEventBattles_Tip".Translate());
-                daysBetweenWorldEvents = l.SliderLabeled("CC_Settings_DaysBetweenWorldEvents".Translate(daysBetweenWorldEvents.ToString("0.#")), daysBetweenWorldEvents, 1f, 20f, 0.6f,
-                    "CC_Settings_DaysBetweenWorldEvents_Tip".Translate());
-                daysBetweenWorldEvents = Mathf.Round(daysBetweenWorldEvents * 2f) / 2f;
+                bool fromStoryteller = eventsFromStoryteller;
+                l.CheckboxLabeled("  " + "CC_Settings_EventsFromStoryteller".Translate(), ref eventsFromStoryteller, "CC_Settings_EventsFromStoryteller_Tip".Translate());
+                if (fromStoryteller != eventsFromStoryteller) HappeningTracker.ApplyEventMode();
+                if (eventsFromStoryteller)
+                {
+                    storytellerEventWeight = l.SliderLabeled("CC_Settings_StorytellerEventWeight".Translate(storytellerEventWeight.ToStringPercent()), storytellerEventWeight, 0.25f, 2f, 0.6f,
+                        "CC_Settings_StorytellerEventWeight_Tip".Translate());
+                    storytellerEventWeight = Mathf.Round(storytellerEventWeight * 20f) / 20f;
+                }
+                else
+                {
+                    daysBetweenWorldEvents = l.SliderLabeled("CC_Settings_DaysBetweenWorldEvents".Translate(daysBetweenWorldEvents.ToString("0.#")), daysBetweenWorldEvents, 1f, 20f, 0.6f,
+                        "CC_Settings_DaysBetweenWorldEvents_Tip".Translate());
+                    daysBetweenWorldEvents = Mathf.Round(daysBetweenWorldEvents * 2f) / 2f;
+                }
             }
             scenarioThreat = l.SliderLabeled("CC_Settings_ScenarioThreat".Translate(scenarioThreat.ToStringPercent()), scenarioThreat, 0.25f, 2f, 0.6f,
                 "CC_Settings_ScenarioThreat_Tip".Translate());
@@ -551,6 +569,8 @@ namespace ColonyCouncil
             worldEvents = d.worldEvents;
             worldEventBattles = d.worldEventBattles;
             daysBetweenWorldEvents = d.daysBetweenWorldEvents;
+            eventsFromStoryteller = d.eventsFromStoryteller;
+            storytellerEventWeight = d.storytellerEventWeight;
             scenarioThreat = d.scenarioThreat;
             encounterFrequency = d.encounterFrequency;
             momentFrequency = d.momentFrequency;

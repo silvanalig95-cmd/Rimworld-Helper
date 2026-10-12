@@ -21,6 +21,14 @@ namespace ColonyCouncil
             {
                 CouncilLog.ErrorOnce("startup", e);
             }
+            try
+            {
+                HappeningTracker.ApplyEventMode();
+            }
+            catch (System.Exception e)
+            {
+                CouncilLog.ErrorOnce("event pools", e);
+            }
         }
 
         /// <summary>

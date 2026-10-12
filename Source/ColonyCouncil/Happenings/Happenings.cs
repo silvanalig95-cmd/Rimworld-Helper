@@ -413,7 +413,7 @@ namespace ColonyCouncil
     {
         public int nextTick = -1;
         public int lastFiredTick = -999999;
-        private HappeningGroup lastGroup = HappeningGroup.Nature;
+        public HappeningGroup lastGroup = HappeningGroup.Nature;
         public List<PendingRaid> raids = new List<PendingRaid>();
         public List<Departed> departed = new List<Departed>();
         public List<Grudge> grudges = new List<Grudge>();
@@ -433,7 +433,72 @@ namespace ColonyCouncil
         public static IncidentCategoryDef Category => CouncilDefOf.Council_WorldEvent;
 
         public static IEnumerable<IncidentDef> All =>
-            DefDatabase<IncidentDef>.AllDefsListForReading.Where(d => d.category == Category && d.HasModExtension<HappeningExtension>());
+            DefDatabase<IncidentDef>.AllDefsListForReading.Where(d => d.HasModExtension<HappeningExtension>());
+
+        /// <summary>
+        /// Puts Rimfolk's colony events where they're drawn from: the storyteller's own pools (everyday events with
+        /// Misc, fights with the small threats) or Rimfolk's own category, which only Rimfolk's timer fires. Events
+        /// that never fire by chance (a scenario's debt, the founding day) always stay in Rimfolk's category.
+        /// </summary>
+        public static void ApplyEventMode()
+        {
+            bool storyteller = S == null || S.eventsFromStoryteller;
+            foreach (var d in All)
+            {
+                var ext = d.GetModExtension<HappeningExtension>();
+                d.category = !storyteller || d.baseChance <= 0f ? Category : ext.battle ? IncidentCategoryDefOf.ThreatSmall : IncidentCategoryDefOf.Misc;
+            }
+            shareCache.Clear();
+        }
+
+        /// <summary>At most this share of a storyteller pool is Rimfolk's, so the game's traders, travelers and threats keep coming.</summary>
+        private static float MaxShare(IncidentCategoryDef cat) => cat == IncidentCategoryDefOf.ThreatSmall ? 0.25f : 0.5f;
+
+        private static readonly Dictionary<IncidentCategoryDef, (int day, float factor)> shareCache = new Dictionary<IncidentCategoryDef, (int, float)>();
+
+        /// <summary>
+        /// The storyteller's weight for one of Rimfolk's events, as a factor on its own base chance: the player's
+        /// setting, the share cap for its pool, variety (not the same kind twice running) and, for newcomers, how many
+        /// people the storyteller thinks the colony should have.
+        /// </summary>
+        public static float StorytellerFactor(IncidentDef def)
+        {
+            var ext = def.GetModExtension<HappeningExtension>();
+            float f = Mathf.Clamp(S.storytellerEventWeight, 0.05f, 4f) * ShareFactor(def.category);
+            var t = CouncilGameComponent.Instance?.happenings;
+            if (ext != null && t != null && ext.group == t.lastGroup) f *= 0.5f;
+            if (ext != null && ext.addsPeople) f *= Mathf.Clamp(StorytellerUtilityPopulation.PopulationIntent + 0.35f, 0.05f, 1.5f);
+            return f;
+        }
+
+        private static float ShareFactor(IncidentCategoryDef cat)
+        {
+            if (cat == null) return 1f;
+            int day = Find.TickManager.TicksGame / GenDate.TicksPerDay;
+            if (shareCache.TryGetValue(cat, out var c) && c.day == day) return c.factor;
+            float ours = 0f, theirs = 0f;
+            foreach (var d in DefDatabase<IncidentDef>.AllDefsListForReading)
+            {
+                if (d.category != cat) continue;
+                if (d.HasModExtension<HappeningExtension>()) ours += d.baseChance * Mathf.Clamp(S.storytellerEventWeight, 0.05f, 4f);
+                else
+                {
+                    try
+                    {
+                        theirs += Mathf.Max(0f, d.Worker.BaseChanceThisGame);
+                    }
+                    catch
+                    {
+                        theirs += d.baseChance;
+                    }
+                }
+            }
+            float max = MaxShare(cat);
+            float factor = 1f;
+            if (ours > 0f && theirs > 0f && ours / (ours + theirs) > max) factor = max / (1f - max) * theirs / ours;
+            shareCache[cat] = (day, factor);
+            return factor;
+        }
 
         private static int Now => Find.TickManager.TicksGame;
 
@@ -454,7 +519,8 @@ namespace ColonyCouncil
             Safe("scenario", () => ScenarioStakes.Hourly(this, comp, now));
             if (now % GenDate.TicksPerDay < GenDate.TicksPerHour) Safe("event memory", Prune);
             Safe("quests", () => Quests(comp));
-            if (!S.worldEvents) return;
+            // With the storyteller in charge of them, Rimfolk's own timer stays quiet.
+            if (!S.worldEvents || S.eventsFromStoryteller) return;
             if (nextTick < 0) nextTick = now + Interval();
             if (now < GenDate.TicksPerDay * 3 || now < nextTick) return;
             var map = HomeMap();
@@ -478,14 +544,19 @@ namespace ColonyCouncil
         /// <summary>Fires one world event that fits now (or one of those <paramref name="only"/> allows).</summary>
         public bool TryFire(Map map, Func<IncidentDef, bool> only)
         {
-            var parms = StorytellerUtility.DefaultParmsNow(Category, map);
+            var parmsByCat = new Dictionary<IncidentCategoryDef, IncidentParms>();
+            IncidentParms Parms(IncidentDef d)
+            {
+                if (!parmsByCat.TryGetValue(d.category, out var p)) parmsByCat[d.category] = p = StorytellerUtility.DefaultParmsNow(d.category, map);
+                return p;
+            }
             var pool = new List<IncidentDef>();
             foreach (var d in All)
             {
                 if (only != null && !only(d)) continue;
                 try
                 {
-                    if (d.TargetAllowed(map) && d.Worker.CanFireNow(parms)) pool.Add(d);
+                    if (d.TargetAllowed(map) && d.Worker.CanFireNow(Parms(d))) pool.Add(d);
                 }
                 catch (Exception e)
                 {
@@ -496,7 +567,7 @@ namespace ColonyCouncil
             {
                 var def = pool.RandomElementByWeight(Weight);
                 pool.Remove(def);
-                if (Find.Storyteller.TryFire(new FiringIncident(def, null, parms), false)) return true;
+                if (Find.Storyteller.TryFire(new FiringIncident(def, null, Parms(def)), false)) return true;
             }
             return false;
         }

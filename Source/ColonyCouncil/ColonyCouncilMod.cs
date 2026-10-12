@@ -18,6 +18,20 @@ namespace ColonyCouncil
 
         public override string SettingsCategory() => "Rimfolk";
 
+        /// <summary>Saved when the settings window closes: settings that change def data are applied again here.</summary>
+        public override void WriteSettings()
+        {
+            base.WriteSettings();
+            try
+            {
+                HappeningTracker.ApplyEventMode();
+            }
+            catch (Exception e)
+            {
+                CouncilLog.ErrorOnce("event pools", e);
+            }
+        }
+
         public override void DoSettingsWindowContents(Rect inRect)
         {
             Settings.DoWindowContents(inRect);

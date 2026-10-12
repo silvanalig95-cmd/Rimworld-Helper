@@ -21,6 +21,35 @@ namespace ColonyCouncil
 
         protected static int Now => Find.TickManager.TicksGame;
 
+        /// <summary>Drawn by the storyteller: about the odds of one of the game's own events (see HappeningTracker.StorytellerFactor).</summary>
+        public override float BaseChanceThisGame
+        {
+            get
+            {
+                float b = base.BaseChanceThisGame;
+                if (b <= 0f || S == null || !S.eventsFromStoryteller || def.category == HappeningTracker.Category) return b;
+                try
+                {
+                    return b * HappeningTracker.StorytellerFactor(def);
+                }
+                catch (Exception e)
+                {
+                    CouncilLog.ErrorOnce("event chance " + def.defName, e);
+                    return b;
+                }
+            }
+        }
+
+        /// <summary>Not while another of Rimfolk's letters waits for an answer, and rarely right after one.</summary>
+        public override float ChanceFactorNow(IIncidentTarget target)
+        {
+            float f = base.ChanceFactorNow(target);
+            if (HappeningTracker.Waiting) return 0f;
+            var t = CouncilGameComponent.Instance?.happenings;
+            if (t != null && Find.TickManager.TicksGame - t.lastFiredTick < GenDate.TicksPerDay * 1.5f) f *= 0.3f;
+            return f;
+        }
+
         protected override bool CanFireNowSub(IncidentParms parms)
         {
             var map = parms.target as Map;
