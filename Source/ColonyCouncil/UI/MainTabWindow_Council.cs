@@ -83,50 +83,80 @@ namespace ColonyCouncil
 
         private static CouncilSettings Settings => ColonyCouncilMod.Settings;
 
+        private static readonly Section[] Sections = (Section[])System.Enum.GetValues(typeof(Section));
+        private const float TabIconSize = 18f;
+        private static readonly bool[] sectionHasIcon = new bool[Sections.Length];
+        private static readonly float[] subTabWidths = new float[8];
+        // Tab labels carry counts that take a little work to find; they're refreshed twice a second.
+        private static readonly Dictionary<int, string> labels = new Dictionary<int, string>();
+        private static float labelsAt = -1f;
+        private static string iconPad;
+
         public override void DoWindowContents(Rect inRect)
         {
             var map = Find.CurrentMap;
             var comp = CouncilGameComponent.Instance;
             var current = SectionOf(tab);
-            var tabs = new List<TabRecord>();
-            foreach (Section s in System.Enum.GetValues(typeof(Section)))
+            if (Time.realtimeSinceStartup - labelsAt > 0.5f)
             {
-                var section = s;
-                tabs.Add(new TabRecord(SectionLabel(section, comp, map), () => OpenSection(section), current == section));
+                labels.Clear();
+                labelsAt = Time.realtimeSinceStartup;
             }
+
+            // The sections, as vanilla tabs. Where a tab has room, its label starts with blank space and the
+            // section's icon is drawn into it.
+            Text.Font = GameFont.Small;
             var body = new Rect(inRect.x, inRect.y + 32f, inRect.width, inRect.height - 32f);
+            float overlap = TabDrawer.TabHoriztonalOverlap;
+            float tabW = Mathf.Min(200f, (body.width + (Sections.Length - 1) * overlap) / Sections.Length);
+            var tabs = new List<TabRecord>(Sections.Length);
+            for (int i = 0; i < Sections.Length; i++)
+            {
+                var section = Sections[i];
+                string label = Label((int)section, () => SectionLabel(section, comp, map));
+                sectionHasIcon[i] = SectionIcon(section) != null && Text.CalcSize(IconPad + label).x <= tabW - 24f;
+                tabs.Add(new TabRecord(sectionHasIcon[i] ? IconPad + label : label, () => OpenSection(section), current == section));
+            }
             Widgets.DrawMenuSection(body);
             TabDrawer.DrawTabs(body, tabs, 200f);
+            for (int i = 0; i < Sections.Length; i++)
+            {
+                if (!sectionHasIcon[i]) continue;
+                // Where TabDrawer puts each tab, and where it centers the label in it.
+                var tr = new Rect(body.x + i * (tabW - overlap), body.y - TabDrawer.TabHeight + 1f, tabW, TabDrawer.TabHeight);
+                float left = tr.center.x - Text.CalcSize(tabs[i].label).x / 2f;
+                var color = Sections[i] == current ? UiKit.Gold : Mouse.IsOver(tr) ? Color.white : new Color(1f, 1f, 1f, 0.75f);
+                UiKit.Icon(new Rect(left + 1f, tr.center.y - TabIconSize / 2f, TabIconSize, TabIconSize), SectionIcon(Sections[i]), color);
+            }
             var content = body.ContractedBy(12f);
 
             if (comp == null)
             {
-                Widgets.Label(content, "CC_NoGame".Translate());
+                UiKit.EmptyState(content, Icons.Council, "CC_NoGame".Translate());
                 return;
             }
 
-            // The section's sub-tabs, as a row of buttons along the top.
+            // The section's sub-tabs, as a row of flat tabs along the top; squeezed evenly when the window is narrow.
             var subTabs = TabsOf(current);
             if (subTabs.Length > 1)
             {
-                float x = content.x;
-                foreach (var t in subTabs)
+                float total = 0f;
+                for (int i = 0; i < subTabs.Length; i++)
                 {
-                    string label = SubTabLabel(t, comp);
-                    float w = Mathf.Max(110f, Text.CalcSize(label).x + 24f);
-                    var r = new Rect(x, content.y, w, 28f);
-                    if (t == tab) Widgets.DrawBoxSolid(r, new Color(1f, 1f, 1f, 0.12f));
-                    Widgets.DrawHighlightIfMouseover(r);
-                    GUI.color = t == tab ? Color.white : Faint;
-                    Text.Anchor = TextAnchor.MiddleCenter;
-                    Widgets.Label(r, label);
-                    Text.Anchor = TextAnchor.UpperLeft;
-                    GUI.color = Color.white;
-                    if (t == tab) Widgets.DrawLineHorizontal(r.x, r.yMax - 1f, r.width);
-                    if (Widgets.ButtonInvisible(r)) SetTab(t);
+                    var t = subTabs[i];
+                    subTabWidths[i] = Mathf.Max(110f, UiKit.TabButtonWidth(Label(100 + (int)t, () => SubTabLabel(t, comp)), TabIcon(t)));
+                    total += subTabWidths[i] + (i > 0 ? 4f : 0f);
+                }
+                float even = (content.width - 4f * (subTabs.Length - 1)) / subTabs.Length;
+                float x = content.x;
+                for (int i = 0; i < subTabs.Length; i++)
+                {
+                    var t = subTabs[i];
+                    float w = total > content.width ? even : subTabWidths[i];
+                    if (UiKit.TabButton(new Rect(x, content.y, w, 28f), Label(100 + (int)t, () => SubTabLabel(t, comp)), TabIcon(t), t == tab)) SetTab(t);
                     x += w + 4f;
                 }
-                Widgets.DrawLineHorizontal(content.x, content.y + 30f, content.width);
+                UiKit.Divider(content.x, content.y + 30f, content.width);
                 content = new Rect(content.x, content.y + 38f, content.width, content.height - 38f);
             }
 
@@ -162,6 +192,62 @@ namespace ColonyCouncil
         }
 
         private void OpenSection(Section s) => SetTab(lastInSection.TryGetValue(s, out var t) ? t : TabsOf(s)[0]);
+
+        private static string Label(int key, System.Func<string> make)
+        {
+            if (!labels.TryGetValue(key, out var s)) labels[key] = s = make();
+            return s;
+        }
+
+        /// <summary>Blank space as wide as a tab icon, measured between two letters (a string of spaces alone may measure as nothing).</summary>
+        private static string IconPad
+        {
+            get
+            {
+                if (iconPad != null) return iconPad;
+                var old = Text.Font;
+                Text.Font = GameFont.Small;
+                float bare = Text.CalcSize("xx").x;
+                string pad = " ";
+                while (pad.Length < 12 && Text.CalcSize("x" + pad + "x").x - bare < TabIconSize + 5f) pad += " ";
+                Text.Font = old;
+                return iconPad = pad;
+            }
+        }
+
+        private static Texture2D SectionIcon(Section s)
+        {
+            switch (s)
+            {
+                case Section.Colony: return Icons.Colony;
+                case Section.People: return Icons.People;
+                case Section.Council: return Icons.Council;
+                case Section.History: return Icons.History;
+                default: return Icons.Almanac;
+            }
+        }
+
+        private static Texture2D TabIcon(Tab t)
+        {
+            switch (t)
+            {
+                case Tab.Overview: return Icons.Overview;
+                case Tab.Priorities: return Icons.Priorities;
+                case Tab.Moods: return Icons.Moods;
+                case Tab.World: return Icons.World;
+                case Tab.Build: return Icons.Rooms;
+                case Tab.Roster: return Icons.Roster;
+                case Tab.Bonds: return Icons.Bonds;
+                case Tab.Wishes: return Icons.Wishes;
+                case Tab.Decrees: return Icons.Decrees;
+                case Tab.Ambition: return Icons.Ambition;
+                case Tab.Ways: return Icons.Ways;
+                case Tab.Chronicle: return Icons.Chronicle;
+                case Tab.Dreams: return Icons.Dreams;
+                case Tab.Journals: return Icons.Journals;
+                default: return Icons.Almanac;
+            }
+        }
 
         /// <summary>Section names, with a count when something there wants attention.</summary>
         private static string SectionLabel(Section s, CouncilGameComponent comp, Map map)
