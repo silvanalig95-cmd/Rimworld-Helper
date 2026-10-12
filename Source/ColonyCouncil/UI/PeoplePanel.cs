@@ -7,9 +7,10 @@ using Verse;
 namespace ColonyCouncil
 {
     /// <summary>
-    /// People → Roster: every colonist at a glance (trust, life goal, office and markers for what's going on in
-    /// their life), with the selected colonist's whole story beside the list.
+    /// People → Roster: every colonist at a glance (portrait ringed in their trust color, life goal, office and small
+    /// icons for what's going on in their life), with the selected colonist's whole story beside the list.
     /// </summary>
+    [StaticConstructorOnStartup]
     public static class PeoplePanel
     {
         private enum Sort
@@ -27,11 +28,33 @@ namespace ColonyCouncil
         private static float storyHeight = 400f;
 
         private const float ListWidth = 320f;
-        private const float RowH = 58f;
+        private const float RowH = 60f;
+        private const float PortraitSize = 46f;
 
-        private static readonly Color Faint = new Color(0.7f, 0.7f, 0.7f);
-        private static readonly Color Gold = new Color(1f, 0.85f, 0.5f);
         private static readonly Texture2D GoalBar = SolidColorMaterials.NewSolidColorTexture(new Color(0.75f, 0.6f, 0.85f));
+        private static readonly Color GoalColor = new Color(0.75f, 0.6f, 0.85f);
+
+        // The sorted list, refreshed twice a second or when the sort changes.
+        private static List<Pawn> sorted;
+        private static float sortedAt = -1f;
+        private static Sort sortedBy;
+
+        /// <summary>One small icon in a row, with what it means as its tooltip.</summary>
+        private struct Marker
+        {
+            public Texture2D icon;
+            public Color color;
+            public string tip;
+            public string count;
+        }
+
+        /// <summary>What a row shows besides the name, worked out about once a second.</summary>
+        private class RowInfo
+        {
+            public string office, goal, circle;
+            public float goalProgress = -1f;
+            public List<Marker> markers = new List<Marker>();
+        }
 
         public static void Select(Pawn p)
         {
@@ -39,8 +62,9 @@ namespace ColonyCouncil
             storyScroll = Vector2.zero;
         }
 
-        public static void Draw(Rect rect, CouncilGameComponent comp)
+        private static List<Pawn> Pawns(CouncilGameComponent comp)
         {
+            if (sorted != null && sortedBy == sort && Time.realtimeSinceStartup - sortedAt < 0.5f) return sorted;
             var pawns = PawnsFinder.AllMaps_FreeColonists.Where(p => !p.IsQuestLodger() && p.RaceProps.Humanlike).ToList();
             switch (sort)
             {
@@ -49,15 +73,20 @@ namespace ColonyCouncil
                 case Sort.Mood: pawns = pawns.OrderBy(p => p.needs?.mood?.CurLevelPercentage ?? 1f).ToList(); break;
                 default: pawns = pawns.OrderBy(p => p.LabelShort).ToList(); break;
             }
+            sorted = pawns;
+            sortedBy = sort;
+            sortedAt = Time.realtimeSinceStartup;
+            return pawns;
+        }
+
+        public static void Draw(Rect rect, CouncilGameComponent comp)
+        {
+            var pawns = Pawns(comp);
             if (selected == null || !pawns.Contains(selected)) selected = pawns.FirstOrDefault();
 
-            var left = new Rect(rect.x, rect.y, ListWidth, rect.height);
-            var right = new Rect(rect.x + ListWidth + 12f, rect.y, rect.width - ListWidth - 12f, rect.height);
-
-            // ---- List ----
-            Text.Font = GameFont.Small;
-            Widgets.Label(new Rect(left.x, left.y + 4f, 150f, 24f), "CC_People_Count".Translate(pawns.Count));
-            var sortRect = new Rect(left.xMax - 160f, left.y, 160f, 28f);
+            float top = UiKit.PageHeader(rect, Icons.Roster, "CC_UI_Title_Roster".Translate(), "CC_UI_Sub_Roster".Translate(),
+                "CC_UI_Stat_People".Translate(pawns.Count).Resolve(), null, 172f);
+            var sortRect = new Rect(rect.xMax - 166f, rect.y + 6f, 166f, 30f);
             if (Widgets.ButtonText(sortRect, "CC_People_Sort".Translate(("CC_People_Sort_" + sort).Translate())))
             {
                 var options = new List<FloatMenuOption>();
@@ -68,15 +97,21 @@ namespace ColonyCouncil
                 }
                 Find.WindowStack.Add(new FloatMenu(options));
             }
-            var outRect = new Rect(left.x, left.y + 34f, left.width, left.height - 34f);
-            var view = new Rect(0f, 0f, outRect.width - 16f, pawns.Count * (RowH + 2f));
-            Widgets.BeginScrollView(outRect, ref listScroll, view);
+
+            float listW = Mathf.Min(ListWidth, rect.width * 0.45f);
+            var left = new Rect(rect.x, rect.y + top, listW, rect.height - top);
+            var right = new Rect(rect.x + listW + 12f, rect.y + top, rect.width - listW - 12f, rect.height - top);
+
+            // ---- List ----
+            var view = new Rect(0f, 0f, left.width - 16f, pawns.Count * (RowH + 4f));
+            Widgets.BeginScrollView(left, ref listScroll, view);
             float y = 0f;
+            if (pawns.Count == 0) UiKit.EmptyState(0f, 0f, view.width, Icons.People, "CC_People_None".Translate(), 120f);
             foreach (var p in pawns)
             {
                 // Only rows on screen are drawn.
-                if (y + RowH >= listScroll.y && y <= listScroll.y + outRect.height) DrawRow(new Rect(0f, y, view.width, RowH), p, comp);
-                y += RowH + 2f;
+                if (y + RowH >= listScroll.y && y <= listScroll.y + left.height) DrawRow(new Rect(0f, y, view.width, RowH), p, comp);
+                y += RowH + 4f;
             }
             Widgets.EndScrollView();
 
@@ -85,25 +120,28 @@ namespace ColonyCouncil
             var inner = right.ContractedBy(10f);
             if (selected == null)
             {
-                Widgets.Label(inner, "CC_People_None".Translate());
+                UiKit.EmptyState(inner, Icons.People, "CC_People_None".Translate());
                 return;
             }
-            Text.Font = GameFont.Medium;
-            string titles = comp.epithets.TitlesOf(selected);
-            Widgets.Label(new Rect(inner.x, inner.y, inner.width - 230f, 32f), (selected.LabelShortCap + (titles.NullOrEmpty() ? "" : ", " + titles)).Truncate(inner.width - 234f));
-            Text.Font = GameFont.Small;
+            const float storyPortrait = 56f;
+            UiKit.Portrait(new Rect(inner.x, inner.y, storyPortrait, storyPortrait), selected, UiKit.TrustColor(comp.standings.TrustOf(selected)));
+            float tx = inner.x + storyPortrait + 10f;
+            var journal = comp.journals.For(selected);
+            bool hasJournal = journal != null && journal.entries.Count > 0;
+            float buttonsW = hasJournal ? 228f : 114f;
+            string titles = UiCache.Get(selected, 41, () => comp.epithets.TitlesOf(selected));
+            string name = selected.LabelShortCap + (titles.NullOrEmpty() ? "" : ", " + titles);
+            UiKit.LabelFit(new Rect(tx, inner.y, Mathf.Max(0f, inner.xMax - tx - buttonsW - 6f), 32f), name, Color.white, GameFont.Medium);
             if (Widgets.ButtonText(new Rect(inner.xMax - 110f, inner.y, 110f, 28f), "CC_People_Jump".Translate()) && selected.Spawned)
             {
                 CameraJumper.TryJumpAndSelect(selected);
                 Find.MainTabsRoot.EscapeCurrentTab(false);
             }
-            var journal = comp.journals.For(selected);
-            if (journal != null && journal.entries.Count > 0 && Widgets.ButtonText(new Rect(inner.xMax - 224f, inner.y, 110f, 28f), "CC_People_Journal".Translate()))
+            if (hasJournal && Widgets.ButtonText(new Rect(inner.xMax - 224f, inner.y, 110f, 28f), "CC_People_Journal".Translate()))
                 Find.WindowStack.Add(new Dialog_Journal(journal));
-            GUI.color = Faint;
-            Widgets.Label(new Rect(inner.x, inner.y + 32f, inner.width, 22f), Subtitle(selected));
-            GUI.color = Color.white;
-            StoryView.Draw(new Rect(inner.x, inner.y + 58f, inner.width, inner.height - 58f), selected, ref storyScroll, ref storyHeight);
+            UiKit.LabelFit(new Rect(tx, inner.y + 32f, Mathf.Max(0f, inner.xMax - tx), 22f), UiCache.Get(selected, 42, () => Subtitle(selected)), UiKit.Faint);
+            float storyTop = storyPortrait + 8f;
+            StoryView.Draw(new Rect(inner.x, inner.y + storyTop, inner.width, inner.height - storyTop), selected, ref storyScroll, ref storyHeight);
         }
 
         private static string Subtitle(Pawn p)
@@ -118,71 +156,121 @@ namespace ColonyCouncil
         private static void DrawRow(Rect r, Pawn p, CouncilGameComponent comp)
         {
             bool isSelected = p == selected;
-            if (isSelected) Widgets.DrawBoxSolid(r, new Color(1f, 1f, 1f, 0.10f));
-            Widgets.DrawHighlightIfMouseover(r);
-            // Trust as a coloured edge: red for bitter, grey for neutral, green for devoted.
+            UiKit.Card(r, null, isSelected);
+            if (isSelected) Widgets.DrawBoxSolid(new Rect(r.x, r.y, 3f, r.height), UiKit.Gold);
             float trust = comp.standings.TrustOf(p);
-            var edge = trust >= 0f ? Color.Lerp(Color.grey, new Color(0.4f, 0.8f, 0.45f), trust / 100f) : Color.Lerp(Color.grey, new Color(0.85f, 0.35f, 0.3f), -trust / 100f);
-            Widgets.DrawBoxSolid(new Rect(r.x, r.y, 4f, r.height), edge);
-            Widgets.ThingIcon(new Rect(r.x + 8f, r.y + 5f, 48f, 48f), p);
+            UiKit.Portrait(new Rect(r.x + 8f, r.y + (r.height - PortraitSize) / 2f, PortraitSize, PortraitSize), p, UiKit.TrustColor(trust));
+            var info = UiCache.Get(p, 40, () => Info(p, comp));
 
-            float x = r.x + 62f;
-            float w = r.width - 66f;
-            var office = comp.offices.OfficeOf(p);
-            string name = p.LabelShort + (office != null ? "  (" + office.label + ")" : "");
-            Widgets.Label(new Rect(x, r.y + 2f, w, 22f), name.Truncate(w));
-
-            var goal = ColonyCouncilMod.Settings.aspirations ? comp.aspirations.Active(p) : null;
-            Text.Font = GameFont.Tiny;
-            if (goal != null)
+            float x = r.x + PortraitSize + 16f;
+            float w = r.xMax - 6f - x;
+            // Name, with their office as a gold pill on the right.
+            float pillW = 0f;
+            if (info.office != null)
             {
-                var bar = new Rect(x, r.y + 26f, 60f, 8f);
-                Widgets.FillableBar(bar, goal.Progress, GoalBar, BaseContent.ClearTex, false);
+                pillW = Mathf.Min(UiKit.PillWidth(info.office, Icons.Office), w * 0.5f);
+                UiKit.Pill(r.xMax - 6f - pillW, r.y + 5f, info.office, UiKit.Gold, Icons.Office, null, pillW);
+                pillW += 6f;
+            }
+            UiKit.LabelFit(new Rect(x, r.y + 3f, w - pillW, 22f), p.LabelShort, isSelected ? UiKit.Gold : Color.white);
+
+            // Life goal: a small bar and its words.
+            if (info.goal != null)
+            {
+                UiKit.Icon(new Rect(x, r.y + 25f, 12f, 12f), Icons.LifeGoal, GoalColor);
+                var bar = new Rect(x + 16f, r.y + 27f, 46f, 8f);
+                Widgets.FillableBar(bar, info.goalProgress, GoalBar, BaseContent.ClearTex, false);
                 Widgets.DrawBox(bar);
-                GUI.color = Faint;
-                Widgets.Label(new Rect(x + 66f, r.y + 20f, w - 66f, 18f), goal.Goal.Truncate(w - 70f));
+                UiKit.LabelFit(new Rect(x + 68f, r.y + 22f, w - 68f, 18f), info.goal, UiKit.Faint, GameFont.Tiny);
             }
-            else
+            else UiKit.LabelFit(new Rect(x, r.y + 22f, w, 18f), "CC_People_NoGoal".Translate(), UiKit.Dim, GameFont.Tiny);
+
+            // What's going on in their life, as icons; their circle's name after them.
+            float mx = x;
+            foreach (var m in info.markers)
             {
-                GUI.color = Faint;
-                Widgets.Label(new Rect(x, r.y + 20f, w, 18f), "CC_People_NoGoal".Translate());
+                if (mx + 16f > r.xMax - 6f) break;
+                var ir = new Rect(mx, r.y + 42f, 14f, 14f);
+                UiKit.Icon(ir, m.icon, m.color);
+                float mw = 14f;
+                if (m.count != null)
+                {
+                    UiKit.LabelFit(new Rect(mx + 15f, r.y + 40f, 16f, 18f), m.count, m.color, GameFont.Tiny);
+                    mw += 10f;
+                }
+                TooltipHandler.TipRegion(new Rect(mx - 1f, r.y + 40f, mw + 2f, 18f), m.tip);
+                mx += mw + 6f;
             }
-            string markers = Markers(p, comp);
-            GUI.color = Gold;
-            if (!markers.NullOrEmpty()) Widgets.Label(new Rect(x, r.y + 37f, w, 18f), markers.Truncate(w));
-            GUI.color = Color.white;
-            Text.Font = GameFont.Small;
-            TooltipHandler.TipRegion(r, () => "CC_Trust_Header".Translate() + ": " + ("CC_Trust_" + PawnStanding.LevelFor(comp.standings.TrustOf(p))).Translate(), p.thingIDNumber ^ 0x7E01);
+            if (info.circle != null && r.xMax - 6f - mx > 40f)
+            {
+                UiKit.Icon(new Rect(mx, r.y + 42f, 14f, 14f), Icons.Bonds, UiKit.Gold);
+                UiKit.LabelFit(new Rect(mx + 18f, r.y + 40f, r.xMax - 6f - mx - 18f, 18f), info.circle, UiKit.Gold, GameFont.Tiny);
+            }
+            var pawn = p;
+            TooltipHandler.TipRegion(r, () => "CC_Trust_Header".Translate() + ": " + ("CC_Trust_" + PawnStanding.LevelFor(comp.standings.TrustOf(pawn))).Translate(),
+                p.thingIDNumber ^ 0x7E01);
             if (Widgets.ButtonInvisible(r)) Select(p);
         }
 
-        /// <summary>A short line of what's going on in their life: quirks, vendettas, secrets, teaching, circles.</summary>
-        private static string Markers(Pawn p, CouncilGameComponent comp)
+        /// <summary>What's going on in their life: office, life goal, circle, teaching, rivals, quirks, vendettas, secrets.</summary>
+        private static RowInfo Info(Pawn p, CouncilGameComponent comp)
         {
             var s = ColonyCouncilMod.Settings;
-            var parts = new List<string>();
+            var info = new RowInfo();
+            var office = comp.offices.OfficeOf(p);
+            if (office != null) info.office = office.LabelCap;
+            var goal = s.aspirations ? comp.aspirations.Active(p) : null;
+            if (goal != null)
+            {
+                info.goal = goal.Goal;
+                info.goalProgress = goal.Progress;
+            }
             if (s.socialWeb)
             {
-                var circle = comp.social.CliqueOf(p);
-                if (circle != null) parts.Add(circle.name);
-                foreach (var t in comp.social.ties.Where(t => t.kind == TieKind.Mentor && t.Involves(p) && t.skill != null))
-                    parts.Add((t.a == p ? "CC_People_Teaching" : "CC_People_Learning").Translate(t.skill.label).Resolve());
+                info.circle = comp.social.CliqueOf(p)?.name;
+                foreach (var t in comp.social.ties)
+                {
+                    if (t.kind != TieKind.Mentor || !t.Involves(p) || t.skill == null) continue;
+                    info.markers.Add(new Marker
+                    {
+                        icon = Icons.Chronicle,
+                        color = UiKit.TieColor(TieKind.Mentor),
+                        tip = (t.a == p ? "CC_People_Teaching" : "CC_People_Learning").Translate(t.skill.label).Resolve()
+                    });
+                }
                 int rivals = comp.social.ties.Count(t => t.kind == TieKind.Rivals && t.announced && t.Involves(p));
-                if (rivals > 0) parts.Add("CC_People_Rivals".Translate(rivals).Resolve());
+                if (rivals > 0)
+                    info.markers.Add(new Marker
+                    {
+                        icon = Icons.Raid,
+                        color = UiKit.TieColor(TieKind.Rivals),
+                        tip = "CC_People_Rivals".Translate(rivals).Resolve(),
+                        count = rivals > 1 ? rivals.ToString() : null
+                    });
             }
             if (s.quirks)
             {
                 int quirks = comp.quirks.Of(p).Count();
-                if (quirks > 0) parts.Add("CC_People_Quirks".Translate(quirks).Resolve());
+                if (quirks > 0)
+                    info.markers.Add(new Marker
+                    {
+                        icon = Icons.CatMods,
+                        color = new Color(0.85f, 0.85f, 0.85f),
+                        tip = "CC_People_Quirks".Translate(quirks).Resolve(),
+                        count = quirks > 1 ? quirks.ToString() : null
+                    });
             }
-            if (s.vendettas && comp.vendettas.Of(p).Any()) parts.Add("CC_People_Vendetta".Translate().Resolve());
+            if (s.vendettas && comp.vendettas.Of(p).Any())
+                info.markers.Add(new Marker { icon = Icons.Vendetta, color = UiKit.Bad, tip = "CC_People_Vendetta".Translate().Resolve() });
             if (s.secrets)
             {
                 var secret = comp.secrets.Of(p);
-                if (secret != null && secret.revealed) parts.Add("CC_People_SecretOut".Translate().Resolve());
-                else if (secret != null && secret.knowers.Count > 0) parts.Add("CC_People_Confided".Translate().Resolve());
+                if (secret != null && secret.revealed)
+                    info.markers.Add(new Marker { icon = Icons.Secret, color = UiKit.Bad, tip = "CC_People_SecretOut".Translate().Resolve() });
+                else if (secret != null && secret.knowers.Count > 0)
+                    info.markers.Add(new Marker { icon = Icons.Secret, color = UiKit.Faint, tip = "CC_People_Confided".Translate().Resolve() });
             }
-            return string.Join(" · ", parts);
+            return info;
         }
     }
 }

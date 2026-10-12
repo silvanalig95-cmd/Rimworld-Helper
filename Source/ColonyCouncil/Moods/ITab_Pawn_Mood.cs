@@ -65,8 +65,8 @@ namespace ColonyCouncil
                 cachedAt = Time.realtimeSinceStartup;
             }
             var rect = new Rect(0f, 0f, size.x, size.y).ContractedBy(10f);
-            Text.Font = GameFont.Medium;
-            Widgets.Label(new Rect(rect.x, rect.y, rect.width, 30f), "CC_Mood_Title".Translate(p.LabelShortCap).Resolve());
+            UiKit.Icon(new Rect(rect.x, rect.y + 4f, 22f, 22f), Icons.Moods, MoodView.ColorFor(mood.now - mood.minor));
+            UiKit.LabelFit(new Rect(rect.x + 30f, rect.y, rect.width - 30f, 30f), "CC_Mood_Title".Translate(p.LabelShortCap).Resolve(), Color.white, GameFont.Medium);
             Text.Font = GameFont.Small;
             float y = rect.y + 32f;
             MoodView.DrawBar(new Rect(rect.x, y, rect.width, 18f), mood);

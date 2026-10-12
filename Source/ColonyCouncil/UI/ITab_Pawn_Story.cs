@@ -36,12 +36,12 @@ namespace ColonyCouncil
             var p = SelPawn;
             if (p == null || CouncilGameComponent.Instance == null) return;
             var rect = new Rect(0f, 0f, size.x, size.y).ContractedBy(10f);
-            Text.Font = GameFont.Medium;
-            Widgets.Label(new Rect(rect.x, rect.y, rect.width - 130f, 30f), p.LabelShortCap);
-            Text.Font = GameFont.Small;
-            if (p.IsColonist && Widgets.ButtonText(new Rect(rect.xMax - 124f, rect.y + 2f, 124f, 26f), "CC_Story_OpenCouncil".Translate()))
+            var comp = CouncilGameComponent.Instance;
+            UiKit.Portrait(new Rect(rect.x, rect.y, 34f, 34f), p, p.IsColonist ? UiKit.TrustColor(comp.standings.TrustOf(p)) : UiKit.Neutral);
+            UiKit.LabelFit(new Rect(rect.x + 42f, rect.y + 1f, rect.width - 42f - 130f, 32f), p.LabelShortCap, Color.white, GameFont.Medium);
+            if (p.IsColonist && Widgets.ButtonText(new Rect(rect.xMax - 124f, rect.y + 4f, 124f, 26f), "CC_Story_OpenCouncil".Translate()))
                 MainTabWindow_Council.OpenPerson(p);
-            StoryView.Draw(new Rect(rect.x, rect.y + 34f, rect.width, rect.height - 34f), p, ref scroll, ref height);
+            StoryView.Draw(new Rect(rect.x, rect.y + 42f, rect.width, rect.height - 42f), p, ref scroll, ref height);
         }
     }
 
@@ -86,11 +86,7 @@ namespace ColonyCouncil
             }
             foreach (var section in cached)
             {
-                GUI.color = HeaderColor;
-                Widgets.Label(new Rect(0f, y, view.width, 24f), section.header);
-                GUI.color = Color.white;
-                Widgets.DrawLineHorizontal(0f, y + 22f, view.width);
-                y += 26f;
+                y += UiKit.SectionTitle(0f, y, view.width, section.header, section.icon, HeaderColor) - 4f;
                 foreach (var (text, color) in section.lines)
                 {
                     float h = Text.CalcHeight(text, view.width - 8f);
@@ -111,6 +107,7 @@ namespace ColonyCouncil
         private class Section
         {
             public string header;
+            public Texture2D icon;
             public List<(string, Color)> lines = new List<(string, Color)>();
             public PawnJournal journal;
         }
@@ -120,7 +117,7 @@ namespace ColonyCouncil
             var s = ColonyCouncilMod.Settings;
 
             // Standing: trust, office, names.
-            var standing = new Section { header = "CC_Story_Standing".Translate() };
+            var standing = new Section { header = "CC_Story_Standing".Translate(), icon = Icons.Trust };
             var st = comp.standings.For(p, false);
             if (st != null) standing.lines.Add(("CC_Story_Trust".Translate(("CC_Trust_" + PawnStanding.LevelFor(st.trust)).Translate()).Resolve(), Color.white));
             var office = comp.offices.OfficeOf(p);
@@ -132,7 +129,7 @@ namespace ColonyCouncil
             // Life goal.
             if (s.aspirations)
             {
-                var goal = new Section { header = "CC_Social_Goals".Translate() };
+                var goal = new Section { header = "CC_Social_Goals".Translate(), icon = Icons.LifeGoal };
                 var a = comp.aspirations.Active(p);
                 if (a != null)
                 {
@@ -151,7 +148,7 @@ namespace ColonyCouncil
             // Bonds.
             if (s.socialWeb)
             {
-                var bonds = new Section { header = "CC_Story_Bonds".Translate() };
+                var bonds = new Section { header = "CC_Story_Bonds".Translate(), icon = Icons.Bonds };
                 string describe = comp.social.Describe(p);
                 if (!describe.NullOrEmpty()) bonds.lines.Add((describe, Color.white));
                 foreach (var l in comp.social.lost.Where(l => l.survivor == p).Take(5))
@@ -160,7 +157,7 @@ namespace ColonyCouncil
             }
 
             // Quirks, vendettas, secrets.
-            var heart = new Section { header = "CC_Story_Heart".Translate() };
+            var heart = new Section { header = "CC_Story_Heart".Translate(), icon = Icons.Heart };
             if (s.quirks)
                 foreach (var q in comp.quirks.Of(p))
                     heart.lines.Add(("CC_Story_Quirk".Translate(q.Label).Resolve(), Color.white));
@@ -188,7 +185,7 @@ namespace ColonyCouncil
             // Dreams.
             if (s.dreams)
             {
-                var dreams = new Section { header = "CC_Social_Dreams".Translate() };
+                var dreams = new Section { header = "CC_Social_Dreams".Translate(), icon = Icons.Dream };
                 foreach (var d in comp.dreams.recent.Where(d => d.pawn == p).Reverse().Take(3))
                     dreams.lines.Add(("\"" + d.text + "\"" + (d.cameTrue ? "  (" + "CC_Social_DreamCameTrue".Translate() + ")" : ""), Quote));
                 if (dreams.lines.Count > 0) yield return dreams;
@@ -200,7 +197,7 @@ namespace ColonyCouncil
                 var j = comp.journals.For(p);
                 if (j != null && j.entries.Count > 0)
                 {
-                    var journal = new Section { header = "CC_Story_Journal".Translate(), journal = j };
+                    var journal = new Section { header = "CC_Story_Journal".Translate(), icon = Icons.Journal, journal = j };
                     foreach (var e in j.entries.AsEnumerable().Reverse().Take(4))
                         journal.lines.Add((e.date + ": " + e.text, Quote));
                     yield return journal;

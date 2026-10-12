@@ -164,8 +164,7 @@ namespace ColonyCouncil
         {
             float h = Measure(t, w);
             var row = new Rect(x, y, w, h);
-            Widgets.DrawLightHighlight(row);
-            if (Mouse.IsOver(row)) Widgets.DrawHighlight(row);
+            UiKit.Card(row, UiKit.WithAlpha(ColorFor(mood), 0.8f));
             TooltipHandler.TipRegion(row, description, t.tipId);
 
             Text.Font = GameFont.Medium;

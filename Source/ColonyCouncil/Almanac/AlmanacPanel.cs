@@ -14,6 +14,7 @@ namespace ColonyCouncil
         private static string search = "";
         private static bool showAllDlc;
         private static Vector2 listScroll;
+        private static Vector2 categoryScroll;
         private static Vector2 pageScroll;
         private static float listHeight = 500f;
         private static float pageHeight = 500f;
@@ -35,9 +36,31 @@ namespace ColonyCouncil
         private static IEnumerable<AlmanacArticleDef> Visible =>
             DefDatabase<AlmanacArticleDef>.AllDefsListForReading.Where(a => showAllDlc || a.DlcActive);
 
+        // How many pages each part has (DLCs and mods don't change while the game runs), worked out once per setting.
+        private static readonly Dictionary<AlmanacCategory, int> counts = new Dictionary<AlmanacCategory, int>();
+        private static int visibleCount;
+        private static bool? countsFor;
+
+        private static void Count()
+        {
+            if (countsFor == showAllDlc) return;
+            counts.Clear();
+            visibleCount = 0;
+            foreach (var a in Visible)
+            {
+                visibleCount++;
+                counts[a.category] = counts.TryGetValue(a.category, out int n) ? n + 1 : 1;
+            }
+            countsFor = showAllDlc;
+        }
+
         public static void Draw(Rect rect)
         {
-            float catW = 170f;
+            Count();
+            float top = UiKit.PageHeader(rect, Icons.Almanac, "CC_Tab_Almanac".Translate(), "CC_UI_Sub_Almanac".Translate(),
+                "CC_UI_Stat_Pages".Translate(visibleCount).Resolve());
+            rect = new Rect(rect.x, rect.y + top, rect.width, rect.height - top);
+            float catW = Mathf.Min(190f, rect.width * 0.22f);
             float listW = Mathf.Min(290f, rect.width * 0.3f);
             var catRect = new Rect(rect.x, rect.y, catW, rect.height);
             var listRect = new Rect(catRect.xMax + 8f, rect.y, listW, rect.height);
@@ -57,42 +80,48 @@ namespace ColonyCouncil
             if (search.NullOrEmpty())
             {
                 GUI.color = Faint;
-                Widgets.Label(new Rect(searchRect.x + 6f, searchRect.y + 4f, searchRect.width, 24f), "CC_Almanac_Search".Translate());
+                Widgets.Label(new Rect(searchRect.x + 6f, searchRect.y + 4f, searchRect.width, 24f), UiKit.Fit("CC_Almanac_Search".Translate(), searchRect.width - 10f));
                 GUI.color = Color.white;
             }
             if (before != search) listScroll = Vector2.zero;
             y += 34f;
 
-            var all = Visible.ToList();
-            if (DrawCategoryButton(new Rect(rect.x, y, rect.width, 26f), "CC_Almanac_All".Translate(), all.Count, category == null)) category = null;
-            y += 28f;
+            // The parts of the almanac, scrolling when the window is short.
+            float checkH = 24f;
+            var outRect = new Rect(rect.x, y, rect.width, rect.yMax - y - checkH - 8f);
+            int rows = 1;
+            foreach (AlmanacCategory c in System.Enum.GetValues(typeof(AlmanacCategory)))
+                if (counts.TryGetValue(c, out int n) && n > 0) rows++;
+            var view = new Rect(0f, 0f, outRect.width - (rows * 28f > outRect.height ? 16f : 0f), rows * 28f);
+            Widgets.BeginScrollView(outRect, ref categoryScroll, view);
+            float cy = 0f;
+            if (DrawCategoryButton(new Rect(0f, cy, view.width, 26f), "CC_Almanac_All".Translate(), visibleCount, category == null, Icons.Almanac)) category = null;
+            cy += 28f;
             foreach (AlmanacCategory c in System.Enum.GetValues(typeof(AlmanacCategory)))
             {
-                int n = all.Count(a => a.category == c);
-                if (n == 0) continue;
-                if (DrawCategoryButton(new Rect(rect.x, y, rect.width, 26f), ("CC_AlmanacCat_" + c).Translate(), n, category == c))
+                if (!counts.TryGetValue(c, out int n) || n == 0) continue;
+                if (DrawCategoryButton(new Rect(0f, cy, view.width, 26f), ("CC_AlmanacCat_" + c).Translate(), n, category == c, Icons.For(c)))
                 {
                     category = c;
                     listScroll = Vector2.zero;
                 }
-                y += 28f;
+                cy += 28f;
             }
-            y += 8f;
-            string allLabel = "CC_Almanac_AllDlc".Translate();
-            float allH = Mathf.Max(24f, Text.CalcHeight(allLabel, rect.width - 30f));
-            Widgets.CheckboxLabeled(new Rect(rect.x, y, rect.width, allH), allLabel, ref showAllDlc);
+            Widgets.EndScrollView();
+            bool all = showAllDlc;
+            Widgets.CheckboxLabeled(new Rect(rect.x, rect.yMax - checkH, rect.width, checkH), UiKit.Fit("CC_Almanac_AllDlc".Translate(), rect.width - 30f), ref showAllDlc);
+            if (all != showAllDlc) listScroll = Vector2.zero;
+            TooltipHandler.TipRegion(new Rect(rect.x, rect.yMax - checkH, rect.width, checkH), "CC_Almanac_AllDlc".Translate());
         }
 
-        private static bool DrawCategoryButton(Rect r, string label, int count, bool active)
+        private static bool DrawCategoryButton(Rect r, string label, int count, bool active, Texture2D icon)
         {
             if (active) Widgets.DrawHighlightSelected(r);
             else if (Mouse.IsOver(r)) Widgets.DrawHighlight(r);
-            Widgets.Label(new Rect(r.x + 6f, r.y + 3f, r.width - 40f, r.height), label.Truncate(r.width - 40f));
-            GUI.color = Faint;
-            Text.Anchor = TextAnchor.UpperRight;
-            Widgets.Label(new Rect(r.x, r.y + 3f, r.width - 6f, r.height), count.ToString());
-            Text.Anchor = TextAnchor.UpperLeft;
-            GUI.color = Color.white;
+            if (active) Widgets.DrawBoxSolid(new Rect(r.x, r.y, 3f, r.height), UiKit.Gold);
+            UiKit.Icon(new Rect(r.x + 6f, r.y + 5f, 16f, 16f), icon, active ? UiKit.Gold : Faint);
+            UiKit.LabelFit(new Rect(r.x + 28f, r.y, r.width - 62f, r.height), label, active ? Color.white : new Color(0.9f, 0.9f, 0.9f));
+            UiKit.LabelFit(new Rect(r.xMax - 34f, r.y, 30f, r.height), count.ToString(), Faint, GameFont.Tiny, TextAnchor.MiddleRight);
             return Widgets.ButtonInvisible(r);
         }
 
@@ -106,7 +135,10 @@ namespace ColonyCouncil
             Widgets.DrawMenuSection(rect);
             var inner = rect.ContractedBy(4f);
             var view = new Rect(0f, 0f, inner.width - 16f, listHeight);
-            string key = (category?.ToString() ?? "") + "|" + search + "|" + view.width + "|" + Visible.Count();
+            // With everything (or a search) shown, each row gets its part's icon.
+            bool icons = category == null || !search.NullOrEmpty();
+            float textX = icons ? 26f : 4f;
+            string key = (category?.ToString() ?? "") + "|" + search + "|" + view.width + "|" + visibleCount + "|" + showAllDlc;
             if (key != listKey || listArticles == null)
             {
                 listKey = key;
@@ -118,9 +150,9 @@ namespace ColonyCouncil
                 foreach (var a in listArticles)
                 {
                     Text.Font = GameFont.Small;
-                    float th = Text.CalcHeight(a.LabelCap, view.width - 8f);
+                    float th = Text.CalcHeight(a.LabelCap, view.width - textX - 4f);
                     Text.Font = GameFont.Tiny;
-                    float sh = a.summary.NullOrEmpty() ? 0f : Text.CalcHeight(a.summary, view.width - 8f);
+                    float sh = a.summary.NullOrEmpty() ? 0f : Text.CalcHeight(a.summary, view.width - textX - 4f);
                     listHeights.Add((th, sh));
                 }
                 Text.Font = GameFont.Small;
@@ -128,13 +160,7 @@ namespace ColonyCouncil
             var articles = listArticles;
             Widgets.BeginScrollView(inner, ref listScroll, view);
             float y = 0f;
-            if (articles.Count == 0)
-            {
-                GUI.color = Faint;
-                Widgets.Label(new Rect(4f, y, view.width, 40f), "CC_Almanac_NothingFound".Translate());
-                GUI.color = Color.white;
-                y += 40f;
-            }
+            if (articles.Count == 0) y += UiKit.EmptyState(0f, y, view.width, Icons.Almanac, "CC_Almanac_NothingFound".Translate(), 120f);
             for (int i = 0; i < articles.Count; i++)
             {
                 var a = articles[i];
@@ -151,13 +177,15 @@ namespace ColonyCouncil
                 var row = new Rect(0f, y, view.width, h);
                 if (a == selected) Widgets.DrawHighlightSelected(row);
                 else if (Mouse.IsOver(row)) Widgets.DrawHighlight(row);
+                if (a == selected) Widgets.DrawBoxSolid(new Rect(row.x, row.y, 3f, row.height), UiKit.Gold);
+                if (icons) UiKit.Icon(new Rect(6f, y + 5f, 14f, 14f), Icons.For(a.category), a == selected ? UiKit.Gold : UiKit.Dim);
                 Text.Font = GameFont.Small;
-                Widgets.Label(new Rect(4f, y + 3f, view.width - 8f, th), title);
+                Widgets.Label(new Rect(textX, y + 3f, view.width - textX - 4f, th), title);
                 if (sh > 0f)
                 {
                     Text.Font = GameFont.Tiny;
                     GUI.color = Faint;
-                    Widgets.Label(new Rect(4f, y + 3f + th, view.width - 8f, sh), sub);
+                    Widgets.Label(new Rect(textX, y + 3f + th, view.width - textX - 4f, sh), sub);
                     GUI.color = Color.white;
                 }
                 Text.Font = GameFont.Small;
@@ -178,9 +206,7 @@ namespace ColonyCouncil
             var a = selected;
             if (a == null)
             {
-                GUI.color = Faint;
-                Widgets.Label(rect, "CC_Almanac_Pick".Translate());
-                GUI.color = Color.white;
+                UiKit.EmptyState(rect, Icons.Almanac, "CC_Almanac_Pick".Translate());
                 return;
             }
             var view = new Rect(0f, 0f, rect.width - 18f, pageHeight);
@@ -192,16 +218,14 @@ namespace ColonyCouncil
             float h = Text.CalcHeight(a.LabelCap, w);
             Widgets.Label(new Rect(0f, y, w, h), a.LabelCap);
             y += h + 2f;
-            Text.Font = GameFont.Tiny;
-            GUI.color = Faint;
             string meta = ("CC_AlmanacCat_" + a.category).Translate();
             if (!a.dlc.NullOrEmpty()) meta += "  ·  " + a.dlc + (a.DlcActive ? "" : " (" + "CC_Almanac_NotActive".Translate() + ")");
             if (!a.mods.NullOrEmpty()) meta += "  ·  " + "CC_Almanac_FromMod".Translate(a.ModNames()).ToString() + (a.ModsActive ? "" : " (" + "CC_Almanac_NotActive".Translate().ToString() + ")");
             if (a.approximate) meta += "  ·  " + "CC_Almanac_Approximate".Translate();
-            Widgets.Label(new Rect(0f, y, w, 18f), meta);
-            GUI.color = Color.white;
-            Text.Font = GameFont.Small;
-            y += 22f;
+            UiKit.Icon(new Rect(0f, y + 2f, 14f, 14f), Icons.For(a.category), UiKit.Gold);
+            y += UiKit.Paragraph(20f, y, w - 20f, meta, Faint, GameFont.Tiny) + 4f;
+            UiKit.Divider(0f, y, w);
+            y += 8f;
 
             if (!a.tip.NullOrEmpty())
             {

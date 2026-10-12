@@ -412,6 +412,7 @@ Textures/ColonyCouncil/
 Source/ColonyCouncil/  # C#; builds against the Krafs.Rimworld.Ref NuGet package
 Tools/DefValidator/    # offline XML checker against the real game types
 Tools/Tests/           # tests for the room rotation math
+Tools/make_icons.py    # draws the interface icons (Textures/ColonyCouncil/Icons) and their contact sheet
 ```
 
 Core types:

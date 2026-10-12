@@ -334,6 +334,7 @@ var dynamic = new Dictionary<string, string[]>
     ["CC_ButtonPos_"] = new[] { "BeforeMenu", "AfterResearch", "AfterHistory", "AfterWork" },
     ["CC_BuildGroup_"] = new[] { "Living", "Food", "Work", "Care", "Leisure", "Security" },
     ["CC_AlmanacCat_"] = new[] { "Basics", "Food", "Rooms", "Mood", "Defense", "Health", "Management", "LowTech", "RoomDesign", "Mistakes", "Royalty", "Ideology", "Biotech", "Anomaly", "Odyssey", "Numbers", "Mods" },
+    ["CC_UI_Reaction_"] = new[] { "Love", "Like", "Dislike", "Hate" },
 };
 // Roles: everything RolePredicate knows plus Goal_Build extras, and every role used in XML.
 var roles = new HashSet<string> { "bed", "doublebed", "light", "heater", "cooler", "table", "chair", "endtable", "dresser", "joy", "research", "cook", "craft", "art", "animalbed", "hydroponics", "plantpot", "storage", "grave", "turret", "trap", "cover", "fermenter", "battery" };
@@ -407,6 +408,13 @@ foreach (var (file, doc) in docs)
         var tex = Path.Combine(modRoot, "Textures", el.Value.Trim() + ".png");
         if (!File.Exists(tex)) errors.Add($"{Rel(file)}:{Line(el)}: texture {el.Value} not found in Textures/");
     }
+}
+
+// Interface icons, loaded by name in UI/UiKit.cs (Icons.Load); made by Tools/make_icons.py.
+foreach (Match m in Regex.Matches(src, "\\bLoad\\(\"([A-Za-z0-9]+)\"\\)"))
+{
+    var tex = Path.Combine(modRoot, "Textures", "ColonyCouncil", "Icons", m.Groups[1].Value + ".png");
+    if (!File.Exists(tex)) errors.Add($"C#: icon {m.Groups[1].Value} not found in Textures/ColonyCouncil/Icons/ (run Tools/make_icons.py)");
 }
 
 // ---------- Report ----------
