@@ -19,6 +19,9 @@ namespace ColonyCouncil
 
         private static int ownBreaks;
 
+        /// <summary>One of Rimfolk's own sulks or tantrums is starting (it gives its own reason).</summary>
+        public static bool InOwnBreak => ownBreaks > 0;
+
         /// <summary>Wrap Rimfolk's own sulks and tantrums, so they aren't also told as breakdowns.</summary>
         public static System.IDisposable OwnBreak()
         {

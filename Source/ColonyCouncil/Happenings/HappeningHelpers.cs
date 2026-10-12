@@ -155,6 +155,11 @@ namespace ColonyCouncil
                 .RandomElementByWeightWithFallback(f => Arrivals.TechWeight(f, tech));
         }
 
+        private static int sending;
+
+        /// <summary>A raid of Rimfolk's own is being sent: its letter already tells its story, and it brings its own leader.</summary>
+        public static bool Sending => sending > 0;
+
         /// <summary>Sends them now, with the event's own letter above the game's usual raid text.</summary>
         public static bool Send(Map map, Faction f, float points, string label, string text, Pawn leader = null)
         {
@@ -177,13 +182,22 @@ namespace ColonyCouncil
             if (!label.NullOrEmpty()) parms.customLetterLabel = NoBraces(label);
             if (!text.NullOrEmpty()) parms.customLetterText = NoBraces(text) + "\n\n{BASETEXT}";
             var before = new HashSet<Lord>(map.lordManager.lords);
-            bool ok = IncidentDefOf.RaidEnemy.Worker.TryExecute(parms);
-            if (!ok)
+            bool ok;
+            sending++;
+            try
             {
-                // That way in or that plan doesn't suit these people: let the game choose.
-                parms.raidStrategy = null;
-                parms.raidArrivalMode = null;
                 ok = IncidentDefOf.RaidEnemy.Worker.TryExecute(parms);
+                if (!ok)
+                {
+                    // That way in or that plan doesn't suit these people: let the game choose.
+                    parms.raidStrategy = null;
+                    parms.raidArrivalMode = null;
+                    ok = IncidentDefOf.RaidEnemy.Worker.TryExecute(parms);
+                }
+            }
+            finally
+            {
+                sending--;
             }
             // The storyteller should know a big fight just happened, so it doesn't send its own right on top of it.
             if (ok)

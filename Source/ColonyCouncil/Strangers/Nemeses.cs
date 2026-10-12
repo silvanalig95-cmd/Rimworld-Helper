@@ -489,16 +489,52 @@ namespace ColonyCouncil
                     var anchor = raiders.Where(r => r.Faction == x.Faction).RandomElementWithFallback();
                     if (anchor == null) continue;
                     n.lastSeedThreat = threat;
-                    if (!Rand.Chance(0.35f)) continue;
-                    if (!Find.WorldPawns.Contains(x) || x.Downed || x.IsPrisoner || People.Kidnapped(x) || x.GetCaravan() != null
-                        || QuestUtility.IsReservedByQuestOrQuestBeingGenerated(x) || x.health.summaryHealth.SummaryHealthPercent < 0.6f) continue;
-                    if (!CellFinder.TryFindRandomCellNear(anchor.Position, map, 6, c => c.Standable(map) && !c.Fogged(map) && c.GetFirstPawn(map) == null, out var cell, 30)) continue;
-                    Find.WorldPawns.RemovePawn(x);
-                    GenSpawn.Spawn(x, cell, map);
+                    if (!Rand.Chance(0.35f) || !CanRide(x) || !SpawnNear(x, anchor)) continue;
                     var lord = anchor.GetLord();
                     if (lord != null && lord.CanAddPawn(x)) lord.AddPawn(x);
                 }
             }
+        }
+
+        /// <summary>
+        /// A raid of their people is arriving right now (a Harmony hook, before the raid's letter is written and its
+        /// plan made): sometimes the one who got away walks in with them, and goes in <paramref name="raiders"/> so
+        /// the game's own letter shows them and they join the attack. Same odds as the hourly check, which then
+        /// leaves this raid alone.
+        /// </summary>
+        public Nemesis JoinArrivingRaid(IncidentParms parms, List<Pawn> raiders)
+        {
+            if (!S.nemeses || !S.nemesisReturns || parms?.faction == null || raiders.NullOrEmpty() || !(parms.target is Map map) || !map.IsPlayerHome) return null;
+            if (!parms.faction.HostileTo(Faction.OfPlayer)) return null;
+            // Drop pods aren't open yet: those raids are left to the hourly check.
+            var anchor = raiders.Where(r => r.Spawned && r.Map == map && r.Faction == parms.faction).RandomElementWithFallback();
+            if (anchor == null) return null;
+            int now = Find.TickManager.TicksGame;
+            Nemesis joined = null;
+            foreach (var n in all.Where(n => n.announced && !n.ended && !n.IsBeast && n.returns < 3 && n.pawn?.Faction == parms.faction).ToList())
+            {
+                n.lastSeedThreat = now;
+                if (joined != null || !Rand.Chance(0.35f)) continue;
+                var x = n.pawn;
+                if (x.Spawned || x.Dead || !CanRide(x) || !SpawnNear(x, anchor)) continue;
+                raiders.Add(x);
+                joined = n;
+            }
+            return joined;
+        }
+
+        /// <summary>Free, whole and out in the world: able to ride with their people again.</summary>
+        private static bool CanRide(Pawn x) =>
+            Find.WorldPawns.Contains(x) && !x.Downed && !x.IsPrisoner && !People.Kidnapped(x) && x.GetCaravan() == null
+            && !QuestUtility.IsReservedByQuestOrQuestBeingGenerated(x) && x.health.summaryHealth.SummaryHealthPercent >= 0.6f;
+
+        private static bool SpawnNear(Pawn x, Pawn anchor)
+        {
+            var map = anchor.Map;
+            if (!CellFinder.TryFindRandomCellNear(anchor.Position, map, 6, c => c.Standable(map) && !c.Fogged(map) && c.GetFirstPawn(map) == null, out var cell, 30)) return false;
+            Find.WorldPawns.RemovePawn(x);
+            GenSpawn.Spawn(x, cell, map);
+            return true;
         }
 
         public void ExposeData()

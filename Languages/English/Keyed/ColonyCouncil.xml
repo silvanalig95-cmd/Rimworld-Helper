@@ -1552,6 +1552,28 @@ Those against it ({WHO}) will trust the council less and resent it more than usu
   <CC_Settings_DeepHooks_Tip>Small, careful changes to how the game itself behaves (through Harmony), such as Rimfolk's hints in the game's own Needs tab. Each one switches itself off if it can't work with your other mods. Active now: {0}; skipped: {1}. Turning this off takes effect at once.</CC_Settings_DeepHooks_Tip>
   <CC_Settings_NeedsTabHints>... and in the game's Needs tab</CC_Settings_NeedsTabHints>
   <CC_Settings_NeedsTabHints_Tip>Hovering a mood in the game's own Needs tab also shows why it's there, when it ends, which mod it comes from, and what to do about it.</CC_Settings_NeedsTabHints_Tip>
+  <CC_Settings_LetterNotes>... and notes in the game's letters</CC_Settings_LetterNotes>
+  <CC_Settings_LetterNotes_Tip>Some of the game's own letters get a line of what Rimfolk knows: the nemesis riding with a raid (who now arrives with it), what was weighing on a colonist who breaks down, and, when a colonist dies, how long they'd been here and what they never got to do.</CC_Settings_LetterNotes_Tip>
+
+  <!-- Notes added to the game's own letters (Social/LetterNotes.cs) -->
+  <CC_Letter_RaidNemesis>{X_nameDef}, who {DEED}, is with them.</CC_Letter_RaidNemesis>
+  <CC_Letter_RaidVendetta>These are the people who killed {LOST}. {PAWN_nameDef} has sworn they'll pay for it.</CC_Letter_RaidVendetta>
+  <CC_Letter_RaidVendettaTaken>These are the people who took {LOST}. {PAWN_nameDef} has sworn they'll pay for it.</CC_Letter_RaidVendettaTaken>
+  <CC_BreakNote_Lapsed>{PAWN_nameDef} had asked the council for "{WISH}" and never got it.</CC_BreakNote_Lapsed>
+  <CC_BreakNote_Broken>The council promised {PAWN_nameDef} "{WISH}" and didn't keep its word.</CC_BreakNote_Broken>
+  <CC_BreakNote_Decree>The {DECREE} decree has been wearing on {PAWN_nameDef}.</CC_BreakNote_Decree>
+  <CC_BreakNote_Waiting>{PAWN_nameDef} is still waiting on the council for "{WISH}".</CC_BreakNote_Waiting>
+  <CC_BreakNote_Bitter>{PAWN_nameDef} stopped trusting the council some time ago.</CC_BreakNote_Bitter>
+  <CC_BreakNote_Nemesis>{X_nameDef} is still out there, and {PAWN_nameDef} knows it.</CC_BreakNote_Nemesis>
+  <CC_DeathNote_OneYear>a year</CC_DeathNote_OneYear>
+  <CC_DeathNote_NYears>{0} years</CC_DeathNote_NYears>
+  <CC_DeathNote_Goal>{PAWN_nameDef} never got to {GOAL}.</CC_DeathNote_Goal>
+  <CC_DeathNote_YearsGoal>{PAWN_nameDef} had been with the colony for {YEARS}, and never got to {GOAL}.</CC_DeathNote_YearsGoal>
+  <CC_DeathNote_BornGoal>{PAWN_nameDef} was born here, and never got to {GOAL}.</CC_DeathNote_BornGoal>
+  <CC_DeathNote_Born>{PAWN_nameDef} was born here.</CC_DeathNote_Born>
+  <CC_DeathNote_Years>{PAWN_nameDef} had been with the colony for {YEARS}.</CC_DeathNote_Years>
+  <CC_DeathNote_Office>The council has lost its {OFFICE}.</CC_DeathNote_Office>
+  <CC_DeathNote_Title>The colony knew {PAWN_objective} as {TITLE}.</CC_DeathNote_Title>
   <!-- The colony reacts to the world -->
   <CC_Settings_WorldReactions>The colony notices what happens</CC_Settings_WorldReactions>
   <CC_Settings_WorldReactions_Tip>Weddings, births, homecomings from long journeys and friends breaking down leave journal lines, a line in the chronicle when it matters, and small moods (glad you're back, home again). Needs the deeper game hooks.</CC_Settings_WorldReactions_Tip>

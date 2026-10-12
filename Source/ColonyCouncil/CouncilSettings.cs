@@ -98,6 +98,8 @@ namespace ColonyCouncil
         public bool moodInsight = true;
         public bool deepHooks = true;
         public bool needsTabHints = true;
+        /// <summary>A line of Rimfolk's context in the game's raid, mood break and death letters.</summary>
+        public bool letterNotes = true;
         public float slowButtonsX = -1f;
         public float slowButtonsY = -1f;
         public bool allDreamMessages;
@@ -190,6 +192,7 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref moodInsight, "moodInsight", true);
             Scribe_Values.Look(ref deepHooks, "deepHooks", true);
             Scribe_Values.Look(ref needsTabHints, "needsTabHints", true);
+            Scribe_Values.Look(ref letterNotes, "letterNotes", true);
             Scribe_Values.Look(ref slowButtonsX, "slowButtonsX", -1f);
             Scribe_Values.Look(ref slowButtonsY, "slowButtonsY", -1f);
             Scribe_Values.Look(ref dreamOmens, "dreamOmens", true);
@@ -447,6 +450,7 @@ namespace ColonyCouncil
             l.CheckboxLabeled("CC_Settings_MoodInsight".Translate(), ref moodInsight, "CC_Settings_MoodInsight_Tip".Translate());
             if (moodInsight) l.CheckboxLabeled("  " + "CC_Settings_NeedsTabHints".Translate(), ref needsTabHints, "CC_Settings_NeedsTabHints_Tip".Translate());
             l.CheckboxLabeled("CC_Settings_DeepHooks".Translate(), ref deepHooks, "CC_Settings_DeepHooks_Tip".Translate(RimfolkPatches.Applied.Count, RimfolkPatches.Failed.Count));
+            if (deepHooks) l.CheckboxLabeled("  " + "CC_Settings_LetterNotes".Translate(), ref letterNotes, "CC_Settings_LetterNotes_Tip".Translate());
             l.CheckboxLabeled("CC_Settings_SlowButtons".Translate(), ref slowButtons, "CC_Settings_SlowButtons_Tip".Translate());
             if (slowButtons && (slowButtonsX >= 0f || slowButtonsY >= 0f) && l.ButtonText("CC_Settings_SlowButtonsReset".Translate()))
                 slowButtonsX = slowButtonsY = -1f;
@@ -556,6 +560,7 @@ namespace ColonyCouncil
             moodInsight = d.moodInsight;
             deepHooks = d.deepHooks;
             needsTabHints = d.needsTabHints;
+            letterNotes = d.letterNotes;
             dreamOmens = d.dreamOmens;
             allDreamMessages = d.allDreamMessages;
             messageLevel = d.messageLevel;
