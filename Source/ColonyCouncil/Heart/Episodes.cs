@@ -92,6 +92,7 @@ namespace ColonyCouncil
             if (!p.IsFreeNonSlaveColonist || p.IsQuestLodger() || p.IsPrisoner || p.guest != null && p.guest.IsPrisoner) return "not free";
             if (!p.DevelopmentalStage.Adult()) return "child";
             if (p.Drafted || p.Downed || p.InMentalState) return "busy";
+            if (!RestUtility.Awake(p)) return "asleep";
             if (p.mindState?.mentalStateHandler == null || p.mindState.mentalStateHandler.MentalBreaksBlocked()) return "blocked";
             if (m.threat || GenHostility.AnyHostileActiveThreatToPlayer(p.Map, false, false)) return "danger";
             if (now - h.lastEpisodeTick < PawnCooldown) return "pawn cooldown";

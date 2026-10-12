@@ -335,7 +335,21 @@ var dynamic = new Dictionary<string, string[]>
     ["CC_BuildGroup_"] = new[] { "Living", "Food", "Work", "Care", "Leisure", "Security" },
     ["CC_AlmanacCat_"] = new[] { "Basics", "Food", "Rooms", "Mood", "Defense", "Health", "Management", "LowTech", "RoomDesign", "Mistakes", "Royalty", "Ideology", "Biotech", "Anomaly", "Odyssey", "Numbers", "Mods" },
     ["CC_UI_Reaction_"] = new[] { "Love", "Like", "Dislike", "Hate" },
+    // Feelings and strain (Heart/): enum names.
+    ["CC_Heart_Band_"] = new[] { "Steady", "Strained", "Worn", "Breaking", "Steady_Desc", "Strained_Desc", "Worn_Desc", "Breaking_Desc" },
+    ["CC_Heart_Source_"] = new[] { "Combat", "Pain", "Downed", "Loss", "Exhaustion", "Joyless", "BadSleep", "Dark", "Hunger", "LowMood", "Council", "Fear", "Grief", "Dread", "Despair" },
+    ["CC_Heart_Relief_"] = new[] { "Quiet", "Sleep", "Recreation", "Gathering", "Friends", "Catharsis", "Episode", "Council" },
+    ["CC_Heart_Need_"] = new[] { "Belonging", "Purpose", "Safety", "Freedom", "Belonging_Desc", "Purpose_Desc", "Safety_Desc", "Freedom_Desc" },
 };
+// Each feeling's name, adjective, description and effects (FeelingDef key).
+foreach (var (file, doc) in docs)
+    foreach (var el in doc.Root!.Elements().Where(e => e.Name.LocalName == "ColonyCouncil.FeelingDef"))
+    {
+        var key = el.Element("key")?.Value?.Trim();
+        if (string.IsNullOrEmpty(key)) continue;
+        foreach (var suffix in new[] { "", "_Adj", "_Desc", "_Does" })
+            if (!keyed.ContainsKey("CC_Heart_F_" + key + suffix)) errors.Add($"{Rel(file)}:{Line(el)}: Keyed: missing feeling key CC_Heart_F_{key}{suffix}");
+    }
 // Roles: everything RolePredicate knows plus Goal_Build extras, and every role used in XML.
 var roles = new HashSet<string> { "bed", "doublebed", "light", "heater", "cooler", "table", "chair", "endtable", "dresser", "joy", "research", "cook", "craft", "art", "animalbed", "hydroponics", "plantpot", "storage", "grave", "turret", "trap", "cover", "fermenter", "battery" };
 foreach (var (file, doc) in docs)

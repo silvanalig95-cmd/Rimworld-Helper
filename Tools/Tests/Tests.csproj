@@ -9,5 +9,6 @@
   <ItemGroup>
     <!-- Pure code shared with the mod (no game types). -->
     <Compile Include="../../Source/ColonyCouncil/Building/TemplateMath.cs" Link="TemplateMath.cs" />
+    <Compile Include="../../Source/ColonyCouncil/Heart/HeartMath.cs" Link="HeartMath.cs" />
   </ItemGroup>
 </Project>

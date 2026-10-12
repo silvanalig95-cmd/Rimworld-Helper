@@ -15,7 +15,7 @@ namespace ColonyCouncil
         {
             if (!RimfolkPatches.On) return;
             var s = ColonyCouncilMod.Settings;
-            if (s == null || !s.heart || !s.heartInspector) return;
+            if (s == null || !s.heart || !s.heartInspector || !__instance.IsFreeColonist) return;
             try
             {
                 var h = Heart.Of(__instance);

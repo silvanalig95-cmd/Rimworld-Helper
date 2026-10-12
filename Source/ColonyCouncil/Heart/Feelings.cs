@@ -230,7 +230,7 @@ namespace ColonyCouncil
         {
             if (feed.sign < 0 && off >= 0f) return false;
             if (feed.sign > 0 && off <= 0f) return false;
-            if (feed.aboutSomeone && other == null) return false;
+            if (feed.aboutSomeone && (other == null || other.Dead)) return false;
             if (feed.opinionBelow != int.MaxValue || feed.opinionAbove != int.MinValue)
             {
                 if (other == null || p.relations == null) return false;

@@ -54,11 +54,8 @@ namespace ColonyCouncil
             if (!Heart.On || !(req.Thing is Pawn p)) return;
             var h = Heart.Of(p);
             if (h != null) val *= HeartMath.WorkFactor(h.Band);
-            if (p.IsFreeColonist && !p.IsQuestLodger())
-            {
-                float decree = Heart.DecreeWorkFactor(out _);
-                if (decree != 1f) val *= decree;
-            }
+            float decree = Heart.DecreeWorkFactor(out _);
+            if (decree != 1f && p.IsFreeColonist && !p.IsQuestLodger()) val *= decree;
         }
 
         public override string ExplanationPart(StatRequest req)
@@ -71,14 +68,11 @@ namespace ColonyCouncil
                 float f = HeartMath.WorkFactor(h.Band);
                 if (f != 1f) text = "CC_Heart_StatLine".Translate(HeartView.BandLabel(h.Band), f.ToStringPercent()).Resolve();
             }
-            if (p.IsFreeColonist && !p.IsQuestLodger())
+            float decree = Heart.DecreeWorkFactor(out var which);
+            if (decree != 1f && which != null && p.IsFreeColonist && !p.IsQuestLodger())
             {
-                float decree = Heart.DecreeWorkFactor(out var which);
-                if (decree != 1f && which != null)
-                {
-                    string line = "CC_Heart_StatDecree".Translate(which.label, decree.ToStringPercent()).Resolve();
-                    text = text == null ? line : text + "\n" + line;
-                }
+                string line = "CC_Heart_StatDecree".Translate(which.label, decree.ToStringPercent()).Resolve();
+                text = text == null ? line : text + "\n" + line;
             }
             return text;
         }

@@ -69,9 +69,13 @@ namespace ColonyCouncil
             foreach (var f in h.feelings)
             {
                 var d = f.def;
-                // Grateful to the council for what it did: a little trust, once a day.
-                if (d.trustPerDay > 0f && f.fromCouncil && comp != null && S.enableWishes && p.IsFreeNonSlaveColonist)
-                    comp.standings.Change(p, d.trustPerDay * f.Share, "CC_Heart_TrustGrateful".Translate());
+                // Grateful to the council for what it did: a point of trust, every few days while it lasts.
+                if (d.trustPerDay > 0f && f.fromCouncil && f.Share >= 0.4f && comp != null && S.enableWishes && p.IsFreeNonSlaveColonist
+                    && now - h.lastTrustTick >= GenDate.TicksPerDay * 3)
+                {
+                    comp.standings.Change(p, d.trustPerDay, "CC_Heart_TrustGrateful".Translate());
+                    h.lastTrustTick = now;
+                }
                 // Awe now and then becomes an inspiration: rare, and once a month at most.
                 if (d.inspirationPerDay > 0f && now - h.lastInspirationTick > GenDate.TicksPerDay * 30 && Rand.Chance(d.inspirationPerDay * f.Share))
                 {
