@@ -6,6 +6,8 @@
        {PAWN_...} is the writer; pools for moments with someone else also have {OTHER_...}. Moments that can go
        either way (Bedroom, Beauty) get the tag good or bad. All the usual tags work too ([winter], [child], [lowtech]...). -->
 
+  <!-- Food -->
+
   <ColonyCouncil.FlavorPoolDef>
     <defName>Council_Journal_Day_NoTable</defName>
     <lines>
@@ -24,6 +26,458 @@
   </ColonyCouncil.FlavorPoolDef>
 
   <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Journal_Day_RawFood</defName>
+    <lines>
+      <plain>
+        <li>Raw rice for lunch. I chewed and chewed and it never got any softer.</li>
+        <li>The cooks were out hauling all day, so I ate a potato raw, skin and all.</li>
+        <li>[winter] Ate a raw ear of corn so cold it hurt my teeth.</li>
+        <li>[child] I ate a raw potato because supper was taking too long. It tasted like dirt.</li>
+      </plain>
+      <warm><li>Raw potatoes tonight, since the cook is sick. Took the cook some water on my way to bed.</li></warm>
+      <blunt><li>Ate it raw. Somebody learn to cook.</li></blunt>
+      <cheerful><li>Raw corn for lunch! It's sweeter than you'd think, if you don't mind the crunch.</li></cheerful>
+      <gloomy><li>Ate raw rice out of the sack. My stomach's been complaining since noon.</li></gloomy>
+      <cold><li>Ate the meat raw. It saves fuel, and the cramps pass.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Journal_Day_FineMeal</defName>
+    <lines>
+      <plain>
+        <li>Proper supper tonight, meat and potatoes with real gravy.</li>
+        <li>Whoever cooked today knew what they were doing. I wiped the bowl clean with my finger.</li>
+        <li>A good hot meal, and nothing urgent after it. I sat a while with the empty bowl.</li>
+        <li>[child] Supper was really good today. I ate all of it, even the green bits.</li>
+      </plain>
+      <warm><li>Good meal tonight. I made a point of telling the cook.</li></warm>
+      <blunt><li>Decent food. More of that.</li></blunt>
+      <cheerful><li>There were herbs in the stew tonight! I'm still thinking about it.</li></cheerful>
+      <gloomy><li>A good meal for once. I ate slowly so it would last.</li></gloomy>
+      <cold><li>Fine meal. The cook is worth keeping.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Journal_Day_LavishMeal</defName>
+    <lines>
+      <plain>
+        <li>Lavish meal tonight. Roast, buttered corn, and something sweet after.</li>
+        <li>Ate so much I had to lie down. Still full as I write this.</li>
+        <li>[trait:Gourmand] Two helpings of the roast, and I'd have had a third if there'd been one.</li>
+        <li>[child] We had a feast for supper! I ate until my belly was round.</li>
+      </plain>
+      <warm><li>The cook spent all afternoon on supper. I hope they know how much it meant to us.</li></warm>
+      <blunt><li>Best meal I've had here. Do it again.</li></blunt>
+      <cheerful><li>A lavish meal tonight! I licked the plate clean.</li></cheerful>
+      <gloomy><li>Ate like a lord tonight. Tomorrow it's back to the usual.</li></gloomy>
+      <cold><li>Lavish meal. Expensive to make, and worth it for what it does to morale.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Journal_Day_Paste</defName>
+    <lines>
+      <plain>
+        <li>Paste from the dispenser again. Gray, warm, and no taste at all.</li>
+        <li>Ate my paste standing next to the dispenser. It's quicker that way.</li>
+        <li>Nutrient paste. I've stopped guessing what went into the hopper.</li>
+        <li>[child] Paste for lunch. I drew a face in it with my spoon.</li>
+      </plain>
+      <warm><li>Paste again. It's warm, and there's always enough to go around.</li></warm>
+      <blunt><li>Paste. I want real food.</li></blunt>
+      <cheerful><li>Paste for supper! If you eat it fast it's not so bad.</li></cheerful>
+      <gloomy><li>Paste for the fifth day running. I can't remember what salt tastes like.</li></gloomy>
+      <cold><li>Nutrient paste. Efficient, and it frees the cooks for other work.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Journal_Day_Hungry</defName>
+    <lines>
+      <plain>
+        <li>Stomach growling all afternoon. Supper can't come soon enough.</li>
+        <li>Skipped lunch to finish the north wall. I've regretted it every hour since.</li>
+        <li>[winter] Rations are thin this winter. I've moved my belt in another notch.</li>
+        <li>[child] I'm hungry. I asked twice when supper was and they said soon.</li>
+        <li>[trait:Gourmand] Hungry again. I ate not long ago, but that never seems to matter.</li>
+      </plain>
+      <warm><li>I'm hungry, but so are the others. We'll eat well when the harvest comes in.</li></warm>
+      <blunt><li>Hungry. Where's the food?</li></blunt>
+      <cheerful><li>So hungry I could eat a whole muffalo! I'd settle for a potato.</li></cheerful>
+      <gloomy><li>Hungry again. Went to bed thinking about bread.</li></gloomy>
+      <cold><li>Hungry. My work slows when I don't eat, and someone should account for that.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- Sleep -->
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Journal_Day_Cold</defName>
+    <lines>
+      <plain>
+        <li>Too cold to sleep. I lay there listening to the wind until it got light.</li>
+        <li>Slept in my coat and boots and still woke up shivering.</li>
+        <li>[winter] There was frost on my blanket when I woke up.</li>
+        <li>[child] It was so cold last night I could see my breath in bed.</li>
+      </plain>
+      <warm><li>Cold night. There was an extra blanket on my bed when I came in, and I don't know who put it there.</li></warm>
+      <blunt><li>Froze all night. My feet still haven't warmed up.</li></blunt>
+      <cheerful><li>Cold night, but I curled up tight like a squirrel and made it through!</li></cheerful>
+      <gloomy><li>Cold again. I've stopped expecting to be warm before spring.</li></gloomy>
+      <cold><li>Slept badly in the cold. The room needs a fire in it, or I need a different room.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Journal_Day_Heat</defName>
+    <lines>
+      <plain>
+        <li>Too hot to sleep. I lay on top of the blanket and sweated through it anyway.</li>
+        <li>Woke up three times in the night, soaked. The air in that room doesn't move.</li>
+        <li>[summer] Another sticky night. I slept with my feet pressed against the cool wall.</li>
+        <li>[child] It was too hot to sleep, so I counted the cracks in the ceiling.</li>
+      </plain>
+      <warm><li>Hot night. A few of us gave up on sleep and sat in the doorway talking until it cooled off.</li></warm>
+      <blunt><li>Too hot. Didn't sleep.</li></blunt>
+      <cheerful><li>Hot night, so I slept with a wet cloth over my face! It mostly worked.</li></cheerful>
+      <gloomy><li>Another night sweating into the mattress. I'm too tired to complain properly.</li></gloomy>
+      <cold><li>Slept poorly in the heat. A cooler in that room would pay for itself in a week.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Journal_Day_Outside</defName>
+    <lines>
+      <plain>
+        <li>Slept on the ground again. Woke up with a root in my back.</li>
+        <li>No bed last night, so I rolled up in my coat on the bare floor.</li>
+        <li>[rain] Slept outside and it rained on me. Everything I own is damp.</li>
+        <li>[child] I slept outside under the stars. A beetle walked across my face.</li>
+      </plain>
+      <warm><li>Slept on the floor next to the others. Somebody snored, and I found it comforting.</li></warm>
+      <blunt><li>Slept in the dirt. I want a bed.</li></blunt>
+      <cheerful><li>Slept outside under the stars! I saw a shooting star and made a wish.</li></cheerful>
+      <gloomy><li>Slept on the ground like an animal. My hip still aches from it.</li></gloomy>
+      <cold><li>No bed, so I slept on the ground. A bed costs some wood and an afternoon. I'd like to know why I don't have one.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Journal_Day_Disturbed</defName>
+    <lines>
+      <plain>
+        <li>Someone kept walking past my bed all night, in heavy boots.</li>
+        <li>Woke up every time the door opened. Whoever's hauling at night, please stop.</li>
+        <li>Barely slept. Footsteps, then the door, then footsteps again.</li>
+        <li>[child] Somebody walked past my bed in the night and woke me up. I couldn't get back to sleep.</li>
+      </plain>
+      <warm><li>Somebody tripped over the end of my bed in the dark. We both laughed and went back to sleep.</li></warm>
+      <blunt><li>Stop stomping past my bed at night.</li></blunt>
+      <cheerful><li>Woke up a few times when people went by. Had good dreams in between!</li></cheerful>
+      <gloomy><li>Every time I got to sleep, someone came through. I've given up on a full night.</li></gloomy>
+      <cold><li>Sleep interrupted by foot traffic. My bed needs moving out of the path.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Journal_Day_Barracks</defName>
+    <lines>
+      <plain>
+        <li>Barracks again. One snorer at the far end, and one who grinds their teeth.</li>
+        <li>Got dressed under the blanket. There's nowhere else to do it in the barracks.</li>
+        <li>I'd give a lot for a door I could close.</li>
+        <li>[child] I sleep in the big room with the grown-ups. They snore louder than me.</li>
+      </plain>
+      <warm><li>The barracks are crowded, but there's always someone awake if you can't sleep.</li></warm>
+      <blunt><li>I want my own room.</li></blunt>
+      <cheerful><li>We whispered jokes across the beds in the barracks until someone threw a boot!</li></cheerful>
+      <gloomy><li>Another night in the barracks. I can't remember the last time I was alone.</li></gloomy>
+      <cold><li>Slept in the barracks. I'd sleep better with a lock between me and the others.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Journal_Day_Bedroom</defName>
+    <lines>
+      <plain>
+        <li>[good] Slept well in my own room, with the door shut and the rug warm under my feet.</li>
+        <li>[good] Woke up and lay in bed a while, looking at the painting on my wall.</li>
+        <li>[bad] My room is a dirt-floored box with a draft. I slept, but that's about all.</li>
+        <li>[bad] Woke up and stared at the stains on the wall. I need to do something about that room.</li>
+        <li>[good,child] I love my room. I have my own blanket and my own shelf.</li>
+        <li>[bad,child] My room is ugly and it smells bad. I want to sleep somewhere else.</li>
+      </plain>
+      <warm>
+        <li>[good] I've made my room nice, bit by bit. Tonight it felt like home.</li>
+        <li>[bad] My room isn't much yet. Swept it out tonight, and it'll do until I can make it better.</li>
+      </warm>
+      <blunt>
+        <li>[good] Good room. Good sleep.</li>
+        <li>[bad] My room is a hole. Fix it or give me another.</li>
+      </blunt>
+      <cheerful>
+        <li>[good] Slept like a baby in my lovely room! I didn't want to get up.</li>
+        <li>[bad] My room is a disgrace, but I've decided it's cozy!</li>
+      </cheerful>
+      <gloomy>
+        <li>[good] Slept well in a fine room. I keep waiting for someone to take it away.</li>
+        <li>[bad] My room is filthy and cramped, and I'm too tired to fix it.</li>
+      </gloomy>
+      <cold>
+        <li>[good] My room suits my position. People notice where you sleep.</li>
+        <li>[bad] My room is an insult. I've noted who has the better ones.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Journal_Day_Tired</defName>
+    <lines>
+      <plain>
+        <li>Dead on my feet. Nearly nodded off standing at the workbench.</li>
+        <li>Too tired to write much.</li>
+        <li>Yawned all afternoon. My eyes keep closing as I write this.</li>
+        <li>[child] I fell asleep at lunch with my spoon in my hand.</li>
+      </plain>
+      <warm><li>Exhausted. The others finished my hauling while I sat down for a minute.</li></warm>
+      <blunt><li>Need sleep. Now.</li></blunt>
+      <cheerful><li>So tired I laughed at a bucket for no reason!</li></cheerful>
+      <gloomy><li>Tired in my bones. Sleep doesn't fix it anymore.</li></gloomy>
+      <cold><li>Exhausted. My work is getting sloppy, which costs more than the sleep would.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- Home -->
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Journal_Day_Dining</defName>
+    <lines>
+      <plain>
+        <li>Ate in the dining room. Clean table, good chairs, and the statue in the corner watching us chew.</li>
+        <li>Supper at the long table tonight. The room is starting to look like somewhere people live.</li>
+        <li>Took my time over supper. It's a good room to sit in.</li>
+        <li>[child] We ate in the big room with the pretty rug. I didn't spill anything.</li>
+      </plain>
+      <warm><li>Supper in the dining room with the others. I like that room best at night, when it's full.</li></warm>
+      <blunt><li>Nice dining room. Food tastes better in it.</li></blunt>
+      <cheerful><li>Ate at the good table tonight! I felt like a guest at a lord's house.</li></cheerful>
+      <gloomy><li>The dining room is lovely. I still ate the same old stew in it.</li></gloomy>
+      <cold><li>Dined in the good room. People work harder after eating somewhere decent.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Journal_Day_RecRoom</defName>
+    <lines>
+      <plain>
+        <li>Played horseshoes after work. Lost every game, but it's a nice room to lose in.</li>
+        <li>Read in the games room until my eyes hurt. Good chairs in there.</li>
+        <li>[!lowtech] Sat in the rec room with the others and watched the television.</li>
+        <li>[child] I played in the games room until bedtime. I almost won at chess.</li>
+      </plain>
+      <warm><li>Good evening in the common room. Someone was humming, and the rest of us were too comfortable to move.</li></warm>
+      <blunt><li>Good room for a rest. Needed that.</li></blunt>
+      <cheerful><li>Won two games of chess tonight!</li></cheerful>
+      <gloomy><li>Sat in the games room a while. It took my mind off things for an evening.</li></gloomy>
+      <cold><li>Spent the evening in the games room. Good for my mood, so good for my work.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Journal_Day_Dark</defName>
+    <lines>
+      <plain>
+        <li>Worked most of the day in the dark. I can't tell if the floor is clean or not.</li>
+        <li>Stubbed my toe twice in the storeroom. There's no light back there at all.</li>
+        <li>[!lowtech] The lamp in the workshop is out again. I worked by feel.</li>
+        <li>[lowtech] The torches in the back room burned out before noon. I worked by feel after that.</li>
+        <li>[child] It's dark in the back rooms. I ran through them as fast as I could.</li>
+      </plain>
+      <warm><li>Dark in the workshop all day. The others kept talking so I'd know where they were.</li></warm>
+      <blunt><li>Too dark to work. Get us some light.</li></blunt>
+      <cheerful><li>Spent the day in the dark like a mole! I know the storeroom by touch now.</li></cheerful>
+      <gloomy><li>Dark all day. It gets into you after a while.</li></gloomy>
+      <cold><li>Worked in the dark again. I've started keeping a list of what it's cost us.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Journal_Day_Beauty</defName>
+    <lines>
+      <plain>
+        <li>[good] The flowers by the path are out. I took the long way to the fields to walk past them.</li>
+        <li>[good] There's a new painting in the hall. I stopped to look at it every time I passed.</li>
+        <li>[bad] Old bloodstains on the floor, and the rubble still piled by the door.</li>
+        <li>[bad] Scrubbed one corner of the hall today. It made the rest look worse.</li>
+        <li>[good,child] There's a pretty statue in the hall. I said good morning to it.</li>
+        <li>[bad,child] Our house is ugly. I want to draw flowers on all the walls.</li>
+      </plain>
+      <warm>
+        <li>[good] The place is starting to look lovely. Somebody planted roses by the door.</li>
+        <li>[bad] It's been ugly here lately. I swept the hall after supper so we'd have one clean room.</li>
+      </warm>
+      <blunt>
+        <li>[good] Place looks good. Keep it that way.</li>
+        <li>[bad] This place is a pigsty. Clean it.</li>
+      </blunt>
+      <cheerful>
+        <li>[good] Everything looks so pretty today! I stopped to smell every flower on the way to work.</li>
+        <li>[bad] It's ugly around here, so I've started carving a bird for the hall!</li>
+      </cheerful>
+      <gloomy>
+        <li>[good] The flowers came up by the path. They'll be gone with the first frost.</li>
+        <li>[bad] Dirt on the floors and blood on the walls. It wears on you.</li>
+      </gloomy>
+      <cold>
+        <li>[good] The surroundings have improved, and so has my work.</li>
+        <li>[bad] Ugly surroundings. I'd put two people on cleaning tomorrow.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Journal_Day_CabinFever</defName>
+    <lines>
+      <plain>
+        <li>Haven't seen the sky in days. I keep finding reasons to walk past the door.</li>
+        <li>Indoors all day again. I keep hearing birds outside.</li>
+        <li>[winter] Too cold to go out. The walls feel closer every day.</li>
+        <li>[child] I want to go outside and play. They keep saying not today.</li>
+      </plain>
+      <warm><li>Stuck inside all week. The others are good company, but I miss the wind.</li></warm>
+      <blunt><li>Let me out of here.</li></blunt>
+      <cheerful><li>Tomorrow I'm going outside, even if it's only to haul rocks!</li></cheerful>
+      <gloomy><li>Same walls, same ceiling, every day. I've forgotten what rain feels like.</li></gloomy>
+      <cold><li>Confined too long. I'm short with people and I know why.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Journal_Day_Bored</defName>
+    <lines>
+      <plain>
+        <li>Work, eat, sleep, work. I can't remember the last time I did anything for fun.</li>
+        <li>Bored. Whittled a stick down to a toothpick and threw it away.</li>
+        <li>Read the same book again. I could recite the third chapter.</li>
+        <li>[child] There's nothing to do. I asked three grown-ups to play and they all said later.</li>
+      </plain>
+      <warm><li>So bored. Tomorrow I'll ask the others if anyone wants to play cards after supper.</li></warm>
+      <blunt><li>Bored. Give me something to do that isn't work.</li></blunt>
+      <cheerful><li>Bored today, so I tried juggling potatoes! I'm not good at it yet.</li></cheerful>
+      <gloomy><li>Every day is the same. I've stopped keeping track of which one it is.</li></gloomy>
+      <cold><li>No recreation in days. My mood is slipping, and my work will follow it.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- The body -->
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Journal_Day_Wet</defName>
+    <lines>
+      <plain>
+        <li>Soaked to the skin. My boots squelched all the way back from the field.</li>
+        <li>Got caught in the rain hauling wood. Everything I'm wearing is still damp.</li>
+        <li>[winter] Wet and cold at the same time. My fingers wouldn't bend when I got in.</li>
+        <li>[child] I got soaking wet. I jumped in every puddle on the way back.</li>
+      </plain>
+      <warm><li>Soaked through. The cook gave me something hot to hold while my clothes dried.</li></warm>
+      <blunt><li>Soaked. I hate rain.</li></blunt>
+      <cheerful><li>Got drenched! I stayed out in it a while longer, since I was already wet.</li></cheerful>
+      <gloomy><li>My clothes haven't been dry in three days.</li></gloomy>
+      <cold><li>Soaked through at work. Cold water slows the hands, and I lost most of the afternoon to it.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Journal_Day_Pain</defName>
+    <lines>
+      <plain>
+        <li>My leg's been throbbing since morning. Hard to think about anything else.</li>
+        <li>Couldn't get comfortable all day. Every step pulls at the stitches.</li>
+        <li>Wrote this lying down. Sitting up hurts too much.</li>
+        <li>[child] My arm hurts. The doctor said it'll get better, but it still hurts now.</li>
+      </plain>
+      <warm><li>In pain today. The others kept bringing me water without being asked.</li></warm>
+      <blunt><li>It hurts. Don't ask.</li></blunt>
+      <cheerful><li>Hurts a lot today, but less than yesterday, so I'm counting that!</li></cheerful>
+      <gloomy><li>The pain is worse at night. I lie there and feel my heartbeat in it.</li></gloomy>
+      <cold><li>Constant pain. I can still work. I'll say so if that changes.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Journal_Day_Ragged</defName>
+    <lines>
+      <plain>
+        <li>My pants split at the knee today. I've run out of places to patch.</li>
+        <li>Patched my coat with a scrap of sack. It looks it.</li>
+        <li>[winter] The wind goes straight through the holes in my shirt.</li>
+        <li>[child] I tore my shirt climbing. Now you can see my belly.</li>
+      </plain>
+      <warm><li>My clothes are in tatters. I'll ask the tailor nicely when there's time.</li></warm>
+      <blunt><li>My clothes are rags. I need new ones.</li></blunt>
+      <cheerful><li>My pants are more patch than pants now!</li></cheerful>
+      <gloomy><li>Rags. I look like what's left behind after a raid.</li></gloomy>
+      <cold><li>My clothes are falling apart. People judge you by that, whatever they say.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Journal_Day_DeadMansClothes</defName>
+    <lines>
+      <plain>
+        <li>Pulled on a dead man's pants this morning. They fit better than I'd like.</li>
+        <li>There's a neat hole in the back of this coat. I try not to think about how it got there.</li>
+        <li>Washed the shirt twice. It still feels like someone else's.</li>
+        <li>[child] My new shirt belonged to someone who died. It's too big and it smells funny.</li>
+      </plain>
+      <warm><li>This coat belonged to someone who didn't make it. I'll take good care of it.</li></warm>
+      <blunt><li>Wearing a dead raider's coat. Better than freezing.</li></blunt>
+      <cheerful><li>These boots came off a raider, but they're the best boots I've ever had!</li></cheerful>
+      <gloomy><li>Dead man's shirt. One day someone will be wearing mine.</li></gloomy>
+      <cold><li>The previous owner has no use for it. Good stitching.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Journal_Day_Naked</defName>
+    <lines>
+      <plain>
+        <li>No clothes today. I kept to the back rooms as much as I could.</li>
+        <li>Spent the day without a stitch on. The wind found places I'd forgotten about.</li>
+        <li>[winter] No clothes, and it's winter. I kept moving so I wouldn't freeze.</li>
+        <li>[child] My clothes got ruined and now I don't have any. I hid behind the crates.</li>
+      </plain>
+      <warm><li>Nothing to wear yet. The others have been decent about it, and the tailor says tomorrow.</li></warm>
+      <blunt><li>I'm naked. Someone make me some pants.</li></blunt>
+      <cheerful><li>Naked as the day I was born! It's not so bad when the sun's out.</li></cheerful>
+      <gloomy><li>Naked. Hard to keep any dignity in a place like this.</li></gloomy>
+      <cold><li>No clothes. I know exactly who stared.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Journal_Day_Corpse</defName>
+    <lines>
+      <plain>
+        <li>There's still a body lying out by the field. I went around it on the way to work.</li>
+        <li>Passed a corpse on the path this morning. The birds had found it first.</li>
+        <li>[summer] The body past the wall has started to smell. It needs burying.</li>
+        <li>[child] I saw a dead person lying in the grass. I didn't look at the face.</li>
+      </plain>
+      <warm><li>Saw the body by the gate again. I laid a sack over the face before I went in.</li></warm>
+      <blunt><li>Bury the bodies. I'm sick of stepping around them.</li></blunt>
+      <cheerful><li>A body by the gate this morning. Ugh! I sang all the way to the field so I wouldn't think about it.</li></cheerful>
+      <gloomy><li>Another body in the grass. One day it'll be one of us.</li></gloomy>
+      <cold><li>Corpse near the path. Bad for morale, and it draws scavengers. It should have been hauled yesterday.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- With someone: {OTHER_...} -->
+
+  <ColonyCouncil.FlavorPoolDef>
     <defName>Council_Journal_Day_DeepTalk</defName>
     <lines>
       <plain>
@@ -35,6 +489,262 @@
       <cheerful><li>{OTHER_nameDef} told me the whole story of how {OTHER_pronoun} ended up here! I'd have listened all night.</li></cheerful>
       <gloomy><li>{OTHER_nameDef} told me about the people {OTHER_pronoun} lost, and I told {OTHER_objective} about mine. Neither of us slept much.</li></gloomy>
       <cold><li>Long conversation with {OTHER_nameDef}. I understand {OTHER_objective} better now, which is useful.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Journal_Day_Insulted</defName>
+    <lines>
+      <plain>
+        <li>{OTHER_nameDef} called me lazy today. I'd been up since before dawn.</li>
+        <li>{OTHER_nameDef} said my work was sloppy, loud enough for the others to hear.</li>
+        <li>Still going over what {OTHER_nameDef} said this morning, and what I should have said back.</li>
+        <li>[child] {OTHER_nameDef} said I was a baby. I'm not.</li>
+      </plain>
+      <warm><li>{OTHER_nameDef} was short with me today. I'll assume {OTHER_pronoun} had a bad morning.</li></warm>
+      <blunt><li>{OTHER_nameDef} has a mouth on {OTHER_objective}. Next time I'll answer it.</li></blunt>
+      <cheerful><li>Got an earful from {OTHER_nameDef} today, but I've already forgotten most of it!</li></cheerful>
+      <gloomy><li>Maybe {OTHER_nameDef} only said what the others think.</li></gloomy>
+      <cold><li>{OTHER_nameDef} insulted me. I'll be less helpful to {OTHER_objective} from now on.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Journal_Day_KindWords</defName>
+    <lines>
+      <plain>
+        <li>{OTHER_nameDef} said I'd done good work on the wall. I've been thinking about it all evening.</li>
+        <li>Kind words from {OTHER_nameDef} today, out of nowhere.</li>
+        <li>{OTHER_nameDef} stopped me on the path to thank me for the other day. I'd forgotten what I did.</li>
+        <li>[child] {OTHER_nameDef} said I was brave. I'm going to remember that.</li>
+      </plain>
+      <warm><li>At supper {OTHER_nameDef} said something kind to me, and it carried me through the evening.</li></warm>
+      <blunt><li>{OTHER_nameDef} said something nice. Didn't hate it.</li></blunt>
+      <cheerful><li>{OTHER_nameDef} told me I have a nice laugh! I've been laughing at everything since.</li></cheerful>
+      <gloomy><li>{OTHER_nameDef} was kind to me today. I didn't know what to say, so I just nodded.</li></gloomy>
+      <cold><li>{OTHER_nameDef} complimented my work. Either it's sincere or {OTHER_pronoun} wants something. I'll find out which.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Journal_Day_Lovin</defName>
+    <lines>
+      <plain>
+        <li>Spent the night with {OTHER_nameDef}. Woke up with {OTHER_possessive} arm across my chest.</li>
+        <li>{OTHER_nameDef} and I went to bed early.</li>
+        <li>Lay awake talking with {OTHER_nameDef} long after we should have been asleep.</li>
+        <li>[winter] Cold night, warm bed. {OTHER_nameDef} steals the blankets.</li>
+      </plain>
+      <warm><li>{OTHER_nameDef} fell asleep first, like always. I lay there listening to {OTHER_objective} breathe.</li></warm>
+      <blunt><li>Slept well. {OTHER_nameDef} is the reason.</li></blunt>
+      <cheerful><li>A lovely night with {OTHER_nameDef}! I've been humming all day.</li></cheerful>
+      <gloomy><li>A good night with {OTHER_nameDef}. I'd like a lot more of them before this place gets us.</li></gloomy>
+      <cold><li>Night with {OTHER_nameDef}. Pleasant, and good for both our tempers.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Journal_Day_Rebuffed</defName>
+    <lines>
+      <plain>
+        <li>Told {OTHER_nameDef} how I feel. The answer was no.</li>
+        <li>Asked {OTHER_nameDef} to take a walk with me. {OTHER_nameDef} said {OTHER_pronoun}'d rather not.</li>
+        <li>Made a fool of myself with {OTHER_nameDef} today. I'll be keeping to the workshop for a while.</li>
+      </plain>
+      <warm><li>{OTHER_nameDef} turned me down gently. We still sat together at supper.</li></warm>
+      <blunt><li>Asked {OTHER_nameDef}. Got turned down. Moving on.</li></blunt>
+      <cheerful><li>{OTHER_nameDef} said no. Oh well! I'm still a catch.</li></cheerful>
+      <gloomy><li>{OTHER_nameDef} turned me down. I knew {OTHER_pronoun} would, and I asked anyway.</li></gloomy>
+      <cold><li>{OTHER_nameDef} declined. A miscalculation on my part, and I won't repeat it.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Journal_Day_Fight</defName>
+    <lines>
+      <plain>
+        <li>Came to blows with {OTHER_nameDef} over whose turn it was to haul. My knuckles are still swollen.</li>
+        <li>{OTHER_nameDef} and I had it out behind the storeroom. Split lip, nothing worse.</li>
+        <li>[good] Traded punches with {OTHER_nameDef} today. I feel better than I have in weeks.</li>
+        <li>[child] {OTHER_nameDef} pushed me and I pushed back, and then we were rolling in the dirt.</li>
+      </plain>
+      <warm><li>Fought with {OTHER_nameDef}. I'm sorry for my part in it, and I'll tell {OTHER_objective} so tomorrow.</li></warm>
+      <blunt><li>{OTHER_nameDef} started it. I finished it.</li></blunt>
+      <cheerful><li>Had a scrap with {OTHER_nameDef}! We're both fine, and I think I won.</li></cheerful>
+      <gloomy><li>Another fight, this time with {OTHER_nameDef}. We're all wound too tight in here.</li></gloomy>
+      <cold><li>Fought {OTHER_nameDef}. {OTHER_nameDef} bruises easily. Worth knowing.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Journal_Day_Rescued</defName>
+    <lines>
+      <plain>
+        <li>I went down today, and {OTHER_nameDef} carried me in. I don't remember much of it.</li>
+        <li>Woke up in my bed with no idea how I got there. {OTHER_nameDef} carried me, they tell me.</li>
+        <li>Couldn't stand, so {OTHER_nameDef} dragged me back by the arms. My heels left two lines in the dirt.</li>
+        <li>[child] I got hurt and {OTHER_nameDef} carried me all the way home.</li>
+      </plain>
+      <warm><li>{OTHER_nameDef} carried me when I went down. I held on to {OTHER_possessive} collar until we were inside.</li></warm>
+      <blunt><li>{OTHER_nameDef} got me to safety. I owe {OTHER_objective} one.</li></blunt>
+      <cheerful><li>{OTHER_nameDef} carried me home like a sack of potatoes! I'm alive, so I'm not complaining.</li></cheerful>
+      <gloomy><li>{OTHER_nameDef} carried me in today. Next time there might be no one to do it.</li></gloomy>
+      <cold><li>{OTHER_nameDef} recovered me when I was down. A useful person to keep alive.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- Only children are taught lessons, so every line here is in a child's voice. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Journal_Day_Taught</defName>
+    <lines>
+      <plain>
+        <li>{OTHER_nameDef} taught me letters today. I can write my own name now.</li>
+        <li>Lessons with {OTHER_nameDef} at the desk. We did numbers until my head was full.</li>
+        <li>{OTHER_nameDef} showed me which plants you can eat and which ones make you sick.</li>
+      </plain>
+      <warm><li>{OTHER_nameDef} is a good teacher and never gets cross when I get it wrong.</li></warm>
+      <blunt><li>Had lessons. {OTHER_nameDef} talks a lot, but I learned stuff.</li></blunt>
+      <cheerful><li>{OTHER_nameDef} taught me to tie a proper knot! I've tied it on everything.</li></cheerful>
+      <gloomy><li>Lessons with {OTHER_nameDef} all morning. I tried hard and I still don't get it.</li></gloomy>
+      <cold><li>{OTHER_nameDef} taught me sums. I'll need them when I'm in charge of the stores.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Journal_Day_Lesson</defName>
+    <lines>
+      <plain>
+        <li>Gave {OTHER_nameDef} a reading lesson. We got through three whole pages.</li>
+        <li>Taught {OTHER_nameDef} to count to a hundred. We got stuck in the seventies for a while.</li>
+        <li>Showed {OTHER_nameDef} how to hold a hammer without hitting a thumb.</li>
+      </plain>
+      <warm><li>{OTHER_nameDef} asked me questions all through the lesson. I answered the ones I could.</li></warm>
+      <blunt><li>Taught {OTHER_nameDef}. Kid's sharp.</li></blunt>
+      <cheerful><li>Lesson with {OTHER_nameDef} today! {OTHER_nameDef} got every sum right by the end.</li></cheerful>
+      <gloomy><li>Taught {OTHER_nameDef} letters today. I hope {OTHER_pronoun} grows up somewhere better than this.</li></gloomy>
+      <cold><li>Lesson with {OTHER_nameDef}. A slow learner. I'll try a different method tomorrow.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- {OTHER} is an animal here, and its name can render lowercase ("the cat"): never open a sentence with it. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Journal_Day_Nuzzled</defName>
+    <lines>
+      <plain>
+        <li>Sat down for a rest and {OTHER_nameDef} came and pushed {OTHER_possessive} head into my hand.</li>
+        <li>Got nuzzled by {OTHER_nameDef} on the way to the fields. Smelled of animal all day.</li>
+        <li>During my break, {OTHER_definite} wandered over and leaned against my legs until I gave {OTHER_objective} a scratch.</li>
+        <li>[child] I was sitting on the step and {OTHER_nameDef} came and pressed {OTHER_possessive} face right against mine. It tickled.</li>
+      </plain>
+      <warm><li>Bad morning, until {OTHER_nameDef} came over and nuzzled my hand.</li></warm>
+      <blunt><li>Nuzzled by {OTHER_nameDef} today. Good animal.</li></blunt>
+      <cheerful><li>Got a big nuzzle from {OTHER_nameDef} today! Best part of my day.</li></cheerful>
+      <gloomy><li>Only {OTHER_nameDef} seems pleased to see me lately.</li></gloomy>
+      <cold><li>I've been feeding {OTHER_nameDef} scraps, and today {OTHER_pronoun} nuzzled me. It's working.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- Around the colony -->
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Journal_Day_CryingBaby</defName>
+    <lines>
+      <plain>
+        <li>The baby cried all through lunch, and most of the afternoon.</li>
+        <li>Crying from the next room again. I'd only just gotten to sleep.</li>
+        <li>Walked the baby up and down the hall until the crying stopped.</li>
+        <li>[child] The baby cried and cried. I put my pillow over my head.</li>
+      </plain>
+      <warm><li>Baby crying again. I went in and sang until the little one settled.</li></warm>
+      <blunt><li>Baby screamed for hours. My ears are ringing.</li></blunt>
+      <cheerful><li>Baby crying again! Those lungs will make a fine singer someday.</li></cheerful>
+      <gloomy><li>Crying again, on and off all day. None of us will get any rest until the baby's older.</li></gloomy>
+      <cold><li>The crying kept me up. Babies are a cost the colony chose to take on.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Journal_Day_Party</defName>
+    <lines>
+      <plain>
+        <li>Party tonight. Someone brought out the beer and we danced until the floor was sticky.</li>
+        <li>Went to the party for a bit. Ate too much and talked to people I usually don't.</li>
+        <li>Stayed at the party later than I meant to. My cheeks hurt from laughing.</li>
+        <li>[child] There was a party! I danced with everybody and ate two sweets.</li>
+      </plain>
+      <warm><li>Good party tonight. I'd forgotten some of these people could sing.</li></warm>
+      <blunt><li>Party. Ate, drank, went to bed.</li></blunt>
+      <cheerful><li>What a party! I danced until my feet gave out.</li></cheerful>
+      <gloomy><li>There was a party. I stood by the wall with my drink and left early.</li></gloomy>
+      <cold><li>Went to the party. Useful for seeing who talks to whom.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Journal_Day_Concert</defName>
+    <lines>
+      <plain>
+        <li>There was music tonight. I sat at the back with my eyes closed.</li>
+        <li>Went to the concert after supper. I didn't know the songs, and I liked the slow one best.</li>
+        <li>[!lowtech] Piano concert tonight. One key sticks, and the player found a way around it.</li>
+        <li>[child] I clapped all through the music. I want to learn to play when I'm bigger.</li>
+      </plain>
+      <warm><li>Music after supper, with my friends on either side of me. I didn't want it to end.</li></warm>
+      <blunt><li>Concert. Good music. Better than hauling.</li></blunt>
+      <cheerful><li>A concert! I hummed the tune all the way to bed.</li></cheerful>
+      <gloomy><li>Sad songs at the concert. Those were the ones I liked.</li></gloomy>
+      <cold><li>Attended the concert. Competent playing. Morale should hold for a few days.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Journal_Day_Speech</defName>
+    <lines>
+      <plain>
+        <li>Heard our leader speak today. I stood at the back and ended up listening to every word.</li>
+        <li>The leader talked about what we're building here. I've been thinking about it while I work.</li>
+        <li>Good speech this morning. Short, too, which helps.</li>
+        <li>[child] Our leader made a speech. I didn't understand all of it, but I clapped at the end.</li>
+      </plain>
+      <warm><li>The leader spoke about the ones we lost and the ones still here. I was glad I went.</li></warm>
+      <blunt><li>Good speech. Back to work.</li></blunt>
+      <cheerful><li>The leader gave a wonderful speech! I want to go and build something big.</li></cheerful>
+      <gloomy><li>Inspiring speech. I'll feel it for a day or two, anyway.</li></gloomy>
+      <cold><li>The speech was well made. People will work harder this week.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Journal_Day_Catharsis</defName>
+    <lines>
+      <plain>
+        <li>Calm today. I'd forgotten what that felt like.</li>
+        <li>Slept twelve hours after the outburst. Woke up lighter.</li>
+        <li>Still embarrassed about the other day, but the knot in my chest is gone.</li>
+        <li>[child] I had a big tantrum yesterday. Today I feel good, and I said sorry.</li>
+      </plain>
+      <warm><li>The others have been gentle with me since it happened. I feel like myself again.</li></warm>
+      <blunt><li>Lost it. Got it out. Feel better.</li></blunt>
+      <cheerful><li>Feeling much better today! I ate a huge breakfast.</li></cheerful>
+      <gloomy><li>Better, since the breakdown. It'll build up again, but for now my head is clear.</li></gloomy>
+      <cold><li>The episode has passed. I'm functional again, and I'd prefer it not be mentioned.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Journal_Day_Optimism</defName>
+    <lines>
+      <plain>
+        <li>Early days here. The walls are half up and the fields are bare, but it feels like a start.</li>
+        <li>We've got some seed, some tools, and a plan. That's more than I've had in a while.</li>
+        <li>Woke up this morning and remembered where I was, and I didn't mind.</li>
+        <li>[child] We have a new home. I picked the spot for my bed.</li>
+      </plain>
+      <warm><li>Good people and a patch of land. I think we'll be all right here.</li></warm>
+      <blunt><li>New place. Lots to do. Let's get on with it.</li></blunt>
+      <cheerful><li>A whole new place to call ours! I walked all the way around it just to look.</li></cheerful>
+      <gloomy><li>Hopeful days, for now. I've seen new starts go bad, but this one hasn't yet.</li></gloomy>
+      <cold><li>Morale is high, as it always is at the start. Now is the time to ask for hard work.</li></cold>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
 
