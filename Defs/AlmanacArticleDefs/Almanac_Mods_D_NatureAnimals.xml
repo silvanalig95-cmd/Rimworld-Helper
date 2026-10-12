@@ -431,12 +431,7 @@ You can draw areas where nobody rides, such as indoors, and spots where riders g
       </li>
       <li>
         <heading>Mounted raiders</heading>
-        <table>
-          <li>Raiders from | Arrive mounted, by default</li>
-          <li>Pre-industrial factions | A third of eligible raiders</li>
-          <li>Industrial factions | 15%</li>
-        </table>
-        <after>A raider needs an Animals skill above 3 to ride in. Expect mounted raids, and keep walls and choke points between the map edge and your fields.</after>
+        <text>By default, a third of eligible raiders from pre-industrial factions arrive mounted, against 15% for industrial ones, and a raider needs an Animals skill above 3 to ride in. Expect mounted raids, and keep walls and choke points between the map edge and your fields.</text>
       </li>
       <li>
         <heading>Allies Are Helpful</heading>
@@ -479,12 +474,7 @@ You can draw areas where nobody rides, such as indoors, and spots where riders g
       </li>
       <li>
         <heading>How bold they are</heading>
-        <table>
-          <li>Mode | What they hunt</li>
-          <li>Safe hunting | Smaller prey only</li>
-          <li>Supervised | Only animals you marked for hunting</li>
-        </table>
-        <after>Animals marked for taming are never targeted. Leave safe hunting on so your hunters don't pick fights they can't win, and near dangerous wildlife switch to supervised mode and mark only prey they can handle.</after>
+        <text>Safe hunting mode keeps them on smaller prey, and supervised mode limits them to animals you marked for hunting. Animals marked for taming are never targeted. Leave safe hunting on so your hunters don't pick fights they can't win, and near dangerous wildlife switch to supervised mode and mark only prey they can handle.</text>
       </li>
       <li>
         <heading>Cats and their gifts</heading>
@@ -714,12 +704,7 @@ Alpine meadows have fertile soil, lots of flowers and few predators, with mild s
     <sections>
       <li>
         <heading>Bathing</heading>
-        <table>
-          <li>Where | Mood | Lasts</li>
-          <li>A swim | +4 | Half a day</li>
-          <li>A hot spring | +6 | A day</li>
-        </table>
-        <after>Getting wet costs a little mood. If your map has a hot spring, build near it: it's strong, free recreation.</after>
+        <text>Colonists can bathe for fun. A swim gives +4 mood for half a day, and a hot spring +6 for a day, though getting wet costs a little mood. If your map has a hot spring, build near it: it's strong, free recreation.</text>
       </li>
       <li>
         <heading>Weather, flowers and creatures</heading>

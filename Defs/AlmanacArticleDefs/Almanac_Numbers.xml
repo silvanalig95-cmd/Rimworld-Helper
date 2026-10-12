@@ -134,7 +134,7 @@
           <li>Major | 20% mood | 0.8 days</li>
           <li>Extreme | 5% mood | 0.5 days</li>
         </table>
-        <after>Traits move the minor line, but never below 1% or above 50%. A break is followed by catharsis: +40 per stack, up to 5 stacks (122 at most), for 3 days. Keep everyone well above 35%, so one bad day doesn't push them under the line.</after>
+        <after>Traits move the minor line, but never below 1% or above 50%. A break is followed by catharsis for 3 days: +40 for the first, each further stack worth three quarters of the one before, up to 5 stacks (122 at most). Keep everyone well above 35%, so one bad day doesn't push them under the line.</after>
       </li>
       <li>
         <heading>Everyday thoughts</heading>

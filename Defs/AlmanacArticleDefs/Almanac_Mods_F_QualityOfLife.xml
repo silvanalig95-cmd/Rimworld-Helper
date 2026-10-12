@@ -15,21 +15,34 @@
     <summary>Allow or forbid by area, select similar, haul urgently, finish off and harvest only what's ripe</summary>
     <tip>One drag over the battlefield and every dropped helmet is ours again.</tip>
     <description>Allow Tool adds a handful of order tools to the Architect's Orders menu and to the buttons you see when things are selected. They save clicks on jobs a big colony does every day: unforbidding the loot after a battle, getting important things hauled first, and harvesting only what is ready. It needs HugsLib, loaded above it.</description>
-    <facts>
-      <li>Allow selection and Forbid selection unforbid or forbid every item in the box you drag. Allow everything unforbids every forbidden item on the map.</li>
-      <li>Select similar picks only things like the ones already selected. Right-click it to select across the whole map, the visible area or the home area.</li>
-      <li>Haul urgently marks things for a separate, higher-priority hauling job, which shows up as a Haul+ work type in the Work tab.</li>
-      <li>Finish off kills downed creatures on your order, and can require a colonist with enough melee skill. Finishing off a friendly pawn upsets people like a brutal execution.</li>
-      <li>Harvest fully grown orders only the crops and trees that have reached their full yield. Strip mine lays out mining orders in a grid to find hidden ore.</li>
-      <li>A Drafted hunt button lets drafted colonists hunt, with options to finish off downed animals and unforbid the prey.</li>
-    </facts>
-    <advice>
-      <li>After a raid, drag Allow over the battlefield instead of clicking each bow and helmet, then forbid what you'd rather leave lying.</li>
-      <li>Put one reliable hauler high on Haul+ and save Haul urgently for food in the open and loot before a storm or the next raid.</li>
-      <li>Use Harvest fully grown on woodlots, so cutters don't fell half-grown trees for a handful of wood.</li>
-      <li>With Rimfolk: when the advisor reports stacks deteriorating outside, select them with Select similar and mark them Haul urgently.</li>
-      <li>With Rimfolk: if you capture a downed raider who hurt one of your colonists, the raider stays that colonist's nemesis, now locked up, and the colonist's mood lifts. If you finish the raider off on the spot, the nemesis story ends there.</li>
-    </advice>
+    <sections>
+      <li>
+        <heading>The tools</heading>
+        <table>
+          <li>Tool | What it does</li>
+          <li>Allow selection, Forbid selection | Unforbid or forbid every item in the box you drag.</li>
+          <li>Allow everything | Unforbids every forbidden item on the map.</li>
+          <li>Select similar | Picks only things like the ones already selected. Right-click it to select across the whole map, the visible area or the home area.</li>
+          <li>Haul urgently | Marks things for a separate, higher-priority hauling job, which shows up as a Haul+ work type in the Work tab.</li>
+          <li>Finish off | Kills downed creatures on your order, and can require a colonist with enough melee skill. Finishing off a friendly pawn upsets people like a brutal execution.</li>
+          <li>Harvest fully grown | Orders only the crops and trees that have reached their full yield.</li>
+          <li>Strip mine | Lays out mining orders in a grid to find hidden ore.</li>
+          <li>Drafted hunt | Lets drafted colonists hunt, with options to finish off downed animals and unforbid the prey.</li>
+        </table>
+      </li>
+      <li>
+        <heading>After a raid, and at harvest</heading>
+        <text>After a raid, drag Allow over the battlefield instead of clicking each bow and helmet, then forbid what you'd rather leave lying. Put one reliable hauler high on Haul+ and save Haul urgently for food in the open and loot before a storm or the next raid.
+
+On woodlots, use Harvest fully grown so cutters don't fell half-grown trees for a handful of wood.</text>
+      </li>
+      <li>
+        <heading>With Rimfolk</heading>
+        <text>When the advisor reports stacks deteriorating outside, select them with Select similar and mark them Haul urgently.
+
+If you capture a downed raider who hurt one of your colonists, the raider stays that colonist's nemesis, now locked up, and the colonist's mood lifts. If you finish the raider off on the spot, the nemesis story ends there.</text>
+      </li>
+    </sections>
     <keywords>
       <li>forbid</li>
       <li>unforbid</li>
@@ -60,21 +73,28 @@
     <summary>Haulers fill their pockets before the trip, and why Haul to Stack does nothing beside it</summary>
     <tip>Our haulers fill their pockets before they walk back now. The fields are a long way from the stores.</tip>
     <description>Pick Up And Haul lets colonists who haul load several items into their inventory, pick up one more in their hands, carry it all to storage and unload. On a big map with fields, woodlots and battlefields far from the stores, that saves a lot of walking. Haul to Stack, also in your list, was meant to make haulers top up existing stacks, but its author notes that it stops doing anything once Pick Up And Haul is installed.</description>
-    <facts>
-      <li>Only player-controlled humanlikes haul with their inventory: no animals, guests or prisoners.</li>
-      <li>Colonists unload at intervals when they carry several items, when they reach a weight limit, when they haul something else to a stockpile, and when they go idle.</li>
-      <li>A colonist who walked far to haul something looks further afield for more to carry, so long trips aren't wasted.</li>
-      <li>You can order a colonist to pick up an item and keep it. They keep it on them from then on, which suits a field medic's herbal medicine.</li>
-      <li>A corpse is too heavy for a pocket: it needs a stockpile that accepts corpses, such as a dumping zone.</li>
-      <li>On its own, Haul to Stack makes haulers prefer an existing stack and lets several pawns haul to the same tile. With Pick Up And Haul installed it does nothing, and its author sees no harm in keeping both.</li>
-    </facts>
-    <advice>
-      <li>Give every kind of item a stockpile or shelf, corpses included, so loaded haulers always have somewhere to go.</li>
-      <li>Expect colonists to stand in the storeroom for a moment after a trip while they unload. That is normal, not a stuck pawn.</li>
-      <li>Keep Harvest and Haul on as well. Growers, miners and woodcutters bring in their own produce, and Pick Up And Haul handles everything else.</li>
-      <li>Use Allow Tool's Haul urgently alongside it; the author says the two work well together.</li>
-      <li>With Rimfolk: fewer stacks left lying in the open means fewer "stacks deteriorating outside" warnings from the advisor.</li>
-    </advice>
+    <sections>
+      <li>
+        <heading>How a hauling trip works</heading>
+        <text>Only player-controlled humanlikes haul with their inventory: no animals, guests or prisoners. A colonist who walked far to haul something looks further afield for more to carry, so long trips aren't wasted. They unload at intervals when they carry several items, when they reach a weight limit, when they haul something else to a stockpile, and when they go idle. Expect them to stand in the storeroom for a moment after a trip while they unload. That is normal, not a stuck pawn.
+
+You can also order a colonist to pick up an item and keep it. They keep it on them from then on, which suits a field medic's herbal medicine.</text>
+      </li>
+      <li>
+        <heading>Somewhere for everything</heading>
+        <text>Give every kind of item a stockpile or shelf, corpses included, so loaded haulers always have somewhere to go. A corpse is too heavy for a pocket: it needs a stockpile that accepts corpses, such as a dumping zone.
+
+Keep Harvest and Haul on as well. Growers, miners and woodcutters bring in their own produce, and Pick Up And Haul handles everything else. Allow Tool's Haul urgently fits in too; the author says the two work well together.</text>
+      </li>
+      <li>
+        <heading>Haul to Stack</heading>
+        <text>On its own, Haul to Stack makes haulers prefer an existing stack and lets several pawns haul to the same tile. With Pick Up And Haul installed it does nothing, and its author sees no harm in keeping both.</text>
+      </li>
+      <li>
+        <heading>With Rimfolk</heading>
+        <text>Fewer stacks left lying in the open means fewer "stacks deteriorating outside" warnings from the advisor.</text>
+      </li>
+    </sections>
     <keywords>
       <li>hauling</li>
       <li>haul</li>
@@ -101,21 +121,35 @@
     <summary>Growers, miners, cutters and herders carry what their own work drops straight to storage</summary>
     <tip>The woodcutter carries her own logs to the stockpile now.</tip>
     <description>Harvest and Haul makes colonists pocket what their own work drops: crops and berries, chopped wood, mined ore, wool and milk, the materials from a torn-down wall, the day's catch. They keep working while there is room, then take everything to storage themselves, instead of leaving a trail of small stacks for the haulers. It was built to work alongside Pick Up And Haul.</description>
-    <facts>
-      <li>It collects from harvesting, chopping and cutting plants (also when a plant is cut to clear a cell for sowing or building), mining, deep drilling, shearing and milking, deconstructing and removing floors, and fishing. Each source has its own switch.</li>
-      <li>Stone and slag chunks are off by default, since a single chunk fills most of an inventory.</li>
-      <li>A colonist keeps doing the same kind of work while there is room, and drops off the load before switching to other work, eating, sleeping or relaxing.</li>
-      <li>Delivering counts as part of the work, so even colonists who can't haul bring in what they produced.</li>
-      <li>Defaults: fill up to 100% of carrying capacity, stop work to deliver only with at least 5 kg collected, and deliver after at most 8 hours of the same work.</li>
-      <li>Drafting, mental breaks, emergencies, urgent needs, rituals, caravans and your own orders always come first. If no storage accepts an item, it is dropped for the normal haulers.</li>
-    </facts>
-    <advice>
-      <li>Put a stockpile or shelf for harvests near the fields and another near the mine: the shorter the trip, the more this pays off.</li>
-      <li>A colonist in heavy armor has little room to spare, so they keep working and deliver at the end. The 5 kg minimum is what stops them making a trip for every handful.</li>
-      <li>In this modlist, cut grass and bushes drop hay and wood (a Medieval Overhaul change), so clearing a building site also brings in fodder and firewood.</li>
-      <li>Leave Pick Up And Haul on too. Each mod tracks its own items, so they don't fight over a pawn's pockets.</li>
-      <li>With Rimfolk: produce that goes straight to storage isn't left out in the rain, so the advisor's "stacks deteriorating outside" warning comes up less often.</li>
-    </advice>
+    <sections>
+      <li>
+        <heading>What it collects</heading>
+        <text>It collects from harvesting, chopping and cutting plants (also when a plant is cut to clear a cell for sowing or building), mining, deep drilling, shearing and milking, deconstructing and removing floors, and fishing. Each source has its own switch. Stone and slag chunks are off by default, since a single chunk fills most of an inventory.
+
+In this modlist, cut grass and bushes drop hay and wood (a Medieval Overhaul change), so clearing a building site also brings in fodder and firewood.</text>
+      </li>
+      <li>
+        <heading>When they deliver</heading>
+        <text>A colonist keeps doing the same kind of work while there is room, and drops off the load before switching to other work, eating, sleeping or relaxing. Delivering counts as part of the work, so even colonists who can't haul bring in what they produced.</text>
+        <table>
+          <li>Setting | Default</li>
+          <li>Fill up to | 100% of carrying capacity</li>
+          <li>Stop work to deliver | Only with at least 5 kg collected</li>
+          <li>Deliver anyway | After at most 8 hours of the same work</li>
+        </table>
+        <after>A colonist in heavy armor has little room to spare, so they keep working and deliver at the end; the 5 kg minimum is what stops them making a trip for every handful. Put a stockpile or shelf for harvests near the fields and another near the mine: the shorter the trip, the more this pays off.</after>
+      </li>
+      <li>
+        <heading>What comes first</heading>
+        <text>Drafting, mental breaks, emergencies, urgent needs, rituals, caravans and your own orders always come first. If no storage accepts an item, it is dropped for the normal haulers.
+
+Leave Pick Up And Haul on too. Each mod tracks its own items, so they don't fight over a pawn's pockets.</text>
+      </li>
+      <li>
+        <heading>With Rimfolk</heading>
+        <text>Produce that goes straight to storage isn't left out in the rain, so the advisor's "stacks deteriorating outside" warning comes up less often.</text>
+      </li>
+    </sections>
     <keywords>
       <li>harvest</li>
       <li>haul</li>
@@ -143,21 +177,33 @@
     <summary>Colonists sweep before they cook, fetch whole stacks for bills and stop wasting their fun</summary>
     <tip>Our cook sweeps the kitchen before every meal now. The sickness stopped going round.</tip>
     <description>Common Sense is a bundle of small fixes to how colonists behave. Most are on by default, and each has its own switch in the mod settings. In a medieval colony the cleaning habits matter most, because a dirty kitchen is where food poisoning starts.</description>
-    <facts>
-      <li>Colonists clean the room where they are about to cook, craft, research or sleep, and can clean between bringing the ingredients and starting the bill.</li>
-      <li>Doctors clean up after tending a patient.</li>
-      <li>For bills, colonists prefer hauling a whole stack of ingredients to a stockpile over carrying only the part they need, and can collect all the ingredients in their inventory first.</li>
-      <li>Colonists don't mix food made with "bad" ingredients, such as human or insect meat, into stacks of normal food.</li>
-      <li>Colonists who need the outdoors look for recreation outside. Colonists also put off clearing snow while it is still snowing or raining.</li>
-      <li>Off by default: cleaning where they are about to eat, avoiding bad weather when idle, and a mood that keeps drifting toward its target while asleep.</li>
-    </facts>
-    <advice>
-      <li>Read through the mod settings once, switch off whatever you dislike, and check the features that start switched off.</li>
-      <li>Keep the kitchen small and walled off, so cleaning before each meal is quick.</li>
-      <li>If someone stands still right after you add or remove the mod, draft them and release them again, as its author suggests.</li>
-      <li>With Rimfolk: these cleaning habits help keep the advisor's "The kitchen is dirty" and "The hospital is dirty" warnings away.</li>
-      <li>With Rimfolk: outdoor recreation helps a colonist who has asked the council for "time outside".</li>
-    </advice>
+    <sections>
+      <li>
+        <heading>Cleaning habits</heading>
+        <text>Colonists clean the room where they are about to cook, craft, research or sleep, and can clean between bringing the ingredients and starting the bill. Doctors clean up after tending a patient. Keep the kitchen small and walled off, so cleaning before each meal is quick.</text>
+      </li>
+      <li>
+        <heading>Bills and stacks</heading>
+        <text>For bills, colonists prefer hauling a whole stack of ingredients to a stockpile over carrying only the part they need, and can collect all the ingredients in their inventory first. They don't mix food made with "bad" ingredients, such as human or insect meat, into stacks of normal food.</text>
+      </li>
+      <li>
+        <heading>Outdoors and snow</heading>
+        <text>Colonists who need the outdoors look for recreation outside. Colonists also put off clearing snow while it is still snowing or raining.</text>
+      </li>
+      <li>
+        <heading>Off until you switch them on</heading>
+        <points>
+          <li>Cleaning where they are about to eat</li>
+          <li>Avoiding bad weather when idle</li>
+          <li>A mood that keeps drifting toward its target while asleep</li>
+        </points>
+        <after>Read through the mod settings once, switch off whatever you dislike, and decide on these three. If someone stands still right after you add or remove the mod, draft them and release them again, as its author suggests.</after>
+      </li>
+      <li>
+        <heading>With Rimfolk</heading>
+        <text>These cleaning habits help keep the advisor's "The kitchen is dirty" and "The hospital is dirty" warnings away, and outdoor recreation helps a colonist who has asked the council for "time outside".</text>
+      </li>
+    </sections>
     <keywords>
       <li>cleaning</li>
       <li>kitchen</li>
@@ -185,20 +231,29 @@
     <summary>Save work, schedule, assignment and animal setups as policies and switch them in one click</summary>
     <tip>Set up the raid policy on a quiet day, not when the raiders are at the gate.</tip>
     <description>Better Pawn Control lets you save what you set in the Work, Schedule, Assign and Animals tabs as named policies, and switch between them in one click. Its Emergency button switches all of them at once, for a raid, a heat wave or a siege. With a big colony and a lot of livestock, that is one click instead of a minute of changing settings by hand.</description>
-    <facts>
-      <li>Policies cover the Work, Schedule, Assign and Animals tabs: work priorities, schedules, areas, outfits, drugs and food.</li>
-      <li>New colonists and prisoners can get default outfit, food and drug policies when they join.</li>
-      <li>The Emergency button switches all your configured policies at once.</li>
-      <li>Its author says it can be added to or removed from a save at any time.</li>
-      <li>Its author lists A RimWorld of Magic as not compatible, and this modlist runs both. Mods that add new kinds of jobs are generally a poor match for it too.</li>
-    </facts>
-    <advice>
-      <li>Make a raid policy that pulls animals and non-fighters indoors, and a normal one to switch back to afterward.</li>
-      <li>Set up a heat wave or cold snap schedule with more time indoors, and switch to it when the alert appears.</li>
-      <li>To change a policy, activate it first, then edit the tabs as usual.</li>
-      <li>If mages' settings change or the log shows errors after a switch, suspect the A RimWorld of Magic conflict first.</li>
-      <li>With Rimfolk: switching to an older policy can undo a granted wish for "more time to rest" (extra recreation hours) or switch off the work a colonist asked to do. Update the policy whenever you grant one of those.</li>
-    </advice>
+    <sections>
+      <li>
+        <heading>What a policy holds</heading>
+        <text>Policies cover the Work, Schedule, Assign and Animals tabs: work priorities, schedules, areas, outfits, drugs and food. New colonists and prisoners can get default outfit, food and drug policies when they join. Its author says it can be added to or removed from a save at any time.</text>
+      </li>
+      <li>
+        <heading>Preparing for trouble</heading>
+        <points>
+          <li>On a quiet day, make a raid policy that pulls animals and non-fighters indoors, and a normal one to switch back to afterward.</li>
+          <li>Set up a heat wave or cold snap schedule with more time indoors.</li>
+          <li>To change a policy later, activate it first, then edit the tabs as usual.</li>
+          <li>When the raid or the alert comes, switch to the right policy, or press Emergency to switch all your configured policies at once.</li>
+        </points>
+      </li>
+      <li>
+        <heading>A RimWorld of Magic</heading>
+        <text>Its author lists A RimWorld of Magic as not compatible, and this modlist runs both. If mages' settings change or the log shows errors after a switch, suspect that conflict first. Mods that add new kinds of jobs are generally a poor match for it too.</text>
+      </li>
+      <li>
+        <heading>With Rimfolk</heading>
+        <text>Switching to an older policy can undo a granted wish for "more time to rest" (extra recreation hours) or switch off the work a colonist asked to do. Update the policy whenever you grant one of those.</text>
+      </li>
+    </sections>
     <keywords>
       <li>policy</li>
       <li>schedule</li>
@@ -226,19 +281,22 @@
     <summary>Rebuild walls, doors and furniture in a new material without tearing them down first</summary>
     <tip>We rebuilt the freezer in stone without letting it warm up once.</tip>
     <description>Replace Stuff lets you place a building over an existing one and the game swaps it in place: wooden walls become stone without breaking the room, a workbench keeps its bills and a bed keeps its owner. It also lets you build over rock, which gets mined away first, and over water, where a bridge goes in first. RimWorld 1.6 on its own only lets you place blueprints over walls; this mod goes much further.</description>
-    <facts>
-      <li>The Replace tool in Architect, Structure changes the material of any building. You can also simply place a building of a new material over the old one.</li>
-      <li>The old building stays until the new one is finished, so walls keep a room closed and a cold room keeps its cold.</li>
-      <li>Walls, doors, beds, coolers, tables and fences can be built over their older versions and keep their settings.</li>
-      <li>Buildings rebuilt after being destroyed remember their settings: workbench bills, temperature settings, the plant chosen for a pot, and storage filters.</li>
-      <li>Coolers can go over a wall without breaking it first, and colonists standing in the way no longer block construction.</li>
-    </facts>
-    <advice>
-      <li>Build in wood first, then replace walls with stone room by room as your masons catch up, without ever opening a room to the weather.</li>
-      <li>Swap a bed for a better one in place, so its owner keeps it and nobody sleeps on the floor while it is rebuilt.</li>
-      <li>Rebuild a workbench in a better material, or a fueled stove as an electric one once you have power, and it keeps its whole bill list.</li>
-      <li>With Rimfolk: when the advisor warns of a "Fire risk" (an open flame inside wooden walls), replace those walls with stone in place.</li>
-    </advice>
+    <sections>
+      <li>
+        <heading>Replacing in place</heading>
+        <text>The Replace tool in Architect, Structure changes the material of any building, or you can simply place a building of a new material over the old one. The old building stays until the new one is finished, so walls keep a room closed and a cold room keeps its cold. Walls, doors, beds, coolers, tables and fences can be built over their older versions and keep their settings. Coolers can go over a wall without breaking it first, and colonists standing in the way no longer block construction.
+
+Buildings rebuilt after being destroyed remember their settings too: workbench bills, temperature settings, the plant chosen for a pot, and storage filters.</text>
+      </li>
+      <li>
+        <heading>From wood to stone</heading>
+        <text>Build in wood first, then replace walls with stone room by room as your masons catch up, without ever opening a room to the weather. Swap a bed for a better one in place, so its owner keeps it and nobody sleeps on the floor while it is rebuilt. Rebuild a workbench in a better material, or a fueled stove as an electric one once you have power, and it keeps its whole bill list.</text>
+      </li>
+      <li>
+        <heading>With Rimfolk</heading>
+        <text>When the advisor warns of a "Fire risk" (an open flame inside wooden walls), replace those walls with stone in place.</text>
+      </li>
+    </sections>
     <keywords>
       <li>replace</li>
       <li>material</li>
@@ -267,20 +325,22 @@
     <summary>Colonists carry spare weapons in their pockets and switch to the right one by themselves</summary>
     <tip>Every archer here carries a knife for when the raiders get close.</tip>
     <description>Simple Sidearms lets colonists carry more than one weapon: one in hand, the rest in their inventory as sidearms. Depending on the settings, they switch on their own: to a blade when someone closes in, to a better bow for the distance, or to a tool that helps with the job. Medieval archers are nearly helpless once a raider reaches them, and a melee sidearm lets them fight back.</description>
-    <facts>
-      <li>Ready-made setups range from "sidearms as extra inventory only" to "bring all of it", with a custom mode for every rule.</li>
-      <li>Limits can be set by number of sidearms or by weight, in total or per weapon, and separately for melee and ranged.</li>
-      <li>Options let colonists switch to a melee sidearm when attacked in melee, pick the right ranged weapon for the distance, and switch to stat-boosting tools for a job.</li>
-      <li>Other factions' pawns can spawn with sidearms too, controlled by a chance and a budget setting.</li>
-      <li>An alert tells you when a colonist has lost a sidearm or their main weapon, and colonists can go back to pick up a dropped weapon.</li>
-      <li>A setting lets tribal pawns use more kinds of weapons as sidearms.</li>
-    </facts>
-    <advice>
-      <li>Give every archer a light melee sidearm, such as a knife or short sword, and keep "switch to melee when attacked in melee" on.</li>
-      <li>Keep sidearms light. Heavy ones use up the carrying capacity that Pick Up And Haul and Harvest and Haul fill with goods.</li>
-      <li>Melee Animation's author recommends it alongside, and the two work together.</li>
-      <li>With Rimfolk: an heirloom weapon carried as a sidearm still counts as carried, so the heir keeps the comfort while fighting with something else.</li>
-    </advice>
+    <sections>
+      <li>
+        <heading>Choosing the rules</heading>
+        <text>Ready-made setups range from "sidearms as extra inventory only" to "bring all of it", with a custom mode for every rule. Limits can be set by number of sidearms or by weight, in total or per weapon, and separately for melee and ranged. Options let colonists switch to a melee sidearm when attacked in melee, pick the right ranged weapon for the distance, and switch to stat-boosting tools for a job. A setting lets tribal pawns use more kinds of weapons as sidearms.
+
+Other factions' pawns can spawn with sidearms too, controlled by a chance and a budget setting. An alert tells you when a colonist has lost a sidearm or their main weapon, and colonists can go back to pick up a dropped weapon.</text>
+      </li>
+      <li>
+        <heading>Arming archers</heading>
+        <text>Give every archer a light melee sidearm, such as a knife or short sword, and keep "switch to melee when attacked in melee" on. Keep sidearms light: heavy ones use up the carrying capacity that Pick Up And Haul and Harvest and Haul fill with goods. Melee Animation's author recommends it alongside, and the two work together.</text>
+      </li>
+      <li>
+        <heading>With Rimfolk</heading>
+        <text>An heirloom weapon carried as a sidearm still counts as carried, so the heir keeps the comfort while fighting with something else.</text>
+      </li>
+    </sections>
     <keywords>
       <li>sidearm</li>
       <li>weapon</li>
@@ -307,21 +367,27 @@
     <summary>Animated sword fights, duels, executions, lassos and friendly sparring at a duel spot</summary>
     <tip>Our fighters spar at the duel spot after supper. The bruises are the cheap kind.</tip>
     <description>Melee Animation gives melee weapons hand-made attack animations and adds optional new mechanics: one-on-one duels, executions that can kill, down or wound, lassos that drag enemies into reach, and rare unique skills. Ordinary melee damage works as before. In a medieval run, where most fights are fought hand to hand, it changes how battles look and adds new choices in them.</description>
-    <facts>
-      <li>Duels: two melee fighters may lock into a one-on-one duel decided by each one's Duel Ability, and the winner performs an execution on the loser.</li>
-      <li>Executions aren't always lethal: the outcome (death, downed or injured) depends on melee skill, armor, the weapon and its damage type.</li>
-      <li>Lassos are made at a tailor bench. They pull an enemy into melee range, often straight into an execution, or pull a friend out of danger.</li>
-      <li>A duel spot (in the Misc tab) lets colonists hold friendly duels for fun and practice. Winning and losing one both give a small good mood.</li>
-      <li>Weapons need a patch to animate. Its list covers Medieval Overhaul and its Barbarians add-on, RimFantasy, the Outland factions and A RimWorld of Magic, among many others.</li>
-      <li>It doesn't work with Multiplayer, and only one weapon of a dual-wield pair is drawn.</li>
-    </facts>
-    <advice>
-      <li>Draft a melee fighter and right-click an enemy to choose an execution, a lasso pull, a duel or a skill.</li>
-      <li>Decide in the Assign tab who may use lassos and executions, and read the mod settings carefully: almost everything can be adjusted.</li>
-      <li>Place a duel spot near the barracks for cheap recreation that also gives melee practice.</li>
-      <li>Enemies duel, execute and lasso too, so keep archers behind a line of armored melee fighters.</li>
-      <li>With Rimfolk: a duel spot doesn't count for a fighter's "somewhere to train" wish, which wants a training dummy or a practice target.</li>
-    </advice>
+    <sections>
+      <li>
+        <heading>Duels, executions and lassos</heading>
+        <table>
+          <li>Move | How it works</li>
+          <li>Duel | Two melee fighters may lock into a one-on-one duel decided by each one's Duel Ability. The winner performs an execution on the loser.</li>
+          <li>Execution | Not always lethal: the outcome (death, downed or injured) depends on melee skill, armor, the weapon and its damage type.</li>
+          <li>Lasso | Made at a tailor bench. It pulls an enemy into melee range, often straight into an execution, or pulls a friend out of danger.</li>
+          <li>Friendly duel | Held at a duel spot (in the Misc tab) for fun and practice. Winning and losing one both give a small good mood.</li>
+        </table>
+        <after>Draft a melee fighter and right-click an enemy to choose an execution, a lasso pull, a duel or a skill. Decide in the Assign tab who may use lassos and executions, and read the mod settings carefully: almost everything can be adjusted. Enemies duel, execute and lasso too, so keep archers behind a line of armored melee fighters. A duel spot near the barracks is cheap recreation that also gives melee practice.</after>
+      </li>
+      <li>
+        <heading>Weapons and other mods</heading>
+        <text>Weapons need a patch to animate. Its list covers Medieval Overhaul and its Barbarians add-on, RimFantasy, the Outland factions and A RimWorld of Magic, among many others. It doesn't work with Multiplayer, and only one weapon of a dual-wield pair is drawn.</text>
+      </li>
+      <li>
+        <heading>With Rimfolk</heading>
+        <text>A duel spot doesn't count for a fighter's "somewhere to train" wish, which wants a training dummy or a practice target.</text>
+      </li>
+    </sections>
     <keywords>
       <li>melee</li>
       <li>duel</li>
@@ -353,20 +419,24 @@
     <summary>Run and Gun, Avoid Friendly Fire and Take Cover: shooting on the move, past friends, from cover</summary>
     <tip>Our archers wait for a clear shot now. We lose fewer spearmen that way.</tip>
     <description>Three small mods change how your ranged fighters behave. Run and Gun lets them shoot while moving, Avoid Friendly Fire makes them hold their shot when a friend is in the way, and Take Cover gives you a quick way to spread a squad into covered firing spots. In a colony that fights with bows and crossbows, the three work well together.</description>
-    <facts>
-      <li>Run and Gun: drafted pawns with a ranged weapon get a toggle to fire while moving, at an accuracy cost while moving and a speed cost while shooting. Both penalties can be adjusted.</li>
-      <li>Run and Gun: enemies can run and gun too, even while fleeing, and that can be limited in the settings. Fire at will must be on, because ordering a shot by hand stops the pawn.</li>
-      <li>Avoid Friendly Fire: with its toggle on (the default), a colonist won't shoot if the shot's path, miss radius included, could hit a friendly or neutral pawn. Drafted shooters look for a clean shot or wait, and hunters move.</li>
-      <li>Avoid Friendly Fire: a shooter held back by a friend has their name shown in cyan, and the friend in the way in green. A faster "capsule-only" check in its settings helps in very big fights.</li>
-      <li>Take Cover: select drafted pawns, hold Ctrl and right-drag toward the threat, and they spread into firing positions that favor nearby cover and clear lines of fire.</li>
-      <li>The Avoid Friendly Fire version in your list is a 1.6 update of falconne's mod, and it is confirmed to work with this Run and Gun.</li>
-    </facts>
-    <advice>
-      <li>Don't line archers up straight behind your melee line: with Avoid Friendly Fire they will often refuse to shoot. Set them off to one side so their arrows cross the field at an angle.</li>
-      <li>Turn Run and Gun on for quick skirmishers who kite melee raiders. The accuracy penalty only applies while they are moving.</li>
-      <li>Use Take Cover when a raid comes from an unexpected side, then fine-tune the positions by hand.</li>
-      <li>Give your shooters a melee sidearm as well (see Simple Sidearms) for any raider who reaches them.</li>
-    </advice>
+    <sections>
+      <li>
+        <heading>Run and Gun</heading>
+        <text>Drafted pawns with a ranged weapon get a toggle to fire while moving, at an accuracy cost while moving and a speed cost while shooting; both penalties can be adjusted. Fire at will must be on, because ordering a shot by hand stops the pawn. Enemies can run and gun too, even while fleeing, and that can be limited in the settings.
+
+Turn it on for quick skirmishers who kite melee raiders. The accuracy penalty only applies while they are moving.</text>
+      </li>
+      <li>
+        <heading>Avoid Friendly Fire</heading>
+        <text>With its toggle on (the default), a colonist won't shoot if the shot's path, miss radius included, could hit a friendly or neutral pawn. Drafted shooters look for a clean shot or wait, and hunters move. A shooter held back by a friend has their name shown in cyan, and the friend in the way in green. A faster "capsule-only" check in its settings helps in very big fights. The version in your list is a 1.6 update of falconne's mod, and it is confirmed to work with this Run and Gun.
+
+Because of it, don't line archers up straight behind your melee line, or they will often refuse to shoot. Set them off to one side so their arrows cross the field at an angle.</text>
+      </li>
+      <li>
+        <heading>Take Cover</heading>
+        <text>Select drafted pawns, hold Ctrl and right-drag toward the threat, and they spread into firing positions that favor nearby cover and clear lines of fire. Use it when a raid comes from an unexpected side, then fine-tune the positions by hand. For any raider who still reaches your shooters, give them a melee sidearm as well (see Simple Sidearms).</text>
+      </li>
+    </sections>
     <keywords>
       <li>run and gun</li>
       <li>friendly fire</li>
@@ -403,22 +473,32 @@
     <summary>Better bills, honest blueprint counts, a cleaning area, moving patients, calming breaks</summary>
     <tip>Send someone they like to talk them down. It works more often.</tip>
     <description>Six small mods that each fix one everyday annoyance: managing bills, blueprints that say you lack materials you can plainly see, cleaners wandering the whole home area, patients stuck in the wrong bed, visitors whose deaths you get blamed for, and colonists in a mental break that nobody can reach. None of them changes the game's balance much. Together they save a lot of frustration.</description>
-    <facts>
-      <li>Better Workbench Management: copy a bench's whole bill list, paste bills as linked copies that change together, and drag bills to reorder them. "Do until" bills can also count extra products, such as fine meals toward a simple meal target.</li>
-      <li>I Clearly Have Enough: the resource readout for blueprints counts everything on the map, not only what sits in storage, and updates every few seconds.</li>
-      <li>Cleaning Area: click the broom icon under the speed controls and pick an area, and colonists clean only there instead of the whole home area.</li>
-      <li>Move the Patient: order any patient or downed pawn carried to the bed you choose, give medical beds priorities from low to critical, and mark surgery beds. Moving a guest or raider into a prisoner bed captures them, at a cost in goodwill.</li>
-      <li>Not My Fault: removes the -5 goodwill penalty when visitors die on your map from things you didn't cause, such as wild animals, fire or their own mental breaks. Harming them yourself still counts.</li>
-      <li>Snap Out!: a colonist on warden work walks up to someone in a mental break and tries to talk them down. Success depends on the calmer's social skill and how much the troubled pawn likes them. The settings decide whether prisoners, traders and aggressive breaks can be calmed.</li>
-    </facts>
-    <advice>
-      <li>Keep one sociable colonist on warden work even before you take prisoners, so Snap Out! has someone to send. A calmer who succeeds gets a small good mood.</li>
-      <li>Put the kitchen, dining room and hospital inside your cleaning area first. Paths outside can wait.</li>
-      <li>Mark one bed as a surgery bed and give the hospital's best beds a high priority, so the worst injured get them.</li>
-      <li>Link the meal bills on all your stoves with Better Workbench Management, so one change sets them all.</li>
-      <li>With Rimfolk: on Demanding stakes a bitter colonist may storm off on a sad wander or go on an insulting spree. Snap Out! can talk them down like any other break.</li>
-      <li>With Rimfolk: the room planner compares its cost only with what is in storage, so it can show you short of materials that I Clearly Have Enough finds elsewhere on the map.</li>
-    </advice>
+    <sections>
+      <li>
+        <heading>Bills and blueprints</heading>
+        <text>Better Workbench Management lets you copy a bench's whole bill list, paste bills as linked copies that change together, and drag bills to reorder them. "Do until" bills can also count extra products, such as fine meals toward a simple meal target. Link the meal bills on all your stoves, so one change sets them all.
+
+I Clearly Have Enough makes the resource readout for blueprints count everything on the map, not only what sits in storage, and updates it every few seconds.</text>
+      </li>
+      <li>
+        <heading>Cleaning and patients</heading>
+        <text>With Cleaning Area, click the broom icon under the speed controls and pick an area, and colonists clean only there instead of the whole home area. Put the kitchen, dining room and hospital in it first; paths outside can wait.
+
+Move the Patient lets you order any patient or downed pawn carried to the bed you choose, give medical beds priorities from low to critical, and mark surgery beds. Mark one bed for surgery and give the hospital's best beds a high priority, so the worst injured get them. Moving a guest or raider into a prisoner bed captures them, at a cost in goodwill.</text>
+      </li>
+      <li>
+        <heading>Visitors and mental breaks</heading>
+        <text>Not My Fault removes the -5 goodwill penalty when visitors die on your map from things you didn't cause, such as wild animals, fire or their own mental breaks. Harming them yourself still counts.
+
+With Snap Out!, a colonist on warden work walks up to someone in a mental break and tries to talk them down. Success depends on the calmer's social skill and how much the troubled pawn likes them, and a calmer who succeeds gets a small good mood. The settings decide whether prisoners, traders and aggressive breaks can be calmed. Keep one sociable colonist on warden work even before you take prisoners, so there is someone to send.</text>
+      </li>
+      <li>
+        <heading>With Rimfolk</heading>
+        <text>On Demanding stakes a bitter colonist may storm off on a sad wander or go on an insulting spree. Snap Out! can talk them down like any other break.
+
+The room planner compares its cost only with what is in storage, so it can show you short of materials that I Clearly Have Enough finds elsewhere on the map.</text>
+      </li>
+    </sections>
     <keywords>
       <li>bills</li>
       <li>workbench</li>
@@ -455,23 +535,36 @@
     <summary>RimHUD, the Nice tabs, a color-coded mood bar, speech bubbles, clearer wounds, quality colors</summary>
     <tip>I check the mood bars every morning before I do anything else.</tip>
     <description>Seven interface mods put more of what you need to know in plain sight: how a colonist is doing, what hurts, what they're wearing, how close they are to snapping, what they just said to each other, and how good an item really is. None of them changes how the game plays; they make problems quicker to spot.</description>
-    <facts>
-      <li>RimHUD: shows a selected pawn's needs, skills, health and more in a larger inspect pane or a floating window, with warnings for life-threatening conditions, untended wounds and shaky minds. Its options open from the gear icon that appears when you hover the panel.</li>
-      <li>Nice Health Tab: a body outline shows where each injury, implant and missing part is, with injuries grouped by what needs attention. Right-click a body part to set up an operation; animals keep the normal tab.</li>
-      <li>Nice Inventory Tab: stat bars that explain what raises or lowers each value, free apparel layers at a glance, and a right-click to change clothes or queue a bill the colonist puts on when it's done.</li>
-      <li>Color Coded Mood Bar: colors each colonist's mood bar by break risk (red extreme, orange major, yellow minor, then gray, light blue and green), with optional icons for bleeding, illness, pregnancy, heat or cold, and lovers.</li>
-      <li>Interaction Bubbles: shows social interactions as speech bubbles over the colonists, with the same text as the social log. A toggle among the play settings turns them off.</li>
-      <li>Injury Texture Variety: replaces the game's three human wound pictures with dozens of new ones, so bites, burns, cuts, stabs and frostbite look different at a glance.</li>
-      <li>Quality Colors: colors items by quality in the trade window and quality text in the mouseover readout and inspect pane, with several presets including a colorblind one.</li>
-    </facts>
-    <advice>
-      <li>When a bar turns yellow or orange, select that colonist and read their mood before it becomes a break.</li>
-      <li>Use the Nice Inventory Tab before winter or a war: it shows which layers are still free for a cloak or a piece of armor.</li>
-      <li>Check the colors in the trade window before you pay for gear. Quality decides much of the price and the stats.</li>
-      <li>With Rimfolk: Rimfolk's conversations (wishes, ambitions, gossip about the council, decree gripes, dream talk) are social interactions, so they show up as bubbles. If Rimfolk's own floating lines feel like too much, switch off "Colonists speak (floating text)" in Rimfolk's settings.</li>
-      <li>With Rimfolk: a colonist who wishes for "something fine to wear" wants clothing of excellent quality or better, and Quality Colors makes those pieces easy to spot.</li>
-      <li>With Rimfolk: every mood Rimfolk gives says what caused it in its tooltip, so hover over the mood that a colored bar warns you about.</li>
-    </advice>
+    <sections>
+      <li>
+        <heading>Health, gear and the inspect pane</heading>
+        <text>RimHUD shows a selected pawn's needs, skills, health and more in a larger inspect pane or a floating window, with warnings for life-threatening conditions, untended wounds and shaky minds. Its options open from the gear icon that appears when you hover the panel.
+
+Nice Health Tab draws a body outline that shows where each injury, implant and missing part is, with injuries grouped by what needs attention. Right-click a body part to set up an operation; animals keep the normal tab.
+
+Nice Inventory Tab adds stat bars that explain what raises or lowers each value, shows free apparel layers at a glance, and lets you right-click to change clothes or queue a bill the colonist puts on when it's done. Open it before winter or a war to see which layers are still free for a cloak or a piece of armor.</text>
+      </li>
+      <li>
+        <heading>Mood and talk</heading>
+        <text>Color Coded Mood Bar colors each colonist's mood bar by break risk: red for extreme, orange for major, yellow for minor, then gray, light blue and green. Optional icons show bleeding, illness, pregnancy, heat or cold, and lovers. When a bar turns yellow or orange, select that colonist and read their mood before it becomes a break.
+
+Interaction Bubbles shows social interactions as speech bubbles over the colonists, with the same text as the social log. A toggle among the play settings turns them off.</text>
+      </li>
+      <li>
+        <heading>Wounds and quality at a glance</heading>
+        <text>Injury Texture Variety replaces the game's three human wound pictures with dozens of new ones, so bites, burns, cuts, stabs and frostbite look different.
+
+Quality Colors colors items by quality in the trade window, and quality text in the mouseover readout and inspect pane, with several presets including a colorblind one. Check the colors before you pay for gear: quality decides much of the price and the stats.</text>
+      </li>
+      <li>
+        <heading>With Rimfolk</heading>
+        <points>
+          <li>Rimfolk's conversations (wishes, ambitions, gossip about the council, decree gripes, dream talk) are social interactions, so they show up as bubbles. If Rimfolk's own floating lines feel like too much, switch off "Colonists speak (floating text)" in Rimfolk's settings.</li>
+          <li>A colonist who wishes for "something fine to wear" wants clothing of excellent quality or better, and Quality Colors makes those pieces easy to spot.</li>
+          <li>Every mood Rimfolk gives says what caused it in its tooltip, so hover over the mood that a colored bar warns you about.</li>
+        </points>
+      </li>
+    </sections>
     <keywords>
       <li>interface</li>
       <li>hud</li>
@@ -506,23 +599,34 @@
     <summary>Searchable menus, a minimap, crop planning, a research tree, save folders, music, loading</summary>
     <tip>Give each colony its own save folder, and check it's selected before you play.</tip>
     <description>The rest of your interface helpers: searchable build and bill menus, a minimap, a smarter plant menu, a readable research tree, folders for your saves, control over the music, and a progress window while all of it loads. With more than two hundred mods, these are what keep the menus usable.</description>
-    <facts>
-      <li>Dubs Mint Menus: one searchable build menu for every architect category, sortable by stats like comfort or beauty, plus searchable bills, research, plants and surgeries, a quick radial menu and pinned button bars. Every menu can be switched off.</li>
-      <li>Dubs Mint Minimap: a movable minimap that shows colonists, enemies, animals, fires and shots in flight, and respects fog of war. Click or drag on it to move the camera.</li>
-      <li>Nice Plants Menu: when you choose a crop, it tells you whether the harvest will ripen before the first frost, roughly how many colonists it can feed, and whether a pen's grass is enough for its animals.</li>
-      <li>Yet Another Research Tree (YART): a cleaner research tree laid out by era, with fast search by mod, item or plant, a research queue and a one-screen view. Use only one research tree mod with it.</li>
-      <li>RimSaves: save folders per colony (autosaves go to the folder you selected), save previews, sorting, and quicksave and quickload keys, Ctrl+Home and Ctrl+End by default.</li>
-      <li>Music Manager: a small music player with play, pause and next buttons, and a song list where you can start any track or change when songs may play.</li>
-      <li>Loading Progress: a window that shows which loading stage is running. An optional setting, off by default, tracks which mods slow down your start-up.</li>
-    </facts>
-    <advice>
-      <li>Bind the Mint build menu to a key. With this many furniture mods, type "bed" and sort by comfort instead of scrolling.</li>
-      <li>Mint Menus has its own research menu and queue. If you use YART, pick one research screen and switch the other off in its settings.</li>
-      <li>Before sowing late in summer, check the plants menu's frost warning. Slow crops sown late often freeze before they ripen.</li>
-      <li>If RimSaves' menu doesn't show up, its author suggests moving it up the mod list, close to Core and HugsLib.</li>
-      <li>Turn on Loading Progress's load-time tracking once, then click the load time text on the main menu to see which mods cost you the most.</li>
-      <li>With Rimfolk: the advisor warns "The research bench is idle" when no project is chosen and suggests the cheapest one for your era. A research queue keeps that warning away.</li>
-    </advice>
+    <sections>
+      <li>
+        <table>
+          <li>Mod | What it adds</li>
+          <li>Dubs Mint Menus | One searchable build menu for every architect category, sortable by stats like comfort or beauty, plus searchable bills, research, plants and surgeries, a quick radial menu and pinned button bars. Every menu can be switched off.</li>
+          <li>Dubs Mint Minimap | A movable minimap that shows colonists, enemies, animals, fires and shots in flight, and respects fog of war. Click or drag on it to move the camera.</li>
+          <li>Nice Plants Menu | When you choose a crop, it tells you whether the harvest will ripen before the first frost, roughly how many colonists it can feed, and whether a pen's grass is enough for its animals.</li>
+          <li>Yet Another Research Tree (YART) | A cleaner research tree laid out by era, with fast search by mod, item or plant, a research queue and a one-screen view. Use only one research tree mod with it.</li>
+          <li>RimSaves | Save folders per colony (autosaves go to the folder you selected), save previews, sorting, and quicksave and quickload keys, Ctrl+Home and Ctrl+End by default.</li>
+          <li>Music Manager | A small music player with play, pause and next buttons, and a song list where you can start any track or change when songs may play.</li>
+          <li>Loading Progress | A window that shows which loading stage is running. An optional setting, off by default, tracks which mods slow down your start-up.</li>
+        </table>
+      </li>
+      <li>
+        <heading>Setting them up</heading>
+        <points>
+          <li>Bind the Mint build menu to a key. With this many furniture mods, type "bed" and sort by comfort instead of scrolling.</li>
+          <li>Mint Menus has its own research menu and queue. If you use YART, pick one research screen and switch the other off in its settings.</li>
+          <li>Before sowing late in summer, check the plants menu's frost warning. Slow crops sown late often freeze before they ripen.</li>
+          <li>If RimSaves' menu doesn't show up, its author suggests moving it up the mod list, close to Core and HugsLib.</li>
+          <li>Turn on Loading Progress's load-time tracking once, then click the load time text on the main menu to see which mods cost you the most.</li>
+        </points>
+      </li>
+      <li>
+        <heading>With Rimfolk</heading>
+        <text>The advisor warns "The research bench is idle" when no project is chosen and suggests the cheapest one for your era. A research queue keeps that warning away.</text>
+      </li>
+    </sections>
     <keywords>
       <li>menu</li>
       <li>search</li>
@@ -566,23 +670,43 @@
     <summary>What library mods are, why they load first, and which of your mods lean on which</summary>
     <tip>Sort the mod list before you start a colony, not in the middle of one.</tip>
     <description>A library, or framework, is a mod that adds little or nothing you can see. It holds shared code that other mods need, so each of them doesn't have to carry its own copy. Because the mods built on a library use its code and definitions while they load, the library has to be loaded before them, which is why these sit near the top of your list.</description>
-    <facts>
-      <li>Harmony lets mods change the game's code while it runs. Most code mods need it, and it belongs at the very top of the list.</li>
-      <li>HugsLib is shared code for mods such as Allow Tool, and its author asks for it right after Core. It also uploads your log: press Ctrl+F12 to get a link you can share.</li>
-      <li>XML Extensions gives other mods extra patching tools and lets them build settings menus in XML. Its author says to load it after Core and the DLCs, before the mods that use it.</li>
-      <li>Vanilla Expanded Framework is the shared code behind the Vanilla Expanded mods, and Medieval Overhaul and Outland need it too. Medieval Overhaul also needs Processor Framework, the code behind its barrels and other processors, which upgrades RimBees to its system as well.</li>
-      <li>Tabula Rasa (its id says Neronix17's Toolbox) is the base of the Outland mods, EBSG Framework holds shared code first written for gene mods, and Vehicle Framework is what the balloon and airship of Medieval Overhaul: Air Vehicles run on.</li>
-      <li>Map Mode Framework adds a switch to the world map for map modes: biome, temperature, elevation, rainfall, growing period, animal or plant commonality, and landforms.</li>
-      <li>Two ids here only look like libraries: vanillaexpanded.vfecore is Vanilla Furniture Expanded and vanillaexpanded.vcef is Vanilla Fishing Expanded, both ordinary content mods.</li>
-    </facts>
-    <advice>
-      <li>Let the mod manager's sort button, or RimSort, order your list: every mod's file says what it needs and what it must load after.</li>
-      <li>As a rule: Harmony first, then Core and the DLCs, then the libraries, then everything else.</li>
-      <li>If the log fills with red errors about missing classes or defs right after you add a mod, check that its library is active and loaded above it.</li>
-      <li>Never remove a library from a running save while mods that need it are still active.</li>
-      <li>Use the growing period and temperature map modes when choosing a site for a new settlement or outpost. For a medieval colony, a long growing season matters more than almost anything.</li>
-      <li>With Rimfolk: Rimfolk needs none of these and changes no game code, so it can sit at the very bottom of the list, where it is now.</li>
-    </advice>
+    <sections>
+      <li>
+        <heading>Your libraries</heading>
+        <table>
+          <li>Library | What it's for</li>
+          <li>Harmony | Lets mods change the game's code while it runs. Most code mods need it, and it belongs at the very top of the list.</li>
+          <li>HugsLib | Shared code for mods such as Allow Tool; its author asks for it right after Core. It also uploads your log: press Ctrl+F12 to get a link you can share.</li>
+          <li>XML Extensions | Gives other mods extra patching tools and lets them build settings menus in XML. Its author says to load it after Core and the DLCs, before the mods that use it.</li>
+          <li>Vanilla Expanded Framework | The shared code behind the Vanilla Expanded mods. Medieval Overhaul and Outland need it too.</li>
+          <li>Processor Framework | The code behind Medieval Overhaul's barrels and other processors, so Medieval Overhaul also needs it. It upgrades RimBees to its system as well.</li>
+          <li>Tabula Rasa (its id says Neronix17's Toolbox) | The base of the Outland mods.</li>
+          <li>EBSG Framework | Shared code first written for gene mods.</li>
+          <li>Vehicle Framework | What the balloon and airship of Medieval Overhaul: Air Vehicles run on.</li>
+          <li>Map Mode Framework | A switch on the world map for map modes: biome, temperature, elevation, rainfall, growing period, animal or plant commonality, and landforms.</li>
+        </table>
+        <after>Two ids here only look like libraries: vanillaexpanded.vfecore is Vanilla Furniture Expanded and vanillaexpanded.vcef is Vanilla Fishing Expanded, both ordinary content mods.</after>
+      </li>
+      <li>
+        <heading>Load order</heading>
+        <text>Let the mod manager's sort button, or RimSort, order your list: every mod's file says what it needs and what it must load after. As a rule:</text>
+        <points>
+          <li>Harmony first.</li>
+          <li>Then Core and the DLCs.</li>
+          <li>Then the libraries.</li>
+          <li>Then everything else.</li>
+        </points>
+        <after>If the log fills with red errors about missing classes or defs right after you add a mod, check that its library is active and loaded above it. Never remove a library from a running save while mods that need it are still active.</after>
+      </li>
+      <li>
+        <heading>Map modes</heading>
+        <text>Use the growing period and temperature map modes when choosing a site for a new settlement or outpost. For a medieval colony, a long growing season matters more than almost anything.</text>
+      </li>
+      <li>
+        <heading>With Rimfolk</heading>
+        <text>Of these, Rimfolk needs only Harmony, which it uses for a few small hooks into the game. It loads after the others on its own, so it can sit near the bottom of the list, where it is now.</text>
+      </li>
+    </sections>
     <keywords>
       <li>library</li>
       <li>framework</li>

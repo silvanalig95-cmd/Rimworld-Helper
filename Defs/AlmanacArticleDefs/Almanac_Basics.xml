@@ -4,7 +4,8 @@
   <!--
     The council's almanac. One def per page. Fields:
       label (page title), summary (one line for the list), tip (a line from the colony's old hands),
-      description (a short paragraph), facts (numbers), advice (steps), keywords (search),
+      description (the opening paragraph), sections (each with an optional heading, text, points, table and
+      after, chosen to suit the page), keywords (search),
       seeAlso (other pages), template (a room plan), dlc (Royalty/Ideology/Biotech/Anomaly/Odyssey),
       approximate (true when numbers come from community testing or sources disagree), order (sort).
   -->

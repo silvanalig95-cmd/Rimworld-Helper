@@ -284,7 +284,7 @@ Floor the kitchen with stone, not wood, and keep it clean. Keep wood in a roofed
           <li>Keep a big stack of wood under a roof for fires and torches.</li>
           <li>Make parkas and tuques from heavy leather or wool before it turns cold; tribalwear is thin.</li>
         </points>
-        <after>Indoor campfires or heaters, plus jackets, dusters or parkas for anyone working outside, are enough to see most colonies through.</after>
+        <after>Indoor campfires (or heaters, once there is power), plus jackets, dusters or parkas for anyone working outside, are enough to see most colonies through.</after>
       </li>
     </sections>
     <keywords>
@@ -545,7 +545,7 @@ Keep wooden walls out of the fighting line. When enemy archers outrange you, sho
       <li>
         <text>The starting factor on raid size is 0.7 up to day 10 and reaches 1.0 at day 40. Use those first 40 days to build walls, a chokepoint and traps.
 
-Everything you build or stockpile raises the size of later raids. All wealth counts, including stone blocks and wood stockpiles, and buildings count at half their value. Grow your defense along with your wealth, and don't stockpile far more than you need: all of it adds to the size of the next raid.</text>
+Everything you build or stockpile raises the size of later raids. All wealth counts, including stone blocks and wood stockpiles, and buildings count at half their value. Grow your defense along with your wealth, and don't stockpile far more than you need.</text>
       </li>
     </sections>
     <keywords>

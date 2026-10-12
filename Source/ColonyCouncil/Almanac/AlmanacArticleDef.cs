@@ -114,6 +114,15 @@ namespace ColonyCouncil
                 if (facts != null) parts.AddRange(facts);
                 if (advice != null) parts.AddRange(advice);
                 if (keywords != null) parts.AddRange(keywords);
+                if (sections != null)
+                    foreach (var sec in sections.Where(x => x != null))
+                    {
+                        parts.Add(sec.heading);
+                        parts.Add(sec.text);
+                        parts.Add(sec.after);
+                        if (sec.points != null) parts.AddRange(sec.points);
+                        if (sec.table != null) parts.AddRange(sec.table.Select(r => r.Replace('|', ' ')));
+                    }
                 searchText = string.Join(" ", parts.Where(p => !p.NullOrEmpty())).ToLowerInvariant();
             }
             foreach (var word in query.ToLowerInvariant().Split(' '))
