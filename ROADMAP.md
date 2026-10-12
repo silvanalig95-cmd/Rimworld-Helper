@@ -46,7 +46,13 @@ Things that happen to the colony from outside, on Rimfolk's own rhythm, written 
   five days later, shown on the World page), a traveling tinker, neighbors in need of medicine, a quarrel between
   two neighbors, growing weather, a warm spell, an old grave, a box of old letters, runaway lovers, a family visit
   and a fortune teller.
-- Next: more events per group, mod-aware events when the user's new modlist arrives.
+- Done: a fourth batch of seventeen that remember and unfold: follow-ups to the third batch (a regular buyer, the
+  runaway lovers' family, a letter from a relative who visited, the fortune teller's bad fortune spent, a quarrel
+  remembered), events drawing on epithets, life goals, vendettas (the one fight, behind the battles switch) and the
+  colony's founding day, seasonal ones (a harvest fair, a winter-night traveler, the thaw), a caravan to a far
+  market, and four that need a mod (A RimWorld of Magic, Alpha Animals, Dubs Bad Hygiene, Hospitality). Things on
+  their way show on the World page.
+- Next: more events per group.
 
 ## Phase H2: Scenarios with stakes (done)
 - Done: six scenarios (Hot Money, Marooned, Deserters, Bad Blood, Borrowed Time, The Fallen Tyrant) built from six

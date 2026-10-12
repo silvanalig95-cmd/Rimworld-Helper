@@ -411,14 +411,32 @@ medieval things). Many ask the council what to do, with a day or so to answer.
   days ahead, a **warm spell** in spring or fall, an **old grave** or a **box of old letters** turned up outside,
   **runaway lovers** asking to be taken in, a colonist's real **family** coming to visit (and maybe staying), and a
   **fortune teller** (the cheerful hear good news more often, the gloomy and nervous bad, the very clever none).
+- **The colony's own story.** A colonist known by an **epithet** (the Healer, Greenhand, the Builder) is sought out by
+  name for a day of help; a traveler who once did what a colonist has set their heart on (their **life goal**) stops
+  for the night; a small band of the people someone swore **vengeance** on camps nearby and can be drawn into a fight
+  at home (with battles on, and only if you choose it); and once a year, on **founding day**, an old friend among the
+  neighbors comes to mark it, with a line on who has been here since the first days, who was lost, what the colony
+  is known for and the customs it keeps.
+- **With the seasons, and over days.** A **harvest fair** at a neighbor's town in the fall (send a cart of your crop;
+  the silver comes back days later, and your best grower may take a prize), a **traveler on a winter night** who
+  asks to share the fire (and leaves something in the morning), **the thaw** where winters are hard, and a **caravan
+  to a far market** that takes your surplus and brings back what the colony is short of a week later. The World page
+  shows each of these while it's on its way.
+- **With your mods.** Only when the mod is active: **shards from the sky** that leave magicyte (A RimWorld of
+  Magic), a **strange creature** your best handler can try to win over (Alpha Animals), travelers asking to use your
+  **bath** or sauna (Dubs Bad Hygiene), and a **guest of note** who writes ahead and judges your guest room when they
+  come (Hospitality).
 
 Some events pick up where an earlier one left off: the **deserter**'s old unit tracks them down; the **lost child**
 you walked home comes back years later, grown, with a gift; a **champion** you beat comes back for a rematch (or one
 who beat you, to defend the title); the **great beast**'s young turns up a season after it fell; **pilgrims** you fed
-send their thanks down the road.
+send their thanks down the road. A neighbor whose **order** you filled comes back as a **regular buyer**; the
+**runaway lovers'** family comes asking after them (talk, a gift, or a grudge, never a fight); a relative who
+**visited** writes home news, and can be invited to come and live here; the colonist the **fortune teller** saw bad
+things for has a fright that comes to nothing; and the neighbors whose **quarrel** you judged remember it.
 
 The council window's **World** page (Colony section) shows what's coming (fights the colony knows about and how
-soon, questions waiting for an answer), who's out there with the colony on their mind (nemeses at large, people who
+soon, questions waiting for an answer, caravans, carts and relatives on their way), who's out there with the colony on their mind (nemeses at large, people who
 left and might come back, peoples with a grudge, rivals, a great beast and how long it'll stay), and the latest world
 events.
 

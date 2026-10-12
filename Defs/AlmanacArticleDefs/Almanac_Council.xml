@@ -400,6 +400,10 @@
       <li>A traveling doctor's shots (or a herbalist's tonic) help everyone fight off sickness faster for a month.</li>
       <li>A neighbor's order is collected five days after you take it. Only goods in your stockpiles and shelves count, and it's the whole amount or nothing. The World page shows when they're coming.</li>
       <li>Everyday events (stranded merchants, a tinker, a neighbors' quarrel, an old grave, a family visit, a fortune teller and others) never end in a fight.</li>
+      <li>Events remember what came before. A neighbor whose order you filled may come back to buy again, the runaway lovers' family may come asking after them, a relative who visited may write (and can be invited to stay), and neighbors remember how you judged their quarrel.</li>
+      <li>Some answers take days to come back, like a caravan to a far market, a cart sent to a harvest fair, a relative on the way or a guest who wrote ahead. The World page shows each one and when it's due.</li>
+      <li>The colony's founding day comes once a year. A colonist known by an epithet may be sought out by name, and a band of the people someone swore vengeance on can be drawn into a fight at home, if you want it.</li>
+      <li>A few events only come with certain mods: lights falling from the sky (A RimWorld of Magic), a strange creature (Alpha Animals), travelers asking for a bath (Dubs Bad Hygiene) and a guest of note who judges your guest room (Hospitality).</li>
     </facts>
     <advice>
       <li>Answer the letters: an unanswered one falls to a default, which is rarely the best choice.</li>
@@ -408,7 +412,7 @@
       <li>Roof a field or two and keep food cold. That takes most of the harm out of hail and vermin.</li>
       <li>Hunt the great beast with a group, not a lone colonist.</li>
     </advice>
-    <keywords><li>event</li><li>incident</li><li>comrade</li><li>family</li><li>bounty</li><li>debt</li><li>champion</li><li>contest</li><li>beast</li><li>tribute</li><li>revenge</li><li>deserter</li><li>comet</li><li>fireflies</li><li>hail</li><li>vermin</li><li>cache</li><li>treasure</li><li>storyteller</li><li>pilgrims</li><li>scholar</li><li>apprentice</li><li>stray</li><li>mourners</li><li>cargo</li><li>scout</li><li>journalist</li><li>doctor</li><li>herbalist</li><li>music</li><li>celebrity</li><li>order</li><li>tinker</li><li>merchants</li><li>quarrel</li><li>grave</li><li>letters</li><li>lovers</li><li>fortune</li><li>warm spell</li></keywords>
+    <keywords><li>event</li><li>incident</li><li>comrade</li><li>family</li><li>bounty</li><li>debt</li><li>champion</li><li>contest</li><li>beast</li><li>tribute</li><li>revenge</li><li>deserter</li><li>comet</li><li>fireflies</li><li>hail</li><li>vermin</li><li>cache</li><li>treasure</li><li>storyteller</li><li>pilgrims</li><li>scholar</li><li>apprentice</li><li>stray</li><li>mourners</li><li>cargo</li><li>scout</li><li>journalist</li><li>doctor</li><li>herbalist</li><li>music</li><li>celebrity</li><li>order</li><li>tinker</li><li>merchants</li><li>quarrel</li><li>grave</li><li>letters</li><li>lovers</li><li>fortune</li><li>warm spell</li><li>buyer</li><li>letter</li><li>market</li><li>fair</li><li>founding</li><li>anniversary</li><li>thaw</li><li>winter</li><li>vengeance</li><li>guest</li></keywords>
     <seeAlso><li>Council_Alm_C_Strangers</li><li>Council_Alm_C_Ways</li><li>Council_Alm_C_Dilemmas</li></seeAlso>
   </ColonyCouncil.AlmanacArticleDef>
 

@@ -26,7 +26,7 @@ namespace ColonyCouncil
     /// What a Rimfolk world event says and offers. World events are ordinary IncidentDefs in their own category
     /// (Council_WorldEvent) with this extension: Rimfolk schedules them on its own rhythm, so they never take a slot
     /// from the storyteller's own events, and dev mode can fire any of them. Texts may use {A}, {B}, {X} (the stranger),
-    /// {FACTION}, {ENEMY}, {COUNT}, {THING}, {SKILL}, {RELATION}, {DEAD} and {BEAST}. Lines can carry era tags
+    /// {FACTION}, {ENEMY}, {COUNT}, {THING}, {SKILL}, {RELATION}, {DEAD}, {BEAST}, {TALE} and {PLACE}. Lines can carry era tags
     /// ([lowtech], [!lowtech], [industrial|spacer]) and event tags (the colonist's past, the skill, the season).
     /// </summary>
     public class HappeningExtension : DefModExtension
@@ -128,6 +128,10 @@ namespace ColonyCouncil
         public bool contest;
         /// <summary>Set off by the scenario the player chose: its fights ignore the world-event battle switch.</summary>
         public bool scenario;
+        /// <summary>A place the texts name ({PLACE}): a neighbor's town, the guest room, the land around the colony.</summary>
+        public string placeName;
+        /// <summary>Something the event's code keeps for the answer (a def name), never shown.</summary>
+        public string note;
 
         public HappeningExtension Ext => incident?.GetModExtension<HappeningExtension>();
 
@@ -142,6 +146,7 @@ namespace ColonyCouncil
             args.Add((beast ?? "").Named("BEAST"));
             args.Add((enemy?.Name ?? "").Named("ENEMY"));
             args.Add((tale ?? "").Named("TALE"));
+            args.Add((placeName ?? "").Named("PLACE"));
         }
 
         public override void ExposeData()
@@ -162,6 +167,8 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref variant, "variant");
             Scribe_Values.Look(ref contest, "contest");
             Scribe_Values.Look(ref scenario, "scenario");
+            Scribe_Values.Look(ref placeName, "placeName");
+            Scribe_Values.Look(ref note, "note");
             if (Scribe.mode == LoadSaveMode.PostLoadInit)
             {
                 if (group == null) group = new List<Pawn>();
@@ -441,6 +448,8 @@ namespace ColonyCouncil
             Safe("great beast", () => HappeningWorker_GreatBeast.Hourly(this, comp));
             // A neighbor's order the colony took on: a reminder, then the collection (even with world events off since).
             Safe("orders", () => HappeningWorker_Order.Hourly(this, comp, now));
+            // Later parts of the fourth batch: arrivals, caravans and fairs coming back, old memories fading, founding day.
+            Safe("living", () => LivingEvents.Hourly(this, comp, now));
             // Before the daily tidy-up, so a hunt whose leader just died is told before its memo goes.
             Safe("scenario", () => ScenarioStakes.Hourly(this, comp, now));
             if (now % GenDate.TicksPerDay < GenDate.TicksPerHour) Safe("event memory", Prune);

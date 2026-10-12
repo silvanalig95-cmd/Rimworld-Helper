@@ -1,0 +1,714 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- Rimfolk world events, fourth batch: a colony with a past. Some pick up what an earlier event left behind (an
+       order filled, runaway lovers taken in, a family visit, a bad fortune, a quarrel the colony judged), some draw on
+       what Rimfolk knows about the colony (its epithets, vendettas, life goals, age and customs), and some take days
+       to play out, with a line on the World page meanwhile. Code: Source/ColonyCouncil/Happenings/Workers_Living.cs.
+       Text the code needs beyond the letter sits in a HappeningLivingText next to the HappeningExtension. -->
+
+  <!-- ===================== A regular buyer ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Council_Evt_RegularBuyer</defName>
+    <label>a regular buyer</label>
+    <workerClass>ColonyCouncil.HappeningWorker_RegularBuyer</workerClass>
+    <baseChance>2</baseChance>
+    <minRefireDays>20</minRefireDays>
+    <earliestDay>15</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Challenge</group>
+        <minColonists>2</minColonists>
+        <answerDays>1</answerDays>
+        <titles>
+          <li>[once] Another order from {FACTION}</li>
+          <li>[again] {FACTION} order again</li>
+        </titles>
+        <texts>
+          <li>[once,lowtech] The rider from {FACTION} is back. Their people were pleased with the last order: the count was right and none of it was spoiled. This time they want {TALE}, for {COUNT} silver, and the rider has left a small gift at the gate for the trouble last time.\n\nAs before, they'll send for it in five days, and they want the whole order or none of it.</li>
+          <li>[once,!lowtech] {FACTION} sent word this morning. The last order arrived in good shape, and they'd like to buy again: {TALE}, for {COUNT} silver. Their courier left a small gift at the gate by way of thanks.\n\nThey'll send for it in five days, and it's the whole order or none of it.</li>
+          <li>[again] {FACTION} have bought from the colony more than once now, and their quartermaster has stopped haggling. They want {TALE} again, for {COUNT} silver, and there's a small gift at the gate as usual.\n\nThey'll send for it in five days.</li>
+          <li>[again,winter] Winter has made {FACTION} regular customers. Their rider is back for {TALE} at {COUNT} silver, and has brought a small gift, as the last one did.\n\nThey'll send for it in five days, the whole order or none of it.</li>
+        </texts>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Loot"><value>60~160</value></li>
+        </effects>
+        <defaultOption>1</defaultOption>
+        <options>
+          <li>
+            <label>Take the order</label>
+            <outcome>The order is taken. {FACTION} will send for {TALE} in five days.</outcome>
+            <ways><toil>1</toil><openness>1</openness></ways>
+          </li>
+          <li>
+            <label>Not this time</label>
+            <outcome>The council turns the order down. {FACTION} will buy elsewhere from now on.</outcome>
+          </li>
+        </options>
+      </li>
+      <li Class="ColonyCouncil.HappeningLivingText">
+        <extra>
+          <li>In the colony's stores now: {ITEM}.</li>
+        </extra>
+        <remembered>
+          <li>[once] {FACTION} bought {THING} from the colony once, and were pleased with it.</li>
+          <li>[again] {FACTION} buy {THING} from the colony regularly.</li>
+        </remembered>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== The lovers' family ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Council_Evt_LoversKin</defName>
+    <label>the lovers' family</label>
+    <workerClass>ColonyCouncil.HappeningWorker_LoversKin</workerClass>
+    <baseChance>2</baseChance>
+    <minRefireDays>30</minRefireDays>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Visitors</group>
+        <stayHours>10~16</stayHours>
+        <answerDays>0.5</answerDays>
+        <riskSkill>Social</riskSkill>
+        <riskSkillOption>0</riskSkillOption>
+        <journal>Council_Journal_Evt_LoversKin</journal>
+        <titles>
+          <li>{A_nameDef}'s {RELATION} comes asking</li>
+        </titles>
+        <texts>
+          <li>{X_nameDef}, {A_nameDef}'s {RELATION}, has walked from {FACTION}'s lands and is waiting at the gate. The family worked out a while ago where {A_nameDef} and {B_nameDef} went when they ran. {X_nameDef} came alone, without a weapon, and asks only to talk.</li>
+          <li>[mother] A woman of {FACTION} has been asking for {A_nameDef} at the gate since dawn. It's {X_nameDef}, {A_possessive} mother. She has brought a basket of things from home, and hasn't decided yet whether she's angry.\n\n{A_nameDef} and {B_nameDef} have seen her from the window and haven't gone out yet.</li>
+          <li>[father,lowtech] {X_nameDef}, {A_nameDef}'s father, rode in from {FACTION}'s lands this morning on a borrowed mule. He has asked for {A_nameDef} and {B_nameDef} by name, and says he only wants to talk.\n\nThe last time the family talked, the two of them left in the night.</li>
+          <li>[!lowtech] {X_nameDef} of {FACTION} came up the road this morning asking for {A_nameDef}. {X_nameDef} is {A_possessive} {RELATION}, and it took most of a season to work out where {A_nameDef} and {B_nameDef} had gone.\n\n{X_nameDef} says the family only wants to talk. {A_nameDef} isn't sure that's all.</li>
+        </texts>
+        <defaultOption>0</defaultOption>
+        <options>
+          <li>
+            <label>Let them talk</label>
+            <outcome>{A_nameDef} and {B_nameDef} sit down with {X_nameDef} and talk until supper, without a raised voice. {X_nameDef} leaves in the morning with a letter for the family and a promise to come again.</outcome>
+            <riskChance>0.35</riskChance>
+            <riskReplaces>true</riskReplaces>
+            <riskOutcome>The talk starts well and ends badly. {X_nameDef} leaves before supper, and {A_nameDef} doesn't come out of {A_possessive} room until morning.</riskOutcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>AAndB</target><thought>Council_Evt_FamilyMadePeace</thought></li>
+              <li Class="ColonyCouncil.DilemmaEffect_FairGoodwill"><amount>6</amount></li>
+            </effects>
+            <riskEffects>
+              <li Class="ColonyCouncil.DilemmaEffect_Thought"><thought>Council_Evt_FamilyQuarrel</thought></li>
+              <li Class="ColonyCouncil.DilemmaEffect_FairGoodwill"><amount>-3</amount></li>
+              <li Class="ColonyCouncil.DilemmaEffect_SendAway" />
+            </riskEffects>
+            <ways><openness>1</openness><tradition>1</tradition></ways>
+          </li>
+          <li>
+            <label>Send a gift home ({COUNT} silver)</label>
+            <outcome>{X_nameDef} takes the gift and a message for the family, and stays for supper before setting off home. It isn't forgiveness, but {FACTION} speak more kindly of the colony now.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>silver</what></li>
+              <li Class="ColonyCouncil.DilemmaEffect_FairGoodwill"><amount>10</amount></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>AAndB</target><thought>Council_Evt_FamilyGift</thought></li>
+            </effects>
+            <ways><generosity>2</generosity></ways>
+          </li>
+          <li>
+            <label>Ask {X_objective} to leave</label>
+            <outcome>{X_nameDef} is walked back to the road and asked not to come again. {FACTION} won't forget it soon.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_FairGoodwill"><amount>-6</amount></li>
+              <li Class="ColonyCouncil.DilemmaEffect_SendAway" />
+            </effects>
+            <ways><openness>-2</openness></ways>
+          </li>
+        </options>
+      </li>
+      <li Class="ColonyCouncil.HappeningLivingText">
+        <remembered>
+          <li>The families of {A_nameDef} and {B_nameDef} among {FACTION} know where the two of them went.</li>
+        </remembered>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== A letter from home ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Council_Evt_KinLetter</defName>
+    <label>a letter from home</label>
+    <workerClass>ColonyCouncil.HappeningWorker_KinLetter</workerClass>
+    <baseChance>2</baseChance>
+    <minRefireDays>25</minRefireDays>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Past</group>
+        <addsPeople>true</addsPeople>
+        <answerDays>1</answerDays>
+        <journal>Council_Journal_Evt_KinLetter</journal>
+        <titles>
+          <li>A letter from {X_nameDef}</li>
+        </titles>
+        <texts>
+          <li>[lowtech] A peddler on the road from {FACTION}'s lands brought a letter for {A_nameDef} and a parcel tied with twine. It's from {X_nameDef}, {A_possessive} {RELATION}, who visited a while back.\n\nThe letter is mostly news: who has married, whose roof finally came down in the rain, how the goats are doing. {A_nameDef} has read it three times.</li>
+          <li>[!lowtech] A letter for {A_nameDef} came in with a passing trader today, with a small parcel. {X_nameDef}, {A_possessive} {RELATION}, writes from {FACTION}'s lands: the crops came in late, the neighbor's boy has finally left home, and the old generator still needs kicking twice to start.</li>
+          <li>[winter] {A_nameDef} has a letter from {X_nameDef}, {A_possessive} {RELATION}, carried in by a trader with a parcel wrapped against the snow. It's a winter letter: short days, a cough going round, the well frozen solid twice already.\n\n{X_nameDef} ends by asking after everyone {A_nameDef} wrote about last time, by name.</li>
+          <li>[summer] A letter came for {A_nameDef} today, with a parcel and a dried flower pressed between the pages. {X_nameDef}, {A_possessive} {RELATION}, writes that the summer has been long and dry among {FACTION}, and that everyone at home sends their love.</li>
+          <li>[spring] {X_nameDef}, {A_nameDef}'s {RELATION}, has written from {FACTION}'s lands. There's been a wedding, the spring floods took out the lower bridge, and a parcel came along with the letter. {A_nameDef} has been reading the good parts aloud to anyone who stops.</li>
+          <li>[fall] A trader passing through left a letter and a parcel for {A_nameDef}. It's from {X_nameDef}, {A_possessive} {RELATION}: the harvest was fair, the roof held, and the family still sets a place for {A_objective} at the long table on feast days.</li>
+          <li>{A_nameDef} has a letter from {X_nameDef}, {A_possessive} {RELATION}, who visited a while ago. It came with a parcel from home, and it's full of small news: a birth, a wedding, a dog that went missing for a week and came back fat.</li>
+        </texts>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><thought>Council_Evt_LetterFromHome</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Loot"><value>50~150</value></li>
+        </effects>
+        <defaultOption>0</defaultOption>
+        <options>
+          <li>
+            <label>Write back</label>
+            <outcome>{A_nameDef} spends the evening on a reply, and the next trader heading that way takes it along.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Learn"><skill>Social</skill><xp>150</xp></li>
+            </effects>
+            <ways><tradition>1</tradition></ways>
+          </li>
+          <li>
+            <label>Invite {X_objective} to come and live here</label>
+            <outcome>{A_nameDef} writes back asking {X_nameDef} to come and live at the colony. If {X_nameDef} can get away, the journey takes about a week.</outcome>
+            <ways><openness>2</openness></ways>
+          </li>
+        </options>
+      </li>
+      <li Class="ColonyCouncil.HappeningLivingText">
+        <coming>
+          <li>{X_nameDef}, {A_nameDef}'s {RELATION}, has been asked to come and live here. Expected within {DAYS}.</li>
+        </coming>
+        <doneTitles>
+          <li>{X_nameDef} has come to stay</li>
+        </doneTitles>
+        <done>
+          <li>[lowtech] {X_nameDef}, {A_nameDef}'s {RELATION}, walked in from {FACTION}'s lands this morning with a pack, a walking stick and everything else left behind at home. {A_nameDef} saw {X_objective} from a long way off and went out to meet {X_objective} on the road.\n\n{X_nameDef} is a colonist now.</li>
+          <li>[!lowtech] {X_nameDef} came up the road this morning with two bags and a coat too warm for the weather, and asked for {A_nameDef}. {A_nameDef}'s {RELATION} is here to stay.\n\n{X_nameDef} is a colonist now.</li>
+        </done>
+        <failTitles>
+          <li>A letter from {X_nameDef}</li>
+        </failTitles>
+        <fail>
+          <li>{X_nameDef} wrote back. There's nothing {X_nameDef} would like better than to come, but someone at home is sick and there's nobody else to look after them. {A_nameDef} has put the letter away with the others.</li>
+          <li>A reply came from {X_nameDef}, {A_nameDef}'s {RELATION}. The harvest is late, the family needs every pair of hands, and the journey will have to wait. {X_nameDef} promises to come one day.</li>
+          <li>{X_nameDef} won't be coming after all. A grandchild is on the way among {FACTION}, and {X_nameDef} means to be there for it. The letter asks {A_nameDef} to visit instead.</li>
+        </fail>
+        <cancelled>
+          <li>Word came from {FACTION}'s lands: {X_nameDef} won't be coming to the colony after all.</li>
+        </cancelled>
+        <remembered>
+          <li>{X_nameDef}, {A_nameDef}'s {RELATION}, lives among {FACTION} and may write.</li>
+        </remembered>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== The fortune, come and gone ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Council_Evt_FortuneScare</defName>
+    <label>a close call</label>
+    <workerClass>ColonyCouncil.HappeningWorker_FortuneScare</workerClass>
+    <baseChance>2</baseChance>
+    <minRefireDays>10</minRefireDays>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Past</group>
+        <letter>NeutralEvent</letter>
+        <notable>false</notable>
+        <journal>Council_Journal_Evt_FortuneScare</journal>
+        <titles>
+          <li>A close call</li>
+        </titles>
+        <texts>
+          <li>[winter] {A_nameDef} slipped on the ice outside the storeroom and slid most of the way down the path on {A_possessive} back, with a full jug held up in the air. Nothing was broken, not even the jug.\n\nSince the fortune teller read the cards, {A_nameDef} has been waiting for something bad to happen. {A_nameDef} has decided this was it.</li>
+          <li>[lowtech] A roof tile slid off in the wind this morning and broke on the ground where {A_nameDef} had been standing a moment before.\n\nEver since the fortune teller's visit, {A_nameDef} has been waiting for the bad fortune to arrive. That, {A_nameDef} says, was it.</li>
+          <li>[!lowtech] A loose sheet of roofing came down in the wind today and landed a step behind {A_nameDef}. It didn't touch {A_objective}.\n\n{A_nameDef} has been waiting for the fortune teller's bad fortune to come true ever since the cards were read, and has decided this was it. {A_nameDef} looks lighter for it.</li>
+          <li>[summer] {A_nameDef} knocked a wild bees' nest down while cutting brush and ran for it with half the swarm behind. Not one of them stung.\n\nThe fortune teller's cards had shown something bad coming for {A_nameDef}. {A_nameDef} has decided that was it, and has been in a much better mood since.</li>
+          <li>[spring|fall] A startled animal came crashing out of the brush and ran past {A_nameDef}, close enough to touch, and was gone before {A_nameDef} could shout.\n\nSince the fortune teller's visit, {A_nameDef} has been waiting for the bad fortune to arrive. {A_nameDef} has decided that was it, and seems relieved.</li>
+          <li>[child] {A_nameDef} climbed onto the storeroom roof after a lost ball and couldn't get down again. Two of the grown-ups fetched a ladder, and {A_nameDef} came down without a scratch.\n\nThe fortune teller's bad card has been on {A_nameDef}'s mind for days. Now {A_nameDef} is telling everyone the bad luck is used up.</li>
+          <li>{A_nameDef} missed a step on the way down to the stores with a full basket, and landed sitting on the bottom step, basket still in hand, with no harm done.\n\nThe fortune teller saw something bad coming for {A_nameDef}. {A_nameDef} has decided that was it.</li>
+        </texts>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><thought>Council_Evt_FortuneSpent</thought></li>
+        </effects>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== A quarrel remembered ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Council_Evt_QuarrelRemembered</defName>
+    <label>a quarrel remembered</label>
+    <workerClass>ColonyCouncil.HappeningWorker_QuarrelRemembered</workerClass>
+    <baseChance>2</baseChance>
+    <minRefireDays>30</minRefireDays>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Visitors</group>
+        <letter>PositiveEvent</letter>
+        <titles>
+          <li>[sided] {FACTION} remember</li>
+          <li>[middle] The split held</li>
+        </titles>
+        <texts>
+          <li>[sided,lowtech] A rider of {FACTION} came by today with a laden pack horse. When {FACTION} and {ENEMY} quarreled, the colony took {FACTION}'s side, and they haven't forgotten. They've sent {TALE}.\n\n{ENEMY}, by all accounts, still grumble about it on the road.</li>
+          <li>[sided,!lowtech] {FACTION} sent a drop pod with a short note: thanks again for standing with them against {ENEMY}. Inside is {TALE}.\n\nTraders say {ENEMY} still bring it up whenever the colony is mentioned.</li>
+          <li>[middle,mediator] The split {A_nameDef} worked out between {FACTION} and {ENEMY} has held all season. Both peoples sent word, and something with it: {TALE}.\n\n{A_nameDef} has read both messages twice.</li>
+          <li>[middle,!mediator,lowtech] Word has come from {FACTION} and {ENEMY}: the split the colony worked out between them has held, and neither side has broken it. Between them they've sent {TALE}, by way of thanks.</li>
+          <li>[middle,!mediator,!lowtech] {FACTION} and {ENEMY} have both sent word, which hasn't happened since their quarrel. The colony's settlement is holding, and a drop pod has come down with {TALE} from the two of them.</li>
+        </texts>
+      </li>
+      <li Class="ColonyCouncil.HappeningLivingText">
+        <remembered>
+          <li>[sided] {FACTION} remember that the colony took their side against {ENEMY}.</li>
+          <li>[middle] {FACTION} and {ENEMY} remember the middle way the colony found in their quarrel.</li>
+        </remembered>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== Known by name ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Council_Evt_Renown</defName>
+    <label>known by name</label>
+    <workerClass>ColonyCouncil.HappeningWorker_Renown</workerClass>
+    <minRefireDays>35</minRefireDays>
+    <earliestDay>20</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Visitors</group>
+        <ages>18~60</ages>
+        <stayHours>12~20</stayHours>
+        <answerDays>0.5</answerDays>
+        <journal>Council_Journal_Evt_Renown</journal>
+        <titles>
+          <li>Looking for {TALE}</li>
+        </titles>
+        <texts>
+          <li>[heal,lowtech] {X_nameDef} of {FACTION} walked two days with an arm that was set badly last winter and never healed straight. On the road, {X_nameDef} heard about {A_nameDef}, the one people call {TALE}, and came to ask {A_objective} to look at it.</li>
+          <li>[heal,!lowtech] {X_nameDef} of {FACTION} has come a long way with a cough that won't clear, and a doctor at home who has run out of ideas. {X_nameDef} is asking for {A_nameDef}, the one the traders call {TALE}.</li>
+          <li>[build] {FACTION} are raising a new hall, and its walls keep cracking. {X_nameDef}, who is in charge of it, has heard of {A_nameDef}, the one people call {TALE}, and has come with a roll of drawings to ask for a day of advice.</li>
+          <li>[dig] {X_nameDef} of {FACTION} has a mine that keeps flooding and a crew that's starting to talk about giving up. {X_nameDef} came to ask {A_nameDef}, known on the roads as {TALE}, where they're going wrong.</li>
+          <li>[grow] {X_nameDef} of {FACTION} has come with a sack of seed and a question. Their fields have done badly three years running, and {X_nameDef} has heard that the colony's {A_nameDef}, called {TALE}, could grow wheat on a rock.</li>
+          <li>[cook] {X_nameDef}, who cooks for a big household among {FACTION}, has come to ask {A_nameDef} for a recipe. Travelers who have eaten at the colony talk about the cooking of the one they call {TALE}, and {X_nameDef} wants to know what the talk is about.</li>
+          <li>[beasts] {X_nameDef} of {FACTION} has a young draft animal that won't take a harness, and has heard that the colony's {A_nameDef}, called {TALE}, can calm anything with four legs. {X_nameDef} brought the animal's halter and hopes for advice.</li>
+          <li>[hunt] The hunters of {FACTION} have had a lean season. {X_nameDef} has come to ask {A_nameDef}, the one they call {TALE}, where the game goes when it leaves the valleys.</li>
+          <li>[study] {X_nameDef}, a student among {FACTION}, has come with a satchel of notes and a long list of questions. {X_nameDef} has heard of {A_nameDef}, called {TALE}, and wants a day of {A_possessive} time.</li>
+          <li>[make] {X_nameDef} of {FACTION} has brought a broken piece of work and a lot of questions for {A_nameDef}, the one people call {TALE}. The carpenters at home can't tell {X_nameDef} where the joint went wrong.</li>
+          <li>[talk] A family of {FACTION} has been in a dispute with their landlord for a year. {X_nameDef} has come to ask {A_nameDef}, known as {TALE}, to help them make their case.</li>
+          <li>[defend] {X_nameDef} speaks for a village of {FACTION} that has been raided twice this year. {X_nameDef} has heard of {A_nameDef}, the one people call {TALE}, and has come to ask how a small place holds out.</li>
+        </texts>
+        <defaultOption>0</defaultOption>
+        <options>
+          <li>
+            <label>Let {A_nameDef} help</label>
+            <outcome>{A_nameDef} spends the day with {X_nameDef}. By evening {X_nameDef} has what {X_pronoun} came for, and leaves a payment before setting off home.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Learn"><xp>500</xp></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Thought"><thought>Council_Evt_SoughtOut</thought></li>
+              <li Class="ColonyCouncil.DilemmaEffect_EventGoodwill"><amount>5</amount></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Loot"><target>X</target><value>100~250</value></li>
+            </effects>
+            <ways><openness>1</openness><generosity>1</generosity></ways>
+          </li>
+          <li>
+            <label>{A_nameDef} can't spare the day</label>
+            <outcome>{X_nameDef} is disappointed, and sets off home.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_SendAway" />
+            </effects>
+          </li>
+        </options>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== A chance at vengeance (a fight, if the colony wants one) ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Council_Evt_VendettaBand</defName>
+    <label>a chance at vengeance</label>
+    <workerClass>ColonyCouncil.HappeningWorker_VendettaBand</workerClass>
+    <baseChance>1.2</baseChance>
+    <minRefireDays>40</minRefireDays>
+    <earliestDay>15</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Battle</group>
+        <battle>true</battle>
+        <answerDays>0.5</answerDays>
+        <points>0.3~0.45</points>
+        <delayHours>2~4</delayHours>
+        <journal>Council_Journal_Evt_VendettaBand</journal>
+        <titles>
+          <li>{ENEMY} nearby</li>
+        </titles>
+        <texts>
+          <li>[killed,lowtech] Hunters came back with news: a small band of {ENEMY} has made camp a few hours' walk from the colony, resting on the way somewhere else. {A_nameDef} swore to make {ENEMY} pay for {DEAD}, and hasn't said a word since hearing it.\n\nThe colony could draw them out to fight here, on its own ground, or let them pass.</li>
+          <li>[killed,!lowtech] Scouts have spotted a small band of {ENEMY} camped in the hills, not far off. {A_nameDef} swore vengeance on {ENEMY} for {DEAD}, and is already checking {A_possessive} weapon.\n\nA few shots at their camp would bring them here, to fight on the colony's ground. Or the colony can leave them be.</li>
+          <li>[taken] A small band of {ENEMY}, the people who took {DEAD}, is camped not far from the colony. {A_nameDef} has sworn they'll answer for it, and wants them drawn out to fight here, on ground the colony knows.\n\nThe council can agree, or let them move on.</li>
+          <li>[tribalfoe] Smoke is rising from a war camp of {ENEMY} in the hills, a few hours away. It's a small band. {A_nameDef} swore vengeance on them for {DEAD}, and wants them drawn in to fight on the colony's ground.\n\nThe council can agree, or let them move on.</li>
+        </texts>
+        <defaultOption>1</defaultOption>
+        <options>
+          <li>
+            <label>Draw them out</label>
+            <outcome>A few colonists go out to show themselves near the camp. The band of {ENEMY} takes the bait, and will be here within hours. {A_nameDef} is ready.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Thought"><thought>Council_Evt_VendettaChance</thought><onlyIfChosen>true</onlyIfChosen></li>
+              <li Class="ColonyCouncil.DilemmaEffect_RaidLater">
+                <forA>true</forA>
+                <label>{ENEMY} take the bait</label>
+                <text>A small band of {ENEMY} has followed the colony's people back, as planned. {A_nameDef} swore to make them pay for {DEAD}.</text>
+              </li>
+            </effects>
+            <ways><mercy>-2</mercy></ways>
+          </li>
+          <li>
+            <label>Let them pass</label>
+            <outcome>The band of {ENEMY} breaks camp the next morning and moves on. {A_nameDef} watches the smoke of their fires until it's gone.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Thought"><thought>Council_Evt_VendettaPassed</thought></li>
+            </effects>
+            <ways><mercy>1</mercy></ways>
+          </li>
+        </options>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== Founding day (once a year, on the day) ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Council_Evt_Founding</defName>
+    <label>founding day</label>
+    <workerClass>ColonyCouncil.HappeningWorker_Founding</workerClass>
+    <baseChance>3</baseChance>
+    <minRefireDays>45</minRefireDays>
+    <earliestDay>58</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Past</group>
+        <ages>30~70</ages>
+        <stayHours>16~24</stayHours>
+        <answerDays>1</answerDays>
+        <journal>Council_Journal_Evt_Founding</journal>
+        <titles>
+          <li>[first] A year here</li>
+          <li>[years] {COUNT} years here</li>
+        </titles>
+        <texts>
+          <li>[first,guest] A year ago today, the first of the colony's people set down their packs here in the {PLACE}. {A_nameDef} has been here the longest, and remembers the first night better than most of what came after.\n\n{X_nameDef} of {FACTION}, one of the first neighbors to trade with the colony, has come to mark the day with a gift.</li>
+          <li>[first,noguest] A year ago today, the colony was a few people and their packs in the {PLACE}. {A_nameDef} has been here since then, and has been telling the story of the first night to anyone who'll listen.</li>
+          <li>[years,guest] It's {COUNT} years today since the colony was founded. {A_nameDef} has been here the longest of anyone now, and can still point to the spot where the first fire was lit.\n\n{X_nameDef} of {FACTION}, an old friend of the colony, has come to mark the day and brought a gift.</li>
+          <li>[years,noguest] {COUNT} years ago today, the colony was founded here in the {PLACE}. {A_nameDef} has been here the longest, and remembers when there was nothing here but the wind.</li>
+          <li>[years,lost,noguest] It's {COUNT} years today since the colony was founded. Not everyone who came is still here to see it. {A_nameDef}, who has been here the longest, has started the day at the graves.</li>
+          <li>[winter,first,noguest] A year ago today the colony was founded, in snow much like this. {A_nameDef} still remembers how cold that first night was in the {PLACE}, with no walls and not enough blankets.</li>
+        </texts>
+        <defaultOption>1</defaultOption>
+        <options>
+          <li>
+            <label>Hold a feast</label>
+            <outcome>The colony lays on a feast for founding day. The old stories come out again, the first night and the first winter, and the tables aren't cleared until well past midnight.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_Evt_FoundingFeast</thought><exceptTrait><li>Psychopath</li></exceptTrait></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Joy"><target>Colony</target><amount>0.2</amount></li>
+            </effects>
+            <ways><tradition>2</tradition></ways>
+          </li>
+          <li>
+            <label>A quiet supper</label>
+            <outcome>Founding day passes with a quiet supper and a toast to the ones who aren't here to see it.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_Evt_FoundingDay</thought><exceptTrait><li>Psychopath</li></exceptTrait></li>
+            </effects>
+            <ways><tradition>1</tradition></ways>
+          </li>
+        </options>
+      </li>
+      <li Class="ColonyCouncil.HappeningLivingText">
+        <extra>
+          <li>[founders] Here since the first days: {ITEM}.</li>
+          <li>[lost] Colonists who have died since: {ITEM}.</li>
+          <li>[known] On the roads, the colony is known as {ITEM}.</li>
+          <li>[customs] Customs kept here: {ITEM}.</li>
+        </extra>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== A kindred spirit ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Council_Evt_KindredSpirit</defName>
+    <label>a kindred spirit</label>
+    <workerClass>ColonyCouncil.HappeningWorker_KindredSpirit</workerClass>
+    <minRefireDays>40</minRefireDays>
+    <earliestDay>15</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Visitors</group>
+        <letter>PositiveEvent</letter>
+        <ages>35~75</ages>
+        <stayHours>14~20</stayHours>
+        <notable>false</notable>
+        <journal>Council_Journal_Evt_KindredSpirit</journal>
+        <titles>
+          <li>A kindred spirit</li>
+        </titles>
+        <texts>
+          <li>{X_nameDef} of {FACTION} stopped at the colony for the night, and over supper {A_nameDef} mentioned wanting to {GOAL}. {X_nameDef} set out to do the same thing years ago, and did it.\n\nThe two of them talked until late. {A_nameDef} came away with a head full of advice and a clearer idea of how to go about it.</li>
+          <li>[skill] A traveler of {FACTION}, {X_nameDef}, is staying the night. {X_nameDef} once set out to {GOAL} too, and spent the evening going over {SKILL} with {A_nameDef}: what to practice, what to skip, and the mistakes {X_nameDef} made the first time round.</li>
+          <li>[lowtech] {X_nameDef}, a traveler of {FACTION}, has stopped for the night. When {A_nameDef} talked about wanting to {GOAL}, {X_nameDef} laughed and said it had taken {X_objective} ten years to do the same. The two of them talked until the candles burned down.</li>
+        </texts>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><thought>Council_Evt_KindredSpirit</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Learn"><xp>500</xp></li>
+        </effects>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== The far market (comes back a week later) ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Council_Evt_FarMarket</defName>
+    <label>the far market</label>
+    <workerClass>ColonyCouncil.HappeningWorker_FarMarket</workerClass>
+    <minRefireDays>35</minRefireDays>
+    <earliestDay>12</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Challenge</group>
+        <minColonists>2</minColonists>
+        <answerDays>1</answerDays>
+        <titles>
+          <li>A caravan to {PLACE}</li>
+        </titles>
+        <texts>
+          <li>[lowtech] A trading caravan of {FACTION} has stopped on its way to the market at {PLACE}, a long way off. The caravan master has room on the wagons and an offer: send {TALE} along, and they'll trade it at {PLACE} for {THING}, which the colony is running short of.\n\nThey'll be back this way in a week or so.</li>
+          <li>[!lowtech] {FACTION}'s caravan is passing through on its way to the market at {PLACE}, with room to spare. They'll take {TALE} along, trade it there for {THING}, which the colony is short of, and bring the proceeds back in a week or so.</li>
+          <li>[winter] {FACTION}'s last caravan of the winter is heading for the market at {PLACE}. The caravan master offers to take {TALE} from the colony's stores and trade it there for {THING}, since the colony is low on it.\n\nThey expect to be back in a week or so, snow permitting.</li>
+        </texts>
+        <defaultOption>1</defaultOption>
+        <options>
+          <li>
+            <label>Send {TALE} with them</label>
+            <outcome>The caravan takes {TALE} along to {PLACE}. They should be back in a week or so.</outcome>
+            <ways><openness>1</openness></ways>
+          </li>
+          <li>
+            <label>Not this time</label>
+            <outcome>The caravan moves on to {PLACE} without the colony's goods.</outcome>
+          </li>
+        </options>
+      </li>
+      <li Class="ColonyCouncil.HappeningLivingText">
+        <extra>
+          <li>Expected in return: about {COUNT} {THING}. In the colony's stores now: {ITEM}.</li>
+        </extra>
+        <coming>
+          <li>{FACTION}'s caravan comes back from {PLACE} in about {DAYS}, with the colony's share: about {COUNT} {THING}.</li>
+        </coming>
+        <doneTitles>
+          <li>The caravan is back</li>
+        </doneTitles>
+        <done>
+          <li>[fair,lowtech] {FACTION}'s caravan came back from {PLACE} today, dusty and loud. What the colony sent sold well, and they've unloaded its share at the trade spot: {ITEM}.</li>
+          <li>[fair,!lowtech] {FACTION}'s caravan is back from {PLACE}. Prices were good, and the colony's share is waiting at the trade spot: {ITEM}.</li>
+          <li>[poor] {FACTION}'s caravan is back from {PLACE}, later than they'd hoped. Prices were poor this time, and the colony's share comes to less than expected: {ITEM}, at the trade spot.</li>
+        </done>
+        <cancelled>
+          <li>{FACTION}'s caravan never came back from {PLACE}, and neither did the colony's goods.</li>
+        </cancelled>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== The harvest fair (fall; results a few days later) ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Council_Evt_HarvestFair</defName>
+    <label>harvest fair</label>
+    <workerClass>ColonyCouncil.HappeningWorker_HarvestFair</workerClass>
+    <baseChance>1.5</baseChance>
+    <minRefireDays>40</minRefireDays>
+    <earliestDay>10</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Challenge</group>
+        <seasons>
+          <li>Fall</li>
+        </seasons>
+        <answerDays>1</answerDays>
+        <titles>
+          <li>The harvest fair at {PLACE}</li>
+        </titles>
+        <texts>
+          <li>[lowtech] {FACTION} hold their harvest fair at {PLACE} this week: stalls, music, a judging for the best of the harvest, and buyers from three valleys. Their crier came by to invite the colony.\n\nThe colony could send a cart of {TALE}. {A_nameDef}, who grew most of it, thinks the best of it might take a prize.</li>
+          <li>[!lowtech] {FACTION} have invited the colony to their harvest fair at {PLACE}. There'll be buyers from all over, a few too many speeches, and a judging for the best produce.\n\nA cartload of {TALE} would sell well there, and {A_nameDef} wants to enter the best of it for the judging.</li>
+          <li>[harvesthome] Harvest home is close, and {FACTION} have sent word of their own harvest fair at {PLACE}. The colony could send a cart of {TALE}, and {A_nameDef} is already sorting out the best of the crop for the judging.</li>
+        </texts>
+        <defaultOption>1</defaultOption>
+        <options>
+          <li>
+            <label>Send a cart of {TALE}</label>
+            <outcome>The cart sets off for {PLACE} loaded with the colony's {THING}. The fair runs a few days, and {FACTION} will bring back what it fetches.</outcome>
+            <ways><toil>1</toil><openness>1</openness></ways>
+          </li>
+          <li>
+            <label>Not this year</label>
+            <outcome>The colony keeps its harvest at home this year.</outcome>
+          </li>
+        </options>
+      </li>
+      <li Class="ColonyCouncil.HappeningLivingText">
+        <extra>
+          <li>In the colony's stores now: {ITEM}. The cart should fetch about {COUNT} silver at the fair.</li>
+        </extra>
+        <coming>
+          <li>The harvest fair at {PLACE} ends in about {DAYS}. {FACTION} will bring back what the colony's {THING} fetched.</li>
+        </coming>
+        <doneTitles>
+          <li>[prize] A prize at the fair</li>
+          <li>[noprize] Back from the fair</li>
+        </doneTitles>
+        <done>
+          <li>[prize] The colony's cart came back from {PLACE} empty, with {COUNT} silver and a ribbon. {A_nameDef}'s {THING} took the prize for the best of the harvest, and {A_nameDef} has pinned the ribbon up over the door.</li>
+          <li>[prize] {FACTION} brought the colony's share back from the fair at {PLACE}: {COUNT} silver, and the news that {A_nameDef}'s {THING} won the judging. {A_nameDef} has asked to hear every word the judges said.</li>
+          <li>[noprize] The cart came back from the fair at {PLACE} empty, with {COUNT} silver for the colony's {THING}. A farmer from the hills took the prize this year, and {A_nameDef} would like a look at that farmer's fields.</li>
+          <li>[noprize] {FACTION} brought back {COUNT} silver from the harvest fair at {PLACE}. The colony's {THING} sold quickly, though the judges gave their prize to someone else.</li>
+        </done>
+        <cancelled>
+          <li>The cart sent to the harvest fair at {PLACE} never came back.</li>
+        </cancelled>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== A guest on a winter night ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Council_Evt_MidwinterGuest</defName>
+    <label>a guest on a winter night</label>
+    <workerClass>ColonyCouncil.HappeningWorker_MidwinterGuest</workerClass>
+    <baseChance>1.2</baseChance>
+    <minRefireDays>45</minRefireDays>
+    <earliestDay>10</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Visitors</group>
+        <seasons>
+          <li>Winter</li>
+          <li>PermanentWinter</li>
+        </seasons>
+        <maxTemp>8</maxTemp>
+        <ages>20~70</ages>
+        <answerDays>0.25</answerDays>
+        <journal>Council_Journal_Evt_MidwinterGuest</journal>
+        <titles>
+          <li>A traveler at dusk</li>
+        </titles>
+        <texts>
+          <li>[lowtech] At dusk a lone traveler came in out of the {PLACE}, white with frost, and knocked at the gate. {X_nameDef} of {FACTION} is on the way home and won't make it before dark. It's {TALE} outside and getting colder.\n\n{X_nameDef} asks for a place near the fire for the night, nothing more.</li>
+          <li>[!lowtech] A traveler came up the road at dusk, alone, with frost on {X_possessive} collar and a pack frozen stiff. {X_nameDef} of {FACTION} won't reach home tonight, and it's already {TALE}.\n\n{X_nameDef} asks to sleep somewhere warm and be gone in the morning.</li>
+          <li>[supper] It's the season of the midwinter supper, and a stranger has come to the gate at dusk: {X_nameDef} of {FACTION}, alone on the road and chilled through. It's {TALE} outside.\n\nThere's room at the table, if the colony wants to set another place.</li>
+          <li>[bitter] It's {TALE} tonight, cold enough to kill, and a traveler has come to the gate at dusk. {X_nameDef} of {FACTION} lost the road in the snow and followed the colony's lights. {X_nameDef} asks only to get warm and stay until morning.</li>
+          <li>[meal] {X_nameDef} of {FACTION} came to the gate as the light went, half frozen, on the way home from somewhere further than {X_pronoun} meant to go. It's {TALE} outside.\n\nThere's {THING} in the stores, enough to share, and {X_nameDef} asks only for a corner to sleep in.</li>
+        </texts>
+        <defaultOption>0</defaultOption>
+        <options>
+          <li>
+            <label>Bring {X_objective} in</label>
+            <outcome>{X_nameDef} gets a seat near the fire, a bowl of whatever's hot and a blanket for the night. {A_nameDef} sits up talking with {X_objective} until late.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_Evt_MidwinterGuest</thought><exceptTrait><li>Psychopath</li></exceptTrait></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Joy"><target>Colony</target><amount>0.1</amount></li>
+            </effects>
+            <ways><openness>2</openness><mercy>1</mercy></ways>
+          </li>
+          <li>
+            <label>Send {X_objective} on with food</label>
+            <outcome>{X_nameDef} is given bread, something hot to drink and directions to the nearest shelter, and goes back out into the dark.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_EventGoodwill"><amount>2</amount></li>
+              <li Class="ColonyCouncil.DilemmaEffect_SendAway" />
+            </effects>
+            <ways><generosity>1</generosity><openness>-1</openness></ways>
+          </li>
+          <li>
+            <label>Keep the gate shut</label>
+            <outcome>The gate stays shut. After a while {X_nameDef} gives up knocking and goes back out into the cold.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_SendAway" />
+              <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_Evt_ShutTheGate</thought><onlyTrait><li>Kind</li></onlyTrait></li>
+            </effects>
+            <ways><mercy>-2</mercy><openness>-2</openness></ways>
+          </li>
+        </options>
+      </li>
+      <li Class="ColonyCouncil.HappeningLivingText">
+        <!-- Told instead of the first answer's outcome when the colonist sitting up with the guest has a past to talk about. -->
+        <outcomes>
+          <li>[soldier] {X_nameDef} gets a seat near the fire and a blanket for the night. {A_nameDef} sits up with {X_objective} until late, telling stories from {A_possessive} soldiering days that nobody here has heard before.</li>
+          <li>[outlaw] {X_nameDef} gets a seat near the fire and a blanket for the night. {A_nameDef} sits up with {X_objective} until late, and tells a stranger things about {A_possessive} outlaw years that {A_pronoun} has never told anyone here.</li>
+          <li>[noble] {X_nameDef} gets a seat near the fire and a blanket for the night. {A_nameDef} talks until late about the great house {A_pronoun} grew up in, and the winters there, with servants to keep the fires going.</li>
+          <li>[healer] {X_nameDef} gets a seat near the fire and a blanket for the night. {A_nameDef} warms {X_nameDef}'s hands with a hot stone wrapped in cloth, an old healer's trick, and the two of them talk until late.</li>
+          <li>[scholar] {X_nameDef} gets a seat near the fire and a blanket for the night. {A_nameDef} and {X_nameDef} argue happily about the winter stars until the fire is down to embers.</li>
+          <li>[farmer] {X_nameDef} gets a seat near the fire and a blanket for the night. {A_nameDef} and {X_nameDef} talk seed, soil and weather until late, the way farmers do in winter.</li>
+          <li>[trader] {X_nameDef} gets a seat near the fire and a blanket for the night. Before the evening is out, {A_nameDef} has had every bit of news about prices on the roads out of {X_objective}.</li>
+          <li>[artisan] {X_nameDef} gets a seat near the fire and a blanket for the night. {A_nameDef} and {X_nameDef} know some of the same old work songs, and sing a few of them before bed.</li>
+        </outcomes>
+        <done>
+          <li>{X_nameDef} was gone before anyone else was up. Near the fire there's {TALE}, left as thanks.</li>
+          <li>By morning {X_nameDef} had gone on, leaving {TALE} on the bench where {X_pronoun} slept.</li>
+          <li>{X_nameDef} set off at first light, and left {TALE} behind for the colony's trouble.</li>
+        </done>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== The thaw ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Council_Evt_Thaw</defName>
+    <label>the thaw</label>
+    <workerClass>ColonyCouncil.HappeningWorker_Thaw</workerClass>
+    <baseChance>1.2</baseChance>
+    <minRefireDays>50</minRefireDays>
+    <earliestDay>20</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Nature</group>
+        <letter>PositiveEvent</letter>
+        <seasons>
+          <li>Spring</li>
+        </seasons>
+        <minTemp>2</minTemp>
+        <maxTemp>22</maxTemp>
+        <notable>false</notable>
+        <titles>
+          <li>The thaw</li>
+        </titles>
+        <texts>
+          <li>[first] The snow is going at last. It's the colony's first spring here in the {PLACE}, and the ground under the drifts is turning soft and muddy. People keep finding reasons to work outside.\n\nIn the melt, {A_nameDef} found what someone lost on the road over the winter: {TALE}.</li>
+          <li>[again] The thaw has come. Meltwater is running off every roof, the paths have turned to mud, and the first green is showing where the snow was thickest. After the long winter, people are glad of it.\n\n{A_nameDef} found {TALE} in the melt, lost on the road by someone over the winter.</li>
+          <li>[nameyear] The snow is going, and the talk at supper has already turned to which muffalo the new year should be named after.\n\nOut in the melt, {A_nameDef} turned up {TALE}, lost by some traveler over the winter.</li>
+          <li>[child] {A_nameDef} came running in with muddy knees to say the snow by the gate had melted down to grass. The thaw has come.\n\n{A_nameDef} also found {TALE} in the mud, and is very proud of it.</li>
+        </texts>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_Evt_Thaw</thought></li>
+        </effects>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+</Defs>
