@@ -12,19 +12,52 @@
     <order>5</order>
     <summary>The key room-stat numbers on one page</summary>
     <tip>Most room problems come down to whichever of the four room stats is lowest.</tip>
-    <description>These are the numbers behind every room panel: what impressiveness is made of, where the labels change, and what a room needs to count as a bedroom, kitchen or hospital. Each one has its own page with what to do about it.</description>
-    <facts>
-      <li>Impressiveness = 65 × (average of four factors) + 35 × (smallest factor). The factors are wealth ÷ 1,500, beauty ÷ 3, space ÷ 125, and 1 + (cleanliness ÷ 2.5).</li>
-      <li>Room mood from impressiveness: under 20 -2 (bedrooms only); 30-39 +1 (bedrooms only); 40-49 +2; 50-64 +3; 65-84 +4; 85-119 +5; 120-169 +6; 170-239 +7; 240 and up +8.</li>
-      <li>Space is 1.4 per tile, minus 0.9 for every tile under a blocking object. A very impressive bedroom wants about 25 space or more.</li>
-      <li>Cleanliness of 0.4 or more reads sterile. Sterile tile is +0.6 per tile; filth -5, blood -10, vomit -15.</li>
-      <li>Room roles: bedroom 100,000; barracks 100,100 per bed; prison cell 170,000; hospital 100,000; kitchen 28 per stove; workshop 27 per bench; lab 60 per item; dining room 12 per table; rec room 7 per item; storeroom 1 per shelf.</li>
-      <li>Expectations by colony wealth: up to 15,000 +30; to 31,000 +24; to 81,000 +18; to 182,000 +12; to 308,000 +6; above that 0.</li>
-    </facts>
-    <advice>
-      <li>Click any floor tile and read the room panel: the lowest of the four stats is the one to fix first.</li>
-      <li>Open the linked pages for what to do about each number.</li>
-    </advice>
+    <description>These are the numbers behind every room panel: what impressiveness is made of, where the labels change, and what a room needs to count as a bedroom, kitchen or hospital. Click any floor tile and read the room panel; the lowest of the four stats is the one to fix first. Each number has its own page, linked below, with what to do about it.</description>
+    <sections>
+      <li>
+        <heading>Impressiveness</heading>
+        <text>Impressiveness = 65 × (average of four factors) + 35 × (smallest factor). The factors are wealth ÷ 1,500, beauty ÷ 3, space ÷ 125, and 1 + (cleanliness ÷ 2.5).</text>
+        <table>
+          <li>Impressiveness | Room mood</li>
+          <li>Under 20 | -2, bedrooms only</li>
+          <li>20-29 | None</li>
+          <li>30-39 | +1, bedrooms only</li>
+          <li>40-49 | +2</li>
+          <li>50-64 | +3</li>
+          <li>65-84 | +4</li>
+          <li>85-119 | +5</li>
+          <li>120-169 | +6</li>
+          <li>170-239 | +7</li>
+          <li>240 and up | +8</li>
+        </table>
+      </li>
+      <li>
+        <heading>Space and cleanliness</heading>
+        <text>Space is 1.4 per tile, minus 0.9 for every tile under a blocking object. A very impressive bedroom wants about 25 space or more.
+
+Cleanliness of 0.4 or more reads sterile. Sterile tile is +0.6 per tile; filth -5, blood -10, vomit -15.</text>
+      </li>
+      <li>
+        <heading>Room roles</heading>
+        <table>
+          <li>Role | Score</li>
+          <li>Bedroom | 100,000</li>
+          <li>Barracks | 100,100 per bed</li>
+          <li>Prison cell | 170,000</li>
+          <li>Hospital | 100,000</li>
+          <li>Kitchen | 28 per stove</li>
+          <li>Workshop | 27 per bench</li>
+          <li>Laboratory | 60 per item</li>
+          <li>Dining room | 12 per table</li>
+          <li>Rec room | 7 per item</li>
+          <li>Storeroom | 1 per shelf</li>
+        </table>
+      </li>
+      <li>
+        <heading>Expectations</heading>
+        <text>By colony wealth: up to 15,000 +30; to 31,000 +24; to 81,000 +18; to 182,000 +12; to 308,000 +6; above that 0.</text>
+      </li>
+    </sections>
     <keywords>
       <li>cheat sheet</li>
       <li>quick reference</li>
@@ -53,19 +86,18 @@
     <summary>Four room stats make one score, and the weakest one counts double</summary>
     <tip>Look at the lowest of the four room stats first. That's where the cheap points are.</tip>
     <description>Impressiveness is the single number behind the mood bonus from bedrooms, dining rooms and rec rooms. The game builds it from four stats: wealth, beauty, space and cleanliness. Because the weakest of the four is counted twice in effect, the cheapest way to raise a room is always to fix its lowest stat, not to pile more onto its best one.</description>
-    <facts>
-      <li>Each stat becomes a factor: wealth ÷ 1,500, beauty ÷ 3, space ÷ 125, and 1 + (cleanliness ÷ 2.5).</li>
-      <li>Factors of 1 or more are flattened with a natural log (1 + ln of the factor), so doubling a strong stat adds far less than fixing a weak one.</li>
-      <li>Impressiveness = 65 × (average of the four factors) + 35 × (the smallest factor).</li>
-      <li>The result is rounded down to a whole number before the mood table applies.</li>
-      <li>Very high scores are reduced by a soft cap, so each extra point of luxury buys less.</li>
-    </facts>
-    <advice>
-      <li>Click a tile in the room and compare the four stats on the room panel. Fix the lowest one first.</li>
-      <li>Go through the cheap fixes in order: a real floor, fewer blocking objects, a sculpture or plant, and a light.</li>
-      <li>Keep the room clean; one blood trail can make cleanliness the weakest stat.</li>
-      <li>Spend on wealth last. A gold statue does nothing for a cramped, dirty room.</li>
-    </advice>
+    <sections>
+      <li>
+        <heading>The formula</heading>
+        <text>Each of the four stats is first turned into a factor: wealth ÷ 1,500, beauty ÷ 3, space ÷ 125, and 1 + (cleanliness ÷ 2.5). Factors of 1 or more are flattened with a natural log (1 + ln of the factor), so doubling a strong stat adds far less than fixing a weak one.
+
+The factors are then combined: impressiveness = 65 × (average of the four factors) + 35 × (the smallest factor). The result is rounded down to a whole number before the mood table applies. Very high scores are reduced by a soft cap, so each extra point of luxury buys less.</text>
+      </li>
+      <li>
+        <heading>Raising a room</heading>
+        <text>Click a tile in the room and compare the four stats on the room panel, then fix the lowest one. The cheap fixes come in this order: a real floor, fewer blocking objects, a sculpture or plant, and a light. Keep the room clean, since one blood trail can make cleanliness the weakest stat, and spend on wealth last. A gold statue does nothing for a cramped, dirty room.</text>
+      </li>
+    </sections>
     <keywords>
       <li>impressive</li>
       <li>room stats</li>
@@ -92,21 +124,22 @@
     <summary>Floor first, then space, then art, then light: the most mood for the least material</summary>
     <tip>Lay the floor before you order the sculpture.</tip>
     <description>Most rooms can be lifted a whole mood step without spending much. Impressiveness punishes the weakest stat, so the best upgrade is whichever stat is lowest, and that is usually the floor or the space. The steps below follow the order experienced players use.</description>
-    <facts>
-      <li>A real floor beats soil: soil is -1 cleanliness and -1 beauty on every tile. Smoothed floors and carpet add about +2 beauty; sterile tile gives +0.6 cleanliness.</li>
-      <li>Every tile you free from blocking furniture gives back 0.9 space.</li>
-      <li>A small sculpture starts at base beauty 50, before material and quality multipliers.</li>
-      <li>Walls add beauty as well: smoothed stone +2, jade +10.</li>
-      <li>Quality multiplies an item's value, so a skilled artist or builder improves every room they furnish.</li>
-      <li>Wooden floors can catch fire under generators, so keep power rooms on stone.</li>
-    </facts>
-    <advice>
-      <li>Lay a floor in every room: wood or stone tile early, carpet or sterile tile later.</li>
-      <li>Remove furniture the room doesn't need.</li>
-      <li>Add a sculpture or a plant pot.</li>
-      <li>Light every room: a torch lamp early, a standing lamp once you have power.</li>
-      <li>Smooth the walls in mountain bases.</li>
-    </advice>
+    <sections>
+      <li>
+        <heading>Floor, space, art, light</heading>
+        <points>
+          <li>Lay a floor in every room: wood or stone tile early, carpet or sterile tile later. A real floor beats soil, which is -1 cleanliness and -1 beauty on every tile. Smoothed floors and carpet add about +2 beauty; sterile tile gives +0.6 cleanliness. Wooden floors can catch fire under generators, so keep power rooms on stone.</li>
+          <li>Remove furniture the room doesn't need. Every tile you free from blocking furniture gives back 0.9 space.</li>
+          <li>Add a sculpture or a plant pot. A small sculpture starts at base beauty 50, before material and quality multipliers.</li>
+          <li>Light every room: a torch lamp early, a standing lamp once you have power.</li>
+        </points>
+        <after>Quality multiplies an item's value, so a skilled artist or builder improves every room they furnish.</after>
+      </li>
+      <li>
+        <heading>In a mountain base</heading>
+        <text>Smooth the walls. Walls add beauty as well: smoothed stone +2, jade +10.</text>
+      </li>
+    </sections>
     <keywords>
       <li>upgrade</li>
       <li>cheap</li>
@@ -133,20 +166,29 @@
     <summary>Bedrooms, dining rooms and rec rooms give up to +8 mood when impressive</summary>
     <tip>Find out which step a room is on before you decorate it; the next one may be only a few points away.</tip>
     <description>Colonists get a mood thought from the impressiveness of the bedroom they sleep in and the dining room and rec room they use. The bonus climbs in steps, from nothing in a dull room to +8 in a wondrously impressive one. Only bedrooms can go negative or earn the small "mediocre" bonus.</description>
-    <facts>
-      <li>Under 20 (awful): -2, bedrooms only.</li>
-      <li>20-29 (dull): nothing. 30-39 (mediocre): +1, bedrooms only.</li>
-      <li>40-49 (decent) +2; 50-64 (slightly impressive) +3; 65-84 (somewhat impressive) +4.</li>
-      <li>85-119 (very impressive) +5; 120-169 (extremely impressive) +6.</li>
-      <li>170-239 (unbelievably impressive) +7; 240 and up (wondrously impressive) +8.</li>
-      <li>Barracks, hospitals and prison cells are also judged by their room stats.</li>
-    </facts>
-    <advice>
-      <li>Aim for 85 or more in bedrooms: +5 every morning is worth a floor and a sculpture.</li>
-      <li>Decorate the dining room early. Everyone eats there, so one room lifts the whole colony.</li>
-      <li>Push rooms just past a step: 84 and 85 differ by a whole mood point, 86 and 119 don't.</li>
-      <li>Check the Needs tab for "Slept in a ... bedroom" to see which step each colonist is on.</li>
-    </advice>
+    <sections>
+      <li>
+        <heading>From awful to wondrous</heading>
+        <table>
+          <li>Impressiveness | Label | Mood</li>
+          <li>Under 20 | Awful | -2, bedrooms only</li>
+          <li>20-29 | Dull | None</li>
+          <li>30-39 | Mediocre | +1, bedrooms only</li>
+          <li>40-49 | Decent | +2</li>
+          <li>50-64 | Slightly impressive | +3</li>
+          <li>65-84 | Somewhat impressive | +4</li>
+          <li>85-119 | Very impressive | +5</li>
+          <li>120-169 | Extremely impressive | +6</li>
+          <li>170-239 | Unbelievably impressive | +7</li>
+          <li>240 and up | Wondrously impressive | +8</li>
+        </table>
+        <after>Barracks, hospitals and prison cells are also judged by their room stats.</after>
+      </li>
+      <li>
+        <heading>Where a few points count</heading>
+        <text>Push rooms just past a step: 84 and 85 differ by a whole mood point, 86 and 119 don't. In bedrooms, aim for 85 or more; +5 every morning is worth a floor and a sculpture. Decorate the dining room early, since everyone eats there and one room lifts the whole colony. To see which step each colonist is on, look in the Needs tab for "Slept in a ... bedroom".</text>
+      </li>
+    </sections>
     <keywords>
       <li>room thought</li>
       <li>impressive bedroom</li>
@@ -223,21 +265,35 @@ Silver and materials you'll never use raise wealth without making anyone happier
     <order>30</order>
     <summary>Space is 1.4 per tile, and every blocking piece of furniture eats into it</summary>
     <tip>Every bed, table and shelf takes some space back from the room.</tip>
-    <description>Space measures how roomy a room feels, and it's one of the four parts of impressiveness. Each tile adds space, but every tile covered by a bed, table or shelf takes most of that back, so the same room can feel fine empty and cramped once furnished. Chairs and stools don't count against it.</description>
-    <facts>
-      <li>Space = 1.4 per tile. Each tile under a blocking object takes away 0.9, so a furnished tile is worth 0.5.</li>
-      <li>Labels: under 12.5 cramped; 12.5-28.9 rather tight; 29-54.9 average-sized; 55-69.9 somewhat spacious; 70-129.9 quite spacious; 130-349.4 very spacious; 349.5 and up extremely spacious.</li>
-      <li>An empty 5x5 room has 35 space. Add a bed, table, light, heater, plant pot and artwork and it drops to 27.8.</li>
-      <li>Rough sizes once furnished: 3x4 or smaller is cramped; 3x6 or 4x5 rather tight; 4x7 or 5x6 average.</li>
-      <li>A very impressive bedroom wants about 25 space or more: a furnished 5x5 or 4x6 works, a 4x4 is a struggle.</li>
-      <li>A room can span at most 36 map regions, up to 5,184 tiles (72x72). An empty 50x50 is the largest that avoids region trouble.</li>
-    </facts>
-    <advice>
-      <li>Measure bedrooms inside the walls: 5x5 or 4x6 of floor, not counting the walls themselves.</li>
-      <li>Leave out furniture the room doesn't need; a spare shelf or a second table costs 0.9 space for every tile it covers.</li>
-      <li>Use chairs and stools freely; they don't reduce space.</li>
-      <li>When wood is short, build one big barracks or dining hall instead of several small rooms.</li>
-    </advice>
+    <description>Space measures how roomy a room feels, and it's one of the four parts of impressiveness. Each tile adds space, but every tile covered by a bed, table or shelf takes most of that back, so the same room can feel fine empty and cramped once furnished. Chairs and stools don't count against it, so use them freely.</description>
+    <sections>
+      <li>
+        <heading>Counting it</heading>
+        <text>Space = 1.4 per tile. Each tile under a blocking object takes away 0.9, so a furnished tile is worth 0.5. An empty 5x5 room has 35 space; add a bed, table, light, heater, plant pot and artwork and it drops to 27.8. Leave out furniture the room doesn't need, since a spare shelf or a second table costs 0.9 space for every tile it covers.</text>
+      </li>
+      <li>
+        <heading>The labels</heading>
+        <table>
+          <li>Space | Label</li>
+          <li>Under 12.5 | Cramped</li>
+          <li>12.5-28.9 | Rather tight</li>
+          <li>29-54.9 | Average-sized</li>
+          <li>55-69.9 | Somewhat spacious</li>
+          <li>70-129.9 | Quite spacious</li>
+          <li>130-349.4 | Very spacious</li>
+          <li>349.5 and up | Extremely spacious</li>
+        </table>
+        <after>Rough sizes once furnished: 3x4 or smaller is cramped; 3x6 or 4x5 rather tight; 4x7 or 5x6 average.</after>
+      </li>
+      <li>
+        <heading>Bedrooms</heading>
+        <text>A very impressive bedroom wants about 25 space or more: a furnished 5x5 or 4x6 works, a 4x4 is a struggle. Measure inside the walls, so 5x5 or 4x6 of floor, not counting the walls themselves.</text>
+      </li>
+      <li>
+        <heading>Very large rooms</heading>
+        <text>When wood is short, build one big barracks or dining hall instead of several small rooms. A room can span at most 36 map regions, up to 5,184 tiles (72x72). An empty 50x50 is the largest that avoids region trouble.</text>
+      </li>
+    </sections>
     <keywords>
       <li>space</li>
       <li>cramped</li>
@@ -264,19 +320,38 @@ Silver and materials you'll never use raise wealth without making anyone happier
     <summary>Cleanliness is the average of every tile, and one blood trail goes a long way</summary>
     <tip>Sweep the hospital and the kitchen before anywhere else.</tip>
     <description>A room's cleanliness is the average of every tile in it: the floor itself plus any filth lying on it. It feeds impressiveness, and in kitchens and hospitals it also decides food poisoning, infections and surgery success. A good floor gives you a head start; regular cleaning keeps it.</description>
-    <facts>
-      <li>Labels: under -1.1 very dirty; -1.1 to -0.41 dirty; -0.4 to -0.06 slightly dirty; -0.05 to 0.39 clean; 0.4 and up sterile.</li>
-      <li>Floors: sterile tile +0.6; steel, silver or gold +0.2; most built floors and natural stone 0; straw matting -0.1; soil and gravel -1; mud, marsh, broken asphalt and chunks -2.</li>
-      <li>Filth on a tile: dirt, rubble and other filth -5; blood -10; vomit, insect blood and fuel -15; corpse bile -20.</li>
-      <li>For impressiveness, cleanliness 0.6 gives a factor of about 1.24, and -1 gives about 0.6.</li>
-      <li>A dirty kitchen raises food poisoning; a dirty hospital raises infection chance and lowers surgery success.</li>
-    </facts>
-    <advice>
-      <li>Floor every room you use; bare soil counts -1 on every tile until it's covered.</li>
-      <li>Use sterile tile in the hospital and kitchen once you can, and stone or wood tile elsewhere.</li>
-      <li>Make sure someone has Cleaning enabled and that your rooms sit inside the home area.</li>
-      <li>Keep butchering out of the kitchen and bodies out of the base, since both leave blood behind (-10 per tile).</li>
-    </advice>
+    <sections>
+      <li>
+        <heading>The floor</heading>
+        <table>
+          <li>Floor | Cleanliness per tile</li>
+          <li>Sterile tile | +0.6</li>
+          <li>Steel, silver or gold | +0.2</li>
+          <li>Most built floors, natural stone | 0</li>
+          <li>Straw matting | -0.1</li>
+          <li>Soil, gravel | -1</li>
+          <li>Mud, marsh, broken asphalt, chunks | -2</li>
+        </table>
+        <after>Floor every room you use; bare soil counts -1 on every tile until it's covered. Use sterile tile in the hospital and kitchen once you can, and stone or wood tile elsewhere.</after>
+      </li>
+      <li>
+        <heading>Filth</heading>
+        <table>
+          <li>Filth | Cleanliness per tile</li>
+          <li>Dirt, rubble and other filth | -5</li>
+          <li>Blood | -10</li>
+          <li>Vomit, insect blood, fuel | -15</li>
+          <li>Corpse bile | -20</li>
+        </table>
+        <after>Make sure someone has Cleaning enabled and that your rooms sit inside the home area. Keep butchering out of the kitchen and bodies out of the base, since both leave blood behind.</after>
+      </li>
+      <li>
+        <heading>Labels and effects</heading>
+        <text>The room panel labels the average: under -1.1 very dirty; -1.1 to -0.41 dirty; -0.4 to -0.06 slightly dirty; -0.05 to 0.39 clean; 0.4 and up sterile. For impressiveness, cleanliness 0.6 gives a factor of about 1.24, and -1 gives about 0.6.
+
+A dirty kitchen raises food poisoning. A dirty hospital raises infection chance and lowers surgery success.</text>
+      </li>
+    </sections>
     <keywords>
       <li>clean</li>
       <li>dirty</li>
@@ -303,21 +378,36 @@ Silver and materials you'll never use raise wealth without making anyone happier
     <summary>What makes a room pretty: floors, walls, art, and no blood on the floor</summary>
     <tip>Sweep the floor, haul the rubble and put a plant pot by the door.</tip>
     <description>Beauty is how nice a place looks, and it counts twice: once in room impressiveness and once in each colonist's Beauty need. A pawn takes in the tiles around it that walls don't hide, so a pretty room helps everyone working or eating inside. Filth and bare ground drag it down fast; art, good floors and smoothed walls lift it.</description>
-    <facts>
-      <li>A pawn feels the average beauty of the tiles it can see within 8 tiles (up to 241 tiles); walls and doors shrink that area.</li>
-      <li>Floor tiles: bare rough stone or soil -1, a dirty tile -5, blood -30, vomit -40. Smoothed floors and carpets raise the average by about 2.</li>
-      <li>Walls: smoothed +2, marble +1, jade +10.</li>
-      <li>Art is (base × material modifier + material offset) × quality. Small sculpture base 50, large 100, grand 400; good quality ×2, legendary ×8. A good marble small sculpture is (50 × 1.35 + 1) × 2 = 137; a legendary gold grand one reaches 12,960.</li>
-      <li>Room labels: under -3.5 hideous; -3.5 to 0 ugly; 0-2.39 neutral; 2.4-4.9 pretty; 5-14.9 beautiful; 15-49.9 very beautiful; 50-99.9 extremely beautiful; 100 and up unbelievably beautiful.</li>
-      <li>Small rooms are penalized: a room of 40 tiles or less counts as 20 + half its size when its beauty is averaged.</li>
-    </facts>
-    <advice>
-      <li>Lay a real floor before buying art; bare soil and rough stone cost -1 on every tile.</li>
-      <li>Put one high-quality sculpture in the middle of a big room rather than many cheap pieces in corners.</li>
-      <li>Move loose items onto shelves; stacks lying on the floor are ugly.</li>
-      <li>Smooth the stone walls in mountain bases.</li>
-      <li>Give art jobs to your best artist: quality multiplies beauty.</li>
-    </advice>
+    <sections>
+      <li>
+        <heading>What a colonist sees</heading>
+        <text>A pawn feels the average beauty of the tiles it can see within 8 tiles (up to 241 tiles); walls and doors shrink that area. Small rooms are penalized: a room of 40 tiles or less counts as 20 + half its size when its beauty is averaged.</text>
+      </li>
+      <li>
+        <heading>Floors and walls</heading>
+        <text>On the floor, bare rough stone or soil is -1 per tile, a dirty tile -5, blood -30 and vomit -40. Smoothed floors and carpets raise the average by about 2, so lay a real floor before buying art. Walls count too: smoothed +2, marble +1, jade +10, so smooth the stone walls in mountain bases. Move loose items onto shelves; stacks lying on the floor are ugly.</text>
+      </li>
+      <li>
+        <heading>Art</heading>
+        <text>Art is (base × material modifier + material offset) × quality. A small sculpture has base 50, a large one 100 and a grand one 400; good quality is ×2 and legendary ×8. A good marble small sculpture is (50 × 1.35 + 1) × 2 = 137, and a legendary gold grand one reaches 12,960.
+
+Since quality multiplies beauty, give art jobs to your best artist, and put one high-quality sculpture in the middle of a big room rather than many cheap pieces in corners.</text>
+      </li>
+      <li>
+        <heading>The labels</heading>
+        <table>
+          <li>Room beauty | Label</li>
+          <li>Under -3.5 | Hideous</li>
+          <li>-3.5 to 0 | Ugly</li>
+          <li>0-2.39 | Neutral</li>
+          <li>2.4-4.9 | Pretty</li>
+          <li>5-14.9 | Beautiful</li>
+          <li>15-49.9 | Very beautiful</li>
+          <li>50-99.9 | Extremely beautiful</li>
+          <li>100 and up | Unbelievably beautiful</li>
+        </table>
+      </li>
+    </sections>
     <keywords>
       <li>beauty</li>
       <li>pretty</li>
@@ -343,19 +433,17 @@ Silver and materials you'll never use raise wealth without making anyone happier
     <order>55</order>
     <summary>Light every room: darkness costs mood, spoils surgery and invites bugs</summary>
     <tip>Every room gets a lamp, corridors included.</tip>
-    <description>Colonists who spend long stretches awake in the dark get an unhappy thought, and it wears their mood down. Light also matters for surgery, and insect hives prefer dark corners. A light in every room is one of the cheapest fixes in the game.</description>
-    <facts>
-      <li>Colonists awake in a dark place get the "In darkness" mood penalty.</li>
-      <li>Surgery suffers when the head of the bed sits under 50% light, down to ×0.75 success in total darkness.</li>
-      <li>Infestations favor dark spots.</li>
-      <li>Torch lamps burn wood and need refueling; standing lamps and sun lamps need power.</li>
-    </facts>
-    <advice>
-      <li>Put a light in every bedroom, workshop, kitchen, hospital and corridor.</li>
-      <li>Early on or in a tribal colony, use torch lamps, kept off wooden floors and away from wooden walls; later, standing lamps.</li>
-      <li>Place the hospital's light near the head of the beds.</li>
-      <li>Light the far corners and unused rooms of mountain bases too.</li>
-    </advice>
+    <description>Colonists who spend long stretches awake in the dark get the "In darkness" mood penalty, and it wears their mood down. Light also matters for surgery, and insect hives prefer dark corners. A light in every room is one of the cheapest fixes in the game: every bedroom, workshop, kitchen, hospital and corridor.</description>
+    <sections>
+      <li>
+        <heading>Which lamp</heading>
+        <text>Torch lamps burn wood and need refueling; standing lamps and sun lamps need power. Early on or in a tribal colony, use torch lamps, kept off wooden floors and away from wooden walls. Later, use standing lamps.</text>
+      </li>
+      <li>
+        <heading>Hospitals and dark corners</heading>
+        <text>Surgery suffers when the head of the bed sits under 50% light, down to ×0.75 success in total darkness, so place the hospital's light near the head of the beds. Infestations favor dark spots, so light the far corners and unused rooms of mountain bases too.</text>
+      </li>
+    </sections>
     <keywords>
       <li>light</li>
       <li>lamp</li>
@@ -382,17 +470,29 @@ Silver and materials you'll never use raise wealth without making anyone happier
     <summary>The value of what's inside: easy to raise, wasted if another stat is lowest</summary>
     <tip>Fix the floor before you buy the gold bed.</tip>
     <description>Room wealth is simply the market value of everything in the room. It's the easiest of the four impressiveness stats to raise, since one or two valuable pieces can do it, but it's wasted while space or cleanliness is the weakest factor. Everything you add also counts toward the colony wealth that raids and expectations follow.</description>
-    <facts>
-      <li>Labels: under 500 impoverished; 500-699 somewhat poor; 700-1,999 mediocre; 2,000-3,999 somewhat rich; 4,000-9,999 rich.</li>
-      <li>10,000-39,999 luxurious; 40,000-99,999 very luxurious; 100,000-999,999 extremely luxurious; 1,000,000 and up unbelievably luxurious.</li>
-      <li>The wealth factor is wealth ÷ 1,500, so about 1,500 silver of contents gives a factor of 1.0.</li>
-      <li>A bedroom with nothing but a bed reads "impoverished".</li>
-    </facts>
-    <advice>
-      <li>Raise wealth last, after the floor, space and cleanliness.</li>
-      <li>Buy or make a few good-quality pieces rather than a pile of cheap ones.</li>
-      <li>Keep valuable furniture for bedrooms, the dining room and the rec room, where impressiveness turns into mood; elsewhere it mostly raises colony wealth.</li>
-    </advice>
+    <sections>
+      <li>
+        <heading>Where it pays</heading>
+        <text>The wealth factor is wealth ÷ 1,500, so about 1,500 silver of contents gives a factor of 1.0. A bedroom with nothing but a bed reads "impoverished".
+
+Raise wealth last, after the floor, space and cleanliness, and buy or make a few good-quality pieces rather than a pile of cheap ones. Keep valuable furniture for bedrooms, the dining room and the rec room, where impressiveness turns into mood; elsewhere it mostly raises colony wealth.</text>
+      </li>
+      <li>
+        <heading>The labels</heading>
+        <table>
+          <li>Room wealth | Label</li>
+          <li>Under 500 | Impoverished</li>
+          <li>500-699 | Somewhat poor</li>
+          <li>700-1,999 | Mediocre</li>
+          <li>2,000-3,999 | Somewhat rich</li>
+          <li>4,000-9,999 | Rich</li>
+          <li>10,000-39,999 | Luxurious</li>
+          <li>40,000-99,999 | Very luxurious</li>
+          <li>100,000-999,999 | Extremely luxurious</li>
+          <li>1,000,000 and up | Unbelievably luxurious</li>
+        </table>
+      </li>
+    </sections>
     <keywords>
       <li>wealth</li>
       <li>rich</li>
@@ -416,20 +516,30 @@ Silver and materials you'll never use raise wealth without making anyone happier
     <summary>How the game decides what a room is, and why a bed beats a stove</summary>
     <tip>A bed outranks every other piece of furniture when the game decides what a room is.</tip>
     <description>Every room gets one role, like bedroom, kitchen or hospital, and the role decides which room thoughts and bonuses apply. The game scores each possible role from the furniture inside and picks the highest. Beds score so high that any room with one becomes a bedroom or barracks, whatever else is in it.</description>
-    <facts>
-      <li>Bedroom 100,000 if valid; barracks 100,100 per ordinary bed; hospital 100,000 (needs a medical bed).</li>
-      <li>Prison cell 170,000 (one prisoner bed); prison barracks 100,100 per prisoner bed.</li>
-      <li>Kitchen 28 per cooking station; workshop 27 per workbench (crafting spots don't count); laboratory 60 per lab item.</li>
-      <li>Dining room 12 per table; rec room 7 per recreation item; storeroom 1 per shelf.</li>
-      <li>The highest score wins; a tie goes to the role checked first.</li>
-      <li>A room with a bed and a stove is a bedroom or barracks, not a kitchen: 100,000 beats 28.</li>
-    </facts>
-    <advice>
-      <li>Give each job its own room, so every bonus keeps working.</li>
-      <li>Check the header of the room panel. If it just says "Room", the game didn't recognize what you built.</li>
-      <li>Keep beds out of kitchens, workshops and dining rooms.</li>
-      <li>DLC rooms such as throne rooms, temples and nurseries have their own rules; check their header too.</li>
-    </advice>
+    <sections>
+      <li>
+        <heading>The scores</heading>
+        <table>
+          <li>Role | Score</li>
+          <li>Bedroom | 100,000 if valid</li>
+          <li>Barracks | 100,100 per ordinary bed</li>
+          <li>Hospital | 100,000; needs a medical bed</li>
+          <li>Prison cell | 170,000; one prisoner bed</li>
+          <li>Prison barracks | 100,100 per prisoner bed</li>
+          <li>Kitchen | 28 per cooking station</li>
+          <li>Workshop | 27 per workbench; crafting spots don't count</li>
+          <li>Laboratory | 60 per lab item</li>
+          <li>Dining room | 12 per table</li>
+          <li>Rec room | 7 per recreation item</li>
+          <li>Storeroom | 1 per shelf</li>
+        </table>
+        <after>The highest score wins, and a tie goes to the role checked first. A room with a bed and a stove is a bedroom or barracks, not a kitchen: 100,000 beats 28.</after>
+      </li>
+      <li>
+        <heading>Getting the role you meant</heading>
+        <text>Give each job its own room, so every bonus keeps working, and keep beds out of kitchens, workshops and dining rooms. Then check the header of the room panel: if it just says "Room", the game didn't recognize what you built. DLC rooms such as throne rooms, temples and nurseries have their own rules; check their header too.</text>
+      </li>
+    </sections>
     <keywords>
       <li>room role</li>
       <li>room type</li>
@@ -456,19 +566,27 @@ Silver and materials you'll never use raise wealth without making anyone happier
     <summary>What makes a valid bedroom, and the bad nights that cost -4 each</summary>
     <tip>Count the beds whenever someone new joins.</tip>
     <description>A private bedroom is the cheapest lasting mood bonus in the game, but only if the game counts it as a bedroom. A medical bed, a spare bed or the wrong roommate turns it into something else. Sleeping rough has its own costs: each bad night leaves a -4 thought for a day.</description>
-    <facts>
-      <li>A room is not a bedroom if it has no ordinary bed, has a medical or prisoner bed, has more than one unassigned bed, or the people assigned to it aren't partners.</li>
-      <li>A room with a child assigned only counts as a bedroom if a parent is assigned too.</li>
-      <li>Bad nights, each lasting 1 day: slept on the ground -4, slept outside -4, slept in the cold -4, slept in the heat -4, disturbed sleep -1.</li>
-      <li>An awful bedroom (impressiveness under 20) costs -2; a very impressive one (85 or more) gives +5.</li>
-      <li>A 4x2 room has only about 11 space and reads cramped; very impressive bedrooms want about 25.</li>
-    </facts>
-    <advice>
-      <li>Give each colonist a room of about 5x5 with a real floor, a light, a dresser or end table and a plant or sculpture.</li>
-      <li>Keep bedrooms walled, roofed and heated or cooled, so nobody sleeps in the cold or heat.</li>
-      <li>Don't route corridors through bedrooms; people walking past wake the sleepers.</li>
-      <li>In a tribal colony, a bedroll in a small roofed hut with a torch lamp is better than any bed in the open.</li>
-    </advice>
+    <sections>
+      <li>
+        <heading>When it isn't a bedroom</heading>
+        <text>The game stops counting a room as a bedroom if it:</text>
+        <points>
+          <li>has no ordinary bed;</li>
+          <li>has a medical or prisoner bed;</li>
+          <li>has more than one unassigned bed;</li>
+          <li>is assigned to people who aren't partners.</li>
+        </points>
+        <after>A room with a child assigned only counts as a bedroom if a parent is assigned too.</after>
+      </li>
+      <li>
+        <heading>A good one</heading>
+        <text>Give each colonist a room of about 5x5 with a real floor, a light, a dresser or end table and a plant or sculpture. A 4x2 room has only about 11 space and reads cramped; very impressive bedrooms want about 25. An awful bedroom (impressiveness under 20) costs -2, and a very impressive one (85 or more) gives +5. Don't route corridors through bedrooms, since people walking past wake the sleepers.</text>
+      </li>
+      <li>
+        <heading>Bad nights</heading>
+        <text>Each of these lasts 1 day: slept on the ground -4, slept outside -4, slept in the cold -4, slept in the heat -4, disturbed sleep -1. Keep bedrooms walled, roofed and heated or cooled, so nobody sleeps in the cold or heat. In a tribal colony, a bedroll in a small roofed hut with a torch lamp is better than any bed in the open.</text>
+      </li>
+    </sections>
     <keywords>
       <li>bedroom</li>
       <li>sleep</li>
@@ -494,19 +612,17 @@ Silver and materials you'll never use raise wealth without making anyone happier
     <order>90</order>
     <summary>One shared room is cheap; private rooms let people sleep in peace</summary>
     <tip>One sculpture in a barracks counts for everyone who sleeps there.</tip>
-    <description>A barracks is any room with two or more ordinary beds that isn't a valid bedroom. Everyone sleeping there shares one impressiveness score, so one big, clean, decorated barracks can match several private rooms for the price of one set of decoration. The catch is that sleepers wake each other coming and going.</description>
-    <facts>
-      <li>A barracks scores 100,100 per ordinary bed, and nothing if the room holds a prisoner bed or is a valid bedroom.</li>
-      <li>All sleepers get their room thought from that one score, so blood on the floor counts against every one of them.</li>
-      <li>People walking past sleepers cause "Disturbed sleep": -1 for a day.</li>
-      <li>Experienced players find shared quarters a steady mood drag and move people into private rooms early.</li>
-    </facts>
-    <advice>
-      <li>Use a barracks for the first weeks, and for soldiers and new arrivals.</li>
-      <li>Keep it off the main corridors so people don't walk through while others sleep.</li>
-      <li>Decorate it like one big bedroom: one sculpture and one good floor serve every sleeper.</li>
-      <li>Build private rooms as soon as wood and space allow; as wealth and expectations grow, the barracks hurts more.</li>
-    </advice>
+    <description>A barracks is any room with two or more ordinary beds that isn't a valid bedroom. Sharing one room is cheap; the catch is that sleepers wake each other coming and going.</description>
+    <sections>
+      <li>
+        <heading>What a barracks does well</heading>
+        <text>Everyone sleeping there shares one impressiveness score, so one big, clean, decorated barracks can match several private rooms for the price of one set of decoration: one sculpture and one good floor serve every sleeper. Use one for the first weeks, and for soldiers and new arrivals. The room scores 100,100 per ordinary bed, and nothing if it holds a prisoner bed or is a valid bedroom.</text>
+      </li>
+      <li>
+        <heading>Where it falls short</heading>
+        <text>The shared score cuts both ways: blood on the floor counts against every sleeper. People walking past sleepers cause "Disturbed sleep", -1 for a day, so keep a barracks off the main corridors. Experienced players find shared quarters a steady mood drag and move people into private rooms early. Build them as soon as wood and space allow; as wealth and expectations grow, the barracks hurts more.</text>
+      </li>
+    </sections>
     <keywords>
       <li>barracks</li>
       <li>shared bedroom</li>
@@ -531,19 +647,13 @@ Silver and materials you'll never use raise wealth without making anyone happier
     <order>100</order>
     <summary>Eating without a table costs -3; a fine dining room gives up to +8</summary>
     <tip>A table and some stools are among the first things worth building.</tip>
-    <description>Colonists want a table to eat at, and they're unhappy when they can't find one. A room becomes a dining room through its tables, and it's one of the three rooms whose impressiveness gives a mood bonus. Since everyone eats there every day, a clean, decorated dining room pays off faster than almost anything else.</description>
-    <facts>
-      <li>Ate without table: -3 for 1 day.</li>
-      <li>A dining room scores 12 per table; 1x2, 2x2, 2x4 and 3x3 tables all count.</li>
-      <li>A decorated dining room gives up to +8 from impressiveness; a bare, dull one gives nothing.</li>
-      <li>Meal moods stack on top: raw food -7, nutrient paste -4, fine meal +5, lavish meal +12.</li>
-    </facts>
-    <advice>
-      <li>Build the dining room right next to the kitchen so meals don't travel across the base.</li>
-      <li>Keep it away from the butcher room and the corpse pile.</li>
-      <li>Add a small table near far-off fields or mines; colonists only walk so far to eat.</li>
-      <li>Use chairs and stools generously: they don't cost space.</li>
-    </advice>
+    <description>Colonists want a table to eat at: eating without one costs -3 mood for 1 day. A room becomes a dining room through its tables, at 12 per table, and 1x2, 2x2, 2x4 and 3x3 tables all count. It's one of the three rooms whose impressiveness gives a mood bonus, up to +8 when it's decorated and nothing when it's bare and dull. Meal moods stack on top: raw food -7, nutrient paste -4, fine meal +5, lavish meal +12. Since everyone eats there every day, a clean, decorated dining room pays off faster than almost anything else.</description>
+    <sections>
+      <li>
+        <heading>Where to put it</heading>
+        <text>Build the dining room right next to the kitchen so meals don't travel across the base, and keep it away from the butcher room and the corpse pile. Colonists only walk so far to eat, so add a small table near far-off fields or mines. Use chairs and stools generously: they don't cost space.</text>
+      </li>
+    </sections>
     <keywords>
       <li>dining room</li>
       <li>table</li>
@@ -568,21 +678,31 @@ Silver and materials you'll never use raise wealth without making anyone happier
     <order>110</order>
     <summary>How much fun each game, TV and instrument gives, and how many can use it</summary>
     <tip>Build different games rather than more of the same one.</tip>
-    <description>Recreation buildings refill your colonists' Recreation need, and a room full of them becomes a rec room with its own impressiveness bonus. Each building has a number of spots for users and a multiplier on how fast it fills the need. Variety matters more than one perfect building, because colonists get bored of doing the same thing.</description>
-    <facts>
-      <li>A rec room scores 7 per recreation item.</li>
-      <li>Base gain is 36% per hour × the building's multiplier, before tolerance.</li>
-      <li>Horseshoes pin and hoopstone ring: 12 spots, 100%. Chess table: 4 spots (2 users), 100%. Game of Ur: 4 (2), 80%.</li>
-      <li>Billiards table: 2 spots, 130% (about 46.8% an hour). Poker table: 8 (4), 130%. Telescope: 1, 120%.</li>
-      <li>Tube TV: 15 spots, 120%. Flatscreen TV: 30, 140% (about 50.4% an hour). Megascreen TV: 42, 160%.</li>
-      <li>Harp, harpsichord and piano: 1 each, 100%, for music.</li>
-    </facts>
-    <advice>
-      <li>Mix kinds: a game table, horseshoes, a TV and an instrument beat four of the same.</li>
-      <li>Put a TV in the hospital: bedridden patients can only watch TV.</li>
-      <li>Without power, skip the TVs; the games, the telescope and the instruments need none.</li>
-      <li>Put the rec room between the bedrooms and the dining room so people pass it every day.</li>
-    </advice>
+    <description>Recreation buildings refill your colonists' Recreation need, and a room full of them becomes a rec room with its own impressiveness bonus, at 7 per recreation item. Each building has a number of spots for users and a multiplier on how fast it fills the need. Variety matters more than one perfect building, because colonists get bored of doing the same thing.</description>
+    <sections>
+      <li>
+        <heading>The buildings</heading>
+        <text>Base gain is 36% per hour × the building's multiplier, before tolerance. A billiards table at 130% gives about 46.8% an hour; a flatscreen TV at 140% about 50.4%.</text>
+        <table>
+          <li>Building | Spots | Rate | Power</li>
+          <li>Horseshoes pin | 12 | 100% | No</li>
+          <li>Hoopstone ring | 12 | 100% | No</li>
+          <li>Chess table | 4 (2 users) | 100% | No</li>
+          <li>Game of Ur | 4 (2 users) | 80% | No</li>
+          <li>Billiards table | 2 | 130% | No</li>
+          <li>Poker table | 8 (4 users) | 130% | No</li>
+          <li>Telescope | 1 | 120% | No</li>
+          <li>Tube TV | 15 | 120% | Yes</li>
+          <li>Flatscreen TV | 30 | 140% | Yes</li>
+          <li>Megascreen TV | 42 | 160% | Yes</li>
+          <li>Harp, harpsichord, piano (music) | 1 each | 100% | No</li>
+        </table>
+      </li>
+      <li>
+        <heading>Setting up a rec room</heading>
+        <text>Mix kinds: a game table, horseshoes, a TV and an instrument beat four of the same. Without power, skip the TVs. Put the rec room between the bedrooms and the dining room so people pass it every day, and put a TV in the hospital, since bedridden patients can only watch TV.</text>
+      </li>
+    </sections>
     <keywords>
       <li>recreation</li>
       <li>joy</li>
@@ -608,21 +728,19 @@ Silver and materials you'll never use raise wealth without making anyone happier
     <order>120</order>
     <summary>Hospitals need medical beds; a cell is built around one prisoner bed</summary>
     <tip>After setting the beds, check the room panel; it should read "hospital" or "prison cell".</tip>
-    <description>Hospitals and prison cells are rooms like any other, and the game recognizes them by their beds. A hospital needs at least one medical bed and no prisoner bed; a cell is built around prisoner beds and nothing else. Both deserve care: a clean, lit hospital saves lives, and a decent cell keeps prisoners calm.</description>
-    <facts>
-      <li>A hospital scores 100,000. A prisoner bed in it, or no medical bed at all, breaks it.</li>
-      <li>A prison cell holds one prisoner bed and scores 170,000. An ordinary colonist bed breaks it.</li>
-      <li>More prisoner beds make a prison barracks: 100,100 per bed, 50,001 per medical prisoner bed.</li>
-      <li>A prisoner's mood uses the cell's impressiveness, as a bedroom does.</li>
-      <li>Colonists and slaves can't share a room with prisoners.</li>
-      <li>Surgery suffers when the head of the bed is under 50% light, down to ×0.75 in full darkness.</li>
-    </facts>
-    <advice>
-      <li>Keep the hospital clean, lit and floored, with sterile tile once you can.</li>
-      <li>Give cells about 25 space, as you would a bedroom; prisoners feel a cramped cell.</li>
-      <li>Set beds to "medical" or "for prisoners" after building them, or the room won't count.</li>
-      <li>Put a TV in the hospital so bedridden patients have some recreation.</li>
-    </advice>
+    <description>Hospitals and prison cells are rooms like any other, and the game recognizes them by their beds. Set beds to "medical" or "for prisoners" after building them, or the room won't count. Both deserve care: a clean, lit hospital saves lives, and a decent cell keeps prisoners calm.</description>
+    <sections>
+      <li>
+        <heading>The hospital</heading>
+        <text>A hospital needs at least one medical bed and no prisoner bed, and scores 100,000. A prisoner bed in it, or no medical bed at all, breaks it. Keep it clean, lit and floored, with sterile tile once you can. Surgery suffers when the head of the bed is under 50% light, down to ×0.75 in full darkness. Put a TV in it so bedridden patients have some recreation.</text>
+      </li>
+      <li>
+        <heading>The prison cell</heading>
+        <text>A cell is built around prisoner beds and nothing else. A prison cell holds one prisoner bed and scores 170,000; an ordinary colonist bed breaks it. More prisoner beds make a prison barracks: 100,100 per bed, 50,001 per medical prisoner bed. Colonists and slaves can't share a room with prisoners.
+
+A prisoner's mood uses the cell's impressiveness, as a bedroom does, and prisoners feel a cramped cell. Give cells about 25 space, as you would a bedroom.</text>
+      </li>
+    </sections>
     <keywords>
       <li>hospital</li>
       <li>prison</li>
@@ -649,20 +767,38 @@ Silver and materials you'll never use raise wealth without making anyone happier
     <order>5</order>
     <summary>The key mood numbers on one page</summary>
     <tip>A bed, a table and a lit room cover most of the basics.</tip>
-    <description>These are the thoughts and thresholds you'll check most when a colonist's mood bar turns red. Each number has its own page with what to do about it.</description>
-    <facts>
-      <li>Mental breaks: minor below 35% mood, major below 20%, extreme below 5%. Average time to a break: 4, 0.8 and 0.5 days.</li>
-      <li>Expectations: +30 up to 15,000 wealth, +24 to 31,000, +18 to 81,000, +12 to 182,000, +6 to 308,000, 0 above.</li>
-      <li>Room impressiveness: up to +8; an awful bedroom -2.</li>
-      <li>Sleep: on the ground, outside, in the cold or in the heat -4 each; disturbed -1.</li>
-      <li>Food: raw -7, nutrient paste -4, fine meal +5, lavish meal +12, no table -3.</li>
-      <li>Recreation: +10 near full, -20 when empty. Beauty need: +15 to -15.</li>
-      <li>Corpses: observed -4, rotting -6, for half a day. Catharsis after a break: +40 per stack, 122 at most, for 3 days.</li>
-    </facts>
-    <advice>
-      <li>Find the biggest negative thought in the Needs tab and fix that first.</li>
-      <li>Open the linked page for each number to see what to do about it.</li>
-    </advice>
+    <description>These are the thoughts and thresholds you'll check most when a colonist's mood bar turns red. Find the biggest negative thought in the Needs tab and fix that first; each number has its own page, linked below, with what to do about it.</description>
+    <sections>
+      <li>
+        <heading>Mental breaks</heading>
+        <table>
+          <li>Break | Mood below | Average time to a break</li>
+          <li>Minor | 35% | 4 days</li>
+          <li>Major | 20% | 0.8 days</li>
+          <li>Extreme | 5% | 0.5 days</li>
+        </table>
+        <after>Catharsis after a break: +40 per stack, 122 at most, for 3 days.</after>
+      </li>
+      <li>
+        <heading>Thoughts</heading>
+        <table>
+          <li>Thought | Mood</li>
+          <li>Expectations | +30 up to 15,000 wealth, +24 to 31,000, +18 to 81,000, +12 to 182,000, +6 to 308,000, 0 above</li>
+          <li>Room impressiveness | Up to +8; an awful bedroom -2</li>
+          <li>Slept on the ground, outside, in the cold or in the heat | -4 each</li>
+          <li>Disturbed sleep | -1</li>
+          <li>Raw food | -7</li>
+          <li>Nutrient paste | -4</li>
+          <li>Fine meal | +5</li>
+          <li>Lavish meal | +12</li>
+          <li>Ate without table | -3</li>
+          <li>Recreation | +10 near full, -20 when empty</li>
+          <li>Beauty need | +15 to -15</li>
+          <li>Observed corpse | -4, for half a day</li>
+          <li>Observed rotting corpse | -6, for half a day</li>
+        </table>
+      </li>
+    </sections>
     <keywords>
       <li>cheat sheet</li>
       <li>quick reference</li>
@@ -691,21 +827,26 @@ Silver and materials you'll never use raise wealth without making anyone happier
     <summary>Below 35% mood breaks can start; below 5% they turn deadly</summary>
     <tip>A minor break usually takes days to arrive, so there's time to act.</tip>
     <description>When a colonist's mood stays below a break threshold, they can snap and stop taking orders. Minor breaks waste time, major ones break things, and extreme ones can kill someone or burn down the base. A break ends with a burst of relief called catharsis, but a colony that relies on it has a mood problem somewhere else.</description>
-    <facts>
-      <li>Thresholds: minor 35% mood ("Stressed"), major 20% ("On edge"), extreme 5% ("About to break"). Traits move the minor threshold, within 1% to 50%.</li>
-      <li>Average time to a break while below a threshold: minor 4 days, major 0.8 days, extreme 0.5 days.</li>
-      <li>Minor: food binge, sad wander, hiding in a room, insulting spree, crying, giggling, dark visions.</li>
-      <li>Major: social drug binge, daze, tantrum, bedroom tantrum, sadistic rage, corpse obsession, insane ramblings.</li>
-      <li>Extreme: berserk, fire-starting spree, hard drug binge, catatonic breakdown, jailbreaker, slaughterer, murderous rage, run wild, giving up and leaving.</li>
-      <li>Catharsis after a break: +40 per stack, up to 5 stacks with a 0.75 multiplier (122 at most), for 3 days.</li>
-      <li>Void catharsis (Anomaly): 30 per stack, up to 5 stacks (150 at most), for 3 days.</li>
-    </facts>
-    <advice>
-      <li>Watch the three marks on each mood bar, and act when someone drifts toward 35%.</li>
-      <li>Quick fixes: a batch of fine meals, a recreation block in the schedule, a beer, or a day off from hard jobs.</li>
-      <li>Remove the sources of bad thoughts: corpses, ugly corridors, sleeping on the floor.</li>
-      <li>A drug binge ignores drug policy, so keep only a small stock of hard drugs.</li>
-    </advice>
+    <sections>
+      <li>
+        <heading>The three thresholds</heading>
+        <table>
+          <li>Break | Below | Average wait | What can happen</li>
+          <li>Minor ("Stressed") | 35% | 4 days | Food binge, sad wander, hiding in a room, insulting spree, crying, giggling, dark visions</li>
+          <li>Major ("On edge") | 20% | 0.8 days | Social drug binge, daze, tantrum, bedroom tantrum, sadistic rage, corpse obsession, insane ramblings</li>
+          <li>Extreme ("About to break") | 5% | 0.5 days | Berserk, fire-starting spree, hard drug binge, catatonic breakdown, jailbreaker, slaughterer, murderous rage, run wild, giving up and leaving</li>
+        </table>
+        <after>The average wait is the time to a break while mood stays below the threshold. Traits move the minor threshold, within 1% to 50%.</after>
+      </li>
+      <li>
+        <heading>Catharsis</heading>
+        <text>After a break, catharsis gives +40 per stack, up to 5 stacks with a 0.75 multiplier (122 at most), for 3 days. With Anomaly, void catharsis gives 30 per stack, up to 5 stacks (150 at most), for 3 days.</text>
+      </li>
+      <li>
+        <heading>Heading one off</heading>
+        <text>Watch the three marks on each mood bar, and act when someone drifts toward 35%. The quick fixes are a batch of fine meals, a recreation block in the schedule, a beer, or a day off from hard jobs. Then remove the sources of the bad thoughts: corpses, ugly corridors, sleeping on the floor. A drug binge ignores drug policy, so keep only a small stock of hard drugs.</text>
+      </li>
+    </sections>
     <keywords>
       <li>mental break</li>
       <li>berserk</li>
@@ -733,20 +874,31 @@ Silver and materials you'll never use raise wealth without making anyone happier
     <summary>Pretty surroundings give up to +15 mood; ugly ones cost up to -15</summary>
     <tip>Mop the corridors before you decorate the bedrooms.</tip>
     <description>Each colonist has a Beauty need that fills when they spend time somewhere beautiful and drains somewhere ugly. It's one of the biggest mood swings you control directly, from +15 to -15. Sleeping colonists barely notice their bedroom's looks, so the beauty that matters is where people are awake: workshops, the dining room, the hospital and the main corridors.</description>
-    <facts>
-      <li>Beauty 6 or more: +15, the top step.</li>
-      <li>4.5 or more: +10. 2.5 or more: +5.</li>
-      <li>From -0.5 up to 2.5: no thought.</li>
-      <li>From -3.5 up to -0.5: -5. Below -3.5: -10, and -15 at -4 or lower.</li>
-      <li>Short trips through ugly places matter little: the need rises faster than it falls.</li>
-      <li>A sleeping colonist's Beauty need barely changes, so bedroom decoration pays off mostly through the room's impressiveness.</li>
-    </facts>
-    <advice>
-      <li>Spend beauty where people stay awake: the workshop, dining room, rec room, hospital and main walkways.</li>
-      <li>After a raid, mop the corridors first: blood is -30 and vomit -40 beauty per tile.</li>
-      <li>Put stockpiles on shelves; loose items on the floor count as ugly.</li>
-      <li>Place one good sculpture in the middle of a big room rather than several small ones in the corners.</li>
-    </advice>
+    <sections>
+      <li>
+        <heading>The thresholds</heading>
+        <table>
+          <li>Beauty around them | Mood</li>
+          <li>6 or more | +15</li>
+          <li>4.5 or more | +10</li>
+          <li>2.5 or more | +5</li>
+          <li>From -0.5 up to 2.5 | None</li>
+          <li>From -3.5 up to -0.5 | -5</li>
+          <li>Below -3.5 | -10</li>
+          <li>-4 or lower | -15</li>
+        </table>
+        <after>Short trips through ugly places matter little, because the need rises faster than it falls. A sleeping colonist's Beauty need barely changes, so bedroom decoration pays off mostly through the room's impressiveness.</after>
+      </li>
+      <li>
+        <heading>Raising it</heading>
+        <points>
+          <li>Spend beauty where people stay awake: the workshop, dining room, rec room, hospital and main walkways.</li>
+          <li>After a raid, mop the corridors first: blood is -30 and vomit -40 beauty per tile.</li>
+          <li>Put stockpiles on shelves; loose items on the floor count as ugly.</li>
+          <li>Place one good sculpture in the middle of a big room rather than several small ones in the corners.</li>
+        </points>
+      </li>
+    </sections>
     <keywords>
       <li>surroundings</li>
       <li>beauty need</li>
@@ -770,19 +922,28 @@ Silver and materials you'll never use raise wealth without making anyone happier
     <summary>Recreation swings mood from +10 to -20, and one game alone gets boring</summary>
     <tip>Chess every night gets boring. Add horseshoes and an instrument.</tip>
     <description>Recreation is a need that drains while colonists work and refills when they play, chat or relax. Each kind of fun builds tolerance as it's used, so a colonist who only plays chess gets bored of it and gains less. The richer the colony, the more different kinds of fun people expect.</description>
-    <facts>
-      <li>Recreation falls 2.5% per hour above 30%, 1.75% per hour at 15-30% and 1% per hour below 15%. It doesn't fall while sleeping, having fun or in a mental break.</li>
-      <li>Mood: 85-100% +10; 70-85% +5; 30-69% nothing; 15-30% -5; under 15% -10; empty -20.</li>
-      <li>Tolerance builds at two-thirds of the recreation gained. Above 50% tolerance a colonist is bored of that kind until it drops below 30%.</li>
-      <li>Tolerance lost per day, and kinds of recreation wanted, by expectations: extremely low 18% / 2; very low 13% / 3; low 11% / 3; moderate 10% / 4; high 8% / 5; sky-high 7% / 6.</li>
-      <li>Slaves and prisoners have no Recreation need.</li>
-    </facts>
-    <advice>
-      <li>Offer at least as many kinds of recreation as your expectation level asks for, and add more as wealth grows.</li>
-      <li>Give everyone a recreation hour or two in the schedule so they actually use it.</li>
-      <li>Count chatting, meditation, cloud watching, viewing art and drinks as kinds too.</li>
-      <li>In a tribal colony, horseshoes, a chessboard, an instrument and a barrel of beer cover several kinds without power.</li>
-    </advice>
+    <sections>
+      <li>
+        <heading>How it drains</heading>
+        <text>Recreation falls 2.5% per hour above 30%, 1.75% per hour at 15-30% and 1% per hour below 15%. It doesn't fall while sleeping, having fun or in a mental break. Slaves and prisoners have no Recreation need.
+
+The mood follows the bar: 85-100% +10; 70-85% +5; 30-69% nothing; 15-30% -5; under 15% -10; empty -20. Give everyone a recreation hour or two in the schedule so they actually use what you build.</text>
+      </li>
+      <li>
+        <heading>Tolerance and variety</heading>
+        <text>Tolerance builds at two-thirds of the recreation gained. Above 50% tolerance a colonist is bored of that kind until it drops below 30%. How fast tolerance wears off, and how many kinds of recreation people want, depends on expectations:</text>
+        <table>
+          <li>Expectations | Tolerance lost per day | Kinds wanted</li>
+          <li>Extremely low | 18% | 2</li>
+          <li>Very low | 13% | 3</li>
+          <li>Low | 11% | 3</li>
+          <li>Moderate | 10% | 4</li>
+          <li>High | 8% | 5</li>
+          <li>Sky-high | 7% | 6</li>
+        </table>
+        <after>Offer at least as many kinds as your expectation level asks for, and add more as wealth grows. Chatting, meditation, cloud watching, viewing art and drinks count as kinds too. In a tribal colony, horseshoes, a chessboard, an instrument and a barrel of beer cover several kinds without power.</after>
+      </li>
+    </sections>
     <keywords>
       <li>recreation</li>
       <li>joy</li>
@@ -809,20 +970,28 @@ Silver and materials you'll never use raise wealth without making anyone happier
     <summary>Keep rooms around 16-26 °C: outside that people sulk, slow down and get sick</summary>
     <tip>In winter, close the doors and check the bedrooms first.</tip>
     <description>Every colonist has a comfortable temperature range that their clothes move up or down. Outside it they feel hot or cold, sleep badly, and in the worst cases fall to heatstroke or hypothermia. Workbenches have a comfortable range too, so a freezing workshop slows the whole colony.</description>
-    <facts>
-      <li>Each pawn has a minimum and maximum comfortable temperature; apparel shifts both.</li>
-      <li>About 16-26 °C indoors is a common target.</li>
-      <li>Sleeping in the cold or in the heat: -4 for a day.</li>
-      <li>Many benches, such as the electric stove and stonecutter's table, are comfortable at 10-35 °C and work at 70% speed outside it.</li>
-      <li>Heat waves add up to 17 °C; cold snaps take away 20 °C.</li>
-      <li>Creatures take burn damage 150 °C beyond their comfortable range, and no animal is comfortable above 60 °C.</li>
-    </facts>
-    <advice>
-      <li>Heat bedrooms and workshops in winter and cool them in summer. Industrial: heaters and coolers. Tribal: a campfire for heat and passive coolers for summer.</li>
-      <li>Close doors and finish walls and roofs; heaters and coolers only hold a closed room.</li>
-      <li>Give outdoor workers jackets, dusters or parkas for the season.</li>
-      <li>Passive coolers can't go below 17 °C: enough to prevent heatstroke, not enough to keep food.</li>
-    </advice>
+    <sections>
+      <li>
+        <heading>The comfortable range</heading>
+        <text>Each pawn has a minimum and maximum comfortable temperature, and apparel shifts both, so give outdoor workers jackets, dusters or parkas for the season. About 16-26 °C indoors is a common target. Sleeping in the cold or in the heat costs -4 for a day.
+
+Creatures take burn damage 150 °C beyond their comfortable range, and no animal is comfortable above 60 °C.</text>
+      </li>
+      <li>
+        <heading>Heating and cooling</heading>
+        <text>Heat bedrooms and workshops in winter and cool them in summer.</text>
+        <table>
+          <li>Colony | Heat with | Cool with</li>
+          <li>Industrial | Heaters | Coolers</li>
+          <li>Tribal | A campfire | Passive coolers, which can't go below 17 °C: enough to prevent heatstroke, not enough to keep food</li>
+        </table>
+        <after>Close doors and finish walls and roofs; heaters and coolers only hold a closed room.</after>
+      </li>
+      <li>
+        <heading>Workbenches and weather</heading>
+        <text>Many benches, such as the electric stove and stonecutter's table, are comfortable at 10-35 °C and work at 70% speed outside it. Weather moves the numbers too: heat waves add up to 17 °C, and cold snaps take away 20 °C.</text>
+      </li>
+    </sections>
     <keywords>
       <li>temperature</li>
       <li>cold</li>
@@ -850,17 +1019,22 @@ Silver and materials you'll never use raise wealth without making anyone happier
     <summary>Bodies cost -4 to -6 mood on sight; blood and vomit wreck rooms</summary>
     <tip>Keep the corpse pile out of sight of the dining room.</tip>
     <description>Colonists hate seeing bodies, and they hate rotting ones more. After a raid, the corpses and blood left in the corridors drag down mood, beauty and cleanliness all at once. Decide where bodies go before the next raid comes.</description>
-    <facts>
-      <li>Observed corpse: -4. Observed rotting corpse: -6. Each lasts half a day.</li>
-      <li>Blood: -10 cleanliness and -30 beauty per tile. Vomit: -15 and -40. Other filth: -5 and -5.</li>
-      <li>A butcher table in the kitchen puts blood where the food is made and raises food poisoning risk.</li>
-    </facts>
-    <advice>
-      <li>Haul bodies to a dump zone or graves well away from where people walk, eat and sleep.</li>
-      <li>Bury your own dead in a grave or crypt.</li>
-      <li>After a raid, give a low-skill colonist a high Cleaning priority to mop the corridors.</li>
-      <li>Keep butchering in its own room, away from the kitchen and dining room.</li>
-    </advice>
+    <sections>
+      <li>
+        <heading>Bodies</heading>
+        <text>An observed corpse costs -4 mood, and an observed rotting corpse -6; each thought lasts half a day. Haul bodies to a dump zone or graves well away from where people walk, eat and sleep, and bury your own dead in a grave or crypt.</text>
+      </li>
+      <li>
+        <heading>Blood and vomit</heading>
+        <table>
+          <li>Filth, per tile | Cleanliness | Beauty</li>
+          <li>Blood | -10 | -30</li>
+          <li>Vomit | -15 | -40</li>
+          <li>Other filth | -5 | -5</li>
+        </table>
+        <after>After a raid, give a low-skill colonist a high Cleaning priority to mop the corridors. A butcher table in the kitchen puts blood where the food is made and raises food poisoning risk, so keep butchering in its own room, away from the kitchen and dining room.</after>
+      </li>
+    </sections>
     <keywords>
       <li>corpse</li>
       <li>body</li>
@@ -887,19 +1061,9 @@ Silver and materials you'll never use raise wealth without making anyone happier
     <order>60</order>
     <summary>Colonists who never see the sky get restless; give them time outside</summary>
     <tip>A mountain base needs a courtyard.</tip>
-    <description>Colonists like some time under the open sky. Spending every hour under a roof, especially in a mountain base, builds up an indoors mood penalty. Some time outside each day prevents it.</description>
-    <facts>
-      <li>Colonists who spend all their time under a roof risk an indoors mood penalty that grows the longer it lasts.</li>
-      <li>Mountain bases, where every room sits under rock, are the most at risk.</li>
-      <li>Crafters, researchers and cooks stay under a roof all day; farmers and haulers get out without trying.</li>
-      <li>Walking through puddles makes colonists wet, with a small mood hit each time.</li>
-    </facts>
-    <advice>
-      <li>Leave an unroofed courtyard or garden inside your walls.</li>
-      <li>Put horseshoes or a hoopstone ring outside, so recreation happens under the sky.</li>
-      <li>Mix an outdoor job, like hauling or plant cutting, into the day of your indoor workers.</li>
-      <li>Give everyone some "Anything" hours in the schedule.</li>
-    </advice>
+    <description>Colonists like some time under the open sky. Those who spend all their time under a roof risk an indoors mood penalty that grows the longer it lasts. Mountain bases, where every room sits under rock, are the most at risk. So are crafters, researchers and cooks, who stay under a roof all day, while farmers and haulers get out without trying.
+
+Some time outside each day prevents it. Leave an unroofed courtyard or garden inside your walls, and put horseshoes or a hoopstone ring out there so recreation happens under the sky. Mix an outdoor job, like hauling or plant cutting, into the day of your indoor workers, and give everyone some "Anything" hours in the schedule. Walking through puddles makes colonists wet, with a small mood hit each time.</description>
     <keywords>
       <li>cabin fever</li>
       <li>outdoors</li>

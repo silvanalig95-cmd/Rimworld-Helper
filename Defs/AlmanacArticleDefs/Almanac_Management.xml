@@ -1106,9 +1106,9 @@ Tribal trader caravans bring pack animals: muffalo in about 17.9% of groups, dro
     <order>200</order>
     <summary>Your line to other factions and orbital traders, as long as it has power</summary>
     <tip>A trade ship can pass overhead while the console is dark.</tip>
-    <description>The comms console is how you contact other factions and call up orbital trade ships in range, which makes it your main tool for trade and diplomacy. It needs the Microelectronics research to build and power to run, so keep it powered and check it whenever a trade ship letter arrives. Trading with a ship also needs an orbital trade beacon, with the goods inside its range; put the beacon over your main stockpile and they already are.
+    <description>The comms console is how you contact other factions and call up orbital trade ships in range, which makes it your main tool for trade and diplomacy. It needs the Microelectronics research to build and power to run, so keep it powered and check it whenever a trade ship letter arrives. Trading with a ship also needs an orbital trade beacon, with the goods inside its range, so put the beacon over your main stockpile.
 
-A blackout or a solar flare cuts you off. A flare lasts 0.15 to 0.5 days and silences the console, but trade ships can still arrive meanwhile, and ships that pass while it's dark are easy to miss. After a power cut or a flare, look for ships that arrived while it was dark.</description>
+A blackout or a solar flare cuts you off. A flare lasts 0.15 to 0.5 days and silences the console, but trade ships can still arrive meanwhile, and they're easy to miss. After a power cut or a flare, look for ships that arrived while the console was dark.</description>
     <keywords>
       <li>comms console</li>
       <li>communications</li>
