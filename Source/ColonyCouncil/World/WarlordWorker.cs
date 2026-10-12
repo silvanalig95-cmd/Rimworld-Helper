@@ -108,7 +108,9 @@ namespace ColonyCouncil
         {
             var x = Warlord(s);
             var f = s.ctx.faction;
-            if (x == null || x.Discarded || x.Destroyed && !x.Dead) return "vanished";
+            // Lost from the save (or his people with their mod): no name left to tell the end with.
+            if (x == null || f == null) return WorldSituations.Quietly;
+            if (x.Discarded || x.Destroyed && !x.Dead) return "vanished";
             if (x.Dead)
             {
                 var slayer = Slayer(x);
@@ -131,11 +133,22 @@ namespace ColonyCouncil
                     s.Set("captured");
                     WorldSituations.Instance?.Call(s, "captive", 0.25f);
                 }
+                // The colony took him first: an ally's or the hired swords' win far away can't be told any more.
+                if (s.pendingEnding == "allies" || s.pendingEnding == "mercenaries")
+                {
+                    s.pendingEnding = null;
+                    s.pendingTick = -1;
+                }
                 return null;
             }
-            // He got out of our hands: he rises again.
+            // He got out of our hands: he rises again (and an answer about him as our captive no longer holds).
             if (s.Has("captured")) s.Clear("captured");
-            if (f == null || f.defeated) return "gone";
+            if (s.pendingEnding == "captured" || s.pendingEnding == "handedOver" || s.pendingEnding == "ransomed")
+            {
+                s.pendingEnding = null;
+                s.pendingTick = -1;
+            }
+            if (f.defeated) return "gone";
             if (!f.HostileTo(Faction.OfPlayer)) return "peace";
             if (x.Faction != f) return "brokeup";
             if (!x.Spawned && Find.WorldPawns.Contains(x)) Find.WorldPawns.ForcefullyKeptPawns.Add(x);
@@ -340,8 +353,19 @@ namespace ColonyCouncil
 
         public override string Unavailable(WorldSituation s, SituationContext ctx, SituationBeat beat, int option)
         {
-            if (beat.key == "captive" && Warlord(s)?.IsPrisonerOfColony != true) return "CC_WS_NoLongerCaptive".Translate(Warlord(s)?.LabelShort ?? "?");
+            // Handed over or ransomed from the colony's cells (not from a caravan out in the world).
+            var x = Warlord(s);
+            if (beat.key != "captive") return null;
+            if (x?.IsPrisonerOfColony != true) return "CC_WS_NoLongerCaptive".Translate(x?.LabelShort ?? "?");
+            if (!x.Spawned) return "CC_WS_CaptiveAway".Translate(x.LabelShort);
             return null;
+        }
+
+        /// <summary>Time runs out while he's in the colony's cells: that's how it ended.</summary>
+        public override SituationEnding TimeoutEnding(WorldSituation s)
+        {
+            if (Warlord(s)?.IsPrisonerOfColony == true && def.Ending("captured") != null) return def.Ending("captured");
+            return base.TimeoutEnding(s);
         }
 
         public override string Chosen(WorldSituation s, SituationContext ctx, SituationBeat beat, int option, bool risk, bool byDefault, string outcome)
@@ -376,10 +400,16 @@ namespace ColonyCouncil
                 case "hunted":
                 case "bounty":
                 case "allies":
+                case "mercenaries":
+                    // Brought down out in the world. If he's at the colony or in its hands after all, he stays the colony's business.
+                    if (!FreeInWorld(x)) break;
+                    comp?.nemeses.Settle(x, FirstLine(how));
+                    if (s.Has("takenAlive")) Vanish(x);
+                    else if (!DieOffscreen(x)) Vanish(x);
+                    break;
                 case "handedOver":
                     comp?.nemeses.Settle(x, FirstLine(how));
-                    if (s.Has("takenAlive") || key == "handedOver") Vanish(x);
-                    else if (!DieOffscreen(x)) Vanish(x);
+                    Vanish(x);
                     break;
                 case "ransomed":
                     comp?.nemeses.Settle(x, FirstLine(how));
@@ -401,9 +431,10 @@ namespace ColonyCouncil
             return cut > 0 ? text.Substring(0, cut + 1) : text;
         }
 
-        /// <summary>His people paid: he walks out of the cell and goes home (and may come back one day).</summary>
+        /// <summary>His people paid: he walks out of the cell and goes home (and may come back one day). Not out of a caravan or anyone's arms.</summary>
         private static void SendHome(Pawn x)
         {
+            if (x.Dead || x.Discarded || !x.Spawned && x.holdingOwner != null) return;
             try
             {
                 if (x.guest != null && x.IsPrisoner) x.guest.SetGuestStatus(null);
@@ -435,7 +466,16 @@ namespace ColonyCouncil
             if (!CellFinder.TryFindRandomCellNear(anchor.Position, map, 6, c => c.Standable(map) && !c.Fogged(map) && c.GetFirstPawn(map) == null, out var cell, 30)) return;
             Find.WorldPawns.ForcefullyKeptPawns.Remove(x);
             Find.WorldPawns.RemovePawn(x);
-            GenSpawn.Spawn(x, cell, map);
+            try
+            {
+                GenSpawn.Spawn(x, cell, map);
+            }
+            catch
+            {
+                // Neither on the map nor in the world, he'd be lost from the save: back to the world with him.
+                if (!x.Spawned && !x.Destroyed && !Find.WorldPawns.Contains(x)) Find.WorldPawns.PassToWorld(x, PawnDiscardDecideMode.KeepForever);
+                throw;
+            }
             raiders.Add(x);
             s.flags.AddDistinct("led");
         }

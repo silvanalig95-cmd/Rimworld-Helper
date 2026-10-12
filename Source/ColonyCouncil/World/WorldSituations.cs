@@ -74,6 +74,9 @@ namespace ColonyCouncil
         /// <summary>Another running situation still needs this person.</summary>
         public bool HoldsElsewhere(WorldSituation except, Pawn p) => active.Any(s => s != except && !s.ended && (s.held.Contains(p) || s.ctx.stranger == p || s.ctx.other == p));
 
+        /// <summary>A running situation still needs this person (the warlord, a healer): not for the rest of Rimfolk to let go of.</summary>
+        public static bool Holds(Pawn p) => p != null && (Instance?.HoldsElsewhere(null, p) ?? false);
+
         /// <summary>The colony helped this people in an earlier world event (or in this one, when it's over).</summary>
         public bool Helped(Faction f) => f != null && history.Any(r => r.faction == f && r.helped);
 
@@ -82,6 +85,18 @@ namespace ColonyCouncil
         public override void GameComponentTick()
         {
             int t = Now;
+            if (t % 250 == 37 && active.Count > 0)
+            {
+                try
+                {
+                    foreach (var s in active)
+                        if (!s.ended) Keep(s);
+                }
+                catch (Exception e)
+                {
+                    CouncilLog.ErrorOnce("world situation people", e);
+                }
+            }
             if (t % GenDate.TicksPerHour != 1203) return;
             try
             {
@@ -90,6 +105,21 @@ namespace ColonyCouncil
             catch (Exception e)
             {
                 CouncilLog.ErrorOnce("world situations", e);
+            }
+        }
+
+        /// <summary>
+        /// Keeps the people a situation made (the warlord, a healer, the claimants) from the world's clean-up while it
+        /// runs, also while they're on a map: a raider or visitor goes back to the world the moment they walk off it,
+        /// and the clean-up could take them before anyone looked again. The colony's own people and prisoners aren't
+        /// the world's to keep. Let go when it ends (<see cref="WorldSituation.ReleaseAll"/>).
+        /// </summary>
+        private static void Keep(WorldSituation s)
+        {
+            foreach (var p in s.held)
+            {
+                if (p == null || p.Dead || p.Discarded || p.Faction == Faction.OfPlayer || p.IsPrisoner) continue;
+                if (p.Spawned || Find.WorldPawns.Contains(p) && p.GetCaravan() == null) Find.WorldPawns.ForcefullyKeptPawns.Add(p);
             }
         }
 
@@ -146,6 +176,13 @@ namespace ColonyCouncil
                 End(s, Quietly);
                 return;
             }
+            // Someone its letters name was lost from the save (a pawn gone, a people's mod removed): it ends without a letter.
+            if (s.Num("hasX") == 1 && s.ctx.stranger == null || s.Num("hasOther") == 1 && s.ctx.other == null || s.Num("hasEnemy") == 1 && s.ctx.enemy == null)
+            {
+                End(s, Quietly);
+                return;
+            }
+            if (s.ctx.map != null && !Find.Maps.Contains(s.ctx.map)) s.ctx.map = HappeningTracker.HomeMap();
             string ending = null;
             try
             {
@@ -251,6 +288,11 @@ namespace ColonyCouncil
                 return null;
             }
             s.endTick = s.startTick + Mathf.RoundToInt(def.durationDays.RandomInRange * GenDate.TicksPerDay);
+            // Who its letters name from the start, so it can end quietly if one is lost from the save later. (Not the dead,
+            // like a chief who died as it began: the world may let go of them, and the letters name them by {DEAD}.)
+            if (s.ctx.stranger != null && !s.ctx.stranger.Dead) s.SetNum("hasX", 1);
+            if (s.ctx.other != null && !s.ctx.other.Dead) s.SetNum("hasOther", 1);
+            if (s.ctx.enemy != null) s.SetNum("hasEnemy", 1);
             active.Add(s);
             string label = worker.Line(def.titles, s) ?? def.LabelCap.ToString();
             string cause = "CC_WS_Cause".Translate(def.LabelCap).Resolve();
@@ -548,8 +590,24 @@ namespace ColonyCouncil
                         CouncilLog.ErrorOnce("world situation end " + def.defName, e);
                     }
                 }
-                else if (key == Quietly)
-                    comp?.AddChronicle(new ChronicleEntry(ChronicleKind.World, "CC_WS_ChronicleQuiet".Translate(s.Label, TextUtil.DaysString(days * GenDate.TicksPerDay)).Resolve(), null));
+                else
+                {
+                    // Ended without its letter: the silver still comes, since the colony's goods already went out for it.
+                    if (owed > 0 && map != null)
+                    {
+                        try
+                        {
+                            VarietyUtil.PaySilver(map, IntVec3.Invalid, owed);
+                            Notify.Message("CC_WS_OwedPaid".Translate(owed, s.Label).Resolve(), LookTargets.Invalid, MessageTypeDefOf.PositiveEvent, Importance.Notable);
+                        }
+                        catch (Exception e)
+                        {
+                            CouncilLog.ErrorOnce("world situation owed " + def.defName, e);
+                        }
+                    }
+                    if (key == Quietly)
+                        comp?.AddChronicle(new ChronicleEntry(ChronicleKind.World, "CC_WS_ChronicleQuiet".Translate(s.Label, TextUtil.DaysString(days * GenDate.TicksPerDay)).Resolve(), null));
+                }
                 try
                 {
                     worker.Ended(s, ending);
@@ -600,7 +658,7 @@ namespace ColonyCouncil
             eventCache.Clear();
             incidentCache.Clear();
             var inst = Instance;
-            anyVanilla = inst != null && S.worldSituations && inst.active.Any(s => !s.ended && s.def.modifiers.Any(m => !m.incident.NullOrEmpty()));
+            anyVanilla = inst != null && S != null && S.worldSituations && inst.active.Any(s => !s.ended && s.def != null && s.def.modifiers.Any(m => !m.incident.NullOrEmpty()));
         }
 
         private static float Factor(IncidentDef def, HappeningExtension ext)
@@ -644,7 +702,7 @@ namespace ColonyCouncil
         public static float RaidPointsFactor(Faction f)
         {
             var inst = Instance;
-            if (f == null || inst == null || !S.worldSituations) return 1f;
+            if (f == null || inst == null || S == null || !S.worldSituations) return 1f;
             float factor = 1f;
             foreach (var s in inst.active)
                 if (!s.ended && s.Worker != null)
@@ -656,7 +714,7 @@ namespace ColonyCouncil
         public static Faction RaidFaction()
         {
             var inst = Instance;
-            if (inst == null || !S.worldSituations) return null;
+            if (inst == null || S == null || !S.worldSituations) return null;
             foreach (var s in inst.active)
             {
                 if (s.ended || s.Worker == null) continue;

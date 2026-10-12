@@ -14,6 +14,8 @@
   <CC_WS_Medicine>medicine</CC_WS_Medicine>
   <CC_WS_NothingToSell>There's nothing left to send.</CC_WS_NothingToSell>
   <CC_WS_NoLongerCaptive>{0} isn't the colony's prisoner any more.</CC_WS_NoLongerCaptive>
+  <CC_WS_CaptiveAway>{0} has to be in the colony's cells for this.</CC_WS_CaptiveAway>
+  <CC_WS_OwedPaid>The {0} silver the colony was owed has arrived ({1}).</CC_WS_OwedPaid>
 
   <!-- Where a place lies: "a few days' walk to the north" -->
   <CC_WS_Dir_N>north</CC_WS_Dir_N>

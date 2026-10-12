@@ -36,9 +36,16 @@ namespace ColonyCouncil
 
         public override void ExposeData()
         {
+            // A map that's gone isn't saved as a reference that can't be found again.
+            if (Scribe.mode == LoadSaveMode.Saving && map != null && !Find.Maps.Contains(map)) map = null;
             base.ExposeData();
             Scribe_Values.Look(ref situationId, "situationId");
-            Scribe_References.Look(ref other, "other");
+            // A dead body on a map counts as destroyed to the game's saving, which would save its person as nobody: the
+            // warlord killed just before a save is still told as slain (a discarded pawn still saves as nobody).
+            Scribe_References.Look(ref other, "other", true);
+            var x = stranger;
+            Scribe_References.Look(ref x, "strangerDead", true);
+            if (Scribe.mode == LoadSaveMode.ResolvingCrossRefs && stranger == null && x != null) stranger = x;
             Scribe_Values.Look(ref name, "name");
             Scribe_Values.Look(ref item, "item");
             Scribe_Values.Look(ref days, "days");
@@ -148,7 +155,8 @@ namespace ColonyCouncil
         public void ExposeData()
         {
             Scribe_Values.Look(ref id, "id");
-            Scribe_Defs.Look(ref def, "def");
+            // A situation Rimfolk no longer has loads as nothing (and is dropped) instead of an error.
+            CouncilScribe.LookDef(ref def, "def");
             Scribe_Values.Look(ref startTick, "startTick");
             Scribe_Values.Look(ref endTick, "endTick");
             Scribe_Deep.Look(ref ctx, "ctx");

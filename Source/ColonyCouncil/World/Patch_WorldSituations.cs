@@ -51,19 +51,22 @@ namespace ColonyCouncil
 
     /// <summary>
     /// A warlord's people raid more often while he rises: when the storyteller sends a raid without saying from whom,
-    /// it's sometimes his people (if they could have come anyway).
+    /// it's sometimes his people (if they could have come anyway). Not a quest's raid, nor one whose plan or way in
+    /// was already chosen (that may not suit his people).
     /// </summary>
     [HarmonyPatch(typeof(IncidentWorker_RaidEnemy), "TryResolveRaidFaction")]
     public static class Patch_WS_RaidFaction
     {
         public static void Prefix(IncidentWorker_RaidEnemy __instance, IncidentParms parms)
         {
-            if (!RimfolkPatches.On || parms == null || parms.faction != null || parms.quest != null) return;
+            if (!RimfolkPatches.On || parms == null || parms.faction != null || parms.quest != null || parms.raidStrategy != null || parms.raidArrivalMode != null) return;
+            // Only a raid on a map whose strength is already known: too few points for his people would leave the game without a plan for them.
+            if (!(parms.target is Map) || parms.points <= 0f) return;
             try
             {
                 var f = WorldSituations.RaidFaction();
                 if (f == null || !Rand.Chance(WarlordWorker.RaidShare) || !Raids.CanRaid(f)) return;
-                if (parms.points > 0f && parms.points < f.def.MinPointsToGeneratePawnGroup(PawnGroupKindDefOf.Combat, null)) return;
+                if (parms.points < f.def.MinPointsToGeneratePawnGroup(PawnGroupKindDefOf.Combat, null)) return;
                 if (!__instance.FactionCanBeGroupSource(f, parms, false)) return;
                 parms.faction = f;
             }
