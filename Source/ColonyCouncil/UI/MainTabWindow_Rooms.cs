@@ -60,8 +60,8 @@ namespace ColonyCouncil
         {
             var map = Find.CurrentMap;
             if (map == null) return;
-            Text.Font = GameFont.Medium;
-            Widgets.Label(new Rect(inRect.x, inRect.y, 300f, 32f), "CC_Rooms_Title".Translate());
+            UiKit.Icon(new Rect(inRect.x, inRect.y + 4f, 24f, 24f), Icons.Rooms, UiKit.Gold);
+            UiKit.LabelFit(new Rect(inRect.x + 32f, inRect.y, Mathf.Max(0f, inRect.width - 32f - 256f), 32f), "CC_Rooms_Title".Translate(), Color.white, GameFont.Medium);
             Text.Font = GameFont.Small;
             bool before = onlyAvailable;
             Widgets.CheckboxLabeled(new Rect(inRect.xMax - 250f, inRect.y + 4f, 250f, 24f), "CC_Build_OnlyAvailable".Translate(), ref onlyAvailable);
