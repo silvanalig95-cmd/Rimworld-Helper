@@ -88,15 +88,12 @@ namespace ColonyCouncil
         public override void Feed(Pawn p, PawnHeart heart, HeartMapContext map, IFeelingSink sink)
         {
             if (p.relations == null) return;
-            var others = HeartNeeds.Companions(p);
-            if (others.Count == 0)
+            int friends = HeartNeeds.FriendsHere(p, out int others);
+            if (others == 0)
             {
                 sink.Add(7f, "CC_Heart_Cause_Alone".Translate());
                 return;
             }
-            int friends = 0;
-            foreach (var o in others)
-                if (p.relations.OpinionOf(o) >= 20) friends++;
             if (friends == 0) sink.Add(5f, "CC_Heart_Cause_NoFriends".Translate());
         }
     }

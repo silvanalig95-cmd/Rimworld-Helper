@@ -81,13 +81,24 @@ namespace ColonyCouncil
         public override void ExposeData()
         {
             base.ExposeData();
-            if (Scribe.mode == LoadSaveMode.Saving) Prune();
-            Scribe_Collections.Look(ref hearts, "hearts", LookMode.Reference, LookMode.Deep, ref tmpPawns, ref tmpHearts);
+            // A clean-up that fails must never stop the game from saving.
+            if (Scribe.mode == LoadSaveMode.Saving)
+            {
+                try
+                {
+                    Prune();
+                }
+                catch (Exception e)
+                {
+                    CouncilLog.ErrorOnce("heart clean-up before saving", e);
+                }
+            }
+            // Someone the save no longer has (a pawn from a removed mod) loads as a null key: dropped quietly below.
+            Scribe_Collections.Look(ref hearts, "hearts", LookMode.Reference, LookMode.Deep, ref tmpPawns, ref tmpHearts, false);
             Scribe_Values.Look(ref lastColonyEpisodeTick, "lastColonyEpisodeTick", -999999);
             if (Scribe.mode == LoadSaveMode.PostLoadInit)
             {
                 if (hearts == null) hearts = new Dictionary<Pawn, PawnHeart>();
-                // Someone the save no longer has (a pawn from a removed mod) loads as a null key.
                 hearts.RemoveAll(kv => kv.Key == null || kv.Value == null);
                 foreach (var h in hearts.Values) h.EnsureLists();
             }

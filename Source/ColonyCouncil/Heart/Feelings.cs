@@ -127,6 +127,7 @@ namespace ColonyCouncil
                 foreach (var (fi, feed) in generic)
                     if (Holds(feed, off, other, p)) best[fi] = Mathf.Max(best[fi], feed.weight);
                 string label = null;
+                bool council = CouncilDidIt(group.def);
                 for (int i = 0; i < n; i++)
                 {
                     if (best[i] <= 0f) continue;
@@ -140,7 +141,7 @@ namespace ColonyCouncil
                         f.target = other;
                         f.targetAmount = amount;
                     }
-                    if (CouncilDidIt(group.def)) f.fromCouncil = true;
+                    if (council) f.fromCouncil = true;
                 }
             }
 
@@ -177,7 +178,7 @@ namespace ColonyCouncil
                 if (f.intensity <= 0f) continue;
                 if (d.traitFactors != null)
                     foreach (var tf in d.traitFactors)
-                        if (Heart.HasTrait(p, tf.degree == int.MinValue ? tf.trait : tf.trait + ":" + tf.degree)) f.intensity *= tf.factor;
+                        if (tf != null && Heart.HasTrait(p, tf.trait, tf.degree)) f.intensity *= tf.factor;
                 if (d.fromStrain > 0f && h.strain >= 30f)
                 {
                     float add = h.strain * d.fromStrain;
@@ -233,12 +234,17 @@ namespace ColonyCouncil
             "Council_Dlm_Understood", "Council_Secret2_Protected", "Council_Secret2_HeardOut", "Council_Secret2_DebtPaid", "Council_BroughtHome"
         };
 
+        private static readonly Dictionary<ThoughtDef, bool> councilDeed = new Dictionary<ThoughtDef, bool>();
+
+        /// <summary>Whether the thought is one of the council's deeds, worked out once per thought.</summary>
         private static bool CouncilDidIt(ThoughtDef def)
         {
-            string name = def.defName;
-            for (int i = 0; i < CouncilDeeds.Length; i++)
-                if (name.StartsWith(CouncilDeeds[i], StringComparison.Ordinal)) return true;
-            return false;
+            if (councilDeed.TryGetValue(def, out bool did)) return did;
+            string name = def.defName ?? "";
+            for (int i = 0; i < CouncilDeeds.Length && !did; i++)
+                if (name.StartsWith(CouncilDeeds[i], StringComparison.Ordinal)) did = true;
+            councilDeed[def] = did;
+            return did;
         }
 
         private static bool Holds(FeelingFeed feed, float off, Pawn other, Pawn p)

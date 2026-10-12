@@ -249,6 +249,14 @@ namespace ColonyCouncil
                 name = spec.Substring(0, colon);
                 if (!int.TryParse(spec.Substring(colon + 1), out degree)) degree = int.MinValue;
             }
+            return HasTrait(p, name, degree);
+        }
+
+        /// <summary>Whether someone has a trait by defName, at this degree (int.MinValue: any).</summary>
+        public static bool HasTrait(Pawn p, string name, int degree)
+        {
+            var set = p?.story?.traits;
+            if (set == null || name.NullOrEmpty()) return false;
             var def = DefDatabase<TraitDef>.GetNamedSilentFail(name);
             if (def == null || !set.HasTrait(def)) return false;
             return degree == int.MinValue || set.DegreeOfTrait(def) == degree;

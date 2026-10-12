@@ -88,12 +88,8 @@ namespace ColonyCouncil
         {
             var why = new Why();
             float v = 15f;
-            var others = Companions(p);
-            int friends = 0;
-            if (p.relations != null)
-                foreach (var o in others)
-                    if (p.relations.OpinionOf(o) >= 20) friends++;
-            if (others.Count == 0) why.Add(-30f, "CC_Heart_Why_Alone".Translate());
+            int friends = FriendsHere(p, out int others);
+            if (others == 0) why.Add(-30f, "CC_Heart_Why_Alone".Translate());
             else if (friends == 0) why.Add(-20f, "CC_Heart_Why_NoFriends".Translate());
             float f = Mathf.Min(3, friends) * 15f;
             v += f;
@@ -125,11 +121,9 @@ namespace ColonyCouncil
                 foreach (var mem in mems)
                 {
                     if (mem?.def == null) continue;
-                    string n = mem.def.defName;
-                    if (n == "Council_Soc_LeftOut") leftOut = true;
-                    else if (mem.age < GenDate.TicksPerDay * 2 && (n == "DeepTalk" || n == "KindWordsMood" || n.StartsWith("Council_Moment_", StringComparison.Ordinal)
-                                                                    || n.StartsWith("Council_Soc_", StringComparison.Ordinal)) && mem.MoodOffset() > 0f)
-                        good++;
+                    var kind = SocialKindOf(mem.def);
+                    if (kind == SocialMemory.LeftOut) leftOut = true;
+                    else if (kind == SocialMemory.Good && mem.age < GenDate.TicksPerDay * 2 && HeartLogic.SafeMood(mem) > 0f) good++;
                 }
             if (good > 0)
             {
@@ -142,6 +136,56 @@ namespace ColonyCouncil
                 why.Add(-15f, "CC_Heart_Why_LeftOut".Translate());
             }
             return why.Result(v);
+        }
+
+        private enum SocialMemory : byte
+        {
+            None,
+            Good,
+            LeftOut
+        }
+
+        /// <summary>What a memory says about belonging, worked out once per thought (not by name every hour).</summary>
+        private static readonly Dictionary<ThoughtDef, SocialMemory> socialKinds = new Dictionary<ThoughtDef, SocialMemory>();
+
+        private static SocialMemory SocialKindOf(ThoughtDef def)
+        {
+            if (socialKinds.TryGetValue(def, out var kind)) return kind;
+            string n = def.defName ?? "";
+            kind = n == "Council_Soc_LeftOut" ? SocialMemory.LeftOut
+                : n == "DeepTalk" || n == "KindWordsMood" || n.StartsWith("Council_Moment_", StringComparison.Ordinal) || n.StartsWith("Council_Soc_", StringComparison.Ordinal)
+                    ? SocialMemory.Good
+                    : SocialMemory.None;
+            socialKinds[def] = kind;
+            return kind;
+        }
+
+        private static int friendsTick = -1;
+        private static Pawn friendsOf;
+        private static int friendsCount, othersCount;
+
+        /// <summary>
+        /// How many of the colony's people with them now they'd call a friend (opinion 20 or more), and how many are with
+        /// them at all. Worked out once per colonist per hour: belonging and loneliness both ask.
+        /// </summary>
+        public static int FriendsHere(Pawn p, out int others)
+        {
+            int now = Find.TickManager.TicksGame;
+            if (friendsOf == p && friendsTick == now)
+            {
+                others = othersCount;
+                return friendsCount;
+            }
+            var list = Companions(p);
+            int friends = 0;
+            if (p.relations != null)
+                foreach (var o in list)
+                    if (p.relations.OpinionOf(o) >= 20) friends++;
+            friendsOf = p;
+            friendsTick = now;
+            friendsCount = friends;
+            othersCount = others = list.Count;
+            return friends;
         }
 
         private static NeedNow Purpose(Pawn p, PawnHeart h)

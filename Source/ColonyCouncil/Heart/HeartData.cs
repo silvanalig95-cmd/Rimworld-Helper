@@ -112,6 +112,8 @@ namespace ColonyCouncil
         [Unsaved] public string inBreak;
         /// <summary>Strain this hour, by source, for the tooltip ("+2 fighting this hour").</summary>
         [Unsaved] public float lastHourBuild, lastHourRelief;
+        /// <summary>When each kind of bad night was last counted, so a night renewed by waking again counts once.</summary>
+        [Unsaved] public Dictionary<ThoughtDef, int> badNights;
 
         public StrainBand Band => HeartMath.BandFor(strain);
 
