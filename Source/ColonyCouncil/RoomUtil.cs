@@ -103,10 +103,16 @@ namespace ColonyCouncil
 
         public static string StageLabel(RoomStatDef stat, float value) => stat?.GetScoreStage(value)?.label ?? value.ToString("0");
 
-        /// <summary>Is there a cold room (below 0 °C) holding storage? That's a freezer.</summary>
+        /// <summary>Is there a cold room (below 0 °C) holding storage? That's a freezer. So is a working fridge from a mod.</summary>
         public static bool HasFreezer(Map map)
         {
             if (map == null) return false;
+            foreach (var b in map.listerBuildings.allBuildingsColonist)
+            {
+                if (!Avail.IsFridge(b.def)) continue;
+                var power = b.TryGetComp<CompPowerTrader>();
+                if (power == null || power.PowerOn) return true;
+            }
             foreach (var zone in map.zoneManager.AllZones)
             {
                 if (!(zone is Zone_Stockpile)) continue;

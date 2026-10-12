@@ -2,7 +2,10 @@
 
 The modlists Rimfolk is played with, and what Rimfolk knows about the mods in them.
 
-- `medieval-main.txt`: the main medieval modlist (RimWorld 1.6), one package id per line, in load order.
+- `current-main.txt`: the modlist in use now (RimWorld 1.6, all DLCs): industrial and spacer, with Rimsenal,
+  Vanilla Expanded and Alpha mods. One package id per line, in load order. Its 87 mods that aren't in the medieval
+  list are researched in `mods/G_NewModlist.md`.
+- `medieval-main.txt`: the earlier medieval modlist (RimWorld 1.6), same format.
 - `mods/`: one note per theme, a section for every mod with what it adds, how it plays, what Rimfolk already does
   with it, and hook ideas for future features. New Rimfolk features start by checking these notes.
   - `A_MedievalOverhaul.md`: Medieval Overhaul and add-ons, Rimedieval, Medieval Total Rim, Divine Order (34 mods)

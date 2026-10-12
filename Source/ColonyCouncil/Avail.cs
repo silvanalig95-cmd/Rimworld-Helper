@@ -340,6 +340,23 @@ namespace ColonyCouncil
             return hp != null && hp.heatPerSecond >= 10f && !IsCooler(d);
         }
 
+        /// <summary>
+        /// A refrigerator from a mod (RimFridge and the like): storage that keeps its own contents cold wherever it stands,
+        /// so a colony with one doesn't need a freezer room.
+        /// </summary>
+        public static bool IsFridge(ThingDef d)
+        {
+            if (d?.building == null || d.defName == null) return false;
+            if (d.comps != null)
+            {
+                foreach (var c in d.comps)
+                    if (c?.compClass != null && c.compClass.Name.IndexOf("Refrigerator", System.StringComparison.OrdinalIgnoreCase) >= 0) return true;
+            }
+            if (d.thingClass != null && d.thingClass.Name.IndexOf("Refrigerator", System.StringComparison.OrdinalIgnoreCase) >= 0) return true;
+            return d.defName.IndexOf("Fridge", System.StringComparison.OrdinalIgnoreCase) >= 0
+                   || d.defName.IndexOf("Refrigerator", System.StringComparison.OrdinalIgnoreCase) >= 0;
+        }
+
         public static bool IsCooler(ThingDef d)
         {
             if (d == null) return false;
