@@ -636,8 +636,8 @@ None of this changes how the game decides on mental breaks. Vanilla mood stays t
           <li>Being downed | 3 an hour (8 a day at most)</li>
           <li>Deaths and losses | 4 for a colonist's death, 5 for seeing an ally die, 8 for family, each memory once (14 a day at most)</li>
           <li>Long days without sleep, no free time | up to 4 and 3 a day</li>
-          <li>Bad nights (cold, heat, noise, outside, on the ground) | 1 or 2 a night (4 a day at most)</li>
-          <li>Darkness, hunger, very low mood | up to 2, 4 and 6 a day</li>
+          <li>Bad nights (cold, heat, noise, outside, on the ground) | 1 or 2 for each, once a night (4 a day at most)</li>
+          <li>A dark home (under a roof, not the night sky), hunger, very low mood | up to 2, 4 and 6 a day</li>
           <li>Hard council decisions | decrees they resent (1 to 3 a day) and dilemma outcomes that hurt (4 a day at most)</li>
           <li>Fear, grief, worry and despair | up to 2 or 3 a day while they last</li>
         </table>
@@ -661,7 +661,7 @@ Some things take a chunk off at once: a party (6), a concert or a wedding (5), a
       </li>
       <li>
         <heading>A day off</heading>
-        <text>At strain 85 or more, a colonist may simply stop: they keep to their room for six to twelve hours, eating and sleeping as they need, and do no work. A letter says why and what would help. It never happens in danger, while drafted or asleep, to children, slaves, prisoners or guests, or when fewer than two others could keep working; at most once in 2 days in the colony and once in 10 days for each colonist. If a threat appears, it ends early. Afterwards their strain drops by about 40 (20 if it was cut short) and they feel lighter for a day and a half (+6 mood).
+        <text>At strain 85 or more, a colonist may simply stop: they keep to their room for six to twelve hours, eating and sleeping as they need, and do no work. A letter says why and what would help. It never happens in danger, while drafted or asleep, while hurt or sick, in the middle of caring for or carrying someone or fighting a fire, to children, slaves, prisoners or guests, or when fewer than two others could keep working; at most once in 2 days in the colony and once in 10 days for each colonist. It ends early if a threat appears, if they need a doctor, or if their room gets too cold or too hot. Afterwards their strain drops by about 40 (20 if it was cut short) and they feel lighter for a day and a half (+6 mood).
 
 To head it off, use days of rest: a decree that slows everyone's work by 10% for three days and makes strain drain about twice as fast. Colonists may ask for it when the colony is worn down.</text>
       </li>

@@ -325,8 +325,8 @@ stat part contribute nothing and the hooks return 1.
 - **Bands** give the only direct effects: a mood of -3/-5/-8, work speed -5%/-10%, darker dreams.
 - **Episodes** are the pressure valve, not a punishment: a custom mental state on vanilla's hide-in-room class, started
   silently by the heart (its own letter) and never by the game's break picker, since no MentalBreakDef names it. A think
-  tree inserted after the mental states gives it its behavior. Strict conditions (no danger, enough hands, cooldowns),
-  and it ends early when a threat appears.
+  tree inserted after the mental states gives it its behavior. Strict conditions (no danger, enough hands, cooldowns,
+  nobody left uncared for), and it ends early when a threat appears, a doctor is needed or the room turns too cold or hot.
 - **Feelings** are data (`FeelingDef`): thoughts that feed them (by name, pattern or a `HeartTags` extension on the
   thought), a worker for what thoughts can't say, a threshold, and nudges scaled by intensity. They never add mood,
   which would count their causes twice. Nudges stay small: wishes at most half again as likely, moments within half to

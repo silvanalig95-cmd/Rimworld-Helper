@@ -696,10 +696,11 @@ from vanilla mood alone, exactly as before, and every other mod sees the same mo
 **How strain builds** (0 to 100, looked at every hour): fighting with enemies on the map (4 an hour, up to 12 a day),
 pain and serious injuries, lying downed, deaths and losses (4 when a colonist dies, 5 for seeing an ally die, 8 for
 family, each memory once), long days without sleep or free time, bad nights (cold, heat, noise, outside, on the
-ground), darkness, hunger, very low mood, decrees they resent and dilemma outcomes that hurt, and lingering fear,
-grief, worry and despair. Each source has its own daily limit, and all of them together add at most about 25 a day.
-Iron-willed and steadfast colonists shrug off part of it, nervous and volatile ones take more; psychopaths take
-nothing from deaths, the bloodthirsty little from fighting, masochists nothing from pain.
+ground, each once a night), a dark home (not the night sky), hunger, very low mood, decrees they resent and dilemma
+outcomes that hurt, and lingering fear, grief, worry and despair. Each source has its own daily limit, and all of them
+together add at most about 25 a day. Iron-willed and steadfast colonists shrug off part of it, nervous and volatile
+ones take more; psychopaths take nothing from deaths, the bloodthirsty little from fighting, masochists nothing from
+pain.
 
 **How it drains:** slowly by itself in quiet hours, faster asleep in a warm bed and during recreation, faster still
 when their mood is high or they feel joy, pride, hope or calm. Parties, concerts, weddings, feasts and celebrations
@@ -715,10 +716,11 @@ with a warm bed, free time and a decent mood sheds about 10 a day, so one hard d
 
 **A day off.** At 85 or more, a colonist may stop and keep to their room for six to twelve hours ("worn out, needs a
 day"): they eat and sleep but don't work, and a letter says what wore them down and what would help. Never in danger,
-while drafted or asleep, for children, slaves, prisoners or guests, or when fewer than two others could keep working;
-at most once in 2 days in the colony and once in 10 days for each colonist. A threat ends it early. Afterwards strain
-drops by about 40 and they feel lighter for a day and a half. To head it off, declare **days of rest**: everyone works
-10% slower for three days, and strain drains about twice as fast.
+while drafted or asleep, while hurt or sick, in the middle of caring for or carrying someone or fighting a fire, for
+children, slaves, prisoners or guests, or when fewer than two others could keep working; at most once in 2 days in the
+colony and once in 10 days for each colonist. A threat ends it early, and so does needing a doctor or a room getting
+too cold or too hot. Afterwards strain drops by about 40 and they feel lighter for a day and a half. To head it off,
+declare **days of rest**: everyone works 10% slower for three days, and strain drains about twice as fast.
 
 **Feelings.** Each colonist has one or two feelings that stand out, out of twenty: grief, fear, dread (worry about
 what's coming), anger, shame, envy, disgust, loneliness, homesickness, frustration and despair; joy, pride, love,
