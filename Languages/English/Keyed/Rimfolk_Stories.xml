@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!-- Story chains and missions (Source/ColonyCouncil/Happenings/Workers_Chains2.cs, Source/ColonyCouncil/Missions/).
+       Most of their text is in their defs; these are the few words the code puts together. -->
+
+  <!-- Why an answer can't be given. -->
+  <CC_Story_NoBuyer>No neighbor is on good enough terms with the colony to buy it.</CC_Story_NoBuyer>
+  <CC_Story_OwnersHostile>{0} are at war with the colony.</CC_Story_OwnersHostile>
+
+</LanguageData>

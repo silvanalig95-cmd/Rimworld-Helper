@@ -172,10 +172,19 @@ namespace ColonyCouncil
                     meterLabel = "CC_UI_TimeLeft".Translate()
                 });
             }
+            // Story chains with a stage on its way (Workers_Chains2.cs).
+            foreach (var n in StoryChains.Coming(now)) timed.Add(FromNote(n, "CC_UI_TimeLeft".Translate()));
             // The rest in the order they'll happen; those without a date last.
             list.AddRange(timed.OrderBy(e => e.dueTick < 0 ? int.MaxValue : e.dueTick));
             return list;
         }
+
+        /// <summary>A story's or a mission's line as a card.</summary>
+        private static Entry FromNote(WorldNote n, string meterLabel = null) => new Entry
+        {
+            title = n.title, text = n.text, tip = n.tip, icon = n.icon ?? Icons.WorldEvent, color = n.color, faction = n.faction,
+            dueTick = n.due, meterLabel = meterLabel, click = n.click
+        };
 
         // ---------------- Who's out there ----------------
 
@@ -213,6 +222,7 @@ namespace ColonyCouncil
                 string line = mm.kind == "hunt" ? ScenarioStakes.WorldLine(mm, now) : Memo(mm);
                 if (line != null) list.Add(new Entry { text = line, icon = MemoIcon(mm.kind), color = Calm });
             }
+            foreach (var n in StoryChains.OutThere(now)) list.Add(FromNote(n));
             return list;
         }
 
