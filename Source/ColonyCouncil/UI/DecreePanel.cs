@@ -97,7 +97,8 @@ namespace ColonyCouncil
             float textW = TextWidth(width);
             Text.Font = GameFont.Small;
             l.titleH = 26f;
-            l.descH = def.description.NullOrEmpty() ? 0f : Text.CalcHeight(def.description, textW);
+            // The longer description lives in the name's tooltip; the card shows what the decree does and who minds.
+            l.descH = 0f;
             l.effectsH = Text.CalcHeight(l.effects, textW);
             l.noteH = l.note == null ? 0f : Text.CalcHeight(l.note, textW) + 2f;
             l.warnH = l.warning == null ? 0f : Text.CalcHeight(l.warning, textW) + 2f;
@@ -126,7 +127,14 @@ namespace ColonyCouncil
             Text.Font = GameFont.Medium;
             string title = def.LabelCap;
             float titleW = Mathf.Min(Text.CalcSize(title).x + 4f, textW);
+            // Back to the body font before anything else is drawn: the card's heights were measured with it.
+            Text.Font = GameFont.Small;
             UiKit.LabelFit(new Rect(textX, cy - 2f, titleW, 28f), title, active != null ? Good : Color.white, GameFont.Medium);
+            if (!def.description.NullOrEmpty())
+            {
+                TooltipHandler.TipRegion(new Rect(textX, cy - 2f, titleW, 28f), def.description);
+                TooltipHandler.TipRegion(new Rect(IconX, y + 10f, 32f, 32f), def.description);
+            }
             float px = textX + titleW + 8f;
             if (active != null && px + 60f < textX + textW) px += UiKit.Pill(px, cy + 4f, "CC_UI_Pill_InForce".Translate(), Good, null, null, textX + textW - px) + 4f;
             if (active != null && active.forced && px + 60f < textX + textW) px += UiKit.Pill(px, cy + 4f, "CC_UI_Pill_Forced".Translate(), Bad, null, null, textX + textW - px) + 4f;
