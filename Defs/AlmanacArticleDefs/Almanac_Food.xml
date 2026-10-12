@@ -461,7 +461,7 @@ Healroot is cold-resistant, as are nutrifungus and fibercorn with Ideology. Most
     <sections>
       <li>
         <heading>Listed days and real days</heading>
-        <text>Plants rest from hour 19 to hour 5, leaving 13 growing hours a day. Real growth time is therefore about 1.846x the listed grow days: a potato listed at 5.8 days takes about 10.7 days on soil. A crop must reach about 65% growth before it can be harvested.</text>
+        <text>Plants rest from about 19:12 to 6:00, leaving about 13 growing hours a day. Real growth time is therefore about 1.82x the listed grow days: a potato listed at 5.8 days takes about 10.5 days on soil. A crop must reach about 65% growth before it can be harvested.</text>
       </li>
       <li>
         <heading>Sowing in time</heading>

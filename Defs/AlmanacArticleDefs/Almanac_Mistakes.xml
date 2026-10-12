@@ -686,7 +686,7 @@ Wealth also lowers the expectations mood bonus: +24 at very low wealth (15,000 t
         <heading>Where the power goes</heading>
         <text>A sun lamp draws 2,900 W, almost three wood-fired generators' worth. Idle workstations still draw power, so switch off sun lamps and workbenches you aren't using.
 
-Batteries cost power too. Each loses 5 Wd a day, so batteries you don't need waste power. Build only the batteries a night needs: what you use after sunset, times the hours until dawn.</text>
+Batteries cost power too. Each loses 5 Wd a day, so batteries you don't need waste power. Build only the batteries a night needs: the watts you draw after sunset, times the hours until dawn, divided by 24 gives the Wd to store.</text>
       </li>
       <li>
         <heading>Breakdowns</heading>
@@ -806,7 +806,7 @@ Batteries cost power too. Each loses 5 Wd a day, so batteries you don't need was
           <li>Warmer than -17 °C.</li>
           <li>Within 30 tiles of something you built.</li>
         </points>
-        <after>A single warm tile is enough to start one, and an infestation left alone keeps spreading. Insects prefer dark spots far from open sky.</after>
+        <after>A single warm spot of open mountain is enough to start one, and an infestation left alone keeps spreading. Insects prefer dark spots far from open sky.</after>
       </li>
       <li>
         <heading>Walls or cold</heading>
