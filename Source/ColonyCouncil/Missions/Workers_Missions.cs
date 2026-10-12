@@ -651,7 +651,9 @@ namespace ColonyCouncil
                 var p = Arrivals.Make(kind, m.faction, new FloatRange(18f, 70f));
                 if (p != null) pilgrims.Add(p);
             }
-            if (pilgrims.Count == 0 || Arrivals.Visit(pilgrims, map, m.faction, shrine.Position, Rand.Range(16f, 24f)) == null)
+            // They gather beside it (a large sculpture can't be stood on), as mourners do by a grave; else just outside the colony.
+            IntVec3? spot = CellFinder.TryFindRandomCellNear(shrine.Position, map, 3, c => c.Standable(map) && c.GetFirstBuilding(map) == null, out var near) ? near : (IntVec3?)null;
+            if (pilgrims.Count == 0 || Arrivals.Visit(pilgrims, map, m.faction, spot, Rand.Range(16f, 24f)) == null)
                 foreach (var p in pilgrims.Where(p => !p.Spawned)) Arrivals.Discard(p);
             VarietyUtil.PaySilver(map, shrine.Position, m.reward);
             Missions.Goodwill(m, m.goodwill);
