@@ -82,7 +82,6 @@ namespace ColonyCouncil
 
         public bool Friction => tone == "friction";
         public bool Mend => tone == "mend";
-        public bool Warm => tone.NullOrEmpty() || tone == "warm";
 
         [Unsaved] private bool? available;
         [Unsaved] private string initiatorExpr, recipientExpr;
@@ -571,7 +570,11 @@ namespace ColonyCouncil
 
         public void ExposeData()
         {
-            if (Scribe.mode == LoadSaveMode.Saving) pairs.RemoveAll(p => p == null || Find.TickManager.TicksGame - p.Latest > KeepTicks);
+            if (Scribe.mode == LoadSaveMode.Saving)
+            {
+                pairs.RemoveAll(p => p == null || Find.TickManager.TicksGame - p.Latest > KeepTicks);
+                byPair = null;
+            }
             Scribe_Collections.Look(ref pairs, "pairs", LookMode.Deep);
             if (Scribe.mode == LoadSaveMode.PostLoadInit)
             {

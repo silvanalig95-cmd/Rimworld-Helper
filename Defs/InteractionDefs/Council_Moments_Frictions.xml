@@ -167,10 +167,10 @@
     <recipientThought>Council_Friction_Nagged</recipientThought>
     <logRulesInitiator>
       <rulesStrings>
-        <li>r_logentry->[INITIATOR_nameDef] walked past [RECIPIENT_nameDef] for the third time and asked whether [RECIPIENT_pronoun] was [lazyjab].</li>
+        <li>r_logentry->[INITIATOR_nameDef] found [RECIPIENT_nameDef] in the same spot as an hour before and asked whether [RECIPIENT_pronoun] was [lazyjab].</li>
         <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] that some people had work to do, and went on doing it, loudly.</li>
         <li>r_logentry->[INITIATOR_nameDef] set a heavy basket down right next to [RECIPIENT_nameDef] and sighed until [RECIPIENT_nameDef] got up.</li>
-        <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] whether [RECIPIENT_pronoun] was [lazyjab], and did not wait for the answer.</li>
+        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] that if [RECIPIENT_pronoun] was [lazyjab], [RECIPIENT_pronoun] was doing a fine job of it.</li>
         <li>lazyjab->resting up for something important</li>
         <li>lazyjab->planning to help at some point</li>
         <li>lazyjab->guarding that spot from thieves</li>
