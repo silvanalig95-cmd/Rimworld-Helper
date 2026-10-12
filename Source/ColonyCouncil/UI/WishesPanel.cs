@@ -6,56 +6,55 @@ using Verse;
 
 namespace ColonyCouncil
 {
-    /// <summary>People → Wishes: what the colonists ask the council for, what came of earlier wishes, and how much each one trusts the council.</summary>
-    [StaticConstructorOnStartup]
+    /// <summary>
+    /// People → Wishes: what the colonists ask the council for, as cards (who asks, what they want, in their words,
+    /// with tags and a meter for the time left), what came of earlier wishes, and how much each one trusts the council.
+    /// </summary>
     public static class WishesPanel
     {
-        private static readonly Color Faint = new Color(0.7f, 0.7f, 0.7f);
-        private static readonly Color GoodColor = new Color(0.55f, 0.9f, 0.55f);
-        private static readonly Color QuoteColor = new Color(1f, 0.93f, 0.75f);
         private static readonly Color HighColor = new Color(0.95f, 0.6f, 0.2f);
         private static readonly Color MediumColor = new Color(0.9f, 0.85f, 0.35f);
+        private static readonly Color ProgressColor = new Color(0.56f, 0.73f, 0.96f);
         private static int lastListenTick = -999999;
-        private static readonly Texture2D TrustGood = SolidColorMaterials.NewSolidColorTexture(new Color(0.35f, 0.65f, 0.4f));
-        private static readonly Texture2D TrustBad = SolidColorMaterials.NewSolidColorTexture(new Color(0.7f, 0.35f, 0.3f));
         private static Vector2 scroll;
-        private static float lastHeight = 1000f;
+        private static float height = 1000f;
+
+        private const float PortraitSize = 56f;
+        private const float TextX = 82f;
+        private const float ButtonsW = 150f;
+        private const float ThingW = 44f;
 
         private static CouncilSettings Settings => ColonyCouncilMod.Settings;
 
-        private static float BeginScroll(Rect outRect)
+        /// <summary>A wish card's text and measurements, worked out about once a second (and again when the width changes).</summary>
+        private class Layout
         {
-            var view = new Rect(0f, 0f, outRect.width - 18f, lastHeight);
-            Widgets.BeginScrollView(outRect, ref scroll, view);
-            return view.width;
+            public float width = -1f, at;
+            public string header, quote, details, progressText;
+            public float headerH, quoteH, pillsH, detailsH, height, progress = -1f;
+            public List<UiKit.PillSpec> pills = new List<UiKit.PillSpec>();
+            public RoomTemplateDef template;
+            public bool canBuild;
+            public int buttons;
         }
 
-        private static void EndScroll(float height)
-        {
-            lastHeight = Mathf.Max(height + 10f, 100f);
-            Widgets.EndScrollView();
-        }
-
-        private static float WrappedLabel(float x, float y, float width, string text, Color? color = null, GameFont font = GameFont.Small) =>
-            MainTabWindow_Council.WrappedLabel(x, y, width, text, color, font);
+        private static readonly Dictionary<Wish, Layout> layouts = new Dictionary<Wish, Layout>();
 
         public static void Draw(Rect rect, CouncilGameComponent comp)
         {
             if (!Settings.enableWishes)
             {
-                Widgets.Label(rect, "CC_WishesDisabled".Translate());
+                UiKit.EmptyState(rect, Icons.Wishes, "CC_WishesDisabled".Translate());
                 return;
             }
-            Text.Font = GameFont.Medium;
-            Widgets.Label(new Rect(rect.x, rect.y, rect.width - 220f, 32f), "CC_Wishes_Header".Translate());
-            Text.Font = GameFont.Small;
-            GUI.color = Faint;
-            Widgets.Label(new Rect(rect.x, rect.y + 28f, rect.width - 220f, 22f), ("CC_Stakes_Short_" + Settings.stakes).Translate());
-            GUI.color = Color.white;
+            // Not cached: a wish answered with a click must leave the list at once.
+            var open = comp.OpenWishes.OrderBy(w => w.TicksLeft).ToList();
+            string stat = "CC_UI_Stat_Open".Translate(open.Count).Resolve();
+            float top = UiKit.PageHeader(rect, Icons.Wishes, "CC_Wishes_Header".Translate(), ("CC_Stakes_Short_" + Settings.stakes).Translate(), stat, null, 220f);
 
             int now = Find.TickManager.TicksGame;
             bool canListen = now - lastListenTick > GenDate.TicksPerDay;
-            var listenRect = new Rect(rect.xMax - 210f, rect.y + 4f, 210f, 30f);
+            var listenRect = new Rect(rect.xMax - 210f, rect.y + 6f, 210f, 30f);
             if (Widgets.ButtonText(listenRect, "CC_Listen".Translate(), true, true, canListen))
             {
                 lastListenTick = now;
@@ -64,74 +63,302 @@ namespace ColonyCouncil
             }
             TooltipHandler.TipRegion(listenRect, canListen ? "CC_Listen_Tip".Translate() : "CC_Listen_Cooldown".Translate());
 
-            var outRect = new Rect(rect.x, rect.y + 56f, rect.width, rect.height - 56f);
-            float width = BeginScroll(outRect);
+            var outRect = new Rect(rect.x, rect.y + top, rect.width, rect.height - top);
+            var view = new Rect(0f, 0f, outRect.width - 18f, height);
+            Widgets.BeginScrollView(outRect, ref scroll, view);
+            float width = view.width;
             float y = 0f;
-            var open = comp.OpenWishes.OrderBy(w => w.TicksLeft).ToList();
-            if (open.Count == 0)
-                y += WrappedLabel(0f, y, width, "CC_Wishes_None".Translate(), Faint) + 8f;
+            if (open.Count == 0) y += UiKit.EmptyState(0f, y, width, Icons.Wishes, "CC_Wishes_None".Translate(), 120f) + 6f;
+            if (layouts.Count > 100) layouts.Clear();
             foreach (var w in open)
-                y += DrawWish(comp, w, 0f, y, width) + 8f;
+            {
+                var l = LayoutOf(comp, w, width);
+                // Only cards on screen are drawn.
+                if (y + l.height >= scroll.y && y <= scroll.y + outRect.height) DrawWish(comp, w, l, 0f, y, width);
+                y += l.height + 8f;
+            }
 
-            y += 10f;
-            Text.Font = GameFont.Medium;
-            Widgets.Label(new Rect(0f, y, width, 30f), "CC_Wishes_Recent".Translate());
-            Text.Font = GameFont.Small;
-            y += 32f;
+            y += 12f;
+            y += UiKit.SectionTitle(0f, y, width, "CC_Wishes_Recent".Translate(), Icons.Chronicle);
             int shown = 0;
             for (int i = comp.chronicle.Count - 1; i >= 0 && shown < 12; i--)
             {
                 var e = comp.chronicle[i];
                 if (e.kind != ChronicleKind.WishGranted && e.kind != ChronicleKind.WishExpired && e.kind != ChronicleKind.WishDismissed && e.kind != ChronicleKind.Petition) continue;
-                var col = e.kind == ChronicleKind.WishGranted ? GoodColor : Faint;
-                y += WrappedLabel(0f, y, width, MainTabWindow_Council.AgoString(e.tick) + "  " + e.text, col) + 2f;
+                y += HistoryRow(e, y, width, shown);
                 shown++;
             }
+            if (shown == 0) y += UiKit.Paragraph(4f, y, width, "CC_Overview_Nothing".Translate(), UiKit.Faint) + 4f;
 
-            y += 14f;
-            Text.Font = GameFont.Medium;
-            Widgets.Label(new Rect(0f, y, width, 30f), "CC_Trust_Header".Translate());
-            Text.Font = GameFont.Small;
-            y += 30f;
-            y += WrappedLabel(0f, y, width, "CC_Trust_Sub".Translate(), Faint) + 4f;
-            foreach (var p in PawnsFinder.AllMaps_FreeColonists.Where(x => !x.IsQuestLodger()).OrderBy(x => comp.standings.TrustOf(x)))
+            y += 16f;
+            y += UiKit.SectionTitle(0f, y, width, "CC_Trust_Header".Translate(), Icons.Trust);
+            y += UiKit.Paragraph(0f, y, width, "CC_Trust_Sub".Translate(), UiKit.Faint) + 6f;
+            var pawns = UiCache.Get(comp, 61, () => PawnsFinder.AllMaps_FreeColonists.Where(x => !x.IsQuestLodger()).OrderBy(x => comp.standings.TrustOf(x)).ToList(), 0.5f);
+            for (int i = 0; i < pawns.Count; i++)
             {
-                var st = comp.standings.For(p, false);
-                float trust = st?.trust ?? 0f;
-                var row = new Rect(0f, y, width, 26f);
-                if (Mouse.IsOver(row)) Widgets.DrawHighlight(row);
-                Widgets.ThingIcon(new Rect(0f, y + 1f, 24f, 24f), p);
-                var nameRect = new Rect(30f, y + 2f, 160f, 24f);
-                Widgets.Label(nameRect, p.LabelShort);
-                // The name opens their page in the People roster (story, goal, bonds, journal).
-                Widgets.DrawHighlightIfMouseover(nameRect);
-                if (Widgets.ButtonInvisible(nameRect)) MainTabWindow_Council.OpenPerson(p);
-                var bar = new Rect(195f, y + 7f, 160f, 12f);
-                Widgets.FillableBar(bar, (trust + 100f) / 200f, trust >= 0f ? TrustGood : TrustBad, BaseContent.BlackTex, false);
-                Widgets.Label(new Rect(365f, y + 2f, 100f, 24f), ("CC_Trust_" + PawnStanding.LevelFor(trust)).Translate());
-                if (Settings.risingStandards)
-                {
-                    var level = Standards.LevelOf(p);
-                    var sRect = new Rect(470f, y + 2f, 160f, 24f);
-                    GUI.color = level == StandardsLevel.Spoiled ? HighColor : level == StandardsLevel.Particular ? MediumColor : Faint;
-                    Widgets.Label(sRect, "CC_Standards_Label".Translate(("CC_Standards_" + level).Translate()));
-                    GUI.color = Color.white;
-                    TooltipHandler.TipRegion(sRect, "CC_Standards_Tip".Translate(("CC_Standards_" + level).Translate(), p.LabelShort));
-                }
-                if (st != null && st.leavingTick > 0)
-                {
-                    GUI.color = HighColor;
-                    Widgets.Label(new Rect(635f, y + 2f, Mathf.Max(0f, width - 635f), 24f), "CC_Trust_Leaving".Translate(TextUtil.DaysString(st.leavingTick - Find.TickManager.TicksGame)));
-                    GUI.color = Color.white;
-                }
-                if (st != null)
-                {
-                    var tipPawn = p;
-                    TooltipHandler.TipRegion(row, () => TrustTip(comp, tipPawn), p.thingIDNumber ^ 0x5A17);
-                }
-                y += 27f;
+                TrustRow(comp, pawns[i], y, width, i);
+                y += 30f;
             }
-            EndScroll(y);
+            height = Mathf.Max(y + 10f, 100f);
+            Widgets.EndScrollView();
+        }
+
+        // ---------------- Wish cards ----------------
+
+        private static float TextWidth(Wish w, float width) => Mathf.Max(80f, width - TextX - ButtonsW - 8f - (w.thingDef != null ? ThingW : 0f));
+
+        private static Layout LayoutOf(CouncilGameComponent comp, Wish w, float width)
+        {
+            float now = Time.realtimeSinceStartup;
+            if (layouts.TryGetValue(w, out var l) && Mathf.Abs(l.width - width) < 0.5f && now - l.at < 1f) return l;
+            l = new Layout { width = width, at = now };
+            l.header = w.ForSomeoneElse
+                ? "CC_WishHeaderForOther".Translate(w.pawn.LabelShort, w.Beneficiary.LabelShort, w.Label).Resolve()
+                : "CC_WishHeader".Translate(w.pawn.LabelShort, w.Label).Resolve();
+            l.quote = (w.scene.NullOrEmpty() ? "" : w.scene + "\n") + "\"" + w.quote + "\"";
+
+            // Tags: how they feel about the council, and what's special about this wish.
+            var standing = comp.standings.For(w.pawn, false);
+            var level = standing?.Level ?? TrustLevel.Neutral;
+            l.pills.Add(new UiKit.PillSpec(("CC_Trust_" + level).Translate().CapitalizeFirst(), UiKit.TrustColor(standing?.trust ?? 0f), Icons.Trust,
+                "CC_TrustLabel".Translate(("CC_Trust_" + level).Translate())));
+            if (w.promised) l.pills.Add(new UiKit.PillSpec("CC_PromisedTag".Translate().CapitalizeFirst(), UiKit.Gold, Icons.Promise, "CC_Promise_Tip".Translate()));
+            if (w.stage >= 2) l.pills.Add(new UiKit.PillSpec("CC_LastCallTag".Translate().CapitalizeFirst(), UiKit.Bad, Icons.Warning));
+            if (w.envied != null) l.pills.Add(new UiKit.PillSpec("CC_EnvyTag".Translate(w.envied.LabelShort).CapitalizeFirst(), UiKit.Warn));
+            if (w.objector != null) l.pills.Add(new UiKit.PillSpec("CC_ObjectorTag".Translate(w.objector.LabelShort).CapitalizeFirst(), UiKit.Bad));
+            if (w.coSigners.Count > 0)
+                l.pills.Add(new UiKit.PillSpec("CC_UI_Pill_Petition".Translate(w.coSigners.Count), UiKit.Info, Icons.People,
+                    "CC_Petition".Translate(TextUtil.JoinAnd(w.coSigners.Select(p => p.LabelShort).ToList()))));
+
+            l.progress = SafeProgress(w);
+            l.progressText = SafeProgressText(w);
+            var lines = new List<string>();
+            if (!w.reason.NullOrEmpty()) lines.Add("CC_Why".Translate() + ": " + w.reason);
+            string when = Safe(() => w.Worker.FulfilledWhen(w));
+            if (!when.NullOrEmpty()) lines.Add("CC_FulfilledWhen".Translate() + ": " + when);
+            // Progress with a bar goes into the meter; without one it stays a line.
+            if (l.progress < 0f && !l.progressText.NullOrEmpty()) lines.Add("CC_Progress".Translate() + ": " + l.progressText);
+            lines.Add("CC_Reward".Translate() + ": " + comp.RewardText(w));
+            l.details = string.Join("\n", lines);
+
+            l.template = SuggestedTemplate(w);
+            l.canBuild = w.thingDef != null && w.thingDef.BuildableByPlayer && Avail.CanBuild(w.thingDef, Find.CurrentMap);
+            l.buttons = 2 + (l.template != null ? 1 : 0) + (l.canBuild ? 1 : 0) + (w.promised ? 0 : 1);
+
+            float textW = TextWidth(w, width);
+            Text.Font = GameFont.Small;
+            l.headerH = Text.CalcHeight(l.header, textW);
+            l.quoteH = Text.CalcHeight(l.quote, textW);
+            l.pillsH = UiKit.Pills(0f, 0f, textW, l.pills, false);
+            Text.Font = GameFont.Tiny;
+            l.detailsH = Text.CalcHeight(l.details, textW);
+            Text.Font = GameFont.Small;
+            float textH = 10f + l.headerH + l.quoteH + 4f + l.pillsH + 6f + l.detailsH + 6f + UiKit.MeterHeight + 8f;
+            l.height = Mathf.Max(textH, PortraitSize + 24f, l.buttons * 30f + 12f);
+            layouts[w] = l;
+            return l;
+        }
+
+        private static void DrawWish(CouncilGameComponent comp, Wish w, Layout l, float x, float y, float width)
+        {
+            var accent = w.stage >= 2 ? UiKit.Bad : w.promised ? UiKit.Gold : UiKit.WithAlpha(UiKit.Faint, 0.5f);
+            var card = new Rect(x, y, width, l.height);
+            UiKit.Card(card, accent, false, false);
+
+            // Who asks (and for whom).
+            var portrait = new Rect(x + 14f, y + 10f, PortraitSize, PortraitSize);
+            UiKit.Portrait(portrait, w.pawn, UiKit.TrustColor(comp.standings.TrustOf(w.pawn)));
+            TooltipHandler.TipRegion(portrait, () => w.pawn.LabelShortCap + "\n\n" + "CC_UI_OpenPage".Translate(), w.id ^ 0x2A11);
+            if (Widgets.ButtonInvisible(portrait)) MainTabWindow_Council.OpenPerson(w.pawn);
+            if (w.ForSomeoneElse && w.Beneficiary != null)
+            {
+                var small = new Rect(portrait.xMax - 20f, portrait.yMax - 20f, 28f, 28f);
+                UiKit.Portrait(small, w.Beneficiary, UiKit.TrustColor(comp.standings.TrustOf(w.Beneficiary)));
+                TooltipHandler.TipRegion(small, w.Beneficiary.LabelShortCap);
+            }
+
+            float textX = x + TextX;
+            float textW = TextWidth(w, width);
+            float cy = y + 10f;
+            Widgets.Label(new Rect(textX, cy, textW, l.headerH), l.header);
+            cy += l.headerH;
+            GUI.color = UiKit.Quote;
+            Widgets.Label(new Rect(textX, cy, textW, l.quoteH), l.quote);
+            GUI.color = Color.white;
+            cy += l.quoteH + 4f;
+            cy += UiKit.Pills(textX, cy, textW, l.pills) + 6f;
+            Text.Font = GameFont.Tiny;
+            GUI.color = new Color(0.85f, 0.85f, 0.85f);
+            Widgets.Label(new Rect(textX, cy, textW, l.detailsH), l.details);
+            GUI.color = Color.white;
+            Text.Font = GameFont.Small;
+            cy += l.detailsH + 6f;
+
+            // Meters: progress (when the wish can measure it) and the time left.
+            int total = w.expiresTick - w.createdTick;
+            if (l.progress >= 0f && textW >= 300f)
+            {
+                float half = (textW - 12f) / 2f;
+                UiKit.Meter(new Rect(textX, cy, half, UiKit.MeterHeight), l.progress, ProgressColor, "CC_Progress".Translate(), l.progressText ?? l.progress.ToStringPercent());
+                UiKit.Countdown(new Rect(textX + half + 12f, cy, half, UiKit.MeterHeight), w.TicksLeft, total, "CC_Expires".Translate());
+            }
+            else if (l.progress >= 0f)
+            {
+                // Narrow: the time left as the meter, the progress in its tooltip.
+                UiKit.Countdown(new Rect(textX, cy, textW, UiKit.MeterHeight), w.TicksLeft, total, "CC_Expires".Translate(),
+                    "CC_Progress".Translate() + ": " + (l.progressText ?? l.progress.ToStringPercent()));
+            }
+            else UiKit.Countdown(new Rect(textX, cy, textW, UiKit.MeterHeight), w.TicksLeft, total, "CC_Expires".Translate());
+
+            // What they want, as a thing.
+            if (w.thingDef != null)
+            {
+                var tr = new Rect(textX + textW + 8f, y + 10f, ThingW - 8f, ThingW - 8f);
+                Widgets.DrawBoxSolid(tr, new Color(0f, 0f, 0f, 0.22f));
+                try
+                {
+                    if (Widgets.CanDrawIconFor(w.thingDef)) Widgets.DefIcon(tr.ContractedBy(3f), w.thingDef);
+                }
+                catch (System.Exception)
+                {
+                    // A modded thing without a usable graphic: the box stays empty.
+                }
+                var def = w.thingDef;
+                TooltipHandler.TipRegion(tr, () => def.LabelCap + (def.description.NullOrEmpty() ? "" : "\n\n" + def.description), def.shortHash ^ 0x5157);
+            }
+
+            DrawButtons(comp, w, l, x + width - ButtonsW, y + 8f);
+        }
+
+        private static void DrawButtons(CouncilGameComponent comp, Wish w, Layout l, float bx, float by)
+        {
+            const float bw = ButtonsW - 10f;
+            if (Widgets.ButtonText(new Rect(bx, by, bw, 26f), "CC_Show".Translate())) MainTabWindow_Council.Jump(w.Worker.LookAt(w));
+            by += 30f;
+            if (l.template != null)
+            {
+                if (Widgets.ButtonText(new Rect(bx, by, bw, 26f), "CC_PlanIt".Translate())) MainTabWindow_Council.StartPlanning(l.template, true);
+                by += 30f;
+            }
+            if (l.canBuild)
+            {
+                if (Widgets.ButtonText(new Rect(bx, by, bw, 26f), UiKit.Fit("CC_BuildThing".Translate(w.thingDef.label), bw - 10f)))
+                {
+                    var des = BuildCopyCommandUtility.FindAllowedDesignator(w.thingDef);
+                    if (des != null)
+                    {
+                        Find.MainTabsRoot.EscapeCurrentTab(false);
+                        Find.DesignatorManager.Select(des);
+                    }
+                }
+                by += 30f;
+            }
+            if (!w.promised)
+            {
+                var pr = new Rect(bx, by, bw, 26f);
+                if (Widgets.ButtonText(pr, "CC_Promise".Translate())) comp.Promise(w);
+                TooltipHandler.TipRegion(pr, "CC_Promise_Tip".Translate());
+                by += 30f;
+            }
+            float half = (bw - 2f) / 2f;
+            var refuse = new Rect(bx, by, half, 26f);
+            if (Widgets.ButtonText(refuse, "CC_Refuse".Translate()))
+                Find.WindowStack.Add(Dialog_MessageBox.CreateConfirmation("CC_Refuse_Confirm".Translate(w.pawn.Named("PAWN"), w.Label.Named("WISH")).Resolve(), () => comp.Refuse(w), true));
+            TooltipHandler.TipRegion(refuse, "CC_Refuse_Tip".Translate());
+            var notNow = new Rect(bx + half + 2f, by, half, 26f);
+            if (Widgets.ButtonText(notNow, "CC_NotNow".Translate())) comp.Dismiss(w);
+            TooltipHandler.TipRegion(notNow, "CC_NotNow_Tip".Translate());
+        }
+
+        private static RoomTemplateDef SuggestedTemplate(Wish w)
+        {
+            try
+            {
+                var t = w.Worker.SuggestedTemplate(w);
+                return t != null && Find.CurrentMap != null && t.UnavailableReason(Find.CurrentMap) == null ? t : null;
+            }
+            catch
+            {
+                return null;
+            }
+        }
+
+        private static string Safe(System.Func<string> f)
+        {
+            try
+            {
+                return f();
+            }
+            catch
+            {
+                return null;
+            }
+        }
+
+        private static string SafeProgressText(Wish w) => Safe(() => w.Worker.ProgressText(w));
+
+        private static float SafeProgress(Wish w)
+        {
+            try
+            {
+                return w.Worker.Progress(w);
+            }
+            catch
+            {
+                return -1f;
+            }
+        }
+
+        // ---------------- What came of earlier wishes ----------------
+
+        private static float HistoryRow(ChronicleEntry e, float y, float width, int i)
+        {
+            const float dateW = 64f;
+            Text.Font = GameFont.Small;
+            float h = Mathf.Max(24f, Text.CalcHeight(e.text, width - dateW - 28f) + 4f);
+            var r = new Rect(0f, y, width, h);
+            UiKit.Zebra(r, i);
+            var color = UiKit.ChronicleColor(e.kind);
+            UiKit.LabelFit(new Rect(4f, y + 2f, dateW - 6f, 20f), MainTabWindow_Council.AgoString(e.tick), UiKit.Faint, GameFont.Tiny);
+            UiKit.Icon(new Rect(dateW, y + 4f, 14f, 14f), e.kind == ChronicleKind.WishGranted ? Icons.Promise : Icons.Wishes, color);
+            GUI.color = color;
+            Widgets.Label(new Rect(dateW + 22f, y + 2f, width - dateW - 28f, h - 4f), e.text);
+            GUI.color = Color.white;
+            return h;
+        }
+
+        // ---------------- Trust ----------------
+
+        private static void TrustRow(CouncilGameComponent comp, Pawn p, float y, float width, int i)
+        {
+            var st = comp.standings.For(p, false);
+            float trust = st?.trust ?? 0f;
+            var row = new Rect(0f, y, width, 28f);
+            UiKit.Zebra(row, i);
+            if (Mouse.IsOver(row)) Widgets.DrawHighlight(row);
+            // The portrait and name open their page in the People roster (story, goal, bonds, journal).
+            UiKit.PawnChip(4f, y + 2f, p, 24f, true, 170f, null, null);
+            var color = UiKit.TrustColor(trust);
+            UiKit.Bar(new Rect(184f, y + 10f, 150f, 8f), (trust + 100f) / 200f, color);
+            Widgets.DrawBoxSolid(new Rect(184f + 75f, y + 8f, 1f, 12f), new Color(1f, 1f, 1f, 0.3f));
+            UiKit.LabelFit(new Rect(342f, y + 2f, 100f, 24f), ("CC_Trust_" + PawnStanding.LevelFor(trust)).Translate().CapitalizeFirst(), color);
+            float x = 448f;
+            if (Settings.risingStandards && width - x > 60f)
+            {
+                var level = Standards.LevelOf(p);
+                var sRect = new Rect(x, y + 2f, Mathf.Min(170f, width - x), 24f);
+                UiKit.LabelFit(sRect, "CC_Standards_Label".Translate(("CC_Standards_" + level).Translate()),
+                    level == StandardsLevel.Spoiled ? HighColor : level == StandardsLevel.Particular ? MediumColor : UiKit.Faint, GameFont.Tiny);
+                TooltipHandler.TipRegion(sRect, "CC_Standards_Tip".Translate(("CC_Standards_" + level).Translate(), p.LabelShort));
+                x += 176f;
+            }
+            if (st != null && st.leavingTick > 0 && width - x > 40f)
+                UiKit.Pill(x, y + 5f, "CC_Trust_Leaving".Translate(TextUtil.DaysString(st.leavingTick - Find.TickManager.TicksGame)), HighColor, Icons.Warning, null, width - x);
+            if (st != null)
+            {
+                var tipPawn = p;
+                TooltipHandler.TipRegion(row, () => TrustTip(comp, tipPawn), p.thingIDNumber ^ 0x5A17);
+            }
         }
 
         /// <summary>Built only when the tooltip shows, not every frame.</summary>
@@ -153,131 +380,6 @@ namespace ColonyCouncil
             if (!titles.NullOrEmpty()) tip = "CC_Epithet_Known".Translate(p.LabelShort, titles) + "\n\n" + tip;
             if (st.log.Count > 0) tip += "\n\n" + string.Join("\n", st.log.AsEnumerable().Reverse());
             return tip;
-        }
-
-        private static float DrawWish(CouncilGameComponent comp, Wish w, float x, float y, float width)
-        {
-            float textX = x + 84f;
-            float textW = width - 84f - 150f;
-            string header = w.ForSomeoneElse
-                ? "CC_WishHeaderForOther".Translate(w.pawn.LabelShort, w.Beneficiary.LabelShort, w.Label).Resolve()
-                : "CC_WishHeader".Translate(w.pawn.LabelShort, w.Label).Resolve();
-            string quote = (w.scene.NullOrEmpty() ? "" : w.scene + "\n") + "\"" + w.quote + "\"";
-            var lines = new List<string>();
-            var standing = comp.standings.For(w.pawn, false);
-            string status = "CC_TrustLabel".Translate(("CC_Trust_" + (standing?.Level ?? TrustLevel.Neutral)).Translate());
-            if (w.promised) status += "   ·   " + "CC_PromisedTag".Translate();
-            if (w.stage >= 2) status += "   ·   " + "CC_LastCallTag".Translate();
-            if (w.envied != null) status += "   ·   " + "CC_EnvyTag".Translate(w.envied.LabelShort);
-            if (w.objector != null) status += "   ·   " + "CC_ObjectorTag".Translate(w.objector.LabelShort);
-            lines.Add(status);
-            if (!w.reason.NullOrEmpty()) lines.Add("CC_Why".Translate() + ": " + w.reason);
-            string when = UiCache.Get(w, 1, () => w.Worker.FulfilledWhen(w));
-            if (!when.NullOrEmpty()) lines.Add("CC_FulfilledWhen".Translate() + ": " + when);
-            string prog = UiCache.Get(w, 2, () => SafeProgressText(w));
-            if (!prog.NullOrEmpty()) lines.Add("CC_Progress".Translate() + ": " + prog);
-            if (w.coSigners.Count > 0) lines.Add("CC_Petition".Translate(TextUtil.JoinAnd(w.coSigners.Select(p => p.LabelShort).ToList())));
-            lines.Add("CC_Reward".Translate() + ": " + comp.RewardText(w) + "   ·   " + "CC_Expires".Translate() + ": " + TextUtil.DaysString(w.TicksLeft));
-            string body = string.Join("\n", lines);
-
-            Text.Font = GameFont.Small;
-            float h = Text.CalcHeight(header, textW) + Text.CalcHeight(quote, textW) + Text.CalcHeight(body, textW) + 18f;
-            float progress = UiCache.Get(w, 3, () => SafeProgress(w));
-            if (progress >= 0f) h += 14f;
-            h = Mathf.Max(h, 96f + 30f * 3f);
-            var row = new Rect(x, y, width, h);
-            Widgets.DrawLightHighlight(row);
-
-            var portrait = new Rect(x + 6f, y + 6f, 70f, 70f);
-            Widgets.ThingIcon(portrait, w.pawn);
-            if (w.ForSomeoneElse) Widgets.ThingIcon(new Rect(x + 46f, y + 52f, 36f, 36f), w.Beneficiary);
-
-            float cy = y + 6f;
-            float hh = Text.CalcHeight(header, textW);
-            Widgets.Label(new Rect(textX, cy, textW, hh), header);
-            cy += hh;
-            float qh = Text.CalcHeight(quote, textW);
-            GUI.color = QuoteColor;
-            Widgets.Label(new Rect(textX, cy, textW, qh), quote);
-            GUI.color = Color.white;
-            cy += qh + 2f;
-            float bh = Text.CalcHeight(body, textW);
-            Widgets.Label(new Rect(textX, cy, textW, bh), body);
-            cy += bh + 2f;
-            if (progress >= 0f) Widgets.FillableBar(new Rect(textX, cy, Mathf.Min(300f, textW), 10f), progress);
-
-            float bx = x + width - 142f;
-            float by = y + 6f;
-            if (Widgets.ButtonText(new Rect(bx, by, 138f, 26f), "CC_Show".Translate())) MainTabWindow_Council.Jump(w.Worker.LookAt(w));
-            by += 30f;
-            var template = UiCache.Get(w, 4, () =>
-            {
-                try
-                {
-                    var t = w.Worker.SuggestedTemplate(w);
-                    return t != null && Find.CurrentMap != null && t.UnavailableReason(Find.CurrentMap) == null ? t : null;
-                }
-                catch
-                {
-                    return null;
-                }
-            });
-            if (template != null)
-            {
-                if (Widgets.ButtonText(new Rect(bx, by, 138f, 26f), "CC_PlanIt".Translate())) MainTabWindow_Council.StartPlanning(template, true);
-                by += 30f;
-            }
-            if (w.thingDef != null && w.thingDef.BuildableByPlayer && Avail.CanBuild(w.thingDef, Find.CurrentMap))
-            {
-                if (Widgets.ButtonText(new Rect(bx, by, 138f, 26f), "CC_BuildThing".Translate(w.thingDef.label)))
-                {
-                    var des = BuildCopyCommandUtility.FindAllowedDesignator(w.thingDef);
-                    if (des != null)
-                    {
-                        Find.MainTabsRoot.EscapeCurrentTab(false);
-                        Find.DesignatorManager.Select(des);
-                    }
-                }
-                by += 30f;
-            }
-            if (!w.promised)
-            {
-                if (Widgets.ButtonText(new Rect(bx, by, 138f, 26f), "CC_Promise".Translate())) comp.Promise(w);
-                TooltipHandler.TipRegion(new Rect(bx, by, 138f, 26f), "CC_Promise_Tip".Translate());
-                by += 30f;
-            }
-            if (Widgets.ButtonText(new Rect(bx, by, 68f, 26f), "CC_Refuse".Translate()))
-            {
-                Find.WindowStack.Add(Dialog_MessageBox.CreateConfirmation("CC_Refuse_Confirm".Translate(w.pawn.Named("PAWN"), w.Label.Named("WISH")).Resolve(), () => comp.Refuse(w), true));
-            }
-            TooltipHandler.TipRegion(new Rect(bx, by, 68f, 26f), "CC_Refuse_Tip".Translate());
-            if (Widgets.ButtonText(new Rect(bx + 70f, by, 68f, 26f), "CC_NotNow".Translate())) comp.Dismiss(w);
-            TooltipHandler.TipRegion(new Rect(bx + 70f, by, 68f, 26f), "CC_NotNow_Tip".Translate());
-            return h;
-        }
-
-        private static string SafeProgressText(Wish w)
-        {
-            try
-            {
-                return w.Worker.ProgressText(w);
-            }
-            catch
-            {
-                return null;
-            }
-        }
-
-        private static float SafeProgress(Wish w)
-        {
-            try
-            {
-                return w.Worker.Progress(w);
-            }
-            catch
-            {
-                return -1f;
-            }
         }
     }
 }
