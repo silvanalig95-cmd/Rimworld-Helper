@@ -83,11 +83,11 @@
     </logRulesInitiator>
     <modExtensions>
       <li Class="ColonyCouncil.MomentExtension">
-        <weight>0.04</weight>
+        <weight>0.035</weight>
         <cooldownDays>4</cooldownDays>
         <tone>friction</tone>
         <soreHours>8</soreHours>
-        <initiatorTags>!child,!trait:Kind,!highmood</initiatorTags>
+        <initiatorTags>!child,!trait:Kind</initiatorTags>
         <recipientTags>!child</recipientTags>
         <maxOpinion>50</maxOpinion>
       </li>
@@ -149,7 +149,7 @@
     </logRulesInitiator>
     <modExtensions>
       <li Class="ColonyCouncil.MomentExtension">
-        <weight>0.06</weight>
+        <weight>0.07</weight>
         <cooldownDays>3</cooldownDays>
         <tone>friction</tone>
         <soreHours>6</soreHours>
@@ -211,7 +211,7 @@
     </logRulesInitiator>
     <modExtensions>
       <li Class="ColonyCouncil.MomentExtension">
-        <weight>0.05</weight>
+        <weight>0.07</weight>
         <cooldownDays>3</cooldownDays>
         <tone>friction</tone>
         <soreHours>8</soreHours>
@@ -248,7 +248,7 @@
     </logRulesInitiator>
     <modExtensions>
       <li Class="ColonyCouncil.MomentExtension">
-        <weight>0.06</weight>
+        <weight>0.05</weight>
         <cooldownDays>3</cooldownDays>
         <tone>friction</tone>
         <soreHours>8</soreHours>
@@ -277,7 +277,7 @@
     </logRulesInitiator>
     <modExtensions>
       <li Class="ColonyCouncil.MomentExtension">
-        <weight>0.05</weight>
+        <weight>0.04</weight>
         <cooldownDays>3</cooldownDays>
         <tone>friction</tone>
         <soreHours>8</soreHours>
@@ -302,7 +302,7 @@
     </logRulesInitiator>
     <modExtensions>
       <li Class="ColonyCouncil.MomentExtension">
-        <weight>0.05</weight>
+        <weight>0.04</weight>
         <cooldownDays>4</cooldownDays>
         <tone>friction</tone>
         <soreHours>8</soreHours>
@@ -335,7 +335,7 @@
     </logRulesInitiator>
     <modExtensions>
       <li Class="ColonyCouncil.MomentExtension">
-        <weight>0.05</weight>
+        <weight>0.04</weight>
         <cooldownDays>3</cooldownDays>
         <tone>friction</tone>
         <soreHours>6</soreHours>
@@ -369,7 +369,7 @@
     </logRulesInitiator>
     <modExtensions>
       <li Class="ColonyCouncil.MomentExtension">
-        <weight>0.04</weight>
+        <weight>0.05</weight>
         <cooldownDays>3</cooldownDays>
         <tone>friction</tone>
         <soreHours>8</soreHours>
@@ -400,7 +400,7 @@
     </logRulesInitiator>
     <modExtensions>
       <li Class="ColonyCouncil.MomentExtension">
-        <weight>0.04</weight>
+        <weight>0.05</weight>
         <cooldownDays>3</cooldownDays>
         <tone>friction</tone>
         <soreHours>6</soreHours>
@@ -437,7 +437,7 @@
     </logRulesInitiator>
     <modExtensions>
       <li Class="ColonyCouncil.MomentExtension">
-        <weight>0.015</weight>
+        <weight>0.025</weight>
         <cooldownDays>5</cooldownDays>
         <tone>friction</tone>
         <soreHours>8</soreHours>
@@ -541,7 +541,7 @@
     </logRulesInitiator>
     <modExtensions>
       <li Class="ColonyCouncil.MomentExtension">
-        <weight>0.012</weight>
+        <weight>0.025</weight>
         <cooldownDays>4</cooldownDays>
         <tone>friction</tone>
         <soreHours>8</soreHours>
@@ -602,13 +602,13 @@
     </logRulesInitiator>
     <modExtensions>
       <li Class="ColonyCouncil.MomentExtension">
-        <weight>0.025</weight>
+        <weight>0.03</weight>
         <cooldownDays>5</cooldownDays>
         <tone>friction</tone>
         <soreHours>18</soreHours>
         <initiatorTags>!child,!trait:Kind</initiatorTags>
         <recipientTags>!child</recipientTags>
-        <maxOpinion>30</maxOpinion>
+        <maxOpinion>40</maxOpinion>
       </li>
     </modExtensions>
   </InteractionDef>
@@ -666,11 +666,11 @@
     </logRulesInitiator>
     <modExtensions>
       <li Class="ColonyCouncil.MomentExtension">
-        <weight>0.05</weight>
+        <weight>0.04</weight>
         <cooldownDays>3</cooldownDays>
         <tone>friction</tone>
         <soreHours>6</soreHours>
-        <initiatorTags>!child,!trait:Kind,!highmood,working</initiatorTags>
+        <initiatorTags>!child,!trait:Kind,working</initiatorTags>
         <recipientTags>working</recipientTags>
         <maxOpinion>60</maxOpinion>
       </li>
@@ -755,11 +755,11 @@
     </logRulesInitiator>
     <modExtensions>
       <li Class="ColonyCouncil.MomentExtension">
-        <weight>0.06</weight>
+        <weight>0.05</weight>
         <cooldownDays>3</cooldownDays>
         <tone>friction</tone>
         <soreHours>6</soreHours>
-        <initiatorTags>!child,!trait:Kind,!highmood,indoors,cold|hot</initiatorTags>
+        <initiatorTags>!child,!trait:Kind,indoors,cold|hot</initiatorTags>
         <recipientTags>indoors</recipientTags>
         <maxOpinion>60</maxOpinion>
       </li>
@@ -870,7 +870,7 @@
     </logRulesInitiator>
     <modExtensions>
       <li Class="ColonyCouncil.MomentExtension">
-        <weight>0.08</weight>
+        <weight>0.05</weight>
         <cooldownDays>3</cooldownDays>
         <tone>friction</tone>
         <initiatorTags>!child,!trait:Kind</initiatorTags>
