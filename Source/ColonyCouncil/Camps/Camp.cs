@@ -78,6 +78,10 @@ namespace ColonyCouncil
         public int traderSilver = -1;
         /// <summary>Hours in a row none of them could reach their camp.</summary>
         public int stuckHours;
+        /// <summary>Colonists who spent time with them (talked at their fire, were tended, traded): the likeliest to make a friend.</summary>
+        public Dictionary<Pawn, int> warmth = new Dictionary<Pawn, int>();
+        private List<Pawn> warmthKeys;
+        private List<int> warmthValues;
         public List<Pawn> willing = new List<Pawn>();
         public List<Pawn> joined = new List<Pawn>();
         public List<Pawn> arrested = new List<Pawn>();
@@ -306,6 +310,7 @@ namespace ColonyCouncil
                 trees.RemoveAll(t => t == null || t.Destroyed);
                 if (leader != null && leader.Discarded) leader = null;
                 if (trader != null && (trader.Discarded || trader.Dead)) trader = null;
+                foreach (var k in warmth.Keys.Where(k => k == null || k.Discarded || k.Dead).ToList()) warmth.Remove(k);
             }
             Scribe_Values.Look(ref id, "id");
             Scribe_Defs.Look(ref kind, "kind");
@@ -363,6 +368,7 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref lastJoinAskTick, "lastJoinAskTick", -999999);
             Scribe_Values.Look(ref traderSilver, "traderSilver", -1);
             Scribe_Values.Look(ref stuckHours, "stuckHours");
+            Scribe_Collections.Look(ref warmth, "warmth", LookMode.Reference, LookMode.Value, ref warmthKeys, ref warmthValues);
             Scribe_Collections.Look(ref willing, "willing", LookMode.Reference);
             Scribe_Collections.Look(ref joined, "joined", LookMode.Reference);
             Scribe_Collections.Look(ref arrested, "arrested", LookMode.Reference);
@@ -387,6 +393,8 @@ namespace ColonyCouncil
                 felled ??= new List<IntVec3>();
                 felledTicks ??= new List<int>();
                 owned ??= new List<int>();
+                warmth ??= new Dictionary<Pawn, int>();
+                if (warmth.Keys.Any(k => k == null)) warmth = warmth.Where(kv => kv.Key != null).ToDictionary(kv => kv.Key, kv => kv.Value);
                 members.RemoveAll(p => p == null);
                 willing.RemoveAll(p => p == null);
                 joined.RemoveAll(p => p == null);

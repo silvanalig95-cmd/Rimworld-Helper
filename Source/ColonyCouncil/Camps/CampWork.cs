@@ -220,8 +220,8 @@ namespace ColonyCouncil
                 if (!cell.InBounds(map)) continue;
                 foreach (var t in GenRadial.RadialDistinctThingsAround(cell, map, 2.5f, true))
                 {
-                    // What the felling left: forbidden to the colony (the game does that for anyone not of the colony).
-                    if (t.def.category != ThingCategory.Item || !t.def.EverHaulable || camp.Owns(t) || !t.IsForbidden(Faction.OfPlayer)) continue;
+                    // What the felling left lying there (not anything already in the colony's stockpiles).
+                    if (t.def.category != ThingCategory.Item || !t.def.EverHaulable || camp.Owns(t) || StoreUtility.IsInAnyStorage(t)) continue;
                     if (t.def != ThingDefOf.WoodLog && !(t.def.stuffProps?.categories?.Contains(StuffCategoryDefOf.Woody) ?? false)) continue;
                     if (!pawn.CanReserveAndReach(t, PathEndMode.ClosestTouch, Danger.Some)) continue;
                     return HaulToStash(camp, pawn, t);
@@ -421,6 +421,58 @@ namespace ColonyCouncil
             if (need == null || meal == null) return;
             float got = meal.Ingested(pawn, need.NutritionWanted);
             need.CurLevel += got;
+        }
+    }
+
+    /// <summary>
+    /// Colonists' own recreation: walking over to the camp to sit by their fire and talk. Never for those who resent
+    /// sharing the land (greedy, jealous), nor once things are tense.
+    /// </summary>
+    public class JoyGiver_VisitCamp : JoyGiver
+    {
+        public override float GetChance(Pawn pawn)
+        {
+            var c = CampTracker.Instance?.camp;
+            if (c == null || c.phase != CampPhase.Living || c.map != pawn.Map || c.tension >= 60f) return 0f;
+            var t = pawn.story?.traits;
+            if (t != null && (t.HasTrait(TraitDefOf.Greedy) || t.HasTrait(TraitDefOf.Jealous))) return 0f;
+            return base.GetChance(pawn);
+        }
+
+        public override Job TryGiveJob(Pawn pawn)
+        {
+            var c = CampTracker.Instance?.camp;
+            if (c == null || c.phase != CampPhase.Living || c.map != pawn.Map || pawn.Drafted || pawn.DevelopmentalStage.Baby()) return null;
+            if (!pawn.Position.InHorDistOf(c.center, 90f) || GenHostility.AnyHostileActiveThreatToPlayer(pawn.Map, false, false)) return null;
+            var map = pawn.Map;
+            var fire = c.FireCell;
+            if (!CellFinder.TryFindRandomCellNear(fire, map, 3, x => x != fire && x.Standable(map) && x.GetEdifice(map) == null && !x.Roofed(map) && x.GetFirstPawn(map) == null
+                                                                  && pawn.CanReach(x, PathEndMode.OnCell, Danger.Some), out var cell)) return null;
+            return JobMaker.MakeJob(def.jobDef, cell, fire);
+        }
+    }
+
+    /// <summary>A colonist's visit to the camp: a chat with whoever is about, then sitting by their fire a while.</summary>
+    public class JobDriver_VisitCamp : JobDriver
+    {
+        public override bool TryMakePreToilReservations(bool errorOnFailed) => true;
+
+        protected override IEnumerable<Toil> MakeNewToils()
+        {
+            this.FailOn(() => CampTracker.Instance?.camp is Camp c ? c.phase != CampPhase.Living || c.map != pawn.Map : true);
+            yield return Toils_Goto.GotoCell(TargetIndex.A, PathEndMode.OnCell);
+            var visit = ToilMaker.MakeToil("VisitCamp");
+            visit.initAction = () => CampTracker.Instance?.camp?.Visited(pawn);
+            visit.defaultCompleteMode = ToilCompleteMode.Delay;
+            visit.defaultDuration = Mathf.Max(600, job.def.joyDuration);
+            visit.socialMode = RandomSocialMode.SuperActive;
+            visit.handlingFacing = true;
+            visit.tickIntervalAction = delta =>
+            {
+                if (job.targetB.IsValid) pawn.rotationTracker.FaceCell(job.targetB.Cell);
+                JoyUtility.JoyTickCheckEnd(pawn, delta, JoyTickFullJoyAction.EndJob);
+            };
+            yield return visit;
         }
     }
 

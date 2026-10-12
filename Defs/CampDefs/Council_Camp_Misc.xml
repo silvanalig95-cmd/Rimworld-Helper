@@ -105,6 +105,30 @@
     </modExtensions>
   </JobDef>
 
+  <!-- ===================== Colonists visiting the camp ===================== -->
+
+  <!-- Recreation for colonists: walking over to sit at the camp's fire and talk with the people there. -->
+  <JobDef>
+    <defName>Council_VisitCamp</defName>
+    <driverClass>ColonyCouncil.JobDriver_VisitCamp</driverClass>
+    <reportString>visiting the camp.</reportString>
+    <joyDuration>2500</joyDuration>
+    <joyKind>Social</joyKind>
+    <casualInterruptible>true</casualInterruptible>
+  </JobDef>
+
+  <JoyGiverDef>
+    <defName>Council_VisitCamp</defName>
+    <giverClass>ColonyCouncil.JoyGiver_VisitCamp</giverClass>
+    <baseChance>1.2</baseChance>
+    <jobDef>Council_VisitCamp</jobDef>
+    <joyKind>Social</joyKind>
+    <requiredCapacities>
+      <li>Moving</li>
+      <li>Talking</li>
+    </requiredCapacities>
+  </JoyGiverDef>
+
   <!-- ===================== The camp's letters ===================== -->
 
   <LetterDef>

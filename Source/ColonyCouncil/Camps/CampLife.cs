@@ -43,7 +43,7 @@ namespace ColonyCouncil
                     prey.Remove(animal);
                     continue;
                 }
-                var hunter = Here.FirstOrDefault(p => p.CurJobDef == JobDefOf.Hunt && p.CurJob.targetA.Thing == animal);
+                var hunter = Here.FirstOrDefault(p => p.CurJobDef == JobDefOf.Hunt && (p.CurJob.targetA.Thing == animal || (animal.Dead && p.CurJob.targetA.Thing == animal.Corpse)));
                 if (animal.Dead)
                 {
                     prey.Remove(animal);
@@ -131,10 +131,57 @@ namespace ColonyCouncil
                 lastEventDay = day;
                 DailyEvent();
             }
+            Visitors();
             if (Rand.Chance(0.12f) && !kind.lines.NullOrEmpty())
             {
                 var speaker = Here.Where(p => p.Awake() && !p.Downed).RandomElementWithFallback();
                 if (speaker != null) Arrivals.Say(speaker, Flavor.PickText(kind.lines));
+            }
+        }
+
+        /// <summary>A colonist came over to the camp in their free time: a chat with whoever is nearest.</summary>
+        public void Visited(Pawn c)
+        {
+            if (c == null || !Settled) return;
+            var m = Here.Where(x => x.Awake() && !x.Downed && !x.InMentalState).OrderBy(x => x.Position.DistanceToSquared(c.Position)).FirstOrDefault();
+            try
+            {
+                if (m != null && c.interactions != null) c.interactions.TryInteractWith(m, InteractionDefOf.Chitchat);
+            }
+            catch (Exception e)
+            {
+                CouncilLog.ErrorOnce("camp visit", e);
+            }
+            Warm(c, 1);
+        }
+
+        public void Warm(Pawn colonist, int amount)
+        {
+            if (colonist == null || !colonist.IsColonist) return;
+            warmth[colonist] = (warmth.TryGetValue(colonist, out int w) ? w : 0) + amount;
+        }
+
+        /// <summary>
+        /// Colonists who come by the camp (out hunting or hauling, or just passing) stop and talk with whoever is about:
+        /// the game's own chats, so friendships (and dislikes) form the usual way.
+        /// </summary>
+        private void Visitors()
+        {
+            var here = Here.Where(m => m.Awake() && !m.Downed && !m.InMentalState).ToList();
+            if (here.Count == 0) return;
+            foreach (var c in IncidentWorker_Happening.Colonists(map))
+            {
+                if (c.Drafted || c.Downed || c.InMentalState || !c.Awake() || c.interactions == null || !c.Position.InHorDistOf(FireCell, 14f)) continue;
+                var m = here.Where(x => x.Position.InHorDistOf(c.Position, 8f)).OrderBy(x => x.Position.DistanceToSquared(c.Position)).FirstOrDefault();
+                if (m == null || !Rand.Chance(0.6f)) continue;
+                try
+                {
+                    if (c.interactions.TryInteractWith(m, Rand.Chance(0.2f) ? InteractionDefOf.DeepTalk : InteractionDefOf.Chitchat)) Warm(c, 1);
+                }
+                catch (Exception e)
+                {
+                    CouncilLog.ErrorOnce("camp chat", e);
+                }
             }
         }
 
@@ -259,6 +306,8 @@ namespace ColonyCouncil
                 lastTradeDay = dayKey;
                 tradeDays++;
                 AddTension(-6f);
+                // Whoever did the trading is the colonist standing closest to their trader.
+                Warm(map.mapPawns.FreeColonistsSpawned.Where(c => c.Position.InHorDistOf(trader.Position, 10f)).OrderBy(c => c.Position.DistanceToSquared(trader.Position)).FirstOrDefault(), 2);
                 Note(Text("CC_Camp_Traded", trader), MessageTypeDefOf.PositiveEvent, Importance.Flavor, trader);
             }
             traderSilver = silver;
@@ -454,6 +503,7 @@ namespace ColonyCouncil
                         var worn = gear.Where(t => t.def.useHitPoints && t.HitPoints < t.MaxHitPoints * 0.7f).OrderBy(t => t.HitPoints / (float)t.MaxHitPoints).FirstOrDefault();
                         if (worn == null) continue;
                         worn.HitPoints = worn.MaxHitPoints;
+                        Warm(c, 2);
                         Tell(Text("CC_Camp_HelpTitle"), Text("CC_Camp_Help_mend", mender, c, 0, worn.LabelNoCount), LetterDefOf.PositiveEvent, false);
                         CouncilGameComponent.GiveThought(c, CampDefOf.Council_Camp_Helped);
                         return true;
@@ -600,6 +650,7 @@ namespace ColonyCouncil
         {
             helps++;
             AddTension(-4f);
+            Warm(patient, 3);
             Note(Text("CC_Camp_Tended", healer, patient), MessageTypeDefOf.PositiveEvent, Importance.Notable, patient);
             CouncilGameComponent.GiveThought(patient, CampDefOf.Council_Camp_Helped, healer);
         }
@@ -861,16 +912,20 @@ namespace ColonyCouncil
             string outcome = peaceful ? "left" : ending == "forced" ? "forced" : ending == "fight" ? "fight" : ending == "fallout" ? "fallout" : "fled";
             var them = members.Where(m => m != null && !m.Dead && !joined.Contains(m)).ToList();
             Pawn friend = null, friendOf = null, foe = null, foeOf = null;
-            int best = 14, worst = -9;
+            float best = 14f;
+            int worst = -9;
             foreach (var c in colonists)
             {
                 if (c.relations == null) continue;
+                int warm = warmth.TryGetValue(c, out int w) ? w : 0;
                 foreach (var m in them)
                 {
                     int op = c.relations.OpinionOf(m);
-                    if (op > best)
+                    // Time spent at their fire counts as much as the opinion the game keeps.
+                    float score = op + Mathf.Min(warm, 8) * 3f;
+                    if (score > best && op > -5)
                     {
-                        best = op;
+                        best = score;
                         friend = c;
                         friendOf = m;
                     }

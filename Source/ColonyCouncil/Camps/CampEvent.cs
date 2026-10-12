@@ -57,6 +57,8 @@ namespace ColonyCouncil
             }
             string label = ctx.Format(Pick(kind.titles, ctx) ?? def.label).CapitalizeFirst();
             ctx.text = ctx.Format(Pick(kind.texts, ctx));
+            // The colonist who met them first.
+            camp.Warm(ctx.a, 1);
             ctx.why = label;
             ctx.cause = label;
             string body = ctx.text + "\n\n" + Facts(camp);

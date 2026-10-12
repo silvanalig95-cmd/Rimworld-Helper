@@ -111,6 +111,12 @@ namespace ColonyCouncil
 
         public override void LordToilTick()
         {
+            // A hunt is over once the animal falls: the game's own hunt would carry the body off to the colony's
+            // stores, so it ends here, and the camp fetches the body itself.
+            if (lord.ticksInToil % 30 == 0)
+                foreach (var p in lord.ownedPawns)
+                    if (p.CurJobDef == JobDefOf.Hunt && (p.CurJob.targetA.Thing is Corpse || (p.CurJob.targetA.Thing is Pawn v && v.Dead)))
+                        p.jobs.EndCurrentJob(JobCondition.Succeeded);
             // Rimfolk's record of this camp is gone (the mod's part was removed, or something broke): they just go.
             if (lord.ticksInToil % 2500 == 1250 && CampTracker.Instance?.camp?.lord != lord) lord.ReceiveMemo(LordJob_Camp.MemoLeave);
         }
