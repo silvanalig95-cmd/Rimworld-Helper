@@ -63,7 +63,13 @@ every era. Called world events until the world situations below took that name.
   part of the map for days to a season: they build their camp from blueprints, live there, hunt and fell trees
   around it, trade, help, ask to join, and bend terms; the colony sets terms, hires, gives gifts, asks them to go or
   drives them off. Tension, letters, chronicle lines, journals and the World page follow it.
-- Next: more events per group; camps that use tent mods' tents when present.
+- Done: five story chains told in stages over days and weeks (the door in the hill, the fugitive's debt, bad blood,
+  the preacher, the lost expedition), branching on the colony's answers and luck, each with several endings in
+  letters and the chronicle; pending stages on the World page. Three missions (goods for a neighbor's funeral or
+  wedding, a runaway animal to tame, a shrine for pilgrims) offered as real quests in the Quests tab (or letters),
+  tracked by Rimfolk with progress on the World page.
+- Next: more events per group; camps that use tent mods' tents when present; more chains (hooking the storyteller
+  batch's memos: the peace bought, the survivor, the star-iron blade) and missions (an apprentice to train, a dignitary to host, refugees to see safely through).
 
 ## Phase H2: Scenarios with stakes (done)
 - Done: six scenarios (Hot Money, Marooned, Deserters, Bad Blood, Borrowed Time, The Fallen Tyrant) built from six

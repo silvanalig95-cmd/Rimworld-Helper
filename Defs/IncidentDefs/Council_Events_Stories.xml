@@ -1,0 +1,1485 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- Story chains: longer stories told in stages over days and weeks (Source/ColonyCouncil/Happenings/Workers_Chains2.cs).
+       Each chain's first stage is drawn by the storyteller like any other event; the colony's answer, and luck settled
+       when it matters, decide which stage comes next and when. Later stages have a base chance of 0 and are only ever
+       told by a chain that has reached them. The first stage of each chain also carries the chain's endings (one letter
+       each, and a line in the chronicle), its World page lines (coming: with a countdown; remembered: without one),
+       and the story of the one fight it may bring, which only happens with world-event battles switched on.
+       Tags in these texts: the stage's own key, the chain's flags (what was chosen and what luck settled), and the era. -->
+
+  <!-- ======================================================================================================== -->
+  <!-- ===================== The door in the hill ============================================================ -->
+  <!-- ======================================================================================================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Council_Story_Door</defName>
+    <label>the door in the hill</label>
+    <workerClass>ColonyCouncil.HappeningWorker_StoryDoor</workerClass>
+    <baseChance>0.7</baseChance>
+    <minRefireDays>90</minRefireDays>
+    <earliestDay>15</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Challenge</group>
+        <minColonists>3</minColonists>
+        <answerDays>1</answerDays>
+        <titles>
+          <li>A door in the hill</li>
+        </titles>
+        <texts>
+          <li>[lowtech] {A_nameDef} came back from the hills {PLACE} with mud to the knees and something to tell the council. Half a day's walk out, where the rains brought down part of a slope, there is a door: a single slab of dressed stone set into the hillside, carved with a closed eye, its edges sealed with lead.\n\nNobody in the colony has seen stonework like it. The lead has never been cut. Whoever sealed that door meant it to stay shut, or meant to come back for what was behind it.</li>
+          <li>[!lowtech] {A_nameDef} came back from the hills {PLACE} with mud to the knees and something to tell the council. Half a day's walk out, where a slope came down in the rains, there's a hatch of gray steel set flush into the bedrock, with a dead keypad and a faded number stenciled across it: 7.\n\nIt's older than anything the colony knows of, and the seal still holds. Whoever closed it expected to come back, and never did.</li>
+        </texts>
+        <defaultOption>1</defaultOption>
+        <options>
+          <li>
+            <label>Open it now</label>
+            <outcome>{A_nameDef} picks two others and sets out at first light with picks, bars and lamps. They expect to be through the seal by tomorrow.</outcome>
+            <ways><openness>1</openness></ways>
+          </li>
+          <li>
+            <label>Study it first ({A_nameDef}, a few days)</label>
+            <outcome>{A_nameDef} takes paper, charcoal and a few days' food out to the hill. The seal stays as it is until the door has been read.</outcome>
+          </li>
+          <li>
+            <label>Sell the way to it to {FACTION} ({COUNT} silver)</label>
+            <outcome>{FACTION} pay {COUNT} silver for a rough map and the colony's word that its people will keep away from the door.</outcome>
+          </li>
+        </options>
+      </li>
+      <li Class="ColonyCouncil.StoryText">
+        <chain>door</chain>
+        <key>door</key>
+        <start>true</start>
+        <coming>
+          <li>[doorempty|doorcasket|doorhoard,opened] {A_nameDef} and two others are cutting through the seal of the door in the hill {PLACE}. They expect to be through in about {DAYS}.</li>
+          <li>[doorempty|doorcasket|doorhoard,studied] {A_nameDef} is out at the door in the hill {PLACE}, copying its carvings and working out what they say. About {DAYS} to go.</li>
+          <li>[doorbuyer|grateful|doorsleeper,sold] {FACTION}'s diggers are at work on the door in the hill {PLACE}. They're due back by way of the colony in about {DAYS}.</li>
+          <li>[doorsleeper|fled,!sold] The sleeper from the door in the hill is still asleep, breathing slow and even. {A_nameDef} expects {X_objective} to wake within {DAYS}.</li>
+          <li>[returned] {ENEMY} have been told about their grandparents' hoard in the hill. Their people should come to collect it in about {DAYS}.</li>
+        </coming>
+        <remembered>
+          <li>[doorowners] Every crate the colony carried home from the hill bears the sign of {ENEMY}.</li>
+        </remembered>
+        <endingTitles>
+          <li>[lesson] The writing in the hill</li>
+          <li>[resealed] The door is shut again</li>
+          <li>[sleeping] Left to sleep</li>
+          <li>[joined] The sleeper stays</li>
+          <li>[parted] The sleeper goes on</li>
+          <li>[fled] The sleeper is gone</li>
+          <li>[share] Part of the hoard</li>
+          <li>[paid] The hoard is paid for</li>
+          <li>[refused] {ENEMY} go home empty-handed</li>
+          <li>[fought] {ENEMY} will be back</li>
+          <li>[cursed] {ENEMY}'s curse</li>
+          <li>[returned] The hoard goes home</li>
+          <li>[grateful] A share of the hoard</li>
+          <li>[refunded] The silver goes back</li>
+          <li>[halved] Half the silver</li>
+          <li>[kept] A door, as promised</li>
+        </endingTitles>
+        <endings>
+          <li>[lesson,research] {A_nameDef} spent three days inside the door in the hill with a lamp and a stack of paper, and came home with every wall copied down. Most of it is lists: grain, water, names, and a count of days that stops partway down a column.\n\nThe rest is how its builders did things, and some of it is better than how the colony does them. The colony's research has gone faster since.</li>
+          <li>[lesson,noresearch] {A_nameDef} spent three days inside the door in the hill with a lamp and a stack of paper, and came home with every wall copied down. Most of it is lists: grain, water, names, and a count of days that stops partway down a column.\n\n{A_nameDef} has been reading the copies every night since, and has started correcting other people's sums.</li>
+          <li>[resealed] There was nothing behind the door worth carrying home, only writing on the walls in an old hand none of them could read, and the council decided to leave it where it was. The slab went back into its frame and the gap was packed with clay.\n\n{A_nameDef} marked the place on the colony's map with a small closed eye.</li>
+          <li>[sleeping] The casket was left where it lay, and the door was sealed behind it with fresh clay. {A_nameDef} was the last one out, and stood there a while with a hand on the stone.\n\nSomewhere under the hill {PLACE}, the sleeper is still breathing, slow and even.</li>
+          <li>[joined,!buyer] {X_nameDef}, the sleeper from the door in the hill, walked out of the guest room this morning and asked, in the old slow way of speaking {X_pronoun} woke with, whether there was work to be done. There was. {A_nameDef} found {X_objective} a coat and a place at the table.\n\n{X_nameDef} is one of the colony now. Some mornings {X_nameDef} still asks what year it is.</li>
+          <li>[joined,buyer] {X_nameDef}, the sleeper {FACTION} found behind the door in the hill, is staying. {A_nameDef} found {X_objective} a coat, a bed and a place at the table, and listened to stories of a world nobody else remembers until the lamp went out.\n\n{X_nameDef} is one of the colony now. Some mornings {X_nameDef} still asks what year it is.</li>
+          <li>[parted] {X_nameDef} left at dawn with a pack of food and directions to the nearest road, to find out what became of the world {X_pronoun} fell asleep in. On the table in the guest room {X_nameDef} left the only things {X_pronoun} had to give: {ITEM}.\n\n{A_nameDef} walked {X_objective} as far as the river.</li>
+          <li>[fled] The sleeper woke in the night, shouting in a language none of them knew, and backed away from every hand held out. By the time the others came with a lamp, {X_nameDef} was through the gate and gone into the dark.\n\n{A_nameDef} followed the tracks as far as the river {PLACE}, where they ended.</li>
+          <li>[share] The colony carried off what it could use and left the rest stacked as it was found, under the sign of {ENEMY}: {ITEM}.\n\nThe door was sealed again with clay. If anyone ever comes looking, most of the hoard is still there.</li>
+          <li>[paid,ownershostile] {ENEMY} counted the silver twice, said nothing, and rode off the way they came. The hoard is the colony's now, bought and paid for.\n\nIt cost {COUNT} silver to keep the peace, about half of what the hoard was worth.</li>
+          <li>[paid,!ownershostile] {ENEMY} took the {COUNT} silver as the hoard's worth and went home satisfied. Their elders say the hoard was put away by their grandparents against a famine that never came, and they're glad somebody found a use for it.\n\nThey think well of the colony for paying without being made to.</li>
+          <li>[refused] {ENEMY} left with nothing but a grievance. Their elders say the colony robbed their grandparents' stores, and they'll be saying it at every market for years.\n\nThe hoard stays with the colony.</li>
+          <li>[fought] {ENEMY} heard the colony's answer and turned back toward the hills without a word. They'll be back, and not to talk.\n\nThe hoard is staying where it is, and so are the people guarding it.</li>
+          <li>[cursed] {ENEMY} shouted their curses from across the fields and rode away. The hoard is the colony's now, along with a people who won't forget where it went.</li>
+          <li>[returned] {ENEMY} sent a cart and six people for the hoard in the hill, and they loaded it crate by crate, with great care. Before they left, their eldest pressed {ITEM} silver into {A_nameDef}'s hands as a finder's fee.\n\nThey'll be telling the story at home for years: the colony that found their grandparents' hoard and sent word instead of taking it.</li>
+          <li>[grateful] {FACTION}'s diggers found a hoard behind the door in the hill, worth far more than they paid the colony for the way to it. They've sent a share back by way of thanks: {ITEM}.\n\nThe rest went home with them.</li>
+          <li>[refunded] {FACTION} took their silver back, and the matter is closed. Their diggers swear the vault was empty from the start, except for writing on the walls they couldn't read.\n\nThey still think the colony knew. They're less sure than they were.</li>
+          <li>[halved] {FACTION} took back half of what they paid, {TALE} silver, and left grumbling about a week of wasted digging.\n\nNeither side thinks the other was fair, but neither will be telling the story as a robbery.</li>
+          <li>[kept] {FACTION} went home without their silver. They bought the way to a door and they got one, as {A_nameDef} put it, and they didn't like hearing it.\n\nThey'll remember this the next time the colony comes to trade.</li>
+        </endings>
+        <summaries>
+          <li>[lesson] {A_nameDef} copied out the writing on the walls of the empty vault.</li>
+          <li>[resealed] The vault was empty but for writing on the walls, and the colony sealed it again.</li>
+          <li>[sleeping] The colony found a sleeper behind the door and left them sleeping.</li>
+          <li>[joined] {X_nameDef}, the sleeper from the hill, woke and joined the colony.</li>
+          <li>[parted] {X_nameDef}, the sleeper from the hill, woke and went on {X_possessive} way.</li>
+          <li>[fled] The sleeper from the hill woke wild and fled into the night.</li>
+          <li>[share] The colony took a share of the hoard of {ENEMY} and left the rest.</li>
+          <li>[paid] The colony paid {ENEMY} {COUNT} silver for the hoard it took.</li>
+          <li>[refused] The colony refused to pay {ENEMY} for their grandparents' hoard.</li>
+          <li>[fought] The colony refused to give the hoard back to {ENEMY}, who will come for it.</li>
+          <li>[cursed] {ENEMY} cursed the colony for keeping their hoard.</li>
+          <li>[returned] The colony sent word to {ENEMY} about their hoard, and was paid a finder's fee.</li>
+          <li>[grateful] {FACTION} found a hoard behind the door and sent the colony a share.</li>
+          <li>[refunded] The vault {FACTION} bought was empty, and the colony gave back their silver.</li>
+          <li>[halved] The vault {FACTION} bought was empty, and the colony gave back half their silver.</li>
+          <li>[kept] The vault {FACTION} bought was empty, and the colony kept their silver.</li>
+        </summaries>
+        <raidTitles>
+          <li>[doorowners] {ENEMY} come for the hoard</li>
+        </raidTitles>
+        <raid>
+          <li>[doorowners] {ENEMY} have come for the hoard the colony carried out of the hill. Every crate bore their sign, and they mean to have them back.</li>
+        </raid>
+        <good>
+          <li>lesson</li>
+          <li>joined</li>
+          <li>parted</li>
+          <li>share</li>
+          <li>returned</li>
+          <li>grateful</li>
+          <li>refunded</li>
+        </good>
+        <bad>
+          <li>fled</li>
+          <li>fought</li>
+          <li>refused</li>
+          <li>cursed</li>
+          <li>kept</li>
+        </bad>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Council_Story_DoorEmpty</defName>
+    <label>the empty vault</label>
+    <workerClass>ColonyCouncil.HappeningWorker_StoryDoor</workerClass>
+    <baseChance>0</baseChance>
+    <minRefireDays>0</minRefireDays>
+    <earliestDay>0</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Challenge</group>
+        <notable>false</notable>
+        <answerDays>1</answerDays>
+        <titles>
+          <li>[opened] Behind the door</li>
+          <li>[studied] What the door says</li>
+        </titles>
+        <texts>
+          <li>[opened,lowtech] The seal took a day to cut. Behind the door, {A_nameDef} found a long room cut into the rock, dry as bone and empty except for dust and a few broken jars. Whatever was kept here was taken away long ago.\n\nBut every wall is covered in writing, small and careful, in a script none of the colony can read. {A_nameDef} wants to copy all of it before the air gets in and the paint starts to flake.</li>
+          <li>[opened,!lowtech] It took a day and two bent pry bars to get the hatch open. Behind it is a concrete room the size of a barn, steel shelves bolted to the walls, every shelf empty. Whoever stocked this place came back for all of it.\n\nThey left the walls, though. Every one is covered in writing: stencils, handwriting, charts and tallies. {A_nameDef} wants to copy it all before the damp gets in.</li>
+          <li>[studied] {A_nameDef} came back from the hill with a satchel of copied carvings and the answer. The door was built to keep a store safe through a war. The carvings on the frame are a tally of everything that went in and everything that came out again, and by the last line, nothing was left.\n\nThe vault is empty, but the carvings say its walls hold its builders' records. {A_nameDef} has worked out how to open the door without breaking it, and would like to copy what's inside.</li>
+        </texts>
+        <defaultOption>0</defaultOption>
+        <options>
+          <li>
+            <label>Copy the writing ({A_nameDef}, a few days)</label>
+            <outcome>{A_nameDef} goes back to the hill with paper and a lamp.</outcome>
+            <ways><openness>1</openness></ways>
+          </li>
+          <li>
+            <label>Seal it up and leave it</label>
+            <outcome>The door is sealed again.</outcome>
+          </li>
+        </options>
+      </li>
+      <li Class="ColonyCouncil.StoryText">
+        <chain>door</chain>
+        <key>doorempty</key>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Council_Story_DoorCasket</defName>
+    <label>the sleeper in the hill</label>
+    <workerClass>ColonyCouncil.HappeningWorker_StoryDoor</workerClass>
+    <baseChance>0</baseChance>
+    <minRefireDays>0</minRefireDays>
+    <earliestDay>0</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Challenge</group>
+        <notable>false</notable>
+        <answerDays>1</answerDays>
+        <titles>
+          <li>[opened] Someone behind the door</li>
+          <li>[studied] A sleeper in the hill</li>
+        </titles>
+        <texts>
+          <li>[opened,lowtech] Behind the door there is one small room, cold as a cellar in midwinter, and in it a long box of frosted glass and gray metal unlike anything the colony could make. Tiny lights still glow along one side of it, like embers.\n\nSomeone is lying inside. {A_nameDef} held a lamp to the glass for a long while before saying so: whoever it is, they're breathing, very slowly, as if they had all the time in the world.</li>
+          <li>[opened,!lowtech] Behind the hatch, in a room no bigger than a pantry, the opening party found an old cryptosleep casket, still drawing power from a source the opening party couldn't find. The readout on its side is in a script none of them recognize, but the figure behind the frosted glass is clear enough.\n\nSomeone is in there, alive, and has been asleep since before the colony's oldest stories.</li>
+          <li>[studied] {A_nameDef} has read the door. The carvings on its frame are a warning and a set of instructions: someone sleeps inside, put there to wait out something terrible, and they must be woken slowly, kept warm, and held down until they know where they are.\n\n{A_nameDef} thinks it can be done safely. The colony could carry the sleeper home and wake them the careful way, or seal the door again and leave them to their sleep.</li>
+        </texts>
+        <defaultOption>1</defaultOption>
+        <options>
+          <li>
+            <label>Carry the sleeper home and wake them</label>
+            <outcome>The sleeper is carried down the hill on poles, slowly, with {A_nameDef} walking alongside and watching the glass. Waking them will take a day or two.</outcome>
+            <ways><openness>2</openness></ways>
+          </li>
+          <li>
+            <label>Seal the door and let them sleep</label>
+            <outcome>The door is sealed again.</outcome>
+          </li>
+        </options>
+      </li>
+      <li Class="ColonyCouncil.StoryText">
+        <chain>door</chain>
+        <key>doorcasket</key>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Council_Story_DoorHoard</defName>
+    <label>the hoard in the hill</label>
+    <workerClass>ColonyCouncil.HappeningWorker_StoryDoor</workerClass>
+    <baseChance>0</baseChance>
+    <minRefireDays>0</minRefireDays>
+    <earliestDay>0</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Challenge</group>
+        <notable>false</notable>
+        <answerDays>1</answerDays>
+        <titles>
+          <li>[opened] A hoard in the hill</li>
+          <li>[studied] What the door hides</li>
+        </titles>
+        <texts>
+          <li>[opened,ownershostile] Behind the door are crates, row after row of them stacked to the roof, dry and whole and packed with goods untouched for generations. Every lid is burned with the same sign, and {A_nameDef} knows it: it's the mark {ENEMY} paint on their shields.\n\nThe colony could carry it all home. {ENEMY} may not know the hoard is here, or they may know exactly where it is, and be waiting for someone to open it.</li>
+          <li>[opened,!ownershostile] Behind the door are crates, row after row of them stacked to the roof, dry and whole and packed with goods untouched for generations. Every lid is burned with the same sign: the mark of {ENEMY}, whose traders still come this way.\n\nIt's theirs, or it was their grandparents'. The colony could carry it home, take a share and leave the rest, or send word to {ENEMY} that their hoard has been found.</li>
+          <li>[studied,ownershostile] The carvings on the door are an inventory, and {A_nameDef} has read every line of it: grain, cloth, tools, weapons and silver, laid up against hard times by the people who now call themselves {ENEMY}. Its owners never came back for it.\n\n{ENEMY} are not people to share with. They're not people to cross, either.</li>
+          <li>[studied,!ownershostile] The carvings on the door are an inventory, and {A_nameDef} has read every line of it: grain, cloth, tools, weapons and silver, laid up against hard times by the people who now call themselves {ENEMY}. Its owners never came back for it.\n\n{ENEMY} still trade along this road. The colony could take the hoard, take a share and leave the rest, or send word to them.</li>
+        </texts>
+        <defaultOption>1</defaultOption>
+        <options>
+          <li>
+            <label>Carry it all home</label>
+            <outcome>It takes two days and every strong back in the colony to carry the hoard down the hill. In the stores now: {ITEM}.</outcome>
+            <ways><generosity>-2</generosity></ways>
+          </li>
+          <li>
+            <label>Take a share and leave the rest</label>
+            <outcome>The colony takes what it can use.</outcome>
+          </li>
+          <li>
+            <label>Send word to {ENEMY}</label>
+            <outcome>Word goes out to {ENEMY}: their grandparents' hoard has been found in the hill, and the colony has touched none of it.</outcome>
+            <ways><generosity>3</generosity></ways>
+          </li>
+        </options>
+      </li>
+      <li Class="ColonyCouncil.StoryText">
+        <chain>door</chain>
+        <key>doorhoard</key>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Council_Story_DoorSleeper</defName>
+    <label>the sleeper wakes</label>
+    <workerClass>ColonyCouncil.HappeningWorker_StoryDoor</workerClass>
+    <baseChance>0</baseChance>
+    <minRefireDays>0</minRefireDays>
+    <earliestDay>0</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Visitors</group>
+        <notable>false</notable>
+        <answerDays>1</answerDays>
+        <titles>
+          <li>The sleeper wakes</li>
+        </titles>
+        <texts>
+          <li>[friend,studied,!buyer] {X_nameDef} opened {X_possessive} eyes this morning just as the carvings said: slowly, cold to the bone, and calm. {A_nameDef} was there with blankets and broth, and by evening {X_nameDef} could sit up and talk, in an old slow way of speaking that takes some getting used to.\n\n{X_nameDef} remembers being put to sleep, and a war, and very little else. There's nothing left to go back to. {X_nameDef} asks if the colony has a place for one more, or failing that, a road out.</li>
+          <li>[friend,!studied,!buyer] The sleeper woke in the night, shaking and frightened, and {A_nameDef} sat up until dawn talking {X_objective} down. By morning {X_nameDef}, as {X_pronoun} turned out to be called, was eating porridge and asking questions {A_nameDef} couldn't answer.\n\n{X_nameDef} remembers being put to sleep, and a war, and very little else. There's nothing left to go back to. {X_nameDef} asks if the colony has a place for one more, or failing that, a road out.</li>
+          <li>[wary,studied] {X_nameDef} woke fighting, exactly as the carvings warned, and found {X_possessive} wrists tied to the bed frame with soft rope. It took {A_nameDef} two days of talking, broth and patience before {X_nameDef} would let anyone near enough to untie {X_objective}.\n\n{X_nameDef} is calm now, and ashamed of the noise. The war {X_pronoun} remembers ended long before anyone here was born. {X_nameDef} asks if there's a place here, or a road out.</li>
+          <li>[buyer] {FACTION}'s diggers found more than they bargained for behind the door in the hill: a casket, and someone asleep in it. They woke {X_objective}, and {X_nameDef} has been a puzzle to them ever since, asking questions in an old tongue none of them can follow.\n\nSince it was the colony's door, they've brought {X_nameDef} here. {X_nameDef} would like to stay, if there's room, or else to be shown the road.</li>
+        </texts>
+        <defaultOption>1</defaultOption>
+        <options>
+          <li>
+            <label>Ask {X_objective} to stay</label>
+            <outcome>{X_nameDef} stays.</outcome>
+            <ways><openness>2</openness></ways>
+          </li>
+          <li>
+            <label>Give {X_objective} supplies and show {X_objective} the road</label>
+            <outcome>{X_nameDef} goes on.</outcome>
+          </li>
+        </options>
+      </li>
+      <li Class="ColonyCouncil.StoryText">
+        <chain>door</chain>
+        <key>doorsleeper</key>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Council_Story_DoorOwners</defName>
+    <label>the owners of the hoard</label>
+    <workerClass>ColonyCouncil.HappeningWorker_StoryDoor</workerClass>
+    <baseChance>0</baseChance>
+    <minRefireDays>0</minRefireDays>
+    <earliestDay>0</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Challenge</group>
+        <notable>false</notable>
+        <answerDays>0.6</answerDays>
+        <titles>
+          <li>{ENEMY} want their hoard</li>
+        </titles>
+        <texts>
+          <li>[ownershostile] Riders of {ENEMY} are waiting across the fields, and they've brought one of the crates from the hill, empty, with their sign burned in the lid. They know the colony took their hoard.\n\nThey'll take {COUNT} silver for it, about half of what it was worth, and call the matter settled. Refuse, and they'll come back with more than riders.</li>
+          <li>[!ownershostile] A delegation of {ENEMY} has come to the colony, polite and grim. Their elders have heard that the colony found a hoard in the hill with their sign on every crate, and carried it home.\n\nThey want its worth back: {COUNT} silver, about half of what it was. It was put away by their grandparents against a famine, they say, and it was never the colony's to take.</li>
+        </texts>
+        <defaultOption>1</defaultOption>
+        <options>
+          <li>
+            <label>Pay them ({COUNT} silver)</label>
+            <outcome>The silver is counted out.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>silver</what></li>
+            </effects>
+            <ways><generosity>2</generosity></ways>
+          </li>
+          <li>
+            <label>Refuse</label>
+            <outcome>The colony keeps the hoard.</outcome>
+          </li>
+        </options>
+      </li>
+      <li Class="ColonyCouncil.StoryText">
+        <chain>door</chain>
+        <key>doorowners</key>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Council_Story_DoorBuyer</defName>
+    <label>the buyer comes back</label>
+    <workerClass>ColonyCouncil.HappeningWorker_StoryDoor</workerClass>
+    <baseChance>0</baseChance>
+    <minRefireDays>0</minRefireDays>
+    <earliestDay>0</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Challenge</group>
+        <notable>false</notable>
+        <answerDays>0.6</answerDays>
+        <titles>
+          <li>{FACTION} want their silver back</li>
+        </titles>
+        <texts>
+          <li>The diggers {FACTION} sent to the door in the hill have come back by way of the colony, dusty and in a bad mood. They got the door open after a week's work and found an empty room with writing on the walls.\n\nThey want their {COUNT} silver back. {A_nameDef} points out that they bought the way to a door, not whatever was behind it. They don't see it that way.</li>
+        </texts>
+        <defaultOption>2</defaultOption>
+        <options>
+          <li>
+            <label>Give it all back ({COUNT} silver)</label>
+            <outcome>The silver goes back.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>silver</what></li>
+            </effects>
+            <ways><generosity>2</generosity></ways>
+          </li>
+          <li>
+            <label>Give back half ({TALE} silver)</label>
+            <outcome>Half the silver goes back.</outcome>
+          </li>
+          <li>
+            <label>Keep the silver</label>
+            <outcome>The colony keeps the silver.</outcome>
+            <ways><generosity>-2</generosity></ways>
+          </li>
+        </options>
+      </li>
+      <li Class="ColonyCouncil.StoryText">
+        <chain>door</chain>
+        <key>doorbuyer</key>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ======================================================================================================== -->
+  <!-- ===================== The fugitive's debt ============================================================= -->
+  <!-- ======================================================================================================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Council_Story_Fugitive</defName>
+    <label>the fugitive's debt</label>
+    <workerClass>ColonyCouncil.HappeningWorker_StoryDebt</workerClass>
+    <baseChance>0.7</baseChance>
+    <minRefireDays>90</minRefireDays>
+    <earliestDay>15</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Visitors</group>
+        <answerDays>0.4</answerDays>
+        <titles>
+          <li>A stranger at night</li>
+        </titles>
+        <texts>
+          <li>[lowtech] Long after dark, {A_nameDef} heard someone at the gate: a young traveler named {X_nameDef}, soaked to the knees from fording the river, with a pack and no torch. {X_nameDef} asked for something to eat, a dry place to sleep and a change of coat.\n\n"Someone is following me," {X_nameDef} said. "If they ask, I was never here." {X_nameDef} will say nothing more unless the colony asks.</li>
+          <li>[!lowtech] Long after dark, {A_nameDef} heard someone at the gate: a young traveler named {X_nameDef}, soaked to the knees from fording the river, with a pack and a dead flashlight. {X_nameDef} asked for something to eat, a dry place to sleep and a change of coat.\n\n"Someone is following me," {X_nameDef} said. "If they ask, I was never here." {X_nameDef} will say nothing more unless the colony asks.</li>
+        </texts>
+        <defaultOption>2</defaultOption>
+        <options>
+          <li>
+            <label>Hide {X_objective}, and ask nothing</label>
+            <outcome>{A_nameDef} brings {X_nameDef} in, finds {X_objective} a coat and a corner by the stove, and asks no questions. {X_nameDef} will be gone before it's light.</outcome>
+            <ways><mercy>2</mercy></ways>
+          </li>
+          <li>
+            <label>Take {X_objective} in, but ask who is following</label>
+            <outcome>{A_nameDef} brings {X_nameDef} in and asks who is following.</outcome>
+            <ways><mercy>1</mercy></ways>
+          </li>
+          <li>
+            <label>Send {X_objective} on</label>
+            <outcome>{A_nameDef} passes a heel of bread through the gate and points the way to the road. {X_nameDef} goes without another word.</outcome>
+            <ways><mercy>-1</mercy></ways>
+          </li>
+        </options>
+      </li>
+      <li Class="ColonyCouncil.StoryText">
+        <chain>debt</chain>
+        <key>fugitive</key>
+        <start>true</start>
+        <!-- What the stranger says when asked. -->
+        <outcomes>
+          <li>[asked,innocent,lowtech] {X_nameDef} talks over a bowl of stew. {X_nameDef} was in service at {PLACE}, and saw the lord's son do something he would hang anyone else for. The lord would rather the witness disappeared. {A_nameDef} believes every word.</li>
+          <li>[asked,innocent,!lowtech] {X_nameDef} talks over a bowl of stew. {X_nameDef} worked for the mayor's household at {PLACE}, and saw the mayor's son do something that would put anyone else in prison. The mayor would rather the witness disappeared. {A_nameDef} believes every word.</li>
+          <li>[asked,guilty,lowtech] {X_nameDef} doesn't bother lying. The pack holds a silver reliquary {X_nameDef} lifted from the chapel at {PLACE}, and the people following want it back. {X_nameDef} will be gone before light, either way.</li>
+          <li>[asked,guilty,!lowtech] {X_nameDef} doesn't bother lying. The pack holds a case of medicine {X_nameDef} lifted from the clinic at {PLACE}, worth more than a year's wages, and the people following want it back. {X_nameDef} will be gone before light, either way.</li>
+        </outcomes>
+        <remembered>
+          <li>[pursuers] Someone is following {X_nameDef}, the stranger who came to the gate at night.</li>
+          <li>[debtrepaid|debtgift|thanks|gone,protected] The colony kept quiet about {X_nameDef}, the stranger at the gate. {X_nameDef} promised not to forget it.</li>
+          <li>[debtrevenge|cursed|justice] {FACTION}'s riders took up {X_nameDef}'s trail from the colony's gate.</li>
+          <li>[caught] {FACTION}'s riders found {X_nameDef}'s tracks leading out of the colony, and followed them.</li>
+        </remembered>
+        <endingTitles>
+          <li>[repaidjoined] A debt repaid</li>
+          <li>[repaid] A debt repaid</li>
+          <li>[accepted] A gift kept</li>
+          <li>[exposed] Stolen goods</li>
+          <li>[refusedgift] A gift refused</li>
+          <li>[sentback] Sent home</li>
+          <li>[thanks] Thanks from the road</li>
+          <li>[gone] Word of {X_nameDef}</li>
+          <li>[justice] The riders' thanks</li>
+          <li>[caught] {X_nameDef} is caught</li>
+          <li>[cursed] A message for the colony</li>
+          <li>[revenge] {X_nameDef} is coming</li>
+          <li>[paidoff] Settled</li>
+        </endingTitles>
+        <endings>
+          <li>[repaidjoined] {X_nameDef} has unpacked in the same corner by the stove where the colony hid {X_objective} the night {FACTION}'s riders came looking. {X_nameDef} says it's the only place {X_pronoun} has slept soundly in a year.\n\n{A_nameDef} has a friend for life, and the colony has one more pair of hands.</li>
+          <li>[repaid] {X_nameDef} stayed one night, ate well, and left in the morning with a full pack and the colony's good wishes. What {X_nameDef} brought stays: {TALE}.\n\nThe debt is paid, and then some.</li>
+          <li>[accepted] The colony kept {X_nameDef}'s gift, and {X_nameDef} went on {X_possessive} way well pleased. The fine things are in the stores now: {ITEM}.\n\n{FACTION} need never know where they ended up.</li>
+          <li>[exposed] A trader from {PLACE} saw {X_nameDef}'s gift in the colony's stores and knew it for what was taken, and the story was all along the road within a week. {FACTION} think less of the colony now.\n\nThe colony kept the gift all the same: {ITEM}.</li>
+          <li>[refusedgift] {X_nameDef} wrapped the gift back up without arguing and left before supper, more hurt than offended.\n\nWhatever happened at {PLACE}, the colony has taken no part of it.</li>
+          <li>[sentback] The colony took {X_nameDef}'s gift and sent it on to {PLACE} with a rider and a short message. {FACTION} were glad to have their things back, and said so.\n\n{X_nameDef} won't be coming back this way.</li>
+          <li>[thanks] A peddler stopped at the gate with a message from {X_nameDef}, the stranger the colony turned away and then lied for. {X_nameDef} heard what the colony told the riders, and got clean away because of it. The peddler also handed over {ITEM} silver, wrapped in a rag.\n\nThe colony never let {X_nameDef} in, but it kept the secret, and that was enough.</li>
+          <li>[gone] Word came up the road that {X_nameDef}, the stranger the colony lied for, was seen in a town three valleys away, spending silver freely. {FACTION}'s riders never caught up with {X_objective}.\n\nThe colony may never know what {X_nameDef} took, or whether it should have kept quiet.</li>
+          <li>[justice] {FACTION}'s riders caught {X_nameDef} two days up the road, with the stolen things still in {X_possessive} pack. They've sent their thanks to the colony, and {ITEM} silver for its help.</li>
+          <li>[caught] Word came from {PLACE}: {FACTION}'s riders followed the tracks from the colony's gate and caught {X_nameDef} at the river crossing. They know the colony hid {X_objective}, and they aren't pleased.\n\n{A_nameDef} took the news badly.</li>
+          <li>[cursed] {X_nameDef}, the stranger the colony gave up to {FACTION}'s riders, slipped away from them at the river. A message found its way back to the colony's gate: {X_nameDef} knows who pointed the way, and won't forget it.\n\n{X_nameDef} had stolen nothing. The riders were sent to silence a witness, and the colony helped them.</li>
+          <li>[revenge] No silver went out, and {X_nameDef}'s answer came back the same day: {X_nameDef} and {ENEMY} are on their way.\n\n{X_nameDef} had stolen nothing. The riders were sent to silence a witness, and the colony helped them.</li>
+          <li>[paidoff] {X_nameDef} took the {COUNT} silver and gave {X_possessive} word that the matter is closed. A rider saw {X_nameDef} heading south with {ENEMY} a day later.\n\n{X_nameDef} had stolen nothing. The riders were sent to silence a witness, and the colony helped them. The silver was the least it owed.</li>
+        </endings>
+        <summaries>
+          <li>[repaidjoined] {X_nameDef}, the stranger the colony hid, came back to repay the debt and stayed.</li>
+          <li>[repaid] {X_nameDef}, the stranger the colony hid, came back to repay the debt.</li>
+          <li>[accepted] The colony kept the gift {X_nameDef} brought, whatever its past.</li>
+          <li>[exposed] {X_nameDef}'s gift turned out to be stolen from {PLACE}, and {FACTION} heard of it.</li>
+          <li>[refusedgift] The colony refused {X_nameDef}'s gift of stolen goods.</li>
+          <li>[sentback] The colony returned the goods {X_nameDef} had stolen from {PLACE}.</li>
+          <li>[thanks] {X_nameDef} sent thanks to the colony for keeping quiet.</li>
+          <li>[gone] {X_nameDef} got away, and the colony never learned what was taken.</li>
+          <li>[justice] {FACTION}'s riders caught {X_nameDef}, a thief, with the colony's help.</li>
+          <li>[caught] {FACTION}'s riders caught {X_nameDef} on tracks leading from the colony.</li>
+          <li>[cursed] {X_nameDef}, an innocent the colony gave up, swore not to forget it.</li>
+          <li>[revenge] {X_nameDef}, an innocent the colony gave up, came back with {ENEMY} for revenge.</li>
+          <li>[paidoff] The colony paid off {X_nameDef}, the innocent it had given up.</li>
+        </summaries>
+        <raidTitles>
+          <li>[debtrevenge] {X_nameDef}'s revenge</li>
+        </raidTitles>
+        <raid>
+          <li>[debtrevenge] {X_nameDef}, the witness the colony gave up to {FACTION}'s riders, has come back with {ENEMY} to settle the debt.</li>
+        </raid>
+        <good>
+          <li>repaidjoined</li>
+          <li>repaid</li>
+          <li>accepted</li>
+          <li>sentback</li>
+          <li>thanks</li>
+          <li>justice</li>
+        </good>
+        <bad>
+          <li>exposed</li>
+          <li>caught</li>
+          <li>cursed</li>
+          <li>revenge</li>
+        </bad>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Council_Story_Pursuers</defName>
+    <label>the riders</label>
+    <workerClass>ColonyCouncil.HappeningWorker_StoryDebt</workerClass>
+    <baseChance>0</baseChance>
+    <minRefireDays>0</minRefireDays>
+    <earliestDay>0</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Visitors</group>
+        <notable>false</notable>
+        <answerDays>0.4</answerDays>
+        <riskSkill>Social</riskSkill>
+        <riskSkillOption>0</riskSkillOption>
+        <titles>
+          <li>Riders from {PLACE}</li>
+        </titles>
+        <texts>
+          <li>[hid,!asked] Riders of {FACTION} came up the road this morning from {PLACE}, mud to the stirrups. They're asking at every farm and camp along the way about a young traveler, and their description of {X_nameDef} is a good one. They call {X_objective} a thief, and they're offering {COUNT} silver to anyone who helps them find {X_objective}.\n\n{X_nameDef} left before dawn, as promised. The riders don't know {X_nameDef} slept here, unless someone tells them.</li>
+          <li>[hid,asked,innocent] Riders of {FACTION} came up the road this morning from {PLACE}, mud to the stirrups. They're asking at every farm and camp along the way about a young traveler, and their description of {X_nameDef} is a good one. They call {X_objective} a thief, and they're offering {COUNT} silver to anyone who helps them find {X_objective}.\n\n{A_nameDef} heard {X_nameDef}'s side of it last night, and it wasn't theft. {X_nameDef} left before dawn.</li>
+          <li>[hid,asked,guilty] Riders of {FACTION} came up the road this morning from {PLACE}, mud to the stirrups. They're asking at every farm and camp along the way about a young traveler, and their description of {X_nameDef} is a good one. They call {X_objective} a thief, and they're offering {COUNT} silver to anyone who helps them find {X_objective}.\n\nThat's the truth, as far as {A_nameDef} knows: {X_nameDef} said as much last night, before leaving at dawn.</li>
+          <li>[turned] Riders of {FACTION} came up the road this morning from {PLACE}, mud to the stirrups. They're asking at every farm and camp along the way about a young traveler, and their description of {X_nameDef} is a good one. They call {X_objective} a thief, and they're offering {COUNT} silver to anyone who helps them find {X_objective}.\n\nThe colony turned {X_nameDef} away, so there's nothing to hide here. But {A_nameDef} knows which way {X_nameDef} went.</li>
+        </texts>
+        <defaultOption>0</defaultOption>
+        <options>
+          <li>
+            <label>Say nothing of {X_objective}</label>
+            <outcome>The riders get nothing but a drink of water. They ride on up the road, still asking.</outcome>
+            <riskChance>0.3</riskChance>
+            <riskOutcome>The riders get nothing out of anyone, but on their way out one of them finds {X_nameDef}'s tracks leading from the colony's gate, and they turn to follow.</riskOutcome>
+            <ways><mercy>2</mercy></ways>
+          </li>
+          <li>
+            <label>Tell them which way {X_nameDef} went</label>
+            <outcome>{A_nameDef} points the riders up the road {X_nameDef} took. They thank the colony and ride hard.</outcome>
+          </li>
+          <li>
+            <label>Tell them, for the reward ({COUNT} silver)</label>
+            <outcome>The riders count out {COUNT} silver and ride hard on the trail {A_nameDef} gives them.</outcome>
+            <ways><mercy>-2</mercy></ways>
+          </li>
+        </options>
+      </li>
+      <li Class="ColonyCouncil.StoryText">
+        <chain>debt</chain>
+        <key>pursuers</key>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Council_Story_DebtRepaid</defName>
+    <label>a debt repaid</label>
+    <workerClass>ColonyCouncil.HappeningWorker_StoryDebt</workerClass>
+    <baseChance>0</baseChance>
+    <minRefireDays>0</minRefireDays>
+    <earliestDay>0</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Visitors</group>
+        <notable>false</notable>
+        <addsPeople>true</addsPeople>
+        <answerDays>0.6</answerDays>
+        <titles>
+          <li>{X_nameDef} comes back</li>
+        </titles>
+        <texts>
+          <li>[lowtech] {X_nameDef}, the stranger the colony hid one night and kept quiet about, came back up the road this morning on a good horse and in a good coat. The lord's son at {PLACE} was caught at last at something he couldn't buy his way out of, and {X_nameDef}'s name has been cleared.\n\n{X_nameDef} has brought what {X_pronoun} owes the colony, and more: {TALE}. If the colony will have {X_objective}, {X_nameDef} would like to stay.</li>
+          <li>[!lowtech] {X_nameDef}, the stranger the colony hid one night and kept quiet about, came back up the road this morning in a good coat and new boots. The mayor's son at {PLACE} was caught at last at something he couldn't buy his way out of, and {X_nameDef}'s name has been cleared.\n\n{X_nameDef} has brought what {X_pronoun} owes the colony, and more: {TALE}. If the colony will have {X_objective}, {X_nameDef} would like to stay.</li>
+        </texts>
+        <defaultOption>1</defaultOption>
+        <options>
+          <li>
+            <label>Ask {X_objective} to stay</label>
+            <outcome>{X_nameDef} stays.</outcome>
+            <ways><openness>2</openness></ways>
+          </li>
+          <li>
+            <label>Thank {X_objective}, and wish {X_objective} well</label>
+            <outcome>{X_nameDef} goes on.</outcome>
+          </li>
+        </options>
+      </li>
+      <li Class="ColonyCouncil.StoryText">
+        <chain>debt</chain>
+        <key>debtrepaid</key>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Council_Story_DebtGift</defName>
+    <label>a gift with a past</label>
+    <workerClass>ColonyCouncil.HappeningWorker_StoryDebt</workerClass>
+    <baseChance>0</baseChance>
+    <minRefireDays>0</minRefireDays>
+    <earliestDay>0</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Visitors</group>
+        <notable>false</notable>
+        <answerDays>0.6</answerDays>
+        <titles>
+          <li>{X_nameDef} comes back</li>
+        </titles>
+        <texts>
+          <li>{X_nameDef}, the stranger the colony kept quiet about, has come back to say thank you, and has done well since, judging by the boots. The gift is wrapped in good cloth: fine things, finer than an honest traveler could have come by.\n\n{FACTION} are still asking along the road about what was taken from {PLACE}. The colony could accept the gift, refuse it, or take it and send it back where it came from.</li>
+        </texts>
+        <defaultOption>1</defaultOption>
+        <options>
+          <li>
+            <label>Accept the gift</label>
+            <outcome>The colony keeps the gift.</outcome>
+            <riskChance>0.4</riskChance>
+            <ways><generosity>-1</generosity></ways>
+          </li>
+          <li>
+            <label>Refuse it, and send {X_objective} on</label>
+            <outcome>{X_nameDef} goes on.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_SendAway" />
+            </effects>
+          </li>
+          <li>
+            <label>Take it, and return it to {FACTION}</label>
+            <outcome>The goods go back to {PLACE}.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_SendAway" />
+            </effects>
+            <ways><mercy>-1</mercy></ways>
+          </li>
+        </options>
+      </li>
+      <li Class="ColonyCouncil.StoryText">
+        <chain>debt</chain>
+        <key>debtgift</key>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Council_Story_DebtRevenge</defName>
+    <label>a witness comes back</label>
+    <workerClass>ColonyCouncil.HappeningWorker_StoryDebt</workerClass>
+    <baseChance>0</baseChance>
+    <minRefireDays>0</minRefireDays>
+    <earliestDay>0</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Battle</group>
+        <threat>true</threat>
+        <notable>false</notable>
+        <answerDays>0.5</answerDays>
+        <titles>
+          <li>{X_nameDef} wants a reckoning</li>
+        </titles>
+        <texts>
+          <li>[lowtech] {X_nameDef}, the stranger the colony gave up to {FACTION}'s riders, got away from them at the river and has spent the weeks since finding friends among {ENEMY}. A message came tied to an arrow in the gatepost: {X_nameDef} remembers who pointed the way, and is coming to settle it.\n\n{X_nameDef} will call it even for {COUNT} silver. Otherwise, {X_nameDef} and {ENEMY} are coming.</li>
+          <li>[!lowtech] {X_nameDef}, the stranger the colony gave up to {FACTION}'s riders, got away from them at the river and has spent the weeks since finding friends among {ENEMY}. The message came over the comms, short and calm: {X_nameDef} remembers who pointed the way, and is coming to settle it.\n\n{X_nameDef} will call it even for {COUNT} silver. Otherwise, {X_nameDef} and {ENEMY} are coming.</li>
+        </texts>
+        <defaultOption>1</defaultOption>
+        <options>
+          <li>
+            <label>Pay {X_objective} off ({COUNT} silver)</label>
+            <outcome>The silver is sent.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>silver</what></li>
+            </effects>
+          </li>
+          <li>
+            <label>Let {X_objective} come</label>
+            <outcome>The colony sends nothing.</outcome>
+          </li>
+        </options>
+      </li>
+      <li Class="ColonyCouncil.StoryText">
+        <chain>debt</chain>
+        <key>debtrevenge</key>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ======================================================================================================== -->
+  <!-- ===================== Bad blood ======================================================================= -->
+  <!-- ======================================================================================================== -->
+
+  <!-- {X}/{DEAD}: the head and the name of one family, {B}/{BEAST}: the other. Once the colony backs a family, {X} and
+       {TALE} are the backed one, {B} and {RELATION} the one that lost out. -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Council_Story_Feud</defName>
+    <label>bad blood</label>
+    <workerClass>ColonyCouncil.HappeningWorker_StoryFeud</workerClass>
+    <baseChance>0.6</baseChance>
+    <minRefireDays>90</minRefireDays>
+    <earliestDay>20</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Visitors</group>
+        <minColonists>3</minColonists>
+        <answerDays>0.6</answerDays>
+        <titles>
+          <li>Bad blood in {PLACE}</li>
+        </titles>
+        <texts>
+          <li>[mill] {X_nameDef} and {B_nameDef}, heads of the two oldest families in {PLACE}, rode into the colony together this morning and haven't said a word to each other since. The {DEAD} family and the {BEAST} family have been at odds since the mill burned three winters ago, and each says the other set the fire.\n\nNow {X_nameDef}'s son and {B_nameDef}'s daughter want to marry, and both fathers have come to ask for the colony's help, or its backing. {A_nameDef} has heard them both out, separately, twice.</li>
+          <li>[orchard] {X_nameDef} and {B_nameDef}, heads of the two oldest families in {PLACE}, rode into the colony together this morning and haven't said a word to each other since. The {DEAD} family put a fence through the middle of the old orchard ten years ago, the {BEAST} family took it down by night, and it has gone up and come down every year since.\n\nNow {X_nameDef}'s son and {B_nameDef}'s daughter want to marry, and both fathers have come to ask for the colony's help, or its backing. {A_nameDef} has heard them both out, separately, twice.</li>
+          <li>[ford] {X_nameDef} and {B_nameDef}, heads of the two oldest families in {PLACE}, rode into the colony together this morning and haven't said a word to each other since. A {BEAST} cousin drowned at the ford one spring, on a night after the {DEAD} family had moved the stepping stones, and neither side has let it go.\n\nNow {X_nameDef}'s son and {B_nameDef}'s daughter want to marry, and both fathers have come to ask for the colony's help, or its backing. {A_nameDef} has heard them both out, separately, twice.</li>
+        </texts>
+        <defaultOption>4</defaultOption>
+        <options>
+          <li>
+            <label>{A_nameDef} offers to mediate</label>
+            <outcome>{A_nameDef} rides back to {PLACE} with them to arrange a first meeting. Neither father likes the idea. Both agree to it.</outcome>
+            <ways><mercy>1</mercy><openness>1</openness></ways>
+          </li>
+          <li>
+            <label>Back the {DEAD} family</label>
+            <outcome>The colony sides with {X_nameDef}. {B_nameDef} leaves without a word, and {X_nameDef} shakes every hand in the colony before riding home.</outcome>
+          </li>
+          <li>
+            <label>Back the {BEAST} family</label>
+            <outcome>The colony sides with {B_nameDef}. {X_nameDef} leaves without a word, and {B_nameDef} shakes every hand in the colony before riding home.</outcome>
+          </li>
+          <li>
+            <label>Sell supplies to both sides ({COUNT} silver)</label>
+            <outcome>Both fathers buy what the colony can spare, each without knowing the other has. {COUNT} silver goes into the colony's stores.</outcome>
+            <ways><generosity>-3</generosity></ways>
+          </li>
+          <li>
+            <label>Stay out of it</label>
+            <outcome>The colony wishes both families well and gives neither an answer. They ride home together, still not speaking.</outcome>
+          </li>
+        </options>
+      </li>
+      <li Class="ColonyCouncil.StoryText">
+        <chain>feud</chain>
+        <key>feud</key>
+        <start>true</start>
+        <coming>
+          <li>[feudtalks] {A_nameDef} has been going back and forth to {PLACE} to bring the {DEAD} and {BEAST} families to the table. Word of how the first meeting went should come in about {DAYS}.</li>
+          <li>[feudwedding|blood|ownpeace,!out] The {DEAD} and {BEAST} families have had their last word on the matter. News from {PLACE} should come in about {DAYS}.</li>
+          <li>[feudsided] The colony backed the {TALE} family in {PLACE}'s old quarrel. The town's elders meet to settle it in about {DAYS}.</li>
+        </coming>
+        <remembered>
+          <li>[alliance|feudvendetta|grudge] The {RELATION} family of {PLACE} hasn't forgiven the colony for backing the {TALE} family.</li>
+          <li>[bloodsilver] The {DEAD} and {BEAST} families of {PLACE} both bought supplies from the colony. Neither knows about the other yet.</li>
+          <li>[ownpeace|goeson,out] The {DEAD} and {BEAST} families of {PLACE} are working out their quarrel without the colony.</li>
+        </remembered>
+        <endingTitles>
+          <li>[wedding] A wedding at the colony</li>
+          <li>[weddinggift] A wedding in {PLACE}</li>
+          <li>[weddingwished] A wedding in {PLACE}</li>
+          <li>[alliance] The {TALE} family's thanks</li>
+          <li>[vendetta] Hired blades</li>
+          <li>[boughtoff] Bought off</li>
+          <li>[grudge] A grudge in {PLACE}</li>
+          <li>[blood] Blood in {PLACE}</li>
+          <li>[bloodsilver] Blood on the silver</li>
+          <li>[ownpeace] Peace in {PLACE}</li>
+          <li>[goeson] The feud goes on</li>
+        </endingTitles>
+        <endings>
+          <li>[wedding] {X_nameDef}'s son and {B_nameDef}'s daughter were married at the colony at sundown, with the families on either side of the yard and the colony in between. Both fathers made speeches. By the end of the night {X_nameDef} and {B_nameDef} were seen sharing a bottle on the same bench.\n\n{PLACE} has one feud fewer, and both families say the colony will always have a seat at their table.</li>
+          <li>[weddinggift] The couple were married in {PLACE} a few days later. The colony's gift stood on the table at the feast, and both families drank to the colony's health.\n\nThe {DEAD} and {BEAST} families are neighbors again.</li>
+          <li>[weddingwished] The couple were married at home in {PLACE}, with both families at the same table and neither father storming out. The colony was thanked in the speeches for its part in the peace.\n\nThe {DEAD} and {BEAST} families are speaking to each other again.</li>
+          <li>[alliance] The {RELATION} family took the colony's gift, and their anger cooled. They've stopped talking about the colony and started talking about next year's harvest.\n\nThe {TALE} family leads {PLACE} now, and doesn't forget its friends. Its first cart of the season came to the colony: {ITEM}.</li>
+          <li>[vendetta] The colony won't buy off {ENEMY}. They're on the road now, paid by the {RELATION} family to burn the colony out.\n\nThe {TALE} family has sent word that it stands with the colony, whatever comes.</li>
+          <li>[boughtoff] {ENEMY} took the silver and turned back on the road, and the {RELATION} family's plan came to nothing. In {PLACE}, the story going round is that the colony outbid them.\n\nThe {RELATION} family has gone quiet. The {TALE} family is still grateful.</li>
+          <li>[grudge] The {RELATION} family won't trade with the colony, won't let its people past their gate, and tells anyone in {PLACE} who will listen that the colony bought the town's decision.\n\nIt's one family. In a town the size of {PLACE}, that's enough to be felt.</li>
+          <li>[blood] The talks failed, and the feud came back worse than before. At the market in {PLACE}, two of the {DEAD} sons and a {BEAST} cousin came to blows over nothing, and one of them will walk with a limp for the rest of his life. The wedding is off.\n\nBoth families blame the colony for talks that went nowhere, and {A_nameDef} blames {A_objective}self.</li>
+          <li>[bloodsilver] The {DEAD} and {BEAST} families came to blows in the streets of {PLACE}, armed with what they'd bought from the colony. Now both know where the other's supplies came from, and so does the rest of the town.\n\n{FACTION} think less of the colony for it.</li>
+          <li>[ownpeace] Word from {PLACE}: the {DEAD} and {BEAST} families made their peace without anyone's help, and the son and daughter were married last week.\n\nThe colony wasn't invited.</li>
+          <li>[goeson] The feud in {PLACE} goes on as it has for years. The son and daughter are still waiting, and the {DEAD} and {BEAST} families still cross the street rather than share it.\n\nThe colony stayed out of it, and {PLACE} hasn't asked it again.</li>
+        </endings>
+        <summaries>
+          <li>[wedding] The {DEAD} and {BEAST} families of {PLACE} made peace, and their children were married at the colony.</li>
+          <li>[weddinggift] The {DEAD} and {BEAST} families of {PLACE} made peace, and the colony sent a wedding gift.</li>
+          <li>[weddingwished] The {DEAD} and {BEAST} families of {PLACE} made peace with the colony's help.</li>
+          <li>[alliance] The {TALE} family, backed by the colony, came to lead {PLACE}.</li>
+          <li>[vendetta] The {RELATION} family of {PLACE} hired {ENEMY} against the colony.</li>
+          <li>[boughtoff] The colony bought off the blades the {RELATION} family hired against it.</li>
+          <li>[grudge] The {RELATION} family of {PLACE} holds a grudge against the colony.</li>
+          <li>[blood] The colony's talks between the families of {PLACE} failed, and it ended in blood.</li>
+          <li>[bloodsilver] The colony sold supplies to both families of {PLACE}, and the feud turned bloody.</li>
+          <li>[ownpeace] The families of {PLACE} made peace without the colony.</li>
+          <li>[goeson] The feud between the families of {PLACE} goes on.</li>
+        </summaries>
+        <raidTitles>
+          <li>[feudvendetta] The {RELATION} family's blades</li>
+        </raidTitles>
+        <raid>
+          <li>[feudvendetta] {ENEMY} have come, paid by the {RELATION} family of {PLACE} to burn the colony out for backing the {TALE} family.</li>
+        </raid>
+        <good>
+          <li>wedding</li>
+          <li>weddinggift</li>
+          <li>weddingwished</li>
+          <li>alliance</li>
+          <li>boughtoff</li>
+          <li>ownpeace</li>
+        </good>
+        <bad>
+          <li>vendetta</li>
+          <li>grudge</li>
+          <li>blood</li>
+          <li>bloodsilver</li>
+        </bad>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Council_Story_FeudTalks</defName>
+    <label>the talks</label>
+    <workerClass>ColonyCouncil.HappeningWorker_StoryFeud</workerClass>
+    <baseChance>0</baseChance>
+    <minRefireDays>0</minRefireDays>
+    <earliestDay>0</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Visitors</group>
+        <notable>false</notable>
+        <answerDays>1</answerDays>
+        <titles>
+          <li>The talks in {PLACE}</li>
+        </titles>
+        <texts>
+          <li>[good] {A_nameDef} is back from {PLACE}. The first meeting between the {DEAD} and {BEAST} families went better than anyone hoped: neither father walked out, and by the end {X_nameDef} and {B_nameDef} were arguing about the price of seed like ordinary neighbors.\n\nThey'll meet once more to settle it. {A_nameDef} thinks it should be at the colony, on ground that belongs to neither family, with a good meal on the table.</li>
+          <li>[bad] {A_nameDef} is back from {PLACE}, tired. The first meeting went badly: {B_nameDef} walked out halfway through, and the two families' sons nearly came to blows in the yard.\n\nThere's one more chance. {A_nameDef} wants to bring both fathers to the colony, on ground that belongs to neither family, and put a good meal in front of them. Left alone, the families will go back to what they were doing.</li>
+        </texts>
+        <defaultOption>1</defaultOption>
+        <options>
+          <li>
+            <label>Host the talks here (30 raw food for the table)</label>
+            <outcome>{X_nameDef} and {B_nameDef} are on their way to sit down at opposite ends of the colony's table, with {A_nameDef} in the middle. Their answer will come once they've talked it over at home.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>rawfood</what><count>30</count></li>
+            </effects>
+            <ways><generosity>2</generosity></ways>
+          </li>
+          <li>
+            <label>Leave it to them now</label>
+            <outcome>The colony has done what it can. The families will finish the matter themselves, one way or the other.</outcome>
+          </li>
+        </options>
+      </li>
+      <li Class="ColonyCouncil.StoryText">
+        <chain>feud</chain>
+        <key>feudtalks</key>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Council_Story_FeudSided</defName>
+    <label>the town decides</label>
+    <workerClass>ColonyCouncil.HappeningWorker_StoryFeud</workerClass>
+    <baseChance>0</baseChance>
+    <minRefireDays>0</minRefireDays>
+    <earliestDay>0</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Challenge</group>
+        <notable>false</notable>
+        <answerDays>1</answerDays>
+        <titles>
+          <li>{PLACE} decides</li>
+        </titles>
+        <texts>
+          <li>[mill] The elders of {PLACE} have settled the matter of the burned mill in favor of the {TALE} family, and everyone in the valley knows the colony's word tipped it. {X_nameDef} sent a rider with the family's thanks.\n\nThe {RELATION} family has taken it hard. {B_nameDef} has been heard saying the colony will pay for its part, and some of the {RELATION} cousins have been seen drinking with rough company. A peace gift now might cool things down.</li>
+          <li>[orchard] The elders of {PLACE} have drawn the line through the old orchard where the {TALE} family wanted it, and everyone in the valley knows the colony's word tipped it. {X_nameDef} sent a rider with the family's thanks.\n\nThe {RELATION} family has taken it hard. {B_nameDef} has been heard saying the colony will pay for its part, and some of the {RELATION} cousins have been seen drinking with rough company. A peace gift now might cool things down.</li>
+          <li>[ford] The elders of {PLACE} have ruled that the drowning at the ford was nobody's fault, as the {TALE} family always said, and everyone in the valley knows the colony's word tipped it. {X_nameDef} sent a rider with the family's thanks.\n\nThe {RELATION} family has taken it hard. {B_nameDef} has been heard saying the colony will pay for its part, and some of the {RELATION} cousins have been seen drinking with rough company. A peace gift now might cool things down.</li>
+        </texts>
+        <defaultOption>1</defaultOption>
+        <options>
+          <li>
+            <label>Send the {RELATION} family a peace gift ({COUNT} silver)</label>
+            <outcome>A rider takes the gift to {B_nameDef}'s door. {B_nameDef} took it, and said nothing. Whether it was enough will be clear in a few days.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>silver</what></li>
+            </effects>
+            <ways><generosity>2</generosity></ways>
+          </li>
+          <li>
+            <label>Stand by the {TALE} family</label>
+            <outcome>The colony stands by its word. The {TALE} family is grateful, and says so to anyone who'll listen.</outcome>
+          </li>
+        </options>
+      </li>
+      <li Class="ColonyCouncil.StoryText">
+        <chain>feud</chain>
+        <key>feudsided</key>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Council_Story_FeudVendetta</defName>
+    <label>hired blades</label>
+    <workerClass>ColonyCouncil.HappeningWorker_StoryFeud</workerClass>
+    <baseChance>0</baseChance>
+    <minRefireDays>0</minRefireDays>
+    <earliestDay>0</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Battle</group>
+        <threat>true</threat>
+        <notable>false</notable>
+        <answerDays>0.5</answerDays>
+        <titles>
+          <li>The {RELATION} family's revenge</li>
+        </titles>
+        <texts>
+          <li>[lowtech] A {RELATION} cousin, drunk and talkative in the tavern at {PLACE}, let it slip: the family has hired {ENEMY} to burn the colony out for the part it played in their ruin, and paid half up front.\n\nA rider from the {TALE} family brought the warning, and one more piece of news: {ENEMY} would turn back for {COUNT} silver, double what they were paid. Or the colony can meet them when they come.</li>
+          <li>[!lowtech] A {RELATION} cousin, drunk and talkative in a bar in {PLACE}, let it slip: the family has hired {ENEMY} to burn the colony out for the part it played in their ruin, and paid half up front.\n\nA rider from the {TALE} family brought the warning, and one more piece of news: {ENEMY} would turn back for {COUNT} silver, double what they were paid. Or the colony can meet them when they come.</li>
+        </texts>
+        <defaultOption>1</defaultOption>
+        <options>
+          <li>
+            <label>Pay {ENEMY} to turn back ({COUNT} silver)</label>
+            <outcome>The silver is sent.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>silver</what></li>
+            </effects>
+          </li>
+          <li>
+            <label>Let them come</label>
+            <outcome>The colony gets ready.</outcome>
+          </li>
+        </options>
+      </li>
+      <li Class="ColonyCouncil.StoryText">
+        <chain>feud</chain>
+        <key>feudvendetta</key>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Council_Story_FeudWedding</defName>
+    <label>the wedding</label>
+    <workerClass>ColonyCouncil.HappeningWorker_StoryFeud</workerClass>
+    <baseChance>0</baseChance>
+    <minRefireDays>0</minRefireDays>
+    <earliestDay>0</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Visitors</group>
+        <notable>false</notable>
+        <answerDays>0.5</answerDays>
+        <titles>
+          <li>A wedding</li>
+        </titles>
+        <texts>
+          <li>The {DEAD} and {BEAST} families of {PLACE} have made their peace, and the wedding is set. They've come to the colony together, both fathers and the young couple in their best clothes, with a request: they'd like to be married here, where the peace was made.\n\nA wedding feast would take 40 raw food from the colony's stores. Or the colony could send them home with a gift and its blessing.</li>
+        </texts>
+        <defaultOption>2</defaultOption>
+        <options>
+          <li>
+            <label>Hold the wedding here (40 raw food for the feast)</label>
+            <outcome>The feast is cooked.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>rawfood</what><count>40</count></li>
+            </effects>
+            <ways><generosity>3</generosity><openness>1</openness></ways>
+          </li>
+          <li>
+            <label>Send them home with a gift ({COUNT} silver)</label>
+            <outcome>The gift goes with them.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>silver</what></li>
+            </effects>
+            <ways><generosity>1</generosity></ways>
+          </li>
+          <li>
+            <label>Wish them well</label>
+            <outcome>The wedding party goes home.</outcome>
+          </li>
+        </options>
+      </li>
+      <li Class="ColonyCouncil.StoryText">
+        <chain>feud</chain>
+        <key>feudwedding</key>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ======================================================================================================== -->
+  <!-- ===================== The preacher ==================================================================== -->
+  <!-- ======================================================================================================== -->
+
+  <!-- With Ideology, the preacher speaks for an ideoligion of the world ({TALE}, tag [ideo]); without it, for a creed of
+       their own. -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Council_Story_Prophet</defName>
+    <label>the preacher</label>
+    <workerClass>ColonyCouncil.HappeningWorker_StoryProphet</workerClass>
+    <baseChance>0.6</baseChance>
+    <minRefireDays>90</minRefireDays>
+    <earliestDay>20</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Visitors</group>
+        <minColonists>4</minColonists>
+        <answerDays>0.5</answerDays>
+        <titles>
+          <li>A preacher on the road</li>
+        </titles>
+        <texts>
+          <li>[ideo] A preacher named {X_nameDef} has stopped on the road by the colony with two followers and a handcart, and has been preaching to anyone who passes. {X_nameDef} speaks for {TALE}, and speaks well: {A_nameDef} went to listen for a few minutes and stayed until dark.\n\nThey'd like to stay a day or two and preach to the colony's people. Some here are curious. Others want them gone.</li>
+          <li>[!ideo,lowtech] A preacher named {X_nameDef} has stopped on the road by the colony with two followers and a handcart, and has been preaching to anyone who passes. {X_nameDef} teaches that every hardship on the rim is sent to be borne, and that grumbling about it is the only real sin. {A_nameDef} went to listen for a few minutes and stayed until dark.\n\nThey'd like to stay a day or two and preach to the colony's people. Some here are curious. Others want them gone.</li>
+          <li>[!ideo,!lowtech] A preacher named {X_nameDef} has stopped on the road by the colony with two followers and a handcart, preaching through a battered megaphone to anyone who passes. {X_nameDef} teaches that every hardship on the rim is sent to be borne, and that grumbling about it is the only real sin. {A_nameDef} went to listen for a few minutes and stayed until dark.\n\nThey'd like to stay a day or two and preach to the colony's people. Some here are curious. Others want them gone.</li>
+        </texts>
+        <defaultOption>0</defaultOption>
+        <options>
+          <li>
+            <label>Let them stay and preach</label>
+            <outcome>{X_nameDef} preaches by the road at sundown, and more of the colony go to listen than {A_nameDef} expected. The followers sing afterward, badly but with feeling.</outcome>
+            <ways><openness>2</openness></ways>
+          </li>
+          <li>
+            <label>{A_nameDef} will argue with {X_objective}</label>
+            <outcome>{A_nameDef} and {X_nameDef} argue until the lamps burn low.</outcome>
+          </li>
+          <li>
+            <label>Ask them to move on</label>
+            <outcome>{X_nameDef} takes it graciously, blesses the gate on the way out, and walks off up the road with the followers and the handcart.</outcome>
+            <ways><openness>-2</openness></ways>
+          </li>
+        </options>
+      </li>
+      <li Class="ColonyCouncil.StoryText">
+        <chain>prophet</chain>
+        <key>prophet</key>
+        <start>true</start>
+        <!-- How an argument the colony lost went (one it won is told in its ending). -->
+        <outcomes>
+          <li>[lost] {A_nameDef} argued with {X_nameDef} until the lamps burned low, with a crowd watching, and lost. {X_nameDef} had an answer for everything, and a kind word for {A_nameDef} at the end, which was worse.</li>
+        </outcomes>
+        <coming>
+          <li>[prophetpilgrims|shrine] More pilgrims are expected on the road to {X_nameDef}'s hill, in about {DAYS}.</li>
+        </coming>
+        <remembered>
+          <li>[prophetfollowers|movedon] {X_nameDef} the preacher and the followers are preaching up and down the road near the colony.</li>
+          <li>[prophethill] {X_nameDef}, the preacher the colony sent on, was last seen heading into the hills a day's walk away.</li>
+          <li>[convert] {B_nameDef} left the colony to walk the road with {X_nameDef} the preacher.</li>
+        </remembered>
+        <endingTitles>
+          <li>[humbled] The argument</li>
+          <li>[convert] Word from {B_nameDef}</li>
+          <li>[stayed] The preacher moves on</li>
+          <li>[newvoice] The preacher settles in</li>
+          <li>[healed] Mended</li>
+          <li>[split] A divided colony</li>
+          <li>[turnedaway] The pilgrims pass by</li>
+          <li>[shrine] The last door before the hill</li>
+          <li>[movedon] The preacher moves on</li>
+        </endingTitles>
+        <endings>
+          <li>[humbled,follower] {X_nameDef} conceded the argument at midnight, shook {A_nameDef}'s hand, and left at dawn, quieter than {X_pronoun} came. One of the followers didn't go: {RELATION} asked to stay and learn from the people who had out-argued the preacher.\n\n{A_nameDef} has been in a fine mood all week.</li>
+          <li>[humbled,nofollower] {X_nameDef} conceded the argument at midnight, shook {A_nameDef}'s hand, and left at dawn with the followers and the handcart, quieter than {X_pronoun} came.\n\nThe colony talked about the argument for days. {A_nameDef} didn't mind that at all.</li>
+          <li>[convert] A pilgrim brought word from {B_nameDef}, who left the colony to walk the road with {X_nameDef}. {B_nameDef} is well, thinner, and happier than {B_pronoun} was here, the pilgrim says, and preaches now in the market squares between the towns.\n\n{B_nameDef} asked to be remembered to everyone, and to {A_nameDef} most of all.</li>
+          <li>[stayed] {X_nameDef} took the council's request with good grace and moved on up the road. {B_nameDef} watched the handcart go from the gate, and hasn't said much since.\n\n{B_nameDef} is staying. For now, {B_pronoun} says.</li>
+          <li>[newvoice] {X_nameDef} moved into the colony with a bundle of books and a handcart, and has been no trouble at all. {X_nameDef} works hard, eats little, preaches only when asked, and is asked more often than anyone expected.\n\n{B_nameDef} is staying too.</li>
+          <li>[healed] {A_nameDef} called everyone into the dining room and let them talk, one at a time, until there was nothing left to say. It took most of the night.\n\nThe arguments haven't stopped, but they've gone back to being arguments. People pass each other the salt again.</li>
+          <li>[split] The arguments never really ended. Those who took {X_nameDef}'s words to heart sit at one end of the table now, the rest at the other, and supper is quieter and colder for it.\n\nIt may mend in time. It hasn't yet.</li>
+          <li>[turnedaway] The pilgrims were turned away at the gate and went on up the road to {X_nameDef}'s hill without stopping. The ones who came after them didn't ask.\n\nThe pilgrims walk past the colony now, and keep their eyes on the road.</li>
+          <li>[shrine] The pilgrims keep coming, and the colony has become the last stop before {X_nameDef}'s hill. The latest band left {ITEM} silver and a carved token to hang on the gate.\n\n{X_nameDef} still lives up there alone, preaching to whoever makes the climb, and sends down a blessing with every band that passes.</li>
+          <li>[movedon] {X_nameDef} and the followers preached along the road for a few more evenings, then moved on toward the next town. A few of their songs stayed behind; {A_nameDef} has caught people humming them while they work.</li>
+        </endings>
+        <summaries>
+          <li>[humbled] {A_nameDef} won an argument with {X_nameDef}, a wandering preacher.</li>
+          <li>[convert] {B_nameDef} left the colony to follow {X_nameDef}, a wandering preacher.</li>
+          <li>[stayed] The colony asked {X_nameDef} the preacher to move on, and {B_nameDef} stayed behind.</li>
+          <li>[newvoice] {X_nameDef}, a wandering preacher, settled in the colony.</li>
+          <li>[healed] The colony mended the split {X_nameDef}'s preaching left behind.</li>
+          <li>[split] {X_nameDef}'s preaching left the colony divided.</li>
+          <li>[turnedaway] The colony turned away the pilgrims going to {X_nameDef}'s hill.</li>
+          <li>[shrine] The colony became the last stop for pilgrims on the way to {X_nameDef}'s hill.</li>
+          <li>[movedon] {X_nameDef}, a wandering preacher, preached by the colony for a while and moved on.</li>
+        </summaries>
+        <good>
+          <li>humbled</li>
+          <li>newvoice</li>
+          <li>healed</li>
+          <li>shrine</li>
+        </good>
+        <bad>
+          <li>split</li>
+        </bad>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Council_Story_ProphetFollowers</defName>
+    <label>a follower</label>
+    <workerClass>ColonyCouncil.HappeningWorker_StoryProphet</workerClass>
+    <baseChance>0</baseChance>
+    <minRefireDays>0</minRefireDays>
+    <earliestDay>0</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Visitors</group>
+        <notable>false</notable>
+        <answerDays>1</answerDays>
+        <titles>
+          <li>{B_nameDef} wants to follow</li>
+        </titles>
+        <texts>
+          <li>[ideo] {X_nameDef} and the followers have been preaching up and down the road for days, and {B_nameDef} has gone to listen every evening. Last night {B_nameDef} came to the council: {B_nameDef} wants to take up {TALE}, leave with them, and walk the road.\n\n{X_nameDef} has offered {B_nameDef} a place among the followers. The colony could let {B_objective} go, ask the preacher to move on, or ask {X_nameDef} to settle here instead, which might keep {B_nameDef} home, and might bring {X_nameDef}'s sermons to every supper.</li>
+          <li>[!ideo] {X_nameDef} and the followers have been preaching up and down the road for days, and {B_nameDef} has gone to listen every evening. Last night {B_nameDef} came to the council: {B_nameDef} wants to leave with them and walk the road, owning nothing and grumbling about nothing.\n\n{X_nameDef} has offered {B_nameDef} a place among the followers. The colony could let {B_objective} go, ask the preacher to move on, or ask {X_nameDef} to settle here instead, which might keep {B_nameDef} home, and might bring {X_nameDef}'s sermons to every supper.</li>
+        </texts>
+        <defaultOption>1</defaultOption>
+        <options>
+          <li>
+            <label>Let {B_nameDef} go</label>
+            <outcome>{B_nameDef} packs light and walks out to the road at dawn. {X_nameDef} is waiting with the handcart.</outcome>
+            <ways><openness>2</openness></ways>
+          </li>
+          <li>
+            <label>Ask {X_nameDef} to move on</label>
+            <outcome>The preacher moves on.</outcome>
+          </li>
+          <li>
+            <label>Invite {X_nameDef} to settle here</label>
+            <outcome>{X_nameDef} accepts and moves into the colony with a bundle of books. {B_nameDef} is delighted. Not everyone is.</outcome>
+            <ways><openness>3</openness></ways>
+          </li>
+        </options>
+      </li>
+      <li Class="ColonyCouncil.StoryText">
+        <chain>prophet</chain>
+        <key>prophetfollowers</key>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Council_Story_ProphetSchism</defName>
+    <label>a divided colony</label>
+    <workerClass>ColonyCouncil.HappeningWorker_StoryProphet</workerClass>
+    <baseChance>0</baseChance>
+    <minRefireDays>0</minRefireDays>
+    <earliestDay>0</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Challenge</group>
+        <notable>false</notable>
+        <answerDays>1</answerDays>
+        <titles>
+          <li>A divided colony</li>
+        </titles>
+        <texts>
+          <li>[lost] Since {A_nameDef} lost the argument with {X_nameDef}, the colony has talked of little else. {B_nameDef} says the preacher was right and has started living by it; {A_nameDef} says {B_nameDef} has lost {B_possessive} mind. Supper has turned into a debate, and the debates have turned into shouting.\n\n{A_nameDef} wants to call everyone together and talk it out. Others think it will burn itself out if it's left alone.</li>
+          <li>[!lost] Since {X_nameDef} settled in, the colony has split in two. Those who listen have started living {X_nameDef}'s way, and {B_nameDef} is the loudest of them; the rest want the preaching kept out of the dining room. {A_nameDef} and {B_nameDef} haven't spoken in two days.\n\n{A_nameDef} wants to call everyone together and talk it out. Others think it will burn itself out if it's left alone.</li>
+        </texts>
+        <defaultOption>1</defaultOption>
+        <options>
+          <li>
+            <label>Call everyone together ({A_nameDef} speaks)</label>
+            <outcome>Everyone gathers in the dining room.</outcome>
+            <ways><openness>1</openness></ways>
+          </li>
+          <li>
+            <label>Let it burn itself out</label>
+            <outcome>The colony waits.</outcome>
+          </li>
+        </options>
+      </li>
+      <li Class="ColonyCouncil.StoryText">
+        <chain>prophet</chain>
+        <key>prophetschism</key>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Council_Story_ProphetHill</defName>
+    <label>pilgrims on the road</label>
+    <workerClass>ColonyCouncil.HappeningWorker_StoryProphet</workerClass>
+    <baseChance>0</baseChance>
+    <minRefireDays>0</minRefireDays>
+    <earliestDay>0</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Visitors</group>
+        <notable>false</notable>
+        <answerDays>0.5</answerDays>
+        <titles>
+          <li>Pilgrims on the road</li>
+        </titles>
+        <texts>
+          <li>Three pilgrims of {FACTION} stopped at the colony's gate this morning, footsore, asking for water. They're walking to a hill a day's walk from here, where {X_nameDef}, the preacher the colony sent on, has been living alone ever since, preaching to the wind and to anyone who makes the climb. Word of {X_objective} has spread.\n\nThey'll pay {COUNT} silver for a meal and a dry floor for the night, and they say more are coming. Or the colony could turn them away.</li>
+        </texts>
+        <defaultOption>0</defaultOption>
+        <options>
+          <li>
+            <label>Give them a meal and a floor ({COUNT} silver)</label>
+            <outcome>The pilgrims pay their {COUNT} silver, eat everything they're given, and fall asleep on the dining room floor still talking about the hill.</outcome>
+            <ways><generosity>1</generosity><openness>1</openness></ways>
+          </li>
+          <li>
+            <label>Turn them away</label>
+            <outcome>The pilgrims are turned away.</outcome>
+            <ways><openness>-2</openness></ways>
+          </li>
+        </options>
+      </li>
+      <li Class="ColonyCouncil.StoryText">
+        <chain>prophet</chain>
+        <key>prophethill</key>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Council_Story_ProphetPilgrims</defName>
+    <label>more pilgrims</label>
+    <workerClass>ColonyCouncil.HappeningWorker_StoryProphet</workerClass>
+    <baseChance>0</baseChance>
+    <minRefireDays>0</minRefireDays>
+    <earliestDay>0</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Visitors</group>
+        <notable>false</notable>
+        <letter>PositiveEvent</letter>
+        <titles>
+          <li>More pilgrims</li>
+        </titles>
+        <texts>
+          <li>Another band of pilgrims of {FACTION} came by on the way to {X_nameDef}'s hill, and paid {COUNT} silver for their bread and a night under the colony's roof. The hill has a name now among the faithful, they say, and so does the colony: the last door before the climb.</li>
+        </texts>
+      </li>
+      <li Class="ColonyCouncil.StoryText">
+        <chain>prophet</chain>
+        <key>prophetpilgrims</key>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ======================================================================================================== -->
+  <!-- ===================== The lost expedition ============================================================= -->
+  <!-- ======================================================================================================== -->
+
+  <!-- {PLACE}: the ruin (one of the names below). {RELATION}: the explorer's name, for when they aren't there. -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Council_Story_Expedition</defName>
+    <label>the lost expedition</label>
+    <workerClass>ColonyCouncil.HappeningWorker_StoryExpedition</workerClass>
+    <baseChance>0.6</baseChance>
+    <minRefireDays>90</minRefireDays>
+    <earliestDay>20</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Visitors</group>
+        <minColonists>3</minColonists>
+        <answerDays>0.6</answerDays>
+        <titles>
+          <li>The last of an expedition</li>
+        </titles>
+        <texts>
+          <li>[!adventurer] {X_nameDef} of {FACTION} came in from the hills alone, half-starved and feverish, with a leather map case {X_nameDef} wouldn't let go of even to eat. Five of them set out for {PLACE} at the start of the season, to map it and bring back what they could carry. A rockfall sealed the way out behind them, and {X_nameDef} was the only one small enough to squeeze through and fetch help.\n\nThe other four were alive when {X_nameDef} left them, with food for a few weeks. {X_nameDef} could lead a rescue back, with food and hired guides. Or the colony could send word to {FACTION} and let them see to their own.</li>
+          <li>[adventurer] {X_nameDef} of {FACTION} came in from the hills alone, half-starved and feverish, with a leather map case {X_nameDef} wouldn't let go of even to eat. Five of them set out for {PLACE} at the start of the season, to map it and bring back what they could carry. A rockfall sealed the way out behind them, and {X_nameDef} was the only one small enough to squeeze through and fetch help.\n\nThe other four were alive when {X_nameDef} left them, with food for a few weeks. {A_nameDef}, who walked a good many roads before settling here, has been to {PLACE} once, and has already drawn a better map than {X_nameDef}'s. {X_nameDef} could lead a rescue back with it, with food and hired guides. Or the colony could send word to {FACTION} and let them see to their own.</li>
+        </texts>
+        <defaultOption>2</defaultOption>
+        <options>
+          <li>
+            <label>Outfit a rescue (40 raw food, {COUNT} silver for guides)</label>
+            <outcome>{X_nameDef} rests a night, then leads the rescue party out at dawn with the colony's food on their backs and the map case under {X_possessive} arm.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>rawfood</what><count>40</count></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>silver</what></li>
+            </effects>
+            <ways><mercy>3</mercy><generosity>2</generosity></ways>
+          </li>
+          <li>
+            <label>Send word to {FACTION}</label>
+            <outcome>A rider leaves for {FACTION}'s country with a copy of the map. {X_nameDef} will follow once the fever breaks.</outcome>
+            <ways><mercy>1</mercy></ways>
+          </li>
+          <li>
+            <label>Give {X_objective} what can be spared</label>
+            <outcome>{A_nameDef} packs {X_nameDef} a bag of food and a blanket. {X_nameDef} thanks the colony, and means to go back to {PLACE} alone.</outcome>
+          </li>
+        </options>
+      </li>
+      <li Class="ColonyCouncil.StoryText">
+        <chain>expedition</chain>
+        <key>expedition</key>
+        <start>true</start>
+        <names>
+          <li>[lowtech] the drowned chapel</li>
+          <li>[lowtech] the barrow of the nine kings</li>
+          <li>[lowtech] the white tower at Greyfen</li>
+          <li>[lowtech] the sunken library</li>
+          <li>[!lowtech] the old relay station</li>
+          <li>[!lowtech] the buried archive</li>
+          <li>[!lowtech] the observatory on the ridge</li>
+          <li>[!lowtech] the flooded transit station</li>
+        </names>
+        <coming>
+          <li>[expeditionreturn|expeditionwarning|lostall,rescue] {RELATION} is leading the colony's rescue party to {PLACE}. They're expected back in about {DAYS}.</li>
+          <li>[theirrescue] {FACTION} are digging out their lost expedition at {PLACE}. Word should come in about {DAYS}.</li>
+        </coming>
+        <remembered>
+          <li>[alone] {RELATION} went back to {PLACE} alone, to dig out the other four of the expedition.</li>
+        </remembered>
+        <endingTitles>
+          <li>[joined] {B_nameDef} stays</li>
+          <li>[home] The expedition goes home</li>
+          <li>[guardians] Followed from {PLACE}</li>
+          <li>[warned] A survivor</li>
+          <li>[followed] Followed from {PLACE}</li>
+          <li>[passedby] A survivor goes on</li>
+          <li>[theirrescue] Word from {FACTION}</li>
+          <li>[alone] Word of {RELATION}</li>
+          <li>[lostall] No word from {PLACE}</li>
+        </endingTitles>
+        <endings>
+          <li>[joined,alive] The rescue party went home to {FACTION} with the lost four, all but {B_nameDef}, who has a bed in the colony now and a story {A_nameDef} has asked to hear three times.\n\n{FACTION} won't forget who paid for the rescue.</li>
+          <li>[joined,half] {B_nameDef} stays with the colony. {RELATION} went home to {FACTION} with the news of the others, and left {B_nameDef} in {A_nameDef}'s care.\n\nSome nights {B_nameDef} sits up late by the window, facing the hills.</li>
+          <li>[home,alive] The expedition went home to {FACTION}, the lost and the rescuers together, singing on the road. {FACTION} won't forget who paid for the rescue.</li>
+          <li>[home,half] {RELATION} and {B_nameDef} went home to {FACTION} with the news, and the colony's share of the finds stays here. {FACTION} send their thanks, and their grief.</li>
+          <li>[guardians,!noenemy] {B_nameDef} is safe inside the colony now, and {ENEMY} are on the road behind, following the tracks out of {PLACE}. The colony has a few hours.\n\n{B_nameDef} has asked for a weapon.</li>
+          <li>[warned] {B_nameDef} has a bed in the colony now, and the nightmares that come with it. Nothing followed {B_objective} out of {PLACE}, as far as anyone can tell.\n\n{RELATION} has not been heard of since.</li>
+          <li>[followed] The colony sent {B_nameDef} on with food and a blanket, but {ENEMY} weren't following {B_nameDef}. They were following the tracks, and the tracks lead here.</li>
+          <li>[passedby] {B_nameDef} went on toward home with the colony's food in {B_possessive} pack. If anything followed {B_objective} out of {PLACE}, it followed {B_objective} past the colony.\n\n{RELATION} has not been heard of since.</li>
+          <li>[theirrescue,alive] {FACTION} dug their people out of {PLACE}, all four alive and furious about the food. They've sent the colony {ITEM} silver for the warning, and their thanks.</li>
+          <li>[theirrescue,half] {FACTION} dug their way into {PLACE}, and found one of the four alive. They've sent the colony {ITEM} silver for the warning, and their thanks.</li>
+          <li>[theirrescue,lost] {FACTION}'s rescue reached {PLACE} too late: the way in had come down completely, and their calls went unanswered. They've thanked the colony for the warning all the same.</li>
+          <li>[alone,alive] A trader brought word from {RELATION}: the four were dug out alive, half-starved, and are all home now. {RELATION} sent a parcel along for the colony: {ITEM}.</li>
+          <li>[alone,half] A trader brought word from {RELATION}: only one of the four was alive when {RELATION} got back to them. {RELATION} sent word anyway, to say thank you for the food.</li>
+          <li>[alone,lost] There has been no word from {RELATION} since the day {RELATION} set off back toward {PLACE} alone. A trader who came that way says the road past the ruin is empty.</li>
+          <li>[lostall] The rescue party never came back from {PLACE}, and nothing has been heard of {RELATION} or the lost four since. The colony's food and silver went with them.</li>
+        </endings>
+        <summaries>
+          <li>[joined] The colony rescued the lost expedition from {PLACE}, and {B_nameDef} stayed.</li>
+          <li>[home] The colony rescued the lost expedition from {PLACE}.</li>
+          <li>[guardians] A survivor of the expedition to {PLACE} was followed to the colony by {ENEMY}.</li>
+          <li>[warned] The only survivor of the expedition to {PLACE} found shelter at the colony.</li>
+          <li>[followed] {ENEMY} followed the tracks of a survivor from {PLACE} to the colony.</li>
+          <li>[passedby] The only survivor of the expedition to {PLACE} passed by the colony.</li>
+          <li>[theirrescue] {FACTION} went to rescue their expedition from {PLACE} on the colony's word.</li>
+          <li>[alone] {RELATION} went back alone to rescue the expedition from {PLACE}.</li>
+          <li>[lostall] The colony's rescue party to {PLACE} never came back.</li>
+        </summaries>
+        <raidTitles>
+          <li>[expeditionwarning] {ENEMY} from the ruin</li>
+        </raidTitles>
+        <raid>
+          <li>[expeditionwarning] {ENEMY}, who claim the ruin at {PLACE} as theirs, have followed the tracks of the expedition's survivor to the colony.</li>
+        </raid>
+        <good>
+          <li>joined</li>
+          <li>home</li>
+        </good>
+        <bad>
+          <li>guardians</li>
+          <li>followed</li>
+          <li>lostall</li>
+        </bad>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Council_Story_ExpeditionReturn</defName>
+    <label>the rescue comes back</label>
+    <workerClass>ColonyCouncil.HappeningWorker_StoryExpedition</workerClass>
+    <baseChance>0</baseChance>
+    <minRefireDays>0</minRefireDays>
+    <earliestDay>0</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Visitors</group>
+        <notable>false</notable>
+        <addsPeople>true</addsPeople>
+        <answerDays>0.6</answerDays>
+        <titles>
+          <li>[alive] The rescue comes home</li>
+          <li>[half] Back from {PLACE}</li>
+        </titles>
+        <texts>
+          <li>[alive] The rescue party is back from {PLACE}, and the lost are with them: thin, bearded and grinning. It took two days of digging to reach them. {X_nameDef} insisted on carrying out what the expedition found inside, and has left a share with the colony: {TALE}.\n\nThe youngest of them, {B_nameDef}, has been looking around the colony all morning, and asks if there might be a place here.</li>
+          <li>[half] The rescue party came back from {PLACE} slower than it went. They dug through to the others too late for all but one: {B_nameDef}, who hasn't said much since.\n\n{X_nameDef} carried out what the expedition found, and has left the best of it with the colony for its trouble: {TALE}. {B_nameDef} has nowhere much to go back to, and asks if there's a place here.</li>
+        </texts>
+        <defaultOption>1</defaultOption>
+        <options>
+          <li>
+            <label>Offer {B_nameDef} a place here</label>
+            <outcome>{B_nameDef} stays.</outcome>
+            <ways><openness>2</openness></ways>
+          </li>
+          <li>
+            <label>Wish them well</label>
+            <outcome>They go home.</outcome>
+          </li>
+        </options>
+      </li>
+      <li Class="ColonyCouncil.StoryText">
+        <chain>expedition</chain>
+        <key>expeditionreturn</key>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Council_Story_ExpeditionWarning</defName>
+    <label>a warning from the ruin</label>
+    <workerClass>ColonyCouncil.HappeningWorker_StoryExpedition</workerClass>
+    <baseChance>0</baseChance>
+    <minRefireDays>0</minRefireDays>
+    <earliestDay>0</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Visitors</group>
+        <notable>false</notable>
+        <addsPeople>true</addsPeople>
+        <answerDays>0.5</answerDays>
+        <titles>
+          <li>A warning from {PLACE}</li>
+        </titles>
+        <texts>
+          <li>[!noenemy] {B_nameDef} stumbled up to the gate at dusk: one of the four who were left in {PLACE}, and the only one coming back. The rescue party reached them and dug them out, {B_nameDef} says, and then {ENEMY}, who claim the ruin as their own, found them all inside.\n\n{B_nameDef} ran, and thinks {ENEMY} followed the tracks. {RELATION} led the others out another way, and {B_nameDef} doesn't know if they made it. {B_nameDef} is asking for shelter.</li>
+          <li>[noenemy] {B_nameDef} stumbled up to the gate at dusk: one of the four who were left in {PLACE}, and the only one coming back. The rescue party reached them and dug them out, {B_nameDef} says, and then the roof of the ruin came down on them all.\n\n{RELATION} was on the other side of the fall, and {B_nameDef} doesn't know if anyone else got out. {B_nameDef} is asking for shelter.</li>
+        </texts>
+        <defaultOption>1</defaultOption>
+        <options>
+          <li>
+            <label>Take {B_objective} in</label>
+            <outcome>{B_nameDef} is taken in.</outcome>
+            <ways><mercy>2</mercy></ways>
+          </li>
+          <li>
+            <label>Give {B_objective} supplies and send {B_objective} on</label>
+            <outcome>{B_nameDef} goes on.</outcome>
+          </li>
+        </options>
+      </li>
+      <li Class="ColonyCouncil.StoryText">
+        <chain>expedition</chain>
+        <key>expeditionwarning</key>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+</Defs>

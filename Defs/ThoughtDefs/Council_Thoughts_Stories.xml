@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- Moods from the story chains (Defs/IncidentDefs/Council_Events_Stories.xml) and the missions
+       (Defs/MissionDefs/). -->
+
+  <!-- ===================== The door in the hill ===================== -->
+
+  <ThoughtDef>
+    <defName>Council_Story_VaultLesson</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
+    <durationDays>6</durationDays>
+    <stackLimit>1</stackLimit>
+    <stages><li><label>copied the old writing</label><description>Three days in the vault in the hill, copying out the walls by lamplight. I keep thinking about the people who wrote it all down and never came back to read it.</description><baseMoodEffect>4</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Council_Story_SleeperStayed</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
+    <durationDays>8</durationDays>
+    <stackLimit>1</stackLimit>
+    <stages><li><label>the sleeper stayed</label><description>The sleeper from the hill woke up and decided to stay with us. I was the one sitting by the bed.</description><baseMoodEffect>5</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <!-- ===================== The fugitive's debt ===================== -->
+
+  <ThoughtDef>
+    <defName>Council_Story_DebtRepaid</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
+    <durationDays>8</durationDays>
+    <stackLimit>1</stackLimit>
+    <stages><li><label>a debt repaid</label><description>The stranger we hid that night came back to pay what was owed, and more. I told the others they would.</description><baseMoodEffect>6</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Council_Story_Betrayed</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
+    <durationDays>10</durationDays>
+    <stackLimit>1</stackLimit>
+    <stages><li><label>gave up an innocent</label><description>We pointed the riders up the road. The stranger they were chasing had done nothing wrong, and we helped them anyway.</description><baseMoodEffect>-5</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <!-- ===================== Bad blood ===================== -->
+
+  <ThoughtDef>
+    <defName>Council_Story_Wedding</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
+    <durationDays>5</durationDays>
+    <stackLimit>1</stackLimit>
+    <stages><li><label>a wedding at our place</label><description>Two families who couldn't stand each other got married under our roof. I danced until my feet hurt.</description><baseMoodEffect>6</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Council_Story_FailedPeace</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
+    <durationDays>8</durationDays>
+    <stackLimit>1</stackLimit>
+    <stages><li><label>the talks failed</label><description>I tried to make peace between those two families, and it ended in blood. I keep going over what I should have said.</description><baseMoodEffect>-4</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <!-- ===================== The preacher ===================== -->
+
+  <ThoughtDef>
+    <defName>Council_Story_Sermons</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
+    <durationDays>3</durationDays>
+    <stackLimit>1</stackLimit>
+    <stages><li><label>the preacher's sermon</label><description>I went to hear the preacher on the road. I don't know if I believe a word of it, but I slept well afterward.</description><baseMoodEffect>2</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Council_Story_WonDebate</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
+    <durationDays>6</durationDays>
+    <stackLimit>1</stackLimit>
+    <stages><li><label>won the argument</label><description>I argued with the wandering preacher until the lamps burned low, and the preacher gave in first.</description><baseMoodEffect>5</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Council_Story_LostDebate</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
+    <durationDays>6</durationDays>
+    <stackLimit>1</stackLimit>
+    <stages><li><label>lost the argument</label><description>The preacher had an answer for everything I said. People have been looking at me differently since.</description><baseMoodEffect>-4</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Council_Story_KeptBack</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
+    <durationDays>8</durationDays>
+    <stackLimit>1</stackLimit>
+    <stages><li><label>kept from following</label><description>I wanted to go with the preacher, and the council sent the preacher away instead. They didn't ask me what I thought.</description><baseMoodEffect>-5</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Council_Story_Schism</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
+    <durationDays>6</durationDays>
+    <stackLimit>1</stackLimit>
+    <stages><li><label>arguments at supper</label><description>Every supper turns into an argument about the preacher's words. I just want to eat.</description><baseMoodEffect>-3</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Council_Story_Healed</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
+    <durationDays>6</durationDays>
+    <stackLimit>1</stackLimit>
+    <stages><li><label>talked it out</label><description>We sat up most of the night and talked it all out, the preacher's words and everything else. We're eating at the same table again.</description><baseMoodEffect>4</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <!-- ===================== The lost expedition ===================== -->
+
+  <ThoughtDef>
+    <defName>Council_Story_Rescued</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
+    <durationDays>6</durationDays>
+    <stackLimit>1</stackLimit>
+    <stages><li><label>the rescue came back</label><description>We paid for a rescue for strangers, and it came back with people who would have died in that ruin.</description><baseMoodEffect>5</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <!-- ===================== Missions ===================== -->
+
+  <ThoughtDef>
+    <defName>Council_Mission_Shrine</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
+    <durationDays>5</durationDays>
+    <stackLimit>1</stackLimit>
+    <stages><li><label>pilgrims at our shrine</label><description>Pilgrims walked all the way from their town and stopped to pray at the sculpture we put up. I didn't think anyone would care that much about it.</description><baseMoodEffect>4</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+</Defs>

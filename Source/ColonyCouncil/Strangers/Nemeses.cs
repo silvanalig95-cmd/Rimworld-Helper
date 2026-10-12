@@ -461,7 +461,8 @@ namespace ColonyCouncil
         }
 
         /// <summary>Still needed by a world event's memo (a scenario's hunt) or a running world situation (a warlord): not ours to let go.</summary>
-        private static bool Held(Pawn p) => (CouncilGameComponent.Instance?.happenings.Holds(p) ?? false) || WorldSituations.Holds(p);
+        private static bool Held(Pawn p) =>
+            (CouncilGameComponent.Instance?.happenings.Holds(p) ?? false) || WorldSituations.Holds(p) || StoryChains.Holds(p) || Missions.Holds(p);
 
         /// <summary>Their quarrel with the colony is settled some other way (a debt paid): it ends, with how.</summary>
         public void Settle(Pawn enemy, string how)

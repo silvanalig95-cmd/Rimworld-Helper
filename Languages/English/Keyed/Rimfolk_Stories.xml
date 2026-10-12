@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!-- Story chains and missions (Source/ColonyCouncil/Happenings/Workers_Chains2.cs, Source/ColonyCouncil/Missions/).
+       Most of their text is in their defs; these are the few words the code puts together. -->
+
+  <!-- Why an answer can't be given. -->
+  <CC_Story_NoBuyer>No neighbor is on good enough terms with the colony to buy it.</CC_Story_NoBuyer>
+  <CC_Story_OwnersHostile>{0} are at war with the colony.</CC_Story_OwnersHostile>
+
+  <!-- Settings. -->
+  <CC_Settings_MissionsAsQuests>... with missions in the Quests tab</CC_Settings_MissionsAsQuests>
+  <CC_Settings_MissionsAsQuests_Tip>Now and then a neighbor asks the colony for help with a mission: goods for a funeral or a wedding by a set day, a runaway animal to tame and hand back, a shrine for their pilgrims. On: the offer shows up in the game's Quests tab, where you accept it or let it expire, and Rimfolk ends the quest when the mission succeeds or fails. Off: the offer comes as a letter instead. Either way, missions under way are shown on the World page with their progress.</CC_Settings_MissionsAsQuests_Tip>
+
+  <!-- What a mission asks for: in its terms ({0}: how many) and on its progress bars. -->
+  <CC_Mission_Need_Meals>{0} meals (simple or better)</CC_Mission_Need_Meals>
+  <CC_Mission_Need_Art>{0} sculptures ready to carry</CC_Mission_Need_Art>
+  <CC_Mission_Need_Art1>a sculpture ready to carry</CC_Mission_Need_Art1>
+  <CC_Mission_Need_Blocks>{0} stone blocks</CC_Mission_Need_Blocks>
+  <CC_Mission_Need_Textiles>{0} cloth or leather</CC_Mission_Need_Textiles>
+  <CC_Mission_Need_Thing>{0} {1}</CC_Mission_Need_Thing>
+  <CC_Mission_Goal_meals>Meals (simple or better)</CC_Mission_Goal_meals>
+  <CC_Mission_Goal_art>Sculptures</CC_Mission_Goal_art>
+  <CC_Mission_Goal_blocks>Stone blocks</CC_Mission_Goal_blocks>
+  <CC_Mission_Goal_textiles>Cloth or leather</CC_Mission_Goal_textiles>
+
+  <!-- Where a mission stands (the World page, and under the quest's description). -->
+  <CC_Mission_Feast_Ready>Everything is ready. {0}'s carts come for it in {1}.</CC_Mission_Feast_Ready>
+  <CC_Mission_Runaway_Wild>{0} is still wild, somewhere on the colony's land. Mark {0} to be tamed.</CC_Mission_Runaway_Wild>
+  <CC_Mission_Runaway_Tamed>{0} has been tamed.</CC_Mission_Runaway_Tamed>
+  <CC_Mission_Shrine_None>No sculpture of {0} quality or better stands under the open sky yet.</CC_Mission_Shrine_None>
+  <CC_Mission_Shrine_Ready>The shrine stands: {0}. The pilgrims arrive in {1}.</CC_Mission_Shrine_Ready>
+  <CC_Missions_Progress>How it stands:</CC_Missions_Progress>
+  <CC_Missions_TimeLeft>Time left: {0}.</CC_Missions_TimeLeft>
+
+  <!-- The World page. -->
+  <CC_Missions_Header>Missions</CC_Missions_Header>
+  <CC_Missions_Offered>Offered: waiting for an answer in the Quests tab ({0} left).</CC_Missions_Offered>
+  <CC_Missions_OfferedLetter>Offered: waiting for an answer.</CC_Missions_OfferedLetter>
+  <CC_Missions_Working>To deliver: {0}.</CC_Missions_Working>
+  <CC_Missions_Done>Done.</CC_Missions_Done>
+  <CC_Missions_Failed>Failed.</CC_Missions_Failed>
+  <CC_Missions_TimeLeftLabel>Time left</CC_Missions_TimeLeftLabel>
+  <CC_Missions_TipGoods>To deliver: {0}</CC_Missions_TipGoods>
+  <CC_Missions_TipReward>Reward: {0} silver</CC_Missions_TipReward>
+  <CC_Missions_TipQuest>Click to open it in the Quests tab.</CC_Missions_TipQuest>
+  <CC_Missions_TipLook>Click to look at it.</CC_Missions_TipLook>
+
+</LanguageData>

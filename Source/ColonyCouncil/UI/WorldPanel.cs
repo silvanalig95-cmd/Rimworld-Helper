@@ -73,6 +73,8 @@ namespace ColonyCouncil
                     UiKit.Icon(new Rect(4f, y + 3f, 16f, 16f), Icons.WorldEvent, UiKit.Faint);
                     y += UiKit.Paragraph(26f, y, w - 26f, m.next, UiKit.Faint) + 4f;
                 }
+                // Missions offered or under way, with their progress (Missions/MissionPanel.cs).
+                y = MissionPanel.Draw(y, w);
                 y += 14f;
                 // A camp on the map, if there is one: who, how long, terms, tension, and a way to talk to them.
                 y = CampPanel.Section(y, w);
@@ -176,10 +178,19 @@ namespace ColonyCouncil
                     meterLabel = "CC_UI_TimeLeft".Translate()
                 });
             }
+            // Story chains with a stage on its way (Workers_Chains2.cs).
+            foreach (var n in StoryChains.Coming(now)) timed.Add(FromNote(n, "CC_UI_TimeLeft".Translate()));
             // The rest in the order they'll happen; those without a date last.
             list.AddRange(timed.OrderBy(e => e.dueTick < 0 ? int.MaxValue : e.dueTick));
             return list;
         }
+
+        /// <summary>A story's or a mission's line as a card.</summary>
+        private static Entry FromNote(WorldNote n, string meterLabel = null) => new Entry
+        {
+            title = n.title, text = n.text, tip = n.tip, icon = n.icon ?? Icons.WorldEvent, color = n.color, faction = n.faction,
+            dueTick = n.due, meterLabel = meterLabel, click = n.click
+        };
 
         // ---------------- Who's out there ----------------
 
@@ -217,6 +228,7 @@ namespace ColonyCouncil
                 string line = mm.kind == "hunt" ? ScenarioStakes.WorldLine(mm, now) : Memo(mm);
                 if (line != null) list.Add(new Entry { text = line, icon = MemoIcon(mm.kind), color = Calm });
             }
+            foreach (var n in StoryChains.OutThere(now)) list.Add(FromNote(n));
             return list;
         }
 

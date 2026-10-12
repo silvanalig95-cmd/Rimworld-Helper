@@ -146,7 +146,7 @@ namespace ColonyCouncil
             foreach (var p in held.Where(p => p != null))
             {
                 if (comp != null && (comp.nemeses.IsNemesis(p) || comp.happenings.Holds(p))) continue;
-                if (WorldSituations.Instance?.HoldsElsewhere(this, p) ?? false) continue;
+                if ((WorldSituations.Instance?.HoldsElsewhere(this, p) ?? false) || StoryChains.Holds(p) || Missions.Holds(p)) continue;
                 Find.WorldPawns.ForcefullyKeptPawns.Remove(p);
             }
             held.Clear();

@@ -505,15 +505,34 @@ send their thanks down the road. A neighbor whose **order** you filled comes bac
 **visited** writes home news, and can be invited to come and live here; the colonist the **fortune teller** saw bad
 things for has a fright that comes to nothing; and the neighbors whose **quarrel** you judged remember it.
 
+**Stories** are longer: five chains told in three to five stages over days and weeks, where your answer and some luck
+decide what comes next and how it ends. **The door in the hill** (open it, study it first, or sell the way to it: an
+empty vault with writing on the walls, a sleeper in an old casket who may stay, go or flee, or a hoard whose owners
+come for it); **the fugitive's debt** (hide a stranger at night, then lie to their pursuers or give them up: the debt
+repaid, a gift with a past, or revenge); **bad blood** between two families of a neighbor town (mediate, back one,
+sell to both or stay out: a wedding at the colony, a blood feud, or hired blades on the road); **the preacher**
+(let them preach, argue, or send them on: a colonist who follows them, a divided colony, or a pilgrims' hill with the
+colony as its last stop); and **the lost expedition** (outfit a rescue, send word, or let the explorer go back
+alone: survivors and finds, a single survivor with a warning, or silence). Each ending gets its own letter and a line
+in the chronicle; a path brings at most one fight, and only with battles on.
+
+**Missions** are a neighbor's request with clear terms: goods for a **funeral or a wedding** by a set day (meals,
+sculptures, stone blocks, beer), a prize animal that **bolted** onto your land to tame and hand back (or buy, or
+keep), or a **shrine** for their pilgrims (a sculpture of good enough quality under the open sky). Each shows up in
+the game's **Quests** tab to accept or let expire (or as a letter, if you switch that off), runs against a deadline
+once accepted, and pays a reward, or costs goodwill if it fails. One mission at a time.
+
 The council window's **World** page (Colony section) shows what's coming (fights the colony knows about and how
-soon, questions waiting for an answer, caravans, carts and relatives on their way), who's out there with the colony on their mind (nemeses at large, people who
-left and might come back, peoples with a grudge, rivals, a great beast and how long it'll stay), and the latest world
-events.
+soon, questions waiting for an answer, caravans, carts and relatives on their way, the next stage of a story),
+missions under way with a bar for each thing to deliver and the time left, who's out there with the colony on their
+mind (nemeses at large, people who left and might come back, peoples with a grudge, rivals, a great beast and how
+long it'll stay), and the latest Rimfolk events.
 
 Answers shape the colony's character, and the events feed nemeses, secrets, mentorships, journals and the
 chronicle. Fights come only with **battles** switched on in the settings, when the storyteller sends threats at
 all, never on top of another fight, and at a share of the storyteller's own raid strength. In dev mode, every
-event can be fired from **Debug actions → Incidents** (they're named `Council_Evt_...`).
+event can be fired from **Debug actions → Incidents** (they're named `Council_Evt_...`; a story's first stage is
+`Council_Story_...`, a mission's offer `Council_Mission_...`).
 
 ## World events
 Now and then, something bigger than the colony happens in the region around it, and lasts: a plague among the
@@ -675,8 +694,9 @@ journals, the Story tab and History) or **Important only**.
 - **council life**: decrees, dilemmas, petitions, annals, names, journals, offices, the social web, social
   events, life goals, secrets, vendettas, eulogies, heirlooms, coming of age, quirks, dreams and dream omens, encounters with strangers, nemeses (and whether they return), pets, the
   colony's character, each on its own switch
-- **Rimfolk events**: on or off, whether they may bring fights, whether groups may make camp on the map, and whether
-  the storyteller draws them (and how likely each is) or Rimfolk's own timer does (and how often)
+- **Rimfolk events**: on or off, whether they may bring fights, whether groups may make camp on the map, whether
+  missions show up in the Quests tab, and whether the storyteller draws them (and how likely each is) or Rimfolk's
+  own timer does (and how often)
 - **world events**: on or off, and how often (about one every 45 days by default)
 - **how often** the smaller things happen: moments with strangers and animals, moments between colonists, social
   events and dreams, each from a quarter as often to three times as often
