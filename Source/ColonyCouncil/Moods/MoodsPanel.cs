@@ -23,6 +23,7 @@ namespace ColonyCouncil
             public string summary, sources, badHeader, goodHeader, average;
             public Color averageColor;
             public List<PawnMood> shaky;
+            public HeartView.ColonyModel heart;
         }
 
         private static Report report;
@@ -45,6 +46,7 @@ namespace ColonyCouncil
             r.badHeader = "CC_Moods_Weighing".Translate() + "  (" + MoodView.Number(colony.Where(c => !c.good).Sum(c => c.total)) + ")";
             r.goodHeader = "CC_Moods_Lifting".Translate() + "  (" + MoodView.Number(colony.Where(c => c.good).Sum(c => c.total)) + ")";
             r.shaky = r.pawns.OrderBy(m => m.now - m.minor).Take(6).ToList();
+            r.heart = HeartView.BuildColony(r.pawns.Select(m => m.pawn));
             if (r.pawns.Count > 0)
             {
                 int near = r.pawns.Count(m => !m.pawn.InMentalState && m.now < m.minor + 0.05f);
@@ -108,6 +110,8 @@ namespace ColonyCouncil
                     y += 36f;
                 }
                 y += 12f;
+                // Who is worn down (strain, Heart/).
+                if (r.heart != null) y = HeartView.DrawColony(r.heart, y, w) + 4f;
 
                 y += UiKit.SectionTitle(0f, y, w, r.badHeader, Icons.TrendDown, MoodView.BadColor);
                 if (r.bad.Count == 0) y += UiKit.Paragraph(0f, y, w, "CC_Mood_Nothing".Translate(), MoodView.Faint) + 4f;

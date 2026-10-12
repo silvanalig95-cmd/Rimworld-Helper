@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Feelings and strain (Source/ColonyCouncil/Heart/). The strain mood is situational: it reads the colonist's strain
+    band each time the game asks and stores nothing in their memories. Letting it out is an ordinary memory the episode
+    gives when it ends.
+  -->
+
+  <ThoughtDef>
+    <defName>Council_Heart_Strain</defName>
+    <workerClass>ColonyCouncil.ThoughtWorker_HeartStrain</workerClass>
+    <thoughtClass>ColonyCouncil.Thought_HeartStrain</thoughtClass>
+    <validWhileDespawned>true</validWhileDespawned>
+    <stages>
+      <li>
+        <label>under strain</label>
+        <description>It's been one hard thing after another lately, and it's catching up with me.</description>
+        <baseMoodEffect>-3</baseMoodEffect>
+      </li>
+      <li>
+        <label>worn down</label>
+        <description>I'm tired in a way a night's sleep doesn't fix. Everything takes more out of me than it should.</description>
+        <baseMoodEffect>-5</baseMoodEffect>
+      </li>
+      <li>
+        <label>at the end of my rope</label>
+        <description>I can't keep carrying all of this. Something has to give, and soon.</description>
+        <baseMoodEffect>-8</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Council_Heart_LetItOut</defName>
+    <durationDays>1.5</durationDays>
+    <stackLimit>1</stackLimit>
+    <stages>
+      <li>
+        <label>let it all out</label>
+        <description>I took a day to myself and let it all out. I feel lighter than I have in a while.</description>
+        <baseMoodEffect>6</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <!-- Days of rest (Council_Decrees2.xml). Stages: hate, dislike, like, love. -->
+  <ThoughtDef>
+    <defName>Council_Decree_Rest</defName>
+    <workerClass>ColonyCouncil.ThoughtWorker_Decree</workerClass>
+    <thoughtClass>ColonyCouncil.Thought_Decree</thoughtClass>
+    <stages>
+      <li><label>idle days</label><description>Everyone's lying around while the work piles up. I can't stand it.</description><baseMoodEffect>-4</baseMoodEffect></li>
+      <li><label>slow days</label><description>Short days and long evenings. I'd rather be doing something.</description><baseMoodEffect>-2</baseMoodEffect></li>
+      <li><label>a few easy days</label><description>Shorter days and long evenings. I'm sleeping better already.</description><baseMoodEffect>3</baseMoodEffect></li>
+      <li><label>a real rest</label><description>No early mornings, nobody shouting for help with the stone. I needed this more than I knew.</description><baseMoodEffect>6</baseMoodEffect></li>
+    </stages>
+  </ThoughtDef>
+
+</Defs>

@@ -90,7 +90,9 @@ namespace ColonyCouncil
             Widgets.BeginScrollView(outRect, ref scroll, view);
             try
             {
-                float cy = Section(0f, view.width, outRect.height, "CC_Mood_Weighing".Translate(p.LabelShort).Resolve(), bad, MoodView.BadColor);
+                // Strain, feelings and the heart's needs (Heart/), when that layer is on.
+                float cy = HeartView.DrawSection(p, 0f, view.width);
+                cy = Section(cy, view.width, outRect.height, "CC_Mood_Weighing".Translate(p.LabelShort).Resolve(), bad, MoodView.BadColor);
                 cy = Section(cy + 6f, view.width, outRect.height, "CC_Mood_Lifting".Translate(p.LabelShort).Resolve(), good, MoodView.GoodColor);
                 height = Mathf.Max(cy + 10f, 100f);
             }

@@ -8,6 +8,7 @@
     <description>Everyone works longer, harder days until the decree ends. Building, harvesting and crafting go faster, at a cost in mood. The industrious like it and hard workers don't mind; the lazy and slothful hate it.</description>
     <requestWhen><li>ColonyHappy</li></requestWhen>
     <order>1</order>
+    <strainPerDay>3</strainPerDay>
     <durationDays>5</durationDays>
     <cooldownDays>8</cooldownDays>
     <ways><toil>6</toil></ways>
@@ -48,6 +49,7 @@
     <description>Smaller portions for everyone. The food stores last a good deal longer, but most colonists resent going hungry. Ascetics approve; gourmands and the greedy hate it.</description>
     <requestWhen><li>FoodLow</li></requestWhen>
     <order>2</order>
+    <strainPerDay>2</strainPerDay>
     <durationDays>7</durationDays>
     <cooldownDays>7</cooldownDays>
     <ways><generosity>-4</generosity></ways>
@@ -86,6 +88,7 @@
     <description>Daily weapons drills for everyone who can fight. Shooting and melee improve steadily while other work slows. Most colonists find it exhausting, but the bloodthirsty love it.</description>
     <requestWhen><li>RecentThreat</li></requestWhen>
     <order>3</order>
+    <strainPerDay>2</strainPerDay>
     <durationDays>5</durationDays>
     <cooldownDays>10</cooldownDays>
     <ways><openness>-4</openness></ways>
@@ -128,6 +131,7 @@
     <description>Evenings of lessons and reading for everyone. Skills improve faster and research picks up, but other work slows. Most colonists find it tedious; thinkers love it and brawlers hate it.</description>
     <requestWhen><li>ColonyHappy</li></requestWhen>
     <order>4</order>
+    <strainPerDay>1</strainPerDay>
     <durationDays>5</durationDays>
     <cooldownDays>8</cooldownDays>
     <ways><tradition>-5</tradition></ways>

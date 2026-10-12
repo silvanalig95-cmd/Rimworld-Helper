@@ -61,8 +61,50 @@ namespace ColonyCouncil
         }
     }
 
+    /// <summary>Strain and its band; the tooltip says what built it and what would help (Heart/).</summary>
+    public static class RimHud_Strain
+    {
+        public static (string label, string value, Func<string> tooltip, Action onHover, Action onClick) GetParameters(Pawn pawn)
+        {
+            var h = RimHudUtil.HeartOf(pawn);
+            if (h == null) return (null, null, null, null, null);
+            return ("CC_Hud_Strain".Translate(), h.hudStrain, () => HeartView.StrainTip(pawn, h), null, null);
+        }
+    }
+
+    /// <summary>The feelings that stand out; the tooltip lists every feeling with its causes.</summary>
+    public static class RimHud_Feelings
+    {
+        public static (string label, string value, Func<string> tooltip, Action onHover, Action onClick) GetParameters(Pawn pawn)
+        {
+            var h = RimHudUtil.HeartOf(pawn);
+            if (h == null) return (null, null, null, null, null);
+            if (h.hudFeelings.NullOrEmpty()) return ("CC_Hud_Feelings".Translate(), "CC_Hud_None".Translate(), null, null, null);
+            return ("CC_Hud_Feelings".Translate(), h.hudFeelings, () => HeartView.FeelingsTip(h), null, null);
+        }
+    }
+
+    /// <summary>The heart's need they lack most, or that all are met; the tooltip shows all four.</summary>
+    public static class RimHud_Needs
+    {
+        public static (string label, string value, Func<string> tooltip, Action onHover, Action onClick) GetParameters(Pawn pawn)
+        {
+            var h = RimHudUtil.HeartOf(pawn);
+            if (h?.needs == null || h.needs.Length != 4 || h.hudNeeds == null) return (null, null, null, null, null);
+            return ("CC_Hud_Needs".Translate(), h.hudNeeds, () => HeartView.NeedsTip(h), null, null);
+        }
+    }
+
     internal static class RimHudUtil
     {
+        /// <summary>The colonist's heart, once it has been worked out, while the feature is on; else null.</summary>
+        public static PawnHeart HeartOf(Pawn pawn)
+        {
+            if (pawn == null || Current.ProgramState != ProgramState.Playing) return null;
+            var h = Heart.Of(pawn);
+            return h != null && h.evaluated ? h : null;
+        }
+
         /// <summary>Rimfolk's game data, when the pawn is one of the colony's people; else null.</summary>
         public static CouncilGameComponent For(Pawn pawn)
         {

@@ -1,0 +1,329 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!-- ===================== Feelings and strain (Source/ColonyCouncil/Heart/) ===================== -->
+
+  <!-- Strain bands -->
+  <CC_Heart_Band_Steady>steady</CC_Heart_Band_Steady>
+  <CC_Heart_Band_Strained>strained</CC_Heart_Band_Strained>
+  <CC_Heart_Band_Worn>worn down</CC_Heart_Band_Worn>
+  <CC_Heart_Band_Breaking>near breaking</CC_Heart_Band_Breaking>
+  <CC_Heart_Band_Steady_Desc>Holding up. Nothing extra to carry.</CC_Heart_Band_Steady_Desc>
+  <CC_Heart_Band_Strained_Desc>Hard days are adding up: -3 mood, and dreams turn darker.</CC_Heart_Band_Strained_Desc>
+  <CC_Heart_Band_Worn_Desc>Tired to the bone: -5 mood, works 5% slower, and nightmares come more often.</CC_Heart_Band_Worn_Desc>
+  <CC_Heart_Band_Breaking_Desc>Close to the end of their rope: -8 mood, works 10% slower, nightmares are common, and from 85 they may need a day to themselves.</CC_Heart_Band_Breaking_Desc>
+
+  <!-- What builds strain -->
+  <CC_Heart_Source_Combat>fighting</CC_Heart_Source_Combat>
+  <CC_Heart_Source_Pain>pain and injuries</CC_Heart_Source_Pain>
+  <CC_Heart_Source_Downed>being downed</CC_Heart_Source_Downed>
+  <CC_Heart_Source_Loss>deaths and losses</CC_Heart_Source_Loss>
+  <CC_Heart_Source_Exhaustion>long days without sleep</CC_Heart_Source_Exhaustion>
+  <CC_Heart_Source_Joyless>no free time</CC_Heart_Source_Joyless>
+  <CC_Heart_Source_BadSleep>bad nights</CC_Heart_Source_BadSleep>
+  <CC_Heart_Source_Dark>darkness</CC_Heart_Source_Dark>
+  <CC_Heart_Source_Hunger>hunger</CC_Heart_Source_Hunger>
+  <CC_Heart_Source_LowMood>low spirits</CC_Heart_Source_LowMood>
+  <CC_Heart_Source_Council>hard council decisions</CC_Heart_Source_Council>
+  <CC_Heart_Source_Fear>fear</CC_Heart_Source_Fear>
+  <CC_Heart_Source_Grief>grief</CC_Heart_Source_Grief>
+  <CC_Heart_Source_Dread>worry about what's coming</CC_Heart_Source_Dread>
+  <CC_Heart_Source_Despair>despair</CC_Heart_Source_Despair>
+
+  <!-- What drains it -->
+  <CC_Heart_Relief_Quiet>quiet hours</CC_Heart_Relief_Quiet>
+  <CC_Heart_Relief_Sleep>sleep</CC_Heart_Relief_Sleep>
+  <CC_Heart_Relief_Recreation>recreation</CC_Heart_Relief_Recreation>
+  <CC_Heart_Relief_Gathering>gatherings and celebrations</CC_Heart_Relief_Gathering>
+  <CC_Heart_Relief_Friends>good talks</CC_Heart_Relief_Friends>
+  <CC_Heart_Relief_Catharsis>letting it out</CC_Heart_Relief_Catharsis>
+  <CC_Heart_Relief_Episode>a day to themselves</CC_Heart_Relief_Episode>
+  <CC_Heart_Relief_Council>the council's help</CC_Heart_Relief_Council>
+
+  <!-- What would help -->
+  <CC_Heart_Help_Peace>a few days without fighting</CC_Heart_Help_Peace>
+  <CC_Heart_Help_Healing>rest in a good hospital bed</CC_Heart_Help_Healing>
+  <CC_Heart_Help_Grieve>time to grieve: a funeral, a grave, friends nearby</CC_Heart_Help_Grieve>
+  <CC_Heart_Help_Schedule>more sleep in their schedule</CC_Heart_Help_Schedule>
+  <CC_Heart_Help_Recreation>free time and something fun to do</CC_Heart_Help_Recreation>
+  <CC_Heart_Help_Bedroom>a warm, quiet bedroom</CC_Heart_Help_Bedroom>
+  <CC_Heart_Help_Light>light where they work and sleep</CC_Heart_Help_Light>
+  <CC_Heart_Help_Meals>regular meals</CC_Heart_Help_Meals>
+  <CC_Heart_Help_Mood>anything that lifts their mood</CC_Heart_Help_Mood>
+  <CC_Heart_Help_Decree>lifting the decree they resent</CC_Heart_Help_Decree>
+  <CC_Heart_Help_Prepare>getting ready for what's coming: food, medicine, defenses</CC_Heart_Help_Prepare>
+  <CC_Heart_Help_Friends>a long talk with a friend</CC_Heart_Help_Friends>
+  <CC_Heart_Help_Sleep>quiet nights in a warm bed</CC_Heart_Help_Sleep>
+  <CC_Heart_Help_Party>a party, a concert or a feast</CC_Heart_Help_Party>
+  <CC_Heart_Help_RestDecree>days of rest (a decree)</CC_Heart_Help_RestDecree>
+
+  <!-- The heart's needs -->
+  <CC_Heart_Need_Belonging>belonging</CC_Heart_Need_Belonging>
+  <CC_Heart_Need_Purpose>purpose</CC_Heart_Need_Purpose>
+  <CC_Heart_Need_Safety>safety</CC_Heart_Need_Safety>
+  <CC_Heart_Need_Freedom>freedom</CC_Heart_Need_Freedom>
+  <CC_Heart_Need_Belonging_Desc>Friends here, a partner, family, good moments with others, and not being left out.</CC_Heart_Need_Belonging_Desc>
+  <CC_Heart_Need_Purpose_Desc>Doing work they love, a life goal, a seat on the council, learning something new.</CC_Heart_Need_Purpose_Desc>
+  <CC_Heart_Need_Safety_Desc>No danger at the door, food and medicine in store, decent defenses, and their own health.</CC_Heart_Need_Safety_Desc>
+  <CC_Heart_Need_Freedom_Desc>Time outdoors and time of their own, varied work, getting out into the world, and few restrictions.</CC_Heart_Need_Freedom_Desc>
+  <CC_Heart_NeedsAllMet>All four are well met, so strain drains a little faster.</CC_Heart_NeedsAllMet>
+  <CC_Heart_NeedsFine>Nothing is badly missing.</CC_Heart_NeedsFine>
+  <CC_Heart_NeedsMissing>Missing most: {0}.</CC_Heart_NeedsMissing>
+  <CC_Heart_NeedsMissingWhy>Missing most: {0} ({1}).</CC_Heart_NeedsMissingWhy>
+  <CC_Heart_NeedMostly>Mostly: {0}</CC_Heart_NeedMostly>
+  <CC_Heart_NeedsExplain>The heart's needs give no mood of their own. The one a colonist lacks most makes the wishes and life goals that answer it a little likelier, and when all four are 60 or more, strain drains 20% faster.</CC_Heart_NeedsExplain>
+
+  <!-- Why a need is high or low -->
+  <CC_Heart_Why_Alone>nobody else here</CC_Heart_Why_Alone>
+  <CC_Heart_Why_NoFriends>no friends here</CC_Heart_Why_NoFriends>
+  <CC_Heart_Why_Friends>{0} friends here</CC_Heart_Why_Friends>
+  <CC_Heart_Why_Partner>{0} here</CC_Heart_Why_Partner>
+  <CC_Heart_Why_Family>family here</CC_Heart_Why_Family>
+  <CC_Heart_Why_Circle>a circle of friends</CC_Heart_Why_Circle>
+  <CC_Heart_Why_GoodMoments>good moments lately</CC_Heart_Why_GoodMoments>
+  <CC_Heart_Why_LeftOut>left out lately</CC_Heart_Why_LeftOut>
+  <CC_Heart_Why_PassionWork>work they love</CC_Heart_Why_PassionWork>
+  <CC_Heart_Why_PassionOff>work they love is turned off</CC_Heart_Why_PassionOff>
+  <CC_Heart_Why_DoingPassion>doing work they love</CC_Heart_Why_DoingPassion>
+  <CC_Heart_Why_Goal>a life goal</CC_Heart_Why_Goal>
+  <CC_Heart_Why_NoGoal>no life goal yet</CC_Heart_Why_NoGoal>
+  <CC_Heart_Why_Office>a seat on the council</CC_Heart_Why_Office>
+  <CC_Heart_Why_Learning>learning</CC_Heart_Why_Learning>
+  <CC_Heart_Why_OnTheRoad>on the road</CC_Heart_Why_OnTheRoad>
+  <CC_Heart_Why_Raiders>enemies on the map</CC_Heart_Why_Raiders>
+  <CC_Heart_Why_RaidedLately>attacked lately</CC_Heart_Why_RaidedLately>
+  <CC_Heart_Why_Hurt>hurt</CC_Heart_Why_Hurt>
+  <CC_Heart_Why_FoodLow>food nearly gone</CC_Heart_Why_FoodLow>
+  <CC_Heart_Why_FoodShort>food running short</CC_Heart_Why_FoodShort>
+  <CC_Heart_Why_FoodPlenty>full stores</CC_Heart_Why_FoodPlenty>
+  <CC_Heart_Why_NoMedicine>no medicine</CC_Heart_Why_NoMedicine>
+  <CC_Heart_Why_Medicine>medicine in store</CC_Heart_Why_Medicine>
+  <CC_Heart_Why_Defended>good defenses</CC_Heart_Why_Defended>
+  <CC_Heart_Why_Undefended>weak defenses</CC_Heart_Why_Undefended>
+  <CC_Heart_Why_Outdoors>time outdoors</CC_Heart_Why_Outdoors>
+  <CC_Heart_Why_Indoors>cooped up indoors</CC_Heart_Why_Indoors>
+  <CC_Heart_Why_FreeTime>free time</CC_Heart_Why_FreeTime>
+  <CC_Heart_Why_NoFreeTime>no free time</CC_Heart_Why_NoFreeTime>
+  <CC_Heart_Why_VariedWork>varied work</CC_Heart_Why_VariedWork>
+  <CC_Heart_Why_SameWork>the same work all day</CC_Heart_Why_SameWork>
+  <CC_Heart_Why_Traveling>out traveling</CC_Heart_Why_Traveling>
+  <CC_Heart_Why_Decree>{0} in force</CC_Heart_Why_Decree>
+  <CC_Heart_Why_Restricted>kept to an area</CC_Heart_Why_Restricted>
+  <CC_Heart_Why_Slave>enslaved</CC_Heart_Why_Slave>
+
+  <!-- What feeds a feeling, beyond mood thoughts -->
+  <CC_Heart_Cause_FightComing>a fight on its way</CC_Heart_Cause_FightComing>
+  <CC_Heart_Cause_Debt>a debt coming due</CC_Heart_Cause_Debt>
+  <CC_Heart_Cause_Warband>a warband in the region</CC_Heart_Cause_Warband>
+  <CC_Heart_Cause_BadTimes>hard times in the region</CC_Heart_Cause_BadTimes>
+  <CC_Heart_Cause_FoodLow>food running out</CC_Heart_Cause_FoodLow>
+  <CC_Heart_Cause_WinterFood>a lean winter ahead</CC_Heart_Cause_WinterFood>
+  <CC_Heart_Cause_FewMedicine>too little medicine</CC_Heart_Cause_FewMedicine>
+  <CC_Heart_Cause_WeakDefenses>weak defenses</CC_Heart_Cause_WeakDefenses>
+  <CC_Heart_Cause_Strain>worn down</CC_Heart_Cause_Strain>
+  <CC_Heart_Cause_Hostiles>enemies on the map</CC_Heart_Cause_Hostiles>
+  <CC_Heart_Cause_Downed>lying downed</CC_Heart_Cause_Downed>
+  <CC_Heart_Cause_Pain>pain</CC_Heart_Cause_Pain>
+  <CC_Heart_Cause_Hurt>a fresh wound</CC_Heart_Cause_Hurt>
+  <CC_Heart_Cause_AfterRaid>the last attack</CC_Heart_Cause_AfterRaid>
+  <CC_Heart_Cause_Nemesis>{0} still out there</CC_Heart_Cause_Nemesis>
+  <CC_Heart_Cause_Grudge>a grudge against the council</CC_Heart_Cause_Grudge>
+  <CC_Heart_Cause_Rival>{0} close by</CC_Heart_Cause_Rival>
+  <CC_Heart_Cause_Break>after the {0}</CC_Heart_Cause_Break>
+  <CC_Heart_Cause_Filth>filth everywhere</CC_Heart_Cause_Filth>
+  <CC_Heart_Cause_Alone>nobody else here</CC_Heart_Cause_Alone>
+  <CC_Heart_Cause_NoFriends>no friends here</CC_Heart_Cause_NoFriends>
+  <CC_Heart_Cause_NewHere>new here</CC_Heart_Cause_NewHere>
+  <CC_Heart_Cause_FamilyAway>family far away</CC_Heart_Cause_FamilyAway>
+  <CC_Heart_Cause_PassionOff>kept from {0}</CC_Heart_Cause_PassionOff>
+  <CC_Heart_Cause_LongLow>low spirits for days</CC_Heart_Cause_LongLow>
+  <CC_Heart_Cause_Losses>loss after loss</CC_Heart_Cause_Losses>
+  <CC_Heart_Cause_Starving>the stores are empty</CC_Heart_Cause_Starving>
+  <CC_Heart_Cause_Breaking>near breaking</CC_Heart_Cause_Breaking>
+  <CC_Heart_Cause_Inspired>inspired</CC_Heart_Cause_Inspired>
+  <CC_Heart_Cause_Office>serving as {0}</CC_Heart_Cause_Office>
+  <CC_Heart_Cause_Epithet>a name the colony gave</CC_Heart_Cause_Epithet>
+  <CC_Heart_Cause_Title>the title of {0}</CC_Heart_Cause_Title>
+  <CC_Heart_Cause_GoalNear>a life goal nearly reached</CC_Heart_Cause_GoalNear>
+  <CC_Heart_Cause_Partner>{0} close by</CC_Heart_Cause_Partner>
+  <CC_Heart_Cause_Children>children close by</CC_Heart_Cause_Children>
+  <CC_Heart_Cause_Spring>spring</CC_Heart_Cause_Spring>
+  <CC_Heart_Cause_Newcomer>a new face in the colony</CC_Heart_Cause_Newcomer>
+  <CC_Heart_Cause_Healing>wounds healing</CC_Heart_Cause_Healing>
+  <CC_Heart_Cause_Lifting>strain lifting</CC_Heart_Cause_Lifting>
+  <CC_Heart_Cause_NewStart>a fresh start</CC_Heart_Cause_NewStart>
+  <CC_Heart_Cause_Comet>the comet</CC_Heart_Cause_Comet>
+  <CC_Heart_Cause_QuietDays>quiet days</CC_Heart_Cause_QuietDays>
+  <CC_Heart_Cause_Research>research</CC_Heart_Cause_Research>
+  <CC_Heart_Cause_Project>a project under way</CC_Heart_Cause_Project>
+  <CC_Heart_Cause_Visitors>visitors with news</CC_Heart_Cause_Visitors>
+  <CC_Heart_Cause_NewLand>new land to see</CC_Heart_Cause_NewLand>
+  <CC_Heart_Cause_SameWork>the same work all day</CC_Heart_Cause_SameWork>
+  <CC_Heart_Cause_Bored>too little fun</CC_Heart_Cause_Bored>
+
+  <!-- Feelings: name, adjective (the inspector: "restless, proud"), what it is, what it does -->
+  <CC_Heart_F_Grief>grief</CC_Heart_F_Grief>
+  <CC_Heart_F_Grief_Adj>grieving</CC_Heart_F_Grief_Adj>
+  <CC_Heart_F_Grief_Desc>Sorrow for someone dead or gone: a friend, family, a partner, a bonded animal. It fades as the memories do, and a funeral, a grave or a friend nearby helps it along.</CC_Heart_F_Grief_Desc>
+  <CC_Heart_F_Grief_Does>Adds a little strain while it lasts, and runs deeper when they're worn down. Makes a wish for a proper grave likelier, moments of shared grief more common and dreams of the dead more frequent. Psychopaths don't feel it.</CC_Heart_F_Grief_Does>
+
+  <CC_Heart_F_Fear>fear</CC_Heart_F_Fear>
+  <CC_Heart_F_Fear_Adj>afraid</CC_Heart_F_Fear_Adj>
+  <CC_Heart_F_Fear_Desc>Danger here and now: enemies on the map, lying downed, pain, a fresh wound, things in the dark.</CC_Heart_F_Fear_Desc>
+  <CC_Heart_F_Fear_Does>Adds strain while it lasts, and runs deeper when they're worn down. Makes wishes for defenses, armor and weapons likelier and nightmares more common. The nervous feel it more; the iron-willed and the bloodthirsty, less.</CC_Heart_F_Fear_Does>
+
+  <CC_Heart_F_Dread>dread</CC_Heart_F_Dread>
+  <CC_Heart_F_Dread_Adj>uneasy</CC_Heart_F_Dread_Adj>
+  <CC_Heart_F_Dread_Desc>Worry about what's coming rather than what's here: a fight the colony knows is on its way, a warband in the region, a debt, a lean winter, too little medicine.</CC_Heart_F_Dread_Desc>
+  <CC_Heart_F_Dread_Does>Adds a trickle of strain and slows recovery a little. Makes wishes for defenses, medicine, food stores and firewood likelier. Getting ready for what's coming eases it.</CC_Heart_F_Dread_Does>
+
+  <CC_Heart_F_Anger>anger</CC_Heart_F_Anger>
+  <CC_Heart_F_Anger_Adj>angry</CC_Heart_F_Anger_Adj>
+  <CC_Heart_F_Anger_Desc>Insults, slights, fights, council decisions that went against them, a grudge, a rival close by. Often it has one person's name on it.</CC_Heart_F_Anger_Desc>
+  <CC_Heart_F_Anger_Does>Makes frictions with others likelier, most of all with the person it's about, and warm moments rarer. Makes wishes for justice likelier.</CC_Heart_F_Anger_Does>
+
+  <CC_Heart_F_Shame>shame</CC_Heart_F_Shame>
+  <CC_Heart_F_Shame_Adj>ashamed</CC_Heart_F_Shame_Adj>
+  <CC_Heart_F_Shame_Desc>Something they did or let happen: a prisoner executed or sold, a body butchered, someone banished, a break they'd rather forget, a secret out in the open.</CC_Heart_F_Shame_Desc>
+  <CC_Heart_F_Shame_Does>They start fewer warm moments with others. Makes wishes that make amends likelier: a grave, mercy for a prisoner, care for the hurt. Psychopaths don't feel it.</CC_Heart_F_Shame_Does>
+
+  <CC_Heart_F_Envy>envy</CC_Heart_F_Envy>
+  <CC_Heart_F_Envy_Adj>envious</CC_Heart_F_Envy_Adj>
+  <CC_Heart_F_Envy_Desc>Someone else has what they want: a better room, finer things, the council's favor, the seat they lost.</CC_Heart_F_Envy_Desc>
+  <CC_Heart_F_Envy_Does>Makes frictions likelier, most of all with the person they envy, and wishes for the same things likelier: a nicer room, fine clothes, jewelry, better gear.</CC_Heart_F_Envy_Does>
+
+  <CC_Heart_F_Disgust>disgust</CC_Heart_F_Disgust>
+  <CC_Heart_F_Disgust_Adj>disgusted</CC_Heart_F_Disgust_Adj>
+  <CC_Heart_F_Disgust_Desc>Raw or rotten food, corpses lying about, the smell of rot, human leather, insect meat, a filthy home.</CC_Heart_F_Disgust_Desc>
+  <CC_Heart_F_Disgust_Does>Makes frictions a little likelier, and wishes for a clean colony, better food and a proper dining table likelier.</CC_Heart_F_Disgust_Does>
+
+  <CC_Heart_F_Loneliness>loneliness</CC_Heart_F_Loneliness>
+  <CC_Heart_F_Loneliness_Adj>lonely</CC_Heart_F_Loneliness_Adj>
+  <CC_Heart_F_Loneliness_Desc>Nobody here they'd call a friend, a partner far away, being left out.</CC_Heart_F_Loneliness_Desc>
+  <CC_Heart_F_Loneliness_Does>Makes warm moments with others likelier, and wishes for a party, music or an animal companion. Love eases it. Recluses don't feel it.</CC_Heart_F_Loneliness_Does>
+
+  <CC_Heart_F_Homesick>homesickness</CC_Heart_F_Homesick>
+  <CC_Heart_F_Homesick_Adj>homesick</CC_Heart_F_Homesick_Adj>
+  <CC_Heart_F_Homesick_Desc>New here, or with family living somewhere else. It fades as they come to belong.</CC_Heart_F_Homesick_Desc>
+  <CC_Heart_F_Homesick_Does>Makes wishes for good food and small keepsakes likelier, and dreams of home and the absent more common.</CC_Heart_F_Homesick_Does>
+
+  <CC_Heart_F_Frustration>frustration</CC_Heart_F_Frustration>
+  <CC_Heart_F_Frustration_Adj>frustrated</CC_Heart_F_Frustration_Adj>
+  <CC_Heart_F_Frustration_Desc>Wishes refused or left to lapse, broken promises, a vote lost, work they love turned off, things that keep going wrong.</CC_Heart_F_Frustration_Desc>
+  <CC_Heart_F_Frustration_Does>They have less patience with their wishes and get into more frictions. Makes wishes to do the work they love likelier.</CC_Heart_F_Frustration_Does>
+
+  <CC_Heart_F_Despair>despair</CC_Heart_F_Despair>
+  <CC_Heart_F_Despair_Adj>despairing</CC_Heart_F_Despair_Adj>
+  <CC_Heart_F_Despair_Desc>Low spirits for days, losses close together, a colony that's losing, strain near breaking. The opposite of hope.</CC_Heart_F_Despair_Desc>
+  <CC_Heart_F_Despair_Does>Adds a little strain, slows recovery and makes a day off a little likelier. Hope eases it.</CC_Heart_F_Despair_Does>
+
+  <CC_Heart_F_Joy>joy</CC_Heart_F_Joy>
+  <CC_Heart_F_Joy_Adj>joyful</CC_Heart_F_Joy_Adj>
+  <CC_Heart_F_Joy_Desc>Good meals, parties, lovin', a wish granted, a victory, an inspiration.</CC_Heart_F_Joy_Desc>
+  <CC_Heart_F_Joy_Does>Strain drains faster. Makes warm moments and sweet dreams more common, and wishes for a party or music likelier.</CC_Heart_F_Joy_Does>
+
+  <CC_Heart_F_Pride>pride</CC_Heart_F_Pride>
+  <CC_Heart_F_Pride_Adj>proud</CC_Heart_F_Pride_Adj>
+  <CC_Heart_F_Pride_Desc>Good work, an impressive room, a victory, a seat on the council, a name the colony gave them, a title.</CC_Heart_F_Pride_Desc>
+  <CC_Heart_F_Pride_Does>Strain drains a little faster. Makes wishes for art, banners, fine things and a grander room likelier.</CC_Heart_F_Pride_Does>
+
+  <CC_Heart_F_Love>love</CC_Heart_F_Love>
+  <CC_Heart_F_Love_Adj>loving</CC_Heart_F_Love_Adj>
+  <CC_Heart_F_Love_Desc>A partner or spouse close by, a new baby, family together.</CC_Heart_F_Love_Desc>
+  <CC_Heart_F_Love_Does>Strain drains a little faster. Makes warm moments likelier, most of all with the one they love, and sweet dreams more common. Eases loneliness.</CC_Heart_F_Love_Does>
+
+  <CC_Heart_F_Gratitude>gratitude</CC_Heart_F_Gratitude>
+  <CC_Heart_F_Gratitude_Adj>grateful</CC_Heart_F_Gratitude_Adj>
+  <CC_Heart_F_Gratitude_Desc>Someone rescued them, tended them, taught them or did them a kindness, or the council granted a wish or kept a promise.</CC_Heart_F_Gratitude_Desc>
+  <CC_Heart_F_Gratitude_Does>Makes warm moments likelier, most of all with the person they're grateful to. When the council is among the reasons, their trust in it grows a little each day.</CC_Heart_F_Gratitude_Does>
+
+  <CC_Heart_F_Hope>hope</CC_Heart_F_Hope>
+  <CC_Heart_F_Hope_Adj>hopeful</CC_Heart_F_Hope_Adj>
+  <CC_Heart_F_Hope_Desc>Spring, a new face in the colony, a wound healing, strain lifting, a goal in reach, a fresh start.</CC_Heart_F_Hope_Desc>
+  <CC_Heart_F_Hope_Does>Strain drains faster, and despair fades. Makes wishes for books, lessons and things that grow likelier.</CC_Heart_F_Hope_Does>
+
+  <CC_Heart_F_Awe>awe</CC_Heart_F_Awe>
+  <CC_Heart_F_Awe_Adj>in awe</CC_Heart_F_Awe_Adj>
+  <CC_Heart_F_Awe_Desc>An aurora, an eclipse, a comet, beautiful rooms and art, strange creatures, the unexplained.</CC_Heart_F_Awe_Desc>
+  <CC_Heart_F_Awe_Does>Makes wishes for art, flowers, a fountain or a shrine likelier, and strange dreams more common. Very rarely it turns into an inspiration, once a month at most.</CC_Heart_F_Awe_Does>
+
+  <CC_Heart_F_Contentment>contentment</CC_Heart_F_Contentment>
+  <CC_Heart_F_Contentment_Adj>content</CC_Heart_F_Contentment_Adj>
+  <CC_Heart_F_Contentment_Desc>Quiet days: no danger, a decent room, enough food, rest and free time, a good mood. The calm baseline.</CC_Heart_F_Contentment_Desc>
+  <CC_Heart_F_Contentment_Does>Strain drains faster.</CC_Heart_F_Contentment_Does>
+
+  <CC_Heart_F_Curiosity>curiosity</CC_Heart_F_Curiosity>
+  <CC_Heart_F_Curiosity_Adj>curious</CC_Heart_F_Curiosity_Adj>
+  <CC_Heart_F_Curiosity_Desc>Research, books, new land, visitors with stories, something unexplained.</CC_Heart_F_Curiosity_Desc>
+  <CC_Heart_F_Curiosity_Does>Makes wishes for books, lessons, a hunt or a journey likelier, and strange dreams more common.</CC_Heart_F_Curiosity_Does>
+
+  <CC_Heart_F_Restless>restlessness</CC_Heart_F_Restless>
+  <CC_Heart_F_Restless_Adj>restless</CC_Heart_F_Restless_Adj>
+  <CC_Heart_F_Restless_Desc>The same work day after day, too little fun, cabin fever.</CC_Heart_F_Restless_Desc>
+  <CC_Heart_F_Restless_Does>Makes wishes to get outside, travel, hunt or take a day off likelier, and frictions a little more common.</CC_Heart_F_Restless_Does>
+
+  <!-- Intensity and time -->
+  <CC_Heart_Intensity_Mild>mild</CC_Heart_Intensity_Mild>
+  <CC_Heart_Intensity_Clear>clear</CC_Heart_Intensity_Clear>
+  <CC_Heart_Intensity_Strong>strong</CC_Heart_Intensity_Strong>
+  <CC_Heart_SinceNow>since just now</CC_Heart_SinceNow>
+  <CC_Heart_Since>for {0}</CC_Heart_Since>
+  <CC_Heart_FedBy>From: {0}</CC_Heart_FedBy>
+  <CC_Heart_NoFeelings>Nothing stands out right now.</CC_Heart_NoFeelings>
+
+  <!-- Inspector, tooltips, the Mood tab and the Moods page -->
+  <CC_Heart_Inspect>Strain: {0}</CC_Heart_Inspect>
+  <CC_Heart_InspectFeelings>Strain: {0} · {1}</CC_Heart_InspectFeelings>
+  <CC_Heart_Section>Heart</CC_Heart_Section>
+  <CC_Heart_NotYet>Their heart is looked at once an hour. Check back soon.</CC_Heart_NotYet>
+  <CC_Heart_StrainLabel>Strain</CC_Heart_StrainLabel>
+  <CC_Heart_StrainValue>{0} ({1})</CC_Heart_StrainValue>
+  <CC_Heart_StrainTipHead>Strain: {0} ({1} of 100)</CC_Heart_StrainTipHead>
+  <CC_Heart_NothingBuilt>Nothing has built strain lately.</CC_Heart_NothingBuilt>
+  <CC_Heart_BuiltBy>Built up lately: {0}.</CC_Heart_BuiltBy>
+  <CC_Heart_EasedBy>Eased lately: {0}.</CC_Heart_EasedBy>
+  <CC_Heart_WouldHelp>What would help: {0}.</CC_Heart_WouldHelp>
+  <CC_Heart_StrainExplain>Strain is separate from mood. It builds slowly from fighting, pain, losses, bad nights, hunger and low spirits (about 25 a day at most) and drains with sleep, free time, celebrations and good talks. Its only effect on mood is the strain mood itself.</CC_Heart_StrainExplain>
+  <CC_Heart_FeelingsHeader>Feelings</CC_Heart_FeelingsHeader>
+  <CC_Heart_NeedsHeader>The heart's needs</CC_Heart_NeedsHeader>
+  <CC_Heart_ColonyHeader>Worn down</CC_Heart_ColonyHeader>
+  <CC_Heart_ColonySummary>Average strain {0} ({1}); {2} strained, {3} worn down or worse.</CC_Heart_ColonySummary>
+  <CC_Heart_ColonyNone>Nobody is strained right now.</CC_Heart_ColonyNone>
+  <CC_Heart_ThoughtWhy>built up by {0}</CC_Heart_ThoughtWhy>
+  <CC_Heart_StatLine>Strain, {0}: x{1}</CC_Heart_StatLine>
+  <CC_Heart_StatDecree>Decree, {0}: x{1}</CC_Heart_StatDecree>
+  <CC_Heart_DecreeStrain>Builds about {0} strain a day in those who resent it.</CC_Heart_DecreeStrain>
+  <CC_Heart_TrustGrateful>grateful to the council</CC_Heart_TrustGrateful>
+  <CC_Heart_AweInspired>Awe stirred something in {PAWN_nameDef}.</CC_Heart_AweInspired>
+  <CC_Decree_NeedsHeart>Needs feelings and strain switched on (Mod settings, People page).</CC_Decree_NeedsHeart>
+
+  <!-- The episode -->
+  <CC_Heart_Episode_Reason>worn out by strain</CC_Heart_Episode_Reason>
+  <CC_Heart_Episode_Title>{PAWN_nameDef} needs a day</CC_Heart_Episode_Title>
+  <CC_Heart_Episode_Text>{PAWN_nameDef} has been carrying too much for too long: {SOURCES}. Today it was enough. {PAWN_nameDef} put down {PAWN_possessive} tools, went to {PAWN_possessive} room and won't be working for the rest of the day.\n\nNobody is in danger. {PAWN_nameDef} will still eat and sleep, and will mostly stay out of everyone's way. It passes in six to twelve hours, and afterwards most of the strain will have lifted. If trouble comes, it ends early.</CC_Heart_Episode_Text>
+  <CC_Heart_Episode_NoSources>one hard thing after another</CC_Heart_Episode_NoSources>
+  <CC_Heart_Episode_Helps>What would help {PAWN_objective} after this: {HELP}.</CC_Heart_Episode_Helps>
+  <CC_Heart_Episode_Chronicle>{PAWN_nameDef} was worn out and took a day away from work.</CC_Heart_Episode_Chronicle>
+  <CC_Heart_Episode_Journal>Couldn't face the work today. I went to my room and shut the door, and nobody came knocking.</CC_Heart_Episode_Journal>
+  <CC_Heart_Episode_Interrupted>{PAWN_nameDef} came out of {PAWN_possessive} room to face the danger.</CC_Heart_Episode_Interrupted>
+  <CC_Heart_Episode_Over>{PAWN_nameDef} spent the day in {PAWN_possessive} room and is ready to work again. The worst of the strain has lifted.</CC_Heart_Episode_Over>
+
+  <!-- RimHUD -->
+  <CC_Hud_Strain>Strain</CC_Hud_Strain>
+  <CC_Hud_Feelings>Feelings</CC_Hud_Feelings>
+  <CC_Hud_Needs>Heart's needs</CC_Hud_Needs>
+  <CC_Hud_NeedsMet>nothing missing</CC_Hud_NeedsMet>
+  <CC_Hud_NeedsLacking>lacks {0} ({1})</CC_Hud_NeedsLacking>
+
+  <!-- Settings -->
+  <CC_Settings_HeartHeader>Feelings and strain</CC_Settings_HeartHeader>
+  <CC_Settings_Heart>Feelings and strain</CC_Settings_Heart>
+  <CC_Settings_Heart_Tip>A layer under mood that never changes how the game decides on mental breaks. Each colonist builds strain from fighting, pain, losses and bad nights and drains it with rest and good times; from 30 it costs a little mood, from 55 a little work speed. They also have one or two feelings at a time (grief, fear, pride, joy and more) that nudge their wishes, dreams and how they get on with others, and four long-term needs that show what their life is missing. Turned off, all of it stops, and the strain mood and slowdown are gone.</CC_Settings_Heart_Tip>
+  <CC_Settings_HeartEpisodes>A colonist at the end of their rope takes a day off</CC_Settings_HeartEpisodes>
+  <CC_Settings_HeartEpisodes_Tip>At strain 85 or more, a colonist may stop working for six to twelve hours and keep to their room. Never in danger, never with fewer than two others able to work, at most once in 2 days in the colony and once in 10 days for each colonist. Afterwards their strain drops by about 40. Turned off, strain still builds and drains, but nobody takes a day.</CC_Settings_HeartEpisodes_Tip>
+  <CC_Settings_HeartInspector>Strain and feelings in the inspector</CC_Settings_HeartInspector>
+  <CC_Settings_HeartInspector_Tip>One short line in a colonist's details, such as "Strain: worn down · restless, proud". Needs the deeper game hooks.</CC_Settings_HeartInspector_Tip>
+  <CC_Settings_StrainSpeed>How quickly strain builds: {0}</CC_Settings_StrainSpeed>
+  <CC_Settings_StrainSpeed_Tip>50% for a gentler game, 150% for a harder one. The daily limits scale with it; how fast strain drains stays the same.</CC_Settings_StrainSpeed_Tip>
+
+</LanguageData>
