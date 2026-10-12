@@ -498,22 +498,30 @@ namespace ColonyCouncil
             foreach (var c in All)
             {
                 if (!c.Running || c.waiting) continue;
-                string key = PendingKey(c);
-                var home = HomeDef(c.kind);
-                var text = home?.GetModExtension<StoryText>();
-                if (key == null || text == null) continue;
-                string line = Stable(coming ? text.coming : text.remembered, key, c.flags, c.id * 31 + c.stage);
-                if (line.NullOrEmpty()) continue;
-                var ctx = Context(c, home, null);
-                list.Add(new WorldNote
+                // Built every second while the World page is open: a story that can't be told here is left out, logged once.
+                try
                 {
-                    title = coming ? home.LabelCap.ToString() : null,
-                    text = ctx.Format(line.Replace("{DAYS}", TextUtil.DaysString(Mathf.Max(0, c.due - now)))),
-                    icon = Icons.WorldEvent,
-                    color = Calm,
-                    faction = coming ? c.faction : null,
-                    due = coming ? c.due : -1
-                });
+                    string key = PendingKey(c);
+                    var home = HomeDef(c.kind);
+                    var text = home?.GetModExtension<StoryText>();
+                    if (key == null || text == null) continue;
+                    string line = Stable(coming ? text.coming : text.remembered, key, c.flags, c.id * 31 + c.stage);
+                    if (line.NullOrEmpty()) continue;
+                    var ctx = Context(c, home, null);
+                    list.Add(new WorldNote
+                    {
+                        title = coming ? home.LabelCap.ToString() : null,
+                        text = ctx.Format(line.Replace("{DAYS}", TextUtil.DaysString(Mathf.Max(0, c.due - now)))),
+                        icon = Icons.WorldEvent,
+                        color = Calm,
+                        faction = coming ? c.faction : null,
+                        due = coming ? c.due : -1
+                    });
+                }
+                catch (Exception e)
+                {
+                    CouncilLog.ErrorOnce("story note " + c.kind, e);
+                }
             }
             return list;
         }
