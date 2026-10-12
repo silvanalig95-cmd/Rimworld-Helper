@@ -150,8 +150,22 @@ namespace ColonyCouncil
             return f > 0f ? f : 0f;
         }
 
-        /// <summary>"grief" for moments of grief shared, which the heart weighs on their own.</summary>
-        private string Kind => interaction.defName.IndexOf("Grief", System.StringComparison.Ordinal) >= 0 ? "grief" : null;
+        private string kind;
+        private bool kindLooked;
+
+        /// <summary>"grief" for moments of grief shared, which the heart weighs on their own (worked out once).</summary>
+        private string Kind
+        {
+            get
+            {
+                if (!kindLooked)
+                {
+                    kind = interaction?.defName != null && interaction.defName.IndexOf("Grief", System.StringComparison.Ordinal) >= 0 ? "grief" : null;
+                    kindLooked = true;
+                }
+                return kind;
+            }
+        }
 
         public override float RandomSelectionWeight(Pawn initiator, Pawn recipient)
         {
@@ -281,9 +295,15 @@ namespace ColonyCouncil
             foreach (var m in memories)
             {
                 if (m?.def == null || m.age > max) continue;
+                string name = m.def.defName;
                 foreach (var n in names)
                 {
-                    if (n.EndsWith("*") ? m.def.defName.StartsWith(n.Substring(0, n.Length - 1)) : m.def.defName == n) return m;
+                    if (n.NullOrEmpty()) continue;
+                    // "Prefix*" compared in place: this runs each time the game weighs a moment, so nothing is allocated.
+                    bool match = n[n.Length - 1] == '*'
+                        ? name.Length >= n.Length - 1 && string.CompareOrdinal(name, 0, n, 0, n.Length - 1) == 0
+                        : name == n;
+                    if (match) return m;
                 }
             }
             return null;
@@ -541,7 +561,9 @@ namespace ColonyCouncil
             if (x.Friction)
             {
                 if (!x.stillSore && Unmended(s, now)) AddPack(packs, "Council_Sent_StillTense");
-                t.friction = now;
+                // Still sore over the last spat is not a new spat: it keeps the spat's time, so a grudge can't keep
+                // itself going (two days after the last real friction, it's over either way).
+                if (!x.stillSore) t.friction = now;
                 bool hot = Temper(a) || Temper(b);
                 int until = now + Mathf.RoundToInt(x.soreHours * GenDate.TicksPerHour * (hot ? 1.5f : 1f));
                 if (until > t.soreUntil) t.soreUntil = until;

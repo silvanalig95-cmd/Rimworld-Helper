@@ -4,13 +4,15 @@ using RimWorld;
 using UnityEngine;
 using Verse;
 using Verse.AI;
+using Verse.AI.Group;
 
 namespace ColonyCouncil
 {
     /// <summary>
     /// "Worn out: needs a day." Started on purpose by the heart layer, never by the game's break picker (no MentalBreakDef
     /// names it): the colonist keeps to their room for six to twelve hours, eating, sleeping and resting as they need.
-    /// It ends early if a threat appears. When it's over, strain drops by about 40 and they feel lighter for a while.
+    /// It ends early if a threat appears, or if they need a doctor or are getting too cold or too hot. When it's over,
+    /// strain drops by about 40 and they feel lighter for a while.
     /// Built on vanilla's hide-in-room state, so its room and wandering work as they do there. The only trace it leaves
     /// in a save is a colonist in the middle of one.
     /// </summary>
@@ -29,12 +31,18 @@ namespace ColonyCouncil
         {
             base.MentalStateTick(delta);
             if (pawn == null || pawn.Dead || pawn.MentalState != this) return;
+            if (!pawn.IsHashIntervalTick(250, delta) || !pawn.Spawned || pawn.Map == null) return;
             // A threat ends it: nobody sits in their room while the colony fights.
-            if (pawn.IsHashIntervalTick(250, delta) && pawn.Spawned && GenHostility.AnyHostileActiveThreatToPlayer(pawn.Map, false, false))
+            if (GenHostility.AnyHostileActiveThreatToPlayer(pawn.Map, false, false))
             {
                 interrupted = true;
                 RecoverFromState();
+                return;
             }
+            // So does a wound or an illness that needs a doctor now (the doctor only tends those lying in bed), and a room
+            // too cold or too hot to sit out the day in (nobody here seeks a warmer place on their own).
+            if (HealthAIUtility.ShouldSeekMedicalRestUrgent(pawn) || (pawn.health?.hediffSet?.HasTemperatureInjury(TemperatureInjuryStage.Minor) ?? false))
+                RecoverFromState();
         }
 
         public override void PostEnd()
@@ -60,6 +68,11 @@ namespace ColonyCouncil
         private static MentalStateDef def;
         private static ThoughtDef letItOut;
         private static bool looked;
+
+        private static HediffDef lactating;
+
+        /// <summary>Biotech's nursing mother (null without Biotech), looked up quietly.</summary>
+        private static HediffDef Lactating => lactating ?? (lactating = DefDatabase<HediffDef>.GetNamedSilentFail("Lactating"));
 
         /// <summary>The episode's mental state (Council_Heart_WornOut), looked up quietly.</summary>
         public static MentalStateDef Def
@@ -94,6 +107,12 @@ namespace ColonyCouncil
             if (p.Drafted || p.Downed || p.InMentalState) return "busy";
             if (!RestUtility.Awake(p)) return "asleep";
             if (p.mindState?.mentalStateHandler == null || p.mindState.mentalStateHandler.MentalBreaksBlocked()) return "blocked";
+            // A gathering, a ritual, a caravan forming: it waits until that's over.
+            if (p.GetLord() != null) return "with others";
+            if (HealthAIUtility.ShouldSeekMedicalRest(p) || (p.health?.hediffSet?.HasTemperatureInjury(TemperatureInjuryStage.Initial) ?? false)) return "needs care";
+            // A nursing mother: a baby may depend on her, so she carries on (Biotech's lactating; absent without it).
+            if (Lactating != null && (p.health?.hediffSet?.HasHediff(Lactating) ?? false)) return "nursing";
+            if (Busy(p)) return "busy";
             if (m.threat || GenHostility.AnyHostileActiveThreatToPlayer(p.Map, false, false)) return "danger";
             if (now - h.lastEpisodeTick < PawnCooldown) return "pawn cooldown";
             var tracker = HeartTracker.Instance;
@@ -107,6 +126,21 @@ namespace ColonyCouncil
             }
             if (able < 2) return "too few";
             return null;
+        }
+
+        /// <summary>
+        /// Doing something that can't just be dropped: an order from the player, caring for, feeding or carrying someone
+        /// (a patient, a baby, a prisoner), fighting a fire. The day off waits an hour or two.
+        /// </summary>
+        private static bool Busy(Pawn p)
+        {
+            if (p.carryTracker?.CarriedThing is Pawn) return true;
+            var job = p.CurJob;
+            if (job == null) return false;
+            if (job.playerForced) return true;
+            var d = job.def;
+            if (d == JobDefOf.BeatFire || d == JobDefOf.ExtinguishSelf || d == JobDefOf.ExtinguishFiresNearby) return true;
+            return (job.targetA.Thing is Pawn a && a != p) || (job.targetB.Thing is Pawn b && b != p);
         }
 
         public static void MaybeStart(Pawn p, PawnHeart h, HeartMapContext m, int now)

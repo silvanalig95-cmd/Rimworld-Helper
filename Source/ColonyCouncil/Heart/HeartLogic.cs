@@ -200,12 +200,14 @@ namespace ColonyCouncil
             if (mood < 0.2f) Build(StrainSource.LowMood, 1f * hours);
             else if (mood < 0.3f) Build(StrainSource.LowMood, 0.5f * hours);
             h.lowMoodHours = mood < 0.3f ? Mathf.Min(96f, h.lowMoodHours + hours) : h.lowMoodHours * Mathf.Pow(0.96f, hours);
-            for (int i = 0; i < moodGroups.Count; i++)
-                if (moodGroups[i].def == darkThought && darkThought != null)
-                {
-                    Build(StrainSource.Dark, 0.5f * hours);
-                    break;
-                }
+            // A dark home, not the night sky: the game gives "in darkness" to anyone awake outdoors at night too.
+            if (darkThought != null && spawned && p.Position.Roofed(p.Map))
+                for (int i = 0; i < moodGroups.Count; i++)
+                    if (moodGroups[i].def == darkThought)
+                    {
+                        Build(StrainSource.Dark, 0.5f * hours);
+                        break;
+                    }
             // Decrees that ask a lot, for those who resent them.
             var comp = CouncilGameComponent.Instance;
             if (comp?.decrees?.active != null && p.IsFreeColonist)
@@ -392,6 +394,8 @@ namespace ColonyCouncil
 
         private const float GatheringCap = 12f;
         private const float FriendsCap = 6f;
+        /// <summary>The same kind of bad night counts again only this long after the last (once a night).</summary>
+        private const int NightTicks = GenDate.TicksPerHour * 14;
 
         private static readonly Dictionary<ThoughtDef, MemoryRule?> ruleCache = new Dictionary<ThoughtDef, MemoryRule?>();
 
@@ -458,6 +462,13 @@ namespace ColonyCouncil
                 switch (r.kind)
                 {
                     case RuleKind.Build:
+                        // A bad night counts once: waking twice, or being disturbed again and again, renews the memory.
+                        if (r.source == StrainSource.BadSleep)
+                        {
+                            h.badNights ??= new Dictionary<ThoughtDef, int>();
+                            if (h.badNights.TryGetValue(mem.def, out int lastNight) && born >= lastNight && born - lastNight < NightTicks) break;
+                            h.badNights[mem.def] = born;
+                        }
                         build(r.source, r.amount);
                         break;
                     case RuleKind.Gathering:
@@ -494,7 +505,8 @@ namespace ColonyCouncil
             return relief;
         }
 
-        private static float SafeMood(Thought_Memory m)
+        /// <summary>A memory's mood, or 0 if another mod's thought throws.</summary>
+        internal static float SafeMood(Thought_Memory m)
         {
             try
             {
