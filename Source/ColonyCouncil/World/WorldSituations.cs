@@ -74,6 +74,9 @@ namespace ColonyCouncil
         /// <summary>Another running situation still needs this person.</summary>
         public bool HoldsElsewhere(WorldSituation except, Pawn p) => active.Any(s => s != except && !s.ended && (s.held.Contains(p) || s.ctx.stranger == p || s.ctx.other == p));
 
+        /// <summary>A running situation still needs this person (the warlord, a healer): not for the rest of Rimfolk to let go of.</summary>
+        public static bool Holds(Pawn p) => p != null && (Instance?.HoldsElsewhere(null, p) ?? false);
+
         /// <summary>The colony helped this people in an earlier world event (or in this one, when it's over).</summary>
         public bool Helped(Faction f) => f != null && history.Any(r => r.faction == f && r.helped);
 
@@ -638,7 +641,7 @@ namespace ColonyCouncil
             eventCache.Clear();
             incidentCache.Clear();
             var inst = Instance;
-            anyVanilla = inst != null && S.worldSituations && inst.active.Any(s => !s.ended && s.def.modifiers.Any(m => !m.incident.NullOrEmpty()));
+            anyVanilla = inst != null && S != null && S.worldSituations && inst.active.Any(s => !s.ended && s.def != null && s.def.modifiers.Any(m => !m.incident.NullOrEmpty()));
         }
 
         private static float Factor(IncidentDef def, HappeningExtension ext)
@@ -682,7 +685,7 @@ namespace ColonyCouncil
         public static float RaidPointsFactor(Faction f)
         {
             var inst = Instance;
-            if (f == null || inst == null || !S.worldSituations) return 1f;
+            if (f == null || inst == null || S == null || !S.worldSituations) return 1f;
             float factor = 1f;
             foreach (var s in inst.active)
                 if (!s.ended && s.Worker != null)
@@ -694,7 +697,7 @@ namespace ColonyCouncil
         public static Faction RaidFaction()
         {
             var inst = Instance;
-            if (inst == null || !S.worldSituations) return null;
+            if (inst == null || S == null || !S.worldSituations) return null;
             foreach (var s in inst.active)
             {
                 if (s.ended || s.Worker == null) continue;

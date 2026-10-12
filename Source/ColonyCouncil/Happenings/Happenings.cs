@@ -685,8 +685,8 @@ namespace ColonyCouncil
 
         private void Unpin(Pawn p)
         {
-            // Not while they're a nemesis, or another memo (a hunt they lead) still needs them.
-            if (p == null || (CouncilGameComponent.Instance?.nemeses.IsNemesis(p) ?? false) || Holds(p)) return;
+            // Not while they're a nemesis, or another memo (a hunt they lead) or a world event (a warlord) still needs them.
+            if (p == null || (CouncilGameComponent.Instance?.nemeses.IsNemesis(p) ?? false) || Holds(p) || WorldSituations.Holds(p)) return;
             Find.WorldPawns.ForcefullyKeptPawns.Remove(p);
         }
 

@@ -460,8 +460,8 @@ namespace ColonyCouncil
             if (n.pawn != null && !Held(n.pawn)) Find.WorldPawns?.ForcefullyKeptPawns.Remove(n.pawn);
         }
 
-        /// <summary>Still needed by a world event's memo (a scenario's hunt): not ours to let go.</summary>
-        private static bool Held(Pawn p) => CouncilGameComponent.Instance?.happenings.Holds(p) ?? false;
+        /// <summary>Still needed by a world event's memo (a scenario's hunt) or a running world situation (a warlord): not ours to let go.</summary>
+        private static bool Held(Pawn p) => (CouncilGameComponent.Instance?.happenings.Holds(p) ?? false) || WorldSituations.Holds(p);
 
         /// <summary>Their quarrel with the colony is settled some other way (a debt paid): it ends, with how.</summary>
         public void Settle(Pawn enemy, string how)

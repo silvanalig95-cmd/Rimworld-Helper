@@ -51,14 +51,15 @@ namespace ColonyCouncil
 
     /// <summary>
     /// A warlord's people raid more often while he rises: when the storyteller sends a raid without saying from whom,
-    /// it's sometimes his people (if they could have come anyway).
+    /// it's sometimes his people (if they could have come anyway). Not a quest's raid, nor one whose plan or way in
+    /// was already chosen (that may not suit his people).
     /// </summary>
     [HarmonyPatch(typeof(IncidentWorker_RaidEnemy), "TryResolveRaidFaction")]
     public static class Patch_WS_RaidFaction
     {
         public static void Prefix(IncidentWorker_RaidEnemy __instance, IncidentParms parms)
         {
-            if (!RimfolkPatches.On || parms == null || parms.faction != null || parms.quest != null) return;
+            if (!RimfolkPatches.On || parms == null || parms.faction != null || parms.quest != null || parms.raidStrategy != null || parms.raidArrivalMode != null) return;
             try
             {
                 var f = WorldSituations.RaidFaction();
