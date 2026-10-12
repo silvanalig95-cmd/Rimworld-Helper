@@ -121,7 +121,7 @@ namespace ColonyCouncil
 
         public int Duration => Mathf.Max(1, endTick - startTick);
 
-        public string Label => (def?.LabelCap.ToString() ?? "?") + (ctx.name.NullOrEmpty() ? "" : ": " + ctx.name.CapitalizeFirst());
+        public string Label => (def?.LabelCap.ToString() ?? "?") + (ctx.name.NullOrEmpty() ? "" : ": " + ctx.name);
 
         /// <summary>Keeps someone in the world while the situation needs them.</summary>
         public void Hold(Pawn p)

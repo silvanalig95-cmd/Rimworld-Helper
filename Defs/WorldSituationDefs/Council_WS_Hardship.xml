@@ -107,7 +107,7 @@
         </titles>
         <texts>
           <li>A family from {PLACE} has stopped at the colony's gate with what they could carry. They left before {NAME} reached their street, and they aren't sick, but nobody on the road will let them near a fire.\n\nThey ask to stay, for a while or for good.</li>
-          <li>[winter] A family from {PLACE} has come through the snow to the colony's gate. They got out before {NAME} reached them, and they have been sleeping in the open since, because nobody on the road will take them in.\n\nThey ask to stay. They don't much care for how long.</li>
+          <li>[winter] A family from {PLACE} has come through the snow to the colony's gate. They got out before {NAME} reached them, and they have been sleeping in the open since, because nobody on the road will take them in.\n\nThey ask to stay, for as long as the colony will have them.</li>
         </texts>
         <defaultOption>2</defaultOption>
         <options>
@@ -381,7 +381,7 @@
             <points>0.35~0.5</points>
             <delayHours>1~3</delayHours>
             <label>The hungry come</label>
-            <text>Hunger has turned some of {ENEMY} to raiding, and the colony's stores are the only full ones for days around.</text>
+            <text>Hunger has driven the raiders of {ENEMY} out early this year, and the colony's stores are the only full ones for days around.</text>
           </li>
         </effects>
       </li>
@@ -440,7 +440,7 @@
           <li>The hungry year ends</li>
         </titles>
         <texts>
-          <li>The famine among {FACTION} is over. {PLACE} buried its old and came out of it with fewer children than it went in with.\n\nThe colony's stores stayed full the whole time. {FACTION} know that.</li>
+          <li>The famine among {FACTION} is over. {PLACE} came out of it thinner and smaller, and it buried more of its old than it should have.\n\nThe colony's stores stayed full the whole time. {FACTION} know that.</li>
         </texts>
         <chronicle>The famine among {FACTION} ended; the colony kept its stores to itself.</chronicle>
       </li>
@@ -694,7 +694,8 @@
           <li>The swarm moves on</li>
         </titles>
         <texts>
-          <li>The swarm has moved on, leaving the colony's open fields bare and the whole region poorer. What was under a roof came through.\n\n[harvested] At least the ripe crops were in before it came.</li>
+          <li>[!harvested] The swarm has moved on, leaving the colony's open fields bare and the whole region poorer. What was under a roof came through.</li>
+          <li>[harvested] The swarm has moved on, leaving the colony's open fields bare and the whole region poorer. What was under a roof came through, and the ripe crops were in before it came.</li>
         </texts>
         <chronicle>The locusts passed, and stripped the colony's open fields.</chronicle>
         <effects>

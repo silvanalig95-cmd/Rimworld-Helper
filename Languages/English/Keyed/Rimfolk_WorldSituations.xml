@@ -8,7 +8,7 @@
   <CC_WS_ForTheColony>For the colony: {0} It may last about {1}.</CC_WS_ForTheColony>
   <CC_WS_YourPart>What the colony did: {0}.</CC_WS_YourPart>
   <CC_WS_ChronicleStart>{0}: {1}</CC_WS_ChronicleStart>
-  <CC_WS_ChronicleEnd>{0} is over after {1}. {2}</CC_WS_ChronicleEnd>
+  <CC_WS_ChronicleEnd>{0}, after {1}: {2}</CC_WS_ChronicleEnd>
   <CC_WS_ChroniclePart>The colony {0}.</CC_WS_ChroniclePart>
   <CC_WS_ChronicleQuiet>{0} faded from the news after {1}.</CC_WS_ChronicleQuiet>
   <CC_WS_Medicine>medicine</CC_WS_Medicine>

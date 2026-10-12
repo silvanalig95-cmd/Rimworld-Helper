@@ -51,7 +51,7 @@
               <li Class="ColonyCouncil.WorldEffect_Pay" />
             </effects>
             <flags><li>invited</li></flags>
-            <deed>brought {X_nameDef} to the colony</deed>
+            <deed>invited {X_nameDef} to treat {A_nameDef}</deed>
             <next>visit</next>
             <nextDays>1.5~3</nextDays>
           </li>
@@ -157,7 +157,7 @@
           <li>{FACTION}'s hunters</li>
         </titles>
         <texts>
-          <li>A party of hunters from {PLACE} has asked to follow the herds across the colony's land. They will keep clear of the fields and the buildings, they say, and they would pay {COUNT} silver for the right, or ask nothing but the colony's goodwill.\n\n{A_nameDef} thinks they know what they're doing.</li>
+          <li>A party of hunters from {PLACE} has asked to follow the herds across the colony's land. They will keep clear of the fields and the buildings, they say. They would pay {COUNT} silver for the right, or take it as a favor between neighbors.\n\n{A_nameDef} thinks they know what they're doing.</li>
         </texts>
         <defaultOption>2</defaultOption>
         <options>
@@ -348,7 +348,7 @@
           <li>{A_nameDef} and the surge</li>
         </titles>
         <texts>
-          <li>{A_nameDef} hasn't slept properly since the sky turned. {A_nameDef} wants to spend a few nights out at the old stones on the hill, where the ley lines cross, and see what the surge can teach.\n\nIt could be a year's study in a week. The mages of {PLACE} say it could also go badly.</li>
+          <li>Since the sky turned, {A_nameDef} has hardly slept, and now wants to spend a few nights out at the old stones on the hill, where the ley lines cross, to see what the surge can teach.\n\nIt could be a year's study in a week. The mages of {PLACE} say it could also go badly.</li>
         </texts>
         <defaultOption>1</defaultOption>
         <options>

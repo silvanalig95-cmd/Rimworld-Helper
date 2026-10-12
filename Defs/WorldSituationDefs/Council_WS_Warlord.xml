@@ -26,16 +26,15 @@
     <names>
       <li>the Ashen Banner</li>
       <li>the Black Hundred</li>
-      <li>the Gallows Riders</li>
+      <li>the Gallows Band</li>
       <li>the Crow Company</li>
       <li>the Burnt Oath</li>
-      <li>[theirLowtech] the Wolves of the Pass</li>
-      <li>[theirLowtech] the Hundred Spears</li>
+      <li>[theirLowtech] the Wolf Banner</li>
+      <li>[theirLowtech] the Gray Host</li>
       <li>[theirLowtech] the Red Brand</li>
       <li>[theirHightech] the Rust Company</li>
-      <li>[theirHightech] the Long Guns</li>
-      <li>[theirHightech] the Dust Riders</li>
-      <li>[theirHightech] the Iron Dogs</li>
+      <li>[theirHightech] the Dust Brigade</li>
+      <li>[theirHightech] the Ironside Crew</li>
     </names>
     <titles>
       <li>A warlord rises: {X_nameDef}</li>
@@ -43,7 +42,7 @@
       <li>The rise of {X_nameDef}</li>
     </titles>
     <texts>
-      <li>[theirLowtech] Travelers on the roads talk of little else. Among {FACTION}, a war leader called {X_nameFull} has gathered the hardest of their fighters into one band, {NAME}, and burned two villages before the elders could agree what to do about it.\n\nThe band rides out of {PLACE} and comes back with grain, cattle and horses. Every raid makes it larger. {X_nameDef} has let it be known that the colony is on the list.</li>
+      <li>[theirLowtech] Travelers on the roads talk of little else. Among {FACTION}, a war leader called {X_nameFull} has gathered the hardest of their fighters into one band, {NAME}, and burned two villages before the elders could agree what to do about {X_objective}.\n\nThe band rides out of {PLACE} and comes back with grain, cattle and horses. Every raid makes it larger. {X_nameDef} has let it be known that the colony is on the list.</li>
       <li>[theirHightech,!lowtech] The traders' radio has carried one name all week: {X_nameFull}. A raider of {FACTION} who started with one truck and a handful of guns, {X_nameDef} now leads {NAME}, the largest band anyone in the region remembers, out of {PLACE}.\n\nTwo outposts have gone quiet this season. The last message from one of them mentioned the colony by name, as the next place worth a visit.</li>
       <li>{FACTION} have a new war leader. {X_nameFull} rose by beating every rival in the open, and the band that follows {X_objective} calls itself {NAME}. From {PLACE} they have struck at caravans, outposts and farms, and they are not short of reasons to come further.\n\nWord on the road is that {X_nameDef} counts the colony among the places that owe {X_objective} something.</li>
       <li>[winter] Winter hasn't slowed {FACTION}. A war leader among them, {X_nameFull}, has taken their hungriest fighters and made them into a band called {NAME}. They raid wherever the snow lets them through, and take what they need to last the cold.\n\nThe colony has food in its stores. {X_nameDef} will know that by now.</li>
@@ -231,7 +230,7 @@
           <li>[revenge] {X_nameDef} is dead, brought down at the colony by {B_nameDef}, who had more reason than most to do it. {NAME} has scattered; by the end of the season it will be a story told in {PLACE}, and not one they enjoy telling.\n\nThe region breathes easier, and it knows who to thank.</li>
           <li>[slayer] {B_nameDef} brought {X_nameDef} down at the colony's own walls. Without {X_objective}, {NAME} is a crowd of tired fighters a long way from home, and it is already breaking up.\n\nIn the towns around {PLACE}, they are drinking to the colony tonight.</li>
           <li>[diedCaptive] {X_nameDef} died in the colony's hands. {NAME} did not outlive {X_objective} by long: the band broke up within days, each fighter making for home with whatever could be carried.</li>
-          <li>[!diedCaptive] {X_nameDef} is dead. {NAME} came to the colony for plunder and lost its leader instead, and a band like that doesn't outlive its leader. Its fighters are already drifting home.\n\nThe neighbors have heard. For a while, the colony's name will mean something on the roads.</li>
+          <li>[!diedCaptive] {X_nameDef} is dead. {NAME} came to the colony for plunder and lost its leader instead. A band like that doesn't outlive the one who holds it together, and its fighters are already drifting home.\n\nThe neighbors have heard. For a while, the colony's name will mean something on the roads.</li>
         </texts>
         <chronicle>{X_nameDef} of {NAME} died at the colony.</chronicle>
         <effects>
@@ -303,7 +302,7 @@
           <li>The end of {NAME}</li>
         </titles>
         <texts>
-          <li>[takenAlive] Riders of {ENEMY} caught up with {X_nameDef} at the ford below {PLACE} and took {X_objective} alive. The rest of {NAME} scattered into the hills without a fight.\n\n{ENEMY} mean to put {X_nameDef} on trial. Either way, the colony has seen the last of {X_objective}.</li>
+          <li>[takenAlive] Riders of {ENEMY} caught up with {X_nameDef} at the ford below {PLACE} and took {X_objective} alive. The rest of {NAME} scattered into the hills without a fight.\n\n{ENEMY} mean to put {X_nameDef} on trial. However that goes, the colony has seen the last of {X_objective}.</li>
           <li>[!takenAlive] Riders of {ENEMY} brought {X_nameDef} down at the ford below {PLACE}. It was over in an afternoon: {NAME} broke and ran as soon as its leader fell.\n\nThe news reached the colony with a trader two days later.</li>
           <li>[gifts,!takenAlive,enemyLowtech] {ENEMY} cornered {X_nameDef} in the hills above {PLACE}, on horses and with bread the colony's silver paid for. {X_nameDef} did not come down again.\n\n{ENEMY} have sent a rider to tell the colony so, and to say thank you.</li>
           <li>[gifts,!takenAlive,enemyHightech] {ENEMY} ran {X_nameDef} to ground near {PLACE}, in trucks and with ammunition the colony's silver paid for. {NAME} is finished.\n\n{ENEMY} have sent word to say so, and to say thank you.</li>
@@ -324,7 +323,7 @@
         </titles>
         <texts>
           <li>[named,takenAlive,lowtech] {OTHER_nameDef}, a bounty hunter out of {PLACE}, brought {X_nameDef} in alive, tied across a saddle. The colony's notice was the reason, and the colony's silver paid for it.\n\n{NAME} has broken up. The roads are quieter already.</li>
-          <li>[named,takenAlive,!lowtech] {OTHER_nameDef}, a bounty hunter out of {PLACE}, drove {X_nameDef} in alive in the back of a truck. The colony's notice was the reason, and the colony's silver paid for it.\n\n{NAME} has broken up. The roads are quieter already.</li>
+          <li>[named,takenAlive,!lowtech] {OTHER_nameDef}, a bounty hunter out of {PLACE}, brought {X_nameDef} in alive, in the back of a truck. The colony's notice was the reason, and the colony's silver paid for it.\n\n{NAME} has broken up. The roads are quieter already.</li>
           <li>[named,!takenAlive] {OTHER_nameDef}, a bounty hunter working out of {PLACE}, tracked {X_nameDef} for nine days and brought {X_objective} down on the tenth. The colony's silver has changed hands, and {NAME} has broken up for good.</li>
           <li>[!named] The bounty has been collected. A hunter nobody in the colony has ever seen brought {X_nameDef} down and proved it, and the colony's silver paid for the hunt.\n\n{NAME} has broken up. The roads are quieter already.</li>
         </texts>

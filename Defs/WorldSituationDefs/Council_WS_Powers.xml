@@ -563,13 +563,13 @@
       <settlement>false</settlement>
     </faction>
     <names>
-      <li>the Free Lances</li>
       <li>the Gray Company</li>
-      <li>the Salt Swords</li>
       <li>the Lantern Company</li>
-      <li>[theirLowtech] the Bridge Spears</li>
-      <li>[theirHightech] the Brass Jackets</li>
-      <li>[theirHightech] the Ninth Rifles</li>
+      <li>the Free Company</li>
+      <li>the Salt Company</li>
+      <li>[theirLowtech] the Bridge Company</li>
+      <li>[theirHightech] the Brass Company</li>
+      <li>[theirHightech] the Ninth Battalion</li>
     </names>
     <titles>
       <li>Swords for hire</li>
@@ -697,7 +697,7 @@
     </titles>
     <texts>
       <li>The road between the colony and {PLACE} has turned bad. Bandits of {ENEMY} have been stopping carts in the cuttings and taking everything, and twice now they've taken the drivers too.\n\n{FACTION}'s caravans have stopped using it. So has anyone else with sense.</li>
-      <li>[enemyHightech] Somebody of {ENEMY} has set up on the road to {PLACE} with a roadblock and a machine gun nest, and is charging a toll of everything you own. {FACTION}'s trucks have stopped running.\n\nAnyone who can find another way is taking it.</li>
+      <li>[enemyHightech] Raiders of {ENEMY} have set up on the road to {PLACE} with a roadblock and a machine gun nest, and are charging a toll of everything a traveler owns. {FACTION}'s trucks have stopped running.\n\nAnyone who can find another way is taking it.</li>
     </texts>
     <summaries>
       <li>Caravans and visitors come less often, merchants get stranded, and the bandits may try the colony itself. Clearing the road would take silver, or patience.</li>
@@ -782,7 +782,7 @@
           </li>
           <li>
             <label>Send them on</label>
-            <outcome>The merchant is pointed toward {PLACE} and walks on, one boot at a time.</outcome>
+            <outcome>The merchant is given directions to {PLACE} and walks on.</outcome>
           </li>
         </options>
       </li>

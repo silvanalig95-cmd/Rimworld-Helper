@@ -25,8 +25,8 @@
       <li>Settlers found {PLACE}</li>
     </titles>
     <texts>
-      <li>[theirLowtech] Settlers of {FACTION} have founded a new town, {PLACE}, {TALE}. The first houses are up, the well is dug, and on a clear day the smoke from their chimneys can be seen from the colony's walls.\n\nNew towns need everything, all of it now: tools, timber, cloth, people. They will be looking for neighbors to trade with.</li>
-      <li>[theirHightech] {FACTION} have put a new settlement on the map: {PLACE}, {TALE}. The first prefab walls went up last week, and the place already has a landing pad and a name painted over the gate.\n\nNew towns need everything, all of it now: tools, timber, fuel, people. They will be looking for neighbors to trade with.</li>
+      <li>[theirLowtech] Settlers of {FACTION} have founded a new town, {PLACE}, {TALE}. The first houses are up, the well is dug, and the first market has already been held.\n\nNew towns need everything, all of it now: tools, timber, cloth, people. They will be looking for neighbors to trade with.</li>
+      <li>[theirHightech] {FACTION} have put a new settlement on the map: {PLACE}, {TALE}. The first prefab walls went up last week, and someone has already painted the name over the gate.\n\nNew towns need everything, all of it now: tools, timber, fuel, people. They will be looking for neighbors to trade with.</li>
       <li>[spring] With the snow gone, settlers of {FACTION} have walked out to found a new town, {PLACE}, {TALE}. They are mostly young, mostly hopeful, and mostly short of everything.\n\nThey will be looking for neighbors to trade with.</li>
     </texts>
     <summaries>
@@ -130,7 +130,7 @@
       <li>The last days of {PLACE}</li>
     </titles>
     <texts>
-      <li>[drought] {PLACE}, {TALE}, is being abandoned. Its wells have been going dry for two years, and this summer the last one failed.\n\n{FACTION} are moving everyone to {ITEM}. The road past the colony is full of carts, and not everyone on it has somewhere to go.</li>
+      <li>[drought] {PLACE}, {TALE}, is being abandoned. Its wells have been going dry for two years, and this year the last one failed.\n\n{FACTION} are moving everyone to {ITEM}. The road past the colony is full of carts, and not everyone on it has somewhere to go.</li>
       <li>[raids] {PLACE}, {TALE}, has been raided so often that {FACTION} have stopped rebuilding it. The order has gone out to leave.\n\nThe road to {ITEM} is full of carts. Some of the people on it would rather go anywhere else.</li>
       <li>[sickness] A fever went through {PLACE}, {TALE}, last season, and the people who lived through it don't want to stay where it happened. {FACTION} are giving the town up.\n\nMost are headed for {ITEM}. Some aren't sure where they're headed at all.</li>
       <li>[mine] The mine that {PLACE} was built around has given out. {FACTION} are giving up the town, {TALE}, and moving its people to {ITEM}.\n\nMiners are not, as a rule, good at sitting still. Some of them will come this way looking for work.</li>
@@ -290,7 +290,7 @@
           <li>Traders on the colony's land</li>
         </titles>
         <texts>
-          <li>Merchants have started cutting across the colony's land to save half a day on the road to {PLACE}. They are polite about it. They also leave gates open and drink from the well.\n\nSome at the colony think the merchants should pay for the privilege, about {COUNT} silver over the season. Others think a rest stop with water and a fire would make friends of every trader in the region.</li>
+          <li>Merchants have started cutting across the colony's land to save half a day on the road to {PLACE}. They are polite about it. They also leave gates open and drink from the well.\n\nSome at the colony think the merchants should pay for the privilege; a toll would bring in about {COUNT} silver. Others think a rest stop with water and a fire would make friends of every trader in the region.</li>
         </texts>
         <defaultOption>2</defaultOption>
         <options>
@@ -346,7 +346,7 @@
           <li>The trading season ends</li>
         </titles>
         <texts>
-          <li>[toll] The trading season is winding down, and the caravans are going home. The colony's toll jar ended the season heavy, and the colony's name ended it lighter.</li>
+          <li>[toll] The trading season is winding down, and the caravans are going home. The colony's toll jar did well. The merchants have been telling every town on the road about it, and not kindly.</li>
           <li>[reststop] The trading season is winding down. The merchants who warmed themselves at the colony's fire will be back next year, and they will bring friends.</li>
           <li>[!toll,!reststop] The trading season is winding down, and the caravans are going home with lighter wagons and heavier purses. The roads will be quieter for a while.</li>
         </texts>
@@ -413,18 +413,18 @@
           <li>A cart for {NAME}</li>
         </titles>
         <texts>
-          <li>{FACTION} have offered the colony a stall at {NAME}. The colony has {ITEM} it doesn't need, and fair prices are better than any trader's.\n\nThe silver would come back when the fair closes.</li>
+          <li>{FACTION} have offered the colony a stall at {NAME}. The colony has {COUNT} {THING} it doesn't need, and fair prices are better than any trader's.\n\nThe silver would come back when the fair closes.</li>
         </texts>
         <defaultOption>1</defaultOption>
         <options>
           <li>
-            <label>Send the cart ({ITEM})</label>
-            <outcome>The cart goes to {PLACE} loaded with {ITEM}. The silver will come back when the fair closes.</outcome>
+            <label>Send the cart ({COUNT} {THING})</label>
+            <outcome>The cart goes to {PLACE} loaded with {THING}. The silver will come back when the fair closes.</outcome>
             <effects>
               <li Class="ColonyCouncil.WorldEffect_Sell"><price>1.3</price><later>true</later></li>
             </effects>
             <flags><li>sent</li></flags>
-            <deed>sold {ITEM} at {NAME}</deed>
+            <deed>sold {THING} at {NAME}</deed>
             <ways><toil>1</toil></ways>
           </li>
           <li>
@@ -464,7 +464,7 @@
           <li>{NAME} closes</li>
         </titles>
         <texts>
-          <li>[sent,prize] {NAME} has closed, and it went well for the colony. The cart came back empty and the purse came back full, {COUNT} silver, and {B_nameDef} won the contest in {SKILL} and brought home the prize.\n\nThe colony's name was on a lot of lips at {PLACE} this week.</li>
+          <li>[sent,prize] {NAME} has closed, and it went well for the colony. The cart came back empty and the purse full, with {COUNT} silver for the colony's goods, and {B_nameDef} won the contest in {SKILL} and brought the prize home.\n\nThe colony's name was on a lot of lips at {PLACE} this week.</li>
           <li>[sent,noPrize] {NAME} has closed. The cart came back empty and the purse came back full: {COUNT} silver for the colony's goods.\n\n{B_nameDef} did well in the contest in {SKILL}, but not well enough. Next year, {B_nameDef} says.</li>
           <li>[sent,!entered] {NAME} has closed. The cart came back empty and the purse came back full: {COUNT} silver for the colony's goods.</li>
           <li>[!sent,prize] {NAME} has closed, and {B_nameDef} won the contest in {SKILL}. The prize came home with the news, and so did the bragging.</li>
