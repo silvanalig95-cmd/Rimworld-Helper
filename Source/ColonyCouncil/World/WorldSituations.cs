@@ -288,9 +288,10 @@ namespace ColonyCouncil
                 return null;
             }
             s.endTick = s.startTick + Mathf.RoundToInt(def.durationDays.RandomInRange * GenDate.TicksPerDay);
-            // Who its letters name from the start, so it can end quietly if one is lost from the save later.
-            if (s.ctx.stranger != null) s.SetNum("hasX", 1);
-            if (s.ctx.other != null) s.SetNum("hasOther", 1);
+            // Who its letters name from the start, so it can end quietly if one is lost from the save later. (Not the dead,
+            // like a chief who died as it began: the world may let go of them, and the letters name them by {DEAD}.)
+            if (s.ctx.stranger != null && !s.ctx.stranger.Dead) s.SetNum("hasX", 1);
+            if (s.ctx.other != null && !s.ctx.other.Dead) s.SetNum("hasOther", 1);
             if (s.ctx.enemy != null) s.SetNum("hasEnemy", 1);
             active.Add(s);
             string label = worker.Line(def.titles, s) ?? def.LabelCap.ToString();
