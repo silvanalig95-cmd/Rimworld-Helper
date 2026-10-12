@@ -116,7 +116,7 @@ Slop pots are the medieval paste dispenser: the plain pot serves slop, the ragou
       </li>
       <li>
         <heading>With Rimfolk</heading>
-        <text>The council counts this mod's barrel as a fermenter for brewery wishes and the brewery room plan, and ale, wine, mead and cider all count as something to drink. The firewood wish counts wood planks, not raw wood, so saw a stack of planks before the first frost if a colonist is worried about firewood.</text>
+        <text>The council counts this mod's barrel as a fermenter for brewery wishes and the brewery room plan, and ale, wine, mead and cider all count as something to drink. The firewood wish counts both raw wood and planks, so a full woodpile of either settles a colonist worried about the coming frost.</text>
       </li>
     </sections>
     <keywords>
@@ -383,7 +383,7 @@ The authors list a moderate incompatibility with Simple Sidearms, which is in th
       </li>
       <li>
         <heading>With Rimfolk</heading>
-        <text>The council recognizes lights and heaters by what they do, so magical lamps and climate furniture count like torches and hearths. The jewelry wish looks for necklaces, bracelets, amulets and the like; rings do not count.</text>
+        <text>The council recognizes lights and heaters by what they do, so magical lamps and climate furniture count like torches and hearths. The jewelry wish looks for rings, necklaces, bracelets, amulets and the like.</text>
       </li>
     </sections>
     <keywords>
