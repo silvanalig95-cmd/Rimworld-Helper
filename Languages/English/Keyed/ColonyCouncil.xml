@@ -1539,7 +1539,7 @@ Those against it ({WHO}) will trust the council less and resent it more than usu
   <CC_Settings_Moments_Tip>Colonists share small moments in conversation: grieving together, talking shop, praising the cook, telling old stories, friendly contests. They show in the social log, and as speech bubbles with Interaction Bubbles.</CC_Settings_Moments_Tip>
   <CC_Cause_Contest>{0} with {1}.</CC_Cause_Contest>
   <CC_Settings_Frictions>Everyday frictions</CC_Settings_Frictions>
-  <CC_Settings_Frictions_Tip>The small irritations of living close together: dishes left in the basin, a snoring bunkmate, advice nobody asked for. A messy or cramped home brings its own, like a leaking roof, a sticking door or a smoky room. Each costs 1 to 3 mood for half a day to two days. A tidy, roomy colony has far fewer of them.</CC_Settings_Frictions_Tip>
+  <CC_Settings_Frictions_Tip>The small irritations of living close together: dishes left in the basin, a snoring bunkmate, advice nobody asked for. A messy or cramped home brings its own, like a leaking roof, a sticking door or a smoky room. Each costs a point or two of mood for half a day to a day and a half. A tidy, roomy colony has far fewer of them.</CC_Settings_Frictions_Tip>
   <!-- Colonists helping themselves -->
   <CC_Settings_Autonomy>Colonists fix what bothers them</CC_Settings_Autonomy>
   <CC_Settings_Autonomy_Tip>Now and then, a colonist fixes a small thing that hurts their mood, in their own time: cleans their room, visits a grave, takes a short break when they're starved of recreation. Never in danger, never anything that harms anyone. You get a message each time.</CC_Settings_Autonomy_Tip>
