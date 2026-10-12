@@ -216,8 +216,34 @@ namespace ColonyCouncil
                 Widgets.Label(new Rect(0f, y, w, h), a.description);
                 y += h + 10f;
             }
-            y = Bullets(y, w, "CC_Almanac_Facts".Translate(), a.facts);
-            y = Bullets(y, w, "CC_Almanac_Advice".Translate(), a.advice);
+            if (!a.sections.NullOrEmpty())
+            {
+                foreach (var sec in a.sections)
+                {
+                    if (sec == null) continue;
+                    if (!sec.text.NullOrEmpty())
+                    {
+                        y = Heading(y, w, sec.heading);
+                        h = Text.CalcHeight(sec.text, w);
+                        Widgets.Label(new Rect(0f, y, w, h), sec.text);
+                        y += h + 6f;
+                        y = Points(y, w, null, sec.points);
+                    }
+                    else y = Points(y, w, sec.heading, sec.points);
+                }
+            }
+            // No fixed "facts" and "advice" headings: the page reads on from its description. What Rimfolk itself does
+            // with a mod gets its own short part, since that's a different subject.
+            var points = new List<string>();
+            var rimfolk = new List<string>();
+            foreach (var line in (a.facts ?? new List<string>()).Concat(a.advice ?? new List<string>()))
+            {
+                if (line.NullOrEmpty()) continue;
+                if (line.StartsWith(RimfolkPrefix)) rimfolk.Add(line.Substring(RimfolkPrefix.Length).TrimStart().CapitalizeFirst());
+                else points.Add(line);
+            }
+            y = Points(y, w, null, points);
+            y = Points(y, w, "CC_Almanac_WithRimfolk".Translate(), rimfolk);
 
             if (a.template != null && Find.CurrentMap != null)
             {
@@ -256,13 +282,23 @@ namespace ColonyCouncil
             Widgets.EndScrollView();
         }
 
-        private static float Bullets(float y, float w, string title, List<string> items)
+        /// <summary>How the mod pages mark what Rimfolk does with a mod ("With Rimfolk: ...").</summary>
+        private static string RimfolkPrefix => "CC_Almanac_WithRimfolkPrefix".Translate();
+
+        private static float Heading(float y, float w, string title)
+        {
+            if (title.NullOrEmpty()) return y;
+            GUI.color = Header;
+            float h = Text.CalcHeight(title, w);
+            Widgets.Label(new Rect(0f, y, w, h), title);
+            GUI.color = Color.white;
+            return y + h + 2f;
+        }
+
+        private static float Points(float y, float w, string title, List<string> items)
         {
             if (items == null || items.Count == 0) return y;
-            GUI.color = Header;
-            Widgets.Label(new Rect(0f, y, w, 24f), title);
-            GUI.color = Color.white;
-            y += 24f;
+            y = Heading(y, w, title);
             foreach (var item in items)
             {
                 float h = Text.CalcHeight(item, w - 16f);

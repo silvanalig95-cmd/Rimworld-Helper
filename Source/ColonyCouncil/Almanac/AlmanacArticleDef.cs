@@ -30,6 +30,14 @@ namespace ColonyCouncil
     /// One page of the council's almanac: good practice, the numbers behind it, and what to do. Written in the
     /// game's voice, linked to the advisor's warnings and to room plans.
     /// </summary>
+    /// <summary>A part of an almanac page with its own heading (optional), a paragraph and/or points.</summary>
+    public class AlmanacSection
+    {
+        [MustTranslate] public string heading;
+        [MustTranslate] public string text;
+        [MustTranslate] public List<string> points;
+    }
+
     public class AlmanacArticleDef : Def
     {
         public AlmanacCategory category = AlmanacCategory.Basics;
@@ -42,6 +50,11 @@ namespace ColonyCouncil
         [MustTranslate] public List<string> facts;
         /// <summary>Practical steps.</summary>
         [MustTranslate] public List<string> advice;
+        /// <summary>
+        /// The page's own structure, when its subject needs one ("Setting it up", "In a siege"...): shown after the
+        /// description, in order. Pages without sections show their facts and advice as one list of points.
+        /// </summary>
+        public List<AlmanacSection> sections;
         /// <summary>Extra words the search should find this by.</summary>
         public List<string> keywords;
         public List<AlmanacArticleDef> seeAlso;
@@ -107,7 +120,7 @@ namespace ColonyCouncil
         public override IEnumerable<string> ConfigErrors()
         {
             foreach (var e in base.ConfigErrors()) yield return e;
-            if (description.NullOrEmpty() && (facts == null || facts.Count == 0)) yield return "almanac article has no text";
+            if (description.NullOrEmpty() && (facts == null || facts.Count == 0) && (sections == null || sections.Count == 0)) yield return "almanac article has no text";
             if (mods != null && mods.Any(m => m.NullOrEmpty() || m != m.Trim().ToLowerInvariant())) yield return "mod package ids must be lowercase";
             if (!dlc.NullOrEmpty() && !new[] { "Royalty", "Ideology", "Biotech", "Anomaly", "Odyssey" }.Contains(dlc)) yield return "unknown dlc " + dlc;
         }

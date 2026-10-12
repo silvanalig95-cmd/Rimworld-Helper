@@ -644,8 +644,8 @@
   <CC_Almanac_Pick>Pick a page.</CC_Almanac_Pick>
   <CC_Almanac_NotActive>not active</CC_Almanac_NotActive>
   <CC_Almanac_Approximate>some numbers are approximate</CC_Almanac_Approximate>
-  <CC_Almanac_Facts>The facts</CC_Almanac_Facts>
-  <CC_Almanac_Advice>What to do</CC_Almanac_Advice>
+  <CC_Almanac_WithRimfolk>With Rimfolk</CC_Almanac_WithRimfolk>
+  <CC_Almanac_WithRimfolkPrefix>With Rimfolk:</CC_Almanac_WithRimfolkPrefix>
   <CC_Almanac_PlanRoom>Plan a {0}</CC_Almanac_PlanRoom>
   <CC_Almanac_SeeAlso>See also</CC_Almanac_SeeAlso>
   <CC_AlmanacCat_Basics>First steps</CC_AlmanacCat_Basics>
