@@ -24,13 +24,18 @@ To update later, double-click **`Update Rimfolk.bat`** in the `Rimfolk` folder (
 **Pull origin**, in GitHub Desktop). Restart RimWorld afterwards. Updating replaces anything changed by hand inside
 the mod folder; your settings and saves are kept elsewhere and are safe.
 
-**Or: download a ZIP each time.**
-1. Download this repository as a ZIP (green **Code** button → **Download ZIP**) and extract it.
-2. Move the extracted folder into your RimWorld `Mods` folder and name it `Rimfolk` (if you had the old
-   `ColonyCouncil` folder, delete it first):
-   - Steam on Windows: `C:\Program Files (x86)\Steam\steamapps\common\RimWorld\Mods\Rimfolk`
-   - Mac: right-click RimWorld.app → Show Package Contents → `Mods/Rimfolk`
-3. Start RimWorld, open **Mods**, enable **Rimfolk** and restart.
+**Or: download a ZIP and run the installer.**
+1. Download this repository as a ZIP (green **Code** button → **Download ZIP**; pick the branch you want in the
+   branch menu first) and extract it anywhere, for example in Downloads.
+2. Close RimWorld, then double-click **`Install Rimfolk.bat`** in the extracted folder. It removes the old version
+   from `C:\Program Files (x86)\Steam\steamapps\common\RimWorld\Mods\Rimworld Helper` and copies the mod's
+   files there (only what the game needs: `About`, `1.6`, `Defs`, `Languages`, `Textures`). If Windows asks for
+   administrator rights, say yes. To install somewhere else, open the file in Notepad and change `MODS` and
+   `FOLDER` at the top.
+3. Start RimWorld, open **Mods**, enable **Rimfolk** and restart. Repeat steps 1 and 2 to update.
+
+On a Mac, move the extracted folder into `Mods` yourself (right-click RimWorld.app → Show Package Contents →
+`Mods/Rimfolk`).
 
 The folder must contain `About/`, `1.6/`, `Defs/`, `Languages/` and `Textures/` directly (not nested
 one level deeper). It is safe to add to an existing save. Removing it from a running save logs some
