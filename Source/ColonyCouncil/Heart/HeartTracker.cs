@@ -57,7 +57,12 @@ namespace ColonyCouncil
             HeartView.Reset();
             HeartLogic.ResetSession();
             Heart.ResetCaches();
+            Feelings.Reset();
+            peekPending = true;
         }
+
+        /// <summary>After a load, feelings and needs (not saved) are worked out once, without touching strain.</summary>
+        [Unsaved] private bool peekPending;
 
         /// <summary>The colonist's heart, or null when they have none (not one of the colony's people, a baby).</summary>
         public PawnHeart For(Pawn p, bool create = false)
@@ -91,6 +96,22 @@ namespace ColonyCouncil
         public override void GameComponentTick()
         {
             int now = Find.TickManager.TicksGame;
+            if (peekPending && Heart.On)
+            {
+                peekPending = false;
+                foreach (var kv in hearts)
+                {
+                    if (kv.Value.evaluated || !Heart.Eligible(kv.Key)) continue;
+                    try
+                    {
+                        HeartLogic.Peek(kv.Key, kv.Value, HeartMapContext.For(kv.Key.MapHeld, now), now);
+                    }
+                    catch (Exception e)
+                    {
+                        CouncilLog.ErrorOnce("heart after loading", e);
+                    }
+                }
+            }
             if (now % SliceTicks != 71) return;
             if (!Heart.On) return;
             int slice = now / SliceTicks % Slices;

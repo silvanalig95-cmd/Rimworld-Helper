@@ -66,12 +66,12 @@
   <CC_Heart_Need_Purpose_Desc>Doing work they love, a life goal, a seat on the council, learning something new.</CC_Heart_Need_Purpose_Desc>
   <CC_Heart_Need_Safety_Desc>No danger at the door, food and medicine in store, decent defenses, and their own health.</CC_Heart_Need_Safety_Desc>
   <CC_Heart_Need_Freedom_Desc>Time outdoors and time of their own, varied work, getting out into the world, and few restrictions.</CC_Heart_Need_Freedom_Desc>
-  <CC_Heart_NeedsAllMet>All four are well met, so strain drains a little faster.</CC_Heart_NeedsAllMet>
+  <CC_Heart_NeedsAllMet>All four are well met, so strain drains 20% faster.</CC_Heart_NeedsAllMet>
   <CC_Heart_NeedsFine>Nothing is badly missing.</CC_Heart_NeedsFine>
   <CC_Heart_NeedsMissing>Missing most: {0}.</CC_Heart_NeedsMissing>
   <CC_Heart_NeedsMissingWhy>Missing most: {0} ({1}).</CC_Heart_NeedsMissingWhy>
   <CC_Heart_NeedMostly>Mostly: {0}</CC_Heart_NeedMostly>
-  <CC_Heart_NeedsExplain>The heart's needs give no mood of their own. The one a colonist lacks most makes the wishes and life goals that answer it a little likelier, and when all four are 60 or more, strain drains 20% faster.</CC_Heart_NeedsExplain>
+  <CC_Heart_NeedsExplain>The heart's needs give no mood of their own. The one a colonist lacks most makes the wishes and life goals that answer it up to 35% likelier, and when all four are 60 or more, strain drains 20% faster.</CC_Heart_NeedsExplain>
 
   <!-- Why a need is high or low -->
   <CC_Heart_Why_Alone>nobody else here</CC_Heart_Why_Alone>
@@ -165,42 +165,42 @@
   <CC_Heart_F_Grief>grief</CC_Heart_F_Grief>
   <CC_Heart_F_Grief_Adj>grieving</CC_Heart_F_Grief_Adj>
   <CC_Heart_F_Grief_Desc>Sorrow for someone dead or gone: a friend, family, a partner, a bonded animal. It fades as the memories do, and a funeral, a grave or a friend nearby helps it along.</CC_Heart_F_Grief_Desc>
-  <CC_Heart_F_Grief_Does>Adds a little strain while it lasts, and runs deeper when they're worn down. Makes a wish for a proper grave likelier, moments of shared grief more common and dreams of the dead more frequent. Psychopaths don't feel it.</CC_Heart_F_Grief_Does>
+  <CC_Heart_F_Grief_Does>Adds up to 3 strain a day while it lasts, and runs deeper when they're worn down. Makes a wish for a proper grave likelier, moments of shared grief more common and dreams of the dead more frequent. Psychopaths don't feel it.</CC_Heart_F_Grief_Does>
 
   <CC_Heart_F_Fear>fear</CC_Heart_F_Fear>
   <CC_Heart_F_Fear_Adj>afraid</CC_Heart_F_Fear_Adj>
   <CC_Heart_F_Fear_Desc>Danger here and now: enemies on the map, lying downed, pain, a fresh wound, things in the dark.</CC_Heart_F_Fear_Desc>
-  <CC_Heart_F_Fear_Does>Adds strain while it lasts, and runs deeper when they're worn down. Makes wishes for defenses, armor and weapons likelier and nightmares more common. The nervous feel it more; the iron-willed and the bloodthirsty, less.</CC_Heart_F_Fear_Does>
+  <CC_Heart_F_Fear_Does>Adds up to 3 strain a day while it lasts, and runs deeper when they're worn down. Makes wishes for defenses, armor and weapons likelier and nightmares more common. The nervous feel it more; the iron-willed and the bloodthirsty, less.</CC_Heart_F_Fear_Does>
 
   <CC_Heart_F_Dread>dread</CC_Heart_F_Dread>
   <CC_Heart_F_Dread_Adj>uneasy</CC_Heart_F_Dread_Adj>
   <CC_Heart_F_Dread_Desc>Worry about what's coming rather than what's here: a fight the colony knows is on its way, a warband in the region, a debt, a lean winter, too little medicine.</CC_Heart_F_Dread_Desc>
-  <CC_Heart_F_Dread_Does>Adds a trickle of strain and slows recovery a little. Makes wishes for defenses, medicine, food stores and firewood likelier. Getting ready for what's coming eases it.</CC_Heart_F_Dread_Does>
+  <CC_Heart_F_Dread_Does>Adds up to 2 strain a day and slows recovery by up to 10%. Makes wishes for defenses, medicine, food stores and firewood likelier. Getting ready for what's coming eases it.</CC_Heart_F_Dread_Does>
 
   <CC_Heart_F_Anger>anger</CC_Heart_F_Anger>
   <CC_Heart_F_Anger_Adj>angry</CC_Heart_F_Anger_Adj>
   <CC_Heart_F_Anger_Desc>Insults, slights, fights, council decisions that went against them, a grudge, a rival close by. Often it has one person's name on it.</CC_Heart_F_Anger_Desc>
-  <CC_Heart_F_Anger_Does>Makes frictions with others likelier, most of all with the person it's about, and warm moments rarer. Makes wishes for justice likelier.</CC_Heart_F_Anger_Does>
+  <CC_Heart_F_Anger_Does>Makes frictions with others up to 60% likelier, more still with the person it's about, and warm moments up to a quarter rarer. Makes wishes for justice likelier.</CC_Heart_F_Anger_Does>
 
   <CC_Heart_F_Shame>shame</CC_Heart_F_Shame>
   <CC_Heart_F_Shame_Adj>ashamed</CC_Heart_F_Shame_Adj>
   <CC_Heart_F_Shame_Desc>Something they did or let happen: a prisoner executed or sold, a body butchered, someone banished, a break they'd rather forget, a secret out in the open.</CC_Heart_F_Shame_Desc>
-  <CC_Heart_F_Shame_Does>They start fewer warm moments with others. Makes wishes that make amends likelier: a grave, mercy for a prisoner, care for the hurt. Psychopaths don't feel it.</CC_Heart_F_Shame_Does>
+  <CC_Heart_F_Shame_Does>They start up to 30% fewer warm moments with others. Makes wishes that make amends likelier: a grave, mercy for a prisoner, care for the hurt. Psychopaths don't feel it.</CC_Heart_F_Shame_Does>
 
   <CC_Heart_F_Envy>envy</CC_Heart_F_Envy>
   <CC_Heart_F_Envy_Adj>envious</CC_Heart_F_Envy_Adj>
   <CC_Heart_F_Envy_Desc>Someone else has what they want: a better room, finer things, the council's favor, the seat they lost.</CC_Heart_F_Envy_Desc>
-  <CC_Heart_F_Envy_Does>Makes frictions likelier, most of all with the person they envy, and wishes for the same things likelier: a nicer room, fine clothes, jewelry, better gear.</CC_Heart_F_Envy_Does>
+  <CC_Heart_F_Envy_Does>Makes frictions up to 35% likelier, more still with the person they envy, and wishes for the same things likelier: a nicer room, fine clothes, jewelry, better gear.</CC_Heart_F_Envy_Does>
 
   <CC_Heart_F_Disgust>disgust</CC_Heart_F_Disgust>
   <CC_Heart_F_Disgust_Adj>disgusted</CC_Heart_F_Disgust_Adj>
   <CC_Heart_F_Disgust_Desc>Raw or rotten food, corpses lying about, the smell of rot, human leather, insect meat, a filthy home.</CC_Heart_F_Disgust_Desc>
-  <CC_Heart_F_Disgust_Does>Makes frictions a little likelier, and wishes for a clean colony, better food and a proper dining table likelier.</CC_Heart_F_Disgust_Does>
+  <CC_Heart_F_Disgust_Does>Makes frictions up to 20% likelier, and wishes for a clean colony, better food and a proper dining table likelier.</CC_Heart_F_Disgust_Does>
 
   <CC_Heart_F_Loneliness>loneliness</CC_Heart_F_Loneliness>
   <CC_Heart_F_Loneliness_Adj>lonely</CC_Heart_F_Loneliness_Adj>
   <CC_Heart_F_Loneliness_Desc>Nobody here they'd call a friend, a partner far away, being left out.</CC_Heart_F_Loneliness_Desc>
-  <CC_Heart_F_Loneliness_Does>Makes warm moments with others likelier, and wishes for a party, music or an animal companion. Love eases it. Recluses don't feel it.</CC_Heart_F_Loneliness_Does>
+  <CC_Heart_F_Loneliness_Does>Makes warm moments with others up to 50% likelier, and wishes for a party, music or an animal companion. Love eases it. Recluses don't feel it.</CC_Heart_F_Loneliness_Does>
 
   <CC_Heart_F_Homesick>homesickness</CC_Heart_F_Homesick>
   <CC_Heart_F_Homesick_Adj>homesick</CC_Heart_F_Homesick_Adj>
@@ -210,37 +210,37 @@
   <CC_Heart_F_Frustration>frustration</CC_Heart_F_Frustration>
   <CC_Heart_F_Frustration_Adj>frustrated</CC_Heart_F_Frustration_Adj>
   <CC_Heart_F_Frustration_Desc>Wishes refused or left to lapse, broken promises, a vote lost, work they love turned off, things that keep going wrong.</CC_Heart_F_Frustration_Desc>
-  <CC_Heart_F_Frustration_Does>They have less patience with their wishes and get into more frictions. Makes wishes to do the work they love likelier.</CC_Heart_F_Frustration_Does>
+  <CC_Heart_F_Frustration_Does>Their wishes run out up to 15% sooner, and frictions are up to 30% likelier. Makes wishes to do the work they love likelier.</CC_Heart_F_Frustration_Does>
 
   <CC_Heart_F_Despair>despair</CC_Heart_F_Despair>
   <CC_Heart_F_Despair_Adj>despairing</CC_Heart_F_Despair_Adj>
   <CC_Heart_F_Despair_Desc>Low spirits for days, losses close together, a colony that's losing, strain near breaking. The opposite of hope.</CC_Heart_F_Despair_Desc>
-  <CC_Heart_F_Despair_Does>Adds a little strain, slows recovery and makes a day off a little likelier. Hope eases it.</CC_Heart_F_Despair_Does>
+  <CC_Heart_F_Despair_Does>Adds up to 2 strain a day, slows recovery by up to 20% and makes a day off up to 25% likelier. Hope eases it.</CC_Heart_F_Despair_Does>
 
   <CC_Heart_F_Joy>joy</CC_Heart_F_Joy>
   <CC_Heart_F_Joy_Adj>joyful</CC_Heart_F_Joy_Adj>
   <CC_Heart_F_Joy_Desc>Good meals, parties, lovin', a wish granted, a victory, an inspiration.</CC_Heart_F_Joy_Desc>
-  <CC_Heart_F_Joy_Does>Strain drains faster. Makes warm moments and sweet dreams more common, and wishes for a party or music likelier.</CC_Heart_F_Joy_Does>
+  <CC_Heart_F_Joy_Does>Strain drains up to 25% faster. Makes warm moments and sweet dreams more common, and wishes for a party or music likelier.</CC_Heart_F_Joy_Does>
 
   <CC_Heart_F_Pride>pride</CC_Heart_F_Pride>
   <CC_Heart_F_Pride_Adj>proud</CC_Heart_F_Pride_Adj>
   <CC_Heart_F_Pride_Desc>Good work, an impressive room, a victory, a seat on the council, a name the colony gave them, a title.</CC_Heart_F_Pride_Desc>
-  <CC_Heart_F_Pride_Does>Strain drains a little faster. Makes wishes for art, banners, fine things and a grander room likelier.</CC_Heart_F_Pride_Does>
+  <CC_Heart_F_Pride_Does>Strain drains up to 15% faster. Makes wishes for art, banners, fine things and a grander room likelier.</CC_Heart_F_Pride_Does>
 
   <CC_Heart_F_Love>love</CC_Heart_F_Love>
   <CC_Heart_F_Love_Adj>loving</CC_Heart_F_Love_Adj>
   <CC_Heart_F_Love_Desc>A partner or spouse close by, a new baby, family together.</CC_Heart_F_Love_Desc>
-  <CC_Heart_F_Love_Does>Strain drains a little faster. Makes warm moments likelier, most of all with the one they love, and sweet dreams more common. Eases loneliness.</CC_Heart_F_Love_Does>
+  <CC_Heart_F_Love_Does>Strain drains up to 10% faster. Makes warm moments up to 35% likelier, most of all with the one they love, and sweet dreams more common. Eases loneliness.</CC_Heart_F_Love_Does>
 
   <CC_Heart_F_Gratitude>gratitude</CC_Heart_F_Gratitude>
   <CC_Heart_F_Gratitude_Adj>grateful</CC_Heart_F_Gratitude_Adj>
   <CC_Heart_F_Gratitude_Desc>Someone rescued them, tended them, taught them or did them a kindness, or the council granted a wish or kept a promise.</CC_Heart_F_Gratitude_Desc>
-  <CC_Heart_F_Gratitude_Does>Makes warm moments likelier, most of all with the person they're grateful to. When the council is among the reasons, their trust in it grows a little each day.</CC_Heart_F_Gratitude_Does>
+  <CC_Heart_F_Gratitude_Does>Makes warm moments up to 30% likelier, more still with the person they're grateful to. When the council is among the reasons, their trust in it grows by a point every few days.</CC_Heart_F_Gratitude_Does>
 
   <CC_Heart_F_Hope>hope</CC_Heart_F_Hope>
   <CC_Heart_F_Hope_Adj>hopeful</CC_Heart_F_Hope_Adj>
   <CC_Heart_F_Hope_Desc>Spring, a new face in the colony, a wound healing, strain lifting, a goal in reach, a fresh start.</CC_Heart_F_Hope_Desc>
-  <CC_Heart_F_Hope_Does>Strain drains faster, and despair fades. Makes wishes for books, lessons and things that grow likelier.</CC_Heart_F_Hope_Does>
+  <CC_Heart_F_Hope_Does>Strain drains up to 20% faster, and despair fades. Makes wishes for books, lessons and things that grow likelier.</CC_Heart_F_Hope_Does>
 
   <CC_Heart_F_Awe>awe</CC_Heart_F_Awe>
   <CC_Heart_F_Awe_Adj>in awe</CC_Heart_F_Awe_Adj>
@@ -250,7 +250,7 @@
   <CC_Heart_F_Contentment>contentment</CC_Heart_F_Contentment>
   <CC_Heart_F_Contentment_Adj>content</CC_Heart_F_Contentment_Adj>
   <CC_Heart_F_Contentment_Desc>Quiet days: no danger, a decent room, enough food, rest and free time, a good mood. The calm baseline.</CC_Heart_F_Contentment_Desc>
-  <CC_Heart_F_Contentment_Does>Strain drains faster.</CC_Heart_F_Contentment_Does>
+  <CC_Heart_F_Contentment_Does>Strain drains up to 25% faster.</CC_Heart_F_Contentment_Does>
 
   <CC_Heart_F_Curiosity>curiosity</CC_Heart_F_Curiosity>
   <CC_Heart_F_Curiosity_Adj>curious</CC_Heart_F_Curiosity_Adj>
@@ -260,7 +260,7 @@
   <CC_Heart_F_Restless>restlessness</CC_Heart_F_Restless>
   <CC_Heart_F_Restless_Adj>restless</CC_Heart_F_Restless_Adj>
   <CC_Heart_F_Restless_Desc>The same work day after day, too little fun, cabin fever.</CC_Heart_F_Restless_Desc>
-  <CC_Heart_F_Restless_Does>Makes wishes to get outside, travel, hunt or take a day off likelier, and frictions a little more common.</CC_Heart_F_Restless_Does>
+  <CC_Heart_F_Restless_Does>Makes wishes to get outside, travel, hunt or take a day off likelier, and frictions up to 10% likelier.</CC_Heart_F_Restless_Does>
 
   <!-- Intensity and time -->
   <CC_Heart_Intensity_Mild>mild</CC_Heart_Intensity_Mild>
@@ -318,7 +318,7 @@
   <!-- Settings -->
   <CC_Settings_HeartHeader>Feelings and strain</CC_Settings_HeartHeader>
   <CC_Settings_Heart>Feelings and strain</CC_Settings_Heart>
-  <CC_Settings_Heart_Tip>A layer under mood that never changes how the game decides on mental breaks. Each colonist builds strain from fighting, pain, losses and bad nights and drains it with rest and good times; from 30 it costs a little mood, from 55 a little work speed. They also have one or two feelings at a time (grief, fear, pride, joy and more) that nudge their wishes, dreams and how they get on with others, and four long-term needs that show what their life is missing. Turned off, all of it stops, and the strain mood and slowdown are gone.</CC_Settings_Heart_Tip>
+  <CC_Settings_Heart_Tip>A layer under mood that never changes how the game decides on mental breaks. Each colonist builds strain from fighting, pain, losses and bad nights and drains it with rest and good times; from 30 it costs 3 to 8 mood, from 55 also 5 to 10% of their work speed. They also have one or two feelings at a time (grief, fear, pride, joy and more) that nudge their wishes, dreams and how they get on with others, and four long-term needs that show what their life is missing. Turned off, all of it stops, and the strain mood and slowdown are gone.</CC_Settings_Heart_Tip>
   <CC_Settings_HeartEpisodes>A colonist at the end of their rope takes a day off</CC_Settings_HeartEpisodes>
   <CC_Settings_HeartEpisodes_Tip>At strain 85 or more, a colonist may stop working for six to twelve hours and keep to their room. Never in danger, never with fewer than two others able to work, at most once in 2 days in the colony and once in 10 days for each colonist. Afterwards their strain drops by about 40. Turned off, strain still builds and drains, but nobody takes a day.</CC_Settings_HeartEpisodes_Tip>
   <CC_Settings_HeartInspector>Strain and feelings in the inspector</CC_Settings_HeartInspector>

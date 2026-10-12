@@ -225,7 +225,7 @@
   <ColonyCouncil.DecreeDef>
     <defName>Council_Decree_Rest</defName>
     <label>days of rest</label>
-    <description>Shorter days, longer evenings, and nobody woken early. Everyone works 10% slower, and strain drains about twice as fast. The worn out and the lazy are glad of it; the industrious would rather work. Only with feelings and strain switched on.</description>
+    <description>Shorter days, longer evenings, and no early mornings. Everyone works 10% slower, and strain drains about twice as fast. The worn out and the lazy are glad of it; the industrious would rather work. Only with feelings and strain switched on.</description>
     <requestWhen><li>Strained</li></requestWhen>
     <order>13</order>
     <durationDays>3</durationDays>
@@ -249,8 +249,8 @@
       <li>Most colonists are glad of it, the lazy most of all; the industrious would rather work.</li>
     </effects>
     <support>
-      <plain><li>Three days. That's all I'm asking for. Three days where nobody needs anything from me.</li></plain>
-      <warm><li>Look at everyone. We're running on fumes. Let's stop for a bit.</li></warm>
+      <plain><li>Three days. That's all I'm asking for. Three days with my boots off.</li></plain>
+      <warm><li>Look at us. We're running on fumes. Let's stop for a few days.</li></warm>
       <gloomy><li>If we don't rest now, we'll be resting in the graveyard.</li></gloomy>
       <cold><li>Tired hands make mistakes. A short rest costs less than a long recovery.</li></cold>
     </support>

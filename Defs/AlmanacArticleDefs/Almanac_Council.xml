@@ -667,10 +667,10 @@ To head it off, use days of rest: a decree that slows everyone's work by 10% for
       </li>
       <li>
         <heading>Feelings</heading>
-        <text>Feelings come from the moods a colonist has right now (as big as the game counts them) and from what they can see: enemies on the map, a fight on its way, a new face, quiet days. The strongest one or two show in the inspector; the Mood tab lists every one they have, how strong, since when and why. They add no mood, because that would count the same thing twice. Instead they nudge: a wish that fits becomes up to half again as likely, moments between colonists go warmer or pricklier, dreams change color, strain builds or drains a little faster.</text>
+        <text>Feelings come from the moods a colonist has right now (as big as the game counts them) and from what they can see: enemies on the map, a fight on its way, a new face, quiet days. The strongest one or two show in the inspector; the Mood tab lists every one they have, how strong, since when and why. They add no mood, because that would count the same thing twice. Instead they nudge: a wish that fits becomes up to half again as likely, moments between colonists go warmer or pricklier, dreams change color, strain builds or drains faster. Each nudge is at its fullest only when the feeling is strong.</text>
         <table>
           <li>Feeling | Comes from | Nudges</li>
-          <li>Grief | deaths and losses | a grave for the dead, grief shared, dreams of the dead, a little strain</li>
+          <li>Grief | deaths and losses | a grave for the dead, grief shared, dreams of the dead, some strain</li>
           <li>Fear | danger here and now | defenses and weapons, nightmares, strain</li>
           <li>Dread | what's coming: a promised fight, a warband, a lean winter | stores, medicine and defenses, a trickle of strain</li>
           <li>Anger | insults, fights, unfair decisions, a rival | frictions, wishes for justice</li>

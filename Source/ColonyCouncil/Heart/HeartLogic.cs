@@ -61,6 +61,21 @@ namespace ColonyCouncil
             Episodes.MaybeStart(p, h, m, now);
         }
 
+        /// <summary>Feelings, needs and the inspector line, worked out again without building or draining strain (after a load).</summary>
+        public static void Peek(Pawn p, PawnHeart h, HeartMapContext m, int now)
+        {
+            if (p.needs?.mood?.thoughts == null) return;
+            LookUpDefs();
+            h.EnsureLists();
+            groups.Clear();
+            p.needs.mood.thoughts.GetDistinctMoodThoughtGroups(groups);
+            Feelings.Compute(p, h, m, groups, now, Heart.TraitsOf(p));
+            HeartNeeds.Compute(p, h, m);
+            groups.Clear();
+            h.evaluated = true;
+            HeartView.Refresh(p, h);
+        }
+
         // ---------------- Once a day ----------------
 
         private static void Daily(Pawn p, PawnHeart h, int now)
@@ -70,10 +85,10 @@ namespace ColonyCouncil
             {
                 var d = f.def;
                 // Grateful to the council for what it did: a point of trust, every few days while it lasts.
-                if (d.trustPerDay > 0f && f.fromCouncil && f.Share >= 0.4f && comp != null && S.enableWishes && p.IsFreeNonSlaveColonist
+                if (d.trust > 0f && f.fromCouncil && f.Share >= 0.4f && comp != null && S.enableWishes && p.IsFreeNonSlaveColonist
                     && now - h.lastTrustTick >= GenDate.TicksPerDay * 3)
                 {
-                    comp.standings.Change(p, d.trustPerDay, "CC_Heart_TrustGrateful".Translate());
+                    comp.standings.Change(p, d.trust, "CC_Heart_TrustGrateful".Translate());
                     h.lastTrustTick = now;
                 }
                 // Awe now and then becomes an inspiration: rare, and once a month at most.

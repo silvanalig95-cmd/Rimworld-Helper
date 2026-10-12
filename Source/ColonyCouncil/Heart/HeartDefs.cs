@@ -138,8 +138,8 @@ namespace ColonyCouncil
         public float episode = 1f;
         /// <summary>Daily chance of an inspiration at full intensity (rare and capped: once a month at most).</summary>
         public float inspirationPerDay;
-        /// <summary>Trust in the council gained per day, when the council is among what fed it.</summary>
-        public float trustPerDay;
+        /// <summary>Trust in the council gained every three days while it lasts, when the council is among what fed it.</summary>
+        public float trust;
 
         [Unsaved] private FeelingWorker workerInt;
         [Unsaved] private List<FeelingFeed> allFeeds;

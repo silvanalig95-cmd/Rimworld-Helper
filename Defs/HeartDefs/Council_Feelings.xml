@@ -785,7 +785,7 @@
     <relief>1.1</relief>
     <warm>1.3</warm>
     <towardTarget>1.5</towardTarget>
-    <trustPerDay>1</trustPerDay>
+    <trust>1</trust>
   </ColonyCouncil.FeelingDef>
 
   <ColonyCouncil.FeelingDef>
