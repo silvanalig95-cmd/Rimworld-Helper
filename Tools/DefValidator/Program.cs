@@ -282,12 +282,15 @@ foreach (var f in defOfType!.GetFields(BindingFlags.Public | BindingFlags.Static
     if (!ModHas(f.FieldType, f.Name)) errors.Add($"CouncilDefOf.{f.Name} ({f.FieldType.Name}) has no matching def");
 
 // ---------- Keyed translations ----------
-var keyedFile = Path.Combine(modRoot, "Languages", "English", "Keyed", "ColonyCouncil.xml");
+// Every file in the Keyed folder, as the game loads them (one per feature area is fine).
 var keyed = new Dictionary<string, string>();
-var keyedDoc = XDocument.Load(keyedFile, LoadOptions.SetLineInfo);
-foreach (var el in keyedDoc.Root!.Elements())
+foreach (var keyedFile in Directory.GetFiles(Path.Combine(modRoot, "Languages", "English", "Keyed"), "*.xml").OrderBy(f => f))
 {
-    if (!keyed.TryAdd(el.Name.LocalName, el.Value)) errors.Add($"Keyed: duplicate key {el.Name.LocalName}");
+    var keyedDoc = XDocument.Load(keyedFile, LoadOptions.SetLineInfo);
+    foreach (var el in keyedDoc.Root!.Elements())
+    {
+        if (!keyed.TryAdd(el.Name.LocalName, el.Value)) errors.Add($"Keyed: duplicate key {el.Name.LocalName} ({Path.GetFileName(keyedFile)})");
+    }
 }
 var usedKeys = Regex.Matches(src, "\"(CC_[A-Za-z0-9_]+)\"").Select(m => m.Groups[1].Value).Where(k => !k.EndsWith("_")).ToHashSet();
 foreach (var k in usedKeys)
