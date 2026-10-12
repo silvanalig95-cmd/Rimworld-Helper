@@ -483,7 +483,8 @@ namespace ColonyCouncil
         public override Job TryGiveJob(Pawn pawn)
         {
             var c = Open(pawn);
-            if (c == null || !pawn.IsFreeColonist || pawn.Drafted || pawn.DevelopmentalStage.Baby()) return null;
+            // The visit's ticking feeds recreation: never for someone without that need (it would fail every tick).
+            if (c == null || !pawn.IsFreeColonist || pawn.Drafted || pawn.DevelopmentalStage.Baby() || pawn.needs?.joy == null) return null;
             if (!pawn.Position.InHorDistOf(c.center, 90f) || GenHostility.AnyHostileActiveThreatToPlayer(pawn.Map, false, false)) return null;
             var map = pawn.Map;
             var fire = c.FireCell;

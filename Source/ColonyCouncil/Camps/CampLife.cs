@@ -369,10 +369,16 @@ namespace ColonyCouncil
                 foreach (var t in inv.ToList())
                 {
                     if (!needs.Contains(t.def) || (p == trader && !p.inventory.NotForSale(t))) continue;
-                    if (inv.TryDrop(t, stash, map, ThingPlaceMode.Near, out var dropped, null, c => c.InHorDistOf(stash, 3f)) && dropped != null) Own(dropped);
+                    if (inv.TryDrop(t, stash, map, ThingPlaceMode.Near, out var dropped, null, AtStash) && dropped != null) Own(dropped);
                 }
             }
         }
+
+        /// <summary>
+        /// A spot at their stash for their goods: close to it, with nothing on it that isn't theirs (what's put down there
+        /// becomes theirs, so it mustn't land on, or stack onto, anyone else's things).
+        /// </summary>
+        private bool AtStash(IntVec3 c) => c.InHorDistOf(stash, 3f) && !c.GetThingList(map).Any(t => t.def.category == ThingCategory.Item && !Owns(t));
 
         public static List<ThingDefCountClass> Costs(CampPlan p)
         {
@@ -416,7 +422,7 @@ namespace ColonyCouncil
             if (left.Count > 0 && Now < buildDeadline) return;
             foreach (var t in left)
             {
-                if (t is Frame f && f.resourceContainer != null) f.resourceContainer.TryDropAll(stash, map, ThingPlaceMode.Near, (thing, n) => Own(thing));
+                if (t is Frame f && f.resourceContainer != null) f.resourceContainer.TryDropAll(stash, map, ThingPlaceMode.Near, (thing, n) => Own(thing), AtStash);
                 if (!t.Destroyed) t.Destroy(DestroyMode.Vanish);
             }
             foreach (var p in plans.Where(p => p.placed && p.Built(map, faction) == null)) p.dropped = true;
@@ -672,7 +678,7 @@ namespace ColonyCouncil
                         }
                     }
                 }
-                if (GenPlace.TryPlaceThing(t, stash, map, ThingPlaceMode.Near, out var put, null, c => c.InHorDistOf(stash, 3f))) Own(put);
+                if (GenPlace.TryPlaceThing(t, stash, map, ThingPlaceMode.Near, out var put, null, AtStash)) Own(put);
             }
             skipShare = false;
             if (shared > 0) Note(Text("CC_Camp_Shared", null, null, shared), MessageTypeDefOf.PositiveEvent, Importance.Notable);
@@ -720,7 +726,7 @@ namespace ColonyCouncil
             {
                 traderSilver = trader.inventory.innerContainer.TotalStackCountOfDef(ThingDefOf.Silver);
             }
-            else if (GenPlace.TryPlaceThing(found, stash, map, ThingPlaceMode.Near, out var put)) Own(put);
+            else if (GenPlace.TryPlaceThing(found, stash, map, ThingPlaceMode.Near, out var put, null, AtStash)) Own(put);
             Note(Text("CC_Camp_Found", p, null, n, what.label), MessageTypeDefOf.NeutralEvent, Importance.Flavor, p);
         }
 
