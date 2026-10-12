@@ -197,6 +197,12 @@ namespace ColonyCouncil
         /// Puts the offer in the Quests tab, with its own letter: accepted there, it starts; left alone, it expires there.
         /// False (nothing made) when the game won't take it, so the offer can come as a letter instead.
         /// </summary>
+        /// <remarks>
+        /// A save that later loses Rimfolk: each mission quest names Council_MissionQuest as its root, so the game reports
+        /// the missing def for each such quest when loading. Only the one open quest (there is never more than one)
+        /// still holds a <see cref="QuestPart_RimfolkMission"/>; ended ones are unlinked from it (<see cref="Unlink"/>).
+        /// An offer still waiting expires on its own; one already accepted stays under way in the tab with nothing to end it.
+        /// </remarks>
         public static bool TryOfferAsQuest(Mission m, string title, string description, float answerDays, int rating)
         {
             var root = DefDatabase<QuestScriptDef>.GetNamedSilentFail(QuestRoot);
@@ -209,6 +215,7 @@ namespace ColonyCouncil
                 quest.name = title;
                 quest.description = description;
                 quest.challengeRating = Mathf.Clamp(rating, 1, 5);
+                quest.appearanceTick = Now;
                 quest.acceptanceExpireTick = Now + Mathf.RoundToInt(Mathf.Max(0.5f, answerDays) * GenDate.TicksPerDay);
                 quest.AddPart(new QuestPart_RimfolkMission { missionId = m.id });
                 Find.QuestManager.Add(quest);
@@ -246,14 +253,36 @@ namespace ColonyCouncil
         private static void EndQuest(Mission m, QuestEndOutcome outcome)
         {
             var q = QuestOf(m);
-            if (q == null || Ended(q)) return;
+            if (q == null) return;
+            if (!Ended(q))
+            {
+                try
+                {
+                    q.End(outcome, false, false);
+                }
+                catch (Exception e)
+                {
+                    CouncilLog.ErrorOnce("mission quest end", e);
+                }
+            }
+            Unlink(q);
+        }
+
+        /// <summary>
+        /// An ended quest keeps only the game's own parts: in the history it reads the same, and a save that later loses
+        /// Rimfolk has no part of ours to complain about in its old quests.
+        /// </summary>
+        private static void Unlink(Quest q)
+        {
+            if (q == null || !Ended(q)) return;
             try
             {
-                q.End(outcome, false, false);
+                var part = q.GetFirstPartOfType<QuestPart_RimfolkMission>();
+                if (part != null) q.RemovePart(part);
             }
             catch (Exception e)
             {
-                CouncilLog.ErrorOnce("mission quest end", e);
+                CouncilLog.ErrorOnce("mission quest unlink", e);
             }
         }
 
@@ -382,6 +411,12 @@ namespace ColonyCouncil
             {
                 try
                 {
+                    // Its offer is gone from the game (an update dropped it): nothing can carry it on.
+                    if (Worker(m) == null)
+                    {
+                        Finish(m, m.state == MissionState.Active ? MissionState.Failed : MissionState.Declined, "ended", null);
+                        continue;
+                    }
                     if (m.state == MissionState.Offered)
                     {
                         // Offered by letter: answered there. If the letter is gone without an answer, so is the offer.
@@ -404,7 +439,12 @@ namespace ColonyCouncil
                         continue;
                     }
                     var map = HappeningTracker.HomeMap();
-                    if (map == null) continue;
+                    if (map == null)
+                    {
+                        // No home to do it from (the colony packed up and left): once its time is well past, it lapses.
+                        if (m.deadline > 0 && now > m.deadline + GenDate.TicksPerDay * 2) Finish(m, MissionState.Failed, "ended", null);
+                        continue;
+                    }
                     if (!LivingEvents.Friendly(m.faction))
                     {
                         Finish(m, MissionState.Failed, "cancelled", null);
@@ -414,7 +454,18 @@ namespace ColonyCouncil
                 }
                 catch (Exception e)
                 {
+                    // Something it relies on is broken: it ends quietly rather than sitting in the Quests tab forever.
                     CouncilLog.ErrorOnce("mission " + m.kind, e);
+                    try
+                    {
+                        Finish(m, m.state == MissionState.Active ? MissionState.Failed : MissionState.Declined, "ended", null);
+                    }
+                    catch (Exception e2)
+                    {
+                        CouncilLog.ErrorOnce("mission end " + m.kind, e2);
+                        m.state = MissionState.Failed;
+                        m.ended = now;
+                    }
                 }
             }
         }
@@ -433,17 +484,21 @@ namespace ColonyCouncil
             // A Rimfolk quest with no mission behind it (should never happen): ended, so it can't sit in the tab forever.
             var quests = Find.QuestManager?.QuestsListForReading;
             if (quests == null) return;
-            foreach (var q in quests.Where(q => q.root?.defName == QuestRoot && !Ended(q)).ToList())
+            foreach (var q in quests.Where(q => q.root?.defName == QuestRoot).ToList())
             {
                 if (comp.missions.Any(m => m.Open && m.questId == q.id)) continue;
-                try
+                if (!Ended(q))
                 {
-                    q.End(q.EverAccepted ? QuestEndOutcome.Unknown : QuestEndOutcome.InvalidPreAcceptance, false, false);
+                    try
+                    {
+                        q.End(q.EverAccepted ? QuestEndOutcome.Unknown : QuestEndOutcome.InvalidPreAcceptance, false, false);
+                    }
+                    catch (Exception e)
+                    {
+                        CouncilLog.ErrorOnce("mission orphan quest", e);
+                    }
                 }
-                catch (Exception e)
-                {
-                    CouncilLog.ErrorOnce("mission orphan quest", e);
-                }
+                Unlink(q);
             }
         }
 
@@ -456,8 +511,10 @@ namespace ColonyCouncil
             if (what == "art")
             {
                 // Sculptures packed up and ready to carry: anywhere on the map, as long as nobody has forbidden them.
+                // One the colony has already placed for installing is spoken for.
                 foreach (var t in map.listerThings.ThingsInGroup(ThingRequestGroup.MinifiedThing))
-                    if (t.Spawned && !t.IsForbidden(Faction.OfPlayer) && t is MinifiedThing mt && mt.InnerThing?.TryGetComp<CompArt>() != null)
+                    if (t.Spawned && !t.IsForbidden(Faction.OfPlayer) && t is MinifiedThing mt && mt.InnerThing?.TryGetComp<CompArt>() != null
+                        && InstallBlueprintUtility.ExistingBlueprintFor(t) == null)
                         yield return t;
                 yield break;
             }
@@ -490,11 +547,14 @@ namespace ColonyCouncil
 
         public static int Count(Map map, string what) => Matching(map, what).Sum(t => t.stackCount);
 
-        /// <summary>Takes up to <paramref name="n"/> of a goal's goods from the colony. Returns how many were taken.</summary>
+        /// <summary>
+        /// Takes up to <paramref name="n"/> of a goal's goods from the colony. Returns how many were taken. Never what someone
+        /// is about to use (a meal a colonist is going to eat, an ingredient a cook has claimed, a stack being hauled).
+        /// </summary>
         public static int Take(Map map, string what, int n)
         {
             int left = n;
-            foreach (var t in Matching(map, what).OrderBy(t => t.stackCount).ToList())
+            foreach (var t in Matching(map, what).Where(t => !Claimed(t, map)).OrderBy(t => t.stackCount).ToList())
             {
                 if (left <= 0) break;
                 int take = Mathf.Min(left, t.stackCount);
@@ -503,6 +563,9 @@ namespace ColonyCouncil
             }
             return n - left;
         }
+
+        private static bool Claimed(Thing t, Map map) =>
+            map.reservationManager.IsReserved(t) || map.physicalInteractionReservationManager.IsReserved(t);
 
         /// <summary>What one of a goal's goods is worth, roughly (for the price).</summary>
         public static float UnitValue(string what)

@@ -498,22 +498,30 @@ namespace ColonyCouncil
             foreach (var c in All)
             {
                 if (!c.Running || c.waiting) continue;
-                string key = PendingKey(c);
-                var home = HomeDef(c.kind);
-                var text = home?.GetModExtension<StoryText>();
-                if (key == null || text == null) continue;
-                string line = Stable(coming ? text.coming : text.remembered, key, c.flags, c.id * 31 + c.stage);
-                if (line.NullOrEmpty()) continue;
-                var ctx = Context(c, home, null);
-                list.Add(new WorldNote
+                // Built every second while the World page is open: a story that can't be told here is left out, logged once.
+                try
                 {
-                    title = coming ? home.LabelCap.ToString() : null,
-                    text = ctx.Format(line.Replace("{DAYS}", TextUtil.DaysString(Mathf.Max(0, c.due - now)))),
-                    icon = Icons.WorldEvent,
-                    color = Calm,
-                    faction = coming ? c.faction : null,
-                    due = coming ? c.due : -1
-                });
+                    string key = PendingKey(c);
+                    var home = HomeDef(c.kind);
+                    var text = home?.GetModExtension<StoryText>();
+                    if (key == null || text == null) continue;
+                    string line = Stable(coming ? text.coming : text.remembered, key, c.flags, c.id * 31 + c.stage);
+                    if (line.NullOrEmpty()) continue;
+                    var ctx = Context(c, home, null);
+                    list.Add(new WorldNote
+                    {
+                        title = coming ? home.LabelCap.ToString() : null,
+                        text = ctx.Format(line.Replace("{DAYS}", TextUtil.DaysString(Mathf.Max(0, c.due - now)))),
+                        icon = Icons.WorldEvent,
+                        color = Calm,
+                        faction = coming ? c.faction : null,
+                        due = coming ? c.due : -1
+                    });
+                }
+                catch (Exception e)
+                {
+                    CouncilLog.ErrorOnce("story note " + c.kind, e);
+                }
             }
             return list;
         }
@@ -551,6 +559,13 @@ namespace ColonyCouncil
         public static string Family(Pawn p) => p?.Name is NameTriple t && !t.Last.NullOrEmpty() ? t.Last : p?.LabelShort ?? "?";
 
         public static bool Alive(Pawn p) => p != null && !p.Dead && !p.Discarded;
+
+        /// <summary>
+        /// Someone of the story's still their own person: alive, not the colony's (recruited, a prisoner or a slave),
+        /// nobody's captive, not with a caravan. Only such a stranger is brought back, recruited or turned against the colony.
+        /// </summary>
+        public static bool Free(Pawn p) =>
+            Alive(p) && p.Faction != Faction.OfPlayer && !p.IsPrisoner && !p.IsSlave && !People.Kidnapped(p) && p.GetCaravan() == null;
 
         /// <summary>Someone out in the world who could come visiting now.</summary>
         public static bool CanVisit(Pawn p) =>
@@ -1060,6 +1075,13 @@ namespace ColonyCouncil
     {
         protected override bool CanBegin(Map map, HappeningExtension ext) => Arrivals.Friendly(VarietyUtil.OnGoodTerms) != null;
 
+        /// <summary>
+        /// The stranger can come back at the head of a war band: out in the world and their own person (never one the colony
+        /// took in or holds since), not their own people's leader, not wanted by one of the game's quests.
+        /// </summary>
+        private static bool Avenger(Pawn x) =>
+            StoryChains.Free(x) && !x.Spawned && (x.Faction == null || x.Faction.leader != x) && !QuestUtility.IsReservedByQuestOrQuestBeingGenerated(x);
+
         protected override bool Setup(StoryChain c, HappeningContext ctx, HappeningExtension ext)
         {
             var map = ctx.map;
@@ -1085,7 +1107,7 @@ namespace ColonyCouncil
                 case "pursuers": return LivingEvents.Friendly(c.faction) && StoryChains.Alive(c.x);
                 case "debtrepaid":
                 case "debtgift": return StoryChains.CanVisit(c.x);
-                case "debtrevenge": return StoryChains.Alive(c.x) && !c.x.Spawned && FightsPossible && Raids.Enemy() != null;
+                case "debtrevenge": return Avenger(c.x) && FightsPossible && Raids.Enemy() != null;
             }
             return true;
         }
@@ -1228,7 +1250,7 @@ namespace ColonyCouncil
                     var x = c.x;
                     // Paid: the silver was taken by the option itself.
                     if (option == 0) StoryChains.End(c, "paidoff", ctx);
-                    else if (FightsPossible && Raids.CanRaid(ctx.enemy) && StoryChains.Alive(x) && !x.Spawned)
+                    else if (FightsPossible && Raids.CanRaid(ctx.enemy) && Avenger(x))
                     {
                         x.SetFaction(ctx.enemy);
                         Raid(c, ctx, ctx.enemy, x);
@@ -1570,7 +1592,7 @@ namespace ColonyCouncil
         {
             switch (Key)
             {
-                case "prophetfollowers": return StoryChains.Alive(c.x) && LivingEvents.Friendly(c.faction) && Listener(map, StoryChains.Hero(c, map)) != null;
+                case "prophetfollowers": return StoryChains.Free(c.x) && LivingEvents.Friendly(c.faction) && Listener(map, StoryChains.Hero(c, map)) != null;
                 case "prophetschism": return StorytellerEvents.Adults(map).Count() >= 2;
                 case "prophethill":
                 case "prophetpilgrims": return LivingEvents.Friendly(c.faction);
@@ -1676,11 +1698,20 @@ namespace ColonyCouncil
                 case "prophetfollowers":
                 {
                     var b = c.y;
-                    // Only from home: someone sent off from a caravan in the wilds might not live to reach the road.
-                    if (option == 0 && b != null && b.IsColonist && !b.Dead && b.Spawned && b.Map == map && map.IsPlayerHome)
+                    // Only from home: someone sent off from a caravan in the wilds might not live to reach the road. Only on
+                    // their own feet and in their right mind, and never the last of the colony at home.
+                    if (option == 0 && b != null && b.IsColonist && !b.Dead && b.Spawned && b.Map == map && map.IsPlayerHome && !b.Downed && !b.InMentalState
+                        && StorytellerEvents.Adults(map).Any(p => p != b))
                     {
                         // They walk out to join the preacher on the road: a colonist who quit, as the colony's records see it.
-                        var t = CouncilGameComponent.Instance?.happenings;
+                        // As when someone quits: their open wishes and the council's marks on them go first.
+                        var comp = CouncilGameComponent.Instance;
+                        if (comp != null)
+                            foreach (var w in comp.wishes.Where(w => w.state == WishState.Open && w.Involves(b)).ToList())
+                                comp.Resolve(w, WishState.Cancelled);
+                        TrustEffects.StripAll(b);
+                        if (b.Drafted) b.drafter.Drafted = false;
+                        var t = comp?.happenings;
                         if (t != null) t.quitting = b;
                         try
                         {
@@ -1693,7 +1724,7 @@ namespace ColonyCouncil
                         StoryChains.Next(c, "end:convert", 25f, 40f);
                         return outcome;
                     }
-                    if (option == 2 && StoryChains.Alive(c.x) && map != null && Arrivals.Join(c.x, map))
+                    if (option == 2 && StoryChains.Free(c.x) && map != null && Arrivals.Join(c.x, map))
                     {
                         if (Rand.Chance(0.5f))
                         {
@@ -1751,8 +1782,8 @@ namespace ColonyCouncil
             switch (key)
             {
                 case "convert":
-                    // Word from the one who left with the preacher (if they're still out there).
-                    if (!StoryChains.Alive(c.y))
+                    // Word from the one who left with the preacher (if they're still out there, and haven't come home since).
+                    if (!StoryChains.Alive(c.y) || c.y.Faction == Faction.OfPlayer)
                     {
                         StoryChains.End(c, null);
                         return;

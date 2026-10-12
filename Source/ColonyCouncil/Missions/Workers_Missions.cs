@@ -233,11 +233,15 @@ namespace ColonyCouncil
             bool all = m.goals.All(g => g.have >= g.count);
             if (m.stage == 0 && all)
             {
-                // Everything's ready early: their carts come for it within half a day.
+                // Everything's ready early: their carts come for it within half a day. Told once: if the stores dip below
+                // and fill up again (meals eaten and cooked), the carts still come when they said they would.
                 m.stage = 1;
-                m.due = Mathf.Min(now + GenDate.TicksPerDay / 2, m.deadline);
-                string line = Line(More?.ready, m, map, null, TextUtil.DaysString(m.due - now));
-                if (!line.NullOrEmpty()) Messages.Message(line, MessageTypeDefOf.PositiveEvent, false);
+                if (m.due < 0)
+                {
+                    m.due = Mathf.Min(now + GenDate.TicksPerDay / 2, m.deadline);
+                    string line = Line(More?.ready, m, map, null, TextUtil.DaysString(m.due - now));
+                    if (!line.NullOrEmpty()) Messages.Message(line, MessageTypeDefOf.PositiveEvent, false);
+                }
             }
             else if (m.stage == 1 && !all) m.stage = 0;
             if (m.stage == 1 && now >= m.due) Deliver(m, map);
@@ -377,9 +381,16 @@ namespace ColonyCouncil
                     m.stage = 2;
                     m.due = now + GenDate.TicksPerDay;
                 }
-                if (m.stage == 2 && !Ask(m, map) && now >= m.due) HandBack(m, map);
-                // The question went unanswered somehow: after a day or two, it's handed back.
-                else if (m.stage == 3 && now >= m.due + GenDate.TicksPerDay && !Missions.LetterOut(m)) HandBack(m, map);
+                // Only while it's on a map (not off with a caravan). Handed back unasked only as agreed, and never when one
+                // of the colony's people has bonded with it: then the colony is asked, however long that takes.
+                if (!x.Spawned) return;
+                if (m.stage == 2 && !Ask(m, map) && now >= m.due && !Bonded(x)) HandBack(m, map);
+                // The question went unanswered somehow: after a day or two, it's handed back (or asked again).
+                else if (m.stage == 3 && now >= m.due + GenDate.TicksPerDay && !Missions.LetterOut(m))
+                {
+                    if (Bonded(x)) m.stage = 2;
+                    else HandBack(m, map);
+                }
                 return;
             }
             if (!x.Spawned)
@@ -417,22 +428,47 @@ namespace ColonyCouncil
             return true;
         }
 
+        /// <summary>One of the colony's people has bonded with it.</summary>
+        public static bool Bonded(Pawn x) =>
+            x?.relations != null && x.relations.DirectRelations.Any(r => r.def == PawnRelationDefOf.Bond && r.otherPawn != null && !r.otherPawn.Dead && r.otherPawn.Faction == Faction.OfPlayer);
+
         /// <summary>Their herder leads it home: it leaves the colony, and the reward is paid.</summary>
         public static void HandBack(Mission m, Map map)
         {
             var x = m.x;
+            // Their people turned on the colony in the meantime: there's nobody to hand it to.
+            if (!LivingEvents.Friendly(m.faction))
+            {
+                Missions.Finish(m, MissionState.Failed, "cancelled", null);
+                return;
+            }
             if (x != null && !x.Dead && x.Spawned && x.Faction == Faction.OfPlayer)
             {
                 try
                 {
+                    // Free of the colony first: no master to follow, no rope, no caravan or other group of ours.
+                    x.GetLord()?.RemovePawn(x);
+                    x.roping?.BreakAllRopes();
+                    if (x.playerSettings != null) x.playerSettings.Master = null;
                     x.SetFaction(m.faction);
-                    LordMaker.MakeNewLord(m.faction, new LordJob_ExitMapBest(LocomotionUrgency.Walk, false, false), x.Map, new List<Pawn> { x });
+                    // It walks off with their herder if it can (not down, not shut in a pen); else the herder carries it off.
+                    if (!x.Downed && ReachabilityUtility.CanReachMapEdge(x))
+                        LordMaker.MakeNewLord(m.faction, new LordJob_ExitMapBest(LocomotionUrgency.Walk, false, false), x.Map, new List<Pawn> { x });
+                    else
+                    {
+                        x.DeSpawn();
+                        if (!Find.WorldPawns.Contains(x)) Find.WorldPawns.PassToWorld(x, PawnDiscardDecideMode.Decide);
+                    }
                 }
                 catch (Exception e)
                 {
                     CouncilLog.ErrorOnce("mission runaway hand back", e);
-                    if (x.Spawned) x.DeSpawn();
-                    if (!Find.WorldPawns.Contains(x)) Find.WorldPawns.PassToWorld(x, PawnDiscardDecideMode.Decide);
+                    // Only ever one that is theirs already: the colony's own animal never leaves this way.
+                    if (x.Faction != Faction.OfPlayer)
+                    {
+                        if (x.Spawned) x.DeSpawn();
+                        if (!x.Spawned && !Find.WorldPawns.Contains(x)) Find.WorldPawns.PassToWorld(x, PawnDiscardDecideMode.Decide);
+                    }
                 }
             }
             VarietyUtil.PaySilver(map, DropCellFinder.TradeDropSpot(map), m.reward);
@@ -485,20 +521,28 @@ namespace ColonyCouncil
         public override string Resolved(HappeningContext ctx, int option, bool risk, bool byDefault, string outcome)
         {
             var m = Missions.Of(ctx);
-            var map = ctx.map ?? HappeningTracker.HomeMap();
+            var map = ctx.map != null && Find.Maps.Contains(ctx.map) ? ctx.map : HappeningTracker.HomeMap();
+            var x = m?.x;
             if (m != null && m.state == MissionState.Active && map != null)
             {
-                if (option == 0 || m.x == null || m.x.Dead || m.x.Faction != Faction.OfPlayer) HappeningWorker_MissionRunaway.HandBack(m, map);
-                else if (option == 1)
+                // Killed or lost since the letter came: the mission's own check tells that.
+                if (x != null && !x.Dead && !x.Discarded)
                 {
-                    // Bought (the silver went with the option).
-                    Missions.Goodwill(m, 3);
-                    Missions.Finish(m, MissionState.Done, "bought", null, new LookTargets(m.x));
-                }
-                else
-                {
-                    Missions.Goodwill(m, -m.penalty * 2);
-                    Missions.Finish(m, MissionState.Failed, "kept", null, new LookTargets(m.x));
+                    bool ours = x.Faction == Faction.OfPlayer;
+                    // Nobody answered, and one of the colony's people has bonded with it: it isn't taken from them unasked.
+                    int answer = option == 0 && byDefault && ours && HappeningWorker_MissionRunaway.Bonded(x) ? 2 : option;
+                    if (answer == 0 || !ours) HappeningWorker_MissionRunaway.HandBack(m, map);
+                    else if (answer == 1)
+                    {
+                        // Bought (the silver went with the option).
+                        Missions.Goodwill(m, 3);
+                        Missions.Finish(m, MissionState.Done, "bought", null, new LookTargets(x));
+                    }
+                    else
+                    {
+                        Missions.Goodwill(m, -m.penalty * 2);
+                        Missions.Finish(m, MissionState.Failed, "kept", null, new LookTargets(x));
+                    }
                 }
                 outcome = "";
             }
@@ -535,7 +579,8 @@ namespace ColonyCouncil
             var bestQ = QualityCategory.Awful;
             foreach (var b in map.listerBuildings.allBuildingsColonist)
             {
-                if (!b.Spawned || b.TryGetComp<CompArt>() == null || b.Position.Roofed(map)) continue;
+                // A work of art (not a grave or a sarcophagus), with open sky over every part of it.
+                if (!b.Spawned || b is Building_Grave || b.TryGetComp<CompArt>() == null || b.OccupiedRect().Cells.Any(c => c.Roofed(map))) continue;
                 var q = b.TryGetComp<CompQuality>();
                 if (q == null || q.Quality < min) continue;
                 if (best == null || q.Quality > bestQ)
@@ -606,7 +651,9 @@ namespace ColonyCouncil
                 var p = Arrivals.Make(kind, m.faction, new FloatRange(18f, 70f));
                 if (p != null) pilgrims.Add(p);
             }
-            if (pilgrims.Count == 0 || Arrivals.Visit(pilgrims, map, m.faction, shrine.Position, Rand.Range(16f, 24f)) == null)
+            // They gather beside it (a large sculpture can't be stood on), as mourners do by a grave; else just outside the colony.
+            IntVec3? spot = CellFinder.TryFindRandomCellNear(shrine.Position, map, 3, c => c.Standable(map) && c.GetFirstBuilding(map) == null, out var near) ? near : (IntVec3?)null;
+            if (pilgrims.Count == 0 || Arrivals.Visit(pilgrims, map, m.faction, spot, Rand.Range(16f, 24f)) == null)
                 foreach (var p in pilgrims.Where(p => !p.Spawned)) Arrivals.Discard(p);
             VarietyUtil.PaySilver(map, shrine.Position, m.reward);
             Missions.Goodwill(m, m.goodwill);

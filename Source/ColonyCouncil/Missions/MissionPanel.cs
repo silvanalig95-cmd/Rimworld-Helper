@@ -33,25 +33,33 @@ namespace ColonyCouncil
             cards = new List<Card>();
             foreach (var m in Missions.All.Where(m => m.Open || now - m.ended < GenDate.TicksPerDay).OrderBy(m => m.Open ? 0 : 1).ThenBy(m => m.offered))
             {
-                string status;
-                switch (m.state)
+                string status = null;
+                // Built every second while the page is open: a mission whose state can't be read shows without it, logged once.
+                try
                 {
-                    case MissionState.Offered:
+                    switch (m.state)
                     {
-                        var q = Missions.QuestOf(m);
-                        int left = q != null && q.acceptanceExpireTick > 0 ? q.acceptanceExpireTick - now : 0;
-                        status = q != null ? "CC_Missions_Offered".Translate(TextUtil.DaysString(Mathf.Max(0, left))).ToString() : "CC_Missions_OfferedLetter".Translate().ToString();
-                        break;
+                        case MissionState.Offered:
+                        {
+                            var q = Missions.QuestOf(m);
+                            int left = q != null && q.acceptanceExpireTick > 0 ? q.acceptanceExpireTick - now : 0;
+                            status = q != null ? "CC_Missions_Offered".Translate(TextUtil.DaysString(Mathf.Max(0, left))).ToString() : "CC_Missions_OfferedLetter".Translate().ToString();
+                            break;
+                        }
+                        case MissionState.Active:
+                            status = Missions.Worker(m)?.Status(m) ?? "CC_Missions_Working".Translate(Missions.GoodsText(m)).ToString();
+                            break;
+                        case MissionState.Done:
+                            status = "CC_Missions_Done".Translate();
+                            break;
+                        default:
+                            status = "CC_Missions_Failed".Translate();
+                            break;
                     }
-                    case MissionState.Active:
-                        status = Missions.Worker(m)?.Status(m) ?? "CC_Missions_Working".Translate(Missions.GoodsText(m)).ToString();
-                        break;
-                    case MissionState.Done:
-                        status = "CC_Missions_Done".Translate();
-                        break;
-                    default:
-                        status = "CC_Missions_Failed".Translate();
-                        break;
+                }
+                catch (System.Exception e)
+                {
+                    CouncilLog.ErrorOnce("mission card " + m.kind, e);
                 }
                 cards.Add(new Card { m = m, status = status });
             }
