@@ -82,6 +82,18 @@ namespace ColonyCouncil
         public override void GameComponentTick()
         {
             int t = Now;
+            if (t % 250 == 37 && active.Count > 0)
+            {
+                try
+                {
+                    foreach (var s in active)
+                        if (!s.ended) Keep(s);
+                }
+                catch (Exception e)
+                {
+                    CouncilLog.ErrorOnce("world situation people", e);
+                }
+            }
             if (t % GenDate.TicksPerHour != 1203) return;
             try
             {
@@ -90,6 +102,21 @@ namespace ColonyCouncil
             catch (Exception e)
             {
                 CouncilLog.ErrorOnce("world situations", e);
+            }
+        }
+
+        /// <summary>
+        /// Keeps the people a situation made (the warlord, a healer, the claimants) from the world's clean-up while it
+        /// runs, also while they're on a map: a raider or visitor goes back to the world the moment they walk off it,
+        /// and the clean-up could take them before anyone looked again. The colony's own people and prisoners aren't
+        /// the world's to keep. Let go when it ends (<see cref="WorldSituation.ReleaseAll"/>).
+        /// </summary>
+        private static void Keep(WorldSituation s)
+        {
+            foreach (var p in s.held)
+            {
+                if (p == null || p.Dead || p.Discarded || p.Faction == Faction.OfPlayer || p.IsPrisoner) continue;
+                if (p.Spawned || Find.WorldPawns.Contains(p) && p.GetCaravan() == null) Find.WorldPawns.ForcefullyKeptPawns.Add(p);
             }
         }
 
@@ -146,6 +173,13 @@ namespace ColonyCouncil
                 End(s, Quietly);
                 return;
             }
+            // Someone its letters name was lost from the save (a pawn gone, a people's mod removed): it ends without a letter.
+            if (s.Num("hasX") == 1 && s.ctx.stranger == null || s.Num("hasOther") == 1 && s.ctx.other == null || s.Num("hasEnemy") == 1 && s.ctx.enemy == null)
+            {
+                End(s, Quietly);
+                return;
+            }
+            if (s.ctx.map != null && !Find.Maps.Contains(s.ctx.map)) s.ctx.map = HappeningTracker.HomeMap();
             string ending = null;
             try
             {
@@ -251,6 +285,10 @@ namespace ColonyCouncil
                 return null;
             }
             s.endTick = s.startTick + Mathf.RoundToInt(def.durationDays.RandomInRange * GenDate.TicksPerDay);
+            // Who its letters name from the start, so it can end quietly if one is lost from the save later.
+            if (s.ctx.stranger != null) s.SetNum("hasX", 1);
+            if (s.ctx.other != null) s.SetNum("hasOther", 1);
+            if (s.ctx.enemy != null) s.SetNum("hasEnemy", 1);
             active.Add(s);
             string label = worker.Line(def.titles, s) ?? def.LabelCap.ToString();
             string cause = "CC_WS_Cause".Translate(def.LabelCap).Resolve();
