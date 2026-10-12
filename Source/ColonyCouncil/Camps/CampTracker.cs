@@ -32,8 +32,6 @@ namespace ColonyCouncil
         public Camp camp;
         public int nextId = 1;
         public int lastEndedTick = -9999999;
-        /// <summary>Short lines about camps that have come and gone (for the World page).</summary>
-        public List<string> past = new List<string>();
 
         public CampTracker(Game game)
         {
@@ -77,9 +75,6 @@ namespace ColonyCouncil
             if (camp != c) return;
             camp = null;
             lastEndedTick = Now;
-            string line = "CC_Camp_Past".Translate(c.Label, c.faction?.Name ?? "?", TextUtil.DaysString(Mathf.Max(GenDate.TicksPerHour, (c.leftTick > 0 ? c.leftTick : Now) - c.startTick))).Resolve();
-            past.Add(line);
-            while (past.Count > 5) past.RemoveAt(0);
         }
 
         // ---------------- A new camp ----------------
@@ -345,10 +340,8 @@ namespace ColonyCouncil
             Scribe_Deep.Look(ref camp, "camp");
             Scribe_Values.Look(ref nextId, "nextId", 1);
             Scribe_Values.Look(ref lastEndedTick, "lastEndedTick", -9999999);
-            Scribe_Collections.Look(ref past, "past", LookMode.Value);
             if (Scribe.mode == LoadSaveMode.PostLoadInit)
             {
-                past ??= new List<string>();
                 // A camp whose kind was removed with its mod, or whose map is gone: nothing left to keep.
                 if (camp != null && (camp.kind == null || camp.map == null)) camp = null;
             }

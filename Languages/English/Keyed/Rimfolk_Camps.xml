@@ -143,7 +143,6 @@
   <CC_Camp_End_lost>The {NAME} from {FACTION} couldn't reach the spot they wanted and moved on.</CC_Camp_End_lost>
   <CC_Camp_End_empty>The camp {PLACE} stands empty now. Nobody from it is left there.</CC_Camp_End_empty>
   <CC_Camp_Stayed>Staying on with the colony: {0}.</CC_Camp_Stayed>
-  <CC_Camp_Past>{0} from {1}, here {2}</CC_Camp_Past>
 
   <!-- The World page -->
   <CC_Camp_Section>Camped on our land</CC_Camp_Section>
