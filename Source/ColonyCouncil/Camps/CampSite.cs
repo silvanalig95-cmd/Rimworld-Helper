@@ -25,7 +25,7 @@ namespace ColonyCouncil
         /// <summary>The finished building, if it stands (and is still theirs).</summary>
         public Building Built(Map map, Faction f)
         {
-            if (map == null || def == null || !cell.InBounds(map)) return null;
+            if (map == null || def == null || f == null || !cell.InBounds(map)) return null;
             foreach (var t in cell.GetThingList(map))
                 if (t is Building b && b.def == def && b.Faction == f) return b;
             return null;
@@ -34,8 +34,9 @@ namespace ColonyCouncil
         public void ExposeData()
         {
             Scribe_Values.Look(ref role, "role");
-            Scribe_Defs.Look(ref def, "def");
-            Scribe_Defs.Look(ref stuff, "stuff");
+            // Some of these come from a DLC (a meditation spot): one removed since loads as null, without errors.
+            CouncilScribe.LookDef(ref def, "def");
+            CouncilScribe.LookDef(ref stuff, "stuff");
             Scribe_Values.Look(ref cell, "cell");
             Scribe_Values.Look(ref rot, "rot", Rot4.North);
             Scribe_Values.Look(ref placed, "placed");

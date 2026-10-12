@@ -311,9 +311,13 @@ namespace ColonyCouncil
                 if (leader != null && leader.Discarded) leader = null;
                 if (trader != null && (trader.Discarded || trader.Dead)) trader = null;
                 foreach (var k in warmth.Keys.Where(k => k == null || k.Discarded || k.Dead).ToList()) warmth.Remove(k);
+                // A group that ended, or a map that was abandoned, since the last check (the books close within seconds):
+                // saved as gone, not as a reference the game can't find again on loading.
+                if (lord != null && !LordAlive) lord = null;
+                if (map != null && !Find.Maps.Contains(map)) map = null;
             }
             Scribe_Values.Look(ref id, "id");
-            Scribe_Defs.Look(ref kind, "kind");
+            CouncilScribe.LookDef(ref kind, "kind");
             Scribe_References.Look(ref map, "map");
             Scribe_References.Look(ref faction, "faction");
             Scribe_References.Look(ref lord, "lord");
