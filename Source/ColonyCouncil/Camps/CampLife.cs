@@ -55,20 +55,43 @@ namespace ColonyCouncil
                     if (hunter != null) hunter.jobs.EndCurrentJob(JobCondition.Succeeded);
                     continue;
                 }
-                if (hunter == null)
+                if (hunter == null || !animal.Spawned || animal.Map != map)
                 {
+                    // Nobody after it any more, or it's gone from the map (fled off it, carried away).
                     prey.Remove(animal);
+                    if (hunter != null) hunter.jobs.EndCurrentJob(JobCondition.InterruptForced);
                     continue;
                 }
-                // Never into the colony after it.
+                // Never into the colony after it, and never with any of the colony's people or animals near the line of
+                // fire: a stray shot mustn't hit them.
                 var home = map.areaManager.Home;
-                if (home != null && (home[hunter.Position] || home[animal.Position])) hunter.jobs.EndCurrentJob(JobCondition.InterruptForced);
+                if ((home != null && home[hunter.Position]) || !ClearOfColony(animal.Position) || ColonyInLineOfFire(hunter.Position, animal.Position))
+                {
+                    prey.Remove(animal);
+                    hunter.jobs.EndCurrentJob(JobCondition.InterruptForced);
+                }
             }
             foreach (var k in kills.ToList())
             {
                 var corpse = k.Corpse;
                 if (corpse == null || !corpse.Spawned || Owns(corpse) || Now - (k.Corpse?.timeOfDeath ?? Now) > GenDate.TicksPerDay * 2) kills.Remove(k);
             }
+        }
+
+        /// <summary>Any of the colony's people or animals near the prey, or close to the line between hunter and prey.</summary>
+        public bool ColonyInLineOfFire(IntVec3 from, IntVec3 to)
+        {
+            foreach (var p in map.mapPawns.SpawnedPawnsInFaction(Faction.OfPlayer))
+            {
+                var c = p.Position;
+                if (c.InHorDistOf(to, 12f)) return true;
+                // Distance from the line: a pawn in the way could take a shot meant for the animal.
+                float dx = to.x - from.x, dz = to.z - from.z, len = dx * dx + dz * dz;
+                float t = len <= 0f ? 0f : Mathf.Clamp01(((c.x - from.x) * dx + (c.z - from.z) * dz) / len);
+                float ex = from.x + t * dx - c.x, ez = from.z + t * dz - c.z;
+                if (ex * ex + ez * ez <= 9f) return true;
+            }
+            return false;
         }
 
         private void WatchTrees()
@@ -362,7 +385,9 @@ namespace ColonyCouncil
         {
             try
             {
-                bool ours = p.Rect.All(c => c.InBounds(map) && (c.GetFirstBuilding(map) == null) && !(map.areaManager.Home?[c] ?? false) && map.zoneManager.ZoneAt(c) == null);
+                // Still open ground when they get there: nothing built, zoned, planned or lying on it that isn't theirs.
+                bool ours = p.Rect.All(c => c.InBounds(map) && (c.GetFirstBuilding(map) == null) && !(map.areaManager.Home?[c] ?? false) && map.zoneManager.ZoneAt(c) == null
+                                            && !CampSite.Marked(c, map) && !c.GetThingList(map).Any(t => t.def.category == ThingCategory.Item && !Owns(t)));
                 if (!ours || !GenConstruct.CanPlaceBlueprintAt(p.def, p.cell, p.rot, map, false, null, null, p.stuff).Accepted)
                 {
                     p.dropped = true;

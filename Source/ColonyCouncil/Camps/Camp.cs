@@ -184,7 +184,14 @@ namespace ColonyCouncil
             float radius = termBoundary && !bendBoundary ? CampSite.WorkRadius * 0.6f : CampSite.WorkRadius;
             if (!c.InHorDistOf(center, radius)) return false;
             if (termBoundary && !bendBoundary && ColonySide(c)) return false;
-            if (map.zoneManager.ZoneAt(c) != null) return false;
+            return ClearOfColony(c);
+        }
+
+        /// <summary>Well clear of the colony: no zone, nothing planned or marked there, nowhere near the home area.</summary>
+        public bool ClearOfColony(IntVec3 c)
+        {
+            if (map == null || !c.InBounds(map)) return false;
+            if (map.zoneManager.ZoneAt(c) != null || CampSite.Marked(c, map)) return false;
             var home = map.areaManager.Home;
             if (home != null)
                 foreach (var x in GenRadial.RadialCellsAround(c, CampSite.HomeMargin, true))

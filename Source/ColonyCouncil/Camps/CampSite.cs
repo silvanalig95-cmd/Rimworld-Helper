@@ -102,8 +102,11 @@ namespace ColonyCouncil
             if (map.zoneManager.ZoneAt(c) != null) return false;
             if (map.areaManager.Home != null && map.areaManager.Home[c]) return false;
             if (c.GetFirstBuilding(map) != null) return false;
-            return true;
+            return !Marked(c, map);
         }
+
+        /// <summary>The colony has plans for this spot: a plan drawn on it, or work marked on the ground.</summary>
+        public static bool Marked(IntVec3 c, Map map) => map.planManager?.PlanAt(c) != null || map.designationManager.HasMapDesignationAt(c);
 
         public static bool TryFind(Map map, out IntVec3 center)
         {
@@ -187,8 +190,9 @@ namespace ColonyCouncil
         private static bool Fits(ThingDef def, ThingDef stuff, IntVec3 cell, Rot4 rot, Map map, HashSet<IntVec3> taken)
         {
             var rect = GenAdj.OccupiedRect(cell, rot, def.size);
+            // Nothing lying there either: nobody's things get moved aside to make room.
             foreach (var c in rect)
-                if (!OpenGround(c, map) || taken.Contains(c)) return false;
+                if (!OpenGround(c, map) || taken.Contains(c) || c.GetFirstItem(map) != null) return false;
             try
             {
                 return GenConstruct.CanPlaceBlueprintAt(def, cell, rot, map, false, null, null, stuff).Accepted;
