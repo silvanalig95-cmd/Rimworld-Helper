@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Where another mod already does the same kind of moment as Rimfolk, Rimfolk's version steps back while that mod is
+    active: the moments and social events listed here become rarer (their weight times factor). Applied once at
+    startup. settingType / settingField: a static bool setting of the other mod that must be on (that feature can be
+    switched off in its options); left out, the mod being active is enough.
+  -->
+
+  <!-- Vanilla Social Interactions Expanded: someone low vents to a friend (VSIE_Vent). Rimfolk's "cheered someone up"
+       is the same comfort from the other side. -->
+  <ColonyCouncil.ModOverlapDef>
+    <defName>Council_Overlap_VSIE_Venting</defName>
+    <label>venting</label>
+    <mods><li>vanillaexpanded.vanillasocialinteractionsexpanded</li></mods>
+    <settingType>VanillaSocialInteractionsExpanded.VanillaSocialInteractionsExpandedSettings</settingType>
+    <settingField>EnableVenting</settingField>
+    <moments>
+      <li>Council_Moment_CheerUp</li>
+    </moments>
+    <factor>0.5</factor>
+  </ColonyCouncil.ModOverlapDef>
+
+  <!-- Vanilla Social Interactions Expanded: the skilled teach the less skilled in passing (VSIE_Teaching), which also
+       feeds Rimfolk's mentorships. Rimfolk's own plain lessons step back; the rarer, livelier ones stay. -->
+  <ColonyCouncil.ModOverlapDef>
+    <defName>Council_Overlap_VSIE_Teaching</defName>
+    <label>teaching</label>
+    <mods><li>vanillaexpanded.vanillasocialinteractionsexpanded</li></mods>
+    <settingType>VanillaSocialInteractionsExpanded.VanillaSocialInteractionsExpandedSettings</settingType>
+    <settingField>EnableTeaching</settingField>
+    <moments>
+      <li>Council_Moment_Lessons</li>
+    </moments>
+    <socialEvents>
+      <li>Council_Soc_Lesson</li>
+    </socialEvents>
+    <factor>0.5</factor>
+  </ColonyCouncil.ModOverlapDef>
+
+</Defs>

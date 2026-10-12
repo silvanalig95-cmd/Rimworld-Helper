@@ -103,9 +103,13 @@ namespace ColonyCouncil
 
         public DecreeReaction ReactionOf(Pawn p)
         {
+            // Other mods' traits, classes and memes, by name (ModPeopleDef): some come first, the rest only decide
+            // for people this decree's own list says nothing about.
+            var first = ModPeople.DecreeFirst(this, p);
+            if (first != null) return first.Value;
             foreach (var r in reactions)
                 if (r.Matches(p)) return r.reaction;
-            return defaultReaction;
+            return ModPeople.DecreeAfter(this, p) ?? defaultReaction;
         }
 
         public override IEnumerable<string> ConfigErrors()

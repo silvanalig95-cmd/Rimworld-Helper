@@ -80,7 +80,7 @@ namespace ColonyCouncil
     {
         // anyTrait, notTrait, passion and bestAt are def references resolved when the XML loads: vanilla traits and
         // skills only. A mod's trait or skill listed here breaks the def when that mod is missing; match those by
-        // name (a string field) instead.
+        // name with tags instead.
         /// <summary>Any one of these traits (empty = no requirement).</summary>
         public List<TraitDef> anyTrait;
         public List<TraitDef> notTrait;
@@ -111,10 +111,16 @@ namespace ColonyCouncil
         public bool heirloom;
         /// <summary>Must have a secret that isn't out yet ({SECRET}).</summary>
         public bool secret;
+        /// <summary>
+        /// Who they are, by name (see PeopleTags): "trait:VTE_Workaholic", "mage", "meme:VME_Royal|meme:VME_Aristocratic".
+        /// The way to ask for another mod's trait, class or meme: it simply never fits when that mod is missing.
+        /// </summary>
+        public string tags;
 
         private bool Extras(Pawn p)
         {
             var comp = CouncilGameComponent.Instance;
+            if (!tags.NullOrEmpty() && !PeopleTags.Matches(p, tags)) return false;
             if (heirloom && (!ColonyCouncilMod.Settings.heirlooms || comp?.legacy.HeirloomCarriedBy(p) == null)) return false;
             if (secret && (!ColonyCouncilMod.Settings.secrets || !(comp?.secrets.Of(p) is Secret s) || s.revealed)) return false;
             return true;

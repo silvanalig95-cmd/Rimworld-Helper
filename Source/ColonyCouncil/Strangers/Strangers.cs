@@ -51,6 +51,7 @@ namespace ColonyCouncil
         public bool predator;
         public bool notPredator;
         public float minBodySize;
+        /// <summary>Also caps how dangerous it may be: at most 100 combat power per unit of this size (a bear at 2.6).</summary>
         public float maxBodySize = 999f;
         /// <summary>A rare and remarkable creature: huge, or as wild as a thrumbo.</summary>
         public bool majestic;
@@ -166,6 +167,8 @@ namespace ColonyCouncil
             if (r.notPredator && x.RaceProps.predator) return false;
             float size = x.RaceProps.baseBodySize;
             if (size < r.minBodySize || size > r.maxBodySize) return false;
+            // A size limit is a danger limit too: animal mods have small creatures that fight like a bear.
+            if (r.maxBodySize < 999f && Beasts.CombatPower(x) > r.maxBodySize * 100f) return false;
             if (r.majestic && !IsMajestic(x)) return false;
             if (r.ofA && !OfColonist(x, a)) return false;
             if (r.bondedToA && !(x.relations?.DirectRelationExists(PawnRelationDefOf.Bond, a) ?? false)) return false;

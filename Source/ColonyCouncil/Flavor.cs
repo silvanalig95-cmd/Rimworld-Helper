@@ -18,6 +18,7 @@ namespace ColonyCouncil
     /// <item>the speaker: child, teen, old, hurt, trait:DefName, skill:DefName (passionate about it)</item>
     /// <item>events: afterraid, grieving, newcomer, repeat (asked before), promised, petition, forother</item>
     /// <item>right now: eating, inbed, relaxing, working, work:WorkTypeDef (Cooking, Growing, Mining...), outside, indoors, inownroom</item>
+    /// <item>who they are (see PeopleTags): meme:MemeDef, xeno:XenotypeDef, tag groups (mage, fighter...), nosleep, nofood, hemogenic, psycaster</item>
     /// </list>
     /// Prefix a tag with ! to negate it, separate alternatives with |, e.g. <c>[night|evening,!child]</c>.
     /// </summary>
@@ -95,6 +96,8 @@ namespace ColonyCouncil
                             if (People.Passionate(s) && !s.TotallyDisabled) tags.Add("skill:" + s.def.defName);
                         }
                     }
+                    // Memes, xenotype, mods' classes and traits by group (mage, fighter...), needs (nosleep): see PeopleTags.
+                    PeopleTags.AddTo(p, tags);
                     if (p.records != null && p.records.GetAsInt(RecordDefOf.TimeAsColonistOrColonyAnimal) < GenDate.TicksPerDay * 10) tags.Add("newcomer");
                     if (IsGrieving(p)) tags.Add("grieving");
 
@@ -156,7 +159,7 @@ namespace ColonyCouncil
         };
 
         /// <summary>"hard worker" -> "HardWorker", "iron-willed" -> "IronWilled", from the untranslated label so tags work in any language.</summary>
-        private static string DegreeTag(TraitDegreeData d)
+        internal static string DegreeTag(TraitDegreeData d)
         {
             string label = d?.untranslatedLabel.NullOrEmpty() == false ? d.untranslatedLabel : d?.label;
             if (label.NullOrEmpty()) return null;
@@ -299,7 +302,8 @@ namespace ColonyCouncil
 
         /// <summary>
         /// Age in human years, for races that live much longer or shorter than people (alien race mods):
-        /// a 300-year-old elf with a lifespan of 1000 counts as about 24.
+        /// a 300-year-old elf with a lifespan of 1000 counts as about 36. Growing up keeps the race's own pace (a
+        /// long-lived gene doesn't make a grown dwarf of 25 a teenager); the adult years are stretched to fit.
         /// </summary>
         public static float HumanAge(Pawn p)
         {
@@ -318,7 +322,12 @@ namespace ColonyCouncil
                 {
                 }
             }
-            return life > 1f && System.Math.Abs(life - 80f) > 1f ? years * 80f / life : years;
+            if (life <= 1f || System.Math.Abs(life - 80f) <= 1f) return years;
+            // The race's adult life stage (18 for people), mapped to 18; the rest of a lifetime to 18..80.
+            var stages = p.RaceProps?.lifeStageAges;
+            float adult = stages != null && stages.Count > 0 ? stages[stages.Count - 1].minAge : 18f;
+            if (adult <= 0f || adult >= life - 1f) return years * 80f / life;
+            return years <= adult ? years * 18f / adult : 18f + (years - adult) * 62f / (life - adult);
         }
 
         /// <summary>

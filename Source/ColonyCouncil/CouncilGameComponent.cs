@@ -509,6 +509,8 @@ namespace ColonyCouncil
 
         private static IEnumerable<WishCandidate> SafeCandidates(WishDef def, Pawn pawn)
         {
+            // A bed for someone whose genes never let them sleep, a meal for someone who never eats (ModPeopleDef).
+            if (!ModPeople.WishFits(def, pawn)) yield break;
             List<WishCandidate> list;
             try
             {

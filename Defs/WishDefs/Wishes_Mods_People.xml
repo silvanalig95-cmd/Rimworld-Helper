@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Wishes that only come up with another mod's people. They name things and people by defName and tags, so with the
+    mod missing nothing matches and the wish never comes up. Only what the colony can build right now is asked for.
+  -->
+
+  <!-- ===================== A RimWorld of Magic: a place to work magic ===================== -->
+  <!-- The mod's 1.6 buildings: TableSmallMagicCircle (magic focal point), TableMagicCircle (magic circle, research
+       TM_MagicCircle), TableArcaneForge (arcane forge). Asked for only once researched and buildable. -->
+
+  <ColonyCouncil.WishDef>
+    <defName>Council_Wish_PM_MagicCircle</defName>
+    <label>{THING}</label>
+    <description>A mage wants a place set aside for working magic: a magic circle, a focal point or an arcane forge.</description>
+    <workerClass>ColonyCouncil.WishWorker_Have</workerClass>
+    <category>Work</category>
+    <weight>0.8</weight>
+    <expiryDays>15</expiryDays>
+    <cooldownDays>30</cooldownDays>
+    <grantedThought>Council_Granted_PM_MagicCircle</grantedThought>
+    <allowPetition>true</allowPetition>
+    <envy>0.2</envy>
+    <talkInteraction>Council_Talk_Work</talkInteraction>
+    <fulfilledWhen>The colony has {THING}, or another magic circle, focal point or arcane forge.</fulfilledWhen>
+    <wants>
+      <defNames>
+        <li>TableSmallMagicCircle</li>
+        <li>TableMagicCircle</li>
+        <li>TableArcaneForge</li>
+      </defNames>
+      <tags>mage</tags>
+      <reason>{PAWN_nameDef} has the gift, and nowhere in the colony to work it properly.</reason>
+    </wants>
+    <request>
+      <plain>
+        <li>I've been practicing behind the woodpile, and the sparks keep landing in the hay. Could we build {THING}?</li>
+        <li>Magic wants a quiet, marked place. Right now I work it at the dinner table, between the bread and the salt.</li>
+        <li>[night] I can't do the long workings in my room. The others hear it through the wall, and it frightens them.</li>
+        <li>[trait:InnerFire] There are scorch marks on the storeroom floor again. A proper circle would keep the fire where it belongs.</li>
+        <li>[trait:Druid|trait:TM_Shaman] I can feel the land from anywhere. It's the rest of the work that needs a proper circle.</li>
+        <li>[trait:Necromancer] Nobody wants my work done near the kitchen, and I don't blame them. Give it a place of its own.</li>
+      </plain>
+      <warm>
+        <li>It wouldn't only be for me. With {THING}, I could do a great deal more for everyone here.</li>
+      </warm>
+      <blunt>
+        <li>I can't do serious work without {THING}. Build one.</li>
+      </blunt>
+      <cheerful>
+        <li>Imagine it: {THING}, right here! I've already picked out the spot.</li>
+      </cheerful>
+      <gloomy>
+        <li>Without {THING}, half of what I know is no use to anyone.</li>
+      </gloomy>
+      <cold>
+        <li>With {THING}, I'd be worth twice what I am to this colony. It's a sound use of the stone.</li>
+      </cold>
+    </request>
+    <thanks>
+      <plain><li>It's marked out and ready. I'll start with something small.</li></plain>
+      <warm><li>Thank you. The first working there is for all of us.</li></warm>
+      <cheerful><li>It hums a little when I stand in the middle of it! That's a good sign.</li></cheerful>
+      <gloomy><li>Now there's no excuse when it goes wrong.</li></gloomy>
+      <cold><li>Good. Now I can do real work.</li></cold>
+    </thanks>
+    <expired>
+      <plain><li>The dinner table it is, then.</li></plain>
+      <blunt><li>Fine. Don't complain about the scorch marks.</li></blunt>
+      <gloomy><li>Magic was never going to come first here.</li></gloomy>
+    </expired>
+    <reminder>
+      <plain><li>Still no circle. The dinner table is getting singed.</li></plain>
+      <warm><li>Whenever there's time for the circle. I know there's a lot to build.</li></warm>
+    </reminder>
+  </ColonyCouncil.WishDef>
+
+</Defs>

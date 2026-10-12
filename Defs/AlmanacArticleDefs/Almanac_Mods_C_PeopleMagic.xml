@@ -29,6 +29,7 @@
       <li>In a raid, target enemy mages first, since one caster can do more damage than the rest of the raid.</li>
       <li>Psycasts from Vanilla Psycasts Expanded run on their own, so a colony can have both mages and psycasters.</li>
       <li>With Rimfolk: raised undead and spirits are not counted as people, so they make no wishes, keep no journals and form no friendships, and an enemy undead can't become a nemesis.</li>
+      <li>With Rimfolk: healers such as priests and druids are favored for physician and fighters for marshal. Mages like study hours, fighters like drills, and a mage may ask for a magic circle once you can build one.</li>
     </advice>
     <keywords>
       <li>magic</li>
@@ -391,7 +392,7 @@
       <li>For a feudal colony, aristocratic or royal plus craft culture or city builders fits the medieval mods in your list.</li>
       <li>Fire worship wants flames around: keep them in stone rooms in a wooden town. The council's advisor already warns about wooden walls near open fires.</li>
       <li>A trading fair suits a merchant colony that sees many caravans.</li>
-      <li>With Rimfolk: the council's offices and elections are its own. They sit beside your ideoligion's leader or a republic's triumvirs; neither replaces the other.</li>
+      <li>With Rimfolk: the council's offices sit beside your ideoligion's roles. Under an aristocratic, royal or god emperor creed the colony holds no council elections; its leader names the officers instead.</li>
     </advice>
     <keywords>
       <li>meme</li>
@@ -505,7 +506,7 @@
       <li>In a wooden medieval town, consider switching off pyromaniac in the mod options.</li>
       <li>Read each newcomer's traits: a few of the new ones, like kleptomaniac, are real burdens.</li>
       <li>Load it above any other trait mods, as its authors recommend.</li>
-      <li>With Rimfolk: council reactions to decrees, dilemmas and secrets are keyed to the base game's traits, such as kind, greedy and industrious, so these new traits don't change how someone reacts there yet.</li>
+      <li>With Rimfolk: many of these traits have opinions on decrees (workaholics love long hours, rebels hate being told what to do), count in council elections and bring wishes of their own, such as books for an academian or a caravan trip for the wanderlust-struck.</li>
     </advice>
     <keywords>
       <li>trait</li>
@@ -544,7 +545,7 @@
     <advice>
       <li>Read the color as rarity, not as good or bad.</li>
       <li>Keep Vanilla Trait Colors next to Trait and Backstory Icons: for traits without their own icon, the icon mod picks one from these colors.</li>
-      <li>With Rimfolk: like other modded traits, these don't change council reactions yet; the council reads the base game's traits.</li>
+      <li>With Rimfolk: these don't change council reactions yet; the council reads the base game's traits and those of Vanilla Traits Expanded.</li>
     </advice>
     <keywords>
       <li>trait</li>
@@ -620,6 +621,7 @@
       <li>Keep natural-passion colonists working at their skill, or they lose it fast.</li>
       <li>Match conditional passions to the work: put colonists with the night passion on night shifts, and those with the rainy day passion outdoors when it rains.</li>
       <li>With Rimfolk: passions are judged by how fast they make someone learn. Apathy counts as no passion, natural and critical count as burning, and an Alpha Skills passion that switches on and off counts by its current state.</li>
+      <li>With Rimfolk: a colonist close to unlocking an expertise in a skill they love may set their heart on earning one.</li>
     </advice>
     <keywords>
       <li>skill</li>
@@ -658,7 +660,7 @@
       <li>Give gatherings a place to happen: a proper dining room and a rec area.</li>
       <li>Movie night needs a television, so it won't come up in a medieval colony.</li>
       <li>It can also hand out traits, like People Can Change. Switch one of them off if traits change too often.</li>
-      <li>With Rimfolk: the two work side by side. Its best friends and teaching sit next to the council's bonds and mentorships, and its aspirations are short inspiration tasks, not life goals. When a granted wish turns into an inspiration that doesn't match the wish, it can be one of these new ones.</li>
+      <li>With Rimfolk: its lessons, venting, memories and best friends feed the council's bonds, and lessons that keep coming can grow into a mentorship. Its aspirations are short inspiration tasks, not life goals. When a granted wish turns into an inspiration that doesn't match the wish, it can be one of these new ones.</li>
     </advice>
     <keywords>
       <li>social</li>

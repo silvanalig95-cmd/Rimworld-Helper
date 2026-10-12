@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- Granted memories for the wishes in Defs/WishDefs/Wishes_Mods_People.xml. -->
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_Granted_PM_MagicCircle</defName>
+    <durationDays>7</durationDays>
+    <stages>
+      <li>
+        <label>a place for magic</label>
+        <description>There's a proper place for magic in the colony now. The long workings come easier there.</description>
+        <baseMoodEffect>5</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+</Defs>

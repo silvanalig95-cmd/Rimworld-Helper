@@ -200,11 +200,10 @@ namespace ColonyCouncil
     /// <summary>A hunter, or someone with blood on the brain, wants to go out and bring something down.</summary>
     public class WishWorker_Hunt : WishWorker
     {
-        /// <summary>Huntable game that won't usually turn on the hunter: no predators, nothing that goes manhunter easily.</summary>
+        /// <summary>Huntable game that won't usually turn on the hunter: no predators, nothing that goes manhunter easily, no modded giants.</summary>
         private static IEnumerable<Pawn> Game(Map map) => map.mapPawns.AllPawnsSpawned.Where(a =>
-            a.RaceProps.Animal && a.Faction == null && !a.Downed && !a.RaceProps.predator && !a.InMentalState
-            && !map.fogGrid.IsFogged(a.Position) && a.RaceProps.baseBodySize >= 0.4f
-            && PawnUtility.GetManhunterOnDamageChance(a.def) <= 0.05f);
+            a.RaceProps.Animal && a.Faction == null && !a.Downed && !a.InMentalState
+            && !map.fogGrid.IsFogged(a.Position) && a.RaceProps.baseBodySize >= 0.4f && Beasts.FitForHunting(a));
 
         public override IEnumerable<WishCandidate> CandidatesFor(Pawn pawn)
         {

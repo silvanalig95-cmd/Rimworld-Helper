@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Tag groups: names for kinds of people that other mods add, so the rest of Rimfolk's XML (flavor lines, decree
+    reactions, office preferences, wishes, dreams, life goals) can ask for "mage" or "fighter" instead of a list of
+    one mod's traits. Everything is matched by defName while the game runs, so a group whose mod is missing simply
+    fits nobody, with no errors.
+    tag: the tag a person gets ([mage] in a line, "mage" in a tag expression). Any one list that fits is enough:
+      traits (any degree), memes (their own ideoligion's), xenotypes, genes (active), hediffs.
+    tone / order: a voice for the wish and journal lines of people it fits, after the vanilla traits that set one
+      (Psychopath, Abrasive, Kind, the mood traits); the lowest order wins.
+    Besides these, every person also has trait:X, skill:X (passions), meme:X and xeno:X tags, and nosleep, nofood,
+    hemogenic, deathrest and psycaster where they apply (see PeopleTags in the source).
+  -->
+
+  <!-- ==================== A RimWorld of Magic (torann.arimworldofmagic): classes are traits ==================== -->
+  <!-- defNames checked against the mod's 1.6 Defs/TraitDefs/Traits.xml. -->
+
+  <ColonyCouncil.TagGroupDef>
+    <defName>Council_Tags_Mage</defName>
+    <label>mages</label>
+    <description>A RimWorld of Magic's spellcasting classes.</description>
+    <tag>mage</tag>
+    <traits>
+      <li>InnerFire</li>
+      <li>HeartOfFrost</li>
+      <li>StormBorn</li>
+      <li>Arcanist</li>
+      <li>Druid</li>
+      <li>Paladin</li>
+      <li>Summoner</li>
+      <li>Necromancer</li>
+      <li>Lich</li>
+      <li>Priest</li>
+      <li>TM_Bard</li>
+      <li>Succubus</li>
+      <li>Warlock</li>
+      <li>Geomancer</li>
+      <li>Technomancer</li>
+      <li>BloodMage</li>
+      <li>Enchanter</li>
+      <li>Chronomancer</li>
+      <li>ChaosMage</li>
+      <li>TM_TheShadow</li>
+      <li>TM_Brightmage</li>
+      <li>TM_Shaman</li>
+      <li>TM_Golemancer</li>
+      <li>TM_Empath</li>
+      <li>TM_Wanderer</li>
+    </traits>
+  </ColonyCouncil.TagGroupDef>
+
+  <ColonyCouncil.TagGroupDef>
+    <defName>Council_Tags_Fighter</defName>
+    <label>trained fighters</label>
+    <description>A RimWorld of Magic's combat classes (all its might classes but the apothecary).</description>
+    <tag>fighter</tag>
+    <traits>
+      <li>Gladiator</li>
+      <li>Ranger</li>
+      <li>TM_Sniper</li>
+      <li>Bladedancer</li>
+      <li>Faceless</li>
+      <li>TM_Psionic</li>
+      <li>DeathKnight</li>
+      <li>TM_Monk</li>
+      <li>TM_Commander</li>
+      <li>TM_SuperSoldier</li>
+      <li>TM_Wayfarer</li>
+    </traits>
+  </ColonyCouncil.TagGroupDef>
+
+  <ColonyCouncil.TagGroupDef>
+    <defName>Council_Tags_Healer</defName>
+    <label>healers</label>
+    <description>Classes whose gift is healing: priest, druid, paladin, shaman, apothecary.</description>
+    <tag>healer</tag>
+    <traits>
+      <li>Priest</li>
+      <li>Druid</li>
+      <li>Paladin</li>
+      <li>TM_Shaman</li>
+      <li>TM_Apothecary</li>
+    </traits>
+  </ColonyCouncil.TagGroupDef>
+
+  <ColonyCouncil.TagGroupDef>
+    <defName>Council_Tags_Gifted</defName>
+    <label>gifted</label>
+    <description>Someone with the talent for a class but no class yet (magically gifted, physically adept).</description>
+    <tag>gifted</tag>
+    <traits>
+      <li>TM_Gifted</li>
+      <li>PhysicalProdigy</li>
+    </traits>
+  </ColonyCouncil.TagGroupDef>
+
+  <!-- ==================== Beliefs (Vanilla Ideology Expanded - Memes and Structures) ==================== -->
+
+  <ColonyCouncil.TagGroupDef>
+    <defName>Council_Tags_Appointed</defName>
+    <label>rule by appointment</label>
+    <description>Beliefs that put a ruler above the vote. A colony whose leader holds them doesn't elect its council: the leader names the officers.</description>
+    <tag>appointed</tag>
+    <memes>
+      <li>VME_Aristocratic</li>
+      <li>VME_Royal</li>
+      <li>VME_GodEmperor</li>
+    </memes>
+  </ColonyCouncil.TagGroupDef>
+
+  <!-- ==================== Traits from Vanilla Traits Expanded, grouped by what Rimfolk asks about ==================== -->
+  <!-- defNames checked against the mod's 1.6 Defs/TraitDefs/Traits_Singular.xml. -->
+
+  <ColonyCouncil.TagGroupDef>
+    <defName>Council_Tags_Gourmet</defName>
+    <label>fussy eaters</label>
+    <description>People who care about fine food the way a gourmand does: they ask for better meals.</description>
+    <tag>gourmet</tag>
+    <traits>
+      <li>VTE_RefinedPalate</li>
+      <li>VTE_Gastronomist</li>
+    </traits>
+  </ColonyCouncil.TagGroupDef>
+
+  <ColonyCouncil.TagGroupDef>
+    <defName>Council_Tags_Neat</defName>
+    <label>tidy people</label>
+    <description>People who notice filth and want it gone.</description>
+    <tag>neat</tag>
+    <traits>
+      <li>VTE_Neat</li>
+    </traits>
+  </ColonyCouncil.TagGroupDef>
+
+  <ColonyCouncil.TagGroupDef>
+    <defName>Council_Tags_AnimalLover</defName>
+    <label>animal lovers</label>
+    <description>People who want an animal to look after, passion for animals or not.</description>
+    <tag>animallover</tag>
+    <traits>
+      <li>VTE_AnimalLover</li>
+      <li>VTE_Menagerist</li>
+    </traits>
+  </ColonyCouncil.TagGroupDef>
+
+  <!-- ==================== Bodies (Alpha Genes) ==================== -->
+
+  <ColonyCouncil.TagGroupDef>
+    <defName>Council_Tags_Sunfed</defName>
+    <label>sun-fed</label>
+    <description>People who feed on light more than on meals (Alpha Genes' light sustenance gene).</description>
+    <tag>sunfed</tag>
+    <genes>
+      <li>AG_LightSustenance</li>
+    </genes>
+  </ColonyCouncil.TagGroupDef>
+
+  <!-- ==================== Voices ==================== -->
+
+  <ColonyCouncil.TagGroupDef>
+    <defName>Council_Tags_Lighthearted</defName>
+    <label>lighthearted</label>
+    <description>Cheerful by nature: the fun-loving, the happily simple, a born entertainer.</description>
+    <tag>lighthearted</tag>
+    <tone>Cheerful</tone>
+    <order>10</order>
+    <traits>
+      <li>VTE_FunLoving</li>
+      <li>VTE_Dunce</li>
+      <li>TM_Bard</li>
+    </traits>
+  </ColonyCouncil.TagGroupDef>
+
+  <ColonyCouncil.TagGroupDef>
+    <defName>Council_Tags_WorldWeary</defName>
+    <label>world-weary</label>
+    <description>Tired of the world, and it shows in how they talk.</description>
+    <tag>worldweary</tag>
+    <tone>Gloomy</tone>
+    <order>20</order>
+    <traits>
+      <li>VTE_WorldWeary</li>
+    </traits>
+  </ColonyCouncil.TagGroupDef>
+
+  <ColonyCouncil.TagGroupDef>
+    <defName>Council_Tags_Contrary</defName>
+    <label>contrary</label>
+    <description>Plays by their own rules and says so.</description>
+    <tag>contrary</tag>
+    <tone>Blunt</tone>
+    <order>30</order>
+    <traits>
+      <li>VTE_Rebel</li>
+    </traits>
+  </ColonyCouncil.TagGroupDef>
+
+  <ColonyCouncil.TagGroupDef>
+    <defName>Council_Tags_Aloof</defName>
+    <label>aloof</label>
+    <description>Detached or superior: the snob, the desensitized, the lich.</description>
+    <tag>aloof</tag>
+    <tone>Cold</tone>
+    <order>40</order>
+    <traits>
+      <li>VTE_Snob</li>
+      <li>VTE_Desensitized</li>
+      <li>Lich</li>
+    </traits>
+  </ColonyCouncil.TagGroupDef>
+
+  <ColonyCouncil.TagGroupDef>
+    <defName>Council_Tags_Empath</defName>
+    <label>empaths</label>
+    <description>Feels what others feel.</description>
+    <tag>empath</tag>
+    <tone>Warm</tone>
+    <order>50</order>
+    <traits>
+      <li>TM_Empath</li>
+    </traits>
+  </ColonyCouncil.TagGroupDef>
+
+</Defs>

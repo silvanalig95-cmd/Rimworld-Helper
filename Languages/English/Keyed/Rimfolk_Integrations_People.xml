@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!-- ===================== People, beliefs and magic from other mods (Source/ColonyCouncil/Integrations) ===================== -->
+
+  <!-- Wishes -->
+  <CC_PM_Reason_Gourmet>{PAWN_nameDef} cares a great deal about good food, and the colony's meals are plain.</CC_PM_Reason_Gourmet>
+
+  <!-- Appointments: an ideoligion whose leader names the council's officers (the "appointed" tag group) -->
+  <CC_PM_Appoint_Title>Council appointments, year {0}</CC_PM_Appoint_Title>
+  <CC_PM_Appoint_ByTitle>A seat filled by appointment</CC_PM_Appoint_ByTitle>
+  <CC_PM_Appoint_Text>By the colony's beliefs, the seats on the council are not put to a vote. {PAWN_nameDef}, who leads the colony, named the officers for the year.</CC_PM_Appoint_Text>
+  <CC_PM_Appoint_ByText>A seat on the council stood empty. By the colony's beliefs it is not put to a vote: {PAWN_nameDef}, who leads the colony, named someone to fill it.</CC_PM_Appoint_ByText>
+  <CC_PM_Appoint_Line>{0}: {PAWN_nameDef}.</CC_PM_Appoint_Line>
+  <CC_PM_Chronicle_Named>{0} named {1} as {2}.</CC_PM_Chronicle_Named>
+
+  <!-- Vanilla Social Interactions Expanded feeding the social web: lines in a bond's history, and best friends -->
+  <CC_PM_TieNote_Lesson>a lesson in {0}</CC_PM_TieNote_Lesson>
+  <CC_PM_TieNote_Vent>talked through a bad day</CC_PM_TieNote_Vent>
+  <CC_PM_TieNote_Saved>saved in a fight</CC_PM_TieNote_Saved>
+  <CC_PM_TieNote_Tended>tended back to health</CC_PM_TieNote_Tended>
+  <CC_PM_TieNote_Childhood>friends since childhood</CC_PM_TieNote_Childhood>
+  <CC_PM_TieNote_Fight>came to blows</CC_PM_TieNote_Fight>
+  <CC_PM_TieNote_BestFriends>became best friends</CC_PM_TieNote_BestFriends>
+  <CC_PM_BestFriends>{A_nameDef} and {B_nameDef} are best friends now.</CC_PM_BestFriends>
+
+  <!-- Life goals -->
+  <CC_PM_Asp_ClassProgress>level {0} of {1}</CC_PM_Asp_ClassProgress>
+  <CC_PM_Asp_ExpertiseReady>{0}: ready to choose an expertise</CC_PM_Asp_ExpertiseReady>
+
+</LanguageData>

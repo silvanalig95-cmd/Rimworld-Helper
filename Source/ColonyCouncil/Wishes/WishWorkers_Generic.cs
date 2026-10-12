@@ -68,6 +68,14 @@ namespace ColonyCouncil
         public float weight = 1f;
         /// <summary>Why they want it ({PAWN}).</summary>
         [MustTranslate] public string reason;
+        // Other mods' people, by tags (see PeopleTags): tags must fit too (a class, a meme); alsoWho also wants it
+        // whatever anyTrait, passion and passions say (with alsoReason as the why); favoredBy wants it more often.
+        // alsoWho and favoredBy are usually merged in from a ModPeopleDef.
+        public string tags;
+        public string alsoWho;
+        [MustTranslate] public string alsoReason;
+        public string favoredBy;
+        public float favorFactor = 1f;
 
         [Unsaved] private Func<ThingDef, bool> matcher;
 
@@ -146,10 +154,14 @@ namespace ColonyCouncil
             if (child) { if (!p.DevelopmentalStage.Child()) return false; }
             else if (adult && p.DevelopmentalStage.Juvenile()) return false;
             var traits = p.story?.traits;
-            if (!anyTrait.NullOrEmpty() && (traits == null || !anyTrait.Any(traits.HasTrait))) return false;
+            if (!AlsoWants(p))
+            {
+                if (!anyTrait.NullOrEmpty() && (traits == null || !anyTrait.Any(traits.HasTrait))) return false;
+                if (passion != null && !People.Passionate(p.skills?.GetSkill(passion))) return false;
+                if (!passions.NullOrEmpty() && !passions.Any(s => People.Passionate(p.skills?.GetSkill(s)))) return false;
+            }
             if (!notTrait.NullOrEmpty() && traits != null && notTrait.Any(traits.HasTrait)) return false;
-            if (passion != null && !People.Passionate(p.skills?.GetSkill(passion))) return false;
-            if (!passions.NullOrEmpty() && !passions.Any(s => People.Passionate(p.skills?.GetSkill(s)))) return false;
+            if (!tags.NullOrEmpty() && !PeopleTags.Matches(p, tags)) return false;
             if (minAnimals > 0 && (p.MapHeld?.mapPawns.SpawnedColonyAnimals.Count ?? 0) < minAnimals) return false;
             if (!seasons.NullOrEmpty() && (p.MapHeld == null || !seasons.Contains(GenLocalDate.Season(p.MapHeld)))) return false;
             if (minDaysInColony > 0f && (p.records?.GetValue(RecordDefOf.TimeAsColonistOrColonyAnimal) ?? 0f) < minDaysInColony * GenDate.TicksPerDay) return false;
@@ -176,7 +188,26 @@ namespace ColonyCouncil
             return room.Temperature < p.GetStatValue(StatDefOf.ComfyTemperatureMin);
         }
 
-        public string Reason(Pawn p) => reason.NullOrEmpty() ? null : reason.Formatted(p.Named("PAWN")).Resolve();
+        public string Reason(Pawn p)
+        {
+            string why = !alsoReason.NullOrEmpty() && AlsoWants(p) && !OwnWho(p) ? alsoReason : reason;
+            return why.NullOrEmpty() ? null : why.Formatted(p.Named("PAWN")).Resolve();
+        }
+
+        private bool AlsoWants(Pawn p) => !alsoWho.NullOrEmpty() && PeopleTags.Matches(p, alsoWho);
+
+        /// <summary>Wanted for the wish's own reasons (its traits and passions), not only through <see cref="alsoWho"/>.</summary>
+        private bool OwnWho(Pawn p)
+        {
+            var traits = p.story?.traits;
+            if (!anyTrait.NullOrEmpty() && (traits == null || !anyTrait.Any(traits.HasTrait))) return false;
+            if (passion != null && !People.Passionate(p.skills?.GetSkill(passion))) return false;
+            if (!passions.NullOrEmpty() && !passions.Any(s => People.Passionate(p.skills?.GetSkill(s)))) return false;
+            return true;
+        }
+
+        /// <summary>How much more often this colonist makes the wish (see <see cref="favoredBy"/>).</summary>
+        public float Favor(Pawn p) => !favoredBy.NullOrEmpty() && favorFactor > 0f && PeopleTags.Matches(p, favoredBy) ? favorFactor : 1f;
     }
 
     /// <summary>Base for the XML-driven workers.</summary>
@@ -184,7 +215,7 @@ namespace ColonyCouncil
     {
         protected WishParams P => def.wants ?? (def.wants = new WishParams());
 
-        protected WishCandidate Make(Pawn pawn, float weight) => Candidate(weight * P.weight, P.Reason(pawn));
+        protected WishCandidate Make(Pawn pawn, float weight) => Candidate(weight * P.weight * P.Favor(pawn), P.Reason(pawn));
     }
 
     /// <summary>A building in the colony (or in their own room): a hearth, a bookcase, a training dummy, a crib.</summary>
@@ -524,7 +555,8 @@ namespace ColonyCouncil
 
         public override string OnPromised(Wish wish) => Mark(wish) ? "CC_Promise_Beast" : null;
 
-        public override string TrySelfHelp(Wish wish) => Mark(wish) ? "CC_SelfHelp_Beast" : null;
+        // A beast too big to take on alone (a mod's giant) waits for the council's order.
+        public override string TrySelfHelp(Wish wish) => !Beasts.TooDangerousAlone(wish.other) && Mark(wish) ? "CC_SelfHelp_Beast" : null;
     }
 
     /// <summary>Lessons from the colony's best in a skill they love: the council pairs them up when promised.</summary>

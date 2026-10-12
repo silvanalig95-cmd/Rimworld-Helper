@@ -173,7 +173,8 @@ namespace ColonyCouncil
         {
             var map = HomeMap(pawn);
             var animals = pawn.skills?.GetSkill(SkillDefOf.Animals);
-            if (map == null || animals == null || animals.TotallyDisabled || !People.Passionate(animals)) yield break;
+            // Animal lovers from trait mods (the "animallover" tag group) want one too, passion or not.
+            if (map == null || animals == null || animals.TotallyDisabled || !(People.Passionate(animals) || PeopleTags.Has(pawn, "animallover"))) yield break;
             if (pawn.WorkTypeIsDisabled(WorkTypeDefOf.Handling)) yield break;
             var wild = map.mapPawns.AllPawnsSpawned
                 .Where(a => a.RaceProps.Animal && a.Faction == null && !a.Downed && SafeToTame(a)

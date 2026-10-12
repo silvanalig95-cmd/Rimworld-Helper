@@ -359,12 +359,38 @@ defs are edited. A few things it does on purpose:
   vehicle is still one of the colony: no grief, no "gone" in the annals, and their records are kept.
 - **Anomaly ghouls, A RimWorld of Magic's raised undead and spirits:** not treated as people, so no life goals,
   quirks, dreams or friendships for them.
-- **Vanilla Social Interactions Expanded:** works alongside. Its best friends and teaching sit next to Rimfolk's
-  bonds and mentorships; its "aspirations" are short inspiration tasks, not life goals, so nothing doubles up.
+- **Vanilla Social Interactions Expanded:** works alongside, and feeds Rimfolk's bonds (see below). Its
+  "aspirations" are short inspiration tasks, not life goals, so nothing doubles up.
 - **Guests, prisoners and visitors** (Hospitality and the like) are left out of meetings, votes and council
   talk.
 - **Removing a mod mid-game:** room plans that used a material from that mod fall back to a default material,
   and people who vanished with it are quietly forgotten.
+
+### People, beliefs and magic
+Rimfolk reads these mods by name while the game runs: with one missing, its part simply never comes up.
+- **Vanilla Social Interactions Expanded:** its lessons strengthen a mentorship, and three lessons within 15 days
+  from a skilled colonist (10+) to a keen learner (8 or less, with a passion) become one. Venting to a friend,
+  being saved in a fight, being tended back to health, childhood friendship and fistfights move the matching bond;
+  new best friends are noted in the chronicle and both journals. Where both mods do the same thing (cheering
+  someone up, plain lessons), Rimfolk's own version happens half as often, unless that feature is off in its
+  options.
+- **A RimWorld of Magic:** healers (priest, druid, paladin, shaman, apothecary) are favored for physician, fighters
+  for marshal, the commander and entertainer for speaker, the entertainer and empath for steward. Mages like
+  study hours, fighters like drills; a mage may ask for a magic circle once you can build one, and dream of
+  magic. Life goals: grow ten levels in one's class.
+- **Vanilla Traits Expanded:** its traits have opinions on decrees (workaholics love long hours, rebels hate
+  being told, the neat love a clean sweep), sway elections (brave marshals, no squeamish physicians), shape how
+  people feel about the colony's ways, and voice wishes (academians want books, snobs fine clothes, tycoons
+  silver, the wanderlust-struck a caravan). Some speak in their own tone.
+- **Memes (Ideology, Vanilla Ideology Expanded, Alpha Memes):** a colony whose leader holds an aristocratic,
+  royal or god-emperor creed doesn't vote: the leader names the officers. Collectivists accept rationing and long
+  hours, pacifists hate drills, monastic creeds love austerity, party-lovers love festivals, and creeds shape how
+  people feel about the colony's ways.
+- **Xenotypes (Biotech, Alpha Genes):** people who never sleep don't ask for beds or bedrooms, people who never eat
+  don't ask for meals, and long-lived genes no longer make a grown adult read as a teenager.
+- **Vanilla Skills Expanded:** a life goal to earn an expertise in a skill they love.
+- **Alpha Animals and other animal mods:** the hunting wish only picks ordinary game, nobody goes after a giant
+  beast on their own, and the predator by the colony is a wolf or a bear, not a monster.
 
 ## Why am I feeling this?
 Every mood Rimfolk gives says what caused it, under the description in its tooltip: whose wish came true (or

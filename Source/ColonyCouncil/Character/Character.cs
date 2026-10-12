@@ -256,6 +256,8 @@ namespace ColonyCouncil
                     a += 0.6f * Degree("Industriousness");
                     break;
             }
+            // Other mods' traits, classes and memes (ModPeopleDef): a workaholic, a pacifist creed.
+            a += ModPeople.WayAffinity(p, w);
             return Mathf.Clamp(a, -1.5f, 1.5f);
         }
 
