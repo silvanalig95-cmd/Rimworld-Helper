@@ -47,6 +47,8 @@ namespace ColonyCouncil
     {
         private Dictionary<string, int> lastTick = new Dictionary<string, int>();
         private int lastFired = -999999;
+        /// <summary>The solo category: small irritations from a messy or cramped home (Strangers/Nuisances.cs).</summary>
+        public NuisanceTracker nuisances = new NuisanceTracker();
         private int day = -1;
         private int today;
 
@@ -80,6 +82,14 @@ namespace ColonyCouncil
 
         public void Hourly(CouncilGameComponent comp)
         {
+            try
+            {
+                nuisances.Hourly();
+            }
+            catch (Exception e)
+            {
+                CouncilLog.ErrorOnce("nuisances", e);
+            }
             if (!S.strangers) return;
             int now = Find.TickManager.TicksGame;
             if (now < GenDate.TicksPerDay * 2) return;
@@ -197,7 +207,9 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref lastFired, "lastFired", -999999);
             Scribe_Values.Look(ref day, "day", -1);
             Scribe_Values.Look(ref today, "today");
+            Scribe_Deep.Look(ref nuisances, "nuisances");
             if (Scribe.mode == LoadSaveMode.PostLoadInit && lastTick == null) lastTick = new Dictionary<string, int>();
+            if (Scribe.mode == LoadSaveMode.PostLoadInit && nuisances == null) nuisances = new NuisanceTracker();
         }
     }
 }

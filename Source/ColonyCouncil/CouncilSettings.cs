@@ -78,6 +78,8 @@ namespace ColonyCouncil
         public bool nemesisReturns = true;
         public bool petMoments = true;
         public bool colonistMoments = true;
+        /// <summary>Everyday frictions: small irritations between colonists, and with a messy or cramped home.</summary>
+        public bool frictions = true;
         public bool autonomy = true;
         public bool worldReactions = true;
         public bool autonomyPlans = true;
@@ -190,6 +192,7 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref nemesisReturns, "nemesisReturns", true);
             Scribe_Values.Look(ref petMoments, "petMoments", true);
             Scribe_Values.Look(ref colonistMoments, "colonistMoments", true);
+            Scribe_Values.Look(ref frictions, "frictions", true);
             Scribe_Values.Look(ref autonomy, "autonomy", true);
             Scribe_Values.Look(ref worldReactions, "worldReactions", true);
             Scribe_Values.Look(ref autonomyPlans, "autonomyPlans", true);
@@ -421,6 +424,7 @@ namespace ColonyCouncil
             if (nemeses) l.CheckboxLabeled("CC_Settings_NemesisReturns".Translate(), ref nemesisReturns, "CC_Settings_NemesisReturns_Tip".Translate());
             l.CheckboxLabeled("CC_Settings_PetMoments".Translate(), ref petMoments, "CC_Settings_PetMoments_Tip".Translate());
             l.CheckboxLabeled("CC_Settings_Moments".Translate(), ref colonistMoments, "CC_Settings_Moments_Tip".Translate());
+            l.CheckboxLabeled("CC_Settings_Frictions".Translate(), ref frictions, "CC_Settings_Frictions_Tip".Translate());
             l.CheckboxLabeled("CC_Settings_Autonomy".Translate(), ref autonomy, "CC_Settings_Autonomy_Tip".Translate());
             l.CheckboxLabeled("CC_Settings_WorldReactions".Translate(), ref worldReactions, "CC_Settings_WorldReactions_Tip".Translate());
             if (autonomy) l.CheckboxLabeled("  " + "CC_Settings_AutonomyPlans".Translate(), ref autonomyPlans, "CC_Settings_AutonomyPlans_Tip".Translate());
@@ -526,7 +530,7 @@ namespace ColonyCouncil
         private void SetPeople(bool on, bool councilOn)
         {
             socialWeb = socialEvents = secrets = vendettas = aspirations = quirks = heirlooms = comingOfAge = dreams = dreamOmens = eulogies = on;
-            strangers = nemeses = nemesisReturns = petMoments = colonistMoments = autonomy = worldReactions = worldEvents = worldSituations = on;
+            strangers = nemeses = nemesisReturns = petMoments = colonistMoments = frictions = autonomy = worldReactions = worldEvents = worldSituations = on;
             enableDilemmas = decreeRequests = offices = colonyCharacter = councilOn;
             enableWishes = enableAmbitions = councilOn || on;
             journals = epithets = anniversaries = annals = on || councilOn;
@@ -590,6 +594,7 @@ namespace ColonyCouncil
             nemesisReturns = d.nemesisReturns;
             petMoments = d.petMoments;
             colonistMoments = d.colonistMoments;
+            frictions = d.frictions;
             autonomy = d.autonomy;
             worldReactions = d.worldReactions;
             autonomyPlans = d.autonomyPlans;

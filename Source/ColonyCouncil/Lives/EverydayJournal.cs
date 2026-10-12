@@ -87,6 +87,13 @@ namespace ColonyCouncil
             Bad("Bursting", 0.6f, "BowelLevel"),
             // Vanilla Brewing Expanded
             M("Tea", 0.6f, "VBE_DrankTea"),
+            // Rimfolk's everyday frictions (pools in Council_Journal_Everyday_Frictions.xml).
+            M("Chores", 1f, "Council_Friction_ChoreSpat"),
+            M("BadNight", 1.2f, "Council_Friction_Snoring", "Council_Friction_Woken"),
+            M("Gossip", 1.3f, "Council_Friction_TalkedAboutMe"),
+            M("NotReturned", 0.8f, "Council_Friction_NotReturned"),
+            M("ColdShoulder", 1.2f, "Council_Friction_ColdShoulder", "Council_Friction_SilentTreatment"),
+            M("Teased", 1.2f, "Council_Friction_BadJoke", "Council_Friction_Teased"),
         };
 
         private static Dictionary<string, Moment> byThought;
@@ -184,7 +191,8 @@ namespace ColonyCouncil
         /// <summary>Moments that are about someone else: their lines name {OTHER}, so they need that person.</summary>
         private static readonly HashSet<string> SocialMoments = new HashSet<string>
         {
-            "DeepTalk", "Insulted", "KindWords", "Lovin", "Rebuffed", "Fight", "Rescued", "Taught", "Lesson", "Nuzzled"
+            "DeepTalk", "Insulted", "KindWords", "Lovin", "Rebuffed", "Fight", "Rescued", "Taught", "Lesson", "Nuzzled",
+            "Chores", "BadNight", "Gossip", "NotReturned", "ColdShoulder", "Teased"
         };
     }
 }

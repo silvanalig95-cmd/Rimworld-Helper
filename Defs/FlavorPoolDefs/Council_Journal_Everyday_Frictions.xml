@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- Ordinary days in a colonist's journal (Lives/EverydayJournal.cs), for Rimfolk's everyday frictions between
+       colonists (Defs/InteractionDefs/Council_Moments_Frictions.xml). {OTHER_...} is the one it was with. First
+       person, short, a bit sore; not every entry has a point. -->
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Journal_Day_Chores</defName>
+    <lines>
+      <plain>
+        <li>Argued with {OTHER_nameDef} about the pots. I've scrubbed them three days running and I'm not doing it again tomorrow.</li>
+        <li>{OTHER_nameDef} says it was my turn to sweep. It wasn't.</li>
+      </plain>
+      <warm><li>Snapped at {OTHER_nameDef} over the dishes. I'll do them tomorrow without being asked, and we'll call it even.</li></warm>
+      <blunt><li>Dishes. {OTHER_nameDef}. Again.</li></blunt>
+      <gloomy><li>The bowls pile up and it always comes down to me. Told {OTHER_nameDef} so. Didn't help.</li></gloomy>
+      <cold><li>{OTHER_nameDef} owes me three turns at the slop bucket. I'm keeping count.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Journal_Day_BadNight</defName>
+    <lines>
+      <plain>
+        <li>{OTHER_nameDef} kept me up again. I lay there till the small hours, staring at the ceiling.</li>
+        <li>Woke three times in the night because of {OTHER_nameDef}. I'll be asleep in my soup at this rate.</li>
+      </plain>
+      <blunt><li>{OTHER_nameDef}. Every night. I need a room of my own.</li></blunt>
+      <cheerful><li>{OTHER_nameDef} had me up before the birds, so I got first pick at breakfast!</li></cheerful>
+      <gloomy><li>Another night of {OTHER_nameDef} and the noise. I don't remember what real sleep feels like.</li></gloomy>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Journal_Day_Gossip</defName>
+    <lines>
+      <plain>
+        <li>Heard {OTHER_nameDef} talking about me. I told {OTHER_objective} I'd heard.</li>
+        <li>{OTHER_nameDef} told the others something I'd said in confidence. I won't make that mistake twice.</li>
+      </plain>
+      <warm><li>{OTHER_nameDef} said something about me I wasn't meant to hear. Maybe {OTHER_pronoun} had a bad day. It still stung.</li></warm>
+      <blunt><li>{OTHER_nameDef} talks too much. Mostly about me.</li></blunt>
+      <cold><li>Noted what {OTHER_nameDef} said behind my back. I'll remember it the next time {OTHER_pronoun} needs a favor.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Journal_Day_NotReturned</defName>
+    <lines>
+      <plain>
+        <li>Asked {OTHER_nameDef} for my knife back. Third time. Tomorrow, {OTHER_pronoun} said.</li>
+        <li>Saw my good gloves on {OTHER_nameDef}'s hands today. I lent them out last week.</li>
+      </plain>
+      <cheerful><li>{OTHER_nameDef} still has my comb, so I've been doing my hair with my fingers. It looks about the same!</li></cheerful>
+      <gloomy><li>Lent {OTHER_nameDef} my blanket on a cold night. Haven't seen it since, and the nights haven't gotten any warmer.</li></gloomy>
+      <cold><li>{OTHER_nameDef} has had my whetstone for a week. I've stopped lending {OTHER_objective} things.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Journal_Day_ColdShoulder</defName>
+    <lines>
+      <plain>
+        <li>{OTHER_nameDef} walked right past me today. Not a word.</li>
+        <li>Said good morning to {OTHER_nameDef} and got a grunt back.</li>
+      </plain>
+      <warm><li>{OTHER_nameDef} is still cross with me. I'll bring {OTHER_objective} something hot to drink tomorrow and see if that helps.</li></warm>
+      <blunt><li>If {OTHER_nameDef} wants to sulk, fine.</li></blunt>
+      <gloomy><li>{OTHER_nameDef} won't look at me. I keep going over what I said.</li></gloomy>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Journal_Day_Teased</defName>
+    <lines>
+      <plain>
+        <li>{OTHER_nameDef} made another crack about my singing. I'm not going to stop singing.</li>
+        <li>The others laughed at {OTHER_nameDef}'s joke. I didn't. It was about me.</li>
+        <li>[teen] {OTHER_nameDef} keeps calling me that name. I hate it.</li>
+      </plain>
+      <warm><li>{OTHER_nameDef} teased me again today. I don't think {OTHER_pronoun} knows it lands harder than {OTHER_pronoun} means it to.</li></warm>
+      <cold><li>{OTHER_nameDef} thinks {OTHER_pronoun}'s funny. I've started a list.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+</Defs>

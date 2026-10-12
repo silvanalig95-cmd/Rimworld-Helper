@@ -131,6 +131,15 @@ rewards, bad moods and everything the game and other mods give count as they are
 rising standards apply to these moments too. Hover a moment in the Needs tab to see when it counts for less; a
 setting turns this off.
 
+**Everyday frictions.** People who live close together get on each other's nerves. Colonists argue about the dishes,
+complain about a bunkmate's snoring, take the last good meal, keep a borrowed knife, correct each other at the table
+and give each other the cold shoulder after a spat. A messy or cramped home adds its own: a door that sticks, a
+leaking roof, smoke in a small room, a generator droning next to someone's bed. Each costs a point or two of mood for
+half a day to a day and a half. In an ordinary colony they come about as often as the warm moments; less in a happy,
+roomy one, more in barracks or between people who dislike each other. Abrasive, volatile and jealous colonists start
+more of them, kind ones none. After a spat the two share no warm moments until it wears off or they clear the air.
+A setting turns them off.
+
 ### Decrees: spend the good mood
 When the colony is doing well, put that goodwill to work. The Decrees tab lets you declare up to two policies at a
 time for a few days: **long hours** (work faster), **rationing** (eat less), **drills** (everyone who can fight
@@ -701,7 +710,7 @@ journals, the Story tab and History) or **Important only**.
 - where the council button sits in the bottom bar
 - **council life**: decrees, dilemmas, petitions, annals, names, journals, offices, the social web, social
   events, life goals, secrets, vendettas, eulogies, heirlooms, coming of age, quirks, dreams and dream omens, encounters with strangers, nemeses (and whether they return), pets, the
-  colony's character, each on its own switch
+  colony's character, everyday frictions, each on its own switch
 - **Rimfolk events**: on or off, whether they may bring fights, whether groups may make camp on the map, whether
   missions show up in the Quests tab, and whether the storyteller draws them (and how likely each is) or Rimfolk's
   own timer does (and how often)

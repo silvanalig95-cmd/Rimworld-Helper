@@ -773,6 +773,8 @@
         <minOpinion>-40</minOpinion>
         <maxOpinion>10</maxOpinion>
         <initiatorTags>!child</initiatorTags>
+        <tone>friction</tone>
+        <soreHours>8</soreHours>
       </li>
     </modExtensions>
   </InteractionDef>
@@ -963,6 +965,7 @@
         <initiatorTags>!child</initiatorTags>
         <recipientTags>!child</recipientTags>
         <minOpinion>-30</minOpinion>
+        <tone>friction</tone>
       </li>
     </modExtensions>
   </InteractionDef>
@@ -1549,6 +1552,8 @@
         <need>Hygiene</need>
         <needBelow>0.2</needBelow>
         <mutualFriends>true</mutualFriends>
+        <!-- A friend's honest word: neither a friction nor a warm moment between them. -->
+        <tone>neutral</tone>
       </li>
     </modExtensions>
   </InteractionDef>
