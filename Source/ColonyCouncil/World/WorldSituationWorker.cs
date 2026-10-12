@@ -80,11 +80,15 @@ namespace ColonyCouncil
                 Arrivals.TechWeight(f, tech) * Mathf.Lerp(1.5f, 0.5f, Mathf.Clamp01(Distance(map, NearestTown(f, map)) / 40f)));
         }
 
-        /// <summary>A leader who can be replaced without breaking the game: not an empire's, not in our hands, not wanted by a quest, nobody's kin here.</summary>
+        /// <summary>
+        /// A leader who can be replaced without breaking the game: not an empire's, not in our hands, not wanted by a
+        /// quest, nobody's kin here. Not of a people whose next leader the game picks from pawns on a map (that could be
+        /// a visitor at the colony, or one of its prisoners).
+        /// </summary>
         public static bool LeaderReplaceable(Faction f)
         {
             var l = f?.leader;
-            if (l == null || l.Dead || l.Destroyed || f.def.HasRoyalTitles || f.def.permanentEnemy) return false;
+            if (l == null || l.Dead || l.Destroyed || f.def.HasRoyalTitles || f.def.permanentEnemy || f.def.generateNewLeaderFromMapMembersOnly) return false;
             if (l.Spawned || l.IsPrisoner || l.GetCaravan() != null || People.Kidnapped(l) || QuestUtility.IsReservedByQuestOrQuestBeingGenerated(l)) return false;
             if (!Find.WorldPawns.Contains(l)) return false;
             if (l.relations != null && l.relations.DirectRelations.Any(r => r.otherPawn != null && r.otherPawn.Faction == Faction.OfPlayer)) return false;
@@ -197,14 +201,16 @@ namespace ColonyCouncil
         protected virtual bool StillPossible(WorldSituation s)
         {
             var f = s.ctx.faction;
-            if (def.faction == null || f == null) return true;
+            if (def.faction == null) return true;
+            // Gone from the save altogether (their mod was removed): nothing left to tell about them.
+            if (f == null) return false;
             if (f.defeated) return false;
             if (def.faction.friendly && f.HostileTo(Faction.OfPlayer)) return false;
             return true;
         }
 
-        /// <summary>How it ends when its people are gone (an ending keyed "gone", or the quiet end).</summary>
-        protected virtual string GoneEnding(WorldSituation s) => def.Ending("gone") != null ? "gone" : WorldSituations.Quietly;
+        /// <summary>How it ends when its people are gone (an ending keyed "gone", or the quiet end; quietly too when there's no name left to tell it with).</summary>
+        protected virtual string GoneEnding(WorldSituation s) => s.ctx.faction != null && def.Ending("gone") != null ? "gone" : WorldSituations.Quietly;
 
         /// <summary>The ending to tell when time runs out: the first that fits, in order.</summary>
         public virtual SituationEnding TimeoutEnding(WorldSituation s)
@@ -458,10 +464,19 @@ namespace ColonyCouncil
             return p;
         }
 
+        /// <summary>
+        /// Out in the world and nobody's in particular: a world pawn not on a map, not in a caravan, a pod or a trader's
+        /// hold, not a prisoner or one of ours, not kidnapped and not wanted by a quest. Only such a person may die or
+        /// vanish off-screen.
+        /// </summary>
+        public static bool FreeInWorld(Pawn p) =>
+            p != null && !p.Dead && !p.Destroyed && !p.Spawned && p.holdingOwner == null && Find.WorldPawns.Contains(p) && p.GetCaravan() == null
+            && !p.IsPrisoner && p.Faction != Faction.OfPlayer && !People.Kidnapped(p) && !QuestUtility.IsReservedByQuestOrQuestBeingGenerated(p);
+
         /// <summary>A world pawn dies out in the world (the old chief, the warlord brought down): quietly, without the game's own letters.</summary>
         public static bool DieOffscreen(Pawn p)
         {
-            if (p == null || p.Dead || p.Destroyed || p.Spawned) return false;
+            if (!FreeInWorld(p)) return false;
             try
             {
                 p.Kill(null);
@@ -474,10 +489,15 @@ namespace ColonyCouncil
             }
         }
 
-        /// <summary>Someone the colony will never see again (taken away, gone over the mountains).</summary>
+        /// <summary>
+        /// Someone the colony will never see again (taken away, gone over the mountains): off the map, or out of the
+        /// world if they're free out there. Someone in a caravan, a pod, a trader's hold or a colonist's arms, a people's
+        /// leader or someone a quest needs stays where they are.
+        /// </summary>
         public static void Vanish(Pawn p)
         {
-            if (p == null || p.Dead || p.Discarded) return;
+            if (p == null || p.Dead || p.Discarded || PawnUtility.IsFactionLeader(p) || QuestUtility.IsReservedByQuestOrQuestBeingGenerated(p)) return;
+            if (!p.Spawned && (p.holdingOwner != null || Find.WorldPawns.Contains(p) && !FreeInWorld(p))) return;
             try
             {
                 if (p.Spawned) p.DeSpawn();
