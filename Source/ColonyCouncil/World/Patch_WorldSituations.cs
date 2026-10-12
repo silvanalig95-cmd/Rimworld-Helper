@@ -60,11 +60,13 @@ namespace ColonyCouncil
         public static void Prefix(IncidentWorker_RaidEnemy __instance, IncidentParms parms)
         {
             if (!RimfolkPatches.On || parms == null || parms.faction != null || parms.quest != null || parms.raidStrategy != null || parms.raidArrivalMode != null) return;
+            // Only a raid on a map whose strength is already known: too few points for his people would leave the game without a plan for them.
+            if (!(parms.target is Map) || parms.points <= 0f) return;
             try
             {
                 var f = WorldSituations.RaidFaction();
                 if (f == null || !Rand.Chance(WarlordWorker.RaidShare) || !Raids.CanRaid(f)) return;
-                if (parms.points > 0f && parms.points < f.def.MinPointsToGeneratePawnGroup(PawnGroupKindDefOf.Combat, null)) return;
+                if (parms.points < f.def.MinPointsToGeneratePawnGroup(PawnGroupKindDefOf.Combat, null)) return;
                 if (!__instance.FactionCanBeGroupSource(f, parms, false)) return;
                 parms.faction = f;
             }

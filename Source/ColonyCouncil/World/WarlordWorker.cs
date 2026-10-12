@@ -466,7 +466,16 @@ namespace ColonyCouncil
             if (!CellFinder.TryFindRandomCellNear(anchor.Position, map, 6, c => c.Standable(map) && !c.Fogged(map) && c.GetFirstPawn(map) == null, out var cell, 30)) return;
             Find.WorldPawns.ForcefullyKeptPawns.Remove(x);
             Find.WorldPawns.RemovePawn(x);
-            GenSpawn.Spawn(x, cell, map);
+            try
+            {
+                GenSpawn.Spawn(x, cell, map);
+            }
+            catch
+            {
+                // Neither on the map nor in the world, he'd be lost from the save: back to the world with him.
+                if (!x.Spawned && !x.Destroyed && !Find.WorldPawns.Contains(x)) Find.WorldPawns.PassToWorld(x, PawnDiscardDecideMode.KeepForever);
+                throw;
+            }
             raiders.Add(x);
             s.flags.AddDistinct("led");
         }
