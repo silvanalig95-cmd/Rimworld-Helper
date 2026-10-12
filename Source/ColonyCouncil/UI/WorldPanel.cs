@@ -72,6 +72,8 @@ namespace ColonyCouncil
                     y += UiKit.Paragraph(26f, y, w - 26f, m.next, UiKit.Faint) + 4f;
                 }
                 y += 14f;
+                // A camp on the map, if there is one: who, how long, terms, tension, and a way to talk to them.
+                y = CampPanel.Section(y, w);
                 y += UiKit.SectionTitle(0f, y, w, "CC_World_OutThere".Translate(), Icons.Visitor, Calm);
                 if (m.outThere.Count == 0) y += UiKit.EmptyState(0f, y, w, Icons.Visitor, "CC_World_NobodyOut".Translate(), 70f);
                 else y = Grid(y + 2f, w, m.outThere);
