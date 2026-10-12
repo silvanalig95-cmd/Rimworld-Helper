@@ -197,6 +197,12 @@ namespace ColonyCouncil
         /// Puts the offer in the Quests tab, with its own letter: accepted there, it starts; left alone, it expires there.
         /// False (nothing made) when the game won't take it, so the offer can come as a letter instead.
         /// </summary>
+        /// <remarks>
+        /// A save that later loses Rimfolk: each mission quest names Council_MissionQuest as its root, so the game reports
+        /// the missing def for each such quest when loading. Only the one open quest (there is never more than one)
+        /// still holds a <see cref="QuestPart_RimfolkMission"/>; ended ones are unlinked from it (<see cref="Unlink"/>).
+        /// An offer still waiting expires on its own; one already accepted stays under way in the tab with nothing to end it.
+        /// </remarks>
         public static bool TryOfferAsQuest(Mission m, string title, string description, float answerDays, int rating)
         {
             var root = DefDatabase<QuestScriptDef>.GetNamedSilentFail(QuestRoot);
