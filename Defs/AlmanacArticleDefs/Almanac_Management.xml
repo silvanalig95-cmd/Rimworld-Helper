@@ -450,7 +450,7 @@ Each colonist also adds pawn points to raids: 15 at low wealth, rising to 140 at
         <heading>How resistance falls</heading>
         <text>Each conversation lowers resistance by 1.0, multiplied by an opinion factor, a mood factor and the warden's negotiation ability. Wardens chat every several hours. Starting resistance depends on who the prisoner is; a tribal warrior, for example, starts at 5-9.</text>
         <table>
-          <li>Prisoner | Factor</li>
+          <li>Condition | Factor</li>
           <li>Opinion of the warden -100 | 50%</li>
           <li>Opinion of the warden 0 | 100%</li>
           <li>Opinion of the warden +100 | 150%</li>
