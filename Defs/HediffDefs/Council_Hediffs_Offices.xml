@@ -32,7 +32,7 @@
   <HediffDef>
     <defName>Council_Office_MarshalColony</defName>
     <label>a steady marshal</label>
-    <description>The colony has a marshal: everyone is a little better drilled.</description>
+    <description>The marshal drills every colonist. Aim and footwork are slightly better for it.</description>
     <hediffClass>HediffWithComps</hediffClass>
     <defaultLabelColor>(0.85, 0.75, 0.5)</defaultLabelColor>
     <isBad>false</isBad>
@@ -71,7 +71,7 @@
   <HediffDef>
     <defName>Council_Office_PhysicianColony</defName>
     <label>a good physician</label>
-    <description>The colony has a physician: everyone is looked after a little better.</description>
+    <description>The physician keeps an eye on every colonist. Wounds heal and sickness passes slightly faster.</description>
     <hediffClass>HediffWithComps</hediffClass>
     <defaultLabelColor>(0.85, 0.75, 0.5)</defaultLabelColor>
     <isBad>false</isBad>

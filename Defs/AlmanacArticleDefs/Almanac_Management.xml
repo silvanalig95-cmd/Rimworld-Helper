@@ -12,8 +12,8 @@
     <category>Basics</category>
     <order>10</order>
     <summary>Shelter, food, beds, a stockpile and work priorities before the first night</summary>
-    <tip>Sleep in a bed. Eat at a table. Die in a hospital, eventually. That's civilization.</tip>
-    <description>Your first day sets up everything that follows, and most of it is simple. Get the starting supplies unforbidden and under a roof, put in a bed for everyone, start a rice field and tell each colonist what to work on. Fancy things can wait; a roof, food and a bed can't.</description>
+    <tip>A bed and a table on day one save each colonist 7 mood a day.</tip>
+    <description>Your first day sets up everything that follows, and most of it is simple. Get the starting supplies unforbidden and under a roof, put in a bed for everyone, start a rice field and tell each colonist what to work on. Everything else can wait until those are done.</description>
     <facts>
       <li>Starting items can arrive forbidden (a red X). Colonists won't touch them until you allow them.</li>
       <li>Packaged survival meals are the only food you start with that doesn't rot. A simple meal rots in 4 days and raw meat in 2.</li>
@@ -56,7 +56,7 @@
     <category>Basics</category>
     <order>20</order>
     <summary>Crops, a freezer, a place to fight from and a research plan before winter</summary>
-    <tip>Winter is when your summer self's jokes come due. Plant accordingly.</tip>
+    <tip>Plant in spring and summer. A field sown in late autumn rarely ripens.</tip>
     <description>The first quadrum is when a camp becomes a colony. Fill the fields while it's warm, get cold storage working before meat and meals start rotting, prepare for the first raids and start researching. By the end of it you want food put away for winter and a place to fight from.</description>
     <facts>
       <li>An adult eats 1.6 nutrition a day, so a 15-day winter takes about 27 simple meals per colonist.</li>
@@ -101,14 +101,14 @@
     <category>Basics</category>
     <order>30</order>
     <summary>What the council's tabs are for, in plain words</summary>
-    <tip>The council argues, the colonists ask, the almanac explains. Somebody still has to pick up the hammer.</tip>
+    <tip>The council advises and the colonists ask. You decide what gets done.</tip>
     <description>This mod gives your colony a council: an advisor that points out problems, colonists who ask for things, and meetings where the colony chooses a goal. Everything it shows you is advice or a request. You can follow it, ignore it, or switch parts of it off.</description>
     <facts>
       <li>Priorities: the problems your colony faces right now, worst first. Each says why it matters and offers to show you the problem, plan a room for it, or open the matching page here.</li>
       <li>Wishes: colonists ask for things that fit who they are and what just happened to them. Grant a wish by making it happen, or answer it with Promise, Refuse or Not now.</li>
-      <li>A promise buys time and a little trust, but a broken promise hurts far more than never promising. A refusal stings once and is over. Not now sets the wish aside quietly.</li>
+      <li>A promise buys time and some trust, but breaking it hurts far more than never promising. A refusal stings once and is then over. Not now sets the wish aside with no mood penalty, and the colonist won't ask for it again for a while.</li>
       <li>Trust: each colonist's trust in the council runs from bitter through doubtful, neutral and trusting to devoted. It rises when wishes come true and promises are kept, and falls when they're ignored, refused or broken. Trusting colonists are patient and content; bitter ones grumble and stop asking.</li>
-      <li>Council meetings: about once a quadrum the colonists really gather, pitch ambitions out loud and vote. Going with the favorite pleases its backers, overruling a clear majority costs a little trust, and achieving an ambition lifts everyone's mood.</li>
+      <li>Council meetings: about once a quadrum the colonists gather in person, pitch ambitions out loud and vote. Going with the favorite pleases its backers, overruling a clear majority costs some trust, and achieving an ambition lifts everyone's mood.</li>
       <li>Room plans: whole rooms you place in one go. Turn or mirror them, pick materials, or let the council find a spot; your builders do the rest.</li>
       <li>Nothing here forces you to do anything. The Stakes setting decides how much it all matters: Gentle has only upsides, Advisor only has no mood effects at all, and each part can be switched off.</li>
     </facts>
@@ -143,7 +143,7 @@
     <category>Basics</category>
     <order>40</order>
     <summary>When to leave the barracks and the campfire behind, and why wealth bites back</summary>
-    <tip>The first year you build what keeps you alive. The second year you build what keeps you from killing each other.</tip>
+    <tip>Private bedrooms are usually the first big upgrade once a colony has survived its first year.</tip>
     <description>A colony that survives its first year starts to outgrow its first buildings. A shared barracks, a campfire kitchen and loot piled on the floor do fine at first, but as wealth grows colonists expect more and raids get bigger. Upgrade the things people use every day, and grow your defenses along with your wealth.</description>
     <facts>
       <li>Expectations shrink a free mood bonus as wealth grows: +30 below 15,000 wealth, +24 up to 31,000, +18 up to 81,000, +12 up to 182,000, +6 up to 308,000 and 0 above that.</li>
@@ -157,7 +157,7 @@
       <li>Move cooking from a campfire into a proper kitchen with a fueled stove on a stone floor, then to an electric stove after Electricity. Keep the butcher table in another room.</li>
       <li>Raise comfort before wealth crosses the next expectations line: floors, lights, a dining room and a rec room.</li>
       <li>Grow defenses with wealth: more fighters, better weapons and a proper killbox before you're rich.</li>
-      <li>Turn idle wealth into useful things. A stack of gold defends nothing and still draws raiders.</li>
+      <li>Turn idle wealth into useful things: gold in storage raises raid size without helping you defend.</li>
     </advice>
     <keywords>
       <li>mid game</li>
@@ -189,8 +189,8 @@
     <category>Basics</category>
     <order>50</order>
     <summary>Your first raid, injury, mental break and death, and what to do about each</summary>
-    <tip>Hold the line, or hold a funeral. The colony's budget has room for one.</tip>
-    <description>Every colony has bad days: raiders at the door, a colonist bleeding on the floor, someone snapping under the strain. Most of them can be survived if you act calmly and in the right order. And when a run goes truly wrong, remember that early colonies aren't supposed to be perfect.</description>
+    <tip>After a raid: rescue, tend, clean, bury, in that order.</tip>
+    <description>Every colony has bad days: raiders at the door, a colonist bleeding on the floor, someone snapping under the strain. Most of them can be survived if you act calmly and in the right order. This page covers what to do after a raid, a serious injury, a mental break or a death.</description>
     <facts>
       <li>Cover matters: walls, rock and doors block up to 75% of shots, sandbags and barricades 55%, trees only 25%.</li>
       <li>Mental breaks start below 35% mood (minor), 20% (major) and 5% (extreme). After a break the colonist gets Catharsis: +40 mood for 3 days.</li>
@@ -235,11 +235,11 @@
     <category>Management</category>
     <order>10</order>
     <summary>Numbers 1 to 4 decide who does what first; doctors and firefighters go at 1</summary>
-    <tip>If your best cook is hauling bricks, someone else is cooking. And that someone can't cook.</tip>
+    <tip>If your best cook is hauling bricks, someone worse is at the stove.</tip>
     <description>The Work tab decides who does what, and in which order. With manual priorities switched on, each job gets a number from 1 (do first) to 4 (do last), and a blank box means never. Good priorities put your best hands on the jobs that keep people alive and stop skilled crafters from spending the day carrying rocks.</description>
     <facts>
       <li>Priorities run from 1 (highest) to 4 (lowest). A blank box means the colonist never does that work.</li>
-      <li>Leaving Firefighting, Patient and Doctor below priority 1 is one of the classic beginner mistakes.</li>
+      <li>Leaving Firefighting, Patient and Doctor below priority 1 is a classic beginner mistake: fires keep burning and the sick keep working while other jobs come first.</li>
       <li>A common rule of thumb: at least one cook and one grower for every 5 colonists, with a backup for every key job.</li>
       <li>Among jobs with the same number, a colonist works through them from left to right across the Work tab.</li>
     </facts>
@@ -274,7 +274,7 @@
     <category>Management</category>
     <order>20</order>
     <summary>Set sleep, work and free hours so nobody runs out of rest or fun</summary>
-    <tip>Eight hours of sleep, sixteen of whatever. Clever schedules break more colonists than raiders do.</tip>
+    <tip>Most colonies run fine on one plain schedule for everyone.</tip>
     <description>The Schedule tab splits each colonist's day into Sleep, Work, Joy and Anything hours. A plain schedule works best: everyone sleeps at night, works by day and has an hour or two to themselves. Recreation drains slowly but steadily, so a colonist with no free time will end up unhappy.</description>
     <facts>
       <li>Recreation falls 2.5% an hour while it's above 30%, so it takes about 28 hours to drop from full to 30% with no fun at all.</li>
@@ -285,9 +285,9 @@
     </facts>
     <advice>
       <li>Keep it simple: sleep at night, work by day, and leave some Joy or Anything hours.</li>
-      <li>Give everyone an hour or two of Joy in the evening, when the rec room is close by.</li>
+      <li>Give everyone an hour or two of Joy in the evening, after work and before bed.</li>
       <li>Let night owls sleep through the day and work at night.</li>
-      <li>Add a Joy hour for anyone whose mood is sinking. It's cheaper than a tantrum.</li>
+      <li>Add a Joy hour for anyone whose mood is sinking, before it reaches a break threshold.</li>
     </advice>
     <keywords>
       <li>schedule</li>
@@ -314,7 +314,7 @@
     <category>Management</category>
     <order>30</order>
     <summary>A bed for everyone, under a roof, at a decent temperature: each lapse costs -4</summary>
-    <tip>A bed is a treaty with the night. Sleeping in the dirt is for raiders and the dead.</tip>
+    <tip>Even a bedroll on the floor saves 4 mood over the bare ground.</tip>
     <description>Every colonist needs a bed of their own in a roofed room that's neither freezing nor sweltering. Each thing that goes wrong at night becomes its own mood penalty the next day, and they stack. A bed for every colonist belongs in even the roughest first shelter.</description>
     <facts>
       <li>Slept on the ground: -4. Slept outside: -4. Slept in the cold: -4. Slept in the heat: -4. Each lasts a day.</li>
@@ -354,15 +354,15 @@
     <label>colony size</label>
     <category>Management</category>
     <order>40</order>
-    <summary>Every new colonist is two hands, one mouth and a slightly bigger raid</summary>
-    <tip>Every new face is two hands, one mouth, and a reason for the pirates to bring friends.</tip>
-    <description>Each colonist you add eats, needs a bed and makes raids a little bigger, and a richer colony expects more comfort too. Growth is good when food, beds and work are ready for it, and dangerous when they aren't. Check what a recruit can actually do before you say yes.</description>
+    <summary>Each new colonist adds labor, eats food and makes raids bigger</summary>
+    <tip>Every recruit eats 1.6 nutrition a day from the day they arrive.</tip>
+    <description>Each colonist you add eats, needs a bed and makes raids somewhat bigger, and a richer colony expects more comfort too. Growth is good when food, beds and work are ready for it, and dangerous when they aren't. Check what a recruit can actually do before you say yes.</description>
     <facts>
       <li>Each adult eats 1.6 nutrition a day: about 1.8 simple meals.</li>
       <li>Each colonist adds pawn points to raids: 15 at low wealth, rising to 140 at 400,000 wealth.</li>
       <li>Experienced players warn that a fifth mouth can starve four people's food supply.</li>
       <li>Children add less to raids (0% at age 3, 50% at 13, 100% at 18), and slaves count 75%.</li>
-      <li>Accepting every refugee or prisoner without checking their traits is a classic beginner mistake.</li>
+      <li>Accepting every refugee or prisoner without checking their traits is a classic beginner mistake; a pyromaniac or a colonist incapable of most work costs more than they give.</li>
     </facts>
     <advice>
       <li>Before taking in a refugee or recruiting a prisoner, read their traits, skills and the work they refuse to do.</li>
@@ -396,7 +396,7 @@
     <category>Management</category>
     <order>50</order>
     <summary>Talk resistance down to zero, then recruit; mood and the warden set the pace</summary>
-    <tip>Feed them, patch them, talk to them. Kindness is cheaper than a recruitment poster.</tip>
+    <tip>A prisoner in a good mood loses resistance up to 7.5 times as fast as a miserable one.</tip>
     <description>A prisoner has a resistance score that must reach 0 before any recruitment attempt can succeed. Your warden wears it down a little with every conversation, faster if the prisoner likes the warden and is in a good mood. A well-fed prisoner in a decent cell comes round far sooner than a miserable one.</description>
     <facts>
       <li>Each conversation lowers resistance by 1.0, multiplied by an opinion factor, a mood factor and the warden's negotiation ability.</li>
@@ -437,8 +437,8 @@
     <category>Management</category>
     <order>60</order>
     <summary>A fully walled room with a prisoner bed, and no colonists sleeping in it</summary>
-    <tip>A prisoner and a colonist differ mostly in paperwork and in which door they're allowed through.</tip>
-    <description>Before you capture anyone you need somewhere to keep them: a room fully enclosed by walls with at least one bed set for prisoners. Prisoner mood uses the room's impressiveness just like a bedroom does, so a cramped, bare cell makes recruitment slower. Build it before the raid, not after.</description>
+    <tip>A prison cell is a small bedroom with the bed set for prisoners.</tip>
+    <description>Before you capture anyone you need somewhere to keep them: a room fully enclosed by walls with at least one bed set for prisoners. Prisoner mood uses the room's impressiveness just like a bedroom does, so a cramped, bare cell makes recruitment slower.</description>
     <facts>
       <li>The room must be fully enclosed by walls or impassable objects and hold at least 1 bed or sleeping spot set "For Prisoners". Setting one converts every bed in the room.</li>
       <li>One prisoner bed makes a prison cell; several make a prison barracks.</li>
@@ -478,8 +478,8 @@
     <category>Management</category>
     <order>70</order>
     <summary>More prisoners and more doors mean more escapes</summary>
-    <tip>A prisoner, a spare door, and a gun rack ten steps away. That's not a prison, it's a starter kit.</tip>
-    <description>Now and then prisoners try to break out, and how often depends on how the prison is built and how many people are in it. The game doesn't show the odds, but the direction is clear: fewer exits, sturdier doors and fewer prisoners per room keep them in. When one cell breaks, nearby cells can join in.</description>
+    <tip>Every extra door on a cell is another way out.</tip>
+    <description>Now and then prisoners try to break out, and how often depends on how the prison is built and how many people are in it. The game doesn't show the odds, but fewer exits, security doors and fewer prisoners per room all lower them. When one cell breaks, nearby cells can join in.</description>
     <facts>
       <li>Each prisoner rolls for escape separately, so more prisoners mean more breakouts.</li>
       <li>Escape chance is multiplied by the number of exits. Cells whose doors are all security doors break out less often.</li>
@@ -516,7 +516,7 @@
     <category>Management</category>
     <order>80</order>
     <summary>Executing, selling or harvesting prisoners weighs on your colonists</summary>
-    <tip>Selling a man is quick silver and a slow mood. Harvesting him is quicker silver and a slower mood.</tip>
+    <tip>Releasing a healthy prisoner earns 12 goodwill and costs no mood.</tip>
     <description>How you treat prisoners shows up in your colonists' moods. Executions, sales and organ harvesting each cost mood for everyone but psychopaths, while letting a healthy prisoner go earns goodwill with their faction. An ideoligion can turn some of this around.</description>
     <facts>
       <li>Executing a guilty prisoner: -2 for colonists who aren't psychopaths. A prisoner who isn't guilty: -5.</li>
@@ -528,7 +528,7 @@
     <advice>
       <li>Release prisoners you don't want, healthy, rather than selling them.</li>
       <li>If you execute, keep it to guilty raiders, and do it away from where people eat.</li>
-      <li>Space out organ harvests: the penalty stacks.</li>
+      <li>Space out organ harvests so each -6 thought has worn off before the next.</li>
       <li>Bury or burn the body quickly. A corpse in view costs everyone another -4.</li>
     </advice>
     <keywords>
@@ -557,7 +557,7 @@
     <category>Management</category>
     <order>90</order>
     <summary>Wear a prisoner's will down to zero, then keep a warden suppressing them</summary>
-    <tip>Will breaks long before resistance does. Keeping it broken is the warden's whole job.</tip>
+    <tip>Will usually wears down faster than resistance, but a slave needs a warden every day after.</tip>
     <description>With Ideology you can enslave a prisoner instead of recruiting them. Their will has to be worn down to zero first, which is usually much quicker than resistance. After that a warden must keep the slave's suppression up, or the slave starts thinking about rebellion.</description>
     <facts>
       <li>You get a slave by reducing a prisoner's will to 0, or by enslaving one while your warden has a recruitment inspiration.</li>
@@ -570,7 +570,7 @@
     <advice>
       <li>Give Warden work to your most social colonist and keep it at a high priority.</li>
       <li>Check the suppression bars on the slave tab every day or two at first.</li>
-      <li>Enslave the unremarkable and recruit the gifted: slaves can't do some of the best jobs.</li>
+      <li>Enslave prisoners with ordinary skills and recruit the skilled ones; slaves can't do Warden, Hunting, Art or Research work.</li>
     </advice>
     <keywords>
       <li>slave</li>
@@ -596,7 +596,7 @@
     <category>Management</category>
     <order>100</order>
     <summary>Suppression drains daily; collars and terror help, armor and crowns hurt</summary>
-    <tip>A slave in marine armor is a rebellion wearing a helmet.</tip>
+    <tip>Marine armor on a slave costs 30% suppression. A slave collar adds 15%.</tip>
     <description>A slave's suppression falls every day, fastest when it's high. Some clothing helps keep it up and some drags it down, and terror buildings nearby push it back up. Let it slip low and rebellion becomes far more likely.</description>
     <facts>
       <li>Daily loss: -20% while suppression is 30-100%, -10% between 15% and 30%, -5% below 15%.</li>
@@ -608,7 +608,7 @@
     </facts>
     <advice>
       <li>Put a slave collar or body strap on every slave.</li>
-      <li>Keep slaves out of marine armor, crowns and fancy hats with an apparel policy of their own.</li>
+      <li>Give slaves an apparel policy of their own that leaves out marine armor, crowns and the other clothing that lowers suppression.</li>
       <li>Place a skullspike or terror sculpture within 5 tiles of where slaves work or sleep.</li>
       <li>Keep suppression above 50%. Below that, rebellion odds climb fast.</li>
     </advice>
@@ -635,7 +635,7 @@
     <category>Management</category>
     <order>110</order>
     <summary>Keep suppression high, weapons out of reach, and someone free at home</summary>
-    <tip>A collared man still counts the guards. Keep someone free and awake at home.</tip>
+    <tip>With no free colonist on the map, a rebellion is 20 times as likely.</tip>
     <description>Slaves rebel on a random timer that averages 45 days and shrinks or grows with how suppressed, how happy and how well guarded they are. A few factors are huge: a weapon in reach or a colony with nobody free at home makes a rebellion many times likelier. A rebellion can involve every slave, a local group or just one.</description>
     <facts>
       <li>Base average: 45 days of awake time, divided by each factor below, so a bigger factor means a sooner rebellion.</li>
@@ -676,8 +676,8 @@
     <category>Management</category>
     <order>120</order>
     <summary>Slaves work slower and expect less, and can't warden, hunt, make art or research</summary>
-    <tip>A slave works at a mule's pace and never asks for a chess table. Don't mistake that for contentment.</tip>
-    <description>Slaves take the jobs nobody else wants at a lower cost in comfort: they expect less and need no recreation. But they work a little slower, some jobs are closed to them, and colonists don't like sharing a bedroom with them.</description>
+    <tip>A slave needs a bed, food and a warden, but no chess table.</tip>
+    <description>Slaves can take on the heavy, dull jobs at a lower cost in comfort: they expect less and need no recreation. But they work more slowly, some jobs are closed to them, and colonists don't like sharing a bedroom with them.</description>
     <facts>
       <li>Slaves have their own expectations instead of the colony's: destitute +46, poor +40, meager +34, standard +28.</li>
       <li>Slaves work at 85% speed and have no recreation need.</li>
@@ -716,8 +716,8 @@
     <label>stockpiles and shelves</label>
     <category>Management</category>
     <order>130</order>
-    <summary>Keep things under a roof or on shelves, or watch them crumble</summary>
-    <tip>Leave steel in the rain and you own rust. Shelves don't rot, and neither does anything on them.</tip>
+    <summary>Keep things under a roof or on shelves, or they wear away</summary>
+    <tip>A roofed storeroom with shelves protects nearly everything in it.</tip>
     <description>Most items left outdoors slowly lose hit points until they're gone. A roof stops it, and shelves count as covered too, so a roofed storeroom with shelves keeps your goods safe and tidy. A good layout keeps a dumping area outside and the main stockpile indoors.</description>
     <facts>
       <li>Most items outdoors deteriorate unless they're under a roof or on a shelf. Shelves count as covered.</li>
@@ -730,7 +730,7 @@
       <li>Make one stockpile indoors for everything valuable and a dumping zone outside for chunks and junk.</li>
       <li>Fill the storeroom with shelves: they hold more per tile and keep everything covered.</li>
       <li>Store meals near the dining room, medicine near the hospital and steel near the workshops.</li>
-      <li>Bring in weapons and clothing dropped after a raid before the weather eats them.</li>
+      <li>Bring in weapons and clothing dropped after a raid before they deteriorate.</li>
     </advice>
     <keywords>
       <li>stockpile</li>
@@ -757,7 +757,7 @@
     <category>Management</category>
     <order>140</order>
     <summary>What the key projects cost, and why tribes pay double for industry</summary>
-    <tip>Tribes pay double for anything with a plug on it. Some of them reckon that's a bargain for not having to learn wiring.</tip>
+    <tip>A tribe pays double for industrial research and half again for medieval.</tip>
     <description>Every research project costs research points, and a tribal start pays more for anything at the industrial level. Knowing the costs helps you plan what to research first and how long it will take. Most industrial projects need only a simple research bench; the advanced ones need a hi-tech bench.</description>
     <facts>
       <li>Base cost / tribal start: Electricity 1,600 / 3,200; Battery 400 / 800; Smithing 700 / 1,050.</li>
@@ -797,7 +797,7 @@
     <category>Management</category>
     <order>150</order>
     <summary>Electricity opens the tree; batteries and coolers first, tribes start with furniture</summary>
-    <tip>Batteries, coolers, then microelectronics. Everything else is decoration until the freezer works.</tip>
+    <tip>Research what the colony needs this season, and the rest later.</tip>
     <description>There's no single right order, but the prerequisites push you down a natural path, and Electricity opens nearly everything. A crashlanded start already has Electricity, so it can go straight for batteries, solar power and coolers. A tribe should improve what it has before paying double for industry.</description>
     <facts>
       <li>The prerequisite chain: Electricity, then Battery, Hydroponics, Air conditioning, Firefoam and (with Smithing) Machining; then Drug production and Microelectronics; then Medicine production and the other hi-tech projects.</li>
@@ -838,7 +838,7 @@
     <category>Management</category>
     <order>160</order>
     <summary>What each generator costs, burns and produces</summary>
-    <tip>Solar sleeps when you do. Batteries are for nights. Generators are for flares and bad decisions.</tip>
+    <tip>Solar gives nothing at night, and wind gives nothing on a still day.</tip>
     <description>Colony power comes from a mix of generators, each with its own cost, fuel and quirks. Fuel generators run day and night but need feeding; solar and wind are free but come and go. A mix is safest, because an eclipse or a still day can take one kind offline.</description>
     <facts>
       <li>Wood-fired generator: 100 steel and 2 components, 2x2, burns 22 wood a day for 1,000 W.</li>
@@ -852,7 +852,7 @@
     <advice>
       <li>Run at least two kinds of generator so an eclipse or a calm day can't black you out.</li>
       <li>Grab a steam geyser or a riverbank if your map has one: steady power with no fuel.</li>
-      <li>Switch off sun lamps and workbenches nobody is using; they eat power.</li>
+      <li>Switch off sun lamps and any workbench not in use; idle benches still draw power.</li>
       <li>Build generators on stone floors, never wood.</li>
     </advice>
     <keywords>
@@ -882,7 +882,7 @@
     <category>Management</category>
     <order>170</order>
     <summary>600 Wd each, half lost in charging; build them in roofed pairs on stone</summary>
-    <tip>Batteries: two is an accident, ten is a statistic.</tip>
+    <tip>A battery loses 5 Wd a day even when it's packed up in storage.</tip>
     <description>Batteries store spare power for the night, a calm day or an eclipse, and only give it back when you use more than you generate. They're also the classic source of electrical fires, so where and how you build them matters as much as how many you have.</description>
     <facts>
       <li>A battery holds up to 600 Wd.</li>
@@ -894,7 +894,7 @@
     <advice>
       <li>Build batteries in pairs with a gap between pairs, so a chain explosion takes two at most.</li>
       <li>Roof them, and keep them on stone floors away from anything wooden.</li>
-      <li>Don't overbuild: every idle battery loses 5 Wd a day.</li>
+      <li>Don't overbuild: past what a night needs, each extra battery only costs materials and 5 Wd a day.</li>
       <li>Size the bank for a night: what you use after sunset, times the hours until dawn.</li>
     </advice>
     <keywords>
@@ -921,7 +921,7 @@
     <category>Management</category>
     <order>180</order>
     <summary>Conduits must touch; appliances connect from up to 6 tiles away</summary>
-    <tip>Every colony is held together by three people and one unlabeled switch.</tip>
+    <tip>Appliances reach the grid from up to 6 tiles away, so conduits don't need to run under them.</tip>
     <description>Power flows through conduits, switches, batteries and generators that touch each other directly. Appliances don't need a conduit underneath them: they hook up to the grid from a short distance. Bare conduits can short-circuit, so hide them where you can.</description>
     <facts>
       <li>Conduits, waterproof conduits, power switches, batteries and generators must sit directly next to each other to pass power.</li>
@@ -959,8 +959,8 @@
     <label>trading</label>
     <category>Management</category>
     <order>190</order>
-    <summary>Sell what you hoard, buy what you can't make</summary>
-    <tip>Silver in the vault is an invitation. Turn it into medicine and components before somebody else does.</tip>
+    <summary>Sell what you don't use, and buy what you can't make</summary>
+    <tip>Silver in storage counts toward raid size like anything else.</tip>
     <description>Traders come by caravan, by orbital ship or when you call them, and they're how the colony turns surplus into things it can't make. Selling idle valuables also lowers the wealth that raids are priced on. Don't plan around exact prices or how often a ship turns up.</description>
     <facts>
       <li>Orbital trade ships can arrive while your comms console is down, during a solar flare for example.</li>
@@ -968,7 +968,7 @@
       <li>Silver, gold and art sitting in storage count toward raid size; selling surplus brings it down.</li>
     </facts>
     <advice>
-      <li>Sell surplus art, gold and unused weapons rather than hoarding them.</li>
+      <li>Sell surplus art, gold and unused weapons, and turn the silver into things the colony uses.</li>
       <li>Buy what the colony can't easily make: components, medicine and neutroamine.</li>
       <li>Send your best Social colonist to do the talking.</li>
       <li>For ship trades, build an orbital trade beacon and keep the goods inside its range.</li>
@@ -997,7 +997,7 @@
     <category>Management</category>
     <order>200</order>
     <summary>Your line to other factions and orbital traders, as long as it has power</summary>
-    <tip>The solar flare has no opinion about your freezer, or about the trade ship that just sailed past.</tip>
+    <tip>A trade ship can pass overhead while the console is dark.</tip>
     <description>The comms console lets you contact other factions and trade with orbital ships passing overhead. It runs on power, so a blackout or a solar flare cuts you off, and ships that pass while it's dark are easy to miss. Once you have one, it's your main tool for trade and diplomacy.</description>
     <facts>
       <li>It's how you contact other factions and call up orbital trade ships in range.</li>
@@ -1032,7 +1032,7 @@
     <category>Management</category>
     <order>210</order>
     <summary>Pack food, medicine and guards, and leave enough people at home</summary>
-    <tip>Pack food for the trip there, the trip back, and a week of bad luck. The Rim measures distance in funerals.</tip>
+    <tip>Pemmican travels well; simple meals don't.</tip>
     <description>Caravans let you trade with other settlements, take on quests and move people across the world. Everyone in a caravan still eats, sleeps and gets bored, and the colony left behind still gets raided. Pack well, and don't take everyone.</description>
     <facts>
       <li>Recreation falls half as fast while a caravan is forming, and a caravan that stays put regains it at 10% an hour.</li>
@@ -1069,8 +1069,8 @@
     <category>Management</category>
     <order>220</order>
     <summary>Wealth sets raid size and expectations; keep yours in useful things</summary>
-    <tip>Wealth brings expectations. Expectations bring sulking. Sulking brings fire.</tip>
-    <description>Colony wealth is the market value of everything you own: items, buildings and pawns. It drives two things: how big raids get and how much comfort your colonists expect. You don't need to stay poor, but piles of idle silver, gold and art cost you twice and give nothing back.</description>
+    <tip>A richer colony gets bigger raids and harder-to-please colonists.</tip>
+    <description>Colony wealth is the market value of everything you own: items, buildings and pawns. It drives two things: how big raids get and how much comfort your colonists expect. You don't need to stay poor, but idle silver, gold and art raise both and give nothing back.</description>
     <facts>
       <li>Colony wealth is the market value of your items, buildings and pawns.</li>
       <li>For raids, items and creatures count in full and buildings at half.</li>
@@ -1081,7 +1081,7 @@
     </facts>
     <advice>
       <li>Spend wealth on things that defend or comfort: walls, weapons, beds and bedrooms.</li>
-      <li>Sell or use what just sits there: spare art, silver, gold and unused weapons.</li>
+      <li>Sell what just sits there or turn it into something useful: traders take spare art and weapons, and silver buys components and medicine.</li>
       <li>Check the Wealth tab after big trades and loot hauls; the next raid will be priced on it.</li>
       <li>Raise comfort as wealth grows so the falling expectations bonus doesn't catch you out.</li>
     </advice>

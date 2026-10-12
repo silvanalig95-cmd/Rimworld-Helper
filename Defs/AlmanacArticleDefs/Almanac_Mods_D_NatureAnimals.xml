@@ -190,12 +190,12 @@
       <li>The species: black rhino, giant panda, moa, quagga, thylacine, African wild dog, bonobo, Tasmanian devil, black-footed ferret, giant pangolin and rockhopper penguin.</li>
       <li>The pair heads for the middle of the map and leaves after 1.5 to 2.5 days. Only species that can live in your current weather appear, and never during toxic fallout.</li>
       <li>The quagga is a pack animal.</li>
-      <li>"Release to the wild" sends the animal off the map and gives +2 goodwill with every vanilla tribal and outlander faction. A setting adds the button to all animals.</li>
+      <li>"Release to the wild" sends the animal off the map and gives +2 goodwill with the vanilla civil and rough outlander and tribal factions. A setting adds the button to all animals.</li>
     </facts>
     <advice>
       <li>When the letter comes, put your best handlers on taming both animals at once; you only have a day or two.</li>
       <li>Keep the pair together and fed so they breed, then release the young ones rather than selling them.</li>
-      <li>In this modlist, check who will notice: releases only please the vanilla tribal and outlander factions, not factions added by other mods.</li>
+      <li>In this modlist, check who will notice: releases only please the vanilla civil and rough outlanders and tribes, not savage tribes or factions added by other mods.</li>
       <li>With Rimfolk: a passionate animal handler may ask to tame an animal they've spotted on the map. With a rare pair on the map, you can grant that wish and tame the pair at the same time.</li>
     </advice>
     <keywords>
@@ -712,7 +712,7 @@
     </facts>
     <advice>
       <li>Settle beside water and keep paths off mud; with Beautiful Outdoors, a riverside walk lifts the mood.</li>
-      <li>On a river map, plan bridges early: rivers are more than twice as wide as usual.</li>
+      <li>On a river map, plan bridges early: an ordinary river is more than twice as wide as usual, and large rivers and creeks are wider too.</li>
       <li>Lay tilled soil under your most valuable crops, such as healroot, rather than everywhere, since every tile takes work.</li>
       <li>Use succulents in bedrooms and the hospital, so you don't have to replant flowers there every few weeks.</li>
       <li>With Rimfolk: succulents count as flowers for the "flowers around the colony" wish, and they suit the plant pot a colonist asks for in their room.</li>

@@ -809,7 +809,7 @@
       </plain>
       <warm>
         <li>We'll sit in a circle on the ground, then. We can still talk.</li>
-        <li>[child] That's okay. I'll sit on the floor next to somebody instead.</li>
+        <li>[child] That's all right. I'll sit on the floor next to somebody instead.</li>
       </warm>
       <blunt>
         <li>[trigger:floor] Don't complain when I start eating in your bed.</li>
@@ -1715,7 +1715,7 @@
         <li>[afterraid] The grown-ups were all busy with the raid, I know. I still wanted it.</li>
       </plain>
       <warm>
-        <li>That's okay. I know the grown-ups are busy keeping us alive.</li>
+        <li>That's all right. I know the grown-ups are busy keeping us alive.</li>
       </warm>
       <blunt>
         <li>Then I'm going to be bored, loudly, right where you're working.</li>
@@ -2595,7 +2595,7 @@
       </plain>
       <warm>
         <li>I got older all the same. That's the important part, I suppose.</li>
-        <li>[child] That's okay. I had a birthday in my head. It was nice in there.</li>
+        <li>[child] That's all right. I had a birthday in my head. It was nice in there.</li>
       </warm>
       <blunt>
         <li>Happy birthday to me, then, since no one else bothered.</li>

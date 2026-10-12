@@ -470,7 +470,7 @@
         <li>There's nothing for kids here. Just work and raiders.</li>
       </gloomy>
       <blunt>
-        <li>I'm bored! I want {THING}!</li>
+        <li>I'm bored. I want {THING}!</li>
       </blunt>
     </request>
     <thanks>

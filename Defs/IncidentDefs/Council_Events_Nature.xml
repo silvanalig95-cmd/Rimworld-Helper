@@ -27,8 +27,8 @@
           <li>A wild harvest</li>
         </titles>
         <texts>
-          <li>[food] {A_nameDef} came back from a walk with good news: patches of wild {TALE} are ripe across the colony's land, waiting to be picked.</li>
-          <li>[medicine] {A_nameDef} has found patches of {TALE} all across the colony's land, more than anyone has seen in years. Whoever gathers it first is going to make the colony's healer very happy.</li>
+          <li>[food] {A_nameDef} came back from a walk with good news. Patches of wild {TALE} have ripened across the colony's land and are ready to pick.</li>
+          <li>[medicine] {A_nameDef} has found {TALE} growing all across the colony's land, far more than usual. Harvested, it would keep the colony's healer supplied for a good while.</li>
         </texts>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><thought>Council_Evt_WildBounty</thought></li>
@@ -54,9 +54,9 @@
           <li>A comet</li>
         </titles>
         <texts>
-          <li>A comet has appeared, a smear of light across the whole sky, visible even by day. It will hang there for days. Some in the colony say it's a good omen. Some say the opposite, loudly. Everyone agrees it's beautiful.</li>
-          <li>[lowtech] A star with a tail has appeared in the sky. The old folk have stories about such things, and the stories don't agree: a sign of good harvests, or of war, or of kings dying. It will hang there for days.</li>
-          <li>[!lowtech] A bright comet is passing close enough to see by day. Somebody worked out its orbit and says it won't be back for nine hundred years. Some take it as a good omen; others are sure it's a bad one.</li>
+          <li>A comet has appeared, a long smear of light across the sky, bright enough to see by day. It will hang there for several days. Some in the colony take it for a good omen and some for a bad one, but they all find time to look up at it.</li>
+          <li>[lowtech] A star with a tail has appeared in the sky. The old folk have stories about such things, and the stories don't agree. It's a sign of good harvests, or of war, or of a king's death, depending on who tells it. It will hang there for days.</li>
+          <li>[!lowtech] A bright comet is passing close enough to see by day. One of the colonists worked out its orbit and says it won't be back for nine hundred years. Some take it as a good omen; others are sure it's a bad one.</li>
         </texts>
       </li>
     </modExtensions>
@@ -89,7 +89,7 @@
           <li>Firefly nights</li>
         </titles>
         <texts>
-          <li>The warm nights have brought out the fireflies: thousands of them, drifting over the fields like slow sparks. Anyone outside after dark is in for a treat.</li>
+          <li>The warm nights have brought out the fireflies, thousands of them, drifting over the fields like slow sparks. Colonists outside after dark will get to see them.</li>
           <li>[lowtech] Firefly nights are here. The old folk say they're the souls of the harvest, come back to see how the fields are doing. Anyone outside after dark will see them.</li>
         </texts>
       </li>
@@ -121,8 +121,8 @@
           <li>Hailstorm</li>
         </titles>
         <texts>
-          <li>Hail! Ice the size of knuckles is hammering down out of a black sky. Crops out in the open are going to suffer, the young ones most. Nobody will be hurt, though anyone caught outside will complain about it, and it won't last long. (Roofed fields and greenhouses don't care about hail.)</li>
-          <li>[lowtech] The sky went green and then it started: hail, hammering down on everything. Young crops in the open fields won't all survive it. Nobody will be hurt, though everyone caught outside will say otherwise. (Fields under a roof don't care about hail.)</li>
+          <li>Hail the size of knuckles is hammering down out of a black sky. Crops in the open will suffer, young ones most of all. It won't hurt anyone and won't last long, but anyone caught outside will be miserable. (Fields under a roof are safe.)</li>
+          <li>[lowtech] The sky turned green, and then the hail came, hammering down on everything. Young crops in the open fields won't all survive it. It stings, but it won't hurt anyone, and it won't last long. (Fields under a roof are safe.)</li>
         </texts>
       </li>
     </modExtensions>
@@ -145,9 +145,9 @@
           <li>Vermin in the stores</li>
         </titles>
         <texts>
-          <li>[loss,lowtech] Rats have got into the stores. By the time anyone noticed, they'd ruined {COUNT} units of food and left droppings through the rest.</li>
-          <li>[loss,!lowtech] Rats got into the stores, the big kind, with a taste for everything. {COUNT} units of food were chewed through or spoiled before anyone noticed.</li>
-          <li>[mouser] Rats tried to get into the stores last night. They hadn't counted on {PET_nameDef}, who has been very busy and is very pleased with itself.</li>
+          <li>[loss,lowtech] Rats got into the stores. By the time anyone noticed, they had ruined {COUNT} units of food and left droppings through the rest.</li>
+          <li>[loss,!lowtech] Big rats, the kind that will eat anything, got into the stores and chewed through or spoiled {COUNT} units of food before anyone noticed.</li>
+          <li>[mouser] Rats tried to get into the stores last night, but {PET_nameDef} caught them at it. No food was lost, and the bodies have been left in a neat row by the door.</li>
         </texts>
       </li>
     </modExtensions>
@@ -168,10 +168,10 @@
           <li>A buried cache</li>
         </titles>
         <texts>
-          <li>[mining] Cutting into the rock, {A_nameDef} broke into a hollow someone had walled up long ago. Inside: a cache, hidden and forgotten.</li>
-          <li>[farming] {A_nameDef}'s spade hit something hard in the field: a box, buried long ago by someone who never came back for it.</li>
-          <li>[child] {A_nameDef} was digging for worms and found treasure instead: an old buried cache. {A_nameDef} is going to be unbearable about this for weeks.</li>
-          <li>{A_nameDef} tripped over something sticking out of the ground and dug it up: an old cache, buried by someone who never came back for it.</li>
+          <li>[mining] Cutting into the rock, {A_nameDef} broke into a hollow that had been walled up long ago. Someone hid a cache there and never came back for it.</li>
+          <li>[farming] {A_nameDef}'s spade struck a box buried in the field, rotted at the corners but still shut.</li>
+          <li>[child] {A_nameDef} was digging for worms and turned up an old buried cache instead, and has been dragging people over to see it ever since.</li>
+          <li>{A_nameDef} tripped over the corner of a box sticking out of the ground and dug it up. It's an old cache, buried by someone who never came back for it.</li>
         </texts>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><thought>Council_Evt_FoundCache</thought></li>

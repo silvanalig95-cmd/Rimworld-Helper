@@ -9,19 +9,19 @@
     <category>Health</category>
     <order>10</order>
     <summary>Herbal, industrial and glitterworld medicine, and how much each one helps</summary>
-    <tip>Herbal for scrapes, industrial for holes, glitterworld for when the doctor starts praying.</tip>
-    <description>Medicine makes every tend and every surgery work better: the better the medicine, the bigger the multiplier. A doctor can tend without any, but at a fraction of the effect. Herbal medicine is the one kind any colony can make from day one, so even a tribe should never be without it.</description>
+    <tip>Herbal for scrapes, industrial for deep wounds, glitterworld for the worst cases.</tip>
+    <description>Medicine multiplies the quality of every tend and the success chance of every surgery, and better medicine multiplies more. A doctor can tend without any, but at a fraction of the effect. Herbal medicine is the only kind a colony can make without research, so even a tribe can keep a stock of it.</description>
     <facts>
       <li>Potency: no medicine 0.30, herbal medicine 0.60, industrial medicine 1.00, glitterworld medicine 1.60.</li>
       <li>Potency multiplies both tend quality and surgery success. At 1.00 the multiplier is a straight ×1.</li>
       <li>Each kind also caps tend quality: herbal at 70%, industrial at 100%, glitterworld at 130%.</li>
       <li>Herbal medicine comes from healroot and needs no research.</li>
-      <li>Industrial medicine is made from herbal medicine, neutroamine and cloth after the Medicine production research: 1,500, or 3,000 on a tribal start. A bulk recipe exists.</li>
+      <li>Industrial medicine is made from herbal medicine, neutroamine and cloth after the Medicine production research: 1,500, or 3,000 on a tribal start. There is also a bulk recipe.</li>
     </facts>
     <advice>
       <li>Set medical care for each pawn: the best for colonists, herbal or none for prisoners and animals with minor wounds.</li>
       <li>Keep a few doses per colonist in reserve, and buy industrial medicine whenever a trader has it.</li>
-      <li>Grow healroot early, especially on a tribal start: it needs Plants 8 to sow, and it's your only medicine without research.</li>
+      <li>Grow healroot early, especially on a tribal start, and give the sowing to a colonist with Plants 8 or higher.</li>
       <li>Save glitterworld medicine for surgery in poor conditions and for desperate cases.</li>
     </advice>
     <keywords>
@@ -47,7 +47,7 @@
     <category>Health</category>
     <order>60</order>
     <summary>How much Medical skill your surgeon needs, and why you want two doctors</summary>
-    <tip>A good doctor is worth three good shooters. A bad doctor is worth a shovel.</tip>
+    <tip>Two doctors means one can treat the other.</tip>
     <description>Medical skill sets your surgeon's base chance before the bed, medicine and room are counted. A skilled doctor in a clean, lit room with a decent hospital bed reaches the success cap for most operations. Tending raises the skill quickly, so give the work to the same people every time, and never rely on just one.</description>
     <facts>
       <li>The surgery base chance rises with Medical skill from 10% at level 0 to 110% at level 20, with 90% at level 10 and 100% at level 15.</li>
@@ -59,9 +59,9 @@
     </facts>
     <advice>
       <li>Keep your best doctor's Doctor work at priority 1.</li>
-      <li>Train a second doctor: the plague always seems to find the only one first.</li>
-      <li>Give surgery to your highest Medical pawn, and keep the cook away from bionic installs.</li>
-      <li>Without hospital beds, aim for Medical 11 or better before attempting risky surgery.</li>
+      <li>Train a second doctor, so someone can tend the first one when they're sick or wounded.</li>
+      <li>Leave surgery, and bionic installs above all, to your highest Medical pawn.</li>
+      <li>Without hospital beds, put off risky surgery until your surgeon reaches Medical 11, or use glitterworld medicine to make up the difference.</li>
     </advice>
     <keywords>
       <li>doctor</li>
@@ -86,7 +86,7 @@
     <category>Health</category>
     <order>50</order>
     <summary>Better tends, faster immunity and safer surgery</summary>
-    <tip>A hospital bed won't stitch anyone up, but it makes the stitches hold.</tip>
+    <tip>Any bed can be set to medical. A hospital bed does the job better.</tip>
     <description>A hospital bed improves tend quality, speeds up immunity and raises surgery success. Its quality matters: a masterwork bed adds far more than an awful one. Set a few beds to "medical" in a clean, lit room and the sick and wounded will be carried there.</description>
     <facts>
       <li>Tend quality +10%, immunity gain speed ×1.11.</li>
@@ -126,8 +126,8 @@
     <category>Health</category>
     <order>100</order>
     <summary>A powered add-on that makes a hospital bed better at everything</summary>
-    <tip>The monitor beeps so the doctor doesn't have to guess. Unplugged, it's a very expensive lamp stand.</tip>
-    <description>A vitals monitor placed next to a hospital bed links to it and boosts everything the bed already does. It needs power, so it stops in a solar flare and a colony without electricity can't use one. Put one beside every bed you use for surgery or serious illness.</description>
+    <tip>Without power, a vitals monitor is just furniture.</tip>
+    <description>A vitals monitor placed next to a hospital bed links to it and boosts everything the bed already does. It needs power, so it stops in a solar flare and a colony without electricity can't use one. The gains are small, but they apply to every tend and every operation in that bed.</description>
     <facts>
       <li>Immunity gain speed rises from ×1.11 to ×1.13.</li>
       <li>The tend quality bonus rises from +10% to +17%.</li>
@@ -137,7 +137,7 @@
     <advice>
       <li>Place one beside every bed used for surgery or serious illness, then select the bed to check the link line.</li>
       <li>Keep the hospital on a grid with battery backup so monitors keep running at night.</li>
-      <li>Without power, a better-quality bed, a clean room and a skilled doctor have to do the monitor's job.</li>
+      <li>Without power, make up the difference with a better-quality bed, a clean room and a skilled doctor.</li>
     </advice>
     <keywords>
       <li>vitals monitor</li>
@@ -161,11 +161,11 @@
     <category>Health</category>
     <order>40</order>
     <summary>Tend the bleeder first; pain alone can drop a fighter</summary>
-    <tip>Bleeding out is slow right up until it isn't. Tend the bleeder before the bruise.</tip>
+    <tip>Bleeding wounds first, bruises and cracks later.</tip>
     <description>Open wounds bleed, and a pawn who loses too much blood dies. Tending stops the bleeding, so after a fight the bleeders come first and the bruises can wait. Pain is the other drain on a fighter: high pain lowers consciousness and can put a pawn down even when no wound is fatal.</description>
     <facts>
       <li>The Health tab shows bleeding with an estimate of the time until death.</li>
-      <li>Tending stops bleeding.</li>
+      <li>Any tend stops bleeding, even one without medicine.</li>
       <li>Blood on the floor lowers a room's cleanliness and beauty.</li>
       <li>Infection adds pain as it worsens: +5%, then +8%, +12% and finally +85%.</li>
       <li>Drugs that cut pain: smokeleaf -20%, psychite tea ×0.9, luciferium ×0.8, flake and yayo ×0.5. Go-juice cuts it strongly.</li>
@@ -173,9 +173,9 @@
     <advice>
       <li>After every fight, tend the bleeding wounds first and check the time-to-death estimate.</li>
       <li>Rescue downed colonists quickly: they keep bleeding while you finish the fight.</li>
-      <li>Even a tend with no medicine stops bleeding, so never wait for medicine to arrive.</li>
+      <li>If a bleeder's time to death is short, tend at once with whatever is at hand instead of waiting for medicine.</li>
       <li>Clean blood out of the hospital before it raises the infection risk for the next patient.</li>
-      <li>Painkillers can keep a fighter standing, but they come with addiction risk.</li>
+      <li>Use painkilling drugs to keep a fighter standing only when you must; every dose carries an addiction risk.</li>
     </advice>
     <keywords>
       <li>bleeding</li>
@@ -200,21 +200,21 @@
     <label>choosing medicine</label>
     <category>Health</category>
     <order>70</order>
-    <summary>When herbal is enough, and when to spend the good stuff</summary>
-    <tip>A full medicine cabinet is a sentence that ends "and we never needed it." It never ends that way.</tip>
-    <description>Better medicine helps, but the surgery cap means the best stuff is often wasted. Use glitterworld medicine where conditions are poor, industrial for routine surgery, and herbal for infections and minor wounds. For infections, how soon and how often you tend matters as much as what you tend with.</description>
+    <summary>When herbal is enough, and when to use better medicine</summary>
+    <tip>Most infections are beaten by tending on time, not by the price of the medicine.</tip>
+    <description>Better medicine helps, but surgery success is capped at 98%, so the best medicine is often wasted. Use glitterworld medicine where conditions are poor, industrial for routine surgery, and herbal for infections and minor wounds. For infections, how soon and how often you tend matters as much as what you tend with.</description>
     <facts>
       <li>Industrial medicine can already reach the 98% surgery cap. Glitterworld is only needed in poor conditions: a dirty room, a weak bed or a low-skill doctor.</li>
       <li>For infections, a competent doctor with herbal medicine or better is enough.</li>
       <li>A resting colonist with normal immunity gain, treated at once, needs at least 15% average tend quality to survive an infection.</li>
       <li>Infections need tending about every 12 hours.</li>
-      <li>For harvesting organs from someone you don't care to save, herbal medicine is enough.</li>
+      <li>For harvesting organs from someone you don't need to keep alive, herbal medicine is enough.</li>
     </facts>
     <advice>
       <li>Check each patient's medical care setting: patients dying while industrial medicine sits unused is a common mistake.</li>
       <li>Use herbal medicine for prisoners and animals with minor wounds.</li>
-      <li>Save glitterworld for high-risk surgery in a poor room or with a weak surgeon.</li>
-      <li>On a tribal start, herbal medicine handles infections fine if the tends come on time. Your healroot field is your pharmacy.</li>
+      <li>Set colonists' default care to industrial medicine, and switch to glitterworld only for a risky operation in a poor room or with a weak surgeon.</li>
+      <li>On a tribal start, herbal medicine handles infections if the tends come on time, so keep the healroot field big enough to keep up.</li>
     </advice>
     <keywords>
       <li>medical care</li>
@@ -238,8 +238,8 @@
     <category>Health</category>
     <order>20</order>
     <summary>Which wounds get infected, and how fast tends and clean rooms prevent it</summary>
-    <tip>An untended wound is a signed contract with infection. Patch them fast and patch them indoors.</tip>
-    <description>Many wounds can become infected, and an infection can kill in about a day. The risk depends on the kind of wound, how soon and how well it was tended, and how clean the room is. A quick tend in a clean hospital is the cheapest insurance in the game.</description>
+    <tip>Tend fast, and tend indoors on a clean floor.</tip>
+    <description>Many wounds can become infected, and an infection can kill in about a day. The risk depends on the kind of wound, how soon and how well it was tended, and how clean the room is. A quick tend in a clean hospital cuts the risk to a small fraction of the base chance.</description>
     <facts>
       <li>Base chance by wound: bites, burns and chemical burns 30%; frostbite 25%; shredding 20%; most other bleeding wounds 15%.</li>
       <li>Missing parts and blunt trauma such as bruises and cracks can't become infected.</li>
@@ -252,7 +252,7 @@
       <li>Tend every wound fast, ideally in the hospital, and keep its floor clean.</li>
       <li>Lay sterile tiles in the hospital when you can afford them.</li>
       <li>Expect infections after animal bites and burns, and check those patients daily.</li>
-      <li>On a tribal start, a clean stone floor still halves the risk compared with tending outdoors.</li>
+      <li>On a tribal start, tend indoors on a clean stone floor; it still halves the risk compared with tending outdoors.</li>
     </advice>
     <keywords>
       <li>infection</li>
@@ -280,7 +280,7 @@
     <category>Health</category>
     <order>30</order>
     <summary>The race between infection and immunity, and when to cut</summary>
-    <tip>She called the infection minor, right up until the amputation.</tip>
+    <tip>Severity and immunity both climb. Whichever reaches 100% first decides the outcome.</tip>
     <description>Once a wound is infected, its severity climbs while the patient builds immunity. If immunity reaches 100% first the patient lives; if severity gets there first, they die. Treatment slows the infection, and amputation is the last resort when a limb is losing the race.</description>
     <facts>
       <li>Stages: 0-32% minor (pain +5%); 33-77% major (pain +8%); 78-86% extreme (pain +12%, consciousness -5%); 87-99% extreme (consciousness capped at 10%, pain +85%, breathing -5%); 100% death.</li>
@@ -293,8 +293,8 @@
     <advice>
       <li>Compare the severity and immunity bars on the Health tab every few hours.</li>
       <li>Tend about every 12 hours, with the patient resting in a hospital bed.</li>
-      <li>If severity is clearly winning on a limb, amputate before 90%.</li>
-      <li>Herbal medicine and bed rest still win most races on a tribal start, as long as the tends come on time.</li>
+      <li>If severity on an arm or leg is clearly ahead of immunity, queue the amputation early instead of waiting until just before 90%.</li>
+      <li>With only herbal medicine, keep the patient in bed and tend on time; that wins most of these races on a tribal start.</li>
     </advice>
     <keywords>
       <li>infection</li>
@@ -318,15 +318,15 @@
     <category>Health</category>
     <order>80</order>
     <summary>The formula behind the success chance on every surgery bill</summary>
-    <tip>Don't let the cook install bionic legs, whatever he says about steady hands.</tip>
-    <description>Every surgery's success chance multiplies the surgeon, the bed, the medicine and how hard the operation is. Whatever you do, the result is capped at 98%. A failure hurts the patient and wastes the part, so set it up properly before you start.</description>
+    <tip>Even a perfect setup fails 2% of the time.</tip>
+    <description>Every surgery's success chance multiplies the surgeon, the bed, the medicine and how hard the operation is. No matter how good the setup, the result is capped at 98%. A failure hurts the patient and wastes the part, so set it up properly before you start.</description>
     <facts>
       <li>Success = surgeon chance × bed factor × medicine potency × operation multiplier × inspiration, capped at 98%.</li>
       <li>Inspiration is ×1 normally and ×2 with an Inspired Surgery.</li>
       <li>Operation multipliers: anesthetize 200%; excise carcinoma 100%; harvest a body part 120%; install a part or implant 100%; remove a part or implant 120%; surgical inspection 150%; terminate pregnancy 200%; implant embryo or extract ovum 500%; euthanize 500%.</li>
       <li>Administering a drug can't fail.</li>
-      <li>A failed surgery damages the patient and wastes materials; failures range from minor to catastrophic or even ridiculous.</li>
-      <li>Every surgery that can fail has at least a 2% chance of failure.</li>
+      <li>A failed surgery damages the patient and wastes materials. Failures range from minor through catastrophic to ridiculous.</li>
+      <li>Because of the 98% cap, every surgery that can fail keeps at least a 2% chance of failure.</li>
     </facts>
     <advice>
       <li>Check the success chance on the surgery bill before starting.</li>
@@ -361,7 +361,7 @@
     <category>Health</category>
     <order>90</order>
     <summary>Clean, lit and indoors: what the room does to surgery odds</summary>
-    <tip>The doctor's hands were steady. The lights were not. The patient has views.</tip>
+    <tip>A lamp at the head of the bed does more for surgery than sterile tiles.</tip>
     <description>The room multiplies the bed's surgery factor. Dirt, darkness and open sky all cut the chance, and the penalties stack. A clean, well-lit room with light at the head of the bed is enough; a sterile floor adds little to surgery but a lot against infection.</description>
     <facts>
       <li>Cleanliness: ×1.0 at cleanliness 0, about ×1.018 in a clean room with sterile flooring, down to ×0.6 at cleanliness -5.</li>
@@ -372,9 +372,9 @@
     </facts>
     <advice>
       <li>Clean the hospital before surgery and keep a lamp near the head of each bed.</li>
-      <li>Never operate outdoors.</li>
+      <li>Never operate outdoors; move the patient indoors first, even in an emergency.</li>
       <li>Lay sterile tiles to cut infection risk, even though they add little to surgery itself.</li>
-      <li>On a tribal start, a torch lamp by the bed, a clean stone floor and walls around it do most of the job.</li>
+      <li>On a tribal start, put a torch lamp by the bed, lay a stone floor and keep it clean, and make sure the room is walled and roofed.</li>
     </advice>
     <keywords>
       <li>operating room</li>
@@ -399,7 +399,7 @@
     <category>Health</category>
     <order>120</order>
     <summary>The mild disease: bed rest and a tend usually do it</summary>
-    <tip>Flu is the Rim's way of making you take a day off. Take it in bed.</tip>
+    <tip>Most healthy adults beat the flu with bed rest and a tend a day.</tip>
     <description>Flu is the mildest of the common diseases. Immunity grows almost as fast as severity, so healthy adults often recover with bed rest alone. Tending and a good bed tip the balance for the old and the frail.</description>
     <facts>
       <li>Per day: severity +0.249, immunity +0.239. Treatment at 100% tend quality slows severity by 0.077.</li>
@@ -433,7 +433,7 @@
     <category>Health</category>
     <order>110</order>
     <summary>Fast and deadly: tend at once and keep the patient in bed</summary>
-    <tip>Plague moves fast. Bed, medicine, and a doctor who isn't out hauling rocks.</tip>
+    <tip>Plague needs a tend in the first hours, not the first day.</tip>
     <description>Plague is the fastest killer among the common diseases. Untreated, it kills in about a day and a half, so every patient needs a bed and regular tends from the first hour. Penoxycyline prevents it entirely.</description>
     <facts>
       <li>Per day: severity +0.666, immunity +0.522. Treatment slows severity by 0.362.</li>
@@ -445,7 +445,7 @@
       <li>Tend immediately with the best medicine you can spare, and keep the patient in a hospital bed.</li>
       <li>Have a second doctor ready in case the first one catches it.</li>
       <li>Keep penoxycyline in stock if you can buy or make it.</li>
-      <li>Without industrial medicine, herbal and tends exactly on time are your chance. Don't let the doctor wander off.</li>
+      <li>Without industrial medicine, tend with herbal medicine exactly on time, and keep the doctor close to the patient.</li>
     </advice>
     <keywords>
       <li>plague</li>
@@ -469,8 +469,8 @@
     <category>Health</category>
     <order>130</order>
     <summary>The tropical disease that weakens the immune system itself</summary>
-    <tip>Swamp air comes with a bill. Pay it in medicine or pay it in shovels.</tip>
-    <description>Malaria is common in tropical biomes. It attacks blood filtration, which slows the very immunity your patient is racing to build. Later stages add pain and dull consciousness.</description>
+    <tip>In a swamp or rainforest, malaria is the disease you'll see most.</tip>
+    <description>Malaria is common in tropical biomes. It attacks blood filtration and so slows the immunity the patient needs to beat it, which makes it harder to outlast than flu.</description>
     <facts>
       <li>Per day: severity +0.370, immunity +0.314. Treatment slows severity by 0.232.</li>
       <li>In tropical rainforest and swamp it is the most frequent disease, at 17.2% of cases.</li>
@@ -478,7 +478,7 @@
       <li>Penoxycyline prevents it.</li>
     </facts>
     <advice>
-      <li>Bed rest and regular tends from the first day.</li>
+      <li>Put the patient to bed and tend them regularly from the first day.</li>
       <li>On jungle and swamp maps, put penoxycyline in the drug policy.</li>
       <li>Keep a bigger medicine stock in the tropics than you would elsewhere.</li>
     </advice>
@@ -503,8 +503,8 @@
     <category>Health</category>
     <order>140</order>
     <summary>Slow and treatable, as long as the patient actually rests</summary>
-    <tip>A sick man hauling steel is a corpse with a hobby. Put him to bed.</tip>
-    <description>Sleeping sickness moves slowly and is found only in rainforests and swamps. It is relatively easy to beat if the patient rests, because immunity keeps pace with severity. Ignore it, and consciousness slowly slides away.</description>
+    <tip>Sleeping sickness is slow, and bed rest does most of the work.</tip>
+    <description>Sleeping sickness moves slowly and is found only in rainforests and swamps. It is relatively easy to beat if the patient rests, because immunity keeps pace with severity. Left alone, it slowly wears down consciousness.</description>
     <facts>
       <li>Per day: severity +0.12, immunity +0.11. Treatment slows severity by 0.07.</li>
       <li>Native only to rainforests and swamps, where it makes up 15.1% of diseases.</li>
@@ -514,7 +514,7 @@
     <advice>
       <li>Put the patient to bed and keep them there.</li>
       <li>Keep the Patient and Bed rest work types at priority 1 for everyone, so the sick actually lie down.</li>
-      <li>Tend regularly; herbal medicine is fine.</li>
+      <li>Tend regularly; herbal medicine is enough.</li>
     </advice>
     <keywords>
       <li>sleeping sickness</li>
@@ -536,8 +536,8 @@
     <category>Health</category>
     <order>150</order>
     <summary>Chronic pests that need repeated tends, not bed rest</summary>
-    <tip>Gut worms: the only guest who eats more than the colonist hosting him.</tip>
-    <description>Gut worms and muscle parasites won't kill anyone, but they won't leave on their own either. There is no immunity race: they are cured by piling up enough tend quality over several tends. Until then they cost food, speed and comfort.</description>
+    <tip>A colonist with gut worms eats for two.</tip>
+    <description>Gut worms and muscle parasites won't kill anyone, but they won't leave on their own either. There is no immunity race; they're cured once enough tend quality has added up over several tends. Until then they cost food, speed and comfort.</description>
     <facts>
       <li>Both are cured at 300% total tend quality, for example four tends at 80%.</li>
       <li>Each tend lasts 48 hours, so a cure takes days of steady tending.</li>
@@ -572,7 +572,7 @@
     <category>Health</category>
     <order>160</order>
     <summary>Which biomes breed which diseases, and the drug that blocks three of them</summary>
-    <tip>Penoxycyline every five days is cheaper than a funeral every fifty.</tip>
+    <tip>Penoxycyline costs 2 neutroamine a dose and never causes addiction.</tip>
     <description>Diseases arrive as random events, and your biome decides how often and which ones. Tropical maps get them most, deserts and ice the least. Penoxycyline, a cheap drug that never addicts, makes colonists immune to malaria, plague and sleeping sickness while it lasts.</description>
     <facts>
       <li>Average days between diseases: swamp 30, tropical rainforest 35, temperate forest 50, tundra 80, desert and ice sheet 90.</li>
@@ -612,7 +612,7 @@
     <category>Health</category>
     <order>170</order>
     <summary>Replacing lost limbs, and who should do the installing</summary>
-    <tip>Lose a leg, gain a better one. The Rim gives, mostly right after it takes.</tip>
+    <tip>Even a peg leg gets a colonist walking again.</tip>
     <description>A lost leg, hand or eye doesn't have to end a colonist's career. Prosthetics bring back some function, bionics can beat the original, and both need a surgeon. Installing one is a full-difficulty operation, so the doctor, bed and room all count.</description>
     <facts>
       <li>The Prosthetics research costs 600, or 1,200 on a tribal start, and needs Machining first.</li>
@@ -621,8 +621,8 @@
       <li>Bionics add to colony wealth, and so to the size of future raids.</li>
     </facts>
     <advice>
-      <li>Fix movement first: legs and feet. Even a peg leg beats crawling.</li>
-      <li>Next, eyes for shooters and arms for crafters and surgeons.</li>
+      <li>Replace missing legs and feet first; even a peg leg brings back some movement.</li>
+      <li>Then replace eyes for shooters and arms for crafters and surgeons.</li>
       <li>Let a doctor with Medical 8 or more do the installs, in a clean, lit room with a hospital bed.</li>
       <li>On a tribal start the research costs double, so buy parts from traders when they turn up.</li>
     </advice>
@@ -648,12 +648,12 @@
     <label>drug policies</label>
     <category>Health</category>
     <order>180</order>
-    <summary>Schedule drugs on your terms, not your colonists'</summary>
-    <tip>Beer on the seventh day keeps the peace. Beer every day keeps the liver doctor busy.</tip>
+    <summary>Decide which drugs each colonist may take, and how often</summary>
+    <tip>Scheduled beer helps a colony's mood. Unlimited beer leads to addiction and cirrhosis.</tip>
     <description>A drug policy decides what each colonist may take, when and why. Turning off "for recreation" and scheduling doses instead keeps the mood boost without the slide into addiction. Set it up once and hand it out in the Assign tab.</description>
     <facts>
       <li>A schedule has a frequency, a maximum mood and a maximum recreation, and all conditions must be met.</li>
-      <li>Most pawns break near 35% mood, so set the mood limit a little above that: walking to the drug takes time.</li>
+      <li>Most pawns start minor breaks below 35% mood, and walking to the drug takes time, so a mood limit slightly above that works best.</li>
       <li>Common starting points from experienced players: beer every day below 32% mood, smokeleaf every 2 days below 30%, ambrosia every 2 days below 35%, psychite tea every 2 days below 34%.</li>
       <li>Pawns with chemical interest or chemical fascination ignore drug policy.</li>
       <li>Addicted pawns take their drug to satisfy the need by default, even under "No drugs", unless you turn that off in the Assign tab.</li>
@@ -687,8 +687,8 @@
     <label>addiction and tolerance</label>
     <category>Health</category>
     <order>190</order>
-    <summary>Every dose is a small roll of the dice, and tolerance builds quietly</summary>
-    <tip>Smoke the leaf in moderation, then watch what moderation does to the leaf.</tip>
+    <summary>Each dose can start an addiction, and tolerance builds with every one</summary>
+    <tip>Tolerance builds with every dose, even the scheduled ones.</tip>
     <description>Each dose of a drug can start an addiction, and each one builds tolerance that weakens the effect and, past certain levels, damages organs. Addiction brings withdrawal: a big mood penalty and stat drops that can tip a pawn into a break. Spaced, scheduled doses keep the risk small.</description>
     <facts>
       <li>Addiction chance per dose: beer, ambrosia and yayo 1%; smokeleaf, psychite tea and wake-up 2%; go-juice 2.6%; flake 5%. Luciferium always addicts.</li>
@@ -730,7 +730,7 @@
     <category>Health</category>
     <order>200</order>
     <summary>The soft drugs: what each one does and what it costs to make</summary>
-    <tip>Medicine's for the living. Silver's for the traders. Beer's for everyone else, on a schedule.</tip>
+    <tip>Soft drugs work best in the evening, after the work is done.</tip>
     <description>The soft drugs give a quick boost to mood and recreation and are easy to make. Used on a schedule, they carry a colony through a bad week. A colony that needs them every day has a bedroom, food or recreation problem that the drugs are hiding.</description>
     <facts>
       <li>Beer: +10 mood (tipsy) or +26 (hammered), +17% recreation, 5 hours. Made from 1 wort in 200 ticks; worth 12 silver.</li>
@@ -740,9 +740,9 @@
     </facts>
     <advice>
       <li>Use them on a schedule, not as the colony's main source of fun.</li>
-      <li>Don't hand a joint to anyone about to work or fight: -30% consciousness shows.</li>
+      <li>Schedule joints for the evening, never right before work or a fight: -30% consciousness slows everything.</li>
       <li>Beer is tribal-friendly: the brewery and fermenting barrel need no electricity.</li>
-      <li>If you need drugs to hold mood up, fix the bedrooms, meals and recreation first.</li>
+      <li>If mood only holds up with daily drugs, read each colonist's mood thoughts to find what's missing, and fix that first.</li>
     </advice>
     <keywords>
       <li>beer</li>
@@ -766,7 +766,7 @@
     <category>Health</category>
     <order>210</order>
     <summary>Hard drugs: huge mood, high risk, and no safe dose</summary>
-    <tip>Flake is cheap, quick to make and the most expensive thing your colony will ever buy.</tip>
+    <tip>Make flake to sell, not to smoke.</tip>
     <description>Flake and yayo give an enormous mood boost and fill recreation, which is exactly why they're dangerous. Any dose can cause an overdose, and flake addicts fast. Grow and make them for trade, or not at all.</description>
     <facts>
       <li>Flake: mood +35, recreation +70%, rest +20%, 6 hours. Made from 4 psychoid leaves in 250 ticks; worth 14 silver. 5% addiction chance per dose.</li>
@@ -801,8 +801,8 @@
     <label>luciferium</label>
     <category>Health</category>
     <order>240</order>
-    <summary>Superhuman for exactly as long as the supply lasts</summary>
-    <tip>Lucy makes you better than human for exactly as long as you can keep paying her. Count your doses before you swallow the first.</tip>
+    <summary>Large lifelong bonuses, as long as the supply never runs out</summary>
+    <tip>Count the doses before the first one. It's one every 6 days, for life.</tip>
     <description>Luciferium makes anyone better: sharper, faster, healthier, and it slowly cures scars and chronic illness. It also addicts on the first dose, forever, and you can't make it yourself. Only start if you can guarantee a dose every 6 days for the rest of that colonist's life.</description>
     <facts>
       <li>Always causes addiction. The need falls 15% a day, so a dose is needed every 6 days.</li>
@@ -837,8 +837,8 @@
     <label>go-juice and wake-up</label>
     <category>Health</category>
     <order>230</order>
-    <summary>Combat and work drugs for the days that decide everything</summary>
-    <tip>Go-juice turns a farmer into a hero for an afternoon. Don't make it a breakfast drink.</tip>
+    <summary>Combat and work drugs for raids, sieges and emergencies</summary>
+    <tip>One dose of go-juice lasts 16 hours, long enough for most fights.</tip>
     <description>Go-juice makes a fighter much better for most of a day; wake-up makes workers faster and keeps them on their feet. Both are made from neutroamine, which colonies can't produce, and both carry an addiction risk. Save them for raids, sieges and emergencies.</description>
     <facts>
       <li>Go-juice: +20% consciousness, +50% moving, +35% sight and greatly reduced pain; mood +5, recreation +40%, rest +40%; 16 hours. With Royalty it also gives +15% psyfocus.</li>
@@ -850,7 +850,7 @@
     <advice>
       <li>Dose your fighters at the start of a big raid or a siege assault, not every day.</li>
       <li>Keep both off recreation in every drug policy.</li>
-      <li>Keep a doctor nearby after heavy wake-up use, in case the heart gives out.</li>
+      <li>Keep a doctor nearby after heavy wake-up use, in case of a heart attack.</li>
       <li>A tribe can't make either; buy a few doses from traders for the fights you can't afford to lose.</li>
     </advice>
     <keywords>
@@ -876,7 +876,7 @@
     <category>Health</category>
     <order>220</order>
     <summary>Stacked doses can put a pawn down, or kill them</summary>
-    <tip>"One more for the road" is how most roads end out here.</tip>
+    <tip>Hard drugs can overdose a pawn on the very first dose.</tip>
     <description>Overdose builds when a pawn takes too many doses close together, and hard drugs can cause one in a single dose. Below half severity it stays hidden; above it the pawn vomits, then goes down and risks brain damage and death. Severity falls with time, so a bed and patience are the treatment.</description>
     <facts>
       <li>Below 0.50 severity it is hidden.</li>
@@ -888,7 +888,7 @@
     </facts>
     <advice>
       <li>Never stack doses: space them out in the drug policy.</li>
-      <li>Put an overdosed pawn in bed and watch them; time brings the severity down.</li>
+      <li>Put an overdosed pawn in bed and keep a doctor close until the severity falls below 0.50.</li>
       <li>Keep pawns prone to binges away from hard drug stockpiles.</li>
     </advice>
     <keywords>
@@ -911,8 +911,8 @@
     <category>Health</category>
     <order>900</order>
     <summary>The key medical numbers on one page</summary>
-    <tip>Clean floors, clean wounds, clean conscience. Two out of three will do.</tip>
-    <description>The medical numbers you'll want during an emergency, gathered in one place. Each one has its own page with what to do about it.</description>
+    <tip>A clean floor and a prompt tend help with nearly everything on this page.</tip>
+    <description>The medical numbers you'll want during an emergency, gathered in one place. Each line is a short summary of a longer page.</description>
     <facts>
       <li>Medicine potency: none 0.3, herbal 0.6, industrial 1.0, glitterworld 1.6.</li>
       <li>Hospital bed: tend +10% (+17% with a vitals monitor); immunity ×1.11 (×1.13 with a monitor).</li>
@@ -923,7 +923,7 @@
       <li>Addiction per dose: beer 1%, smokeleaf 2%, psychite tea 2%, flake 5%, yayo 1%, go-juice 2.6%, wake-up 2%; luciferium always, with a dose every 6 days.</li>
     </facts>
     <advice>
-      <li>Open the matching page for any number to see what to do about it.</li>
+      <li>Use the See also links below to open the full page for any of these numbers.</li>
       <li>Check your medicine stock and how many colonists can doctor before winter and before big raids.</li>
     </advice>
     <keywords>

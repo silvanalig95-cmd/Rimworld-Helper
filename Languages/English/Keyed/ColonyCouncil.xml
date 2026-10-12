@@ -894,7 +894,7 @@ Granting one of {PAWN_possessive} wishes, or keeping a promise, can win {PAWN_ob
 
   <!-- Annals: the year in review -->
   <CC_Settings_Annals>Yearly annals: a colonist writes up each year</CC_Settings_Annals>
-  <CC_Settings_Annals_Tip>When a new year begins, the colony's best reader or talker writes up the year that ended: who came, who was lost, raids, the council's decisions, friendships and feuds. Past years can be reread from the Chronicle tab.</CC_Settings_Annals_Tip>
+  <CC_Settings_Annals_Tip>When a new year begins, the colony's best reader or talker writes up the year that ended: who came, who was lost, raids, the council's decisions, friendships and feuds. Past years can be reread from the Chronicle page.</CC_Settings_Annals_Tip>
   <CC_Annals_Title>The annals of {0}</CC_Annals_Title>
   <CC_Annals_Button>Annals of {0}</CC_Annals_Button>
   <CC_Annals_Opening>The year {0} is over, and {PAWN_nameDef} has written down what happened in it.</CC_Annals_Opening>

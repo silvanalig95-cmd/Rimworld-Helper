@@ -475,7 +475,7 @@
     <defName>Council_Mood_RF_Decree</defName>
     <thoughts><li>Council_Decree_Again</li></thoughts>
     <thoughtClasses><li>Thought_Decree</li></thoughtClasses>
-    <fix>Repeal the decree in the Decrees tab, or wait for it to end. Repeating it soon makes this worse.</fix>
+    <fix>Repeal the decree on the Decrees page, or wait for it to end. Repeating it soon makes this worse.</fix>
     <keep>It lasts while the decree is in force.</keep>
     <article>Council_Alm_C_Decrees</article>
     <councilTab>Decrees</councilTab>
@@ -503,7 +503,7 @@
   <ColonyCouncil.MoodHintDef>
     <defName>Council_Mood_RF_Wish</defName>
     <nameContains><li>council_wish</li><li>council_promise</li></nameContains>
-    <fix>Check their wish in the Wishes tab, and grant or promise it before it runs out.</fix>
+    <fix>Check their wish on the Wishes page, and grant or promise it before it runs out.</fix>
     <article>Council_Alm_C_Wishes</article>
     <councilTab>Wishes</councilTab>
   </ColonyCouncil.MoodHintDef>

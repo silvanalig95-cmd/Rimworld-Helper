@@ -22,7 +22,7 @@
         </titles>
         <texts>
           <li>[!lowtech] A cargo pod streaked down and thumped into the ground beyond the colony's fields. The markings say it belongs to {FACTION}, and a message from them is already waiting: it went astray, and they'd like it back, please. The colony could, of course, simply not have seen it.</li>
-          <li>[lowtech] A laden pack mule bolted from a caravan of {FACTION}, shed its load on the colony's land and vanished over the hills. A rider from {FACTION} is already asking after it, politely. The colony could, of course, simply not have seen it.</li>
+          <li>[lowtech] A pack mule bolted from a caravan of {FACTION}, shed its load on the colony's land and vanished over the hills. A rider from {FACTION} is already asking after the goods. The colony can send them back, or keep them and say nothing.</li>
         </texts>
         <defaultOption>1</defaultOption>
         <options>
@@ -35,7 +35,7 @@
             <ways><generosity>3</generosity><openness>1</openness></ways>
           </li>
           <li>
-            <label>Finders keepers</label>
+            <label>Keep it</label>
             <outcome>The colony keeps the cargo. {FACTION} have their suspicions, and they're right.</outcome>
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_EventGoodwill"><amount>-8</amount></li>
@@ -63,15 +63,15 @@
           <li>An offer for {A_nameDef}</li>
         </titles>
         <texts>
-          <li>[!lowtech] A recruiter from {FACTION}, polished boots and a polished smile, has heard about {A_nameDef}'s {SKILL}. {FACTION} would pay the colony {COUNT} silver to take over {A_possessive} contract, and pay {A_objective} a fine wage besides. The recruiter is very sure {A_nameDef} will say yes.</li>
-          <li>[lowtech,!tribal] A steward of {FACTION} has come with an offer: {A_possessive} lord has heard of {A_nameDef}'s {SKILL}, and would pay the colony {COUNT} silver to take {A_objective} into service. A good post, the steward says. A great house. Room and board.</li>
-          <li>[tribal] Elders of {FACTION} have sent word: they have heard of {A_nameDef}'s {SKILL}, and would give the colony {COUNT} silver for {A_objective} to come and live among them and teach their young.</li>
+          <li>[!lowtech] A recruiter from {FACTION}, with polished boots and a polished smile, has heard about {A_nameDef}'s {SKILL}. {FACTION} would pay the colony {COUNT} silver to take over {A_possessive} contract, and pay {A_objective} a fine wage besides. The recruiter is very sure {A_nameDef} will say yes.</li>
+          <li>[lowtech,!tribal] A steward of {FACTION} has come with an offer. The steward's lord has heard of {A_nameDef}'s {SKILL}, and would pay the colony {COUNT} silver to take {A_objective} into service. It's a good post in a great house, the steward says, with room and board.</li>
+          <li>[tribal] Elders of {FACTION} have sent word. They've heard of {A_nameDef}'s {SKILL}, and would give the colony {COUNT} silver if {A_nameDef} came to live among them and teach their young.</li>
         </texts>
         <defaultOption>2</defaultOption>
         <options>
           <li>
             <label>Accept ({COUNT} silver)</label>
-            <outcome>{A_nameDef} packs up and goes with them. The silver is counted out on the table, and nobody wants to be the one to pick it up.</outcome>
+            <outcome>{A_nameDef} packs up and goes with them. The silver is counted out on the table, and it sits there a long while before anyone puts it away.</outcome>
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Others</target><thought>Council_Evt_SoldOne</thought><exceptTrait><li>Greedy</li><li>Psychopath</li></exceptTrait></li>
               <li Class="ColonyCouncil.DilemmaEffect_Spawn"><thing>Silver</thing></li>
@@ -81,10 +81,10 @@
           </li>
           <li>
             <label>Let {A_nameDef} decide</label>
-            <outcome>{A_nameDef} thinks it over, and stays. "This is home," {A_nameDef} says, and seems to surprise {A_objective}self a little.</outcome>
+            <outcome>{A_nameDef} thinks it over and decides to stay. "This is home," is all {A_nameDef} will say about it.</outcome>
             <riskChance>0.5</riskChance>
             <riskReplaces>true</riskReplaces>
-            <riskOutcome>{A_nameDef} thinks it over, and takes the job. There are handshakes, a few tears, and a long walk down the road with someone else's pack.</riskOutcome>
+            <riskOutcome>{A_nameDef} thinks it over and takes the offer. There are handshakes and a few tears, and then {A_nameDef} is gone down the road.</riskOutcome>
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_Thought"><thought>Council_Evt_AskedMe</thought></li>
               <li Class="ColonyCouncil.DilemmaEffect_Trust"><amount>6</amount></li>
@@ -96,7 +96,7 @@
           </li>
           <li>
             <label>Not for sale</label>
-            <outcome>The offer is turned down flat. {A_nameDef} pretends not to have been listening, and stands a little taller all day.</outcome>
+            <outcome>The offer is turned down flat. {A_nameDef} heard every word of it, and is in a fine mood all day.</outcome>
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_Trust"><amount>3</amount><onlyIfChosen>true</onlyIfChosen></li>
             </effects>
@@ -125,8 +125,8 @@
           <li>[lowtech] A chronicler</li>
         </titles>
         <texts>
-          <li>[!lowtech] {X_nameDef}, a journalist of {FACTION} with a notebook and a camera, wants to write about the colony: how it lives, what it stands for, what it's known for. People read these things. Will the colony give {X_objective} the tour?</li>
-          <li>[lowtech] {X_nameDef}, a chronicler of {FACTION}, travels the land writing down the deeds of its settlements, and would like to write down the colony's. Word of what {X_nameDef} writes will travel far. Will the colony show {X_objective} around?</li>
+          <li>[!lowtech] {X_nameDef}, a journalist of {FACTION} with a notebook and a camera, wants to write about the colony: how it lives, what it stands for and what it's known for. The piece will be widely read, and {X_nameDef} would like the tour.</li>
+          <li>[lowtech] {X_nameDef}, a chronicler of {FACTION}, travels the land recording the deeds of its settlements, and would like to record the colony's. What {X_nameDef} writes will be copied and read far from here, if the colony agrees to show {X_objective} around.</li>
         </texts>
         <defaultOption>1</defaultOption>
         <options>
@@ -135,8 +135,8 @@
             <outcome>{X_nameDef} writes it all down. Word will get around.</outcome>
           </li>
           <li>
-            <label>No interviews</label>
-            <outcome>{X_nameDef} shrugs, and writes something anyway, about a colony that keeps its doors shut.</outcome>
+            <label>Turn the writer away</label>
+            <outcome>{X_nameDef} shrugs and writes a short piece anyway, about a colony that keeps its doors shut.</outcome>
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_SendAway" />
             </effects>
@@ -151,7 +151,7 @@
 
   <IncidentDef ParentName="Council_EventBase">
     <defName>Council_Evt_Inoculation</defName>
-    <label>travelling doctor</label>
+    <label>traveling doctor</label>
     <workerClass>ColonyCouncil.HappeningWorker_Inoculation</workerClass>
     <minRefireDays>45</minRefireDays>
     <modExtensions>
@@ -161,18 +161,18 @@
         <stayHours>14~22</stayHours>
         <answerDays>0.5</answerDays>
         <titles>
-          <li>[!lowtech] A travelling doctor</li>
+          <li>[!lowtech] A traveling doctor</li>
           <li>[lowtech] A wandering herbalist</li>
         </titles>
         <texts>
-          <li>[!lowtech] {X_nameDef}, a travelling doctor of {FACTION}, is going from settlement to settlement with a case of vaccines. For {COUNT} silver, everyone in the colony gets a shot, and for a month they'll fight off sickness noticeably better.</li>
-          <li>[lowtech] {X_nameDef}, a wandering herbalist of {FACTION}, sells a bitter tonic said to keep the coughing sickness away. For {COUNT} silver there's enough for everyone, and for a month the colony would shake off sickness faster. Remarkably, it seems to work.</li>
+          <li>[!lowtech] {X_nameDef}, a traveling doctor of {FACTION}, is going from settlement to settlement with a case of vaccines. For {COUNT} silver, everyone in the colony gets a shot, and for a month they'll fight off sickness noticeably better.</li>
+          <li>[lowtech] {X_nameDef}, a wandering herbalist of {FACTION}, sells a bitter tonic said to keep the coughing sickness away. For {COUNT} silver there's enough for every colonist, and for a month they would shake off sickness faster. The herbalist's last customers swear by it.</li>
         </texts>
         <defaultOption>1</defaultOption>
         <options>
           <li>
             <label>Pay {COUNT} silver</label>
-            <outcome>Everyone gets their dose. There's a lot of complaining about it, which is how you know it's medicine.</outcome>
+            <outcome>Each colonist gets a dose, and most of them complain about it.</outcome>
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>silver</what></li>
             </effects>
@@ -205,8 +205,8 @@
           <li>Music in the air</li>
         </titles>
         <texts>
-          <li>[!lowtech] Someone left the comms console scanning, and it found a station nobody has heard of: one voice, a stack of very old records, and no ads at all. Half the colony has found an excuse to work within earshot.</li>
-          <li>[lowtech] Minstrels have made camp on the hill beyond the fields, and in the evenings their music comes drifting down over the colony. Nobody asked them to. Nobody wants them to stop.</li>
+          <li>[!lowtech] The comms console, left scanning overnight, picked up a far-off station that plays very old records, with one host and no ads. Colonists keep finding reasons to work within earshot.</li>
+          <li>[lowtech] Minstrels have made camp on the hill beyond the fields, and in the evenings their music drifts down over the colony. People linger outside after supper to listen.</li>
         </texts>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_Evt_Music</thought></li>
@@ -234,16 +234,16 @@
           <li>Someone famous</li>
         </titles>
         <texts>
-          <li>[!lowtech] {X_nameDef} of {FACTION}, whose face is on half the posters in the region, is passing through, very much incognito. The sunglasses fool nobody. {X_nameDef} would like a quiet evening, and will almost certainly not get one.</li>
-          <li>[lowtech,!tribal] {X_nameDef} of {FACTION}, a champion of the tourney fields whose name is in half the songs from here to the sea, is stopping the night. {A_nameDef} has already asked about the scar. Twice.</li>
-          <li>[tribal] {X_nameDef} of {FACTION}, a hunter so famous that children play at being {X_objective}, is resting at the colony for a night. Everyone suddenly has somewhere to be that happens to be near the fire.</li>
+          <li>[!lowtech] {X_nameDef} of {FACTION}, whose face is on posters all over the region, is stopping at the colony for the night, wearing sunglasses and hoping for a quiet evening. The colonists recognized {X_objective} the moment {X_pronoun} walked in.</li>
+          <li>[lowtech,!tribal] {X_nameDef} of {FACTION}, a tourney champion whose name turns up in songs from here to the sea, is stopping the night. {A_nameDef} has already asked about the scar across {X_possessive} cheek.</li>
+          <li>[tribal] {X_nameDef} of {FACTION}, a hunter so famous that children play at being {X_objective}, is resting at the colony for a night, and the colony's hunters have a lot of questions.</li>
         </texts>
         <lines>
           <li>Yes, that was me.</li>
           <li>No, I won't do the voice.</li>
           <li>...and then I said, "not in this hat."</li>
           <li>You're very kind.</li>
-          <li>Honestly, it's mostly travelling.</li>
+          <li>It's mostly traveling, really.</li>
         </lines>
       </li>
     </modExtensions>

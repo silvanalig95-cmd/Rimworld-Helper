@@ -33,7 +33,7 @@
     <defName>Council_Legendary</defName>
     <hediffClass>HediffWithComps</hediffClass>
     <label>legendary</label>
-    <description>This creature is old beyond its kind, scarred by everything that ever tried to bring it down, and still here. Its hide turns blows that would fell any other of its kind, and it hits back harder.</description>
+    <description>This creature is far older than most of its kind, and scarred by everything that ever tried to bring it down. Its hide turns blows that would fell an ordinary animal, and it hits back harder.</description>
     <defaultLabelColor>(0.85, 0.75, 0.45)</defaultLabelColor>
     <isBad>false</isBad>
     <everCurableByItem>false</everCurableByItem>
@@ -57,7 +57,7 @@
     <defName>Council_Comet</defName>
     <conditionClass>ColonyCouncil.GameCondition_Comet</conditionClass>
     <label>comet</label>
-    <description>A comet hangs in the sky, bright enough to see by day and brighter by night. Stargazing is better than ever, and everyone has an opinion on what it means.</description>
+    <description>A comet hangs in the sky, visible by day and brilliant by night. Colonists stargaze more often, and enjoy it more.</description>
     <endMessage>The comet has faded from the sky.</endMessage>
     <canBePermanent>false</canBePermanent>
   </GameConditionDef>
@@ -75,7 +75,7 @@
     <defName>Council_Hail</defName>
     <conditionClass>ColonyCouncil.GameCondition_Hail</conditionClass>
     <label>hailstorm</label>
-    <description>Hail is hammering down. Crops out in the open are being knocked back, and young ones flattened; anything under a roof is safe. Nobody's going to get hurt, but nobody's going to enjoy being outside either.</description>
+    <description>Hail is hammering down. Crops in open fields are losing growth, and some young plants will be destroyed. Anything under a roof is safe. The hail won't injure anyone, but colonists caught outside will be unhappy about it.</description>
     <endMessage>The hail has stopped.</endMessage>
     <canBePermanent>false</canBePermanent>
   </GameConditionDef>
@@ -85,7 +85,7 @@
     <defName>Council_Inoculated</defName>
     <hediffClass>HediffWithComps</hediffClass>
     <label>inoculated</label>
-    <description>A travelling doctor's shot. For a month the body fights off sickness noticeably faster.</description>
+    <description>A traveling doctor's vaccine. For a month, the body builds immunity to sickness faster.</description>
     <defaultLabelColor>(0.6, 0.85, 0.65)</defaultLabelColor>
     <isBad>false</isBad>
     <comps>
@@ -107,7 +107,7 @@
     <defName>Council_HerbalTonic</defName>
     <hediffClass>HediffWithComps</hediffClass>
     <label>herbal tonic</label>
-    <description>A wandering herbalist's bitter tonic. For a month the body shakes off sickness noticeably faster.</description>
+    <description>A wandering herbalist's bitter tonic. For a month, the body fights off sickness faster.</description>
     <defaultLabelColor>(0.6, 0.85, 0.65)</defaultLabelColor>
     <isBad>false</isBad>
     <comps>

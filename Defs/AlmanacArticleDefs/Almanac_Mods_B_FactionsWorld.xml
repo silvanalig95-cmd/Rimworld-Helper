@@ -67,7 +67,7 @@
     <tip>Every sixty days a load of timber comes in from the logging camp.</tip>
     <description>Vanilla Outposts Expanded lets a caravan settle a spot on the world map as an outpost: a farm, a mine, a hunting or logging camp, a trading post, a town. The people there look after themselves with no upkeep, and every so often the outpost sends its produce home. Outposts can be raided, and the people posted there don't improve their skills while away.</description>
     <facts>
-      <li>To found one, take a caravan to an empty tile at least one tile away from any settlement or other outpost and choose Create outpost. Each type checks the combined skill of everyone you leave there.</li>
+      <li>To found one, take a caravan to an empty tile with at least one tile between it and any settlement or other outpost and choose Create outpost. Each type checks the combined skill of everyone you leave there.</li>
       <li>Types that suit a medieval world: farming (Plants 10, needs a growing season), hunting, logging (3 people or more), mining (hills or mountains, Mining 10; metals need more), trading (Social 10, earns silver), encampment (a rest stop for caravans), defensive (3 or more armed fighters) and town (5 people, 3 settlements within 10 tiles).</li>
       <li>Outposts that make goods deliver every 15 days by default; farming, logging and scavenging outposts every 60 days. Goods appear at the edge of your map facing the outpost, or on an outpost delivery spot if you build one.</li>
       <li>People at an outpost eat, rest and heal on their own. They don't gain skills there, and they don't fall ill, get into fights or have mental breaks.</li>
@@ -114,7 +114,7 @@
     <description>Outland is a series of medieval fantasy mods, and Core holds what the other modules share: early workbenches, clay and brick making, siege engines for your walls and traps hidden in the ground. It adds to the game without locking any tech away, and its buildings sit in their own Outland tab with subcategories.</description>
     <facts>
       <li>A digging spot, placed on mud or on soil next to water, gives clay and adobe bricks. A kiln fires clay into clay bricks, which are fireproof but weaker than cut stone.</li>
-      <li>Siege engines: the bolt thrower, the ballista and the mangonel, all manned by a colonist. The ballista is loaded with ballista bolts and the mangonel with round shot; the mangonel lobs its shots a long way, like a mortar.</li>
+      <li>Siege engines: the bolt thrower, the ballista and the mangonel, all manned by a colonist. The ballista is loaded with ballista bolts and the mangonel with round shot; the mangonel lobs its shots a long way but, like a mortar, can't hit anything close.</li>
       <li>Hidden pot traps (chemfuel fire, smoke and knockout gas) can't sit next to other traps, and calm animals can sense them. A rock collapse trap brings down a chunk of roof.</li>
       <li>The basic workbench makes what the crafting spot makes. A grindstone placed by the forge raises the quality of what the forge produces.</li>
       <li>It also adds crossbows, ration packs that never rot, timber frame and tent walls, wide doors, backpacks, tribal clothing and the fockatt, a bear-like animal.</li>

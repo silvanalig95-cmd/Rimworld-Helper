@@ -35,7 +35,7 @@
     <order>2</order>
     <summary>Bitter to devoted: what trust does to mood, work and loyalty.</summary>
     <tip>Answer every wish, even when the answer is no.</tip>
-    <description>Every colonist has a level of trust in the council: bitter, doubtful, neutral, trusting or devoted. It rises with granted wishes, kept promises and heeded petitions, falls with lapses, refusals and broken promises, and slowly drifts back toward neutral. It shows in the Wishes tab, with its history in the tooltip.</description>
+    <description>Every colonist has a level of trust in the council: bitter, doubtful, neutral, trusting or devoted. It rises with granted wishes, kept promises and heeded petitions, falls with lapses, refusals and broken promises, and slowly drifts back toward neutral. It shows on the Wishes page, with its history in the tooltip.</description>
     <facts>
       <li>Trusting and devoted colonists work and learn faster and have fewer mental breaks (shown in the Health tab as "loyal to the council").</li>
       <li>Doubtful and bitter colonists work slower and break sooner ("grudge against the council").</li>
@@ -81,7 +81,7 @@
     <order>4</order>
     <summary>Policies that trade mood for output: long hours, rationing, drills and more.</summary>
     <tip>Call long hours while the colony is happy, not once it's already miserable.</tip>
-    <description>The Decrees tab puts policies in force for a few days: up to two at once, each with a cooldown afterwards. Each trades mood (and sometimes trust) for something the colony needs, or, like festival days and days of mourning, the other way around. The tab shows who will love or hate each one before you decide.</description>
+    <description>The Decrees page puts policies in force for a few days: up to two at once, each with a cooldown afterward. Each trades mood (and sometimes trust) for something the colony needs, or, like festival days and days of mourning, the other way around. The tab shows who will love or hate each one before you decide.</description>
     <facts>
       <li>Long hours: work 15% faster. Rationing: hunger 25% slower. Drills: everyone who can fight trains shooting and melee every waking hour.</li>
       <li>Study hours: learning 30% and research 20% faster. Harvest push, building season, clean sweep: faster at one kind of work.</li>
@@ -136,7 +136,7 @@
     <facts>
       <li>Names come from the colonist's records: wounds tended, operations, kills, headshots, things built, rock mined, harvests, meals, animals tamed, prisoners recruited, research, crafting, fires fought, and less flattering ones like messes cleaned, times on fire or mental breaks.</li>
       <li>A name moves to someone else only when they're clearly ahead (by about 15%).</li>
-      <li>The annals cover who joined, died, left or walked out, raids, wealth, wishes, ambitions, decrees, dilemmas, friendships, feuds, trust and names. Past years can be reread from the Chronicle tab.</li>
+      <li>The annals cover who joined, died, left or walked out, raids, wealth, wishes, ambitions, decrees, dilemmas, friendships, feuds, trust and names. Past years can be reread from the Chronicle page.</li>
     </facts>
     <keywords><li>epithet</li><li>name</li><li>title</li><li>annals</li><li>anniversary</li><li>chronicle</li></keywords>
     <seeAlso><li>Council_Alm_C_Wishes</li></seeAlso>
@@ -149,7 +149,7 @@
     <order>7</order>
     <summary>Speaker, marshal, quartermaster, physician, steward: who holds them and what they do.</summary>
     <tip>The colony votes for the people it likes, not always the ones who are best at the job.</tip>
-    <description>The council has five seats. Each gives its holder a bonus and helps the whole colony in some way. Colonists elect them once a year, voting for whoever is good at the job, has the right nature for it, and is liked. The council can appoint or dismiss anyone from the Decrees tab, but overruling the vote has a cost.</description>
+    <description>The council has five seats. Each gives its holder a bonus and helps the whole colony in some way. Colonists elect them once a year, voting for whoever is good at the job, has the right nature for it, and is liked. The council can appoint or dismiss anyone from the Decrees page, but overruling the vote has a cost.</description>
     <facts>
       <li>Speaker: chairs every council meeting; everyone's trust rises a little each day.</li>
       <li>Marshal: drills train half again as fast; the colony aims and strikes a little better.</li>
@@ -196,7 +196,7 @@
     <order>9</order>
     <summary>The bonds between colonists: how they form, grow, sour and end, and what they change.</summary>
     <tip>Colonists who work side by side don't always end up friends.</tip>
-    <description>Colonists form lasting bonds out of how they feel about each other and what they go through. Steady liking turns into friendship, steady loathing into rivalry, fighting side by side into comradeship, and a skilled colonist may take an eager learner under their wing. Every bond has a strength and a short history, shown in the Social tab of the council window.</description>
+    <description>Colonists form lasting bonds out of how they feel about each other and what they go through. Steady liking turns into friendship, steady loathing into rivalry, fighting side by side into comradeship, and a skilled colonist may take an eager learner under their wing. Every bond has a strength and a short history, shown on the council's Bonds page.</description>
     <facts>
       <li>Friends and rivals form when two colonists' opinions of each other stay high (or low) enough. A bond then drifts with how they feel, and ends when it fades to nothing.</li>
       <li>Everyone who fights in the same battle (drafted, manning a turret or attacking the enemy) becomes comrades. Comradeship slowly fades between battles.</li>
@@ -207,12 +207,12 @@
       <li>The council's decisions feed back: losing an election to someone, having your wish passed over for theirs, a fight, a grudge from a dilemma or arguing over a decree can start rivalries; backing the same petition, making up or going through something together builds friendships.</li>
       <li>Bonds change how people act: friends and circle members back each other's wishes and petitions and vote for each other; rivals object to each other's wishes and vote against each other.</li>
       <li>Let someone's wish lapse and their close friends trust the council a little less, and those in the same circle lose slightly more.</li>
-      <li>A colonist's bonds and circle are listed in their trust tooltip in the Wishes tab.</li>
+      <li>A colonist's bonds and circle are listed in their trust tooltip on the Wishes page.</li>
       <li>When a bonded colonist dies, the ones left behind write about it.</li>
     </facts>
     <advice>
       <li>Keep rivals on different work shifts to avoid squabbles. Colonists who fight through a raid together become comrades.</li>
-      <li>To keep a skill in the colony after your best worker dies, look for a mentorship in the Social tab, or have a learner with a passion work alongside them.</li>
+      <li>To keep a skill in the colony after your best worker dies, look for a mentorship on the Bonds page, or have a learner with a passion work alongside them.</li>
       <li>A strong circle votes as a bloc. Let one member's wish lapse and the others trust the council less too.</li>
     </advice>
     <keywords><li>friend</li><li>rival</li><li>comrade</li><li>mentor</li><li>student</li><li>circle</li><li>social</li><li>bond</li><li>relationship</li></keywords>
@@ -233,7 +233,7 @@
       <li>Now and then a dream changes something: an inspiration, a lesson in a skill, a good night's rest, a nightmare that leaves them shaken, a dream of a won fight that steadies their aim, a softened rivalry, a wish.</li>
       <li>Rarely, a dream is an omen, and a few days later it comes true: a caravan, a newcomer, falling cargo pods, a cold snap, a raid. Only one omen waits at a time. You can turn omens off with "Dreams that come true" in the settings.</li>
       <li>Colonists tell each other their dreams. Telling someone you dreamt about them makes them like you a little more.</li>
-      <li>Recent dreams are listed at the bottom of the Social tab, and dreams that came true go in the chronicle and the year's annals.</li>
+      <li>Recent dreams are listed on the Dreams page, and dreams that came true go in the chronicle and the year's annals.</li>
     </facts>
     <advice>
       <li>When a colonist wakes up talking about torches in the dark, check your defenses: it may be an omen of a raid.</li>
@@ -250,7 +250,7 @@
     <order>11</order>
     <summary>What each colonist has set their heart on doing before they die.</summary>
     <tip>A wish takes a few days to grant. A life goal can take years.</tip>
-    <description>A few days after settling in, each colonist sets their heart on something: master a craft, marry for love, have a child, find three true friends, train a student, make peace with a rival, earn a seat on the council or a name the colony remembers, a bedroom fit for a noble, a warrior's or a builder's record, or simply to live three more years. The Social tab shows everyone's goal and how close they are.</description>
+    <description>A few days after settling in, each colonist sets their heart on something: master a craft, marry for love, have a child, find three true friends, train a student, make peace with a rival, earn a seat on the council or a name the colony remembers, a bedroom fit for a noble, a warrior's or a builder's record, or simply to live three more years. The Roster page shows everyone's goal and how close they are.</description>
     <facts>
       <li>Goals fit the person: passions, traits and situation decide what they want. A psychopath doesn't dream of true friends; an ascetic doesn't want a noble's bedroom.</li>
       <li>Life sets them, too: a battle can make a warrior, a brush with death a healer or someone who just wants more years, a wedding someone who wants to marry, a birth someone who wants a child, a lost election someone who wants a seat, loneliness someone who wants friends, and seeing a friend achieve their goal can make them want the same.</li>
@@ -263,7 +263,7 @@
       <li>Some dreams are about a colonist's goal, and some dilemmas come up because of one.</li>
     </facts>
     <advice>
-      <li>Check the Social tab now and then. A colonist one level short of mastery is worth a few days at their workbench.</li>
+      <li>Check the Roster page now and then. A colonist one level short of mastery is worth a few days at their workbench.</li>
       <li>Goals like marriage, friends or peace with a rival can't be ordered, but shared work, shared rooms and shared battles help them along.</li>
     </advice>
     <keywords><li>goal</li><li>aspiration</li><li>dream</li><li>ambition</li><li>mastery</li><li>marriage</li><li>legacy</li></keywords>
@@ -277,7 +277,7 @@
     <order>12</order>
     <summary>What colonists hide, who they can't forgive, and how they say goodbye.</summary>
     <tip>Not everyone talks about where they came from.</tip>
-    <description>Some colonists carry a secret, often from the life their backstory hints at: a raider's past, noble blood, a deserter's shame, a child left behind, a borrowed name, a hidden kindness. You won't know what it is; the Social tab only shows when they confide in a close friend.</description>
+    <description>Some colonists carry a secret, often from the life their backstory hints at: a raider's past, noble blood, a deserter's shame, a child left behind, a borrowed name, a hidden kindness. You won't know what it is; the Bonds page only shows when they confide in a close friend.</description>
     <facts>
       <li>Confiding brings relief and brings them closer. A confidant who later becomes their rival is likely to let it slip; a close friend rarely does. Someone at rock bottom may blurt it out themselves.</li>
       <li>When a secret comes out, everyone reacts according to their nature: the kind forgive, the hard despise, the greedy envy, the abrasive mock. Betraying a confidence makes enemies.</li>

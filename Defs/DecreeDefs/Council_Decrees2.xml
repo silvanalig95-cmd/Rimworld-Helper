@@ -112,7 +112,7 @@
   <ColonyCouncil.DecreeDef>
     <defName>Council_Decree_Mourning</defName>
     <label>days of mourning</label>
-    <description>Most work stops so the colony can grieve together. Grief fades faster for those who lost someone, and they are less likely to break. Only possible while someone is grieving.</description>
+    <description>All work slows by 30% so the colony can grieve together. Grief fades faster for those who lost someone, and they are less likely to break. Only possible while someone is grieving.</description>
     <requestWhen><li>Grief</li></requestWhen>
     <order>10</order>
     <durationDays>2</durationDays>

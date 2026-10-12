@@ -15,8 +15,8 @@
     <category>Basics</category>
     <order>0</order>
     <summary>What's in here, and how the council uses it.</summary>
-    <tip>More colonies are lost to a bad harvest or an untreated infection than to raiders.</tip>
-    <description>This almanac collects what experienced colonists know: the numbers behind food, mood, defense and health, how to lay out each kind of room, and the mistakes that end colonies. When the council warns you about something on the Priorities tab, "Read more" opens the matching page here.</description>
+    <tip>A failed harvest or an untreated infection can end a colony as surely as a raid.</tip>
+    <description>This almanac collects what experienced colonists know: the numbers behind food, mood, defense and health, how to lay out each kind of room, and the mistakes that end colonies. When the council warns you about something on the Priorities page, "Read more" opens the matching page here.</description>
     <facts>
       <li>Pages marked "some numbers are approximate" use figures from community testing or sources that disagree. Treat them as close estimates, not exact values.</li>
       <li>Pages for DLCs you don't have are hidden unless you tick the box under the categories.</li>

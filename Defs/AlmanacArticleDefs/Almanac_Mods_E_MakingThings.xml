@@ -133,7 +133,7 @@
     <advice>
       <li>In Medieval Overhaul steel comes from smelting, so set aside 30 steel per cask before you research dwarven fermentation.</li>
       <li>Store redspice next to the drinks, so the day after a feast isn't lost to hangovers.</li>
-      <li>Keep a hunter or fighter near the casks when a batch is due. A fey is hard to catch once it is away, and its wings are worth having.</li>
+      <li>Keep a hunter working near the casks when a batch is due to finish, so someone is on the spot if a fey flies out.</li>
       <li>With Rimfolk: the dwarven cask counts for a colonist's wish for a brewery, and its ale, sweetwine and mead count for the wish for "something to drink or smoke".</li>
     </advice>
     <keywords>
@@ -306,7 +306,7 @@
       <li>Set catapults behind your walls with a stack of stone chunks beside them, so they can hit enemies gathering out of bow range.</li>
       <li>Keep wood by each ballista, and decide before a raid who mans which engine.</li>
       <li>Lay bear traps and cavalry spikes where raiders walk to the gate, and re-arm the bear traps after every fight.</li>
-      <li>With Rimfolk: bear traps and cavalry spikes count as traps, both in the advisor's defense check and for a colonist's wish for stronger defenses. Manned catapults and ballistas also count toward the defense check.</li>
+      <li>With Rimfolk: bear traps and cavalry spikes count as traps, both in the advisor's defense check and for a colonist's wish for stronger defenses. Catapults and ballistas also count toward the defense check, manned or not.</li>
     </advice>
     <keywords>
       <li>catapult</li>
@@ -618,7 +618,7 @@
     <facts>
       <li>Most units need Complex Furniture. The meat hook needs Smithing, the food basket needs no research, and the safe and weapons locker need Machining.</li>
       <li>The double shelf and tall shelves take anything; the other units only take their own kind of item. Hampers hold clothes, not cloth.</li>
-      <li>Colonists take a moment to put each item into deep storage, and animals can't haul into it unless you allow it in the settings.</li>
+      <li>Colonists take a moment to put each item into deep storage, and animals can't haul there unless you allow it in the settings.</li>
       <li>Deep Storage Plus: the barrel (Complex Furniture) holds up to 8 stacks of one liquid, such as beer, wort, milk or Vanilla Brewing drinks. With Dubs Bad Hygiene it also comes as a water barrel.</li>
       <li>The firewood rack (Complex Furniture) holds 14 stacks of wood, 7 per tile, and stops it deteriorating.</li>
     </facts>
@@ -677,7 +677,7 @@
       <li>Keep your other doctors on tending, since Quality Surgeon leaves every operation to the best one.</li>
       <li>Only prosthetics or bionics fix failing eyes and ears, so in a medieval colony, move fading elders to work that needs them less.</li>
       <li>Compare Food Alert's days of food with the season. Going into winter, you need enough to last until the next harvest.</li>
-      <li>With Rimfolk: the council's Priorities tab separately forecasts your food against the coming winter, and a bout of food poisoning makes a colonist likelier to ask for better meals.</li>
+      <li>With Rimfolk: the council's Priorities page separately forecasts your food against the coming winter, and a bout of food poisoning makes a colonist likelier to ask for better meals.</li>
     </advice>
     <keywords>
       <li>medic bag</li>

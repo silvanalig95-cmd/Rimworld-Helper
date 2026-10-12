@@ -28,7 +28,7 @@
   <HediffDef>
     <defName>Council_Dlm_NightWatch</defName>
     <label>on night watch</label>
-    <description>Pulling extra night watches on the council's orders. Short on sleep, sharp of eye.</description>
+    <description>Pulling extra night watches on the council's orders. Tires sooner and works a bit slower by day.</description>
     <hediffClass>HediffWithComps</hediffClass>
     <defaultLabelColor>(0.9, 0.75, 0.45)</defaultLabelColor>
     <isBad>false</isBad>
@@ -50,7 +50,7 @@
   <HediffDef>
     <defName>Council_Dlm_Rattled</defName>
     <label>rattled</label>
-    <description>Something has them spooked. Jumps at noises and cracks more easily, for a while.</description>
+    <description>Still spooked by what happened. Jumps at noises and is closer to breaking than usual.</description>
     <hediffClass>HediffWithComps</hediffClass>
     <defaultLabelColor>(0.9, 0.6, 0.45)</defaultLabelColor>
     <isBad>true</isBad>
@@ -71,7 +71,7 @@
   <HediffDef>
     <defName>Council_Dlm_Calm</defName>
     <label>after the rite</label>
-    <description>Spent a day at a bonfire burning their fears. A little behind on work, a little steadier in the head.</description>
+    <description>Spent a day at the bonfire rite, burning old fears. Behind on work, but steadier for it.</description>
     <hediffClass>HediffWithComps</hediffClass>
     <defaultLabelColor>(0.6, 0.8, 0.95)</defaultLabelColor>
     <isBad>false</isBad>

@@ -115,7 +115,7 @@
       <li>Put it next to the kitchen and freezer so meals travel a few steps, not across the base.</li>
     </tips>
     <label>dining room</label>
-    <description>A table for eight with chairs all around, lights and plants. Everyone eats three times a day, so this pays off fast.</description>
+    <description>A table for eight with chairs all around, lights and plants. Every colonist eats here once or twice a day, so this pays off fast.</description>
     <order>20</order>
     <size>(6,5)</size>
     <floors>

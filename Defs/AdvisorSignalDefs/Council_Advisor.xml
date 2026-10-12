@@ -14,7 +14,7 @@
       <li>Sleeping on the ground or outdoors gives a mood penalty every night. A simple bed in a room is one of the cheapest mood boosts there is.</li>
       <li>Barracks are fine early on, but each colonist in one gets a mood penalty. Small private bedrooms, even 3×4, beat a big shared room.</li>
       <li>A bedroom's impressiveness gives a mood bonus or penalty every morning. Floors, a bit of art and good furniture add up quickly.</li>
-      <li>Assign beds yourself in the bed's Owner tab, so couples share and loners get their own rooms.</li>
+      <li>Assign beds yourself with the bed's Set owner button, so couples share and loners get their own rooms.</li>
       <li>Everyone in a barracks shares one impressiveness score, so one big, clean, decorated barracks can beat several plain bedrooms.</li>
       <li>A bedroom stops counting as one if it holds a medical or prisoner bed, or more than one bed nobody owns.</li>
       <li>Aim for a bedroom space of 25 or more: a 5x5 room with a bed, dresser and end table comes to about 31.</li>
@@ -154,9 +154,9 @@
     <template>Council_DiningRoom</template>
     <tips>
       <li>Eating without a table gives a mood penalty at every meal. A table and chairs pay for themselves almost immediately.</li>
-      <li>An impressive dining room gives a mood bonus after every meal, and everyone eats three times a day.</li>
-      <li>Eating without a table costs 3 mood, every meal, for everyone.</li>
-      <li>Fine meals give +5 mood and lavish meals +12, from the same ingredients a good cook already has.</li>
+      <li>An impressive dining room gives a mood bonus after every meal, and every colonist eats once or twice a day.</li>
+      <li>Eating without a table costs each colonist 3 mood at every meal.</li>
+      <li>Fine meals give +5 mood and lavish meals +12. A lavish meal takes twice the ingredients, which a good farm can afford.</li>
     </tips>
   </ColonyCouncil.AdvisorSignalDef>
 
@@ -185,7 +185,7 @@
     <category>Work</category>
     <importance>1</importance>
     <tips>
-      <li>A job nobody is assigned to never happens. Check the Work tab after every new recruit or loss.</li>
+      <li>Unassigned work never gets done. Check the Work tab after every new recruit or loss.</li>
       <li>Colonists with a passion for a skill learn it faster and enjoy the work. Match jobs to the flames next to each skill.</li>
       <li>One or two hours of recreation in the schedule each day keeps tempers in check.</li>
     </tips>
@@ -227,7 +227,7 @@
     <importance>1</importance>
     <tips>
       <li>These ideas aren't problems. They're things to try once food, shelter and safety are taken care of.</li>
-      <li>Comfort, beauty and something to work toward keep colonists' moods up through raids and hard winters.</li>
+      <li>Comfortable rooms, some art and a life goal to work toward keep colonists' moods up through raids and hard winters.</li>
     </tips>
   </ColonyCouncil.AdvisorSignalDef>
 

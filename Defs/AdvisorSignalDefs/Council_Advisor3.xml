@@ -9,8 +9,8 @@
     <category>Comfort</category>
     <importance>0.7</importance>
     <tips>
-      <li>A week of austerity (Decrees tab) brings everyone's standards back down, so the council's rewards count again.</li>
-      <li>Hard times lower standards on their own. So does saying no to the next feast.</li>
+      <li>A week of austerity, from the Decrees page, brings standards back down so the council's rewards count again.</li>
+      <li>Hard times lower standards on their own, and so does skipping the next feast.</li>
       <li>Spoiled colonists ask more often and for more. Grant fewer, bigger wishes.</li>
     </tips>
   </ColonyCouncil.AdvisorSignalDef>
@@ -25,7 +25,7 @@
     <tips>
       <li>Granting a bitter colonist's wish, or keeping a promise to them, is the fastest way back.</li>
       <li>A decree they love builds trust every day it holds; one they hate wears it down.</li>
-      <li>Bitter colonists work slower and break sooner. It shows in the health tab as a grudge.</li>
+      <li>Bitter colonists work slower and break sooner. It shows in their Health tab as a grudge against the council.</li>
     </tips>
   </ColonyCouncil.AdvisorSignalDef>
 
