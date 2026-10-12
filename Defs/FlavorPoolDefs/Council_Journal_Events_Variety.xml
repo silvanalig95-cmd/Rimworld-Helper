@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Journal lines for the third batch of world events (Defs/IncidentDefs/Council_Events_Variety.xml), in the voice of
+    the colonist the event is about. Tagged with the answer: [opt0] the first option, [opt1] the second..., and
+    [risk] / [safe] for how a gamble went. Every answer has at least one plain line.
+  -->
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Journal_Evt_Stranded</defName>
+    <lines>
+      <plain>
+        <li>[opt0,safe] Some merchants broke down on the road, and the council sent me to help. It took all afternoon, but it held. They paid me in goods and a lot of handshakes.</li>
+        <li>[opt0,risk] I worked on the merchants' repair until dark and it still wouldn't hold. I keep going over what I should have done differently.</li>
+        <li>[opt1] We sold the stranded merchants what they needed to fix it themselves. I watched them do it. I'd have done it faster.</li>
+        <li>[opt2] Merchants broke down on the road today, and the council let them sort it out. I could have had them moving in an afternoon.</li>
+      </plain>
+      <warm><li>[opt0,safe] Helped some stranded merchants today. The youngest of them followed me around all afternoon asking how everything worked.</li></warm>
+      <blunt><li>[opt0,risk] The repair didn't hold. Bad tools, bad light, bad day.</li></blunt>
+      <cheerful><li>[opt0,safe] Got some stranded merchants moving again, and they cheered when it held!</li></cheerful>
+      <gloomy><li>[opt0,risk] Tried to help some stranded merchants. I probably made it worse.</li></gloomy>
+      <cold><li>[opt0,safe] Repaired a neighbor's merchant gear. They paid in goods. A fair trade.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Journal_Evt_Dispute</defName>
+    <lines>
+      <plain>
+        <li>[opt0] The council sided with {FACTION} in their quarrel with {ENEMY}. I'd have tried talking first.</li>
+        <li>[opt1] The council sided with {ENEMY} against {FACTION}. I hope it was worth it.</li>
+        <li>[opt2,safe] I sat between {FACTION} and {ENEMY} all day until they agreed to a split. Neither of them likes the deal. Both of them shook on it.</li>
+        <li>[opt2,risk] I tried to settle the quarrel between {FACTION} and {ENEMY}. By evening both sides were angry with me as well as with each other.</li>
+        <li>[opt3] Two of our neighbors asked us to settle a quarrel, and the council stayed out of it. Probably wise.</li>
+      </plain>
+      <warm><li>[opt2,safe] It took all day, but {FACTION} and {ENEMY} shook hands in the end, and one of them even laughed.</li></warm>
+      <blunt><li>[opt2,risk] Both sides walked out. I'm done playing judge.</li></blunt>
+      <cheerful><li>[opt2,safe] I settled a quarrel between two whole peoples today. I'd like that remembered.</li></cheerful>
+      <cold><li>[opt2,safe] Two neighbors, one dispute, one compromise. They both owe us now.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Journal_Evt_Grave</defName>
+    <lines>
+      <plain>
+        <li>[opt0] I found an old grave today. We buried them again properly, with a stone at the head. I wonder who they were.</li>
+        <li>[opt1] Found an old grave. The council kept what was buried with them. I keep thinking about those bones going back in the ground with nothing.</li>
+        <li>[opt2] Found an old grave today. We filled it in again and left it as it was.</li>
+      </plain>
+      <warm><li>[opt0] We gave the stranger in the old grave a proper burial. I put a few wildflowers on it.</li></warm>
+      <blunt><li>[opt1] Grave goods. Somebody has to use them. Better us than the rats.</li></blunt>
+      <gloomy><li>[opt0] Dug up a stranger's grave by accident. One day somebody will dig up mine.</li></gloomy>
+      <cold><li>[opt1] The grave held a few useful things. The dead have no use for them.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Journal_Evt_Elopers</defName>
+    <lines>
+      <plain>
+        <li>[opt0] Two runaways turned up today, {X_nameDef} and {TALE}, and the council let them stay. I found them the warmest blankets we had.</li>
+        <li>[opt1] We sent {X_nameDef} and {TALE} back to their families. They didn't say a word the whole way.</li>
+        <li>[opt2] The council turned away {X_nameDef} and {TALE}. I hope they find somewhere that will take them.</li>
+      </plain>
+      <warm><li>[opt0] {X_nameDef} and {TALE} are staying. They held hands all through supper.</li></warm>
+      <blunt><li>[opt1] Sending those two home was wrong, and I said so.</li></blunt>
+      <cheerful><li>[opt0] We took in a pair of runaway lovers! This place could use some romance.</li></cheerful>
+      <gloomy><li>[opt2] Two young people in love came to us for help, and we sent them back out on the road.</li></gloomy>
+      <cold><li>[opt1] Returning the runaways was good for our standing with {FACTION}. Their feelings are their own business.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Journal_Evt_FamilyVisit</defName>
+    <lines>
+      <plain>
+        <li>[opt0] My {RELATION} {X_nameDef} came to visit, and the council asked {X_objective} to stay. {X_nameDef} said yes before supper was over.</li>
+        <li>[opt1] My {RELATION} {X_nameDef} came all this way to see me. We talked all day, and tomorrow {X_nameDef} heads home.</li>
+        <li>[opt1] {X_nameDef} brought news from home and a bag of things I'd forgotten I missed. We walked the fields until dark.</li>
+      </plain>
+      <warm><li>[opt1] {X_nameDef} visited today. I didn't realize how much I'd missed my {RELATION}'s laugh.</li></warm>
+      <blunt><li>[opt1] {X_nameDef} visited. A good day. Too short.</li></blunt>
+      <cheerful><li>[opt0] My {RELATION} is staying! I'm going to show {X_objective} every corner of this place.</li></cheerful>
+      <gloomy><li>[opt1] My {RELATION} came to visit, and leaves tomorrow. The place will feel empty after.</li></gloomy>
+      <cold><li>[opt0] My {RELATION} {X_nameDef} has joined the colony. One more pair of hands, and one I already know.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+</Defs>

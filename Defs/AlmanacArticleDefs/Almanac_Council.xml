@@ -398,6 +398,8 @@
       <li>The council window's World page shows fights on their way, questions waiting for an answer, and who's out there with the colony on their mind.</li>
       <li>What a journalist or chronicler writes depends on the colony's character: mercy, generosity and openness make for a kind article, and their opposites for an unkind one.</li>
       <li>A traveling doctor's shots (or a herbalist's tonic) help everyone fight off sickness faster for a month.</li>
+      <li>A neighbor's order is collected five days after you take it. Only goods in your stockpiles and shelves count, and it's the whole amount or nothing. The World page shows when they're coming.</li>
+      <li>Everyday events (stranded merchants, a tinker, a neighbors' quarrel, an old grave, a family visit, a fortune teller and others) never end in a fight.</li>
     </facts>
     <advice>
       <li>Answer the letters: an unanswered one falls to a default, which is rarely the best choice.</li>
@@ -406,7 +408,7 @@
       <li>Roof a field or two and keep food cold. That takes most of the harm out of hail and vermin.</li>
       <li>Hunt the great beast with a group, not a lone colonist.</li>
     </advice>
-    <keywords><li>event</li><li>incident</li><li>comrade</li><li>family</li><li>bounty</li><li>debt</li><li>champion</li><li>contest</li><li>beast</li><li>tribute</li><li>revenge</li><li>deserter</li><li>comet</li><li>fireflies</li><li>hail</li><li>vermin</li><li>cache</li><li>treasure</li><li>storyteller</li><li>pilgrims</li><li>scholar</li><li>apprentice</li><li>stray</li><li>mourners</li><li>cargo</li><li>scout</li><li>journalist</li><li>doctor</li><li>herbalist</li><li>music</li><li>celebrity</li></keywords>
+    <keywords><li>event</li><li>incident</li><li>comrade</li><li>family</li><li>bounty</li><li>debt</li><li>champion</li><li>contest</li><li>beast</li><li>tribute</li><li>revenge</li><li>deserter</li><li>comet</li><li>fireflies</li><li>hail</li><li>vermin</li><li>cache</li><li>treasure</li><li>storyteller</li><li>pilgrims</li><li>scholar</li><li>apprentice</li><li>stray</li><li>mourners</li><li>cargo</li><li>scout</li><li>journalist</li><li>doctor</li><li>herbalist</li><li>music</li><li>celebrity</li><li>order</li><li>tinker</li><li>merchants</li><li>quarrel</li><li>grave</li><li>letters</li><li>lovers</li><li>fortune</li><li>warm spell</li></keywords>
     <seeAlso><li>Council_Alm_C_Strangers</li><li>Council_Alm_C_Ways</li><li>Council_Alm_C_Dilemmas</li></seeAlso>
   </ColonyCouncil.AlmanacArticleDef>
 

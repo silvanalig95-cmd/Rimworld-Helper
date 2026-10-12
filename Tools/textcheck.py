@@ -170,6 +170,9 @@ def check(path):
         if p in old_map:
             continue
         parent = p.rsplit("/", 1)[0]
+        # A new interface string (a new feature's key) is fine; it isn't a rewrite of anything.
+        if keyed and parent == "LanguageData":
+            continue
         if parent not in old_map or not p.rsplit("/", 1)[1].startswith("li["):
             errors.append(f"{path}: {p} added outside an existing list")
             continue

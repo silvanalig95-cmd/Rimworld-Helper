@@ -403,6 +403,14 @@ medieval things). Many ask the council what to do, with a day or so to answer.
   **journalist** or **chronicler** writes about the colony (what they write depends on its character), a
   **travelling doctor** or **herbalist** sells a month of better resistance to sickness, **music** on the radio or
   minstrels on the hill, and a **famous visitor** stopping for the night.
+- **Everyday things.** None of these ends in a fight. Merchants **stranded** on the road (send your best crafter to
+  help, or sell them the materials), a neighbor's **order** for goods you keep in your stores (have the whole amount
+  ready when they send for it in five days; the World page shows when), a **tinker** who mends every worn coat and
+  weapon for silver, **neighbors in need** of medicine (give, sell or keep it), two neighbors asking you to settle a
+  **quarrel** (take a side, or let your best talker find a middle way), **growing weather** that puts open fields
+  days ahead, a **warm spell** in spring or fall, an **old grave** or a **box of old letters** turned up outside,
+  **runaway lovers** asking to be taken in, a colonist's real **family** coming to visit (and maybe staying), and a
+  **fortune teller** (the cheerful hear good news more often, the gloomy and nervous bad, the very clever none).
 
 Some events pick up where an earlier one left off: the **deserter**'s old unit tracks them down; the **lost child**
 you walked home comes back years later, grown, with a gift; a **champion** you beat comes back for a rematch (or one

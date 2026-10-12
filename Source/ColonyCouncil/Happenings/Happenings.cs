@@ -439,6 +439,8 @@ namespace ColonyCouncil
             Safe("event raids", () => RaidsDue(now));
             Safe("event visits", () => VisitsHour(comp, now));
             Safe("great beast", () => HappeningWorker_GreatBeast.Hourly(this, comp));
+            // A neighbor's order the colony took on: a reminder, then the collection (even with world events off since).
+            Safe("orders", () => HappeningWorker_Order.Hourly(this, comp, now));
             // Before the daily tidy-up, so a hunt whose leader just died is told before its memo goes.
             Safe("scenario", () => ScenarioStakes.Hourly(this, comp, now));
             if (now % GenDate.TicksPerDay < GenDate.TicksPerHour) Safe("event memory", Prune);

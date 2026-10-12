@@ -42,6 +42,10 @@ Things that happen to the colony from outside, on Rimfolk's own rhythm, written 
   young, fed pilgrims' thanks) and the World page (what's coming, who's out there, what happened lately).
 - Done: a second batch for industrial and spacer colonies (each with a tribal and medieval version too): lost
   cargo, a talent scout, a journalist, a travelling doctor, music in the air, a famous visitor.
+- Done: a third batch of twelve everyday events with no fights: stranded merchants, a neighbor's order (collected
+  five days later, shown on the World page), a traveling tinker, neighbors in need of medicine, a quarrel between
+  two neighbors, growing weather, a warm spell, an old grave, a box of old letters, runaway lovers, a family visit
+  and a fortune teller.
 - Next: more events per group, mod-aware events when the user's new modlist arrives.
 
 ## Phase H2: Scenarios with stakes (done)
