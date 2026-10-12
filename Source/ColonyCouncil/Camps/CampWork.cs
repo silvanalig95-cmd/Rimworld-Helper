@@ -26,7 +26,8 @@ namespace ColonyCouncil
         protected override Job TryGiveJob(Pawn pawn)
         {
             var camp = CampTracker.CampOf(pawn);
-            if (camp == null || !camp.Settled || pawn.Map != camp.map) return null;
+            // Only the camp's own people: an animal sold to their trader joins the group too, and just stays near.
+            if (camp == null || !camp.Settled || pawn.Map != camp.map || !camp.Has(pawn) || !pawn.RaceProps.Humanlike) return null;
             try
             {
                 return CampWork.JobFor(camp, pawn);
@@ -142,11 +143,13 @@ namespace ColonyCouncil
             {
                 if (t.Destroyed || !pawn.CanReserve(t)) continue;
                 if (!pawn.CanReach(t, PathEndMode.Touch, Danger.Some)) continue;
-                // Bushes and trees in the way come down first.
+                // Bushes and trees in the way come down first, and their own goods are moved aside. Anything else (the
+                // colony's things, a plant someone marked or sowed) is left be: the spot waits, and is given up on if
+                // it's still blocked when their time for building runs out.
                 var block = GenConstruct.FirstBlockingThing(t, pawn);
                 if (block != null)
                 {
-                    if (block.def.category != ThingCategory.Plant && block.def.category != ThingCategory.Item) continue;
+                    if (!Clearable(camp, block)) continue;
                     var clear = GenConstruct.HandleBlockingThingJob(t, pawn);
                     if (clear != null) return clear;
                     continue;
@@ -174,6 +177,13 @@ namespace ColonyCouncil
                 }
             }
             return null;
+        }
+
+        /// <summary>What they may clear off a building spot: wild plants nobody has sown or marked, and their own goods.</summary>
+        private static bool Clearable(Camp camp, Thing t)
+        {
+            if (t.def.category == ThingCategory.Plant) return !(t is Plant p && p.sown) && t.Spawned && t.Map.designationManager.DesignationOn(t) == null;
+            return t.def.category == ThingCategory.Item && camp.Owns(t);
         }
 
         private static bool Skilled(Pawn pawn, Frame f)
@@ -208,10 +218,13 @@ namespace ColonyCouncil
         {
             if (pawn.WorkTagIsDisabled(WorkTags.Hauling)) return null;
             var map = pawn.Map;
+            var home = map.areaManager.Home;
             foreach (var k in camp.kills)
             {
                 var corpse = k?.Corpse;
                 if (corpse == null || !corpse.Spawned || corpse.Position.InHorDistOf(camp.stash, 3f)) continue;
+                // Carried off into the colony's stockpiles or home since: not theirs to fetch back.
+                if (InColony(corpse, home)) continue;
                 if (!pawn.CanReserveAndReach(corpse, PathEndMode.ClosestTouch, Danger.Some)) continue;
                 return HaulToStash(camp, pawn, corpse);
             }
@@ -220,28 +233,34 @@ namespace ColonyCouncil
                 if (!cell.InBounds(map)) continue;
                 foreach (var t in GenRadial.RadialDistinctThingsAround(cell, map, 2.5f, true))
                 {
-                    // What the felling left lying there (not anything already in the colony's stockpiles).
-                    if (t.def.category != ThingCategory.Item || !t.def.EverHaulable || camp.Owns(t) || StoreUtility.IsInAnyStorage(t)) continue;
+                    // What their felling left lying there: the game drops what a stranger cuts forbidden to the colony,
+                    // so wood the colony can use (its own, cut nearby) is never taken, nor anything in its stockpiles.
+                    if (t.def.category != ThingCategory.Item || !t.def.EverHaulable || camp.Owns(t) || !t.IsForbidden(Faction.OfPlayer) || InColony(t, home)) continue;
                     if (t.def != ThingDefOf.WoodLog && !(t.def.stuffProps?.categories?.Contains(StuffCategoryDefOf.Woody) ?? false)) continue;
                     if (!pawn.CanReserveAndReach(t, PathEndMode.ClosestTouch, Danger.Some)) continue;
                     return HaulToStash(camp, pawn, t);
                 }
             }
-            // Their own goods lying away from the stash (dropped, refunded).
+            // Their own goods lying away from the stash (dropped, refunded), unless the colony has carried them off.
             foreach (var t in map.listerThings.ThingsInGroup(ThingRequestGroup.HaulableEver))
             {
-                if (!camp.Owns(t) || !t.Spawned || t.Position.InHorDistOf(camp.stash, 3.5f) || !t.Position.InHorDistOf(camp.center, CampSite.WorkRadius)) continue;
+                if (!camp.Owns(t) || !t.Spawned || InColony(t, home) || t.Position.InHorDistOf(camp.stash, 3.5f) || !t.Position.InHorDistOf(camp.center, CampSite.WorkRadius)) continue;
                 if (!pawn.CanReserveAndReach(t, PathEndMode.ClosestTouch, Danger.Some)) continue;
                 return HaulToStash(camp, pawn, t);
             }
             return null;
         }
 
+        /// <summary>In the colony's stockpiles or home area (only for a spawned thing).</summary>
+        private static bool InColony(Thing t, Area home) => StoreUtility.IsInAnyStorage(t) || (home != null && home[t.Position]);
+
         private static Job HaulToStash(Camp camp, Pawn pawn, Thing t)
         {
             var map = pawn.Map;
-            if (!CellFinder.TryFindRandomCellNear(camp.stash, map, 2, c => c.Standable(map) && c.GetFirstItem(map) == null && c.GetEdifice(map) == null, out var cell))
-                cell = camp.stash;
+            // A free spot by the stash that nobody else is bound for: a taken one fails the job (with an error) at once.
+            if (!CellFinder.TryFindRandomCellNear(camp.stash, map, 2, c => c.Standable(map) && c.GetFirstItem(map) == null && c.GetEdifice(map) == null
+                                                                     && pawn.CanReserve(c) && pawn.CanReach(c, PathEndMode.OnCell, Danger.Some), out var cell))
+                return null;
             camp.Own(t);
             var job = JobMaker.MakeJob(JobDefOf.HaulToCell, t, cell);
             job.count = t.stackCount;
@@ -333,14 +352,13 @@ namespace ColonyCouncil
             var map = hunter.Map;
             Pawn best = null;
             float bestD = float.MaxValue;
-            var people = map.mapPawns.FreeColonistsSpawned.Select(c => c.Position).ToList();
             foreach (var a in map.mapPawns.AllPawnsSpawned)
             {
                 if (a.Faction != null || a.RaceProps == null || !a.RaceProps.Animal || a.Dead || a.Downed || a.InMentalState || a.RaceProps.predator) continue;
                 if (a.BodySize > 2.5f || a.IsPrisoner || map.designationManager.DesignationOn(a) != null) continue;
                 if (!camp.MayWork(a.Position)) continue;
-                // Nobody of the colony anywhere near the line of fire.
-                if (people.Any(c => c.InHorDistOf(a.Position, 12f))) continue;
+                // Nobody of the colony (people or animals) anywhere near the line of fire.
+                if (camp.ColonyInLineOfFire(hunter.Position, a.Position)) continue;
                 if (PawnUtility.GetManhunterOnDamageChance(a, hunter) > 0.04f) continue;
                 float d = a.Position.DistanceToSquared(camp.center);
                 if (d >= bestD || !hunter.CanReserveAndReach(a, PathEndMode.Touch, Danger.Some)) continue;
@@ -422,21 +440,41 @@ namespace ColonyCouncil
             var need = pawn.needs?.food;
             var meal = pawn.inventory?.innerContainer?.FirstOrDefault(t => Camp.IsMeal(pawn, t));
             if (need == null || meal == null) return;
-            float got = meal.Ingested(pawn, need.NutritionWanted);
+            float per = meal.GetStatValue(StatDefOf.Nutrition);
+            float got;
+            try
+            {
+                got = meal.Ingested(pawn, need.NutritionWanted);
+            }
+            catch (Exception e)
+            {
+                // The game's eating balked at food from a pack (a mod's meal, say): one meal eaten, plainly, so they
+                // don't sit down to eat again and again.
+                CouncilLog.WarnOnce("camp meal (" + meal.def.defName + ") eaten the plain way: " + e.Message);
+                got = per;
+                if (!meal.Destroyed) meal.SplitOff(1).Destroy();
+            }
             need.CurLevel += got;
         }
     }
 
     /// <summary>
-    /// Colonists' own recreation: walking over to the camp to sit by their fire and talk. Never for those who resent
-    /// sharing the land (greedy, jealous), nor once things are tense.
+    /// Colonists' own recreation, now and then: walking over to the camp to sit by their fire and talk. Never for those
+    /// who resent sharing the land (greedy, jealous), nor once things are tense, nor with a camp packing up or at war.
     /// </summary>
     public class JoyGiver_VisitCamp : JoyGiver
     {
-        public override float GetChance(Pawn pawn)
+        /// <summary>A camp settled in and at peace with the colony (not packing up, not at war), on this colonist's map.</summary>
+        private static Camp Open(Pawn pawn)
         {
             var c = CampTracker.Instance?.camp;
-            if (c == null || c.phase != CampPhase.Living || c.map != pawn.Map || c.tension >= 60f) return 0f;
+            return c != null && c.phase == CampPhase.Living && !c.Hostile && pawn?.Map != null && c.map == pawn.Map ? c : null;
+        }
+
+        public override float GetChance(Pawn pawn)
+        {
+            var c = Open(pawn);
+            if (c == null || c.tension >= 60f || !pawn.IsFreeColonist) return 0f;
             var t = pawn.story?.traits;
             if (t != null && (t.HasTrait(TraitDefOf.Greedy) || t.HasTrait(TraitDefOf.Jealous))) return 0f;
             return base.GetChance(pawn);
@@ -444,8 +482,9 @@ namespace ColonyCouncil
 
         public override Job TryGiveJob(Pawn pawn)
         {
-            var c = CampTracker.Instance?.camp;
-            if (c == null || c.phase != CampPhase.Living || c.map != pawn.Map || pawn.Drafted || pawn.DevelopmentalStage.Baby()) return null;
+            var c = Open(pawn);
+            // The visit's ticking feeds recreation: never for someone without that need (it would fail every tick).
+            if (c == null || !pawn.IsFreeColonist || pawn.Drafted || pawn.DevelopmentalStage.Baby() || pawn.needs?.joy == null) return null;
             if (!pawn.Position.InHorDistOf(c.center, 90f) || GenHostility.AnyHostileActiveThreatToPlayer(pawn.Map, false, false)) return null;
             var map = pawn.Map;
             var fire = c.FireCell;
@@ -462,7 +501,8 @@ namespace ColonyCouncil
 
         protected override IEnumerable<Toil> MakeNewToils()
         {
-            this.FailOn(() => CampTracker.Instance?.camp is Camp c ? c.phase != CampPhase.Living || c.map != pawn.Map : true);
+            // Over the moment they pack up or their people turn on the colony: nobody sits on at a fire that's now an enemy's.
+            this.FailOn(() => CampTracker.Instance?.camp is Camp c ? c.phase != CampPhase.Living || c.Hostile || c.map != pawn.Map : true);
             yield return Toils_Goto.GotoCell(TargetIndex.A, PathEndMode.OnCell);
             var visit = ToilMaker.MakeToil("VisitCamp");
             visit.initAction = () => CampTracker.Instance?.camp?.Visited(pawn);

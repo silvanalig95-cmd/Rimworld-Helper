@@ -120,6 +120,7 @@
   <CC_Camp_Opt_Force_Tip>Their people will take it as an attack, and goodwill with them falls sharply. If that makes them enemies, the camp will fight. Otherwise they leave right away.</CC_Camp_Opt_Force_Tip>
   <CC_Camp_Opt_Force_Confirm>Drive off the camp by force? {0} will take it as an attack on their people.</CC_Camp_Opt_Force_Confirm>
   <CC_Camp_Deadline>The colony has {0} to answer. If nobody does: "{1}".</CC_Camp_Deadline>
+  <CC_Camp_NotTalking>The camp is leaving, or at war with the colony.</CC_Camp_NotTalking>
 
   <!-- Fighting -->
   <CC_Camp_FightTitle>The camp fights</CC_Camp_FightTitle>

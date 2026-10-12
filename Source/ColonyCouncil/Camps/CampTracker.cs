@@ -180,7 +180,17 @@ namespace ColonyCouncil
             {
                 CouncilLog.ErrorOnce("camp supplies", e);
             }
-            c.lord = LordMaker.MakeNewLord(s.faction, new LordJob_Camp(s.center), map, c.members);
+            try
+            {
+                c.lord = LordMaker.MakeNewLord(s.faction, new LordJob_Camp(s.center), map, c.members);
+            }
+            catch (Exception e)
+            {
+                // No group to live in: they walk off again rather than stand about on the map with nothing to do.
+                CouncilLog.ErrorOnce("camp group", e);
+                Arrivals.SendAway(c.members);
+                return null;
+            }
             camp = c;
             return c;
         }

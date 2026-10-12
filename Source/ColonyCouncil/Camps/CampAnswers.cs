@@ -68,7 +68,7 @@ namespace ColonyCouncil
         /// <summary>Asked to move on. With a gift they go gladly; without, their people take it badly, and a proud group may refuse.</summary>
         public static string AskToLeave(Camp c, int gift, bool theyBrokeTerms = false)
         {
-            if (c == null || !c.Active || c.phase == CampPhase.Leaving || c.phase == CampPhase.Fighting) return null;
+            if (c == null || !c.CanTalk) return null;
             c.asked = true;
             if (gift > 0)
             {
@@ -86,7 +86,7 @@ namespace ColonyCouncil
                     loss += 3;
                     c.AddTension(10f);
                 }
-                c.faction?.TryAffectGoodwillWith(Faction.OfPlayer, -loss, true, false);
+                c.LoseGoodwill(loss);
             }
             float refuse = c.kind.pride * (0.5f + c.tension / 100f) * (c.refusals == 0 ? 1f : 0.5f) * (theyBrokeTerms ? 0.5f : 1f);
             if (c.Settled && Rand.Chance(refuse))
@@ -101,11 +101,18 @@ namespace ColonyCouncil
             return null;
         }
 
+        /// <summary>Asked to move on with a gift: the silver is only paid when they're still here to take it.</summary>
+        public static string AskToLeavePaid(Camp c, int gift)
+        {
+            if (c == null || !c.CanTalk || !Pay(c.map, gift)) return null;
+            return AskToLeave(c, gift);
+        }
+
         /// <summary>After a refusal: told again, firmly. They go, and their people remember it.</summary>
         public static string Insist(Camp c)
         {
-            if (c == null || !c.Active) return null;
-            c.faction?.TryAffectGoodwillWith(Faction.OfPlayer, -8, true, false);
+            if (c == null || !c.CanTalk) return null;
+            c.LoseGoodwill(8);
             c.asked = true;
             c.Leave("asked");
             return null;
@@ -117,7 +124,7 @@ namespace ColonyCouncil
         /// </summary>
         public static string DriveOff(Camp c)
         {
-            if (c == null || !c.Active || c.phase == CampPhase.Leaving || c.phase == CampPhase.Fighting) return null;
+            if (c == null || !c.CanTalk) return null;
             int penalty = Mathf.RoundToInt(Mathf.Lerp(20f, 40f, c.kind.pride));
             c.faction?.TryAffectGoodwillWith(Faction.OfPlayer, -penalty, true, true, HistoryEventDefOf.AttackedMember);
             if (c.faction != null && c.faction.HostileTo(Faction.OfPlayer)) return c.Text("CC_Camp_Force_War");
@@ -127,7 +134,7 @@ namespace ColonyCouncil
 
         public static string Gift(Camp c, int silver)
         {
-            if (c == null || !c.Active || !Pay(c.map, silver)) return null;
+            if (c == null || !c.CanTalk || !Pay(c.map, silver)) return null;
             c.gifts++;
             c.AddTension(-Mathf.Min(25f, silver / 8f));
             c.faction?.TryAffectGoodwillWith(Faction.OfPlayer, 2, true, false, HistoryEventDefOf.GaveGift);
@@ -137,7 +144,7 @@ namespace ColonyCouncil
         /// <summary>One of them joins the colony: hired for silver, or welcomed when they asked.</summary>
         public static string Hire(Camp c, Pawn p, int price)
         {
-            if (c == null || p == null || p.Dead || !c.Here.Contains(p)) return null;
+            if (c == null || p == null || p.Dead || !c.CanTalk || !c.Here.Contains(p)) return null;
             if (price > 0 && !Pay(c.map, price)) return null;
             if (p == c.trader)
             {
@@ -161,7 +168,7 @@ namespace ColonyCouncil
         /// </summary>
         public static string SetTerms(Camp c, bool fee, bool share, bool boundary, bool limit)
         {
-            if (c == null || !c.Active) return null;
+            if (c == null || !c.CanTalk) return null;
             var took = new List<string>();
             var refused = new List<string>();
             float baseRefuse = c.kind.pride * 0.6f + c.tension / 250f;
@@ -203,7 +210,7 @@ namespace ColonyCouncil
 
         public static string Remind(Camp c)
         {
-            if (c == null || !c.Active) return null;
+            if (c == null || !c.CanTalk) return null;
             c.bendBoundary = false;
             c.skipShare = false;
             c.feeLate = false;
@@ -218,7 +225,7 @@ namespace ColonyCouncil
 
         public static string Extend(Camp c)
         {
-            if (c == null || !c.Active) return null;
+            if (c == null || !c.CanTalk) return null;
             c.extended = true;
             c.untilTick = Now + Mathf.RoundToInt(Rand.Range(2f, 5f) * GenDate.TicksPerDay);
             c.AddTension(-2f);
@@ -274,7 +281,7 @@ namespace ColonyCouncil
                     });
                     break;
                 case "refused":
-                    list.Add(new CampOption { label = c.Text("CC_Camp_Opt_AskGift", null, null, gift), disabled = NotEnough(c.map, gift), act = () => Pay(c.map, gift) ? AskToLeave(c, gift) : null });
+                    list.Add(new CampOption { label = c.Text("CC_Camp_Opt_AskGift", null, null, gift), disabled = NotEnough(c.map, gift), act = () => AskToLeavePaid(c, gift) });
                     list.Add(new CampOption { label = c.Text("CC_Camp_Opt_Insist"), act = () => Insist(c) });
                     list.Add(new CampOption { label = c.Text("CC_Camp_Opt_Force"), tip = c.Text("CC_Camp_Opt_Force_Tip"), act = () => DriveOff(c) });
                     list.Add(new CampOption
@@ -313,7 +320,7 @@ namespace ColonyCouncil
         /// <summary>Opens the talk with the camp (from a letter or the World page).</summary>
         public static string Talk(Camp c, bool terms)
         {
-            if (c == null || !c.Active) return null;
+            if (c == null || !c.CanTalk) return null;
             Find.WindowStack.Add(new Dialog_Camp(c, terms));
             return null;
         }
@@ -329,7 +336,8 @@ namespace ColonyCouncil
 
         public override bool CanDismissWithRightClick => false;
 
-        private Camp Camp => CampTracker.Instance?.camp is Camp c && c.id == campId && c.Active ? c : null;
+        // Once they're leaving or at war, the question is moot: the letter only closes, and running out of time does nothing.
+        private Camp Camp => CampTracker.Instance?.camp is Camp c && c.id == campId && c.CanTalk ? c : null;
 
         public override IEnumerable<DiaOption> Choices
         {
