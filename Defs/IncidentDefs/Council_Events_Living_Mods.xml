@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- Rimfolk world events, fourth batch: four that only come with a mod the player runs. Each lists its mod in
+       <mods> (never fires without it) and finds the mod's things by name at runtime, so nothing here references a
+       mod's defs directly. Code: Source/ColonyCouncil/Happenings/Workers_Living.cs. -->
+
+  <!-- ===================== Shards from the sky (A RimWorld of Magic) ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Council_Evt_Starfall</defName>
+    <label>shards from the sky</label>
+    <workerClass>ColonyCouncil.HappeningWorker_Starfall</workerClass>
+    <minRefireDays>45</minRefireDays>
+    <earliestDay>10</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Nature</group>
+        <letter>PositiveEvent</letter>
+        <mods>
+          <li>torann.arimworldofmagic</li>
+        </mods>
+        <titles>
+          <li>Shards from the sky</li>
+        </titles>
+        <texts>
+          <li>[mage] Before dawn, {A_nameDef} woke the colony to say something was coming down. Soon after, pale lights fell out of a clear sky and struck the ground beyond the walls without a sound.\n\nWhere they landed there's unrefined magicyte, {COUNT} pieces in all, still faintly warm. {A_nameDef} is out there already, turning the pieces over in {A_possessive} hands.</li>
+          <li>[nomage] Last night pale lights came down out of a clear sky and struck the ground near the colony without a sound. In the morning {A_nameDef} found unrefined magicyte where they fell: {COUNT} pieces in all, faintly warm to the touch.</li>
+          <li>[nomage,winter] Pale lights fell into the snow near the colony last night, and the snow didn't melt where they landed. {A_nameDef} dug down this morning and found unrefined magicyte, {COUNT} pieces in all.</li>
+        </texts>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_Evt_Starfall</thought></li>
+        </effects>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== A strange creature (Alpha Animals) ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Council_Evt_RareCreature</defName>
+    <label>a strange creature</label>
+    <workerClass>ColonyCouncil.HappeningWorker_RareCreature</workerClass>
+    <minRefireDays>35</minRefireDays>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Nature</group>
+        <mods>
+          <li>sarg.alphaanimals</li>
+        </mods>
+        <answerDays>0.5</answerDays>
+        <journal>Council_Journal_Evt_RareCreature</journal>
+        <titles>
+          <li>A strange creature</li>
+        </titles>
+        <texts>
+          <li>[native] There's {BEAST} grazing near the fields. They live in these parts but keep well away from people, and none of the colonists has seen one this close before. This one doesn't seem bothered by the colony at all.\n\n{A_nameDef}, the colony's best hand with animals, would like to try to win it over.</li>
+          <li>[stranger] {A_nameDef} spotted {BEAST} near the fields this morning, a long way from wherever its kind usually lives. It's wary but not frightened, and it keeps coming back to the same spot to graze.\n\n{A_nameDef} thinks it could be won over, with patience and the right food.</li>
+          <li>[winter] Tracks in the snow led {A_nameDef} to {BEAST}, digging for something to eat near the colony's walls. It watched {A_objective} for a long time and didn't run.\n\n{A_nameDef} would like to try to win it over before it moves on.</li>
+        </texts>
+        <defaultOption>1</defaultOption>
+        <options>
+          <li>
+            <label>Let {A_nameDef} try</label>
+            <outcome>{A_nameDef} spends the afternoon sitting still near the creature with a handful of food. By evening it's eating from {A_possessive} hand, and it follows {A_objective} home.</outcome>
+            <riskChance>0.5</riskChance>
+            <riskReplaces>true</riskReplaces>
+            <riskOutcome>{A_nameDef} gets within a few steps of it before something startles it, and it bolts. It won't be back.</riskOutcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Recruit" />
+              <li Class="ColonyCouncil.DilemmaEffect_Thought"><thought>Council_Evt_WonOverCreature</thought></li>
+            </effects>
+            <riskEffects>
+              <li Class="ColonyCouncil.DilemmaEffect_Learn"><skill>Animals</skill><xp>300</xp></li>
+            </riskEffects>
+          </li>
+          <li>
+            <label>Leave it be</label>
+            <outcome>The colony leaves the creature alone. It grazes near the fields for a day or so, then moves on.</outcome>
+          </li>
+        </options>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== A bath for the road (Dubs Bad Hygiene) ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Council_Evt_Bathhouse</defName>
+    <label>a bath for the road</label>
+    <workerClass>ColonyCouncil.HappeningWorker_Bathhouse</workerClass>
+    <minRefireDays>35</minRefireDays>
+    <earliestDay>10</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Visitors</group>
+        <mods>
+          <li>dubwise.dubsbadhygiene</li>
+        </mods>
+        <ages>20~60</ages>
+        <count>2~3</count>
+        <stayHours>8~14</stayHours>
+        <answerDays>0.5</answerDays>
+        <notable>false</notable>
+        <titles>
+          <li>Travelers ask for a bath</li>
+        </titles>
+        <texts>
+          <li>[sauna] {X_nameDef} and the others of {FACTION} have been on the road for weeks, and have heard about the colony's sauna from traders. They're standing at the gate, filthy and hopeful, and offer {COUNT} silver for an evening in the heat and a place to wash.</li>
+          <li>[hottub] Word of the colony's hot tub has reached {FACTION}. A few of their travelers, {X_nameDef} among them, have come off the road for it, and offer {COUNT} silver for a soak and a wash.</li>
+          <li>[pool] Travelers of {FACTION}, {X_nameDef} among them, heard the colony has a swimming pool and didn't believe it. They've come to see it, and would pay {COUNT} silver to swim and wash off the road.</li>
+          <li>[tub] {X_nameDef} and the others of {FACTION} have been sleeping rough for weeks. They've heard the colony has a proper bathtub and hot water, and offer {COUNT} silver for a turn each.</li>
+        </texts>
+        <defaultOption>2</defaultOption>
+        <options>
+          <li>
+            <label>Let them, for {COUNT} silver</label>
+            <outcome>The travelers take turns until long after dark and pay their {COUNT} silver gladly. They leave the next morning looking like different people.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_EventGoodwill"><amount>4</amount></li>
+            </effects>
+            <ways><openness>1</openness></ways>
+          </li>
+          <li>
+            <label>Let them, free of charge</label>
+            <outcome>The travelers wash off weeks of road and can't thank the colony enough. {FACTION} will hear about it.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_EventGoodwill"><amount>8</amount></li>
+            </effects>
+            <ways><generosity>2</generosity><openness>1</openness></ways>
+          </li>
+          <li>
+            <label>Not today</label>
+            <outcome>The travelers go on their way, still dusty.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_SendAway" />
+            </effects>
+          </li>
+        </options>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== A guest of note (Hospitality) ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Council_Evt_NotableGuest</defName>
+    <label>a guest of note</label>
+    <workerClass>ColonyCouncil.HappeningWorker_NotableGuest</workerClass>
+    <minRefireDays>40</minRefireDays>
+    <earliestDay>15</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Visitors</group>
+        <mods>
+          <li>orion.hospitality</li>
+        </mods>
+        <ages>40~70</ages>
+        <answerDays>1</answerDays>
+        <titles>
+          <li>A guest writes ahead</li>
+        </titles>
+        <texts>
+          <li>[lowtech] A rider brought a sealed letter from {PLACE}. {X_nameDef}, an elder of {FACTION} known well beyond their own lands, will be passing this way in a few days and asks to stay a night in the colony's guest room.\n\nGuests of {X_nameDef}'s standing talk about where they stay.</li>
+          <li>[!lowtech] {X_nameDef}, one of the better-known people among {FACTION}, sent a message from {PLACE}. {X_nameDef} will be traveling past the colony in a few days, and would like to stay a night in its guest room.\n\nWord of how {X_nameDef} is received will get around.</li>
+        </texts>
+        <defaultOption>0</defaultOption>
+        <options>
+          <li>
+            <label>Have the guest room ready</label>
+            <outcome>The colony writes back that {X_nameDef} is welcome. {X_nameDef} should arrive in two or three days.</outcome>
+            <ways><openness>1</openness></ways>
+          </li>
+          <li>
+            <label>Decline politely</label>
+            <outcome>The colony writes back that it can't take guests just now. {X_nameDef} will stay somewhere else.</outcome>
+          </li>
+        </options>
+      </li>
+      <li Class="ColonyCouncil.HappeningLivingText">
+        <extra>
+          <li>[room] The best guest room in the colony is {ITEM}. There's time to improve it before {X_nameDef} comes.</li>
+          <li>[noroom] The colony's guest beds are out in the open. There's time to give one a proper room before {X_nameDef} comes.</li>
+        </extra>
+        <coming>
+          <li>{X_nameDef} of {FACTION} arrives in {DAYS} to stay in the guest room.</li>
+        </coming>
+        <doneTitles>
+          <li>[great] A delighted guest</li>
+          <li>[good] A pleased guest</li>
+          <li>[poor|noroom] A guest arrives</li>
+        </doneTitles>
+        <done>
+          <li>[great] {X_nameDef} of {FACTION} arrived today and was shown to the guest room. The room is {ITEM}, and {X_nameDef} has said so to everyone {X_pronoun} has met since. {X_nameDef} left a gift in the room for the colony, and {FACTION} will hear about the visit.</li>
+          <li>[good] {X_nameDef} of {FACTION} has arrived and been shown to the guest room. The room is {ITEM}, and {X_nameDef} seems pleased with it. {FACTION} will hear good things.</li>
+          <li>[poor] {X_nameDef} of {FACTION} has arrived and been shown to the guest room. The room is {ITEM}. {X_nameDef} was polite about it.</li>
+          <li>[noroom] {X_nameDef} of {FACTION} has arrived, and been shown to a guest bed with no room around it. {X_nameDef} was polite about it, and {FACTION} will hear about that too.</li>
+        </done>
+        <cancelled>
+          <li>{X_nameDef} of {FACTION} won't be coming to stay after all.</li>
+        </cancelled>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+</Defs>

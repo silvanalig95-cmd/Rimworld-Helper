@@ -312,6 +312,8 @@ namespace ColonyCouncil
             }
             // A broken promise costs a little, but never a war.
             else if (f.PlayerGoodwill > -65) f.TryAffectGoodwillWith(Faction.OfPlayer, -5, true, false);
+            // A filled order may make them regular buyers; a broken one ends that (Workers_Living.cs).
+            LivingEvents.Notify_OrderCollected(f, ctx.thing, filled);
             string title = VarietyUtil.Line(filled ? more?.doneTitles : more?.failTitles, ctx) ?? ctx.incident.LabelCap.ToString();
             string text = VarietyUtil.Line(filled ? more?.done : more?.fail, ctx, new[] { have > 0 ? "some" : "none" }, VarietyUtil.Bundle(ctx.thing, have));
             if (text.NullOrEmpty()) return;
@@ -468,6 +470,13 @@ namespace ColonyCouncil
                 case 2: tags.Add("land"); break;
                 default: tags.Add("salvage"); break;
             }
+        }
+
+        public override string Resolved(HappeningContext ctx, int option, bool risk, bool byDefault, string outcome)
+        {
+            // Both sides remember how it was judged (Workers_Living.cs).
+            LivingEvents.Notify_Judged(ctx, option, risk, byDefault);
+            return base.Resolved(ctx, option, risk, byDefault, outcome);
         }
     }
 
@@ -640,6 +649,8 @@ namespace ColonyCouncil
                 using var _cause = Causes.Push(ctx.cause);
                 foreach (var y in ctx.group.Where(p => p != null && !p.Dead && p.Faction == Faction.OfPlayer)) CouncilGameComponent.GiveThought(y, sheltered);
             }
+            // Their families may come asking after them one day (Workers_Living.cs).
+            if (option == 0) LivingEvents.Notify_Eloped(ctx);
             return base.Resolved(ctx, option, risk, byDefault, outcome);
         }
 
@@ -691,6 +702,13 @@ namespace ColonyCouncil
         protected override bool Begin(HappeningContext ctx, HappeningExtension ext) =>
             Arrivals.Visit(new List<Pawn> { ctx.stranger }, ctx.map, ctx.faction, null, ext.stayHours.RandomInRange) != null;
 
+        public override string Resolved(HappeningContext ctx, int option, bool risk, bool byDefault, string outcome)
+        {
+            // Gone home: they may write one day (Workers_Living.cs).
+            LivingEvents.Notify_FamilyVisited(ctx);
+            return base.Resolved(ctx, option, risk, byDefault, outcome);
+        }
+
         /// <summary>They were someone before this event: never thrown away. Already on the map without a visit to make, they go home.</summary>
         protected override void Abort(HappeningContext ctx)
         {
@@ -734,6 +752,8 @@ namespace ColonyCouncil
                 {
                     ctx.b = unlucky;
                     outcome = VarietyUtil.Line(VarietyUtil.More(def)?.outcomes, ctx, new[] { "unlucky" }) ?? outcome;
+                    // The bad fortune may seem to come true, harmlessly (Workers_Living.cs).
+                    LivingEvents.Notify_BadFortune(unlucky);
                 }
                 var lines = Ext?.lines;
                 if (!lines.NullOrEmpty()) Arrivals.Say(ctx.stranger, Flavor.PickText(lines));

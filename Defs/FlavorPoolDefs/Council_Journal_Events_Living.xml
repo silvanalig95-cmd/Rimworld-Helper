@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Journal lines for the fourth batch of world events (Defs/IncidentDefs/Council_Events_Living*.xml), in the voice of
+    the colonist the event is about. Tagged with the answer: [opt0] the first option, [opt1] the second..., and
+    [risk] / [safe] for how a gamble went. Events without a choice use untagged lines. Every answer has at least one
+    plain line.
+  -->
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Journal_Evt_LoversKin</defName>
+    <lines>
+      <plain>
+        <li>[opt0,safe] {X_nameDef} came all the way from home to find me. We talked until supper, and nobody shouted. We're going to write to each other now.</li>
+        <li>[opt0,risk] {X_nameDef} came to talk, and we ended up shouting the same things we shouted the night I left.</li>
+        <li>[opt1] The council sent a gift home with {X_nameDef}. I don't know if it helps. It can't hurt.</li>
+        <li>[opt2] The council sent {X_nameDef} away. I didn't argue. I'm not sure I'm glad.</li>
+      </plain>
+      <warm><li>[opt0,safe] {X_nameDef} held my hands the whole time and said I looked well. I think I do.</li></warm>
+      <blunt><li>[opt2] Family came to drag me home. They can stay home.</li></blunt>
+      <gloomy><li>[opt0,risk] It went the way it always goes with my family. Badly, and then very quiet.</li></gloomy>
+      <cold><li>[opt1] We bought some peace from my family with a bag of silver. Cheaper than I'd have guessed.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Journal_Evt_KinLetter</defName>
+    <lines>
+      <plain>
+        <li>[opt0] A letter from {X_nameDef} today. I wrote back about everything, even the dull parts. {X_nameDef} likes the dull parts.</li>
+        <li>[opt1] I've asked {X_nameDef} to come and live here. I keep looking down the road.</li>
+      </plain>
+      <warm><li>[opt0] {X_nameDef} wrote. The handwriting hasn't changed at all.</li></warm>
+      <cheerful><li>[opt1] {X_nameDef} might come and live here! I've already picked out a spot for {X_possessive} bed.</li></cheerful>
+      <gloomy><li>[opt0] Letters from home make me miss it more, not less.</li></gloomy>
+      <blunt><li>[opt1] Told {X_nameDef} to come. We'll see.</li></blunt>
+      <cold><li>[opt0] Letter from {X_nameDef}. Answered it.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Journal_Evt_FortuneScare</defName>
+    <lines>
+      <plain>
+        <li>I've been waiting for that bad fortune since the cards were read. Today I had a fright and walked away from it. I think that was it.</li>
+        <li>Nearly came to grief today, and didn't. As far as I'm concerned, that's the fortune used up.</li>
+      </plain>
+      <cheerful><li>The bad fortune came and went, and I'm fine! I'm going to stop watching the sky now.</li></cheerful>
+      <gloomy><li>The cards said something bad. Today something nearly was. I don't feel as relieved as I should.</li></gloomy>
+      <blunt><li>Close call. I'm done with fortunes.</li></blunt>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Journal_Evt_Renown</defName>
+    <lines>
+      <plain>
+        <li>[opt0] {X_nameDef} walked all the way from {FACTION} to ask for me by name. I gave {X_objective} the whole day.</li>
+        <li>[opt0] They call me {TALE} on the roads now. I'm not sure when that started.</li>
+        <li>[opt1] Someone came a long way to see me, and I couldn't spare the day. I keep thinking about it.</li>
+      </plain>
+      <warm><li>[opt0] I helped {X_nameDef} today. It's good to be of use to someone outside these walls.</li></warm>
+      <cheerful><li>[opt0] People come from other villages to ask for me now! Today it was {X_nameDef}.</li></cheerful>
+      <gloomy><li>[opt0] Known as {TALE}. There are worse things to be known for.</li></gloomy>
+      <blunt><li>[opt1] Told the stranger no. Too much to do here.</li></blunt>
+      <cold><li>[opt0] A stranger paid well for a day of my time. That's how it should be.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Journal_Evt_VendettaBand</defName>
+    <lines>
+      <plain>
+        <li>[opt0] {ENEMY} are coming. I asked for this.</li>
+        <li>[opt1] {ENEMY} were camped a few hours away, and the council let them go. I'll get another chance.</li>
+      </plain>
+      <blunt><li>[opt0] They're coming. Good.</li></blunt>
+      <gloomy><li>[opt1] They were right there, and they walked away.</li></gloomy>
+      <cold><li>[opt0] I've drawn them in. Now we finish it.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Journal_Evt_Founding</defName>
+    <lines>
+      <plain>
+        <li>[opt0] Founding day. We ate until we couldn't, and somebody told the story of the first night again. It gets longer every year.</li>
+        <li>[opt1] Founding day. A quiet supper. I thought about the first night here, and how cold it was.</li>
+      </plain>
+      <warm><li>[opt0] We raised a cup to everyone who built this place, and then another.</li></warm>
+      <cheerful><li>[opt0] Founding day feast! Three helpings, and I regret nothing.</li></cheerful>
+      <gloomy><li>[opt1] Another year. I counted the graves on the way to supper.</li></gloomy>
+      <cold><li>[opt0] A feast for an anniversary. Expensive, but people work harder after one.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Journal_Evt_KindredSpirit</defName>
+    <lines>
+      <plain>
+        <li>Met a traveler tonight who'd done the very thing I want to do. I asked questions until the fire went out.</li>
+        <li>{X_nameDef} stayed the night. I came away with a page of advice and the feeling it can be done.</li>
+      </plain>
+      <warm><li>{X_nameDef} was so patient with my questions. I hope I'm like that one day.</li></warm>
+      <blunt><li>Talked with someone who's done it. Useful.</li></blunt>
+      <gloomy><li>{X_nameDef} made it sound easy. It won't be.</li></gloomy>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Journal_Evt_MidwinterGuest</defName>
+    <lines>
+      <plain>
+        <li>[opt0] A stranger came in out of the cold tonight. We talked until the fire was embers.</li>
+        <li>[opt1] We sent a traveler back out into the snow with bread. I hope {X_nameDef} found somewhere warm.</li>
+        <li>[opt2] We kept the gate shut on a traveler tonight. I listened to the knocking until it stopped.</li>
+      </plain>
+      <warm><li>[opt0] Shared the fire with {X_nameDef} tonight. Good company, cold feet.</li></warm>
+      <gloomy><li>[opt2] Someone knocked at the gate tonight, in that cold. We didn't open it.</li></gloomy>
+      <cold><li>[opt1] Fed the stranger and sent {X_objective} on. Sensible.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Journal_Evt_RareCreature</defName>
+    <lines>
+      <plain>
+        <li>[opt0,safe] I won over the strange creature by the fields today. It was eating out of my hand by sundown.</li>
+        <li>[opt0,risk] I got close to the strange creature, a few steps away, and then it bolted.</li>
+        <li>[opt1] There was a strange creature grazing near the fields. We let it be. I'd have liked to try.</li>
+      </plain>
+      <warm><li>[opt0,safe] It nuzzled my hand once it trusted me. I'm going to remember that.</li></warm>
+      <cheerful><li>[opt0,safe] The strange creature from the fields follows me everywhere now! It needs a name.</li></cheerful>
+      <gloomy><li>[opt0,risk] It ran. They always run from me.</li></gloomy>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+</Defs>

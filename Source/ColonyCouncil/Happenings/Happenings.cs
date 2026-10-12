@@ -26,7 +26,7 @@ namespace ColonyCouncil
     /// What a Rimfolk world event says and offers. World events are ordinary IncidentDefs in their own category
     /// (Council_WorldEvent) with this extension: Rimfolk schedules them on its own rhythm, so they never take a slot
     /// from the storyteller's own events, and dev mode can fire any of them. Texts may use {A}, {B}, {X} (the stranger),
-    /// {FACTION}, {ENEMY}, {COUNT}, {THING}, {SKILL}, {RELATION}, {DEAD} and {BEAST}. Lines can carry era tags
+    /// {FACTION}, {ENEMY}, {COUNT}, {THING}, {SKILL}, {RELATION}, {DEAD}, {BEAST}, {TALE} and {PLACE}. Lines can carry era tags
     /// ([lowtech], [!lowtech], [industrial|spacer]) and event tags (the colonist's past, the skill, the season).
     /// </summary>
     public class HappeningExtension : DefModExtension
@@ -128,6 +128,10 @@ namespace ColonyCouncil
         public bool contest;
         /// <summary>Set off by the scenario the player chose: its fights ignore the world-event battle switch.</summary>
         public bool scenario;
+        /// <summary>A place the texts name ({PLACE}): a neighbor's town, the guest room, the land around the colony.</summary>
+        public string placeName;
+        /// <summary>Something the event's code keeps for the answer (a def name), never shown.</summary>
+        public string note;
 
         public HappeningExtension Ext => incident?.GetModExtension<HappeningExtension>();
 
@@ -142,6 +146,7 @@ namespace ColonyCouncil
             args.Add((beast ?? "").Named("BEAST"));
             args.Add((enemy?.Name ?? "").Named("ENEMY"));
             args.Add((tale ?? "").Named("TALE"));
+            args.Add((placeName ?? "").Named("PLACE"));
         }
 
         public override void ExposeData()
@@ -162,6 +167,8 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref variant, "variant");
             Scribe_Values.Look(ref contest, "contest");
             Scribe_Values.Look(ref scenario, "scenario");
+            Scribe_Values.Look(ref placeName, "placeName");
+            Scribe_Values.Look(ref note, "note");
             if (Scribe.mode == LoadSaveMode.PostLoadInit)
             {
                 if (group == null) group = new List<Pawn>();
@@ -441,6 +448,8 @@ namespace ColonyCouncil
             Safe("great beast", () => HappeningWorker_GreatBeast.Hourly(this, comp));
             // A neighbor's order the colony took on: a reminder, then the collection (even with world events off since).
             Safe("orders", () => HappeningWorker_Order.Hourly(this, comp, now));
+            // Later parts of the fourth batch: arrivals, caravans and fairs coming back, old memories fading, founding day.
+            Safe("living", () => LivingEvents.Hourly(this, comp, now));
             // Before the daily tidy-up, so a hunt whose leader just died is told before its memo goes.
             Safe("scenario", () => ScenarioStakes.Hourly(this, comp, now));
             if (now % GenDate.TicksPerDay < GenDate.TicksPerHour) Safe("event memory", Prune);
@@ -748,8 +757,8 @@ namespace ColonyCouncil
             var m = new Memo { kind = kind, pawn = pawn, other = other, faction = faction, def = def, text = text, tick = Now, won = won };
             if (pawn != null && !pawn.Dead && pawn.Faction != Faction.OfPlayer) m.pinned = Find.WorldPawns.ForcefullyKeptPawns.Add(pawn);
             memos.Add(m);
-            while (memos.Count > 24 && memos.Any(x => !ScenarioStakes.Lasting(x)))
-                Drop(memos.Where(x => !ScenarioStakes.Lasting(x)).OrderBy(x => x.used ? 0 : 1).ThenBy(x => x.tick).First());
+            while (memos.Count > 24 && memos.Any(x => !Keeps(x)))
+                Drop(memos.Where(x => !Keeps(x)).OrderBy(x => x.used ? 0 : 1).ThenBy(x => x.tick).First());
             return m;
         }
 
@@ -796,6 +805,12 @@ namespace ColonyCouncil
             }
         }
 
+        /// <summary>
+        /// Memos that are promises still running (a scenario's hunt or debt, an order, a caravan or a guest on the way):
+        /// never dropped to make room, or the goods and people they stand for would vanish without a word.
+        /// </summary>
+        private static bool Keeps(Memo m) => ScenarioStakes.Lasting(m) || LivingEvents.IsPending(m) || (m != null && !m.used && m.kind == "order");
+
         private void Prune()
         {
             int now = Now;
@@ -804,8 +819,8 @@ namespace ColonyCouncil
                 Forget(d);
             grudges.RemoveAll(g => g.settled || g.faction == null || g.faction.defeated || now - g.tick > GenDate.TicksPerYear * 2);
             foreach (var m in memos.Where(m => (m.used && now - m.tick > GenDate.TicksPerDay)
-                                               || (now - m.tick > GenDate.TicksPerYear * (m.kind == "child" ? 10 : 3) && !ScenarioStakes.Lasting(m))
-                                               || (m.pawn != null && (m.pawn.Dead || m.pawn.Discarded) && !ScenarioStakes.Lasting(m))).ToList())
+                                               || (now - m.tick > GenDate.TicksPerYear * (m.kind == "child" ? 10 : 3) && !Keeps(m))
+                                               || (m.pawn != null && (m.pawn.Dead || m.pawn.Discarded) && !Keeps(m))).ToList())
                 Drop(m);
         }
 

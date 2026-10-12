@@ -89,6 +89,11 @@ namespace ColonyCouncil
                 string line = HappeningWorker_Order.WorldLine(m, now);
                 if (line != null) yield return new Row { text = line };
             }
+            foreach (var m in t.memos.Where(LivingEvents.IsPending).OrderBy(m => m.due))
+            {
+                string line = LivingEvents.WorldLine(m, now);
+                if (line != null) yield return new Row { text = line };
+            }
             foreach (var l in Find.LetterStack.LettersListForReading.OfType<ChoiceLetter_Happening>().Where(l => !l.resolved).ToList())
             {
                 var letter = l;
@@ -151,7 +156,7 @@ namespace ColonyCouncil
                 case "pilgrims":
                     return m.faction == null ? null : "CC_World_Pilgrims".Translate(m.faction.Name).Resolve();
                 default:
-                    return null;
+                    return LivingEvents.MemoLine(m);
             }
         }
 
