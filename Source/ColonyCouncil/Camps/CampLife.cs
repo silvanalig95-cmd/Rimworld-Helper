@@ -319,6 +319,8 @@ namespace ColonyCouncil
                     {
                         AddTension(40f);
                         lord.ReceiveMemo(LordJob_Camp.MemoFlee);
+                        // Gone now, not still camped for the rest of the hour (no talk of tension with a camp in flight).
+                        Scattered();
                     }
                 }
             }
@@ -860,7 +862,12 @@ namespace ColonyCouncil
                         else if (!carriers.RandomElement().inventory.innerContainer.TryAdd(mini) && !mini.Destroyed) mini.Destroy();
                         continue;
                     }
-                    if (kind.leaveBuildings) b.SetFaction(null);
+                    if (kind.leaveBuildings)
+                    {
+                        // Nobody's now: harm to it is no longer an attack on them.
+                        if (LordAlive) lord.ownedBuildings.Remove(b);
+                        b.SetFaction(null);
+                    }
                     else b.Destroy(DestroyMode.Vanish);
                 }
                 catch (Exception e)
@@ -994,8 +1001,8 @@ namespace ColonyCouncil
                 if (t.Spawned) t.SetForbidden(false, false);
                 Disown(t);
             }
-            if (faction == null || faction == Faction.OfPlayer) return;
             if (LordAlive) lord.RemoveAllBuildings();
+            if (faction == null || faction == Faction.OfPlayer) return;
             foreach (var b in Buildings())
                 if (!b.Destroyed) b.SetFaction(null);
         }
