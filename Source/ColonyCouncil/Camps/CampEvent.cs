@@ -84,10 +84,18 @@ namespace ColonyCouncil
             return string.Join(" ", parts);
         }
 
+        /// <summary>Already leaving (a raid, the weather) or at war by the time the colony answers: only letting them be is left.</summary>
+        public override string Unavailable(HappeningContext ctx, int option)
+        {
+            if (option == 0) return null;
+            var camp = CampTracker.Instance?.camp;
+            return camp != null && camp.CanTalk ? null : "CC_Camp_NotTalking".Translate().ToString();
+        }
+
         public override string Resolved(HappeningContext ctx, int option, bool risk, bool byDefault, string outcome)
         {
             var camp = CampTracker.Instance?.camp;
-            if (camp == null || !camp.Active) return outcome;
+            if (camp == null || !camp.CanTalk) return outcome;
             switch (option)
             {
                 case 1:

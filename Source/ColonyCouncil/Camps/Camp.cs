@@ -109,6 +109,12 @@ namespace ColonyCouncil
 
         public bool Active => phase != CampPhase.Over;
 
+        /// <summary>Their people are at war with the colony.</summary>
+        public bool Hostile => faction != null && faction.HostileTo(Faction.OfPlayer);
+
+        /// <summary>Still here to deal with: on their way in or camped, and at peace with the colony.</summary>
+        public bool CanTalk => (phase == CampPhase.Coming || Settled) && !Hostile;
+
         public bool LordAlive => lord != null && map != null && Find.Maps.Contains(map) && map.lordManager.lords.Contains(lord);
 
         /// <summary>Those of them still with the group on the map.</summary>
@@ -271,7 +277,7 @@ namespace ColonyCouncil
             if (!Settled) return;
             if (tension >= 100f)
             {
-                faction?.TryAffectGoodwillWith(Faction.OfPlayer, -8, true, false);
+                LoseGoodwill(8);
                 Leave("fallout");
                 return;
             }
@@ -284,6 +290,25 @@ namespace ColonyCouncil
             {
                 warned = 40;
                 Ask("tension", Text("CC_Camp_TensionTitle"), Text("CC_Camp_Tension") + TookLine());
+            }
+        }
+
+        /// <summary>
+        /// Their people think less of the colony (asked to go, or a stay gone sour), but never so much that this alone
+        /// makes them enemies: only driving them off, or harming or arresting one of them, can do that.
+        /// </summary>
+        public void LoseGoodwill(int amount)
+        {
+            if (faction == null || faction.IsPlayer || amount <= 0 || Hostile) return;
+            try
+            {
+                // A people turns hostile at -75 goodwill (the game's own line); stop short of it.
+                while (amount > 0 && faction.PlayerGoodwill + faction.CalculateAdjustedGoodwillChange(Faction.OfPlayer, -amount) <= -75) amount--;
+                if (amount > 0) faction.TryAffectGoodwillWith(Faction.OfPlayer, -amount, true, false);
+            }
+            catch (Exception e)
+            {
+                CouncilLog.ErrorOnce("camp goodwill", e);
             }
         }
 

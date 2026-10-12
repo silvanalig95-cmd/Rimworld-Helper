@@ -428,15 +428,22 @@ namespace ColonyCouncil
     }
 
     /// <summary>
-    /// Colonists' own recreation: walking over to the camp to sit by their fire and talk. Never for those who resent
-    /// sharing the land (greedy, jealous), nor once things are tense.
+    /// Colonists' own recreation, now and then: walking over to the camp to sit by their fire and talk. Never for those
+    /// who resent sharing the land (greedy, jealous), nor once things are tense, nor with a camp packing up or at war.
     /// </summary>
     public class JoyGiver_VisitCamp : JoyGiver
     {
-        public override float GetChance(Pawn pawn)
+        /// <summary>A camp settled in and at peace with the colony (not packing up, not at war), on this colonist's map.</summary>
+        private static Camp Open(Pawn pawn)
         {
             var c = CampTracker.Instance?.camp;
-            if (c == null || c.phase != CampPhase.Living || c.map != pawn.Map || c.tension >= 60f) return 0f;
+            return c != null && c.phase == CampPhase.Living && !c.Hostile && pawn?.Map != null && c.map == pawn.Map ? c : null;
+        }
+
+        public override float GetChance(Pawn pawn)
+        {
+            var c = Open(pawn);
+            if (c == null || c.tension >= 60f || !pawn.IsFreeColonist) return 0f;
             var t = pawn.story?.traits;
             if (t != null && (t.HasTrait(TraitDefOf.Greedy) || t.HasTrait(TraitDefOf.Jealous))) return 0f;
             return base.GetChance(pawn);
@@ -444,8 +451,8 @@ namespace ColonyCouncil
 
         public override Job TryGiveJob(Pawn pawn)
         {
-            var c = CampTracker.Instance?.camp;
-            if (c == null || c.phase != CampPhase.Living || c.map != pawn.Map || pawn.Drafted || pawn.DevelopmentalStage.Baby()) return null;
+            var c = Open(pawn);
+            if (c == null || !pawn.IsFreeColonist || pawn.Drafted || pawn.DevelopmentalStage.Baby()) return null;
             if (!pawn.Position.InHorDistOf(c.center, 90f) || GenHostility.AnyHostileActiveThreatToPlayer(pawn.Map, false, false)) return null;
             var map = pawn.Map;
             var fire = c.FireCell;
@@ -462,7 +469,8 @@ namespace ColonyCouncil
 
         protected override IEnumerable<Toil> MakeNewToils()
         {
-            this.FailOn(() => CampTracker.Instance?.camp is Camp c ? c.phase != CampPhase.Living || c.map != pawn.Map : true);
+            // Over the moment they pack up or their people turn on the colony: nobody sits on at a fire that's now an enemy's.
+            this.FailOn(() => CampTracker.Instance?.camp is Camp c ? c.phase != CampPhase.Living || c.Hostile || c.map != pawn.Map : true);
             yield return Toils_Goto.GotoCell(TargetIndex.A, PathEndMode.OnCell);
             var visit = ToilMaker.MakeToil("VisitCamp");
             visit.initAction = () => CampTracker.Instance?.camp?.Visited(pawn);

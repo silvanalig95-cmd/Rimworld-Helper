@@ -48,7 +48,7 @@ namespace ColonyCouncil
         public static float Section(float y, float w)
         {
             var c = CampTracker.Instance?.camp;
-            if (c == null || !c.Active || c.map == null) return y;
+            if (c == null || !c.Active || c.map == null || !Find.Maps.Contains(c.map)) return y;
             y += UiKit.SectionTitle(0f, y, w, "CC_Camp_Section".Translate(), Icons.Visitor, UiKit.StrangerColor);
             var lines = new List<string> { c.StatusLine(), c.TermsLine() };
             if (c.Settled && c.treesFelled + c.animalsHunted > 0) lines.Add(c.TakenLine());
@@ -76,7 +76,7 @@ namespace ColonyCouncil
                 "CC_Camp_TensionLabel".Translate(), c.TensionWord, null, "CC_Camp_TensionTip".Translate());
             cy += UiKit.MeterHeight + 8f;
             float bx = r.x + 10f;
-            if (c.Settled || c.phase == CampPhase.Coming)
+            if (c.CanTalk)
             {
                 if (Widgets.ButtonText(new Rect(bx, cy, 180f, 28f), "CC_Camp_Talk".Translate())) CampAnswers.Talk(c, false);
                 bx += 188f;
@@ -118,7 +118,8 @@ namespace ColonyCouncil
 
         public override void DoWindowContents(Rect inRect)
         {
-            if (camp == null || !camp.Active)
+            // Leaving or at war since it was opened: nothing left to talk about (and no silver to hand over).
+            if (camp == null || !camp.CanTalk)
             {
                 Close();
                 return;
@@ -193,7 +194,7 @@ namespace ColonyCouncil
                 bool canAsk = camp.phase != CampPhase.Leaving && camp.phase != CampPhase.Fighting;
                 if (Button(ref y, "CC_Camp_Opt_AskGift".Translate(gift.Named("COUNT")).Resolve(), canAsk && silver >= gift, silver >= gift ? null : NotEnough(gift)))
                 {
-                    if (CampAnswers.Pay(camp.map, gift)) CampAnswers.AskToLeave(camp, gift);
+                    CampAnswers.AskToLeavePaid(camp, gift);
                     Close();
                 }
                 if (Button(ref y, "CC_Camp_Opt_AskLeave".Translate(), canAsk, null, null, "CC_Camp_Opt_AskLeave_Tip".Translate()))

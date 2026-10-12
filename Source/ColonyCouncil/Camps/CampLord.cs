@@ -8,7 +8,8 @@ namespace ColonyCouncil
     /// <summary>
     /// A camp's people as a group: they walk to their spot, live there (building, cooking, sleeping, working the land
     /// around it) until told to go, and leave. Hurt by the colony while still at peace with it, they flee; at war with
-    /// it (the game's own goodwill decides), they hold their camp for a while and then fight their way out.
+    /// it (the game's own goodwill decides) before they've packed up, they hold their camp for a while and then fight
+    /// their way out.
     /// </summary>
     public class LordJob_Camp : LordJob
     {
@@ -70,9 +71,10 @@ namespace ColonyCouncil
             scatter.AddPostAction(new TransitionAction_EndAllJobs());
             graph.AddTransition(scatter);
 
-            // At war with the colony now: they hold the camp.
+            // At war with the colony now: they hold the camp. A group already packed and walking off keeps going (and
+            // defends itself if the colony comes after it, as above).
             var war = new Transition(travel, defend);
-            war.AddSources(camp, leave);
+            war.AddSources(camp);
             war.AddTrigger(new Trigger_BecamePlayerEnemy());
             war.AddPostAction(new TransitionAction_WakeAll());
             war.AddPostAction(new TransitionAction_EndAllJobs());
