@@ -27,3 +27,17 @@ them is active, so the Almanac fits whichever modlist is loaded.
 3. Research the new mods, add their sections to the matching theme note (or a new one), and write Almanac articles
    for the ones that change how the game plays.
 4. Look for compatibility issues with Rimfolk and for new hook ideas.
+
+## Always on (the player's own list)
+These run in every or nearly every playthrough, medieval or all-tech, so they're the ones Rimfolk integrates with
+more deeply (still softly: Rimfolk keeps working without any of them):
+- Dubs Bad Hygiene
+- Hospitality (a light touch: guests aren't always part of a run)
+- Vanilla Social Interactions Expanded
+- most or all of the Vanilla Expanded suite
+- Interaction Bubbles and RimHUD
+- A RimWorld of Magic
+- the Alpha mods (Animals, Genes, Memes, Skills and the rest)
+
+Everything else is a nice-to-have: Rimfolk only has to read it correctly (no false warnings, no impossible wishes,
+no colonist counted as gone).
