@@ -60,7 +60,7 @@
     <description>The first quadrum is when a camp becomes a colony. Fill the fields while it's warm, get cold storage working before meat and meals start rotting, prepare for the first raids and start researching. By the end of it you want food put away for winter and a place to fight from.</description>
     <facts>
       <li>An adult eats 1.6 nutrition a day, so a 15-day winter takes about 27 simple meals per colonist.</li>
-      <li>Crops grow only 13 hours a day, so real growth takes about 1.846 times the listed grow days, and a crop must be about 65% grown before it can be harvested.</li>
+      <li>Crops grow only about 13 hours a day, so real growth takes about 1.82 times the listed grow days, and a crop must be about 65% grown before it can be harvested.</li>
       <li>Estimates of farmland per colonist run from about 10 to 25 tiles. Plan for the high end if your map has winters.</li>
       <li>Food stops spoiling at 0 °C. A passive cooler can't bring a room below 17 °C, so a real freezer needs an electric cooler.</li>
       <li>Raids start small: they're scaled by 0.7 up to day 10 and reach full size by day 40.</li>
@@ -70,7 +70,7 @@
       <li>Plant more than you think you need: rice for quick harvests, potatoes on poor soil.</li>
       <li>Build a freezer next to the kitchen with double walls and an electric cooler. Without power, turn meat into pemmican and cook only a few days ahead.</li>
       <li>Pick one entrance to defend and give your shooters cover there: walls block up to 75% of shots, sandbags 55%. Add a few traps on the approach.</li>
-      <li>Start research early: batteries and air conditioning on an industrial start, complex furniture on a tribal one.</li>
+      <li>Start research early: batteries, and air conditioning if your start doesn't know it yet, on an industrial start, complex furniture on a tribal one.</li>
       <li>Don't sow in late autumn. Check the zone's growing period and the crop's real growing time first.</li>
     </advice>
     <keywords>
@@ -806,7 +806,7 @@
       <li>Raids grow with wealth, so Machining and Mortar become worth it once sieges start turning up.</li>
     </facts>
     <advice>
-      <li>Industrial start: Battery, Solar panel (or Watermill on a river), Air conditioning for the freezer, Stonecutting, Complex furniture, then Machining and Microelectronics.</li>
+      <li>Industrial start: Battery, Solar panel (or Watermill on a river), Air conditioning for the freezer (if your start doesn't already know it), Stonecutting, Complex furniture, then Machining and Microelectronics.</li>
       <li>Tribal start: Complex furniture, then Electricity when you can afford it. Passive coolers, pemmican, brewing and smithing are cheap wins along the way if you don't have them yet.</li>
       <li>Research Hydroponics early on maps with a short growing season.</li>
       <li>Take Microelectronics before you need the comms console or medicine production.</li>

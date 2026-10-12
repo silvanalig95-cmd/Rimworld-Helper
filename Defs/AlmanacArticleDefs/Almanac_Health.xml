@@ -53,7 +53,7 @@
       <li>The surgery base chance rises with Medical skill from 10% at level 0 to 110% at level 20, with 90% at level 10 and 100% at level 15.</li>
       <li>Sources disagree on that curve: another table gives 93% at level 10 and 99% at level 20.</li>
       <li>Manipulation multiplies the chance directly (115% manipulation gives ×1.15). Sight multiplies it up to 100%, with no bonus above.</li>
-      <li>Medical 8 reaches the 98% cap for most operations in a lit, clean room with a normal-quality hospital bed. Without a hospital bed or sterile floor it takes Medical 11.</li>
+      <li>With a normal-quality hospital bed in a lit, clean room, a doctor of about Medical 8 to 10 reaches the 98% cap for most operations. Without a hospital bed or sterile floor it takes about Medical 11 or more.</li>
       <li>Tending a human earns 250 XP with no medicine or herbal medicine, 350 with industrial and 500 with glitterworld.</li>
       <li>A doctor tending their own wounds works at 70% effectiveness.</li>
     </facts>
@@ -881,7 +881,7 @@
     <facts>
       <li>Below 0.50 severity it is hidden.</li>
       <li>0.50 to 0.749 is minor: consciousness ×50% and vomiting about every 4.8 hours.</li>
-      <li>0.75 to 0.999 is major: consciousness is capped at 10% and the pawn goes down, with brain chemical damage after about 2.5 days and death after about 3 days on average.</li>
+      <li>0.75 to 0.999 is major: consciousness is capped at 10% and the pawn goes down. While it lasts there's a chance of brain chemical damage (on average once per 2.5 days) and of death (once per 3 days).</li>
       <li>1.0 is fatal.</li>
       <li>Severity drops by 1 per game day.</li>
       <li>Hard drugs carry a 0.5-1.5% chance of an immediate major overdose with every dose.</li>

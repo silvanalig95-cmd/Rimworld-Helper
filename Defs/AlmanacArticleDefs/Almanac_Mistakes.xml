@@ -220,7 +220,7 @@
     <order>60</order>
     <summary>Meat rots in 2 days and meals in 4; leave room for a freezer from the start</summary>
     <tip>Meat keeps 2 days outside a freezer and doesn't rot inside one.</tip>
-    <description>Fresh food doesn't last long without cold storage. A freezer is easy to add later only if you left space for it next to the kitchen; squeezing one in afterwards usually means a long walk for every meal.</description>
+    <description>Fresh food doesn't last long without cold storage. A freezer is easy to add later only if you left space for it next to the kitchen; squeezing one in afterward usually means a long walk for every meal.</description>
     <facts>
       <li>Without cold storage, meat and fish rot in 2 days and simple meals in 4.</li>
       <li>Spoilage stops completely at or below 0 °C.</li>

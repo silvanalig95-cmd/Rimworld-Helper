@@ -190,7 +190,7 @@
     <colonyIs><li>Traditional</li></colonyIs>
     <stranger><kind>Visitor</kind><adult>true</adult></stranger>
     <texts>
-      <li>{X_nameDef}, gray to the eyebrows, watched the colony bless the bread at supper and went quiet. "No one does that anymore," {X_nameDef} told {A_nameDef} afterwards. "My mother did that."</li>
+      <li>{X_nameDef}, gray to the eyebrows, watched the colony bless the bread at supper and went quiet. "No one does that anymore," {X_nameDef} told {A_nameDef} afterward. "My mother did that."</li>
       <li>{X_nameDef} said the colony keeps the old customs better than most towns on the road, where people have forgotten why anything is done. {A_nameDef} poured the guest's cup first, the old way.</li>
       <li>{X_nameDef} knew the words to the colony's evening song, an old one, though {X_pronoun} sang them slightly off. {A_nameDef} sang along with {X_objective} to the last verse.</li>
     </texts>

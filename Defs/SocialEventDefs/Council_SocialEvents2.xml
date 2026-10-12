@@ -157,7 +157,7 @@
     <tie>Rivals</tie>
     <minStrength>15</minStrength>
     <texts>
-      <li>{B_nameDef} watched {A_nameDef} patch the wall under fire, and afterwards came over and nodded to {A_objective}.</li>
+      <li>{B_nameDef} watched {A_nameDef} patch the wall under fire, and afterward came over and nodded to {A_objective}.</li>
       <li>{B_nameDef} tasted {A_nameDef}'s stew, paused, and went back for a second bowl.</li>
       <li>{B_nameDef} admitted, through clenched teeth, that {A_nameDef}'s work on the new barn was the best in the colony.</li>
     </texts>

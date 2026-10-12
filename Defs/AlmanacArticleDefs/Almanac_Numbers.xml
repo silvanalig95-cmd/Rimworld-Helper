@@ -15,7 +15,7 @@
     <facts>
       <li>1 hour is 2,500 ticks. 1 day is 24 hours, or 60,000 ticks.</li>
       <li>1 quadrum (a season) is 15 days. 1 year is 4 quadrums, or 60 days.</li>
-      <li>Plants rest from hour 19 to hour 5 and grow the other 13 hours, so real growth takes about 1.846 times the listed grow days.</li>
+      <li>Plants rest from about 19:12 to 6:00 and grow the other 13.2 hours, so real growth takes about 1.82 times the listed grow days.</li>
       <li>15,000 ticks is 6 hours and 45,000 ticks is 18 hours, so a wound's infection roll comes 6 to 18 hours after it can become infected.</li>
       <li>The sleep penalties and eating without a table last 1 day, seeing a corpse half a day, and catharsis 3 days.</li>
       <li>Longer timers: luciferium is needed every 6 days, penoxycyline lasts about 5.5 days, random infestations come at most once every 20 days, and slave rebellions have a 45-day base average.</li>

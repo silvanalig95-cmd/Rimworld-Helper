@@ -111,7 +111,7 @@
     <stages><li><label>stared at me all day</label><description>They stared at me everywhere I went, and never said what they wanted.</description><baseMoodEffect>-1</baseMoodEffect><baseOpinionOffset>-6</baseOpinionOffset></li></stages>
   </ThoughtDef>
 
-  <!-- How the stranger feels about A afterwards (given to X). -->
+  <!-- How the stranger feels about A afterward (given to X). -->
 
   <ThoughtDef>
     <defName>Council_EncP_GoodCompany</defName>
