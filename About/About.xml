@@ -38,7 +38,10 @@ Every colonist keeps a journal in their own voice. People earn names for what th
 [b]And the practical side[/b]
 An advisor that ranks what the colony needs next and explains why, council meetings where colonists pitch ambitions and vote, whole-room plans you can place in one go, and an in-game almanac of the game's numbers and hard lessons.
 
-Adapts to your tech level, research and DLCs (a medieval colony is never asked for turrets). Every part can be switched off or tuned in the settings.</description>
+Adapts to your tech level, research and DLCs (a medieval colony is never asked for turrets). Every part can be switched off or tuned in the settings.
+
+[b]Requirements[/b]
+Requires Harmony. Works with or without any other mod; where a mod you use is present, Rimfolk reads it correctly and sometimes makes use of it.</description>
   <modDependencies>
     <li>
       <packageId>brrainz.harmony</packageId>

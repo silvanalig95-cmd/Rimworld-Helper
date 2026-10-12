@@ -341,8 +341,9 @@ can't build. Every suggestion goes through one gate (`Avail`):
 ---
 
 ## Playing nicely with any modlist (rules for every integration)
-Rimfolk is played with a 200+ mod medieval list, but must work just as well with any other list, including a
-plain vanilla or industrial run. Every feature that touches another mod or a game system follows these rules:
+Rimfolk is played with a 200+ mod list (medieval before, industrial and spacer now), but must work just as well with
+any other list, including a plain vanilla run. Every feature that touches another mod or a game system follows these
+rules:
 
 1. **Soft integrations only.** A mod-specific feature switches itself on when that mod is active and is simply
    absent otherwise: defs are matched by name at runtime (`GetNamedSilentFail`, type names, package ids), never by
@@ -357,6 +358,12 @@ plain vanilla or industrial run. Every feature that touches another mod or a gam
    out of an industrial run and the other way round.
 5. **Nobody gets hurt for flavor.** Moments between colonists never injure anyone: contests are friendly (arm
    wrestling, races, riddles), never fights with weapons.
+6. **Most mods get no integration, and that's fine.** A big modlist is mostly nice-to-haves the player may never use
+   in a given run. Rimfolk only has to read them correctly (no false warnings, no impossible wishes, no colonist
+   counted as gone). Deeper integration is kept for the few mods the player always runs, and even those stay soft.
+7. **Harmony is the only hard dependency.** It's declared in About.xml, so the game's mod menu shows it and offers it
+   when it's missing. Nothing else is required: no other mod's assembly is referenced, and with any other mod missing
+   Rimfolk loads and plays without errors.
 
 ## Limits and risks
 
