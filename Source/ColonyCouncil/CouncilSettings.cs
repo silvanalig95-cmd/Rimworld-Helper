@@ -108,6 +108,14 @@ namespace ColonyCouncil
         public float dreamFrequency = 1f;
         /// <summary>The colony's character: what its choices make it known for.</summary>
         public bool colonyCharacter = true;
+        /// <summary>Feelings and strain (Heart/): a layer under mood that never changes it.</summary>
+        public bool heart = true;
+        /// <summary>A colonist at the end of their rope may take a day to themselves.</summary>
+        public bool heartEpisodes = true;
+        /// <summary>A line about strain and feelings under a colonist's name in the inspector (a deeper game hook).</summary>
+        public bool heartInspector = true;
+        /// <summary>How quickly strain builds: 0.5 to 1.5.</summary>
+        public float strainSpeed = 1f;
         /// <summary>On-screen buttons for half and quarter speed, and where they sit (fractions of the screen; -1 = default).</summary>
         public bool slowButtons = true;
         public bool moodInsight = true;
@@ -211,6 +219,10 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref socialEventFrequency, "socialEventFrequency", 1f);
             Scribe_Values.Look(ref dreamFrequency, "dreamFrequency", 1f);
             Scribe_Values.Look(ref colonyCharacter, "colonyCharacter", true);
+            Scribe_Values.Look(ref heart, "heart", true);
+            Scribe_Values.Look(ref heartEpisodes, "heartEpisodes", true);
+            Scribe_Values.Look(ref heartInspector, "heartInspector", true);
+            Scribe_Values.Look(ref strainSpeed, "strainSpeed", 1f);
             Scribe_Values.Look(ref slowButtons, "slowButtons", true);
             Scribe_Values.Look(ref moodInsight, "moodInsight", true);
             Scribe_Values.Look(ref deepHooks, "deepHooks", true);
@@ -418,6 +430,16 @@ namespace ColonyCouncil
             l.CheckboxLabeled("CC_Settings_Dreams".Translate(), ref dreams, "CC_Settings_Dreams_Tip".Translate());
             if (dreams) l.CheckboxLabeled("CC_Settings_DreamOmens".Translate(), ref dreamOmens, "CC_Settings_DreamOmens_Tip".Translate());
 
+            Header(l, "CC_Settings_HeartHeader".Translate());
+            l.CheckboxLabeled("CC_Settings_Heart".Translate(), ref heart, "CC_Settings_Heart_Tip".Translate());
+            if (heart)
+            {
+                l.CheckboxLabeled("  " + "CC_Settings_HeartEpisodes".Translate(), ref heartEpisodes, "CC_Settings_HeartEpisodes_Tip".Translate());
+                l.CheckboxLabeled("  " + "CC_Settings_HeartInspector".Translate(), ref heartInspector, "CC_Settings_HeartInspector_Tip".Translate());
+                strainSpeed = l.SliderLabeled("CC_Settings_StrainSpeed".Translate(strainSpeed.ToStringPercent()), strainSpeed, 0.5f, 1.5f, 0.6f, "CC_Settings_StrainSpeed_Tip".Translate());
+                strainSpeed = Mathf.Clamp(Mathf.Round(strainSpeed * 20f) / 20f, 0.5f, 1.5f);
+            }
+
             Header(l, "CC_Settings_Strangers".Translate());
             l.CheckboxLabeled("CC_Settings_Encounters".Translate(), ref strangers, "CC_Settings_Encounters_Tip".Translate());
             l.CheckboxLabeled("CC_Settings_Nemeses".Translate(), ref nemeses, "CC_Settings_Nemeses_Tip".Translate());
@@ -529,7 +551,7 @@ namespace ColonyCouncil
         /// <summary>The "people" systems all on or all off; councilToo also covers dilemmas, offices and petitions.</summary>
         private void SetPeople(bool on, bool councilOn)
         {
-            socialWeb = socialEvents = secrets = vendettas = aspirations = quirks = heirlooms = comingOfAge = dreams = dreamOmens = eulogies = on;
+            socialWeb = socialEvents = secrets = vendettas = aspirations = quirks = heirlooms = comingOfAge = dreams = dreamOmens = eulogies = heart = on;
             strangers = nemeses = nemesisReturns = petMoments = colonistMoments = frictions = autonomy = worldReactions = worldEvents = worldSituations = on;
             enableDilemmas = decreeRequests = offices = colonyCharacter = councilOn;
             enableWishes = enableAmbitions = councilOn || on;
@@ -613,6 +635,10 @@ namespace ColonyCouncil
             socialEventFrequency = d.socialEventFrequency;
             dreamFrequency = d.dreamFrequency;
             colonyCharacter = d.colonyCharacter;
+            heart = d.heart;
+            heartEpisodes = d.heartEpisodes;
+            heartInspector = d.heartInspector;
+            strainSpeed = d.strainSpeed;
             moodInsight = d.moodInsight;
             deepHooks = d.deepHooks;
             needsTabHints = d.needsTabHints;

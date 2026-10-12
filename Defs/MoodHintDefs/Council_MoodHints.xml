@@ -482,6 +482,21 @@
   </ColonyCouncil.MoodHintDef>
 
   <ColonyCouncil.MoodHintDef>
+    <defName>Council_Mood_RF_Strain</defName>
+    <thoughtClasses><li>Thought_HeartStrain</li></thoughtClasses>
+    <fix>Strain drains with quiet nights in a warm bed, free time, parties, long talks with friends and days without fighting. The Heart section of this tab says what built it. Days of rest (a decree) makes it drain about twice as fast.</fix>
+    <article>Council_Alm_C_Heart</article>
+    <councilTab>Decrees</councilTab>
+  </ColonyCouncil.MoodHintDef>
+
+  <ColonyCouncil.MoodHintDef>
+    <defName>Council_Mood_RF_LetItOut</defName>
+    <thoughts><li>Council_Heart_LetItOut</li></thoughts>
+    <keep>It fades in a day or two. The day they took to themselves also took about 40 points of strain off.</keep>
+    <article>Council_Alm_C_Heart</article>
+  </ColonyCouncil.MoodHintDef>
+
+  <ColonyCouncil.MoodHintDef>
     <defName>Council_Mood_RF_Trust</defName>
     <thoughtClasses><li>Thought_CouncilTrust</li></thoughtClasses>
     <fix>Trust grows when the council listens: grant or promise their wishes, heed their petitions, answer dilemmas the way they would.</fix>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+  <!--
+    Feelings and strain (Source/ColonyCouncil/Heart/): worn colonists work 5% slower and breaking ones 10%, and the days
+    of rest decree slows those it covers. A stat part on the game's global work speed, which shows its own line in the
+    stat's breakdown and contributes nothing while the feature is off. Conditional, so it never fails: if the stat already
+    has parts, it joins them; if it has none, it gets its own list; if the stat isn't there at all, nothing happens.
+  -->
+  <Operation Class="PatchOperationConditional">
+    <xpath>Defs/StatDef[defName="WorkSpeedGlobal"]/parts</xpath>
+    <match Class="PatchOperationAdd">
+      <xpath>Defs/StatDef[defName="WorkSpeedGlobal"]/parts</xpath>
+      <value>
+        <li Class="ColonyCouncil.StatPart_HeartStrain" />
+      </value>
+    </match>
+    <nomatch Class="PatchOperationConditional">
+      <xpath>Defs/StatDef[defName="WorkSpeedGlobal"]</xpath>
+      <match Class="PatchOperationAdd">
+        <xpath>Defs/StatDef[defName="WorkSpeedGlobal"]</xpath>
+        <value>
+          <parts>
+            <li Class="ColonyCouncil.StatPart_HeartStrain" />
+          </parts>
+        </value>
+      </match>
+    </nomatch>
+  </Operation>
+
+</Patch>

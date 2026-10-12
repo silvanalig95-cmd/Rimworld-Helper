@@ -8,6 +8,7 @@
     <description>Everyone to the fields to sow, tend and harvest from first light to last. Crops come in faster and fuller, and backs ache. Growers enjoy it; the lazy and undergrounders hate it.</description>
     <requestWhen><li>Autumn</li><li>FoodLow</li></requestWhen>
     <order>7</order>
+    <strainPerDay>2</strainPerDay>
     <durationDays>4</durationDays>
     <cooldownDays>10</cooldownDays>
     <ways><toil>5</toil></ways>
@@ -43,6 +44,7 @@
     <description>Every spare hand goes to walls, floors and tunnels. Construction and mining go much faster, and most colonists go to bed sore and covered in dust.</description>
     <requestWhen><li>ColonyHappy</li></requestWhen>
     <order>8</order>
+    <strainPerDay>2</strainPerDay>
     <durationDays>5</durationDays>
     <cooldownDays>10</cooldownDays>
     <ways><toil>5</toil></ways>
@@ -151,6 +153,7 @@
     <description>Weapons within reach, eyes on the horizon, sleep in shifts. Everyone fights a little better and tires faster. The bloodthirsty like it; the nervous, the volatile and wimps hate it.</description>
     <requestWhen><li>RecentThreat</li></requestWhen>
     <order>11</order>
+    <strainPerDay>3</strainPerDay>
     <durationDays>4</durationDays>
     <cooldownDays>8</cooldownDays>
     <ways><openness>-5</openness></ways>
@@ -189,6 +192,7 @@
     <description>Scrub everything: floors, tables, bedding, the hospital twice. Cleaning goes much faster, wounds are tended more carefully, and bodies fight off illness better. Most colonists dislike it, but doctors like it.</description>
     <requestWhen><li>Dirty</li></requestWhen>
     <order>12</order>
+    <strainPerDay>1</strainPerDay>
     <durationDays>3</durationDays>
     <cooldownDays>8</cooldownDays>
     <ways><toil>4</toil></ways>
@@ -214,6 +218,46 @@
       <plain><li>I've scrubbed the kitchen floor three times today.</li></plain>
       <blunt><li>I've lived with dirt all my life. I'm fine.</li></blunt>
       <cheerful><li>I'm making it a game. Whoever finds the most mud wins!</li></cheerful>
+    </oppose>
+  </ColonyCouncil.DecreeDef>
+
+  <!-- ============ Days of rest (feelings and strain) ============ -->
+  <ColonyCouncil.DecreeDef>
+    <defName>Council_Decree_Rest</defName>
+    <label>days of rest</label>
+    <description>Shorter days, longer evenings, and no early mornings. Everyone works 10% slower, and strain drains about twice as fast. The worn out and the lazy are glad of it; the industrious would rather work. Only with feelings and strain switched on.</description>
+    <requestWhen><li>Strained</li></requestWhen>
+    <order>13</order>
+    <durationDays>3</durationDays>
+    <cooldownDays>10</cooldownDays>
+    <ways><toil>-4</toil></ways>
+    <thought>Council_Decree_Rest</thought>
+    <defaultReaction>Like</defaultReaction>
+    <needsHeart>true</needsHeart>
+    <strainRelief>1.75</strainRelief>
+    <workFactor>0.9</workFactor>
+    <reactions>
+      <li><trait>Industriousness</trait><degree>2</degree><reaction>Hate</reaction></li>
+      <li><trait>Industriousness</trait><degree>1</degree><reaction>Dislike</reaction></li>
+      <li><trait>Industriousness</trait><degree>-1</degree><reaction>Love</reaction></li>
+      <li><trait>Industriousness</trait><degree>-2</degree><reaction>Love</reaction></li>
+      <li><trait>Psychopath</trait><reaction>Neutral</reaction></li>
+    </reactions>
+    <effects>
+      <li>Everyone works 10% slower.</li>
+      <li>Strain drains about twice as fast while it holds.</li>
+      <li>Most colonists are glad of it, the lazy most of all; the industrious would rather work.</li>
+    </effects>
+    <support>
+      <plain><li>Three days. That's all I'm asking for. Three days with my boots off.</li></plain>
+      <warm><li>Look at us. We're running on fumes. Let's stop for a few days.</li></warm>
+      <gloomy><li>If we don't rest now, we'll be resting in the graveyard.</li></gloomy>
+      <cold><li>Tired hands make mistakes. A short rest costs less than a long recovery.</li></cold>
+    </support>
+    <oppose>
+      <plain><li>The fields won't tend themselves while we nap.</li></plain>
+      <blunt><li>Rest when the work's done.</li></blunt>
+      <cheerful><li>Rest? I've been looking forward to finishing the north wall!</li></cheerful>
     </oppose>
   </ColonyCouncil.DecreeDef>
 

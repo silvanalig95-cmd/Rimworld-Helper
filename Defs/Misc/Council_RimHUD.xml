@@ -39,4 +39,28 @@
     <apiVersion>1</apiVersion>
   </RimHUD.CustomValueDef>
 
+  <RimHUD.CustomValueDef MayRequire="jaxe.rimhud">
+    <defName>Council_Hud_Strain</defName>
+    <label>Rimfolk: strain</label>
+    <textStyle>Small</textStyle>
+    <defClass>ColonyCouncil.RimHud_Strain</defClass>
+    <apiVersion>1</apiVersion>
+  </RimHUD.CustomValueDef>
+
+  <RimHUD.CustomValueDef MayRequire="jaxe.rimhud">
+    <defName>Council_Hud_Feelings</defName>
+    <label>Rimfolk: feelings</label>
+    <textStyle>Small</textStyle>
+    <defClass>ColonyCouncil.RimHud_Feelings</defClass>
+    <apiVersion>1</apiVersion>
+  </RimHUD.CustomValueDef>
+
+  <RimHUD.CustomValueDef MayRequire="jaxe.rimhud">
+    <defName>Council_Hud_HeartNeeds</defName>
+    <label>Rimfolk: the heart's needs</label>
+    <textStyle>Small</textStyle>
+    <defClass>ColonyCouncil.RimHud_Needs</defClass>
+    <apiVersion>1</apiVersion>
+  </RimHUD.CustomValueDef>
+
 </Defs>

@@ -511,7 +511,8 @@ namespace ColonyCouncil
             foreach (var d in DefDatabase<AspirationDef>.AllDefsListForReading)
             {
                 if (done.Contains(d) || !DilemmaRole.Fits(d.who, p, d.children) || !SafeCanHave(d, p)) continue;
-                result.Add((d, Sparked(d, p), d.weight * (d.who?.passion != null || d.who?.anyTrait != null ? 2f : 1f)));
+                // The heart's need they lack most makes the goals that answer it a little likelier (Heart/).
+                result.Add((d, Sparked(d, p), d.weight * (d.who?.passion != null || d.who?.anyTrait != null ? 2f : 1f) * Heart.GoalFactor(p, d)));
             }
             return result;
         }

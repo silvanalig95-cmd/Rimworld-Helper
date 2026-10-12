@@ -82,6 +82,8 @@ namespace ColonyCouncil
             var active = tracker.Get(def);
             l = new Layout { width = width, at = now };
             l.effects = string.Join("\n", def.effects.Select(e => "- " + e));
+            // Feelings and strain (Heart/): a hard decree wears on those who resent it.
+            if (def.strainPerDay > 0f && Heart.On) l.effects += "\n- " + "CC_Heart_DecreeStrain".Translate(def.strainPerDay.ToString("0.#")).Resolve();
             var req = tracker.RequestFor(def);
             l.note = req?.pawn == null ? null
                 : (req.repeal ? "CC_Decree_RepealLine" : "CC_Decree_PetitionLine").Translate(req.pawn.Named("PAWN")).Resolve() + (req.line != null ? " \"" + req.line + "\"" : "");

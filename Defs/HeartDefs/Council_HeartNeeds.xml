@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    The heart's four needs (Source/ColonyCouncil/Heart/HeartNeeds.cs works out their values, 0 to 100, every hour; they
+    are never saved and give no mood). Here: which wishes and life goals answer each one. For the need a colonist lacks
+    most (below 45), these become up to 35% likelier, together with what their feelings ask for capped at half again.
+    Names and descriptions are in Keyed/Rimfolk_Heart.xml (CC_Heart_Need_{need}).
+  -->
+
+  <ColonyCouncil.HeartNeedDef>
+    <defName>Council_Need_Belonging</defName>
+    <need>Belonging</need>
+    <wishes>
+      <li>Council_Wish_Party</li>
+      <li>Council_Wish_Companion</li>
+      <li>Council_Wish_Wedding</li>
+      <li>Council_Wish_ShareBed</li>
+      <li>Council_Wish_Music</li>
+      <li>Council_Wish_Birthday</li>
+      <li>Council_Wish_Recruit</li>
+    </wishes>
+    <wishCategories><li>Social</li></wishCategories>
+    <goals>
+      <li>Council_Asp_Friends</li>
+      <li>Council_Asp_Marry</li>
+      <li>Council_Asp_Child</li>
+      <li>Council_Asp_Peace</li>
+      <li>Council_Asp2_Beloved</li>
+      <li>Council_Asp_Hospitable</li>
+    </goals>
+  </ColonyCouncil.HeartNeedDef>
+
+  <ColonyCouncil.HeartNeedDef>
+    <defName>Council_Need_Purpose</defName>
+    <need>Purpose</need>
+    <wishes>
+      <li>Council_Wish_PassionSpace</li>
+      <li>Council_Wish_LetMeWork</li>
+      <li>Council_Wish_Lessons</li>
+      <li>Council_Wish_Books</li>
+      <li>Council_Wish_TrainingDummy</li>
+    </wishes>
+    <wishCategories><li>Work</li></wishCategories>
+    <goals>
+      <li>Council_Asp_Mastery</li>
+      <li>Council_Asp_Teach</li>
+      <li>Council_Asp_Seat</li>
+      <li>Council_Asp_Name</li>
+      <li>Council_Asp_Builder</li>
+      <li>Council_Asp_Healer</li>
+      <li>Council_Asp_Cook</li>
+      <li>Council_Asp2_Scholar</li>
+      <li>Council_Asp2_Artist</li>
+      <li>Council_Asp2_Orator</li>
+      <li>Council_Asp2_Surgeon</li>
+    </goals>
+  </ColonyCouncil.HeartNeedDef>
+
+  <ColonyCouncil.HeartNeedDef>
+    <defName>Council_Need_Safety</defName>
+    <need>Safety</need>
+    <wishes>
+      <li>Council_Wish_Defenses</li>
+      <li>Council_Wish_Armor</li>
+      <li>Council_Wish_Infirmary</li>
+      <li>Council_Wish_Firewood</li>
+      <li>Council_Wish_Freezer</li>
+      <li>Council_Wish_WeaponRack</li>
+      <li>Council_Wish_BetterWeapon</li>
+    </wishes>
+    <wishCategories><li>Safety</li></wishCategories>
+    <goals>
+      <li>Council_Asp_Warrior</li>
+      <li>Council_Asp2_Sharpshooter</li>
+      <li>Council_Asp2_Marshal</li>
+      <li>Council_Asp_Endure</li>
+      <li>Council_Asp_Grow</li>
+    </goals>
+  </ColonyCouncil.HeartNeedDef>
+
+  <ColonyCouncil.HeartNeedDef>
+    <defName>Council_Need_Freedom</defName>
+    <need>Freedom</need>
+    <wishes>
+      <li>Council_Wish_Outside</li>
+      <li>Council_Wish_Travel</li>
+      <li>Council_Wish_Hunt</li>
+      <li>Council_Wish_DayOff</li>
+      <li>Council_Wish_GardenSeat</li>
+      <li>Council_Wish_RecreationVariety</li>
+    </wishes>
+    <goals>
+      <li>Council_Asp2_Discovery</li>
+      <li>Council_Asp2_Hunter</li>
+      <li>Council_Asp_Tamer</li>
+      <li>Council_Asp_Hospitable</li>
+    </goals>
+  </ColonyCouncil.HeartNeedDef>
+
+</Defs>

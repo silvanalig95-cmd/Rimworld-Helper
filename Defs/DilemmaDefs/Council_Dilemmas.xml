@@ -264,6 +264,7 @@
           <li Class="ColonyCouncil.DilemmaEffect_Hediff"><target>A</target><hediff>Council_Dlm_Rest</hediff></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_Understood</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>8</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Strain"><target>A</target><amount>-20</amount></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Others</target><thought>Council_Dlm_Shirking</thought><degreeTrait>Industriousness</degreeTrait><minDegree>1</minDegree></li>
         </effects>
       </li>
@@ -274,6 +275,7 @@
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_Dismissed</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>-8</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Strain"><target>A</target><amount>8</amount></li>
         </effects>
         <riskChance>0.25</riskChance>
         <riskOutcome>{A_nameDef} went back to work, but before the shift was over dropped {A_possessive} tools and wandered off, staring at nothing.</riskOutcome>
@@ -290,6 +292,7 @@
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_Bonded</thought><about>B</about></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_Dlm_Helped</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>5</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Strain"><target>A</target><amount>-12</amount></li>
         </effects>
       </li>
     </options>

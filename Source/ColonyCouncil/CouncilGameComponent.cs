@@ -421,7 +421,8 @@ namespace ColonyCouncil
                 {
                     if (OnCooldown(requester, def)) continue;
                     if (!novelty.TryGetValue(def, out float fresh)) novelty[def] = fresh = Novelty(def);
-                    float defFactor = def.weight * personal * CategoryFactor(requester, def) * fresh;
+                    // Feelings and the heart's needs nudge toward what answers them (at most half again; Heart/).
+                    float defFactor = def.weight * personal * CategoryFactor(requester, def) * fresh * Heart.WishFactor(requester, def);
                     if (defFactor <= 0f) continue;
                     foreach (var c in Candidates(def, requester))
                     {
@@ -580,7 +581,8 @@ namespace ColonyCouncil
             var standing = standings.For(beneficiary ?? requester);
             NoteWish(def);
             // Trusting colonists are patient; bitter ones aren't.
-            float patience = def.fixedPatience ? 1f : Mathf.Clamp(1f + standing.trust / 200f, 0.6f, 1.4f) * Standards.PatienceFactor(beneficiary ?? requester);
+            float patience = def.fixedPatience ? 1f : Mathf.Clamp(1f + standing.trust / 200f, 0.6f, 1.4f) * Standards.PatienceFactor(beneficiary ?? requester)
+                * Heart.PatienceFactor(beneficiary ?? requester);
             var w = new Wish
             {
                 id = nextWishId++,

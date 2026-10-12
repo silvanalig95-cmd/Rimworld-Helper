@@ -137,17 +137,21 @@ namespace ColonyCouncil
 
         /// <summary>
         /// A hook for other parts of the mod to nudge how likely moments are (a colonist's mood of the day, say): a factor
-        /// on the weight, given the initiator, the recipient and whether it's a friction. Unset, it changes nothing.
+        /// on the weight, given the initiator, the recipient, whether it's a friction, and its kind ("grief" for grief
+        /// shared, else null). Unset, it changes nothing. The heart's feelings use it (Heart.MomentWeightFactor).
         /// </summary>
-        public static System.Func<Pawn, Pawn, bool, float> WeightHook;
+        public static System.Func<Pawn, Pawn, bool, string, float> WeightHook;
 
         /// <summary>The factor from <see cref="WeightHook"/>: 1 when nothing is hooked in, never below 0.</summary>
-        public static float MomentWeightFactor(Pawn initiator, Pawn recipient, bool friction)
+        public static float MomentWeightFactor(Pawn initiator, Pawn recipient, bool friction, string kind)
         {
             if (WeightHook == null) return 1f;
-            float f = WeightHook(initiator, recipient, friction);
+            float f = WeightHook(initiator, recipient, friction, kind);
             return f > 0f ? f : 0f;
         }
+
+        /// <summary>"grief" for moments of grief shared, which the heart weighs on their own.</summary>
+        private string Kind => interaction.defName.IndexOf("Grief", System.StringComparison.Ordinal) >= 0 ? "grief" : null;
 
         public override float RandomSelectionWeight(Pawn initiator, Pawn recipient)
         {
@@ -165,7 +169,7 @@ namespace ColonyCouncil
                 if (!Fits(ext, initiator, recipient)) return 0f;
                 float tone = MomentTones.Factor(ext, initiator, recipient);
                 if (tone <= 0f) return 0f;
-                return ext.weight * tone * ColonyCouncilMod.Settings.momentFrequency * MomentWeightFactor(initiator, recipient, ext.Friction);
+                return ext.weight * tone * ColonyCouncilMod.Settings.momentFrequency * MomentWeightFactor(initiator, recipient, ext.Friction, Kind);
             }
             catch (System.Exception e)
             {

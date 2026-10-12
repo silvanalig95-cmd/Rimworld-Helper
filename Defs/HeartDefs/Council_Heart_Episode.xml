@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    The strain episode: "worn out, needs a day" (Source/ColonyCouncil/Heart/Episodes.cs). Started only by the heart layer,
+    on purpose and silently (it writes its own letter); no MentalBreakDef names it, so the game's own break picker never
+    chooses it. Built on vanilla's hide-in-room state. It lasts six to twelve hours and ends early if a threat appears.
+    The think tree below gives it its behavior: eat, sleep and rest as needed, otherwise stay in their room.
+  -->
+
+  <MentalStateDef>
+    <defName>Council_Heart_WornOut</defName>
+    <label>worn out</label>
+    <stateClass>ColonyCouncil.MentalState_HeartWornOut</stateClass>
+    <category>Misc</category>
+    <colonistsOnly>true</colonistsOnly>
+    <prisonersCanDo>false</prisonersCanDo>
+    <slavesCanDo>false</slavesCanDo>
+    <inCaravanCanDo>false</inCaravanCanDo>
+    <minTicksBeforeRecovery>15000</minTicksBeforeRecovery>
+    <maxTicksBeforeRecovery>30000</maxTicksBeforeRecovery>
+    <recoveryMtbDays>0.15</recoveryMtbDays>
+    <recoverFromSleep>false</recoverFromSleep>
+    <recoverFromDowned>true</recoverFromDowned>
+    <recoverFromCaptured>true</recoverFromCaptured>
+    <blockRandomInteraction>true</blockRandomInteraction>
+    <allowBeatfire>true</allowBeatfire>
+    <nameColor>(0.65, 0.75, 0.92)</nameColor>
+    <baseInspectLine>Mental state: worn out, needs a day</baseInspectLine>
+  </MentalStateDef>
+
+  <ThinkTreeDef>
+    <defName>Council_Heart_WornOutTree</defName>
+    <insertTag>Humanlike_PostMentalState</insertTag>
+    <insertPriority>100</insertPriority>
+    <thinkRoot Class="ThinkNode_ConditionalMentalState">
+      <state>Council_Heart_WornOut</state>
+      <subNodes>
+        <li Class="ThinkNode_PrioritySorter">
+          <subNodes>
+            <li Class="JobGiver_GetFood" />
+            <li Class="JobGiver_GetRest" />
+            <li Class="ThinkNode_Priority_GetJoy">
+              <subNodes>
+                <li Class="JobGiver_GetJoy" />
+              </subNodes>
+            </li>
+          </subNodes>
+        </li>
+        <li Class="JobGiver_WanderOwnRoom">
+          <maxDanger>Deadly</maxDanger>
+          <ticksBetweenWandersRange>50~250</ticksBetweenWandersRange>
+          <locomotionUrgency>Amble</locomotionUrgency>
+        </li>
+      </subNodes>
+    </thinkRoot>
+  </ThinkTreeDef>
+
+</Defs>

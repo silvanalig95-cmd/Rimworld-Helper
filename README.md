@@ -29,7 +29,7 @@ the mod folder; your settings and saves are kept elsewhere and are safe.
    branch menu first) and extract it anywhere, for example in Downloads.
 2. Close RimWorld, then double-click **`Install Rimfolk.bat`** in the extracted folder. It removes the old version
    from `C:\Program Files (x86)\Steam\steamapps\common\RimWorld\Mods\Rimworld Helper` and copies the mod's
-   files there (only what the game needs: `About`, `1.6`, `Defs`, `Languages`, `Textures`). If Windows asks for
+   files there (only what the game needs: `About`, `1.6`, `Defs`, `Languages`, `Patches`, `Textures`). If Windows asks for
    administrator rights, say yes. To install somewhere else, open the file in Notepad and change `MODS` and
    `FOLDER` at the top.
 3. Start RimWorld, open **Mods**, enable **Rimfolk** and restart. Repeat steps 1 and 2 to update.
@@ -147,7 +147,9 @@ trains shooting and melee), **study hours** (learn and research faster), **auste
 come back down) or, the other way round, **festival days** (better mood, much slower work). Everyone reacts according
 to their nature: the industrious like long hours and the lazy hate them, ascetics love austerity, the bloodthirsty
 love drills, gourmands suffer under rationing. The tab shows who will love or hate each one before you decide, and
-living under a decree you hate wears down your trust in the council.
+living under a decree you hate wears down your trust in the council. With feelings and strain on, the hard ones
+(long hours, drills, on guard...) also build a little strain in those who resent them, and **days of rest** lets the
+colony recover: 10% slower work for three days, while strain drains about twice as fast.
 
 There's no hard limit on repeating a decree, but there is a price. Enact the same one again within a month, or
 **force it through** before its cooldown is over, and those against it lose more trust and resent it more each
@@ -362,8 +364,9 @@ The council only suggests what your colony can actually do right now:
 Rimfolk needs **Harmony** (load it first; most modlists already have it). Almost everything Rimfolk does
 adds its own things and reads the game; a few small, careful Harmony patches change how the game itself behaves
 (for example Rimfolk's hints in the game's own Needs tab). Each patch switches itself off with one warning if it
-can't work alongside your other mods, and the "Deeper game hooks" setting turns them all off at once. No vanilla
-defs are edited. A few things it does on purpose:
+can't work alongside your other mods, and the "Deeper game hooks" setting turns them all off at once. One vanilla
+def gets an addition: the global work speed stat gains the strain part (feelings and strain), which does nothing
+while that feature is off; nothing vanilla is changed or removed. A few things it does on purpose:
 - **Medieval Overhaul, Vanilla Brewing Expanded and other barrel mods:** fermenting barrels, kegs and stills
   made with the Vanilla Expanded framework or Processor Framework (Medieval Overhaul's rustic fermenting barrel)
   count for brewing wishes and room plans, and a stock of social drinks (ale, mead, cider, wine) fulfils the
@@ -402,7 +405,8 @@ Each of these switches itself on only when its mod is there, and only asks for w
   "something to drink" for a brewer or a colonist with a taste for chemicals.
 - **Vanilla Outposts Expanded:** a wish waits while its colonist is posted at an outpost (up to five days, then it
   lapses and nobody is blamed), and people out there write home in their journals now and then.
-- **RimHUD:** four lines for its pawn panel (trust, open wish, office, life goal). In RimHUD's settings, Content tab,
+- **RimHUD:** seven lines for its pawn panel (trust, open wish, office, life goal, strain, feelings, the heart's
+  needs). In RimHUD's settings, Content tab,
   use "Add third-party".
 - **Interaction Bubbles:** social events and encounters with visitors, traders and animals now go into the social
   log too, so they show as bubbles like Rimfolk's moments and wish talk.
@@ -684,6 +688,63 @@ who feels it, who is closest to breaking, and how much comes from the base game,
 Buttons lead straight to the advisor's matching warning, the council page that deals with it, or an Almanac page.
 Hints cover the base game, the DLCs and Rimfolk; moods from other mods get general advice and their mod's name.
 
+## Feelings and strain
+Mood says how a colonist feels today. **Strain** says how worn down they are, and a fine meal or a nice room can't buy
+it off in an afternoon. It's a layer under mood, kept in Rimfolk's own save data: the game still decides mental breaks
+from vanilla mood alone, exactly as before, and every other mod sees the same mood it always did.
+
+**How strain builds** (0 to 100, looked at every hour): fighting with enemies on the map (4 an hour, up to 12 a day),
+pain and serious injuries, lying downed, deaths and losses (4 when a colonist dies, 5 for seeing an ally die, 8 for
+family, each memory once), long days without sleep or free time, bad nights (cold, heat, noise, outside, on the
+ground), darkness, hunger, very low mood, decrees they resent and dilemma outcomes that hurt, and lingering fear,
+grief, worry and despair. Each source has its own daily limit, and all of them together add at most about 25 a day.
+Iron-willed and steadfast colonists shrug off part of it, nervous and volatile ones take more; psychopaths take
+nothing from deaths, the bloodthirsty little from fighting, masochists nothing from pain.
+
+**How it drains:** slowly by itself in quiet hours, faster asleep in a warm bed and during recreation, faster still
+when their mood is high or they feel joy, pride, hope or calm. Parties, concerts, weddings, feasts and celebrations
+take a chunk off, and so do deep talks and good moments with friends; a good cry (catharsis) takes off 30. A colonist
+with a warm bed, free time and a decent mood sheds about 10 a day, so one hard day takes two or three to undo.
+
+| Strain | Band | What it does |
+|---|---|---|
+| 0 to 29 | steady | nothing |
+| 30 to 54 | strained | -3 mood, darker dreams |
+| 55 to 74 | worn down | -5 mood, 5% slower work, more nightmares |
+| 75 to 100 | near breaking | -8 mood, 10% slower work, many nightmares; from 85, a day off may come |
+
+**A day off.** At 85 or more, a colonist may stop and keep to their room for six to twelve hours ("worn out, needs a
+day"): they eat and sleep but don't work, and a letter says what wore them down and what would help. Never in danger,
+while drafted or asleep, for children, slaves, prisoners or guests, or when fewer than two others could keep working;
+at most once in 2 days in the colony and once in 10 days for each colonist. A threat ends it early. Afterwards strain
+drops by about 40 and they feel lighter for a day and a half. To head it off, declare **days of rest**: everyone works
+10% slower for three days, and strain drains about twice as fast.
+
+**Feelings.** Each colonist has one or two feelings that stand out, out of twenty: grief, fear, dread (worry about
+what's coming), anger, shame, envy, disgust, loneliness, homesickness, frustration and despair; joy, pride, love,
+gratitude, hope, awe, contentment, curiosity and restlessness. They come from the moods a colonist has right now (the
+game's, Rimfolk's and other mods') and from what they can see: enemies on the map, a fight the World page says is
+coming, a newcomer, quiet days. Feelings add no mood, since that would count the same thing twice. They nudge
+instead: a wish that fits becomes up to half again as likely (fear asks for defenses, grief for a grave,
+restlessness for a journey, pride for art), moments between colonists go warmer or pricklier, dreams change color,
+fear, grief and despair add a little strain, and joy, pride and hope help it drain.
+
+**The heart's needs.** Four values from 0 to 100: **belonging** (friends, a partner, family, good moments, not being
+left out), **purpose** (work they love, a life goal, a seat, learning), **safety** (no danger, food, medicine,
+defenses, their own health) and **freedom** (time outdoors, free time, varied work, travel, few restrictions). They
+give no mood. The one a colonist lacks most makes the wishes and life goals that answer it up to 35% likelier, and
+when all four are at 60 or more, strain drains 20% faster.
+
+**Where to see it:** the Heart section of the Mood tab (strain and its band, what built it, what would help, every
+feeling with its causes, the four needs), the strain list on the council's Moods page, a line in the inspector
+("Strain: worn down · restless, proud"), the strain mood's tooltip and RimHUD. Settings (People page): feelings and
+strain on or off, the day off, the inspector line, and how quickly strain builds (50% to 150%). Switched off,
+everything stops and the strain mood and slowdown are gone.
+
+**Safe to add and remove.** The strain mood and the work speed part store nothing, and strain itself is in
+Rimfolk's own save data. The only trace in a save is a colonist in the middle of a day off: with Rimfolk removed,
+the game can't load that mental state, logs it once and lets them go back to work.
+
 ## Slow speeds
 Two speeds slower than normal, **½×** and **¼×**, for planning without pausing: the colony keeps living, gently.
 Small buttons sit next to the time controls (drag them by their grip to put them wherever you like; on a
@@ -715,6 +776,8 @@ journals, the Story tab and History) or **Important only**.
   missions show up in the Quests tab, and whether the storyteller draws them (and how likely each is) or Rimfolk's
   own timer does (and how often)
 - **world events**: on or off, and how often (about one every 45 days by default)
+- **feelings and strain**: on or off, whether a colonist at the end of their rope takes a day off, the line in the
+  inspector, and how quickly strain builds (50% to 150%)
 - **how often** the smaller things happen: moments with strangers and animals, moments between colonists, social
   events and dreams, each from a quarter as often to three times as often
 
@@ -722,7 +785,8 @@ journals, the Story tab and History) or **Important only**.
 
 - **Interaction Bubbles** by Jaxe (search the Steam Workshop): shows social-log conversations as speech
   bubbles, so colonists grumbling about their wishes, Rimfolk's moments and social events appear above their heads.
-- **RimHUD** by Jaxe: can show trust, the open wish, office and life goal in its pawn panel (see above).
+- **RimHUD** by Jaxe: can show trust, the open wish, office, life goal, strain, feelings and the heart's needs in
+  its pawn panel (see above).
 
 ## Status and feedback
 
@@ -744,5 +808,7 @@ Please share them so they can be fixed.
   page headers, cards, tags, meters, portraits). New pages should use it so they look like the rest.
 - `Tools/make_icons.py`: draws the interface icons into `Textures/ColonyCouncil/Icons/` and a contact sheet of
   them, `Tools/icons_preview.png` (needs Pillow: `pip install pillow`).
+- Feelings are data-driven too (`Defs/HeartDefs/Council_Feelings.xml`): each lists the thoughts that feed it and what
+  it nudges. Another mod's thought can join a feeling with a `ColonyCouncil.HeartTags` mod extension.
 - Wishes, advice checks, ambitions, room templates, flavor pools and almanac pages are all data-driven XML.
   Lines can carry tags (`[winter,trigger:raid]`) so they're used when they fit. See [DESIGN.md](DESIGN.md).

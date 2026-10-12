@@ -27,7 +27,9 @@ namespace ColonyCouncil
         Spoiled,
         Dirty,
         Prisoners,
-        Autumn
+        Autumn,
+        /// <summary>The colony is worn down: average strain 40 or more (Heart/).</summary>
+        Strained
     }
 
     /// <summary>Who feels how about a decree: by trait (and degree), by passion for a skill, or by being unable to fight.</summary>
@@ -100,6 +102,15 @@ namespace ColonyCouncil
         /// <summary>When someone who likes it may ask the council for it (any one is enough).</summary>
         public List<DecreeMoment> requestWhen;
         public int order;
+        /// <summary>
+        /// Feelings and strain (Heart/): strain a day for those who dislike it (half again for those who hate it), the
+        /// factor on how fast strain drains while it holds, and a work speed factor carried by the heart's stat part
+        /// rather than a hediff. A decree that needs the heart can't be declared while that feature is off.
+        /// </summary>
+        public float strainPerDay;
+        public float strainRelief;
+        public float workFactor;
+        public bool needsHeart;
 
         public DecreeReaction ReactionOf(Pawn p)
         {
@@ -207,6 +218,7 @@ namespace ColonyCouncil
             if (IsActive(def)) return null;
             int now = Find.TickManager.TicksGame;
             if (!ColonyCouncilMod.Settings.MoodEffects) return "CC_Decree_NoMood".Translate();
+            if (def.needsHeart && !Heart.On) return "CC_Decree_NeedsHeart".Translate();
             if (!force && ReadyAt(def) > now) return "CC_Decree_Cooldown".Translate(TextUtil.DaysString(ReadyAt(def) - now));
             if (active.Count >= MaxActive) return "CC_Decree_TooMany".Translate(MaxActive);
             if (def.needsGrief && !PawnsFinder.AllMaps_FreeColonists.Any(Flavor.IsGrieving)) return "CC_Decree_NeedsGrief".Translate();
@@ -394,6 +406,8 @@ namespace ColonyCouncil
                     return map.mapPawns.PrisonersOfColonySpawnedCount > 0;
                 case DecreeMoment.Autumn:
                     return GenLocalDate.Season(map) == Season.Fall;
+                case DecreeMoment.Strained:
+                    return Heart.On && Heart.ColonyStrain(pawns) >= 40f;
                 default:
                     return false;
             }

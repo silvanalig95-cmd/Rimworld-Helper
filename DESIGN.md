@@ -303,6 +303,38 @@ from a week to a month long, and on Rimfolk's own rhythm rather than the storyte
   his band breaks up without plunder, or the colony ends it at home. His people's raids are stronger and likelier while
   he rises (Harmony, behind the deeper hooks), and he walks in with some of them.
 
+## Layer 7: The heart (feelings and strain)
+
+Comfort is easy to buy in RimWorld, so mood alone stops meaning much once a colony is rich. The heart adds a slower,
+richer layer under it without touching the number the game runs on.
+
+**The safety rule.** Vanilla mood stays the single number the game and every other mod use for mental breaks. Nothing
+here patches the mood need, the mood calculation, the mental breaker or which breaks the game picks. The layer lives in
+Rimfolk's own save data (`HeartTracker`, a game component of its own) and reaches the game only through things it
+already supports: one situational thought (it reads the strain band each time and stores nothing), one stat part on
+global work speed (an XML patch, conditional so it never fails), one mental state started on purpose, and Rimfolk's own
+systems (wishes, life goals, dreams, decrees, dilemmas, moments, the UI). With the feature off, the thought and the
+stat part contribute nothing and the hooks return 1.
+
+- **Strain** (0 to 100) is a slow reservoir. Each colonist is looked at once an hour, a tenth of the colony at a time.
+  Sources build it with their own daily caps and a cap of about 25 a day for everything; new memories count once, when
+  they're new (a renewed memory, like a second cold night, counts again). Drains are slow and steady (sleep, quiet hours,
+  recreation) with chunks for gatherings, good talks and catharsis. Small decaying totals per source and per kind of
+  relief say what built it and what eased it lately. The pure math (bands, caps, trait factors, episode odds) is in
+  `HeartMath`, covered by the tests.
+- **Bands** give the only direct effects: a mood of -3/-5/-8, work speed -5%/-10%, darker dreams.
+- **Episodes** are the pressure valve, not a punishment: a custom mental state on vanilla's hide-in-room class, started
+  silently by the heart (its own letter) and never by the game's break picker, since no MentalBreakDef names it. A think
+  tree inserted after the mental states gives it its behavior. Strict conditions (no danger, enough hands, cooldowns),
+  and it ends early when a threat appears.
+- **Feelings** are data (`FeelingDef`): thoughts that feed them (by name, pattern or a `HeartTags` extension on the
+  thought), a worker for what thoughts can't say, a threshold, and nudges scaled by intensity. They never add mood,
+  which would count their causes twice. Nudges stay small: wishes at most half again as likely, moments within half to
+  double, strain a few points a day.
+- **The heart's needs** (belonging, purpose, safety, freedom) are computed each hour, never saved, and give no mood:
+  they show what a life is missing and point wishes and life goals toward it.
+- **Removal.** No hediffs and no stored thoughts. The only trace is a colonist in the middle of an episode.
+
 ## Building help: how far should the mod build things itself?
 
 Think of it as a ladder. Each rung is optional and builds on the one below:
@@ -433,6 +465,7 @@ Defs/
   InteractionDefs/     # colonists talking about their wishes and the ambition
   Misc/                # the Council main tab and the meeting letter
 Languages/English/Keyed/
+Patches/               # one conditional addition: the strain part on global work speed
 Textures/ColonyCouncil/
 Source/ColonyCouncil/  # C#; builds against the Krafs.Rimworld.Ref NuGet package
 Tools/DefValidator/    # offline XML checker against the real game types
@@ -509,6 +542,11 @@ Things the game exposes that this relies on (all available to mods):
 - Dreams drawn from each colonist's recent memories, injuries, bonds and losses; most are flavour (mood,
   journal, a line told over breakfast), a few change something, and rare omens schedule the incident they
   foretell.
+
+**Feelings and strain**
+- Strain under mood (bands, a mood of its own, a work speed part, darker dreams, a day off at the end of the rope),
+  twenty data-driven feelings that nudge wishes, moments, dreams and strain, four needs of the heart, the days of rest
+  decree, and the Heart section of the Mood tab, the inspector line and RimHUD lines.
 
 **Ideas for later**
 - Ambition chains (multi-step goals across seasons).

@@ -616,4 +616,102 @@ Someone from the past, a visiting scholar or a great beast arriving "around a se
     <seeAlso><li>Council_Alm_C_WorldEvents</li><li>Council_Alm_C_Ways</li></seeAlso>
   </ColonyCouncil.AlmanacArticleDef>
 
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Council_Alm_C_Heart</defName>
+    <label>feelings and strain</label>
+    <category>Council</category>
+    <order>18</order>
+    <summary>Strain wears colonists down over days; feelings color their wishes, dreams and moments; four needs show what their life is missing.</summary>
+    <tip>A high mood doesn't mean someone is fine. Check their strain after a hard week.</tip>
+    <description>Mood says how a colonist feels today. Strain, from 0 to 100, says how worn down they are: it builds slowly from fighting, pain, losses and bad nights, and comfort can't buy it off quickly. Alongside it, each colonist has one or two feelings at a time (grief, fear, pride, joy and others) and four long-term needs of the heart.
+
+None of this changes how the game decides on mental breaks. Vanilla mood stays the number that counts. Strain reaches the game only through one mood of its own, a small slowdown at work, darker dreams and, at the very end of the rope, a day off; feelings and needs never add mood at all.</description>
+    <sections>
+      <li>
+        <heading>What builds strain</heading>
+        <table>
+          <li>Source | How much</li>
+          <li>Fighting | 4 an hour while drafted or attacked with enemies on the map (12 a day at most)</li>
+          <li>Pain and serious injuries | up to 6 a day</li>
+          <li>Being downed | 3 an hour (8 a day at most)</li>
+          <li>Deaths and losses | 4 for a colonist's death, 5 for seeing an ally die, 8 for family, each memory once (14 a day at most)</li>
+          <li>Long days without sleep, no free time | up to 4 and 3 a day</li>
+          <li>Bad nights (cold, heat, noise, outside, on the ground) | 1 or 2 a night (4 a day at most)</li>
+          <li>Darkness, hunger, very low mood | up to 2, 4 and 6 a day</li>
+          <li>Hard council decisions | decrees they resent (1 to 3 a day) and dilemma outcomes that hurt (4 a day at most)</li>
+          <li>Fear, grief, worry and despair | up to 2 or 3 a day while they last</li>
+        </table>
+        <after>Everything together adds at most about 25 a day. Iron-willed colonists take 40% less and steadfast ones 20% less; nervous ones take 25% more and volatile ones 40% more. Psychopaths take nothing from deaths, the bloodthirsty little from fighting, masochists nothing from pain. The strength setting makes all of it build from 50% to 150% as fast.</after>
+      </li>
+      <li>
+        <heading>What drains it</heading>
+        <text>Strain drains by itself in quiet hours (0.15 an hour), faster asleep in a bed at a comfortable temperature (0.6 an hour, 0.25 elsewhere) and during recreation (0.5 an hour). A good mood speeds this up by a quarter, a very good one by half. Joy, pride, hope and calm speed it further; despair and dread slow it. When all four needs of the heart are at 60 or more, it drains 20% faster.
+
+Some things take a chunk off at once: a party (6), a concert or a wedding (5), a festival, feast or celebration (3 to 8, 12 a day at most), a deep talk or a good moment with a friend (1.5 to 3, 6 a day at most), and a good cry (catharsis, 30). A colonist with a warm bed, free time and a decent mood sheds about 10 a day, so one hard day takes two or three to undo.</text>
+      </li>
+      <li>
+        <heading>The bands</heading>
+        <table>
+          <li>Strain | Band | What it does</li>
+          <li>0 to 29 | Steady | Nothing</li>
+          <li>30 to 54 | Strained | -3 mood, darker dreams</li>
+          <li>55 to 74 | Worn down | -5 mood, 5% slower work, more nightmares</li>
+          <li>75 to 100 | Near breaking | -8 mood, 10% slower work, many nightmares; from 85, a day off may come</li>
+        </table>
+      </li>
+      <li>
+        <heading>A day off</heading>
+        <text>At strain 85 or more, a colonist may simply stop: they keep to their room for six to twelve hours, eating and sleeping as they need, and do no work. A letter says why and what would help. It never happens in danger, while drafted or asleep, to children, slaves, prisoners or guests, or when fewer than two others could keep working; at most once in 2 days in the colony and once in 10 days for each colonist. If a threat appears, it ends early. Afterwards their strain drops by about 40 (20 if it was cut short) and they feel lighter for a day and a half (+6 mood).
+
+To head it off, use days of rest: a decree that slows everyone's work by 10% for three days and makes strain drain about twice as fast. Colonists may ask for it when the colony is worn down.</text>
+      </li>
+      <li>
+        <heading>Feelings</heading>
+        <text>Feelings come from the moods a colonist has right now (as big as the game counts them) and from what they can see: enemies on the map, a fight on its way, a new face, quiet days. The strongest one or two show in the inspector; the Mood tab lists every one they have, how strong, since when and why. They add no mood, because that would count the same thing twice. Instead they nudge: a wish that fits becomes up to half again as likely, moments between colonists go warmer or pricklier, dreams change color, strain builds or drains faster. Each nudge is at its fullest only when the feeling is strong.</text>
+        <table>
+          <li>Feeling | Comes from | Nudges</li>
+          <li>Grief | deaths and losses | a grave for the dead, grief shared, dreams of the dead, some strain</li>
+          <li>Fear | danger here and now | defenses and weapons, nightmares, strain</li>
+          <li>Dread | what's coming: a promised fight, a warband, a lean winter | stores, medicine and defenses, a trickle of strain</li>
+          <li>Anger | insults, fights, unfair decisions, a rival | frictions, wishes for justice</li>
+          <li>Shame | a prisoner executed or sold, a break they regret | fewer warm moments, wishes that make amends</li>
+          <li>Envy | someone else's room or things, the council's favorite | frictions with them, the same things</li>
+          <li>Disgust | raw food, corpses, rot, filth | a clean colony, better food</li>
+          <li>Loneliness | no friends here, a partner away, left out | warm moments, a party, a companion</li>
+          <li>Homesickness | new here, family elsewhere | good food, keepsakes, dreams of home</li>
+          <li>Frustration | refusals, lapsed wishes, work they love turned off | less patience, frictions</li>
+          <li>Despair | long low spirits, loss after loss, a colony losing | slower recovery, a day off likelier</li>
+          <li>Joy | good meals, parties, wishes granted | faster recovery, warm moments, sweet dreams</li>
+          <li>Pride | good work, victories, a seat, a name | faster recovery, art and fine things</li>
+          <li>Love | a partner or children close by | warm moments, sweet dreams, less loneliness</li>
+          <li>Gratitude | rescued, tended, helped, a wish granted | warm moments with the one who helped, trust in the council</li>
+          <li>Hope | spring, a newcomer, healing, strain lifting | faster recovery, less despair</li>
+          <li>Awe | auroras, eclipses, the comet, beautiful things | art, flowers, a shrine, very rarely an inspiration</li>
+          <li>Contentment | quiet days with needs met | faster recovery</li>
+          <li>Curiosity | research, books, visitors, new land | books, lessons, journeys</li>
+          <li>Restlessness | the same work every day, too little fun | time outside, travel, a hunt</li>
+        </table>
+      </li>
+      <li>
+        <heading>The heart's needs</heading>
+        <table>
+          <li>Need | Met by | Makes likelier</li>
+          <li>Belonging | friends here, a partner, family, a circle, good moments | parties, companions, a wedding; goals about friends and family</li>
+          <li>Purpose | work they love, a life goal, a seat, learning | a space for their craft, lessons; goals of mastery</li>
+          <li>Safety | no danger, food, medicine, defenses, their health | defenses, armor, an infirmary; goals of a fighter</li>
+          <li>Freedom | time outdoors, free time, varied work, travel, few restrictions | time outside, travel, a hunt; goals of discovery</li>
+        </table>
+        <after>Each runs from 0 to 100 and is worked out every hour; none gives mood. The one a colonist lacks most (below 45) makes what answers it up to 35% likelier, and when all four are at 60 or more, strain drains 20% faster.</after>
+      </li>
+      <li>
+        <heading>Where to see it</heading>
+        <text>The Mood tab has a Heart section: the strain meter with its band, what built it lately, what would help, every feeling and the four needs. The council's Moods page lists who is worn down. A short line in the inspector reads like "Strain: worn down · restless, proud", and RimHUD can show strain, feelings and needs. Hover the strain mood in the Needs tab to see what built it up.
+
+Settings, on the People page: feelings and strain on or off, the day off, the inspector line, and how quickly strain builds.</text>
+      </li>
+    </sections>
+    <keywords><li>strain</li><li>stress</li><li>feelings</li><li>emotions</li><li>grief</li><li>fear</li><li>burnout</li><li>worn</li><li>breaking</li><li>rest</li><li>belonging</li><li>purpose</li><li>needs</li><li>heart</li></keywords>
+    <seeAlso><li>Council_Alm_C_Moods</li><li>Council_Alm_C_Decrees</li><li>Council_Alm_C_Dreams</li></seeAlso>
+  </ColonyCouncil.AlmanacArticleDef>
+
 </Defs>

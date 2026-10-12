@@ -309,6 +309,8 @@ namespace ColonyCouncil
             if (def.kind == DreamKind.Nightmare) w *= mood < 0.35f ? 2f : mood > 0.75f ? 0.6f : 1f;
             if (def.kind == DreamKind.Sweet) w *= mood > 0.7f ? 1.5f : mood < 0.3f ? 0.6f : 1f;
             if (def.kind == DreamKind.Nightmare && Nerves(p) < 0) w *= 1.5f;
+            // Strain turns dreams to nightmares; feelings color them (Heart/).
+            w *= Heart.DreamFactor(p, def.kind);
             if (seen.TryGetValue(Key(p, def), out int n) && n > 0) w *= 0.6f;
             c.weight = w;
             return c;

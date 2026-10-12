@@ -97,5 +97,70 @@ for (int r = 0; r < 4; r++)
     Check(bx3 - ax2 == -1 && bz3 - az2 == 0 && TemplateMath.TransformFacing(1, true, 0) == 3, "mirrored east vector points west");
 }
 
-Console.WriteLine(failures == 0 ? "All template math tests passed." : failures + " failure(s).");
+// ---------------- Strain (Heart/HeartMath.cs) ----------------
+
+// Bands: steady 0-29, strained 30-54, worn 55-74, breaking 75-100.
+Check(HeartMath.BandFor(0f) == StrainBand.Steady && HeartMath.BandFor(29.9f) == StrainBand.Steady, "steady band");
+Check(HeartMath.BandFor(30f) == StrainBand.Strained && HeartMath.BandFor(54.9f) == StrainBand.Strained, "strained band");
+Check(HeartMath.BandFor(55f) == StrainBand.Worn && HeartMath.BandFor(74.9f) == StrainBand.Worn, "worn band");
+Check(HeartMath.BandFor(75f) == StrainBand.Breaking && HeartMath.BandFor(100f) == StrainBand.Breaking, "breaking band");
+foreach (StrainBand b in Enum.GetValues(typeof(StrainBand)))
+    Check(HeartMath.BandFor(HeartMath.BandStart(b)) == b, $"band start {b}");
+Check(HeartMath.MoodOffset(StrainBand.Steady) == 0f && HeartMath.MoodOffset(StrainBand.Strained) == -3f
+      && HeartMath.MoodOffset(StrainBand.Worn) == -5f && HeartMath.MoodOffset(StrainBand.Breaking) == -8f, "strain mood by band");
+Check(HeartMath.WorkFactor(StrainBand.Strained) == 1f && Math.Abs(HeartMath.WorkFactor(StrainBand.Worn) - 0.95f) < 1e-5f
+      && Math.Abs(HeartMath.WorkFactor(StrainBand.Breaking) - 0.9f) < 1e-5f, "work speed by band");
+Check(HeartMath.Clamp(-5f) == 0f && HeartMath.Clamp(130f) == 100f, "strain stays within 0 to 100");
+
+// Caps: one source can't pass its daily cap, and everything together can't pass 25 a day.
+{
+    float combat = 0f, total = 0f, added = 0f;
+    for (int h = 0; h < 10; h++) added += HeartMath.Add(4f, 1f, 1f, ref combat, HeartMath.SourceCap(StrainSource.Combat), ref total, HeartMath.DailyCap);
+    Check(Math.Abs(added - 12f) < 1e-4f && Math.Abs(combat - 12f) < 1e-4f, $"combat capped at 12 a day, got {added}");
+    float loss = 0f;
+    for (int i = 0; i < 10; i++) HeartMath.Add(8f, 1f, 1f, ref loss, HeartMath.SourceCap(StrainSource.Loss), ref total, HeartMath.DailyCap);
+    Check(Math.Abs(total - HeartMath.DailyCap) < 1e-4f, $"daily cap of 25 across sources, got {total}");
+    float pain = 0f;
+    Check(HeartMath.Add(3f, 1f, 1f, ref pain, HeartMath.SourceCap(StrainSource.Pain), ref total, HeartMath.DailyCap) == 0f, "nothing more once the day is full");
+    float slow = 0f, slowTotal = 0f;
+    float half = 0f;
+    for (int h = 0; h < 10; h++) half += HeartMath.Add(4f, 0.5f, 1f, ref slow, HeartMath.SourceCap(StrainSource.Combat), ref slowTotal, HeartMath.DailyCap);
+    Check(Math.Abs(half - 6f) < 1e-4f, $"at 50% strength the cap halves too, got {half}");
+    float none = 0f, noneTotal = 0f;
+    Check(HeartMath.Add(-3f, 1f, 1f, ref none, 5f, ref noneTotal, 25f) == 0f, "nothing negative goes through Add");
+}
+
+// Traits: iron will < steadfast < none < nervous < volatile; psychopaths take nothing from deaths, the bloodthirsty
+// little from fighting, masochists nothing from pain, undergrounders nothing from the dark.
+{
+    float iron = HeartMath.TraitFactor(StrainSource.Loss, StrainTraits.IronWilled);
+    float steady = HeartMath.TraitFactor(StrainSource.Loss, StrainTraits.Steadfast);
+    float plain = HeartMath.TraitFactor(StrainSource.Loss, StrainTraits.None);
+    float nervous = HeartMath.TraitFactor(StrainSource.Loss, StrainTraits.Nervous);
+    float vol = HeartMath.TraitFactor(StrainSource.Loss, StrainTraits.Volatile);
+    Check(iron < steady && steady < plain && plain < nervous && nervous < vol, $"nerves order {iron} {steady} {plain} {nervous} {vol}");
+    Check(plain == 1f, "no traits, no change");
+    Check(HeartMath.TraitFactor(StrainSource.Loss, StrainTraits.Psychopath) == 0f && HeartMath.TraitFactor(StrainSource.Grief, StrainTraits.Psychopath) == 0f, "psychopaths don't feel losses");
+    Check(HeartMath.TraitFactor(StrainSource.Combat, StrainTraits.Psychopath) == 1f, "psychopaths still feel fighting");
+    Check(HeartMath.TraitFactor(StrainSource.Combat, StrainTraits.Bloodlust) <= 0.35f, "bloodlust takes little from combat");
+    Check(HeartMath.TraitFactor(StrainSource.Pain, StrainTraits.Masochist) == 0f, "masochists take nothing from pain");
+    Check(HeartMath.TraitFactor(StrainSource.Dark, StrainTraits.Undergrounder) == 0f, "undergrounders take nothing from the dark");
+    Check(HeartMath.TraitFactor(StrainSource.Pain, StrainTraits.Wimp) > 1f && HeartMath.TraitFactor(StrainSource.BadSleep, StrainTraits.Ascetic) < 1f, "wimps and ascetics");
+    Check(HeartMath.ReliefTraitFactor(StrainTraits.Sanguine) > 1f && HeartMath.ReliefTraitFactor(StrainTraits.Depressive) < 1f, "relief by natural mood");
+    float zero = 0f, zeroTotal = 0f;
+    Check(HeartMath.Add(5f, 1f, HeartMath.TraitFactor(StrainSource.Loss, StrainTraits.Psychopath), ref zero, 14f, ref zeroTotal, 25f) == 0f, "a psychopath adds nothing from a death");
+}
+
+// Episodes: none below 85, roughly one within a day or two at that level, a little likelier at 100.
+Check(HeartMath.EpisodeChancePerHour(84.9f) == 0f, "no episode below 85");
+{
+    float at85 = HeartMath.EpisodeChancePerHour(85f), at100 = HeartMath.EpisodeChancePerHour(100f);
+    Check(at85 > 0f && at100 > at85 && 1f / at85 <= 48f && 1f / at100 >= 12f, $"episode odds {1f / at85}h to {1f / at100}h");
+}
+
+// Feelings: share and nudges.
+Check(HeartMath.Share(0f) == 0f && HeartMath.Share(HeartMath.FullIntensity) == 1f && HeartMath.Share(100f) == 1f, "feeling share");
+Check(HeartMath.Nudge(1.5f, 0f) == 1f && Math.Abs(HeartMath.Nudge(1.5f, 1f) - 1.5f) < 1e-5f && Math.Abs(HeartMath.Nudge(1.5f, 0.5f) - 1.25f) < 1e-5f, "feeling nudge");
+
+Console.WriteLine(failures == 0 ? "All template math and strain tests passed." : failures + " failure(s).");
 return failures == 0 ? 0 : 1;
