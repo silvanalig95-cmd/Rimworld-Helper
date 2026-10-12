@@ -4,6 +4,7 @@ using RimWorld;
 using UnityEngine;
 using Verse;
 using Verse.AI;
+using Verse.AI.Group;
 
 namespace ColonyCouncil
 {
@@ -29,12 +30,16 @@ namespace ColonyCouncil
         {
             base.MentalStateTick(delta);
             if (pawn == null || pawn.Dead || pawn.MentalState != this) return;
+            if (!pawn.IsHashIntervalTick(250, delta) || !pawn.Spawned || pawn.Map == null) return;
             // A threat ends it: nobody sits in their room while the colony fights.
-            if (pawn.IsHashIntervalTick(250, delta) && pawn.Spawned && GenHostility.AnyHostileActiveThreatToPlayer(pawn.Map, false, false))
+            if (GenHostility.AnyHostileActiveThreatToPlayer(pawn.Map, false, false))
             {
                 interrupted = true;
                 RecoverFromState();
+                return;
             }
+            // So does a wound or an illness that needs a doctor now: the doctor only tends those lying in bed.
+            if (HealthAIUtility.ShouldSeekMedicalRestUrgent(pawn)) RecoverFromState();
         }
 
         public override void PostEnd()
@@ -94,6 +99,10 @@ namespace ColonyCouncil
             if (p.Drafted || p.Downed || p.InMentalState) return "busy";
             if (!RestUtility.Awake(p)) return "asleep";
             if (p.mindState?.mentalStateHandler == null || p.mindState.mentalStateHandler.MentalBreaksBlocked()) return "blocked";
+            // A gathering, a ritual, a caravan forming: it waits until that's over.
+            if (p.GetLord() != null) return "with others";
+            if (HealthAIUtility.ShouldSeekMedicalRest(p)) return "needs care";
+            if (Busy(p)) return "busy";
             if (m.threat || GenHostility.AnyHostileActiveThreatToPlayer(p.Map, false, false)) return "danger";
             if (now - h.lastEpisodeTick < PawnCooldown) return "pawn cooldown";
             var tracker = HeartTracker.Instance;
@@ -107,6 +116,21 @@ namespace ColonyCouncil
             }
             if (able < 2) return "too few";
             return null;
+        }
+
+        /// <summary>
+        /// Doing something that can't just be dropped: an order from the player, caring for, feeding or carrying someone
+        /// (a patient, a baby, a prisoner), fighting a fire. The day off waits an hour or two.
+        /// </summary>
+        private static bool Busy(Pawn p)
+        {
+            if (p.carryTracker?.CarriedThing is Pawn) return true;
+            var job = p.CurJob;
+            if (job == null) return false;
+            if (job.playerForced) return true;
+            var d = job.def;
+            if (d == JobDefOf.BeatFire || d == JobDefOf.ExtinguishSelf || d == JobDefOf.ExtinguishFiresNearby) return true;
+            return (job.targetA.Thing is Pawn a && a != p) || (job.targetB.Thing is Pawn b && b != p);
         }
 
         public static void MaybeStart(Pawn p, PawnHeart h, HeartMapContext m, int now)

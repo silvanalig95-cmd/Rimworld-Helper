@@ -52,6 +52,10 @@
           <ticksBetweenWandersRange>50~250</ticksBetweenWandersRange>
           <locomotionUrgency>Amble</locomotionUrgency>
         </li>
+        <!-- Nowhere to wander (a room they can't reach): they wait where they are rather than going back to work. -->
+        <li Class="JobGiver_Idle">
+          <ticks>120</ticks>
+        </li>
       </subNodes>
     </thinkRoot>
   </ThinkTreeDef>

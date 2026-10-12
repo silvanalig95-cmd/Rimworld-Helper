@@ -51,27 +51,30 @@ namespace ColonyCouncil
     /// </summary>
     public class StatPart_HeartStrain : StatPart
     {
+        // Work speed is asked for every tick a colonist works, so this stays a dictionary lookup: only those with a heart
+        // (the colony's own people, never animals, mechs, visitors or quest lodgers) are touched at all.
         public override void TransformValue(StatRequest req, ref float val)
         {
             if (!Heart.On || !(req.Thing is Pawn p)) return;
             var h = Heart.Of(p);
-            if (h != null) val *= HeartMath.WorkFactor(h.Band);
+            if (h == null) return;
+            val *= HeartMath.WorkFactor(h.Band);
+            if (!p.IsFreeColonist) return;
             float decree = Heart.DecreeWorkFactor(out _);
-            if (decree != 1f && p.IsFreeColonist && !p.IsQuestLodger()) val *= decree;
+            if (decree != 1f) val *= decree;
         }
 
         public override string ExplanationPart(StatRequest req)
         {
             if (!Heart.On || !(req.Thing is Pawn p)) return null;
-            string text = null;
             var h = Heart.Of(p);
-            if (h != null)
-            {
-                float f = HeartMath.WorkFactor(h.Band);
-                if (f != 1f) text = "CC_Heart_StatLine".Translate(HeartView.BandLabel(h.Band), f.ToStringPercent()).Resolve();
-            }
-            float decree = Heart.DecreeWorkFactor(out var which);
-            if (decree != 1f && which != null && p.IsFreeColonist && !p.IsQuestLodger())
+            if (h == null) return null;
+            string text = null;
+            float f = HeartMath.WorkFactor(h.Band);
+            if (f != 1f) text = "CC_Heart_StatLine".Translate(HeartView.BandLabel(h.Band), f.ToStringPercent()).Resolve();
+            DecreeDef which = null;
+            float decree = p.IsFreeColonist ? Heart.DecreeWorkFactor(out which) : 1f;
+            if (decree != 1f && which != null)
             {
                 string line = "CC_Heart_StatDecree".Translate(which.label, decree.ToStringPercent()).Resolve();
                 text = text == null ? line : text + "\n" + line;
