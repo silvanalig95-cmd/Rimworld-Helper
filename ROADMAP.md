@@ -29,6 +29,9 @@ The colony notices what the game does to it. Done so far (Harmony hooks): weddin
 exact nemesis detection, victories (who fell, who stood out), quests won and lost.
 - Weddings, births, breakdowns, victories, caravans coming home with stories, quests won and lost.
 - Journals, the chronicle, friends' reactions and life-goal sparks for each.
+- Done: Rimfolk's context in the game's own letters (the nemesis riding with a raid, what weighed on a colonist who
+  breaks, who someone was when they die); nemeses now arrive with the raid itself.
+- Done: everyday journal entries drawn from what the game says is on a colonist's mind that day.
 
 ## Phase H: World events (first batch done)
 Things that happen to the colony from outside, on Rimfolk's own rhythm, written for every era.

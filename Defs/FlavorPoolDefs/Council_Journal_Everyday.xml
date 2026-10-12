@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- Ordinary days in a colonist's journal (Lives/EverydayJournal.cs): now and then, one thing the game says is on
+       their mind today becomes the evening's entry. First person, short, concrete, uneven; not every entry has a point.
+       {PAWN_...} is the writer; pools for moments with someone else also have {OTHER_...}. Moments that can go
+       either way (Bedroom, Beauty) get the tag good or bad. All the usual tags work too ([winter], [child], [lowtech]...). -->
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Journal_Day_NoTable</defName>
+    <lines>
+      <plain>
+        <li>Ate standing up again. We need a table.</li>
+        <li>Supper on an upturned crate. My back has opinions about it.</li>
+        <li>[winter] Ate my stew on the floor with my coat still on.</li>
+        <li>[child] I ate on the floor and pretended it was a picnic.</li>
+      </plain>
+      <warm><li>Sat on the floor with the others to eat. It was almost nice, all of us in a row against the wall.</li></warm>
+      <blunt><li>No table. Again.</li></blunt>
+      <cheerful><li>Floor picnic again! I'm getting good at balancing the bowl on my knees.</li></cheerful>
+      <gloomy><li>Ate off my knees like a dog. Maybe there'll be a table tomorrow.</li></gloomy>
+      <cold><li>Meal taken without a table. Bad for digestion and worse for morale.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Journal_Day_DeepTalk</defName>
+    <lines>
+      <plain>
+        <li>Talked with {OTHER_nameDef} until the fire burned down. I didn't know half of what {OTHER_pronoun} told me.</li>
+        <li>{OTHER_nameDef} and I got talking about where we grew up. We have more in common than I thought.</li>
+      </plain>
+      <warm><li>I like {OTHER_nameDef} more every time we really talk. Tonight we really talked.</li></warm>
+      <blunt><li>Good talk with {OTHER_nameDef}. Didn't expect that.</li></blunt>
+      <cheerful><li>{OTHER_nameDef} told me the whole story of how {OTHER_pronoun} ended up here! I'd have listened all night.</li></cheerful>
+      <gloomy><li>{OTHER_nameDef} told me about the people {OTHER_pronoun} lost, and I told {OTHER_objective} about mine. Neither of us slept much.</li></gloomy>
+      <cold><li>Long conversation with {OTHER_nameDef}. I understand {OTHER_objective} better now, which is useful.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+</Defs>

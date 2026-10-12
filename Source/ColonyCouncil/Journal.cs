@@ -36,8 +36,8 @@ namespace ColonyCouncil
     }
 
     /// <summary>
-    /// Each colonist's diary: a line in their own voice whenever something happens to them. Kept by ThingID and
-    /// name, so the dead keep their journals.
+    /// Each colonist's diary: a line in their own voice whenever something happens to them, and now and then about
+    /// an ordinary day (<see cref="EverydayJournal"/>). Kept by ThingID and name, so the dead keep their journals.
     /// </summary>
     public class JournalTracker : IExposable
     {
@@ -47,6 +47,8 @@ namespace ColonyCouncil
         public IEnumerable<PawnJournal> All => journals.Where(j => j.entries.Count > 0);
         /// <summary>Grief memories already written about (memory def + other pawn), so each loss is written once.</summary>
         private HashSet<string> griefSeen = new HashSet<string>();
+        /// <summary>Everyday moments already written about: "pawnId|moment" -> tick.</summary>
+        private Dictionary<string, int> everydaySeen = new Dictionary<string, int>();
 
         /// <summary>Journals of people no longer with the colony (dead, gone, walked out).</summary>
         public IEnumerable<PawnJournal> Departed()
@@ -148,6 +150,7 @@ namespace ColonyCouncil
                 }
             }
             if (griefSeen.Count > 500) griefSeen.Clear();
+            EverydayJournal.Daily(this, colonists, everydaySeen);
         }
 
         public void ExposeData()
@@ -155,11 +158,13 @@ namespace ColonyCouncil
             Scribe_Collections.Look(ref journals, "journals", LookMode.Deep);
             Scribe_Collections.Look(ref griefSeen, "griefSeen", LookMode.Value);
             Scribe_Values.Look(ref lastThreatWritten, "lastThreatWritten");
+            Scribe_Collections.Look(ref everydaySeen, "everydaySeen", LookMode.Value, LookMode.Value);
             if (Scribe.mode == LoadSaveMode.PostLoadInit)
             {
                 if (journals == null) journals = new List<PawnJournal>();
                 journals.RemoveAll(j => j == null || j.pawnId == null);
                 if (griefSeen == null) griefSeen = new HashSet<string>();
+                if (everydaySeen == null) everydaySeen = new Dictionary<string, int>();
             }
         }
     }

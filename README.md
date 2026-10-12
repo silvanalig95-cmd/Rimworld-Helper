@@ -261,8 +261,10 @@ everyone, breaking it disappoints them.
 
 ### Journals
 Every colonist keeps a journal in their own voice: wishes granted and ignored, promises, decrees, raids, losses,
-names earned, friendships made and lost, lessons learned. Click a name in the Wishes tab's trust list to read it.
-The journals of the dead and departed are kept.
+names earned, friendships made and lost, lessons learned. Ordinary days get written down too: now and then, something
+that's really on their mind that day (a meal eaten off their knees, a cold night, a long talk with a friend, a
+corpse nobody has buried yet) becomes the evening's entry. Read them on the Journals page under History, or from a
+colonist's page in the Roster. The journals of the dead and departed are kept.
 
 ### Ambition: council meetings
 About once a quadrum, in the evening, the council actually **meets**: colonists gather around the dining
@@ -460,13 +462,20 @@ switched off (you chose the scenario for them), but only when your storyteller s
 
 ## The colony notices what happens
 The moment it happens: a **wedding** is written into the chronicle and the journals of the couple and their friends
-(and nudges the colony a little towards tradition); a **birth** is recorded by the parents; colonists **coming
+(and nudges the colony a little toward tradition); a **birth** is recorded by the parents; colonists **coming
 home** from a journey of two days or more are glad to be home, their friends are glad to see them, and long
 journeys make the chronicle; when someone **breaks down** from their mood, their close friends worry in their
 journals, and the worst breaks are remembered. When a real fight at home is over, the colony tells itself the story
 of its **victory**: how many of them fell, who of ours didn't make it, and who brought down the most (a small
 "we held" mood for everyone, a little pride for the hero, and journal lines). **Quests** the colony took on are
 noted in the chronicle when they end, with a small "job well done" when they went well. Nemeses are now caught the instant someone is downed or killed.
+
+Rimfolk also adds a line to some of the game's own letters when it knows something true to add. A raid letter names
+the nemesis riding with it (they now arrive with the raid instead of an hour later), or the colonist sworn to make
+these people pay. A mood break's letter says what was weighing on them from the council's side: a wish that came to
+nothing, a promise broken, a decree they hate, trust long gone. A death letter ends with how long they'd been with
+the colony, the life goal they never reached, and the council seat or name they held. A setting under "Deeper game
+hooks" turns these notes off.
 
 ## Colonists who help themselves
 Now and then a colonist fixes a small thing that hurts their mood, on their own and in their own time:
