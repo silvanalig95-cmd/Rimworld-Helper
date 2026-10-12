@@ -510,12 +510,12 @@ A colonist sinking toward a break line needs help now: a fine meal, recreation, 
 
   <ColonyCouncil.AlmanacArticleDef>
     <defName>Council_Alm_C_WorldEvents</defName>
-    <label>world events</label>
+    <label>Rimfolk events</label>
     <category>Council</category>
     <order>16</order>
     <summary>What comes to the colony from outside: pasts catching up, challenges, old enemies, the land and the sky, visitors with a purpose.</summary>
     <tip>Sooner or later, someone from a colonist's old life comes looking for them.</tip>
-    <description>Every few days something happens out in the world: an old comrade asks for a colonist by name, a traveling champion wants a contest, a comet hangs in the sky, mourners come to a grave. These are Rimfolk's own events, on their own rhythm, so they never take a slot from your storyteller's. Many ask the council what to do; the answer shapes the colony's character, and often a colonist's life. Answer the letters: an unanswered one falls to a default, which is rarely the best choice.</description>
+    <description>Every few days something comes to the colony from outside: an old comrade asks for a colonist by name, a traveling champion wants a contest, a comet hangs in the sky, mourners come to a grave. These are Rimfolk's own events. They join your storyteller's own random events and follow its rhythm, or, if you prefer, come on Rimfolk's own timer (a setting). The bigger happenings across the whole region are world events, with a page of their own. Many ask the council what to do; the answer shapes the colony's character, and often a colonist's life. Answer the letters: an unanswered one falls to a default, which is rarely the best choice.</description>
     <sections>
       <li>
         <heading>Pasts that catch up</heading>
@@ -547,7 +547,7 @@ Keep some silver in the stores. Debts, bounties, tribute and treasure maps all a
       </li>
       <li>
         <heading>Fights</heading>
-        <text>Fights only come if the settings allow world events that can end in a fight, only when the storyteller sends threats at all, never on top of another fight, and at a share of the storyteller's own raid strength. Everyday events (stranded merchants, a tinker, a neighbors' quarrel, an old grave, a family visit, a fortune teller and others) never end in a fight. A band of the people someone swore vengeance on can be drawn into a fight at home, if you want it.</text>
+        <text>Fights only come if the settings allow Rimfolk events that can end in a fight, only when the storyteller sends threats at all, never on top of another fight, and at a share of the storyteller's own raid strength. Everyday events (stranded merchants, a tinker, a neighbors' quarrel, an old grave, a family visit, a fortune teller and others) never end in a fight. A band of the people someone swore vengeance on can be drawn into a fight at home, if you want it.</text>
       </li>
       <li>
         <heading>Events that remember</heading>
@@ -566,7 +566,7 @@ Keep some silver in the stores. Debts, bounties, tribute and treasure maps all a
       </li>
     </sections>
     <keywords><li>event</li><li>incident</li><li>comrade</li><li>family</li><li>bounty</li><li>debt</li><li>champion</li><li>contest</li><li>beast</li><li>tribute</li><li>revenge</li><li>deserter</li><li>comet</li><li>fireflies</li><li>hail</li><li>vermin</li><li>cache</li><li>treasure</li><li>storyteller</li><li>pilgrims</li><li>scholar</li><li>apprentice</li><li>stray</li><li>mourners</li><li>cargo</li><li>scout</li><li>journalist</li><li>doctor</li><li>herbalist</li><li>music</li><li>celebrity</li><li>order</li><li>tinker</li><li>merchants</li><li>quarrel</li><li>grave</li><li>letters</li><li>lovers</li><li>fortune</li><li>warm spell</li><li>buyer</li><li>letter</li><li>market</li><li>fair</li><li>founding</li><li>anniversary</li><li>thaw</li><li>winter</li><li>vengeance</li><li>guest</li></keywords>
-    <seeAlso><li>Council_Alm_C_Strangers</li><li>Council_Alm_C_Ways</li><li>Council_Alm_C_Dilemmas</li></seeAlso>
+    <seeAlso><li>Council_Alm_C_Strangers</li><li>Council_Alm_C_Ways</li><li>Council_Alm_C_Dilemmas</li><li>Council_Alm_C_WorldSituations</li></seeAlso>
   </ColonyCouncil.AlmanacArticleDef>
 
   <ColonyCouncil.AlmanacArticleDef>
@@ -593,7 +593,7 @@ Keep some silver in the stores. Debts, bounties, tribute and treasure maps all a
         <heading>Sworn enemies and hunts</heading>
         <text>A sworn enemy is a nemesis from the first day. If their people hunt the colony, they come a set number of times, a month or so apart. The hunt ends sooner if that enemy dies, joins the colony or is sold off, or if their people make peace or are wiped out.
 
-The "Fights in Rimfolk's scenarios" setting makes those attacks weaker or stronger, and your storyteller's difficulty scales them too. Fights a scenario promises come even with world events that can end in a fight switched off, but only when the storyteller sends threats at all.</text>
+The "Fights in Rimfolk's scenarios" setting makes those attacks weaker or stronger, and your storyteller's difficulty scales them too. Fights a scenario promises come even with Rimfolk events that can end in a fight switched off, but only when the storyteller sends threats at all.</text>
       </li>
       <li>
         <heading>Debts</heading>

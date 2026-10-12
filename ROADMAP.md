@@ -33,8 +33,9 @@ exact nemesis detection, victories (who fell, who stood out), quests won and los
   breaks, who someone was when they die); nemeses now arrive with the raid itself.
 - Done: everyday journal entries drawn from what the game says is on a colonist's mind that day.
 
-## Phase H: World events (first batch done)
-Things that happen to the colony from outside, on Rimfolk's own rhythm, written for every era.
+## Phase H: Rimfolk events (first batch done)
+Things that happen to the colony from outside, drawn by the storyteller (or on Rimfolk's own timer), written for
+every era. Called world events until the world situations below took that name.
 - Done: 31 events in five groups (pasts catching up, challenges, old enemies, the land and sky, visitors with a
   purpose), fights behind their own switch, era-appropriate loot and visitors, ties into nemeses, secrets,
   mentorships, journals, the chronicle and the colony's character.
@@ -60,8 +61,22 @@ Things that happen to the colony from outside, on Rimfolk's own rhythm, written 
   reputation, a secret.
 - Done: gentler stakes (later, smaller and fewer attacks; smaller debts; a softer feud; a strength setting) and
   four small, gentle starts with one or two colonists (The Inheritance, Master and Apprentice, Runaway Hearts,
-  The Lone Hunter), built from two new parts: a bond from the start, and a world event around a set day.
+  The Lone Hunter), built from two new parts: a bond from the start, and an event around a set day.
 - Next: a tribal and a medieval scenario or two, once the parts have been played with.
+
+## Phase H3: World events (first batch done)
+Rare happenings across the whole region that last a while and change what the colony meets, on Rimfolk's own slow
+rhythm (about one every 30 to 60 days), at most two at a time.
+- Done: the framework (a def format most can be written in without code; modifiers on Rimfolk events and, through the
+  deeper game hooks, the game's own; beats, questions and endings that read what the colony did; the region
+  remembering who helped), the "In the world" block on the World page, the chronicle, settings, dev tools.
+- Done: 22 of them. A warlord rises (hunted by the neighbors, a bounty, an ally's march, a truce, waited out, or
+  brought down at home), a plague, a famine, a hard winter, locusts, a flood downriver, a neighbor's leader dying, two
+  claimants for a seat, a war of creeds (Ideology), peace talks, a mercenary company, a bandit road, a new town, a town
+  abandoned, a trading season, a great fair, a pilgrimage, a silver rush, a famous healer, the great herds, strange
+  herds (Alpha Animals) and a season of wild magic (A RimWorld of Magic).
+- Next: more of them, and Rimfolk events written to follow up on how one ended (the warlord's son, the town that
+  grew from the settlers' camp).
 
 ## Phase E: The council at a glance (done)
 - Done: an Overview page (the colony's numbers and how they moved this week, graphs of mood, trust, wealth and

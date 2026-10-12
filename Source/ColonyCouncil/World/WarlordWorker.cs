@@ -119,7 +119,9 @@ namespace ColonyCouncil
                     if (s.sufferers.Contains(slayer)) s.flags.Add("revenge");
                 }
                 if (s.Has("captured")) s.flags.Add("diedCaptive");
-                return "slain";
+                // Died at the colony (in a raid, or in its cells); anywhere else, nobody here saw it.
+                bool here = slayer != null || s.Has("captured") || (x.Corpse?.MapHeld?.IsPlayerHome ?? false);
+                return here ? "slain" : "vanished";
             }
             if (x.Faction == Faction.OfPlayer && !x.IsPrisoner) return "captured";
             if (x.IsPrisonerOfColony)
@@ -315,7 +317,7 @@ namespace ColonyCouncil
             int his = TownsOf(s.ctx.faction, s.ctx.map).Count();
             float p = 0.55f + 0.06f * Mathf.Clamp(theirs - his, -4, 4) + 0.1f * Mathf.Clamp((int)ally.def.techLevel - (int)s.ctx.faction.def.techLevel, -2, 2);
             if (s.Has("gifts")) p += 0.05f;
-            return Mathf.Clamp(p, 0.3f, 0.85f);
+            return Mathf.Clamp(p, 0.3f, 0.8f);
         }
 
         /// <summary>His band comes for the colony (a share of the storyteller's strength), and sometimes he rides with it.</summary>
