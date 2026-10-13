@@ -336,6 +336,7 @@
   <CC_Meeting_NotComing>Not coming: {0}.</CC_Meeting_NotComing>
   <CC_Meeting_HoldNow>Hold it now</CC_Meeting_HoldNow>
   <CC_Meeting_HoldNow_Tip>The chair calls everyone together right away instead of at the set time.</CC_Meeting_HoldNow_Tip>
+  <CC_Meeting_HoldNow_Night>Not at night, with most of the colony asleep. It will be held at the set time.</CC_Meeting_HoldNow_Night>
   <CC_Meeting_PutOffDayButton>Put it off a day</CC_Meeting_PutOffDayButton>
   <CC_Meeting_PutOffDayButton_Tip>Moves the meeting to the same time tomorrow.</CC_Meeting_PutOffDayButton_Tip>
   <CC_MeetWait_Danger>it isn't safe</CC_MeetWait_Danger>

@@ -693,6 +693,10 @@ namespace ColonyCouncil
         public static int NextEvening(Map map, int now, int lead) =>
             now + Mathf.RoundToInt(MeetingMath.HoursToEvening(GenLocalDate.HourFloat(map), lead / (float)GenDate.TicksPerHour) * GenDate.TicksPerHour);
 
+        /// <summary>The local hour at <paramref name="tick"/> falls in the night.</summary>
+        public static bool AtNight(Map map, int now, int tick) =>
+            MeetingMath.IsNight(GenLocalDate.HourFloat(map) + (tick - now) / (float)GenDate.TicksPerHour);
+
         /// <summary>"this evening", "tomorrow evening", "in about 2 hours".</summary>
         public static string When(Map map, int now, int tick)
         {

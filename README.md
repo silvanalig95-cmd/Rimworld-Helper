@@ -292,9 +292,9 @@ colonist's page in the Roster. The journals of the dead and departed are kept.
 ### Ambition: council meetings
 About once a quadrum the council actually **meets**, and it's **announced first**: who called it, where (around
 the dining table, in the rec room, by the campfire or in the open), when (six in the evening as a rule; an hour
-or two from now when you call one from the Ambition page) and what's on the table. The World page's coming-up
-list and the Ambition page count down to it, a reminder comes an hour before, and the Ambition page can hold it
-now or put it off a day.
+or two from now when you call one from the Ambition page, or the next evening if that would be at night) and
+what's on the table. The World page's coming-up list and the Ambition page count down to it, a reminder comes an
+hour before, and the Ambition page can hold it now or put it off a day. No meeting is held at night.
 
 At the set time the chair **calls everyone** with a say. Colonists put down ordinary work and walk over, like
 party guests, and sleepers are woken by someone on the way (they come late and grumble a little). No colonist is

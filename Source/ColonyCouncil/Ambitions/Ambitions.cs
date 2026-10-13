@@ -185,11 +185,7 @@ namespace ColonyCouncil
             if (now < nextMeetingTick) return;
             // Nobody calls a meeting in the middle of the night: it waits for the morning.
             var home = MeetingMap();
-            if (home != null)
-            {
-                int hour = GenLocalDate.HourOfDay(home);
-                if (hour < 6 || hour >= 22) return;
-            }
+            if (home != null && MeetingMath.IsNight(GenLocalDate.HourOfDay(home))) return;
             HoldMeeting(comp, false);
         }
 
@@ -315,9 +311,10 @@ namespace ColonyCouncil
                 Conclude(comp, true);
                 return;
             }
-            // Otherwise it's set for a time and announced: the next evening, or in an hour or two when called from the window.
+            // Otherwise it's set for a time and announced: the next evening, or in an hour or two when called from the window
+            // (the next evening if that would be at night).
             meeting.scheduledTick = calledByPlayer
-                ? now + Rand.RangeInclusive(GenDate.TicksPerHour, GenDate.TicksPerHour * 2)
+                ? now + Mathf.RoundToInt(MeetingMath.HoursToCalledMeeting(GenLocalDate.HourFloat(map), Rand.Range(1f, 2f)) * GenDate.TicksPerHour)
                 : MeetingAttendance.NextEvening(map, now, GenDate.TicksPerHour * 2);
             if (meeting.chair != null && CouncilMeeting.FindVenue(map, meeting.chair, out var spot, out var venue))
             {
@@ -400,24 +397,34 @@ namespace ColonyCouncil
             if (now >= m.scheduledTick) TryStartMeeting(comp);
         }
 
-        /// <summary>From the council window: call everyone together right away.</summary>
+        /// <summary>From the council window: call everyone together right away (not at night, with the colony asleep).</summary>
         public void HoldNow()
         {
-            if (meeting == null || meeting.Started) return;
+            if (!CanHoldNow) return;
             meeting.scheduledTick = Find.TickManager.TicksGame;
             meeting.reminded = true;
         }
 
-        /// <summary>From the council window: the same time tomorrow.</summary>
+        public bool CanHoldNow =>
+            meeting != null && !meeting.Started && meeting.map != null && Find.TickManager.TicksGame < meeting.scheduledTick
+            && !MeetingMath.IsNight(GenLocalDate.HourFloat(meeting.map));
+
+        /// <summary>From the council window: the same time tomorrow (never to the night: then the next evening).</summary>
         public void PutOffADay()
         {
-            if (meeting == null || meeting.Started) return;
+            if (!CanPutOffADay) return;
             int now = Find.TickManager.TicksGame;
-            meeting.scheduledTick = Mathf.Max(meeting.scheduledTick, now) + GenDate.TicksPerDay;
+            int when = Mathf.Max(meeting.scheduledTick, now) + GenDate.TicksPerDay;
+            if (MeetingAttendance.AtNight(meeting.map, now, when)) when = MeetingAttendance.NextEvening(meeting.map, now, GenDate.TicksPerHour * 8);
+            meeting.scheduledTick = when;
             meeting.reminded = false;
             meeting.waitReason = null;
             Messages.Message("CC_Meeting_PutOffDay".Translate(), MessageTypeDefOf.SilentInput, false);
         }
+
+        /// <summary>Not running, and not already a day or more off (so a double click doesn't put it off twice).</summary>
+        public bool CanPutOffADay =>
+            meeting != null && !meeting.Started && meeting.map != null && meeting.scheduledTick - Find.TickManager.TicksGame < GenDate.TicksPerDay;
 
         /// <summary>
         /// At the set time: if it's safe and there's a chair and a place, the chair calls everyone. Each colonist's part
@@ -497,9 +504,9 @@ namespace ColonyCouncil
             m.spot.IsValid && !m.venue.NullOrEmpty() && m.spot.InBounds(m.map) && m.spot.Standable(m.map) && chair != null
             && chair.CanReach(m.spot, Verse.AI.PathEndMode.Touch, Danger.None);
 
-        /// <summary>The evening is gone: four hours past the set time, or late at night.</summary>
+        /// <summary>The evening is gone: four hours past the set time, or night has come (the clock never starts one at night).</summary>
         private static bool EveningOver(CouncilMeeting m, int now) =>
-            now - m.scheduledTick > GenDate.TicksPerHour * 4 || (now - m.scheduledTick > GenDate.TicksPerHour && GenLocalDate.HourInteger(m.map) >= 22);
+            now - m.scheduledTick > GenDate.TicksPerHour * 4 || (now > m.scheduledTick && MeetingMath.IsNight(GenLocalDate.HourFloat(m.map)));
 
         private void MissedEvening(CouncilGameComponent comp, string why)
         {
