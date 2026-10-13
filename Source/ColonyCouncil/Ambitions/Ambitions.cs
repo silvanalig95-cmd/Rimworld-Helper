@@ -381,7 +381,7 @@ namespace ColonyCouncil
                 if (meeting != m || !m.Started) return;
                 MeetingAttendance.WakeUpkeep(m, now);
                 // The gathering vanished without ending (all its people gone): wrap up, or try again another evening.
-                if (meeting == m && m.Lord == null && now - m.startedTick > 300) EndMeeting(false);
+                if (meeting == m && m.Lord == null && now - m.startedTick > 300) EndMeetingSafely(false);
                 return;
             }
             if (m.scheduledTick < 0)
@@ -548,6 +548,24 @@ namespace ColonyCouncil
             var cant = m.invites.Where(i => !i.Expected && i.status != MeetingStatus.Skipped).Select(i => i.pawn.LabelShort).ToList();
             if (cant.Count > 0) text += " " + "CC_Meeting_CantCome".Translate(TextUtil.JoinAnd(cant)).Resolve();
             return text;
+        }
+
+        /// <summary>
+        /// <see cref="EndMeeting"/> from the gathering's own transitions (or when it has vanished): a fault while wrapping
+        /// up is logged once and the meeting dropped, so it can't throw again on every tick or hang "in session".
+        /// </summary>
+        public void EndMeetingSafely(bool finished)
+        {
+            var m = meeting;
+            try
+            {
+                EndMeeting(finished);
+            }
+            catch (System.Exception e)
+            {
+                CouncilLog.ErrorOnce("meeting end", e);
+                if (meeting == m) meeting = null;
+            }
         }
 
         /// <summary>Called by the gathering when it ends: finished, or broken up early (then tried again the next evening).</summary>

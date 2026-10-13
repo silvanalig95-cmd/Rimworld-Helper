@@ -441,13 +441,13 @@ namespace ColonyCouncil
             calledOff.AddTrigger(new Trigger_PawnKilled());
             // Third, where the chair leaving used to be, so saves made mid-meeting load their timer into the right trigger.
             calledOff.AddTrigger(new Trigger_Memo(CallOffMemo));
-            calledOff.AddPreAction(new TransitionAction_Custom(() => CouncilGameComponent.Instance?.ambitions.EndMeeting(false)));
+            calledOff.AddPreAction(new TransitionAction_Custom(() => CouncilGameComponent.Instance?.ambitions.EndMeetingSafely(false)));
             graph.AddTransition(calledOff);
 
             timeoutTrigger = GetTimeoutTrigger();
             var done = new Transition(meet, end);
             done.AddTrigger(timeoutTrigger);
-            done.AddPreAction(new TransitionAction_Custom(() => CouncilGameComponent.Instance?.ambitions.EndMeeting(true)));
+            done.AddPreAction(new TransitionAction_Custom(() => CouncilGameComponent.Instance?.ambitions.EndMeetingSafely(true)));
             graph.AddTransition(done);
             return graph;
         }
@@ -472,16 +472,25 @@ namespace ColonyCouncil
         public const string CallOffMemo = "CouncilMeetingCalledOff";
 
         /// <summary>
-        /// Called off by danger, or when there's nobody left to keep order. A chair who is drafted, ordered elsewhere or
-        /// leaves hands over to someone at the meeting.
+        /// Called off by any danger (vanilla gatherings wait for a serious one; nobody stands about talking with a threat
+        /// on the map), or when there's nobody left to keep order. A chair who is drafted, ordered elsewhere or leaves
+        /// hands over to someone at the meeting. A fault here calls it off rather than recurring every second.
         /// </summary>
         protected override bool ShouldBeCalledOff()
         {
-            var map = Map;
-            if (map == null) return true;
-            if (!GatheringsUtility.AcceptableGameConditionsToContinueGathering(map)) return true;
-            if (ChairCanGoOn(organizer)) return false;
-            return !HandOverChair();
+            try
+            {
+                var map = Map;
+                if (map == null) return true;
+                if (map.dangerWatcher.DangerRating != StoryDanger.None || !GatheringsUtility.AcceptableGameConditionsToContinueGathering(map)) return true;
+                if (ChairCanGoOn(organizer)) return false;
+                return !HandOverChair();
+            }
+            catch (System.Exception e)
+            {
+                CouncilLog.ErrorOnce("meeting call-off check", e);
+                return true;
+            }
         }
 
         private bool ChairCanGoOn(Pawn p) =>
@@ -510,17 +519,28 @@ namespace ColonyCouncil
         /// </summary>
         public override float VoluntaryJoinPriorityFor(Pawn p)
         {
-            var m = CouncilGameComponent.Instance?.ambitions.meeting;
-            if (m != null && m.invites.Count > 0)
+            // Asked by every colonist's think tree whenever they look for something to do: a fault is logged once and
+            // they're judged as for any gathering.
+            try
             {
-                var inv = m.InviteOf(p);
-                if (inv == null ? !MeetingAttendance.IsMember(p) : inv.released || inv.status == MeetingStatus.Skipped || inv.status == MeetingStatus.TooFar)
-                    return 0f;
-                return base.VoluntaryJoinPriorityFor(p);
+                var m = CouncilGameComponent.Instance?.ambitions.meeting;
+                if (m != null && m.invites.Count > 0)
+                {
+                    var inv = m.InviteOf(p);
+                    if (inv == null ? !MeetingAttendance.IsMember(p) : inv.released || inv.status == MeetingStatus.Skipped || inv.status == MeetingStatus.TooFar)
+                        return 0f;
+                }
+                else
+                {
+                    // A meeting begun before attendance was kept: bitter colonists mostly don't bother turning up.
+                    var comp = CouncilGameComponent.Instance;
+                    if (comp != null && comp.standings.LevelOf(p) == TrustLevel.Bitter && (p.thingIDNumber + durationTicks) % 3 != 0) return 0f;
+                }
             }
-            // A meeting begun before attendance was kept: bitter colonists mostly don't bother turning up.
-            var comp = CouncilGameComponent.Instance;
-            if (comp != null && comp.standings.LevelOf(p) == TrustLevel.Bitter && (p.thingIDNumber + durationTicks) % 3 != 0) return 0f;
+            catch (System.Exception e)
+            {
+                CouncilLog.ErrorOnce("meeting join", e);
+            }
             return base.VoluntaryJoinPriorityFor(p);
         }
     }

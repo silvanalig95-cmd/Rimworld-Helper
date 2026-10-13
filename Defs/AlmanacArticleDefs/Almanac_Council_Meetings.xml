@@ -34,7 +34,7 @@ It starts only when it's safe: no danger on the map, no other gathering going on
           <li>Too far off to arrive before 70% of the meeting is over | Isn't called. The letter says where they were and what they were doing.</li>
           <li>Bitter toward the council | Two in three don't bother.</li>
         </table>
-        <after>Arriving after the first third of the meeting counts as late. Drafting someone or giving them an order takes them out of the meeting at once, and it doesn't call them back. A serious threat ends it: before halfway it's tried again the next evening (twice at most), after that it's decided on what was said.</after>
+        <after>Arriving after the first third of the meeting counts as late. Drafting someone or giving them an order takes them out of the meeting at once, and it doesn't call them back. Any danger on the map ends it: before halfway it's tried again the next evening (twice at most), after that it's decided on what was said.</after>
       </li>
       <li>
         <heading>Who's there matters</heading>
