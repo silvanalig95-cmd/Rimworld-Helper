@@ -180,6 +180,21 @@ namespace ColonyCouncil
             }
             // Story chains with a stage on its way (Workers_Chains2.cs).
             foreach (var n in StoryChains.Coming(now)) timed.Add(FromNote(n, "CC_UI_TimeLeft".Translate()));
+            // A council meeting that has been called, with a countdown to when the chair calls everyone together.
+            var meeting = CouncilGameComponent.Instance?.ambitions?.meeting;
+            if (meeting?.map != null && ColonyCouncilMod.Settings.enableAmbitions && (meeting.Started || meeting.scheduledTick >= 0))
+            {
+                timed.Add(new Entry
+                {
+                    title = "CC_World_Meeting".Translate(),
+                    text = meeting.Started ? AmbitionPanel.InSessionText(meeting) : AmbitionTracker.AnnouncementText(meeting, now),
+                    icon = Icons.Council,
+                    color = Calm,
+                    dueTick = meeting.Started ? -1 : Mathf.Max(now, meeting.scheduledTick),
+                    meterLabel = "CC_UI_StartsIn".Translate(),
+                    click = () => MainTabWindow_Council.OpenTab("Ambition")
+                });
+            }
             // The rest in the order they'll happen; those without a date last.
             list.AddRange(timed.OrderBy(e => e.dueTick < 0 ? int.MaxValue : e.dueTick));
             return list;

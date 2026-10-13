@@ -92,11 +92,16 @@ namespace ColonyCouncil
             }
             else
             {
-                // No ambition: when the council meets next, and the button to call it now.
-                string status = UiCache.Get(tracker, -3, () => MeetingStatus(tracker));
+                // No ambition: the meeting that's been called (where, when, a countdown, and buttons to hold it now or put
+                // it off), the one in session, or when the council meets next and the button to call it.
+                var m = tracker.meeting;
+                bool scheduled = m != null && !m.Started && m.scheduledTick >= 0;
+                bool inSession = m != null && m.Started;
+                string status = UiCache.Get(tracker, -3, () => MeetingLine(tracker));
                 Text.Font = GameFont.Small;
                 float th = Text.CalcHeight(status, width - 40f);
-                float cardH = 16f + 36f + 8f + th + 10f + 32f + 14f;
+                float meterH = scheduled || inSession ? UiKit.MeterHeight + 10f : 0f;
+                float cardH = 16f + 36f + 8f + th + 10f + meterH + (inSession ? 0f : 32f) + 14f;
                 UiKit.Card(new Rect(0f, y, width, cardH), null, false, false);
                 UiKit.Icon(new Rect(width / 2f - 18f, y + 16f, 36f, 36f), Icons.Council, new Color(1f, 1f, 1f, 0.3f));
                 Text.Anchor = TextAnchor.UpperCenter;
@@ -104,10 +109,32 @@ namespace ColonyCouncil
                 Widgets.Label(new Rect(20f, y + 60f, width - 40f, th), status);
                 GUI.color = Color.white;
                 Text.Anchor = TextAnchor.UpperLeft;
-                bool can = tracker.CanCallMeetingNow(out string reason);
-                var btn = new Rect(width / 2f - 130f, y + 60f + th + 10f, 260f, 32f);
-                if (Widgets.ButtonText(btn, "CC_Ambition_CallMeeting".Translate(), true, true, can) && can) tracker.HoldMeeting(comp, true);
-                if (!can && reason != null) TooltipHandler.TipRegion(btn, reason);
+                float by = y + 60f + th + 10f;
+                if (scheduled)
+                {
+                    UiKit.Countdown(new Rect(20f, by, width - 40f, UiKit.MeterHeight), m.scheduledTick - now, Mathf.Max(1, m.scheduledTick - m.calledTick), "CC_UI_StartsIn".Translate());
+                    by += meterH;
+                    float bw = Mathf.Min(200f, (width - 50f) / 2f);
+                    var hold = new Rect(width / 2f - bw - 5f, by, bw, 32f);
+                    var off = new Rect(width / 2f + 5f, by, bw, 32f);
+                    bool due = now >= m.scheduledTick;
+                    if (Widgets.ButtonText(hold, "CC_Meeting_HoldNow".Translate(), true, true, !due) && !due) tracker.HoldNow();
+                    TooltipHandler.TipRegion(hold, due && m.waitReason != null ? "CC_Meeting_Waiting".Translate(m.waitReason).ToString() : "CC_Meeting_HoldNow_Tip".Translate().ToString());
+                    if (Widgets.ButtonText(off, "CC_Meeting_PutOffDayButton".Translate())) tracker.PutOffADay();
+                    TooltipHandler.TipRegion(off, "CC_Meeting_PutOffDayButton_Tip".Translate());
+                }
+                else if (inSession)
+                {
+                    int length = LordJob_CouncilMeeting.MeetingTicks;
+                    UiKit.Countdown(new Rect(20f, by, width - 40f, UiKit.MeterHeight), length - (now - m.startedTick), length, "CC_UI_TimeLeft".Translate());
+                }
+                else
+                {
+                    bool can = tracker.CanCallMeetingNow(out string reason);
+                    var btn = new Rect(width / 2f - 130f, by, 260f, 32f);
+                    if (Widgets.ButtonText(btn, "CC_Ambition_CallMeeting".Translate(), true, true, can) && can) tracker.HoldMeeting(comp, true);
+                    if (!can && reason != null) TooltipHandler.TipRegion(btn, reason);
+                }
                 y += cardH + 14f;
             }
 
@@ -135,14 +162,30 @@ namespace ColonyCouncil
             Widgets.EndScrollView();
         }
 
-        private static string MeetingStatus(AmbitionTracker tracker)
+        private static string MeetingLine(AmbitionTracker tracker)
         {
             int ticks = tracker.TicksUntilMeeting;
+            int now = Find.TickManager.TicksGame;
             var m = tracker.meeting;
-            if (m != null && m.Started)
-                return "CC_Meeting_InSession".Translate(m.venue ?? "?", m.attendees.Count, TextUtil.JoinAnd(m.pitches.Select(p => p.def.label).ToList())).Resolve();
+            if (m != null && m.Started) return InSessionText(m);
+            if (m != null && m.map != null && m.scheduledTick >= 0)
+            {
+                string s = AmbitionTracker.AnnouncementText(m, now);
+                if (now >= m.scheduledTick && m.waitReason != null) s += "\n\n" + "CC_Meeting_Waiting".Translate(m.waitReason).Resolve();
+                return s;
+            }
             if (m != null) return "CC_Meeting_Called".Translate(TextUtil.JoinAnd(m.pitches.Select(p => p.def.label).ToList())).Resolve();
             return ticks >= 0 ? "CC_Ambition_NextMeeting".Translate(TextUtil.DaysString(ticks)).Resolve() : "CC_Ambition_SoonMeeting".Translate().Resolve();
+        }
+
+        /// <summary>The meeting under way: where, how many so far, the topics, and who isn't coming and why.</summary>
+        public static string InSessionText(CouncilMeeting m)
+        {
+            string s = "CC_Meeting_InSession".Translate(m.venue ?? "?", m.attendees.Count, TextUtil.JoinAnd(m.pitches.Select(p => p.def.label).ToList())).Resolve();
+            var notComing = m.invites.Where(i => !i.Expected && i.status != MeetingStatus.Skipped && !i.Arrived && i.pawn != null)
+                .Select(i => i.reason.NullOrEmpty() ? i.pawn.LabelShort : i.pawn.LabelShort + " (" + i.reason + ")").ToList();
+            if (notComing.Count > 0) s += "\n" + "CC_Meeting_NotComing".Translate(string.Join(", ", notComing)).Resolve();
+            return s;
         }
     }
 }

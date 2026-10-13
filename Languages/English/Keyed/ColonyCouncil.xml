@@ -314,6 +314,126 @@
   <CC_Meeting_Choose>Commit to: {0} ({1})</CC_Meeting_Choose>
   <CC_Meeting_None>None of these, for now</CC_Meeting_None>
   <CC_Meeting_Unavailable>The colony is already working on another ambition.</CC_Meeting_Unavailable>
+
+  <!-- Meetings announced in advance, and who comes (Ambitions/MeetingAttendance.cs) -->
+  <CC_Meeting_Announced>{CHAIR_nameDef} has called a council meeting {VENUE}, {WHEN}. On the table: {TOPICS}.</CC_Meeting_Announced>
+  <CC_Meeting_AnnouncedNoVenue>{CHAIR_nameDef} has called a council meeting, {WHEN}. On the table: {TOPICS}.</CC_Meeting_AnnouncedNoVenue>
+  <CC_Meeting_AnnouncedNoChair>A council meeting has been called, {WHEN}. On the table: {TOPICS}.</CC_Meeting_AnnouncedNoChair>
+  <CC_Meeting_Reminder>The council meets in about an hour, {VENUE}.</CC_Meeting_Reminder>
+  <CC_Meeting_ReminderNoVenue>The council meets in about an hour.</CC_Meeting_ReminderNoVenue>
+  <CC_Meeting_Summoned>{PAWN_nameDef} calls the council together {VENUE}, and colonists put down their work to come. On the table: {TOPICS}. The decision comes when the meeting ends.</CC_Meeting_Summoned>
+  <CC_Meeting_WakingOne>{0} is being woken for it.</CC_Meeting_WakingOne>
+  <CC_Meeting_WakingMany>{0} are being woken for it.</CC_Meeting_WakingMany>
+  <CC_Meeting_CantCome>{0} can't make it.</CC_Meeting_CantCome>
+  <CC_Meeting_PutOffThin>Only {NAMES} could come to the council meeting, so {CHAIR_nameDef} put it off until {WHEN}.</CC_Meeting_PutOffThin>
+  <CC_Meeting_PutOffEvening>The council couldn't sit down as planned, because {REASON}. It will try again {WHEN}.</CC_Meeting_PutOffEvening>
+  <CC_Meeting_PutOffDay>The council meeting has been put off a day.</CC_Meeting_PutOffDay>
+  <CC_Meeting_BrokenUpAgain>The council meeting broke up early. They'll try again {WHEN}.</CC_Meeting_BrokenUpAgain>
+  <CC_Meeting_Cancelled>The council meeting has been called off, since those who proposed its ideas have died or left.</CC_Meeting_Cancelled>
+  <CC_Meeting_NewChair>{PAWN_nameDef} takes over the chair at the council meeting.</CC_Meeting_NewChair>
+  <CC_Meeting_WokeLog>{PAWN_nameDef} shook {OTHER_nameDef} awake for the council meeting.</CC_Meeting_WokeLog>
+  <CC_Meeting_Waiting>It's time, but the council can't sit down yet, because {0}.</CC_Meeting_Waiting>
+  <CC_Meeting_NotComing>Not coming: {0}.</CC_Meeting_NotComing>
+  <CC_Meeting_HoldNow>Hold it now</CC_Meeting_HoldNow>
+  <CC_Meeting_HoldNow_Tip>The chair calls everyone together right away instead of at the set time.</CC_Meeting_HoldNow_Tip>
+  <CC_Meeting_PutOffDayButton>Put it off a day</CC_Meeting_PutOffDayButton>
+  <CC_Meeting_PutOffDayButton_Tip>Moves the meeting to the same time tomorrow.</CC_Meeting_PutOffDayButton_Tip>
+  <CC_MeetWait_Danger>it isn't safe</CC_MeetWait_Danger>
+  <CC_MeetWait_Gathering>another gathering is going on</CC_MeetWait_Gathering>
+  <CC_MeetWait_Drafted>half the colony is under arms</CC_MeetWait_Drafted>
+  <CC_MeetWait_Bleeding>someone is bleeding and needs tending first</CC_MeetWait_Bleeding>
+  <CC_MeetWait_NoChair>nobody is free to chair it</CC_MeetWait_NoChair>
+  <CC_MeetWait_NoVenue>there's nowhere to meet</CC_MeetWait_NoVenue>
+  <CC_When_Now>any moment now</CC_When_Now>
+  <CC_When_AnHour>in about an hour</CC_When_AnHour>
+  <CC_When_Hours>in about {0} hours</CC_When_Hours>
+  <CC_When_ThisEvening>this evening</CC_When_ThisEvening>
+  <CC_When_LaterToday>later today</CC_When_LaterToday>
+  <CC_When_TomorrowEvening>tomorrow evening</CC_When_TomorrowEvening>
+  <CC_When_Tomorrow>tomorrow</CC_When_Tomorrow>
+  <CC_When_InDays>in {0}</CC_When_InDays>
+
+  <!-- Why someone wasn't at the meeting: read as "Ana was ..." / "Ana and Jo were ..." -->
+  <CC_MeetWhy_Caravan>away with a caravan</CC_MeetWhy_Caravan>
+  <CC_MeetWhy_Outpost>posted at {0}</CC_MeetWhy_Outpost>
+  <CC_MeetWhy_Away>away from the colony</CC_MeetWhy_Away>
+  <CC_MeetWhy_Drafted>drafted</CC_MeetWhy_Drafted>
+  <CC_MeetWhy_Downed>unable to get up</CC_MeetWhy_Downed>
+  <CC_MeetWhy_DayOff>worn out and resting</CC_MeetWhy_DayOff>
+  <CC_MeetWhy_Mental>in the middle of a mental break</CC_MeetWhy_Mental>
+  <CC_MeetWhy_Recovering>in bed, recovering</CC_MeetWhy_Recovering>
+  <CC_MeetWhy_Asleep>asleep</CC_MeetWhy_Asleep>
+  <CC_MeetWhy_AsleepSick>asleep in a sickbed</CC_MeetWhy_AsleepSick>
+  <CC_MeetWhy_AsleepWornOut>asleep, worn out</CC_MeetWhy_AsleepWornOut>
+  <CC_MeetWhy_AsleepExhausted>asleep, too exhausted to wake</CC_MeetWhy_AsleepExhausted>
+  <CC_MeetWhy_Ordered>busy with a job that couldn't wait</CC_MeetWhy_Ordered>
+  <CC_MeetWhy_Restricted>kept to another part of the colony</CC_MeetWhy_Restricted>
+  <CC_MeetWhy_CutOff>cut off from the rest of the colony</CC_MeetWhy_CutOff>
+  <CC_MeetWhy_Tending>tending to {0}</CC_MeetWhy_Tending>
+  <CC_MeetWhy_TendingSelf>tending their own wounds</CC_MeetWhy_TendingSelf>
+  <CC_MeetWhy_Rescue>carrying {0} to bed</CC_MeetWhy_Rescue>
+  <CC_MeetWhy_Surgery>operating on {0}</CC_MeetWhy_Surgery>
+  <CC_MeetWhy_Fire>fighting a fire</CC_MeetWhy_Fire>
+  <CC_MeetWhy_Feeding>feeding {0}</CC_MeetWhy_Feeding>
+  <CC_MeetWhy_Carrying>carrying {0}</CC_MeetWhy_Carrying>
+  <CC_MeetWhy_Caravaning>getting a caravan ready</CC_MeetWhy_Caravaning>
+  <CC_MeetWhy_Ritual>at a ritual</CC_MeetWhy_Ritual>
+  <CC_MeetWhy_Gathering>at another gathering</CC_MeetWhy_Gathering>
+  <CC_MeetWhy_Elsewhere>busy with something that couldn't wait</CC_MeetWhy_Elsewhere>
+  <CC_MeetWho_Someone>someone</CC_MeetWho_Someone>
+  <!-- What someone was doing when called, read as "Kai was cutting wood on the far side of the map" -->
+  <CC_MeetDo_Wood>cutting wood</CC_MeetDo_Wood>
+  <CC_MeetDo_Clearing>clearing brush</CC_MeetDo_Clearing>
+  <CC_MeetDo_Growing>working the fields</CC_MeetDo_Growing>
+  <CC_MeetDo_Mining>mining</CC_MeetDo_Mining>
+  <CC_MeetDo_Construction>building</CC_MeetDo_Construction>
+  <CC_MeetDo_Hunting>hunting</CC_MeetDo_Hunting>
+  <CC_MeetDo_Hauling>hauling</CC_MeetDo_Hauling>
+  <CC_MeetDo_Cleaning>cleaning</CC_MeetDo_Cleaning>
+  <CC_MeetDo_Cooking>cooking</CC_MeetDo_Cooking>
+  <CC_MeetDo_Crafting>at the workbench</CC_MeetDo_Crafting>
+  <CC_MeetDo_Smithing>at the forge</CC_MeetDo_Smithing>
+  <CC_MeetDo_Tailoring>sewing</CC_MeetDo_Tailoring>
+  <CC_MeetDo_Art>working on a sculpture</CC_MeetDo_Art>
+  <CC_MeetDo_Research>researching</CC_MeetDo_Research>
+  <CC_MeetDo_Handling>with the animals</CC_MeetDo_Handling>
+  <CC_MeetDo_Warden>with the prisoners</CC_MeetDo_Warden>
+  <CC_MeetDo_Doctor>seeing to the sick</CC_MeetDo_Doctor>
+  <CC_MeetDo_BasicWorker>doing chores</CC_MeetDo_BasicWorker>
+  <CC_MeetDo_Childcare>looking after the children</CC_MeetDo_Childcare>
+  <CC_MeetDo_Firefighter>fighting a fire</CC_MeetDo_Firefighter>
+  <CC_MeetDo_Working>at work</CC_MeetDo_Working>
+  <CC_MeetDo_Relaxing>taking a break</CC_MeetDo_Relaxing>
+  <CC_MeetDo_Eating>eating</CC_MeetDo_Eating>
+  <CC_MeetDo_Out>out</CC_MeetDo_Out>
+  <CC_MeetWhere_FarSide>on the far side of the map</CC_MeetWhere_FarSide>
+  <CC_MeetWhere_Outside>well outside the colony</CC_MeetWhere_Outside>
+
+  <!-- The letter: who came, and who didn't -->
+  <CC_Meeting_IntroMet>The council met {VENUE}, with {CHAIR} keeping order.</CC_Meeting_IntroMet>
+  <CC_Meeting_IntroSolo>With nobody else to ask, {0} thought it over alone. These ideas stood out:</CC_Meeting_IntroSolo>
+  <CC_Meeting_IntroAlone>For three evenings running, the council couldn't sit down together. In the end {0} looked over the proposals alone:</CC_Meeting_IntroAlone>
+  <CC_Meeting_Proposals>After some argument, these proposals stood out:</CC_Meeting_Proposals>
+  <CC_Meeting_CameNames>{0} came.</CC_Meeting_CameNames>
+  <CC_Meeting_ProposedByAbsent>proposed by {0}, who wasn't there; {1} read it out</CC_Meeting_ProposedByAbsent>
+  <CC_Meeting_ProposedByMissing>proposed by {0}, who wasn't there</CC_Meeting_ProposedByMissing>
+  <CC_Meeting_Att_OnTimeOne>{0} was there from the start.</CC_Meeting_Att_OnTimeOne>
+  <CC_Meeting_Att_OnTimeMany>{0} were there from the start.</CC_Meeting_Att_OnTimeMany>
+  <CC_Meeting_Att_Late>{0} came in late.</CC_Meeting_Att_Late>
+  <CC_Meeting_Att_AndLate>{0}, and {1} came in late.</CC_Meeting_Att_AndLate>
+  <CC_Meeting_Att_Drowsy>{0} came late, still half asleep.</CC_Meeting_Att_Drowsy>
+  <CC_Meeting_Att_Was>{0} was {1}</CC_Meeting_Att_Was>
+  <CC_Meeting_Att_Were>{0} were {1}</CC_Meeting_Att_Were>
+  <CC_Meeting_Att_TooFarOne>{0} was {1}, too far off to get back in time.</CC_Meeting_Att_TooFarOne>
+  <CC_Meeting_Att_TooFarMany>{0} were {1}, too far off to get back in time.</CC_Meeting_Att_TooFarMany>
+  <CC_Meeting_Att_NeverCame>{0} never made it.</CC_Meeting_Att_NeverCame>
+  <CC_Meeting_Att_StayedAtWork>{0} didn't stop working to come.</CC_Meeting_Att_StayedAtWork>
+  <CC_Meeting_Att_Skipped>{0} didn't bother to come.</CC_Meeting_Att_Skipped>
+  <CC_Meeting_Att_Thin>With only {0} of {1} there, it was decided by few.</CC_Meeting_Att_Thin>
+  <CC_Meeting_Att_ThinAgain>It had already been put off once for want of people. With only {0} of {1} there this time, they decided anyway.</CC_Meeting_Att_ThinAgain>
+  <CC_Log_SettledAlone>the council decided without meeting</CC_Log_SettledAlone>
+  <CC_Log_DecidedWithoutMe>their idea was turned down while they were away</CC_Log_DecidedWithoutMe>
+  <CC_World_Meeting>Council meeting</CC_World_Meeting>
   <CC_Venue_Dining>around the dining table</CC_Venue_Dining>
   <CC_Venue_RecRoom>in the rec room</CC_Venue_RecRoom>
   <CC_Venue_Campfire>around the campfire</CC_Venue_Campfire>
@@ -558,6 +678,8 @@
   <CC_Settings_Meetings>Council meetings</CC_Settings_Meetings>
   <CC_Settings_DaysBetweenMeetings>Days between council meetings: {0}</CC_Settings_DaysBetweenMeetings>
   <CC_Settings_AmbitionDeadline>Time allowed for ambitions: {0}</CC_Settings_AmbitionDeadline>
+  <CC_Settings_MeetingsCallFromWork>Meetings call people from their work</CC_Settings_MeetingsCallFromWork>
+  <CC_Settings_MeetingsCallFromWork_Tip>When a council meeting starts, the chair calls everyone over. Colonists put down ordinary work and walk to the meeting, and sleepers are woken (and grumble about it). No colonist is pulled from urgent work such as tending, rescues, surgery, firefighting or feeding, and children, the sick and the worn out are left to sleep.\n\nTurned off, colonists come only when they are free, as they would for a party.\n\nEither way, the letter says who came, who was late and who missed it.</CC_Settings_MeetingsCallFromWork_Tip>
   <CC_Settings_Touches>Personal touches</CC_Settings_Touches>
   <CC_Settings_DaysBetweenTouches>Average days between personal touches: {0}</CC_Settings_DaysBetweenTouches>
   <CC_Settings_Alerts>Alerts</CC_Settings_Alerts>

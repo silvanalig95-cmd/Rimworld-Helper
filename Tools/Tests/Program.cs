@@ -162,5 +162,28 @@ Check(HeartMath.EpisodeChancePerHour(84.9f) == 0f, "no episode below 85");
 Check(HeartMath.Share(0f) == 0f && HeartMath.Share(HeartMath.FullIntensity) == 1f && HeartMath.Share(100f) == 1f, "feeling share");
 Check(HeartMath.Nudge(1.5f, 0f) == 1f && Math.Abs(HeartMath.Nudge(1.5f, 1f) - 1.5f) < 1e-5f && Math.Abs(HeartMath.Nudge(1.5f, 0.5f) - 1.25f) < 1e-5f, "feeling nudge");
 
-Console.WriteLine(failures == 0 ? "All template math and strain tests passed." : failures + " failure(s).");
+// Council meetings: quorum, the evening slot, walking time, late and too late.
+Check(MeetingMath.Quorum(1) == 2 && MeetingMath.Quorum(2) == 2 && MeetingMath.Quorum(3) == 2 && MeetingMath.Quorum(4) == 2
+      && MeetingMath.Quorum(5) == 3 && MeetingMath.Quorum(10) == 5 && MeetingMath.Quorum(11) == 6, "quorum is half, at least two");
+Check(MeetingMath.Thin(2, 5) && !MeetingMath.Thin(3, 5) && !MeetingMath.Thin(2, 4) && MeetingMath.Thin(1, 2), "thin meetings");
+Check(Math.Abs(MeetingMath.HoursToEvening(8f, 2f) - 10f) < 1e-4f, "morning call: six this evening");
+Check(Math.Abs(MeetingMath.HoursToEvening(16f, 2f) - 2f) < 1e-4f, "16:00 call: six this evening");
+Check(Math.Abs(MeetingMath.HoursToEvening(17.5f, 2f) - 2.5f) < 1e-4f, "17:30 call: eight this evening");
+Check(Math.Abs(MeetingMath.HoursToEvening(18.5f, 2f) - 23.5f) < 1e-4f, "18:30 call: six tomorrow evening");
+Check(Math.Abs(MeetingMath.HoursToEvening(18.5f, 8f) - 23.5f) < 1e-4f, "put off from an evening: the next evening");
+Check(Math.Abs(MeetingMath.HoursToEvening(2f, 8f) - 16f) < 1e-4f, "put off after midnight: that evening");
+for (float h = 0f; h < 24f; h += 0.25f)
+{
+    float until = MeetingMath.HoursToEvening(h, 2f), at = (h + until) % 24f;
+    Check(until >= 2f - 1e-4f && until <= 26f && at >= 18f - 1e-4f && at <= 20f + 1e-4f, $"slot from {h}: {until}h later at {at}");
+}
+Check(MeetingMath.EtaTicks(0f, 13f) == MeetingMath.GetGoingTicks, "no walk when already there");
+Check(MeetingMath.EtaTicks(40f, 13f) < MeetingMath.EtaTicks(80f, 13f) && MeetingMath.EtaTicks(40f, 13f) < MeetingMath.EtaTicks(40f, 20f), "farther or slower takes longer");
+// A normal walker (13 ticks a cell) from 60 cells off is on time, from 120 late, from 200 too late to be called.
+Check(!MeetingMath.Late(MeetingMath.EtaTicks(60f, 13f)) && !MeetingMath.TooFar(MeetingMath.EtaTicks(60f, 13f)), "60 cells: on time");
+Check(MeetingMath.Late(MeetingMath.EtaTicks(120f, 13f)) && !MeetingMath.TooFar(MeetingMath.EtaTicks(120f, 13f)), "120 cells: late");
+Check(MeetingMath.TooFar(MeetingMath.EtaTicks(200f, 13f)), "200 cells: too far");
+Check(!MeetingMath.Late(1500) && MeetingMath.Late(1501) && !MeetingMath.TooFar(3150) && MeetingMath.TooFar(3151), "late after a third, too far after 70%");
+
+Console.WriteLine(failures == 0 ? "All template math, strain and meeting tests passed." : failures + " failure(s).");
 return failures == 0 ? 0 : 1;

@@ -14,6 +14,10 @@ namespace ColonyCouncil
         public static ThoughtDef Council_AmbitionFailed;
         public static ThoughtDef Council_PersonalTouchDone;
         public static ThoughtDef Council_HeardAtMeeting;
+        public static ThoughtDef Council_HeardAtMeetingLate;
+        public static ThoughtDef Council_MissedMeeting;
+        public static ThoughtDef Council_DecidedWithoutMe;
+        public static ThoughtDef Council_WokenForMeeting;
         public static ThoughtDef Council_Refused;
         public static ThoughtDef Council_TookMatters;
         public static ThoughtDef Council_PromiseKept;

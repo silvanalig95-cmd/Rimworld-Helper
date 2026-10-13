@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- Council meetings: how they're called, who comes, and what missing one costs (Ambitions/MeetingAttendance.cs). -->
+
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Council_Alm_C_Meetings</defName>
+    <label>council meetings</label>
+    <category>Council</category>
+    <order>19</order>
+    <summary>How a council meeting is called, who gets there, and what it costs to miss one.</summary>
+    <tip>Send the caravan out after the meeting, not the day before.</tip>
+    <description>About once a quadrum (every 15 days by default) the council meets to choose the colony's next ambition. The meeting is announced first: who called it, where, when, and what's on the table. Three colonists pitch an ambition each, the others argue it out, and everyone who came votes. The letter at the end shows the votes and who was there, and you make the decision.
+
+Who manages to get there matters. Only those present vote, an idea whose proposer is missing gets less support, and a meeting with too few people is put off.</description>
+    <sections>
+      <li>
+        <heading>When it's held</heading>
+        <text>The council sets a meeting for six in the evening, or a later full hour up to eight, at least two hours after it's called; called later than that, it waits for the next evening. On its own the council never calls one between 22:00 and 6:00. A meeting you call from the Ambition page is set an hour or two from then. The World page's coming-up list and the Ambition page count down to it, a reminder comes an hour before, and the Ambition page can hold it right away or put it off a day.
+
+It starts only when it's safe: no danger on the map, no other gathering going on, fewer than half the colony drafted, nobody bleeding, a colonist free to chair it and somewhere to meet. If it can't start that evening, it's tried the next. After three evenings without a calm moment, the chair looks the proposals over alone, and every other colonist trusts the council a little less.</text>
+      </li>
+      <li>
+        <heading>Who comes</heading>
+        <text>At the set time the chair calls everyone with a say, and where each colonist stands is decided once:</text>
+        <table>
+          <li>Situation | What happens</li>
+          <li>Free, or at ordinary work | Puts the work down and walks over. With the setting "Meetings call people from their work" off, comes only once free, as for a party.</li>
+          <li>Asleep in their own bed | Someone on the way to the meeting wakes them. They come late and feel it: -1 to -2 mood for half a day, less for those devoted to the council, more for the bitter, the bone-tired and night owls.</li>
+          <li>Asleep and a child, sick, worn out or exhausted | Left to sleep.</li>
+          <li>Tending, rescuing, operating, fighting a fire, feeding or carrying someone, at a ritual or forming a caravan | Finishes first, and may still come late.</li>
+          <li>Drafted, downed or in a mental break | Can't come for now.</li>
+          <li>Away with a caravan, at an outpost or on another map | Misses it.</li>
+          <li>Too far off to arrive before 70% of the meeting is over | Isn't called. The letter says where they were and what they were doing.</li>
+          <li>Bitter toward the council | Two in three don't bother.</li>
+        </table>
+        <after>Arriving after the first third of the meeting counts as late. Drafting someone or giving them an order takes them out of the meeting at once. A serious threat ends it: before halfway it's tried again the next evening (twice at most), after that it's decided on what was said.</after>
+      </li>
+      <li>
+        <heading>Who's there matters</heading>
+        <text>The chair opens, and each proposer makes their case when they get there, late ones too. An idea whose proposer isn't coming, or hasn't come a third of the way in, is read out for them, and it gets less support in the vote. Only those present vote.
+
+With fewer than half of those with a say present (and never fewer than two), the meeting is thin. A thin meeting is put off once to the next evening; if it's thin again it's decided anyway, the letter says it was decided by few, and the trust it earns is halved.</text>
+      </li>
+      <li>
+        <heading>Coming or missing it</heading>
+        <table>
+          <li>Who | Effect</li>
+          <li>Came on time | Most get +2 mood for 2 days; +1 trust</li>
+          <li>Came late | Most get +1 mood for a day and a half; +1 trust</li>
+          <li>Missed it through work or travel | -1 mood for a day</li>
+          <li>Their own idea turned down while they were away | -3 mood for 2 days, -2 trust</li>
+          <li>Stayed away on purpose, or asleep, sick or laid up | Nothing</li>
+        </table>
+        <after>Keep the proposers at home on meeting day if their ideas matter to you. On Gentle stakes the downsides don't apply.</after>
+      </li>
+    </sections>
+    <keywords><li>meeting</li><li>council</li><li>ambition</li><li>vote</li><li>quorum</li><li>attendance</li><li>chair</li></keywords>
+    <seeAlso><li>Council_Alm_C_Trust</li><li>Council_Alm_C_Offices</li><li>Council_Alm_Basics_ReadingTheCouncil</li></seeAlso>
+  </ColonyCouncil.AlmanacArticleDef>
+
+</Defs>

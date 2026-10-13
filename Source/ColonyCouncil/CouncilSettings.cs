@@ -140,6 +140,8 @@ namespace ColonyCouncil
         // Meetings
         public float daysBetweenMeetings = 15f;
         public float ambitionDeadlineFactor = 1f;
+        /// <summary>At a meeting's start the chair calls everyone from ordinary work and has sleepers woken (off: they come when free).</summary>
+        public bool meetingsCallFromWork = true;
 
         // Personal touches
         public float daysBetweenPersonalTouches = 6f;
@@ -244,6 +246,7 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref speechText, "speechText", true);
             Scribe_Values.Look(ref daysBetweenMeetings, "daysBetweenMeetings", 15f);
             Scribe_Values.Look(ref ambitionDeadlineFactor, "ambitionDeadlineFactor", 1f);
+            Scribe_Values.Look(ref meetingsCallFromWork, "meetingsCallFromWork", true);
             Scribe_Values.Look(ref daysBetweenPersonalTouches, "daysBetweenPersonalTouches", 6f);
             Scribe_Values.Look(ref advisorAlert, "advisorAlert", true);
             Scribe_Values.Look(ref wishAlert, "wishAlert", true);
@@ -403,6 +406,7 @@ namespace ColonyCouncil
             daysBetweenMeetings = Mathf.Round(daysBetweenMeetings);
             ambitionDeadlineFactor = l.SliderLabeled("CC_Settings_AmbitionDeadline".Translate(ambitionDeadlineFactor.ToStringPercent()), ambitionDeadlineFactor, 0.5f, 3f, 0.6f);
             ambitionDeadlineFactor = Mathf.Round(ambitionDeadlineFactor * 20f) / 20f;
+            l.CheckboxLabeled("CC_Settings_MeetingsCallFromWork".Translate(), ref meetingsCallFromWork, "CC_Settings_MeetingsCallFromWork_Tip".Translate());
 
             Header(l, "CC_Settings_Touches".Translate());
             daysBetweenPersonalTouches = l.SliderLabeled("CC_Settings_DaysBetweenTouches".Translate(daysBetweenPersonalTouches.ToString("0")), daysBetweenPersonalTouches, 1f, 30f, 0.6f);
@@ -657,6 +661,7 @@ namespace ColonyCouncil
             speechText = d.speechText;
             daysBetweenMeetings = d.daysBetweenMeetings;
             ambitionDeadlineFactor = d.ambitionDeadlineFactor;
+            meetingsCallFromWork = d.meetingsCallFromWork;
             daysBetweenPersonalTouches = d.daysBetweenPersonalTouches;
             advisorAlert = d.advisorAlert;
             wishAlert = d.wishAlert;
