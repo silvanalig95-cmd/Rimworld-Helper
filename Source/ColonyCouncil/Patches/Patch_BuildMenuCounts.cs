@@ -39,6 +39,13 @@ namespace ColonyCouncil
         private static AccessTools.FieldRef<FloatMenuOption, ThingDef> shownItem;
         private static bool failed;
 
+        /// <summary>
+        /// Each option's own label and the label it was given, so an option a mod keeps and shows again gets today's
+        /// counts instead of a second note after the first.
+        /// </summary>
+        private static readonly System.Runtime.CompilerServices.ConditionalWeakTable<FloatMenuOption, string[]> noted =
+            new System.Runtime.CompilerServices.ConditionalWeakTable<FloatMenuOption, string[]>();
+
         public static void Prefix(List<FloatMenuOption> options)
         {
             var des = Patch_BuildMenuCounts.opening;
@@ -56,7 +63,15 @@ namespace ColonyCouncil
                     if (o == null) continue;
                     var stuff = shownItem(o);
                     if (stuff == null || !stuff.IsStuff || !Avail.StuffAllowed(def, stuff)) continue;
-                    o.Label = o.Label + "    " + MaterialCounts.MenuNote(map, def, stuff);
+                    string label = o.Label ?? "";
+                    if (noted.TryGetValue(o, out var was))
+                    {
+                        if (label == was[1]) label = was[0];
+                        noted.Remove(o);
+                    }
+                    string withNote = label + "    " + MaterialCounts.MenuNote(map, def, stuff);
+                    o.Label = withNote;
+                    noted.Add(o, new[] { label, withNote });
                 }
             }
             catch (Exception e)
