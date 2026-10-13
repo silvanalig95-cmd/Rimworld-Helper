@@ -240,7 +240,7 @@ namespace ColonyCouncil
         {
             if (f == null || !f.MadeFromStuff) return null;
             int units = cells > 0 ? cells : 1;
-            if (floorStuff != null && Avail.StuffAllowed(f, floorStuff)
+            if (floorStuff != null && Avail.StuffAllowed(f, floorStuff) && MaterialPicker.Allowed(floorStuff, MaterialUse.Floor)
                 && (pickedNow.Contains(FloorKey) || MaterialPicker.Affordable(f, floorStuff, units, map)))
                 return floorStuff;
             return MaterialPicker.Pick(f, map, units, MaterialUse.Floor);

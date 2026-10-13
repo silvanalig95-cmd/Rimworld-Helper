@@ -98,18 +98,30 @@ namespace ColonyCouncil
             }
         }
 
-        /// <summary>Everything the room still needs, by material, compared later with the colony's stock.</summary>
-        public Dictionary<ThingDef, int> Cost()
+        private Dictionary<ThingDef, int> cost;
+
+        /// <summary>Everything the room still needs, by material, compared later with the colony's stock. Worked out once per plan (the panel asks every frame).</summary>
+        public Dictionary<ThingDef, int> Cost() => cost ??= CountCost();
+
+        private Dictionary<ThingDef, int> CountCost()
         {
             var cost = new Dictionary<ThingDef, int>();
             void Add(BuildableDef def, ThingDef stuff, int times)
             {
                 if (def == null || times <= 0) return;
                 if (def.MadeFromStuff && stuff == null) return;
-                foreach (var c in def.CostListAdjusted(stuff, false))
+                try
                 {
-                    cost.TryGetValue(c.thingDef, out int have);
-                    cost[c.thingDef] = have + c.count * times;
+                    foreach (var c in def.CostListAdjusted(stuff, false))
+                    {
+                        if (c?.thingDef == null) continue;
+                        cost.TryGetValue(c.thingDef, out int have);
+                        cost[c.thingDef] = have + c.count * times;
+                    }
+                }
+                catch
+                {
+                    // A modded cost list that can't be read: left out of the sum rather than breaking the panel.
                 }
             }
             Add(ThingDefOf.Wall, wallStuff, wallNew.Count + wallWaiting.Count);
@@ -392,7 +404,8 @@ namespace ColonyCouncil
             TemplateMath.RotatedSize(w, h, rot, out int rw, out int rh);
             if (rw - 2 > rect.Width || rh - 2 > rect.Height)
             {
-                reason = "CC_Upgrade_TooSmall".Translate(rect.Width, rect.Height, t.size.x, t.size.z);
+                // Both sizes the way the room lies on the map, so they can be compared.
+                reason = "CC_Upgrade_TooSmall".Translate(rect.Width, rect.Height, rw - 2, rh - 2);
                 return false;
             }
             // Line the template's door up with the room's, then keep the template inside the room.
@@ -439,7 +452,7 @@ namespace ColonyCouncil
                 foreach (var c in room.Cells)
                 {
                     var terrain = c.GetTerrain(map);
-                    if (terrain != plan.floor && !terrain.BuildableByPlayer) bare++;
+                    if (terrain != plan.floor && IsBare(terrain)) bare++;
                 }
             plan.floorCells = bare;
 
@@ -458,6 +471,9 @@ namespace ColonyCouncil
             {
                 foreach (var f in furniture)
                 {
+                    // Walls and doors are the room's own business: a plan's partition or second door would split a room
+                    // that's already laid out.
+                    if (f.def == null || f.def.IsWall || f.def.IsDoor) continue;
                     var pt = Piece(f, t, anchor, cfg.mirror, rot, out var worldRect);
                     pt.rect = worldRect;
                     var match = existing.FirstOrDefault(e => !claimed.Contains(e.thing) && SameKind(e.def, f, t));
@@ -488,6 +504,16 @@ namespace ColonyCouncil
             int blocked = plan.furniture.Count(p => p.state == PieceState.Blocked);
             if (blocked > 0) plan.warnings.Add("CC_Plan_Warn_FurnitureBlocked".Translate(blocked));
             return plan;
+        }
+
+        private static HashSet<TerrainDef> smoothedFloors;
+
+        /// <summary>Ground with no floor on it: not a laid floor, and not stone smoothed into one.</summary>
+        public static bool IsBare(TerrainDef t)
+        {
+            if (t == null || t.BuildableByPlayer) return false;
+            smoothedFloors ??= new HashSet<TerrainDef>(DefDatabase<TerrainDef>.AllDefsListForReading.Where(d => d.smoothedTerrain != null).Select(d => d.smoothedTerrain));
+            return !smoothedFloors.Contains(t);
         }
 
         /// <summary>The room already has this kind of piece: the same building, or one with the same purpose.</summary>
@@ -738,7 +764,7 @@ namespace ColonyCouncil
                 {
                     if (c.GetTerrain(map) == plan.floor) continue;
                     // Upgrading keeps the floors already laid; only bare ground gets the new floor.
-                    if (plan.upgrade && c.GetTerrain(map).BuildableByPlayer) continue;
+                    if (plan.upgrade && !IsBare(c.GetTerrain(map))) continue;
                     if (plan.mineSet.Contains(c) || plan.deconstructCells.Contains(c))
                     {
                         queue?.Add(plan.floor, plan.floorStuff, c, Rot4.North, label);
@@ -761,7 +787,7 @@ namespace ColonyCouncil
             }
 
             string s = plan.upgrade
-                ? "CC_Upgrade_Done".Translate(plan.template.LabelCap.ToString(), furniture, present).Resolve()
+                ? "CC_Upgrade_Done".Translate(plan.template.label ?? "", furniture, present).Resolve()
                 : "CC_Plan_Done".Translate(plan.template.LabelCap.ToString(), walls, furniture, plan.wallStuff?.label ?? "-").Resolve();
             if (mined > 0) s += " " + "CC_Plan_Mined".Translate(mined);
             if (cut > 0) s += " " + "CC_Plan_Cut".Translate(cut);

@@ -20,10 +20,17 @@ namespace ColonyCouncil
         }
 
         private static readonly Dictionary<(Map, ThingDef), Entry> cache = new Dictionary<(Map, ThingDef), Entry>();
+        private static Game cacheGame;
 
         private static Entry Get(Map map, ThingDef def)
         {
             if (map == null || def == null) return default;
+            // Another game was loaded: forget the old one's maps instead of keeping them in memory.
+            if (cacheGame != Current.Game)
+            {
+                cache.Clear();
+                cacheGame = Current.Game;
+            }
             float now = Time.realtimeSinceStartup;
             if (cache.TryGetValue((map, def), out var e) && now - e.time < 1f && now >= e.time) return e;
             if (cache.Count > 600) cache.Clear();
@@ -214,14 +221,40 @@ namespace ColonyCouncil
             if (def == null || !def.MadeFromStuff) return null;
             if (map == null) return GenStuff.DefaultStuffFor(def);
             units = Mathf.Max(1, units);
-            if (reserved != null && reserved.Count > 0) return Choose(def, map, units, use, reserved) ?? Choose(def, map, units, use, null) ?? GenStuff.DefaultStuffFor(def);
+            if (reserved != null && reserved.Count > 0) return Choose(def, map, units, use, reserved) ?? Choose(def, map, units, use, null) ?? Fallback(def, use);
+            if (memoGame != Current.Game)
+            {
+                memo.Clear();
+                memoGame = Current.Game;
+            }
             float now = Time.realtimeSinceStartup;
             var key = (map, def, units, use);
             if (memo.TryGetValue(key, out var m) && now - m.time < 1.5f && now >= m.time) return m.pick;
             if (memo.Count > 400) memo.Clear();
-            var pick = Choose(def, map, units, use, null) ?? GenStuff.DefaultStuffFor(def);
+            var pick = Choose(def, map, units, use, null) ?? Fallback(def, use);
             memo[key] = (now, pick);
             return pick;
+        }
+
+        private static Game memoGame;
+
+        /// <summary>
+        /// Nothing in stock at all: the game's default material if it suits the use, else the first that does. The game's
+        /// own pick throws for a modded building whose stuff categories no loaded material belongs to; then null.
+        /// </summary>
+        private static ThingDef Fallback(BuildableDef def, MaterialUse use)
+        {
+            ThingDef d = null;
+            try
+            {
+                d = GenStuff.DefaultStuffFor(def);
+            }
+            catch
+            {
+                // No material can make it.
+            }
+            if (d != null && Allowed(d, use) && Avail.StuffAllowed(def, d)) return d;
+            return Avail.AllowedStuffs(def).FirstOrDefault(s => Allowed(s, use)) ?? d;
         }
 
         /// <summary>Adds what <paramref name="units"/> of <paramref name="def"/> in <paramref name="stuff"/> cost to <paramref name="reserved"/>.</summary>

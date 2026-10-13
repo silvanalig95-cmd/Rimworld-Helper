@@ -100,7 +100,8 @@ namespace ColonyCouncil
         public override void ExtraOnGUI()
         {
             base.ExtraOnGUI();
-            if (Find.DesignatorManager.SelectedDesignator == des) des.HandleKeys();
+            // Not while typing in a text field (a room's name, a search): Q and E are letters there.
+            if (Find.DesignatorManager.SelectedDesignator == des && GUIUtility.keyboardControl == 0) des.HandleKeys();
         }
 
         public override void DoWindowContents(Rect inRect)
@@ -233,7 +234,7 @@ namespace ColonyCouncil
                         }, d)).ToList();
                         if (opts.Count > 1) Find.WindowStack.Add(new FloatMenu(opts));
                         else Messages.Message("CC_Planner_NoVariants".Translate(), MessageTypeDefOf.RejectInput, false);
-                    }, first.stuff == null ? (System.Action)null : () => StuffMenu(first.def, first.stuff, map, MaterialUse.Furniture, count, x => cfg.PickStuff(groupKey, x)),
+                    }, first.stuff == null ? (System.Action)null : () => StuffMenu(first.def, first.stuff, map, RoomTemplateDef.UseOf(tt), count, x => cfg.PickStuff(groupKey, x)),
                         first.def, Coverage(first.def, first.stuff, count, map));
                 }
             }

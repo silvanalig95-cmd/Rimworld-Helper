@@ -182,8 +182,33 @@ namespace ColonyCouncil
             return result;
         }
 
+        // The last layout, kept for a second: working out which rooms and sizes the colony can plan is too much for every frame.
+        private static List<Block>[] lastColumns;
+        private static float[] lastHeights;
+        private static float lastAt = -999f;
+        private static int lastMapId = -1, lastSaved = -1;
+        private static bool lastOnly;
+
         /// <summary>Groups packed into columns, each group going to the shortest column so far.</summary>
         private static float[] Layout(Map map, out List<Block>[] columns)
+        {
+            float now = Time.realtimeSinceStartup;
+            int mapId = map?.uniqueID ?? -1, saved = CustomRooms.All.Count;
+            if (lastColumns != null && mapId == lastMapId && saved == lastSaved && onlyAvailable == lastOnly && now >= lastAt && now - lastAt < 1f)
+            {
+                columns = lastColumns;
+                return lastHeights;
+            }
+            lastHeights = BuildLayout(map, out lastColumns);
+            lastAt = now;
+            lastMapId = mapId;
+            lastSaved = saved;
+            lastOnly = onlyAvailable;
+            columns = lastColumns;
+            return lastHeights;
+        }
+
+        private static float[] BuildLayout(Map map, out List<Block>[] columns)
         {
             columns = new List<Block>[Columns];
             for (int i = 0; i < Columns; i++) columns[i] = new List<Block>();

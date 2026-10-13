@@ -54,8 +54,17 @@ namespace ColonyCouncil
             {
                 pieces ??= new List<CustomRoomPiece>();
                 pieces.RemoveAll(p => p == null || p.def.NullOrEmpty());
+                // A settings file edited by hand or written by another version: keep the room within what can be planned.
+                if (pieces.Count > MaxPieces) pieces.RemoveRange(MaxPieces, pieces.Count - MaxPieces);
+                width = Mathf.Clamp(width, 1, CustomRooms.MaxSide);
+                height = Mathf.Clamp(height, 1, CustomRooms.MaxSide);
+                doorX = Mathf.Clamp(doorX, 0, width - 1);
+                name = CustomRooms.CleanName(name);
             }
         }
+
+        /// <summary>More furniture than this in one saved room is left out.</summary>
+        public const int MaxPieces = 300;
 
         [Unsaved] private RoomTemplateDef template;
 
@@ -107,13 +116,40 @@ namespace ColonyCouncil
 
         public static List<CustomRoomData> All => ColonyCouncilMod.Settings?.savedRooms ?? new List<CustomRoomData>();
 
+        public const int MaxNameLength = 40;
+
+        /// <summary>
+        /// A name that's safe to save and show: no control characters (they can't be written to the settings file), no
+        /// markup, trimmed and not too long. Null if nothing is left.
+        /// </summary>
+        public static string CleanName(string name)
+        {
+            if (name == null) return null;
+            var sb = new System.Text.StringBuilder(name.Length);
+            foreach (char c in name)
+            {
+                if (char.IsControl(c) || char.IsSurrogate(c) || c == '<' || c == '>' || c >= '\uFFFE') continue;
+                sb.Append(c);
+            }
+            string clean = sb.ToString().Trim();
+            if (clean.Length > MaxNameLength) clean = clean.Substring(0, MaxNameLength).Trim();
+            return clean.Length == 0 ? null : clean;
+        }
+
         public static IEnumerable<RoomTemplateDef> Templates => All.Select(r => r.Template);
 
+        /// <summary>Asks first: a saved room is the player's own work, and the delete button sits next to the others.</summary>
         public static void Delete(CustomRoomData data)
         {
+            if (data == null) return;
+            Find.WindowStack.Add(Dialog_MessageBox.CreateConfirmation("CC_Yours_DeleteConfirm".Translate(data.name ?? "CC_Yours_Unnamed".Translate().ToString()),
+                () => DeleteNow(data), true));
+        }
+
+        private static void DeleteNow(CustomRoomData data)
+        {
             var s = ColonyCouncilMod.Settings;
-            if (s?.savedRooms == null || data == null) return;
-            s.savedRooms.Remove(data);
+            if (s?.savedRooms == null || data == null || !s.savedRooms.Remove(data)) return;
             s.planMaterials?.RemoveAll(e => e != null && e.StartsWith("custom:" + data.id + "::"));
             CouncilSettings.SaveNow();
             Messages.Message("CC_Yours_Deleted".Translate(data.name), MessageTypeDefOf.SilentInput, false);
@@ -199,35 +235,60 @@ namespace ColonyCouncil
             data.floor = floorCounts.Count > 0 ? floorCounts.OrderByDescending(kv => kv.Value).First().Key.defName : null;
 
             var seen = new HashSet<Thing>();
+            // Cells (full template coordinates) already holding a saved piece: two pieces on one cell would push each other around.
+            var taken = new HashSet<(int, int)>();
+            var player = Faction.OfPlayerSilentFail;
             foreach (var thing in room.ContainedAndAdjacentThings)
             {
                 if (!(thing is Building b) || !seen.Add(b) || b.def == null) continue;
                 var def = b.def;
-                if (!def.BuildableByPlayer || def.IsWall || def.IsDoor || def.IsFrame || def.IsBlueprint || b.Faction != Faction.OfPlayer) continue;
+                if (!def.BuildableByPlayer || def.IsWall || def.IsFrame || def.IsBlueprint || player == null || b.Faction != player) continue;
+                // Conduits, pipes, rugs and things hung on a wall share their cell with a wall or a piece of furniture: as a
+                // piece of the plan they'd take the wall's place or push the furniture aside.
+                if (!EdificeUtility.IsEdifice(def)) continue;
                 var occ = b.OccupiedRect();
                 bool inside = rect.Contains(occ.Min) && rect.Contains(occ.Max);
                 bool inWall = !inside && occ.Width == 1 && occ.Height == 1 && full.EdgeCells.Contains(occ.Min);
                 if (!inside && !inWall) continue;
+                // The room's own door is the plan's door; another door in its walls comes along as a door in the wall.
+                if (def.IsDoor && (!inWall || occ.Min == door)) continue;
                 // The footprint in the template's own frame, and the facing.
                 TemplateMath.InverseRotateRect(occ.minX - full.minX, occ.minZ - full.minZ, occ.Width, occ.Height, tw, th, turn,
                     out int fx, out int fz, out int fw, out int fh);
                 int facing = def.rotatable ? TemplateMath.InverseFacing(b.Rotation.AsInt, turn) : 0;
+                if (def.IsDoor)
+                {
+                    // Not in a corner, where nobody could walk through it; facing the way of its wall.
+                    bool westOrEast = fx == 0 || fx == tw - 1;
+                    if (westOrEast && (fz == 0 || fz == th - 1)) continue;
+                    facing = westOrEast ? 1 : 0;
+                }
+                bool clash = false;
+                for (int cx = fx; cx < fx + fw && !clash; cx++)
+                    for (int cz = fz; cz < fz + fh && !clash; cz++)
+                        if (taken.Contains((cx, cz))) clash = true;
+                if (clash) continue;
                 if (!inWall)
                 {
                     fx -= 1;
                     fz -= 1;
                 }
                 if (!TemplateLayout.RootFor(fx, fz, fw, fh, facing, def.size.x, def.size.z, out int rx, out int rz)) continue;
+                int off = inWall ? 0 : 1;
+                for (int cx = fx; cx < fx + fw; cx++)
+                    for (int cz = fz; cz < fz + fh; cz++)
+                        taken.Add((cx + off, cz + off));
                 data.pieces.Add(new CustomRoomPiece
                 {
                     def = def.defName,
                     stuff = b.Stuff?.defName,
-                    role = RoleOf(def),
+                    role = def.IsDoor ? "door" : RoleOf(def),
                     x = rx,
                     z = rz,
                     rot = facing,
                     inWall = inWall
                 });
+                if (data.pieces.Count >= CustomRoomData.MaxPieces) break;
             }
             return data;
         }
@@ -299,7 +360,7 @@ namespace ColonyCouncil
         {
             var room = c.GetRoom(Map);
             if (!CustomRooms.CanSave(room).Accepted) return;
-            string suggested = room.Role != null && room.Role != RoomRoleDefOf.None ? room.Role.label : "CC_Yours_Unnamed".Translate().ToString();
+            string suggested = CustomRooms.CleanName(room.Role != null && room.Role != RoomRoleDefOf.None ? room.Role.label : null) ?? "CC_Yours_Unnamed".Translate().ToString();
             // Read the room now: by the time the name is typed, the map may have changed under it.
             CustomRoomData data;
             try
@@ -364,7 +425,7 @@ namespace ColonyCouncil
             Text.Font = GameFont.Small;
             Widgets.Label(new Rect(0f, 0f, inRect.width, 28f), "CC_Yours_NamePrompt".Translate());
             GUI.SetNextControlName("RimfolkRoomName");
-            name = Widgets.TextField(new Rect(0f, 32f, inRect.width, 32f), name, 40);
+            name = Widgets.TextField(new Rect(0f, 32f, inRect.width, 32f), name, CustomRooms.MaxNameLength);
             if (!focused)
             {
                 UI.FocusControl("RimfolkRoomName", this);
@@ -381,7 +442,7 @@ namespace ColonyCouncil
         private void Accept()
         {
             if (finished) return;
-            string n = name?.Trim();
+            string n = CustomRooms.CleanName(name);
             if (n.NullOrEmpty())
             {
                 Messages.Message("CC_Yours_NeedName".Translate(), MessageTypeDefOf.RejectInput, false);
