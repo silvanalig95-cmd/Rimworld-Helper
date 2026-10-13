@@ -83,6 +83,7 @@ Green: enough with some to spare. Amber: only just enough. Red: not enough.</CC_
   <CC_Yours_Saved>Saved "{0}" ({1}x{2}, {3} piece(s) of furniture). Find it under Your rooms.</CC_Yours_Saved>
   <CC_Yours_Deleted>Deleted the room plan "{0}".</CC_Yours_Deleted>
   <CC_Yours_Delete>Delete this plan</CC_Yours_Delete>
+  <CC_Yours_DeleteConfirm>Delete the room plan "{0}"? This can't be undone.</CC_Yours_DeleteConfirm>
   <CC_Yours_NotARoom>Pick an enclosed room, not the outdoors or a doorway.</CC_Yours_NotARoom>
   <CC_Yours_NotRectangle>Only rectangular rooms can be saved.</CC_Yours_NotRectangle>
   <CC_Yours_TooBig>Rooms up to {0} cells on a side can be saved.</CC_Yours_TooBig>
