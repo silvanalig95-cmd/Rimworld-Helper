@@ -182,7 +182,15 @@ namespace ColonyCouncil
                 if (meeting.map == null || !Find.Maps.Contains(meeting.map)) meeting = null;
                 return;
             }
-            if (now >= nextMeetingTick) HoldMeeting(comp, false);
+            if (now < nextMeetingTick) return;
+            // Nobody calls a meeting in the middle of the night: it waits for the morning.
+            var home = MeetingMap();
+            if (home != null)
+            {
+                int hour = GenLocalDate.HourOfDay(home);
+                if (hour < 6 || hour >= 22) return;
+            }
+            HoldMeeting(comp, false);
         }
 
         /// <summary>The proposer cheers at halfway and frets when time is short and the work isn't.</summary>
@@ -360,6 +368,12 @@ namespace ColonyCouncil
                 return;
             }
             int now = Find.TickManager.TicksGame;
+            // An ambition was chosen meanwhile (from an older letter): there's nothing left to meet about.
+            if (active != null && !m.Started)
+            {
+                meeting = null;
+                return;
+            }
             if (m.Started)
             {
                 MeetingAttendance.ReleaseCalledAway(m);

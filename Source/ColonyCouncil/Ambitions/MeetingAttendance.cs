@@ -499,14 +499,18 @@ namespace ColonyCouncil
                 }
                 if (p.Awake())
                 {
+                    // Up on their own before anyone got there: they just come, like anyone else.
                     inv.wakeDone = true;
+                    inv.status = MeetingStatus.Coming;
+                    inv.waker = null;
                     var lord = m.Lord;
                     if (lord != null && p.GetLord() == null && lord.CanAddPawn(p)) lord.AddPawn(p);
                     continue;
                 }
                 var w = inv.waker;
                 bool onIt = w != null && w.Spawned && jobDef != null && w.CurJobDef == jobDef && w.CurJob.targetA.Thing == p;
-                if (!onIt || now - m.startedTick > WakeFallbackTicks) Wake(m, inv, onIt ? w : null);
+                // The waker gave up, or is taking too long: someone calls them from the doorway instead.
+                if (!onIt || now - m.startedTick > WakeFallbackTicks) Wake(m, inv, null);
             }
         }
 

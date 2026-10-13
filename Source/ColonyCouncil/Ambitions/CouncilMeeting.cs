@@ -255,7 +255,7 @@ namespace ColonyCouncil
         public void Talk(Lord lord)
         {
             int now = Find.TickManager.TicksGame;
-            var here = lord.ownedPawns.Where(p => p.Spawned && !p.Downed && p.IsColonist && !p.IsQuestLodger() && p.Map == map && GatheringsUtility.InGatheringArea(p.Position, spot, map)).ToList();
+            var here = lord.ownedPawns.Where(p => p.Spawned && !p.Downed && p.Map == map && MeetingAttendance.IsMember(p) && GatheringsUtility.InGatheringArea(p.Position, spot, map)).ToList();
             foreach (var p in here) Arrive(p, now);
             if (here.Count == 0) return;
             talkCount++;
@@ -331,7 +331,6 @@ namespace ColonyCouncil
             if (inv == null)
             {
                 // Not called (a meeting begun in an older version, or someone who joined the colony since): they came anyway.
-                if (!MeetingAttendance.IsMember(p)) return;
                 inv = new MeetingInvite { pawn = p, status = MeetingStatus.Coming };
                 invites.Add(inv);
             }
