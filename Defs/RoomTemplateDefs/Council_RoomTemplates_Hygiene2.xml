@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    More rooms for Dubs Bad Hygiene; they load only with it (MayRequire). The master suite has a partition: wall pieces
+    (role "wall", built in the room's own wall material) and an inner door (role "door", facing east because it stands
+    in a wall running north to south). Toilets, basins and showers face the wall behind them, as Dubs Bad Hygiene
+    draws them.
+  -->
+
+  <ColonyCouncil.RoomTemplateDef MayRequire="dubwise.dubsbadhygiene">
+    <defName>Council_MasterSuite</defName>
+    <label>master suite</label>
+    <description>A large bedroom for a couple with its own bathroom behind an inner door: double bed, bedside tables, a dresser, a toilet, a basin and a bathtub.</description>
+    <purpose>The best room in the colony, for its leader or its finest couple. Nobody has to cross the base at night.</purpose>
+    <order>12</order>
+    <group>Living</group>
+    <size>(7,6)</size>
+    <iconDefs><li>DoubleBed</li><li>BathtubStuff</li></iconDefs>
+    <floors><li>WoodPlankFloor</li></floors>
+    <lavishFloors><li>CarpetRed</li><li>CarpetDark</li><li>TileMarble</li><li>WoodPlankFloor</li></lavishFloors>
+    <near><li>Bedroom</li></near>
+    <tips>
+      <li>A private bathroom spares the owners from being walked in on, and Dubs Bad Hygiene rates it like a bedroom.</li>
+      <li>The toilet and the basin need pipes from a water tower, and the toilet a sewage outlet. Run them under the floor before you lay it.</li>
+      <li>Royal titles from Knight up want a big, impressive bedroom. This one is a good start.</li>
+    </tips>
+    <things>
+      <li><defs><li>DoubleBed</li><li>BedrollDouble</li></defs><role>doublebed</role><pos>(2,5)</pos><rot>South</rot><optional>false</optional></li>
+      <li><defs><li>EndTable</li></defs><role>endtable</role><pos>(0,5)</pos><rot>South</rot></li>
+      <li><defs><li>EndTable</li></defs><role>endtable</role><pos>(3,5)</pos><rot>South</rot></li>
+      <li><defs><li>Dresser</li></defs><role>dresser</role><pos>(0,0)</pos></li>
+      <li><defs><li>Armchair</li><li>DiningChair</li></defs><role>chair</role><pos>(0,2)</pos><rot>East</rot><tier>decor</tier></li>
+      <li><defs><li>StandingLamp</li><li>TorchLamp</li></defs><role>light</role><pos>(3,2)</pos></li>
+      <li><defs><li>Wall</li></defs><role>wall</role><pos>(4,0)</pos><optional>false</optional></li>
+      <li><defs><li>Door</li></defs><role>door</role><pos>(4,1)</pos><rot>East</rot><optional>false</optional></li>
+      <li><defs><li>Wall</li></defs><role>wall</role><pos>(4,2)</pos><optional>false</optional></li>
+      <li><defs><li>Wall</li></defs><role>wall</role><pos>(4,3)</pos><optional>false</optional></li>
+      <li><defs><li>Wall</li></defs><role>wall</role><pos>(4,4)</pos><optional>false</optional></li>
+      <li><defs><li>Wall</li></defs><role>wall</role><pos>(4,5)</pos><optional>false</optional></li>
+      <li><defs><li>ToiletStuff</li><li>PitLatrine</li></defs><role>toilet</role><pos>(6,5)</pos><optional>false</optional></li>
+      <li><defs><li>BasinStuff</li><li>WashBucket</li></defs><role>wash</role><pos>(6,4)</pos><rot>East</rot></li>
+      <li><defs><li>BathtubStuff</li></defs><role>bath</role><pos>(6,2)</pos></li>
+      <li><defs><li>StandingLamp</li><li>TorchLamp</li></defs><role>light</role><pos>(6,0)</pos></li>
+    </things>
+  </ColonyCouncil.RoomTemplateDef>
+
+  <ColonyCouncil.RoomTemplateDef MayRequire="dubwise.dubsbadhygiene">
+    <defName>Council_Laundry</defName>
+    <label>laundry</label>
+    <description>Two washing machines, a shelf for clothes waiting to be washed, a light and a plant.</description>
+    <purpose>Clean clothes last longer and don't carry the smell of the last raid. Washing undoes the worst of the wear.</purpose>
+    <order>39</order>
+    <group>Work</group>
+    <size>(4,4)</size>
+    <iconDefs><li>WashingMachine</li></iconDefs>
+    <floors><li>TileSandstone</li><li>TileGranite</li><li>TileLimestone</li><li>TileSlate</li><li>WoodPlankFloor</li></floors>
+    <near><li>Storeroom</li><li>Bedroom</li></near>
+    <tips>
+      <li>Washing machines need power and piped water, and the Washing machines research.</li>
+      <li>Put a shelf or a stockpile for dirty clothes right next to the machines, and one for clean clothes near the bedrooms.</li>
+    </tips>
+    <things>
+      <li><defs><li>WashingMachine</li></defs><role>washer</role><pos>(0,3)</pos><optional>false</optional></li>
+      <li><defs><li>WashingMachine</li></defs><role>washer</role><pos>(1,3)</pos></li>
+      <li><defs><li>Shelf</li></defs><role>storage</role><pos>(3,3)</pos><rot>South</rot></li>
+      <li><defs><li>StandingLamp</li><li>TorchLamp</li></defs><role>light</role><pos>(3,0)</pos></li>
+      <li><defs><li>PlantPot</li></defs><role>plantpot</role><pos>(0,0)</pos></li>
+    </things>
+  </ColonyCouncil.RoomTemplateDef>
+
+</Defs>

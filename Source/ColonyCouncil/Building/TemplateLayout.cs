@@ -239,7 +239,8 @@ namespace ColonyCouncil
                 p.dropped = false;
                 p.turned = false;
                 p.note = null;
-                int wanted = p.rotatable ? TemplateMath.Norm(p.rot) : 0;
+                // A door keeps the facing of the wall it stands in; anything else the game can't turn faces north.
+                int wanted = p.rotatable || p.isDoor ? TemplateMath.Norm(p.rot) : 0;
                 if (p.inWall)
                 {
                     OccupiedRect(p.x, p.z, wanted, p.sizeX, p.sizeZ, out p.minX, out p.minZ, out p.w, out p.h);

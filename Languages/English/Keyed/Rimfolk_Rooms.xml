@@ -17,6 +17,29 @@
   <CC_Template_ForLowTech>This is a room for a tribal or medieval colony. Set the colony's era in the mod settings to plan it anyway.</CC_Template_ForLowTech>
   <CC_Template_ForIndustrial>This room needs an industrial colony.</CC_Template_ForIndustrial>
 
+  <!-- What a room is missing ("The colony can't build {0} yet.") -->
+  <CC_Role_altar>altars</CC_Role_altar>
+  <CC_Role_lectern>lecterns</CC_Role_lectern>
+  <CC_Role_pew>pews</CC_Role_pew>
+  <CC_Role_drape>drapes</CC_Role_drape>
+  <CC_Role_column>columns</CC_Role_column>
+  <CC_Role_pedestal>pedestals</CC_Role_pedestal>
+  <CC_Role_rug>rugs</CC_Role_rug>
+  <CC_Role_gestator>mech gestators</CC_Role_gestator>
+  <CC_Role_recharger>mech rechargers</CC_Role_recharger>
+  <CC_Role_geneassembler>gene assemblers</CC_Role_geneassembler>
+  <CC_Role_genebank>gene banks</CC_Role_genebank>
+  <CC_Role_holding>holding platforms</CC_Role_holding>
+  <CC_Role_inhibitor>inhibitors</CC_Role_inhibitor>
+  <CC_Role_wall>walls</CC_Role_wall>
+  <CC_Role_door>doors</CC_Role_door>
+  <CC_Role_washer>washing machines</CC_Role_washer>
+  <CC_Role_bookcase>bookcases</CC_Role_bookcase>
+  <CC_Role_stonecutter>stonecutter's tables</CC_Role_stonecutter>
+  <CC_Role_toolcabinet>tool cabinets</CC_Role_toolcabinet>
+  <CC_Role_fabrication>fabrication benches</CC_Role_fabrication>
+  <CC_Role_campfire>campfires</CC_Role_campfire>
+
   <!-- Materials -->
   <CC_Mat_StoredAndLying>{0} (+{1} lying around)</CC_Mat_StoredAndLying>
   <CC_Mat_EnoughFor>, enough for {0}</CC_Mat_EnoughFor>

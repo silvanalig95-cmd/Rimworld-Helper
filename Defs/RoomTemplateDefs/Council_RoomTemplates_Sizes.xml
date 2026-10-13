@@ -1,0 +1,395 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    More sizes of the rooms in Council_RoomTemplates.xml and Council_RoomTemplates2.xml. Council_RoomTypes.xml groups
+    them, so the planner offers "cozy, standard, roomy" for a bedroom or "for 4, for 8, for 12" for a dining room.
+    Same rules as the other template files. Facings: a bed's head is its position (it extends the way it faces), so a
+    bed against the north wall faces south; workbenches face the wall with the worker behind them; shelves, dressers
+    and bedside tables face into the room; chairs face their table.
+  -->
+
+  <!-- ==================== Living ==================== -->
+
+  <ColonyCouncil.RoomTemplateDef>
+    <defName>Council_Bedroom_Roomy</defName>
+    <label>roomy bedroom</label>
+    <description>A large bedroom for one: bed, bedside table, dresser, an armchair, a light and plants. Space alone makes it impressive.</description>
+    <purpose>For colonists who have earned more than a bed and a lamp, and for anyone the colony wants to keep happy.</purpose>
+    <order>10</order>
+    <group>Living</group>
+    <size>(6,6)</size>
+    <iconDefs><li>Bed</li></iconDefs>
+    <floors><li>WoodPlankFloor</li></floors>
+    <lavishFloors><li>CarpetRed</li><li>CarpetGreen</li><li>CarpetBlue</li><li>TileMarble</li><li>WoodPlankFloor</li></lavishFloors>
+    <tips>
+      <li>A 6x6 room is "spacious" even with a bed, a dresser and an armchair in it. Space counts toward impressiveness.</li>
+      <li>Greedy and jealous colonists care most about their bedroom. Give them the big one.</li>
+      <li>A dresser and a bedside table next to the bed make sleep a little more restful.</li>
+    </tips>
+    <things>
+      <li><defs><li>Bed</li><li>Bedroll</li></defs><role>bed</role><pos>(0,5)</pos><rot>South</rot><optional>false</optional></li>
+      <li><defs><li>EndTable</li></defs><role>endtable</role><pos>(1,5)</pos><rot>South</rot></li>
+      <li><defs><li>Dresser</li></defs><role>dresser</role><pos>(5,5)</pos><rot>South</rot></li>
+      <li><defs><li>Armchair</li><li>DiningChair</li></defs><role>chair</role><pos>(5,2)</pos><rot>West</rot><tier>decor</tier></li>
+      <li><defs><li>StandingLamp</li><li>TorchLamp</li></defs><role>light</role><pos>(5,0)</pos></li>
+      <li><defs><li>PlantPot</li></defs><role>plantpot</role><pos>(0,0)</pos></li>
+      <li><defs><li>PlantPot</li></defs><role>plantpot</role><pos>(3,5)</pos><tier>lavish</tier></li>
+    </things>
+  </ColonyCouncil.RoomTemplateDef>
+
+  <ColonyCouncil.RoomTemplateDef>
+    <defName>Council_Bedroom_Hut</defName>
+    <label>sleeping hut</label>
+    <description>A small sleeping room in the tribal way: a bedroll, a torch and a straw floor. Quick to raise from wood.</description>
+    <purpose>A room of one's own before the colony has much of anything.</purpose>
+    <order>10</order>
+    <group>Living</group>
+    <era>lowtech</era>
+    <size>(4,4)</size>
+    <iconDefs><li>Bedroll</li><li>Bed</li></iconDefs>
+    <floors><li>StrawMatting</li></floors>
+    <tips>
+      <li>A private hut beats a shared tent. Even a small room spares a colonist the barracks penalty.</li>
+      <li>Keep torches a few cells from the bed in wooden huts, and keep the door shut in winter.</li>
+      <li>A campfire nearby, not inside, warms a cluster of huts without filling them with smoke.</li>
+    </tips>
+    <things>
+      <li><defs><li>Bedroll</li><li>Bed</li></defs><role>bed</role><pos>(0,3)</pos><rot>South</rot><optional>false</optional></li>
+      <li><defs><li>EndTable</li></defs><role>endtable</role><pos>(1,3)</pos><rot>South</rot></li>
+      <li><defs><li>TorchLamp</li><li>StandingLamp</li></defs><role>light</role><pos>(3,3)</pos></li>
+      <li><defs><li>PlantPot</li></defs><role>plantpot</role><pos>(3,0)</pos></li>
+    </things>
+  </ColonyCouncil.RoomTemplateDef>
+
+  <ColonyCouncil.RoomTemplateDef>
+    <defName>Council_CoupleBedroom_Roomy</defName>
+    <label>roomy couple's bedroom</label>
+    <description>A large bedroom for two: a double bed with a table on each side, a dresser, an armchair, a light and plants.</description>
+    <purpose>For a couple the colony wants to keep: spouses, or two colonists whose moods hold others up.</purpose>
+    <order>11</order>
+    <group>Living</group>
+    <size>(6,6)</size>
+    <iconDefs><li>DoubleBed</li></iconDefs>
+    <floors><li>WoodPlankFloor</li></floors>
+    <tips>
+      <li>Both partners get the bedroom's mood every morning, so a fine shared room counts twice.</li>
+      <li>A bedside table on each side means neither partner misses out.</li>
+    </tips>
+    <things>
+      <li><defs><li>DoubleBed</li><li>BedrollDouble</li></defs><role>doublebed</role><pos>(3,5)</pos><rot>South</rot><optional>false</optional></li>
+      <li><defs><li>EndTable</li></defs><role>endtable</role><pos>(1,5)</pos><rot>South</rot></li>
+      <li><defs><li>EndTable</li></defs><role>endtable</role><pos>(4,5)</pos><rot>South</rot></li>
+      <li><defs><li>Dresser</li></defs><role>dresser</role><pos>(0,0)</pos></li>
+      <li><defs><li>Armchair</li><li>DiningChair</li></defs><role>chair</role><pos>(5,2)</pos><rot>West</rot><tier>decor</tier></li>
+      <li><defs><li>StandingLamp</li><li>TorchLamp</li></defs><role>light</role><pos>(5,0)</pos></li>
+      <li><defs><li>PlantPot</li></defs><role>plantpot</role><pos>(0,5)</pos></li>
+      <li><defs><li>PlantPot</li></defs><role>plantpot</role><pos>(5,5)</pos><tier>lavish</tier></li>
+    </things>
+  </ColonyCouncil.RoomTemplateDef>
+
+  <ColonyCouncil.RoomTemplateDef>
+    <defName>Council_Barracks_Small</defName>
+    <label>small barracks</label>
+    <description>Shared sleeping quarters for four, with a light. A first shelter that doesn't take long to build.</description>
+    <purpose>A roof and a bed for the first few colonists, until there's time for bedrooms.</purpose>
+    <order>8</order>
+    <group>Living</group>
+    <size>(5,5)</size>
+    <floors><li>WoodPlankFloor</li></floors>
+    <near><li>DiningRoom</li></near>
+    <tips>
+      <li>Four to a room is easier on sleep than eight: fewer people get up in the night.</li>
+      <li>Plan the bedrooms as soon as the food is safe. The shared-bedroom penalty grows as the colony gets richer.</li>
+    </tips>
+    <things>
+      <li><defs><li>Bed</li><li>Bedroll</li></defs><role>bed</role><pos>(0,4)</pos><rot>South</rot><optional>false</optional></li>
+      <li><defs><li>Bed</li><li>Bedroll</li></defs><role>bed</role><pos>(1,4)</pos><rot>South</rot></li>
+      <li><defs><li>Bed</li><li>Bedroll</li></defs><role>bed</role><pos>(3,4)</pos><rot>South</rot></li>
+      <li><defs><li>Bed</li><li>Bedroll</li></defs><role>bed</role><pos>(4,4)</pos><rot>South</rot></li>
+      <li><defs><li>StandingLamp</li><li>TorchLamp</li></defs><role>light</role><pos>(2,4)</pos></li>
+      <li><defs><li>PlantPot</li></defs><role>plantpot</role><pos>(0,0)</pos></li>
+    </things>
+  </ColonyCouncil.RoomTemplateDef>
+
+  <!-- ==================== Food ==================== -->
+
+  <ColonyCouncil.RoomTemplateDef>
+    <defName>Council_DiningRoom_Small</defName>
+    <label>small dining room</label>
+    <description>A table for four with chairs, a light and a plant. Enough for a young colony.</description>
+    <purpose>Somewhere to eat that isn't the floor. Every meal at a table spares the "ate without table" penalty.</purpose>
+    <order>20</order>
+    <group>Food</group>
+    <size>(4,4)</size>
+    <iconDefs><li>Table2x2c</li></iconDefs>
+    <floors><li>WoodPlankFloor</li></floors>
+    <near><li>Kitchen</li></near>
+    <tips>
+      <li>Four chairs feed about eight colonists if meals are spread over the day.</li>
+      <li>Put it next to the kitchen; a dining room is easy to extend later with a bigger plan.</li>
+    </tips>
+    <things>
+      <li><defs><li>Table2x2c</li></defs><role>table</role><pos>(1,1)</pos><optional>false</optional></li>
+      <li><defs><li>DiningChair</li><li>Stool</li></defs><role>chair</role><pos>(0,1)</pos><rot>East</rot></li>
+      <li><defs><li>DiningChair</li><li>Stool</li></defs><role>chair</role><pos>(0,2)</pos><rot>East</rot></li>
+      <li><defs><li>DiningChair</li><li>Stool</li></defs><role>chair</role><pos>(3,1)</pos><rot>West</rot></li>
+      <li><defs><li>DiningChair</li><li>Stool</li></defs><role>chair</role><pos>(3,2)</pos><rot>West</rot></li>
+      <li><defs><li>StandingLamp</li><li>TorchLamp</li></defs><role>light</role><pos>(0,3)</pos></li>
+      <li><defs><li>PlantPot</li></defs><role>plantpot</role><pos>(3,3)</pos></li>
+    </things>
+  </ColonyCouncil.RoomTemplateDef>
+
+  <ColonyCouncil.RoomTemplateDef>
+    <defName>Council_DiningRoom_Large</defName>
+    <label>large dining room</label>
+    <description>A long table for twelve with chairs all around, two lights and plants in the corners.</description>
+    <purpose>Twelve seats: a big colony eats at once, and the hall it eats in counts for every meal.</purpose>
+    <order>20</order>
+    <group>Food</group>
+    <size>(8,7)</size>
+    <iconDefs><li>Table2x4c</li></iconDefs>
+    <floors><li>WoodPlankFloor</li></floors>
+    <near><li>Kitchen</li><li>RecRoom</li></near>
+    <tips>
+      <li>The dining room is the room colonists see most often. Decorate this one before the others.</li>
+      <li>A big impressive dining room is also a good place for parties, weddings and the council's meetings.</li>
+      <li>Keep a door to the kitchen and another to the corridors, so cooks and diners don't queue at one.</li>
+    </tips>
+    <things>
+      <li><defs><li>Table2x4c</li></defs><role>table</role><pos>(3,3)</pos><optional>false</optional></li>
+      <li><defs><li>DiningChair</li><li>Stool</li></defs><role>chair</role><pos>(2,2)</pos><rot>East</rot></li>
+      <li><defs><li>DiningChair</li><li>Stool</li></defs><role>chair</role><pos>(2,3)</pos><rot>East</rot></li>
+      <li><defs><li>DiningChair</li><li>Stool</li></defs><role>chair</role><pos>(2,4)</pos><rot>East</rot></li>
+      <li><defs><li>DiningChair</li><li>Stool</li></defs><role>chair</role><pos>(2,5)</pos><rot>East</rot></li>
+      <li><defs><li>DiningChair</li><li>Stool</li></defs><role>chair</role><pos>(5,2)</pos><rot>West</rot></li>
+      <li><defs><li>DiningChair</li><li>Stool</li></defs><role>chair</role><pos>(5,3)</pos><rot>West</rot></li>
+      <li><defs><li>DiningChair</li><li>Stool</li></defs><role>chair</role><pos>(5,4)</pos><rot>West</rot></li>
+      <li><defs><li>DiningChair</li><li>Stool</li></defs><role>chair</role><pos>(5,5)</pos><rot>West</rot></li>
+      <li><defs><li>DiningChair</li><li>Stool</li></defs><role>chair</role><pos>(3,1)</pos><rot>North</rot></li>
+      <li><defs><li>DiningChair</li><li>Stool</li></defs><role>chair</role><pos>(4,1)</pos><rot>North</rot></li>
+      <li><defs><li>DiningChair</li><li>Stool</li></defs><role>chair</role><pos>(3,6)</pos><rot>South</rot></li>
+      <li><defs><li>DiningChair</li><li>Stool</li></defs><role>chair</role><pos>(4,6)</pos><rot>South</rot></li>
+      <li><defs><li>StandingLamp</li><li>TorchLamp</li></defs><role>light</role><pos>(0,0)</pos></li>
+      <li><defs><li>StandingLamp</li><li>TorchLamp</li></defs><role>light</role><pos>(7,6)</pos></li>
+      <li><defs><li>PlantPot</li></defs><role>plantpot</role><pos>(0,6)</pos></li>
+      <li><defs><li>PlantPot</li></defs><role>plantpot</role><pos>(7,0)</pos></li>
+    </things>
+  </ColonyCouncil.RoomTemplateDef>
+
+  <ColonyCouncil.RoomTemplateDef>
+    <defName>Council_Kitchen_Large</defName>
+    <label>large kitchen</label>
+    <description>Two cooking stations, two shelves for ingredients, a light and a clean floor.</description>
+    <purpose>Two cooks at once, for a colony that eats more than one stove can keep up with.</purpose>
+    <order>31</order>
+    <group>Food</group>
+    <size>(7,5)</size>
+    <iconDefs><li>ElectricStove</li><li>FueledStove</li></iconDefs>
+    <floors><li>SterileTile</li><li>TileSandstone</li><li>TileGranite</li><li>TileLimestone</li><li>TileSlate</li><li>TileMarble</li></floors>
+    <near><li>DiningRoom</li></near>
+    <tips>
+      <li>Two stoves let one cook keep simple meals coming while the other works on fine meals or packaged survival meals.</li>
+      <li>Keep raw food on the shelves here and the rest in the freezer next door. Fewer steps, fresher food.</li>
+    </tips>
+    <things>
+      <li><defs><li>ElectricStove</li><li>FueledStove</li></defs><role>cook</role><pos>(1,4)</pos><optional>false</optional></li>
+      <li><defs><li>ElectricStove</li><li>FueledStove</li></defs><role>cook</role><pos>(5,4)</pos></li>
+      <li><defs><li>Shelf</li></defs><role>storage</role><pos>(0,0)</pos></li>
+      <li><defs><li>Shelf</li></defs><role>storage</role><pos>(5,0)</pos></li>
+      <li><defs><li>StandingLamp</li><li>TorchLamp</li></defs><role>light</role><pos>(3,4)</pos></li>
+    </things>
+  </ColonyCouncil.RoomTemplateDef>
+
+  <ColonyCouncil.RoomTemplateDef>
+    <defName>Council_Freezer_Large</defName>
+    <label>large freezer</label>
+    <description>A big cold store: three coolers built into the back wall and shelves in rows.</description>
+    <purpose>Enough cold space for a season's harvest and the meat of a whole herd.</purpose>
+    <order>50</order>
+    <group>Food</group>
+    <size>(7,6)</size>
+    <iconDefs><li>Cooler</li></iconDefs>
+    <tips>
+      <li>[!lowtech] Three coolers hold a big room below freezing through most summers. Add a fourth in a heat wave.</li>
+      <li>[!lowtech] The coolers' hot side faces out of the back wall. Leave that side open, or vent it outdoors.</li>
+      <li>Rows of shelves with a walkway between them let haulers reach every shelf without walking around.</li>
+    </tips>
+    <things>
+      <li><defs><li>Cooler</li></defs><role>cooler</role><inWall>true</inWall><pos>(2,7)</pos><optional>false</optional></li>
+      <li><defs><li>Cooler</li></defs><role>cooler</role><inWall>true</inWall><pos>(4,7)</pos></li>
+      <li><defs><li>Cooler</li></defs><role>cooler</role><inWall>true</inWall><pos>(6,7)</pos></li>
+      <li><defs><li>Shelf</li></defs><role>storage</role><pos>(1,5)</pos><rot>South</rot></li>
+      <li><defs><li>Shelf</li></defs><role>storage</role><pos>(6,5)</pos><rot>South</rot></li>
+      <li><defs><li>Shelf</li></defs><role>storage</role><pos>(1,2)</pos></li>
+      <li><defs><li>Shelf</li></defs><role>storage</role><pos>(4,2)</pos></li>
+      <li><defs><li>Shelf</li></defs><role>storage</role><pos>(1,3)</pos><rot>South</rot></li>
+      <li><defs><li>Shelf</li></defs><role>storage</role><pos>(5,3)</pos><rot>South</rot></li>
+    </things>
+  </ColonyCouncil.RoomTemplateDef>
+
+  <ColonyCouncil.RoomTemplateDef>
+    <defName>Council_Storeroom_Large</defName>
+    <label>large storeroom</label>
+    <description>A big roofed room lined with shelves, with a walkway down the middle.</description>
+    <purpose>One place for the colony's materials, out of the rain and close to the workshops.</purpose>
+    <order>51</order>
+    <group>Food</group>
+    <size>(8,6)</size>
+    <iconDefs><li>Shelf</li></iconDefs>
+    <near><li>Workshop</li></near>
+    <tips>
+      <li>Shelves stack three items to a cell. A full storeroom of shelves holds far more than the same floor.</li>
+      <li>Set the shelves near the workshop to the materials the benches use most.</li>
+    </tips>
+    <things>
+      <li><defs><li>Shelf</li></defs><role>storage</role><pos>(1,5)</pos><rot>South</rot><optional>false</optional></li>
+      <li><defs><li>Shelf</li></defs><role>storage</role><pos>(3,5)</pos><rot>South</rot></li>
+      <li><defs><li>Shelf</li></defs><role>storage</role><pos>(5,5)</pos><rot>South</rot></li>
+      <li><defs><li>Shelf</li></defs><role>storage</role><pos>(7,5)</pos><rot>South</rot></li>
+      <li><defs><li>Shelf</li></defs><role>storage</role><pos>(0,2)</pos></li>
+      <li><defs><li>Shelf</li></defs><role>storage</role><pos>(6,2)</pos></li>
+      <li><defs><li>Shelf</li></defs><role>storage</role><pos>(0,0)</pos></li>
+      <li><defs><li>Shelf</li></defs><role>storage</role><pos>(6,0)</pos></li>
+      <li><defs><li>StandingLamp</li><li>TorchLamp</li></defs><role>light</role><pos>(4,3)</pos></li>
+    </things>
+  </ColonyCouncil.RoomTemplateDef>
+
+  <!-- ==================== Work ==================== -->
+
+  <ColonyCouncil.RoomTemplateDef>
+    <defName>Council_Workshop_Small</defName>
+    <label>small workshop</label>
+    <description>One crafting station, a shelf for its materials and a light. A start before a real workshop.</description>
+    <purpose>A bench with a roof over it, so the crafter's work isn't rained on and the bench stays clean.</purpose>
+    <order>30</order>
+    <group>Work</group>
+    <size>(4,4)</size>
+    <iconDefs><li>ElectricTailoringBench</li><li>HandTailoringBench</li></iconDefs>
+    <floors><li>WoodPlankFloor</li></floors>
+    <near><li>Storeroom</li></near>
+    <tips>
+      <li>A workbench outdoors slows work and gets dirty. Even a small room with a floor helps.</li>
+      <li>Swap the bench for whatever the colony needs most: tailoring before winter, a smithy before raids.</li>
+    </tips>
+    <things>
+      <li><defs><li>ElectricTailoringBench</li><li>HandTailoringBench</li></defs><role>craft</role><pos>(1,3)</pos><optional>false</optional></li>
+      <li><defs><li>Shelf</li></defs><role>storage</role><pos>(0,0)</pos></li>
+      <li><defs><li>StandingLamp</li><li>TorchLamp</li></defs><role>light</role><pos>(3,0)</pos></li>
+    </things>
+  </ColonyCouncil.RoomTemplateDef>
+
+  <ColonyCouncil.RoomTemplateDef>
+    <defName>Council_Workshop_Large</defName>
+    <label>large workshop</label>
+    <description>Four workstations around a free floor, a tool cabinet between the two at the back, and good light.</description>
+    <purpose>All the colony's making in one room: clothes, weapons, parts and art, close to one storeroom.</purpose>
+    <order>30</order>
+    <group>Work</group>
+    <size>(8,6)</size>
+    <iconDefs><li>TableMachining</li><li>ElectricSmithy</li><li>FueledSmithy</li></iconDefs>
+    <floors><li>WoodPlankFloor</li><li>TileSandstone</li><li>TileGranite</li></floors>
+    <near><li>Storeroom</li></near>
+    <tips>
+      <li>A tool cabinet speeds up work at benches near it. One between two benches serves both.</li>
+      <li>Workshops get messy. A cleaning colonist or a sterile floor keeps work quality up.</li>
+      <li>Put the storeroom door right next to this one: crafters walk to the materials for every bill.</li>
+    </tips>
+    <things>
+      <li><defs><li>ElectricTailoringBench</li><li>HandTailoringBench</li></defs><role>craft</role><pos>(1,5)</pos><optional>false</optional></li>
+      <li><defs><li>ElectricSmithy</li><li>FueledSmithy</li></defs><role>craft</role><pos>(6,5)</pos></li>
+      <li><defs><li>ToolCabinet</li></defs><role>toolcabinet</role><pos>(3,5)</pos><tier>decor</tier></li>
+      <li><defs><li>TableMachining</li><li>ElectricTailoringBench</li><li>HandTailoringBench</li></defs><role>craft</role><pos>(0,2)</pos><rot>West</rot></li>
+      <li><defs><li>TableSculpting</li></defs><role>art</role><pos>(7,2)</pos><rot>East</rot></li>
+      <li><defs><li>StandingLamp</li><li>TorchLamp</li></defs><role>light</role><pos>(2,0)</pos></li>
+      <li><defs><li>StandingLamp</li><li>TorchLamp</li></defs><role>light</role><pos>(6,0)</pos></li>
+    </things>
+  </ColonyCouncil.RoomTemplateDef>
+
+  <ColonyCouncil.RoomTemplateDef>
+    <defName>Council_Laboratory_Large</defName>
+    <label>large laboratory</label>
+    <description>A wide research bench, a multi-analyzer beside it, a bookcase and good light on a clean floor.</description>
+    <purpose>The laboratory for the long research ahead: the hi-tech bench and its analyzer in one quiet room.</purpose>
+    <order>32</order>
+    <group>Work</group>
+    <size>(7,5)</size>
+    <iconDefs><li>HiTechResearchBench</li><li>SimpleResearchBench</li></iconDefs>
+    <floors><li>SterileTile</li></floors>
+    <tips>
+      <li>A multi-analyzer near a hi-tech research bench speeds up research there. It needs the Multi-analyzer research first.</li>
+      <li>Books on a bookcase in the room add a research bonus nearby.</li>
+      <li>Keep the laboratory away from the dining and rec rooms, where people walk through and talk.</li>
+    </tips>
+    <things>
+      <li><defs><li>HiTechResearchBench</li></defs><role>research</role><pos>(3,3)</pos><optional>false</optional></li>
+      <li><defs><li>MultiAnalyzer</li></defs><pos>(5,0)</pos></li>
+      <li><defs><li>Bookcase</li></defs><role>bookcase</role><pos>(0,2)</pos><rot>East</rot></li>
+      <li><defs><li>StandingLamp</li><li>TorchLamp</li></defs><role>light</role><pos>(0,0)</pos></li>
+      <li><defs><li>PlantPot</li></defs><role>plantpot</role><pos>(6,4)</pos></li>
+    </things>
+  </ColonyCouncil.RoomTemplateDef>
+
+  <!-- ==================== Care ==================== -->
+
+  <ColonyCouncil.RoomTemplateDef>
+    <defName>Council_Hospital_Infirmary</defName>
+    <label>infirmary</label>
+    <description>Two beds with a vitals monitor between them, a medicine shelf, a light and a clean floor.</description>
+    <purpose>A small, clean room for the sick and the wounded, so nobody is treated on the floor.</purpose>
+    <order>40</order>
+    <group>Care</group>
+    <size>(4,4)</size>
+    <iconDefs><li>HospitalBed</li><li>Bed</li></iconDefs>
+    <floors><li>SterileTile</li><li>TileSandstone</li><li>TileGranite</li><li>TileLimestone</li><li>TileSlate</li><li>TileMarble</li></floors>
+    <avoid><li>Kitchen</li></avoid>
+    <tips>
+      <li>Two beds cover most raids for a small colony. Set them to "medical" once they're built.</li>
+      <li>A vitals monitor helps the beds next to it. Between two beds, it helps both.</li>
+    </tips>
+    <things>
+      <li><defs><li>HospitalBed</li><li>Bed</li><li>Bedroll</li></defs><role>bed</role><pos>(0,3)</pos><rot>South</rot><optional>false</optional></li>
+      <li><defs><li>HospitalBed</li><li>Bed</li><li>Bedroll</li></defs><role>bed</role><pos>(2,3)</pos><rot>South</rot></li>
+      <li><defs><li>VitalsMonitor</li></defs><role>monitor</role><pos>(1,3)</pos></li>
+      <li><defs><li>Shelf</li></defs><role>storage</role><pos>(0,0)</pos></li>
+      <li><defs><li>StandingLamp</li><li>TorchLamp</li></defs><role>light</role><pos>(3,3)</pos></li>
+    </things>
+  </ColonyCouncil.RoomTemplateDef>
+
+  <ColonyCouncil.RoomTemplateDef>
+    <defName>Council_Hospital_Ward</defName>
+    <label>hospital ward</label>
+    <description>Nine beds, four vitals monitors, a medicine shelf, two lights and a clean floor.</description>
+    <purpose>For a big colony, or one that fights often: room for everyone after a bad raid or an outbreak.</purpose>
+    <order>41</order>
+    <group>Care</group>
+    <size>(9,6)</size>
+    <iconDefs><li>HospitalBed</li><li>Bed</li></iconDefs>
+    <floors><li>SterileTile</li><li>TileSandstone</li><li>TileGranite</li><li>TileLimestone</li><li>TileSlate</li><li>TileMarble</li></floors>
+    <avoid><li>Kitchen</li></avoid>
+    <tips>
+      <li>A plague or a mass-casualty raid fills beds fast. A ward means nobody waits on the floor.</li>
+      <li>Keep a clean floor and a cleaner on it. Infections kill more colonists than the wounds do.</li>
+      <li>Build it near the main entrance and the battle line, so rescuers carry the wounded a short way.</li>
+    </tips>
+    <things>
+      <li><defs><li>HospitalBed</li><li>Bed</li><li>Bedroll</li></defs><role>bed</role><pos>(0,5)</pos><rot>South</rot><optional>false</optional></li>
+      <li><defs><li>HospitalBed</li><li>Bed</li><li>Bedroll</li></defs><role>bed</role><pos>(2,5)</pos><rot>South</rot></li>
+      <li><defs><li>HospitalBed</li><li>Bed</li><li>Bedroll</li></defs><role>bed</role><pos>(4,5)</pos><rot>South</rot></li>
+      <li><defs><li>HospitalBed</li><li>Bed</li><li>Bedroll</li></defs><role>bed</role><pos>(6,5)</pos><rot>South</rot></li>
+      <li><defs><li>HospitalBed</li><li>Bed</li><li>Bedroll</li></defs><role>bed</role><pos>(8,5)</pos><rot>South</rot></li>
+      <li><defs><li>HospitalBed</li><li>Bed</li><li>Bedroll</li></defs><role>bed</role><pos>(1,0)</pos></li>
+      <li><defs><li>HospitalBed</li><li>Bed</li><li>Bedroll</li></defs><role>bed</role><pos>(2,0)</pos></li>
+      <li><defs><li>HospitalBed</li><li>Bed</li><li>Bedroll</li></defs><role>bed</role><pos>(6,0)</pos></li>
+      <li><defs><li>HospitalBed</li><li>Bed</li><li>Bedroll</li></defs><role>bed</role><pos>(7,0)</pos></li>
+      <li><defs><li>VitalsMonitor</li></defs><role>monitor</role><pos>(1,5)</pos></li>
+      <li><defs><li>VitalsMonitor</li></defs><role>monitor</role><pos>(3,5)</pos></li>
+      <li><defs><li>VitalsMonitor</li></defs><role>monitor</role><pos>(5,5)</pos></li>
+      <li><defs><li>VitalsMonitor</li></defs><role>monitor</role><pos>(7,5)</pos></li>
+      <li><defs><li>Shelf</li></defs><role>storage</role><pos>(0,3)</pos><rot>East</rot></li>
+      <li><defs><li>StandingLamp</li><li>TorchLamp</li></defs><role>light</role><pos>(3,0)</pos></li>
+      <li><defs><li>StandingLamp</li><li>TorchLamp</li></defs><role>light</role><pos>(8,0)</pos></li>
+    </things>
+  </ColonyCouncil.RoomTemplateDef>
+
+</Defs>

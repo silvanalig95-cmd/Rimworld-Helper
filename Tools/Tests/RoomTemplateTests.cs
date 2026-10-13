@@ -110,8 +110,9 @@ public static class RoomTemplateTests
         F("ShelfSmall BookcaseSmall VitalsMonitor FermentingBarrel TubeTelevision", 1, 1);
         F("Battery", 1, 2);
         F("HydroponicsBasin", 1, 4);
-        F("Door", 1, 1, "door", kind: "door");
-        F("Wall", 1, 1, kind: "wall");
+        F("Door", 1, 1, "door norot", kind: "door");
+        F("Wall", 1, 1, "norot", kind: "wall");
+        F("PetWaterBowl LitterBox", 1, 1);
         // Dubs Bad Hygiene
         F("ToiletStuff PitLatrine WashBucket ShowerStuff ShowerSimple DBHSaunaHeaterLog DBHSaunaHeaterElec WashingMachine", 1, 1);
         F("BasinStuff", 1, 1, spots: "0,-1");

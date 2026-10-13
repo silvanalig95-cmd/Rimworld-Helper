@@ -1,0 +1,308 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    New kinds of room. Same rules as the other template files; the key piece of each room is not optional, so the
+    room only shows once the colony can build it (research, and the DLC or mod it comes from). Pieces from mods are
+    listed by name after the vanilla ones and simply skipped when the mod isn't there.
+  -->
+
+  <ColonyCouncil.RoomTemplateDef>
+    <defName>Council_Library</defName>
+    <label>library</label>
+    <description>Bookcases along the back wall, two armchairs with a bedside table between them, a light and a plant.</description>
+    <purpose>A quiet room to read in. Books teach skills, pass the time, and on a bookcase they speed up research nearby.</purpose>
+    <order>24</order>
+    <group>Leisure</group>
+    <size>(6,5)</size>
+    <iconDefs><li>Bookcase</li></iconDefs>
+    <floors><li>WoodPlankFloor</li></floors>
+    <lavishFloors><li>CarpetGreen</li><li>CarpetRed</li><li>CarpetDark</li><li>WoodPlankFloor</li></lavishFloors>
+    <near><li>Laboratory</li><li>RecRoom</li></near>
+    <tips>
+      <li>Reading counts as recreation, and some books teach a skill while they're read. A good library is used every day.</li>
+      <li>Books on a bookcase don't deteriorate, and they add to the room's beauty.</li>
+      <li>Comfortable chairs and good light make reading more pleasant. Armchairs are worth the cloth.</li>
+      <li>Build it next to the laboratory: books on a bookcase there speed up research too.</li>
+    </tips>
+    <things>
+      <li><defs><li>Bookcase</li></defs><role>bookcase</role><pos>(1,4)</pos><rot>South</rot><optional>false</optional></li>
+      <li><defs><li>Bookcase</li></defs><role>bookcase</role><pos>(3,4)</pos><rot>South</rot></li>
+      <li><defs><li>Bookcase</li></defs><role>bookcase</role><pos>(5,4)</pos><rot>South</rot></li>
+      <li><defs><li>Armchair</li><li>DiningChair</li><li>Stool</li></defs><role>chair</role><pos>(1,1)</pos></li>
+      <li><defs><li>Armchair</li><li>DiningChair</li><li>Stool</li></defs><role>chair</role><pos>(4,1)</pos></li>
+      <li><defs><li>EndTable</li></defs><role>endtable</role><pos>(2,1)</pos></li>
+      <li><defs><li>StandingLamp</li><li>TorchLamp</li></defs><role>light</role><pos>(5,1)</pos></li>
+      <li><defs><li>PlantPot</li></defs><role>plantpot</role><pos>(0,0)</pos></li>
+    </things>
+  </ColonyCouncil.RoomTemplateDef>
+
+  <ColonyCouncil.RoomTemplateDef>
+    <defName>Council_Tavern</defName>
+    <label>tavern corner</label>
+    <description>A table with six seats, fermenting barrels along the wall, a shelf for the beer, a light and a plant.</description>
+    <purpose>Somewhere to sit with a drink after work. Beer is recreation, and the barrels are right there.</purpose>
+    <order>23</order>
+    <group>Leisure</group>
+    <size>(6,5)</size>
+    <iconDefs><li>FermentingBarrel</li><li>Table2x2c</li></iconDefs>
+    <floors><li>WoodPlankFloor</li></floors>
+    <near><li>DiningRoom</li><li>RecRoom</li></near>
+    <tips>
+      <li>Beer cheers people up and counts as recreation, but some colonists get a taste for it. Set a drug policy.</li>
+      <li>Fermenting barrels work between -1 °C and 32 °C, so a heated room keeps the beer coming in winter.</li>
+      <li>A table in the tavern is also a dining table: the hungry eat here, the thirsty drink.</li>
+    </tips>
+    <things>
+      <li><defs><li>Table2x2c</li></defs><role>table</role><pos>(1,1)</pos><optional>false</optional></li>
+      <li><defs><li>DiningChair</li><li>Stool</li></defs><role>chair</role><pos>(0,1)</pos><rot>East</rot></li>
+      <li><defs><li>DiningChair</li><li>Stool</li></defs><role>chair</role><pos>(0,2)</pos><rot>East</rot></li>
+      <li><defs><li>DiningChair</li><li>Stool</li></defs><role>chair</role><pos>(3,1)</pos><rot>West</rot></li>
+      <li><defs><li>DiningChair</li><li>Stool</li></defs><role>chair</role><pos>(3,2)</pos><rot>West</rot></li>
+      <li><defs><li>DiningChair</li><li>Stool</li></defs><role>chair</role><pos>(1,3)</pos><rot>South</rot></li>
+      <li><defs><li>DiningChair</li><li>Stool</li></defs><role>chair</role><pos>(2,3)</pos><rot>South</rot></li>
+      <li><defs><li>FermentingBarrel</li></defs><role>fermenter</role><pos>(5,3)</pos></li>
+      <li><defs><li>FermentingBarrel</li></defs><role>fermenter</role><pos>(5,2)</pos></li>
+      <li><defs><li>FermentingBarrel</li></defs><role>fermenter</role><pos>(5,1)</pos></li>
+      <li><defs><li>Shelf</li></defs><role>storage</role><pos>(5,4)</pos><rot>South</rot></li>
+      <li><defs><li>TorchLamp</li><li>StandingLamp</li></defs><role>light</role><pos>(5,0)</pos></li>
+      <li><defs><li>PlantPot</li></defs><role>plantpot</role><pos>(0,4)</pos></li>
+    </things>
+  </ColonyCouncil.RoomTemplateDef>
+
+  <ColonyCouncil.RoomTemplateDef>
+    <defName>Council_Kennel</defName>
+    <label>kennel</label>
+    <description>Four animal beds along the back wall, a shelf for kibble and a heater. For dogs, cats and other pets.</description>
+    <purpose>Pets that sleep warm and dry stay healthy, and they sleep near the people they bond with.</purpose>
+    <order>59</order>
+    <group>Food</group>
+    <size>(4,4)</size>
+    <iconDefs><li>AnimalBed</li><li>AnimalSleepingBox</li></iconDefs>
+    <near><li>Bedroom</li></near>
+    <tips>
+      <li>Animals in a bed or a sleeping box rest better than on the ground, and they don't freeze in winter.</li>
+      <li>Keep kibble or hay on the shelf here, and restrict the pets to an area that includes the kennel.</li>
+      <li>A bonded animal near its master's bedroom keeps both of them happier.</li>
+    </tips>
+    <things>
+      <li><defs><li>AnimalBed</li><li>AnimalSleepingBox</li><li>AnimalSleepingSpot</li></defs><role>animalbed</role><pos>(0,3)</pos><optional>false</optional></li>
+      <li><defs><li>AnimalBed</li><li>AnimalSleepingBox</li><li>AnimalSleepingSpot</li></defs><role>animalbed</role><pos>(1,3)</pos></li>
+      <li><defs><li>AnimalBed</li><li>AnimalSleepingBox</li><li>AnimalSleepingSpot</li></defs><role>animalbed</role><pos>(2,3)</pos></li>
+      <li><defs><li>AnimalBed</li><li>AnimalSleepingBox</li><li>AnimalSleepingSpot</li></defs><role>animalbed</role><pos>(3,3)</pos></li>
+      <li><defs><li>Shelf</li></defs><role>storage</role><pos>(0,0)</pos></li>
+      <li><defs><li>Heater</li><li>Campfire</li></defs><role>heater</role><pos>(3,0)</pos><rot>South</rot><tier>decor</tier></li>
+    </things>
+  </ColonyCouncil.RoomTemplateDef>
+
+  <ColonyCouncil.RoomTemplateDef>
+    <defName>Council_HydroponicsBay</defName>
+    <label>hydroponics bay</label>
+    <description>Six hydroponics basins in pairs with walkways between them, one sun lamp in the middle and a heater.</description>
+    <purpose>Food all year, on any ground: rice and potatoes under a lamp while the fields outside are frozen.</purpose>
+    <order>62</order>
+    <group>Food</group>
+    <size>(9,6)</size>
+    <iconDefs><li>HydroponicsBasin</li></iconDefs>
+    <keepPlants>true</keepPlants>
+    <near><li>Kitchen</li><li>Storeroom</li></near>
+    <tips>
+      <li>Every basin needs a walkway beside it, or its plants can't be sown and cut. Pairs of basins share one.</li>
+      <li>One sun lamp covers this whole room. Its light switches off at night, when the plants rest anyway.</li>
+      <li>Basins kill their plants within hours without power. Batteries or a generator in reserve keep the harvest safe.</li>
+      <li>Rice grows fastest. Plant it here when food is short, and something better later.</li>
+    </tips>
+    <things>
+      <li><defs><li>HydroponicsBasin</li></defs><role>hydroponics</role><pos>(0,2)</pos><optional>false</optional></li>
+      <li><defs><li>HydroponicsBasin</li></defs><role>hydroponics</role><pos>(2,2)</pos></li>
+      <li><defs><li>HydroponicsBasin</li></defs><role>hydroponics</role><pos>(3,2)</pos></li>
+      <li><defs><li>HydroponicsBasin</li></defs><role>hydroponics</role><pos>(5,2)</pos></li>
+      <li><defs><li>HydroponicsBasin</li></defs><role>hydroponics</role><pos>(6,2)</pos></li>
+      <li><defs><li>HydroponicsBasin</li></defs><role>hydroponics</role><pos>(8,2)</pos></li>
+      <li><defs><li>SunLamp</li></defs><pos>(4,3)</pos><optional>false</optional></li>
+      <li><defs><li>Heater</li></defs><role>heater</role><pos>(8,0)</pos></li>
+    </things>
+  </ColonyCouncil.RoomTemplateDef>
+
+  <ColonyCouncil.RoomTemplateDef>
+    <defName>Council_Stonecutter</defName>
+    <label>stonecutter's workshop</label>
+    <description>Two stonecutter's tables, a tool cabinet and a light, for turning rock chunks into blocks.</description>
+    <purpose>Stone blocks don't burn: walls of stone are what keep a fire or a raid from spreading through the base.</purpose>
+    <order>34</order>
+    <group>Work</group>
+    <size>(5,4)</size>
+    <iconDefs><li>TableStonecutter</li></iconDefs>
+    <near><li>Storeroom</li></near>
+    <tips>
+      <li>A stockpile for chunks right outside the door saves the cutter most of the walking.</li>
+      <li>Cutting is slow at first. A colonist with some Crafting skill does it much faster.</li>
+      <li>Marble makes the most beautiful blocks, granite the strongest walls.</li>
+    </tips>
+    <things>
+      <li><defs><li>VFE_TableStonecutterElectric</li><li>TableStonecutter</li></defs><role>stonecutter</role><pos>(1,3)</pos><optional>false</optional></li>
+      <li><defs><li>TableStonecutter</li></defs><role>stonecutter</role><pos>(4,1)</pos><rot>East</rot></li>
+      <li><defs><li>ToolCabinet</li></defs><role>toolcabinet</role><pos>(3,3)</pos><tier>decor</tier></li>
+      <li><defs><li>StandingLamp</li><li>TorchLamp</li></defs><role>light</role><pos>(0,0)</pos></li>
+    </things>
+  </ColonyCouncil.RoomTemplateDef>
+
+  <ColonyCouncil.RoomTemplateDef>
+    <defName>Council_ComponentWorkshop</defName>
+    <label>component workshop</label>
+    <description>A fabrication bench for components and advanced parts, a tool cabinet and a light.</description>
+    <purpose>Components run out. A fabrication bench makes new ones from steel, so the colony stops depending on traders.</purpose>
+    <order>36</order>
+    <group>Work</group>
+    <size>(7,5)</size>
+    <iconDefs><li>FabricationBench</li></iconDefs>
+    <floors><li>SterileTile</li><li>TileSandstone</li><li>TileGranite</li></floors>
+    <near><li>Storeroom</li><li>Laboratory</li></near>
+    <tips>
+      <li>A component takes 12 steel and some skill. Keep the best crafter on this bench.</li>
+      <li>A tool cabinet next to the bench speeds up the work.</li>
+      <li>Advanced components need plasteel and a gold fleck each; keep some of both on hand.</li>
+    </tips>
+    <things>
+      <li><defs><li>FabricationBench</li></defs><role>fabrication</role><pos>(3,3)</pos><optional>false</optional></li>
+      <li><defs><li>VFE_ComponentFabricationBench</li></defs><pos>(0,1)</pos><rot>West</rot></li>
+      <li><defs><li>ToolCabinet</li></defs><role>toolcabinet</role><pos>(6,1)</pos><rot>East</rot><tier>decor</tier></li>
+      <li><defs><li>StandingLamp</li><li>TorchLamp</li></defs><role>light</role><pos>(6,3)</pos></li>
+      <li><defs><li>PlantPot</li></defs><role>plantpot</role><pos>(2,0)</pos></li>
+    </things>
+  </ColonyCouncil.RoomTemplateDef>
+
+  <ColonyCouncil.RoomTemplateDef>
+    <defName>Council_GuardPost</defName>
+    <label>guard post</label>
+    <description>A small room by the gate: a chair facing the door, a weapons shelf, a light and a heater.</description>
+    <purpose>A warm place for whoever watches the gate, with weapons close at hand when the first shot is fired.</purpose>
+    <order>92</order>
+    <group>Security</group>
+    <size>(4,3)</size>
+    <iconDefs><li>Shelf</li></iconDefs>
+    <avoid><li>Bedroom</li></avoid>
+    <tips>
+      <li>Build it where raiders usually come from, at the end of the killbox or beside the main gate.</li>
+      <li>Weapons on the shelf here mean nobody runs across the base to arm themselves.</li>
+      <li>Thick walls and a light: a guard who can see the gate sees raiders coming.</li>
+    </tips>
+    <things>
+      <li><defs><li>DiningChair</li><li>Stool</li><li>Armchair</li></defs><role>chair</role><pos>(1,1)</pos><rot>South</rot><optional>false</optional></li>
+      <li><defs><li>Shelf</li></defs><role>storage</role><pos>(3,2)</pos><rot>South</rot></li>
+      <li><defs><li>StandingLamp</li><li>TorchLamp</li></defs><role>light</role><pos>(0,2)</pos></li>
+      <li><defs><li>Heater</li></defs><role>heater</role><pos>(3,0)</pos><tier>decor</tier></li>
+      <li><defs><li>EndTable</li></defs><role>endtable</role><pos>(0,1)</pos><tier>lavish</tier></li>
+    </things>
+  </ColonyCouncil.RoomTemplateDef>
+
+  <ColonyCouncil.RoomTemplateDef>
+    <defName>Council_TrophyGallery</defName>
+    <label>trophy gallery</label>
+    <description>Columns, pedestals for sculptures, lights and open floor: a room to show off the colony's art.</description>
+    <purpose>Sculptures make any room more beautiful, and a room full of them is impressive. Colonists enjoy looking at art.</purpose>
+    <order>27</order>
+    <group>Leisure</group>
+    <size>(7,5)</size>
+    <iconDefs><li>Column</li><li>VFE_Plinth</li></iconDefs>
+    <floors><li>TileMarble</li><li>TileGranite</li><li>TileSlate</li><li>TileLimestone</li><li>TileSandstone</li><li>WoodPlankFloor</li></floors>
+    <lavishFloors><li>TileMarble</li><li>CarpetRed</li><li>TileGranite</li></lavishFloors>
+    <near><li>DiningRoom</li><li>RecRoom</li></near>
+    <tips>
+      <li>Sculptures are made at the art bench and moved in by hand: install them on the open floor or on the pedestals.</li>
+      <li>Columns and fine floors add beauty of their own, so even an unfinished gallery looks good.</li>
+      <li>Masterwork and legendary pieces are worth putting where everyone passes: the dining room or the gallery.</li>
+      <li>Pedestals come from furniture mods (Vanilla Furniture Expanded, Medieval Overhaul). Without them the gallery still works.</li>
+    </tips>
+    <things>
+      <li><defs><li>Column</li></defs><role>column</role><pos>(0,4)</pos><tier>core</tier><optional>false</optional></li>
+      <li><defs><li>Column</li></defs><role>column</role><pos>(6,4)</pos><tier>core</tier></li>
+      <li><defs><li>Column</li></defs><role>column</role><pos>(0,0)</pos></li>
+      <li><defs><li>Column</li></defs><role>column</role><pos>(6,0)</pos></li>
+      <li><defs><li>VFE_Plinth</li><li>DankPyon_Pedestal</li></defs><role>pedestal</role><pos>(2,4)</pos><tier>core</tier></li>
+      <li><defs><li>VFE_Plinth</li><li>DankPyon_Pedestal</li></defs><role>pedestal</role><pos>(4,4)</pos><tier>core</tier></li>
+      <li><defs><li>VFE_Plinth</li><li>DankPyon_Pedestal</li></defs><role>pedestal</role><pos>(0,2)</pos><tier>lavish</tier></li>
+      <li><defs><li>VFE_Plinth</li><li>DankPyon_Pedestal</li></defs><role>pedestal</role><pos>(6,2)</pos><tier>lavish</tier></li>
+      <li><defs><li>StandingLamp</li><li>TorchLamp</li></defs><role>light</role><pos>(3,4)</pos></li>
+    </things>
+  </ColonyCouncil.RoomTemplateDef>
+
+  <ColonyCouncil.RoomTemplateDef>
+    <defName>Council_Longhouse</defName>
+    <label>longhouse</label>
+    <description>A long shared hall for a tribe: ten bedrolls along the walls, a fire in the middle and a torch.</description>
+    <purpose>The whole tribe under one roof and around one fire, warm through the winter.</purpose>
+    <order>8</order>
+    <group>Living</group>
+    <era>lowtech</era>
+    <size>(9,5)</size>
+    <iconDefs><li>Bedroll</li><li>Campfire</li></iconDefs>
+    <floors><li>StrawMatting</li></floors>
+    <near><li>DiningRoom</li></near>
+    <tips>
+      <li>A campfire inside heats the whole hall. Keep it fed with wood, or the longhouse turns cold at night.</li>
+      <li>Wooden walls burn. Keep the fire in the middle, away from the walls and the bedrolls.</li>
+      <li>Sleeping together costs a little mood, but it's warm and cheap. Move people into huts as the tribe grows richer.</li>
+    </tips>
+    <things>
+      <li><defs><li>Bedroll</li><li>Bed</li></defs><role>bed</role><pos>(0,4)</pos><rot>South</rot><optional>false</optional></li>
+      <li><defs><li>Bedroll</li><li>Bed</li></defs><role>bed</role><pos>(1,4)</pos><rot>South</rot></li>
+      <li><defs><li>Bedroll</li><li>Bed</li></defs><role>bed</role><pos>(2,4)</pos><rot>South</rot></li>
+      <li><defs><li>Bedroll</li><li>Bed</li></defs><role>bed</role><pos>(6,4)</pos><rot>South</rot></li>
+      <li><defs><li>Bedroll</li><li>Bed</li></defs><role>bed</role><pos>(7,4)</pos><rot>South</rot></li>
+      <li><defs><li>Bedroll</li><li>Bed</li></defs><role>bed</role><pos>(8,4)</pos><rot>South</rot></li>
+      <li><defs><li>Bedroll</li><li>Bed</li></defs><role>bed</role><pos>(0,0)</pos></li>
+      <li><defs><li>Bedroll</li><li>Bed</li></defs><role>bed</role><pos>(1,0)</pos></li>
+      <li><defs><li>Bedroll</li><li>Bed</li></defs><role>bed</role><pos>(7,0)</pos></li>
+      <li><defs><li>Bedroll</li><li>Bed</li></defs><role>bed</role><pos>(8,0)</pos></li>
+      <li><defs><li>Campfire</li></defs><role>campfire</role><pos>(4,2)</pos></li>
+      <li><defs><li>TorchLamp</li><li>StandingLamp</li></defs><role>light</role><pos>(4,4)</pos></li>
+    </things>
+  </ColonyCouncil.RoomTemplateDef>
+
+  <ColonyCouncil.RoomTemplateDef>
+    <defName>Council_GreatHall</defName>
+    <label>great hall</label>
+    <description>A medieval hall with two long tables for sixteen, a brazier or torch in each corner and a stone floor.</description>
+    <purpose>Where a medieval colony eats, feasts and gathers. A fine hall is a mood bonus with every meal.</purpose>
+    <order>20</order>
+    <group>Food</group>
+    <era>lowtech</era>
+    <size>(10,7)</size>
+    <iconDefs><li>Table2x4c</li><li>Brazier</li></iconDefs>
+    <floors><li>FlagstoneSandstone</li><li>FlagstoneGranite</li><li>FlagstoneLimestone</li><li>FlagstoneSlate</li><li>FlagstoneMarble</li><li>WoodPlankFloor</li></floors>
+    <lavishFloors><li>FlagstoneMarble</li><li>CarpetRed</li><li>TileMarble</li></lavishFloors>
+    <near><li>Kitchen</li></near>
+    <tips>
+      <li>The hall is where feasts, weddings and the council's meetings happen. Make it the colony's finest room.</li>
+      <li>Braziers light the hall and add a little beauty. Keep them fueled before a feast.</li>
+      <li>Stone floors don't burn and wear well under many feet.</li>
+    </tips>
+    <things>
+      <li><defs><li>Table2x4c</li></defs><role>table</role><pos>(2,3)</pos><optional>false</optional></li>
+      <li><defs><li>Table2x4c</li></defs><role>table</role><pos>(6,3)</pos></li>
+      <li><defs><li>DiningChair</li><li>Stool</li></defs><role>chair</role><pos>(1,2)</pos><rot>East</rot></li>
+      <li><defs><li>DiningChair</li><li>Stool</li></defs><role>chair</role><pos>(1,3)</pos><rot>East</rot></li>
+      <li><defs><li>DiningChair</li><li>Stool</li></defs><role>chair</role><pos>(1,4)</pos><rot>East</rot></li>
+      <li><defs><li>DiningChair</li><li>Stool</li></defs><role>chair</role><pos>(1,5)</pos><rot>East</rot></li>
+      <li><defs><li>DiningChair</li><li>Stool</li></defs><role>chair</role><pos>(4,2)</pos><rot>West</rot></li>
+      <li><defs><li>DiningChair</li><li>Stool</li></defs><role>chair</role><pos>(4,3)</pos><rot>West</rot></li>
+      <li><defs><li>DiningChair</li><li>Stool</li></defs><role>chair</role><pos>(4,4)</pos><rot>West</rot></li>
+      <li><defs><li>DiningChair</li><li>Stool</li></defs><role>chair</role><pos>(4,5)</pos><rot>West</rot></li>
+      <li><defs><li>DiningChair</li><li>Stool</li></defs><role>chair</role><pos>(5,2)</pos><rot>East</rot></li>
+      <li><defs><li>DiningChair</li><li>Stool</li></defs><role>chair</role><pos>(5,3)</pos><rot>East</rot></li>
+      <li><defs><li>DiningChair</li><li>Stool</li></defs><role>chair</role><pos>(5,4)</pos><rot>East</rot></li>
+      <li><defs><li>DiningChair</li><li>Stool</li></defs><role>chair</role><pos>(5,5)</pos><rot>East</rot></li>
+      <li><defs><li>DiningChair</li><li>Stool</li></defs><role>chair</role><pos>(8,2)</pos><rot>West</rot></li>
+      <li><defs><li>DiningChair</li><li>Stool</li></defs><role>chair</role><pos>(8,3)</pos><rot>West</rot></li>
+      <li><defs><li>DiningChair</li><li>Stool</li></defs><role>chair</role><pos>(8,4)</pos><rot>West</rot></li>
+      <li><defs><li>DiningChair</li><li>Stool</li></defs><role>chair</role><pos>(8,5)</pos><rot>West</rot></li>
+      <li><defs><li>Brazier</li><li>TorchLamp</li><li>StandingLamp</li></defs><role>light</role><pos>(0,6)</pos></li>
+      <li><defs><li>Brazier</li><li>TorchLamp</li><li>StandingLamp</li></defs><role>light</role><pos>(9,6)</pos></li>
+      <li><defs><li>Brazier</li><li>TorchLamp</li><li>StandingLamp</li></defs><role>light</role><pos>(0,0)</pos></li>
+      <li><defs><li>Brazier</li><li>TorchLamp</li><li>StandingLamp</li></defs><role>light</role><pos>(9,0)</pos></li>
+      <li><defs><li>Drape</li></defs><role>drape</role><pos>(5,6)</pos><rot>South</rot><tier>lavish</tier></li>
+    </things>
+  </ColonyCouncil.RoomTemplateDef>
+
+</Defs>
