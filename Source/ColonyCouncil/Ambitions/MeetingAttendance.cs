@@ -330,6 +330,17 @@ namespace ColonyCouncil
             if (def == JobDefOf.FeedPatient || def == JobDefOf.Breastfeed || def == JobDefOf.BottleFeedBaby || def == JobDefOf.BreastfeedCarryToMom
                 || def == JobDefOf.CarryToMomAfterBirth) return "CC_MeetWhy_Feeding".Translate(NameOf(target ?? carried));
             if (carried != null) return "CC_MeetWhy_Carrying".Translate(NameOf(carried));
+            // On the way to pick someone up and carry them (a downed pawn, a prisoner, an entity).
+            if (def == JobDefOf.Capture || def == JobDefOf.TakeWoundedPrisonerToBed || def == JobDefOf.TakeToBedToOperate || def == JobDefOf.EscortPrisonerToBed
+                || def == JobDefOf.DeliverToBed || def == JobDefOf.CarryToCryptosleepCasket || def == JobDefOf.CarryDownedPawnToExit
+                || def == JobDefOf.CarryDownedPawnToPortal || def == JobDefOf.CarryToEntityHolder || def == JobDefOf.TransferBetweenEntityHolders
+                || def == JobDefOf.CarryToEntityHolderAlreadyHolding || def == JobDefOf.CarryToBiosculpterPod || def == JobDefOf.CarryToBuilding)
+                return "CC_MeetWhy_Carrying".Translate(NameOf(target));
+            // In the middle of a talk with a prisoner or slave (a recruitment attempt can't be picked up again for hours).
+            if (def == JobDefOf.PrisonerAttemptRecruit || def == JobDefOf.PrisonerConvert || def == JobDefOf.PrisonerEnslave || def == JobDefOf.PrisonerReduceWill
+                || def == JobDefOf.PrisonerInterrogateIdentity || def == JobDefOf.SlaveSuppress) return "CC_MeetDo_Warden".Translate();
+            // Keeping a contained entity quiet.
+            if (def == JobDefOf.ActivitySuppression) return "CC_MeetWhy_Elsewhere".Translate();
             // On the way to bed for treatment or bed rest.
             if (PatientJob(job)) return "CC_MeetWhy_Recovering".Translate();
             // Taking a baby out of the cold or heat, or anything else the game treats as an emergency.
