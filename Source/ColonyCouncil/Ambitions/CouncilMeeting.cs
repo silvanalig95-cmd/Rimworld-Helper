@@ -109,7 +109,7 @@ namespace ColonyCouncil
         /// <summary>Came after the first third of the meeting, or had to be woken for it.</summary>
         public bool IsLate(MeetingInvite inv) =>
             inv != null && inv.Arrived && Started
-            && (inv.status == MeetingStatus.Woken || inv.arrivedTick - startedTick > LordJob_CouncilMeeting.MeetingTicks * MeetingAttendance.LateShare);
+            && (inv.status == MeetingStatus.Woken || MeetingMath.Late(inv.arrivedTick - startedTick));
 
         public bool IsLate(Pawn p) => IsLate(InviteOf(p));
 
@@ -411,7 +411,7 @@ namespace ColonyCouncil
     /// <summary>The gathering itself: colonists drift over, stand around the table and talk it out.</summary>
     public class LordJob_CouncilMeeting : LordJob_Joinable_Gathering
     {
-        public const int MeetingTicks = 4500;
+        public const int MeetingTicks = MeetingMath.MeetingTicks;
 
         public LordJob_CouncilMeeting()
         {

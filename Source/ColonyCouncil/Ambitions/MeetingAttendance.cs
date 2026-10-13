@@ -72,17 +72,11 @@ namespace ColonyCouncil
     /// </summary>
     public static class MeetingAttendance
     {
-        /// <summary>Paths wind and doors slow people down: the walk takes this much longer than a straight line.</summary>
-        public const float PathFactor = 1.35f;
-        /// <summary>Putting down tools and setting off.</summary>
-        public const int GetGoingTicks = 250;
         /// <summary>Getting up, dressing and setting off after being woken.</summary>
         public const int WakeUpTicks = 400;
-        /// <summary>Arriving after this share of the meeting is arriving late.</summary>
-        public const float LateShare = 1f / 3f;
-        /// <summary>Someone who'd arrive after this share of the meeting isn't called at all.</summary>
-        public const float MissShare = 0.7f;
-        /// <summary>A sleeper nobody has reached by now is woken anyway (someone shouted up the stairs).</summary>
+        /// <summary>Arriving after this share of the meeting is arriving late (see <see cref="MeetingMath"/>).</summary>
+        public const float LateShare = MeetingMath.LateShare;
+        /// <summary>A sleeper nobody has reached by now is woken anyway (someone calls from the doorway).</summary>
         public const int WakeFallbackTicks = 1500;
         /// <summary>A waker walks at most this far to fetch someone.</summary>
         private const float MaxWakeWalk = 80f;
@@ -126,7 +120,7 @@ namespace ColonyCouncil
         }
 
         /// <summary>Fewer than this many present makes a thin meeting: half of those with a say, and never fewer than two.</summary>
-        public static int Quorum(int eligible) => Mathf.Max(2, Mathf.CeilToInt(eligible / 2f));
+        public static int Quorum(int eligible) => MeetingMath.Quorum(eligible);
 
         // ---------------- When it can start ----------------
 
@@ -154,8 +148,7 @@ namespace ColonyCouncil
         public static int EtaTicks(Pawn p, IntVec3 spot)
         {
             if (p == null || !p.Spawned || !spot.IsValid) return int.MaxValue;
-            float dist = p.Position.DistanceTo(spot);
-            return GetGoingTicks + Mathf.RoundToInt(dist * Mathf.Max(1f, p.TicksPerMoveCardinal) * PathFactor);
+            return MeetingMath.EtaTicks(p.Position.DistanceTo(spot), p.TicksPerMoveCardinal);
         }
 
         /// <summary>Decides, once, whether this colonist comes and if not, why.</summary>
@@ -202,7 +195,7 @@ namespace ColonyCouncil
             if (m.spot.IsValid && m.spot.IsForbidden(p)) return Busy(inv, "CC_MeetWhy_Restricted".Translate(), false);
             if (m.spot.IsValid && !p.CanReach(m.spot, PathEndMode.Touch, Danger.Deadly)) return Busy(inv, "CC_MeetWhy_CutOff".Translate(), false);
             inv.eta = EtaTicks(p, m.spot);
-            if (inv.eta > MissShare * LordJob_CouncilMeeting.MeetingTicks)
+            if (MeetingMath.TooFar(inv.eta))
             {
                 inv.status = MeetingStatus.TooFar;
                 inv.reason = Whereabouts(p, m.spot, map);
@@ -354,15 +347,17 @@ namespace ColonyCouncil
         // ---------------- Sending for them ----------------
 
         /// <summary>
-        /// Pulls someone called to the meeting from ordinary work, rest or idling, so they set off now (they're already in
-        /// the meeting's lord, so the next thing they do is walk over). Anything else (eating, a job they can't drop, an
-        /// order) they finish first.
+        /// Pulls someone called to the meeting from ordinary work, recreation or idling, so they set off now (they're
+        /// already in the meeting's lord, so the next thing they do is walk over). Anything else (eating, a load in their
+        /// arms, a job they can't drop, an order) they finish first.
         /// </summary>
         public static void CallFromWork(Pawn p)
         {
             var job = p?.CurJob;
             if (job == null || p.jobs == null || job.playerForced) return;
             if (!p.jobs.IsCurrentJobPlayerInterruptible()) return;
+            // Someone with a load in their arms puts it where it goes first.
+            if (p.carryTracker?.CarriedThing != null) return;
             bool idle = job.def == JobDefOf.Wait_Wander || job.def == JobDefOf.GotoWander || job.def == JobDefOf.Wait;
             if (job.workGiverDef == null && job.def.joyKind == null && !idle) return;
             p.jobs.EndCurrentJob(JobCondition.InterruptForced);
@@ -624,21 +619,8 @@ namespace ColonyCouncil
         /// The next evening slot at least <paramref name="lead"/> ticks away: six in the evening, or a later full hour up
         /// to eight; past that, six the next evening.
         /// </summary>
-        public static int NextEvening(Map map, int now, int lead)
-        {
-            float hour = GenLocalDate.HourFloat(map);
-            float earliest = hour + lead / (float)GenDate.TicksPerHour;
-            float target;
-            if (earliest <= 18f) target = 18f;
-            else if (earliest <= 20f) target = Mathf.Ceil(earliest);
-            else
-            {
-                // The day after (or the one after that, for a very long lead).
-                target = 18f + 24f;
-                while (target < earliest) target += 24f;
-            }
-            return now + Mathf.RoundToInt((target - hour) * GenDate.TicksPerHour);
-        }
+        public static int NextEvening(Map map, int now, int lead) =>
+            now + Mathf.RoundToInt(MeetingMath.HoursToEvening(GenLocalDate.HourFloat(map), lead / (float)GenDate.TicksPerHour) * GenDate.TicksPerHour);
 
         /// <summary>"this evening", "tomorrow evening", "in about 2 hours".</summary>
         public static string When(Map map, int now, int tick)
