@@ -211,6 +211,29 @@ namespace ColonyCouncil
             return inv;
         }
 
+        /// <summary>
+        /// <see cref="Classify"/>, with a fault (a modded colonist in an odd state) logged once instead of stopping the call
+        /// for everyone: the chair still comes, anyone else is counted busy and excused.
+        /// </summary>
+        public static MeetingInvite ClassifySafely(Pawn p, CouncilMeeting m, bool callFromWork, bool isChair)
+        {
+            try
+            {
+                return Classify(p, m, callFromWork, isChair);
+            }
+            catch (System.Exception e)
+            {
+                CouncilLog.ErrorOnce("meeting attendance", e);
+                var inv = new MeetingInvite { pawn = p };
+                if (isChair)
+                {
+                    inv.status = MeetingStatus.Coming;
+                    return inv;
+                }
+                return Busy(inv, "CC_MeetWhy_Elsewhere".Translate(), true);
+            }
+        }
+
         private static MeetingInvite Busy(MeetingInvite inv, string reason, bool excused)
         {
             inv.status = MeetingStatus.Busy;

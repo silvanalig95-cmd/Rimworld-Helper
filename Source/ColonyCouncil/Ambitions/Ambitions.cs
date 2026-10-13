@@ -97,6 +97,9 @@ namespace ColonyCouncil
         public int lastMeetingTick = -999999;
         public int meetingsHeld;
         private Dictionary<string, int> lastOffered = new Dictionary<string, int>();
+        /// <summary>When a meeting due to start last looked for somewhere to meet and found nowhere. Not saved.</summary>
+        private int venueSearchTick = -999999;
+        private const int VenueSearchInterval = 600;
         private List<string> tmpK;
         private List<int> tmpV;
 
@@ -457,7 +460,16 @@ namespace ColonyCouncil
             }
             var spot = m.spot;
             string venue = m.venue;
-            if (wait == null && !VenueStillGood(m, chair) && !CouncilMeeting.FindVenue(map, chair, out spot, out venue)) wait = "CC_MeetWait_NoVenue".Translate();
+            if (wait == null && !VenueStillGood(m, chair))
+            {
+                // Searching the whole colony is costly: while there's nowhere to meet, it's tried again every ten seconds or so.
+                bool found = now - venueSearchTick >= VenueSearchInterval && CouncilMeeting.FindVenue(map, chair, out spot, out venue);
+                if (!found)
+                {
+                    if (now - venueSearchTick >= VenueSearchInterval) venueSearchTick = now;
+                    wait = "CC_MeetWait_NoVenue".Translate();
+                }
+            }
             if (wait != null)
             {
                 m.waitReason = wait;
@@ -473,7 +485,7 @@ namespace ColonyCouncil
             bool callFromWork = Settings.meetingsCallFromWork;
             var members = MeetingAttendance.Members(map);
             if (!members.Contains(chair)) members.Insert(0, chair);
-            m.invites = members.Select(p => MeetingAttendance.Classify(p, m, callFromWork, p == chair)).ToList();
+            m.invites = members.Select(p => MeetingAttendance.ClassifySafely(p, m, callFromWork, p == chair)).ToList();
             var expected = m.invites.Where(i => i.Expected).ToList();
             if (expected.Count < MeetingAttendance.Quorum(m.invites.Count) && !m.thinPostponed)
             {
