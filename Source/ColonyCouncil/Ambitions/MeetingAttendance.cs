@@ -185,10 +185,13 @@ namespace ColonyCouncil
             {
                 string why = null;
                 if (!callFromWork || !CanBeWoken(p, out why)) return Sleeping(inv, why ?? "CC_MeetWhy_Asleep".Translate());
+                // Nobody is woken for a meeting they can't get to, or would only reach once most of it is over.
+                inv.eta = EtaTicks(p, m.spot) + WakeUpTicks;
+                if (m.spot.IsValid && (m.spot.IsForbidden(p) || !p.CanReach(m.spot, PathEndMode.Touch, Danger.Deadly) || MeetingMath.TooFar(inv.eta)))
+                    return Sleeping(inv, "CC_MeetWhy_Asleep".Translate());
                 if (WouldSkip(p)) return Skip(inv);
                 inv.status = MeetingStatus.Woken;
                 inv.reason = "CC_MeetWhy_Asleep".Translate();
-                inv.eta = EtaTicks(p, m.spot) + WakeUpTicks;
                 return inv;
             }
             string urgent = UrgentWork(p) ?? OtherLord(p);
