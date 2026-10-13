@@ -603,14 +603,18 @@ namespace ColonyCouncil
         public static void ReleaseCalledAway(CouncilMeeting m)
         {
             if (m == null) return;
+            var lord = m.Lord;
             foreach (var inv in m.invites)
             {
                 var p = inv.pawn;
-                if (inv.released || p == null || !(inv.Expected || inv.Arrived)) continue;
+                if (inv.released || p == null) continue;
+                // Part of the meeting: summoned to it (called from work, or being woken), there already, or joined of their
+                // own accord. Someone merely invited who hasn't come yet is left to come when free, as for a party.
+                bool inIt = inv.Arrived || inv.status == MeetingStatus.Coming || inv.status == MeetingStatus.Woken || (lord != null && lord.ownedPawns.Contains(p));
+                if (!inIt) continue;
                 if (p.Drafted) Release(inv, "CC_MeetWhy_Drafted".Translate());
                 else if (p.CurJob != null && p.CurJob.playerForced) Release(inv, "CC_MeetWhy_Ordered".Translate());
             }
-            var lord = m.Lord;
             if (lord == null) return;
             // Backwards, since each one let go leaves the list (and the last one leaving ends the lord).
             for (int i = lord.ownedPawns.Count - 1; i >= 0; i--)
