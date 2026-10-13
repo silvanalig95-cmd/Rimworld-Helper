@@ -4,6 +4,7 @@ using System.Linq;
 using RimWorld;
 using RimWorld.Planet;
 using Verse;
+using Verse.AI.Group;
 
 namespace ColonyCouncil
 {
@@ -123,16 +124,19 @@ namespace ColonyCouncil
         // ---------------- Food ----------------
 
         /// <summary>
-        /// Food that counts for the same meal and a varied table: meals of any grade and food good to eat raw (berries,
-        /// pemmican, cheese), not drugs, not raw food the game already minds, and not treats eaten for fun.
+        /// Food that counts for the same meal and a varied table: meals and food good to eat raw (berries, pemmican,
+        /// cheese). Not drugs, not treats eaten for fun, and not what the game already minds the taste of (raw meat and
+        /// vegetables, nutrient paste, kibble), so a bad meal is never counted twice.
         /// </summary>
         public static bool CountsAsFood(ThingDef d)
         {
             var ing = d?.ingestible;
             if (ing == null || d.IsDrug || !d.IsNutritionGivingIngestible) return false;
             var pref = ing.preferability;
-            if (pref < FoodPreferability.RawTasty || pref > FoodPreferability.MealLavish) return false;
-            return !(ing.joy > 0f && pref < FoodPreferability.MealAwful);
+            if (pref < FoodPreferability.RawTasty || pref > FoodPreferability.MealLavish || pref == FoodPreferability.MealAwful) return false;
+            if (ing.joy > 0f && pref < FoodPreferability.MealAwful) return false;
+            var taste = ing.tasteThought?.stages;
+            return taste.NullOrEmpty() || taste[0] == null || taste[0].baseMoodEffect >= 0f;
         }
 
         public static string FoodLabel(string defName)
@@ -149,7 +153,7 @@ namespace ColonyCouncil
 
         // ---------------- Text ----------------
 
-        /// <summary>Fills a pressure's label or description: {FOOD}, {WORK}, {PERSON}, {ROOM}, {THING}.</summary>
+        /// <summary>Fills a pressure's label or description: {FOOD}, {FOODS} (plural), {WORK}, {OTHER_nameDef} (the one missed), {ROOM}, {THING}.</summary>
         public static string Fill(string raw, Pawn p)
         {
             if (raw.NullOrEmpty() || raw.IndexOf('{') < 0) return raw;
@@ -157,11 +161,13 @@ namespace ColonyCouncil
             var rec = t?.Peek(p);
             var u = p?.MapHeld != null ? t?.UnfinishedOn(p.MapHeld) : null;
             string food = rec != null ? FoodLabel(rec.foodKind) : "?";
+            string foods = rec != null ? Find.ActiveLanguageWorker.Pluralize(food) : "?";
             string work = rec != null ? WorkLabel(rec.streakWork) : "?";
-            string person = rec?.missed?.LabelShort ?? "?";
             string room = rec?.crowdRoom ?? "CC_Pressure_RoomFallback".Translate().ToString();
             string thing = u?.thing ?? "CC_Pressure_ThingFallback".Translate().ToString();
-            return raw.Formatted(food.Named("FOOD"), work.Named("WORK"), person.Named("PERSON"), room.Named("ROOM"), thing.Named("THING"), p.Named("PAWN")).Resolve();
+            var other = rec?.missed != null ? rec.missed.Named("OTHER") : "?".Named("OTHER");
+            return raw.Formatted(food.Named("FOOD"), foods.Named("FOODS"), work.Named("WORK"), other, room.Named("ROOM"), thing.Named("THING"),
+                p.Named("PAWN")).Resolve();
         }
     }
 
@@ -647,6 +653,8 @@ namespace ColonyCouncil
         {
             public Room room;
             public bool dining;
+            /// <summary>A party, ritual, wedding or council meeting is on in the room: being packed in is the point.</summary>
+            public bool gathering;
             public int people, diners;
             public readonly List<Pawn> ours = new List<Pawn>();
         }
@@ -671,11 +679,12 @@ namespace ColonyCouncil
                 if (!crowds.TryGetValue(room, out var c)) crowds[room] = c = new Crowd { room = room, dining = role == diningRole };
                 c.people++;
                 if (x.CurJobDef == JobDefOf.Ingest) c.diners++;
+                if (x.GetLord()?.LordJob is LordJob_Joinable_Gathering) c.gathering = true;
                 if (Pressures.Eligible(x)) c.ours.Add(x);
             }
             foreach (var c in crowds.Values)
             {
-                if (c.people < PressureMath.CrowdMinPeople || c.ours.Count == 0) continue;
+                if (c.gathering || c.people < PressureMath.CrowdMinPeople || c.ours.Count == 0) continue;
                 int seats = c.dining ? Seats(c.room) : -1;
                 int cells = c.room.CellCount;
                 int level = PressureMath.CrowdLevel(c.people, cells, c.diners, seats);

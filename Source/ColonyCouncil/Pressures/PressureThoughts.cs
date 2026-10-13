@@ -59,7 +59,7 @@ namespace ColonyCouncil
         {
             get
             {
-                string raw = CurStage?.description;
+                string raw = def.Worker is ThoughtWorker_Pressure w ? w.Describe(pawn, CurStage?.description) : CurStage?.description;
                 string text;
                 try
                 {
@@ -104,6 +104,9 @@ namespace ColonyCouncil
 
         /// <summary>The stage's label, or another one that fits better right now.</summary>
         public virtual string Label(Pawn p, string stageLabel) => stageLabel;
+
+        /// <summary>The stage's description, or another one that fits better right now.</summary>
+        public virtual string Describe(Pawn p, string stageDescription) => stageDescription;
 
         /// <summary>The cause, for the tooltip and the Mood tab.</summary>
         public abstract string Why(Pawn p);
@@ -198,11 +201,15 @@ namespace ColonyCouncil
             return stage - 1;
         }
 
-        public override string Label(Pawn p, string stageLabel)
+        public override string Label(Pawn p, string stageLabel) => PlansOnly(p) ? "CC_Pressure_PlansLabel".Translate().ToString() : stageLabel;
+
+        public override string Describe(Pawn p, string stageDescription) => PlansOnly(p) ? "CC_Pressure_PlansDesc".Translate().ToString() : stageDescription;
+
+        /// <summary>Plans nobody has started aren't half-built yet.</summary>
+        private static bool PlansOnly(Pawn p)
         {
             var u = p?.Map != null ? Pressures.Tracker?.UnfinishedOn(p.Map) : null;
-            // Plans nobody has started aren't half-built yet.
-            return u != null && u.frames == 0 && u.blueprints > 0 ? "CC_Pressure_PlansLabel".Translate().ToString() : stageLabel;
+            return u != null && u.frames == 0 && u.blueprints > 0;
         }
 
         public override string Why(Pawn p)

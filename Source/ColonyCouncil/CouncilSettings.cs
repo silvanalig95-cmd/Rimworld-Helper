@@ -371,11 +371,14 @@ namespace ColonyCouncil
             rewardFactor = Mathf.Round(rewardFactor * 20f) / 20f;
 
             // Everyday pressures sit with the other mood settings: how much the colony has to keep up to stay content.
-            Header(l, "CC_Settings_Life".Translate());
-            l.Label("CC_Settings_Life_Tip".Translate());
-            foreach (LifePressure mode in System.Enum.GetValues(typeof(LifePressure)))
-                if (l.RadioButton(("CC_Life_" + mode).Translate(), lifePressure == mode, 0f, ("CC_Life_" + mode + "_Tip").Translate()))
-                    lifePressure = mode;
+            if (MoodEffects)
+            {
+                Header(l, "CC_Settings_Life".Translate());
+                l.Label("CC_Settings_Life_Tip".Translate());
+                foreach (LifePressure mode in System.Enum.GetValues(typeof(LifePressure)))
+                    if (l.RadioButton(("CC_Life_" + mode).Translate(), lifePressure == mode, 0f, ("CC_Life_" + mode + "_Tip").Translate()))
+                        lifePressure = mode;
+            }
 
             l.Gap();
             if (l.ButtonText("CC_Settings_Reset".Translate(), null, 0.4f)) ResetToDefaults();

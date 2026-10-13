@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Everyday pressures (Source/ColonyCouncil/Pressures/): the small, fixable things that wear on people when a colony is
+    run without care. Each is a situational mood that reads what the hourly look found, so it goes away by itself once
+    the cause is dealt with. The bad side follows the "Life's ups and downs" setting (half on gentle, half again on
+    demanding, never less than a whole point) and the colonist's standards; the one good side (a varied table) is a
+    small reward that follows the reward strength and standards. Labels and descriptions may name the food ({FOOD},
+    {FOODS}), the work ({WORK}), the person ({OTHER_nameDef}), the room ({ROOM}) or what was left half-built ({THING}). The
+    tooltip adds what caused it (CC_Pressure_Why_...) and what helps (CC_Pressure_Help_{defName}).
+  -->
+
+  <ThoughtDef>
+    <defName>Council_Pressure_SameMeal</defName>
+    <workerClass>ColonyCouncil.ThoughtWorker_SameMeal</workerClass>
+    <thoughtClass>ColonyCouncil.Thought_Pressure</thoughtClass>
+    <validWhileDespawned>true</validWhileDespawned>
+    <stages>
+      <li>
+        <label>{FOOD} again</label>
+        <description>Another {FOOD}. I wouldn't mind something different now and then.</description>
+        <baseMoodEffect>-1</baseMoodEffect>
+      </li>
+      <li>
+        <label>{FOODS} every day</label>
+        <description>We've had {FOODS} every day this week. I've stopped tasting them.</description>
+        <baseMoodEffect>-2</baseMoodEffect>
+      </li>
+      <li>
+        <label>nothing but {FOODS}</label>
+        <description>Meal after meal, it's {FOODS}. I'd trade a day's work for a plate of anything else.</description>
+        <baseMoodEffect>-3</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Council_Pressure_VariedTable</defName>
+    <workerClass>ColonyCouncil.ThoughtWorker_VariedTable</workerClass>
+    <thoughtClass>ColonyCouncil.Thought_Pressure</thoughtClass>
+    <validWhileDespawned>true</validWhileDespawned>
+    <stages>
+      <li>
+        <label>a varied table</label>
+        <description>Something different at nearly every meal lately. I look forward to eating.</description>
+        <baseMoodEffect>2</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Council_Pressure_SameWork</defName>
+    <workerClass>ColonyCouncil.ThoughtWorker_SameWork</workerClass>
+    <thoughtClass>ColonyCouncil.Thought_Pressure</thoughtClass>
+    <validWhileDespawned>true</validWhileDespawned>
+    <stages>
+      <li>
+        <label>days of {WORK}</label>
+        <description>It's been {WORK} from morning to night for days. A change would do me good.</description>
+        <baseMoodEffect>-1</baseMoodEffect>
+      </li>
+      <li>
+        <label>the same work every day</label>
+        <description>Most of a week of nothing but {WORK}. The days are starting to run together.</description>
+        <baseMoodEffect>-2</baseMoodEffect>
+      </li>
+      <li>
+        <label>sick of {WORK}</label>
+        <description>Over a week of {WORK} and nothing else. I used to like it well enough.</description>
+        <baseMoodEffect>-3</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Council_Pressure_Missing</defName>
+    <workerClass>ColonyCouncil.ThoughtWorker_Missing</workerClass>
+    <thoughtClass>ColonyCouncil.Thought_Pressure</thoughtClass>
+    <validWhileDespawned>true</validWhileDespawned>
+    <stages>
+      <li>
+        <label>missing {OTHER_nameDef}</label>
+        <description>{OTHER_nameDef} and I have been apart a while. I miss having {OTHER_objective} around.</description>
+        <baseMoodEffect>-1</baseMoodEffect>
+      </li>
+      <li>
+        <label>missing {OTHER_nameDef}</label>
+        <description>I keep saving up things to tell {OTHER_nameDef}. The list is getting long.</description>
+        <baseMoodEffect>-2</baseMoodEffect>
+      </li>
+      <li>
+        <label>missing {OTHER_nameDef} badly</label>
+        <description>It's been so long since I saw {OTHER_nameDef}. I lie awake wondering if {OTHER_pronoun} is all right.</description>
+        <baseMoodEffect>-3</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Council_Pressure_Crowded</defName>
+    <workerClass>ColonyCouncil.ThoughtWorker_Crowded</workerClass>
+    <thoughtClass>ColonyCouncil.Thought_Pressure</thoughtClass>
+    <stages>
+      <li>
+        <label>elbow to elbow</label>
+        <description>The {ROOM} was full to the walls. I couldn't hear myself think.</description>
+        <baseMoodEffect>-1</baseMoodEffect>
+      </li>
+      <li>
+        <label>a packed {ROOM}</label>
+        <description>There were far more of us in the {ROOM} than it can hold. Someone's elbow was in my ribs the whole time.</description>
+        <baseMoodEffect>-2</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Council_Pressure_Unfinished</defName>
+    <workerClass>ColonyCouncil.ThoughtWorker_Unfinished</workerClass>
+    <thoughtClass>ColonyCouncil.Thought_Pressure</thoughtClass>
+    <stages>
+      <li>
+        <label>work left half-done</label>
+        <description>There's a half-built {THING} out there that nobody has touched in days. It nags at me every time I walk past.</description>
+        <baseMoodEffect>-1</baseMoodEffect>
+      </li>
+      <li>
+        <label>half-built everywhere</label>
+        <description>Frames and plans all over, and none of them finished. We start things and leave them.</description>
+        <baseMoodEffect>-2</baseMoodEffect>
+      </li>
+      <li>
+        <label>a colony of loose ends</label>
+        <description>Everywhere I look there's a frame or a plan nobody has touched in days. I can't remember the last thing we finished.</description>
+        <baseMoodEffect>-3</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+</Defs>
