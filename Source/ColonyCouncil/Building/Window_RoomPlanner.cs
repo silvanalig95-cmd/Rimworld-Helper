@@ -8,15 +8,17 @@ using Verse.Sound;
 namespace ColonyCouncil
 {
     /// <summary>
-    /// The panel shown while a room plan is selected, wherever it was picked from (council tab or architect
-    /// menu): turning, mirroring, door position, materials, furniture variants, clearing options, cost.
+    /// The panel shown while a room plan is selected, wherever it was picked from (council tab, rooms menu, architect
+    /// menu): the room's sizes and styles, turning, mirroring, door position, materials (picked from what the colony
+    /// has), furniture variants, clearing options, and the cost against the stock. It also switches to upgrading a
+    /// room that's already built.
     /// </summary>
     public class Window_RoomPlanner : Window
     {
         private readonly Designator_PlanRoom des;
         private Vector2 scroll;
         private float contentHeight = 400f;
-        private const float Width = 330f;
+        private const float Width = 340f;
         private const float RowH = 26f;
 
         private static readonly Color Faint = new Color(0.7f, 0.7f, 0.7f);
@@ -118,7 +120,7 @@ namespace ColonyCouncil
             // Title
             Widgets.DrawTextureFitted(new Rect(0f, y, 28f, 28f), t.Icon, 1f);
             Text.Font = GameFont.Medium;
-            Widgets.Label(new Rect(34f, y, w - 34f, 32f), t.LabelCap);
+            Widgets.Label(new Rect(34f, y, w - 34f, 32f), t.LabelCap.ToString().Truncate(w - 40f));
             Text.Font = GameFont.Small;
             y += 30f;
             GUI.color = Faint;
@@ -126,58 +128,80 @@ namespace ColonyCouncil
             GUI.color = Color.white;
             y += 22f;
 
+            y = VariantRow(y, w, t, map);
+            y = StyleRow(y, w, cfg);
+
+            // Building new or upgrading a built room
+            if (Widgets.ButtonText(new Rect(0f, y, w, RowH), des.upgradeMode ? "CC_Upgrade_Back".Translate() : "CC_Upgrade_Button".Translate()))
+                des.ToggleUpgrade();
+            TooltipHandler.TipRegion(new Rect(0f, y, w, RowH), "CC_Upgrade_Tip".Translate());
+            y += RowH + 3f;
+
             // Orientation
             float half = (w - 4f) / 2f;
-            if (Widgets.ButtonText(new Rect(0f, y, half, RowH), "CC_Plan_RotateLeft".Translate())) des.Rotate(-1);
-            if (Widgets.ButtonText(new Rect(half + 4f, y, half, RowH), "CC_Plan_RotateRight".Translate())) des.Rotate(1);
-            y += RowH + 3f;
             float third = (w - 8f) / 3f;
-            if (Widgets.ButtonText(new Rect(0f, y, third, RowH), cfg.mirror ? "CC_Planner_Mirrored".Translate() : "CC_Planner_Mirror".Translate()))
+            if (!des.upgradeMode)
+            {
+                if (Widgets.ButtonText(new Rect(0f, y, half, RowH), "CC_Plan_RotateLeft".Translate())) des.Rotate(-1);
+                if (Widgets.ButtonText(new Rect(half + 4f, y, half, RowH), "CC_Plan_RotateRight".Translate())) des.Rotate(1);
+                y += RowH + 3f;
+            }
+            if (Widgets.ButtonText(new Rect(0f, y, des.upgradeMode ? w : third, RowH), cfg.mirror ? "CC_Planner_Mirrored".Translate() : "CC_Planner_Mirror".Translate()))
             {
                 cfg.mirror = !cfg.mirror;
                 cfg.Changed();
             }
-            int door = cfg.DoorX(t);
-            if (Widgets.ButtonText(new Rect(third + 4f, y, third, RowH), "CC_Planner_DoorLeft".Translate()) && door > 0)
+            if (!des.upgradeMode)
             {
-                cfg.doorX = door - 1;
-                cfg.Changed();
+                int door = cfg.DoorX(t);
+                if (Widgets.ButtonText(new Rect(third + 4f, y, third, RowH), "CC_Planner_DoorLeft".Translate()) && door > 0)
+                {
+                    cfg.doorX = door - 1;
+                    cfg.Changed();
+                }
+                if (Widgets.ButtonText(new Rect(2f * third + 8f, y, third, RowH), "CC_Planner_DoorRight".Translate()) && door < t.size.x - 1)
+                {
+                    cfg.doorX = door + 1;
+                    cfg.Changed();
+                }
+                y += RowH + 3f;
+                if (Widgets.ButtonText(new Rect(0f, y, des.HasSuggestion ? half : w, RowH), "CC_Plan_FindSpot".Translate())) des.SuggestSpot();
+                if (des.HasSuggestion && Widgets.ButtonText(new Rect(half + 4f, y, half, RowH), "CC_Planner_PlaceThere".Translate())) des.PlaceAtSuggestion();
             }
-            if (Widgets.ButtonText(new Rect(2f * third + 8f, y, third, RowH), "CC_Planner_DoorRight".Translate()) && door < t.size.x - 1)
-            {
-                cfg.doorX = door + 1;
-                cfg.Changed();
-            }
-            y += RowH + 3f;
-            if (Widgets.ButtonText(new Rect(0f, y, des.HasSuggestion ? half : w, RowH), "CC_Plan_FindSpot".Translate())) des.SuggestSpot();
-            if (des.HasSuggestion && Widgets.ButtonText(new Rect(half + 4f, y, half, RowH), "CC_Planner_PlaceThere".Translate())) des.PlaceAtSuggestion();
             y += RowH + 6f;
 
-            // Materials
+            // Materials, picked from what the colony has unless the player picks one
             y = Section(y, w, "CC_Planner_Materials".Translate());
+            var useRect = new Rect(w - 150f, y - 21f, 150f, 20f);
+            Text.Font = GameFont.Tiny;
+            if (Widgets.ButtonText(useRect, "CC_Planner_UseWhatWeHave".Translate()))
+            {
+                cfg.UseWhatWeHave();
+                SoundDefOf.Click.PlayOneShotOnCamera();
+            }
+            Text.Font = GameFont.Small;
+            TooltipHandler.TipRegion(useRect, "CC_Planner_UseWhatWeHave_Tip".Translate());
             var walls = cfg.WallStuff(t, map);
-            y = PickRow(y, w, "CC_Planner_Walls".Translate(), null, StuffLabel(walls, map), () => StuffMenu(ThingDefOf.Wall, walls, map, x =>
+            if (!des.upgradeMode)
             {
-                cfg.wallStuff = x;
-                cfg.Changed();
-            }));
-            var doorDef = cfg.DoorDef(map);
-            var doorStuff = cfg.DoorStuff(doorDef, walls, map);
-            y = PickRow(y, w, "CC_Planner_Door".Translate(), doorDef.LabelCap, doorStuff != null ? StuffLabel(doorStuff, map) : null, () =>
-            {
-                var opts = RoomPlanConfig.DoorOptions(map).Select(d => new FloatMenuOption(d.LabelCap, () =>
+                int wallUnits = RoomPlanConfig.WallCount(t);
+                y = PickRow(y, w, "CC_Planner_Walls".Translate(), null, StuffLabel(walls, map), () => StuffMenu(ThingDefOf.Wall, walls, map, MaterialUse.Wall, wallUnits, cfg.PickWalls),
+                    stuffColor: Coverage(ThingDefOf.Wall, walls, wallUnits, map));
+                var doorDef = cfg.DoorDef(map);
+                var doorStuff = cfg.DoorStuff(doorDef, walls, map);
+                y = PickRow(y, w, "CC_Planner_Door".Translate(), doorDef.LabelCap, doorStuff != null ? StuffLabel(doorStuff, map) : null, () =>
                 {
-                    cfg.doorDef = d;
-                    cfg.Changed();
-                })).ToList();
-                if (opts.Count > 0) Find.WindowStack.Add(new FloatMenu(opts));
-            }, () => StuffMenu(doorDef, doorStuff, map, x =>
-            {
-                cfg.doorStuff = x;
-                cfg.Changed();
-            }));
+                    var opts = RoomPlanConfig.DoorOptions(map).Select(d => new FloatMenuOption(d.LabelCap, () =>
+                    {
+                        cfg.doorDef = d;
+                        cfg.Changed();
+                    }, d)).ToList();
+                    if (opts.Count > 0) Find.WindowStack.Add(new FloatMenu(opts));
+                }, () => StuffMenu(doorDef, doorStuff, map, MaterialUse.Door, 1, cfg.PickDoorStuff), stuffColor: Coverage(doorDef, doorStuff, 1, map));
+            }
             var floor = cfg.Floor(t, map);
-            y = PickRow(y, w, "CC_Planner_Floor".Translate(), floor != null ? GenLabel.ThingLabel(floor, cfg.FloorStuff(floor, map, t.size.x * t.size.z)).CapitalizeFirst() : "CC_Planner_NoFloor".Translate().ToString(), null,
+            var floorStuff = cfg.FloorStuff(floor, map, t.size.x * t.size.z);
+            y = PickRow(y, w, "CC_Planner_Floor".Translate(), floor != null ? GenLabel.ThingLabel(floor, floorStuff).CapitalizeFirst() : "CC_Planner_NoFloor".Translate().ToString(), null,
                 () => Window_FloorPicker.Open(t, cfg, map, windowRect));
 
             // Furniture
@@ -209,20 +233,37 @@ namespace ColonyCouncil
                         }, d)).ToList();
                         if (opts.Count > 1) Find.WindowStack.Add(new FloatMenu(opts));
                         else Messages.Message("CC_Planner_NoVariants".Translate(), MessageTypeDefOf.RejectInput, false);
-                    }, first.stuff == null ? (System.Action)null : () => StuffMenu(first.def, first.stuff, map, x =>
-                    {
-                        cfg.stuff[groupKey] = x;
-                        cfg.Changed();
-                    }), first.def);
+                    }, first.stuff == null ? (System.Action)null : () => StuffMenu(first.def, first.stuff, map, MaterialUse.Furniture, count, x => cfg.PickStuff(groupKey, x)),
+                        first.def, Coverage(first.def, first.stuff, count, map));
                 }
             }
 
             // Clearing
-            y = Section(y + 4f, w, "CC_Planner_Clearing".Translate());
-            y = Toggle(y, w, "CC_Planner_CutPlants", ref s.planCutPlants);
-            y = Toggle(y, w, "CC_Planner_MineRock", ref s.planMineRock);
-            y = Toggle(y, w, "CC_Planner_ReplaceOwn", ref s.planReplaceOwn);
-            y = Toggle(y, w, "CC_Planner_Smooth", ref s.planSmoothStone);
+            if (!des.upgradeMode)
+            {
+                y = Section(y + 4f, w, "CC_Planner_Clearing".Translate());
+                y = Toggle(y, w, "CC_Planner_CutPlants", ref s.planCutPlants);
+                y = Toggle(y, w, "CC_Planner_MineRock", ref s.planMineRock);
+                y = Toggle(y, w, "CC_Planner_ReplaceOwn", ref s.planReplaceOwn);
+                y = Toggle(y, w, "CC_Planner_Smooth", ref s.planSmoothStone);
+            }
+
+            // The built room under the mouse, while upgrading
+            if (des.upgradeMode)
+            {
+                y = Section(y + 4f, w, "CC_Upgrade_Room".Translate());
+                var room = des.RoomUnderMouse;
+                GUI.color = Faint;
+                if (room == null || room.PsychologicallyOutdoors || !room.ProperRoom) y += Label(y, w, "CC_Upgrade_HoverRoom".Translate());
+                else
+                {
+                    GUI.color = Color.white;
+                    float imp = room.GetStat(RoomStatDefOf.Impressiveness);
+                    var stage = RoomStatDefOf.Impressiveness.GetScoreStage(imp);
+                    y += Label(y, w, "CC_Upgrade_Impressiveness".Translate(room.GetRoomRoleLabel().CapitalizeFirst(), imp.ToString("F0"), stage?.label ?? "-"));
+                }
+                GUI.color = Color.white;
+            }
 
             // Cost and warnings for the spot under the mouse
             var plan = des.CurrentPlan;
@@ -237,9 +278,14 @@ namespace ColonyCouncil
                 }
                 foreach (var kv in cost.OrderByDescending(k => k.Value))
                 {
-                    int have = map.resourceCounter.GetCount(kv.Key);
-                    GUI.color = have >= kv.Value ? Color.white : Short;
-                    y += Label(y, w, "CC_Planner_CostLine".Translate(kv.Key.LabelCap, kv.Value, have));
+                    int stored = MaterialCounts.Stored(map, kv.Key);
+                    int lying = MaterialCounts.LyingAround(map, kv.Key);
+                    int have = stored + lying;
+                    GUI.color = have >= Mathf.CeilToInt(kv.Value * MaterialPicker.Margin) ? MaterialPicker.CoverageColor(2) : have >= kv.Value ? MaterialPicker.CoverageColor(1) : MaterialPicker.CoverageColor(0);
+                    string line = lying > 0
+                        ? "CC_Planner_CostLineLying".Translate(kv.Key.LabelCap, kv.Value, stored, lying).Resolve()
+                        : "CC_Planner_CostLine".Translate(kv.Key.LabelCap, kv.Value, stored).Resolve();
+                    y += Label(y, w, line);
                 }
                 GUI.color = Warn;
                 foreach (var warning in plan.warnings) y += Label(y, w, warning);
@@ -264,6 +310,61 @@ namespace ColonyCouncil
             Widgets.EndScrollView();
         }
 
+        /// <summary>The room type's sizes and kinds ("cozy", "standard", "roomy"), one button each.</summary>
+        private float VariantRow(float y, float w, RoomTemplateDef t, Map map)
+        {
+            var type = RoomTypeDef.Of(t);
+            if (type == null || type.Variants.Count < 2) return y;
+            var vs = type.Variants;
+            float gap = 3f;
+            float bw = (w - gap * (vs.Count - 1)) / vs.Count;
+            Text.Font = GameFont.Tiny;
+            for (int i = 0; i < vs.Count; i++)
+            {
+                var (vt, label) = vs[i];
+                var r = new Rect(i * (bw + gap), y, bw, 24f);
+                string reason = vt.UnavailableReason(map);
+                bool current = vt == t;
+                if (current) Widgets.DrawHighlightSelected(r);
+                var color = reason != null ? Faint : current ? new Color(1f, 0.9f, 0.55f) : Color.white;
+                if (Widgets.ButtonText(r, label.CapitalizeFirst().Truncate(bw - 6f), true, true, color))
+                {
+                    if (reason != null) Messages.Message(reason, MessageTypeDefOf.RejectInput, false);
+                    else des.SetTemplate(vt);
+                }
+                var tipT = vt;
+                TooltipHandler.TipRegion(r, () => tipT.LabelCap + " (" + tipT.size.x + "x" + tipT.size.z + ")\n" + (tipT.description ?? "")
+                                                  + (reason != null ? "\n\n" + reason : ""), tipT.GetHashCode() ^ 0x5A1);
+            }
+            Text.Font = GameFont.Small;
+            return y + 27f;
+        }
+
+        /// <summary>Spartan, comfortable or lavish.</summary>
+        private float StyleRow(float y, float w, RoomPlanConfig cfg)
+        {
+            var styles = new[] { RoomStyle.Spartan, RoomStyle.Comfortable, RoomStyle.Lavish };
+            float gap = 3f;
+            float bw = (w - gap * 2f) / 3f;
+            Text.Font = GameFont.Tiny;
+            for (int i = 0; i < styles.Length; i++)
+            {
+                var style = styles[i];
+                var r = new Rect(i * (bw + gap), y, bw, 24f);
+                bool current = cfg.style == style;
+                if (current) Widgets.DrawHighlightSelected(r);
+                if (Widgets.ButtonText(r, ("CC_Style_" + style).Translate(), true, true, current ? new Color(1f, 0.9f, 0.55f) : Color.white) && !current)
+                {
+                    cfg.style = style;
+                    cfg.Changed();
+                    SoundDefOf.Click.PlayOneShotOnCamera();
+                }
+                TooltipHandler.TipRegion(r, ("CC_Style_" + style + "_Tip").Translate());
+            }
+            Text.Font = GameFont.Small;
+            return y + 28f;
+        }
+
         private static float Section(float y, float w, string text)
         {
             Widgets.DrawLineHorizontal(0f, y + 2f, w);
@@ -282,8 +383,14 @@ namespace ColonyCouncil
             return h;
         }
 
-        /// <summary>A row: optional caption, a button for the thing, an optional button for its material.</summary>
-        private static float PickRow(float y, float w, string caption, string thingLabel, string stuffLabel, System.Action onThing, System.Action onStuff = null, ThingDef icon = null)
+        private static Color? Coverage(BuildableDef def, ThingDef stuff, int units, Map map)
+        {
+            if (def == null || stuff == null) return null;
+            return MaterialPicker.CoverageColor(MaterialPicker.Coverage(def, stuff, units, map));
+        }
+
+        /// <summary>A row: optional caption, a button for the thing, an optional button for its material (colored by how well the stock covers it).</summary>
+        private static float PickRow(float y, float w, string caption, string thingLabel, string stuffLabel, System.Action onThing, System.Action onStuff = null, ThingDef icon = null, Color? stuffColor = null)
         {
             float x = 0f;
             if (icon != null)
@@ -297,16 +404,20 @@ namespace ColonyCouncil
                 x += 62f;
             }
             float rest = w - x;
+            var color = stuffColor ?? Color.white;
             if (thingLabel != null && stuffLabel != null)
             {
                 float a = rest * 0.5f - 2f;
-                if (Widgets.ButtonText(new Rect(x, y, a, RowH - 2f), thingLabel)) onThing?.Invoke();
-                if (Widgets.ButtonText(new Rect(x + a + 4f, y, rest - a - 4f, RowH - 2f), stuffLabel)) onStuff?.Invoke();
+                if (Widgets.ButtonText(new Rect(x, y, a, RowH - 2f), thingLabel.Truncate(a - 6f))) onThing?.Invoke();
+                if (Widgets.ButtonText(new Rect(x + a + 4f, y, rest - a - 4f, RowH - 2f), stuffLabel.Truncate(rest - a - 10f), true, true, color)) onStuff?.Invoke();
             }
-            else if (Widgets.ButtonText(new Rect(x, y, rest, RowH - 2f), thingLabel ?? stuffLabel ?? "-"))
+            else if (thingLabel == null && stuffLabel != null)
             {
-                if (thingLabel != null) onThing?.Invoke();
-                else (onStuff ?? onThing)?.Invoke();
+                if (Widgets.ButtonText(new Rect(x, y, rest, RowH - 2f), stuffLabel.Truncate(rest - 6f), true, true, color)) (onStuff ?? onThing)?.Invoke();
+            }
+            else if (Widgets.ButtonText(new Rect(x, y, rest, RowH - 2f), (thingLabel ?? "-").Truncate(rest - 6f)))
+            {
+                onThing?.Invoke();
             }
             return y + RowH;
         }
@@ -325,14 +436,16 @@ namespace ColonyCouncil
             return y + RowH - 2f;
         }
 
+        /// <summary>"Granite blocks 420 (+85 lying around)": stored and lying around, like the build menu shows it.</summary>
         private static string StuffLabel(ThingDef stuff, Map map) =>
-            stuff == null ? "-" : stuff.LabelCap + " (" + map.resourceCounter.GetCount(stuff) + ")";
+            stuff == null ? "-" : stuff.LabelCap + " " + MaterialCounts.Short(map, stuff);
 
-        private static void StuffMenu(BuildableDef def, ThingDef current, Map map, System.Action<ThingDef> set)
+        private static void StuffMenu(BuildableDef def, ThingDef current, Map map, MaterialUse use, int units, System.Action<ThingDef> set)
         {
             if (def == null || !def.MadeFromStuff) return;
-            var opts = RoomPlanConfig.StuffOptions(def, map, current)
-                .Select(x => new FloatMenuOption(x.LabelCap + " (" + map.resourceCounter.GetCount(x) + ")", () => set(x), x))
+            var opts = RoomPlanConfig.StuffOptions(def, map, current, use)
+                .Select(x => new FloatMenuOption(x.LabelCap + "    " + MaterialCounts.Short(map, x)
+                                                 + "CC_Mat_NeedHere".Translate(units * MaterialCounts.PerUnit(def, x)).Resolve(), () => set(x), x))
                 .ToList();
             if (opts.Count == 0) opts.Add(new FloatMenuOption("CC_Plan_NoMaterials".Translate(), null));
             Find.WindowStack.Add(new FloatMenu(opts));

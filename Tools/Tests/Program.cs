@@ -1,9 +1,14 @@
 using ColonyCouncil;
 
 int failures = 0;
+var reported = new HashSet<string>();
 void Check(bool ok, string what)
 {
-    if (!ok) { failures++; Console.WriteLine("FAIL " + what); }
+    if (ok) return;
+    failures++;
+    // The same problem in several turns, styles or furnishings is reported once.
+    string key = System.Text.RegularExpressions.Regex.Replace(what, @" turn \d( mirrored)?|\((best|fallback) furniture, style \d\)|\(-?\d+,-?\d+\)|facing \d|faces \d|needs \d", "");
+    if (reported.Add(key) && reported.Count <= 300) Console.WriteLine("FAIL " + what);
 }
 
 // Four quarter turns are the identity; every rotated point stays inside the rotated rect.
@@ -234,5 +239,65 @@ Check(PressureMath.UnfinishedStage(PressureMath.UnfinishedScore(0, 500)) == 1 &&
 Check(PressureMath.EffortFactor(-1f) == 1f && PressureMath.EffortFactor(0f) == 1f && PressureMath.EffortFactor(0.5f) == 1f, "an ambition with half or more to do is earned in full");
 Check(Math.Abs(PressureMath.EffortFactor(0.7f) - 0.8f) < 1e-4f && PressureMath.EffortFactor(0.95f) == 0.6f, "one mostly done already counts for less, 60% at least");
 
-Console.WriteLine(failures == 0 ? "All template math, strain, meeting and pressure tests passed." : failures + " failure(s).");
+// ---------------- Room layouts (Building/TemplateLayout.cs) ----------------
+
+// The root found for a footprint gives back that footprint, for every size and facing.
+for (int sx = 1; sx <= 5; sx++)
+for (int sz = 1; sz <= 5; sz++)
+for (int r = 0; r < 4; r++)
+{
+    TemplateLayout.OccupiedRect(10, 10, r, sx, sz, out int mx, out int mz, out int w, out int h);
+    bool found = TemplateLayout.RootFor(mx, mz, w, h, r, sx, sz, out int rx, out int rz);
+    TemplateLayout.OccupiedRect(rx, rz, r, sx, sz, out int mx2, out int mz2, out int w2, out int h2);
+    Check(found && mx2 == mx && mz2 == mz && w2 == w && h2 == h, $"root round trip {sx}x{sz} facing {r}");
+}
+
+// Undoing a mirrored, turned point gives the template point back.
+foreach (bool mirror in new[] { false, true })
+for (int r = 0; r < 4; r++)
+for (int x = 0; x < 7; x++)
+for (int z = 0; z < 5; z++)
+{
+    TemplateMath.Transform(x, z, 7, 5, mirror, r, out int tx, out int tz);
+    TemplateMath.InverseTransform(tx, tz, 7, 5, mirror, r, out int ux, out int uz);
+    Check(ux == x && uz == z, $"inverse transform m={mirror} r={r} ({x},{z})");
+}
+
+// A one-cell piece lands where its cell lands, facing the transformed way; one that only faces north stays north.
+foreach (bool mirror in new[] { false, true })
+for (int r = 0; r < 4; r++)
+{
+    TemplateLayout.ToWorld(7, 6, mirror, r, 2, 3, 1, 1, 1, true, false, 1, 1, out int mx, out int mz, out _, out _, out int facing, out int rx, out int rz);
+    TemplateMath.Transform(2, 3, 7, 6, mirror, r, out int tx, out int tz);
+    Check(mx == tx && mz == tz && rx == tx && rz == tz && facing == TemplateMath.TransformFacing(1, mirror, r), $"one-cell piece m={mirror} r={r}");
+    TemplateLayout.ToWorld(7, 6, mirror, r, 2, 3, 1, 1, 1, false, false, 1, 1, out _, out _, out _, out _, out int still, out _, out _);
+    Check(still == 0, $"a piece that can't turn faces north m={mirror} r={r}");
+    TemplateLayout.ToWorld(7, 6, mirror, r, 2, 3, 1, 1, 0, false, true, 1, 1, out _, out _, out _, out _, out int door, out _, out _);
+    Check(door == TemplateMath.DoorFacing(r), $"an inner door turns with its wall m={mirror} r={r}");
+}
+
+// A bench whose work spot would be in the wall is turned around; one that fits nowhere is left out if it can be.
+{
+    var bench = new TemplateLayout.Piece { x = 1, z = 0, rot = 0, sizeX = 3, sizeZ = 1, role = "bench" };
+    bench.spots.Add((0, -1));
+    var notes = TemplateLayout.Arrange(5, 4, 4, new List<TemplateLayout.Piece> { bench });
+    Check(!bench.dropped && bench.facing == 2 && bench.turned, $"bench turned to face south, got {bench.facing}, {string.Join("; ", notes)}");
+    var blocker = new TemplateLayout.Piece { x = 2, z = 0, sizeX = 1, sizeZ = 1, optional = true, role = "pot" };
+    var notes2 = TemplateLayout.Arrange(5, 4, 2, new List<TemplateLayout.Piece> { blocker });
+    Check(blocker.dropped, "a piece on the cell inside the door is left out");
+}
+
+// Every room template and size, in every turn, mirrored and not.
+{
+    string root = Directory.GetCurrentDirectory();
+    while (root != null && !Directory.Exists(Path.Combine(root, "Defs", "RoomTemplateDefs"))) root = Path.GetDirectoryName(root);
+    Check(root != null, "found the mod's Defs folder");
+    if (root != null)
+    {
+        int layouts = RoomTemplateTests.Run(root, Check);
+        Console.WriteLine($"Checked {layouts} room layouts.");
+    }
+}
+
+Console.WriteLine(failures == 0 ? "All template math, layout, strain, meeting and pressure tests passed." : failures + " failure(s).");
 return failures == 0 ? 0 : 1;

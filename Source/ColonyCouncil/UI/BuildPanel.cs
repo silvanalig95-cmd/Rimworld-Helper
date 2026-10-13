@@ -26,6 +26,8 @@ namespace ColonyCouncil
 
         private static readonly Dictionary<RoomTemplateDef, Layout> layouts = new Dictionary<RoomTemplateDef, Layout>();
         private static List<RoomTemplateDef> ordered;
+        private static float orderedAt = -999f;
+        private static Map orderedMap;
 
         private static int GroupOrder(string group) => MainTabWindow_Rooms.GroupOrder(group);
 
@@ -36,11 +38,21 @@ namespace ColonyCouncil
                 UiKit.EmptyState(rect, Icons.Rooms, "CC_NoHomeMap".Translate());
                 return;
             }
-            if (ordered == null) ordered = DefDatabase<RoomTemplateDef>.AllDefsListForReading.OrderBy(d => GroupOrder(d.group)).ThenBy(d => d.order).ToList();
+            // One card per kind of room (its sizes are picked in the planner), refreshed as research and stock change.
+            float now = Time.realtimeSinceStartup;
+            if (ordered == null || orderedMap != map || now - orderedAt > 2f)
+            {
+                ordered = RoomMenu.Entries(map, false).OrderBy(d => GroupOrder(d.group)).ThenBy(d => d.order).ToList();
+                orderedAt = now;
+                orderedMap = map;
+            }
             int available = UiCache.Get(map, 51, () => ordered.Count(t => t.UnavailableReason(map) == null), 2f);
             float top = UiKit.PageHeader(rect, Icons.Rooms, "CC_Build_Header".Translate(), "CC_Build_Sub".Translate(),
                 "CC_UI_Stat_Plans".Translate(available).Resolve(), null, 270f);
             Widgets.CheckboxLabeled(new Rect(rect.xMax - 260f, rect.y + 6f, 260f, 24f), "CC_Build_OnlyAvailable".Translate(), ref buildOnlyAvailable);
+            var saveRect = new Rect(rect.xMax - 260f, rect.y + 28f, 260f, 22f);
+            if (Widgets.ButtonText(saveRect, "CC_Yours_SaveButton".Translate())) Designator_SaveRoom.Begin();
+            TooltipHandler.TipRegion(saveRect, "CC_Yours_SaveDesc".Translate());
 
             var outRect = new Rect(rect.x, rect.y + top, rect.width, rect.height - top);
             var view = new Rect(0f, 0f, outRect.width - 18f, height);
@@ -83,9 +95,11 @@ namespace ColonyCouncil
                 width = width,
                 at = now,
                 reason = reason,
-                title = t.LabelCap + "  (" + t.size.x + "×" + t.size.z + ")",
+                title = RoomMenu.Label(t) + "  (" + t.size.x + "×" + t.size.z + ")",
                 desc = t.purpose ?? t.description
             };
+            string sizes = RoomMenu.SizesLine(t);
+            if (sizes != null) l.desc = (l.desc.NullOrEmpty() ? "" : l.desc + "\n") + sizes;
             l.line = reason ?? (furniture.Count == 0 ? "" : "CC_Build_Contains".Translate(string.Join(", ",
                 furniture.GroupBy(f => f.def).Select(g => g.Count() > 1 ? g.Count() + "× " + g.Key.label : g.Key.label))).Resolve());
             float textW = TextWidth(width);
@@ -133,12 +147,21 @@ namespace ColonyCouncil
                 Text.Font = GameFont.Small;
             }
 
+            float bx = width - ButtonsW + 4f;
+            float bw = (ButtonsW - 18f) / 2f;
             if (l.reason == null)
             {
-                float bx = width - ButtonsW + 4f;
-                float bw = (ButtonsW - 18f) / 2f;
                 if (Widgets.ButtonText(new Rect(bx, y + 8f, bw, 30f), "CC_Build_Plan".Translate())) MainTabWindow_Council.StartPlanning(t, false);
                 if (Widgets.ButtonText(new Rect(bx + bw + 6f, y + 8f, bw, 30f), "CC_Plan_FindSpot".Translate())) MainTabWindow_Council.StartPlanning(t, true);
+                Text.Font = GameFont.Tiny;
+                if (Widgets.ButtonText(new Rect(bx, y + 42f, bw, 22f), "CC_Upgrade_Button".Translate())) Designator_PlanRoom.Begin(t, false, true);
+                Text.Font = GameFont.Small;
+            }
+            if (t.custom != null)
+            {
+                Text.Font = GameFont.Tiny;
+                if (Widgets.ButtonText(new Rect(bx + bw + 6f, y + 42f, bw, 22f), "CC_Yours_Delete".Translate())) CustomRooms.Delete(t.custom);
+                Text.Font = GameFont.Small;
             }
         }
 

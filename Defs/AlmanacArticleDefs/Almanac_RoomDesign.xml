@@ -24,7 +24,7 @@
           <li>4x5 | about 24.4</li>
           <li>4x4 | about 18.8</li>
         </table>
-        <after>Once furnished, a 3x4 or smaller reads "cramped" and a 3x6 or 4x5 reads "rather tight". The bedroom plan is 5x5; the small bedroom plan (3x4) is the budget option until you can afford more.</after>
+        <after>Once furnished, a 3x4 or smaller reads "cramped" and a 3x6 or 4x5 reads "rather tight". The bedroom plan comes in four sizes: cozy (3x4), the budget option until you can afford more, standard (5x5), roomy (6x6), and a sleeping hut (4x4) for tribal colonies.</after>
       </li>
       <li>
         <heading>Raising the mood</heading>
@@ -108,7 +108,7 @@ The exact mood penalty for sleeping in a shared room isn't confirmed, but commun
     <order>20</order>
     <summary>Tables, enough chairs and a clean, pretty room right next to the kitchen</summary>
     <tip>Everyone eats here every day, so decoration in the dining room reaches the whole colony.</tip>
-    <description>Every colonist eats here once or twice a day, so a dining room repays decoration faster than almost any other room, and it gets its own impressiveness mood bonus. Give it a wall and a door in common with the kitchen so meals don't travel across the base, and keep the butcher room, blood and bodies well away.</description>
+    <description>Every colonist eats here once or twice a day, so a dining room repays decoration faster than almost any other room, and it gets its own impressiveness mood bonus. Give it a wall and a door in common with the kitchen so meals don't travel across the base, and keep the butcher room, blood and bodies well away. The dining room plan seats 4, 8 or 12.</description>
     <sections>
       <li>
         <heading>What makes it a dining room</heading>
@@ -505,7 +505,7 @@ With Ideology, slaves can't do research.</text>
     <order>50</order>
     <summary>Medical beds, sterile floors, bright light and a TV, close to where fights end</summary>
     <tip>Sweep the hospital floor every day; dirt raises the infection chance.</tip>
-    <description>The hospital is where wounds heal and surgery succeeds or fails. Cleanliness cuts infection and raises surgery odds, light matters at every bed, and hospital beds speed up recovery. Build it early, keep it spotless, and put it on the main corridor near where fights end, away from the freezer's cold door, so the wounded arrive fast.</description>
+    <description>The hospital is where wounds heal and surgery succeeds or fails. Cleanliness cuts infection and raises surgery odds, light matters at every bed, and hospital beds speed up recovery. Build it early, keep it spotless, and put it on the main corridor near where fights end, away from the freezer's cold door, so the wounded arrive fast. The hospital plan comes as an infirmary with 2 beds, rooms with 3 or 4, and a ward with 9.</description>
     <sections>
       <li>
         <heading>Infection and surgery</heading>

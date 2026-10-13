@@ -16,8 +16,8 @@
       <li>A cramped room drags impressiveness down. Build these early, then replace them with bigger rooms when you can.</li>
     </tips>
     <things>
-      <li><defs><li>Bed</li><li>Bedroll</li></defs><role>bed</role><pos>(0,2)</pos><optional>false</optional></li>
-      <li><defs><li>EndTable</li></defs><role>endtable</role><pos>(1,3)</pos></li>
+      <li><defs><li>Bed</li><li>Bedroll</li></defs><role>bed</role><pos>(0,3)</pos><rot>South</rot><optional>false</optional></li>
+      <li><defs><li>EndTable</li></defs><role>endtable</role><pos>(1,3)</pos><rot>South</rot></li>
       <li><defs><li>PlantPot</li></defs><role>plantpot</role><pos>(2,3)</pos></li>
       <li><defs><li>StandingLamp</li><li>TorchLamp</li></defs><role>light</role><pos>(2,0)</pos></li>
     </things>
@@ -38,14 +38,14 @@
       <li>Couples want a double bed; two singles side by side don't count.</li>
     </tips>
     <things>
-      <li><defs><li>Bed</li><li>Bedroll</li></defs><role>bed</role><pos>(0,3)</pos><optional>false</optional></li>
-      <li><defs><li>Bed</li><li>Bedroll</li></defs><role>bed</role><pos>(1,3)</pos></li>
-      <li><defs><li>Bed</li><li>Bedroll</li></defs><role>bed</role><pos>(2,3)</pos></li>
-      <li><defs><li>Bed</li><li>Bedroll</li></defs><role>bed</role><pos>(4,3)</pos></li>
-      <li><defs><li>Bed</li><li>Bedroll</li></defs><role>bed</role><pos>(5,3)</pos></li>
-      <li><defs><li>Bed</li><li>Bedroll</li></defs><role>bed</role><pos>(6,3)</pos></li>
-      <li><defs><li>Bed</li><li>Bedroll</li></defs><role>bed</role><pos>(0,1)</pos><rot>South</rot></li>
-      <li><defs><li>Bed</li><li>Bedroll</li></defs><role>bed</role><pos>(6,1)</pos><rot>South</rot></li>
+      <li><defs><li>Bed</li><li>Bedroll</li></defs><role>bed</role><pos>(0,4)</pos><rot>South</rot><optional>false</optional></li>
+      <li><defs><li>Bed</li><li>Bedroll</li></defs><role>bed</role><pos>(1,4)</pos><rot>South</rot></li>
+      <li><defs><li>Bed</li><li>Bedroll</li></defs><role>bed</role><pos>(2,4)</pos><rot>South</rot></li>
+      <li><defs><li>Bed</li><li>Bedroll</li></defs><role>bed</role><pos>(4,4)</pos><rot>South</rot></li>
+      <li><defs><li>Bed</li><li>Bedroll</li></defs><role>bed</role><pos>(5,4)</pos><rot>South</rot></li>
+      <li><defs><li>Bed</li><li>Bedroll</li></defs><role>bed</role><pos>(6,4)</pos><rot>South</rot></li>
+      <li><defs><li>Bed</li><li>Bedroll</li></defs><role>bed</role><pos>(0,0)</pos></li>
+      <li><defs><li>Bed</li><li>Bedroll</li></defs><role>bed</role><pos>(6,0)</pos></li>
       <li><defs><li>StandingLamp</li><li>TorchLamp</li></defs><role>light</role><pos>(3,4)</pos></li>
     </things>
   </ColonyCouncil.RoomTemplateDef>
@@ -64,7 +64,7 @@
       <li>Fed, comfortable prisoners are easier to recruit. A light and a decent bed cost little.</li>
     </tips>
     <things>
-      <li><defs><li>Bed</li><li>Bedroll</li></defs><role>bed</role><pos>(2,2)</pos><optional>false</optional></li>
+      <li><defs><li>Bed</li><li>Bedroll</li></defs><role>bed</role><pos>(2,3)</pos><rot>South</rot><optional>false</optional></li>
       <li><defs><li>StandingLamp</li><li>TorchLamp</li></defs><role>light</role><pos>(0,3)</pos></li>
     </things>
   </ColonyCouncil.RoomTemplateDef>
@@ -82,10 +82,10 @@
       <li>Keep prison cells away from your weapons and the storeroom.</li>
     </tips>
     <things>
-      <li><defs><li>Bed</li><li>Bedroll</li></defs><role>bed</role><pos>(0,3)</pos><optional>false</optional></li>
-      <li><defs><li>Bed</li><li>Bedroll</li></defs><role>bed</role><pos>(1,3)</pos></li>
-      <li><defs><li>Bed</li><li>Bedroll</li></defs><role>bed</role><pos>(3,3)</pos></li>
-      <li><defs><li>Bed</li><li>Bedroll</li></defs><role>bed</role><pos>(4,3)</pos></li>
+      <li><defs><li>Bed</li><li>Bedroll</li></defs><role>bed</role><pos>(0,4)</pos><rot>South</rot><optional>false</optional></li>
+      <li><defs><li>Bed</li><li>Bedroll</li></defs><role>bed</role><pos>(1,4)</pos><rot>South</rot></li>
+      <li><defs><li>Bed</li><li>Bedroll</li></defs><role>bed</role><pos>(3,4)</pos><rot>South</rot></li>
+      <li><defs><li>Bed</li><li>Bedroll</li></defs><role>bed</role><pos>(4,4)</pos><rot>South</rot></li>
       <li><defs><li>StandingLamp</li><li>TorchLamp</li></defs><role>light</role><pos>(2,4)</pos></li>
     </things>
   </ColonyCouncil.RoomTemplateDef>
@@ -127,7 +127,7 @@
       <li><defs><li>FermentingBarrel</li></defs><role>fermenter</role><pos>(4,2)</pos></li>
       <li><defs><li>FermentingBarrel</li></defs><role>fermenter</role><pos>(4,1)</pos></li>
       <li><defs><li>FermentingBarrel</li></defs><role>fermenter</role><pos>(4,0)</pos></li>
-      <li><defs><li>FermentingBarrel</li></defs><role>fermenter</role><pos>(3,3)</pos></li>
+      <li><defs><li>FermentingBarrel</li></defs><role>fermenter</role><pos>(0,1)</pos></li>
       <li><defs><li>StandingLamp</li><li>TorchLamp</li></defs><role>light</role><pos>(0,0)</pos></li>
     </things>
   </ColonyCouncil.RoomTemplateDef>
@@ -147,9 +147,9 @@
     <things>
       <li><defs><li>PassiveCooler</li></defs><role>cooler</role><pos>(0,4)</pos><optional>false</optional></li>
       <li><defs><li>PassiveCooler</li></defs><role>cooler</role><pos>(4,4)</pos></li>
-      <li><defs><li>Bed</li><li>Bedroll</li></defs><role>bed</role><pos>(1,3)</pos></li>
-      <li><defs><li>Bed</li><li>Bedroll</li></defs><role>bed</role><pos>(3,3)</pos></li>
-      <li><defs><li>Bed</li><li>Bedroll</li></defs><role>bed</role><pos>(4,1)</pos><rot>South</rot></li>
+      <li><defs><li>Bed</li><li>Bedroll</li></defs><role>bed</role><pos>(1,4)</pos><rot>South</rot></li>
+      <li><defs><li>Bed</li><li>Bedroll</li></defs><role>bed</role><pos>(3,4)</pos><rot>South</rot></li>
+      <li><defs><li>Bed</li><li>Bedroll</li></defs><role>bed</role><pos>(4,0)</pos></li>
     </things>
   </ColonyCouncil.RoomTemplateDef>
 
@@ -243,10 +243,10 @@
       <li>Keep medicine on a shelf inside the hospital so doctors don't walk to the storeroom mid-surgery.</li>
     </tips>
     <things>
-      <li><defs><li>HospitalBed</li><li>Bed</li><li>Bedroll</li></defs><role>bed</role><pos>(0,3)</pos><optional>false</optional></li>
-      <li><defs><li>HospitalBed</li><li>Bed</li><li>Bedroll</li></defs><role>bed</role><pos>(2,3)</pos></li>
-      <li><defs><li>HospitalBed</li><li>Bed</li><li>Bedroll</li></defs><role>bed</role><pos>(4,3)</pos></li>
-      <li><defs><li>HospitalBed</li><li>Bed</li><li>Bedroll</li></defs><role>bed</role><pos>(6,3)</pos></li>
+      <li><defs><li>HospitalBed</li><li>Bed</li><li>Bedroll</li></defs><role>bed</role><pos>(0,4)</pos><rot>South</rot><optional>false</optional></li>
+      <li><defs><li>HospitalBed</li><li>Bed</li><li>Bedroll</li></defs><role>bed</role><pos>(2,4)</pos><rot>South</rot></li>
+      <li><defs><li>HospitalBed</li><li>Bed</li><li>Bedroll</li></defs><role>bed</role><pos>(4,4)</pos><rot>South</rot></li>
+      <li><defs><li>HospitalBed</li><li>Bed</li><li>Bedroll</li></defs><role>bed</role><pos>(6,4)</pos><rot>South</rot></li>
       <li><defs><li>VitalsMonitor</li></defs><role>monitor</role><pos>(1,4)</pos></li>
       <li><defs><li>VitalsMonitor</li></defs><role>monitor</role><pos>(5,4)</pos></li>
       <li><defs><li>StandingLamp</li><li>TorchLamp</li></defs><role>light</role><pos>(3,4)</pos></li>
@@ -304,8 +304,8 @@
       <li>Never store weapons next to the prison. Escaped prisoners grab whatever weapons they find nearby.</li>
     </tips>
     <things>
-      <li><defs><li>Shelf</li></defs><role>storage</role><pos>(0,3)</pos><optional>false</optional></li>
-      <li><defs><li>Shelf</li></defs><role>storage</role><pos>(3,3)</pos></li>
+      <li><defs><li>Shelf</li></defs><role>storage</role><pos>(1,3)</pos><rot>South</rot><optional>false</optional></li>
+      <li><defs><li>Shelf</li></defs><role>storage</role><pos>(4,3)</pos><rot>South</rot></li>
       <li><defs><li>Shelf</li></defs><role>storage</role><pos>(0,0)</pos></li>
       <li><defs><li>Shelf</li></defs><role>storage</role><pos>(3,0)</pos></li>
       <li><defs><li>StandingLamp</li><li>TorchLamp</li></defs><role>light</role><pos>(2,3)</pos></li>
@@ -348,7 +348,7 @@
       <li><defs><li>GrandThrone</li><li>Throne</li></defs><role>throne</role><pos>(3,6)</pos><rot>South</rot><optional>false</optional></li>
       <li><defs><li>Brazier</li><li>StandingLamp</li><li>TorchLamp</li></defs><role>light</role><pos>(1,6)</pos></li>
       <li><defs><li>Brazier</li><li>StandingLamp</li><li>TorchLamp</li></defs><role>light</role><pos>(5,6)</pos></li>
-      <li><defs><li>Harpsichord</li><li>Harp</li></defs><role>music</role><pos>(0,3)</pos><rot>East</rot></li>
+      <li><defs><li>Harpsichord</li><li>Harp</li></defs><role>music</role><pos>(1,3)</pos><rot>West</rot></li>
       <li><defs><li>PlantPot</li></defs><role>plantpot</role><pos>(6,3)</pos></li>
       <li><defs><li>PlantPot</li></defs><role>plantpot</role><pos>(0,0)</pos></li>
       <li><defs><li>PlantPot</li></defs><role>plantpot</role><pos>(6,0)</pos></li>
@@ -369,9 +369,8 @@
     </tips>
     <things>
       <li><defs><li>SchoolDesk</li></defs><role>school</role><pos>(0,2)</pos><optional>false</optional></li>
-      <li><defs><li>SchoolDesk</li></defs><role>school</role><pos>(2,2)</pos></li>
-      <li><defs><li>SchoolDesk</li></defs><role>school</role><pos>(4,2)</pos></li>
-      <li><defs><li>Blackboard</li></defs><role>school</role><pos>(2,3)</pos></li>
+      <li><defs><li>SchoolDesk</li></defs><role>school</role><pos>(3,2)</pos></li>
+      <li><defs><li>Blackboard</li></defs><role>school</role><pos>(2,3)</pos><rot>South</rot></li>
       <li><defs><li>ToyBox</li></defs><role>toybox</role><pos>(0,0)</pos></li>
       <li><defs><li>StandingLamp</li><li>TorchLamp</li></defs><role>light</role><pos>(4,0)</pos></li>
     </things>
@@ -391,8 +390,8 @@
       <li>Keep the nursery warm and away from the entrance, where raiders come in.</li>
     </tips>
     <things>
-      <li><defs><li>Crib</li></defs><role>crib</role><pos>(0,3)</pos><optional>false</optional></li>
-      <li><defs><li>Crib</li></defs><role>crib</role><pos>(2,3)</pos></li>
+      <li><defs><li>Crib</li></defs><role>crib</role><pos>(0,3)</pos><rot>South</rot><optional>false</optional></li>
+      <li><defs><li>Crib</li></defs><role>crib</role><pos>(2,3)</pos><rot>South</rot></li>
       <li><defs><li>ToyBox</li></defs><role>toybox</role><pos>(4,3)</pos></li>
       <li><defs><li>StandingLamp</li><li>TorchLamp</li></defs><role>light</role><pos>(4,0)</pos></li>
       <li><defs><li>PlantPot</li></defs><role>plantpot</role><pos>(0,0)</pos></li>

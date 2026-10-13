@@ -1,0 +1,517 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- Almanac: the room planner itself, and the rooms added with sizes and styles. Pages for a DLC or a mod load only
+       with it (MayRequire), like the room plans they point to. -->
+
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Council_Alm_9_00_RoomPlanner</defName>
+    <label>planning a room</label>
+    <category>RoomDesign</category>
+    <order>5</order>
+    <summary>Sizes, styles, materials from your stock, rooms of your own, and furnishing a room you've built</summary>
+    <tip>Let the planner choose the materials first, then change only what bothers you.</tip>
+    <description>A room plan lays down walls, a door, a floor and the furniture in one go, as ordinary blueprints for your builders. Pick a room from the "rooms" button in the bottom bar or the council's Room plans page; a preview follows the mouse and a panel opens beside it. Most rooms come in several sizes, and every room in three styles.</description>
+    <sections>
+      <li>
+        <heading>Sizes and styles</heading>
+        <text>The buttons at the top of the panel switch between the sizes of a room: a cozy, standard or roomy bedroom, a dining room for 4, 8 or 12, an infirmary or a ward. The turn, the materials and the style carry over when you switch.</text>
+        <table>
+          <li>Style | What it puts in</li>
+          <li>Spartan | the beds, benches or tables the room is for, and a light; no floor unless the room must stay clean</li>
+          <li>Comfortable | the standard furnishing: bedside tables, dressers, plant pots and a floor</li>
+          <li>Lavish | more plant pots along the walls, pedestals for sculptures and a rug where your mods have them, carpet or fine stone tiles</li>
+        </table>
+        <after>Hospitals and kitchens keep their sterile tiles in every style.</after>
+      </li>
+      <li>
+        <heading>Materials from what you have</heading>
+        <text>Each material is picked from what the colony has, stored in stockpiles and on shelves or lying around unforbidden: something there's enough of with a little to spare, stone blocks first, then wood, bone for furniture, then steel. Silver, gold, plasteel, uranium and jade are used only when nothing else will do. Walls get stone before wood, because stone doesn't burn. The walls, the door and the floor take their share first, so the furniture doesn't count on the same blocks.
+
+A material you pick yourself is remembered for that room and used again next time while there's enough of it. "Use what we have" forgets your picks and starts over. Green means enough with some to spare, amber only just enough, red not enough; the cost list at the bottom compares the whole room with your stock.</text>
+      </li>
+      <li>
+        <heading>Your own rooms</heading>
+        <text>"Save a built room as a plan" turns any enclosed, rectangular room with a door into a plan of your own, with its furniture, wall material and floor. It's kept with the mod's settings, so it's there in every game, under Your rooms. Delete it from the same list.</text>
+      </li>
+      <li>
+        <heading>Upgrading a room you've built</heading>
+        <text>"Upgrade a built room" furnishes a room you already have with a plan: hover the room and click. The plan turns to the wall with the room's door, counts what's already there, and plans only the furniture that's missing. A floor goes only on bare ground. The panel shows the room's impressiveness as it is now.</text>
+      </li>
+      <li>
+        <heading>The game's own build menu</heading>
+        <text>With Rimfolk's deeper game hooks on, the material list of the game's build menu shows how much of each material you have: "Steel wall    420 (+85 lying around), enough for 84". Switch it off under "Show material counts in build menus".</text>
+      </li>
+    </sections>
+    <keywords>
+      <li>room plan</li>
+      <li>planner</li>
+      <li>size</li>
+      <li>style</li>
+      <li>spartan</li>
+      <li>lavish</li>
+      <li>materials</li>
+      <li>save a room</li>
+      <li>upgrade</li>
+      <li>build menu</li>
+    </keywords>
+    <seeAlso>
+      <li>Council_Alm_9_01_Bedroom</li>
+      <li>Council_Alm_9_03_DiningRoom</li>
+      <li>Council_Alm_9_12_Hospital</li>
+    </seeAlso>
+  </ColonyCouncil.AlmanacArticleDef>
+
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Council_Alm_9_30_Library</defName>
+    <label>library</label>
+    <category>RoomDesign</category>
+    <order>300</order>
+    <summary>Bookcases, comfortable chairs and good light, next to the laboratory</summary>
+    <tip>Books on a bookcase never wear out. Books on the floor do.</tip>
+    <description>Reading passes the time, and some books teach a skill while they're read. A bookcase keeps books from deteriorating, adds to the room's beauty, and gives a reading bonus to research done near it. A library is a quiet room for all of that: bookcases along a wall, armchairs and a light.</description>
+    <sections>
+      <li>
+        <heading>Where it goes</heading>
+        <text>Next to the laboratory, or with a bookcase inside it, so the reading bonus helps the researchers. Armchairs make long reads more comfortable, and a light keeps the evening readers out of the dark.</text>
+      </li>
+    </sections>
+    <keywords>
+      <li>library</li>
+      <li>books</li>
+      <li>bookcase</li>
+      <li>reading</li>
+    </keywords>
+    <seeAlso>
+      <li>Council_Alm_9_11_Laboratory</li>
+      <li>Council_Alm_9_04_RecRoom</li>
+    </seeAlso>
+    <template>Council_Library</template>
+  </ColonyCouncil.AlmanacArticleDef>
+
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Council_Alm_9_31_Tavern</defName>
+    <label>tavern corner</label>
+    <category>RoomDesign</category>
+    <order>310</order>
+    <summary>A table, fermenting barrels and a shelf for the beer, near the dining and rec rooms</summary>
+    <tip>The tavern table counts as a dining table too.</tip>
+    <description>Beer is recreation and cheers people up. A tavern corner puts a table with seats, a few fermenting barrels and a shelf for the finished beer in one warm room, so the drinking happens in one place and the barrels stay in range.</description>
+    <sections>
+      <li>
+        <heading>Barrels and drink</heading>
+        <text>Fermenting barrels only work between -1 °C and 32 °C, so an indoor room keeps them going most of the year. Some colonists get a taste for beer: set a drug policy before the first barrel is tapped.</text>
+      </li>
+    </sections>
+    <keywords>
+      <li>tavern</li>
+      <li>beer</li>
+      <li>bar</li>
+      <li>fermenting barrel</li>
+    </keywords>
+    <seeAlso>
+      <li>Council_Alm_9_22_Brewery</li>
+      <li>Council_Alm_9_04_RecRoom</li>
+    </seeAlso>
+    <template>Council_Tavern</template>
+  </ColonyCouncil.AlmanacArticleDef>
+
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Council_Alm_9_32_Kennel</defName>
+    <label>kennel</label>
+    <category>RoomDesign</category>
+    <order>320</order>
+    <summary>Beds for pets close to the people they're bonded with</summary>
+    <tip>A dog that sleeps warm is a dog that fights well.</tip>
+    <description>Pets and working animals rest better in an animal bed or sleeping box than on the ground, and a roof keeps them out of the cold. A kennel is a small room of animal beds with a shelf for kibble, close to the bedrooms and the people the pets follow around.</description>
+    <sections>
+      <li>
+        <heading>Food and areas</heading>
+        <text>Keep kibble or hay on the shelf, and give the animals an allowed area that includes the kennel. A barn suits livestock better; the kennel is for the pets that follow the colonists around.</text>
+      </li>
+    </sections>
+    <keywords>
+      <li>kennel</li>
+      <li>pets</li>
+      <li>dog</li>
+      <li>animal bed</li>
+    </keywords>
+    <seeAlso>
+      <li>Council_Alm_9_16_Barn</li>
+    </seeAlso>
+    <template>Council_Kennel</template>
+  </ColonyCouncil.AlmanacArticleDef>
+
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Council_Alm_9_33_HydroponicsBay</defName>
+    <label>hydroponics bay</label>
+    <category>RoomDesign</category>
+    <order>330</order>
+    <summary>Basins in pairs with walkways between them, under one sun lamp</summary>
+    <tip>No power, no harvest. Batteries before basins.</tip>
+    <description>Hydroponics basins grow food fast on any ground, in any season, as long as they have power and light. A bay puts six of them under one sun lamp, in pairs that share a walkway, so every plant can be sown and harvested.</description>
+    <sections>
+      <li>
+        <heading>Power first</heading>
+        <text>Plants in a basin die within hours without power. Keep batteries charged or a generator in reserve before you rely on the bay for food. A heater keeps the room warm enough to grow in winter.</text>
+      </li>
+    </sections>
+    <keywords>
+      <li>hydroponics</li>
+      <li>sun lamp</li>
+      <li>indoor farm</li>
+    </keywords>
+    <seeAlso>
+      <li>Council_Alm_9_17_Greenhouse</li>
+      <li>Council_Alm_5_16_PowerGenerators</li>
+    </seeAlso>
+    <template>Council_HydroponicsBay</template>
+  </ColonyCouncil.AlmanacArticleDef>
+
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Council_Alm_9_34_Stonecutter</defName>
+    <label>stonecutter's workshop</label>
+    <category>RoomDesign</category>
+    <order>340</order>
+    <summary>Tables that turn rock chunks into blocks for walls that don't burn</summary>
+    <tip>A stockpile of chunks right outside the door saves hours.</tip>
+    <description>Stone blocks make walls that don't burn and furniture that lasts. A stonecutter's workshop turns the chunks lying around the map into blocks, so the colony can build in stone instead of wood. The room plans pick stone blocks first whenever there are enough.</description>
+    <sections>
+      <li>
+        <heading>Which stone</heading>
+        <text>Granite makes the strongest walls, marble the most beautiful floors and furniture, and sandstone is the quickest to work. A crafter with some skill cuts much faster than a beginner.</text>
+      </li>
+    </sections>
+    <keywords>
+      <li>stonecutter</li>
+      <li>stone blocks</li>
+      <li>chunks</li>
+    </keywords>
+    <seeAlso>
+      <li>Council_Alm_9_08_Workshop</li>
+      <li>Council_Alm_9_15_Storeroom</li>
+    </seeAlso>
+    <template>Council_Stonecutter</template>
+  </ColonyCouncil.AlmanacArticleDef>
+
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Council_Alm_9_35_ComponentWorkshop</defName>
+    <label>component workshop</label>
+    <category>RoomDesign</category>
+    <order>350</order>
+    <summary>A fabrication bench so the colony makes its own components</summary>
+    <tip>Components are the first thing to run out. Make them before you need them.</tip>
+    <description>Components go into power, electronics, weapons and repairs, and the map only gives so many. A fabrication bench makes them from steel once Fabrication is researched. The component workshop gives it a room with a tool cabinet beside it.</description>
+    <sections>
+      <li>
+        <heading>What it takes</heading>
+        <text>A component takes 12 steel and a decent crafter. Advanced components also need plasteel and gold, so keep some of both before the research is done.</text>
+      </li>
+    </sections>
+    <keywords>
+      <li>components</li>
+      <li>fabrication bench</li>
+    </keywords>
+    <seeAlso>
+      <li>Council_Alm_9_08_Workshop</li>
+      <li>Council_Alm_9_11_Laboratory</li>
+    </seeAlso>
+    <template>Council_ComponentWorkshop</template>
+  </ColonyCouncil.AlmanacArticleDef>
+
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Council_Alm_9_36_GuardPost</defName>
+    <label>guard post</label>
+    <category>RoomDesign</category>
+    <order>360</order>
+    <summary>A warm room by the gate with weapons close at hand</summary>
+    <tip>Arm where the fight starts, not across the base.</tip>
+    <description>A guard post is a small room at the main gate or the end of the killbox: a chair facing the door, a shelf for weapons, a light and a heater. When raiders come, the nearest fighters arm themselves here instead of running to the armory.</description>
+    <keywords>
+      <li>guard post</li>
+      <li>gate</li>
+      <li>weapons</li>
+    </keywords>
+    <seeAlso>
+      <li>Council_Alm_9_23_Armory</li>
+    </seeAlso>
+    <template>Council_GuardPost</template>
+  </ColonyCouncil.AlmanacArticleDef>
+
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Council_Alm_9_37_TrophyGallery</defName>
+    <label>trophy gallery</label>
+    <category>RoomDesign</category>
+    <order>370</order>
+    <summary>Columns, pedestals and open floor to show off the colony's art</summary>
+    <tip>Put the best sculpture on the way to the dining room.</tip>
+    <description>Sculptures add beauty wherever they stand, and a room full of them is impressive. The trophy gallery is mostly open floor with columns, lights and a fine stone floor: install sculptures from the art bench there, or on the pedestals that furniture mods add.</description>
+    <sections>
+      <li>
+        <heading>Pedestals</heading>
+        <text>Vanilla Furniture Expanded and Medieval Overhaul add pedestals for art. Without them the gallery still has columns and the floor for your sculptures.</text>
+      </li>
+    </sections>
+    <keywords>
+      <li>gallery</li>
+      <li>sculpture</li>
+      <li>art</li>
+      <li>pedestal</li>
+    </keywords>
+    <seeAlso>
+      <li>Council_Alm_9_27_ArtStudio</li>
+    </seeAlso>
+    <template>Council_TrophyGallery</template>
+  </ColonyCouncil.AlmanacArticleDef>
+
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Council_Alm_9_38_Longhouse</defName>
+    <label>longhouse</label>
+    <category>RoomDesign</category>
+    <order>380</order>
+    <summary>A tribe's shared hall: bedrolls along the walls, a fire in the middle</summary>
+    <tip>Feed the fire before nightfall.</tip>
+    <description>A longhouse is the tribal answer to the barracks: one long hall with bedrolls along both walls and a campfire in the middle that keeps the whole hall warm. It's cheap, quick to raise from wood, and it gets a young tribe through its first winter.</description>
+    <sections>
+      <li>
+        <heading>Fire and wood</heading>
+        <text>Wooden walls burn. Keep the fire in the middle, away from the walls and the bedrolls, and keep it fed. Move people into huts of their own as the tribe grows richer; sharing a hall costs a little mood.</text>
+      </li>
+    </sections>
+    <keywords>
+      <li>longhouse</li>
+      <li>tribal</li>
+      <li>shared sleeping</li>
+    </keywords>
+    <seeAlso>
+      <li>Council_Alm_9_02_Barracks</li>
+      <li>Council_Alm_9_01_Bedroom</li>
+    </seeAlso>
+    <template>Council_Longhouse</template>
+  </ColonyCouncil.AlmanacArticleDef>
+
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Council_Alm_9_39_GreatHall</defName>
+    <label>great hall</label>
+    <category>RoomDesign</category>
+    <order>390</order>
+    <summary>Long tables, braziers and a stone floor for a medieval colony</summary>
+    <tip>A feast in a fine hall is remembered for days.</tip>
+    <description>The great hall is a medieval dining room on a grand scale: two long tables for sixteen, a brazier or torch in each corner, and a flagstone floor. Every meal there counts toward the dining room's mood, and it's where feasts, weddings and council meetings feel right.</description>
+    <keywords>
+      <li>great hall</li>
+      <li>medieval</li>
+      <li>feast</li>
+      <li>dining</li>
+    </keywords>
+    <seeAlso>
+      <li>Council_Alm_9_03_DiningRoom</li>
+    </seeAlso>
+    <template>Council_GreatHall</template>
+  </ColonyCouncil.AlmanacArticleDef>
+
+  <ColonyCouncil.AlmanacArticleDef MayRequire="Ludeon.RimWorld.Ideology">
+    <defName>Council_Alm_9_40_Chapel</defName>
+    <label>chapel</label>
+    <category>RoomDesign</category>
+    <order>400</order>
+    <summary>An altar, a lectern and pews facing them</summary>
+    <tip>The finer the room, the better the ritual.</tip>
+    <description>Rituals, sermons and ceremonies go better in an impressive room. A chapel gives them one: an altar at the far end, a lectern before it, and pews facing both with an aisle down the middle. Pews let the audience sit through the speech and make its good mood last longer.</description>
+    <sections>
+      <li>
+        <heading>The ideoligion decides</heading>
+        <text>Some memes want ideoligion buildings or a style in the ritual room, and some prefer the dark: darklight braziers suit those. Check the precepts before you build.</text>
+      </li>
+    </sections>
+    <keywords>
+      <li>chapel</li>
+      <li>altar</li>
+      <li>lectern</li>
+      <li>pew</li>
+      <li>ritual</li>
+    </keywords>
+    <seeAlso>
+      <li>Council_Alm_9_20_Temple</li>
+      <li>Council_Alm_7_07_RitualQuality</li>
+    </seeAlso>
+    <template>Council_Chapel</template>
+    <dlc>Ideology</dlc>
+  </ColonyCouncil.AlmanacArticleDef>
+
+  <ColonyCouncil.AlmanacArticleDef MayRequire="Ludeon.RimWorld.Biotech">
+    <defName>Council_Alm_9_41_Schoolroom</defName>
+    <label>schoolroom</label>
+    <category>RoomDesign</category>
+    <order>285</order>
+    <summary>Four desks, two blackboards and room to walk between them</summary>
+    <tip>No teacher awake, no lesson.</tip>
+    <description>The schoolroom is the larger size of the classroom plan: four school desks in two rows with an aisle down the middle, two blackboards and a toy box. Each blackboard in the room speeds up learning at the desks, and the aisles leave space for a teacher to walk to every child.</description>
+    <keywords>
+      <li>schoolroom</li>
+      <li>school</li>
+      <li>children</li>
+    </keywords>
+    <seeAlso>
+      <li>Council_Alm_9_21_Classroom</li>
+      <li>Council_Alm_9_21_Nursery</li>
+    </seeAlso>
+    <template>Council_Schoolroom</template>
+    <dlc>Biotech</dlc>
+  </ColonyCouncil.AlmanacArticleDef>
+
+  <ColonyCouncil.AlmanacArticleDef MayRequire="Ludeon.RimWorld.Biotech">
+    <defName>Council_Alm_9_42_Playroom</defName>
+    <label>playroom</label>
+    <category>RoomDesign</category>
+    <order>295</order>
+    <summary>Toy boxes and a game table where children can play</summary>
+    <tip>Busy children don't wander into the workshop.</tip>
+    <description>Children need play as much as lessons. A playroom gives them toy boxes along a wall, a game table with two stools and a soft floor, between the bedrooms and the schoolroom and well away from the gate.</description>
+    <keywords>
+      <li>playroom</li>
+      <li>toy box</li>
+      <li>children</li>
+      <li>play</li>
+    </keywords>
+    <seeAlso>
+      <li>Council_Alm_9_21_Nursery</li>
+      <li>Council_Alm_9_21_Classroom</li>
+    </seeAlso>
+    <template>Council_Playroom</template>
+    <dlc>Biotech</dlc>
+  </ColonyCouncil.AlmanacArticleDef>
+
+  <ColonyCouncil.AlmanacArticleDef MayRequire="Ludeon.RimWorld.Biotech">
+    <defName>Council_Alm_9_43_MechBay</defName>
+    <label>mechanitor's bay</label>
+    <category>RoomDesign</category>
+    <order>410</order>
+    <summary>A gestator and rechargers under one roof, with their backs to the walls</summary>
+    <tip>Haul the wastepacks before they pile up.</tip>
+    <description>A mechanitor builds mechanoids at a gestator and sends them back to rechargers between jobs. The bay puts both in one room with a shelf for steel, each with its back to a wall and the open side, where the mechanitor or the mech stands, facing into the room.</description>
+    <sections>
+      <li>
+        <heading>Power and pollution</heading>
+        <text>Gestators and rechargers draw power all the time, so plan the generators first. Rechargers fill up with toxic wastepacks; keep haulers on them, or the pollution spreads.</text>
+      </li>
+    </sections>
+    <keywords>
+      <li>mechanitor</li>
+      <li>gestator</li>
+      <li>recharger</li>
+      <li>mechanoids</li>
+    </keywords>
+    <seeAlso>
+      <li>Council_Alm_7_17_MechanitorBandwidth</li>
+    </seeAlso>
+    <template>Council_MechBay</template>
+    <dlc>Biotech</dlc>
+  </ColonyCouncil.AlmanacArticleDef>
+
+  <ColonyCouncil.AlmanacArticleDef MayRequire="Ludeon.RimWorld.Biotech">
+    <defName>Council_Alm_9_44_GeneLab</defName>
+    <label>gene lab</label>
+    <category>RoomDesign</category>
+    <order>420</order>
+    <summary>A gene assembler with banks and a processor in the same room</summary>
+    <tip>Genepacks rot outside a powered bank.</tip>
+    <description>The gene lab is where genepacks become xenogerms. The gene assembler works with the gene banks and gene processors near it, so the plan keeps them all in one clean room, with the assembler against the back wall.</description>
+    <sections>
+      <li>
+        <heading>Growing the library</heading>
+        <text>Banks hold genepacks and keep them from deteriorating while they have power. Each gene processor raises how complex a xenogerm can be, so add more as the library grows.</text>
+      </li>
+    </sections>
+    <keywords>
+      <li>gene lab</li>
+      <li>genes</li>
+      <li>xenogerm</li>
+      <li>gene assembler</li>
+    </keywords>
+    <seeAlso>
+      <li>Council_Alm_9_11_Laboratory</li>
+    </seeAlso>
+    <template>Council_GeneLab</template>
+    <dlc>Biotech</dlc>
+  </ColonyCouncil.AlmanacArticleDef>
+
+  <ColonyCouncil.AlmanacArticleDef MayRequire="Ludeon.RimWorld.Anomaly">
+    <defName>Council_Alm_9_45_ContainmentCell</defName>
+    <label>containment cell</label>
+    <category>RoomDesign</category>
+    <order>430</order>
+    <summary>A holding platform in a small, strong room with inhibitors</summary>
+    <tip>Strong walls, one door, and nothing to spare inside.</tip>
+    <description>A captured entity is held on a platform and studied there, and containment strength decides whether it stays. Small rooms with strong walls hold best, and inhibitors raise containment further. The cell plan puts a holding platform in the middle of a closed room with shard inhibitors in the back corners.</description>
+    <sections>
+      <li>
+        <heading>Making it hold</heading>
+        <text>Build the walls of stone or better; the planner already picks stone first. Keep one door, or two in a row as an airlock for the dangerous ones. Electric inhibitors are stronger but must face the platform, so place those by hand once the cell stands.</text>
+      </li>
+    </sections>
+    <keywords>
+      <li>containment</li>
+      <li>holding platform</li>
+      <li>entity</li>
+      <li>inhibitor</li>
+    </keywords>
+    <seeAlso>
+      <li>Council_Alm_7_24_EntityEscapeAndStudy</li>
+      <li>Council_Alm_7_25_AnomalyEffects</li>
+    </seeAlso>
+    <template>Council_ContainmentCell</template>
+    <dlc>Anomaly</dlc>
+  </ColonyCouncil.AlmanacArticleDef>
+
+  <ColonyCouncil.AlmanacArticleDef MayRequire="dubwise.dubsbadhygiene">
+    <defName>Council_Alm_9_46_MasterSuite</defName>
+    <label>master suite</label>
+    <category>RoomDesign</category>
+    <order>15</order>
+    <summary>A big bedroom for two with its own bathroom behind an inner door</summary>
+    <tip>A toilet behind the bedroom door saves a long walk at night.</tip>
+    <description>With Dubs Bad Hygiene, a private bathroom counts like a bedroom and spares its owners from being walked in on. The master suite puts a double bed, bedside tables and a dresser on one side of a partition, and a toilet, a basin and a bathtub on the other, behind an inner door.</description>
+    <sections>
+      <li>
+        <heading>Pipes first</heading>
+        <text>The toilet, the basin and the bathtub need pipes from a water tower, and the toilet a sewage outlet. Run the pipes before the floor goes down.</text>
+      </li>
+    </sections>
+    <keywords>
+      <li>master suite</li>
+      <li>private bathroom</li>
+      <li>bedroom</li>
+    </keywords>
+    <seeAlso>
+      <li>Council_Alm_9_01_Bedroom</li>
+    </seeAlso>
+    <template>Council_MasterSuite</template>
+    <mods>
+      <li>dubwise.dubsbadhygiene</li>
+    </mods>
+  </ColonyCouncil.AlmanacArticleDef>
+
+  <ColonyCouncil.AlmanacArticleDef MayRequire="dubwise.dubsbadhygiene">
+    <defName>Council_Alm_9_47_Laundry</defName>
+    <label>laundry</label>
+    <category>RoomDesign</category>
+    <order>440</order>
+    <summary>Washing machines and a shelf for the clothes waiting their turn</summary>
+    <tip>After a raid, the laundry turns the raiders' coats into ours.</tip>
+    <description>Dubs Bad Hygiene's washing machines wash clothes until there's no trace that someone died in them, so colonists can wear what raiders left behind without the dead man's clothes penalty. A laundry gives two machines a room with a shelf for the clothes waiting to be washed. They need power, piped water and the Washing machines research.</description>
+    <keywords>
+      <li>laundry</li>
+      <li>washing machine</li>
+      <li>clothes</li>
+    </keywords>
+    <seeAlso>
+      <li>Council_Alm_9_10_TailorShop</li>
+    </seeAlso>
+    <template>Council_Laundry</template>
+    <mods>
+      <li>dubwise.dubsbadhygiene</li>
+    </mods>
+  </ColonyCouncil.AlmanacArticleDef>
+
+</Defs>

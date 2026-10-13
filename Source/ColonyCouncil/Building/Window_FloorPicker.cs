@@ -82,15 +82,18 @@ namespace ColonyCouncil
 
         // ---------------- Materials ----------------
 
-        private ThingDef StuffFor(TerrainDef f) => f == null || !f.MadeFromStuff ? null : f == cfg.Floor(template, map) ? cfg.FloorStuff(f, map, area) : Avail.BestStuff(f, map, f.CostStuffCount * area);
+        private ThingDef StuffFor(TerrainDef f) => f == null || !f.MadeFromStuff ? null : f == cfg.Floor(template, map) ? cfg.FloorStuff(f, map, area) : MaterialPicker.Pick(f, map, area, MaterialUse.Floor);
 
         private bool Locked(TerrainDef f) => !Avail.CanBuild(f, map);
+
+        /// <summary>Stored plus lying around, the same count the planner and the build menu use.</summary>
+        private int Have(ThingDef d) => MaterialCounts.Have(map, d);
 
         private bool Affordable(TerrainDef f, ThingDef stuff)
         {
             if (f.MadeFromStuff && stuff == null) return false;
             foreach (var c in f.CostListAdjusted(stuff, false))
-                if (map.resourceCounter.GetCount(c.thingDef) < c.count * area) return false;
+                if (Have(c.thingDef) < c.count * area) return false;
             return true;
         }
 
@@ -110,7 +113,7 @@ namespace ColonyCouncil
             // Quick picks: none, and what the plan would use on its own.
             float bx = inRect.x;
             if (QuickButton(ref bx, y, "CC_Planner_NoFloor".Translate(), current == null)) Pick(null, true);
-            var suggested = template.ResolveFloor(map);
+            var suggested = template.FloorFor(cfg.style, map) ?? template.ResolveFloor(map);
             if (suggested != null && QuickButton(ref bx, y, "CC_Floor_Suggested".Translate(suggested.label), current == suggested)) Pick(suggested, !suggested.MadeFromStuff);
             y += 30f;
             Widgets.CheckboxLabeled(new Rect(inRect.x, y, inRect.width, 24f), "CC_Floor_OnlyAffordable".Translate(area), ref onlyAffordable);
@@ -165,14 +168,14 @@ namespace ColonyCouncil
             var chosen = cfg.FloorStuff(floor, map, area);
             int need = floor.CostStuffCount * area;
             var options = Avail.AllowedStuffs(floor)
-                .Where(s => s == chosen || !onlyAffordable || map.resourceCounter.GetCount(s) >= need)
-                .OrderByDescending(s => map.resourceCounter.GetCount(s))
+                .Where(s => MaterialPicker.Allowed(s, MaterialUse.Floor) && (s == chosen || !onlyAffordable || Have(s) >= need))
+                .OrderByDescending(s => Have(s))
                 .ThenBy(s => s.label)
                 .ToList();
             const float iconSize = 36f;
             float textX = iconSize + 8f;
             float textW = width - textX;
-            var labels = options.Select(s => "CC_Floor_MaterialChip".Translate(s.LabelAsStuff.CapitalizeFirst(), map.resourceCounter.GetCount(s)).ToString()).ToList();
+            var labels = options.Select(s => "CC_Floor_MaterialChip".Translate(s.LabelAsStuff.CapitalizeFirst(), Have(s)).ToString()).ToList();
             float chipsH = ChipsHeight(labels, textW);
             float h = 48f + chipsH;
             var row = new Rect(0f, y, width, h);
@@ -195,12 +198,8 @@ namespace ColonyCouncil
                     cyy += 26f;
                 }
                 var r = new Rect(cx, cyy, w, 24f);
-                GUI.color = s == chosen ? Chosen : map.resourceCounter.GetCount(s) >= need ? Color.white : Short;
-                if (Widgets.ButtonText(r, labels[i]))
-                {
-                    cfg.floorStuff = s;
-                    cfg.Changed();
-                }
+                GUI.color = s == chosen ? Chosen : Have(s) >= need ? Color.white : Short;
+                if (Widgets.ButtonText(r, labels[i])) cfg.PickFloorStuff(s);
                 GUI.color = Color.white;
                 TooltipHandler.TipRegion(r, Tip(floor, s));
                 cx += w + 4f;
@@ -343,7 +342,7 @@ namespace ColonyCouncil
             {
                 lines.Add("");
                 foreach (var c in cost)
-                    lines.Add("CC_Floor_CostLine".Translate(c.count * area, c.thingDef.label, map.resourceCounter.GetCount(c.thingDef)));
+                    lines.Add("CC_Floor_CostLine".Translate(c.count * area, c.thingDef.label, Have(c.thingDef)));
             }
             return string.Join("\n", lines);
         }
@@ -402,9 +401,9 @@ namespace ColonyCouncil
         /// <summary>How many rooms' worth of the scarcest material is in stock (best material for floors made of one).</summary>
         private static int Stock(TerrainDef f, Map map)
         {
-            var stuff = f.MadeFromStuff ? Avail.BestStuff(f, map) : null;
+            var stuff = f.MadeFromStuff ? MaterialPicker.Pick(f, map, 1, MaterialUse.Floor) : null;
             if (f.MadeFromStuff && stuff == null) return 0;
-            return f.CostListAdjusted(stuff, false).Select(c => map.resourceCounter.GetCount(c.thingDef) / Mathf.Max(1, c.count)).DefaultIfEmpty(int.MaxValue).Min();
+            return f.CostListAdjusted(stuff, false).Select(c => MaterialCounts.Have(map, c.thingDef) / Mathf.Max(1, c.count)).DefaultIfEmpty(int.MaxValue).Min();
         }
 
         /// <summary>The label without its first word, if what's left is specific enough to group by ("tile" yes, "floor" no).</summary>

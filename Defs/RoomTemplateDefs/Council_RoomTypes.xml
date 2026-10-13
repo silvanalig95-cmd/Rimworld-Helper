@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Room types: the sizes and kinds of one room. Menus show each type once (its main variant) and the planner offers
+    the others as buttons, keeping the turn, style and materials when the player switches. A variant whose template
+    isn't loaded (a DLC or mod that's off) is skipped. A template in no type stands on its own.
+  -->
+
+  <ColonyCouncil.RoomTypeDef>
+    <defName>Council_RT_Bedroom</defName>
+    <label>bedroom</label>
+    <main>Council_Bedroom</main>
+    <variants>
+      <li><template>Council_SmallBedroom</template><label>cozy</label></li>
+      <li><template>Council_Bedroom</template><label>standard</label></li>
+      <li><template>Council_Bedroom_Roomy</template><label>roomy</label></li>
+      <li><template>Council_Bedroom_Hut</template><label>hut</label></li>
+    </variants>
+  </ColonyCouncil.RoomTypeDef>
+
+  <ColonyCouncil.RoomTypeDef>
+    <defName>Council_RT_CoupleBedroom</defName>
+    <label>couple's bedroom</label>
+    <main>Council_CoupleBedroom</main>
+    <variants>
+      <li><template>Council_CoupleBedroom</template><label>standard</label></li>
+      <li><template>Council_CoupleBedroom_Roomy</template><label>roomy</label></li>
+    </variants>
+  </ColonyCouncil.RoomTypeDef>
+
+  <ColonyCouncil.RoomTypeDef>
+    <defName>Council_RT_Barracks</defName>
+    <label>barracks</label>
+    <main>Council_Barracks</main>
+    <variants>
+      <li><template>Council_Barracks_Small</template><label>for 4</label></li>
+      <li><template>Council_Barracks</template><label>for 8</label></li>
+    </variants>
+  </ColonyCouncil.RoomTypeDef>
+
+  <ColonyCouncil.RoomTypeDef>
+    <defName>Council_RT_DiningRoom</defName>
+    <label>dining room</label>
+    <main>Council_DiningRoom</main>
+    <variants>
+      <li><template>Council_DiningRoom_Small</template><label>for 4</label></li>
+      <li><template>Council_DiningRoom</template><label>for 8</label></li>
+      <li><template>Council_DiningRoom_Large</template><label>for 12</label></li>
+    </variants>
+  </ColonyCouncil.RoomTypeDef>
+
+  <ColonyCouncil.RoomTypeDef>
+    <defName>Council_RT_Kitchen</defName>
+    <label>kitchen</label>
+    <main>Council_Kitchen</main>
+    <variants>
+      <li><template>Council_Kitchen</template><label>one stove</label></li>
+      <li><template>Council_Kitchen_Large</template><label>two stoves</label></li>
+    </variants>
+  </ColonyCouncil.RoomTypeDef>
+
+  <ColonyCouncil.RoomTypeDef>
+    <defName>Council_RT_Freezer</defName>
+    <label>freezer</label>
+    <main>Council_Freezer</main>
+    <variants>
+      <li><template>Council_Freezer</template><label>standard</label></li>
+      <li><template>Council_Freezer_Large</template><label>large</label></li>
+    </variants>
+  </ColonyCouncil.RoomTypeDef>
+
+  <ColonyCouncil.RoomTypeDef>
+    <defName>Council_RT_Storeroom</defName>
+    <label>storeroom</label>
+    <main>Council_Storeroom</main>
+    <variants>
+      <li><template>Council_Storeroom</template><label>standard</label></li>
+      <li><template>Council_Storeroom_Large</template><label>large</label></li>
+    </variants>
+  </ColonyCouncil.RoomTypeDef>
+
+  <ColonyCouncil.RoomTypeDef>
+    <defName>Council_RT_Workshop</defName>
+    <label>workshop</label>
+    <main>Council_Workshop</main>
+    <variants>
+      <li><template>Council_Workshop_Small</template><label>small</label></li>
+      <li><template>Council_Workshop</template><label>standard</label></li>
+      <li><template>Council_Workshop_Large</template><label>large</label></li>
+    </variants>
+  </ColonyCouncil.RoomTypeDef>
+
+  <ColonyCouncil.RoomTypeDef>
+    <defName>Council_RT_Laboratory</defName>
+    <label>laboratory</label>
+    <main>Council_Laboratory</main>
+    <variants>
+      <li><template>Council_Laboratory</template><label>standard</label></li>
+      <li><template>Council_Laboratory_Large</template><label>large</label></li>
+    </variants>
+  </ColonyCouncil.RoomTypeDef>
+
+  <ColonyCouncil.RoomTypeDef>
+    <defName>Council_RT_Hospital</defName>
+    <label>hospital</label>
+    <main>Council_Hospital</main>
+    <variants>
+      <li><template>Council_Hospital_Infirmary</template><label>infirmary</label></li>
+      <li><template>Council_Hospital</template><label>3 beds</label></li>
+      <li><template>Council_LargeHospital</template><label>4 beds</label></li>
+      <li><template>Council_Hospital_Ward</template><label>ward</label></li>
+    </variants>
+  </ColonyCouncil.RoomTypeDef>
+
+  <ColonyCouncil.RoomTypeDef>
+    <defName>Council_RT_Prison</defName>
+    <label>prison</label>
+    <main>Council_PrisonCell</main>
+    <variants>
+      <li><template>Council_PrisonCell</template><label>cell</label></li>
+      <li><template>Council_PrisonBarracks</template><label>shared cell</label></li>
+    </variants>
+  </ColonyCouncil.RoomTypeDef>
+
+  <ColonyCouncil.RoomTypeDef>
+    <defName>Council_RT_School</defName>
+    <label>schoolroom</label>
+    <main>Council_Schoolroom</main>
+    <variants>
+      <li><template>Council_Classroom</template><label>small</label></li>
+      <li><template>Council_Schoolroom</template><label>large</label></li>
+    </variants>
+  </ColonyCouncil.RoomTypeDef>
+
+</Defs>

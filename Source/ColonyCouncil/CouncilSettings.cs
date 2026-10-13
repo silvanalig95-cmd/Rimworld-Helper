@@ -158,6 +158,12 @@ namespace ColonyCouncil
         public bool planReplaceOwn = false;
         public bool planSmoothStone = false;
         public bool planFurniture = true;
+        /// <summary>The game's build menu shows how much of each material the colony has (a deeper game hook).</summary>
+        public bool buildMenuCounts = true;
+        /// <summary>Rooms the player saved from a map ("Your rooms"), usable in every save.</summary>
+        public System.Collections.Generic.List<CustomRoomData> savedRooms = new System.Collections.Generic.List<CustomRoomData>();
+        /// <summary>The materials last picked in the room planner, "room::group=>material", used again while there's enough.</summary>
+        public System.Collections.Generic.List<string> planMaterials = new System.Collections.Generic.List<string>();
         public ButtonPosition buttonPosition = ButtonPosition.BeforeMenu;
         public bool roomsButton = true;
 
@@ -258,6 +264,15 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref planReplaceOwn, "planReplaceOwn", false);
             Scribe_Values.Look(ref planSmoothStone, "planSmoothStone", false);
             Scribe_Values.Look(ref planFurniture, "planFurniture", true);
+            Scribe_Values.Look(ref buildMenuCounts, "buildMenuCounts", true);
+            Scribe_Collections.Look(ref savedRooms, "savedRooms", LookMode.Deep);
+            Scribe_Collections.Look(ref planMaterials, "planMaterials", LookMode.Value);
+            if (Scribe.mode == LoadSaveMode.PostLoadInit || Scribe.mode == LoadSaveMode.LoadingVars)
+            {
+                savedRooms ??= new System.Collections.Generic.List<CustomRoomData>();
+                savedRooms.RemoveAll(r => r == null);
+                planMaterials ??= new System.Collections.Generic.List<string>();
+            }
             Scribe_Values.Look(ref buttonPosition, "buttonPosition", ButtonPosition.BeforeMenu);
             Scribe_Values.Look(ref roomsButton, "roomsButton", true);
         }
@@ -538,6 +553,7 @@ namespace ColonyCouncil
             if (moodInsight) l.CheckboxLabeled("  " + "CC_Settings_NeedsTabHints".Translate(), ref needsTabHints, "CC_Settings_NeedsTabHints_Tip".Translate());
             l.CheckboxLabeled("CC_Settings_DeepHooks".Translate(), ref deepHooks, "CC_Settings_DeepHooks_Tip".Translate(RimfolkPatches.Applied.Count, RimfolkPatches.Failed.Count));
             if (deepHooks) l.CheckboxLabeled("  " + "CC_Settings_LetterNotes".Translate(), ref letterNotes, "CC_Settings_LetterNotes_Tip".Translate());
+            if (deepHooks) l.CheckboxLabeled("  " + "CC_Settings_BuildMenuCounts".Translate(), ref buildMenuCounts, "CC_Settings_BuildMenuCounts_Tip".Translate());
             l.CheckboxLabeled("CC_Settings_SlowButtons".Translate(), ref slowButtons, "CC_Settings_SlowButtons_Tip".Translate());
             if (slowButtons && (slowButtonsX >= 0f || slowButtonsY >= 0f) && l.ButtonText("CC_Settings_SlowButtonsReset".Translate()))
                 slowButtonsX = slowButtonsY = -1f;
@@ -684,6 +700,8 @@ namespace ColonyCouncil
             planReplaceOwn = d.planReplaceOwn;
             planSmoothStone = d.planSmoothStone;
             planFurniture = d.planFurniture;
+            buildMenuCounts = d.buildMenuCounts;
+            // Saved rooms and remembered materials are the player's own work, not settings: a reset keeps them.
             if (buttonPosition != d.buttonPosition || roomsButton != d.roomsButton)
             {
                 buttonPosition = d.buttonPosition;

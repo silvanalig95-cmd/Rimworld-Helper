@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!-- Room plans: sizes and styles, materials from stock, saved rooms, upgrading a built room, and the build menu's
+       material counts (Source/ColonyCouncil/Building, Patches/Patch_BuildMenuCounts.cs). -->
+
+  <!-- Sizes and styles -->
+  <CC_Rooms_VariantFull>{0} ({1})</CC_Rooms_VariantFull>
+  <!-- The size label the room types use for their usual size (Council_RoomTypes.xml); it isn't repeated after a name. -->
+  <CC_Rooms_Standard>standard</CC_Rooms_Standard>
+  <CC_Rooms_SizesTip>Comes in these sizes and kinds: {0}. Pick one in the planner.</CC_Rooms_SizesTip>
+  <CC_Style_Spartan>Spartan</CC_Style_Spartan>
+  <CC_Style_Spartan_Tip>Only the essentials: the beds, benches and tables the room is for, and a light. No floor unless the room has to stay clean. Cheap and quick to build.</CC_Style_Spartan_Tip>
+  <CC_Style_Comfortable>Comfortable</CC_Style_Comfortable>
+  <CC_Style_Comfortable_Tip>The standard furnishing: the essentials plus bedside tables, dressers, plant pots and a floor.</CC_Style_Comfortable_Tip>
+  <CC_Style_Lavish>Lavish</CC_Style_Lavish>
+  <CC_Style_Lavish_Tip>Everything in comfortable, plus extra decor where the room has space: more plant pots along the walls, pedestals for sculptures and a rug where your mods provide them, and carpet or fine stone tiles. Hospitals and kitchens keep their sterile floor.</CC_Style_Lavish_Tip>
+  <CC_Template_ForLowTech>This is a room for a tribal or medieval colony. Set the colony's era in the mod settings to plan it anyway.</CC_Template_ForLowTech>
+  <CC_Template_ForIndustrial>This room needs an industrial colony.</CC_Template_ForIndustrial>
+
+  <!-- What a room is missing ("The colony can't build {0} yet.") -->
+  <CC_Role_altar>altars</CC_Role_altar>
+  <CC_Role_lectern>lecterns</CC_Role_lectern>
+  <CC_Role_pew>pews</CC_Role_pew>
+  <CC_Role_drape>drapes</CC_Role_drape>
+  <CC_Role_column>columns</CC_Role_column>
+  <CC_Role_pedestal>pedestals</CC_Role_pedestal>
+  <CC_Role_rug>rugs</CC_Role_rug>
+  <CC_Role_gestator>mech gestators</CC_Role_gestator>
+  <CC_Role_recharger>mech rechargers</CC_Role_recharger>
+  <CC_Role_geneassembler>gene assemblers</CC_Role_geneassembler>
+  <CC_Role_genebank>gene banks</CC_Role_genebank>
+  <CC_Role_holding>holding platforms</CC_Role_holding>
+  <CC_Role_inhibitor>inhibitors</CC_Role_inhibitor>
+  <CC_Role_wall>walls</CC_Role_wall>
+  <CC_Role_door>doors</CC_Role_door>
+  <CC_Role_washer>washing machines</CC_Role_washer>
+  <CC_Role_bookcase>bookcases</CC_Role_bookcase>
+  <CC_Role_stonecutter>stonecutter's tables</CC_Role_stonecutter>
+  <CC_Role_toolcabinet>tool cabinets</CC_Role_toolcabinet>
+  <CC_Role_fabrication>fabrication benches</CC_Role_fabrication>
+  <CC_Role_campfire>campfires</CC_Role_campfire>
+
+  <!-- Materials -->
+  <CC_Mat_StoredAndLying>{0} (+{1} lying around)</CC_Mat_StoredAndLying>
+  <CC_Mat_EnoughFor>, enough for {0}</CC_Mat_EnoughFor>
+  <CC_Mat_NeedHere>, {0} needed here</CC_Mat_NeedHere>
+  <CC_Planner_UseWhatWeHave>Use what we have</CC_Planner_UseWhatWeHave>
+  <CC_Planner_UseWhatWeHave_Tip>Forget the materials picked for this room and choose each one from the stock again: something the colony has enough of, stone blocks first, then wood, bone (furniture only) and steel. Silver, gold, plasteel, uranium and jade only when nothing else will do.
+
+Green: enough with some to spare. Amber: only just enough. Red: not enough.</CC_Planner_UseWhatWeHave_Tip>
+  <CC_Planner_CostLineLying>{0}: {1} / {2} (+{3} lying around)</CC_Planner_CostLineLying>
+  <CC_Plan_Block_CantTurn>{0} can only be built facing north, and it doesn't fit that way here.</CC_Plan_Block_CantTurn>
+  <CC_Plan_Warn_Rearranged>Some furniture was turned or left out, so every piece can be reached and used.</CC_Plan_Warn_Rearranged>
+
+  <!-- Upgrading a built room -->
+  <CC_Upgrade_Button>Upgrade a built room</CC_Upgrade_Button>
+  <CC_Upgrade_Back>Plan a new room instead</CC_Upgrade_Back>
+  <CC_Upgrade_Tip>Furnish a room you've already built with this plan: hover the room and click it. Only the furniture it doesn't have yet is planned, and the floor goes only on bare ground. The plan turns to the wall with the room's door.</CC_Upgrade_Tip>
+  <CC_Upgrade_Pick>Click a built room to furnish it as a {0}. Only what's missing is planned.</CC_Upgrade_Pick>
+  <CC_Upgrade_Room>THE ROOM UNDER THE MOUSE</CC_Upgrade_Room>
+  <CC_Upgrade_HoverRoom>Hover a built room.</CC_Upgrade_HoverRoom>
+  <CC_Upgrade_Impressiveness>{0}: impressiveness {1} ({2}) now.</CC_Upgrade_Impressiveness>
+  <CC_Upgrade_NotARoom>Not an enclosed room.</CC_Upgrade_NotARoom>
+  <CC_Upgrade_TooSmall>The room is {0}x{1} inside; this plan needs {2}x{3}. Try a smaller size.</CC_Upgrade_TooSmall>
+  <CC_Upgrade_InWall>{0} goes into the wall. Build it by hand.</CC_Upgrade_InWall>
+  <CC_Upgrade_Outside>{0} doesn't fit inside this room.</CC_Upgrade_Outside>
+  <CC_Upgrade_Nothing>This room already has everything the plan would add.</CC_Upgrade_Nothing>
+  <CC_Upgrade_Mouse>furnish as a {0}</CC_Upgrade_Mouse>
+  <CC_Upgrade_Counts>{0} piece(s) to add, {1} already there</CC_Upgrade_Counts>
+  <CC_Upgrade_Done>Upgraded the room as a {0}: {1} piece(s) of furniture planned, {2} already there.</CC_Upgrade_Done>
+
+  <!-- Your rooms -->
+  <CC_BuildGroup_Yours>Your rooms</CC_BuildGroup_Yours>
+  <CC_Yours_Save>Save a room</CC_Yours_Save>
+  <CC_Yours_SaveDesc>Click a room you've built to keep it as a plan of your own. It's saved with the mod's settings, so you can plan it in every game.</CC_Yours_SaveDesc>
+  <CC_Yours_SaveButton>Save a built room as a plan</CC_Yours_SaveButton>
+  <CC_Yours_PickRoom>Click a built room to save it as a plan. It has to be an enclosed rectangle with a door.</CC_Yours_PickRoom>
+  <CC_Yours_NamePrompt>Name this room plan:</CC_Yours_NamePrompt>
+  <CC_Yours_NeedName>Give the plan a name first.</CC_Yours_NeedName>
+  <CC_Yours_Unnamed>my room</CC_Yours_Unnamed>
+  <CC_Yours_Desc>A room you saved: {0}x{1} inside.</CC_Yours_Desc>
+  <CC_Yours_Saved>Saved "{0}" ({1}x{2}, {3} piece(s) of furniture). Find it under Your rooms.</CC_Yours_Saved>
+  <CC_Yours_Deleted>Deleted the room plan "{0}".</CC_Yours_Deleted>
+  <CC_Yours_Delete>Delete this plan</CC_Yours_Delete>
+  <CC_Yours_NotARoom>Pick an enclosed room, not the outdoors or a doorway.</CC_Yours_NotARoom>
+  <CC_Yours_NotRectangle>Only rectangular rooms can be saved.</CC_Yours_NotRectangle>
+  <CC_Yours_TooBig>Rooms up to {0} cells on a side can be saved.</CC_Yours_TooBig>
+  <CC_Yours_NoDoor>The room needs a door in one of its walls (not in a corner).</CC_Yours_NoDoor>
+
+  <!-- The game's build menu -->
+  <CC_Settings_BuildMenuCounts>Show material counts in build menus</CC_Settings_BuildMenuCounts>
+  <CC_Settings_BuildMenuCounts_Tip>When you pick a material for a wall, door or piece of furniture in the game's build menu, each material shows how much the colony has: stored (stockpiles and shelves), lying around (not forbidden, not in storage), and how many you could build with it.</CC_Settings_BuildMenuCounts_Tip>
+
+</LanguageData>

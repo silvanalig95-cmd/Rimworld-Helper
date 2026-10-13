@@ -30,7 +30,7 @@
       <li>Dubs Bad Hygiene rates a private bathroom like a bedroom: from awful (-4 mood) to wondrous (+8), by its impressiveness.</li>
     </tips>
     <things>
-      <li><defs><li>ToiletStuff</li><li>PitLatrine</li></defs><role>toilet</role><pos>(0,2)</pos><rot>South</rot><optional>false</optional></li>
+      <li><defs><li>ToiletStuff</li><li>PitLatrine</li></defs><role>toilet</role><pos>(0,2)</pos><optional>false</optional></li>
       <li><defs><li>BasinStuff</li><li>WashBucket</li></defs><role>wash</role><pos>(1,2)</pos></li>
       <li><defs><li>ShowerStuff</li><li>ShowerSimple</li><li>BathtubStuff</li></defs><role>bath</role><pos>(2,1)</pos></li>
       <li><defs><li>StandingLamp</li><li>TorchLamp</li></defs><role>light</role><pos>(0,0)</pos></li>
