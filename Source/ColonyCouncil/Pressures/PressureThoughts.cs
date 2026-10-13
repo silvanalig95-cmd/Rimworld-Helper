@@ -8,7 +8,7 @@ namespace ColonyCouncil
     /// An everyday pressure's mood: the bad side follows the "Life's ups and downs" setting and the colonist's standards
     /// (never less than a whole point); the good side is a small reward like the council's, so it follows the reward
     /// strength and standards too. The label and description name the meal, work, person, room or thing, and the
-    /// tooltip says what caused it and what helps.
+    /// tooltip says what caused it; what helps is its mood hint (Defs/MoodHintDefs/Council_MoodHints_Pressures.xml).
     /// </summary>
     public class Thought_Pressure : Thought_Situational, IExplainedThought
     {
@@ -70,10 +70,7 @@ namespace ColonyCouncil
                     CouncilLog.ErrorOnce("pressure description " + def?.defName, e);
                     text = base.Description;
                 }
-                text = Causes.Append(text, Why);
-                string help = ("CC_Pressure_Help_" + def.defName).CanTranslate() ? ("CC_Pressure_Help_" + def.defName).Translate().ToString() : null;
-                if (!help.NullOrEmpty()) text += "\n" + "CC_Pressure_HelpLine".Translate(help).Resolve().Colorize(ColoredText.SubtleGrayColor);
-                return text;
+                return Causes.Append(text, Why);
             }
         }
     }

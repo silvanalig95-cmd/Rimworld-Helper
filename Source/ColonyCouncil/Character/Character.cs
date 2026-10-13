@@ -319,10 +319,14 @@ namespace ColonyCouncil
 
     public class Thought_ColonyWays : Thought_Situational, IExplainedThought
     {
+        /// <summary>
+        /// Pride in the colony's ways lasts as long as the ways do, so like the council's other lasting rewards it
+        /// follows the reward strength and shrinks for the spoiled, who come to take it for granted.
+        /// </summary>
         public override float MoodOffset()
         {
             float m = base.MoodOffset();
-            return m < 0f ? m * ColonyCouncilMod.Settings.PenaltyScale : m;
+            return m < 0f ? m * ColonyCouncilMod.Settings.PenaltyScale : m * SmallJoys.LiveScale(pawn);
         }
 
         public string Why

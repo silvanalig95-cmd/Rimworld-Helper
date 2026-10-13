@@ -1666,14 +1666,13 @@ Those against it ({WHO}) will trust the council less and resent it more than usu
   <CC_Settings_Frictions_Tip>The small irritations of living close together, like dishes left in the basin, a snoring bunkmate or advice nobody asked for. A messy or cramped home brings its own, like a leaking roof, a sticking door or a smoky room. Each costs a point or two of mood for half a day to a day and a half. A tidy, roomy colony has far fewer of them.</CC_Settings_Frictions_Tip>
   <!-- Everyday pressures (Source/ColonyCouncil/Pressures/) -->
   <CC_Settings_Life>Life's ups and downs</CC_Settings_Life>
-  <CC_Settings_Life_Tip>Everyday pressures a well-run colony has to keep up with: the same meal again and again, the same work for days, someone dear away for long, a packed dining or rec room, half-built work left standing. Each is small, says what causes it and what helps, and goes away once that's dealt with. A varied table lifts the mood a little.</CC_Settings_Life_Tip>
+  <CC_Settings_Life_Tip>Everyday pressures a well-run colony has to keep up with, like the same meal again and again, the same work for days, someone dear away for long, a packed dining or rec room, or half-built work left standing. Each is small, says what causes it and what helps, and goes away once that's dealt with. A varied table gives a small lift.</CC_Settings_Life_Tip>
   <CC_Life_Gentle>Gentle</CC_Life_Gentle>
   <CC_Life_Gentle_Tip>Pressures at half strength, never less than 1. Half-built work isn't minded, and high standards don't make the colony's small frictions sting more.</CC_Life_Gentle_Tip>
   <CC_Life_Normal>Normal</CC_Life_Normal>
   <CC_Life_Normal_Tip>Pressures as designed, 1 to 3 mood each. Spoiled colonists feel them, and the colony's other small frictions, up to 40% more.</CC_Life_Normal_Tip>
   <CC_Life_Demanding>Demanding</CC_Life_Demanding>
   <CC_Life_Demanding_Tip>Pressures half again as strong, for colonies that stay content too easily.</CC_Life_Demanding_Tip>
-  <CC_Pressure_HelpLine>What helps: {0}</CC_Pressure_HelpLine>
   <CC_Pressure_Why_SameMeal>{0} of their last {1} meals were {2}.</CC_Pressure_Why_SameMeal>
   <CC_Pressure_Why_VariedTable>{0} different foods in the last two days.</CC_Pressure_Why_VariedTable>
   <CC_Pressure_Why_SameWork>mostly {0}, {1} days running.</CC_Pressure_Why_SameWork>
@@ -1681,14 +1680,9 @@ Those against it ({WHO}) will trust the council less and resent it more than usu
   <CC_Pressure_Why_MissingFriend>apart from {OTHER_nameDef}, a close friend, for {TIME}.</CC_Pressure_Why_MissingFriend>
   <CC_Pressure_Why_CrowdedSeats>{0} people in the {1}, with seats for {2}.</CC_Pressure_Why_CrowdedSeats>
   <CC_Pressure_Why_Crowded>{0} people in a {1} of {2} cells.</CC_Pressure_Why_Crowded>
-  <CC_Pressure_Why_Unfinished>in the home area, {0} frames nobody has worked on for 2 days or more, and {1} plans waiting 4 days or more.</CC_Pressure_Why_Unfinished>
-  <CC_Pressure_Help_Council_Pressure_SameMeal>cook more than one kind of meal, with bills for two or three kinds, or pemmican, berries or a fine meal in the mix. A colony that can make only one kind feels it least. Ascetics don't mind.</CC_Pressure_Help_Council_Pressure_SameMeal>
-  <CC_Pressure_Help_Council_Pressure_SameWork>a second kind of work, even a few hours a day. Industrious and hard-working colonists, and anyone with a burning passion for the work, don't mind.</CC_Pressure_Help_Council_Pressure_SameWork>
-  <CC_Pressure_Help_Council_Pressure_Missing>being together again. Shorter trips, or sending the two of them together, keep it away.</CC_Pressure_Help_Council_Pressure_Missing>
-  <CC_Pressure_Help_Council_Pressure_Crowded>a bigger room, more seats at the tables, or meals at different times. It fades half a day after the crush.</CC_Pressure_Help_Council_Pressure_Crowded>
-  <CC_Pressure_Help_Council_Pressure_Unfinished>finish the frames that are waiting (often on materials), or cancel what you no longer need. Plans count for much less than half-built work. The lazy and slobs don't care.</CC_Pressure_Help_Council_Pressure_Unfinished>
+  <CC_Pressure_Why_Unfinished>in the home area, {0} frames not worked on for 2 days or more, and {1} plans waiting 4 days or more.</CC_Pressure_Why_Unfinished>
   <CC_Pressure_PlansLabel>plans gathering dust</CC_Pressure_PlansLabel>
-  <CC_Pressure_PlansDesc>Plans have been marked out for days and nobody has started them. I keep stepping around the lines.</CC_Pressure_PlansDesc>
+  <CC_Pressure_PlansDesc>Plans have been marked out for days, and not one of them started. I keep stepping around the lines.</CC_Pressure_PlansDesc>
   <CC_Pressure_RoomFallback>room</CC_Pressure_RoomFallback>
   <CC_Pressure_ThingFallback>building</CC_Pressure_ThingFallback>
   <CC_Pressure_WorkFallback>the same work</CC_Pressure_WorkFallback>

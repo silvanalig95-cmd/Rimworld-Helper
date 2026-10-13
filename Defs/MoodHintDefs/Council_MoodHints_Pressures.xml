@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- What to do about the everyday pressures (Defs/ThoughtDefs/Council_Thoughts_Pressures.xml). -->
+
+  <ColonyCouncil.MoodHintDef>
+    <defName>Council_Mood_RF_PressureMeal</defName>
+    <thoughts><li>Council_Pressure_SameMeal</li><li>Council_Pressure_VariedTable</li></thoughts>
+    <fix>Cook more than one kind of meal: bills for two or three kinds, or pemmican, berries or a fine meal in the mix. It eases as the meals change. A colony that can make only one kind feels it least, and ascetics don't mind.</fix>
+    <keep>Keep three or more kinds of food in the mix, a couple of days at a time.</keep>
+    <article>Council_Alm_C_Pressures</article>
+  </ColonyCouncil.MoodHintDef>
+
+  <ColonyCouncil.MoodHintDef>
+    <defName>Council_Mood_RF_PressureWork</defName>
+    <thoughts><li>Council_Pressure_SameWork</li></thoughts>
+    <fix>Give them a second kind of work in the Work tab, even a few hours a day. One varied day ends the run. Industrious and hard-working colonists, and anyone with a burning passion for the work, don't mind.</fix>
+    <article>Council_Alm_C_Pressures</article>
+  </ColonyCouncil.MoodHintDef>
+
+  <ColonyCouncil.MoodHintDef>
+    <defName>Council_Mood_RF_PressureMissing</defName>
+    <thoughts><li>Council_Pressure_Missing</li></thoughts>
+    <fix>It ends when they're together again. Keep trips short, or send the two of them together.</fix>
+    <article>Council_Alm_C_Pressures</article>
+  </ColonyCouncil.MoodHintDef>
+
+  <ColonyCouncil.MoodHintDef>
+    <defName>Council_Mood_RF_PressureCrowded</defName>
+    <thoughts><li>Council_Pressure_Crowded</li></thoughts>
+    <fix>A bigger room, more seats at the tables, or meals and recreation spread over the day in the schedule. It fades half a day after the crush. Parties and meetings don't count.</fix>
+    <article>Council_Alm_C_Pressures</article>
+  </ColonyCouncil.MoodHintDef>
+
+  <ColonyCouncil.MoodHintDef>
+    <defName>Council_Mood_RF_PressureUnfinished</defName>
+    <thoughts><li>Council_Pressure_Unfinished</li></thoughts>
+    <fix>Finish the frames that are waiting (often for materials), or cancel what you don't need. Untouched plans count for much less than half-built work. Lazy colonists and slobs don't care.</fix>
+    <article>Council_Alm_C_Pressures</article>
+  </ColonyCouncil.MoodHintDef>
+
+</Defs>
