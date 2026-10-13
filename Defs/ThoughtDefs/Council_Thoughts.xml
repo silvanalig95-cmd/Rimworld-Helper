@@ -53,7 +53,7 @@
 
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_AmbitionAchieved</defName>
-    <durationDays>8</durationDays>
+    <durationDays>6</durationDays>
     <stages>
       <li>
         <label>reached our goal together</label>
@@ -65,12 +65,12 @@
 
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_MyAmbitionAchieved</defName>
-    <durationDays>10</durationDays>
+    <durationDays>8</durationDays>
     <stages>
       <li>
         <label>my idea worked out</label>
         <description>I told the council what we should aim for, and we actually did it. I'll be insufferable about this for weeks.</description>
-        <baseMoodEffect>10</baseMoodEffect>
+        <baseMoodEffect>8</baseMoodEffect>
       </li>
     </stages>
   </ThoughtDef>
@@ -398,12 +398,12 @@
 
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_Granted_LetMeWork</defName>
-    <durationDays>4</durationDays>
+    <durationDays>3</durationDays>
     <stages>
       <li>
         <label>doing what I love</label>
         <description>I finally get to spend my days on the work I love.</description>
-        <baseMoodEffect>4</baseMoodEffect>
+        <baseMoodEffect>3</baseMoodEffect>
       </li>
     </stages>
   </ThoughtDef>

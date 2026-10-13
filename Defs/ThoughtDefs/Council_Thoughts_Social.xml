@@ -56,19 +56,19 @@
   <ThoughtDef>
     <defName>Council_ProudMentor</defName>
     <thoughtClass>ColonyCouncil.Thought_CouncilSocial</thoughtClass>
-    <durationDays>15</durationDays>
+    <durationDays>10</durationDays>
     <stackLimit>3</stackLimit>
     <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
-    <stages><li><label>my student is ready</label><description>Everything I know, they know now, and some of it better than me. I'm proud of them.</description><baseMoodEffect>6</baseMoodEffect><baseOpinionOffset>15</baseOpinionOffset></li></stages>
+    <stages><li><label>my student is ready</label><description>Everything I know, they know now, and some of it better than me. I'm proud of them.</description><baseMoodEffect>5</baseMoodEffect><baseOpinionOffset>15</baseOpinionOffset></li></stages>
   </ThoughtDef>
 
   <ThoughtDef>
     <defName>Council_GratefulStudent</defName>
     <thoughtClass>ColonyCouncil.Thought_CouncilSocial</thoughtClass>
-    <durationDays>15</durationDays>
+    <durationDays>10</durationDays>
     <stackLimit>3</stackLimit>
     <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
-    <stages><li><label>they taught me</label><description>I didn't know how to do any of this a season ago. They took the time. I won't forget it.</description><baseMoodEffect>5</baseMoodEffect><baseOpinionOffset>20</baseOpinionOffset></li></stages>
+    <stages><li><label>they taught me</label><description>I didn't know how to do any of this a season ago. They took the time. I won't forget it.</description><baseMoodEffect>4</baseMoodEffect><baseOpinionOffset>20</baseOpinionOffset></li></stages>
   </ThoughtDef>
 
   <!-- Social events -->
@@ -76,7 +76,7 @@
   <ThoughtDef>
     <defName>Council_Soc_GoodTalk</defName>
     <thoughtClass>ColonyCouncil.Thought_CouncilSocial</thoughtClass>
-    <durationDays>3</durationDays>
+    <durationDays>2</durationDays>
     <stackLimit>3</stackLimit>
     <stackLimitForSameOtherPawn>2</stackLimitForSameOtherPawn>
     <stages><li><label>a good talk</label><description>We talked half the night. I'd forgotten what that feels like.</description><baseMoodEffect>3</baseMoodEffect><baseOpinionOffset>6</baseOpinionOffset></li></stages>
@@ -121,19 +121,19 @@
   <ThoughtDef>
     <defName>Council_Soc_HadMyBack</defName>
     <thoughtClass>ColonyCouncil.Thought_CouncilSocial</thoughtClass>
-    <durationDays>6</durationDays>
+    <durationDays>4</durationDays>
     <stackLimit>3</stackLimit>
     <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
-    <stages><li><label>had my back</label><description>When it mattered, they stood with me. I won't forget it.</description><baseMoodEffect>4</baseMoodEffect><baseOpinionOffset>12</baseOpinionOffset></li></stages>
+    <stages><li><label>had my back</label><description>When it mattered, they stood with me. I won't forget it.</description><baseMoodEffect>3</baseMoodEffect><baseOpinionOffset>12</baseOpinionOffset></li></stages>
   </ThoughtDef>
 
   <ThoughtDef>
     <defName>Council_Soc_Gift</defName>
     <thoughtClass>ColonyCouncil.Thought_CouncilSocial</thoughtClass>
-    <durationDays>5</durationDays>
+    <durationDays>4</durationDays>
     <stackLimit>3</stackLimit>
     <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
-    <stages><li><label>a little gift</label><description>They made me something. Small, and a bit crooked, and I love it.</description><baseMoodEffect>4</baseMoodEffect><baseOpinionOffset>8</baseOpinionOffset></li></stages>
+    <stages><li><label>a little gift</label><description>They made me something. Small, and a bit crooked, and I love it.</description><baseMoodEffect>3</baseMoodEffect><baseOpinionOffset>8</baseOpinionOffset></li></stages>
   </ThoughtDef>
 
   <ThoughtDef>
