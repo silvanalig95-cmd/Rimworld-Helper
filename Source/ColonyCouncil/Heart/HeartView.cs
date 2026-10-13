@@ -312,7 +312,7 @@ namespace ColonyCouncil
         /// <summary>Draws the Heart section at y; returns the new y. Nothing when the feature is off or they have no heart.</summary>
         public static float DrawSection(Pawn p, float y, float w)
         {
-            var h = Heart.Of(p);
+            var h = Heart.ForView(p);
             if (h == null) return y;
             if (!h.evaluated)
             {
@@ -380,7 +380,7 @@ namespace ColonyCouncil
             var list = new List<(Pawn p, PawnHeart h)>();
             foreach (var p in pawns)
             {
-                var h = Heart.Of(p);
+                var h = Heart.ForView(p);
                 if (h != null && h.evaluated) list.Add((p, h));
             }
             if (list.Count == 0) return null;

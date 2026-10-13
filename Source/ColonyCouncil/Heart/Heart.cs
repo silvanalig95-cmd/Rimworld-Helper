@@ -33,6 +33,34 @@ namespace ColonyCouncil
         /// <summary>The colonist's heart while the feature is on, else null.</summary>
         public static PawnHeart Of(Pawn p) => On && p != null ? HeartTracker.Instance?.For(p) : null;
 
+        /// <summary>
+        /// For the UI (the Mood tab, the inspector, RimHUD): the colonist's heart, worked out on the spot the first time
+        /// someone looks. Otherwise, right after updating Rimfolk or with the game paused, nothing would show until the
+        /// hourly look comes round. This only reads their thoughts (feelings and needs); strain moves on the hour.
+        /// </summary>
+        public static PawnHeart ForView(Pawn p)
+        {
+            if (!On || p == null) return null;
+            var tracker = HeartTracker.Instance;
+            if (tracker == null) return null;
+            var h = tracker.For(p);
+            if (h != null && (h.evaluated || h.viewTried)) return h;
+            if (!Eligible(p)) return h;
+            h = h ?? tracker.For(p, true);
+            if (h == null) return null;
+            h.viewTried = true;
+            try
+            {
+                int now = Find.TickManager.TicksGame;
+                HeartLogic.Peek(p, h, HeartMapContext.For(p.MapHeld, now), now);
+            }
+            catch (System.Exception e)
+            {
+                CouncilLog.ErrorOnce("heart on view", e);
+            }
+            return h;
+        }
+
         public static float StrainOf(Pawn p) => Of(p)?.strain ?? 0f;
 
         public static StrainBand BandOf(Pawn p) => HeartMath.BandFor(StrainOf(p));

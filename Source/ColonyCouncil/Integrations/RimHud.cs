@@ -101,7 +101,7 @@ namespace ColonyCouncil
         public static PawnHeart HeartOf(Pawn pawn)
         {
             if (pawn == null || Current.ProgramState != ProgramState.Playing) return null;
-            var h = Heart.Of(pawn);
+            var h = Heart.ForView(pawn);
             return h != null && h.evaluated ? h : null;
         }
 

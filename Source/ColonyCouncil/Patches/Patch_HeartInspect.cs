@@ -18,7 +18,7 @@ namespace ColonyCouncil
             if (s == null || !s.heart || !s.heartInspector || !__instance.IsFreeColonist) return;
             try
             {
-                var h = Heart.Of(__instance);
+                var h = Heart.ForView(__instance);
                 string line = h?.inspectLine;
                 if (line.NullOrEmpty()) return;
                 __result = __result.NullOrEmpty() ? line : __result + "\n" + line;

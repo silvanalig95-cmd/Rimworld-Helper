@@ -42,6 +42,19 @@ namespace ColonyCouncil
             return factors.TryGetValue(t, out float f) ? f : 1f;
         }
 
+        /// <summary>
+        /// A small joy that now counts for less than half a point: the Needs tab would show it as 0, so it's left off
+        /// the list (its little bit still counts toward mood).
+        /// </summary>
+        public static bool Faded(Thought_Memory t)
+        {
+            if (!(t is ICouncilMood mood)) return false;
+            float f = Factor(t);
+            if (f >= 1f) return false;
+            float own = mood.OwnOffset();
+            return own > 0f && own * f < 0.5f;
+        }
+
         /// <summary>The tooltip line for a small joy that counts for less.</summary>
         public static string Note(Thought_Memory t, string description)
         {

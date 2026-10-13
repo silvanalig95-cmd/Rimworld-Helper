@@ -101,6 +101,8 @@ namespace ColonyCouncil
         [Unsaved] public List<FeelingNow> feelings = new List<FeelingNow>();
         [Unsaved] public NeedNow[] needs;
         [Unsaved] public bool evaluated;
+        /// <summary>The UI already tried to work this heart out on the spot (Heart.ForView), so it doesn't retry every frame.</summary>
+        [Unsaved] public bool viewTried;
         /// <summary>The inspector line, built when the heart changes (never per frame).</summary>
         [Unsaved] public string inspectLine;
         /// <summary>RimHUD's values, built at the same time.</summary>

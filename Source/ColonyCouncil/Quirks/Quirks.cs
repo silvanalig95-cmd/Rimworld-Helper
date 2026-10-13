@@ -295,9 +295,12 @@ namespace ColonyCouncil
         {
             get
             {
+                // From the stage's own label: the game's label has already dropped {ITEM} by the time it gets here.
+                string raw = CurStage?.label;
+                if (raw.NullOrEmpty() || !raw.Contains("{ITEM}")) return base.LabelCap;
                 var q = CouncilGameComponent.Instance?.quirks.quirks.FirstOrDefault(x => x.pawn == pawn && x.def.thought == def);
-                string label = base.LabelCap;
-                return q?.item != null ? label.Formatted(q.item.label.Named("ITEM")).Resolve().CapitalizeFirst() : label;
+                string item = q?.item?.label ?? "CC_Quirk_ItemFallback".Translate().ToString();
+                return raw.Formatted(item.Named("ITEM")).Resolve().CapitalizeFirst();
             }
         }
     }

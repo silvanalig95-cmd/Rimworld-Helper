@@ -107,6 +107,8 @@ namespace ColonyCouncil
 
         public override string Description => SmallJoys.Note(this, Causes.Append(base.Description, cause));
 
+        public override bool VisibleInNeedsTab => base.VisibleInNeedsTab && !SmallJoys.Faded(this);
+
         public override bool TryMergeWithExistingMemory(out bool showBubble)
         {
             Causes.CarryOver(this, cause);
@@ -154,6 +156,8 @@ namespace ColonyCouncil
         }
 
         public override string Description => SmallJoys.Note(this, Causes.Append(base.Description, cause));
+
+        public override bool VisibleInNeedsTab => base.VisibleInNeedsTab && !SmallJoys.Faded(this);
 
         public override bool TryMergeWithExistingMemory(out bool showBubble)
         {

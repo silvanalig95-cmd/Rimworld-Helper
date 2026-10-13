@@ -1859,4 +1859,5 @@ Those against it ({WHO}) will trust the council less and resent it more than usu
   <CC_Nemesis_Deed_robbed>was robbed by {0}</CC_Nemesis_Deed_robbed>
   <CC_Nemesis_Deed_betrayed>betrayed {0}</CC_Nemesis_Deed_betrayed>
   <CC_Nemesis_Deed_enslaved>held {0} in chains</CC_Nemesis_Deed_enslaved>
+  <CC_Quirk_ItemFallback>charm</CC_Quirk_ItemFallback>
 </LanguageData>
