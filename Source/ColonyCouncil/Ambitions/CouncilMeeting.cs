@@ -511,9 +511,8 @@ namespace ColonyCouncil
             var m = CouncilGameComponent.Instance?.ambitions.meeting;
             if (m != null && m.invites.Count > 0)
             {
-                if (!MeetingAttendance.IsMember(p)) return 0f;
                 var inv = m.InviteOf(p);
-                if (inv != null && (inv.status == MeetingStatus.Skipped || inv.status == MeetingStatus.TooFar)) return 0f;
+                if (inv == null ? !MeetingAttendance.IsMember(p) : inv.status == MeetingStatus.Skipped || inv.status == MeetingStatus.TooFar) return 0f;
                 return base.VoluntaryJoinPriorityFor(p);
             }
             // A meeting begun before attendance was kept: bitter colonists mostly don't bother turning up.

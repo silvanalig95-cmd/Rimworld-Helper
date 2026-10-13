@@ -410,6 +410,8 @@ namespace ColonyCouncil
         {
             var m = CouncilGameComponent.Instance?.ambitions?.meeting;
             if (m == null || !m.Started || sleeper == null || waker == null) return false;
+            // No one is woken while there's danger about.
+            if (m.map == null || m.map.dangerWatcher.DangerRating != StoryDanger.None) return false;
             var inv = m.InviteOf(sleeper);
             return inv != null && inv.status == MeetingStatus.Woken && !inv.wakeDone && sleeper.Spawned && sleeper.Map == waker.Map
                    && !sleeper.Awake() && !sleeper.Downed;
@@ -482,6 +484,8 @@ namespace ColonyCouncil
         /// </summary>
         public static void WakeUpkeep(CouncilMeeting m, int now)
         {
+            // No one is woken while there's danger about; they sleep on.
+            if (m.map == null || m.map.dangerWatcher.DangerRating != StoryDanger.None) return;
             var jobDef = WakeJob;
             foreach (var inv in m.invites)
             {
