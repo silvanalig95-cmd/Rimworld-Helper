@@ -252,6 +252,16 @@ namespace ColonyCouncil
     /// <summary>The trust mood, with what moved it lately.</summary>
     public class Thought_CouncilTrust : Thought_Situational, IExplainedThought
     {
+        /// <summary>
+        /// Feeling heard is one of the council's rewards, so its good side follows the reward strength and shrinks for
+        /// the spoiled, who take being listened to for granted. Grudges count as they are.
+        /// </summary>
+        public override float MoodOffset()
+        {
+            float m = base.MoodOffset();
+            return m > 0f ? m * SmallJoys.LiveScale(pawn) : m;
+        }
+
         public string Why
         {
             get

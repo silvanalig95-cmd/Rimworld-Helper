@@ -1509,6 +1509,7 @@ Keys: the game's "slower" key ({0}) steps below normal speed, "faster" ({1}) ste
   <CC_Cause_Meeting>the council meeting.</CC_Cause_Meeting>
   <CC_Cause_AmbitionChosen>the council's new ambition: {0}.</CC_Cause_AmbitionChosen>
   <CC_Cause_AmbitionDone>the colony achieved its ambition: {0}.</CC_Cause_AmbitionDone>
+  <CC_Cause_AmbitionDoneEarly>the colony achieved its ambition: {0}. It was already {1} done when the colony chose it, so it counts for less.</CC_Cause_AmbitionDoneEarly>
   <CC_Cause_AmbitionFailed>the colony failed its ambition: {0}.</CC_Cause_AmbitionFailed>
   <CC_Cause_GoalReached>{0} reached a life goal: {1}.</CC_Cause_GoalReached>
   <CC_Cause_PersonalTouch>a personal touch for their room.</CC_Cause_PersonalTouch>
