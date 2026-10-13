@@ -462,11 +462,15 @@ namespace ColonyCouncil
             return UrgentWork(w) == null;
         }
 
-        /// <summary>The wake job is still worth finishing: the meeting is on and they're still asleep.</summary>
+        /// <summary>
+        /// The wake job is still worth finishing: the meeting is on, the waker still part of it (not drafted or let go) and
+        /// the sleeper still in ordinary sleep.
+        /// </summary>
         public static bool WakeStillWanted(Pawn waker, Pawn sleeper)
         {
             var m = CouncilGameComponent.Instance?.ambitions?.meeting;
             if (m == null || !m.Started || sleeper == null || waker == null) return false;
+            if (waker.Drafted || !(waker.GetLord()?.LordJob is LordJob_CouncilMeeting)) return false;
             // No one is woken while there's danger about.
             if (m.map == null || m.map.dangerWatcher.DangerRating != StoryDanger.None) return false;
             var inv = m.InviteOf(sleeper);

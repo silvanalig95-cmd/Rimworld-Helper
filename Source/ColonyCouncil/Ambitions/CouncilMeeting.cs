@@ -320,6 +320,8 @@ namespace ColonyCouncil
             {
                 bool abrasive = speaker.story?.traits?.HasTrait(TraitDefOf.Abrasive) ?? false;
                 var interaction = pool == "Council_Pool_MeetingDoubt" && abrasive ? DefDatabase<InteractionDef>.GetNamedSilentFail("Insult") : InteractionDefOf.Chitchat;
+                // Never anything that could start a fist fight: nobody gets hurt over a meeting.
+                if (interaction != null && interaction.socialFightBaseChance > 0f) interaction = InteractionDefOf.Chitchat;
                 if (interaction != null) speaker.interactions?.TryInteractWith(target.proposer, interaction);
             }
         }
