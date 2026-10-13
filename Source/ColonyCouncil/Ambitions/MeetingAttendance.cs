@@ -392,11 +392,13 @@ namespace ColonyCouncil
         /// <summary>What they were doing and where ("cutting wood on the far side of the map").</summary>
         private static string Whereabouts(Pawn p, IntVec3 spot, Map map)
         {
-            string act = Activity(p) ?? "CC_MeetDo_Out".Translate();
+            string act = Activity(p);
             string place = null;
             float size = Mathf.Max(map.Size.x, map.Size.z);
             if (p.Position.DistanceTo(spot) > size * 0.45f) place = "CC_MeetWhere_FarSide".Translate();
             else if (map.areaManager?.Home != null && !map.areaManager.Home[p.Position]) place = "CC_MeetWhere_Outside".Translate();
+            // "on the far side of the map" alone reads better than "out on the far side of the map".
+            if (act == null) return place ?? "CC_MeetDo_Out".Translate();
             return place == null ? act : act + " " + place;
         }
 
