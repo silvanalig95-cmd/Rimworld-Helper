@@ -211,8 +211,10 @@ namespace ColonyCouncil
                 builtSomething = false;
                 Safe("wishes after building", GrantFulfilledWishes);
             }
-            // A called council meeting: its start time, reminder, sleepers being fetched and anyone drafted away.
-            if (t % 60 == 23 && ambitions.meeting != null && Settings.enableAmbitions) Safe("council meeting", () => ambitions.MeetingTick(this));
+            // A called council meeting: its start time, reminder, sleepers being fetched and anyone drafted away. One already
+            // under way is looked after even if ambitions were just turned off, so nobody is left in it against the player.
+            if (t % 60 == 23 && ambitions.meeting != null && (Settings.enableAmbitions || ambitions.meeting.Started))
+                Safe("council meeting", () => ambitions.MeetingTick(this));
             if (t % HourTicks != 157) return;
             Hourly();
         }
