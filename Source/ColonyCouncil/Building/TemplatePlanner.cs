@@ -439,7 +439,7 @@ namespace ColonyCouncil
                 foreach (var c in room.Cells)
                 {
                     var terrain = c.GetTerrain(map);
-                    if (terrain != plan.floor && !terrain.BuildableByPlayer) bare++;
+                    if (terrain != plan.floor && IsBare(terrain)) bare++;
                 }
             plan.floorCells = bare;
 
@@ -458,6 +458,9 @@ namespace ColonyCouncil
             {
                 foreach (var f in furniture)
                 {
+                    // Walls and doors are the room's own business: a plan's partition or second door would split a room
+                    // that's already laid out.
+                    if (f.def == null || f.def.IsWall || f.def.IsDoor) continue;
                     var pt = Piece(f, t, anchor, cfg.mirror, rot, out var worldRect);
                     pt.rect = worldRect;
                     var match = existing.FirstOrDefault(e => !claimed.Contains(e.thing) && SameKind(e.def, f, t));
@@ -488,6 +491,16 @@ namespace ColonyCouncil
             int blocked = plan.furniture.Count(p => p.state == PieceState.Blocked);
             if (blocked > 0) plan.warnings.Add("CC_Plan_Warn_FurnitureBlocked".Translate(blocked));
             return plan;
+        }
+
+        private static HashSet<TerrainDef> smoothedFloors;
+
+        /// <summary>Ground with no floor on it: not a laid floor, and not stone smoothed into one.</summary>
+        public static bool IsBare(TerrainDef t)
+        {
+            if (t == null || t.BuildableByPlayer) return false;
+            smoothedFloors ??= new HashSet<TerrainDef>(DefDatabase<TerrainDef>.AllDefsListForReading.Where(d => d.smoothedTerrain != null).Select(d => d.smoothedTerrain));
+            return !smoothedFloors.Contains(t);
         }
 
         /// <summary>The room already has this kind of piece: the same building, or one with the same purpose.</summary>
@@ -738,7 +751,7 @@ namespace ColonyCouncil
                 {
                     if (c.GetTerrain(map) == plan.floor) continue;
                     // Upgrading keeps the floors already laid; only bare ground gets the new floor.
-                    if (plan.upgrade && c.GetTerrain(map).BuildableByPlayer) continue;
+                    if (plan.upgrade && !IsBare(c.GetTerrain(map))) continue;
                     if (plan.mineSet.Contains(c) || plan.deconstructCells.Contains(c))
                     {
                         queue?.Add(plan.floor, plan.floorStuff, c, Rot4.North, label);
