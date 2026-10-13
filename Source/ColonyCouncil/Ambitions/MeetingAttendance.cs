@@ -189,7 +189,8 @@ namespace ColonyCouncil
                 return inv;
             }
             string urgent = UrgentWork(p) ?? OtherLord(p);
-            if (urgent != null) return Busy(inv, urgent, false);
+            // A patient on the way to bed is excused, like one already lying there.
+            if (urgent != null) return Busy(inv, urgent, PatientJob(p.CurJob));
             if (p.CurJob != null && p.CurJob.playerForced) return Busy(inv, "CC_MeetWhy_Ordered".Translate(), false);
             if (WouldSkip(p)) return Skip(inv);
             if (m.spot.IsValid && m.spot.IsForbidden(p)) return Busy(inv, "CC_MeetWhy_Restricted".Translate(), false);
@@ -297,7 +298,19 @@ namespace ColonyCouncil
             if (def == JobDefOf.FeedPatient || def == JobDefOf.Breastfeed || def == JobDefOf.BottleFeedBaby || def == JobDefOf.BreastfeedCarryToMom
                 || def == JobDefOf.CarryToMomAfterBirth) return "CC_MeetWhy_Feeding".Translate(NameOf(target ?? carried));
             if (carried != null) return "CC_MeetWhy_Carrying".Translate(NameOf(carried));
+            // On the way to bed for treatment or bed rest.
+            if (PatientJob(job)) return "CC_MeetWhy_Recovering".Translate();
+            // Taking a baby out of the cold or heat, or anything else the game treats as an emergency.
+            if (def == JobDefOf.BringBabyToSafety || def == JobDefOf.BringBabyToSafetyUnforced || (job.workGiverDef?.emergency ?? false))
+                return "CC_MeetWhy_Elsewhere".Translate();
             return null;
+        }
+
+        /// <summary>A job from the patient work types: going to bed to be treated or to recover.</summary>
+        private static bool PatientJob(Job job)
+        {
+            string wt = job?.workGiverDef?.workType?.defName;
+            return wt == "Patient" || wt == "PatientBedRest";
         }
 
         /// <summary>Already taken up by another lord: a ritual, a caravan forming, another gathering.</summary>
@@ -402,8 +415,20 @@ namespace ColonyCouncil
 
         private static bool CanWake(Pawn w, Pawn sleeper) =>
             w.Spawned && w.Map == sleeper.Map && w.Awake() && !w.Downed && !w.Drafted && !w.InMentalState && w.jobs != null
-            && !(w.CurJob?.playerForced ?? false) && (w.CurJob == null || w.jobs.IsCurrentJobPlayerInterruptible())
-            && w.Position.DistanceTo(sleeper.Position) <= MaxWakeWalk && w.CanReach(sleeper, PathEndMode.Touch, Danger.Some);
+            && FreeToFetch(w) && w.Position.DistanceTo(sleeper.Position) <= MaxWakeWalk && w.CanReach(sleeper, PathEndMode.Touch, Danger.Some);
+
+        /// <summary>
+        /// Free to go and fetch someone: not carrying anything (it would be dropped where they stand), not eating, not in
+        /// bed, not under orders and not doing anything urgent.
+        /// </summary>
+        private static bool FreeToFetch(Pawn w)
+        {
+            if (w.carryTracker?.CarriedThing != null || w.InBed()) return false;
+            var job = w.CurJob;
+            if (job == null) return true;
+            if (job.playerForced || job.def == JobDefOf.Ingest || !w.jobs.IsCurrentJobPlayerInterruptible()) return false;
+            return UrgentWork(w) == null;
+        }
 
         /// <summary>The wake job is still worth finishing: the meeting is on and they're still asleep.</summary>
         public static bool WakeStillWanted(Pawn waker, Pawn sleeper)
