@@ -98,18 +98,30 @@ namespace ColonyCouncil
             }
         }
 
-        /// <summary>Everything the room still needs, by material, compared later with the colony's stock.</summary>
-        public Dictionary<ThingDef, int> Cost()
+        private Dictionary<ThingDef, int> cost;
+
+        /// <summary>Everything the room still needs, by material, compared later with the colony's stock. Worked out once per plan (the panel asks every frame).</summary>
+        public Dictionary<ThingDef, int> Cost() => cost ??= CountCost();
+
+        private Dictionary<ThingDef, int> CountCost()
         {
             var cost = new Dictionary<ThingDef, int>();
             void Add(BuildableDef def, ThingDef stuff, int times)
             {
                 if (def == null || times <= 0) return;
                 if (def.MadeFromStuff && stuff == null) return;
-                foreach (var c in def.CostListAdjusted(stuff, false))
+                try
                 {
-                    cost.TryGetValue(c.thingDef, out int have);
-                    cost[c.thingDef] = have + c.count * times;
+                    foreach (var c in def.CostListAdjusted(stuff, false))
+                    {
+                        if (c?.thingDef == null) continue;
+                        cost.TryGetValue(c.thingDef, out int have);
+                        cost[c.thingDef] = have + c.count * times;
+                    }
+                }
+                catch
+                {
+                    // A modded cost list that can't be read: left out of the sum rather than breaking the panel.
                 }
             }
             Add(ThingDefOf.Wall, wallStuff, wallNew.Count + wallWaiting.Count);
