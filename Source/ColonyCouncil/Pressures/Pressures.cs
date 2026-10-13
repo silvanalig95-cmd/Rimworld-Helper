@@ -374,7 +374,7 @@ namespace ColonyCouncil
             RefreshFood(rec, now);
         }
 
-        /// <summary>How many different kinds of food the colony can make right now (worked out once a day).</summary>
+        /// <summary>How many different kinds of meal the colony can cook right now (worked out once a day).</summary>
         public int MealOptions
         {
             get
@@ -397,8 +397,10 @@ namespace ColonyCouncil
         }
 
         /// <summary>
-        /// The kinds of food the colony's recipes make that it can cook now: researched, with a bench or fire for it in a
-        /// home, and a cook skilled enough. A tribe with a campfire and pemmican has two; a kitchen with fine meals more.
+        /// The kinds of meal the colony's recipes make that it can cook now: researched, with a bench or fire for it in a
+        /// home, and a cook skilled enough. Only real meals count as a choice: colonists pick a meal over travel food
+        /// like pemmican whenever there is one, so that's no way to vary what they eat (eaten, it still counts as
+        /// something different). A camp with a fire and simple meals has one; a kitchen with fine meals more.
         /// </summary>
         private static int CountMealOptions()
         {
@@ -417,7 +419,8 @@ namespace ColonyCouncil
                 {
                     continue;
                 }
-                if (prod == null || kinds.Contains(prod) || !Pressures.CountsAsFood(prod) || !r.AvailableNow) continue;
+                if (prod == null || kinds.Contains(prod) || !Pressures.CountsAsFood(prod) || prod.ingestible.preferability < FoodPreferability.MealSimple
+                    || !r.AvailableNow) continue;
                 bool bench = false;
                 foreach (var u in r.AllRecipeUsers)
                 {
