@@ -53,6 +53,8 @@ namespace ColonyCouncil
         public bool risingStandards = true;
         /// <summary>Small good moments count with diminishing returns when several are on a colonist's mind (SmallJoys).</summary>
         public bool smallJoysDiminish = true;
+        /// <summary>Life's ups and downs: how hard the everyday pressures press (the same meal, the same work, crowding...).</summary>
+        public LifePressure lifePressure = LifePressure.Normal;
         public bool enableDilemmas = true;
         public bool annals = true;
         public bool decreeRequests = true;
@@ -180,6 +182,7 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref allowQuitting, "allowQuitting", true);
             Scribe_Values.Look(ref risingStandards, "risingStandards", true);
             Scribe_Values.Look(ref smallJoysDiminish, "smallJoysDiminish", true);
+            Scribe_Values.Look(ref lifePressure, "lifePressure", LifePressure.Normal);
             Scribe_Values.Look(ref enableDilemmas, "enableDilemmas", true);
             Scribe_Values.Look(ref annals, "annals", true);
             Scribe_Values.Look(ref decreeRequests, "decreeRequests", true);
@@ -366,6 +369,13 @@ namespace ColonyCouncil
             }
             rewardFactor = l.SliderLabeled("CC_Settings_Reward".Translate(rewardFactor.ToStringPercent()), rewardFactor, 0.25f, 2f, 0.6f);
             rewardFactor = Mathf.Round(rewardFactor * 20f) / 20f;
+
+            // Everyday pressures sit with the other mood settings: how much the colony has to keep up to stay content.
+            Header(l, "CC_Settings_Life".Translate());
+            l.Label("CC_Settings_Life_Tip".Translate());
+            foreach (LifePressure mode in System.Enum.GetValues(typeof(LifePressure)))
+                if (l.RadioButton(("CC_Life_" + mode).Translate(), lifePressure == mode, 0f, ("CC_Life_" + mode + "_Tip").Translate()))
+                    lifePressure = mode;
 
             l.Gap();
             if (l.ButtonText("CC_Settings_Reset".Translate(), null, 0.4f)) ResetToDefaults();
@@ -598,6 +608,7 @@ namespace ColonyCouncil
             allowQuitting = d.allowQuitting;
             risingStandards = d.risingStandards;
             smallJoysDiminish = d.smallJoysDiminish;
+            lifePressure = d.lifePressure;
             enableDilemmas = d.enableDilemmas;
             annals = d.annals;
             decreeRequests = d.decreeRequests;

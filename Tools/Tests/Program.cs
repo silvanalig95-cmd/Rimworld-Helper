@@ -229,7 +229,8 @@ Check(PressureMath.CrowdLevel(3, 4, 3, 0) == 0, "three people are never a crowd"
 Check(PressureMath.CrowdLevel(6, 30, 6, 6) == 0 && PressureMath.CrowdLevel(6, 30, 6, 4) == 1 && PressureMath.CrowdLevel(6, 30, 6, 2) == 2, "dining: chairs for everyone, two short, half short");
 Check(PressureMath.CrowdLevel(8, 30, 0, -1) == 1 && PressureMath.CrowdLevel(8, 18, 0, -1) == 2 && PressureMath.CrowdLevel(8, 40, 0, -1) == 0, "rec room: space per person");
 Check(PressureMath.UnfinishedStage(PressureMath.UnfinishedScore(2, 4)) == 0 && PressureMath.UnfinishedStage(PressureMath.UnfinishedScore(2, 5)) == 1, "a few plans and frames: an eyesore from three");
-Check(PressureMath.UnfinishedStage(PressureMath.UnfinishedScore(10, 0)) == 2 && PressureMath.UnfinishedStage(PressureMath.UnfinishedScore(0, 125)) == 3, "frames count in full, plans a fifth");
+Check(PressureMath.UnfinishedStage(PressureMath.UnfinishedScore(10, 0)) == 2 && PressureMath.UnfinishedStage(PressureMath.UnfinishedScore(25, 0)) == 3, "frames count in full");
+Check(PressureMath.UnfinishedStage(PressureMath.UnfinishedScore(0, 500)) == 1 && PressureMath.UnfinishedStage(PressureMath.UnfinishedScore(4, 500)) == 2, "old plans alone are one step at most");
 Check(PressureMath.EffortFactor(-1f) == 1f && PressureMath.EffortFactor(0f) == 1f && PressureMath.EffortFactor(0.5f) == 1f, "an ambition with half or more to do is earned in full");
 Check(Math.Abs(PressureMath.EffortFactor(0.7f) - 0.8f) < 1e-4f && PressureMath.EffortFactor(0.95f) == 0.6f, "one mostly done already counts for less, 60% at least");
 
