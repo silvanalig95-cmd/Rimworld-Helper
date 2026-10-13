@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- Everyday pressures (Source/ColonyCouncil/Pressures/, Defs/ThoughtDefs/Council_Thoughts_Pressures.xml). -->
+
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Council_Alm_C_Pressures</defName>
+    <label>everyday pressures</label>
+    <category>Council</category>
+    <order>15</order>
+    <summary>Small, fixable things that wear on colonists: the same meal, the same work, someone away, a packed room, half-built work.</summary>
+    <tip>Two or three kinds of meal in the cooking bills keep the most common pressure away.</tip>
+    <description>A colony that has everything still has its everyday wear: the same stew every night, the same job every day, someone dear off on a long trip. Rimfolk adds five such pressures. Each is small, 1 to 3 mood, lasts only while its cause does, and says in its tooltip what caused it. The Mood tab says what helps. One has a good side: a varied table lifts the mood a little.
+
+None of them is a flat penalty. A well-kept colony hardly feels them, and fixing them is ordinary colony work: a second meal bill, a second job in the Work tab, a bigger dining room.</description>
+    <sections>
+      <li>
+        <heading>The pressures</heading>
+        <table>
+          <li>Pressure | When | Mood | Spared | What helps</li>
+          <li>The same meal | 6 of the last 8 meals the same kind; 10 of 12, then 12 of 12, for more | -1 to -3 | Ascetics; gourmands mind it a step more | Two or three kinds of meal in the bills</li>
+          <li>A varied table | 3 different foods in the last 2 days | +2 | Ascetics don't notice it | Keep the mix going</li>
+          <li>The same work | 70% of a day's working hours on one kind of work, 3, 5 and 8 days running | -1 to -3 | The industrious and hard-working, children, a burning passion for that work | A second kind of work, even a few hours a day</li>
+          <li>Missing someone | A partner apart for 2, 5 and 10 days; a close friend for 3 and 8 | -1 to -3 | Psychopaths and recluses don't miss friends | Being together again, shorter trips</li>
+          <li>A packed room | 4 or more people in a dining or rec room with too little space, or diners short of seats | -1 to -2, for half a day | Children; recluses mind it a step more | A bigger room, more seats, meals spread over the day</li>
+          <li>Half-built work | Frames untouched for 2 days and plans waiting 4 days in the home area | -1 to -3 | The lazy and slobs; the neat and industrious mind it a step more | Finish what's waiting, cancel the rest</li>
+        </table>
+        <after>Slaves, babies and guests feel none of them.</after>
+      </li>
+      <li>
+        <heading>Meals and the colony's era</heading>
+        <text>What counts as the same meal depends on what the colony can cook. With only one kind of meal within reach, it comes up only after 8 of the same in a row, and goes no further than the first step; with two kinds it stops at the second. Meals, pemmican, berries and the like count. Nutrient paste, raw meat and vegetables, and other food the game already minds don't, so a bad meal is never counted twice. Meals are noted through one of Rimfolk's deeper game hooks; with those turned off, the same meal and the varied table never come up.</text>
+      </li>
+      <li>
+        <heading>Crowds and loose ends</heading>
+        <text>A room is crowded with 4 or more people in it and less than 4 cells of room each, and packed with less than 2.5. In a dining room, 2 diners without a seat make it crowded; when half of those eating (3 at least) have none, it's packed. Parties, rituals and council meetings don't count: being packed in is the point.
+
+Half-built frames count in full and untouched plans a fifth each: 3 waiting frames are the first step, 10 the second and 25 the third. Plans alone never go past the first step, so a big plan laid out in advance costs little.</text>
+      </li>
+      <li>
+        <heading>Life's ups and downs</heading>
+        <table>
+          <li>Setting | Pressures | Also</li>
+          <li>Gentle | Half strength, never less than 1 | Half-built work isn't minded; standards don't make frictions sting more</li>
+          <li>Normal | As in the table above | Spoiled colonists feel pressures and frictions up to 40% more</li>
+          <li>Demanding | Half again as strong | As normal</li>
+        </table>
+      </li>
+      <li>
+        <heading>Standards and the heart</heading>
+        <text>As colonists' standards rise, the council's rewards shrink, and the colony's own frictions, nuisances and pressures sting more: up to 40% more for the spoiled. A colony that stays content for seasons has more to keep up with.
+
+The pressures also feed the heart's feelings. Missing someone feeds loneliness, the same work or meal feeds restlessness, a packed room or half-built work feeds frustration, and a varied table feeds contentment.</text>
+      </li>
+    </sections>
+    <keywords>
+      <li>pressure</li>
+      <li>monotony</li>
+      <li>same meal</li>
+      <li>food variety</li>
+      <li>varied table</li>
+      <li>same work</li>
+      <li>missing</li>
+      <li>crowded</li>
+      <li>unfinished</li>
+      <li>half-built</li>
+      <li>blueprints</li>
+      <li>ups and downs</li>
+    </keywords>
+    <seeAlso>
+      <li>Council_Alm_C_Standards</li>
+      <li>Council_Alm_C_Moods</li>
+      <li>Council_Alm_C_Heart</li>
+    </seeAlso>
+  </ColonyCouncil.AlmanacArticleDef>
+
+</Defs>

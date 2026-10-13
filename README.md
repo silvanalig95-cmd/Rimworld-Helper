@@ -120,7 +120,7 @@ three days later unless you win them back. The Wishes tab shows everyone's trust
 
 **Rising standards.** Comfort breeds expectations. While a colonist is happy, their standards creep up from
 *modest* to *comfortable*, *particular* and finally *spoiled*. The council's mood rewards shrink for them, letdowns
-sting more, their patience runs shorter, and their wishes come more often and ask for more: the next impressiveness
+sting more (and so do the colony's own frictions and everyday pressures, up to 40% more), their patience runs shorter, and their wishes come more often and ask for more: the next impressiveness
 level after that, fine meals instead of simple ones, luxuries. Hard times bring standards back down, and so does the
 austerity decree.
 
@@ -139,6 +139,25 @@ half a day to a day and a half. In an ordinary colony they come about as often a
 roomy one, more in barracks or between people who dislike each other. Abrasive, volatile and jealous colonists start
 more of them, kind ones none. After a spat the two share no warm moments until it wears off or they clear the air.
 A setting turns them off.
+
+**Everyday pressures.** A colony that has everything still has its everyday wear. Five small, fixable pressures show
+as moods while their cause lasts, each saying what caused it, with what helps in the Mood tab:
+- **the same meal again**: 6 of the last 8 meals the same kind, more after 10 or 12 of 12 (-1 to -3). A colony that
+  can cook only one kind feels it least; ascetics don't mind, gourmands mind it more. Three different foods in two
+  days make **a varied table** (+2).
+- **the same work for days**: most of each day on one kind of work, 3, 5 and 8 days running (-1 to -3). The
+  industrious and hard-working, children and anyone with a burning passion for that work don't mind.
+- **missing someone**: a partner apart for 2, 5 and 10 days, or a close friend for 3 and 8 (-1 to -3). The
+  homecoming is already celebrated when they're back.
+- **a packed room**: a dining or rec room with too little space per person, or diners short of seats (-1 to -2, for
+  half a day). Parties, rituals and meetings don't count.
+- **half-built work**: frames left untouched for 2 days and plans waiting 4 days in the home area (-1 to -3). Plans
+  alone stay small; lazy colonists and slobs don't care.
+
+None of them is a flat penalty: a second meal bill, a second job in the Work tab or a bigger dining room makes them go
+away. They feed the heart's feelings (loneliness, restlessness, frustration, contentment). The **Life's ups and
+downs** setting makes them gentle (half strength, no half-built work), normal or demanding (half again as strong).
+Meals are noted through one of the deeper game hooks. The Almanac's *everyday pressures* page has the details.
 
 ### Decrees: spend the good mood
 When the colony is doing well, put that goodwill to work. The Decrees tab lets you declare up to two policies at a
@@ -160,7 +179,8 @@ many times a decree was used lately and how likely trouble is.
 The council's choices add up. Every dilemma answer, decree and many granted wishes nudge the colony's five ways:
 **merciful or harsh**, **generous or thrifty**, **traditional or restless**, **open or guarded**, **hard-working or
 easygoing**. Lean far enough and word spreads: a letter tells you the colony is now known (and later renowned) for
-it. Colonists whose nature fits are proud of it (up to +4 mood); those it clashes with chafe (up to -4): the kind
+it. Colonists whose nature fits are proud of it (up to +4 mood, less for the spoiled); those it clashes with chafe
+(up to -4): the kind
 hate harshness, the greedy love thrift, the lazy love an easygoing colony, the old love tradition. Neighbors warm to
 a generous or open colony and cool towards a thrifty or guarded one, and some encounters and dilemmas only happen
 for a colony with a certain name. Old deeds fade (about half in a year), so a colony can change. The **Our ways**
@@ -319,7 +339,7 @@ why. Going with the room's favorite pleases its backers; overruling a clear majo
 
 35 ambitions, from *a full larder* and *hold the line* to *clean hands*, *law and order*, *the brewmasters*,
 *stone and mortar*, *a master healer*, *a seat of power* and *school days*. Achieving one lifts everyone's mood
-and trust.
+and trust; one that was already more than half done when the colony chose it counts for less (down to 60%).
 
 ### Build: room plans
 32 ready-made rooms, grouped by purpose: bedrooms of three sizes, barracks, dining room, rec room, kitchen,
@@ -793,6 +813,8 @@ journals, the Story tab and History) or **Important only**.
 - strength of downsides, jealousy and favoritism, wishes after events, reminders, self-help
 - wish frequency, how many can be open at once, how long they last, reward strength, and whether small joys add up
   slowly
+- **Life's ups and downs**: how hard the everyday pressures press, **gentle** (half strength, no half-built work, and
+  high standards don't make frictions sting more), **normal** (default) or **demanding** (half again as strong)
 - meeting interval, ambition deadlines, and whether meetings call people from their work
 - letters vs. messages, floating speech text, alerts
 - where the council button sits in the bottom bar

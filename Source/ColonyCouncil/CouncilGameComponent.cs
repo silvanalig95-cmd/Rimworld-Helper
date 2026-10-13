@@ -66,6 +66,8 @@ namespace ColonyCouncil
         public PetTracker pets = new PetTracker();
         public AutonomyTracker autonomy = new AutonomyTracker();
         public HappeningTracker happenings = new HappeningTracker();
+        /// <summary>Everyday pressures: the same meal, the same work, someone away, crowded rooms, half-built work.</summary>
+        public PressureTracker pressures = new PressureTracker();
         /// <summary>A Rimfolk scenario's stakes (its enemy, debt, families...) have been set up for this game.</summary>
         public bool scenarioSetUp;
         /// <summary>The colony's era, set by hand in the mod settings or detected (Auto). Saved with each colony.</summary>
@@ -149,6 +151,7 @@ namespace ColonyCouncil
             Scribe_Deep.Look(ref pets, "pets");
             Scribe_Deep.Look(ref autonomy, "autonomy");
             Scribe_Deep.Look(ref happenings, "happenings");
+            Scribe_Deep.Look(ref pressures, "pressures");
             Scribe_Values.Look(ref scenarioSetUp, "scenarioSetUp");
             Scribe_Collections.Look(ref history, "history", LookMode.Deep);
             Scribe_Values.Look(ref era, "era", EraMode.Auto);
@@ -192,6 +195,7 @@ namespace ColonyCouncil
                 if (pets == null) pets = new PetTracker();
                 if (autonomy == null) autonomy = new AutonomyTracker();
                 if (happenings == null) happenings = new HappeningTracker();
+                if (pressures == null) pressures = new PressureTracker();
                 if (history == null) history = new List<DaySample>();
                 history.RemoveAll(h => h == null);
                 if (lastAtHome == null) lastAtHome = new Dictionary<Pawn, int>();
@@ -283,6 +287,7 @@ namespace ColonyCouncil
             Safe("pets", () => pets.Hourly(this));
             Safe("autonomy", () => autonomy.Hourly(this));
             Safe("who is home", NoteWhoIsHome);
+            Safe("everyday pressures", () => pressures.Hourly(this));
             Safe("encounters", () => encounters.Hourly(this));
             Safe("world events", () => happenings.Hourly(this));
         }

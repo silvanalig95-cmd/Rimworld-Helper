@@ -1509,6 +1509,7 @@ Keys: the game's "slower" key ({0}) steps below normal speed, "faster" ({1}) ste
   <CC_Cause_Meeting>the council meeting.</CC_Cause_Meeting>
   <CC_Cause_AmbitionChosen>the council's new ambition: {0}.</CC_Cause_AmbitionChosen>
   <CC_Cause_AmbitionDone>the colony achieved its ambition: {0}.</CC_Cause_AmbitionDone>
+  <CC_Cause_AmbitionDoneEarly>the colony achieved its ambition: {0}. It was already {1} done when the colony chose it, so it counts for less.</CC_Cause_AmbitionDoneEarly>
   <CC_Cause_AmbitionFailed>the colony failed its ambition: {0}.</CC_Cause_AmbitionFailed>
   <CC_Cause_GoalReached>{0} reached a life goal: {1}.</CC_Cause_GoalReached>
   <CC_Cause_PersonalTouch>a personal touch for their room.</CC_Cause_PersonalTouch>
@@ -1663,6 +1664,28 @@ Those against it ({WHO}) will trust the council less and resent it more than usu
   <CC_Cause_Contest>{0} with {1}.</CC_Cause_Contest>
   <CC_Settings_Frictions>Everyday frictions</CC_Settings_Frictions>
   <CC_Settings_Frictions_Tip>The small irritations of living close together, like dishes left in the basin, a snoring bunkmate or advice nobody asked for. A messy or cramped home brings its own, like a leaking roof, a sticking door or a smoky room. Each costs a point or two of mood for half a day to a day and a half. A tidy, roomy colony has far fewer of them.</CC_Settings_Frictions_Tip>
+  <!-- Everyday pressures (Source/ColonyCouncil/Pressures/) -->
+  <CC_Settings_Life>Life's ups and downs</CC_Settings_Life>
+  <CC_Settings_Life_Tip>Everyday pressures a well-run colony has to keep up with, like the same meal again and again, the same work for days, someone dear away for long, a packed dining or rec room, or half-built work left standing. Each is small, says what causes it and what helps, and goes away once that's dealt with. A varied table gives a small lift.</CC_Settings_Life_Tip>
+  <CC_Life_Gentle>Gentle</CC_Life_Gentle>
+  <CC_Life_Gentle_Tip>Pressures at half strength, never less than 1. Half-built work isn't minded, and high standards don't make the colony's small frictions sting more.</CC_Life_Gentle_Tip>
+  <CC_Life_Normal>Normal</CC_Life_Normal>
+  <CC_Life_Normal_Tip>Pressures as designed, 1 to 3 mood each. Spoiled colonists feel them, and the colony's other small frictions, up to 40% more.</CC_Life_Normal_Tip>
+  <CC_Life_Demanding>Demanding</CC_Life_Demanding>
+  <CC_Life_Demanding_Tip>Pressures half again as strong, for colonies that stay content too easily.</CC_Life_Demanding_Tip>
+  <CC_Pressure_Why_SameMeal>{0} of their last {1} meals were {2}.</CC_Pressure_Why_SameMeal>
+  <CC_Pressure_Why_VariedTable>{0} different foods in the last two days.</CC_Pressure_Why_VariedTable>
+  <CC_Pressure_Why_SameWork>mostly {0}, {1} days running.</CC_Pressure_Why_SameWork>
+  <CC_Pressure_Why_MissingPartner>apart from {OTHER_nameDef}, their partner, for {TIME}.</CC_Pressure_Why_MissingPartner>
+  <CC_Pressure_Why_MissingFriend>apart from {OTHER_nameDef}, a close friend, for {TIME}.</CC_Pressure_Why_MissingFriend>
+  <CC_Pressure_Why_CrowdedSeats>{0} people in the {1}, with seats for {2}.</CC_Pressure_Why_CrowdedSeats>
+  <CC_Pressure_Why_Crowded>{0} people in a {1} of {2} cells.</CC_Pressure_Why_Crowded>
+  <CC_Pressure_Why_Unfinished>in the home area, {0} frames not worked on for 2 days or more, and {1} plans waiting 4 days or more.</CC_Pressure_Why_Unfinished>
+  <CC_Pressure_PlansLabel>plans gathering dust</CC_Pressure_PlansLabel>
+  <CC_Pressure_PlansDesc>Plans have been marked out for days, and not one of them started. I keep stepping around the lines.</CC_Pressure_PlansDesc>
+  <CC_Pressure_RoomFallback>room</CC_Pressure_RoomFallback>
+  <CC_Pressure_ThingFallback>building</CC_Pressure_ThingFallback>
+  <CC_Pressure_WorkFallback>the same work</CC_Pressure_WorkFallback>
   <!-- Colonists helping themselves -->
   <CC_Settings_Autonomy>Colonists fix what bothers them</CC_Settings_Autonomy>
   <CC_Settings_Autonomy_Tip>Now and then, a colonist fixes a small thing that hurts their mood, in their own time: cleans their room, visits a grave, takes a short break when they're starved of recreation. Never in danger, never anything that harms anyone. You get a message each time.</CC_Settings_Autonomy_Tip>

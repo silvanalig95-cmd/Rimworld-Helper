@@ -79,7 +79,7 @@ namespace ColonyCouncil
     {
         public string cause;
 
-        /// <summary>The council's scale was applied when it was given (else, a good one is scaled as it's felt).</summary>
+        /// <summary>The council's scale was applied when it was given (else it's scaled as it's felt, good or bad).</summary>
         public bool scaled;
 
         public string Cause
@@ -96,7 +96,10 @@ namespace ColonyCouncil
         public float OwnOffset()
         {
             float own = base.MoodOffset();
-            return own > 0f && !scaled ? own * SmallJoys.LiveScale(pawn) : own;
+            if (scaled) return own;
+            // Not given through the council (a moment, a friction): scaled as it's felt instead. Rewards follow the reward
+            // strength and standards; letdowns sting more for the comfortable (contrast, off on gentle life pressures).
+            return own > 0f ? own * SmallJoys.LiveScale(pawn) : own < 0f ? own * Pressures.Contrast(pawn) : own;
         }
 
         public override float MoodOffset()
@@ -129,7 +132,7 @@ namespace ColonyCouncil
     {
         public string cause;
 
-        /// <summary>The council's scale was applied when it was given (else, a good one is scaled as it's felt).</summary>
+        /// <summary>The council's scale was applied when it was given (else it's scaled as it's felt, good or bad).</summary>
         public bool scaled;
 
         public string Cause
@@ -146,7 +149,10 @@ namespace ColonyCouncil
         public float OwnOffset()
         {
             float own = base.MoodOffset();
-            return own > 0f && !scaled ? own * SmallJoys.LiveScale(pawn) : own;
+            if (scaled) return own;
+            // Not given through the council (a moment, a friction): scaled as it's felt instead. Rewards follow the reward
+            // strength and standards; letdowns sting more for the comfortable (contrast, off on gentle life pressures).
+            return own > 0f ? own * SmallJoys.LiveScale(pawn) : own < 0f ? own * Pressures.Contrast(pawn) : own;
         }
 
         public override float MoodOffset()

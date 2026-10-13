@@ -4,7 +4,7 @@
   <ThoughtDef>
     <defName>Council_Asp_Fulfilled</defName>
     <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
-    <durationDays>15</durationDays>
+    <durationDays>10</durationDays>
     <stackLimit>1</stackLimit>
     <showBubble>true</showBubble>
     <stages><li><label>lived my dream</label><description>I finally did what I always said I would. I'm proud of it.</description><baseMoodEffect>6</baseMoodEffect></li></stages>
