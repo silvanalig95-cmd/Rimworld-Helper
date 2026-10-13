@@ -204,19 +204,43 @@ namespace ColonyCouncil
         /// <summary>Bone is for furniture only: never walls, doors or floors.</summary>
         public static bool Allowed(ThingDef s, MaterialUse use) => !(IsBone(s) && use != MaterialUse.Furniture);
 
-        /// <summary>The best material for <paramref name="units"/> pieces of <paramref name="def"/> (or floor tiles), or the game's default.</summary>
-        public static ThingDef Pick(BuildableDef def, Map map, int units, MaterialUse use)
+        /// <summary>
+        /// The best material for <paramref name="units"/> pieces of <paramref name="def"/> (or floor tiles), or the game's
+        /// default. <paramref name="reserved"/> is what the rest of the same plan already uses of each material (walls,
+        /// floor, other furniture), so two parts of one room don't count on the same blocks.
+        /// </summary>
+        public static ThingDef Pick(BuildableDef def, Map map, int units, MaterialUse use, Dictionary<ThingDef, int> reserved = null)
         {
             if (def == null || !def.MadeFromStuff) return null;
             if (map == null) return GenStuff.DefaultStuffFor(def);
             units = Mathf.Max(1, units);
+            if (reserved != null && reserved.Count > 0) return Choose(def, map, units, use, reserved) ?? Choose(def, map, units, use, null) ?? GenStuff.DefaultStuffFor(def);
             float now = Time.realtimeSinceStartup;
             var key = (map, def, units, use);
             if (memo.TryGetValue(key, out var m) && now - m.time < 1.5f && now >= m.time) return m.pick;
             if (memo.Count > 400) memo.Clear();
-            var pick = Choose(def, map, units, use);
+            var pick = Choose(def, map, units, use, null) ?? GenStuff.DefaultStuffFor(def);
             memo[key] = (now, pick);
             return pick;
+        }
+
+        /// <summary>Adds what <paramref name="units"/> of <paramref name="def"/> in <paramref name="stuff"/> cost to <paramref name="reserved"/>.</summary>
+        public static void Reserve(Dictionary<ThingDef, int> reserved, BuildableDef def, ThingDef stuff, int units)
+        {
+            if (reserved == null || def == null || units <= 0 || (def.MadeFromStuff && stuff == null)) return;
+            try
+            {
+                foreach (var c in def.CostListAdjusted(stuff, false))
+                {
+                    if (c.thingDef == null) continue;
+                    reserved.TryGetValue(c.thingDef, out int n);
+                    reserved[c.thingDef] = n + c.count * units;
+                }
+            }
+            catch
+            {
+                // A modded cost list that can't be read: nothing reserved for it.
+            }
         }
 
         /// <summary>
@@ -224,7 +248,7 @@ namespace ColonyCouncil
         /// one that covers it, then (nothing covers it) the common one the colony has most of, then the precious one.
         /// Within a tier: stone blocks, wood, bone, steel and so on, then the cheaper, then the larger stock.
         /// </summary>
-        private static ThingDef Choose(BuildableDef def, Map map, int units, MaterialUse use)
+        private static ThingDef Choose(BuildableDef def, Map map, int units, MaterialUse use, Dictionary<ThingDef, int> reserved)
         {
             ThingDef best = null;
             (int tier, int rank, float cost, int have) bestScore = default;
@@ -232,6 +256,7 @@ namespace ColonyCouncil
             {
                 if (!Allowed(s, use)) continue;
                 int have = MaterialCounts.Have(map, s);
+                if (reserved != null && reserved.TryGetValue(s, out int used)) have -= used;
                 if (have <= 0) continue;
                 int per = Mathf.Max(1, MaterialCounts.PerUnit(def, s));
                 int need = units * per;
@@ -246,7 +271,7 @@ namespace ColonyCouncil
                     bestScore = score;
                 }
             }
-            return best ?? GenStuff.DefaultStuffFor(def);
+            return best;
         }
 
         private static bool Better((int tier, int rank, float cost, int have) a, (int tier, int rank, float cost, int have) b)

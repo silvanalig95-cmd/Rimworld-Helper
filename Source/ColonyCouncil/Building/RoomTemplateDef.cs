@@ -276,15 +276,43 @@ namespace ColonyCouncil
             int door = config != null ? config.DoorX(this) : DoorX;
             var pieces = picked.Select(p => PieceFor(p.t, p.def, p.slot)).ToList();
             layoutNotes = TemplateLayout.Arrange(size.x, size.z, door, pieces);
+
+            // What the walls, door and floor of this plan use comes off the stock first, and each group of furniture
+            // takes its share in turn, so no two parts of the room count on the same blocks.
+            var reserved = new Dictionary<ThingDef, int>();
+            if (config != null && map != null)
+            {
+                try
+                {
+                    var walls = config.WallStuff(this, map);
+                    MaterialPicker.Reserve(reserved, ThingDefOf.Wall, walls, RoomPlanConfig.WallCount(this));
+                    var doorDef = config.DoorDef(map);
+                    MaterialPicker.Reserve(reserved, doorDef, config.DoorStuff(doorDef, walls, map), 1);
+                    var floor = config.Floor(this, map);
+                    if (floor != null) MaterialPicker.Reserve(reserved, floor, config.FloorStuff(floor, map, size.x * size.z), size.x * size.z);
+                }
+                catch (Exception e)
+                {
+                    CouncilLog.ErrorOnce("room plan materials", e);
+                }
+            }
+            var groupStuff = new Dictionary<(string, ThingDef), ThingDef>();
             for (int i = 0; i < picked.Count; i++)
             {
                 var piece = pieces[i];
                 if (piece.dropped) continue;
                 var (t, def, slot) = picked[i];
+                int units = groupCounts.TryGetValue(t.GroupKey, out int n) ? n : 1;
+                if (!groupStuff.TryGetValue((t.GroupKey, def), out var stuff))
+                {
+                    stuff = StuffFor(t, def, map, config, units, reserved);
+                    groupStuff[(t.GroupKey, def)] = stuff;
+                    MaterialPicker.Reserve(reserved, def, stuff, units);
+                }
                 list.Add(new ResolvedThing
                 {
                     def = def,
-                    stuff = StuffFor(t, def, map, config, groupCounts.TryGetValue(t.GroupKey, out int units) ? units : 1),
+                    stuff = stuff,
                     rect = new CellRect(piece.minX, piece.minZ, piece.w, piece.h),
                     rot = new Rot4(piece.facing),
                     inWall = t.inWall,
@@ -292,7 +320,7 @@ namespace ColonyCouncil
                     slot = slot
                 });
             }
-            if (style == RoomStyle.Lavish && missing.Count == 0) AddDecor(list, pieces.Where(p => !p.dropped).ToList(), map, config, door);
+            if (style == RoomStyle.Lavish && missing.Count == 0) AddDecor(list, pieces.Where(p => !p.dropped).ToList(), map, config, door, reserved);
             return list;
         }
 
@@ -325,7 +353,7 @@ namespace ColonyCouncil
         /// The material for a piece: what the player picked (this time, or last time if there's still enough of it), what a
         /// saved room was built of, else whatever the colony has enough of and can spare most easily.
         /// </summary>
-        private ThingDef StuffFor(TemplateThing t, ThingDef pick, Map map, RoomPlanConfig config, int units)
+        private ThingDef StuffFor(TemplateThing t, ThingDef pick, Map map, RoomPlanConfig config, int units, Dictionary<ThingDef, int> reserved = null)
         {
             if (!pick.MadeFromStuff) return null;
             string key = t.GroupKey;
@@ -344,14 +372,14 @@ namespace ColonyCouncil
                 if (hint != null && Avail.StuffAllowed(pick, hint) && MaterialPicker.Affordable(pick, hint, units, map)) return hint;
             }
             var use = t.role == "wall" ? MaterialUse.Wall : t.role == "door" ? MaterialUse.Door : MaterialUse.Furniture;
-            return MaterialPicker.Pick(pick, map, units, use);
+            return MaterialPicker.Pick(pick, map, units, use, reserved);
         }
 
         /// <summary>
         /// The lavish style: a rug on open floor where a mod provides one, and plant pots in free corners and along walls,
         /// never in the way of the door, a work spot or a bed.
         /// </summary>
-        private void AddDecor(List<ResolvedThing> list, List<TemplateLayout.Piece> pieces, Map map, RoomPlanConfig config, int door)
+        private void AddDecor(List<ResolvedThing> list, List<TemplateLayout.Piece> pieces, Map map, RoomPlanConfig config, int door, Dictionary<ThingDef, int> reserved)
         {
             if (rug)
             {
@@ -370,7 +398,7 @@ namespace ColonyCouncil
                         list.Add(new ResolvedThing
                         {
                             def = rugDef,
-                            stuff = rugDef.MadeFromStuff ? StuffFor(TemplateThing.AutoRug, rugDef, map, config, 1) : null,
+                            stuff = rugDef.MadeFromStuff ? StuffFor(TemplateThing.AutoRug, rugDef, map, config, 1, reserved) : null,
                             rect = new CellRect(rx, rz, rugPiece.w, rugPiece.h),
                             rot = Rot4.North,
                             group = TemplateThing.AutoRug.GroupKey,
@@ -385,7 +413,7 @@ namespace ColonyCouncil
             int max = Mathf.Clamp(size.x * size.z / 12, 1, 4) - existing / 2;
             var spots = TemplateLayout.DecorSpots(size.x, size.z, door, pieces, max);
             string group = TemplateThing.AutoDecor.GroupKey;
-            ThingDef stuff = pot.MadeFromStuff ? StuffFor(TemplateThing.AutoDecor, pot, map, config, spots.Count) : null;
+            ThingDef stuff = pot.MadeFromStuff ? StuffFor(TemplateThing.AutoDecor, pot, map, config, spots.Count, reserved) : null;
             foreach (var (x, z) in spots)
             {
                 list.Add(new ResolvedThing
