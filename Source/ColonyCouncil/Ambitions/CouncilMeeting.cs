@@ -255,7 +255,8 @@ namespace ColonyCouncil
         public void Talk(Lord lord)
         {
             int now = Find.TickManager.TicksGame;
-            var here = lord.ownedPawns.Where(p => p.Spawned && !p.Downed && p.Map == map && MeetingAttendance.IsMember(p) && GatheringsUtility.InGatheringArea(p.Position, spot, map)).ToList();
+            var here = lord.ownedPawns.Where(p => p.Spawned && !p.Downed && !p.Drafted && !p.InMentalState && p.Map == map && MeetingAttendance.IsMember(p)
+                                                   && GatheringsUtility.InGatheringArea(p.Position, spot, map)).ToList();
             foreach (var p in here) Arrive(p, now);
             if (here.Count == 0) return;
             talkCount++;
@@ -342,7 +343,7 @@ namespace ColonyCouncil
         {
             var inv = InviteOf(p);
             if (inv == null) return invites.Count == 0;
-            if (inv.Arrived) return false;
+            if (inv.Arrived || inv.released) return false;
             if (!inv.Expected) return inv.status == MeetingStatus.Busy && inv.excused == false && p.Spawned && p.Map == map;
             return p.Spawned && p.Map == map && !p.Downed && !p.Drafted;
         }
@@ -485,7 +486,7 @@ namespace ColonyCouncil
 
         private bool ChairCanGoOn(Pawn p) =>
             p != null && !p.Dead && p.Spawned && p.Map == Map && lord != null && lord.ownedPawns.Contains(p) && !p.Drafted && !p.Downed
-            && GatheringsUtility.PawnCanStartOrContinueGathering(p);
+            && !p.InMentalState && GatheringsUtility.PawnCanStartOrContinueGathering(p);
 
         private bool HandOverChair()
         {
@@ -503,8 +504,9 @@ namespace ColonyCouncil
         }
 
         /// <summary>
-        /// Who drifts over on their own: not those who didn't bother or were too far off to be called, and not anyone
-        /// without a say. Everyone else may still come when they're free (late, but they come).
+        /// Who drifts over on their own: not those who didn't bother or were too far off to be called, not those the
+        /// player drafted or sent elsewhere during it, and not anyone without a say. Everyone else may still come when
+        /// they're free (late, but they come).
         /// </summary>
         public override float VoluntaryJoinPriorityFor(Pawn p)
         {
@@ -512,7 +514,8 @@ namespace ColonyCouncil
             if (m != null && m.invites.Count > 0)
             {
                 var inv = m.InviteOf(p);
-                if (inv == null ? !MeetingAttendance.IsMember(p) : inv.status == MeetingStatus.Skipped || inv.status == MeetingStatus.TooFar) return 0f;
+                if (inv == null ? !MeetingAttendance.IsMember(p) : inv.released || inv.status == MeetingStatus.Skipped || inv.status == MeetingStatus.TooFar)
+                    return 0f;
                 return base.VoluntaryJoinPriorityFor(p);
             }
             // A meeting begun before attendance was kept: bitter colonists mostly don't bother turning up.

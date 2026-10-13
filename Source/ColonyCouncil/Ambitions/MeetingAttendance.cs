@@ -45,6 +45,8 @@ namespace ColonyCouncil
         /// <summary>Who went to wake them (null: woken without anyone walking over).</summary>
         public Pawn waker;
         public bool wakeDone;
+        /// <summary>The player drafted them or gave them an order during the meeting: let go, and not called back.</summary>
+        public bool released;
 
         public bool Arrived => arrivedTick >= 0;
 
@@ -61,6 +63,7 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref arrivedTick, "arrivedTick", -1);
             Scribe_References.Look(ref waker, "waker");
             Scribe_Values.Look(ref wakeDone, "wakeDone");
+            Scribe_Values.Look(ref released, "released");
         }
     }
 
@@ -254,7 +257,8 @@ namespace ColonyCouncil
         {
             why = null;
             if (p.DevelopmentalStage.Juvenile() || p.InMentalState) return false;
-            if (p.CurJobDef != JobDefOf.LayDown) return false;
+            // Sent to bed by the player: they stay there.
+            if (p.CurJobDef != JobDefOf.LayDown || p.CurJob.playerForced) return false;
             var bed = RestUtility.CurrentBed(p);
             if ((bed != null && bed.Medical) || HealthAIUtility.ShouldSeekMedicalRest(p))
             {
@@ -554,19 +558,42 @@ namespace ColonyCouncil
         }
 
         /// <summary>
-        /// Drafted colonists and those given an order leave the meeting at once: the player always comes first. (The game
-        /// already lets drafted colonists go from gatherings; this makes sure of it.)
+        /// Drafted colonists and those given an order leave the meeting at once, and it doesn't call them back (they don't
+        /// drift over again once free, and nobody wakes them): the player always comes first. Anyone in a mental state
+        /// leaves the gathering too. (The game already lets drafted colonists go from gatherings; this makes sure of it.)
         /// </summary>
         public static void ReleaseCalledAway(CouncilMeeting m)
         {
-            var lord = m?.Lord;
-            if (lord == null) return;
-            foreach (var p in lord.ownedPawns.ToList())
+            if (m == null) return;
+            foreach (var inv in m.invites)
             {
+                var p = inv.pawn;
+                if (inv.released || p == null || !(inv.Expected || inv.Arrived)) continue;
+                if (p.Drafted) Release(inv, "CC_MeetWhy_Drafted".Translate());
+                else if (p.CurJob != null && p.CurJob.playerForced) Release(inv, "CC_MeetWhy_Ordered".Translate());
+            }
+            var lord = m.Lord;
+            if (lord == null) return;
+            // Backwards, since each one let go leaves the list (and the last one leaving ends the lord).
+            for (int i = lord.ownedPawns.Count - 1; i >= 0; i--)
+            {
+                if (i >= lord.ownedPawns.Count) continue;
+                var p = lord.ownedPawns[i];
                 if (p == null) continue;
                 if (p.Drafted) lord.Notify_PawnLost(p, PawnLostCondition.Drafted);
                 else if (p.CurJob != null && p.CurJob.playerForced) lord.Notify_PawnLost(p, PawnLostCondition.ForcedByPlayerAction);
+                else if (p.InMentalState) lord.Notify_PawnLost(p, PawnLostCondition.InMentalState);
             }
+        }
+
+        /// <summary>Let go by the player. Someone who hadn't got there yet misses it for that reason, as if drafted or busy when called.</summary>
+        private static void Release(MeetingInvite inv, string reason)
+        {
+            inv.released = true;
+            if (inv.Arrived) return;
+            inv.status = MeetingStatus.Busy;
+            inv.reason = reason;
+            inv.excused = false;
         }
 
         // ---------------- Afterwards ----------------

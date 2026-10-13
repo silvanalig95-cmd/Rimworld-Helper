@@ -299,9 +299,9 @@ now or put it off a day.
 At the set time the chair **calls everyone** with a say. Colonists put down ordinary work and walk over, like
 party guests, and sleepers are woken by someone on the way (they come late and grumble a little). No colonist is
 pulled from tending, rescues, surgery, firefighting or feeding someone, nobody is called while there's danger, and
-children, the sick and the worn out are left to sleep. Drafting someone takes them out of the meeting at once.
-Whoever is away (a caravan, an outpost, another map), drafted, laid up, too far off to arrive before most of it
-is over, or too bitter to bother, misses it.
+children, the sick and the worn out are left to sleep. Drafting someone or giving them an order takes them out of
+the meeting at once, and it doesn't call them back. Whoever is away (a caravan, an outpost, another map), drafted,
+laid up, too far off to arrive before most of it is over, or too bitter to bother, misses it.
 
 Three colonists pitch an ambition out loud; an idea whose proposer isn't there is read out for them and gets
 less support. Others back them, doubt them or wander off topic, and when the meeting ends everyone who came
