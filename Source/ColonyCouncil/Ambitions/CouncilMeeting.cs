@@ -470,6 +470,18 @@ namespace ColonyCouncil
 
         public override string GetReport(Pawn pawn) => "CC_Meeting_Report".Translate();
 
+        /// <summary>
+        /// When the meeting ends, only its own standing about is stopped. Someone called to it who is still finishing
+        /// something of their own (a load in their arms, ordinary work they weren't pulled from) carries on, rather than
+        /// dropping it where they stand.
+        /// </summary>
+        public override bool EndPawnJobOnCleanup(Pawn p)
+        {
+            var job = p?.CurJob;
+            if (job != null && (p.carryTracker?.CarriedThing != null || job.workGiverDef != null || job.playerForced)) return false;
+            return base.EndPawnJobOnCleanup(p);
+        }
+
         /// <summary>Sent to the lord to end the meeting from outside (it's then wrapped up like any meeting called off).</summary>
         public const string CallOffMemo = "CouncilMeetingCalledOff";
 
