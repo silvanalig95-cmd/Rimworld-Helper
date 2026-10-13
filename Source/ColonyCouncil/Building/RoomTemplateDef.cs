@@ -627,14 +627,19 @@ namespace ColonyCouncil
             return reason;
         }
 
-        /// <summary>"bedroom, roomy" for a variant of a room type, else the label.</summary>
+        /// <summary>
+        /// "dining room (for 8)" for a size of a room type, else the label. Left as it is when the label already says it
+        /// ("roomy bedroom") or the size is the standard one.
+        /// </summary>
         public string FullLabel
         {
             get
             {
                 var type = RoomTypeDef.Of(this);
                 string v = type?.VariantLabel(this);
-                return v.NullOrEmpty() || type.Variants.Count < 2 ? label : "CC_Rooms_VariantFull".Translate(label, v).Resolve();
+                if (v.NullOrEmpty() || type.Variants.Count < 2 || label.NullOrEmpty()) return label;
+                if (v == "CC_Rooms_Standard".Translate().ToString() || label.IndexOf(v, StringComparison.OrdinalIgnoreCase) >= 0) return label;
+                return "CC_Rooms_VariantFull".Translate(label, v).Resolve();
             }
         }
     }

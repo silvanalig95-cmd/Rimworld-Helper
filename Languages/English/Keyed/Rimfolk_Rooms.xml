@@ -6,7 +6,8 @@
 
   <!-- Sizes and styles -->
   <CC_Rooms_VariantFull>{0} ({1})</CC_Rooms_VariantFull>
-  <CC_Rooms_Sizes>{0} sizes</CC_Rooms_Sizes>
+  <!-- The size label the room types use for their usual size (Council_RoomTypes.xml); it isn't repeated after a name. -->
+  <CC_Rooms_Standard>standard</CC_Rooms_Standard>
   <CC_Rooms_SizesTip>Comes in these sizes and kinds: {0}. Pick one in the planner.</CC_Rooms_SizesTip>
   <CC_Style_Spartan>Spartan</CC_Style_Spartan>
   <CC_Style_Spartan_Tip>Only the essentials: the beds, benches and tables the room is for, and a light. No floor unless the room has to stay clean. Cheap and quick to build.</CC_Style_Spartan_Tip>
