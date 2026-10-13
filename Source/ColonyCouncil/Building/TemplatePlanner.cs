@@ -404,7 +404,8 @@ namespace ColonyCouncil
             TemplateMath.RotatedSize(w, h, rot, out int rw, out int rh);
             if (rw - 2 > rect.Width || rh - 2 > rect.Height)
             {
-                reason = "CC_Upgrade_TooSmall".Translate(rect.Width, rect.Height, t.size.x, t.size.z);
+                // Both sizes the way the room lies on the map, so they can be compared.
+                reason = "CC_Upgrade_TooSmall".Translate(rect.Width, rect.Height, rw - 2, rh - 2);
                 return false;
             }
             // Line the template's door up with the room's, then keep the template inside the room.
@@ -786,7 +787,7 @@ namespace ColonyCouncil
             }
 
             string s = plan.upgrade
-                ? "CC_Upgrade_Done".Translate(plan.template.LabelCap.ToString(), furniture, present).Resolve()
+                ? "CC_Upgrade_Done".Translate(plan.template.label ?? "", furniture, present).Resolve()
                 : "CC_Plan_Done".Translate(plan.template.LabelCap.ToString(), walls, furniture, plan.wallStuff?.label ?? "-").Resolve();
             if (mined > 0) s += " " + "CC_Plan_Mined".Translate(mined);
             if (cut > 0) s += " " + "CC_Plan_Cut".Translate(cut);

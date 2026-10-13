@@ -57,7 +57,7 @@ Green: enough with some to spare. Amber: only just enough. Red: not enough.</CC_
   <CC_Upgrade_Button>Upgrade a built room</CC_Upgrade_Button>
   <CC_Upgrade_Back>Plan a new room instead</CC_Upgrade_Back>
   <CC_Upgrade_Tip>Furnish a room you've already built with this plan: hover the room and click it. Only the furniture it doesn't have yet is planned, and the floor goes only on bare ground. The plan turns to the wall with the room's door.</CC_Upgrade_Tip>
-  <CC_Upgrade_Pick>Click a built room to furnish it as a {0}. Only what's missing is planned.</CC_Upgrade_Pick>
+  <CC_Upgrade_Pick>Click a built room to furnish it from the {0} plan. Only what's missing is planned.</CC_Upgrade_Pick>
   <CC_Upgrade_Room>THE ROOM UNDER THE MOUSE</CC_Upgrade_Room>
   <CC_Upgrade_HoverRoom>Hover a built room.</CC_Upgrade_HoverRoom>
   <CC_Upgrade_Impressiveness>{0}: impressiveness {1} ({2}) now.</CC_Upgrade_Impressiveness>
@@ -66,9 +66,9 @@ Green: enough with some to spare. Amber: only just enough. Red: not enough.</CC_
   <CC_Upgrade_InWall>{0} goes into the wall. Build it by hand.</CC_Upgrade_InWall>
   <CC_Upgrade_Outside>{0} doesn't fit inside this room.</CC_Upgrade_Outside>
   <CC_Upgrade_Nothing>This room already has everything the plan would add.</CC_Upgrade_Nothing>
-  <CC_Upgrade_Mouse>furnish as a {0}</CC_Upgrade_Mouse>
+  <CC_Upgrade_Mouse>furnish from the {0} plan</CC_Upgrade_Mouse>
   <CC_Upgrade_Counts>{0} piece(s) to add, {1} already there</CC_Upgrade_Counts>
-  <CC_Upgrade_Done>Upgraded the room as a {0}: {1} piece(s) of furniture planned, {2} already there.</CC_Upgrade_Done>
+  <CC_Upgrade_Done>Furnished the room from the {0} plan: {1} piece(s) of furniture planned, {2} already there.</CC_Upgrade_Done>
 
   <!-- Your rooms -->
   <CC_BuildGroup_Yours>Your rooms</CC_BuildGroup_Yours>
