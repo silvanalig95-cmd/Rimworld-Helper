@@ -185,7 +185,6 @@ namespace ColonyCouncil
                 if (cameOfAge == null) cameOfAge = new List<Pawn>();
                 cameOfAge.RemoveAll(p => p == null);
                 if (cameOfAgeTick == null) cameOfAgeTick = new Dictionary<Pawn, int>();
-                cameOfAgeTick.Remove(null);
             }
         }
     }

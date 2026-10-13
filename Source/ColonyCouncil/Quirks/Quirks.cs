@@ -208,8 +208,7 @@ namespace ColonyCouncil
                 quirks.RemoveAll(q => q == null || q.Broken);
                 if (downedTick == null) downedTick = new Dictionary<Pawn, int>();
                 if (battleTick == null) battleTick = new Dictionary<Pawn, int>();
-                downedTick.Remove(null);
-                battleTick.Remove(null);
+                // (A pawn that couldn't be found again is simply left out by the loader: a dictionary has no null keys.)
             }
         }
     }
