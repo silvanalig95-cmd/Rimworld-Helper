@@ -300,10 +300,26 @@ namespace ColonyCouncil
             var room = c.GetRoom(Map);
             if (!CustomRooms.CanSave(room).Accepted) return;
             string suggested = room.Role != null && room.Role != RoomRoleDefOf.None ? room.Role.label : "CC_Yours_Unnamed".Translate().ToString();
+            // Read the room now: by the time the name is typed, the map may have changed under it.
+            CustomRoomData data;
+            try
+            {
+                data = CustomRooms.Capture(room, suggested);
+            }
+            catch (System.Exception e)
+            {
+                CouncilLog.ErrorOnce("saving a room", e);
+                data = null;
+            }
+            if (data == null)
+            {
+                Messages.Message("CC_Yours_NotARoom".Translate(), MessageTypeDefOf.RejectInput, false);
+                return;
+            }
             Find.WindowStack.Add(new Dialog_NameRoom(suggested, name =>
             {
-                var data = CustomRooms.Capture(room, name);
-                if (data == null) return;
+                data.name = name;
+                data.Forget();
                 CustomRooms.Add(data);
                 Messages.Message("CC_Yours_Saved".Translate(name, data.width, data.height, data.pieces.Count), MessageTypeDefOf.TaskCompletion, false);
             }));
