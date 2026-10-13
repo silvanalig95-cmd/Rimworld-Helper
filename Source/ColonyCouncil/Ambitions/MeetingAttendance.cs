@@ -622,15 +622,17 @@ namespace ColonyCouncil
         // ---------------- Afterwards ----------------
 
         /// <summary>
-        /// Those who missed it through work or travel feel left out (the sick, the sleeping and those who didn't bother
-        /// don't). Their own turned-down ideas are dealt with when the letter is answered.
+        /// Those who missed it through work or travel feel left out (the sick, the sleeping, those woken for it who still
+        /// didn't make it, and those who didn't bother don't). Their own turned-down ideas are dealt with when the letter
+        /// is answered.
         /// </summary>
         public static void AbsenteeEffects(CouncilMeeting m)
         {
             foreach (var inv in m.invites)
             {
                 var p = inv.pawn;
-                if (inv.Arrived || p == null || p.Dead || inv.status == MeetingStatus.Skipped || inv.excused) continue;
+                if (inv.Arrived || m.Present(p) || p == null || p.Dead || inv.status == MeetingStatus.Skipped || inv.status == MeetingStatus.Woken
+                    || inv.excused) continue;
                 if (p.needs?.mood != null) CouncilGameComponent.GiveThought(p, CouncilDefOf.Council_MissedMeeting);
             }
         }
@@ -656,7 +658,8 @@ namespace ColonyCouncil
                 var p = inv.pawn;
                 if (p == null) continue;
                 string name = p.LabelShort;
-                if (inv.Arrived)
+                // Counted as there: arrived, or the one the meeting fell back on when nobody was noted arriving.
+                if (inv.Arrived || m.Present(p))
                 {
                     if (inv.status == MeetingStatus.Woken) drowsy.Add(name);
                     else if (m.IsLate(inv)) late.Add(name);
