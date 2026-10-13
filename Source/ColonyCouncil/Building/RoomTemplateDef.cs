@@ -357,23 +357,27 @@ namespace ColonyCouncil
         {
             if (!pick.MadeFromStuff) return null;
             string key = t.GroupKey;
-            if (config != null && config.stuff.TryGetValue(key, out var s) && s != null && Avail.StuffAllowed(pick, s)
+            var use = UseOf(t);
+            if (config != null && config.stuff.TryGetValue(key, out var s) && s != null && Avail.StuffAllowed(pick, s) && MaterialPicker.Allowed(s, use)
                 && (config.pickedNow.Contains(key) || MaterialPicker.Affordable(pick, s, units, map)))
                 return s;
             // Partition walls and inner doors match the room's own.
-            if (config != null && (t.role == "wall" || t.role == "door"))
+            if (config != null && use != MaterialUse.Furniture)
             {
                 var w = config.WallStuff(this, map);
-                if (w != null && Avail.StuffAllowed(pick, w) && MaterialPicker.Allowed(w, t.role == "wall" ? MaterialUse.Wall : MaterialUse.Door)) return w;
+                if (w != null && Avail.StuffAllowed(pick, w) && MaterialPicker.Allowed(w, use)) return w;
             }
             if (!t.stuff.NullOrEmpty())
             {
                 var hint = DefDatabase<ThingDef>.GetNamedSilentFail(t.stuff);
-                if (hint != null && Avail.StuffAllowed(pick, hint) && MaterialPicker.Affordable(pick, hint, units, map)) return hint;
+                if (hint != null && Avail.StuffAllowed(pick, hint) && MaterialPicker.Allowed(hint, use) && MaterialPicker.Affordable(pick, hint, units, map)) return hint;
             }
-            var use = t.role == "wall" ? MaterialUse.Wall : t.role == "door" ? MaterialUse.Door : MaterialUse.Furniture;
             return MaterialPicker.Pick(pick, map, units, use, reserved);
         }
+
+        /// <summary>Walls and doors inside a room (a partition, a second door) are built like the room's own: never of bone.</summary>
+        public static MaterialUse UseOf(TemplateThing t) =>
+            t == null ? MaterialUse.Furniture : t.role == "wall" ? MaterialUse.Wall : t.role == "door" ? MaterialUse.Door : MaterialUse.Furniture;
 
         /// <summary>
         /// The lavish style: a rug on open floor where a mod provides one, and plant pots in free corners and along walls,
