@@ -22,7 +22,7 @@ namespace ColonyCouncil
         private const float RowH = 28f;
         private const float HeaderH = 26f;
         private const float TopH = 34f;
-        private const float BottomH = 22f;
+        private const float BottomH = 34f;
 
         private static readonly Color Faint = new Color(0.65f, 0.65f, 0.65f);
         private static readonly Color Suggested = new Color(1f, 0.85f, 0.4f);
@@ -61,8 +61,11 @@ namespace ColonyCouncil
             var map = Find.CurrentMap;
             if (map == null) return;
             UiKit.Icon(new Rect(inRect.x, inRect.y + 4f, 24f, 24f), Icons.Rooms, UiKit.Gold);
-            UiKit.LabelFit(new Rect(inRect.x + 32f, inRect.y, Mathf.Max(0f, inRect.width - 32f - 256f), 32f), "CC_Rooms_Title".Translate(), Color.white, GameFont.Medium);
+            UiKit.LabelFit(new Rect(inRect.x + 32f, inRect.y, Mathf.Max(0f, inRect.width - 32f - 256f - 196f), 32f), "CC_Rooms_Title".Translate(), Color.white, GameFont.Medium);
             Text.Font = GameFont.Small;
+            var saveRect = new Rect(inRect.xMax - 250f - 196f, inRect.y + 2f, 186f, 26f);
+            if (Widgets.ButtonText(saveRect, "CC_Yours_SaveButton".Translate())) Designator_SaveRoom.Begin();
+            TooltipHandler.TipRegion(saveRect, "CC_Yours_SaveDesc".Translate());
             bool before = onlyAvailable;
             Widgets.CheckboxLabeled(new Rect(inRect.xMax - 250f, inRect.y + 4f, 250f, 24f), "CC_Build_OnlyAvailable".Translate(), ref onlyAvailable);
             if (before != onlyAvailable) SetInitialSizeAndPosition();
@@ -111,23 +114,35 @@ namespace ColonyCouncil
             GUI.DrawTexture(new Rect(r.x + 2f, r.y + 2f, r.height - 4f, r.height - 4f), t.Icon);
             GUI.color = !ok ? Faint : suggestedBecause != null ? Suggested : Color.white;
             Text.Anchor = TextAnchor.MiddleLeft;
-            Widgets.Label(new Rect(r.x + r.height + 4f, r.y, r.width - r.height - 4f, r.height), t.LabelCap.ToString().Truncate(r.width - r.height - 8f));
+            var type = RoomTypeDef.Of(t);
+            int sizes = type?.Variants.Count ?? 1;
+            float labelW = r.width - r.height - 4f - (sizes > 1 ? 18f : 0f);
+            Widgets.Label(new Rect(r.x + r.height + 4f, r.y, labelW, r.height), RoomMenu.Label(t).Truncate(labelW - 4f));
+            if (sizes > 1)
+            {
+                // How many sizes it comes in, small and faint at the right.
+                Text.Font = GameFont.Tiny;
+                GUI.color = Faint;
+                Widgets.Label(new Rect(r.xMax - 18f, r.y, 18f, r.height), sizes.ToString());
+                Text.Font = GameFont.Small;
+            }
             Text.Anchor = TextAnchor.UpperLeft;
             GUI.color = Color.white;
             TooltipHandler.TipRegion(r, () => Tip(t, map, reason, suggestedBecause), t.GetHashCode());
             if (!Widgets.ButtonInvisible(r)) return;
-            if (!ok)
+            if (!ok && t.custom == null)
             {
                 Messages.Message(reason, MessageTypeDefOf.RejectInput, false);
                 return;
             }
             if (Event.current.button == 1)
             {
-                Find.WindowStack.Add(new FloatMenu(new List<FloatMenuOption>
-                {
-                    new FloatMenuOption("CC_Build_Plan".Translate(), () => Designator_PlanRoom.Begin(t, false)),
-                    new FloatMenuOption("CC_Plan_FindSpot".Translate(), () => Designator_PlanRoom.Begin(t, true))
-                }));
+                Find.WindowStack.Add(new FloatMenu(RoomMenu.Options(t)));
+                return;
+            }
+            if (!ok)
+            {
+                Messages.Message(reason, MessageTypeDefOf.RejectInput, false);
                 return;
             }
             Designator_PlanRoom.Begin(t, false);
@@ -135,9 +150,11 @@ namespace ColonyCouncil
 
         private static string Tip(RoomTemplateDef t, Map map, string reason, string suggestedBecause)
         {
-            var lines = new List<string> { t.LabelCap + "  (" + t.size.x + "×" + t.size.z + ")" };
+            var lines = new List<string> { t.FullLabel.CapitalizeFirst() + "  (" + t.size.x + "×" + t.size.z + ")" };
             string desc = t.purpose ?? t.description;
             if (!desc.NullOrEmpty()) lines.Add(desc);
+            string sizesLine = RoomMenu.SizesLine(t);
+            if (sizesLine != null) lines.Add(sizesLine);
             var furniture = t.ResolveCached(map, out _);
             if (furniture.Count > 0)
                 lines.Add("CC_Build_Contains".Translate(string.Join(", ", furniture.GroupBy(f => f.def).Select(g => g.Count() > 1 ? g.Count() + "× " + g.Key.label : g.Key.label))));
@@ -157,7 +174,10 @@ namespace ColonyCouncil
             foreach (var s in signals.OrderByDescending(s => s.Score))
             {
                 var t = s.template ?? s.def?.template;
-                if (t != null && s.Level != AdviceLevel.Idea && !result.ContainsKey(t)) result[t] = s.title ?? s.def.label;
+                if (t == null || s.Level == AdviceLevel.Idea) continue;
+                // Whichever size of the room the menu shows, it's the one the council means.
+                foreach (var sibling in RoomTypeDef.SiblingsOf(t))
+                    if (!result.ContainsKey(sibling)) result[sibling] = s.title ?? s.def.label;
             }
             return result;
         }
@@ -169,8 +189,7 @@ namespace ColonyCouncil
             for (int i = 0; i < Columns; i++) columns[i] = new List<Block>();
             var heights = new float[Columns];
             if (map == null) return heights;
-            var blocks = DefDatabase<RoomTemplateDef>.AllDefsListForReading
-                .Where(t => t.architect && (!onlyAvailable || t.UnavailableReason(map) == null))
+            var blocks = RoomMenu.Entries(map, onlyAvailable)
                 .GroupBy(t => t.group)
                 .OrderBy(g => GroupOrder(g.Key))
                 .Select(g => new Block { group = g.Key, rooms = g.OrderBy(t => t.order).ThenBy(t => t.label).ToList() })
@@ -196,6 +215,7 @@ namespace ColonyCouncil
                 case "Care": return 3;
                 case "Leisure": return 4;
                 case "Security": return 5;
+                case CustomRooms.Group: return 7;
                 default: return 6;
             }
         }

@@ -607,7 +607,7 @@
   <CC_Planner_ReplaceOwn_Tip>Your own buildings inside the room or in its walls are marked for deconstruction, and the plan follows once they're gone. Off by default, so nothing gets torn down by accident.</CC_Planner_ReplaceOwn_Tip>
   <CC_Planner_Smooth>Smooth the stone</CC_Planner_Smooth>
   <CC_Planner_Smooth_Tip>Natural rock walls and rough stone floors are marked for smoothing. Smooth stone is pretty and costs nothing but time.</CC_Planner_Smooth_Tip>
-  <CC_Planner_Cost>COST HERE (NEEDED / IN STOCK)</CC_Planner_Cost>
+  <CC_Planner_Cost>COST HERE (NEEDED / STORED)</CC_Planner_Cost>
   <CC_Planner_Free>Costs nothing. Everything needed is already there.</CC_Planner_Free>
   <CC_Planner_CostLine>{0}: {1} / {2}</CC_Planner_CostLine>
   <CC_Settings_Interface>Interface</CC_Settings_Interface>
@@ -892,7 +892,7 @@
 
   <!-- Rooms button and floor picker -->
   <CC_Rooms_Title>Room plans</CC_Rooms_Title>
-  <CC_Rooms_Hint>Click a room to plan it. Right-click to plan it at a good spot. Highlighted rooms are what the council is asking for.</CC_Rooms_Hint>
+  <CC_Rooms_Hint>Click a room to plan it. Right-click to find it a spot, furnish a room you have built, or delete a room of your own. The number is how many sizes it comes in; highlighted rooms are what the council is asking for.</CC_Rooms_Hint>
   <CC_Rooms_Suggested>The council suggests this: {0}</CC_Rooms_Suggested>
   <CC_Settings_RoomsButton>Show the "rooms" button in the bottom bar</CC_Settings_RoomsButton>
   <CC_Settings_RoomsButton_Tip>A shortcut to all room plans. The same plans are always on the council window's Room plans page.</CC_Settings_RoomsButton_Tip>
