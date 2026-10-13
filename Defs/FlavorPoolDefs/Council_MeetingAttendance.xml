@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Who's there at a council meeting (Source/ColonyCouncil/Ambitions/MeetingAttendance.cs), shown above heads.
+    Tags as in Council_Scenes.xml.
+  -->
+
+  <!--
+    An idea whose proposer isn't at the meeting, read out by the chair (or whoever is there). {PAWN} reads it out,
+    {OTHER} proposed it, {AMBITION} is its label (used as a slogan in quotes).
+  -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Pool_MeetingOnBehalf</defName>
+    <lines>
+      <plain>
+        <li>{OTHER_nameDef} couldn't be here, so I'll read out the idea: "{AMBITION}".</li>
+        <li>This one's from {OTHER_nameDef}, who isn't with us. "{AMBITION}".</li>
+        <li>{OTHER_nameDef} asked me to put this forward. "{AMBITION}".</li>
+        <li>One more idea, and the one who had it isn't here to defend it. "{AMBITION}", from {OTHER_nameDef}.</li>
+      </plain>
+      <warm>
+        <li>{OTHER_nameDef} would want this heard, so here it is. "{AMBITION}".</li>
+        <li>Let's give {OTHER_nameDef}'s idea a fair hearing, even without {OTHER_objective} here. "{AMBITION}".</li>
+      </warm>
+      <blunt>
+        <li>{OTHER_nameDef} isn't here. The idea is "{AMBITION}". Talk.</li>
+      </blunt>
+      <cheerful>
+        <li>And from {OTHER_nameDef}, who is missing all the fun: "{AMBITION}"!</li>
+      </cheerful>
+      <gloomy>
+        <li>{OTHER_nameDef} isn't here to argue for it, which won't help. "{AMBITION}".</li>
+      </gloomy>
+      <cold>
+        <li>{OTHER_nameDef} is absent. The proposal stands regardless. "{AMBITION}".</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- Waking someone for the meeting. {PAWN} wakes {OTHER}. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Pool_MeetingWake</defName>
+    <lines>
+      <plain>
+        <li>Up you get, {OTHER_nameDef}. The council's meeting.</li>
+        <li>{OTHER_nameDef}. Wake up, we're meeting.</li>
+        <li>Boots on, {OTHER_nameDef}. They want everyone at the council.</li>
+        <li>[night] Sorry, {OTHER_nameDef}. It's the council.</li>
+        <li>[cold] I know it's warm under there. The council's starting.</li>
+      </plain>
+      <warm>
+        <li>Sorry to wake you, {OTHER_nameDef}. The meeting's starting, and your voice counts.</li>
+      </warm>
+      <blunt>
+        <li>Get up. Meeting.</li>
+      </blunt>
+      <cheerful>
+        <li>Rise and shine, {OTHER_nameDef}! Council time.</li>
+      </cheerful>
+      <gloomy>
+        <li>I'd let you sleep if I could, {OTHER_nameDef}. Council's meeting.</li>
+      </gloomy>
+      <cold>
+        <li>{OTHER_nameDef}. You're expected at the council.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+</Defs>

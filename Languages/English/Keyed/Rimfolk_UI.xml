@@ -7,6 +7,7 @@
   <CC_UI_OpenPage>Click to open their page.</CC_UI_OpenPage>
   <CC_UI_TimeLeft>Time left</CC_UI_TimeLeft>
   <CC_UI_Arrives>Arrives in</CC_UI_Arrives>
+  <CC_UI_StartsIn>Starts in</CC_UI_StartsIn>
   <CC_UI_Entries>Entries: {0}</CC_UI_Entries>
 
   <!-- Page subtitles (one line under each page's title) -->

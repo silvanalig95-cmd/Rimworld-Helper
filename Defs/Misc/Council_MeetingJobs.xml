@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    On the way to a council meeting, a colonist stops to wake someone who's asleep (MeetingAttendance.ArrangeWaking).
+    Walk to the bed, a moment at the bedside, then up they get. Ends on its own if the meeting is off or the sleeper is up.
+  -->
+  <JobDef>
+    <defName>Council_WakeForMeeting</defName>
+    <driverClass>ColonyCouncil.JobDriver_WakeForMeeting</driverClass>
+    <reportString>waking TargetA for the council meeting.</reportString>
+    <casualInterruptible>false</casualInterruptible>
+  </JobDef>
+
+</Defs>

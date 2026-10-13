@@ -14,7 +14,11 @@ namespace ColonyCouncil
         public AmbitionDef def;
         public Pawn proposer;
         public string line;
+        /// <summary>The proposer made the case in person.</summary>
         public bool spoken;
+        /// <summary>The proposer wasn't there, so someone (usually the chair) read the idea out for them.</summary>
+        public bool readOut;
+        public Pawn reader;
         public List<Pawn> voters = new List<Pawn>();
 
         public void ExposeData()
@@ -23,6 +27,8 @@ namespace ColonyCouncil
             Scribe_References.Look(ref proposer, "proposer");
             Scribe_Values.Look(ref line, "line");
             Scribe_Values.Look(ref spoken, "spoken");
+            Scribe_Values.Look(ref readOut, "readOut");
+            Scribe_References.Look(ref reader, "reader");
             Scribe_Collections.Look(ref voters, "voters", LookMode.Reference);
             if (Scribe.mode == LoadSaveMode.PostLoadInit)
             {
@@ -33,9 +39,10 @@ namespace ColonyCouncil
     }
 
     /// <summary>
-    /// A council meeting from the moment it's called until the decision letter: the pitches, the venue, who
-    /// turned up and what was said. The colonists actually gather (a vanilla gathering with its own lord job),
-    /// talk it over, and only when the meeting ends does the letter arrive.
+    /// A council meeting from the moment it's called until the decision letter: the pitches, the venue, the time it's
+    /// set for, who was called and who came, and what was said. It's announced in advance; at the set time the chair
+    /// calls everyone together (a vanilla gathering with its own lord job), they talk it over, and only when the
+    /// meeting ends does the letter arrive.
     /// </summary>
     public class CouncilMeeting : IExposable
     {
@@ -44,14 +51,88 @@ namespace ColonyCouncil
         public string venue;
         public Pawn chair;
         public List<MeetingPitch> pitches = new List<MeetingPitch>();
+        /// <summary>Everyone who got there, in the order they arrived.</summary>
         public List<Pawn> attendees = new List<Pawn>();
         public List<string> remarks = new List<string>();
         public int calledTick;
+        /// <summary>When the chair will call everyone together.</summary>
+        public int scheduledTick = -1;
         public int startedTick = -1;
         public bool calledByPlayer;
         public int talkCount;
+        /// <summary>The chair (or whoever stood in) has opened the meeting.</summary>
+        public bool opened;
+        /// <summary>The "in about an hour" reminder has gone out.</summary>
+        public bool reminded;
+        /// <summary>Put off once already because too few could come; next time it's decided anyway.</summary>
+        public bool thinPostponed;
+        /// <summary>Evenings in a row the council couldn't sit down (danger, nowhere to meet).</summary>
+        public int failedEvenings;
+        /// <summary>Who was called and how it went for each, from the moment the chair called everyone.</summary>
+        public List<MeetingInvite> invites = new List<MeetingInvite>();
+
+        /// <summary>Why it hasn't started although it's time (for the council window). Not saved.</summary>
+        public string waitReason;
+        /// <summary>Decided by fewer than half (set when it ends).</summary>
+        public bool thin;
+
+        private Lord lordCache;
 
         public bool Started => startedTick >= 0;
+
+        public float Elapsed => Started ? (Find.TickManager.TicksGame - startedTick) / (float)LordJob_CouncilMeeting.MeetingTicks : 0f;
+
+        /// <summary>The gathering's lord, while the meeting runs.</summary>
+        public Lord Lord
+        {
+            get
+            {
+                if (map == null || !Started) return null;
+                var lords = map.lordManager.lords;
+                if (lordCache != null && lords.Contains(lordCache) && lordCache.LordJob is LordJob_CouncilMeeting) return lordCache;
+                lordCache = lords.FirstOrDefault(l => l.LordJob is LordJob_CouncilMeeting);
+                return lordCache;
+            }
+            set => lordCache = value;
+        }
+
+        public MeetingInvite InviteOf(Pawn p)
+        {
+            if (p == null) return null;
+            for (int i = 0; i < invites.Count; i++)
+                if (invites[i].pawn == p) return invites[i];
+            return null;
+        }
+
+        public bool Present(Pawn p) => p != null && attendees.Contains(p);
+
+        /// <summary>Came after the first third of the meeting, or had to be woken for it.</summary>
+        public bool IsLate(MeetingInvite inv) =>
+            inv != null && inv.Arrived && Started
+            && (inv.status == MeetingStatus.Woken || inv.arrivedTick - startedTick > LordJob_CouncilMeeting.MeetingTicks * MeetingAttendance.LateShare);
+
+        public bool IsLate(Pawn p) => IsLate(InviteOf(p));
+
+        /// <summary>Clears what happened, so the meeting can be held again another evening.</summary>
+        public void ResetForAnotherTry()
+        {
+            startedTick = -1;
+            talkCount = 0;
+            opened = false;
+            reminded = false;
+            invites.Clear();
+            attendees.Clear();
+            remarks.Clear();
+            waitReason = null;
+            lordCache = null;
+            foreach (var p in pitches)
+            {
+                p.spoken = false;
+                p.readOut = false;
+                p.reader = null;
+                p.voters.Clear();
+            }
+        }
 
         public void ExposeData()
         {
@@ -63,16 +144,28 @@ namespace ColonyCouncil
             Scribe_Collections.Look(ref attendees, "attendees", LookMode.Reference);
             Scribe_Collections.Look(ref remarks, "remarks", LookMode.Value);
             Scribe_Values.Look(ref calledTick, "calledTick");
+            Scribe_Values.Look(ref scheduledTick, "scheduledTick", -1);
             Scribe_Values.Look(ref startedTick, "startedTick", -1);
             Scribe_Values.Look(ref calledByPlayer, "calledByPlayer");
             Scribe_Values.Look(ref talkCount, "talkCount");
+            Scribe_Values.Look(ref opened, "opened");
+            Scribe_Values.Look(ref reminded, "reminded");
+            Scribe_Values.Look(ref thinPostponed, "thinPostponed");
+            Scribe_Values.Look(ref failedEvenings, "failedEvenings");
+            Scribe_Collections.Look(ref invites, "invites", LookMode.Deep);
             if (Scribe.mode == LoadSaveMode.PostLoadInit)
             {
                 if (pitches == null) pitches = new List<MeetingPitch>();
                 if (attendees == null) attendees = new List<Pawn>();
                 if (remarks == null) remarks = new List<string>();
+                if (invites == null) invites = new List<MeetingInvite>();
                 pitches.RemoveAll(p => p == null || p.def == null || p.proposer == null);
                 attendees.RemoveAll(p => p == null);
+                invites.RemoveAll(i => i == null || i.pawn == null);
+                foreach (var p in pitches)
+                    if (p.reader != null && p.reader.Dead) p.reader = null;
+                // A meeting begun before meetings were announced has already been opened.
+                if (Started && talkCount > 0) opened = true;
             }
         }
 
@@ -154,20 +247,27 @@ namespace ColonyCouncil
 
         // ---------------- Talking ----------------
 
-        /// <summary>Called every few seconds while the meeting runs: a pitch, an argument, a joke.</summary>
+        /// <summary>
+        /// Called every few seconds while the meeting runs: who has arrived, then a pitch, an argument, a joke. The chair
+        /// opens; proposers make their case when they get there (late ones too); the chair reads out the ideas of those
+        /// who aren't coming, or haven't come by a third of the way in.
+        /// </summary>
         public void Talk(Lord lord)
         {
+            int now = Find.TickManager.TicksGame;
             var here = lord.ownedPawns.Where(p => p.Spawned && !p.Downed && p.IsColonist && !p.IsQuestLodger() && p.Map == map && GatheringsUtility.InGatheringArea(p.Position, spot, map)).ToList();
-            foreach (var p in here)
-                if (!attendees.Contains(p)) attendees.Add(p);
+            foreach (var p in here) Arrive(p, now);
             if (here.Count == 0) return;
             talkCount++;
 
-            // The chair opens.
-            if (talkCount == 1 && chair != null && here.Contains(chair))
+            // The chair opens, once there; if the chair is held up, whoever is there gets things going.
+            if (!opened)
             {
-                string open = Line("Council_Pool_MeetingOpen", chair, null, null);
-                if (open != null) CouncilGameComponent.Speak(chair, open, SpeechColor);
+                var opener = chair != null && here.Contains(chair) ? chair : Elapsed >= MeetingAttendance.LateShare / 2f ? here.RandomElement() : null;
+                if (opener == null) return;
+                opened = true;
+                string open = Line("Council_Pool_MeetingOpen", opener, null, null);
+                if (open != null) CouncilGameComponent.Speak(opener, open, SpeechColor);
                 return;
             }
 
@@ -178,6 +278,21 @@ namespace ColonyCouncil
                 next.spoken = true;
                 CouncilGameComponent.Speak(next.proposer, next.line, SpeechColor);
                 return;
+            }
+
+            // An idea whose proposer isn't coming (or is very late) is read out for them.
+            var absent = pitches.FirstOrDefault(p => !p.spoken && !p.readOut && !here.Contains(p.proposer) && (Elapsed >= MeetingAttendance.LateShare || !MayStillCome(p.proposer)));
+            if (absent != null)
+            {
+                var reader = chair != null && here.Contains(chair) && chair != absent.proposer ? chair : here.Where(p => p != absent.proposer).RandomElementWithFallback();
+                if (reader != null)
+                {
+                    absent.readOut = true;
+                    absent.reader = reader;
+                    string read = Line("Council_Pool_MeetingOnBehalf", reader, absent.proposer, absent.def);
+                    if (read != null) CouncilGameComponent.Speak(reader, read, SpeechColor);
+                    return;
+                }
             }
 
             // And then everyone has opinions.
@@ -208,6 +323,31 @@ namespace ColonyCouncil
             }
         }
 
+        /// <summary>Someone reached the meeting: noted once, with the time.</summary>
+        private void Arrive(Pawn p, int now)
+        {
+            if (!attendees.Contains(p)) attendees.Add(p);
+            var inv = InviteOf(p);
+            if (inv == null)
+            {
+                // Not called (a meeting begun in an older version, or someone who joined the colony since): they came anyway.
+                if (!MeetingAttendance.IsMember(p)) return;
+                inv = new MeetingInvite { pawn = p, status = MeetingStatus.Coming };
+                invites.Add(inv);
+            }
+            if (!inv.Arrived) inv.arrivedTick = now;
+        }
+
+        /// <summary>Called and not here yet, but could still turn up.</summary>
+        private bool MayStillCome(Pawn p)
+        {
+            var inv = InviteOf(p);
+            if (inv == null) return invites.Count == 0;
+            if (inv.Arrived) return false;
+            if (!inv.Expected) return inv.status == MeetingStatus.Busy && inv.excused == false && p.Spawned && p.Map == map;
+            return p.Spawned && p.Map == map && !p.Downed && !p.Drafted;
+        }
+
         private static readonly Color SpeechColor = new Color(0.7f, 0.85f, 1f);
 
         private string Line(string pool, Pawn speaker, Pawn proposer, AmbitionDef def)
@@ -221,8 +361,9 @@ namespace ColonyCouncil
         // ---------------- Voting ----------------
 
         /// <summary>
-        /// Everyone who came votes: proposers for their own idea, the rest by what they care about (skills,
-        /// traits, the colony's troubles) and how much they like the one who proposed it.
+        /// Everyone who came votes (and only they): proposers for their own idea, the rest by what they care about
+        /// (skills, traits, the colony's troubles) and how much they like the one who proposed it. An idea whose
+        /// proposer wasn't there to argue for it gets less support.
         /// </summary>
         public void Vote()
         {
@@ -236,6 +377,7 @@ namespace ColonyCouncil
                 {
                     float score = Rand.Range(0f, 1.2f);
                     if (pitch.proposer == voter) score += 6f;
+                    else if (!Present(pitch.proposer)) score -= 0.8f;
                     if (voter.relations != null && pitch.proposer != null) score += voter.relations.OpinionOf(pitch.proposer) / 35f;
                     foreach (var sk in pitch.def.proposerSkills)
                     {
@@ -293,10 +435,12 @@ namespace ColonyCouncil
             var end = new LordToil_End();
             graph.AddToil(end);
 
+            // A threat, or nobody left to keep order. (The chair stepping out isn't enough: someone else takes over.)
             var calledOff = new Transition(meet, end);
-            calledOff.AddTrigger(new Trigger_TickCondition(() => ShouldBeCalledOff()));
+            calledOff.AddTrigger(new Trigger_TickCondition(() => ShouldBeCalledOff(), 60));
             calledOff.AddTrigger(new Trigger_PawnKilled());
-            calledOff.AddTrigger(new Trigger_PawnLost(PawnLostCondition.LeftVoluntarily, organizer));
+            // Third, where the chair leaving used to be, so saves made mid-meeting load their timer into the right trigger.
+            calledOff.AddTrigger(new Trigger_Memo(CallOffMemo));
             calledOff.AddPreAction(new TransitionAction_Custom(() => CouncilGameComponent.Instance?.ambitions.EndMeeting(false)));
             graph.AddTransition(calledOff);
 
@@ -324,9 +468,56 @@ namespace ColonyCouncil
 
         public override string GetReport(Pawn pawn) => "CC_Meeting_Report".Translate();
 
-        /// <summary>Bitter colonists mostly don't bother turning up.</summary>
+        /// <summary>Sent to the lord to end the meeting from outside (it's then wrapped up like any meeting called off).</summary>
+        public const string CallOffMemo = "CouncilMeetingCalledOff";
+
+        /// <summary>
+        /// Called off by danger, or when there's nobody left to keep order. A chair who is drafted, ordered elsewhere or
+        /// leaves hands over to someone at the meeting.
+        /// </summary>
+        protected override bool ShouldBeCalledOff()
+        {
+            var map = Map;
+            if (map == null) return true;
+            if (!GatheringsUtility.AcceptableGameConditionsToContinueGathering(map)) return true;
+            if (ChairCanGoOn(organizer)) return false;
+            return !HandOverChair();
+        }
+
+        private bool ChairCanGoOn(Pawn p) =>
+            p != null && !p.Dead && p.Spawned && p.Map == Map && lord != null && lord.ownedPawns.Contains(p) && !p.Drafted && !p.Downed
+            && GatheringsUtility.PawnCanStartOrContinueGathering(p);
+
+        private bool HandOverChair()
+        {
+            if (lord == null) return false;
+            var next = lord.ownedPawns.Where(ChairCanGoOn)
+                .OrderByDescending(p => GatheringsUtility.InGatheringArea(p.Position, spot, Map) ? 1 : 0)
+                .ThenByDescending(p => p.skills?.GetSkill(SkillDefOf.Social)?.Level ?? 0)
+                .FirstOrDefault();
+            if (next == null) return false;
+            organizer = next;
+            var m = CouncilGameComponent.Instance?.ambitions.meeting;
+            if (m != null) m.chair = next;
+            Messages.Message("CC_Meeting_NewChair".Translate(next.Named("PAWN")).Resolve(), new LookTargets(next), MessageTypeDefOf.SilentInput, false);
+            return true;
+        }
+
+        /// <summary>
+        /// Who drifts over on their own: not those who didn't bother or were too far off to be called, and not anyone
+        /// without a say. Everyone else may still come when they're free (late, but they come).
+        /// </summary>
         public override float VoluntaryJoinPriorityFor(Pawn p)
         {
+            var m = CouncilGameComponent.Instance?.ambitions.meeting;
+            if (m != null && m.invites.Count > 0)
+            {
+                if (!MeetingAttendance.IsMember(p)) return 0f;
+                var inv = m.InviteOf(p);
+                if (inv != null && (inv.status == MeetingStatus.Skipped || inv.status == MeetingStatus.TooFar)) return 0f;
+                return base.VoluntaryJoinPriorityFor(p);
+            }
+            // A meeting begun before attendance was kept: bitter colonists mostly don't bother turning up.
             var comp = CouncilGameComponent.Instance;
             if (comp != null && comp.standings.LevelOf(p) == TrustLevel.Bitter && (p.thingIDNumber + durationTicks) % 3 != 0) return 0f;
             return base.VoluntaryJoinPriorityFor(p);

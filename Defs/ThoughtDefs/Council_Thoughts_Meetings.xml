@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Council meetings and who got there (Source/ColonyCouncil/Ambitions/MeetingAttendance.cs). Those who came on time get
+    Council_HeardAtMeeting (Council_Thoughts.xml); these are for the rest.
+  -->
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_HeardAtMeetingLate</defName>
+    <durationDays>1.5</durationDays>
+    <stages>
+      <li>
+        <label>got to the council late</label>
+        <description>I came in partway through the council meeting, but I still got my say before the vote.</description>
+        <baseMoodEffect>1</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_MissedMeeting</defName>
+    <durationDays>1</durationDays>
+    <stages>
+      <li>
+        <label>missed the council meeting</label>
+        <description>The council met while I was elsewhere. I'll have to hear what was decided from the others.</description>
+        <baseMoodEffect>-1</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_DecidedWithoutMe</defName>
+    <durationDays>2</durationDays>
+    <stages>
+      <li>
+        <label>decided without me</label>
+        <description>My idea went before the council while I wasn't there to argue for it, and it was turned down.</description>
+        <baseMoodEffect>-3</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <!-- Scaled when given: less for those devoted to the council, more for the bitter, the bone-tired and night owls. -->
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_WokenForMeeting</defName>
+    <durationDays>0.5</durationDays>
+    <stages>
+      <li>
+        <label>woken for the council meeting</label>
+        <description>I was sound asleep when someone shook me and said the council was meeting.</description>
+        <baseMoodEffect>-2</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+</Defs>
