@@ -45,6 +45,8 @@ namespace ColonyCouncil
         public int startTick;
         public int deadlineTick;
         public List<float> baselines = new List<float>();
+        /// <summary>How far along it already was when the colony chose it (0 to 1; -1 = not known, an older save).</summary>
+        public float startProgress = -1f;
         public bool halfwaySaid;
         public bool deadlineSaid;
 
@@ -80,6 +82,7 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref startTick, "startTick");
             Scribe_Values.Look(ref deadlineTick, "deadlineTick");
             Scribe_Collections.Look(ref baselines, "baselines", LookMode.Value);
+            Scribe_Values.Look(ref startProgress, "startProgress", -1f);
             Scribe_Values.Look(ref halfwaySaid, "halfwaySaid");
             Scribe_Values.Look(ref deadlineSaid, "deadlineSaid");
             if (Scribe.mode == LoadSaveMode.PostLoadInit && baselines == null) baselines = new List<float>();
@@ -804,6 +807,15 @@ namespace ColonyCouncil
                 deadlineTick = now + Mathf.RoundToInt(def.days * Settings.ambitionDeadlineFactor * GenDate.TicksPerDay),
                 baselines = def.goals.Select(g => g.Baseline(map)).ToList()
             };
+            // What was already done counts for less when it's reached: the reward is for the work the colony puts in.
+            try
+            {
+                active.startProgress = Mathf.Clamp01(active.Progress);
+            }
+            catch (System.Exception e)
+            {
+                CouncilLog.ErrorOnce("ambition start progress", e);
+            }
             Messages.Message("CC_Ambition_Chosen".Translate(def.LabelCap.ToString(), proposer?.LabelShort ?? "?"), new LookTargets(proposer), MessageTypeDefOf.PositiveEvent, false);
             if (proposer != null)
             {
@@ -846,13 +858,19 @@ namespace ColonyCouncil
 
         private void Complete(CouncilGameComponent comp)
         {
-            using var _cause = Causes.Push(active?.def != null ? "CC_Cause_AmbitionDone".Translate(active.def.label).Resolve() : null);
+            // Reaching an ambition that was mostly done when it was chosen is worth less than one built from scratch.
+            float effort = PressureMath.EffortFactor(active?.startProgress ?? -1f);
+            string cause = active?.def == null ? null
+                : effort < 1f ? "CC_Cause_AmbitionDoneEarly".Translate(active.def.label, Mathf.Clamp01(active.startProgress).ToStringPercent()).Resolve()
+                : "CC_Cause_AmbitionDone".Translate(active.def.label).Resolve();
+            using var _cause = Causes.Push(cause);
             var a = active;
             active = null;
             var map = a.map;
             foreach (var p in map.mapPawns.FreeColonistsSpawned)
             {
-                CouncilGameComponent.GiveThought(p, p == a.proposer ? CouncilDefOf.Council_MyAmbitionAchieved : CouncilDefOf.Council_AmbitionAchieved);
+                CouncilGameComponent.GiveThought(p, p == a.proposer ? CouncilDefOf.Council_MyAmbitionAchieved : CouncilDefOf.Council_AmbitionAchieved, null,
+                    Settings.rewardFactor * effort);
                 comp.standings.Change(p, p == a.proposer ? 12f : 5f, "CC_Log_AmbitionAchieved".Translate(a.def.label));
             }
             if (a.proposer != null && !a.proposer.Dead && Settings.MoodEffects && Rand.Chance(0.35f))

@@ -199,5 +199,39 @@ Check(MeetingMath.Late(MeetingMath.EtaTicks(120f, 13f)) && !MeetingMath.TooFar(M
 Check(MeetingMath.TooFar(MeetingMath.EtaTicks(200f, 13f)), "200 cells: too far");
 Check(!MeetingMath.Late(1500) && MeetingMath.Late(1501) && !MeetingMath.TooFar(3150) && MeetingMath.TooFar(3151), "late after a third, too far after 70%");
 
-Console.WriteLine(failures == 0 ? "All template math, strain and meeting tests passed." : failures + " failure(s).");
+// Everyday pressures: the setting, meals, work, missing someone, crowding, half-built work and earned rewards.
+Check(PressureMath.Factor(LifePressure.Gentle) == 0.5f && PressureMath.Factor(LifePressure.Normal) == 1f && PressureMath.Factor(LifePressure.Demanding) == 1.5f, "life factor");
+Check(PressureMath.Scale(-1f, 0.5f) == -1f && PressureMath.Scale(-3f, 0.5f) == -1.5f && PressureMath.Scale(-2f, 1.5f) == -3f, "pressure scale, a whole point at least");
+Check(PressureMath.Scale(2f, 0.5f) == 2f && PressureMath.Scale(-2f, 0f) == 0f, "scale leaves good moods, and off is off");
+List<string> Meals(params string[] k) => new List<string>(k);
+var simple6 = Meals("S", "S", "S", "S", "S", "S");
+Check(PressureMath.FoodStage(Meals("S", "S", "S", "S", "S"), 3) == 0, "five meals: too soon to tell");
+Check(PressureMath.FoodStage(simple6, 3) == 1, "six simple meals in a row: the same meal again");
+Check(PressureMath.FoodStage(Meals("S", "F", "S", "S", "B", "S", "S", "S"), 3) == 1, "six of the last eight");
+Check(PressureMath.FoodStage(Meals("S", "F", "S", "B", "S", "F", "S", "S"), 3) == 0, "five of eight is varied enough");
+var simple12 = Meals("S", "S", "S", "S", "S", "S", "S", "S", "S", "S", "S", "S");
+Check(PressureMath.FoodStage(simple12, 3) == 3 && PressureMath.FoodStage(simple12, 2) == 2, "twelve the same: three steps with three choices, two with two");
+Check(PressureMath.FoodStage(simple12, 1) == 1 && PressureMath.FoodStage(simple6, 1) == 0, "one choice only: one step, and later");
+Check(PressureMath.FoodStage(Meals("F", "S", "S", "S", "S", "S", "S", "S", "S", "S", "S", "S"), 3) == 2, "eleven of twelve: two steps");
+Check(PressureMath.Picky(1, 3) == 2 && PressureMath.Picky(3, 3) == 3 && PressureMath.Picky(2, 2) == 2 && PressureMath.Picky(1, 1) == 1 && PressureMath.Picky(0, 3) == 0, "gourmands take it harder");
+Check(PressureMath.VariedTable(Meals("S", "F", "B")) && !PressureMath.VariedTable(Meals("S", "F", "S", "F")) && !PressureMath.VariedTable(Meals("S", "F")), "a varied table needs three foods");
+Check(PressureMath.Dominant(Meals("A", "B", "A", "C"), 3) == 1 && PressureMath.Dominant(Meals("A", "B", "A", "C"), 4) == 2 && PressureMath.Dominant(null, 8) == 0, "dominant kind in a window");
+Check(PressureMath.SameWorkDay(9, 12) && !PressureMath.SameWorkDay(8, 12) && !PressureMath.SameWorkDay(5, 5), "same work all day needs 70% of six hours or more");
+int streak = 0;
+foreach (bool same in new[] { true, true, true, true, true })
+    streak = PressureMath.NextStreak(streak, true, same && streak > 0);
+Check(streak == 5 && PressureMath.WorkStage(streak) == 2, "five days of one kind of work: two steps");
+Check(PressureMath.NextStreak(5, true, false) == 1 && PressureMath.NextStreak(5, false, false) == 0, "other work starts again, a varied day or a day off clears it");
+Check(PressureMath.WorkStage(2) == 0 && PressureMath.WorkStage(3) == 1 && PressureMath.WorkStage(8) == 3 && PressureMath.WorkStage(30) == 3, "work steps at 3, 5 and 8 days");
+Check(PressureMath.MissingStage(1.9f, true) == 0 && PressureMath.MissingStage(2f, true) == 1 && PressureMath.MissingStage(5f, true) == 2 && PressureMath.MissingStage(12f, true) == 3, "a partner is missed after 2, 5 and 10 days");
+Check(PressureMath.MissingStage(2.5f, false) == 0 && PressureMath.MissingStage(3f, false) == 1 && PressureMath.MissingStage(30f, false) == 2, "a friend after 3 and 8 days, two steps at most");
+Check(PressureMath.CrowdLevel(3, 4, 3, 0) == 0, "three people are never a crowd");
+Check(PressureMath.CrowdLevel(6, 30, 6, 6) == 0 && PressureMath.CrowdLevel(6, 30, 6, 4) == 1 && PressureMath.CrowdLevel(6, 30, 6, 2) == 2, "dining: chairs for everyone, two short, half short");
+Check(PressureMath.CrowdLevel(8, 30, 0, -1) == 1 && PressureMath.CrowdLevel(8, 18, 0, -1) == 2 && PressureMath.CrowdLevel(8, 40, 0, -1) == 0, "rec room: space per person");
+Check(PressureMath.UnfinishedStage(PressureMath.UnfinishedScore(2, 4)) == 0 && PressureMath.UnfinishedStage(PressureMath.UnfinishedScore(2, 5)) == 1, "a few plans and frames: an eyesore from three");
+Check(PressureMath.UnfinishedStage(PressureMath.UnfinishedScore(10, 0)) == 2 && PressureMath.UnfinishedStage(PressureMath.UnfinishedScore(0, 125)) == 3, "frames count in full, plans a fifth");
+Check(PressureMath.EffortFactor(-1f) == 1f && PressureMath.EffortFactor(0f) == 1f && PressureMath.EffortFactor(0.5f) == 1f, "an ambition with half or more to do is earned in full");
+Check(Math.Abs(PressureMath.EffortFactor(0.7f) - 0.8f) < 1e-4f && PressureMath.EffortFactor(0.95f) == 0.6f, "one mostly done already counts for less, 60% at least");
+
+Console.WriteLine(failures == 0 ? "All template math, strain, meeting and pressure tests passed." : failures + " failure(s).");
 return failures == 0 ? 0 : 1;
