@@ -336,7 +336,7 @@
     <defName>Council_Hospital_Infirmary</defName>
     <label>infirmary</label>
     <description>Two beds with a vitals monitor between them, a medicine shelf, a light and a clean floor.</description>
-    <purpose>A small, clean room for the sick and the wounded, so nobody is treated on the floor.</purpose>
+    <purpose>A small, clean room for the sick and the wounded, so the wounded are never treated on the floor.</purpose>
     <order>40</order>
     <group>Care</group>
     <size>(4,4)</size>
@@ -360,7 +360,7 @@
     <defName>Council_Hospital_Ward</defName>
     <label>hospital ward</label>
     <description>Nine beds, four vitals monitors, a medicine shelf, two lights and a clean floor.</description>
-    <purpose>For a big colony, or one that fights often: room for everyone after a bad raid or an outbreak.</purpose>
+    <purpose>For a big colony, or one that fights often: a bed for every patient after a bad raid or an outbreak.</purpose>
     <order>41</order>
     <group>Care</group>
     <size>(9,6)</size>
@@ -368,7 +368,7 @@
     <floors><li>SterileTile</li><li>TileSandstone</li><li>TileGranite</li><li>TileLimestone</li><li>TileSlate</li><li>TileMarble</li></floors>
     <avoid><li>Kitchen</li></avoid>
     <tips>
-      <li>A plague or a mass-casualty raid fills beds fast. A ward means nobody waits on the floor.</li>
+      <li>A plague or a mass-casualty raid fills beds fast. A ward keeps the patients off the floor.</li>
       <li>Keep a clean floor and a cleaner on it. Infections kill more colonists than the wounds do.</li>
       <li>Build it near the main entrance and the battle line, so rescuers carry the wounded a short way.</li>
     </tips>

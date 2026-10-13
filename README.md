@@ -322,23 +322,52 @@ why. Going with the room's favorite pleases its backers; overruling a clear majo
 and trust.
 
 ### Build: room plans
-32 ready-made rooms, grouped by purpose: bedrooms of three sizes, barracks, dining room, rec room, kitchen,
-butcher's room, freezer, heat shelter (no power needed), storeroom, brewery, greenhouse, barn, workshop, smithy,
-tailor's shop, art studio, laboratory, drug lab, hospitals, crypt, crematorium, prison cell and barracks,
-armory, battery room, meditation and throne rooms (Royalty), classroom and nursery (Biotech). With Dubs Bad
-Hygiene also a bathroom, bathhouse and sauna; with Hospitality a guest room.
+68 ready-made rooms in 50 kinds, grouped by purpose. Many come in several sizes: a cozy, standard or roomy
+bedroom, or a sleeping hut for a tribe; a dining room for 4, 8 or 12; a small, standard or large workshop; an
+infirmary, two hospitals and a hospital ward; bigger kitchens, freezers, storerooms and laboratories. Among the
+rest: barracks, rec room, library, tavern corner, butcher's room, heat shelter (no power needed), brewery,
+greenhouse and hydroponics bay, barn and kennel, smithy, tailor's shop, stonecutter's and component workshops, art
+studio, trophy gallery, drug lab, crypt, crematorium, prison cells, armory, guard post and battery room; a
+longhouse and a great hall for tribal and medieval colonies; meditation and throne rooms (Royalty); a chapel
+(Ideology); a schoolroom, playroom, nursery, mechanitor's bay and gene lab (Biotech); a containment cell
+(Anomaly). With Dubs Bad Hygiene also a bathroom, bathhouse, sauna, laundry and a master suite with its own
+bathroom; with Hospitality a guest room. A room shows up once your colony can build its main piece.
 
 Pick one from this tab or from the **"rooms"** button in the bottom bar. A color-coded preview
 follows the mouse, and a planner panel lets you:
+- pick the **size**, and the **style**: *spartan* (the essentials, no floor), *comfortable* (the standard
+  furnishing) or *lavish* (more plant pots, pedestals for sculptures and a rug where your mods have them, carpet
+  or fine stone tiles; hospitals and kitchens keep their sterile floor)
 - **turn** the room (Q / E or buttons), **mirror** it and **move the door**
-- pick the **material** for walls, door, floor and each kind of furniture, or **swap** furniture for another
-  piece the colony can build; the panel shows the **cost against your stock**
+- choose **materials**, or let the planner do it: it picks from what you have, stored or lying around, something
+  there's enough of with a little to spare. Stone blocks come first, then wood, bone (furniture only, never walls
+  or doors) and steel; silver, gold, plasteel, uranium and jade only when nothing else will do. Walls get stone
+  before wood when there's enough. The walls, door and floor take their share first, so the furniture doesn't
+  count on the same blocks. Your own picks are remembered for that room while you still have enough of them, and
+  **Use what we have** starts over. A material shows green with some to spare, amber when it only just covers
+  the room.
+- **swap** furniture for another piece the colony can build; the **cost** of the whole room is shown against what's
+  stored and lying around, in green or red
 - **clear the site**: cut plants and trees, mine rock (inside, in the doorway and just outside the door),
   replace your own buildings in the way, smooth natural stone. Pieces blocked by rock go down by themselves
   once it's mined.
 - let the council **find a good spot** near your colony and the rooms it belongs next to, and place it there.
+- **upgrade a built room**: hover a room you already have and click. The plan turns to the wall with its door,
+  counts what's there and adds only the missing furniture; the floor goes only on bare ground. The panel shows
+  the room's impressiveness as it is now.
+
+**Your rooms:** "Save a built room as a plan" turns any enclosed, rectangular room with a door into a plan of
+your own, with its furniture, wall material and floor. Saved rooms are kept with the mod's settings, so they're
+there in every game, and you can delete them from the same list.
+
+Every layout is checked in all four turns, mirrored and not: beds have their heads against a wall, chairs face
+their table, every bench has its work spot free, and nothing blocks the door. If a modded bench is bigger or its
+work spot ends up in a wall, the planner turns that piece or leaves it out and says so.
 
 It places ordinary blueprints, so your builders handle the rest. Every plan comes with good-practice tips.
+
+**The game's build menu** shows your stock too: when you pick a material for a wall, door or piece of furniture,
+each one reads like "Steel wall    420 (+85 lying around), enough for 84". You can switch this off in the settings.
 
 Colonists also sometimes add **personal touches**: a plant pot, an end table or a lamp planned for their own
 bedroom.
@@ -373,7 +402,8 @@ The council only suggests what your colony can actually do right now:
 - **Purpose, not names:** buildings are recognized by what they do. A medieval colony gets torch lamps,
   campfires, spike traps and bedrolls; an industrial one gets standing lamps, heaters and turrets. Modded
   furniture that does the same job counts too.
-- **Materials:** room plans default to what you have the most of, and you can change every material.
+- **Materials:** room plans pick what you have enough of, common stone and wood before anything precious, and
+  you can change every material.
 - **What's on the map:** animals to tame, a body to bury, a prosthetic you can make, winter that actually comes.
 - **Ambitions:** only ones whose every goal is achievable for your colony are offered.
 - **Era setting:** the mod works out your era from finished research and from what's built (a generator
@@ -416,8 +446,9 @@ while that feature is off; nothing vanilla is changed or removed. A few things i
 
 ### Home life mods
 Each of these switches itself on only when its mod is there, and only asks for what the colony can build now:
-- **Dubs Bad Hygiene:** bathroom, bathhouse and sauna room plans that pick the era's fixtures (a latrine and a
-  water tub at first, a basin and a bathtub with Plumbing, a toilet and a shower with Modern Fixtures). The advisor
+- **Dubs Bad Hygiene:** bathroom, bathhouse, sauna, laundry and master suite room plans that pick the era's
+  fixtures (a latrine and a water tub at first, a basin and a bathtub with Plumbing, a toilet and a shower with
+  Modern Fixtures). The advisor
   counts toilets (about one for every six colonists) and notices when nobody can wash or people fall sick from dirty
   water. Colonists ask for a latrine, somewhere to wash, a real bath (a water tub or a sauna isn't one) or, once
   Heating is researched, hot water; their journals mention hot baths, cold water and the walk to the bushes. The
@@ -796,6 +827,8 @@ journals, the Story tab and History) or **Important only**.
 - meeting interval, ambition deadlines, and whether meetings call people from their work
 - letters vs. messages, floating speech text, alerts
 - where the council button sits in the bottom bar
+- **material counts in build menus**: the game's own material list shows what the colony has (one of the deeper
+  game hooks)
 - **council life**: decrees, dilemmas, petitions, annals, names, journals, offices, the social web, social
   events, life goals, secrets, vendettas, eulogies, heirlooms, coming of age, quirks, dreams and dream omens, encounters with strangers, nemeses (and whether they return), pets, the
   colony's character, everyday frictions, each on its own switch

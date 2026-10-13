@@ -74,7 +74,7 @@
     <defName>Council_Kennel</defName>
     <label>kennel</label>
     <description>Four animal beds along the back wall, a shelf for kibble and a heater. For dogs, cats and other pets.</description>
-    <purpose>Pets that sleep warm and dry stay healthy, and they sleep near the people they bond with.</purpose>
+    <purpose>Pets that sleep warm and dry stay healthy, and a kennel near the bedrooms keeps them close at night.</purpose>
     <order>59</order>
     <group>Food</group>
     <size>(4,4)</size>
@@ -83,7 +83,7 @@
     <tips>
       <li>Animals in a bed or a sleeping box rest better than on the ground, and they don't freeze in winter.</li>
       <li>Keep kibble or hay on the shelf here, and restrict the pets to an area that includes the kennel.</li>
-      <li>A bonded animal near its master's bedroom keeps both of them happier.</li>
+      <li>Bonded pets follow their master around by day. A kennel near the bedrooms keeps them close at night too.</li>
     </tips>
     <things>
       <li><defs><li>AnimalBed</li><li>AnimalSleepingBox</li><li>AnimalSleepingSpot</li></defs><role>animalbed</role><pos>(0,3)</pos><optional>false</optional></li>
@@ -161,7 +161,7 @@
     <tips>
       <li>A component takes 12 steel and some skill. Keep the best crafter on this bench.</li>
       <li>A tool cabinet next to the bench speeds up the work.</li>
-      <li>Advanced components need plasteel and a gold fleck each; keep some of both on hand.</li>
+      <li>Advanced components also need plasteel and gold. Keep some of both on hand before the research is done.</li>
     </tips>
     <things>
       <li><defs><li>FabricationBench</li></defs><role>fabrication</role><pos>(3,3)</pos><optional>false</optional></li>
@@ -184,7 +184,7 @@
     <avoid><li>Bedroom</li></avoid>
     <tips>
       <li>Build it where raiders usually come from, at the end of the killbox or beside the main gate.</li>
-      <li>Weapons on the shelf here mean nobody runs across the base to arm themselves.</li>
+      <li>Weapons on the shelf here let the guards arm themselves where the fight starts.</li>
       <li>Thick walls and a light: a guard who can see the gate sees raiders coming.</li>
     </tips>
     <things>
@@ -211,7 +211,7 @@
     <tips>
       <li>Sculptures are made at the art bench and moved in by hand: install them on the open floor or on the pedestals.</li>
       <li>Columns and fine floors add beauty of their own, so even an unfinished gallery looks good.</li>
-      <li>Masterwork and legendary pieces are worth putting where everyone passes: the dining room or the gallery.</li>
+      <li>Masterwork and legendary pieces are worth putting where colonists pass every day: the dining room or the gallery.</li>
       <li>Pedestals come from furniture mods (Vanilla Furniture Expanded, Medieval Overhaul). Without them the gallery still works.</li>
     </tips>
     <things>

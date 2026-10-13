@@ -12,7 +12,7 @@
     <defName>Council_MasterSuite</defName>
     <label>master suite</label>
     <description>A large bedroom for a couple with its own bathroom behind an inner door: double bed, bedside tables, a dresser, a toilet, a basin and a bathtub.</description>
-    <purpose>The best room in the colony, for its leader or its finest couple. Nobody has to cross the base at night.</purpose>
+    <purpose>The best room in the colony, for its leader or its finest couple. The bathroom is one door away at night.</purpose>
     <order>12</order>
     <group>Living</group>
     <size>(7,6)</size>
@@ -49,7 +49,7 @@
     <defName>Council_Laundry</defName>
     <label>laundry</label>
     <description>Two washing machines, a shelf for clothes waiting to be washed, a light and a plant.</description>
-    <purpose>Clean clothes last longer and don't carry the smell of the last raid. Washing undoes the worst of the wear.</purpose>
+    <purpose>Clothes taken from the dead come out of the wash with no trace of it, and colonists wear them without complaint.</purpose>
     <order>39</order>
     <group>Work</group>
     <size>(4,4)</size>
