@@ -16,7 +16,7 @@ Who manages to get there matters. Only those present vote, an idea whose propose
     <sections>
       <li>
         <heading>When it's held</heading>
-        <text>The council sets a meeting for six in the evening, or a later full hour up to eight, at least two hours after it's called; called later than that, it waits for the next evening. On its own the council never calls one between 22:00 and 6:00. A meeting you call from the Ambition page is set an hour or two from then. The World page's coming-up list and the Ambition page count down to it, a reminder comes an hour before, and the Ambition page can hold it right away or put it off a day.
+        <text>The council sets a meeting for six in the evening, or a later full hour up to eight, at least two hours after it's called; called later than that, it waits for the next evening. No meeting starts at night (22:00 to 6:00): the council never calls one then, a meeting you call from the Ambition page is set an hour or two from then, or for the next evening if that would fall at night, and one still waiting to start when night comes is tried the next evening. The World page's coming-up list and the Ambition page count down to it, a reminder comes an hour before, and the Ambition page can hold it right away (not at night) or put it off a day.
 
 It starts only when it's safe: no danger on the map, no other gathering going on, fewer than half the colony drafted, nobody bleeding, a colonist free to chair it and somewhere to meet. If it can't start that evening, it's tried the next. After three evenings without a calm moment, the chair looks the proposals over alone, and every other colonist trusts the council a little less.</text>
       </li>
@@ -26,15 +26,15 @@ It starts only when it's safe: no danger on the map, no other gathering going on
         <table>
           <li>Situation | What happens</li>
           <li>Free, or at ordinary work | Puts the work down and walks over. With the setting "Meetings call people from their work" off, comes only once free, as for a party.</li>
-          <li>Asleep in their own bed | Someone on the way to the meeting wakes them. They come late and feel it: -1 to -2 mood for half a day, less for those devoted to the council, more for the bitter, the bone-tired and night owls.</li>
-          <li>Asleep and a child, sick, worn out or exhausted | Left to sleep.</li>
-          <li>Tending, rescuing, operating, fighting a fire, feeding or carrying someone, at a ritual or forming a caravan | Finishes first, and may still come late.</li>
+          <li>Asleep in their own bed | Someone on the way to the meeting wakes them. They come late and feel it: -1 to -2 mood for half a day, less for those devoted to the council, more for the bitter, the tired and night owls.</li>
+          <li>Asleep and a child, sick, worn out or very tired | Left to sleep.</li>
+          <li>Tending, rescuing, operating, fighting a fire, feeding or carrying someone, talking with a prisoner, on the way to a sickbed, at a ritual or forming a caravan | Finishes first, and may still come late.</li>
           <li>Drafted, downed or in a mental break | Can't come for now.</li>
           <li>Away with a caravan, at an outpost or on another map | Misses it.</li>
           <li>Too far off to arrive before 70% of the meeting is over | Isn't called. The letter says where they were and what they were doing.</li>
           <li>Bitter toward the council | Two in three don't bother.</li>
         </table>
-        <after>Arriving after the first third of the meeting counts as late. Drafting someone or giving them an order takes them out of the meeting at once. A serious threat ends it: before halfway it's tried again the next evening (twice at most), after that it's decided on what was said.</after>
+        <after>Arriving after the first third of the meeting counts as late. Drafting someone or giving them an order takes them out of the meeting at once, and it doesn't call them back. Any danger on the map ends it: before halfway it's tried again the next evening (twice at most), after that it's decided on what was said.</after>
       </li>
       <li>
         <heading>Who's there matters</heading>

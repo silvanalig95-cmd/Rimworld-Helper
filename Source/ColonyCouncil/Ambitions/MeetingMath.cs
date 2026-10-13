@@ -21,6 +21,8 @@ namespace ColonyCouncil
         public const int GetGoingTicks = 250;
         /// <summary>The usual hour for a meeting, and the latest full hour one is still set for that evening.</summary>
         public const float EveningHour = 18f, LatestHour = 20f;
+        /// <summary>Night, when the clock never calls, sets or starts a meeting: from ten in the evening until six in the morning.</summary>
+        public const float NightFrom = 22f, NightUntil = 6f;
 
         /// <summary>Fewer than this many present makes a thin meeting: half of those with a say, and never fewer than two.</summary>
         public static int Quorum(int eligible) => Math.Max(2, (int)Math.Ceiling(eligible / 2.0));
@@ -45,6 +47,21 @@ namespace ColonyCouncil
             }
             return target - hourNow;
         }
+
+        /// <summary>The hour (any number, taken round the clock) falls in the night.</summary>
+        public static bool IsNight(float hour)
+        {
+            float h = hour % 24f;
+            if (h < 0f) h += 24f;
+            return h >= NightFrom || h < NightUntil;
+        }
+
+        /// <summary>
+        /// Hours from <paramref name="hourNow"/> to a meeting called from the window to start <paramref name="leadHours"/>
+        /// from now; if that would be at night, to the next evening slot instead.
+        /// </summary>
+        public static float HoursToCalledMeeting(float hourNow, float leadHours) =>
+            IsNight(hourNow + leadHours) ? HoursToEvening(hourNow, 2f) : leadHours;
 
         /// <summary>The walk to the meeting in ticks, from the straight-line distance and the colonist's ticks per cell.</summary>
         public static int EtaTicks(float distance, float ticksPerCell) =>

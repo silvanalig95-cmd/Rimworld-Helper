@@ -97,6 +97,9 @@ namespace ColonyCouncil
         public int lastMeetingTick = -999999;
         public int meetingsHeld;
         private Dictionary<string, int> lastOffered = new Dictionary<string, int>();
+        /// <summary>When a meeting due to start last looked for somewhere to meet and found nowhere. Not saved.</summary>
+        private int venueSearchTick = -999999;
+        private const int VenueSearchInterval = 600;
         private List<string> tmpK;
         private List<int> tmpV;
 
@@ -185,11 +188,7 @@ namespace ColonyCouncil
             if (now < nextMeetingTick) return;
             // Nobody calls a meeting in the middle of the night: it waits for the morning.
             var home = MeetingMap();
-            if (home != null)
-            {
-                int hour = GenLocalDate.HourOfDay(home);
-                if (hour < 6 || hour >= 22) return;
-            }
+            if (home != null && MeetingMath.IsNight(GenLocalDate.HourOfDay(home))) return;
             HoldMeeting(comp, false);
         }
 
@@ -315,9 +314,10 @@ namespace ColonyCouncil
                 Conclude(comp, true);
                 return;
             }
-            // Otherwise it's set for a time and announced: the next evening, or in an hour or two when called from the window.
+            // Otherwise it's set for a time and announced: the next evening, or in an hour or two when called from the window
+            // (the next evening if that would be at night).
             meeting.scheduledTick = calledByPlayer
-                ? now + Rand.RangeInclusive(GenDate.TicksPerHour, GenDate.TicksPerHour * 2)
+                ? now + Mathf.RoundToInt(MeetingMath.HoursToCalledMeeting(GenLocalDate.HourFloat(map), Rand.Range(1f, 2f)) * GenDate.TicksPerHour)
                 : MeetingAttendance.NextEvening(map, now, GenDate.TicksPerHour * 2);
             if (meeting.chair != null && CouncilMeeting.FindVenue(map, meeting.chair, out var spot, out var venue))
             {
@@ -377,9 +377,11 @@ namespace ColonyCouncil
             if (m.Started)
             {
                 MeetingAttendance.ReleaseCalledAway(m);
+                // Letting someone go can end the meeting there and then: nobody is woken for one that's over.
+                if (meeting != m || !m.Started) return;
                 MeetingAttendance.WakeUpkeep(m, now);
                 // The gathering vanished without ending (all its people gone): wrap up, or try again another evening.
-                if (meeting == m && m.Lord == null && now - m.startedTick > 300) EndMeeting(false);
+                if (meeting == m && m.Lord == null && now - m.startedTick > 300) EndMeetingSafely(false);
                 return;
             }
             if (m.scheduledTick < 0)
@@ -398,24 +400,34 @@ namespace ColonyCouncil
             if (now >= m.scheduledTick) TryStartMeeting(comp);
         }
 
-        /// <summary>From the council window: call everyone together right away.</summary>
+        /// <summary>From the council window: call everyone together right away (not at night, with the colony asleep).</summary>
         public void HoldNow()
         {
-            if (meeting == null || meeting.Started) return;
+            if (!CanHoldNow) return;
             meeting.scheduledTick = Find.TickManager.TicksGame;
             meeting.reminded = true;
         }
 
-        /// <summary>From the council window: the same time tomorrow.</summary>
+        public bool CanHoldNow =>
+            meeting != null && !meeting.Started && meeting.map != null && Find.TickManager.TicksGame < meeting.scheduledTick
+            && !MeetingMath.IsNight(GenLocalDate.HourFloat(meeting.map));
+
+        /// <summary>From the council window: the same time tomorrow (never to the night: then the next evening).</summary>
         public void PutOffADay()
         {
-            if (meeting == null || meeting.Started) return;
+            if (!CanPutOffADay) return;
             int now = Find.TickManager.TicksGame;
-            meeting.scheduledTick = Mathf.Max(meeting.scheduledTick, now) + GenDate.TicksPerDay;
+            int when = Mathf.Max(meeting.scheduledTick, now) + GenDate.TicksPerDay;
+            if (MeetingAttendance.AtNight(meeting.map, now, when)) when = MeetingAttendance.NextEvening(meeting.map, now, GenDate.TicksPerHour * 8);
+            meeting.scheduledTick = when;
             meeting.reminded = false;
             meeting.waitReason = null;
             Messages.Message("CC_Meeting_PutOffDay".Translate(), MessageTypeDefOf.SilentInput, false);
         }
+
+        /// <summary>Not running, and not already a day or more off (so a double click doesn't put it off twice).</summary>
+        public bool CanPutOffADay =>
+            meeting != null && !meeting.Started && meeting.map != null && meeting.scheduledTick - Find.TickManager.TicksGame < GenDate.TicksPerDay;
 
         /// <summary>
         /// At the set time: if it's safe and there's a chair and a place, the chair calls everyone. Each colonist's part
@@ -448,7 +460,16 @@ namespace ColonyCouncil
             }
             var spot = m.spot;
             string venue = m.venue;
-            if (wait == null && !VenueStillGood(m, chair) && !CouncilMeeting.FindVenue(map, chair, out spot, out venue)) wait = "CC_MeetWait_NoVenue".Translate();
+            if (wait == null && !VenueStillGood(m, chair))
+            {
+                // Searching the whole colony is costly: while there's nowhere to meet, it's tried again every ten seconds or so.
+                bool found = now - venueSearchTick >= VenueSearchInterval && CouncilMeeting.FindVenue(map, chair, out spot, out venue);
+                if (!found)
+                {
+                    if (now - venueSearchTick >= VenueSearchInterval) venueSearchTick = now;
+                    wait = "CC_MeetWait_NoVenue".Translate();
+                }
+            }
             if (wait != null)
             {
                 m.waitReason = wait;
@@ -464,7 +485,7 @@ namespace ColonyCouncil
             bool callFromWork = Settings.meetingsCallFromWork;
             var members = MeetingAttendance.Members(map);
             if (!members.Contains(chair)) members.Insert(0, chair);
-            m.invites = members.Select(p => MeetingAttendance.Classify(p, m, callFromWork, p == chair)).ToList();
+            m.invites = members.Select(p => MeetingAttendance.ClassifySafely(p, m, callFromWork, p == chair)).ToList();
             var expected = m.invites.Where(i => i.Expected).ToList();
             if (expected.Count < MeetingAttendance.Quorum(m.invites.Count) && !m.thinPostponed)
             {
@@ -495,9 +516,9 @@ namespace ColonyCouncil
             m.spot.IsValid && !m.venue.NullOrEmpty() && m.spot.InBounds(m.map) && m.spot.Standable(m.map) && chair != null
             && chair.CanReach(m.spot, Verse.AI.PathEndMode.Touch, Danger.None);
 
-        /// <summary>The evening is gone: four hours past the set time, or late at night.</summary>
+        /// <summary>The evening is gone: four hours past the set time, or night has come (the clock never starts one at night).</summary>
         private static bool EveningOver(CouncilMeeting m, int now) =>
-            now - m.scheduledTick > GenDate.TicksPerHour * 4 || (now - m.scheduledTick > GenDate.TicksPerHour && GenLocalDate.HourInteger(m.map) >= 22);
+            now - m.scheduledTick > GenDate.TicksPerHour * 4 || (now > m.scheduledTick && MeetingMath.IsNight(GenLocalDate.HourFloat(m.map)));
 
         private void MissedEvening(CouncilGameComponent comp, string why)
         {
@@ -546,6 +567,24 @@ namespace ColonyCouncil
             var cant = m.invites.Where(i => !i.Expected && i.status != MeetingStatus.Skipped).Select(i => i.pawn.LabelShort).ToList();
             if (cant.Count > 0) text += " " + "CC_Meeting_CantCome".Translate(TextUtil.JoinAnd(cant)).Resolve();
             return text;
+        }
+
+        /// <summary>
+        /// <see cref="EndMeeting"/> from the gathering's own transitions (or when it has vanished): a fault while wrapping
+        /// up is logged once and the meeting dropped, so it can't throw again on every tick or hang "in session".
+        /// </summary>
+        public void EndMeetingSafely(bool finished)
+        {
+            var m = meeting;
+            try
+            {
+                EndMeeting(finished);
+            }
+            catch (System.Exception e)
+            {
+                CouncilLog.ErrorOnce("meeting end", e);
+                if (meeting == m) meeting = null;
+            }
         }
 
         /// <summary>Called by the gathering when it ends: finished, or broken up early (then tried again the next evening).</summary>

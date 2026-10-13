@@ -177,6 +177,20 @@ for (float h = 0f; h < 24f; h += 0.25f)
     float until = MeetingMath.HoursToEvening(h, 2f), at = (h + until) % 24f;
     Check(until >= 2f - 1e-4f && until <= 26f && at >= 18f - 1e-4f && at <= 20f + 1e-4f, $"slot from {h}: {until}h later at {at}");
 }
+Check(MeetingMath.IsNight(22f) && MeetingMath.IsNight(23.5f) && MeetingMath.IsNight(0f) && MeetingMath.IsNight(5.99f)
+      && !MeetingMath.IsNight(6f) && !MeetingMath.IsNight(12f) && !MeetingMath.IsNight(21.99f), "night is 22:00 to 6:00");
+Check(MeetingMath.IsNight(-1f) && MeetingMath.IsNight(25f) && !MeetingMath.IsNight(30f) && !MeetingMath.IsNight(-6f), "night round the clock");
+Check(Math.Abs(MeetingMath.HoursToCalledMeeting(10f, 1.5f) - 1.5f) < 1e-4f, "called in the day: as asked");
+Check(Math.Abs(MeetingMath.HoursToCalledMeeting(21f, 1.5f) - 21f) < 1e-4f, "called at 21:00 for 22:30: six tomorrow evening");
+Check(Math.Abs(MeetingMath.HoursToCalledMeeting(3f, 1f) - 15f) < 1e-4f, "called at 3:00: six this evening");
+for (float h = 0f; h < 24f; h += 0.25f)
+{
+    for (float lead = 1f; lead <= 2f; lead += 0.25f)
+    {
+        float until = MeetingMath.HoursToCalledMeeting(h, lead);
+        Check(until >= 1f - 1e-4f && until <= 26f && !MeetingMath.IsNight(h + until), $"called at {h} for {lead}h later: {until}h, not at night");
+    }
+}
 Check(MeetingMath.EtaTicks(0f, 13f) == MeetingMath.GetGoingTicks, "no walk when already there");
 Check(MeetingMath.EtaTicks(40f, 13f) < MeetingMath.EtaTicks(80f, 13f) && MeetingMath.EtaTicks(40f, 13f) < MeetingMath.EtaTicks(40f, 20f), "farther or slower takes longer");
 // A normal walker (13 ticks a cell) from 60 cells off is on time, from 120 late, from 200 too late to be called.

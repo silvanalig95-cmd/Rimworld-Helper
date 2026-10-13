@@ -118,9 +118,12 @@ namespace ColonyCouncil
                     var hold = new Rect(width / 2f - bw - 5f, by, bw, 32f);
                     var off = new Rect(width / 2f + 5f, by, bw, 32f);
                     bool due = now >= m.scheduledTick;
-                    if (Widgets.ButtonText(hold, "CC_Meeting_HoldNow".Translate(), true, true, !due) && !due) tracker.HoldNow();
-                    TooltipHandler.TipRegion(hold, due && m.waitReason != null ? "CC_Meeting_Waiting".Translate(m.waitReason).ToString() : "CC_Meeting_HoldNow_Tip".Translate().ToString());
-                    if (Widgets.ButtonText(off, "CC_Meeting_PutOffDayButton".Translate())) tracker.PutOffADay();
+                    bool canHold = tracker.CanHoldNow, canPutOff = tracker.CanPutOffADay;
+                    if (Widgets.ButtonText(hold, "CC_Meeting_HoldNow".Translate(), true, true, canHold) && canHold) tracker.HoldNow();
+                    string holdTip = due && m.waitReason != null ? "CC_Meeting_Waiting".Translate(m.waitReason).ToString()
+                        : !due && !canHold ? "CC_Meeting_HoldNow_Night".Translate().ToString() : "CC_Meeting_HoldNow_Tip".Translate().ToString();
+                    TooltipHandler.TipRegion(hold, holdTip);
+                    if (Widgets.ButtonText(off, "CC_Meeting_PutOffDayButton".Translate(), true, true, canPutOff) && canPutOff) tracker.PutOffADay();
                     TooltipHandler.TipRegion(off, "CC_Meeting_PutOffDayButton_Tip".Translate());
                 }
                 else if (inSession)

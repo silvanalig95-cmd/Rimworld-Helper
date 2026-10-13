@@ -255,7 +255,8 @@ namespace ColonyCouncil
         public void Talk(Lord lord)
         {
             int now = Find.TickManager.TicksGame;
-            var here = lord.ownedPawns.Where(p => p.Spawned && !p.Downed && p.Map == map && MeetingAttendance.IsMember(p) && GatheringsUtility.InGatheringArea(p.Position, spot, map)).ToList();
+            var here = lord.ownedPawns.Where(p => p.Spawned && !p.Downed && !p.Drafted && !p.InMentalState && p.Map == map && MeetingAttendance.IsMember(p)
+                                                   && GatheringsUtility.InGatheringArea(p.Position, spot, map)).ToList();
             foreach (var p in here) Arrive(p, now);
             if (here.Count == 0) return;
             talkCount++;
@@ -319,6 +320,8 @@ namespace ColonyCouncil
             {
                 bool abrasive = speaker.story?.traits?.HasTrait(TraitDefOf.Abrasive) ?? false;
                 var interaction = pool == "Council_Pool_MeetingDoubt" && abrasive ? DefDatabase<InteractionDef>.GetNamedSilentFail("Insult") : InteractionDefOf.Chitchat;
+                // Never anything that could start a fist fight: nobody gets hurt over a meeting.
+                if (interaction != null && interaction.socialFightBaseChance > 0f) interaction = InteractionDefOf.Chitchat;
                 if (interaction != null) speaker.interactions?.TryInteractWith(target.proposer, interaction);
             }
         }
@@ -342,7 +345,7 @@ namespace ColonyCouncil
         {
             var inv = InviteOf(p);
             if (inv == null) return invites.Count == 0;
-            if (inv.Arrived) return false;
+            if (inv.Arrived || inv.released) return false;
             if (!inv.Expected) return inv.status == MeetingStatus.Busy && inv.excused == false && p.Spawned && p.Map == map;
             return p.Spawned && p.Map == map && !p.Downed && !p.Drafted;
         }
@@ -440,13 +443,13 @@ namespace ColonyCouncil
             calledOff.AddTrigger(new Trigger_PawnKilled());
             // Third, where the chair leaving used to be, so saves made mid-meeting load their timer into the right trigger.
             calledOff.AddTrigger(new Trigger_Memo(CallOffMemo));
-            calledOff.AddPreAction(new TransitionAction_Custom(() => CouncilGameComponent.Instance?.ambitions.EndMeeting(false)));
+            calledOff.AddPreAction(new TransitionAction_Custom(() => CouncilGameComponent.Instance?.ambitions.EndMeetingSafely(false)));
             graph.AddTransition(calledOff);
 
             timeoutTrigger = GetTimeoutTrigger();
             var done = new Transition(meet, end);
             done.AddTrigger(timeoutTrigger);
-            done.AddPreAction(new TransitionAction_Custom(() => CouncilGameComponent.Instance?.ambitions.EndMeeting(true)));
+            done.AddPreAction(new TransitionAction_Custom(() => CouncilGameComponent.Instance?.ambitions.EndMeetingSafely(true)));
             graph.AddTransition(done);
             return graph;
         }
@@ -467,25 +470,46 @@ namespace ColonyCouncil
 
         public override string GetReport(Pawn pawn) => "CC_Meeting_Report".Translate();
 
+        /// <summary>
+        /// When the meeting ends, only its own standing about is stopped. Someone called to it who is still finishing
+        /// something of their own (a load in their arms, ordinary work they weren't pulled from) carries on, rather than
+        /// dropping it where they stand.
+        /// </summary>
+        public override bool EndPawnJobOnCleanup(Pawn p)
+        {
+            var job = p?.CurJob;
+            if (job != null && (p.carryTracker?.CarriedThing != null || job.workGiverDef != null || job.playerForced)) return false;
+            return base.EndPawnJobOnCleanup(p);
+        }
+
         /// <summary>Sent to the lord to end the meeting from outside (it's then wrapped up like any meeting called off).</summary>
         public const string CallOffMemo = "CouncilMeetingCalledOff";
 
         /// <summary>
-        /// Called off by danger, or when there's nobody left to keep order. A chair who is drafted, ordered elsewhere or
-        /// leaves hands over to someone at the meeting.
+        /// Called off by any danger (vanilla gatherings wait for a serious one; nobody stands about talking with a threat
+        /// on the map), or when there's nobody left to keep order. A chair who is drafted, ordered elsewhere or leaves
+        /// hands over to someone at the meeting. A fault here calls it off rather than recurring every second.
         /// </summary>
         protected override bool ShouldBeCalledOff()
         {
-            var map = Map;
-            if (map == null) return true;
-            if (!GatheringsUtility.AcceptableGameConditionsToContinueGathering(map)) return true;
-            if (ChairCanGoOn(organizer)) return false;
-            return !HandOverChair();
+            try
+            {
+                var map = Map;
+                if (map == null) return true;
+                if (map.dangerWatcher.DangerRating != StoryDanger.None || !GatheringsUtility.AcceptableGameConditionsToContinueGathering(map)) return true;
+                if (ChairCanGoOn(organizer)) return false;
+                return !HandOverChair();
+            }
+            catch (System.Exception e)
+            {
+                CouncilLog.ErrorOnce("meeting call-off check", e);
+                return true;
+            }
         }
 
         private bool ChairCanGoOn(Pawn p) =>
             p != null && !p.Dead && p.Spawned && p.Map == Map && lord != null && lord.ownedPawns.Contains(p) && !p.Drafted && !p.Downed
-            && GatheringsUtility.PawnCanStartOrContinueGathering(p);
+            && !p.InMentalState && GatheringsUtility.PawnCanStartOrContinueGathering(p);
 
         private bool HandOverChair()
         {
@@ -503,21 +527,34 @@ namespace ColonyCouncil
         }
 
         /// <summary>
-        /// Who drifts over on their own: not those who didn't bother or were too far off to be called, and not anyone
-        /// without a say. Everyone else may still come when they're free (late, but they come).
+        /// Who drifts over on their own: not those who didn't bother or were too far off to be called, not those the
+        /// player drafted or sent elsewhere during it, and not anyone without a say. Everyone else may still come when
+        /// they're free (late, but they come).
         /// </summary>
         public override float VoluntaryJoinPriorityFor(Pawn p)
         {
-            var m = CouncilGameComponent.Instance?.ambitions.meeting;
-            if (m != null && m.invites.Count > 0)
+            // Asked by every colonist's think tree whenever they look for something to do: a fault is logged once and
+            // they're judged as for any gathering.
+            try
             {
-                var inv = m.InviteOf(p);
-                if (inv == null ? !MeetingAttendance.IsMember(p) : inv.status == MeetingStatus.Skipped || inv.status == MeetingStatus.TooFar) return 0f;
-                return base.VoluntaryJoinPriorityFor(p);
+                var m = CouncilGameComponent.Instance?.ambitions.meeting;
+                if (m != null && m.invites.Count > 0)
+                {
+                    var inv = m.InviteOf(p);
+                    if (inv == null ? !MeetingAttendance.IsMember(p) : inv.released || inv.status == MeetingStatus.Skipped || inv.status == MeetingStatus.TooFar)
+                        return 0f;
+                }
+                else
+                {
+                    // A meeting begun before attendance was kept: bitter colonists mostly don't bother turning up.
+                    var comp = CouncilGameComponent.Instance;
+                    if (comp != null && comp.standings.LevelOf(p) == TrustLevel.Bitter && (p.thingIDNumber + durationTicks) % 3 != 0) return 0f;
+                }
             }
-            // A meeting begun before attendance was kept: bitter colonists mostly don't bother turning up.
-            var comp = CouncilGameComponent.Instance;
-            if (comp != null && comp.standings.LevelOf(p) == TrustLevel.Bitter && (p.thingIDNumber + durationTicks) % 3 != 0) return 0f;
+            catch (System.Exception e)
+            {
+                CouncilLog.ErrorOnce("meeting join", e);
+            }
             return base.VoluntaryJoinPriorityFor(p);
         }
     }

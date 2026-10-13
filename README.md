@@ -292,16 +292,16 @@ colonist's page in the Roster. The journals of the dead and departed are kept.
 ### Ambition: council meetings
 About once a quadrum the council actually **meets**, and it's **announced first**: who called it, where (around
 the dining table, in the rec room, by the campfire or in the open), when (six in the evening as a rule; an hour
-or two from now when you call one from the Ambition page) and what's on the table. The World page's coming-up
-list and the Ambition page count down to it, a reminder comes an hour before, and the Ambition page can hold it
-now or put it off a day.
+or two from now when you call one from the Ambition page, or the next evening if that would be at night) and
+what's on the table. The World page's coming-up list and the Ambition page count down to it, a reminder comes an
+hour before, and the Ambition page can hold it now or put it off a day. No meeting starts at night.
 
 At the set time the chair **calls everyone** with a say. Colonists put down ordinary work and walk over, like
 party guests, and sleepers are woken by someone on the way (they come late and grumble a little). No colonist is
 pulled from tending, rescues, surgery, firefighting or feeding someone, nobody is called while there's danger, and
-children, the sick and the worn out are left to sleep. Drafting someone takes them out of the meeting at once.
-Whoever is away (a caravan, an outpost, another map), drafted, laid up, too far off to arrive before most of it
-is over, or too bitter to bother, misses it.
+children, the sick and the worn out are left to sleep. Drafting someone or giving them an order takes them out of
+the meeting at once, and it doesn't call them back. Whoever is away (a caravan, an outpost, another map), drafted,
+laid up, too far off to arrive before most of it is over, or too bitter to bother, misses it.
 
 Three colonists pitch an ambition out loud; an idea whose proposer isn't there is read out for them and gets
 less support. Others back them, doubt them or wander off topic, and when the meeting ends everyone who came

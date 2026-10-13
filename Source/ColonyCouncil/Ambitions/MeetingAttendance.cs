@@ -45,6 +45,8 @@ namespace ColonyCouncil
         /// <summary>Who went to wake them (null: woken without anyone walking over).</summary>
         public Pawn waker;
         public bool wakeDone;
+        /// <summary>The player drafted them or gave them an order during the meeting: let go, and not called back.</summary>
+        public bool released;
 
         public bool Arrived => arrivedTick >= 0;
 
@@ -61,6 +63,7 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref arrivedTick, "arrivedTick", -1);
             Scribe_References.Look(ref waker, "waker");
             Scribe_Values.Look(ref wakeDone, "wakeDone");
+            Scribe_Values.Look(ref released, "released");
         }
     }
 
@@ -182,14 +185,18 @@ namespace ColonyCouncil
             {
                 string why = null;
                 if (!callFromWork || !CanBeWoken(p, out why)) return Sleeping(inv, why ?? "CC_MeetWhy_Asleep".Translate());
+                // Nobody is woken for a meeting they can't get to, or would only reach once most of it is over.
+                inv.eta = EtaTicks(p, m.spot) + WakeUpTicks;
+                if (m.spot.IsValid && (m.spot.IsForbidden(p) || !p.CanReach(m.spot, PathEndMode.Touch, Danger.Deadly) || MeetingMath.TooFar(inv.eta)))
+                    return Sleeping(inv, "CC_MeetWhy_Asleep".Translate());
                 if (WouldSkip(p)) return Skip(inv);
                 inv.status = MeetingStatus.Woken;
                 inv.reason = "CC_MeetWhy_Asleep".Translate();
-                inv.eta = EtaTicks(p, m.spot) + WakeUpTicks;
                 return inv;
             }
             string urgent = UrgentWork(p) ?? OtherLord(p);
-            if (urgent != null) return Busy(inv, urgent, false);
+            // A patient on the way to bed is excused, like one already lying there.
+            if (urgent != null) return Busy(inv, urgent, PatientJob(p.CurJob));
             if (p.CurJob != null && p.CurJob.playerForced) return Busy(inv, "CC_MeetWhy_Ordered".Translate(), false);
             if (WouldSkip(p)) return Skip(inv);
             if (m.spot.IsValid && m.spot.IsForbidden(p)) return Busy(inv, "CC_MeetWhy_Restricted".Translate(), false);
@@ -205,6 +212,29 @@ namespace ColonyCouncil
             // Remembered for the letter, in case they keep at it and never come.
             inv.reason = Activity(p);
             return inv;
+        }
+
+        /// <summary>
+        /// <see cref="Classify"/>, with a fault (a modded colonist in an odd state) logged once instead of stopping the call
+        /// for everyone: the chair still comes, anyone else is counted busy and excused.
+        /// </summary>
+        public static MeetingInvite ClassifySafely(Pawn p, CouncilMeeting m, bool callFromWork, bool isChair)
+        {
+            try
+            {
+                return Classify(p, m, callFromWork, isChair);
+            }
+            catch (System.Exception e)
+            {
+                CouncilLog.ErrorOnce("meeting attendance", e);
+                var inv = new MeetingInvite { pawn = p };
+                if (isChair)
+                {
+                    inv.status = MeetingStatus.Coming;
+                    return inv;
+                }
+                return Busy(inv, "CC_MeetWhy_Elsewhere".Translate(), true);
+            }
         }
 
         private static MeetingInvite Busy(MeetingInvite inv, string reason, bool excused)
@@ -244,19 +274,25 @@ namespace ColonyCouncil
         }
 
         /// <summary>
-        /// Ordinary sleep that someone may wake them from: not a child, not sick, not deathrest or anything else that
-        /// only looks like sleep, and not so exhausted they'd go straight back to bed.
+        /// Ordinary sleep that someone may wake them from: not a child, not sick, not in a mental state, not deathrest or
+        /// anything else that only looks like sleep, and not so tired that staying up through the meeting would leave them
+        /// exhausted (the meeting comes before sleep for those it has called, as a party does). Checked when they're
+        /// called and again when someone reaches them.
         /// </summary>
         private static bool CanBeWoken(Pawn p, out string why)
         {
             why = null;
-            if (p.DevelopmentalStage.Juvenile()) return false;
-            if (p.CurJobDef != JobDefOf.LayDown) return false;
+            if (p.DevelopmentalStage.Juvenile() || p.InMentalState) return false;
+            // Sent to bed by the player: they stay there.
+            if (p.CurJobDef != JobDefOf.LayDown || p.CurJob.playerForced) return false;
             var bed = RestUtility.CurrentBed(p);
-            if (bed != null && bed.Medical) return false;
-            if (HealthAIUtility.ShouldSeekMedicalRest(p)) return false;
+            if ((bed != null && bed.Medical) || HealthAIUtility.ShouldSeekMedicalRest(p))
+            {
+                why = "CC_MeetWhy_AsleepSick".Translate();
+                return false;
+            }
             var rest = p.needs?.rest;
-            if (rest != null && rest.CurCategory == RestCategory.Exhausted)
+            if (rest != null && rest.CurCategory >= RestCategory.VeryTired)
             {
                 why = "CC_MeetWhy_AsleepExhausted".Translate();
                 return false;
@@ -297,7 +333,30 @@ namespace ColonyCouncil
             if (def == JobDefOf.FeedPatient || def == JobDefOf.Breastfeed || def == JobDefOf.BottleFeedBaby || def == JobDefOf.BreastfeedCarryToMom
                 || def == JobDefOf.CarryToMomAfterBirth) return "CC_MeetWhy_Feeding".Translate(NameOf(target ?? carried));
             if (carried != null) return "CC_MeetWhy_Carrying".Translate(NameOf(carried));
+            // On the way to pick someone up and carry them (a downed pawn, a prisoner, an entity).
+            if (def == JobDefOf.Capture || def == JobDefOf.TakeWoundedPrisonerToBed || def == JobDefOf.TakeToBedToOperate || def == JobDefOf.EscortPrisonerToBed
+                || def == JobDefOf.DeliverToBed || def == JobDefOf.CarryToCryptosleepCasket || def == JobDefOf.CarryDownedPawnToExit
+                || def == JobDefOf.CarryDownedPawnToPortal || def == JobDefOf.CarryToEntityHolder || def == JobDefOf.TransferBetweenEntityHolders
+                || def == JobDefOf.CarryToEntityHolderAlreadyHolding || def == JobDefOf.CarryToBiosculpterPod || def == JobDefOf.CarryToBuilding)
+                return "CC_MeetWhy_Carrying".Translate(NameOf(target));
+            // In the middle of a talk with a prisoner or slave (a recruitment attempt can't be picked up again for hours).
+            if (def == JobDefOf.PrisonerAttemptRecruit || def == JobDefOf.PrisonerConvert || def == JobDefOf.PrisonerEnslave || def == JobDefOf.PrisonerReduceWill
+                || def == JobDefOf.PrisonerInterrogateIdentity || def == JobDefOf.SlaveSuppress) return "CC_MeetDo_Warden".Translate();
+            // Keeping a contained entity quiet.
+            if (def == JobDefOf.ActivitySuppression) return "CC_MeetWhy_Elsewhere".Translate();
+            // On the way to bed for treatment or bed rest.
+            if (PatientJob(job)) return "CC_MeetWhy_Recovering".Translate();
+            // Taking a baby out of the cold or heat, or anything else the game treats as an emergency.
+            if (def == JobDefOf.BringBabyToSafety || def == JobDefOf.BringBabyToSafetyUnforced || (job.workGiverDef?.emergency ?? false))
+                return "CC_MeetWhy_Elsewhere".Translate();
             return null;
+        }
+
+        /// <summary>A job from the patient work types: going to bed to be treated or to recover.</summary>
+        private static bool PatientJob(Job job)
+        {
+            string wt = job?.workGiverDef?.workType?.defName;
+            return wt == "Patient" || wt == "PatientBedRest";
         }
 
         /// <summary>Already taken up by another lord: a ritual, a caravan forming, another gathering.</summary>
@@ -336,11 +395,13 @@ namespace ColonyCouncil
         /// <summary>What they were doing and where ("cutting wood on the far side of the map").</summary>
         private static string Whereabouts(Pawn p, IntVec3 spot, Map map)
         {
-            string act = Activity(p) ?? "CC_MeetDo_Out".Translate();
+            string act = Activity(p);
             string place = null;
             float size = Mathf.Max(map.Size.x, map.Size.z);
             if (p.Position.DistanceTo(spot) > size * 0.45f) place = "CC_MeetWhere_FarSide".Translate();
             else if (map.areaManager?.Home != null && !map.areaManager.Home[p.Position]) place = "CC_MeetWhere_Outside".Translate();
+            // "on the far side of the map" alone reads better than "out on the far side of the map".
+            if (act == null) return place ?? "CC_MeetDo_Out".Translate();
             return place == null ? act : act + " " + place;
         }
 
@@ -402,19 +463,35 @@ namespace ColonyCouncil
 
         private static bool CanWake(Pawn w, Pawn sleeper) =>
             w.Spawned && w.Map == sleeper.Map && w.Awake() && !w.Downed && !w.Drafted && !w.InMentalState && w.jobs != null
-            && !(w.CurJob?.playerForced ?? false) && (w.CurJob == null || w.jobs.IsCurrentJobPlayerInterruptible())
-            && w.Position.DistanceTo(sleeper.Position) <= MaxWakeWalk && w.CanReach(sleeper, PathEndMode.Touch, Danger.Some);
+            && FreeToFetch(w) && w.Position.DistanceTo(sleeper.Position) <= MaxWakeWalk && w.CanReach(sleeper, PathEndMode.Touch, Danger.Some);
 
-        /// <summary>The wake job is still worth finishing: the meeting is on and they're still asleep.</summary>
+        /// <summary>
+        /// Free to go and fetch someone: not carrying anything (it would be dropped where they stand), not eating, not in
+        /// bed, not under orders and not doing anything urgent.
+        /// </summary>
+        private static bool FreeToFetch(Pawn w)
+        {
+            if (w.carryTracker?.CarriedThing != null || w.InBed()) return false;
+            var job = w.CurJob;
+            if (job == null) return true;
+            if (job.playerForced || job.def == JobDefOf.Ingest || !w.jobs.IsCurrentJobPlayerInterruptible()) return false;
+            return UrgentWork(w) == null;
+        }
+
+        /// <summary>
+        /// The wake job is still worth finishing: the meeting is on, the waker still part of it (not drafted or let go) and
+        /// the sleeper still in ordinary sleep.
+        /// </summary>
         public static bool WakeStillWanted(Pawn waker, Pawn sleeper)
         {
             var m = CouncilGameComponent.Instance?.ambitions?.meeting;
             if (m == null || !m.Started || sleeper == null || waker == null) return false;
+            if (waker.Drafted || !(waker.GetLord()?.LordJob is LordJob_CouncilMeeting)) return false;
             // No one is woken while there's danger about.
             if (m.map == null || m.map.dangerWatcher.DangerRating != StoryDanger.None) return false;
             var inv = m.InviteOf(sleeper);
             return inv != null && inv.status == MeetingStatus.Woken && !inv.wakeDone && sleeper.Spawned && sleeper.Map == waker.Map
-                   && !sleeper.Awake() && !sleeper.Downed;
+                   && !sleeper.Awake() && !sleeper.Downed && !sleeper.InMentalState && sleeper.CurJobDef == JobDefOf.LayDown;
         }
 
         /// <summary>The waker reached the bed.</summary>
@@ -428,15 +505,25 @@ namespace ColonyCouncil
         /// <summary>Wakes a sleeper for the meeting and sends them over: a small grumble, and they'll be late.</summary>
         public static void Wake(CouncilMeeting m, MeetingInvite inv, Pawn waker)
         {
-            if (m == null || inv == null) return;
+            if (m == null || inv == null || !m.Started) return;
             inv.wakeDone = true;
             var p = inv.pawn;
             if (p == null || p.Dead || !p.Spawned || p.Map != m.map) return;
+            // The gathering is gone (the meeting is ending): nobody is woken for it.
             var lord = m.Lord;
+            if (lord == null) return;
             bool asleep = !p.Awake();
+            // Only from ordinary sleep: not if they've since gone to a sickbed, into deathrest or a mental state.
+            if (asleep && !CanBeWoken(p, out string why))
+            {
+                inv.status = MeetingStatus.Asleep;
+                inv.excused = true;
+                inv.reason = why ?? "CC_MeetWhy_Asleep".Translate();
+                return;
+            }
             try
             {
-                if (lord != null && p.GetLord() == null && lord.CanAddPawn(p)) lord.AddPawn(p);
+                if (p.GetLord() == null && !p.Drafted && !p.InMentalState && lord.CanAddPawn(p)) lord.AddPawn(p);
                 if (!asleep) return;
                 RestUtility.WakeUp(p);
             }
@@ -457,8 +544,8 @@ namespace ColonyCouncil
         }
 
         /// <summary>
-        /// How much being woken stings: little for the devoted, more for the bitter, more again for the bone-tired and
-        /// for night owls.
+        /// How much being woken stings: little for the devoted, more for the bitter, more again for the tired and for
+        /// night owls. (The very tired aren't woken at all.)
         /// </summary>
         private static float WokenFactor(Pawn p, CouncilGameComponent comp)
         {
@@ -472,7 +559,7 @@ namespace ColonyCouncil
                 default: f = 0.75f; break;
             }
             var rest = p.needs?.rest;
-            if (rest != null && rest.CurCategory == RestCategory.VeryTired) f *= 1.4f;
+            if (rest != null && rest.CurCategory >= RestCategory.Tired) f *= 1.4f;
             var owl = DefDatabase<TraitDef>.GetNamedSilentFail("NightOwl");
             if (owl != null && (p.story?.traits?.HasTrait(owl) ?? false)) f *= 1.3f;
             return Mathf.Clamp(f, 0.5f, 1.25f);
@@ -503,7 +590,7 @@ namespace ColonyCouncil
                     inv.status = MeetingStatus.Coming;
                     inv.waker = null;
                     var lord = m.Lord;
-                    if (lord != null && p.GetLord() == null && lord.CanAddPawn(p)) lord.AddPawn(p);
+                    if (lord != null && p.GetLord() == null && !p.Drafted && !p.InMentalState && lord.CanAddPawn(p)) lord.AddPawn(p);
                     continue;
                 }
                 var w = inv.waker;
@@ -514,33 +601,62 @@ namespace ColonyCouncil
         }
 
         /// <summary>
-        /// Drafted colonists and those given an order leave the meeting at once: the player always comes first. (The game
-        /// already lets drafted colonists go from gatherings; this makes sure of it.)
+        /// Drafted colonists and those given an order leave the meeting at once, and it doesn't call them back (they don't
+        /// drift over again once free, and nobody wakes them): the player always comes first. Anyone in a mental state
+        /// leaves the gathering too. (The game already lets drafted colonists go from gatherings; this makes sure of it.)
         /// </summary>
         public static void ReleaseCalledAway(CouncilMeeting m)
         {
-            var lord = m?.Lord;
-            if (lord == null) return;
-            foreach (var p in lord.ownedPawns.ToList())
+            if (m == null) return;
+            var lord = m.Lord;
+            foreach (var inv in m.invites)
             {
+                var p = inv.pawn;
+                if (inv.released || p == null) continue;
+                // Part of the meeting: summoned to it (called from work, or being woken), there already, or joined of their
+                // own accord. Someone merely invited who hasn't come yet is left to come when free, as for a party.
+                bool inIt = inv.Arrived || inv.status == MeetingStatus.Coming || inv.status == MeetingStatus.Woken || (lord != null && lord.ownedPawns.Contains(p));
+                if (!inIt) continue;
+                if (p.Drafted) Release(inv, "CC_MeetWhy_Drafted".Translate());
+                else if (p.CurJob != null && p.CurJob.playerForced) Release(inv, "CC_MeetWhy_Ordered".Translate());
+            }
+            if (lord == null) return;
+            // Backwards, since each one let go leaves the list (and the last one leaving ends the lord).
+            for (int i = lord.ownedPawns.Count - 1; i >= 0; i--)
+            {
+                if (i >= lord.ownedPawns.Count) continue;
+                var p = lord.ownedPawns[i];
                 if (p == null) continue;
                 if (p.Drafted) lord.Notify_PawnLost(p, PawnLostCondition.Drafted);
                 else if (p.CurJob != null && p.CurJob.playerForced) lord.Notify_PawnLost(p, PawnLostCondition.ForcedByPlayerAction);
+                else if (p.InMentalState) lord.Notify_PawnLost(p, PawnLostCondition.InMentalState);
             }
+        }
+
+        /// <summary>Let go by the player. Someone who hadn't got there yet misses it for that reason, as if drafted or busy when called.</summary>
+        private static void Release(MeetingInvite inv, string reason)
+        {
+            inv.released = true;
+            if (inv.Arrived) return;
+            inv.status = MeetingStatus.Busy;
+            inv.reason = reason;
+            inv.excused = false;
         }
 
         // ---------------- Afterwards ----------------
 
         /// <summary>
-        /// Those who missed it through work or travel feel left out (the sick, the sleeping and those who didn't bother
-        /// don't). Their own turned-down ideas are dealt with when the letter is answered.
+        /// Those who missed it through work or travel feel left out (the sick, the sleeping, those woken for it who still
+        /// didn't make it, and those who didn't bother don't). Their own turned-down ideas are dealt with when the letter
+        /// is answered.
         /// </summary>
         public static void AbsenteeEffects(CouncilMeeting m)
         {
             foreach (var inv in m.invites)
             {
                 var p = inv.pawn;
-                if (inv.Arrived || p == null || p.Dead || inv.status == MeetingStatus.Skipped || inv.excused) continue;
+                if (inv.Arrived || m.Present(p) || p == null || p.Dead || inv.status == MeetingStatus.Skipped || inv.status == MeetingStatus.Woken
+                    || inv.excused) continue;
                 if (p.needs?.mood != null) CouncilGameComponent.GiveThought(p, CouncilDefOf.Council_MissedMeeting);
             }
         }
@@ -566,7 +682,8 @@ namespace ColonyCouncil
                 var p = inv.pawn;
                 if (p == null) continue;
                 string name = p.LabelShort;
-                if (inv.Arrived)
+                // Counted as there: arrived, or the one the meeting fell back on when nobody was noted arriving.
+                if (inv.Arrived || m.Present(p))
                 {
                     if (inv.status == MeetingStatus.Woken) drowsy.Add(name);
                     else if (m.IsLate(inv)) late.Add(name);
@@ -625,6 +742,10 @@ namespace ColonyCouncil
         /// </summary>
         public static int NextEvening(Map map, int now, int lead) =>
             now + Mathf.RoundToInt(MeetingMath.HoursToEvening(GenLocalDate.HourFloat(map), lead / (float)GenDate.TicksPerHour) * GenDate.TicksPerHour);
+
+        /// <summary>The local hour at <paramref name="tick"/> falls in the night.</summary>
+        public static bool AtNight(Map map, int now, int tick) =>
+            MeetingMath.IsNight(GenLocalDate.HourFloat(map) + (tick - now) / (float)GenDate.TicksPerHour);
 
         /// <summary>"this evening", "tomorrow evening", "in about 2 hours".</summary>
         public static string When(Map map, int now, int tick)
