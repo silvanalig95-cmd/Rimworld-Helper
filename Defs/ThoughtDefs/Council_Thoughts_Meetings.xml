@@ -42,7 +42,7 @@
     </stages>
   </ThoughtDef>
 
-  <!-- Scaled when given: less for those devoted to the council, more for the bitter, the bone-tired and night owls. -->
+  <!-- Scaled when given: less for those devoted to the council, more for the bitter, the tired and night owls. -->
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_WokenForMeeting</defName>
     <durationDays>0.5</durationDays>

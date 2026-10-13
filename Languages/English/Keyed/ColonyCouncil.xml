@@ -365,7 +365,7 @@
   <CC_MeetWhy_Asleep>asleep</CC_MeetWhy_Asleep>
   <CC_MeetWhy_AsleepSick>asleep in a sickbed</CC_MeetWhy_AsleepSick>
   <CC_MeetWhy_AsleepWornOut>asleep, worn out</CC_MeetWhy_AsleepWornOut>
-  <CC_MeetWhy_AsleepExhausted>asleep, too exhausted to wake</CC_MeetWhy_AsleepExhausted>
+  <CC_MeetWhy_AsleepExhausted>asleep, too tired to wake</CC_MeetWhy_AsleepExhausted>
   <CC_MeetWhy_Ordered>busy with a job that couldn't wait</CC_MeetWhy_Ordered>
   <CC_MeetWhy_Restricted>kept to another part of the colony</CC_MeetWhy_Restricted>
   <CC_MeetWhy_CutOff>cut off from the rest of the colony</CC_MeetWhy_CutOff>

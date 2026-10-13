@@ -245,19 +245,24 @@ namespace ColonyCouncil
         }
 
         /// <summary>
-        /// Ordinary sleep that someone may wake them from: not a child, not sick, not deathrest or anything else that
-        /// only looks like sleep, and not so exhausted they'd go straight back to bed.
+        /// Ordinary sleep that someone may wake them from: not a child, not sick, not in a mental state, not deathrest or
+        /// anything else that only looks like sleep, and not so tired that staying up through the meeting would leave them
+        /// exhausted (the meeting comes before sleep for those it has called, as a party does). Checked when they're
+        /// called and again when someone reaches them.
         /// </summary>
         private static bool CanBeWoken(Pawn p, out string why)
         {
             why = null;
-            if (p.DevelopmentalStage.Juvenile()) return false;
+            if (p.DevelopmentalStage.Juvenile() || p.InMentalState) return false;
             if (p.CurJobDef != JobDefOf.LayDown) return false;
             var bed = RestUtility.CurrentBed(p);
-            if (bed != null && bed.Medical) return false;
-            if (HealthAIUtility.ShouldSeekMedicalRest(p)) return false;
+            if ((bed != null && bed.Medical) || HealthAIUtility.ShouldSeekMedicalRest(p))
+            {
+                why = "CC_MeetWhy_AsleepSick".Translate();
+                return false;
+            }
             var rest = p.needs?.rest;
-            if (rest != null && rest.CurCategory == RestCategory.Exhausted)
+            if (rest != null && rest.CurCategory >= RestCategory.VeryTired)
             {
                 why = "CC_MeetWhy_AsleepExhausted".Translate();
                 return false;
@@ -439,7 +444,7 @@ namespace ColonyCouncil
             if (m.map == null || m.map.dangerWatcher.DangerRating != StoryDanger.None) return false;
             var inv = m.InviteOf(sleeper);
             return inv != null && inv.status == MeetingStatus.Woken && !inv.wakeDone && sleeper.Spawned && sleeper.Map == waker.Map
-                   && !sleeper.Awake() && !sleeper.Downed;
+                   && !sleeper.Awake() && !sleeper.Downed && !sleeper.InMentalState && sleeper.CurJobDef == JobDefOf.LayDown;
         }
 
         /// <summary>The waker reached the bed.</summary>
@@ -453,15 +458,25 @@ namespace ColonyCouncil
         /// <summary>Wakes a sleeper for the meeting and sends them over: a small grumble, and they'll be late.</summary>
         public static void Wake(CouncilMeeting m, MeetingInvite inv, Pawn waker)
         {
-            if (m == null || inv == null) return;
+            if (m == null || inv == null || !m.Started) return;
             inv.wakeDone = true;
             var p = inv.pawn;
             if (p == null || p.Dead || !p.Spawned || p.Map != m.map) return;
+            // The gathering is gone (the meeting is ending): nobody is woken for it.
             var lord = m.Lord;
+            if (lord == null) return;
             bool asleep = !p.Awake();
+            // Only from ordinary sleep: not if they've since gone to a sickbed, into deathrest or a mental state.
+            if (asleep && !CanBeWoken(p, out string why))
+            {
+                inv.status = MeetingStatus.Asleep;
+                inv.excused = true;
+                inv.reason = why ?? "CC_MeetWhy_Asleep".Translate();
+                return;
+            }
             try
             {
-                if (lord != null && p.GetLord() == null && lord.CanAddPawn(p)) lord.AddPawn(p);
+                if (p.GetLord() == null && !p.Drafted && !p.InMentalState && lord.CanAddPawn(p)) lord.AddPawn(p);
                 if (!asleep) return;
                 RestUtility.WakeUp(p);
             }
@@ -482,8 +497,8 @@ namespace ColonyCouncil
         }
 
         /// <summary>
-        /// How much being woken stings: little for the devoted, more for the bitter, more again for the bone-tired and
-        /// for night owls.
+        /// How much being woken stings: little for the devoted, more for the bitter, more again for the tired and for
+        /// night owls. (The very tired aren't woken at all.)
         /// </summary>
         private static float WokenFactor(Pawn p, CouncilGameComponent comp)
         {
@@ -497,7 +512,7 @@ namespace ColonyCouncil
                 default: f = 0.75f; break;
             }
             var rest = p.needs?.rest;
-            if (rest != null && rest.CurCategory == RestCategory.VeryTired) f *= 1.4f;
+            if (rest != null && rest.CurCategory >= RestCategory.Tired) f *= 1.4f;
             var owl = DefDatabase<TraitDef>.GetNamedSilentFail("NightOwl");
             if (owl != null && (p.story?.traits?.HasTrait(owl) ?? false)) f *= 1.3f;
             return Mathf.Clamp(f, 0.5f, 1.25f);
@@ -528,7 +543,7 @@ namespace ColonyCouncil
                     inv.status = MeetingStatus.Coming;
                     inv.waker = null;
                     var lord = m.Lord;
-                    if (lord != null && p.GetLord() == null && lord.CanAddPawn(p)) lord.AddPawn(p);
+                    if (lord != null && p.GetLord() == null && !p.Drafted && !p.InMentalState && lord.CanAddPawn(p)) lord.AddPawn(p);
                     continue;
                 }
                 var w = inv.waker;

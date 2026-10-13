@@ -377,6 +377,8 @@ namespace ColonyCouncil
             if (m.Started)
             {
                 MeetingAttendance.ReleaseCalledAway(m);
+                // Letting someone go can end the meeting there and then: nobody is woken for one that's over.
+                if (meeting != m || !m.Started) return;
                 MeetingAttendance.WakeUpkeep(m, now);
                 // The gathering vanished without ending (all its people gone): wrap up, or try again another evening.
                 if (meeting == m && m.Lord == null && now - m.startedTick > 300) EndMeeting(false);
