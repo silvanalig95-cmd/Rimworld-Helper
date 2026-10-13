@@ -290,13 +290,36 @@ corpse nobody has buried yet) becomes the evening's entry. Read them on the Jour
 colonist's page in the Roster. The journals of the dead and departed are kept.
 
 ### Ambition: council meetings
-About once a quadrum, in the evening, the council actually **meets**: colonists gather around the dining
-table, in the rec room, by the campfire or in the open. Three of them pitch an ambition out loud, others back
-them, doubt them or wander off topic, and when the meeting ends everyone who came votes. The decision letter
-shows the votes. Going with the room's favorite pleases its backers; overruling a clear majority costs a
-little trust. 35 ambitions, from *a full larder* and *hold the line* to *clean hands*, *law and order*, *the
-brewmasters*, *stone and mortar*, *a master healer*, *a seat of power* and *school days*. Achieving one lifts
-everyone's mood and trust.
+About once a quadrum the council actually **meets**, and it's **announced first**: who called it, where (around
+the dining table, in the rec room, by the campfire or in the open), when (six in the evening as a rule; an hour
+or two from now when you call one from the Ambition page) and what's on the table. The World page's coming-up
+list and the Ambition page count down to it, a reminder comes an hour before, and the Ambition page can hold it
+now or put it off a day.
+
+At the set time the chair **calls everyone** with a say. Colonists put down ordinary work and walk over, like
+party guests, and sleepers are woken by someone on the way (they come late and grumble a little). No colonist is
+pulled from tending, rescues, surgery, firefighting or feeding someone, nobody is called while there's danger, and
+children, the sick and the worn out are left to sleep. Drafting someone takes them out of the meeting at once.
+Whoever is away (a caravan, an outpost, another map), drafted, laid up, too far off to arrive before most of it
+is over, or too bitter to bother, misses it.
+
+Three colonists pitch an ambition out loud; an idea whose proposer isn't there is read out for them and gets
+less support. Others back them, doubt them or wander off topic, and when the meeting ends everyone who came
+votes (only they do). The decision letter shows the votes and tells who came, who was late, who missed it and
+why. Going with the room's favorite pleases its backers; overruling a clear majority costs a little trust.
+
+- **Thin meetings:** with fewer than half there (and never fewer than two), the meeting is put off once to the
+  next evening; if it's thin again it's decided anyway, by few, and earns less trust.
+- **Missing it:** through work or travel, a small mood dip (-1 for a day). Having your own idea turned down while
+  you were away stings more (-3 for two days, and a little trust). Those who stayed away on purpose shrug it off.
+- **No calm evening:** if the council can't sit down for three evenings running (danger, nowhere to meet), the
+  chair looks the proposals over alone, and everyone else trusts the council a little less for it.
+- With only one colonist, the council "meets" in passing. The setting *Meetings call people from their work*
+  (on by default) can be turned off; then colonists come only when they're free, and attendance is still kept.
+
+35 ambitions, from *a full larder* and *hold the line* to *clean hands*, *law and order*, *the brewmasters*,
+*stone and mortar*, *a master healer*, *a seat of power* and *school days*. Achieving one lifts everyone's mood
+and trust.
 
 ### Build: room plans
 32 ready-made rooms, grouped by purpose: bedrooms of three sizes, barracks, dining room, rec room, kitchen,
@@ -770,7 +793,7 @@ journals, the Story tab and History) or **Important only**.
 - strength of downsides, jealousy and favoritism, wishes after events, reminders, self-help
 - wish frequency, how many can be open at once, how long they last, reward strength, and whether small joys add up
   slowly
-- meeting interval and ambition deadlines
+- meeting interval, ambition deadlines, and whether meetings call people from their work
 - letters vs. messages, floating speech text, alerts
 - where the council button sits in the bottom bar
 - **council life**: decrees, dilemmas, petitions, annals, names, journals, offices, the social web, social
