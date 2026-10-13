@@ -52,33 +52,30 @@ namespace ColonyCouncil
         public bool inWall;
         /// <summary>
         /// Which styles include it: "core" (always), "decor" (comfortable and lavish), "lavish" (lavish only). Empty: decor
-        /// for plant pots, bedside tables, dressers, columns and drapes, core for everything else.
+        /// for plant pots, bedside tables, dressers, columns, drapes, pedestals and rugs, core for everything else.
         /// </summary>
         public string tier;
         /// <summary>A material to prefer (a saved room remembers what it was built of), used when the colony has enough.</summary>
         public string stuff;
 
-        private static readonly HashSet<string> decorRoles = new HashSet<string> { "plantpot", "endtable", "dresser", "column", "drape", "decor" };
-
-        public string Tier => !tier.NullOrEmpty() ? tier : role != null && decorRoles.Contains(role) ? "decor" : "core";
+        public string Tier => TemplateLayout.TierOf(tier, role);
 
         /// <summary>Part of a room in this style. Pieces the room can't do without are always in.</summary>
-        public bool InStyle(RoomStyle style)
-        {
-            if (!optional) return true;
-            switch (Tier)
-            {
-                case "lavish": return style == RoomStyle.Lavish;
-                case "decor": return style != RoomStyle.Spartan;
-                default: return true;
-            }
-        }
+        public bool InStyle(RoomStyle style) => TemplateLayout.InStyle(tier, role, optional, (int)style);
 
         /// <summary>Things that share the same spec are configured together in the planner (all the beds, all the chairs).</summary>
         public string GroupKey => (role ?? "") + "|" + (defs == null ? "" : string.Join(",", defs));
 
         /// <summary>The plant pots the lavish style adds along the walls.</summary>
         public static readonly TemplateThing AutoDecor = new TemplateThing { defs = new List<string> { "PlantPot" }, role = "plantpot", tier = "lavish" };
+
+        /// <summary>The rug the lavish style lays on open floor, where a mod provides one that can be built.</summary>
+        public static readonly TemplateThing AutoRug = new TemplateThing
+        {
+            defs = new List<string> { "DankPyon_DropDownSilkRug3x3c", "AM_MesoamericanRug_Medium", "DankPyon_RugCougar2x2c" },
+            role = "rug",
+            tier = "lavish"
+        };
     }
 
     /// <summary>A simple rectangular room: walls, one door, furniture.</summary>
@@ -110,11 +107,15 @@ namespace ColonyCouncil
         public bool architect = true;
         /// <summary>"lowtech": only for tribal and medieval colonies; "industrial": only once the colony is past that.</summary>
         public string era;
+        /// <summary>The lavish style lays a rug on the open floor if a mod provides one (off for rooms that need the floor clear).</summary>
+        public bool rug = true;
 
         /// <summary>A room the player saved from the map (Your rooms); not a def in the database.</summary>
         [Unsaved] public CustomRoomData custom;
         /// <summary>The wall material a saved room was built of, preferred when there's enough of it.</summary>
         [Unsaved] public string wallStuffHint;
+        /// <summary>What the last <see cref="Resolve"/> had to change to make the layout work (turned or left-out pieces).</summary>
+        [Unsaved] public List<string> layoutNotes = new List<string>();
 
         public int FullWidth => size.x + 2;
         public int FullHeight => size.z + 2;
@@ -197,8 +198,11 @@ namespace ColonyCouncil
                 case "bookcase": return d => d.thingClass != null && typeof(Building_Bookcase).IsAssignableFrom(d.thingClass);
                 case "altar": return d => d.building != null && d.defName.IndexOf("Altar", StringComparison.OrdinalIgnoreCase) >= 0;
                 case "lectern": return d => d.building != null && d.defName.IndexOf("Lectern", StringComparison.OrdinalIgnoreCase) >= 0;
+                case "pew": return d => d.building != null && d.building.isSittable && d.defName.IndexOf("Pew", StringComparison.OrdinalIgnoreCase) >= 0;
                 case "column": return d => d.building != null && d.defName.IndexOf("Column", StringComparison.OrdinalIgnoreCase) >= 0 && d.passability != Traversability.Impassable;
                 case "drape": return d => d.building != null && d.defName.IndexOf("Drape", StringComparison.OrdinalIgnoreCase) >= 0;
+                case "pedestal": return d => d.building != null && (d.defName.IndexOf("Plinth", StringComparison.OrdinalIgnoreCase) >= 0 || d.defName.IndexOf("Pedestal", StringComparison.OrdinalIgnoreCase) >= 0);
+                case "rug": return d => d.building != null && d.passability == Traversability.Standable && d.defName.IndexOf("Rug", StringComparison.OrdinalIgnoreCase) >= 0;
                 case "toolcabinet": return d => d.building != null && d.defName.IndexOf("ToolCabinet", StringComparison.OrdinalIgnoreCase) >= 0;
                 case "stonecutter": return d => d.IsWorkTable && d.AllRecipes != null && d.AllRecipes.Any(r => r.ProducedThingDef?.stuffProps?.categories != null && r.ProducedThingDef.stuffProps.categories.Contains(StuffCategoryDefOf.Stony));
                 case "fabrication": return d => d.IsWorkTable && d.AllRecipes != null && d.AllRecipes.Any(r => r.ProducedThingDef == ThingDefOf.ComponentIndustrial);
@@ -212,6 +216,7 @@ namespace ColonyCouncil
                 case "tradebeacon": return d => d.thingClass != null && typeof(Building_OrbitalTradeBeacon).IsAssignableFrom(d.thingClass);
                 case "washer": return d => HomeLife.ClassIs(d.thingClass, "DubsBadHygiene", "Building_WashingMachine");
                 case "trough": return d => HomeLife.ClassIs(d.thingClass, "DubsBadHygiene", "Building_WaterTrough");
+                case "campfire": return d => d.defName.IndexOf("Campfire", StringComparison.OrdinalIgnoreCase) >= 0 && Avail.IsHeater(d);
                 case "wall": return d => d.IsWall && d.size.x == 1 && d.size.z == 1 && d.MadeFromStuff;
                 case "door": return d => d.IsDoor && d.size.x == 1 && d.size.z == 1;
                 // Mod furniture (toilets, baths, sauna heaters): Integrations/HomeLife.cs.
@@ -228,10 +233,12 @@ namespace ColonyCouncil
         };
 
         /// <summary>
-        /// Picks concrete furniture for this colony: the first preferred def it can build that fits, else
-        /// anything with the same purpose and footprint. Missing optional pieces are dropped, and so are pieces the chosen
-        /// style leaves out; the lavish style adds plant pots along free stretches of wall. The planner's choices (another
-        /// variant, another material, the style) are applied when <paramref name="config"/> is given.
+        /// Picks concrete furniture for this colony: the first preferred def it can build that fits, else anything with
+        /// the same purpose and footprint. Missing optional pieces are dropped, and so are pieces the chosen style leaves
+        /// out. Then the layout is checked as a whole (<see cref="TemplateLayout.Arrange"/>): a piece whose work spot would
+        /// face a wall is turned, one that fits nowhere is left out. The lavish style adds plant pots along free stretches
+        /// of wall and a rug. The planner's choices (another variant, another material, the style, the door) are applied
+        /// when <paramref name="config"/> is given.
         /// </summary>
         public List<ResolvedThing> Resolve(Map map, out List<string> missing, RoomPlanConfig config = null)
         {
@@ -245,11 +252,12 @@ namespace ColonyCouncil
                 groupCounts.TryGetValue(t.GroupKey, out int n);
                 groupCounts[t.GroupKey] = n + 1;
             }
+            var picked = new List<(TemplateThing t, ThingDef def, int slot)>();
             for (int i = 0; i < things.Count; i++)
             {
                 var t = things[i];
                 if (!t.InStyle(style)) continue;
-                ThingDef pick = DefaultPick(t, map, out CellRect rect);
+                ThingDef pick = DefaultPick(t, map);
                 if (pick == null)
                 {
                     if (!t.optional)
@@ -260,24 +268,57 @@ namespace ColonyCouncil
                     continue;
                 }
                 if (config != null && config.variant.TryGetValue(t.GroupKey, out var chosen) && chosen != pick
-                    && Avail.CanBuild(chosen, map) && Fits(t, chosen, out var chosenRect))
-                {
+                    && Avail.CanBuild(chosen, map) && Fits(t, chosen))
                     pick = chosen;
-                    rect = chosenRect;
-                }
+                picked.Add((t, pick, i));
+            }
+
+            int door = config != null ? config.DoorX(this) : DoorX;
+            var pieces = picked.Select(p => PieceFor(p.t, p.def, p.slot)).ToList();
+            layoutNotes = TemplateLayout.Arrange(size.x, size.z, door, pieces);
+            for (int i = 0; i < picked.Count; i++)
+            {
+                var piece = pieces[i];
+                if (piece.dropped) continue;
+                var (t, def, slot) = picked[i];
                 list.Add(new ResolvedThing
                 {
-                    def = pick,
-                    stuff = StuffFor(t, pick, map, config, groupCounts.TryGetValue(t.GroupKey, out int units) ? units : 1),
-                    rect = rect,
-                    rot = t.rot,
+                    def = def,
+                    stuff = StuffFor(t, def, map, config, groupCounts.TryGetValue(t.GroupKey, out int units) ? units : 1),
+                    rect = new CellRect(piece.minX, piece.minZ, piece.w, piece.h),
+                    rot = new Rot4(piece.facing),
                     inWall = t.inWall,
                     group = t.GroupKey,
-                    slot = i
+                    slot = slot
                 });
             }
-            if (style == RoomStyle.Lavish && missing.Count == 0) AddDecor(list, map, config);
+            if (style == RoomStyle.Lavish && missing.Count == 0) AddDecor(list, pieces.Where(p => !p.dropped).ToList(), map, config, door);
             return list;
+        }
+
+        /// <summary>The layout rules' view of a piece: its size, facing rules and work spots.</summary>
+        public static TemplateLayout.Piece PieceFor(TemplateThing t, ThingDef d, int slot)
+        {
+            var p = new TemplateLayout.Piece
+            {
+                slot = slot,
+                x = t.pos.x,
+                z = t.pos.z,
+                rot = t.rot.AsInt,
+                sizeX = d.size.x,
+                sizeZ = d.size.z,
+                rotatable = d.rotatable,
+                passable = IsPassable(d),
+                optional = t.optional,
+                inWall = t.inWall,
+                isDoor = d.IsDoor,
+                role = t.role
+            };
+            if (d.hasInteractionCell) p.spots.Add((d.interactionCellOffset.x, d.interactionCellOffset.z));
+            if (d.multipleInteractionCellOffsets != null)
+                foreach (var o in d.multipleInteractionCellOffsets)
+                    if (!p.spots.Contains((o.x, o.z))) p.spots.Add((o.x, o.z));
+            return p;
         }
 
         /// <summary>
@@ -292,10 +333,10 @@ namespace ColonyCouncil
                 && (config.pickedNow.Contains(key) || MaterialPicker.Affordable(pick, s, units, map)))
                 return s;
             // Partition walls and inner doors match the room's own.
-            if (config != null && t.role == "wall")
+            if (config != null && (t.role == "wall" || t.role == "door"))
             {
                 var w = config.WallStuff(this, map);
-                if (w != null && Avail.StuffAllowed(pick, w)) return w;
+                if (w != null && Avail.StuffAllowed(pick, w) && MaterialPicker.Allowed(w, t.role == "wall" ? MaterialUse.Wall : MaterialUse.Door)) return w;
             }
             if (!t.stuff.NullOrEmpty())
             {
@@ -306,29 +347,43 @@ namespace ColonyCouncil
             return MaterialPicker.Pick(pick, map, units, use);
         }
 
-        /// <summary>The lavish style: plant pots in free corners and along walls, never in the way of the door, a work spot or a bed.</summary>
-        private void AddDecor(List<ResolvedThing> list, Map map, RoomPlanConfig config)
+        /// <summary>
+        /// The lavish style: a rug on open floor where a mod provides one, and plant pots in free corners and along walls,
+        /// never in the way of the door, a work spot or a bed.
+        /// </summary>
+        private void AddDecor(List<ResolvedThing> list, List<TemplateLayout.Piece> pieces, Map map, RoomPlanConfig config, int door)
         {
-            var pot = DefaultPick(TemplateThing.AutoDecor, map, out _);
-            if (pot == null || pot.size.x != 1 || pot.size.z != 1) return;
-            int door = config != null ? config.DoorX(this) : DoorX;
-            var boxes = new List<TemplateLayout.Box>();
-            foreach (var r in list)
+            if (rug)
             {
-                if (r.inWall) continue;
-                var box = new TemplateLayout.Box(r.rect.minX, r.rect.minZ, r.rect.Width, r.rect.Height, IsPassable(r.def));
-                if (r.def.hasInteractionCell)
+                var rugDef = DefaultPick(TemplateThing.AutoRug, map);
+                if (rugDef != null && TemplateLayout.RugSpot(size.x, size.z, door, pieces, rugDef.size.x, rugDef.size.z, out int rx, out int rz))
                 {
-                    var root = RootOf(r);
-                    TemplateLayout.RotateOffset(r.def.interactionCellOffset.x, r.def.interactionCellOffset.z, r.rot.AsInt, out int ox, out int oz);
-                    box.ix = root.x + ox;
-                    box.iz = root.z + oz;
+                    var rugPiece = PieceFor(TemplateThing.AutoRug, rugDef, -1);
+                    rugPiece.minX = rx;
+                    rugPiece.minZ = rz;
+                    rugPiece.w = rugDef.size.x;
+                    rugPiece.h = rugDef.size.z;
+                    rugPiece.facing = 0;
+                    if (TemplateLayout.RootFor(rx, rz, rugPiece.w, rugPiece.h, 0, rugDef.size.x, rugDef.size.z, out _, out _))
+                    {
+                        pieces.Add(rugPiece);
+                        list.Add(new ResolvedThing
+                        {
+                            def = rugDef,
+                            stuff = rugDef.MadeFromStuff ? StuffFor(TemplateThing.AutoRug, rugDef, map, config, 1) : null,
+                            rect = new CellRect(rx, rz, rugPiece.w, rugPiece.h),
+                            rot = Rot4.North,
+                            group = TemplateThing.AutoRug.GroupKey,
+                            slot = -1
+                        });
+                    }
                 }
-                boxes.Add(box);
             }
+            var pot = DefaultPick(TemplateThing.AutoDecor, map);
+            if (pot == null || pot.size.x != 1 || pot.size.z != 1) return;
             int existing = list.Count(r => Avail.IsPlantPot(r.def));
             int max = Mathf.Clamp(size.x * size.z / 12, 1, 4) - existing / 2;
-            var spots = TemplateLayout.DecorSpots(size.x, size.z, door, boxes, max);
+            var spots = TemplateLayout.DecorSpots(size.x, size.z, door, pieces, max);
             string group = TemplateThing.AutoDecor.GroupKey;
             ThingDef stuff = pot.MadeFromStuff ? StuffFor(TemplateThing.AutoDecor, pot, map, config, spots.Count) : null;
             foreach (var (x, z) in spots)
@@ -349,20 +404,13 @@ namespace ColonyCouncil
         public static bool IsPassable(ThingDef d) =>
             d != null && (d.passability == Traversability.Standable || Avail.IsChair(d) || d.IsDoor);
 
-        private static IntVec2 RootOf(ResolvedThing r)
+        private ThingDef DefaultPick(TemplateThing t, Map map)
         {
-            TemplateLayout.RootFor(r.rect.minX, r.rect.minZ, r.rect.Width, r.rect.Height, r.rot.AsInt, r.def.size.x, r.def.size.z, out int x, out int z);
-            return new IntVec2(x, z);
-        }
-
-        private ThingDef DefaultPick(TemplateThing t, Map map, out CellRect rect)
-        {
-            rect = default;
             var known = t.Defs.ToList();
             IntVec2 wantedSize = known.Count > 0 ? known[0].size : new IntVec2(1, 1);
             foreach (var d in known)
             {
-                if (Avail.CanBuild(d, map) && Fits(t, d, out rect)) return d;
+                if (Avail.CanBuild(d, map) && Fits(t, d)) return d;
             }
             if (!t.role.NullOrEmpty())
             {
@@ -370,7 +418,7 @@ namespace ColonyCouncil
                 if (pred != null)
                 {
                     var d = Avail.BestBuildable(map, x => pred(x) && x.size == wantedSize);
-                    if (d != null && Fits(t, d, out rect)) return d;
+                    if (d != null && Fits(t, d)) return d;
                 }
             }
             return null;
@@ -384,7 +432,7 @@ namespace ColonyCouncil
             IntVec2 wantedSize = known.Count > 0 ? known[0].size : new IntVec2(1, 1);
             foreach (var d in known)
             {
-                if (!result.Contains(d) && Avail.CanBuild(d, map) && Fits(t, d, out _)) result.Add(d);
+                if (!result.Contains(d) && Avail.CanBuild(d, map) && Fits(t, d)) result.Add(d);
             }
             var pred = t.role.NullOrEmpty() ? null : RolePredicate(t.role);
             if (pred != null)
@@ -392,14 +440,15 @@ namespace ColonyCouncil
                 foreach (var d in Avail.AllBuildings)
                 {
                     if (result.Contains(d) || d.size != wantedSize || !pred(d)) continue;
-                    if (Avail.CanBuild(d, map) && Fits(t, d, out _)) result.Add(d);
+                    if (Avail.CanBuild(d, map) && Fits(t, d)) result.Add(d);
                 }
             }
             return result;
         }
 
         public TemplateThing ThingInGroup(string group) =>
-            things.FirstOrDefault(t => t.GroupKey == group) ?? (group == TemplateThing.AutoDecor.GroupKey ? TemplateThing.AutoDecor : null);
+            things.FirstOrDefault(t => t.GroupKey == group)
+            ?? (group == TemplateThing.AutoDecor.GroupKey ? TemplateThing.AutoDecor : group == TemplateThing.AutoRug.GroupKey ? TemplateThing.AutoRug : null);
 
         [Unsaved] private Texture2D cachedIcon;
         [Unsaved] private bool iconResolved;
@@ -424,18 +473,17 @@ namespace ColonyCouncil
         }
 
         /// <summary>
-        /// Footprint in interior coordinates (or full coordinates for in-wall things), if it fits. A piece that sticks out
-        /// by one cell (a bigger bench from a mod, a slip in a template) is nudged back inside.
+        /// The piece fits the room at its spot (in the wall ring for in-wall things). One that sticks out by a cell (a
+        /// bigger bench from a mod, a slip in a template) counts: the layout nudges it back inside.
         /// </summary>
-        private bool Fits(TemplateThing t, ThingDef d, out CellRect rect)
+        private bool Fits(TemplateThing t, ThingDef d)
         {
-            rect = GenAdj.OccupiedRect(new IntVec3(t.pos.x, 0, t.pos.z), t.rot, d.size);
+            int rot = d.rotatable ? t.rot.AsInt : 0;
+            TemplateLayout.OccupiedRect(t.pos.x, t.pos.z, rot, d.size.x, d.size.z, out int minX, out int minZ, out int w, out int h);
             if (t.inWall)
-                return rect.minX >= 0 && rect.minZ >= 0 && rect.maxX < FullWidth && rect.maxZ < FullHeight;
-            if (rect.minX >= 0 && rect.minZ >= 0 && rect.maxX < size.x && rect.maxZ < size.z) return true;
-            if (!TemplateLayout.NudgeInside(rect.minX, rect.minZ, rect.Width, rect.Height, size.x, size.z, out int dx, out int dz)) return false;
-            rect = new CellRect(rect.minX + dx, rect.minZ + dz, rect.Width, rect.Height);
-            return true;
+                return minX >= 0 && minZ >= 0 && minX + w <= FullWidth && minZ + h <= FullHeight;
+            if (minX >= 0 && minZ >= 0 && minX + w <= size.x && minZ + h <= size.z) return true;
+            return TemplateLayout.NudgeInside(minX, minZ, w, h, size.x, size.z, out _, out _);
         }
 
         /// <summary>The template's default floor: the first of <see cref="floors"/> the colony can build and afford.</summary>
@@ -451,6 +499,17 @@ namespace ColonyCouncil
         {
             if (NeedsCleanFloor) return ResolveFloor(map);
             return ResolveFloor(lavishFloors ?? DefaultLavishFloors, map) ?? ResolveFloor(map);
+        }
+
+        /// <summary>The floor for a style: none for spartan (unless the room has to stay clean), the template's own, or a finer one for lavish.</summary>
+        public TerrainDef FloorFor(RoomStyle style, Map map)
+        {
+            switch (style)
+            {
+                case RoomStyle.Spartan: return NeedsCleanFloor ? ResolveFloor(map) : null;
+                case RoomStyle.Lavish: return ResolveLavishFloor(map);
+                default: return ResolveFloor(map);
+            }
         }
 
         private static TerrainDef ResolveFloor(List<string> names, Map map)

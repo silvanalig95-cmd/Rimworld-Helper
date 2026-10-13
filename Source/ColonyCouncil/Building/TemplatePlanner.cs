@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using RimWorld;
+using UnityEngine;
 using Verse;
 
 namespace ColonyCouncil
@@ -29,6 +30,9 @@ namespace ColonyCouncil
         /// <summary>The template slot it came from (-1 for added decor).</summary>
         public int slot = -1;
         public string group;
+        /// <summary>Its footprint on the map.</summary>
+        public CellRect rect;
+        public ResolvedThing source;
     }
 
     /// <summary>Where every wall, door and piece of furniture of a template would go, and what's in the way.</summary>
@@ -185,16 +189,14 @@ namespace ColonyCouncil
 
             // Cells of furniture footprints, so plants there are always cleared and rock knows what waits on it.
             var furnitureCells = new HashSet<IntVec3>();
-            var placed = new List<(ResolvedThing f, CellRect rect, Rot4 rot)>();
+            var placed = new List<PlannedThing>();
             if (furniture != null && S.planFurniture)
             {
                 foreach (var f in furniture)
                 {
-                    var r = f.rect;
-                    int offset = f.inWall ? 0 : 1;
-                    TemplateMath.TransformRect(r.minX + offset, r.minZ + offset, r.Width, r.Height, w, h, mirror, rot, out int mx, out int mz, out int sx, out int sz);
-                    var worldRect = new CellRect(anchor.x + mx, anchor.z + mz, sx, sz);
-                    placed.Add((f, worldRect, new Rot4(TemplateMath.TransformFacing(f.rot.AsInt, mirror, rot))));
+                    var pt = Piece(f, t, anchor, mirror, rot, out var worldRect);
+                    pt.rect = worldRect;
+                    placed.Add(pt);
                     foreach (var c in worldRect) furnitureCells.Add(c);
                 }
             }
@@ -312,10 +314,9 @@ namespace ColonyCouncil
             }
             plan.floorCells = floorCount;
 
-            foreach (var (f, worldRect, turned) in placed)
+            foreach (var pt in placed)
             {
-                var pt = Piece(f, worldRect, turned);
-                if (pt.state != PieceState.Blocked) pt.state = FurnitureState(plan, map, f, worldRect, pt.cell, pt.rot, out pt.reason);
+                if (pt.state != PieceState.Blocked) pt.state = FurnitureState(plan, map, pt.source, pt.rect, pt.cell, pt.rot, out pt.reason);
                 plan.furniture.Add(pt);
             }
 
@@ -324,16 +325,29 @@ namespace ColonyCouncil
         }
 
         /// <summary>
-        /// Where a piece goes once the room is turned: its root cell for the new facing. A piece that can't be turned (the
-        /// game only builds it facing north) keeps facing north if its footprint allows, else it's left out.
+        /// Where a piece goes once the room is mirrored and turned: its footprint, its root cell and facing, worked out by
+        /// the same rules the tests check (<see cref="TemplateLayout.ToWorld"/>). A piece the game only builds facing north
+        /// keeps facing north if its footprint allows, else it's left out; a door faces the way of its wall.
         /// </summary>
-        private static PlannedThing Piece(ResolvedThing f, CellRect worldRect, Rot4 turned)
+        private static PlannedThing Piece(ResolvedThing f, RoomTemplateDef t, IntVec3 anchor, bool mirror, int turn, out CellRect worldRect)
         {
-            var rot = f.def.rotatable ? turned : Rot4.North;
-            var root = FindRoot(worldRect, rot, f.def.size);
-            var pt = new PlannedThing { def = f.def, stuff = f.stuff, cell = root, rot = rot, slot = f.slot, group = f.group };
-            var occ = GenAdj.OccupiedRect(root, rot, f.def.size);
-            if (occ.minX != worldRect.minX || occ.minZ != worldRect.minZ || occ.Width != worldRect.Width || occ.Height != worldRect.Height)
+            var r = f.rect;
+            int offset = f.inWall ? 0 : 1;
+            bool ok = TemplateLayout.ToWorld(t.FullWidth, t.FullHeight, mirror, turn, r.minX + offset, r.minZ + offset, r.Width, r.Height, f.rot.AsInt,
+                f.def.rotatable, f.def.IsDoor, f.def.size.x, f.def.size.z,
+                out int mx, out int mz, out int sx, out int sz, out int facing, out int rx, out int rz);
+            worldRect = new CellRect(anchor.x + mx, anchor.z + mz, sx, sz);
+            var pt = new PlannedThing
+            {
+                def = f.def,
+                stuff = f.stuff,
+                cell = new IntVec3(anchor.x + rx, 0, anchor.z + rz),
+                rot = new Rot4(facing),
+                slot = f.slot,
+                group = f.group,
+                source = f
+            };
+            if (!ok)
             {
                 pt.state = PieceState.Blocked;
                 pt.reason = "CC_Plan_Block_CantTurn".Translate(f.def.label);
@@ -341,21 +355,158 @@ namespace ColonyCouncil
             return pt;
         }
 
-        /// <summary>Furniture slots in world coordinates for a template at an anchor, before anything is checked.</summary>
-        private static List<(ResolvedThing f, CellRect rect, Rot4 rot)> Transformed(RoomTemplateDef t, IntVec3 anchor, int rot, bool mirror, List<ResolvedThing> furniture, bool withWall)
+        // ---------------- Upgrading a built room ----------------
+
+        /// <summary>
+        /// Lines a template up with a built room: turned so its door wall is the wall with the room's door, the door
+        /// lined up where the room allows, and the template inside the room. False (with a reason) if the room can't take it.
+        /// <paramref name="doorX"/> is where the room's own door sits in the template's door wall (-1 if it doesn't line up).
+        /// </summary>
+        public static bool FitRoom(RoomTemplateDef t, Room room, RoomPlanConfig cfg, out IntVec3 anchor, out int rot, out int doorX, out string reason)
         {
-            var result = new List<(ResolvedThing, CellRect, Rot4)>();
-            if (furniture == null) return result;
-            int w = t.FullWidth, h = t.FullHeight;
-            foreach (var f in furniture)
+            anchor = IntVec3.Invalid;
+            rot = cfg.rotation;
+            doorX = -1;
+            reason = null;
+            if (room == null || room.PsychologicallyOutdoors || room.TouchesMapEdge || !room.ProperRoom || room.IsDoorway)
             {
-                if (f.inWall && !withWall) continue;
-                var r = f.rect;
-                int offset = f.inWall ? 0 : 1;
-                TemplateMath.TransformRect(r.minX + offset, r.minZ + offset, r.Width, r.Height, w, h, mirror, rot, out int mx, out int mz, out int sx, out int sz);
-                result.Add((f, new CellRect(anchor.x + mx, anchor.z + mz, sx, sz), new Rot4(TemplateMath.TransformFacing(f.rot.AsInt, mirror, rot))));
+                reason = "CC_Upgrade_NotARoom".Translate();
+                return false;
             }
-            return result;
+            var rect = room.ExtentsClose;
+            var map = room.Map;
+            var ring = rect.ExpandedBy(1);
+            IntVec3 door = IntVec3.Invalid;
+            foreach (var c in ring.EdgeCells)
+            {
+                bool corner = (c.x == ring.minX || c.x == ring.maxX) && (c.z == ring.minZ || c.z == ring.maxZ);
+                if (corner || !c.InBounds(map)) continue;
+                if (c.GetEdifice(map) is Building ed && ed.def.IsDoor)
+                {
+                    door = c;
+                    rot = TemplateMath.TurnForDoorSide(c.z == ring.minZ ? 0 : c.x == ring.minX ? 1 : c.z == ring.maxZ ? 2 : 3);
+                    break;
+                }
+            }
+            int w = t.FullWidth, h = t.FullHeight;
+            TemplateMath.RotatedSize(w, h, rot, out int rw, out int rh);
+            if (rw - 2 > rect.Width || rh - 2 > rect.Height)
+            {
+                reason = "CC_Upgrade_TooSmall".Translate(rect.Width, rect.Height, t.size.x, t.size.z);
+                return false;
+            }
+            // Line the template's door up with the room's, then keep the template inside the room.
+            TemplateMath.Transform(cfg.DoorX(t) + 1, 0, w, h, cfg.mirror, rot, out int dx, out int dz);
+            int ax = door.IsValid ? door.x - dx : rect.minX - 1;
+            int az = door.IsValid ? door.z - dz : rect.minZ - 1;
+            ax = Mathf.Clamp(ax, rect.minX - 1, rect.maxX + 1 - (rw - 1));
+            az = Mathf.Clamp(az, rect.minZ - 1, rect.maxZ + 1 - (rh - 1));
+            anchor = new IntVec3(ax, 0, az);
+            if (door.IsValid)
+            {
+                TemplateMath.InverseTransform(door.x - ax, door.z - az, w, h, cfg.mirror, rot, out int tx, out int tz);
+                if (tz == 0 && tx >= 1 && tx <= t.size.x) doorX = tx - 1;
+            }
+            return true;
+        }
+
+        /// <summary>
+        /// Furnishing a room that's already built with a template: no walls, no door, only the pieces it doesn't have yet.
+        /// A piece counts as there when the room already holds (or has planned) something of the same kind; the floor goes
+        /// only on bare ground.
+        /// </summary>
+        public static PlacementPlan PlanUpgrade(RoomTemplateDef t, Map map, Room room, RoomPlanConfig cfg, System.Func<int, List<ResolvedThing>> resolve)
+        {
+            var plan = new PlacementPlan { template = t, upgrade = true, upgradeRoom = room, mirror = cfg.mirror };
+            if (!FitRoom(t, room, cfg, out var anchor, out int rot, out int doorX, out string reason))
+            {
+                plan.doorState = PieceState.Blocked;
+                plan.doorReason = reason;
+                plan.doorExists = true;
+                return plan;
+            }
+            plan.anchor = anchor;
+            plan.rotation = rot;
+            plan.doorExists = true;
+            plan.floor = cfg.Floor(t, map);
+            plan.floorStuff = cfg.FloorStuff(plan.floor, map, t.size.x * t.size.z);
+            plan.wallStuff = cfg.WallStuff(t, map);
+            var furniture = resolve(doorX) ?? new List<ResolvedThing>();
+            var roomCells = new HashSet<IntVec3>(room.Cells);
+            plan.interior.AddRange(room.Cells);
+            int bare = 0;
+            if (plan.floor != null)
+                foreach (var c in room.Cells)
+                {
+                    var terrain = c.GetTerrain(map);
+                    if (terrain != plan.floor && !terrain.BuildableByPlayer) bare++;
+                }
+            plan.floorCells = bare;
+
+            // What the room already has (built, framed or planned), so only the missing pieces are added.
+            var existing = new List<(Thing thing, ThingDef def)>();
+            foreach (var thing in room.ContainedAndAdjacentThings)
+            {
+                ThingDef def = thing is Building b && b.Faction == Faction.OfPlayer ? b.def
+                    : (thing is Blueprint_Build || thing is Frame) ? thing.def.entityDefToBuild as ThingDef : null;
+                if (def == null || def.IsWall || def.IsDoor) continue;
+                if (!thing.OccupiedRect().Cells.Any(roomCells.Contains)) continue;
+                existing.Add((thing, def));
+            }
+            var claimed = new HashSet<Thing>();
+            if (S.planFurniture)
+            {
+                foreach (var f in furniture)
+                {
+                    var pt = Piece(f, t, anchor, cfg.mirror, rot, out var worldRect);
+                    pt.rect = worldRect;
+                    var match = existing.FirstOrDefault(e => !claimed.Contains(e.thing) && SameKind(e.def, f, t));
+                    if (match.thing != null)
+                    {
+                        claimed.Add(match.thing);
+                        pt.state = PieceState.Present;
+                        plan.furniture.Add(pt);
+                        continue;
+                    }
+                    if (f.inWall)
+                    {
+                        pt.state = PieceState.Blocked;
+                        pt.reason = "CC_Upgrade_InWall".Translate(f.def.label);
+                    }
+                    else if (worldRect.Cells.Any(c => !roomCells.Contains(c)))
+                    {
+                        pt.state = PieceState.Blocked;
+                        pt.reason = "CC_Upgrade_Outside".Translate(f.def.label);
+                    }
+                    else if (pt.state != PieceState.Blocked)
+                    {
+                        pt.state = FurnitureState(plan, map, f, worldRect, pt.cell, pt.rot, out pt.reason);
+                    }
+                    plan.furniture.Add(pt);
+                }
+            }
+            int blocked = plan.furniture.Count(p => p.state == PieceState.Blocked);
+            if (blocked > 0) plan.warnings.Add("CC_Plan_Warn_FurnitureBlocked".Translate(blocked));
+            return plan;
+        }
+
+        /// <summary>The room already has this kind of piece: the same building, or one with the same purpose.</summary>
+        private static bool SameKind(ThingDef def, ResolvedThing f, RoomTemplateDef t)
+        {
+            if (def == f.def) return true;
+            var tt = t.ThingInGroup(f.group);
+            if (tt == null) return false;
+            if (tt.defs != null && tt.defs.Contains(def.defName)) return true;
+            if (tt.role.NullOrEmpty()) return false;
+            try
+            {
+                var pred = RoomTemplateDef.RolePredicate(tt.role);
+                return pred != null && pred(def);
+            }
+            catch
+            {
+                return false;
+            }
         }
 
         private static void AddMine(PlacementPlan plan, IntVec3 cell, Map map)
@@ -458,6 +609,8 @@ namespace ColonyCouncil
             if (waiting > 0) plan.warnings.Add("CC_Plan_Warn_Waiting".Translate(waiting));
             int blocked = plan.furniture.Count(f => f.state == PieceState.Blocked);
             if (blocked > 0) plan.warnings.Add("CC_Plan_Warn_FurnitureBlocked".Translate(blocked));
+            if (plan.template.layoutNotes != null && plan.template.layoutNotes.Count > 0)
+                plan.warnings.Add("CC_Plan_Warn_Rearranged".Translate());
             if (plan.door.IsValid)
             {
                 var outside = DoorOutside(plan, map);
@@ -481,17 +634,6 @@ namespace ColonyCouncil
             var door = ToWorld(plan.anchor, doorFx, 0, w, h, plan.mirror, plan.rotation);
             var inside = ToWorld(plan.anchor, doorFx, 1, w, h, plan.mirror, plan.rotation);
             return door + (door - inside);
-        }
-
-        /// <summary>The root cell whose occupied rect (for this rotation and size) equals <paramref name="rect"/>.</summary>
-        private static IntVec3 FindRoot(CellRect rect, Rot4 rot, IntVec2 size)
-        {
-            foreach (var c in rect)
-            {
-                var occ = GenAdj.OccupiedRect(c, rot, size);
-                if (occ.minX == rect.minX && occ.minZ == rect.minZ && occ.Width == rect.Width && occ.Height == rect.Height) return c;
-            }
-            return rect.CenterCell;
         }
 
         public static bool IsWallLike(ThingDef d)
@@ -618,7 +760,9 @@ namespace ColonyCouncil
                 smoothed++;
             }
 
-            string s = "CC_Plan_Done".Translate(plan.template.LabelCap.ToString(), walls, furniture, plan.wallStuff?.label ?? "-");
+            string s = plan.upgrade
+                ? "CC_Upgrade_Done".Translate(plan.template.LabelCap.ToString(), furniture, present).Resolve()
+                : "CC_Plan_Done".Translate(plan.template.LabelCap.ToString(), walls, furniture, plan.wallStuff?.label ?? "-").Resolve();
             if (mined > 0) s += " " + "CC_Plan_Mined".Translate(mined);
             if (cut > 0) s += " " + "CC_Plan_Cut".Translate(cut);
             if (removed > 0) s += " " + "CC_Plan_Removed".Translate(removed);
@@ -695,6 +839,7 @@ namespace ColonyCouncil
 
         private static void CopyInto(RoomPlanConfig from, RoomPlanConfig to)
         {
+            to.style = from.style;
             to.mirror = from.mirror;
             to.doorX = from.doorX;
             to.wallStuff = from.wallStuff;

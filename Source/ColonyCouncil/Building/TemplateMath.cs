@@ -95,6 +95,16 @@ namespace ColonyCouncil
             RotateRect(minX, minZ, sizeX, sizeZ, rw, rh, Norm(4 - Norm(rot)), out tMinX, out tMinZ, out tSizeX, out tSizeZ);
         }
 
+        /// <summary>
+        /// Undoes <see cref="Transform"/>, mirror included: a point in the mirrored and turned rect, back to template
+        /// coordinates. <paramref name="w"/> x <paramref name="h"/> is the template's own (unturned) full size.
+        /// </summary>
+        public static void InverseTransform(int x, int z, int w, int h, bool mirror, int rot, out int tx, out int tz)
+        {
+            InverseRotatePoint(x, z, w, h, rot, out tx, out tz);
+            if (mirror) tx = w - 1 - tx;
+        }
+
         /// <summary>The template facing that <see cref="TransformFacing"/> (no mirror) turns into <paramref name="worldFacing"/>.</summary>
         public static int InverseFacing(int worldFacing, int rot) => Norm(worldFacing - rot);
 

@@ -201,7 +201,8 @@ namespace ColonyCouncil
             return ok;
         }
 
-        public static bool Allowed(ThingDef s, MaterialUse use) => !(IsBone(s) && (use == MaterialUse.Wall || use == MaterialUse.Door));
+        /// <summary>Bone is for furniture only: never walls, doors or floors.</summary>
+        public static bool Allowed(ThingDef s, MaterialUse use) => !(IsBone(s) && use != MaterialUse.Furniture);
 
         /// <summary>The best material for <paramref name="units"/> pieces of <paramref name="def"/> (or floor tiles), or the game's default.</summary>
         public static ThingDef Pick(BuildableDef def, Map map, int units, MaterialUse use)
@@ -218,12 +219,15 @@ namespace ColonyCouncil
             return pick;
         }
 
+        /// <summary>
+        /// The tiers, best first: a common material with room to spare, a common one that only just covers it, a precious
+        /// one that covers it, then (nothing covers it) the common one the colony has most of, then the precious one.
+        /// Within a tier: stone blocks, wood, bone, steel and so on, then the cheaper, then the larger stock.
+        /// </summary>
         private static ThingDef Choose(BuildableDef def, Map map, int units, MaterialUse use)
         {
             ThingDef best = null;
-            (int cover, int rank, float cost, int have) bestScore = default;
-            ThingDef most = null, mostPrecious = null;
-            int mostHave = 0, mostPreciousHave = 0;
+            (int tier, int rank, float cost, int have) bestScore = default;
             foreach (var s in Avail.AllowedStuffs(def))
             {
                 if (!Allowed(s, use)) continue;
@@ -232,28 +236,22 @@ namespace ColonyCouncil
                 int per = Mathf.Max(1, MaterialCounts.PerUnit(def, s));
                 int need = units * per;
                 int cover = have >= Mathf.CeilToInt(need * Margin) ? 2 : have >= need ? 1 : 0;
-                if (cover == 0)
-                {
-                    if (IsPrecious(s))
-                    {
-                        if (have > mostPreciousHave) { mostPrecious = s; mostPreciousHave = have; }
-                    }
-                    else if (have > mostHave) { most = s; mostHave = have; }
-                    continue;
-                }
-                var score = (cover, Commonness(s, def, use), s.BaseMarketValue * need, have);
+                bool precious = IsPrecious(s);
+                int tier = cover == 2 && !precious ? 0 : cover == 1 && !precious ? 1 : cover > 0 ? 2 : !precious ? 3 : 4;
+                // Without enough of anything, the larger stock decides.
+                var score = tier >= 3 ? (tier, 0, 0f, have) : (tier, Commonness(s, def, use), s.BaseMarketValue * need, have);
                 if (best == null || Better(score, bestScore))
                 {
                     best = s;
                     bestScore = score;
                 }
             }
-            return best ?? most ?? mostPrecious ?? GenStuff.DefaultStuffFor(def);
+            return best ?? GenStuff.DefaultStuffFor(def);
         }
 
-        private static bool Better((int cover, int rank, float cost, int have) a, (int cover, int rank, float cost, int have) b)
+        private static bool Better((int tier, int rank, float cost, int have) a, (int tier, int rank, float cost, int have) b)
         {
-            if (a.cover != b.cover) return a.cover > b.cover;
+            if (a.tier != b.tier) return a.tier < b.tier;
             if (a.rank != b.rank) return a.rank < b.rank;
             if (Mathf.Abs(a.cost - b.cost) > 0.5f) return a.cost < b.cost;
             return a.have > b.have;
