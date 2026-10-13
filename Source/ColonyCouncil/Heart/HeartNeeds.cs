@@ -93,7 +93,7 @@ namespace ColonyCouncil
             else if (friends == 0) why.Add(-20f, "CC_Heart_Why_NoFriends".Translate());
             float f = Mathf.Min(3, friends) * 15f;
             v += f;
-            if (friends > 0) why.Add(f, "CC_Heart_Why_Friends".Translate(friends));
+            if (friends > 0) why.Add(f, friends == 1 ? "CC_Heart_Why_OneFriend".Translate() : "CC_Heart_Why_Friends".Translate(friends));
             var partner = p.relations != null ? LovePartnerRelationUtility.ExistingLovePartner(p, false) : null;
             if (partner != null && partner.Faction == Faction.OfPlayer)
             {

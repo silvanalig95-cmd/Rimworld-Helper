@@ -1,5 +1,6 @@
 using System;
 using RimWorld;
+using UnityEngine;
 using Verse;
 
 namespace ColonyCouncil
@@ -70,6 +71,64 @@ namespace ColonyCouncil
             if (h == null) return (null, null, null, null, null);
             return ("CC_Hud_Strain".Translate(), h.hudStrain, () => HeartView.StrainTip(pawn, h), null, null);
         }
+    }
+
+    /// <summary>
+    /// Strain as a bar, like RimHUD's own needs: it fills and turns from the bar colour toward red as strain builds, with
+    /// marks where it becomes strained, worn down and near breaking. Hidden (fill below 0) when there's no heart.
+    /// </summary>
+    public static class RimHud_StrainBar
+    {
+        private static readonly float[] Bands = { 0.30f, 0.55f, 0.75f };
+
+        public static (string label, string value, float fill, float[] thresholds, Func<string> tooltip, Action onHover, Action onClick) GetParameters(Pawn pawn)
+        {
+            var h = RimHudUtil.HeartOf(pawn);
+            if (h == null) return (null, null, -1f, null, null, null, null);
+            return ("CC_Hud_Strain".Translate(), h.strain.ToString("0"), Mathf.Clamp01(h.strain / HeartMath.Max), Bands,
+                () => HeartView.StrainTip(pawn, h), null, null);
+        }
+    }
+
+    /// <summary>One of the heart's four needs as a bar (fuller is better), marked where it starts to be missed (45) and is well met (60).</summary>
+    public static class RimHud_NeedBar
+    {
+        private static readonly float[] Marks = { 0.45f, 0.60f };
+
+        public static (string label, string value, float fill, float[] thresholds, Func<string> tooltip, Action onHover, Action onClick) For(Pawn pawn, HeartNeed need)
+        {
+            var h = RimHudUtil.HeartOf(pawn);
+            int i = (int)need;
+            if (h?.needs == null || h.needs.Length != 4) return (null, null, -1f, null, null, null, null);
+            var n = h.needs[i];
+            string label = HeartView.NeedLabel(need).CapitalizeFirst();
+            return (label, n.value.ToString("0"), Mathf.Clamp01(n.value / 100f), Marks,
+                () => n.why.NullOrEmpty() ? HeartView.NeedsTip(h) : label + ": " + n.why + "\n\n" + HeartView.NeedsTip(h), null, null);
+        }
+    }
+
+    public static class RimHud_Belonging
+    {
+        public static (string label, string value, float fill, float[] thresholds, Func<string> tooltip, Action onHover, Action onClick) GetParameters(Pawn pawn) =>
+            RimHud_NeedBar.For(pawn, HeartNeed.Belonging);
+    }
+
+    public static class RimHud_Purpose
+    {
+        public static (string label, string value, float fill, float[] thresholds, Func<string> tooltip, Action onHover, Action onClick) GetParameters(Pawn pawn) =>
+            RimHud_NeedBar.For(pawn, HeartNeed.Purpose);
+    }
+
+    public static class RimHud_Safety
+    {
+        public static (string label, string value, float fill, float[] thresholds, Func<string> tooltip, Action onHover, Action onClick) GetParameters(Pawn pawn) =>
+            RimHud_NeedBar.For(pawn, HeartNeed.Safety);
+    }
+
+    public static class RimHud_Freedom
+    {
+        public static (string label, string value, float fill, float[] thresholds, Func<string> tooltip, Action onHover, Action onClick) GetParameters(Pawn pawn) =>
+            RimHud_NeedBar.For(pawn, HeartNeed.Freedom);
     }
 
     /// <summary>The feelings that stand out; the tooltip lists every feeling with its causes.</summary>

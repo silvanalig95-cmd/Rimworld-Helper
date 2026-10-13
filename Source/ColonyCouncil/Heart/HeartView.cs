@@ -62,13 +62,29 @@ namespace ColonyCouncil
         public static void Refresh(Pawn p, PawnHeart h)
         {
             h.inspectLine = InspectLine(h);
-            h.hudStrain = "CC_Heart_StrainValue".Translate(BandLabel(h.Band), h.strain.ToString("0")).Resolve();
-            string feelings = DominantText(h);
-            h.hudFeelings = feelings.NullOrEmpty() ? null : feelings.CapitalizeFirst();
+            // RimHUD's values, each in its own colour: the band's, each feeling's, and the lacking need's.
+            h.hudStrain = "CC_Heart_StrainValue".Translate(BandLabel(h.Band), h.strain.ToString("0")).Resolve().Colorize(BandColor(h.Band));
+            h.hudFeelings = ColoredFeelings(h);
             var lack = Heart.LowestNeed(h, out float v);
             h.hudNeeds = h.needs == null ? null
-                : lack == null ? "CC_Hud_NeedsMet".Translate().ToString() : "CC_Hud_NeedsLacking".Translate(NeedLabel(lack.need), v.ToString("0")).Resolve();
+                : lack == null ? "CC_Hud_NeedsMet".Translate().ToString().Colorize(UiKit.Good)
+                : "CC_Hud_NeedsLacking".Translate(NeedLabel(lack.need), v.ToString("0")).Resolve().Colorize(NeedColor(v / 100f));
             Dirty(p);
+        }
+
+        /// <summary>The dominant feelings as adjectives, each in its feeling's colour ("Restless, proud"), or null.</summary>
+        private static string ColoredFeelings(PawnHeart h)
+        {
+            Heart.Dominant(h, dominantTmp);
+            if (dominantTmp.Count == 0) return null;
+            var parts = new List<string>(dominantTmp.Count);
+            for (int i = 0; i < dominantTmp.Count; i++)
+            {
+                string word = dominantTmp[i].def.Adjective;
+                parts.Add((i == 0 ? word.CapitalizeFirst() : word).Colorize(dominantTmp[i].def.color));
+            }
+            dominantTmp.Clear();
+            return string.Join(", ", parts);
         }
 
         /// <summary>The dominant feelings as adjectives ("restless, proud"), or null.</summary>
@@ -307,7 +323,7 @@ namespace ColonyCouncil
 
         // ---------------- The Mood tab's Heart section ----------------
 
-        private static Color NeedColor(float fill) => fill >= 0.6f ? UiKit.Good : fill >= 0.45f ? UiKit.Info : fill >= 0.3f ? UiKit.Warn : UiKit.Bad;
+        public static Color NeedColor(float fill) => fill >= 0.6f ? UiKit.Good : fill >= 0.45f ? UiKit.Info : fill >= 0.3f ? UiKit.Warn : UiKit.Bad;
 
         /// <summary>Draws the Heart section at y; returns the new y. Nothing when the feature is off or they have no heart.</summary>
         public static float DrawSection(Pawn p, float y, float w)

@@ -406,8 +406,10 @@ Each of these switches itself on only when its mod is there, and only asks for w
 - **Vanilla Outposts Expanded:** a wish waits while its colonist is posted at an outpost (up to five days, then it
   lapses and nobody is blamed), and people out there write home in their journals now and then.
 - **RimHUD:** seven lines for its pawn panel (trust, open wish, office, life goal, strain, feelings, the heart's
-  needs). In RimHUD's settings, Content tab,
-  use "Add third-party".
+  needs), with strain in its band's colour, each feeling in its own and the heart's needs green when all is well, plus
+  five bars: strain (filling and reddening as it builds, marked where it becomes strained, worn down and near
+  breaking) and belonging, purpose, safety and freedom (marked where each starts to be missed). In RimHUD's settings,
+  Content tab, use "Add third-party". To keep the panel short, put them in the column under the skills.
 - **Interaction Bubbles:** social events and encounters with visitors, traders and animals now go into the social
   log too, so they show as bubbles like Rimfolk's moments and wish talk.
 
@@ -788,7 +790,7 @@ journals, the Story tab and History) or **Important only**.
 - **Interaction Bubbles** by Jaxe (search the Steam Workshop): shows social-log conversations as speech
   bubbles, so colonists grumbling about their wishes, Rimfolk's moments and social events appear above their heads.
 - **RimHUD** by Jaxe: can show trust, the open wish, office, life goal, strain, feelings and the heart's needs in
-  its pawn panel (see above).
+  its pawn panel, with bars for strain and the heart's needs (see above).
 
 ## Status and feedback
 

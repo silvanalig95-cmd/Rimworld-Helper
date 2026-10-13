@@ -63,4 +63,45 @@
     <apiVersion>1</apiVersion>
   </RimHUD.CustomValueDef>
 
+  <!-- Bars (RimHUD's custom bar API, version 1): strain fills and reddens as it builds; the heart's needs fill as they're met. -->
+  <RimHUD.CustomBarDef MayRequire="jaxe.rimhud">
+    <defName>Council_Hud_StrainBar</defName>
+    <label>Rimfolk: strain (bar)</label>
+    <colorStyle>MainToLow</colorStyle>
+    <defClass>ColonyCouncil.RimHud_StrainBar</defClass>
+    <apiVersion>1</apiVersion>
+  </RimHUD.CustomBarDef>
+
+  <RimHUD.CustomBarDef MayRequire="jaxe.rimhud">
+    <defName>Council_Hud_BelongingBar</defName>
+    <label>Rimfolk: belonging (bar)</label>
+    <colorStyle>LowToMain</colorStyle>
+    <defClass>ColonyCouncil.RimHud_Belonging</defClass>
+    <apiVersion>1</apiVersion>
+  </RimHUD.CustomBarDef>
+
+  <RimHUD.CustomBarDef MayRequire="jaxe.rimhud">
+    <defName>Council_Hud_PurposeBar</defName>
+    <label>Rimfolk: purpose (bar)</label>
+    <colorStyle>LowToMain</colorStyle>
+    <defClass>ColonyCouncil.RimHud_Purpose</defClass>
+    <apiVersion>1</apiVersion>
+  </RimHUD.CustomBarDef>
+
+  <RimHUD.CustomBarDef MayRequire="jaxe.rimhud">
+    <defName>Council_Hud_SafetyBar</defName>
+    <label>Rimfolk: safety (bar)</label>
+    <colorStyle>LowToMain</colorStyle>
+    <defClass>ColonyCouncil.RimHud_Safety</defClass>
+    <apiVersion>1</apiVersion>
+  </RimHUD.CustomBarDef>
+
+  <RimHUD.CustomBarDef MayRequire="jaxe.rimhud">
+    <defName>Council_Hud_FreedomBar</defName>
+    <label>Rimfolk: freedom (bar)</label>
+    <colorStyle>LowToMain</colorStyle>
+    <defClass>ColonyCouncil.RimHud_Freedom</defClass>
+    <apiVersion>1</apiVersion>
+  </RimHUD.CustomBarDef>
+
 </Defs>
