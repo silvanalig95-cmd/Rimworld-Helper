@@ -186,6 +186,26 @@ namespace ColonyCouncil
                 }
                 return result;
             }
+
+            /// <summary>
+            /// The work spots in the plain room and, mapped back, in the mirrored one. A piece two cells wide has its root
+            /// in its left cell, so mirroring the room moves its work spot over by one: both places have to work.
+            /// </summary>
+            public List<(int x, int z)> SpotCellsBothWays(int areaW)
+            {
+                var result = SpotCells();
+                if (spots == null || spots.Count == 0 || areaW <= 0) return result;
+                int mMinX = areaW - (minX + w);
+                int mFacing = TemplateMath.MirrorFacing(facing);
+                if (!RootFor(mMinX, minZ, w, h, mFacing, sizeX, sizeZ, out int rx, out int rz)) return result;
+                foreach (var (ox, oz) in spots)
+                {
+                    RotateOffset(ox, oz, mFacing, out int sx, out int sz);
+                    var back = (areaW - 1 - (rx + sx), rz + sz);
+                    if (!result.Contains(back)) result.Add(back);
+                }
+                return result;
+            }
         }
 
         private static bool Footprint(Piece p, int facing, int areaW, int areaH, out int minX, out int minZ, out int w, out int h)
@@ -326,10 +346,10 @@ namespace ColonyCouncil
             {
                 if (a.inWall) continue;
                 if (Overlaps(p, a)) return "overlaps another piece";
-                foreach (var (sx, sz) in a.SpotCells())
+                foreach (var (sx, sz) in a.SpotCellsBothWays(areaW))
                     if (p.Contains(sx, sz) && !p.passable) return "covers another piece's work spot";
             }
-            foreach (var (sx, sz) in p.SpotCells())
+            foreach (var (sx, sz) in p.SpotCellsBothWays(areaW))
             {
                 if (sx < 0 || sz < 0 || sx >= areaW || sz >= areaH) return "its work spot is in the wall";
                 if (p.Contains(sx, sz)) return "its work spot is under itself";
@@ -388,7 +408,7 @@ namespace ColonyCouncil
             foreach (var p in pieces)
             {
                 if (p.inWall || p.dropped) continue;
-                var spots = p.SpotCells();
+                var spots = p.SpotCellsBothWays(w);
                 if (spots.Count > 0)
                 {
                     foreach (var (sx, sz) in spots)
@@ -437,7 +457,7 @@ namespace ColonyCouncil
                 for (int x = p.minX; x < p.minX + p.w; x++)
                     for (int z = p.minZ; z < p.minZ + p.h; z++)
                         if (x >= 0 && z >= 0 && x < w && z < h) taken[x, z] = true;
-                foreach (var (sx, sz) in p.SpotCells())
+                foreach (var (sx, sz) in p.SpotCellsBothWays(w))
                     if (sx >= 0 && sz >= 0 && sx < w && sz < h) taken[sx, sz] = true;
             }
             if (Unreachable(w, h, doorX, live, null, out _) > 0) return result;
@@ -456,7 +476,8 @@ namespace ColonyCouncil
                 }
             }
             candidates.Sort((a, b) => b.score.CompareTo(a.score));
-            var blocked = new bool[w, h];
+            // The pots go in as pieces too, so each one needs a reachable cell next to it (to build and water it).
+            var withPots = new List<Piece>(live);
             foreach (var c in candidates)
             {
                 if (result.Count >= max) break;
@@ -465,9 +486,10 @@ namespace ColonyCouncil
                 foreach (var r in result)
                     if ((r.x - c.x) * (r.x - c.x) + (r.z - c.z) * (r.z - c.z) <= 1) crowded = true;
                 if (crowded) continue;
-                blocked[c.x, c.z] = true;
-                if (Unreachable(w, h, doorX, live, blocked, out _) == 0) result.Add((c.x, c.z));
-                else blocked[c.x, c.z] = false;
+                var pot = new Piece { x = c.x, z = c.z, minX = c.x, minZ = c.z, w = 1, h = 1, role = "decor" };
+                withPots.Add(pot);
+                if (Unreachable(w, h, doorX, withPots, null, out _) == 0) result.Add((c.x, c.z));
+                else withPots.Remove(pot);
             }
             return result;
         }
@@ -487,7 +509,7 @@ namespace ColonyCouncil
                 for (int x = p.minX; x < p.minX + p.w; x++)
                     for (int z = p.minZ; z < p.minZ + p.h; z++)
                         if (x >= 0 && z >= 0 && x < w && z < h) taken[x, z] = true;
-                foreach (var (sx, sz) in p.SpotCells())
+                foreach (var (sx, sz) in p.SpotCellsBothWays(w))
                     if (sx >= 0 && sz >= 0 && sx < w && sz < h) taken[sx, sz] = true;
             }
             taken[doorX, 0] = true;

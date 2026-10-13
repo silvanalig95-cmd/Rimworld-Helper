@@ -22,9 +22,9 @@
       <li>One or two guest rooms are enough to start. Hospitality's settings can turn visitors away until the colony has guest beds.</li>
     </tips>
     <things>
-      <li><defs><li>Bed</li><li>Bedroll</li></defs><role>bed</role><pos>(0,2)</pos><optional>false</optional></li>
-      <li><defs><li>EndTable</li></defs><role>endtable</role><pos>(1,3)</pos></li>
-      <li><defs><li>Dresser</li></defs><role>dresser</role><pos>(2,3)</pos></li>
+      <li><defs><li>Bed</li><li>Bedroll</li></defs><role>bed</role><pos>(0,3)</pos><rot>South</rot><optional>false</optional></li>
+      <li><defs><li>EndTable</li></defs><role>endtable</role><pos>(1,3)</pos><rot>South</rot></li>
+      <li><defs><li>Dresser</li></defs><role>dresser</role><pos>(3,3)</pos><rot>South</rot></li>
       <li><defs><li>StandingLamp</li><li>TorchLamp</li></defs><role>light</role><pos>(0,0)</pos></li>
       <li><defs><li>PlantPot</li></defs><role>plantpot</role><pos>(3,0)</pos></li>
     </things>
