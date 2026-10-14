@@ -17,7 +17,8 @@ namespace ColonyCouncil
     /// <see cref="Active"/> is false and every method here returns at once, as if this file didn't exist.
     ///
     /// What it does with them:
-    /// - Rimfolk's own animal events pick their animals the way PokéWorld's spawner does (<see cref="WildKinds"/>).
+    /// - Rimfolk's own animal events pick their animals the way PokéWorld's spawner does (<see cref="WildKinds"/>, and
+    ///   <see cref="Allows"/> for a kind already chosen).
     /// - A Pokémon in the PC still counts as one of the colony's animals for wishes and goals that count animals
     ///   (<see cref="OwnedAnimalCount"/>).
     /// - Someone who catches a species the colony never had gets a journal line and a small memory (<see cref="Hourly"/>).
@@ -39,7 +40,7 @@ namespace ColonyCouncil
         public static bool Active { get; private set; }
 
         /// <summary>The mod that adds the Pokémon, as the game knows it (for the Almanac and the log).</summary>
-        public static ModContentPack Mod { get; private set; }
+        public static ModContentPack ModPack { get; private set; }
 
         private sealed class Species
         {
@@ -80,20 +81,17 @@ namespace ColonyCouncil
             Type compClass = null;
             foreach (var d in DefDatabase<ThingDef>.AllDefsListForReading)
             {
-                if (d?.comps == null) continue;
+                if (d?.race == null || d.comps == null) continue;
                 foreach (var c in d.comps)
                 {
-                    if (c == null) continue;
-                    if (d.race != null && c.compClass != null && NamedIn(c.compClass, "CompPokemon"))
+                    if (c?.compClass == null || !NamedIn(c.compClass, "CompPokemon")) continue;
+                    species[d] = new Species { generation = ReadInt(c, "generation"), rare = HasAttribute(c, "Legendary") || HasAttribute(c, "Fossil") };
+                    if (first == null)
                     {
-                        species[d] = new Species { generation = ReadInt(c, "generation"), rare = HasAttribute(c, "Legendary") || HasAttribute(c, "Fossil") };
-                        if (first == null)
-                        {
-                            first = d;
-                            compClass = c.compClass;
-                        }
+                        first = d;
+                        compClass = c.compClass;
                     }
-                    else if (d.race == null && NamedIn(c.GetType(), "CompProperties_Pokeball")) beltDefs.Add(d);
+                    break;
                 }
             }
             Active = species.Count > 0;
@@ -104,7 +102,10 @@ namespace ColonyCouncil
                     CouncilLog.WarnOnce("PokéWorld is loaded, but no Pokémon races were recognized; Rimfolk leaves it alone.");
                 return;
             }
-            Mod = first.modContentPack;
+            ModPack = first.modContentPack;
+            // Ball belts: things with a comp whose properties class is named CompProperties_Pokeball, and their recipes.
+            foreach (var d in DefDatabase<ThingDef>.AllDefsListForReading)
+                if (d?.race == null && d?.comps != null && d.comps.Any(c => c != null && NamedIn(c.GetType(), "CompProperties_Pokeball"))) beltDefs.Add(d);
             foreach (var r in DefDatabase<RecipeDef>.AllDefsListForReading)
                 if (r?.ProducedThingDef != null && beltDefs.Contains(r.ProducedThingDef)) beltRecipes.Add(r);
 
@@ -127,11 +128,13 @@ namespace ColonyCouncil
 
             if (PokemonShare() < 0f)
                 CouncilLog.WarnOnce("PokéWorld: couldn't read its wild Pokémon frequency setting, so Rimfolk's animal events pick from every animal of the land.");
+            else if (minField == null || maxField == null)
+                CouncilLog.WarnOnce("PokéWorld: couldn't read the range of its wild Pokémon frequency slider; Rimfolk assumes 0 to 8, as in the original mod.");
             if (beltDefs.Count == 0)
                 CouncilLog.WarnOnce("PokéWorld: no Poké Ball belts were recognized, so Rimfolk won't ask anyone to catch a Pokémon.");
             ShowAlmanacPages();
             if (Prefs.DevMode)
-                Log.Message("[Rimfolk] PokéWorld found (" + (Mod?.Name ?? "?") + "): " + species.Count + " species, " + beltDefs.Count + " ball belts, slider "
+                Log.Message("[Rimfolk] PokéWorld found (" + (ModPack?.Name ?? "?") + "): " + species.Count + " species, " + beltDefs.Count + " ball belts, slider "
                             + (PokemonShare() < 0f ? "unreadable" : PokemonShare().ToStringPercent()) + ", PC storage " + (storageType != null ? "found" : "not found") + ".");
         }
 
@@ -195,7 +198,7 @@ namespace ColonyCouncil
             {
                 var handle = LoadedModManager.ModHandles.FirstOrDefault(m => m != null && m.GetType().Assembly == settingsType.Assembly);
                 if (handle == null) return null;
-                var get = typeof(Mod).GetMethod("GetSettings", BindingFlags.Public | BindingFlags.Instance);
+                var get = typeof(Verse.Mod).GetMethod("GetSettings", BindingFlags.Public | BindingFlags.Instance);
                 return get?.MakeGenericMethod(settingsType).Invoke(handle, null);
             }
             catch
@@ -210,7 +213,7 @@ namespace ColonyCouncil
         /// </summary>
         private static void ShowAlmanacPages()
         {
-            string id = (Mod?.PackageIdPlayerFacing ?? Mod?.PackageId)?.ToLowerInvariant();
+            string id = (ModPack?.PackageIdPlayerFacing ?? ModPack?.PackageId)?.ToLowerInvariant();
             if (id.NullOrEmpty()) return;
             foreach (var page in DefDatabase<AlmanacArticleDef>.AllDefsListForReading)
                 if (page.mods != null && page.mods.Any(m => KnownPackageIds.Contains(m)) && !page.mods.Contains(id)) page.mods.Add(id);
@@ -307,6 +310,12 @@ namespace ColonyCouncil
             var side = wantPokemon ? pokemon : others;
             return side.Count > 0 ? side : wantPokemon ? others : pokemon;
         }
+
+        /// <summary>
+        /// The same rule for one kind already chosen (the young of a remembered great beast): false only where
+        /// <see cref="WildKinds"/> could never pick it, so a Pokémon at "No Pokémon", anything else at "Only Pokémon".
+        /// </summary>
+        public static bool Allows(PawnKindDef kind) => kind != null && WildKinds(new[] { kind })?.Any() == true;
 
         // ===================== The colony's Pokémon =====================
 
@@ -413,8 +422,8 @@ namespace ColonyCouncil
 
         /// <summary>
         /// Each hour: a Pokémon of a species the colony never had, whose arrival matches a colonist's "animals tamed"
-        /// record going up (a Poké Ball catch counts as taming; hatching, evolving, buying and wander-ins don't), earns
-        /// the catcher a journal line, a small memory and a quiet message. The first hour after loading only notes what
+        /// record going up (a Poké Ball catch counts as taming; hatching, evolving, buying and wander-ins don't; see
+        /// <see cref="Catcher"/>), earns the catcher a journal line, a small memory and a quiet message. The first hour after loading only notes what
         /// the colony has, together with what PokéWorld's Pokédex says was ever caught. Nothing is saved.
         /// </summary>
         public static void Hourly(CouncilGameComponent comp)
@@ -479,26 +488,38 @@ namespace ColonyCouncil
             }
         }
 
-        /// <summary>Who caught it: a colonist on its map whose "animals tamed" went up this hour; its master if that's one of them, else the nearest.</summary>
+        /// <summary>
+        /// Who caught it: a colonist on its map whose "animals tamed" went up this hour (its master if that's one of
+        /// them, else the nearest). If no record moved (a version that catches some other way), a Pokémon still in its
+        /// ball goes to the nearest colonist wearing a ball belt within 40 cells; one out of its ball (hatched, bought,
+        /// evolved, wandered in) to nobody.
+        /// </summary>
         private static Pawn Catcher(Pawn pokemon)
         {
             var map = pokemon.MapHeld;
             if (map == null) return null;
             var at = pokemon.PositionHeld;
-            Pawn best = null;
-            float bestDist = float.MaxValue;
+            Pawn best = null, wearer = null;
+            float bestDist = float.MaxValue, wearerDist = 40f * 40f;
             foreach (var p in map.mapPawns.FreeColonistsSpawned)
             {
-                if (p.records == null || !tamedBefore.TryGetValue(p, out int before) || p.records.GetAsInt(RecordDefOf.AnimalsTamed) <= before) continue;
-                if (pokemon.playerSettings?.Master == p) return p;
                 float d = p.Position.DistanceToSquared(at);
-                if (d < bestDist)
+                if (p.records != null && tamedBefore.TryGetValue(p, out int before) && p.records.GetAsInt(RecordDefOf.AnimalsTamed) > before)
                 {
-                    bestDist = d;
-                    best = p;
+                    if (pokemon.playerSettings?.Master == p) return p;
+                    if (d < bestDist)
+                    {
+                        bestDist = d;
+                        best = p;
+                    }
+                }
+                else if (!pokemon.Spawned && d < wearerDist && p.apparel?.WornApparel != null && p.apparel.WornApparel.Any(a => beltDefs.Contains(a.def)))
+                {
+                    wearerDist = d;
+                    wearer = p;
                 }
             }
-            return best;
+            return best ?? wearer;
         }
 
         private static void Celebrate(CouncilGameComponent comp, List<Pawn> fresh)

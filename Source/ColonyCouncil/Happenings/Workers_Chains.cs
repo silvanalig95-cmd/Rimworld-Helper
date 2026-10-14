@@ -171,7 +171,8 @@ namespace ColonyCouncil
     {
         private static Memo Pick(Map map) =>
             CouncilGameComponent.Instance?.happenings.Memos("beast", 40f).Where(m =>
-                !m.text.NullOrEmpty() && Fits(DefDatabase<PawnKindDef>.GetNamedSilentFail(m.def ?? ""), map)).RandomElementWithFallback();
+                !m.text.NullOrEmpty() && Fits(DefDatabase<PawnKindDef>.GetNamedSilentFail(m.def ?? ""), map)
+                && PokeWorldLink.Allows(DefDatabase<PawnKindDef>.GetNamedSilentFail(m.def ?? ""))).RandomElementWithFallback();
 
         private Memo picked;
 
