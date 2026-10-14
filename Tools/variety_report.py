@@ -452,7 +452,11 @@ def moment_rate(d):
     rules = [("initiatorMemories", 0.15), ("recipientMemories", 0.15), ("tie", 0.35), ("mutualFriends", 0.4),
              ("sharedPassion", 0.5), ("recipientBestCook", 0.3), ("bondedPet", 0.3), ("nemesisVictim", 0.05),
              ("ways", 0.4), ("sameIdeo", 0.5), ("otherIdeo", 0.3), ("shares", 0.4), ("moreSkilled", 0.3),
-             ("need", 0.3), ("stillSore", 0.2), ("mods", 0.15), ("needsDefs", 0.5)]
+             ("need", 0.3), ("stillSore", 0.2), ("mods", 0.15), ("needsDefs", 0.5),
+             # What's going on in their lives (LifeConditions): a feeling of the heart, an ailment, a camp, the region.
+             ("initiatorFeelings", 0.15), ("recipientFeelings", 0.15), ("feelingAboutRecipient", 0.3),
+             ("initiatorAiling", 0.12), ("recipientAiling", 0.12), ("initiatorHediffs", 0.06), ("recipientHediffs", 0.06),
+             ("camp", 0.08), ("situations", 0.2)]
     for tag, f in rules:
         if ext.find(tag) is not None:
             gate *= f
@@ -490,6 +494,16 @@ def social_event_rates(pools_by_def):
         for flag in ("aHasQuirk", "aHasGoal"):
             if ftext(d, flag) == "true":
                 e *= 0.4
+        # What's going on in their lives (LifeConditions), and a mend that needs a spat first.
+        for flag, f in (("aAiling", 0.12), ("bAiling", 0.12), ("bSerious", 0.03), ("camp", 0.08), ("aFeelingAboutB", 0.3)):
+            if ftext(d, flag) == "true":
+                e *= f
+        for tag, f in (("sharedAilment", 0.03), ("aFeelings", 0.15), ("bFeelings", 0.3), ("aMemories", 0.15),
+                       ("bMemories", 0.3), ("situations", 0.2)):
+            if d.find(tag) is not None:
+                e *= f
+        if ftext(d, "tone") == "mend":
+            e *= 0.15
         if ftext(d, "maxOpinion"):
             e *= 0.6
         if ftext(d, "minMood"):
@@ -525,6 +539,13 @@ def dream_rates(defs):
             w *= 0.35
         if ftext(d, "needsMechanoids") == "true":
             w *= 0.8
+        # Feelings, a camp, the region (Dreams.cs: half again as likely, more with a strong feeling).
+        if d.find("feelings") is not None:
+            w *= 2.2 * 0.15 * (0.4 if ftext(d, "feelingTarget") == "true" else 1)
+        if ftext(d, "camp") == "true":
+            w *= 1.5 * 0.08
+        if d.find("situations") is not None:
+            w *= 1.5 * 0.2
         ws.append((d, w))
     tot = sum(x for _, x in ws) or 1
     return {d: COLONISTS * YEAR_DAYS * 0.3 * x / tot for d, x in ws}
@@ -534,7 +555,8 @@ def nuisance_rates(defs):
     """Roughly two nuisances a day in a lived-in colony, by weight, capped by each one's cooldown per colonist."""
     common = {"LongWalk": 1.0, "Clutter": 0.8, "ShoddyClothes": 0.7, "HardBed": 0.6, "AnimalFilth": 0.5,
               "StuckDoor": 0.4, "SpoilingFood": 0.4, "CrampedBedroom": 0.4, "Insects": 0.4, "LeakyRoof": 0.2,
-              "SmokyRoom": 0.3, "NoisyGenerator": 0.2}
+              "SmokyRoom": 0.3, "NoisyGenerator": 0.2, "DirtyRoom": 0.3, "ChillyRoom": 0.3, "StuffyRoom": 0.2,
+              "PetInBed": 0.15, "BuildingWork": 0.3, "Vermin": 0.15, "BareFloor": 0.2}
     ws = [(d, float(ftext(d, "weight", "1")) * common.get(ftext(d, "check", ""), 0.4)) for d in defs]
     tot = sum(x for _, x in ws) or 1
     out = {}

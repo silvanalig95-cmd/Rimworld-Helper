@@ -143,6 +143,9 @@
       <li>{A_nameDef} set off from bed to breakfast and stopped twice on the way to rest.</li>
       <li>{A_nameDef} complained that the dining room might as well be in the next valley.</li>
       <li>{A_nameDef} worked out that {A_pronoun} spends more of the day walking to meals than eating them.</li>
+      <li>{A_nameDef}'s soup had gone cold by the time {A_pronoun} carried it back across the colony to eat.</li>
+      <li>[winter|cold] {A_nameDef} arrived at breakfast with frost in {A_possessive} hair from the long walk over.</li>
+      <li>{A_nameDef} asked, not for the first time, whether anyone had thought of putting a table nearer the beds.</li>
     </texts>
   </ColonyCouncil.NuisanceDef>
 
@@ -247,6 +250,9 @@
       <li>{A_nameDef} woke with a crick in {A_possessive} neck from the {THING} and spent the morning turning {A_possessive} whole body to look at things.</li>
       <li>{A_nameDef} folded {A_possessive} coat into a pillow, which did very little for the {THING}.</li>
       <li>{A_nameDef} lay awake on the {THING} feeling every lump in the floor beneath it.</li>
+      <li>{A_nameDef} got up from the {THING} slowly, one joint at a time.</li>
+      <li>{A_nameDef} stuffed the {THING} with dry grass, which helped for about an hour.</li>
+      <li>{A_nameDef} asked over breakfast who in the colony had a real mattress, and looked hard at the answer.</li>
     </texts>
   </ColonyCouncil.NuisanceDef>
 

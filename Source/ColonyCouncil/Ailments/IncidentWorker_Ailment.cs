@@ -65,13 +65,15 @@ namespace ColonyCouncil
         protected override IEnumerable<Pawn> PotentialVictimCandidates(IIncidentTarget target)
         {
             // No baby is ever the one to catch these first; quest lodgers are the quest's business. Some illnesses come
-            // to the old only (shingles), and some never twice (an appendix, measles).
+            // to the old only (shingles) or to children only (measles), and some never twice (an appendix, measles).
             var ext = Ext;
             var info = Info;
             var tracker = AilmentTracker.Instance;
             float minAge = ext?.minAge ?? 0f;
             bool once = info?.once ?? false;
+            bool childrenOnly = info?.childrenOnly ?? false;
             return base.PotentialVictimCandidates(target).Where(p => p != null && !p.DevelopmentalStage.Baby() && !p.IsQuestLodger()
+                && (!childrenOnly || p.DevelopmentalStage.Juvenile())
                 && (minAge <= 0f || Flavor.HumanAge(p) >= minAge) && (!once || tracker == null || !tracker.HadBefore(p, def.diseaseIncident)));
         }
 

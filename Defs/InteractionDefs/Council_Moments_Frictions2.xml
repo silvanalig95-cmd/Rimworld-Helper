@@ -27,6 +27,7 @@
         <li>laugh->scare the animals off their feed</li>
         <li>r_logentry->[INITIATOR_nameDef] covered [INITIATOR_possessive] ears, only half joking, when [RECIPIENT_nameDef] started to sing.</li>
         <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] to stop whistling, for the third time that morning.</li>
+        <li>r_logentry-&gt;[INITIATOR_nameDef] asked [RECIPIENT_nameDef] to tell the rest of the story some other time. Some other year, if possible.</li>
       </rulesStrings>
     </logRulesInitiator>
     <modExtensions>
@@ -55,6 +56,7 @@
         <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] that hearing [RECIPIENT_objective] in the dark had nearly frightened [INITIATOR_objective] to death.</li>
         <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] to cough or something before coming into a room.</li>
         <li>r_logentry->[INITIATOR_nameDef] lay awake listening to [RECIPIENT_nameDef] breathing on the other side of the wall, and mentioned it in the morning.</li>
+        <li>r_logentry-&gt;[INITIATOR_nameDef] asked [RECIPIENT_nameDef] whether [RECIPIENT_pronoun] was ill, from the sound of it. [RECIPIENT_nameDef] wasn't.</li>
       </rulesStrings>
     </logRulesInitiator>
     <modExtensions>
@@ -83,6 +85,7 @@
         <li>r_logentry->[INITIATOR_nameDef] counted the candles after [RECIPIENT_nameDef] left the storeroom.</li>
         <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] to stop talking about the last fire as if it had been a festival.</li>
         <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] the fire was big enough, thank you, before [RECIPIENT_nameDef] had even reached for more wood.</li>
+        <li>r_logentry-&gt;[INITIATOR_nameDef] found matches in [RECIPIENT_nameDef]'s pocket during the wash and asked what they were for.</li>
       </rulesStrings>
     </logRulesInitiator>
     <modExtensions>
@@ -109,6 +112,7 @@
         <li>r_logentry->[INITIATOR_nameDef] gave [RECIPIENT_nameDef]'s spare blanket to someone who needed it, without asking [RECIPIENT_nameDef] first.</li>
         <li>r_logentry->[INITIATOR_nameDef] gave [RECIPIENT_nameDef] a talk about wanting less. [RECIPIENT_nameDef] wanted it to be shorter.</li>
         <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] argued about whether the colony should hoard its silver or spend it.</li>
+        <li>r_logentry-&gt;[INITIATOR_nameDef] counted out loud the shirts in [RECIPIENT_nameDef]'s chest. There were a lot of shirts.</li>
       </rulesStrings>
     </logRulesInitiator>
     <modExtensions>
@@ -136,6 +140,7 @@
         <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] argued about whether a hat counts as being dressed.</li>
         <li>r_logentry->[INITIATOR_nameDef] walked into the room, saw [RECIPIENT_nameDef], and walked straight back out.</li>
         <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] whether [RECIPIENT_pronoun] wasn't cold. [RECIPIENT_nameDef] said [RECIPIENT_pronoun] was perfectly comfortable, thank you.</li>
+        <li>r_logentry-&gt;[INITIATOR_nameDef] hung a curtain across the washroom door after one too many surprises from [RECIPIENT_nameDef].</li>
       </rulesStrings>
     </logRulesInitiator>
     <modExtensions>
@@ -164,6 +169,7 @@
         <li>r_logentry->[INITIATOR_nameDef] offered to carry [RECIPIENT_nameDef]'s load so they'd get there before dark. [RECIPIENT_nameDef] didn't take it well.</li>
         <li>r_logentry->[INITIATOR_nameDef] tapped [INITIATOR_possessive] foot while [RECIPIENT_nameDef] got ready to go.</li>
         <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] set off for the fields together and arrived separately.</li>
+        <li>r_logentry-&gt;[INITIATOR_nameDef] said [INITIATOR_pronoun] would wait at the gate. [RECIPIENT_nameDef] found [INITIATOR_objective] there an hour later, sighing.</li>
       </rulesStrings>
     </logRulesInitiator>
     <modExtensions>
@@ -191,6 +197,8 @@
         <li>r_logentry->[RECIPIENT_nameDef] talked about the implants [RECIPIENT_pronoun] wanted someday, and [INITIATOR_nameDef] made a face.</li>
         <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] that people who swap their parts for machines end up as machines.</li>
         <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] went round and round about what makes a person a person, and got nowhere.</li>
+        <li>r_logentry-&gt;[INITIATOR_nameDef] asked [RECIPIENT_nameDef] whether [RECIPIENT_pronoun] would still be [RECIPIENT_nameDef] with someone else's parts in [RECIPIENT_objective]. They argued until dark.</li>
+        <li>r_logentry-&gt;[INITIATOR_nameDef] said that being born with a weak heart was no reason to buy a better one. [RECIPIENT_nameDef] said that was exactly the reason.</li>
       </rulesStrings>
     </logRulesInitiator>
     <modExtensions>
@@ -219,6 +227,7 @@
         <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] why [RECIPIENT_pronoun] wasn't in bed if [RECIPIENT_pronoun] was so ill.</li>
         <li>r_logentry->[INITIATOR_nameDef] held [INITIATOR_possessive] breath while passing [RECIPIENT_nameDef] in the hall.</li>
         <li>r_logentry->[INITIATOR_nameDef] wouldn't share a cup with [RECIPIENT_nameDef] and made a show of it.</li>
+        <li>r_logentry-&gt;[INITIATOR_nameDef] told [RECIPIENT_nameDef] to cough into [RECIPIENT_possessive] elbow, and then to cough somewhere else entirely.</li>
       </rulesStrings>
     </logRulesInitiator>
     <modExtensions>
@@ -257,6 +266,7 @@
         <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] couldn't agree on what the camp people were really after.</li>
         <li>r_logentry->[INITIATOR_nameDef] complained to [RECIPIENT_nameDef] about the strangers cutting the colony's trees. [RECIPIENT_nameDef] said they were only trees.</li>
         <li>r_logentry->[INITIATOR_nameDef] caught [RECIPIENT_nameDef] trading with the camp and wanted to know what [RECIPIENT_pronoun] had given away.</li>
+        <li>r_logentry-&gt;[INITIATOR_nameDef] said the camp would be gone in a week and good riddance. [RECIPIENT_nameDef] said [RECIPIENT_pronoun] would miss them.</li>
       </rulesStrings>
     </logRulesInitiator>
     <modExtensions>
@@ -284,6 +294,9 @@
         <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] to leave [INITIATOR_objective] alone before [RECIPIENT_nameDef] had said a word.</li>
         <li>r_logentry->[INITIATOR_nameDef] took out a bad day on [RECIPIENT_nameDef], who happened to be standing nearest.</li>
         <li>r_logentry->[INITIATOR_nameDef] muttered something at [RECIPIENT_nameDef] that [RECIPIENT_nameDef] decided not to have heard.</li>
+        <li>r_logentry-&gt;[INITIATOR_nameDef] banged [INITIATOR_possessive] cup down on the table when [RECIPIENT_nameDef] asked a simple question.</li>
+        <li>r_logentry-&gt;[INITIATOR_nameDef] told [RECIPIENT_nameDef] to stop hovering, though [RECIPIENT_nameDef] had only come to help.</li>
+        <li>r_logentry-&gt;[INITIATOR_nameDef] answered [RECIPIENT_nameDef]'s good morning with a grunt and a look.</li>
       </rulesStrings>
     </logRulesInitiator>
     <modExtensions>

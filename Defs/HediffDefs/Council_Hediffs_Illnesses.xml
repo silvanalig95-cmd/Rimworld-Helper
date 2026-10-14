@@ -315,7 +315,7 @@
       <li Class="ColonyCouncil.HediffCompProperties_Ailment">
         <serious>true</serious>
         <key>Typhus</key>
-        <causes><li><trigger>CrowdedDirty</trigger><hours>4</hours><chance>0.015</chance></li></causes>
+        <causes><li><trigger>CrowdedDirty</trigger><hours>4</hours><chance>0.015</chance><boostHediff>Council_Ail_Lice</boostHediff><boost>3</boost></li></causes>
         <cooldownDays>60</cooldownDays>
         <spreadPerHour>0.003</spreadPerHour>
         <spreadNeedsDirt>true</spreadNeedsDirt>

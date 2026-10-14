@@ -164,13 +164,13 @@ now, for example "Good times: Rimfolk's good moods +11 of +18, 2 fading sooner Â
 complain about a bunkmate's snoring, take the last good meal, keep a borrowed knife, correct each other at the table
 and give each other the cold shoulder after a spat. Some natures grate: an annoying voice, creepy breathing, a
 pyromaniac near the tinder, a nudist at supper, an ascetic lecturing a greedy one. So do the times: someone keeps
-away from a sick colonist, two argue about a camp, a temper snaps. A messy or cramped home adds its own: a door that
-sticks, a leaking roof, smoke in a small room, a generator droning next to someone's bed, a filthy room, a cold or
-stifling one, the dog asleep on the bed, building work right outside, vermin in the stores, a bare earth floor. Each
-costs a point or two of mood for half a day to a day and a half. In an ordinary colony they come about as often as
-the warm moments; less in a happy, roomy one, more in barracks or between people who dislike each other. Abrasive,
-volatile and jealous colonists start more of them, kind ones none. After a spat the two share no warm moments until
-it wears off or they clear the air. A setting turns them off.
+away from a sick colonist, two argue about a camp, a temper snaps. A messy or cramped home adds its own (19
+nuisances): a door that sticks, a leaking roof, smoke in a small room, a generator droning next to someone's bed, a
+filthy room, a cold or stifling one, the dog asleep on the bed, building work right outside, vermin in the stores, a
+bare earth floor. Each costs a point or two of mood for half a day to a day and a half. In an ordinary colony they
+come about as often as the warm moments; less in a happy, roomy one, more in barracks or between people who dislike
+each other. Abrasive, volatile and jealous colonists start more of them, kind ones none. After a spat the two share
+no warm moments until it wears off or they clear the air. A setting turns them off.
 
 **Everyday pressures.** A colony that has everything still has its everyday wear. Five small, fixable pressures show
 as moods while their cause lasts, each saying what caused it, with what helps in the Mood tab:
@@ -235,16 +235,17 @@ grow, sour and end over time:
 - A skilled, passionate colonist may take a keen learner on as a **student**, teaching them every day until they
   graduate at level 11.
 
-Most days something small happens between two people: a late talk, a shared joke, a prank that lands badly, a
-snub at dinner, a squabble over chores, war stories, a lesson, a contest between rivals, a handmade gift, gossip
-that gets found out, an unexpected truce. Life brings its own: a vigil at a friend's sickbed, an evening at a camp on
-the map, a quarrel over what the council decided, fears confided in the night, grief carried together, a peace
-offering after a quarrel. Each one nudges their bond. In conversation they share smaller moments too, shaped by who
-they are (night owls keeping each other company, brawlers comparing scars, an iron-willed colonist steadying a
-nervous one) and by what's going on (visiting the sick, talking over a council meeting, watching a camp's fires,
-confiding a worry). Moments, frictions and events keep to one story between the same two: no compliment right after
-an insult, no warm evening the day after a falling-out. Three to six people held together by strong friendships form
-a **circle**, and people outside every circle sometimes feel left out.
+Most days something small happens between two people (67 kinds of social event): a late talk, a shared joke, a prank
+that lands badly, a snub at dinner, a squabble over chores, war stories, a lesson, a contest between rivals, a
+handmade gift, gossip that gets found out, an unexpected truce. Life brings its own: a vigil at a friend's sickbed,
+an evening at a camp on the map, a quarrel over what the council decided, fears confided in the night, grief carried
+together, a peace offering after a quarrel. Each one nudges their bond. In conversation they share smaller moments
+too (about a hundred kinds, 40 of them frictions), shaped by who they are (night owls keeping each other company,
+brawlers comparing scars, an iron-willed colonist steadying a nervous one) and by what's going on (visiting the sick,
+talking over a council meeting, watching a camp's fires, confiding a worry). Moments, frictions and events keep to
+one story between the same two: no compliment right after an insult, no warm evening the day after a falling-out.
+Three to six people held together by strong friendships form a **circle**, and people outside every circle sometimes
+feel left out.
 
 Bonds change how people act. Friends and circle members back each other's wishes and petitions and vote for each
 other; rivals object to each other's wishes and vote against each other. The council's own decisions feed back
@@ -300,18 +301,18 @@ harmless habits like knocking on wood, counting steps or talking to the dead. Sm
 fade after a season or two.
 
 ### Dreams
-Colonists who sleep (or lie unconscious) for a few hours sometimes wake from a dream, and tell each other about
-it. Dreams grow out of their lives: the raid two days ago, the friend they buried, the rival who insulted them, the
-wish the council ignored, the leg they lost, the skill they're learning, the dead they miss, their partner, their
-dog. They grow out of what they feel, too (an argument all night with the one they're angry at, a debt repaid to the
-one they're grateful to, dreams of fear, shame, loneliness, pride or hope), out of what ails them (loose teeth with a
-toothache, breathing underwater with a cold), and out of what's around them: a camp on the map, a council meeting,
-sickness, famine, fighting or a fair in the region, and the seasons. Most are just a passing mood and a line in their
-journal (hover the mood to read the dream). Now and then one
-changes something: an inspiration, a lesson, a good night's rest, a nightmare that leaves them shaken, a dream of
-victory that steadies their aim, a softened rivalry, a sudden wish. And rarely a dream is an **omen**: a few days
-after someone wakes up talking about bells and pack animals on the hill, a caravan arrives; after torches in the
-dark, a raid. Recent dreams are listed in the Social tab.
+Colonists who sleep (or lie unconscious) for a few hours sometimes wake from a dream (there are 117), and tell each
+other about it. Dreams grow out of their lives: the raid two days ago, the friend they buried, the rival who insulted
+them, the wish the council ignored, the leg they lost, the skill they're learning, the dead they miss, their partner,
+their dog. They grow out of what they feel, too (an argument all night with the one they're angry at, a debt repaid
+to the one they're grateful to, dreams of fear, shame, loneliness, pride or hope), out of what ails them (loose teeth
+with a toothache, breathing underwater with a cold), and out of what's around them: a camp on the map, a council
+meeting, sickness, famine, fighting or a fair in the region, and the seasons. Most are just a passing mood and a line
+in their journal (hover the mood to read the dream). Now and then one changes something: an inspiration, a lesson, a
+good night's rest, a nightmare that leaves them shaken, a dream of victory that steadies their aim, a softened
+rivalry, a sudden wish. And rarely a dream is an **omen**: a few days after someone wakes up talking about bells and
+pack animals on the hill, a caravan arrives; after torches in the dark, a raid. Recent dreams are listed in the
+Social tab.
 
 ### Strangers, beasts and pets
 Colonists meet everyone else on the map, too:
@@ -876,8 +877,9 @@ Rimfolk's own save data. The only trace in a save is a colonist in the middle of
 the game can't load that mental state, logs it once and lets them go back to work.
 
 ## Ailments and illnesses
-Colony life wears on the body too. **Everyday ailments** are small and temporary: they never kill, never leave a mark,
-last from a night to two weeks, and say in their description what helps. Doctors tend them like any illness.
+Colony life wears on the body too. **Everyday ailments** (32 of them) are small and temporary: they never kill, never
+leave a mark, last from a night to two weeks, and say in their description what helps. Doctors tend them like any
+illness.
 
 - **Going round** (the game's own disease events, so immunity, genes and the medical tab work as usual; never babies):
   a head cold, a stomach bug, a chest cold in cold weather, hay fever in spring and summer (back to the same people
@@ -894,25 +896,26 @@ last from a night to two weeks, and say in their description what helps. Doctors
   after missed meals or worry, cold sores, and heartburn and hiccups after a rich meal or a drink. Never more than two
   at once, never the same one again within days, and never on guests, prisoners or babies.
 
-**Serious illnesses** are rare, behind their own switch, and most can kill: tetanus from a wound left untended,
-pneumonia after a cold in someone old, frail or starving, tuberculosis, typhus in dirty crowded quarters, meningitis,
-scurvy after weeks without fruit or vegetables, cholera in hot weather, appendicitis, rabies from an animal's bite, and
-two invented ones: glassblood from the dust of ancient ruins and hive fever from insectoid stings. Measles in children,
-kidney stones and shingles in the old are hard going but never kill. One kind at a time in the colony, none within 30
-days of the last, and each comes with a letter and a doctor's note saying what it is and what helps. They follow the
-real diseases: a quiet incubation where there is one, a course of days to weeks, after-effects like a lingering cough,
-nerve pain or some days of weakness, and treatment that counts the medicine the way the real illness would (industrial
-medicine matters far more than herbs against tetanus, pneumonia, typhus, meningitis and rabies; cholera needs someone
-to keep the patient drinking more than any medicine; tuberculosis needs weeks of daily treatment and comes back if it
-stops early; rabies can only be stopped before its symptoms show; only fresh food cures scurvy). Appendicitis can be cut
-out with a "remove appendix" operation. Steady tending beats every one of them. The Almanac's **ailments and
-illnesses** page has the tables.
+**Serious illnesses** (14 of them) are rare, behind their own switch, and most can kill: tetanus from a wound left
+untended, pneumonia after a cold in someone old, frail or starving, tuberculosis, typhus in dirty crowded quarters,
+meningitis, scurvy after weeks without fruit or vegetables, cholera in hot weather, appendicitis, rabies from an
+animal's bite, and two invented ones: glassblood from the dust of ancient ruins and hive fever from insectoid stings.
+Measles in children, kidney stones, and shingles in people over fifty are hard going but never kill. One kind at a
+time in the colony, none within 30 days of the last, and each comes with a letter and a doctor's note saying what it
+is and what helps. They follow the real diseases: a quiet incubation where there is one, a course of days to weeks,
+after-effects like a lingering cough, nerve pain or some days of weakness, and treatment that counts the medicine the
+way the real illness would (industrial medicine matters far more than herbs against tetanus, pneumonia, typhus,
+meningitis and rabies; cholera needs someone to keep the patient drinking more than any medicine; tuberculosis needs
+weeks of daily treatment and comes back if it stops early; rabies can only be stopped before its symptoms show; only
+fresh food cures scurvy). Appendicitis can be cut out with a "remove appendix" operation. Steady tending beats every
+one of them. The Almanac's **ailments and illnesses** page has the tables.
 
 With Rimfolk: ailments feed the heart's frustration and serious illnesses its fear (and so a little strain); doctors
-and patients write about them in their journals; dreamfever and serious illnesses bring their own dreams; a doctor with
-a serious case is more likely to ask for a stocked infirmary when medicine is short, and pulling a patient through
-lifts both. Settings (People page): everyday ailments on or off, serious illnesses on or off, and how often (25% to
-200%). Off, nothing new starts; what's running finishes its course.
+and patients write about them in their journals; dreamfever, serious illnesses and many everyday ailments color their
+dreams; friends visit the sick; a doctor with a serious case is more likely to ask for a stocked infirmary when
+medicine is short, and pulling a patient through lifts both. Settings (People page): everyday ailments on or off,
+serious illnesses on or off, and how often (25% to 200%). Off, nothing new starts; what's running finishes its
+course.
 
 ## Seen and heard
 Rimfolk adds no art of its own, so it uses the game's own effects, sky and sounds to show what its events say is
