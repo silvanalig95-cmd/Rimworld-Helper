@@ -58,6 +58,14 @@ Section names show a count when something there wants your attention (urgent adv
 Each colonist also has a **Story** tab in their inspect panel, and clicking a colonist's name in the council window
 opens their page in the roster.
 
+The window opens on the page you last looked at, also after a restart (it's kept with the mod settings). A colony's
+first session with Rimfolk brings one quiet **welcome letter**: what Rimfolk does, where the council button is, and a
+button to the Almanac's **Start here** page. Saves that already had Rimfolk never get it, and it needs no setting.
+The **Mood** and **Story** tabs fit the room above the inspect pane: on a small screen, at a big interface scale or
+above RimHUD's taller pane they get shorter and scroll instead of running off the top of the screen. A click on a
+section's heading (the heart, what weighs on them, their bonds...) folds it away, and each tab remembers that for the
+session.
+
 ### Priorities: what the colony needs
 A ranked list of concerns, each with a short explanation, a rotating **"why it matters"** tip, and buttons to
 jump to the problem, plan a fitting room, or read more in the Almanac. It watches:
@@ -440,7 +448,9 @@ bedroom.
 An in-game knowledge base: good practice and the numbers behind it, by topic, searchable, linked from the
 advisor's warnings and to room plans. The **Your mods** category explains the mods in your game (over 100 pages
 covering a 216-mod medieval list): what each adds, how to get the most out of it in a medieval run, pitfalls and
-conflicts, and how it works with Rimfolk. Each page only shows when its mod is active.
+conflicts, and how it works with Rimfolk. Each page only shows when its mod is active. **Start here** (the first
+page) gives Rimfolk in a few lines with links to the main systems' pages, and **Checking that it works** is a short
+checklist of where to look to see the newer features at work.
 
 ### Names, anniversaries and petitions
 Whoever has done the most of something earns a name for it, until someone overtakes them: *the Healer*, *the
@@ -970,7 +980,11 @@ Version 0.4. It compiles against RimWorld 1.6 and is checked against 1.7 (the sa
 is checked against the real game types by the included validator. It runs in a live game with a 200+ mod medieval
 list. If something misbehaves, open the debug log (Options → Development mode, then the log button): lines starting
 with `[Rimfolk]` are from this mod.
-Please share them so they can be fixed.
+Please share them so they can be fixed. Quicker still: with development mode on, open the debug actions and pick
+**Rimfolk: check myself** (under Rimfolk). One window shows the game, Rimfolk and Harmony versions, which game hooks
+applied and which didn't (and why), which parts are switched off or changed from their defaults, which of the mods
+Rimfolk works with it found, and its own errors and warnings this session; a screenshot of it (or the "Copy to
+clipboard" button) says most of what a bug report needs.
 
 ## For modders
 

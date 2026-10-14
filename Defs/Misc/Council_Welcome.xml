@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- The welcome letter (UI/Welcome.cs): once per colony, a little while into its first session with Rimfolk. Quiet
+       on purpose: no bounce, no flash, the plain letter sound. -->
+  <LetterDef>
+    <defName>Council_WelcomeLetter</defName>
+    <letterClass>ColonyCouncil.ChoiceLetter_Welcome</letterClass>
+    <color>(205, 190, 145)</color>
+    <flashColor>(205, 190, 145)</flashColor>
+    <arriveSound>LetterArrive</arriveSound>
+    <bounce>false</bounce>
+  </LetterDef>
+
+</Defs>

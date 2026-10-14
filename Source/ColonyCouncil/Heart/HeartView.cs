@@ -325,18 +325,18 @@ namespace ColonyCouncil
 
         public static Color NeedColor(float fill) => fill >= 0.6f ? UiKit.Good : fill >= 0.45f ? UiKit.Info : fill >= 0.3f ? UiKit.Warn : UiKit.Bad;
 
-        /// <summary>Draws the Heart section at y; returns the new y. Nothing when the feature is off or they have no heart.</summary>
-        public static float DrawSection(Pawn p, float y, float w)
+        /// <summary>
+        /// Draws the Heart section at y; returns the new y. Nothing when the feature is off or they have no heart. With
+        /// folds, a click on the heading folds the section away.
+        /// </summary>
+        public static float DrawSection(Pawn p, float y, float w, Folds folds = null)
         {
             var h = Heart.ForView(p);
             if (h == null) return y;
-            if (!h.evaluated)
-            {
-                y += UiKit.SectionTitle(0f, y, w, "CC_Heart_Section".Translate(), Icons.Heart, UiKit.HeaderColor);
-                return y + UiKit.Paragraph(0f, y, w, "CC_Heart_NotYet".Translate(), MoodView.Faint, GameFont.Tiny) + 8f;
-            }
+            y += UiKit.FoldTitle(0f, y, w, "CC_Heart_Section".Translate(), folds, "heart", out bool open, Icons.Heart, UiKit.HeaderColor);
+            if (!open) return y + 4f;
+            if (!h.evaluated) return y + UiKit.Paragraph(0f, y, w, "CC_Heart_NotYet".Translate(), MoodView.Faint, GameFont.Tiny) + 8f;
             var m = ModelFor(p, h);
-            y += UiKit.SectionTitle(0f, y, w, "CC_Heart_Section".Translate(), Icons.Heart, UiKit.HeaderColor);
             UiKit.Meter(new Rect(0f, y, w, UiKit.MeterHeight), m.fill, m.bandColor, m.strainLabel, m.strainValue, null, m.strainTip);
             y += UiKit.MeterHeight + 2f;
             y += UiKit.Paragraph(0f, y, w, m.bandDesc, MoodView.Faint, GameFont.Tiny) + 2f;

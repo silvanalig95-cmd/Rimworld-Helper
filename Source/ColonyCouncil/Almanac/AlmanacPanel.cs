@@ -23,6 +23,9 @@ namespace ColonyCouncil
         private static readonly Color QuoteColor = new Color(1f, 0.93f, 0.75f);
         private static readonly Color Header = new Color(0.85f, 0.8f, 0.6f);
 
+        /// <summary>The page open in the almanac, if any (remembered between sessions by the council window).</summary>
+        public static AlmanacArticleDef Selected => selected;
+
         /// <summary>Open the almanac on this page (from a priority's "read more").</summary>
         public static void Show(AlmanacArticleDef article)
         {

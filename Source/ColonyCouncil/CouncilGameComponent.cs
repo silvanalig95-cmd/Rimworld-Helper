@@ -153,6 +153,7 @@ namespace ColonyCouncil
             Scribe_Deep.Look(ref happenings, "happenings");
             Scribe_Deep.Look(ref pressures, "pressures");
             Scribe_Values.Look(ref scenarioSetUp, "scenarioSetUp");
+            ExposeWelcome();
             Scribe_Collections.Look(ref history, "history", LookMode.Deep);
             Scribe_Values.Look(ref era, "era", EraMode.Auto);
             if (Scribe.mode == LoadSaveMode.Saving) lastAtHome.RemoveAll(kv => kv.Key == null || kv.Key.Dead || kv.Key.Discarded);
