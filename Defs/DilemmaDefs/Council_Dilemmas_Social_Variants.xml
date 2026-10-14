@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    More ways for the social dilemmas (Council_Dilemmas_Social.xml) to read, merged in at startup (LetterVariantsDef).
+    Tags: the era and season, the moment as A lives it, A's traits, passions, past and office, B's with b: in front,
+    and the colony's name.
+  -->
+
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Council_Var_Dlm_Soc_SwornRivals</defName>
+    <dilemma>Council_Dilemma_Soc_SwornRivals</dilemma>
+    <texts>
+      <li>[winter] Snowed in for a week, the colony has had nowhere to go but between {A_nameDef} and {B_nameDef}, whose feud now runs through every room. Yesterday it was the woodpile, today the soup.\n\nBoth of them came to the council and want it ended, each on their own terms.</li>
+      <li>[lowtech] {A_nameDef} and {B_nameDef} have been feuding so long the colony has songs about it, sung only when neither is in the room. Now they've come to the council together and want it finished, one way or another.</li>
+    </texts>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Council_Var_Dlm_Soc_Inseparable</defName>
+    <dilemma>Council_Dilemma_Soc_Inseparable</dilemma>
+    <texts>
+      <li>[summer] {A_nameDef} and {B_nameDef} spent the whole of the harvest working the same rows, laughing at things nobody else heard. Now they want it made permanent: same shifts, same crews. The ones covering the gaps they left want a word too.</li>
+      <li>[colony:Hardworking] In a colony that takes its roster seriously, {A_nameDef} and {B_nameDef} have been rearranging it behind the council's back to work together. They're asking the council to let them do it openly, and some of the others would like the council to say no.</li>
+    </texts>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Council_Var_Dlm_Soc_CoverUp</defName>
+    <dilemma>Council_Dilemma_Soc_CoverUp</dilemma>
+    <texts>
+      <li>[winter] The colony lost a night's heat last week when the stove went out, and {B_nameDef} said the flue had blocked. It came out today that {A_nameDef} fell asleep on watch over it, and {B_nameDef} covered for {A_objective}.\n\n{A_nameDef} is ashamed. {B_nameDef} says a friend is a friend. The colony wants to know whom the council blames.</li>
+      <li>[lowtech] When the mule got loose and trampled the herb beds, {B_nameDef} swore a fox had spooked it. It was {A_nameDef} who left the gate open, and {B_nameDef} knew.\n\n{A_nameDef} has owned up. {B_nameDef} hasn't, and the council has to decide what matters more, the gate or the story.</li>
+    </texts>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Council_Var_Dlm_Soc_Remembrance</defName>
+    <dilemma>Council_Dilemma_Soc_Remembrance</dilemma>
+    <texts>
+      <li>[past:soldier] {A_nameDef} remembers how a company honored its fights: the whole story told once, a meal, and a cup for each name. {A_nameDef} and {B_nameDef} want that for the colony's last fight, which would cost about {COUNT} raw food and an evening of everyone's time.</li>
+      <li>[winter] {A_nameDef} and {B_nameDef} want one winter evening set aside to remember the last fight properly, with a fire, a real meal and the whole story. It would cost about {COUNT} raw food, and the winter stores are already thin.</li>
+    </texts>
+    <outcomes>
+      <li>
+        <option>0</option>
+        <lines>
+          <li>[past:soldier] They told it the old way: start to finish, a name for each cup, and a silence at the end. Some of the colony cried, and {A_nameDef} pretended not to.</li>
+        </lines>
+      </li>
+    </outcomes>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Council_Var_Dlm_Soc_Accusation</defName>
+    <dilemma>Council_Dilemma_Soc_Accusation</dilemma>
+    <texts>
+      <li>[b:trait:Jealous] {B_nameDef} has resented {A_nameDef}'s good luck for months, and now says it isn't luck at all: {A_nameDef} has been stealing from the stores. {B_nameDef} has no proof, only a lot of conviction.\n\n{A_nameDef} wants the council to make {B_nameDef} take it back.</li>
+      <li>[past:outlaw] {A_nameDef} has never hidden an outlaw past, and {B_nameDef} has never let anyone forget it. Now silver is missing, and {B_nameDef} says everyone knows who took it.\n\n{A_nameDef} wants the council to put a stop to it.</li>
+    </texts>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Council_Var_Dlm_Soc_LeftBehind</defName>
+    <dilemma>Council_Dilemma_Soc_LeftBehind</dilemma>
+    <texts>
+      <li>[winter] {A_nameDef} and {B_nameDef} used to spend the winter evenings together. This winter {A_nameDef} sits with a different crowd near the stove, and {B_nameDef} sits by the window with a cold cup.\n\n{B_nameDef} has asked the council for help, and hates having had to.</li>
+      <li>[b:trait:Kind] {B_nameDef} has kept {A_nameDef}'s seat at supper empty for a week, just in case. {A_nameDef} has been eating with new friends. {B_nameDef} came to the council at last, red-faced, to ask if anything could be done.</li>
+    </texts>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Council_Var_Dlm_Soc_ClosedCircle</defName>
+    <dilemma>Council_Dilemma_Soc_ClosedCircle</dilemma>
+    <texts>
+      <li>[winter] {B_nameDef} and {B_possessive} friends have claimed the benches nearest the stove for the winter, and there's never room when {A_nameDef} comes in from the cold. {A_nameDef} has asked the council to do something about it.</li>
+      <li>[newcomer] {A_nameDef} hasn't been here long, and has found out that the colony has a circle, and that {B_nameDef} keeps its door shut. {A_nameDef} has asked the council whether that's how things are done here.</li>
+    </texts>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Council_Var_Dlm_Soc_WhoseWork</defName>
+    <dilemma>Council_Dilemma_Soc_WhoseWork</dilemma>
+    <texts>
+      <li>[lowtech] The new granary is the first building in the colony the rats can't get into. {A_nameDef} says it was {A_possessive} idea and {A_possessive} back that built it. {B_nameDef} says the same.\n\nThey both want the council to name the builder.</li>
+      <li>[!lowtech] The new generator housing hasn't leaked once all season, and {A_nameDef} and {B_nameDef} both say it was their design. Each has drawings to prove it, and the drawings look suspiciously similar.\n\nThe council has been asked to settle it.</li>
+    </texts>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Council_Var_Dlm_Soc_Plea</defName>
+    <dilemma>Council_Dilemma_Soc_Plea</dilemma>
+    <texts>
+      <li>[colony:Harsh] The colony is known for keeping its rules hard, and {A_nameDef} broke one of them this week, openly. Now {B_nameDef}, {A_possessive} closest friend, has come to the council to ask for mercy, and the colony is watching to see if it bends.</li>
+      <li>[colony:Merciful] The colony has a name for mercy, and {B_nameDef} is counting on it: {A_nameDef} broke the council's rules this week, and {B_nameDef} has come to speak for {A_objective}. Some of the others think mercy is becoming a habit.</li>
+    </texts>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Council_Var_Dlm_Soc_Favoritism</defName>
+    <dilemma>Council_Dilemma_Soc_Favoritism</dilemma>
+    <texts>
+      <li>[winter] {B_nameDef} says that when the cold came, the quartermaster's friends got the thick blankets and everyone else got the thin ones. The quartermaster is {A_nameDef}, and {B_nameDef} has never liked {A_objective}.\n\n{B_nameDef} wants the keys taken away. {A_nameDef} wants {B_nameDef} to count blankets somewhere else.</li>
+    </texts>
+  </ColonyCouncil.LetterVariantsDef>
+
+</Defs>

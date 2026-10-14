@@ -1,0 +1,341 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    More lines for the most frequent stranger encounters (Council_Encounters_People.xml, _Creatures.xml,
+    _Reputation.xml), merged in at startup (LetterVariantsDef). Encounter lines are picked by the moment as A lives it:
+    the weather ([rain], [snow], [fog], [hot], [cold]), the time of day ([morning], [night]), the season, what A is
+    doing ([eating], [working], [outside]), A's traits, passions and past, the stranger ([x:old], [x:child]) and their
+    people ([theirLowtech], [theirHightech]). A tagged line only shows when it fits.
+  -->
+
+  <!-- ===================== People ===================== -->
+
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Council_Var_EncP_RoadNews</defName>
+    <encounter>Council_EncP_RoadNews</encounter>
+    <texts>
+      <li>[winter] {X_nameDef} told {A_nameDef} that the pass to the north closed early this year, and two caravans are stuck on the far side of it until spring.</li>
+      <li>[theirLowtech] According to {X_nameDef}, the lord across the river has hanged his own tax collector, and nobody up there knows yet whether that's good news.</li>
+      <li>[theirHightech] {X_nameDef} told {A_nameDef} that a ship came down hard in the eastern hills, and every scavenger for a week's walk is heading for it.</li>
+      <li>[rain] Sheltering from the rain under the eaves, {X_nameDef} told {A_nameDef} which roads had washed out and which bridges were still standing.</li>
+      <li>[x:old] {X_nameDef} has walked the roads for forty years and told {A_nameDef} which settlements have changed hands since the last time {X_pronoun} came this way. Most of them have.</li>
+      <li>[past:trader] {A_nameDef} pressed {X_nameDef} for prices up and down the road, and wrote them on the back of {A_possessive} hand to copy out later.</li>
+    </texts>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Council_Var_EncP_ChildrenPlay</defName>
+    <encounter>Council_EncP_ChildrenPlay</encounter>
+    <texts>
+      <li>[snow] {A_nameDef} and {X_nameDef} built a snow wall across the yard and spent the afternoon defending it from each other.</li>
+      <li>[rain] {A_nameDef} and {X_nameDef} raced bark boats down the gutter in the rain until both of them were soaked to the knees.</li>
+      <li>[summer] {A_nameDef} and {X_nameDef} lay in the long grass all afternoon arguing about what shape each cloud was.</li>
+      <li>[night] {A_nameDef} and {X_nameDef} were caught after dark by the gate, telling each other ghost stories, and sent to bed twice.</li>
+    </texts>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Council_Var_EncP_FireSongs</defName>
+    <encounter>Council_EncP_FireSongs</encounter>
+    <texts>
+      <li>[winter] With snow on the ground, {X_nameDef} sang a song about summer in the far south, and {A_nameDef} sat with {A_possessive} eyes closed for all of it.</li>
+      <li>[theirLowtech] {X_nameDef} sang an old {FACTION} song about a river that ran backward for a day. {A_nameDef} asked what it meant, and {X_nameDef} said nobody knew anymore.</li>
+      <li>[rain] Rain on the roof, a fire in the stove, and {X_nameDef} singing low. {A_nameDef} stayed up well past bedtime to hear the end.</li>
+      <li>[skill:Artistic] {A_nameDef} asked {X_nameDef} to sing the same verse three times, then tried it on a homemade pipe until {A_pronoun} had the tune.</li>
+    </texts>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Council_Var_EncP_Dice</defName>
+    <encounter>Council_EncP_Dice</encounter>
+    <texts>
+      <li>[rain] Stuck inside by the rain, {A_nameDef} and {X_nameDef} played dice for buttons until {A_nameDef} had run out of buttons.</li>
+      <li>[trait:Greedy] {A_nameDef} played dice with {X_nameDef} for real silver, won eleven coins, and wouldn't play another round in case {A_pronoun} lost them.</li>
+      <li>[night] {A_nameDef} and {X_nameDef} played dice by lamplight until the watch told them to keep it down.</li>
+    </texts>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Council_Var_EncP_StaringGuard</defName>
+    <encounter>Council_EncP_StaringGuard</encounter>
+    <texts>
+      <li>[eating] {X_nameDef} watched {A_nameDef} eat every spoonful of supper without blinking. {A_nameDef} finished fast and took the bowl outside.</li>
+      <li>[working] {X_nameDef} leaned on the fence and watched {A_nameDef} work all morning, and nodded once at the end, which was worse than if {X_pronoun} had said something.</li>
+    </texts>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Council_Var_EncP_Flirt</defName>
+    <encounter>Council_EncP_Flirt</encounter>
+    <texts>
+      <li>[summer] {A_nameDef} and {X_nameDef} walked the edge of the fields at sunset, very slowly, and came back with grass seed in their hair.</li>
+      <li>[winter] {X_nameDef} borrowed {A_nameDef}'s scarf against the cold and hasn't given it back, and {A_nameDef} hasn't asked.</li>
+    </texts>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Council_Var_EncP_WarStories</defName>
+    <encounter>Council_EncP_WarStories</encounter>
+    <texts>
+      <li>[past:soldier] {A_nameDef} and {X_nameDef} found out they had fought on opposite sides of the same war, years ago. They laughed about it, mostly.</li>
+      <li>[theirLowtech] {X_nameDef} showed {A_nameDef} a {FACTION} shield trick for turning a spear. {A_nameDef} tried it with a pot lid and a broom handle until it worked.</li>
+    </texts>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Council_Var_EncP_HaggleWin</defName>
+    <encounter>Council_EncP_HaggleWin</encounter>
+    <texts>
+      <li>[winter] {A_nameDef} pointed out that nobody else was going to buy {X_nameDef}'s spare boots before spring, and got them for half.</li>
+      <li>[trait:Greedy] {A_nameDef} haggled {X_nameDef} down to cost on a sack of salt, then asked for the sack as well.</li>
+      <li>[past:trader] {A_nameDef} used an old trader's trick on {X_nameDef}, walking away twice, and came back with the price {A_pronoun} wanted.</li>
+    </texts>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Council_Var_EncP_HaggleLoss</defName>
+    <encounter>Council_EncP_HaggleLoss</encounter>
+    <texts>
+      <li>[trait:Kind] {X_nameDef} told {A_nameDef} a long story about a sick child at home, and {A_nameDef} paid more than the asking price. {X_nameDef} was whistling as the caravan left.</li>
+      <li>[rain] {A_nameDef} bought a rain cape from {X_nameDef} in a downpour, at twice the going rate. It leaked by evening.</li>
+    </texts>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Council_Var_EncP_CaravanGossip</defName>
+    <encounter>Council_EncP_CaravanGossip</encounter>
+    <texts>
+      <li>[theirHightech] {X_nameDef} told {A_nameDef} which outposts have working comms, which have working guns, and which only say they do.</li>
+      <li>[theirLowtech] {X_nameDef} told {A_nameDef} which of the river villages has a new headman, which has a new feud, and which has both.</li>
+      <li>[winter] According to {X_nameDef}, two settlements up the valley ran out of firewood last month and have been burning their fences.</li>
+    </texts>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Council_Var_EncP_FreeSample</defName>
+    <encounter>Council_EncP_FreeSample</encounter>
+    <texts>
+      <li>[winter] {X_nameDef} gave {A_nameDef} a dried apricot from somewhere it's still summer, and {A_nameDef} ate it very slowly.</li>
+      <li>[trait:Gourmand] {X_nameDef} let {A_nameDef} taste a smoked sausage, and {A_nameDef} bought the whole string before the caravan had unpacked.</li>
+    </texts>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Council_Var_EncP_NobleAirs</defName>
+    <encounter>Council_EncP_NobleAirs</encounter>
+    <texts>
+      <li>[winter] {X_nameDef} asked {A_nameDef} to warm the guest bed with a hot stone, then a second stone, then complained the bed was too hot.</li>
+      <li>[eating] {X_nameDef} watched {A_nameDef} eat with a spoon and asked, quite seriously, whether the colony had heard of forks.</li>
+    </texts>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Council_Var_EncP_GuestPitchedIn</defName>
+    <encounter>Council_EncP_GuestPitchedIn</encounter>
+    <texts>
+      <li>[snow] {X_nameDef} took a shovel without asking and cleared the path to the well with {A_nameDef}, then the path to the barn, then started on the yard.</li>
+      <li>[summer] {X_nameDef} spent the afternoon in the fields with {A_nameDef}, pulling weeds and refusing to be thanked.</li>
+    </texts>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Council_Var_EncP_KindWords</defName>
+    <encounter>Council_EncP_KindWords</encounter>
+    <texts>
+      <li>[winter] {A_nameDef} brought a hot stone wrapped in cloth down to {X_nameDef}'s cell and pushed it under the door. Later, {X_nameDef} asked {A_possessive} name.</li>
+      <li>[night] {A_nameDef} sat outside {X_nameDef}'s cell after dark and told {X_objective} the names of the stars you can see from the yard.</li>
+    </texts>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Council_Var_EncP_Taunts</defName>
+    <encounter>Council_EncP_Taunts</encounter>
+    <texts>
+      <li>[night] {X_nameDef} whistled the same three notes through the cell bars every time {A_nameDef} passed in the dark. {A_nameDef} has started carrying a lamp.</li>
+      <li>[eating] {X_nameDef} told {A_nameDef} exactly what was in {A_possessive} stew, and what {X_nameDef} had done in the bucket that morning. {A_nameDef} pushed the bowl away.</li>
+    </texts>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Council_Var_EncP_Begging</defName>
+    <encounter>Council_EncP_Begging</encounter>
+    <texts>
+      <li>[rain] Lying in the rain, {X_nameDef} begged {A_nameDef} for a roof, a blanket, anything, and kept begging after {A_nameDef} had walked on.</li>
+      <li>[snow] {X_nameDef} lay half covered in snow and begged {A_nameDef} not to let {X_objective} freeze out there.</li>
+      <li>[night] In the dark past the wall, {X_nameDef} heard {A_nameDef}'s footsteps and called out for help, over and over, until {A_nameDef} was out of earshot.</li>
+    </texts>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Council_Var_EncP_Cursing</defName>
+    <encounter>Council_EncP_Cursing</encounter>
+    <texts>
+      <li>[rain] {X_nameDef} lay cursing in the rain, at {A_nameDef}, at the colony and at the sky, until {X_pronoun} ran out of breath.</li>
+      <li>[theirLowtech] {X_nameDef} called down every curse of {FACTION} on {A_nameDef}'s house, livestock and grandchildren, and seemed to know a great many.</li>
+    </texts>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Council_Var_EncP_GaveWater</defName>
+    <encounter>Council_EncP_GaveWater</encounter>
+    <texts>
+      <li>[hot] It was hot, and {X_nameDef}'s lips were cracked. {A_nameDef} held a cup to them and waited while {X_nameDef} drank all of it.</li>
+      <li>[winter] {A_nameDef} brought {X_nameDef} something warm to drink and draped a sack over {X_objective} against the cold.</li>
+    </texts>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Council_Var_EncP_EnemyPrayer</defName>
+    <encounter>Council_EncP_EnemyPrayer</encounter>
+    <texts>
+      <li>[night] {X_nameDef} prayed under {X_possessive} breath all through the night, and {A_nameDef}, on watch, started listening for the gaps.</li>
+      <li>[theirLowtech] {X_nameDef} prayed to the {FACTION} ancestors in a sing-song voice, and asked {A_nameDef} to tell them {X_possessive} name if {X_pronoun} didn't make it.</li>
+    </texts>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Council_Var_EncP_SpatOn</defName>
+    <encounter>Council_EncP_SpatOn</encounter>
+    <texts>
+      <li>[rain] {A_nameDef} stood over {X_nameDef} in the rain, said something short, and kicked mud into {X_possessive} face before walking off.</li>
+    </texts>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <!-- ===================== Creatures ===================== -->
+
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Council_Var_EncC_DoorGreeting</defName>
+    <encounter>Council_EncC_DoorGreeting</encounter>
+    <texts>
+      <li>[rain] {A_nameDef} came in soaked from the fields, and {X_definite} met {A_objective} at the door and shook {X_possessive} own wet coat all over {A_objective}.</li>
+      <li>[snow] All afternoon {X_definite} had been lying in the snow by the gate, and got up stiff and wagging when {A_nameDef} finally came back.</li>
+      <li>[night] It was dark when {A_nameDef} got back, but {X_definite} was still at the door, and thumped the floor twice when {A_pronoun} came in.</li>
+    </texts>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Council_Var_EncC_PlateThief</defName>
+    <encounter>Council_EncC_PlateThief</encounter>
+    <texts>
+      <li>[eating] {A_nameDef} reached for the bread, came back with an empty hand, and found {X_definite} under the table, chewing.</li>
+      <li>[outside] {A_nameDef} set {A_possessive} lunch on a fence post for one moment, and {X_definite} was off across the yard with it.</li>
+    </texts>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Council_Var_EncC_ChildAndAnimal</defName>
+    <encounter>Council_EncC_ChildAndAnimal</encounter>
+    <texts>
+      <li>[snow] {A_nameDef} and {X_definite} rolled in the snow until {A_nameDef} was wet through and {X_definite} was white all over.</li>
+      <li>[rain] {A_nameDef} and {X_definite} splashed through every puddle in the yard, and both of them were sent to dry off by the stove.</li>
+      <li>[summer] {A_nameDef} fell asleep in the shade with {X_definite} curled against {A_possessive} back, and nobody had the heart to wake either of them.</li>
+    </texts>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Council_Var_EncC_KnewIWasSad</defName>
+    <encounter>Council_EncC_KnewIWasSad</encounter>
+    <texts>
+      <li>[night] {A_nameDef} couldn't sleep and sat up by the window, and {X_definite} came and rested {X_possessive} chin on {A_possessive} knee until the sky started to go gray.</li>
+      <li>[rain] {A_nameDef} stood out in the rain behind the barn, not moving, until {X_definite} came and stood with {A_objective}, getting just as wet.</li>
+    </texts>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Council_Var_EncC_WarmFeet</defName>
+    <encounter>Council_EncC_WarmFeet</encounter>
+    <texts>
+      <li>[cold] On the coldest night so far, {X_definite} crept under {A_nameDef}'s blankets and lay along {A_possessive} back like a stove.</li>
+      <li>[hot] Even in this heat, {X_definite} insists on sleeping on {A_nameDef}'s feet. {A_nameDef} has stopped arguing.</li>
+    </texts>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Council_Var_EncC_WorkShadow</defName>
+    <encounter>Council_EncC_WorkShadow</encounter>
+    <texts>
+      <li>[rain] In the rain, {X_definite} followed {A_nameDef} out to work and lay in the mud watching, perfectly happy.</li>
+      <li>[snow] {A_nameDef} cleared snow all morning with {X_definite} chasing each shovelful as it landed.</li>
+    </texts>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Council_Var_EncC_NewTrick</defName>
+    <encounter>Council_EncC_NewTrick</encounter>
+    <texts>
+      <li>[skill:Animals] {A_nameDef} taught {X_definite} to wait at the door until called, in a single afternoon, and made it look easy.</li>
+      <li>[winter] With nothing to do on a winter afternoon, {A_nameDef} taught {X_definite} to roll over, though only near the stove.</li>
+    </texts>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Council_Var_EncC_ChewedUp</defName>
+    <encounter>Council_EncC_ChewedUp</encounter>
+    <texts>
+      <li>[rain] Kept in by the rain, {X_definite} got bored and ate the leg off {A_nameDef}'s stool.</li>
+    </texts>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Council_Var_EncC_ToldItEverything</defName>
+    <encounter>Council_EncC_ToldItEverything</encounter>
+    <texts>
+      <li>[night] Long after the others were asleep, {A_nameDef} sat with {X_definite} in the dark and talked about home.</li>
+    </texts>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Council_Var_EncC_NightCalls</defName>
+    <encounter>Council_EncC_NightCalls</encounter>
+    <texts>
+      <li>[snow] Under a bright moon, {X_indefinite} called across the snowfields, and the sound carried so clearly that {A_nameDef} sat up in bed.</li>
+      <li>[fog] In the fog, the calling seemed to come from every side. {A_nameDef} lay awake trying to work out where {X_indefinite} really was.</li>
+    </texts>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Council_Var_EncC_MistMorning</defName>
+    <encounter>Council_EncC_MistMorning</encounter>
+    <texts>
+      <li>[cold] Frost on the grass, breath smoking, and {X_indefinite} picking at the frozen stalks past the fence. {A_nameDef} watched until {A_possessive} fingers went numb.</li>
+      <li>[rain] In the soft rain before breakfast, {X_indefinite} came right up to the edge of the fields. {A_nameDef} stood under the eaves and watched {X_objective} graze.</li>
+    </texts>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Council_Var_EncC_Birdsong</defName>
+    <encounter>Council_EncC_Birdsong</encounter>
+    <texts>
+      <li>[morning] The birds started before dawn, and {A_nameDef} gave up on sleep and went out to watch {X_indefinite} hop along the wall.</li>
+      <li>[rain] Even in the rain the hedges were full of birds. {A_nameDef} worked under a wet hat and listened to {X_indefinite} complaining about the weather.</li>
+    </texts>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Council_Var_EncC_CropThief</defName>
+    <encounter>Council_EncC_CropThief</encounter>
+    <texts>
+      <li>[skill:Plants] {A_nameDef} found {X_indefinite} in the best row of the garden, chased {X_objective} out, and spent the rest of the morning replanting what was left.</li>
+    </texts>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Council_Var_EncC_FedWild</defName>
+    <encounter>Council_EncC_FedWild</encounter>
+    <texts>
+      <li>[snow] {A_nameDef} has been clearing a patch of snow by the fence and leaving grain in it. This morning {X_indefinite} was there first, waiting.</li>
+      <li>[trait:Kind] {A_nameDef} saved the end of {A_possessive} loaf again today for {X_indefinite} by the fields, who came closer than ever to take it.</li>
+    </texts>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Council_Var_EncC_Stalker</defName>
+    <encounter>Council_EncC_Stalker</encounter>
+    <texts>
+      <li>[fog] In the fog, {A_nameDef} kept catching a shape in the corner of {A_possessive} eye. When it cleared for a moment, {X_indefinite} was there, closer than before.</li>
+      <li>[night] {A_nameDef} went out to the latrine after dark and heard {X_indefinite} breathing in the brush. {A_nameDef} came back very fast.</li>
+    </texts>
+  </ColonyCouncil.LetterVariantsDef>
+
+</Defs>

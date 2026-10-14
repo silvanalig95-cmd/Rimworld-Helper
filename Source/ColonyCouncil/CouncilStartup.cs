@@ -15,6 +15,7 @@ namespace ColonyCouncil
             {
                 ApplyButtonPosition(false);
                 FlavorExtensions.Apply();
+                LetterVariants.Apply();
                 AddStoryTab();
                 // Feelings nudge which moments colonists start (an angry one picks at people, a lonely one seeks them out).
                 InteractionWorker_Moment.WeightHook = Heart.MomentWeightFactor;

@@ -126,6 +126,20 @@
             </effects>
             <ways><generosity>-3</generosity></ways>
           </li>
+          <li>
+            <label>Bread for the road, no more</label>
+            <outcome>The pilgrims get a loaf each and a full waterskin, and go on before dark. It isn't a meal, but they thank the colony for it.</outcome>
+            <outcomes>
+              <li>[winter] A loaf each and a hot drink at the gate, then back on the road. The pilgrims bow and go on into the cold.</li>
+              <li>[colony:Thrifty] Bread for the road and nothing more, as the colony's habit is. The pilgrims take it gratefully all the same.</li>
+            </outcomes>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>rawfood</what><factor>0.4</factor></li>
+              <li Class="ColonyCouncil.DilemmaEffect_EventGoodwill"><amount>4</amount></li>
+              <li Class="ColonyCouncil.DilemmaEffect_SendAway" />
+            </effects>
+            <ways><generosity>1</generosity></ways>
+          </li>
         </options>
       </li>
     </modExtensions>
@@ -175,6 +189,21 @@
               <li Class="ColonyCouncil.DilemmaEffect_SendAway" />
             </effects>
             <ways><openness>-2</openness></ways>
+          </li>
+          <li>
+            <label>Ask {X_objective} to teach everyone instead</label>
+            <outcome>{X_nameDef} held a lesson after supper for anyone who'd sit still for it. The notes on {TALE} only grew by a page, but everyone who stayed up learned something.</outcome>
+            <outcomes>
+              <li>[lowtech] {X_nameDef} drew letters and sums in the ashes of the hearth until late, and the colony copied them onto slates. {A_nameDef} asked the most questions.</li>
+              <li>[!lowtech] {X_nameDef} turned the dining table into a classroom for the evening, with a chalk board propped on a chair. The work on {TALE} moved a little, the colony a good deal more.</li>
+            </outcomes>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Research"><share>0.1</share><max>500</max></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Learn"><target>Colony</target><skill>Intellectual</skill><xp>350</xp></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Thought"><thought>Council_Evt_ScholarTalk</thought></li>
+              <li Class="ColonyCouncil.DilemmaEffect_EventGoodwill"><amount>4</amount></li>
+            </effects>
+            <ways><openness>3</openness><tradition>1</tradition></ways>
           </li>
         </options>
       </li>
@@ -262,6 +291,25 @@
             <label>Not without answers</label>
             <outcome>{X_nameDef} doesn't give any, and leaves.</outcome>
             <ways><openness>-3</openness></ways>
+          </li>
+          <li>
+            <label>Let {A_nameDef} talk to {X_objective} first</label>
+            <outcome>{A_nameDef} sat {X_nameDef} down by the gate and talked until {X_nameDef} had told enough of it. {X_nameDef} is one of us now, with nothing left to hide.</outcome>
+            <outcomes>
+              <li>[past:outlaw] {A_nameDef} knew the right questions, having once had to dodge them. {X_nameDef} answered them all, and is one of us now.</li>
+            </outcomes>
+            <riskChance>0.6</riskChance>
+            <riskOutcome>{A_nameDef} talked with {X_nameDef} most of the afternoon and came back satisfied. {X_nameDef} is one of us now, though {A_nameDef} isn't sure {X_nameDef} told all of it.</riskOutcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Needs"><skill>Social</skill><minLevel>8</minLevel></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Join" />
+              <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>X</target><thought>Council_Evt_Sheltered</thought></li>
+            </effects>
+            <riskEffects>
+              <li Class="ColonyCouncil.DilemmaEffect_Secret" />
+            </riskEffects>
+            <riskSkill>Social</riskSkill>
+            <ways><openness>3</openness><mercy>1</mercy></ways>
           </li>
         </options>
       </li>

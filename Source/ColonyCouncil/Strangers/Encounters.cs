@@ -180,7 +180,8 @@ namespace ColonyCouncil
         private static void Fire(EncounterDef def, CouncilGameComponent comp, Map map, Pawn a, Pawn x)
         {
             var ctx = new DilemmaContext { map = map, a = a, stranger = x, faction = Strangers.FactionOf(x), why = def.label };
-            string text = ctx.Format(Flavor.PickText(def.texts));
+            // Tagged lines ([rain], [winter], [trait:Kind], [x:child]) only when they fit the moment and the people.
+            string text = ctx.Format(Flavor.Pick(def.texts, LetterTags.For(ctx)) ?? Flavor.PickText(def.texts));
             ctx.cause = text;
             foreach (var e in def.effects)
             {

@@ -42,6 +42,26 @@
             </effects>
             <ways><generosity>-3</generosity></ways>
           </li>
+          <li>
+            <label>Send it back, and ask for a finder's fee</label>
+            <outcome>{B_nameDef} sent the cargo back with a polite note about the colony's trouble, and {FACTION} paid {COUNT} silver as a finder's fee.</outcome>
+            <outcomes>
+              <li>[lowtech] {B_nameDef} loaded the goods on a cart and walked them back to {FACTION}'s rider, mentioning the long walk more than once. They paid {COUNT} silver for the trouble.</li>
+              <li>[b:past:trader] {B_nameDef} has been on the other side of this kind of deal, and knew what to ask. {FACTION} got their cargo back and paid {COUNT} silver for the favor.</li>
+            </outcomes>
+            <riskChance>0.4</riskChance>
+            <riskSkill>Social</riskSkill>
+            <riskReplaces>true</riskReplaces>
+            <riskOutcome>{B_nameDef} asked {FACTION} for a finder's fee, and they took it badly. The cargo went back with no fee, and they think less of the colony for asking.</riskOutcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Needs"><target>Colony</target><skill>Social</skill><minLevel>0</minLevel><asB>true</asB></li>
+              <li Class="ColonyCouncil.DilemmaEffect_EventGoodwill"><amount>5</amount></li>
+            </effects>
+            <riskEffects>
+              <li Class="ColonyCouncil.DilemmaEffect_EventGoodwill"><amount>-2</amount></li>
+            </riskEffects>
+            <ways><generosity>-1</generosity><openness>1</openness></ways>
+          </li>
         </options>
       </li>
     </modExtensions>
@@ -144,6 +164,26 @@
             </effects>
             <ways><openness>-2</openness></ways>
           </li>
+          <li>
+            <label>Give the tour, with {A_nameDef} doing the talking</label>
+            <outcome>{A_nameDef} showed {X_nameDef} the best of the colony and steered the questions away from the rest. The piece, when it comes out, will be kind.</outcome>
+            <outcomes>
+              <li>[lowtech] {A_nameDef} walked the chronicler through the fields and the hall, and told the colony's story the way it ought to be told. The chronicle will be kind.</li>
+            </outcomes>
+            <riskChance>0.55</riskChance>
+            <riskSkill>Social</riskSkill>
+            <riskReplaces>true</riskReplaces>
+            <riskOutcome>{A_nameDef} talked too much and too freely, and {X_nameDef} wrote down every word. The piece is not kind.</riskOutcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Needs"><skill>Social</skill><minLevel>10</minLevel></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_Evt_GoodPress</thought></li>
+              <li Class="ColonyCouncil.DilemmaEffect_EventGoodwill"><amount>5</amount></li>
+            </effects>
+            <riskEffects>
+              <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_Evt_BadPress</thought></li>
+            </riskEffects>
+            <ways><openness>2</openness></ways>
+          </li>
         </options>
       </li>
     </modExtensions>
@@ -186,6 +226,20 @@
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_SendAway" />
             </effects>
+          </li>
+          <li>
+            <label>Pay half, and have {X_objective} teach {A_nameDef}</label>
+            <outcome>{X_nameDef} spent the afternoon showing {A_nameDef} how the medicine is made and how much to give. There were no doses this time, but {A_nameDef} filled a notebook.</outcome>
+            <outcomes>
+              <li>[lowtech] {X_nameDef} took {A_nameDef} out to the fields and the treeline and showed {A_objective} which roots go into the tonic. {A_nameDef} came back with a full basket and a head full of names.</li>
+            </outcomes>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>silver</what><factor>0.5</factor></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Learn"><skill>Medicine</skill><xp>1500</xp></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Thought"><thought>Council_DlmS_LearnedFromHealer</thought></li>
+              <li Class="ColonyCouncil.DilemmaEffect_EventGoodwill"><amount>2</amount></li>
+            </effects>
+            <ways><openness>2</openness><tradition>-1</tradition></ways>
           </li>
         </options>
       </li>

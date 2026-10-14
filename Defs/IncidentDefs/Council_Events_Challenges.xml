@@ -58,6 +58,21 @@
               <li Class="ColonyCouncil.DilemmaEffect_SendAway" />
             </effects>
           </li>
+          <li>
+            <label>Accept, and lay on food for the onlookers</label>
+            <outcome>The challenge is on, for honor, and there's food on the tables for anyone who comes to watch. {FACTION} will hear what a good day it was.</outcome>
+            <outcomes>
+              <li>[lowtech] The challenge is on, with bread and roast on trestles for the crowd. It feels more like a fair than a contest, and {X_nameDef} seems to like that.</li>
+              <li>[summer] Tables in the yard, food for anyone who wants it, and a contest at the end of it. {X_nameDef} has already eaten twice.</li>
+            </outcomes>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>rawfood</what><count>20</count></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Contest" />
+              <li Class="ColonyCouncil.DilemmaEffect_Joy"><target>Colony</target><amount>0.15</amount></li>
+              <li Class="ColonyCouncil.DilemmaEffect_EventGoodwill"><amount>5</amount></li>
+            </effects>
+            <ways><generosity>2</generosity><openness>2</openness></ways>
+          </li>
         </options>
       </li>
     </modExtensions>
@@ -142,6 +157,28 @@
           <li>
             <label>No, thank you</label>
             <outcome>{X_nameDef} folds the map away and goes looking for another buyer.</outcome>
+          </li>
+          <li>
+            <label>Have it checked first, then buy ({COUNT} silver)</label>
+            <outcome>{B_nameDef} looked the map over and found nothing wrong with it, though {X_nameDef} didn't enjoy being doubted. The colony bought it, and {A_nameDef} heads out with a shovel.</outcome>
+            <outcomes>
+              <li>[lowtech] {B_nameDef} held the hide up to the light, sniffed it, and nodded. The map is the colony's now, and {A_nameDef} heads out to find the spot.</li>
+              <li>[!lowtech] {B_nameDef} checked the survey marks against the colony's own maps, and they matched. {X_nameDef} took the silver with a sniff, and {A_nameDef} heads out with a shovel.</li>
+            </outcomes>
+            <riskChance>0.3</riskChance>
+            <riskReplaces>true</riskReplaces>
+            <riskOutcome>{B_nameDef} turned the map over twice and handed it back: a fake, and not a good one. {X_nameDef} took offense at being found out, but the silver stays in the stores.</riskOutcome>
+            <riskOutcomes>
+              <li>[b:past:scholar] {B_nameDef} has seen old maps before, and this one's ink was barely dry. {X_nameDef} packed it away in a temper, and the silver stays in the stores.</li>
+            </riskOutcomes>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Needs"><target>Colony</target><skill>Intellectual</skill><minLevel>6</minLevel><asB>true</asB></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>silver</what></li>
+              <li Class="ColonyCouncil.DilemmaEffect_EventGoodwill"><amount>-3</amount></li>
+            </effects>
+            <riskEffects>
+              <li Class="ColonyCouncil.DilemmaEffect_EventGoodwill"><amount>-3</amount></li>
+            </riskEffects>
           </li>
         </options>
       </li>

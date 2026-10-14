@@ -1,0 +1,267 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    More ways for the challenge, gamble and nature events (Council_Events_Challenges.xml, Council_Events_More.xml,
+    Council_Events_Nature.xml) to read, merged in at startup (LetterVariantsDef). Each line keeps the tags its event's
+    worker needs: the champion's skill ([Shooting], [Melee]...), the wild harvest's [food] or [medicine], the vermin's
+    [loss] or [mouser], the buried cache's [mining], [farming] or [child].
+  -->
+
+  <!-- ===================== The traveling champion ===================== -->
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Council_Var_Evt_Champion</defName>
+    <incident>Council_Evt_Champion</incident>
+    <titles>
+      <li>[lowtech] A challenge at the gate</li>
+      <li>[!lowtech] A challenger on the road</li>
+    </titles>
+    <texts>
+      <li>[Shooting,winter] {X_nameDef} of {FACTION} has set up targets in the snow outside the gate and is waiting, breath steaming, for {A_nameDef}, the colony's best shot. It's a friendly match, ten shots each, and the colony can bet on it if it likes.</li>
+      <li>[Melee,lowtech] {X_nameDef} of {FACTION} wrestles at fairs for coin, and has heard {A_nameDef} is the strongest arm in the colony. {X_nameDef} wants a bout in a ring of rope: no weapons, best of three falls.</li>
+      <li>[Melee,!lowtech] {X_nameDef} of {FACTION}, a former prize fighter with a flattened nose and a cheerful manner, wants a friendly bout with {A_nameDef}: wrestling only, no fists, no weapons, best of three.</li>
+      <li>[Crafting,lowtech] {X_nameDef}, a journeyman of {FACTION} with a pack of tools older than {X_objective}, wants to set {X_possessive} work against {A_nameDef}'s. Same wood, same iron, one afternoon.</li>
+      <li>[Artistic,summer] {X_nameDef}, a painter of {FACTION}, has set up an easel in the yard and challenged {A_nameDef} to do the same. One afternoon, one subject, and the colony votes at supper.</li>
+      <li>[Cooking,trait:Gourmand] {X_nameDef}, a cook of {FACTION}, says the colony's food is decent for a frontier town. {A_nameDef} heard that, and has accepted the cook-off on the colony's behalf before the council could say a word.</li>
+      <li>[Social,lowtech] {X_nameDef} of {FACTION} argues cases in the lords' courts and has come to argue one here, against {A_nameDef}, on any question the colony likes. The crowd decides who wins.</li>
+      <li>[Animals,lowtech] {X_nameDef}, a horse breaker of {FACTION}, has brought a mule nobody can load and bets {A_nameDef} can't either. Whoever gets the packs on first wins.</li>
+      <li>[Intellectual,!lowtech] {X_nameDef} of {FACTION} carries a board game in a battered case and has never lost at it. {X_nameDef} wants to play the colony's best mind, {A_nameDef}, best of three.</li>
+      <li>[Plants,spring] {X_nameDef}, a gardener of {FACTION}, has brought seedlings from home and wants to see whose grow better in the colony's soil over a day: {X_possessive}, or {A_nameDef}'s. The onlookers will judge.</li>
+    </texts>
+    <outcomes>
+      <li>
+        <option>0</option>
+        <lines>
+          <li>[colony:Thrifty] Silver on {A_nameDef}, which the colony doesn't do lightly. Word of the bet is already going around.</li>
+        </lines>
+      </li>
+      <li>
+        <option>2</option>
+        <lines>
+          <li>{X_nameDef} packs up, tells {A_nameDef} there's always next year, and goes on down the road.</li>
+        </lines>
+      </li>
+    </outcomes>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <!-- ===================== The great beast ===================== -->
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Council_Var_Evt_GreatBeast</defName>
+    <incident>Council_Evt_GreatBeast</incident>
+    <texts>
+      <li>[winter] Tracks wider than a dinner plate crossed the snow outside the walls last night. They belong to {BEAST}, an old {THING} the travelers talk about, and it's wandering the colony's land for a few days. It leaves alone whatever leaves it alone.</li>
+      <li>[past:soldier] {A_nameDef} heard about {BEAST} in a barracks once, an old {THING} that ate a sergeant's boots. Now it's here, roaming the colony's land, scarred and enormous. It won't stay more than a few days, and it fights hard if hunted.</li>
+      <li>[colony:Merciful] {BEAST}, an old {THING} out of the travelers' stories, has wandered onto the colony's land. It has done no harm and will move on in a few days. Some here would like to try for it anyway.</li>
+    </texts>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <!-- ===================== The treasure map ===================== -->
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Council_Var_Evt_TreasureMap</defName>
+    <incident>Council_Evt_TreasureMap</incident>
+    <texts>
+      <li>[winter] {X_nameDef} of {FACTION} has a map that shows something buried on the colony's land, and would rather sell it than dig through frozen ground. The price is {COUNT} silver. {A_nameDef} has looked at it and can't tell if it's real.</li>
+      <li>[theirLowtech] {X_nameDef} of {FACTION} says the map came from a grandfather, who had it from a dying peddler. It shows a cache on the colony's land, marked in soot. {X_nameDef} wants {COUNT} silver for it, and swears on the grandfather's grave.</li>
+      <li>[trait:Greedy] {X_nameDef} of {FACTION} showed {A_nameDef} a map to something buried on the colony's land, and {A_nameDef} has been back three times to look at it again. It costs {COUNT} silver. It might be real.</li>
+      <li>[past:trader] {X_nameDef} of {FACTION} wants {COUNT} silver for a map to a cache on the colony's land. {A_nameDef}, who sold a few maps in {A_possessive} trading days, says some of them were real.</li>
+      <li>[colony:Restless] Word has got around that the colony likes a gamble, and {X_nameDef} of {FACTION} has come with one: a map to something buried on the colony's land, for {COUNT} silver. No refunds.</li>
+    </texts>
+    <outcomes>
+      <li>
+        <option>1</option>
+        <lines>
+          <li>{X_nameDef} rolls the map up, and is offering it to the next settlement before the day is out.</li>
+        </lines>
+      </li>
+    </outcomes>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <!-- ===================== Tribute ===================== -->
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Council_Var_Evt_Tribute</defName>
+    <incident>Council_Evt_Tribute</incident>
+    <texts>
+      <li>[medieval] A rider of {ENEMY} has nailed a parchment to the colony's gate. It names the colony a vassal of {ENEMY}, owing {COUNT} silver by tomorrow's dusk. If it isn't paid, they'll come for it, and burn what they don't carry.</li>
+      <li>[industrial] A truck stopped on the road long enough for someone from {ENEMY} to shout the terms across the fields: {COUNT} silver by tomorrow, or they come and take it. Then it drove off.</li>
+      <li>[colony:Harsh] {ENEMY} have heard the colony is hard, and want to see how hard. A messenger came to the gate with their price: {COUNT} silver by tomorrow, or a war party.</li>
+    </texts>
+    <outcomes>
+      <li>
+        <option>2</option>
+        <lines>
+          <li>[colony:Harsh] The messenger got the colony's answer, and a look at its walls. {ENEMY} will come, and the colony has a day.</li>
+        </lines>
+      </li>
+    </outcomes>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <!-- ===================== Lost cargo ===================== -->
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Council_Var_Evt_LostCargo</defName>
+    <incident>Council_Evt_LostCargo</incident>
+    <texts>
+      <li>[lowtech,winter] A sledge broke loose from a {FACTION} caravan on the ice and slid down onto the colony's land, its load spilled across the snow. A rider from {FACTION} has come asking after it. The colony can send it back, or keep it.</li>
+      <li>[!lowtech,winter] A cargo pod came down in the snow beyond the fields, and {FACTION}'s beacon is still on it. They've already asked for it back. The colony could tell them the snow buried it.</li>
+      <li>[lowtech,summer] A cart lost a wheel on the road and its driver went for help, leaving the load in the ditch on the colony's land. It's {FACTION}'s, and their people are already asking. Only the colony saw it fall.</li>
+      <li>[!lowtech] A pod with {FACTION}'s markings came down hard past the fields, and {A_nameDef} was the first to reach it. {FACTION} want it back, politely. Only {A_nameDef} knows exactly what was in it.</li>
+      <li>[trait:Greedy] {A_nameDef} found a load of {FACTION}'s goods spilled on the colony's land and has been sitting on it ever since, in case anyone tries to take it. {FACTION} are asking for it back.</li>
+      <li>[colony:Generous] {FACTION} lost a load of goods on the colony's land, and their rider says they weren't worried: the colony has a name for sending things back. The goods are still out there.</li>
+    </texts>
+    <outcomes>
+      <li>
+        <option>0</option>
+        <lines>
+          <li>[lowtech] {A_nameDef} loaded the goods back onto a cart and walked them to {FACTION}'s rider. They won't forget it.</li>
+          <li>[trait:Greedy] The cargo goes back to {FACTION}. {A_nameDef} carried it, very slowly.</li>
+        </lines>
+      </li>
+      <li>
+        <option>1</option>
+        <lines>
+          <li>[colony:Generous] The colony keeps it. {FACTION} were sure the colony would send it back, and they won't make that mistake again.</li>
+        </lines>
+      </li>
+    </outcomes>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <!-- ===================== A talent scout ===================== -->
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Council_Var_Evt_TalentScout</defName>
+    <incident>Council_Evt_TalentScout</incident>
+    <texts>
+      <li>[industrial] A man from {FACTION} in a good coat has been asking around the colony about {A_nameDef}'s {SKILL}. {FACTION} would pay the colony {COUNT} silver for {A_nameDef} to come and work for them, with a proper wage and a room of {A_possessive} own.</li>
+      <li>[medieval] Word of {A_nameDef}'s {SKILL} has reached a lord of {FACTION}. The lord's steward has come with {COUNT} silver for the colony if {A_nameDef} will take service in the great house.</li>
+      <li>[colony:Hardworking] Word of the colony's work has spread, and {FACTION} want some of it. They'll pay {COUNT} silver for {A_nameDef}, whose {SKILL} they've heard about, to come and work for them instead.</li>
+    </texts>
+    <outcomes>
+      <li>
+        <option>2</option>
+        <lines>
+          <li>The offer goes back to {FACTION} unopened, more or less. {A_nameDef} was whistling at supper.</li>
+        </lines>
+      </li>
+    </outcomes>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <!-- ===================== A journalist ===================== -->
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Council_Var_Evt_Journalist</defName>
+    <incident>Council_Evt_Journalist</incident>
+    <texts>
+      <li>[industrial] {X_nameDef}, a reporter for a {FACTION} paper, has come out to the colony with a notebook and a borrowed camera. {X_nameDef} wants to write about how a place like this keeps going, and would like the tour.</li>
+      <li>[medieval] {X_nameDef}, a clerk who keeps the chronicle of {FACTION}, has been sent to record the settlements of the region. {X_nameDef} would like to see the colony and hear its story, and will write down whatever {X_pronoun} is told.</li>
+      <li>[tribal] {X_nameDef}, a keeper of tales for {FACTION}, walks from camp to camp learning how each one lives, so the stories can be told around other fires. {X_nameDef} asks to be shown the colony.</li>
+      <li>[colony:Guarded] {X_nameDef} of {FACTION} has heard the colony keeps to itself, and wants to know why. {X_nameDef} writes for people a long way off and would like the tour. A colony that says no is a story too.</li>
+    </texts>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <!-- ===================== A traveling doctor ===================== -->
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Council_Var_Evt_Inoculation</defName>
+    <incident>Council_Evt_Inoculation</incident>
+    <texts>
+      <li>[lowtech,winter] {X_nameDef}, a herbalist of {FACTION}, has come through the snow with a bag of dried roots. Winter is the coughing season, {X_nameDef} says, and for {COUNT} silver every colonist can have the tonic that keeps it off for a month.</li>
+      <li>[!lowtech,winter] {X_nameDef} of {FACTION} has a cold box of vaccines and a winter round of settlements to get through. For {COUNT} silver, everyone in the colony gets a shot, and a month of shrugging off whatever is going around.</li>
+      <li>[lowtech] {X_nameDef} of {FACTION}, who sells cures at the market crossroads, has a tonic against fevers. It's {COUNT} silver for the colony, and {A_nameDef}, who does the colony's doctoring, would like to know what's in it.</li>
+      <li>[!lowtech] {X_nameDef}, a doctor of {FACTION} working off the debt on {X_possessive} training, offers to vaccinate every colonist for {COUNT} silver. {A_nameDef} has read the labels and thinks it's the real thing.</li>
+    </texts>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <!-- ===================== Music ===================== -->
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Council_Var_Evt_Music</defName>
+    <incident>Council_Evt_Music</incident>
+    <texts>
+      <li>[lowtech,summer] A shepherd has brought a flock up the hills above the colony for the summer, and plays a pipe in the evenings. The tunes carry a long way, and the colonists have started humming them.</li>
+      <li>[lowtech,winter] A family of travelers has camped for the winter in the hollow past the fields. In the evenings they sing, all of them together, and the sound comes over the snow.</li>
+      <li>[!lowtech,winter] On the long winter nights the radio picks up a station from somewhere far south that plays dance music until dawn. Colonists who can't sleep have started gathering by the set.</li>
+      <li>[!lowtech,summer] Someone left the comms open, and a distant station has been playing old songs all week. Work in earshot has slowed down, and the council hasn't said anything.</li>
+    </texts>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <!-- ===================== Someone famous ===================== -->
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Council_Var_Evt_Celebrity</defName>
+    <incident>Council_Evt_Celebrity</incident>
+    <texts>
+      <li>[industrial] {X_nameDef} of {FACTION}, a singer whose records turn up in every trader's crate, has stopped at the colony for the night. {A_nameDef} owns one of those records and has gone very quiet.</li>
+      <li>[medieval] {X_nameDef} of {FACTION}, the knight who held the bridge in the songs, is resting at the colony tonight. {X_nameDef} is shorter than the songs say, and kinder.</li>
+      <li>[spacer] {X_nameDef} of {FACTION}, who flew a ship through something nobody else came back from, is stopping the night. The colonists are trying hard not to stare.</li>
+    </texts>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <!-- ===================== Wild harvest ===================== -->
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Council_Var_Evt_WildBounty</defName>
+    <incident>Council_Evt_WildBounty</incident>
+    <titles>
+      <li>[medicine] Wild herbs</li>
+    </titles>
+    <texts>
+      <li>[food,summer] The long warm days have ripened wild {TALE} all over the colony's land, more than anyone remembers. {A_nameDef} came back with stained hands and a full hat.</li>
+      <li>[food,fall] Before the frost, the colony's land has given one last crop of wild {TALE}. {A_nameDef} found the patches on a walk and says there's more than the colony can eat.</li>
+      <li>[food,past:farmer] {A_nameDef} grew up picking wild {TALE} along the field edges, and knew the patches by smell before seeing them. There's plenty ripe across the colony's land.</li>
+      <li>[medicine,lowtech] {A_nameDef} has found {TALE} growing thick in the damp ground past the fields, the kind the old healers dry and keep. There's enough to stock the colony's shelves for a long while.</li>
+      <li>[medicine,past:healer] {A_nameDef} spotted {TALE} from across the field and knew it for what it is. It's growing all over the colony's land, enough to keep the sickroom supplied for months.</li>
+    </texts>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <!-- ===================== The comet ===================== -->
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Council_Var_Evt_Comet</defName>
+    <incident>Council_Evt_Comet</incident>
+    <texts>
+      <li>[winter] A comet has come up over the snow, pale and long, bright enough to throw a faint shadow at night. The colonists stand outside in the cold to look at it, and argue about what it means.</li>
+      <li>[tribal] A star with a tail hangs over the colony. The elders say the last one came before a hard winter; others say before a good hunt. It will be there for days, and the colonists keep looking up.</li>
+      <li>[colony:Traditional] A comet has appeared, and the colony's oldest stories have something to say about it, though not all the same thing. It will hang over the colony for several days.</li>
+    </texts>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <!-- ===================== Firefly nights ===================== -->
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Council_Var_Evt_Fireflies</defName>
+    <incident>Council_Evt_Fireflies</incident>
+    <texts>
+      <li>[!lowtech] The fireflies are out over the fields, more than anyone has seen here before. Someone switched off the yard lights so they'd show better. Anyone outside after dark will see them.</li>
+      <li>[colony:Easygoing] Firefly nights again. Work has a way of stopping early on these evenings, and the council won't complain. Anyone outside after dark will see them.</li>
+      <li>Thousands of fireflies came up out of the grass at dusk and haven't gone down again. They drift over the fields and through the open doors. Anyone outside after dark will see them.</li>
+    </texts>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <!-- ===================== Hail ===================== -->
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Council_Var_Evt_Hail</defName>
+    <incident>Council_Evt_Hail</incident>
+    <texts>
+      <li>[summer] It was hot and still all morning, and then the sky went dark and dropped ice on the fields. The hail is shredding young crops in the open. It stings, but it won't hurt anyone, and it won't last. (Fields under a roof are safe.)</li>
+      <li>[spring] A spring storm has turned to hail, and the new seedlings in the open fields are taking a beating. It won't hurt anyone, only soak and sting them, and it will be over soon. (Fields under a roof are safe.)</li>
+      <li>[!lowtech] Hail is drumming on every roof in the colony loud enough to drown out talk. Young crops in the open will suffer. It won't hurt anyone, and it won't last long. (Fields under a roof are safe.)</li>
+    </texts>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <!-- ===================== Vermin ===================== -->
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Council_Var_Evt_Pests</defName>
+    <incident>Council_Evt_Pests</incident>
+    <texts>
+      <li>[loss,winter] Mice came in out of the cold and made a winter home in the stores. By the time anyone found the nest, {COUNT} units of food were spoiled.</li>
+      <li>[loss,summer] Flies and something with teeth got into the stores in the heat. {COUNT} units of food had to be thrown out.</li>
+      <li>[mouser,lowtech] There was a racket in the storeroom last night, and in the morning {PET_nameDef} was asleep on a sack of grain with a row of dead rats beside {PET_objective}. Not a scrap was lost.</li>
+      <li>[mouser,!lowtech] The storeroom had visitors last night, the kind with tails. {PET_nameDef} saw them off, and has been lying across the doorway all morning, very pleased.</li>
+    </texts>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <!-- ===================== A buried cache ===================== -->
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Council_Var_Evt_BuriedCache</defName>
+    <incident>Council_Evt_BuriedCache</incident>
+    <texts>
+      <li>[mining,lowtech] {A_nameDef}'s pick went through a wall of stone into a little chamber someone had sealed with clay. Inside there's a cache, left by someone who never came back.</li>
+      <li>[farming,spring] Turning the soil for the spring planting, {A_nameDef} hit the lid of a buried box. Someone hid it there a long time ago and never came back.</li>
+      <li>[farming,fall] At the bottom of a row of roots, {A_nameDef} found the corner of an old box. It came up whole, and someone's long-lost cache is inside.</li>
+      <li>[!lowtech] {A_nameDef} noticed a rusted marker post half buried in the grass and dug around it. Under it was an old supply cache, still sealed.</li>
+      <li>[past:outlaw] {A_nameDef} knows how people hide things in the ground, and noticed a spot where the grass grew wrong. A cache was buried there, and nobody ever came back for it.</li>
+    </texts>
+  </ColonyCouncil.LetterVariantsDef>
+
+</Defs>

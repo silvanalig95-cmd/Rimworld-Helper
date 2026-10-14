@@ -280,6 +280,21 @@
               <li Class="ColonyCouncil.DilemmaEffect_SendAway" />
             </effects>
           </li>
+          <li>
+            <label>Pay a little to have {X_objective} teach our best crafter</label>
+            <outcome>{X_nameDef} spent the day showing {B_nameDef} how a {TALE} is measured, shaped and fitted. {A_nameDef} goes without for now, and {B_nameDef} has a notebook full of measurements.</outcome>
+            <outcomes>
+              <li>[lowtech] {X_nameDef} sat {B_nameDef} down with a block of ash and showed {B_objective} how a {TALE} is carved, joint by joint. {A_nameDef} goes without for now, and the offcuts are all over the workshop floor.</li>
+            </outcomes>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Needs"><target>Others</target><skill>Crafting</skill><minLevel>6</minLevel><asB>true</asB></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>silver</what><factor>0.3</factor></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Learn"><target>B</target><skill>Crafting</skill><xp>1500</xp></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Learn"><target>B</target><skill>Medicine</skill><xp>300</xp></li>
+              <li Class="ColonyCouncil.DilemmaEffect_EventGoodwill"><amount>2</amount></li>
+            </effects>
+            <ways><openness>1</openness><toil>1</toil></ways>
+          </li>
         </options>
       </li>
       <li Class="ColonyCouncil.HappeningLivingText">

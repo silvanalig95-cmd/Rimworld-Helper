@@ -613,18 +613,16 @@ namespace ColonyCouncil
                 if (ctx.why == null) ctx.why = ctx.incident.LabelCap;
                 ctx.cause = "CC_Cause_Event".Translate(ctx.incident.LabelCap, ctx.Format(option.label)).Resolve();
                 using var _cause = Causes.Push(ctx.cause);
+                // Whoever the answer calls on (a doctor, a talker) first, so their skill counts against the risk.
+                DilemmaChoices.PickHelpers(option, ctx);
                 bool risk = option.riskChance > 0f && Rand.Chance(worker.RiskChance(ctx, i, option.riskChance));
                 if (!risk || !option.riskReplaces)
                     foreach (var e in option.effects)
                         if (!byDefault || !e.onlyIfChosen) Safe(e, ctx);
-                string outcome = option.outcome;
-                if (risk)
-                {
-                    if (option.riskEffects != null)
-                        foreach (var e in option.riskEffects)
-                            if (!byDefault || !e.onlyIfChosen) Safe(e, ctx);
-                    if (!option.riskOutcome.NullOrEmpty()) outcome = option.riskOutcome;
-                }
+                if (risk && option.riskEffects != null)
+                    foreach (var e in option.riskEffects)
+                        if (!byDefault || !e.onlyIfChosen) Safe(e, ctx);
+                string outcome = DilemmaChoices.Outcome(option, risk, worker.TextTags(ctx));
                 outcome = worker.Resolved(ctx, i, risk, byDefault, outcome);
                 comp?.character.Shift(byDefault ? option.ways?.Scaled(0.5f) : option.ways, "CC_Ways_Why_Event".Translate(ctx.incident.label, ctx.Format(option.label)).Resolve());
                 string told = ctx.Format(outcome);

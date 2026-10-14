@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    More ways for the "colony with a past" events (Council_Events_Living.xml) to read, merged in at startup
+    (LetterVariantsDef). Lines keep the tags their worker sets: the buyer's [once] or [again], the lovers' family's
+    [mother] or [father], the quarrel's [sided] or [middle] (and [mediator]), the vendetta's [killed] or [taken] (and
+    [tribalfoe]), founding day's [first] or [years], [guest] or [noguest] and [lost], the winter guest's [meal],
+    [nomeal], [bitter] and [supper], the thaw's [first], [again], [nameyear] and [child].
+  -->
+
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Council_Var_Evt_RegularBuyer</defName>
+    <incident>Council_Evt_RegularBuyer</incident>
+    <texts>
+      <li>[once,summer] {FACTION}'s rider came back in the heat with an empty cart and a full purse. The last order went down well, and they'd like {TALE} this time, for {COUNT} silver. There's a small gift at the gate for the colony's trouble.\n\nThey'll send for it in five days, and they want the whole order or none of it.</li>
+      <li>[again,colony:Hardworking] {FACTION} have stopped asking whether the colony can fill an order and started asking when. They want {TALE} again, for {COUNT} silver, and left a small gift at the gate.\n\nThey'll send for it in five days.</li>
+    </texts>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Council_Var_Evt_LoversKin</defName>
+    <incident>Council_Evt_LoversKin</incident>
+    <texts>
+      <li>[mother,winter] {X_nameDef}, {A_nameDef}'s mother, has come through the snow from {FACTION}'s lands with a bundle of {A_nameDef}'s old clothes and a face that gives nothing away. She asks to see {A_nameDef} and {B_nameDef} together.\n\nNeither of them has gone out to the gate yet.</li>
+      <li>[father,!lowtech] {X_nameDef}, {A_nameDef}'s father, has driven out from {FACTION}'s lands in a borrowed truck and parked it across the road. He wants to talk to {A_nameDef} and {B_nameDef}, he says, and nothing else.\n\n{A_nameDef} has been watching him from the window since breakfast.</li>
+    </texts>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Council_Var_Evt_QuarrelRemembered</defName>
+    <incident>Council_Evt_QuarrelRemembered</incident>
+    <texts>
+      <li>[sided,winter] Even in the snow, {FACTION} remembered. A sledge came to the gate this morning with {TALE}, for the colony that took their side against {ENEMY}.\n\n{ENEMY} haven't forgotten either, by all accounts.</li>
+      <li>[middle,!mediator] The split the colony worked out between {FACTION} and {ENEMY} has held through a whole season, and the two peoples are trading again. They've sent {TALE} between them, with a note signed by both.</li>
+    </texts>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Council_Var_Evt_VendettaBand</defName>
+    <incident>Council_Evt_VendettaBand</incident>
+    <texts>
+      <li>[killed,winter] Tracks in the snow led {A_nameDef} to a small camp of {ENEMY}, a few hours away, with a thin line of smoke rising from it. {A_nameDef} swore {ENEMY} would answer for {DEAD}, and came back without a word.\n\nThe colony could draw them out to fight on its own ground, or let them move on.</li>
+      <li>[taken,lowtech] A shepherd brought word of a small band of {ENEMY} watering their horses at the ford, a few hours away. These are the people who took {DEAD}. {A_nameDef} wants them brought here, to fight on ground the colony knows.\n\nThe council can agree, or let them pass.</li>
+    </texts>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Council_Var_Evt_Founding</defName>
+    <incident>Council_Evt_Founding</incident>
+    <texts>
+      <li>[years,guest,summer] {COUNT} years ago today, in summer heat like this, the colony was founded here in the {PLACE}. {A_nameDef}, who has been here longest, has been showing the young ones where the first tent stood.\n\n{X_nameDef} of {FACTION}, an old friend of the colony, has come to mark the day with a gift.</li>
+      <li>[years,noguest,winter] It's {COUNT} years today since the colony was founded. The snow is deep, and {A_nameDef}, the longest here, says it was deeper the first year, when the only roof was a tarp.</li>
+      <li>[first,guest,lowtech] A year ago today the colony was a few people and a fire. {A_nameDef} has been here since that night. {X_nameDef} of {FACTION}, who traded the colony its first seed, has walked over to mark the day and brought something with {X_objective}.</li>
+    </texts>
+    <outcomes>
+      <li>
+        <option>0</option>
+        <lines>
+          <li>[lost] The feast went on late, and a place was set at the end of the table for the ones who didn't see this day. The chair stayed empty all night.</li>
+          <li>[first] The colony's first founding feast ran until the fire died, and everyone agreed it should happen every year.</li>
+        </lines>
+      </li>
+      <li>
+        <option>1</option>
+        <lines>
+          <li>[lost] A quiet supper, and then {A_nameDef} walked out to the graves with a lamp and stayed a while.</li>
+        </lines>
+      </li>
+    </outcomes>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Council_Var_Evt_FarMarket</defName>
+    <incident>Council_Evt_FarMarket</incident>
+    <texts>
+      <li>[summer] {FACTION}'s summer caravan is heading for the market at {PLACE}, with empty wagons and a long road. The caravan master offers to take {TALE} from the colony and trade it there for {THING}, which the colony is low on.\n\nThey'll be back in a week or so.</li>
+    </texts>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Council_Var_Evt_HarvestFair</defName>
+    <incident>Council_Evt_HarvestFair</incident>
+    <texts>
+      <li>[lowtech] A boy from {FACTION} came running up the road ringing a hand bell: the harvest fair at {PLACE} opens tomorrow, with judging for the best of the harvest and buyers from all over. The colony could send a cart of {TALE}, and {A_nameDef} has already picked out the best of it.</li>
+      <li>[trait:Greedy] {FACTION} have invited the colony to their harvest fair at {PLACE}, and {A_nameDef} has already worked out what a cart of {TALE} would fetch there. {A_nameDef} also wants to enter the best of it for the prize, mostly for the prize money.</li>
+    </texts>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Council_Var_Evt_MidwinterGuest</defName>
+    <incident>Council_Evt_MidwinterGuest</incident>
+    <texts>
+      <li>[nomeal] A lone traveler knocked at the gate as the light went: {X_nameDef} of {FACTION}, iced over and stamping {X_possessive} feet. It's {TALE} outside. The colony has little enough to share, but {X_nameDef} only asks to sleep somewhere out of the wind.</li>
+      <li>[meal,lowtech] {X_nameDef} of {FACTION} came to the gate at dusk with icicles in {X_possessive} hair, on the way home and caught out by the dark. It's {TALE}. There's {THING} in the stores and a fire going, and {X_nameDef} would be grateful for a corner near it.</li>
+    </texts>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Council_Var_Evt_Thaw</defName>
+    <incident>Council_Evt_Thaw</incident>
+    <texts>
+      <li>[again,lowtech] The ice on the stream broke up in the night with a sound like a gunshot. By noon the meltwater was running everywhere and the paths were mud to the ankle. The colony is glad of it.\n\n{A_nameDef} found {TALE} in the melt, dropped by some traveler over the winter.</li>
+      <li>[again,!lowtech] The thaw is here. The gutters are running, the snowbanks are going gray, and someone has already planted seedlings in pots on the windowsills.\n\nOut on the road, {A_nameDef} found {TALE} in the melt.</li>
+    </texts>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Council_Var_Evt_KindredSpirit</defName>
+    <incident>Council_Evt_KindredSpirit</incident>
+    <texts>
+      <li>[winter] Snowed in at the colony for a night, {X_nameDef} of {FACTION} heard {A_nameDef} talking about wanting to {GOAL}, and put down {X_possessive} cup. {X_nameDef} did the very same, years ago. They talked until the stove went out.</li>
+    </texts>
+  </ColonyCouncil.LetterVariantsDef>
+
+</Defs>

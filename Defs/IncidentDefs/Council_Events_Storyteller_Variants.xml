@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    More ways for the storyteller-batch events (Council_Events_Storyteller.xml) to read, merged in at startup
+    (LetterVariantsDef). Each line keeps the tags its worker needs: the limb-maker's [leg], [foot], [arm] or [jaw], the
+    silent guest's [troubled], the venture's [trader], the tome's [gifted] or [ungifted].
+  -->
+
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Council_Var_Evt_OldAdventurer</defName>
+    <incident>Council_Evt_OldAdventurer</incident>
+    <texts>
+      <li>[winter] {X_nameDef} of {FACTION} came in out of the snow with a pack that clanks and a limp from an old wound. {X_nameDef} is done with the road, {X_pronoun} says, and done with winters on it.\n\nThe gear is for sale, a good weapon and armor kept in order, for {COUNT} silver. Or the colony could ask {X_objective} to stay.</li>
+      <li>[industrial] {X_nameDef} of {FACTION} used to guard convoys across the wastes. Now {X_nameDef} wants a quiet place and a chair, and is selling the kit: a well-oiled weapon and a vest with three patched holes in it, for {COUNT} silver.\n\nOr the colony could ask {X_objective} to stay.</li>
+      <li>[past:soldier] {X_nameDef} of {FACTION}, an old campaigner, recognized the way {A_nameDef} stands and asked where {A_pronoun} served. They've been talking ever since. {X_nameDef} is retiring, and the gear is for sale for {COUNT} silver.\n\nOr the colony could ask {X_objective} to stay.</li>
+    </texts>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Council_Var_Evt_Cartographer</defName>
+    <incident>Council_Evt_Cartographer</incident>
+    <texts>
+      <li>[summer] {X_nameDef}, a mapmaker of {FACTION}, is walking the hills while the days are long. For {COUNT} silver, {X_nameDef} will survey every slope of the colony's land, and expects to find ore. With {A_nameDef} as a guide, {X_nameDef} would do it for nothing, rougher, with no promises.</li>
+      <li>[skill:Mining] {A_nameDef} has been asking {X_nameDef}, a surveyor of {FACTION}, about the rock under the colony since breakfast. For {COUNT} silver {X_nameDef} will map the hills properly. With {A_nameDef} as a guide, {X_nameDef} would do a rough survey for free.</li>
+    </texts>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Council_Var_Evt_SilentMonk</defName>
+    <incident>Council_Evt_SilentMonk</incident>
+    <texts>
+      <li>[troubled,winter] {X_nameDef} of {FACTION}, a silent traveler, has asked by gestures to sit near the colony for a day or two, snow or no snow. {A_nameDef}, who has been struggling lately, brought {X_objective} a blanket and stayed a while.</li>
+      <li>[industrial] {X_nameDef} of {FACTION} hands over a printed card at the gate: a vow of silence, three years kept, and a request for a place to sit near people for a day or two.\n\n{A_nameDef} read it and has gone back to read it again.</li>
+    </texts>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Council_Var_Evt_LimbMaker</defName>
+    <incident>Council_Evt_LimbMaker</incident>
+    <titles>
+      <li>[lowtech] A woodcarver of limbs</li>
+    </titles>
+    <texts>
+      <li>[leg,lowtech] {X_nameDef} of {FACTION} carves peg legs from seasoned ash and fits them with leather straps, and noticed {A_nameDef} on {A_possessive} crutch across the yard. {X_nameDef} has offered {A_objective} a {TALE} before leaving.\n\nThe price is {COUNT} silver, or {PLACE} in materials.</li>
+      <li>[leg,!lowtech] {X_nameDef}, a limb-maker of {FACTION}, travels with a workbench folded on a cart and a box of joints. {X_nameDef} has offered to fit {A_nameDef} with a {TALE} today.\n\nThe price is {COUNT} silver, or {PLACE} in materials.</li>
+      <li>[arm] {X_nameDef} of {FACTION} lost an arm once and makes them now. {X_nameDef} rolled up a sleeve to show {A_nameDef} {X_possessive} own, then offered to fit {A_objective} with a {TALE}.\n\nThe price is {COUNT} silver, or {PLACE} in materials.</li>
+      <li>[jaw] {X_nameDef}, who makes false teeth and jaws for {FACTION}, noticed {A_nameDef} soaking {A_possessive} bread at supper and has offered to fit {A_objective} with a {TALE}.\n\nThe price is {COUNT} silver, or {PLACE} in materials.</li>
+      <li>[foot] {X_nameDef} of {FACTION} has fitted feet to soldiers, farmers and one very old horse, and has offered {A_nameDef} a {TALE}, measured and fitted before dark.\n\nThe price is {COUNT} silver, or {PLACE} in materials.</li>
+      <li>[winter] A limb-maker of {FACTION}, {X_nameDef}, is waiting out the cold at the colony, and has offered to fit {A_nameDef} with a {TALE} while {X_pronoun} waits. The price is {COUNT} silver, or {PLACE} in materials.</li>
+    </texts>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Council_Var_Evt_Venture</defName>
+    <incident>Council_Evt_Venture</incident>
+    <texts>
+      <li>[winter] {X_nameDef}, a merchant of {FACTION}, wants backers for a winter run while prices are high. Twice the stake back in about ten days, {X_nameDef} says, if the passes stay open.\n\n{A_nameDef} has noticed the "if."</li>
+      <li>[colony:Restless] {X_nameDef} of {FACTION} has heard this colony likes a gamble, and has one: a caravan venture, twice the stake back in about ten days. {A_nameDef} has been asked to look over the plan, and is looking very hard.</li>
+    </texts>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Council_Var_Evt_WantedPrisoner</defName>
+    <incident>Council_Evt_WantedPrisoner</incident>
+    <texts>
+      <li>[colony:Merciful] {FACTION} have heard that the colony holds {X_nameDef} of {ENEMY}, who raided one of their villages, and they've heard the colony is merciful. They offer {COUNT} silver for {X_nameDef} anyway, and say mercy is for people who haven't burned your barn.</li>
+      <li>[colony:Harsh] Riders of {FACTION} have come for {X_nameDef} of {ENEMY}, the colony's prisoner, and offer {COUNT} silver for {X_objective}. They say a colony with this colony's name should understand what they mean to do.</li>
+    </texts>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Council_Var_Evt_WoundedStranger</defName>
+    <incident>Council_Evt_WoundedStranger</incident>
+    <texts>
+      <li>[summer] {A_nameDef} found {X_nameDef} in the shade of a rock past the fields, bleeding, out of water and still holding a weapon. {X_nameDef} won't say who did it, only that {X_pronoun} needs to lie low.\n\nWhoever did it might come looking.</li>
+      <li>[trait:Kind] {A_nameDef} has already bound {X_nameDef}'s wound with a strip of {A_possessive} own shirt and come back to the council for a decision. {X_nameDef}, found hurt past the fields, won't say who did it.\n\nWhoever it was may come looking.</li>
+    </texts>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Council_Var_Evt_Tithe</defName>
+    <incident>Council_Evt_Tithe</incident>
+    <texts>
+      <li>[spring] {X_nameDef}, reeve to a lord of {FACTION}, rode in with the spring and a ledger. The lord claims the colony's fields, and the fields owe a tithe: {COUNT} silver, or {TALE} in kind, carried to {PLACE}.\n\n{A_nameDef} has already asked to see the map.</li>
+      <li>[past:noble] {X_nameDef}, reeve to a lord of {FACTION}, has come to collect a tithe of {COUNT} silver, or {TALE} in kind. {A_nameDef}, who grew up on the other side of a reeve's ledger, knows how these claims are made, and how they're unmade.</li>
+    </texts>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Council_Var_Evt_Envoy</defName>
+    <incident>Council_Evt_Envoy</incident>
+    <texts>
+      <li>[winter] {X_nameDef}, an envoy of {ENEMY}, has walked through the snow under a white cloth to make an offer: {COUNT} silver, or {TALE}, and the feud is over. {ENEMY} have had a hard winter too, {X_nameDef} says.</li>
+    </texts>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Council_Var_Evt_CrashedDrone</defName>
+    <incident>Council_Evt_CrashedDrone</incident>
+    <texts>
+      <li>[industrial] A {FACTION} drone with a cracked wing came down {PLACE} and has been ticking in the grass all morning. {A_nameDef} thinks its memory could be read. It could also be stripped for parts, or sent back to {FACTION} for a reward.</li>
+    </texts>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Council_Var_Evt_Signal</defName>
+    <incident>Council_Evt_Signal</incident>
+    <texts>
+      <li>[industrial] The radio has been picking up a voice on an old band since last night, the same short message in a language {A_nameDef} half recognizes. It seems to be coming from somewhere close.\n\nAnswering would give the colony's position away. {A_nameDef} could also try to trace it without answering.</li>
+    </texts>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Council_Var_Evt_ArcaneTome</defName>
+    <incident>Council_Evt_ArcaneTome</incident>
+    <texts>
+      <li>[gifted] {X_nameDef} of {FACTION} set a book on the table, {THING}, and {A_nameDef} felt it before {A_pronoun} saw it. {X_nameDef} watched {A_nameDef}'s face and named a price: {COUNT} silver.</li>
+    </texts>
+  </ColonyCouncil.LetterVariantsDef>
+
+</Defs>

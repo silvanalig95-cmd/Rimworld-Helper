@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!-- Answers to events and dilemmas that need something of the colony (Source/ColonyCouncil/Dilemmas/DilemmaChoices.cs).
+       Shown on a greyed-out answer. -->
+  <CC_Needs_Skill>Needs someone at home with {0} {1} or better</CC_Needs_Skill>
+  <CC_Needs_SkillOf>{0} would need {1} {2} or better</CC_Needs_SkillOf>
+  <CC_Needs_Someone>Nobody at home can do this right now</CC_Needs_Someone>
+  <CC_Dilemma_Medicine>medicine</CC_Dilemma_Medicine>
+
+</LanguageData>

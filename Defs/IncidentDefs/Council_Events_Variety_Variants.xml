@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    More ways for the variety events (Council_Events_Variety.xml) to read, merged in at startup (LetterVariantsDef).
+    The neighbors' quarrel keeps its [water], [herd], [land] or [salvage]; the old grave and old letters may ask for
+    [mining] or [farming] (what A was doing when it turned up).
+  -->
+
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Council_Var_Evt_Stranded</defName>
+    <incident>Council_Evt_Stranded</incident>
+    <texts>
+      <li>[lowtech,winter] A {FACTION} caravan has stuck fast on the frozen track below the colony with a cracked axle and a long night coming. They'd welcome {A_nameDef}'s hands, the best the colony has. Failing that, they'll pay {COUNT} silver for {TALE} to fix it themselves.</li>
+      <li>[!lowtech,summer] A {FACTION} trade truck has boiled over and thrown a part on the road outside the colony, and its drivers are sitting in the shade of it, arguing. They'd welcome {A_nameDef}'s help. Failing that, they'll pay {COUNT} silver for {TALE}.</li>
+      <li>[colony:Open] Merchants of {FACTION} have broken down on the road, and say they came this way because they'd heard the colony helps travelers. They'd welcome {A_nameDef}, the best hands the colony has, or will pay {COUNT} silver for {TALE} to mend it themselves.</li>
+    </texts>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Council_Var_Evt_BulkOrder</defName>
+    <incident>Council_Evt_BulkOrder</incident>
+    <texts>
+      <li>[spring] {FACTION} came out of the winter short, and have sent a rider to ask whether the colony can sell them {TALE}. They offer {COUNT} silver, more than a trader would.\n\nThey'll send for it in five days, and they want the whole order or none of it.</li>
+      <li>[colony:Hardworking] {FACTION} have heard the colony never runs short of anything, and have sent an order: {TALE}, for {COUNT} silver, well above a trader's price.\n\nThey'll send for it in five days, and they want the whole order or none of it.</li>
+    </texts>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Council_Var_Evt_Tinker</defName>
+    <incident>Council_Evt_Tinker</incident>
+    <texts>
+      <li>[winter] {X_nameDef}, a tinker of {FACTION}, has come in from the cold with frost in {X_possessive} beard and a cart of tools. Winter is mending season, {X_nameDef} says: for {COUNT} silver, every worn coat and dull blade in the colony will be good as new by morning.</li>
+      <li>[skill:Crafting] {X_nameDef}, a tinker of {FACTION}, set up {X_possessive} cart in the yard, and {A_nameDef} has been looking over {X_possessive} tools ever since. For {COUNT} silver, {X_nameDef} will mend every worn coat and battered weapon the colony has.</li>
+    </texts>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Council_Var_Evt_NeighborsSick</defName>
+    <incident>Council_Evt_NeighborsSick</incident>
+    <texts>
+      <li>[summer] {FACTION} have sent word: a summer fever has gone through their settlement with the flies, and their medicine is gone. They ask the colony for {TALE}, and can pay {COUNT} silver for it if they must.</li>
+      <li>[colony:Merciful] A runner of {FACTION} came to the gate this morning, sure the colony would help. A fever is going through their settlement, and they've run out of medicine. They ask for {TALE}, and offer {COUNT} silver if the colony wants it.</li>
+    </texts>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Council_Var_Evt_Dispute</defName>
+    <incident>Council_Evt_Dispute</incident>
+    <texts>
+      <li>[water,summer] It's a dry summer, and the spring in the hills between {FACTION} and {ENEMY} is the only water for a day's walk. Both say it's theirs. Both have sent someone to the colony to argue it, and both expect to win.</li>
+      <li>[herd,lowtech] A bull of {ENEMY}'s broke through a fence and sired half of {FACTION}'s spring calves. {ENEMY} want a share of the calves. {FACTION} want the fence paid for. They've asked the colony to judge.</li>
+      <li>[land,spring] Planting season has come, and {FACTION} and {ENEMY} have both put stakes in the same strip of bottomland. They've asked the colony to say whose stakes stay.</li>
+      <li>[salvage] A wagon of {ENEMY}'s went over in a ditch on {FACTION}'s land, and {FACTION} say whatever lands on their ground is theirs. {ENEMY} disagree. Both have asked the colony to settle it.</li>
+    </texts>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Council_Var_Evt_GrowingSpell</defName>
+    <incident>Council_Evt_GrowingSpell</incident>
+    <texts>
+      <li>[skill:Plants] {A_nameDef} has been out in the fields at dawn every day this week, just to look. The weather has been perfect for growing, and the open fields are days ahead of where they should be.</li>
+      <li>[fall] A run of warm, wet days this late in the year has given the crops still in the open fields a last push. {A_nameDef} thinks they'll come in early.</li>
+    </texts>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Council_Var_Evt_WarmSpell</defName>
+    <incident>Council_Evt_WarmSpell</incident>
+    <texts>
+      <li>[winter] In the middle of winter, the wind has turned to the south and the snow is going soft. It won't last, but it should stay mild for several days.</li>
+      <li>[fall] The leaves are down, but the air has gone warm again, like summer had forgotten something. It should stay mild for several days, and the late crops will have a little longer.</li>
+    </texts>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Council_Var_Evt_OldGrave</defName>
+    <incident>Council_Evt_OldGrave</incident>
+    <texts>
+      <li>[medieval] {A_nameDef} turned up an old grave, a body laid in a stone-lined pit with a rusted sword across its chest and a few coins in its hands. Someone buried a fighter here, with honors, long before the colony came.</li>
+      <li>[industrial] Digging out by the old road, {A_nameDef} found a grave nobody had marked, with the bones still wrapped in a canvas sheet and a tin box of belongings at their feet.</li>
+      <li>[winter] Clearing a frozen ditch, {A_nameDef} broke through into an old grave. The cold had kept everything: bones, a bundle of belongings, and a scrap of cloth with a name too faded to read.</li>
+    </texts>
+    <outcomes>
+      <li>
+        <option>0</option>
+        <lines>
+          <li>[trait:Kind] {A_nameDef} dug the new grave alone, carefully, and put the dead person's things back beside them before the stone went on.</li>
+        </lines>
+      </li>
+      <li>
+        <option>1</option>
+        <lines>
+          <li>[trait:Greedy] {A_nameDef} sorted through the grave goods before the bones were even back in the ground, and kept the best piece. Some of the others won't eat with {A_objective} tonight.</li>
+        </lines>
+      </li>
+    </outcomes>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Council_Var_Evt_OldLetters</defName>
+    <incident>Council_Evt_OldLetters</incident>
+    <texts>
+      <li>[farming] {A_nameDef}'s hoe struck a box buried at the end of a row. Inside, wrapped in waxed cloth, are letters: years of them, between two people a long way apart. The names are from {FACTION}'s lands.</li>
+      <li>[winter] {A_nameDef} found a box frozen into the bank of the stream and thawed it out by the stove. It's full of old letters between two people, years of them, from a town in {FACTION}'s lands.</li>
+    </texts>
+    <outcomes>
+      <li>
+        <option>0</option>
+        <lines>
+          <li>[winter] {A_nameDef} read the letters by the stove through the long evenings. By the last bundle, most of the colony was sitting up to hear how it ended.</li>
+        </lines>
+      </li>
+    </outcomes>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Council_Var_Evt_Elopers</defName>
+    <incident>Council_Evt_Elopers</incident>
+    <texts>
+      <li>[winter] Two young people of {FACTION}, {X_nameDef} and {TALE}, came to the gate at dusk, half frozen, sharing one coat. Their families forbade the match, so they ran in the middle of winter. They ask to be taken in.</li>
+      <li>[colony:Open] {X_nameDef} and {TALE} of {FACTION} have heard the colony takes people in, and have run away together to test it. Their families won't have the match. {A_nameDef} found them at the gate with everything they own in one sack.</li>
+    </texts>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Council_Var_Evt_FamilyVisit</defName>
+    <incident>Council_Evt_FamilyVisit</incident>
+    <texts>
+      <li>[winter] {X_nameDef}, {A_nameDef}'s {RELATION}, has come through the snow from {FACTION}'s lands with a sack of things from home and frost on {X_possessive} eyebrows. {X_nameDef} will stay the night and head back tomorrow.</li>
+      <li>[summer] {A_nameDef}'s {RELATION}, {X_nameDef}, has walked in from {FACTION}'s lands with summer fruit from the family's trees. {X_nameDef} will stay the day, and has a long list of questions from the rest of the family.</li>
+    </texts>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Council_Var_Evt_FortuneTeller</defName>
+    <incident>Council_Evt_FortuneTeller</incident>
+    <texts>
+      <li>[winter] {X_nameDef}, a fortune teller of {FACTION}, has come in from the cold with a deck of cards wrapped in silk. Winter nights are long, {X_nameDef} says, and for {COUNT} silver every colonist can hear what spring holds.</li>
+      <li>[colony:Traditional] {X_nameDef} of {FACTION} reads fortunes the old way, with bones and ash, and has heard the colony keeps the old ways. For {COUNT} silver, {X_nameDef} will read every colonist's fortune tonight.</li>
+    </texts>
+  </ColonyCouncil.LetterVariantsDef>
+
+</Defs>

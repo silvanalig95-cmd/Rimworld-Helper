@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    More ways for the reputation dilemmas (Council_Dilemmas_Reputation.xml) to read, merged in at startup
+    (LetterVariantsDef). These come only to a colony known a certain way; the lines can also ask for the era, the
+    season, the moment as A lives it, A's and B's traits and pasts, and the stranger's people.
+  -->
+
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Council_Var_DlmR_Sanctuary</defName>
+    <dilemma>Council_DlmR_Sanctuary</dilemma>
+    <texts>
+      <li>[winter] {X_nameDef} has been carrying the {FACTION} party's loads through the snow with rags for gloves. Tonight {X_nameDef} found {A_nameDef} alone in the storeroom and asked, shaking, to be hidden when the others leave. "They say you're merciful here," {X_nameDef} said.\n\n{FACTION} counts {X_nameDef} as theirs, and will remember who kept {X_objective}.</li>
+      <li>[theirLowtech] {X_nameDef} wears the iron collar of a {FACTION} bondservant, and came to {A_nameDef} at the well to ask if it's true that this colony takes people in. {X_nameDef} wants to stay when the {FACTION} party moves on.\n\nThe {FACTION} elders won't take it kindly.</li>
+    </texts>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Council_Var_DlmR_CountingOnMercy</defName>
+    <dilemma>Council_DlmR_CountingOnMercy</dilemma>
+    <texts>
+      <li>[winter] {X_nameDef} has asked the wardens for a second blanket, a hot meal at noon, and a date for the release, in that order. Word on the road is that the colony lets its prisoners go, and {X_nameDef} is planning around it.\n\n{A_nameDef} wants the council to say whether the colony's mercy is a promise.</li>
+    </texts>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Council_Var_DlmR_OneMercy</defName>
+    <dilemma>Council_DlmR_OneMercy</dilemma>
+    <texts>
+      <li>[winter] {FACTION} are going hungry this winter, and the colony's name on their roads is a hard one. {A_nameDef} heard a trader say so at the gate, and has asked the council to send them food, once, and ask nothing for it.</li>
+    </texts>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Council_Var_DlmR_TheirThief</defName>
+    <dilemma>Council_DlmR_TheirThief</dilemma>
+    <texts>
+      <li>[theirLowtech] The {FACTION} elders have brought {X_nameDef} into the yard with {X_possessive} hands bound, caught stealing from their own carts. In their villages, they say, a thief is beaten by a stranger so no family carries the feud. They've heard this colony doesn't flinch, and have asked for {A_nameDef}.</li>
+    </texts>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Council_Var_DlmR_Handouts</defName>
+    <dilemma>Council_DlmR_Handouts</dilemma>
+    <texts>
+      <li>[winter] The cold has brought {FACTION}'s hungry to the gate every morning, and {A_nameDef} has been feeding all of them out of the colony's stores. The tally on the kitchen wall is getting long, and spring is a long way off.\n\n{A_nameDef} has asked the council how much more can go out.</li>
+      <li>[trait:Kind] {A_nameDef} hasn't turned anyone from {FACTION} away from the gate all season, and doesn't want to start. But the storeroom is thinner than it should be, and {A_nameDef} has brought the count to the council, hating every number on it.</li>
+    </texts>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Council_Var_DlmR_StingyMockery</defName>
+    <dilemma>Council_DlmR_StingyMockery</dilemma>
+    <texts>
+      <li>[theirHightech] {X_nameDef} of {FACTION} has started a tab for the colony's goods "since you lot like counting," and reads it aloud every time {A_nameDef} passes. The caravan guards think it's the funniest thing they've heard all season.\n\n{A_nameDef} has asked the council for an answer to it.</li>
+    </texts>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Council_Var_DlmR_SkipCustom</defName>
+    <dilemma>Council_DlmR_SkipCustom</dilemma>
+    <texts>
+      <li>[winter] On the longest night the colony keeps a candle burning in every window until dawn, as it always has. {A_nameDef} put {A_possessive} out to save the wax, and said so. {B_nameDef} saw, and has brought it to the council.</li>
+      <li>[spring] At the first planting the colony always walks the fields together before anyone picks up a hoe. {A_nameDef} skipped the walk and started work early, and {B_nameDef} has asked the council to remind {A_objective} what the custom is for.</li>
+    </texts>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Council_Var_DlmR_OldCustom</defName>
+    <dilemma>Council_DlmR_OldCustom</dilemma>
+    <texts>
+      <li>[winter] There used to be a night each winter when the colony told the story of its first year, around one fire, with everyone there. Nobody can remember when it stopped. {A_nameDef} has asked the council to bring it back this winter, and keep it.</li>
+    </texts>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Council_Var_DlmR_Overstay</defName>
+    <dilemma>Council_DlmR_Overstay</dilemma>
+    <texts>
+      <li>[winter] {X_nameDef} of {FACTION} has taken the chair closest to the stove for three days running, and won't give it up even when {A_nameDef} comes in frozen from the fields. The colony is known for its welcome. {A_nameDef} has asked the council how far it stretches.</li>
+    </texts>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Council_Var_DlmR_FriendAtTheGate</defName>
+    <dilemma>Council_DlmR_FriendAtTheGate</dilemma>
+    <texts>
+      <li>[winter] {X_nameDef}, one of the {FACTION} visitors, is camped outside the walls in the snow, because the colony lets no stranger in after dark. {X_nameDef} is the friend {A_nameDef} talks about from before. {A_nameDef} has asked the council to open the gate tonight, just once.</li>
+    </texts>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Council_Var_DlmR_DayOfRest</defName>
+    <dilemma>Council_DlmR_DayOfRest</dilemma>
+    <texts>
+      <li>[summer] It's the height of summer and the colony is working through it, as it always does. {A_nameDef} fainted in the field this afternoon from the heat and the hours, and has asked the council, once {A_pronoun} could stand, for a day off.</li>
+    </texts>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Council_Var_DlmR_CarryingEveryone</defName>
+    <dilemma>Council_DlmR_CarryingEveryone</dilemma>
+    <texts>
+      <li>[fall] The harvest is in, and {A_nameDef} brought most of it in alone while the others found reasons to be somewhere else. {A_nameDef} has come to the council with blistered hands and a short speech about it.</li>
+    </texts>
+  </ColonyCouncil.LetterVariantsDef>
+
+</Defs>
