@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Journal lines for ailments and illnesses (Source/ColonyCouncil/Ailments/AilmentTracker.cs). Each line may be tagged
+    [ail:Key] for one ailment (the key in its HediffCompProperties_Ailment) and [serious] or [everyday]; tagged lines
+    win when they fit, the untagged ones keep every pool working for any ailment. Doctors' pools name the patient as
+    {OTHER_...}.
+  -->
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Journal_Ail_Start</defName>
+    <lines>
+      <plain>
+        <li>Feeling poorly today. Went to bed early.</li>
+        <li>Not myself today. Did half the work and felt twice as tired.</li>
+        <li>Under the weather. I'll be fine in a few days, but today was long.</li>
+        <li>[ail:HeadCold] Woke up with a stuffed nose and a throat like sandpaper. Half the dining room is sniffling.</li>
+        <li>[ail:HeadCold] Sneezed into the soup by accident. I made sure it was my own bowl.</li>
+        <li>[ail:HeadCold,child] I have a cold. My nose is red from wiping it.</li>
+        <li>[ail:StomachBug] Spent the night running to the latrine. I can't look at food.</li>
+        <li>[ail:StomachBug] Stomach bug. Kept some water down by evening, which felt like a victory.</li>
+        <li>[ail:ChestCold] The cold has gone to my chest. I cough every time I laugh, so I've stopped laughing.</li>
+        <li>[ail:ChestCold,winter] A cough that rattles, and snow up to the knees. This winter and I are not getting along.</li>
+        <li>[ail:HayFever] The flowers are lovely and they're trying to kill me. Sneezed eleven times before breakfast.</li>
+        <li>[ail:HayFever] My eyes won't stop watering. Someone asked if I'd been crying.</li>
+        <li>[ail:Pinkeye] Woke up with my eyelids stuck shut. Pinkeye. I'm washing my hands every hour now.</li>
+        <li>[ail:Dreamfever] Dreamt the storeroom had a second floor. I went looking for the stairs before I was properly awake.</li>
+        <li>[ail:Dreamfever] The dreams won't let go of me in the morning. I asked someone about a conversation we never had.</li>
+        <li>[ail:StrainedBack] Lifted one load too many. My back went, and I had to sit down in the dirt.</li>
+        <li>[ail:StrainedBack,old] My back isn't what it was. One stone too many today.</li>
+        <li>[ail:SoreHands] My hands ache from the bench. I couldn't close my fist around a cup tonight.</li>
+        <li>[ail:Blisters] Blisters on both heels. I walked the last stretch on the sides of my feet.</li>
+        <li>[ail:Chilblains] My toes itch like mad after the cold. Sat on my hands at dinner to stop scratching.</li>
+        <li>[ail:Sunburn] Burned my neck and the backs of my arms. I should have worn a hat.</li>
+        <li>[ail:Sunburn,child] I got sunburned. My nose is peeling.</li>
+        <li>[ail:SmokeCough] Too long in that smoky room. My throat feels scraped.</li>
+        <li>[ail:Toothache] A tooth on the left side is throbbing. Chewing on the right.</li>
+        <li>[ail:Toothache] Toothache. I'm going to have to let someone look at it, and I'm not looking forward to it.</li>
+        <li>[ail:StiffNeck] Slept wrong. I can only look left by turning my whole body.</li>
+        <li>[ail:SprainedAnkle] Turned my ankle on the rough ground. It swelled up before I got home.</li>
+        <li>[ail:EyeStrain] Too long squinting in the dark. My head is pounding.</li>
+        <li>[ail:RimrotCough] There's a cough in my chest that smells like the walls. That room is damp.</li>
+        <li>[ail:AshLung] Coughed up gray all evening after the fire.</li>
+      </plain>
+      <warm><li>Feeling rough, but someone left a cup of something hot by my bed.</li></warm>
+      <blunt><li>Sick. Working anyway.</li></blunt>
+      <cheerful><li>Laid low by something small. Back on my feet in a day or two.</li></cheerful>
+      <gloomy><li>Of course I'm ill. Why wouldn't I be.</li></gloomy>
+      <cold><li>Minor illness. My work will be slower for a few days.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Journal_Ail_Serious</defName>
+    <lines>
+      <plain>
+        <li>The doctor's face told me more than the words did.</li>
+        <li>I'm frightened. I've seen this go badly.</li>
+        <li>[ail:Tetanus] My jaw is stiff and won't open all the way. I remember that wound. I should have had it seen to.</li>
+        <li>[ail:Pneumonia] Every breath hurts. They've propped me up on pillows so I can get the air in.</li>
+        <li>[ail:Tuberculosis] Coughed blood into my hand this morning. I knew before anyone told me.</li>
+        <li>[ail:Tuberculosis] They've put me in a room by myself. I understand why. It's still lonely.</li>
+        <li>[ail:Typhus] Burning up, with a headache like a hammer. They say it was the lice.</li>
+        <li>[ail:Meningitis] The light hurts and my head is splitting. I can barely hold the pen.</li>
+        <li>[ail:Scurvy] My gums bleed when I eat. They say it's the food, or what's missing from it.</li>
+        <li>[ail:Glassblood] There's a glitter in my veins. I keep holding my wrists up to the light.</li>
+      </plain>
+      <warm><li>Whatever happens, they've been good to me here.</li></warm>
+      <blunt><li>It's bad. I'm going to fight it.</li></blunt>
+      <cheerful><li>I've been sicker. I think. I'm going to get through this.</li></cheerful>
+      <gloomy><li>If this is how it ends, I'd like it to be quick.</li></gloomy>
+      <cold><li>Serious illness. Whether I live depends on the doctor and the medicine stocks.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Journal_Ail_Better</defName>
+    <lines>
+      <plain>
+        <li>Feeling like myself again.</li>
+        <li>Ate a full meal today and kept it down. Better.</li>
+        <li>[serious] I'm through the worst of it. I still can't climb a slope without stopping, but I'm here.</li>
+        <li>[serious] The fever broke last night. I slept through till morning and woke up hungry.</li>
+        <li>[ail:Pneumonia] I can breathe again. I keep taking deep breaths just because I can.</li>
+        <li>[ail:Tetanus] My jaw opens. I ate bread today. Real bread, chewed.</li>
+        <li>[ail:Tuberculosis] The cough is gone. Weeks of treatment, every single day. I owe the doctor more than I can say.</li>
+        <li>[ail:Typhus] The rash has faded and I can think straight. I don't remember most of last week.</li>
+        <li>[ail:Meningitis] I can look at the sun again without wincing. My legs are still weak.</li>
+        <li>[ail:Scurvy] My gums have stopped bleeding. I never thought I'd be so glad to see a vegetable.</li>
+        <li>[ail:Glassblood] The glitter has faded from my arms. My knuckles still click when I make a fist.</li>
+        <li>[ail:HeadCold] The cold's gone. I can taste my food again.</li>
+        <li>[ail:StrainedBack] Bent down to pick something up without thinking about it. The back's healed.</li>
+        <li>[ail:SprainedAnkle] Walked without the stick today.</li>
+        <li>[ail:Toothache] The tooth's dealt with and the ache is gone. Should have had it done a week ago.</li>
+      </plain>
+      <warm><li>Back on my feet. Thank you to everyone who brought me soup.</li></warm>
+      <blunt><li>Better. Back to work.</li></blunt>
+      <cheerful><li>Healthy again! It's amazing what a few good nights' sleep can do.</li></cheerful>
+      <gloomy><li>Better, for now. Until the next thing.</li></gloomy>
+      <cold><li>Recovered. I lost some days of work.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Journal_Ail_Doctor</defName>
+    <lines>
+      <plain>
+        <li>Treated {OTHER_nameDef} today. It should pass.</li>
+        <li>Saw to {OTHER_nameDef} this afternoon. Told {OTHER_objective} to rest, which {OTHER_pronoun} won't.</li>
+        <li>[serious] {OTHER_nameDef} is seriously ill. I've done what I can for today. Tomorrow I'll do it again.</li>
+        <li>[serious] Sat up with {OTHER_nameDef} most of the night. The medicine is going faster than I'd like.</li>
+        <li>[ail:Tetanus] Cleaned out {OTHER_nameDef}'s old wound again and kept the room dark. The spasms are hard to watch.</li>
+        <li>[ail:Tuberculosis] Started {OTHER_nameDef} on the long course. Every day for weeks, and no skipping.</li>
+        <li>[ail:Meningitis] Tended {OTHER_nameDef} twice since noon, and I'll go again at dark. The first day decides it.</li>
+        <li>[ail:Typhus] Burned {OTHER_nameDef}'s bedding and cut {OTHER_possessive} hair short. The lice first, then the fever.</li>
+        <li>[ail:Pneumonia] Propped {OTHER_nameDef} up with every pillow we have. {OTHER_nameDef}'s breathing is wet and shallow.</li>
+        <li>[ail:Toothache] Saw to a bad tooth for {OTHER_nameDef}. I wasn't thanked at the time.</li>
+        <li>[ail:StrainedBack] Strapped up {OTHER_nameDef}'s back and said to stay in bed. We'll see if that happens.</li>
+        <li>[ail:SprainedAnkle] Wrapped {OTHER_nameDef}'s ankle and found a stick to lean on.</li>
+      </plain>
+      <warm><li>Looked after {OTHER_nameDef} today. I like being useful.</li></warm>
+      <blunt><li>Tended {OTHER_nameDef}. Next.</li></blunt>
+      <cheerful><li>Patched up {OTHER_nameDef}. Good as new in a few days.</li></cheerful>
+      <gloomy><li>Another patient. {OTHER_nameDef} this time. There's always another.</li></gloomy>
+      <cold><li>Treated {OTHER_nameDef}. One more dose gone from the shelf.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Journal_Ail_DoctorSaved</defName>
+    <lines>
+      <plain>
+        <li>{OTHER_nameDef} is going to live. I sat down on the step outside and didn't get up for a while.</li>
+        <li>{OTHER_nameDef} walked to the dining room today. Some nights I wasn't sure {OTHER_pronoun} would.</li>
+      </plain>
+      <warm><li>{OTHER_nameDef} thanked me today. I didn't know what to say, so I said to finish the soup.</li></warm>
+      <blunt><li>{OTHER_nameDef} pulled through. Good.</li></blunt>
+      <cheerful><li>{OTHER_nameDef} made it! Best news in a long time.</li></cheerful>
+      <gloomy><li>{OTHER_nameDef} lived. This time it went our way.</li></gloomy>
+      <cold><li>{OTHER_nameDef} survived. The treatment worked as it should.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Journal_Ail_DoctorLost</defName>
+    <lines>
+      <plain>
+        <li>Lost {OTHER_nameDef} today. I keep going over what I could have done.</li>
+        <li>I did everything I knew for {OTHER_nameDef}. It wasn't enough.</li>
+      </plain>
+      <warm><li>I held {OTHER_nameDef}'s hand at the end. I hope that counted for something.</li></warm>
+      <blunt><li>{OTHER_nameDef} died. I couldn't stop it.</li></blunt>
+      <cheerful><li>I'll remember {OTHER_nameDef} laughing at the table, not the last days.</li></cheerful>
+      <gloomy><li>{OTHER_nameDef} is gone. Sometimes medicine isn't enough.</li></gloomy>
+      <cold><li>{OTHER_nameDef} died of the illness. I'll need better medicine for the next one.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+</Defs>

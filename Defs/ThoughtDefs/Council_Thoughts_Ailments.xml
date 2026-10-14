@@ -1,0 +1,316 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Moods of ailments and illnesses (Source/ColonyCouncil/Ailments/): one situational thought per ailment, by its stage,
+    silent while an illness is still hidden (ThoughtWorker_Ailment). Everyday ones feed the heart's frustration, the
+    serious ones its fear (which also builds strain a little); scurvy, slow and fixable, feeds frustration. The last
+    three are memories: a doctor taking on a serious case, a doctor who pulled a patient through, and the patient.
+  -->
+
+  <ThoughtDef Name="Council_AilmentThoughtBase" Abstract="True">
+    <workerClass>ColonyCouncil.ThoughtWorker_Ailment</workerClass>
+    <validWhileDespawned>true</validWhileDespawned>
+    <modExtensions>
+      <li Class="ColonyCouncil.HeartTags"><feelings><li>Frustration</li></feelings><weight>0.5</weight></li>
+    </modExtensions>
+  </ThoughtDef>
+
+  <ThoughtDef Name="Council_IllnessThoughtBase" Abstract="True">
+    <workerClass>ColonyCouncil.ThoughtWorker_Ailment</workerClass>
+    <validWhileDespawned>true</validWhileDespawned>
+    <modExtensions>
+      <li Class="ColonyCouncil.HeartTags"><feelings><li>Fear</li></feelings></li>
+    </modExtensions>
+  </ThoughtDef>
+
+  <!-- ===================== Everyday ===================== -->
+
+  <ThoughtDef ParentName="Council_AilmentThoughtBase">
+    <defName>Council_Ail_HeadCold_Mood</defName>
+    <hediff>Council_Ail_HeadCold</hediff>
+    <stages>
+      <li><label>a head cold</label><description>My nose won't stop running.</description><baseMoodEffect>-1</baseMoodEffect></li>
+      <li><label>stuffed up with a cold</label><description>I can't breathe through my nose, and my head feels full of wool.</description><baseMoodEffect>-2</baseMoodEffect></li>
+      <li><label>a miserable cold</label><description>Everything aches and I can't stop sneezing. I want my bed.</description><baseMoodEffect>-3</baseMoodEffect></li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_AilmentThoughtBase">
+    <defName>Council_Ail_StomachBug_Mood</defName>
+    <hediff>Council_Ail_StomachBug</hediff>
+    <stages>
+      <li><label>queasy</label><description>My stomach is turning over. I don't trust it.</description><baseMoodEffect>-2</baseMoodEffect></li>
+      <li><label>a stomach bug</label><description>I've been sick twice since breakfast. I'm not eating anything else today.</description><baseMoodEffect>-4</baseMoodEffect></li>
+      <li><label>a bad stomach bug</label><description>I've spent half the day bent over a bucket. I just want it to stop.</description><baseMoodEffect>-6</baseMoodEffect></li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_AilmentThoughtBase">
+    <defName>Council_Ail_ChestCold_Mood</defName>
+    <hediff>Council_Ail_ChestCold</hediff>
+    <stages>
+      <li><label>a tickly cough</label><description>There's a tickle in my chest that won't leave me alone.</description><baseMoodEffect>-1</baseMoodEffect></li>
+      <li><label>a chesty cough</label><description>Every cough comes from somewhere deep down. It keeps me up at night.</description><baseMoodEffect>-2</baseMoodEffect></li>
+      <li><label>a hacking cough</label><description>I can't finish a sentence without coughing. My ribs hurt from it.</description><baseMoodEffect>-3</baseMoodEffect></li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_AilmentThoughtBase">
+    <defName>Council_Ail_HayFever_Mood</defName>
+    <hediff>Council_Ail_HayFever</hediff>
+    <stages>
+      <li><label>hay fever</label><description>Sneezing again. It's the flowers.</description><baseMoodEffect>-1</baseMoodEffect></li>
+      <li><label>bad hay fever</label><description>My eyes are streaming and my nose is raw. I can barely see what I'm doing.</description><baseMoodEffect>-2</baseMoodEffect></li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_AilmentThoughtBase">
+    <defName>Council_Ail_Pinkeye_Mood</defName>
+    <hediff>Council_Ail_Pinkeye</hediff>
+    <stages>
+      <li><label>itchy eyes</label><description>My eyes itch, and I'm not supposed to rub them.</description><baseMoodEffect>-1</baseMoodEffect></li>
+      <li><label>pinkeye</label><description>My eyes are red and weeping. I woke up with them stuck shut.</description><baseMoodEffect>-2</baseMoodEffect></li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_AilmentThoughtBase">
+    <defName>Council_Ail_Dreamfever_Mood</defName>
+    <hediff>Council_Ail_Dreamfever</hediff>
+    <stages>
+      <li><label>restless nights</label><description>I keep waking up in the night, and I can't settle again.</description><baseMoodEffect>-2</baseMoodEffect></li>
+      <li><label>dreamfever</label><description>The dreams are so real. This morning I went looking for a door that isn't there.</description><baseMoodEffect>-3</baseMoodEffect></li>
+      <li><label>waking dreams</label><description>I'm not always sure which things are dreams. The walls moved again today.</description><baseMoodEffect>-4</baseMoodEffect></li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_AilmentThoughtBase">
+    <defName>Council_Ail_StrainedBack_Mood</defName>
+    <hediff>Council_Ail_StrainedBack</hediff>
+    <stages>
+      <li><label>a stiff back</label><description>My back's stiff. I felt it go on the last load.</description><baseMoodEffect>-1</baseMoodEffect></li>
+      <li><label>a sore back</label><description>Bending over hurts. Getting up hurts more.</description><baseMoodEffect>-3</baseMoodEffect></li>
+      <li><label>my back's gone</label><description>I can barely stand up straight. Every step goes through my back.</description><baseMoodEffect>-5</baseMoodEffect></li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_AilmentThoughtBase">
+    <defName>Council_Ail_SoreHands_Mood</defName>
+    <hediff>Council_Ail_SoreHands</hediff>
+    <stages>
+      <li><label>aching hands</label><description>My hands ache from all that work. I can feel every joint.</description><baseMoodEffect>-1</baseMoodEffect></li>
+      <li><label>swollen wrists</label><description>My wrists are swollen. I dropped a cup this morning.</description><baseMoodEffect>-2</baseMoodEffect></li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_AilmentThoughtBase">
+    <defName>Council_Ail_Blisters_Mood</defName>
+    <hediff>Council_Ail_Blisters</hediff>
+    <stages>
+      <li><label>sore feet</label><description>My feet are sore from walking.</description><baseMoodEffect>-1</baseMoodEffect></li>
+      <li><label>broken blisters</label><description>The blisters have burst. Every step stings.</description><baseMoodEffect>-2</baseMoodEffect></li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_AilmentThoughtBase">
+    <defName>Council_Ail_Chilblains_Mood</defName>
+    <hediff>Council_Ail_Chilblains</hediff>
+    <stages>
+      <li><label>itchy fingers</label><description>My fingers itch where the cold got them.</description><baseMoodEffect>-1</baseMoodEffect></li>
+      <li><label>chilblains</label><description>My toes are red and swollen, and they itch so much I could scream.</description><baseMoodEffect>-2</baseMoodEffect></li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_AilmentThoughtBase">
+    <defName>Council_Ail_Sunburn_Mood</defName>
+    <hediff>Council_Ail_Sunburn</hediff>
+    <stages>
+      <li><label>a touch of sunburn</label><description>My neck's gone pink from the sun.</description><baseMoodEffect>-1</baseMoodEffect></li>
+      <li><label>sunburned</label><description>My skin is burning. I can't stand anything touching my shoulders.</description><baseMoodEffect>-3</baseMoodEffect></li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_AilmentThoughtBase">
+    <defName>Council_Ail_SmokeCough_Mood</defName>
+    <hediff>Council_Ail_SmokeCough</hediff>
+    <stages>
+      <li><label>a scratchy throat</label><description>The smoke has left my throat raw.</description><baseMoodEffect>-1</baseMoodEffect></li>
+      <li><label>a smoke cough</label><description>I can still taste the smoke. I keep coughing up gray.</description><baseMoodEffect>-2</baseMoodEffect></li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_AilmentThoughtBase">
+    <defName>Council_Ail_Toothache_Mood</defName>
+    <hediff>Council_Ail_Toothache</hediff>
+    <stages>
+      <li><label>a twinging tooth</label><description>One of my teeth twinges whenever I chew.</description><baseMoodEffect>-3</baseMoodEffect></li>
+      <li><label>a throbbing toothache</label><description>My tooth throbs with my heartbeat. I can't think about anything else.</description><baseMoodEffect>-6</baseMoodEffect></li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_AilmentThoughtBase">
+    <defName>Council_Ail_StiffNeck_Mood</defName>
+    <hediff>Council_Ail_StiffNeck</hediff>
+    <stages>
+      <li><label>a stiff neck</label><description>I can't turn my head without wincing. I slept wrong.</description><baseMoodEffect>-1</baseMoodEffect></li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_AilmentThoughtBase">
+    <defName>Council_Ail_SprainedAnkle_Mood</defName>
+    <hediff>Council_Ail_SprainedAnkle</hediff>
+    <stages>
+      <li><label>a twisted ankle</label><description>I turned my ankle. I'm limping, but it holds.</description><baseMoodEffect>-2</baseMoodEffect></li>
+      <li><label>a sprained ankle</label><description>My ankle's swollen up like a melon. I can't put weight on it.</description><baseMoodEffect>-3</baseMoodEffect></li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_AilmentThoughtBase">
+    <defName>Council_Ail_EyeStrain_Mood</defName>
+    <hediff>Council_Ail_EyeStrain</hediff>
+    <stages>
+      <li><label>tired eyes</label><description>My eyes ache and my head hurts. Too long squinting at close work.</description><baseMoodEffect>-1</baseMoodEffect></li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_AilmentThoughtBase">
+    <defName>Council_Ail_RimrotCough_Mood</defName>
+    <hediff>Council_Ail_RimrotCough</hediff>
+    <stages>
+      <li><label>a damp cough</label><description>There's a wet cough in my chest that smells like the room I sleep in.</description><baseMoodEffect>-1</baseMoodEffect></li>
+      <li><label>rimrot cough</label><description>My chest rattles when I breathe. It's that damp room.</description><baseMoodEffect>-2</baseMoodEffect></li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_AilmentThoughtBase">
+    <defName>Council_Ail_AshLung_Mood</defName>
+    <hediff>Council_Ail_AshLung</hediff>
+    <stages>
+      <li><label>a sooty cough</label><description>I keep coughing up soot.</description><baseMoodEffect>-2</baseMoodEffect></li>
+      <li><label>ash lung</label><description>My chest is tight and my phlegm is gray. I can't get a full breath.</description><baseMoodEffect>-3</baseMoodEffect></li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_AilmentThoughtBase">
+    <defName>Council_Ail_LingeringCough_Mood</defName>
+    <hediff>Council_Ail_LingeringCough</hediff>
+    <stages>
+      <li><label>a cough that won't quit</label><description>I'm better, but this cough is hanging on.</description><baseMoodEffect>-1</baseMoodEffect></li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_AilmentThoughtBase">
+    <defName>Council_Ail_Convalescent_Mood</defName>
+    <hediff>Council_Ail_Convalescent</hediff>
+    <stages>
+      <li><label>getting my strength back</label><description>I'm over the worst. I just tire so quickly.</description><baseMoodEffect>-1</baseMoodEffect></li>
+      <li><label>still weak</label><description>I'm up again, but my legs shake after a few steps.</description><baseMoodEffect>-2</baseMoodEffect></li>
+    </stages>
+  </ThoughtDef>
+
+  <!-- ===================== Serious ===================== -->
+
+  <ThoughtDef ParentName="Council_IllnessThoughtBase">
+    <defName>Council_Ail_Tetanus_Mood</defName>
+    <hediff>Council_Ail_Tetanus</hediff>
+    <stages>
+      <li><label>lockjaw</label><description>My jaw won't open properly. I know what that means.</description><baseMoodEffect>-5</baseMoodEffect></li>
+      <li><label>rigid muscles</label><description>My whole body is clenched like a fist, and I can't make it let go.</description><baseMoodEffect>-7</baseMoodEffect></li>
+      <li><label>tetanus spasms</label><description>The spasms come out of nowhere. I'm afraid of the next one.</description><baseMoodEffect>-9</baseMoodEffect></li>
+      <li><label>severe tetanus</label><description>Every spasm takes my breath away. I'm afraid I won't get it back.</description><baseMoodEffect>-12</baseMoodEffect></li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_IllnessThoughtBase">
+    <defName>Council_Ail_Pneumonia_Mood</defName>
+    <hediff>Council_Ail_Pneumonia</hediff>
+    <stages>
+      <li><label>pneumonia coming on</label><description>I'm hot, then cold, and it hurts to breathe in.</description><baseMoodEffect>-4</baseMoodEffect></li>
+      <li><label>pneumonia</label><description>The fever's high and every breath hurts. I'm scared.</description><baseMoodEffect>-6</baseMoodEffect></li>
+      <li><label>struggling to breathe</label><description>I can't get enough air. I'm so tired.</description><baseMoodEffect>-9</baseMoodEffect></li>
+      <li><label>the pneumonia crisis</label><description>I can't breathe. I don't know if I'll see tomorrow.</description><baseMoodEffect>-12</baseMoodEffect></li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_IllnessThoughtBase">
+    <defName>Council_Ail_Tuberculosis_Mood</defName>
+    <hediff>Council_Ail_Tuberculosis</hediff>
+    <stages>
+      <li><label>a cough that won't go</label><description>This cough has been with me for weeks. I've stopped pretending it's nothing.</description><baseMoodEffect>-3</baseMoodEffect></li>
+      <li><label>consumption</label><description>I'm wasting away. I eat and eat and the weight still falls off me.</description><baseMoodEffect>-5</baseMoodEffect></li>
+      <li><label>wasting</label><description>I can hardly climb out of bed. My clothes hang off me.</description><baseMoodEffect>-8</baseMoodEffect></li>
+      <li><label>dying of consumption</label><description>I don't think I have much time left.</description><baseMoodEffect>-10</baseMoodEffect></li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_IllnessThoughtBase">
+    <defName>Council_Ail_Typhus_Mood</defName>
+    <hediff>Council_Ail_Typhus</hediff>
+    <stages>
+      <li><label>typhus fever</label><description>My head is pounding and I'm burning up.</description><baseMoodEffect>-4</baseMoodEffect></li>
+      <li><label>typhus rash</label><description>There's a rash spreading over my chest, and the fever won't break.</description><baseMoodEffect>-6</baseMoodEffect></li>
+      <li><label>typhus stupor</label><description>Everything is far away and foggy.</description><baseMoodEffect>-8</baseMoodEffect></li>
+      <li><label>typhus delirium</label><description>They keep talking to me, but I can't make sense of the words.</description><baseMoodEffect>-10</baseMoodEffect></li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_IllnessThoughtBase">
+    <defName>Council_Ail_Meningitis_Mood</defName>
+    <hediff>Council_Ail_Meningitis</hediff>
+    <stages>
+      <li><label>a crushing headache</label><description>My head is splitting and the light hurts my eyes.</description><baseMoodEffect>-5</baseMoodEffect></li>
+      <li><label>meningitis</label><description>My neck won't bend and the headache is the worst pain I've known.</description><baseMoodEffect>-8</baseMoodEffect></li>
+      <li><label>confused</label><description>I don't know where I am. Who are these people?</description><baseMoodEffect>-10</baseMoodEffect></li>
+      <li><label>seizures</label><description>My body keeps seizing up. I'm terrified.</description><baseMoodEffect>-12</baseMoodEffect></li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_AilmentThoughtBase">
+    <defName>Council_Ail_Scurvy_Mood</defName>
+    <hediff>Council_Ail_Scurvy</hediff>
+    <stages>
+      <li><label>tired all the time</label><description>I'm so tired, and I don't know why. I sleep and wake up tired.</description><baseMoodEffect>-2</baseMoodEffect></li>
+      <li><label>sore gums</label><description>My gums are sore and my knees ache. Something's wrong with the food.</description><baseMoodEffect>-4</baseMoodEffect></li>
+      <li><label>bleeding gums</label><description>My gums bleed when I eat, and bruises come up from nothing.</description><baseMoodEffect>-6</baseMoodEffect></li>
+      <li><label>advanced scurvy</label><description>My old scars are aching. I'm falling apart.</description><baseMoodEffect>-8</baseMoodEffect></li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_IllnessThoughtBase">
+    <defName>Council_Ail_Glassblood_Mood</defName>
+    <hediff>Council_Ail_Glassblood</hediff>
+    <stages>
+      <li><label>glittering fever</label><description>There's a glitter under my skin, and I'm burning up.</description><baseMoodEffect>-4</baseMoodEffect></li>
+      <li><label>stiffening joints</label><description>My joints are stiffening. They click like glass.</description><baseMoodEffect>-6</baseMoodEffect></li>
+      <li><label>glass joints</label><description>I can barely bend my fingers. I'm turning to glass.</description><baseMoodEffect>-8</baseMoodEffect></li>
+      <li><label>crystallizing</label><description>My chest feels like it's full of broken glass.</description><baseMoodEffect>-10</baseMoodEffect></li>
+    </stages>
+  </ThoughtDef>
+
+  <!-- ===================== Memories ===================== -->
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_Ail_HardCase</defName>
+    <durationDays>2</durationDays>
+    <stages><li><label>a hard case</label><description>One of ours is seriously ill, and it's on me to pull them through.</description><baseMoodEffect>-1</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_Ail_PulledThrough</defName>
+    <durationDays>8</durationDays>
+    <modExtensions>
+      <li Class="ColonyCouncil.HeartTags"><feelings><li>Pride</li></feelings><weight>0.6</weight></li>
+    </modExtensions>
+    <stages><li><label>pulled a patient through</label><description>I nursed someone through a bad illness, and they lived.</description><baseMoodEffect>5</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_Ail_Survived</defName>
+    <durationDays>6</durationDays>
+    <modExtensions>
+      <li Class="ColonyCouncil.HeartTags"><feelings><li>Hope</li></feelings><weight>0.6</weight></li>
+    </modExtensions>
+    <stages><li><label>over the worst</label><description>I was really sick, and I came through it. Breakfast tasted better this morning.</description><baseMoodEffect>4</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+</Defs>
