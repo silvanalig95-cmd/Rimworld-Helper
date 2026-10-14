@@ -121,6 +121,60 @@ when a mod is active, only what the colony has unlocked, never harder without a 
 - Not planned: diplomacy and faction-war features (Diplomatic Marriage, Factional War); weapon duels.
 - An audit of existing content against these rules (unlocked-only, mod removal, era fit) comes first.
 
+## The longer road (plan, October 2026)
+Rimfolk is now large (about 63,000 lines of code, 3,000 defs, more than a hundred settings) and the game has moved
+to 1.7. The next stretch is less about adding systems and more about making what's there run lean, read well and
+play deep. In order:
+
+### 1. Steady on 1.7 (first)
+- Build against the 1.7 reference assemblies once they're published; check every Harmony target, add 1.7 to the
+  supported versions (with a 1.7 folder or LoadFolders.xml), and keep 1.6 working.
+- A dev action, "Rimfolk: check myself", listing which patches applied, which systems are on, and which mods it
+  found, so a log isn't needed to tell what's wrong.
+- A short in-game test checklist (Almanac page) for each new feature.
+
+### 2. Lean (optimization)
+- One scheduler for everything hourly: today the heart, pressures, nuisances, ailments, camps, world events,
+  encounters, wishes and others each run their own hourly pass. One clock that spreads colonists across the hour,
+  plus one shared per-map snapshot (rooms, beds, food and medicine, threats, power) worked out once and read by all.
+- Def lookups by name in hot paths moved to cached statics; LINQ and string building out of anything drawn per
+  frame; a pass with Dubs Performance Analyzer in a long save to find the real hot spots.
+- Save size: caps and pruning for every history (chronicle, journals, pair tones, dreams), measured on a five-year
+  save.
+
+### 3. Clear (UI/UX)
+- Settings presets (light touch, story-rich, demanding) with a search box and grouped pages; each feature's
+  switch shows a one-line "what you'll notice".
+- A news digest: minor happenings gathered into one "colony news" letter a day instead of many messages; letters
+  kept for decisions.
+- A first-run welcome letter and a "Start here" Almanac page; the council window remembers its page.
+- Rimfolk's pawn tabs fit the space above RimHUD and other tall inspect panes; sections collapse.
+- A small visual pass with the game's own effects: the comet tints the sky, fireflies glow, camps smoke, a warlord's
+  raid comes with banners of dust.
+- Translation-ready: every string keyed and a guide for translators.
+
+### 4. Deep (features and variety)
+- Personal arcs: a colonist's goals, feelings, secrets and history woven into a few personal stories a year (a
+  homecoming, a reconciliation, an apprenticeship that ends in a masterwork).
+- The colony calendar: player-named holidays, harvest and founding days, traditions that grow from what the colony
+  actually celebrates.
+- The long view of the world: factions that remember the colony over years (debts, favors, grudges), envoys and
+  missions that follow from it, more mission kinds (an apprentice, a dignitary, refugees to see through).
+- Health and recovery stories: ailments (started), convalescence, a doctor's reputation, a midwife's.
+- Rooms with character: furniture sets per era and mod, room themes, upgrades suggested as the colony grows.
+- Variety checks: a dev report of the lines shown most often, so the pools that repeat get new lines first.
+
+### 5. Wider (integrations)
+- Deeper with the always-on mods: Hospitality guests as visitors with stories, Vanilla Expanded factions and
+  Empire storylines in world events, Medieval and Tribal expansions for era flavor, RimWorld of Magic schools in
+  moments and goals, Alpha mods' creatures in encounters.
+- New where it pays: PokéWorld (started), tent mods for camps, Big & Small, character editors that change people
+  mid-game.
+- A compatibility table in the Almanac, generated from what Rimfolk detects.
+
+### 6. Shared (release)
+- The Workshop page (private first), preview art from the game's own sprites, and a changelog written for players.
+
 ## Phase F: Release (when the user asks)
 - Steam Workshop upload (private first), then an automatic upload of each new version.
 
