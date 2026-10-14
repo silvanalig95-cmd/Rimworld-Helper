@@ -1,0 +1,261 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Almanac: PokéWorld. Written from the original mod's code (RimWorld 1.4); the player runs the unofficial 1.6 port,
+    "PokéWorld Updated [1.6]", whose package id isn't known here. The pages list the known ids, and at startup Rimfolk
+    adds the id of whichever mod actually adds the Pokémon (Integrations/PokeWorld.cs), so they show with any version.
+  -->
+
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Council_AlmMod_D_PokeWorld</defName>
+    <label>PokéWorld</label>
+    <category>Mods</category>
+    <order>480</order>
+    <mods>
+      <li>gargamiel.pokeworld</li>
+      <li>eth0net.pokeworld</li>
+    </mods>
+    <approximate>true</approximate>
+    <summary>Pokémon as animals: caught with Poké Balls, raised through levels and evolutions</summary>
+    <tip>We gave up trying to tame the Eevee by hand once we had an Apricorn belt.</tip>
+    <description>PokéWorld adds the 493 Pokémon of the first four generations as animals. They live in the wild beside RimWorld's animals or in their place, as the mod's settings decide, and they can't be tamed the usual way: a colonist wearing a Poké Ball belt throws balls at one until a ball holds. A caught Pokémon follows the colonist it's assigned to and fights for them, gains levels, learns moves and evolves. The Pokédex tab records every species you have seen and caught, and miners sometimes dig up evolution stones and fossils that can be brought back to life.</description>
+    <sections>
+      <li>
+        <heading>The version in your list</heading>
+        <text>The original PokéWorld was made for RimWorld 1.4 and stopped there. eth0net's "PokéWorld Updated" carried it to 1.5, and "PokéWorld Updated [1.6]", an unofficial alpha by another author, to 1.6. These pages follow the original mod's code, so a number, a button or a research project may be different in the port. The port's own description warns that fishing for Pokémon is broken for now and that Pokémon spawn rates in Odyssey's new biomes are placeholders.
+
+Rimfolk finds the mod by its Pokémon rather than by its name, so it works with any of the three.</text>
+      </li>
+      <li>
+        <heading>Taking it out of a running game</heading>
+        <text>Don't remove PokéWorld from a game in progress. Every Pokémon goes with it, wild or caught, and so does everything else the mod added: ball belts, Poké Balls with Pokémon inside, potions, stones, fossils, the PC and every Pokémon stored in it. The game drops them all when it loads the save and fills the log with errors.
+
+If you've had enough of Pokémon, set the wild Pokémon frequency slider in the mod's settings to its minimum ("No Pokémon") instead. No new wild Pokémon arrive after that, and the ones the colony already has stay.</text>
+      </li>
+      <li>
+        <heading>With Rimfolk</heading>
+        <text>Rimfolk reads PokéWorld while the game runs and changes nothing in it. Pokémon count as animals everywhere Rimfolk looks at animals, so a named one can be a pet that fights beside its person, and a wild one that mauls a colonist can become a nemesis. A few things are made to fit:</text>
+        <points>
+          <li>Rimfolk's own animal events follow the slider the way wild spawns do. At its maximum the great beast, the stray that follows someone home, the sign at dawn and the catch a pet brings back are always Pokémon, at its minimum never, and in between it's a chance each time. Generations you switched off, legendaries and fossils are never picked.</li>
+          <li>The runaway mission and the strange creature from Alpha Animals need an ordinary animal, so with the slider at its maximum they don't come up.</li>
+          <li>Catching counts as taming. A Pokémon caught with a ball joins the colony like a tamed animal, so it counts for the wish for a new animal and for the ambition to tame new animals, also while it waits in its ball or sits in the PC. That ambition only counts on a wild Pokémon when the colony has a ball belt or can make one.</li>
+          <li>The game won't let anyone tame a Pokémon by hand, so the wish to tame a companion never names one. Instead, a colonist with a passion for animals may ask to catch a species the colony doesn't have yet, when one is on the map and the colony has a belt or can make one. Granted, it's worth +4 mood for 5 days.</li>
+          <li>Whoever catches the colony's first of a species writes about it in their journal and gets +3 mood for 3 days.</li>
+        </points>
+      </li>
+    </sections>
+    <keywords>
+      <li>pokemon</li>
+      <li>pokémon</li>
+      <li>pokeworld</li>
+      <li>poke ball</li>
+      <li>pokedex</li>
+      <li>catch</li>
+      <li>trainer</li>
+      <li>remove</li>
+    </keywords>
+    <seeAlso>
+      <li>Council_AlmMod_D_PokeWorldWild</li>
+      <li>Council_AlmMod_D_PokeWorldCatching</li>
+      <li>Council_AlmMod_D_PokeWorldRaising</li>
+      <li>Council_AlmMod_D_Beasts</li>
+      <li>Council_Alm_C_Strangers</li>
+      <li>Council_Alm_C_Wishes</li>
+    </seeAlso>
+  </ColonyCouncil.AlmanacArticleDef>
+
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Council_AlmMod_D_PokeWorldWild</defName>
+    <label>wild Pokémon and the spawn slider</label>
+    <category>Mods</category>
+    <order>481</order>
+    <mods>
+      <li>gargamiel.pokeworld</li>
+      <li>eth0net.pokeworld</li>
+    </mods>
+    <approximate>true</approximate>
+    <summary>How much of the wild is Pokémon, and which generations</summary>
+    <tip>No more deer at the tree line. Everything out there is a Pokémon now.</tip>
+    <description>PokéWorld's mod settings decide how much of the world's wildlife is Pokémon. The main control is the wild Pokémon frequency slider. It moves in eight steps from "No Pokémon" to "Only Pokémon", each step adding one eighth, and a new install starts at "Only Pokémon". You can move it at any time: it applies to everything that arrives from then on, and animals already on the map stay where they are.</description>
+    <sections>
+      <li>
+        <heading>What the slider decides</heading>
+        <table>
+          <li>Where animals come from | How the slider decides</li>
+          <li>Wild animals appearing on the map | Each new group is Pokémon with the slider's chance, otherwise RimWorld's or another mod's animals</li>
+          <li>Manhunter packs, farm animals wandering in | Each time, the Pokémon version with the slider's chance: a Pokémon pack, or a baby Pokémon that joins the colony</li>
+          <li>Herd migrations | PokéWorld adds a Pokémon herd migration that can only happen on the slider's chance</li>
+          <li>Infestations, deep drill infestations | Pokémon infestations instead, with the slider's chance, while they're allowed</li>
+          <li>Thrumbos passing, alphabeavers | Skipped with the slider's chance</li>
+          <li>Animals in traders' stock | Only Pokémon at the maximum, none at the minimum, both in between</li>
+          <li>Pack animals of trade caravans | Pokémon with the slider's chance, while that's allowed</li>
+        </table>
+        <after>At the maximum nearly everything you meet is a Pokémon; at the minimum you play without them, and the ones you have stay. The mod itself warns that the slider may not hold everywhere when other mods add animals or animal events of their own.</after>
+      </li>
+      <li>
+        <heading>Generations and the other switches</heading>
+        <text>At the bottom of the settings are four switches, one for each generation (Gen. 1 to 4). A generation switched off doesn't turn up in the wild, in packs, herds, traders' stock or eggs for sale, and no Pokémon evolves into one of its species. At least one stays on: switch off all four and the first comes back. You may still meet one from a switched-off generation now and then, mostly through other mods' animal events.
+
+The switches between the slider and the generations allow or forbid Pokémon infestations and Pokémon as pack animals for trade caravans, and turn the sparkle around shiny Pokémon on or off (it causes desyncs in multiplayer).</text>
+      </li>
+      <li>
+        <heading>With Rimfolk</heading>
+        <text>Rimfolk's own animal events read the same slider and switches, while the game runs, so a change in the settings applies to them at once.</text>
+      </li>
+    </sections>
+    <keywords>
+      <li>pokemon</li>
+      <li>spawn</li>
+      <li>slider</li>
+      <li>frequency</li>
+      <li>generation</li>
+      <li>settings</li>
+      <li>wildlife</li>
+    </keywords>
+    <seeAlso>
+      <li>Council_AlmMod_D_PokeWorld</li>
+      <li>Council_AlmMod_D_PokeWorldCatching</li>
+      <li>Council_Alm_3_13_ManhunterPacks</li>
+      <li>Council_Alm_3_15_Infestations</li>
+    </seeAlso>
+  </ColonyCouncil.AlmanacArticleDef>
+
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Council_AlmMod_D_PokeWorldCatching</defName>
+    <label>catching Pokémon</label>
+    <category>Mods</category>
+    <order>482</order>
+    <mods>
+      <li>gargamiel.pokeworld</li>
+      <li>eth0net.pokeworld</li>
+    </mods>
+    <approximate>true</approximate>
+    <summary>Ball belts, the odds of a catch, and where caught Pokémon go</summary>
+    <tip>Wear it down first. At full strength it breaks out of nearly every ball.</tip>
+    <description>Pokémon can't be tamed by hand. PokéWorld takes them out of the Tame order and the taming column, and the event where a wild animal tames itself passes them by. To get one, a colonist wears a ball belt and throws balls at it, much like a grenade belt. Each throw aims at one wild Pokémon within the belt's range. A belt holds 20 balls (a Master Ball belt 3) and is used up with the last throw.</description>
+    <sections>
+      <li>
+        <heading>The belts</heading>
+        <table>
+          <li>Belt | Research | Made at | Cost | Range | Ball bonus</li>
+          <li>Apricorn Ball belt | Apricorn Balls (300) | Crafting spot | 45 wood | 8.9 | ×0.6</li>
+          <li>Poké Ball belt | Poké Balls (500) | Machining table | 50 steel, 2 components | 9.9 | ×1</li>
+          <li>Great Ball belt | Great Balls (1,200) | Machining table | 70 steel, 4 components | 11.9 | ×2</li>
+          <li>Ultra Ball belt | Ultra Balls (2,400) | Fabrication bench | 40 plasteel, 2 advanced components | 13.9 | ×4</li>
+          <li>Master Ball belt | None | Can't be made: a rare reward | None | 16.9 | Always catches</li>
+        </table>
+        <after>Each research project needs the one above it. The Apricorn Ball belt is the only one a tribal colony can make; the rest need industrial research.</after>
+      </li>
+      <li>
+        <heading>The odds</heading>
+        <text>Each ball that lands gives a chance worked out as in the games. Start from the species' catch rate, from 3 for the rarest to 255 for the commonest, and multiply by the ball's bonus. A Pokémon that's down counts 1.5 times, and the more it's hurt the better: near death the chance is three times what it is at full health. That total, out of 255, is the chance. A common species with a catch rate of 255 at full health goes into a Poké Ball about one throw in three; one with a rate of 45 more like one in seventeen. So wear it down first, carefully.
+
+A miss has costs. The Pokémon dodges balls for the next 2 seconds. If it's down, every failed throw after the first may kill it, 5% likelier each time. If it's on its feet, it may turn on the thrower (its kind's usual chance to go manhunter when taming fails, sometimes with others of its kind nearby), or else it runs.
+
+A catch trains the Pokémon in obedience at once and teaches the thrower some Animals skill, more for a higher-level Pokémon. A failed throw teaches a little too.</text>
+      </li>
+      <li>
+        <heading>After the catch</heading>
+        <text>The caught Pokémon waits in a Poké Ball on the ground. Open the ball to let it out; its Put in Poké Ball button sends it back. Give it a master in the Animals tab: it follows that colonist, and while the master is drafted and close by, you can order it to move and attack. Without a drafted master nearby, it can't be ordered at all.
+
+The PC keeps the ones you don't need. Research the Pokémon storage system (1,000) and build a Portable Computer (40 steel, 3 components, 200 W of power). Use Store in PC on a ball holding one of your Pokémon, and a colonist carries it over. The PC holds up to 999 Pokémon, which neither eat nor age while stored, and you take them out again from its tab while it has power. They aren't kept in the machine itself: if it's destroyed, build another and they're all still there.</text>
+      </li>
+      <li>
+        <heading>With Rimfolk</heading>
+        <text>A Pokémon caught with a ball counts as tamed for Rimfolk's wishes and for the ambition to tame new animals, in its ball or in the PC as much as out on the map. A colonist with a passion for animals may ask to go and catch a species the colony doesn't have, but only once there's a belt to throw from or one can be made.</text>
+      </li>
+    </sections>
+    <keywords>
+      <li>pokemon</li>
+      <li>poke ball</li>
+      <li>belt</li>
+      <li>catch</li>
+      <li>catch rate</li>
+      <li>tame</li>
+      <li>master ball</li>
+      <li>pc</li>
+      <li>storage</li>
+    </keywords>
+    <seeAlso>
+      <li>Council_AlmMod_D_PokeWorld</li>
+      <li>Council_AlmMod_D_PokeWorldRaising</li>
+      <li>Council_Alm_C_Wishes</li>
+      <li>Council_Alm_C_Meetings</li>
+    </seeAlso>
+  </ColonyCouncil.AlmanacArticleDef>
+
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Council_AlmMod_D_PokeWorldRaising</defName>
+    <label>raising Pokémon</label>
+    <category>Mods</category>
+    <order>483</order>
+    <mods>
+      <li>gargamiel.pokeworld</li>
+      <li>eth0net.pokeworld</li>
+    </mods>
+    <approximate>true</approximate>
+    <summary>Levels, moves, evolution, the Pokédex, shinies and healing</summary>
+    <tip>Ours has fought in every raid this year. It's level 30 now, and it doesn't look like the same animal.</tip>
+    <description>Every Pokémon has a level from 1 to 100. Wild ones come at a level that suits their species. Yours gain experience in fights: when an enemy they hit is killed, the Pokémon that fought it share its experience, and the same happens when a wild Pokémon they wore down is caught. Each level raises its stats and its friendship with you, and every tenth level is announced. A Rare Candy raises it one level at once.</description>
+    <sections>
+      <li>
+        <heading>Moves</heading>
+        <text>A Pokémon fights with moves instead of plain bites and kicks. Its Moves tab lists them, the level each unlocks at, and its power, melee or ranged. Each species has one or two types: a move of a type the target is weak against hits harder, one it resists hits softer, and a move of the Pokémon's own type gets a boost.</text>
+      </li>
+      <li>
+        <heading>Evolution</heading>
+        <table>
+          <li>How it evolves | What happens</li>
+          <li>By level | On reaching the level its species needs. Some evolve only by day or by night, some only as one sex, some only once their friendship is high.</li>
+          <li>By item | A Fire Stone, an Ice Stone or another evolution item, given by a doctor from its Health tab like an operation. Miners sometimes find the stones in rock.</li>
+        </table>
+        <after>To keep one as it is, use its Give Everstone button; Stop evolution scares off an evolution already under way. A species of a generation switched off in the settings is never evolved into.</after>
+      </li>
+      <li>
+        <heading>The Pokédex</heading>
+        <text>The Pokédex tab lists every species. One you've never seen shows as ???; a species counts as seen once one shows up in view on your map, and as caught once you own one. Its types, egg groups and evolutions appear on the info card only after you've caught one.
+
+As the Pokédex fills, quests open up that lead to legendary Pokémon. The one for Articuno, for example, waits until you've caught 73 species of the first generation, legendaries aside, including three of Blastoise, Dewgong, Cloyster, Lapras, Jynx and Vaporeon.</text>
+      </li>
+      <li>
+        <heading>Shiny Pokémon</heading>
+        <text>Any Pokémon has a 1 in 800 chance of being shiny, with different colors from the rest of its kind. A letter tells you when a wild shiny appears on your map, and a sparkle marks it unless you turned that off in the settings.</text>
+      </li>
+      <li>
+        <heading>Healing</heading>
+        <table>
+          <li>Item | What it does | Where it comes from</li>
+          <li>Potion | Heals 20 points of injury | Drug lab, from 15 berries or agave fruit, after Potion research (400)</li>
+          <li>Hyper Potion | Heals 50 | Drug lab, from 2 neutroamine, after Hyper Potion research (1,000)</li>
+          <li>Max Potion | Heals 120 | Can't be made: found as a reward</li>
+          <li>Heal Powder | Cures the worst condition, even scars and lost limbs, but lowers friendship | Drug lab, from 1 neutroamine, 3 luciferium and 2 herbal medicine, after Heal Powder research (1,500)</li>
+          <li>Sacred Ash | Brings a dead Pokémon back, sometimes with lasting damage | Can't be made: found as a reward</li>
+        </table>
+        <after>A doctor gives these from the Pokémon's Health tab, like an operation. None of them heals scars or lost limbs except Heal Powder. Pokémon are also tended like any other animal, with ordinary medicine.</after>
+      </li>
+      <li>
+        <heading>With Rimfolk</heading>
+        <text>A Pokémon that evolves becomes a new animal of the next species. Rimfolk counts the colony's species by what it has now, so an evolution into a species the colony never had also answers a colonist's wish for a new species.</text>
+      </li>
+    </sections>
+    <keywords>
+      <li>pokemon</li>
+      <li>level</li>
+      <li>moves</li>
+      <li>evolution</li>
+      <li>everstone</li>
+      <li>pokedex</li>
+      <li>shiny</li>
+      <li>potion</li>
+      <li>healing</li>
+      <li>rare candy</li>
+    </keywords>
+    <seeAlso>
+      <li>Council_AlmMod_D_PokeWorld</li>
+      <li>Council_AlmMod_D_PokeWorldCatching</li>
+      <li>Council_Alm_C_Strangers</li>
+    </seeAlso>
+  </ColonyCouncil.AlmanacArticleDef>
+
+</Defs>
