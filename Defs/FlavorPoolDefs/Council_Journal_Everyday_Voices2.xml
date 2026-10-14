@@ -1,0 +1,265 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    More everyday journal lines (sleep, food, the body, kind words, the first days) for particular people and seasons:
+    traits, skills, age, era, weather. Same placeholders and tags as Council_Journal_Everyday.xml. Entries are written
+    at the same hour each day, so no time-of-day tags.
+  -->
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Council_Voices_Journal_Day_Cold</defName>
+    <pool>Council_Journal_Day_Cold</pool>
+    <lines>
+      <plain>
+        <li>[trait:Tough] Cold night. I've slept in worse, but not by much.</li>
+        <li>[trait:Wimp] So cold last night my teeth chattered until I bit my tongue.</li>
+        <li>[old] The cold settles in my joints now. This morning I couldn't close my hand until noon.</li>
+        <li>[snow] Snow blew in under the door in the night and drifted against my bed.</li>
+        <li>[lowtech] The fire went out before midnight. I lay there telling myself to get up and feed it, and didn't.</li>
+        <li>[!lowtech] The heater in our room is broken again. I slept in my boots.</li>
+        <li>[hurt] The cold got into my wound last night. It ached until morning.</li>
+        <li>[trait:NightOwl] Too cold to sleep, so I worked through the night to keep warm.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Council_Voices_Journal_Day_Heat</defName>
+    <pool>Council_Journal_Day_Heat</pool>
+    <lines>
+      <plain>
+        <li>[hot] Too hot to sleep and too hot to work. I don't know which is worse.</li>
+        <li>[trait:Tough] Hot night. Slept anyway.</li>
+        <li>[old] The heat makes my heart race at night. I sat up by the door until it cooled.</li>
+        <li>[lowtech] Slept outside on a mat to get away from the heat inside. The mosquitoes found me there.</li>
+        <li>[!lowtech] Can't sleep in this heat. Someone needs to look at the cooler in our room.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Council_Voices_Journal_Day_Tired</defName>
+    <pool>Council_Journal_Day_Tired</pool>
+    <lines>
+      <plain>
+        <li>[winter] Short days and long work. I'm tired before the sun goes down.</li>
+        <li>[trait:NightOwl] Morning work again. I'm useless before noon, and today proved it.</li>
+        <li>[trait:Industrious] Worked until I couldn't see straight. I'll be up early to finish.</li>
+        <li>[trait:HardWorker] Tired to the bone, but the job's done.</li>
+        <li>[trait:Lazy] So tired. I was on my feet almost the whole morning.</li>
+        <li>[trait:Slothful] Tired, as always. I lay down twice today and got told off both times.</li>
+        <li>[old] I tire faster than I used to. Sat down at noon and woke up an hour later.</li>
+        <li>[teen] They want me up at dawn every day. I'd sleep until noon if they let me.</li>
+        <li>[afterraid] Haven't slept properly since the attack. Every noise wakes me.</li>
+        <li>[hurt] My body's trying to heal and I keep making it work. Tired all over.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Council_Voices_Journal_Day_Hungry</defName>
+    <pool>Council_Journal_Day_Hungry</pool>
+    <lines>
+      <plain>
+        <li>[trait:Ascetic] Hungry today. It clears the head, up to a point.</li>
+        <li>[poor] Not enough food to go around. I gave half my bowl back.</li>
+        <li>[afterraid] No one's cooked since the fight. We ate whatever was in reach.</li>
+        <li>[old] I don't need as much food as I used to, but today I didn't get even that.</li>
+        <li>[teen] Starving. I ate my lunch at breakfast and had nothing at lunch.</li>
+        <li>[hurt] Hungry, and too sore to walk to the kitchen.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Council_Voices_Journal_Day_Bored</defName>
+    <pool>Council_Journal_Day_Bored</pool>
+    <lines>
+      <plain>
+        <li>[winter] Long winter evenings and nothing to fill them.</li>
+        <li>[rain] Raining all day, so I sat and watched it. That was my fun for the day.</li>
+        <li>[trait:TooSmart] I've read every book we have twice. I've started correcting them in the margins.</li>
+        <li>[skill:Artistic] Nothing to do, so I drew the others at supper on the back of an old sack.</li>
+        <li>[trait:Industrious] An evening with nothing to do. I found some work instead.</li>
+        <li>[teen] Nothing to do here, and no one my age to do it with.</li>
+        <li>[lowtech] No dice, no games, no music. I listened to the fire crackle until I fell asleep.</li>
+        <li>[!lowtech] Sat in front of the television without really watching it.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Council_Voices_Journal_Day_KindWords</defName>
+    <pool>Council_Journal_Day_KindWords</pool>
+    <lines>
+      <plain>
+        <li>[trait:Wimp] {OTHER_nameDef} said I was brave to go out there today. I don't feel brave, but I liked hearing it.</li>
+        <li>[trait:Ugly] {OTHER_nameDef} said I have kind eyes. I've never been told that before.</li>
+        <li>[newcomer] {OTHER_nameDef} told me I'm fitting in well here. I hope it's true.</li>
+        <li>[lowmood] {OTHER_nameDef} said something kind when I needed it. I don't think {OTHER_pronoun} knew how much.</li>
+        <li>[old] {OTHER_nameDef} said I still have the steadiest hands in the colony. At my age that means something.</li>
+        <li>[teen] {OTHER_nameDef} said I did the work of a grown-up today. I acted like it didn't matter.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Council_Voices_Journal_Day_Disturbed</defName>
+    <pool>Council_Journal_Day_Disturbed</pool>
+    <lines>
+      <plain>
+        <li>[trait:NightOwl] People stomping around all morning while I was trying to sleep.</li>
+        <li>[trait:Nervous] Every footstep in the night sounded like someone coming for me. I barely closed my eyes.</li>
+        <li>[trait:Volatile] If I'm woken one more night, I'll say something I can't take back.</li>
+        <li>[old] I sleep light now, and they're never quiet. Up three times last night.</li>
+        <li>[storm] Thunder half the night, and people up checking the roof the other half.</li>
+        <li>[afterraid] People were up all night checking the walls after the fight. I don't blame them, but I didn't sleep.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Council_Voices_Journal_Day_Barracks</defName>
+    <pool>Council_Journal_Day_Barracks</pool>
+    <lines>
+      <plain>
+        <li>[trait:Recluse] Another night in a room full of people. I lay with my face to the wall until morning.</li>
+        <li>[trait:Ascetic] The barracks suit me. A bed is a bed.</li>
+        <li>[trait:Greedy] The others have rooms of their own, and I sleep in a row with the newcomers.</li>
+        <li>[trait:Jealous] Walked past someone's bedroom on my way to the barracks. Their door was open and they had a rug.</li>
+        <li>[old] I'm too old to be sleeping in a row like a recruit.</li>
+        <li>[teen] The barracks are full of snoring grown-ups. I'd rather sleep in the barn.</li>
+        <li>[winter] At least the barracks stay warm in winter, with so many of us breathing.</li>
+        <li>[lowtech] Slept in the longhouse again, the lot of us in a row on the furs.</li>
+        <li>[newcomer] First nights in the barracks. I don't know whose snoring is whose yet.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Council_Voices_Journal_Day_Dining</defName>
+    <pool>Council_Journal_Day_Dining</pool>
+    <lines>
+      <plain>
+        <li>[trait:Ascetic] The dining room is too grand for me. I took my bowl out to the step.</li>
+        <li>[trait:Greedy] The good dining room is the one place here that feels like it suits me.</li>
+        <li>[trait:Gourmand] Food tastes better on a good table. I had three helpings to be sure.</li>
+        <li>[skill:Artistic] Studied the sculpture in the dining room all through supper. I'd like to try one like it.</li>
+        <li>[old] A proper table and proper chairs. I've waited my whole life for a dining room like this.</li>
+        <li>[lowtech] The great hall was warm tonight, with the long table full and the fire high.</li>
+        <li>[winter] The dining room's the warmest place in the colony on a winter night. None of us wanted to leave.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Council_Voices_Journal_Day_Dark</defName>
+    <pool>Council_Journal_Day_Dark</pool>
+    <lines>
+      <plain>
+        <li>[trait:Undergrounder] Dark rooms don't bother me. The others keep stumbling about, though.</li>
+        <li>[trait:NightOwl] Worked in the dark and liked it. The quiet suits me.</li>
+        <li>[trait:Nervous] I don't like the dark back rooms. Something always moves just out of sight.</li>
+        <li>[winter] It's dark by midafternoon in winter, and dark again before breakfast.</li>
+        <li>[old] My eyes aren't good enough for these dark rooms. I've started counting my steps.</li>
+        <li>[skill:Crafting] Can't do fine work without light. I botched a seam I could have done in my sleep.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Council_Voices_Journal_Day_Ragged</defName>
+    <pool>Council_Journal_Day_Ragged</pool>
+    <lines>
+      <plain>
+        <li>[trait:Greedy] Wearing rags while the stores are full of cloth. I've noticed.</li>
+        <li>[trait:Ascetic] My clothes are worn, but they still keep the rain off.</li>
+        <li>[skill:Crafting] My coat's falling apart. I'll make my own if the tailor doesn't get to it.</li>
+        <li>[trait:Pretty|trait:Beautiful] I can't bear to be seen in these rags.</li>
+        <li>[rain] The rain comes straight through the holes in my coat.</li>
+        <li>[old] I've had this coat longer than some of the others have been alive. It's showing.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Council_Voices_Journal_Day_NoTable</defName>
+    <pool>Council_Journal_Day_NoTable</pool>
+    <lines>
+      <plain>
+        <li>[trait:Ascetic] No table again. I don't mind. Food tastes the same on the floor.</li>
+        <li>[trait:Greedy] Eating off the floor like a servant. I didn't come here for this.</li>
+        <li>[old] Getting down to sit on the floor is the hard part. Getting up again is worse.</li>
+        <li>[rain] Ate in the rain under the eaves, holding my bowl close.</li>
+        <li>[lowtech] Ate squatting by the fire with my bowl in my lap, the same as the others.</li>
+        <li>[hurt] Ate on the floor. Getting down there with this wound was the hard part.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Council_Voices_Journal_Day_Wet</defName>
+    <pool>Council_Journal_Day_Wet</pool>
+    <lines>
+      <plain>
+        <li>[rain] It rained all day, and I worked in it all day.</li>
+        <li>[rain] Rain dripping off my hood and down the back of my neck since morning.</li>
+        <li>[trait:Tough] Soaked through. Didn't slow me down.</li>
+        <li>[trait:Wimp] I got soaked, and now I think I'm getting sick.</li>
+        <li>[old] Wet clothes and old bones don't mix. I'll feel this tomorrow.</li>
+        <li>[skill:Plants] Spent the day in the wet fields. The crops loved it, at least.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Council_Voices_Journal_Day_Pain</defName>
+    <pool>Council_Journal_Day_Pain</pool>
+    <lines>
+      <plain>
+        <li>[trait:Tough] Hurts. Doesn't matter. Worked anyway.</li>
+        <li>[trait:Wimp] It hurts so much. I spent the day lying down and still couldn't stop shaking.</li>
+        <li>[trait:Masochist] The pain today was almost pleasant. I didn't tell the doctor that.</li>
+        <li>[old] Old wounds and new ones, all aching together.</li>
+        <li>[afterraid] Still hurting from the fight. The doctor says I was lucky.</li>
+        <li>[skill:Medicine] I know exactly what's wrong and exactly how long it'll take. Knowing doesn't help.</li>
+        <li>[winter] The cold makes the pain worse. I keep my arm close to the fire.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Council_Voices_Journal_Day_RecRoom</defName>
+    <pool>Council_Journal_Day_RecRoom</pool>
+    <lines>
+      <plain>
+        <li>[lowtech] Played dice in the hall after supper. Lost two arrows and won one back.</li>
+        <li>[lowtech] Someone brought out the drums tonight. I danced until I couldn't feel my feet.</li>
+        <li>[trait:TooSmart] Won every game of chess tonight. Tomorrow I'll have to play against myself.</li>
+        <li>[trait:Recluse] Went to the games room late, when it was empty, and had the place to myself.</li>
+        <li>[skill:Social] Spent the evening in the games room getting to know the newer ones.</li>
+        <li>[old] Taught the young ones an old card game. They cheat worse than I did at their age.</li>
+        <li>[teen] Spent all evening in the rec room. Somebody said I was hogging the table.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Council_Voices_Journal_Day_Optimism</defName>
+    <pool>Council_Journal_Day_Optimism</pool>
+    <lines>
+      <plain>
+        <li>[spring] Planted the first seeds today. Everything around us is green and waking up.</li>
+        <li>[summer] Long warm days and a lot of land. Hard to complain.</li>
+        <li>[fall] We've arrived late in the year. We'll need to work fast, but we'll manage.</li>
+        <li>[winter] A hard season to start in. Still, we have a roof over part of us.</li>
+        <li>[tribal] We set the first stones of our camp and asked the spirits to watch over them.</li>
+        <li>[medieval] Drove the first stake of the palisade today, and we cheered.</li>
+        <li>[spacer] Solid ground under my feet and real air. After the ship, this is a palace.</li>
+        <li>[old] I've started over more times than I can count. This time feels different.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+</Defs>

@@ -16,12 +16,38 @@
         <li>Supper on an upturned crate. My back has opinions about it.</li>
         <li>[winter] Ate my stew on the floor with my coat still on.</li>
         <li>[child] We had supper on the floor, like a picnic.</li>
+        <li>Ate supper sitting on a sack of rice.</li>
+        <li>Lunch on the steps, with the bowl balanced on my knees.</li>
+        <li>Spilled half my soup down my front trying to eat off my lap.</li>
+        <li>Ate leaning against the wall. My bowl kept tipping.</li>
+        <li>[winter] Ate standing by the fire to keep warm, since there was nowhere to sit anyway.</li>
+        <li>[child] I ate sitting on the floor next to the door.</li>
       </plain>
-      <warm><li>Sat on the floor with the others to eat. It was almost nice, all of us in a row against the wall.</li></warm>
-      <blunt><li>No table. Again.</li></blunt>
-      <cheerful><li>Floor picnic again! I'm getting good at balancing the bowl on my knees.</li></cheerful>
-      <gloomy><li>Ate off my knees like a dog. Maybe there'll be a table tomorrow.</li></gloomy>
-      <cold><li>Meal taken without a table. Bad for digestion and worse for morale.</li></cold>
+      <warm>
+        <li>Sat on the floor with the others to eat. It was almost nice, all of us in a row against the wall.</li>
+        <li>No table, so we sat in a circle on the floor and passed the bread around.</li>
+        <li>Ate on the step with the others. We could do with a table, but the company was good.</li>
+      </warm>
+      <blunt>
+        <li>No table. Again.</li>
+        <li>Build a table.</li>
+        <li>Eating off my knees. Enough.</li>
+      </blunt>
+      <cheerful>
+        <li>Floor picnic again! I'm getting good at balancing the bowl on my knees.</li>
+        <li>No table, so I ate lying on my stomach like at a picnic! Messy, but fun.</li>
+        <li>Floor supper again! I've found the one flat stone in the yard and claimed it.</li>
+      </cheerful>
+      <gloomy>
+        <li>Ate off my knees like a dog. Maybe there'll be a table tomorrow.</li>
+        <li>No table, no chairs. We eat like people camped out waiting to leave.</li>
+        <li>Ate on the floor again. I don't know why it bothers me so much, but it does.</li>
+      </gloomy>
+      <cold>
+        <li>Meal taken without a table. Bad for digestion and worse for morale.</li>
+        <li>No table. It's a few planks and an afternoon. I don't understand the delay.</li>
+        <li>Dining without a table. Civilized people don't eat this way.</li>
+      </cold>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
 
@@ -129,12 +155,40 @@
         <li>[winter] Rations are thin this winter. I've moved my belt in another notch.</li>
         <li>[child] I'm hungry. I asked twice when supper was and they said soon.</li>
         <li>[trait:Gourmand] Had a full meal at noon and was hungry again before I'd washed the bowl.</li>
+        <li>Missed lunch hauling stone. I could smell the kitchen all afternoon.</li>
+        <li>Drank a cup of water to fill my stomach. It didn't last.</li>
+        <li>Ate a handful of berries off a bush on the way back. Not nearly enough.</li>
+        <li>My stomach growled during the meeting, and the person next to me heard it.</li>
+        <li>[winter] Short rations again. I finished my bowl and looked around for more.</li>
+        <li>[winter] The stores are low and we all know it. I eat slowly to make it last.</li>
+        <li>[child] My tummy hurts from being hungry.</li>
+        <li>[trait:Gourmand] Only two meals today. I spent the afternoon planning the third.</li>
       </plain>
-      <warm><li>I'm hungry, but so are the others. We'll eat well when the harvest comes in.</li></warm>
-      <blunt><li>Hungry. Where's the food?</li></blunt>
-      <cheerful><li>So hungry I could eat a whole muffalo! I'd settle for a potato.</li></cheerful>
-      <gloomy><li>Went to bed hungry, thinking about bread.</li></gloomy>
-      <cold><li>An empty stomach slows my work. Someone should account for that.</li></cold>
+      <warm>
+        <li>I'm hungry, but so are the others. We'll eat well when the harvest comes in.</li>
+        <li>Gave my bread to someone who needed it more. I'll eat well tomorrow.</li>
+        <li>Hungry, but there's stew on for tomorrow. I can smell it from here.</li>
+      </warm>
+      <blunt>
+        <li>Hungry. Where's the food?</li>
+        <li>Starving. Cook something.</li>
+        <li>Feed us properly.</li>
+      </blunt>
+      <cheerful>
+        <li>So hungry I could eat a whole muffalo! I'd settle for a potato.</li>
+        <li>So hungry I'd eat the cook's apron! Supper had better be big.</li>
+        <li>Hungry today, so tomorrow's breakfast will taste twice as good!</li>
+      </cheerful>
+      <gloomy>
+        <li>Went to bed hungry, thinking about bread.</li>
+        <li>Another day on half rations. My belt's on its last hole.</li>
+        <li>Hungry again. It's starting to feel normal, and that frightens me.</li>
+      </gloomy>
+      <cold>
+        <li>An empty stomach slows my work. Someone should account for that.</li>
+        <li>I'm hungry, which means someone planned the food badly.</li>
+        <li>Underfed today. I'll be slower tomorrow, and so will everyone else on half rations.</li>
+      </cold>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
 
@@ -148,12 +202,40 @@
         <li>Slept in my coat and boots and still woke up shivering.</li>
         <li>[winter] There was frost on my blanket when I woke up.</li>
         <li>[child] It was so cold last night I could see my breath in bed.</li>
+        <li>Woke at dawn curled in a ball with my knees up to my chin.</li>
+        <li>Spent half the night getting up to pile more on the bed. None of it helped.</li>
+        <li>The wind found every gap in the wall last night.</li>
+        <li>Couldn't feel my toes when I got up. I stamped around the room until they came back.</li>
+        <li>[winter] Woke up and the water in my cup had a skin of ice on it.</li>
+        <li>[winter] Slept in everything I own, and the cold still got into my back.</li>
+        <li>[winter] Three blankets and my coat over the top, and I was still shivering at dawn.</li>
+        <li>[child] I warmed my feet on the hearthstones before bed, but they went cold again under the blanket.</li>
       </plain>
-      <warm><li>Cold night. There was an extra blanket on my bed when I came in, and I don't know who put it there.</li></warm>
-      <blunt><li>Froze all night. My feet still haven't warmed up.</li></blunt>
-      <cheerful><li>Curled up tight like a squirrel and made it through the cold night!</li></cheerful>
-      <gloomy><li>Cold again. I've stopped expecting to be warm before spring.</li></gloomy>
-      <cold><li>Slept badly in the cold. The room needs a fire in it, or I need a different room.</li></cold>
+      <warm>
+        <li>Cold night. There was an extra blanket on my bed when I came in, and I don't know who put it there.</li>
+        <li>Cold night. I gave my spare blanket to the youngest and slept in my coat.</li>
+        <li>We pushed the beds together for warmth last night, elbows and all.</li>
+      </warm>
+      <blunt>
+        <li>Froze all night. My feet still haven't warmed up.</li>
+        <li>Cold room. Fix the walls.</li>
+        <li>Didn't sleep. Too cold.</li>
+      </blunt>
+      <cheerful>
+        <li>Curled up tight like a squirrel and made it through the cold night!</li>
+        <li>Frost on the inside of the window this morning. I drew a face in it!</li>
+        <li>Cold night, but hot tea in the morning made up for it!</li>
+      </cheerful>
+      <gloomy>
+        <li>Cold again. I've stopped expecting to be warm before spring.</li>
+        <li>Cold seeps up through the floor at night. I can't remember the last time my feet were warm.</li>
+        <li>Another freezing night. I lay awake wishing the morning would hurry up.</li>
+      </gloomy>
+      <cold>
+        <li>Slept badly in the cold. The room needs a fire in it, or I need a different room.</li>
+        <li>Slept cold. I'll be slow tomorrow, and I'll say exactly why if anyone asks.</li>
+        <li>The bedroom drops below freezing after midnight. I left a cup of water out to be sure.</li>
+      </cold>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
 
@@ -165,12 +247,40 @@
         <li>Woke up three times in the night, soaked. The air in that room doesn't move.</li>
         <li>[summer] Another sticky night. I slept with my feet pressed against the cool wall.</li>
         <li>[child] It was too hot to sleep, so I counted the cracks in the ceiling.</li>
+        <li>Lay awake in the heat listening to the insects. Got up twice to splash water on my face.</li>
+        <li>Slept on the floor because the bed was too warm. The floor wasn't much better.</li>
+        <li>Woke up with my shirt stuck to my back.</li>
+        <li>The room was like an oven last night. I dragged my mattress over to the doorway.</li>
+        <li>[summer] Hot night again. Not a breath of wind through the window.</li>
+        <li>[summer] I've started sleeping with a wet cloth on my chest. It's dry by midnight.</li>
+        <li>[summer] Another night too hot for blankets, or clothes, or sleep.</li>
+        <li>[child] It was too hot, so I slept on the floor with my cheek on the cool stones.</li>
       </plain>
-      <warm><li>Hot night. A few of us gave up on sleep and sat in the doorway talking until it cooled off.</li></warm>
-      <blunt><li>Too hot. Didn't sleep.</li></blunt>
-      <cheerful><li>Hot night, so I slept with a wet cloth over my face! It mostly worked.</li></cheerful>
-      <gloomy><li>Another night sweating into the mattress. I'm too tired to complain properly.</li></gloomy>
-      <cold><li>Slept poorly in the heat. A cooler in that room would pay for itself in a week.</li></cold>
+      <warm>
+        <li>Hot night. A few of us gave up on sleep and sat in the doorway talking until it cooled off.</li>
+        <li>Hot night. I fetched cold water for everyone in our room before I lay down.</li>
+        <li>Too hot to sleep, so I sat outside with whoever else was awake. Good company, at least.</li>
+      </warm>
+      <blunt>
+        <li>Too hot. Didn't sleep.</li>
+        <li>Hot room. No sleep. Fix it.</li>
+        <li>Sweated all night. I'm done with that room.</li>
+      </blunt>
+      <cheerful>
+        <li>Hot night, so I slept with a wet cloth over my face! It mostly worked.</li>
+        <li>Too hot to sleep, so I counted the stars from the doorway! I got to two hundred.</li>
+        <li>Slept on top of the covers with my feet in a bucket of water. Best idea I've had all week!</li>
+      </cheerful>
+      <gloomy>
+        <li>Another night sweating into the mattress. I'm too tired to complain properly.</li>
+        <li>Hot again. I lay there sticky and awake, thinking about all the things I can't fix.</li>
+        <li>The heat never lets up. I'm starting to forget what a cool night feels like.</li>
+      </gloomy>
+      <cold>
+        <li>Slept poorly in the heat. A cooler in that room would pay for itself in a week.</li>
+        <li>Heat ruined my sleep. That room was built with no thought for air.</li>
+        <li>I slept two hours in the heat. My work tomorrow will show it.</li>
+      </cold>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
 
@@ -199,12 +309,37 @@
         <li>Woke up every time the door opened. Whoever's hauling at night, please stop.</li>
         <li>Barely slept. Footsteps, then the door, then footsteps again.</li>
         <li>[child] Grown-ups kept walking past my bed in the night. I couldn't get back to sleep.</li>
+        <li>Somebody dropped a pot in the night. I lay awake for ages after.</li>
+        <li>Woke to someone coughing, then someone snoring, then a door.</li>
+        <li>Couldn't sleep for the comings and goings. Every time I drifted off, someone else came in.</li>
+        <li>The door creaks. I know because I heard it eleven times last night.</li>
+        <li>[child] Somebody woke me up in the night by mistake. I was having a good dream.</li>
       </plain>
-      <warm><li>Somebody tripped over the end of my bed in the dark. We both laughed and went back to sleep.</li></warm>
-      <blunt><li>Stop stomping past my bed at night.</li></blunt>
-      <cheerful><li>Woke up a few times when people went by. Had good dreams in between!</li></cheerful>
-      <gloomy><li>Every time I got to sleep, someone came through. I've given up on a full night.</li></gloomy>
-      <cold><li>Sleep interrupted by foot traffic. My bed needs moving out of the path.</li></cold>
+      <warm>
+        <li>Somebody tripped over the end of my bed in the dark. We both laughed and went back to sleep.</li>
+        <li>Someone was up with a sick stomach all night. I got up and sat with them for a while.</li>
+        <li>Woken twice in the night. Once it was someone bringing me a blanket, and I didn't mind that.</li>
+      </warm>
+      <blunt>
+        <li>Stop stomping past my bed at night.</li>
+        <li>Quiet at night. Is that so hard?</li>
+        <li>Woken again. I'm moving my bed.</li>
+      </blunt>
+      <cheerful>
+        <li>Woke up a few times when people went by. Had good dreams in between!</li>
+        <li>Woken three times in the night, so I had three dreams instead of one!</li>
+        <li>Somebody tripped over my boots in the dark and said a word I'd never heard before!</li>
+      </cheerful>
+      <gloomy>
+        <li>Every time I got to sleep, someone came through. I've given up on a full night.</li>
+        <li>Broken sleep again. I feel like I've been awake for days.</li>
+        <li>Lay awake listening to footsteps. Even when they stopped, I kept waiting for more.</li>
+      </gloomy>
+      <cold>
+        <li>Sleep interrupted by foot traffic. My bed needs moving out of the path.</li>
+        <li>Woken four times. I've worked out who it was each time.</li>
+        <li>Disturbed sleep. Whoever keeps hauling at night should be put on the day shift.</li>
+      </cold>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
 
@@ -216,12 +351,37 @@
         <li>Got dressed under the blanket. There's nowhere else to do it in the barracks.</li>
         <li>I'd give a lot for a door I could close.</li>
         <li>[child] I sleep in the big room with the grown-ups. They snore louder than me.</li>
+        <li>Someone talks in their sleep in the barracks. Last night it was about turnips.</li>
+        <li>Six people breathing in one room. You'd think I'd be used to it by now.</li>
+        <li>Woke up with someone's foot hanging off the next bed onto mine.</li>
+        <li>I keep my things in a sack under my pillow. It's the only part of the barracks that's mine.</li>
+        <li>[child] Someone in the big room snores like a bear. I counted the snores until I fell asleep.</li>
       </plain>
-      <warm><li>The barracks are crowded, but there's always someone awake if you can't sleep.</li></warm>
-      <blunt><li>I want my own room.</li></blunt>
-      <cheerful><li>We whispered jokes across the beds in the barracks until someone threw a boot!</li></cheerful>
-      <gloomy><li>Another night in the barracks. I can't remember the last time I was alone.</li></gloomy>
-      <cold><li>Slept in the barracks. I'd sleep better with a lock between me and the others.</li></cold>
+      <warm>
+        <li>The barracks are crowded, but there's always someone awake if you can't sleep.</li>
+        <li>I like hearing the others breathe in the barracks. It means we all made it home.</li>
+        <li>Showed the new one where the spare blankets are kept in the barracks tonight.</li>
+      </warm>
+      <blunt>
+        <li>I want my own room.</li>
+        <li>Barracks. Snoring. No sleep.</li>
+        <li>Give me a door. That's all.</li>
+      </blunt>
+      <cheerful>
+        <li>We whispered jokes across the beds in the barracks until someone threw a boot!</li>
+        <li>Someone told a ghost story in the barracks after dark, and we all laughed instead of screaming!</li>
+        <li>Woke up in the barracks to somebody's terrible singing, so I joined in!</li>
+      </cheerful>
+      <gloomy>
+        <li>Another night in the barracks. I can't remember the last time I was alone.</li>
+        <li>Still in the barracks. I've given up asking when that'll change.</li>
+        <li>Never alone, not even at night. It wears on you.</li>
+      </gloomy>
+      <cold>
+        <li>Slept in the barracks. I'd sleep better with a lock between me and the others.</li>
+        <li>Barracks again. I keep my valuables on me.</li>
+        <li>Communal sleeping is efficient for the colony. Not for me.</li>
+      </cold>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
 
@@ -297,12 +457,37 @@
         <li>Too tired to write much.</li>
         <li>Yawned all afternoon. My eyes keep closing as I write this.</li>
         <li>[child] I fell asleep at lunch with my spoon in my hand.</li>
+        <li>Fell asleep sitting on a crate and woke up with a crick in my neck.</li>
+        <li>Did the same job twice today because I forgot I'd done it the first time.</li>
+        <li>My eyes are gritty and my hands are slow. Bed, now.</li>
+        <li>Dropped a whole tray today. Too tired to hold things properly.</li>
+        <li>[child] I yawned so big my jaw clicked.</li>
       </plain>
-      <warm><li>Exhausted. The others finished my hauling while I sat down for a minute.</li></warm>
-      <blunt><li>Need sleep. Now.</li></blunt>
-      <cheerful><li>So tired I laughed at a bucket for no reason!</li></cheerful>
-      <gloomy><li>Tired in my bones. Sleep doesn't fix it anymore.</li></gloomy>
-      <cold><li>Exhausted. My work is getting sloppy, which costs more than the sleep would.</li></cold>
+      <warm>
+        <li>Exhausted. The others finished my hauling while I sat down for a minute.</li>
+        <li>Fell asleep at supper, and someone put a blanket over me instead of waking me.</li>
+        <li>Dead tired, but the others are too. We'll all sleep well tonight.</li>
+      </warm>
+      <blunt>
+        <li>Need sleep. Now.</li>
+        <li>Exhausted. Going to bed.</li>
+        <li>No more work today. I'm done.</li>
+      </blunt>
+      <cheerful>
+        <li>So tired I laughed at a bucket for no reason!</li>
+        <li>So sleepy I tried to put my boot on my hand! Bed now.</li>
+        <li>Tired, but the good kind. I'll sleep like a stone tonight!</li>
+      </cheerful>
+      <gloomy>
+        <li>Tired in my bones. Sleep doesn't fix it anymore.</li>
+        <li>Woke up tired, worked tired, going to bed tired.</li>
+        <li>I don't remember the last time I woke up rested.</li>
+      </gloomy>
+      <cold>
+        <li>Exhausted. My work is getting sloppy, which costs more than the sleep would.</li>
+        <li>Too little sleep. I made two mistakes today that I wouldn't have made rested.</li>
+        <li>Exhausted. I'm taking the late shift off, allowed or not.</li>
+      </cold>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
 
@@ -316,12 +501,37 @@
         <li>Supper at the long table tonight. The room is starting to look like somewhere people live.</li>
         <li>Took my time over supper. It's a good room to sit in.</li>
         <li>[child] We ate in the big room with the pretty rug. I didn't spill anything.</li>
+        <li>Supper at the long table, with candles down the middle and no one in a hurry.</li>
+        <li>The dining room was full tonight. It's the best room we have.</li>
+        <li>Sat with my back to the warm wall and ate slowly.</li>
+        <li>Stayed at the table after the plates were cleared. Good chairs make you linger.</li>
+        <li>[child] I sat on the big chair at supper and my feet didn't touch the floor.</li>
       </plain>
-      <warm><li>Supper in the dining room with the others. I like that room best at night, when it's full.</li></warm>
-      <blunt><li>Nice dining room. Food tastes better in it.</li></blunt>
-      <cheerful><li>Ate at the good table tonight! I felt like a guest at a lord's house.</li></cheerful>
-      <gloomy><li>The dining room is lovely. I still ate the same old stew in it.</li></gloomy>
-      <cold><li>Dined in the good room. People work harder after eating somewhere decent.</li></cold>
+      <warm>
+        <li>Supper in the dining room with the others. I like that room best at night, when it's full.</li>
+        <li>Supper in the dining room. Someone raised a cup to the cook, and we all joined in.</li>
+        <li>I sat next to someone I don't usually talk to tonight. Good conversation, good room.</li>
+      </warm>
+      <blunt>
+        <li>Nice dining room. Food tastes better in it.</li>
+        <li>Good room. Good meal.</li>
+        <li>Ate in the dining room. Better than the floor.</li>
+      </blunt>
+      <cheerful>
+        <li>Ate at the good table tonight! I felt like a guest at a lord's house.</li>
+        <li>Ate in the fancy dining room! I used my best manners and everything.</li>
+        <li>Lovely supper in the dining room, and we stayed until the candles burned down!</li>
+      </cheerful>
+      <gloomy>
+        <li>The dining room is lovely. I still ate the same old stew in it.</li>
+        <li>The dining room's very fine. I sat in it and thought about who isn't here to see it.</li>
+        <li>Supper in the good room. In there it's easy to forget what's outside.</li>
+      </gloomy>
+      <cold>
+        <li>Dined in the good room. People work harder after eating somewhere decent.</li>
+        <li>The dining room impresses visitors. It impressed me, which I didn't expect.</li>
+        <li>Ate in the good room. It was worth what it cost.</li>
+      </cold>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
 
@@ -333,12 +543,38 @@
         <li>Read in the games room until my eyes hurt. Good chairs in there.</li>
         <li>[!lowtech] Sat in the rec room with the others and watched the television.</li>
         <li>[child] I played in the games room until bedtime. I almost won at chess.</li>
+        <li>Played cards in the games room after supper and won a few hands.</li>
+        <li>Sat by the window in the rec room and did nothing all evening. It was wonderful.</li>
+        <li>Lost three games of horseshoes in a row. Still a good evening.</li>
+        <li>The games room was full tonight, and loud.</li>
+        <li>[!lowtech] Played billiards in the rec room. I'm getting better at the bank shots.</li>
+        <li>[child] I played hide-and-seek in the games room, and they didn't find me for ages.</li>
       </plain>
-      <warm><li>Good evening in the common room. Someone was humming, and the rest of us were too comfortable to move.</li></warm>
-      <blunt><li>Good room for a rest. Needed that.</li></blunt>
-      <cheerful><li>Won two games of chess tonight!</li></cheerful>
-      <gloomy><li>Sat in the games room until late. It took my mind off things for an evening.</li></gloomy>
-      <cold><li>Spent the evening in the games room. Good for my mood, so good for my work.</li></cold>
+      <warm>
+        <li>Good evening in the common room. Someone was humming, and the rest of us were too comfortable to move.</li>
+        <li>Games room tonight. Someone taught me a new game, and I taught them one back.</li>
+        <li>A good evening with the others in the common room. I laughed more than I have in a while.</li>
+      </warm>
+      <blunt>
+        <li>Good room for a rest. Needed that.</li>
+        <li>Played games. Won some. Good night.</li>
+        <li>Rec room's good. Use it more.</li>
+      </blunt>
+      <cheerful>
+        <li>Won two games of chess tonight!</li>
+        <li>Won at horseshoes, then lost at everything else. Still counts!</li>
+        <li>Best evening in ages in the games room!</li>
+      </cheerful>
+      <gloomy>
+        <li>Sat in the games room until late. It took my mind off things for an evening.</li>
+        <li>Games room tonight. For a few hours I didn't think about anything at all.</li>
+        <li>I went to the games room to forget about things. It worked until bedtime.</li>
+      </gloomy>
+      <cold>
+        <li>Spent the evening in the games room. Good for my mood, so good for my work.</li>
+        <li>An evening in the rec room. I watched how the others play. It says a lot about them.</li>
+        <li>Recreation done. I'll be sharper tomorrow for it.</li>
+      </cold>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
 
@@ -351,12 +587,39 @@
         <li>[!lowtech] The lamp in the workshop is out again. I worked by feel.</li>
         <li>[lowtech] The torches in the back room burned out before noon. I worked by feel after that.</li>
         <li>[child] It's dark in the back rooms. I ran through them as fast as I could.</li>
+        <li>Couldn't find my own tools in the dark. Found someone else's instead.</li>
+        <li>Felt my way along the wall to the storeroom and put my hand in something wet.</li>
+        <li>Worked in the gloom all afternoon. My eyes ache from squinting.</li>
+        <li>Tripped over a bucket I couldn't see.</li>
+        <li>[!lowtech] Another lamp burned out in the hall. We're down to one at the far end.</li>
+        <li>[lowtech] We ran out of tallow for the candles. I worked by the light from the door.</li>
+        <li>[child] I'm scared of the dark storeroom. I made someone come with me.</li>
       </plain>
-      <warm><li>Dark in the workshop all day. The others kept talking so I'd know where they were.</li></warm>
-      <blunt><li>Too dark to work. Get us some light.</li></blunt>
-      <cheerful><li>Spent the day in the dark like a mole! I know the storeroom by touch now.</li></cheerful>
-      <gloomy><li>Dark all day. It gets into you after a while.</li></gloomy>
-      <cold><li>Worked in poor light all day. I've started keeping a list of what it's cost us.</li></cold>
+      <warm>
+        <li>Dark in the workshop all day. The others kept talking so I'd know where they were.</li>
+        <li>Dark in the storeroom again. I held the door open so the others could see what they were doing.</li>
+        <li>Too dark to work well. I left a candle by the door for whoever comes next.</li>
+      </warm>
+      <blunt>
+        <li>Too dark to work. Get us some light.</li>
+        <li>Dark again. Where's the light?</li>
+        <li>Can't work blind.</li>
+      </blunt>
+      <cheerful>
+        <li>Spent the day in the dark like a mole! I know the storeroom by touch now.</li>
+        <li>Dark in the back again. I found my way by humming and listening for the echo!</li>
+        <li>Pitch black in the storeroom! I found three things I'd lost by tripping over them.</li>
+      </cheerful>
+      <gloomy>
+        <li>Dark all day. It gets into you after a while.</li>
+        <li>Gloomy rooms, gloomy work. It's hard to keep your spirits up in the dark.</li>
+        <li>Haven't seen proper light all day.</li>
+      </gloomy>
+      <cold>
+        <li>Worked in poor light all day. I've started keeping a list of what it's cost us.</li>
+        <li>Poor lighting. Someone will get hurt in that storeroom.</li>
+        <li>Dark workrooms mean slow work and bad work. We have both.</li>
+      </cold>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
 
@@ -448,12 +711,38 @@
         <li>Whittled a stick down to a toothpick and threw it away.</li>
         <li>Read the same book again. I could recite the third chapter.</li>
         <li>[child] There's nothing to do. I asked three grown-ups to play and they all said later.</li>
+        <li>Counted the stones in the wall by my bed. There are forty-one.</li>
+        <li>Sat on the step after supper with nothing to do. Went to bed early.</li>
+        <li>Same work, same food, same faces. I need a day off.</li>
+        <li>Spent the evening carving a spoon I don't need.</li>
+        <li>Asked around for a game of anything. The others were all busy.</li>
+        <li>[child] I made up a game with two sticks and a stone. It wasn't very fun.</li>
       </plain>
-      <warm><li>So bored. Tomorrow I'll ask the others if anyone wants to play cards after supper.</li></warm>
-      <blunt><li>Bored. Give me something to do that isn't work.</li></blunt>
-      <cheerful><li>Nothing to do, so I tried juggling potatoes! I'm not good at it yet.</li></cheerful>
-      <gloomy><li>Every day is the same. I've stopped keeping track of which one it is.</li></gloomy>
-      <cold><li>No recreation in days. My mood is slipping, and my work will follow it.</li></cold>
+      <warm>
+        <li>So bored. Tomorrow I'll ask the others if anyone wants to play cards after supper.</li>
+        <li>Bored, so I offered to teach a card game to anyone who wanted to learn. Two said yes.</li>
+        <li>Nothing to do tonight. I sat with the others and listened to them talk.</li>
+      </warm>
+      <blunt>
+        <li>Bored. Give me something to do that isn't work.</li>
+        <li>Bored stiff.</li>
+        <li>Nothing to do here but work. I need a break.</li>
+      </blunt>
+      <cheerful>
+        <li>Nothing to do, so I tried juggling potatoes! I'm not good at it yet.</li>
+        <li>Nothing to do, so I made a boat out of bark and sailed it in the water barrel!</li>
+        <li>Bored today. Tomorrow I'm organizing a game after supper, whether people like it or not!</li>
+      </cheerful>
+      <gloomy>
+        <li>Every day is the same. I've stopped keeping track of which one it is.</li>
+        <li>Nothing to look forward to tomorrow, or the day after that.</li>
+        <li>I can't remember the last thing I did for fun.</li>
+      </gloomy>
+      <cold>
+        <li>No recreation in days. My mood is slipping, and my work will follow it.</li>
+        <li>No recreation. People get careless when they're bored, and I'm no exception.</li>
+        <li>Spent the evening doing nothing. A waste, but there wasn't anything else.</li>
+      </cold>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
 
@@ -467,12 +756,38 @@
         <li>Got caught in the rain hauling wood. Everything I'm wearing is still damp.</li>
         <li>[winter] Wet and cold at the same time. My fingers wouldn't bend when I got in.</li>
         <li>[child] I got soaking wet. I jumped in every puddle on the way back.</li>
+        <li>Rain came down sideways today. I've wrung out my socks twice.</li>
+        <li>Slipped on the bank and went into the stream up to my waist.</li>
+        <li>Wet all day. My hands are white and wrinkled.</li>
+        <li>Hung my clothes by the fire to dry. They're still steaming.</li>
+        <li>[winter] Wet snow soaked me through by noon. I couldn't stop shaking until supper.</li>
+        <li>[child] My boots filled up with water and squelched all the way home.</li>
       </plain>
-      <warm><li>Came in dripping. The cook gave me something hot to hold while my clothes dried.</li></warm>
-      <blunt><li>Soaked. I hate rain.</li></blunt>
-      <cheerful><li>Got drenched! I stayed out in it a while longer, since I was already wet.</li></cheerful>
-      <gloomy><li>My clothes haven't been dry in three days.</li></gloomy>
-      <cold><li>Wet through at work. Cold hands are slow hands, and I lost most of the afternoon.</li></cold>
+      <warm>
+        <li>Came in dripping. The cook gave me something hot to hold while my clothes dried.</li>
+        <li>Came in soaked, and someone had already hung a towel by the door for me.</li>
+        <li>Got wet through, but I got the washing in before the worst of it.</li>
+      </warm>
+      <blunt>
+        <li>Soaked. I hate rain.</li>
+        <li>Soaked. Need dry clothes.</li>
+        <li>Rain. All day. In it.</li>
+      </blunt>
+      <cheerful>
+        <li>Got drenched! I stayed out in it a while longer, since I was already wet.</li>
+        <li>Soaked to the bone! I danced in the rain, since I couldn't get any wetter.</li>
+        <li>Wet as a fish today, but the rain smelled wonderful.</li>
+      </cheerful>
+      <gloomy>
+        <li>My clothes haven't been dry in three days.</li>
+        <li>Wet and cold and miserable. My boots will never dry.</li>
+        <li>Rain again, wet again. It's the third day running.</li>
+      </gloomy>
+      <cold>
+        <li>Wet through at work. Cold hands are slow hands, and I lost most of the afternoon.</li>
+        <li>Working wet lowers output. We need covered walkways.</li>
+        <li>Soaked through. I hope someone is tracking how much work the weather costs us.</li>
+      </cold>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
 
@@ -484,12 +799,36 @@
         <li>Couldn't get comfortable all day. Every step pulls at the stitches.</li>
         <li>Wrote this lying down. Sitting up hurts too much.</li>
         <li>[child] My arm hurts. The doctor said it'll get better, but it still hurts now.</li>
+        <li>Every time I bend down, it catches me. I've stopped bending down.</li>
+        <li>Bit down on a strip of leather when they changed the dressing.</li>
+        <li>The ache comes in waves. Between them, I can almost work.</li>
+        <li>Slept badly. The pain doesn't care what time it is.</li>
       </plain>
-      <warm><li>In pain today. The others kept bringing me water without being asked.</li></warm>
-      <blunt><li>It hurts. Don't ask.</li></blunt>
-      <cheerful><li>Hurts a lot today, but less than yesterday, so I'm counting that!</li></cheerful>
-      <gloomy><li>The pain is worse at night. I lie there and feel my heartbeat in it.</li></gloomy>
-      <cold><li>Constant pain. I can still work. I'll say so if that changes.</li></cold>
+      <warm>
+        <li>In pain today. The others kept bringing me water without being asked.</li>
+        <li>The pain's bad today. Someone sat with me after supper and talked until I forgot about it.</li>
+        <li>It hurts, but I'm alive and the others are looking after me.</li>
+      </warm>
+      <blunt>
+        <li>It hurts. Don't ask.</li>
+        <li>Pain. Leave me be.</li>
+        <li>Hurts like fire. Still standing.</li>
+      </blunt>
+      <cheerful>
+        <li>Hurts a lot today, but less than yesterday, so I'm counting that!</li>
+        <li>Ow, all day! But I can wiggle my toes again.</li>
+        <li>It hurts, but a bit less every day, and I'm keeping count!</li>
+      </cheerful>
+      <gloomy>
+        <li>The pain is worse at night. I lie there and feel my heartbeat in it.</li>
+        <li>The pain won't let up. I'm forgetting what it was like before.</li>
+        <li>Hurt all day. I'm starting to think it won't ever heal right.</li>
+      </gloomy>
+      <cold>
+        <li>Constant pain. I can still work. I'll say so if that changes.</li>
+        <li>In pain. I'll need longer to heal than the doctor said.</li>
+        <li>The pain affects my concentration. I've moved myself to simple work until it passes.</li>
+      </cold>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
 
@@ -501,12 +840,38 @@
         <li>Patched my coat with a scrap of sack. It looks it.</li>
         <li>[winter] The wind goes straight through the holes in my shirt.</li>
         <li>[child] I tore my shirt climbing. Now you can see my belly.</li>
+        <li>My sleeve came off at the shoulder while I was hauling. I tied it back on with string.</li>
+        <li>The sole of my boot is flapping. I can hear it with every step.</li>
+        <li>Found a new hole in my coat this morning. I don't know where it came from.</li>
+        <li>Mended my shirt again. There's more thread in it than shirt now.</li>
+        <li>[winter] My mittens have holes in every finger.</li>
+        <li>[child] My knees are poking out of my pants.</li>
       </plain>
-      <warm><li>Clothes in tatters. I'll ask the tailor nicely when there's time.</li></warm>
-      <blunt><li>These clothes are rags. I need new ones.</li></blunt>
-      <cheerful><li>My pants are more patch than pants now!</li></cheerful>
-      <gloomy><li>Rags. I look like what's left behind after a raid.</li></gloomy>
-      <cold><li>People judge you by your clothes, whatever they say. Mine are falling apart.</li></cold>
+      <warm>
+        <li>Clothes in tatters. I'll ask the tailor nicely when there's time.</li>
+        <li>Torn clothes, but I'll wait my turn. The tailor has enough on.</li>
+        <li>Patched a hole in someone else's shirt along with mine. Might as well, while the needle's out.</li>
+      </warm>
+      <blunt>
+        <li>These clothes are rags. I need new ones.</li>
+        <li>Rags. New clothes, please.</li>
+        <li>My boots are done. So am I.</li>
+      </blunt>
+      <cheerful>
+        <li>My pants are more patch than pants now!</li>
+        <li>My pants have so many patches they're practically a quilt!</li>
+        <li>Ripped my shirt again! I'm calling it a window.</li>
+      </cheerful>
+      <gloomy>
+        <li>Rags. I look like what's left behind after a raid.</li>
+        <li>Everything I own is wearing out, me included.</li>
+        <li>Threadbare clothes and a cold wind. I'm tired of being cold.</li>
+      </gloomy>
+      <cold>
+        <li>People judge you by your clothes, whatever they say. Mine are falling apart.</li>
+        <li>Ragged clothes mark you as someone who doesn't matter. I won't wear these much longer.</li>
+        <li>Damaged clothing. I've asked the tailor twice now.</li>
+      </cold>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
 
@@ -636,12 +1001,37 @@
         <li>Kind words from {OTHER_nameDef} today, out of nowhere.</li>
         <li>On the path today, {OTHER_nameDef} stopped me to say thanks for the other day. I'd forgotten what I did.</li>
         <li>[child] {OTHER_nameDef} said I was brave. I'm going to remember that.</li>
+        <li>{OTHER_nameDef} noticed I'd fixed the door and thanked me for it.</li>
+        <li>{OTHER_nameDef} told me I'm good at what I do. I wrote it down so I'd remember.</li>
+        <li>Passed {OTHER_nameDef} on the path and got a smile and a kind word.</li>
+        <li>{OTHER_nameDef} said it's good to have me here. I didn't know what to say.</li>
+        <li>[child] {OTHER_nameDef} said I'm a good helper. I helped all afternoon after that.</li>
       </plain>
-      <warm><li>At supper {OTHER_nameDef} said something kind to me, and it carried me through the evening.</li></warm>
-      <blunt><li>Got a compliment from {OTHER_nameDef}. Didn't hate it.</li></blunt>
-      <cheerful><li>{OTHER_nameDef} told me I have a nice laugh! I've been laughing at everything since.</li></cheerful>
-      <gloomy><li>{OTHER_nameDef} was kind to me today. I didn't know what to say, so I just nodded.</li></gloomy>
-      <cold><li>Praise from {OTHER_nameDef}. Either it's sincere or {OTHER_pronoun} wants something. I'll find out which.</li></cold>
+      <warm>
+        <li>At supper {OTHER_nameDef} said something kind to me, and it carried me through the evening.</li>
+        <li>{OTHER_nameDef} thanked me today. I'll find a way to thank {OTHER_objective} back.</li>
+        <li>Kind words from {OTHER_nameDef} at the end of a long day. That's what I'll remember about today.</li>
+      </warm>
+      <blunt>
+        <li>Got a compliment from {OTHER_nameDef}. Didn't hate it.</li>
+        <li>{OTHER_nameDef} said I did good work. I did.</li>
+        <li>Nice of {OTHER_nameDef}. Noted.</li>
+      </blunt>
+      <cheerful>
+        <li>{OTHER_nameDef} told me I have a nice laugh! I've been laughing at everything since.</li>
+        <li>{OTHER_nameDef} said I brighten the place up! I'm going to try to live up to it.</li>
+        <li>A compliment from {OTHER_nameDef}! I've been grinning all evening.</li>
+      </cheerful>
+      <gloomy>
+        <li>{OTHER_nameDef} was kind to me today. I didn't know what to say, so I just nodded.</li>
+        <li>{OTHER_nameDef} said something nice about my work. I didn't believe it, but I kept it.</li>
+        <li>{OTHER_nameDef} was kind to me today. It's been a while since anyone was.</li>
+      </gloomy>
+      <cold>
+        <li>Praise from {OTHER_nameDef}. Either it's sincere or {OTHER_pronoun} wants something. I'll find out which.</li>
+        <li>{OTHER_nameDef} flattered me today. I'll keep {OTHER_objective} close.</li>
+        <li>Compliments from {OTHER_nameDef}. Good for my standing.</li>
+      </cold>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
 
@@ -858,12 +1248,37 @@
         <li>We've got some seed, some tools, and a plan. That's more than I've had in a while.</li>
         <li>Woke up this morning and remembered where I was, and I didn't mind.</li>
         <li>[child] We have a new home. I picked the spot for my bed.</li>
+        <li>Paced out where the walls will go. It took longer than it should have because I kept stopping to look at the view.</li>
+        <li>We ate our first meal here sitting on the supply crates.</li>
+        <li>Lots of work ahead. For once I don't mind.</li>
+        <li>Scratched my initials into the first post we put up.</li>
+        <li>[child] I found a frog by the water. I think it lives here too.</li>
       </plain>
-      <warm><li>Good people and a patch of land. I think we'll be all right here.</li></warm>
-      <blunt><li>New place. Lots to do. Let's get on with it.</li></blunt>
-      <cheerful><li>A whole new place to call ours! I walked all the way around it just to look.</li></cheerful>
-      <gloomy><li>Hopeful days, for now. I've seen new starts go bad, but this one hasn't yet.</li></gloomy>
-      <cold><li>Morale is high, as it always is at the start. Now is the time to ask for hard work.</li></cold>
+      <warm>
+        <li>Good people and a patch of land. I think we'll be all right here.</li>
+        <li>We're a small group, but a good one. I'm glad to be in it.</li>
+        <li>Shared out the first jobs today, and not one person complained.</li>
+      </warm>
+      <blunt>
+        <li>New place. Lots to do. Let's get on with it.</li>
+        <li>Good start. Keep it going.</li>
+        <li>Ground's good. Water's close. We'll do.</li>
+      </blunt>
+      <cheerful>
+        <li>A whole new place to call ours! I walked all the way around it just to look.</li>
+        <li>It's ours! Every rock and weed of it.</li>
+        <li>Picked out the spot for a garden today, and a well, and a bench to sit on in the evenings!</li>
+      </cheerful>
+      <gloomy>
+        <li>Hopeful days, for now. I've seen new starts go bad, but this one hasn't yet.</li>
+        <li>A fresh start. I've had a few of those. We'll see how this one goes.</li>
+        <li>Spirits are high. I'll enjoy it while it lasts.</li>
+      </gloomy>
+      <cold>
+        <li>Morale is high, as it always is at the start. Now is the time to ask for hard work.</li>
+        <li>First days are when habits get set. I'm watching who works and who doesn't.</li>
+        <li>The site is defensible and the soil is decent. Our odds are reasonable.</li>
+      </cold>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
 

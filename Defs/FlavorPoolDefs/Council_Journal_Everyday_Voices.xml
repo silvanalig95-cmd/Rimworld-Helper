@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Defs>
 
-  <!-- More everyday journal lines (Lives/EverydayJournal.cs) for particular people and seasons: traits, skills, age, era, weather. Same placeholders and tags as the pools in Council_Journal_Everyday.xml. Entries are written once a day at the same hour, so no time-of-day tags here. -->
+  <!--
+    More everyday journal lines (Lives/EverydayJournal.cs) for particular people and seasons: traits, skills, age, era,
+    weather. Same placeholders and tags as the pools in Council_Journal_Everyday.xml. Entries are written at the same
+    hour each day, so no time-of-day tags here.
+  -->
 
   <ColonyCouncil.FlavorExtensionDef>
     <defName>Council_Voices_Journal_Day_Bedroom</defName>
