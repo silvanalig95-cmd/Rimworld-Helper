@@ -1,0 +1,274 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Wishes for the mods the player always runs. Each names the mod's things by defName or reads the mod by name in code,
+    so with the mod missing nothing matches and the wish never comes up (and a save made with it loads without it).
+    Only what the colony can build or make now is asked for.
+    - Vanilla Brewing Expanded (VanillaExpanded.VBrewE): tea (VBE_Tea, brewed at a campfire or stove once Brewing is
+      researched) for someone who is ill.
+    - Dubs Bad Hygiene (Dubwise.DubsBadHygiene): a sauna heater (DBHSaunaHeaterLog, DBHSaunaHeaterElec) for the cold months.
+    - Vanilla Cooking Expanded (VanillaExpanded.VCookE): a grill (VCE_Grill, research VCE_Grilling) for summer evenings;
+      Medieval Overhaul's grill (DankPyon_Grill) counts too.
+    - Hospitality (Orion.Hospitality): a bed kept for guests (any bed switched to a guest bed), WishWorker_GuestBed.
+    Granted memories are in Defs/ThoughtDefs/Council_Thoughts_Wishes_Breadth.xml.
+  -->
+
+  <!-- ===================== A pot of tea (Vanilla Brewing Expanded) ===================== -->
+
+  <ColonyCouncil.WishDef>
+    <defName>Council_Wish_Tea</defName>
+    <label>a pot of tea</label>
+    <description>Vanilla Brewing Expanded: someone who is ill would give a great deal for a hot cup of tea.</description>
+    <workerClass>ColonyCouncil.WishWorker_Stock</workerClass>
+    <category>Health</category>
+    <weight>1</weight>
+    <expiryDays>5</expiryDays>
+    <cooldownDays>20</cooldownDays>
+    <grantedThought>Council_Granted_Tea</grantedThought>
+    <allowPetition>true</allowPetition>
+    <envy>0</envy>
+    <talkInteraction>Council_Talk_Food</talkInteraction>
+    <fulfilledWhen>The colony has {TARGET} tea in stock.</fulfilledWhen>
+    <wants>
+      <defNames><li>VBE_Tea</li></defNames>
+      <count>6</count>
+      <ailing>true</ailing>
+      <reason>{PAWN_nameDef} is unwell and would give a great deal for a hot cup of tea.</reason>
+    </wants>
+    <request>
+      <plain>
+        <li>My throat feels like gravel. A hot cup of tea would do more than any medicine.</li>
+        <li>When I was sick as a child, someone always brought me tea. I'd like that now.</li>
+        <li>[cold] I'm cold, I'm coughing, and I'd like something hot to hold.</li>
+        <li>[night] I can't sleep for coughing. A cup of tea might settle it.</li>
+        <li>[winter] Winter colds are the worst. Tea with honey, if there's any honey.</li>
+      </plain>
+      <warm>
+        <li>If someone could brew a pot, I'd share it. Half of us are sniffling.</li>
+      </warm>
+      <blunt>
+        <li>Tea. Hot. Soon, if possible.</li>
+      </blunt>
+      <cheerful>
+        <li>Tea makes everything better, even this cold!</li>
+      </cheerful>
+      <gloomy>
+        <li>It won't cure me. It'll make being sick less miserable.</li>
+      </gloomy>
+      <cold>
+        <li>A warm drink eases the symptoms. The cost is minor.</li>
+      </cold>
+    </request>
+    <thanks>
+      <plain><li>Hot tea and the steam in my face. I feel half human again.</li></plain>
+      <warm><li>Thank you. That was the kindest thing anyone's done for me all week.</li></warm>
+      <blunt><li>Good. Another.</li></blunt>
+      <cheerful><li>A whole pot just for me. Well, nearly.</li></cheerful>
+      <gloomy><li>Still sick. Less miserable.</li></gloomy>
+      <cold><li>Symptoms improved.</li></cold>
+    </thanks>
+    <expired>
+      <plain><li>Cold water it is.</li></plain>
+      <blunt><li>Fine. I'll cough.</li></blunt>
+      <gloomy><li>Nobody brings tea to the sick here.</li></gloomy>
+    </expired>
+    <reminder>
+      <plain><li>Still coughing. Still no tea.</li></plain>
+    </reminder>
+  </ColonyCouncil.WishDef>
+
+  <!-- ===================== A sauna (Dubs Bad Hygiene) ===================== -->
+
+  <ColonyCouncil.WishDef>
+    <defName>Council_Wish_Sauna</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>{THING} for the cold months</label>
+    <description>Dubs Bad Hygiene: someone cold to the bone wants a sauna, hot stones and steam to sweat the winter out.</description>
+    <workerClass>ColonyCouncil.WishWorker_Have</workerClass>
+    <category>Comfort</category>
+    <weight>0.6</weight>
+    <expiryDays>15</expiryDays>
+    <cooldownDays>40</cooldownDays>
+    <grantedThought>Council_Granted_Sauna</grantedThought>
+    <luxury>true</luxury>
+    <allowPetition>true</allowPetition>
+    <envy>0</envy>
+    <template>Council_Sauna</template>
+    <talkInteraction>Council_Talk_Hygiene</talkInteraction>
+    <fulfilledWhen>The colony has {THING}, or another sauna heater.</fulfilledWhen>
+    <wants>
+      <defNames><li>DBHSaunaHeaterLog</li><li>DBHSaunaHeaterElec</li></defNames>
+      <nameContains><li>saunaheater</li><li>sauna heater</li></nameContains>
+      <seasons><li>Fall</li><li>Winter</li><li>PermanentWinter</li></seasons>
+      <reason>{PAWN_nameDef} is cold to the bone and dreams of a hot sauna.</reason>
+    </wants>
+    <request>
+      <plain>
+        <li>A sauna. Hot stones, steam, and nothing to do but sweat out the cold. That's my wish.</li>
+        <li>My bones are frozen through. A sauna would thaw them by the end of an evening.</li>
+        <li>[snow] It's snowing again. Picture coming in from that to a hot sauna.</li>
+        <li>[old] My joints ache all winter. A sauna is the only thing that helps.</li>
+        <li>[lowtech] Hot stones and a ladle of water. People have done it since before anyone wrote things down.</li>
+      </plain>
+      <warm>
+        <li>We could all sit in there together, talking and sweating. It brings people close.</li>
+      </warm>
+      <blunt>
+        <li>Build {THING}. I'm frozen.</li>
+      </blunt>
+      <cheerful>
+        <li>Steam, heat, and a roll in the snow afterwards! I'll go first.</li>
+      </cheerful>
+      <gloomy>
+        <li>It's going to be a long, cold winter. A sauna would make it bearable.</li>
+      </gloomy>
+      <cold>
+        <li>Heat eases sore muscles and lifts spirits in a cold climate.</li>
+      </cold>
+    </request>
+    <thanks>
+      <plain><li>I sat in the heat until my head swam. Best evening this winter.</li></plain>
+      <warm><li>Come and sit. There's room for everyone.</li></warm>
+      <blunt><li>Good. Close the door, you're letting the steam out.</li></blunt>
+      <cheerful><li>I ran out into the snow afterwards and shouted, then ran straight back in.</li></cheerful>
+      <gloomy><li>Warm at last. I'll be cold again tomorrow.</li></gloomy>
+      <cold><li>Recovery improved.</li></cold>
+    </thanks>
+    <expired>
+      <plain><li>I'll stay frozen, then.</li></plain>
+      <blunt><li>Enjoy your cold winter.</li></blunt>
+      <gloomy><li>Winter wins again.</li></gloomy>
+    </expired>
+    <reminder>
+      <plain><li>Still dreaming of a sauna.</li></plain>
+    </reminder>
+  </ColonyCouncil.WishDef>
+
+  <!-- ===================== A grill (Vanilla Cooking Expanded) ===================== -->
+
+  <ColonyCouncil.WishDef>
+    <defName>Council_Wish_Grill</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>{THING} for summer evenings</label>
+    <description>Vanilla Cooking Expanded: a cook has been thinking about meat over hot coals all week and wants a grill.</description>
+    <workerClass>ColonyCouncil.WishWorker_Have</workerClass>
+    <category>Comfort</category>
+    <weight>0.6</weight>
+    <expiryDays>15</expiryDays>
+    <cooldownDays>30</cooldownDays>
+    <grantedThought>Council_Granted_Grill</grantedThought>
+    <allowPetition>true</allowPetition>
+    <envy>0</envy>
+    <talkInteraction>Council_Talk_Food</talkInteraction>
+    <fulfilledWhen>The colony has {THING}, or another grill.</fulfilledWhen>
+    <wants>
+      <defNames><li>VCE_Grill</li><li>DankPyon_Grill</li></defNames>
+      <passions><li>Cooking</li></passions>
+      <seasons><li>Spring</li><li>Summer</li><li>PermanentSummer</li></seasons>
+      <reason>{PAWN_nameDef} cooks, and has been thinking about meat over an open grill all week.</reason>
+    </wants>
+    <request>
+      <plain>
+        <li>Meat over hot coals, outside, on a warm evening. That's what I'm asking for.</li>
+        <li>Grilled food tastes of summer. Let's build {THING}.</li>
+        <li>[evening] Smell the air tonight? It's grilling weather.</li>
+        <li>[summer] It's too hot to cook indoors anyway. Let me cook outside on {THING}.</li>
+        <li>[afterraid] After a day like that, everyone deserves skewers and a fire.</li>
+      </plain>
+      <warm>
+        <li>Everyone gathered round the grill, waiting their turn. That's the best kind of supper.</li>
+      </warm>
+      <blunt>
+        <li>Build {THING}. I'll do the cooking.</li>
+      </blunt>
+      <cheerful>
+        <li>Skewers, sausages, grilled corn! I'll need {THING} for all of it.</li>
+      </cheerful>
+      <gloomy>
+        <li>Summer's short. We should enjoy at least one evening of it.</li>
+      </gloomy>
+      <cold>
+        <li>Grilled meals lift morale cheaply.</li>
+      </cold>
+    </request>
+    <thanks>
+      <plain><li>The whole colony came out when they smelled it. I didn't have to call anyone.</li></plain>
+      <warm><li>Thank you. The first skewer is yours.</li></warm>
+      <blunt><li>Good. Stand back from the coals.</li></blunt>
+      <cheerful><li>I've burned three things and they were all delicious.</li></cheerful>
+      <gloomy><li>Grilled everything. Summer will be over soon.</li></gloomy>
+      <cold><li>Meal quality improved.</li></cold>
+    </thanks>
+    <expired>
+      <plain><li>Back to the stove, then.</li></plain>
+      <blunt><li>Enjoy your stew. In summer.</li></blunt>
+      <gloomy><li>Summer went by without a single grilled meal.</li></gloomy>
+    </expired>
+    <reminder>
+      <plain><li>Still no grill. Still summer.</li></plain>
+    </reminder>
+  </ColonyCouncil.WishDef>
+
+  <!-- ===================== A bed kept for guests (Hospitality) ===================== -->
+
+  <ColonyCouncil.WishDef>
+    <defName>Council_Wish_GuestBed</defName>
+    <label>a bed kept for guests</label>
+    <description>Hospitality: visitors have come and the colony has no bed set aside for guests. A kind or sociable colonist would like one, so nobody who comes in peace sleeps on the floor.</description>
+    <workerClass>ColonyCouncil.WishWorker_GuestBed</workerClass>
+    <category>Social</category>
+    <weight>0.8</weight>
+    <expiryDays>10</expiryDays>
+    <cooldownDays>30</cooldownDays>
+    <grantedThought>Council_Granted_GuestBed</grantedThought>
+    <allowPetition>true</allowPetition>
+    <ways><openness>3</openness><generosity>2</generosity></ways>
+    <envy>0</envy>
+    <template>Council_GuestRoom</template>
+    <talkInteraction>Council_Talk_Room</talkInteraction>
+    <fulfilledWhen>A bed in the colony is set aside for guests.</fulfilledWhen>
+    <request>
+      <plain>
+        <li>The visitors slept in the barn last night. We can do better than that.</li>
+        <li>People who come in peace should have somewhere to sleep. Let's keep one bed for guests.</li>
+        <li>[trait:Kind] They'd walked for days to get here, and we gave them the floor.</li>
+        <li>[night] Visitors are bedding down in the yard. It's cold out there tonight.</li>
+        <li>[rich] We've plenty of everything. We can spare a bed for guests.</li>
+        <li>[small] We need friends out here more than most. Being good hosts is how we make them.</li>
+      </plain>
+      <warm>
+        <li>A warm bed and a hot meal. That's all it takes to make a friend.</li>
+      </warm>
+      <blunt>
+        <li>Guests on the floor make us look poor. Set a bed aside.</li>
+      </blunt>
+      <cheerful>
+        <li>A guest room, with a little flower on the pillow!</li>
+      </cheerful>
+      <gloomy>
+        <li>If we treat visitors badly, they'll stop coming. Then it's just us.</li>
+      </gloomy>
+      <cold>
+        <li>Well-treated guests bring trade and goodwill. A bed is cheap.</li>
+      </cold>
+    </request>
+    <thanks>
+      <plain><li>The guests had a real bed tonight. They thanked me twice.</li></plain>
+      <warm><li>Thank you. We're the kind of place people want to come back to now.</li></warm>
+      <blunt><li>Good. Now they can't complain.</li></blunt>
+      <cheerful><li>I put a flower on the pillow anyway.</li></cheerful>
+      <gloomy><li>Now we just need visitors who don't try to kill us.</li></gloomy>
+      <cold><li>Hospitality established. Expect better relations.</li></cold>
+    </thanks>
+    <expired>
+      <plain><li>The floor will have to do for them.</li></plain>
+      <blunt><li>Fine. Let them sleep in the mud.</li></blunt>
+      <gloomy><li>Nobody will want to visit us now.</li></gloomy>
+    </expired>
+    <reminder>
+      <plain><li>Still no bed for guests.</li></plain>
+    </reminder>
+  </ColonyCouncil.WishDef>
+
+</Defs>

@@ -19,6 +19,7 @@
       <li>Council_Wish_Music</li>
       <li>Council_Wish_Birthday</li>
       <li>Council_Wish_Recruit</li>
+      <li>Council_Wish_ChildPet</li>
     </wishes>
     <wishCategories><li>Social</li></wishCategories>
     <goals>
@@ -40,6 +41,7 @@
       <li>Council_Wish_Lessons</li>
       <li>Council_Wish_Books</li>
       <li>Council_Wish_TrainingDummy</li>
+      <li>Council_Wish_ChildLessons</li>
     </wishes>
     <wishCategories><li>Work</li></wishCategories>
     <goals>
@@ -68,6 +70,10 @@
       <li>Council_Wish_Freezer</li>
       <li>Council_Wish_WeaponRack</li>
       <li>Council_Wish_BetterWeapon</li>
+      <li>Council_Wish_Sickbed</li>
+      <li>Council_Wish_Healroot</li>
+      <li>Council_Wish_FreshFood</li>
+      <li>Council_Wish_Tea</li>
     </wishes>
     <wishCategories><li>Safety</li></wishCategories>
     <goals>
@@ -89,6 +95,9 @@
       <li>Council_Wish_DayOff</li>
       <li>Council_Wish_GardenSeat</li>
       <li>Council_Wish_RecreationVariety</li>
+      <li>Council_Wish_CampEvening</li>
+      <li>Council_Wish_Telescope</li>
+      <li>Council_Wish_Fishing</li>
     </wishes>
     <goals>
       <li>Council_Asp2_Discovery</li>

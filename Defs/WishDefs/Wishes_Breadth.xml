@@ -1,0 +1,1472 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Wishes for every era, skill and stage of life, and for the newer systems: illness (a bed for the sick, healroot,
+    something fresh), camps, council meetings, the heart's needs (a table for everyone, an apprentice, food that keeps,
+    an evening at the strangers' fire), children and the old, seasons and the heat.
+
+    What decides when each can come up:
+    - Buildings (WishWorker_Have): only what the colony can place now (research done, in the build menu, power only with
+      electricity: see Avail.CanBuild). A tribal colony never hears about a telescope or a deep drill.
+    - Stocks (WishWorker_Stock): only what the colony can make or grow now (a researched recipe at a bench it has or can
+      build, or a sowable plant), unless anySource is set.
+    - wants/eras limits a wish to an era (lowtech: no electricity yet); minAge is in human years; ailing means unwell now.
+    - The C# workers (WishWorkers_Breadth.cs) check their own: a camp on the map, a meeting that can be called, Odyssey
+      and fish in the water, someone to teach.
+    Granted memories are in Defs/ThoughtDefs/Council_Thoughts_Wishes_Breadth.xml.
+  -->
+
+  <!-- ===================== A bed for the sick ===================== -->
+
+  <ColonyCouncil.WishDef>
+    <defName>Council_Wish_Sickbed</defName>
+    <label>a bed for the sick</label>
+    <description>Someone who is ill wants a bed set aside for the sick, where they can be looked after. Any bed marked for medical use will do.</description>
+    <workerClass>ColonyCouncil.WishWorker_Sickbed</workerClass>
+    <category>Health</category>
+    <weight>0.9</weight>
+    <expiryDays>5</expiryDays>
+    <cooldownDays>20</cooldownDays>
+    <grantedThought>Council_Granted_Sickbed</grantedThought>
+    <allowPetition>true</allowPetition>
+    <envy>0</envy>
+    <template>Council_Hospital_Infirmary</template>
+    <talkInteraction>Council_Talk_Body</talkInteraction>
+    <fulfilledWhen>A bed in the colony is set aside for medical use.</fulfilledWhen>
+    <triggers>
+      <li>
+        <key>sick</key>
+        <hediffs>
+          <li>Council_Ail_HeadCold</li>
+          <li>Council_Ail_ChestCold</li>
+          <li>Council_Ail_StomachBug</li>
+          <li>Flu</li>
+          <li>Plague</li>
+          <li>Malaria</li>
+          <li>FoodPoisoning</li>
+        </hediffs>
+        <boost>3</boost>
+      </li>
+    </triggers>
+    <request>
+      <plain>
+        <li>I've been coughing all night in the barracks, and nobody else is sleeping either. Could one bed be kept for the sick?</li>
+        <li>When you're ill here, you lie wherever you usually lie and hope someone remembers you. Mark a bed for the sick.</li>
+        <li>[trigger:sick] I'm burning up. I'd like to lie down somewhere the doctor will think to look.</li>
+        <li>[winter] Sick in the middle of winter, and my bed is by the door. A proper sickbed somewhere warm is all I'm asking.</li>
+        <li>[lowtech] Where I grew up, the sick got a bed by the fire and someone to bring them broth.</li>
+        <li>[night] It's the middle of the night and I can hear myself wheezing. I'd like to be where someone else can hear it too.</li>
+        <li>[child] I feel sick. Can I sleep in a special bed, where somebody checks on you?</li>
+      </plain>
+      <warm>
+        <li>It isn't only for me. Whoever's ill next could use it too, and someone always is.</li>
+      </warm>
+      <blunt>
+        <li>I'm sick. Give me a bed where the doctor can find me.</li>
+      </blunt>
+      <cheerful>
+        <li>A bed just for being ill in! I'd almost look forward to the next cold.</li>
+      </cheerful>
+      <gloomy>
+        <li>If this gets worse, I'd rather not die in the barracks between two snorers.</li>
+      </gloomy>
+      <cold>
+        <li>The sick in shared rooms spread it to the healthy. One bed set apart stops that.</li>
+      </cold>
+    </request>
+    <thanks>
+      <plain><li>A bed set apart, and someone looking in on me. I'm already sleeping better.</li></plain>
+      <warm><li>Thank you. I'll be up again soon, and it'll be there for the next one.</li></warm>
+      <blunt><li>Good. Now let me sleep.</li></blunt>
+      <cheerful><li>They brought me soup in bed. I could get used to being sick.</li></cheerful>
+      <gloomy><li>Still sick. At least someone knows where I am.</li></gloomy>
+      <cold><li>Separating the sick was the correct decision.</li></cold>
+    </thanks>
+    <expired>
+      <plain><li>I coughed my way through it in my own bed. Nobody came.</li></plain>
+      <blunt><li>Got better on my own. No thanks to anyone.</li></blunt>
+      <gloomy><li>Next time I'll just lie down in the yard.</li></gloomy>
+    </expired>
+    <reminder>
+      <plain><li>Still sick, still in the same bed as always.</li></plain>
+      <warm><li>When someone has a moment, about that bed for the sick.</li></warm>
+    </reminder>
+  </ColonyCouncil.WishDef>
+
+  <!-- ===================== Healroot put by (tribal and medieval) ===================== -->
+
+  <ColonyCouncil.WishDef>
+    <defName>Council_Wish_Healroot</defName>
+    <label>healroot put by</label>
+    <description>A healer or grower in a colony without industrial medicine wants a store of healroot, grown and dried before the next fever.</description>
+    <workerClass>ColonyCouncil.WishWorker_Stock</workerClass>
+    <category>Health</category>
+    <weight>0.8</weight>
+    <expiryDays>15</expiryDays>
+    <cooldownDays>30</cooldownDays>
+    <grantedThought>Council_Granted_Healroot</grantedThought>
+    <allowPetition>true</allowPetition>
+    <envy>0</envy>
+    <talkInteraction>Council_Talk_Body</talkInteraction>
+    <fulfilledWhen>The colony has {TARGET} herbal medicine in stock.</fulfilledWhen>
+    <wants>
+      <defNames><li>MedicineHerbal</li></defNames>
+      <count>12</count>
+      <eras><li>lowtech</li></eras>
+      <passions><li>Medicine</li><li>Plants</li></passions>
+      <reason>{PAWN_nameDef} knows what healroot can do, and the colony has almost none put by.</reason>
+    </wants>
+    <request>
+      <plain>
+        <li>We've no healroot to speak of. At the next fever we'll be boiling grass and hoping.</li>
+        <li>Healroot grows if you give it decent soil and some patience. Let me plant a few rows.</li>
+        <li>[spring] It's planting time. A row of healroot now means medicine all winter.</li>
+        <li>[fall] If we don't have healroot dried and hung before the frost, we'll be sorry by midwinter.</li>
+        <li>[afterraid] I used the last of the herbs on the wounded. We need more before the next raid, not after.</li>
+        <li>[tribal] My grandmother kept a pouch of healroot at her belt her whole life. I'd like a pouch for every one of us.</li>
+      </plain>
+      <warm>
+        <li>When someone falls ill, I want to have something better than kind words to give them.</li>
+      </warm>
+      <blunt>
+        <li>No herbs, no medicine. Grow some healroot.</li>
+      </blunt>
+      <cheerful>
+        <li>A whole bed of healroot! It smells awful and it works wonders.</li>
+      </cheerful>
+      <gloomy>
+        <li>Someone will get sick this season. Someone always does. I'd like to be ready.</li>
+      </gloomy>
+      <cold>
+        <li>Healroot costs a patch of soil. An infection can cost a colonist.</li>
+      </cold>
+    </request>
+    <thanks>
+      <plain><li>Healroot drying in bundles from the rafters. That's a good sight.</li></plain>
+      <warm><li>Thank you. Whoever falls ill next will be glad of it.</li></warm>
+      <blunt><li>Good. Don't eat it.</li></blunt>
+      <cheerful><li>Look at all that green! I've already sewn a little pouch for it.</li></cheerful>
+      <gloomy><li>Enough for a bad winter, maybe.</li></gloomy>
+      <cold><li>Medical supply adequate for now.</li></cold>
+    </thanks>
+    <expired>
+      <plain><li>Then we'll have to trust to luck when the fevers come.</li></plain>
+      <blunt><li>When someone's sick, don't come asking me for herbs.</li></blunt>
+      <gloomy><li>We'll wish we'd planted it.</li></gloomy>
+    </expired>
+    <reminder>
+      <plain><li>Still hardly any healroot put by.</li></plain>
+      <cold><li>Herbal stock remains low.</li></cold>
+    </reminder>
+  </ColonyCouncil.WishDef>
+
+  <!-- ===================== Something fresh to eat ===================== -->
+
+  <ColonyCouncil.WishDef>
+    <defName>Council_Wish_FreshFood</defName>
+    <label>something fresh to eat</label>
+    <description>The stores are almost out of vegetables, fruit and grain, and someone has had enough of meat. Weeks without anything green can bring on scurvy.</description>
+    <workerClass>ColonyCouncil.WishWorker_Stock</workerClass>
+    <category>Health</category>
+    <weight>0.5</weight>
+    <expiryDays>15</expiryDays>
+    <cooldownDays>30</cooldownDays>
+    <grantedThought>Council_Granted_FreshFood</grantedThought>
+    <allowPetition>true</allowPetition>
+    <envy>0</envy>
+    <talkInteraction>Council_Talk_Food</talkInteraction>
+    <fulfilledWhen>The colony has {TARGET} raw vegetables, fruit or grain in stock.</fulfilledWhen>
+    <triggers>
+      <li>
+        <key>scurvy</key>
+        <hediffs><li>Council_Ail_Scurvy</li></hediffs>
+        <boost>6</boost>
+      </li>
+    </triggers>
+    <wants>
+      <categories><li>PlantFoodRaw</li></categories>
+      <count>60</count>
+      <seasons><li>Winter</li><li>Spring</li><li>PermanentWinter</li></seasons>
+      <reason>{PAWN_nameDef} has eaten nothing green in a long while.</reason>
+    </wants>
+    <request>
+      <plain>
+        <li>Meat, meat and more meat. I'd give a lot for a handful of berries.</li>
+        <li>My gums have started to bleed. I think I need something green.</li>
+        <li>[trigger:scurvy] My teeth are loose and my old scars ache. The cook says it's the food, and the cook is right.</li>
+        <li>[winter] Nothing grows out there now, and we didn't put enough by. I'd like to see vegetables in the stores again.</li>
+        <li>[spring] As soon as the ground thaws, can we plant something we can eat raw? I'm tired of jerky.</li>
+        <li>[hurt] I'm healing slower than I should. I think I need better food than this.</li>
+      </plain>
+      <warm>
+        <li>A few potatoes or some berries would do us all good. It doesn't have to be much.</li>
+      </warm>
+      <blunt>
+        <li>We need vegetables. Grow some or buy some.</li>
+      </blunt>
+      <cheerful>
+        <li>I dreamed about a bowl of corn last night. Just corn. It was wonderful.</li>
+      </cheerful>
+      <gloomy>
+        <li>We'll all go soft in the teeth if this goes on.</li>
+      </gloomy>
+      <cold>
+        <li>Our diet is deficient. A stock of vegetables corrects that.</li>
+      </cold>
+    </request>
+    <thanks>
+      <plain><li>Something that crunches. I'd forgotten what that was like.</li></plain>
+      <warm><li>Thank you. I'm sharing these with whoever wants some.</li></warm>
+      <blunt><li>Finally. Pass the berries.</li></blunt>
+      <cheerful><li>I ate a raw potato like an apple and I'm not sorry.</li></cheerful>
+      <gloomy><li>It won't last the winter. But it's something.</li></gloomy>
+      <cold><li>Diet corrected.</li></cold>
+    </thanks>
+    <expired>
+      <plain><li>More meat, then.</li></plain>
+      <blunt><li>Fine. I'll chew on bark.</li></blunt>
+      <gloomy><li>We'll pay for it in teeth.</li></gloomy>
+    </expired>
+    <reminder>
+      <plain><li>Still nothing fresh in the stores.</li></plain>
+      <cheerful><li>I'd settle for one turnip. Just one.</li></cheerful>
+    </reminder>
+  </ColonyCouncil.WishDef>
+
+  <!-- ===================== An evening at the strangers' fire (camps) ===================== -->
+
+  <ColonyCouncil.WishDef>
+    <defName>Council_Wish_CampEvening</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>an evening with the {SUBJECT}</label>
+    <description>Strangers are camped on the map, and someone wants to go over and sit at their fire: news, songs, new faces. Send them over when there's a free evening; the camp keeps count of who visits.</description>
+    <workerClass>ColonyCouncil.WishWorker_CampEvening</workerClass>
+    <category>Social</category>
+    <weight>1</weight>
+    <expiryDays>4</expiryDays>
+    <cooldownDays>20</cooldownDays>
+    <grantedThought>Council_Granted_CampEvening</grantedThought>
+    <ways><openness>2</openness></ways>
+    <envy>0.1</envy>
+    <talkInteraction>Council_Talk_Fun</talkInteraction>
+    <fulfilledWhen>{FOR_nameDef} has visited the {SUBJECT}'s camp and talked with them a couple of times.</fulfilledWhen>
+    <request>
+      <plain>
+        <li>There's a fire burning at the {SUBJECT}'s camp every night. I'd like to go and sit at it.</li>
+        <li>We haven't heard a new voice in weeks. Let me go over and ask the {SUBJECT} where they've been.</li>
+        <li>[evening] Hear that? They're singing over at the camp. Let me go, just for tonight.</li>
+        <li>[winter] Their fire looks warmer than ours somehow. I'd like to see if they'll share it.</li>
+        <li>[trait:Kind] They must be lonely out there too. I'll take them something and sit a while.</li>
+        <li>[newcomer] I'm still new here myself. Strangers might be easier to talk to.</li>
+        <li>[lowtech] Travelers carry news from every road they've walked. I want to hear theirs.</li>
+      </plain>
+      <warm>
+        <li>They're a long way from home. A friendly face wouldn't hurt them, or me.</li>
+      </warm>
+      <blunt>
+        <li>I'm going over to the camp tonight. Don't give me work.</li>
+      </blunt>
+      <cheerful>
+        <li>Strangers with stories! I'll bring a bottle and they'll bring the rest.</li>
+      </cheerful>
+      <gloomy>
+        <li>They'll be gone soon. If I don't go now, I never will.</li>
+      </gloomy>
+      <cold>
+        <li>They know the roads and the neighbors. A few conversations are worth an evening.</li>
+      </cold>
+    </request>
+    <thanks>
+      <plain><li>They had stories about places I'd never heard of. I could have listened all night.</li></plain>
+      <warm><li>They asked me back. I think I'll go.</li></warm>
+      <blunt><li>Good people. Bad stew.</li></blunt>
+      <cheerful><li>I learned a song, and I'm teaching it to everyone whether they like it or not.</li></cheerful>
+      <gloomy><li>Nice people. They'll leave soon, like everyone does.</li></gloomy>
+      <cold><li>Useful. They've seen a lot of the roads around here.</li></cold>
+    </thanks>
+    <expired>
+      <plain><li>Their fire's still burning over there. I never went.</li></plain>
+      <blunt><li>Missed my chance. Thanks for nothing.</li></blunt>
+      <gloomy><li>Strangers come and go, and I stay here.</li></gloomy>
+    </expired>
+    <reminder>
+      <plain><li>The {SUBJECT} are still out there by their fire.</li></plain>
+      <warm><li>If there's a quiet evening, I'd still like to go over to the camp.</li></warm>
+    </reminder>
+  </ColonyCouncil.WishDef>
+
+  <!-- ===================== A council meeting ===================== -->
+
+  <ColonyCouncil.WishDef>
+    <defName>Council_Wish_Meeting</defName>
+    <label>a council meeting</label>
+    <description>Someone has something to put before the council, and the council hasn't sat down together in a long while. Promising it calls a meeting, as calling one from the Ambition page would.</description>
+    <workerClass>ColonyCouncil.WishWorker_Meeting</workerClass>
+    <category>Social</category>
+    <weight>0.6</weight>
+    <expiryDays>6</expiryDays>
+    <cooldownDays>30</cooldownDays>
+    <grantedThought>Council_Granted_Meeting</grantedThought>
+    <allowPetition>true</allowPetition>
+    <envy>0</envy>
+    <talkInteraction>Council_Talk_Status</talkInteraction>
+    <fulfilledWhen>The council holds a meeting.</fulfilledWhen>
+    <request>
+      <plain>
+        <li>It's been weeks since we all sat down together. Things are being decided in passing, at the woodpile.</li>
+        <li>I have an idea for the colony, and I'd like to say it at a meeting, not shout it across the yard.</li>
+        <li>I missed the last meeting, and I've been carrying what I meant to say around ever since.</li>
+        <li>[doubtful] People are starting to wonder whether there's a council at all. Let's meet.</li>
+        <li>[winter] The nights are long and there's not much to do outside. A good evening for a meeting.</li>
+        <li>[afterraid] After a raid like that, we should all sit down and decide what comes next.</li>
+        <li>[bitter] The last time anyone listened to me was the last time we met. Call a meeting.</li>
+      </plain>
+      <warm>
+        <li>Not to complain. Just to talk, all of us, about where we're going.</li>
+      </warm>
+      <blunt>
+        <li>Call a meeting. I have things to say.</li>
+      </blunt>
+      <cheerful>
+        <li>Let's have a meeting! I'll bring something to drink, and nobody's allowed to fall asleep.</li>
+      </cheerful>
+      <gloomy>
+        <li>I know meetings don't fix much. They're still better than nothing.</li>
+      </gloomy>
+      <cold>
+        <li>Decisions made without the council weaken the council. Convene it.</li>
+      </cold>
+    </request>
+    <thanks>
+      <plain><li>Everyone at one table, saying their piece. That's what the council is for.</li></plain>
+      <warm><li>Thank you for hearing us out. All of us.</li></warm>
+      <blunt><li>Good. I said what I came to say.</li></blunt>
+      <cheerful><li>Best meeting yet. Nobody threw anything.</li></cheerful>
+      <gloomy><li>We talked. That's something.</li></gloomy>
+      <cold><li>The council functions.</li></cold>
+    </thanks>
+    <expired>
+      <plain><li>I'll keep my idea to myself, then.</li></plain>
+      <blunt><li>No meeting. No council, as far as I'm concerned.</li></blunt>
+      <gloomy><li>Nobody wants to hear it anyway.</li></gloomy>
+    </expired>
+    <reminder>
+      <plain><li>Still waiting for the council to sit down together.</li></plain>
+      <blunt><li>The meeting. Any day now.</li></blunt>
+    </reminder>
+  </ColonyCouncil.WishDef>
+
+  <!-- ===================== A table where everyone fits (belonging) ===================== -->
+
+  <ColonyCouncil.WishDef>
+    <defName>Council_Wish_SeatsForAll</defName>
+    <label>a table where everyone fits</label>
+    <description>The colony eats in shifts or on its feet. Someone wants chairs at the tables for everyone who eats, so the whole colony can sit down together.</description>
+    <workerClass>ColonyCouncil.WishWorker_SeatsForAll</workerClass>
+    <category>Social</category>
+    <weight>0.8</weight>
+    <expiryDays>12</expiryDays>
+    <cooldownDays>30</cooldownDays>
+    <grantedThought>Council_Granted_SeatsForAll</grantedThought>
+    <allowPetition>true</allowPetition>
+    <envy>0</envy>
+    <template>Council_DiningRoom</template>
+    <talkInteraction>Council_Talk_Comfort</talkInteraction>
+    <fulfilledWhen>There are {TARGET} seats at tables indoors, one for everyone who eats.</fulfilledWhen>
+    <request>
+      <plain>
+        <li>We eat in turns, like soldiers. I'd like us all at one table, just once a day.</li>
+        <li>Somebody always eats standing up by the door. There should be a chair for everyone.</li>
+        <li>[evening] Supper's the only time we're all in one place. It would be nice if we could all sit down for it.</li>
+        <li>[large] We've grown. The table hasn't. Time we built more chairs.</li>
+        <li>[newcomer] I don't know where I'm meant to sit, so I eat by the stove.</li>
+        <li>[trait:Kind] The youngest always ends up eating on the floor. Let's make room for everyone.</li>
+        <li>[lowtech] Even a long bench would do. We're one people, we ought to eat like one.</li>
+      </plain>
+      <warm>
+        <li>Sharing a meal makes us a family. Right now we're more like a queue.</li>
+      </warm>
+      <blunt>
+        <li>Build more chairs. I'm sick of eating standing up.</li>
+      </blunt>
+      <cheerful>
+        <li>A long table with everyone squeezed in and elbows everywhere! That's how meals should be.</li>
+      </cheerful>
+      <gloomy>
+        <li>Most days I eat alone because there's nowhere to sit. It wears on you.</li>
+      </gloomy>
+      <cold>
+        <li>Seating everyone at once takes less of the workday.</li>
+      </cold>
+    </request>
+    <thanks>
+      <plain><li>Everyone at the table at once. It took me a moment to place the sound.</li></plain>
+      <warm><li>Look at us all. This is how it should be.</li></warm>
+      <blunt><li>Good. Now nobody takes my chair.</li></blunt>
+      <cheerful><li>There's room for everyone and the cat still sat in my lap.</li></cheerful>
+      <gloomy><li>We all fit. For now.</li></gloomy>
+      <cold><li>Mealtimes are shorter. Good.</li></cold>
+    </thanks>
+    <expired>
+      <plain><li>Back to eating in shifts.</li></plain>
+      <blunt><li>I'll keep standing, then.</li></blunt>
+      <gloomy><li>You can feel alone at a table when there's no place at it for you.</li></gloomy>
+    </expired>
+    <reminder>
+      <plain><li>Still eating in turns.</li></plain>
+      <warm><li>When there's wood to spare, a few more chairs at the table.</li></warm>
+    </reminder>
+  </ColonyCouncil.WishDef>
+
+  <!-- ===================== An apprentice (purpose; the old ask most) ===================== -->
+
+  <ColonyCouncil.WishDef>
+    <defName>Council_Wish_Apprentice</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>an apprentice in {SUBJECT}</label>
+    <description>Someone who knows a skill well wants to pass it on to someone in the colony who is still learning it, often a child. The old ask most. Promising it starts the lessons.</description>
+    <workerClass>ColonyCouncil.WishWorker_Apprentice</workerClass>
+    <category>Work</category>
+    <weight>0.8</weight>
+    <expiryDays>12</expiryDays>
+    <cooldownDays>30</cooldownDays>
+    <grantedThought>Council_Granted_Apprentice</grantedThought>
+    <inspirationChance>0.1</inspirationChance>
+    <ways><tradition>2</tradition></ways>
+    <envy>0</envy>
+    <talkInteraction>Council_Talk_Work</talkInteraction>
+    <fulfilledWhen>{OTHER_nameDef}'s {SUBJECT} skill reaches {TARGET}. Promising pairs {OTHER_objective} with {FOR_nameDef} as a mentor.</fulfilledWhen>
+    <request>
+      <plain>
+        <li>I've spent my life learning {SUBJECT}. I'd like to teach it to {OTHER_nameDef} before it goes to waste.</li>
+        <li>{OTHER_nameDef} keeps watching me work. Let me show {OTHER_objective} properly.</li>
+        <li>[old] I won't be here forever. Somebody should know what I know about {SUBJECT}, and {OTHER_nameDef} is the one I'd pick.</li>
+        <li>[trait:Kind] {OTHER_nameDef} has a gift for {SUBJECT}. It just needs someone patient.</li>
+        <li>[evening] I could teach {OTHER_nameDef} in the evenings. An hour a day would do it.</li>
+        <li>[lowtech] The old teach the young, or what they know dies with them. That's how it's always been done.</li>
+      </plain>
+      <warm>
+        <li>It would be a pleasure to teach {OTHER_nameDef}. Truly.</li>
+      </warm>
+      <blunt>
+        <li>Give me {OTHER_nameDef} for an hour a day. I'll make something of {OTHER_objective}.</li>
+      </blunt>
+      <cheerful>
+        <li>{OTHER_nameDef} could be better at {SUBJECT} than me one day! I'd like to see that.</li>
+      </cheerful>
+      <gloomy>
+        <li>When I'm gone, someone should still know how to do this.</li>
+      </gloomy>
+      <cold>
+        <li>Knowledge held by one person is lost with one arrow. Let me train {OTHER_nameDef}.</li>
+      </cold>
+    </request>
+    <thanks>
+      <plain><li>{OTHER_nameDef} is a quick study. We'll get there.</li></plain>
+      <warm><li>Thank you. It means more than I can say, having someone to teach.</li></warm>
+      <blunt><li>Good. Lessons start at dawn.</li></blunt>
+      <cheerful><li>My own apprentice! I've already planned the first lesson.</li></cheerful>
+      <gloomy><li>At least it won't all be lost.</li></gloomy>
+      <cold><li>Training has begun.</li></cold>
+    </thanks>
+    <expired>
+      <plain><li>I'll keep it all in my own head, then.</li></plain>
+      <blunt><li>{OTHER_nameDef} can learn the hard way.</li></blunt>
+      <gloomy><li>It'll die with me. That's how it goes.</li></gloomy>
+    </expired>
+    <reminder>
+      <plain><li>{OTHER_nameDef} is still learning {SUBJECT} alone.</li></plain>
+      <gloomy><li>I'm not getting any younger, and there hasn't been a single lesson.</li></gloomy>
+    </reminder>
+  </ColonyCouncil.WishDef>
+
+  <!-- ===================== Food that keeps (safety) ===================== -->
+
+  <ColonyCouncil.WishDef>
+    <defName>Council_Wish_FoodThatKeeps</defName>
+    <label>food that keeps</label>
+    <description>Winter is coming, and someone wants food put by that won't spoil: pemmican in a tribe, packaged meals or canned goods later on, whatever the colony can make now.</description>
+    <workerClass>ColonyCouncil.WishWorker_Stock</workerClass>
+    <category>Safety</category>
+    <weight>0.6</weight>
+    <expiryDays>15</expiryDays>
+    <cooldownDays>40</cooldownDays>
+    <grantedThought>Council_Granted_FoodThatKeeps</grantedThought>
+    <allowPetition>true</allowPetition>
+    <envy>0</envy>
+    <talkInteraction>Council_Talk_Food</talkInteraction>
+    <fulfilledWhen>The colony has {TARGET} portions of food that keeps in stock: pemmican, packaged meals, canned goods.</fulfilledWhen>
+    <wants>
+      <!-- Vanilla's pemmican and packaged survival meals, and Vanilla Cooking Expanded's canned goods (named, so they
+           simply aren't there without the mod). Only what the colony can make now counts toward asking. -->
+      <defNames>
+        <li>Pemmican</li>
+        <li>MealSurvivalPack</li>
+        <li>VCE_CannedMeat</li>
+        <li>VCE_CannedFish</li>
+        <li>VCE_CannedFruit</li>
+        <li>VCE_CannedProduce</li>
+      </defNames>
+      <count>40</count>
+      <seasons><li>Fall</li><li>Winter</li></seasons>
+      <coldComing>true</coldComing>
+      <reason>{PAWN_nameDef} wants food put by that won't spoil, for the hungry end of winter.</reason>
+    </wants>
+    <request>
+      <plain>
+        <li>Meals rot. Pemmican doesn't. I'd like a store of something that will see us through when the rest goes bad.</li>
+        <li>If the stores spoil or the hunters come back empty, what do we eat? Something that keeps, that's what.</li>
+        <li>[fall] Winter's coming, and the fields will stop. Let's put food by that lasts till spring.</li>
+        <li>[winter] Midwinter, and the hunting is poor. A store of food that keeps would have saved us some worry.</li>
+        <li>[lowtech] My people dried meat and berries every autumn and pounded them together with fat. It kept a family through the dark months.</li>
+        <li>[!lowtech] Packaged meals, canned goods, anything sealed. Food for a bad month.</li>
+        <li>[poor] We can't afford to waste a single meal. Food that keeps doesn't get wasted.</li>
+      </plain>
+      <warm>
+        <li>Nobody should go hungry here, not even in the worst of the winter.</li>
+      </warm>
+      <blunt>
+        <li>Put food by. Food that keeps. Before it's too late.</li>
+      </blunt>
+      <cheerful>
+        <li>A whole shelf of food that'll be just as good in spring! It's like saving silver.</li>
+      </cheerful>
+      <gloomy>
+        <li>Every winter someone says we'll be fine. Then we aren't.</li>
+      </gloomy>
+      <cold>
+        <li>A reserve of preserved food is insurance against a failed harvest.</li>
+      </cold>
+    </request>
+    <thanks>
+      <plain><li>A shelf of food that will still be good when the snow is deepest. I sleep better.</li></plain>
+      <warm><li>Thank you. Nobody's going hungry this winter.</li></warm>
+      <blunt><li>Good. Don't touch it until we need it.</li></blunt>
+      <cheerful><li>I counted it twice. It's all there.</li></cheerful>
+      <gloomy><li>Enough for a bad winter. Maybe not a very bad one.</li></gloomy>
+      <cold><li>Reserve established.</li></cold>
+    </thanks>
+    <expired>
+      <plain><li>We'll eat what we have and hope it's enough.</li></plain>
+      <blunt><li>When the stores run out, remember I asked.</li></blunt>
+      <gloomy><li>It'll be a hungry spring.</li></gloomy>
+    </expired>
+    <reminder>
+      <plain><li>Still nothing put by that keeps.</li></plain>
+      <cold><li>No preserved reserve yet.</li></cold>
+    </reminder>
+  </ColonyCouncil.WishDef>
+
+  <!-- ===================== A fishing spot (Odyssey) ===================== -->
+
+  <ColonyCouncil.WishDef>
+    <defName>Council_Wish_Fishing</defName>
+    <label>a fishing spot</label>
+    <description>Odyssey: there are fish in the water on the map and nobody is catching them. Someone who'd like an afternoon at the water's edge, and fish for supper, wants a fishing zone marked out.</description>
+    <workerClass>ColonyCouncil.WishWorker_Fishing</workerClass>
+    <category>Work</category>
+    <weight>0.7</weight>
+    <expiryDays>12</expiryDays>
+    <cooldownDays>30</cooldownDays>
+    <grantedThought>Council_Granted_Fishing</grantedThought>
+    <allowPetition>true</allowPetition>
+    <envy>0</envy>
+    <talkInteraction>Council_Talk_Fun</talkInteraction>
+    <fulfilledWhen>The colony marks out a fishing zone on the water.</fulfilledWhen>
+    <request>
+      <plain>
+        <li>There are fish in that water, and we're eating the same stew every night. Let me mark out a spot.</li>
+        <li>I saw something jump out on the water this morning. A big one. We should be fishing.</li>
+        <li>[morning] Early morning is when they bite. I'd like to be down at the water at dawn.</li>
+        <li>[summer] On a day like this, I'd rather be sitting on the bank with a line than anywhere else.</li>
+        <li>[rain] Fish bite in the rain. Everybody knows that. We should be out there.</li>
+        <li>[lowmood] An afternoon by the water, with nothing to do but wait for a bite. That's all I want.</li>
+      </plain>
+      <warm>
+        <li>Fresh fish for everyone, and a quiet hour on the bank for whoever catches it.</li>
+      </warm>
+      <blunt>
+        <li>Fish in the water, none on the table. Fix that.</li>
+      </blunt>
+      <cheerful>
+        <li>I'll catch the biggest fish anyone's ever seen. Or a boot. Probably a boot.</li>
+      </cheerful>
+      <gloomy>
+        <li>The fish will be there long after we're gone. We might as well eat a few first.</li>
+      </gloomy>
+      <cold>
+        <li>The water holds food we aren't using. Marking a fishing zone costs nothing.</li>
+      </cold>
+    </request>
+    <thanks>
+      <plain><li>Caught three today. Small ones, but they count.</li></plain>
+      <warm><li>Fish for supper, and I caught it. Thank you.</li></warm>
+      <blunt><li>Good. Leave me alone by the water.</li></blunt>
+      <cheerful><li>I caught one this long. All right, this long. It still counts.</li></cheerful>
+      <gloomy><li>The first one got away. The second didn't.</li></gloomy>
+      <cold><li>New food source established.</li></cold>
+    </thanks>
+    <expired>
+      <plain><li>The fish will have to wait.</li></plain>
+      <blunt><li>Enjoy the stew.</li></blunt>
+      <gloomy><li>Plenty of fish out there. None for us.</li></gloomy>
+    </expired>
+    <reminder>
+      <plain><li>Still haven't wet a line.</li></plain>
+      <cheerful><li>The fish are still out there, waiting for me.</li></cheerful>
+    </reminder>
+  </ColonyCouncil.WishDef>
+
+  <!-- ===================== A telescope (intellectual) ===================== -->
+
+  <ColonyCouncil.WishDef>
+    <defName>Council_Wish_Telescope</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>{THING} to look at the stars</label>
+    <description>A curious mind wants a telescope, to see what's up there.</description>
+    <workerClass>ColonyCouncil.WishWorker_Have</workerClass>
+    <category>Comfort</category>
+    <weight>0.5</weight>
+    <expiryDays>15</expiryDays>
+    <cooldownDays>40</cooldownDays>
+    <grantedThought>Council_Granted_Telescope</grantedThought>
+    <luxury>true</luxury>
+    <allowPetition>true</allowPetition>
+    <inspirationChance>0.1</inspirationChance>
+    <envy>0.1</envy>
+    <talkInteraction>Council_Talk_Fun</talkInteraction>
+    <fulfilledWhen>The colony has {THING}, or any other telescope.</fulfilledWhen>
+    <wants>
+      <defNames><li>Telescope</li></defNames>
+      <nameContains><li>telescope</li></nameContains>
+      <passions><li>Intellectual</li></passions>
+      <reason>{PAWN_nameDef} wants to know what's up there.</reason>
+    </wants>
+    <request>
+      <plain>
+        <li>On clear nights I lie on my back and count the stars. I'd like to see them properly.</li>
+        <li>There's a whole sky up there and we only ever look at it to check for rain.</li>
+        <li>[night] Look up. All of that, and we have no way to look closer. Let's build {THING}.</li>
+        <li>[clear] Not a cloud tonight. It's a waste to look at the sky with bare eyes.</li>
+        <li>[spacer] Somewhere up there is where we came from. I'd like to find it.</li>
+        <li>[trait:TooSmart] I've been charting the sky by hand, and I need {THING} to check my numbers.</li>
+      </plain>
+      <warm>
+        <li>Anyone could use it. There's nothing like a clear night and a good look at the sky.</li>
+      </warm>
+      <blunt>
+        <li>I want {THING}. The sky is the only thing here that isn't trying to kill us.</li>
+      </blunt>
+      <cheerful>
+        <li>Moons, comets, maybe a passing ship! Build {THING} and I'll show everyone.</li>
+      </cheerful>
+      <gloomy>
+        <li>The stars don't care about us. I'd still like to look at them.</li>
+      </gloomy>
+      <cold>
+        <li>Observing the sky has value for navigation and for knowledge. The cost is small.</li>
+      </cold>
+    </request>
+    <thanks>
+      <plain><li>I spent half the night at it. There's more up there than I thought.</li></plain>
+      <warm><li>Come and look. I'll show you where to point it.</li></warm>
+      <blunt><li>Good. Don't touch the lens.</li></blunt>
+      <cheerful><li>I found a little red star and named it after myself.</li></cheerful>
+      <gloomy><li>All those worlds, and here we are.</li></gloomy>
+      <cold><li>A fine instrument.</li></cold>
+    </thanks>
+    <expired>
+      <plain><li>I'll keep squinting, then.</li></plain>
+      <blunt><li>The sky's still there. No thanks to you.</li></blunt>
+      <gloomy><li>Nobody here looks up anyway.</li></gloomy>
+    </expired>
+    <reminder>
+      <plain><li>Clear sky again last night. Still no telescope.</li></plain>
+    </reminder>
+  </ColonyCouncil.WishDef>
+
+  <!-- ===================== A tool cabinet (crafting) ===================== -->
+
+  <ColonyCouncil.WishDef>
+    <defName>Council_Wish_ToolCabinet</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>{THING} by the workbench</label>
+    <description>A crafter tired of hunting for the right tool wants a tool cabinet by the bench.</description>
+    <workerClass>ColonyCouncil.WishWorker_Have</workerClass>
+    <category>Work</category>
+    <weight>0.7</weight>
+    <expiryDays>15</expiryDays>
+    <cooldownDays>30</cooldownDays>
+    <grantedThought>Council_Granted_ToolCabinet</grantedThought>
+    <allowPetition>true</allowPetition>
+    <envy>0</envy>
+    <talkInteraction>Council_Talk_Work</talkInteraction>
+    <fulfilledWhen>The colony has {THING}, or any other tool cabinet.</fulfilledWhen>
+    <wants>
+      <roles><li>toolcabinet</li></roles>
+      <defNames><li>ToolCabinet</li></defNames>
+      <passions><li>Crafting</li></passions>
+      <reason>{PAWN_nameDef} loses an hour a day looking for the right tool.</reason>
+    </wants>
+    <request>
+      <plain>
+        <li>I spend half my time at the bench looking for the right file. Tools need a home.</li>
+        <li>My good chisel walked off again. A cabinet by the bench, with a place for everything, please.</li>
+        <li>[work:Crafting] Every job takes twice as long when your tools are spread across three rooms.</li>
+        <li>[medieval] Every proper workshop has its tools hung on the wall. Ours has a pile on the floor.</li>
+        <li>[trait:HardWorker|trait:Industrious] I could finish twice as much if I weren't digging through scrap for a hammer.</li>
+      </plain>
+      <warm>
+        <li>Everyone who works the bench would be glad of it, not just me.</li>
+      </warm>
+      <blunt>
+        <li>Build {THING}. My tools keep disappearing.</li>
+      </blunt>
+      <cheerful>
+        <li>A place for every tool and every tool in its place! I'd be so happy.</li>
+      </cheerful>
+      <gloomy>
+        <li>Someone always borrows the saw and never brings it back.</li>
+      </gloomy>
+      <cold>
+        <li>A tool cabinet speeds up work at the bench. It's simple arithmetic.</li>
+      </cold>
+    </request>
+    <thanks>
+      <plain><li>Everything on its hook. I found a chisel I thought I'd lost a season ago.</li></plain>
+      <warm><li>Thank you. The whole workshop runs smoother.</li></warm>
+      <blunt><li>Good. Now nobody touch my tools.</li></blunt>
+      <cheerful><li>I've labeled every hook. Twice.</li></cheerful>
+      <gloomy><li>Now when something goes missing, I'll know exactly what.</li></gloomy>
+      <cold><li>Efficiency improved.</li></cold>
+    </thanks>
+    <expired>
+      <plain><li>Back to searching the floor.</li></plain>
+      <blunt><li>Don't complain when the work is slow.</li></blunt>
+      <gloomy><li>Tools wander off. So does my patience.</li></gloomy>
+    </expired>
+    <reminder>
+      <plain><li>Lost another hour looking for a file today.</li></plain>
+    </reminder>
+  </ColonyCouncil.WishDef>
+
+  <!-- ===================== Stone blocks put by (construction) ===================== -->
+
+  <ColonyCouncil.WishDef>
+    <defName>Council_Wish_StoneBlocks</defName>
+    <label>stone blocks put by</label>
+    <description>A builder wants a good stack of stone blocks cut and ready, so stone walls don't wait on the stonecutter.</description>
+    <workerClass>ColonyCouncil.WishWorker_Stock</workerClass>
+    <category>Work</category>
+    <weight>0.6</weight>
+    <expiryDays>15</expiryDays>
+    <cooldownDays>30</cooldownDays>
+    <grantedThought>Council_Granted_StoneBlocks</grantedThought>
+    <allowPetition>true</allowPetition>
+    <envy>0</envy>
+    <talkInteraction>Council_Talk_Work</talkInteraction>
+    <fulfilledWhen>The colony has {TARGET} stone blocks in stock.</fulfilledWhen>
+    <wants>
+      <categories><li>StoneBlocks</li></categories>
+      <count>300</count>
+      <passions><li>Construction</li></passions>
+      <reason>{PAWN_nameDef} builds, and wants stone ready before the next job, not after it.</reason>
+    </wants>
+    <request>
+      <plain>
+        <li>Wood burns. Stone doesn't. I'd like a good stack of blocks cut and ready.</li>
+        <li>Every time we want to build in stone, we wait a week for someone to cut it. Let's cut it ahead of time.</li>
+        <li>[afterraid] They set fire to the wooden walls again. I want stone ready to rebuild with.</li>
+        <li>[lowtech] A wall of cut stone will outlast all of us. Let's start cutting.</li>
+        <li>[work:Construction] I've got a dozen jobs planned and nothing to build them with.</li>
+        <li>[summer] Summer's the time to cut stone, while the days are long and the ground is dry.</li>
+      </plain>
+      <warm>
+        <li>With blocks to hand, I could build something that lasts. For all of us.</li>
+      </warm>
+      <blunt>
+        <li>Cut stone. Lots of it. Then let me build.</li>
+      </blunt>
+      <cheerful>
+        <li>Picture proper stone walls all over the colony! I'll need a lot of blocks.</li>
+      </cheerful>
+      <gloomy>
+        <li>Everything we build out of wood ends up burned or rotten.</li>
+      </gloomy>
+      <cold>
+        <li>Stone construction lowers the risk of fire and the cost of repairs.</li>
+      </cold>
+    </request>
+    <thanks>
+      <plain><li>A stack of blocks as tall as me. Now I can build properly.</li></plain>
+      <warm><li>Thank you. I'll put them to good use.</li></warm>
+      <blunt><li>Good. Now stay out of my way.</li></blunt>
+      <cheerful><li>Look at that pile. I keep walking past it just to look.</li></cheerful>
+      <gloomy><li>Plenty of stone. Now for the hard part.</li></gloomy>
+      <cold><li>Material on hand. Construction can proceed.</li></cold>
+    </thanks>
+    <expired>
+      <plain><li>Wood it is, then. Again.</li></plain>
+      <blunt><li>When it all burns down, remember this.</li></blunt>
+      <gloomy><li>We'll keep building things that don't last.</li></gloomy>
+    </expired>
+    <reminder>
+      <plain><li>Still no blocks cut.</li></plain>
+    </reminder>
+  </ColonyCouncil.WishDef>
+
+  <!-- ===================== A deep drill (mining; industrial and later) ===================== -->
+
+  <ColonyCouncil.WishDef>
+    <defName>Council_Wish_DeepDrill</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>{THING} to dig for ore</label>
+    <description>A miner is sure there's ore under the colony, too deep for a pick, and wants a deep drill.</description>
+    <workerClass>ColonyCouncil.WishWorker_Have</workerClass>
+    <category>Work</category>
+    <weight>0.5</weight>
+    <expiryDays>15</expiryDays>
+    <cooldownDays>30</cooldownDays>
+    <grantedThought>Council_Granted_DeepDrill</grantedThought>
+    <allowPetition>true</allowPetition>
+    <envy>0</envy>
+    <talkInteraction>Council_Talk_Work</talkInteraction>
+    <fulfilledWhen>The colony has {THING}, or any other deep drill.</fulfilledWhen>
+    <wants>
+      <defNames><li>DeepDrill</li></defNames>
+      <nameContains><li>deepdrill</li><li>deep drill</li></nameContains>
+      <passions><li>Mining</li></passions>
+      <eras><li>!lowtech</li></eras>
+      <reason>{PAWN_nameDef} is sure there's ore under the colony, too deep for a pick.</reason>
+    </wants>
+    <request>
+      <plain>
+        <li>There's ore down there. I can feel it every time I swing a pick. A deep drill would get at it.</li>
+        <li>We've mined out everything near the surface. The good stuff is further down.</li>
+        <li>[poor] We're short of steel and sitting on top of who knows what. Let's drill.</li>
+        <li>[work:Mining] My pick has gone as deep as a pick can go. I need {THING}.</li>
+        <li>[winter] Nothing to farm in winter, but the ground is still full of metal.</li>
+      </plain>
+      <warm>
+        <li>Steel, components, whatever is down there, it would help everyone.</li>
+      </warm>
+      <blunt>
+        <li>Build {THING}. I'll do the rest.</li>
+      </blunt>
+      <cheerful>
+        <li>Who knows what's under our feet? Gold! Probably not gold. Maybe gold.</li>
+      </cheerful>
+      <gloomy>
+        <li>Probably nothing down there but rock. I'd still like to find out.</li>
+      </gloomy>
+      <cold>
+        <li>The resources underground are untapped. A deep drill pays for itself.</li>
+      </cold>
+    </request>
+    <thanks>
+      <plain><li>Drilling since dawn. The whole ground is humming.</li></plain>
+      <warm><li>Thank you. I'll bring up something worth having.</li></warm>
+      <blunt><li>Good. Now let me dig.</li></blunt>
+      <cheerful><li>It goes down and down. I can't wait to see what comes up.</li></cheerful>
+      <gloomy><li>Found rock so far. Lots of it.</li></gloomy>
+      <cold><li>Extraction underway.</li></cold>
+    </thanks>
+    <expired>
+      <plain><li>The ore stays where it is.</li></plain>
+      <blunt><li>Fine. Run short of steel, then.</li></blunt>
+      <gloomy><li>There was probably nothing there anyway.</li></gloomy>
+    </expired>
+    <reminder>
+      <plain><li>Still thinking about what's under our feet.</li></plain>
+    </reminder>
+  </ColonyCouncil.WishDef>
+
+  <!-- ===================== A comms console (social; industrial and later) ===================== -->
+
+  <ColonyCouncil.WishDef>
+    <defName>Council_Wish_CommsConsole</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>{THING} to call beyond the hills</label>
+    <description>A sociable colonist wants to hear voices from beyond the colony, and to call traders and friends when they're needed.</description>
+    <workerClass>ColonyCouncil.WishWorker_Have</workerClass>
+    <category>Social</category>
+    <weight>0.5</weight>
+    <expiryDays>15</expiryDays>
+    <cooldownDays>40</cooldownDays>
+    <grantedThought>Council_Granted_CommsConsole</grantedThought>
+    <allowPetition>true</allowPetition>
+    <ways><openness>2</openness></ways>
+    <envy>0</envy>
+    <talkInteraction>Council_Talk_Status</talkInteraction>
+    <fulfilledWhen>The colony has {THING}, or another comms console.</fulfilledWhen>
+    <wants>
+      <roles><li>comms</li></roles>
+      <defNames><li>CommsConsole</li></defNames>
+      <passions><li>Social</li></passions>
+      <reason>{PAWN_nameDef} wants to hear voices from beyond the colony, and to call for traders and help.</reason>
+    </wants>
+    <request>
+      <plain>
+        <li>Somewhere out there people are talking, trading, asking for help. We can't hear any of it.</li>
+        <li>With {THING} we could call the traders instead of waiting for them to wander by.</li>
+        <li>[afterraid] If we'd had a way to call for help, that raid would have gone differently.</li>
+        <li>[lowmood] Some nights I'd just like to hear a voice that isn't one of ours.</li>
+        <li>[small] There are so few of us. I'd feel better if we could call someone.</li>
+      </plain>
+      <warm>
+        <li>We have friends out there, I'm sure of it. We just need a way to talk to them.</li>
+      </warm>
+      <blunt>
+        <li>Build {THING}. I'm tired of being cut off.</li>
+      </blunt>
+      <cheerful>
+        <li>Voices from other settlements, right here in the colony! I'll do all the talking.</li>
+      </cheerful>
+      <gloomy>
+        <li>If something happens to us, nobody will even know.</li>
+      </gloomy>
+      <cold>
+        <li>Communication enables trade, alliances and requests for aid.</li>
+      </cold>
+    </request>
+    <thanks>
+      <plain><li>I heard a trader's voice from three days' walk away. We're not alone out here.</li></plain>
+      <warm><li>Thank you. I've already said hello to half the neighbors.</li></warm>
+      <blunt><li>Good. Now we can ask for things.</li></blunt>
+      <cheerful><li>I called a caravan and they're coming, with goods.</li></cheerful>
+      <gloomy><li>Mostly static. But sometimes there's a voice.</li></gloomy>
+      <cold><li>Contact established.</li></cold>
+    </thanks>
+    <expired>
+      <plain><li>We'll keep waiting for whoever wanders by.</li></plain>
+      <blunt><li>Enjoy the silence.</li></blunt>
+      <gloomy><li>Cut off, then. As we always have been.</li></gloomy>
+    </expired>
+    <reminder>
+      <plain><li>Still no way to call anyone.</li></plain>
+    </reminder>
+  </ColonyCouncil.WishDef>
+
+  <!-- ===================== A biosculpter pod (the old; Ideology) ===================== -->
+
+  <ColonyCouncil.WishDef>
+    <defName>Council_Wish_Biosculpter</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>{THING} to turn back the years</label>
+    <description>An older colonist feels the years in every joint and has heard a biosculpter pod can turn some of them back.</description>
+    <workerClass>ColonyCouncil.WishWorker_Have</workerClass>
+    <category>Health</category>
+    <weight>0.6</weight>
+    <expiryDays>20</expiryDays>
+    <cooldownDays>40</cooldownDays>
+    <grantedThought>Council_Granted_Biosculpter</grantedThought>
+    <luxury>true</luxury>
+    <allowPetition>true</allowPetition>
+    <envy>0.3</envy>
+    <talkInteraction>Council_Talk_Body</talkInteraction>
+    <fulfilledWhen>The colony has {THING}, or another biosculpter pod.</fulfilledWhen>
+    <wants>
+      <defNames><li>BiosculpterPod</li></defNames>
+      <nameContains><li>biosculpt</li></nameContains>
+      <minAge>50</minAge>
+      <reason>{PAWN_nameDef} feels the years in every joint, and has heard they can be turned back.</reason>
+    </wants>
+    <request>
+      <plain>
+        <li>My knees crack every time I kneel. They say a biosculpter pod can take a few years off. I'd like to find out.</li>
+        <li>I'm not asking to be young again. A little less old would do.</li>
+        <li>[hurt] Everything heals slower at my age. A pod could help with that, and with the age too.</li>
+        <li>[winter] The cold gets into my bones these days. A few cycles in a pod might keep it out.</li>
+        <li>[spacer] On the worlds I grew up on, nobody my age had to hobble. Build {THING}.</li>
+      </plain>
+      <warm>
+        <li>It wouldn't only be for me. Everyone here will be my age one day.</li>
+      </warm>
+      <blunt>
+        <li>I'm old. Build {THING}.</li>
+      </blunt>
+      <cheerful>
+        <li>A few years off! I'd be the youngest old person in the colony.</li>
+      </cheerful>
+      <gloomy>
+        <li>I can feel the end coming. I'd like to push it back a little.</li>
+      </gloomy>
+      <cold>
+        <li>Reversing my age extends my working life. The colony benefits.</li>
+      </cold>
+    </request>
+    <thanks>
+      <plain><li>I came out of the first cycle and stood up without groaning. That hasn't happened in years.</li></plain>
+      <warm><li>Thank you. I'll be here a while longer, it seems.</li></warm>
+      <blunt><li>Good. Now I'll outlive you all.</li></blunt>
+      <cheerful><li>I feel a year younger. I'm going to go and run somewhere.</li></cheerful>
+      <gloomy><li>It turns the clock back. It doesn't stop it.</li></gloomy>
+      <cold><li>Biological age reduced. Acceptable.</li></cold>
+    </thanks>
+    <expired>
+      <plain><li>I'll grow old the usual way, then.</li></plain>
+      <blunt><li>Fine. I'll creak.</li></blunt>
+      <gloomy><li>Everyone gets old. I'll just get there sooner.</li></gloomy>
+    </expired>
+    <reminder>
+      <plain><li>My knees still crack every morning.</li></plain>
+    </reminder>
+  </ColonyCouncil.WishDef>
+
+  <!-- ===================== A soft chair (the old) ===================== -->
+
+  <ColonyCouncil.WishDef>
+    <defName>Council_Wish_Armchair</defName>
+    <label>a soft chair to rest in</label>
+    <description>An old colonist finds the stools hard on their back and wants an armchair to rest in at the end of the day.</description>
+    <workerClass>ColonyCouncil.WishWorker_Have</workerClass>
+    <category>Comfort</category>
+    <weight>0.7</weight>
+    <expiryDays>15</expiryDays>
+    <cooldownDays>30</cooldownDays>
+    <grantedThought>Council_Granted_Armchair</grantedThought>
+    <envy>0.2</envy>
+    <talkInteraction>Council_Talk_Comfort</talkInteraction>
+    <fulfilledWhen>The colony has {THING}, or another armchair.</fulfilledWhen>
+    <wants>
+      <defNames><li>Armchair</li></defNames>
+      <nameContains><li>armchair</li></nameContains>
+      <minAge>60</minAge>
+      <reason>{PAWN_nameDef} is getting old, and the stools are hard on {PAWN_possessive} back.</reason>
+    </wants>
+    <request>
+      <plain>
+        <li>At my age, a wooden stool is a punishment. One soft chair by the fire, that's all.</li>
+        <li>I'd like somewhere to sit at the end of the day that doesn't make my back worse.</li>
+        <li>[winter] Cold days, long evenings. Somewhere comfortable to sit them out would mean a lot.</li>
+        <li>[evening] When the work's done, I just want to sink into something soft and watch the others.</li>
+        <li>[hurt] Everything aches more than it used to. A good chair would help.</li>
+      </plain>
+      <warm>
+        <li>The young ones could use it too. I'd use it most, I'll admit.</li>
+      </warm>
+      <blunt>
+        <li>My back hurts. Build {THING}.</li>
+      </blunt>
+      <cheerful>
+        <li>A big soft chair! I'll tell stories from it like a proper grandparent.</li>
+      </cheerful>
+      <gloomy>
+        <li>I'll spend more and more of my days sitting. Might as well sit well.</li>
+      </gloomy>
+      <cold>
+        <li>Comfort affects recovery. At my age, recovery is slow.</li>
+      </cold>
+    </request>
+    <thanks>
+      <plain><li>I sat down in it and didn't want to get up. I may not.</li></plain>
+      <warm><li>Thank you. Come and sit with me, there's room on the arm.</li></warm>
+      <blunt><li>Good. It's mine.</li></blunt>
+      <cheerful><li>It fits me perfectly. I think it was made for me.</li></cheerful>
+      <gloomy><li>Comfortable. At last.</li></gloomy>
+      <cold><li>My back is grateful.</li></cold>
+    </thanks>
+    <expired>
+      <plain><li>The stool, then. My back sends its regards.</li></plain>
+      <blunt><li>Fine. I'll complain about my back instead.</li></blunt>
+      <gloomy><li>Old bones don't count for much here.</li></gloomy>
+    </expired>
+    <reminder>
+      <plain><li>Still sitting on the hard stool.</li></plain>
+    </reminder>
+  </ColonyCouncil.WishDef>
+
+  <!-- ===================== A resting place (the old) ===================== -->
+
+  <ColonyCouncil.WishDef>
+    <defName>Council_Wish_Sarcophagus</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>{THING} for when the time comes</label>
+    <description>One of the colony's oldest would rather not leave it to chance where they end up, and wants a proper resting place ready.</description>
+    <workerClass>ColonyCouncil.WishWorker_Have</workerClass>
+    <category>Status</category>
+    <weight>0.4</weight>
+    <expiryDays>20</expiryDays>
+    <cooldownDays>60</cooldownDays>
+    <grantedThought>Council_Granted_Sarcophagus</grantedThought>
+    <ways><tradition>3</tradition></ways>
+    <envy>0</envy>
+    <talkInteraction>Council_Talk_Grief</talkInteraction>
+    <fulfilledWhen>The colony has {THING}, or another sarcophagus.</fulfilledWhen>
+    <wants>
+      <defNames><li>Sarcophagus</li></defNames>
+      <nameContains><li>sarcophagus</li></nameContains>
+      <minAge>65</minAge>
+      <reason>{PAWN_nameDef} is old, and would rather not leave it to chance where {PAWN_pronoun} ends up.</reason>
+    </wants>
+    <request>
+      <plain>
+        <li>I've buried enough people out here to know how it goes. I'd like my own resting place ready, and a good one.</li>
+        <li>Don't look at me like that. Everyone dies. I'd just like to know where I'll lie.</li>
+        <li>[grieving] Watching them go into the ground made me think. I want a resting place built while I can still see it.</li>
+        <li>[lowtech] In the old way, the elders chose their own stones. I'd like to choose mine.</li>
+        <li>[winter] Every winter I wonder whether it's my last. I'd like {THING} ready, just in case.</li>
+      </plain>
+      <warm>
+        <li>It would spare the rest of you the work, when the time comes.</li>
+      </warm>
+      <blunt>
+        <li>I'm old. Build me {THING} before I need it.</li>
+      </blunt>
+      <cheerful>
+        <li>I want a nice one, with my name carved big! I'll lie in it to try it out.</li>
+      </cheerful>
+      <gloomy>
+        <li>It's coming. I'd rather it found me prepared.</li>
+      </gloomy>
+      <cold>
+        <li>A planned burial spares everyone an improvised one. It's practical.</li>
+      </cold>
+    </request>
+    <thanks>
+      <plain><li>I went and looked at it today. Good stone. It'll do.</li></plain>
+      <warm><li>Thank you. Knowing it's there, I worry less.</li></warm>
+      <blunt><li>Good. Don't put anyone else in it.</li></blunt>
+      <cheerful><li>I lay down in it to check the fit. Perfect. Then I got up.</li></cheerful>
+      <gloomy><li>There it is. Waiting.</li></gloomy>
+      <cold><li>Arrangements complete.</li></cold>
+    </thanks>
+    <expired>
+      <plain><li>A hole in the ground will do, I suppose.</li></plain>
+      <blunt><li>Put me wherever, then.</li></blunt>
+      <gloomy><li>Nobody plans for the old.</li></gloomy>
+    </expired>
+    <reminder>
+      <plain><li>Still no resting place ready.</li></plain>
+    </reminder>
+  </ColonyCouncil.WishDef>
+
+  <!-- ===================== A child's lessons ===================== -->
+
+  <ColonyCouncil.WishDef>
+    <defName>Council_Wish_ChildLessons</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>lessons in {SUBJECT} from {OTHER_nameDef}</label>
+    <description>A child with a gift for a skill wants the colony's best at it to teach them (Biotech).</description>
+    <workerClass>ColonyCouncil.WishWorker_Lessons</workerClass>
+    <category>Childhood</category>
+    <weight>1</weight>
+    <expiryDays>10</expiryDays>
+    <cooldownDays>25</cooldownDays>
+    <grantedThought>Council_Granted_ChildLessons</grantedThought>
+    <ways><tradition>2</tradition></ways>
+    <envy>0</envy>
+    <talkInteraction>Council_Talk_Child</talkInteraction>
+    <fulfilledWhen>{PAWN_nameDef}'s {SUBJECT} skill reaches {TARGET}. Promising pairs {PAWN_objective} with {OTHER_nameDef} as a mentor.</fulfilledWhen>
+    <wants>
+      <child>true</child>
+      <reason>{PAWN_nameDef} is a child with a gift, and wants to learn it from the best in the colony.</reason>
+    </wants>
+    <request>
+      <plain>
+        <li>{OTHER_nameDef} is the best at {SUBJECT}. Can {OTHER_pronoun} teach me? I'll do my chores first.</li>
+        <li>I keep watching {OTHER_nameDef} and trying to copy. It would be easier if somebody just showed me.</li>
+        <li>[evening] Can I have a lesson after supper? Just one? {OTHER_nameDef} said maybe.</li>
+        <li>[spring] It's nice out. I could learn {SUBJECT} with {OTHER_nameDef} outside.</li>
+        <li>[lowmood] Everyone's too busy to teach me anything.</li>
+      </plain>
+      <warm>
+        <li>I want to be as good at {SUBJECT} as {OTHER_nameDef}. Then I can help.</li>
+      </warm>
+      <blunt>
+        <li>I want lessons. In {SUBJECT}. From {OTHER_nameDef}.</li>
+      </blunt>
+      <cheerful>
+        <li>When I grow up I'm going to be the best at {SUBJECT}! I just need someone to teach me.</li>
+      </cheerful>
+      <gloomy>
+        <li>Nobody here has time for kids.</li>
+      </gloomy>
+      <cold>
+        <li>If {OTHER_nameDef} teaches me now, I'll be useful sooner.</li>
+      </cold>
+    </request>
+    <thanks>
+      <plain><li>{OTHER_nameDef} showed me how to do it properly. I did it twice by myself.</li></plain>
+      <warm><li>Thank you for letting me learn. I'm going to practice every day.</li></warm>
+      <blunt><li>I'm learning. Don't distract me.</li></blunt>
+      <cheerful><li>I'm getting good! {OTHER_nameDef} said so.</li></cheerful>
+      <gloomy><li>It's harder than it looks. I'm getting it, slowly.</li></gloomy>
+      <cold><li>My progress is satisfactory.</li></cold>
+    </thanks>
+    <expired>
+      <plain><li>I'll just watch from the doorway, then.</li></plain>
+      <blunt><li>Grown-ups never have time.</li></blunt>
+      <gloomy><li>Nobody wanted to teach me.</li></gloomy>
+    </expired>
+    <reminder>
+      <plain><li>Still haven't had a lesson.</li></plain>
+      <cheerful><li>Is it lesson day yet?</li></cheerful>
+    </reminder>
+  </ColonyCouncil.WishDef>
+
+  <!-- ===================== A child's pet ===================== -->
+
+  <ColonyCouncil.WishDef>
+    <defName>Council_Wish_ChildPet</defName>
+    <label>a pet to look after</label>
+    <description>A child has been watching a small animal near the colony and wants one to look after. Any new animal the colony takes in will do.</description>
+    <workerClass>ColonyCouncil.WishWorker_ChildPet</workerClass>
+    <category>Childhood</category>
+    <weight>1</weight>
+    <expiryDays>10</expiryDays>
+    <cooldownDays>30</cooldownDays>
+    <grantedThought>Council_Granted_ChildPet</grantedThought>
+    <envy>0.2</envy>
+    <talkInteraction>Council_Talk_Animals</talkInteraction>
+    <fulfilledWhen>The colony takes in a new animal: tamed, bought or born.</fulfilledWhen>
+    <request>
+      <plain>
+        <li>There's a {SUBJECT} out by the trees. Can we keep it? I'll feed it every day.</li>
+        <li>I've already named the {SUBJECT}. Please can someone catch it for me?</li>
+        <li>[morning] I saw the {SUBJECT} again this morning. It looked right at me.</li>
+        <li>[winter] The {SUBJECT} out there must be cold. It could sleep in my room.</li>
+        <li>[lowmood] If I had something to look after, I wouldn't feel so lonely.</li>
+      </plain>
+      <warm>
+        <li>It would have a home, and I'd have a friend. Everybody wins.</li>
+      </warm>
+      <blunt>
+        <li>I want a pet. That one.</li>
+      </blunt>
+      <cheerful>
+        <li>A pet, a real one! I'll teach it tricks.</li>
+      </cheerful>
+      <gloomy>
+        <li>Everything I like ends up eaten. Not this one, please.</li>
+      </gloomy>
+      <cold>
+        <li>An animal is useful, and I would be responsible for it.</li>
+      </cold>
+    </request>
+    <thanks>
+      <plain><li>It ate out of my hand. I'm going to call it Button.</li></plain>
+      <warm><li>Thank you, thank you. I'll look after it forever.</li></warm>
+      <blunt><li>It's mine now. I'm in charge of it.</li></blunt>
+      <cheerful><li>It follows me everywhere, even to the latrine!</li></cheerful>
+      <gloomy><li>I hope nobody eats it.</li></gloomy>
+      <cold><li>I have taken responsibility for the animal.</li></cold>
+    </thanks>
+    <expired>
+      <plain><li>It ran away. Nobody caught it.</li></plain>
+      <blunt><li>Grown-ups never let me have anything.</li></blunt>
+      <gloomy><li>I knew I couldn't have one.</li></gloomy>
+    </expired>
+    <reminder>
+      <plain><li>The {SUBJECT} is still out there.</li></plain>
+    </reminder>
+  </ColonyCouncil.WishDef>
+
+  <!-- ===================== Stories to read (children) ===================== -->
+
+  <ColonyCouncil.WishDef>
+    <defName>Council_Wish_Storybook</defName>
+    <label>new stories to read</label>
+    <description>A child has read every book in the colony at least twice and wants something new.</description>
+    <workerClass>ColonyCouncil.WishWorker_Stock</workerClass>
+    <category>Childhood</category>
+    <weight>0.8</weight>
+    <expiryDays>12</expiryDays>
+    <cooldownDays>30</cooldownDays>
+    <grantedThought>Council_Granted_Storybook</grantedThought>
+    <envy>0</envy>
+    <talkInteraction>Council_Talk_Child</talkInteraction>
+    <fulfilledWhen>The colony has {TARGET} books.</fulfilledWhen>
+    <wants>
+      <nameContains><li>book</li><li>novel</li><li>tome</li></nameContains>
+      <notContains><li>bookcase</li><li>bookshelf</li><li>schematic</li></notContains>
+      <count>3</count>
+      <anySource>true</anySource>
+      <child>true</child>
+      <reason>{PAWN_nameDef} has read every book in the colony at least twice.</reason>
+    </wants>
+    <request>
+      <plain>
+        <li>I've read all our books. Some of them three times. Can we get some new ones?</li>
+        <li>I want a book with a story in it. A long one, with monsters.</li>
+        <li>[night] If I had a book, I wouldn't need anyone to stay up with me.</li>
+        <li>[winter] It's too cold to play outside. I could read, if we had anything to read.</li>
+        <li>[rain] Rainy days are for reading, but there's nothing left to read.</li>
+      </plain>
+      <warm>
+        <li>I could read them out loud to the little ones too.</li>
+      </warm>
+      <blunt>
+        <li>I want new books.</li>
+      </blunt>
+      <cheerful>
+        <li>Books with dragons in, or pirates, or dragon pirates!</li>
+      </cheerful>
+      <gloomy>
+        <li>I already know how all our stories end.</li>
+      </gloomy>
+      <cold>
+        <li>My education is limited by the colony's books.</li>
+      </cold>
+    </request>
+    <thanks>
+      <plain><li>A new book. I'm saving the last chapter for tomorrow.</li></plain>
+      <warm><li>Thank you. I'll read to anyone who wants to listen.</li></warm>
+      <blunt><li>Shh. I'm reading.</li></blunt>
+      <cheerful><li>There's a map at the front, and a monster on page nine!</li></cheerful>
+      <gloomy><li>It has a sad ending. I read it anyway.</li></gloomy>
+      <cold><li>Adequate reading material.</li></cold>
+    </thanks>
+    <expired>
+      <plain><li>I'll read the old ones again.</li></plain>
+      <blunt><li>Nobody cares if kids read.</li></blunt>
+      <gloomy><li>Same stories, same endings.</li></gloomy>
+    </expired>
+    <reminder>
+      <plain><li>Still reading the same few books.</li></plain>
+    </reminder>
+  </ColonyCouncil.WishDef>
+
+  <!-- ===================== Somewhere cool in the heat ===================== -->
+
+  <ColonyCouncil.WishDef>
+    <defName>Council_Wish_CoolRoom</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>{THING} for the hottest days</label>
+    <description>It's sweltering outside and nowhere in the colony is cool. Someone wants a cooler, a passive one in a tribe, an electric one later.</description>
+    <workerClass>ColonyCouncil.WishWorker_Have</workerClass>
+    <category>Comfort</category>
+    <weight>0.8</weight>
+    <expiryDays>8</expiryDays>
+    <cooldownDays>25</cooldownDays>
+    <grantedThought>Council_Granted_CoolRoom</grantedThought>
+    <allowPetition>true</allowPetition>
+    <envy>0</envy>
+    <talkInteraction>Council_Talk_Comfort</talkInteraction>
+    <fulfilledWhen>The colony has {THING}, or another cooler.</fulfilledWhen>
+    <triggers>
+      <li>
+        <key>heat</key>
+        <conditions><li>HeatWave</li></conditions>
+        <boost>3</boost>
+      </li>
+    </triggers>
+    <wants>
+      <roles><li>cooler</li></roles>
+      <defNames><li>Cooler</li><li>PassiveCooler</li></defNames>
+      <nameContains><li>cooler</li></nameContains>
+      <notContains><li>water cooler</li><li>beer</li><li>wine</li></notContains>
+      <minOutdoorTemp>30</minOutdoorTemp>
+      <reason>{PAWN_nameDef} can hardly breathe in this heat, and nowhere in the colony is cool.</reason>
+    </wants>
+    <request>
+      <plain>
+        <li>It's so hot I can't sleep, can't work, can't think. Somewhere cool, anywhere.</li>
+        <li>I've been lying on the stone floor at midday just to feel something cold.</li>
+        <li>[trigger:heat] This heat isn't letting up. We need a cool room before someone collapses.</li>
+        <li>[lowtech] In hot country they cool a room with wet clay and moving air. We could do the same.</li>
+        <li>[day] Midday, and the air in here is like soup.</li>
+        <li>[old] Heat like this is dangerous at my age. I need somewhere cool to rest.</li>
+      </plain>
+      <warm>
+        <li>The children feel it worst. One cool room would help everyone.</li>
+      </warm>
+      <blunt>
+        <li>Build {THING}. I'm melting.</li>
+      </blunt>
+      <cheerful>
+        <li>A cool room! I'll move in and you can all visit me there.</li>
+      </cheerful>
+      <gloomy>
+        <li>Someone's going to faint out in the fields soon. Probably me.</li>
+      </gloomy>
+      <cold>
+        <li>Heatstroke is preventable. Cooling costs less than treatment.</li>
+      </cold>
+    </request>
+    <thanks>
+      <plain><li>Cool air. I stood in it for a while and didn't think about anything at all.</li></plain>
+      <warm><li>Thank you. Everyone has been coming to sit in here.</li></warm>
+      <blunt><li>Good. Close the door.</li></blunt>
+      <cheerful><li>It's lovely in here. I'm never leaving.</li></cheerful>
+      <gloomy><li>Cool for now. Until it breaks.</li></gloomy>
+      <cold><li>Temperature acceptable.</li></cold>
+    </thanks>
+    <expired>
+      <plain><li>I'll sweat it out, then.</li></plain>
+      <blunt><li>When someone collapses, that's on you.</li></blunt>
+      <gloomy><li>Hot today, hotter tomorrow.</li></gloomy>
+    </expired>
+    <reminder>
+      <plain><li>Still nowhere cool to get out of the heat.</li></plain>
+    </reminder>
+  </ColonyCouncil.WishDef>
+
+  <!-- ===================== A pen for the animals ===================== -->
+
+  <ColonyCouncil.WishDef>
+    <defName>Council_Wish_PenMarker</defName>
+    <label>a proper pen for the animals</label>
+    <description>A keeper tired of chasing animals out of the fields wants a fenced pen for them.</description>
+    <workerClass>ColonyCouncil.WishWorker_Have</workerClass>
+    <category>Work</category>
+    <weight>0.7</weight>
+    <expiryDays>12</expiryDays>
+    <cooldownDays>30</cooldownDays>
+    <grantedThought>Council_Granted_PenMarker</grantedThought>
+    <allowPetition>true</allowPetition>
+    <envy>0</envy>
+    <talkInteraction>Council_Talk_Animals</talkInteraction>
+    <fulfilledWhen>The colony has {THING}: a marked pen for its animals.</fulfilledWhen>
+    <wants>
+      <defNames><li>PenMarker</li></defNames>
+      <nameContains><li>penmarker</li><li>pen marker</li></nameContains>
+      <passions><li>Animals</li></passions>
+      <minAnimals>2</minAnimals>
+      <reason>{PAWN_nameDef} keeps the animals and wants them penned where they belong.</reason>
+    </wants>
+    <request>
+      <plain>
+        <li>The animals wander into the fields and eat the crops. A fenced pen would keep them where they belong.</li>
+        <li>I spend half the day chasing animals back home. Let's fence off a pen.</li>
+        <li>[spring] The young ones will be born soon. They need somewhere safe to run.</li>
+        <li>[winter] Penned together they keep each other warm. Scattered, they freeze.</li>
+        <li>[afterraid] Raiders shot two of our animals out in the open. In a pen they'd be safer.</li>
+        <li>[lowtech] My family kept a pen of woven branches. The animals were calmer for it, and so were the crops.</li>
+      </plain>
+      <warm>
+        <li>They're good animals. They deserve a place of their own.</li>
+      </warm>
+      <blunt>
+        <li>Fence them in. I'm tired of chasing them.</li>
+      </blunt>
+      <cheerful>
+        <li>A pen with a gate and a trough! The animals will love it.</li>
+      </cheerful>
+      <gloomy>
+        <li>One of them will wander off and get eaten. A pen would stop that.</li>
+      </gloomy>
+      <cold>
+        <li>Penned animals graze where we want and don't trample the fields.</li>
+      </cold>
+    </request>
+    <thanks>
+      <plain><li>All of them inside the fence, eating where they should. I can finally sit down.</li></plain>
+      <warm><li>Thank you. They seem happier, I think.</li></warm>
+      <blunt><li>Good. No more chasing.</li></blunt>
+      <cheerful><li>I counted them all in. Nobody missing.</li></cheerful>
+      <gloomy><li>One has already found a hole in the fence. I'll fix it.</li></gloomy>
+      <cold><li>Livestock contained.</li></cold>
+    </thanks>
+    <expired>
+      <plain><li>Back to chasing them, then.</li></plain>
+      <blunt><li>When they eat the crops, don't look at me.</li></blunt>
+      <gloomy><li>They'll wander off, and that'll be that.</li></gloomy>
+    </expired>
+    <reminder>
+      <plain><li>Chased the animals out of the fields again today.</li></plain>
+    </reminder>
+  </ColonyCouncil.WishDef>
+
+</Defs>

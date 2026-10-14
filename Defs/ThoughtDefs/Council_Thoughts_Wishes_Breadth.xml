@@ -1,0 +1,331 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Granted memories for the wishes in Defs/WishDefs/Wishes_Breadth.xml and Wishes_Mods_Breadth.xml. A wish that lapses
+    gives the shared letdown (Council_WishIgnored, or a broken promise), whose tooltip names the wish.
+  -->
+
+  <!-- ===================== Health ===================== -->
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_Granted_Sickbed</defName>
+    <durationDays>6</durationDays>
+    <stages>
+      <li>
+        <label>a bed for when I was sick</label>
+        <description>When I was ill, there was a bed set aside for me and someone looked in on me. It made it easier to bear.</description>
+        <baseMoodEffect>4</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_Granted_Healroot</defName>
+    <durationDays>5</durationDays>
+    <stages>
+      <li>
+        <label>healroot put by</label>
+        <description>There's healroot hanging to dry, enough for the next fever. I feel better about the winter.</description>
+        <baseMoodEffect>3</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_Granted_FreshFood</defName>
+    <durationDays>5</durationDays>
+    <stages>
+      <li>
+        <label>something fresh in the stores</label>
+        <description>There's something fresh to eat in the stores again. Even raw, it tastes like a feast day.</description>
+        <baseMoodEffect>3</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_Granted_Tea</defName>
+    <durationDays>5</durationDays>
+    <stages>
+      <li>
+        <label>hot tea while I was sick</label>
+        <description>When I was sick, someone made sure there was hot tea. It's a small thing, and I won't forget it.</description>
+        <baseMoodEffect>3</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_Granted_Biosculpter</defName>
+    <durationDays>8</durationDays>
+    <stages>
+      <li>
+        <label>years turned back</label>
+        <description>There's a biosculpter pod in the colony now. I can think about the years ahead without dreading them.</description>
+        <baseMoodEffect>5</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <!-- ===================== People and the heart ===================== -->
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_Granted_CampEvening</defName>
+    <durationDays>5</durationDays>
+    <stages>
+      <li>
+        <label>an evening at the strangers' fire</label>
+        <description>I sat at the campers' fire and heard about roads I've never walked. It was good to hear new voices.</description>
+        <baseMoodEffect>4</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_Granted_Meeting</defName>
+    <durationDays>4</durationDays>
+    <stages>
+      <li>
+        <label>the council sat down together</label>
+        <description>I asked for a meeting and we had one. I said my piece, and people listened.</description>
+        <baseMoodEffect>3</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_Granted_SeatsForAll</defName>
+    <durationDays>6</durationDays>
+    <stages>
+      <li>
+        <label>everyone at one table</label>
+        <description>We all sat down together at supper, nobody standing and nobody waiting. It felt like a family meal.</description>
+        <baseMoodEffect>4</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_Granted_Apprentice</defName>
+    <durationDays>8</durationDays>
+    <stages>
+      <li>
+        <label>someone to teach</label>
+        <description>I have someone to pass on what I know. It makes the years I spent learning it feel worth something.</description>
+        <baseMoodEffect>5</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_Granted_FoodThatKeeps</defName>
+    <durationDays>6</durationDays>
+    <stages>
+      <li>
+        <label>food put by for winter</label>
+        <description>There's food in the stores that won't spoil before spring. Whatever happens, we won't starve.</description>
+        <baseMoodEffect>3</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_Granted_CommsConsole</defName>
+    <durationDays>6</durationDays>
+    <stages>
+      <li>
+        <label>a voice from outside</label>
+        <description>We can talk to the rest of the world now. It feels less lonely out here.</description>
+        <baseMoodEffect>3</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_Granted_GuestBed</defName>
+    <durationDays>5</durationDays>
+    <stages>
+      <li>
+        <label>a bed for our guests</label>
+        <description>Visitors who come to us have a proper bed now. I'm proud that we can offer it.</description>
+        <baseMoodEffect>3</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <!-- ===================== Work and passions ===================== -->
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_Granted_Fishing</defName>
+    <durationDays>6</durationDays>
+    <stages>
+      <li>
+        <label>a fishing spot</label>
+        <description>There's a place by the water where I can sit with a line and wait. It's the quietest hour of my day.</description>
+        <baseMoodEffect>4</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_Granted_Telescope</defName>
+    <durationDays>6</durationDays>
+    <stages>
+      <li>
+        <label>the stars up close</label>
+        <description>I spent a night at the telescope looking at things nobody here has seen before. The world feels bigger.</description>
+        <baseMoodEffect>4</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_Granted_ToolCabinet</defName>
+    <durationDays>5</durationDays>
+    <stages>
+      <li>
+        <label>my tools in their place</label>
+        <description>Every tool hangs where I left it now. Work at the bench goes smoothly.</description>
+        <baseMoodEffect>3</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_Granted_StoneBlocks</defName>
+    <durationDays>5</durationDays>
+    <stages>
+      <li>
+        <label>stone ready to build with</label>
+        <description>There's a stack of cut stone waiting. I keep planning what to build with it.</description>
+        <baseMoodEffect>3</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_Granted_DeepDrill</defName>
+    <durationDays>5</durationDays>
+    <stages>
+      <li>
+        <label>a drill to go deeper</label>
+        <description>We have a deep drill now. Whatever is down there, I'll be the one who finds it.</description>
+        <baseMoodEffect>3</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_Granted_PenMarker</defName>
+    <durationDays>5</durationDays>
+    <stages>
+      <li>
+        <label>the animals penned</label>
+        <description>Our animals have a proper pen now. I know where they all are, and they look content.</description>
+        <baseMoodEffect>3</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_Granted_Grill</defName>
+    <durationDays>5</durationDays>
+    <stages>
+      <li>
+        <label>a summer evening at the grill</label>
+        <description>We cooked over the grill outside on a warm evening, everyone gathered round. That's what summer is for.</description>
+        <baseMoodEffect>3</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <!-- ===================== Comfort, seasons and the old ===================== -->
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_Granted_CoolRoom</defName>
+    <durationDays>5</durationDays>
+    <stages>
+      <li>
+        <label>somewhere cool in the heat</label>
+        <description>On the worst of the hot days there's somewhere cool to go. I can breathe again.</description>
+        <baseMoodEffect>3</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_Granted_Sauna</defName>
+    <durationDays>5</durationDays>
+    <stages>
+      <li>
+        <label>a sauna in winter</label>
+        <description>There's a sauna to sweat the cold out of me. I come out warm all the way through.</description>
+        <baseMoodEffect>4</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_Granted_Armchair</defName>
+    <durationDays>6</durationDays>
+    <stages>
+      <li>
+        <label>a soft chair for old bones</label>
+        <description>There's a soft chair where I can rest my old bones at the end of the day. It's the best part of my evening.</description>
+        <baseMoodEffect>3</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_Granted_Sarcophagus</defName>
+    <durationDays>8</durationDays>
+    <stages>
+      <li>
+        <label>a resting place ready</label>
+        <description>My resting place is built and waiting. It's a strange thing to say, but it gives me peace.</description>
+        <baseMoodEffect>4</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <!-- ===================== Children ===================== -->
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_Granted_ChildLessons</defName>
+    <durationDays>6</durationDays>
+    <stages>
+      <li>
+        <label>a grown-up is teaching me</label>
+        <description>One of the grown-ups is teaching me something I love. I'm getting better every day.</description>
+        <baseMoodEffect>5</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_Granted_ChildPet</defName>
+    <durationDays>6</durationDays>
+    <stages>
+      <li>
+        <label>a new animal to look after</label>
+        <description>There's a new animal in the colony and I get to help look after it. Best day in a long time.</description>
+        <baseMoodEffect>5</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_Granted_Storybook</defName>
+    <durationDays>5</durationDays>
+    <stages>
+      <li>
+        <label>new stories to read</label>
+        <description>There are new books in the colony, and I'm reading every one. I can't put this one down.</description>
+        <baseMoodEffect>4</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+</Defs>

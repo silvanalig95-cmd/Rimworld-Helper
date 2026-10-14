@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Other mods' people and the wishes in Defs/WishDefs/Wishes_Breadth.xml and Wishes_Mods_Breadth.xml (see the header
+    of Council_People_Mods.xml for the fields). Matched by name while the game runs: with the mod missing, nobody fits.
+    alsoWho still has to meet the wish's other conditions (era, age, season, what can be built).
+  -->
+
+  <ColonyCouncil.ModPeopleDef>
+    <defName>Council_ModPeople_BreadthWishes</defName>
+    <label>wishes for every era and passion (Vanilla Traits Expanded, A RimWorld of Magic, trait groups)</label>
+    <wishes>
+      <li>
+        <wish>Council_Wish_Telescope</wish>
+        <alsoWho>trait:VTE_Academian|mage</alsoWho>
+        <alsoReason>{PAWN_nameDef} has questions about the sky that only a closer look can answer.</alsoReason>
+      </li>
+      <li>
+        <wish>Council_Wish_ToolCabinet</wish>
+        <alsoWho>trait:VTE_Perfectionist</alsoWho>
+        <alsoReason>{PAWN_nameDef} can't stand a workshop where the tools have no proper place.</alsoReason>
+      </li>
+      <li>
+        <wish>Council_Wish_StoneBlocks</wish>
+        <alsoWho>trait:VTE_Groundbreaker|trait:VTE_ChildOfMountain</alsoWho>
+      </li>
+      <li>
+        <wish>Council_Wish_DeepDrill</wish>
+        <alsoWho>trait:VTE_ChildOfMountain</alsoWho>
+      </li>
+      <li>
+        <wish>Council_Wish_PenMarker</wish>
+        <alsoWho>trait:VTE_Menagerist|animallover</alsoWho>
+      </li>
+      <li>
+        <wish>Council_Wish_Healroot</wish>
+        <alsoWho>healer|trait:VTE_Ecologist</alsoWho>
+      </li>
+      <li>
+        <wish>Council_Wish_Grill</wish>
+        <alsoWho>gourmet</alsoWho>
+        <alsoReason>{PAWN_nameDef} knows good food, and grilled food is good food.</alsoReason>
+      </li>
+      <li>
+        <wish>Council_Wish_FreshFood</wish>
+        <favoredBy>gourmet</favoredBy>
+        <favorFactor>2</favorFactor>
+      </li>
+      <li>
+        <wish>Council_Wish_Sauna</wish>
+        <favoredBy>trait:VTE_HeatInclined</favoredBy>
+        <favorFactor>2.5</favorFactor>
+      </li>
+      <li>
+        <wish>Council_Wish_CoolRoom</wish>
+        <favoredBy>trait:VTE_ColdInclined</favoredBy>
+        <favorFactor>2.5</favorFactor>
+      </li>
+      <li>
+        <wish>Council_Wish_CommsConsole</wish>
+        <favoredBy>trait:VTE_Wanderlust</favoredBy>
+        <favorFactor>1.5</favorFactor>
+      </li>
+    </wishes>
+  </ColonyCouncil.ModPeopleDef>
+
+</Defs>
