@@ -1,0 +1,762 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- Rimfolk events: the land and the turning year. Each is told from data alone (HappeningWorker_Setting, with a
+       HappeningSetting saying where it can happen: the tile's climate, a river, crops, the season). Mushrooms after
+       rain, white nights in the north, the desert in flower, the long rains, a frozen river, the birds coming back,
+       the rut, the first snow, the longest night and an eclipse, each read differently by every era. None ends in a
+       fight. Code: Source/ColonyCouncil/Happenings/Workers_Setting.cs. -->
+
+  <!-- ===================== Mushrooms after rain ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Council_Evt_MushroomFlush</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>mushrooms after rain</label>
+    <workerClass>ColonyCouncil.HappeningWorker_Setting</workerClass>
+    <baseChance>0.8</baseChance>
+    <minRefireDays>50</minRefireDays>
+    <earliestDay>8</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Nature</group>
+        <seasons>
+          <li>Spring</li>
+          <li>Fall</li>
+        </seasons>
+        <minTemp>4</minTemp>
+        <answerDays>0.8</answerDays>
+        <journal>Council_Journal_Evt_Mushrooms</journal>
+        <titles>
+          <li>Mushrooms after rain</li>
+          <li>[fall] The mushroom season</li>
+          <li>[lowtech] A flush of mushrooms</li>
+        </titles>
+        <texts>
+          <li>[fall] After three days of soft rain, the ground {PLACE} has broken out in mushrooms: pale caps in rings, brown ones on the fallen logs, a cluster of orange ones {A_nameDef} has never seen before. {A_nameDef} came back with a hatful and a lot of questions.\n\nSome of them are good eating. Some of them are not, and none of the colonists can say for sure which are which.</li>
+          <li>[spring] The warm rain last night brought the mushrooms up {PLACE}, thick in the leaf litter and along the old stumps. {A_nameDef} spotted them on the way back from the fields this morning.\n\nThere are enough to fill a few baskets, for someone who knows which ones to pick.</li>
+          <li>[lowtech] Mushrooms have come up overnight {PLACE}, the way they do after rain. The old saying goes that the brown caps with a ring on the stem are safe, and the white ones with a cup at the foot will kill a muffalo. {A_nameDef} has a basket and is waiting to hear which saying to trust.</li>
+          <li>[!lowtech] The rain has brought up a crop of wild mushrooms {PLACE}, more than {A_nameDef} has seen in one place before. {A_nameDef} took a few back to the kitchen, where they now sit on a plate while everyone argues over a book with no pictures in it.</li>
+          <li>[forest] The woods {PLACE} smell of wet earth and rot, and every fallen trunk has sprouted a shelf of mushrooms. {A_nameDef} counted six kinds before giving up.\n\nA good picker could fill a basket in an hour. A careless one could fill a grave.</li>
+          <li>[swamp] Between the pools {PLACE}, wherever the ground rises out of the water, the mushrooms have come up in rings after the rain. {A_nameDef} picked one, sniffed it, and put it back.\n\nThe colony could use the food, if someone knows what they're doing.</li>
+        </texts>
+        <defaultOption>2</defaultOption>
+        <options>
+          <li>
+            <label>Send our best grower to pick the good ones</label>
+            <outcome>{B_nameDef} came back at dusk with two full baskets, every cap turned over and checked twice. The rest were left where they grew.</outcome>
+            <outcomes>
+              <li>[b:past:farmer] {B_nameDef} grew up picking mushrooms on the family's land and knew every kind by its smell. The baskets came back full before noon.</li>
+              <li>[lowtech] {B_nameDef} cut each mushroom at the stem with a knife, so the ring would come up again next year, and came back with the baskets full.</li>
+              <li>[b:trait:Kind] {B_nameDef} left the smallest ones to grow and brought the rest back in two full baskets.</li>
+            </outcomes>
+            <riskChance>0.3</riskChance>
+            <riskSkill>Plants</riskSkill>
+            <riskReplaces>true</riskReplaces>
+            <riskOutcome>{B_nameDef} came back with full baskets, and the cook threw out half of them: a bitter kind that only looks like the good ones. What's left is good eating.</riskOutcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Needs"><target>Colony</target><skill>Plants</skill><minLevel>5</minLevel><asB>true</asB></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Spawn"><thing>RawFungus</thing><count>40</count></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Learn"><target>B</target><skill>Plants</skill><xp>500</xp></li>
+            </effects>
+            <riskEffects>
+              <li Class="ColonyCouncil.DilemmaEffect_Spawn"><thing>RawFungus</thing><count>18</count></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Learn"><target>B</target><skill>Plants</skill><xp>700</xp></li>
+            </riskEffects>
+            <ways><toil>1</toil></ways>
+          </li>
+          <li>
+            <label>Pick enough for supper tonight</label>
+            <outcome>{B_nameDef} fried the mushrooms in fat with salt and a handful of wild onion, and the colony ate them straight from the pan.</outcome>
+            <outcomes>
+              <li>[lowtech] {B_nameDef} threaded the mushrooms on green sticks and roasted them over the fire. They went round the circle twice and didn't come back.</li>
+              <li>[!lowtech] {B_nameDef} made a mushroom soup thick enough to stand a spoon in, and there were two pots of it.</li>
+              <li>[b:trait:Gourmand] {B_nameDef} cooked the mushrooms three different ways and tasted each one far more than a cook needs to.</li>
+            </outcomes>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Needs"><target>Colony</target><skill>Cooking</skill><minLevel>3</minLevel><asB>true</asB></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Learn"><target>B</target><skill>Cooking</skill><xp>300</xp></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_Evt_MushroomSupper</thought><exceptTrait><li>Ascetic</li></exceptTrait></li>
+            </effects>
+            <ways><openness>1</openness></ways>
+          </li>
+          <li>
+            <label>Leave them where they are</label>
+            <outcome>The mushrooms are left where they grew. In a few days they'll be gone again.</outcome>
+            <outcomes>
+              <li>[lowtech] The colony leaves the mushrooms alone. A mushroom you don't know is a mushroom you don't eat, as the old folk say.</li>
+              <li>[trait:Gourmand] The mushrooms are left where they grew, and {A_nameDef} has been in a sulk about it all afternoon.</li>
+            </outcomes>
+          </li>
+        </options>
+      </li>
+      <li Class="ColonyCouncil.HappeningSetting">
+        <minRain>700</minRain>
+        <minTileTemp>-4</minTileTemp>
+        <maxTileTemp>26</maxTileTemp>
+        <places>
+          <li>under the trees past the fields</li>
+          <li>in the hollow below the colony</li>
+          <li>along the old fallen trunks to the north</li>
+          <li>[river] along the riverbank</li>
+          <li>[hills] in the damp folds between the hills</li>
+          <li>[swamp] on the higher ground at the marsh's edge</li>
+        </places>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== White nights ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Council_Evt_WhiteNights</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>white nights</label>
+    <workerClass>ColonyCouncil.HappeningWorker_Setting</workerClass>
+    <baseChance>0.9</baseChance>
+    <minRefireDays>50</minRefireDays>
+    <earliestDay>8</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Nature</group>
+        <seasons>
+          <li>Summer</li>
+        </seasons>
+        <answerDays>0.6</answerDays>
+        <journal>Council_Journal_Evt_WhiteNights</journal>
+        <titles>
+          <li>White nights</li>
+          <li>[tribal] When the sun forgets to sleep</li>
+          <li>The sun that won't set</li>
+        </titles>
+        <texts>
+          <li>It's midsummer, and this far north the sun barely sets. It dips behind the hills for an hour or two and comes straight back up, and the sky never gets darker than a deep blue.\n\n{A_nameDef} gave up on sleep last night and mended a whole basket of clothes by the window. Others are lying awake in the barracks, staring at the ceiling.</li>
+          <li>[tribal] The elders call this the time when the sun forgets to sleep. It slides along the edge of the world all night and never quite goes down, and the birds sing at what should be midnight.\n\n{A_nameDef} says among the tribes of the north, people dance through these nights instead of fighting them.</li>
+          <li>[medieval] It's the season of the white nights, when the sun hangs low over the hills at midnight and the sky stays pale until it's day again. Back in the old country, {A_nameDef} says, these were the nights for courting and for staying up too late.\n\nHardly anyone at the colony is sleeping well, and the council has been asked what to do about it.</li>
+          <li>[industrial|spacer] The midnight sun has come. The solar panels are drinking it in at two in the morning, and the colonists are not: hardly anyone slept last night, and {A_nameDef} was seen out in the yard at three, wide awake, throwing a ball against a wall.</li>
+          <li>[cold] Summer is short here, and these weeks are the whole of it: the sun up nearly all night, warm air for once, the ground soft under the boots.\n\n{A_nameDef} says it's a waste to spend nights like these asleep. The tired faces at breakfast say otherwise.</li>
+        </texts>
+        <defaultOption>1</defaultOption>
+        <options>
+          <li>
+            <label>Stay up through the bright night together</label>
+            <outcome>The colony stayed up through the night: food, a fire that wasn't needed for light, and {A_nameDef} telling stories until the birds started singing again.</outcome>
+            <outcomes>
+              <li>[tribal] They danced through the bright night the way the northern tribes do, and when the sun came up again the drums were still going.</li>
+              <li>[medieval] Somebody found a fiddle, somebody found the beer, and the colony kept the white night the way {A_nameDef} said they did in the old country.</li>
+              <li>[industrial|spacer] Chairs were dragged out into the yard and pointed at the low sun, and the colony watched it roll along the hills all night with a drink in hand.</li>
+            </outcomes>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Joy"><target>Colony</target><amount>0.25</amount></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_Evt_WhiteNight</thought></li>
+            </effects>
+            <ways><tradition>1</tradition><toil>-1</toil></ways>
+          </li>
+          <li>
+            <label>Blankets over the windows, beds at the usual hour</label>
+            <outcome>The windows are blacked out with blankets and the council keeps the usual hours. Most people sleep, more or less.</outcome>
+            <outcomes>
+              <li>[industrial|spacer] Blackout sheets go up in every window, and the lights-out bell rings at the usual hour. Most people sleep, more or less.</li>
+              <li>[trait:Industrious] The council keeps the usual hours. {A_nameDef} approves, and is up at dawn anyway.</li>
+            </outcomes>
+            <ways><toil>1</toil></ways>
+          </li>
+          <li>
+            <label>Let everyone sleep late tomorrow</label>
+            <outcome>Work starts late tomorrow. The colony stays up as long as it likes, and sleeps it off in the morning.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_Evt_SleptLate</thought></li>
+              <li Class="ColonyCouncil.DilemmaEffect_StrainRelief"><target>Colony</target><amount>4</amount><onlyStrained>true</onlyStrained></li>
+            </effects>
+            <ways><toil>-2</toil></ways>
+          </li>
+        </options>
+      </li>
+      <li Class="ColonyCouncil.HappeningSetting">
+        <maxTileTemp>4</maxTileTemp>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== The desert in flower ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Council_Evt_DesertBloom</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>the desert in flower</label>
+    <workerClass>ColonyCouncil.HappeningWorker_Setting</workerClass>
+    <baseChance>0.9</baseChance>
+    <minRefireDays>50</minRefireDays>
+    <earliestDay>8</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Nature</group>
+        <seasons>
+          <li>Spring</li>
+          <li>PermanentSummer</li>
+        </seasons>
+        <answerDays>0.8</answerDays>
+        <titles>
+          <li>The desert in flower</li>
+          <li>Flowers in the sand</li>
+        </titles>
+        <texts>
+          <li>Rain came to the desert last week, the first in a long while, and now the ground {PLACE} has bloomed. Flowers have come up out of bare sand: yellow, white, and a red so bright it hurts to look at. They'll be gone in a few days.\n\n{A_nameDef} saw them first and came running back to tell everyone.</li>
+          <li>[tribal] The old people say the desert remembers every seed it was ever given, and keeps them for the year the rain comes. This is that year. The sand {PLACE} is purple and gold from one dune to the next.\n\n{A_nameDef} wants the colony to go and see, before the sun burns it away again.</li>
+          <li>[medieval] After one night of hard rain, the dry country {PLACE} has done what {A_nameDef} swore it never could: it has flowered, mile after mile of it, as if a garden had been hidden under the sand all along.</li>
+          <li>[industrial|spacer] The satellite images would call it a vegetation anomaly. Standing in it, {A_nameDef} calls it something else: the scrub {PLACE} has burst into flower overnight after the rain, and the air is thick with bees.\n\nThe bloom will last a few days at most.</li>
+          <li>The rain was a day and a night, and the desert {PLACE} has answered it. Low green leaves first, then buds, and this morning flowers as far as {A_nameDef} could see, humming with insects that weren't there yesterday.</li>
+        </texts>
+        <defaultOption>2</defaultOption>
+        <options>
+          <li>
+            <label>Walk out to see it</label>
+            <outcome>The colony walked out into the flowers in the cool of the evening and came back with pollen on their boots and nothing much to say.</outcome>
+            <outcomes>
+              <li>[tribal] The colony went out to the flowers at dusk and sat among them, and {A_nameDef} sang one of the old rain songs, quietly.</li>
+              <li>[children] The children ran ahead into the flowers and had to be fetched back at dark, yellow to the elbows.</li>
+            </outcomes>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Joy"><target>Colony</target><amount>0.15</amount></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_Evt_DesertBloom</thought></li>
+            </effects>
+            <ways><openness>1</openness></ways>
+          </li>
+          <li>
+            <label>Have our best grower gather the seed</label>
+            <outcome>{B_nameDef} spent two days on hands and knees among the flowers, shaking seed heads into a sack, and came back with a much better idea of what grows here and why.</outcome>
+            <outcomes>
+              <li>[b:skill:Plants] {B_nameDef} came back from the bloom sunburned and happy, with seed packets labelled in a hand nobody else can read.</li>
+            </outcomes>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Needs"><target>Colony</target><skill>Plants</skill><minLevel>4</minLevel><asB>true</asB></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Learn"><target>B</target><skill>Plants</skill><xp>1000</xp></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_Evt_DesertBloom</thought></li>
+            </effects>
+            <ways><toil>1</toil></ways>
+          </li>
+          <li>
+            <label>Work goes on</label>
+            <outcome>Work goes on. A few people walk out at dusk anyway, and come back quiet.</outcome>
+          </li>
+        </options>
+      </li>
+      <li Class="ColonyCouncil.HappeningSetting">
+        <maxRain>600</maxRain>
+        <minTileTemp>8</minTileTemp>
+        <places>
+          <li>to the south</li>
+          <li>beyond the fields</li>
+          <li>out past the last of the colony's walls</li>
+          <li>[hills] between the dry hills</li>
+          <li>[river] along the dry riverbed</li>
+        </places>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== The long rains ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Council_Evt_LongRains</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>the long rains</label>
+    <workerClass>ColonyCouncil.HappeningWorker_Setting</workerClass>
+    <baseChance>0.8</baseChance>
+    <minRefireDays>50</minRefireDays>
+    <earliestDay>10</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Nature</group>
+        <seasons>
+          <li>Spring</li>
+          <li>Summer</li>
+          <li>PermanentSummer</li>
+        </seasons>
+        <answerDays>1</answerDays>
+        <titles>
+          <li>The long rains</li>
+          <li>Nine days of rain</li>
+        </titles>
+        <texts>
+          <li>The rains have come, and they don't stop. Warm, heavy rain, day and night, for nine days now. The paths are mud to the shin, everything that can grow mold has grown it, and tempers are short.\n\n{A_nameDef} has found three leaks in the roof and a frog in the storeroom.</li>
+          <li>[jungle] It's the wet season, and the forest around the colony steams. The rain comes down in sheets every afternoon and drips from every leaf all night, and nothing ever quite dries: not the bedding, not the boots, not the firewood.\n\n{A_nameDef} says the leaks are getting worse.</li>
+          <li>[lowtech] The long rains are here. The thatch is soaked through, the fire smokes from wet wood, and the colony has been cooped up together for a week with nothing to do but listen to the drumming on the roof.\n\n{A_nameDef} has started counting the drips out loud.</li>
+          <li>[!lowtech] Ten days of rain, and the colony is starting to smell like a wet dog. The gutters overflow, the drains back up, and somebody's socks have been hanging by the heater since last Tuesday.\n\n{A_nameDef} wants something done before everyone goes mad.</li>
+          <li>[swamp] The marsh has come up to meet the rain. Water stands in the yard, the paths are gone under it, and the frogs sing all night loud enough to keep everyone awake.</li>
+        </texts>
+        <defaultOption>2</defaultOption>
+        <options>
+          <li>
+            <label>Patch every roof and dig proper drains</label>
+            <outcome>{B_nameDef} led a crew out into the rain with shovels and patches, and the storeroom floor is dry again after a week of puddles.</outcome>
+            <outcomes>
+              <li>[lowtech] {B_nameDef} had fresh thatch laid over the worst of the roofs and a ditch dug round the huts. The drips have stopped, mostly.</li>
+              <li>[!lowtech] {B_nameDef} got up on every roof with a bucket of sealant, and the drain by the kitchen now actually drains.</li>
+            </outcomes>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Needs"><target>Colony</target><skill>Construction</skill><minLevel>4</minLevel><asB>true</asB></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Learn"><target>B</target><skill>Construction</skill><xp>600</xp></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_Evt_DryAtLast</thought></li>
+            </effects>
+            <ways><toil>2</toil></ways>
+          </li>
+          <li>
+            <label>Games and stories indoors</label>
+            <outcome>The council called a rainy evening: cards, stories, whatever games anyone could remember the rules to. It's still raining, but the evenings go faster.</outcome>
+            <outcomes>
+              <li>[lowtech] The colony gathered round the fire for riddles and stories while the rain hammered on the roof, and {A_nameDef} told the longest story anyone has ever heard.</li>
+              <li>[!lowtech] Somebody dug out an old board game with half the pieces missing, and the colony made up the rest. It got loud.</li>
+            </outcomes>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Joy"><target>Colony</target><amount>0.2</amount></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_Evt_RainyEvenings</thought></li>
+            </effects>
+            <ways><toil>-1</toil></ways>
+          </li>
+          <li>
+            <label>Wait it out</label>
+            <outcome>The colony waits for the rain to stop. It doesn't, yet.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_Evt_RainFever</thought><exceptTrait><li>Ascetic</li></exceptTrait></li>
+            </effects>
+          </li>
+        </options>
+      </li>
+      <li Class="ColonyCouncil.HappeningSetting">
+        <minRain>1500</minRain>
+        <minTileTemp>14</minTileTemp>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== The river freezes ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Council_Evt_IceFair</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>the river freezes</label>
+    <workerClass>ColonyCouncil.HappeningWorker_Setting</workerClass>
+    <baseChance>0.9</baseChance>
+    <minRefireDays>50</minRefireDays>
+    <earliestDay>12</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Nature</group>
+        <seasons>
+          <li>Winter</li>
+        </seasons>
+        <maxTemp>-6</maxTemp>
+        <answerDays>1</answerDays>
+        <titles>
+          <li>The river freezes</li>
+          <li>A fair on the ice</li>
+        </titles>
+        <texts>
+          <li>The cold has held long enough that the river has frozen bank to bank. {A_nameDef} walked out on it this morning and jumped, and it didn't so much as creak.\n\nWord has come from {FACTION}: when the river freezes this hard, they hold a fair on the ice below {PLACE}, and the colony is welcome to come.</li>
+          <li>[lowtech] The river is a road now, white and hard from bank to bank. In {FACTION}'s country, the first hard freeze means a frost fair: stalls on the ice, fires on iron sheets, races on bone skates. A rider has come to say the fair is on at {PLACE}, and the colony is invited.</li>
+          <li>[!lowtech] The river froze solid overnight. {A_nameDef} measured the ice with a drill and a tape and announced, very seriously, that it would hold a truck.\n\nA courier from {FACTION} came across it an hour later: they're holding their winter fair on the ice near {PLACE}, and the colony is invited.</li>
+          <li>[children] The children found out about the ice before the grown-ups did, and the council had to send someone to fetch them in for supper. Then word came from {FACTION}: there's a fair on the ice near {PLACE} this week, and everyone is welcome.</li>
+        </texts>
+        <defaultOption>2</defaultOption>
+        <options>
+          <li>
+            <label>Go to the fair on the ice</label>
+            <outcome>Most of the colony walked down the frozen river to {PLACE} and came back after dark, frozen to the bone and full of hot food. {FACTION}'s traders said they'd stop by on their way home.</outcome>
+            <outcomes>
+              <li>[lowtech] There were bone skates, roast chestnuts and a race the colony nearly won. {FACTION}'s traders promised to come by with their sleds on the way home.</li>
+              <li>[!lowtech] There were hot drinks in tin cups, a skating race and a band that knew four songs. {FACTION}'s traders said they'd swing by the colony on the way home.</li>
+            </outcomes>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Joy"><target>Colony</target><amount>0.25</amount></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_Evt_IceFair</thought></li>
+              <li Class="ColonyCouncil.DilemmaEffect_EventGoodwill"><amount>5</amount></li>
+              <li Class="ColonyCouncil.WorldEffect_Incident"><incident>TraderCaravanArrival</incident><withFaction>true</withFaction><anyFaction>true</anyFaction></li>
+            </effects>
+            <ways><openness>2</openness></ways>
+          </li>
+          <li>
+            <label>Hold our own on our stretch of river</label>
+            <outcome>The colony swept a stretch of ice clear below the colony and spent the afternoon sliding about on it, with a fire on the bank for warming hands.</outcome>
+            <outcomes>
+              <li>[children] The children ruled the ice all afternoon, and the grown-ups who tried to keep up came back with bruises and stories.</li>
+            </outcomes>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Joy"><target>Colony</target><amount>0.2</amount></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_Evt_IceFair</thought></li>
+            </effects>
+            <ways><tradition>1</tradition></ways>
+          </li>
+          <li>
+            <label>Stay off the ice</label>
+            <outcome>The council would rather nobody tested the ice. The river stays quiet, and the colony stays indoors.</outcome>
+            <outcomes>
+              <li>[colony:Guarded] The colony keeps to itself, as it does. The fair goes on downriver without it.</li>
+            </outcomes>
+          </li>
+        </options>
+      </li>
+      <li Class="ColonyCouncil.HappeningSetting">
+        <river>true</river>
+        <maxTileTemp>10</maxTileTemp>
+        <neighbor>true</neighbor>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== The birds come back ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Council_Evt_BirdsReturn</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>the birds come back</label>
+    <workerClass>ColonyCouncil.HappeningWorker_Setting</workerClass>
+    <baseChance>0.9</baseChance>
+    <minRefireDays>50</minRefireDays>
+    <earliestDay>8</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Nature</group>
+        <seasons>
+          <li>Spring</li>
+        </seasons>
+        <answerDays>0.8</answerDays>
+        <titles>
+          <li>The birds come back</li>
+          <li>[river] The cranes are back</li>
+          <li>[tribal] The geese return</li>
+        </titles>
+        <texts>
+          <li>The first flight of swallows came over the fields this morning, low and fast, and {A_nameDef} stopped work to watch them go. By noon the eaves were full of them, building.\n\nThe old farmers' rule is that you plant when the swallows come back.</li>
+          <li>[river] The cranes came back to the river today. {A_nameDef} heard them before seeing them, a long rattling call from high up, and then there they were, dropping down onto the shallows in pairs, dancing.</li>
+          <li>[tribal] The geese have come back from wherever geese go, in long wavering lines across the sky, calling all the way. Among the tribes, the day the geese return is the first day of the year, and {A_nameDef} wants to mark it.</li>
+          <li>[medieval] Cuckoos in the woods, swallows under the eaves, a lark going up over the fields. Spring has come back with its birds, and {A_nameDef} heard the first cuckoo before breakfast, which back home meant a lucky year.</li>
+          <li>[industrial|spacer] The motion sensors on the perimeter have been going off since dawn. It isn't raiders: it's birds, thousands of them, back for the spring and settling on every wire and gutter the colony has.\n\n{A_nameDef} has turned the alarms down and gone out to watch.</li>
+          <li>[cold] Spring comes late and fast here. Yesterday there was snow in the hollows; today the sky is full of birds coming north, and the marshes ring with them all night.</li>
+        </texts>
+        <defaultOption>2</defaultOption>
+        <options>
+          <li>
+            <label>Get the planting started</label>
+            <outcome>The council takes the birds at their word. Seed comes out of the stores, and everyone who can hold a hoe is in the fields by midday.</outcome>
+            <outcomes>
+              <li>[lowtech] The seed baskets come down from the rafters, and the colony is in the fields before the swallows have finished building.</li>
+            </outcomes>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Learn"><target>Colony</target><skill>Plants</skill><xp>200</xp></li>
+            </effects>
+            <ways><toil>2</toil><tradition>1</tradition></ways>
+          </li>
+          <li>
+            <label>Take an hour to welcome them</label>
+            <outcome>Work stopped for an hour at noon so the colony could sit out in the sun and watch the birds come in. {A_nameDef} counted them, and lost count.</outcome>
+            <outcomes>
+              <li>[tribal] The colony marked the first day of the year as the tribes do, with a meal outside and a fire for the geese to see. {A_nameDef} sang them in.</li>
+              <li>[medieval] The colony took its bread and cheese out to the field's edge at noon and ate it listening to the larks.</li>
+            </outcomes>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Joy"><target>Colony</target><amount>0.1</amount></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_Evt_BirdsBack</thought></li>
+            </effects>
+            <ways><tradition>1</tradition></ways>
+          </li>
+          <li>
+            <label>They're only birds</label>
+            <outcome>They're only birds. The colony gets on with its day, and the birds with theirs.</outcome>
+          </li>
+        </options>
+      </li>
+      <li Class="ColonyCouncil.HappeningSetting">
+        <minTileTemp>-14</minTileTemp>
+        <maxTileTemp>22</maxTileTemp>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== The rut ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Council_Evt_Rut</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>the rut</label>
+    <workerClass>ColonyCouncil.HappeningWorker_Setting</workerClass>
+    <baseChance>0.8</baseChance>
+    <minRefireDays>50</minRefireDays>
+    <earliestDay>10</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Nature</group>
+        <seasons>
+          <li>Fall</li>
+        </seasons>
+        <answerDays>0.8</answerDays>
+        <titles>
+          <li>The rut</li>
+          <li>Bellowing in the hills</li>
+        </titles>
+        <texts>
+          <li>It's the rutting season, and the big stags {PLACE} have been bellowing every night for a week. This morning {A_nameDef} watched two of them fight on the ridge, antlers locked, for the better part of an hour.\n\nThe hunters want to go out. Some of the others just want to go and watch.</li>
+          <li>[tundra] The caribou are rutting {PLACE}, and the bulls have gone half mad: they roar at nothing, fight anything and charge the colony's fence if they see a shadow move. {A_nameDef} wants a closer look. So does everyone who can hold a bow.</li>
+          <li>[lowtech] The stags are roaring {PLACE}, the sound that means the year is turning. The hunters of the old tribes went out at the rut to take the bulls too busy fighting to notice them, and {A_nameDef} is already restringing a bow.</li>
+          <li>[!lowtech] Something has been roaring in the hills {PLACE} all night, every night. It's the rut: big stags calling and fighting over the hinds. {A_nameDef} has been out on the ridge at dawn with a pair of binoculars, and has a lot to say about it.</li>
+          <li>[forest] In the woods {PLACE}, the stags have scraped the bark off half the young trees and the ground is churned to mud where they fought. Their bellowing carries for miles at dusk.</li>
+        </texts>
+        <defaultOption>2</defaultOption>
+        <options>
+          <li>
+            <label>Send the hunters out</label>
+            <outcome>{B_nameDef} went out before first light and came back by dark, footsore and grinning, having stalked closer to a fighting stag than most hunters ever get.</outcome>
+            <outcomes>
+              <li>[lowtech] {B_nameDef} crept up through the bracken to within a stone's throw of two fighting stags and lay there all morning, learning more about stalking than in a year of hunting.</li>
+              <li>[b:trait:Bloodlust] {B_nameDef} came back talking about the fight on the ridge more than the hunt, and kept talking about it all through supper.</li>
+            </outcomes>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Needs"><target>Colony</target><skill>Shooting</skill><minLevel>4</minLevel><asB>true</asB></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Learn"><target>B</target><skill>Shooting</skill><xp>700</xp></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Learn"><target>B</target><skill>Animals</skill><xp>300</xp></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_Evt_StalkedTheRut</thought></li>
+            </effects>
+            <ways><toil>1</toil></ways>
+          </li>
+          <li>
+            <label>Go up the ridge at dusk to watch</label>
+            <outcome>The colony climbed the ridge at dusk and lay in the grass watching the stags circle and roar below, until it was too dark to see anything but breath steaming.</outcome>
+            <outcomes>
+              <li>[tundra] The colony watched from the high ground as the caribou bulls clashed on the plain below, the noise of it carrying up like falling timber.</li>
+            </outcomes>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Joy"><target>Colony</target><amount>0.15</amount></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_Evt_StagsAtDusk</thought></li>
+            </effects>
+            <ways><openness>1</openness></ways>
+          </li>
+          <li>
+            <label>Keep everyone close to home</label>
+            <outcome>A stag in the rut will charge a cart. The council keeps everyone close to home until the roaring dies down.</outcome>
+          </li>
+        </options>
+      </li>
+      <li Class="ColonyCouncil.HappeningSetting">
+        <minTileTemp>-16</minTileTemp>
+        <maxTileTemp>18</maxTileTemp>
+        <minRain>300</minRain>
+        <places>
+          <li>beyond the fields</li>
+          <li>up on the ridge</li>
+          <li>on the far side of the colony</li>
+          <li>[hills] in the hills</li>
+          <li>[forest] in the woods to the east</li>
+        </places>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== The first snow ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Council_Evt_FirstSnow</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>the first snow</label>
+    <workerClass>ColonyCouncil.HappeningWorker_Setting</workerClass>
+    <baseChance>1</baseChance>
+    <minRefireDays>50</minRefireDays>
+    <earliestDay>10</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Nature</group>
+        <seasons>
+          <li>Fall</li>
+          <li>Winter</li>
+        </seasons>
+        <maxTemp>1</maxTemp>
+        <answerDays>0.5</answerDays>
+        <journal>Council_Journal_Evt_FirstSnow</journal>
+        <titles>
+          <li>The first snow</li>
+          <li>Snow in the night</li>
+        </titles>
+        <texts>
+          <li>The first snow of the year came down in the night, soft and heavy, and by morning the colony was white to the walls. {A_nameDef} was the first one out in it, and left a long line of footprints to the storeroom and back.</li>
+          <li>[children] It snowed in the night. The children were out in it before anyone could stop them, and the yard is already a battlefield of snow forts and flying snowballs.\n\n{A_nameDef} has been asked, twice, whether there's school today.</li>
+          <li>[lowtech] Snow came in the night, the first of the winter, and lies deep on every roof. The colony woke to that strange quiet snow makes, and {A_nameDef} stood in the door a long time just looking at it.</li>
+          <li>[!lowtech] The first snow of the year fell overnight. The generators are humming under a white blanket, the paths are gone, and {A_nameDef} has already been out and built a lopsided snowman by the gate with a bucket for a hat.</li>
+          <li>[forest] Snow fell on the woods overnight, and the trees are bent with it. Every so often a branch lets go of its load with a soft thump, and everything smells of cold and pine.</li>
+        </texts>
+        <defaultOption>1</defaultOption>
+        <options>
+          <li>
+            <label>Call it a snow day</label>
+            <outcome>The council called a snow day. The work can wait one morning. The yard was full of snowball fights by breakfast, and of people warming their hands at the fire by noon.</outcome>
+            <outcomes>
+              <li>[children] The council called a snow day, and the children were overjoyed. So were a few of the grown-ups, who were seen hiding behind the woodpile with an armful of snowballs.</li>
+              <li>[colony:Hardworking] The council surprised everyone by calling a snow day. {A_nameDef} wasn't sure what to do with it at first.</li>
+            </outcomes>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Joy"><target>Colony</target><amount>0.25</amount></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_Evt_SnowDay</thought></li>
+            </effects>
+            <ways><toil>-2</toil></ways>
+          </li>
+          <li>
+            <label>Clear the paths and carry on</label>
+            <outcome>The paths are shoveled, the firewood is brought in under cover, and the colony gets on with its day in the snow.</outcome>
+            <outcomes>
+              <li>[colony:Easygoing] The paths get cleared, eventually, between snowball fights.</li>
+            </outcomes>
+            <ways><toil>1</toil></ways>
+          </li>
+        </options>
+      </li>
+      <li Class="ColonyCouncil.HappeningSetting">
+        <minTileTemp>-14</minTileTemp>
+        <maxTileTemp>16</maxTileTemp>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== The longest night ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Council_Evt_LongestNight</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>the longest night</label>
+    <workerClass>ColonyCouncil.HappeningWorker_Setting</workerClass>
+    <baseChance>0.9</baseChance>
+    <minRefireDays>50</minRefireDays>
+    <earliestDay>12</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Nature</group>
+        <seasons>
+          <li>Winter</li>
+        </seasons>
+        <answerDays>0.5</answerDays>
+        <journal>Council_Journal_Evt_LongestNight</journal>
+        <titles>
+          <li>The longest night</li>
+          <li>[medieval] Midwinter's eve</li>
+          <li>[tribal] The night the sun is lost</li>
+        </titles>
+        <texts>
+          <li>[tribal] Tonight is the longest night of the year. Among the tribes, the longest night is kept awake: the fire is kept high until dawn, so the sun can find its way back.\n\n{A_nameDef} has been stacking wood since noon.</li>
+          <li>[medieval] It's midwinter's eve. In the villages {A_nameDef} grew up among, the longest night was for a log big enough to burn until morning, and for staying up with it, telling the year's stories.\n\nThere's an old stump by the fields that would do nicely, {A_nameDef} says.</li>
+          <li>[industrial] It's the longest night of the year. {A_nameDef} says back home they hung lights in every window and kept a candle burning in the kitchen till morning, and the colony could do with something like that this winter.</li>
+          <li>[spacer] By the colony's own calendar, tonight is midwinter, the longest night this world has. {A_nameDef} grew up on a ship with no seasons at all, and wants to mark it anyway: a fire, a meal, everyone awake to see the sun come back.</li>
+          <li>[cold] The sun was up for barely five hours today, low and red, and tonight is the longest night of the year. {A_nameDef} thinks the colony should keep it together rather than each alone in the dark.</li>
+        </texts>
+        <defaultOption>2</defaultOption>
+        <options>
+          <li>
+            <label>Keep the fire burning till dawn (40 wood)</label>
+            <outcome>The colony kept the longest night together. The fire burned until dawn, the stories ran out somewhere after midnight, and everyone who was still awake cheered when the sky went gray.</outcome>
+            <outcomes>
+              <li>[tribal] The drums kept time with the fire all night, and when the first gray light came over the hills, the colony shouted the sun home.</li>
+              <li>[medieval] The midwinter log burned until morning, and the colony told the year's stories over it, the good ones twice.</li>
+              <li>[industrial|spacer] The lights stayed on in every window and the fire in the yard stayed high, and the colony saw the sun up together, half of them asleep in their chairs.</li>
+            </outcomes>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>WoodLog</what><count>40</count></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Joy"><target>Colony</target><amount>0.2</amount></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_Evt_KeptLongestNight</thought></li>
+            </effects>
+            <ways><tradition>3</tradition></ways>
+          </li>
+          <li>
+            <label>A good supper, then early to bed</label>
+            <outcome>The longest night gets a better supper than most, and an early night after it.</outcome>
+            <outcomes>
+              <li>[lowtech] The colony marks the night with a roast and a jug of something warm, and goes to bed early, as people sensibly do in winter.</li>
+            </outcomes>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>rawfood</what><count>15</count></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_Evt_MidwinterSupper</thought></li>
+            </effects>
+            <ways><tradition>1</tradition></ways>
+          </li>
+          <li>
+            <label>Just another night</label>
+            <outcome>It's just another night, in the end, and the colony sleeps through it.</outcome>
+            <outcomes>
+              <li>[colony:Traditional] It's just another night this year. {A_nameDef} sat up alone with the last of the embers, then went to bed.</li>
+            </outcomes>
+          </li>
+        </options>
+      </li>
+      <li Class="ColonyCouncil.HappeningSetting">
+        <maxTileTemp>20</maxTileTemp>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== An eclipse ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Council_Evt_Eclipse</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>the sun goes dark</label>
+    <workerClass>ColonyCouncil.HappeningWorker_Setting</workerClass>
+    <baseChance>0.4</baseChance>
+    <minRefireDays>120</minRefireDays>
+    <earliestDay>15</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Nature</group>
+        <condition>Eclipse</condition>
+        <days>0.3~0.5</days>
+        <answerDays>0.3</answerDays>
+        <titles>
+          <li>The sun goes dark</li>
+          <li>[tribal] The sky-wolf eats the sun</li>
+          <li>[!lowtech] An eclipse</li>
+        </titles>
+        <texts>
+          <li>[tribal] In the middle of the day, a bite has been taken out of the sun, and the bite is growing. The birds have gone quiet and the light has turned thin and strange.\n\nThe old stories say a wolf in the sky eats the sun, and the people must drum and shout until it spits it out again. {A_nameDef} is already looking for the drum.</li>
+          <li>[medieval] At midday, a shadow began to slide across the sun. The light has gone the color of old brass, the dogs are howling, and {A_nameDef} came running in from the fields to ask whether it's the end of the world.\n\nThe older folk say it's an omen. They don't agree on what of.</li>
+          <li>[industrial] The sun is going out. An eclipse, {A_nameDef} says, and quite a long one: the moon is crossing in front of it, and for a while this afternoon it'll be nearly as dark as night.\n\n{A_nameDef} is smoking a piece of glass over a candle so everyone can look without going blind.</li>
+          <li>[spacer] The colony's star is being eclipsed by one of this world's moons. The solar panels have dropped to a trickle, the birds have gone to roost in the middle of the afternoon, and {A_nameDef} has worked out to the minute when the sun will come back.\n\nIt's still eerie, knowing all that.</li>
+          <li>The light is going wrong. In the middle of the afternoon, the sun has a black bite out of it, the shadows have gone sharp, and the air is cooling. {A_nameDef} has stopped work to stare.</li>
+        </texts>
+        <defaultOption>2</defaultOption>
+        <options>
+          <li>
+            <label>Drum and shout the sun back</label>
+            <outcome>The colony stood together in the strange dusk, drumming on anything that would make a noise and shouting at the sky, and the sun came back. {A_nameDef} says that settles it.</outcome>
+            <outcomes>
+              <li>[tribal] The drums went until the wolf let go, and the sun came back whole. {A_nameDef} drummed hardest of all.</li>
+              <li>[medieval] The colony rang every bell and banged every pot until the shadow slid away, and the sun came back.</li>
+              <li>[industrial|spacer] It's not as if the noise did anything, {A_nameDef} admits. But the colony banged pans in the yard until the light came back, and it felt right.</li>
+            </outcomes>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_Evt_SunCameBack</thought></li>
+            </effects>
+            <ways><tradition>2</tradition></ways>
+          </li>
+          <li>
+            <label>Watch it through smoked glass</label>
+            <outcome>The colony took turns at the smoked glass while {B_nameDef} explained what was happening and why, and drew the moon's path in the dirt with a stick.</outcome>
+            <outcomes>
+              <li>[lowtech] {B_nameDef} held up a piece of dark horn to the sun and let everyone look through it in turn, explaining as much as anyone knows about why the sun hides.</li>
+              <li>[spacer] {B_nameDef} put the numbers up on a screen and talked everyone through the orbits while the shadow crossed. Some of them even listened.</li>
+            </outcomes>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Needs"><target>Colony</target><skill>Intellectual</skill><minLevel>5</minLevel><asB>true</asB></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Learn"><target>Colony</target><skill>Intellectual</skill><xp>200</xp></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Learn"><target>B</target><skill>Intellectual</skill><xp>500</xp></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_Evt_WatchedEclipse</thought></li>
+            </effects>
+            <ways><openness>2</openness></ways>
+          </li>
+          <li>
+            <label>Get on with the day</label>
+            <outcome>The sun goes dark for a while, and comes back. The colony works on by lamplight in between.</outcome>
+            <outcomes>
+              <li>[trait:Nervous] The colony works on through the dark. {A_nameDef} jumped at every shadow until the light came back.</li>
+            </outcomes>
+          </li>
+        </options>
+      </li>
+      <li Class="ColonyCouncil.HappeningSetting" />
+    </modExtensions>
+  </IncidentDef>
+
+</Defs>
