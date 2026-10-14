@@ -75,6 +75,35 @@ namespace ColonyCouncil
             return false;
         }
 
+        /// <summary>A memory of one of these thoughts (names or "Prefix*"), at most <paramref name="days"/> old, or null.</summary>
+        public static Thought_Memory Remembered(Pawn p, List<string> thoughts, float days)
+        {
+            var memories = p?.needs?.mood?.thoughts?.memories?.Memories;
+            if (memories == null || thoughts.NullOrEmpty()) return null;
+            int max = (int)(days * GenDate.TicksPerDay);
+            for (int i = 0; i < memories.Count; i++)
+            {
+                var m = memories[i];
+                if (m?.def != null && m.age <= max && Matches(m.def.defName, thoughts)) return m;
+            }
+            return null;
+        }
+
+        /// <summary>Both have the same one of these conditions, visible (a cold going round, lice in a shared room).</summary>
+        public static bool ShareOne(Pawn a, Pawn b, List<string> hediffs)
+        {
+            var hs = a?.health?.hediffSet?.hediffs;
+            if (hs == null || b?.health?.hediffSet == null || hediffs.NullOrEmpty()) return false;
+            for (int i = 0; i < hs.Count; i++)
+            {
+                var h = hs[i];
+                if (h?.def == null || !h.Visible || !Matches(h.def.defName, hediffs)) continue;
+                var other = b.health.hediffSet.GetFirstHediffOfDef(h.def);
+                if (other != null && other.Visible) return true;
+            }
+            return false;
+        }
+
         /// <summary>A name against a list of names and "Prefix*" patterns, compared in place.</summary>
         public static bool Matches(string name, List<string> patterns)
         {

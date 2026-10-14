@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Moods from the second set of moments (Defs/InteractionDefs/Council_Moments2.xml) and frictions
+    (Council_Moments_Frictions2.xml). Small and short, one per other person. Their names start with Council_Moment_ and
+    Council_Friction_, so the heart's feelings take them in the way they take the first set.
+  -->
+
+  <ThoughtDef Name="Council_Moment2Base" Abstract="True">
+    <thoughtClass>ColonyCouncil.Thought_CouncilSocial</thoughtClass>
+    <durationDays>1</durationDays>
+    <stackLimit>2</stackLimit>
+    <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
+  </ThoughtDef>
+
+  <!-- ===================== Natures that meet ===================== -->
+
+  <ThoughtDef ParentName="Council_Moment2Base">
+    <defName>Council_Moment_FriendlyDisagreement</defName>
+    <stages><li><label>a friendly disagreement</label><description>We never see things the same way. It's good to argue it out with someone who listens.</description><baseMoodEffect>1</baseMoodEffect><baseOpinionOffset>2</baseOpinionOffset></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_Moment2Base">
+    <defName>Council_Moment_NightCompany</defName>
+    <stages><li><label>company in the small hours</label><description>Someone else who's awake when the rest are asleep. The night went quicker with two.</description><baseMoodEffect>2</baseMoodEffect><baseOpinionOffset>4</baseOpinionOffset></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_Moment2Base">
+    <defName>Council_Moment_UnderTheMountain</defName>
+    <stages><li><label>a fellow under the mountain</label><description>Someone else who likes rock overhead. We could sit in those tunnels all day.</description><baseMoodEffect>1</baseMoodEffect><baseOpinionOffset>4</baseOpinionOffset></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_Moment2Base">
+    <defName>Council_Moment_ComparedScars</defName>
+    <stages><li><label>compared scars</label><description>We showed each other our scars and told the stories. Theirs were nearly as good as mine.</description><baseMoodEffect>1</baseMoodEffect><baseOpinionOffset>4</baseOpinionOffset></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_Moment2Base">
+    <defName>Council_Moment_FeltSafer</defName>
+    <durationDays>2</durationDays>
+    <stages><li><label>someone will stand in front</label><description>They said that next time I can stand behind them. I feel a little safer.</description><baseMoodEffect>2</baseMoodEffect><baseOpinionOffset>5</baseOpinionOffset></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_Moment2Base">
+    <defName>Council_Moment_TheyRemembered</defName>
+    <durationDays>2</durationDays>
+    <stages><li><label>they remembered</label><description>They remembered something I said weeks ago. I didn't think anyone was listening.</description><baseMoodEffect>2</baseMoodEffect><baseOpinionOffset>5</baseOpinionOffset></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_Moment2Base">
+    <defName>Council_Moment_PlannedAFeast</defName>
+    <stages><li><label>planned a feast</label><description>We planned a whole feast down to the sauces. We'll never cook it, and it was still a good hour.</description><baseMoodEffect>1</baseMoodEffect><baseOpinionOffset>4</baseOpinionOffset></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_Moment2Base">
+    <defName>Council_Moment_AMindToMatch</defName>
+    <stages><li><label>a mind to match mine</label><description>We talked about things nobody else here cares about, and they kept up.</description><baseMoodEffect>1</baseMoodEffect><baseOpinionOffset>4</baseOpinionOffset></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_Moment2Base">
+    <defName>Council_Moment_WorkedLate</defName>
+    <stages><li><label>worked late together</label><description>We kept at it after the others stopped. Good to work beside someone who doesn't need telling.</description><baseMoodEffect>1</baseMoodEffect><baseOpinionOffset>4</baseOpinionOffset></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_Moment2Base">
+    <defName>Council_Moment_Steadied</defName>
+    <durationDays>2</durationDays>
+    <stages><li><label>they steadied me</label><description>I was coming apart, and they stayed calm until I wasn't.</description><baseMoodEffect>3</baseMoodEffect><baseOpinionOffset>5</baseOpinionOffset></li></stages>
+  </ThoughtDef>
+
+  <!-- ===================== Illness ===================== -->
+
+  <ThoughtDef ParentName="Council_Moment2Base">
+    <defName>Council_Moment_VisitedWhileIll</defName>
+    <durationDays>2</durationDays>
+    <stages><li><label>visited while I was ill</label><description>I felt rotten, and they came by to sit with me for a while.</description><baseMoodEffect>2</baseMoodEffect><baseOpinionOffset>5</baseOpinionOffset></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_Moment2Base">
+    <defName>Council_Moment_SickTogether</defName>
+    <stages><li><label>sick together</label><description>We're both feeling poorly. Somehow it's easier to complain to someone who knows.</description><baseMoodEffect>1</baseMoodEffect><baseOpinionOffset>3</baseOpinionOffset></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_Moment2Base">
+    <defName>Council_Moment_GotARemedy</defName>
+    <stages><li><label>an old remedy</label><description>They swore by some old cure for what I've got. It might even work.</description><baseMoodEffect>1</baseMoodEffect><baseOpinionOffset>2</baseOpinionOffset></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_Moment2Base">
+    <defName>Council_Moment_WelcomedBack</defName>
+    <durationDays>2</durationDays>
+    <stages><li><label>welcomed back on my feet</label><description>They were so glad to see me up again. I hadn't known they'd been worried.</description><baseMoodEffect>2</baseMoodEffect><baseOpinionOffset>4</baseOpinionOffset></li></stages>
+  </ThoughtDef>
+
+  <!-- ===================== The council, camps and the region ===================== -->
+
+  <ThoughtDef ParentName="Council_Moment2Base">
+    <defName>Council_Moment_TalkedOverMeeting</defName>
+    <stages><li><label>talked over the meeting</label><description>We went over the council meeting again afterward. I understand it better now.</description><baseMoodEffect>1</baseMoodEffect><baseOpinionOffset>2</baseOpinionOffset></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_Moment2Base">
+    <defName>Council_Moment_WatchedTheCamp</defName>
+    <stages><li><label>watched the camp together</label><description>We watched the camp from the wall and made up stories about the people in it.</description><baseMoodEffect>1</baseMoodEffect><baseOpinionOffset>3</baseOpinionOffset></li></stages>
+  </ThoughtDef>
+
+  <!-- ===================== What they feel ===================== -->
+
+  <ThoughtDef ParentName="Council_Moment2Base">
+    <defName>Council_Moment_SaidItOutLoud</defName>
+    <durationDays>2</durationDays>
+    <stages><li><label>said it out loud</label><description>I told someone what's been weighing on me. It isn't gone, but it's lighter.</description><baseMoodEffect>3</baseMoodEffect><baseOpinionOffset>5</baseOpinionOffset></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_Moment2Base">
+    <defName>Council_Moment_HeardTheirWorries</defName>
+    <stages><li><label>trusted with their worries</label><description>They told me what's been keeping them up at night. I'm glad it was me they told.</description><baseMoodEffect>1</baseMoodEffect><baseOpinionOffset>4</baseOpinionOffset></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_Moment2Base">
+    <defName>Council_Moment_ThankedAgain</defName>
+    <durationDays>2</durationDays>
+    <stages><li><label>thanked again</label><description>They still remember what I did for them, and they made sure I knew it.</description><baseMoodEffect>2</baseMoodEffect><baseOpinionOffset>5</baseOpinionOffset></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_Moment2Base">
+    <defName>Council_Moment_RepaidAKindness</defName>
+    <stages><li><label>repaid a kindness</label><description>I did something for them in return. It's a start.</description><baseMoodEffect>1</baseMoodEffect><baseOpinionOffset>3</baseOpinionOffset></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_Moment2Base">
+    <defName>Council_Moment_PlansAhead</defName>
+    <stages><li><label>plans for the years ahead</label><description>We talked about what this place could be in ten years. I want to see it.</description><baseMoodEffect>1</baseMoodEffect><baseOpinionOffset>3</baseOpinionOffset></li></stages>
+  </ThoughtDef>
+
+  <!-- ===================== Frictions ===================== -->
+
+  <ThoughtDef ParentName="Council_FrictionThoughtBase">
+    <defName>Council_Friction_ThatVoice</defName>
+    <durationDays>0.5</durationDays>
+    <stages><li><label>that voice</label><description>Their voice goes right through me. I had to say something.</description><baseMoodEffect>-1</baseMoodEffect><baseOpinionOffset>-3</baseOpinionOffset></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_FrictionThoughtBase">
+    <defName>Council_Friction_ToldToHush</defName>
+    <stages><li><label>told to hush</label><description>They asked me to keep it down. I wasn't even being loud.</description><baseMoodEffect>-1</baseMoodEffect><baseOpinionOffset>-3</baseOpinionOffset></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_FrictionThoughtBase">
+    <defName>Council_Friction_Startled</defName>
+    <durationDays>0.5</durationDays>
+    <stages><li><label>gave me a fright</label><description>They crept up on me again, breathing like that. My heart's still going.</description><baseMoodEffect>-1</baseMoodEffect><baseOpinionOffset>-3</baseOpinionOffset></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_FrictionThoughtBase">
+    <defName>Council_Friction_CalledCreepy</defName>
+    <stages><li><label>treated like a creep</label><description>They jumped away from me as if I'd done something. I was only standing there.</description><baseMoodEffect>-1</baseMoodEffect><baseOpinionOffset>-4</baseOpinionOffset></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_FrictionThoughtBase">
+    <defName>Council_Friction_FireWorry</defName>
+    <durationDays>0.5</durationDays>
+    <stages><li><label>keeping an eye on the fire-lover</label><description>Someone has to watch where they put the tinder. Apparently that someone is me.</description><baseMoodEffect>-1</baseMoodEffect><baseOpinionOffset>-2</baseOpinionOffset></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_FrictionThoughtBase">
+    <defName>Council_Friction_NotTrusted</defName>
+    <stages><li><label>not trusted near a fire</label><description>They took the tinderbox off me again, like a child.</description><baseMoodEffect>-1</baseMoodEffect><baseOpinionOffset>-3</baseOpinionOffset></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_FrictionThoughtBase">
+    <defName>Council_Friction_Lectured</defName>
+    <stages><li><label>lectured about my things</label><description>They told me I own too much. I'll own what I like, thank you.</description><baseMoodEffect>-1</baseMoodEffect><baseOpinionOffset>-3</baseOpinionOffset></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_FrictionThoughtBase">
+    <defName>Council_Friction_TooMuchSkin</defName>
+    <durationDays>0.5</durationDays>
+    <stages><li><label>saw more than I wanted to</label><description>Some of us would like to eat without seeing quite so much of a person.</description><baseMoodEffect>-1</baseMoodEffect><baseOpinionOffset>-2</baseOpinionOffset></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_FrictionThoughtBase">
+    <defName>Council_Friction_ToldToDress</defName>
+    <stages><li><label>told to get dressed</label><description>They keep telling me to put more clothes on. My body is my business.</description><baseMoodEffect>-1</baseMoodEffect><baseOpinionOffset>-3</baseOpinionOffset></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_FrictionThoughtBase">
+    <defName>Council_Friction_Pace</defName>
+    <durationDays>0.5</durationDays>
+    <stages><li><label>couldn't agree on a pace</label><description>We tried to walk somewhere together. One of us was too fast and one too slow.</description><baseMoodEffect>-1</baseMoodEffect><baseOpinionOffset>-2</baseOpinionOffset></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_FrictionThoughtBase">
+    <defName>Council_Friction_BodyArgument</defName>
+    <stages><li><label>argued about implants</label><description>We argued about machine parts and what makes a person. Neither of us moved an inch.</description><baseMoodEffect>-1</baseMoodEffect><baseOpinionOffset>-3</baseOpinionOffset></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_FrictionThoughtBase">
+    <defName>Council_Friction_Shunned</defName>
+    <stages><li><label>treated like I'm catching</label><description>I'm ill, not cursed. They moved away from me at the table.</description><baseMoodEffect>-1</baseMoodEffect><baseOpinionOffset>-3</baseOpinionOffset></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_FrictionThoughtBase">
+    <defName>Council_Friction_CampSpat</defName>
+    <stages><li><label>argued about the camp</label><description>We argued about the people camped on our land. They're wrong about them.</description><baseMoodEffect>-1</baseMoodEffect><baseOpinionOffset>-3</baseOpinionOffset></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_FrictionThoughtBase">
+    <defName>Council_Friction_SnappedAt</defName>
+    <durationDays>0.5</durationDays>
+    <stages><li><label>snapped at</label><description>They bit my head off over nothing. Whatever's eating them, it wasn't me.</description><baseMoodEffect>-1</baseMoodEffect><baseOpinionOffset>-3</baseOpinionOffset></li></stages>
+  </ThoughtDef>
+
+</Defs>
