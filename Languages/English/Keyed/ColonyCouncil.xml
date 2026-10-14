@@ -573,7 +573,7 @@
   <CC_Plan_Block_Edge>Too close to the map edge or unexplored ground.</CC_Plan_Block_Edge>
   <CC_Plan_Block_Rock>Rock is in the way. Tick "mine rock" to dig it out.</CC_Plan_Block_Rock>
   <CC_Plan_Block_Own>Your own buildings are in the way. Tick "replace my buildings" to take them down first.</CC_Plan_Block_Own>
-  <CC_Plan_Block_Ground>The ground here can't hold walls (water, marsh or mud).</CC_Plan_Block_Ground>
+  <CC_Plan_Block_Ground>None of this room can be built here. The ground can't hold walls (water, marsh or mud).</CC_Plan_Block_Ground>
   <CC_Plan_Block_Other>Something you can't remove is in the way.</CC_Plan_Block_Other>
   <CC_Plan_Block_DoorRock>Rock where the door goes. Tick "mine rock".</CC_Plan_Block_DoorRock>
   <CC_Plan_Block_DoorOwn>One of your buildings sits where the door goes. Tick "replace my buildings", or move the door.</CC_Plan_Block_DoorOwn>

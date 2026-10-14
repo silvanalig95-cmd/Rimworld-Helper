@@ -33,6 +33,8 @@ namespace ColonyCouncil
         /// <summary>Its footprint on the map.</summary>
         public CellRect rect;
         public ResolvedThing source;
+        /// <summary>Left out because the ground can't hold it (water, marsh, mud), not because something is in the way.</summary>
+        public bool ground;
     }
 
     /// <summary>Where every wall, door and piece of furniture of a template would go, and what's in the way.</summary>
@@ -54,10 +56,18 @@ namespace ColonyCouncil
         public List<IntVec3> wallBlocked = new List<IntVec3>();
         public List<IntVec3> interior = new List<IntVec3>();
         public List<IntVec3> interiorBlocked = new List<IntVec3>();
+        /// <summary>Wall cells on ground that can't hold a wall (water, marsh, mud): left open, the rest still goes down.</summary>
+        public List<IntVec3> wallSkipped = new List<IntVec3>();
+        /// <summary>Cells inside on ground nothing can stand on (deep water): no floor and no furniture there.</summary>
+        public List<IntVec3> interiorSkipped = new List<IntVec3>();
         public IntVec3 door = IntVec3.Invalid;
         public PieceState doorState = PieceState.Ready;
         public bool doorExists;
         public string doorReason;
+        /// <summary>The door's cell can't hold a door, so the room goes down without one (<see cref="doorState"/> is Blocked).</summary>
+        public bool doorSkipped;
+        /// <summary>What the game said about a wall it won't place, when it isn't the ground or a building.</summary>
+        public string otherReason;
 
         /// <summary>Cells to mine (inside the room, the doorway, and the step in front of the door).</summary>
         public List<IntVec3> mine = new List<IntVec3>();
@@ -72,7 +82,7 @@ namespace ColonyCouncil
         public List<PlannedThing> furniture = new List<PlannedThing>();
         public List<string> warnings = new List<string>();
 
-        public bool rockBlocked, ownBlocked, edgeBlocked, groundBlocked, otherBlocked;
+        public bool rockBlocked, ownBlocked, edgeBlocked, otherBlocked;
         /// <summary>Furnishing a room that's already built: no walls or door, only what's missing.</summary>
         public bool upgrade;
         public Room upgradeRoom;
@@ -80,20 +90,47 @@ namespace ColonyCouncil
         /// <summary>A door in a west or east wall turns with it (the game draws doors by the wall they sit in).</summary>
         public Rot4 DoorRot => new Rot4(TemplateMath.DoorFacing(rotation));
 
-        public bool Valid => wallBlocked.Count == 0 && interiorBlocked.Count == 0 && doorState != PieceState.Blocked;
+        /// <summary>
+        /// Every part of the room can go down where it's drawn: nothing in the way and nothing left out for the ground.
+        /// "Find a good spot" only suggests spots like this.
+        /// </summary>
+        public bool Valid => CanPlace && Skipped == 0;
+
+        /// <summary>
+        /// Nothing the player has to deal with first is in the way, so a click places it. Cells whose ground can't hold
+        /// anything are simply left out (a warning), unless that leaves nothing at all to build.
+        /// </summary>
+        public bool CanPlace => wallBlocked.Count == 0 && interiorBlocked.Count == 0 && (doorState != PieceState.Blocked || doorSkipped)
+                                && (Skipped == 0 || AnythingToBuild);
+
+        /// <summary>Wall segments, inside cells and the door left out because of the ground.</summary>
+        public int Skipped => wallSkipped.Count + interiorSkipped.Count + (doorSkipped ? 1 : 0);
+
+        /// <summary>Furniture left out because the ground under it can't hold it.</summary>
+        public int GroundFurniture => furniture.Count(f => f.state == PieceState.Blocked && f.ground);
+
+        /// <summary>Anything at all left out because of the ground: the click then says what and why.</summary>
+        public bool LeavesOutGround => Skipped > 0 || GroundFurniture > 0;
+
+        /// <summary>At least one wall, the door, a piece of furniture or some floor would go down.</summary>
+        public bool AnythingToBuild =>
+            wallNew.Count + wallWaiting.Count > 0
+            || (!doorExists && (doorState == PieceState.Ready || doorState == PieceState.Waiting))
+            || furniture.Any(f => f.state == PieceState.Ready || f.state == PieceState.Waiting)
+            || floorCells > 0;
 
         public string FailReason
         {
             get
             {
                 var reasons = new List<string>();
-                if (doorState == PieceState.Blocked && !doorReason.NullOrEmpty()) reasons.Add(doorReason);
+                if (doorState == PieceState.Blocked && !doorSkipped && !doorReason.NullOrEmpty()) reasons.Add(doorReason);
                 if (edgeBlocked) reasons.Add("CC_Plan_Block_Edge".Translate());
                 if (rockBlocked) reasons.Add("CC_Plan_Block_Rock".Translate());
                 if (ownBlocked) reasons.Add("CC_Plan_Block_Own".Translate());
-                if (groundBlocked) reasons.Add("CC_Plan_Block_Ground".Translate());
-                if (otherBlocked) reasons.Add("CC_Plan_Block_Other".Translate());
-                if (reasons.Count == 0 && !Valid) reasons.Add("CC_Plan_Blocked".Translate());
+                if (otherBlocked) reasons.Add(otherReason.NullOrEmpty() ? "CC_Plan_Block_Other".Translate().ToString() : otherReason);
+                if (Skipped > 0 && !AnythingToBuild) reasons.Add("CC_Plan_Block_Ground".Translate());
+                if (reasons.Count == 0 && !CanPlace) reasons.Add("CC_Plan_Blocked".Translate());
                 return reasons.Count == 0 ? null : string.Join("\n", reasons.Distinct());
             }
         }
@@ -259,6 +296,8 @@ namespace ColonyCouncil
                                 plan.smoothWalls.Add(cell);
                         }
                         else if (HasWallBlueprint(cell, map)) plan.wallReuse.Add(cell);
+                        // Water, marsh or mud: no wall can stand there whatever is cleared, so the gap is left and the rest goes down.
+                        else if (!GroundHolds(ThingDefOf.Wall, cell, map, Rot4.North, wallStuff)) plan.wallSkipped.Add(cell);
                         else if (ed != null && IsOwn(ed) && replace && CanTakeDown(ed))
                         {
                             plan.deconstruct.Add(ed);
@@ -270,12 +309,16 @@ namespace ColonyCouncil
                             plan.ownBlocked = true;
                             plan.wallBlocked.Add(cell);
                         }
-                        else if (GenConstruct.CanPlaceBlueprintAt(ThingDefOf.Wall, cell, Rot4.North, map, false, null, null, wallStuff).Accepted) plan.wallNew.Add(cell);
                         else
                         {
-                            if (ed == null) plan.groundBlocked = true;
-                            else plan.otherBlocked = true;
-                            plan.wallBlocked.Add(cell);
+                            var report = GenConstruct.CanPlaceBlueprintAt(ThingDefOf.Wall, cell, Rot4.North, map, false, null, null, wallStuff);
+                            if (report.Accepted) plan.wallNew.Add(cell);
+                            else
+                            {
+                                plan.otherBlocked = true;
+                                if (ed == null && plan.otherReason == null && !report.Reason.NullOrEmpty()) plan.otherReason = report.Reason;
+                                plan.wallBlocked.Add(cell);
+                            }
                         }
                     }
                     else
@@ -310,13 +353,18 @@ namespace ColonyCouncil
                         }
                         else if (cell.GetTerrain(map).passability == Traversability.Impassable)
                         {
-                            plan.groundBlocked = true;
-                            plan.interiorBlocked.Add(cell);
+                            // Deep water and the like: nothing goes there, the rest of the room still does.
+                            plan.interiorSkipped.Add(cell);
+                            continue;
                         }
                         if (!quick)
                         {
                             var terrain = cell.GetTerrain(map);
-                            if (plan.floor != null && terrain != plan.floor) floorCount++;
+                            // Only where the floor can be laid: it isn't counted (or paid for) on ground that won't take it.
+                            if (plan.floor != null && terrain != plan.floor)
+                            {
+                                if (GroundHolds(plan.floor, cell, map, Rot4.North, plan.floorStuff)) floorCount++;
+                            }
                             else if (plan.floor == null && smooth && terrain.smoothedTerrain != null && ed == null
                                      && map.designationManager.DesignationAt(cell, DesignationDefOf.SmoothFloor) == null)
                                 plan.smoothFloors.Add(cell);
@@ -328,7 +376,7 @@ namespace ColonyCouncil
 
             foreach (var pt in placed)
             {
-                if (pt.state != PieceState.Blocked) pt.state = FurnitureState(plan, map, pt.source, pt.rect, pt.cell, pt.rot, out pt.reason);
+                if (pt.state != PieceState.Blocked) pt.state = FurnitureState(plan, map, pt.source, pt.rect, pt.cell, pt.rot, out pt.reason, out pt.ground);
                 plan.furniture.Add(pt);
             }
 
@@ -452,7 +500,7 @@ namespace ColonyCouncil
                 foreach (var c in room.Cells)
                 {
                     var terrain = c.GetTerrain(map);
-                    if (terrain != plan.floor && IsBare(terrain)) bare++;
+                    if (terrain != plan.floor && IsBare(terrain) && GroundHolds(plan.floor, c, map, Rot4.North, plan.floorStuff)) bare++;
                 }
             plan.floorCells = bare;
 
@@ -496,12 +544,14 @@ namespace ColonyCouncil
                     }
                     else if (pt.state != PieceState.Blocked)
                     {
-                        pt.state = FurnitureState(plan, map, f, worldRect, pt.cell, pt.rot, out pt.reason);
+                        pt.state = FurnitureState(plan, map, f, worldRect, pt.cell, pt.rot, out pt.reason, out pt.ground);
                     }
                     plan.furniture.Add(pt);
                 }
             }
-            int blocked = plan.furniture.Count(p => p.state == PieceState.Blocked);
+            int groundFurniture = plan.GroundFurniture;
+            if (groundFurniture > 0) plan.warnings.Add("CC_Plan_Warn_FurnitureGround".Translate(groundFurniture));
+            int blocked = plan.furniture.Count(p => p.state == PieceState.Blocked) - groundFurniture;
             if (blocked > 0) plan.warnings.Add("CC_Plan_Warn_FurnitureBlocked".Translate(blocked));
             return plan;
         }
@@ -555,6 +605,14 @@ namespace ColonyCouncil
                     return;
                 }
             }
+            // A door can't stand in water, marsh or mud: the room goes down without it, and the planner says so.
+            if (!GroundHolds(plan.doorDef, cell, map, plan.DoorRot, plan.doorStuff))
+            {
+                plan.doorState = PieceState.Blocked;
+                plan.doorSkipped = true;
+                plan.doorReason = "CC_Plan_Warn_SkipDoor".Translate();
+                return;
+            }
             if (ed != null && IsMineable(ed))
             {
                 if (mineRock)
@@ -585,9 +643,11 @@ namespace ColonyCouncil
             plan.doorReason = ed != null && IsOwn(ed) ? "CC_Plan_Block_DoorOwn".Translate() : "CC_Plan_DoorBlocked".Translate();
         }
 
-        private static PieceState FurnitureState(PlacementPlan plan, Map map, ResolvedThing f, CellRect rect, IntVec3 root, Rot4 rot, out string reason)
+        /// <param name="ground">Set when it's left out because the ground under it can't hold it.</param>
+        private static PieceState FurnitureState(PlacementPlan plan, Map map, ResolvedThing f, CellRect rect, IntVec3 root, Rot4 rot, out string reason, out bool ground)
         {
             reason = null;
+            ground = false;
             bool waiting = false;
             foreach (var c in rect)
             {
@@ -612,7 +672,8 @@ namespace ColonyCouncil
             var report = GenConstruct.CanPlaceBlueprintAt(f.def, root, rot, map, false, null, null, f.stuff);
             if (!report.Accepted)
             {
-                reason = report.Reason;
+                ground = !GroundHolds(f.def, root, map, rot, f.stuff);
+                reason = ground ? "CC_Plan_Skip_FurnitureGround".Translate(f.def.label).ToString() : report.Reason;
                 return PieceState.Blocked;
             }
             return PieceState.Ready;
@@ -620,6 +681,10 @@ namespace ColonyCouncil
 
         private static void AddWarnings(PlacementPlan plan, Map map)
         {
+            // What the ground can't hold first: it changes what the room will be.
+            if (plan.wallSkipped.Count > 0) plan.warnings.Add("CC_Plan_Warn_SkipWalls".Translate(plan.wallSkipped.Count));
+            if (plan.doorSkipped) plan.warnings.Add("CC_Plan_Warn_SkipDoor".Translate());
+            if (plan.interiorSkipped.Count > 0) plan.warnings.Add("CC_Plan_Warn_SkipInside".Translate(plan.interiorSkipped.Count));
             // Overhead mountain inside the room: insects love it.
             int thick = 0;
             foreach (var c in plan.interior)
@@ -633,11 +698,13 @@ namespace ColonyCouncil
             if (plan.deconstruct.Count > 0) plan.warnings.Add("CC_Plan_Warn_Deconstruct".Translate(plan.deconstruct.Count));
             int waiting = plan.furniture.Count(f => f.state == PieceState.Waiting) + plan.wallWaiting.Count + (plan.doorState == PieceState.Waiting ? 1 : 0);
             if (waiting > 0) plan.warnings.Add("CC_Plan_Warn_Waiting".Translate(waiting));
-            int blocked = plan.furniture.Count(f => f.state == PieceState.Blocked);
+            int groundFurniture = plan.GroundFurniture;
+            if (groundFurniture > 0) plan.warnings.Add("CC_Plan_Warn_FurnitureGround".Translate(groundFurniture));
+            int blocked = plan.furniture.Count(f => f.state == PieceState.Blocked) - groundFurniture;
             if (blocked > 0) plan.warnings.Add("CC_Plan_Warn_FurnitureBlocked".Translate(blocked));
             if (plan.template.layoutNotes != null && plan.template.layoutNotes.Count > 0)
                 plan.warnings.Add("CC_Plan_Warn_Rearranged".Translate());
-            if (plan.door.IsValid)
+            if (plan.door.IsValid && !plan.doorSkipped)
             {
                 var outside = DoorOutside(plan, map);
                 if (outside.IsValid && outside.InBounds(map))
@@ -685,7 +752,7 @@ namespace ColonyCouncil
         /// <summary>Places all blueprints and designations, queues what has to wait. Returns a summary for the player.</summary>
         public static string Execute(PlacementPlan plan, Map map)
         {
-            int walls = 0, furniture = 0, floors = 0, skipped = 0, queued = 0, cut = 0, mined = 0, removed = 0, smoothed = 0, present = 0;
+            int walls = 0, furniture = 0, floors = 0, skipped = 0, groundSkipped = 0, queued = 0, cut = 0, mined = 0, removed = 0, smoothed = 0, present = 0;
             var queue = map.GetComponent<CouncilPlanQueue>();
             string label = plan.template.label;
             var dm = map.designationManager;
@@ -756,13 +823,15 @@ namespace ColonyCouncil
                     queue?.Add(f.def, f.stuff, f.cell, f.rot, label);
                     queued++;
                 }
+                else if (f.state == PieceState.Blocked && f.ground) groundSkipped++;
                 else skipped++;
             }
             if (plan.floor != null)
             {
+                var noFloor = plan.interiorSkipped.Count > 0 ? new HashSet<IntVec3>(plan.interiorSkipped) : null;
                 foreach (var c in plan.interior)
                 {
-                    if (c.GetTerrain(map) == plan.floor) continue;
+                    if (c.GetTerrain(map) == plan.floor || (noFloor != null && noFloor.Contains(c))) continue;
                     // Upgrading keeps the floors already laid; only bare ground gets the new floor.
                     if (plan.upgrade && !IsBare(c.GetTerrain(map))) continue;
                     if (plan.mineSet.Contains(c) || plan.deconstructCells.Contains(c))
@@ -796,8 +865,55 @@ namespace ColonyCouncil
             if (smoothed > 0) s += " " + "CC_Plan_Smoothed".Translate(smoothed);
             if (queued > 0) s += " " + "CC_Plan_Queued".Translate(queued);
             if (skipped > 0) s += " " + "CC_Plan_Skipped".Translate(skipped);
+            // What the ground couldn't hold, and why, so a gap in the wall or a missing door is no surprise.
+            var left = new List<string>();
+            if (plan.wallSkipped.Count > 0) left.Add("CC_Plan_SkipPart_Walls".Translate(plan.wallSkipped.Count));
+            if (plan.doorSkipped && !plan.doorExists) left.Add("CC_Plan_SkipPart_Door".Translate());
+            if (groundSkipped > 0) left.Add("CC_Plan_SkipPart_Furniture".Translate(groundSkipped));
+            if (left.Count > 0) s += " " + "CC_Plan_SkippedGround".Translate(TextUtil.JoinAnd(left)).Resolve();
             return s;
         }
+
+        private static bool terrainCheckMissing;
+
+        /// <summary>
+        /// Whether the ground itself can hold this: walls and doors need firm ground, so water, marsh and mud can't take
+        /// them. Asks the game; if that method isn't there (another game version), reads the terrain's affordances itself.
+        /// </summary>
+        public static bool GroundHolds(BuildableDef def, IntVec3 c, Map map, Rot4 rot, ThingDef stuff)
+        {
+            if (def == null || map == null || !c.InBounds(map)) return true;
+            if (!terrainCheckMissing)
+            {
+                try
+                {
+                    return GameSaysGroundHolds(def, c, map, rot, stuff);
+                }
+                catch (System.MissingMethodException)
+                {
+                    terrainCheckMissing = true;
+                }
+                catch
+                {
+                    // One odd modded piece: read the terrain directly below.
+                }
+            }
+            var need = def.terrainAffordanceNeeded;
+            if (need == null) return true;
+            var rect = def is ThingDef td ? GenAdj.OccupiedRect(c, rot, td.size) : CellRect.SingleCell(c);
+            foreach (var cell in rect)
+            {
+                if (!cell.InBounds(map)) return false;
+                var affordances = cell.GetTerrain(map)?.affordances;
+                if (affordances == null || !affordances.Contains(need)) return false;
+            }
+            return true;
+        }
+
+        /// <summary>Kept apart so a missing game method shows up as an exception <see cref="GroundHolds"/> can catch.</summary>
+        [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.NoInlining)]
+        private static bool GameSaysGroundHolds(BuildableDef def, IntVec3 c, Map map, Rot4 rot, ThingDef stuff) =>
+            GenConstruct.CanBuildOnTerrain(def, c, map, rot, null, stuff);
 
         public static bool TryPlace(BuildableDef def, IntVec3 c, Rot4 rot, ThingDef stuff, Map map)
         {
@@ -848,6 +964,7 @@ namespace ColonyCouncil
                     checkedCount++;
                     trial.rotation = rot;
                     var plan = Plan(t, map, a, trial, furniture, true);
+                    // Only spots where all of it can be built: a room with gaps over water is for the player to place, never a suggestion.
                     if (!plan.Valid) continue;
                     score += plan.furniture.Count(f => f.state != PieceState.Blocked) * 2f;
                     score -= plan.mine.Count * 0.8f;

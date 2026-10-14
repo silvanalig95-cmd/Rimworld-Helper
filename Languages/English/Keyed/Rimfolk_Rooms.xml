@@ -53,6 +53,18 @@ Green: enough with some to spare. Amber: only just enough. Red: not enough.</CC_
   <CC_Plan_Block_CantTurn>{0} can only be built facing north, and it doesn't fit that way here.</CC_Plan_Block_CantTurn>
   <CC_Plan_Warn_Rearranged>Some furniture was turned or left out, so every piece can be reached and used.</CC_Plan_Warn_Rearranged>
 
+  <!-- Ground that can't hold walls (water, marsh, mud): the rest of the room still goes down -->
+  <CC_Plan_Warn_SkipWalls>{0} wall segment(s) would stand on water, marsh or mud. They'll be left out, so the wall has a gap there.</CC_Plan_Warn_SkipWalls>
+  <CC_Plan_Warn_SkipDoor>The door's spot is on water, marsh or mud, so the room goes down without a door. Move the door to firm ground to keep it.</CC_Plan_Warn_SkipDoor>
+  <CC_Plan_Warn_SkipInside>{0} cell(s) inside are deep water or other ground nothing can stand on. They stay as they are.</CC_Plan_Warn_SkipInside>
+  <CC_Plan_Warn_FurnitureGround>{0} piece(s) of furniture would stand on ground that can't hold them and will be left out.</CC_Plan_Warn_FurnitureGround>
+  <CC_Plan_Skip_FurnitureGround>The ground here can't hold {0}.</CC_Plan_Skip_FurnitureGround>
+  <CC_Plan_Mouse_Skips>Part of it is on water, marsh or mud and will be left out.</CC_Plan_Mouse_Skips>
+  <CC_Plan_SkippedGround>Left out on water, marsh or mud: {0}.</CC_Plan_SkippedGround>
+  <CC_Plan_SkipPart_Walls>{0} wall segment(s)</CC_Plan_SkipPart_Walls>
+  <CC_Plan_SkipPart_Door>the door</CC_Plan_SkipPart_Door>
+  <CC_Plan_SkipPart_Furniture>{0} piece(s) of furniture</CC_Plan_SkipPart_Furniture>
+
   <!-- Upgrading a built room -->
   <CC_Upgrade_Button>Upgrade a built room</CC_Upgrade_Button>
   <CC_Upgrade_Back>Plan a new room instead</CC_Upgrade_Back>

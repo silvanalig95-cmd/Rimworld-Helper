@@ -45,6 +45,8 @@ namespace ColonyCouncil
         private static readonly Color PresentColor = new Color(0.55f, 0.75f, 1f, 0.35f);
         private static readonly Color SuggestColor = new Color(1f, 0.9f, 0.4f, 0.8f);
         private static readonly Color RoomColor = new Color(0.55f, 0.85f, 1f);
+        /// <summary>Left out because the ground can't hold it (water, marsh, mud): amber, a warning rather than a block.</summary>
+        private static readonly Color SkipColor = new Color(1f, 0.6f, 0.2f);
 
         public Designator_PlanRoom(RoomTemplateDef template)
         {
@@ -191,7 +193,7 @@ namespace ColonyCouncil
             Config.mirror = suggestedMirror;
             Config.Changed();
             var plan = PlanAtAnchor(suggestedAnchor);
-            if (plan.Valid) Place(plan);
+            if (plan.CanPlace) Place(plan);
             else Messages.Message(plan.FailReason ?? "CC_Plan_Blocked".Translate(), MessageTypeDefOf.RejectInput, false);
         }
 
@@ -270,7 +272,7 @@ namespace ColonyCouncil
         {
             if (Template == null || !c.InBounds(Map)) return false;
             var plan = PlanAt(c);
-            if (!plan.Valid) return plan.FailReason ?? "CC_Plan_Blocked".Translate();
+            if (!plan.CanPlace) return plan.FailReason ?? "CC_Plan_Blocked".Translate();
             if (plan.upgrade && !plan.furniture.Any(f => f.state == PieceState.Ready || f.state == PieceState.Waiting) && plan.floorCells <= 0)
                 return "CC_Upgrade_Nothing".Translate();
             return true;
@@ -279,7 +281,7 @@ namespace ColonyCouncil
         public override void DesignateSingleCell(IntVec3 c)
         {
             var plan = PlanAt(c);
-            if (!plan.Valid) return;
+            if (!plan.CanPlace) return;
             Place(plan);
         }
 
@@ -287,7 +289,8 @@ namespace ColonyCouncil
         {
             string summary = TemplatePlanner.Execute(plan, Map);
             var look = plan.door.IsValid ? new LookTargets(plan.door, Map) : plan.upgradeRoom != null ? new LookTargets(plan.upgradeRoom.Cells.First(), Map) : LookTargets.Invalid;
-            Messages.Message(summary, look, MessageTypeDefOf.TaskCompletion, false);
+            // Something left out for the ground: still placed, but said in the warning color.
+            Messages.Message(summary, look, plan.LeavesOutGround ? MessageTypeDefOf.CautionInput : MessageTypeDefOf.TaskCompletion, false);
             cachedPlan = null;
             suggestedAnchor = IntVec3.Invalid;
             // Stays selected, like a normal build order: place another, or right-click to stop.
@@ -325,17 +328,19 @@ namespace ColonyCouncil
             {
                 var room = plan.upgradeRoom;
                 if (room != null && !room.PsychologicallyOutdoors && room.CellCount <= 800)
-                    GenDraw.DrawFieldEdges(room.Cells.ToList(), plan.Valid ? RoomColor : BlockedColor);
+                    GenDraw.DrawFieldEdges(room.Cells.ToList(), plan.CanPlace ? RoomColor : BlockedColor);
             }
             if (plan.wallNew.Count > 0) GenDraw.DrawFieldEdges(plan.wallNew, NewWallColor);
             if (plan.wallReuse.Count > 0) GenDraw.DrawFieldEdges(plan.wallReuse, ReuseColor);
             if (plan.wallWaiting.Count > 0) GenDraw.DrawFieldEdges(plan.wallWaiting, RockColor);
             if (plan.wallBlocked.Count > 0) GenDraw.DrawFieldEdges(plan.wallBlocked, BlockedColor);
+            if (plan.wallSkipped.Count > 0) GenDraw.DrawFieldEdges(plan.wallSkipped, SkipColor);
+            if (plan.interiorSkipped.Count > 0) GenDraw.DrawFieldEdges(plan.interiorSkipped, SkipColor);
             if (plan.mine.Count > 0) GenDraw.DrawFieldEdges(plan.mine, RockColor);
             if (plan.interiorBlocked.Count > 0) GenDraw.DrawFieldEdges(plan.interiorBlocked, BlockedColor);
             if (!plan.upgrade && plan.door.IsValid && plan.door.InBounds(map))
             {
-                var doorColor = plan.doorState == PieceState.Blocked ? BlockedColor : plan.doorState == PieceState.Waiting ? RockColor : Color.white;
+                var doorColor = plan.doorSkipped ? SkipColor : plan.doorState == PieceState.Blocked ? BlockedColor : plan.doorState == PieceState.Waiting ? RockColor : Color.white;
                 GenDraw.DrawFieldEdges(new List<IntVec3> { plan.door }, doorColor);
                 // Turned with its wall: a door in a west or east wall is drawn upright, the way the game will build it.
                 if (!plan.doorExists && plan.doorState != PieceState.Blocked) DrawGhost(plan.doorDef, plan.doorStuff, plan.door, plan.DoorRot, Designator_Place.CanPlaceColor);
@@ -398,7 +403,7 @@ namespace ColonyCouncil
             if (plan.upgrade)
             {
                 text = "CC_Upgrade_Mouse".Translate(Template.FullLabel).CapitalizeFirst();
-                if (!plan.Valid) text += "\n" + plan.FailReason;
+                if (!plan.CanPlace) text += "\n" + plan.FailReason;
                 else
                 {
                     int add = plan.furniture.Count(f => f.state == PieceState.Ready || f.state == PieceState.Waiting);
@@ -406,8 +411,12 @@ namespace ColonyCouncil
                     text += "\n" + "CC_Upgrade_Counts".Translate(add, have);
                 }
             }
-            else if (!plan.Valid) text += "\n" + plan.FailReason;
-            else if (plan.mine.Count > 0) text += "\n" + "CC_Plan_WillMine".Translate(plan.mine.Count);
+            else if (!plan.CanPlace) text += "\n" + plan.FailReason;
+            else
+            {
+                if (plan.LeavesOutGround) text += "\n" + "CC_Plan_Mouse_Skips".Translate();
+                if (plan.mine.Count > 0) text += "\n" + "CC_Plan_WillMine".Translate(plan.mine.Count);
+            }
             GenUI.DrawMouseAttachment(icon, text);
         }
     }

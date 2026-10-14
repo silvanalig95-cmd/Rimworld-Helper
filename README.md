@@ -371,7 +371,12 @@ follows the mouse, and a planner panel lets you:
 - **clear the site**: cut plants and trees, mine rock (inside, in the doorway and just outside the door),
   replace your own buildings in the way, smooth natural stone. Pieces blocked by rock go down by themselves
   once it's mined.
-- let the council **find a good spot** near your colony and the rooms it belongs next to, and place it there.
+- build on **uneven ground**: where part of a room is on water, marsh or mud, the cells that can't hold a wall,
+  the door or a piece of furniture are outlined in amber and left out, and the rest goes down. The message says
+  how many wall segments and pieces were left out, and whether the door was. Only when nothing at all could be
+  built does the planner refuse.
+- let the council **find a good spot** near your colony and the rooms it belongs next to, and place it there. It
+  only suggests spots where all of the room can be built.
 - **upgrade a built room**: hover a room you already have and click. The plan turns to the wall with its door,
   counts what's there and adds only the missing furniture; the floor goes only on bare ground. The panel shows
   the room's impressiveness as it is now.
