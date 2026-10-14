@@ -44,6 +44,11 @@
   <CC_Camp_Help_wood>The {NAME} cut more wood than they needed and left {COUNT} logs where the colony can collect them.</CC_Camp_Help_wood>
   <CC_Camp_Help_medicine>The {NAME} gathered healing herbs and left {COUNT} bundles of herbal medicine for the colony.</CC_Camp_Help_medicine>
   <CC_Camp_Help_mend>{X_nameDef} from the camp saw {A_nameDef}'s worn {THING} and mended it, asking nothing for the work.</CC_Camp_Help_mend>
+  <CC_Camp_Help_heal>{X_nameDef} from the camp saw to {A_nameDef}'s {THING}, and asked nothing for it. {A_nameDef} is already feeling better.</CC_Camp_Help_heal>
+  <CC_Camp_Help_herbs>The {NAME} had herbs to spare and left {COUNT} bundles of herbal medicine where the colony can collect them.</CC_Camp_Help_herbs>
+  <CC_Camp_Help_show>The {NAME} put on a show at their fire this evening, and the colony was invited. {X_nameDef} was the star of it.</CC_Camp_Help_show>
+  <CC_Camp_Help_blessing>{X_nameDef} from the camp came to the colony at dusk and blessed it, its people and its fields, in the old words.</CC_Camp_Help_blessing>
+  <CC_Camp_Help_survey>{X_nameDef} from the camp has been taking sightings in the hills, and has shown {A_nameDef} a seam of {THING} in the colony's own rock.</CC_Camp_Help_survey>
 
   <!-- Tension -->
   <CC_Camp_Tension_Low>easy</CC_Camp_Tension_Low>
