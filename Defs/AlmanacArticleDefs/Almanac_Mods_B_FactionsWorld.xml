@@ -39,6 +39,7 @@ Guests also help with chores, but only where their skill is 7 or more (a setting
           <li>Hospitality guests count as visitors, so your colonists chat, swap stories, flirt and trade insults with them in Rimfolk's encounters. A warm moment makes the guest like that colonist more, which helps toward the friends Hospitality wants before a guest can join.</li>
           <li>The council leaves recruiting and sending away to Hospitality. If a guest asks to stay in a council dilemma, the "welcome them in" answer is grayed out; invite them from their Guest tab instead.</li>
           <li>The guest room plan builds a small room for one visitor; switch its bed to a guest bed once it's built. A colonist with no bed never counts a guest bed as free.</li>
+          <li>With no guest bed in the colony, a kind or sociable colonist may wish for one, most often while visitors are here. Switching any bed to a guest bed grants it.</li>
         </points>
       </li>
     </sections>

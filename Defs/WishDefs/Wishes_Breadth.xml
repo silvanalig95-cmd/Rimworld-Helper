@@ -291,7 +291,7 @@
       <gloomy><li>Strangers come and go, and I stay here.</li></gloomy>
     </expired>
     <reminder>
-      <plain><li>The {SUBJECT} are still out there by their fire.</li></plain>
+      <plain><li>Their fire is still burning over at the {SUBJECT}'s camp.</li></plain>
       <warm><li>If there's a quiet evening, I'd still like to go over to the camp.</li></warm>
     </reminder>
   </ColonyCouncil.WishDef>
@@ -1223,7 +1223,7 @@
     <fulfilledWhen>The colony takes in a new animal: tamed, bought or born.</fulfilledWhen>
     <request>
       <plain>
-        <li>There's a {SUBJECT} out by the trees. Can we keep it? I'll feed it every day.</li>
+        <li>That {SUBJECT} is out by the trees again. Can we keep it? I'll feed it every day.</li>
         <li>I've already named the {SUBJECT}. Please can someone catch it for me?</li>
         <li>[morning] I saw the {SUBJECT} again this morning. It looked right at me.</li>
         <li>[winter] The {SUBJECT} out there must be cold. It could sleep in my room.</li>
