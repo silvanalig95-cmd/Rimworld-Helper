@@ -164,6 +164,27 @@ play deep. In order:
 - Rooms with character: furniture sets per era and mod, room themes, upgrades suggested as the colony grows.
 - Variety checks: a dev report of the lines shown most often, so the pools that repeat get new lines first.
 
+### Always: breadth grows with every round
+Variety means more than more lines: more things that can happen and be wished for. Every round of work adds to
+the content itself, not only to systems, alongside whatever else it does. Where things stood on 14 October 2026:
+
+| Content | Count | Grow toward |
+|---|---|---|
+| Rimfolk events, story stages and missions | 124 | more everyday events per group, more chains, more mission kinds |
+| Wishes | 77 | wishes for every era, skill and passion, mod-aware ones for the always-on mods |
+| Council projects (ambitions) | 40 | projects for every era and colony size, long ones that span seasons |
+| Life goals | 43 | goals for children, elders, every passion |
+| Dilemmas | 98 | dilemmas from the newer systems (camps, illness, meetings, the heart) |
+| Encounters | 96 | encounters by biome and season |
+| Decrees | 13 | decrees for every era and situation |
+| Quirks | 13 | many more small personal quirks |
+| Dreams | 86 | dreams from feelings, illness and the newer events |
+| World events | 22 | more regional situations, and their follow-ups |
+| Camp kinds | 7 | caravans of every kind, pilgrims of every faith |
+| Ailments | (in progress) | a broad everyday tier, a rare serious tier |
+| Room types | 12 (68 layouts) | every workroom, era and DLC |
+| Social events, moments, frictions, nuisances | 53, 93, 12 | every trait pairing and home condition |
+
 ### 5. Wider (integrations)
 - Deeper with the always-on mods: Hospitality guests as visitors with stories, Vanilla Expanded factions and
   Empire storylines in world events, Medieval and Tribal expansions for era flavor, RimWorld of Magic schools in
