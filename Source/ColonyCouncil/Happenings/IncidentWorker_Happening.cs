@@ -227,19 +227,40 @@ namespace ColonyCouncil
         protected string Pick(List<string> lines, HappeningContext ctx)
         {
             if (lines.NullOrEmpty()) return null;
+            return Flavor.Pick(lines, TextTags(ctx)) ?? Flavor.PickText(lines);
+        }
+
+        /// <summary>
+        /// The tags the event's lines are picked by: the era, the season, the event's own (<see cref="AddTags"/>), and who
+        /// the people are and what the colony is known for (<see cref="LetterTags"/>). Also used for the outcome.
+        /// </summary>
+        public HashSet<string> TextTags(HappeningContext ctx)
+        {
             var tags = new HashSet<string>();
             Flavor.AddEraTags(tags);
-            switch (GenLocalDate.Season(ctx.map))
+            if (ctx?.map != null)
             {
-                case Season.Spring: tags.Add("spring"); break;
-                case Season.Summer:
-                case Season.PermanentSummer: tags.Add("summer"); break;
-                case Season.Fall: tags.Add("fall"); break;
-                case Season.Winter:
-                case Season.PermanentWinter: tags.Add("winter"); break;
+                switch (GenLocalDate.Season(ctx.map))
+                {
+                    case Season.Spring: tags.Add("spring"); break;
+                    case Season.Summer:
+                    case Season.PermanentSummer: tags.Add("summer"); break;
+                    case Season.Fall: tags.Add("fall"); break;
+                    case Season.Winter:
+                    case Season.PermanentWinter: tags.Add("winter"); break;
+                }
             }
-            AddTags(ctx, tags);
-            return Flavor.Pick(lines, tags) ?? Flavor.PickText(lines);
+            if (ctx == null) return tags;
+            try
+            {
+                AddTags(ctx, tags);
+            }
+            catch (Exception e)
+            {
+                CouncilLog.ErrorOnce("event tags " + def.defName, e);
+            }
+            LetterTags.Add(tags, ctx.a, ctx.b, ctx.stranger, ctx.faction);
+            return tags;
         }
 
         /// <summary>Something to add under the letter's text (what's at stake, a tip).</summary>
@@ -341,6 +362,8 @@ namespace ColonyCouncil
             if (opt?.riskEffects != null && opt.riskEffects.Any(e => e is DilemmaEffect_RaidLater) && !FightsPossible) return 0f;
             var r = ext?.riskSkill != null && (ext.riskSkillOption < 0 || ext.riskSkillOption == option) ? ctx.a?.skills?.GetSkill(ext.riskSkill) : null;
             if (r != null && !r.TotallyDisabled) chance -= r.Level * 0.035f;
+            // The answer's own skill (a helper it picked as B counts): see DilemmaOption.riskSkill.
+            if (opt?.riskSkill != null) chance -= DilemmaChoices.BestLevel(opt.riskSkill, ctx.a, ctx.b) * 0.035f;
             return Mathf.Clamp(chance, 0.05f, 0.95f);
         }
 

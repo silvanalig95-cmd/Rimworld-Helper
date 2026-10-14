@@ -199,6 +199,14 @@ namespace ColonyCouncil
         public List<DilemmaEffect> riskEffects;
         /// <summary>When the risk comes true, it happens instead of the normal effects rather than as well.</summary>
         public bool riskReplaces;
+        /// <summary>The best at this of A and B makes the risk less likely (3.5% less per level, as for events).</summary>
+        public SkillDef riskSkill;
+        /// <summary>
+        /// More ways to tell the outcome (and the risk's), picked by tags like the letter's text ([winter], [trait:Kind],
+        /// [past:healer], [colony:Merciful]: see <see cref="LetterTags"/>). The plain outcome is always one of them.
+        /// </summary>
+        [MustTranslate] public List<string> outcomes;
+        [MustTranslate] public List<string> riskOutcomes;
         /// <summary>How this answer shapes the colony's character.</summary>
         public WayShift ways;
     }
@@ -625,10 +633,10 @@ namespace ColonyCouncil
         }
     }
 
-    /// <summary>Takes something from the stockpiles: silver, raw food, or a named thing. Disables the option if there isn't enough.</summary>
+    /// <summary>Takes something from the stockpiles: silver, raw food, medicine, or a named thing. Disables the option if there isn't enough.</summary>
     public class DilemmaEffect_Consume : DilemmaEffect
     {
-        /// <summary>"silver", "rawfood", or a ThingDef defName; empty = the dilemma's thing.</summary>
+        /// <summary>"silver", "rawfood", "medicine" (any kind, the plainest first), or a ThingDef defName; empty = the dilemma's thing.</summary>
         public string what;
         public int count;
         /// <summary>A share of the amount (half the tribute, after haggling).</summary>
@@ -654,11 +662,18 @@ namespace ColonyCouncil
             return t.Spawned && !t.IsForbidden(Faction.OfPlayer) && t.IsInAnyStorage();
         }
 
+        /// <summary>Medicine of any kind in storage, the plainest first (herbal before industrial before glitterworld).</summary>
+        public static IEnumerable<Thing> Medicine(Map map) =>
+            map.listerThings.ThingsInGroup(ThingRequestGroup.Medicine)
+                .Where(t => t.def.IsMedicine && t.Spawned && !t.IsForbidden(Faction.OfPlayer) && t.IsInAnyStorage())
+                .OrderBy(t => t.def.GetStatValueAbstract(StatDefOf.MedicalPotency));
+
         private int Have(DilemmaContext ctx)
         {
             if (ctx.map == null) return 0;
             if (what == "silver") return ctx.map.resourceCounter.Silver;
             if (what == "rawfood") return RawFood(ctx.map);
+            if (what == "medicine") return Medicine(ctx.map).Sum(t => t.stackCount);
             var def = what.NullOrEmpty() ? ctx.thing : DefDatabase<ThingDef>.GetNamedSilentFail(what);
             return def == null ? 0 : ctx.map.resourceCounter.GetCount(def);
         }
@@ -670,6 +685,7 @@ namespace ColonyCouncil
         {
             if (what == "silver") return ThingDefOf.Silver.label;
             if (what == "rawfood") return "CC_Dilemma_RawFood".Translate();
+            if (what == "medicine") return "CC_Dilemma_Medicine".Translate();
             return (what.NullOrEmpty() ? ctx.thing : DefDatabase<ThingDef>.GetNamedSilentFail(what))?.label ?? what;
         }
 
@@ -680,6 +696,7 @@ namespace ColonyCouncil
             IEnumerable<Thing> things;
             if (what == "silver") things = ctx.map.listerThings.ThingsOfDef(ThingDefOf.Silver);
             else if (what == "rawfood") things = ctx.map.listerThings.ThingsInGroup(ThingRequestGroup.FoodSourceNotPlantOrTree).Where(t => IsRawFood(t, ctx.map));
+            else if (what == "medicine") things = Medicine(ctx.map);
             else
             {
                 var def = what.NullOrEmpty() ? ctx.thing : DefDatabase<ThingDef>.GetNamedSilentFail(what);
@@ -859,7 +876,8 @@ namespace ColonyCouncil
 
         private void Send(DilemmaContext ctx)
         {
-            ctx.text = Flavor.PickText(ctx.def.texts);
+            // Lines may be tagged for the moment and the people in it ([winter], [trait:Kind], [b:past:healer]...).
+            ctx.text = Flavor.Pick(ctx.def.texts, LetterTags.For(ctx)) ?? Flavor.PickText(ctx.def.texts);
             var letterDef = DefDatabase<LetterDef>.GetNamedSilentFail("Council_DilemmaLetter");
             var look = new LookTargets(new[] { ctx.a, ctx.b, ctx.stranger }.Where(p => p != null));
             string tradition = IsTradition(ctx.def)
@@ -884,15 +902,15 @@ namespace ColonyCouncil
             ctx.cause = "CC_Cause_Decision".Translate(ctx.def.label, ctx.Format(option.label)).Resolve();
             using var _cause = Causes.Push(ctx.cause);
             if (ctx.def.traditionOption >= 0 && comp != null) Tradition(ctx, index == ctx.def.traditionOption, comp);
-            bool risk = option.riskChance > 0f && Rand.Chance(option.riskChance);
+            // Whoever the answer calls on (a doctor, a talker) first, so their skill counts against the risk.
+            DilemmaChoices.PickHelpers(option, ctx);
+            bool risk = option.riskChance > 0f && Rand.Chance(DilemmaChoices.RiskChance(option, ctx, option.riskChance));
             if (!risk || !option.riskReplaces)
                 foreach (var e in option.effects) Safe(e, ctx);
-            string outcome = option.outcome;
-            if (risk)
-            {
-                if (option.riskEffects != null) foreach (var e in option.riskEffects) Safe(e, ctx);
-                if (!option.riskOutcome.NullOrEmpty()) outcome = option.riskOutcome;
-            }
+            if (risk && option.riskEffects != null)
+                foreach (var e in option.riskEffects) Safe(e, ctx);
+            // After the effects, so a helper they picked (B) is in the tags and the text.
+            string outcome = DilemmaChoices.Outcome(option, risk, LetterTags.For(ctx));
             // An answer nobody gave says less about the colony than one the council chose.
             comp?.character.Shift(byDefault ? option.ways?.Scaled(0.5f) : option.ways, "CC_Ways_Why_Dilemma".Translate(ctx.def.label, ctx.Format(option.label)).Resolve());
             string told = ctx.Format(outcome);
