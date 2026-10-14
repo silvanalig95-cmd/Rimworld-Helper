@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    More lines for personal touches and petitions (Council_NewPools.xml): the item a voice had no line for, and a few
+    for particular people. Same placeholders and tags; spoken lines keep their meaning in the first sentence.
+  -->
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Council_Voices_Pool_Touch</defName>
+    <pool>Council_Pool_Touch</pool>
+    <lines>
+      <plain>
+        <li>[trait:Ascetic] I don't need much, but {THING} would be useful, not just pretty.</li>
+        <li>[teen] My room needs {THING}, and I picked the spot myself.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Council_Voices_Pool_TouchDone</defName>
+    <pool>Council_Pool_TouchDone</pool>
+    <lines>
+      <plain>
+        <li>[trait:Ascetic] It's more than I needed, but I'm grateful.</li>
+        <li>[teen] My room is finally starting to look like mine.</li>
+      </plain>
+      <warm>
+        <li>[touch:endtable] There's a table by my bed now, and I've already set my keepsakes on it.</li>
+      </warm>
+      <blunt>
+        <li>[touch:plantpot] The plant's in, so leave it alone.</li>
+        <li>[touch:dresser] Drawers, good, and my clothes are off the floor.</li>
+      </blunt>
+      <cheerful>
+        <li>[touch:endtable] My cup has its own table now, and I keep looking at it!</li>
+      </cheerful>
+      <gloomy>
+        <li>[touch:light] There's a light in my room now, so I can see how small it is.</li>
+        <li>[touch:dresser] Everything I own fits in two drawers, and that tells you something.</li>
+      </gloomy>
+      <cold>
+        <li>[touch:plantpot] The plant is in place, and we'll see whether it survives.</li>
+        <li>[touch:endtable] The table is the right height for the bed, which I checked.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Council_Voices_Pool_CoSign</defName>
+    <pool>Council_Pool_CoSign</pool>
+    <lines>
+      <plain>
+        <li>[trait:Recluse] I don't usually join anything, but I'll join this.</li>
+        <li>[trait:Lazy|trait:Slothful] If it means less work later, I'm with {OTHER_nameDef}.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+</Defs>

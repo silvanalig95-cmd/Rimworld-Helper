@@ -24,6 +24,19 @@
         <li>sweet->a long summer evening</li>
         <li>sweet->old friends and good food</li>
         <li>sweet->a house by the sea</li>
+        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] over breakfast about a dream of [sweet].</li>
+        <li>r_logentry->[INITIATOR_nameDef] said [INITIATOR_pronoun] had dreamt of [sweet], and asked [RECIPIENT_nameDef] whether [RECIPIENT_pronoun] ever had dreams like that.</li>
+        <li>r_logentry->[INITIATOR_nameDef] tried to describe last night's dream to [RECIPIENT_nameDef] and kept losing the details as [INITIATOR_pronoun] went.</li>
+        <li>r_logentry->[INITIATOR_nameDef] hummed a tune from [INITIATOR_possessive] dream for [RECIPIENT_nameDef], who said [RECIPIENT_pronoun] didn't know it.</li>
+        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] about a dream of [sweet], and [RECIPIENT_nameDef] said [RECIPIENT_pronoun] could do with one like that.</li>
+        <li>sweet->a meadow full of tall grass</li>
+        <li>sweet->being small again in [INITIATOR_possessive] mother's house</li>
+        <li>sweet->a bath that never went cold</li>
+        <li>sweet->a day with no work in it</li>
+        <li>sweet->a garden where everything ripened on the same day</li>
+        <li>r_logentry->[INITIATOR_nameDef] was in such a good mood after a dream of [sweet] that [RECIPIENT_nameDef] asked what [INITIATOR_pronoun] had been drinking.</li>
+        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] about a dream of [sweet], and they both went quiet for a moment.</li>
+        <li>sweet->a river warm enough to swim in</li>
       </rulesStrings>
     </logRulesInitiator>
   </InteractionDef>
@@ -42,6 +55,18 @@
         <li>strange->a muffalo was giving orders</li>
         <li>strange->the stars were close enough to touch</li>
         <li>strange->all the doors led to the same room</li>
+        <li>r_logentry->[INITIATOR_nameDef] described a dream in which [strange], and [RECIPIENT_nameDef] said it was the oddest thing [RECIPIENT_pronoun] had heard all week.</li>
+        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] that [INITIATOR_pronoun] had dreamt [strange], and couldn't shake it all morning.</li>
+        <li>r_logentry->[RECIPIENT_nameDef] asked [INITIATOR_nameDef] why [INITIATOR_pronoun] looked so puzzled, and got a long account of a dream in which [strange].</li>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] blamed [INITIATOR_possessive] strange dream on something [INITIATOR_pronoun] had eaten.</li>
+        <li>strange->it rained upward</li>
+        <li>strange->[INITIATOR_pronoun] could talk to the birds, and they had nothing interesting to say</li>
+        <li>strange->the colony was much bigger on the inside</li>
+        <li>strange->the others had all swapped faces</li>
+        <li>strange->the moon came down to trade</li>
+        <li>r_logentry->[INITIATOR_nameDef] described a dream in which [strange], and [RECIPIENT_nameDef] offered three explanations, none of them likely.</li>
+        <li>r_logentry->[INITIATOR_nameDef] couldn't stop talking about a dream in which [strange], and [RECIPIENT_nameDef] couldn't stop laughing.</li>
+        <li>strange->[INITIATOR_pronoun] was a fish, and still got asked to the council</li>
       </rulesStrings>
     </logRulesInitiator>
   </InteractionDef>
@@ -60,6 +85,17 @@
         <li>dread->a shape in the dark</li>
         <li>dread->the stores running empty</li>
         <li>dread->falling</li>
+        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] that [INITIATOR_pronoun] had woken up shouting, and [RECIPIENT_nameDef] said [RECIPIENT_pronoun] had heard.</li>
+        <li>r_logentry->[INITIATOR_nameDef] didn't want to talk about the dream, but in the end told [RECIPIENT_nameDef] it had been about [dread].</li>
+        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] about a dream of [dread], and [RECIPIENT_nameDef] told [INITIATOR_objective] about one of [RECIPIENT_possessive] own.</li>
+        <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] whether [RECIPIENT_pronoun] ever dreamt about [dread]. [RECIPIENT_nameDef] said not often, and not lately.</li>
+        <li>dread->being lost in the dark with no way home</li>
+        <li>dread->someone calling [INITIATOR_possessive] name from outside the walls</li>
+        <li>dread->a fire that wouldn't go out</li>
+        <li>dread->the others not knowing who [INITIATOR_pronoun] was</li>
+        <li>r_logentry->[INITIATOR_nameDef] was jumpy all through breakfast, and finally told [RECIPIENT_nameDef] about a dream of [dread].</li>
+        <li>r_logentry->[RECIPIENT_nameDef] asked [INITIATOR_nameDef] why [INITIATOR_pronoun] looked so pale, and heard about a nightmare of [dread].</li>
+        <li>dread->drowning in the river</li>
       </rulesStrings>
     </logRulesInitiator>
   </InteractionDef>
@@ -72,6 +108,9 @@
         <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] about a dream that felt like a warning.</li>
         <li>r_logentry->[INITIATOR_nameDef] insisted to [RECIPIENT_nameDef] that last night's dream was going to come true.</li>
         <li>r_logentry->[INITIATOR_nameDef] described last night's dream to [RECIPIENT_nameDef] in unsettling detail.</li>
+        <li>r_logentry->[INITIATOR_nameDef] made [RECIPIENT_nameDef] promise to keep an eye out, after a dream [INITIATOR_pronoun] couldn't shake.</li>
+        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] that [INITIATOR_possessive] grandmother used to have dreams like last night's, and they always came true.</li>
+        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] about last night's dream, then asked [RECIPIENT_objective] not to tell the others yet.</li>
       </rulesStrings>
     </logRulesInitiator>
   </InteractionDef>
@@ -83,6 +122,9 @@
       <rulesStrings>
         <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] about dreaming of someone [INITIATOR_pronoun] lost, and they sat together for a while without talking.</li>
         <li>r_logentry->[INITIATOR_nameDef] said to [RECIPIENT_nameDef] that the dead had visited [INITIATOR_objective] last night, and that it was good to see them.</li>
+        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] that someone [INITIATOR_pronoun] had lost was in [INITIATOR_possessive] dream, just as [INITIATOR_pronoun] remembered them.</li>
+        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] that [INITIATOR_pronoun] had dreamt of the dead, and that they hadn't said anything, only smiled.</li>
+        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] about a dream of someone long gone, and [RECIPIENT_nameDef] asked what they had been like.</li>
       </rulesStrings>
     </logRulesInitiator>
   </InteractionDef>
@@ -101,6 +143,14 @@
         <li>together->sailed a ship across the sand</li>
         <li>together->were children again</li>
         <li>together->opened a restaurant with one table</li>
+        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] about a dream in which the two of them [together], and they both laughed.</li>
+        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] that [RECIPIENT_pronoun] had turned up in [INITIATOR_possessive] dream and been very helpful.</li>
+        <li>together->got lost in a market and found each other again</li>
+        <li>together->ran a stall at a fair, selling turnips</li>
+        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] that [RECIPIENT_pronoun] had been the hero of [INITIATOR_possessive] dream last night.</li>
+        <li>r_logentry->[INITIATOR_nameDef] described a dream in which the two of them [together], and [RECIPIENT_nameDef] asked how it ended.</li>
+        <li>together->swapped jobs for a day and were both terrible at it</li>
+        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] about a dream where [RECIPIENT_pronoun] kept turning up in the oddest places, and they both laughed about it.</li>
       </rulesStrings>
     </logRulesInitiator>
   </InteractionDef>

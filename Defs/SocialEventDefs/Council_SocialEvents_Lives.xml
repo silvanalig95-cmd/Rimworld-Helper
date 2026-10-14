@@ -14,6 +14,7 @@
     <texts>
       <li>Someone at dinner came close to a sore subject. {B_nameDef} changed it, smoothly, without looking at {A_nameDef}.</li>
       <li>{B_nameDef} sat down beside {A_nameDef} when the questions started, and answered most of them for {A_objective}.</li>
+      <li>When the talk turned to where everyone came from, {B_nameDef} caught {A_nameDef}'s eye and steered it somewhere else.</li>
     </texts>
     <effects>
       <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Soc_HadMyBack</thought></li>
@@ -83,6 +84,7 @@
     <texts>
       <li>{B_nameDef} asked {A_nameDef} about {A_possessive} habit ({QUIRK}), expecting a joke, and got a real story instead. They talked a long time.</li>
       <li>{B_nameDef} caught {A_nameDef} at it ({QUIRK}) and, instead of laughing, joined in.</li>
+      <li>{B_nameDef} has started doing it too ({QUIRK}), just in case {A_nameDef} is right.</li>
     </texts>
     <effects>
       <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>AAndB</target><thought>Council_Soc_GoodTalk</thought></li>
@@ -100,6 +102,7 @@
     <texts>
       <li>{A_nameDef} admitted to {B_nameDef} wanting to {GOAL}, and {B_nameDef} didn't laugh. "Then do it," {B_nameDef} said.</li>
       <li>Every evening {B_nameDef} asks {A_nameDef} how the plan to {GOAL} is coming along, and listens to the whole answer.</li>
+      <li>{B_nameDef} told {A_nameDef} that if anyone here could {GOAL}, it was {A_objective}.</li>
     </texts>
     <effects>
       <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Soc_HadMyBack</thought></li>
@@ -137,6 +140,7 @@
     <texts>
       <li>{B_nameDef} spent a free evening helping {A_nameDef}, who means to {GOAL} one day.</li>
       <li>{B_nameDef} gave up a rest day to help {A_nameDef} with the plan to {GOAL}. {A_nameDef} didn't know what to say.</li>
+      <li>{B_nameDef} spent the afternoon helping {A_nameDef} toward {A_possessive} plan to {GOAL}, and wouldn't take thanks for it.</li>
     </texts>
     <effects>
       <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Soc_Gift</thought></li>

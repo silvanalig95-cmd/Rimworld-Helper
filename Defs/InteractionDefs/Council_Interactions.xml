@@ -44,6 +44,12 @@
         <li>someday->one day</li>
         <li>someday->when the council finally listens</li>
         <li>someday->if the raiders ever give them a week off</li>
+        <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] whether [RECIPIENT_pronoun] ever got used to [gripe].</li>
+        <li>r_logentry->[INITIATOR_nameDef] showed [RECIPIENT_nameDef] the patch of floor [INITIATOR_pronoun] calls [INITIATOR_possessive] own.</li>
+        <li>r_logentry->[INITIATOR_nameDef] sighed to [RECIPIENT_nameDef] that all [INITIATOR_pronoun] wanted was [dream].</li>
+        <li>dream->a room [INITIATOR_pronoun] could stand up straight in</li>
+        <li>gripe->waking up every time someone turns over</li>
+        <li>detail->where to hang a coat</li>
       </rulesStrings>
     </logRulesInitiator>
   </InteractionDef>
@@ -68,6 +74,10 @@
         <li>reaction->found a reason to get back to work</li>
         <li>reaction->smiled despite [RECIPIENT_objective]self</li>
         <li>reaction->changed the subject</li>
+        <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] whether [RECIPIENT_pronoun] thought the council would allow [ask].</li>
+        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] how [INITIATOR_pronoun] and [INITIATOR_possessive] partner met, again.</li>
+        <li>confession->has been putting things by to make a ring</li>
+        <li>reaction->said it was sweet, and meant it</li>
       </rulesStrings>
     </logRulesInitiator>
   </InteractionDef>
@@ -90,6 +100,13 @@
         <li>gripe->the wind whistling through the walls</li>
         <li>gripe->a colony with no chairs to sit on</li>
         <li>gripe->sleeping on the bare ground</li>
+        <li>r_logentry->[INITIATOR_nameDef] admitted to [RECIPIENT_nameDef] that [gripe] was wearing [INITIATOR_objective] down.</li>
+        <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] how [RECIPIENT_pronoun] put up with [gripe].</li>
+        <li>r_logentry->[INITIATOR_nameDef] listed for [RECIPIENT_nameDef] everything wrong with [gripe], counting on [INITIATOR_possessive] fingers.</li>
+        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] that [INITIATOR_pronoun] had asked the council about [gripe] and was still waiting.</li>
+        <li>gripe->sleeping in the same damp blanket for a month</li>
+        <li>gripe->eating in the dirt like animals</li>
+        <li>gripe->the cold that gets in through the floor</li>
       </rulesStrings>
     </logRulesInitiator>
   </InteractionDef>
@@ -112,6 +129,12 @@
         <li>fun->an afternoon off with nothing to haul</li>
         <li>fun->horseshoes in the sun</li>
         <li>fun->a night of music and bad singing</li>
+        <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] when [RECIPIENT_pronoun] had last done anything just for fun.</li>
+        <li>r_logentry->[INITIATOR_nameDef] grumbled to [RECIPIENT_nameDef] that all work and no rest was making them all short-tempered.</li>
+        <li>r_logentry->[INITIATOR_nameDef] described [fun] to [RECIPIENT_nameDef] as if it were a feast.</li>
+        <li>fun->a set of dice and a quiet corner</li>
+        <li>fun->a game of cards after supper</li>
+        <li>fun->a proper party, with music</li>
       </rulesStrings>
     </logRulesInitiator>
   </InteractionDef>
@@ -136,6 +159,11 @@
         <li>gripe->the smell coming from the food stockpile</li>
         <li>gripe->the same plain meal, day after day</li>
         <li>gripe->last night's mystery meat</li>
+        <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] whether [RECIPIENT_pronoun] remembered the taste of [food].</li>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] swapped recipes they had no way of cooking here.</li>
+        <li>r_logentry->[INITIATOR_nameDef] sniffed at the pot and told [RECIPIENT_nameDef] that [gripe] had to stop.</li>
+        <li>food->a pie with a proper crust</li>
+        <li>gripe->scraping the same pot for the third meal running</li>
       </rulesStrings>
     </logRulesInitiator>
   </InteractionDef>
@@ -151,6 +179,10 @@
         <li>r_logentry->[INITIATOR_nameDef] admitted to [RECIPIENT_nameDef] that [INITIATOR_pronoun] misses doing the work [INITIATOR_pronoun] is good at.</li>
         <li>r_logentry->[INITIATOR_nameDef] showed [RECIPIENT_nameDef] [INITIATOR_possessive] calloused hands and said they were made for better work than this.</li>
         <li>r_logentry->[INITIATOR_nameDef] explained [INITIATOR_possessive] craft to [RECIPIENT_nameDef] at great length, with examples.</li>
+        <li>r_logentry->[INITIATOR_nameDef] complained to [RECIPIENT_nameDef] that [INITIATOR_pronoun] hadn't touched the work [INITIATOR_pronoun] loves in days.</li>
+        <li>r_logentry->[INITIATOR_nameDef] described to [RECIPIENT_nameDef] the best piece of work [INITIATOR_pronoun] ever finished, and what it took.</li>
+        <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] to put in a word with the council for a proper place to work.</li>
+        <li>r_logentry->[INITIATOR_nameDef] watched someone else doing [INITIATOR_possessive] kind of work and told [RECIPIENT_nameDef] [INITIATOR_pronoun] could hardly stand it.</li>
       </rulesStrings>
     </logRulesInitiator>
   </InteractionDef>
@@ -168,6 +200,9 @@
         <li>memory->a story about the dead that made them both laugh</li>
         <li>memory->that [INITIATOR_pronoun] still sets out one bowl too many some evenings</li>
         <li>memory->what the dead had wanted to build here, someday</li>
+        <li>r_logentry->[INITIATOR_nameDef] said firmly to [RECIPIENT_nameDef] that a body left out in the open was no way to remember anyone.</li>
+        <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] what [RECIPIENT_pronoun] remembered best about the one they lost.</li>
+        <li>memory->the last thing the dead had said to [INITIATOR_objective]</li>
       </rulesStrings>
     </logRulesInitiator>
   </InteractionDef>
@@ -182,6 +217,9 @@
         <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] whether anyone in the colony could make [INITIATOR_objective] a replacement part.</li>
         <li>r_logentry->[INITIATOR_nameDef] showed [RECIPIENT_nameDef] the scar and described, in too much detail, how it happened.</li>
         <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] that [INITIATOR_pronoun] still feels the missing part when it rains.</li>
+        <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] to help with a job that used to take [INITIATOR_objective] no time at all.</li>
+        <li>r_logentry->[INITIATOR_nameDef] confided in [RECIPIENT_nameDef] that people looked at [INITIATOR_objective] differently since the injury.</li>
+        <li>r_logentry->[INITIATOR_nameDef] described to [RECIPIENT_nameDef] the replacement [INITIATOR_pronoun] hoped the council would find.</li>
       </rulesStrings>
     </logRulesInitiator>
   </InteractionDef>
@@ -196,6 +234,10 @@
         <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] whether the colony could use another four-legged member.</li>
         <li>r_logentry->[INITIATOR_nameDef] tried to name every animal [INITIATOR_pronoun] could see while [RECIPIENT_nameDef] watched.</li>
         <li>r_logentry->[INITIATOR_nameDef] argued with [RECIPIENT_nameDef] about whether a muffalo can love.</li>
+        <li>r_logentry->[INITIATOR_nameDef] described to [RECIPIENT_nameDef] the animal [INITIATOR_pronoun] would tame, if the council allowed it.</li>
+        <li>r_logentry->[INITIATOR_nameDef] saved scraps from supper and showed [RECIPIENT_nameDef] which wild animal they were meant for.</li>
+        <li>r_logentry->[INITIATOR_nameDef] said to [RECIPIENT_nameDef] that the colony felt empty without an animal or two about the place.</li>
+        <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] to help [INITIATOR_objective] name an animal [INITIATOR_pronoun] hadn't caught yet.</li>
       </rulesStrings>
     </logRulesInitiator>
   </InteractionDef>
@@ -215,6 +257,10 @@
         <li>plan->a very hopeful line of barricades</li>
         <li>plan->where the traps should go</li>
         <li>plan->the spot where they nearly lost the wall last time</li>
+        <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] where [RECIPIENT_pronoun] would run to if raiders came tonight.</li>
+        <li>r_logentry->[INITIATOR_nameDef] counted the colony's weapons for [RECIPIENT_nameDef] and came up short.</li>
+        <li>r_logentry->[INITIATOR_nameDef] remarked to [RECIPIENT_nameDef] that the walls wouldn't keep out a determined goat.</li>
+        <li>plan->a second wall behind the first</li>
       </rulesStrings>
     </logRulesInitiator>
   </InteractionDef>
@@ -228,6 +274,11 @@
         <li>r_logentry->[INITIATOR_nameDef] lamented to [RECIPIENT_nameDef] that [INITIATOR_possessive] quarters are an insult to [INITIATOR_possessive] standing.</li>
         <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] that a room without art is just a box with a bed in it.</li>
         <li>r_logentry->[INITIATOR_nameDef] described to [RECIPIENT_nameDef] the fine things [INITIATOR_pronoun] once owned, and the finer things [INITIATOR_pronoun] intends to own again.</li>
+        <li>r_logentry->[INITIATOR_nameDef] informed [RECIPIENT_nameDef] that a person in [INITIATOR_possessive] position should not be eating off a crate.</li>
+        <li>r_logentry->[INITIATOR_nameDef] described to [RECIPIENT_nameDef] the bedroom [INITIATOR_pronoun] had before, rug by rug.</li>
+        <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] whether the council had any idea who [INITIATOR_pronoun] was.</li>
+        <li>r_logentry->[INITIATOR_nameDef] explained to [RECIPIENT_nameDef] that guests judge a colony by how it treats its important people.</li>
+        <li>r_logentry->[INITIATOR_nameDef] complained to [RECIPIENT_nameDef] that [INITIATOR_possessive] clothes were not fit for someone of [INITIATOR_possessive] rank.</li>
       </rulesStrings>
     </logRulesInitiator>
   </InteractionDef>
@@ -241,6 +292,9 @@
         <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] a hundred questions about why there's no school here.</li>
         <li>r_logentry->[INITIATOR_nameDef] showed [RECIPIENT_nameDef] a toy [INITIATOR_pronoun] made from a rock and some string, and asked for a real one.</li>
         <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] whether grown-ups ever get bored, and what they do about it.</li>
+        <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] to play, and when [RECIPIENT_nameDef] said later, asked when later was.</li>
+        <li>r_logentry->[INITIATOR_nameDef] announced to [RECIPIENT_nameDef] that [INITIATOR_pronoun] already knew all the letters and needed new ones to learn.</li>
+        <li>r_logentry->[INITIATOR_nameDef] drew [RECIPIENT_nameDef] a picture in the dirt of the playroom [INITIATOR_pronoun] wanted.</li>
       </rulesStrings>
     </logRulesInitiator>
   </InteractionDef>
@@ -262,6 +316,8 @@
         <li>r_logentry->[INITIATOR_nameDef] reminded [RECIPIENT_nameDef] what the council decided, in case [RECIPIENT_pronoun] forgot.</li>
         <li>r_logentry->[INITIATOR_nameDef] counted on [INITIATOR_possessive] fingers for [RECIPIENT_nameDef] how much is left to do for the council's goal.</li>
         <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] that this time the colony is going to finish what it started.</li>
+        <li>r_logentry->[INITIATOR_nameDef] explained to [RECIPIENT_nameDef] which part of the council's plan [INITIATOR_pronoun] meant to finish first.</li>
+        <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] to lend a hand with the council's goal after supper.</li>
       </rulesStrings>
     </logRulesInitiator>
   </InteractionDef>
@@ -286,6 +342,12 @@
         <li>bitter->the council is just a fancy word for being ignored together</li>
         <li>bitter->promises out here are worth less than a rotten potato</li>
         <li>bitter->asking for things only gets you told to wait</li>
+        <li>r_logentry->[INITIATOR_nameDef] admitted to [RECIPIENT_nameDef] that [INITIATOR_pronoun] had stopped expecting anything from the council.</li>
+        <li>r_logentry->[INITIATOR_nameDef] warned [RECIPIENT_nameDef] that the council's promises never come with a date.</li>
+        <li>favorites->whoever they owe a favor</li>
+        <li>bitter->the council remembers what you did wrong and forgets what it promised</li>
+        <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] what the council had ever done for either of them.</li>
+        <li>bitter->the council keeps a list of who to say yes to, and neither of them is on it</li>
       </rulesStrings>
     </logRulesInitiator>
   </InteractionDef>
@@ -304,6 +366,11 @@
         <li>proof->the time the council kept its word</li>
         <li>proof->how far the colony has come since the first winter</li>
         <li>proof->the room [INITIATOR_pronoun] finally got</li>
+        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] that the council had been fair to [INITIATOR_objective], and would be to [RECIPIENT_objective] too.</li>
+        <li>r_logentry->[INITIATOR_nameDef] assured [RECIPIENT_nameDef] that asking the council was worth the wait.</li>
+        <li>proof->the new beds in the barracks</li>
+        <li>r_logentry->[INITIATOR_nameDef] reminded [RECIPIENT_nameDef] how things were before the council, and how they are now.</li>
+        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] that [INITIATOR_pronoun] had asked the council for help once, and got it.</li>
       </rulesStrings>
     </logRulesInitiator>
   </InteractionDef>
@@ -332,6 +399,10 @@
         <li>verdict->going to get someone killed</li>
         <li>verdict->the council's worst decision yet</li>
         <li>verdict->only bearable because it ends</li>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] went over everything wrong with [decree], twice.</li>
+        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] that [decree] was [verdict], and [RECIPIENT_nameDef] nodded.</li>
+        <li>verdict->a lot of rules for very little reason</li>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] came up with a dozen ways around [decree], and used none of them.</li>
       </rulesStrings>
     </logRulesInitiator>
   </InteractionDef>
@@ -356,6 +427,11 @@
         <li>defense->the best thing the council has done all year</li>
         <li>defense->exactly what the colony needed</li>
         <li>defense->good for everyone, even the complainers</li>
+        <li>r_logentry->[INITIATOR_nameDef] reminded [RECIPIENT_nameDef] that the council had decided [decree] fairly, and [RECIPIENT_nameDef] said that wasn't the point.</li>
+        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] that [decree] would look better in a season's time, and [RECIPIENT_nameDef] said [RECIPIENT_pronoun] doubted it.</li>
+        <li>defense->hard now, but worth it later</li>
+        <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] to give [decree] a fair try before condemning it.</li>
+        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] that [decree] was [defense], and [RECIPIENT_nameDef] walked off before [INITIATOR_pronoun] had finished.</li>
       </rulesStrings>
     </logRulesInitiator>
   </InteractionDef>

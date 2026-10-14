@@ -182,7 +182,11 @@ Lines may begin with tags, e.g. `[winter,night]` or `[trigger:raid,lowtech]`. A 
 all its tags match the moment; matching lines win over generic ones, in the speaker's own tone first. Tags cover
 season, time, weather, temperature, mood, trust, tech level, wealth, colony size, age, injuries, traits,
 passions, grief, recent raids, repeats, promises, petitions and triggers. Wish letters open with a scene drawn
-from tagged scene pools.
+from tagged scene pools. Tags that hold for most of a game (the era, the colony's wealth and size) only decide whether a
+line fits; they don't make it win, or a single `[lowtech]` line would take most of a tribal colony's picks for years.
+Each pool also remembers the lines it gave out lately (a third of its lines, up to twelve) and passes over them while
+another line fits, so a line doesn't come round again soon. `Tools/variety_report.py` ranks pools by how often their
+lines come round.
 
 ### Example letter
 

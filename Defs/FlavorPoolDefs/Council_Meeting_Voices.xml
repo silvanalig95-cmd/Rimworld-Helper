@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    More council meeting lines (Council_MeetingTalk.xml) for particular people: traits, age, trust, a skill, the
+    season. {PAWN} speaks, {OTHER} proposed {AMBITION} (quoted). Shown above heads, so they stay short.
+  -->
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Council_Voices_Pool_MeetingSupport</defName>
+    <pool>Council_Pool_MeetingSupport</pool>
+    <lines>
+      <plain>
+        <li>[summer] Long days ahead. A good time to start on "{AMBITION}".</li>
+        <li>[trait:Industrious|trait:HardWorker] Give me the hardest part of "{AMBITION}". I'll start tomorrow.</li>
+        <li>[trait:Lazy|trait:Slothful] Yes to "{AMBITION}", as long as someone else does the lifting.</li>
+        <li>[trait:Greedy] If "{AMBITION}" leaves us better off, I'm for it.</li>
+        <li>[old] I'd like to see "{AMBITION}" finished while I'm still around.</li>
+        <li>[child] I vote yes! Can I help?</li>
+        <li>[trusting] {OTHER_nameDef} hasn't steered us wrong yet. Yes.</li>
+        <li>[skill:Construction] Give me a few strong backs and I'll get it started.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Council_Voices_Pool_MeetingDoubt</defName>
+    <pool>Council_Pool_MeetingDoubt</pool>
+    <lines>
+      <plain>
+        <li>[summer] In this heat? Let's talk again in the fall.</li>
+        <li>[trait:Lazy|trait:Slothful] That sounds like a lot of work. No.</li>
+        <li>[trait:Ascetic] We don't need "{AMBITION}". We need less, not more.</li>
+        <li>[old] I've seen plans like this before. They end in a pile of half-cut stone.</li>
+        <li>[doubtful] The council's last plan isn't finished yet, is it?</li>
+        <li>[bitter] Another grand idea. And who gets ignored while we build it?</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Council_Voices_Pool_MeetingAside</defName>
+    <pool>Council_Pool_MeetingAside</pool>
+    <lines>
+      <warm>
+        <li>Someone pass the blanket down to the end. It's cold over there.</li>
+        <li>Make room on the bench for the new one.</li>
+      </warm>
+      <cold>
+        <li>I'm keeping track of who speaks most and says least.</li>
+        <li>The quiet ones are the ones to watch.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+</Defs>

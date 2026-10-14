@@ -77,19 +77,10 @@ namespace ColonyCouncil
         /// </summary>
         public string Pick(Tone tone, HashSet<string> context = null)
         {
-            var list = For(tone);
-            string line = null;
-            // Lines written for this exact moment (a trigger, the weather, a trait) win, in the speaker's own voice first.
-            if (context != null && Rand.Chance(0.85f))
-            {
-                line = Flavor.PickTagged(list, context);
-                if (line == null && Rand.Chance(0.75f)) line = Flavor.PickTagged(plain, context);
-                if (line != null) return line;
-            }
-            if (list != null && list.Count > 0 && (tone == Tone.Plain || Rand.Chance(0.8f)))
-                line = Flavor.Pick(list, context);
-            if (line == null && plain != null && plain.Count > 0) line = Flavor.Pick(plain, context);
-            if (line == null) line = Flavor.Pick(AllLines(), context);
+            // Not a line this bundle gave out lately, while another one fits (Flavor.Memory).
+            var recent = Flavor.Memory.Recent(this);
+            string line = recent != null ? PickOnce(tone, context, recent) : null;
+            if (line == null) line = PickOnce(tone, context, null);
             // Nothing fits the tags: better an untagged-looking line than silence.
             if (line == null)
             {
@@ -97,6 +88,25 @@ namespace ColonyCouncil
                 if (all.Count == 0) all = AllLines().ToList();
                 if (all.Count > 0) line = Flavor.Strip(all.RandomElement());
             }
+            if (line != null) Flavor.Memory.Remember(this, line, AllLines().Count());
+            return line;
+        }
+
+        private string PickOnce(Tone tone, HashSet<string> context, HashSet<string> avoid)
+        {
+            var list = For(tone);
+            string line = null;
+            // Lines written for this exact moment (a trigger, the weather, a trait) win, in the speaker's own voice first.
+            if (context != null && Rand.Chance(0.85f))
+            {
+                line = Flavor.PickTagged(list, context, avoid);
+                if (line == null && Rand.Chance(0.75f)) line = Flavor.PickTagged(plain, context, avoid);
+                if (line != null) return line;
+            }
+            if (list != null && list.Count > 0 && (tone == Tone.Plain || Rand.Chance(0.8f)))
+                line = Flavor.Pick(list, context, avoid);
+            if (line == null && plain != null && plain.Count > 0) line = Flavor.Pick(plain, context, avoid);
+            if (line == null) line = Flavor.Pick(AllLines(), context, avoid);
             return line;
         }
     }

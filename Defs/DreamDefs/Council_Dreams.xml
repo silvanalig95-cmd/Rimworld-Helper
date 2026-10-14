@@ -30,12 +30,34 @@
         <li>[again] The house again. I always wake up just before I reach the door.</li>
         <li>[winter] A warm room in my dream, with snow piled against the window. I lay there a long while before I got up.</li>
         <li>[child] In my dream I had a room with a window, and a cat that slept on my feet.</li>
+        <li>Walked down my old street in the dream. Every door was open, and someone inside each one called my name.</li>
+        <li>The house from before, with the kettle on and the window fogged up. I didn't want to leave.</li>
       </plain>
-      <warm><li>Everyone I've ever loved was sitting at one long table, passing the bread down. I woke up with wet eyes.</li></warm>
-      <blunt><li>Dreamt of home. It isn't there anymore. Waste of a night.</li></blunt>
-      <cheerful><li>Had a dream we'd built a proper town here, with a bakery on the corner. We could, you know.</li></cheerful>
-      <gloomy><li>Dreamt of home again. Then I woke up here.</li></gloomy>
-      <cold><li>Dreamt of the house I was born in. I don't see the use of it.</li></cold>
+      <warm>
+        <li>Everyone I've ever loved was sitting at one long table, passing the bread down. I woke up with wet eyes.</li>
+        <li>Dreamt the people from home came here, all of them, and we found room for everyone.</li>
+        <li>My mother's kitchen, in the dream. She was cutting bread and humming.</li>
+      </warm>
+      <blunt>
+        <li>Dreamt of home. It isn't there anymore. Waste of a night.</li>
+        <li>Home again, in the dream. No point dwelling on it.</li>
+        <li>Old house. Old faces. Woke up here.</li>
+      </blunt>
+      <cheerful>
+        <li>Had a dream we'd built a proper town here, with a bakery on the corner. We could, you know.</li>
+        <li>I was home in my dream, and they were all so pleased to see me! I'm taking that as a good sign.</li>
+        <li>Dreamt of my old bed. Then I woke up in my new one, which isn't bad either!</li>
+      </cheerful>
+      <gloomy>
+        <li>Dreamt of home again. Then I woke up here.</li>
+        <li>Home was there in the dream, but the faces in the doorways were strangers.</li>
+        <li>Dreamt of home and woke up with my face wet.</li>
+      </gloomy>
+      <cold>
+        <li>Dreamt of the house I was born in. I don't see the use of it.</li>
+        <li>A dream of the place I was born. Sentimental. I've put it aside.</li>
+        <li>Home, in the dream. My mind tidying up old memories, I suppose.</li>
+      </cold>
     </lines>
   </ColonyCouncil.DreamDef>
 
@@ -55,10 +77,23 @@
         <li>[rain] In the dream the rain fell upward, and we had to hold on to the grass to stay down.</li>
         <li>[tribal] The spirits were arguing about us in my dream. They sounded like the elders do.</li>
         <li>[spacer] I dreamt I was back in a cryptosleep pod, but the pod was dreaming me.</li>
+        <li>The furniture had rearranged itself in my dream and wouldn't put itself back.</li>
+        <li>The others all spoke in each other's voices, and it bothered no one but me.</li>
       </plain>
-      <cheerful><li>I could breathe underwater in my dream! I swam the whole river and back.</li></cheerful>
-      <gloomy><li>I was a ghost in my dream, walking through the colony. The work went on without me.</li></gloomy>
-      <cold><li>I dreamt in numbers again. They didn't add up.</li></cold>
+      <cheerful>
+        <li>I could breathe underwater in my dream! I swam the whole river and back.</li>
+        <li>Dreamt the potatoes could sing! They weren't very good, but they tried.</li>
+        <li>In my dream it rained soup, and I ran around with a bowl!</li>
+      </cheerful>
+      <gloomy>
+        <li>I was a ghost in my dream, walking through the colony. The work went on without me.</li>
+        <li>Strange dream. The people in it were all strangers, even me.</li>
+        <li>Dreamt the days ran backward, and I kept losing them.</li>
+      </gloomy>
+      <cold>
+        <li>I dreamt in numbers again. They didn't add up.</li>
+        <li>A strange dream with no obvious meaning. I don't care for those.</li>
+      </cold>
     </lines>
   </ColonyCouncil.DreamDef>
 
@@ -75,10 +110,23 @@
         <li>[again] The corridor again, and the thing at the far end of it. I sat up until morning.</li>
         <li>[child] I dreamt there was a monster under the bed and it knew my name.</li>
         <li>[lowmood] Dreamt they all packed up and left in the night, and didn't wake me.</li>
+        <li>Something was tapping on the window all night in my dream, and I didn't dare look.</li>
+        <li>In the dream the walls got thinner each time I touched them.</li>
       </plain>
-      <blunt><li>Bad dream. I'm not talking about it.</li></blunt>
-      <gloomy><li>Nightmares again. I'm used to them by now.</li></gloomy>
-      <cold><li>A nightmare. Elevated heart rate on waking. Irrelevant, but noted.</li></cold>
+      <blunt>
+        <li>Bad dream. I'm not talking about it.</li>
+        <li>Nightmare. Over now.</li>
+        <li>Bad dream. Slept badly. Moving on.</li>
+      </blunt>
+      <gloomy>
+        <li>Nightmares again. I'm used to them by now.</li>
+        <li>Something followed me through the dark all night. It's still there when I close my eyes.</li>
+        <li>The nightmares are getting longer.</li>
+      </gloomy>
+      <cold>
+        <li>A nightmare. Elevated heart rate on waking. Irrelevant, but noted.</li>
+        <li>A nightmare. My mind rehearsing a threat, I suppose. Useful, if unpleasant.</li>
+      </cold>
     </lines>
     <effects>
       <li Class="ColonyCouncil.DilemmaEffect_Hediff"><target>A</target><hediff>Council_Dream_Shaken</hediff><chance>0.15</chance></li>
@@ -273,9 +321,16 @@
         <li>{OTHER_nameDef} and I were children again, running through a field I've never seen.</li>
         <li>Dreamt {OTHER_nameDef} and I built a boat and rowed it down a river that ran right through the dining room.</li>
         <li>[winter] Had a dream {OTHER_nameDef} brought me hot soup and sat on the end of the bed while I ate it.</li>
+        <li>{OTHER_nameDef} and I were lost in a market in my dream, and kept finding each other again.</li>
       </plain>
-      <warm><li>{OTHER_nameDef} was laughing at something I said, in the dream. I want to hear that laugh today.</li></warm>
-      <blunt><li>Dreamt about {OTHER_nameDef}. We were fishing. It was fine.</li></blunt>
+      <warm>
+        <li>{OTHER_nameDef} was laughing at something I said, in the dream. I want to hear that laugh today.</li>
+        <li>In my dream {OTHER_nameDef} and I sat on a hill above the colony and talked about everyone below.</li>
+      </warm>
+      <blunt>
+        <li>Dreamt about {OTHER_nameDef}. We were fishing. It was fine.</li>
+        <li>{OTHER_nameDef} was in my dream. We were hauling. Even in my sleep.</li>
+      </blunt>
     </lines>
     <changeTie>Friends</changeTie>
     <change>3</change>
@@ -343,9 +398,13 @@
       <plain>
         <li>{OTHER_nameDef} and I were old, really old, sitting outside a house we'd built.</li>
         <li>Last night I dreamt {OTHER_nameDef} was singing in the next room, and I lay there and listened.</li>
+        <li>Dreamt {OTHER_nameDef} and I had a house with a red door and a garden out front.</li>
       </plain>
       <blunt><li>Dreamt about {OTHER_nameDef}. Not telling anyone the details.</li></blunt>
-      <gloomy><li>Dreamt I lost {OTHER_nameDef}. I held on tighter than usual this morning.</li></gloomy>
+      <gloomy>
+        <li>Dreamt I lost {OTHER_nameDef}. I held on tighter than usual this morning.</li>
+        <li>{OTHER_nameDef} was in my dream, walking just ahead of me, and I couldn't catch up.</li>
+      </gloomy>
     </lines>
   </ColonyCouncil.DreamDef>
 
@@ -382,10 +441,17 @@
         <li>{LOST} was out past the fields, waving me over. I walked and walked and never got any closer.</li>
         <li>[again] {LOST} came again last night. Same spot by the door, same smile.</li>
         <li>[winter] {LOST} was out in the snow building a snowman, and called me over to help with the head.</li>
+        <li>{LOST} handed me something in the dream, and I woke up with my hand still closed around it.</li>
       </plain>
-      <warm><li>{LOST} came to see me last night. Told me not to worry so much. I'll try.</li></warm>
+      <warm>
+        <li>{LOST} came to see me last night. Told me not to worry so much. I'll try.</li>
+        <li>{LOST} told me in the dream that they were proud of us. I needed that.</li>
+      </warm>
       <blunt><li>Dreamt about {LOST}. Woke up angry. Not at {LOST}.</li></blunt>
-      <gloomy><li>{LOST} came back in my dream and asked why I let it happen. I didn't have an answer.</li></gloomy>
+      <gloomy>
+        <li>{LOST} came back in my dream and asked why I let it happen. I didn't have an answer.</li>
+        <li>{LOST} was in the dream, just out of reach, the whole night.</li>
+      </gloomy>
       <cold><li>{LOST} was in my dream last night. Grief, I suppose. I'm steadier this morning than I'd like to admit.</li></cold>
     </lines>
   </ColonyCouncil.DreamDef>

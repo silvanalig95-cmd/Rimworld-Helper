@@ -204,7 +204,12 @@ namespace ColonyCouncil
 
         public static string Strip(string line) => Strip(line, out _);
 
-        /// <summary>-1 when the line doesn't fit the moment, else how many tags it matched (0 for untagged lines).</summary>
+        /// <summary>
+        /// -1 when the line doesn't fit the moment, else how many of its tags speak to the moment (0 for untagged lines).
+        /// Tags that hold for most of a game (the era, the colony's wealth and size, see <see cref="StandingTags"/>) only
+        /// decide whether a line fits: they don't count, so a [lowtech] line doesn't take most of a tribal colony's picks
+        /// for years the way a [winter] line takes the picks of a winter.
+        /// </summary>
         public static int Match(string line, HashSet<string> context)
         {
             Strip(line, out var tags);
@@ -226,10 +231,26 @@ namespace ColonyCouncil
                     }
                 }
                 if (!ok) return -1;
-                matched++;
+                if (!OnlyStanding(tag)) matched++;
             }
             return matched;
         }
+
+        /// <summary>Tags that hold for most of a game rather than a moment: the era, the colony's wealth and its size.</summary>
+        public static readonly HashSet<string> StandingTags = new HashSet<string>
+        {
+            "tribal", "medieval", "industrial", "spacer", "lowtech", "poor", "rich", "small", "large"
+        };
+
+        private static bool OnlyStanding(string tag)
+        {
+            foreach (var alt in tag.Split('|'))
+                if (!StandingTags.Contains(alt.Trim().TrimStart('!'))) return false;
+            return true;
+        }
+
+        /// <summary>The lines each pool gave out lately (see <see cref="LineMemory"/>).</summary>
+        public static readonly LineMemory Memory = new LineMemory();
 
         /// <summary>
         /// Words that don't belong in a colony that has never seen gunpowder or electricity. Words that are only
@@ -343,21 +364,36 @@ namespace ColonyCouncil
             return !HighTech.IsMatch(Strip(line));
         }
 
-        /// <summary>One of these texts, preferring ones that fit the colony's era (never one tagged for another). Tags are removed.</summary>
+        /// <summary>
+        /// One of these texts, preferring ones that fit the colony's era (never one tagged for another), and not one this
+        /// list gave out lately while another fits. Tags are removed.
+        /// </summary>
         public static string PickText(List<string> texts)
         {
             if (texts.NullOrEmpty()) return null;
             var pool = texts.Where(EraTagsFit).ToList();
             if (pool.Count == 0) pool = texts;
             var fitting = pool.Where(TechFits).ToList();
-            return Strip((fitting.Count > 0 ? fitting : pool).RandomElement());
+            var from = fitting.Count > 0 ? fitting : pool;
+            var recent = Memory.Recent(texts);
+            if (recent != null)
+            {
+                var fresh = from.Where(t => !recent.Contains(Strip(t))).ToList();
+                if (fresh.Count > 0) from = fresh;
+            }
+            string text = Strip(from.RandomElement());
+            Memory.Remember(texts, text, texts.Count);
+            return text;
         }
 
         /// <summary>
         /// Picks a line that fits the moment. Lines matching more tags are much more likely, so a colonist
         /// shivering in winter talks about the cold, while untagged lines keep things varied. Tags are removed.
         /// </summary>
-        public static string Pick(IEnumerable<string> lines, HashSet<string> context)
+        public static string Pick(IEnumerable<string> lines, HashSet<string> context) => Pick(lines, context, null);
+
+        /// <summary>Like <see cref="Pick(IEnumerable{string}, HashSet{string})"/>, never one of the <paramref name="avoid"/> lines (as shown, tags removed).</summary>
+        public static string Pick(IEnumerable<string> lines, HashSet<string> context, HashSet<string> avoid)
         {
             if (lines == null) return null;
             var fitting = new List<(string line, float weight)>();
@@ -366,14 +402,30 @@ namespace ColonyCouncil
                 if (l.NullOrEmpty() || !TechFits(l)) continue;
                 int m = Match(l, context);
                 if (m < 0) continue;
+                if (avoid != null && avoid.Contains(Strip(l))) continue;
                 fitting.Add((l, m == 0 ? 1f : 2.5f + m * 1.5f));
             }
             if (fitting.Count == 0) return null;
             return Strip(fitting.RandomElementByWeight(x => x.weight).line);
         }
 
-        /// <summary>Like <see cref="Pick"/>, but only lines with at least one matching tag. Null if none.</summary>
-        public static string PickTagged(IEnumerable<string> lines, HashSet<string> context)
+        /// <summary>
+        /// Like <see cref="Pick(IEnumerable{string}, HashSet{string})"/>, and not a line this pool gave out lately while
+        /// another one fits. <paramref name="memoryKey"/> stands for the pool: anything that stays the same, the list itself.
+        /// </summary>
+        public static string PickFresh(IList<string> lines, HashSet<string> context, object memoryKey)
+        {
+            if (lines == null) return null;
+            var recent = Memory.Recent(memoryKey);
+            string line = (recent != null ? Pick(lines, context, recent) : null) ?? Pick(lines, context, null);
+            if (line != null) Memory.Remember(memoryKey, line, lines.Count);
+            return line;
+        }
+
+        /// <summary>Like <see cref="Pick(IEnumerable{string}, HashSet{string})"/>, but only lines with at least one matching tag. Null if none.</summary>
+        public static string PickTagged(IEnumerable<string> lines, HashSet<string> context) => PickTagged(lines, context, null);
+
+        public static string PickTagged(IEnumerable<string> lines, HashSet<string> context, HashSet<string> avoid)
         {
             if (lines == null || context == null) return null;
             var fitting = new List<(string line, int m)>();
@@ -381,7 +433,9 @@ namespace ColonyCouncil
             {
                 if (l.NullOrEmpty() || !TechFits(l)) continue;
                 int m = Match(l, context);
-                if (m > 0) fitting.Add((l, m));
+                if (m <= 0) continue;
+                if (avoid != null && avoid.Contains(Strip(l))) continue;
+                fitting.Add((l, m));
             }
             if (fitting.Count == 0) return null;
             return Strip(fitting.RandomElementByWeight(x => x.m).line);

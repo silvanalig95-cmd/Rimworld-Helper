@@ -22,6 +22,11 @@
       <li>{A_nameDef} had to put {A_possessive} shoulder to the battered {THING} twice before it gave.</li>
       <li>The damaged {THING} stuck again, and {A_nameDef} kicked it open, muttering.</li>
       <li>{A_nameDef} lost a good minute wrestling with the warped {THING}.</li>
+      <li>The {THING} jammed halfway, and {A_nameDef} had to squeeze through sideways.</li>
+      <li>{A_nameDef} had to lift the sagging {THING} by its handle to get it to close.</li>
+      <li>{A_nameDef} shouldered the {THING} open with a load in {A_possessive} arms and nearly dropped the lot.</li>
+      <li>{A_nameDef} hauled the {THING} open with both hands, and it scraped a groove in the floor.</li>
+      <li>The {THING} swung shut on {A_nameDef}'s heel, and {A_nameDef} had to wrestle it open again.</li>
     </texts>
   </ColonyCouncil.NuisanceDef>
 
@@ -38,6 +43,9 @@
       <li>{A_nameDef} set a bucket under the leak in the roof, and then a second bucket for the second leak.</li>
       <li>[rain] Water dripping through the roof landed on the back of {A_nameDef}'s neck every time {A_pronoun} sat down.</li>
       <li>[snow] Snow sifted in through the hole in the roof and settled in a cold drift where {A_nameDef} had to walk.</li>
+      <li>{A_nameDef} found a puddle spreading across the floor under the gap in the roof.</li>
+      <li>{A_nameDef} moved {A_possessive} bedding twice to get out from under the drip.</li>
+      <li>[rain] {A_nameDef} worked with water dripping steadily onto the floor beside {A_objective}.</li>
     </texts>
   </ColonyCouncil.NuisanceDef>
 
@@ -53,6 +61,12 @@
       <li>Flies found the {THING} before anyone else did, and {A_nameDef} spent the afternoon swatting them.</li>
       <li>{A_nameDef} followed a sour smell to the {THING}, which should have gone somewhere cold days ago.</li>
       <li>[summer|hot] The {THING} had started to turn in the heat, and {A_nameDef} could smell it from the doorway.</li>
+      <li>{A_nameDef} lifted the cloth off the {THING} and put it straight back.</li>
+      <li>The {THING} has gone soft and gray at the edges, and {A_nameDef} has been telling anyone who'll listen.</li>
+      <li>{A_nameDef} wrinkled {A_possessive} nose at the {THING} and propped the door open to air the room.</li>
+      <li>{A_nameDef} found the {THING} crawling with something and carried it out at arm's length.</li>
+      <li>[summer|hot] The heat had got to the {THING} overnight, and {A_nameDef} smelled it before seeing it.</li>
+      <li>{A_nameDef} sniffed at the {THING}, then sniffed again to be sure, and wished {A_pronoun} hadn't.</li>
     </texts>
   </ColonyCouncil.NuisanceDef>
 
@@ -69,6 +83,9 @@
       <li>{A_nameDef} banged a shin on the bed frame getting up. There was no room to turn around in there.</li>
       <li>{A_nameDef} got dressed with one elbow against the wall, as {A_pronoun} does every morning in that cramped room.</li>
       <li>{A_nameDef} stubbed a toe on the furniture crammed in around {A_possessive} bed, for the third time this week.</li>
+      <li>{A_nameDef} had to move the stool to open the chest, and the chest to open the door.</li>
+      <li>{A_nameDef} knocked {A_possessive} elbow on the wall pulling on a shirt in that cramped room.</li>
+      <li>{A_nameDef} sat on the bed to pull on {A_possessive} boots, because there was nowhere else to sit.</li>
     </texts>
   </ColonyCouncil.NuisanceDef>
 
@@ -85,6 +102,8 @@
       <li>The {THING} droned on the other side of the wall all night, and {A_nameDef} heard every minute of it.</li>
       <li>{A_nameDef} lay awake listening to the {THING} rattle and hum, and got up tired.</li>
       <li>{A_nameDef} stuffed cloth in {A_possessive} ears against the noise of the {THING} by {A_possessive} bed.</li>
+      <li>The hum of the {THING} got into {A_nameDef}'s dreams and stayed there.</li>
+      <li>{A_nameDef} pulled the blanket over {A_possessive} head against the thump of the {THING}.</li>
     </texts>
   </ColonyCouncil.NuisanceDef>
 
@@ -100,6 +119,8 @@
       <li>Smoke from the {THING} hung under the ceiling, and {A_nameDef}'s eyes were streaming within minutes.</li>
       <li>{A_nameDef} came out of the room coughing and smelling of the {THING}.</li>
       <li>[cold|winter] {A_nameDef} propped the door open to let the smoke from the {THING} out, and let the cold in instead.</li>
+      <li>{A_nameDef} worked bent low under the haze from the {THING}, coughing.</li>
+      <li>Soot from the {THING} had settled on everything, and {A_nameDef} came away gray to the elbows.</li>
     </texts>
   </ColonyCouncil.NuisanceDef>
 
@@ -116,6 +137,12 @@
       <li>{A_nameDef} made the long walk from bed to breakfast again, and was hungry and short-tempered by the time {A_pronoun} reached the table.</li>
       <li>{A_nameDef} grumbled that it took longer to walk to the table than to eat at it.</li>
       <li>[winter|cold] It was a long, cold walk from {A_nameDef}'s bed to the table, and {A_pronoun} made it with numb feet.</li>
+      <li>{A_nameDef} counted the steps from bed to table this morning and gave up at three hundred.</li>
+      <li>{A_nameDef} reached the table after the others had finished, and ate alone.</li>
+      <li>[winter|cold] {A_nameDef} crossed the frozen yard to breakfast with {A_possessive} hands tucked into {A_possessive} armpits.</li>
+      <li>{A_nameDef} set off from bed to breakfast and stopped twice on the way to rest.</li>
+      <li>{A_nameDef} complained that the dining room might as well be in the next valley.</li>
+      <li>{A_nameDef} worked out that {A_pronoun} spends more of the day walking to meals than eating them.</li>
     </texts>
   </ColonyCouncil.NuisanceDef>
 
@@ -132,6 +159,12 @@
       <li>Mosquitoes found {A_nameDef} the moment {A_pronoun} stepped outside, and followed {A_objective} all the way back in.</li>
       <li>{A_nameDef} spent the evening slapping at biting flies and scratching the bites.</li>
       <li>[night] The whine of mosquitoes kept {A_nameDef} swatting at the dark.</li>
+      <li>{A_nameDef} woke covered in fresh bites and spent breakfast scratching.</li>
+      <li>A cloud of gnats followed {A_nameDef} across the yard, getting in {A_possessive} eyes and mouth.</li>
+      <li>{A_nameDef} came back from the fields with a ring of bites around each ankle.</li>
+      <li>[night] {A_nameDef} lay awake while a mosquito found {A_objective} again and again in the dark.</li>
+      <li>{A_nameDef} slapped {A_possessive} own neck so often today that it went red.</li>
+      <li>Flies circled {A_nameDef}'s head through the whole of lunch.</li>
     </texts>
   </ColonyCouncil.NuisanceDef>
 
@@ -147,6 +180,11 @@
       <li>{A_nameDef} stepped right in a pile of animal filth and had to scrape {A_possessive} boot on the doorstep.</li>
       <li>{A_nameDef} found out where the animals had been the hard way, with {A_possessive} foot.</li>
       <li>{A_nameDef} tracked animal filth across two rooms before noticing.</li>
+      <li>{A_nameDef} slipped on animal droppings by the door and caught {A_objective}self on the frame.</li>
+      <li>{A_nameDef} spent the start of the day scrubbing animal mess off the floor.</li>
+      <li>{A_nameDef} found animal mess on the doorstep and tracked most of it inside before noticing.</li>
+      <li>{A_nameDef} cleaned animal muck off {A_possessive} boots with a stick, grumbling.</li>
+      <li>{A_nameDef} sat down without looking and found out the animals had been there first.</li>
     </texts>
   </ColonyCouncil.NuisanceDef>
 
@@ -162,6 +200,11 @@
       <li>{A_nameDef} picked a way through the things lying everywhere and still couldn't find what {A_pronoun} needed.</li>
       <li>{A_nameDef} tripped over something that should have been put away days ago.</li>
       <li>{A_nameDef} spent the start of {A_possessive} shift hunting through the mess for the right tools.</li>
+      <li>{A_nameDef} had to move three piles of junk to reach the workbench.</li>
+      <li>{A_nameDef} spent a good while looking for something that turned out to be under something else.</li>
+      <li>{A_nameDef} stepped over the same pile of junk four times before deciding it wasn't {A_possessive} job to move it.</li>
+      <li>{A_nameDef} lost the morning's tools under a heap of things that should have been put away.</li>
+      <li>{A_nameDef} sent a pile of odds and ends sliding across the floor and spent a while gathering them up.</li>
     </texts>
   </ColonyCouncil.NuisanceDef>
 
@@ -178,6 +221,11 @@
       <li>The seams of {A_nameDef}'s {THING} split again, and {A_pronoun} spent the evening sewing them shut.</li>
       <li>{A_nameDef}'s badly made {THING} itched and pinched all day.</li>
       <li>{A_nameDef} caught {A_possessive} poorly stitched {THING} on a splinter and tore it again.</li>
+      <li>{A_nameDef}'s {THING} came apart at the shoulder while {A_pronoun} was lifting a crate.</li>
+      <li>{A_nameDef} picked at a loose thread on {A_possessive} {THING}, and a whole seam came away with it.</li>
+      <li>{A_nameDef}'s {THING} let the wind straight through at the seams.</li>
+      <li>{A_nameDef} spent supper picking loose threads out of {A_possessive} {THING}.</li>
+      <li>A button came off {A_nameDef}'s {THING} and rolled away under the shelves.</li>
     </texts>
   </ColonyCouncil.NuisanceDef>
 
@@ -194,6 +242,11 @@
       <li>{A_nameDef} woke up stiff from another night on the {THING}.</li>
       <li>{A_nameDef} rubbed {A_possessive} back after a night on the {THING} and talked wistfully about real beds.</li>
       <li>[cold|winter] The cold came up through the {THING} all night, and {A_nameDef} got up aching.</li>
+      <li>{A_nameDef} spent the night trying to find a soft part of the {THING}, and gave up near dawn.</li>
+      <li>{A_nameDef} got up from the {THING} with the pattern of the floor pressed into {A_possessive} cheek.</li>
+      <li>{A_nameDef} woke with a crick in {A_possessive} neck from the {THING} and spent the morning turning {A_possessive} whole body to look at things.</li>
+      <li>{A_nameDef} folded {A_possessive} coat into a pillow, which did very little for the {THING}.</li>
+      <li>{A_nameDef} lay awake on the {THING} feeling every lump in the floor beneath it.</li>
     </texts>
   </ColonyCouncil.NuisanceDef>
 

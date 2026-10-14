@@ -293,6 +293,25 @@ for (int r = 0; r < 4; r++)
     Check(blocker.dropped, "a piece on the cell inside the door is left out");
 }
 
+// The line memory: a pool keeps out a third of its lines (at least one, at most twelve), the oldest dropping out first.
+{
+    Check(LineMemory.Window(1) == 0 && LineMemory.Window(2) == 1 && LineMemory.Window(9) == 3 && LineMemory.Window(100) == LineMemory.MaxWindow,
+        "line memory window sizes");
+    var memory = new LineMemory();
+    var pool = new object();
+    var other = new object();
+    memory.Remember(pool, "a", 1);
+    Check(memory.Recent(pool) == null, "a pool of one line remembers nothing");
+    for (int i = 0; i < 4; i++) memory.Remember(pool, "line " + i, 9);
+    Check(!memory.IsRecent(pool, "line 0") && memory.IsRecent(pool, "line 1") && memory.IsRecent(pool, "line 3"), "the oldest pick drops out");
+    Check(memory.Recent(other) == null && !memory.IsRecent(other, "line 3"), "pools keep their own memory");
+    memory.Remember(pool, "line 3", 9);
+    memory.Remember(pool, "line 3", 9);
+    Check(memory.Recent(pool).Count == 1 && !memory.IsRecent(pool, "line 2"), "a line picked again pushes out the others");
+    memory.Clear();
+    Check(memory.Recent(pool) == null, "cleared");
+}
+
 // Every room template and size, in every turn, mirrored and not.
 {
     string root = Directory.GetCurrentDirectory();
@@ -307,5 +326,5 @@ for (int r = 0; r < 4; r++)
     }
 }
 
-Console.WriteLine(failures == 0 ? "All template math, layout, strain, meeting and pressure tests passed." : failures + " failure(s).");
+Console.WriteLine(failures == 0 ? "All template math, layout, strain, meeting, pressure and line memory tests passed." : failures + " failure(s).");
 return failures == 0 ? 0 : 1;
