@@ -66,6 +66,7 @@
       <li>{A_nameDef} wrinkled {A_possessive} nose at the {THING} and propped the door open to air the room.</li>
       <li>{A_nameDef} found the {THING} crawling with something and carried it out at arm's length.</li>
       <li>[summer|hot] The heat had got to the {THING} overnight, and {A_nameDef} smelled it before seeing it.</li>
+      <li>{A_nameDef} sniffed at the {THING}, then sniffed again to be sure, and wished {A_pronoun} hadn't.</li>
     </texts>
   </ColonyCouncil.NuisanceDef>
 
@@ -141,6 +142,7 @@
       <li>[winter|cold] {A_nameDef} crossed the frozen yard to breakfast with {A_possessive} hands tucked into {A_possessive} armpits.</li>
       <li>{A_nameDef} set off from bed to breakfast and stopped twice on the way to rest.</li>
       <li>{A_nameDef} complained that the dining room might as well be in the next valley.</li>
+      <li>{A_nameDef} worked out that {A_pronoun} spends more of the day walking to meals than eating them.</li>
     </texts>
   </ColonyCouncil.NuisanceDef>
 
@@ -161,6 +163,8 @@
       <li>A cloud of gnats followed {A_nameDef} across the yard, getting in {A_possessive} eyes and mouth.</li>
       <li>{A_nameDef} came back from the fields with a ring of bites around each ankle.</li>
       <li>[night] {A_nameDef} lay awake while a mosquito found {A_objective} again and again in the dark.</li>
+      <li>{A_nameDef} slapped {A_possessive} own neck so often today that it went red.</li>
+      <li>Flies circled {A_nameDef}'s head through the whole of lunch.</li>
     </texts>
   </ColonyCouncil.NuisanceDef>
 
@@ -180,6 +184,7 @@
       <li>{A_nameDef} spent the start of the day scrubbing animal mess off the floor.</li>
       <li>{A_nameDef} found animal mess on the doorstep and tracked most of it inside before noticing.</li>
       <li>{A_nameDef} cleaned animal muck off {A_possessive} boots with a stick, grumbling.</li>
+      <li>{A_nameDef} sat down without looking and found out the animals had been there first.</li>
     </texts>
   </ColonyCouncil.NuisanceDef>
 
@@ -199,6 +204,7 @@
       <li>{A_nameDef} spent a good while looking for something that turned out to be under something else.</li>
       <li>{A_nameDef} stepped over the same pile of junk four times before deciding it wasn't {A_possessive} job to move it.</li>
       <li>{A_nameDef} lost the morning's tools under a heap of things that should have been put away.</li>
+      <li>{A_nameDef} sent a pile of odds and ends sliding across the floor and spent a while gathering them up.</li>
     </texts>
   </ColonyCouncil.NuisanceDef>
 
@@ -219,6 +225,7 @@
       <li>{A_nameDef} picked at a loose thread on {A_possessive} {THING}, and a whole seam came away with it.</li>
       <li>{A_nameDef}'s {THING} let the wind straight through at the seams.</li>
       <li>{A_nameDef} spent supper picking loose threads out of {A_possessive} {THING}.</li>
+      <li>A button came off {A_nameDef}'s {THING} and rolled away under the shelves.</li>
     </texts>
   </ColonyCouncil.NuisanceDef>
 
@@ -239,6 +246,7 @@
       <li>{A_nameDef} got up from the {THING} with the pattern of the floor pressed into {A_possessive} cheek.</li>
       <li>{A_nameDef} woke with a crick in {A_possessive} neck from the {THING} and spent the morning turning {A_possessive} whole body to look at things.</li>
       <li>{A_nameDef} folded {A_possessive} coat into a pillow, which did very little for the {THING}.</li>
+      <li>{A_nameDef} lay awake on the {THING} feeling every lump in the floor beneath it.</li>
     </texts>
   </ColonyCouncil.NuisanceDef>
 

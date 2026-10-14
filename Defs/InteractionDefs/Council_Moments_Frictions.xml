@@ -764,6 +764,7 @@
         <li>r_logentry->[INITIATOR_nameDef] moved [INITIATOR_possessive] work to the far side of the room, away from [RECIPIENT_nameDef].</li>
         <li>habit->clicking [RECIPIENT_possessive] tongue</li>
         <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef], for the third time that day, to stop [habit].</li>
+        <li>r_logentry->[INITIATOR_nameDef] put down [INITIATOR_possessive] work and stared at [RECIPIENT_nameDef] until [RECIPIENT_pronoun] stopped [habit].</li>
       </rulesStrings>
     </logRulesInitiator>
     <modExtensions>
@@ -938,6 +939,7 @@
         <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] whether [RECIPIENT_pronoun] remembered last night. [RECIPIENT_nameDef] said [RECIPIENT_pronoun] remembered enough.</li>
         <li>vicejab->would wake up with a head like a drum</li>
         <li>r_logentry->[INITIATOR_nameDef] watered down [RECIPIENT_nameDef]'s drink when [RECIPIENT_pronoun] wasn't looking, and [RECIPIENT_nameDef] noticed.</li>
+        <li>r_logentry->[INITIATOR_nameDef] reminded [RECIPIENT_nameDef], loudly, how the last night of drinking had ended.</li>
       </rulesStrings>
     </logRulesInitiator>
     <modExtensions>
@@ -1045,6 +1047,7 @@
         <li>r_logentry->[INITIATOR_nameDef] joked about [RECIPIENT_nameDef]'s holy days, and [RECIPIENT_nameDef] did not find it funny.</li>
         <li>faithtopic->the snoring in the barracks</li>
         <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] whether [RECIPIENT_possessive] faith had a blessing for [faithtopic], and laughed at [INITIATOR_possessive] own joke.</li>
+        <li>r_logentry->[INITIATOR_nameDef] watched [RECIPIENT_nameDef] as [RECIPIENT_pronoun] [faithpractice], and made a show of yawning.</li>
       </rulesStrings>
     </logRulesInitiator>
     <modExtensions>
