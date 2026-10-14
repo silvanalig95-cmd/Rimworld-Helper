@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Finding your way into Rimfolk: the "Start here" page the welcome letter points to (first in the almanac, so it is
+    also the page it opens on), and a short checklist for seeing the newer features at work in a game.
+  -->
+
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Council_Alm_StartHere</defName>
+    <label>start here</label>
+    <category>Basics</category>
+    <order>-10</order>
+    <summary>What Rimfolk adds to your colony, and where to find it.</summary>
+    <tip>You don't have to learn it all at once. The colonists will show you what matters to them.</tip>
+    <description>Rimfolk turns your colonists into a small society. They ask for things and remember what you did about it, make friends and rivals, keep journals, dream, and wear down under hard times. A council helps you keep up: an advisor that points out what the colony needs, and meetings where the colony picks a goal to work toward.
+
+All of it lives in the council window. Open it with the council button in the bottom bar; it comes back to the page you were on.</description>
+    <sections>
+      <li>
+        <heading>Your first days</heading>
+        <points>
+          <li>Look at Priorities (in the Colony section) now and then. It lists what the colony needs, worst first.</li>
+          <li>Answer wishes as they come. Grant one by making it happen, promise it to buy time, or refuse it. A refusal costs less than a wish left to lapse.</li>
+          <li>Select a colonist and open their Mood tab to see what weighs on them and what would help, or their Story tab for everything Rimfolk knows about them.</li>
+          <li>About once a quadrum the council meets in the evening. Keep people at home that day if their say matters to you.</li>
+        </points>
+      </li>
+      <li>
+        <heading>Too much at once?</heading>
+        <text>Every part has its own switch in the mod settings (Options, then Mod options, then Rimfolk). The Stakes setting decides how much it all matters: Gentle has only upsides, and Advisor only has no mood effects at all.</text>
+      </li>
+      <li>
+        <heading>Reading on</heading>
+        <text>The pages below explain the main parts. Each one ends with its own links, like this page.</text>
+      </li>
+    </sections>
+    <keywords><li>start</li><li>welcome</li><li>new</li><li>first</li><li>begin</li><li>help</li><li>tutorial</li><li>rimfolk</li></keywords>
+    <seeAlso>
+      <li>Council_Alm_Basics_ReadingTheCouncil</li>
+      <li>Council_Alm_C_Wishes</li>
+      <li>Council_Alm_C_Trust</li>
+      <li>Council_Alm_C_Meetings</li>
+      <li>Council_Alm_C_Decrees</li>
+      <li>Council_Alm_C_Moods</li>
+      <li>Council_Alm_C_Heart</li>
+      <li>Council_Alm_C_Social</li>
+      <li>Council_Alm_C_WorldEvents</li>
+      <li>Council_Alm_4_25_Ailments</li>
+      <li>Council_Alm_9_00_RoomPlanner</li>
+      <li>Council_Alm_HowToUse</li>
+      <li>Council_Alm_Checklist</li>
+    </seeAlso>
+  </ColonyCouncil.AlmanacArticleDef>
+
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Council_Alm_Checklist</defName>
+    <label>checking that it works</label>
+    <category>Basics</category>
+    <order>90</order>
+    <summary>Where to look to see each of the newer features at work.</summary>
+    <tip>If you can't find it, it may just not have happened yet. Most of these wait for the right moment.</tip>
+    <description>A short list for checking that Rimfolk's newer parts are running in your game. Each one says where to look and what you should see. Most need their setting on, and a few need the deeper game hooks.</description>
+    <sections>
+      <li>
+        <heading>The checklist</heading>
+        <points>
+          <li>Good times: open the Mood tab of a happy colonist (above 75% mood). Under the mood bar, a faint "Good times" line says what Rimfolk's balance takes off their good moods right now. Hover it for the rules.</li>
+          <li>Ailments: after a long day of hauling, mining or building, a colonist now and then gets a strained back, and after long bench work sore hands. It shows in their Health tab, and its description says what helps. The game's disease events also bring head colds and stomach bugs.</li>
+          <li>Visual touches: on a comet night the sky takes a faint cool cast, firefly nights bring small green-gold blinks around colonists outside after dark, and a council meeting opens with a bell. Only on the map you're looking at.</li>
+          <li>Meetings: on the Ambition page, call a council meeting. At the set time colonists put down their work and walk over, and sleepers are woken and come late. The letter at the end says who came, who was late and who missed it, and why.</li>
+          <li>The heart in RimHUD: in RimHUD's settings, Content tab, "Add third-party" lists Rimfolk's lines (strain, feelings, the heart's needs) and bars. Once added, they show in a colonist's RimHUD panel.</li>
+          <li>Material counts: open a room plan and look at its materials. Each shows green with some to spare and amber when it only just covers the room. In the game's build menu, a wall's material list reads like "Steel wall 420 (+85 lying around), enough for 84".</li>
+        </points>
+      </li>
+      <li>
+        <heading>When something doesn't show</heading>
+        <text>Check its setting first. Then turn on development mode (Options), open the debug actions and pick "Rimfolk: check myself" under Rimfolk. It lists which game hooks took, which parts are switched on and which of your mods Rimfolk found. A screenshot of it says a lot in a bug report.
+
+Development mode also has shortcuts for testing: "Heart: add 20 strain" moves a colonist's strain bar, and the comet and firefly nights can be started from the incident list.</text>
+      </li>
+    </sections>
+    <keywords><li>test</li><li>checklist</li><li>check</li><li>working</li><li>bug</li><li>debug</li><li>good times</li><li>ailments</li><li>visual</li><li>meeting</li><li>rimhud</li><li>materials</li></keywords>
+    <seeAlso>
+      <li>Council_Alm_StartHere</li>
+      <li>Council_Alm_C_Standards</li>
+      <li>Council_Alm_4_25_Ailments</li>
+      <li>Council_Alm_C_Meetings</li>
+      <li>Council_Alm_C_Heart</li>
+      <li>Council_Alm_9_00_RoomPlanner</li>
+    </seeAlso>
+  </ColonyCouncil.AlmanacArticleDef>
+
+</Defs>

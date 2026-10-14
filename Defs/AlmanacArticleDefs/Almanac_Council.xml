@@ -513,7 +513,9 @@ Some encounters and dilemmas only come up for a colony with a certain name: refu
 
 A memory fades on its own, and the Mood tab says when. A lasting mood stays while its cause does, so removing the cause is the only fix. Each mood with a known fix has a "what to do" line, with buttons that lead to the advisor's matching warning, the council page that deals with it, or an Almanac page. Moods from other mods get general advice based on what kind of mood they are, and their mod's name.
 
-"Where it comes from" splits the mood between the base game, Rimfolk and each of your other mods, so you can see which mod is pushing hardest. When a colonist has it good, a "Good times" line under it says how much Rimfolk's balance takes off their good moods right now: good moods that add up slowly, good memories that fade sooner, and comforts that high standards make count for less. Hover it for the rules.</text>
+"Where it comes from" splits the mood between the base game, Rimfolk and each of your other mods, so you can see which mod is pushing hardest. When a colonist has it good, a "Good times" line under it says how much Rimfolk's balance takes off their good moods right now: good moods that add up slowly, good memories that fade sooner, and comforts that high standards make count for less. Hover it for the rules.
+
+Click a section's heading (the heart, what weighs on them, what lifts them) to fold it away; it stays folded until you quit. Above a tall inspect pane, as with RimHUD, the tab gets shorter and scrolls.</text>
       </li>
       <li>
         <heading>The Moods page</heading>
