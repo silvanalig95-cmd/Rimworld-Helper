@@ -23,6 +23,8 @@
         <li>gripe->washing in water cold enough to stop a heart</li>
         <li>gripe->going a week without a proper wash</li>
         <li>gripe->having nowhere to rinse off after work</li>
+        <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] how long [RECIPIENT_pronoun] had put up with [gripe].</li>
+        <li>gripe->sharing one washbasin among all of them</li>
       </rulesStrings>
     </logRulesInitiator>
   </InteractionDef>
