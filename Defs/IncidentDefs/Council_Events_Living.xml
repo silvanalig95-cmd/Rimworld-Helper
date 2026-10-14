@@ -436,6 +436,21 @@
             </effects>
             <ways><tradition>1</tradition></ways>
           </li>
+          <li>
+            <label>Ask {A_nameDef} to tell the story of the first days</label>
+            <outcome>After supper {A_nameDef} stood up and told it from the start: the first night, the first winter, the first time the walls held. The colony listened to every word, and the newest of them asked the most questions.</outcome>
+            <outcomes>
+              <li>[first] {A_nameDef} told the story of the colony's first year, start to finish. Said aloud, it sounded like a great deal more than one year.</li>
+              <li>[lost] {A_nameDef} told the story of the founding, and named everyone who came and isn't here anymore. The colony raised a cup to each of them.</li>
+              <li>[years,lowtech] {A_nameDef} told the founding story by the hearth, the way it's told every year now, with the same pauses in the same places. The young ones knew most of it by heart and mouthed along.</li>
+            </outcomes>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_Evt_FoundingDay</thought><exceptTrait><li>Psychopath</li></exceptTrait></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Joy"><target>Colony</target><amount>0.12</amount></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Trust"><amount>3</amount></li>
+            </effects>
+            <ways><tradition>3</tradition></ways>
+          </li>
         </options>
       </li>
       <li Class="ColonyCouncil.HappeningLivingText">
