@@ -29,7 +29,12 @@ namespace ColonyCouncil
         Prisoners,
         Autumn,
         /// <summary>The colony is worn down: average strain 40 or more (Heart/).</summary>
-        Strained
+        Strained,
+        /// <summary>Someone is ill (see <see cref="LifeChecks.Illness"/>).</summary>
+        Illness,
+        Winter,
+        /// <summary>Someone joined the colony in the last ten days.</summary>
+        Newcomer
     }
 
     /// <summary>Who feels how about a decree: by trait (and degree), by passion for a skill, or by being unable to fight.</summary>
@@ -111,6 +116,11 @@ namespace ColonyCouncil
         public float strainRelief;
         public float workFactor;
         public bool needsHeart;
+        /// <summary>
+        /// The share of fuel that fires, torches and fueled heaters save while it holds (banked fires): handed back to them
+        /// each hour, never to generators, stoves that only burn while cooking, or anything switched off.
+        /// </summary>
+        public float fuelSaving;
 
         public DecreeReaction ReactionOf(Pawn p)
         {
@@ -316,6 +326,7 @@ namespace ColonyCouncil
             SyncHediffs();
             foreach (var a in active)
             {
+                if (a.def.fuelSaving > 0f) SaveFuel(a.def.fuelSaving);
                 if (a.def.practiceSkills == null || a.def.practiceXpPerHour <= 0f) continue;
                 foreach (var p in PawnsFinder.AllMaps_FreeColonistsSpawned)
                 {
@@ -327,6 +338,39 @@ namespace ColonyCouncil
                         if (rec != null && !rec.TotallyDisabled) rec.Learn(a.def.practiceXpPerHour * (CouncilGameComponent.Instance?.offices.DrillFactor ?? 1f));
                     }
                 }
+            }
+        }
+
+        /// <summary>
+        /// An hour of banked fires: every lit fire, torch and fueled heater at home gets back this share of an hour's
+        /// fuel. Not generators, not stoves that only burn while cooking, not mortars, not anything switched off.
+        /// </summary>
+        private static void SaveFuel(float share)
+        {
+            try
+            {
+                foreach (var map in Find.Maps)
+                {
+                    if (!map.IsPlayerHome) continue;
+                    foreach (var t in map.listerThings.ThingsInGroup(ThingRequestGroup.Refuelable))
+                    {
+                        if (t.Faction != Faction.OfPlayer || !(t is ThingWithComps tw)) continue;
+                        var fuel = tw.GetComp<CompRefuelable>();
+                        var props = fuel?.Props;
+                        if (props == null || !fuel.HasFuel || props.fuelConsumptionRate <= 0f || props.consumeFuelOnlyWhenUsed || props.consumeFuelOnlyWhenPowered
+                            || props.fuelIsMortarBarrel || props.destroyOnNoFuel) continue;
+                        if (tw.GetComp<CompPowerPlant>() != null || !(tw.GetComp<CompFlickable>()?.SwitchIsOn ?? true)) continue;
+                        float back = props.fuelConsumptionRate / 24f * share;
+                        float room = props.fuelCapacity - fuel.Fuel;
+                        float mult = props.FuelMultiplierCurrentDifficulty;
+                        if (room <= 0f || mult <= 0.01f) continue;
+                        fuel.Refuel(Mathf.Min(back, room) / mult);
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                CouncilLog.ErrorOnce("decree fuel saving", e);
             }
         }
 
@@ -408,6 +452,15 @@ namespace ColonyCouncil
                     return GenLocalDate.Season(map) == Season.Fall;
                 case DecreeMoment.Strained:
                     return Heart.On && Heart.ColonyStrain(pawns) >= 40f;
+                case DecreeMoment.Illness:
+                    return pawns.Any(p => LifeChecks.Illness(p) != null);
+                case DecreeMoment.Winter:
+                {
+                    var season = GenLocalDate.Season(map);
+                    return season == Season.Winter || season == Season.PermanentWinter;
+                }
+                case DecreeMoment.Newcomer:
+                    return pawns.Any(p => p.records != null && p.records.GetAsInt(RecordDefOf.TimeAsColonistOrColonyAnimal) < GenDate.TicksPerDay * 10);
                 default:
                     return false;
             }

@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- Effects of the third set of decrees (Council_Decrees3.xml), applied to every colonist while each holds. -->
+
+  <HediffDef>
+    <defName>Council_Decree_QuietHours</defName>
+    <label>quiet hours (decree)</label>
+    <description>Lamps out and voices down after dark, by order of the council. Sleeps deeper, quarrels less, gets less done in the evenings.</description>
+    <hediffClass>HediffWithComps</hediffClass>
+    <defaultLabelColor>(0.6, 0.8, 0.95)</defaultLabelColor>
+    <isBad>false</isBad>
+    <everCurableByItem>false</everCurableByItem>
+    <stages>
+      <li>
+        <statOffsets><WorkSpeedGlobal>-0.05</WorkSpeedGlobal></statOffsets>
+        <statFactors><RestRateMultiplier>1.15</RestRateMultiplier></statFactors>
+        <socialFightChanceFactor>0.5</socialFightChanceFactor>
+      </li>
+    </stages>
+  </HediffDef>
+
+  <HediffDef>
+    <defName>Council_Decree_SharedMeals</defName>
+    <label>shared meals (decree)</label>
+    <description>Eating every meal at the common table, by order of the council.</description>
+    <hediffClass>HediffWithComps</hediffClass>
+    <defaultLabelColor>(0.6, 0.8, 0.95)</defaultLabelColor>
+    <isBad>false</isBad>
+    <everCurableByItem>false</everCurableByItem>
+    <stages>
+      <li>
+        <statOffsets>
+          <WorkSpeedGlobal>-0.03</WorkSpeedGlobal>
+          <SocialImpact>0.1</SocialImpact>
+        </statOffsets>
+        <socialFightChanceFactor>0.75</socialFightChanceFactor>
+      </li>
+    </stages>
+  </HediffDef>
+
+  <HediffDef>
+    <defName>Council_Decree_SickBay</defName>
+    <label>rest when ill (decree)</label>
+    <description>The sick and the hurt go to bed and stay there, and the rest cover for them, by order of the council.</description>
+    <hediffClass>HediffWithComps</hediffClass>
+    <defaultLabelColor>(0.6, 0.8, 0.95)</defaultLabelColor>
+    <isBad>false</isBad>
+    <everCurableByItem>false</everCurableByItem>
+    <stages>
+      <li>
+        <statOffsets>
+          <WorkSpeedGlobal>-0.05</WorkSpeedGlobal>
+          <ImmunityGainSpeed>0.08</ImmunityGainSpeed>
+        </statOffsets>
+        <statFactors><InjuryHealingFactor>1.2</InjuryHealingFactor></statFactors>
+      </li>
+    </stages>
+  </HediffDef>
+
+  <HediffDef>
+    <defName>Council_Decree_BankedFires</defName>
+    <label>banked fires (decree)</label>
+    <description>Living with banked fires and early dark to save fuel, by order of the council.</description>
+    <hediffClass>HediffWithComps</hediffClass>
+    <defaultLabelColor>(0.9, 0.75, 0.45)</defaultLabelColor>
+    <isBad>false</isBad>
+    <everCurableByItem>false</everCurableByItem>
+    <stages>
+      <li>
+        <statOffsets><WorkSpeedGlobal>-0.04</WorkSpeedGlobal></statOffsets>
+      </li>
+    </stages>
+  </HediffDef>
+
+  <HediffDef>
+    <defName>Council_Decree_Apprentices</defName>
+    <label>apprenticeships (decree)</label>
+    <description>Teaching and learning the colony's trades every day, by order of the council.</description>
+    <hediffClass>HediffWithComps</hediffClass>
+    <defaultLabelColor>(0.6, 0.8, 0.95)</defaultLabelColor>
+    <isBad>false</isBad>
+    <everCurableByItem>false</everCurableByItem>
+    <stages>
+      <li>
+        <statOffsets><WorkSpeedGlobal>-0.08</WorkSpeedGlobal></statOffsets>
+      </li>
+    </stages>
+  </HediffDef>
+
+  <HediffDef>
+    <defName>Council_Decree_FeastDay</defName>
+    <label>feast day (decree)</label>
+    <description>A day of feasting declared by the council: eating more and working less.</description>
+    <hediffClass>HediffWithComps</hediffClass>
+    <defaultLabelColor>(0.6, 0.8, 0.95)</defaultLabelColor>
+    <isBad>false</isBad>
+    <everCurableByItem>false</everCurableByItem>
+    <stages>
+      <li>
+        <statOffsets><WorkSpeedGlobal>-0.15</WorkSpeedGlobal></statOffsets>
+        <hungerRateFactor>1.4</hungerRateFactor>
+      </li>
+    </stages>
+  </HediffDef>
+
+</Defs>

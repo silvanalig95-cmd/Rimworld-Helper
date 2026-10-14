@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    More lines for the decrees of everyday life (DecreeDefs/Council_Decrees3.xml), merged into the decree defs at
+    startup. <support> is said by a colonist who likes the decree, <oppose> by one who hates it, when it is declared or
+    when they petition for or against it. Only {PAWN_...} (the speaker) is available. Shown as floating speech too,
+    where only the first sentence survives, so it carries the meaning. Trait tags follow each decree's reactions.
+  -->
+
+  <!-- ==================================== QUIET HOURS ==================================== -->
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Council_Ext_Decree_QuietHours</defName>
+    <decree>Council_Decree_QuietHours</decree>
+    <support>
+      <plain>
+        <li>[trait:Nervous|trait:Volatile] Every bang in the night has me sitting up in bed. Please. Some quiet.</li>
+        <li>Someone sawed wood until midnight again. Nobody needs a shelf that badly.</li>
+        <li>[trait:Ascetic] Early to bed, early up. That's how people lived before there was anything to stay up for.</li>
+        <li>[night] It's the middle of the night and somebody is still hammering.</li>
+      </plain>
+      <warm>
+        <li>We're all tired and short with each other. A few quiet evenings would do us good.</li>
+      </warm>
+      <blunt>
+        <li>Lights out. Mouths shut. Sleep.</li>
+      </blunt>
+      <gloomy>
+        <li>[lowmood] I lie awake every night listening to everyone else having a better time than me.</li>
+      </gloomy>
+      <cold>
+        <li>Most arguments in this colony start after dark. Remove the dark hours, remove the arguments.</li>
+      </cold>
+    </support>
+    <oppose>
+      <plain>
+        <li>[trait:NightOwl] I do my best work when the rest of you are asleep. Now I'm supposed to be asleep too?</li>
+        <li>[skill:Social] The only time anyone talks to each other here is after supper.</li>
+        <li>[winter] It's dark at four in the afternoon. Quiet hours means quiet days.</li>
+      </plain>
+      <blunt>
+        <li>[trait:NightOwl] I don't sleep at night. Never have.</li>
+      </blunt>
+      <cheerful>
+        <li>Fine, quiet hours, but nobody said anything about quiet card games.</li>
+      </cheerful>
+      <gloomy>
+        <li>So we sit in the dark and listen to each other breathe. Wonderful.</li>
+      </gloomy>
+    </oppose>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <!-- ==================================== SHARED MEALS ==================================== -->
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Council_Ext_Decree_SharedMeals</defName>
+    <decree>Council_Decree_SharedMeals</decree>
+    <support>
+      <plain>
+        <li>[newcomer] I've been here a week and there are people I still haven't spoken to. A shared table would help.</li>
+        <li>People eat standing up, alone, in a hurry. That's no way to live.</li>
+        <li>[trait:Kind] Everyone should have a seat and someone to pass them the bread.</li>
+      </plain>
+      <warm>
+        <li>[skill:Social] I want to hear about everyone's day. All of it. Over supper.</li>
+        <li>[winter] Long dark evenings go faster with a full table.</li>
+      </warm>
+      <cheerful>
+        <li>Shared supper! I'll make sure there's a seat for everyone.</li>
+      </cheerful>
+      <cold>
+        <li>Grudges grow when people avoid each other. Make them sit together.</li>
+      </cold>
+    </support>
+    <oppose>
+      <plain>
+        <li>[trait:Abrasive] I don't want to look at most of these people while I'm eating.</li>
+        <li>[trait:Ascetic] A bowl and a quiet corner is all a meal needs.</li>
+        <li>[trait:Industrious] I was in the middle of something. The bell can wait.</li>
+      </plain>
+      <blunt>
+        <li>[trait:Abrasive] I'll eat with them when I like them.</li>
+      </blunt>
+      <gloomy>
+        <li>Every meal the same faces and the same conversations.</li>
+      </gloomy>
+    </oppose>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <!-- ==================================== REST WHEN ILL ==================================== -->
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Council_Ext_Decree_SickBay</defName>
+    <decree>Council_Decree_SickBay</decree>
+    <support>
+      <plain>
+        <li>[skill:Medicine] I can't treat anyone who won't stay in bed.</li>
+        <li>[trait:Sickly] I catch everything that comes through here. I'd rather they didn't bring it to me.</li>
+        <li>[hurt] I've been limping about for a week. I'd stay in bed if anyone let me.</li>
+        <li>[trait:Lazy|trait:Slothful] Bed rest for the sick. And for the very tired, I hope.</li>
+      </plain>
+      <warm>
+        <li>Nobody should be working through a fever just to look tough.</li>
+      </warm>
+      <cold>
+        <li>[skill:Medicine] One sick worker on their feet costs us three sick workers in a week.</li>
+      </cold>
+    </support>
+    <oppose>
+      <plain>
+        <li>[trait:Industrious|trait:HardWorker] I've never missed a day's work for a cough and I'm not starting now.</li>
+        <li>[trait:Tough] A bit of blood never stopped anyone.</li>
+      </plain>
+      <blunt>
+        <li>[trait:Industrious] Bed is for sleeping.</li>
+      </blunt>
+      <cheerful>
+        <li>I feel fine! Mostly fine. Fine enough to work, anyway.</li>
+      </cheerful>
+    </oppose>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <!-- ==================================== BANKED FIRES ==================================== -->
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Council_Ext_Decree_BankedFires</defName>
+    <decree>Council_Decree_BankedFires</decree>
+    <support>
+      <plain>
+        <li>[winter] Have you looked at the woodpile? We won't see the spring burning like this.</li>
+        <li>[trait:Ascetic] A coat indoors never hurt anyone.</li>
+        <li>[trait:Greedy] Every log we don't burn is a log we don't have to chop or buy.</li>
+        <li>[lowtech] Bank the fire at night, my mother used to say, and you'll still have one in the morning.</li>
+      </plain>
+      <cold>
+        <li>Fuel in, heat out. We're burning more than we need.</li>
+      </cold>
+      <gloomy>
+        <li>Better a cold month than a dead winter.</li>
+      </gloomy>
+    </support>
+    <oppose>
+      <plain>
+        <li>[trait:Wimp] My fingers are blue. Actually blue. Look.</li>
+        <li>[old] My bones can't take the cold the way they used to.</li>
+        <li>[cold] It's freezing out and you want to bank the fires?</li>
+      </plain>
+      <blunt>
+        <li>I can't work with numb hands.</li>
+      </blunt>
+      <warm>
+        <li>[child] Can I keep my candle? Just until I fall asleep?</li>
+      </warm>
+      <gloomy>
+        <li>Dark at supper, dark at breakfast, cold in between.</li>
+      </gloomy>
+    </oppose>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <!-- ==================================== APPRENTICESHIPS ==================================== -->
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Council_Ext_Decree_Apprentices</defName>
+    <decree>Council_Decree_Apprentices</decree>
+    <support>
+      <plain>
+        <li>[small] There are too few of us for anyone to know only one trade.</li>
+        <li>[newcomer] I'd learn anything, if someone would show me.</li>
+        <li>[trait:Kind] Everyone here knows something worth passing on.</li>
+        <li>[old] I won't be around forever. Somebody should learn what I know.</li>
+      </plain>
+      <warm>
+        <li>[skill:Social] I love teaching. Give me a student and a whole afternoon.</li>
+      </warm>
+      <cheerful>
+        <li>I'm going to learn to cook, and build, and grow things!</li>
+      </cheerful>
+      <cold>
+        <li>Every skill held by one person is a weak point. Spread them.</li>
+      </cold>
+    </support>
+    <oppose>
+      <plain>
+        <li>[trait:Abrasive] Watching someone else ruin my work is not teaching.</li>
+        <li>[trait:Lazy|trait:Slothful] More lessons on top of the work. Lovely.</li>
+      </plain>
+      <blunt>
+        <li>[trait:Abrasive] Learn by watching. Without talking.</li>
+      </blunt>
+      <gloomy>
+        <li>They'll learn just enough to be dangerous with a saw.</li>
+      </gloomy>
+    </oppose>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <!-- ==================================== FEAST DAY ==================================== -->
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Council_Ext_Decree_FeastDay</defName>
+    <decree>Council_Decree_FeastDay</decree>
+    <support>
+      <plain>
+        <li>[fall] The harvest is in. We should eat some of it while it's fresh.</li>
+        <li>[trait:Gourmand] One good meal. One. With everything on the table together.</li>
+        <li>[lowmood] We need something to look forward to, and a good meal is something.</li>
+        <li>[lowtech] My people always ate a great meal when the harvest came in, to thank the land.</li>
+      </plain>
+      <warm>
+        <li>Let's eat together, properly, all of us, before the cold comes.</li>
+      </warm>
+      <cheerful>
+        <li>[trait:Gourmand] I've been planning the menu for weeks! I've even planned the second helpings.</li>
+      </cheerful>
+      <blunt>
+        <li>[trait:Greedy] If we've got it, we should be eating it.</li>
+      </blunt>
+    </support>
+    <oppose>
+      <plain>
+        <li>[trait:Ascetic] We'll eat a week's stores in a day and call it celebrating.</li>
+        <li>[trait:Industrious] Half a day's work lost for a meal.</li>
+        <li>[winter] Feasting now, with the stores this low? We'll be counting the bowls by spring.</li>
+      </plain>
+      <cold>
+        <li>Food eaten today is food missing in a month.</li>
+      </cold>
+    </oppose>
+  </ColonyCouncil.FlavorExtensionDef>
+
+</Defs>
