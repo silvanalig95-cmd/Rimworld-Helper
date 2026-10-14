@@ -1,0 +1,731 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Council projects for every era and colony size, a few long ones in stages, and some tied to the newer systems:
+    illness, camps, the heart (a calm season, a table for everyone), the old ways of a tribe.
+    Pitch lines are spoken at the meeting by whoever proposes it (the first sentence floats above their head, the rest
+    goes in the letter) and may be tagged; achieved lines are said when it's done and can't use tags. Only {PAWN_...}.
+
+    When each can come up: every goal must be possible for the colony now (see Ambitions/AmbitionGoals*.cs: what it can
+    build or make, its seasons, its people), and minColonists, maxColonists and eras must fit. Staged projects
+    (staged = true) are worked through in order: only the current stage counts, and a stage that counts new work starts
+    counting when it begins.
+  -->
+
+  <!-- ===================== A home, not a camp (new and small colonies; in stages) ===================== -->
+
+  <ColonyCouncil.AmbitionDef>
+    <defName>Council_Amb_HomeNotCamp</defName>
+    <label>a home, not a camp</label>
+    <description>Turn the camp into a home, one step at a time: first a real bed for everyone instead of a sleeping spot or the floor, then a proper room to eat in, with a table.</description>
+    <days>20</days>
+    <weight>1.2</weight>
+    <staged>true</staged>
+    <maxColonists>8</maxColonists>
+    <relevantCategories><li>Shelter</li><li>Comfort</li></relevantCategories>
+    <proposerSkills><li>Construction</li></proposerSkills>
+    <goals>
+      <li Class="ColonyCouncil.Goal_BedsForAll" />
+      <li Class="ColonyCouncil.Goal_Room">
+        <role>DiningRoom</role>
+        <thingRole>table</thingRole>
+        <thingCount>1</thingCount>
+      </li>
+    </goals>
+    <pitch>
+      <plain>
+        <li>We've been sleeping on the ground long enough. Beds first, then a room to eat in. Then it's a home.</li>
+        <li>Right now this is a camp with walls. I'd like it to be a place we live.</li>
+        <li>[rain] Another night on a wet floor. Proper beds, please, and a roof over the table.</li>
+        <li>[small] There aren't many of us. That makes it easier to give every one of us a bed.</li>
+        <li>[tribal] A people with a home tell stories by its fire. Let's build one worth telling stories in.</li>
+      </plain>
+      <warm>
+        <li>I want everyone to wake up in a real bed and sit down to a real table. It isn't much to ask.</li>
+      </warm>
+      <blunt>
+        <li>My back hurts from the floor. Beds. Then a table. That's my plan.</li>
+      </blunt>
+      <cheerful>
+        <li>Beds for everyone, and then a dining room! We'll feel like proper settlers.</li>
+      </cheerful>
+      <gloomy>
+        <li>We might not last. If we do, I'd rather not have spent it sleeping in the dirt.</li>
+      </gloomy>
+      <cold>
+        <li>Rest and meals improve everything else we do. Beds and a dining room come first.</li>
+      </cold>
+    </pitch>
+    <achieved>
+      <plain><li>A bed for everyone and a table we all eat at. It's a home now.</li></plain>
+      <warm><li>Look at it. Somebody walking past would think we'd always lived here.</li></warm>
+      <cheerful><li>Real beds and a real table! I've been smiling all through supper.</li></cheerful>
+      <cold><li>Basic living standards met. Now we can work on the rest.</li></cold>
+    </achieved>
+  </ColonyCouncil.AmbitionDef>
+
+  <!-- ===================== A table for everyone (the heart: belonging) ===================== -->
+
+  <ColonyCouncil.AmbitionDef>
+    <defName>Council_Amb_TableForAll</defName>
+    <label>a table for everyone</label>
+    <description>Seat the whole colony at once: a chair at a table indoors for everyone who eats, in a dining room people are glad to sit in. A colony that eats together holds together.</description>
+    <days>20</days>
+    <minColonists>4</minColonists>
+    <relevantCategories><li>Comfort</li></relevantCategories>
+    <proposerSkills><li>Social</li></proposerSkills>
+    <proposerTraits><li>Kind</li></proposerTraits>
+    <template>Council_DiningRoom_Large</template>
+    <goals>
+      <li Class="ColonyCouncil.Goal_SeatsForAll" />
+      <li Class="ColonyCouncil.Goal_Room">
+        <role>DiningRoom</role>
+        <minImpressiveness>35</minImpressiveness>
+      </li>
+    </goals>
+    <pitch>
+      <plain>
+        <li>We eat in shifts, like a barracks. I'd like us all at one table, once a day.</li>
+        <li>Half of us eat standing up. Let's build chairs until everyone has one.</li>
+        <li>[evening] Supper should be the best hour of the day. Right now it's a queue.</li>
+        <li>[large] There are a lot of us now. We should still be able to sit down together.</li>
+        <li>[afterraid] After a day like today, I want everyone round one table where I can see them.</li>
+      </plain>
+      <warm>
+        <li>People who share a table look out for each other. I'd like us to be that.</li>
+      </warm>
+      <blunt>
+        <li>More chairs, a bigger table, and a room worth eating in. Done.</li>
+      </blunt>
+      <cheerful>
+        <li>One long table with everyone at it, passing bowls and talking over each other!</li>
+      </cheerful>
+      <gloomy>
+        <li>We hardly see each other except at work. Meals are all we have left.</li>
+      </gloomy>
+      <cold>
+        <li>Shared meals cut down on friction. It's a cheap way to keep the peace.</li>
+      </cold>
+    </pitch>
+    <achieved>
+      <plain><li>Everyone at one table, and room to spare.</li></plain>
+      <warm><li>I looked down the table tonight and every seat had someone I'm fond of in it.</li></warm>
+      <cheerful><li>We were so loud at supper the animals came to look!</li></cheerful>
+      <gloomy><li>Everyone fits. I'll enjoy it before someone else joins.</li></gloomy>
+      <cold><li>Seating is sufficient for all. Good.</li></cold>
+    </achieved>
+  </ColonyCouncil.AmbitionDef>
+
+  <!-- ===================== A calm season (the heart: strain) ===================== -->
+
+  <ColonyCouncil.AmbitionDef>
+    <defName>Council_Amb_CalmSeason</defName>
+    <label>a calm season</label>
+    <description>Fifteen days in a row without anyone having a mental break. A break starts the count again. Days off, good food, parties and fewer frictions all help. Proposed when someone is close to breaking, or the colony is worn down.</description>
+    <days>25</days>
+    <relevantCategories><li>Comfort</li></relevantCategories>
+    <proposerSkills><li>Social</li><li>Medicine</li></proposerSkills>
+    <proposerTraits><li>Kind</li></proposerTraits>
+    <goals>
+      <li Class="ColonyCouncil.Goal_CalmDays">
+        <days>15</days>
+      </li>
+    </goals>
+    <pitch>
+      <plain>
+        <li>Some of us are one bad day from snapping. I want fifteen days where nobody does.</li>
+        <li>Let's look after each other for a while. Rest, decent food, fewer arguments. See how long we can go.</li>
+        <li>[lowmood] I'm not doing well, and I'm not the only one. Let's slow down before someone breaks.</li>
+        <li>[afterraid] The raid shook everyone. Give us half a season of calm to get over it.</li>
+        <li>[winter] Winter wears on people. Let's get through this one without anyone falling apart.</li>
+      </plain>
+      <warm>
+        <li>Nobody here should have to carry it alone. Let's watch out for each other until things settle.</li>
+      </warm>
+      <blunt>
+        <li>Too many people are close to cracking. Fix that before it costs us.</li>
+      </blunt>
+      <cheerful>
+        <li>Fifteen calm days! We'll eat well, rest a lot and be nice to each other.</li>
+      </cheerful>
+      <gloomy>
+        <li>Somebody's going to break soon. I'd like to be wrong about that.</li>
+      </gloomy>
+      <cold>
+        <li>A mental break costs days of work and sometimes lives. Preventing them is efficient.</li>
+      </cold>
+    </pitch>
+    <achieved>
+      <plain><li>Fifteen days and nobody broke. We're steadier than we were.</li></plain>
+      <warm><li>I'm proud of all of us. We got through it together.</li></warm>
+      <cheerful><li>Half a season without a single tantrum!</li></cheerful>
+      <gloomy><li>Calm for now. I'll take it.</li></gloomy>
+      <cold><li>Stability achieved. Maintain it.</li></cold>
+    </achieved>
+  </ColonyCouncil.AmbitionDef>
+
+  <!-- ===================== A year of steady nerves (long; established colonies) ===================== -->
+
+  <ColonyCouncil.AmbitionDef>
+    <defName>Council_Amb_SteadyYear</defName>
+    <label>a year of steady nerves</label>
+    <description>A whole year (sixty days) without anyone in the colony having a mental break. A break starts the count again, so this is a long project for a colony that has learned to look after its people.</description>
+    <days>75</days>
+    <weight>0.4</weight>
+    <minColonists>4</minColonists>
+    <relevantCategories><li>Comfort</li></relevantCategories>
+    <proposerSkills><li>Social</li></proposerSkills>
+    <goals>
+      <li Class="ColonyCouncil.Goal_CalmDays">
+        <days>60</days>
+        <minColonists>4</minColonists>
+        <whenStrained>false</whenStrained>
+        <minColonyDays>60</minColonyDays>
+      </li>
+    </goals>
+    <pitch>
+      <plain>
+        <li>We've lasted a year out here. Let's make the next one a year where nobody breaks.</li>
+        <li>A whole year without anyone losing their head. It's never been done here. I'd like to try.</li>
+        <li>[highmood] Things are good right now. Let's keep them good, for a full year.</li>
+        <li>[spring] New year, new start. Let's see if we can get to next spring with steady nerves.</li>
+      </plain>
+      <warm>
+        <li>We know each other well enough now to see when someone's struggling. Let's use that.</li>
+      </warm>
+      <blunt>
+        <li>A year. No breakdowns. Everyone pulls their weight on this.</li>
+      </blunt>
+      <cheerful>
+        <li>A year of nobody throwing a fit! We'd deserve a feast at the end of it.</li>
+      </cheerful>
+      <gloomy>
+        <li>A year is a long time out here. Something will go wrong. Maybe we can still hold together.</li>
+      </gloomy>
+      <cold>
+        <li>Sixty days of uninterrupted work would be our best record by far.</li>
+      </cold>
+    </pitch>
+    <achieved>
+      <plain><li>A full year and nobody broke. We should write that down somewhere.</li></plain>
+      <warm><li>A year of looking after each other. I couldn't ask for better people.</li></warm>
+      <cheerful><li>A whole year! Somebody find a cake.</li></cheerful>
+      <gloomy><li>A year without anyone breaking. I didn't think we'd make it.</li></gloomy>
+      <cold><li>Sixty days of stability. A new standard for the colony.</li></cold>
+    </achieved>
+  </ColonyCouncil.AmbitionDef>
+
+  <!-- ===================== A healthy season (illness) ===================== -->
+
+  <ColonyCouncil.AmbitionDef>
+    <defName>Council_Amb_HealthySeason</defName>
+    <label>a healthy season</label>
+    <description>Get the colony well and keep it that way: fifteen days in a row with nobody sick, and medicine on hand for the next time. Proposed while something is going round. Rest, warm beds, clean rooms and good food help.</description>
+    <days>30</days>
+    <relevantCategories><li>Health</li></relevantCategories>
+    <proposerSkills><li>Medicine</li></proposerSkills>
+    <goals>
+      <li Class="ColonyCouncil.Goal_HealthyDays">
+        <days>15</days>
+      </li>
+      <li Class="ColonyCouncil.Goal_Stock">
+        <kind>medicine</kind>
+        <count>10</count>
+      </li>
+    </goals>
+    <pitch>
+      <plain>
+        <li>Half the colony is sniffling and the other half will be soon. Let's get everyone well and keep them well.</li>
+        <li>Rest for the sick, warm beds, clean floors. Then fifteen days with nobody coughing.</li>
+        <li>[winter] Winter is when it spreads. We can't stop the cold, but we can stop passing things around.</li>
+        <li>[lowtech] Clean water, rest, and the sick kept apart. That's how the old healers did it.</li>
+      </plain>
+      <warm>
+        <li>I hate seeing people suffer through it. Let's look after the sick properly this time.</li>
+      </warm>
+      <blunt>
+        <li>Sick people don't work. Get them well. Keep them well.</li>
+      </blunt>
+      <cheerful>
+        <li>A whole season without a single sneeze! We can do it.</li>
+      </cheerful>
+      <gloomy>
+        <li>It's going round again. It always comes back if we don't deal with it.</li>
+      </gloomy>
+      <cold>
+        <li>Illness costs work days and spreads in shared rooms. Contain it and stock up.</li>
+      </cold>
+    </pitch>
+    <achieved>
+      <plain><li>Fifteen days and nobody sick. The infirmary is quiet for once.</li></plain>
+      <warm><li>Everyone's well. I'd forgotten what that sounded like at breakfast.</li></warm>
+      <cheerful><li>Not one cough at supper tonight!</li></cheerful>
+      <cold><li>Colony health restored. Stores in place for next time.</li></cold>
+    </achieved>
+  </ColonyCouncil.AmbitionDef>
+
+  <!-- ===================== A proper infirmary (small colonies; in stages) ===================== -->
+
+  <ColonyCouncil.AmbitionDef>
+    <defName>Council_Amb_ProperInfirmary</defName>
+    <label>a proper infirmary</label>
+    <description>A real place for the sick and wounded, built in stages: medicine on hand first, then a room with two beds for patients, then that room kept clean enough that wounds don't fester.</description>
+    <days>35</days>
+    <staged>true</staged>
+    <maxColonists>7</maxColonists>
+    <relevantCategories><li>Health</li></relevantCategories>
+    <proposerSkills><li>Medicine</li></proposerSkills>
+    <template>Council_Hospital_Infirmary</template>
+    <goals>
+      <li Class="ColonyCouncil.Goal_Stock">
+        <kind>medicine</kind>
+        <count>8</count>
+      </li>
+      <li Class="ColonyCouncil.Goal_Room">
+        <role>Hospital</role>
+        <thingRole>bed</thingRole>
+        <thingCount>2</thingCount>
+      </li>
+      <li Class="ColonyCouncil.Goal_RoomStat">
+        <role>Hospital</role>
+        <stat>Cleanliness</stat>
+        <min>0.6</min>
+      </li>
+    </goals>
+    <pitch>
+      <plain>
+        <li>Right now our infirmary is wherever somebody falls down. I'd like a proper one.</li>
+        <li>Medicine first, then beds for the sick, then a room clean enough to cut someone open in.</li>
+        <li>[hurt] I've been stitched up on a dirty floor. I'd rather the next person wasn't.</li>
+        <li>[afterraid] We patched people up in the dining room again. That can't keep happening.</li>
+        <li>[small] With so few of us, losing one to an infection would be terrible. Let's do this properly.</li>
+      </plain>
+      <warm>
+        <li>When one of us is hurt, I want them to wake up somewhere clean and quiet.</li>
+      </warm>
+      <blunt>
+        <li>People die of dirty wounds. Build an infirmary and keep it clean.</li>
+      </blunt>
+      <cheerful>
+        <li>A real infirmary, with clean sheets and medicine on the shelf! We'll be the healthiest colony around.</li>
+      </cheerful>
+      <gloomy>
+        <li>Someone's going to get badly hurt sooner or later. I'd like a place ready for them.</li>
+      </gloomy>
+      <cold>
+        <li>Infection rates fall sharply in a clean room. The return on this is obvious.</li>
+      </cold>
+    </pitch>
+    <achieved>
+      <plain><li>Medicine on the shelf, two clean beds, and a floor you could eat off. A proper infirmary.</li></plain>
+      <warm><li>Whoever needs it next will be looked after properly.</li></warm>
+      <cheerful><li>I scrubbed it twice and it sparkles!</li></cheerful>
+      <gloomy><li>It's ready. Now someone will need it.</li></gloomy>
+      <cold><li>Medical facility complete. Infection risk reduced.</li></cold>
+    </achieved>
+  </ColonyCouncil.AmbitionDef>
+
+  <!-- ===================== Friends at the camp (camps) ===================== -->
+
+  <ColonyCouncil.AmbitionDef>
+    <defName>Council_Amb_CampFriends</defName>
+    <label>friends at the camp</label>
+    <description>Strangers are camped on the map. Before they move on, three colonists should spend enough time at their fire to know them: they talk with whoever comes by. Friendly neighbors trade, share and remember.</description>
+    <days>8</days>
+    <weight>1.5</weight>
+    <proposerSkills><li>Social</li></proposerSkills>
+    <proposerTraits><li>Kind</li></proposerTraits>
+    <goals>
+      <li Class="ColonyCouncil.Goal_CampFriends">
+        <count>3</count>
+        <visits>3</visits>
+      </li>
+    </goals>
+    <pitch>
+      <plain>
+        <li>There are strangers camped out there and we've barely said a word to them. Let's go and sit at their fire.</li>
+        <li>They'll leave soon and carry stories of us wherever they go. Let's make them good stories.</li>
+        <li>[evening] Their fire is lit every evening. A few of us should go over and say hello.</li>
+        <li>[lowtech] Among my people, a stranger's fire is a place to trade news. We should trade some.</li>
+      </plain>
+      <warm>
+        <li>They're far from home. A few friendly faces would mean a lot to them, and to us.</li>
+      </warm>
+      <blunt>
+        <li>Go talk to the campers. Three of us, a few evenings. That's all.</li>
+      </blunt>
+      <cheerful>
+        <li>New people to talk to! I'm going tonight, who's coming?</li>
+      </cheerful>
+      <gloomy>
+        <li>Better to have them as friends than as strangers watching us from the trees.</li>
+      </gloomy>
+      <cold>
+        <li>Their people will hear how we treated them. Goodwill is cheap now and valuable later.</li>
+      </cold>
+    </pitch>
+    <achieved>
+      <plain><li>Three of us know the campers by name now. They waved when we passed.</li></plain>
+      <warm><li>They're friends now, not strangers. I'll miss them when they go.</li></warm>
+      <cheerful><li>They taught us a song and we taught them a worse one!</li></cheerful>
+      <cold><li>Relations established. They'll speak well of us.</li></cold>
+    </achieved>
+  </ColonyCouncil.AmbitionDef>
+
+  <!-- ===================== Coats for winter (every era; cold maps) ===================== -->
+
+  <ColonyCouncil.AmbitionDef>
+    <defName>Council_Amb_CoatsForWinter</defName>
+    <label>coats for winter</label>
+    <description>Real cold is coming. Dress everyone warmly enough to stay comfortable at -10°C: parkas, cloaks, hats, whatever the colony can make.</description>
+    <days>20</days>
+    <relevantCategories><li>Temperature</li></relevantCategories>
+    <proposerSkills><li>Crafting</li></proposerSkills>
+    <goals>
+      <li Class="ColonyCouncil.Goal_WarmClothes">
+        <temperature>-10</temperature>
+      </li>
+    </goals>
+    <pitch>
+      <plain>
+        <li>The first frost came early. Half of us are still dressed for summer.</li>
+        <li>Coats for everyone before the snow, or we'll be losing fingers by midwinter.</li>
+        <li>[fall] Winter's on its way. I want everyone wrapped up warm before it gets here.</li>
+        <li>[tribal] Skins and furs, sewn double. That's how my people got through the long cold.</li>
+        <li>[medieval] Wool cloaks and hoods for every one of us. The tailor will be busy.</li>
+      </plain>
+      <warm>
+        <li>I don't want anyone shivering through this winter. Not one of us.</li>
+      </warm>
+      <blunt>
+        <li>Warm clothes. Everyone. Before winter.</li>
+      </blunt>
+      <cheerful>
+        <li>Warm coats for everybody! We'll look like a herd of muffalo, but we'll be warm.</li>
+      </cheerful>
+      <gloomy>
+        <li>Last winter took toes off somebody. I'd rather not count toes again.</li>
+      </gloomy>
+      <cold>
+        <li>Frostbite cripples workers. Insulated clothing costs leather and a few days at the bench.</li>
+      </cold>
+    </pitch>
+    <achieved>
+      <plain><li>Everyone's dressed for the cold. Let it come.</li></plain>
+      <warm><li>Nobody will freeze this winter. That's a good feeling.</li></warm>
+      <cheerful><li>We all look ridiculous and nobody's cold!</li></cheerful>
+      <cold><li>Cold-weather clothing distributed.</li></cold>
+    </achieved>
+  </ColonyCouncil.AmbitionDef>
+
+  <!-- ===================== The great feast (large colonies) ===================== -->
+
+  <ColonyCouncil.AmbitionDef>
+    <defName>Council_Amb_GreatFeast</defName>
+    <label>the great feast</label>
+    <description>A feast for a big colony: a lavish meal for every colonist, and a dining room fine enough to eat it in.</description>
+    <days>25</days>
+    <minColonists>8</minColonists>
+    <relevantCategories><li>Food</li><li>Comfort</li></relevantCategories>
+    <proposerSkills><li>Cooking</li></proposerSkills>
+    <template>Council_DiningRoom_Large</template>
+    <goals>
+      <li Class="ColonyCouncil.Goal_Stock">
+        <kind>lavishmeals</kind>
+        <count>10</count>
+        <perColonist>1</perColonist>
+      </li>
+      <li Class="ColonyCouncil.Goal_Room">
+        <role>DiningRoom</role>
+        <thingRole>table</thingRole>
+        <thingCount>1</thingCount>
+        <minImpressiveness>50</minImpressiveness>
+      </li>
+    </goals>
+    <pitch>
+      <plain>
+        <li>There are a lot of us now. I'd like to cook every one of us the best meal of their life, on the same night.</li>
+        <li>A lavish meal for everyone, in a hall that deserves it. We've earned a night like that.</li>
+        <li>[fall] The harvest is in. Let's have a feast worth remembering.</li>
+        <li>[rich] We can afford it. Let's spend some of it on ourselves.</li>
+      </plain>
+      <warm>
+        <li>One night where everyone eats well and nobody works. I'd love to give the colony that.</li>
+      </warm>
+      <blunt>
+        <li>A feast. Lavish meals for all of us. I'll cook.</li>
+      </blunt>
+      <cheerful>
+        <li>The biggest feast this colony has ever seen! I'm already planning the menu.</li>
+      </cheerful>
+      <gloomy>
+        <li>Who knows how many more chances we'll get. Let's have one good feast while we can.</li>
+      </gloomy>
+      <cold>
+        <li>A colony-wide feast lifts morale for days. The ingredients are an investment.</li>
+      </cold>
+    </pitch>
+    <achieved>
+      <plain><li>A lavish meal for every one of us, and a hall to eat it in. A night to remember.</li></plain>
+      <warm><li>I watched them all eat and couldn't stop smiling. Worth every hour in the kitchen.</li></warm>
+      <cheerful><li>Best feast ever! I can't move.</li></cheerful>
+      <cold><li>Feast prepared. Morale should benefit for some time.</li></cold>
+    </achieved>
+  </ColonyCouncil.AmbitionDef>
+
+  <!-- ===================== Nobody is the only one (small colonies) ===================== -->
+
+  <ColonyCouncil.AmbitionDef>
+    <defName>Council_Amb_NoOneIndispensable</defName>
+    <label>nobody is the only one</label>
+    <description>In a small colony, losing the only doctor or the only cook can end it. Train a second person in each: two people at Medicine 6 or better, and two at Cooking 6 or better.</description>
+    <days>40</days>
+    <maxColonists>5</maxColonists>
+    <relevantCategories><li>Health</li><li>Work</li></relevantCategories>
+    <proposerSkills><li>Medicine</li><li>Cooking</li></proposerSkills>
+    <goals>
+      <li Class="ColonyCouncil.Goal_SkillDepth">
+        <skill>Medicine</skill>
+        <count>2</count>
+        <level>6</level>
+      </li>
+      <li Class="ColonyCouncil.Goal_SkillDepth">
+        <skill>Cooking</skill>
+        <count>2</count>
+        <level>6</level>
+      </li>
+    </goals>
+    <pitch>
+      <plain>
+        <li>If our doctor takes an arrow, who stitches the doctor? Nobody. That has to change.</li>
+        <li>There are so few of us that every job rests on one pair of hands. Let's double them up.</li>
+        <li>[hurt] I was the one who knew how to set a bone, and I was the one with the broken arm.</li>
+        <li>[afterraid] We nearly lost our cook in that raid. Who'd have fed us?</li>
+      </plain>
+      <warm>
+        <li>I'd sleep better knowing any one of us could be looked after if the worst happened.</li>
+      </warm>
+      <blunt>
+        <li>Two healers. Two cooks. No more jobs that only one of us can do.</li>
+      </blunt>
+      <cheerful>
+        <li>Everybody learns something new! I'll teach anyone who wants to learn.</li>
+      </cheerful>
+      <gloomy>
+        <li>We're one bad day away from nobody knowing how to do anything important.</li>
+      </gloomy>
+      <cold>
+        <li>Redundancy in critical skills is the difference between a setback and a collapse.</li>
+      </cold>
+    </pitch>
+    <achieved>
+      <plain><li>Two who can heal and two who can cook. We can lose a bad day now without losing everything.</li></plain>
+      <warm><li>Everyone learned something. I'm proud of all of them.</li></warm>
+      <gloomy><li>A little less fragile than we were.</li></gloomy>
+      <cold><li>Critical skills duplicated.</li></cold>
+    </achieved>
+  </ColonyCouncil.AmbitionDef>
+
+  <!-- ===================== Word from outside (industrial and later) ===================== -->
+
+  <ColonyCouncil.AmbitionDef>
+    <defName>Council_Amb_WordFromOutside</defName>
+    <label>word from outside</label>
+    <description>End the colony's isolation: build a comms console and make friends of two peoples abroad (goodwill 40 or more), so there's someone to call for trade or help.</description>
+    <days>30</days>
+    <eras><li>!lowtech</li></eras>
+    <relevantCategories><li>Progress</li></relevantCategories>
+    <proposerSkills><li>Social</li></proposerSkills>
+    <goals>
+      <li Class="ColonyCouncil.Goal_Build">
+        <thingRole>comms</thingRole>
+        <count>1</count>
+        <relative>false</relative>
+      </li>
+      <li Class="ColonyCouncil.Goal_Goodwill">
+        <goodwill>40</goodwill>
+        <count>2</count>
+      </li>
+    </goals>
+    <pitch>
+      <plain>
+        <li>Nobody out there knows we exist, and we can't call anyone. That's how colonies vanish.</li>
+        <li>A comms console and a couple of friendly neighbors. Then if trouble comes, someone answers.</li>
+        <li>[afterraid] We fought that one alone. I'd like the next one to be different.</li>
+        <li>[small] As few as we are, we need friends more than walls.</li>
+      </plain>
+      <warm>
+        <li>There are good people out there. Let's find them and say hello.</li>
+      </warm>
+      <blunt>
+        <li>Build the console. Make some friends. Stop being alone out here.</li>
+      </blunt>
+      <cheerful>
+        <li>Voices on the radio and traders on call! We'll be the best-connected place for miles.</li>
+      </cheerful>
+      <gloomy>
+        <li>If we all died tomorrow, nobody would even hear about it.</li>
+      </gloomy>
+      <cold>
+        <li>Allies and trade partners multiply our options at no cost but goodwill.</li>
+      </cold>
+    </pitch>
+    <achieved>
+      <plain><li>Two neighbors who'll answer when we call. We're not alone out here.</li></plain>
+      <warm><li>Friends abroad. It changes how the night sounds.</li></warm>
+      <cheerful><li>I've talked to more strangers this week than in my whole life!</li></cheerful>
+      <cold><li>Communications and relations established.</li></cold>
+    </achieved>
+  </ColonyCouncil.AmbitionDef>
+
+  <!-- ===================== Ready for every season (long; in stages) ===================== -->
+
+  <ColonyCouncil.AmbitionDef>
+    <defName>Council_Amb_YearRound</defName>
+    <label>ready for every season</label>
+    <description>A long project, in stages: food for thirty days put by, then everyone dressed for the cold, then medicine on the shelf. A colony that has all three can face whatever the year brings.</description>
+    <days>60</days>
+    <weight>0.6</weight>
+    <staged>true</staged>
+    <relevantCategories><li>Food</li><li>Temperature</li><li>Health</li></relevantCategories>
+    <proposerSkills><li>Plants</li><li>Cooking</li></proposerSkills>
+    <goals>
+      <li Class="ColonyCouncil.Goal_FoodDays">
+        <days>30</days>
+      </li>
+      <li Class="ColonyCouncil.Goal_WarmClothes">
+        <temperature>-5</temperature>
+      </li>
+      <li Class="ColonyCouncil.Goal_Stock">
+        <kind>medicine</kind>
+        <count>12</count>
+      </li>
+    </goals>
+    <pitch>
+      <plain>
+        <li>Every year it's the same: we scramble for food in fall, for coats at first frost, for medicine when someone's sick. Let's get ahead of it.</li>
+        <li>Food, warm clothes, medicine. One after another, and then the year can do its worst.</li>
+        <li>[spring] It's the start of the year. If we plan now, we won't be caught out by the end of it.</li>
+        <li>[poor] We can't afford to be caught short again. Let's put by what we need for the whole year.</li>
+      </plain>
+      <warm>
+        <li>I'd like to sleep through a winter without worrying who'll go hungry or cold.</li>
+      </warm>
+      <blunt>
+        <li>Stock up. All of it. Then stop panicking every season.</li>
+      </blunt>
+      <cheerful>
+        <li>A colony ready for anything! I'll make a list. Several lists.</li>
+      </cheerful>
+      <gloomy>
+        <li>The year always finds the one thing we forgot. Let's forget less.</li>
+      </gloomy>
+      <cold>
+        <li>Seasonal shortfalls are predictable. Prepare for them once and they stop being emergencies.</li>
+      </cold>
+    </pitch>
+    <achieved>
+      <plain><li>Food put by, everyone dressed for the cold, and medicine on the shelf. Let the year come.</li></plain>
+      <warm><li>Whatever happens this year, we're ready for it together.</li></warm>
+      <cheerful><li>Every list ticked off!</li></cheerful>
+      <cold><li>Preparations complete for all seasons.</li></cold>
+    </achieved>
+  </ColonyCouncil.AmbitionDef>
+
+  <!-- ===================== The healing garden (tribal and medieval) ===================== -->
+
+  <ColonyCouncil.AmbitionDef>
+    <defName>Council_Amb_HealingGarden</defName>
+    <label>the healing garden</label>
+    <description>Before industrial medicine, healing grows in the ground. Grow and dry twenty-five healroot, and train two people to Medicine 5 or better to use it.</description>
+    <days>30</days>
+    <eras><li>lowtech</li></eras>
+    <relevantCategories><li>Health</li></relevantCategories>
+    <proposerSkills><li>Plants</li><li>Medicine</li></proposerSkills>
+    <goals>
+      <li Class="ColonyCouncil.Goal_Stock">
+        <kind>herbal</kind>
+        <count>25</count>
+      </li>
+      <li Class="ColonyCouncil.Goal_SkillDepth">
+        <skill>Medicine</skill>
+        <count>2</count>
+        <level>5</level>
+      </li>
+    </goals>
+    <pitch>
+      <plain>
+        <li>Healroot grows if you treat it right. A garden of it, and two of us who know how to use it.</li>
+        <li>Every colony that lasts has a healer and a garden. We have neither, yet.</li>
+        <li>[tribal] The healers of my people knew every root and leaf. I'd like us to learn half as much.</li>
+        <li>[spring] Planting season. If we put healroot in now, we'll have medicine by fall.</li>
+      </plain>
+      <warm>
+        <li>I want to be able to help when someone's hurt, not just hold their hand.</li>
+      </warm>
+      <blunt>
+        <li>Grow healroot. Learn to use it. Stop dying of small things.</li>
+      </blunt>
+      <cheerful>
+        <li>A whole garden of medicine! It smells terrible and I love it already.</li>
+      </cheerful>
+      <gloomy>
+        <li>Without medicine, a scratch can kill you out here. I've seen it happen.</li>
+      </gloomy>
+      <cold>
+        <li>Herbal medicine and trained hands halve the deaths from infection.</li>
+      </cold>
+    </pitch>
+    <achieved>
+      <plain><li>Healroot hanging in bundles and two of us who know what to do with it.</li></plain>
+      <warm><li>Whoever gets hurt next has a better chance now.</li></warm>
+      <gloomy><li>Something will still get us. Not a scratch, though.</li></gloomy>
+      <cold><li>Herbal stores and trained healers in place.</li></cold>
+    </achieved>
+  </ColonyCouncil.AmbitionDef>
+
+  <!-- ===================== Whole again (industrial and later, mostly) ===================== -->
+
+  <ColonyCouncil.AmbitionDef>
+    <defName>Council_Amb_WholeAgain</defName>
+    <label>whole again</label>
+    <description>Give back what the colony's people have lost: a replacement for every missing limb or eye the colony can make or has in stock. Proposed when someone is missing a part that can be replaced.</description>
+    <days>30</days>
+    <relevantCategories><li>Health</li></relevantCategories>
+    <proposerSkills><li>Medicine</li><li>Crafting</li></proposerSkills>
+    <goals>
+      <li Class="ColonyCouncil.Goal_Whole" />
+    </goals>
+    <pitch>
+      <plain>
+        <li>Some of us are missing an arm or an eye, and we have what it takes to give them back. Let's do it.</li>
+        <li>Nobody here should have to limp when we can make them a leg.</li>
+        <li>[hurt] I know what it's like to lose part of yourself. Let's give back what we can.</li>
+        <li>[spacer] We have the means to make people whole. Leaving them broken is a choice.</li>
+      </plain>
+      <warm>
+        <li>They gave a piece of themselves for this colony. The least we can do is give it back.</li>
+      </warm>
+      <blunt>
+        <li>Replace the missing parts. We have the means.</li>
+      </blunt>
+      <cheerful>
+        <li>New legs, new hands! Everyone back on their feet, literally.</li>
+      </cheerful>
+      <gloomy>
+        <li>Every fight takes something from someone. At least this part we can fix.</li>
+      </gloomy>
+      <cold>
+        <li>A colonist with a missing limb works at half capacity. Replacement pays for itself.</li>
+      </cold>
+    </pitch>
+    <achieved>
+      <plain><li>Everyone who lost something has it back, near enough.</li></plain>
+      <warm><li>Watching them walk without a crutch was worth all the work.</li></warm>
+      <cheerful><li>Everyone's whole again!</li></cheerful>
+      <cold><li>All replaceable losses replaced.</li></cold>
+    </achieved>
+  </ColonyCouncil.AmbitionDef>
+
+</Defs>

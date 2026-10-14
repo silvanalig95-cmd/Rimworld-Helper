@@ -16,6 +16,12 @@ namespace ColonyCouncil
 
         public virtual float Baseline(Map map) => 0f;
 
+        /// <summary>
+        /// Hourly while the ambition is on (the current stage of a staged one): a goal that keeps its own count returns the
+        /// baseline it should have now. A streak (days without a breakdown) moves its start forward when the streak breaks.
+        /// </summary>
+        public virtual float Update(Map map, float baseline) => baseline;
+
         public abstract float Progress(Map map, float baseline);
 
         public bool Met(Map map, float baseline) => Progress(map, baseline) >= 0.999f;
@@ -211,6 +217,11 @@ namespace ColonyCouncil
         public int count = 20;
         /// <summary>For named things: only possible if the colony can make it right now (or already has some).</summary>
         public bool needsRecipe;
+        /// <summary>This many per colonist, when that comes to more than <see cref="count"/> (a feast for everyone).</summary>
+        public float perColonist;
+
+        /// <summary>How many are wanted for this colony.</summary>
+        public int Wanted(Map map) => perColonist > 0f ? UnityEngine.Mathf.Max(count, UnityEngine.Mathf.CeilToInt(perColonist * RoomUtil.ColonistCount(map))) : count;
 
         private static HashSet<ThingDef> alcohol;
 
@@ -247,6 +258,10 @@ namespace ColonyCouncil
                     return WishWorker_BetterFood.MealStock(map, FoodPreferability.MealSimple);
                 case "finemeals":
                     return WishWorker_BetterFood.MealStock(map, FoodPreferability.MealFine);
+                case "lavishmeals":
+                    return WishWorker_BetterFood.MealStock(map, FoodPreferability.MealLavish);
+                case "herbal":
+                    return ThingDefOf.MedicineHerbal != null ? map.resourceCounter.GetCount(ThingDefOf.MedicineHerbal) : 0;
                 case "silver":
                     return map.resourceCounter.Silver;
                 default:
@@ -260,6 +275,11 @@ namespace ColonyCouncil
         public override bool Possible(Map map)
         {
             if (kind == "finemeals") return WishWorker_BetterFood.CanCook(map, FoodPreferability.MealFine);
+            if (kind == "lavishmeals") return WishWorker_BetterFood.CanCook(map, FoodPreferability.MealLavish);
+            // Healroot that can be grown here: sown with the research it needs.
+            if (kind == "herbal")
+                return ThingDefOf.MedicineHerbal != null && DefDatabase<ThingDef>.AllDefsListForReading.Any(d => d.plant != null && d.plant.harvestedThingDef == ThingDefOf.MedicineHerbal
+                    && d.plant.Sowable && (d.plant.sowResearchPrerequisites == null || d.plant.sowResearchPrerequisites.All(r => r.IsFinished)));
             if (kind == "meals") return WishWorker_BetterFood.CanCook(map, FoodPreferability.MealSimple);
             if (kind == "medicine" || kind == "silver" || kind == "firewood") return true;
             if (kind == "alcohol") return Alcohol.Count > 0 && (Count(map, kind) > 0 || CanBrew(map));
@@ -269,12 +289,12 @@ namespace ColonyCouncil
             return map.resourceCounter.GetCount(def) > 0 || DefDatabase<RecipeDef>.AllDefsListForReading.Any(r => r.ProducedThingDef == def && r.AvailableNow);
         }
 
-        public override float Progress(Map map, float baseline) => Ratio(Count(map, kind), count);
+        public override float Progress(Map map, float baseline) => Ratio(Count(map, kind), Wanted(map));
 
         public override string Describe(Map map, float baseline)
         {
             string label = ("CC_Stock_" + kind).CanTranslate() ? ("CC_Stock_" + kind).Translate().Resolve() : DefDatabase<ThingDef>.GetNamedSilentFail(kind)?.label ?? kind;
-            return "CC_Goal_Stock".Translate(count, label, Count(map, kind));
+            return "CC_Goal_Stock".Translate(Wanted(map), label, Count(map, kind));
         }
     }
 
