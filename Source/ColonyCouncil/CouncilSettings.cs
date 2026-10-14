@@ -51,7 +51,7 @@ namespace ColonyCouncil
         public bool selfHelp = true;
         public bool allowQuitting = true;
         public bool risingStandards = true;
-        /// <summary>Small good moments count with diminishing returns when several are on a colonist's mind (SmallJoys).</summary>
+        /// <summary>Rimfolk's good moods count with diminishing returns when several are on a colonist's mind (SmallJoys).</summary>
         public bool smallJoysDiminish = true;
         /// <summary>Rising standards also shrink the good moods of the base game and other mods (GoodTimes).</summary>
         public bool standardsCoverComforts = true;

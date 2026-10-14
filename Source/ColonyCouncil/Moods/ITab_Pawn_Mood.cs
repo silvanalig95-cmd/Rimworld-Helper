@@ -19,7 +19,7 @@ namespace ColonyCouncil
         private float cachedAt = -1f;
         private PawnMood mood;
         private List<MoodLine> bad, good;
-        /// <summary>What getting used to good times, small joys and standards take off right now (GoodTimes.Readout).</summary>
+        /// <summary>What getting used to good times, good moods adding up slowly and standards take off right now (GoodTimes.Readout).</summary>
         private string goodTimes;
 
         public ITab_Pawn_Mood()

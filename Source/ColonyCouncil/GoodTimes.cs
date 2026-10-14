@@ -8,7 +8,7 @@ namespace ColonyCouncil
 {
     /// <summary>
     /// Good times turn ordinary. Without taking anything away, two rules keep a happy colony from sitting at the top of
-    /// the mood bar on a pile of good moods (small joys, in SmallJoys.cs, is the third):
+    /// the mood bar on a pile of good moods (the third, Rimfolk's good moods adding up slowly, is in SmallJoys.cs):
     /// <list type="bullet">
     /// <item>Getting used to good times: a colonist whose mood is already high keeps Rimfolk's new good memories for
     /// less time, in full up to 75% mood and down to half from 90%. In hard times good things last their full length.
@@ -25,8 +25,8 @@ namespace ColonyCouncil
         private static CouncilSettings S => ColonyCouncilMod.Settings;
 
         /// <summary>
-        /// While set, moods read as they would without these rules and small joys: the Mood tab's readout and the
-        /// tooltips use it to say how much they take off.
+        /// While set, moods read as they would without these rules and without good moods adding up slowly: the Mood
+        /// tab's readout and the tooltips use it to say how much they take off.
         /// </summary>
         public static bool Raw;
 
@@ -175,7 +175,7 @@ namespace ColonyCouncil
             return f < 1f ? GoodTimesMath.Comfort(offset, f) : offset;
         }
 
-        /// <summary>A mood group as it would be without these rules and small joys.</summary>
+        /// <summary>A mood group as it would be without these rules and without good moods adding up slowly.</summary>
         public static float RawOffsetOfGroup(ThoughtHandler handler, Thought group)
         {
             bool was = Raw;
@@ -210,7 +210,8 @@ namespace ColonyCouncil
         private static string Whole(float v) => (v >= 0f ? "+" : "") + Mathf.RoundToInt(v);
 
         /// <summary>
-        /// One line for the Mood tab: what these rules and small joys take off the colonist's good moods right now.
+        /// One line for the Mood tab: what these rules and good moods adding up slowly take off the colonist's good
+        /// moods right now.
         /// Null when they take nothing off.
         /// </summary>
         public static string Readout(Pawn p)
