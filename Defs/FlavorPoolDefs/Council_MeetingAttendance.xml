@@ -68,7 +68,7 @@
       </blunt>
       <cheerful>
         <li>Rise and shine, {OTHER_nameDef}! Council time.</li>
-        <li>Wake up, {OTHER_nameDef}! You don't want to miss the arguing!</li>
+        <li>Wake up, {OTHER_nameDef}! You don't want to miss the arguing.</li>
       </cheerful>
       <gloomy>
         <li>I'd let you sleep if I could, {OTHER_nameDef}. Council's meeting.</li>

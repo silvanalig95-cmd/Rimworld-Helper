@@ -51,7 +51,7 @@
         <li>[winter] {PAWN_nameDef} stamps the snow off {PAWN_possessive} boots, takes one look, and grins.</li>
         <li>[summer] {PAWN_nameDef} wipes the sweat from {PAWN_possessive} face and stands there smiling at it.</li>
         <li>[afterraid] After the fighting, it's the first thing {PAWN_nameDef} has smiled at in days.</li>
-        <li>[grieving] For the first time since the loss, {PAWN_nameDef} looks something like glad.</li>
+        <li>[grieving] It's the nearest {PAWN_nameDef} has come to looking glad since the loss.</li>
         <li>[trusting] {PAWN_nameDef} had no doubt it would happen, and still looks delighted.</li>
         <li>[doubtful] {PAWN_nameDef} looks at it, then at the council, and the doubt goes out of {PAWN_possessive} face.</li>
       </plain>
