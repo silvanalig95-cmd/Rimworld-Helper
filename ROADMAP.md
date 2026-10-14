@@ -187,7 +187,7 @@ the content itself, not only to systems, alongside whatever else it does. Where 
 | World events | 22 | more regional situations, and their follow-ups |
 | Camp kinds | 7 | caravans of every kind, pilgrims of every faith |
 | Ailments | (in progress) | a broad everyday tier, a rare serious tier |
-| Room types | 12 (68 layouts) | every workroom, era and DLC |
+| Room types | 28 (108 layouts) | odd shapes beyond partitions, more spacer and mod-furniture sizes |
 | Social events, moments, frictions, nuisances | 53, 93, 12 | every trait pairing and home condition |
 
 ### 5. Wider (integrations)

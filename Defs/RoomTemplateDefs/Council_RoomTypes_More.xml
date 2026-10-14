@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    More room types: rooms that stood alone before, with their new sizes and kinds (Council_RoomTemplates_Variety.xml,
+    Council_RoomTemplates_VarietyDLC.xml, Council_RoomTemplates_Hygiene3.xml). Same rules as Council_RoomTypes.xml: a
+    variant whose template isn't loaded is skipped, so a DLC size simply isn't offered without its DLC. A type whose
+    every size needs a DLC or a mod loads only with it.
+  -->
+
+  <!-- ==================== Leisure ==================== -->
+
+  <ColonyCouncil.RoomTypeDef>
+    <defName>Council_RT_CouncilRoom</defName>
+    <label>council chamber</label>
+    <main>Council_CouncilChamber</main>
+    <variants>
+      <li><template>Council_CouncilFire</template><label>council fire</label></li>
+      <li><template>Council_CouncilTable</template><label>for 6</label></li>
+      <li><template>Council_CouncilChamber</template><label>for 10</label></li>
+      <li><template>Council_CouncilHall</template><label>for 20</label></li>
+    </variants>
+  </ColonyCouncil.RoomTypeDef>
+
+  <ColonyCouncil.RoomTypeDef>
+    <defName>Council_RT_RecRoom</defName>
+    <label>recreation room</label>
+    <main>Council_RecRoom</main>
+    <variants>
+      <li><template>Council_GamesCorner</template><label>games corner</label></li>
+      <li><template>Council_RecRoom</template><label>standard</label></li>
+      <li><template>Council_RecHall</template><label>hall</label></li>
+    </variants>
+  </ColonyCouncil.RoomTypeDef>
+
+  <ColonyCouncil.RoomTypeDef>
+    <defName>Council_RT_Library</defName>
+    <label>library</label>
+    <main>Council_Library</main>
+    <variants>
+      <li><template>Council_Study</template><label>study</label></li>
+      <li><template>Council_Library</template><label>standard</label></li>
+      <li><template>Council_ReadingHall</template><label>reading hall</label></li>
+    </variants>
+  </ColonyCouncil.RoomTypeDef>
+
+  <ColonyCouncil.RoomTypeDef>
+    <defName>Council_RT_Gallery</defName>
+    <label>gallery</label>
+    <main>Council_TrophyGallery</main>
+    <variants>
+      <li><template>Council_GallerySmall</template><label>small</label></li>
+      <li><template>Council_TrophyGallery</template><label>standard</label></li>
+      <li><template>Council_GalleryGrand</template><label>grand</label></li>
+    </variants>
+  </ColonyCouncil.RoomTypeDef>
+
+  <ColonyCouncil.RoomTypeDef MayRequire="Ludeon.RimWorld.Ideology">
+    <defName>Council_RT_Chapel</defName>
+    <label>chapel</label>
+    <main>Council_Chapel</main>
+    <variants>
+      <li><template>Council_Shrine</template><label>shrine</label></li>
+      <li><template>Council_Chapel</template><label>standard</label></li>
+      <li><template>Council_Temple</template><label>temple</label></li>
+    </variants>
+  </ColonyCouncil.RoomTypeDef>
+
+  <ColonyCouncil.RoomTypeDef>
+    <defName>Council_RT_ThroneRoom</defName>
+    <label>throne room</label>
+    <main>Council_ThroneRoom</main>
+    <variants>
+      <li><template>Council_AudienceChamber</template><label>audience</label></li>
+      <li><template>Council_ThroneRoom</template><label>standard</label></li>
+      <li><template>Council_GrandThroneRoom</template><label>grand</label></li>
+    </variants>
+  </ColonyCouncil.RoomTypeDef>
+
+  <!-- ==================== Living ==================== -->
+
+  <ColonyCouncil.RoomTypeDef MayRequire="dubwise.dubsbadhygiene">
+    <defName>Council_RT_Bathroom</defName>
+    <label>bathroom</label>
+    <main>Council_Bathroom</main>
+    <variants>
+      <li><template>Council_Bathroom_Small</template><label>small</label></li>
+      <li><template>Council_Bathroom</template><label>standard</label></li>
+      <li><template>Council_Bathroom_Family</template><label>family</label></li>
+      <li><template>Council_Washroom</template><label>stalls</label></li>
+    </variants>
+  </ColonyCouncil.RoomTypeDef>
+
+  <!-- ==================== Food ==================== -->
+
+  <ColonyCouncil.RoomTypeDef>
+    <defName>Council_RT_Greenhouse</defName>
+    <label>greenhouse</label>
+    <main>Council_Greenhouse</main>
+    <variants>
+      <li><template>Council_SmallGreenhouse</template><label>small</label></li>
+      <li><template>Council_Greenhouse</template><label>standard</label></li>
+      <li><template>Council_HydroponicsBay</template><label>bay</label></li>
+    </variants>
+  </ColonyCouncil.RoomTypeDef>
+
+  <ColonyCouncil.RoomTypeDef>
+    <defName>Council_RT_Brewery</defName>
+    <label>brewery</label>
+    <main>Council_Brewery</main>
+    <variants>
+      <li><template>Council_BrewCellar</template><label>cellar</label></li>
+      <li><template>Council_Brewery</template><label>standard</label></li>
+      <li><template>Council_Brewery_Large</template><label>large</label></li>
+    </variants>
+  </ColonyCouncil.RoomTypeDef>
+
+  <ColonyCouncil.RoomTypeDef>
+    <defName>Council_RT_AnimalHouse</defName>
+    <label>barn</label>
+    <main>Council_Barn</main>
+    <variants>
+      <li><template>Council_Kennel</template><label>kennel</label></li>
+      <li><template>Council_Barn</template><label>standard</label></li>
+      <li><template>Council_Barn_Large</template><label>large</label></li>
+    </variants>
+  </ColonyCouncil.RoomTypeDef>
+
+  <!-- ==================== Work ==================== -->
+
+  <ColonyCouncil.RoomTypeDef>
+    <defName>Council_RT_Smithy</defName>
+    <label>smithy</label>
+    <main>Council_Smithy</main>
+    <variants>
+      <li><template>Council_Forge</template><label>forge</label></li>
+      <li><template>Council_Smithy</template><label>standard</label></li>
+      <li><template>Council_ArmorersWorkshop</template><label>armorer's</label></li>
+    </variants>
+  </ColonyCouncil.RoomTypeDef>
+
+  <ColonyCouncil.RoomTypeDef>
+    <defName>Council_RT_TailorShop</defName>
+    <label>tailor's shop</label>
+    <main>Council_TailorShop</main>
+    <variants>
+      <li><template>Council_SewingRoom</template><label>small</label></li>
+      <li><template>Council_TailorShop</template><label>standard</label></li>
+      <li><template>Council_TailoringHall</template><label>large</label></li>
+    </variants>
+  </ColonyCouncil.RoomTypeDef>
+
+  <ColonyCouncil.RoomTypeDef>
+    <defName>Council_RT_DrugLab</defName>
+    <label>drug lab</label>
+    <main>Council_DrugLab</main>
+    <variants>
+      <li><template>Council_DrugLab</template><label>standard</label></li>
+      <li><template>Council_DrugLab_Large</template><label>large</label></li>
+    </variants>
+  </ColonyCouncil.RoomTypeDef>
+
+  <!-- ==================== Care ==================== -->
+
+  <ColonyCouncil.RoomTypeDef>
+    <defName>Council_RT_Nursery</defName>
+    <label>nursery</label>
+    <main>Council_Nursery</main>
+    <variants>
+      <li><template>Council_Nursery_Small</template><label>small</label></li>
+      <li><template>Council_Nursery</template><label>standard</label></li>
+      <li><template>Council_Nursery_Large</template><label>large</label></li>
+    </variants>
+  </ColonyCouncil.RoomTypeDef>
+
+  <ColonyCouncil.RoomTypeDef>
+    <defName>Council_RT_Crypt</defName>
+    <label>crypt</label>
+    <main>Council_Crypt</main>
+    <variants>
+      <li><template>Council_Tomb</template><label>tomb</label></li>
+      <li><template>Council_Crypt</template><label>standard</label></li>
+      <li><template>Council_Catacomb</template><label>catacomb</label></li>
+    </variants>
+  </ColonyCouncil.RoomTypeDef>
+
+  <!-- ==================== Security ==================== -->
+
+  <ColonyCouncil.RoomTypeDef>
+    <defName>Council_RT_Armory</defName>
+    <label>armory</label>
+    <main>Council_Armory</main>
+    <variants>
+      <li><template>Council_WeaponsLocker</template><label>locker</label></li>
+      <li><template>Council_Armory</template><label>standard</label></li>
+      <li><template>Council_Arsenal</template><label>arsenal</label></li>
+    </variants>
+  </ColonyCouncil.RoomTypeDef>
+
+</Defs>

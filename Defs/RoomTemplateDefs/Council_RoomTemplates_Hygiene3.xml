@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    More bathrooms for Dubs Bad Hygiene; they load only with it (MayRequire), and each fixture is looked up by name, so
+    one the mod doesn't have (an add-on missing, a lite mode) is simply left out. Each slot lists the best fixture first:
+    a smart toilet, then a toilet, then a latrine; a power shower, then a shower. The shared washroom puts each toilet
+    in a stall: partition walls (role "wall") with Dubs Bad Hygiene's stall doors, which hide whoever is inside without
+    splitting the room.
+  -->
+
+  <ColonyCouncil.RoomTemplateDef MayRequire="dubwise.dubsbadhygiene">
+    <defName>Council_Bathroom_Small</defName>
+    <label>small bathroom</label>
+    <description>A toilet or latrine and a basin or water tub against the back wall, and a light, in the smallest room that holds them.</description>
+    <purpose>A toilet behind a door of its own, close to the bedrooms, for a colony that can't spare the space for more.</purpose>
+    <order>13</order>
+    <group>Living</group>
+    <size>(2,3)</size>
+    <iconDefs><li>ToiletStuff</li><li>PitLatrine</li></iconDefs>
+    <floors><li>TileSandstone</li><li>TileGranite</li><li>TileLimestone</li><li>TileSlate</li><li>TileMarble</li><li>WoodPlankFloor</li></floors>
+    <near><li>Bedroom</li><li>Barracks</li></near>
+    <avoid><li>Kitchen</li><li>DiningRoom</li></avoid>
+    <tips>
+      <li>Several small bathrooms near the bedrooms beat one big one across the base. Nobody wants a long walk at night.</li>
+      <li>[lowtech] A latrine needs no plumbing, but it fills up and someone has to empty it.</li>
+      <li>[!lowtech] The toilet needs piped water and a sewage outlet. Lay the pipes before the floor.</li>
+    </tips>
+    <things>
+      <li><defs><li>ToiletStuff</li><li>PitLatrine</li></defs><role>toilet</role><pos>(0,2)</pos><optional>false</optional></li>
+      <li><defs><li>BasinStuff</li><li>WashBucket</li></defs><role>wash</role><pos>(1,2)</pos></li>
+      <li><defs><li>StandingLamp</li><li>TorchLamp</li></defs><role>light</role><pos>(0,0)</pos></li>
+    </things>
+  </ColonyCouncil.RoomTemplateDef>
+
+  <ColonyCouncil.RoomTemplateDef MayRequire="dubwise.dubsbadhygiene">
+    <defName>Council_Bathroom_Family</defName>
+    <label>family bathroom</label>
+    <description>A toilet, two basins, a shower and a bathtub along the back walls, with a light and a plant by the door.</description>
+    <purpose>A bathroom for a household: a quick shower in the morning, a long bath at night, and a basin each.</purpose>
+    <order>13</order>
+    <group>Living</group>
+    <size>(5,4)</size>
+    <iconDefs><li>BathtubStuff</li><li>ShowerStuff</li></iconDefs>
+    <floors><li>TileMarble</li><li>TileSandstone</li><li>TileGranite</li><li>TileLimestone</li><li>TileSlate</li><li>WoodPlankFloor</li></floors>
+    <near><li>Bedroom</li></near>
+    <avoid><li>Kitchen</li><li>DiningRoom</li></avoid>
+    <tips>
+      <li>Dubs Bad Hygiene rates a bathroom by its impressiveness, like a bedroom. A fine floor and a plant go a long way.</li>
+      <li>A shower is quick and uses little water; a bathtub is slow but very comfortable. With both, everyone finds their own.</li>
+      <li>Hot water makes washing a pleasure. A boiler and a hot water tank on the pipes are worth their cost.</li>
+      <li>A household's bathroom works best with one toilet for every two or three people.</li>
+    </tips>
+    <things>
+      <li><defs><li>ToiletAdvStuff</li><li>ToiletStuff</li><li>PitLatrine</li></defs><role>toilet</role><pos>(0,3)</pos><optional>false</optional></li>
+      <li><defs><li>BasinStuff</li><li>WashBucket</li></defs><role>wash</role><pos>(1,3)</pos></li>
+      <li><defs><li>BasinStuff</li><li>WashBucket</li></defs><role>wash</role><pos>(2,3)</pos><tier>decor</tier></li>
+      <li><defs><li>ShowerAdvStuff</li><li>ShowerStuff</li><li>ShowerSimple</li></defs><role>bath</role><pos>(3,3)</pos></li>
+      <li><defs><li>BathtubStuff</li></defs><role>bath</role><pos>(4,2)</pos></li>
+      <li><defs><li>StandingLamp</li><li>TorchLamp</li></defs><role>light</role><pos>(0,0)</pos></li>
+      <li><defs><li>PlantPot</li></defs><role>plantpot</role><pos>(4,0)</pos></li>
+    </things>
+  </ColonyCouncil.RoomTemplateDef>
+
+  <ColonyCouncil.RoomTemplateDef MayRequire="dubwise.dubsbadhygiene">
+    <defName>Council_Washroom</defName>
+    <label>shared washroom</label>
+    <description>Two toilet stalls and a shower stall along the back wall, two basins by the door, and a light.</description>
+    <purpose>A washroom for the barracks or the workshops: several people at once, each behind a stall door.</purpose>
+    <order>13</order>
+    <group>Living</group>
+    <size>(7,4)</size>
+    <iconDefs><li>ToiletStallDoor</li><li>ToiletStuff</li></iconDefs>
+    <floors><li>TileSandstone</li><li>TileGranite</li><li>TileLimestone</li><li>TileSlate</li><li>TileMarble</li><li>WoodPlankFloor</li></floors>
+    <near><li>Barracks</li><li>Workshop</li></near>
+    <avoid><li>Kitchen</li><li>DiningRoom</li></avoid>
+    <tips>
+      <li>Stall doors keep a shared washroom from embarrassing anyone. They hide the toilet without making a room of their own.</li>
+      <li>One toilet for every six colonists is a fair rule. Two stalls cover a full barracks.</li>
+      <li>[!lowtech] Each toilet and shower needs piped water, and the toilets a sewage outlet. Run the pipes under the stall walls.</li>
+    </tips>
+    <things>
+      <li><defs><li>ToiletStuff</li><li>PitLatrine</li></defs><role>toilet</role><pos>(0,3)</pos><optional>false</optional></li>
+      <li><defs><li>ToiletStuff</li><li>PitLatrine</li></defs><role>toilet</role><pos>(3,3)</pos></li>
+      <li><defs><li>ShowerStuff</li><li>ShowerSimple</li></defs><role>bath</role><pos>(6,3)</pos></li>
+      <li><defs><li>Wall</li></defs><role>wall</role><pos>(0,2)</pos><optional>false</optional></li>
+      <li><defs><li>Wall</li></defs><role>wall</role><pos>(2,2)</pos><optional>false</optional></li>
+      <li><defs><li>Wall</li></defs><role>wall</role><pos>(2,3)</pos><optional>false</optional></li>
+      <li><defs><li>Wall</li></defs><role>wall</role><pos>(3,2)</pos><optional>false</optional></li>
+      <li><defs><li>Wall</li></defs><role>wall</role><pos>(5,2)</pos><optional>false</optional></li>
+      <li><defs><li>Wall</li></defs><role>wall</role><pos>(5,3)</pos><optional>false</optional></li>
+      <li><defs><li>ToiletStallDoor</li></defs><pos>(1,2)</pos></li>
+      <li><defs><li>ToiletStallDoor</li></defs><pos>(4,2)</pos></li>
+      <li><defs><li>ToiletStallDoor</li></defs><pos>(6,2)</pos></li>
+      <li><defs><li>BasinStuff</li><li>WashBucket</li></defs><role>wash</role><pos>(0,0)</pos><rot>South</rot></li>
+      <li><defs><li>BasinStuff</li><li>WashBucket</li></defs><role>wash</role><pos>(1,0)</pos><rot>South</rot></li>
+      <li><defs><li>StandingLamp</li><li>TorchLamp</li></defs><role>light</role><pos>(6,0)</pos></li>
+    </things>
+  </ColonyCouncil.RoomTemplateDef>
+
+</Defs>

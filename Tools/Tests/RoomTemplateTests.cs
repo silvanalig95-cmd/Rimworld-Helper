@@ -7,7 +7,9 @@ using ColonyCouncil;
 /// in each style, with the best and the fallback furniture: the same layout code the game runs (TemplateLayout), fed
 /// with what the buildings are (size, facing rules, work spots). Checks that pieces sit inside the room without
 /// overlapping, the door is free, work spots are inside and free, chairs next to a table face it, bed heads are against
-/// a wall, the door turns with its wall, and every piece can be reached from the door.
+/// a wall, the door turns with its wall, and every piece can be reached from the door. Then again with the furniture of
+/// every DLC and mod the template doesn't require left out, as a game without them resolves it: the first listed def
+/// that is there, or nothing; a room whose key piece is missing must say what it misses. Room types are checked too.
 ///
 /// Facts come from the game's defs where known, and from hand-made 1.6 rooms (Alpha Prefabs layouts) for conventions:
 /// a bed's head is its root cell (it extends toward its facing); workbenches face the wall with the work spot behind
@@ -28,6 +30,23 @@ public static class RoomTemplateTests
     }
 
     private static readonly Dictionary<string, Fact> facts = new();
+
+    /// <summary>Furniture that isn't in the base game: the packageId of the DLC or mod it comes from.</summary>
+    private static readonly Dictionary<string, string> source = new(StringComparer.OrdinalIgnoreCase);
+
+    private static void From(string package, string names)
+    {
+        foreach (var name in names.Split(' ', StringSplitOptions.RemoveEmptyEntries)) source[name] = package;
+    }
+
+    /// <summary>Where a def comes from: a DLC or mod packageId, "mod" for other mods' furniture, null for the base game.</summary>
+    private static string SourceOf(string name)
+    {
+        if (source.TryGetValue(name, out var s)) return s;
+        foreach (var prefix in new[] { "VFE_", "VFEE_", "DankPyon_", "AM_", "Bed_", "Seat_", "Table_Royal", "Table_Wardrobe" })
+            if (name.StartsWith(prefix, StringComparison.Ordinal)) return "mod";
+        return null;
+    }
 
     private static void F(string names, int sx, int sz, string flags = "", string spots = "", string kind = "")
     {
@@ -70,6 +89,9 @@ public static class RoomTemplateTests
         F("Table3x3c Table_Royal3x3c", 3, 3, kind: "table");
         F("ChessTable", 1, 1, kind: "table");
         F("PokerTable", 2, 2, kind: "table");
+        // Billiards players walk round the table; no seats, no work spot.
+        F("BilliardsTable", 2, 3);
+        F("FlatscreenTelevision", 2, 1);
         // Workbenches: the worker stands behind them.
         F("TableButcher TableSculpting TableStonecutter TableMachining ElectricSmithy FueledSmithy ElectricTailoringBench HandTailoringBench DrugLab ElectricStove FueledStove Brewery VFE_ComponentFabricationBench VFE_TableStonecutterElectric VFE_TableButcherElectric VFE_TableDrugLabElectric",
             3, 1, spots: "0,-1");
@@ -115,10 +137,20 @@ public static class RoomTemplateTests
         F("PetWaterBowl LitterBox", 1, 1);
         // Dubs Bad Hygiene
         F("ToiletStuff PitLatrine WashBucket ShowerStuff ShowerSimple DBHSaunaHeaterLog DBHSaunaHeaterElec WashingMachine", 1, 1);
+        F("ToiletAdvStuff ShowerAdvStuff", 1, 1);
+        // A stall door only hides the toilet: people walk through it, it can't turn, and it doesn't split the room.
+        F("ToiletStallDoor", 1, 1, "stand norot");
         F("BasinStuff", 1, 1, spots: "0,-1");
         F("BathtubStuff", 1, 2);
         F("HotTub", 2, 2);
         F("KitchenSink", 3, 1, spots: "0,-1");
+
+        From("Ludeon.RimWorld.Royalty", "Throne GrandThrone RoyalBed Harp Harpsichord Brazier MeditationSpot");
+        From("Ludeon.RimWorld.Ideology", "Altar_Small Altar_Medium Altar_Large Lectern Pew Drape DarklightBrazier");
+        From("Ludeon.RimWorld.Biotech", "Crib SchoolDesk Blackboard ToyBox MechGestator BasicRecharger StandardRecharger GeneAssembler GeneBank GeneProcessor");
+        From("Ludeon.RimWorld.Anomaly", "HoldingPlatform ShardInhibitor ElectricInhibitor");
+        From("dubwise.dubsbadhygiene", "ToiletStuff ToiletAdvStuff PitLatrine WashBucket ShowerStuff ShowerSimple ShowerAdvStuff BasinStuff BathtubStuff HotTub KitchenSink "
+                                       + "ToiletStallDoor DBHSaunaHeaterLog DBHSaunaHeaterElec DBHSaunaSeating WashingMachine PetWaterBowl LitterBox");
     }
 
     public class Thing
@@ -131,20 +163,37 @@ public static class RoomTemplateTests
 
     public class Template
     {
-        public string defName, file;
+        public string defName, file, group;
         public int w, h, doorX = -1;
         public List<Thing> things = new();
+        /// <summary>The DLCs and mods it loads with (MayRequire): their furniture is there whenever the template is.</summary>
+        public HashSet<string> requires = new(StringComparer.OrdinalIgnoreCase);
         public int DoorX => doorX >= 0 && doorX < w ? doorX : w / 2;
+    }
+
+    public class RoomType
+    {
+        public string defName, main, file;
+        public List<string> variants = new();
+    }
+
+    private static HashSet<string> Requires(XElement el)
+    {
+        var set = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+        foreach (var attr in new[] { "MayRequire", "MayRequireAnyOf" })
+            foreach (var p in (el.Attribute(attr)?.Value ?? "").Split(',', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries))
+                set.Add(p);
+        return set;
     }
 
     private static readonly Regex Vec = new(@"\(\s*(-?\d+)\s*,\s*(-?\d+)\s*\)");
 
     private static int Rot(string s) => s switch { null or "" or "North" => 0, "East" => 1, "South" => 2, "West" => 3, _ => int.Parse(s) };
 
-    public static (List<Template> templates, List<(string type, List<string> variants, string file)> types) Load(string root)
+    public static (List<Template> templates, List<RoomType> types) Load(string root)
     {
         var templates = new List<Template>();
-        var types = new List<(string, List<string>, string)>();
+        var types = new List<RoomType>();
         foreach (var file in Directory.GetFiles(Path.Combine(root, "Defs", "RoomTemplateDefs"), "*.xml"))
         {
             var doc = XDocument.Load(file);
@@ -152,12 +201,17 @@ public static class RoomTemplateTests
             {
                 if (el.Name.LocalName == "ColonyCouncil.RoomTypeDef")
                 {
-                    var vs = el.Element("variants")?.Elements().Select(v => v.Element("template")?.Value ?? "").ToList() ?? new List<string>();
-                    types.Add((el.Element("defName")?.Value ?? "?", vs, Path.GetFileName(file)));
+                    types.Add(new RoomType
+                    {
+                        defName = el.Element("defName")?.Value ?? "?",
+                        main = el.Element("main")?.Value,
+                        file = Path.GetFileName(file),
+                        variants = el.Element("variants")?.Elements().Select(v => v.Element("template")?.Value ?? "").ToList() ?? new List<string>()
+                    });
                     continue;
                 }
                 if (el.Name.LocalName != "ColonyCouncil.RoomTemplateDef") continue;
-                var t = new Template { defName = el.Element("defName")?.Value ?? "?", file = Path.GetFileName(file) };
+                var t = new Template { defName = el.Element("defName")?.Value ?? "?", file = Path.GetFileName(file), group = el.Element("group")?.Value ?? "Living", requires = Requires(el) };
                 var m = Vec.Match(el.Element("size")?.Value ?? "(4,4)");
                 t.w = int.Parse(m.Groups[1].Value);
                 t.h = int.Parse(m.Groups[2].Value);
@@ -197,11 +251,30 @@ public static class RoomTemplateTests
         var (templates, types) = Load(root);
         check(templates.Count >= 50, $"expected at least 50 room templates, found {templates.Count}");
         var byName = templates.ToDictionary(t => t.defName);
-        foreach (var (type, variants, file) in types)
+        var typeOf = new Dictionary<string, string>();
+        foreach (var type in types)
         {
-            check(variants.Count > 0, $"{file}: room type {type} has no variants");
-            foreach (var v in variants) check(byName.ContainsKey(v), $"{file}: room type {type} lists {v}, which isn't a template");
+            string file = type.file, name = type.defName;
+            check(type.variants.Count > 0, $"{file}: room type {name} has no variants");
+            check(type.main == null || type.variants.Contains(type.main), $"{file}: room type {name}'s main {type.main} isn't one of its variants");
+            foreach (var v in type.variants)
+            {
+                check(byName.ContainsKey(v), $"{file}: room type {name} lists {v}, which isn't a template");
+                check(!typeOf.TryGetValue(v, out var other) || other == name, $"{file}: {v} is a size of both {other} and {name}");
+                typeOf[v] = name;
+            }
+            // Menus show a room type under the group of the size they show, so all its sizes belong in one group.
+            var groups = type.variants.Where(byName.ContainsKey).Select(v => byName[v].group).Distinct().ToList();
+            check(groups.Count <= 1, $"{file}: room type {name} spans the groups {string.Join(", ", groups)}");
         }
+
+        // A key piece the colony can't build is named in the planner by its role ("The colony can't build cribs yet").
+        var roleKeys = RoleKeys(root);
+        foreach (var t in templates)
+            foreach (var th in t.things)
+                if (!string.IsNullOrEmpty(th.role))
+                    check(roleKeys.Contains(th.role), $"{t.file}: {t.defName} uses the role {th.role}, which has no CC_Role_{th.role} label");
+
         int checkedLayouts = 0;
         foreach (var t in templates)
         {
@@ -226,17 +299,61 @@ public static class RoomTemplateTests
                 }
             }
         }
+
+        // Without the DLCs and mods a template doesn't require: their furniture is left out (or the next listed def is
+        // used), and the room still works. A room whose key piece is left with nothing is unavailable, with a reason.
+        int baseLayouts = 0, unavailable = 0;
+        foreach (var t in templates)
+        {
+            string Present(Thing th) => th.defs.FirstOrDefault(d => facts.ContainsKey(d) && (SourceOf(d) is not string s || t.requires.Contains(s)));
+            var missingKey = t.things.Where(th => !th.optional && Present(th) == null).ToList();
+            if (missingKey.Count > 0)
+            {
+                unavailable++;
+                foreach (var th in missingKey)
+                    check(!string.IsNullOrEmpty(th.role) && roleKeys.Contains(th.role),
+                        $"{t.file}: {t.defName} slot ({th.x},{th.z}) can be missing its furniture, and has no role to name it by");
+                continue;
+            }
+            for (int style = 0; style <= 2; style++)
+            {
+                var (pieces, notes) = Arrange(t, Present, style);
+                string where = $"{t.file}: {t.defName} (without the furniture of unrequired DLCs and mods, style {style})";
+                foreach (var n in notes) check(false, $"{where}: layout had to change: {n}");
+                for (int mirror = 0; mirror < 2; mirror++)
+                    for (int turn = 0; turn < 4; turn++)
+                    {
+                        CheckWorld(t, pieces, mirror == 1, turn, $"{where} turn {turn}{(mirror == 1 ? " mirrored" : "")}", check);
+                        baseLayouts++;
+                    }
+            }
+        }
+        Console.WriteLine($"Checked {baseLayouts} room layouts with missing DLC and mod furniture left out ({unavailable} rooms wait for their key piece).");
         return checkedLayouts;
     }
 
-    public static (List<(TemplateLayout.Piece piece, Fact fact)> pieces, List<string> notes) Arrange(Template t, bool fallback, int style)
+    /// <summary>The CC_Role_ labels in the English keyed files.</summary>
+    private static HashSet<string> RoleKeys(string root)
+    {
+        var keys = new HashSet<string>();
+        foreach (var file in Directory.GetFiles(Path.Combine(root, "Languages", "English", "Keyed"), "*.xml"))
+            foreach (var el in XDocument.Load(file).Root!.Elements())
+                if (el.Name.LocalName.StartsWith("CC_Role_", StringComparison.Ordinal)) keys.Add(el.Name.LocalName.Substring("CC_Role_".Length));
+        return keys;
+    }
+
+    public static (List<(TemplateLayout.Piece piece, Fact fact)> pieces, List<string> notes) Arrange(Template t, bool fallback, int style) =>
+        Arrange(t, th => Pick(th, fallback), style);
+
+    /// <summary>Lays out a template with the def <paramref name="pick"/> chooses for each piece (null: left out).</summary>
+    public static (List<(TemplateLayout.Piece piece, Fact fact)> pieces, List<string> notes) Arrange(Template t, Func<Thing, string> pick, int style)
     {
         var list = new List<(TemplateLayout.Piece, Fact)>();
         for (int i = 0; i < t.things.Count; i++)
         {
             var th = t.things[i];
             if (!TemplateLayout.InStyle(th.tier, th.role, th.optional, style)) continue;
-            var name = Pick(th, fallback);
+            var name = pick(th);
             if (name == null) continue;
             var f = facts[name];
             var p = new TemplateLayout.Piece

@@ -15,7 +15,7 @@
     <sections>
       <li>
         <heading>Sizes and styles</heading>
-        <text>The buttons at the top of the panel switch between the sizes of a room: a cozy, standard or roomy bedroom, a dining room for 4, 8 or 12, an infirmary or a ward. The turn, the materials and the style carry over when you switch.</text>
+        <text>The buttons at the top of the panel switch between the sizes and kinds of a room: a cozy, standard or roomy bedroom, a dining room for 4, 8 or 12, an infirmary, a ward or a surgery, a council fire or a council chamber. 28 kinds of room come in several sizes; one with more than four shows them in two rows. The turn, the materials and the style carry over when you switch. A size the colony can't build yet is greyed out, with the reason: the research its key piece needs, or the era it's meant for.</text>
         <table>
           <li>Style | What it puts in</li>
           <li>Spartan | the beds, benches or tables the room is for, and a light; no floor unless the room must stay clean</li>
@@ -23,6 +23,10 @@
           <li>Lavish | more plant pots along the walls, pedestals for sculptures and a rug where your mods have them, carpet or fine stone tiles</li>
         </table>
         <after>Hospitals and kitchens keep their sterile tiles in every style.</after>
+      </li>
+      <li>
+        <heading>Furniture the game doesn't have</heading>
+        <text>Each piece in a plan lists what to build, best first, and the planner takes the first one your colony can build. A piece from a DLC or a mod you don't have is simply left out, or the next one on the list is used: a pew becomes a chair, a brazier a lamp. A room whose main piece is missing stays in the list, greyed out, and says what it waits for. Benches people can sit at come with a chair on the work spot, so the worker sits while they work.</text>
       </li>
       <li>
         <heading>Materials from what you have</heading>
@@ -69,7 +73,7 @@ A material you pick yourself is remembered for that room and used again next tim
     <order>300</order>
     <summary>Bookcases, comfortable chairs and good light, next to the laboratory</summary>
     <tip>Books on a bookcase never wear out. Books on the floor do.</tip>
-    <description>Reading passes the time, and some books teach a skill while they're read. A bookcase keeps books from deteriorating, adds to the room's beauty, and gives a reading bonus to research done near it. A library is a quiet room for all of that: bookcases along a wall, armchairs and a light.</description>
+    <description>Reading passes the time, and some books teach a skill while they're read. A bookcase keeps books from deteriorating, adds to the room's beauty, and gives a reading bonus to research done near it. A library is a quiet room for all of that: bookcases along a wall, armchairs and a light. The plan comes as a study, a library and a reading hall.</description>
     <sections>
       <li>
         <heading>Where it goes</heading>
@@ -100,7 +104,7 @@ A material you pick yourself is remembered for that room and used again next tim
     <sections>
       <li>
         <heading>Barrels and drink</heading>
-        <text>Fermenting barrels only work between -1 °C and 32 °C, so an indoor room keeps them going most of the year. Some colonists get a taste for beer: set a drug policy before the first barrel is tapped.</text>
+        <text>Fermenting barrels only ferment between 7 °C and 32 °C, and a batch left below -1 °C for long is ruined, so an indoor room keeps them going most of the year. Some colonists get a taste for beer: set a drug policy before the first barrel is tapped.</text>
       </li>
     </sections>
     <keywords>
@@ -245,7 +249,7 @@ A material you pick yourself is remembered for that room and used again next tim
     <order>370</order>
     <summary>Columns, pedestals and open floor to show off the colony's art</summary>
     <tip>Put the best sculpture on the way to the dining room.</tip>
-    <description>Sculptures add beauty wherever they stand, and a room full of them is impressive. The trophy gallery is mostly open floor with columns, lights and a fine stone floor: install sculptures from the art bench there, or on the pedestals that furniture mods add.</description>
+    <description>Sculptures add beauty wherever they stand, and a room full of them is impressive. The trophy gallery is mostly open floor with columns, lights and a fine stone floor: install sculptures from the art bench there, or on the pedestals that furniture mods add. The plan comes as a small gallery, the trophy gallery, and a grand gallery with a colonnade down both sides.</description>
     <sections>
       <li>
         <heading>Pedestals</heading>
@@ -317,7 +321,7 @@ A material you pick yourself is remembered for that room and used again next tim
     <order>400</order>
     <summary>An altar, a lectern and pews facing them</summary>
     <tip>The finer the room, the better the ritual.</tip>
-    <description>Rituals, sermons and ceremonies go better in an impressive room. A chapel gives them one: an altar at the far end, a lectern before it, and pews facing both with an aisle down the middle. Pews let the audience sit through the speech and make its good mood last longer.</description>
+    <description>Rituals, sermons and ceremonies go better in an impressive room. A chapel gives them one: an altar at the far end, a lectern before it, and pews facing both with an aisle down the middle. Pews let the audience sit through the speech and make its good mood last longer. The plan comes as a shrine, a chapel, and a temple with a large altar and two rows of pews.</description>
     <sections>
       <li>
         <heading>The ideoligion decides</heading>
@@ -512,6 +516,44 @@ A material you pick yourself is remembered for that room and used again next tim
     <mods>
       <li>dubwise.dubsbadhygiene</li>
     </mods>
+  </ColonyCouncil.AlmanacArticleDef>
+
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Council_Alm_9_48_CouncilChamber</defName>
+    <label>council chamber</label>
+    <category>RoomDesign</category>
+    <order>395</order>
+    <summary>A table where the whole council sits, from a tribe's fire to a hall for twenty</summary>
+    <tip>Build it bigger than the dining room, and the meetings come here.</tip>
+    <description>Rimfolk's council meets about once a quadrum, around the table of the colony's biggest dining room. The council chamber is a room built for that: a long table with chairs down both sides and armchairs at the head for whoever chairs the meeting. Between meetings it is a dining room like any other, so the space is never wasted.</description>
+    <sections>
+      <li>
+        <heading>Where the council meets</heading>
+        <text>The chair calls everyone to the biggest dining room. Without one the meeting goes to the biggest rec room, then to a gathering spot such as a campfire, and only then out under the sky. A chamber bigger than the dining room draws the meetings, and an impressive one makes the evening pleasant for everyone who comes.</text>
+      </li>
+      <li>
+        <heading>Sizes</heading>
+        <table>
+          <li>Size | Seats | Suits</li>
+          <li>Council fire | 11 stools round a campfire | a tribe; with no table it draws the meeting only when there's no dining or rec room</li>
+          <li>For 6 | a square table | a young colony</li>
+          <li>For 10 | 8 chairs and 2 armchairs at the head | most colonies</li>
+          <li>For 20 | 18 chairs and 2 armchairs at the head | a big colony, and its feasts</li>
+        </table>
+      </li>
+    </sections>
+    <keywords>
+      <li>council chamber</li>
+      <li>meeting room</li>
+      <li>council fire</li>
+      <li>meetings</li>
+    </keywords>
+    <seeAlso>
+      <li>Council_Alm_C_Meetings</li>
+      <li>Council_Alm_9_03_DiningRoom</li>
+      <li>Council_Alm_9_39_GreatHall</li>
+    </seeAlso>
+    <template>Council_CouncilChamber</template>
   </ColonyCouncil.AlmanacArticleDef>
 
 </Defs>

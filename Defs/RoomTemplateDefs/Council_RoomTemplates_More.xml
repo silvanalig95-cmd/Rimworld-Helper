@@ -50,7 +50,7 @@
     <near><li>DiningRoom</li><li>RecRoom</li></near>
     <tips>
       <li>Beer cheers people up and counts as recreation, but some colonists get a taste for it. Set a drug policy.</li>
-      <li>Fermenting barrels work between -1 °C and 32 °C, so a heated room keeps the beer coming in winter.</li>
+      <li>Fermenting barrels work between 7 °C and 32 °C, so a heated room keeps the beer coming in winter.</li>
       <li>A table in the tavern is also a dining table: the hungry eat here, the thirsty drink.</li>
     </tips>
     <things>

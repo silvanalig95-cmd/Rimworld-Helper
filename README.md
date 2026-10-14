@@ -371,16 +371,24 @@ why. Going with the room's favorite pleases its backers; overruling a clear majo
 and trust; one that was already more than half done when the colony chose it counts for less (down to 60%).
 
 ### Build: room plans
-68 ready-made rooms in 50 kinds, grouped by purpose. Many come in several sizes: a cozy, standard or roomy
-bedroom, or a sleeping hut for a tribe; a dining room for 4, 8 or 12; a small, standard or large workshop; an
-infirmary, two hospitals and a hospital ward; bigger kitchens, freezers, storerooms and laboratories. Among the
-rest: barracks, rec room, library, tavern corner, butcher's room, heat shelter (no power needed), brewery,
-greenhouse and hydroponics bay, barn and kennel, smithy, tailor's shop, stonecutter's and component workshops, art
-studio, trophy gallery, drug lab, crypt, crematorium, prison cells, armory, guard post and battery room; a
-longhouse and a great hall for tribal and medieval colonies; meditation and throne rooms (Royalty); a chapel
-(Ideology); a schoolroom, playroom, nursery, mechanitor's bay and gene lab (Biotech); a containment cell
-(Anomaly). With Dubs Bad Hygiene also a bathroom, bathhouse, sauna, laundry and a master suite with its own
-bathroom; with Hospitality a guest room. A room shows up once your colony can build its main piece.
+108 ready-made rooms, grouped by purpose. 28 kinds of room come in several sizes and kinds, picked in the
+planner: a cozy, standard or roomy bedroom, or a sleeping hut for a tribe; a dining room for 4, 8 or 12; an
+infirmary, two hospitals, a ward or a surgery; a prison cell, a furnished cell for a prisoner you hope to recruit, a
+shared cell, or a cell block of three cells off a corridor; a kitchen with one stove, two, or a butchery behind an
+inner door; a scholar's study, laboratory, large laboratory or research wing; a forge, smithy or armorer's
+workshop; a study, library or reading hall; a games corner, rec room or recreation hall; a tomb, crypt or
+catacomb; a weapons locker, armory or arsenal; and smaller and larger greenhouses, breweries, barns and kennels,
+freezers, storerooms, workshops, tailor's shops, drug labs and galleries. The **council chamber** is a room for
+the council's meetings: a council fire for a tribe, or a table for 6, 10 or 20 (the council meets in the biggest
+dining room). Rooms of their own: tavern corner, butcher's room, heat shelter (no power needed), stonecutter's and
+component workshops, art studio, crematorium, guard post, battery room, and a longhouse and a great hall for
+tribal and medieval colonies. With the DLCs: throne rooms from an audience chamber to a grand throne room, and a
+meditation room (Royalty); a shrine, chapel or temple (Ideology); a schoolroom, playroom, three sizes of nursery,
+a mechanitor's bay and a gene lab (Biotech); a containment cell (Anomaly). With Dubs Bad Hygiene: a small,
+standard or family bathroom and a shared washroom with stall doors, a bathhouse, sauna, laundry and a master
+suite with its own bathroom; with Hospitality a guest room. A room shows up once your colony can build its main
+piece; tribal and medieval colonies get sizes of their own (a council fire, a forge, a scholar's study), and the
+research wing waits for the multi-analyzer. Benches people can sit at come with a chair on the work spot.
 
 Pick one from this tab or from the **"rooms"** button in the bottom bar. A color-coded preview
 follows the mouse, and a planner panel lets you:
@@ -415,8 +423,10 @@ your own, with its furniture, wall material and floor. Saved rooms are kept with
 there in every game, and you can delete them from the same list.
 
 Every layout is checked in all four turns, mirrored and not: beds have their heads against a wall, chairs face
-their table, every bench has its work spot free, and nothing blocks the door. If a modded bench is bigger or its
-work spot ends up in a wall, the planner turns that piece or leaves it out and says so.
+their table, every bench has its work spot free, and nothing blocks the door. It's checked again without the DLC
+and mod furniture it doesn't need: a missing piece is left out, or the next one on the list is used, and a room
+whose main piece is missing says what it waits for. If a modded bench is bigger or its work spot ends up in a
+wall, the planner turns that piece or leaves it out and says so.
 
 It places ordinary blueprints, so your builders handle the rest. Every plan comes with good-practice tips.
 
