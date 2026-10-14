@@ -1,14 +1,36 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
+  <!--
+    Which game's reference assemblies to build against (see "Checking a new game version" in DESIGN.md).
+      dotnet build -c Release                   1.6, the DLL that ships: 1.6/Assemblies/ColonyCouncil.dll
+      dotnet build -c Release -p:RimRef=1.7     a check build against the 1.7 references (.NET 10); it goes to
+                                                bin/1.7/ (or -p:RimOut=<folder>) and ships nowhere
+  -->
   <PropertyGroup>
+    <RimRef Condition="'$(RimRef)' == ''">1.6</RimRef>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(RimRef)' == '1.6'">
     <TargetFramework>net48</TargetFramework>
+    <RimRefVersion>1.6.4871</RimRefVersion>
+    <OutputPath>../../1.6/Assemblies/</OutputPath>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(RimRef)' == '1.7'">
+    <TargetFramework>net10.0</TargetFramework>
+    <RimRefVersion>1.7.4977-alpha.2</RimRefVersion>
+    <OutputPath Condition="'$(RimOut)' == ''">bin/1.7/</OutputPath>
+    <OutputPath Condition="'$(RimOut)' != ''">$(RimOut)</OutputPath>
+    <IntermediateOutputPath>obj/1.7/</IntermediateOutputPath>
+  </PropertyGroup>
+
+  <PropertyGroup>
     <OutputType>Library</OutputType>
     <RootNamespace>ColonyCouncil</RootNamespace>
     <AssemblyName>ColonyCouncil</AssemblyName>
     <LangVersion>12.0</LangVersion>
     <Nullable>disable</Nullable>
     <ImplicitUsings>disable</ImplicitUsings>
-    <OutputPath>../../1.6/Assemblies/</OutputPath>
     <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
     <AppendRuntimeIdentifierToOutputPath>false</AppendRuntimeIdentifierToOutputPath>
     <DebugType>none</DebugType>
@@ -19,9 +41,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <!-- RimWorld 1.6 reference assemblies; nothing from these packages ships with the mod. -->
-    <PackageReference Include="Krafs.Rimworld.Ref" Version="1.6.4871" PrivateAssets="all" ExcludeAssets="runtime" />
-    <PackageReference Include="Microsoft.NETFramework.ReferenceAssemblies" Version="1.0.3" PrivateAssets="all" />
+    <!-- RimWorld reference assemblies; nothing from these packages ships with the mod. -->
+    <PackageReference Include="Krafs.Rimworld.Ref" Version="$(RimRefVersion)" PrivateAssets="all" ExcludeAssets="runtime" />
+    <PackageReference Include="Microsoft.NETFramework.ReferenceAssemblies" Version="1.0.3" PrivateAssets="all" Condition="'$(TargetFramework)' == 'net48'" />
     <!-- Harmony comes from the Harmony mod (brrainz.harmony), loaded before Rimfolk; only its reference is used here. -->
     <PackageReference Include="Lib.Harmony.Ref" Version="2.4.2" PrivateAssets="all" ExcludeAssets="runtime" />
   </ItemGroup>
