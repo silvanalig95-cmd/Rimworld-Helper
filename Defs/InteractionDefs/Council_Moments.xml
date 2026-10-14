@@ -36,6 +36,8 @@
         <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] set out an extra bowl at supper without thinking, and left it there.</li>
         <li>answer->some days more than others</li>
         <li>answer->[RECIPIENT_pronoun] hoped so</li>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] said the name of the one they lost out loud together, and it was easier with two.</li>
+        <li>r_logentry->[INITIATOR_nameDef] brought [RECIPIENT_nameDef] a cup of something warm and stayed while [RECIPIENT_pronoun] drank it.</li>
       </rulesStrings>
     </logRulesInitiator>
     <modExtensions>
@@ -153,6 +155,11 @@
         <li>shopquestion->fix a mistake without starting over</li>
         <li>shopreaction->tried it on the spot and got it wrong twice</li>
         <li>shopreaction->asked where [INITIATOR_pronoun] had learned that</li>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] spent their break arguing over [shoptopic], and both came away with something.</li>
+        <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] to look over [INITIATOR_possessive] work before anyone else saw it.</li>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] traded the worst advice they had ever been given about their craft.</li>
+        <li>r_logentry->[INITIATOR_nameDef] described to [RECIPIENT_nameDef] a piece of work [INITIATOR_pronoun] had seen years ago and still thought about.</li>
+        <li>shoptopic->what to do when the work goes wrong halfway through</li>
       </rulesStrings>
     </logRulesInitiator>
     <modExtensions>
@@ -844,6 +851,8 @@
         <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] that [lessonline], and [RECIPIENT_nameDef] agreed.</li>
         <li>lessonmishap->the day they both forgot what the lesson was about</li>
         <li>lessonline->practice every day beats a long session once a week</li>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] ran through the lesson again in the evening, for the pleasure of getting it right.</li>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] agreed the lessons had been the best part of a hard week.</li>
       </rulesStrings>
     </logRulesInitiator>
     <modExtensions>
@@ -882,6 +891,11 @@
         <li>jabcount->three</li>
         <li>jabcount->several</li>
         <li>jabcount->a series of</li>
+        <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] whether [RECIPIENT_pronoun] wanted a hand, in a voice that said [INITIATOR_pronoun] knew the answer.</li>
+        <li>r_logentry->[INITIATOR_nameDef] told the table, while looking at [RECIPIENT_nameDef], that [jabline].</li>
+        <li>r_logentry->[INITIATOR_nameDef] thanked [RECIPIENT_nameDef] for [backhanded], and kept smiling well after it was polite.</li>
+        <li>jabline->some people's best work looked a lot like other people's first try</li>
+        <li>backhanded->[RECIPIENT_possessive] bold idea of what counts as finished</li>
       </rulesStrings>
     </logRulesInitiator>
     <modExtensions>
@@ -1159,6 +1173,8 @@
         <li>blessedthing->the sick and the hurt</li>
         <li>blessedthing->the new walls</li>
         <li>faithact->touched foreheads and said the old blessing</li>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] kept a small rite of their faith together, away from the others.</li>
+        <li>r_logentry->[INITIATOR_nameDef] reminded [RECIPIENT_nameDef] of a holy day coming up, and they planned how to keep it.</li>
       </rulesStrings>
     </logRulesInitiator>
     <modExtensions>
@@ -1248,6 +1264,9 @@
         <li>riddletext->what runs but never walks, and has a bed but never sleeps</li>
         <li>riddletext->what you can keep after giving it to someone</li>
         <li>riddletext->what goes up and never comes down</li>
+        <li>r_logentry->[INITIATOR_nameDef] stumped [RECIPIENT_nameDef] with a riddle, and [RECIPIENT_nameDef] spent the rest of the day muttering guesses.</li>
+        <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] [riddletext], and [RECIPIENT_nameDef] got it in one.</li>
+        <li>riddletext->what has teeth but never bites</li>
       </rulesStrings>
     </logRulesInitiator>
     <modExtensions>

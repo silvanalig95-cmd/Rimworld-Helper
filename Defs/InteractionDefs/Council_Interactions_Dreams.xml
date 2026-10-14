@@ -34,6 +34,9 @@
         <li>sweet->a bath that never went cold</li>
         <li>sweet->a day with no work in it</li>
         <li>sweet->a garden where everything ripened at once</li>
+        <li>r_logentry->[INITIATOR_nameDef] was in such a good mood after a dream of [sweet] that [RECIPIENT_nameDef] asked what [INITIATOR_pronoun] had been drinking.</li>
+        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] about a dream of [sweet], and they both went quiet for a moment.</li>
+        <li>sweet->a river warm enough to swim in</li>
       </rulesStrings>
     </logRulesInitiator>
   </InteractionDef>
@@ -61,6 +64,9 @@
         <li>strange->the colony was much bigger on the inside</li>
         <li>strange->the others had all swapped faces</li>
         <li>strange->the moon came down to trade</li>
+        <li>r_logentry->[INITIATOR_nameDef] described a dream in which [strange], and [RECIPIENT_nameDef] offered three explanations, none of them likely.</li>
+        <li>r_logentry->[INITIATOR_nameDef] couldn't stop talking about a dream in which [strange], and [RECIPIENT_nameDef] couldn't stop laughing.</li>
+        <li>strange->[INITIATOR_pronoun] was a fish, and still got asked to the council</li>
       </rulesStrings>
     </logRulesInitiator>
   </InteractionDef>
@@ -87,6 +93,9 @@
         <li>dread->someone calling [INITIATOR_possessive] name from outside the walls</li>
         <li>dread->a fire that wouldn't go out</li>
         <li>dread->the others not knowing who [INITIATOR_pronoun] was</li>
+        <li>r_logentry->[INITIATOR_nameDef] was jumpy all through breakfast, and finally told [RECIPIENT_nameDef] about a dream of [dread].</li>
+        <li>r_logentry->[RECIPIENT_nameDef] asked [INITIATOR_nameDef] why [INITIATOR_pronoun] looked so pale, and heard about a nightmare of [dread].</li>
+        <li>dread->drowning in the river</li>
       </rulesStrings>
     </logRulesInitiator>
   </InteractionDef>

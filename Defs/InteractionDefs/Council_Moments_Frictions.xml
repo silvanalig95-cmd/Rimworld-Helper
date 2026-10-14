@@ -85,6 +85,8 @@
         <li>chore->scour the cooking pot</li>
         <li>dirtything->a bucket of gray water left by the door</li>
         <li>choreanswer->that [RECIPIENT_pronoun] had been busy, which was true of all of them</li>
+        <li>r_logentry->[INITIATOR_nameDef] pointed [RECIPIENT_nameDef] at [dirtything] and folded [INITIATOR_possessive] arms.</li>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] each claimed to have been the last one to [chore].</li>
       </rulesStrings>
     </logRulesInitiator>
     <modExtensions>
@@ -673,6 +675,8 @@
         <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] that if [RECIPIENT_pronoun] had something to say, [RECIPIENT_pronoun] could say it to [INITIATOR_possessive] face.</li>
         <li>r_logentry->[INITIATOR_nameDef] heard secondhand what [RECIPIENT_nameDef] had been saying [secretthing], and went to have it out.</li>
         <li>secretthing->about [INITIATOR_possessive] family</li>
+        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] to keep [INITIATOR_possessive] name out of [RECIPIENT_possessive] mouth.</li>
+        <li>r_logentry->[INITIATOR_nameDef] stopped talking to [RECIPIENT_nameDef] mid-sentence, having heard what [RECIPIENT_pronoun] had been saying at supper.</li>
       </rulesStrings>
     </logRulesInitiator>
     <modExtensions>
@@ -810,6 +814,8 @@
         <li>r_logentry->[RECIPIENT_nameDef] chased [INITIATOR_nameDef]'s animal out of the storeroom and came to complain about it.</li>
         <li>r_logentry->[RECIPIENT_nameDef] told [INITIATOR_nameDef] that [INITIATOR_possessive] animal had [petcrime], and that it was the last time.</li>
         <li>petcrime->dug up [RECIPIENT_possessive] flower bed</li>
+        <li>r_logentry->[RECIPIENT_nameDef] found [INITIATOR_nameDef]'s animal asleep in [RECIPIENT_possessive] spot and came to complain.</li>
+        <li>r_logentry->[RECIPIENT_nameDef] told [INITIATOR_nameDef] that [INITIATOR_possessive] animal had [petcrime] while [INITIATOR_pronoun] wasn't looking.</li>
       </rulesStrings>
     </logRulesInitiator>
     <modExtensions>
@@ -971,6 +977,9 @@
         <li>r_logentry->[INITIATOR_nameDef] turned [INITIATOR_possessive] back when [RECIPIENT_nameDef] joined the group.</li>
         <li>r_logentry->[INITIATOR_nameDef] handed around the bread and skipped [RECIPIENT_nameDef].</li>
         <li>r_logentry->[INITIATOR_nameDef] went quiet the moment [RECIPIENT_nameDef] came in.</li>
+        <li>r_logentry->[INITIATOR_nameDef] passed [RECIPIENT_nameDef] in the doorway and looked at the wall instead.</li>
+        <li>r_logentry->[INITIATOR_nameDef] took [INITIATOR_possessive] bowl outside when [RECIPIENT_nameDef] sat down at the table.</li>
+        <li>r_logentry->[INITIATOR_nameDef] gave [RECIPIENT_nameDef] a one-word answer, then nothing at all.</li>
       </rulesStrings>
     </logRulesInitiator>
     <modExtensions>
@@ -1098,6 +1107,8 @@
         <li>r_logentry->[INITIATOR_nameDef] offered [RECIPIENT_nameDef] a hand with [RECIPIENT_possessive] work, and the quarrel ended there.</li>
         <li>r_logentry->[INITIATOR_nameDef] admitted to [RECIPIENT_nameDef] that [INITIATOR_pronoun] had been in a foul mood, and [RECIPIENT_nameDef] [apologyreply].</li>
         <li>peaceoffering->a warm roll from the oven</li>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] shook hands over the woodpile and went back to work side by side.</li>
+        <li>r_logentry->[INITIATOR_nameDef] brought [RECIPIENT_nameDef] [peaceoffering] and sat with [RECIPIENT_objective] until the air was clear.</li>
       </rulesStrings>
     </logRulesInitiator>
     <modExtensions>
