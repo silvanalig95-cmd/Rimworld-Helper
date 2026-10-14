@@ -9,7 +9,7 @@
 
   <!-- The welcome letter, once per colony in its first session with Rimfolk. {0}: where the council button is. -->
   <CC_Welcome_Label>Welcome to Rimfolk</CC_Welcome_Label>
-  <CC_Welcome_Text>Your colonists are more than workers now. They ask for things and remember how you answered, make friends and rivals, keep journals and dream, and meet in council to choose what the colony works toward.\n\nAll of it is in the council window: open it with the council button {0}. Its first page shows the colony at a glance, and Priorities lists what the colony needs most.\n\nNew to it? The Almanac, the last part of the council window, has a "Start here" page with the main parts in a few lines and links to the rest. Every part can be turned down or off in the mod settings.\n\nThis letter comes only once.</CC_Welcome_Text>
+  <CC_Welcome_Text>With Rimfolk, your colonists ask for things and remember how you answered. They make friends and rivals, keep journals, dream, and meet in council to choose what the colony works toward.\n\nAll of it is in the council window: open it with the council button {0}. Its first page shows the colony at a glance, and Priorities lists what the colony needs most.\n\nNew to it? The Almanac, the last part of the council window, has a "Start here" page with the main parts in a few lines and links to the rest. Every part can be turned down or off in the mod settings.\n\nThis letter comes only once.</CC_Welcome_Text>
   <CC_Welcome_Open>Open "Start here"</CC_Welcome_Open>
   <CC_Welcome_Where_BeforeMenu>at the right end of the bottom bar, just before Menu</CC_Welcome_Where_BeforeMenu>
   <CC_Welcome_Where_AfterResearch>in the bottom bar, right after Research</CC_Welcome_Where_AfterResearch>

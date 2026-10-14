@@ -12,7 +12,7 @@
     <category>Basics</category>
     <order>-10</order>
     <summary>What Rimfolk adds to your colony, and where to find it.</summary>
-    <tip>You don't have to learn it all at once. The colonists will show you what matters to them.</tip>
+    <tip>You don't need all of it on the first day. Answer the wishes and see what the colonists do.</tip>
     <description>Rimfolk turns your colonists into a small society. They ask for things and remember what you did about it, make friends and rivals, keep journals, dream, and wear down under hard times. A council helps you keep up: an advisor that points out what the colony needs, and meetings where the colony picks a goal to work toward.
 
 All of it lives in the council window. Open it with the council button in the bottom bar; it comes back to the page you were on.</description>
@@ -59,7 +59,7 @@ All of it lives in the council window. Open it with the council button in the bo
     <category>Basics</category>
     <order>90</order>
     <summary>Where to look to see each of the newer features at work.</summary>
-    <tip>If you can't find it, it may just not have happened yet. Most of these wait for the right moment.</tip>
+    <tip>Most of these wait for their moment: a happy colonist, a long day of hauling, an evening meeting.</tip>
     <description>A short list for checking that Rimfolk's newer parts are running in your game. Each one says where to look and what you should see. Most need their setting on, and a few need the deeper game hooks.</description>
     <sections>
       <li>

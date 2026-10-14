@@ -134,9 +134,12 @@ play deep. In order:
   check the next version: DESIGN.md, "Checking a new game version". Still to see in game on 1.7: that the patches take
   effect on the new runtime, and that the Needs tab's mood hints join the game's own tooltip (else they show in a box
   of their own).
-- A dev action, "Rimfolk: check myself", listing which patches applied, which systems are on, and which mods it
-  found, so a log isn't needed to tell what's wrong.
-- A short in-game test checklist (Almanac page) for each new feature.
+- Done (October 2026): a dev action, "Rimfolk: check myself" (debug actions, Rimfolk), listing the game, Rimfolk and
+  Harmony versions, which patches applied and which didn't (with the reason, now kept by the per-patch bootstrap),
+  which switches are off or changed from their defaults, which of the mods Rimfolk works with it found, and its own
+  log errors this session, so a log isn't needed to tell what's wrong. It copies to the clipboard for bug reports.
+- Done (October 2026): a short in-game test checklist, the Almanac page "Checking that it works": the Good times line,
+  ailments, the visual touches, meetings with attendance, the heart in RimHUD and the material counts.
 
 ### 2. Lean (optimization)
 - One scheduler for everything hourly: today the heart, pressures, nuisances, ailments, camps, world events,
@@ -152,8 +155,10 @@ play deep. In order:
   switch shows a one-line "what you'll notice".
 - A news digest: minor happenings gathered into one "colony news" letter a day instead of many messages; letters
   kept for decisions.
-- A first-run welcome letter and a "Start here" Almanac page; the council window remembers its page.
-- Rimfolk's pawn tabs fit the space above RimHUD and other tall inspect panes; sections collapse.
+- Done (October 2026): a first-run welcome letter (once per colony; saves that already had Rimfolk skip it without a
+  setting) and a "Start here" Almanac page; the council window remembers its page, across sessions too.
+- Done (October 2026): Rimfolk's pawn tabs fit the space above RimHUD and other tall inspect panes (checked by tests for
+  768 to 2160 pixel screens and interface scales up to 2x), scroll when short, and their sections fold away.
 - A small visual pass with the game's own effects: the comet tints the sky, fireflies glow, camps smoke, a warlord's
   raid comes with banners of dust.
 - Translation-ready: every string keyed and a guide for translators.
