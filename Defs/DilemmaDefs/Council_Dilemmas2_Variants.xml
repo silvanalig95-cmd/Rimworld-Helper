@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    More ways for the dilemmas of Council_Dilemmas2.xml to read, merged in at startup (LetterVariantsDef). Tags: the era
+    and season, the moment as A lives it ([winter], [night], [lowmood]), A's traits, passions, past and office, B's with
+    b: in front, and the colony's name.
+  -->
+
+  <!-- ===================== A gambling debt ===================== -->
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Council_Var_Dlm_Wager</defName>
+    <dilemma>Council_Dilemma_Wager</dilemma>
+    <texts>
+      <li>[winter] The card games have gone on every night since the snow came, and last night {B_nameDef} lost {B_possessive} winter boots to {A_nameDef} on one hand. {A_nameDef} is wearing them. {B_nameDef} is wearing two pairs of socks and wants the council to rule the bet void.</li>
+      <li>[trait:Greedy] {A_nameDef} has won most of what {B_nameDef} owns at dice over the past week, and has been keeping a list. {B_nameDef} says {A_nameDef} plays with loaded dice. {A_nameDef} says a debt is a debt.\n\nBoth have asked the council to rule.</li>
+      <li>[past:trader] {A_nameDef} learned dice on the trade roads, and {B_nameDef} found out the hard way: a week's worth of dessert, lost in one evening. {B_nameDef} says it wasn't a fair game. {A_nameDef} says it was a lesson.\n\nThey want the council to settle it.</li>
+      <li>[colony:Restless] Gambling is half of what passes for fun in this colony, and last night it went too far: {B_nameDef} bet {B_possessive} bed for a week and lost it to {A_nameDef}. {B_nameDef} slept on the floor and wants the council to step in.</li>
+    </texts>
+    <outcomes>
+      <li>
+        <option>2</option>
+        <lines>
+          <li>The council banned gambling. The cards were burned at supper, and {A_nameDef} watched the fire like it owed {A_objective} money.</li>
+        </lines>
+      </li>
+    </outcomes>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <!-- ===================== The hoarder ===================== -->
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Council_Var_Dlm_Hoarder</defName>
+    <dilemma>Council_Dilemma_Hoarder</dilemma>
+    <texts>
+      <li>[winter] When the cold came, {B_nameDef} went looking for the spare blankets and found them in {A_nameDef}'s room, all six, along with the good lamp, a sack of candles and {COUNT} {THING} from the stores.\n\n{A_nameDef} says {A_pronoun} was getting ready for the winter. {B_nameDef} says the rest of the colony would like to as well.</li>
+      <li>[lowtech] {B_nameDef} followed a trail of straw to {A_nameDef}'s chest and opened it. Inside: the colony's best knives, two good cloaks, a jar of honey and {COUNT} {THING}, all of it from the stores.\n\n{A_nameDef} says it's {A_possessive} share, set aside early. {B_nameDef} wants it back.</li>
+      <li>[colony:Generous] In a colony that shares everything, {B_nameDef} has found a hoard under {A_nameDef}'s floorboards: {COUNT} {THING}, a good knife and a stack of the colony's best plates. {A_nameDef} calls it saving. {B_nameDef} calls it theft, and wants the council to rule.</li>
+    </texts>
+    <outcomes>
+      <li>
+        <option>1</option>
+        <lines>
+          <li>The council lets {A_nameDef} keep the collection. {B_nameDef} has put a lock on {B_possessive} own chest.</li>
+        </lines>
+      </li>
+    </outcomes>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <!-- ===================== A bad omen ===================== -->
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Council_Var_Dlm_Omen</defName>
+    <dilemma>Council_Dilemma_Omen</dilemma>
+    <texts>
+      <li>[winter] {A_nameDef} dreamed of a long line of figures walking out of the snow toward the colony, and woke up shouting. It has happened every night this week.\n\n{A_nameDef} is sure it's a warning, and some of the others have started looking at the treeline.</li>
+      <li>[lowtech] {A_nameDef} saw a crow land on the roof three times in one morning, and then dreamed of the well running red. In {A_possessive} old village that meant something, and {A_nameDef} has told everyone what.\n\nThe night watch has started jumping at shadows.</li>
+      <li>[!lowtech] {A_nameDef} has been waking at the same minute every night, certain something is coming, and has started writing the dreams down. The notebook is passed around at breakfast.\n\nA few of the others have started sleeping in their boots.</li>
+      <li>[trait:Nervous] {A_nameDef} hasn't slept in two nights for the dreams: smoke, a red moon, and the colony's gate standing open with nobody near it. {A_nameDef} has told the council and anyone else who will listen.\n\nSome of the others are beginning to believe it.</li>
+    </texts>
+    <outcomes>
+      <li>
+        <option>2</option>
+        <lines>
+          <li>[winter] {A_nameDef} lit a fire in the snow and had each colonist throw in a scrap of wood with a fear scratched on it. It felt foolish, and everyone slept better that night.</li>
+        </lines>
+      </li>
+    </outcomes>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <!-- ===================== A debt to old friends ===================== -->
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Council_Var_Dlm_OldFriends</defName>
+    <dilemma>Council_Dilemma_OldFriends</dilemma>
+    <texts>
+      <li>[winter] A trader passing through mentioned that {FACTION} are having a hard winter. {A_nameDef} went quiet at that. {FACTION} took {A_objective} in once, years ago, when {A_pronoun} had nothing.\n\n{A_nameDef} wants to send them some of the colony's silver, and has asked the council.</li>
+      <li>[trait:Kind] {A_nameDef} has never forgotten the {FACTION} family who fed {A_objective} through a bad year, long before the colony. Word has come that they're struggling now.\n\n{A_nameDef} wants to send help from the colony's stores, and is asking the council.</li>
+      <li>[past:soldier] {FACTION} hid {A_nameDef} from {A_possessive} own officers once, at the risk of their necks, and never asked why. They've had a hard season, and {A_nameDef} wants to repay them with the colony's silver.</li>
+    </texts>
+    <outcomes>
+      <li>
+        <option>3</option>
+        <lines>
+          <li>The silver stays in the colony. {A_nameDef} wrote {FACTION} a letter anyway, and didn't say what was in it.</li>
+        </lines>
+      </li>
+    </outcomes>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <!-- ===================== A broken keepsake ===================== -->
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Council_Var_Dlm_Keepsake</defName>
+    <dilemma>Council_Dilemma_Keepsake</dilemma>
+    <texts>
+      <li>[lowtech] {B_nameDef} used {A_nameDef}'s old bone comb to scrape a pot, not knowing what it was, and snapped it in half. It was carved by {A_nameDef}'s grandmother.\n\n{B_nameDef} is sorry. {A_nameDef} wants more than sorry, and has come to the council.</li>
+      <li>[!lowtech] {B_nameDef} sat on {A_nameDef}'s glasses, the old pair with the cracked lens that {A_nameDef} wore when {A_pronoun} arrived. They didn't survive. {A_nameDef} says they were the last thing from before.\n\n{B_nameDef} says they were broken already. The council has been asked to decide.</li>
+      <li>[trait:Abrasive] {A_nameDef}'s keepsake, a little painted box from home, is in pieces on the floor, and {B_nameDef} knocked it there. {A_nameDef} has said some things to {B_nameDef} that can't easily be unsaid, and both have come to the council.</li>
+    </texts>
+    <outcomes>
+      <li>
+        <option>3</option>
+        <lines>
+          <li>The council called it an accident. {A_nameDef} glued what could be glued, and keeps it on the windowsill.</li>
+        </lines>
+      </li>
+    </outcomes>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <!-- ===================== Asleep on watch ===================== -->
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Council_Var_Dlm_Watch</defName>
+    <dilemma>Council_Dilemma_Watch</dilemma>
+    <texts>
+      <li>[winter] {B_nameDef} had the night watch in the worst of the cold, and {A_nameDef} found {B_objective} asleep in the gatehouse with {B_possessive} feet up against the brazier. The gate was unwatched for hours.\n\n{A_nameDef} wants the council to deal with it.</li>
+      <li>[lowtech] {A_nameDef} climbed the wall at midnight with a lantern and found the night watch, {B_nameDef}, asleep on a sack of grain. Anything could have walked through the gate.\n\n{A_nameDef} wants it dealt with before the next watch.</li>
+      <li>[!lowtech] The watch log for last night has three hours with nothing in it, and {A_nameDef} knows why: {B_nameDef} was asleep at the post, rifle across {B_possessive} knees.\n\n{A_nameDef} wants the council to act before the next raid finds the same gap.</li>
+      <li>[b:trait:Lazy] {A_nameDef} found {B_nameDef} asleep on watch again last night. It isn't the first time, and {A_nameDef} has started counting.\n\nThe council has been asked to put a stop to it.</li>
+      <li>[past:soldier] In {A_nameDef}'s old company, sleeping on watch meant a flogging. {A_nameDef} found {B_nameDef} doing exactly that last night, and has asked the council what it means to do instead.</li>
+    </texts>
+    <outcomes>
+      <li>
+        <option>2</option>
+        <lines>
+          <li>[past:soldier] {A_nameDef} runs the watch now, the way it was run in the army: a roster, a bell and checks at random hours. {B_nameDef}'s name is on it a lot.</li>
+        </lines>
+      </li>
+    </outcomes>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <!-- ===================== An unflattering likeness ===================== -->
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Council_Var_Dlm_Sculpture</defName>
+    <dilemma>Council_Dilemma_Sculpture</dilemma>
+    <texts>
+      <li>[lowtech] {A_nameDef} has carved a new figure for the hall, and it's {B_nameDef}, unmistakably, mid-sneeze. Visitors stop to laugh at it.\n\n{B_nameDef} has asked the council to have it thrown on the woodpile.</li>
+      <li>[trait:TooSmart] {A_nameDef} calls the new sculpture a study in proportion. It's {B_nameDef}, with a forehead twice the size of anyone's, and a little plaque that says "Thinking."\n\n{B_nameDef} wants it gone. {A_nameDef} says it's art.</li>
+      <li>[b:trait:Ugly] {A_nameDef}'s latest sculpture is a very faithful likeness of {B_nameDef}, which is the problem. {B_nameDef} has asked the council to have it taken down before anyone else sees it.</li>
+    </texts>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <!-- ===================== Music at midnight ===================== -->
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Council_Var_Dlm_Music</defName>
+    <dilemma>Council_Dilemma_Music</dilemma>
+    <texts>
+      <li>[lowtech] {A_nameDef} has taken up the pipes, and practices after dark in the room next to {B_nameDef}'s. {B_nameDef} has learned every wrong note by heart.\n\n{B_nameDef} came to the council this morning and asked, in a very level voice, for it to stop.</li>
+      <li>[!lowtech] {A_nameDef} found an old guitar in a trader's crate and plays it every night until the small hours. {B_nameDef} sleeps on the other side of the wall and has started sleeping in the storeroom instead.\n\n{B_nameDef} wants the council to do something.</li>
+      <li>[trait:NightOwl] {A_nameDef} does {A_possessive} best playing at three in the morning, and says so. {B_nameDef}, who gets up at five, would like a word with the council about it.</li>
+      <li>[winter] The winter nights are long, and {A_nameDef} has been filling them with a drum. {B_nameDef}, next door, hasn't slept a full night since the snow came, and has asked the council to step in.</li>
+    </texts>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <!-- ===================== A duel of honor ===================== -->
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Council_Var_Dlm_Duel</defName>
+    <dilemma>Council_Dilemma_Duel</dilemma>
+    <texts>
+      <li>[lowtech] {A_nameDef} and {B_nameDef} have drawn a ring in the dirt behind the barn and agreed to fight in it at sunrise, bare hands, until one of them yields. They want the council's blessing so the result stands.</li>
+      <li>[past:soldier] {A_nameDef} has challenged {B_nameDef} to settle it the soldier's way: fists, a ring, and no grudges after. {B_nameDef} accepted before {A_nameDef} had finished.\n\nThey want the council's permission first.</li>
+      <li>[trait:Brawler] {A_nameDef} has been looking for an excuse to fight {B_nameDef} for weeks, and today {B_nameDef} gave {A_objective} one. {A_nameDef} proposes fists in the yard at dawn, and has asked the council to allow it.</li>
+      <li>[colony:Traditional] The colony has always let a quarrel be settled in the ring if both sides agree. {A_nameDef} and {B_nameDef} both agree, and are asking for the ring at dawn.</li>
+    </texts>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <!-- ===================== A seat at the table ===================== -->
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Council_Var_Dlm_Seat</defName>
+    <dilemma>Council_Dilemma_Seat</dilemma>
+    <texts>
+      <li>[past:noble] {A_nameDef} was raised to give orders, and has started giving them again: to the cook, to the haulers, to the council. Now {A_nameDef} wants it made official, with a seat on the council and a proper title.</li>
+      <li>[trait:Greedy] {A_nameDef} has asked for a seat on the council, a title, and the room with the best window, in that order. {A_nameDef} has put it in writing and posted it on the door.</li>
+      <li>[colony:Traditional] The colony has always been run by its council, and the council has always been the same few people. {A_nameDef} thinks it's time for a new chair at the table, and that {A_nameDef} should sit in it.</li>
+    </texts>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <!-- ===================== Not pulling weight ===================== -->
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Council_Var_Dlm_Slacker</defName>
+    <dilemma>Council_Dilemma_Slacker</dilemma>
+    <texts>
+      <li>[summer] It's harvest time, every pair of hands is needed, and {B_nameDef} has spent the afternoon asleep in the shade of the barn. {A_nameDef} came in from the fields to point this out to the council, with a sickle still in hand.</li>
+      <li>[winter] {A_nameDef} has hauled firewood for both of them all week while {B_nameDef} sat by the stove, warming {B_possessive} hands and offering advice. {A_nameDef} wants the council to see the woodpile and the stove for itself.</li>
+      <li>[trait:Industrious] {A_nameDef} works from dawn to dark and expects the same of everyone, {B_nameDef} most of all. {B_nameDef} doesn't see it that way. {A_nameDef} has brought a list.</li>
+      <li>[b:trait:Lazy] {B_nameDef} has a talent for being somewhere else whenever there's hauling to do, and {A_nameDef} has noticed. Today {A_nameDef} brought the council a tally of every job {B_nameDef} has walked away from this month.</li>
+    </texts>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <!-- ===================== An old face ===================== -->
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Council_Var_Dlm_OldFace</defName>
+    <dilemma>Council_Dilemma_OldFace</dilemma>
+    <texts>
+      <li>[past:outlaw] {A_nameDef} has never hidden that {A_pronoun} was an outlaw once. What {A_nameDef} hid was where: {B_nameDef} worked it out tonight, and says {A_nameDef}'s band burned {B_possessive} village.\n\n{A_nameDef} doesn't deny it. The council has to decide what that means now.</li>
+      <li>[lowtech] {B_nameDef} recognized the tattoo on {A_nameDef}'s arm while they were washing at the stream, and went white. The band that wore that mark burned {B_nameDef}'s village when {B_pronoun} was small.\n\n{A_nameDef} says {A_pronoun} left them long ago. {B_nameDef} wants the council to do something.</li>
+    </texts>
+  </ColonyCouncil.LetterVariantsDef>
+
+</Defs>

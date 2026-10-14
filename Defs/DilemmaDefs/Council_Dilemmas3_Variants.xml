@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    More ways for the dilemmas of Council_Dilemmas3.xml to read, merged in at startup (LetterVariantsDef). Tags: the era
+    and season, the moment as A lives it, A's traits, passions, past and office, B's with b: in front, and the colony's
+    name. {PET_...} is A's animal where the dilemma has one.
+  -->
+
+  <!-- ===================== The young hunter ===================== -->
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Council_Var_Dlm_YoungHunter</defName>
+    <dilemma>Council_Dilemma_YoungHunter</dilemma>
+    <texts>
+      <li>[lowtech] {A_nameDef} has made a bow out of a bent stick and some twine and has been shooting it at the fence posts all week. Today {A_nameDef} asked {B_nameDef}, the colony's best shot, for a real one, and lessons.\n\n{B_nameDef} said to ask the council, and {A_nameDef} has.</li>
+      <li>[!lowtech] {A_nameDef} has been cleaning {B_nameDef}'s rifle without being asked, every evening, very carefully, and today asked to be taught to fire it. {B_nameDef} said it's up to the council.\n\n{A_nameDef} is waiting outside, holding the cleaning rag.</li>
+      <li>[winter] Hunting is how the colony eats this winter, and {A_nameDef} wants to help. {A_nameDef} has asked {B_nameDef}, the best shot here, to take {A_objective} out and teach {A_objective} properly.\n\nThe council has to decide whether {A_nameDef} is old enough.</li>
+    </texts>
+    <outcomes>
+      <li>
+        <option>2</option>
+        <lines>
+          <li>[winter] The answer was no. {A_nameDef} watched the hunters go out into the snow from the window, and stayed there until they came back.</li>
+        </lines>
+      </li>
+    </outcomes>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <!-- ===================== Where the dead go ===================== -->
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Council_Var_Dlm_WhereTheDeadGo</defName>
+    <dilemma>Council_Dilemma_WhereTheDeadGo</dilemma>
+    <texts>
+      <li>[winter] {A_nameDef} found a frozen bird under the eaves and brought it in to warm it up by the stove. It didn't wake. Now {A_nameDef} is asking {B_nameDef} where it went, the part that made it a bird.\n\n{B_nameDef} has passed the question to the council.</li>
+      <li>[grieving] Since the colony buried one of its own, {A_nameDef} has been asking the adults where the dead go. Today {A_nameDef} asked {B_nameDef}, and {B_nameDef} couldn't find an answer.\n\nThe council has been asked to agree on one before bedtime.</li>
+    </texts>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <!-- ===================== A friend past the wall ===================== -->
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Council_Var_Dlm_WildFriend</defName>
+    <dilemma>Council_Dilemma_WildFriend</dilemma>
+    <texts>
+      <li>[winter] {A_nameDef} has been leaving scraps past the wall in the snow, and something has been eating them every night: a thin wild animal that waits for {A_objective} now. {B_nameDef} saw the tracks this morning.\n\n{B_nameDef} wants the council's say before doing anything about it.</li>
+      <li>[skill:Animals] {A_nameDef} has a way with animals, and has used it on a wild one that lives in the scrub past the wall. It takes food from {A_nameDef}'s hand now, and nobody else's.\n\n{B_nameDef} has seen it, and wants the council to decide what's done about it.</li>
+    </texts>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <!-- ===================== The bite ===================== -->
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Council_Var_Dlm_PetBite</defName>
+    <dilemma>Council_Dilemma_PetBite</dilemma>
+    <texts>
+      <li>[b:trait:Abrasive] {B_nameDef} has kicked at {PET_nameDef} for weeks, and today {PET_nameDef} bit back. {B_nameDef} wants something done about the animal. {A_nameDef} wants something done about {B_nameDef}.</li>
+      <li>[summer] It was hot, {PET_nameDef} was asleep in the only shade, and {B_nameDef} tried to move {PET_objective}. Now {B_nameDef} has a bandaged hand and a complaint for the council.\n\n{A_nameDef} says anyone would have bitten.</li>
+    </texts>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <!-- ===================== An animal in decline ===================== -->
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Council_Var_Dlm_PetFading</defName>
+    <dilemma>Council_Dilemma_PetFading</dilemma>
+    <texts>
+      <li>[winter] The cold has been hard on {PET_nameDef}, who can barely stand in the mornings now. {B_nameDef} has looked {PET_objective} over and says it won't get better, whatever the season.\n\n{A_nameDef} has asked the council to help decide what happens now.</li>
+      <li>[trait:Kind] {A_nameDef} has carried {PET_nameDef} out to the sun every morning this week and back in every night. {B_nameDef}, who knows animals best, says {PET_nameDef} is near the end.\n\n{A_nameDef} has asked the council what to do, and can hardly get the words out.</li>
+    </texts>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <!-- ===================== A hungry look ===================== -->
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Council_Var_Dlm_PetPot</defName>
+    <dilemma>Council_Dilemma_PetPot</dilemma>
+    <texts>
+      <li>[winter] The stores are thin this winter, and {B_nameDef} has started saying out loud what {PET_nameDef} would be worth in the pot. {A_nameDef} has started sleeping next to {PET_nameDef}.\n\nBoth of them want the council to settle it.</li>
+      <li>[b:trait:Gourmand] {B_nameDef} has been leafing through recipes with {PET_nameDef}'s name penciled in the margins. {A_nameDef} found the notes and brought them straight to the council.</li>
+    </texts>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <!-- ===================== A love letter ===================== -->
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Council_Var_Dlm_LoveLetter</defName>
+    <dilemma>Council_Dilemma_LoveLetter</dilemma>
+    <texts>
+      <li>[lowtech] {A_nameDef} wrote a poem on a piece of bark and hid it in the woodpile for someone to find. {B_nameDef} found it first, and read it to the colony at supper, with feeling.\n\n{A_nameDef} hasn't come out of {A_possessive} room since. {B_nameDef} says it was only a bit of fun.</li>
+      <li>[!lowtech] {A_nameDef} left a note on the workshop terminal for someone, and {B_nameDef} found it and printed copies. One is pinned to the dining room door.\n\n{A_nameDef} wants {B_nameDef} punished. {B_nameDef} says it was a joke.</li>
+      <li>[b:trait:Abrasive] {B_nameDef} found {A_nameDef}'s love letter and read it out at dinner, then gave it marks out of ten. It got a four.\n\n{A_nameDef} has asked the council to do something about {B_nameDef}.</li>
+    </texts>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <!-- ===================== A funeral in advance ===================== -->
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Council_Var_Dlm_OwnFuneral</defName>
+    <dilemma>Council_Dilemma_OwnFuneral</dilemma>
+    <texts>
+      <li>[old] {A_nameDef} says {A_pronoun} isn't getting any younger, and would like the matter of {A_possessive} funeral settled while {A_pronoun} can still have a say. There's a list, and the council is on it.</li>
+      <li>[winter] {A_nameDef} has spent the long winter evenings planning {A_possessive} own funeral, down to the songs, and wants the colony's help to get it ready now. "In case," {A_nameDef} says, and won't say in case of what.</li>
+    </texts>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <!-- ===================== The sleepwalker ===================== -->
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Council_Var_Dlm_Sleepwalker</defName>
+    <dilemma>Council_Dilemma_Sleepwalker</dilemma>
+    <texts>
+      <li>[winter] {B_nameDef} found {A_nameDef} at midnight standing barefoot in the snow by the well, fast asleep, holding a bucket. It's the fourth time this week.\n\n{A_nameDef} remembers none of it. {B_nameDef} wants something done before {A_nameDef} freezes.</li>
+      <li>[lowtech] Last night {A_nameDef} walked in {A_possessive} sleep straight into {B_nameDef}'s room, lit a candle, and started kneading dough on {B_nameDef}'s bed. There was no dough.\n\n{B_nameDef} has asked the council to put a stop to it.</li>
+    </texts>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <!-- ===================== A side deal ===================== -->
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Council_Var_Dlm_SideDeal</defName>
+    <dilemma>Council_Dilemma_SideDeal</dilemma>
+    <texts>
+      <li>[past:trader] {A_nameDef} used to trade for a living and hasn't stopped. {B_nameDef} caught {A_objective} doing business with the last caravan out of the colony's stores, and found {COUNT} {THING} in {A_possessive} boot afterward.\n\n{A_nameDef} calls it a good deal. {B_nameDef} wants the council to call it what it is.</li>
+      <li>[trait:Greedy] {B_nameDef} noticed the colony's spare tools were gone, and {A_nameDef} has a new purse with {COUNT} {THING} in it. {A_nameDef} says the tools weren't being used.\n\n{B_nameDef} has asked the council to deal with it.</li>
+    </texts>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <!-- ===================== Who saved us ===================== -->
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Council_Var_Dlm_Credit</defName>
+    <dilemma>Council_Dilemma_Credit</dilemma>
+    <texts>
+      <li>[lowtech] Two versions of the fight are going around the colony. In {A_nameDef}'s, {A_nameDef} held the gate while {B_nameDef} was busy elsewhere. In {B_nameDef}'s, it was {B_nameDef}.\n\nBoth want the council to say which is true before someone makes a song of the wrong one.</li>
+      <li>[!lowtech] {A_nameDef} and {B_nameDef} both claim the shot that turned the raid. Each has a story about whose rifle it was, and a friend who backs it up.\n\nThey want the council to settle it.</li>
+      <li>[trait:Jealous] {A_nameDef} has heard the others thanking {B_nameDef} for the last fight, and won't stand for it: {A_nameDef} says the credit is {A_possessive}. {B_nameDef} says otherwise, so the council has to decide.</li>
+      <li>[b:past:soldier] {B_nameDef} has been in more fights than anyone here and says {A_nameDef} froze in the last one. {A_nameDef} says {B_nameDef} wasn't even watching. Each wants the council to say who saved the colony.</li>
+    </texts>
+    <outcomes>
+      <li>
+        <option>3</option>
+        <lines>
+          <li>[lowtech] The council named every fighter in turn at supper. {A_nameDef} and {B_nameDef} were named last, together, and neither of them enjoyed it.</li>
+        </lines>
+      </li>
+    </outcomes>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <!-- ===================== A letter home ===================== -->
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Council_Var_Dlm_LetterHome</defName>
+    <dilemma>Council_Dilemma_LetterHome</dilemma>
+    <texts>
+      <li>[past:soldier] {A_nameDef} was listed as dead after a battle a long way from here, and let it stand. There's a spouse back home who got that news. {A_nameDef} wants to send word now, and the colony would have to pay for it.</li>
+      <li>[winter] Long winter evenings give people time to think, and {A_nameDef} has been thinking about the spouse back home who must believe {A_nameDef} is dead. {A_nameDef} has asked the council to pay for a message.</li>
+    </texts>
+  </ColonyCouncil.LetterVariantsDef>
+
+</Defs>

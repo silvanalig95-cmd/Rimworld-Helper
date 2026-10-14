@@ -129,6 +129,31 @@
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Others</target><thought>Council_Dlm_FairsFair</thought><onlyTrait><li>Greedy</li></onlyTrait></li>
         </effects>
       </li>
+      <li>
+        <label>Give the silver, and send our best haggler along</label>
+        <outcome>{B_nameDef} went with {A_nameDef} to the next trader and talked the price down to 120 silver. {A_nameDef} came back with everything on the list and a little respect for haggling.</outcome>
+        <outcomes>
+          <li>[b:past:trader] {B_nameDef} has bought and sold for a living and knew every trick the trader tried. {A_nameDef} got everything on the list for 120 silver.</li>
+        </outcomes>
+        <ways><generosity>6</generosity></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Needs"><target>Others</target><skill>Social</skill><minLevel>10</minLevel><asB>true</asB></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>silver</what><count>120</count></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_DlmGoal_Backed</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>5</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>B</target><amount>2</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Inspiration"><target>A</target><chance>0.5</chance></li>
+        </effects>
+        <riskChance>0.2</riskChance>
+        <riskSkill>Social</riskSkill>
+        <riskReplaces>true</riskReplaces>
+        <riskOutcome>{B_nameDef} haggled hard and got the price down to 120 silver, and neither of them looked under the top layer of the crate. It was mostly straw.</riskOutcome>
+        <riskEffects>
+          <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>silver</what><count>120</count></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_DlmGoal_Swindled</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>2</amount></li>
+        </riskEffects>
+      </li>
     </options>
   </ColonyCouncil.DilemmaDef>
 
