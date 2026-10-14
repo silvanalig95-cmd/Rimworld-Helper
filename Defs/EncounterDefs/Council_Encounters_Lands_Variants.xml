@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    The land in the everyday encounters: more lines for the commonest ones (Council_Encounters_Creatures.xml,
+    _People.xml), each written for a kind of land ([land:desert], [land:tundra|land:boreal], [land:jungle],
+    [land:swamp], [land:mountains|land:hills], [land:coast], [land:river]). The land counts like the era: a line for it
+    only shows where it fits, and doesn't crowd out the others.
+  -->
+
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Council_Var_EncLand_MistMorning</defName>
+    <encounter>Council_EncC_MistMorning</encounter>
+    <texts>
+      <li>[land:desert] Before the heat came up, {A_nameDef} found {X_indefinite} licking the dew off the stones by the well, and stood still until it had finished.</li>
+      <li>[land:tundra|land:boreal] In the blue dark before sunrise, {A_nameDef} watched {X_indefinite} paw through the crust of the snow to the grass beneath, its breath smoking.</li>
+      <li>[land:swamp] Mist lay thick on the marsh at dawn, and {X_indefinite} stood in it up to the belly, grazing the water weed, while {A_nameDef} watched from the boardwalk.</li>
+      <li>[land:coast] At first light {A_nameDef} found {X_indefinite} picking along the top of the beach where the dune grass starts, and watched it until the sun was up.</li>
+    </texts>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Council_Var_EncLand_HerdPassing</defName>
+    <encounter>Council_EncC_HerdPassing</encounter>
+    <texts>
+      <li>[land:desert] A herd went by on the far side of the dry wash, raising a cloud of dust that hung in the air long after {X_definite} at the back had passed. {A_nameDef} watched it settle.</li>
+      <li>[land:tundra|land:boreal] The herd came across the white plain in a long dark line, {X_indefinite} among them, heading for wherever the snow is thinner. {A_nameDef} watched them until they were specks.</li>
+      <li>[land:grassland] The grass was taller than {A_nameDef}'s waist, and the herd moved through it like a boat through water, {X_definite} trailing the rest. {A_nameDef} could see the track they left for days.</li>
+    </texts>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Council_Var_EncLand_Birdsong</defName>
+    <encounter>Council_EncC_Birdsong</encounter>
+    <texts>
+      <li>[land:jungle] The canopy was loud with calls from first light, a hundred kinds of bird over each other. {A_nameDef} worked under it all morning, with {X_indefinite} rooting in the leaf litter nearby.</li>
+      <li>[land:swamp] The reeds were full of birds singing over the water. {A_nameDef} ate lunch on the dike and watched {X_indefinite} paddle through the shallows below.</li>
+      <li>[land:coast] Over the shore the seabirds wheeled and shouted. {A_nameDef} ate on a rock above the beach, watching {X_indefinite} nose through the drift.</li>
+    </texts>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Council_Var_EncLand_NightCalls</defName>
+    <encounter>Council_EncC_NightCalls</encounter>
+    <texts>
+      <li>[land:mountains|land:hills] Somewhere up the valley {X_indefinite} called, and the mountains threw the call back three times. {A_nameDef} lay awake and couldn't tell which of the calls was real.</li>
+      <li>[land:desert] Out on the cold sand {X_indefinite} called once, long and thin, and the silence afterward was the biggest {A_nameDef} has ever heard.</li>
+      <li>[land:tundra|land:boreal] The calls came across the snow from the dark trees, carrying for miles in the still cold. {A_nameDef} checked the gate and then checked it again.</li>
+    </texts>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Council_Var_EncLand_NightWalker</defName>
+    <encounter>Council_EncC_NightWalker</encounter>
+    <texts>
+      <li>[land:coast] On {A_possessive} midnight walk along the shore, {A_nameDef} met {X_indefinite} at the waterline, black against the moonlit surf. They stood a while and listened to the sea, then went separate ways.</li>
+      <li>[land:river] {A_nameDef} sat by the river in the dark, and {X_indefinite} came down to drink a few paces upstream as if {A_nameDef} were part of the bank.</li>
+    </texts>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Council_Var_EncLand_WorkShadow</defName>
+    <encounter>Council_EncC_WorkShadow</encounter>
+    <texts>
+      <li>[land:desert] Wherever {A_nameDef} works, {X_definite} finds the nearest patch of shade and lies in it, moving round the post with the sun as the day goes on.</li>
+      <li>[land:swamp|land:jungle] Out on the wet ground again, {X_definite} followed {A_nameDef} everywhere and came back so muddy that only {X_possessive} eyes were the right color.</li>
+      <li>[land:coast] {A_nameDef} spent the day mending nets with {X_definite} lying across {A_possessive} feet, watching the gulls with deep suspicion.</li>
+    </texts>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Council_Var_EncLand_RoadNews</defName>
+    <encounter>Council_EncP_RoadNews</encounter>
+    <texts>
+      <li>[land:desert] {X_nameDef} told {A_nameDef} which wells along the caravan road have gone dry since spring, and which oasis now charges for water. Both lists are longer than last year.</li>
+      <li>[land:mountains|land:hills] {X_nameDef} brought word of a rockfall on the north road and a new toll at the top of the pass. {A_nameDef} heard who was charging it, and didn't like the name.</li>
+      <li>[land:coast] According to {X_nameDef}, a ship broke up on the reef two bays down, and the whole coast has been walking the tide line for what washed ashore.</li>
+      <li>[land:tundra|land:boreal] {X_nameDef} told {A_nameDef} the winter road over the frozen lake opened early this year, and three caravans have already crossed it. One fell through, and got out.</li>
+    </texts>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Council_Var_EncLand_FarPlaces</defName>
+    <encounter>Council_EncP_FarPlaces</encounter>
+    <texts>
+      <li>[land:desert] {X_nameDef} has crossed this desert eleven times and told {A_nameDef} about all of them: the sandstorm that lasted a week, the city of tents, the night the camels ran.</li>
+      <li>[land:jungle|land:swamp] {X_nameDef} told {A_nameDef} about the river towns downstream, built on stilts over the water, where children learn to swim before they walk.</li>
+    </texts>
+  </ColonyCouncil.LetterVariantsDef>
+
+</Defs>

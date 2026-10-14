@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Journal entries after the encounters of the land and the weather (Defs/EncounterDefs/Council_Encounters_Lands.xml).
+    {PAWN_...} is the writer. These pools are shared by encounters with animals and with travelers, so the lines are
+    about the place and the day rather than about whoever was met.
+  -->
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Journal_EncL_Desert</defName>
+    <lines>
+      <plain>
+        <li>Sand in my bread, sand in my boots, sand in my bed. Saw something worth seeing today, though.</li>
+        <li>The heat broke at sundown and I sat on the wall until the stars came out. They come out fast here.</li>
+        <li>[hot] Too hot to work after noon. Too hot to sleep. Too hot to write much.</li>
+        <li>Learned something about living out here today. The dry country has its own rules, and I'm still learning them.</li>
+        <li>[night] Cold enough at night to see my breath, in the same place that nearly cooked me at noon.</li>
+      </plain>
+      <warm>
+        <li>Out here every bit of shade is shared. I like that about the place.</li>
+      </warm>
+      <blunt>
+        <li>Hot. Dry. Still here.</li>
+      </blunt>
+      <cheerful>
+        <li>The sky out here at night! I didn't know there were that many stars.</li>
+      </cheerful>
+      <gloomy>
+        <li>Everything out here is trying to dry out, including me.</li>
+      </gloomy>
+      <cold>
+        <li>Water is the only thing that matters out here. I've started measuring the day in cups.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Journal_EncL_Cold</defName>
+    <lines>
+      <plain>
+        <li>Snow up to my knees and still coming. Saw tracks I didn't know, and followed them.</li>
+        <li>[morning] Everything frozen and quiet this morning. My breath hung in the air like smoke.</li>
+        <li>Learned a trick against the cold today. My feet have been warm all day.</li>
+        <li>The cold out here gets into your teeth. The animals manage. I'm working on it.</li>
+        <li>[snow] Snowed all day. The world went white and small.</li>
+      </plain>
+      <warm>
+        <li>Somebody showed me how to keep warm today, for nothing. I'll pass it on.</li>
+      </warm>
+      <blunt>
+        <li>Cold. Colder tomorrow.</li>
+      </blunt>
+      <cheerful>
+        <li>Fresh snow this morning and I was the first one out in it!</li>
+      </cheerful>
+      <gloomy>
+        <li>The winters here are long. This one has hardly started.</li>
+      </gloomy>
+      <cold>
+        <li>The wind matters more than the cold. Dress for the wind.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Journal_EncL_Wet</defName>
+    <lines>
+      <plain>
+        <li>Everything here is wet, or growing, or both. Saw something in the green today that watched me back.</li>
+        <li>[rain] Rain again. Rain yesterday. Rain tomorrow, I expect. Learned how to keep some of it off, at least.</li>
+        <li>[night] The marsh is louder at night than the colony is by day. I lay awake listening to it.</li>
+        <li>My boots haven't been dry since we came here. My feet have given up hoping.</li>
+      </plain>
+      <warm>
+        <li>The green out here is full of life. Every time I look closely, something is looking back.</li>
+      </warm>
+      <blunt>
+        <li>Wet. Muddy. Bitten. Fine.</li>
+      </blunt>
+      <cheerful>
+        <li>Learned how to make a rain cape out of leaves! It even works, mostly.</li>
+      </cheerful>
+      <gloomy>
+        <li>Something moves out in the reeds every night. I've stopped asking what.</li>
+      </gloomy>
+      <cold>
+        <li>This land rots anything you leave on the ground for a week. Keep things off the floor.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Journal_EncL_Heights</defName>
+    <lines>
+      <plain>
+        <li>Looked up from my work today and there was something on the ridge, watching the valley. Then it was gone over the top.</li>
+        <li>Heard about the high passes today. I'd like to see the top of these mountains one day.</li>
+        <li>[morning] The sun hits the peaks an hour before it reaches us. I watched it come down the slope.</li>
+        <li>Found a crack in the rock with cold air coming out of it. Didn't go in. Thought about it all day.</li>
+      </plain>
+      <warm>
+        <li>The mountains make everything we build look small, and I don't mind.</li>
+      </warm>
+      <blunt>
+        <li>Steep. Rocky. Good view.</li>
+      </blunt>
+      <cheerful>
+        <li>Shouted across the valley today and the mountain shouted back!</li>
+      </cheerful>
+      <gloomy>
+        <li>The mountains were here long before us and won't notice when we're gone.</li>
+      </gloomy>
+      <cold>
+        <li>High ground is good ground. We can see them coming from a long way off.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Journal_EncL_Coast</defName>
+    <lines>
+      <plain>
+        <li>Walked the shore at low tide. The sea leaves something different on the sand every day.</li>
+        <li>Got a shell today. It's on the sill by my bed now, and I keep picking it up.</li>
+        <li>[storm] Watched the sea in the storm. The waves came up the rocks higher than the roof.</li>
+        <li>[fog] Sea fog all morning. I could hear the waves and nothing else.</li>
+      </plain>
+      <warm>
+        <li>There's salt on everything here, even the bread. I've stopped minding.</li>
+      </warm>
+      <blunt>
+        <li>Sea's rough today. So am I.</li>
+      </blunt>
+      <cheerful>
+        <li>Held a shell to my ear and heard the sea in it, even with the real sea right there!</li>
+      </cheerful>
+      <gloomy>
+        <li>The sea takes whatever is left near it. One day it'll take the shore path, and then the field above it.</li>
+      </gloomy>
+      <cold>
+        <li>The tide comes in twice a day. Plan the shore work around it.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Journal_EncW_Weather</defName>
+    <lines>
+      <plain>
+        <li>[rain] Sat out the rain in a doorway with my animal and watched the yard turn into a pond.</li>
+        <li>[storm] Thunder all night. Neither of us slept, my animal and me, so we kept each other company.</li>
+        <li>[snow] My animal had never seen snow come down this hard. Neither had I. It was wonderful.</li>
+        <li>[fog] Something came at me out of the fog today. Only an animal. My heart took the rest of the morning to settle.</li>
+      </plain>
+      <warm>
+        <li>[storm] My animal was frightened of the storm, so I sat with it until it passed. I think I needed it as much as it did.</li>
+      </warm>
+      <blunt>
+        <li>[rain] Wet day. Animal wet too. We waited it out.</li>
+      </blunt>
+      <cheerful>
+        <li>[snow] Snowball fight with an animal. The animal won.</li>
+      </cheerful>
+      <gloomy>
+        <li>[fog] The fog makes everything look like it's coming for you. Most of it isn't.</li>
+      </gloomy>
+      <cold>
+        <li>[storm] Animals take storms badly. Mine settles faster with someone sitting by it. Worth knowing.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+</Defs>

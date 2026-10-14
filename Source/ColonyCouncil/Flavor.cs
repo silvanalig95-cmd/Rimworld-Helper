@@ -245,7 +245,11 @@ namespace ColonyCouncil
         private static bool OnlyStanding(string tag)
         {
             foreach (var alt in tag.Split('|'))
-                if (!StandingTags.Contains(alt.Trim().TrimStart('!'))) return false;
+            {
+                string t = alt.Trim().TrimStart('!');
+                // The land (land:desert, land:coast) holds for the whole game, like the era.
+                if (!StandingTags.Contains(t) && !t.StartsWith("land:")) return false;
+            }
             return true;
         }
 

@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Decrees of everyday life: quiet hours, shared meals, a sick-bay rule, banked fires, apprenticeships and a feast
+    day. Each trades something real for something real, in every era: effects through their hediffs
+    (Council_Hediffs_Decrees3.xml), hourly practice (apprenticeships) or the fuel saving of banked fires (fuelSaving);
+    moods in Council_Thoughts_Decrees3.xml, more lines in FlavorPoolDefs/Extra_DecreeLines3.xml.
+    New moments to petition for them: Illness (someone is ill), Winter, Newcomer (someone joined in the last ten days).
+  -->
+
+  <!-- ============ Quiet hours ============ -->
+  <ColonyCouncil.DecreeDef>
+    <defName>Council_Decree_QuietHours</defName>
+    <label>quiet hours</label>
+    <description>Lamps out and voices down after dark: no hammering, no music, no late talk at the table. Everyone sleeps deeper and quarrels less, and the evening's work and company are lost. The nervous and ascetics welcome it; night owls hate it, and the sociable mind it.</description>
+    <requestWhen><li>Strained</li><li>ColonyMiserable</li></requestWhen>
+    <order>14</order>
+    <durationDays>5</durationDays>
+    <cooldownDays>8</cooldownDays>
+    <ways><tradition>3</tradition><toil>-1</toil></ways>
+    <hediff>Council_Decree_QuietHours</hediff>
+    <thought>Council_Decree_QuietHours</thought>
+    <defaultReaction>Neutral</defaultReaction>
+    <reactions>
+      <li><trait>NightOwl</trait><reaction>Hate</reaction></li>
+      <li><trait>Nerves</trait><degree>-2</degree><reaction>Love</reaction></li>
+      <li><trait>Nerves</trait><degree>-1</degree><reaction>Like</reaction></li>
+      <li><trait>Ascetic</trait><reaction>Like</reaction></li>
+      <li><trait>Industriousness</trait><degree>2</degree><reaction>Dislike</reaction></li>
+      <li><passion>Social</passion><reaction>Dislike</reaction></li>
+    </reactions>
+    <effects>
+      <li>Everyone rests 15% faster in bed, and social fights are much rarer.</li>
+      <li>Everyone works 5% slower: nothing gets done after dark.</li>
+      <li>The nervous and ascetics welcome it; night owls hate it, and those with a passion for talk mind it.</li>
+    </effects>
+    <support>
+      <plain><li>One quiet evening. That's all I'm asking. One.</li></plain>
+      <warm><li>Early to bed, everyone. We'll all be kinder in the morning.</li></warm>
+      <gloomy><li>I haven't slept through a night since the hammering started.</li></gloomy>
+      <cold><li>Tired people quarrel. Rested people don't. Lights out.</li></cold>
+    </support>
+    <oppose>
+      <plain><li>The evenings are the only time I get to talk to anyone.</li></plain>
+      <blunt><li>I'm not going to bed at sundown like a chicken.</li></blunt>
+      <cheerful><li>Quiet hours? I'll whisper my songs, then!</li></cheerful>
+    </oppose>
+  </ColonyCouncil.DecreeDef>
+
+  <!-- ============ Shared meals ============ -->
+  <ColonyCouncil.DecreeDef>
+    <defName>Council_Decree_SharedMeals</defName>
+    <label>shared meals</label>
+    <description>Everyone eats together, at set times, at the same table. Talk comes easier, newcomers get to know everyone and quarrels cool, but work stops for meals whether it's at a good point or not. The kind and the sociable like it; the abrasive hate it.</description>
+    <requestWhen><li>Newcomer</li><li>ColonyMiserable</li></requestWhen>
+    <order>15</order>
+    <durationDays>5</durationDays>
+    <cooldownDays>8</cooldownDays>
+    <ways><tradition>3</tradition><generosity>2</generosity></ways>
+    <hediff>Council_Decree_SharedMeals</hediff>
+    <thought>Council_Decree_SharedMeals</thought>
+    <defaultReaction>Neutral</defaultReaction>
+    <practiceSkills><li>Social</li></practiceSkills>
+    <practiceXpPerHour>8</practiceXpPerHour>
+    <reactions>
+      <li><trait>Kind</trait><reaction>Like</reaction></li>
+      <li><passion>Social</passion><reaction>Like</reaction></li>
+      <li><trait>Abrasive</trait><reaction>Hate</reaction></li>
+      <li><trait>Psychopath</trait><reaction>Neutral</reaction></li>
+      <li><trait>Ascetic</trait><reaction>Dislike</reaction></li>
+      <li><trait>Industriousness</trait><degree>2</degree><reaction>Dislike</reaction></li>
+    </reactions>
+    <effects>
+      <li>Social impact up 10%, social fights rarer, and everyone gets some practice at talking every hour.</li>
+      <li>Everyone works 3% slower: work stops for meals.</li>
+      <li>The kind and the sociable like it; the abrasive hate it, and ascetics and the industrious mind it.</li>
+    </effects>
+    <support>
+      <plain><li>We hardly see each other except in passing. Let's eat together.</li></plain>
+      <warm><li>One table, one pot, everybody. That's what a home is.</li></warm>
+      <cheerful><li>Supper together every night! I'll bring the bread.</li></cheerful>
+    </support>
+    <oppose>
+      <plain><li>I like eating when I'm hungry, not when a bell rings.</li></plain>
+      <blunt><li>I don't need to watch them chew to get along with them.</li></blunt>
+      <cold><li>Stopping all work for a meal on the stroke of the bell is inefficient.</li></cold>
+    </oppose>
+  </ColonyCouncil.DecreeDef>
+
+  <!-- ============ The sick-bay rule ============ -->
+  <ColonyCouncil.DecreeDef>
+    <defName>Council_Decree_SickBay</defName>
+    <label>rest when ill</label>
+    <description>Anyone ill or hurt goes to bed and stays there, and the rest cover for them. Wounds heal and illnesses pass faster, and the colony works short-handed while it lasts. Doctors and the sickly approve; the industrious and the tough hate being told to lie down.</description>
+    <requestWhen><li>Illness</li></requestWhen>
+    <order>16</order>
+    <durationDays>5</durationDays>
+    <cooldownDays>10</cooldownDays>
+    <ways><mercy>3</mercy><toil>-2</toil></ways>
+    <hediff>Council_Decree_SickBay</hediff>
+    <thought>Council_Decree_SickBay</thought>
+    <defaultReaction>Neutral</defaultReaction>
+    <reactions>
+      <li><trait>Immunity</trait><degree>-1</degree><reaction>Love</reaction></li>
+      <li><passion>Medicine</passion><reaction>Like</reaction></li>
+      <li><trait>Industriousness</trait><degree>2</degree><reaction>Hate</reaction></li>
+      <li><trait>Industriousness</trait><degree>1</degree><reaction>Dislike</reaction></li>
+      <li><trait>Tough</trait><reaction>Dislike</reaction></li>
+      <li><trait>Industriousness</trait><degree>-1</degree><reaction>Like</reaction></li>
+      <li><trait>Industriousness</trait><degree>-2</degree><reaction>Like</reaction></li>
+    </reactions>
+    <effects>
+      <li>Wounds heal 20% faster and immunity builds faster.</li>
+      <li>Everyone works 5% slower, covering for the sick.</li>
+      <li>Doctors and the sickly approve, and the lazy don't mind; the industrious and the tough dislike it.</li>
+    </effects>
+    <support>
+      <plain><li>People keep working through fevers and making everyone else sick. Bed. Now.</li></plain>
+      <warm><li>Nobody should be hauling stone with a cough like that. Let them rest.</li></warm>
+      <cold><li>A sick worker infects two more. Isolation is cheaper.</li></cold>
+    </support>
+    <oppose>
+      <plain><li>It's a cold, not a death sentence. Let me work.</li></plain>
+      <blunt><li>I've worked through worse than this.</li></blunt>
+      <gloomy><li>Lying in bed staring at the ceiling makes me feel worse, not better.</li></gloomy>
+    </oppose>
+  </ColonyCouncil.DecreeDef>
+
+  <!-- ============ Banked fires ============ -->
+  <ColonyCouncil.DecreeDef>
+    <defName>Council_Decree_BankedFires</defName>
+    <label>banked fires</label>
+    <description>Fires banked low, torches and lamps out early, every heater turned down: fires, torches and fueled heaters burn a quarter less fuel while it lasts. Rooms are chillier and evenings darker, and almost nobody likes it. Ascetics and the greedy approve; wimps hate it.</description>
+    <requestWhen><li>Winter</li></requestWhen>
+    <order>17</order>
+    <strainPerDay>1</strainPerDay>
+    <durationDays>7</durationDays>
+    <cooldownDays>7</cooldownDays>
+    <ways><generosity>-3</generosity><toil>1</toil></ways>
+    <hediff>Council_Decree_BankedFires</hediff>
+    <thought>Council_Decree_BankedFires</thought>
+    <defaultReaction>Dislike</defaultReaction>
+    <fuelSaving>0.25</fuelSaving>
+    <reactions>
+      <li><trait>Ascetic</trait><reaction>Like</reaction></li>
+      <li><trait>Greedy</trait><reaction>Like</reaction></li>
+      <li><trait>Tough</trait><reaction>Neutral</reaction></li>
+      <li><trait>Wimp</trait><reaction>Hate</reaction></li>
+    </reactions>
+    <effects>
+      <li>Fires, torches and fueled heaters burn 25% less fuel (not generators, and not stoves while they cook).</li>
+      <li>Everyone works 4% slower in the dimmer, colder rooms.</li>
+      <li>Ascetics and the greedy approve; most people mind it, and wimps hate it.</li>
+    </effects>
+    <support>
+      <plain><li>The woodpile won't last the winter at this rate. Bank the fires.</li></plain>
+      <cold><li>A quarter less wood burned is a quarter more winter survived.</li></cold>
+      <gloomy><li>Better cold now than freezing in a month.</li></gloomy>
+    </support>
+    <oppose>
+      <plain><li>I can see my breath in my own bed.</li></plain>
+      <blunt><li>Cold fingers make bad work.</li></blunt>
+      <warm><li>Can we at least keep one good fire, for the children?</li></warm>
+    </oppose>
+  </ColonyCouncil.DecreeDef>
+
+  <!-- ============ Apprenticeships ============ -->
+  <ColonyCouncil.DecreeDef>
+    <defName>Council_Decree_Apprentices</defName>
+    <label>apprenticeships</label>
+    <description>The best at each trade take on the rest as apprentices. Everyone practices building, crafting, cooking and growing every hour, and the masters' own work slows while they teach. Good for a young or a new colony. The kind and the sociable like teaching; the abrasive hate it, and the lazy mind the extra lessons.</description>
+    <requestWhen><li>Newcomer</li><li>ColonyHappy</li></requestWhen>
+    <order>18</order>
+    <strainPerDay>1</strainPerDay>
+    <durationDays>7</durationDays>
+    <cooldownDays>12</cooldownDays>
+    <ways><tradition>4</tradition><toil>1</toil></ways>
+    <hediff>Council_Decree_Apprentices</hediff>
+    <thought>Council_Decree_Apprentices</thought>
+    <defaultReaction>Neutral</defaultReaction>
+    <practiceSkills><li>Construction</li><li>Crafting</li><li>Cooking</li><li>Plants</li></practiceSkills>
+    <practiceXpPerHour>15</practiceXpPerHour>
+    <reactions>
+      <li><trait>Kind</trait><reaction>Like</reaction></li>
+      <li><passion>Social</passion><reaction>Like</reaction></li>
+      <li><trait>Abrasive</trait><reaction>Hate</reaction></li>
+      <li><trait>Industriousness</trait><degree>-1</degree><reaction>Dislike</reaction></li>
+      <li><trait>Industriousness</trait><degree>-2</degree><reaction>Dislike</reaction></li>
+    </reactions>
+    <effects>
+      <li>Everyone practices construction, crafting, cooking and growing every waking hour.</li>
+      <li>Everyone works 8% slower, teaching and being taught.</li>
+      <li>The kind and the sociable like it; the abrasive hate it, and the lazy mind it.</li>
+    </effects>
+    <support>
+      <plain><li>If only one of us can cook, we're one fever away from eating raw roots.</li></plain>
+      <warm><li>I'd love to teach someone what I know. Somebody should have it when I'm gone.</li></warm>
+      <cold><li>Too much depends on too few hands. Spread the skills.</li></cold>
+    </support>
+    <oppose>
+      <plain><li>I can't get anything done with someone watching over my shoulder.</li></plain>
+      <blunt><li>I'm not a teacher. Find someone else.</li></blunt>
+      <gloomy><li>They'll learn just enough to ruin the good tools.</li></gloomy>
+    </oppose>
+  </ColonyCouncil.DecreeDef>
+
+  <!-- ============ Feast day ============ -->
+  <ColonyCouncil.DecreeDef>
+    <defName>Council_Decree_FeastDay</defName>
+    <label>a feast day</label>
+    <description>One day of feasting: the best of the stores on the table, work stops at noon, and everyone eats more than they should. A day of good cheer, bought with food and half a day's work, and expectations rise afterward. Gourmands and the greedy love it; ascetics think it a waste.</description>
+    <requestWhen><li>Autumn</li><li>ColonyMiserable</li></requestWhen>
+    <order>19</order>
+    <durationDays>1</durationDays>
+    <cooldownDays>15</cooldownDays>
+    <ways><tradition>4</tradition><generosity>2</generosity><toil>-2</toil></ways>
+    <hediff>Council_Decree_FeastDay</hediff>
+    <thought>Council_Decree_FeastDay</thought>
+    <defaultReaction>Like</defaultReaction>
+    <standardsPerDay>0.02</standardsPerDay>
+    <reactions>
+      <li><trait>Gourmand</trait><reaction>Love</reaction></li>
+      <li><trait>Greedy</trait><reaction>Love</reaction></li>
+      <li><trait>Ascetic</trait><reaction>Dislike</reaction></li>
+      <li><trait>Industriousness</trait><degree>2</degree><reaction>Dislike</reaction></li>
+      <li><trait>Psychopath</trait><reaction>Neutral</reaction></li>
+    </reactions>
+    <effects>
+      <li>A day: everyone gets hungry 40% faster and eats more.</li>
+      <li>Everyone works 15% slower, and standards rise slightly.</li>
+      <li>Most enjoy it, gourmands and the greedy most of all; ascetics and the industrious think it a waste.</li>
+    </effects>
+    <support>
+      <plain><li>One day. A real meal, a full table and nobody counting the bowls.</li></plain>
+      <cheerful><li>A feast! I'm going to eat until I can't stand up.</li></cheerful>
+      <warm><li>We've worked hard all season. Let's sit down together for once and eat well.</li></warm>
+    </support>
+    <oppose>
+      <plain><li>That's a week's food gone in a day.</li></plain>
+      <cold><li>We'll regret every bite of it in the spring.</li></cold>
+    </oppose>
+  </ColonyCouncil.DecreeDef>
+
+</Defs>

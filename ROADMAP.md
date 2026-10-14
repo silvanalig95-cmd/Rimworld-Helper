@@ -184,10 +184,10 @@ the content itself, not only to systems, alongside whatever else it does. Where 
 | Wishes | 77 | wishes for every era, skill and passion, mod-aware ones for the always-on mods |
 | Council projects (ambitions) | 40 | projects for every era and colony size, long ones that span seasons |
 | Life goals | 43 | goals for children, elders, every passion |
-| Dilemmas | 98 | dilemmas from the newer systems (camps, illness, meetings, the heart) |
-| Encounters | 96 | encounters by biome and season |
-| Decrees | 13 | decrees for every era and situation |
-| Quirks | 13 | many more small personal quirks |
+| Dilemmas | 119 | more for children, elders and the camps; dilemmas for each new system as it lands |
+| Encounters | 122 | more lands (lakes, rivers, other mods' biomes), mod animals, rarer night and weather moments |
+| Decrees | 19 | decrees tied to world situations, faith and mods (tithes, curfews, alms) |
+| Quirks | 29 | quirks that touch others (a hummer and a light sleeper), more from events and dreams |
 | Dreams | 86 | dreams from feelings, illness and the newer events |
 | World events | 22 | more regional situations, and their follow-ups |
 | Camp kinds | 7 | caravans of every kind, pilgrims of every faith |
