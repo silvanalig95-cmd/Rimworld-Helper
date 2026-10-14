@@ -139,7 +139,8 @@ namespace ColonyCouncil
                 var p = st?.pawn;
                 if (!Minds(p, st)) continue;
                 float delta = -1f * pen * Standards.MoodFactor(p, false) * CouncilGameComponent.Gentleness(p);
-                bool say = (st.ownRoomLostHours / 24) % 7 == 0;
+                // A share too small to show as a whole point would read "-0" in the history.
+                bool say = (st.ownRoomLostHours / 24) % 7 == 0 && delta <= -0.5f;
                 comp.standings.Change(p, delta, say ? "CC_Log_RoomTaken".Translate().ToString() : null);
             }
         }
