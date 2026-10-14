@@ -247,6 +247,28 @@
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>3</amount></li>
         </effects>
       </li>
+      <li>
+        <label>Let the quartermaster share it out</label>
+        <outcome>{B_nameDef} sorted the spoils by need: coats to whoever was cold, boots to whoever's had worn through. {A_nameDef} got one good thing out of it and has stopped arguing.</outcome>
+        <outcomes>
+          <li>[lowtech] {B_nameDef} laid the spoils out on the threshing floor and handed them out one by one, by need. {A_nameDef} got the bow {A_pronoun} wanted and nothing else, and seems content with that.</li>
+          <li>[!lowtech] {B_nameDef} wrote every item down, then shared them out by need. {A_nameDef} got the rifle {A_pronoun} wanted and has stopped arguing.</li>
+          <li>[b:trait:Kind] {B_nameDef} gave the warmest coats to the ones who stood watch longest, and the rest by need. Even {A_nameDef} said it was fair.</li>
+        </outcomes>
+        <riskChance>0.35</riskChance>
+        <riskSkill>Social</riskSkill>
+        <riskOutcome>{B_nameDef} shared the spoils out by need, and {A_nameDef} ended up with a pair of boots two sizes too big. The argument has moved from the council to the quartermaster.</riskOutcome>
+        <ways><generosity>2</generosity><tradition>1</tradition></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Needs"><target>Others</target><tags>office:Quartermaster</tags><asB>true</asB><reason>Needs a quartermaster on the council</reason></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Others</target><thought>Council_Dlm_FairShares</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>B</target><amount>3</amount></li>
+        </effects>
+        <riskEffects>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_Overruled</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>B</target><amount>-4</amount></li>
+        </riskEffects>
+      </li>
     </options>
   </ColonyCouncil.DilemmaDef>
 
@@ -292,6 +314,19 @@
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_Dlm_FairsFair</thought><onlyTrait><li>Bloodlust</li></onlyTrait></li>
         </effects>
       </li>
+      <li>
+        <label>One grave for all of them</label>
+        <outcome>The raiders went into one long trench outside the wall, filled in before dark. {A_nameDef} said a few words over it.</outcome>
+        <outcomes>
+          <li>[winter] The ground was too hard for more than one grave, so the raiders share a shallow one under the snow outside the wall. {A_nameDef} piled stones on top.</li>
+          <li>[trait:Kind] One trench for all of them, filled in before dark. {A_nameDef} wanted names on it and settled for a count.</li>
+        </outcomes>
+        <ways><mercy>3</mercy></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_DecentBurial</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>2</amount></li>
+        </effects>
+      </li>
     </options>
   </ColonyCouncil.DilemmaDef>
 
@@ -330,6 +365,42 @@
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_Dlm_NoCelebration</thought><exceptTrait><li>Ascetic</li></exceptTrait></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_Dlm_FairsFair</thought><degreeTrait>Industriousness</degreeTrait><minDegree>1</minDegree></li>
         </effects>
+      </li>
+      <li>
+        <label>A quick hot meal, then the walls</label>
+        <outcome>Everyone ate a hot meal standing up, and the repairs started before the bowls were cleared.</outcome>
+        <outcomes>
+          <li>[winter] A pot of something hot went round the yard, and they ate it with their gloves on before going back to the walls.</li>
+          <li>[colony:Hardworking] A hot meal and back to work, as usual here. {A_nameDef} ate {A_possessive} share slowly, to make it last.</li>
+        </outcomes>
+        <ways><generosity>1</generosity><toil>2</toil></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>rawfood</what><factor>0.5</factor></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_Dlm_SmallFeast</thought></li>
+        </effects>
+      </li>
+      <li>
+        <label>Have the best cook stretch half the food</label>
+        <outcome>{B_nameDef} made a feast out of half the food anyone expected, mostly stew and nerve, and the colony ate until late.</outcome>
+        <outcomes>
+          <li>[lowtech] {B_nameDef} had three pots going over the fire at once and fed everyone twice from half the stores. The walls waited until morning.</li>
+          <li>[b:trait:Gourmand] {B_nameDef} cooked as if for a lord's table and ate as much as anyone, but the food lasted. It was a good night.</li>
+        </outcomes>
+        <riskChance>0.5</riskChance>
+        <riskSkill>Cooking</riskSkill>
+        <riskReplaces>true</riskReplaces>
+        <riskOutcome>{B_nameDef} tried to stretch the food too far, and the feast ran out before the second round. Everyone ate, at least.</riskOutcome>
+        <ways><generosity>2</generosity><toil>-2</toil></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Needs"><target>Colony</target><skill>Cooking</skill><minLevel>10</minLevel><asB>true</asB></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>rawfood</what><factor>0.5</factor></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_Dlm_VictoryFeast</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>B</target><amount>3</amount></li>
+        </effects>
+        <riskEffects>
+          <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>rawfood</what><factor>0.5</factor></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_Dlm_SmallFeast</thought></li>
+        </riskEffects>
       </li>
     </options>
   </ColonyCouncil.DilemmaDef>
