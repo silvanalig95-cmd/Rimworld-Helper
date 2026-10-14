@@ -191,7 +191,7 @@ namespace ColonyCouncil
 
         private static void Firefly(Vector3 at, Map map)
         {
-            var data = FleckMaker.GetDataStatic(at, map, FleckDefOf.LightningGlow, Rand.Range(0.3f, 0.5f));
+            var data = FleckMaker.GetDataStatic(at, map, FleckDefOf.LightningGlow, Rand.Range(0.4f, 0.65f));
             data.instanceColor = FireflyColor;
             data.velocityAngle = Rand.Range(0f, 360f);
             data.velocitySpeed = Rand.Range(0.08f, 0.25f);
@@ -535,7 +535,7 @@ namespace ColonyCouncil
         /// <summary>A content colonist at work or at play hums: two notes over their head. Sometimes, if anyone is in view.</summary>
         private void Hum(Map map, CellRect view, int now)
         {
-            if (music == null || !Rand.Chance(0.3f)) return;
+            if (music == null || !Rand.Chance(0.2f)) return;
             var p = Someone(map, view, now, false, true);
             if (p == null) return;
             Queue(p, music, 2, 0);
