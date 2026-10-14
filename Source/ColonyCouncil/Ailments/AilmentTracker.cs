@@ -135,7 +135,19 @@ namespace ColonyCouncil
             }
         }
 
-        public static HediffCompProperties_Ailment InfoOf(HediffDef d) => d?.CompProps<HediffCompProperties_Ailment>();
+        private static readonly Dictionary<HediffDef, HediffCompProperties_Ailment> infos = new Dictionary<HediffDef, HediffCompProperties_Ailment>();
+
+        /// <summary>The ailment part of a hediff (null for any other hediff), looked up once per def.</summary>
+        public static HediffCompProperties_Ailment InfoOf(HediffDef d)
+        {
+            if (d == null) return null;
+            if (!infos.TryGetValue(d, out var info))
+            {
+                info = d.CompProps<HediffCompProperties_Ailment>();
+                infos[d] = info;
+            }
+            return info;
+        }
 
         /// <summary>The catching ailments: Rimfolk disease incidents.</summary>
         public static List<IncidentDef> Incidents
@@ -209,7 +221,7 @@ namespace ColonyCouncil
         /// babies or anyone without an inner life; on a map or with a caravan, not in cryptosleep or away in the world.
         /// </summary>
         public static bool Eligible(Pawn p) =>
-            p != null && !p.Dead && !p.Destroyed && p.RaceProps != null && p.RaceProps.Humanlike && p.Faction == Faction.OfPlayer && !p.IsPrisoner
+            p != null && !p.Dead && !p.Destroyed && p.RaceProps != null && p.RaceProps.Humanlike && p.RaceProps.IsFlesh && p.Faction == Faction.OfPlayer && !p.IsPrisoner
             && !p.IsQuestLodger() && People.HasInnerLife(p) && !p.DevelopmentalStage.Baby() && p.health?.hediffSet != null
             && (p.Spawned || p.GetCaravan() != null);
 
@@ -256,7 +268,7 @@ namespace ColonyCouncil
                 }
             }
             if (!SeriousOn) return;
-            Wounds(p, now);
+            if (!d.rolled.Contains("Wound")) Wounds(p, d);
             if (!d.rolled.Contains("AfterCold")) AfterCold(p, d);
             if (!awake) Spread(p);
         }
@@ -440,7 +452,8 @@ namespace ColonyCouncil
                     CouncilLog.ErrorOnce("ailment message " + h.def.defName, e);
                     text = null;
                 }
-                if (!text.NullOrEmpty()) Notify.Message(text, new LookTargets(p), MessageTypeDefOf.NegativeHealthEvent, Importance.Notable);
+                if (!text.NullOrEmpty())
+                    Notify.Message(text, new LookTargets(p), MessageTypeDefOf.NegativeHealthEvent, info.quiet ? Importance.Flavor : Importance.Notable);
             }
             if (Rand.Chance(0.4f)) Journal(p, "Council_Journal_Ail_Start", h.def, info);
         }
@@ -506,8 +519,11 @@ namespace ColonyCouncil
 
         private static readonly HashSet<string> DirtyWounds = new HashSet<string> { "Bite", "Scratch", "Stab", "Cut", "Shredded", "Gunshot" };
 
-        /// <summary>A deep wound left untended for hours may bring tetanus: one roll per wound, less likely in eras that vaccinate.</summary>
-        private void Wounds(Pawn p, int now)
+        /// <summary>
+        /// Deep wounds left untended for hours may bring tetanus: one roll per colonist per day however many wounds there
+        /// are, each wound counted once, and less likely in eras that vaccinate.
+        /// </summary>
+        private void Wounds(Pawn p, PawnDay d)
         {
             List<Hediff_Injury> fresh = null;
             foreach (var h in p.health.hediffSet.hediffs)
@@ -522,9 +538,10 @@ namespace ColonyCouncil
                 var info = InfoOf(def);
                 var cause = info?.Cause(AilmentTrigger.Wound);
                 if (cause == null) continue;
+                bool open = false;
                 foreach (var inj in fresh)
                 {
-                    // A wound cleaned and dressed in time is safe; only one left open this long is rolled.
+                    // A wound cleaned and dressed in time is safe; only those left open this long count.
                     if (inj.IsTended())
                     {
                         woundsRolled.Add(inj.loadID);
@@ -532,11 +549,14 @@ namespace ColonyCouncil
                     }
                     if (inj.ageTicks < cause.hours * GenDate.TicksPerHour) continue;
                     woundsRolled.Add(inj.loadID);
-                    if (Rand.Chance(cause.chance * EraFactor * Freq * PersonFactor(p, info)) && CanGet(p, def, info, false))
-                    {
-                        Give(p, def, info, false);
-                        return;
-                    }
+                    open = true;
+                }
+                if (!open) continue;
+                d.rolled.Add("Wound");
+                if (Rand.Chance(cause.chance * EraFactor * Freq * PersonFactor(p, info)) && CanGet(p, def, info, false))
+                {
+                    Give(p, def, info, false);
+                    return;
                 }
             }
         }
@@ -758,11 +778,13 @@ namespace ColonyCouncil
             doctors.Remove(e.loadID);
             announced.Remove(e.loadID);
             var p = e.pawn;
-            if (p == null || p.Dead || p.Destroyed || p.health?.hediffSet == null) return;
+            if (p == null || p.Dead || p.Destroyed || p.Discarded || p.health?.hediffSet == null) return;
             var info = InfoOf(e.def);
             if (info == null) return;
-            // Got over it (rather than cured outright by something else): what it leaves behind for a while.
-            if (e.severity <= 0.001f && info.afterEffects != null)
+            // Cured outright (a healer serum, surgery, a resurrection) rather than got over: nothing more to it.
+            if (e.severity > 0.001f) return;
+            // Got over it: what it leaves behind for a while.
+            if (info.afterEffects != null)
             {
                 foreach (var ae in info.afterEffects)
                 {

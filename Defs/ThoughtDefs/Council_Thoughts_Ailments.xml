@@ -41,8 +41,8 @@
     <hediff>Council_Ail_StomachBug</hediff>
     <stages>
       <li><label>queasy</label><description>My stomach is turning over. I don't trust it.</description><baseMoodEffect>-2</baseMoodEffect></li>
-      <li><label>a stomach bug</label><description>I've been sick twice since breakfast. I'm not eating anything else today.</description><baseMoodEffect>-4</baseMoodEffect></li>
-      <li><label>a bad stomach bug</label><description>I've spent half the day bent over a bucket. I just want it to stop.</description><baseMoodEffect>-6</baseMoodEffect></li>
+      <li><label>a stomach bug</label><description>I've been sick twice since breakfast. I'm not eating anything else today.</description><baseMoodEffect>-3</baseMoodEffect></li>
+      <li><label>a bad stomach bug</label><description>I've spent half the day bent over a bucket. I just want it to stop.</description><baseMoodEffect>-4</baseMoodEffect></li>
     </stages>
   </ThoughtDef>
 
@@ -89,8 +89,8 @@
     <hediff>Council_Ail_StrainedBack</hediff>
     <stages>
       <li><label>a stiff back</label><description>My back's stiff. I felt it go on the last load.</description><baseMoodEffect>-1</baseMoodEffect></li>
-      <li><label>a sore back</label><description>Bending over hurts. Getting up hurts more.</description><baseMoodEffect>-3</baseMoodEffect></li>
-      <li><label>my back's gone</label><description>I can barely stand up straight. Every step goes through my back.</description><baseMoodEffect>-5</baseMoodEffect></li>
+      <li><label>a sore back</label><description>Bending over hurts. Getting up hurts more.</description><baseMoodEffect>-1</baseMoodEffect></li>
+      <li><label>my back's gone</label><description>I can barely stand up straight. Every step goes through my back.</description><baseMoodEffect>-2</baseMoodEffect></li>
     </stages>
   </ThoughtDef>
 
@@ -108,7 +108,7 @@
     <hediff>Council_Ail_Blisters</hediff>
     <stages>
       <li><label>sore feet</label><description>My feet are sore from walking.</description><baseMoodEffect>-1</baseMoodEffect></li>
-      <li><label>broken blisters</label><description>The blisters have burst. Every step stings.</description><baseMoodEffect>-2</baseMoodEffect></li>
+      <li><label>broken blisters</label><description>The blisters have burst. Every step stings.</description><baseMoodEffect>-1</baseMoodEffect></li>
     </stages>
   </ThoughtDef>
 
@@ -126,7 +126,7 @@
     <hediff>Council_Ail_Sunburn</hediff>
     <stages>
       <li><label>a touch of sunburn</label><description>My neck's gone pink from the sun.</description><baseMoodEffect>-1</baseMoodEffect></li>
-      <li><label>sunburned</label><description>My skin is burning. I can't stand anything touching my shoulders.</description><baseMoodEffect>-3</baseMoodEffect></li>
+      <li><label>sunburned</label><description>My skin is burning. I can't stand anything touching my shoulders.</description><baseMoodEffect>-1</baseMoodEffect></li>
     </stages>
   </ThoughtDef>
 
@@ -143,8 +143,8 @@
     <defName>Council_Ail_Toothache_Mood</defName>
     <hediff>Council_Ail_Toothache</hediff>
     <stages>
-      <li><label>a twinging tooth</label><description>One of my teeth twinges whenever I chew.</description><baseMoodEffect>-3</baseMoodEffect></li>
-      <li><label>a throbbing toothache</label><description>My tooth throbs with my heartbeat. I can't think about anything else.</description><baseMoodEffect>-6</baseMoodEffect></li>
+      <li><label>a twinging tooth</label><description>One of my teeth twinges whenever I chew.</description><baseMoodEffect>-2</baseMoodEffect></li>
+      <li><label>a throbbing toothache</label><description>My tooth throbs with my heartbeat. I can't think about anything else.</description><baseMoodEffect>-3</baseMoodEffect></li>
     </stages>
   </ThoughtDef>
 
@@ -152,7 +152,7 @@
     <defName>Council_Ail_StiffNeck_Mood</defName>
     <hediff>Council_Ail_StiffNeck</hediff>
     <stages>
-      <li><label>a stiff neck</label><description>I can't turn my head without wincing. I slept wrong.</description><baseMoodEffect>-1</baseMoodEffect></li>
+      <li><label>a stiff neck</label><description>I can't turn my head without wincing. I slept wrong.</description><baseMoodEffect>-2</baseMoodEffect></li>
     </stages>
   </ThoughtDef>
 
@@ -160,8 +160,8 @@
     <defName>Council_Ail_SprainedAnkle_Mood</defName>
     <hediff>Council_Ail_SprainedAnkle</hediff>
     <stages>
-      <li><label>a twisted ankle</label><description>I turned my ankle. I'm limping, but it holds.</description><baseMoodEffect>-2</baseMoodEffect></li>
-      <li><label>a sprained ankle</label><description>My ankle's swollen up like a melon. I can't put weight on it.</description><baseMoodEffect>-3</baseMoodEffect></li>
+      <li><label>a twisted ankle</label><description>I turned my ankle. I'm limping, but it holds.</description><baseMoodEffect>-1</baseMoodEffect></li>
+      <li><label>a sprained ankle</label><description>My ankle's swollen up like a melon. I can't put weight on it.</description><baseMoodEffect>-2</baseMoodEffect></li>
     </stages>
   </ThoughtDef>
 

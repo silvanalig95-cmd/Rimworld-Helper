@@ -194,7 +194,6 @@
         <minSeverity>0.6</minSeverity>
         <label>hacking cough</label>
         <restFallFactor>1.25</restFallFactor>
-        <painOffset>0.03</painOffset>
         <capMods>
           <li><capacity>Breathing</capacity><offset>-0.12</offset></li>
           <li><capacity>Consciousness</capacity><offset>-0.05</offset></li>
@@ -385,13 +384,13 @@
     <stages>
       <li>
         <label>stiff</label>
-        <painOffset>0.05</painOffset>
+        <painOffset>0.04</painOffset>
         <capMods><li><capacity>Moving</capacity><offset>-0.04</offset></li></capMods>
       </li>
       <li>
         <minSeverity>0.3</minSeverity>
         <label>sore</label>
-        <painOffset>0.1</painOffset>
+        <painOffset>0.08</painOffset>
         <statFactors><CarryingCapacity>0.8</CarryingCapacity></statFactors>
         <capMods>
           <li><capacity>Moving</capacity><offset>-0.08</offset></li>
@@ -401,7 +400,7 @@
       <li>
         <minSeverity>0.55</minSeverity>
         <label>thrown out</label>
-        <painOffset>0.15</painOffset>
+        <painOffset>0.12</painOffset>
         <statFactors><CarryingCapacity>0.6</CarryingCapacity></statFactors>
         <capMods>
           <li><capacity>Moving</capacity><offset>-0.15</offset></li>
@@ -445,13 +444,11 @@
     <stages>
       <li>
         <label>aching</label>
-        <painOffset>0.03</painOffset>
         <capMods><li><capacity>Manipulation</capacity><offset>-0.04</offset></li></capMods>
       </li>
       <li>
         <minSeverity>0.35</minSeverity>
         <label>swollen wrists</label>
-        <painOffset>0.06</painOffset>
         <capMods><li><capacity>Manipulation</capacity><offset>-0.1</offset></li></capMods>
       </li>
     </stages>
@@ -465,6 +462,7 @@
     <comps>
       <li Class="ColonyCouncil.HediffCompProperties_Ailment">
         <key>Blisters</key>
+        <quiet>true</quiet>
         <causes><li><trigger>Walking</trigger><hours>8</hours><chance>0.06</chance></li></causes>
         <cooldownDays>8</cooldownDays>
         <startSeverity>0.25~0.5</startSeverity>
@@ -490,13 +488,12 @@
     <stages>
       <li>
         <label>sore feet</label>
-        <painOffset>0.03</painOffset>
         <capMods><li><capacity>Moving</capacity><offset>-0.04</offset></li></capMods>
       </li>
       <li>
         <minSeverity>0.35</minSeverity>
         <label>broken blisters</label>
-        <painOffset>0.06</painOffset>
+        <painOffset>0.05</painOffset>
         <capMods><li><capacity>Moving</capacity><offset>-0.08</offset></li></capMods>
       </li>
     </stages>
@@ -535,13 +532,11 @@
     <stages>
       <li>
         <label>itchy fingers</label>
-        <painOffset>0.02</painOffset>
         <capMods><li><capacity>Manipulation</capacity><offset>-0.03</offset></li></capMods>
       </li>
       <li>
         <minSeverity>0.35</minSeverity>
         <label>swollen toes</label>
-        <painOffset>0.05</painOffset>
         <capMods>
           <li><capacity>Manipulation</capacity><offset>-0.06</offset></li>
           <li><capacity>Moving</capacity><offset>-0.04</offset></li>
@@ -558,6 +553,7 @@
     <comps>
       <li Class="ColonyCouncil.HediffCompProperties_Ailment">
         <key>Sunburn</key>
+        <quiet>true</quiet>
         <causes><li><trigger>SunWork</trigger><hours>4</hours><chance>0.08</chance></li></causes>
         <cooldownDays>6</cooldownDays>
         <startSeverity>0.25~0.6</startSeverity>
@@ -582,7 +578,6 @@
     <stages>
       <li>
         <label>pink</label>
-        <painOffset>0.03</painOffset>
       </li>
       <li>
         <minSeverity>0.35</minSeverity>
@@ -600,6 +595,7 @@
     <comps>
       <li Class="ColonyCouncil.HediffCompProperties_Ailment">
         <key>SmokeCough</key>
+        <quiet>true</quiet>
         <causes><li><trigger>SmokyRoom</trigger><hours>4</hours><chance>0.06</chance></li></causes>
         <cooldownDays>6</cooldownDays>
         <startSeverity>0.25~0.5</startSeverity>
@@ -681,12 +677,12 @@
   <HediffDef ParentName="Council_AilmentBase">
     <defName>Council_Ail_StiffNeck</defName>
     <label>stiff neck</label>
-    <description>A crick in the neck from a night on the ground, a bedroll or a hard bed. A day or two of stiffness that eases with warmth and gentle movement. A proper bed prevents it.</description>
-    <tendable>true</tendable>
+    <description>A crick in the neck from a night on the ground, a bedroll or a hard bed. A day or two of stiffness that eases with warmth and gentle movement; no doctor needed. A proper bed prevents it.</description>
     <comps>
       <li Class="ColonyCouncil.HediffCompProperties_Ailment">
         <key>StiffNeck</key>
-        <causes><li><trigger>HardBed</trigger><hours>4</hours><chance>0.04</chance></li></causes>
+        <quiet>true</quiet>
+        <causes><li><trigger>HardBed</trigger><hours>4</hours><chance>0.02</chance></li></causes>
         <childFactor>0.3</childFactor>
         <oldFactor>1.5</oldFactor>
         <cooldownDays>10</cooldownDays>
@@ -698,13 +694,6 @@
           <li>[!lowtech] Heat and a gentle massage. A proper mattress would stop it happening.</li>
         </notes>
       </li>
-      <li Class="HediffCompProperties_TendDuration">
-        <baseTendDurationHours>48</baseTendDurationHours>
-        <severityPerDayTended>0</severityPerDayTended>
-      </li>
-      <li Class="ColonyCouncil.HediffCompProperties_AilmentMedicine">
-        <severityPerDayTended>-0.2</severityPerDayTended>
-      </li>
       <li Class="ColonyCouncil.HediffCompProperties_AilmentRecovery">
         <severityPerDay>-0.3</severityPerDay>
       </li>
@@ -712,7 +701,6 @@
     <stages>
       <li>
         <label>stiff</label>
-        <painOffset>0.04</painOffset>
         <capMods><li><capacity>Manipulation</capacity><offset>-0.03</offset></li></capMods>
       </li>
     </stages>
@@ -772,7 +760,8 @@
     <comps>
       <li Class="ColonyCouncil.HediffCompProperties_Ailment">
         <key>EyeStrain</key>
-        <causes><li><trigger>DarkWork</trigger><hours>4</hours><chance>0.06</chance></li></causes>
+        <quiet>true</quiet>
+        <causes><li><trigger>DarkWork</trigger><hours>4</hours><chance>0.04</chance></li></causes>
         <childFactor>0.5</childFactor>
         <cooldownDays>6</cooldownDays>
         <startSeverity>0.25~0.45</startSeverity>
@@ -791,7 +780,6 @@
     <stages>
       <li>
         <label>tired eyes</label>
-        <painOffset>0.02</painOffset>
         <capMods>
           <li><capacity>Sight</capacity><offset>-0.05</offset></li>
           <li><capacity>Consciousness</capacity><offset>-0.03</offset></li>

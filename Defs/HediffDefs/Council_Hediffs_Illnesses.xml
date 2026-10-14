@@ -127,7 +127,7 @@
       <li Class="ColonyCouncil.HediffCompProperties_Ailment">
         <serious>true</serious>
         <key>Pneumonia</key>
-        <causes><li><trigger>AfterCold</trigger><chance>0.06</chance></li></causes>
+        <causes><li><trigger>AfterCold</trigger><chance>0.03</chance></li></causes>
         <cooldownDays>30</cooldownDays>
         <afterEffects>
           <li><hediff>Council_Ail_Convalescent</hediff><severity>0.5~0.8</severity></li>
@@ -157,6 +157,7 @@
         <treatedImmunityPerDay>0.05</treatedImmunityPerDay>
         <severityPerDayImmune>-0.25</severityPerDayImmune>
         <immunityPerDayNotSick>-0.02</immunityPerDayNotSick>
+        <coldFactor>1.2</coldFactor>
       </li>
     </comps>
     <stages>

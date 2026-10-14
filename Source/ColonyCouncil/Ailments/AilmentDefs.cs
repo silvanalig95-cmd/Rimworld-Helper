@@ -78,6 +78,8 @@ namespace ColonyCouncil
         public bool serious;
         /// <summary>What an illness leaves behind (a lingering cough): no journal lines or messages of its own.</summary>
         public bool lingering;
+        /// <summary>Too small for a message unless the player wants every message (a stiff neck, a smoke cough).</summary>
+        public bool quiet;
         /// <summary>Its short name for flavor tags: lines tagged [ail:key] are written for it.</summary>
         public string key;
         public List<AilmentCause> causes;

@@ -77,6 +77,8 @@ namespace ColonyCouncil
                 return mask;
             }
             if (!p.Spawned || p.Map == null) return 0;
+            // Knocked out on the ground isn't a night's sleep, and a downed colonist isn't working.
+            if (p.Downed && !p.InBed()) return 0;
             var map = p.Map;
             var room = p.GetRoom();
             bool outdoors = room == null || room.PsychologicallyOutdoors;
@@ -103,7 +105,8 @@ namespace ColonyCouncil
             if (hands) mask |= Bit(AilmentTrigger.HandWork);
             if ((hands || work == "Research") && map.glowGrid.PsychGlowAt(p.Position) == PsychGlow.Dark) mask |= Bit(AilmentTrigger.DarkWork);
             bool moving = p.pather != null && p.pather.Moving;
-            if (moving) mask |= Bit(AilmentTrigger.Walking);
+            // Long walks: out on a map away from home, or out hunting. Errands around the home don't wear out feet.
+            if (moving && (!map.IsPlayerHome || work == "Hunting")) mask |= Bit(AilmentTrigger.Walking);
             float temp = p.AmbientTemperature;
             if (outdoors)
             {

@@ -33,7 +33,7 @@ A rare serious tier sits on top, behind its own setting: six illnesses modeled o
           <li>Ailment | Comes from | Lasts | What helps</li>
           <li>Strained back | 6 hours of hauling, mining or building in a day (never children) | 1 to 2 weeks | Bed rest at first, tending</li>
           <li>Sore hands | 7 hours at a crafting, smithing, tailoring or art bench | About a week | Other work, tending</li>
-          <li>Blisters | 8 hours of walking, or on a caravan on the move | 2 to 3 days | Tending, rest</li>
+          <li>Blisters | 8 hours on the move with a caravan, on a map away from home or out hunting | 2 to 3 days | Tending, rest</li>
           <li>Chilblains | 5 hours of outdoor work between -10 and 6 °C | About a week | Warmth, warm clothes</li>
           <li>Sunburn | 4 hours outdoors around midday above 30 °C or in a heat wave, with nothing on the head | 2 to 4 days | A hat; tending</li>
           <li>Smoke cough | 4 hours in a closed room of 60 cells or fewer with a wood fire burning | 1 to 2 days | Clean air, a bigger room</li>
@@ -51,7 +51,7 @@ A rare serious tier sits on top, behind its own setting: six illnesses modeled o
         <table>
           <li>Illness | Based on | How it comes | Untreated | With care</li>
           <li>Tetanus | Lockjaw, a toxin from soil bacteria | A bite, scratch, stab, cut or gunshot wound left untended for 8 hours: 5% per wound, 40% of that in industrial colonies and 20% in spacer ones, which vaccinate. It shows 3 to 7 days later | Kills in about 7 days | 13 to 19 days of stiffness</li>
-          <li>Pneumonia | Bacterial pneumonia | A cold, chest cold or flu in someone 60 or older, a small child, or someone frail, starving or chilled: 6% a day (1% for anyone else) | Kills in 4 to 5 days | 5 to 8 days, then weakness and a cough</li>
+          <li>Pneumonia | Bacterial pneumonia | A cold, chest cold or flu in someone 60 or older, a small child, or someone frail, starving or chilled: 3% a day (half a percent for anyone else) | Kills in 4 to 5 days | 5 to 8 days, then weakness and a cough</li>
           <li>Tuberculosis | Tuberculosis (consumption) | Rarely, one colonist falls ill; it spreads to people asleep in the same room and shows 10 to 20 days later | Wastes away over about 49 days | 36 to 56 days of daily treatment; stopping early lets it come back</li>
           <li>Typhus | Epidemic typhus, carried by lice | Nights in a dirty room of 4 or more beds, or unwashed in a shared room: 1.5% a night; lice spread it in dirty rooms. It shows 4 to 8 days later | Kills in about 6 days | 4 to 5 days with industrial medicine, 8 to 10 with herbal</li>
           <li>Meningitis | Bacterial meningitis | Rarely, out of nowhere | Kills in about 2 days | 3 to 5 days, if a skilled doctor tends it at once</li>
