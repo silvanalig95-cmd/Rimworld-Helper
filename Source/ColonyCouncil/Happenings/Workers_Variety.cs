@@ -422,16 +422,19 @@ namespace ColonyCouncil
         protected override string Extra(HappeningContext ctx) =>
             VarietyUtil.Line(VarietyUtil.More(def)?.extra, ctx, null, VarietyUtil.Bundle(ctx.thing, VarietyUtil.InStores(ctx.map, ctx.thing)));
 
+        /// <summary>How much medicine an answer sends: all of it, or half with the colony's healer's instructions (answer 3).</summary>
+        private static int Sent(HappeningContext ctx, int option) => option == 3 ? Mathf.Max(1, ctx.variant / 2) : ctx.variant;
+
         public override string Unavailable(HappeningContext ctx, int option) =>
-            option <= 1 && ctx.thing != null && VarietyUtil.InStores(ctx.map, ctx.thing) < ctx.variant
-                ? "CC_Dilemma_NotEnough".Translate(ctx.variant, ctx.thing.label).ToString()
+            (option <= 1 || option == 3) && ctx.thing != null && VarietyUtil.InStores(ctx.map, ctx.thing) < Sent(ctx, option)
+                ? "CC_Dilemma_NotEnough".Translate(Sent(ctx, option), ctx.thing.label).ToString()
                 : null;
 
         public override string Resolved(HappeningContext ctx, int option, bool risk, bool byDefault, string outcome)
         {
-            if (option <= 1 && !byDefault)
+            if ((option <= 1 || option == 3) && !byDefault)
             {
-                bool sent = VarietyUtil.TakeFromStores(ctx.map, ctx.thing, ctx.variant);
+                bool sent = VarietyUtil.TakeFromStores(ctx.map, ctx.thing, Sent(ctx, option));
                 if (sent && option == 1) VarietyUtil.PaySilver(ctx.map, VarietyUtil.Near(ctx.a, ctx.map), ctx.count);
             }
             return base.Resolved(ctx, option, risk, byDefault, outcome);

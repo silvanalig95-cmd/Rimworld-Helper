@@ -181,6 +181,18 @@
               <li Class="ColonyCouncil.DilemmaEffect_SendAway" />
             </effects>
           </li>
+          <li>
+            <label>Pay a little to have {X_objective} teach {A_nameDef}</label>
+            <outcome>{X_nameDef} spent the evening showing {A_nameDef} how to close a seam, rivet a strap and true an edge, then left the pile of mending for {A_objective}.</outcome>
+            <outcomes>
+              <li>[lowtech] {X_nameDef} sat {A_nameDef} down with an awl and a pot of glue and went through the tinker's tricks one by one. The mending is {A_nameDef}'s job now.</li>
+            </outcomes>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>silver</what><factor>0.35</factor></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Learn"><skill>Crafting</skill><xp>1500</xp></li>
+            </effects>
+            <ways><toil>1</toil><openness>1</openness></ways>
+          </li>
         </options>
       </li>
       <li Class="ColonyCouncil.HappeningMoreText">
@@ -236,6 +248,21 @@
             <label>We can't spare it</label>
             <outcome>The colony keeps its medicine. {FACTION} will have to manage on their own.</outcome>
             <ways><generosity>-2</generosity><mercy>-1</mercy></ways>
+          </li>
+          <li>
+            <label>Send half, with {A_nameDef}'s instructions</label>
+            <outcome>Half the {THING} goes to {FACTION} with a long letter from {A_nameDef}: who to treat first, how much to give, what to boil. They'll make it go further than they could have alone.</outcome>
+            <outcomes>
+              <li>[lowtech] Half the {THING} goes to {FACTION}, wrapped with a bundle of {A_nameDef}'s own notes on fevers, drawn as pictures for anyone who can't read. Their runner set off at a jog.</li>
+              <li>[past:healer] {A_nameDef} has fought fevers like this before, and sends half the {THING} with a page of plain advice. {FACTION} will have a better chance with both.</li>
+            </outcomes>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Needs"><skill>Medicine</skill><minLevel>8</minLevel></li>
+              <li Class="ColonyCouncil.DilemmaEffect_EventGoodwill"><amount>11</amount></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Thought"><thought>Council_Evt_HelpedNeighbors</thought></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Learn"><skill>Medicine</skill><xp>300</xp></li>
+            </effects>
+            <ways><generosity>2</generosity><mercy>2</mercy></ways>
           </li>
         </options>
       </li>
@@ -630,6 +657,25 @@
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_SendAway" />
             </effects>
+          </li>
+          <li>
+            <label>One reading, for {A_nameDef} only</label>
+            <outcome>{X_nameDef} read {A_nameDef}'s cards by candlelight and found good things in all of them. {A_nameDef} came out smiling and wouldn't say what.</outcome>
+            <outcomes>
+              <li>[!lowtech] {X_nameDef} read {A_nameDef}'s palm under the lamp and promised a long life and a short winter. {A_nameDef} has repeated it to everyone.</li>
+            </outcomes>
+            <riskChance>0.25</riskChance>
+            <riskReplaces>true</riskReplaces>
+            <riskOutcome>{X_nameDef} turned over {A_nameDef}'s last card, looked at it for a long time, and put it away without a word. {A_nameDef} has been asking about it ever since.</riskOutcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>silver</what><factor>0.25</factor></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Thought"><thought>Council_Evt_GoodFortune</thought></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Joy"><amount>0.12</amount></li>
+            </effects>
+            <riskEffects>
+              <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>silver</what><factor>0.25</factor></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Thought"><thought>Council_Evt_BadFortune</thought></li>
+            </riskEffects>
           </li>
         </options>
         <lines>
