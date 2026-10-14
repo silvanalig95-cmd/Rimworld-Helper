@@ -10,7 +10,7 @@
     <order>1</order>
     <summary>How wishes work, and what granting, promising, refusing and ignoring do.</summary>
     <tip>Don't promise a bed you don't have the wood for.</tip>
-    <description>Colonists make wishes that fit their situation, their traits and what the colony can actually build. Each wish has a deadline, and the council can answer it in four ways.</description>
+    <description>Colonists make wishes that fit their situation, their traits and what the colony can actually build. Each wish has a deadline, and the council can answer it in four ways. The page "what colonists wish for" lists every kind of wish and when it comes up.</description>
     <sections>
       <li>
         <heading>The four answers</heading>
@@ -366,7 +366,7 @@ You can turn omens off with "Dreams that come true" in the settings.</text>
     <order>11</order>
     <summary>What each colonist has set their heart on doing before they die.</summary>
     <tip>A wish takes a few days to grant. A life goal can take years.</tip>
-    <description>A few days after settling in, each colonist sets their heart on something: master a craft, marry for love, have a child, find three true friends, train a student, make peace with a rival, earn a seat on the council or a name the colony remembers, a bedroom fit for a noble, a warrior's or a builder's record, or simply to live three more years. The Roster page shows everyone's goal and how close they are.</description>
+    <description>A few days after settling in, each colonist sets their heart on something: master a craft, marry for love, have a child, find three true friends, train a student, make peace with a rival, earn a seat on the council or a name the colony remembers, a bedroom fit for a noble, a warrior's or a builder's record, or simply to live three more years. Children have goals of their own (a best friend, a skill, growing up), the old may want a grandchild or one more year, believers a role in their faith, and some only want to feel at home. The Roster page shows everyone's goal and how close they are; the page "every life goal" lists them all.</description>
     <sections>
       <li>
         <heading>How a goal is chosen</heading>

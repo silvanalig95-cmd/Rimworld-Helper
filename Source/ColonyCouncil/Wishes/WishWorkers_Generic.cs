@@ -50,6 +50,13 @@ namespace ColonyCouncil
         public bool burnsWood;
         /// <summary>Real cold is on its way (freezing within the next few months).</summary>
         public bool coldComing;
+        /// <summary>
+        /// The colony's era, as the line tags name it: any one of these fits (tribal, medieval, industrial, spacer,
+        /// lowtech; "!lowtech" for a colony past it). Empty: any era. What is asked for must still be buildable or makeable.
+        /// </summary>
+        public List<string> eras;
+        /// <summary>It's at least this warm outside right now (°C); leave out for any weather.</summary>
+        public float minOutdoorTemp = -999f;
         // ---- Who ----
         // Vanilla traits and skills only (see categories above): mod defs here break when the mod is missing.
         public List<TraitDef> anyTrait;
@@ -65,6 +72,10 @@ namespace ColonyCouncil
         public float minDaysInColony;
         /// <summary>Has a baby or toddler of their own (Biotech).</summary>
         public bool parentOfLittleOne;
+        /// <summary>Only while they're ill: a cold, a stomach bug, one of Rimfolk's serious illnesses or the game's (flu, plague...).</summary>
+        public bool ailing;
+        /// <summary>At least this old, in human years (long-lived genes count at their own pace): 60 for the old.</summary>
+        public float minAge;
         public float weight = 1f;
         /// <summary>Why they want it ({PAWN}).</summary>
         [MustTranslate] public string reason;
@@ -166,13 +177,33 @@ namespace ColonyCouncil
             if (!seasons.NullOrEmpty() && (p.MapHeld == null || !seasons.Contains(GenLocalDate.Season(p.MapHeld)))) return false;
             if (minDaysInColony > 0f && (p.records?.GetValue(RecordDefOf.TimeAsColonistOrColonyAnimal) ?? 0f) < minDaysInColony * GenDate.TicksPerDay) return false;
             if (parentOfLittleOne && !(p.relations?.Children.Any(c => !c.Dead && c.DevelopmentalStage.Baby() && c.MapHeld == p.MapHeld) ?? false)) return false;
+            if (minAge > 0f && Flavor.HumanAge(p) < minAge) return false;
+            if (ailing && !WishWorker_Sickbed.Ailing(p)) return false;
+            if (!eras.NullOrEmpty() && !EraFits(eras)) return false;
             var map = p.MapHeld;
+            if (minOutdoorTemp > -999f && (map == null || map.mapTemperature.OutdoorTemp < minOutdoorTemp)) return false;
             if ((burnsWood || coldComing) && map == null) return false;
             if (burnsWood && !Goal_Woodpile.BurnsWood(map)) return false;
             if (coldComing && !Goal_Woodpile.ColdComing(map)) return false;
             if (noHeaterInRoom && RoomUtil.RoomContains(RoomUtil.PrivateRoom(p) ?? RoomUtil.BedRoom(p), Avail.IsHeater)) return false;
             if (sleepsCold && !SleepsCold(p)) return false;
             return true;
+        }
+
+        /// <summary>The colony lives in one of these eras (see <see cref="eras"/>): the same names and "!" as the line tags.</summary>
+        public static bool EraFits(List<string> eras)
+        {
+            if (eras.NullOrEmpty()) return true;
+            var now = new HashSet<string>();
+            Flavor.AddEraTags(now);
+            foreach (var e in eras)
+            {
+                if (e.NullOrEmpty()) continue;
+                bool neg = e.StartsWith("!");
+                string name = neg ? e.Substring(1) : e;
+                if (now.Contains(name) != neg) return true;
+            }
+            return false;
         }
 
         /// <summary>The game's "slept in the cold" memory, or a bedroom colder than they can bear on a night like this one.</summary>

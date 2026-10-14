@@ -63,9 +63,13 @@ namespace ColonyCouncil
                 {
                     var g = a.def.goals[i];
                     int gi = i;
-                    float p = UiCache.Get(a, gi * 2, () => g.Progress(a.map, a.Baseline(gi)));
+                    float p = UiCache.Get(a, gi * 2, () => a.GoalProgress(gi));
                     bool done = p >= 0.999f;
-                    string desc = UiCache.Get(a, gi * 2 + 1, () => g.Describe(a.map, a.Baseline(gi)));
+                    // A later stage counts from when it begins: shown as it would read today, and marked as later.
+                    bool later = a.Later(gi);
+                    string desc = UiCache.Get(a, gi * 2 + 1, () => later
+                        ? "CC_Ambition_LaterStage".Translate(g.Describe(a.map, g.Baseline(a.map))).ToString()
+                        : g.Describe(a.map, a.Baseline(gi)));
                     float barW = Mathf.Min(120f, width * 0.2f);
                     float textW = width - 40f - barW - 12f;
                     Text.Font = GameFont.Small;
@@ -73,7 +77,7 @@ namespace ColonyCouncil
                     var row = new Rect(0f, y, width, h);
                     UiKit.Zebra(row, i);
                     Widgets.CheckboxDraw(6f, y + (h - 22f) / 2f, done, false, 22f);
-                    GUI.color = done ? GoodColor : Color.white;
+                    GUI.color = done ? GoodColor : later ? UiKit.Faint : Color.white;
                     Widgets.Label(new Rect(36f, y + 3f, textW, h - 6f), desc);
                     GUI.color = Color.white;
                     UiKit.Bar(new Rect(width - barW - 6f, y + h / 2f - 4f, barW, 8f), p, done ? GoodColor : AmbitionColor);

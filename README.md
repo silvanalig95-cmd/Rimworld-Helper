@@ -88,19 +88,23 @@ to them. A raid makes someone ask for defenses within hours; a cold night, a mea
 friend's death or food poisoning all set off matching wishes. Every wish arrives with a little scene and a line
 in the colonist's own voice, chosen to fit the season, weather, time of day and their situation.
 
-More than 70 kinds of wish, most with variants (six kinds of work room, a dozen pieces of furniture, any
+105 kinds of wish, most with variants (six kinds of work room, a dozen pieces of furniture, any
 missing body part), so the same colony rarely hears the same request twice in a row: a wish the colony has
 heard several times lately becomes much less likely, and one nobody here has ever made a little more likely.
+Every wish asks only for what the colony can do now, in its era: a tribe hears about healroot and pemmican, an
+industrial colony about a deep drill or a comms console. The Almanac page "what colonists wish for" lists them all.
 
 | Wish | Who asks |
 |---|---|
-| **Home:** a room of their own, a bigger, roomier or nicer bedroom, a piece of furniture, a light, a plant, art for the bedroom, a fire in their room for winter, a bed for their pet | barracks sleepers, the greedy and jealous, night owls, rising expectations, the cold |
+| **Home:** a room of their own, a bigger, roomier or nicer bedroom, a piece of furniture, a light, a plant, art for the bedroom, a fire in their room for winter, a real floor instead of bare earth, a bed for their pet | barracks sleepers, the greedy and jealous, night owls, rising expectations, the cold, the tidy |
 | **Love and family:** to share a bed with their partner, not to sleep next to someone, a wedding, a birthday treat, a crib for the little one, somewhere for children to learn and play | couples, feuding roommates, parents (Biotech) |
-| **Work:** a workshop, kitchen, laboratory, hospital, greenhouse or barn; to do the work they love; lessons from the colony's best; somewhere to train; a weapon rack; a smokehouse; a beehive | passionate colonists, fighters, cooks, keepers |
-| **Stores:** better food, a freezer, a brewery, a little something to drink, firewood for winter, fodder before winter, honey in the larder, more books, a stocked infirmary, a proper treasury | gourmands, cooks, the food-poisoned, keepers, readers, the greedy |
+| **Children and the old:** lessons from the colony's best, a pet to look after, new stories to read; a soft chair, a biosculpter pod, a resting place for when the time comes | children (Biotech); colonists of 50, 60 or 65 and over |
+| **Work:** a workshop, kitchen, laboratory, hospital, greenhouse or barn; to do the work they love; lessons from the colony's best, or an apprentice to teach; somewhere to train; a weapon rack; a smokehouse; a beehive; a tool cabinet; stone blocks put by; a deep drill; a pen for the animals; a fishing spot (Odyssey) | passionate colonists, the old, fighters, cooks, keepers |
+| **Stores:** better food, a freezer, a brewery, a little something to drink, firewood for winter, fodder before winter, food that keeps, something fresh to eat, honey in the larder, more books, a stocked infirmary, healroot put by, a proper treasury | gourmands, cooks, the food-poisoned, keepers, readers, healers, the greedy |
+| **Illness:** a bed for the sick, a pot of tea (Vanilla Brewing Expanded) | anyone down with a cold, flu or worse |
 | **Gear:** new clothes, something warm for winter, a hat, something fine, a piece of jewelry, proper armor, a decent weapon, something a visiting trader has | tattered clothes, the cold, the vain, fighters, anyone who saw the trader's wares |
-| **Colony:** stronger defenses, a clean colony, music, art where people gather, another sculpture, flowers, a bath, a fountain, a banner, a place to pray, a bench to sit on outside, a fire to gather around | anyone shaken by a raid, the tidy, artists, the devout, everyone in spring |
-| **People:** a proper burial for a friend, a party, a day off, time outside, help quitting a drug or a steady supply of it, a prisoner recruited, executed or set free, a kidnapped friend brought home | grieving friends, the bored and overworked, addicts, the kind, the vengeful |
+| **Colony:** stronger defenses, a clean colony, music, art where people gather, another sculpture, flowers, a bath, a fountain, a banner, a place to pray, a bench to sit on outside, a fire to gather around, a table where everyone fits, a telescope, a cooler for the hottest days | anyone shaken by a raid, the tidy, artists, the devout, everyone in spring, the lonely, curious minds, anyone in the heat |
+| **People:** a proper burial for a friend, a party, a day off, time outside, help quitting a drug or a steady supply of it, a prisoner recruited, executed or set free, a kidnapped friend brought home, an evening at the campers' fire, a council meeting (promising it calls one), a comms console, a bed kept for guests (Hospitality) | grieving friends, the bored and overworked, addicts, the kind, the vengeful, the sociable |
 | **Adventure:** to see something of the world (a caravan), a hunt, the beast that mauled someone hunted down | the restless, hunters, the beast's victims and their friends |
 | **Body and status:** a prosthetic, an animal companion, a hurt animal patched up, a room befitting their title | the maimed, animal lovers, Royalty nobles |
 
@@ -276,7 +280,12 @@ lines of their journal.
 A few days after settling in, each colonist sets their heart on something to do before they die: master a craft,
 marry for love, have a child, find three true friends, train a student until they can stand alone, make peace with
 a rival, earn a seat on the council or a name the colony remembers, a bedroom fit for a noble, bring down twenty-five
-enemies, raise a hundred and fifty structures, tend a hundred wounds, or simply live three more years. Goals fit the
+enemies, raise a hundred and fifty structures, tend a hundred wounds, bring in four hundred harvests, or simply live
+three more years. Children have goals of their own (Biotech): a best friend, getting good at a skill they love, and
+for older children growing up, which comes true when they come of age, so a grown-up's goal follows. The old may
+want a grandchild, one more year or two students who can stand alone; believers a role in their faith or the whole
+colony sharing it (Ideology); some only want to feel at home or free again, the heart's need well met for ten days
+in a row. 57 in all, listed on the Almanac page "every life goal". Goals fit the
 person (their passions, traits and situation) and grow out of what happens to them: a battle makes a warrior, a
 brush with death a healer, a wedding someone who wants to marry, a birth someone who wants a child, a lost election
 someone who wants a seat, loneliness someone who wants friends, and seeing a friend reach their goal can make them
@@ -399,9 +408,15 @@ why. Going with the room's favorite pleases its backers; overruling a clear majo
 - With only one colonist, the council "meets" in passing. The setting *Meetings call people from their work*
   (on by default) can be turned off; then colonists come only when they're free, and attendance is still kept.
 
-35 ambitions, from *a full larder* and *hold the line* to *clean hands*, *law and order*, *the brewmasters*,
+54 ambitions, from *a full larder* and *hold the line* to *clean hands*, *law and order*, *the brewmasters*,
 *stone and mortar*, *a master healer*, *a seat of power* and *school days*. Achieving one lifts everyone's mood
 and trust; one that was already more than half done when the colony chose it counts for less (down to 60%).
+Only those the colony can achieve now are pitched, and some fit a colony's size or era: *a home, not a camp* and
+*nobody is the only one* for a small band, *the great feast* for a crowd, *the healing garden* before electricity,
+*word from outside* after it. Some answer the newer systems (*a calm season*, *a healthy season*, *a proper
+infirmary*, *friends at the camp*, *a table for everyone*). A few come in stages (*a home, not a camp*, *a proper
+infirmary*, *ready for every season*): only the current stage counts, and a message says what comes next. Some take
+seasons (*ready for every season*, *a year of steady nerves*). The Almanac page "council projects" lists them all.
 
 ### Build: room plans
 108 ready-made rooms, grouped by purpose. 28 kinds of room come in several sizes and kinds, picked in the
@@ -550,12 +565,14 @@ Each of these switches itself on only when its mod is there, and only asks for w
   Modern Fixtures). The advisor
   counts toilets (about one for every six colonists) and notices when nobody can wash or people fall sick from dirty
   water. Colonists ask for a latrine, somewhere to wash, a real bath (a water tub or a sauna isn't one) or, once
-  Heating is researched, hot water; their journals mention hot baths, cold water and the walk to the bushes. The
-  burn pit and the sauna heater are never offered as a bedroom heater.
-- **Hospitality:** a guest room plan. A guest bed never counts as a free bed for a colonist.
+  Heating is researched, hot water, and in fall and winter a sauna; their journals mention hot baths, cold water and
+  the walk to the bushes. The burn pit and the sauna heater are never offered as a bedroom heater.
+- **Hospitality:** a guest room plan. A guest bed never counts as a free bed for a colonist. With none in the
+  colony, a kind or sociable colonist may wish for a bed kept for guests, most often while visitors are here.
 - **Vanilla Cooking and Brewing Expanded:** grills and gourmet dishes count as fine or lavish meals for birthday
   feasts, better-meal wishes and journals; grills ruined by the cold don't count. Tea, coffee and soda aren't
-  "something to drink" for a brewer or a colonist with a taste for chemicals.
+  "something to drink" for a brewer or a colonist with a taste for chemicals. Cooks may wish for a grill in summer,
+  canned goods count as food that keeps, and someone ill may wish for a pot of tea.
 - **Vanilla Outposts Expanded:** a wish waits while its colonist is posted at an outpost (up to five days, then it
   lapses and nobody is blamed), and people out there write home in their journals now and then.
 - **RimHUD:** seven lines for its pawn panel (trust, open wish, office, life goal, strain, feelings, the heart's

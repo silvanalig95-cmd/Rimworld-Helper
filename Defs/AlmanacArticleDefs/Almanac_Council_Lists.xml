@@ -1,0 +1,349 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Look-up pages for the council's content: every kind of wish, every council project (ambition) and every life goal,
+    with who asks for it and when it can come up. Keep these in step with Defs/WishDefs, Defs/AmbitionDefs and
+    Defs/AspirationDefs.
+  -->
+
+  <!-- ===================== Wishes ===================== -->
+
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Council_Alm_C_WishList</defName>
+    <label>what colonists wish for</label>
+    <category>Council</category>
+    <order>1</order>
+    <summary>Every kind of wish, who makes it, and when it can come up.</summary>
+    <tip>A wish you can't grant never comes up: nobody in a tribe asks for a deep drill.</tip>
+    <description>There are 105 kinds of wish, many with variants (six kinds of work room, a dozen pieces of furniture, any skill to learn or teach). A colonist only voices a wish that fits who they are and what is happening to them, and only for something the colony can actually do now: a building it can place (the research is done, it's in the build menu, and anything that needs power waits for electricity), something it can make or grow, or something within reach on the map.
+
+Some wishes belong to an era (healroot for a tribe or a medieval village, a deep drill or a comms console once there's electricity), some to an age (children want lessons, pets and stories; the old want a soft chair, a resting place or an apprentice), some to a season or the weather, and some to a DLC or another mod. Without it, they simply never come up.</description>
+    <sections>
+      <li>
+        <heading>Home and comfort</heading>
+        <table>
+          <li>Wish | Who asks, and when</li>
+          <li>A room of their own | Barracks sleepers, those sharing a room with someone who isn't their partner, those without a bed.</li>
+          <li>A more impressive or roomier bedroom | The greedy and jealous, the cramped, anyone whose standards have risen.</li>
+          <li>Furniture, a light, a plant, art for their room | Rising expectations, night owls, those left in the dark, growers, artists.</li>
+          <li>Something to keep the bedroom warm or cool at night | Anyone who slept in the cold or the heat.</li>
+          <li>A fire in their room | Cold sleepers in fall and winter, in a room with no heat source.</li>
+          <li>A real floor in their room | Anyone (but ascetics) whose own room is half or more bare earth, sand or mud; more often in the rain and for the particular. Promising it plans the floor.</li>
+          <li>A bed for their pet | Colonists bonded to a small animal.</li>
+          <li>A table to eat at | Anyone who had to eat off the floor.</li>
+          <li>A table where everyone fits | When there are fewer seats at the tables than people who eat: the kind, the sociable, the lonely, anyone who ate standing.</li>
+          <li>Something new to do for fun, music, a bookcase, more books | The bored, artists and entertainers, readers.</li>
+          <li>A telescope | Curious minds (a passion for Intellectual), once one can be built.</li>
+          <li>A clean colony | Anyone with standards, when filth piles up at home.</li>
+          <li>A bath, a fountain, another sculpture, art where people gather | The grimy, artists, anyone with taste.</li>
+          <li>A bench outside, flowers around the colony | Anyone, flowers in spring and summer.</li>
+          <li>A cooler for the hottest days | Anyone, while it's 30°C or more outside and nothing in the colony cools. A passive cooler before electricity.</li>
+          <li>Time outside, more time to rest | The cooped-up, the worn out and the lazy.</li>
+        </table>
+      </li>
+      <li>
+        <heading>Love, family and children</heading>
+        <table>
+          <li>Wish | Who asks, and when</li>
+          <li>To share a bed, or not to sleep next to someone | Partners who sleep apart; roommates who can't stand each other.</li>
+          <li>A wedding, a birthday treat | The engaged; anyone with a birthday coming.</li>
+          <li>A crib for the little one | Parents of a baby (Biotech).</li>
+          <li>Somewhere to learn and play | Children with nothing of their own (Biotech).</li>
+          <li>Lessons from the colony's best | Children with a gift for a skill, when someone in the colony is far better at it.</li>
+          <li>A pet to look after | Children, when something small and calm roams near the colony. Any new animal will do.</li>
+          <li>New stories to read | Children, when the colony has fewer than three books.</li>
+        </table>
+      </li>
+      <li>
+        <heading>Work and passions</heading>
+        <table>
+          <li>Wish | Who asks, and when</li>
+          <li>A workshop, kitchen, laboratory, hospital, greenhouse or barn | Colonists passionate about the work it's for.</li>
+          <li>To do the work they love | A passion whose work is switched off for them.</li>
+          <li>Lessons in a skill | A passion they're still bad at, when the colony's best is right there.</li>
+          <li>An apprentice | Someone at 12 or more in a skill they love, when someone keen is still learning it (a child, often). The old ask most. Promising it starts the lessons.</li>
+          <li>Somewhere to train, a weapon rack | Fighters.</li>
+          <li>A tool cabinet by the workbench | Crafters.</li>
+          <li>Stone blocks put by | Builders, when the colony can cut stone and has fewer than 300 blocks.</li>
+          <li>A deep drill | Miners, once the colony has electricity and the research.</li>
+          <li>A smokehouse, a beehive, fodder before winter | Cooks; growers and animal lovers; handlers with three or more animals in fall.</li>
+          <li>A pen for the animals | Handlers, when the colony keeps two or more animals and has no pen.</li>
+          <li>A fishing spot | Those who'd fish, the restless and gourmands, when there are fish in the water and no fishing zone (Odyssey).</li>
+          <li>A hunt | Shooters and the bloodthirsty.</li>
+          <li>A freezer, a brewery | Cooks and anyone who ate something rotten; the chemically inclined.</li>
+        </table>
+      </li>
+      <li>
+        <heading>Food and stores</heading>
+        <table>
+          <li>Wish | Who asks, and when</li>
+          <li>Better meals, honey in the larder | Gourmands and anyone sick of raw food or paste.</li>
+          <li>Something to drink or smoke | Those with a taste for chemicals.</li>
+          <li>Something fresh to eat | Anyone in winter and spring, when the stores hold fewer than 60 vegetables, fruit or grain. Scurvy makes it urgent.</li>
+          <li>Food that keeps | Anyone in fall and winter, with real cold coming: pemmican, packaged meals or canned goods, whichever the colony can make.</li>
+          <li>Firewood for the winter | When the colony burns wood and the cold is coming.</li>
+          <li>A stocked infirmary | Doctors, when there's less than two medicine per colonist.</li>
+          <li>Healroot put by | Healers and growers in a colony without electricity, when healroot can be grown.</li>
+          <li>A proper treasury | The greedy.</li>
+        </table>
+      </li>
+      <li>
+        <heading>Health and the body</heading>
+        <table>
+          <li>Wish | Who asks, and when</li>
+          <li>A bed for the sick | Anyone ill (a cold, a stomach bug, flu or worse), when no bed is marked for medical use.</li>
+          <li>A replacement for a lost part | The maimed, when something to install is in stock or can be made.</li>
+          <li>Their animal patched up | When a bonded animal is hurt.</li>
+          <li>A steady supply, or help getting off it | The addicted.</li>
+        </table>
+      </li>
+      <li>
+        <heading>Gear and status</heading>
+        <table>
+          <li>Wish | Who asks, and when</li>
+          <li>New clothes, something warm to wear, a hat | Tattered clothes, the cold, the bareheaded.</li>
+          <li>Something fine to wear, jewelry | The greedy, the jealous, the vain.</li>
+          <li>Proper armor, a decent weapon | Fighters.</li>
+          <li>Something a visiting trader has | Anyone who has seen the trader's wares and can't stop thinking about them.</li>
+          <li>A room worthy of their title | Royalty nobles.</li>
+          <li>A banner, a place to pray | Anyone; the devout.</li>
+        </table>
+      </li>
+      <li>
+        <heading>People, the council and the world</heading>
+        <table>
+          <li>Wish | Who asks, and when</li>
+          <li>A proper burial, a party | The grieving; the sociable and the miserable.</li>
+          <li>A prisoner recruited, executed or set free | The kind, the lonely, the vengeful.</li>
+          <li>A kidnapped friend brought home | Those who loved them.</li>
+          <li>To see something of the world, an animal companion | The restless; animal lovers.</li>
+          <li>Stronger defenses, a beast hunted down | Anyone shaken by a raid; a beast's victim and their friends.</li>
+          <li>An evening with the campers | The sociable, the kind and those lacking belonging or freedom, while strangers are camped on the map.</li>
+          <li>A council meeting | The sociable, office holders, and anyone who missed the last meeting, when the council hasn't met in eight days or more. Promising it calls the meeting.</li>
+          <li>A comms console | The sociable, once one can be built.</li>
+        </table>
+      </li>
+      <li>
+        <heading>The old</heading>
+        <table>
+          <li>Wish | Who asks, and when</li>
+          <li>A soft chair to rest in | Colonists of 60 or more, when an armchair can be built.</li>
+          <li>A biosculpter pod | Colonists of 50 or more (Ideology), once one can be built.</li>
+          <li>A resting place for when the time comes | Colonists of 65 or more, when a sarcophagus can be built.</li>
+        </table>
+        <after>Ages are in human years: long-lived genes count at their own pace. The old also ask most often for an apprentice.</after>
+      </li>
+      <li>
+        <heading>With other mods</heading>
+        <table>
+          <li>Wish | Who asks, and when</li>
+          <li>A toilet, somewhere to wash, hot water | Dubs Bad Hygiene.</li>
+          <li>A sauna for the cold months | Dubs Bad Hygiene, in fall and winter.</li>
+          <li>A pot of tea | Vanilla Brewing Expanded, for anyone ill, once tea can be brewed.</li>
+          <li>A grill for summer evenings | Vanilla Cooking Expanded (or Medieval Overhaul's grill), cooks in spring and summer.</li>
+          <li>A bed kept for guests | Hospitality, the kind and the sociable, most often while visitors are here.</li>
+          <li>A scarecrow for the fields | Vanilla Furniture Expanded - Farming, growers from spring to fall.</li>
+          <li>A magic circle | A RimWorld of Magic, for mages.</li>
+          <li>A new species | PokéWorld, animal lovers who spot a wild Pokémon the colony doesn't have.</li>
+        </table>
+        <after>Other mods' people want some of these too: Vanilla Traits Expanded's academians the telescope, perfectionists the tool cabinet, menagerists the pen; A RimWorld of Magic's healers the healroot.</after>
+      </li>
+    </sections>
+    <keywords><li>wish</li><li>wishes</li><li>request</li><li>era</li><li>children</li><li>elders</li></keywords>
+    <seeAlso><li>Council_Alm_C_Wishes</li><li>Council_Alm_C_Heart</li><li>Council_Alm_C_Standards</li></seeAlso>
+  </ColonyCouncil.AlmanacArticleDef>
+
+  <!-- ===================== Council projects ===================== -->
+
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Council_Alm_C_ProjectList</defName>
+    <label>council projects</label>
+    <category>Council</category>
+    <order>19</order>
+    <summary>Every ambition the council can take on, what it asks, and when it's proposed.</summary>
+    <tip>A staged project shows its later stages greyed out. They start counting when they begin.</tip>
+    <description>At each council meeting, three colonists pitch ambitions: projects the colony takes on together, each with its goals and a deadline. There are 54. Only those the colony can achieve now are ever proposed: every goal must be possible with what it can build, make and grow, its season and its people. Some are only for a small band or a crowded colony, or for one era. The advisor's warnings make the matching projects likelier.
+
+A few are done in stages, one after another: only the current stage counts, each stage reached stays reached, and a message says what comes next. A stage that counts new work (new things built, new days in a row) starts counting when it begins.</description>
+    <sections>
+      <li>
+        <heading>Food and stores</heading>
+        <table>
+          <li>Project | What it asks</li>
+          <li>a full larder | 30 days of food.</li>
+          <li>a cold store | A freezer and 30 meals.</li>
+          <li>a greenhouse | Food grown indoors (where winter stops the fields) and 20 days of food.</li>
+          <li>fine dining | A kitchen and 20 fine meals.</li>
+          <li>the brewmasters | 3 fermenting barrels and 25 drinks.</li>
+          <li>the long store | 150 pemmican.</li>
+          <li>the long night | 300 wood before winter, when the colony burns wood.</li>
+          <li>a full treasury | 2000 silver.</li>
+          <li>the great feast | A lavish meal for every colonist (at least 10) and a dining room of impressiveness 50. Colonies of 8 or more.</li>
+        </table>
+      </li>
+      <li>
+        <heading>Home and comfort</heading>
+        <table>
+          <li>Project | What it asks</li>
+          <li>a home, not a camp | In stages: a real bed for everyone (not a sleeping spot), then a dining room with a table. Colonies of 8 or fewer.</li>
+          <li>rooms of our own | A bedroom of their own for everyone.</li>
+          <li>a great hall | A dining room of impressiveness 65.</li>
+          <li>a table for everyone | A seat at a table indoors for everyone who eats, and a dining room of impressiveness 35. Colonies of 4 or more.</li>
+          <li>fun and games | A rec room and 5 kinds of recreation.</li>
+          <li>a gallery of our own | 3 works of art in dining and rec rooms.</li>
+          <li>a warm winter | A heat source in every bedroom.</li>
+          <li>coats for winter | Everyone dressed to stay comfortable at -10°C, when real cold is coming.</li>
+          <li>no dark corners | A light in every room people use.</li>
+          <li>clean hands | Clean kitchens with no butcher table inside.</li>
+          <li>stone and mortar | Four walls in five of stone or metal.</li>
+        </table>
+      </li>
+      <li>
+        <heading>Defense and the world</heading>
+        <table>
+          <li>Project | What it asks</li>
+          <li>hold the line | Defenses that match the raids you attract, and 8 new pieces of cover.</li>
+          <li>a ring of iron, teeth in the mud | 3 turrets; 6 traps.</li>
+          <li>keep the lights on | 2 batteries and 1500 Wd stored.</li>
+          <li>law and order | A prison cell with a bed.</li>
+          <li>settle the score | Destroy a hostile settlement. Only while grieving or just after a raid.</li>
+          <li>friends abroad | A faction at goodwill 75.</li>
+          <li>word from outside | A comms console and two factions at goodwill 40. After electricity.</li>
+          <li>making a name | 2 quests completed.</li>
+          <li>new blood | A new colonist.</li>
+          <li>friends at the camp | 3 colonists who have visited the strangers' camp often enough to know them, while a friendly camp has days left.</li>
+        </table>
+      </li>
+      <li>
+        <heading>Health and the body</heading>
+        <table>
+          <li>Project | What it asks</li>
+          <li>a real hospital | A hospital with 3 beds and 15 medicine.</li>
+          <li>a proper infirmary | In stages: 8 medicine, then a hospital room with 2 beds, then that room at cleanliness 0.6. Colonies of 7 or fewer.</li>
+          <li>a healthy season | 15 days in a row with nobody sick, and 10 medicine. Proposed while something is going round.</li>
+          <li>a master healer | Someone at Medicine 10, and 10 medicine.</li>
+          <li>the healing garden | 25 healroot and two people at Medicine 5. Before electricity.</li>
+          <li>whole again | A replacement for every missing limb or eye the colony could replace.</li>
+          <li>clean living | Nobody addicted to anything.</li>
+          <li>rest for the dead | 3 graves.</li>
+        </table>
+      </li>
+      <li>
+        <heading>People and the heart</heading>
+        <table>
+          <li>Project | What it asks</li>
+          <li>good times | An average mood of 65%.</li>
+          <li>harmony | No two colonists who can't stand each other.</li>
+          <li>a council worth trusting | The colony's trust in the council at 30.</li>
+          <li>a calm season | 15 days in a row without a mental break, when someone is close to breaking or the colony is worn down. Colonies of 3 or more.</li>
+          <li>a year of steady nerves | 60 days in a row without a mental break, with 75 days to do it. Colonies of 4 or more that have lasted a year.</li>
+          <li>school days | 3 school desks, with children in the colony.</li>
+          <li>a seat of power | A throne room for a noble's title.</li>
+          <li>the menagerie | 3 new animals and a barn.</li>
+        </table>
+      </li>
+      <li>
+        <heading>Skill and work</heading>
+        <table>
+          <li>Project | What it asks</li>
+          <li>the workshop | A workshop with 2 crafting stations.</li>
+          <li>the pursuit of knowledge | A laboratory and 3 research projects.</li>
+          <li>a master's hand | Someone at Crafting 12.</li>
+          <li>the finer things, a masterwork | 2 new things of excellent quality; 1 masterwork.</li>
+          <li>nobody is the only one | Two people at Medicine 6 and two at Cooking 6. Colonies of 5 or fewer.</li>
+          <li>ready for every season | In stages, over 60 days: 30 days of food, then everyone dressed for -5°C, then 12 medicine.</li>
+        </table>
+      </li>
+    </sections>
+    <keywords><li>ambition</li><li>project</li><li>council</li><li>stages</li><li>goal</li></keywords>
+    <seeAlso><li>Council_Alm_C_Meetings</li><li>Council_Alm_C_Goals</li></seeAlso>
+  </ColonyCouncil.AlmanacArticleDef>
+
+  <!-- ===================== Life goals ===================== -->
+
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Council_Alm_C_GoalList</defName>
+    <label>every life goal</label>
+    <category>Council</category>
+    <order>11</order>
+    <summary>All 57 life goals, who sets their heart on each, and what can spark it.</summary>
+    <tip>A child's goal can be to grow up. When they do, a grown-up's goal follows.</tip>
+    <description>A colonist sets their heart on one life goal at a time, from what fits them: passions, traits, age, faith and what has happened to them lately. What sparks a goal (a battle, a brush with death, a loss, a birth, a dream that came true, a friend reaching the same goal, a recent memory) makes it far likelier, and can change their mind about a goal they've barely started. Children have goals of their own (Biotech), and a few goals are only for the old (ages in human years).</description>
+    <sections>
+      <li>
+        <heading>Skill and craft</heading>
+        <table>
+          <li>Goal | Who, and what sparks it</li>
+          <li>master a skill they love | Anyone with a passion; a friend's mastery.</li>
+          <li>raise 150 structures, carve a home out of the mountain | Builders; miners.</li>
+          <li>bring in 400 harvests | Growers; eating raw food.</li>
+          <li>make 120 things by hand | Crafters; a new tool cabinet.</li>
+          <li>cook 500 meals | Cooks; a fine or lavish meal.</li>
+          <li>tend 100 wounds, perform 20 operations | Doctors; a brush with death, a loss.</li>
+          <li>tame 5 animals, win 3 prisoners over | Handlers; the sociable.</li>
+          <li>make a great discovery, become a true scholar | Researchers; the too smart.</li>
+          <li>make art worth remembering | Artists.</li>
+          <li>become someone people listen to | The sociable; a lost election.</li>
+          <li>become a crack shot | Fighters who are bloodthirsty or tough; a battle.</li>
+          <li>bring home 40 kills from the hunt | Shooters.</li>
+          <li>become someone nobody wants to face up close | Melee fighters; a battle, being downed.</li>
+          <li>bring down 25 enemies or 10 mechanoids | Fighters; a battle, a loss.</li>
+          <li>keep the colony spotless, put out 30 fires, bury 15 of the dead | Anyone; the kind, after seeing the dead left lying.</li>
+        </table>
+      </li>
+      <li>
+        <heading>People and the council</heading>
+        <table>
+          <li>Goal | Who, and what sparks it</li>
+          <li>marry for love, have a child | Anyone; a wedding, a birth.</li>
+          <li>find 3 true friends, have 5 true friends | Anyone but psychopaths; being left out, a loss.</li>
+          <li>make peace with a rival, avenge the dead | Those with a rival; those with a vendetta.</li>
+          <li>train a student until they can stand alone | Masters of a skill; a grateful student.</li>
+          <li>earn a seat on the council, serve as marshal, physician, steward or quartermaster | Anyone, each office by who suits it; a lost election.</li>
+          <li>have an idea chosen by the council | Anyone grown; being left out of a decision, a meeting.</li>
+          <li>earn a name the colony remembers | Anyone; a friend's name.</li>
+          <li>make friends among travelers and guests, see their nemesis brought down | With strangers on; a nemesis.</li>
+          <li>dream something that comes true | Anyone; an omen.</li>
+        </table>
+      </li>
+      <li>
+        <heading>Years, home and the heart</heading>
+        <table>
+          <li>Goal | Who, and what sparks it</li>
+          <li>live to see 3 or 5 more years | Anyone; a brush with death, a loss.</li>
+          <li>see the colony grow to 12 or 20 people | Anyone; a birth.</li>
+          <li>have a bedroom fit for a noble | Anyone but ascetics; a night in a barracks or outside.</li>
+          <li>feel at home here | Anyone whose belonging is below 70, until it stays at 70 or more for 10 days in a row; being left out, a shared table, a loss.</li>
+          <li>feel free again | Anyone whose freedom is below 70, until it stays at 70 or more for 10 days in a row; a journey, an evening at the strangers' camp.</li>
+        </table>
+        <after>The heart's goals need feelings and strain switched on, and are looked at once a day.</after>
+      </li>
+      <li>
+        <heading>Children and the old</heading>
+        <table>
+          <li>Goal | Who, and what sparks it</li>
+          <li>make a best friend | Children; being left out, a loss.</li>
+          <li>get good at a skill they love | Children with a passion (to 8, or 3 levels more); lessons from a grown-up.</li>
+          <li>grow up and be one of the grown-ups | Children of 10 or more. Comes true when they come of age; a birth in the colony.</li>
+          <li>see a grandchild born | 50 or more, with a grown child in the colony (Biotech); a birth, a wedding.</li>
+          <li>see one more year with the colony | 65 or more; a brush with death, a loss.</li>
+          <li>teach two students to stand on their own | 55 or more, with a skill at 10 or more; a grateful student, a loss.</li>
+        </table>
+      </li>
+      <li>
+        <heading>Faith and other mods</heading>
+        <table>
+          <li>Goal | Who, and what sparks it</li>
+          <li>take on a role in the faith | Believers with some certainty, when their faith has a role open (Ideology); an omen.</li>
+          <li>see the whole colony share one faith | Devout believers in a colony of 3 or more (Ideology); a loss, an omen.</li>
+          <li>reach a level as a mage or a fighter | A RimWorld of Magic's classes; a battle.</li>
+          <li>become a true expert in a skill | Vanilla Skills Expanded.</li>
+        </table>
+      </li>
+    </sections>
+    <keywords><li>goal</li><li>life goal</li><li>aspiration</li><li>children</li><li>elders</li><li>faith</li></keywords>
+    <seeAlso><li>Council_Alm_C_Goals</li><li>Council_Alm_C_Heart</li><li>Council_Alm_C_Social</li></seeAlso>
+  </ColonyCouncil.AlmanacArticleDef>
+
+</Defs>

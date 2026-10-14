@@ -18,6 +18,10 @@ namespace ColonyCouncil
         /// <summary>Who would want this (traits, passions, mood, office...).</summary>
         public DilemmaRole who;
         public bool children;
+        /// <summary>Only for someone at least this old, in human years (long-lived genes count at their own pace).</summary>
+        public float minAge;
+        /// <summary>The heart's goals: the need to have well met (see AspirationWorker_HeartStreak).</summary>
+        public HeartNeed heartNeed = HeartNeed.Belonging;
         /// <summary>Skill workers: this skill, or (empty) one they're passionate about.</summary>
         public SkillDef skill;
         /// <summary>Skill workers: the level to reach (at least current + gain).</summary>
@@ -138,6 +142,11 @@ namespace ColonyCouncil
         public virtual bool StillPossible(Aspiration a) => true;
 
         public virtual string ProgressText(Aspiration a) => Progress(a).ToStringPercent();
+
+        /// <summary>Once a day, before it's checked: a goal that keeps its own count (days in a row) updates it.</summary>
+        public virtual void Daily(Aspiration a)
+        {
+        }
     }
 
     /// <summary>Reach a skill level.</summary>
@@ -281,6 +290,7 @@ namespace ColonyCouncil
                 case "avenged": return ColonyCouncilMod.Settings.vendettas && comp.vendettas.Of(p).Any();
                 case "nemesis": return ColonyCouncilMod.Settings.nemeses && comp.nemeses.Of(p).Any(n => !n.ended);
                 case "stranger": return ColonyCouncilMod.Settings.strangers;
+                case "pitched": return ColonyCouncilMod.Settings.enableAmbitions && !p.DevelopmentalStage.Juvenile();
                 default: return true;
             }
         }
@@ -468,6 +478,7 @@ namespace ColonyCouncil
                 try
                 {
                     if (TryChangeOfHeart(comp, p, a)) continue;
+                    a.def.Worker.Daily(a);
                     if (a.def.Worker.Done(a)) Fulfil(comp, a);
                     // Impossible now, or years without getting there: they let it go and may find another.
                     else if (!a.def.Worker.StillPossible(a) || Find.TickManager.TicksGame - a.startedTick > GenDate.TicksPerYear * 4)
@@ -510,7 +521,7 @@ namespace ColonyCouncil
             var result = new List<(AspirationDef, string, float)>();
             foreach (var d in DefDatabase<AspirationDef>.AllDefsListForReading)
             {
-                if (done.Contains(d) || !DilemmaRole.Fits(d.who, p, d.children) || !SafeCanHave(d, p)) continue;
+                if (done.Contains(d) || !DilemmaRole.Fits(d.who, p, d.children) || !OldEnough(d, p) || !SafeCanHave(d, p)) continue;
                 // The heart's need they lack most makes the goals that answer it a little likelier (Heart/).
                 result.Add((d, Sparked(d, p), d.weight * (d.who?.passion != null || d.who?.anyTrait != null ? 2f : 1f) * Heart.GoalFactor(p, d)));
             }
@@ -566,6 +577,8 @@ namespace ColonyCouncil
             comp.journals.Write(p, "Council_Journal_GoalChanged", null, old.Named("OLDGOAL"), b.Goal.Named("GOAL"));
             return true;
         }
+
+        private static bool OldEnough(AspirationDef d, Pawn p) => d.minAge <= 0f || Flavor.HumanAge(p) >= d.minAge;
 
         private static bool SafeCanHave(AspirationDef d, Pawn p)
         {
@@ -633,7 +646,7 @@ namespace ColonyCouncil
             var heir = PawnsFinder.AllMaps_FreeColonists.Where(Eligible)
                 .Where(f => f != p && f.relations != null && !f.DevelopmentalStage.Juvenile() && (f.relations.OpinionOf(p) >= 50 || comp.social.Warmth(f, p) >= 50f))
                 .Where(f => Active(f) == null || (Active(f).Progress < 0.35f && !Active(f).inherited))
-                .Where(f => DilemmaRole.Fits(a.def.who, f, a.def.children) && SafeCanHave(a.def, f) && !Fulfilled(f).Any(x => x.def == a.def))
+                .Where(f => DilemmaRole.Fits(a.def.who, f, a.def.children) && OldEnough(a.def, f) && SafeCanHave(a.def, f) && !Fulfilled(f).Any(x => x.def == a.def))
                 .OrderByDescending(f => f.relations.OpinionOf(p) + comp.social.Warmth(f, p)).FirstOrDefault();
             if (heir == null || !Rand.Chance(0.5f)) return;
             var old = Active(heir);
