@@ -14,6 +14,11 @@ where one [lowtech] line takes most of the picks in a tribal colony counts as ab
 "eff10" is the tenth percentile: the unlucky speaker. Grammar pools count the shapes of their root rule (r_logentry),
 plain lists count the lines that fit the era.
 
+In the game, Flavor.Memory also keeps a pool from giving out a line it gave out lately while another fits; this
+report leaves that out, so a pool with few lines that fit a speaker still shows up as thin (and it is: the memory then
+has to reach for lines in another voice or for another moment). "reach" is how many lines a typical speaker can get at
+all, which is what the memory has to work with.
+
 The draw rates are estimates: computed for moments, wish talk, dream talk, social events, dreams and nuisances from
 their weights, cooldowns and conditions, and set by hand (FREQ below) from reading the callers for the rest. They are
 meant for ranking, not as exact numbers.
@@ -44,6 +49,7 @@ HIGH_TECH = re.compile(
     r"|plasma|freezers?|solar|hydroponics?|sun ?lamps?|hospital beds?|vitals monitors?|hi-?tech|high-tech|multi-?analy[sz]ers?"
     r"|components?|glitterworlds?|urbworlds?|sterile (tiles?|floors?))\b", re.I)
 ERA_TAGS = {"tribal", "medieval", "industrial", "spacer", "lowtech"}
+STANDING = ERA_TAGS | {"poor", "rich", "small", "large"}
 
 
 @functools.lru_cache(maxsize=None)
@@ -73,7 +79,8 @@ def match(line, ctx):
                 break
         if not ok:
             return -1
-    return len(tags)
+    # Tags that hold for most of a game (era, wealth, size) only decide whether a line fits (Flavor.Match).
+    return sum(1 for tag in tags if not all(a.strip().lstrip("!") in STANDING for a in tag.split("|")))
 
 
 def era_fits(line, ctx):
@@ -680,11 +687,12 @@ def grammar_variety(p):
 
 
 def variety(p, samples, rng):
-    """(effective lines for a typical speaker, tenth percentile)."""
+    """(effective lines for a typical speaker, tenth percentile, lines a typical speaker can get at all)."""
     if p.kind == "grammar":
         _, shapes, _ = grammar_variety(p)
-        return float(shapes), float(shapes)
+        return float(shapes), float(shapes), float(shapes)
     effs = []
+    reach = []
     pool = {t: [l for l in p.tones.get(t, []) if l] for t in TONES} if p.kind == "toned" else None
     for base, tone in SPEAKERS[:samples]:
         ctx = set(base)
@@ -700,8 +708,9 @@ def variety(p, samples, rng):
             tf = [l for l in fit if tech_fits(l, ctx)] or fit
             d = {l: 1.0 / len(tf) for l in tf} if tf else {}
         effs.append(effective(d) if d else 0.0)
+        reach.append(sum(1 for v in d.values() if v > 0.001) if d else 0)
     effs.sort()
-    return sum(effs) / len(effs), effs[len(effs) // 10]
+    return sum(effs) / len(effs), effs[len(effs) // 10], sum(reach) / len(reach)
 
 
 def main():
@@ -731,7 +740,7 @@ def main():
         if p.count() == 0:
             continue
         samples = 150 if p.kind != "grammar" else 1
-        eff, eff10 = variety(p, samples, rng)
+        eff, eff10, reach = variety(p, samples, rng)
         draws = p.draws or 0
         per_line = draws / eff if eff > 0 else float("inf")
         tones = ""
@@ -740,22 +749,23 @@ def main():
         elif p.kind == "grammar":
             root, shapes, subs = grammar_variety(p)
             tones = f"{root} {shapes} + {subs} sub"
-        rows.append((per_line, p, eff, eff10, draws, tones))
+        rows.append((per_line, p, eff, eff10, reach, draws, tones))
     rows.sort(key=lambda r: -r[0])
     if not show_all:
-        rows = [r for r in rows if r[4] >= 2]
+        rows = [r for r in rows if r[5] >= 2]
     if csv:
-        print("pool,kind,file,lines,detail,effective,eff10,draws_per_year,seen_per_line_per_year,basis")
-        for per_line, p, eff, eff10, draws, tones in rows:
-            print(f"{p.name},{p.kind},{p.file},{p.count()},{tones},{eff:.1f},{eff10:.1f},{draws:.1f},{per_line:.2f},\"{p.basis}\"")
+        print("pool,kind,file,lines,detail,effective,eff10,reach,draws_per_year,seen_per_line_per_year,basis")
+        for per_line, p, eff, eff10, reach, draws, tones in rows:
+            print(f"{p.name},{p.kind},{p.file},{p.count()},{tones},{eff:.1f},{eff10:.1f},{reach:.1f},{draws:.1f},{per_line:.2f},\"{p.basis}\"")
         return
     print(f"{len(pools)} pools, {sum(p.count() for p in pools.values())} lines. A year is {YEAR_DAYS} days, {COLONISTS} colonists.")
     print("seen/line = draws a year / effective lines: how many times a year a typical line comes round again.")
     print("toned detail = lines per tone (plain/warm/blunt/cheerful/gloomy/cold); grammar detail = root shapes + sub-rule lines.\n")
-    print(f"{'seen/line':>9} {'draws/yr':>8} {'eff':>5} {'eff10':>5} {'lines':>5}  {'pool':52} detail")
-    for per_line, p, eff, eff10, draws, tones in rows[:top]:
+    print(f"{'seen/line':>9} {'draws/yr':>8} {'eff':>5} {'eff10':>5} {'reach':>5} {'lines':>5}  {'pool':52} detail")
+    for per_line, p, eff, eff10, reach, draws, tones in rows[:top]:
         flag = " <- thin" if (draws >= 8 and eff < 8) or (draws >= 30 and eff < 15) else ""
-        print(f"{per_line:9.2f} {draws:8.1f} {eff:5.1f} {eff10:5.1f} {p.count():5d}  {p.name[:52]:52} {tones}{flag}")
+        name = p.name.replace(".logRulesInitiator.rulesStrings", "").replace(".rulePack.rulesStrings", "")
+        print(f"{per_line:9.2f} {draws:8.1f} {eff:5.1f} {eff10:5.1f} {reach:5.1f} {p.count():5d}  {name[:52]:52} {tones}{flag}")
 
 
 if __name__ == "__main__":

@@ -132,7 +132,7 @@ namespace ColonyCouncil
 
         private static void Fire(NuisanceDef def, Pawn p, string thing, HashSet<string> tags)
         {
-            string raw = Flavor.Pick(def.texts, tags) ?? Flavor.PickText(def.texts);
+            string raw = Flavor.PickFresh(def.texts, tags, def.texts) ?? Flavor.PickText(def.texts);
             if (raw.NullOrEmpty()) return;
             string text = raw.Formatted(p.Named("A"), thing.Named("THING")).Resolve();
             CouncilGameComponent.GiveThought(p, def.thought, null, 1f, text);
