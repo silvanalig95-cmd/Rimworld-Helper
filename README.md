@@ -130,12 +130,35 @@ sting more (and so do the colony's own frictions and everyday pressures, up to 4
 level after that, fine meals instead of simple ones, luxuries. Hard times bring standards back down, and so does the
 austerity decree.
 
-**Small joys add up slowly.** Rimfolk's small good moments (a laugh, a good talk, a contest won, an animal asleep on
-someone's feet) are texture, not a mood engine: the two biggest on a colonist's mind count in full, and each one after
-that half as much as the one before, so a dozen of them lift a colonist about as much as three or four. Bigger
-rewards, bad moods and everything the game and other mods give count as they are. The reward strength setting and
-rising standards apply to these moments too. Hover a moment in the Needs tab to see when it counts for less; a
-setting turns this off.
+High standards also take the shine off the game's own comforts. A comfortable colonist feels the good moods of the
+base game and other mods (a fine meal, an impressive bedroom, a party, a joy activity) at 90%, a particular one at
+80% and a spoiled one at 70%. Only the first 10 points of each count for less, so the big moments of a life, like a
+wedding or a catharsis, still land almost in full; bad moods are never touched. Rimfolk's own good moods already
+follow standards, so they aren't shrunk twice. Hover a good mood in the Needs tab to see what it would be without
+standards. This works through one of the deeper game hooks, and the *standards cover the game's comforts* setting
+turns it off.
+
+**Good moods add up slowly.** Everything good Rimfolk gives a colonist shares one budget: a wish granted, a wedding,
+a dilemma that went their way, a laugh, a good talk, a contest won, an animal asleep on someone's feet, a sweet dream.
+The two biggest on a colonist's mind count in full, and each one after that half as much as the one before, so a
+dozen good moments lift a colonist about as much as three, and a small joy adds little on top of a wish just granted.
+Bad moods aren't part of it, and neither is anything the game and other mods give (high standards take their own
+share of those, see above). The reward strength setting and rising standards apply to Rimfolk's good moods too. Hover one in
+the Needs tab to see when it counts for less; one that counts for less than half a point is left off the list (its
+little bit still counts). The *good moods add up slowly* setting turns this off.
+
+**Getting used to good times.** Someone whose life is already good gets used to good things faster. When a colonist's
+mood is above 75%, a new good memory from Rimfolk (a wish granted, a good talk, a contest won, a dilemma that went
+their way) fades sooner, smoothly down to half its usual time from 90% mood. It feels just as good while it lasts,
+and in hard times good things last their full length. A good memory about someone (a friend who had their back)
+keeps its effect on opinion for the full time; only the mood ends sooner. A good memory that comes back renews with
+the time it would have now. Its tooltip says when it fades sooner. This works through one of the deeper game hooks, and a setting
+turns it off.
+
+None of these is a flat penalty, and nothing is taken away: a colony that lives well still feels it, it just doesn't
+float at the top of the mood bar on a pile of small pleasures. A line in the Mood tab says what they take off right
+now, for example "Good times: Rimfolk's good moods +11 of +18, 2 fading sooner · the game's comforts +14 of +19
+(particular)".
 
 **Everyday frictions.** People who live close together get on each other's nerves. Colonists argue about the dishes,
 complain about a bunkmate's snoring, take the last good meal, keep a borrowed knife, correct each other at the table
@@ -901,8 +924,8 @@ journals, the Story tab and History) or **Important only**.
   - **Demanding**: downsides 50% stronger; bitter colonists may sulk
   - **Advisor only**: no mood effects at all
 - strength of downsides, jealousy and favoritism, wishes after events, reminders, self-help
-- wish frequency, how many can be open at once, how long they last, reward strength, and whether small joys add up
-  slowly
+- wish frequency, how many can be open at once, how long they last, reward strength, rising standards (and whether
+  they also cover the game's comforts), whether Rimfolk's good moods add up slowly, and getting used to good times
 - **Life's ups and downs**: how hard the everyday pressures press, **gentle** (half strength, no half-built work, and
   high standards don't make frictions sting more), **normal** (default) or **demanding** (half again as strong)
 - meeting interval, ambition deadlines, and whether meetings call people from their work

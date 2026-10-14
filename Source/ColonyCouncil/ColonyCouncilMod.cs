@@ -10,8 +10,12 @@ namespace ColonyCouncil
 
         public static CouncilSettings Settings;
 
+        /// <summary>Rimfolk's own content: a def whose modContentPack is this one comes from Rimfolk.</summary>
+        public static ModContentPack Pack;
+
         public ColonyCouncilMod(ModContentPack content) : base(content)
         {
+            Pack = content;
             Settings = GetSettings<CouncilSettings>();
             // The game hooks are applied later, once every def has loaded (see RimfolkPatchesStartup).
         }

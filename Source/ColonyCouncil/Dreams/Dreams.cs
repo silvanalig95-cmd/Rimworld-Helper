@@ -110,12 +110,31 @@ namespace ColonyCouncil
         }
     }
 
-    /// <summary>A dream memory that carries the dream itself, shown in its tooltip.</summary>
-    public class Thought_Dream : Thought_Memory
+    /// <summary>
+    /// A dream memory that carries the dream itself, shown in its tooltip. A good dream shares the budget of Rimfolk's
+    /// good moods (SmallJoys); dreams aren't scaled by reward strength or standards.
+    /// </summary>
+    public class Thought_Dream : Thought_Memory, ICouncilMood
     {
         public string dream;
 
-        public override string Description => dream.NullOrEmpty() ? base.Description : base.Description + "\n\n\"" + dream + "\"";
+        public float OwnOffset() => base.MoodOffset();
+
+        public bool Scaled
+        {
+            set { }
+        }
+
+        public override float MoodOffset()
+        {
+            float own = OwnOffset();
+            return own > 0f ? own * SmallJoys.Factor(this) : own;
+        }
+
+        public override string Description =>
+            GoodTimes.FadeNote(this, SmallJoys.Note(this, dream.NullOrEmpty() ? base.Description : base.Description + "\n\n\"" + dream + "\""));
+
+        public override bool VisibleInNeedsTab => base.VisibleInNeedsTab && !SmallJoys.Faded(this);
 
         public override void ExposeData()
         {

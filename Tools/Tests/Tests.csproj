@@ -15,5 +15,6 @@
     <Compile Include="../../Source/ColonyCouncil/Pressures/PressureMath.cs" Link="PressureMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Ailments/AilmentMath.cs" Link="AilmentMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/LineMemory.cs" Link="LineMemory.cs" />
+    <Compile Include="../../Source/ColonyCouncil/Moods/GoodTimesMath.cs" Link="GoodTimesMath.cs" />
   </ItemGroup>
 </Project>

@@ -108,7 +108,7 @@ namespace ColonyCouncil
             return own > 0f ? own * SmallJoys.Factor(this) : own;
         }
 
-        public override string Description => SmallJoys.Note(this, Causes.Append(base.Description, cause));
+        public override string Description => GoodTimes.FadeNote(this, SmallJoys.Note(this, Causes.Append(base.Description, cause)));
 
         public override bool VisibleInNeedsTab => base.VisibleInNeedsTab && !SmallJoys.Faded(this);
 
@@ -135,6 +135,15 @@ namespace ColonyCouncil
         /// <summary>The council's scale was applied when it was given (else it's scaled as it's felt, good or bad).</summary>
         public bool scaled;
 
+        /// <summary>
+        /// Getting used to good times (GoodTimes): the age at which this memory's good mood ends, when it came while life
+        /// was already good; -1 for the memory's full time. The opinion of the other person always lasts the full time.
+        /// </summary>
+        public int moodTicks = -1;
+
+        /// <summary>Its good mood has run its (shorter) course; the opinion stays.</summary>
+        public bool MoodOver => moodTicks >= 0 && age >= moodTicks;
+
         public string Cause
         {
             get => cause;
@@ -148,6 +157,7 @@ namespace ColonyCouncil
 
         public float OwnOffset()
         {
+            if (MoodOver) return 0f;
             float own = base.MoodOffset();
             if (scaled) return own;
             // Not given through the council (a moment, a friction): scaled as it's felt instead. Rewards follow the reward
@@ -161,9 +171,9 @@ namespace ColonyCouncil
             return own > 0f ? own * SmallJoys.Factor(this) : own;
         }
 
-        public override string Description => SmallJoys.Note(this, Causes.Append(base.Description, cause));
+        public override string Description => GoodTimes.FadeNote(this, SmallJoys.Note(this, Causes.Append(base.Description, cause)));
 
-        public override bool VisibleInNeedsTab => base.VisibleInNeedsTab && !SmallJoys.Faded(this);
+        public override bool VisibleInNeedsTab => base.VisibleInNeedsTab && !MoodOver && !SmallJoys.Faded(this);
 
         public override bool TryMergeWithExistingMemory(out bool showBubble)
         {
@@ -177,6 +187,7 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref cause, "cause");
             // Memories from before this was saved were all given through the council.
             Scribe_Values.Look(ref scaled, "scaled", true);
+            Scribe_Values.Look(ref moodTicks, "moodTicks", -1);
         }
     }
 }

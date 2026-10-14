@@ -65,7 +65,9 @@ Granting one of their wishes or keeping a promise to them is usually enough to m
     <order>3</order>
     <summary>Why a happy colony gets harder to please, and how to bring its standards back down.</summary>
     <tip>Feed them fine meals for a season and they'll start complaining about simple ones.</tip>
-    <description>While a colonist is happy, their standards creep up from modest to comfortable, particular and spoiled. High standards make the council's rewards count for less and its letdowns hurt more. Hard times bring them back down, and so does the austerity decree.</description>
+    <description>While a colonist is happy, their standards creep up from modest to comfortable, particular and spoiled. High standards make the council's rewards count for less, its letdowns hurt more, and the game's own comforts count for less. Hard times bring them back down, and so does the austerity decree.
+
+None of this takes anything away. A colony that lives well still feels it; it just doesn't float at the top of the mood bar on a pile of small pleasures.</description>
     <sections>
       <li>
         <heading>How they move</heading>
@@ -84,11 +86,31 @@ Granting one of their wishes or keeping a promise to them is usually enough to m
         <text>A spoiled colonist gets half the mood from the council's rewards and about 40% more from its letdowns. They're less patient, make wishes more often, reach for luxuries, and ask for more: two impressiveness levels instead of one, fine meals instead of simple ones.</text>
       </li>
       <li>
+        <heading>The game's comforts</heading>
+        <text>Standards also reach the good moods that come from the base game and your other mods: a fine meal, an impressive bedroom, a party, a good joy activity.</text>
+        <table>
+          <li>Standards | Good moods from the game and other mods</li>
+          <li>Modest | In full</li>
+          <li>Comfortable | 90%</li>
+          <li>Particular | 80%</li>
+          <li>Spoiled | 70%</li>
+        </table>
+        <after>Only the first 10 points of each mood count for less: a +5 fine meal is +4 for a particular colonist, and a +40 catharsis is still +37 for a spoiled one. Bad moods are never touched, and Rimfolk's own good moods already follow standards, so they aren't shrunk twice. Hover a good mood in the Needs tab to see what it would be without standards. This needs the deeper game hooks; the "Standards cover the game's comforts" setting turns it off.</after>
+      </li>
+      <li>
+        <heading>When life is good</heading>
+        <text>Someone whose life is already good gets used to good things faster. When a colonist's mood is above 75%, a new good memory from Rimfolk fades sooner, smoothly down to half its usual time from 90% mood. It feels just as good while it lasts, and in hard times good things last their full length, so a lift after a bad stretch stays with them. A good memory about someone keeps its effect on opinion for the full time; only the mood ends sooner.
+
+Everything good Rimfolk gives also shares one budget, from a wish granted to a laugh at dinner: the two biggest good moods on a colonist's mind count in full, each one after that half as much as the one before, so a dozen of them lift a colonist about as much as three. Bad moods, and the good moods of the game and other mods, aren't part of it.
+
+The "Good times" line in a colonist's Mood tab says what these rules take off right now. Each has its own setting.</text>
+      </li>
+      <li>
         <heading>Bringing them down</heading>
         <text>If the whole colony is particular or spoiled, a week of austerity resets expectations cheaply. You also don't have to hold every celebration: turning down a feast or a festival now and then keeps standards from climbing.</text>
       </li>
     </sections>
-    <keywords><li>standards</li><li>spoiled</li><li>expectations</li><li>austerity</li></keywords>
+    <keywords><li>standards</li><li>spoiled</li><li>expectations</li><li>austerity</li><li>comforts</li><li>good times</li><li>small joys</li><li>good moods</li></keywords>
     <seeAlso><li>Council_Alm_C_Decrees</li><li>Council_Alm_2_14_Expectations</li></seeAlso>
   </ColonyCouncil.AlmanacArticleDef>
 
@@ -491,7 +513,7 @@ Some encounters and dilemmas only come up for a colony with a certain name: refu
 
 A memory fades on its own, and the Mood tab says when. A lasting mood stays while its cause does, so removing the cause is the only fix. Each mood with a known fix has a "what to do" line, with buttons that lead to the advisor's matching warning, the council page that deals with it, or an Almanac page. Moods from other mods get general advice based on what kind of mood they are, and their mod's name.
 
-"Where it comes from" splits the mood between the base game, Rimfolk and each of your other mods, so you can see which mod is pushing hardest.</text>
+"Where it comes from" splits the mood between the base game, Rimfolk and each of your other mods, so you can see which mod is pushing hardest. When a colonist has it good, a "Good times" line under it says how much Rimfolk's balance takes off their good moods right now: good moods that add up slowly, good memories that fade sooner, and comforts that high standards make count for less. Hover it for the rules.</text>
       </li>
       <li>
         <heading>The Moods page</heading>

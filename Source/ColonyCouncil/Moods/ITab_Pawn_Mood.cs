@@ -19,6 +19,8 @@ namespace ColonyCouncil
         private float cachedAt = -1f;
         private PawnMood mood;
         private List<MoodLine> bad, good;
+        /// <summary>What getting used to good times, good moods adding up slowly and standards take off right now (GoodTimes.Readout).</summary>
+        private string goodTimes;
 
         public ITab_Pawn_Mood()
         {
@@ -49,6 +51,7 @@ namespace ColonyCouncil
             cachedPawn = null;
             mood = null;
             bad = good = null;
+            goodTimes = null;
         }
 
         protected override void FillTab()
@@ -61,6 +64,7 @@ namespace ColonyCouncil
                 foreach (var l in mood.lines) l.texts = MoodView.TextsFor(l);
                 bad = mood.lines.Where(l => l.mood < 0f).ToList();
                 good = mood.lines.Where(l => l.mood > 0f).OrderByDescending(l => l.mood).ToList();
+                goodTimes = GoodTimes.Readout(p);
                 cachedPawn = p;
                 cachedAt = Time.realtimeSinceStartup;
             }
@@ -80,6 +84,18 @@ namespace ColonyCouncil
                 GUI.color = MoodView.Faint;
                 float h = Text.CalcHeight(mood.sources, rect.width);
                 Widgets.Label(new Rect(rect.x, y, rect.width, h), mood.sources);
+                GUI.color = Color.white;
+                Text.Font = GameFont.Small;
+                y += h + 4f;
+            }
+            if (goodTimes != null)
+            {
+                Text.Font = GameFont.Tiny;
+                GUI.color = MoodView.Faint;
+                float h = Text.CalcHeight(goodTimes, rect.width);
+                var line = new Rect(rect.x, y, rect.width, h);
+                Widgets.Label(line, goodTimes);
+                TooltipHandler.TipRegion(line, () => "CC_GoodTimes_Tip".Translate().Resolve(), 0x600D7135);
                 GUI.color = Color.white;
                 Text.Font = GameFont.Small;
                 y += h + 4f;

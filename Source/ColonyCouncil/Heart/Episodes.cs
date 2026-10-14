@@ -189,7 +189,13 @@ namespace ColonyCouncil
                 if (interrupted && p.Spawned) Messages.Message("CC_Heart_Episode_Interrupted".Translate(p.Named("PAWN")).Resolve(), p, MessageTypeDefOf.NeutralEvent, false);
                 return;
             }
-            if (letItOut != null && S.MoodEffects && p.needs?.mood?.thoughts?.memories != null) p.needs.mood.thoughts.memories.TryGainMemory(letItOut);
+            if (letItOut != null && S.MoodEffects && p.needs?.mood?.thoughts?.memories != null && ThoughtMaker.MakeThought(letItOut) is Thought_Memory relief)
+            {
+                // Relief, not a reward: it keeps its size whatever the reward strength and standards (it still shares
+                // the budget of Rimfolk's good moods).
+                if (relief is ICouncilMood mood) mood.Scaled = true;
+                p.needs.mood.thoughts.memories.TryGainMemory(relief);
+            }
             Messages.Message("CC_Heart_Episode_Over".Translate(p.Named("PAWN")).Resolve(), p, MessageTypeDefOf.PositiveEvent, false);
         }
 

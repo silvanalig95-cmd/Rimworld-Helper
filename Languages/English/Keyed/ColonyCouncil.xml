@@ -964,9 +964,21 @@ Granting one of {PAWN_possessive} wishes, or keeping a promise, can win {PAWN_ob
   <CC_Settings_CouncilLife>Council life</CC_Settings_CouncilLife>
   <CC_Settings_Standards>Rising standards: the happy grow harder to please</CC_Settings_Standards>
   <CC_Settings_Standards_Tip>While colonists are happy, their standards creep up: the council's mood rewards shrink, letdowns sting more, and wishes come more often and ask for more. Hard times, and the austerity decree, bring standards back down.</CC_Settings_Standards_Tip>
-  <CC_Settings_SmallJoys>Small joys add up slowly</CC_Settings_SmallJoys>
-  <CC_Settings_SmallJoys_Tip>Rimfolk's small good moments (a laugh, a good talk, a contest won, an animal on warm feet) count with diminishing returns: the two biggest on a colonist's mind count in full, each one after that half as much as the one before. Bigger rewards, bad moods, and everything the game and other mods give are left alone.</CC_Settings_SmallJoys_Tip>
-  <CC_SmallJoy_Less>One of several small good things lately, so it counts for {0} of its full value.</CC_SmallJoy_Less>
+  <CC_Settings_StandardsComforts>Standards cover the game's comforts</CC_Settings_StandardsComforts>
+  <CC_Settings_StandardsComforts_Tip>Rising standards also shrink the good moods from the base game and other mods, not only the council's: comfortable colonists feel them at 90%, particular ones at 80% and spoiled ones at 70%. Only the first 10 points of each count for less, so a wedding or a catharsis still lands. Bad moods are never touched. One of the deeper game hooks.</CC_Settings_StandardsComforts_Tip>
+  <CC_Settings_GoodTimes>Getting used to good times</CC_Settings_GoodTimes>
+  <CC_Settings_GoodTimes_Tip>A colonist whose mood is already above 75% keeps Rimfolk's new good memories for less time, down to half their usual time from 90% mood. In hard times good things last their full length, and how good they feel never changes. One of the deeper game hooks.</CC_Settings_GoodTimes_Tip>
+  <CC_Settings_SmallJoys>Good moods add up slowly</CC_Settings_SmallJoys>
+  <CC_Settings_SmallJoys_Tip>Everything good Rimfolk gives a colonist (a wish granted, a wedding, a laugh, a good talk, a contest won, an animal on warm feet, a sweet dream) shares one budget: the two biggest on their mind count in full, each one after that half as much as the one before. Bad moods, and everything the game and other mods give, are left alone.</CC_Settings_SmallJoys_Tip>
+  <CC_SmallJoy_Less>One of several good things lately, so it counts for {0} of its full value.</CC_SmallJoy_Less>
+  <CC_GoodTimes_FadeNote>Fades sooner: life was already good when it came, so it lasts {0} of its usual time.</CC_GoodTimes_FadeNote>
+  <CC_GoodTimes_ComfortNote>Counts for less: {PAWN_nameDef} has grown {LEVEL} and feels it as {FELT} instead of {FULL}.</CC_GoodTimes_ComfortNote>
+  <CC_GoodTimes_Line>Good times: {0}.</CC_GoodTimes_Line>
+  <CC_GoodTimes_Rimfolk>Rimfolk's good moods {0} of {1}</CC_GoodTimes_Rimfolk>
+  <CC_GoodTimes_RimfolkNow>Rimfolk's good moods {0}</CC_GoodTimes_RimfolkNow>
+  <CC_GoodTimes_Sooner>{0} fading sooner</CC_GoodTimes_Sooner>
+  <CC_GoodTimes_Comforts>the game's comforts {0} of {1} ({2})</CC_GoodTimes_Comforts>
+  <CC_GoodTimes_Tip>How a good life turns ordinary, without taking anything away:\n\nGetting used to good times: from 75% mood, Rimfolk's new good memories fade sooner, in half their usual time from 90%. In hard times they last their full length.\n\nGood moods add up slowly: of everything good Rimfolk gives, the two biggest count in full and each one after that half as much as the one before.\n\nStandards and comforts: comfortable colonists feel the good moods of the game and other mods at 90%, particular ones at 80% and spoiled ones at 70%, on the first 10 points of each.\n\nBad moods are never touched. Each rule has its own setting.</CC_GoodTimes_Tip>
   <CC_Reason_Standards>{PAWN_nameDef} has grown used to comfort, and the bedroom doesn't feel good enough anymore.</CC_Reason_Standards>
   <CC_Reason_StandardsFood>{PAWN_nameDef} has grown used to good food, and simple meals aren't enough anymore.</CC_Reason_StandardsFood>
   <CC_Standards_Modest>modest</CC_Standards_Modest>
@@ -1632,6 +1644,7 @@ Those against it ({WHO}) will trust the council less and resent it more than usu
   <CC_Mood_Lifting>Lifting {0}</CC_Mood_Lifting>
   <CC_Mood_Nothing>Nothing in particular.</CC_Mood_Nothing>
   <CC_Mood_FadesIn>Fades in {0}</CC_Mood_FadesIn>
+  <CC_Mood_FadesInSooner>Fades in {0} (sooner: life is good)</CC_Mood_FadesInSooner>
   <CC_Mood_WhileCause>Lasts while its cause does</CC_Mood_WhileCause>
   <CC_Mood_Permanent>Permanent</CC_Mood_Permanent>
   <CC_Mood_About>about {0}.</CC_Mood_About>
