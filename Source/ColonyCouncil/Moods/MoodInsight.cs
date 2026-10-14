@@ -398,18 +398,27 @@ namespace ColonyCouncil
         }
 
         /// <summary>
-        /// The extra tooltip for a mood in the game's Needs tab: when it ends, where it's from, why (if the game's own
-        /// description doesn't already say), and what to do.
+        /// Rimfolk's lines for a mood in the game's own Needs tab tooltip, added under the game's text: which mod it's
+        /// from, why (if the description doesn't already say), and what to do. The game's text already says when a
+        /// memory expires, so that isn't repeated; a mood that lasts while its cause does says so.
         /// </summary>
-        public static string HintTooltip(Pawn p, Thought group)
+        public static string HintLines(Pawn p, Thought group)
         {
             try
             {
                 var l = LineFor(p, group);
                 if (l == null) return "";
-                var parts = new System.Collections.Generic.List<string> { WhenItEnds(l) };
+                var parts = new System.Collections.Generic.List<string>();
+                // The game writes "Expires in ..." for memories with a duration; anything else gets ours.
+                bool gameSaysWhen = group is Thought_Memory && group.def.DurationTicks > 5;
+                string meta = gameSaysWhen ? null : WhenItEnds(l);
                 var (kind, source) = SourceOf(l.def);
-                if (kind != MoodSource.Game) parts[0] += "  ·  " + "CC_Mood_From".Translate(source).Resolve();
+                if (kind != MoodSource.Game)
+                {
+                    string from = "CC_Mood_From".Translate(source).Resolve();
+                    meta = meta == null ? from.CapitalizeFirst() : meta + "  ·  " + from;
+                }
+                if (!meta.NullOrEmpty()) parts.Add(meta.Colorize(ColoredText.SubtleGrayColor));
                 // Rimfolk's own moods already say why in their description.
                 if (!l.why.NullOrEmpty() && !(group is ICausedThought) && !(group is IExplainedThought)) parts.Add("CC_Cause_Line".Translate(l.why).Resolve());
                 string advice = Advice(l);

@@ -774,6 +774,8 @@ The council window's **Moods** page (Colony section) adds it up for the whole co
 who feels it, who is closest to breaking, and how much comes from the base game, Rimfolk and each of your mods.
 Buttons lead straight to the advisor's matching warning, the council page that deals with it, or an Almanac page.
 Hints cover the base game, the DLCs and Rimfolk; moods from other mods get general advice and their mod's name.
+The game's own **Needs** tab gets the same hints: hover a mood and its usual tooltip ends with which mod it comes
+from and what to do about it (a setting turns this off).
 
 ## Feelings and strain
 Mood says how a colonist feels today. **Strain** says how worn down they are, and a fine meal or a nice room can't buy
