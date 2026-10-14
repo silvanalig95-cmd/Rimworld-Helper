@@ -1,0 +1,919 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- Story chains told from data (HappeningWorker_StoryFlow, Source/ColonyCouncil/Happenings/Workers_StoryFlow.cs).
+       Each stage carries a StoryFlow: who comes for it, and where each answer leads (a later stage, or an ending at a
+       set time). The first stage's StoryFlow also says what each ending does, and its StoryText tells the endings,
+       the World page lines and the names, as for the other chains. Three chains: the lost letters, the stranger's
+       seeds, and a play about the colony. None brings a fight. -->
+
+  <!-- ======================================================================================================== -->
+  <!-- ===================== The lost letters ================================================================= -->
+  <!-- ======================================================================================================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Council_Story_Letters</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>the lost letters</label>
+    <workerClass>ColonyCouncil.HappeningWorker_StoryFlow</workerClass>
+    <baseChance>0.7</baseChance>
+    <minRefireDays>90</minRefireDays>
+    <earliestDay>15</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Past</group>
+        <minColonists>2</minColonists>
+        <answerDays>1</answerDays>
+        <titles>
+          <li>A satchel of old letters</li>
+          <li>Letters that never arrived</li>
+        </titles>
+        <texts>
+          <li>[lowtech] {A_nameDef} found a courier's satchel in the mud by the old road, the leather gone black with rain, and inside it a bundle of letters tied with string. They're sealed with wax, every one, and addressed to people in {FACTION}'s country. The top one is for {X_nameDef}, at {PLACE}.\n\nWhoever was carrying them never got there. From the state of the satchel, that was years ago.</li>
+          <li>[!lowtech] {A_nameDef} found a mailbag snagged in a thicket below the road, the canvas rotten and the zip rusted shut. Inside are two dozen letters, still sealed, for people in {FACTION}'s towns. The top one is addressed to {X_nameDef} at {PLACE}, in a careful, hopeful hand.\n\nThe postmarks are years old. Whoever was carrying them didn't make it.</li>
+          <li>[winter] Clearing snow by the old road, {A_nameDef} turned up a courier's satchel frozen into the bank. The letters inside are dry, wrapped in oilcloth, and sealed: two dozen of them, for people in {FACTION}'s country. The one on top is for {X_nameDef}, at {PLACE}.\n\nThey have been lying there for years.</li>
+          <li>[river] The river gave up a courier's satchel this morning, washed into the reeds below the colony. {A_nameDef} fished it out. The letters inside were wrapped in oilcloth, and most of them are still dry: two dozen, sealed, for people in {FACTION}'s towns. The top one is for {X_nameDef}, at {PLACE}.</li>
+        </texts>
+        <defaultOption>0</defaultOption>
+        <options>
+          <li>
+            <label>Send them on with the next trader</label>
+            <outcome>The satchel goes into a dry box to wait for the next trader bound for {FACTION}'s country. They'll be years late, but they'll get there.</outcome>
+            <ways><mercy>1</mercy><tradition>1</tradition></ways>
+          </li>
+          <li>
+            <label>Read them first</label>
+            <outcome>{A_nameDef} sits down at the table with a knife for the seals and a lamp, and the colony gathers round to listen.</outcome>
+            <ways><openness>1</openness><mercy>-1</mercy></ways>
+          </li>
+          <li>
+            <label>Burn them</label>
+            <outcome>The letters go into the stove, still sealed. Whatever they said is nobody's business now.</outcome>
+            <ways><tradition>-1</tradition></ways>
+          </li>
+        </options>
+      </li>
+      <li Class="ColonyCouncil.StoryFlow">
+        <stranger>true</stranger>
+        <strangerAges>30~75</strangerAges>
+        <silver>150~350</silver>
+        <value>250~500</value>
+        <rolls>
+          <li><flag>love</flag><weight>0.35</weight></li>
+          <li><flag>cache</flag><weight>0.35</weight></li>
+          <li><flag>credit</flag><weight>0.3</weight></li>
+        </rolls>
+        <fallback>lost</fallback>
+        <routes>
+          <li><option>0</option><flags><li>sent</li></flags><next>Council_Story_LettersReply</next><days>8~14</days></li>
+          <li><option>1</option><flags><li>read</li></flags><next>Council_Story_LettersSecret</next><days>0.3~0.6</days></li>
+          <li><option>2</option><next>end:burned</next><days>0.4~0.8</days></li>
+        </routes>
+        <endings>
+          <li>
+            <key>thanked</key>
+            <goodwill>10</goodwill>
+            <gift>0.4</gift>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_Story_LettersHome</thought><exceptTrait><li>Psychopath</li></exceptTrait></li>
+            </effects>
+          </li>
+          <li>
+            <key>shared</key>
+            <goodwill>8</goodwill>
+            <silver>0.5</silver>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_Story_LettersHome</thought><exceptTrait><li>Psychopath</li></exceptTrait></li>
+            </effects>
+          </li>
+          <li>
+            <key>repaid</key>
+            <goodwill>8</goodwill>
+            <silver>0.4</silver>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_Story_LettersHome</thought><exceptTrait><li>Psychopath</li></exceptTrait></li>
+            </effects>
+          </li>
+          <li>
+            <key>joined</key>
+            <goodwill>5</goodwill>
+          </li>
+          <li>
+            <key>dug</key>
+            <silver>1</silver>
+          </li>
+          <li>
+            <key>cashed</key>
+            <silver>0.8</silver>
+          </li>
+          <li>
+            <key>burned</key>
+          </li>
+          <li>
+            <key>lost</key>
+          </li>
+        </endings>
+      </li>
+      <li Class="ColonyCouncil.StoryText">
+        <chain>letters</chain>
+        <key>letters</key>
+        <start>true</start>
+        <coming>
+          <li>[lettersreply,sent] The old letters found by the road are on their way to {FACTION}'s country with a trader. If anyone answers, it should be within {DAYS}.</li>
+          <li>[lettersreply,personal] The old letter to {X_nameDef} is on its way to {PLACE}, with one of {A_nameDef}'s own. An answer may come within {DAYS}.</li>
+          <li>[letterssecret] {A_nameDef} is reading the old letters found by the road, one by one.</li>
+          <li>[dug] {A_nameDef} is out with a spade, looking for the place the old letter describes. Back within {DAYS}.</li>
+          <li>[cashed] The old note of credit is on its way to {PLACE} to be cashed. Word within {DAYS}.</li>
+        </coming>
+        <remembered>
+          <li>[lost] The old letters went to {FACTION}'s country, and nobody has written back.</li>
+        </remembered>
+        <endingTitles>
+          <li>[thanked] An answer from {PLACE}</li>
+          <li>[shared] The buried silver</li>
+          <li>[repaid] An old debt paid</li>
+          <li>[joined] {X_nameDef} stays</li>
+          <li>[dug] What the letter said</li>
+          <li>[cashed] The note is honored</li>
+          <li>[burned] Ashes</li>
+          <li>[lost] No answer</li>
+        </endingTitles>
+        <endings>
+          <li>[thanked,love] {X_nameDef} stayed two days, and before going back to {PLACE} left something on the table for the colony: {ITEM}. {X_nameDef} took the letter, and nothing else.\n\n{A_nameDef} walked {X_objective} to the road, and says {X_nameDef} was smiling.</li>
+          <li>[thanked,personal] {X_nameDef} went home to {PLACE} with the old letter and {A_nameDef}'s new one folded inside it. {X_nameDef} left the colony a gift by way of thanks: {ITEM}.\n\nThey have promised to write to each other.</li>
+          <li>[thanked] {X_nameDef} went home to {PLACE}, and left the colony something by way of thanks: {ITEM}. {FACTION} have heard the story by now, and like the colony the better for it.</li>
+          <li>[shared] {X_nameDef} counted out half of the family silver on the colony's table, {ITEM} in all, and wouldn't hear a word against it. Without the letter, {X_nameDef} says, there'd be none of it at all.\n\n{FACTION} have heard the story, and think well of the colony.</li>
+          <li>[repaid] The old note of credit was honored at {PLACE}, and {X_nameDef} has sent the colony a share of it: {ITEM} silver. The note had been owed to {X_possessive} family for eleven years.</li>
+          <li>[joined,love] {X_nameDef} unpacked in the colony's guest room and stayed. The letter is pinned to the wall above the bed. {X_nameDef} says there's nobody waiting at {PLACE} anymore, and the colony has been kind.</li>
+          <li>[joined] {X_nameDef} came to thank the colony and stayed for good. There's nothing left for {X_objective} at {PLACE}, and there's a lot to do here.\n\n{X_nameDef} is a colonist now.</li>
+          <li>[dug] {A_nameDef} found the spot the letter described, under a lightning-split tree, and dug down until the spade hit iron. The family's silver is the colony's now: {ITEM} silver.\n\nThe letter went into the stove. The family at {PLACE} will never know.</li>
+          <li>[cashed] The old note of credit was honored at {PLACE}, no questions asked. {ITEM} silver came back with the trader.\n\nThe family it was meant for never saw it.</li>
+          <li>[burned] The letters burned. A trader passing a week later mentioned a family at {PLACE} who have been waiting years for word from someone who went away. {A_nameDef} didn't say anything.</li>
+          <li>[burned,read] The letters burned, after the colony had read every one. {A_nameDef} still remembers some of the lines, and wishes {A_pronoun} didn't.</li>
+          <li>[lost] The letters reached {FACTION}'s country, as far as anyone knows. No answer has come back, and none will now.</li>
+        </endings>
+        <summaries>
+          <li>[thanked] The colony sent on letters lost for years, and {X_nameDef} came to thank it.</li>
+          <li>[shared] The colony sent on a lost letter that led {X_nameDef}'s family to its buried silver, and was given half.</li>
+          <li>[repaid] The colony sent on a lost note of credit, and {X_nameDef} sent back a share.</li>
+          <li>[joined] {X_nameDef} came to thank the colony for a lost letter, and stayed.</li>
+          <li>[dug] The colony read a lost letter and dug up the silver it described for itself.</li>
+          <li>[cashed] The colony cashed a lost note of credit meant for someone else.</li>
+          <li>[burned] The colony burned a satchel of lost letters.</li>
+          <li>[lost] The colony sent on a satchel of lost letters, and no answer came.</li>
+        </summaries>
+        <good>
+          <li>thanked</li>
+          <li>shared</li>
+          <li>repaid</li>
+          <li>joined</li>
+          <li>dug</li>
+          <li>cashed</li>
+        </good>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Council_Story_LettersSecret</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>what the letters said</label>
+    <workerClass>ColonyCouncil.HappeningWorker_StoryFlow</workerClass>
+    <baseChance>0</baseChance>
+    <minRefireDays>0</minRefireDays>
+    <earliestDay>0</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Past</group>
+        <notable>false</notable>
+        <answerDays>1</answerDays>
+        <titles>
+          <li>What the letters said</li>
+          <li>[love] A proposal, years late</li>
+          <li>[cache] Where the silver is buried</li>
+          <li>[credit] A note of credit</li>
+        </titles>
+        <texts>
+          <li>[love] Most of the letters are ordinary: prices, weather, a new baby, a dog that died. One is not. It's to {X_nameDef}, at {PLACE}, and it's a proposal of marriage, written by someone who signs only with an initial and says they'll wait for an answer at the fair.\n\n{X_nameDef} never got it. Whoever wrote it must have thought the silence was a no.</li>
+          <li>[cache] Most of the letters are ordinary. One, to {X_nameDef} at {PLACE}, is from a father writing as his family fled their farm: the household silver, about {COUNT} of it, is buried under the split tree by the east field, and {X_nameDef} should dig it up when it's safe.\n\nThe farm is a day's walk from the colony. The letter never arrived.</li>
+          <li>[credit] Most of the letters are ordinary. One, to {X_nameDef} at {PLACE}, holds a note of credit for {COUNT} silver, signed by a merchant house that still trades at {PLACE}, and made out to whoever carries it.\n\nIt was meant to settle a debt owed to {X_nameDef}'s family. It would settle one for anybody.</li>
+        </texts>
+        <defaultOption>0</defaultOption>
+        <options>
+          <li>
+            <label>Send them all on, with a note saying how they were found</label>
+            <outcome>{A_nameDef} writes a short note to go with the satchel, explaining where it was found and that the seals were opened here. The letters go out with the next trader.</outcome>
+            <ways><mercy>2</mercy></ways>
+          </li>
+          <li>
+            <label>Act on it ourselves</label>
+            <outcome>{A_nameDef} takes the letter and goes to see to it.</outcome>
+            <outcomes>
+              <li>[love] {A_nameDef} sits up half the night writing a letter of {A_possessive} own to go with the old one, telling {X_nameDef} how it was found and how long it had waited. Both go out with the first rider to {PLACE}.</li>
+              <li>[cache] {A_nameDef} takes a spade and the letter, and sets off for the split tree by the east field.</li>
+              <li>[credit] The note goes to {PLACE} with the next trader, to be cashed for the colony.</li>
+            </outcomes>
+            <ways><openness>1</openness></ways>
+          </li>
+          <li>
+            <label>Burn them all</label>
+            <outcome>The letters go into the stove. What's read can't be unread, but it doesn't have to go any further.</outcome>
+          </li>
+        </options>
+      </li>
+      <li Class="ColonyCouncil.StoryFlow">
+        <routes>
+          <li><option>0</option><flags><li>sent</li></flags><next>Council_Story_LettersReply</next><days>8~14</days></li>
+          <li><option>1</option><requires>love</requires><flags><li>sent</li><li>personal</li></flags><next>Council_Story_LettersReply</next><days>6~10</days></li>
+          <li><option>1</option><requires>cache</requires><next>end:dug</next><days>1~2</days></li>
+          <li><option>1</option><requires>credit</requires><next>end:cashed</next><days>4~7</days></li>
+          <li><option>2</option><next>end:burned</next><days>0.4~0.8</days></li>
+        </routes>
+      </li>
+      <li Class="ColonyCouncil.StoryText">
+        <chain>letters</chain>
+        <key>letterssecret</key>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Council_Story_LettersReply</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>an answer to the letters</label>
+    <workerClass>ColonyCouncil.HappeningWorker_StoryFlow</workerClass>
+    <baseChance>0</baseChance>
+    <minRefireDays>0</minRefireDays>
+    <earliestDay>0</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Past</group>
+        <notable>false</notable>
+        <addsPeople>true</addsPeople>
+        <answerDays>0.8</answerDays>
+        <titles>
+          <li>{X_nameDef} comes from {PLACE}</li>
+          <li>An answer to the letters</li>
+        </titles>
+        <texts>
+          <li>[love] {X_nameDef} of {FACTION} has walked all the way from {PLACE} with the old letter in {X_possessive} hand. It was a proposal, written years ago by someone {X_nameDef} thought had forgotten {X_objective}. {X_nameDef} married someone else in the end, and buried them, and has come to see where the letter was found.</li>
+          <li>[love,personal] {X_nameDef} of {FACTION} came to the gate holding two letters: the old one, and the one {A_nameDef} wrote to go with it. {X_nameDef} wanted to meet whoever cared enough to write, and to see the road where the letter lay all those years.</li>
+          <li>[cache] {X_nameDef} of {FACTION} has come from {PLACE} to thank the colony. The letter it sent on was from {X_possessive} father, written as the family fled, telling where the household silver was buried. {X_nameDef} dug it up last week, exactly where the letter said.</li>
+          <li>[credit] {X_nameDef} of {FACTION} has come from {PLACE} with the letter the colony sent on: a note of credit owed to the family for years, and paid at last. {X_nameDef} wanted to say thank you in person.</li>
+          <li>[read] {X_nameDef} of {FACTION} has come from {PLACE}. The colony's note said the letters had been opened, and {X_nameDef} doesn't mind. If they hadn't been read, {X_nameDef} says, they might have been thrown away.</li>
+        </texts>
+        <defaultOption>0</defaultOption>
+        <options>
+          <li>
+            <label>Welcome {X_objective}, and listen</label>
+            <outcome>{X_nameDef} sat at the colony's table until late, telling {A_nameDef} who the letters were from and what had happened to everyone in them.</outcome>
+            <outcomes>
+              <li>[love] {X_nameDef} talked about the fair where the answer should have been given, and the summer after it, and laughed more than {A_nameDef} expected.</li>
+            </outcomes>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Joy"><amount>0.15</amount></li>
+            </effects>
+            <ways><openness>1</openness></ways>
+          </li>
+          <li>
+            <label>Ask {X_objective} to stay</label>
+            <outcome>{X_nameDef} thought about it overnight, and in the morning asked where to put {X_possessive} things.</outcome>
+            <riskChance>0.5</riskChance>
+            <riskReplaces>true</riskReplaces>
+            <riskOutcome>{X_nameDef} is touched, and says no. There are people at {PLACE} who need {X_objective}.</riskOutcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Join" />
+            </effects>
+            <ways><openness>2</openness></ways>
+          </li>
+        </options>
+      </li>
+      <li Class="ColonyCouncil.StoryFlow">
+        <visitHours>20</visitHours>
+        <routes>
+          <li><option>1</option><when>safe</when><next>end:joined</next><days>0.3~0.6</days></li>
+          <li><requires>cache</requires><next>end:shared</next><days>0.5~1</days></li>
+          <li><requires>credit</requires><next>end:repaid</next><days>0.5~1</days></li>
+          <li><next>end:thanked</next><days>0.5~1</days></li>
+        </routes>
+      </li>
+      <li Class="ColonyCouncil.StoryText">
+        <chain>letters</chain>
+        <key>lettersreply</key>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ======================================================================================================== -->
+  <!-- ===================== The stranger's seeds ============================================================= -->
+  <!-- ======================================================================================================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Council_Story_Seeds</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>the stranger's seeds</label>
+    <workerClass>ColonyCouncil.HappeningWorker_StoryFlow</workerClass>
+    <baseChance>0.7</baseChance>
+    <minRefireDays>90</minRefireDays>
+    <earliestDay>12</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Visitors</group>
+        <seasons>
+          <li>Spring</li>
+          <li>Summer</li>
+          <li>PermanentSummer</li>
+        </seasons>
+        <answerDays>0.8</answerDays>
+        <titles>
+          <li>The stranger's seeds</li>
+          <li>Seeds from far away</li>
+        </titles>
+        <texts>
+          <li>[lowtech] {X_nameDef} of {FACTION} has walked in with a pouch of seeds tied at {X_possessive} neck and asked for the colony's best grower. The seeds come from a valley beyond the mountains, {X_nameDef} says, where the plant they grow into is nearly gone. They need good soil and someone patient.\n\n{X_nameDef} can't stay to grow them. {A_nameDef} has already looked at them three times.</li>
+          <li>[industrial] {X_nameDef} of {FACTION} carries a tin of seeds from a farm that burned, the last of a kind {X_possessive} family grew for a hundred years. {X_nameDef} is leaving a few with every settlement that will plant them, so the kind isn't lost, and asks whether the colony will.\n\n{A_nameDef}, the colony's best grower, is already turning one over in {A_possessive} fingers.</li>
+          <li>[spacer] {X_nameDef} of {FACTION} carries a sealed case of seeds from a vault on a world that died. The plant they grow into is gone everywhere else. {X_nameDef} is going from colony to colony, leaving a few with anyone who'll plant them, and asks whether this one will.\n\n{A_nameDef}, the colony's best grower, is reading the label on the case very carefully.</li>
+          <li>{X_nameDef} of {FACTION} came to the gate with a small bag of seeds and a question for whoever grows things here. They're the last of a plant nearly lost, {X_nameDef} says, and they need a new home. {A_nameDef} has already said yes twice, before the council has said anything.</li>
+        </texts>
+        <defaultOption>2</defaultOption>
+        <options>
+          <li>
+            <label>Plant them, and let {A_nameDef} tend them</label>
+            <outcome>{A_nameDef} chooses the best patch of soil in the colony, plants the seeds with {X_nameDef} watching, and puts a little fence round them.</outcome>
+            <outcomes>
+              <li>[lowtech] {A_nameDef} plants the seeds at dusk, the way {X_nameDef} says it should be done, with a pinch of ash in each hole and a word over them.</li>
+            </outcomes>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Learn"><skill>Plants</skill><xp>300</xp></li>
+            </effects>
+            <ways><mercy>1</mercy><openness>1</openness></ways>
+          </li>
+          <li>
+            <label>Plant them somewhere out of the way</label>
+            <outcome>The seeds go into a corner by the fence where they won't be in anyone's way. {X_nameDef} looks at the spot for a long moment and says nothing.</outcome>
+            <ways><openness>1</openness></ways>
+          </li>
+          <li>
+            <label>Thank {X_objective}, but no</label>
+            <outcome>{X_nameDef} puts the pouch away and moves on in the morning, to find someone else.</outcome>
+          </li>
+        </options>
+      </li>
+      <li Class="ColonyCouncil.StoryFlow">
+        <stranger>true</stranger>
+        <strangerAges>30~75</strangerAges>
+        <strangerSkill>Plants</strangerSkill>
+        <strangerLevel>10~16</strangerLevel>
+        <heroSkill>Plants</heroSkill>
+        <visitHours>20</visitHours>
+        <silver>80~200</silver>
+        <value>300~600</value>
+        <rolls>
+          <li><flag>thrive</flag><weight>0.45</weight></li>
+          <li><flag>weed</flag><weight>0.25</weight></li>
+          <li><flag>rare</flag><weight>0.3</weight></li>
+        </rolls>
+        <fallback>lost</fallback>
+        <routes>
+          <li><option>0</option><flags><li>planted</li><li>tended</li></flags><next>Council_Story_SeedsSprout</next><days>6~10</days></li>
+          <li><option>1</option><flags><li>planted</li><li>careless</li></flags><next>Council_Story_SeedsSprout</next><days>6~10</days></li>
+          <li><option>2</option><next>end:declined</next><days>0.5~1</days></li>
+        </routes>
+        <endings>
+          <li>
+            <key>harvest</key>
+            <gift>1</gift>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_Story_SeedsGarden</thought></li>
+            </effects>
+          </li>
+          <li>
+            <key>joined</key>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_Story_SeedsGarden</thought></li>
+            </effects>
+          </li>
+          <li>
+            <key>passedon</key>
+            <goodwill>6</goodwill>
+            <gift>0.4</gift>
+          </li>
+          <li>
+            <key>sold</key>
+            <silver>1</silver>
+          </li>
+          <li>
+            <key>spread</key>
+            <silver>0.6</silver>
+            <goodwill>-4</goodwill>
+          </li>
+          <li>
+            <key>overgrown</key>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Thought"><thought>Council_Story_SeedsChoked</thought></li>
+            </effects>
+          </li>
+          <li>
+            <key>cleared</key>
+          </li>
+          <li>
+            <key>pulled</key>
+          </li>
+          <li>
+            <key>declined</key>
+          </li>
+          <li>
+            <key>lost</key>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_Story_SeedsGarden</thought></li>
+            </effects>
+          </li>
+        </endings>
+      </li>
+      <li Class="ColonyCouncil.StoryText">
+        <chain>seeds</chain>
+        <key>seeds</key>
+        <start>true</start>
+        <coming>
+          <li>[seedssprout,tended] The stranger's seeds are in the ground, with {A_nameDef} watching over them. They should be up within {DAYS}.</li>
+          <li>[seedssprout,careless] The stranger's seeds are in the ground by the fence. Something should come up within {DAYS}.</li>
+          <li>[seedsreturn] {X_nameDef} said {X_pronoun} would come back to see what grew. Expected within {DAYS}.</li>
+        </coming>
+        <remembered>
+          <li>[lost] The plant from the stranger's seeds still grows at the colony. {X_nameDef} never came back for it.</li>
+        </remembered>
+        <endingTitles>
+          <li>[harvest] The stranger's garden</li>
+          <li>[joined] {X_nameDef} stays with the garden</li>
+          <li>[passedon] Seed for the next colony</li>
+          <li>[sold] Cuttings sold</li>
+          <li>[spread] The neighbors' fields</li>
+          <li>[overgrown] Choked</li>
+          <li>[cleared] Burned out</li>
+          <li>[pulled] Pulled up</li>
+          <li>[declined] The seeds go on</li>
+          <li>[lost] Still growing</li>
+        </endingTitles>
+        <endings>
+          <li>[harvest,thrive] {X_nameDef} stood in the middle of the patch with a hand on each plant, and didn't say anything for a long time. Then {X_nameDef} showed {A_nameDef} how to save the seed, helped bring in the first harvest, and left the colony a gift besides: {ITEM}.\n\nThe plant has a home now.</li>
+          <li>[harvest,rare] {X_nameDef} came back to find the blue bells in full flower and the whole yard smelling of them. {X_nameDef} took a few seeds for the road, and left the colony a parting gift: {ITEM}.\n\nTraders still stop at the gate to ask what that smell is.</li>
+          <li>[harvest] {X_nameDef} came back, saw what had grown, and helped {A_nameDef} bring in the first harvest of it. Then {X_nameDef} went on, with seed for the next colony on the road, and left the colony something for its trouble: {ITEM}.</li>
+          <li>[joined] {X_nameDef} came back to see the garden and never left. {X_nameDef} sleeps in the colony now, and spends every morning in the patch with {A_nameDef}, arguing about water.\n\n{X_nameDef} is a colonist now.</li>
+          <li>[passedon] {X_nameDef} left with a pouch of seed from the colony's own plants, to carry to the next settlement on the road. {FACTION} have heard about it, and so has everyone {X_nameDef} meets.\n\n{X_nameDef} left the colony something for its trouble: {ITEM}.</li>
+          <li>[sold,rare] The cuttings sold almost as fast as {A_nameDef} could take them: {ITEM} silver in all, from traders who'd smelled the flowers from the road. The plant is in a dozen gardens now.</li>
+          <li>[sold] The colony sold cuttings to anyone who'd pay, and made {ITEM} silver. The plant grows in a few gardens along the road now.</li>
+          <li>[spread] The cuttings sold well, {ITEM} silver's worth, and then the plant got loose in the neighbors' fields. {FACTION} have been digging out its runners for a week, and they know where it came from.</li>
+          <li>[overgrown] The plant from the stranger's seeds has taken over a whole corner of the colony's fields, runners and all, and nothing else will grow there now. {A_nameDef} has stopped going near it.\n\nSomebody will have to burn it out eventually.</li>
+          <li>[cleared] {A_nameDef} pulled the plant up by its runners, every one, and burned the lot. The field is clean again. {A_nameDef} kept one seed in a jar on the shelf, and won't say why.</li>
+          <li>[pulled] The plant from the stranger's seeds is gone, pulled up and composted. {A_nameDef} took it badly, and has been short with everyone about it.</li>
+          <li>[declined] {X_nameDef} went on with the seeds, to look for someone else to plant them. {A_nameDef} watched {X_objective} go from the field's edge.</li>
+          <li>[lost] {X_nameDef} never came back to see the garden, and the traders on the road haven't seen {X_objective} since. The plant grows on without {X_objective}, and {A_nameDef} saves its seed every year.</li>
+        </endings>
+        <summaries>
+          <li>[harvest] The colony grew a stranger's rare seeds, and shared the first harvest with {X_nameDef}.</li>
+          <li>[joined] {X_nameDef} came back to see the garden grown from the stranger's seeds, and stayed.</li>
+          <li>[passedon] The colony grew a stranger's seeds and sent seed on with {X_nameDef} to the next settlement.</li>
+          <li>[sold] The colony sold cuttings of a rare plant grown from a stranger's seeds.</li>
+          <li>[spread] Cuttings the colony sold got loose in {FACTION}'s fields.</li>
+          <li>[overgrown] A stranger's seeds grew into a weed that choked part of the colony's fields.</li>
+          <li>[cleared] The colony burned out a weed grown from a stranger's seeds.</li>
+          <li>[pulled] The colony pulled up a plant grown from a stranger's seeds.</li>
+          <li>[declined] The colony turned down a stranger's rare seeds.</li>
+          <li>[lost] A stranger's seeds grew at the colony, and the stranger never came back.</li>
+        </summaries>
+        <good>
+          <li>harvest</li>
+          <li>joined</li>
+          <li>passedon</li>
+          <li>sold</li>
+        </good>
+        <bad>
+          <li>overgrown</li>
+          <li>spread</li>
+        </bad>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Council_Story_SeedsSprout</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>what the seeds became</label>
+    <workerClass>ColonyCouncil.HappeningWorker_StoryFlow</workerClass>
+    <baseChance>0</baseChance>
+    <minRefireDays>0</minRefireDays>
+    <earliestDay>0</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Visitors</group>
+        <notable>false</notable>
+        <answerDays>1</answerDays>
+        <titles>
+          <li>What the seeds became</li>
+          <li>[weed] The plant that won't stop</li>
+          <li>[rare] Blue flowers</li>
+        </titles>
+        <texts>
+          <li>[thrive,tended] The stranger's seeds have come up in the patch {A_nameDef} gave them, and they're growing faster than anything else in the fields: broad leaves, a thick stem, and pods setting already. {A_nameDef} checks on them morning and evening, and has started talking to them.</li>
+          <li>[thrive,careless] Out by the fence, where the watering cans never go, the stranger's seeds have come up anyway, broad-leaved and strong and already setting pods. {A_nameDef} found them yesterday and has been carrying water out there ever since.</li>
+          <li>[weed] The stranger's seeds came up, and kept coming. The plant spreads by runners under the ground, and it has crept out of its patch into the next bed, and the one after that. {A_nameDef} pulled a runner up yesterday and found three more by evening.</li>
+          <li>[rare] The stranger's seeds have flowered: tall stalks with pale blue bells that smell of honey and smoke. A trader passing on the road stopped at the smell, asked what they were, and then asked what the colony would take for a cutting.</li>
+        </texts>
+        <defaultOption>0</defaultOption>
+        <options>
+          <li>
+            <label>Let it grow</label>
+            <outcome>{A_nameDef} lets the plant be, and waters it.</outcome>
+            <outcomes>
+              <li>[weed] {A_nameDef} lets the plant be. It doesn't need the water, and it doesn't need the encouragement.</li>
+            </outcomes>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Learn"><skill>Plants</skill><xp>300</xp></li>
+            </effects>
+          </li>
+          <li>
+            <label>Pull it all up</label>
+            <outcome>{A_nameDef} gets out the fork and starts digging.</outcome>
+            <ways><toil>1</toil></ways>
+          </li>
+          <li>
+            <label>Sell cuttings to anyone who'll pay</label>
+            <outcome>{A_nameDef} puts out a sign at the gate. Cuttings, for silver.</outcome>
+            <ways><generosity>-1</generosity></ways>
+          </li>
+        </options>
+      </li>
+      <li Class="ColonyCouncil.StoryFlow">
+        <routes>
+          <li><option>0</option><requires>weed</requires><next>end:overgrown</next><days>3~5</days></li>
+          <li><option>0</option><flags><li>grown</li></flags><next>Council_Story_SeedsReturn</next><days>8~12</days></li>
+          <li><option>1</option><requires>weed</requires><next>end:cleared</next><days>0.5~1</days></li>
+          <li><option>1</option><next>end:pulled</next><days>0.5~1</days></li>
+          <li><option>2</option><requires>weed</requires><next>end:spread</next><days>5~8</days></li>
+          <li><option>2</option><next>end:sold</next><days>2~4</days></li>
+        </routes>
+      </li>
+      <li Class="ColonyCouncil.StoryText">
+        <chain>seeds</chain>
+        <key>seedssprout</key>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Council_Story_SeedsReturn</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>the stranger comes back</label>
+    <workerClass>ColonyCouncil.HappeningWorker_StoryFlow</workerClass>
+    <baseChance>0</baseChance>
+    <minRefireDays>0</minRefireDays>
+    <earliestDay>0</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Visitors</group>
+        <notable>false</notable>
+        <addsPeople>true</addsPeople>
+        <answerDays>0.8</answerDays>
+        <titles>
+          <li>{X_nameDef} comes back</li>
+          <li>The stranger comes back</li>
+        </titles>
+        <texts>
+          <li>[thrive] {X_nameDef} of {FACTION} has come back up the road, thinner than before, to see what became of the seeds. {A_nameDef} took {X_objective} straight out to the patch, where the plants stand waist-high and heavy with pods.\n\n{X_nameDef} hasn't said a word yet.</li>
+          <li>[rare] {X_nameDef} of {FACTION} smelled the flowers from the road and came the last mile at a run. The blue bells are in full flower now, and the bees have found them. {X_nameDef} is standing among them with both hands over {X_possessive} mouth.</li>
+          <li>{X_nameDef} of {FACTION} has come back to see the garden, as promised. The plants are thriving, {A_nameDef} is proud of them, and {X_nameDef} wants to hear everything.</li>
+        </texts>
+        <defaultOption>0</defaultOption>
+        <options>
+          <li>
+            <label>Show {X_objective} the garden, and share the harvest</label>
+            <outcome>{A_nameDef} walked {X_nameDef} round every plant, and they brought in the first of the harvest together.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Joy"><amount>0.15</amount></li>
+            </effects>
+            <ways><generosity>1</generosity></ways>
+          </li>
+          <li>
+            <label>Ask {X_objective} to stay and tend it</label>
+            <outcome>{X_nameDef} looked at the plants, and at {A_nameDef}, and said yes.</outcome>
+            <riskChance>0.4</riskChance>
+            <riskReplaces>true</riskReplaces>
+            <riskOutcome>{X_nameDef} is tempted, and says no. There are more seeds in the pouch, and more places that need them.</riskOutcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Join" />
+            </effects>
+            <ways><openness>2</openness></ways>
+          </li>
+          <li>
+            <label>Give {X_objective} seed for the next colony</label>
+            <outcome>{A_nameDef} fills a pouch with seed from the colony's own plants, and {X_nameDef} ties it beside the old one.</outcome>
+            <ways><generosity>2</generosity></ways>
+          </li>
+        </options>
+      </li>
+      <li Class="ColonyCouncil.StoryFlow">
+        <visitHours>20</visitHours>
+        <routes>
+          <li><option>1</option><when>safe</when><next>end:joined</next><days>0.3~0.6</days></li>
+          <li><option>2</option><next>end:passedon</next><days>0.5~1</days></li>
+          <li><next>end:harvest</next><days>0.5~1</days></li>
+        </routes>
+      </li>
+      <li Class="ColonyCouncil.StoryText">
+        <chain>seeds</chain>
+        <key>seedsreturn</key>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ======================================================================================================== -->
+  <!-- ===================== A play about the colony ========================================================== -->
+  <!-- ======================================================================================================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Council_Story_Play</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>a play about the colony</label>
+    <workerClass>ColonyCouncil.HappeningWorker_StoryFlow</workerClass>
+    <baseChance>0.6</baseChance>
+    <minRefireDays>90</minRefireDays>
+    <earliestDay>30</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Visitors</group>
+        <minColonists>3</minColonists>
+        <answerDays>0.8</answerDays>
+        <titles>
+          <li>A play about the colony</li>
+          <li>A playwright asks questions</li>
+        </titles>
+        <texts>
+          <li>[lowtech] {X_nameDef} of {FACTION} writes the plays a traveling troupe performs from village to village, and has heard enough stories about the colony on the road to want to write one about it. {X_nameDef} would like to stay a day, ask questions, and listen to whoever will talk.\n\nThe troupe will play it first at {PLACE}, and then wherever the road goes.</li>
+          <li>[!lowtech] {X_nameDef}, a playwright with a traveling company of {FACTION}, has arrived with a notebook and a very direct manner. The company wants a new play for the season, and {X_nameDef} wants it to be about the colony: the founding, the hard years, the people.\n\n{X_nameDef} asks for a day of the colony's time and its stories, and promises to be fair.</li>
+          <li>[colony:Merciful] {X_nameDef} of {FACTION} writes plays for a traveling troupe, and has heard the colony is the kind of place that takes in strangers and forgives its enemies. {X_nameDef} doesn't believe it, and has come to see, and to write it all down.</li>
+          <li>[colony:Harsh] {X_nameDef} of {FACTION} writes plays for a traveling troupe, and has heard some hard things about the colony on the road. {X_nameDef} would like to hear the colony's side of them, for a play the troupe means to stage at {PLACE}.</li>
+          <li>[colony:Hardworking] {X_nameDef} of {FACTION} writes plays for a traveling troupe, and has heard that the colony works from dark to dark and never rests. That, {X_nameDef} says, is a play. {X_nameDef} would like a day to ask questions.</li>
+        </texts>
+        <defaultOption>2</defaultOption>
+        <options>
+          <li>
+            <label>Tell {X_objective} everything, good and bad</label>
+            <outcome>{A_nameDef} sat with {X_nameDef} until late and told the colony's story without leaving anything out. {X_nameDef} filled a notebook and started another.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Learn"><skill>Social</skill><xp>300</xp></li>
+            </effects>
+            <ways><openness>2</openness></ways>
+          </li>
+          <li>
+            <label>Tell {X_objective} the best of it</label>
+            <outcome>{A_nameDef} told {X_nameDef} the colony's story, with the best parts first and the worst parts left out. {X_nameDef} wrote it all down and looked as if {X_pronoun} knew.</outcome>
+            <ways><openness>-1</openness></ways>
+          </li>
+          <li>
+            <label>We'd rather not be in a play</label>
+            <outcome>{X_nameDef} puts the notebook away and leaves in the morning, still thinking.</outcome>
+          </li>
+        </options>
+      </li>
+      <li Class="ColonyCouncil.StoryFlow">
+        <stranger>true</stranger>
+        <strangerAges>25~60</strangerAges>
+        <strangerSkill>Artistic</strangerSkill>
+        <strangerLevel>10~16</strangerLevel>
+        <visitHours>20</visitHours>
+        <colonyFlags>true</colonyFlags>
+        <rolls>
+          <li><flag>hit</flag><weight>0.5</weight></li>
+          <li><flag>flop</flag><weight>0.25</weight></li>
+          <li><flag>scandal</flag><weight>0.25</weight></li>
+        </rolls>
+        <fallback>vanished</fallback>
+        <routes>
+          <li><option>0</option><flags><li>honest</li></flags><next>Council_Story_PlayPremiere</next><days>10~15</days></li>
+          <li><option>1</option><flags><li>flattering</li></flags><next>Council_Story_PlayPremiere</next><days>10~15</days></li>
+          <li><option>2</option><next>end:refused</next><days>12~18</days></li>
+        </routes>
+        <endings>
+          <li>
+            <key>famous</key>
+            <effects>
+              <li Class="ColonyCouncil.WorldEffect_Goodwill"><who>Neighbors</who><amount>4</amount></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_Story_PlayFamous</thought></li>
+            </effects>
+          </li>
+          <li>
+            <key>fanjoined</key>
+            <effects>
+              <li Class="ColonyCouncil.WorldEffect_Goodwill"><who>Neighbors</who><amount>3</amount></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_Story_PlayFamous</thought></li>
+            </effects>
+          </li>
+          <li>
+            <key>scandal</key>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_Evt_BadPress</thought></li>
+            </effects>
+          </li>
+          <li>
+            <key>flop</key>
+          </li>
+          <li>
+            <key>refused</key>
+          </li>
+          <li>
+            <key>vanished</key>
+          </li>
+        </endings>
+      </li>
+      <li Class="ColonyCouncil.StoryText">
+        <chain>play</chain>
+        <key>play</key>
+        <start>true</start>
+        <coming>
+          <li>[playpremiere] {X_nameDef} is writing the play about the colony. The troupe means to bring it here first, within {DAYS}.</li>
+          <li>[playfans] The play about the colony is on the road. Word of how it goes should come within {DAYS}.</li>
+          <li>[famous|scandal|flop] The play about the colony opens at {PLACE} soon. Word of how it went should come within {DAYS}.</li>
+          <li>[refused] {X_nameDef} is writing the play about the colony anyway, from what {X_pronoun} heard on the road. It opens at {PLACE} within {DAYS}.</li>
+        </coming>
+        <endingTitles>
+          <li>[famous] The colony on the stage</li>
+          <li>[fanjoined] An admirer stays</li>
+          <li>[scandal] A scandal at {PLACE}</li>
+          <li>[flop] The play closes</li>
+          <li>[refused] The play goes on anyway</li>
+          <li>[vanished] The play that never was</li>
+        </endingTitles>
+        <endings>
+          <li>[famous,honest] The play about the colony has been a hit at {PLACE} and in every town the troupe has played since. It tells the hard parts along with the good, and audiences cry at the right moments. Travelers who come by now ask which one is {A_nameDef}.</li>
+          <li>[famous,flattering] The play about the colony has been a hit: brave colonists, wise councils, very little mud. People along the road know the colony's name now, and some of them believe the play.</li>
+          <li>[famous,changed] The play opened at {PLACE} with the new ending the colony asked for, and it has been packing houses ever since. The neighbors talk about the colony as if they'd been there.</li>
+          <li>[famous,colony:Merciful] The play about the colony has been a hit along the road. Its best scene is the one where the colony takes in a stranger nobody else would, and the troupe says audiences stand up for it.</li>
+          <li>[famous,colony:Harsh] The play about the colony has been a hit. The colony comes across as hard, but fair, and the neighbors seem to respect it more for it.</li>
+          <li>[famous] The play about the colony has been a hit at {PLACE} and in every town the troupe has played since. The neighbors know the colony's name now.</li>
+          <li>[fanjoined] The admirer who walked here after seeing the play didn't leave. The colony is less heroic up close than it was on stage, the newcomer admits, and better for it.\n\nThe play is still drawing crowds at {PLACE}.</li>
+          <li>[scandal,honest] The play about the colony opened at {PLACE} and caused a scandal. {X_nameDef} told the hard parts the way {A_nameDef} told them, and some people didn't want to hear them. There have been arguments in the market about whether the colony is good or not.</li>
+          <li>[scandal] The play about the colony opened at {PLACE} and caused a scandal: the colony's worst choices, played big, with a villain who looks a lot like {A_nameDef}. The neighbors are talking.</li>
+          <li>[flop] The play about the colony opened at {PLACE} and closed three nights later. The audience laughed in the wrong places, the set fell over, and the actor playing {A_nameDef} forgot all of {A_possessive} lines.\n\nThe troupe has gone back to an old favorite.</li>
+          <li>[refused,hit] {X_nameDef} wrote the play anyway, from rumors and tavern talk, and it's been a hit. Most of it is wrong. The neighbors like the colony more for it all the same.</li>
+          <li>[refused,flop] {X_nameDef} wrote the play anyway, from what {X_pronoun} heard on the road, and it closed after two nights. The colony is spared its moment on the stage.</li>
+          <li>[refused,scandal] {X_nameDef} wrote the play anyway, from the worst rumors on the road. The colony comes off badly in it, and the colony had no one there to set it straight.</li>
+          <li>[vanished] Nothing more was heard of {X_nameDef} or the play. Troupes come and go on the road, and plays with them.</li>
+        </endings>
+        <summaries>
+          <li>[famous] A play about the colony was a hit along the road.</li>
+          <li>[fanjoined] An admirer of the play about the colony came to see it and stayed.</li>
+          <li>[scandal] A play about the colony caused a scandal at {PLACE}.</li>
+          <li>[flop] A play about the colony closed after three nights.</li>
+          <li>[refused] {X_nameDef} wrote a play about the colony without its help.</li>
+          <li>[vanished] A play about the colony was never staged.</li>
+        </summaries>
+        <good>
+          <li>famous</li>
+          <li>fanjoined</li>
+        </good>
+        <bad>
+          <li>scandal</li>
+        </bad>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Council_Story_PlayPremiere</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>the premiere</label>
+    <workerClass>ColonyCouncil.HappeningWorker_StoryFlow</workerClass>
+    <baseChance>0</baseChance>
+    <minRefireDays>0</minRefireDays>
+    <earliestDay>0</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Visitors</group>
+        <notable>false</notable>
+        <answerDays>0.6</answerDays>
+        <titles>
+          <li>The premiere</li>
+          <li>The play comes to the colony</li>
+        </titles>
+        <texts>
+          <li>{X_nameDef} is back, with the troupe and a cart of painted flats, to play the colony's story to the colony first, before taking it on the road. {X_nameDef} looks nervous. There's a part in it for {A_nameDef}, played by an actor taller and better-looking than {A_nameDef}.</li>
+          <li>[honest] {X_nameDef} has brought the troupe back to perform the play about the colony here first. {X_nameDef} warns the council: it's all in there, the good and the bad, just as {A_nameDef} told it.</li>
+          <li>[flattering] {X_nameDef} has brought the troupe back to perform the play about the colony here first. From the rehearsal everyone could hear through the walls last night, the colony is very brave, and there's a lot of singing.</li>
+        </texts>
+        <defaultOption>0</defaultOption>
+        <options>
+          <li>
+            <label>Watch it with everyone</label>
+            <outcome>The whole yard turned out for the play. People laughed at their own lines, argued about their own scenes, and cheered at the end.</outcome>
+            <outcomes>
+              <li>[honest] The colony watched its own story played out, the bad parts too, and was very quiet at the end. Then {A_nameDef} started clapping, and everyone joined in.</li>
+            </outcomes>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Joy"><target>Colony</target><amount>0.25</amount></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_Story_PlaySeen</thought></li>
+            </effects>
+            <ways><openness>1</openness></ways>
+          </li>
+          <li>
+            <label>Have our best talker ask them to change the ending</label>
+            <outcome>{B_nameDef} took {X_nameDef} aside before the curtain and talked for an hour. The ending is different now, and better.</outcome>
+            <riskChance>0.4</riskChance>
+            <riskSkill>Social</riskSkill>
+            <riskReplaces>true</riskReplaces>
+            <riskOutcome>{B_nameDef} took {X_nameDef} aside before the curtain. {X_nameDef} listened politely, and played the ending exactly as written.</riskOutcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Needs"><target>Colony</target><skill>Social</skill><minLevel>6</minLevel><asB>true</asB></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Joy"><target>Colony</target><amount>0.2</amount></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_Story_PlaySeen</thought></li>
+            </effects>
+            <riskEffects>
+              <li Class="ColonyCouncil.DilemmaEffect_Joy"><target>Colony</target><amount>0.2</amount></li>
+            </riskEffects>
+          </li>
+          <li>
+            <label>Ask them not to play it here</label>
+            <outcome>The troupe packs up the flats again without unloading them, and takes the play straight to {PLACE}.</outcome>
+            <ways><openness>-1</openness></ways>
+          </li>
+        </options>
+      </li>
+      <li Class="ColonyCouncil.StoryFlow">
+        <visitHours>20</visitHours>
+        <routes>
+          <li><option>1</option><when>safe</when><flags><li>changed</li></flags><next>Council_Story_PlayFans</next><days>12~18</days></li>
+          <li><option>2</option><requires>hit</requires><next>end:famous</next><days>8~12</days></li>
+          <li><requires>hit</requires><next>Council_Story_PlayFans</next><days>12~18</days></li>
+          <li><requires>flop</requires><next>end:flop</next><days>5~8</days></li>
+          <li><requires>scandal</requires><next>end:scandal</next><days>5~8</days></li>
+        </routes>
+      </li>
+      <li Class="ColonyCouncil.StoryText">
+        <chain>play</chain>
+        <key>playpremiere</key>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Council_Story_PlayFans</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>an admirer</label>
+    <workerClass>ColonyCouncil.HappeningWorker_StoryFlow</workerClass>
+    <baseChance>0</baseChance>
+    <minRefireDays>0</minRefireDays>
+    <earliestDay>0</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Visitors</group>
+        <notable>false</notable>
+        <addsPeople>true</addsPeople>
+        <answerDays>0.8</answerDays>
+        <titles>
+          <li>An admirer</li>
+          <li>Someone who saw the play</li>
+        </titles>
+        <texts>
+          <li>{X_nameDef} of {FACTION} saw the play about the colony at {PLACE}, and walked for three days to see the real thing. {X_nameDef} has already asked which one is {A_nameDef}, and seems faintly disappointed that {A_nameDef} is shorter than the actor.</li>
+          <li>[changed] {X_nameDef} of {FACTION} saw the play at {PLACE}, the version with the new ending, and came all the way to the colony to see if it's true. {X_nameDef} has a lot of questions, and some of them are about the ending.</li>
+          <li>[winter] {X_nameDef} of {FACTION} came through the snow to the colony's gate having seen the play at {PLACE}, and would like to shake {A_nameDef}'s hand. Then, perhaps, to stay a while.</li>
+        </texts>
+        <defaultOption>0</defaultOption>
+        <options>
+          <li>
+            <label>Show {X_objective} around</label>
+            <outcome>{A_nameDef} showed {X_nameDef} the colony, the real one, mud and all. {X_nameDef} was delighted by every bit of it.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Joy"><amount>0.15</amount></li>
+            </effects>
+            <ways><openness>1</openness></ways>
+          </li>
+          <li>
+            <label>Ask {X_objective} to stay</label>
+            <outcome>{X_nameDef} said yes before {A_nameDef} had finished asking.</outcome>
+            <riskChance>0.5</riskChance>
+            <riskReplaces>true</riskReplaces>
+            <riskOutcome>{X_nameDef} was flattered, and said no. The colony is better as a story, {X_nameDef} thinks, than as a place to live.</riskOutcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Join" />
+            </effects>
+            <ways><openness>2</openness></ways>
+          </li>
+        </options>
+      </li>
+      <li Class="ColonyCouncil.StoryFlow">
+        <newcomer>true</newcomer>
+        <newcomerAges>18~40</newcomerAges>
+        <visitHours>16</visitHours>
+        <routes>
+          <li><option>1</option><when>safe</when><next>end:fanjoined</next><days>0.3~0.6</days></li>
+          <li><next>end:famous</next><days>0.5~1</days></li>
+        </routes>
+      </li>
+      <li Class="ColonyCouncil.StoryText">
+        <chain>play</chain>
+        <key>playfans</key>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+</Defs>
