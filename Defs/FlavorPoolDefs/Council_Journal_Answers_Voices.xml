@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    More journal entries for the pools in Council_Journal.xml (a wish granted, refused or left to lapse, a raid, a
+    loss), for particular people and seasons. Same placeholders: {WISH} where the pool has one, {OTHER_...} for the dead.
+  -->
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Council_Voices_Journal_Granted</defName>
+    <pool>Council_Journal_Granted</pool>
+    <lines>
+      <plain>
+        <li>[winter] A cold day, and still the best one in a while: they said yes to "{WISH}".</li>
+        <li>[trait:Ascetic] They gave me what I asked for. I'll try not to ask for more.</li>
+        <li>[trait:Jealous] Got mine at last. Now the others can watch me enjoy it for a change.</li>
+        <li>[old] I've asked for things all my life and heard no more often than yes. Today was a yes.</li>
+        <li>[teen] They actually listened to me. I didn't think they took me seriously.</li>
+        <li>[hurt] Laid up and sore, and they still went and did it. I didn't expect that.</li>
+        <li>[newcomer] I've barely been here, and they did what I asked anyway. I'll remember that.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Council_Voices_Journal_Lapsed</defName>
+    <pool>Council_Journal_Lapsed</pool>
+    <lines>
+      <plain>
+        <li>[winter] Still nothing. "{WISH}" can wait with the rest of my hopes until spring.</li>
+        <li>[trait:Greedy] They found time for everyone's requests but mine. I've made a list.</li>
+        <li>[old] I've waited on councils before. This one is no faster.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Council_Voices_Journal_Refused</defName>
+    <pool>Council_Journal_Refused</pool>
+    <lines>
+      <plain>
+        <li>[trait:Greedy] Refused. They'll say yes to someone else soon enough, and I'll be watching.</li>
+        <li>[trait:Volatile] They said no, and I said some things back. I'm not sorry yet.</li>
+        <li>[old] At my age you learn to take a no. I still don't like it.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Council_Voices_Journal_Raid</defName>
+    <pool>Council_Journal_Raid</pool>
+    <lines>
+      <plain>
+        <li>[winter] Fought in the snow. My feet are still numb, but I've got all my toes.</li>
+        <li>[trait:Wimp] I hid for most of it. I'm not proud. I'm alive.</li>
+        <li>[trait:Tough] Took a hit and kept going. The others say I should rest. I'll rest tomorrow.</li>
+        <li>[trait:Nervous] My hands haven't stopped shaking since it ended.</li>
+        <li>[old] I've seen too many of these. They don't get easier. They just get familiar.</li>
+        <li>[lowtech] Arrows still stuck in the gate. I pulled them out one by one and kept the good ones.</li>
+        <li>[!lowtech] The walls are pocked with bullet holes. I counted them on the way to supper.</li>
+        <li>[newcomer] My first raid here. The others moved like they'd done it before, and I suppose they have.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+</Defs>

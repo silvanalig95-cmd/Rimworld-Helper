@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    More reminders, last calls and thanks for wishes, for particular people (traits, age, trust, a repeat request).
+    Same placeholders and tags as Council_Scenes.xml. Reminders and last calls show only their first sentence in the
+    message, so the first sentence carries the request.
+  -->
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Council_Voices_Pool_Reminder</defName>
+    <pool>Council_Pool_Reminder</pool>
+    <lines>
+      <plain>
+        <li>[trait:Greedy] I'd like "{WISH}" before somebody else gets something first.</li>
+        <li>[trait:Jealous] Others have been given things since I asked for "{WISH}". I've noticed.</li>
+        <li>[trait:Nervous] Sorry to ask again about "{WISH}". I keep worrying it was forgotten.</li>
+        <li>[trait:Ascetic] I don't ask for much. I asked for "{WISH}", and I'm still waiting.</li>
+        <li>[child] Is "{WISH}" happening yet? I asked ages ago.</li>
+        <li>[old] At my age I can't wait forever for "{WISH}".</li>
+        <li>[doubtful] I'm starting to wonder whether "{WISH}" was ever going to happen.</li>
+        <li>[trusting] I'm sure you haven't forgotten "{WISH}". I'm only reminding you.</li>
+        <li>[repeat] I asked for "{WISH}" once before and it came to nothing, so I'm asking early this time.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Council_Voices_Pool_LastCall</defName>
+    <pool>Council_Pool_LastCall</pool>
+    <lines>
+      <plain>
+        <li>[trait:Volatile] One more day without "{WISH}" and I won't be responsible for what I say.</li>
+        <li>[bitter] Ask, wait, nothing. "{WISH}" was never going to happen, was it?</li>
+        <li>[child] You said maybe about "{WISH}". Maybe means yes, right?</li>
+        <li>[old] I'm too old to keep asking for "{WISH}". This is the last time.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Council_Voices_Pool_Scene_Thanks</defName>
+    <pool>Council_Pool_Scene_Thanks</pool>
+    <lines>
+      <plain>
+        <li>[trait:Greedy] {PAWN_nameDef} admires it, then asks whether there's any chance of a second one.</li>
+        <li>[trait:Gourmand] {PAWN_nameDef} celebrates with an extra helping at supper.</li>
+        <li>[trait:Recluse] {PAWN_nameDef} waits until everyone has gone before going to look at it properly.</li>
+        <li>[trait:Pessimist|trait:Depressive] {PAWN_nameDef} keeps glancing at it, as though it might disappear.</li>
+        <li>[trait:NightOwl] {PAWN_nameDef} is still up admiring it long after everyone else is asleep.</li>
+        <li>[winter] {PAWN_nameDef} stamps the snow off {PAWN_possessive} boots, takes one look, and grins.</li>
+        <li>[summer] {PAWN_nameDef} wipes the sweat from {PAWN_possessive} face and stands there smiling at it.</li>
+        <li>[afterraid] After the fighting, it's the first thing {PAWN_nameDef} has smiled at in days.</li>
+        <li>[grieving] For the first time since the loss, {PAWN_nameDef} looks something like glad.</li>
+        <li>[trusting] {PAWN_nameDef} had no doubt it would happen, and still looks delighted.</li>
+        <li>[doubtful] {PAWN_nameDef} looks at it, then at the council, and the doubt goes out of {PAWN_possessive} face.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+</Defs>
