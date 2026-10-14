@@ -1333,6 +1333,7 @@
         <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] argued over whether a pebble that hit [pebbletarget] and bounced off counted.</li>
         <li>pebbletarget->an upturned bucket</li>
         <li>pebblestakes->the last slice of bread</li>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] kept score of their throws at [pebbletarget] with marks on a plank, and argued over every one.</li>
       </rulesStrings>
     </logRulesInitiator>
     <modExtensions>

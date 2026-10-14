@@ -23,6 +23,9 @@ The draw rates are estimates: computed for moments, wish talk, dream talk, socia
 their weights, cooldowns and conditions, and set by hand (FREQ below) from reading the callers for the rest. They are
 meant for ranking, not as exact numbers.
 
+A pool is flagged thin when it is seen about daily (50+ draws a year) with fewer than 15 lines in a speaker's reach,
+or about weekly (8+) with fewer than 8, or with its picks piled onto two or three lines (eff under 3).
+
 Usage: python3 Tools/variety_report.py [--top N] [--filter REGEX] [--all] [--csv]
   --top N       rows to print (default 60)
   --filter RE   only pools whose name matches
@@ -763,7 +766,9 @@ def main():
     print("toned detail = lines per tone (plain/warm/blunt/cheerful/gloomy/cold); grammar detail = root shapes + sub-rule lines.\n")
     print(f"{'seen/line':>9} {'draws/yr':>8} {'eff':>5} {'eff10':>5} {'reach':>5} {'lines':>5}  {'pool':52} detail")
     for per_line, p, eff, eff10, reach, draws, tones in rows[:top]:
-        flag = " <- thin" if (draws >= 8 and eff < 8) or (draws >= 30 and eff < 15) else ""
+        # Seen about daily (50+ a year) wants 15 or more lines within a speaker's reach, about weekly (8+) wants 8 or
+        # more, and either wants picks that aren't piled onto one or two lines.
+        flag = " <- thin" if (draws >= 50 and reach < 15) or (draws >= 8 and (reach < 8 or eff < 3)) else ""
         name = p.name.replace(".logRulesInitiator.rulesStrings", "").replace(".rulePack.rulesStrings", "")
         print(f"{per_line:9.2f} {draws:8.1f} {eff:5.1f} {eff10:5.1f} {reach:5.1f} {p.count():5d}  {name[:52]:52} {tones}{flag}")
 

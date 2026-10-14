@@ -147,6 +147,9 @@
         <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] that [RECIPIENT_pronoun] had turned up in [INITIATOR_possessive] dream and been very helpful.</li>
         <li>together->got lost in a market and found each other again</li>
         <li>together->ran a stall at a fair, selling turnips</li>
+        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] that [RECIPIENT_pronoun] had been the hero of [INITIATOR_possessive] dream last night.</li>
+        <li>r_logentry->[INITIATOR_nameDef] described a dream in which the two of them [together], and [RECIPIENT_nameDef] asked how it ended.</li>
+        <li>together->swapped jobs for a day and were both terrible at it</li>
       </rulesStrings>
     </logRulesInitiator>
   </InteractionDef>

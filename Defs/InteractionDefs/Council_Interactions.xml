@@ -346,6 +346,8 @@
         <li>r_logentry->[INITIATOR_nameDef] warned [RECIPIENT_nameDef] that the council's promises never come with a date.</li>
         <li>favorites->whoever they owe a favor</li>
         <li>bitter->the council remembers what you did wrong and forgets what it promised</li>
+        <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] what the council had ever done for either of them.</li>
+        <li>bitter->the council keeps a list of who to say yes to, and neither of them is on it</li>
       </rulesStrings>
     </logRulesInitiator>
   </InteractionDef>
@@ -367,6 +369,7 @@
         <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] that the council had been fair to [INITIATOR_objective], and would be to [RECIPIENT_objective] too.</li>
         <li>r_logentry->[INITIATOR_nameDef] assured [RECIPIENT_nameDef] that asking the council was worth the wait.</li>
         <li>proof->the new beds in the barracks</li>
+        <li>r_logentry->[INITIATOR_nameDef] reminded [RECIPIENT_nameDef] how things were before the council, and how they are now.</li>
       </rulesStrings>
     </logRulesInitiator>
   </InteractionDef>
@@ -398,6 +401,7 @@
         <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] went over everything wrong with [decree], twice.</li>
         <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] that [decree] was [verdict], and [RECIPIENT_nameDef] nodded.</li>
         <li>verdict->a lot of rules for very little reason</li>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] came up with a dozen ways around [decree], and used none of them.</li>
       </rulesStrings>
     </logRulesInitiator>
   </InteractionDef>
@@ -425,6 +429,7 @@
         <li>r_logentry->[INITIATOR_nameDef] reminded [RECIPIENT_nameDef] that the council had decided [decree] fairly, and [RECIPIENT_nameDef] said that wasn't the point.</li>
         <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] that [decree] would look better in a season's time, and [RECIPIENT_nameDef] said [RECIPIENT_pronoun] doubted it.</li>
         <li>defense->hard now, but worth it later</li>
+        <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] to give [decree] a fair try before condemning it.</li>
       </rulesStrings>
     </logRulesInitiator>
   </InteractionDef>

@@ -160,27 +160,33 @@
         <li>I saw what {ENVIED_nameDef} got.</li>
         <li>Since we're handing things out now, and {ENVIED_nameDef} got one...</li>
         <li>No offense to {ENVIED_nameDef}, but I've been here just as long.</li>
+        <li>Now that {ENVIED_nameDef} has one, it's hard not to notice I don't.</li>
       </plain>
       <warm>
         <li>I'm glad for {ENVIED_nameDef}, I really am. It made me realize I'd like one too.</li>
         <li>Seeing {ENVIED_nameDef} so happy got me thinking.</li>
+        <li>{ENVIED_nameDef} deserved it. I'd like one too, when there's time.</li>
       </warm>
       <blunt>
         <li>So {ENVIED_nameDef} gets one and I don't?</li>
         <li>Right. {ENVIED_nameDef} asked, {ENVIED_nameDef} got. My turn.</li>
         <li>What's {ENVIED_nameDef} done to earn it that I haven't?</li>
+        <li>{ENVIED_nameDef} got one. I want one.</li>
       </blunt>
       <cheerful>
         <li>Seeing {ENVIED_nameDef}'s gave me an idea!</li>
         <li>I saw {ENVIED_nameDef}'s and now I want one too!</li>
+        <li>{ENVIED_nameDef} let me try it, and now I want one too!</li>
       </cheerful>
       <gloomy>
         <li>{ENVIED_nameDef} got one. Of course.</li>
         <li>Some people only have to ask once.</li>
+        <li>Of course {ENVIED_nameDef} got one first.</li>
       </gloomy>
       <cold>
         <li>{ENVIED_nameDef} set a precedent. I'm invoking it.</li>
         <li>Fair is fair. {ENVIED_nameDef} received one; so should I.</li>
+        <li>{ENVIED_nameDef} has set a precedent. I'm invoking it.</li>
       </cold>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
