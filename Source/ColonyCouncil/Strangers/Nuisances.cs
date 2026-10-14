@@ -33,7 +33,21 @@ namespace ColonyCouncil
         /// <summary>They're wearing something of awful or poor quality.</summary>
         ShoddyClothes,
         /// <summary>They sleep on a bedroll, a sleeping spot or a bed with little comfort.</summary>
-        HardBed
+        HardBed,
+        /// <summary>The closed room they're in is filthy.</summary>
+        DirtyRoom,
+        /// <summary>The closed room they're in is below 12 °C (not a freezer) while it's cold outside.</summary>
+        ChillyRoom,
+        /// <summary>The closed room they're in is above 29 °C.</summary>
+        StuffyRoom,
+        /// <summary>One of the colony's animals is in their bedroom with them ({THING} is the animal).</summary>
+        PetInBed,
+        /// <summary>Something of ours is being built a few steps from their bed ({THING} is what).</summary>
+        BuildingWork,
+        /// <summary>A small wild animal is in the room with them ({THING} is its kind).</summary>
+        Vermin,
+        /// <summary>Their bed stands on bare earth.</summary>
+        BareFloor
     }
 
     /// <summary>
@@ -156,6 +170,13 @@ namespace ColonyCouncil
                 case NuisanceCheck.Clutter: return Clutter(map);
                 case NuisanceCheck.ShoddyClothes: return ShoddyClothes(p);
                 case NuisanceCheck.HardBed: return HardBed(p);
+                case NuisanceCheck.DirtyRoom: return DirtyRoom(p);
+                case NuisanceCheck.ChillyRoom: return ChillyRoom(p, map);
+                case NuisanceCheck.StuffyRoom: return StuffyRoom(p);
+                case NuisanceCheck.PetInBed: return PetInBed(p);
+                case NuisanceCheck.BuildingWork: return BuildingWork(p, map);
+                case NuisanceCheck.Vermin: return Vermin(p, map);
+                case NuisanceCheck.BareFloor: return BareFloor(p, map);
             }
             return null;
         }
@@ -300,6 +321,76 @@ namespace ColonyCouncil
             bool hard = bed.GetStatValue(StatDefOf.Comfort) < 0.6f || n.IndexOf("Bedroll", StringComparison.OrdinalIgnoreCase) >= 0
                         || n.IndexOf("SleepingSpot", StringComparison.OrdinalIgnoreCase) >= 0;
             return hard ? bed.def.label : null;
+        }
+
+        private static string DirtyRoom(Pawn p)
+        {
+            var room = IndoorRoom(p);
+            return room != null && room.GetStat(RoomStatDefOf.Cleanliness) < -1f ? "" : null;
+        }
+
+        private static string ChillyRoom(Pawn p, Map map)
+        {
+            var room = IndoorRoom(p);
+            if (room == null || map.mapTemperature.OutdoorTemp > 5f) return null;
+            float t = room.Temperature;
+            // Below freezing is a freezer or a lost cause, not a draft.
+            return t >= 0f && t < 12f ? "" : null;
+        }
+
+        private static string StuffyRoom(Pawn p)
+        {
+            var room = IndoorRoom(p);
+            return room != null && room.Temperature > 29f ? "" : null;
+        }
+
+        /// <summary>A colony animal in their own bedroom (not a barracks), while they're in it.</summary>
+        private static string PetInBed(Pawn p)
+        {
+            var room = RoomUtil.BedRoom(p);
+            if (room == null || !room.ProperRoom || room.PsychologicallyOutdoors || p.GetRoom() != room) return null;
+            if (room.ContainedBeds.Sum(b => b.SleepingSlotsCount) > 2) return null;
+            var things = room.ContainedAndAdjacentThings;
+            for (int i = 0; i < things.Count && i < MaxThingsLooked; i++)
+                if (things[i] is Pawn animal && animal != p && animal.RaceProps.Animal && animal.Faction == Faction.OfPlayer && !animal.Dead && animal.GetRoom() == room)
+                    return animal.LabelShort;
+            return null;
+        }
+
+        /// <summary>Building work of ours (a frame being put up) a few steps from their bed.</summary>
+        private static string BuildingWork(Pawn p, Map map)
+        {
+            var bed = Bed(p, map);
+            if (bed == null) return null;
+            foreach (var t in GenRadial.RadialDistinctThingsAround(bed.Position, map, 6f, true))
+                if (t is Frame frame && frame.Faction == Faction.OfPlayer && frame.def.entityDefToBuild != null)
+                    return frame.def.entityDefToBuild.label;
+            return null;
+        }
+
+        /// <summary>A small wild animal (a rat, a squirrel) in the closed room they're in.</summary>
+        private static string Vermin(Pawn p, Map map)
+        {
+            var room = IndoorRoom(p);
+            if (room == null || !map.IsPlayerHome) return null;
+            foreach (var t in GenRadial.RadialDistinctThingsAround(p.Position, map, 9f, true))
+            {
+                if (!(t is Pawn animal) || animal.Dead || animal.Faction != null || animal.RaceProps == null || !animal.RaceProps.Animal) continue;
+                if (animal.BodySize > 0.4f || animal.RaceProps.FleshType == FleshTypeDefOf.Insectoid || animal.GetRoom() != room) continue;
+                return animal.KindLabel;
+            }
+            return null;
+        }
+
+        /// <summary>Their bed stands on bare earth (ground plants could grow in): no floor laid.</summary>
+        private static string BareFloor(Pawn p, Map map)
+        {
+            var bed = Bed(p, map);
+            if (bed == null) return null;
+            var room = bed.GetRoom();
+            if (room == null || !room.ProperRoom || room.PsychologicallyOutdoors) return null;
+            var terrain = bed.Position.GetTerrain(map);
+            return terrain != null && terrain.fertility > 0f ? "" : null;
         }
 
         public void ExposeData()

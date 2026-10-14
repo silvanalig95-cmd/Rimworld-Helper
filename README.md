@@ -165,11 +165,12 @@ complain about a bunkmate's snoring, take the last good meal, keep a borrowed kn
 and give each other the cold shoulder after a spat. Some natures grate: an annoying voice, creepy breathing, a
 pyromaniac near the tinder, a nudist at supper, an ascetic lecturing a greedy one. So do the times: someone keeps
 away from a sick colonist, two argue about a camp, a temper snaps. A messy or cramped home adds its own: a door that
-sticks, a leaking roof, smoke in a small room, a generator droning next to someone's bed. Each costs a point or two
-of mood for half a day to a day and a half. In an ordinary colony they come about as often as the warm moments; less
-in a happy, roomy one, more in barracks or between people who dislike each other. Abrasive, volatile and jealous
-colonists start more of them, kind ones none. After a spat the two share no warm moments until it wears off or they
-clear the air. A setting turns them off.
+sticks, a leaking roof, smoke in a small room, a generator droning next to someone's bed, a filthy room, a cold or
+stifling one, the dog asleep on the bed, building work right outside, vermin in the stores, a bare earth floor. Each
+costs a point or two of mood for half a day to a day and a half. In an ordinary colony they come about as often as
+the warm moments; less in a happy, roomy one, more in barracks or between people who dislike each other. Abrasive,
+volatile and jealous colonists start more of them, kind ones none. After a spat the two share no warm moments until
+it wears off or they clear the air. A setting turns them off.
 
 **Everyday pressures.** A colony that has everything still has its everyday wear. Five small, fixable pressures show
 as moods while their cause lasts, each saying what caused it, with what helps in the Mood tab:
