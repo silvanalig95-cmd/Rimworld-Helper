@@ -18,22 +18,29 @@
         <li>This one's from {OTHER_nameDef}, who isn't with us. "{AMBITION}".</li>
         <li>{OTHER_nameDef} asked me to put this forward. "{AMBITION}".</li>
         <li>One more idea, and the one who had it isn't here to defend it. "{AMBITION}", from {OTHER_nameDef}.</li>
+        <li>{OTHER_nameDef} isn't here, but {OTHER_pronoun} wanted this heard: "{AMBITION}".</li>
+        <li>Reading this for {OTHER_nameDef}, who couldn't come. "{AMBITION}".</li>
       </plain>
       <warm>
         <li>{OTHER_nameDef} would want this heard, so here it is. "{AMBITION}".</li>
         <li>Let's give {OTHER_nameDef}'s idea a fair hearing, even without {OTHER_objective} here. "{AMBITION}".</li>
+        <li>{OTHER_nameDef} worked hard on this idea, so listen kindly. "{AMBITION}".</li>
       </warm>
       <blunt>
         <li>{OTHER_nameDef} isn't here. The idea is "{AMBITION}". Talk.</li>
+        <li>From {OTHER_nameDef}. "{AMBITION}". Discuss.</li>
       </blunt>
       <cheerful>
         <li>And from {OTHER_nameDef}, who is missing all the fun: "{AMBITION}"!</li>
+        <li>{OTHER_nameDef} sends a proposal, and I'm sure {OTHER_pronoun} sends love too! "{AMBITION}".</li>
       </cheerful>
       <gloomy>
         <li>{OTHER_nameDef} isn't here to argue for it, which won't help. "{AMBITION}".</li>
+        <li>{OTHER_nameDef} is off somewhere, so I'll read it. "{AMBITION}". Don't shout at me.</li>
       </gloomy>
       <cold>
         <li>{OTHER_nameDef} is absent. The proposal stands regardless. "{AMBITION}".</li>
+        <li>On behalf of {OTHER_nameDef}: "{AMBITION}". Consider it on its merits.</li>
       </cold>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
@@ -48,21 +55,28 @@
         <li>Boots on, {OTHER_nameDef}. They want everyone at the council.</li>
         <li>[night] Sorry, {OTHER_nameDef}. It's the council.</li>
         <li>[cold] I know it's warm under there. The council's starting.</li>
+        <li>{OTHER_nameDef}, the council's meeting. They're waiting on you.</li>
+        <li>Come on, {OTHER_nameDef}. You can sleep through the boring parts.</li>
       </plain>
       <warm>
         <li>Sorry to wake you, {OTHER_nameDef}. The meeting's starting, and your voice counts.</li>
+        <li>I saved you a seat, {OTHER_nameDef}. The council's about to start.</li>
       </warm>
       <blunt>
         <li>Get up. Meeting.</li>
+        <li>Up. The council's waiting.</li>
       </blunt>
       <cheerful>
         <li>Rise and shine, {OTHER_nameDef}! Council time.</li>
+        <li>Wake up, {OTHER_nameDef}! You don't want to miss the arguing!</li>
       </cheerful>
       <gloomy>
         <li>I'd let you sleep if I could, {OTHER_nameDef}. Council's meeting.</li>
+        <li>Up, {OTHER_nameDef}. Another meeting. I know.</li>
       </gloomy>
       <cold>
         <li>{OTHER_nameDef}. You're expected at the council.</li>
+        <li>The council requires you, {OTHER_nameDef}. Get dressed.</li>
       </cold>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
