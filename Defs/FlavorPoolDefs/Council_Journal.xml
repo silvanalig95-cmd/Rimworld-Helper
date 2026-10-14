@@ -399,4 +399,21 @@
     </lines>
   </ColonyCouncil.FlavorPoolDef>
 
+  <!-- The room of their own the council gave them, taken away again (the first time). {DAYS} = how long they had it ("23 days"). -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Journal_RoomTaken</defName>
+    <lines>
+      <plain>
+        <li>They put me back in with the others today. I had that room for {DAYS}.</li>
+        <li>My room isn't just mine any more. I'm sharing again, and I wasn't asked first.</li>
+        <li>[winter] Back in shared quarters, in the middle of winter. More breathing in the dark, less sleep.</li>
+      </plain>
+      <warm><li>I suppose the room was needed for someone. I still miss it.</li></warm>
+      <blunt><li>They gave me a room and took it back. I won't forget that.</li></blunt>
+      <cheerful><li>Out of my room and back with the others. At least the card games are closer now.</li></cheerful>
+      <gloomy><li>I knew the room wouldn't last. Back to the snoring.</li></gloomy>
+      <cold><li>My private quarters were reassigned. I'll remember who decided that.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
 </Defs>

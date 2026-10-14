@@ -112,6 +112,12 @@ heard several times lately becomes much less likely, and one nobody here has eve
 **Others are watching.** Friends are happy for the one who got their wish. The jealous, rivals and anyone who
 has been waiting longer can feel passed over, and some will want the same thing.
 
+**A room taken back.** Someone whose wish for a room of their own came true minds being moved back into a barracks
+or into a bedroom with someone who isn't their partner: "my room was taken from me" (-3, and some trust lost each
+day, scaled like the council's other letdowns), with a line in their journal the first time. It ends when they have
+a room of their own again, and after about 30 days in shared quarters they accept it for good. Children, slaves and
+ascetics don't mind.
+
 **Trust.** Each colonist's trust in the council (bitter, doubtful, neutral, trusting, devoted) rises and falls
 with all of this. Trust isn't only mood: loyal colonists work and learn faster and hold together better, while
 a grudge slows them down and shortens their temper (both show in the health tab). Bitter colonists grumble, stop
@@ -371,7 +377,12 @@ follows the mouse, and a planner panel lets you:
 - **clear the site**: cut plants and trees, mine rock (inside, in the doorway and just outside the door),
   replace your own buildings in the way, smooth natural stone. Pieces blocked by rock go down by themselves
   once it's mined.
-- let the council **find a good spot** near your colony and the rooms it belongs next to, and place it there.
+- build on **uneven ground**: where part of a room is on water, marsh or mud, the cells that can't hold a wall,
+  the door or a piece of furniture are outlined in amber and left out, and the rest goes down. The message says
+  how many wall segments and pieces were left out, and whether the door was. Only when nothing at all could be
+  built does the planner refuse.
+- let the council **find a good spot** near your colony and the rooms it belongs next to, and place it there. It
+  only suggests spots where all of the room can be built.
 - **upgrade a built room**: hover a room you already have and click. The plan turns to the wall with its door,
   counts what's there and adds only the missing furniture; the floor goes only on bare ground. The panel shows
   the room's impressiveness as it is now.
@@ -766,6 +777,8 @@ The council window's **Moods** page (Colony section) adds it up for the whole co
 who feels it, who is closest to breaking, and how much comes from the base game, Rimfolk and each of your mods.
 Buttons lead straight to the advisor's matching warning, the council page that deals with it, or an Almanac page.
 Hints cover the base game, the DLCs and Rimfolk; moods from other mods get general advice and their mod's name.
+The game's own **Needs** tab gets the same hints: hover a mood and its usual tooltip ends with which mod it comes
+from and what to do about it (a setting turns this off).
 
 ## Feelings and strain
 Mood says how a colonist feels today. **Strain** says how worn down they are, and a fine meal or a nice room can't buy

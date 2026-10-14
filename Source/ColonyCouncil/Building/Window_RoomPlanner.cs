@@ -290,7 +290,8 @@ namespace ColonyCouncil
                 }
                 GUI.color = Warn;
                 foreach (var warning in plan.warnings) y += Label(y, w, warning);
-                if (!plan.Valid)
+                // Only what has to be dealt with first is red; what the ground can't hold is one of the amber warnings above.
+                if (!plan.CanPlace)
                 {
                     GUI.color = Short;
                     y += Label(y, w, plan.FailReason ?? "");

@@ -573,7 +573,7 @@
   <CC_Plan_Block_Edge>Too close to the map edge or unexplored ground.</CC_Plan_Block_Edge>
   <CC_Plan_Block_Rock>Rock is in the way. Tick "mine rock" to dig it out.</CC_Plan_Block_Rock>
   <CC_Plan_Block_Own>Your own buildings are in the way. Tick "replace my buildings" to take them down first.</CC_Plan_Block_Own>
-  <CC_Plan_Block_Ground>The ground here can't hold walls (water, marsh or mud).</CC_Plan_Block_Ground>
+  <CC_Plan_Block_Ground>None of this room can be built here. The ground can't hold walls (water, marsh or mud).</CC_Plan_Block_Ground>
   <CC_Plan_Block_Other>Something you can't remove is in the way.</CC_Plan_Block_Other>
   <CC_Plan_Block_DoorRock>Rock where the door goes. Tick "mine rock".</CC_Plan_Block_DoorRock>
   <CC_Plan_Block_DoorOwn>One of your buildings sits where the door goes. Tick "replace my buildings", or move the door.</CC_Plan_Block_DoorOwn>
@@ -1702,7 +1702,7 @@ Those against it ({WHO}) will trust the council less and resent it more than usu
   <CC_Settings_DeepHooks>Deeper game hooks</CC_Settings_DeepHooks>
   <CC_Settings_DeepHooks_Tip>Small, careful changes to how the game itself behaves (through Harmony), such as Rimfolk's hints in the game's own Needs tab. Each one switches itself off if it can't work with your other mods. Active now: {0}; skipped: {1}. Turning this off takes effect at once.</CC_Settings_DeepHooks_Tip>
   <CC_Settings_NeedsTabHints>... and in the game's Needs tab</CC_Settings_NeedsTabHints>
-  <CC_Settings_NeedsTabHints_Tip>Hovering a mood in the game's own Needs tab also shows why it's there, when it ends, which mod it comes from, and what to do about it.</CC_Settings_NeedsTabHints_Tip>
+  <CC_Settings_NeedsTabHints_Tip>Hovering a mood in the game's own Needs tab also shows, at the end of the same tooltip, which mod it comes from, why it's there and what to do about it.</CC_Settings_NeedsTabHints_Tip>
   <CC_Settings_LetterNotes>... and notes in the game's letters</CC_Settings_LetterNotes>
   <CC_Settings_LetterNotes_Tip>Some of the game's own letters get a line of what Rimfolk knows: the nemesis riding with a raid (who now arrives with it), what was weighing on a colonist who breaks down, and, when a colonist dies, how long they'd been here and what they never got to do.</CC_Settings_LetterNotes_Tip>
 

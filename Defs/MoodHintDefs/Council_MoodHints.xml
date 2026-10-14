@@ -750,4 +750,12 @@
     <fix>The colony paid tribute, and it stings. Stronger defenses make the next demand easier to refuse.</fix>
     <signal>Council_Adv_Defense</signal>
   </ColonyCouncil.MoodHintDef>
+
+  <ColonyCouncil.MoodHintDef>
+    <defName>Council_Mood_RoomTaken</defName>
+    <thoughts><li>Council_RoomTaken</li></thoughts>
+    <fix>Give them a room of their own again, or a bedroom they share only with their partner. It also costs some trust each day. After about 30 days in shared quarters they accept it and it stops.</fix>
+    <article>Council_Alm_2_10_BarracksOrBedrooms</article>
+    <signal>Council_Adv_Beds</signal>
+  </ColonyCouncil.MoodHintDef>
 </Defs>
