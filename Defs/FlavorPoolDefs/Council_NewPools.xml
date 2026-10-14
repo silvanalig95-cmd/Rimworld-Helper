@@ -33,6 +33,7 @@
         <li>[lowmood] I need something in that room besides four walls and bad dreams.</li>
         <li>[child] I want {THING} in my room, a real one! I drew where it goes.</li>
         <li>[old] At my age, you stop waiting for the right moment to make a place your own.</li>
+        <li>I'd like my room to look like someone cares about it, starting with {THING}.</li>
       </plain>
       <warm>
         <li>Would anyone mind if my room got {THING}? I've marked a spot where it won't be in anyone's way.</li>
@@ -41,6 +42,10 @@
         <li>[touch:light] I like to read before sleep when there's time. A light would save my eyes.</li>
         <li>[touch:endtable] Somewhere beside the bed for a cup of water and a keepsake or two. I've marked the spot.</li>
         <li>[touch:dresser] I'd love a place to fold things properly. It's how I was raised.</li>
+        <li>[touch:plantpot] I'd like something green by my window, if no one minds.</li>
+        <li>[touch:light] A light by my bed, so I can mend things in the evening without keeping anyone up.</li>
+        <li>[touch:endtable] Just a table by my bed, since I've been keeping my cup on the windowsill.</li>
+        <li>[touch:dresser] I'd like a dresser, so my things stop spilling out into the hall.</li>
       </warm>
       <blunt>
         <li>My room, my corner, my {THINGBARE}. Any questions?</li>
@@ -49,6 +54,10 @@
         <li>[touch:light] I've stubbed every toe I own in that room. I want a light.</li>
         <li>[touch:endtable] I need somewhere to put things that isn't the floor or my boots.</li>
         <li>[touch:dresser] My clothes have been on the floor long enough.</li>
+        <li>[touch:plantpot] I'm getting a plant. Don't water it for me.</li>
+        <li>[touch:light] Dark room. Want a light. Blueprint's down.</li>
+        <li>[touch:endtable] Table by the bed. That's all.</li>
+        <li>[touch:dresser] I want drawers, because my clothes are on the floor.</li>
       </blunt>
       <cheerful>
         <li>I've marked a spot for {THING}! My room is finally going to feel like mine.</li>
@@ -57,6 +66,10 @@
         <li>[touch:light] A light in my room! I'll finally see what color the walls are.</li>
         <li>[touch:endtable] A bedside table! Somewhere to put my cup at night, like a civilized person.</li>
         <li>[touch:dresser] Real drawers! I can lose my socks in an organized way now.</li>
+        <li>[touch:plantpot] I'm going to name my plant before it's even planted!</li>
+        <li>[touch:light] My very own light! I'll read in bed every night.</li>
+        <li>[touch:endtable] A table for my bedside, for my cup and my lucky stone!</li>
+        <li>[touch:dresser] A dresser! Somewhere to hide all my odd socks.</li>
       </cheerful>
       <gloomy>
         <li>I'll probably be dead before anyone builds it, but I've marked out {THING} anyway.</li>
@@ -65,6 +78,10 @@
         <li>[touch:light] The dark in my room is starting to feel like company. I'd rather have a light.</li>
         <li>[touch:endtable] A table by the bed, for the water cup and the long nights.</li>
         <li>[touch:dresser] Somewhere to keep my things. It'll be easier for whoever clears out my room.</li>
+        <li>[touch:plantpot] Something green in my room. It might outlast me.</li>
+        <li>[touch:light] A light, for the nights when I can't sleep.</li>
+        <li>[touch:endtable] A table for the cup of water I reach for when I wake in the night, which is most nights.</li>
+        <li>[touch:dresser] My clothes on the floor make the room feel like a cell. A dresser might help.</li>
       </gloomy>
       <cold>
         <li>My room has an unused wall. I've assigned it {THING}.</li>
@@ -73,6 +90,10 @@
         <li>[touch:light] I lose minutes every night looking for things in the dark. A light gets them back.</li>
         <li>[touch:endtable] An end table keeps everything I need within reach of the bed.</li>
         <li>[touch:dresser] Clothes last longer folded than heaped. A dresser is just maintenance.</li>
+        <li>[touch:plantpot] A plant improves a room at very little cost. I've marked the spot.</li>
+        <li>[touch:light] Reading in the evening requires a light. I've planned one.</li>
+        <li>[touch:endtable] I've measured the space by my bed, and an end table fits exactly.</li>
+        <li>[touch:dresser] My belongings need sorting. A dresser does that.</li>
       </cold>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
@@ -93,36 +114,42 @@
         <li>[old] That's how a room should look, and I've lived in enough of them to know.</li>
         <li>[child] Come and see my room, come and see, there's a {THINGBARE} in it now!</li>
         <li>[trait:Greedy] Lovely, so what's next for my room?</li>
+        <li>It's only one {THINGBARE}, but it changes the whole room.</li>
       </plain>
       <warm>
         <li>Thank you to whoever built it; I know it was extra work on top of everything else.</li>
         <li>[touch:plantpot] I watered it already, probably too much, but it looks happy.</li>
         <li>[touch:light] I read a whole chapter last night without squinting once.</li>
         <li>[touch:dresser] Everything folded and put away, the way it should be in a home.</li>
+        <li>I'll thank whoever built it properly at supper.</li>
       </warm>
       <blunt>
         <li>It's in, it's mine, and it stays where it is.</li>
         <li>About time, and it's not even crooked.</li>
         <li>[touch:light] Finally a light, and now I can see how dusty everything is.</li>
         <li>[touch:endtable] Good, my things have somewhere to go besides the floor.</li>
+        <li>It's done and it's mine.</li>
       </blunt>
       <cheerful>
         <li>My new {THINGBARE} is perfect and I've already shown it to three people!</li>
         <li>[touch:plantpot] It's growing, or at least the dirt looks very ambitious!</li>
         <li>[touch:light] Light in my room whenever I want it, like royalty!</li>
         <li>[touch:dresser] Every drawer has something in it already!</li>
+        <li>I keep finding excuses to go back to my room and look at it!</li>
       </cheerful>
       <gloomy>
         <li>It's nice, and it'll outlast me, which is something.</li>
         <li>It doesn't fix anything, but it's nice to look at.</li>
         <li>[touch:plantpot] The plant is doing better than I am.</li>
         <li>[touch:endtable] Nice table; it'll hold my things just fine after I'm gone.</li>
+        <li>It's nice, I'll give it that.</li>
       </gloomy>
       <cold>
         <li>Installed as planned; the room is measurably better.</li>
         <li>Acceptable work; I've noted who did it.</li>
         <li>[touch:light] I can see the door from my bed now, which was the point.</li>
         <li>[touch:dresser] Everything I own is now sorted and accounted for.</li>
+        <li>Completed, and in the right place.</li>
       </cold>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
@@ -211,31 +238,44 @@
         <li>[child] Me too, and {OTHER_nameDef} said I was allowed to ask!</li>
         <li>[trait:Jealous] If {OTHER_nameDef} gets it, I want it too, so I'm asking now instead of sulking later.</li>
         <li>[trait:Greedy] If {OTHER_nameDef}'s getting it, I want my share written in from the start.</li>
+        <li>I'll stand with {OTHER_nameDef} on this one.</li>
+        <li>{OTHER_nameDef} speaks for me too, on "{WISH}".</li>
+        <li>Write my name down under {OTHER_nameDef}'s.</li>
       </plain>
       <warm>
         <li>{OTHER_nameDef} shouldn't have to ask alone, so I'm asking too.</li>
         <li>I'd been meaning to say something, and {OTHER_nameDef} was braver about it than me.</li>
         <li>[trigger:death] Whatever {OTHER_nameDef} needs to say goodbye properly, I need it too.</li>
+        <li>I'll ask alongside {OTHER_nameDef}, because it matters to both of us.</li>
+        <li>If it helps {OTHER_nameDef} get it, put my name down too.</li>
       </warm>
       <blunt>
         <li>What {OTHER_nameDef} said, except I'm not saying please.</li>
         <li>{OTHER_nameDef} is right, which I hate, so let's get it done before I change my mind.</li>
         <li>[trigger:raid] I nearly died in that raid too, so yes, I'm with {OTHER_nameDef}.</li>
+        <li>Me too. Write it down.</li>
+        <li>Add me, and get on with it.</li>
       </blunt>
       <cheerful>
         <li>Me too, me too, put me down twice if that's allowed!</li>
         <li>{OTHER_nameDef} had a great idea, and I want my name on it too!</li>
         <li>A petition, how official, I'm signing it with a flourish!</li>
+        <li>Count me in, the more of us the better!</li>
+        <li>Two voices are louder than one, so here's mine!</li>
       </cheerful>
       <gloomy>
         <li>I'll ask too, for all the good it'll do either of us.</li>
         <li>One more voice, for whatever that's worth around here.</li>
         <li>[bitter] They never listen to me, but maybe they'll listen to {OTHER_nameDef}.</li>
+        <li>Add my name, though I don't expect it'll change anything.</li>
+        <li>I'll sign, since {OTHER_nameDef} seems to think it's worth trying.</li>
       </gloomy>
       <cold>
         <li>Supporting {OTHER_nameDef} costs me nothing and doubles the pressure, so count me in.</li>
         <li>{OTHER_nameDef}'s request benefits me as well, so I'm adding my weight to it.</li>
         <li>[promised] This was promised to {OTHER_nameDef}, and I'll be watching what that promise is worth.</li>
+        <li>Two requests carry more weight than one, so I'm adding mine.</li>
+        <li>I'll put my name to it, since it serves my interests too.</li>
       </cold>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
