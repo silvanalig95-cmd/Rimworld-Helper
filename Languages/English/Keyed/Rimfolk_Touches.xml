@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!-- ===================== Visual and sound touches (Source/ColonyCouncil/Touches/) ===================== -->
+
+  <CC_Settings_VisualTouches>Visual and sound touches</CC_Settings_VisualTouches>
+  <CC_Settings_VisualTouches_Tip>Uses the game's own effects, sky colors and sounds so you can see what Rimfolk's events are doing: a cooler night sky under a comet and warmer daylight in a warm spell, fireflies around colonists outside on firefly nights, hail bouncing off the fields, smoke from a camp's fire, dust when a warlord's band marches in, hearts at a wedding, a few notes of song for a kept tradition, a bell when a council meeting opens, and now and then a colonist humming at work or saying something about the sky. On a comet night an idle colonist in good spirits may stop to watch the sky.\n\nOnly on the map you're looking at and only on screen, a handful at a time. Nothing else in the game changes. Turn this off if you'd rather not have any of it.</CC_Settings_VisualTouches_Tip>
+
+</LanguageData>

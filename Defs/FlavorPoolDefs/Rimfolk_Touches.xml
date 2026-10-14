@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Short lines said above a colonist's head now and then, with the "visual and sound touches" setting
+    (Source/ColonyCouncil/Touches/VisualTouches.cs). Rare: at most one an hour, only for someone on screen.
+    Each pool is for one situation, so every line in it fits that situation; tags narrow it further.
+    Shown through the floating speech, which keeps only the first sentence: one sentence per line.
+  -->
+
+  <!-- Someone outside at night while the comet is in the sky. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Pool_TouchComet</defName>
+    <lines>
+      <plain>
+        <li>The comet's moved since last night.</li>
+        <li>You can see the tail without squinting tonight.</li>
+        <li>I keep looking up to check it's still there.</li>
+        <li>[lowtech] My grandmother said a comet means a hard winter.</li>
+        <li>[!lowtech] Someone should be writing down where it is each night.</li>
+        <li>[winter] Too cold to stand out here, and I'm standing out here anyway.</li>
+        <li>[child] Is it going to fall on us?</li>
+      </plain>
+      <warm>
+        <li>Come and look, it's brighter tonight.</li>
+        <li>Wake the others, they'll want to see this.</li>
+      </warm>
+      <blunt>
+        <li>It's a rock with a tail.</li>
+        <li>Pretty. Now I'm going to bed.</li>
+      </blunt>
+      <cheerful>
+        <li>Look at the tail on it!</li>
+        <li>Quick, make a wish before it moves.</li>
+      </cheerful>
+      <gloomy>
+        <li>Nothing good ever came with a comet.</li>
+        <li>It looks like a cut in the sky.</li>
+      </gloomy>
+      <cold>
+        <li>It's moved a finger's width since yesterday.</li>
+        <li>Interesting. It hasn't changed course.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- Someone outside after dark on a firefly night. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Pool_TouchFireflies</defName>
+    <lines>
+      <plain>
+        <li>The fireflies are thick over the long grass tonight.</li>
+        <li>There's one on my sleeve.</li>
+        <li>They come out right when the light goes.</li>
+        <li>[summer] Warm night for it.</li>
+        <li>[child] I caught one, and it's still blinking in my hands.</li>
+      </plain>
+      <warm>
+        <li>Walk slowly, you'll see more of them.</li>
+      </warm>
+      <blunt>
+        <li>Bugs. Glowing bugs.</li>
+      </blunt>
+      <cheerful>
+        <li>One landed on my nose!</li>
+        <li>There must be hundreds out tonight.</li>
+      </cheerful>
+      <gloomy>
+        <li>They'll be gone in a week.</li>
+      </gloomy>
+      <cold>
+        <li>They light up to find a mate, that's all it is.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- Someone caught outside in the hail. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Pool_TouchHail</defName>
+    <lines>
+      <plain>
+        <li>That one hit me right on the ear.</li>
+        <li>The crops are taking a beating out there.</li>
+        <li>Get under a roof, it's hailing.</li>
+        <li>[lowtech] Get the seed baskets under cover.</li>
+      </plain>
+      <warm>
+        <li>Inside, all of you, before it gets worse.</li>
+      </warm>
+      <blunt>
+        <li>Ow.</li>
+        <li>Great, ice from the sky.</li>
+      </blunt>
+      <cheerful>
+        <li>Some of these are as big as eggs!</li>
+      </cheerful>
+      <gloomy>
+        <li>There goes the harvest.</li>
+      </gloomy>
+      <cold>
+        <li>The fields will lose a few days of growth.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- Someone outside by day in a warm spell. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Pool_TouchWarmSpell</defName>
+    <lines>
+      <plain>
+        <li>Warm enough to work without a coat.</li>
+        <li>[spring] Feels like summer came early.</li>
+        <li>[fall] Strange to be sweating this late in the year.</li>
+        <li>[work:Growing] The seedlings are loving this.</li>
+      </plain>
+      <warm>
+        <li>Days like this make up for the cold ones.</li>
+      </warm>
+      <blunt>
+        <li>Too warm for this time of year.</li>
+      </blunt>
+      <cheerful>
+        <li>Sun's out, sleeves up!</li>
+      </cheerful>
+      <gloomy>
+        <li>It won't last.</li>
+      </gloomy>
+      <cold>
+        <li>The crops will like this warm air.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- One of those who fought, right after a real fight won without losses. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Pool_TouchVictory</defName>
+    <lines>
+      <plain>
+        <li>That's the last of them.</li>
+        <li>Anyone hurt? Shout if you are.</li>
+        <li>My hands won't stop shaking.</li>
+        <li>[!lowtech] Check your ammo, then check the wounded.</li>
+        <li>[lowtech] Gather up the arrows before dark.</li>
+      </plain>
+      <warm>
+        <li>Thank you for standing with me.</li>
+      </warm>
+      <blunt>
+        <li>Done. Back to work.</li>
+      </blunt>
+      <cheerful>
+        <li>Ha, they won't try that again!</li>
+      </cheerful>
+      <gloomy>
+        <li>They'll be back.</li>
+      </gloomy>
+      <cold>
+        <li>Drag the bodies off before they start to smell.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- A colonist when the colony keeps one of its traditions. {TRADITION} is its name ("the midsummer bonfire"). -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Pool_TouchTradition</defName>
+    <lines>
+      <plain>
+        <li>Wouldn't miss {TRADITION} for anything.</li>
+        <li>Same as last year, and the year before.</li>
+        <li>I saved my good shirt for {TRADITION}.</li>
+        <li>[child] Is it time for {TRADITION} already?</li>
+      </plain>
+      <warm>
+        <li>I'm glad we kept {TRADITION}.</li>
+      </warm>
+      <blunt>
+        <li>Fine, I'm coming.</li>
+      </blunt>
+      <cheerful>
+        <li>I've been looking forward to this all season.</li>
+      </cheerful>
+      <gloomy>
+        <li>Another year gone, then.</li>
+      </gloomy>
+      <cold>
+        <li>It keeps people together, I suppose.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+</Defs>

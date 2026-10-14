@@ -561,6 +561,11 @@ namespace ColonyCouncil
         private const float Offset = 9f;
 
         public override float TemperatureOffset() => GameConditionUtility.LerpInOutValue(this, 12000f, Offset);
+
+        // Slightly warmer daylight (colors only; see SkyTint).
+        public override SkyTarget? SkyTarget(Map map) => SkyTint.Warm(this, map);
+
+        public override float SkyTargetLerpFactor(Map map) => SkyTint.WarmLerp(this, map);
     }
 
     /// <summary>A warm spell, but not on top of another spell of odd weather (a cold snap, a heat wave).</summary>

@@ -922,11 +922,13 @@ namespace ColonyCouncil
                 {
                     foreach (var p in colonists) CouncilGameComponent.GiveThought(p, CouncilDefOf.Council_TraditionKept);
                     comp.annals.Notify_Tradition(def.traditionLabel, true);
+                    VisualTouches.Tradition(colonists, def.traditionLabel);
                 }
                 else if (traditionCount[key] >= def.traditionAfter)
                 {
                     traditions.Add(key);
                     foreach (var p in colonists) CouncilGameComponent.GiveThought(p, CouncilDefOf.Council_TraditionKept);
+                    VisualTouches.Tradition(colonists, def.traditionLabel);
                     Find.LetterStack.ReceiveLetter("CC_Tradition_BornTitle".Translate(def.traditionLabel.CapitalizeFirst()).Resolve(),
                         "CC_Tradition_BornText".Translate(def.traditionLabel).Resolve(), LetterDefOf.PositiveEvent);
                     comp.AddChronicle(new ChronicleEntry(ChronicleKind.Council, "CC_Chronicle_TraditionBorn".Translate(def.traditionLabel).Resolve(), null));

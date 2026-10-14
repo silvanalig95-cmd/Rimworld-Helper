@@ -99,6 +99,11 @@ namespace ColonyCouncil
         public override float SkyGazeChanceFactor(Map map) => 2.5f;
 
         public override float SkyGazeJoyGainFactor(Map map) => 1.6f;
+
+        // A faint cool cast on the night sky (colors only; see SkyTint).
+        public override SkyTarget? SkyTarget(Map map) => SkyTint.Comet(this, map);
+
+        public override float SkyTargetLerpFactor(Map map) => SkyTint.CometLerp(this, map);
     }
 
     /// <summary>Warm nights full of fireflies: anyone outside after dark gets to see them.</summary>
@@ -167,6 +172,7 @@ namespace ColonyCouncil
                             p.Growth = Mathf.Max(0.05f, p.Growth - Rand.Range(0.08f, 0.2f));
                             map.mapDrawer.MapMeshDirty(p.Position, MapMeshFlagDefOf.Things);
                         }
+                        VisualTouches.HailHit(map, p.Position);
                     }
                 }
                 foreach (var pawn in map.mapPawns.FreeColonistsSpawned)
