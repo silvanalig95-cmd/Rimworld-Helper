@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!-- Everyday ailments and serious illnesses (Source/ColonyCouncil/Ailments/). -->
+
+  <CC_Settings_AilmentsHeader>Ailments and illnesses</CC_Settings_AilmentsHeader>
+  <CC_Settings_Ailments>Everyday ailments</CC_Settings_Ailments>
+  <CC_Settings_Ailments_Tip>Colds, stomach bugs, hay fever and pinkeye go round now and then, through the game's own disease events. Hard days bring their own ailments: a strained back after a day of hauling, sore hands after long hours at the bench, sunburn, blisters, a stiff neck after a night on the ground. They are mild, last a few days to two weeks, never kill, and say in their description what helps. Doctors can tend them. Turned off, no new ones start; any already running finish their course.</CC_Settings_Ailments_Tip>
+  <CC_Settings_SeriousIllnesses>Serious illnesses</CC_Settings_SeriousIllnesses>
+  <CC_Settings_SeriousIllnesses_Tip>Rare illnesses that can kill: tetanus from a wound left untended, pneumonia after a cold in someone old or frail, tuberculosis, typhus in dirty crowded quarters, meningitis, scurvy after weeks without fruit or vegetables, and glassblood from the dust of ancient ruins. At most one kind at a time in the colony, and none within 30 days of the last. Each comes with a letter saying what it is and what helps, and good tending with good medicine beats them. Turned off, none of them start.</CC_Settings_SeriousIllnesses_Tip>
+  <CC_Settings_AilmentFrequency>How often ailments come: {0}</CC_Settings_AilmentFrequency>
+  <CC_Settings_AilmentFrequency_Tip>25% for rarely, 200% for twice as often. At 100%, a colony catches something about every 20 days, depending on the land and the storyteller's disease setting, and a colonist who works hard at one thing all day has a small ailment about once a month.</CC_Settings_AilmentFrequency_Tip>
+
+  <CC_Ail_NoteHeader>Doctor's note:</CC_Ail_NoteHeader>
+  <CC_Ail_NoteHeader_LowTech>The healer's advice:</CC_Ail_NoteHeader_LowTech>
+
+  <CC_Ail_Recovered>{PAWN_nameDef} has recovered from {ILLNESS}.</CC_Ail_Recovered>
+
+  <CC_Ail_Tip_Treating>Treatment course: going well. Keep tending every day until it's gone.</CC_Ail_Tip_Treating>
+  <CC_Ail_Tip_Lapsed>Treatment course: interrupted. Without daily tending the illness gains ground again.</CC_Ail_Tip_Lapsed>
+  <CC_Ail_Tip_Untreated>Treatment course: not begun. It needs tending every day for weeks.</CC_Ail_Tip_Untreated>
+  <CC_Ail_Tip_Medicine0>Last treated with herbal medicine or none: {0} as effective here.</CC_Ail_Tip_Medicine0>
+  <CC_Ail_Tip_Medicine1>Last treated with industrial medicine: {0} as effective here.</CC_Ail_Tip_Medicine1>
+  <CC_Ail_Tip_Medicine2>Last treated with glitterworld medicine: {0} as effective here.</CC_Ail_Tip_Medicine2>
+  <CC_Ail_Tip_DietGood>Eating fruit or vegetables: getting better.</CC_Ail_Tip_DietGood>
+  <CC_Ail_Tip_DietBad>No fruit or vegetables lately: getting worse.</CC_Ail_Tip_DietBad>
+
+</LanguageData>

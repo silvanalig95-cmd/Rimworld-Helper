@@ -1,0 +1,659 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Serious illnesses (Source/ColonyCouncil/Ailments/): rare, behind their own setting, at most one kind running in the
+    colony at a time and none within 30 days of the last (AilmentTracker). Six are modeled on real diseases, one is
+    invented (glassblood). The lethal ones are the game's immunity race: fatal untreated, beaten by steady tending,
+    with the medicine counted as the real disease would (HediffCompProperties_AilmentMedicine: basic is herbal medicine
+    or none, industrial and ultra are industrial and glitterworld medicine). Tools/Tests checks each against those
+    claims. Where the real disease has an incubation period, a hidden first stage holds it (no symptoms, no immunity
+    yet), and the letter comes when it shows. Babies never get them; children get a milder course where that's true
+    of the real disease.
+  -->
+
+  <HediffDef Name="Council_IllnessBase" Abstract="True">
+    <hediffClass>HediffWithComps</hediffClass>
+    <defaultLabelColor>(0.9, 1.0, 0.35)</defaultLabelColor>
+    <isBad>true</isBad>
+    <initialSeverity>0.02</initialSeverity>
+    <lethalSeverity>1</lethalSeverity>
+    <maxSeverity>1</maxSeverity>
+  </HediffDef>
+
+  <!-- ===================== Tetanus ===================== -->
+
+  <HediffDef ParentName="Council_IllnessBase">
+    <defName>Council_Ail_Tetanus</defName>
+    <label>tetanus</label>
+    <description>Lockjaw: a toxin made by bacteria from soil, dung and rust that got into a deep wound left untended. It shows days to a week after the wound as a stiff jaw, then rigid muscles and painful spasms that can stop the breathing. The body builds no lasting immunity to it. Treatment buys time while the toxin wears off over two or three weeks: tending as often as possible, a quiet room, and the best medicine there is. Modern medicine (an antitoxin and antibiotics) makes the greatest difference. Untreated, it often kills. Wounds cleaned and dressed within a few hours don't cause it.</description>
+    <tendable>true</tendable>
+    <comps>
+      <li Class="ColonyCouncil.HediffCompProperties_Ailment">
+        <serious>true</serious>
+        <key>Tetanus</key>
+        <causes><li><trigger>Wound</trigger><hours>8</hours><chance>0.05</chance></li></causes>
+        <cooldownDays>60</cooldownDays>
+        <afterEffects>
+          <li><hediff>Council_Ail_Convalescent</hediff><severity>0.5~0.7</severity></li>
+        </afterEffects>
+        <letterText>{PAWN_nameDef} has tetanus. A wound from some days ago wasn't cleaned in time, and the toxin has reached the muscles: the jaw is locking, and the spasms will follow.\n\nUntreated, tetanus can kill within a week. With steady tending the toxin wears off over two or three weeks.</letterText>
+        <notes>
+          <li>Tend the patient often and keep them still and quiet. The best medicine we have goes to this one.</li>
+          <li>[lowtech] A dark, quiet room, since noise and light set off the spasms. Clean the wound out again, willow bark for the pain, and tend as often as we can. Herbs only slow it; it has to wear off by itself.</li>
+          <li>[!lowtech] Tetanus antitoxin and antibiotics, now, and the wound cleaned out again. Something for the spasms. Industrial medicine or better makes all the difference. Expect weeks before the stiffness goes.</li>
+        </notes>
+      </li>
+      <li Class="HediffCompProperties_TendDuration">
+        <baseTendDurationHours>12</baseTendDurationHours>
+        <severityPerDayTended>0</severityPerDayTended>
+      </li>
+      <li Class="ColonyCouncil.HediffCompProperties_AilmentMedicine">
+        <severityPerDayTended>-0.1</severityPerDayTended>
+        <basic>0.8</basic>
+        <industrial>1.4</industrial>
+        <ultra>1.8</ultra>
+      </li>
+      <li Class="ColonyCouncil.HediffCompProperties_AilmentImmunizable">
+        <severityPerDayNotImmune>0.13</severityPerDayNotImmune>
+        <severityPerDayNotImmuneRandomFactor>0.85~1.15</severityPerDayNotImmuneRandomFactor>
+        <immunityPerDaySick>0.085</immunityPerDaySick>
+        <severityPerDayImmune>-0.07</severityPerDayImmune>
+        <immunityPerDayNotSick>-0.5</immunityPerDayNotSick>
+        <incubationDays>3~7</incubationDays>
+        <childFactor>0.8</childFactor>
+      </li>
+    </comps>
+    <stages>
+      <li>
+        <label>incubating</label>
+        <becomeVisible>false</becomeVisible>
+      </li>
+      <li>
+        <minSeverity>0.05</minSeverity>
+        <label>lockjaw</label>
+        <painOffset>0.1</painOffset>
+        <capMods>
+          <li><capacity>Eating</capacity><offset>-0.3</offset></li>
+          <li><capacity>Talking</capacity><offset>-0.2</offset></li>
+          <li><capacity>Manipulation</capacity><offset>-0.05</offset></li>
+        </capMods>
+      </li>
+      <li>
+        <minSeverity>0.3</minSeverity>
+        <label>rigid muscles</label>
+        <painOffset>0.2</painOffset>
+        <capMods>
+          <li><capacity>Eating</capacity><offset>-0.4</offset></li>
+          <li><capacity>Talking</capacity><offset>-0.3</offset></li>
+          <li><capacity>Manipulation</capacity><offset>-0.2</offset></li>
+          <li><capacity>Moving</capacity><offset>-0.2</offset></li>
+        </capMods>
+      </li>
+      <li>
+        <minSeverity>0.55</minSeverity>
+        <label>spasms</label>
+        <painOffset>0.3</painOffset>
+        <capMods>
+          <li><capacity>Eating</capacity><offset>-0.5</offset></li>
+          <li><capacity>Manipulation</capacity><offset>-0.35</offset></li>
+          <li><capacity>Moving</capacity><offset>-0.4</offset></li>
+          <li><capacity>Breathing</capacity><offset>-0.15</offset></li>
+        </capMods>
+      </li>
+      <li>
+        <minSeverity>0.8</minSeverity>
+        <label>severe spasms</label>
+        <lifeThreatening>true</lifeThreatening>
+        <painOffset>0.4</painOffset>
+        <capMods>
+          <li><capacity>Eating</capacity><offset>-0.5</offset></li>
+          <li><capacity>Manipulation</capacity><offset>-0.5</offset></li>
+          <li><capacity>Moving</capacity><offset>-0.6</offset></li>
+          <li><capacity>Breathing</capacity><offset>-0.3</offset></li>
+        </capMods>
+      </li>
+    </stages>
+  </HediffDef>
+
+  <!-- ===================== Pneumonia ===================== -->
+
+  <HediffDef ParentName="Council_IllnessBase">
+    <defName>Council_Ail_Pneumonia</defName>
+    <label>pneumonia</label>
+    <description>An infection deep in the lungs, usually after a cold, a chest cold or the flu, and most dangerous to the old, the frail, small children and the starving. A high fever, chest pain and labored breathing over several days, then the crisis: the fever breaks, or the lungs fail. Bed rest, warmth, food and steady tending carry the patient through, and modern medicine (antibiotics) works far better than herbs. Even after the fever breaks, weakness and a cough linger for a week or two.</description>
+    <tendable>true</tendable>
+    <comps>
+      <li Class="ColonyCouncil.HediffCompProperties_Ailment">
+        <serious>true</serious>
+        <key>Pneumonia</key>
+        <causes><li><trigger>AfterCold</trigger><chance>0.03</chance></li></causes>
+        <cooldownDays>30</cooldownDays>
+        <afterEffects>
+          <li><hediff>Council_Ail_Convalescent</hediff><severity>0.5~0.8</severity></li>
+          <li><hediff>Council_Ail_LingeringCough</hediff><chance>0.7</chance><severity>0.3~0.5</severity></li>
+        </afterEffects>
+        <letterText>{PAWN_nameDef}'s cold has gone to the chest. It's pneumonia: a high fever, pain with every breath, and lungs filling with fluid.\n\nWithout care it can kill in four or five days, sooner in someone old or weak. With bed rest and steady tending, the fever should break within a week.</letterText>
+        <notes>
+          <li>Bed, warmth, food and fluids, and tend the patient as often as we can. Sit them up so they can breathe.</li>
+          <li>[lowtech] Keep the fire going and the patient propped up. Willow bark for the fever. It comes to a crisis around the fifth day; after that, the fever breaks or it doesn't.</li>
+          <li>[!lowtech] Antibiotics, as soon as we can. With industrial medicine this is usually a week in bed. Without it, it's a coin toss for the old ones.</li>
+        </notes>
+      </li>
+      <li Class="HediffCompProperties_TendDuration">
+        <baseTendDurationHours>12</baseTendDurationHours>
+        <severityPerDayTended>0</severityPerDayTended>
+      </li>
+      <li Class="ColonyCouncil.HediffCompProperties_AilmentMedicine">
+        <severityPerDayTended>-0.16</severityPerDayTended>
+        <basic>0.7</basic>
+        <industrial>1.3</industrial>
+        <ultra>1.6</ultra>
+      </li>
+      <li Class="ColonyCouncil.HediffCompProperties_AilmentImmunizable">
+        <severityPerDayNotImmune>0.22</severityPerDayNotImmune>
+        <severityPerDayNotImmuneRandomFactor>0.85~1.15</severityPerDayNotImmuneRandomFactor>
+        <immunityPerDaySick>0.17</immunityPerDaySick>
+        <treatedImmunityPerDay>0.05</treatedImmunityPerDay>
+        <severityPerDayImmune>-0.25</severityPerDayImmune>
+        <immunityPerDayNotSick>-0.02</immunityPerDayNotSick>
+        <coldFactor>1.2</coldFactor>
+      </li>
+    </comps>
+    <stages>
+      <li>
+        <label>early</label>
+        <restFallFactor>1.2</restFallFactor>
+        <capMods>
+          <li><capacity>Breathing</capacity><offset>-0.1</offset></li>
+          <li><capacity>Consciousness</capacity><offset>-0.05</offset></li>
+        </capMods>
+      </li>
+      <li>
+        <minSeverity>0.25</minSeverity>
+        <label>fever and chest pain</label>
+        <restFallFactor>1.3</restFallFactor>
+        <painOffset>0.08</painOffset>
+        <capMods>
+          <li><capacity>Breathing</capacity><offset>-0.2</offset></li>
+          <li><capacity>Consciousness</capacity><offset>-0.1</offset></li>
+        </capMods>
+      </li>
+      <li>
+        <minSeverity>0.5</minSeverity>
+        <label>labored breathing</label>
+        <restFallFactor>1.4</restFallFactor>
+        <painOffset>0.12</painOffset>
+        <capMods>
+          <li><capacity>Breathing</capacity><offset>-0.35</offset></li>
+          <li><capacity>Consciousness</capacity><offset>-0.15</offset></li>
+        </capMods>
+      </li>
+      <li>
+        <minSeverity>0.75</minSeverity>
+        <label>crisis</label>
+        <lifeThreatening>true</lifeThreatening>
+        <restFallFactor>1.5</restFallFactor>
+        <painOffset>0.15</painOffset>
+        <capMods>
+          <li><capacity>Breathing</capacity><offset>-0.5</offset></li>
+          <li><capacity>Consciousness</capacity><offset>-0.25</offset></li>
+        </capMods>
+      </li>
+    </stages>
+  </HediffDef>
+
+  <!-- ===================== Tuberculosis ===================== -->
+
+  <HediffDef ParentName="Council_IllnessBase">
+    <defName>Council_Ail_Tuberculosis</defName>
+    <label>tuberculosis</label>
+    <description>Consumption: a slow bacterial infection of the lungs, spread through the air to people who sleep in the same room as someone coughing. Weeks after catching it comes a cough that won't go away, night sweats, tiredness and a hunger food never satisfies, and over the months it wastes the body. The cure is a long course of treatment, tended every day for weeks: progress builds only while treatment continues and slips back if it stops early. Modern medicine (a course of antibiotics) works far better than herbs; before it, rest, good food and fresh air were all anyone had. A sick colonist in a room of their own stops it spreading.</description>
+    <tendable>true</tendable>
+    <comps>
+      <li Class="ColonyCouncil.HediffCompProperties_Ailment">
+        <serious>true</serious>
+        <key>Tuberculosis</key>
+        <cooldownDays>120</cooldownDays>
+        <spreadPerHour>0.0015</spreadPerHour>
+        <spreadWhileTended>0.3</spreadWhileTended>
+        <maxCases>3</maxCases>
+        <afterEffects>
+          <li><hediff>Council_Ail_Convalescent</hediff><severity>0.7~0.9</severity></li>
+          <li><hediff>Council_Ail_LingeringCough</hediff><chance>0.5</chance><severity>0.3~0.5</severity></li>
+        </afterEffects>
+        <letterText>{PAWN_nameDef} has a cough that won't go away, night sweats and no appetite. It's tuberculosis, caught weeks ago from someone sharing the same room.\n\nIt's slow: untreated, it wastes a person over a month or two. The cure takes daily treatment for weeks, and the sick should sleep apart from everyone else so it goes no further.</letterText>
+        <notes>
+          <li>A room of their own, and treatment every day, without gaps, for as long as it takes. Stopping early lets it come back.</li>
+          <li>[lowtech] Rest, fresh air, the best food we have, and a bed by an open window. Herbs ease the cough. It's a long road; some walk it, some don't.</li>
+          <li>[!lowtech] A daily course of antibiotics from the medicine shelf, for weeks, and industrial medicine at least. Keep the patient apart until the cough has gone.</li>
+        </notes>
+      </li>
+      <li Class="HediffCompProperties_TendDuration">
+        <baseTendDurationHours>24</baseTendDurationHours>
+        <severityPerDayTended>0</severityPerDayTended>
+      </li>
+      <li Class="ColonyCouncil.HediffCompProperties_AilmentMedicine">
+        <severityPerDayTended>-0.015</severityPerDayTended>
+        <basic>0.5</basic>
+        <industrial>1</industrial>
+        <ultra>1.4</ultra>
+      </li>
+      <li Class="ColonyCouncil.HediffCompProperties_AilmentImmunizable">
+        <severityPerDayNotImmune>0.02</severityPerDayNotImmune>
+        <severityPerDayNotImmuneRandomFactor>0.9~1.1</severityPerDayNotImmuneRandomFactor>
+        <immunityPerDaySick>0.015</immunityPerDaySick>
+        <severityPerDayImmune>-0.06</severityPerDayImmune>
+        <immunityPerDayNotSick>-0.01</immunityPerDayNotSick>
+        <treatedImmunityPerDay>0.02</treatedImmunityPerDay>
+        <untendedImmunityLossPerDay>0.02</untendedImmunityLossPerDay>
+        <incubationDays>10~20</incubationDays>
+        <childFactor>0.8</childFactor>
+      </li>
+    </comps>
+    <stages>
+      <li>
+        <label>incubating</label>
+        <becomeVisible>false</becomeVisible>
+      </li>
+      <li>
+        <minSeverity>0.05</minSeverity>
+        <label>persistent cough</label>
+        <restFallFactor>1.15</restFallFactor>
+        <hungerRateFactor>1.1</hungerRateFactor>
+        <capMods><li><capacity>Breathing</capacity><offset>-0.05</offset></li></capMods>
+      </li>
+      <li>
+        <minSeverity>0.3</minSeverity>
+        <label>consumption</label>
+        <restFallFactor>1.3</restFallFactor>
+        <hungerRateFactor>1.2</hungerRateFactor>
+        <statFactors><WorkSpeedGlobal>0.9</WorkSpeedGlobal></statFactors>
+        <capMods>
+          <li><capacity>Breathing</capacity><offset>-0.12</offset></li>
+          <li><capacity>Consciousness</capacity><offset>-0.05</offset></li>
+        </capMods>
+      </li>
+      <li>
+        <minSeverity>0.6</minSeverity>
+        <label>wasting</label>
+        <restFallFactor>1.5</restFallFactor>
+        <hungerRateFactor>1.3</hungerRateFactor>
+        <statFactors><WorkSpeedGlobal>0.75</WorkSpeedGlobal></statFactors>
+        <capMods>
+          <li><capacity>Breathing</capacity><offset>-0.25</offset></li>
+          <li><capacity>Consciousness</capacity><offset>-0.1</offset></li>
+          <li><capacity>Moving</capacity><offset>-0.1</offset></li>
+        </capMods>
+      </li>
+      <li>
+        <minSeverity>0.85</minSeverity>
+        <label>final stage</label>
+        <lifeThreatening>true</lifeThreatening>
+        <restFallFactor>1.6</restFallFactor>
+        <hungerRateFactor>1.3</hungerRateFactor>
+        <statFactors><WorkSpeedGlobal>0.6</WorkSpeedGlobal></statFactors>
+        <capMods>
+          <li><capacity>Breathing</capacity><offset>-0.4</offset></li>
+          <li><capacity>Consciousness</capacity><offset>-0.2</offset></li>
+          <li><capacity>Moving</capacity><offset>-0.2</offset></li>
+        </capMods>
+      </li>
+    </stages>
+  </HediffDef>
+
+  <!-- ===================== Typhus ===================== -->
+
+  <HediffDef ParentName="Council_IllnessBase">
+    <defName>Council_Ail_Typhus</defName>
+    <label>typhus</label>
+    <description>Epidemic typhus, carried by body lice in crowded, dirty sleeping quarters. About a week after the bite comes a sudden high fever and a pounding headache, then a rash spreading from the chest, and in bad cases stupor and delirium. Untreated it often kills; with good tending most recover, and modern medicine (antibiotics) clears it fast. Clean rooms, washing and fewer people to a room stop the lice, and with them the spread. Children have a milder course.</description>
+    <tendable>true</tendable>
+    <comps>
+      <li Class="ColonyCouncil.HediffCompProperties_Ailment">
+        <serious>true</serious>
+        <key>Typhus</key>
+        <causes><li><trigger>CrowdedDirty</trigger><hours>4</hours><chance>0.015</chance></li></causes>
+        <cooldownDays>60</cooldownDays>
+        <spreadPerHour>0.003</spreadPerHour>
+        <spreadNeedsDirt>true</spreadNeedsDirt>
+        <spreadWhileTended>0.6</spreadWhileTended>
+        <maxCases>3</maxCases>
+        <afterEffects>
+          <li><hediff>Council_Ail_Convalescent</hediff><severity>0.5~0.7</severity></li>
+        </afterEffects>
+        <letterText>{PAWN_nameDef} has typhus. Lice from the crowded, dirty sleeping quarters carried it, and now there's a high fever and a pounding headache. A rash will follow.\n\nUntreated, typhus can kill within a week. With steady tending most recover. Clean the room and keep the patient apart, or the lice will carry it to the others.</letterText>
+        <notes>
+          <li>Wash the patient, burn the bedding and scrub that room. Then tend the fever as often as we can.</li>
+          <li>[lowtech] Boil the clothes and blankets, cut the hair short, and keep the fever down with cool cloths and willow bark. A clean bed in a clean room.</li>
+          <li>[!lowtech] Antibiotics clear it in a few days, so industrial medicine is the thing here. Delouse everyone who slept in that room.</li>
+        </notes>
+      </li>
+      <li Class="HediffCompProperties_TendDuration">
+        <baseTendDurationHours>12</baseTendDurationHours>
+        <severityPerDayTended>0</severityPerDayTended>
+      </li>
+      <li Class="ColonyCouncil.HediffCompProperties_AilmentMedicine">
+        <severityPerDayTended>-0.12</severityPerDayTended>
+        <basic>0.6</basic>
+        <industrial>1.4</industrial>
+        <ultra>1.7</ultra>
+      </li>
+      <li Class="ColonyCouncil.HediffCompProperties_AilmentImmunizable">
+        <severityPerDayNotImmune>0.16</severityPerDayNotImmune>
+        <severityPerDayNotImmuneRandomFactor>0.85~1.15</severityPerDayNotImmuneRandomFactor>
+        <immunityPerDaySick>0.13</immunityPerDaySick>
+        <treatedImmunityPerDay>0.1</treatedImmunityPerDay>
+        <severityPerDayImmune>-0.2</severityPerDayImmune>
+        <immunityPerDayNotSick>-0.01</immunityPerDayNotSick>
+        <incubationDays>4~8</incubationDays>
+        <childFactor>0.7</childFactor>
+      </li>
+    </comps>
+    <stages>
+      <li>
+        <label>incubating</label>
+        <becomeVisible>false</becomeVisible>
+      </li>
+      <li>
+        <minSeverity>0.05</minSeverity>
+        <label>fever and headache</label>
+        <restFallFactor>1.2</restFallFactor>
+        <painOffset>0.08</painOffset>
+        <capMods><li><capacity>Consciousness</capacity><offset>-0.1</offset></li></capMods>
+      </li>
+      <li>
+        <minSeverity>0.3</minSeverity>
+        <label>rash</label>
+        <restFallFactor>1.3</restFallFactor>
+        <painOffset>0.1</painOffset>
+        <capMods>
+          <li><capacity>Consciousness</capacity><offset>-0.15</offset></li>
+          <li><capacity>Moving</capacity><offset>-0.1</offset></li>
+        </capMods>
+      </li>
+      <li>
+        <minSeverity>0.55</minSeverity>
+        <label>stupor</label>
+        <restFallFactor>1.4</restFallFactor>
+        <painOffset>0.1</painOffset>
+        <capMods>
+          <li><capacity>Consciousness</capacity><offset>-0.3</offset></li>
+          <li><capacity>Moving</capacity><offset>-0.2</offset></li>
+          <li><capacity>Manipulation</capacity><offset>-0.15</offset></li>
+        </capMods>
+      </li>
+      <li>
+        <minSeverity>0.8</minSeverity>
+        <label>delirium</label>
+        <lifeThreatening>true</lifeThreatening>
+        <restFallFactor>1.5</restFallFactor>
+        <painOffset>0.1</painOffset>
+        <capMods>
+          <li><capacity>Consciousness</capacity><offset>-0.45</offset></li>
+          <li><capacity>Moving</capacity><offset>-0.3</offset></li>
+          <li><capacity>Manipulation</capacity><offset>-0.2</offset></li>
+        </capMods>
+      </li>
+    </stages>
+  </HediffDef>
+
+  <!-- ===================== Meningitis ===================== -->
+
+  <HediffDef ParentName="Council_IllnessBase">
+    <defName>Council_Ail_Meningitis</defName>
+    <label>meningitis</label>
+    <description>A bacterial infection of the lining around the brain and spine. It comes on suddenly: fever, a crushing headache, a stiff neck and pain from bright light, then confusion and seizures. It moves within hours and kills within two days without treatment. Tend the patient at once and as often as possible; modern medicine (antibiotics, given quickly) is what saves most people, and a skilled doctor matters more here than anywhere. Survivors are weak for a while afterward.</description>
+    <initialSeverity>0.05</initialSeverity>
+    <tendable>true</tendable>
+    <comps>
+      <li Class="ColonyCouncil.HediffCompProperties_Ailment">
+        <serious>true</serious>
+        <key>Meningitis</key>
+        <cooldownDays>120</cooldownDays>
+        <afterEffects>
+          <li><hediff>Council_Ail_Convalescent</hediff><severity>0.6~0.8</severity></li>
+        </afterEffects>
+        <notes>
+          <li>Every hour counts. Tend now, then again the moment the last treatment wears off. A dark room and cool cloths.</li>
+          <li>[lowtech] Keep the room dark and quiet and the fever down. Herbs alone may not be enough, so whoever has the steadiest hands should tend this one, day and night.</li>
+          <li>[!lowtech] Antibiotics immediately, the best we have, glitterworld medicine if there is any. The first day decides it.</li>
+        </notes>
+      </li>
+      <li Class="HediffCompProperties_TendDuration">
+        <baseTendDurationHours>8</baseTendDurationHours>
+        <severityPerDayTended>0</severityPerDayTended>
+      </li>
+      <li Class="ColonyCouncil.HediffCompProperties_AilmentMedicine">
+        <severityPerDayTended>-0.45</severityPerDayTended>
+        <basic>0.7</basic>
+        <industrial>1.3</industrial>
+        <ultra>1.6</ultra>
+      </li>
+      <li Class="ColonyCouncil.HediffCompProperties_AilmentImmunizable">
+        <severityPerDayNotImmune>0.5</severityPerDayNotImmune>
+        <severityPerDayNotImmuneRandomFactor>0.85~1.15</severityPerDayNotImmuneRandomFactor>
+        <immunityPerDaySick>0.33</immunityPerDaySick>
+        <severityPerDayImmune>-0.3</severityPerDayImmune>
+        <immunityPerDayNotSick>-0.02</immunityPerDayNotSick>
+        <childFactor>0.85</childFactor>
+      </li>
+    </comps>
+    <stages>
+      <li>
+        <label>headache and fever</label>
+        <painOffset>0.15</painOffset>
+        <capMods>
+          <li><capacity>Consciousness</capacity><offset>-0.1</offset></li>
+          <li><capacity>Sight</capacity><offset>-0.05</offset></li>
+        </capMods>
+      </li>
+      <li>
+        <minSeverity>0.25</minSeverity>
+        <label>stiff neck</label>
+        <painOffset>0.25</painOffset>
+        <capMods>
+          <li><capacity>Consciousness</capacity><offset>-0.2</offset></li>
+          <li><capacity>Manipulation</capacity><offset>-0.1</offset></li>
+          <li><capacity>Moving</capacity><offset>-0.1</offset></li>
+        </capMods>
+      </li>
+      <li>
+        <minSeverity>0.5</minSeverity>
+        <label>confusion</label>
+        <painOffset>0.3</painOffset>
+        <capMods>
+          <li><capacity>Consciousness</capacity><offset>-0.35</offset></li>
+          <li><capacity>Moving</capacity><offset>-0.25</offset></li>
+        </capMods>
+      </li>
+      <li>
+        <minSeverity>0.75</minSeverity>
+        <label>seizures</label>
+        <lifeThreatening>true</lifeThreatening>
+        <painOffset>0.3</painOffset>
+        <capMods>
+          <li><capacity>Consciousness</capacity><offset>-0.5</offset></li>
+          <li><capacity>Moving</capacity><offset>-0.4</offset></li>
+        </capMods>
+      </li>
+    </stages>
+  </HediffDef>
+
+  <!-- ===================== Scurvy ===================== -->
+
+  <HediffDef ParentName="Council_IllnessBase">
+    <defName>Council_Ail_Scurvy</defName>
+    <label>scurvy</label>
+    <description>A sickness of the diet, from weeks without fruit or vegetables, raw or cooked into meals. First comes tiredness, then sore gums and aching joints, then bleeding gums, bruises from nothing and wounds that heal slowly and bleed easily. It worsens slowly as long as the diet stays the same, and left for many weeks it kills. The cure is fresh food: once they eat fruit or vegetables again, it clears within a couple of weeks. Medicine does nothing for it.</description>
+    <initialSeverity>0.05</initialSeverity>
+    <comps>
+      <li Class="ColonyCouncil.HediffCompProperties_Ailment">
+        <serious>true</serious>
+        <key>Scurvy</key>
+        <causes><li><trigger>Diet</trigger><hours>20</hours><chance>0.25</chance></li></causes>
+        <cooldownDays>30</cooldownDays>
+        <letterText>{PAWN_nameDef} has scurvy. There hasn't been a fruit or a vegetable on {PAWN_nameDef}'s plate in weeks, and it shows: tiredness first, and soon sore gums and aching joints.\n\nIt worsens slowly as long as the diet stays the same, and can kill if left for many weeks. Fruit or vegetables, raw or in meals, will cure it within a couple of weeks.</letterText>
+        <notes>
+          <li>Fruit or vegetables, at every meal if we can. Nothing else will fix it, and medicine won't help.</li>
+          <li>[lowtech] Berries, greens, roots, anything that grew. Cooked into a stew is fine.</li>
+          <li>[!lowtech] It's vitamin C. Fruit and vegetables, raw or cooked; survival meals and meat alone won't do it.</li>
+        </notes>
+      </li>
+      <li Class="ColonyCouncil.HediffCompProperties_AilmentDiet">
+        <growPerDay>0.018</growPerDay>
+        <recoverPerDay>-0.08</recoverPerDay>
+        <freshDays>2</freshDays>
+      </li>
+    </comps>
+    <stages>
+      <li>
+        <label>tired and listless</label>
+        <restFallFactor>1.2</restFallFactor>
+        <statFactors><WorkSpeedGlobal>0.95</WorkSpeedGlobal></statFactors>
+      </li>
+      <li>
+        <minSeverity>0.2</minSeverity>
+        <label>sore gums</label>
+        <restFallFactor>1.25</restFallFactor>
+        <painOffset>0.06</painOffset>
+        <totalBleedFactor>1.2</totalBleedFactor>
+        <statFactors>
+          <WorkSpeedGlobal>0.92</WorkSpeedGlobal>
+          <InjuryHealingFactor>0.75</InjuryHealingFactor>
+        </statFactors>
+        <capMods>
+          <li><capacity>Moving</capacity><offset>-0.05</offset></li>
+          <li><capacity>Eating</capacity><offset>-0.1</offset></li>
+        </capMods>
+      </li>
+      <li>
+        <minSeverity>0.45</minSeverity>
+        <label>bleeding gums</label>
+        <restFallFactor>1.35</restFallFactor>
+        <painOffset>0.12</painOffset>
+        <totalBleedFactor>1.5</totalBleedFactor>
+        <statFactors>
+          <WorkSpeedGlobal>0.85</WorkSpeedGlobal>
+          <InjuryHealingFactor>0.5</InjuryHealingFactor>
+        </statFactors>
+        <capMods>
+          <li><capacity>Moving</capacity><offset>-0.15</offset></li>
+          <li><capacity>Manipulation</capacity><offset>-0.05</offset></li>
+          <li><capacity>Eating</capacity><offset>-0.2</offset></li>
+        </capMods>
+      </li>
+      <li>
+        <minSeverity>0.75</minSeverity>
+        <label>advanced</label>
+        <lifeThreatening>true</lifeThreatening>
+        <restFallFactor>1.5</restFallFactor>
+        <painOffset>0.18</painOffset>
+        <totalBleedFactor>2</totalBleedFactor>
+        <statFactors>
+          <WorkSpeedGlobal>0.75</WorkSpeedGlobal>
+          <InjuryHealingFactor>0.3</InjuryHealingFactor>
+        </statFactors>
+        <capMods>
+          <li><capacity>Moving</capacity><offset>-0.25</offset></li>
+          <li><capacity>Consciousness</capacity><offset>-0.1</offset></li>
+          <li><capacity>Eating</capacity><offset>-0.3</offset></li>
+        </capMods>
+      </li>
+    </stages>
+  </HediffDef>
+
+  <!-- ===================== Glassblood (invented) ===================== -->
+
+  <HediffDef ParentName="Council_IllnessBase">
+    <defName>Council_Ail_Glassblood</defName>
+    <label>glassblood</label>
+    <description>A fever from a crystalline spore that lives in the dust of ancient structures, breathed in by people breaking into ruins, opening old caskets or hauling ancient junk. A day or two later comes the fever, and a faint glitter along the veins; then the joints stiffen as if turning to glass. Untreated, it can stop the heart and lungs within a week. Steady tending keeps the fever down while the body clears the spores, and herbs help nearly as much as modern medicine. Survivors are weak for a while.</description>
+    <tendable>true</tendable>
+    <comps>
+      <li Class="ColonyCouncil.HediffCompProperties_Ailment">
+        <serious>true</serious>
+        <key>Glassblood</key>
+        <causes><li><trigger>AncientWork</trigger><hours>2</hours><chance>0.025</chance></li></causes>
+        <cooldownDays>60</cooldownDays>
+        <childFactor>0.5</childFactor>
+        <afterEffects>
+          <li><hediff>Council_Ail_Convalescent</hediff><severity>0.5~0.7</severity></li>
+        </afterEffects>
+        <letterText>{PAWN_nameDef} has a fever, and there's a faint glitter along the veins of both arms. It's glassblood, from spores in the dust of the ancient ruins.\n\nUntreated, the joints stiffen and the fever can stop the heart within a week. With steady tending most recover. Whoever goes back into those ruins shouldn't stay long.</letterText>
+        <notes>
+          <li>Keep the fever down and tend the patient as often as we can. Herbs do nearly as well as anything for this one.</li>
+          <li>[lowtech] Cool cloths, willow bark and warm water for the joints. The old stories say the glitter fades when the fever does.</li>
+          <li>[!lowtech] The scanner shows the spores in the blood. Fever control and steady tending; antibiotics barely touch it.</li>
+        </notes>
+      </li>
+      <li Class="HediffCompProperties_TendDuration">
+        <baseTendDurationHours>12</baseTendDurationHours>
+        <severityPerDayTended>0</severityPerDayTended>
+      </li>
+      <li Class="ColonyCouncil.HediffCompProperties_AilmentMedicine">
+        <severityPerDayTended>-0.12</severityPerDayTended>
+        <basic>0.9</basic>
+        <industrial>1.1</industrial>
+        <ultra>1.5</ultra>
+      </li>
+      <li Class="ColonyCouncil.HediffCompProperties_AilmentImmunizable">
+        <severityPerDayNotImmune>0.15</severityPerDayNotImmune>
+        <severityPerDayNotImmuneRandomFactor>0.85~1.15</severityPerDayNotImmuneRandomFactor>
+        <immunityPerDaySick>0.12</immunityPerDaySick>
+        <severityPerDayImmune>-0.15</severityPerDayImmune>
+        <immunityPerDayNotSick>-0.02</immunityPerDayNotSick>
+        <incubationDays>1~2</incubationDays>
+        <childFactor>0.8</childFactor>
+      </li>
+    </comps>
+    <stages>
+      <li>
+        <label>incubating</label>
+        <becomeVisible>false</becomeVisible>
+      </li>
+      <li>
+        <minSeverity>0.05</minSeverity>
+        <label>glittering fever</label>
+        <painOffset>0.05</painOffset>
+        <capMods>
+          <li><capacity>Consciousness</capacity><offset>-0.08</offset></li>
+          <li><capacity>Manipulation</capacity><offset>-0.05</offset></li>
+        </capMods>
+      </li>
+      <li>
+        <minSeverity>0.3</minSeverity>
+        <label>stiffening joints</label>
+        <painOffset>0.12</painOffset>
+        <capMods>
+          <li><capacity>Consciousness</capacity><offset>-0.08</offset></li>
+          <li><capacity>Manipulation</capacity><offset>-0.2</offset></li>
+          <li><capacity>Moving</capacity><offset>-0.15</offset></li>
+        </capMods>
+      </li>
+      <li>
+        <minSeverity>0.6</minSeverity>
+        <label>glass joints</label>
+        <painOffset>0.2</painOffset>
+        <capMods>
+          <li><capacity>Consciousness</capacity><offset>-0.15</offset></li>
+          <li><capacity>Manipulation</capacity><offset>-0.35</offset></li>
+          <li><capacity>Moving</capacity><offset>-0.3</offset></li>
+        </capMods>
+      </li>
+      <li>
+        <minSeverity>0.85</minSeverity>
+        <label>crystallizing</label>
+        <lifeThreatening>true</lifeThreatening>
+        <painOffset>0.2</painOffset>
+        <capMods>
+          <li><capacity>Consciousness</capacity><offset>-0.25</offset></li>
+          <li><capacity>Moving</capacity><offset>-0.4</offset></li>
+          <li><capacity>Breathing</capacity><offset>-0.25</offset></li>
+          <li><capacity>BloodPumping</capacity><offset>-0.2</offset></li>
+        </capMods>
+      </li>
+    </stages>
+  </HediffDef>
+
+</Defs>

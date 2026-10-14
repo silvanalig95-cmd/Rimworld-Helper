@@ -302,6 +302,8 @@ for (int r = 0; r < 4; r++)
     {
         int layouts = RoomTemplateTests.Run(root, Check);
         Console.WriteLine($"Checked {layouts} room layouts.");
+        int ailments = AilmentTests.Run(root, Check);
+        Console.WriteLine($"Checked {ailments} ailments and illnesses.");
     }
 }
 

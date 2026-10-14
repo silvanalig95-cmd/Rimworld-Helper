@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Catching ailments: the game's own human disease incidents (category DiseaseHuman, IncidentWorker_DiseaseHuman under
+    ColonyCouncil.IncidentWorker_Ailment), so victims follow the game's colony-size rules and immunity, genes and the
+    medical tab work as for any disease. No biome lists them, so the storyteller's own disease rolls are untouched;
+    AilmentTracker fires them on their own clock (about every 20 days for an everyday one, 300 for a serious one, scaled
+    by the biome's disease rate, the storyteller's disease setting and Rimfolk's frequency slider) through the
+    storyteller, so minRefireDays applies. AilmentIncident says when each fits and writes its letter: the opening, the
+    list of who caught it, the closing ({PAWN} is the first of them), then a doctor's note from the illness. Babies are
+    never picked.
+  -->
+
+  <IncidentDef Name="Council_AilmentIncidentBase" Abstract="True">
+    <category>DiseaseHuman</category>
+    <targetTags>
+      <li>Map_PlayerHome</li>
+    </targetTags>
+    <workerClass>ColonyCouncil.IncidentWorker_Ailment</workerClass>
+    <diseaseDevelopmentStage>Child, Adult</diseaseDevelopmentStage>
+    <letterDef>NeutralEvent</letterDef>
+  </IncidentDef>
+
+  <IncidentDef ParentName="Council_AilmentIncidentBase">
+    <defName>Council_Ail_Inc_HeadCold</defName>
+    <label>head cold</label>
+    <diseaseIncident>Council_Ail_HeadCold</diseaseIncident>
+    <diseaseVictimFractionRange>0.2~0.5</diseaseVictimFractionRange>
+    <diseaseMaxVictims>5</diseaseMaxVictims>
+    <minRefireDays>20</minRefireDays>
+    <letterLabel>A cold going round</letterLabel>
+    <modExtensions>
+      <li Class="ColonyCouncil.AilmentIncident">
+        <weight>1.5</weight>
+        <coldSeasonFactor>1.5</coldSeasonFactor>
+        <letter>A cold is going round the colony. So far these colonists have it:</letter>
+        <letterAfter>It spreads by coughs, sneezes and shared cups, and should be gone in about a week.</letterAfter>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <IncidentDef ParentName="Council_AilmentIncidentBase">
+    <defName>Council_Ail_Inc_StomachBug</defName>
+    <label>stomach bug</label>
+    <diseaseIncident>Council_Ail_StomachBug</diseaseIncident>
+    <diseaseVictimFractionRange>0.2~0.4</diseaseVictimFractionRange>
+    <diseaseMaxVictims>4</diseaseMaxVictims>
+    <minRefireDays>25</minRefireDays>
+    <letterLabel>A stomach bug</letterLabel>
+    <modExtensions>
+      <li Class="ColonyCouncil.AilmentIncident">
+        <letter>A stomach bug is going round. These colonists are already sick:</letter>
+        <letterAfter>It passes from hands to food and cups. It should be over in two or three days.</letterAfter>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <IncidentDef ParentName="Council_AilmentIncidentBase">
+    <defName>Council_Ail_Inc_ChestCold</defName>
+    <label>chest cold</label>
+    <diseaseIncident>Council_Ail_ChestCold</diseaseIncident>
+    <diseaseVictimFractionRange>0.15~0.4</diseaseVictimFractionRange>
+    <diseaseMaxVictims>4</diseaseMaxVictims>
+    <minRefireDays>25</minRefireDays>
+    <letterLabel>A chest cold</letterLabel>
+    <modExtensions>
+      <li Class="ColonyCouncil.AilmentIncident">
+        <maxOutdoorTemp>5</maxOutdoorTemp>
+        <letter>The cold weather has brought a chest cold with it. These colonists have a cough that keeps them up at night:</letter>
+        <letterAfter>Keep them warm. The cough can last a couple of weeks.</letterAfter>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <IncidentDef ParentName="Council_AilmentIncidentBase">
+    <defName>Council_Ail_Inc_HayFever</defName>
+    <label>hay fever</label>
+    <diseaseIncident>Council_Ail_HayFever</diseaseIncident>
+    <diseaseVictimFractionRange>0.1~0.3</diseaseVictimFractionRange>
+    <diseaseMaxVictims>3</diseaseMaxVictims>
+    <minRefireDays>30</minRefireDays>
+    <letterLabel>Hay fever</letterLabel>
+    <modExtensions>
+      <li Class="ColonyCouncil.AilmentIncident">
+        <seasons>
+          <li>Spring</li>
+          <li>Summer</li>
+          <li>PermanentSummer</li>
+        </seasons>
+        <minOutdoorTemp>8</minOutdoorTemp>
+        <needsPlants>true</needsPlants>
+        <sameVictims>true</sameVictims>
+        <letter>The flowers are out, and so is the pollen. These colonists have started sneezing:</letter>
+        <letterAfter>Hay fever isn't catching. Indoor work keeps it down.</letterAfter>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <IncidentDef ParentName="Council_AilmentIncidentBase">
+    <defName>Council_Ail_Inc_Pinkeye</defName>
+    <label>pinkeye</label>
+    <diseaseIncident>Council_Ail_Pinkeye</diseaseIncident>
+    <diseaseVictimFractionRange>0.15~0.35</diseaseVictimFractionRange>
+    <diseaseMaxVictims>4</diseaseMaxVictims>
+    <minRefireDays>30</minRefireDays>
+    <letterLabel>Pinkeye</letterLabel>
+    <modExtensions>
+      <li Class="ColonyCouncil.AilmentIncident">
+        <weight>0.7</weight>
+        <letter>Pinkeye is going round. These colonists have red, weeping eyes:</letter>
+        <letterAfter>It spreads by hands and shared towels, and clears in about a week.</letterAfter>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <IncidentDef ParentName="Council_AilmentIncidentBase">
+    <defName>Council_Ail_Inc_Dreamfever</defName>
+    <label>dreamfever</label>
+    <diseaseIncident>Council_Ail_Dreamfever</diseaseIncident>
+    <diseaseVictimFractionRange>0.15~0.35</diseaseVictimFractionRange>
+    <diseaseMaxVictims>3</diseaseMaxVictims>
+    <minRefireDays>40</minRefireDays>
+    <letterLabel>Dreamfever</letterLabel>
+    <modExtensions>
+      <li Class="ColonyCouncil.AilmentIncident">
+        <weight>0.5</weight>
+        <letter>Dreamfever has come to the colony. These colonists woke up confused, talking about dreams that felt more real than the room around them:</letter>
+        <letterAfter>It spreads among people who sleep close together, and passes in under a week.</letterAfter>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== Serious ===================== -->
+
+  <IncidentDef ParentName="Council_AilmentIncidentBase">
+    <defName>Council_Ail_Inc_Tuberculosis</defName>
+    <label>tuberculosis</label>
+    <diseaseIncident>Council_Ail_Tuberculosis</diseaseIncident>
+    <diseaseVictimFractionRange>0.1~0.2</diseaseVictimFractionRange>
+    <diseaseMaxVictims>1</diseaseMaxVictims>
+    <diseaseDevelopmentStage>Adult</diseaseDevelopmentStage>
+    <minRefireDays>120</minRefireDays>
+    <letterLabel>Tuberculosis</letterLabel>
+    <letterDef>NegativeEvent</letterDef>
+    <modExtensions>
+      <li Class="ColonyCouncil.AilmentIncident">
+        <letter>{PAWN_nameDef} has had a cough for weeks and has started coughing blood. It's tuberculosis.\n\nIt spreads through the air to anyone who sleeps in the same room. Untreated, it slowly wastes a person over a month or two. With treatment every day for weeks, and a room of their own, {PAWN_nameDef} can be cured.</letter>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <IncidentDef ParentName="Council_AilmentIncidentBase">
+    <defName>Council_Ail_Inc_Meningitis</defName>
+    <label>meningitis</label>
+    <diseaseIncident>Council_Ail_Meningitis</diseaseIncident>
+    <diseaseVictimFractionRange>0.1~0.2</diseaseVictimFractionRange>
+    <diseaseMaxVictims>1</diseaseMaxVictims>
+    <minRefireDays>120</minRefireDays>
+    <letterLabel>Meningitis</letterLabel>
+    <letterDef>NegativeEvent</letterDef>
+    <modExtensions>
+      <li Class="ColonyCouncil.AilmentIncident">
+        <letter>{PAWN_nameDef} collapsed with a raging fever, a stiff neck and a headache so bad that the light hurts. It's meningitis.\n\nIt kills within two days if nothing is done. Tend {PAWN_nameDef} right away and as often as possible, with the best medicine the colony has.</letter>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+</Defs>

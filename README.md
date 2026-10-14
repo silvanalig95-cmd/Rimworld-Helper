@@ -839,6 +839,37 @@ everything stops and the strain mood and slowdown are gone.
 Rimfolk's own save data. The only trace in a save is a colonist in the middle of a day off: with Rimfolk removed,
 the game can't load that mental state, logs it once and lets them go back to work.
 
+## Ailments and illnesses
+Colony life wears on the body too. **Everyday ailments** are small and temporary: they never kill, never leave a mark,
+last from a night to two weeks, and say in their description what helps. Doctors tend them like any illness.
+
+- **Going round** (the game's own disease events, so immunity, genes and the medical tab work as usual; never babies):
+  a head cold, a stomach bug, a chest cold in cold weather, hay fever in spring and summer (back to the same people
+  each year), pinkeye, and dreamfever, an invented rim fever of vivid dreams. About one every 20 days, more where the
+  game's diseases are common, less on gentle storyteller settings.
+- **From the day's work**, once a colonist's day holds enough hours of the cause: a strained back after long hauling,
+  mining or building, sore hands after long bench work, blisters after a day's walking or a caravan trip, chilblains
+  after cold outdoor work, sunburn working bareheaded in the heat, a smoke cough from a wood fire in a small room,
+  toothache from sweets and the years, a stiff neck after a night on the ground, a sprained ankle on marsh, mud or
+  snow, eye strain from bench work in the dark, a rimrot cough from sleeping in a damp room and ash lung after fighting
+  a fire. Never more than two at once, never the same one again within days, and never on guests, prisoners or babies.
+
+**Serious illnesses** are rare, behind their own switch, and can kill: tetanus from a wound left untended, pneumonia
+after a cold in someone old, frail or starving, tuberculosis, typhus in dirty crowded quarters, meningitis, scurvy after
+weeks without fruit or vegetables, and glassblood, an invented fever from the dust of ancient ruins. One kind at a time
+in the colony, none within 30 days of the last, and each comes with a letter and a doctor's note saying what it is and
+what helps. They follow the real diseases: a quiet incubation where there is one, a course of days to weeks,
+after-effects like a lingering cough or some days of weakness, and treatment that counts the medicine the way the real
+illness would (industrial medicine matters far more than herbs against tetanus, pneumonia, typhus and meningitis;
+tuberculosis needs weeks of daily treatment and comes back if it stops early; only fresh food cures scurvy). Steady
+tending beats every one of them. The Almanac's **ailments and illnesses** page has the tables.
+
+With Rimfolk: ailments feed the heart's frustration and serious illnesses its fear (and so a little strain); doctors
+and patients write about them in their journals; dreamfever and serious illnesses bring their own dreams; a doctor with
+a serious case is more likely to ask for a stocked infirmary when medicine is short, and pulling a patient through
+lifts both. Settings (People page): everyday ailments on or off, serious illnesses on or off, and how often (25% to
+200%). Off, nothing new starts; what's running finishes its course.
+
 ## Slow speeds
 Two speeds slower than normal, **½×** and **¼×**, for planning without pausing: the colony keeps living, gently.
 Small buttons sit next to the time controls (drag them by their grip to put them wherever you like; on a
@@ -876,6 +907,8 @@ journals, the Story tab and History) or **Important only**.
 - **world events**: on or off, and how often (about one every 45 days by default)
 - **feelings and strain**: on or off, whether a colonist at the end of their rope takes a day off, the line in the
   inspector, and how quickly strain builds (50% to 150%)
+- **ailments and illnesses**: everyday ailments on or off, the serious (possibly fatal) illnesses on their own switch,
+  and how often they come (25% to 200%)
 - **how often** the smaller things happen: moments with strangers and animals, moments between colonists, social
   events and dreams, each from a quarter as often to three times as often
 

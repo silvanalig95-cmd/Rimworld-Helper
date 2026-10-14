@@ -1,0 +1,949 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Everyday ailments (Source/ColonyCouncil/Ailments/): mild, temporary and never lethal (no lethalSeverity, no lost
+    parts, no permanent harm). Two kinds:
+    - catching ones come by the game's own disease incidents (Defs/IncidentDefs/Council_Ailments_Incidents.xml), with
+      the immunity race where the real illness gives immunity;
+    - the rest come from circumstance: AilmentTracker counts each colonist's hours of heavy work, cold work, sun and so
+      on, and once a day's hours (the cause's <hours>) are reached, rolls the cause's <chance> once that day.
+    Tending is the game's TendDuration (severityPerDayTended 0) plus HediffCompProperties_AilmentMedicine, whose
+    basic/industrial/ultra factors say how much the kind of medicine matters. Moods are in
+    Defs/ThoughtDefs/Council_Thoughts_Ailments.xml. The last two here are after-effects: what an illness leaves behind.
+  -->
+
+  <HediffDef Name="Council_AilmentBase" Abstract="True">
+    <hediffClass>HediffWithComps</hediffClass>
+    <defaultLabelColor>(0.9, 1.0, 0.35)</defaultLabelColor>
+    <isBad>true</isBad>
+    <initialSeverity>0.4</initialSeverity>
+    <maxSeverity>1</maxSeverity>
+  </HediffDef>
+
+  <!-- ===================== Catching ===================== -->
+
+  <HediffDef ParentName="Council_AilmentBase">
+    <defName>Council_Ail_HeadCold</defName>
+    <label>head cold</label>
+    <description>A common cold: a virus caught from someone who has it. A runny nose, sneezing and a sore throat for about a week, worst around the second or third day. Nothing cures it, but rest in bed, warmth and plenty to drink help the body throw it off sooner, and tending eases it a little. It can leave a cough behind for a few days. In the old, the frail and the starving, a cold can turn into pneumonia.</description>
+    <initialSeverity>0.05</initialSeverity>
+    <tendable>true</tendable>
+    <comps>
+      <li Class="ColonyCouncil.HediffCompProperties_Ailment">
+        <key>HeadCold</key>
+        <afterEffects>
+          <li><hediff>Council_Ail_LingeringCough</hediff><chance>0.35</chance><severity>0.2~0.35</severity></li>
+        </afterEffects>
+        <notes>
+          <li>Rest, warmth and plenty to drink. It runs its course in about a week whatever we do; the ones who stay in bed get over it sooner.</li>
+          <li>[lowtech] Hot broth, a warm bed and a cup of honey water at night. A cold goes when it's ready. Keep the old ones warm.</li>
+          <li>[!lowtech] No medicine cures a cold. Fluids, rest and something for the aches. Keep an eye on the old and the frail: that's where a cold turns into pneumonia.</li>
+        </notes>
+      </li>
+      <li Class="HediffCompProperties_TendDuration">
+        <baseTendDurationHours>48</baseTendDurationHours>
+        <severityPerDayTended>0</severityPerDayTended>
+      </li>
+      <li Class="ColonyCouncil.HediffCompProperties_AilmentMedicine">
+        <severityPerDayTended>-0.06</severityPerDayTended>
+      </li>
+      <li Class="ColonyCouncil.HediffCompProperties_AilmentImmunizable">
+        <severityPerDayNotImmune>0.2</severityPerDayNotImmune>
+        <immunityPerDaySick>0.3</immunityPerDaySick>
+        <severityPerDayImmune>-0.18</severityPerDayImmune>
+        <immunityPerDayNotSick>-0.03</immunityPerDayNotSick>
+      </li>
+    </comps>
+    <stages>
+      <li>
+        <label>sniffling</label>
+        <capMods><li><capacity>Consciousness</capacity><offset>-0.03</offset></li></capMods>
+      </li>
+      <li>
+        <minSeverity>0.3</minSeverity>
+        <label>stuffed up</label>
+        <restFallFactor>1.1</restFallFactor>
+        <capMods>
+          <li><capacity>Consciousness</capacity><offset>-0.06</offset></li>
+          <li><capacity>Breathing</capacity><offset>-0.05</offset></li>
+        </capMods>
+      </li>
+      <li>
+        <minSeverity>0.6</minSeverity>
+        <label>miserable</label>
+        <restFallFactor>1.2</restFallFactor>
+        <statFactors><WorkSpeedGlobal>0.95</WorkSpeedGlobal></statFactors>
+        <capMods>
+          <li><capacity>Consciousness</capacity><offset>-0.08</offset></li>
+          <li><capacity>Breathing</capacity><offset>-0.08</offset></li>
+        </capMods>
+      </li>
+    </stages>
+  </HediffDef>
+
+  <HediffDef ParentName="Council_AilmentBase">
+    <defName>Council_Ail_StomachBug</defName>
+    <label>stomach bug</label>
+    <description>A stomach virus that passes from hand to mouth and goes through a household in days. A day or two of cramps, vomiting and running to the latrine, then a day of feeling weak. Unlike food poisoning it isn't the meal that's to blame but whoever had it last: the cook, a shared cup, the door handle. Rest and plenty to drink are what help; the danger is drying out. Washing hands before cooking stops it going round.</description>
+    <initialSeverity>0.05</initialSeverity>
+    <tendable>true</tendable>
+    <comps>
+      <li Class="ColonyCouncil.HediffCompProperties_Ailment">
+        <key>StomachBug</key>
+        <afterEffects>
+          <li><hediff>Council_Ail_Convalescent</hediff><chance>0.5</chance><severity>0.1~0.2</severity></li>
+        </afterEffects>
+        <notes>
+          <li>Water, a little at a time, and a bowl by the bed. It's over in two days for most. Wash hands before cooking, or it goes round again.</li>
+          <li>[lowtech] Boiled water with a pinch of salt, and keep the sick ones out of the kitchen. Two days, and they'll be eating again.</li>
+          <li>[!lowtech] Fluids with salt and sugar so they don't dry out. Disinfect the latrine and keep the sick out of the kitchen until a day after it stops.</li>
+        </notes>
+      </li>
+      <li Class="HediffCompProperties_TendDuration">
+        <baseTendDurationHours>24</baseTendDurationHours>
+        <severityPerDayTended>0</severityPerDayTended>
+      </li>
+      <li Class="ColonyCouncil.HediffCompProperties_AilmentMedicine">
+        <severityPerDayTended>-0.2</severityPerDayTended>
+      </li>
+      <li Class="ColonyCouncil.HediffCompProperties_AilmentImmunizable">
+        <severityPerDayNotImmune>0.9</severityPerDayNotImmune>
+        <immunityPerDaySick>0.9</immunityPerDaySick>
+        <severityPerDayImmune>-0.7</severityPerDayImmune>
+        <immunityPerDayNotSick>-0.08</immunityPerDayNotSick>
+      </li>
+    </comps>
+    <stages>
+      <li>
+        <label>queasy</label>
+        <capMods><li><capacity>Consciousness</capacity><offset>-0.05</offset></li></capMods>
+      </li>
+      <li>
+        <minSeverity>0.35</minSeverity>
+        <label>vomiting</label>
+        <vomitMtbDays>0.3</vomitMtbDays>
+        <painOffset>0.05</painOffset>
+        <capMods>
+          <li><capacity>Consciousness</capacity><offset>-0.1</offset></li>
+          <li><capacity>Moving</capacity><offset>-0.1</offset></li>
+        </capMods>
+      </li>
+      <li>
+        <minSeverity>0.7</minSeverity>
+        <label>the worst of it</label>
+        <vomitMtbDays>0.2</vomitMtbDays>
+        <painOffset>0.08</painOffset>
+        <restFallFactor>1.3</restFallFactor>
+        <capMods>
+          <li><capacity>Consciousness</capacity><offset>-0.15</offset></li>
+          <li><capacity>Moving</capacity><offset>-0.15</offset></li>
+        </capMods>
+      </li>
+    </stages>
+  </HediffDef>
+
+  <HediffDef ParentName="Council_AilmentBase">
+    <defName>Council_Ail_ChestCold</defName>
+    <label>chest cold</label>
+    <description>An infection of the airways (bronchitis), often after a cold: a deep, chesty cough that lasts a week or two, with tiredness and a tight chest. It's worse for those who stay out in the cold. Warmth, rest and plenty to drink help; tending eases the cough, but no medicine cures it. In the old, the frail and the starving it can turn into pneumonia.</description>
+    <initialSeverity>0.05</initialSeverity>
+    <tendable>true</tendable>
+    <comps>
+      <li Class="ColonyCouncil.HediffCompProperties_Ailment">
+        <key>ChestCold</key>
+        <afterEffects>
+          <li><hediff>Council_Ail_LingeringCough</hediff><chance>0.5</chance><severity>0.25~0.4</severity></li>
+        </afterEffects>
+        <notes>
+          <li>Keep them warm and out of the wind. The cough will hang on for a couple of weeks, and that's normal. If they get feverish and short of breath, call me at once: that's pneumonia.</li>
+          <li>[lowtech] Steam from a pot of hot water, honey for the throat, and a warm bed. Watch the old ones.</li>
+          <li>[!lowtech] It's viral, so antibiotics won't touch it. Warmth, fluids, rest. Watch for a high fever or labored breathing.</li>
+        </notes>
+      </li>
+      <li Class="HediffCompProperties_TendDuration">
+        <baseTendDurationHours>48</baseTendDurationHours>
+        <severityPerDayTended>0</severityPerDayTended>
+      </li>
+      <li Class="ColonyCouncil.HediffCompProperties_AilmentMedicine">
+        <severityPerDayTended>-0.05</severityPerDayTended>
+      </li>
+      <li Class="ColonyCouncil.HediffCompProperties_AilmentImmunizable">
+        <severityPerDayNotImmune>0.15</severityPerDayNotImmune>
+        <immunityPerDaySick>0.2</immunityPerDaySick>
+        <severityPerDayImmune>-0.12</severityPerDayImmune>
+        <immunityPerDayNotSick>-0.03</immunityPerDayNotSick>
+        <coldFactor>1.3</coldFactor>
+      </li>
+    </comps>
+    <stages>
+      <li>
+        <label>tickly cough</label>
+        <capMods><li><capacity>Breathing</capacity><offset>-0.03</offset></li></capMods>
+      </li>
+      <li>
+        <minSeverity>0.3</minSeverity>
+        <label>chesty cough</label>
+        <restFallFactor>1.15</restFallFactor>
+        <capMods>
+          <li><capacity>Breathing</capacity><offset>-0.08</offset></li>
+          <li><capacity>Consciousness</capacity><offset>-0.03</offset></li>
+        </capMods>
+      </li>
+      <li>
+        <minSeverity>0.6</minSeverity>
+        <label>hacking cough</label>
+        <restFallFactor>1.25</restFallFactor>
+        <capMods>
+          <li><capacity>Breathing</capacity><offset>-0.12</offset></li>
+          <li><capacity>Consciousness</capacity><offset>-0.05</offset></li>
+        </capMods>
+      </li>
+    </stages>
+  </HediffDef>
+
+  <HediffDef ParentName="Council_AilmentBase">
+    <defName>Council_Ail_HayFever</defName>
+    <label>hay fever</label>
+    <description>An allergy to pollen: sneezing, a streaming nose and itchy, watering eyes while the plants are in flower. It isn't catching, but it wears on people. It settles much faster indoors, away from the pollen. Tending soothes it, and modern medicine (an antihistamine) works best. The same people tend to suffer from it every year.</description>
+    <tendable>true</tendable>
+    <comps>
+      <li Class="ColonyCouncil.HediffCompProperties_Ailment">
+        <key>HayFever</key>
+        <startSeverity>0.45~0.7</startSeverity>
+        <notes>
+          <li>Keep them indoors on windy days and wash the pollen off their face and hands in the evening. It lasts as long as the flowers do.</li>
+          <li>[lowtech] Nettle and chamomile tea, a wet cloth over the eyes, and indoor work for a few days.</li>
+          <li>[!lowtech] An antihistamine from the medicine shelf works well. Indoor work for a few days helps more than anything.</li>
+        </notes>
+      </li>
+      <li Class="HediffCompProperties_TendDuration">
+        <baseTendDurationHours>48</baseTendDurationHours>
+        <severityPerDayTended>0</severityPerDayTended>
+      </li>
+      <li Class="ColonyCouncil.HediffCompProperties_AilmentMedicine">
+        <severityPerDayTended>-0.12</severityPerDayTended>
+        <basic>0.8</basic>
+        <industrial>1.3</industrial>
+        <ultra>1.5</ultra>
+      </li>
+      <li Class="ColonyCouncil.HediffCompProperties_AilmentRecovery">
+        <severityPerDay>-0.08</severityPerDay>
+        <outdoorsFactor>0.5</outdoorsFactor>
+      </li>
+    </comps>
+    <stages>
+      <li>
+        <label>sneezing</label>
+        <capMods>
+          <li><capacity>Sight</capacity><offset>-0.04</offset></li>
+          <li><capacity>Consciousness</capacity><offset>-0.02</offset></li>
+        </capMods>
+      </li>
+      <li>
+        <minSeverity>0.4</minSeverity>
+        <label>streaming eyes</label>
+        <restFallFactor>1.1</restFallFactor>
+        <capMods>
+          <li><capacity>Sight</capacity><offset>-0.1</offset></li>
+          <li><capacity>Consciousness</capacity><offset>-0.04</offset></li>
+          <li><capacity>Breathing</capacity><offset>-0.04</offset></li>
+        </capMods>
+      </li>
+    </stages>
+  </HediffDef>
+
+  <HediffDef ParentName="Council_AilmentBase">
+    <defName>Council_Ail_Pinkeye</defName>
+    <label>pinkeye</label>
+    <description>Conjunctivitis: an infection of the thin skin over the eye, passed on by hands and shared cloths. Red, itchy, weeping eyes for about a week; it blurs the sight but does no lasting harm. Clean hands and separate towels stop it spreading. Tending soothes it, and modern eye drops clear it much faster.</description>
+    <tendable>true</tendable>
+    <comps>
+      <li Class="ColonyCouncil.HediffCompProperties_Ailment">
+        <key>Pinkeye</key>
+        <startSeverity>0.45~0.65</startSeverity>
+        <notes>
+          <li>Wash the eyes with clean water, and nobody shares a towel. It's gone in a week.</li>
+          <li>[lowtech] Bathe the eyes in cooled boiled water morning and night, and keep their hands away from their faces.</li>
+          <li>[!lowtech] Antibiotic drops if it's bacterial, which shortens it a lot. Separate towels and pillowcases until it's gone.</li>
+        </notes>
+      </li>
+      <li Class="HediffCompProperties_TendDuration">
+        <baseTendDurationHours>48</baseTendDurationHours>
+        <severityPerDayTended>0</severityPerDayTended>
+      </li>
+      <li Class="ColonyCouncil.HediffCompProperties_AilmentMedicine">
+        <severityPerDayTended>-0.15</severityPerDayTended>
+        <basic>0.8</basic>
+        <industrial>1.4</industrial>
+        <ultra>1.6</ultra>
+      </li>
+      <li Class="ColonyCouncil.HediffCompProperties_AilmentRecovery">
+        <severityPerDay>-0.1</severityPerDay>
+      </li>
+    </comps>
+    <stages>
+      <li>
+        <label>itchy eyes</label>
+        <capMods><li><capacity>Sight</capacity><offset>-0.05</offset></li></capMods>
+      </li>
+      <li>
+        <minSeverity>0.4</minSeverity>
+        <label>red, weeping eyes</label>
+        <capMods><li><capacity>Sight</capacity><offset>-0.15</offset></li></capMods>
+      </li>
+    </stages>
+  </HediffDef>
+
+  <HediffDef ParentName="Council_AilmentBase">
+    <defName>Council_Ail_Dreamfever</defName>
+    <label>dreamfever</label>
+    <description>A rim fever with no known cause that spreads among people who sleep near each other. It brings a mild fever and dreams so vivid they spill over into the waking day: the sick are confused, slow and restless at night. Most shake it off in five or six days. Rest, quiet and cool cloths help; no medicine does much.</description>
+    <initialSeverity>0.05</initialSeverity>
+    <tendable>true</tendable>
+    <comps>
+      <li Class="ColonyCouncil.HediffCompProperties_Ailment">
+        <key>Dreamfever</key>
+        <notes>
+          <li>Cool cloths, a quiet room and someone to sit with them when they wake. Don't argue with what they saw. It passes in a few days.</li>
+          <li>[lowtech] The old wives say a sprig of lavender under the pillow helps. It can't hurt.</li>
+          <li>[!lowtech] The scanner shows nothing wrong but a mild fever and a very busy brain. Rest and fluids.</li>
+        </notes>
+      </li>
+      <li Class="HediffCompProperties_TendDuration">
+        <baseTendDurationHours>48</baseTendDurationHours>
+        <severityPerDayTended>0</severityPerDayTended>
+      </li>
+      <li Class="ColonyCouncil.HediffCompProperties_AilmentMedicine">
+        <severityPerDayTended>-0.08</severityPerDayTended>
+      </li>
+      <li Class="ColonyCouncil.HediffCompProperties_AilmentImmunizable">
+        <severityPerDayNotImmune>0.25</severityPerDayNotImmune>
+        <immunityPerDaySick>0.22</immunityPerDaySick>
+        <severityPerDayImmune>-0.3</severityPerDayImmune>
+        <immunityPerDayNotSick>-0.05</immunityPerDayNotSick>
+      </li>
+    </comps>
+    <stages>
+      <li>
+        <label>restless nights</label>
+        <restFallFactor>1.2</restFallFactor>
+        <capMods><li><capacity>Consciousness</capacity><offset>-0.04</offset></li></capMods>
+      </li>
+      <li>
+        <minSeverity>0.3</minSeverity>
+        <label>vivid dreams</label>
+        <restFallFactor>1.3</restFallFactor>
+        <capMods><li><capacity>Consciousness</capacity><offset>-0.08</offset></li></capMods>
+      </li>
+      <li>
+        <minSeverity>0.6</minSeverity>
+        <label>waking dreams</label>
+        <restFallFactor>1.4</restFallFactor>
+        <capMods>
+          <li><capacity>Consciousness</capacity><offset>-0.14</offset></li>
+          <li><capacity>Manipulation</capacity><offset>-0.05</offset></li>
+        </capMods>
+      </li>
+    </stages>
+  </HediffDef>
+
+  <!-- ===================== From circumstance ===================== -->
+
+  <HediffDef ParentName="Council_AilmentBase">
+    <defName>Council_Ail_StrainedBack</defName>
+    <label>strained back</label>
+    <description>A strained muscle in the lower back from too many heavy loads: pain, stiffness and trouble bending. A day or two of rest in bed helps most at the start, then light work; it eases within one to two weeks. Tending (strapping, a warm compress) speeds it along. It comes from long days of hauling, mining and building, more often in older backs.</description>
+    <tendable>true</tendable>
+    <comps>
+      <li Class="ColonyCouncil.HediffCompProperties_Ailment">
+        <key>StrainedBack</key>
+        <causes><li><trigger>HeavyWork</trigger><hours>6</hours><chance>0.03</chance></li></causes>
+        <childFactor>0</childFactor>
+        <oldFactor>1.5</oldFactor>
+        <startSeverity>0.3~0.65</startSeverity>
+        <gotText>{PAWN_nameDef} has strained {PAWN_possessive} back with all the heavy work.</gotText>
+        <notes>
+          <li>A day or two in bed, then light work until it stops twinging. Lift with the legs.</li>
+          <li>[lowtech] Warm stones wrapped in cloth on the sore spot, and nothing heavier than a bucket for a week.</li>
+          <li>[!lowtech] Heat, rest, then gentle movement, and painkillers if they need them. It'll mend in a week or two.</li>
+        </notes>
+      </li>
+      <li Class="HediffCompProperties_TendDuration">
+        <baseTendDurationHours>72</baseTendDurationHours>
+        <severityPerDayTended>0</severityPerDayTended>
+      </li>
+      <li Class="ColonyCouncil.HediffCompProperties_AilmentMedicine">
+        <severityPerDayTended>-0.08</severityPerDayTended>
+      </li>
+      <li Class="ColonyCouncil.HediffCompProperties_AilmentRecovery">
+        <severityPerDay>-0.05</severityPerDay>
+        <bedFactor>2</bedFactor>
+      </li>
+    </comps>
+    <stages>
+      <li>
+        <label>stiff</label>
+        <painOffset>0.04</painOffset>
+        <capMods><li><capacity>Moving</capacity><offset>-0.04</offset></li></capMods>
+      </li>
+      <li>
+        <minSeverity>0.3</minSeverity>
+        <label>sore</label>
+        <painOffset>0.08</painOffset>
+        <statFactors><CarryingCapacity>0.8</CarryingCapacity></statFactors>
+        <capMods>
+          <li><capacity>Moving</capacity><offset>-0.08</offset></li>
+          <li><capacity>Manipulation</capacity><offset>-0.04</offset></li>
+        </capMods>
+      </li>
+      <li>
+        <minSeverity>0.55</minSeverity>
+        <label>thrown out</label>
+        <painOffset>0.12</painOffset>
+        <statFactors><CarryingCapacity>0.6</CarryingCapacity></statFactors>
+        <capMods>
+          <li><capacity>Moving</capacity><offset>-0.15</offset></li>
+          <li><capacity>Manipulation</capacity><offset>-0.08</offset></li>
+        </capMods>
+      </li>
+    </stages>
+  </HediffDef>
+
+  <HediffDef ParentName="Council_AilmentBase">
+    <defName>Council_Ail_SoreHands</defName>
+    <label>sore hands</label>
+    <description>Aching, swollen tendons in the hands and wrists from long days of the same fine work at a bench. It clears in about a week if the hands get a rest; tending (a splint, a cold compress) helps.</description>
+    <tendable>true</tendable>
+    <comps>
+      <li Class="ColonyCouncil.HediffCompProperties_Ailment">
+        <key>SoreHands</key>
+        <causes><li><trigger>HandWork</trigger><hours>7</hours><chance>0.025</chance></li></causes>
+        <childFactor>0.5</childFactor>
+        <oldFactor>1.5</oldFactor>
+        <startSeverity>0.25~0.5</startSeverity>
+        <gotText>{PAWN_nameDef}'s hands are sore from long hours at the bench.</gotText>
+        <notes>
+          <li>Rest the hands. Other work for a few days, nothing that grips.</li>
+          <li>[lowtech] Cold well water on the wrists, a cloth splint at night, and no fine work for a week.</li>
+          <li>[!lowtech] A wrist brace at night and something for the swelling. Put them on other work for a few days.</li>
+        </notes>
+      </li>
+      <li Class="HediffCompProperties_TendDuration">
+        <baseTendDurationHours>72</baseTendDurationHours>
+        <severityPerDayTended>0</severityPerDayTended>
+      </li>
+      <li Class="ColonyCouncil.HediffCompProperties_AilmentMedicine">
+        <severityPerDayTended>-0.08</severityPerDayTended>
+      </li>
+      <li Class="ColonyCouncil.HediffCompProperties_AilmentRecovery">
+        <severityPerDay>-0.06</severityPerDay>
+        <bedFactor>1.2</bedFactor>
+      </li>
+    </comps>
+    <stages>
+      <li>
+        <label>aching</label>
+        <capMods><li><capacity>Manipulation</capacity><offset>-0.04</offset></li></capMods>
+      </li>
+      <li>
+        <minSeverity>0.35</minSeverity>
+        <label>swollen wrists</label>
+        <capMods><li><capacity>Manipulation</capacity><offset>-0.1</offset></li></capMods>
+      </li>
+    </stages>
+  </HediffDef>
+
+  <HediffDef ParentName="Council_AilmentBase">
+    <defName>Council_Ail_Blisters</defName>
+    <label>blisters</label>
+    <description>Raw blisters on the feet from a long day's walking or a caravan on the move. Sore for a few days; kept clean and dry, they heal without trouble. Tending (cleaning and dressing them) helps them heal faster.</description>
+    <tendable>true</tendable>
+    <comps>
+      <li Class="ColonyCouncil.HediffCompProperties_Ailment">
+        <key>Blisters</key>
+        <quiet>true</quiet>
+        <causes><li><trigger>Walking</trigger><hours>8</hours><chance>0.06</chance></li></causes>
+        <cooldownDays>8</cooldownDays>
+        <startSeverity>0.25~0.5</startSeverity>
+        <gotText>{PAWN_nameDef} has blisters from all the walking.</gotText>
+        <notes>
+          <li>Clean them, cover them, and don't pop them. Dry feet at night.</li>
+          <li>[lowtech] Wash the feet, wrap them in clean linen, and let them air by the fire at night.</li>
+          <li>[!lowtech] Clean, a blister dressing, and dry socks. They'll be fine in a few days.</li>
+        </notes>
+      </li>
+      <li Class="HediffCompProperties_TendDuration">
+        <baseTendDurationHours>48</baseTendDurationHours>
+        <severityPerDayTended>0</severityPerDayTended>
+      </li>
+      <li Class="ColonyCouncil.HediffCompProperties_AilmentMedicine">
+        <severityPerDayTended>-0.15</severityPerDayTended>
+      </li>
+      <li Class="ColonyCouncil.HediffCompProperties_AilmentRecovery">
+        <severityPerDay>-0.15</severityPerDay>
+        <bedFactor>1.5</bedFactor>
+      </li>
+    </comps>
+    <stages>
+      <li>
+        <label>sore feet</label>
+        <capMods><li><capacity>Moving</capacity><offset>-0.04</offset></li></capMods>
+      </li>
+      <li>
+        <minSeverity>0.35</minSeverity>
+        <label>broken blisters</label>
+        <painOffset>0.05</painOffset>
+        <capMods><li><capacity>Moving</capacity><offset>-0.08</offset></li></capMods>
+      </li>
+    </stages>
+  </HediffDef>
+
+  <HediffDef ParentName="Council_AilmentBase">
+    <defName>Council_Ail_Chilblains</defName>
+    <label>chilblains</label>
+    <description>Itchy, swollen red patches on the fingers and toes after hours of work in cold, damp air, as small blood vessels react to the cold. It isn't frostbite and does no lasting harm. Warmed slowly and kept dry, it clears in a week or so. Warm clothes and indoor work on the coldest days prevent it.</description>
+    <tendable>true</tendable>
+    <comps>
+      <li Class="ColonyCouncil.HediffCompProperties_Ailment">
+        <key>Chilblains</key>
+        <causes><li><trigger>ColdWork</trigger><hours>5</hours><chance>0.03</chance></li></causes>
+        <oldFactor>1.5</oldFactor>
+        <startSeverity>0.25~0.5</startSeverity>
+        <gotText>{PAWN_nameDef} has chilblains from working out in the cold.</gotText>
+        <notes>
+          <li>Warm them up slowly, not right by the fire. Dry gloves and indoor work for a while.</li>
+          <li>[lowtech] Wool, more wool, and no scratching. A little goose fat on the cracked skin.</li>
+          <li>[!lowtech] Gradual rewarming and a soothing lotion for the itch. Better gloves next time.</li>
+        </notes>
+      </li>
+      <li Class="HediffCompProperties_TendDuration">
+        <baseTendDurationHours>72</baseTendDurationHours>
+        <severityPerDayTended>0</severityPerDayTended>
+      </li>
+      <li Class="ColonyCouncil.HediffCompProperties_AilmentMedicine">
+        <severityPerDayTended>-0.06</severityPerDayTended>
+      </li>
+      <li Class="ColonyCouncil.HediffCompProperties_AilmentRecovery">
+        <severityPerDay>-0.07</severityPerDay>
+        <bedFactor>1.3</bedFactor>
+      </li>
+    </comps>
+    <stages>
+      <li>
+        <label>itchy fingers</label>
+        <capMods><li><capacity>Manipulation</capacity><offset>-0.03</offset></li></capMods>
+      </li>
+      <li>
+        <minSeverity>0.35</minSeverity>
+        <label>swollen toes</label>
+        <capMods>
+          <li><capacity>Manipulation</capacity><offset>-0.06</offset></li>
+          <li><capacity>Moving</capacity><offset>-0.04</offset></li>
+        </capMods>
+      </li>
+    </stages>
+  </HediffDef>
+
+  <HediffDef ParentName="Council_AilmentBase">
+    <defName>Council_Ail_Sunburn</defName>
+    <label>sunburn</label>
+    <description>Skin burned by hours under a hot midday sun with nothing on the head. Red, hot and painful for a day or two, then it peels; it heals in under a week. Cool water, shade and a soothing salve help. A hat prevents it.</description>
+    <tendable>true</tendable>
+    <comps>
+      <li Class="ColonyCouncil.HediffCompProperties_Ailment">
+        <key>Sunburn</key>
+        <quiet>true</quiet>
+        <causes><li><trigger>SunWork</trigger><hours>4</hours><chance>0.05</chance></li></causes>
+        <cooldownDays>8</cooldownDays>
+        <startSeverity>0.25~0.6</startSeverity>
+        <gotText>{PAWN_nameDef} is sunburned from working bareheaded in the heat.</gotText>
+        <notes>
+          <li>Cool water, shade and plenty to drink. A hat next time.</li>
+          <li>[lowtech] Aloe if we have it, cool wet cloths if we don't. And a wide-brimmed hat.</li>
+          <li>[!lowtech] Cool compresses and aloe gel. Keep them out of the sun until it stops stinging.</li>
+        </notes>
+      </li>
+      <li Class="HediffCompProperties_TendDuration">
+        <baseTendDurationHours>48</baseTendDurationHours>
+        <severityPerDayTended>0</severityPerDayTended>
+      </li>
+      <li Class="ColonyCouncil.HediffCompProperties_AilmentMedicine">
+        <severityPerDayTended>-0.15</severityPerDayTended>
+      </li>
+      <li Class="ColonyCouncil.HediffCompProperties_AilmentRecovery">
+        <severityPerDay>-0.15</severityPerDay>
+      </li>
+    </comps>
+    <stages>
+      <li>
+        <label>pink</label>
+      </li>
+      <li>
+        <minSeverity>0.35</minSeverity>
+        <label>burned</label>
+        <painOffset>0.06</painOffset>
+        <restFallFactor>1.1</restFallFactor>
+      </li>
+    </stages>
+  </HediffDef>
+
+  <HediffDef ParentName="Council_AilmentBase">
+    <defName>Council_Ail_SmokeCough</defName>
+    <label>smoke cough</label>
+    <description>A dry, scratchy cough from hours in a small room with a wood fire burning and nowhere for the smoke to go. A day or two of clean air clears it. A bigger room, or the fire somewhere else, prevents it.</description>
+    <comps>
+      <li Class="ColonyCouncil.HediffCompProperties_Ailment">
+        <key>SmokeCough</key>
+        <quiet>true</quiet>
+        <causes><li><trigger>SmokyRoom</trigger><hours>4</hours><chance>0.06</chance></li></causes>
+        <cooldownDays>6</cooldownDays>
+        <startSeverity>0.25~0.5</startSeverity>
+        <gotText>{PAWN_nameDef} has a cough from the smoke in that small room.</gotText>
+        <notes>
+          <li>Fresh air. That's all it needs, and a room where the smoke can get out.</li>
+          <li>[lowtech] Move the fire to a bigger room, or open a smoke hole in the roof.</li>
+          <li>[!lowtech] Get them out of the smoke. Better yet, swap that fire for a proper heater.</li>
+        </notes>
+      </li>
+      <li Class="ColonyCouncil.HediffCompProperties_AilmentRecovery">
+        <severityPerDay>-0.25</severityPerDay>
+      </li>
+    </comps>
+    <stages>
+      <li>
+        <label>scratchy throat</label>
+        <capMods><li><capacity>Breathing</capacity><offset>-0.04</offset></li></capMods>
+      </li>
+      <li>
+        <minSeverity>0.35</minSeverity>
+        <label>coughing</label>
+        <capMods>
+          <li><capacity>Breathing</capacity><offset>-0.08</offset></li>
+          <li><capacity>Consciousness</capacity><offset>-0.02</offset></li>
+        </capMods>
+      </li>
+    </stages>
+  </HediffDef>
+
+  <HediffDef ParentName="Council_AilmentBase">
+    <defName>Council_Ail_Toothache</defName>
+    <label>toothache</label>
+    <description>A rotten tooth: a dull ache that turns into a throb whenever they chew or drink something cold. Sweets and the years make it likelier. It comes and goes on its own for a couple of weeks, but one good treatment deals with it: the tooth is cleaned and filled, or pulled.</description>
+    <tendable>true</tendable>
+    <comps>
+      <li Class="ColonyCouncil.HediffCompProperties_Ailment">
+        <key>Toothache</key>
+        <causes><li><trigger>Sweets</trigger><chance>0.0012</chance></li></causes>
+        <childFactor>0.5</childFactor>
+        <cooldownDays>30</cooldownDays>
+        <startSeverity>0.3~0.6</startSeverity>
+        <gotText>{PAWN_nameDef} has a toothache.</gotText>
+        <notes>
+          <li>That tooth needs seeing to. One treatment should settle it.</li>
+          <li>[lowtech] Clove oil on the gum for the pain, then the pliers. It's quick.</li>
+          <li>[!lowtech] Clean it out and fill it. And go easy on the sweets.</li>
+        </notes>
+      </li>
+      <li Class="HediffCompProperties_TendDuration">
+        <baseTendDurationHours>72</baseTendDurationHours>
+        <severityPerDayTended>0</severityPerDayTended>
+      </li>
+      <li Class="ColonyCouncil.HediffCompProperties_AilmentMedicine">
+        <severityPerDayTended>-0.5</severityPerDayTended>
+      </li>
+      <li Class="ColonyCouncil.HediffCompProperties_AilmentRecovery">
+        <severityPerDay>-0.03</severityPerDay>
+      </li>
+    </comps>
+    <stages>
+      <li>
+        <label>twinging</label>
+        <painOffset>0.05</painOffset>
+        <capMods><li><capacity>Eating</capacity><offset>-0.1</offset></li></capMods>
+      </li>
+      <li>
+        <minSeverity>0.4</minSeverity>
+        <label>throbbing</label>
+        <painOffset>0.12</painOffset>
+        <capMods>
+          <li><capacity>Eating</capacity><offset>-0.2</offset></li>
+          <li><capacity>Consciousness</capacity><offset>-0.03</offset></li>
+        </capMods>
+      </li>
+    </stages>
+  </HediffDef>
+
+  <HediffDef ParentName="Council_AilmentBase">
+    <defName>Council_Ail_StiffNeck</defName>
+    <label>stiff neck</label>
+    <description>A crick in the neck from a night on the ground, a bedroll or a hard bed. A day or two of stiffness that eases with warmth and gentle movement; no doctor needed. A proper bed prevents it.</description>
+    <comps>
+      <li Class="ColonyCouncil.HediffCompProperties_Ailment">
+        <key>StiffNeck</key>
+        <quiet>true</quiet>
+        <causes><li><trigger>HardBed</trigger><hours>4</hours><chance>0.02</chance></li></causes>
+        <childFactor>0.3</childFactor>
+        <oldFactor>1.5</oldFactor>
+        <cooldownDays>10</cooldownDays>
+        <startSeverity>0.25~0.45</startSeverity>
+        <gotText>{PAWN_nameDef} woke up with a stiff neck.</gotText>
+        <notes>
+          <li>A warm cloth and some gentle stretching. A real bed would help more than I can.</li>
+          <li>[lowtech] Warm stones in a cloth on the neck. A mattress of fresh straw would stop it happening.</li>
+          <li>[!lowtech] Heat and a gentle massage. A proper mattress would stop it happening.</li>
+        </notes>
+      </li>
+      <li Class="ColonyCouncil.HediffCompProperties_AilmentRecovery">
+        <severityPerDay>-0.3</severityPerDay>
+      </li>
+    </comps>
+    <stages>
+      <li>
+        <label>stiff</label>
+        <capMods><li><capacity>Manipulation</capacity><offset>-0.03</offset></li></capMods>
+      </li>
+    </stages>
+  </HediffDef>
+
+  <HediffDef ParentName="Council_AilmentBase">
+    <defName>Council_Ail_SprainedAnkle</defName>
+    <label>sprained ankle</label>
+    <description>A twisted ankle from a bad step on rough, wet or snowy ground: the ligaments are stretched and the joint swells. Rest, cold, strapping and keeping the foot up help; it heals in a week or so, faster with time in bed at the start.</description>
+    <tendable>true</tendable>
+    <comps>
+      <li Class="ColonyCouncil.HediffCompProperties_Ailment">
+        <key>SprainedAnkle</key>
+        <causes><li><trigger>RoughGround</trigger><hours>2</hours><chance>0.015</chance></li></causes>
+        <childFactor>0.7</childFactor>
+        <oldFactor>1.3</oldFactor>
+        <cooldownDays>20</cooldownDays>
+        <startSeverity>0.35~0.6</startSeverity>
+        <gotText>{PAWN_nameDef} has sprained an ankle on the rough ground.</gotText>
+        <notes>
+          <li>Rest, cold, strapping, and the foot up. A day or two in bed, then a stick to lean on.</li>
+          <li>[lowtech] Cold water from the stream, a tight linen wrap and a crutch.</li>
+          <li>[!lowtech] Ice, a compression bandage and the foot raised. Painkillers for the first days.</li>
+        </notes>
+      </li>
+      <li Class="HediffCompProperties_TendDuration">
+        <baseTendDurationHours>72</baseTendDurationHours>
+        <severityPerDayTended>0</severityPerDayTended>
+      </li>
+      <li Class="ColonyCouncil.HediffCompProperties_AilmentMedicine">
+        <severityPerDayTended>-0.08</severityPerDayTended>
+      </li>
+      <li Class="ColonyCouncil.HediffCompProperties_AilmentRecovery">
+        <severityPerDay>-0.06</severityPerDay>
+        <bedFactor>2</bedFactor>
+      </li>
+    </comps>
+    <stages>
+      <li>
+        <label>twisted</label>
+        <painOffset>0.06</painOffset>
+        <capMods><li><capacity>Moving</capacity><offset>-0.1</offset></li></capMods>
+      </li>
+      <li>
+        <minSeverity>0.4</minSeverity>
+        <label>swollen</label>
+        <painOffset>0.1</painOffset>
+        <capMods><li><capacity>Moving</capacity><offset>-0.2</offset></li></capMods>
+      </li>
+    </stages>
+  </HediffDef>
+
+  <HediffDef ParentName="Council_AilmentBase">
+    <defName>Council_Ail_EyeStrain</defName>
+    <label>eye strain</label>
+    <description>Tired, aching eyes and a headache from hours of close work in poor light. A good night's sleep clears it. Better light where they work prevents it.</description>
+    <comps>
+      <li Class="ColonyCouncil.HediffCompProperties_Ailment">
+        <key>EyeStrain</key>
+        <quiet>true</quiet>
+        <causes><li><trigger>DarkWork</trigger><hours>4</hours><chance>0.04</chance></li></causes>
+        <childFactor>0.5</childFactor>
+        <cooldownDays>6</cooldownDays>
+        <startSeverity>0.25~0.45</startSeverity>
+        <gotText>{PAWN_nameDef} has a headache from working in poor light.</gotText>
+        <notes>
+          <li>Sleep is the cure. A lamp at that workbench is the prevention.</li>
+          <li>[lowtech] A torch or a candle by the bench, and rest the eyes now and then.</li>
+          <li>[!lowtech] A lamp at the bench, and look up from the work every so often.</li>
+        </notes>
+      </li>
+      <li Class="ColonyCouncil.HediffCompProperties_AilmentRecovery">
+        <severityPerDay>-0.4</severityPerDay>
+        <bedFactor>3</bedFactor>
+      </li>
+    </comps>
+    <stages>
+      <li>
+        <label>tired eyes</label>
+        <capMods>
+          <li><capacity>Sight</capacity><offset>-0.05</offset></li>
+          <li><capacity>Consciousness</capacity><offset>-0.03</offset></li>
+        </capMods>
+      </li>
+    </stages>
+  </HediffDef>
+
+  <HediffDef ParentName="Council_AilmentBase">
+    <defName>Council_Ail_RimrotCough</defName>
+    <label>rimrot cough</label>
+    <description>A wet, rattling cough from sleeping in a damp, moldy room: a dirty room under solid rock, one open to the rain, or anywhere grimy in a swamp or jungle. The mold settles in the chest and lingers for a week or so. A clean, dry, well-roofed bedroom is the cure, and tending eases it.</description>
+    <tendable>true</tendable>
+    <comps>
+      <li Class="ColonyCouncil.HediffCompProperties_Ailment">
+        <key>RimrotCough</key>
+        <causes><li><trigger>DampSleep</trigger><hours>4</hours><chance>0.04</chance></li></causes>
+        <oldFactor>1.5</oldFactor>
+        <startSeverity>0.25~0.5</startSeverity>
+        <gotText>{PAWN_nameDef} has a rimrot cough from sleeping in a damp room.</gotText>
+        <notes>
+          <li>Clean that room and fix the roof, or the cough will just come back.</li>
+          <li>[lowtech] Dry the room out with a fire, sweep it, and air the bedding in the sun.</li>
+          <li>[!lowtech] Scrub the mold off, patch the roof, and run a heater to dry the place out.</li>
+        </notes>
+      </li>
+      <li Class="HediffCompProperties_TendDuration">
+        <baseTendDurationHours>48</baseTendDurationHours>
+        <severityPerDayTended>0</severityPerDayTended>
+      </li>
+      <li Class="ColonyCouncil.HediffCompProperties_AilmentMedicine">
+        <severityPerDayTended>-0.06</severityPerDayTended>
+      </li>
+      <li Class="ColonyCouncil.HediffCompProperties_AilmentRecovery">
+        <severityPerDay>-0.06</severityPerDay>
+      </li>
+    </comps>
+    <stages>
+      <li>
+        <label>damp cough</label>
+        <restFallFactor>1.1</restFallFactor>
+        <capMods><li><capacity>Breathing</capacity><offset>-0.05</offset></li></capMods>
+      </li>
+      <li>
+        <minSeverity>0.35</minSeverity>
+        <label>rattling chest</label>
+        <restFallFactor>1.2</restFallFactor>
+        <capMods>
+          <li><capacity>Breathing</capacity><offset>-0.1</offset></li>
+          <li><capacity>Consciousness</capacity><offset>-0.03</offset></li>
+        </capMods>
+      </li>
+    </stages>
+  </HediffDef>
+
+  <HediffDef ParentName="Council_AilmentBase">
+    <defName>Council_Ail_AshLung</defName>
+    <label>ash lung</label>
+    <description>A dry cough and a tight chest from breathing ash and soot: from beating out fires, or from working under volcanic ashfall. Gray phlegm for a few days, then it clears in clean air. Rest and tending help.</description>
+    <tendable>true</tendable>
+    <comps>
+      <li Class="ColonyCouncil.HediffCompProperties_Ailment">
+        <key>AshLung</key>
+        <causes>
+          <li><trigger>Firefighting</trigger><hours>1</hours><chance>0.12</chance></li>
+          <li><trigger>Ashfall</trigger><hours>4</hours><chance>0.03</chance></li>
+        </causes>
+        <cooldownDays>8</cooldownDays>
+        <startSeverity>0.3~0.6</startSeverity>
+        <gotText>{PAWN_nameDef} has a chestful of ash and soot.</gotText>
+        <notes>
+          <li>Clean air and rest. A wet cloth over the mouth next time.</li>
+          <li>[lowtech] Steam and honey for the throat, and a wet rag over the face when fighting fires.</li>
+          <li>[!lowtech] Rest and fluids; it'll clear. Masks for whoever fights the next fire.</li>
+        </notes>
+      </li>
+      <li Class="HediffCompProperties_TendDuration">
+        <baseTendDurationHours>48</baseTendDurationHours>
+        <severityPerDayTended>0</severityPerDayTended>
+      </li>
+      <li Class="ColonyCouncil.HediffCompProperties_AilmentMedicine">
+        <severityPerDayTended>-0.1</severityPerDayTended>
+      </li>
+      <li Class="ColonyCouncil.HediffCompProperties_AilmentRecovery">
+        <severityPerDay>-0.1</severityPerDay>
+        <bedFactor>1.3</bedFactor>
+      </li>
+    </comps>
+    <stages>
+      <li>
+        <label>sooty cough</label>
+        <capMods><li><capacity>Breathing</capacity><offset>-0.08</offset></li></capMods>
+      </li>
+      <li>
+        <minSeverity>0.4</minSeverity>
+        <label>tight chest</label>
+        <restFallFactor>1.15</restFallFactor>
+        <capMods>
+          <li><capacity>Breathing</capacity><offset>-0.15</offset></li>
+          <li><capacity>Consciousness</capacity><offset>-0.05</offset></li>
+        </capMods>
+      </li>
+    </stages>
+  </HediffDef>
+
+  <!-- ===================== After-effects ===================== -->
+
+  <HediffDef ParentName="Council_AilmentBase">
+    <defName>Council_Ail_LingeringCough</defName>
+    <label>lingering cough</label>
+    <description>The cough that hangs on after a cold or a chest infection. Annoying rather than harmful; it fades within a week or two.</description>
+    <comps>
+      <li Class="ColonyCouncil.HediffCompProperties_Ailment">
+        <key>LingeringCough</key>
+        <lingering>true</lingering>
+        <notes>
+          <li>It's just the cough hanging on. It'll go.</li>
+        </notes>
+      </li>
+      <li Class="ColonyCouncil.HediffCompProperties_AilmentRecovery">
+        <severityPerDay>-0.05</severityPerDay>
+      </li>
+    </comps>
+    <stages>
+      <li>
+        <label>coughing</label>
+        <restFallFactor>1.05</restFallFactor>
+        <capMods><li><capacity>Breathing</capacity><offset>-0.03</offset></li></capMods>
+      </li>
+    </stages>
+  </HediffDef>
+
+  <HediffDef ParentName="Council_AilmentBase">
+    <defName>Council_Ail_Convalescent</defName>
+    <label>convalescing</label>
+    <description>Weak and tired after an illness, while the body rebuilds its strength. Work is slower for a while. Rest, good food and time are all it needs, and time in bed shortens it.</description>
+    <comps>
+      <li Class="ColonyCouncil.HediffCompProperties_Ailment">
+        <key>Convalescent</key>
+        <lingering>true</lingering>
+        <notes>
+          <li>Plenty of food and sleep, and light work until the strength comes back.</li>
+        </notes>
+      </li>
+      <li Class="ColonyCouncil.HediffCompProperties_AilmentRecovery">
+        <severityPerDay>-0.06</severityPerDay>
+        <bedFactor>1.5</bedFactor>
+      </li>
+    </comps>
+    <stages>
+      <li>
+        <label>a little weak</label>
+        <restFallFactor>1.1</restFallFactor>
+        <statFactors><WorkSpeedGlobal>0.95</WorkSpeedGlobal></statFactors>
+        <capMods><li><capacity>Moving</capacity><offset>-0.03</offset></li></capMods>
+      </li>
+      <li>
+        <minSeverity>0.4</minSeverity>
+        <label>weak</label>
+        <restFallFactor>1.2</restFallFactor>
+        <statFactors><WorkSpeedGlobal>0.88</WorkSpeedGlobal></statFactors>
+        <capMods><li><capacity>Moving</capacity><offset>-0.06</offset></li></capMods>
+      </li>
+    </stages>
+  </HediffDef>
+
+</Defs>

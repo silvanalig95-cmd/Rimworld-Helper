@@ -118,6 +118,12 @@ namespace ColonyCouncil
         public bool heartInspector = true;
         /// <summary>How quickly strain builds: 0.5 to 1.5.</summary>
         public float strainSpeed = 1f;
+        /// <summary>Everyday ailments (Ailments/): colds, strained backs, sunburn, and the like.</summary>
+        public bool ailments = true;
+        /// <summary>The rare serious illnesses, which can kill (tetanus, pneumonia, tuberculosis...).</summary>
+        public bool seriousIllnesses = true;
+        /// <summary>How often ailments come: 0.25 to 2.</summary>
+        public float ailmentFrequency = 1f;
         /// <summary>On-screen buttons for half and quarter speed, and where they sit (fractions of the screen; -1 = default).</summary>
         public bool slowButtons = true;
         public bool moodInsight = true;
@@ -234,6 +240,9 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref heartEpisodes, "heartEpisodes", true);
             Scribe_Values.Look(ref heartInspector, "heartInspector", true);
             Scribe_Values.Look(ref strainSpeed, "strainSpeed", 1f);
+            Scribe_Values.Look(ref ailments, "ailments", true);
+            Scribe_Values.Look(ref seriousIllnesses, "seriousIllnesses", true);
+            Scribe_Values.Look(ref ailmentFrequency, "ailmentFrequency", 1f);
             Scribe_Values.Look(ref slowButtons, "slowButtons", true);
             Scribe_Values.Look(ref moodInsight, "moodInsight", true);
             Scribe_Values.Look(ref deepHooks, "deepHooks", true);
@@ -472,6 +481,16 @@ namespace ColonyCouncil
                 strainSpeed = Mathf.Clamp(Mathf.Round(strainSpeed * 20f) / 20f, 0.5f, 1.5f);
             }
 
+            Header(l, "CC_Settings_AilmentsHeader".Translate());
+            l.CheckboxLabeled("CC_Settings_Ailments".Translate(), ref ailments, "CC_Settings_Ailments_Tip".Translate());
+            if (ailments)
+            {
+                l.CheckboxLabeled("  " + "CC_Settings_SeriousIllnesses".Translate(), ref seriousIllnesses, "CC_Settings_SeriousIllnesses_Tip".Translate());
+                ailmentFrequency = l.SliderLabeled("CC_Settings_AilmentFrequency".Translate(ailmentFrequency.ToStringPercent()), ailmentFrequency, 0.25f, 2f, 0.6f,
+                    "CC_Settings_AilmentFrequency_Tip".Translate());
+                ailmentFrequency = Mathf.Clamp(Mathf.Round(ailmentFrequency * 20f) / 20f, 0.25f, 2f);
+            }
+
             Header(l, "CC_Settings_Strangers".Translate());
             l.CheckboxLabeled("CC_Settings_Encounters".Translate(), ref strangers, "CC_Settings_Encounters_Tip".Translate());
             l.CheckboxLabeled("CC_Settings_Nemeses".Translate(), ref nemeses, "CC_Settings_Nemeses_Tip".Translate());
@@ -586,6 +605,7 @@ namespace ColonyCouncil
         {
             socialWeb = socialEvents = secrets = vendettas = aspirations = quirks = heirlooms = comingOfAge = dreams = dreamOmens = eulogies = heart = on;
             strangers = nemeses = nemesisReturns = petMoments = colonistMoments = frictions = autonomy = worldReactions = worldEvents = worldSituations = on;
+            ailments = on;
             enableDilemmas = decreeRequests = offices = colonyCharacter = councilOn;
             enableWishes = enableAmbitions = councilOn || on;
             journals = epithets = anniversaries = annals = on || councilOn;
@@ -673,6 +693,9 @@ namespace ColonyCouncil
             heartEpisodes = d.heartEpisodes;
             heartInspector = d.heartInspector;
             strainSpeed = d.strainSpeed;
+            ailments = d.ailments;
+            seriousIllnesses = d.seriousIllnesses;
+            ailmentFrequency = d.ailmentFrequency;
             moodInsight = d.moodInsight;
             deepHooks = d.deepHooks;
             needsTabHints = d.needsTabHints;

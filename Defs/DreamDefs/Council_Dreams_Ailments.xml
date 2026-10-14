@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Dreams of the sick (Source/ColonyCouncil/Ailments/): dreamfever's vivid dreams, and the dreams of someone seriously
+    ill. Like the other dreams tied to a condition, they only come while the dreamer has it, and are much likelier
+    then than the usual ones.
+  -->
+
+  <ColonyCouncil.DreamDef>
+    <defName>Council_DreamOf_Dreamfever</defName>
+    <label>a dreamfever dream</label>
+    <kind>Strange</kind>
+    <weight>3</weight>
+    <children>true</children>
+    <hediffs><li>Council_Ail_Dreamfever</li></hediffs>
+    <lines>
+      <plain>
+        <li>The colony was underwater, and we all went on working, slower, with fish in the rafters.</li>
+        <li>In the dream every door led back into my own room. I opened eleven of them.</li>
+        <li>I could hear what the walls were thinking. They were worried about the roof.</li>
+        <li>The dream went on after I woke. For a while the floor kept rippling.</li>
+        <li>[child] I was a bird, and I could see the whole colony from up high.</li>
+      </plain>
+      <warm><li>Everyone I've lost was sitting at our table, passing bread down the line.</li></warm>
+      <gloomy><li>The sun didn't come up, and I was the only one who noticed.</li></gloomy>
+      <cold><li>The fever produced another vivid dream. I'm keeping notes on them.</li></cold>
+    </lines>
+  </ColonyCouncil.DreamDef>
+
+  <ColonyCouncil.DreamDef>
+    <defName>Council_DreamOf_GravelyIll</defName>
+    <label>a sickbed dream</label>
+    <kind>Nightmare</kind>
+    <children>true</children>
+    <hediffs>
+      <li>Council_Ail_Tetanus</li>
+      <li>Council_Ail_Pneumonia</li>
+      <li>Council_Ail_Tuberculosis</li>
+      <li>Council_Ail_Typhus</li>
+      <li>Council_Ail_Meningitis</li>
+      <li>Council_Ail_Glassblood</li>
+    </hediffs>
+    <lines>
+      <plain>
+        <li>I was drowning in a warm river, and someone kept pulling me up by the collar.</li>
+        <li>In the dream the doctor was counting the medicine, and every time there was one less.</li>
+        <li>My bed was a boat drifting away from shore, and the people on the bank were waving.</li>
+      </plain>
+      <warm><li>My mother was wiping my forehead with a cool cloth. I woke up and it was the doctor.</li></warm>
+      <gloomy><li>I saw my own grave, neat and well kept.</li></gloomy>
+      <cold><li>A dream about dying. Not useful.</li></cold>
+    </lines>
+  </ColonyCouncil.DreamDef>
+
+</Defs>

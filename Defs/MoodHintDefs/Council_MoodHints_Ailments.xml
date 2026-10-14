@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- What to do about the moods of ailments and illnesses (Defs/ThoughtDefs/Council_Thoughts_Ailments.xml). -->
+
+  <ColonyCouncil.MoodHintDef>
+    <defName>Council_Mood_RF_AilColds</defName>
+    <thoughts>
+      <li>Council_Ail_HeadCold_Mood</li>
+      <li>Council_Ail_ChestCold_Mood</li>
+      <li>Council_Ail_LingeringCough_Mood</li>
+    </thoughts>
+    <fix>Bed rest, warmth and time. A cold passes in about a week and a chest cold in one or two. Keep the old and the frail warm and fed, so it doesn't turn into pneumonia.</fix>
+    <article>Council_Alm_4_25_Ailments</article>
+  </ColonyCouncil.MoodHintDef>
+
+  <ColonyCouncil.MoodHintDef>
+    <defName>Council_Mood_RF_AilStomachBug</defName>
+    <thoughts><li>Council_Ail_StomachBug_Mood</li></thoughts>
+    <fix>Rest and time; it's over in two or three days. Tending helps a little.</fix>
+    <article>Council_Alm_4_25_Ailments</article>
+  </ColonyCouncil.MoodHintDef>
+
+  <ColonyCouncil.MoodHintDef>
+    <defName>Council_Mood_RF_AilEyesAndPollen</defName>
+    <thoughts>
+      <li>Council_Ail_HayFever_Mood</li>
+      <li>Council_Ail_Pinkeye_Mood</li>
+    </thoughts>
+    <fix>Have a doctor tend it; industrial medicine works best on both. Indoor work keeps hay fever down while the plants are in flower.</fix>
+    <article>Council_Alm_4_25_Ailments</article>
+  </ColonyCouncil.MoodHintDef>
+
+  <ColonyCouncil.MoodHintDef>
+    <defName>Council_Mood_RF_AilDreamfever</defName>
+    <thoughts><li>Council_Ail_Dreamfever_Mood</li></thoughts>
+    <fix>Rest and quiet. It passes in under a week.</fix>
+    <article>Council_Alm_4_25_Ailments</article>
+  </ColonyCouncil.MoodHintDef>
+
+  <ColonyCouncil.MoodHintDef>
+    <defName>Council_Mood_RF_AilStrains</defName>
+    <thoughts>
+      <li>Council_Ail_StrainedBack_Mood</li>
+      <li>Council_Ail_SprainedAnkle_Mood</li>
+      <li>Council_Ail_SoreHands_Mood</li>
+    </thoughts>
+    <fix>A day or two in bed at the start (or other work, for sore hands), then light work until it heals. Tending speeds it along.</fix>
+    <article>Council_Alm_4_25_Ailments</article>
+  </ColonyCouncil.MoodHintDef>
+
+  <ColonyCouncil.MoodHintDef>
+    <defName>Council_Mood_RF_AilSmallHurts</defName>
+    <thoughts>
+      <li>Council_Ail_Blisters_Mood</li>
+      <li>Council_Ail_StiffNeck_Mood</li>
+      <li>Council_Ail_Chilblains_Mood</li>
+      <li>Council_Ail_Sunburn_Mood</li>
+    </thoughts>
+    <fix>It heals in a few days. A proper bed prevents a stiff neck, warm clothes chilblains, and a hat sunburn.</fix>
+    <article>Council_Alm_4_25_Ailments</article>
+  </ColonyCouncil.MoodHintDef>
+
+  <ColonyCouncil.MoodHintDef>
+    <defName>Council_Mood_RF_AilAir</defName>
+    <thoughts>
+      <li>Council_Ail_SmokeCough_Mood</li>
+      <li>Council_Ail_EyeStrain_Mood</li>
+      <li>Council_Ail_RimrotCough_Mood</li>
+      <li>Council_Ail_AshLung_Mood</li>
+    </thoughts>
+    <fix>Better rooms: move a wood fire out of a small room, light the bench, and keep bedrooms clean, dry and roofed. Clean air clears the coughs; tending eases rimrot and ash lung.</fix>
+    <article>Council_Alm_4_25_Ailments</article>
+  </ColonyCouncil.MoodHintDef>
+
+  <ColonyCouncil.MoodHintDef>
+    <defName>Council_Mood_RF_AilToothache</defName>
+    <thoughts><li>Council_Ail_Toothache_Mood</li></thoughts>
+    <fix>One treatment from a doctor settles it within a day or two. Fewer sweets keep it from coming back.</fix>
+    <article>Council_Alm_4_25_Ailments</article>
+  </ColonyCouncil.MoodHintDef>
+
+  <ColonyCouncil.MoodHintDef>
+    <defName>Council_Mood_RF_AilConvalescent</defName>
+    <thoughts><li>Council_Ail_Convalescent_Mood</li></thoughts>
+    <fix>Rest, food and time. Time in bed shortens it.</fix>
+    <article>Council_Alm_4_25_Ailments</article>
+  </ColonyCouncil.MoodHintDef>
+
+  <ColonyCouncil.MoodHintDef>
+    <defName>Council_Mood_RF_AilSerious</defName>
+    <thoughts>
+      <li>Council_Ail_Tetanus_Mood</li>
+      <li>Council_Ail_Pneumonia_Mood</li>
+      <li>Council_Ail_Tuberculosis_Mood</li>
+      <li>Council_Ail_Typhus_Mood</li>
+      <li>Council_Ail_Meningitis_Mood</li>
+      <li>Council_Ail_Glassblood_Mood</li>
+    </thoughts>
+    <fix>Keep the patient in bed and tended as often as possible, with the best medicine the colony has. The illness's description says what helps most; for tuberculosis, every day without gaps.</fix>
+    <article>Council_Alm_4_25_Ailments</article>
+  </ColonyCouncil.MoodHintDef>
+
+  <ColonyCouncil.MoodHintDef>
+    <defName>Council_Mood_RF_AilScurvy</defName>
+    <thoughts><li>Council_Ail_Scurvy_Mood</li></thoughts>
+    <fix>Fruit or vegetables, raw or cooked into meals. Nothing else cures it, and it clears within about 10 days of eating them again.</fix>
+    <article>Council_Alm_4_25_Ailments</article>
+  </ColonyCouncil.MoodHintDef>
+
+  <ColonyCouncil.MoodHintDef>
+    <defName>Council_Mood_RF_AilDoctor</defName>
+    <thoughts>
+      <li>Council_Ail_HardCase</li>
+      <li>Council_Ail_PulledThrough</li>
+      <li>Council_Ail_Survived</li>
+    </thoughts>
+    <fix>It passes in two days. Good medicine on the shelf and a second doctor make a hard case lighter to carry.</fix>
+    <keep>It comes from seeing someone through a serious illness.</keep>
+    <article>Council_Alm_4_25_Ailments</article>
+  </ColonyCouncil.MoodHintDef>
+
+</Defs>
