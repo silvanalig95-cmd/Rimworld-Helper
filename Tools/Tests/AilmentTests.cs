@@ -6,9 +6,10 @@ using ColonyCouncil;
 /// Checks the ailments' numbers against what the Almanac and the letters promise: everyday ailments never kill and
 /// pass within about two weeks untreated; each lethal serious illness kills when left untreated, is survived with good
 /// care (industrial medicine, a decent doctor) even with bad luck, and with the best a pre-industrial colony has
-/// (herbal medicine, a good doctor, steady tending); tuberculosis comes back when treatment stops early; scurvy takes
-/// weeks to become dangerous and clears within two weeks of fresh food. The numbers are read from the defs, through
-/// the same race the game runs (AilmentMath.Simulate).
+/// (herbal medicine, a good doctor, steady tending); the serious ones that can't kill (measles, kidney stones,
+/// shingles) pass on their own; rabies is past saving once its symptoms show; tuberculosis comes back when treatment
+/// stops early; scurvy takes weeks to become dangerous and clears within two weeks of fresh food. The numbers are read
+/// from the defs, through the same race the game runs (AilmentMath.Simulate).
 /// </summary>
 public static class AilmentTests
 {
@@ -28,6 +29,10 @@ public static class AilmentTests
         public AilmentMath.Course course;
         public float basic = 1f, industrial = 1f, ultra = 1f;
         public bool immunizable;
+        /// <summary>A course with a turning point and no immunity (rabies).</summary>
+        public bool staged;
+        /// <summary>A steady recovery (kidney stones, shingles), per day.</summary>
+        public float recovery;
         /// <summary>A diet illness's course (scurvy): worse per day without fresh food, better per day with it.</summary>
         public float dietGrow, dietRecover;
     }
@@ -43,14 +48,20 @@ public static class AilmentTests
             float Inherit(string n, float fb) => F(def, n, F(parent, n, fb));
             var imm = Comp(def, "AilmentImmunizable");
             var med = Comp(def, "AilmentMedicine");
+            var staged = Comp(def, "AilmentCourse");
             var ill = new Illness
             {
                 name = def.Element("defName")!.Value,
                 lethal = Inherit("lethalSeverity", -1f) > 0f,
                 immunizable = imm != null,
+                staged = staged != null,
+                recovery = F(Comp(def, "AilmentRecovery"), "severityPerDay", 0f),
                 course = new AilmentMath.Course
                 {
-                    severityPerDayNotImmune = F(imm, "severityPerDayNotImmune", 0f),
+                    severityPerDayNotImmune = staged != null ? F(staged, "severityPerDay", 0f) : F(imm, "severityPerDayNotImmune", 0f),
+                    fastAbove = F(staged, "fastAbove", 999f),
+                    fastPerDay = F(staged, "fastPerDay", 0f),
+                    tendWorksBelow = F(med, "worksBelow", 999f),
                     immunityPerDaySick = F(imm, "immunityPerDaySick", 0f),
                     severityPerDayImmune = F(imm, "severityPerDayImmune", 0f),
                     treatedImmunityPerDay = F(imm, "treatedImmunityPerDay", 0f),
@@ -94,7 +105,18 @@ public static class AilmentTests
 
         // Serious illnesses.
         var serious = Load(Path.Combine(root, "Defs", "HediffDefs", "Council_Hediffs_Illnesses.xml"));
-        foreach (var s in serious.Where(s => s.immunizable))
+        // The serious ones that can't kill pass on their own, within a month at most.
+        foreach (var s in serious.Where(s => !s.lethal))
+        {
+            n++;
+            if (s.immunizable || s.staged)
+            {
+                var o = AilmentMath.Simulate(s.course, 0f, 1f, 0f);
+                check(!o.died && o.days <= 30f, $"{s.name} can't kill and passes untreated within a month, took {o.days:0.0} days");
+            }
+            else check(s.recovery < 0f, $"{s.name} can't kill and gets better on its own");
+        }
+        foreach (var s in serious.Where(s => s.lethal && (s.immunizable || s.staged)))
         {
             n++;
             var c = s.course;
@@ -111,6 +133,28 @@ public static class AilmentTests
             check(!herbal.died, $"{s.name} is survived with herbal medicine and steady tending (peak {herbal.peak:0.00})");
             // Industrial medicine helps at least as much as herbs (more for the ones that need modern drugs).
             check(s.industrial >= s.basic && s.ultra >= s.industrial, $"{s.name}: better medicine never helps less");
+        }
+        // Rabies: treatment from the bite saves them; once the symptoms show, nothing does.
+        var rabies = serious.FirstOrDefault(s => s.name == "Council_Ail_Rabies");
+        check(rabies != null && rabies.staged, "rabies is defined with a staged course");
+        if (rabies != null)
+        {
+            var late = rabies.course;
+            var symptoms = new AilmentMath.Course
+            {
+                severityPerDayNotImmune = late.severityPerDayNotImmune,
+                fastAbove = late.fastAbove,
+                fastPerDay = late.fastPerDay,
+                tendWorksBelow = late.tendWorksBelow,
+                severityPerDayTended = late.severityPerDayTended,
+                startSeverity = late.fastAbove + 0.01f,
+                lethalSeverity = late.lethalSeverity,
+                maxSeverity = late.maxSeverity
+            };
+            var tooLate = AilmentMath.Simulate(symptoms, 1f, rabies.ultra, 1f);
+            check(tooLate.died && tooLate.days <= 7f, $"rabies is fatal within a week once its symptoms show, even with the best care ({tooLate.days:0.0} days)");
+            var untreated = AilmentMath.Simulate(rabies.course, 0f, 1f, 0f);
+            check(untreated.days >= 7f, $"rabies gives a week or more to treat it before the symptoms show (died after {untreated.days:0.0} days)");
         }
         var tb = serious.FirstOrDefault(s => s.name == "Council_Ail_Tuberculosis");
         check(tb != null, "tuberculosis is defined");

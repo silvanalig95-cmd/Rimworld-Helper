@@ -875,17 +875,25 @@ last from a night to two weeks, and say in their description what helps. Doctors
   after cold outdoor work, sunburn working bareheaded in the heat, a smoke cough from a wood fire in a small room,
   toothache from sweets and the years, a stiff neck after a night on the ground, a sprained ankle on marsh, mud or
   snow, eye strain from bench work in the dark, a rimrot cough from sleeping in a damp room and ash lung after fighting
-  a fire. Never more than two at once, never the same one again within days, and never on guests, prisoners or babies.
+  a fire. Also a splinter from felling trees, a rash from a plant's sap, insect bites in swamps and jungles, heat rash
+  in sticky weather, frostnip and nosebleeds in bitter cold, athlete's foot from wading, motion sickness on a caravan,
+  lice in dirty crowded rooms (they go round, and make typhus likelier), insomnia from worry or late nights, migraines
+  after missed meals or worry, cold sores, and heartburn and hiccups after a rich meal or a drink. Never more than two
+  at once, never the same one again within days, and never on guests, prisoners or babies.
 
-**Serious illnesses** are rare, behind their own switch, and can kill: tetanus from a wound left untended, pneumonia
-after a cold in someone old, frail or starving, tuberculosis, typhus in dirty crowded quarters, meningitis, scurvy after
-weeks without fruit or vegetables, and glassblood, an invented fever from the dust of ancient ruins. One kind at a time
-in the colony, none within 30 days of the last, and each comes with a letter and a doctor's note saying what it is and
-what helps. They follow the real diseases: a quiet incubation where there is one, a course of days to weeks,
-after-effects like a lingering cough or some days of weakness, and treatment that counts the medicine the way the real
-illness would (industrial medicine matters far more than herbs against tetanus, pneumonia, typhus and meningitis;
-tuberculosis needs weeks of daily treatment and comes back if it stops early; only fresh food cures scurvy). Steady
-tending beats every one of them. The Almanac's **ailments and illnesses** page has the tables.
+**Serious illnesses** are rare, behind their own switch, and most can kill: tetanus from a wound left untended,
+pneumonia after a cold in someone old, frail or starving, tuberculosis, typhus in dirty crowded quarters, meningitis,
+scurvy after weeks without fruit or vegetables, cholera in hot weather, appendicitis, rabies from an animal's bite, and
+two invented ones: glassblood from the dust of ancient ruins and hive fever from insectoid stings. Measles in children,
+kidney stones and shingles in the old are hard going but never kill. One kind at a time in the colony, none within 30
+days of the last, and each comes with a letter and a doctor's note saying what it is and what helps. They follow the
+real diseases: a quiet incubation where there is one, a course of days to weeks, after-effects like a lingering cough,
+nerve pain or some days of weakness, and treatment that counts the medicine the way the real illness would (industrial
+medicine matters far more than herbs against tetanus, pneumonia, typhus, meningitis and rabies; cholera needs someone
+to keep the patient drinking more than any medicine; tuberculosis needs weeks of daily treatment and comes back if it
+stops early; rabies can only be stopped before its symptoms show; only fresh food cures scurvy). Appendicitis can be cut
+out with a "remove appendix" operation. Steady tending beats every one of them. The Almanac's **ailments and
+illnesses** page has the tables.
 
 With Rimfolk: ailments feed the heart's frustration and serious illnesses its fear (and so a little strain); doctors
 and patients write about them in their journals; dreamfever and serious illnesses bring their own dreams; a doctor with

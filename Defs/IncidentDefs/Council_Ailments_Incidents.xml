@@ -166,4 +166,93 @@
     </modExtensions>
   </IncidentDef>
 
+  <IncidentDef ParentName="Council_AilmentIncidentBase">
+    <defName>Council_Ail_Inc_Cholera</defName>
+    <label>cholera</label>
+    <diseaseIncident>Council_Ail_Cholera</diseaseIncident>
+    <diseaseVictimFractionRange>0.1~0.2</diseaseVictimFractionRange>
+    <diseaseMaxVictims>1</diseaseMaxVictims>
+    <minRefireDays>120</minRefireDays>
+    <letterLabel>Cholera</letterLabel>
+    <letterDef>NegativeEvent</letterDef>
+    <modExtensions>
+      <li Class="ColonyCouncil.AilmentIncident">
+        <minOutdoorTemp>18</minOutdoorTemp>
+        <letter>{PAWN_nameDef} has cholera. It came on in the night: watery diarrhea and vomiting that won't stop, and {PAWN_nameDef} is drying out by the hour. Something {PAWN_pronoun} drank or ate was fouled.\n\nUntreated, cholera can kill in two or three days. Kept drinking, a sip at a time, and tended steadily, most people are over it within a week. It spreads in dirty rooms, so clean the place {PAWN_nameDef} sleeps.</letter>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <IncidentDef ParentName="Council_AilmentIncidentBase">
+    <defName>Council_Ail_Inc_Appendicitis</defName>
+    <label>appendicitis</label>
+    <diseaseIncident>Council_Ail_Appendicitis</diseaseIncident>
+    <diseaseVictimFractionRange>0.1~0.2</diseaseVictimFractionRange>
+    <diseaseMaxVictims>1</diseaseMaxVictims>
+    <minRefireDays>90</minRefireDays>
+    <letterLabel>Appendicitis</letterLabel>
+    <letterDef>NegativeEvent</letterDef>
+    <modExtensions>
+      <li Class="ColonyCouncil.AilmentIncident">
+        <letter>{PAWN_nameDef} woke with a pain around the navel that has moved low to the right side of the belly, with a fever and no appetite. It's appendicitis.\n\nIf the appendix bursts, the infection spreads and can kill within days. The sure cure is to take it out: any doctor can do the "remove appendix" operation with two medicine. Until then, or with no one to do it, tend {PAWN_nameDef} as often as possible.</letter>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <IncidentDef ParentName="Council_AilmentIncidentBase">
+    <defName>Council_Ail_Inc_Measles</defName>
+    <label>measles</label>
+    <diseaseIncident>Council_Ail_Measles</diseaseIncident>
+    <diseaseVictimFractionRange>0.3~0.7</diseaseVictimFractionRange>
+    <diseaseMaxVictims>3</diseaseMaxVictims>
+    <diseaseDevelopmentStage>Child</diseaseDevelopmentStage>
+    <minRefireDays>120</minRefireDays>
+    <letterLabel>Measles</letterLabel>
+    <letterDef>NegativeEvent</letterDef>
+    <modExtensions>
+      <li Class="ColonyCouncil.AilmentIncident">
+        <letter>Measles has come to the colony, most likely with a visitor. These children have a high fever, a cough and red eyes, and the rash will follow in a day or two:</letter>
+        <letterAfter>It spreads to any child who shares their room and hasn't had it. Most children are over it in ten days or so with rest, fluids and someone keeping watch, and a child who has had measles never gets it again.</letterAfter>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <IncidentDef ParentName="Council_AilmentIncidentBase">
+    <defName>Council_Ail_Inc_KidneyStone</defName>
+    <label>kidney stone</label>
+    <diseaseIncident>Council_Ail_KidneyStone</diseaseIncident>
+    <diseaseVictimFractionRange>0.1~0.2</diseaseVictimFractionRange>
+    <diseaseMaxVictims>1</diseaseMaxVictims>
+    <diseaseDevelopmentStage>Adult</diseaseDevelopmentStage>
+    <minRefireDays>60</minRefireDays>
+    <letterLabel>A kidney stone</letterLabel>
+    <letterDef>NegativeEvent</letterDef>
+    <modExtensions>
+      <li Class="ColonyCouncil.AilmentIncident">
+        <weight>0.8</weight>
+        <hotFactor>2</hotFactor>
+        <letter>{PAWN_nameDef} is doubled up with pain in the side and back, coming in waves, and has been sick twice. It's a kidney stone.\n\nIt isn't dangerous, and most stones pass on their own within a week, but the pain is terrible. Plenty to drink and a doctor to ease the pain will help it along.</letter>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <IncidentDef ParentName="Council_AilmentIncidentBase">
+    <defName>Council_Ail_Inc_Shingles</defName>
+    <label>shingles</label>
+    <diseaseIncident>Council_Ail_Shingles</diseaseIncident>
+    <diseaseVictimFractionRange>0.1~0.2</diseaseVictimFractionRange>
+    <diseaseMaxVictims>1</diseaseMaxVictims>
+    <diseaseDevelopmentStage>Adult</diseaseDevelopmentStage>
+    <minRefireDays>90</minRefireDays>
+    <letterLabel>Shingles</letterLabel>
+    <letterDef>NegativeEvent</letterDef>
+    <modExtensions>
+      <li Class="ColonyCouncil.AilmentIncident">
+        <weight>0.7</weight>
+        <minAge>50</minAge>
+        <letter>{PAWN_nameDef} has a band of red blisters around one side of {PAWN_possessive} ribs, and says it burns like fire. It's shingles: the chickenpox {PAWN_nameDef} had as a child, back after all these years.\n\nIt isn't dangerous and heals in two or three weeks, but it's painful. Treatment eases it, and modern medicine shortens it.</letter>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
 </Defs>
