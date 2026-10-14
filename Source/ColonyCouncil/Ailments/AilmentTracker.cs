@@ -733,8 +733,9 @@ namespace ColonyCouncil
         {
             if (!patient.Spawned || patient.Map == null) return null;
             if (patient.CurJobDef == JobDefOf.TendPatient && patient.CurJob?.targetA.Thing == patient) return patient;
-            foreach (var c in patient.Map.mapPawns.FreeHumanlikesSpawnedOfFaction(Faction.OfPlayer))
-                if (c.CurJobDef == JobDefOf.TendPatient && c.CurJob?.targetA.Thing == patient)
+            // Slaves tend too; a mech paramedic is no doctor to credit.
+            foreach (var c in patient.Map.mapPawns.SpawnedPawnsInFaction(Faction.OfPlayer))
+                if (c.RaceProps.Humanlike && c.CurJobDef == JobDefOf.TendPatient && c.CurJob?.targetA.Thing == patient)
                     return c;
             return null;
         }
