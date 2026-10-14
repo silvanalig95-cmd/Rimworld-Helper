@@ -1,0 +1,389 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Small personal habits. Most come simply from who someone is (byNature: any day, for someone who fits who, at
+    chance per day), a few from something that happened (afterThoughts, afterBattle, afterDowned). Their moods come at
+    the right moments (condition; elseCondition for a second stage): at any work (Working), at one kind of work
+    (WorkingAt + workType), in the morning, late at night, in their own room, wearing red, in a messy room, under the
+    night sky, in the cold. Some bring a small knack (hediff, Council_Hediffs_Quirks.xml) for as long as they last.
+    At most two quirks per colonist, so habits fade after most of a year to make room.
+  -->
+
+  <ColonyCouncil.QuirkDef>
+    <defName>Council_Quirk_Hums</defName>
+    <label>hums while working</label>
+    <byNature>true</byNature>
+    <who><notTrait><li>Psychopath</li></notTrait></who>
+    <children>true</children>
+    <chance>0.003</chance>
+    <days>300</days>
+    <condition>Working</condition>
+    <thought>Council_Quirk_Hums</thought>
+    <gained>
+      <plain>
+        <li>Someone told me today that I hum while I work. I didn't know. Apparently it's the same tune every time.</li>
+        <li>[child] I hum when I do my chores. It makes them go faster. Everyone knows the tune now.</li>
+      </plain>
+      <cheerful><li>I've started humming at work. I don't know where the tune comes from. Nobody has told me to stop yet!</li></cheerful>
+      <gloomy><li>I caught myself humming while I worked today. I can't remember the last time I did that.</li></gloomy>
+      <blunt><li>I hum. Get used to it.</li></blunt>
+    </gained>
+    <faded>
+      <plain><li>Somebody asked me today why I don't hum at work anymore. I hadn't noticed I'd stopped.</li></plain>
+    </faded>
+  </ColonyCouncil.QuirkDef>
+
+  <ColonyCouncil.QuirkDef>
+    <defName>Council_Quirk_PrettyStones</defName>
+    <label>collects pretty stones</label>
+    <byNature>true</byNature>
+    <who><notTrait><li>Psychopath</li></notTrait></who>
+    <children>true</children>
+    <chance>0.003</chance>
+    <days>300</days>
+    <condition>InOwnRoom</condition>
+    <thought>Council_Quirk_PrettyStones</thought>
+    <gained>
+      <plain>
+        <li>Found a stone today with a stripe of white right through it. Kept it. Then I found another one, and now I have a collection.</li>
+        <li>[skill:Mining] Every vein I cut, I keep the best little piece. My windowsill is full of them.</li>
+        <li>[child] I have nine stones now. The red one is the best. Nobody is allowed to touch the red one.</li>
+      </plain>
+      <warm><li>I pick up a pretty stone whenever I see one and line them up by my bed. They're nothing special. They're mine.</li></warm>
+      <cold><li>I've started collecting stones by color and grain. There's no use to it. I've decided I don't need one.</li></cold>
+    </gained>
+    <faded>
+      <plain><li>I gave most of my stones away to the children today. I kept the striped one.</li></plain>
+    </faded>
+  </ColonyCouncil.QuirkDef>
+
+  <ColonyCouncil.QuirkDef>
+    <defName>Council_Quirk_EarlyRiser</defName>
+    <label>an early riser</label>
+    <byNature>true</byNature>
+    <who><notTrait><li>NightOwl</li></notTrait></who>
+    <chance>0.003</chance>
+    <days>300</days>
+    <condition>Morning</condition>
+    <elseCondition>LateNight</elseCondition>
+    <thought>Council_Quirk_EarlyRiser</thought>
+    <gained>
+      <plain>
+        <li>I've been waking before dawn every day, without meaning to. I've decided to like it. The first hour is mine.</li>
+        <li>[winter] Up before the sun again, in the dark and the cold, with the stove to myself. I've started to look forward to it.</li>
+      </plain>
+      <cheerful><li>Up before everyone again! I watched the sun come up over the fields with a hot cup. Best part of the day.</li></cheerful>
+      <gloomy><li>I can't sleep past dawn anymore. So I get up, and sit, and watch the light come.</li></gloomy>
+      <blunt><li>Up at dawn. Every day. Don't wake me after supper.</li></blunt>
+    </gained>
+    <faded>
+      <plain><li>Slept past sunrise this morning, for once. I didn't feel guilty about it at all.</li></plain>
+    </faded>
+  </ColonyCouncil.QuirkDef>
+
+  <ColonyCouncil.QuirkDef>
+    <defName>Council_Quirk_TalksToPlants</defName>
+    <label>talks to the plants</label>
+    <byNature>true</byNature>
+    <who><passion>Plants</passion></who>
+    <chance>0.004</chance>
+    <days>360</days>
+    <condition>WorkingAt</condition>
+    <workType>Growing</workType>
+    <thought>Council_Quirk_TalksToPlants</thought>
+    <hediff>Council_Quirk_GreenThumb</hediff>
+    <gained>
+      <plain>
+        <li>I've started talking to the plants while I work. Telling them what the weather's going to do, mostly. Someone heard me and laughed. The plants didn't.</li>
+        <li>[lowtech] My grandmother said plants grow better if you talk to them. I've started doing it. She was right, I think.</li>
+      </plain>
+      <warm><li>I tell the seedlings good morning now. It costs nothing, and they're coming up beautifully.</li></warm>
+      <cheerful><li>I talk to the plants now! The potatoes are excellent listeners.</li></cheerful>
+      <cold><li>I speak to the plants while I work. Whether they benefit is unproven. The work goes faster for me, which is enough.</li></cold>
+    </gained>
+    <faded>
+      <plain><li>I realized today I've stopped talking to the plants. I'll start again in spring, maybe.</li></plain>
+    </faded>
+  </ColonyCouncil.QuirkDef>
+
+  <ColonyCouncil.QuirkDef>
+    <defName>Council_Quirk_RedLuck</defName>
+    <label>red is bad luck</label>
+    <afterDowned>true</afterDowned>
+    <afterBattle>true</afterBattle>
+    <chance>0.04</chance>
+    <days>150</days>
+    <condition>WearingRed</condition>
+    <thought>Council_Quirk_RedLuck</thought>
+    <who><notTrait><li>TooSmart</li></notTrait></who>
+    <gained>
+      <plain>
+        <li>I was wearing red the day it went bad. I'm not wearing red again. Laugh if you like.</li>
+        <li>Someone in red was standing next to me when it all went wrong. Red is unlucky. My mother always said so.</li>
+      </plain>
+      <blunt><li>No red. Not on me, not near me.</li></blunt>
+      <gloomy><li>Red is the color of what happened. I can't look at it without remembering.</li></gloomy>
+    </gained>
+    <faded>
+      <plain><li>Wore my red scarf today without thinking about it. Nothing happened. Maybe nothing ever was going to.</li></plain>
+    </faded>
+  </ColonyCouncil.QuirkDef>
+
+  <ColonyCouncil.QuirkDef>
+    <defName>Council_Quirk_NamesAnimals</defName>
+    <label>names every animal</label>
+    <byNature>true</byNature>
+    <who><passion>Animals</passion></who>
+    <children>true</children>
+    <chance>0.004</chance>
+    <days>360</days>
+    <condition>WorkingAt</condition>
+    <workType>Handling</workType>
+    <thought>Council_Quirk_NamesAnimals</thought>
+    <hediff>Council_Quirk_AnimalNames</hediff>
+    <gained>
+      <plain>
+        <li>Every animal in the pens has a name now. I gave them all names, and I use them. They come better when you call them by name.</li>
+        <li>[child] I named all the hens. The brown one is Captain. Captain knows her name, I'm sure of it.</li>
+      </plain>
+      <warm><li>I've named every animal we have, even the ones we'll eat. I know. I couldn't help it.</li></warm>
+      <cheerful><li>I've named every single animal in the colony! I've made a list so I don't forget any.</li></cheerful>
+      <cold><li>I assign each animal a name. They respond to individual calls faster. The attachment is a side effect.</li></cold>
+    </gained>
+    <faded>
+      <plain><li>Lost track of the names this season. Too many new ones, too fast. I'll catch up.</li></plain>
+    </faded>
+  </ColonyCouncil.QuirkDef>
+
+  <ColonyCouncil.QuirkDef>
+    <defName>Council_Quirk_TidyTable</defName>
+    <label>can't stand a mess</label>
+    <byNature>true</byNature>
+    <who><notTrait><li>Psychopath</li></notTrait></who>
+    <chance>0.003</chance>
+    <days>300</days>
+    <condition>MessyRoom</condition>
+    <thought>Council_Quirk_TidyTable</thought>
+    <hediff>Council_Quirk_Tidy</hediff>
+    <gained>
+      <plain>
+        <li>Somebody left crumbs and a puddle of stew on the table again, and I cleaned it up again. I've started noticing every mess in this place. I can't stop.</li>
+        <li>[trait:Ascetic] I don't need much, but I need what I have to be clean.</li>
+      </plain>
+      <blunt><li>Wipe the table after you eat. That's all. That's all I ask.</li></blunt>
+      <gloomy><li>I can't sit in a dirty room anymore without my skin crawling. I spend half my evenings scrubbing.</li></gloomy>
+      <cold><li>A clean room is an efficient room. I've begun cleaning what others won't.</li></cold>
+    </gained>
+    <faded>
+      <plain><li>Walked past a mess today and left it for someone else. It felt strange. It felt fine.</li></plain>
+    </faded>
+  </ColonyCouncil.QuirkDef>
+
+  <ColonyCouncil.QuirkDef>
+    <defName>Council_Quirk_SingsAtStove</defName>
+    <label>sings at the stove</label>
+    <byNature>true</byNature>
+    <who><passion>Cooking</passion></who>
+    <chance>0.004</chance>
+    <days>360</days>
+    <condition>WorkingAt</condition>
+    <workType>Cooking</workType>
+    <thought>Council_Quirk_SingsAtStove</thought>
+    <hediff>Council_Quirk_StoveSongs</hediff>
+    <gained>
+      <plain>
+        <li>I sing while I cook now. One song for chopping, one for stirring, one while I scrub up. It keeps the time.</li>
+        <li>[lowtech] My mother sang over the cooking pot, and now I do. Same songs. I'd forgotten I knew them.</li>
+      </plain>
+      <cheerful><li>I sing at the stove now! Loudly. The stew has never been better.</li></cheerful>
+      <warm><li>People come and sit in the kitchen while I cook, to hear the songs. I don't mind the company.</li></warm>
+      <blunt><li>I sing when I cook. If you don't like it, cook your own supper.</li></blunt>
+    </gained>
+    <faded>
+      <plain><li>The kitchen's been quiet lately. I've stopped singing in there, and I don't know why.</li></plain>
+    </faded>
+  </ColonyCouncil.QuirkDef>
+
+  <ColonyCouncil.QuirkDef>
+    <defName>Council_Quirk_Stargazer</defName>
+    <label>watches the stars</label>
+    <afterThoughts><li>SleptOutside</li></afterThoughts>
+    <withinDays>2</withinDays>
+    <children>true</children>
+    <chance>0.06</chance>
+    <days>240</days>
+    <condition>NightSky</condition>
+    <thought>Council_Quirk_Stargazer</thought>
+    <gained>
+      <plain>
+        <li>I slept outside last night and lay awake looking up for hours. Now I go out most nights, just to look.</li>
+        <li>[skill:Intellectual] I've started mapping the stars on the back of an old page. Some of them move. I want to know why.</li>
+        <li>[child] I counted the stars last night and got to two hundred and eleven before I fell asleep.</li>
+      </plain>
+      <warm><li>I sleep better after an hour under the stars. I've stopped explaining why I go out.</li></warm>
+      <gloomy><li>The stars were there before us and they'll be there after. I find that comforting, for some reason.</li></gloomy>
+    </gained>
+    <faded>
+      <plain><li>I haven't been out to look at the stars in weeks. Too tired, or too busy. They'll keep.</li></plain>
+    </faded>
+  </ColonyCouncil.QuirkDef>
+
+  <ColonyCouncil.QuirkDef>
+    <defName>Council_Quirk_WalksTheWalls</defName>
+    <label>checks the gate every night</label>
+    <afterBattle>true</afterBattle>
+    <chance>0.08</chance>
+    <days>90</days>
+    <condition>Night</condition>
+    <thought>Council_Quirk_WalksTheWalls</thought>
+    <gained>
+      <plain>
+        <li>Since the fight I walk the walls before bed and check the gate. Twice. I know it's shut. I check anyway.</li>
+        <li>[lowtech] I go round the palisade every night with a torch before I sleep. I can't sleep otherwise.</li>
+      </plain>
+      <blunt><li>Gate's shut. I checked. I'll check again later.</li></blunt>
+      <cold><li>I perform a nightly inspection of the perimeter. Nobody asked me to. It costs ten minutes.</li></cold>
+      <gloomy><li>They came once. They'll come again. I check the gate every night now.</li></gloomy>
+    </gained>
+    <faded>
+      <plain><li>Went to bed last night without checking the gate, and slept fine. First time since the fight.</li></plain>
+    </faded>
+  </ColonyCouncil.QuirkDef>
+
+  <ColonyCouncil.QuirkDef>
+    <defName>Council_Quirk_FeelsTheCold</defName>
+    <label>always cold</label>
+    <afterThoughts><li>SleptInCold</li></afterThoughts>
+    <withinDays>2</withinDays>
+    <chance>0.05</chance>
+    <days>120</days>
+    <condition>Cold</condition>
+    <thought>Council_Quirk_FeelsTheCold</thought>
+    <who><notTrait><li>Tough</li></notTrait></who>
+    <gained>
+      <plain>
+        <li>I spent one night freezing and I haven't been warm since. Two pairs of socks, a scarf indoors, and still.</li>
+        <li>[old] The cold gets into my bones these days and stays there.</li>
+      </plain>
+      <blunt><li>Cold. Always cold. Somebody shut that door.</li></blunt>
+      <gloomy><li>I don't think I'll ever be properly warm again.</li></gloomy>
+    </gained>
+    <faded>
+      <plain><li>Sat near the hearth tonight and was too warm. Took my scarf off. Felt like a victory.</li></plain>
+    </faded>
+  </ColonyCouncil.QuirkDef>
+
+  <ColonyCouncil.QuirkDef>
+    <defName>Council_Quirk_FeedsBirds</defName>
+    <label>feeds the birds</label>
+    <byNature>true</byNature>
+    <who><notTrait><li>Psychopath</li></notTrait></who>
+    <children>true</children>
+    <chance>0.003</chance>
+    <days>300</days>
+    <condition>Outdoors</condition>
+    <thought>Council_Quirk_FeedsBirds</thought>
+    <gained>
+      <plain>
+        <li>I've started keeping the crusts from breakfast for the birds. They wait on the fence for me now.</li>
+        <li>[winter] The birds have a hard time of it in winter. I put crumbs out on the wall every morning.</li>
+        <li>[child] I feed the birds every day now. One of them eats from my hand. I'm not telling anyone which one.</li>
+      </plain>
+      <warm><li>There's a little bird that follows me when I go out. I save it the crumbs from my bread.</li></warm>
+      <cold><li>I feed the birds. They keep the insects down in the fields. Mostly I like watching them eat.</li></cold>
+    </gained>
+    <faded>
+      <plain><li>The birds have stopped waiting for me on the fence. I suppose I stopped coming.</li></plain>
+    </faded>
+  </ColonyCouncil.QuirkDef>
+
+  <!-- Habits with a knack but no mood -->
+
+  <ColonyCouncil.QuirkDef>
+    <defName>Council_Quirk_Birthdays</defName>
+    <label>remembers every birthday</label>
+    <byNature>true</byNature>
+    <who><tags>trait:Kind|skill:Social</tags></who>
+    <chance>0.004</chance>
+    <days>360</days>
+    <hediff>Council_Quirk_Birthdays</hediff>
+    <gained>
+      <plain>
+        <li>I've worked out everyone's birthday and written them all on the wall by my bed. Nobody's will go by without something.</li>
+        <li>[trait:Kind] It was someone's birthday today and nobody knew but me. I made sure everyone knew by supper.</li>
+      </plain>
+      <cheerful><li>I know every birthday in the colony now! There's one next week, and I've already started planning.</li></cheerful>
+      <warm><li>Everyone deserves to have their day remembered, out here more than anywhere.</li></warm>
+    </gained>
+    <faded>
+      <plain><li>I missed someone's birthday this week. I've lost track. I'll have to ask around and start again.</li></plain>
+    </faded>
+  </ColonyCouncil.QuirkDef>
+
+  <ColonyCouncil.QuirkDef>
+    <defName>Council_Quirk_Whittler</defName>
+    <label>always whittling</label>
+    <byNature>true</byNature>
+    <who><tags>skill:Crafting|skill:Artistic</tags></who>
+    <chance>0.004</chance>
+    <days>300</days>
+    <hediff>Council_Quirk_Whittling</hediff>
+    <gained>
+      <plain>
+        <li>I've taken to whittling whenever my hands are free. Spoons, pegs, small animals. I've got a pocket full of shavings.</li>
+        <li>[lowtech] There's always a bit of wood and my knife in my pocket now. My hands don't like to be idle.</li>
+      </plain>
+      <cheerful><li>Carved a little bird out of a stick today! I'm going to make a whole flock.</li></cheerful>
+      <blunt><li>I whittle. It's better than talking.</li></blunt>
+      <gloomy><li>I carve while the others talk. Something to look at that isn't them.</li></gloomy>
+    </gained>
+    <faded>
+      <plain><li>Found my whittling knife at the bottom of my pack today, rusty. I don't remember when I stopped.</li></plain>
+    </faded>
+  </ColonyCouncil.QuirkDef>
+
+  <!-- Flavor only -->
+
+  <ColonyCouncil.QuirkDef>
+    <defName>Council_Quirk_SleepTalker</defName>
+    <label>talks in their sleep</label>
+    <byNature>true</byNature>
+    <who><notTrait><li>Psychopath</li></notTrait></who>
+    <chance>0.002</chance>
+    <days>200</days>
+    <gained>
+      <plain>
+        <li>Apparently I talk in my sleep. Whole conversations, they say. I've asked them not to tell me what about.</li>
+        <li>My roommate says I gave orders in my sleep last night, very clearly, to someone called Fen. I don't know anyone called Fen.</li>
+      </plain>
+      <cheerful><li>I talk in my sleep, apparently! Last night I asked for more potatoes. Twice.</li></cheerful>
+      <gloomy><li>They say I talk in my sleep. I'm afraid of what I'm saying.</li></gloomy>
+    </gained>
+    <faded>
+      <plain><li>Nobody's said anything about my sleep-talking for a while. Either I've stopped or they've stopped listening.</li></plain>
+    </faded>
+  </ColonyCouncil.QuirkDef>
+
+  <ColonyCouncil.QuirkDef>
+    <defName>Council_Quirk_BestBiteLast</defName>
+    <label>saves the best bite for last</label>
+    <byNature>true</byNature>
+    <who><notTrait><li>Psychopath</li></notTrait></who>
+    <children>true</children>
+    <chance>0.002</chance>
+    <days>200</days>
+    <gained>
+      <plain>
+        <li>I've started saving the best bite of every meal for last. It makes the rest of the meal a kind of waiting. I like that.</li>
+        <li>[child] I always eat the crust first and the soft bit last. That's the right way. Everyone else is wrong.</li>
+      </plain>
+      <cheerful><li>Best bite last, every meal! Something to look forward to three times a day.</li></cheerful>
+      <gloomy><li>I save the best bite for last. One day someone will take it off my plate, I just know it.</li></gloomy>
+    </gained>
+    <faded>
+      <plain><li>Ate the best bite first today. Didn't seem to matter much either way.</li></plain>
+    </faded>
+  </ColonyCouncil.QuirkDef>
+
+</Defs>

@@ -22,7 +22,25 @@ namespace ColonyCouncil
         Eclipse,
         Winter,
         /// <summary>Wearing or wielding the thing they decided was lucky (stage 0), or not (stage 1).</summary>
-        LuckyItem
+        LuckyItem,
+        /// <summary>At any work (a job from the work tab).</summary>
+        Working,
+        /// <summary>At the quirk's <see cref="QuirkDef.workType"/> (Growing, Cooking, Handling...).</summary>
+        WorkingAt,
+        /// <summary>Up and about between five and ten in the morning.</summary>
+        Morning,
+        /// <summary>In their own bedroom.</summary>
+        InOwnRoom,
+        /// <summary>Wearing something red.</summary>
+        WearingRed,
+        /// <summary>Indoors in a dirty room.</summary>
+        MessyRoom,
+        /// <summary>Awake under the open sky at night.</summary>
+        NightSky,
+        /// <summary>Somewhere colder than 8 °C.</summary>
+        Cold,
+        /// <summary>Awake late in the evening or at night (after nine).</summary>
+        LateNight
     }
 
     /// <summary>
@@ -43,25 +61,36 @@ namespace ColonyCouncil
         public bool afterDowned;
         /// <summary>Picked up after one of their dreams came true.</summary>
         public bool afterOmen;
+        /// <summary>Simply who they are: picked up on any day by someone who fits <see cref="who"/>.</summary>
+        public bool byNature;
         /// <summary>Chance per day while the trigger holds.</summary>
         public float chance = 0.1f;
         /// <summary>How long it lasts (0 = for good).</summary>
         public float days;
         public QuirkCondition condition = QuirkCondition.None;
+        /// <summary>When <see cref="condition"/> doesn't hold and this does, the thought's second stage (an early riser up too late).</summary>
+        public QuirkCondition elseCondition = QuirkCondition.None;
+        /// <summary>For <see cref="QuirkCondition.WorkingAt"/>.</summary>
+        public WorkTypeDef workType;
         /// <summary>The situational thought (workerClass ColonyCouncil.ThoughtWorker_Quirk). Empty for flavour-only quirks.</summary>
         public ThoughtDef thought;
+        /// <summary>A small lasting effect while they have the quirk (a knack: plant work a little faster).</summary>
+        public HediffDef hediff;
         /// <summary>Journal when picked up ({ITEM}: the lucky thing). First person.</summary>
         public ToneLines gained = new ToneLines();
         /// <summary>Journal when it fades.</summary>
         public ToneLines faded = new ToneLines();
 
-        public bool HasTrigger => !afterThoughts.NullOrEmpty() || afterBattle || afterDowned || afterOmen;
+        public bool HasTrigger => !afterThoughts.NullOrEmpty() || afterBattle || afterDowned || afterOmen || byNature;
 
         public override IEnumerable<string> ConfigErrors()
         {
             foreach (var e in base.ConfigErrors()) yield return e;
             if (!HasTrigger) yield return "quirk has no trigger";
             if (condition != QuirkCondition.None && thought == null) yield return "quirk with a condition needs a thought";
+            if (elseCondition != QuirkCondition.None && (thought?.stages == null || thought.stages.Count < 2)) yield return "quirk with an else condition needs a thought with two stages";
+            if ((condition == QuirkCondition.WorkingAt || elseCondition == QuirkCondition.WorkingAt) && workType == null) yield return "WorkingAt needs a workType";
+            if (byNature && who == null) yield return "a quirk by nature needs a who";
             if (gained == null || !gained.Any) yield return "quirk has no gained lines";
         }
     }
@@ -126,7 +155,11 @@ namespace ColonyCouncil
             quirks.RemoveAll(q => q.Broken || q.pawn.Dead);
             foreach (var k in downedTick.Keys.Where(k => k == null || k.Dead).ToList()) downedTick.Remove(k);
             foreach (var k in battleTick.Keys.Where(k => k == null || k.Dead).ToList()) battleTick.Remove(k);
-            if (!S.quirks) return;
+            if (!S.quirks)
+            {
+                SyncKnacks();
+                return;
+            }
             // Fading.
             foreach (var q in quirks.Where(q => q.expiresTick > 0 && now >= q.expiresTick).ToList())
             {
@@ -134,6 +167,7 @@ namespace ColonyCouncil
                 string line = Line(q.def.faded, q);
                 if (!line.NullOrEmpty()) comp.journals.WriteText(q.pawn, line);
             }
+            SyncKnacks();
             // Picking up new ones.
             foreach (var p in PawnsFinder.AllMaps_FreeColonists.Where(Eligible).ToList())
             {
@@ -155,6 +189,7 @@ namespace ColonyCouncil
             if (d.afterBattle && battleTick.TryGetValue(p, out int b) && now - b < window) return true;
             if (d.afterDowned && downedTick.TryGetValue(p, out int t) && now - t < window && !p.Downed) return true;
             if (d.afterOmen && comp.dreams.recent.Any(r => r.pawn == p && r.cameTrue && now - r.tick < GenDate.TicksPerDay * 10)) return true;
+            if (d.byNature) return true;
             if (!d.afterThoughts.NullOrEmpty())
             {
                 var memories = p.needs?.mood?.thoughts?.memories?.Memories;
@@ -174,9 +209,40 @@ namespace ColonyCouncil
                 if (q.item == null) return;
             }
             quirks.Add(q);
+            SyncKnacks();
             string line = Line(d.gained, q);
             if (!line.NullOrEmpty()) comp.journals.WriteText(p, line);
             Notify.Message("CC_Quirk_Gained".Translate(p.Named("PAWN"), q.Label.Named("QUIRK")).Resolve() + (line.NullOrEmpty() ? "" : " \"" + line + "\""), p, MessageTypeDefOf.SilentInput, Importance.Flavor);
+        }
+
+        private static List<HediffDef> knacks;
+
+        /// <summary>The small lasting effects quirks can bring (their hediffs).</summary>
+        private static List<HediffDef> Knacks => knacks ??= DefDatabase<QuirkDef>.AllDefsListForReading.Where(d => d.hediff != null).Select(d => d.hediff).Distinct().ToList();
+
+        /// <summary>Everyone with a quirk has its knack, and nobody keeps one without the quirk (faded, or quirks off).</summary>
+        private void SyncKnacks()
+        {
+            if (Knacks.Count == 0) return;
+            try
+            {
+                foreach (var p in PawnsFinder.AllMapsCaravansAndTravellingTransporters_Alive_FreeColonists)
+                {
+                    var set = p.health?.hediffSet;
+                    if (set == null) continue;
+                    foreach (var h in Knacks)
+                    {
+                        bool want = S.quirks && quirks.Any(q => q.pawn == p && q.def.hediff == h);
+                        var existing = set.GetFirstHediffOfDef(h);
+                        if (want && existing == null) p.health.AddHediff(HediffMaker.MakeHediff(h, p));
+                        else if (!want && existing != null) p.health.RemoveHediff(existing);
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                CouncilLog.ErrorOnce("quirk knacks", e);
+            }
         }
 
         private static string Line(ToneLines lines, Quirk q)
@@ -225,51 +291,106 @@ namespace ColonyCouncil
             if (comp?.quirks == null || !s.quirks || !s.MoodEffects) return ThoughtState.Inactive;
             if (quirk == null) quirk = DefDatabase<QuirkDef>.AllDefsListForReading.FirstOrDefault(q => q.thought == def);
             if (quirk == null) return ThoughtState.Inactive;
-            if (!s.Negatives && def.stages.Count > 0 && def.stages[0] != null && def.stages[0].baseMoodEffect < 0f) return ThoughtState.Inactive;
             var q = comp.quirks.Get(p, quirk);
             if (q == null) return ThoughtState.Inactive;
+            int stage;
+            if (quirk.condition == QuirkCondition.LuckyItem)
+            {
+                if (q.item == null) return ThoughtState.Inactive;
+                bool has = (p.apparel?.WornApparel.Any(a => a.def == q.item) ?? false) || p.equipment?.Primary?.def == q.item;
+                stage = has ? 0 : 1;
+            }
+            else if (Holds(quirk.condition, quirk, p)) stage = 0;
+            else if (quirk.elseCondition != QuirkCondition.None && Holds(quirk.elseCondition, quirk, p)) stage = 1;
+            else return ThoughtState.Inactive;
+            if (def.stages == null || stage >= def.stages.Count) return ThoughtState.Inactive;
+            if (!s.Negatives && def.stages[stage] != null && def.stages[stage].baseMoodEffect < 0f) return ThoughtState.Inactive;
+            return ThoughtState.ActiveAtStage(stage);
+        }
+
+        /// <summary>Whether the moment fits: the weather, the hour, where they are and what they're doing.</summary>
+        public static bool Holds(QuirkCondition c, QuirkDef quirk, Pawn p)
+        {
             var map = p.MapHeld;
-            switch (quirk.condition)
+            switch (c)
             {
                 case QuirkCondition.Always:
-                    return ThoughtState.ActiveAtStage(0);
+                    return true;
                 case QuirkCondition.Storm:
-                {
-                    var w = map?.weatherManager?.curWeather;
-                    return Flavor.IsStorm(w) ? ThoughtState.ActiveAtStage(0) : ThoughtState.Inactive;
-                }
+                    return Flavor.IsStorm(map?.weatherManager?.curWeather);
                 case QuirkCondition.Rain:
-                    return (map?.weatherManager?.curWeather?.rainRate ?? 0f) > 0.01f ? ThoughtState.ActiveAtStage(0) : ThoughtState.Inactive;
+                    return (map?.weatherManager?.curWeather?.rainRate ?? 0f) > 0.01f;
                 case QuirkCondition.Night:
                 {
-                    if (map == null) return ThoughtState.Inactive;
+                    if (map == null) return false;
                     int hour = GenLocalDate.HourOfDay(map);
-                    return hour >= 22 || hour < 5 ? ThoughtState.ActiveAtStage(0) : ThoughtState.Inactive;
+                    return hour >= 22 || hour < 5;
                 }
                 case QuirkCondition.Dark:
-                    return p.Spawned && p.Awake() && p.Map.glowGrid.PsychGlowAt(p.Position) == PsychGlow.Dark ? ThoughtState.ActiveAtStage(0) : ThoughtState.Inactive;
+                    return p.Spawned && p.Awake() && p.Map.glowGrid.PsychGlowAt(p.Position) == PsychGlow.Dark;
                 case QuirkCondition.Outdoors:
-                    return p.Spawned && !p.Position.Roofed(p.Map) ? ThoughtState.ActiveAtStage(0) : ThoughtState.Inactive;
+                    return p.Spawned && !p.Position.Roofed(p.Map);
                 case QuirkCondition.Drafted:
-                    return p.Drafted ? ThoughtState.ActiveAtStage(0) : ThoughtState.Inactive;
+                    return p.Drafted;
                 case QuirkCondition.Eclipse:
-                    return map != null && map.GameConditionManager.ConditionIsActive(GameConditionDefOf.Eclipse) ? ThoughtState.ActiveAtStage(0) : ThoughtState.Inactive;
+                    return map != null && map.GameConditionManager.ConditionIsActive(GameConditionDefOf.Eclipse);
                 case QuirkCondition.Winter:
                 {
-                    if (map == null) return ThoughtState.Inactive;
+                    if (map == null) return false;
                     var season = GenLocalDate.Season(map);
-                    return season == Season.Winter || season == Season.PermanentWinter ? ThoughtState.ActiveAtStage(0) : ThoughtState.Inactive;
+                    return season == Season.Winter || season == Season.PermanentWinter;
                 }
-                case QuirkCondition.LuckyItem:
+                case QuirkCondition.Working:
+                    return p.Spawned && p.Awake() && p.CurJob?.workGiverDef?.workType != null;
+                case QuirkCondition.WorkingAt:
+                    return p.Spawned && p.Awake() && quirk?.workType != null && p.CurJob?.workGiverDef?.workType == quirk.workType;
+                case QuirkCondition.Morning:
                 {
-                    if (q.item == null) return ThoughtState.Inactive;
-                    bool has = (p.apparel?.WornApparel.Any(a => a.def == q.item) ?? false) || p.equipment?.Primary?.def == q.item;
-                    return ThoughtState.ActiveAtStage(has ? 0 : 1);
+                    if (map == null || !p.Awake()) return false;
+                    int hour = GenLocalDate.HourOfDay(map);
+                    return hour >= 5 && hour < 10;
                 }
+                case QuirkCondition.LateNight:
+                {
+                    if (map == null || !p.Awake()) return false;
+                    int hour = GenLocalDate.HourOfDay(map);
+                    return hour >= 21 || hour < 4;
+                }
+                case QuirkCondition.InOwnRoom:
+                {
+                    if (!p.Spawned) return false;
+                    var own = RoomUtil.PrivateRoom(p);
+                    return own != null && p.GetRoom() == own;
+                }
+                case QuirkCondition.WearingRed:
+                {
+                    var worn = p.apparel?.WornApparel;
+                    if (worn == null) return false;
+                    for (int i = 0; i < worn.Count; i++)
+                        if (IsRed(worn[i].DrawColor)) return true;
+                    return false;
+                }
+                case QuirkCondition.MessyRoom:
+                {
+                    if (!p.Spawned || !p.Awake()) return false;
+                    var room = p.GetRoom();
+                    return room != null && !room.PsychologicallyOutdoors && room.ProperRoom && room.GetStat(RoomStatDefOf.Cleanliness) < -0.6f;
+                }
+                case QuirkCondition.NightSky:
+                {
+                    if (map == null || !p.Spawned || !p.Awake() || p.Position.Roofed(p.Map)) return false;
+                    int hour = GenLocalDate.HourOfDay(map);
+                    return hour >= 21 || hour < 5;
+                }
+                case QuirkCondition.Cold:
+                    return p.Spawned && p.AmbientTemperature < 8f;
                 default:
-                    return ThoughtState.Inactive;
+                    return false;
             }
         }
+
+        /// <summary>Red enough for a superstition: a strong red, not a brown or an orange.</summary>
+        public static bool IsRed(Color c) => c.r > 0.5f && c.r > c.g * 1.8f && c.r > c.b * 1.8f;
     }
 
     /// <summary>A lucky-item thought names the item.</summary>
