@@ -148,7 +148,7 @@ Many colonies combine dining and recreation in one big room, so one set of decor
     <order>60</order>
     <summary>Several kinds of recreation in one room, between dining and bedrooms</summary>
     <tip>Colonists tire of playing the same game. Give them three or four different things to do.</tip>
-    <description>Colonists refill their Recreation need at recreation buildings, but they get bored of doing the same thing over and over. A rec room with several different kinds of recreation keeps the need high and gives its own impressiveness bonus. The richer your colony gets, the more variety people expect.</description>
+    <description>Colonists refill their Recreation need at recreation buildings, but they get bored of doing the same thing over and over. A rec room with several different kinds of recreation keeps the need high and gives its own impressiveness bonus. The richer your colony gets, the more variety people expect. The plan comes as a games corner, a rec room, and a recreation hall with billiards, poker, chess and a television.</description>
     <sections>
       <li>
         <heading>How much variety</heading>
@@ -211,7 +211,7 @@ Many colonies combine dining and recreation in one big room, so one set of decor
     <order>30</order>
     <summary>A small, clean cooking room between the freezer and the dining room</summary>
     <tip>Keep the kitchen floor clean and the butchering next door.</tip>
-    <description>Food poisoning comes from the cook's skill and the cleanliness of the room the stove stands in, so the kitchen has to stay clean. Keep it small, give it a smooth or tiled floor, and keep butchering and through-traffic out. Put it between the freezer and the dining room so meals take the shortest trip.</description>
+    <description>Food poisoning comes from the cook's skill and the cleanliness of the room the stove stands in, so the kitchen has to stay clean. Keep it small, give it a smooth or tiled floor, and keep butchering and through-traffic out. Put it between the freezer and the dining room so meals take the shortest trip. The plan has one stove or two, or a stove with a butchery behind an inner door, so the blood stays on the far side of a wall.</description>
     <sections>
       <li>
         <heading>Cleanliness and food poisoning</heading>
@@ -252,7 +252,7 @@ Electric stoves work best between 10 and 35 °C and slow to 70% speed outside th
     <order>40</order>
     <summary>A double-walled, cooled room that holds food at or below 0 °C</summary>
     <tip>Check the freezer's temperature as soon as a heat wave starts.</tip>
-    <description>Food doesn't spoil at all at or below 0 °C, so a freezer turns a few days of meals into months of stock. Between 0 and 10 °C food still spoils, only more slowly, and raw meat rots in 2 days unrefrigerated. Put the freezer right next to the kitchen, and haul harvests and fresh meat into it promptly.</description>
+    <description>Food doesn't spoil at all at or below 0 °C, so a freezer turns a few days of meals into months of stock. Between 0 and 10 °C food still spoils, only more slowly, and raw meat rots in 2 days unrefrigerated. Put the freezer right next to the kitchen, and haul harvests and fresh meat into it promptly. The plan comes as a small cold store with one cooler, a freezer with two and a large one with three.</description>
     <sections>
       <li>
         <heading>Building one</heading>
@@ -386,7 +386,7 @@ Seeing a corpse costs -4 mood and a rotting one -6, each for half a day. Keep a 
     <order>180</order>
     <summary>Weapons, armor and tools made on a stone floor beside the metal store</summary>
     <tip>Stone floor under the forge, wood and cloth in another room.</tip>
-    <description>The smithy makes melee weapons and, later, armor and tools. The fueled version burns wood and needs no power, which makes it the main source of weapons for a medieval colony. Give it a stone floor and keep the metal store and the armory close by.</description>
+    <description>The smithy makes melee weapons and, later, armor and tools. The fueled version burns wood and needs no power, which makes it the main source of weapons for a medieval colony. Give it a stone floor and keep the metal store and the armory close by. The plan comes as a medieval forge, a smithy, and an armorer's workshop with a machining table beside the smithy.</description>
     <sections>
       <li>
         <heading>Fueled or electric</heading>
@@ -423,7 +423,7 @@ Seeing a corpse costs -4 mood and a rotting one -6, each for half a day. Keep a 
     <order>190</order>
     <summary>A tailoring bench beside the cloth and leather store</summary>
     <tip>Plant the cotton in spring if you want parkas by winter.</tip>
-    <description>Tailors turn cloth and leather into the clothes your colonists need for winter, summer and their mood. The bench is simple; the real limit is cloth, which takes weeks to grow. Keep the shop next to the textile store and plan the fields well ahead.</description>
+    <description>Tailors turn cloth and leather into the clothes your colonists need for winter, summer and their mood. The bench is simple; the real limit is cloth, which takes weeks to grow. Keep the shop next to the textile store and plan the fields well ahead. The plan comes as a sewing room, a tailor's shop and a tailoring hall with two benches.</description>
     <sections>
       <li>
         <heading>Growing the cloth</heading>
@@ -467,7 +467,7 @@ Clothes and cloth left outdoors deteriorate, so keep cloth and leather on shelve
     <order>110</order>
     <summary>A quiet, clean, lit room for the research bench and nothing else</summary>
     <tip>A researcher spends whole days at the bench. Give it a quiet room of its own.</tip>
-    <description>Research decides when you get electricity, hydroponics, medicine and better weapons. A research bench in its own quiet, lit, clean room keeps your researcher working steadily, and keeps the room from being counted as a workshop. Leave space to upgrade to the hi-tech bench later.</description>
+    <description>Research decides when you get electricity, hydroponics, medicine and better weapons. A research bench in its own quiet, lit, clean room keeps your researcher working steadily, and keeps the room from being counted as a workshop. Leave space to upgrade to the hi-tech bench later. The plan comes as a scholar's study for a medieval colony, a laboratory, a large laboratory, and a research wing with two hi-tech benches and a multi-analyzer.</description>
     <sections>
       <li>
         <heading>Keeping it a laboratory</heading>
@@ -505,7 +505,7 @@ With Ideology, slaves can't do research.</text>
     <order>50</order>
     <summary>Medical beds, sterile floors, bright light and a TV, close to where fights end</summary>
     <tip>Sweep the hospital floor every day; dirt raises the infection chance.</tip>
-    <description>The hospital is where wounds heal and surgery succeeds or fails. Cleanliness cuts infection and raises surgery odds, light matters at every bed, and hospital beds speed up recovery. Build it early, keep it spotless, and put it on the main corridor near where fights end, away from the freezer's cold door, so the wounded arrive fast. The hospital plan comes as an infirmary with 2 beds, rooms with 3 or 4, and a ward with 9.</description>
+    <description>The hospital is where wounds heal and surgery succeeds or fails. Cleanliness cuts infection and raises surgery odds, light matters at every bed, and hospital beds speed up recovery. Build it early, keep it spotless, and put it on the main corridor near where fights end, away from the freezer's cold door, so the wounded arrive fast. The hospital plan comes as an infirmary with 2 beds, rooms with 3 or 4, a ward with 9, and a surgery with a single bed.</description>
     <sections>
       <li>
         <heading>Infection and surgery</heading>
@@ -555,7 +555,7 @@ Keep a medicine shelf inside, and add a sculpture and a TV the patients can see 
     <order>120</order>
     <summary>One prisoner bed, one door, stone walls, and a room that isn't cramped</summary>
     <tip>Prisoners do try to escape. Build cells with stone walls and a single door.</tip>
-    <description>A prison cell holds one prisoner while you recruit, convert, ransom or release them. Prisoners feel their cell's impressiveness much like a bedroom, so a cramped, ugly cell means an unhappy prisoner. Strong walls and a single door keep escape attempts rare.</description>
+    <description>A prison cell holds one prisoner while you recruit, convert, ransom or release them. Prisoners feel their cell's impressiveness much like a bedroom, so a cramped, ugly cell means an unhappy prisoner. Strong walls and a single door keep escape attempts rare. The prison plan comes as a cell, a furnished cell with a table to eat at, a shared cell, and a cell block of three cells off a corridor, each behind its own door.</description>
     <sections>
       <li>
         <heading>What a cell needs</heading>
@@ -633,7 +633,7 @@ Keep a medicine shelf inside, and add a sculpture and a TV the patients can see 
     <order>70</order>
     <summary>A roofed room full of shelves, between the workshops and the entrance</summary>
     <tip>Everything on a shelf is one less ugly pile on the floor.</tip>
-    <description>Most items left outdoors slowly deteriorate, and loose piles make rooms ugly. A roofed storeroom with shelves keeps materials safe and out of sight. Put it between the workshops and the main entrance so haulers and crafters walk less.</description>
+    <description>Most items left outdoors slowly deteriorate, and loose piles make rooms ugly. A roofed storeroom with shelves keeps materials safe and out of sight. Put it between the workshops and the main entrance so haulers and crafters walk less. The plan comes as a store closet, a storeroom and a large storeroom.</description>
     <sections>
       <li>
         <heading>Why shelves</heading>
@@ -676,7 +676,7 @@ Keep a medicine shelf inside, and add a sculpture and a TV the patients can see 
     <order>170</order>
     <summary>A roof, sleeping spots and stored feed for your animals, next to the hay field</summary>
     <tip>Count the animals and the hay before the first frost.</tip>
-    <description>A barn gives your animals a roof, somewhere to sleep and a store of feed for the months when nothing grows. Without stored hay or kibble, herds starve in winter. Put it beside the haygrass field, inside or attached to the pen.</description>
+    <description>A barn gives your animals a roof, somewhere to sleep and a store of feed for the months when nothing grows. Without stored hay or kibble, herds starve in winter. Put it beside the haygrass field, inside or attached to the pen. The plan comes as a kennel, a barn, and a large barn with thirteen beds.</description>
     <sections>
       <li>
         <heading>Feed for winter</heading>
@@ -717,7 +717,7 @@ Keep a medicine shelf inside, and add a sculpture and a TV the patients can see 
     <order>130</order>
     <summary>Hydroponics under a sun lamp: crops in any season, if the power holds</summary>
     <tip>Put batteries behind the sun lamp; a basin crop dies within hours of losing power.</tip>
-    <description>A greenhouse lets you grow food through winter, toxic fallout and bad soil. Hydroponics basins grow crops very fast but need constant power, and every roofed crop needs a sun lamp. A power cut can kill the whole crop, so plan for solar flares and blackouts.</description>
+    <description>A greenhouse lets you grow food through winter, toxic fallout and bad soil. Hydroponics basins grow crops very fast but need constant power, and every roofed crop needs a sun lamp. A power cut can kill the whole crop, so plan for solar flares and blackouts. The plan comes as a small greenhouse with two basins, a greenhouse with four, and a hydroponics bay with six.</description>
     <sections>
       <li>
         <heading>Light and power</heading>
@@ -766,7 +766,7 @@ Keep a medicine shelf inside, and add a sculpture and a TV the patients can see 
     <order>160</order>
     <summary>Graves and sarcophagi out of sight of the routes people use every day</summary>
     <tip>Bury your own dead out of sight of the dining room.</tip>
-    <description>Corpses lying around cost mood for everyone who walks past, and friends of the dead want them properly buried. A crypt or graveyard gives bodies somewhere to go, and with Ideology it's where funerals happen. Keep it reachable, but out of sight of the dining room and bedrooms.</description>
+    <description>Corpses lying around cost mood for everyone who walks past, and friends of the dead want them properly buried. A crypt or graveyard gives bodies somewhere to go, and with Ideology it's where funerals happen. Keep it reachable, but out of sight of the dining room and bedrooms. The plan comes as a tomb for one, a crypt for three and a catacomb for eight.</description>
     <sections>
       <li>
         <heading>Burying your own</heading>
@@ -801,7 +801,7 @@ Visiting a grave counts as recreation, with a multiplier of 1 to 1.4, so add a s
     <order>250</order>
     <summary>The size, impressiveness and furniture a noble's throne room needs at each title</summary>
     <tip>Build the throne room for the title your noble will hold next.</tip>
-    <description>Titled nobles demand a throne room that grows with their rank: more area, more impressiveness and more furnishings at each title. A noble whose throne room falls short gets a mood penalty. Build it once with room to grow, so each promotion means adding furniture rather than knocking down walls.</description>
+    <description>Titled nobles demand a throne room that grows with their rank: more area, more impressiveness and more furnishings at each title. A noble whose throne room falls short gets a mood penalty. Build it once with room to grow, so each promotion means adding furniture rather than knocking down walls. The plan comes as an audience chamber, a throne room and a grand throne room.</description>
     <sections>
       <li>
         <heading>What each title needs</heading>
@@ -936,7 +936,7 @@ Lessons need an awake adult who is able to teach. Build the classroom near the a
     <order>290</order>
     <summary>A warm, safe room for cribs, close to the parents and far from the front door</summary>
     <tip>Put the cribs where a parent walks past every day.</tip>
-    <description>Babies sleep a lot, need regular feeding and can't move on their own, so their room should be warm, safe and close to whoever looks after them. A nursery keeps cribs out of the adults' bedrooms and gives the colony's youngest a room well away from the front door.</description>
+    <description>Babies sleep a lot, need regular feeding and can't move on their own, so their room should be warm, safe and close to whoever looks after them. A nursery keeps cribs out of the adults' bedrooms and gives the colony's youngest a room well away from the front door. The plan comes as a small nursery and a nursery with two cribs each, and a large nursery with four.</description>
     <sections>
       <li>
         <heading>Feeding</heading>
@@ -976,13 +976,13 @@ Lessons need an awake adult who is able to teach. Build the classroom near the a
     <label>brewery</label>
     <category>RoomDesign</category>
     <order>200</order>
-    <summary>Fermenting barrels kept between -1 and 32 °C, near the hops field</summary>
+    <summary>Fermenting barrels kept between 7 and 32 °C, near the hops field</summary>
     <tip>A barrel of wort today is beer in six days.</tip>
-    <description>Beer is the simplest drug and a cheap mood lift, but fermenting barrels are fussy about temperature. A small roofed room beside the hops field and the storeroom keeps them in range all year. None of it needs power.</description>
+    <description>Beer is the simplest drug and a cheap mood lift, but fermenting barrels are fussy about temperature. A small roofed room beside the hops field and the storeroom keeps them in range all year. None of it needs power. The plan comes as a brew cellar of barrels, a brewery, and a large brewery with eight barrels.</description>
     <sections>
       <li>
         <heading>Keeping the barrels in range</heading>
-        <text>Fermenting barrels only work between -1 and 32 °C; outside that range no beer is made. Insulate the room and keep it well inside the barrels' range, not close to either limit. Without power, a campfire warms it in winter and a passive cooler keeps it below 32 °C in summer.</text>
+        <text>Fermenting barrels only ferment between 7 and 32 °C, and a batch kept below -1 °C or above 32 °C for long is ruined. Insulate the room and keep it well inside the barrels' range, not close to either limit. Without power, a campfire warms it in winter and a passive cooler keeps it below 32 °C in summer.</text>
       </li>
       <li>
         <heading>From hops to beer</heading>
@@ -1014,7 +1014,7 @@ Beer carries a small risk of addiction with every bottle, so set a drug policy t
     <order>150</order>
     <summary>Weapons and armor on shelves near the defenses, far from the cells</summary>
     <tip>Store spare weapons where fighters pass on their way to the walls.</tip>
-    <description>Spare weapons and armor on the floor clutter corridors; in an armory they're ready when the raid letter arrives. Put it between the bedrooms or barracks and the defensive line, where colonists can grab gear on the way, and keep it far from prison cells and slave quarters.</description>
+    <description>Spare weapons and armor on the floor clutter corridors; in an armory they're ready when the raid letter arrives. Put it between the bedrooms or barracks and the defensive line, where colonists can grab gear on the way, and keep it far from prison cells and slave quarters. The plan comes as a weapons locker, an armory and an arsenal.</description>
     <sections>
       <li>
         <text>Weapons left outdoors deteriorate, so the armory needs a roof, a door and shelves, with weapons and armor sorted apart. Stored weapons and armor count toward colony wealth, and so toward raid size; sell or scrap weapons you'll never use.
@@ -1121,7 +1121,7 @@ Set a bill to cremate strangers' corpses and keep your own dead for graves.</tex
     <order>220</order>
     <summary>A drug lab bench in a clean, lit room beside the leaf and neutroamine store</summary>
     <tip>Decide what each colonist may take before the first batch is done.</tip>
-    <description>The drug lab turns smokeleaf, psychoid leaves and neutroamine into recreational drugs, combat drugs and trade goods. The room itself is simple: put the bench next to where you store leaves and neutroamine, and keep it lit and clean like any workshop. What you make there needs drug policies to match, so set them before production starts, or the colony ends up with addicts.</description>
+    <description>The drug lab turns smokeleaf, psychoid leaves and neutroamine into recreational drugs, combat drugs and trade goods. The room itself is simple: put the bench next to where you store leaves and neutroamine, and keep it lit and clean like any workshop. What you make there needs drug policies to match, so set them before production starts, or the colony ends up with addicts. The plan has one bench or two.</description>
     <sections>
       <li>
         <heading>Recipes</heading>
