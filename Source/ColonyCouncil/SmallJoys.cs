@@ -33,7 +33,7 @@ namespace ColonyCouncil
         /// <summary>How much of its own mood this memory gives right now (1 unless it's a small joy among many).</summary>
         public static float Factor(Thought_Memory t)
         {
-            if (!ColonyCouncilMod.Settings.smallJoysDiminish || t?.pawn == null) return 1f;
+            if (GoodTimes.Raw || !ColonyCouncilMod.Settings.smallJoysDiminish || t?.pawn == null) return 1f;
             var memories = t.pawn.needs?.mood?.thoughts?.memories?.Memories;
             if (memories == null) return 1f;
             int tick = Find.TickManager?.TicksGame ?? 0;
@@ -78,12 +78,7 @@ namespace ColonyCouncil
             if (joys.Count > 2)
             {
                 joys.Sort((a, b) => a.own != b.own ? b.own.CompareTo(a.own) : a.index.CompareTo(b.index));
-                float f = 1f;
-                for (int r = 2; r < joys.Count; r++)
-                {
-                    f *= 0.5f;
-                    factors[joys[r].thought] = f;
-                }
+                for (int r = 2; r < joys.Count; r++) factors[joys[r].thought] = GoodTimesMath.RankFactor(r);
             }
             joys.Clear();
         }

@@ -53,6 +53,10 @@ namespace ColonyCouncil
         public bool risingStandards = true;
         /// <summary>Small good moments count with diminishing returns when several are on a colonist's mind (SmallJoys).</summary>
         public bool smallJoysDiminish = true;
+        /// <summary>Rising standards also shrink the good moods of the base game and other mods (GoodTimes).</summary>
+        public bool standardsCoverComforts = true;
+        /// <summary>Getting used to good times: Rimfolk's new good memories fade sooner when mood is already high (GoodTimes).</summary>
+        public bool goodTimesFade = true;
         /// <summary>Life's ups and downs: how hard the everyday pressures press (the same meal, the same work, crowding...).</summary>
         public LifePressure lifePressure = LifePressure.Normal;
         public bool enableDilemmas = true;
@@ -196,6 +200,8 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref allowQuitting, "allowQuitting", true);
             Scribe_Values.Look(ref risingStandards, "risingStandards", true);
             Scribe_Values.Look(ref smallJoysDiminish, "smallJoysDiminish", true);
+            Scribe_Values.Look(ref standardsCoverComforts, "standardsCoverComforts", true);
+            Scribe_Values.Look(ref goodTimesFade, "goodTimesFade", true);
             Scribe_Values.Look(ref lifePressure, "lifePressure", LifePressure.Normal);
             Scribe_Values.Look(ref enableDilemmas, "enableDilemmas", true);
             Scribe_Values.Look(ref annals, "annals", true);
@@ -426,7 +432,10 @@ namespace ColonyCouncil
             l.CheckboxLabeled("CC_Settings_SelfHelp".Translate(), ref selfHelp, "CC_Settings_SelfHelp_Tip".Translate());
             l.CheckboxLabeled("CC_Settings_Quitting".Translate(), ref allowQuitting, "CC_Settings_Quitting_Tip".Translate());
             l.CheckboxLabeled("CC_Settings_Standards".Translate(), ref risingStandards, "CC_Settings_Standards_Tip".Translate());
+            if (risingStandards)
+                l.CheckboxLabeled("  " + "CC_Settings_StandardsComforts".Translate(), ref standardsCoverComforts, "CC_Settings_StandardsComforts_Tip".Translate());
             l.CheckboxLabeled("CC_Settings_SmallJoys".Translate(), ref smallJoysDiminish, "CC_Settings_SmallJoys_Tip".Translate());
+            l.CheckboxLabeled("CC_Settings_GoodTimes".Translate(), ref goodTimesFade, "CC_Settings_GoodTimes_Tip".Translate());
             l.CheckboxLabeled("CC_Settings_ForOthers".Translate(), ref wishesForOthers, "CC_Settings_ForOthers_Tip".Translate());
             l.CheckboxLabeled("CC_Settings_Petitions".Translate(), ref petitions, "CC_Settings_Petitions_Tip".Translate());
 
@@ -651,6 +660,8 @@ namespace ColonyCouncil
             allowQuitting = d.allowQuitting;
             risingStandards = d.risingStandards;
             smallJoysDiminish = d.smallJoysDiminish;
+            standardsCoverComforts = d.standardsCoverComforts;
+            goodTimesFade = d.goodTimesFade;
             lifePressure = d.lifePressure;
             enableDilemmas = d.enableDilemmas;
             annals = d.annals;

@@ -245,6 +245,55 @@ Check(PressureMath.UnfinishedStage(PressureMath.UnfinishedScore(0, 500)) == 1 &&
 Check(PressureMath.EffortFactor(-1f) == 1f && PressureMath.EffortFactor(0f) == 1f && PressureMath.EffortFactor(0.5f) == 1f, "an ambition with half or more to do is earned in full");
 Check(Math.Abs(PressureMath.EffortFactor(0.7f) - 0.8f) < 1e-4f && PressureMath.EffortFactor(0.95f) == 0.6f, "one mostly done already counts for less, 60% at least");
 
+// Good times turning ordinary: good memories fade sooner when life is good, standards and the game's comforts, and how
+// good moods add up (Moods/GoodTimesMath.cs).
+Check(GoodTimesMath.DurationFactor(0f) == 1f && GoodTimesMath.DurationFactor(0.5f) == 1f && GoodTimesMath.DurationFactor(0.75f) == 1f, "good things last in full up to 75% mood");
+Check(GoodTimesMath.DurationFactor(0.9f) == 0.5f && GoodTimesMath.DurationFactor(1f) == 0.5f, "half the time from 90% mood");
+Check(GoodTimesMath.DurationFactor(float.NaN) == 1f, "no mood known: in full");
+{
+    float last = 1f;
+    bool falls = true, smooth = true;
+    for (int i = 0; i <= 100; i++)
+    {
+        float f = GoodTimesMath.DurationFactor(i / 100f);
+        if (f > last + 1e-6f) falls = false;
+        if (last - f > 0.08f) smooth = false;
+        last = f;
+    }
+    Check(falls, "the time a good memory lasts never grows with mood");
+    Check(smooth, "and shrinks smoothly, no jumps between one percent and the next");
+}
+float fade80 = GoodTimesMath.DurationFactor(0.8f), fade85 = GoodTimesMath.DurationFactor(0.85f);
+Check(fade80 > 0.8f && fade80 < 0.95f && fade85 > 0.55f && fade85 < 0.7f, $"80% mood about 87%, 85% about 63% (got {fade80}, {fade85})");
+Check(GoodTimesMath.ShortenedTicks(60000, 0.5f) == 30000 && GoodTimesMath.ShortenedTicks(60000, 1f) == 60000 && GoodTimesMath.ShortenedTicks(3, 0.1f) == 1, "shortened ticks, one at least");
+Check(GoodTimesMath.ShortenedTicks(0, 0.5f) == 0 && GoodTimesMath.ShortenedTicks(-1, 0.5f) == -1, "no time of its own: left alone");
+Check(GoodTimesMath.ComfortFactor(0) == 1f && GoodTimesMath.ComfortFactor(1) == 0.9f && GoodTimesMath.ComfortFactor(2) == 0.8f && GoodTimesMath.ComfortFactor(3) == 0.7f,
+    "comforts: modest 100%, comfortable 90%, particular 80%, spoiled 70%");
+Check(GoodTimesMath.ComfortFactor(-1) == 1f && GoodTimesMath.ComfortFactor(9) == 0.7f, "comfort factor out of range");
+Check(Math.Abs(GoodTimesMath.Comfort(5f, 0.8f) - 4f) < 1e-4f && Math.Abs(GoodTimesMath.Comfort(10f, 0.7f) - 7f) < 1e-4f, "a small comfort is scaled in full");
+Check(Math.Abs(GoodTimesMath.Comfort(40f, 0.7f) - 37f) < 1e-4f && Math.Abs(GoodTimesMath.Comfort(12f, 0.9f) - 11f) < 1e-4f, "a big one only on its first 10 points");
+Check(GoodTimesMath.Comfort(-6f, 0.7f) == -6f && GoodTimesMath.Comfort(0f, 0.7f) == 0f && GoodTimesMath.Comfort(8f, 1f) == 8f, "bad moods and the modest are left alone");
+{
+    float last = 0f;
+    bool rises = true;
+    for (int i = 1; i <= 60; i++)
+    {
+        float v = GoodTimesMath.Comfort(i, 0.7f);
+        if (v <= last) rises = false;
+        last = v;
+    }
+    Check(rises, "a bigger comfort is always felt as more");
+}
+Check(GoodTimesMath.RankFactor(0) == 1f && GoodTimesMath.RankFactor(1) == 1f, "the two biggest good moods count in full");
+Check(GoodTimesMath.RankFactor(2) == 0.5f && GoodTimesMath.RankFactor(3) == 0.25f && GoodTimesMath.RankFactor(4) == 0.125f, "each one after that half the one before");
+Check(GoodTimesMath.RankFactor(100) == 0f && GoodTimesMath.RankFactor(-1) == 1f, "rank factor out of range");
+{
+    // A dozen good moods of +3 lift a colonist about as much as three: never more than twice the biggest two.
+    float sum = 0f;
+    for (int r = 0; r < 12; r++) sum += 3f * GoodTimesMath.RankFactor(r);
+    Check(sum > 8.5f && sum <= 9f, $"a dozen +3 joys count as {sum}");
+}
+
 // ---------------- Room layouts (Building/TemplateLayout.cs) ----------------
 
 // The root found for a footprint gives back that footprint, for every size and facing.
@@ -307,5 +356,5 @@ for (int r = 0; r < 4; r++)
     }
 }
 
-Console.WriteLine(failures == 0 ? "All template math, layout, strain, meeting and pressure tests passed." : failures + " failure(s).");
+Console.WriteLine(failures == 0 ? "All template math, layout, strain, meeting, pressure and good times tests passed." : failures + " failure(s).");
 return failures == 0 ? 0 : 1;
