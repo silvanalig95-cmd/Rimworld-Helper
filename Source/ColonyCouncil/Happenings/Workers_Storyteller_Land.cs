@@ -358,9 +358,9 @@ namespace ColonyCouncil
         private static readonly string[] Favored = { "Deer", "Elk", "Caribou", "Ibex", "Gazelle", "Muffalo", "Alpaca" };
 
         private static IEnumerable<PawnKindDef> Kinds(Map map) =>
-            map.Biome.AllWildAnimals.Where(k => k?.race?.race != null && k.RaceProps.Animal && !k.RaceProps.predator && !k.RaceProps.Insect && !k.RaceProps.Dryad
+            PokeWorldLink.WildKinds(map.Biome.AllWildAnimals.Where(k => k?.race?.race != null && k.RaceProps.Animal && !k.RaceProps.predator && !k.RaceProps.Insect && !k.RaceProps.Dryad
                                                 && k.RaceProps.baseBodySize >= 0.6f && k.RaceProps.baseBodySize <= 3f && k.race.GetStatValueAbstract(StatDefOf.Wildness) >= 0.4f
-                                                && map.mapTemperature.SeasonAndOutdoorTemperatureAcceptableFor(k.race, 0f));
+                                                && map.mapTemperature.SeasonAndOutdoorTemperatureAcceptableFor(k.race, 0f)));
 
         protected override bool CanHappen(Map map, HappeningExtension ext) => Avail.IsPreIndustrial && StorytellerEvents.Adults(map).Any() && Kinds(map).Any();
 
@@ -551,8 +551,8 @@ namespace ColonyCouncil
 
         /// <summary>Small game of the land a hunting pet could bring down.</summary>
         private static PawnKindDef Game(Map map) =>
-            map.Biome.AllWildAnimals.Where(k => k?.race?.race != null && k.RaceProps.Animal && !k.RaceProps.Insect && k.RaceProps.baseBodySize <= 0.35f
-                                                && k.RaceProps.meatDef != null && !k.RaceProps.predator).RandomElementWithFallback();
+            PokeWorldLink.WildKinds(map.Biome.AllWildAnimals.Where(k => k?.race?.race != null && k.RaceProps.Animal && !k.RaceProps.Insect && k.RaceProps.baseBodySize <= 0.35f
+                                                && k.RaceProps.meatDef != null && !k.RaceProps.predator)).RandomElementWithFallback();
 
         protected override bool CanHappen(Map map, HappeningExtension ext) => Pets(map).Any();
 

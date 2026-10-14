@@ -314,15 +314,20 @@ namespace ColonyCouncil
     {
         public int count = 2;
 
-        public override bool Possible(Map map) =>
-            map.mapPawns.AllPawnsSpawned.Any(a => a.RaceProps.Animal && a.Faction == null && a.GetStatValue(StatDefOf.Wildness) < 0.85f);
+        // A Pokémon (PokéWorld) can't be tamed by hand, only caught with a Poké Ball the colony has or can make.
+        public override bool Possible(Map map)
+        {
+            bool? canCatch = null;
+            return map.mapPawns.AllPawnsSpawned.Any(a => a.RaceProps.Animal && a.Faction == null && a.GetStatValue(StatDefOf.Wildness) < 0.85f
+                                                         && (!PokeWorldLink.IsPokemon(a) || (canCatch ??= PokeWorldLink.CanCatch(map))));
+        }
 
-        public override float Baseline(Map map) => RoomUtil.ColonyAnimalCount(map);
+        public override float Baseline(Map map) => PokeWorldLink.OwnedAnimalCount(map);
 
-        public override float Progress(Map map, float baseline) => Ratio(RoomUtil.ColonyAnimalCount(map) - baseline, count);
+        public override float Progress(Map map, float baseline) => Ratio(PokeWorldLink.OwnedAnimalCount(map) - baseline, count);
 
         public override string Describe(Map map, float baseline) =>
-            "CC_Goal_Animals".Translate(count, UnityEngine.Mathf.Max(0, RoomUtil.ColonyAnimalCount(map) - (int)baseline));
+            "CC_Goal_Animals".Translate(count, UnityEngine.Mathf.Max(0, PokeWorldLink.OwnedAnimalCount(map) - (int)baseline));
     }
 
     public class Goal_SharedArt : AmbitionGoal

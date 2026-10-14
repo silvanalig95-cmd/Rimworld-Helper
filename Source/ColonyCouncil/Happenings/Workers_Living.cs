@@ -1428,11 +1428,11 @@ namespace ColonyCouncil
             DefDatabase<BiomeDef>.AllDefsListForReading.SelectMany(b => b.AllWildAnimals ?? Enumerable.Empty<PawnKindDef>()));
 
         private static IEnumerable<PawnKindDef> Kinds(Map map) =>
-            DefDatabase<PawnKindDef>.AllDefsListForReading.Where(k => k.race?.race != null && k.RaceProps.Animal && LivingEvents.FromMod(k.race, Mod) && WildSomewhere.Contains(k) && !k.RaceProps.Insect
+            PokeWorldLink.WildKinds(DefDatabase<PawnKindDef>.AllDefsListForReading.Where(k => k.race?.race != null && k.RaceProps.Animal && LivingEvents.FromMod(k.race, Mod) && WildSomewhere.Contains(k) && !k.RaceProps.Insect
                                                                       && !k.RaceProps.Dryad && !k.RaceProps.predator && !k.RaceProps.IsMechanoid
                                                                       && k.RaceProps.baseBodySize >= 0.3f && k.RaceProps.baseBodySize <= 4f && k.combatPower <= 220f
                                                                       && Wild(k) >= 0.35f && Wild(k) <= 0.97f
-                                                                      && map.mapTemperature.SeasonAndOutdoorTemperatureAcceptableFor(k.race, 0f));
+                                                                      && map.mapTemperature.SeasonAndOutdoorTemperatureAcceptableFor(k.race, 0f)));
 
         private static IEnumerable<Pawn> Handlers(Map map) =>
             Colonists(map).Where(p => !p.DevelopmentalStage.Juvenile() && !p.Downed && !p.InMentalState && !p.WorkTypeIsDisabled(WorkTypeDefOf.Handling));

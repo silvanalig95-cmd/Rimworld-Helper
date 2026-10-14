@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!-- ===================== PokéWorld (Source/ColonyCouncil/Integrations/PokeWorld.cs) ===================== -->
+
+  <!-- A colonist caught a species the colony never had. {SPECIES}: the species, e.g. "Eevee". -->
+  <CC_PW_NewSpecies>{PAWN_nameDef} caught the colony's first {SPECIES}.</CC_PW_NewSpecies>
+  <CC_PW_Cause_NewSpecies>Caught the colony's first {SPECIES}.</CC_PW_Cause_NewSpecies>
+
+  <!-- The wish to catch a new species. -->
+  <CC_PW_Reason_NewSpecies>{PAWN_nameDef} has a way with animals, and there's a wild {SPECIES} out there of a kind nobody here has caught.</CC_PW_Reason_NewSpecies>
+
+</LanguageData>

@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    PokéWorld (Source/ColonyCouncil/Integrations/PokeWorld.cs). A colonist with a passion for animals sees a wild
+    Pokémon of a species the colony doesn't have, and wants to go and catch it. Only when the colony has a Poké Ball
+    belt or can make one now. It always loads (a save keeps finding it) and never comes up without the mod.
+    {SUBJECT} is the species as PokéWorld names it ("Eevee"): lines say "the {SUBJECT}" or "that {SUBJECT}", never
+    "a {SUBJECT}".
+  -->
+  <ColonyCouncil.WishDef>
+    <defName>Council_Wish_PW_NewSpecies</defName>
+    <label>a new species</label>
+    <description>A colonist with a passion for animals has spotted a wild Pokémon of a species the colony doesn't have, and wants to catch it.</description>
+    <workerClass>ColonyCouncil.WishWorker_PokemonNewSpecies</workerClass>
+    <envy>0.2</envy>
+    <category>Social</category>
+    <weight>0.8</weight>
+    <expiryDays>8</expiryDays>
+    <cooldownDays>20</cooldownDays>
+    <grantedThought>Council_Granted_PW_NewSpecies</grantedThought>
+    <talkInteraction>Council_Talk_Animals</talkInteraction>
+    <fulfilledWhen>The colony catches a Pokémon of a species it doesn't have yet. There's a wild {SUBJECT} out there, for a start.</fulfilledWhen>
+    <request>
+      <plain>
+        <li>There's a wild {SUBJECT} out by the tree line, and nobody here has one yet. Let me take a belt and go after it.</li>
+        <li>I've been watching that {SUBJECT} for two days. I know where it goes to drink.</li>
+        <li>[winter] The {SUBJECT} comes down to the water on cold mornings. That's when I'd try for it.</li>
+        <li>[child] Can I catch the {SUBJECT}? I'll be careful with the ball.</li>
+        <li>[lowmood] I need something to work toward. That {SUBJECT} out there would do.</li>
+      </plain>
+      <warm>
+        <li>That {SUBJECT} would do well here. I'd make sure it's looked after.</li>
+      </warm>
+      <blunt>
+        <li>Give me a ball belt and an afternoon. The {SUBJECT} is coming home.</li>
+      </blunt>
+      <cheerful>
+        <li>A wild {SUBJECT}, right out past the fields! We don't have one of those yet.</li>
+      </cheerful>
+      <gloomy>
+        <li>If we wait, that {SUBJECT} will wander off, and we won't see another for a long time.</li>
+      </gloomy>
+      <cold>
+        <li>The colony has no {SUBJECT}. Catching one costs a ball and an afternoon.</li>
+      </cold>
+    </request>
+    <thanks>
+      <plain>
+        <li>It's in the ball. I'll let it out once it's calmer.</li>
+        <li>That's one kind of creature the colony didn't have this morning.</li>
+      </plain>
+      <warm><li>Thank you for letting me go after it. I'll look after it.</li></warm>
+      <cheerful><li>Come and see what I caught!</li></cheerful>
+      <gloomy><li>Caught it. Now I have to keep it alive.</li></gloomy>
+      <cold><li>Done. One more species for the colony.</li></cold>
+    </thanks>
+    <expired>
+      <plain><li>It's gone over the hills. Maybe it'll come back this way.</li></plain>
+      <blunt><li>It got away. Next time, let me go when I ask.</li></blunt>
+      <gloomy><li>Gone. I knew it would be.</li></gloomy>
+    </expired>
+    <reminder>
+      <plain><li>The {SUBJECT} is still out there. It won't be for long.</li></plain>
+      <warm><li>Whenever someone can spare me for an afternoon. The {SUBJECT} hasn't left yet.</li></warm>
+    </reminder>
+  </ColonyCouncil.WishDef>
+
+</Defs>

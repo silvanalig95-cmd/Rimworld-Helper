@@ -181,7 +181,7 @@ namespace ColonyCouncil
             k?.race?.race != null && k.RaceProps.Animal && !k.RaceProps.Insect && !k.RaceProps.Dryad && !k.RaceProps.predator
             && k.RaceProps.baseBodySize >= 1f && k.combatPower >= 70f && map.mapTemperature.SeasonAndOutdoorTemperatureAcceptableFor(k.race, 0f);
 
-        private static IEnumerable<PawnKindDef> Kinds(Map map) => map.Biome.AllWildAnimals.Where(k => Fits(k, map));
+        private static IEnumerable<PawnKindDef> Kinds(Map map) => PokeWorldLink.WildKinds(map.Biome.AllWildAnimals.Where(k => Fits(k, map)));
 
         protected override bool CanHappen(Map map, HappeningExtension ext) =>
             CouncilGameComponent.Instance?.happenings.beast == null && Kinds(map).Any();

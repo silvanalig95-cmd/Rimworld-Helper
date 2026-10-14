@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    PokéWorld (Source/ColonyCouncil/Integrations/PokeWorld.cs): the colonist who caught a species the colony never had
+    writes about it. {BEAST} is the species as PokéWorld names it ("Eevee"), so lines say "the {BEAST}" or "my
+    first {BEAST}", never "a {BEAST}". Never used without the mod.
+  -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Journal_PW_NewSpecies</defName>
+    <lines>
+      <plain>
+        <li>Caught my first {BEAST} today. It went into the ball on the second throw.</li>
+        <li>The {BEAST} put up a fight before the ball took it. Nobody else here has one.</li>
+        <li>Followed the {BEAST} along the tree line most of the afternoon before I had a clear throw.</li>
+        <li>[winter] Out in the snow half the morning, following tracks. Came home with the colony's first {BEAST}.</li>
+        <li>[lowtech] Threw the Apricorn three times before the {BEAST} stayed in it.</li>
+        <li>[child] I caught the {BEAST} all by myself. Nobody else has one.</li>
+      </plain>
+      <warm><li>Caught the {BEAST} today. I want everyone to meet it at supper.</li></warm>
+      <blunt><li>Caught the {BEAST}. First one here.</li></blunt>
+      <cheerful><li>My first {BEAST}! I've been practicing my throw all week.</li></cheerful>
+      <gloomy><li>Caught the {BEAST}. The way it looked at me before the ball closed, you'd think I'd done something wrong.</li></gloomy>
+      <cold><li>One more species for the colony. The {BEAST} will be worth something once it has a few levels on it.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+</Defs>

@@ -183,12 +183,12 @@ namespace ColonyCouncil
             if (wild.Count == 0) yield break;
             var example = wild.RandomElement();
             var c = Candidate(People.Burning(animals) ? 1.2f : 0.5f, "CC_Reason_AnimalLover".Translate(pawn.Named("PAWN"), example.kindDef.GetLabelPlural().Named("ANIMALS")));
-            c.baseline = RoomUtil.ColonyAnimalCount(map);
+            c.baseline = PokeWorldLink.OwnedAnimalCount(map);
             c.subjectLabel = example.kindDef.label;
             yield return c;
         }
 
-        public override bool IsFulfilled(Wish wish) => RoomUtil.ColonyAnimalCount(wish.Beneficiary.MapHeld) > wish.baseline;
+        public override bool IsFulfilled(Wish wish) => PokeWorldLink.OwnedAnimalCount(wish.Beneficiary.MapHeld) > wish.baseline;
 
         /// <summary>
         /// Safe to go after without anyone's say-so: not too wild, not a predator, not huge, and unlikely to turn on a

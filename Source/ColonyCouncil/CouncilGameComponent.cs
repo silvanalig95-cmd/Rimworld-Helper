@@ -285,6 +285,7 @@ namespace ColonyCouncil
             Safe("quirks", quirks.Hourly);
             Safe("nemeses", () => nemeses.Hourly(this));
             Safe("pets", () => pets.Hourly(this));
+            if (PokeWorldLink.Active) Safe("pokeworld", () => PokeWorldLink.Hourly(this));
             Safe("autonomy", () => autonomy.Hourly(this));
             Safe("who is home", NoteWhoIsHome);
             Safe("everyday pressures", () => pressures.Hourly(this));

@@ -295,8 +295,13 @@ namespace ColonyCouncil
 
         private static readonly string[] Kinds = { "Horse", "Muffalo", "Dromedary", "Yak", "Donkey", "Cow", "Alpaca", "Bison", "Goat", "Elk", "Caribou" };
 
-        /// <summary>Farm animals that would be fine outdoors here right now, and that could be tamed at all.</summary>
-        private static IEnumerable<PawnKindDef> Candidates(Map map)
+        /// <summary>
+        /// Farm animals that would be fine outdoors here right now, and that could be tamed at all. With PokéWorld's
+        /// slider at "only Pokémon" there are none (a Pokémon can't be tamed by hand); in between, it's a chance.
+        /// </summary>
+        private static IEnumerable<PawnKindDef> Candidates(Map map) => PokeWorldLink.WildKinds(FarmKinds(map));
+
+        private static IEnumerable<PawnKindDef> FarmKinds(Map map)
         {
             foreach (var name in Kinds)
             {
