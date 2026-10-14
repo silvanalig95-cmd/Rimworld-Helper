@@ -487,6 +487,7 @@
       <li>VTE_CreatedLowQualityItem</li>
       <li>VTE_CouldNotFinishItem</li>
       <li>VTE_NoDedicatedLaboratory</li>
+      <li>Council_RoomTaken</li>
     </thoughts>
     <feeds>
       <li><thought>ApparelDamaged</thought><weight>0.5</weight></li>

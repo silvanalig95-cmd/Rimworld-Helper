@@ -44,6 +44,13 @@ namespace ColonyCouncil
         public List<string> asked = new List<string>();
         /// <summary>Short history for the tooltip, newest last.</summary>
         public List<string> log = new List<string>();
+        /// <summary>
+        /// When the council last gave them a room of their own (0 = never, or they've made their peace with losing it),
+        /// the hours they've spent back in shared quarters since (see <see cref="RoomTaken"/>), and whether they've said so.
+        /// </summary>
+        public int ownRoomGranted;
+        public int ownRoomLostHours;
+        public bool ownRoomLossNoted;
 
         public TrustLevel Level => LevelFor(trust);
 
@@ -101,6 +108,9 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref yearsMarked, "yearsMarked", -1);
             Scribe_Collections.Look(ref log, "log", LookMode.Value);
             Scribe_Collections.Look(ref asked, "asked", LookMode.Value);
+            Scribe_Values.Look(ref ownRoomGranted, "ownRoomGranted");
+            Scribe_Values.Look(ref ownRoomLostHours, "ownRoomLostHours");
+            Scribe_Values.Look(ref ownRoomLossNoted, "ownRoomLossNoted");
             if (Scribe.mode == LoadSaveMode.PostLoadInit)
             {
                 if (asked == null) asked = new List<string>();

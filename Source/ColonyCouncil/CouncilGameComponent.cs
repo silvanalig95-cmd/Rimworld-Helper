@@ -274,6 +274,7 @@ namespace ColonyCouncil
             Safe("losses", () => vendettas.Hourly(this));
             Safe("decrees", () => decrees.Hourly(this));
             Safe("wish upkeep", UpdateWishes);
+            if (Settings.enableWishes) Safe("own room taken", () => RoomTaken.Hourly(this));
             if (Settings.enableWishes) Safe("event wishes", CheckTriggers);
             if (Settings.enableWishes) Safe("wish generation", () => TryGenerateWish(false));
             if (Find.TickManager.TicksGame % GenDate.TicksPerDay < HourTicks) Safe("daily", Daily);

@@ -112,6 +112,12 @@ heard several times lately becomes much less likely, and one nobody here has eve
 **Others are watching.** Friends are happy for the one who got their wish. The jealous, rivals and anyone who
 has been waiting longer can feel passed over, and some will want the same thing.
 
+**A room taken back.** Someone whose wish for a room of their own came true minds being moved back into a barracks
+or into a bedroom with someone who isn't their partner: "my room was taken from me" (-3, and some trust lost each
+day, scaled like the council's other letdowns), with a line in their journal the first time. It ends when they have
+a room of their own again, and after about 30 days in shared quarters they accept it for good. Children, slaves and
+ascetics don't mind.
+
 **Trust.** Each colonist's trust in the council (bitter, doubtful, neutral, trusting, devoted) rises and falls
 with all of this. Trust isn't only mood: loyal colonists work and learn faster and hold together better, while
 a grudge slows them down and shortens their temper (both show in the health tab). Bitter colonists grumble, stop
