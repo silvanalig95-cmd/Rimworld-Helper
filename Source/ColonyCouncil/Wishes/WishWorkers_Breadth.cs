@@ -217,11 +217,17 @@ namespace ColonyCouncil
     public class WishWorker_SeatsForAll : WishWorker
     {
         private static readonly Dictionary<int, (int hour, int seats)> seatCache = new Dictionary<int, (int, int)>();
+        private static Game seatGame;
 
         /// <summary>Seats at tables indoors, remembered for the in-game hour.</summary>
         public static int Seats(Map map)
         {
             if (map == null) return 0;
+            if (seatGame != Current.Game)
+            {
+                seatCache.Clear();
+                seatGame = Current.Game;
+            }
             int hour = Find.TickManager.TicksGame / GenDate.TicksPerHour;
             if (seatCache.TryGetValue(map.uniqueID, out var c) && c.hour == hour) return c.seats;
             int n = 0;
@@ -448,5 +454,92 @@ namespace ColonyCouncil
         }
 
         public override bool IsFulfilled(Wish wish) => PokeWorldLink.OwnedAnimalCount(wish.Beneficiary.MapHeld) > wish.baseline;
+    }
+
+    /// <summary>
+    /// Their own room still has a floor of bare earth, sand or mud: tracked in on every boot, cold in winter, a swamp in
+    /// the rain. They want a real floor, any the colony can lay. Promised (or out of patience), the floor is planned.
+    /// </summary>
+    public class WishWorker_Floor : WishWorker
+    {
+        /// <summary>Natural ground that holds footprints or grows things: soil, sand, mud, marsh. Rough stone isn't.</summary>
+        private static bool Bare(TerrainDef t) => t != null && t.natural && (t.IsSoil || t.takeFootprints || t.fertility > 0f);
+
+        /// <summary>The share of the room's floor that is bare ground (0 with no room).</summary>
+        public static float BareShare(Room room, Map map)
+        {
+            if (room == null || map == null || room.PsychologicallyOutdoors) return 0f;
+            int bare = 0, all = 0;
+            foreach (var c in room.Cells)
+            {
+                all++;
+                if (Bare(c.GetTerrain(map))) bare++;
+            }
+            return all == 0 ? 0f : bare / (float)all;
+        }
+
+        /// <summary>The floor to lay: the cheapest the colony can build whose materials are within reach, else the cheapest.</summary>
+        private static TerrainDef FloorFor(Map map)
+        {
+            var options = RoomPlanConfig.FloorOptions(map);
+            return options.FirstOrDefault(f => Avail.MaterialsWithinReach(f, map)) ?? options.FirstOrDefault();
+        }
+
+        public override IEnumerable<WishCandidate> CandidatesFor(Pawn pawn)
+        {
+            var map = HomeMap(pawn);
+            var room = RoomUtil.PrivateRoom(pawn);
+            if (map == null || room == null || HasTrait(pawn, TraitDefOf.Ascetic)) yield break;
+            float share = BareShare(room, map);
+            if (share < 0.5f) yield break;
+            var floor = FloorFor(map);
+            if (floor == null) yield break;
+            bool particular = Standards.Of(pawn) > 0.4f || HasTrait(pawn, TraitDefOf.Greedy);
+            bool wet = map.weatherManager?.curWeather != null && map.weatherManager.curWeather.rainRate > 0.01f;
+            // Other mods' tidy people (Vanilla Traits Expanded's neat) ask more often: see Council_People_Mods_Breadth.xml.
+            float favor = def.wants?.Favor(pawn) ?? 1f;
+            var c = Candidate((particular ? 1.2f : 0.6f) * (wet ? 1.5f : 1f) * favor, "CC_Reason_Floor".Translate(pawn.Named("PAWN")));
+            c.subjectLabel = floor.label;
+            c.subjectKey = pawn.ThingID;
+            c.baseline = share;
+            yield return c;
+        }
+
+        public override bool IsFulfilled(Wish wish) => BareShare(RoomUtil.PrivateRoom(wish.Beneficiary), wish.Beneficiary.MapHeld) <= 0.1f;
+
+        /// <summary>Their room is still theirs.</summary>
+        public override bool StillValid(Wish wish) => wish.Beneficiary.MapHeld == null || RoomUtil.PrivateRoom(wish.Beneficiary) != null;
+
+        public override string ProgressText(Wish wish) =>
+            "CC_Progress_Floor".Translate((1f - BareShare(RoomUtil.PrivateRoom(wish.Beneficiary), wish.Beneficiary.MapHeld)).ToStringPercent()).ToString();
+
+        /// <summary>Plans the floor over the bare ground in their room. True if anything was planned.</summary>
+        private static bool PlanFloor(Pawn p)
+        {
+            var map = p?.MapHeld;
+            var room = RoomUtil.PrivateRoom(p);
+            var floor = map == null ? null : FloorFor(map);
+            if (room == null || floor == null || room.PsychologicallyOutdoors) return false;
+            var stuff = floor.MadeFromStuff ? Avail.BestStuff(floor, map) : null;
+            int planned = 0;
+            foreach (var c in room.Cells.ToList())
+            {
+                if (!Bare(c.GetTerrain(map))) continue;
+                try
+                {
+                    if (TemplatePlanner.TryPlace(floor, c, Rot4.North, stuff, map)) planned++;
+                }
+                catch (Exception e)
+                {
+                    CouncilLog.ErrorOnce("planning a floor", e);
+                    break;
+                }
+            }
+            return planned > 0;
+        }
+
+        public override string OnPromised(Wish wish) => PlanFloor(wish.Beneficiary) ? "CC_Promise_Floor" : null;
+
+        public override string TrySelfHelp(Wish wish) => PlanFloor(wish.Beneficiary) ? "CC_SelfHelp_Floor" : null;
     }
 }

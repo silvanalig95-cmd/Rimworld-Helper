@@ -328,4 +328,30 @@
     </stages>
   </ThoughtDef>
 
+  <!-- ===================== Home and fields ===================== -->
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_Granted_Floor</defName>
+    <durationDays>6</durationDays>
+    <stages>
+      <li>
+        <label>a real floor at last</label>
+        <description>My room has a proper floor now instead of bare ground. It finally feels like a room.</description>
+        <baseMoodEffect>3</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_Granted_Scarecrow</defName>
+    <durationDays>5</durationDays>
+    <stages>
+      <li>
+        <label>a scarecrow in the fields</label>
+        <description>There's a scarecrow watching over the fields now, and the crops are ours again.</description>
+        <baseMoodEffect>3</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
 </Defs>

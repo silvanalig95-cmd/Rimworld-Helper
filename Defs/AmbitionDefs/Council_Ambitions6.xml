@@ -42,7 +42,7 @@
         <li>[tribal] A people with a home tell stories by its fire. Let's build one worth telling stories in.</li>
       </plain>
       <warm>
-        <li>I want everyone to wake up in a real bed and sit down to a real table. It isn't much to ask.</li>
+        <li>Everyone should wake up in a real bed and sit down to a real table. It isn't much to ask.</li>
       </warm>
       <blunt>
         <li>My back hurts from the floor. Beds. Then a table. That's my plan.</li>
@@ -70,7 +70,7 @@
   <ColonyCouncil.AmbitionDef>
     <defName>Council_Amb_TableForAll</defName>
     <label>a table for everyone</label>
-    <description>Seat the whole colony at once: a chair at a table indoors for everyone who eats, in a dining room people are glad to sit in. A colony that eats together holds together.</description>
+    <description>Seat everyone together: a chair at a table indoors for everyone who eats, in a dining room people are glad to sit in. A colony that eats together holds together.</description>
     <days>20</days>
     <minColonists>4</minColonists>
     <relevantCategories><li>Comfort</li></relevantCategories>
@@ -236,7 +236,7 @@
     </goals>
     <pitch>
       <plain>
-        <li>Half the colony is sniffling and the other half will be soon. Let's get everyone well and keep them well.</li>
+        <li>Three of us are sniffling and the rest will be soon. Let's get everyone well and keep them well.</li>
         <li>Rest for the sick, warm beds, clean floors. Then fifteen days with nobody coughing.</li>
         <li>[winter] Winter is when it spreads. We can't stop the cold, but we can stop passing things around.</li>
         <li>[lowtech] Clean water, rest, and the sick kept apart. That's how the old healers did it.</li>
@@ -248,7 +248,7 @@
         <li>Sick people don't work. Get them well. Keep them well.</li>
       </blunt>
       <cheerful>
-        <li>A whole season without a single sneeze! We can do it.</li>
+        <li>Fifteen days without a single sneeze! We can do it.</li>
       </cheerful>
       <gloomy>
         <li>It's going round again. It always comes back if we don't deal with it.</li>
@@ -522,7 +522,7 @@
     <achieved>
       <plain><li>Two who can heal and two who can cook. We can lose a bad day now without losing everything.</li></plain>
       <warm><li>Everyone learned something. I'm proud of all of them.</li></warm>
-      <gloomy><li>A little less fragile than we were.</li></gloomy>
+      <gloomy><li>Less fragile than we were.</li></gloomy>
       <cold><li>Critical skills duplicated.</li></cold>
     </achieved>
   </ColonyCouncil.AmbitionDef>

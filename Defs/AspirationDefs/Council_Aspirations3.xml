@@ -208,7 +208,7 @@
       <gloomy><li>I'm running out of time. I'd like to see my family go on before it's too late.</li></gloomy>
     </chosen>
     <achieved>
-      <plain><li>My grandchild. I held them for an hour and didn't want to give them back.</li></plain>
+      <plain><li>My grandchild. I held them all afternoon and didn't want to give them back.</li></plain>
       <warm><li>Three generations under one roof. I never thought I'd see it out here.</li></warm>
       <cheerful><li>I'm a grandparent! I've already made a toy.</li></cheerful>
       <gloomy><li>I've seen my grandchild. Whatever happens now, something of me goes on.</li></gloomy>
@@ -340,7 +340,7 @@
         <li>[spark:Council_Granted_SeatsForAll] We all sat at one table tonight, and for a moment it felt like home. I want that every day.</li>
         <li>[newcomer] Still the new one. I'd like to wake up one morning and feel like I've always been here.</li>
       </plain>
-      <warm><li>I want to feel that these people are my people. I think I'm close.</li></warm>
+      <warm><li>These people could be my people. I think I'm close to feeling it.</li></warm>
       <gloomy><li>I've never really belonged anywhere. Maybe here could be different.</li></gloomy>
       <cold><li>I want a place in this colony, not just a bed in it.</li></cold>
     </chosen>
@@ -396,7 +396,7 @@
         <li>[spark:Council_DecidedWithoutMe] They decided without me again. Next time it'll be my idea they choose.</li>
         <li>[spark:Council_HeardAtMeeting] I listened to everyone pitch their plans tonight. I can do better than half of them.</li>
       </plain>
-      <warm><li>I'd like to give something back. An idea the whole colony works on together would do it.</li></warm>
+      <warm><li>I'd like to give something back. An idea everyone here works on together would do it.</li></warm>
       <blunt><li>I'm going to pitch until they listen.</li></blunt>
       <cheerful><li>I've got a whole notebook of ideas! One of them has to win.</li></cheerful>
       <cold><li>The council sets the colony's course. I intend to set some of it.</li></cold>

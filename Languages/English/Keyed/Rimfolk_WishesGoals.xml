@@ -16,6 +16,7 @@
   <CC_Reason_Apprentice>{PAWN_nameDef} knows {SKILL} well and wants to pass it on, and {OTHER_nameDef} is keen to learn.</CC_Reason_Apprentice>
   <CC_Reason_Fishing>{PAWN_nameDef} has seen fish in the water and wants a spot marked out to catch them.</CC_Reason_Fishing>
   <CC_Reason_ChildPet>{PAWN_nameDef} has been watching the {ANIMALS} near the colony and wants one to look after.</CC_Reason_ChildPet>
+  <CC_Reason_Floor>{PAWN_nameDef}'s room still has a floor of bare ground.</CC_Reason_Floor>
 
   <!-- ===================== Wishes: progress and promises ===================== -->
   <CC_Progress_CampEvening>{0} of {1} visits to the camp</CC_Progress_CampEvening>
@@ -23,6 +24,9 @@
   <CC_Progress_Apprentice>{0}: skill {1} / {2}</CC_Progress_Apprentice>
   <CC_Promise_Meeting>The council calls a meeting. {PAWN_nameDef} will have a chance to speak.</CC_Promise_Meeting>
   <CC_Promise_Apprentice>The council asks {FOR_nameDef} to teach {OTHER_nameDef} {SUBJECT}. The lessons start today.</CC_Promise_Apprentice>
+  <CC_Progress_Floor>{0} of the room floored</CC_Progress_Floor>
+  <CC_Promise_Floor>The council plans a floor ({SUBJECT}) for {FOR_nameDef}'s room.</CC_Promise_Floor>
+  <CC_SelfHelp_Floor>Tired of the dirt, {PAWN_nameDef} planned a floor ({SUBJECT}) for {PAWN_possessive} room. The builders will find the blueprints; cancel them if you object.</CC_SelfHelp_Floor>
 
   <!-- ===================== Council projects ===================== -->
   <CC_Ambition_StageReached>{AMBITION}: stage {STAGE} of {COUNT} is done. Next: {NEXT}</CC_Ambition_StageReached>

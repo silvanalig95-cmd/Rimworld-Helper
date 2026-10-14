@@ -55,7 +55,7 @@
         <li>When you're ill here, you lie wherever you usually lie and hope someone remembers you. Mark a bed for the sick.</li>
         <li>[trigger:sick] I'm burning up. I'd like to lie down somewhere the doctor will think to look.</li>
         <li>[winter] Sick in the middle of winter, and my bed is by the door. A proper sickbed somewhere warm is all I'm asking.</li>
-        <li>[lowtech] Where I grew up, the sick got a bed by the fire and someone to bring them broth.</li>
+        <li>[lowtech] Where I grew up, the sick got the warmest corner of the house and someone to bring them broth.</li>
         <li>[night] It's the middle of the night and I can hear myself wheezing. I'd like to be where someone else can hear it too.</li>
         <li>[child] I feel sick. Can I sleep in a special bed, where somebody checks on you?</li>
       </plain>
@@ -77,7 +77,7 @@
     </request>
     <thanks>
       <plain><li>A bed set apart, and someone looking in on me. I'm already sleeping better.</li></plain>
-      <warm><li>Thank you. I'll be up again soon, and it'll be there for the next one.</li></warm>
+      <warm><li>I'll be up again soon, and the bed will be there for the next one who needs it.</li></warm>
       <blunt><li>Good. Now let me sleep.</li></blunt>
       <cheerful><li>They brought me soup in bed. I could get used to being sick.</li></cheerful>
       <gloomy><li>Still sick. At least someone knows where I am.</li></gloomy>
@@ -133,7 +133,7 @@
         <li>No herbs, no medicine. Grow some healroot.</li>
       </blunt>
       <cheerful>
-        <li>A whole bed of healroot! It smells awful and it works wonders.</li>
+        <li>Rows and rows of healroot! It smells awful and it works wonders.</li>
       </cheerful>
       <gloomy>
         <li>Someone will get sick this season. Someone always does. I'd like to be ready.</li>
@@ -144,9 +144,9 @@
     </request>
     <thanks>
       <plain><li>Healroot drying in bundles from the rafters. That's a good sight.</li></plain>
-      <warm><li>Thank you. Whoever falls ill next will be glad of it.</li></warm>
+      <warm><li>Whoever falls ill next will be glad of this. I am already.</li></warm>
       <blunt><li>Good. Don't eat it.</li></blunt>
-      <cheerful><li>Look at all that green! I've already sewn a little pouch for it.</li></cheerful>
+      <cheerful><li>Look at all that green! I've already sewn a pouch to carry some in.</li></cheerful>
       <gloomy><li>Enough for a bad winter, maybe.</li></gloomy>
       <cold><li>Medical supply adequate for now.</li></cold>
     </thanks>
@@ -217,7 +217,7 @@
     </request>
     <thanks>
       <plain><li>Something that crunches. I'd forgotten what that was like.</li></plain>
-      <warm><li>Thank you. I'm sharing these with whoever wants some.</li></warm>
+      <warm><li>I'm sharing these with whoever wants some. Come and take a handful.</li></warm>
       <blunt><li>Finally. Pass the berries.</li></blunt>
       <cheerful><li>I ate a raw potato like an apple and I'm not sorry.</li></cheerful>
       <gloomy><li>It won't last the winter. But it's something.</li></gloomy>
@@ -240,7 +240,7 @@
     <defName>Council_Wish_CampEvening</defName>
     <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
     <label>an evening with the {SUBJECT}</label>
-    <description>Strangers are camped on the map, and someone wants to go over and sit at their fire: news, songs, new faces. Send them over when there's a free evening; the camp keeps count of who visits.</description>
+    <description>Strangers are camped on the map, and someone wants to go over and sit at their fire: news, songs, new faces. Colonists drop by the camp in their free time, or you can send them over; the camp keeps count of who visits.</description>
     <workerClass>ColonyCouncil.WishWorker_CampEvening</workerClass>
     <category>Social</category>
     <weight>1</weight>
@@ -256,7 +256,7 @@
         <li>There's a fire burning at the {SUBJECT}'s camp every night. I'd like to go and sit at it.</li>
         <li>We haven't heard a new voice in weeks. Let me go over and ask the {SUBJECT} where they've been.</li>
         <li>[evening] Hear that? They're singing over at the camp. Let me go, just for tonight.</li>
-        <li>[winter] Their fire looks warmer than ours somehow. I'd like to see if they'll share it.</li>
+        <li>[winter] Their fire looks warmer than ours. I'd like to see if they'll share it.</li>
         <li>[trait:Kind] They must be lonely out there too. I'll take them something and sit a while.</li>
         <li>[newcomer] I'm still new here myself. Strangers might be easier to talk to.</li>
         <li>[lowtech] Travelers carry news from every road they've walked. I want to hear theirs.</li>
@@ -362,7 +362,7 @@
   <ColonyCouncil.WishDef>
     <defName>Council_Wish_SeatsForAll</defName>
     <label>a table where everyone fits</label>
-    <description>The colony eats in shifts or on its feet. Someone wants chairs at the tables for everyone who eats, so the whole colony can sit down together.</description>
+    <description>The colony eats in shifts or on its feet. Someone wants chairs at the tables for everyone who eats, so everyone can sit down to a meal together.</description>
     <workerClass>ColonyCouncil.WishWorker_SeatsForAll</workerClass>
     <category>Social</category>
     <weight>0.8</weight>
@@ -397,11 +397,11 @@
         <li>Most days I eat alone because there's nowhere to sit. It wears on you.</li>
       </gloomy>
       <cold>
-        <li>Seating everyone at once takes less of the workday.</li>
+        <li>Seating everyone together takes less of the workday.</li>
       </cold>
     </request>
     <thanks>
-      <plain><li>Everyone at the table at once. It took me a moment to place the sound.</li></plain>
+      <plain><li>Everyone at the table together. It took me a moment to place the sound.</li></plain>
       <warm><li>Look at us all. This is how it should be.</li></warm>
       <blunt><li>Good. Now nobody takes my chair.</li></blunt>
       <cheerful><li>There's room for everyone and the cat still sat in my lap.</li></cheerful>
@@ -450,7 +450,7 @@
         <li>It would be a pleasure to teach {OTHER_nameDef}. Truly.</li>
       </warm>
       <blunt>
-        <li>Give me {OTHER_nameDef} for an hour a day. I'll make something of {OTHER_objective}.</li>
+        <li>Give me {OTHER_nameDef} every evening. I'll make something of {OTHER_objective}.</li>
       </blunt>
       <cheerful>
         <li>{OTHER_nameDef} could be better at {SUBJECT} than me one day! I'd like to see that.</li>
@@ -530,7 +530,7 @@
         <li>Put food by. Food that keeps. Before it's too late.</li>
       </blunt>
       <cheerful>
-        <li>A whole shelf of food that'll be just as good in spring! It's like saving silver.</li>
+        <li>Shelves of food that'll be just as good in spring! It's like saving silver.</li>
       </cheerful>
       <gloomy>
         <li>Every winter someone says we'll be fine. Then we aren't.</li>
@@ -541,7 +541,7 @@
     </request>
     <thanks>
       <plain><li>A shelf of food that will still be good when the snow is deepest. I sleep better.</li></plain>
-      <warm><li>Thank you. Nobody's going hungry this winter.</li></warm>
+      <warm><li>Nobody's going hungry this winter. That's worth more than I can say.</li></warm>
       <blunt><li>Good. Don't touch it until we need it.</li></blunt>
       <cheerful><li>I counted it twice. It's all there.</li></cheerful>
       <gloomy><li>Enough for a bad winter. Maybe not a very bad one.</li></gloomy>
@@ -672,7 +672,7 @@
       <plain><li>I spent half the night at it. There's more up there than I thought.</li></plain>
       <warm><li>Come and look. I'll show you where to point it.</li></warm>
       <blunt><li>Good. Don't touch the lens.</li></blunt>
-      <cheerful><li>I found a little red star and named it after myself.</li></cheerful>
+      <cheerful><li>I found a faint red star and named it after myself.</li></cheerful>
       <gloomy><li>All those worlds, and here we are.</li></gloomy>
       <cold><li>A fine instrument.</li></cold>
     </thanks>
@@ -735,7 +735,7 @@
     </request>
     <thanks>
       <plain><li>Everything on its hook. I found a chisel I thought I'd lost a season ago.</li></plain>
-      <warm><li>Thank you. The whole workshop runs smoother.</li></warm>
+      <warm><li>Everyone at the bench is working faster already. Thank you.</li></warm>
       <blunt><li>Good. Now nobody touch my tools.</li></blunt>
       <cheerful><li>I've labeled every hook. Twice.</li></cheerful>
       <gloomy><li>Now when something goes missing, I'll know exactly what.</li></gloomy>
@@ -800,7 +800,7 @@
     </request>
     <thanks>
       <plain><li>A stack of blocks as tall as me. Now I can build properly.</li></plain>
-      <warm><li>Thank you. I'll put them to good use.</li></warm>
+      <warm><li>I'll put every block to good use. You'll see.</li></warm>
       <blunt><li>Good. Now stay out of my way.</li></blunt>
       <cheerful><li>Look at that pile. I keep walking past it just to look.</li></cheerful>
       <gloomy><li>Plenty of stone. Now for the hard part.</li></gloomy>
@@ -866,7 +866,7 @@
     </request>
     <thanks>
       <plain><li>Drilling since dawn. The whole ground is humming.</li></plain>
-      <warm><li>Thank you. I'll bring up something worth having.</li></warm>
+      <warm><li>I'll bring up something worth having, I promise.</li></warm>
       <blunt><li>Good. Now let me dig.</li></blunt>
       <cheerful><li>It goes down and down. I can't wait to see what comes up.</li></cheerful>
       <gloomy><li>Found rock so far. Lots of it.</li></gloomy>
@@ -932,7 +932,7 @@
     </request>
     <thanks>
       <plain><li>I heard a trader's voice from three days' walk away. We're not alone out here.</li></plain>
-      <warm><li>Thank you. I've already said hello to half the neighbors.</li></warm>
+      <warm><li>I've already said hello to three of the neighbors, and they said hello back.</li></warm>
       <blunt><li>Good. Now we can ask for things.</li></blunt>
       <cheerful><li>I called a caravan and they're coming, with goods.</li></cheerful>
       <gloomy><li>Mostly static. But sometimes there's a voice.</li></gloomy>
@@ -975,7 +975,7 @@
     <request>
       <plain>
         <li>My knees crack every time I kneel. They say a biosculpter pod can take a few years off. I'd like to find out.</li>
-        <li>I'm not asking to be young again. A little less old would do.</li>
+        <li>I'm not asking to be young again. A bit less old would do.</li>
         <li>[hurt] Everything heals slower at my age. A pod could help with that, and with the age too.</li>
         <li>[winter] The cold gets into my bones these days. A few cycles in a pod might keep it out.</li>
         <li>[spacer] On the worlds I grew up on, nobody my age had to hobble. Build {THING}.</li>
@@ -990,7 +990,7 @@
         <li>A few years off! I'd be the youngest old person in the colony.</li>
       </cheerful>
       <gloomy>
-        <li>I can feel the end coming. I'd like to push it back a little.</li>
+        <li>I can feel the end coming. I'd like to push it back a few years.</li>
       </gloomy>
       <cold>
         <li>Reversing my age extends my working life. The colony benefits.</li>
@@ -1037,7 +1037,7 @@
     </wants>
     <request>
       <plain>
-        <li>At my age, a wooden stool is a punishment. One soft chair by the fire, that's all.</li>
+        <li>At my age, a wooden stool is a punishment. One soft chair is all I'm asking for.</li>
         <li>I'd like somewhere to sit at the end of the day that doesn't make my back worse.</li>
         <li>[winter] Cold days, long evenings. Somewhere comfortable to sit them out would mean a lot.</li>
         <li>[evening] When the work's done, I just want to sink into something soft and watch the others.</li>
@@ -1061,7 +1061,7 @@
     </request>
     <thanks>
       <plain><li>I sat down in it and didn't want to get up. I may not.</li></plain>
-      <warm><li>Thank you. Come and sit with me, there's room on the arm.</li></warm>
+      <warm><li>Come and sit with me, there's room on the arm.</li></warm>
       <blunt><li>Good. It's mine.</li></blunt>
       <cheerful><li>It fits me perfectly. I think it was made for me.</li></cheerful>
       <gloomy><li>Comfortable. At last.</li></gloomy>
@@ -1312,7 +1312,7 @@
     </request>
     <thanks>
       <plain><li>A new book. I'm saving the last chapter for tomorrow.</li></plain>
-      <warm><li>Thank you. I'll read to anyone who wants to listen.</li></warm>
+      <warm><li>I'll read to anyone who wants to listen. Bring a blanket.</li></warm>
       <blunt><li>Shh. I'm reading.</li></blunt>
       <cheerful><li>There's a map at the front, and a monster on page nine!</li></cheerful>
       <gloomy><li>It has a sad ending. I read it anyway.</li></gloomy>
@@ -1387,7 +1387,7 @@
     </request>
     <thanks>
       <plain><li>Cool air. I stood in it for a while and didn't think about anything at all.</li></plain>
-      <warm><li>Thank you. Everyone has been coming to sit in here.</li></warm>
+      <warm><li>Everyone has been coming to sit in here. I don't blame them.</li></warm>
       <blunt><li>Good. Close the door.</li></blunt>
       <cheerful><li>It's lovely in here. I'm never leaving.</li></cheerful>
       <gloomy><li>Cool for now. Until it breaks.</li></gloomy>
@@ -1466,6 +1466,67 @@
     </expired>
     <reminder>
       <plain><li>Chased the animals out of the fields again today.</li></plain>
+    </reminder>
+  </ColonyCouncil.WishDef>
+
+  <!-- ===================== A real floor (wet and sandy maps) ===================== -->
+
+  <ColonyCouncil.WishDef>
+    <defName>Council_Wish_Floor</defName>
+    <label>a real floor in {FOR_possessive} room</label>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <description>Someone's own room still has a floor of bare earth, sand or mud. They want a real floor, any the colony can lay. Promising it plans the floor; out of patience, they may plan it themselves.</description>
+    <workerClass>ColonyCouncil.WishWorker_Floor</workerClass>
+    <category>Comfort</category>
+    <weight>0.8</weight>
+    <expiryDays>12</expiryDays>
+    <cooldownDays>30</cooldownDays>
+    <grantedThought>Council_Granted_Floor</grantedThought>
+    <envy>0.2</envy>
+    <talkInteraction>Council_Talk_Room</talkInteraction>
+    <fulfilledWhen>Nearly all of {FOR_nameDef}'s room has a laid floor (wood, stone, tile, carpet).</fulfilledWhen>
+    <request>
+      <plain>
+        <li>My room has a dirt floor. I sweep it every morning and it's still dirt.</li>
+        <li>Every time it rains, my bedroom turns to mud. A wooden floor would end that.</li>
+        <li>[rain] Listen to the rain. By tonight I'll be sleeping in a puddle again.</li>
+        <li>[winter] The ground in my room is frozen. My feet are frozen. Lay a floor, please.</li>
+        <li>[hot] There's sand in my bed, sand in my boots, sand in my food. A floor would keep some of it out.</li>
+        <li>[lowtech] Even a floor of rough planks would do. Something between me and the earth.</li>
+        <li>[newcomer] I didn't expect much when I came here. I did expect a floor.</li>
+      </plain>
+      <warm>
+        <li>It's a nice room. It would feel like a home if the floor weren't earth.</li>
+      </warm>
+      <blunt>
+        <li>My room has a mud floor. Fix it.</li>
+      </blunt>
+      <cheerful>
+        <li>A real floor! I'd walk around barefoot all day.</li>
+      </cheerful>
+      <gloomy>
+        <li>I sleep on dirt like an animal. I'd like to stop.</li>
+      </gloomy>
+      <cold>
+        <li>A floor makes a room cleaner and more pleasant. It's a few hours of work.</li>
+      </cold>
+    </request>
+    <thanks>
+      <plain><li>A proper floor. I keep walking across the room for no reason.</li></plain>
+      <warm><li>It feels like a home now, not a hole in the ground.</li></warm>
+      <blunt><li>Good. Wipe your feet.</li></blunt>
+      <cheerful><li>I danced on it. Nobody saw. Probably.</li></cheerful>
+      <gloomy><li>No more mud. Something else will go wrong instead.</li></gloomy>
+      <cold><li>Room quality improved.</li></cold>
+    </thanks>
+    <expired>
+      <plain><li>Dirt floor it is, then.</li></plain>
+      <blunt><li>Fine. I'll sleep in the mud.</li></blunt>
+      <gloomy><li>Some of us live in rooms. Some of us live in the ground.</li></gloomy>
+    </expired>
+    <reminder>
+      <plain><li>Still sweeping dirt off a dirt floor.</li></plain>
+      <warm><li>Whenever there's a spare day for the builders, my floor is still waiting.</li></warm>
     </reminder>
   </ColonyCouncil.WishDef>
 

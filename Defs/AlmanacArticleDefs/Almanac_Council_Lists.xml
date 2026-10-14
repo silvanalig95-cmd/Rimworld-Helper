@@ -16,7 +16,7 @@
     <order>1</order>
     <summary>Every kind of wish, who makes it, and when it can come up.</summary>
     <tip>A wish you can't grant never comes up: nobody in a tribe asks for a deep drill.</tip>
-    <description>There are 103 kinds of wish, many with variants (six kinds of work room, a dozen pieces of furniture, any skill to learn or teach). A colonist only voices a wish that fits who they are and what is happening to them, and only for something the colony can actually do now: a building it can place (the research is done, it's in the build menu, and anything that needs power waits for electricity), something it can make or grow, or something within reach on the map.
+    <description>There are 105 kinds of wish, many with variants (six kinds of work room, a dozen pieces of furniture, any skill to learn or teach). A colonist only voices a wish that fits who they are and what is happening to them, and only for something the colony can actually do now: a building it can place (the research is done, it's in the build menu, and anything that needs power waits for electricity), something it can make or grow, or something within reach on the map.
 
 Some wishes belong to an era (healroot for a tribe or a medieval village, a deep drill or a comms console once there's electricity), some to an age (children want lessons, pets and stories; the old want a soft chair, a resting place or an apprentice), some to a season or the weather, and some to a DLC or another mod. Without it, they simply never come up.</description>
     <sections>
@@ -29,6 +29,7 @@ Some wishes belong to an era (healroot for a tribe or a medieval village, a deep
           <li>Furniture, a light, a plant, art for their room | Rising expectations, night owls, those left in the dark, growers, artists.</li>
           <li>Something to keep the bedroom warm or cool at night | Anyone who slept in the cold or the heat.</li>
           <li>A fire in their room | Cold sleepers in fall and winter, in a room with no heat source.</li>
+          <li>A real floor in their room | Anyone (but ascetics) whose own room is half or more bare earth, sand or mud; more often in the rain and for the particular. Promising it plans the floor.</li>
           <li>A bed for their pet | Colonists bonded to a small animal.</li>
           <li>A table to eat at | Anyone who had to eat off the floor.</li>
           <li>A table where everyone fits | When there are fewer seats at the tables than people who eat: the kind, the sociable, the lonely, anyone who ate standing.</li>
@@ -142,6 +143,7 @@ Some wishes belong to an era (healroot for a tribe or a medieval village, a deep
           <li>A pot of tea | Vanilla Brewing Expanded, for anyone ill, once tea can be brewed.</li>
           <li>A grill for summer evenings | Vanilla Cooking Expanded (or Medieval Overhaul's grill), cooks in spring and summer.</li>
           <li>A bed kept for guests | Hospitality, the kind and the sociable, most often while visitors are here.</li>
+          <li>A scarecrow for the fields | Vanilla Furniture Expanded - Farming, growers from spring to fall.</li>
           <li>A magic circle | A RimWorld of Magic, for mages.</li>
           <li>A new species | PokéWorld, animal lovers who spot a wild Pokémon the colony doesn't have.</li>
         </table>

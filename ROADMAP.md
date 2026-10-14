@@ -171,7 +171,7 @@ the content itself, not only to systems, alongside whatever else it does. Where 
 | Content | Count | Grow toward |
 |---|---|---|
 | Rimfolk events, story stages and missions | 124 | more everyday events per group, more chains, more mission kinds |
-| Wishes | 103 | more seasonal and biome wishes, more for the always-on mods (Alpha mods, Vanilla Expanded furniture) |
+| Wishes | 105 | more seasonal and biome wishes, more for the always-on mods (Alpha mods, Vanilla Expanded furniture) |
 | Council projects (ambitions) | 54 (3 in stages) | more staged and season-long projects, more for tribal and spacer colonies |
 | Life goals | 57 | goals for teenagers, more for faith and the heart, goals that change with age |
 | Dilemmas | 98 | dilemmas from the newer systems (camps, illness, meetings, the heart) |

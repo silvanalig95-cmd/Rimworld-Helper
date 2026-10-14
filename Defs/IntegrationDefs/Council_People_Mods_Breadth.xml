@@ -62,6 +62,15 @@
         <favoredBy>trait:VTE_Wanderlust</favoredBy>
         <favorFactor>1.5</favorFactor>
       </li>
+      <li>
+        <wish>Council_Wish_Floor</wish>
+        <favoredBy>trait:VTE_Neat|neat</favoredBy>
+        <favorFactor>2</favorFactor>
+      </li>
+      <li>
+        <wish>Council_Wish_Scarecrow</wish>
+        <alsoWho>trait:VTE_Ecologist</alsoWho>
+      </li>
     </wishes>
   </ColonyCouncil.ModPeopleDef>
 

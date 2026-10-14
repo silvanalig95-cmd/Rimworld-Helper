@@ -193,8 +193,8 @@
       </cold>
     </request>
     <thanks>
-      <plain><li>The whole colony came out when they smelled it. I didn't have to call anyone.</li></plain>
-      <warm><li>Thank you. The first skewer is yours.</li></warm>
+      <plain><li>Everyone came out when they smelled it. I didn't have to call anyone.</li></plain>
+      <warm><li>The first skewer is yours, since you built it.</li></warm>
       <blunt><li>Good. Stand back from the coals.</li></blunt>
       <cheerful><li>I've burned three things and they were all delicious.</li></cheerful>
       <gloomy><li>Grilled everything. Summer will be over soon.</li></gloomy>
@@ -244,7 +244,7 @@
         <li>Guests on the floor make us look poor. Set a bed aside.</li>
       </blunt>
       <cheerful>
-        <li>A guest room, with a little flower on the pillow!</li>
+        <li>A guest room, with a flower on the pillow!</li>
       </cheerful>
       <gloomy>
         <li>If we treat visitors badly, they'll stop coming. Then it's just us.</li>
@@ -268,6 +268,71 @@
     </expired>
     <reminder>
       <plain><li>Still no bed for guests.</li></plain>
+    </reminder>
+  </ColonyCouncil.WishDef>
+
+  <!-- ===================== A scarecrow (Vanilla Furniture Expanded - Farming) ===================== -->
+
+  <ColonyCouncil.WishDef>
+    <defName>Council_Wish_Scarecrow</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>{THING} for the fields</label>
+    <description>Vanilla Furniture Expanded - Farming: a grower tired of watching wild animals eat the crops wants a scarecrow.</description>
+    <workerClass>ColonyCouncil.WishWorker_Have</workerClass>
+    <category>Work</category>
+    <weight>0.6</weight>
+    <expiryDays>12</expiryDays>
+    <cooldownDays>30</cooldownDays>
+    <grantedThought>Council_Granted_Scarecrow</grantedThought>
+    <allowPetition>true</allowPetition>
+    <envy>0</envy>
+    <talkInteraction>Council_Talk_Work</talkInteraction>
+    <fulfilledWhen>The colony has {THING}, or another scarecrow.</fulfilledWhen>
+    <wants>
+      <defNames><li>VFE_Scarecrow</li></defNames>
+      <passions><li>Plants</li></passions>
+      <seasons><li>Spring</li><li>Summer</li><li>Fall</li><li>PermanentSummer</li></seasons>
+      <reason>{PAWN_nameDef} has watched wild animals eat the crops for the last time.</reason>
+    </wants>
+    <request>
+      <plain>
+        <li>Something has been eating the rice right down to the roots. I'd like a scarecrow out there.</li>
+        <li>Hares in the corn again. A scarecrow would keep the small ones away.</li>
+        <li>[morning] I went out at dawn and there were deer in the field, bold as anything. We need {THING}.</li>
+        <li>[fall] The harvest is nearly in. I'd hate to lose the last of it to the birds and the hares.</li>
+        <li>[poor] We can't afford to share our crops with every animal on the map.</li>
+      </plain>
+      <warm>
+        <li>I'll make it myself, if you like. Old clothes, some hay, a friendly face.</li>
+      </warm>
+      <blunt>
+        <li>The animals are eating our food. Build {THING}.</li>
+      </blunt>
+      <cheerful>
+        <li>A scarecrow! I'll give it a hat and a name.</li>
+      </cheerful>
+      <gloomy>
+        <li>We grow it, they eat it. That's been the story all season.</li>
+      </gloomy>
+      <cold>
+        <li>Crop losses to small animals are measurable. A scarecrow ends most of them.</li>
+      </cold>
+    </request>
+    <thanks>
+      <plain><li>Not a hare in the field this morning. It's working.</li></plain>
+      <warm><li>Thank you. I gave it my old hat.</li></warm>
+      <blunt><li>Good. Now the crops are ours.</li></blunt>
+      <cheerful><li>I named it after the council. It looks just like you.</li></cheerful>
+      <gloomy><li>The birds will figure it out eventually. For now, it works.</li></gloomy>
+      <cold><li>Crop losses reduced.</li></cold>
+    </thanks>
+    <expired>
+      <plain><li>The animals will keep eating, then.</li></plain>
+      <blunt><li>Don't blame me when the harvest is thin.</li></blunt>
+      <gloomy><li>Half the field for us, half for them.</li></gloomy>
+    </expired>
+    <reminder>
+      <plain><li>Something ate the seedlings again last night.</li></plain>
     </reminder>
   </ColonyCouncil.WishDef>
 
