@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Memories for the answers that call on someone the colony has: a cook, a talker, a grower, a doctor
+    (DilemmaEffect_Needs in the dilemma and event defs). Mostly for the helper (B) and the one they helped (A).
+  -->
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_Choice_SleepingDraught</defName>
+    <durationDays>3</durationDays>
+    <stages><li><label>a sleeping draught</label><description>One of ours mixed me something to help me sleep. It tasted awful, and I slept until noon.</description><baseMoodEffect>4</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_Choice_TaughtNeighbors</defName>
+    <durationDays>4</durationDays>
+    <stages><li><label>taught hungry neighbors to farm</label><description>I showed some hungry neighbors how to get more out of their fields and sent them home with seed. I hope it takes.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_Choice_SmoothedOver</defName>
+    <durationDays>3</durationDays>
+    <stages><li><label>talked them round</label><description>I sat down with our guests when it could have gone badly, and talked until it didn't. It took all afternoon.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_Choice_TalkFailed</defName>
+    <durationDays>3</durationDays>
+    <stages><li><label>couldn't talk them round</label><description>The council sent me to settle it with our guests, and I made it worse.</description><baseMoodEffect>-2</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_Choice_TreatedAtHome</defName>
+    <durationDays>4</durationDays>
+    <stages><li><label>treated by one of our own</label><description>Our own doctor took a proper look at my old injury, with our own medicine. It aches less now.</description><baseMoodEffect>4</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_Choice_TreatedWell</defName>
+    <durationDays>4</durationDays>
+    <stages><li><label>treated a patient well</label><description>The council trusted me with a patient instead of paying a stranger, and I didn't let them down.</description><baseMoodEffect>4</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+</Defs>

@@ -301,9 +301,10 @@ namespace ColonyCouncil
             if (NeedsSomeone && Candidates(ctx).Count == 0)
             {
                 if (!reason.NullOrEmpty()) return ctx.Format(reason);
+                var one = target == DilemmaTarget.A ? ctx.a : target == DilemmaTarget.B ? ctx.b : null;
                 if (skill != null)
-                    return target == DilemmaTarget.A && ctx.a != null
-                        ? "CC_Needs_SkillOf".Translate(ctx.a.LabelShort, skill.LabelCap, minLevel).Resolve()
+                    return one != null
+                        ? "CC_Needs_SkillOf".Translate(one.LabelShort, skill.LabelCap, minLevel).Resolve()
                         : "CC_Needs_Skill".Translate(skill.LabelCap, minLevel).Resolve();
                 return "CC_Needs_Someone".Translate().Resolve();
             }

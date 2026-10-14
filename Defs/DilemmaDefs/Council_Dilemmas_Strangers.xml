@@ -72,6 +72,30 @@
           <li Class="ColonyCouncil.DilemmaEffect_MentalState"><target>A</target><mentalState>Wander_Sad</mentalState></li>
         </riskEffects>
       </li>
+      <li>
+        <label>Ask our best talker to square it with {FACTION}</label>
+        <outcome>{B_nameDef} sat down with whoever speaks for {FACTION} and talked it through: a debt forgiven here, a promise there. {X_nameDef} stayed, and {FACTION} left on decent terms.</outcome>
+        <outcomes>
+          <li>[theirLowtech] {B_nameDef} shared a pipe with the {FACTION} elders and talked until the fire burned low. {X_nameDef} stayed, and the elders left without hard feelings.</li>
+          <li>[b:past:trader] {B_nameDef} haggled with {FACTION} as if {X_nameDef} were a bolt of cloth, which seemed to be what they understood. {X_nameDef} stayed, and they parted on decent terms.</li>
+        </outcomes>
+        <riskChance>0.5</riskChance>
+        <riskSkill>Social</riskSkill>
+        <riskOutcome>{B_nameDef} talked with the {FACTION} visitors until dark and got nowhere. {X_nameDef} stayed anyway, and {FACTION} left angry.</riskOutcome>
+        <ways><openness>6</openness></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Needs"><target>Others</target><skill>Social</skill><minLevel>10</minLevel><asB>true</asB></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Recruit" />
+          <li Class="ColonyCouncil.DilemmaEffect_Goodwill"><amount>-4</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_DlmS_TheyStayed</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>4</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_LifeEvent"><target>A</target><counter>stranger</counter></li>
+        </effects>
+        <riskEffects>
+          <li Class="ColonyCouncil.DilemmaEffect_Goodwill"><amount>-11</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_Choice_TalkFailed</thought></li>
+        </riskEffects>
+      </li>
     </options>
   </ColonyCouncil.DilemmaDef>
 
@@ -134,6 +158,31 @@
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>4</amount></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Others</target><thought>Council_DlmS_HarshToGuests</thought><onlyTrait><li>Kind</li></onlyTrait></li>
         </effects>
+      </li>
+      <li>
+        <label>Ask our best talker to settle it</label>
+        <outcome>{B_nameDef} had a quiet word with the {FACTION} visitors, and {X_nameDef} kept to the guests' fire for the rest of the stay. {A_nameDef} was satisfied.</outcome>
+        <outcomes>
+          <li>[theirLowtech] {B_nameDef} went to the {FACTION} elders with a jug of something strong. By evening {X_nameDef} had been told off by {X_possessive} own people, and {A_nameDef} got a gruff nod across the yard.</li>
+          <li>[b:office:Speaker] The colony's speaker took the {FACTION} visitors aside and spoke for the colony. {X_nameDef} said nothing more to {A_nameDef} for the rest of the stay.</li>
+        </outcomes>
+        <riskChance>0.4</riskChance>
+        <riskSkill>Social</riskSkill>
+        <riskReplaces>true</riskReplaces>
+        <riskOutcome>The {FACTION} visitors heard {B_nameDef} out and took {X_nameDef}'s side. They left a day early, and {A_nameDef} is still angry.</riskOutcome>
+        <ways><openness>2</openness></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Needs"><target>Others</target><skill>Social</skill><minLevel>8</minLevel><asB>true</asB></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_DlmS_GotApology</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>2</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_Choice_SmoothedOver</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Goodwill"><amount>1</amount></li>
+        </effects>
+        <riskEffects>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_DlmS_Stung</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_Choice_TalkFailed</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Goodwill"><amount>-3</amount></li>
+        </riskEffects>
       </li>
     </options>
   </ColonyCouncil.DilemmaDef>
@@ -369,6 +418,22 @@
           <li Class="ColonyCouncil.DilemmaEffect_Goodwill"><amount>-2</amount></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_DlmS_TurnedThemAway</thought><onlyTrait><li>Kind</li></onlyTrait></li>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>Colony</target><amount>-1</amount><onlyTrait><li>Kind</li></onlyTrait></li>
+        </effects>
+      </li>
+      <li>
+        <label>Send them home with seed, and a grower's advice</label>
+        <outcome>{B_nameDef} spent the afternoon with {X_nameDef} going over what grows where and when, and sent {X_objective} home with a sack of food and a pouch of seed. {FACTION} should eat better next year.</outcome>
+        <outcomes>
+          <li>[winter] {B_nameDef} sent {X_nameDef} home with enough food to get through the cold and a pouch of seed for the thaw, and drew {X_objective} a map of where to plant it.</li>
+          <li>[b:past:farmer] {B_nameDef} grew up on a farm and talked {X_nameDef} through it the way {B_possessive} own parents would have: soil, water, rotation. {FACTION} went home with seed and a sack of food.</li>
+        </outcomes>
+        <ways><generosity>5</generosity><openness>3</openness></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Needs"><target>Colony</target><skill>Plants</skill><minLevel>8</minLevel><asB>true</asB></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>rawfood</what><count>15</count></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Goodwill"><amount>10</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_Choice_TaughtNeighbors</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_DlmS_FedTheHungry</thought><onlyTrait><li>Kind</li></onlyTrait></li>
         </effects>
       </li>
     </options>
@@ -680,6 +745,21 @@
         <ways><generosity>-4</generosity></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_DlmS_WhatIfItWorked</thought><chance>0.6</chance></li>
+        </effects>
+      </li>
+      <li>
+        <label>Have our doctor mix a sleeping draught</label>
+        <outcome>{B_nameDef} mixed {A_nameDef} a sleeping draught from the colony's own medicine. It tasted no better than the tonic would have, and {A_nameDef} slept until noon.</outcome>
+        <outcomes>
+          <li>[lowtech] {B_nameDef} boiled up a draught of herbs from the colony's own stores, bitter as bark. {A_nameDef} drank it, grimaced, and slept through to noon.</li>
+          <li>[b:past:healer] {B_nameDef} has treated a hundred bad sleepers and knew what to give. {A_nameDef} slept until noon, and {X_nameDef} put the tonic away with a sour look.</li>
+        </outcomes>
+        <ways><generosity>-1</generosity></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Needs"><target>Others</target><skill>Medicine</skill><minLevel>6</minLevel><asB>true</asB></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>medicine</what><count>1</count></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Hediff"><target>A</target><hediff>Council_Dream_WellRested</hediff></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Choice_SleepingDraught</thought></li>
         </effects>
       </li>
     </options>
@@ -1000,6 +1080,31 @@
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_DlmS_StillAches</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>-1</amount></li>
         </effects>
+      </li>
+      <li>
+        <label>Let {B_nameDef} treat it, with our own medicine</label>
+        <outcome>{B_nameDef} worked on {A_nameDef}'s old injury all afternoon with the colony's own medicine, while {X_nameDef} watched and offered advice nobody asked for. It aches less now.</outcome>
+        <outcomes>
+          <li>[lowtech] {B_nameDef} made a poultice from the colony's herbs and bound {A_nameDef}'s old injury in clean linen. {X_nameDef} looked at the work and said it would do.</li>
+          <li>[b:trait:Kind] {B_nameDef} took {B_possessive} time over {A_nameDef}'s old injury and explained every step. It aches less, and {A_nameDef} says it was the explaining that helped.</li>
+        </outcomes>
+        <riskChance>0.5</riskChance>
+        <riskSkill>Medicine</riskSkill>
+        <riskReplaces>true</riskReplaces>
+        <riskOutcome>{B_nameDef} tried, and used up good medicine doing it, but the old injury aches the same. {X_nameDef} said nothing, which was worse.</riskOutcome>
+        <ways><tradition>2</tradition><openness>-1</openness></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Needs"><target>B</target><skill>Medicine</skill><minLevel>8</minLevel></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>medicine</what><count>2</count></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Choice_TreatedAtHome</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_Choice_TreatedWell</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Learn"><target>B</target><skill>Medicine</skill><xp>500</xp></li>
+        </effects>
+        <riskEffects>
+          <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>medicine</what><count>2</count></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_DlmS_StillAches</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Learn"><target>B</target><skill>Medicine</skill><xp>200</xp></li>
+        </riskEffects>
       </li>
     </options>
   </ColonyCouncil.DilemmaDef>

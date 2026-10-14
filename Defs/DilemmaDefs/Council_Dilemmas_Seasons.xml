@@ -368,7 +368,7 @@
       </li>
       <li>
         <label>A quick hot meal, then the walls</label>
-        <outcome>Everyone ate a hot meal standing up, and the repairs started before the bowls were cleared.</outcome>
+        <outcome>The colony ate a hot meal standing up, and the repairs started before the bowls were cleared.</outcome>
         <outcomes>
           <li>[winter] A pot of something hot went round the yard, and they ate it with their gloves on before going back to the walls.</li>
           <li>[colony:Hardworking] A hot meal and back to work, as usual here. {A_nameDef} ate {A_possessive} share slowly, to make it last.</li>
@@ -383,13 +383,13 @@
         <label>Have the best cook stretch half the food</label>
         <outcome>{B_nameDef} made a feast out of half the food anyone expected, mostly stew and nerve, and the colony ate until late.</outcome>
         <outcomes>
-          <li>[lowtech] {B_nameDef} had three pots going over the fire at once and fed everyone twice from half the stores. The walls waited until morning.</li>
+          <li>[lowtech] {B_nameDef} kept three pots going over the fire and fed the colony twice from half the stores. The walls waited until morning.</li>
           <li>[b:trait:Gourmand] {B_nameDef} cooked as if for a lord's table and ate as much as anyone, but the food lasted. It was a good night.</li>
         </outcomes>
         <riskChance>0.5</riskChance>
         <riskSkill>Cooking</riskSkill>
         <riskReplaces>true</riskReplaces>
-        <riskOutcome>{B_nameDef} tried to stretch the food too far, and the feast ran out before the second round. Everyone ate, at least.</riskOutcome>
+        <riskOutcome>{B_nameDef} tried to stretch the food too far, and the feast ran out before the second round. It was still a hot meal.</riskOutcome>
         <ways><generosity>2</generosity><toil>-2</toil></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Needs"><target>Colony</target><skill>Cooking</skill><minLevel>10</minLevel><asB>true</asB></li>
