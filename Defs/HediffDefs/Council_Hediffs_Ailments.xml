@@ -554,8 +554,8 @@
       <li Class="ColonyCouncil.HediffCompProperties_Ailment">
         <key>Sunburn</key>
         <quiet>true</quiet>
-        <causes><li><trigger>SunWork</trigger><hours>4</hours><chance>0.08</chance></li></causes>
-        <cooldownDays>6</cooldownDays>
+        <causes><li><trigger>SunWork</trigger><hours>4</hours><chance>0.05</chance></li></causes>
+        <cooldownDays>8</cooldownDays>
         <startSeverity>0.25~0.6</startSeverity>
         <gotText>{PAWN_nameDef} is sunburned from working bareheaded in the heat.</gotText>
         <notes>
@@ -582,7 +582,7 @@
       <li>
         <minSeverity>0.35</minSeverity>
         <label>burned</label>
-        <painOffset>0.08</painOffset>
+        <painOffset>0.06</painOffset>
         <restFallFactor>1.1</restFallFactor>
       </li>
     </stages>
