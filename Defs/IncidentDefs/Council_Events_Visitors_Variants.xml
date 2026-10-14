@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    More ways for the visitor events (Council_Events_Visitors.xml) to read, merged in at startup (LetterVariantsDef,
+    Source/ColonyCouncil/Dilemmas/DilemmaChoices.cs). Event lines are picked by the era, the season, the event's own tags
+    (the storyteller's [tale]/[notale], the stray's [child]/[hunter], the apprentice's skill, a joiner's [soldier] or
+    [outlaw] past) and who the people are: A's [trait:Kind], [skill:Social], [past:healer], [office:Steward], B's with
+    b: in front, the stranger's people ([theirLowtech], [theirHightech]) and the colony's name ([colony:Generous]).
+    Events don't see the weather or the time of day.
+  -->
+
+  <!-- ===================== The storyteller ===================== -->
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Council_Var_Evt_Storyteller</defName>
+    <incident>Council_Evt_Storyteller</incident>
+    <texts>
+      <li>[tale,winter] {X_nameDef}, a storyteller of {FACTION}, came in out of the snow asking for a seat near the hearth, and offers a winter's worth of stories in exchange. One of them is about this colony: "{TALE}"</li>
+      <li>[notale,summer] {X_nameDef} of {FACTION}, a storyteller with a sunburned nose and a hat full of feathers, would like to spend the evening. There'll be stories in the yard after supper, while it's still light enough to see faces.</li>
+      <li>[notale,skill:Social] {X_nameDef} of {FACTION} tells stories for a living, and has already found {A_nameDef}, who tells them for free. The two of them have agreed to take turns tonight.</li>
+      <li>[tale,lowtech] A bard of {FACTION} named {X_nameDef} has come to the gate with a harp on {X_possessive} back. {X_nameDef} has made a song about the colony out of what people say on the road, and wants to try it on the people it's about: "{TALE}"</li>
+      <li>[tale,!lowtech] {X_nameDef} of {FACTION} collects stories from the settlements and tells them at the next one. The colony is in {X_possessive} collection now, told like this: "{TALE}" {X_nameDef} would like supper and a bed, and to hear the colony's side.</li>
+      <li>[notale,colony:Open] {X_nameDef}, a storyteller of {FACTION}, heard on the road that this colony welcomes travelers, and has come to see. {X_nameDef} will pay for supper and a bed in stories, as many as anyone wants to hear.</li>
+    </texts>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <!-- ===================== Mourners ===================== -->
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Council_Var_Evt_Mourners</defName>
+    <incident>Council_Evt_Mourners</incident>
+    <texts>
+      <li>[winter] Travelers from {FACTION} are coming through the snow to stand at {DEAD}'s grave. They knew {DEAD} long before the colony did, and say they won't stay past the evening.</li>
+      <li>[spring] {FACTION} people are on their way with the first spring flowers for {DEAD}'s grave. They knew {DEAD} before the colony did, and would like a little while at the grave before they go.</li>
+      <li>[colony:Traditional] Kin of {DEAD} from {FACTION} are coming to honor the grave, and have asked whether the colony keeps the old rites for its dead. It does, mostly. They'll stay the afternoon.</li>
+      <li>[!lowtech] A message came from {FACTION}: family of {DEAD} are on the road and would like to see the grave. They'll be quiet, and gone by evening.</li>
+      <li>[lowtech] An old friend of {DEAD} is walking in from {FACTION}'s lands with a few others, carrying a jug of the drink {DEAD} liked. They want to pour some on the grave, the way it's done where {DEAD} came from.</li>
+    </texts>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <!-- ===================== Pilgrims ===================== -->
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Council_Var_Evt_Pilgrims</defName>
+    <incident>Council_Evt_Pilgrims</incident>
+    <titles>
+      <li>[winter] Pilgrims in the cold</li>
+      <li>Pilgrims at the gate</li>
+    </titles>
+    <texts>
+      <li>[summer] Pilgrims of {FACTION} have stopped at the colony, burned by the sun and out of water as well as food. They ask for a meal and a drink, and the shade of the wall for an afternoon.</li>
+      <li>[colony:Generous] Pilgrims of {FACTION} say they heard on the road that the colony never turns the hungry away. They're thin and footsore, and they've come to see if it's true.</li>
+      <li>[colony:Thrifty] A band of pilgrims of {FACTION} have stopped outside. They've heard this colony doesn't give much away, and ask anyway, very politely, for one meal before they go on.</li>
+      <li>[trait:Kind] {A_nameDef} found a band of pilgrims of {FACTION} resting by the road, too hungry to go on, and has brought their request to the council: one meal each, and they'll be on their way.</li>
+      <li>[lowtech] Pilgrims of {FACTION} have come up the road ringing small bells, on their way to a shrine three valleys away. Their bags are empty, and they ask for a meal.</li>
+      <li>[!lowtech] A group of pilgrims of {FACTION} have walked in off the old highway with a hand-drawn map to a holy place and nothing left to eat. They ask whether the colony can spare a meal.</li>
+    </texts>
+    <outcomes>
+      <li>
+        <option>0</option>
+        <lines>
+          <li>[winter] The pilgrims ate around the hearth, steaming as they thawed out, and thanked their hosts twice over before going back into the cold.</li>
+          <li>[lowtech] The pilgrims ate everything they were given and rang their little bells for the colony as they left. They'll speak well of it on the road.</li>
+          <li>[trait:Kind] {A_nameDef} served the pilgrims with {A_possessive} own hands and made sure the smallest of them had seconds. They'll speak well of the colony all down the road.</li>
+        </lines>
+      </li>
+      <li>
+        <option>1</option>
+        <lines>
+          <li>[winter] The pilgrims bowed and went back out into the cold, hungry.</li>
+          <li>The pilgrims thanked the colony for nothing, very politely, and walked on.</li>
+        </lines>
+      </li>
+    </outcomes>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <!-- ===================== The scholar ===================== -->
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Council_Var_Evt_Scholar</defName>
+    <incident>Council_Evt_Scholar</incident>
+    <texts>
+      <li>[medieval] {X_nameDef} of {FACTION}, a master from one of the great libraries, travels with a mule loaded with books and asks for a bed for the night. {A_nameDef} mentioned the colony's work on {TALE}, and {X_nameDef} has been leafing through {X_possessive} books for something on it ever since.</li>
+      <li>[spacer] {X_nameDef} of {FACTION}, a research lead between postings, asks for a bunk for the night. On hearing about the colony's work on {TALE}, {X_nameDef} asks to see the notes, and then for a pencil.</li>
+      <li>[winter] {X_nameDef}, a traveling scholar of {FACTION}, has been caught out by the snow and asks to wait out the night. {X_nameDef} noticed the colony's notes on {TALE} on the table and has offered to pay for the bed with a few ideas.</li>
+      <li>[skill:Intellectual] {A_nameDef} has been stuck on {TALE} for days. Tonight a traveling scholar, {X_nameDef} of {FACTION}, asked for a bed, and {A_nameDef} has already pulled up a second chair at the desk.</li>
+      <li>[industrial] {X_nameDef} of {FACTION} repairs machines from town to town and reads everything {X_pronoun} can carry. {X_nameDef} asks for a place to sleep, and on hearing about the colony's work on {TALE}, offers to take a look over breakfast.</li>
+    </texts>
+    <outcomes>
+      <li>
+        <option>0</option>
+        <lines>
+          <li>[skill:Intellectual] {A_nameDef} and {X_nameDef} filled the table with notes and were still arguing about {TALE} when the cook came in at dawn.</li>
+          <li>[lowtech] {X_nameDef} talked {A_nameDef} through the old writings by candlelight. By morning the work on {TALE} had come a long way.</li>
+        </lines>
+      </li>
+      <li>
+        <option>1</option>
+        <lines>
+          <li>{X_nameDef} nodded, wished the colony luck with {TALE}, and walked on to the next settlement.</li>
+        </lines>
+      </li>
+    </outcomes>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <!-- ===================== The apprentice ===================== -->
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Council_Var_Evt_Apprentice</defName>
+    <incident>Council_Evt_Apprentice</incident>
+    <titles>
+      <li>[lowtech] A youngster at the gate</li>
+    </titles>
+    <texts>
+      <li>[!lowtech] {X_nameDef}, barely grown, has come up the road with a pack and a list of questions about {SKILL}, all of them for {A_nameDef}. {X_nameDef} heard about {A_nameDef} from a trader and asks to stay and learn.</li>
+      <li>[Cooking] {X_nameDef}, a young cook from somewhere with worse food, has come a long way to learn from {A_nameDef}. {X_nameDef} brought {X_possessive} own knife, and is ready to start with the peeling.</li>
+      <li>[Medicine] {X_nameDef} wants to be a healer, and has heard that {A_nameDef} is the best for miles around. {X_nameDef} asks to stay and learn, and promises to boil every bandage.</li>
+      <li>[Construction] {X_nameDef} has watched {A_nameDef}'s walls go up from the road for a week, and today walked up to the gate and asked to learn how. {X_nameDef} wants to stay as {A_nameDef}'s apprentice.</li>
+      <li>[Plants] {X_nameDef}, a farm hand who wants more than hand work, has heard that nothing dies in {A_nameDef}'s fields. {X_nameDef} asks to stay and learn from {A_nameDef}, and has brought {X_possessive} own hoe.</li>
+      <li>[Crafting] {X_nameDef} has a sack of things {X_pronoun} made and wants {A_nameDef} to say what's wrong with every one of them. {X_nameDef} asks to stay as {A_nameDef}'s apprentice and learn {SKILL} properly.</li>
+    </texts>
+    <outcomes>
+      <li>
+        <option>0</option>
+        <lines>
+          <li>{X_nameDef} moved in that evening. {A_nameDef} set the first lesson for dawn, and {X_nameDef} was waiting before it.</li>
+        </lines>
+      </li>
+      <li>
+        <option>1</option>
+        <lines>
+          <li>{X_nameDef} went back down the road. {A_nameDef} watched from the gate, and was short with everyone at supper.</li>
+        </lines>
+      </li>
+    </outcomes>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <!-- ===================== A wanderer with a secret ===================== -->
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Council_Var_Evt_QuietStranger</defName>
+    <incident>Council_Evt_QuietStranger</incident>
+    <texts>
+      <li>[winter] A stranger has been sheltering against the colony wall since the snow started, and asks to come in and stay. {X_nameDef} gives a name and nothing else. {A_nameDef} found {X_objective} first, half frozen, and thinks {X_nameDef} is running from something.</li>
+      <li>[outlaw] {A_nameDef} knows the look of someone running from the law, having worn it once. {X_nameDef} has it. {X_nameDef} turned up at the gate this morning, asks to stay, and won't say where from.</li>
+      <li>[soldier] {X_nameDef} walked in this morning and asked to stay, standing straight the whole time like someone trained to it for years. {A_nameDef}, who soldiered once, noticed. {X_nameDef} won't talk about the past.</li>
+      <li>[colony:Open] Word on the road is that this colony takes people in. {X_nameDef} heard it and has come to ask to stay. {X_nameDef} is polite and strong, and says almost nothing about where {X_pronoun} has been.</li>
+    </texts>
+    <outcomes>
+      <li>
+        <option>0</option>
+        <lines>
+          <li>[winter] {X_nameDef} came in out of the cold and stayed. Whatever {X_nameDef} was running from hasn't followed, yet.</li>
+        </lines>
+      </li>
+      <li>
+        <option>1</option>
+        <lines>
+          <li>{X_nameDef} gave the council a long look, shouldered {X_possessive} pack, and went back the way {X_pronoun} came.</li>
+        </lines>
+      </li>
+    </outcomes>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <!-- ===================== A lost child ===================== -->
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Council_Var_Evt_LostChild</defName>
+    <incident>Council_Evt_LostChild</incident>
+    <texts>
+      <li>[lowtech] {A_nameDef} found a child crying in the long grass out past the fields. It's {X_nameDef}, of {FACTION}, who followed a goat too far and lost the way home. Somewhere a family is calling for {X_objective}.</li>
+      <li>[!lowtech] A child walked out of the treeline this morning holding a broken toy and asking for {X_possessive} mother. It's {X_nameDef}, of {FACTION}, a long way from home. {A_nameDef} has given {X_objective} something to eat, and {X_possessive} family will be out looking.</li>
+      <li>[trait:Kind] {A_nameDef} carried a lost child in from the fields: {X_nameDef}, of {FACTION}, who has stopped crying now that there's bread. The family can't be far behind, and must be frantic.</li>
+    </texts>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <!-- ===================== A stray ===================== -->
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Council_Var_Evt_Stray</defName>
+    <incident>Council_Evt_Stray</incident>
+    <texts>
+      <li>[winter] A stray {THING}, all ribs and frozen fur, has followed {A_nameDef} home through the snow and is lying against the door. It isn't going anywhere.</li>
+      <li>[skill:Animals] {A_nameDef} has been feeding a stray {THING} by the fields for days. Today it followed {A_objective} home and sat down by the door as if it lived here.</li>
+      <li>[trait:Kind] {A_nameDef} came home with a stray {THING} in {A_possessive} arms, thin and limping, and has already made it a bed near the hearth.</li>
+      <li>[summer] A stray {THING} has been lying in the shade by the well since noon, and every time {A_nameDef} walks past, it gets up and follows. It looks like it means to stay.</li>
+    </texts>
+    <outcomes>
+      <li>
+        <option>0</option>
+        <lines>
+          <li>[child] The {THING} sleeps in {A_nameDef}'s bed now. The council was never asked about that part.</li>
+          <li>The {THING} ate two bowls of scraps and fell asleep in a patch of sun. It lives here now.</li>
+        </lines>
+      </li>
+      <li>
+        <option>1</option>
+        <lines>
+          <li>{A_nameDef} carried the {THING} out to the road and left it with a bit of food. It was still sitting there at dusk.</li>
+        </lines>
+      </li>
+    </outcomes>
+  </ColonyCouncil.LetterVariantsDef>
+
+</Defs>

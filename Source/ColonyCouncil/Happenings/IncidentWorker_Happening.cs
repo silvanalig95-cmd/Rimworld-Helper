@@ -259,7 +259,7 @@ namespace ColonyCouncil
             {
                 CouncilLog.ErrorOnce("event tags " + def.defName, e);
             }
-            LetterTags.Add(tags, ctx.a, ctx.b, ctx.stranger, ctx.faction);
+            LetterTags.Add(tags, ctx.a, ctx.b, ctx.stranger, ctx.faction, false);
             return tags;
         }
 

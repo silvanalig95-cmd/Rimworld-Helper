@@ -118,14 +118,17 @@ namespace ColonyCouncil
             return tags;
         }
 
-        /// <summary>Who A, B and X are, their people, and the colony's name.</summary>
-        public static void Add(HashSet<string> tags, Pawn a, Pawn b, Pawn x = null, Faction faction = null)
+        /// <summary>
+        /// Who A, B and X are, their people, and the colony's name. <paramref name="groups"/>: A's one-word tag groups too
+        /// (mage, healer, fighter); off for events, whose own tags may use the same words.
+        /// </summary>
+        public static void Add(HashSet<string> tags, Pawn a, Pawn b, Pawn x = null, Faction faction = null, bool groups = true)
         {
             if (tags == null) return;
             try
             {
-                if (a != null) Who(a, tags, "");
-                if (b != null && b != a) Who(b, tags, "b:");
+                if (a != null) Who(a, tags, "", groups);
+                if (b != null && b != a) Who(b, tags, "b:", true);
                 if (x != null)
                 {
                     if (x.RaceProps.Animal) tags.Add("x:animal");
@@ -145,9 +148,10 @@ namespace ColonyCouncil
             }
         }
 
-        private static void Who(Pawn p, HashSet<string> tags, string prefix)
+        private static void Who(Pawn p, HashSet<string> tags, string prefix, bool groups = true)
         {
-            foreach (var t in PeopleTags.Identity(p)) tags.Add(prefix + t);
+            foreach (var t in PeopleTags.Identity(p))
+                if (groups || t.IndexOf(':') >= 0) tags.Add(prefix + t);
             foreach (var k in Pasts.Of(p)) tags.Add(prefix + "past:" + Pasts.Tag(k));
             var office = ColonyCouncilMod.Settings.offices ? CouncilGameComponent.Instance?.offices.OfficeOf(p) : null;
             if (office != null) tags.Add(prefix + "office:" + office.defName.Replace("Council_Office_", ""));

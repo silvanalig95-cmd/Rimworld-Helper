@@ -322,8 +322,8 @@ namespace ColonyCouncil
 
         public override string Resolved(HappeningContext ctx, int option, bool risk, bool byDefault, string outcome)
         {
-            // Bought, and true: the cache is where the map says.
-            if (option == 0 && !risk && ctx.map != null && Spot(ctx.map, out var cell))
+            // Bought (blind, or after someone looked it over), and true: the cache is where the map says.
+            if ((option == 0 || option == 2) && !risk && ctx.map != null && Spot(ctx.map, out var cell))
             {
                 var things = Loot.Make(ctx.count * Rand.Range(2f, 3.5f), Rand.Chance(0.35f));
                 foreach (var th in things) GenPlace.TryPlaceThing(th, cell, ctx.map, ThingPlaceMode.Near);
