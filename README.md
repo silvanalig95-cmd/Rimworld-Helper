@@ -2,7 +2,7 @@
 
 *Their wishes. Their bonds. Their council. Their story.*
 
-A RimWorld 1.6 mod that turns your colonists into a society: people who want things, remember things, choose
+A RimWorld 1.6 and 1.7 mod that turns your colonists into a society: people who want things, remember things, choose
 sides, keep traditions and write it all down. You lead them through a council, and they let you know what they
 think of it. (Formerly "Colony Council: Wishes & Plans". Existing saves and settings carry over.)
 
@@ -956,9 +956,10 @@ journals, the Story tab and History) or **Important only**.
 
 ## Status and feedback
 
-Version 0.4. It compiles against RimWorld 1.6, and all XML is checked against the real game types by the
-included validator. It runs in a live game with a 200+ mod medieval list. If something misbehaves, open the debug
-log (Options → Development mode, then the log button): lines starting with `[Rimfolk]` are from this mod.
+Version 0.4. It compiles against RimWorld 1.6 and is checked against 1.7 (the same DLL runs on both), and all XML
+is checked against the real game types by the included validator. It runs in a live game with a 200+ mod medieval
+list. If something misbehaves, open the debug log (Options → Development mode, then the log button): lines starting
+with `[Rimfolk]` are from this mod.
 Please share them so they can be fixed.
 
 ## For modders
@@ -969,6 +970,9 @@ Please share them so they can be fixed.
   ```
   dotnet run --project Tools/DefValidator -- . ~/.nuget/packages/krafs.rimworld.ref/<version>/ref/net472 1.6/Assemblies/ColonyCouncil.dll
   ```
+- `Tools/ApiDiff/`: checks that the built DLL still runs on another game version (every game member, override,
+  constant, Harmony target and by-name lookup it uses). `-p:RimRef=1.7` builds against the 1.7 references. See
+  "Checking a new game version" in [DESIGN.md](DESIGN.md).
 - `Tools/Tests/`: tests for the room rotation and mirroring math (`dotnet run --project Tools/Tests`).
 - `Source/ColonyCouncil/UI/UiKit.cs`: the small interface kit every council page is drawn with (colors, spacing,
   page headers, cards, tags, meters, portraits). New pages should use it so they look like the rest.

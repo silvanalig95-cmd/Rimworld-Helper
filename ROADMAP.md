@@ -127,8 +127,13 @@ to 1.7. The next stretch is less about adding systems and more about making what
 play deep. In order:
 
 ### 1. Steady on 1.7 (first)
-- Build against the 1.7 reference assemblies once they're published; check every Harmony target, add 1.7 to the
-  supported versions (with a 1.7 folder or LoadFolders.xml), and keep 1.6 working.
+- Done (October 2026): builds against the 1.7 reference assemblies (`-p:RimRef=1.7`: no errors, no new warnings);
+  every Harmony target, every game, Unity and runtime member the DLL uses, every override, constant and by-name
+  lookup checked with `Tools/ApiDiff`, and nothing changed; the XML validates the same against 1.7. 1.7 is in the
+  supported versions, and one DLL serves both (on 1.7 the game uses the 1.6 folder; no LoadFolders.xml needed). How to
+  check the next version: DESIGN.md, "Checking a new game version". Still to see in game on 1.7: that the patches take
+  effect on the new runtime, and that the Needs tab's mood hints join the game's own tooltip (else they show in a box
+  of their own).
 - A dev action, "Rimfolk: check myself", listing which patches applied, which systems are on, and which mods it
   found, so a log isn't needed to tell what's wrong.
 - A short in-game test checklist (Almanac page) for each new feature.

@@ -473,6 +473,7 @@ Patches/               # one conditional addition: the strain part on global wor
 Textures/ColonyCouncil/
 Source/ColonyCouncil/  # C#; builds against the Krafs.Rimworld.Ref NuGet package
 Tools/DefValidator/    # offline XML checker against the real game types
+Tools/ApiDiff/         # will the built DLL still run on another game version?
 Tools/Tests/           # tests for the room rotation math
 Tools/make_icons.py    # draws the interface icons (Textures/ColonyCouncil/Icons) and their contact sheet
 ```
@@ -507,6 +508,45 @@ Things the game exposes that this relies on (all available to mods):
 | Power | Power net gain rate and stored energy |
 | Building | Placing standard blueprints (so pawns build them normally) |
 | Rewards | Mood memories, inspirations |
+
+### Checking a new game version
+
+One DLL serves every supported version: it is built against the 1.6 references into `1.6/Assemblies`, and on 1.7
+the game falls back to that folder. A new game version can break that DLL in ways the compiler never sees, because a
+built DLL finds every game method, field and override by exact name and signature when it loads, Harmony finds its
+targets by name, and constants and enum values are baked in as numbers. To check a new version (1.7 as the example):
+
+1. **Build against it.** Add the version to the `RimRef` switch at the top of `Source/ColonyCouncil/ColonyCouncil.csproj`
+   (its `Krafs.Rimworld.Ref` version and target framework), then `dotnet build -c Release -p:RimRef=1.7` in
+   `Source/ColonyCouncil`. It goes to `bin/1.7/` and ships nowhere. Errors are source changes the new version needs;
+   obsolete warnings are members to move off.
+2. **Check the shipped DLL against it**, from the repository root:
+   `dotnet run -c Release --project Tools/ApiDiff -- 1.6/Assemblies/ColonyCouncil.dll 1.6.4871 1.7.4977-alpha.2`.
+   It lists every type, method, field, constant, override, Harmony patch target (with the patch's parameter names)
+   and by-name lookup the DLL uses that the new version lacks or changed, and where each is used. `--all` also lists
+   the ones that are fine. Exit code 0 means nothing changed. It works for any two versions, or any two folders of
+   reference assemblies.
+3. **Check the XML against the new def classes:** the DefValidator with the new references, the new build and, for a
+   game on .NET, the runtime's reference pack as the fourth argument:
+   `dotnet Tools/DefValidator/bin/Release/net8.0/DefValidator.dll . ~/.nuget/packages/krafs.rimworld.ref/1.7.4977-alpha.2/ref/net10.0 Source/ColonyCouncil/bin/1.7/ColonyCouncil.dll <dotnet>/packs/Microsoft.NETCore.App.Ref/10.0.x/ref/net10.0`.
+4. **If something changed,** keep one DLL where at all possible: avoid the changed member, or reach it through
+   reflection with a fallback, inside a try/catch. Only if that can't work: a `LoadFolders.xml` with a version
+   folder holding a DLL built with `-p:RimRef=<version>` (`Install Rimfolk.bat` already copies a `1.7` folder and
+   `LoadFolders.xml` when they exist).
+5. **Then** add the version to `supportedVersions` in `About/About.xml`.
+
+What the tools can't see: what a transpiler expects inside a game method (reference assemblies have no method bodies;
+Rimfolk's one transpiler, on the Needs tab tooltip, falls back to a postfix), other mods' types, and vanilla def
+names (game data, not code). Those need a look in game.
+
+**1.7 (October 2026, Krafs.Rimworld.Ref 1.7.4977-alpha.2).** 1.7 runs on .NET 10 with a new engine layer (the
+UnityEngine types come from `UnityStubs`), but the game's own API is nearly the same as 1.6. The 1.7 build compiles
+with no errors and no new warnings, and the DefValidator's report is identical. ApiDiff finds nothing the 1.6 DLL
+uses that 1.7 lacks or changed: 883 types, 5,183 methods and fields (game, Unity and runtime), 1,115 constants, 1,333
+overrides, 28 Harmony patches, 9 by-name lookups. On the types Rimfolk names, the only difference is 14 old
+`TextureFormat` members it doesn't use. The other direction doesn't hold: a DLL built against 1.7 calls things 1.6
+lacks (UnityStubs' own `Texture ==`, .NET's `MaxBy` and string-interpolation handler), so the 1.7 build must never
+go into the 1.6 folder.
 
 ---
 

@@ -4,7 +4,7 @@ rem Rimfolk installer: double-click to copy this download into RimWorld's Mods f
 rem
 rem Use it on a copy downloaded from GitHub (Code > Download ZIP, then unzip it anywhere, e.g. Downloads).
 rem It removes the old version from the mod folder first, then copies the mod's files over: About, 1.6, Defs,
-rem Languages, Textures (and Patches, Sounds or LoadFolders.xml if there are any). Source code, tools and notes
+rem Languages, Textures (and 1.7, Patches, Sounds or LoadFolders.xml if there are any). Source code, tools and notes
 rem stay behind. Your mod settings and saves are kept elsewhere by RimWorld and are not touched.
 rem
 rem To install somewhere else, change MODS and FOLDER below.
@@ -48,7 +48,7 @@ if exist "%TARGET%\" goto removeFailed
 echo Copying the mod files...
 mkdir "%TARGET%"
 if errorlevel 1 goto copyFailed
-for %%D in (About 1.6 Defs Languages Textures Patches Sounds) do call :copyDir "%%D"
+for %%D in (About 1.6 1.7 Defs Languages Textures Patches Sounds) do call :copyDir "%%D"
 if defined FAILED goto copyFailed
 if exist "%SOURCE%\LoadFolders.xml" copy /y "%SOURCE%\LoadFolders.xml" "%TARGET%\" >nul
 
