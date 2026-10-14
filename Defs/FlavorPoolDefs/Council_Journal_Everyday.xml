@@ -50,12 +50,39 @@
         <li>Whoever cooked today knew what they were doing. I wiped the bowl clean with my finger.</li>
         <li>A good hot meal, and nothing urgent after it. I sat a while with the empty bowl.</li>
         <li>[child] Supper was really good today. I ate all of it, even the green bits.</li>
+        <li>Stew with real meat in it tonight, and bread to wipe the bowl.</li>
+        <li>Good supper. The cook put something in the potatoes I couldn't name, and I had seconds.</li>
+        <li>Ate a proper meal sitting down, with no one calling for me halfway through.</li>
+        <li>Hot food, a full bowl and a seat at the table. I can't ask for more on a workday.</li>
+        <li>Meat pie for lunch. The crust was dark on one side and I ate every crumb anyway.</li>
+        <li>[child] I ate my whole supper and then helped scrape the pot.</li>
       </plain>
-      <warm><li>Good meal tonight. I made a point of telling the cook.</li></warm>
-      <blunt><li>Decent food. More of that.</li></blunt>
-      <cheerful><li>There were herbs in the stew tonight! I'm still thinking about it.</li></cheerful>
-      <gloomy><li>A good meal for once. I ate slowly so it would last.</li></gloomy>
-      <cold><li>Fine meal. The cook is worth keeping.</li></cold>
+      <warm>
+        <li>Good meal tonight. I made a point of telling the cook.</li>
+        <li>The cook saved me a bowl when I came in late. It was still hot.</li>
+        <li>Shared a good supper with the others, and for once we didn't talk about work.</li>
+        <li>Took a plate up to whoever was on watch, so they'd eat while it was hot.</li>
+      </warm>
+      <blunt>
+        <li>Decent food. More of that.</li>
+        <li>Good food. Cook knows the job.</li>
+        <li>Full belly. Back to work.</li>
+      </blunt>
+      <cheerful>
+        <li>There were herbs in the stew tonight! I'm still thinking about it.</li>
+        <li>The stew had real carrots in it tonight. Big ones!</li>
+        <li>Second helpings tonight! I took mine before the cook could change their mind.</li>
+      </cheerful>
+      <gloomy>
+        <li>A good meal for once. I ate slowly so it would last.</li>
+        <li>Good meal tonight. We'll be back to scraps by the end of the week, I expect.</li>
+        <li>Ate well tonight. I can't stop thinking about the days when we didn't.</li>
+      </gloomy>
+      <cold>
+        <li>Fine meal. The cook is worth keeping.</li>
+        <li>A proper meal. Well-fed people make fewer mistakes, and I made none today.</li>
+        <li>Ate well. I noticed who took the biggest portions.</li>
+      </cold>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
 
@@ -208,26 +235,56 @@
         <li>[bad] Woke up and stared at the stains on the wall. I need to do something about that room.</li>
         <li>[good,child] I love my room. I have my own blanket and my own shelf.</li>
         <li>[bad,child] I don't like my room. It's ugly and it smells bad.</li>
+        <li>[good] Aired my blanket in the sun this morning. Slept in it tonight and it still smelled of outside.</li>
+        <li>[good] Hung my coat on the peg, shut the door, and had the whole room to myself.</li>
+        <li>[good] My room is quiet at night. I can hear the wind and not much else.</li>
+        <li>[good] Moved my bed away from the window so the morning light lands on my feet instead of my face.</li>
+        <li>[bad] Damp smell in my room again. I checked under the bed and behind the dresser and couldn't find where it's coming from.</li>
+        <li>[bad] Lay in bed counting the cracks in my wall. There are more than last month.</li>
+        <li>[bad] To reach my door I have to climb over the end of the bed.</li>
+        <li>[bad] Bare walls, bare floor, one blanket. I sleep there, and that's all I can say for it.</li>
+        <li>[good,child] I put my best stones on the shelf in my room, in a row from biggest to smallest.</li>
+        <li>[bad,child] My room is dark, and at night the coat on the hook looks like a man standing there.</li>
       </plain>
       <warm>
         <li>[good] I've made my room nice, bit by bit. Tonight it felt like home.</li>
         <li>[bad] Swept my room out tonight. It isn't much, but I'll make it better.</li>
+        <li>[good] Woke early and lay listening to the others moving about outside my door. I like knowing they're there.</li>
+        <li>[good] Someone left a bunch of dried flowers on my windowsill. My room smells of them now.</li>
+        <li>[bad] The room's cold and plain. I tacked a blanket over the worst gap in the wall and called it a start.</li>
+        <li>[bad] My room isn't much, but I made the bed properly and put my things in order before I slept.</li>
       </warm>
       <blunt>
         <li>[good] Good room. Good sleep.</li>
         <li>[bad] Room's a hole. Fix it or give me another.</li>
+        <li>[good] Slept. Door shut. No complaints.</li>
+        <li>[good] Best sleep in weeks. Leave the room as it is.</li>
+        <li>[bad] Dirt floor, no rug, damp walls. Somebody fix it.</li>
+        <li>[bad] My room's an ugly box.</li>
       </blunt>
       <cheerful>
         <li>[good] Slept like a baby in my lovely room! I didn't want to get up.</li>
         <li>[bad] My room is a disgrace, but I've decided it's cozy!</li>
+        <li>[good] Woke up in my own bed in my own room and stretched until my toes cracked!</li>
+        <li>[good] I've arranged my room exactly how I like it. Tonight I just sat on the bed and looked at it.</li>
+        <li>[bad] My room is ugly, but the biggest stain on the wall looks like a duck, and now I'm fond of it.</li>
+        <li>[bad] Cramped room. If I lie corner to corner, I fit!</li>
       </cheerful>
       <gloomy>
         <li>[good] A fine room and a good night's sleep. I keep waiting for someone to take it away.</li>
         <li>[bad] Filthy, cramped room. I'm too tired to do anything about it.</li>
+        <li>[good] Nice room, soft bed. I still woke at every sound.</li>
+        <li>[good] I slept, for once. It must be the room.</li>
+        <li>[bad] Lay on my bed and watched the damp patch spread across the ceiling.</li>
+        <li>[bad] My room is the sort of place you'd lock a prisoner in.</li>
       </gloomy>
       <cold>
         <li>[good] The room suits my position. People notice where you sleep.</li>
         <li>[bad] My room is an insult. I've noted who has the better ones.</li>
+        <li>[good] Slept well. A good room pays for itself in the work I do the next day.</li>
+        <li>[good] The room is adequate. I intend to keep it, and to keep other people out of it.</li>
+        <li>[bad] A room this bad tells me exactly what the council thinks of me.</li>
+        <li>[bad] Poor sleep in a poor room. I'll be slower tomorrow, and that's on whoever decides the rooms.</li>
       </cold>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
@@ -313,26 +370,55 @@
         <li>[bad] Scrubbed one corner of the hall today. It made the rest look worse.</li>
         <li>[good,child] There's a pretty statue in the hall. I said good morning to it.</li>
         <li>[bad,child] Our house is ugly. I want to draw flowers on all the walls.</li>
+        <li>[good] Someone swept the yard and set a pot of flowers by the door. I noticed it on the way in.</li>
+        <li>[good] Walked the long way around the garden after supper, just to see it.</li>
+        <li>[good] The hall's been scrubbed and there's a new rug down. It looks like a home now.</li>
+        <li>[bad] Ash and bones from last week's cookfire are still lying in the yard where they fell.</li>
+        <li>[bad] Somebody was sick on the hall floor and it dried there. I stepped around it four times today.</li>
+        <li>[bad] Everything I looked at today was broken, dirty or half built.</li>
+        <li>[bad] There's been a smear on the storeroom wall for a week. I've started to think of it as part of the wall.</li>
+        <li>[good,child] Someone painted a picture in the hall. It has a horse in it.</li>
+        <li>[bad,child] There's mud everywhere. I made a mud pie on the floor and it fit right in.</li>
       </plain>
       <warm>
         <li>[good] Somebody planted roses by the door. The place is starting to look lovely.</li>
         <li>[bad] It's been ugly here lately. I swept the hall after supper so we'd have one clean room.</li>
+        <li>[good] The garden by the kitchen is coming along. Whoever's been watering it, thank you.</li>
+        <li>[good] Stopped by the sculpture in the hall today and found two others already there, looking at it.</li>
+        <li>[bad] The place is a mess, but I've seen people picking things up as they pass. It'll come around.</li>
+        <li>[bad] Wiped the blood off the doorframe before the children could see it.</li>
       </warm>
       <blunt>
         <li>[good] Place looks good. Keep it that way.</li>
         <li>[bad] This place is a pigsty. Clean it.</li>
+        <li>[good] Clean floors, flowers out front. More of this.</li>
+        <li>[good] Somebody did good work on the hall. It shows.</li>
+        <li>[bad] Rubble in the yard for a week. Haul it.</li>
+        <li>[bad] Filth everywhere. I'm done stepping in it.</li>
       </blunt>
       <cheerful>
         <li>[good] Everything looks so pretty today! I stopped to smell every flower on the way to work.</li>
         <li>[bad] It's ugly around here, so I've started carving a bird for the hall!</li>
+        <li>[good] There's a statue in the hall now, and I've decided it's smiling at me!</li>
+        <li>[good] Flowers by the path, a clean floor and sunshine. What a day.</li>
+        <li>[bad] Messy around here lately. I picked up three things on my way to supper, and I'll do three more tomorrow.</li>
+        <li>[bad] It's grim around here, so I've started whistling everywhere I go. It helps me, anyway.</li>
       </cheerful>
       <gloomy>
         <li>[good] Pretty around here lately. I give it until the next raid.</li>
         <li>[bad] Dirt on the floors and blood on the walls. It wears on you.</li>
+        <li>[good] The flowers are nice. They won't last, but they're nice.</li>
+        <li>[good] Someone hung a painting and put down a rug in the hall. For a moment I forgot what's outside the walls.</li>
+        <li>[bad] Blood on the floor, rot in the corner and a wall that never got finished. That's the view from my seat at supper.</li>
+        <li>[bad] Ugly, dirty and gray. The place matches my mood.</li>
       </gloomy>
       <cold>
         <li>[good] Better surroundings lately, and my work has improved with them.</li>
         <li>[bad] Ugly surroundings. I'd put two people on cleaning tomorrow.</li>
+        <li>[good] The colony looks prosperous lately. Visitors will notice, and so will raiders.</li>
+        <li>[good] Pleasant surroundings. People argue less in a clean hall.</li>
+        <li>[bad] Filth in the hall again. I counted four people who walked past it today, myself included.</li>
+        <li>[bad] The place looks abandoned. That isn't the impression we should be giving traders.</li>
       </cold>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
@@ -483,12 +569,45 @@
       <plain>
         <li>Talked with {OTHER_nameDef} until the fire burned down. I didn't know half of what {OTHER_pronoun} told me.</li>
         <li>{OTHER_nameDef} and I got talking about where we grew up. We have more in common than I thought.</li>
+        <li>{OTHER_nameDef} and I sat up talking about what we'd do if this place ever got safe.</li>
+        <li>Long talk with {OTHER_nameDef} about the people we left behind. I told {OTHER_objective} things I haven't told anyone here.</li>
+        <li>Found out today that {OTHER_nameDef} was afraid of the dark as a child, and still sleeps facing the door.</li>
+        <li>{OTHER_nameDef} asked me what I think happens after we die. I didn't have an answer, and {OTHER_nameDef} didn't either.</li>
+        <li>Washed up after supper with {OTHER_nameDef} and we talked the whole time. The water went cold before either of us noticed.</li>
+        <li>{OTHER_nameDef} told me about a sister {OTHER_pronoun} hasn't seen in years.</li>
+        <li>Talked with {OTHER_nameDef} about what we were before we came here. {OTHER_nameDef} doesn't miss it. I do.</li>
+        <li>Walked the wall with {OTHER_nameDef} after dark. We talked about our parents, mostly.</li>
       </plain>
-      <warm><li>I like {OTHER_nameDef} more every time we really talk. Tonight we really talked.</li></warm>
-      <blunt><li>Good talk with {OTHER_nameDef}. Didn't expect that.</li></blunt>
-      <cheerful><li>{OTHER_nameDef} told me the whole story of how {OTHER_pronoun} ended up here! I'd have listened all night.</li></cheerful>
-      <gloomy><li>{OTHER_nameDef} told me about the people {OTHER_pronoun} lost, and I told {OTHER_objective} about mine. Neither of us slept much.</li></gloomy>
-      <cold><li>Long conversation with {OTHER_nameDef}. I understand {OTHER_objective} better now, which is useful.</li></cold>
+      <warm>
+        <li>I like {OTHER_nameDef} more every time we really talk. Tonight we really talked.</li>
+        <li>{OTHER_nameDef} told me something today that I don't think {OTHER_pronoun} has ever said out loud. I'll keep it safe.</li>
+        <li>Talked with {OTHER_nameDef} after supper. By the end I felt I'd known {OTHER_objective} for years.</li>
+        <li>{OTHER_nameDef} listened to me go on about home without once looking bored.</li>
+      </warm>
+      <blunt>
+        <li>Good talk with {OTHER_nameDef}. Didn't expect that.</li>
+        <li>{OTHER_nameDef} talks sense. Spent the evening at it.</li>
+        <li>Long talk with {OTHER_nameDef}. Worth the lost sleep.</li>
+        <li>{OTHER_nameDef} asked hard questions tonight. I answered them.</li>
+      </blunt>
+      <cheerful>
+        <li>{OTHER_nameDef} told me the whole story of how {OTHER_pronoun} ended up here! I'd have listened all night.</li>
+        <li>Stayed up talking with {OTHER_nameDef}, and we planned a whole garden for when things calm down!</li>
+        <li>{OTHER_nameDef} and I found out we were born in the same month. We talked until supper went cold.</li>
+        <li>Had the best talk with {OTHER_nameDef}. I think we're friends now, properly.</li>
+      </cheerful>
+      <gloomy>
+        <li>{OTHER_nameDef} told me about the people {OTHER_pronoun} lost, and I told {OTHER_objective} about mine. Neither of us slept much.</li>
+        <li>{OTHER_nameDef} said {OTHER_pronoun} doesn't expect to grow old here. I didn't argue.</li>
+        <li>Talked with {OTHER_nameDef} about whether any of this is worth it. We didn't decide.</li>
+        <li>{OTHER_nameDef} and I talked about home. Neither of us has one to go back to.</li>
+      </gloomy>
+      <cold>
+        <li>Long conversation with {OTHER_nameDef}. I understand {OTHER_objective} better now, which is useful.</li>
+        <li>{OTHER_nameDef} talks freely once you let a silence go on long enough. I learned a lot tonight.</li>
+        <li>I let {OTHER_nameDef} do most of the talking. People tell you more that way.</li>
+        <li>{OTHER_nameDef} wanted someone to confide in. I listened, and I'll remember all of it.</li>
+      </cold>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
 

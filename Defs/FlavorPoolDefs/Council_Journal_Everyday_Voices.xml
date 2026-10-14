@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- More everyday journal lines (Lives/EverydayJournal.cs) for particular people and seasons: traits, skills, age, era, weather. Same placeholders and tags as the pools in Council_Journal_Everyday.xml. Entries are written once a day at the same hour, so no time-of-day tags here. -->
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Council_Voices_Journal_Day_Bedroom</defName>
+    <pool>Council_Journal_Day_Bedroom</pool>
+    <lines>
+      <plain>
+        <li>[trait:Ascetic] A bed, a blanket and a hook for my coat. I don't need more than that, and I've asked for nothing else.</li>
+        <li>[good,trait:Greedy] My room has the best rug in the colony. I checked the others to be sure.</li>
+        <li>[bad,trait:Greedy] I've seen the room down the hall. Mine has less in it, and I'm not letting that go.</li>
+        <li>[bad,trait:Jealous] Walked past the others' rooms on the way to bed. Every one of them is nicer than mine.</li>
+        <li>[trait:NightOwl] Shut the shutters tight so I could sleep through the morning. Woke at noon, rested.</li>
+        <li>[good,trait:Recluse] Shut my door at sundown and didn't open it again until morning. Bliss.</li>
+        <li>[trait:Undergrounder] No window, rock on three sides, and the quiet of a cellar. I slept straight through.</li>
+        <li>[old,bad] My room is too cold for old bones. I slept in my socks and still woke up stiff.</li>
+        <li>[old,good] At my age a good bed is worth more than a feast, and mine is a good bed.</li>
+        <li>[teen,bad] There's no privacy in my room. People knock and walk in at the same time.</li>
+        <li>[teen,good] Kept my door shut all evening and drew on the wall behind the bed, where it's hidden.</li>
+        <li>[lowtech,good] Laid fresh rushes on my floor and went to sleep with the smell of them.</li>
+        <li>[lowtech,bad] The wind gets through the chinks in my wall. I stuffed them with moss, and it found new ones.</li>
+        <li>[winter,bad] My room never warms up. I can see my breath when I blow out the candle.</li>
+        <li>[winter,good] Snow piled against the wall outside, and my room stayed warm all night.</li>
+        <li>[summer,bad] My room holds the day's heat all night. I ended up sleeping on the floor where it's cooler.</li>
+        <li>[rain,good] Rain on the roof all night, and not a drop on me.</li>
+        <li>[!lowtech,good] Read in bed under my own lamp until the book fell onto my chest.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Council_Voices_Journal_Day_Beauty</defName>
+    <pool>Council_Journal_Day_Beauty</pool>
+    <lines>
+      <plain>
+        <li>[trait:Ascetic] All this decoration is wasted on me. A swept floor would do.</li>
+        <li>[good,trait:Greedy] There's a fine new statue in the hall. It would look better in my room.</li>
+        <li>[bad,trait:Pyromaniac] The rubbish heap behind the storeroom is getting big. It would burn nicely.</li>
+        <li>[bad,skill:Artistic] Every wall here is bare. Give me some paint and a week.</li>
+        <li>[good,skill:Artistic] Studied the carving in the hall for a long time today. I'd have done the hands differently.</li>
+        <li>[good,skill:Plants] The flower beds came up well. I'd move the roses back a pace, but they look fine.</li>
+        <li>[old,good] When I was young, a place like this would have been the finest house in the valley.</li>
+        <li>[teen,bad] This place is ugly and old and smells like feet.</li>
+        <li>[spring,good] Everything's in flower around the walls. I walked to work slowly to make it last.</li>
+        <li>[fall,good] The trees around the colony have gone red and gold. I stood and looked before going in.</li>
+        <li>[winter,bad] Mud, gray snow and soot. Winter makes the whole place look tired.</li>
+        <li>[afterraid,bad] Still bloodstains by the gate from the fight. I scrubbed some of it before supper.</li>
+        <li>[lowtech,good] Someone carved patterns into the posts by the door. I traced them with my finger on the way in.</li>
+        <li>[!lowtech,bad] Scrap and broken parts piled by the workshop for days. It looks like a junkyard.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Council_Voices_Journal_Day_DeepTalk</defName>
+    <pool>Council_Journal_Day_DeepTalk</pool>
+    <lines>
+      <plain>
+        <li>[winter] Snowed in all day, so {OTHER_nameDef} and I talked for hours over the stove.</li>
+        <li>[spring] {OTHER_nameDef} and I sat on the wall in the spring sun and talked about the people we used to be.</li>
+        <li>[rain] Rain all evening, so {OTHER_nameDef} and I sat in the doorway and talked until it stopped.</li>
+        <li>[child] {OTHER_nameDef} talked to me like a grown-up today and asked what I want to be.</li>
+        <li>[old] {OTHER_nameDef} wanted to hear about the old days. I told {OTHER_objective} more than I meant to.</li>
+        <li>[trait:Recluse] I don't usually talk to anyone for this long. {OTHER_nameDef} made it easy.</li>
+        <li>[trait:TooSmart] {OTHER_nameDef} is sharper than I gave {OTHER_objective} credit for. We argued about the stars until the candle went out.</li>
+        <li>[skill:Social] Got {OTHER_nameDef} talking about {OTHER_possessive} old life tonight. It came easily once the ice was broken.</li>
+        <li>[grieving] Talked with {OTHER_nameDef} about the one we lost. It's the first time I've said the name out loud in days.</li>
+        <li>[newcomer] {OTHER_nameDef} sat with me tonight and told me how things work here, and who to watch out for.</li>
+        <li>[afterraid] After the fight, {OTHER_nameDef} and I talked about how close it was. We kept our voices down.</li>
+        <li>[lowmood] I'd been low for days. Talking with {OTHER_nameDef} tonight helped more than sleep has.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Council_Voices_Journal_Day_FineMeal</defName>
+    <pool>Council_Journal_Day_FineMeal</pool>
+    <lines>
+      <plain>
+        <li>[winter] Thick hot soup on a cold day. I held the bowl until my hands stopped aching.</li>
+        <li>[summer] Supper outside in the warm evening, roast meat and greens, with the bugs singing.</li>
+        <li>[trait:Gourmand] Two bowls of stew and the heel of the bread. I'd have gone back for a third if anyone had looked away.</li>
+        <li>[trait:Gourmand] Supper was good. I've already started thinking about breakfast.</li>
+        <li>[trait:Ascetic] The meal was fine, more than fine. I'd have been happy with half.</li>
+        <li>[trait:Greedy] I took the bowl with the most meat in it before the others sat down.</li>
+        <li>[skill:Cooking] Ate someone else's cooking tonight. Not bad. I'd have used less salt.</li>
+        <li>[old] My teeth aren't what they were, so a soft hot supper is a kindness. This was a kind one.</li>
+        <li>[teen] Ate three helpings and was hungry again by bedtime.</li>
+        <li>[hurt] Ate supper in bed. Good food makes a sore body easier to put up with.</li>
+        <li>[afterraid] The first proper meal since the attack. We ate it without saying much.</li>
+        <li>[lowtech] Roast meat and flatbread off the fire tonight. The fat ran down my wrist.</li>
+        <li>[spacer] Real cooked food again, not ration packs. I ate slowly.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+</Defs>
