@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    More everyday journal lines for the frictions (Council_Journal_Everyday_Frictions.xml) and the less common moments
+    in Council_Journal_Everyday.xml: voices those pools had no list for, and lines for a season, an era or an age.
+    Same placeholders and tags; no time-of-day tags, since the entries are written at the same hour each day.
+  -->
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Council_Voices_Journal_Day_Chores</defName>
+    <pool>Council_Journal_Day_Chores</pool>
+    <lines>
+      <plain>
+        <li>[winter] Somebody let the fire die overnight. {OTHER_nameDef} says it wasn't {OTHER_objective}.</li>
+      </plain>
+      <cheerful>
+        <li>Lost the argument with {OTHER_nameDef} and got the pots. I'll be the best pot-scrubber this colony has ever seen!</li>
+        <li>{OTHER_nameDef} and I squabbled over the dishes, so I made up a song about it. I thought it was very good!</li>
+      </cheerful>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Council_Voices_Journal_Day_BadNight</defName>
+    <pool>Council_Journal_Day_BadNight</pool>
+    <lines>
+      <warm>
+        <li>{OTHER_nameDef} can't help snoring. I'll find something to stuff in my ears.</li>
+        <li>Bad night, thanks to {OTHER_nameDef}. {OTHER_nameDef} looked so sorry at breakfast that I didn't say anything.</li>
+      </warm>
+      <cold>
+        <li>{OTHER_nameDef} cost me most of a night's sleep. I've told {OTHER_objective} so, plainly.</li>
+        <li>If {OTHER_nameDef} wakes me again, I'll ask the council for a different room.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Council_Voices_Journal_Day_Gossip</defName>
+    <pool>Council_Journal_Day_Gossip</pool>
+    <lines>
+      <plain>
+        <li>[teen] {OTHER_nameDef} has been telling the grown-ups my business.</li>
+      </plain>
+      <cheerful>
+        <li>Apparently {OTHER_nameDef} thinks I'm interesting enough to gossip about. That's something!</li>
+      </cheerful>
+      <gloomy>
+        <li>The others have all heard what {OTHER_nameDef} said about me by now.</li>
+        <li>I trusted {OTHER_nameDef} with that. I won't trust {OTHER_objective} with anything again.</li>
+      </gloomy>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Council_Voices_Journal_Day_NotReturned</defName>
+    <pool>Council_Journal_Day_NotReturned</pool>
+    <lines>
+      <warm>
+        <li>{OTHER_nameDef} still has my comb. I'll ask again, nicely.</li>
+        <li>I don't mind lending {OTHER_nameDef} things. I'd just like them back eventually.</li>
+      </warm>
+      <blunt>
+        <li>{OTHER_nameDef} borrows. {OTHER_nameDef} doesn't return.</li>
+        <li>I want my gloves back from {OTHER_nameDef}. Today.</li>
+      </blunt>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Council_Voices_Journal_Day_ColdShoulder</defName>
+    <pool>Council_Journal_Day_ColdShoulder</pool>
+    <lines>
+      <cheerful>
+        <li>{OTHER_nameDef} is ignoring me, so I've been extra friendly. It's driving {OTHER_objective} mad!</li>
+        <li>{OTHER_nameDef} won't speak to me. Very well, I'll talk enough for both of us!</li>
+      </cheerful>
+      <cold>
+        <li>{OTHER_nameDef} is freezing me out. I can wait longer than {OTHER_pronoun} can.</li>
+        <li>Two days of silence from {OTHER_nameDef}. Restful, in its way.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Council_Voices_Journal_Day_Teased</defName>
+    <pool>Council_Journal_Day_Teased</pool>
+    <lines>
+      <blunt>
+        <li>One more joke from {OTHER_nameDef} and I'll make one about {OTHER_objective}.</li>
+        <li>{OTHER_nameDef} isn't funny.</li>
+      </blunt>
+      <cheerful>
+        <li>{OTHER_nameDef} teased me about my hair, so tomorrow I'm making it even sillier!</li>
+      </cheerful>
+      <gloomy>
+        <li>They all laughed at {OTHER_nameDef}'s joke. I laughed too, so they wouldn't see.</li>
+      </gloomy>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Council_Voices_Journal_Day_Paste</defName>
+    <pool>Council_Journal_Day_Paste</pool>
+    <lines>
+      <plain>
+        <li>[!lowtech] The dispenser jammed halfway through my bowl, and I finished it with my fingers.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Council_Voices_Journal_Day_RawFood</defName>
+    <pool>Council_Journal_Day_RawFood</pool>
+    <lines>
+      <plain>
+        <li>[lowtech] Ate the meat raw off the bone. The fire had gone out.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Council_Voices_Journal_Day_LavishMeal</defName>
+    <pool>Council_Journal_Day_LavishMeal</pool>
+    <lines>
+      <plain>
+        <li>[winter] Roast and gravy on a freezing night. I couldn't have asked for better.</li>
+        <li>[trait:Ascetic] A lavish supper. I ate a plain part of it and left the rest for the others.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Council_Voices_Journal_Day_Outside</defName>
+    <pool>Council_Journal_Day_Outside</pool>
+    <lines>
+      <plain>
+        <li>[winter] Slept outside in the cold and woke up as stiff as a plank.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Council_Voices_Journal_Day_CabinFever</defName>
+    <pool>Council_Journal_Day_CabinFever</pool>
+    <lines>
+      <plain>
+        <li>[skill:Plants] It's been days since I touched soil. My hands miss it.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Council_Voices_Journal_Day_Corpse</defName>
+    <pool>Council_Journal_Day_Corpse</pool>
+    <lines>
+      <plain>
+        <li>[winter] There's a frozen body in the snow by the gate. It's been there for days.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Council_Voices_Journal_Day_Concert</defName>
+    <pool>Council_Journal_Day_Concert</pool>
+    <lines>
+      <plain>
+        <li>[lowtech] Drums and singing in the hall tonight. I danced until I was dizzy.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Council_Voices_Journal_Day_Party</defName>
+    <pool>Council_Journal_Day_Party</pool>
+    <lines>
+      <plain>
+        <li>[winter] A party in the middle of winter, and the hall was warm for once.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Council_Voices_Journal_Day_Fight</defName>
+    <pool>Council_Journal_Day_Fight</pool>
+    <lines>
+      <plain>
+        <li>[bad] {OTHER_nameDef} and I came to blows over nothing. My jaw still aches.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+</Defs>
