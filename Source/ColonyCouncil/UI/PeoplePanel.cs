@@ -26,6 +26,8 @@ namespace ColonyCouncil
         private static Vector2 listScroll;
         private static Vector2 storyScroll;
         private static float storyHeight = 400f;
+        /// <summary>The story sections folded away on this page (the Story tab keeps its own).</summary>
+        private static readonly Folds storyFolds = new Folds();
 
         private const float ListWidth = 320f;
         private const float RowH = 60f;
@@ -141,7 +143,7 @@ namespace ColonyCouncil
                 Find.WindowStack.Add(new Dialog_Journal(journal));
             UiKit.LabelFit(new Rect(tx, inner.y + 32f, Mathf.Max(0f, inner.xMax - tx), 22f), UiCache.Get(selected, 42, () => Subtitle(selected)), UiKit.Faint);
             float storyTop = storyPortrait + 8f;
-            StoryView.Draw(new Rect(inner.x, inner.y + storyTop, inner.width, inner.height - storyTop), selected, ref storyScroll, ref storyHeight);
+            StoryView.Draw(new Rect(inner.x, inner.y + storyTop, inner.width, inner.height - storyTop), selected, ref storyScroll, ref storyHeight, storyFolds);
         }
 
         private static string Subtitle(Pawn p)

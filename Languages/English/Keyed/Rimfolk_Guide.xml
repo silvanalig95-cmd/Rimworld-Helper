@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!-- Finding your way: folding sections, the first-run welcome letter (Source/ColonyCouncil/UI). -->
+
+  <!-- Section headings that fold away (the Mood and Story tabs, the People page) -->
+  <CC_UI_FoldTip>Click to fold this section away.</CC_UI_FoldTip>
+  <CC_UI_UnfoldTip>Folded away. Click to show it again.</CC_UI_UnfoldTip>
+
+</LanguageData>
