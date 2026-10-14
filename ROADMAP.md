@@ -188,12 +188,12 @@ the content itself, not only to systems, alongside whatever else it does. Where 
 | Encounters | 122 | more lands (lakes, rivers, other mods' biomes), mod animals, rarer night and weather moments |
 | Decrees | 19 | decrees tied to world situations, faith and mods (tithes, curfews, alms) |
 | Quirks | 29 | quirks that touch others (a hummer and a light sleeper), more from events and dreams |
-| Dreams | 86 | dreams from feelings, illness and the newer events |
+| Dreams | 117 | dreams for more feelings, quirks, life goals and mod content |
 | World events | 22 | more regional situations, and their follow-ups |
 | Camp kinds | 7 | caravans of every kind, pilgrims of every faith |
-| Ailments | (in progress) | a broad everyday tier, a rare serious tier |
+| Ailments | 32 everyday, 14 serious | ailments for every biome and DLC, more after-effects |
 | Room types | 28 (108 layouts) | odd shapes beyond partitions, more spacer and mod-furniture sizes |
-| Social events, moments, frictions, nuisances | 53, 93, 12 | every trait pairing and home condition |
+| Social events, moments, frictions, nuisances | 67, 123 (40 frictions), 19 | every trait pairing and home condition |
 
 ### 5. Wider (integrations)
 - Deeper with the always-on mods: Hospitality guests as visitors with stories, Vanilla Expanded factions and

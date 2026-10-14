@@ -70,6 +70,27 @@ namespace ColonyCouncil
         /// <summary>The initiator is clearly better (4 levels or more) at the work the recipient is doing right now.</summary>
         public bool moreSkilled;
         /// <summary>
+        /// What the initiator (or recipient) feels: the heart's FeelingDef keys (Fear, Gratitude...), at least
+        /// <see cref="minFeeling"/> of full strength. Never with the heart off.
+        /// </summary>
+        public List<string> initiatorFeelings;
+        public List<string> recipientFeelings;
+        public float minFeeling = 0.3f;
+        /// <summary>The initiator's feeling (initiatorFeelings) is about the recipient: the one they're grateful to, angry at.</summary>
+        public bool feelingAboutRecipient;
+        /// <summary>Has one of Rimfolk's ailments or illnesses, visible (Ailing), or none at all (Well).</summary>
+        public bool initiatorAiling;
+        public bool initiatorWell;
+        public bool recipientAiling;
+        public bool recipientWell;
+        /// <summary>Has one of these conditions, visible (HediffDef names; "Prefix*" for a family).</summary>
+        public List<string> initiatorHediffs;
+        public List<string> recipientHediffs;
+        /// <summary>A camp (world events) is set up on their map.</summary>
+        public bool camp;
+        /// <summary>A world event of one of these kinds ("sickness", "hunger", "fair") or defNames is running.</summary>
+        public List<string> situations;
+        /// <summary>
         /// What the moment does between the two: "warm" (the default), "friction" (a small irritation), "mend" (making up
         /// after a friction) or "neutral". See <see cref="MomentTones"/>: after a friction, warm moments between the same
         /// two wait until it has worn off or they have made up; after a warm one, a friction is less likely for a while.
@@ -256,6 +277,24 @@ namespace ColonyCouncil
             if (x.shares == "bedroom" && !SameBedroom(a, b)) return false;
             if (x.shares == "work" && !SameWork(a, b)) return false;
             if (x.moreSkilled && !MoreSkilled(a, b)) return false;
+            return FitsLife(x, a, b);
+        }
+
+        /// <summary>What's going on in their lives: feelings, ailments, a camp, the region (see <see cref="LifeConditions"/>).</summary>
+        private static bool FitsLife(MomentExtension x, Pawn a, Pawn b)
+        {
+            if ((x.initiatorAiling || x.initiatorWell) && LifeConditions.Ailing(a) != x.initiatorAiling) return false;
+            if ((x.recipientAiling || x.recipientWell) && LifeConditions.Ailing(b) != x.recipientAiling) return false;
+            if (x.initiatorHediffs != null && !LifeConditions.Has(a, x.initiatorHediffs)) return false;
+            if (x.recipientHediffs != null && !LifeConditions.Has(b, x.recipientHediffs)) return false;
+            if (x.camp && !LifeConditions.CampOn(a.MapHeld)) return false;
+            if (x.situations != null && !LifeConditions.Situation(x.situations)) return false;
+            if (x.initiatorFeelings != null)
+            {
+                var felt = LifeConditions.Feels(a, x.initiatorFeelings, x.minFeeling, x.feelingAboutRecipient);
+                if (felt == null || (x.feelingAboutRecipient && felt.target != b)) return false;
+            }
+            if (x.recipientFeelings != null && LifeConditions.Feels(b, x.recipientFeelings, x.minFeeling) == null) return false;
             return true;
         }
 
@@ -548,6 +587,44 @@ namespace ColonyCouncil
                 return 1f;
             }
             return sore ? 0f : 1f;
+        }
+
+        /// <summary>
+        /// Whether a social event of this tone fits between the two now, by the same rules as moments: a warm one waits
+        /// out a spat that is still sore, making up needs a spat they haven't made up for, and a friction right after a
+        /// warm moment is put off. Neutral (or no tone) always fits.
+        /// </summary>
+        public static bool Allows(string tone, Pawn a, Pawn b)
+        {
+            if (tone.NullOrEmpty() || tone == "neutral" || a == null || b == null) return true;
+            int now = Find.TickManager.TicksGame;
+            var s = StateOf(a, b);
+            bool unmended = Unmended(s, now);
+            if (tone == "mend") return unmended && now - s.friction >= MendAfterTicks;
+            if (tone == "friction")
+            {
+                int calm = Mathf.Max(s.warm, s.mend);
+                return calm < 0 || now - calm >= CalmTicks;
+            }
+            return !(unmended && now < s.soreUntil);
+        }
+
+        /// <summary>A social event happened between them: remembered like a moment of the same tone.</summary>
+        public static void RecordEvent(string tone, Pawn a, Pawn b, float soreHours)
+        {
+            var tones = Current;
+            if (tones == null || tone.NullOrEmpty() || tone == "neutral" || a == null || b == null) return;
+            int now = Find.TickManager.TicksGame;
+            var t = tones.Get(a, b, true);
+            if (tone == "friction")
+            {
+                t.friction = now;
+                int until = now + Mathf.RoundToInt(soreHours * GenDate.TicksPerHour * (Temper(a) || Temper(b) ? 1.5f : 1f));
+                if (until > t.soreUntil) t.soreUntil = until;
+            }
+            else if (tone == "mend") t.mend = now;
+            else t.warm = now;
+            cacheTick = -1;
         }
 
         /// <summary>A moment happened between them: remember it, and add a line about how things have been lately.</summary>

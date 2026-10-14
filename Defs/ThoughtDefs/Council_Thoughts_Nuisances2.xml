@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    The moods of the second set of nuisances (Defs/EncounterDefs/Council_Encounters_Home2.xml): small and short, like
+    the first set. Fixing the cause is the cure.
+  -->
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_Nuisance_FilthyRoom</defName>
+    <durationDays>0.5</durationDays>
+    <stages><li><label>a filthy room</label><description>Everything in that room is sticky or gritty. Somebody needs to clean it, and soon.</description><baseMoodEffect>-1</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_Nuisance_ChillyRoom</defName>
+    <durationDays>1</durationDays>
+    <stages><li><label>a cold room</label><description>The cold gets in through the walls. I worked with my hands in my armpits half the day.</description><baseMoodEffect>-1</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_Nuisance_StiflingRoom</defName>
+    <durationDays>0.5</durationDays>
+    <stages><li><label>a stifling room</label><description>It's like an oven in there, and the air doesn't move.</description><baseMoodEffect>-1</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_Nuisance_AnimalInBed</defName>
+    <durationDays>0.5</durationDays>
+    <stages><li><label>an animal in my bed</label><description>One of the animals has been sleeping on my bed. The blanket is all hair.</description><baseMoodEffect>-1</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_Nuisance_BuildingNoise</defName>
+    <durationDays>0.5</durationDays>
+    <stages><li><label>building work by my bed</label><description>They're building right next to where I sleep. Hammering from dawn to dusk.</description><baseMoodEffect>-1</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_Nuisance_Vermin</defName>
+    <durationDays>0.5</durationDays>
+    <stages><li><label>vermin in the house</label><description>There's a wild animal getting into the rooms. I heard it scratching about all evening.</description><baseMoodEffect>-1</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_Nuisance_DirtFloor</defName>
+    <durationDays>1</durationDays>
+    <stages><li><label>a bare earth floor</label><description>My room is bare earth. Everything I own is gritty with it.</description><baseMoodEffect>-1</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+</Defs>

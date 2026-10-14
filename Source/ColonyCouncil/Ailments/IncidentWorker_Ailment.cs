@@ -58,13 +58,23 @@ namespace ColonyCouncil
                 var season = GenLocalDate.Season(map);
                 if (season == Season.Fall || season == Season.Winter || season == Season.PermanentWinter) w *= ext.coldSeasonFactor;
             }
+            if (ext != null && ext.hotFactor != 1f && map.mapTemperature.OutdoorTemp >= 25f) w *= ext.hotFactor;
             return w;
         }
 
         protected override IEnumerable<Pawn> PotentialVictimCandidates(IIncidentTarget target)
         {
-            // No baby is ever the one to catch these first; quest lodgers are the quest's business.
-            return base.PotentialVictimCandidates(target).Where(p => p != null && !p.DevelopmentalStage.Baby() && !p.IsQuestLodger());
+            // No baby is ever the one to catch these first; quest lodgers are the quest's business. Some illnesses come
+            // to the old only (shingles) or to children only (measles), and some never twice (an appendix, measles).
+            var ext = Ext;
+            var info = Info;
+            var tracker = AilmentTracker.Instance;
+            float minAge = ext?.minAge ?? 0f;
+            bool once = info?.once ?? false;
+            bool childrenOnly = info?.childrenOnly ?? false;
+            return base.PotentialVictimCandidates(target).Where(p => p != null && !p.DevelopmentalStage.Baby() && !p.IsQuestLodger()
+                && (!childrenOnly || p.DevelopmentalStage.Juvenile())
+                && (minAge <= 0f || Flavor.HumanAge(p) >= minAge) && (!once || tracker == null || !tracker.HadBefore(p, def.diseaseIncident)));
         }
 
         protected override IEnumerable<Pawn> ActualVictims(IncidentParms parms)

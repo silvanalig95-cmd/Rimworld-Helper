@@ -9,11 +9,14 @@
     effects: dilemma effects (target A, B, AAndB, Others...). changeTie + change: strengthens (or with a negative change, weakens) a bond.
     note: the line in the bond's history. notable: also goes in the chronicle.
     {SKILL} is the skill being taught, for mentor events.
+    tone: warm, friction, mend or neutral, so events and moments between the same two tell one story (warm ones wait
+    out a spat that is still sore, frictions leave them sore for soreHours); see Council_SocialEvents3.xml.
   -->
 
   <ColonyCouncil.SocialEventDef>
     <defName>Council_Soc_LateTalk</defName>
     <label>a late talk</label>
+    <tone>warm</tone>
     <weight>1.2</weight>
     <tie>Friends</tie>
     <minStrength>10</minStrength>
@@ -36,6 +39,7 @@
   <ColonyCouncil.SocialEventDef>
     <defName>Council_Soc_SharedJoke</defName>
     <label>a shared joke</label>
+    <tone>warm</tone>
     <minOpinion>10</minOpinion>
     <texts>
       <li>{A_nameDef} muttered a remark about the stew at dinner, and {B_nameDef} laughed so hard {B_pronoun} had to leave the table.</li>
@@ -57,6 +61,7 @@
   <ColonyCouncil.SocialEventDef>
     <defName>Council_Soc_FriendlyPrank</defName>
     <label>a prank between friends</label>
+    <tone>warm</tone>
     <weight>0.7</weight>
     <tie>Friends</tie>
     <minStrength>30</minStrength>
@@ -77,6 +82,7 @@
   <ColonyCouncil.SocialEventDef>
     <defName>Council_Soc_BadPrank</defName>
     <label>a prank that landed badly</label>
+    <tone>friction</tone>
     <weight>0.6</weight>
     <minOpinion>-25</minOpinion>
     <maxOpinion>25</maxOpinion>
@@ -98,6 +104,7 @@
   <ColonyCouncil.SocialEventDef>
     <defName>Council_Soc_Snub</defName>
     <label>a snub</label>
+    <tone>friction</tone>
     <tie>Rivals</tie>
     <minStrength>10</minStrength>
     <texts>
@@ -118,6 +125,7 @@
   <ColonyCouncil.SocialEventDef>
     <defName>Council_Soc_ChoreSquabble</defName>
     <label>a squabble over chores</label>
+    <tone>friction</tone>
     <maxOpinion>15</maxOpinion>
     <texts>
       <li>{A_nameDef} and {B_nameDef} argued until supper over whose turn it was to clean the latrine.</li>
@@ -138,6 +146,7 @@
   <ColonyCouncil.SocialEventDef>
     <defName>Council_Soc_WarStories</defName>
     <label>war stories</label>
+    <tone>warm</tone>
     <tie>Comrades</tie>
     <minStrength>15</minStrength>
     <texts>
@@ -157,6 +166,7 @@
   <ColonyCouncil.SocialEventDef>
     <defName>Council_Soc_Lesson</defName>
     <label>a lesson</label>
+    <tone>warm</tone>
     <weight>1.4</weight>
     <tie>Mentor</tie>
     <children>true</children>
@@ -180,6 +190,8 @@
   <ColonyCouncil.SocialEventDef>
     <defName>Council_Soc_RivalContest</defName>
     <label>a contest between rivals</label>
+    <tone>friction</tone>
+    <soreHours>12</soreHours>
     <tie>Rivals</tie>
     <minStrength>20</minStrength>
     <texts>
@@ -201,6 +213,7 @@
   <ColonyCouncil.SocialEventDef>
     <defName>Council_Soc_Gift</defName>
     <label>a small gift</label>
+    <tone>warm</tone>
     <weight>0.7</weight>
     <tie>Friends</tie>
     <minStrength>30</minStrength>
@@ -223,6 +236,7 @@
   <ColonyCouncil.SocialEventDef>
     <defName>Council_Soc_Gossip</defName>
     <label>gossip</label>
+    <tone>friction</tone>
     <weight>0.8</weight>
     <maxOpinion>-5</maxOpinion>
     <texts>
@@ -264,6 +278,7 @@
   <ColonyCouncil.SocialEventDef>
     <defName>Council_Soc_StoodUp</defName>
     <label>standing up for a friend</label>
+    <tone>warm</tone>
     <weight>0.7</weight>
     <tie>Friends</tie>
     <minStrength>25</minStrength>
@@ -284,6 +299,7 @@
   <ColonyCouncil.SocialEventDef>
     <defName>Council_Soc_ChildrenPlay</defName>
     <label>children at play</label>
+    <tone>warm</tone>
     <roleA><child>true</child></roleA>
     <roleB><child>true</child></roleB>
     <texts>
@@ -305,6 +321,7 @@
   <ColonyCouncil.SocialEventDef>
     <defName>Council_Soc_Spark</defName>
     <label>a spark</label>
+    <tone>warm</tone>
     <weight>0.4</weight>
     <tie>Friends</tie>
     <minStrength>50</minStrength>

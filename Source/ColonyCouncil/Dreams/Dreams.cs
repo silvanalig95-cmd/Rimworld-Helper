@@ -81,6 +81,18 @@ namespace ColonyCouncil
         /// <summary>Only after being knocked out (a fever dream).</summary>
         public bool unconscious;
         public List<Season> seasons;
+        /// <summary>
+        /// Only while they feel one of these (the heart's FeelingDef keys: Fear, Anger, Gratitude...), at least
+        /// <see cref="minFeeling"/> of full strength; stronger feelings make it likelier. Never with the heart off.
+        /// </summary>
+        public List<string> feelings;
+        public float minFeeling = 0.3f;
+        /// <summary>The feeling must be about someone, who becomes OTHER (the one they're angry at, grateful to).</summary>
+        public bool feelingTarget;
+        /// <summary>Only while a camp (world events) is set up on the dreamer's map.</summary>
+        public bool camp;
+        /// <summary>Only while a world event of one of these kinds ("sickness", "hunger", "fair") or defNames runs.</summary>
+        public List<string> situations;
         public ToneLines lines = new ToneLines();
         /// <summary>The mood memory. Empty = the usual one for the kind of dream.</summary>
         public ThoughtDef thought;
@@ -99,6 +111,9 @@ namespace ColonyCouncil
         public bool needsMechanoids;
 
         public bool AboutEvents => !afterThoughts.NullOrEmpty() || afterThreat || !hediffs.NullOrEmpty() || unconscious;
+
+        /// <summary>Grows out of what they feel or what's around them now (a feeling, a camp, the region's troubles).</summary>
+        public bool AboutNow => !feelings.NullOrEmpty() || camp || !situations.NullOrEmpty();
 
         public bool Matters => notable || omen != null || wish != null || changeTie != TieKind.None || effects.Any(e => !(e is DilemmaEffect_Thought));
 
@@ -310,6 +325,16 @@ namespace ColonyCouncil
             }
             if (def.needsMechanoids && !People.MechanoidsAround) return null;
             if (!def.hediffs.NullOrEmpty() && !(p.health?.hediffSet?.hediffs.Any(h => def.hediffs.Contains(h.def.defName)) ?? false)) return null;
+            if (def.camp && !LifeConditions.CampOn(map)) return null;
+            if (!def.situations.NullOrEmpty() && !LifeConditions.Situation(def.situations)) return null;
+            float feeling = 0f;
+            if (!def.feelings.NullOrEmpty())
+            {
+                var felt = LifeConditions.Feels(p, def.feelings, def.minFeeling, def.feelingTarget);
+                if (felt == null) return null;
+                if (def.feelingTarget) c.other = felt.target;
+                feeling = felt.Share;
+            }
             if (!About(comp, def.about, p, c)) return null;
             if (c.skill == null) c.skill = SkillOf(p);
 
@@ -323,6 +348,7 @@ namespace ColonyCouncil
 
             // Dreams about what really happened come first; mood colours the rest.
             if (def.AboutEvents) w *= 4f;
+            else if (def.AboutNow) w *= 1.5f + 1.5f * feeling;
             else if (def.about != DreamAbout.None) w *= 1.5f;
             float mood = p.needs.mood.CurLevelPercentage;
             if (def.kind == DreamKind.Nightmare) w *= mood < 0.35f ? 2f : mood > 0.75f ? 0.6f : 1f;
@@ -469,7 +495,7 @@ namespace ColonyCouncil
                 lastOmenTick = Find.TickManager.TicksGame;
             }
             // Everyday dreams only sometimes make it into the journal, so they don't crowd out the days.
-            if (def.Matters || def.AboutEvents || def.about != DreamAbout.None || def.kind == DreamKind.Omen || Rand.Chance(0.35f))
+            if (def.Matters || def.AboutEvents || def.AboutNow || def.about != DreamAbout.None || def.kind == DreamKind.Omen || Rand.Chance(0.35f))
                 comp.journals.WriteText(p, text);
             recent.Add(new DreamRecord { pawn = p, name = p.LabelShort, text = text, kind = def.kind, tick = Find.TickManager.TicksGame });
             while (recent.Count > 80) recent.RemoveAt(0);

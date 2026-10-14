@@ -10,6 +10,7 @@
   <ColonyCouncil.SocialEventDef>
     <defName>Council_SocLife_KnowingLook</defName>
     <label>a knowing look</label>
+    <tone>warm</tone>
     <bKeepsSecretOfA>true</bKeepsSecretOfA>
     <texts>
       <li>Someone at dinner came close to a sore subject. {B_nameDef} changed it, smoothly, without looking at {A_nameDef}.</li>
@@ -27,6 +28,7 @@
   <ColonyCouncil.SocialEventDef>
     <defName>Council_SocLife_SecretStrain</defName>
     <label>the weight of a secret</label>
+    <tone>friction</tone>
     <weight>0.6</weight>
     <bKeepsSecretOfA>true</bKeepsSecretOfA>
     <maxOpinion>30</maxOpinion>
@@ -46,6 +48,7 @@
   <ColonyCouncil.SocialEventDef>
     <defName>Council_SocLife_SharedHatred</defName>
     <label>a shared vow</label>
+    <tone>warm</tone>
     <sharedVendetta>true</sharedVendetta>
     <texts>
       <li>{A_nameDef} and {B_nameDef} sat by the graves and talked about {FACTION} until the fire went out. They made each other a promise.</li>
@@ -62,6 +65,7 @@
   <ColonyCouncil.SocialEventDef>
     <defName>Council_SocLife_TeasedQuirk</defName>
     <label>teased about a quirk</label>
+    <tone>friction</tone>
     <aHasQuirk>true</aHasQuirk>
     <maxOpinion>25</maxOpinion>
     <texts>
@@ -79,6 +83,7 @@
   <ColonyCouncil.SocialEventDef>
     <defName>Council_SocLife_SharedQuirk</defName>
     <label>a superstition shared</label>
+    <tone>warm</tone>
     <aHasQuirk>true</aHasQuirk>
     <minOpinion>10</minOpinion>
     <texts>
@@ -97,6 +102,7 @@
   <ColonyCouncil.SocialEventDef>
     <defName>Council_SocLife_GoalEncouraged</defName>
     <label>encouragement</label>
+    <tone>warm</tone>
     <aHasGoal>true</aHasGoal>
     <minOpinion>15</minOpinion>
     <texts>
@@ -116,6 +122,8 @@
   <ColonyCouncil.SocialEventDef>
     <defName>Council_SocLife_GoalMocked</defName>
     <label>a dream mocked</label>
+    <tone>friction</tone>
+    <soreHours>24</soreHours>
     <weight>0.6</weight>
     <aHasGoal>true</aHasGoal>
     <maxOpinion>0</maxOpinion>
@@ -134,6 +142,7 @@
   <ColonyCouncil.SocialEventDef>
     <defName>Council_SocLife_GoalHelp</defName>
     <label>a helping hand</label>
+    <tone>warm</tone>
     <aHasGoal>true</aHasGoal>
     <tie>Friends</tie>
     <minStrength>40</minStrength>
