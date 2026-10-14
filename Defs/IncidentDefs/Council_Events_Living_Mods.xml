@@ -39,6 +39,7 @@
 
   <IncidentDef ParentName="Council_EventBase">
     <defName>Council_Evt_RareCreature</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
     <label>a strange creature</label>
     <workerClass>ColonyCouncil.HappeningWorker_RareCreature</workerClass>
     <minRefireDays>35</minRefireDays>
@@ -87,6 +88,7 @@
 
   <IncidentDef ParentName="Council_EventBase">
     <defName>Council_Evt_Bathhouse</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
     <label>a bath for the road</label>
     <workerClass>ColonyCouncil.HappeningWorker_Bathhouse</workerClass>
     <minRefireDays>35</minRefireDays>

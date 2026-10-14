@@ -8,6 +8,7 @@
 
   <IncidentDef ParentName="Council_EventBase">
     <defName>Council_Evt_DebtDue</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
     <label>debt due</label>
     <workerClass>ColonyCouncil.HappeningWorker_DebtDue</workerClass>
     <baseChance>0</baseChance>

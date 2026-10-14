@@ -360,8 +360,8 @@ follows the mouse, and a planner panel lets you:
   or fine stone tiles; hospitals and kitchens keep their sterile floor)
 - **turn** the room (Q / E or buttons), **mirror** it and **move the door**
 - choose **materials**, or let the planner do it: it picks from what you have, stored or lying around, something
-  there's enough of with a little to spare. Stone blocks come first, then wood, bone (furniture only, never walls
-  or doors) and steel; silver, gold, plasteel, uranium and jade only when nothing else will do. Walls get stone
+  there's enough of with a little to spare. Stone blocks come first, then wood, bone (anything but walls) and
+  steel; silver, gold, plasteel, uranium and jade only when nothing else will do. Walls get stone
   before wood when there's enough. The walls, door and floor take their share first, so the furniture doesn't
   count on the same blocks. Your own picks are remembered for that room while you still have enough of them, and
   **Use what we have** starts over. A material shows green with some to spare, amber when it only just covers

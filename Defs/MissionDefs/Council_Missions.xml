@@ -184,6 +184,7 @@
   <!-- Told when the runaway is tamed: hand it back, buy it, or keep it. -->
   <IncidentDef ParentName="Council_EventBase">
     <defName>Council_Mission_RunawayTamed</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
     <label>the runaway tamed</label>
     <workerClass>ColonyCouncil.HappeningWorker_MissionTamed</workerClass>
     <baseChance>0</baseChance>

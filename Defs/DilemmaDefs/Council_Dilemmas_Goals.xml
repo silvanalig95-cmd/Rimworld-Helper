@@ -10,6 +10,7 @@
   <!-- ===================== Time off for a dream ===================== -->
   <ColonyCouncil.DilemmaDef>
     <defName>Council_Dilemma_Goal_Excused</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
     <label>time for a dream</label>
     <weight>1</weight>
     <cooldownDays>40</cooldownDays>
@@ -72,6 +73,7 @@
   <!-- ===================== A dream on credit ===================== -->
   <ColonyCouncil.DilemmaDef>
     <defName>Council_Dilemma_Goal_Purse</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
     <label>a dream on credit</label>
     <weight>0.9</weight>
     <cooldownDays>45</cooldownDays>
@@ -133,6 +135,7 @@
   <!-- ===================== A teacher for a dream ===================== -->
   <ColonyCouncil.DilemmaDef>
     <defName>Council_Dilemma_Goal_Mentor</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
     <label>a teacher for a dream</label>
     <weight>0.9</weight>
     <cooldownDays>40</cooldownDays>
@@ -199,6 +202,7 @@
   <!-- ===================== A foolish dream ===================== -->
   <ColonyCouncil.DilemmaDef>
     <defName>Council_Dilemma_Goal_Foolish</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
     <label>a foolish dream</label>
     <weight>1</weight>
     <cooldownDays>40</cooldownDays>
@@ -281,6 +285,7 @@
   <!-- ===================== Two dreams, one colony ===================== -->
   <ColonyCouncil.DilemmaDef>
     <defName>Council_Dilemma_Goal_TwoDreams</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
     <label>two dreams, one colony</label>
     <weight>0.8</weight>
     <cooldownDays>45</cooldownDays>
@@ -354,6 +359,7 @@
   <!-- ===================== The road out ===================== -->
   <ColonyCouncil.DilemmaDef>
     <defName>Council_Dilemma_Goal_Caravan</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
     <label>the road out</label>
     <weight>0.7</weight>
     <cooldownDays>50</cooldownDays>
@@ -420,6 +426,7 @@
   <!-- ===================== A dream fading ===================== -->
   <ColonyCouncil.DilemmaDef>
     <defName>Council_Dilemma_Goal_GivingUp</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
     <label>a dream fading</label>
     <weight>1</weight>
     <cooldownDays>40</cooldownDays>
@@ -497,6 +504,7 @@
   <!-- ===================== If I don't make it ===================== -->
   <ColonyCouncil.DilemmaDef>
     <defName>Council_Dilemma_Goal_Remember</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
     <label>if I don't make it</label>
     <weight>0.7</weight>
     <cooldownDays>50</cooldownDays>

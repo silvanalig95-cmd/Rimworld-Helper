@@ -26,7 +26,7 @@
       </li>
       <li>
         <heading>Materials from what you have</heading>
-        <text>Each material is picked from what the colony has, stored in stockpiles and on shelves or lying around unforbidden: something there's enough of with a little to spare, stone blocks first, then wood, bone for furniture, then steel. Silver, gold, plasteel, uranium and jade are used only when nothing else will do. Walls get stone before wood, because stone doesn't burn. The walls, the door and the floor take their share first, so the furniture doesn't count on the same blocks.
+        <text>Each material is picked from what the colony has, stored in stockpiles and on shelves or lying around unforbidden: something there's enough of with a little to spare, stone blocks first, then wood, bone for anything but walls, then steel. Silver, gold, plasteel, uranium and jade are used only when nothing else will do. Walls get stone before wood, because stone doesn't burn. The walls, the door and the floor take their share first, so the furniture doesn't count on the same blocks.
 
 A material you pick yourself is remembered for that room and used again next time while there's enough of it. "Use what we have" forgets your picks and starts over. Green means enough with some to spare, amber only just enough, red not enough; the cost list at the bottom compares the whole room with your stock.</text>
       </li>

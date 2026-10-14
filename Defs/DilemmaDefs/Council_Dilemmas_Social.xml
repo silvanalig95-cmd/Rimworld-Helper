@@ -185,6 +185,7 @@
   <!-- ===================== The cover story ===================== -->
   <ColonyCouncil.DilemmaDef>
     <defName>Council_Dilemma_Soc_CoverUp</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
     <label>the cover story</label>
     <weight>1</weight>
     <cooldownDays>40</cooldownDays>
@@ -344,6 +345,7 @@
   <!-- ===================== A rival's word ===================== -->
   <ColonyCouncil.DilemmaDef>
     <defName>Council_Dilemma_Soc_Accusation</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
     <label>a rival's word</label>
     <weight>1</weight>
     <cooldownDays>40</cooldownDays>
@@ -442,6 +444,7 @@
   <!-- ===================== A friend left behind ===================== -->
   <ColonyCouncil.DilemmaDef>
     <defName>Council_Dilemma_Soc_LeftBehind</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
     <label>a friend left behind</label>
     <weight>0.9</weight>
     <cooldownDays>45</cooldownDays>
@@ -531,6 +534,7 @@
   <!-- ===================== The closed circle ===================== -->
   <ColonyCouncil.DilemmaDef>
     <defName>Council_Dilemma_Soc_ClosedCircle</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
     <label>the closed circle</label>
     <weight>0.9</weight>
     <cooldownDays>45</cooldownDays>
@@ -627,6 +631,7 @@
   <!-- ===================== Whose work it was ===================== -->
   <ColonyCouncil.DilemmaDef>
     <defName>Council_Dilemma_Soc_WhoseWork</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
     <label>whose work it was</label>
     <weight>1</weight>
     <cooldownDays>35</cooldownDays>
@@ -710,6 +715,7 @@
   <!-- ===================== A plea for a friend ===================== -->
   <ColonyCouncil.DilemmaDef>
     <defName>Council_Dilemma_Soc_Plea</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
     <label>a plea for a friend</label>
     <weight>1</weight>
     <cooldownDays>40</cooldownDays>
@@ -790,6 +796,7 @@
   <!-- ===================== The quartermaster's friends ===================== -->
   <ColonyCouncil.DilemmaDef>
     <defName>Council_Dilemma_Soc_Favoritism</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
     <label>the quartermaster's friends</label>
     <weight>1.1</weight>
     <cooldownDays>45</cooldownDays>

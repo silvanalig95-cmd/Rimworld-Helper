@@ -82,6 +82,7 @@
 
   <ColonyCouncil.WishDef>
     <defName>Council_Wish_Memorial</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
     <label>a proper burial for {OTHER_nameDef}</label>
     <description>Someone this colonist loved or respected still lies unburied, and they want the body laid to rest.</description>
     <workerClass>ColonyCouncil.WishWorker_Memorial</workerClass>
@@ -177,6 +178,7 @@
 
   <ColonyCouncil.WishDef>
     <defName>Council_Wish_Prosthetic</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
     <label>a replacement for {FOR_possessive} {SUBJECT}</label>
     <description>A colonist missing a body part wants it replaced, and the colony can get or make something that fits.</description>
     <workerClass>ColonyCouncil.WishWorker_Prosthetic</workerClass>
@@ -392,6 +394,7 @@
 
   <ColonyCouncil.WishDef>
     <defName>Council_Wish_RoyalStandards</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
     <label>a {SUBJECT} worthy of {FOR_possessive} title</label>
     <description>A noble's title comes with expectations for their bedroom or throne room, and they're not being met.</description>
     <workerClass>ColonyCouncil.WishWorker_RoyalStandards</workerClass>
@@ -445,6 +448,7 @@
 
   <ColonyCouncil.WishDef>
     <defName>Council_Wish_ChildPlay</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
     <label>{THING} to learn and play at</label>
     <description>A child wants somewhere of their own to learn and play.</description>
     <workerClass>ColonyCouncil.WishWorker_ChildPlay</workerClass>

@@ -5,6 +5,7 @@
 
   <ColonyCouncil.DilemmaDef>
     <defName>Council_Dilemma_PetDinner</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
     <label>the eaten dinner</label>
     <workerClass>ColonyCouncil.DilemmaWorker_Pet</workerClass>
     <weight>0.8</weight>
@@ -53,6 +54,7 @@
 
   <ColonyCouncil.DilemmaDef>
     <defName>Council_Dilemma_PetKitchen</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
     <label>an animal in the kitchen</label>
     <workerClass>ColonyCouncil.DilemmaWorker_Pet</workerClass>
     <weight>0.7</weight>

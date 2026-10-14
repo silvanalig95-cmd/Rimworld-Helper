@@ -17,7 +17,7 @@ namespace ColonyCouncil
             if (!RimfolkPatches.On || ingester == null || __instance?.def == null || ingester.Faction != Faction.OfPlayer || !ingester.RaceProps.Humanlike) return;
             try
             {
-                CouncilGameComponent.Instance?.pressures?.Notify_Ate(ingester, __instance.def);
+                CouncilGameComponent.Instance?.pressures?.Notify_Ate(ingester, __instance);
             }
             catch (System.Exception e)
             {

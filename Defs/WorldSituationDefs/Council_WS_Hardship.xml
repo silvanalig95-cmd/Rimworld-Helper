@@ -8,6 +8,7 @@
 
   <ColonyCouncil.WorldSituationDef>
     <defName>Council_WS_Plague</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
     <label>plague in the region</label>
     <weight>1</weight>
     <earliestDay>25</earliestDay>
@@ -234,6 +235,7 @@
 
   <ColonyCouncil.WorldSituationDef>
     <defName>Council_WS_Famine</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
     <label>famine</label>
     <weight>1</weight>
     <earliestDay>30</earliestDay>
@@ -451,6 +453,7 @@
 
   <ColonyCouncil.WorldSituationDef>
     <defName>Council_WS_HardWinter</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
     <label>hard winter</label>
     <workerClass>ColonyCouncil.SituationWorker_Winter</workerClass>
     <weight>1</weight>
@@ -592,6 +595,7 @@
 
   <ColonyCouncil.WorldSituationDef>
     <defName>Council_WS_Locusts</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
     <label>locust swarm</label>
     <workerClass>ColonyCouncil.SituationWorker_Locusts</workerClass>
     <weight>0.8</weight>
@@ -743,6 +747,7 @@
 
   <ColonyCouncil.WorldSituationDef>
     <defName>Council_WS_Flood</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
     <label>flood downriver</label>
     <workerClass>ColonyCouncil.SituationWorker_River</workerClass>
     <weight>0.8</weight>

@@ -135,6 +135,7 @@
 
   <IncidentDef ParentName="Council_EventBase">
     <defName>Council_Evt_Scholar</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
     <label>traveling scholar</label>
     <workerClass>ColonyCouncil.HappeningWorker_Scholar</workerClass>
     <minRefireDays>40</minRefireDays>
@@ -184,6 +185,7 @@
 
   <IncidentDef ParentName="Council_EventBase">
     <defName>Council_Evt_Apprentice</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
     <label>would-be apprentice</label>
     <workerClass>ColonyCouncil.HappeningWorker_Apprentice</workerClass>
     <minRefireDays>50</minRefireDays>
@@ -270,6 +272,7 @@
 
   <IncidentDef ParentName="Council_EventBase">
     <defName>Council_Evt_LostChild</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
     <label>lost child</label>
     <workerClass>ColonyCouncil.HappeningWorker_LostChild</workerClass>
     <minRefireDays>60</minRefireDays>

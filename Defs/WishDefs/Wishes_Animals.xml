@@ -4,6 +4,7 @@
   <!-- ===================== A bed for the pet ===================== -->
   <ColonyCouncil.WishDef>
     <defName>Council_Wish_PetBed</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
     <label>a bed for {OTHER_nameDef} in {PAWN_possessive} room</label>
     <description>A colonist bonded to a small animal wants it sleeping in their room, not out with the herd.</description>
     <workerClass>ColonyCouncil.WishWorker_PetBed</workerClass>
@@ -51,6 +52,7 @@
   <!-- ===================== A hurt animal ===================== -->
   <ColonyCouncil.WishDef>
     <defName>Council_Wish_HurtAnimal</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
     <label>{OTHER_nameDef} patched up</label>
     <description>A colonist's bonded animal is hurt, and they won't rest until it's tended and back on its feet.</description>
     <workerClass>ColonyCouncil.WishWorker_HurtAnimal</workerClass>

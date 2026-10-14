@@ -9,6 +9,7 @@
 
   <IncidentDef ParentName="Council_EventBase">
     <defName>Council_Evt_Champion</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
     <label>traveling champion</label>
     <workerClass>ColonyCouncil.HappeningWorker_Champion</workerClass>
     <baseChance>1.2</baseChance>
@@ -105,6 +106,7 @@
 
   <IncidentDef ParentName="Council_EventBase">
     <defName>Council_Evt_TreasureMap</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
     <label>treasure map</label>
     <workerClass>ColonyCouncil.HappeningWorker_TreasureMap</workerClass>
     <baseChance>1.5</baseChance>
@@ -150,6 +152,7 @@
 
   <IncidentDef ParentName="Council_EventBase">
     <defName>Council_Evt_Tribute</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
     <label>tribute demanded</label>
     <workerClass>ColonyCouncil.HappeningWorker_Tribute</workerClass>
     <baseChance>0.8</baseChance>

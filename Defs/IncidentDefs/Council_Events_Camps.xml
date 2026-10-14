@@ -9,6 +9,7 @@
 
   <IncidentDef ParentName="Council_EventBase">
     <defName>Council_Evt_Camp</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
     <label>strangers make camp</label>
     <workerClass>ColonyCouncil.HappeningWorker_Camp</workerClass>
     <baseChance>0.7</baseChance>

@@ -8,6 +8,7 @@
 
   <ColonyCouncil.WorldSituationDef>
     <defName>Council_WS_Succession</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
     <label>a new leader</label>
     <workerClass>ColonyCouncil.SituationWorker_Succession</workerClass>
     <weight>1</weight>
@@ -156,6 +157,7 @@
 
   <ColonyCouncil.WorldSituationDef>
     <defName>Council_WS_Claimants</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
     <label>a contested seat</label>
     <workerClass>ColonyCouncil.SituationWorker_Claimants</workerClass>
     <weight>0.9</weight>
@@ -312,6 +314,7 @@
 
   <ColonyCouncil.WorldSituationDef>
     <defName>Council_WS_HolyWar</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
     <label>a war of words</label>
     <workerClass>ColonyCouncil.SituationWorker_HolyWar</workerClass>
     <weight>0.9</weight>
@@ -439,6 +442,7 @@
 
   <ColonyCouncil.WorldSituationDef>
     <defName>Council_WS_PeaceTalks</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
     <label>peace talks</label>
     <workerClass>ColonyCouncil.SituationWorker_PeaceTalks</workerClass>
     <weight>0.7</weight>
@@ -551,6 +555,7 @@
 
   <ColonyCouncil.WorldSituationDef>
     <defName>Council_WS_Mercenaries</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
     <label>sellswords</label>
     <workerClass>ColonyCouncil.SituationWorker_Mercenaries</workerClass>
     <weight>0.9</weight>
@@ -676,6 +681,7 @@
 
   <ColonyCouncil.WorldSituationDef>
     <defName>Council_WS_BanditRoad</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
     <label>bandit road</label>
     <weight>1</weight>
     <earliestDay>25</earliestDay>

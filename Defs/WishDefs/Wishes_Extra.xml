@@ -3,6 +3,7 @@
 
   <ColonyCouncil.WishDef>
     <defName>Council_Wish_Wedding</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
     <label>a wedding with {OTHER_nameDef}</label>
     <description>Engaged colonists want to get married. The ceremony happens on its own once there's somewhere suitable and a calm day; a marriage spot helps.</description>
     <workerClass>ColonyCouncil.WishWorker_Wedding</workerClass>
@@ -57,6 +58,7 @@
 
   <ColonyCouncil.WishDef>
     <defName>Council_Wish_Birthday</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
     <label>a {SUBJECT}</label>
     <description>A birthday is coming. A fine meal, a lavish one, or a party would make it a day to remember.</description>
     <workerClass>ColonyCouncil.WishWorker_Birthday</workerClass>
@@ -266,6 +268,7 @@
 
   <ColonyCouncil.WishDef>
     <defName>Council_Wish_Recruit</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
     <label>{OTHER_nameDef} joining the colony</label>
     <description>A colonist has taken a liking to a prisoner and wants them to become one of you.</description>
     <workerClass>ColonyCouncil.WishWorker_Recruit</workerClass>

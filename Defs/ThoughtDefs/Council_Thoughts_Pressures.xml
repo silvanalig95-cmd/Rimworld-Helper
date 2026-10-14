@@ -15,6 +15,7 @@
 
   <ThoughtDef>
     <defName>Council_Pressure_SameMeal</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
     <workerClass>ColonyCouncil.ThoughtWorker_SameMeal</workerClass>
     <thoughtClass>ColonyCouncil.Thought_Pressure</thoughtClass>
     <validWhileDespawned>true</validWhileDespawned>
@@ -59,6 +60,7 @@
 
   <ThoughtDef>
     <defName>Council_Pressure_SameWork</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
     <workerClass>ColonyCouncil.ThoughtWorker_SameWork</workerClass>
     <thoughtClass>ColonyCouncil.Thought_Pressure</thoughtClass>
     <validWhileDespawned>true</validWhileDespawned>
@@ -86,6 +88,7 @@
 
   <ThoughtDef>
     <defName>Council_Pressure_Missing</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
     <workerClass>ColonyCouncil.ThoughtWorker_Missing</workerClass>
     <thoughtClass>ColonyCouncil.Thought_Pressure</thoughtClass>
     <validWhileDespawned>true</validWhileDespawned>
@@ -113,6 +116,7 @@
 
   <ThoughtDef>
     <defName>Council_Pressure_Crowded</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
     <workerClass>ColonyCouncil.ThoughtWorker_Crowded</workerClass>
     <thoughtClass>ColonyCouncil.Thought_Pressure</thoughtClass>
     <modExtensions>

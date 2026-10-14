@@ -22,6 +22,7 @@
 
   <IncidentDef ParentName="Council_EventBase">
     <defName>Council_Evt_OldComrade</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
     <label>old comrade</label>
     <workerClass>ColonyCouncil.HappeningWorker_OldComrade</workerClass>
     <minRefireDays>45</minRefireDays>
@@ -72,6 +73,7 @@
 
   <IncidentDef ParentName="Council_EventBase">
     <defName>Council_Evt_LostKin</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
     <label>lost family</label>
     <workerClass>ColonyCouncil.HappeningWorker_LostKin</workerClass>
     <minRefireDays>60</minRefireDays>
@@ -120,6 +122,7 @@
 
   <IncidentDef ParentName="Council_EventBase">
     <defName>Council_Evt_OldFlame</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
     <label>old flame</label>
     <workerClass>ColonyCouncil.HappeningWorker_OldFlame</workerClass>
     <minRefireDays>60</minRefireDays>
@@ -160,6 +163,7 @@
 
   <IncidentDef ParentName="Council_EventBase">
     <defName>Council_Evt_Prodigal</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
     <label>return of the one who left</label>
     <workerClass>ColonyCouncil.HappeningWorker_Prodigal</workerClass>
     <baseChance>1.5</baseChance>
@@ -202,6 +206,7 @@
 
   <IncidentDef ParentName="Council_EventBase">
     <defName>Council_Evt_Creditor</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
     <label>old debt</label>
     <workerClass>ColonyCouncil.HappeningWorker_Creditor</workerClass>
     <minRefireDays>50</minRefireDays>
@@ -276,6 +281,7 @@
 
   <IncidentDef ParentName="Council_EventBase">
     <defName>Council_Evt_BountyHunters</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
     <label>bounty hunters</label>
     <workerClass>ColonyCouncil.HappeningWorker_BountyHunters</workerClass>
     <minRefireDays>60</minRefireDays>

@@ -46,7 +46,7 @@
   <CC_Mat_EnoughFor>, enough for {0}</CC_Mat_EnoughFor>
   <CC_Mat_NeedHere>, {0} needed here</CC_Mat_NeedHere>
   <CC_Planner_UseWhatWeHave>Use what we have</CC_Planner_UseWhatWeHave>
-  <CC_Planner_UseWhatWeHave_Tip>Forget the materials picked for this room and choose each one from the stock again: something the colony has enough of, stone blocks first, then wood, bone (furniture only) and steel. Silver, gold, plasteel, uranium and jade only when nothing else will do.
+  <CC_Planner_UseWhatWeHave_Tip>Forget the materials picked for this room and choose each one from the stock again: something the colony has enough of, stone blocks first, then wood, bone (anything but walls) and steel. Silver, gold, plasteel, uranium and jade only when nothing else will do.
 
 Green: enough with some to spare. Amber: only just enough. Red: not enough.</CC_Planner_UseWhatWeHave_Tip>
   <CC_Planner_CostLineLying>{0}: {1} / {2} (+{3} lying around)</CC_Planner_CostLineLying>

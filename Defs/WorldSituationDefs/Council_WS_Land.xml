@@ -8,6 +8,7 @@
 
   <ColonyCouncil.WorldSituationDef>
     <defName>Council_WS_Healer</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
     <label>a famous healer</label>
     <workerClass>ColonyCouncil.SituationWorker_Healer</workerClass>
     <weight>0.9</weight>
@@ -108,6 +109,7 @@
 
   <ColonyCouncil.WorldSituationDef>
     <defName>Council_WS_Migration</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
     <label>the great herds</label>
     <weight>0.9</weight>
     <earliestDay>15</earliestDay>
@@ -302,6 +304,7 @@
 
   <ColonyCouncil.WorldSituationDef>
     <defName>Council_WS_WildMagic</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
     <label>a season of wild magic</label>
     <weight>0.8</weight>
     <earliestDay>20</earliestDay>

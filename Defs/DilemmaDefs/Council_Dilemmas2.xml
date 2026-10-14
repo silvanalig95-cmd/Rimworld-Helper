@@ -9,6 +9,7 @@
   <!-- ===================== A gambling debt ===================== -->
   <ColonyCouncil.DilemmaDef>
     <defName>Council_Dilemma_Wager</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
     <label>a gambling debt</label>
     <weight>0.9</weight>
     <roleB>
@@ -90,6 +91,7 @@
   <!-- ===================== The hoarder ===================== -->
   <ColonyCouncil.DilemmaDef>
     <defName>Council_Dilemma_Hoarder</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
     <label>the hoarder</label>
     <weight>0.8</weight>
     <roleA>
@@ -154,6 +156,7 @@
   <!-- ===================== A bad omen ===================== -->
   <ColonyCouncil.DilemmaDef>
     <defName>Council_Dilemma_Omen</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
     <label>a bad omen</label>
     <weight>0.8</weight>
     <roleA>
@@ -297,6 +300,7 @@
   <!-- ===================== A broken keepsake ===================== -->
   <ColonyCouncil.DilemmaDef>
     <defName>Council_Dilemma_Keepsake</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
     <label>a broken keepsake</label>
     <weight>0.9</weight>
     <roleB>
@@ -381,6 +385,7 @@
   <!-- ===================== Asleep on watch ===================== -->
   <ColonyCouncil.DilemmaDef>
     <defName>Council_Dilemma_Watch</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
     <label>asleep on watch</label>
     <weight>0.9</weight>
     <roleB>
@@ -466,6 +471,7 @@
   <!-- ===================== An unflattering likeness ===================== -->
   <ColonyCouncil.DilemmaDef>
     <defName>Council_Dilemma_Sculpture</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
     <label>an unflattering likeness</label>
     <weight>0.8</weight>
     <roleA>
@@ -543,6 +549,7 @@
   <!-- ===================== Music at midnight ===================== -->
   <ColonyCouncil.DilemmaDef>
     <defName>Council_Dilemma_Music</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
     <label>music at midnight</label>
     <weight>0.9</weight>
     <roleB>
@@ -691,6 +698,7 @@
   <!-- ===================== A seat at the table ===================== -->
   <ColonyCouncil.DilemmaDef>
     <defName>Council_Dilemma_Seat</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
     <label>a seat at the table</label>
     <weight>0.8</weight>
     <roleA>
@@ -773,6 +781,7 @@
   <!-- ===================== Not pulling weight ===================== -->
   <ColonyCouncil.DilemmaDef>
     <defName>Council_Dilemma_Slacker</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
     <label>not pulling weight</label>
     <weight>1</weight>
     <cooldownDays>30</cooldownDays>
@@ -860,6 +869,7 @@
   <!-- ===================== An old face ===================== -->
   <ColonyCouncil.DilemmaDef>
     <defName>Council_Dilemma_OldFace</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
     <label>an old face</label>
     <weight>0.6</weight>
     <roleB>

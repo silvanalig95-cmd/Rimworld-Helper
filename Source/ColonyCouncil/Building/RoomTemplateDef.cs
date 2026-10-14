@@ -375,7 +375,7 @@ namespace ColonyCouncil
             return MaterialPicker.Pick(pick, map, units, use, reserved);
         }
 
-        /// <summary>Walls and doors inside a room (a partition, a second door) are built like the room's own: never of bone.</summary>
+        /// <summary>Walls and doors inside a room (a partition, a second door) are built like the room's own: walls never of bone.</summary>
         public static MaterialUse UseOf(TemplateThing t) =>
             t == null ? MaterialUse.Furniture : t.role == "wall" ? MaterialUse.Wall : t.role == "door" ? MaterialUse.Door : MaterialUse.Furniture;
 

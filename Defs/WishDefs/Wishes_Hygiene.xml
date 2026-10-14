@@ -13,6 +13,7 @@
 
   <ColonyCouncil.WishDef>
     <defName>Council_Wish_Toilet</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
     <label>{THING}</label>
     <description>Someone wants a latrine or toilet within reach, so nobody has to use the bushes or wait in line.</description>
     <workerClass>ColonyCouncil.WishWorker_Toilets</workerClass>
@@ -87,6 +88,7 @@
 
   <ColonyCouncil.WishDef>
     <defName>Council_Wish_WashPlace</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
     <label>{THING}</label>
     <description>A colonist who has gone grimy wants anywhere at all to wash.</description>
     <workerClass>ColonyCouncil.WishWorker_WashPlace</workerClass>

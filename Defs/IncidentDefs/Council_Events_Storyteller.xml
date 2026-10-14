@@ -13,6 +13,7 @@
 
   <IncidentDef ParentName="Council_EventBase">
     <defName>Council_Evt_OldAdventurer</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
     <label>an old adventurer</label>
     <workerClass>ColonyCouncil.HappeningWorker_OldAdventurer</workerClass>
     <baseChance>1</baseChance>
@@ -89,6 +90,7 @@
 
   <IncidentDef ParentName="Council_EventBase">
     <defName>Council_Evt_Cartographer</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
     <label>a mapmaker</label>
     <workerClass>ColonyCouncil.HappeningWorker_Cartographer</workerClass>
     <baseChance>0.8</baseChance>
@@ -165,6 +167,7 @@
 
   <IncidentDef ParentName="Council_EventBase">
     <defName>Council_Evt_SilentMonk</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
     <label>a silent guest</label>
     <workerClass>ColonyCouncil.HappeningWorker_SilentMonk</workerClass>
     <baseChance>0.9</baseChance>
@@ -232,6 +235,7 @@
 
   <IncidentDef ParentName="Council_EventBase">
     <defName>Council_Evt_LimbMaker</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
     <label>the limb-maker</label>
     <workerClass>ColonyCouncil.HappeningWorker_LimbMaker</workerClass>
     <baseChance>1.5</baseChance>
@@ -297,6 +301,7 @@
 
   <IncidentDef ParentName="Council_EventBase">
     <defName>Council_Evt_Venture</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
     <label>a merchant's venture</label>
     <workerClass>ColonyCouncil.HappeningWorker_Venture</workerClass>
     <baseChance>1</baseChance>
@@ -379,6 +384,7 @@
 
   <IncidentDef ParentName="Council_EventBase">
     <defName>Council_Evt_WantedPrisoner</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
     <label>a prisoner wanted</label>
     <workerClass>ColonyCouncil.HappeningWorker_WantedPrisoner</workerClass>
     <baseChance>1.2</baseChance>
@@ -439,6 +445,7 @@
 
   <IncidentDef ParentName="Council_EventBase">
     <defName>Council_Evt_WoundedStranger</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
     <label>a wounded stranger</label>
     <workerClass>ColonyCouncil.HappeningWorker_WoundedStranger</workerClass>
     <baseChance>0.9</baseChance>
@@ -509,6 +516,7 @@
 
   <IncidentDef ParentName="Council_EventBase">
     <defName>Council_Evt_Envoy</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
     <label>an envoy</label>
     <workerClass>ColonyCouncil.HappeningWorker_Envoy</workerClass>
     <baseChance>0.6</baseChance>
@@ -572,6 +580,7 @@
 
   <IncidentDef ParentName="Council_EventBase">
     <defName>Council_Evt_Tithe</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
     <label>the lord's tithe</label>
     <workerClass>ColonyCouncil.HappeningWorker_Tithe</workerClass>
     <baseChance>1</baseChance>
@@ -661,6 +670,7 @@
 
   <IncidentDef ParentName="Council_EventBase">
     <defName>Council_Evt_CrashedDrone</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
     <label>a crashed drone</label>
     <workerClass>ColonyCouncil.HappeningWorker_CrashedDrone</workerClass>
     <baseChance>1</baseChance>
@@ -719,6 +729,7 @@
 
   <IncidentDef ParentName="Council_EventBase">
     <defName>Council_Evt_Signal</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
     <label>a signal</label>
     <workerClass>ColonyCouncil.HappeningWorker_Signal</workerClass>
     <baseChance>0.8</baseChance>
@@ -800,6 +811,7 @@
 
   <IncidentDef ParentName="Council_EventBase">
     <defName>Council_Evt_ArcaneTome</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
     <label>an arcane tome</label>
     <workerClass>ColonyCouncil.HappeningWorker_ArcaneTome</workerClass>
     <baseChance>0.8</baseChance>

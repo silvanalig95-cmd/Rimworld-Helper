@@ -8,6 +8,7 @@
 
   <IncidentDef ParentName="Council_EventBase">
     <defName>Council_Evt_DeserterFound</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
     <label>deserter found</label>
     <workerClass>ColonyCouncil.HappeningWorker_DeserterFound</workerClass>
     <baseChance>2</baseChance>
@@ -74,6 +75,7 @@
 
   <IncidentDef ParentName="Council_EventBase">
     <defName>Council_Evt_ChildGrown</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
     <label>the lost child returns</label>
     <workerClass>ColonyCouncil.HappeningWorker_ChildGrown</workerClass>
     <baseChance>2</baseChance>
@@ -122,6 +124,7 @@
 
   <IncidentDef ParentName="Council_EventBase">
     <defName>Council_Evt_Rematch</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
     <label>rematch</label>
     <workerClass>ColonyCouncil.HappeningWorker_Rematch</workerClass>
     <baseChance>1.6</baseChance>

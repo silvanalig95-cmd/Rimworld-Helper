@@ -9,6 +9,7 @@
 
   <ThoughtDef ParentName="Council_QuirkBase">
     <defName>Council_Quirk_LuckyItem</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
     <stages>
       <li><label>my lucky {ITEM}</label><description>Nothing bad happens while I'm wearing it. That's just a fact.</description><baseMoodEffect>3</baseMoodEffect></li>
       <li><label>without my lucky {ITEM}</label><description>Where is it? I don't feel right without it. Something's going to go wrong.</description><baseMoodEffect>-4</baseMoodEffect></li>

@@ -63,6 +63,7 @@
 
   <IncidentDef ParentName="Council_EventBase">
     <defName>Council_Evt_LoversKin</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
     <label>the lovers' family</label>
     <workerClass>ColonyCouncil.HappeningWorker_LoversKin</workerClass>
     <baseChance>2</baseChance>
@@ -136,6 +137,7 @@
 
   <IncidentDef ParentName="Council_EventBase">
     <defName>Council_Evt_KinLetter</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
     <label>a letter from home</label>
     <workerClass>ColonyCouncil.HappeningWorker_KinLetter</workerClass>
     <baseChance>2</baseChance>
@@ -278,6 +280,7 @@
 
   <IncidentDef ParentName="Council_EventBase">
     <defName>Council_Evt_Renown</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
     <label>known by name</label>
     <workerClass>ColonyCouncil.HappeningWorker_Renown</workerClass>
     <minRefireDays>35</minRefireDays>
@@ -335,6 +338,7 @@
 
   <IncidentDef ParentName="Council_EventBase">
     <defName>Council_Evt_VendettaBand</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
     <label>a chance at vengeance</label>
     <workerClass>ColonyCouncil.HappeningWorker_VendettaBand</workerClass>
     <baseChance>1.2</baseChance>
@@ -481,6 +485,7 @@
 
   <IncidentDef ParentName="Council_EventBase">
     <defName>Council_Evt_FarMarket</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
     <label>the far market</label>
     <workerClass>ColonyCouncil.HappeningWorker_FarMarket</workerClass>
     <minRefireDays>35</minRefireDays>
@@ -537,6 +542,7 @@
 
   <IncidentDef ParentName="Council_EventBase">
     <defName>Council_Evt_HarvestFair</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
     <label>harvest fair</label>
     <workerClass>ColonyCouncil.HappeningWorker_HarvestFair</workerClass>
     <baseChance>1.5</baseChance>
@@ -598,6 +604,7 @@
 
   <IncidentDef ParentName="Council_EventBase">
     <defName>Council_Evt_MidwinterGuest</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
     <label>a guest on a winter night</label>
     <workerClass>ColonyCouncil.HappeningWorker_MidwinterGuest</workerClass>
     <baseChance>1.2</baseChance>

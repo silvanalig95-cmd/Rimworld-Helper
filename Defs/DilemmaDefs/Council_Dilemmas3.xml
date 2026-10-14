@@ -10,6 +10,7 @@
   <!-- ===================== The young hunter (child) ===================== -->
   <ColonyCouncil.DilemmaDef>
     <defName>Council_Dilemma_YoungHunter</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
     <label>the young hunter</label>
     <weight>0.9</weight>
     <cooldownDays>45</cooldownDays>
@@ -179,6 +180,7 @@
   <!-- ===================== A friend past the wall (child) ===================== -->
   <ColonyCouncil.DilemmaDef>
     <defName>Council_Dilemma_WildFriend</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
     <label>a friend past the wall</label>
     <weight>0.8</weight>
     <cooldownDays>45</cooldownDays>
@@ -269,6 +271,7 @@
   <!-- ===================== The bite (pet) ===================== -->
   <ColonyCouncil.DilemmaDef>
     <defName>Council_Dilemma_PetBite</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
     <label>the bite</label>
     <workerClass>ColonyCouncil.DilemmaWorker_Pet</workerClass>
     <weight>0.8</weight>
@@ -345,6 +348,7 @@
   <!-- ===================== An animal in decline (pet) ===================== -->
   <ColonyCouncil.DilemmaDef>
     <defName>Council_Dilemma_PetFading</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
     <label>an animal in decline</label>
     <workerClass>ColonyCouncil.DilemmaWorker_Pet</workerClass>
     <weight>0.6</weight>
@@ -430,6 +434,7 @@
   <!-- ===================== A hungry look (pet) ===================== -->
   <ColonyCouncil.DilemmaDef>
     <defName>Council_Dilemma_PetPot</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
     <label>a hungry look</label>
     <workerClass>ColonyCouncil.DilemmaWorker_Pet</workerClass>
     <weight>0.7</weight>
@@ -509,6 +514,7 @@
   <!-- ===================== A love letter ===================== -->
   <ColonyCouncil.DilemmaDef>
     <defName>Council_Dilemma_LoveLetter</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
     <label>a love letter</label>
     <weight>0.9</weight>
     <roleA>
@@ -600,6 +606,7 @@
   <!-- ===================== A funeral in advance ===================== -->
   <ColonyCouncil.DilemmaDef>
     <defName>Council_Dilemma_OwnFuneral</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
     <label>a funeral in advance</label>
     <weight>0.7</weight>
     <cooldownDays>50</cooldownDays>
@@ -676,6 +683,7 @@
   <!-- ===================== The sleepwalker ===================== -->
   <ColonyCouncil.DilemmaDef>
     <defName>Council_Dilemma_Sleepwalker</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
     <label>the sleepwalker</label>
     <weight>0.9</weight>
     <roleB>
@@ -763,6 +771,7 @@
   <!-- ===================== A side deal ===================== -->
   <ColonyCouncil.DilemmaDef>
     <defName>Council_Dilemma_SideDeal</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
     <label>a side deal</label>
     <weight>0.9</weight>
     <roleA>
@@ -861,6 +870,7 @@
   <!-- ===================== Who saved us ===================== -->
   <ColonyCouncil.DilemmaDef>
     <defName>Council_Dilemma_Credit</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
     <label>who saved us</label>
     <weight>1</weight>
     <cooldownDays>20</cooldownDays>

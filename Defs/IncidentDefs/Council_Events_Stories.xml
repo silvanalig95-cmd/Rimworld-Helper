@@ -15,6 +15,7 @@
 
   <IncidentDef ParentName="Council_EventBase">
     <defName>Council_Story_Door</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
     <label>the door in the hill</label>
     <workerClass>ColonyCouncil.HappeningWorker_StoryDoor</workerClass>
     <baseChance>0.7</baseChance>
@@ -148,6 +149,7 @@
 
   <IncidentDef ParentName="Council_EventBase">
     <defName>Council_Story_DoorEmpty</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
     <label>the empty vault</label>
     <workerClass>ColonyCouncil.HappeningWorker_StoryDoor</workerClass>
     <baseChance>0</baseChance>
@@ -230,6 +232,7 @@
 
   <IncidentDef ParentName="Council_EventBase">
     <defName>Council_Story_DoorHoard</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
     <label>the hoard in the hill</label>
     <workerClass>ColonyCouncil.HappeningWorker_StoryDoor</workerClass>
     <baseChance>0</baseChance>
@@ -277,6 +280,7 @@
 
   <IncidentDef ParentName="Council_EventBase">
     <defName>Council_Story_DoorSleeper</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
     <label>the sleeper wakes</label>
     <workerClass>ColonyCouncil.HappeningWorker_StoryDoor</workerClass>
     <baseChance>0</baseChance>
@@ -318,6 +322,7 @@
 
   <IncidentDef ParentName="Council_EventBase">
     <defName>Council_Story_DoorOwners</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
     <label>the owners of the hoard</label>
     <workerClass>ColonyCouncil.HappeningWorker_StoryDoor</workerClass>
     <baseChance>0</baseChance>
@@ -360,6 +365,7 @@
 
   <IncidentDef ParentName="Council_EventBase">
     <defName>Council_Story_DoorBuyer</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
     <label>the buyer comes back</label>
     <workerClass>ColonyCouncil.HappeningWorker_StoryDoor</workerClass>
     <baseChance>0</baseChance>
@@ -410,6 +416,7 @@
 
   <IncidentDef ParentName="Council_EventBase">
     <defName>Council_Story_Fugitive</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
     <label>the fugitive's debt</label>
     <workerClass>ColonyCouncil.HappeningWorker_StoryDebt</workerClass>
     <baseChance>0.7</baseChance>
@@ -533,6 +540,7 @@
 
   <IncidentDef ParentName="Council_EventBase">
     <defName>Council_Story_Pursuers</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
     <label>the riders</label>
     <workerClass>ColonyCouncil.HappeningWorker_StoryDebt</workerClass>
     <baseChance>0</baseChance>
@@ -583,6 +591,7 @@
 
   <IncidentDef ParentName="Council_EventBase">
     <defName>Council_Story_DebtRepaid</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
     <label>a debt repaid</label>
     <workerClass>ColonyCouncil.HappeningWorker_StoryDebt</workerClass>
     <baseChance>0</baseChance>
@@ -623,6 +632,7 @@
 
   <IncidentDef ParentName="Council_EventBase">
     <defName>Council_Story_DebtGift</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
     <label>a gift with a past</label>
     <workerClass>ColonyCouncil.HappeningWorker_StoryDebt</workerClass>
     <baseChance>0</baseChance>
@@ -673,6 +683,7 @@
 
   <IncidentDef ParentName="Council_EventBase">
     <defName>Council_Story_DebtRevenge</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
     <label>a witness comes back</label>
     <workerClass>ColonyCouncil.HappeningWorker_StoryDebt</workerClass>
     <baseChance>0</baseChance>
@@ -722,6 +733,7 @@
 
   <IncidentDef ParentName="Council_EventBase">
     <defName>Council_Story_Feud</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
     <label>bad blood</label>
     <workerClass>ColonyCouncil.HappeningWorker_StoryFeud</workerClass>
     <baseChance>0.6</baseChance>
@@ -887,6 +899,7 @@
 
   <IncidentDef ParentName="Council_EventBase">
     <defName>Council_Story_FeudSided</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
     <label>the town decides</label>
     <workerClass>ColonyCouncil.HappeningWorker_StoryFeud</workerClass>
     <baseChance>0</baseChance>
@@ -930,6 +943,7 @@
 
   <IncidentDef ParentName="Council_EventBase">
     <defName>Council_Story_FeudVendetta</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
     <label>hired blades</label>
     <workerClass>ColonyCouncil.HappeningWorker_StoryFeud</workerClass>
     <baseChance>0</baseChance>
@@ -972,6 +986,7 @@
 
   <IncidentDef ParentName="Council_EventBase">
     <defName>Council_Story_FeudWedding</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
     <label>the wedding</label>
     <workerClass>ColonyCouncil.HappeningWorker_StoryFeud</workerClass>
     <baseChance>0</baseChance>
@@ -1028,6 +1043,7 @@
 
   <IncidentDef ParentName="Council_EventBase">
     <defName>Council_Story_Prophet</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
     <label>the preacher</label>
     <workerClass>ColonyCouncil.HappeningWorker_StoryProphet</workerClass>
     <baseChance>0.6</baseChance>
@@ -1129,6 +1145,7 @@
 
   <IncidentDef ParentName="Council_EventBase">
     <defName>Council_Story_ProphetFollowers</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
     <label>a follower</label>
     <workerClass>ColonyCouncil.HappeningWorker_StoryProphet</workerClass>
     <baseChance>0</baseChance>
@@ -1173,6 +1190,7 @@
 
   <IncidentDef ParentName="Council_EventBase">
     <defName>Council_Story_ProphetSchism</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
     <label>a divided colony</label>
     <workerClass>ColonyCouncil.HappeningWorker_StoryProphet</workerClass>
     <baseChance>0</baseChance>
@@ -1212,6 +1230,7 @@
 
   <IncidentDef ParentName="Council_EventBase">
     <defName>Council_Story_ProphetHill</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
     <label>pilgrims on the road</label>
     <workerClass>ColonyCouncil.HappeningWorker_StoryProphet</workerClass>
     <baseChance>0</baseChance>
@@ -1283,6 +1302,7 @@
 
   <IncidentDef ParentName="Council_EventBase">
     <defName>Council_Story_Expedition</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
     <label>the lost expedition</label>
     <workerClass>ColonyCouncil.HappeningWorker_StoryExpedition</workerClass>
     <baseChance>0.6</baseChance>
@@ -1403,6 +1423,7 @@
 
   <IncidentDef ParentName="Council_EventBase">
     <defName>Council_Story_ExpeditionReturn</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
     <label>the rescue comes back</label>
     <workerClass>ColonyCouncil.HappeningWorker_StoryExpedition</workerClass>
     <baseChance>0</baseChance>
@@ -1444,6 +1465,7 @@
 
   <IncidentDef ParentName="Council_EventBase">
     <defName>Council_Story_ExpeditionWarning</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
     <label>a warning from the ruin</label>
     <workerClass>ColonyCouncil.HappeningWorker_StoryExpedition</workerClass>
     <baseChance>0</baseChance>

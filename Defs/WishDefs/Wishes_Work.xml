@@ -3,6 +3,7 @@
 
   <ColonyCouncil.WishDef>
     <defName>Council_Wish_PassionSpace</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
     <label>{SUBJECT}</label>
     <description>A colonist passionate about a skill wants a proper space for it: a workshop, kitchen, laboratory, hospital, greenhouse or barn.</description>
     <workerClass>ColonyCouncil.WishWorker_PassionSpace</workerClass>
@@ -90,6 +91,7 @@
 
   <ColonyCouncil.WishDef>
     <defName>Council_Wish_LetMeWork</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
     <label>to do some {SUBJECT}</label>
     <description>A colonist passionate about a kind of work that's switched off for them wants to be allowed to do it.</description>
     <workerClass>ColonyCouncil.WishWorker_LetMeWork</workerClass>
@@ -213,6 +215,7 @@
 
   <ColonyCouncil.WishDef>
     <defName>Council_Wish_BetterWeapon</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
     <label>a decent {SUBJECT}</label>
     <description>A colonist who lives to fight wants a weapon worth carrying, or a brawler stuck holding a gun wants something to swing.</description>
     <workerClass>ColonyCouncil.WishWorker_BetterWeapon</workerClass>
@@ -344,6 +347,7 @@
 
   <ColonyCouncil.WishDef>
     <defName>Council_Wish_BetterFood</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
     <label>{SUBJECT}</label>
     <description>Gourmands, and anyone sick of raw food, want better meals.</description>
     <workerClass>ColonyCouncil.WishWorker_BetterFood</workerClass>

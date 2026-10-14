@@ -12,6 +12,7 @@
 
   <ColonyCouncil.QuirkDef>
     <defName>Council_Quirk_LuckyItem</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
     <label>a lucky {ITEM}</label>
     <afterBattle>true</afterBattle>
     <chance>0.25</chance>

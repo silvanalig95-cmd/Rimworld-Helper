@@ -10,6 +10,7 @@
 
   <ColonyCouncil.WorldSituationDef>
     <defName>Council_WS_Warlord</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
     <label>a warlord rises</label>
     <workerClass>ColonyCouncil.WarlordWorker</workerClass>
     <weight>1.3</weight>

@@ -10,6 +10,7 @@
   <!-- ===================== A thief in the stores ===================== -->
   <ColonyCouncil.DilemmaDef>
     <defName>Council_Dilemma_Thief</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
     <label>a thief in the stores</label>
     <weight>1</weight>
     <roleA>
@@ -114,6 +115,7 @@
   <!-- ===================== A feud ===================== -->
   <ColonyCouncil.DilemmaDef>
     <defName>Council_Dilemma_Feud</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
     <label>a feud</label>
     <weight>1.2</weight>
     <cooldownDays>25</cooldownDays>
@@ -194,6 +196,7 @@
   <!-- ===================== The cook's feast ===================== -->
   <ColonyCouncil.DilemmaDef>
     <defName>Council_Dilemma_Feast</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
     <label>the cook's feast</label>
     <workerClass>ColonyCouncil.DilemmaWorker_Feast</workerClass>
     <weight>0.9</weight>
@@ -245,6 +248,7 @@
   <!-- ===================== A confession ===================== -->
   <ColonyCouncil.DilemmaDef>
     <defName>Council_Dilemma_Confession</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
     <label>a confession</label>
     <weight>0.9</weight>
     <roleB>

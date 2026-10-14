@@ -87,13 +87,37 @@ namespace ColonyCouncil
             return Math.Min(stage + 1, options >= 3 ? 3 : 2);
         }
 
-        /// <summary>At least <see cref="VarietyKinds"/> different foods among these (the last two days' meals).</summary>
+        /// <summary>
+        /// A meal as it's remembered: its kind, then what went into it ("MealSimple|Meat_Muffalo+RawPotatoes"). The same
+        /// kind made with other ingredients is a different meal to the tongue, so "the same meal again" compares whole
+        /// keys; a varied table asks for different kinds of meal, so a week of simple meals never earns it.
+        /// </summary>
+        public static string MealKey(string kind, IEnumerable<string> ingredients)
+        {
+            if (ingredients == null) return kind;
+            var list = new List<string>();
+            foreach (var i in ingredients)
+                if (!string.IsNullOrEmpty(i) && !list.Contains(i)) list.Add(i);
+            if (list.Count == 0) return kind;
+            list.Sort(StringComparer.Ordinal);
+            return kind + "|" + string.Join("+", list);
+        }
+
+        /// <summary>The kind of meal in a key (older saves kept the kind alone).</summary>
+        public static string KindOf(string key)
+        {
+            if (key == null) return null;
+            int i = key.IndexOf('|');
+            return i < 0 ? key : key.Substring(0, i);
+        }
+
+        /// <summary>At least <see cref="VarietyKinds"/> different kinds of meal among these (the last two days' meals).</summary>
         public static bool VariedTable(IList<string> recent)
         {
             if (recent == null || recent.Count < VarietyKinds) return false;
             var seen = new HashSet<string>();
             foreach (var k in recent)
-                if (k != null) seen.Add(k);
+                if (k != null) seen.Add(KindOf(k));
             return seen.Count >= VarietyKinds;
         }
 

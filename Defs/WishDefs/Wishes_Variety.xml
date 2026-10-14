@@ -13,6 +13,7 @@
 
   <ColonyCouncil.WishDef>
     <defName>Council_Wish_Hearth</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
     <label>{THING} in {FOR_possessive} room</label>
     <description>The nights are turning cold, and this colonist would like a fire of their own to sleep beside.</description>
     <workerClass>ColonyCouncil.WishWorker_Have</workerClass>
@@ -92,6 +93,7 @@
 
   <ColonyCouncil.WishDef>
     <defName>Council_Wish_Bookcase</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
     <label>{THING} for the colony</label>
     <description>A reader or an artist wants somewhere proper to keep the colony's books.</description>
     <workerClass>ColonyCouncil.WishWorker_Have</workerClass>
@@ -717,6 +719,7 @@
 
   <ColonyCouncil.WishDef>
     <defName>Council_Wish_Hat</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
     <label>a hat of {FOR_possessive} own</label>
     <description>This colonist has been going bareheaded and would like something to wear on their head.</description>
     <workerClass>ColonyCouncil.WishWorker_Wear</workerClass>
@@ -980,6 +983,7 @@
 
   <ColonyCouncil.WishDef>
     <defName>Council_Wish_TraderGoods</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
     <label>{SUBJECT} from {OTHER_nameDef}'s wares</label>
     <description>A trader is in the colony with something this colonist can't stop thinking about, and it leaves when the trader does.</description>
     <workerClass>ColonyCouncil.WishWorker_TraderGoods</workerClass>
@@ -1045,6 +1049,7 @@
 
   <ColonyCouncil.WishDef>
     <defName>Council_Wish_Beast</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
     <label>{OTHER_definite} hunted down</label>
     <description>A wild animal that mauled one of the colonists still prowls the map, and someone wants it dead.</description>
     <workerClass>ColonyCouncil.WishWorker_Beast</workerClass>
@@ -1111,6 +1116,7 @@
 
   <ColonyCouncil.WishDef>
     <defName>Council_Wish_Lessons</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
     <label>lessons in {SUBJECT} from {OTHER_nameDef}</label>
     <description>This colonist loves a skill they're still bad at, and the colony's best at it is right there.</description>
     <workerClass>ColonyCouncil.WishWorker_Lessons</workerClass>
@@ -1304,6 +1310,7 @@
 
   <ColonyCouncil.WishDef>
     <defName>Council_Wish_Bath</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
     <label>{THING}</label>
     <description>Someone wants a real bath in the colony, somewhere to get properly clean and warm.</description>
     <workerClass>ColonyCouncil.WishWorker_Have</workerClass>
@@ -1376,6 +1383,7 @@
 
   <ColonyCouncil.WishDef>
     <defName>Council_Wish_Smokehouse</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
     <label>{THING} to keep meat through winter</label>
     <description>A cook wants a smokehouse or drying rack, so meat can be cured instead of rotting.</description>
     <workerClass>ColonyCouncil.WishWorker_Have</workerClass>
@@ -1441,6 +1449,7 @@
 
   <ColonyCouncil.WishDef>
     <defName>Council_Wish_Beehive</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
     <label>{THING}</label>
     <description>A grower or animal lover wants bees in the colony, for the honey and for the crops.</description>
     <workerClass>ColonyCouncil.WishWorker_Have</workerClass>
@@ -1506,6 +1515,7 @@
 
   <ColonyCouncil.WishDef>
     <defName>Council_Wish_Fountain</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
     <label>{THING} in the colony</label>
     <description>An artistic colonist wants a fountain, something beautiful and useless among all the work of staying alive.</description>
     <workerClass>ColonyCouncil.WishWorker_Have</workerClass>
@@ -1639,6 +1649,7 @@
 
   <ColonyCouncil.WishDef>
     <defName>Council_Wish_WeaponRack</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
     <label>{THING} for the armory</label>
     <description>A fighter wants a proper weapon or armor rack, so the colony's arms can be grabbed in a hurry.</description>
     <workerClass>ColonyCouncil.WishWorker_Have</workerClass>
@@ -1773,6 +1784,7 @@
 
   <ColonyCouncil.WishDef>
     <defName>Council_Wish_GardenSeat</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
     <label>{THING} to sit on outside</label>
     <description>Someone would like a bench out in the open air, somewhere to sit and watch the sky for a moment.</description>
     <workerClass>ColonyCouncil.WishWorker_Have</workerClass>

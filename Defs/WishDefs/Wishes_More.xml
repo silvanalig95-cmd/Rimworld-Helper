@@ -55,6 +55,7 @@
   <!-- ===================== The fix ===================== -->
   <ColonyCouncil.WishDef>
     <defName>Council_Wish_Fix</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
     <label>a steady supply of {SUBJECT}</label>
     <description>An addicted colonist with no intention of quitting wants the drug they're hooked on kept in stock. Granting it keeps withdrawal away; refusing it is a choice too.</description>
     <workerClass>ColonyCouncil.WishWorker_Fix</workerClass>
@@ -105,6 +106,7 @@
   <!-- ===================== Help me quit ===================== -->
   <ColonyCouncil.WishDef>
     <defName>Council_Wish_Quit</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
     <label>help getting off {SUBJECT}</label>
     <description>An addicted colonist wants to get clean. Stop giving them the drug (the Assign tab's drug policies) and see them through the withdrawal until the addiction passes.</description>
     <workerClass>ColonyCouncil.WishWorker_Quit</workerClass>
@@ -162,6 +164,7 @@
   <!-- ===================== Separate rooms ===================== -->
   <ColonyCouncil.WishDef>
     <defName>Council_Wish_Separate</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
     <label>not sleeping next to {OTHER_nameDef}</label>
     <description>A colonist shares a bedroom or barracks with someone they can't stand, and wants one of them moved.</description>
     <workerClass>ColonyCouncil.WishWorker_Separate</workerClass>

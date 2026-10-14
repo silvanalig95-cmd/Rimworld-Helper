@@ -16,6 +16,7 @@
 
   <ColonyCouncil.DilemmaDef ParentName="Council_PathBase">
     <defName>Council_Dilemma_Path_Craft</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
     <label>a path: the workshop</label>
     <roleB><bestAt>Crafting</bestAt><minOpinionOfA>-20</minOpinionOfA></roleB>
     <texts>
@@ -57,6 +58,7 @@
 
   <ColonyCouncil.DilemmaDef ParentName="Council_PathBase">
     <defName>Council_Dilemma_Path_Medicine</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
     <label>a path: the healer</label>
     <roleB><bestAt>Medicine</bestAt><minOpinionOfA>-20</minOpinionOfA></roleB>
     <texts>
@@ -97,6 +99,7 @@
 
   <ColonyCouncil.DilemmaDef ParentName="Council_PathBase">
     <defName>Council_Dilemma_Path_Scholar</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
     <label>a path: the scholar</label>
     <roleB><bestAt>Intellectual</bestAt><minOpinionOfA>-20</minOpinionOfA></roleB>
     <texts>
@@ -136,6 +139,7 @@
 
   <ColonyCouncil.DilemmaDef ParentName="Council_PathBase">
     <defName>Council_Dilemma_Path_Warrior</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
     <label>a path: the wall</label>
     <roleB><bestAt>Shooting</bestAt><minOpinionOfA>-20</minOpinionOfA><canFight>true</canFight></roleB>
     <texts>

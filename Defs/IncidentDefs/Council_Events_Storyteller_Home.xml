@@ -10,6 +10,7 @@
 
   <IncidentDef ParentName="Council_EventBase">
     <defName>Council_Evt_Recognized</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
     <label>recognized</label>
     <workerClass>ColonyCouncil.HappeningWorker_Recognized</workerClass>
     <baseChance>1.2</baseChance>
@@ -95,6 +96,7 @@
 
   <IncidentDef ParentName="Council_EventBase">
     <defName>Council_Evt_OldCommander</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
     <label>an old commander's call</label>
     <workerClass>ColonyCouncil.HappeningWorker_OldCommander</workerClass>
     <baseChance>1</baseChance>
@@ -157,6 +159,7 @@
 
   <IncidentDef ParentName="Council_EventBase">
     <defName>Council_Evt_FormerPatient</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
     <label>a former patient</label>
     <workerClass>ColonyCouncil.HappeningWorker_FormerPatient</workerClass>
     <baseChance>1</baseChance>
@@ -271,6 +274,7 @@
 
   <IncidentDef ParentName="Council_EventBase">
     <defName>Council_Evt_ChildFind</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
     <label>a child's find</label>
     <workerClass>ColonyCouncil.HappeningWorker_ChildFind</workerClass>
     <baseChance>1.2</baseChance>
@@ -356,6 +360,7 @@
 
   <IncidentDef ParentName="Council_EventBase">
     <defName>Council_Evt_SealedCrate</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
     <label>a sealed crate</label>
     <workerClass>ColonyCouncil.HappeningWorker_SealedCrate</workerClass>
     <baseChance>1</baseChance>

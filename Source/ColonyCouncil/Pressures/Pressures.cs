@@ -139,8 +139,10 @@ namespace ColonyCouncil
             return taste.NullOrEmpty() || taste[0] == null || taste[0].baseMoodEffect >= 0f;
         }
 
-        public static string FoodLabel(string defName)
+        /// <summary>A remembered meal's name: its kind ("simple meal"), whatever went into it.</summary>
+        public static string FoodLabel(string key)
         {
+            string defName = PressureMath.KindOf(key);
             if (defName.NullOrEmpty()) return "?";
             return DefDatabase<ThingDef>.GetNamedSilentFail(defName)?.label ?? defName;
         }
@@ -363,13 +365,15 @@ namespace ColonyCouncil
 
         // ---------------- Meals ----------------
 
-        /// <summary>A colonist ate something (Patch_Ate).</summary>
-        public void Notify_Ate(Pawn p, ThingDef food)
+        /// <summary>A colonist ate something (Patch_Ate): remembered with what went into it.</summary>
+        public void Notify_Ate(Pawn p, Thing meal)
         {
-            if (!Pressures.On || !Pressures.Eligible(p) || !Pressures.CountsAsFood(food)) return;
+            var food = meal?.def;
+            if (food == null || !Pressures.On || !Pressures.Eligible(p) || !Pressures.CountsAsFood(food)) return;
             var rec = For(p, true);
             int now = Now;
-            rec.meals.Add(food.defName);
+            var ingredients = meal.TryGetComp<CompIngredients>()?.ingredients;
+            rec.meals.Add(PressureMath.MealKey(food.defName, ingredients?.Where(d => d != null).Select(d => d.defName)));
             rec.mealTicks.Add(now);
             RefreshFood(rec, now);
         }
@@ -475,7 +479,7 @@ namespace ColonyCouncil
             var recent = new List<string>();
             for (int i = 0; i < rec.meals.Count; i++)
                 if (rec.mealTicks[i] >= since) recent.Add(rec.meals[i]);
-            rec.kindsLately = recent.Distinct().Count();
+            rec.kindsLately = recent.Select(PressureMath.KindOf).Distinct().Count();
             rec.varied = stage == 0 && PressureMath.VariedTable(recent);
         }
 

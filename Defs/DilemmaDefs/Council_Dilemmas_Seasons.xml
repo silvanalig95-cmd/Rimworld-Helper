@@ -153,6 +153,7 @@
   <!-- ===================== Naming the year ===================== -->
   <ColonyCouncil.DilemmaDef>
     <defName>Council_Dilemma_NameTheYear</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
     <label>naming the year</label>
     <weight>0.6</weight>
     <cooldownDays>55</cooldownDays>
@@ -202,6 +203,7 @@
   <!-- ===================== The spoils ===================== -->
   <ColonyCouncil.DilemmaDef>
     <defName>Council_Dilemma_Spoils</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
     <label>the spoils</label>
     <weight>1</weight>
     <cooldownDays>20</cooldownDays>

@@ -271,6 +271,7 @@
 
   <ColonyCouncil.WishDef>
     <defName>Council_Wish_ShareBed</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
     <label>to share a bed with {OTHER_nameDef}</label>
     <description>Partners who sleep apart would like a bed for two.</description>
     <workerClass>ColonyCouncil.WishWorker_ShareBed</workerClass>
@@ -353,6 +354,7 @@
 
   <ColonyCouncil.WishDef>
     <defName>Council_Wish_BedroomFurniture</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
     <label>{THING} for {FOR_possessive} room</label>
     <description>A small piece of furniture to make a bedroom feel lived-in.</description>
     <workerClass>ColonyCouncil.WishWorker_BedroomFurniture</workerClass>
@@ -410,6 +412,7 @@
 
   <ColonyCouncil.WishDef>
     <defName>Council_Wish_Light</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
     <label>light in {FOR_possessive} bedroom</label>
     <description>Night owls and colonists who've been left in the dark want a light in their room.</description>
     <workerClass>ColonyCouncil.WishWorker_Light</workerClass>
@@ -475,6 +478,7 @@
 
   <ColonyCouncil.WishDef>
     <defName>Council_Wish_ComfortTemperature</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
     <label>{SUBJECT} at night</label>
     <description>After sleeping in the cold or heat, this colonist wants their bedroom kept comfortable.</description>
     <workerClass>ColonyCouncil.WishWorker_ComfortTemperature</workerClass>
@@ -710,6 +714,7 @@
 
   <ColonyCouncil.WishDef>
     <defName>Council_Wish_Greenery</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
     <label>a plant for {FOR_possessive} room</label>
     <description>Someone who loves growing things wants a little greenery in their room.</description>
     <workerClass>ColonyCouncil.WishWorker_Greenery</workerClass>

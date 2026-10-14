@@ -128,7 +128,7 @@ namespace ColonyCouncil
         }
     }
 
-    /// <summary>What a material is being chosen for: walls and doors never get bone, and fire matters more for them.</summary>
+    /// <summary>What a material is being chosen for: walls never get bone, and fire matters more for walls and doors.</summary>
     public enum MaterialUse
     {
         Wall,
@@ -208,8 +208,8 @@ namespace ColonyCouncil
             return ok;
         }
 
-        /// <summary>Bone is for furniture only: never walls, doors or floors.</summary>
-        public static bool Allowed(ThingDef s, MaterialUse use) => !(IsBone(s) && use != MaterialUse.Furniture);
+        /// <summary>Bone makes furniture, doors and floors, never walls.</summary>
+        public static bool Allowed(ThingDef s, MaterialUse use) => !(IsBone(s) && use == MaterialUse.Wall);
 
         /// <summary>
         /// The best material for <paramref name="units"/> pieces of <paramref name="def"/> (or floor tiles), or the game's

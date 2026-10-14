@@ -10,6 +10,7 @@
 
   <IncidentDef ParentName="Council_EventBase">
     <defName>Council_Evt_Stranded</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
     <label>stranded merchants</label>
     <workerClass>ColonyCouncil.HappeningWorker_Stranded</workerClass>
     <minRefireDays>35</minRefireDays>
@@ -145,6 +146,7 @@
 
   <IncidentDef ParentName="Council_EventBase">
     <defName>Council_Evt_Tinker</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
     <label>traveling tinker</label>
     <workerClass>ColonyCouncil.HappeningWorker_Tinker</workerClass>
     <minRefireDays>40</minRefireDays>
@@ -194,6 +196,7 @@
 
   <IncidentDef ParentName="Council_EventBase">
     <defName>Council_Evt_NeighborsSick</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
     <label>neighbors in need</label>
     <workerClass>ColonyCouncil.HappeningWorker_NeighborsSick</workerClass>
     <baseChance>0.8</baseChance>
@@ -248,6 +251,7 @@
 
   <IncidentDef ParentName="Council_EventBase">
     <defName>Council_Evt_Dispute</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
     <label>neighbors' quarrel</label>
     <workerClass>ColonyCouncil.HappeningWorker_Dispute</workerClass>
     <baseChance>0.8</baseChance>
@@ -441,6 +445,7 @@
 
   <IncidentDef ParentName="Council_EventBase">
     <defName>Council_Evt_OldLetters</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
     <label>old letters</label>
     <workerClass>ColonyCouncil.HappeningWorker_OldLetters</workerClass>
     <baseChance>0.8</baseChance>
@@ -544,6 +549,7 @@
 
   <IncidentDef ParentName="Council_EventBase">
     <defName>Council_Evt_FamilyVisit</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
     <label>family visit</label>
     <workerClass>ColonyCouncil.HappeningWorker_FamilyVisit</workerClass>
     <minRefireDays>40</minRefireDays>
@@ -590,6 +596,7 @@
 
   <IncidentDef ParentName="Council_EventBase">
     <defName>Council_Evt_FortuneTeller</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
     <label>fortune teller</label>
     <workerClass>ColonyCouncil.HappeningWorker_FortuneTeller</workerClass>
     <baseChance>0.9</baseChance>

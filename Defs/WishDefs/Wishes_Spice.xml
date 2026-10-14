@@ -5,6 +5,7 @@
 
   <ColonyCouncil.WishDef>
     <defName>Council_Wish_Justice</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
     <label>{OTHER_nameDef}'s execution</label>
     <description>A bloodthirsty, cold or grieving colonist wants a captured raider executed. Kind colonists will likely object, and executions upset most people anyway.</description>
     <workerClass>ColonyCouncil.WishWorker_Justice</workerClass>
@@ -92,6 +93,7 @@
 
   <ColonyCouncil.WishDef>
     <defName>Council_Wish_Mercy</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
     <label>{OTHER_nameDef} set free</label>
     <description>A kind colonist, or one who has made friends through the bars, wants a prisoner released. Recruiting them counts too. The bloodthirsty will object.</description>
     <workerClass>ColonyCouncil.WishWorker_Mercy</workerClass>
@@ -220,6 +222,7 @@
 
   <ColonyCouncil.WishDef>
     <defName>Council_Wish_Rescue</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
     <label>bringing {OTHER_nameDef} home</label>
     <description>A colonist was kidnapped, and someone who loves them wants them back. It takes a raid on the kidnappers' settlement, a ransom, or a lucky quest, so the colony has a long time to do it.</description>
     <workerClass>ColonyCouncil.WishWorker_Rescue</workerClass>

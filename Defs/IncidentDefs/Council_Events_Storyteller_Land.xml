@@ -67,6 +67,7 @@
 
   <IncidentDef ParentName="Council_EventBase">
     <defName>Council_Evt_StruckTree</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
     <label>a lightning-struck tree</label>
     <workerClass>ColonyCouncil.HappeningWorker_StruckTree</workerClass>
     <baseChance>0.9</baseChance>
@@ -125,6 +126,7 @@
 
   <IncidentDef ParentName="Council_EventBase">
     <defName>Council_Evt_WildBees</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
     <label>wild bees</label>
     <workerClass>ColonyCouncil.HappeningWorker_WildBees</workerClass>
     <baseChance>1</baseChance>
@@ -193,6 +195,7 @@
 
   <IncidentDef ParentName="Council_EventBase">
     <defName>Council_Evt_StarIron</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
     <label>a fallen star</label>
     <workerClass>ColonyCouncil.HappeningWorker_StarIron</workerClass>
     <baseChance>0.7</baseChance>
@@ -292,6 +295,7 @@
 
   <IncidentDef ParentName="Council_EventBase">
     <defName>Council_Evt_OmenBeast</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
     <label>a sign at dawn</label>
     <workerClass>ColonyCouncil.HappeningWorker_OmenBeast</workerClass>
     <baseChance>0.8</baseChance>

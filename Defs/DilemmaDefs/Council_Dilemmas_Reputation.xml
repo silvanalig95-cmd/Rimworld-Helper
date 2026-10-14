@@ -12,6 +12,7 @@
   <!-- ===================== Merciful: sanctuary ===================== -->
   <ColonyCouncil.DilemmaDef>
     <defName>Council_DlmR_Sanctuary</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
     <label>sanctuary</label>
     <workerClass>ColonyCouncil.DilemmaWorker_Stranger</workerClass>
     <weight>1.2</weight>
@@ -71,6 +72,7 @@
   <!-- ===================== Merciful: the prisoner who counts on it ===================== -->
   <ColonyCouncil.DilemmaDef>
     <defName>Council_DlmR_CountingOnMercy</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
     <label>counting on our mercy</label>
     <workerClass>ColonyCouncil.DilemmaWorker_Stranger</workerClass>
     <weight>1.0</weight>
@@ -180,6 +182,7 @@
   <!-- ===================== Harsh: someone else's thief ===================== -->
   <ColonyCouncil.DilemmaDef>
     <defName>Council_DlmR_TheirThief</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
     <label>someone else's thief</label>
     <workerClass>ColonyCouncil.DilemmaWorker_Stranger</workerClass>
     <weight>1.0</weight>
@@ -294,6 +297,7 @@
   <!-- ===================== Thrifty: mocked by a trader ===================== -->
   <ColonyCouncil.DilemmaDef>
     <defName>Council_DlmR_StingyMockery</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
     <label>a joke at our expense</label>
     <workerClass>ColonyCouncil.DilemmaWorker_Stranger</workerClass>
     <weight>1.2</weight>
@@ -354,6 +358,7 @@
   <!-- ===================== Traditional: skipping a custom ===================== -->
   <ColonyCouncil.DilemmaDef>
     <defName>Council_DlmR_SkipCustom</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
     <label>the way it's done here</label>
     <weight>1.2</weight>
     <cooldownDays>45</cooldownDays>
@@ -458,6 +463,7 @@
   <!-- ===================== Open: the guest who won't leave ===================== -->
   <ColonyCouncil.DilemmaDef>
     <defName>Council_DlmR_Overstay</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
     <label>a guest too comfortable</label>
     <workerClass>ColonyCouncil.DilemmaWorker_Stranger</workerClass>
     <weight>1.2</weight>
@@ -523,6 +529,7 @@
   <!-- ===================== Guarded: a friend kept outside ===================== -->
   <ColonyCouncil.DilemmaDef>
     <defName>Council_DlmR_FriendAtTheGate</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
     <label>a friend at the gate</label>
     <workerClass>ColonyCouncil.DilemmaWorker_Stranger</workerClass>
     <weight>1.2</weight>
@@ -581,6 +588,7 @@
   <!-- ===================== Hard-working: a day of rest ===================== -->
   <ColonyCouncil.DilemmaDef>
     <defName>Council_DlmR_DayOfRest</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
     <label>one day off</label>
     <weight>1.2</weight>
     <cooldownDays>40</cooldownDays>
@@ -635,6 +643,7 @@
   <!-- ===================== Easygoing: carrying everyone ===================== -->
   <ColonyCouncil.DilemmaDef>
     <defName>Council_DlmR_CarryingEveryone</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
     <label>carrying everyone</label>
     <weight>1.2</weight>
     <cooldownDays>40</cooldownDays>

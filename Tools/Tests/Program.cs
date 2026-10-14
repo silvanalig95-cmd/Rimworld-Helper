@@ -220,6 +220,12 @@ Check(PressureMath.FoodStage(simple12, 1) == 1 && PressureMath.FoodStage(simple6
 Check(PressureMath.FoodStage(Meals("F", "S", "S", "S", "S", "S", "S", "S", "S", "S", "S", "S"), 3) == 2, "eleven of twelve: two steps");
 Check(PressureMath.Picky(1, 3) == 2 && PressureMath.Picky(3, 3) == 3 && PressureMath.Picky(2, 2) == 2 && PressureMath.Picky(1, 1) == 1 && PressureMath.Picky(0, 3) == 0, "gourmands take it harder");
 Check(PressureMath.VariedTable(Meals("S", "F", "B")) && !PressureMath.VariedTable(Meals("S", "F", "S", "F")) && !PressureMath.VariedTable(Meals("S", "F")), "a varied table needs three foods");
+string sRice = PressureMath.MealKey("S", new[] { "Rice", "Meat" }), sCorn = PressureMath.MealKey("S", new[] { "Meat", "Corn" }), sRice2 = PressureMath.MealKey("S", new[] { "Meat", "Rice", "Rice" });
+Check(sRice == sRice2 && sRice != sCorn && PressureMath.MealKey("S", null) == "S" && PressureMath.MealKey("S", new string[0]) == "S", "a meal is its kind and what went into it, in any order");
+Check(PressureMath.KindOf(sRice) == "S" && PressureMath.KindOf("S") == "S" && PressureMath.KindOf(null) == null, "the kind of a remembered meal, old saves included");
+Check(PressureMath.FoodStage(Meals(sRice, sCorn, sRice, sCorn, sRice, sCorn, sRice, sCorn), 3) == 0, "simple meals made of different things aren't the same meal again");
+Check(!PressureMath.VariedTable(Meals(sRice, sCorn, PressureMath.MealKey("S", new[] { "Berries" }))), "but simple meals alone never make a varied table");
+Check(PressureMath.VariedTable(Meals(sRice, PressureMath.MealKey("F", new[] { "Rice" }), "B")), "three kinds of meal do");
 Check(PressureMath.Dominant(Meals("A", "B", "A", "C"), 3) == 1 && PressureMath.Dominant(Meals("A", "B", "A", "C"), 4) == 2 && PressureMath.Dominant(null, 8) == 0, "dominant kind in a window");
 Check(PressureMath.SameWorkDay(9, 12) && !PressureMath.SameWorkDay(8, 12) && !PressureMath.SameWorkDay(5, 5), "same work all day needs 70% of six hours or more");
 int streak = 0;

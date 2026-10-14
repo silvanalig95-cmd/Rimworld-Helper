@@ -11,6 +11,7 @@
   <!-- ===================== A visitor wants to stay ===================== -->
   <ColonyCouncil.DilemmaDef>
     <defName>Council_DlmS_WantsToStay</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
     <label>a reason to stay</label>
     <workerClass>ColonyCouncil.DilemmaWorker_Stranger</workerClass>
     <weight>1.0</weight>
@@ -140,6 +141,7 @@
   <!-- ===================== The trader wants the heirloom ===================== -->
   <ColonyCouncil.DilemmaDef>
     <defName>Council_DlmS_HeirloomOffer</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
     <label>the trader's eye</label>
     <workerClass>ColonyCouncil.DilemmaWorker_Stranger</workerClass>
     <weight>0.9</weight>
@@ -204,6 +206,7 @@
   <!-- ===================== A prisoner's plea ===================== -->
   <ColonyCouncil.DilemmaDef>
     <defName>Council_DlmS_PrisonerPlea</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
     <label>a voice through the door</label>
     <workerClass>ColonyCouncil.DilemmaWorker_Stranger</workerClass>
     <weight>1.0</weight>
@@ -263,6 +266,7 @@
   <!-- ===================== A wounded raider pleads ===================== -->
   <ColonyCouncil.DilemmaDef>
     <defName>Council_DlmS_FallenPlea</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
     <label>the one still breathing</label>
     <workerClass>ColonyCouncil.DilemmaWorker_Stranger</workerClass>
     <weight>1.1</weight>
@@ -373,6 +377,7 @@
   <!-- ===================== A's animal bit a visitor ===================== -->
   <ColonyCouncil.DilemmaDef>
     <defName>Council_DlmS_PetBit</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
     <label>teeth marks</label>
     <workerClass>ColonyCouncil.DilemmaWorker_Stranger</workerClass>
     <weight>0.9</weight>
@@ -427,6 +432,7 @@
   <!-- ===================== A predator's den ===================== -->
   <ColonyCouncil.DilemmaDef>
     <defName>Council_DlmS_PredatorDen</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
     <label>the den in the brush</label>
     <workerClass>ColonyCouncil.DilemmaWorker_Stranger</workerClass>
     <weight>0.9</weight>
@@ -490,6 +496,7 @@
   <!-- ===================== A child wants to keep a wild animal ===================== -->
   <ColonyCouncil.DilemmaDef>
     <defName>Council_DlmS_ChildPet</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
     <label>can I keep it</label>
     <workerClass>ColonyCouncil.DilemmaWorker_Stranger</workerClass>
     <weight>0.8</weight>
@@ -552,6 +559,7 @@
   <!-- ===================== A titled guest insults A's work ===================== -->
   <ColonyCouncil.DilemmaDef>
     <defName>Council_DlmS_NobleSneer</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
     <label>a titled critic</label>
     <workerClass>ColonyCouncil.DilemmaWorker_Stranger</workerClass>
     <weight>0.8</weight>
@@ -611,6 +619,7 @@
   <!-- ===================== The miracle tonic ===================== -->
   <ColonyCouncil.DilemmaDef>
     <defName>Council_DlmS_Tonic</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
     <label>the miracle tonic</label>
     <workerClass>ColonyCouncil.DilemmaWorker_Stranger</workerClass>
     <weight>0.9</weight>
@@ -679,6 +688,7 @@
   <!-- ===================== An old acquaintance knows A's secret ===================== -->
   <ColonyCouncil.DilemmaDef>
     <defName>Council_DlmS_OldAcquaintance</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
     <label>a face from before</label>
     <workerClass>ColonyCouncil.DilemmaWorker_Stranger</workerClass>
     <weight>1.0</weight>
@@ -810,6 +820,7 @@
   <!-- ===================== A's nemesis in chains ===================== -->
   <ColonyCouncil.DilemmaDef>
     <defName>Council_DlmS_NemesisInChains</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
     <label>the one in the cell</label>
     <workerClass>ColonyCouncil.DilemmaWorker_Stranger</workerClass>
     <weight>1.2</weight>
@@ -863,6 +874,7 @@
   <!-- ===================== A visitor wants to buy A's animal ===================== -->
   <ColonyCouncil.DilemmaDef>
     <defName>Council_DlmS_BuyTheAnimal</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
     <label>a fair offer</label>
     <workerClass>ColonyCouncil.DilemmaWorker_Stranger</workerClass>
     <weight>0.8</weight>
@@ -929,6 +941,7 @@
   <!-- ===================== The traveling healer ===================== -->
   <ColonyCouncil.DilemmaDef>
     <defName>Council_DlmS_Healer</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
     <label>the traveling healer</label>
     <workerClass>ColonyCouncil.DilemmaWorker_Stranger</workerClass>
     <weight>0.8</weight>

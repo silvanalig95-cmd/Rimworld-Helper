@@ -68,6 +68,7 @@
 
   <IncidentDef ParentName="Council_EventBase">
     <defName>Council_Evt_Deserter</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
     <label>deserter</label>
     <workerClass>ColonyCouncil.HappeningWorker_Deserter</workerClass>
     <minRefireDays>45</minRefireDays>

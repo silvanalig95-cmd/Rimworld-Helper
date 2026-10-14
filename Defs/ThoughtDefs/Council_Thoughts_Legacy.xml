@@ -3,6 +3,7 @@
 
   <ThoughtDef>
     <defName>Council_Heirloom</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
     <thoughtClass>ColonyCouncil.Thought_Heirloom</thoughtClass>
     <workerClass>ColonyCouncil.ThoughtWorker_Heirloom</workerClass>
     <validWhileDespawned>true</validWhileDespawned>
