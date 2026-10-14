@@ -146,7 +146,7 @@
   <HediffDef ParentName="Council_AilmentBase">
     <defName>Council_Ail_ChestCold</defName>
     <label>chest cold</label>
-    <description>An infection of the airways (bronchitis), often after a cold: a deep, chesty cough that can last two or three weeks, with tiredness and a tight chest. It's worse for those who stay out in the cold. Warmth, rest and plenty to drink help; tending eases the cough, but no medicine cures it. In the old, the frail and the starving it can turn into pneumonia.</description>
+    <description>An infection of the airways (bronchitis), often after a cold: a deep, chesty cough that lasts a week or two, with tiredness and a tight chest. It's worse for those who stay out in the cold. Warmth, rest and plenty to drink help; tending eases the cough, but no medicine cures it. In the old, the frail and the starving it can turn into pneumonia.</description>
     <initialSeverity>0.05</initialSeverity>
     <tendable>true</tendable>
     <comps>
@@ -721,7 +721,7 @@
   <HediffDef ParentName="Council_AilmentBase">
     <defName>Council_Ail_SprainedAnkle</defName>
     <label>sprained ankle</label>
-    <description>A twisted ankle from a bad step on rough, wet or snowy ground: the ligaments are stretched and the joint swells. Rest, cold, strapping and keeping the foot up help; it heals in one to two weeks, faster with time in bed at the start.</description>
+    <description>A twisted ankle from a bad step on rough, wet or snowy ground: the ligaments are stretched and the joint swells. Rest, cold, strapping and keeping the foot up help; it heals in a week or so, faster with time in bed at the start.</description>
     <tendable>true</tendable>
     <comps>
       <li Class="ColonyCouncil.HediffCompProperties_Ailment">
@@ -803,7 +803,7 @@
   <HediffDef ParentName="Council_AilmentBase">
     <defName>Council_Ail_RimrotCough</defName>
     <label>rimrot cough</label>
-    <description>A wet, rattling cough from sleeping in a damp, moldy room: a dirty room under solid rock, one open to the rain, or anywhere grimy in a swamp or jungle. The mold settles in the chest and lingers for one to two weeks. A clean, dry, well-roofed bedroom is the cure, and tending eases it.</description>
+    <description>A wet, rattling cough from sleeping in a damp, moldy room: a dirty room under solid rock, one open to the rain, or anywhere grimy in a swamp or jungle. The mold settles in the chest and lingers for a week or so. A clean, dry, well-roofed bedroom is the cure, and tending eases it.</description>
     <tendable>true</tendable>
     <comps>
       <li Class="ColonyCouncil.HediffCompProperties_Ailment">

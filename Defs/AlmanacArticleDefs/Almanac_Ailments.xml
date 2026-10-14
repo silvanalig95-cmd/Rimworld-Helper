@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- Almanac: Rimfolk's everyday ailments and serious illnesses (Source/ColonyCouncil/Ailments/). -->
+
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Council_Alm_4_25_Ailments</defName>
+    <label>ailments and illnesses</label>
+    <category>Health</category>
+    <order>165</order>
+    <summary>Rimfolk's everyday ailments and rare serious illnesses: where they come from, what they do and what helps</summary>
+    <tip>Tend wounds within a few hours, keep a hat on in the heat, and keep fruit or vegetables on the table.</tip>
+    <description>Besides the game's own diseases, Rimfolk adds everyday ailments: small, temporary troubles from ordinary life. Some go round like a cold, through the game's own disease events; others come from how a colonist's day went, like a strained back after a day of hauling. None of them can kill or leaves a mark, and each says in its description what helps. Doctors tend them like any illness, and a colonist has at most two of the day-to-day kind at once.
+
+A rare serious tier sits on top, behind its own setting: six illnesses modeled on real ones and one from the rim. These can kill. At most one kind runs in the colony at a time, never within 30 days of the last, and each comes with a letter that says what it is and what helps. Steady tending beats all of them, and against the ones that real medicine treats with modern drugs, industrial or glitterworld medicine makes a much bigger difference than herbs.</description>
+    <sections>
+      <li>
+        <heading>Going round</heading>
+        <table>
+          <li>Ailment | Based on | When | Lasts | What helps</li>
+          <li>Head cold | The common cold | Any time, more in fall and winter | About a week | Bed rest, warmth; may leave a cough</li>
+          <li>Stomach bug | A stomach virus (norovirus) | Any time | 2 to 3 days | Rest and fluids; clean hands in the kitchen</li>
+          <li>Chest cold | Acute bronchitis | Below 5 °C outside | 9 to 12 days | Warmth (it worsens in the cold), rest; may leave a cough</li>
+          <li>Hay fever | A pollen allergy | Spring and summer, where plants grow | 4 to 9 days, longer outdoors | Indoor work; medicine, industrial best; comes back to the same people</li>
+          <li>Pinkeye | Conjunctivitis | Any time | About a week, 3 to 4 days with tending | Clean hands and towels; industrial medicine clears it fastest</li>
+          <li>Dreamfever | Invented | Any time | About a week | Rest and quiet; it brings vivid dreams</li>
+        </table>
+        <after>At 100%, one of these goes round about every 20 days on an average map, more often where the game's own diseases are common and less on gentler storyteller settings, and the same one at most once in 20 to 40 days. They hit a share of the colony the way the game's diseases do, never babies, and immunity, genes and the medical tab work as usual.</after>
+      </li>
+      <li>
+        <heading>From the day's work</heading>
+        <table>
+          <li>Ailment | Comes from | Lasts | What helps</li>
+          <li>Strained back | 6 hours of hauling, mining or building in a day (never children) | 1 to 2 weeks | Bed rest at first, tending</li>
+          <li>Sore hands | 7 hours at a crafting, smithing, tailoring or art bench | About a week | Other work, tending</li>
+          <li>Blisters | 8 hours of walking, or on a caravan on the move | 2 to 3 days | Tending, rest</li>
+          <li>Chilblains | 5 hours of outdoor work between -10 and 6 °C | About a week | Warmth, warm clothes</li>
+          <li>Sunburn | 4 hours outdoors around midday above 30 °C or in a heat wave, with nothing on the head | 2 to 4 days | A hat; tending</li>
+          <li>Smoke cough | 4 hours in a closed room of 60 cells or fewer with a wood fire burning | 1 to 2 days | Clean air, a bigger room</li>
+          <li>Toothache | Sweets and age (more from 40, more again from 60) | Weeks, or a day or two after tending | One good treatment</li>
+          <li>Stiff neck | A night on the ground, a bedroll or a hard bed | 1 to 2 days | A proper bed</li>
+          <li>Sprained ankle | 2 hours on the move over marsh, mud, sand, shallow water or deep snow | 5 to 10 days | Bed rest at first, strapping</li>
+          <li>Eye strain | 4 hours of research or bench work in the dark | A night's sleep | A light at the bench</li>
+          <li>Rimrot cough (invented) | Nights in a damp room: dirty and under rock, open to the rain, or grimy in a swamp or jungle | 5 to 8 days | A clean, dry, roofed bedroom</li>
+          <li>Ash lung (invented) | An hour of firefighting, or 4 hours under volcanic ash | 3 to 6 days | Clean air, rest</li>
+        </table>
+        <after>Once a day holds enough hours of the cause, the ailment gets one small chance that day, from 1.5% for a sprained ankle to 12% for ash lung after a fire. Someone who works hard at one thing every day gets an ailment about once a month, the same one again only after 6 days or more, and never more than two at once.</after>
+      </li>
+      <li>
+        <heading>Serious illnesses</heading>
+        <table>
+          <li>Illness | Based on | How it comes | Untreated | With care</li>
+          <li>Tetanus | Lockjaw, a toxin from soil bacteria | A bite, scratch, stab, cut or gunshot wound left untended for 8 hours: 5% per wound, 40% of that in industrial colonies and 20% in spacer ones, which vaccinate. It shows 3 to 7 days later | Kills in about 7 days | 13 to 19 days of stiffness</li>
+          <li>Pneumonia | Bacterial pneumonia | A cold, chest cold or flu in someone 60 or older, a small child, or someone frail, starving or chilled: 6% a day (1% for anyone else) | Kills in 4 to 5 days | 5 to 8 days, then weakness and a cough</li>
+          <li>Tuberculosis | Tuberculosis (consumption) | Rarely, one colonist falls ill; it spreads to people asleep in the same room and shows 10 to 20 days later | Wastes away over about 49 days | 36 to 56 days of daily treatment; stopping early lets it come back</li>
+          <li>Typhus | Epidemic typhus, carried by lice | Nights in a dirty room of 4 or more beds, or unwashed in a shared room: 1.5% a night; lice spread it in dirty rooms. It shows 4 to 8 days later | Kills in about 6 days | 4 to 5 days with industrial medicine, 8 to 10 with herbal</li>
+          <li>Meningitis | Bacterial meningitis | Rarely, out of nowhere | Kills in about 2 days | 3 to 5 days, if a skilled doctor tends it at once</li>
+          <li>Scurvy | Lack of vitamin C | 20 days without fruit or vegetables, raw or in meals: 25% a day | Turns fatal after about 50 more days | Clears within about 10 days of fresh food</li>
+          <li>Glassblood | Invented: spores in ancient dust | 2 hours of work on ancient walls, caskets or junk: 2.5% a day. It shows a day or two later | Kills in about 6 days | 10 to 12 days</li>
+        </table>
+        <after>Herbal medicine in a good doctor's hands (70% tend quality, tending kept up) brings a patient through every one of them. With poorer care, tetanus and meningitis are often fatal without modern medicine, and pneumonia without any medicine, much as they were in history. A new serious illness never starts within 30 days of the last; tuberculosis and typhus can spread to at most 3 people.</after>
+      </li>
+      <li>
+        <heading>Medicine, rest and recovery</heading>
+        <text>Tending works as it does for any illness: the doctor's skill and the medicine set the quality, and the illness eases while the treatment lasts, 8 hours for meningitis up to 3 days for a strapped ankle. On top of that, the kind of medicine counts the way it would against the real illness. For colds, coughs and strains it barely matters. For the illnesses real doctors treat with antibiotics or an antitoxin it matters a great deal: industrial medicine works 1.3 to 1.4 times as well as usual against tetanus, pneumonia, typhus and meningitis, herbal medicine (or none) only 0.6 to 0.8 times, and against tuberculosis herbs do half as much. A patient's tooltip says which medicine was used last and how well it works on that illness.
+
+Bed rest helps the body build immunity, as with any disease, and also speeds a strained back, a sprained ankle and the weakness after an illness. Many illnesses end with an after-effect: a lingering cough for a week or so after a cold, a chest cold, pneumonia or tuberculosis, and some days of weakness (convalescing, with slower work) after a serious illness. Nothing is permanent.</text>
+      </li>
+      <li>
+        <heading>Settings</heading>
+        <text>On the People page: Everyday ailments (on by default), Serious illnesses under it (on by default, so the fatal ones can be turned off alone), and how often, from 25% to 200%, which scales every chance and the clock for everything on this page. Turned off, nothing new starts, and whatever is already running finishes its course. Rimfolk's deeper game hooks watch the colony's meals; with them off, scurvy never starts and toothache only comes with age.</text>
+      </li>
+      <li>
+        <heading>With Rimfolk</heading>
+        <text>The moods of everyday ailments feed the heart's frustration; those of serious illnesses feed fear, which builds a little strain, and pain builds strain as it always does. A doctor who takes on a serious case feels the weight of it and is more likely to ask the council for a stocked infirmary if medicine is short; pulling a patient through lifts both of them. Patients and doctors write about it in their journals, dreamfever and serious illnesses bring dreams of their own, and while a sickness spreads through the region (a world event), ailments go round two-thirds again as often.</text>
+      </li>
+    </sections>
+    <keywords>
+      <li>ailment</li>
+      <li>illness</li>
+      <li>cold</li>
+      <li>stomach bug</li>
+      <li>hay fever</li>
+      <li>strained back</li>
+      <li>sunburn</li>
+      <li>toothache</li>
+      <li>tetanus</li>
+      <li>pneumonia</li>
+      <li>tuberculosis</li>
+      <li>typhus</li>
+      <li>meningitis</li>
+      <li>scurvy</li>
+      <li>glassblood</li>
+      <li>dreamfever</li>
+    </keywords>
+    <seeAlso>
+      <li>Council_Alm_4_16_DiseasePenoxycyline</li>
+      <li>Council_Alm_4_01_MedicinePotency</li>
+      <li>Council_Alm_4_06_ChoosingMedicine</li>
+      <li>Council_Alm_4_03_HospitalBeds</li>
+      <li>Council_Alm_C_Heart</li>
+    </seeAlso>
+  </ColonyCouncil.AlmanacArticleDef>
+
+</Defs>
