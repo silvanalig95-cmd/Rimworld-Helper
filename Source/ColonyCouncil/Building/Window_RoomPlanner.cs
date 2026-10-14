@@ -312,19 +312,21 @@ namespace ColonyCouncil
             Widgets.EndScrollView();
         }
 
-        /// <summary>The room type's sizes and kinds ("cozy", "standard", "roomy"), one button each.</summary>
+        /// <summary>The room type's sizes and kinds ("cozy", "standard", "roomy"), one button each; more than four wrap to a second row.</summary>
         private float VariantRow(float y, float w, RoomTemplateDef t, Map map)
         {
             var type = RoomTypeDef.Of(t);
             if (type == null || type.Variants.Count < 2) return y;
             var vs = type.Variants;
             float gap = 3f;
-            float bw = (w - gap * (vs.Count - 1)) / vs.Count;
+            int perRow = vs.Count <= 4 ? vs.Count : (vs.Count + 1) / 2;
+            int rows = (vs.Count + perRow - 1) / perRow;
+            float bw = (w - gap * (perRow - 1)) / perRow;
             Text.Font = GameFont.Tiny;
             for (int i = 0; i < vs.Count; i++)
             {
                 var (vt, label) = vs[i];
-                var r = new Rect(i * (bw + gap), y, bw, 24f);
+                var r = new Rect(i % perRow * (bw + gap), y + i / perRow * 27f, bw, 24f);
                 string reason = vt.UnavailableReason(map);
                 bool current = vt == t;
                 if (current) Widgets.DrawHighlightSelected(r);
@@ -339,7 +341,7 @@ namespace ColonyCouncil
                                                   + (reason != null ? "\n\n" + reason : ""), tipT.GetHashCode() ^ 0x5A1);
             }
             Text.Font = GameFont.Small;
-            return y + 27f;
+            return y + rows * 27f;
         }
 
         /// <summary>Spartan, comfortable or lavish.</summary>

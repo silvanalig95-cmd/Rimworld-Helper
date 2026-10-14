@@ -57,6 +57,7 @@
     <variants>
       <li><template>Council_Kitchen</template><label>one stove</label></li>
       <li><template>Council_Kitchen_Large</template><label>two stoves</label></li>
+      <li><template>Council_KitchenButchery</template><label>with butchery</label></li>
     </variants>
   </ColonyCouncil.RoomTypeDef>
 
@@ -65,6 +66,7 @@
     <label>freezer</label>
     <main>Council_Freezer</main>
     <variants>
+      <li><template>Council_ColdStore</template><label>small</label></li>
       <li><template>Council_Freezer</template><label>standard</label></li>
       <li><template>Council_Freezer_Large</template><label>large</label></li>
     </variants>
@@ -75,6 +77,7 @@
     <label>storeroom</label>
     <main>Council_Storeroom</main>
     <variants>
+      <li><template>Council_StoreCloset</template><label>closet</label></li>
       <li><template>Council_Storeroom</template><label>standard</label></li>
       <li><template>Council_Storeroom_Large</template><label>large</label></li>
     </variants>
@@ -96,8 +99,10 @@
     <label>laboratory</label>
     <main>Council_Laboratory</main>
     <variants>
+      <li><template>Council_ScholarsStudy</template><label>scholar's</label></li>
       <li><template>Council_Laboratory</template><label>standard</label></li>
       <li><template>Council_Laboratory_Large</template><label>large</label></li>
+      <li><template>Council_ResearchWing</template><label>research wing</label></li>
     </variants>
   </ColonyCouncil.RoomTypeDef>
 
@@ -110,6 +115,7 @@
       <li><template>Council_Hospital</template><label>3 beds</label></li>
       <li><template>Council_LargeHospital</template><label>4 beds</label></li>
       <li><template>Council_Hospital_Ward</template><label>ward</label></li>
+      <li><template>Council_Surgery</template><label>surgery</label></li>
     </variants>
   </ColonyCouncil.RoomTypeDef>
 
@@ -119,7 +125,9 @@
     <main>Council_PrisonCell</main>
     <variants>
       <li><template>Council_PrisonCell</template><label>cell</label></li>
+      <li><template>Council_FurnishedCell</template><label>furnished</label></li>
       <li><template>Council_PrisonBarracks</template><label>shared cell</label></li>
+      <li><template>Council_CellBlock</template><label>cell block</label></li>
     </variants>
   </ColonyCouncil.RoomTypeDef>
 
