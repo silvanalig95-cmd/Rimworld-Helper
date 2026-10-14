@@ -15,6 +15,10 @@ namespace ColonyCouncil
     {
         public static readonly List<string> Applied = new List<string>();
         public static readonly List<string> Failed = new List<string>();
+        /// <summary>Why each failed patch class couldn't be applied (for "Rimfolk: check myself").</summary>
+        public static readonly Dictionary<string, string> FailedWhy = new Dictionary<string, string>();
+        /// <summary>Why no patch was tried at all (Harmony missing, the classes couldn't be listed), or null.</summary>
+        public static string NotStarted;
 
         /// <summary>Whether the patches should do anything right now.</summary>
         public static bool On => ColonyCouncilMod.Settings?.deepHooks ?? true;
@@ -33,6 +37,7 @@ namespace ColonyCouncil
             catch (Exception e)
             {
                 Log.Warning("[Rimfolk] Harmony isn't available, so Rimfolk's deeper game hooks are off: " + e.Message);
+                NotStarted = "Harmony isn't available: " + e.Message;
                 return;
             }
             List<Type> types;
@@ -45,6 +50,7 @@ namespace ColonyCouncil
             catch (Exception e)
             {
                 Log.Warning("[Rimfolk] Couldn't list Rimfolk's game hooks, so they are off: " + e.Message);
+                NotStarted = "couldn't list the hooks: " + e.Message;
                 return;
             }
             foreach (var type in types)
@@ -57,6 +63,7 @@ namespace ColonyCouncil
                 catch (Exception e)
                 {
                     Failed.Add(type.Name);
+                    FailedWhy[type.Name] = (e.InnerException ?? e).Message;
                     Log.Warning("[Rimfolk] Couldn't apply " + type.Name + ", so that small feature is off: " + e.Message);
                 }
             }
