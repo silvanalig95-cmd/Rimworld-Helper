@@ -281,9 +281,9 @@ namespace ColonyCouncil
     public class HappeningWorker_StrayAnimal : IncidentWorker_Happening
     {
         private static IEnumerable<PawnKindDef> Kinds(Map map) =>
-            DefDatabase<PawnKindDef>.AllDefsListForReading.Where(k => k.race?.race != null && k.RaceProps.Animal && !k.RaceProps.Dryad && !k.RaceProps.Insect
+            PokeWorldLink.WildKinds(DefDatabase<PawnKindDef>.AllDefsListForReading.Where(k => k.race?.race != null && k.RaceProps.Animal && !k.RaceProps.Dryad && !k.RaceProps.Insect
                                                                       && k.RaceProps.petness >= 0.5f && k.RaceProps.baseBodySize <= 1.1f && k.race.GetStatValueAbstract(StatDefOf.Wildness) <= 0.6f
-                                                                      && map.mapTemperature.SeasonAndOutdoorTemperatureAcceptableFor(k.race, 5f));
+                                                                      && map.mapTemperature.SeasonAndOutdoorTemperatureAcceptableFor(k.race, 5f)));
 
         private static IEnumerable<Pawn> Walkers(Map map) =>
             Colonists(map).Where(p => !p.DevelopmentalStage.Baby() && p.Awake() && !p.Downed && !p.Drafted && !p.WorkTypeIsDisabled(WorkTypeDefOf.Handling));

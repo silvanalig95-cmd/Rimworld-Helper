@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    PokéWorld (Source/ColonyCouncil/Integrations/PokeWorld.cs). These always load, so a saved memory still finds its
+    def if the mod is removed later; without the mod nobody gets them.
+  -->
+
+  <!-- Caught a species the colony never had. Not given on top of the wish's own thanks below. -->
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_PW_CaughtNewSpecies</defName>
+    <durationDays>3</durationDays>
+    <stages>
+      <li>
+        <label>caught a new species</label>
+        <description>Nobody here had ever caught one of those before, and I'm the one who did it.</description>
+        <baseMoodEffect>3</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <!-- Granted: the wish to catch a new species (Wishes_Mods_PokeWorld.xml). -->
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_Granted_PW_NewSpecies</defName>
+    <durationDays>5</durationDays>
+    <stages>
+      <li>
+        <label>a new species for the colony</label>
+        <description>There's a kind of creature in the colony now that we never had before. I've been watching what it likes to eat.</description>
+        <baseMoodEffect>4</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+</Defs>

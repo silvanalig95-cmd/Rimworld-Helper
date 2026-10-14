@@ -512,6 +512,9 @@ Rimfolk reads these mods by name while the game runs: with one missing, its part
 - **Vanilla Skills Expanded:** a life goal to earn an expertise in a skill they love.
 - **Alpha Animals and other animal mods:** the hunting wish only picks ordinary game, nobody goes after a giant
   beast on their own, and the predator by the colony is a wolf or a bear, not a monster.
+- **PokéWorld (any version):** Rimfolk's animal events follow its wild Pokémon slider and generation switches, a
+  Pokémon caught with a ball (or kept in the PC) counts as tamed, animal lovers may ask to catch a new species, and
+  the first catch of a species goes in the catcher's journal. Four Almanac pages explain the mod.
 
 ## Why am I feeling this?
 Every mood Rimfolk gives says what caused it, under the description in its tooltip: whose wish came true (or
