@@ -178,6 +178,9 @@ namespace ColonyCouncil
         public System.Collections.Generic.List<string> planMaterials = new System.Collections.Generic.List<string>();
         public ButtonPosition buttonPosition = ButtonPosition.BeforeMenu;
         public bool roomsButton = true;
+        /// <summary>The council window's page when it was last closed, and the Almanac page, to open there again next time.</summary>
+        public string lastCouncilPage = "";
+        public string lastAlmanacPage = "";
 
         private static Vector2 scroll;
         private static float viewHeight = 1200f;
@@ -293,6 +296,8 @@ namespace ColonyCouncil
             }
             Scribe_Values.Look(ref buttonPosition, "buttonPosition", ButtonPosition.BeforeMenu);
             Scribe_Values.Look(ref roomsButton, "roomsButton", true);
+            Scribe_Values.Look(ref lastCouncilPage, "lastCouncilPage", "");
+            Scribe_Values.Look(ref lastAlmanacPage, "lastAlmanacPage", "");
         }
 
         /// <summary>Saves the settings file right away (used by the planner's checkboxes).</summary>

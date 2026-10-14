@@ -42,6 +42,12 @@ namespace ColonyCouncil
         private static Tab tab = Tab.Overview;
         /// <summary>The sub-tab last open in each section, so switching sections comes back to where you were.</summary>
         private static readonly Dictionary<Section, Tab> lastInSection = new Dictionary<Section, Tab>();
+        /// <summary>
+        /// The page from the settings has been put back (once a session), or a button already asked for another page.
+        /// The window opens where the player left it: within a session from the static tab, across sessions from the
+        /// settings, which are saved when the window closes on a different page than before.
+        /// </summary>
+        private static bool restored;
 
         private static Section SectionOf(Tab t)
         {
@@ -77,6 +83,58 @@ namespace ColonyCouncil
             }
         }
         private static readonly Color Faint = new Color(0.7f, 0.7f, 0.7f);
+
+        public override void PreOpen()
+        {
+            base.PreOpen();
+            RestorePage();
+        }
+
+        public override void PostClose()
+        {
+            base.PostClose();
+            RememberPage();
+        }
+
+        /// <summary>Opens on the page last looked at in an earlier session, if nothing asked for another one.</summary>
+        private static void RestorePage()
+        {
+            if (restored) return;
+            restored = true;
+            try
+            {
+                var s = Settings;
+                if (s == null || s.lastCouncilPage.NullOrEmpty() || !System.Enum.TryParse(s.lastCouncilPage, out Tab t)) return;
+                tab = t;
+                lastInSection[SectionOf(t)] = t;
+                var page = s.lastAlmanacPage.NullOrEmpty() ? null : DefDatabase<AlmanacArticleDef>.GetNamedSilentFail(s.lastAlmanacPage);
+                if (page != null) AlmanacPanel.Show(page);
+            }
+            catch (System.Exception e)
+            {
+                CouncilLog.ErrorOnce("council window page", e);
+            }
+        }
+
+        /// <summary>Keeps the page in the settings for next time; the file is written only when the page changed.</summary>
+        private static void RememberPage()
+        {
+            try
+            {
+                var s = Settings;
+                if (s == null) return;
+                string page = tab.ToString();
+                string almanac = AlmanacPanel.Selected?.defName ?? "";
+                if (s.lastCouncilPage == page && s.lastAlmanacPage == almanac) return;
+                s.lastCouncilPage = page;
+                s.lastAlmanacPage = almanac;
+                s.Write();
+            }
+            catch (System.Exception e)
+            {
+                CouncilLog.ErrorOnce("saving the council window page", e);
+            }
+        }
 
         public override Vector2 RequestedTabSize =>
             new Vector2(Mathf.Min(1010f, UI.screenWidth - 20f), Mathf.Min(720f, UI.screenHeight - 35f - 20f));
@@ -187,6 +245,7 @@ namespace ColonyCouncil
 
         private void SetTab(Tab t)
         {
+            restored = true;
             tab = t;
             lastInSection[SectionOf(t)] = t;
         }
@@ -288,6 +347,7 @@ namespace ColonyCouncil
         /// <summary>Opens the council window on a colonist's page in the People roster.</summary>
         public static void OpenPerson(Pawn p)
         {
+            restored = true;
             tab = Tab.Roster;
             lastInSection[Section.People] = Tab.Roster;
             PeoplePanel.Select(p);
@@ -299,6 +359,7 @@ namespace ColonyCouncil
         public static void OpenTab(string name)
         {
             if (!System.Enum.TryParse(name, true, out Tab t)) return;
+            restored = true;
             tab = t;
             lastInSection[SectionOf(t)] = t;
             var button = CouncilDefOf.Council_MainButton;
@@ -320,7 +381,9 @@ namespace ColonyCouncil
         /// <summary>Opens the council window on an almanac page.</summary>
         public static void OpenAlmanac(AlmanacArticleDef article)
         {
+            restored = true;
             tab = Tab.Almanac;
+            lastInSection[Section.Almanac] = Tab.Almanac;
             AlmanacPanel.Show(article);
             var button = CouncilDefOf.Council_MainButton;
             if (Find.MainTabsRoot.OpenTab != button) Find.MainTabsRoot.SetCurrentTab(button, false);
