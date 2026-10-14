@@ -294,7 +294,11 @@ fade after a season or two.
 Colonists who sleep (or lie unconscious) for a few hours sometimes wake from a dream, and tell each other about
 it. Dreams grow out of their lives: the raid two days ago, the friend they buried, the rival who insulted them, the
 wish the council ignored, the leg they lost, the skill they're learning, the dead they miss, their partner, their
-dog. Most are just a passing mood and a line in their journal (hover the mood to read the dream). Now and then one
+dog. They grow out of what they feel, too (an argument all night with the one they're angry at, a debt repaid to the
+one they're grateful to, dreams of fear, shame, loneliness, pride or hope), out of what ails them (loose teeth with a
+toothache, breathing underwater with a cold), and out of what's around them: a camp on the map, a council meeting,
+sickness, famine, fighting or a fair in the region, and the seasons. Most are just a passing mood and a line in their
+journal (hover the mood to read the dream). Now and then one
 changes something: an inspiration, a lesson, a good night's rest, a nightmare that leaves them shaken, a dream of
 victory that steadies their aim, a softened rivalry, a sudden wish. And rarely a dream is an **omen**: a few days
 after someone wakes up talking about bells and pack animals on the hill, a caravan arrives; after torches in the
