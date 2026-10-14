@@ -478,6 +478,7 @@ namespace ColonyCouncil
             }
             raiders.Add(x);
             s.flags.AddDistinct("led");
+            VisualTouches.BandArrives(map, raiders);
         }
 
         /// <summary>A line for the game's raid letter when he rides with it.</summary>

@@ -267,6 +267,7 @@ namespace ColonyCouncil
                 var opener = chair != null && here.Contains(chair) ? chair : Elapsed >= MeetingAttendance.LateShare / 2f ? here.RandomElement() : null;
                 if (opener == null) return;
                 opened = true;
+                VisualTouches.MeetingOpens(map, spot);
                 string open = Line("Council_Pool_MeetingOpen", opener, null, null);
                 if (open != null) CouncilGameComponent.Speak(opener, open, SpeechColor);
                 return;

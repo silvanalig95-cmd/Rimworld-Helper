@@ -144,6 +144,8 @@ namespace ColonyCouncil
         public bool wishLetters = true;
         public bool grantedLetters = false;
         public bool speechText = true;
+        /// <summary>The game's own flecks, sky colors and sounds for what Rimfolk says is happening (Touches/).</summary>
+        public bool visualTouches = true;
 
         // Meetings
         public float daysBetweenMeetings = 15f;
@@ -262,6 +264,7 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref wishLetters, "wishLetters", true);
             Scribe_Values.Look(ref grantedLetters, "grantedLetters", false);
             Scribe_Values.Look(ref speechText, "speechText", true);
+            Scribe_Values.Look(ref visualTouches, "visualTouches", true);
             Scribe_Values.Look(ref daysBetweenMeetings, "daysBetweenMeetings", 15f);
             Scribe_Values.Look(ref ambitionDeadlineFactor, "ambitionDeadlineFactor", 1f);
             Scribe_Values.Look(ref meetingsCallFromWork, "meetingsCallFromWork", true);
@@ -562,6 +565,7 @@ namespace ColonyCouncil
             l.CheckboxLabeled("CC_Settings_WishLetters".Translate(), ref wishLetters, "CC_Settings_WishLetters_Tip".Translate());
             l.CheckboxLabeled("CC_Settings_GrantedLetters".Translate(), ref grantedLetters, "CC_Settings_GrantedLetters_Tip".Translate());
             l.CheckboxLabeled("CC_Settings_SpeechText".Translate(), ref speechText, "CC_Settings_SpeechText_Tip".Translate());
+            l.CheckboxLabeled("CC_Settings_VisualTouches".Translate(), ref visualTouches, "CC_Settings_VisualTouches_Tip".Translate());
 
             Header(l, "CC_Settings_Alerts".Translate());
             l.CheckboxLabeled("CC_Settings_AdvisorAlert".Translate(), ref advisorAlert, "CC_Settings_AdvisorAlert_Tip".Translate());
@@ -712,6 +716,7 @@ namespace ColonyCouncil
             wishLetters = d.wishLetters;
             grantedLetters = d.grantedLetters;
             speechText = d.speechText;
+            visualTouches = d.visualTouches;
             daysBetweenMeetings = d.daysBetweenMeetings;
             ambitionDeadlineFactor = d.ambitionDeadlineFactor;
             meetingsCallFromWork = d.meetingsCallFromWork;

@@ -140,6 +140,7 @@ namespace ColonyCouncil
                 foreach (var p in map.mapPawns.FreeColonistsSpawned.Where(p => People.HasInnerLife(p) && !p.DevelopmentalStage.Baby()).ToList())
                     CouncilGameComponent.GiveThought(p, thought);
             if (hero != null) CouncilGameComponent.GiveThought(hero, CouncilDefOf.Council_BattleHero);
+            if (!costly) VisualTouches.Victory(fighters);
             var tags = new List<string> { costly ? "costly" : "clean" };
             if (foe == null) tags.Add("beasts");
             var writers = new List<Pawn>();

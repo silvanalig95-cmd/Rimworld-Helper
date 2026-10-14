@@ -870,6 +870,18 @@ a serious case is more likely to ask for a stocked infirmary when medicine is sh
 lifts both. Settings (People page): everyday ailments on or off, serious illnesses on or off, and how often (25% to
 200%). Off, nothing new starts; what's running finishes its course.
 
+## Seen and heard
+Rimfolk adds no art of its own, so it uses the game's own effects, sky and sounds to show what its events say is
+happening. Under a **comet** the night sky takes a faint cool cast, and a **warm spell** warms the daylight a little
+(only the colors: the light level, and everything that depends on it, stays the same). On **firefly nights** small
+green-gold blinks drift around colonists outside after dark; **hail** pings off open ground and the crops it hits; a
+**camp's fire** sends up a thin line of smoke, with sparks at night; a **warlord's band** raises dust as it marches
+in. A **wedding** gets hearts over the couple and the friends nearby, a kept **tradition** a few notes of song, a
+clean **victory** a word or two from those who fought, and a **council meeting** opens with a small bell. Now and
+then a content colonist hums at work, someone outside says something about the comet or the weather, and on a comet
+night an idle colonist in good spirits may lie down to watch the sky. All of it happens only on the map you're
+looking at and only on screen, a handful at a time, and one setting (**Visual and sound touches**) turns it off.
+
 ## Slow speeds
 Two speeds slower than normal, **½×** and **¼×**, for planning without pausing: the colony keeps living, gently.
 Small buttons sit next to the time controls (drag them by their grip to put them wherever you like; on a
@@ -894,7 +906,7 @@ journals, the Story tab and History) or **Important only**.
 - **Life's ups and downs**: how hard the everyday pressures press, **gentle** (half strength, no half-built work, and
   high standards don't make frictions sting more), **normal** (default) or **demanding** (half again as strong)
 - meeting interval, ambition deadlines, and whether meetings call people from their work
-- letters vs. messages, floating speech text, alerts
+- letters vs. messages, floating speech text, alerts, and the visual and sound touches
 - where the council button sits in the bottom bar
 - **material counts in build menus**: the game's own material list shows what the colony has (one of the deeper
   game hooks)

@@ -70,6 +70,7 @@ namespace ColonyCouncil
             try
             {
                 WorldReactions.Wedding(firstPawn, secondPawn);
+                VisualTouches.Wedding(firstPawn, secondPawn);
             }
             catch (System.Exception e)
             {
