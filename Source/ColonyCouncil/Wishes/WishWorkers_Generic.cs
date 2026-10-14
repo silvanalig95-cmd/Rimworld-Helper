@@ -72,7 +72,7 @@ namespace ColonyCouncil
         public float minDaysInColony;
         /// <summary>Has a baby or toddler of their own (Biotech).</summary>
         public bool parentOfLittleOne;
-        /// <summary>Only while they're unwell: one of Rimfolk's ailments, or one of the game's illnesses (flu, plague...).</summary>
+        /// <summary>Only while they're ill: a cold, a stomach bug, one of Rimfolk's serious illnesses or the game's (flu, plague...).</summary>
         public bool ailing;
         /// <summary>At least this old, in human years (long-lived genes count at their own pace): 60 for the old.</summary>
         public float minAge;

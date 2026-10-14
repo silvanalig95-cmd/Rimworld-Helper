@@ -13,10 +13,26 @@ namespace ColonyCouncil
     /// </summary>
     public class WishWorker_Sickbed : WishWorker
     {
+        private static readonly Dictionary<HediffDef, bool> illness = new Dictionary<HediffDef, bool>();
+
         /// <summary>
-        /// Unwell right now: one of Rimfolk's ailments (not a cough left over from one), or one of the game's illnesses
-        /// (flu, plague, malaria, food poisoning and the like make the game's own "sick" mood).
+        /// An illness, as opposed to an ache: one of Rimfolk's that is caught and fought off (a cold, a stomach bug) or
+        /// one of its serious ones, or one of the game's that brings the "sick" mood (flu, plague, malaria, food
+        /// poisoning). A sore back, blisters, sunburn and the cough a cold leaves behind aren't.
         /// </summary>
+        public static bool IsIllness(HediffDef d)
+        {
+            if (d == null) return false;
+            if (!illness.TryGetValue(d, out bool ill))
+            {
+                var info = AilmentTracker.InfoOf(d);
+                ill = info != null ? !info.lingering && (info.serious || d.CompProps<HediffCompProperties_Immunizable>() != null) : d.makesSickThought;
+                illness[d] = ill;
+            }
+            return ill;
+        }
+
+        /// <summary>Ill right now (see <see cref="IsIllness"/>), with symptoms showing.</summary>
         public static bool Ailing(Pawn p)
         {
             var hediffs = p?.health?.hediffSet?.hediffs;
@@ -24,14 +40,7 @@ namespace ColonyCouncil
             for (int i = 0; i < hediffs.Count; i++)
             {
                 var h = hediffs[i];
-                if (h?.def == null || !h.Visible) continue;
-                var info = AilmentTracker.InfoOf(h.def);
-                if (info != null)
-                {
-                    if (!info.lingering) return true;
-                    continue;
-                }
-                if (h.def.makesSickThought) return true;
+                if (h?.def != null && h.Visible && IsIllness(h.def)) return true;
             }
             return false;
         }
