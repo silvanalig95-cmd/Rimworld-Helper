@@ -112,13 +112,13 @@
   <ColonyCouncil.RoomTemplateDef>
     <defName>Council_Brewery</defName>
     <label>brewery</label>
-    <description>A brewing bench and fermenting barrels for beer. Barrels only work between -1 °C and 32 °C.</description>
+    <description>A brewing bench and fermenting barrels for beer. Barrels only ferment between 7 °C and 32 °C.</description>
     <order>34</order>
     <group>Food</group>
     <size>(5,4)</size>
     <near><li>Storeroom</li><li>RecRoom</li></near>
     <tips>
-      <li>Fermenting barrels only work between -1 °C and 32 °C. An indoor room keeps them in range most of the year.</li>
+      <li>Fermenting barrels only work between 7 °C and 32 °C. An indoor room keeps them in range most of the year.</li>
       <li>Beer counts as recreation and cheers people up, but too much leads to hangovers and, for some, alcohol addiction. Set a drug policy.</li>
     </tips>
     <things>

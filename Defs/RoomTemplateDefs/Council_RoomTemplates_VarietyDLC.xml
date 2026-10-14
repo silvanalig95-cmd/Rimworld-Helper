@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    More sizes of the DLC rooms. Each loads only with its DLC (MayRequire), like Council_RoomTemplates_DLC.xml.
+    A lectern faces the seats: the speaker stands behind it, on the side of the altar, and pews face both.
+  -->
+
+  <!-- ==================== Royalty ==================== -->
+
+  <ColonyCouncil.RoomTemplateDef MayRequire="Ludeon.RimWorld.Royalty">
+    <defName>Council_AudienceChamber</defName>
+    <label>audience chamber</label>
+    <description>A throne against the back wall between two braziers, a harp by the side wall, and plants by the door.</description>
+    <purpose>A first throne room for a newly titled noble: small, but theirs, and enough for the lowest ranks.</purpose>
+    <order>26</order>
+    <group>Leisure</group>
+    <size>(5,6)</size>
+    <iconDefs><li>Throne</li></iconDefs>
+    <floors><li>CarpetRed</li><li>CarpetDark</li><li>WoodPlankFloor</li></floors>
+    <tips>
+      <li>Every title wants its throne room a little bigger and finer than the last. Check the noble's title for what it needs.</li>
+      <li>A throne room only counts with nothing else in it: no beds, no workbenches, no tables.</li>
+      <li>Braziers count as decoration as well as light. Keep them fueled when guests are coming.</li>
+    </tips>
+    <things>
+      <li><defs><li>Throne</li><li>GrandThrone</li></defs><role>throne</role><pos>(2,5)</pos><rot>South</rot><optional>false</optional></li>
+      <li><defs><li>Brazier</li><li>StandingLamp</li><li>TorchLamp</li></defs><role>light</role><pos>(0,5)</pos></li>
+      <li><defs><li>Brazier</li><li>StandingLamp</li><li>TorchLamp</li></defs><role>light</role><pos>(4,5)</pos></li>
+      <li><defs><li>Harp</li></defs><role>music</role><pos>(4,2)</pos><rot>East</rot><tier>decor</tier></li>
+      <li><defs><li>Drape</li></defs><role>drape</role><pos>(0,3)</pos><rot>East</rot><tier>lavish</tier></li>
+      <li><defs><li>PlantPot</li></defs><role>plantpot</role><pos>(0,0)</pos></li>
+      <li><defs><li>PlantPot</li></defs><role>plantpot</role><pos>(4,0)</pos></li>
+    </things>
+  </ColonyCouncil.RoomTemplateDef>
+
+  <ColonyCouncil.RoomTemplateDef MayRequire="Ludeon.RimWorld.Royalty">
+    <defName>Council_GrandThroneRoom</defName>
+    <label>grand throne room</label>
+    <description>A grand throne at the head of a long hall, braziers either side of it, a harpsichord, columns down the sides and drapes on the walls.</description>
+    <purpose>For the highest titles: a hall big enough to receive the Empire's envoys and fine enough to impress them.</purpose>
+    <order>26</order>
+    <group>Leisure</group>
+    <size>(10,9)</size>
+    <iconDefs><li>GrandThrone</li></iconDefs>
+    <floors><li>CarpetRed</li><li>CarpetDark</li><li>TileMarble</li><li>WoodPlankFloor</li></floors>
+    <lavishFloors><li>TileMarble</li><li>CarpetRed</li><li>CarpetDark</li></lavishFloors>
+    <tips>
+      <li>The highest titles want a grander throne, finer music and a big, very impressive room. Check the title before you build.</li>
+      <li>Impressiveness grows with space, beauty and wealth. A marble floor and good art do more than another brazier.</li>
+      <li>A throne room stops counting once anything else moves in. Keep the hall empty but for its fittings.</li>
+    </tips>
+    <things>
+      <li><defs><li>GrandThrone</li><li>Throne</li></defs><role>throne</role><pos>(5,8)</pos><rot>South</rot><optional>false</optional></li>
+      <li><defs><li>Brazier</li><li>StandingLamp</li><li>TorchLamp</li></defs><role>light</role><pos>(2,8)</pos></li>
+      <li><defs><li>Brazier</li><li>StandingLamp</li><li>TorchLamp</li></defs><role>light</role><pos>(7,8)</pos></li>
+      <li><defs><li>Brazier</li><li>StandingLamp</li><li>TorchLamp</li></defs><role>light</role><pos>(0,0)</pos></li>
+      <li><defs><li>Brazier</li><li>StandingLamp</li><li>TorchLamp</li></defs><role>light</role><pos>(9,0)</pos></li>
+      <li><defs><li>Harpsichord</li><li>Harp</li></defs><role>music</role><pos>(8,4)</pos><rot>East</rot></li>
+      <li><defs><li>Column</li></defs><role>column</role><pos>(2,1)</pos><tier>decor</tier></li>
+      <li><defs><li>Column</li></defs><role>column</role><pos>(7,1)</pos><tier>decor</tier></li>
+      <li><defs><li>Column</li></defs><role>column</role><pos>(2,5)</pos><tier>decor</tier></li>
+      <li><defs><li>Column</li></defs><role>column</role><pos>(7,5)</pos><tier>decor</tier></li>
+      <li><defs><li>Drape</li></defs><role>drape</role><pos>(0,7)</pos><rot>East</rot><tier>decor</tier></li>
+      <li><defs><li>Drape</li></defs><role>drape</role><pos>(9,6)</pos><rot>West</rot><tier>decor</tier></li>
+      <li><defs><li>PlantPot</li></defs><role>plantpot</role><pos>(0,4)</pos></li>
+    </things>
+  </ColonyCouncil.RoomTemplateDef>
+
+  <!-- ==================== Ideology ==================== -->
+
+  <ColonyCouncil.RoomTemplateDef MayRequire="Ludeon.RimWorld.Ideology">
+    <defName>Council_Shrine</defName>
+    <label>shrine</label>
+    <description>A small altar at the back, a lectern facing a single pew, two braziers, and drapes on the side walls.</description>
+    <purpose>Somewhere to hold the ideoligion's rites before there's stone and time for a chapel.</purpose>
+    <order>29</order>
+    <group>Leisure</group>
+    <size>(5,5)</size>
+    <iconDefs><li>Altar_Small</li><li>Lectern</li></iconDefs>
+    <floors><li>TileMarble</li><li>TileGranite</li><li>TileSlate</li><li>TileLimestone</li><li>TileSandstone</li><li>WoodPlankFloor</li></floors>
+    <near><li>DiningRoom</li></near>
+    <tips>
+      <li>Even a small altar and a lectern raise the quality of rituals held at them.</li>
+      <li>A shrine is a fine room to start with, but big ceremonies want space for the whole colony. Plan a chapel next to it.</li>
+      <li>The speaker stands behind the lectern, between it and the altar. Leave that cell free.</li>
+    </tips>
+    <things>
+      <li><defs><li>Altar_Small</li></defs><role>altar</role><pos>(2,4)</pos><optional>false</optional></li>
+      <li><defs><li>Lectern</li></defs><role>lectern</role><pos>(2,2)</pos><rot>South</rot></li>
+      <li><defs><li>Pew</li><li>DiningChair</li><li>Stool</li></defs><role>pew</role><pos>(2,1)</pos></li>
+      <li><defs><li>Brazier</li><li>DarklightBrazier</li><li>TorchLamp</li><li>StandingLamp</li></defs><role>light</role><pos>(0,4)</pos></li>
+      <li><defs><li>Brazier</li><li>DarklightBrazier</li><li>TorchLamp</li><li>StandingLamp</li></defs><role>light</role><pos>(4,4)</pos></li>
+      <li><defs><li>Drape</li></defs><role>drape</role><pos>(0,2)</pos><rot>East</rot><tier>lavish</tier></li>
+      <li><defs><li>Drape</li></defs><role>drape</role><pos>(4,2)</pos><rot>West</rot><tier>lavish</tier></li>
+    </things>
+  </ColonyCouncil.RoomTemplateDef>
+
+  <ColonyCouncil.RoomTemplateDef MayRequire="Ludeon.RimWorld.Ideology">
+    <defName>Council_Temple</defName>
+    <label>temple</label>
+    <description>A large altar at the far end with braziers either side, a lectern facing two rows of pews with an aisle down the middle, columns and drapes.</description>
+    <purpose>A ritual room for the whole colony: funerals, festivals and trials with everyone seated and the room itself adding to the rite.</purpose>
+    <order>29</order>
+    <group>Leisure</group>
+    <size>(9,8)</size>
+    <iconDefs><li>Altar_Large</li><li>Pew</li></iconDefs>
+    <floors><li>TileMarble</li><li>TileGranite</li><li>TileSlate</li><li>TileLimestone</li><li>TileSandstone</li><li>WoodPlankFloor</li></floors>
+    <lavishFloors><li>CarpetRed</li><li>TileMarble</li><li>CarpetDark</li></lavishFloors>
+    <near><li>DiningRoom</li></near>
+    <tips>
+      <li>An altar, a lectern and seats each add to a ritual's quality, and an impressive room adds more still.</li>
+      <li>Some rituals want ten or twenty people present. A temple this size seats them and leaves room to stand.</li>
+      <li>Darklight braziers suit an ideoligion that prefers the dark. Swap them in the planner.</li>
+      <li>Ideoligion buildings the precepts ask for can go along the side walls, between the columns.</li>
+    </tips>
+    <things>
+      <li><defs><li>Altar_Large</li><li>Altar_Medium</li></defs><role>altar</role><pos>(4,6)</pos><optional>false</optional></li>
+      <li><defs><li>Lectern</li></defs><role>lectern</role><pos>(4,4)</pos><rot>South</rot></li>
+      <li><defs><li>Pew</li><li>DiningChair</li><li>Stool</li></defs><role>pew</role><pos>(2,2)</pos></li>
+      <li><defs><li>Pew</li><li>DiningChair</li><li>Stool</li></defs><role>pew</role><pos>(6,2)</pos></li>
+      <li><defs><li>Pew</li><li>DiningChair</li><li>Stool</li></defs><role>pew</role><pos>(2,0)</pos></li>
+      <li><defs><li>Pew</li><li>DiningChair</li><li>Stool</li></defs><role>pew</role><pos>(6,0)</pos></li>
+      <li><defs><li>Brazier</li><li>DarklightBrazier</li><li>TorchLamp</li><li>StandingLamp</li></defs><role>light</role><pos>(2,7)</pos></li>
+      <li><defs><li>Brazier</li><li>DarklightBrazier</li><li>TorchLamp</li><li>StandingLamp</li></defs><role>light</role><pos>(6,7)</pos></li>
+      <li><defs><li>Column</li></defs><role>column</role><pos>(0,4)</pos></li>
+      <li><defs><li>Column</li></defs><role>column</role><pos>(8,4)</pos></li>
+      <li><defs><li>Drape</li></defs><role>drape</role><pos>(0,6)</pos><rot>East</rot><tier>lavish</tier></li>
+      <li><defs><li>Drape</li></defs><role>drape</role><pos>(8,6)</pos><rot>West</rot><tier>lavish</tier></li>
+    </things>
+  </ColonyCouncil.RoomTemplateDef>
+
+  <!-- ==================== Biotech ==================== -->
+
+  <ColonyCouncil.RoomTemplateDef MayRequire="Ludeon.RimWorld.Biotech">
+    <defName>Council_Nursery_Small</defName>
+    <label>small nursery</label>
+    <description>Two cribs against the back wall, a toy box, a light and a plant.</description>
+    <purpose>A warm, quiet room for the colony's first baby, near the parents.</purpose>
+    <order>43</order>
+    <group>Care</group>
+    <size>(4,3)</size>
+    <iconDefs><li>Crib</li></iconDefs>
+    <floors><li>CarpetCream</li><li>WoodPlankFloor</li></floors>
+    <near><li>Bedroom</li></near>
+    <tips>
+      <li>Babies sleep, eat and cry, mostly at night. A nursery next to the parents' room saves a lot of walking.</li>
+      <li>Keep the nursery warm and well away from the gate, where raids come in.</li>
+    </tips>
+    <things>
+      <li><defs><li>Crib</li></defs><role>crib</role><pos>(0,2)</pos><rot>South</rot><optional>false</optional></li>
+      <li><defs><li>Crib</li></defs><role>crib</role><pos>(1,2)</pos><rot>South</rot></li>
+      <li><defs><li>ToyBox</li></defs><role>toybox</role><pos>(3,2)</pos></li>
+      <li><defs><li>StandingLamp</li><li>TorchLamp</li></defs><role>light</role><pos>(3,0)</pos></li>
+      <li><defs><li>PlantPot</li></defs><role>plantpot</role><pos>(0,0)</pos></li>
+    </things>
+  </ColonyCouncil.RoomTemplateDef>
+
+  <ColonyCouncil.RoomTemplateDef MayRequire="Ludeon.RimWorld.Biotech">
+    <defName>Council_Nursery_Large</defName>
+    <label>large nursery</label>
+    <description>Four cribs along the back wall, a toy box, a shelf for baby food, an armchair for whoever keeps watch, a light and a soft floor.</description>
+    <purpose>For a colony with several little ones at once: one room to feed, rock and watch over them all.</purpose>
+    <order>43</order>
+    <group>Care</group>
+    <size>(6,5)</size>
+    <iconDefs><li>Crib</li><li>ToyBox</li></iconDefs>
+    <floors><li>CarpetCream</li><li>WoodPlankFloor</li></floors>
+    <near><li>Bedroom</li></near>
+    <tips>
+      <li>Baby food on the shelf here means a hungry baby is fed in minutes, not after a trip to the freezer.</li>
+      <li>From one armchair an adult can keep an eye on every crib. Make it a good one: the night shifts are long.</li>
+      <li>Children grow out of cribs. Plan the playroom and the schoolroom before they do.</li>
+    </tips>
+    <things>
+      <li><defs><li>Crib</li></defs><role>crib</role><pos>(0,4)</pos><rot>South</rot><optional>false</optional></li>
+      <li><defs><li>Crib</li></defs><role>crib</role><pos>(1,4)</pos><rot>South</rot></li>
+      <li><defs><li>Crib</li></defs><role>crib</role><pos>(3,4)</pos><rot>South</rot></li>
+      <li><defs><li>Crib</li></defs><role>crib</role><pos>(4,4)</pos><rot>South</rot></li>
+      <li><defs><li>StandingLamp</li><li>TorchLamp</li></defs><role>light</role><pos>(2,4)</pos></li>
+      <li><defs><li>ToyBox</li></defs><role>toybox</role><pos>(5,4)</pos></li>
+      <li><defs><li>Shelf</li></defs><role>storage</role><pos>(0,1)</pos><rot>East</rot></li>
+      <li><defs><li>Armchair</li><li>DiningChair</li><li>Stool</li></defs><role>chair</role><pos>(5,1)</pos><rot>West</rot><tier>decor</tier></li>
+      <li><defs><li>EndTable</li></defs><role>endtable</role><pos>(5,0)</pos><tier>lavish</tier></li>
+      <li><defs><li>PlantPot</li></defs><role>plantpot</role><pos>(5,2)</pos></li>
+    </things>
+  </ColonyCouncil.RoomTemplateDef>
+
+</Defs>

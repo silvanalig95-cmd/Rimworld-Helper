@@ -4,7 +4,8 @@
   <!--
     Rooms for the DLCs. Each loads only with its DLC (MayRequire), and its key piece decides whether the colony can
     plan it yet. Facings follow the base files: a mech gestator, a mech recharger and a gene assembler have their back
-    to the wall and are worked from the side they face; pews face the altar.
+    to the wall and are worked from the side they face; pews face the altar; a lectern faces the pews, with the speaker
+    behind it on the altar's side.
   -->
 
   <!-- ==================== Ideology ==================== -->
@@ -29,7 +30,7 @@
     </tips>
     <things>
       <li><defs><li>Altar_Medium</li></defs><role>altar</role><pos>(3,6)</pos><optional>false</optional></li>
-      <li><defs><li>Lectern</li></defs><role>lectern</role><pos>(3,5)</pos></li>
+      <li><defs><li>Lectern</li></defs><role>lectern</role><pos>(3,4)</pos><rot>South</rot></li>
       <li><defs><li>Pew</li><li>DiningChair</li></defs><role>pew</role><pos>(1,3)</pos></li>
       <li><defs><li>Pew</li><li>DiningChair</li></defs><role>pew</role><pos>(5,3)</pos></li>
       <li><defs><li>Pew</li><li>DiningChair</li></defs><role>pew</role><pos>(1,1)</pos></li>
