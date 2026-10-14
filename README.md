@@ -199,6 +199,13 @@ living under a decree you hate wears down your trust in the council. With feelin
 (long hours, drills, on guard...) also build a little strain in those who resent them, and **days of rest** lets the
 colony recover: 10% slower work for three days, while strain drains about twice as fast.
 
+Nineteen decrees in all. The everyday ones each trade a little work for something else: **quiet hours** (deeper
+sleep, far fewer quarrels; night owls hate it), **shared meals** (talk and goodwill at one table), **rest when ill**
+(wounds and illnesses mend faster while the well cover for the sick), **banked fires** (fires, torches and fueled
+heaters burn a quarter less fuel, in colder, darker rooms), **apprenticeships** (everyone practices building,
+crafting, cooking and growing every hour) and **a feast day** (one day of eating well and working half). Colonists
+petition for them when someone is ill, in winter, or when a newcomer joins.
+
 There's no hard limit on repeating a decree, but there is a price. Enact the same one again within a month, or
 **force it through** before its cooldown is over, and those against it lose more trust and resent it more each
 time. Someone may even snap: the hot-tempered throw a tantrum, others wander off in a daze. The tab warns you how
@@ -222,6 +229,13 @@ at each other's throats: take a side, force them to work together, or stay out o
 stash of beer, a cook who wants to spend the stores on one magnificent feast, a colonist who quietly admits they
 can't cope. Kind, greedy, industrious and teetotal colonists all react differently. Leave a dilemma unanswered and
 the council's silence decides for you.
+
+There are 119 of them, and many grow out of everyday life: a sick colonist when the medicine is nearly gone,
+whether to keep someone with a fever apart, a cook with a cold, an old family remedy, a visitor's strange cure, the
+camp on the colony's land asking for medicine, food or searchers for a lost child, a council meeting someone missed,
+a worn-out colonist asking for days off at the worst time, a squabble that turned into a feud, an elder who wants to
+put down the tools, a child's question, a broken promise, the same meal every day. Many answers call on whoever is
+best placed (the doctor, a forager, a tracker, the best talker), and their skill decides how it goes.
 
 ### Social: friends, rivals, comrades and mentors
 Colonists form lasting bonds out of how they feel about each other and what they live through, and those bonds
@@ -290,6 +304,12 @@ after a dream came true, a fear of the dark after lying downed in the dirt, grie
 harmless habits like knocking on wood, counting steps or talking to the dead. Small moods at the right moments; most
 fade after a season or two.
 
+Others simply grow out of who someone is: a grower who talks to the plants, a handler who names every animal, a cook
+who sings at the stove, an early riser, someone who hums at work, collects pretty stones, can't stand a mess, feeds
+the birds or remembers every birthday, and after a night in the cold or under the stars, someone who is always cold
+or goes out to watch the stars. Some bring a small knack while they last (slightly faster plant work, fewer food
+poisonings from that cook, animals tamed and trained more easily). 29 quirks in all.
+
 ### Dreams
 Colonists who sleep (or lie unconscious) for a few hours sometimes wake from a dream, and tell each other about
 it. Dreams grow out of their lives: the raid two days ago, the friend they buried, the rival who insulted them, the
@@ -309,6 +329,11 @@ Colonists meet everyone else on the map, too:
 - **Fallen enemies** lying downed after a fight beg, curse and pray; how your people react depends on who they are.
 - **Pets and wildlife:** a pet's welcome after a hard day, stolen dinners, a dead rat as a gift, a thrumbo at the
   tree line, wolves at night, a small creature that follows someone home.
+- **The land, the seasons and the weather:** shade shared with a wild animal at desert noon, tracks in the tundra
+  snow, eyes in the jungle undergrowth, lights over the marsh, an animal on the mountain ridge, the tide line on the
+  coast; a traveler's trick against the sand or the cold, the first green of spring, rain waited out with a pet, a
+  shape in the fog, a pet frightened by thunder, other names for the stars on a clear night. Rimfolk reads the land
+  from the biome and the tile, so other mods' biomes count too. 122 kinds of encounter in all.
 - **The council decides** when it gets harder: a visitor who wants to stay, a rude guest, a trader who wants an
   heirloom, beggars at the gate, a wounded raider who's still breathing, a predator's den, a child who wants to
   keep a wild animal, an old acquaintance who knows a secret.

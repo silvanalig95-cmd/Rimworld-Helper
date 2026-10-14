@@ -137,8 +137,20 @@ The "Good times" line in a colonist's Mood tab says what these rules take off ri
           <li>Austerity | No new wishes; standards fall fast.</li>
           <li>Festival days | A big mood lift; work much slower; standards rise.</li>
           <li>Days of mourning | Only while someone grieves. Grief fades much faster and mental breaks are less likely.</li>
+          <li>Quiet hours | Rest 15% faster in bed and far fewer social fights; work 5% slower.</li>
+          <li>Shared meals | Social impact up 10%, fewer social fights, some practice at talking every hour; work 3% slower.</li>
+          <li>Rest when ill | Wounds heal 20% faster and immunity builds faster; work 5% slower.</li>
+          <li>Banked fires | Fires, torches and fueled heaters burn 25% less fuel; work 4% slower.</li>
+          <li>Apprenticeships | Everyone practices construction, crafting, cooking and growing every hour; work 8% slower.</li>
+          <li>A feast day | One day: hunger 40% faster, work 15% slower, standards rise slightly.</li>
         </table>
         <after>Each decree also says something about the colony: long hours make it more hard-working, festivals more easygoing and traditional, being on guard more guarded.</after>
+      </li>
+      <li>
+        <heading>The everyday decrees</heading>
+        <text>The six newest decrees trade a few percent of work for something the colony needs, and their good moods are deliberately small. Quiet hours suit a tired or quarrelsome colony, but night owls hate them and the sociable mind losing their evenings. Shared meals help a colony full of newcomers get to know each other. Rest when ill pays off when several people are sick or hurt at once. Banked fires stretch the woodpile through a hard winter: the fuel is handed back to fires, torches and fueled heaters each hour, never to generators, to stoves while they cook, or to anything switched off. Apprenticeships spread the colony's trades so one fever can't leave it without a cook; they help the unskilled most, since practice counts for more at low levels. A feast day costs food and half a day's work for one day of good cheer.
+
+Colonists petition for these when the moment fits: when someone is ill, in winter, or when someone new has joined.</text>
       </li>
       <li>
         <heading>When to call one</heading>
@@ -177,6 +189,12 @@ Check the trust list first: a colonist who is already doubtful takes being overr
       <li>
         <heading>Seasons and battles</heading>
         <text>Seasonal dilemmas (midsummer, harvest home, the longest night, naming the year) and after-battle ones (the spoils, the enemy dead, a victory feast) come up at their moment. Every dilemma and its answer is written into the chronicle and counted in the year's annals.</text>
+      </li>
+      <li>
+        <heading>Everyday life</heading>
+        <text>Many dilemmas grow out of what is happening to people right now. Someone ill when the medicine is down to a few doses; a fever that could spread through a shared room; a cook with a cold; an old family remedy, or a visitor's strange cure. A group camped on the colony's land asking for medicine, food or searchers for a lost child: how the colony answers changes how tense things are at their camp and what their people think of you. A council meeting someone missed while they were out working. A worn-out colonist (with feelings and strain on) asking for days off just when the harvest is in or the walls are broken. A squabble that grew into a feud, an elder who wants to put down the tools, a child with a question, a broken promise, the same meal or the same work every day, too many people in too little room.
+
+Many answers call on whoever is best placed: the doctor, a forager, a tracker, a scholar, the best talker. They are grayed out when nobody fits, their skill makes a gamble less likely to go wrong, and the outcome names them. Medicine spent on someone eases their illness but never cures it outright, and no answer makes anyone sicker.</text>
       </li>
     </sections>
     <keywords><li>dilemma</li><li>choice</li><li>letter</li><li>feud</li><li>thief</li></keywords>
@@ -405,8 +423,15 @@ Those who swore vengeance take peace with the killers as a betrayal. It may stil
           <li>a fear of the dark after lying downed</li>
           <li>grief that returns every winter</li>
           <li>harmless habits like knocking on wood or talking to the dead</li>
+          <li>red is bad luck, after a bad fight (uneasy when wearing red)</li>
+          <li>checking the gate every night, after a fight</li>
+          <li>always cold, after a night spent freezing; watching the stars, after a night slept outside</li>
         </points>
         <after>Most fade after a season or two. They're listed in the trust tooltip.</after>
+      </li>
+      <li>
+        <heading>Habits</heading>
+        <text>Other quirks simply grow out of who someone is, now and then: a grower who talks to the plants (glad while growing, plant work 3% faster), a handler who names every animal (glad while handling, taming and training 3% likelier), a cook who sings at the stove (glad while cooking, 15% fewer food poisonings), an early riser (glad in the morning, sorry when kept up late), someone who hums at work, collects pretty stones for their room, can't stand a mess (unhappy in a dirty room, cleans 10% faster), feeds the birds, remembers every birthday (social impact up 3%), is always whittling (bored more slowly), talks in their sleep or saves the best bite for last. A habit's knack lasts as long as the habit, which fades after most of a year.</text>
       </li>
       <li>
         <heading>Coming of age</heading>
@@ -454,6 +479,12 @@ Capturing a nemesis, or seeing them dead, lifts the mood of the one they hurt. D
       <li>
         <heading>The colony's animals</heading>
         <text>An animal that fights beside its person in a battle is remembered for it. A named animal that dies gets a farewell from the one who loved it.</text>
+      </li>
+      <li>
+        <heading>The land, the seasons and the weather</heading>
+        <text>Some moments only happen in their place or their hour. In the desert a wild animal shares the noon shade; on the tundra and in the northern forest there are tracks in the snow and travelers with tricks against the cold; in jungle and swamp, eyes in the undergrowth, a cape of leaves in the rain, lights over the marsh at night; in the mountains, an animal on the ridge and news of the high passes; on the coast, the tide line and the sea in a storm. Spring brings the first green, fall the creatures getting ready for winter, and rain, fog, snow, thunder and a clear night each have moments of their own.
+
+Rimfolk reads the land from the biome's name and the map tile (hills, mountains, a coast, a river), so the biomes other mods add count too: a mod's mangrove is a swamp. The everyday encounters have lines for each kind of land as well.</text>
       </li>
     </sections>
     <keywords><li>visitor</li><li>trader</li><li>prisoner</li><li>nemesis</li><li>beast</li><li>pet</li><li>animal</li><li>encounter</li></keywords>
