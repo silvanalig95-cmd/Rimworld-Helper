@@ -50,6 +50,12 @@ namespace ColonyCouncil
         /// <summary>Only for a colony known this way (all of them): Merciful, Harsh, Generous, Thrifty, Traditional, Restless, Open, Guarded, Hardworking, Easygoing.</summary>
         public List<string> colonyIs;
         public List<string> colonyIsNot;
+        /// <summary>Only while the stores hold at most this much medicine (scarce: -1 = any amount).</summary>
+        public int maxMedicine = -1;
+        /// <summary>Only while they hold at least this much (so the answer that spends it can be given).</summary>
+        public int minMedicine;
+        /// <summary>Only at a bad time to be short of hands (see <see cref="LifeChecks.BusyTime"/>).</summary>
+        public bool busyTime;
 
         [Unsaved] private DilemmaWorker worker;
 
@@ -116,6 +122,23 @@ namespace ColonyCouncil
         /// The way to ask for another mod's trait, class or meme: it simply never fits when that mod is missing.
         /// </summary>
         public string tags;
+        /// <summary>Ill (see <see cref="LifeChecks.Illness"/>; {ILLNESS} in texts names it).</summary>
+        public bool sick;
+        /// <summary>Ill with one of these: Rimfolk ailment keys or hediff defNames, "HeadCold|Typhus|Flu".</summary>
+        public string illness;
+        /// <summary>Feelings and strain: at least this much strain (30 strained, 55 worn, 75 breaking). Never fits with the feature off.</summary>
+        public float minStrain;
+        /// <summary>Age in human years (see <see cref="Flavor.HumanAge"/>).</summary>
+        public float minAge;
+        public float maxAge = 9999f;
+        /// <summary>
+        /// One of these on their mind (see <see cref="LifeChecks.HasThought"/>): a memory from the last
+        /// <see cref="thoughtDays"/>, or a mood holding now. "Council_Friction_*" for any of a kind.
+        /// </summary>
+        public List<string> thoughts;
+        public float thoughtDays = 3f;
+        /// <summary>Role B only: the memory is about A.</summary>
+        public bool thoughtAboutA;
 
         private bool Extras(Pawn p)
         {
@@ -123,6 +146,21 @@ namespace ColonyCouncil
             if (!tags.NullOrEmpty() && !PeopleTags.Matches(p, tags)) return false;
             if (heirloom && (!ColonyCouncilMod.Settings.heirlooms || comp?.legacy.HeirloomCarriedBy(p) == null)) return false;
             if (secret && (!ColonyCouncilMod.Settings.secrets || !(comp?.secrets.Of(p) is Secret s) || s.revealed)) return false;
+            return true;
+        }
+
+        /// <summary>The parts about their life right now: illness, strain, age, what's on their mind.</summary>
+        private bool Life(Pawn p, Pawn a)
+        {
+            if ((sick || !illness.NullOrEmpty()) && !LifeChecks.HasIllness(p, illness)) return false;
+            if (minStrain > 0f && (!Heart.On || Heart.StrainOf(p) < minStrain)) return false;
+            if (minAge > 0f || maxAge < 9999f)
+            {
+                if (!p.RaceProps.Humanlike) return false;
+                float age = Flavor.HumanAge(p);
+                if (age < minAge || age > maxAge) return false;
+            }
+            if (!thoughts.NullOrEmpty() && !LifeChecks.HasThought(p, thoughts, thoughtDays, thoughtAboutA ? a : null)) return false;
             return true;
         }
 
@@ -152,6 +190,7 @@ namespace ColonyCouncil
             if (r.canFight && p.WorkTagIsDisabled(WorkTags.Violent)) return false;
             if (r.goal && CouncilGameComponent.Instance?.aspirations.Active(p) == null) return false;
             if (!r.Extras(p)) return false;
+            if (!r.Life(p, null)) return false;
             return true;
         }
 
@@ -183,6 +222,7 @@ namespace ColonyCouncil
                 if (o > maxOpinionOfA || back > maxOpinionOfA) return false;
                 if (o < minOpinionOfA) return false;
             }
+            if (!Life(p, a)) return false;
             return true;
         }
     }
@@ -248,7 +288,9 @@ namespace ColonyCouncil
                 SkillText.Named("SKILL"),
                 (CouncilGameComponent.Instance?.aspirations.Active(a)?.Goal ?? "").Named("GOAL"),
                 (CouncilGameComponent.Instance?.secrets.Of(a)?.def.label ?? "").Named("SECRET"),
-                (CouncilGameComponent.Instance?.quirks.Of(a).FirstOrDefault()?.Label ?? "").Named("QUIRK")
+                (CouncilGameComponent.Instance?.quirks.Of(a).FirstOrDefault()?.Label ?? "").Named("QUIRK"),
+                LifeChecks.IllnessLabel(a).Named("ILLNESS"),
+                LifeChecks.IllnessLabel(stranger).Named("THEIRILLNESS")
             };
             AddArgs(args);
             return s.Formatted(args.ToArray()).Resolve();
@@ -296,6 +338,13 @@ namespace ColonyCouncil
                 if (last <= 0 || Find.TickManager.TicksGame - last > def.withinDaysOfThreat * GenDate.TicksPerDay) return false;
             }
             if (def.needsGrief && !map.mapPawns.FreeColonistsSpawned.Any(Flavor.IsGrieving)) return false;
+            if (def.maxMedicine >= 0 || def.minMedicine > 0)
+            {
+                int medicine = LifeChecks.Medicine(map);
+                if (def.maxMedicine >= 0 && medicine > def.maxMedicine) return false;
+                if (medicine < def.minMedicine) return false;
+            }
+            if (def.busyTime && !LifeChecks.BusyTime(map)) return false;
             return true;
         }
 
