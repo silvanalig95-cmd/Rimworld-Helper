@@ -23,6 +23,14 @@ namespace ColonyCouncil
         public List<Season> seasons;
         public bool nightOnly;
         public bool dayOnly;
+        /// <summary>Only on these lands, any of them (see <see cref="Lands"/>: desert, tundra, boreal, jungle, swamp, forest,
+        /// grassland, mountains, hills, coast, lake, river). Empty: anywhere.</summary>
+        public List<string> lands;
+        /// <summary>
+        /// Only when the moment fits, as A lives it: a line's tags without the brackets ("rain|snow", "storm,outside",
+        /// "clear,night"). See <see cref="Flavor"/> and <see cref="LetterTags"/>.
+        /// </summary>
+        public string moment;
         [MustTranslate] public List<string> texts = new List<string>();
         public List<DilemmaEffect> effects = new List<DilemmaEffect>();
         /// <summary>A flavor pool for A's journal (lines may use {X_...}).</summary>
@@ -137,6 +145,7 @@ namespace ColonyCouncil
                 && (!lastTick.TryGetValue(d.defName, out int t) || now - t > d.cooldownDays * GenDate.TicksPerDay)
                 && (d.seasons.NullOrEmpty() || d.seasons.Contains(season))
                 && (!d.nightOnly || night) && (!d.dayOnly || !night)
+                && Lands.Fits(map, d.lands)
                 && ((d.colonyIs.NullOrEmpty() && d.colonyIsNot.NullOrEmpty()) || comp.character.Fits(d.colonyIs, d.colonyIsNot))).ToList();
             foreach (var def in pool.InRandomOrder().OrderByDescending(d => d.weight * Rand.Value))
             {
@@ -170,6 +179,7 @@ namespace ColonyCouncil
                 if (def.colonist != null ? !def.colonist.Allows(p, null) : !def.children && p.DevelopmentalStage.Juvenile()) continue;
                 var s = Strangers.Pick(map, def.stranger, p, strangers);
                 if (s == null) continue;
+                if (!def.moment.NullOrEmpty() && Flavor.Match("[" + def.moment + "]", LetterTags.For(new DilemmaContext { map = map, a = p, stranger = s })) < 0) continue;
                 a = p;
                 x = s;
                 return true;
