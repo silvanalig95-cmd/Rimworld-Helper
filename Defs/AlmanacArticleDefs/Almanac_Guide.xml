@@ -70,6 +70,7 @@ All of it lives in the council window. Open it with the council button in the bo
           <li>Visual touches: on a comet night the sky takes a faint cool cast, firefly nights bring small green-gold blinks around colonists outside after dark, and a council meeting opens with a bell. Only on the map you're looking at.</li>
           <li>Meetings: on the Ambition page, call a council meeting. At the set time colonists put down their work and walk over, and sleepers are woken and come late. The letter at the end says who came, who was late and who missed it, and why.</li>
           <li>The heart in RimHUD: in RimHUD's settings, Content tab, "Add third-party" lists Rimfolk's lines (strain, feelings, the heart's needs) and bars. Once added, they show in a colonist's RimHUD panel.</li>
+          <li>Personal stories: once one begins (a message names it), the colonist's Story tab has a "Personal story" section with the stage it has reached and what it waits for next. Each stage adds a journal line and a chronicle line; a talk the story waits on shows in the social log. In development mode, "Personal story: begin one for..." starts one for a colonist it fits, and "Personal story: next stage" moves it on.</li>
           <li>Material counts: open a room plan and look at its materials. Each shows green with some to spare and amber when it only just covers the room. In the game's build menu, a wall's material list reads like "Steel wall 420 (+85 lying around), enough for 84".</li>
         </points>
       </li>
