@@ -282,7 +282,7 @@ namespace ColonyCouncil
             var now = new HashSet<string>();
             var seen = new HashSet<int>();
             var found = new List<(Pawn, Pawn)>();
-            foreach (var p in PawnsFinder.AllMaps_FreeColonists)
+            foreach (var p in PawnsFinder.AllMaps_FreeColonists.ToList())
             {
                 if (!Ours(p) || p.relations == null) continue;
                 seen.Add(p.thingIDNumber);

@@ -48,7 +48,7 @@ namespace ColonyCouncil
         private static Pawn FindOurs(string id)
         {
             if (id == null) return null;
-            foreach (var p in PawnsFinder.AllMapsCaravansAndTravellingTransporters_Alive_FreeColonists)
+            foreach (var p in PawnsFinder.AllMapsCaravansAndTravellingTransporters_Alive_FreeColonists.ToList())
                 if (p.ThingID == id) return Ours(p) ? p : null;
             foreach (var p in People.OffMapColonists())
                 if (p.ThingID == id) return Ours(p) ? p : null;

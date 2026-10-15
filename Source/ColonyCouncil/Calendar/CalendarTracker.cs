@@ -283,7 +283,7 @@ namespace ColonyCouncil
             {
                 if (p != null && !p.Discarded && p.RaceProps != null && p.RaceProps.Humanlike) map[p.ThingID] = p;
             }
-            foreach (var p in PawnsFinder.All_AliveOrDead) Add(p);
+            foreach (var p in PawnsFinder.All_AliveOrDead.ToList()) Add(p);
             foreach (var p in People.OffMapColonists()) Add(p);
             // The dead in graves and sarcophagi, and corpses lying on the colony's maps.
             foreach (var m in Find.Maps)

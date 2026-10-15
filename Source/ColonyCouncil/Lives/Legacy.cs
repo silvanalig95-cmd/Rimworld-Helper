@@ -112,13 +112,13 @@ namespace ColonyCouncil
 
         private void CheckChildren(CouncilGameComponent comp)
         {
-            foreach (var p in PawnsFinder.AllMaps_FreeColonists.Where(Eligible))
+            foreach (var p in PawnsFinder.AllMaps_FreeColonists.ToList().Where(Eligible))
             {
                 if (p.DevelopmentalStage.Juvenile())
                 {
                     // A newborn: something for the adults to think about.
                     if (children.Add(p.ThingID) && (p.ageTracker?.AgeBiologicalTicks ?? long.MaxValue) < GenDate.TicksPerDay * 3)
-                        foreach (var o in PawnsFinder.AllMaps_FreeColonists.Where(o => o != p && Eligible(o) && !o.DevelopmentalStage.Juvenile()))
+                        foreach (var o in PawnsFinder.AllMaps_FreeColonists.ToList().Where(o => o != p && Eligible(o) && !o.DevelopmentalStage.Juvenile()))
                             comp.aspirations.Notify_Event(o, "birth");
                     continue;
                 }
@@ -140,7 +140,7 @@ namespace ColonyCouncil
             Find.LetterStack.ReceiveLetter("CC_ComingOfAge_Label".Translate(p.LabelShort), text, LetterDefOf.PositiveEvent, p);
             comp.AddChronicle(new ChronicleEntry(ChronicleKind.Life, text, p));
             comp.journals.Write(p, "Council_Journal_ComingOfAge");
-            foreach (var o in PawnsFinder.AllMaps_FreeColonists.Where(o => o != p && Eligible(o) && o.relations != null && !o.DevelopmentalStage.Juvenile()))
+            foreach (var o in PawnsFinder.AllMaps_FreeColonists.ToList().Where(o => o != p && Eligible(o) && o.relations != null && !o.DevelopmentalStage.Juvenile()))
             {
                 if (o.GetRelations(p).Any(r => r == PawnRelationDefOf.Parent))
                 {

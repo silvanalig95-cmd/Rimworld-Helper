@@ -614,7 +614,7 @@ namespace ColonyCouncil
             comp.AddChronicle(new ChronicleEntry(ChronicleKind.World, text));
             using (Causes.Push(text))
             {
-                foreach (var p in PawnsFinder.AllMaps_FreeColonists.Where(People.HasInnerLife))
+                foreach (var p in PawnsFinder.AllMaps_FreeColonists.ToList().Where(People.HasInnerLife))
                     CouncilGameComponent.GiveThought(p, CouncilDefOf.Council_Scen_HuntOver);
             }
         }

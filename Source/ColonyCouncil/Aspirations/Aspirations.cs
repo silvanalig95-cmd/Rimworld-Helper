@@ -479,7 +479,7 @@ namespace ColonyCouncil
             if (lastMourned.Count > 0) lastMourned.RemoveAll(kv => kv.Key == null || kv.Key.Discarded);
             if (!S.aspirations) return;
 
-            foreach (var p in PawnsFinder.AllMaps_FreeColonists.Where(Eligible).ToList())
+            foreach (var p in PawnsFinder.AllMaps_FreeColonists.ToList().Where(Eligible).ToList())
             {
                 var a = Active(p);
                 if (a == null)
@@ -636,7 +636,7 @@ namespace ColonyCouncil
                 if (idef != null) inspiration.TryStartInspiration(idef, null, true);
             }
             // The people who love them are glad.
-            foreach (var f in PawnsFinder.AllMaps_FreeColonists.Where(f => f != p && f.relations != null && (f.relations.OpinionOf(p) >= 40 || comp.social.Warmth(f, p) >= 40f)))
+            foreach (var f in PawnsFinder.AllMaps_FreeColonists.ToList().Where(f => f != p && f.relations != null && (f.relations.OpinionOf(p) >= 40 || comp.social.Warmth(f, p) >= 40f)))
             {
                 CouncilGameComponent.GiveThought(f, CouncilDefOf.Council_HappyForThem, p);
                 // Seeing someone they love do it can make them want it too.
@@ -651,7 +651,7 @@ namespace ColonyCouncil
             var p = a.pawn;
             string text = "CC_Asp_DiedBefore".Translate(p.Named("PAWN"), a.Goal.Named("GOAL")).Resolve();
             comp.AddChronicle(new ChronicleEntry(ChronicleKind.Life, text, null));
-            foreach (var f in PawnsFinder.AllMaps_FreeColonists.Where(f => f != p && f.relations != null && (f.relations.OpinionOf(p) >= 30 || comp.social.Warmth(f, p) >= 35f)).Take(4))
+            foreach (var f in PawnsFinder.AllMaps_FreeColonists.ToList().Where(f => f != p && f.relations != null && (f.relations.OpinionOf(p) >= 30 || comp.social.Warmth(f, p) >= 35f)).Take(4))
                 comp.journals.Write(f, "Council_Journal_DiedDreaming", null, p.Named("OTHER"), a.Goal.Named("GOAL"));
             lastMourned[p] = a.Goal;
             // Someone who loved them may take it up and finish it for them.

@@ -153,7 +153,7 @@ namespace ColonyCouncil
         private void Slice(int slice, int now)
         {
             sliceTmp.Clear();
-            foreach (var p in PawnsFinder.AllMapsCaravansAndTravellingTransporters_Alive_Colonists)
+            foreach (var p in PawnsFinder.AllMapsCaravansAndTravellingTransporters_Alive_Colonists.ToList())
                 if (p != null && p.thingIDNumber % Slices == slice) sliceTmp.Add(p);
             foreach (var p in sliceTmp)
             {
