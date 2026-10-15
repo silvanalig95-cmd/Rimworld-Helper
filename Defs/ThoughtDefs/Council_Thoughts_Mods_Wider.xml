@@ -217,6 +217,44 @@
     <stages><li><label>talked with a wandering fighter</label><description>A traveler who fights for a living showed me a few things about footwork.</description><baseMoodEffect>2</baseMoodEffect></li></stages>
   </ThoughtDef>
 
+  <!-- ===================== Alpha Animals and Alpha Biomes ===================== -->
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_EncA_Wonder</defName>
+    <durationDays>2</durationDays>
+    <stages><li><label>a strange creature up close</label><description>I saw a creature today I'd only heard about. I keep picturing it.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_EncA_Feather</defName>
+    <durationDays>2</durationDays>
+    <stages><li><label>watched a great bird</label><description>One of those huge running birds went by. I kept a feather.</description><baseMoodEffect>2</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_EncA_NightEyes</defName>
+    <durationDays>1</durationDays>
+    <stages><li><label>eyes in the dark</label><description>Something watched me cross the yard last night. It was only an animal. Probably.</description><baseMoodEffect>-1</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_EncA_Awe</defName>
+    <durationDays>4</durationDays>
+    <stages><li><label>saw a gallatross</label><description>A gallatross walked past the colony. I didn't know anything alive could be that big.</description><baseMoodEffect>5</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_EncA_StrangeLand</defName>
+    <durationDays>2</durationDays>
+    <stages><li><label>this strange land</label><description>The land here is like nowhere else. Some days that's a wonder.</description><baseMoodEffect>2</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_EncA_Watched</defName>
+    <durationDays>1</durationDays>
+    <stages><li><label>the trees were watching</label><description>The eyes in the trees turned to look at me. I didn't stay.</description><baseMoodEffect>-2</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_Granted_GuestRoom</defName>
     <durationDays>5</durationDays>
