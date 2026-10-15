@@ -442,6 +442,12 @@
         <li>r_logentry-&gt;[INITIATOR_nameDef] gave [RECIPIENT_nameDef] a careful hug, as if [RECIPIENT_pronoun] might break.</li>
         <li>r_logentry-&gt;[INITIATOR_nameDef] told [RECIPIENT_nameDef] all the news [RECIPIENT_pronoun] had missed while [RECIPIENT_pronoun] was ill, most of it unimportant.</li>
         <li>r_logentry-&gt;[INITIATOR_nameDef] watched [RECIPIENT_nameDef] eat a full plate and said it was the best thing [INITIATOR_pronoun] had seen all week.</li>
+        <li>r_logentry->[INITIATOR_nameDef] saved [RECIPIENT_nameDef] a bowl of the good stew to celebrate [RECIPIENT_possessive] getting back on [RECIPIENT_possessive] feet.</li>
+        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] [RECIPIENT_pronoun] still looked pale, and fetched [RECIPIENT_objective] a blanket anyway.</li>
+        <li>r_logentry->[INITIATOR_nameDef] gave [RECIPIENT_nameDef] back the job [RECIPIENT_pronoun] had been missing, and said it had been done badly without [RECIPIENT_objective].</li>
+        <li>r_logentry->[INITIATOR_nameDef] sat with [RECIPIENT_nameDef] on [RECIPIENT_possessive] first evening up, and they watched the others come in from work.</li>
+        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] the colony had been too quiet while [RECIPIENT_pronoun] was in bed.</li>
+        <li>r_logentry->[INITIATOR_nameDef] made [RECIPIENT_nameDef] sit down twice before lunch, and [RECIPIENT_nameDef] let [INITIATOR_objective].</li>
       </rulesStrings>
     </logRulesInitiator>
     <modExtensions>

@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    More journal lines (Council_Journal.xml): decrees liked, hated and pushed too far ({DECREE} is the decree's label,
+    such as "quiet hours" or "a feast day"; with nineteen decrees these come round often), first entries for a newcomer
+    and for someone who has been here a while, the day after a raid, and promises kept or broken ({WISH}).
+  -->
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Council_Lines_Journal_DecreeLiked</defName>
+    <pool>Council_Journal_DecreeLiked</pool>
+    <lines>
+      <plain>
+        <li>The council's gone with {DECREE}. It's the first decree I'd have voted for twice.</li>
+        <li>It's {DECREE} from today. I went to bed early so I'd be ready for it.</li>
+        <li>Heard the council announce {DECREE} while I was eating. Finished my bowl in a better mood than I started it.</li>
+      </plain>
+      <warm>
+        <li>They chose {DECREE}. I think it'll help the ones who've been struggling most.</li>
+        <li>I'm glad of {DECREE}. I'll do my part and a bit of someone else's.</li>
+      </warm>
+      <blunt>
+        <li>Good call on {DECREE}. Rare, but good.</li>
+        <li>Council got it right with {DECREE}. Writing that down before they get something wrong.</li>
+      </blunt>
+      <cheerful>
+        <li>They declared {DECREE}, and I've been in a good mood ever since!</li>
+        <li>At last, {DECREE}! I told everyone I passed, including two people who already knew.</li>
+      </cheerful>
+      <gloomy>
+        <li>They declared {DECREE}. A sensible thing from the council. Let's see how long it lasts.</li>
+        <li>It's a good idea, {DECREE}. I'm trying to enjoy that before something spoils it.</li>
+      </gloomy>
+      <cold>
+        <li>Choosing {DECREE} was right. I'd begun to wonder whether they'd see it.</li>
+        <li>The council chose {DECREE}. Sensible. I'll make sure it's kept properly.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Council_Lines_Journal_DecreeHated</defName>
+    <pool>Council_Journal_DecreeHated</pool>
+    <lines>
+      <plain>
+        <li>They've decided on {DECREE}. Nobody asked the people who'll have to live with it.</li>
+        <li>First day of {DECREE}. I've already found three things wrong with it.</li>
+        <li>They announced {DECREE} at supper, which spoiled supper.</li>
+      </plain>
+      <warm>
+        <li>I don't like {DECREE}, but I won't make it harder on the ones who have to see it through.</li>
+        <li>I'll put up with {DECREE}. I just hope it ends before people start snapping at each other.</li>
+      </warm>
+      <blunt>
+        <li>Stupid idea, {DECREE}. I'm saying so.</li>
+        <li>Don't like {DECREE}. Won't pretend to.</li>
+      </blunt>
+      <cheerful>
+        <li>It's {DECREE} now, apparently! I'm finding the bright side. It's in here somewhere.</li>
+        <li>They declared {DECREE}. I sang a very sad song about it, and it cheered me up.</li>
+      </cheerful>
+      <gloomy>
+        <li>It's {DECREE} now. One more thing to get through.</li>
+        <li>The council declared {DECREE}. I'll do it. I won't like it, and they won't care.</li>
+      </gloomy>
+      <cold>
+        <li>Declaring {DECREE} was a mistake. I'll comply, and I'll remember who argued for it.</li>
+        <li>The council chose {DECREE}. When it fails, I'll be the one with the better idea.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Council_Lines_Journal_DecreeUnrest</defName>
+    <pool>Council_Journal_DecreeUnrest</pool>
+    <lines>
+      <plain>
+        <li>They declared {DECREE} again. I said things today I can't take back, and I'm not sure I want to.</li>
+        <li>I walked out of the hall when they announced {DECREE} for the second time. I kept walking until dark.</li>
+      </plain>
+      <warm><li>I'm ashamed of how I acted over {DECREE}. I was tired of it, but the others didn't deserve that.</li></warm>
+      <blunt><li>Told them what I thought of {DECREE}. Loudly. Not sorry.</li></blunt>
+      <cheerful><li>Even I couldn't keep smiling through {DECREE} again. I'll make it up to everyone tomorrow.</li></cheerful>
+      <gloomy><li>They've ordered {DECREE} once more. Something gave way in me today.</li></gloomy>
+      <cold><li>The council ignored every sign about {DECREE}. Today they saw one they couldn't ignore.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Council_Lines_Journal_Arrival</defName>
+    <pool>Council_Journal_Arrival</pool>
+    <lines>
+      <plain>
+        <li>Spent my first day learning where everything is. Got lost twice, both times on the way to the latrine.</li>
+        <li>They gave me a corner and a job before I'd even put my pack down. I think that's how they say welcome here.</li>
+      </plain>
+      <warm>
+        <li>Someone here lent me a spare shirt without being asked. I'm going to like these people.</li>
+        <li>They made room for me at the table and asked my name twice to get it right. I'll try to earn the place.</li>
+      </warm>
+      <blunt>
+        <li>New place. New faces. Same work.</li>
+        <li>Got a bed and a meal. Didn't have either yesterday.</li>
+      </blunt>
+      <cheerful>
+        <li>New home! I've already found the best spot to watch the sunset from.</li>
+        <li>Everyone here has a story, and I've decided to hear all of them.</li>
+      </cheerful>
+      <gloomy>
+        <li>First night. I've put my boots by the bed so I can leave in a hurry if I have to.</li>
+        <li>New place. I'm trying not to like it too much yet.</li>
+      </gloomy>
+      <cold>
+        <li>Arrived. I've noted the exits, the stores and who gives the orders.</li>
+        <li>First day. They're kind, which is useful, and careless, which is more useful.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Council_Lines_Journal_Begin</defName>
+    <pool>Council_Journal_Begin</pool>
+    <lines>
+      <plain>
+        <li>Somebody said I should write things down before I forget them. I've already forgotten most of last month.</li>
+        <li>First entry. Today I hauled stone, ate stew and argued about the stew. That's a day here.</li>
+      </plain>
+      <warm>
+        <li>I've been here long enough to have people I'd miss. That seemed worth writing down.</li>
+        <li>Starting a journal so I can remember the small kindnesses. There are more of them than I'd have guessed.</li>
+      </warm>
+      <blunt>
+        <li>Journal. Day whatever. Still alive.</li>
+        <li>I'll write when there's something worth writing. This counts, I suppose.</li>
+      </blunt>
+      <cheerful>
+        <li>I found a whole stack of blank pages, and now they're a journal!</li>
+        <li>Starting a journal so I can write down every good meal. This could take a while.</li>
+      </cheerful>
+      <gloomy>
+        <li>Writing this down in case nobody remembers us. Somebody should.</li>
+        <li>A journal. Mostly so I have someone to complain to who won't complain back.</li>
+      </gloomy>
+      <cold>
+        <li>A written record is harder to argue with than a memory. Beginning one.</li>
+        <li>I'll keep this journal brief and accurate, which is more than can be said for the others' stories.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Council_Lines_Journal_Raid</defName>
+    <pool>Council_Journal_Raid</pool>
+    <lines>
+      <plain>
+        <li>When it was over I sat on an upturned bucket for a long time and didn't think about anything.</li>
+        <li>The wall held where we'd rebuilt it. It gave where we hadn't. Noted.</li>
+        <li>Ate supper with my boots still on in case they came back. They didn't.</li>
+      </plain>
+      <warm>
+        <li>Someone made tea for everyone after the fighting. I don't know who. Whoever it was, thank you.</li>
+        <li>I held the door while the others got the wounded inside. Everyone came through it.</li>
+        <li>We sat close together at supper tonight. Nobody said why, and nobody needed to.</li>
+      </warm>
+      <blunt>
+        <li>They came. They left. Some of them stayed, permanently.</li>
+        <li>Tired. Sore. Still here.</li>
+        <li>Wall needs fixing. Tomorrow.</li>
+      </blunt>
+      <cheerful>
+        <li>We held them off! I'm sore all over and grinning like a fool.</li>
+        <li>Nobody's missing at supper tonight. I counted twice to be sure!</li>
+        <li>After the fight, we ate everything in the pot. I've never been so hungry.</li>
+      </cheerful>
+      <gloomy>
+        <li>We held again. Each time it costs a bit more of something.</li>
+        <li>I keep hearing the shouting when it's quiet. It's quiet now.</li>
+        <li>They'll come back. They always come back.</li>
+      </gloomy>
+      <cold>
+        <li>Their approach was predictable. I'll plan for it next time.</li>
+        <li>We lost time and materials today. We gained weapons and experience. Roughly even.</li>
+        <li>Everyone did their job today, more or less. I'll talk to the less.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Council_Lines_Journal_PromiseKept</defName>
+    <pool>Council_Journal_PromiseKept</pool>
+    <lines>
+      <plain>
+        <li>They said they'd see to "{WISH}", and they did, a day before I'd given up.</li>
+        <li>Promise kept. I found myself telling the others the council's not so bad.</li>
+      </plain>
+      <warm><li>They kept their word about "{WISH}". I'd like to keep mine as well as that.</li></warm>
+      <blunt><li>Promised. Done. That's how it should work.</li></blunt>
+      <cheerful><li>A promise kept, and "{WISH}" is mine! I'm writing this in my best handwriting.</li></cheerful>
+      <gloomy><li>They kept the promise about "{WISH}". I'll stop bracing for it to go wrong. Mostly.</li></gloomy>
+      <cold><li>The council kept its promise on "{WISH}". That buys them some patience from me.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Council_Lines_Journal_PromiseBroken</defName>
+    <pool>Council_Journal_PromiseBroken</pool>
+    <lines>
+      <plain>
+        <li>"{WISH}", they promised. The time's run out. I'm writing it here so I remember how this felt.</li>
+        <li>They broke their promise. I'll still do my work. I'll just do it without believing them.</li>
+      </plain>
+      <warm><li>I'm not angry, only sad. I'd really thought "{WISH}" was coming.</li></warm>
+      <blunt><li>Broken promise. Remembered.</li></blunt>
+      <cheerful><li>They broke their promise, so I'm promising myself something nice instead.</li></cheerful>
+      <gloomy><li>Another promise gone. I don't know why I keep being surprised.</li></gloomy>
+      <cold><li>The council's promise on "{WISH}" was worth nothing. I'll price the next one accordingly.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+</Defs>

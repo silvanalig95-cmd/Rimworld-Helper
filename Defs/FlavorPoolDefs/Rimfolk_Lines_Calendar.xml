@@ -1,0 +1,464 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    More lines for the colony calendar (Council_Calendar_Journal.xml, Council_Calendar_Letters.xml,
+    Council_Calendar_Talk.xml): a line in each voice for every kind of day in the journals, and more openings and talk.
+    Same placeholders and tags as the pools they extend: {NAME}, {YEARS}, {PLACE}, {ENEMY}, {DEAD}; [first] / [years],
+    [tradition], [new], [clean] / [fallen] / [nemesis], [self] / [friend], [couple], [way:...].
+  -->
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Council_Lines_Journal_Cal_Founding</defName>
+    <pool>Council_Journal_Cal_Founding</pool>
+    <lines>
+      <plain>
+        <li>[years] Founding day. I counted the faces at the long table and couldn't help counting the missing ones too.</li>
+        <li>Founding day. We walked the old boundary after supper, and it's a lot further than it used to be.</li>
+      </plain>
+      <warm><li>Founding day. I thanked the ones who were here first, and the ones who came after.</li></warm>
+      <blunt><li>Founding day. Ate well. Didn't make a speech. Good.</li></blunt>
+      <cheerful><li>Founding day! Someone made a cake shaped like the first shelter, and it fell over, just like the shelter.</li></cheerful>
+      <gloomy><li>Founding day. I keep thinking about the first night, and how little we knew.</li></gloomy>
+      <cold><li>Founding day. We've lasted longer than most settlements out here. That is worth noting.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Council_Lines_Journal_Cal_Harvest</defName>
+    <pool>Council_Journal_Cal_Harvest</pool>
+    <lines>
+      <plain><li>[!new] Harvest day. We ate outside at the edge of the fields, the way it was done the first year.</li></plain>
+      <warm><li>[!new] Harvest day. I took a plate out to the ones still working the last rows.</li></warm>
+      <blunt><li>[!new] Harvest day. Ate. Slept. Fields tomorrow.</li></blunt>
+      <cheerful><li>[!new] Harvest day! I wore a crown of straw all evening, and nobody made me take it off.</li></cheerful>
+      <gloomy><li>[!new] Harvest day. I ate as if the next harvest might not come.</li></gloomy>
+      <cold><li>[!new] Harvest day. Morale is up, and morale brings in the next harvest.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Council_Lines_Journal_Cal_FirstSnow</defName>
+    <pool>Council_Journal_Cal_FirstSnow</pool>
+    <lines>
+      <plain><li>[!new] First snow of the winter. Stacked the last of the wood under cover and stood watching it come down.</li></plain>
+      <warm><li>[!new] First snow. I made sure everyone had dry socks before the games started.</li></warm>
+      <blunt><li>[!new] Snow again. Games. Wet. Done.</li></blunt>
+      <cheerful><li>[!new] First snow! I built a snow figure of the council and gave it a very serious face.</li></cheerful>
+      <gloomy><li>[!new] The first snow. The long dark starts now.</li></gloomy>
+      <cold><li>[!new] First snow. The games are a useful way to get the cold season started without complaint.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Council_Lines_Journal_Cal_Death</defName>
+    <pool>Council_Journal_Cal_Death</pool>
+    <lines>
+      <plain>
+        <li>Kept the day for {DEAD}. Someone put {DEAD}'s favorite food on the table, and nobody touched that plate.</li>
+        <li>[years] {DEAD}'s day again. The newcomers asked who {DEAD} was, and three of us answered at once.</li>
+      </plain>
+      <warm><li>The day {DEAD} died. I told the children one of {DEAD}'s stories, the way {DEAD} used to tell it.</li></warm>
+      <blunt><li>{DEAD}'s day. Missed {DEAD}. Said so.</li></blunt>
+      <cheerful><li>We laughed about {DEAD} at supper today. {DEAD} would have laughed loudest.</li></cheerful>
+      <gloomy><li>The day {DEAD} died. The grave's grown over a bit more. I tidied it.</li></gloomy>
+      <cold><li>{DEAD}'s day. The colony is weaker without {DEAD}. I've said that every year, and it's still true.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Council_Lines_Journal_Cal_Wedding</defName>
+    <pool>Council_Journal_Cal_Wedding</pool>
+    <lines>
+      <plain><li>Our wedding day. {OTHER_nameDef} and I walked out to where we said our vows and stood there a while.</li></plain>
+      <warm><li>Our wedding day. I told {OTHER_nameDef} I'd do it all again, and I meant every word.</li></warm>
+      <blunt><li>Our day. {OTHER_nameDef} and me. Still good.</li></blunt>
+      <cheerful><li>Our wedding day! {OTHER_nameDef} and I danced at supper, and this time we didn't knock anything over.</li></cheerful>
+      <gloomy><li>Our wedding day. Another year we've both lived through. I'll take it.</li></gloomy>
+      <cold><li>Our wedding day. {OTHER_nameDef} remains the best decision I've made here.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Council_Lines_Journal_Cal_Arrival</defName>
+    <pool>Council_Journal_Cal_Arrival</pool>
+    <lines>
+      <plain><li>The day {OTHER_nameDef} arrived. We sat up and talked about that first week, and how thin everyone was.</li></plain>
+      <warm><li>It's the day {OTHER_nameDef} came to us. I saved {OTHER_objective} the best seat without saying why.</li></warm>
+      <blunt><li>{OTHER_nameDef}'s arrival day. Good day, that was.</li></blunt>
+      <cheerful><li>{OTHER_nameDef}'s day! I told everyone the story of how {OTHER_pronoun} turned up, with improvements.</li></cheerful>
+      <gloomy><li>The day {OTHER_nameDef} came. So many of us from that year are gone now. Not {OTHER_nameDef}, thank goodness.</li></gloomy>
+      <cold><li>The anniversary of {OTHER_nameDef}'s arrival. {OTHER_nameDef} has proved worth taking in.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Council_Lines_Journal_Cal_Feast</defName>
+    <pool>Council_Journal_Cal_Feast</pool>
+    <lines>
+      <plain><li>{NAME}. Somebody brought out a jar they'd been saving, and we finished it.</li></plain>
+      <warm><li>{NAME}. I helped in the kitchen so the cooks could sit down and eat with everyone.</li></warm>
+      <blunt><li>{NAME}. Good food. Too much of it. No complaints.</li></blunt>
+      <cheerful><li>{NAME}! I ate until I had to loosen my belt, and then I had dessert.</li></cheerful>
+      <gloomy><li>{NAME}. Good food, good company. I tried not to think about tomorrow.</li></gloomy>
+      <cold><li>{NAME}. The cooks outdid themselves, which I'll remember next time rations are set.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Council_Lines_Journal_Cal_Remembrance</defName>
+    <pool>Council_Journal_Cal_Remembrance</pool>
+    <lines>
+      <plain><li>{NAME}. Cleaned the grave markers and read every name aloud.</li></plain>
+      <warm><li>{NAME}. I left a small stone on each grave, the way someone once did for my family.</li></warm>
+      <blunt><li>{NAME}. Remembered them. All of them.</li></blunt>
+      <cheerful><li>{NAME}. We told the best stories we had about each of them, and some of the stories were very good.</li></cheerful>
+      <gloomy><li>{NAME}. The names are starting to blur, which is the worst part.</li></gloomy>
+      <cold><li>{NAME}. I keep my own list of the dead. It matched the colony's this year.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Council_Lines_Journal_Cal_Games</defName>
+    <pool>Council_Journal_Cal_Games</pool>
+    <lines>
+      <plain><li>{NAME}. Lost the tug-of-war, won the stone toss, and pulled a muscle in between.</li></plain>
+      <warm><li>{NAME}. Helped the children with their race and let them win, mostly.</li></warm>
+      <blunt><li>{NAME}. Won one. Lost three. Ate well after.</li></blunt>
+      <cheerful><li>{NAME}! I came second in the footrace, which is the best I've ever done.</li></cheerful>
+      <gloomy><li>{NAME}. Everyone laughed a lot today. I hope we remember it next bad week.</li></gloomy>
+      <cold><li>{NAME}. I studied how each of them competes. It tells you a lot about a person.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Council_Lines_Journal_Cal_Rest</defName>
+    <pool>Council_Journal_Cal_Rest</pool>
+    <lines>
+      <plain><li>{NAME}. Mended a shirt, slept an hour, and talked to people I usually only pass.</li></plain>
+      <warm><li>{NAME}. Spent the day with friends, with nowhere else to be.</li></warm>
+      <blunt><li>{NAME}. Did nothing. Excellent.</li></blunt>
+      <cheerful><li>{NAME}! I lay on my back and watched the clouds until I fell asleep.</li></cheerful>
+      <gloomy><li>{NAME}. A day off, and I spent it thinking. Should have worked.</li></gloomy>
+      <cold><li>{NAME}. Rested, as required. I'll be sharper tomorrow.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Council_Lines_Journal_Cal_Battle</defName>
+    <pool>Council_Journal_Cal_Battle</pool>
+    <lines>
+      <plain><li>[clean] The day we beat {ENEMY}. I cleaned my weapon and thought about how close it was.</li></plain>
+      <warm><li>[fallen] The day we lost {DEAD}. I went round and sat with everyone who'd been there.</li></warm>
+      <blunt><li>[fallen] {DEAD}'s battle day. Visited the grave. Said nothing. Didn't need to.</li></blunt>
+      <cheerful><li>[nemesis] The day {ENEMY} fell! We toasted it at supper, loudly.</li></cheerful>
+      <gloomy><li>[nemesis] The day {ENEMY} fell. I still wake up sometimes thinking {ENEMY} is out there.</li></gloomy>
+      <cold><li>[nemesis] Anniversary of {ENEMY}'s end. A threat removed. I don't miss it.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Council_Lines_Journal_Cal_Birthday</defName>
+    <pool>Council_Journal_Cal_Birthday</pool>
+    <lines>
+      <plain><li>[self] My birthday. I was given a cup of something warm and an afternoon off.</li></plain>
+      <warm><li>[self] My birthday. I spent it with the people I love, which is all I wanted.</li></warm>
+      <blunt><li>[friend] {OTHER_nameDef}'s birthday. Gave {OTHER_objective} my good knife. Don't tell anyone I'm soft.</li></blunt>
+      <cheerful><li>[self] My birthday! Everyone sang, and I sang too, because nobody stopped me.</li></cheerful>
+      <gloomy><li>[self] Another birthday. I'm still here, which is more than I'd bet on.</li></gloomy>
+      <cold><li>[friend] {OTHER_nameDef}'s birthday. A small gift costs little and keeps a friendship in good order.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Council_Lines_Cal_Letter_Founding</defName>
+    <pool>Council_Cal_Letter_Founding</pool>
+    <lines>
+      <plain>
+        <li>[years] Founding day, {YEARS} years in the {PLACE}. {A_nameDef} has been asked to tell the story of the first winter, and has agreed, at length.</li>
+        <li>Founding day. {A_nameDef} has dug out the old shovel from the first season and hung it over the door.</li>
+      </plain>
+      <blunt><li>Founding day. {A_nameDef} says the colony made it this far by being too stubborn to leave, and would like that on a banner.</li></blunt>
+      <cheerful><li>Founding day! {A_nameDef} has been greeting everyone with the date, as if they might have forgotten.</li></cheerful>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Council_Lines_Cal_Letter_Harvest</defName>
+    <pool>Council_Cal_Letter_Harvest</pool>
+    <lines>
+      <plain>
+        <li>Harvest day. {A_nameDef} brought a basket in from the fields this morning and set it in the middle of the table.</li>
+        <li>[years] Harvest day again, {YEARS} years on. {A_nameDef} is out early checking the rows, as if the day depended on it.</li>
+      </plain>
+      <warm><li>Harvest day. {A_nameDef} has been thanking everyone who ever pulled a weed, and that's most of the colony.</li></warm>
+      <gloomy><li>Harvest day. {A_nameDef} remembers how close the first crop came to failing, and isn't letting anyone forget.</li></gloomy>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Council_Lines_Cal_Letter_FirstSnow</defName>
+    <pool>Council_Cal_Letter_FirstSnow</pool>
+    <lines>
+      <plain>
+        <li>The first snow of the winter is coming down, and {A_nameDef} has already called off the afternoon's work, on nobody's authority but {A_possessive} own.</li>
+        <li>[years] The first snow again. {YEARS} winters on, {A_nameDef} is still the first one out to test whether it's sticky enough for snowballs.</li>
+      </plain>
+      <warm><li>The first snow of the winter. {A_nameDef} has been round with extra blankets before anyone asked.</li></warm>
+      <blunt><li>First snow. {A_nameDef} wants the games over before anyone catches cold.</li></blunt>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Council_Lines_Cal_Letter_Battle</defName>
+    <pool>Council_Cal_Letter_Battle</pool>
+    <lines>
+      <plain><li>[clean] On this day the colony saw off {ENEMY}. {A_nameDef} has been retelling it to anyone who missed it, which by now is half the colony.</li></plain>
+      <warm><li>[fallen] On this day {ENEMY} came, and {DEAD} did not come home. {A_nameDef} has asked everyone to say {DEAD}'s name once today.</li></warm>
+      <cheerful><li>[clean] The day the colony beat {ENEMY}! {A_nameDef} has started the story already, and it gets better every year.</li></cheerful>
+      <cold><li>[nemesis] The day {ENEMY} was brought down. {A_nameDef} marks it every year as a lesson in what the colony can do.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Council_Lines_Cal_Letter_Death</defName>
+    <pool>Council_Cal_Letter_Death</pool>
+    <lines>
+      <plain>
+        <li>[years] {YEARS} years since {DEAD} died. {A_nameDef} has polished {DEAD}'s old tools and set them out on the bench for the day.</li>
+        <li>Today the colony keeps the day of {DEAD}'s death. {A_nameDef} will tell {DEAD}'s story at supper, as is done.</li>
+      </plain>
+      <cheerful><li>Today the colony remembers {DEAD}. {A_nameDef} wants it to be a day of {DEAD}'s best stories, and has started with the funniest.</li></cheerful>
+      <gloomy><li>The day {DEAD} died. {A_nameDef} has been quiet since dawn, and nobody has tried to cheer {A_objective} up.</li></gloomy>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Council_Lines_Cal_Letter_Wedding</defName>
+    <pool>Council_Cal_Letter_Wedding</pool>
+    <lines>
+      <plain>
+        <li>[years] {YEARS} years married today, {A_nameDef} and {B_nameDef}. The colony has set them the best seats at supper whether they like it or not.</li>
+        <li>{A_nameDef} and {B_nameDef}'s wedding day. Someone has hung a garland over their door in the night.</li>
+        <li>[winter] {A_nameDef} and {B_nameDef}'s wedding day, in the deep cold. They've been given the warmest corner of the hall.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Council_Lines_Cal_Letter_Feast</defName>
+    <pool>Council_Cal_Letter_Feast</pool>
+    <lines>
+      <plain>
+        <li>It's {NAME}. The kitchen has been busy since before dawn, and the smell has reached every room.</li>
+        <li>[years] {NAME}, kept {YEARS} years now. {A_nameDef} remembers the first one, when the feast was mostly bread.</li>
+      </plain>
+      <warm><li>{NAME} today. {A_nameDef} wants a place laid for everyone, including whoever's on watch.</li></warm>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Council_Lines_Cal_Letter_Remembrance</defName>
+    <pool>Council_Cal_Letter_Remembrance</pool>
+    <lines>
+      <plain>
+        <li>{NAME}. {A_nameDef} has cleared the path to the graves and set a lamp at the gate.</li>
+        <li>[winter] {NAME} in the snow. {A_nameDef} has swept the snow off each grave marker so the names can be read.</li>
+      </plain>
+      <warm><li>{NAME}. {A_nameDef} has asked that each of the dead be named at supper by someone who knew them.</li></warm>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Council_Lines_Cal_Letter_Rest</defName>
+    <pool>Council_Cal_Letter_Rest</pool>
+    <lines>
+      <plain>
+        <li>{NAME}. The workbenches are quiet, and {A_nameDef} has been seen sitting in the sun with nothing in {A_possessive} hands.</li>
+        <li>[winter] {NAME} in the cold. The colony will rest indoors today, close together and warm.</li>
+      </plain>
+      <cheerful><li>It's {NAME}! {A_nameDef} has declared a contest for the longest nap, and entered first.</li></cheerful>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Council_Lines_Cal_Letter_Games</defName>
+    <pool>Council_Cal_Letter_Games</pool>
+    <lines>
+      <plain>
+        <li>{NAME}. {A_nameDef} has chalked lines across the yard and is explaining the rules to anyone who'll listen.</li>
+        <li>[years] {NAME} again, {YEARS} years running. {A_nameDef} has been training for the stone toss and denies it.</li>
+      </plain>
+      <cheerful><li>{NAME}! {A_nameDef} has hung a prize over the door. It's a turnip, but it's a very good turnip.</li></cheerful>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Council_Lines_Cal_Letter_Birthday</defName>
+    <pool>Council_Cal_Letter_Birthday</pool>
+    <lines>
+      <plain>
+        <li>{A_nameDef}'s birthday today. Someone has left a small gift on {A_possessive} bed.</li>
+        <li>[summer] {A_nameDef}'s birthday, on a warm day. The colony may eat outside to mark it.</li>
+      </plain>
+      <cheerful><li>It's {A_nameDef}'s birthday! There will be singing, and {A_nameDef} has been warned.</li></cheerful>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Council_Lines_Cal_Letter_Arrival</defName>
+    <pool>Council_Cal_Letter_Arrival</pool>
+    <lines>
+      <plain>
+        <li>[years] {YEARS} years ago today, {A_nameDef} came to the colony, one of the first.</li>
+        <li>It's the day {A_nameDef} first came to the colony, when there wasn't much of it yet.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Council_Lines_Cal_Talk_Founding</defName>
+    <pool>Council_Cal_Talk_Founding</pool>
+    <lines>
+      <plain>
+        <li>{A_nameDef} and {B_nameDef} counted the buildings that weren't there on the colony's first day.</li>
+        <li>{A_nameDef} told {B_nameDef} who had been the first to dig in the {PLACE}.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Council_Lines_Cal_Talk_Harvest</defName>
+    <pool>Council_Cal_Talk_Harvest</pool>
+    <lines>
+      <plain>
+        <li>{A_nameDef} and {B_nameDef} compared calluses from the harvest.</li>
+        <li>{A_nameDef} told {B_nameDef} which crops {A_pronoun} would plant more of next year.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Council_Lines_Cal_Talk_FirstSnow</defName>
+    <pool>Council_Cal_Talk_FirstSnow</pool>
+    <lines>
+      <plain>
+        <li>{A_nameDef} and {B_nameDef} watched the snow settle on the roofs.</li>
+        <li>{A_nameDef} asked {B_nameDef} whether {B_pronoun} had ever seen a winter as bad as the first one here.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Council_Lines_Cal_Talk_Battle</defName>
+    <pool>Council_Cal_Talk_Battle</pool>
+    <lines>
+      <plain>
+        <li>[fallen] {A_nameDef} and {B_nameDef} stood at {DEAD}'s grave for a while on the day of the battle.</li>
+        <li>[clean] {A_nameDef} told {B_nameDef} what {A_pronoun} remembers of the day {ENEMY} came.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Council_Lines_Cal_Talk_Death</defName>
+    <pool>Council_Cal_Talk_Death</pool>
+    <lines>
+      <plain>
+        <li>{A_nameDef} and {B_nameDef} told each other what they would have said to {DEAD}, given the chance.</li>
+        <li>{A_nameDef} and {B_nameDef} walked out to {DEAD}'s grave together.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Council_Lines_Cal_Talk_Wedding</defName>
+    <pool>Council_Cal_Talk_Wedding</pool>
+    <lines>
+      <plain>
+        <li>[couple] {A_nameDef} and {B_nameDef} remembered who cried at their wedding, and both claimed it was the other.</li>
+        <li>[!couple] {B_nameDef} asked {A_nameDef} how the wedding feast had gone, all those years ago.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Council_Lines_Cal_Talk_Arrival</defName>
+    <pool>Council_Cal_Talk_Arrival</pool>
+    <lines>
+      <plain>
+        <li>{A_nameDef} told {B_nameDef} how glad {A_pronoun} was that {B_nameDef} came.</li>
+        <li>{A_nameDef} and {B_nameDef} remembered what the colony looked like when {B_nameDef} first saw it.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Council_Lines_Cal_Talk_Birthday</defName>
+    <pool>Council_Cal_Talk_Birthday</pool>
+    <lines>
+      <plain>
+        <li>{A_nameDef} and {B_nameDef} argued about how old {B_nameDef} really is.</li>
+        <li>{A_nameDef} saved {B_nameDef} the best piece of the birthday supper.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Council_Lines_Cal_Talk_Feast</defName>
+    <pool>Council_Cal_Talk_Feast</pool>
+    <lines>
+      <plain>
+        <li>{A_nameDef} and {B_nameDef} helped each other carry the tables in for {NAME}.</li>
+        <li>{A_nameDef} told {B_nameDef} which dish of {NAME} {A_pronoun} would remember longest.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Council_Lines_Cal_Talk_Remembrance</defName>
+    <pool>Council_Cal_Talk_Remembrance</pool>
+    <lines>
+      <plain>
+        <li>{A_nameDef} and {B_nameDef} read the names on the grave markers together on {NAME}.</li>
+        <li>{A_nameDef} told {B_nameDef} about the first person {A_pronoun} saw buried here.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Council_Lines_Cal_Talk_Rest</defName>
+    <pool>Council_Cal_Talk_Rest</pool>
+    <lines>
+      <plain>
+        <li>{A_nameDef} and {B_nameDef} shared a long, lazy meal on {NAME}.</li>
+        <li>[winter] {A_nameDef} and {B_nameDef} spent {NAME} warming their feet and swapping stories.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Council_Lines_Cal_Talk_Games</defName>
+    <pool>Council_Cal_Talk_Games</pool>
+    <lines>
+      <plain>
+        <li>{A_nameDef} accused {B_nameDef} of cheating in the games on {NAME}, cheerfully.</li>
+        <li>{A_nameDef} and {B_nameDef} agreed to train together for next year's {NAME}.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Council_Lines_Cal_Talk_Eve</defName>
+    <pool>Council_Cal_Talk_Eve</pool>
+    <lines>
+      <plain>
+        <li>[way:feast] {A_nameDef} asked {B_nameDef} to help set the tables for {NAME} in the morning.</li>
+        <li>[way:remembrance] {A_nameDef} and {B_nameDef} talked about who they would name tomorrow on {NAME}.</li>
+        <li>[way:games] {A_nameDef} challenged {B_nameDef} to beat {A_objective} at tomorrow's games.</li>
+        <li>[way:rest] {A_nameDef} told {B_nameDef} that tomorrow, for once, the work can wait.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+</Defs>

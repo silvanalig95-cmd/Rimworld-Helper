@@ -1,0 +1,273 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    More journal lines for the home-life mods (Council_Journal_HomeLife.xml, Council_Journal_Everyday_Hygiene.xml): letters
+    home from an outpost (Vanilla Outposts Expanded; the kind of outpost comes as a tag such as [outpost:Mining]), a cup
+    of tea (Vanilla Brewing Expanded) and the days of Dubs Bad Hygiene. Never used without their mod. Grimy, ColdWash and
+    OwnBathroom tag every line [good] or [bad].
+  -->
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Council_Lines_Journal_Outpost</defName>
+    <pool>Council_Journal_Outpost</pool>
+    <lines>
+      <plain>
+        <li>Mended my boots by lamplight and thought about the long table at home.</li>
+        <li>[summer] Long light evenings out here. I sit outside and count the days until the relief comes.</li>
+        <li>[outpost:Mining] Found a good seam today. The others will want to hear about it when I'm back.</li>
+        <li>[outpost:Mining] Rock dust in my food, my bed and my ears. The ore pile's bigger, though.</li>
+        <li>[outpost:Logging] The stack of cut timber is taller than me now. I measured, out of boredom.</li>
+        <li>[outpost:Logging] Sharpened the axes after supper. The woods are very quiet after dark.</li>
+        <li>[outpost:Farming] Weeded the long rows until my back gave out. They look tidier than the fields at home.</li>
+        <li>[outpost:Farming] Rain came at the right time for once. I stood in it and watched the furrows fill.</li>
+        <li>[outpost:Hunting] Spent the morning in a blind, waiting. The afternoon was worth it.</li>
+        <li>[outpost:Hunting] Hung the meat to dry and kept the foxes off it half the night.</li>
+        <li>[outpost:Defensive] Walked the palisade at dusk and again before dawn. Nothing moved but the wind.</li>
+        <li>[outpost:Defensive] Scouts went past in the distance. They saw us and kept going, which is what we're here for.</li>
+        <li>[outpost:Trading] A trader tried to sell me the same knife twice in one day. I bought it the second time.</li>
+        <li>[outpost:Trading] Counted the stores and the silver twice. Both came out right, which is a good day here.</li>
+        <li>[outpost:Science] Filled another notebook. Half of it is questions I can't answer yet.</li>
+        <li>[outpost:Science] Took the same readings morning and evening for a week. Something is changing, slowly.</li>
+        <li>[outpost:Town] Market day in town. I came back with less money and more news.</li>
+        <li>[outpost:Town] Someone in town asked where I'm from. I told them about home and didn't stop for a while.</li>
+        <li>[outpost:Scavenging] Pulled a whole crate out of the rubble today, unbroken. Most days it's just rust.</li>
+        <li>[outpost:Scavenging] Cut my hand on old metal. Washed it well. The haul was worth the scratch.</li>
+        <li>[outpost:Encampment] Travelers at the fire again tonight. One of them sang, badly, for hours.</li>
+        <li>[outpost:Encampment] Mended a stranger's cart wheel for a meal and a story. Fair trade.</li>
+        <li>[outpost:Fishing] Pulled in nets all morning. My hands smell of fish no matter how I scrub them.</li>
+        <li>[outpost:Drilling] The drill ran all day. I hear it in my sleep now.</li>
+        <li>[outpost:Factory] Long shift at the benches. Everything I made today will be home before I am.</li>
+        <li>[outpost:Production] Kept the work going from dawn to dark. The crates for home are stacking up.</li>
+        <li>[outpost:Artillery] Cleaned and checked the guns again. We haven't fired them in days. I hope it stays that way.</li>
+      </plain>
+      <warm>
+        <li>The others out here are good company. Still, I miss everyone at home.</li>
+        <li>I've been saving the best stories from out here for when I get home.</li>
+      </warm>
+      <blunt>
+        <li>Still here. Still working. Send news.</li>
+        <li>Outpost's fine. I'm fine. Bored.</li>
+      </blunt>
+      <cheerful>
+        <li>Saw a herd crossing the plain at sunrise today! I wish everyone at home could have seen it.</li>
+        <li>The outpost's doing well, and so am I! I've even learned to like the cooking.</li>
+      </cheerful>
+      <gloomy>
+        <li>Another week out here. I wonder if they've forgotten my face at home.</li>
+        <li>The outpost is quiet. Too quiet to stop me thinking.</li>
+      </gloomy>
+      <cold>
+        <li>The outpost meets its quota. I'll stay until it doesn't.</li>
+        <li>Out here, nobody wastes my time. I find I prefer it.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Council_Lines_Journal_Day_Tea</defName>
+    <pool>Council_Journal_Day_Tea</pool>
+    <lines>
+      <plain>
+        <li>Tea at the end of a long day. I drank it standing at the window.</li>
+        <li>Someone left the pot warm. I had the last cup and refilled it for the next person.</li>
+        <li>[night] A cup of tea when I couldn't sleep. It didn't help me sleep, but it helped.</li>
+      </plain>
+      <warm>
+        <li>Brought a cup of tea to whoever was on watch. We drank it together and didn't say much.</li>
+        <li>Tea with friends after supper. The best hour of the day.</li>
+      </warm>
+      <blunt>
+        <li>Tea. Hot. That's all I ask.</li>
+        <li>Had tea. Back to work.</li>
+      </blunt>
+      <cheerful>
+        <li>Tried the new tea! It's either very good or very strange, and I'm having another cup to decide.</li>
+        <li>A cup of tea and a sit-down! Small pleasures are the best pleasures.</li>
+      </cheerful>
+      <gloomy>
+        <li>Tea went cold while I was thinking. Drank it anyway.</li>
+        <li>A cup of tea. For a few minutes, nothing else mattered.</li>
+      </gloomy>
+      <cold>
+        <li>A cup of tea before the evening's work. It helps me concentrate.</li>
+        <li>Good tea is a sign of a well-run storeroom. Ours is adequate.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Council_Lines_Journal_Day_OpenGround</defName>
+    <pool>Council_Journal_Day_OpenGround</pool>
+    <lines>
+      <plain><li>Picked my way out past the stockpile in the rain to find somewhere to go. We need a latrine.</li></plain>
+      <warm><li>Showed the newest one where people go when there's nowhere to go. I apologized while I did it.</li></warm>
+      <blunt><li>Dug a hole. Used it. Filled it. Someone build a latrine.</li></blunt>
+      <cheerful><li>Out in the bushes at dawn I saw a deer, and it saw me, and we both pretended we hadn't.</li></cheerful>
+      <gloomy><li>Every trip behind the woodpile is a reminder of how far we haven't come.</li></gloomy>
+      <cold><li>Waste outside the walls is a disease waiting to happen. I've marked a place for a latrine.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Council_Lines_Journal_Day_SoiledSelf</defName>
+    <pool>Council_Journal_Day_SoiledSelf</pool>
+    <lines>
+      <plain><li>Bad day. Washed my clothes out at the creek before anyone was up.</li></plain>
+      <warm><li>Someone found me a change of clothes and didn't say a word about why. I owe them.</li></warm>
+      <blunt><li>Bad day. Clothes washed. Done.</li></blunt>
+      <cheerful><li>Not my finest hour. I've decided it never happened, and tomorrow I'll believe it.</li></cheerful>
+      <gloomy><li>I'll be hearing about today in my head for a long while.</li></gloomy>
+      <cold><li>An accident. The cause was distance to a toilet, and distance can be fixed.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Council_Lines_Journal_Day_Bursting</defName>
+    <pool>Council_Journal_Day_Bursting</pool>
+    <lines>
+      <plain><li>Waited outside the latrine so long I forgot what I'd come out for, and then remembered all at once.</li></plain>
+      <warm><li>Two of us waiting by the latrine, both pretending we weren't. We ended up laughing.</li></warm>
+      <blunt><li>One latrine. Everyone. Bad plan.</li></blunt>
+      <cheerful><li>I've learned to time my trips around everyone else's. It's practically an art.</li></cheerful>
+      <gloomy><li>Spent half the afternoon hopping from foot to foot. Dignity is a luxury here.</li></gloomy>
+      <cold><li>One latrine for this many people is a planning failure. I've raised it.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Council_Lines_Journal_Day_DirtyWater</defName>
+    <pool>Council_Journal_Day_DirtyWater</pool>
+    <lines>
+      <plain><li>Boiled my water tonight after what happened yesterday. It still tasted of mud.</li></plain>
+      <warm><li>I strained the water through a cloth for the others before they drank. It's the least I could do.</li></warm>
+      <blunt><li>Water tastes like the ditch. Somebody fix it.</li></blunt>
+      <cheerful><li>The water was brown, but I'm choosing to call it tea.</li></cheerful>
+      <gloomy><li>Even the water here is trying to kill us.</li></gloomy>
+      <cold><li>The water source is contaminated. Find another, or expect sickness.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Council_Lines_Journal_Day_HotBath</defName>
+    <pool>Council_Journal_Day_HotBath</pool>
+    <lines>
+      <plain>
+        <li>A long hot soak after a long day. I fell asleep in the tub and woke up cold.</li>
+        <li>Hot water and a scrub brush. I'm a different person.</li>
+      </plain>
+      <warm><li>A hot bath, then I warmed more water for whoever came next. It's how I'd want to be treated.</li></warm>
+      <blunt><li>Bath was hot. Back's better.</li></blunt>
+      <cheerful><li>The bath was so hot I turned pink, and I loved every minute!</li></cheerful>
+      <gloomy><li>A hot bath. The ache came back as soon as I got out, but it was gone for a while.</li></gloomy>
+      <cold><li>A hot bath. The time it takes is repaid by a clear head.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Council_Lines_Journal_Day_WalkedIn</defName>
+    <pool>Council_Journal_Day_WalkedIn</pool>
+    <lines>
+      <plain><li>Someone walked in on me at the latrine. We've agreed to never mention it, which is why I'm writing it here.</li></plain>
+      <warm><li>Walked in on someone washing, by accident. I said sorry three times and left a towel by the door.</li></warm>
+      <blunt><li>Walked in on. Again. Doors.</li></blunt>
+      <cheerful><li>Someone barged in on my bath, so I offered them a scrub. They left very quickly!</li></cheerful>
+      <gloomy><li>No privacy, not even for washing. I'm too tired to be embarrassed anymore.</li></gloomy>
+      <cold><li>Interrupted again. A latch costs less than the time I've lost to this.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Council_Lines_Journal_Day_Grimy</defName>
+    <pool>Council_Journal_Day_Grimy</pool>
+    <lines>
+      <plain>
+        <li>[good] Washed my hair properly today, after a week of not. It's a different color.</li>
+        <li>[bad] Working in the dirt all week, and no time to wash it off.</li>
+      </plain>
+      <warm>
+        <li>[good] Washed and changed before supper, so I'd be decent company for once.</li>
+        <li>[bad] I'm filthy, but I'll wash once the others have had their turn.</li>
+      </warm>
+      <blunt>
+        <li>[good] Washed. Feels good.</li>
+        <li>[bad] Dirty. Busy. Too busy to care.</li>
+      </blunt>
+      <cheerful>
+        <li>[good] Clean hands, clean face, clean shirt! I feel like a new person.</li>
+        <li>[bad] I'm so dirty I could grow turnips on my neck!</li>
+      </cheerful>
+      <gloomy>
+        <li>[good] Clean for a day. Tomorrow I'll be back in the muck.</li>
+        <li>[bad] Dirt in every crease. I've stopped noticing, which worries me.</li>
+      </gloomy>
+      <cold>
+        <li>[good] Washed. Clean people are taken more seriously.</li>
+        <li>[bad] I'm unwashed and it shows. That needs fixing before the next trader comes.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Council_Lines_Journal_Day_ColdWash</defName>
+    <pool>Council_Journal_Day_ColdWash</pool>
+    <lines>
+      <plain>
+        <li>[good] A cold rinse after the fields. Felt like jumping in a river.</li>
+        <li>[bad] Cold water, cold room, cold feet. I washed what I had to and nothing more.</li>
+      </plain>
+      <warm>
+        <li>[good] Cold water and good company at the wash basin. We laughed at each other's yelps.</li>
+        <li>[bad] Cold wash again. I'll ask whether we can spare fuel to heat the water for the old ones, at least.</li>
+      </warm>
+      <blunt>
+        <li>[good] Cold water. Wakes you up.</li>
+        <li>[bad] Freezing. Again. Heat the water.</li>
+      </blunt>
+      <cheerful>
+        <li>[good] Cold splash in the morning. I yelled so loud the chickens scattered!</li>
+        <li>[bad] The water was freezing, so I washed very, very quickly. Record time!</li>
+      </cheerful>
+      <gloomy>
+        <li>[good] The cold water woke me up, which is more than I wanted.</li>
+        <li>[bad] A cold wash on a cold day. My teeth are still chattering.</li>
+      </gloomy>
+      <cold>
+        <li>[good] Cold water. Bracing, and no fuel wasted.</li>
+        <li>[bad] Cold wash. A heater for the water would pay for itself in morale.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Council_Lines_Journal_Day_OwnBathroom</defName>
+    <pool>Council_Journal_Day_OwnBathroom</pool>
+    <lines>
+      <plain>
+        <li>[good] Took my time washing this morning, with nobody knocking. A small luxury.</li>
+        <li>[bad] The drain in my bathroom backs up. I've been bailing it with a cup.</li>
+      </plain>
+      <warm>
+        <li>[good] I let a friend use my bathroom while theirs is being fixed. It's nice to have something to share.</li>
+        <li>[bad] My bathroom's grim, but at least it's mine. I'll fix it up bit by bit.</li>
+      </warm>
+      <blunt>
+        <li>[good] My bathroom. My time. Nobody waiting.</li>
+        <li>[bad] Bathroom smells. Needs work.</li>
+      </blunt>
+      <cheerful>
+        <li>[good] I have my own bathroom, and I've hung a little mirror in it!</li>
+        <li>[bad] My bathroom's tiny. I bang my elbows every time, but it's all mine!</li>
+      </cheerful>
+      <gloomy>
+        <li>[good] A bathroom of my own. I keep waiting for someone to take it away.</li>
+        <li>[bad] My bathroom is dark and damp, like the rest of my life.</li>
+      </gloomy>
+      <cold>
+        <li>[good] A private bathroom. It saves me a quarter of an hour every morning.</li>
+        <li>[bad] My bathroom is poorly built. I've noted the faults.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+</Defs>
