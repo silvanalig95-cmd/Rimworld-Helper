@@ -173,17 +173,20 @@ namespace ColonyCouncil
 
         // ---------------- Queries ----------------
 
-        // Ties by pair, for the opinion thoughts that ask about every pair of colonists. Rebuilt at most once a tick,
-        // and whenever a tie is added or dropped.
+        // Ties by pair, for the opinion thoughts that ask about every pair of colonists. Rebuilt only when a tie is added
+        // or dropped (every change to the list goes through TiesChanged), not every tick.
         [Unsaved] private Dictionary<(int, int, TieKind), SocialTie> index;
-        [Unsaved] private int indexTick = -1;
+        [Unsaved] private List<SocialTie> indexList;
         [Unsaved] private int indexCount = -1;
+        [Unsaved] private int tiesVersion;
+        [Unsaved] private int indexVersion = -1;
+
+        private void TiesChanged() => tiesVersion++;
 
         public SocialTie Get(Pawn x, Pawn y, TieKind kind)
         {
             if (x == null || y == null) return null;
-            int tick = Find.TickManager?.TicksGame ?? 0;
-            if (index == null || tick != indexTick || ties.Count != indexCount)
+            if (index == null || indexVersion != tiesVersion || indexList != ties || ties.Count != indexCount)
             {
                 index = index ?? new Dictionary<(int, int, TieKind), SocialTie>();
                 index.Clear();
@@ -193,7 +196,8 @@ namespace ColonyCouncil
                     var k = Key(t.a, t.b, t.kind);
                     if (!index.ContainsKey(k)) index[k] = t;
                 }
-                indexTick = tick;
+                indexVersion = tiesVersion;
+                indexList = ties;
                 indexCount = ties.Count;
             }
             return index.TryGetValue(Key(x, y, kind), out var found) ? found : null;
@@ -273,6 +277,7 @@ namespace ColonyCouncil
                 if (amount <= 0f || kind == TieKind.Mentor) return null;
                 t = new SocialTie { a = x, b = y, kind = kind, strength = 0f, formedTick = Find.TickManager.TicksGame };
                 ties.Add(t);
+                TiesChanged();
             }
             t.strength = Mathf.Clamp(t.strength + amount, 0f, 100f);
             t.Note(note);
@@ -298,7 +303,7 @@ namespace ColonyCouncil
 
         private void End(SocialTie t, bool graduated, bool quiet = false)
         {
-            ties.Remove(t);
+            if (ties.Remove(t)) TiesChanged();
             if (!t.announced || t.a == null || t.b == null || t.a.Dead || t.b.Dead) return;
             // Comradeship fades without ceremony; so do bonds with people who left.
             if (!graduated && (t.kind == TieKind.Comrades || !t.a.IsColonist || !t.b.IsColonist)) quiet = true;
@@ -356,7 +361,7 @@ namespace ColonyCouncil
                 lost.RemoveAll(l => l.survivor == null || l.survivor.Dead);
                 while (lost.Count > 40) lost.RemoveAt(0);
             }
-            ties.RemoveAll(t => t.a == null || t.b == null || t.a.Dead || t.b.Dead || t.a.Destroyed || t.b.Destroyed);
+            if (ties.RemoveAll(t => t.a == null || t.b == null || t.a.Dead || t.b.Dead || t.a.Destroyed || t.b.Destroyed) > 0) TiesChanged();
             tones.Prune();
             if (!S.socialWeb)
             {
@@ -587,6 +592,7 @@ namespace ColonyCouncil
             if (rec == null || rec.TotallyDisabled || Get(mentor, student, TieKind.Mentor) != null || ties.Any(t => t.kind == TieKind.Mentor && t.b == student)) return null;
             var t = new SocialTie { a = mentor, b = student, kind = TieKind.Mentor, strength = 25f, formedTick = Find.TickManager.TicksGame, skill = skill };
             ties.Add(t);
+            TiesChanged();
             t.Note("CC_TieNote_Mentor".Translate(skill.label));
             Announce(t);
             return t;
@@ -610,6 +616,7 @@ namespace ColonyCouncil
                     if (mentor == null) continue;
                     var t = new SocialTie { a = mentor, b = student, kind = TieKind.Mentor, strength = 20f, formedTick = Find.TickManager.TicksGame, skill = sk };
                     ties.Add(t);
+                    TiesChanged();
                     t.Note("CC_TieNote_Mentor".Translate(sk.label));
                     Announce(t);
                     return;
@@ -672,6 +679,7 @@ namespace ColonyCouncil
                 if (tones == null) tones = new MomentTones();
                 if (ties == null) ties = new List<SocialTie>();
                 ties.RemoveAll(t => t == null || t.a == null || t.b == null);
+                TiesChanged();
                 if (lost == null) lost = new List<LostBond>();
                 lost.RemoveAll(l => l == null || l.survivor == null || l.name == null);
                 if (fighters == null) fighters = new List<Pawn>();

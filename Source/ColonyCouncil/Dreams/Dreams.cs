@@ -627,7 +627,9 @@ namespace ColonyCouncil
     /// </summary>
     public class InteractionWorker_DreamTalk : InteractionWorker
     {
-        private string Suffix => interaction.defName.Substring(interaction.defName.LastIndexOf('_') + 1);
+        private string suffix;
+
+        private string Suffix => suffix ??= interaction.defName.Substring(interaction.defName.LastIndexOf('_') + 1);
 
         private static DreamTracker.DreamMemo Memo(Pawn p)
         {

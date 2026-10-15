@@ -408,7 +408,17 @@ namespace ColonyCouncil
         /// <summary>Who inspired the latest "fulfilled" spark for each colonist and goal.</summary>
         private Dictionary<string, string> inspiredBy = new Dictionary<string, string>();
 
-        public Aspiration Active(Pawn p) => p == null ? null : all.FirstOrDefault(a => a.pawn == p && !a.done);
+        /// <summary>Their life goal under way, or null. Asked by the "within reach" mood for every colonist, so a plain loop.</summary>
+        public Aspiration Active(Pawn p)
+        {
+            if (p == null) return null;
+            for (int i = 0; i < all.Count; i++)
+            {
+                var a = all[i];
+                if (a.pawn == p && !a.done) return a;
+            }
+            return null;
+        }
 
         /// <summary>Something happened that might give them a goal (battle, downed, loss, birth, omen).</summary>
         public void Notify_Event(Pawn p, string key)

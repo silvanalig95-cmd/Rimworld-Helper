@@ -77,6 +77,23 @@ namespace ColonyCouncil
     /// </summary>
     public class DecreeDef : Def
     {
+        private static Dictionary<ThoughtDef, DecreeDef> byThought;
+
+        /// <summary>The decree whose mood this is (the first, if two share one), or null. Looked up once per game session, not per mood.</summary>
+        public static DecreeDef ForThought(ThoughtDef thought)
+        {
+            if (thought == null) return null;
+            if (byThought == null)
+            {
+                var map = new Dictionary<ThoughtDef, DecreeDef>();
+                foreach (var d in DefDatabase<DecreeDef>.AllDefsListForReading)
+                    if (d.thought != null && !map.ContainsKey(d.thought))
+                        map[d.thought] = d;
+                byThought = map;
+            }
+            return byThought.TryGetValue(thought, out var found) ? found : null;
+        }
+
         public float durationDays = 5f;
         public float cooldownDays = 7f;
         /// <summary>Applied to every free colonist while the decree holds.</summary>
@@ -191,9 +208,16 @@ namespace ColonyCouncil
 
         public DecreeRequest RequestFor(DecreeDef def) => requests.FirstOrDefault(r => r.def == def);
 
-        public bool IsActive(DecreeDef def) => active.Any(a => a.def == def);
+        public bool IsActive(DecreeDef def) => Get(def) != null;
 
-        public ActiveDecree Get(DecreeDef def) => active.FirstOrDefault(a => a.def == def);
+        /// <summary>The decree in force, or null. Asked by the decree moods for every colonist, so a plain loop.</summary>
+        public ActiveDecree Get(DecreeDef def)
+        {
+            for (int i = 0; i < active.Count; i++)
+                if (active[i].def == def)
+                    return active[i];
+            return null;
+        }
 
         public bool SuspendsWishes => active.Any(a => a.def.suspendsWishes);
 
@@ -540,8 +564,8 @@ namespace ColonyCouncil
             get
             {
                 var comp = CouncilGameComponent.Instance;
-                var decree = DefDatabase<DecreeDef>.AllDefsListForReading.FirstOrDefault(d => d.thought == def);
-                var active = decree != null ? comp?.decrees.active.FirstOrDefault(a => a.def == decree) : null;
+                var decree = DecreeDef.ForThought(def);
+                var active = decree != null ? comp?.decrees.Get(decree) : null;
                 string cause = active == null ? null
                     : "CC_Cause_Decree".Translate(decree.label, TextUtil.DaysString(Mathf.Max(0, active.endTick - Find.TickManager.TicksGame))).Resolve();
                 if (active != null && active.fatigue > 0)
@@ -556,7 +580,8 @@ namespace ColonyCouncil
         {
             get
             {
-                var decree = DefDatabase<DecreeDef>.AllDefsListForReading.FirstOrDefault(d => d.thought == def);
+                // Asked each time the mood is added up when it's a bad one: the decree is looked up once, not searched for.
+                var decree = DecreeDef.ForThought(def);
                 return decree != null ? CouncilGameComponent.Instance?.decrees.Get(decree) : null;
             }
         }
@@ -581,7 +606,7 @@ namespace ColonyCouncil
             if (!s.MoodEffects || !p.IsFreeNonSlaveColonist || p.DevelopmentalStage.Baby()) return ThoughtState.Inactive;
             var comp = CouncilGameComponent.Instance;
             if (comp == null) return ThoughtState.Inactive;
-            if (decree == null) decree = DefDatabase<DecreeDef>.AllDefsListForReading.FirstOrDefault(d => d.thought == def);
+            if (decree == null) decree = DecreeDef.ForThought(def);
             if (decree == null || !comp.decrees.IsActive(decree)) return ThoughtState.Inactive;
             switch (decree.ReactionOf(p))
             {

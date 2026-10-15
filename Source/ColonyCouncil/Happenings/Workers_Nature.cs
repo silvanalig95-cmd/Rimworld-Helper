@@ -151,7 +151,19 @@ namespace ColonyCouncil
             return list;
         }
 
-        public override WeatherDef ForcedWeather() => DefDatabase<WeatherDef>.GetNamedSilentFail("Rain");
+        private static WeatherDef rain;
+        private static bool rainLooked;
+
+        /// <summary>The game's rain, looked up once (the weather asks while the hail lasts).</summary>
+        public override WeatherDef ForcedWeather()
+        {
+            if (!rainLooked)
+            {
+                rain = DefDatabase<WeatherDef>.GetNamedSilentFail("Rain");
+                rainLooked = true;
+            }
+            return rain;
+        }
 
         public override void GameConditionTick()
         {
