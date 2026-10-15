@@ -96,7 +96,7 @@
     <wish>Council_Wish_Beehive</wish>
     <reminder>
       <warm><li>The bees are still out there with nowhere to go. I'd look after them, I promise.</li></warm>
-      <blunt><li>Hive. Still waiting.</li></blunt>
+      <blunt><li>Where's my hive? The bees won't wait forever.</li></blunt>
       <gloomy><li>The wild bees will be gone before we get round to it.</li></gloomy>
     </reminder>
     <expired>
@@ -110,7 +110,7 @@
     <wish>Council_Wish_Biosculpter</wish>
     <reminder>
       <warm><li>No rush, but the years aren't waiting either.</li></warm>
-      <blunt><li>Still old. Still waiting.</li></blunt>
+      <blunt><li>I'm not getting younger while you think about it.</li></blunt>
       <gloomy><li>Another birthday's coming, and still no pod.</li></gloomy>
     </reminder>
     <expired>
@@ -224,7 +224,7 @@
     <wish>Council_Wish_DeepDrill</wish>
     <reminder>
       <warm><li>I'd still like to see what's down there. I'd run the drill myself.</li></warm>
-      <blunt><li>Drill. Ore. Still waiting.</li></blunt>
+      <blunt><li>The ore's down there. The drill isn't. Fix that.</li></blunt>
       <cheerful><li>Still dreaming about what's under our feet! Maybe steel, maybe treasure.</li></cheerful>
     </reminder>
     <expired>
@@ -239,7 +239,7 @@
     <reminder>
       <warm><li>I don't want to make a fuss, but I'm still hoping for something fine to wear.</li></warm>
       <cheerful><li>I've picked out exactly where I'd wear it first! Supper, obviously.</li></cheerful>
-      <gloomy><li>Still patched. Still threadbare. Still waiting.</li></gloomy>
+      <gloomy><li>Another patch on the elbow today. Something fine was always a long shot.</li></gloomy>
     </reminder>
   </ColonyCouncil.FlavorExtensionDef>
 
@@ -327,7 +327,7 @@
     <defName>Council_Lines_Wish_FreshFood</defName>
     <wish>Council_Wish_FreshFood</wish>
     <reminder>
-      <warm><li>Even a few berries would do us all good. I'm still hoping.</li></warm>
+      <warm><li>Even a few berries would do us all good. The children have started looking pale.</li></warm>
       <blunt><li>Still eating meat. Still need greens.</li></blunt>
       <gloomy><li>My teeth ache. Still nothing fresh.</li></gloomy>
     </reminder>
@@ -445,8 +445,8 @@
     <defName>Council_Lines_Wish_Honey</defName>
     <wish>Council_Wish_Honey</wish>
     <reminder>
-      <warm><li>A bit more honey would sweeten everyone's day. I'm still hoping.</li></warm>
-      <blunt><li>Honey. Still none.</li></blunt>
+      <warm><li>A bit more honey would sweeten everyone's day. I'd share mine round, I promise.</li></warm>
+      <blunt><li>The honey jar's empty. Someone fill it.</li></blunt>
       <gloomy><li>Plain bread again. No honey.</li></gloomy>
     </reminder>
   </ColonyCouncil.FlavorExtensionDef>
@@ -455,7 +455,7 @@
     <defName>Council_Lines_Wish_HotWater</defName>
     <wish>Council_Wish_HotWater</wish>
     <reminder>
-      <warm><li>Hot water would do all of us good. I'm still hoping.</li></warm>
+      <warm><li>Hot water would do all of us good, the old ones most of all. Their hands go white in the cold wash.</li></warm>
       <blunt><li>Water. Still cold.</li></blunt>
       <gloomy><li>Another icy wash this morning.</li></gloomy>
     </reminder>
@@ -506,7 +506,7 @@
     <defName>Council_Lines_Wish_Jewelry</defName>
     <wish>Council_Wish_Jewelry</wish>
     <reminder>
-      <warm><li>I know it's a small, silly thing. I'm still hoping for it.</li></warm>
+      <warm><li>I know it's a small, silly thing to want. I'd still treasure it.</li></warm>
       <cheerful><li>Still dreaming of something shiny! A ring, a pin, anything at all.</li></cheerful>
       <gloomy><li>Still nothing pretty. I didn't really expect it.</li></gloomy>
     </reminder>
@@ -534,7 +534,7 @@
     <defName>Council_Lines_Wish_Meeting</defName>
     <wish>Council_Wish_Meeting</wish>
     <reminder>
-      <warm><li>It would do us all good to sit down together. I'm still hoping for that meeting.</li></warm>
+      <warm><li>It would do us all good to sit down together. A meeting, when there's an evening free.</li></warm>
       <cheerful><li>Meeting soon? I've got a list of ideas and they're all brilliant!</li></cheerful>
       <gloomy><li>Still no meeting. Things keep getting decided without us.</li></gloomy>
     </reminder>
@@ -548,7 +548,7 @@
     <defName>Council_Lines_Wish_MoreArt</defName>
     <wish>Council_Wish_MoreArt</wish>
     <reminder>
-      <warm><li>A sculpture would brighten the place for everyone. I'm still hoping.</li></warm>
+      <warm><li>A sculpture would brighten the place for everyone. I'd help carry the stone.</li></warm>
       <blunt><li>Still ugly in here. Still no sculpture.</li></blunt>
       <gloomy><li>Blank walls again today.</li></gloomy>
     </reminder>
@@ -581,7 +581,7 @@
     <defName>Council_Lines_Wish_NestEgg</defName>
     <wish>Council_Wish_NestEgg</wish>
     <reminder>
-      <warm><li>A bit put by would help me sleep easier. I'm still hoping.</li></warm>
+      <warm><li>A bit put by would help us all sleep easier. Even a small chest of silver would do.</li></warm>
       <cheerful><li>The treasury is still a drawer! A drawer with dreams.</li></cheerful>
       <gloomy><li>Still nothing saved. One bad season and we're done.</li></gloomy>
     </reminder>
@@ -601,7 +601,7 @@
     <defName>Council_Lines_Wish_Party</defName>
     <wish>Council_Wish_Party</wish>
     <reminder>
-      <warm><li>One evening together would do everyone so much good. I'm still hoping for that party.</li></warm>
+      <warm><li>One evening together would do everyone so much good. I'd cook for it, if that helps.</li></warm>
       <blunt><li>Party. People are snapping. Soon.</li></blunt>
       <cold><li>Morale hasn't improved. A party would still be the cheapest fix.</li></cold>
     </reminder>
@@ -611,7 +611,7 @@
     <defName>Council_Lines_Wish_PM_MagicCircle</defName>
     <wish>Council_Wish_PM_MagicCircle</wish>
     <reminder>
-      <blunt><li>Circle. Still waiting.</li></blunt>
+      <blunt><li>Build the circle before I set the table on fire.</li></blunt>
       <cheerful><li>I've drawn the circle in chalk on the floor! It's not the same, though.</li></cheerful>
       <gloomy><li>Still working magic between the bread and the salt.</li></gloomy>
     </reminder>
@@ -639,7 +639,7 @@
     <defName>Council_Lines_Wish_PenMarker</defName>
     <wish>Council_Wish_PenMarker</wish>
     <reminder>
-      <warm><li>The animals would be safer in a pen. I'm still hoping.</li></warm>
+      <warm><li>The animals would be safer in a pen, and the crops too. I'd mend the fences myself.</li></warm>
       <blunt><li>Animals in the crops again. Pen.</li></blunt>
       <gloomy><li>Another day chasing animals out of the fields.</li></gloomy>
     </reminder>
@@ -669,7 +669,7 @@
     <defName>Council_Lines_Wish_Sarcophagus</defName>
     <wish>Council_Wish_Sarcophagus</wish>
     <reminder>
-      <warm><li>I'd like it ready before I need it. I'm still hoping.</li></warm>
+      <warm><li>I'd like it ready before I need it, so nobody has to rush when the time comes.</li></warm>
       <blunt><li>Still no resting place. I'm not getting younger.</li></blunt>
       <cold><li>My resting place remains unbuilt. Time is not on my side.</li></cold>
     </reminder>
@@ -683,7 +683,7 @@
     <defName>Council_Lines_Wish_Sauna</defName>
     <wish>Council_Wish_Sauna</wish>
     <reminder>
-      <warm><li>A sauna would warm all of us through. I'm still hoping.</li></warm>
+      <warm><li>A sauna would warm all of us through. I'd keep the stones hot for everyone.</li></warm>
       <blunt><li>Cold. No sauna. Still.</li></blunt>
       <gloomy><li>Another frozen day. Still no sauna.</li></gloomy>
     </reminder>
@@ -806,7 +806,7 @@
     <defName>Council_Lines_Wish_Tea</defName>
     <wish>Council_Wish_Tea</wish>
     <reminder>
-      <warm><li>A cup of tea would help so much. I'm still hoping.</li></warm>
+      <warm><li>A cup of tea would help so much, and I'd share the pot with the others who are coughing.</li></warm>
       <blunt><li>Tea. Still none. Still coughing.</li></blunt>
       <gloomy><li>Still sick. Still no tea.</li></gloomy>
     </reminder>
@@ -866,7 +866,7 @@
     <defName>Council_Lines_Wish_ToolCabinet</defName>
     <wish>Council_Wish_ToolCabinet</wish>
     <reminder>
-      <warm><li>A tool cabinet would help everyone at the bench. I'm still hoping.</li></warm>
+      <warm><li>A tool cabinet would help everyone at the bench, not just me. I'd sort the tools into it myself.</li></warm>
       <blunt><li>Lost the chisel again.</li></blunt>
       <cheerful><li>I've drawn where every tool would hang! I just need the cabinet.</li></cheerful>
     </reminder>
@@ -902,7 +902,7 @@
     <reminder>
       <warm><li>If a caravan goes out, I'd love to go along and help.</li></warm>
       <blunt><li>Caravan. Me on it. When?</li></blunt>
-      <gloomy><li>Still the same view. Still waiting.</li></gloomy>
+      <gloomy><li>Same hills out the window again today. I've stopped looking at them.</li></gloomy>
     </reminder>
   </ColonyCouncil.FlavorExtensionDef>
 
@@ -910,7 +910,7 @@
     <defName>Council_Lines_Wish_WarmCloak</defName>
     <wish>Council_Wish_WarmCloak</wish>
     <reminder>
-      <warm><li>Something warm to wear would see me through the cold. I'm still hoping.</li></warm>
+      <warm><li>Something warm to wear would see me through the cold. I'd mend it myself whenever it tears.</li></warm>
       <blunt><li>Still cold. Still no coat.</li></blunt>
       <cheerful><li>I've been wearing my blanket as a cape! It's not ideal.</li></cheerful>
     </reminder>
@@ -920,7 +920,7 @@
     <defName>Council_Lines_Wish_WashPlace</defName>
     <wish>Council_Wish_WashPlace</wish>
     <reminder>
-      <warm><li>Somewhere to wash would make everyone's day better. I'm still hoping.</li></warm>
+      <warm><li>Somewhere to wash would make everyone's day better. I'd fill the tub for whoever goes first.</li></warm>
       <blunt><li>Still nowhere to wash.</li></blunt>
       <gloomy><li>I smell worse every day.</li></gloomy>
     </reminder>
@@ -935,7 +935,7 @@
     <defName>Council_Lines_Wish_WeaponRack</defName>
     <wish>Council_Wish_WeaponRack</wish>
     <reminder>
-      <warm><li>A rack would help us all get to the wall quicker. I'm still hoping.</li></warm>
+      <warm><li>A rack would help us all get to the wall quicker. I'd keep it tidy, every piece in its place.</li></warm>
       <blunt><li>Weapons on the floor. Still.</li></blunt>
       <gloomy><li>The next raid will find our weapons under someone's bed again.</li></gloomy>
     </reminder>
