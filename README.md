@@ -1303,6 +1303,12 @@ new setting needs a row there.
 
 ## Status and feedback
 
+**A safety net for the wind.** On some 1.7 games the map's wind speed turns into NaN (not a number): every wind
+turbine then shows "NaN W", and wind-driven sounds pass it on to the audio, which goes silent until the game is
+reloaded from the main menu. Rimfolk doesn't cause this, but it now puts the last good wind back the moment that
+happens, and writes one `[Rimfolk]` warning to the log listing the weather and map conditions at the time, so the
+mod or game change behind it can be found. A valid wind is never touched.
+
 Version 0.4. It compiles against RimWorld 1.6 and is checked against 1.7 (the same DLL runs on both), and all XML
 is checked against the real game types by the included validator. It runs in a live game with a 200+ mod medieval
 list. If something misbehaves, open the debug log (Options → Development mode, then the log button): lines starting
