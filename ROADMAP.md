@@ -196,12 +196,22 @@ the content itself, not only to systems, alongside whatever else it does. Where 
 | Social events, moments, frictions, nuisances | 53, 93, 12 | every trait pairing and home condition |
 
 ### 5. Wider (integrations)
-- Deeper with the always-on mods: Hospitality guests as visitors with stories, Vanilla Expanded factions and
-  Empire storylines in world events, Medieval and Tribal expansions for era flavor, RimWorld of Magic schools in
-  moments and goals, Alpha mods' creatures in encounters.
+- Done: deeper with the always-on mods. Hospitality guests are visitors with stories (eight encounters with
+  journals, a guest who wants to stay and is taken in Hospitality's own way, a guest's complaint, a guest room wish).
+  The Empire and Vanilla Expanded peoples in world events (the Empire's levy, deserters on the roads, the republic
+  votes, gold fever) and encounters. Medieval Overhaul's era in journals and encounters (its dishes, drinks and
+  library, its cheese, wine, hearth, oven, hives and books). A RimWorld of Magic's schools in moments, journal days,
+  four more life goals and traveling mages. Alpha Animals' creatures named in encounters, and Alpha Biomes' lands.
+- Done: a compatibility table in the Almanac, made when the game starts from a registry of the mods Rimfolk works
+  with (the self-check uses the same list).
+- Done, as tools for more: encounters and dilemmas can ask for a Hospitality guest, a people, a creature or a class
+  by name, need a mod, something the colony has or a biome; world events can pick their people by name; everyday
+  journal days can come from other mods' memories in XML.
+- Still open: Vanilla Factions Expanded Medieval and Tribals (not in the current modlists), Outland and Medieval Total
+  Rim's peoples in world events, more Hospitality (a renowned-hosts council project), Alpha Genes and Alpha Memes in
+  moments.
 - New where it pays: PokéWorld (started), tent mods for camps, Big & Small, character editors that change people
   mid-game.
-- A compatibility table in the Almanac, generated from what Rimfolk detects.
 
 ### 6. Shared (release)
 - The Workshop page (private first), preview art from the game's own sprites, and a changelog written for players.

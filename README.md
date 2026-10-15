@@ -552,7 +552,14 @@ Each of these switches itself on only when its mod is there, and only asks for w
   water. Colonists ask for a latrine, somewhere to wash, a real bath (a water tub or a sauna isn't one) or, once
   Heating is researched, hot water; their journals mention hot baths, cold water and the walk to the bushes. The
   burn pit and the sauna heater are never offered as a bedroom heater.
-- **Hospitality:** a guest room plan. A guest bed never counts as a free bed for a colonist.
+- **Hospitality:** guests are visitors with stories of their own: they praise a fine guest room or find fault with
+  a poor one, get shown around, tell of home at supper, sit up at night with someone who can't sleep either, lend a
+  hand, haggle and say thank you, and most of it goes in the colonist's journal. A guest whose visit goes well may ask
+  the council to stay (taken in Hospitality's own way, as its join request does), and an unhappy one may bring a
+  complaint. Sociable and kind colonists may wish for a guest room worth the name, with a guest room plan to build it.
+  A guest bed never counts as a free bed for a colonist.
+- **Medieval Overhaul:** its pies, stews, slop, cheese, wine, ale, smoked meat and library leave memories that become
+  days in the journals, and visitors notice the colony's cheese, wine, hearth, oven, hives and books once it has them.
 - **Vanilla Cooking and Brewing Expanded:** grills and gourmet dishes count as fine or lavish meals for birthday
   feasts, better-meal wishes and journals; grills ruined by the cold don't count. Tea, coffee and soda aren't
   "something to drink" for a brewer or a colonist with a taste for chemicals.
@@ -577,7 +584,10 @@ Rimfolk reads these mods by name while the game runs: with one missing, its part
 - **A RimWorld of Magic:** healers (priest, druid, paladin, shaman, apothecary) are favored for physician, fighters
   for marshal, the commander and entertainer for speaker, the entertainer and empath for steward. Mages like
   study hours, fighters like drills; a mage may ask for a magic circle once you can build one, and dream of
-  magic. Life goals: grow ten levels in one's class.
+  magic. A mage and a fighter talk shop, two mages compare schools, two fighters compare forms and a healer eases an
+  ache, and these become days in the journals. Life goals: grow ten levels in one's class, learn or deepen six
+  workings or techniques, become a scholar of the art, or tend sixty wounds as a healer. Traveling mages and fighters
+  visit and share a working or a form.
 - **Vanilla Traits Expanded:** its traits have opinions on decrees (workaholics love long hours, rebels hate
   being told, the neat love a clean sweep), sway elections (brave marshals, no squeamish physicians), shape how
   people feel about the colony's ways, and voice wishes (academians want books, snobs fine clothes, tycoons
@@ -590,7 +600,17 @@ Rimfolk reads these mods by name while the game runs: with one missing, its part
   don't ask for meals, and long-lived genes no longer make a grown adult read as a teenager.
 - **Vanilla Skills Expanded:** a life goal to earn an expertise in a skill they love.
 - **Alpha Animals and other animal mods:** the hunting wish only picks ordinary game, nobody goes after a giant
-  beast on their own, and the predator by the colony is a wolf or a bear, not a monster.
+  beast on their own, and the predator by the colony is a wolf or a bear, not a monster. Colonists meet Alpha
+  Animals' creatures by name when one is calm and wild on the map (angel moths, the aves, the thunderox before a
+  storm, bouldermits with their rocks, sky eels, the four-eyed dusk rat, a gallatross passing), and Alpha Biomes'
+  lands have encounters of their own (the gallatross graveyard, idyllic meadows, the mycotic jungle, the ocular
+  forest).
+- **The Empire and Vanilla Expanded peoples:** world events about a particular people: the Empire's levy (Royalty),
+  deserters on the roads (Vanilla Factions Expanded - Empire), the republic votes (Classical) and gold fever
+  (Settlers). Their visitors talk about court, the senate and the frontier.
+- **Which of these are in your game:** the Almanac's "What Rimfolk does with your mods" page is a table made when the
+  game starts, from what Rimfolk finds: each mod it works with, whether it's here, how much is written for it, and
+  what Rimfolk does with it. The self-check in the debug actions uses the same list.
 - **PokéWorld (any version):** Rimfolk's animal events follow its wild Pokémon slider and generation switches, a
   Pokémon caught with a ball (or kept in the PC) counts as tamed, animal lovers may ask to catch a new species, and
   the first catch of a species goes in the catcher's journal. Four Almanac pages explain the mod.

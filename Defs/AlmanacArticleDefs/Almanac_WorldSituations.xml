@@ -46,6 +46,10 @@ While it lasts, Rimfolk events that fit it come more or less often, and so do so
           <li>The great herds | Herds and rare beasts pass far more often | Let the neighbors' hunters across, or charge them</li>
           <li>Strange herds (Alpha Animals) | Strange creatures and herds pass far more often | A skilled handler may win one over</li>
           <li>A season of wild magic (A RimWorld of Magic) | Shards fall from the sky more often | Let a mage study the surge</li>
+          <li>The Empire's levy (Royalty) | The Empire asks its neighbors for silver for a far campaign | Pay in full and be named in the dispatches, pay half, or decline</li>
+          <li>Deserters on the roads (Vanilla Factions Expanded - Empire) | Imperial patrols hunt deserters; one asks the colony for shelter | Take them in, hand them over for the reward, or feed them and send them on</li>
+          <li>The republic votes (Vanilla Factions Expanded - Classical) | A republic elects its consuls, old families against reformers | Back a side with silver, or stay out of it</li>
+          <li>Gold fever (Vanilla Factions Expanded - Settlers) | Prospectors on every road, more travelers and traders | Let a prospector work the stream for a share</li>
         </table>
         <after>Questions come with a deadline, like Rimfolk events, and an unanswered one falls to its default, which is usually doing nothing.</after>
       </li>

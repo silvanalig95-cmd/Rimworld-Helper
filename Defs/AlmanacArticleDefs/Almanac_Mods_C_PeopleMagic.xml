@@ -41,6 +41,9 @@ Only a mage can enchant. Enchantments are permanent, one of each type per item, 
         <points>
           <li>Raised undead and spirits are not counted as people, so they make no wishes, keep no journals and form no friendships, and an enemy undead can't become a nemesis.</li>
           <li>Healers such as priests and druids are favored for physician, and fighters for marshal. Mages like study hours, fighters like drills, and a mage may ask for a magic circle once you can build one.</li>
+          <li>The classes talk to each other: a mage and a fighter go over the last fight together, two mages compare their schools, two fighters walk through their forms, and a healer eases someone's aches. These moments, and the small wonders mages show their friends, become days in the journals.</li>
+          <li>Life goals for the classes: grow ten levels, learn or deepen six workings (or techniques, for a fighter), understand the theory as a scholar of the art, or tend sixty wounds as a healer.</li>
+          <li>Traveling mages and fighters visit: a mage may show a colonist a small working, compare schools with one of your mages, or correct a fighter's footwork.</li>
         </points>
       </li>
     </sections>

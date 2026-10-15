@@ -486,6 +486,10 @@ Capturing a nemesis, or seeing them dead, lifts the mood of the one they hurt. D
 
 Rimfolk reads the land from the biome's name and the map tile (hills, mountains, a coast, a river), so the biomes other mods add count too: a mod's mangrove is a swamp. The everyday encounters have lines for each kind of land as well.</text>
       </li>
+      <li>
+        <heading>Strangers from your other mods</heading>
+        <text>Some moments only come with a mod that brings the stranger: Hospitality's guests talk about their room and their home and may ask to stay, visitors of the Empire or of Vanilla Expanded's republics and settlers talk about their own people, traveling mages and fighters of A RimWorld of Magic share a working or a form, and Alpha Animals' creatures are met by name. With Medieval Overhaul, visitors notice the colony's cheese, wine, hearth and books once it has them. The Almanac page "What Rimfolk does with your mods" lists what's in your game.</text>
+      </li>
     </sections>
     <keywords><li>visitor</li><li>trader</li><li>prisoner</li><li>nemesis</li><li>beast</li><li>pet</li><li>animal</li><li>encounter</li></keywords>
     <seeAlso><li>Council_Alm_C_Social</li><li>Council_Alm_C_Goals</li><li>Council_Alm_C_Dilemmas</li></seeAlso>

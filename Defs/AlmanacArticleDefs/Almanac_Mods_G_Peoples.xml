@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Almanac: the Vanilla Factions Expanded peoples in the current modlist (Empire, Classical, Settlers). Each article
+    shows only when its mod is active. Reference notes: Modlists/mods/G_NewModlist.md.
+  -->
+
+  <!-- ===================== Vanilla Factions Expanded - Empire ===================== -->
+
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Council_AlmMod_G_VFEEmpire</defName>
+    <label>Vanilla Factions Expanded - Empire</label>
+    <category>Mods</category>
+    <order>700</order>
+    <mods><li>oskarpotocki.vfe.empire</li></mods>
+    <summary>The Empire overhauled: new titles and honors, vassals, intrigue, and deserters who hunt title holders</summary>
+    <description>This mod turns Royalty's Empire into something a whole playthrough can be built around. It adds new titles up to the throne itself, new permits, structures and apparel, a vassal system, royal honors and the Great Hierarchy, along with intrigues and art exhibitions to take part in. It works as well for a colony with one or two nobles as for one playing the imperial family.
+
+It also adds the deserters: a hidden faction of former imperial troops who strike at the Empire's title holders. They arrive by drop pod, scattered across the map, with powerful technology and psychic powers, and they aim at your titled colonists. A colony that takes titles should expect them, and keep its nobles close to its defenders.</description>
+    <sections>
+      <li>
+        <heading>With Rimfolk</heading>
+        <text>Deserters on the roads is a world event: the Empire hunts a unit that walked away from its garrison, and one of the deserters comes to the colony asking for shelter. The council can take them in (the Empire won't thank it), hand them over for the reward, or feed them and send them on. The Empire's own levy and its visitors come with Royalty itself.</text>
+      </li>
+    </sections>
+    <keywords>
+      <li>empire</li>
+      <li>deserters</li>
+      <li>title</li>
+      <li>honor</li>
+      <li>vassal</li>
+      <li>noble</li>
+    </keywords>
+    <seeAlso>
+      <li>Council_Alm_Mods_Compatibility</li>
+    </seeAlso>
+  </ColonyCouncil.AlmanacArticleDef>
+
+  <!-- ===================== Vanilla Factions Expanded - Classical ===================== -->
+
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Council_AlmMod_G_VFEClassical</defName>
+    <label>Vanilla Factions Expanded - Classical</label>
+    <category>Mods</category>
+    <order>701</order>
+    <mods><li>oskarpotocki.vfe.classical</li></mods>
+    <summary>The Republic, split three ways: win senators to your side for tribute, technology and help</summary>
+    <description>The Republic is a people between the tribal and the medieval: writing, masonry and civil service, without much else. It has broken into three republics, central, western and eastern, and each has senators who can be won over through a chain of missions.
+
+Every senator on your side brings political weight in the senate, tribute, new technologies and help when you call for it. Enough of them unlock javelins and spathas, a thermae bath, new benches and road building. A senator on your side also lives under your protection, and few of them can fight, so plan their rooms and their safety like a noble's.</description>
+    <sections>
+      <li>
+        <heading>With Rimfolk</heading>
+        <text>The republic votes is a world event: one of the republics chooses its consuls, the old families against the reformers, and both sides' canvassers come to the colony. Backing a side costs silver; if it wins, the new consuls remember the colony fondly, and if it loses, coolly. Visitors from the republics talk about the senate, and some show your builders how they set an arch.</text>
+      </li>
+    </sections>
+    <keywords>
+      <li>republic</li>
+      <li>senator</li>
+      <li>senate</li>
+      <li>classical</li>
+      <li>consul</li>
+    </keywords>
+    <seeAlso>
+      <li>Council_Alm_Mods_Compatibility</li>
+    </seeAlso>
+  </ColonyCouncil.AlmanacArticleDef>
+
+  <!-- ===================== Vanilla Factions Expanded - Settlers ===================== -->
+
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Council_AlmMod_G_VFESettlers</defName>
+    <label>Vanilla Factions Expanded - Settlers</label>
+    <category>Mods</category>
+    <order>702</order>
+    <mods><li>oskarpotocki.vanillafactionsexpanded.settlersmodule</li></mods>
+    <summary>Frontier settlers and bandits: one-street towns, chemshine, bounties and a storyteller who scales backwards</summary>
+    <description>Settlers brings the frontier: civil and rough settlers in towns built along one main street, and bandit gangs hostile to everyone. They wear new outfits and hats, carry new guns, and brew chemshine, a volatile drink distilled from chemfuel that muffalo are very fond of. Chemfuel-themed structures, a bandit start, world quests for bounty hunters and caravan raiders, and a storyteller, Diego Dire, who starts hard and grows gentler until he starts over, round it out.</description>
+    <sections>
+      <li>
+        <heading>With Rimfolk</heading>
+        <text>Gold fever is a world event: a strike near a settler town sends prospectors onto every road, so travelers and traders come by more often, and one may ask to work the colony's stream for a share. Settler visitors tell tall tales over chemshine, and a rancher may teach a colonist who loves animals how to throw a rope.</text>
+      </li>
+    </sections>
+    <keywords>
+      <li>settlers</li>
+      <li>bandits</li>
+      <li>chemshine</li>
+      <li>bounty</li>
+      <li>western</li>
+      <li>prospector</li>
+    </keywords>
+    <seeAlso>
+      <li>Council_Alm_Mods_Compatibility</li>
+    </seeAlso>
+  </ColonyCouncil.AlmanacArticleDef>
+
+</Defs>
