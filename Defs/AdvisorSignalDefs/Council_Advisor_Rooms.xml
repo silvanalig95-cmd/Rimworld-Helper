@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- Rooms the colony has outgrown, and upgrades it can make now (Source/ColonyCouncil/Advisor/AdvisorSignals_Rooms.cs).
+       Gentle advice: low urgency, from room roles and furniture the game keeps anyway. Each offers the planner with the
+       fitting larger size, or the room upgraded where it stands. -->
+
+  <ColonyCouncil.AdvisorSignalDef>
+    <defName>Council_Adv_DiningOutgrown</defName>
+    <label>dining room outgrown</label>
+    <workerClass>ColonyCouncil.AdvisorWorker_DiningOutgrown</workerClass>
+    <article>Council_Alm_9_03_DiningRoom</article>
+    <category>Comfort</category>
+    <importance>0.8</importance>
+    <tips>
+      <li>Colonists eat when they're hungry, not all at once, so a dining room can manage with a seat for most of them rather than every one.</li>
+      <li>Someone who finds every chair at the table taken eats without one, and loses a little mood for it.</li>
+      <li>The dining room is the room everyone sees once or twice a day: the colony's best furniture and art pay off most there.</li>
+      <li>The planner keeps the turn, the style and the materials when you switch to a larger size of the same room.</li>
+    </tips>
+  </ColonyCouncil.AdvisorSignalDef>
+
+  <ColonyCouncil.AdvisorSignalDef>
+    <defName>Council_Adv_BarracksToBedrooms</defName>
+    <label>barracks into bedrooms</label>
+    <workerClass>ColonyCouncil.AdvisorWorker_BarracksToBedrooms</workerClass>
+    <article>Council_Alm_9_02_Barracks</article>
+    <category>Shelter</category>
+    <importance>0.9</importance>
+    <tips>
+      <li>Small bedrooms beat a big barracks for mood: even a narrow room with a bed and a lamp is a room of one's own.</li>
+      <li>Bedrooms built side by side share their walls, so a row of them takes less than the figure given here.</li>
+      <li>Ascetics don't mind a barracks; leave them a bed there if they like it.</li>
+      <li>The old barracks makes a fine guest room, workshop or rec room once everyone has moved out.</li>
+    </tips>
+  </ColonyCouncil.AdvisorSignalDef>
+
+  <ColonyCouncil.AdvisorSignalDef>
+    <defName>Council_Adv_HospitalUpgrade</defName>
+    <label>hospital upgrades</label>
+    <workerClass>ColonyCouncil.AdvisorWorker_HospitalUpgrade</workerClass>
+    <article>Council_Alm_9_12_Hospital</article>
+    <category>Health</category>
+    <importance>0.9</importance>
+    <tips>
+      <li>Hospital beds improve tend quality and immunity gain; a vitals monitor beside them raises surgery success further.</li>
+      <li>A clean floor keeps a room cleaner, and a clean hospital means fewer infections.</li>
+      <li>Upgrading a built room plans only the pieces that are missing; nothing already there is moved.</li>
+    </tips>
+  </ColonyCouncil.AdvisorSignalDef>
+
+  <ColonyCouncil.AdvisorSignalDef>
+    <defName>Council_Adv_RecRoomOutgrown</defName>
+    <label>rec room outgrown</label>
+    <workerClass>ColonyCouncil.AdvisorWorker_RecRoomOutgrown</workerClass>
+    <article>Council_Alm_9_04_RecRoom</article>
+    <category>Comfort</category>
+    <importance>0.7</importance>
+    <tips>
+      <li>A game keeps two or three people busy at most. A big colony needs several, and of different kinds.</li>
+      <li>Recreation comes in kinds (social, gaming, cerebral, dexterity and more), and each tires of being used: variety keeps the need full.</li>
+      <li>A rec room next to the dining room means colonists relax right after eating instead of walking across the map.</li>
+    </tips>
+  </ColonyCouncil.AdvisorSignalDef>
+
+</Defs>

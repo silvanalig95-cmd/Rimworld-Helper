@@ -26,7 +26,8 @@ namespace ColonyCouncil
             }
             var barracks = colonists.Where(p => p.ownership?.OwnedBed != null && p.ownership.OwnedRoom == null
                                                 && !(p.story?.traits?.HasTrait(TraitDefOf.Ascetic) ?? false)).ToList();
-            if (barracks.Count > 0 && noBed.Count == 0)
+            // With the materials for bedrooms in store, the room growth advice says so instead (AdvisorSignals_Rooms.cs).
+            if (barracks.Count > 0 && noBed.Count == 0 && !AdvisorWorker_BarracksToBedrooms.WithinReach(map, barracks.Count, out _, out _, out _))
             {
                 var s = Signal(0.18f + 0.05f * barracks.Count, "CC_Adv_Barracks_Title".Translate(barracks.Count),
                     "CC_Adv_Barracks_Detail".Translate(TextUtil.JoinAnd(barracks.Select(p => p.LabelShort).ToList())), 0.4f);

@@ -17,4 +17,20 @@ A theme uses only what the colony can build and has enough of; the rest stays as
   <CC_Theme_ForIndustrial>once the colony is industrial</CC_Theme_ForIndustrial>
   <CC_Theme_NothingYet>nothing of it within reach yet</CC_Theme_NothingYet>
 
+  <!-- Rooms the colony has outgrown -->
+  <CC_UpgradeIt>Upgrade the room</CC_UpgradeIt>
+  <CC_Adv_DiningOutgrown_Title>The dining rooms seat {0}, and the colony is {1} now</CC_Adv_DiningOutgrown_Title>
+  <CC_Adv_DiningOutgrown_Detail>{1} people share {0} seats. Whoever finds every chair taken eats without a table, and that costs a little mood at every meal. {2} would seat everyone at once; a few more chairs around the table you have will also help.</CC_Adv_DiningOutgrown_Detail>
+  <CC_Adv_DiningOutgrown_DetailNoPlan>{1} people share {0} seats. Whoever finds every chair taken eats without a table, and that costs a little mood at every meal. More chairs, or a second table, would seat everyone.</CC_Adv_DiningOutgrown_DetailNoPlan>
+  <CC_Adv_BarracksRooms_Title>The barracks could become bedrooms</CC_Adv_BarracksRooms_Title>
+  <CC_Adv_BarracksRooms_Detail>Sleeping in the barracks: {0}. There's enough {1} in store now to give everyone there {2} of their own: about {3} for the walls, with {4} on hand. A room of one's own is one of the cheapest mood lifts there is.</CC_Adv_BarracksRooms_Detail>
+  <CC_Adv_HospitalUpgrade_Title>The hospital could use what the colony has learned</CC_Adv_HospitalUpgrade_Title>
+  <CC_Adv_HospitalUpgrade_Detail>The colony can build these now, and the hospital has none yet: {0}. Tending, infections and surgery depend on the room as much as on the doctor. Upgrading the room plans only what's missing.</CC_Adv_HospitalUpgrade_Detail>
+  <CC_Adv_HospitalUpgrade_Monitor>{0} beside the beds</CC_Adv_HospitalUpgrade_Monitor>
+  <CC_Adv_HospitalUpgrade_Beds>{0} in place of the {1} ordinary one(s)</CC_Adv_HospitalUpgrade_Beds>
+  <CC_Adv_HospitalUpgrade_Floor>{0} underfoot</CC_Adv_HospitalUpgrade_Floor>
+  <CC_Adv_RecOutgrown_Title>{0} thing(s) to do in the rec rooms, for {1} people</CC_Adv_RecOutgrown_Title>
+  <CC_Adv_RecOutgrown_Detail>Evenings mean a queue at the {0}, and whoever waits goes back to work restless. {1} would give everyone something to do; so would a few more games of different kinds in the room you have.</CC_Adv_RecOutgrown_Detail>
+  <CC_Adv_RecOutgrown_DetailNoPlan>Evenings mean a queue at the {0}, and whoever waits goes back to work restless. A few more games of different kinds would give everyone something to do.</CC_Adv_RecOutgrown_DetailNoPlan>
+
 </LanguageData>
