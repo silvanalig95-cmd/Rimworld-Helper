@@ -22,6 +22,8 @@
         </mods>
         <titles>
           <li>Shards from the sky</li>
+          <li>Lights in the sky</li>
+          <li>Something fell in the night</li>
         </titles>
         <texts>
           <li>[mage] Before dawn, {A_nameDef} woke the colony to say something was coming down. Soon after, pale lights fell out of a clear sky and struck the ground beyond the walls without a sound.\n\nWhere they landed there's unrefined magicyte, {COUNT} pieces in all, still faintly warm. {A_nameDef} is out there already, turning the pieces over in {A_possessive} hands.</li>
@@ -53,6 +55,8 @@
         <journal>Council_Journal_Evt_RareCreature</journal>
         <titles>
           <li>A strange creature</li>
+          <li>{BEAST} near the fields</li>
+          <li>An unusual visitor</li>
         </titles>
         <texts>
           <li>[native] There's {BEAST} grazing near the fields. They live in these parts but keep well away from people, and none of the colonists has seen one this close before. This one doesn't seem bothered by the colony at all.\n\n{A_nameDef}, the colony's best hand with animals, would like to try to win it over.</li>
@@ -106,6 +110,8 @@
         <notable>false</notable>
         <titles>
           <li>Travelers ask for a bath</li>
+          <li>Dusty travelers</li>
+          <li>A bath for the road-weary</li>
         </titles>
         <texts>
           <li>[sauna] {X_nameDef} and the others of {FACTION} have been on the road for weeks, and have heard about the colony's sauna from traders. They're standing at the gate, filthy and hopeful, and offer {COUNT} silver for an evening in the heat and a place to wash.</li>
@@ -161,6 +167,8 @@
         <answerDays>1</answerDays>
         <titles>
           <li>A guest writes ahead</li>
+          <li>{X_nameDef} will visit</li>
+          <li>A letter from {PLACE}</li>
         </titles>
         <texts>
           <li>[lowtech] A rider brought a sealed letter from {PLACE}. {X_nameDef}, an elder of {FACTION} known well beyond their own lands, will be passing this way in a few days and asks to stay a night in the colony's guest room.\n\nGuests of {X_nameDef}'s standing talk about where they stay.</li>

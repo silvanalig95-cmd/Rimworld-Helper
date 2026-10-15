@@ -14,6 +14,7 @@
     effects: dilemma effects, A = the dreamer, B = OTHER. changeTie/change: what it does to their bond.
     omen: incident (defName), days (range), pointsFactor, good. wish: a WishDef the dream leaves them wanting.
     notable: always a message and a chronicle line.
+    feelings, feelingTarget, camp, situations: dreams of what they feel and what's around them (Council_Dreams3.xml).
   -->
 
   <!-- ===== Everyday dreams ===== -->

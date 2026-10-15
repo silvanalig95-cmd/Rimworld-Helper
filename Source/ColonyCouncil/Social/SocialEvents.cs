@@ -41,11 +41,39 @@ namespace ColonyCouncil
         public bool aHasQuirk;
         /// <summary>A is pursuing a life goal ({GOAL}).</summary>
         public bool aHasGoal;
+        /// <summary>
+        /// How the event stands between the two, as for moments (see <see cref="MomentTones"/>): "warm" waits until a
+        /// spat between them has worn off, "friction" leaves them sore for <see cref="soreHours"/> (and isn't picked
+        /// right after a warm moment), "mend" needs a spat they haven't made up for. "neutral" (the default) is neither.
+        /// </summary>
+        public string tone = "neutral";
+        public float soreHours = 18f;
+        /// <summary>A (or B) has one of Rimfolk's ailments or illnesses, visible; bSerious: a serious one.</summary>
+        public bool aAiling;
+        public bool bAiling;
+        public bool bSerious;
+        /// <summary>Both have the same one of these conditions (HediffDef names or "Prefix*"): a cold going round.</summary>
+        public List<string> sharedAilment;
+        /// <summary>What A (or B) feels: the heart's FeelingDef keys, at least minFeeling of full strength.</summary>
+        public List<string> aFeelings;
+        public List<string> bFeelings;
+        public float minFeeling = 0.3f;
+        /// <summary>A's feeling (aFeelings) is about B: the one A is angry at, grateful to.</summary>
+        public bool aFeelingAboutB;
+        /// <summary>A (or B) remembers one of these thoughts (names or "Prefix*"), at most memoryDays old.</summary>
+        public List<string> aMemories;
+        public List<string> bMemories;
+        public float memoryDays = 2f;
+        /// <summary>A camp (world events) is set up on the map.</summary>
+        public bool camp;
+        /// <summary>A world event of one of these kinds ("sickness", "hunger") or defNames is running.</summary>
+        public List<string> situations;
 
         public override IEnumerable<string> ConfigErrors()
         {
             foreach (var e in base.ConfigErrors()) yield return e;
             if (texts.NullOrEmpty()) yield return "social event has no texts";
+            if (tone != "neutral" && tone != "warm" && tone != "friction" && tone != "mend") yield return "tone must be warm, friction, mend or neutral";
         }
     }
 
@@ -126,6 +154,26 @@ namespace ColonyCouncil
             if (def.sharedVendetta && SharedVendetta(comp, a, b) == null) return false;
             if (def.aHasQuirk && !comp.quirks.Of(a).Any()) return false;
             if (def.aHasGoal && comp.aspirations.Active(a) == null) return false;
+            if (!FitsLife(def, a, b)) return false;
+            return MomentTones.Allows(def.tone, a, b);
+        }
+
+        /// <summary>What's going on in their lives (see <see cref="LifeConditions"/>).</summary>
+        private static bool FitsLife(SocialEventDef def, Pawn a, Pawn b)
+        {
+            if (def.aAiling && !LifeConditions.Ailing(a)) return false;
+            if ((def.bAiling || def.bSerious) && !LifeConditions.Ailing(b, def.bSerious)) return false;
+            if (def.sharedAilment != null && !LifeConditions.ShareOne(a, b, def.sharedAilment)) return false;
+            if (def.camp && !LifeConditions.CampOn(a.MapHeld)) return false;
+            if (def.situations != null && !LifeConditions.Situation(def.situations)) return false;
+            if (def.aMemories != null && LifeConditions.Remembered(a, def.aMemories, def.memoryDays) == null) return false;
+            if (def.bMemories != null && LifeConditions.Remembered(b, def.bMemories, def.memoryDays) == null) return false;
+            if (def.aFeelings != null)
+            {
+                var felt = LifeConditions.Feels(a, def.aFeelings, def.minFeeling, def.aFeelingAboutB);
+                if (felt == null || (def.aFeelingAboutB && felt.target != b)) return false;
+            }
+            if (def.bFeelings != null && LifeConditions.Feels(b, def.bFeelings, def.minFeeling) == null) return false;
             return true;
         }
 
@@ -160,6 +208,14 @@ namespace ColonyCouncil
                 }
                 else if (def.change > 0f) comp.social.Bump(a, b, def.changeTie, def.change, note);
                 else comp.social.Weaken(a, b, def.changeTie, -def.change, note);
+            }
+            try
+            {
+                MomentTones.RecordEvent(def.tone, a, b, def.soreHours);
+            }
+            catch (Exception ex)
+            {
+                CouncilLog.ErrorOnce("social event tone " + def.defName, ex);
             }
             Notify.Message(text, new LookTargets(a, b), MessageTypeDefOf.SilentInput, def.notable ? Importance.Notable : Importance.Flavor);
             // Into the social log too, where Interaction Bubbles picks it up (Integrations/SocialLog.cs).

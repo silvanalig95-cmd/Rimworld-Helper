@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- Moods from the answers added to older Rimfolk events: a letter from home, the lost child grown. -->
+
+  <ThoughtDef>
+    <defName>Council_Evt_ParcelHome</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
+    <durationDays>5</durationDays>
+    <stackLimit>1</stackLimit>
+    <stages><li><label>sent a parcel home</label><description>I packed a parcel for my family and sent it off with a trader. I keep picturing them opening it.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Council_Evt_LetterReadOut</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
+    <durationDays>2</durationDays>
+    <stackLimit>1</stackLimit>
+    <stages><li><label>a letter read at supper</label><description>Someone read their letter from home out at supper. All that small news from people I've never met, and I enjoyed every word.</description><baseMoodEffect>2</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Council_Evt_TaughtYoungGuest</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
+    <durationDays>4</durationDays>
+    <stackLimit>1</stackLimit>
+    <stages><li><label>taught a young guest a trade</label><description>I spent a day showing a young visitor how we make things here. They went home knowing how, and that was my doing.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+</Defs>

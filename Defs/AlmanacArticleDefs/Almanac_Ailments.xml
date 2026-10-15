@@ -12,7 +12,7 @@
     <tip>Tend wounds within a few hours, keep a hat on in the heat, and keep fruit or vegetables on the table.</tip>
     <description>Besides the game's own diseases, Rimfolk adds everyday ailments: small, temporary troubles from ordinary life. Some go round like a cold, through the game's own disease events; others come from how a colonist's day went, like a strained back after a day of hauling. None of them can kill or leaves a mark, and each says in its description what helps. Doctors tend them like any illness, and a colonist has at most two of the day-to-day kind at once.
 
-A rare serious tier sits on top, behind its own setting: six illnesses modeled on real ones and one from the rim. These can kill. At most one kind runs in the colony at a time, never within 30 days of the last, and each comes with a letter that says what it is and what helps. Steady tending beats all of them, and against the ones that real medicine treats with modern drugs, industrial or glitterworld medicine makes a much bigger difference than herbs.</description>
+A rare serious tier sits on top, behind its own setting: twelve illnesses modeled on real ones and two from the rim. Most of them can kill; measles, kidney stones and shingles can't, but they are hard going. At most one kind runs in the colony at a time, never within 30 days of the last, and each comes with a letter that says what it is and what helps. Steady tending beats all of them (for rabies, only if it starts before the symptoms show), appendicitis can also be cut out, and against the ones that real medicine treats with modern drugs, industrial or glitterworld medicine makes a much bigger difference than herbs.</description>
     <sections>
       <li>
         <heading>Going round</heading>
@@ -43,8 +43,22 @@ A rare serious tier sits on top, behind its own setting: six illnesses modeled o
           <li>Eye strain | 4 hours of research or bench work in the dark | A night's sleep | A light at the bench</li>
           <li>Rimrot cough (invented) | Nights in a damp room: dirty and under rock, open to the rain, or grimy in a swamp or jungle | 5 to 8 days | A clean, dry, roofed bedroom</li>
           <li>Ash lung (invented) | An hour of firefighting, or 4 hours under volcanic ash | 3 to 6 days | Clean air, rest</li>
+          <li>Splinter | 4 hours of felling or harvesting trees | 4 to 7 days, or one tending | One tending; gloves</li>
+          <li>Plant rash | 5 hours growing or cutting plants outdoors above 10 °C | 4 to 7 days | Washing, gloves; tending, industrial best</li>
+          <li>Insect bites | 3 hours outdoors in a swamp or jungle at 18 °C or more | 2 to 3 days | Nets and long sleeves; tending</li>
+          <li>Heat rash | 6 hours at 32 °C or more (27 °C in a swamp or jungle), awake or asleep | 1 to 2 days | Cooler rooms, loose clothes</li>
+          <li>Frostnip | 3 hours outdoors below -10 °C | About a day | A hood, a scarf and mittens; bed rest</li>
+          <li>Nosebleed | 2 hours outdoors below -10 °C | 2 to 4 hours | A scarf over the face</li>
+          <li>Athlete's foot | 3 hours on the move through water, marsh or mud | 5 to 8 days | Dry feet; tending, industrial best</li>
+          <li>Motion sickness | 3 hours with a caravan on the move (more in children, less in the old) | Under a day | Tending; it ends when the caravan does</li>
+          <li>Lice | Nights in a dirty room of 4 or more beds, or unwashed in a shared room; they pass to roommates in dirty rooms | 10 to 17 days, a day or two with tending | Tending and a clean room; while someone has lice, typhus is 3 times as likely</li>
+          <li>Insomnia | 8 hours of worry in a day (mood under 30%, or strain of 30 or more), or 3 hours awake between midnight and five (never night owls) | About a week | A regular bedtime and fewer late nights; tending</li>
+          <li>Migraine | 6 hours hungry or 6 hours of worry in a day (rarely in children) | About a day, half that in bed | A dark room and rest; tending, industrial best</li>
+          <li>Cold sore | 8 hours of worry or 4 hours in the midday heat; 1 in 10 colds leave one | 4 to 7 days | Tending, industrial best (an antiviral)</li>
+          <li>Heartburn | A fine or lavish meal: 4% each, half again from 40 and double from 60 | 6 to 10 hours | Smaller helpings</li>
+          <li>Hiccups | An alcoholic drink (5%) or a rich meal (1%) | 1 to 2 hours | Nothing; they stop</li>
         </table>
-        <after>Once a day holds enough hours of the cause, the ailment gets one small chance that day, from 1.5% for a sprained ankle to 12% for ash lung after a fire. Someone who works hard at one thing every day gets an ailment about once a month, the same one again only after 6 days or more, and never more than two at once.</after>
+        <after>Once a day holds enough hours of the cause, the ailment gets one small chance that day, from under 1% for a cold sore from worry and 1.5% for a sprained ankle to 12% for ash lung after a fire; heartburn and hiccups are rolled with each meal or drink instead. Someone who works hard at one thing every day gets an ailment about once a month, the same one again only after 6 days or more for most (3 to 5 for nosebleeds, frostnip and insect bites, a day or two for hiccups and heartburn), and never more than two at once.</after>
       </li>
       <li>
         <heading>Serious illnesses</heading>
@@ -53,26 +67,33 @@ A rare serious tier sits on top, behind its own setting: six illnesses modeled o
           <li>Tetanus | Lockjaw, a toxin from soil bacteria | A bite, scratch, stab, cut or gunshot wound left untended for 8 hours: 5% per wound, 40% of that in industrial colonies and 20% in spacer ones, which vaccinate. It shows 3 to 7 days later | Kills in about 7 days | 13 to 19 days of stiffness</li>
           <li>Pneumonia | Bacterial pneumonia | A cold, chest cold or flu in someone 60 or older, a small child, or someone frail, starving or chilled: 3% a day (half a percent for anyone else) | Kills in 4 to 5 days | 5 to 8 days, then weakness and a cough</li>
           <li>Tuberculosis | Tuberculosis (consumption) | Rarely, one colonist falls ill; it spreads to people asleep in the same room and shows 10 to 20 days later | Wastes away over about 49 days | 36 to 56 days of daily treatment; stopping early lets it come back</li>
-          <li>Typhus | Epidemic typhus, carried by lice | Nights in a dirty room of 4 or more beds, or unwashed in a shared room: 1.5% a night; lice spread it in dirty rooms. It shows 4 to 8 days later | Kills in about 6 days | 4 to 5 days with industrial medicine, 8 to 10 with herbal</li>
+          <li>Typhus | Epidemic typhus, carried by lice | Nights in a dirty room of 4 or more beds, or unwashed in a shared room: 1.5% a night, 4.5% for someone who has lice; lice spread it in dirty rooms. It shows 4 to 8 days later | Kills in about 6 days | 4 to 5 days with industrial medicine, 8 to 10 with herbal</li>
           <li>Meningitis | Bacterial meningitis | Rarely, out of nowhere | Kills in about 2 days | 3 to 5 days, if a skilled doctor tends it at once</li>
           <li>Scurvy | Lack of vitamin C | 20 days without fruit or vegetables, raw or in meals: 25% a day | Turns fatal after about 50 more days | Clears within about 10 days of fresh food</li>
           <li>Glassblood | Invented: spores in ancient dust | 2 hours of work on ancient walls, caskets or junk: 2.5% a day. It shows a day or two later | Kills in about 6 days | 10 to 12 days</li>
+          <li>Cholera | Cholera | Rarely, out of nowhere while it's 18 °C or warmer outside; it spreads to people asleep in the same dirty room. It shows half a day to 2 days later | Kills in 2 to 3 days | 3 to 5 days: keeping the patient drinking (steady tending) matters more than the medicine</li>
+          <li>Appendicitis | Appendicitis | Rarely, out of nowhere; never twice in one person | Kills in about 3 days | Surgery cures it at once ("remove appendix": two medicine, Medicine 4); without it, 4 to 7 days of steady tending, a close thing with herbs alone</li>
+          <li>Rabies | Rabies | A bite from a warm-blooded animal: 3% on a day bitten, half that if every bite was dressed within 4 hours | Symptoms after about 10 days, then fatal within 3 | Treatment every day before the symptoms show: about 4 to 7 days with industrial medicine, about 3 weeks with herbal. Once they show, nothing helps</li>
+          <li>Measles | Measles | Rarely, to children only; it spreads to children asleep in the same room. It shows 5 to 8 days later, and a child who has had it never gets it again | Can't kill; about 10 days | Rest and tending ease it</li>
+          <li>Kidney stone | Kidney stones | Rarely, to adults, twice as often while it's 25 °C or warmer outside | Can't kill; passes in 5 to 7 days | Tending eases the pain and speeds it, industrial best</li>
+          <li>Shingles | Shingles: the chickenpox virus waking again | Rarely, to people of 50 or older | Can't kill; 2 to 3 weeks, and 3 in 10 have nerve pain for a week or two after | Tending, industrial best (an antiviral)</li>
+          <li>Hive fever | Invented: insectoid saliva | An insectoid's bite or sting: 4% on a day stung. It shows within a day | Kills in about 5 days | 7 to 10 days</li>
         </table>
-        <after>Herbal medicine in a good doctor's hands (70% tend quality, tending kept up) brings a patient through every one of them. With poorer care, tetanus and meningitis are often fatal without modern medicine, and pneumonia without any medicine, much as they were in history. A new serious illness never starts within 30 days of the last; tuberculosis and typhus can spread to at most 3 people.</after>
+        <after>Herbal medicine in a good doctor's hands (70% tend quality, tending kept up) brings a patient through every one of the fatal ones, though appendicitis comes close and rabies takes weeks. With poorer care, tetanus and meningitis are often fatal without modern medicine, and pneumonia, cholera and appendicitis without any medicine, much as they were in history. A new serious illness never starts within 30 days of the last; tuberculosis, typhus and cholera can spread to at most 3 people, measles to 4 children.</after>
       </li>
       <li>
         <heading>Medicine, rest and recovery</heading>
-        <text>Tending works as it does for any illness: the doctor's skill and the medicine set the quality, and the illness eases while the treatment lasts, 8 hours for meningitis up to 3 days for a strapped ankle. On top of that, the kind of medicine counts the way it would against the real illness. For colds, coughs and strains it barely matters. For the illnesses real doctors treat with antibiotics or an antitoxin it matters a great deal: industrial medicine works 1.3 to 1.4 times as well as usual against tetanus, pneumonia, typhus and meningitis, herbal medicine (or none) only 0.6 to 0.8 times, and against tuberculosis herbs do half as much. A patient's tooltip says which medicine was used last and how well it works on that illness.
+        <text>Tending works as it does for any illness: the doctor's skill and the medicine set the quality, and the illness eases while the treatment lasts, 8 hours for meningitis up to 3 days for a strapped ankle. On top of that, the kind of medicine counts the way it would against the real illness. For colds, coughs and strains it barely matters. For the illnesses real doctors treat with antibiotics, an antitoxin or a vaccine it matters a great deal: industrial medicine works 1.3 to 1.4 times as well as usual against tetanus, pneumonia, typhus, meningitis, appendicitis, rabies and hive fever, herbal medicine (or none) only 0.6 to 0.8 times (0.85 against rabies), and against tuberculosis herbs do half as much. Cholera is the exception: what saves a patient is fluids, so herbs do nearly as well (0.9 against 1.2). Rabies only responds to treatment before its symptoms show; after that, nothing slows it. A patient's tooltip says which medicine was used last and how well it works on that illness.
 
-Bed rest helps the body build immunity, as with any disease, and also speeds a strained back, a sprained ankle and the weakness after an illness. Many illnesses end with an after-effect: a lingering cough for a week or so after a cold, a chest cold, pneumonia or tuberculosis, and some days of weakness (convalescing, with slower work) after a serious illness. Nothing is permanent.</text>
+Bed rest helps the body build immunity, as with any disease, and also speeds a strained back, a sprained ankle and the weakness after an illness. Many illnesses end with an after-effect: a lingering cough for a week or so after a cold, a chest cold, pneumonia or tuberculosis, now and then a cold sore after a cold, nerve pain for a week or two after shingles, and some days of weakness (convalescing, with slower work) after a serious illness or the operation for appendicitis. Nothing is permanent.</text>
       </li>
       <li>
         <heading>Settings</heading>
-        <text>On the People page: Everyday ailments (on by default), Serious illnesses under it (on by default, so the fatal ones can be turned off alone), and how often, from 25% to 200%, which scales every chance and the clock for everything on this page. Turned off, nothing new starts, and whatever is already running finishes its course. Rimfolk's deeper game hooks watch the colony's meals; with them off, scurvy never starts and toothache only comes with age.</text>
+        <text>On the People page: Everyday ailments (on by default), Serious illnesses under it (on by default, so the fatal ones can be turned off alone), and how often, from 25% to 200%, which scales every chance and the clock for everything on this page. Turned off, nothing new starts, and whatever is already running finishes its course. Rimfolk's deeper game hooks watch the colony's meals; with them off, scurvy, heartburn and hiccups never start and toothache only comes with age.</text>
       </li>
       <li>
         <heading>With Rimfolk</heading>
-        <text>The moods of everyday ailments feed the heart's frustration; those of serious illnesses feed fear, which builds a little strain, and pain builds strain as it always does. A doctor who takes on a serious case feels the weight of it and is more likely to ask the council for a stocked infirmary if medicine is short; pulling a patient through lifts both of them. Patients and doctors write about it in their journals, dreamfever and serious illnesses bring dreams of their own, and while a sickness spreads through the region (a world event), ailments go round two-thirds again as often.</text>
+        <text>The moods of everyday ailments feed the heart's frustration; those of serious illnesses feed fear, which builds a little strain, and pain builds strain as it always does. It works the other way too: a strained or unhappy colonist is likelier to lie awake, get migraines and cold sores. A doctor who takes on a serious case feels the weight of it and is more likely to ask the council for a stocked infirmary if medicine is short; pulling a patient through lifts both of them. Patients and doctors write about it in their journals, dreamfever and serious illnesses bring dreams of their own, and while a sickness spreads through the region (a world event), ailments go round two-thirds again as often.</text>
       </li>
     </sections>
     <keywords>
@@ -92,6 +113,20 @@ Bed rest helps the body build immunity, as with any disease, and also speeds a s
       <li>scurvy</li>
       <li>glassblood</li>
       <li>dreamfever</li>
+      <li>cholera</li>
+      <li>appendicitis</li>
+      <li>rabies</li>
+      <li>measles</li>
+      <li>kidney stone</li>
+      <li>shingles</li>
+      <li>hive fever</li>
+      <li>lice</li>
+      <li>insomnia</li>
+      <li>migraine</li>
+      <li>heartburn</li>
+      <li>splinter</li>
+      <li>insect bites</li>
+      <li>frostnip</li>
     </keywords>
     <seeAlso>
       <li>Council_Alm_4_16_DiseasePenoxycyline</li>

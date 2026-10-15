@@ -6,8 +6,9 @@ namespace ColonyCouncil
 {
     /// <summary>
     /// What a colonist's day has to hold for an ailment to come on. Most are counted in hours over the day (an hour
-    /// counts when the hourly look finds them at it); the last four are checked on their own (a wound, a cold in someone
-    /// frail, the diet, sweets).
+    /// counts when the hourly look finds them at it), from <see cref="HeavyWork"/> to <see cref="Worry"/>; the rest are
+    /// checked on their own (a wound, a bite, a cold in someone frail, the diet, sweets, a meal or a drink). The numbers
+    /// aren't saved anywhere, so new counted ones go before <see cref="Wound"/>.
     /// </summary>
     public enum AilmentTrigger
     {
@@ -40,14 +41,42 @@ namespace ColonyCouncil
         Ashfall,
         /// <summary>Working on something ancient: breaking into ruins, opening caskets, hauling ancient junk.</summary>
         AncientWork,
+        /// <summary>On a caravan that's on the move (the sway of the pack animals, days on the road).</summary>
+        CaravanTravel,
+        /// <summary>Felling or harvesting trees.</summary>
+        Chopping,
+        /// <summary>Growing or cutting plants outdoors, above 10 °C.</summary>
+        PlantWork,
+        /// <summary>Outdoors below -10 °C.</summary>
+        BitterCold,
+        /// <summary>Somewhere 32 °C or hotter (27 °C in a swamp or jungle), awake or asleep.</summary>
+        Sweltering,
+        /// <summary>Outdoors in a swamp or jungle, 18 °C or warmer.</summary>
+        Insects,
+        /// <summary>On the move through water, marsh or mud.</summary>
+        WetFeet,
+        /// <summary>Awake in the small hours (midnight to five), unless they're a night owl.</summary>
+        NightWork,
+        /// <summary>Hungry or worse.</summary>
+        Hungry,
+        /// <summary>Mood below 30%, or strained (the heart's strain at 30 or more).</summary>
+        Worry,
         /// <summary>A deep wound (bite, scratch, stab, cut) left untended for hours.</summary>
         Wound,
+        /// <summary>A bite from a warm-blooded animal (one roll per bite; a bite cleaned within hours halves it).</summary>
+        AnimalBite,
+        /// <summary>A bite or sting from an insectoid (one roll per wound).</summary>
+        InsectBite,
         /// <summary>A cold, chest cold or flu in someone old, frail, starving or chilled to the bone.</summary>
         AfterCold,
         /// <summary>Weeks without fruit or vegetables.</summary>
         Diet,
         /// <summary>Sweets and the years.</summary>
-        Sweets
+        Sweets,
+        /// <summary>A fine or lavish meal (rolled per meal, more often from 40 and again from 60).</summary>
+        RichMeal,
+        /// <summary>An alcoholic drink (rolled per drink).</summary>
+        Drink
     }
 
     /// <summary>One way an ailment can come on: what the day has to hold, how many hours of it, and the chance.</summary>
@@ -58,6 +87,9 @@ namespace ColonyCouncil
         public float hours = 4f;
         /// <summary>The chance, once that day (or per check for the special triggers), before the frequency setting.</summary>
         public float chance = 0.03f;
+        /// <summary>Someone who has this already is likelier to get it this way (lice and typhus), by <see cref="boost"/>.</summary>
+        public HediffDef boostHediff;
+        public float boost = 1f;
     }
 
     /// <summary>What getting over an illness can leave behind for a while: a cough, some weakness.</summary>
@@ -88,6 +120,10 @@ namespace ColonyCouncil
         public float childFactor = 1f;
         /// <summary>Factor on the chance for the old (60 and up, in human years).</summary>
         public float oldFactor = 1f;
+        /// <summary>Only children get it (measles: the grown-ups had it long ago).</summary>
+        public bool childrenOnly;
+        /// <summary>Never twice in one person (an appendix, measles).</summary>
+        public bool once;
         /// <summary>The severity it starts at when it comes on by circumstance (or by an incident, for those without immunity).</summary>
         public FloatRange startSeverity = new FloatRange(0.3f, 0.5f);
         /// <summary>Passes to people who sleep in the same room as someone who has it (and shows symptoms).</summary>
@@ -99,6 +135,8 @@ namespace ColonyCouncil
         /// <summary>No more than this many in the colony have it at once through spreading.</summary>
         public int maxCases = 3;
         public List<AilmentAfterEffect> afterEffects;
+        /// <summary>What it leaves behind when it's cured outright rather than got over (surgery for appendicitis).</summary>
+        public List<AilmentAfterEffect> curedAfterEffects;
         /// <summary>A short message when it comes on: {PAWN} is who has it.</summary>
         [MustTranslate] public string gotText;
         /// <summary>The letter when a serious illness shows itself: {PAWN} is who has it.</summary>
@@ -150,8 +188,12 @@ namespace ColonyCouncil
         public float minOutdoorTemp = -999f;
         /// <summary>Weight factor in fall and winter (colds go round when people huddle indoors).</summary>
         public float coldSeasonFactor = 1f;
+        /// <summary>Weight factor while it's 25 °C or warmer outside (kidney stones come with the heat).</summary>
+        public float hotFactor = 1f;
         /// <summary>Only where plants grow (pollen).</summary>
         public bool needsPlants;
+        /// <summary>Only people this old or older, in human years (shingles).</summary>
+        public float minAge;
         /// <summary>Picks the same colonists as before when it can (hay fever comes back to the same people).</summary>
         public bool sameVictims;
         /// <summary>The letter's opening; the list of who caught it follows, then <see cref="letterAfter"/>. {PAWN} is the first of them.</summary>

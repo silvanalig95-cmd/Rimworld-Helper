@@ -42,6 +42,25 @@
         <li>[ail:EyeStrain] Too long squinting in the dark. My head is pounding.</li>
         <li>[ail:RimrotCough] There's a cough in my chest that smells like the walls. That room is damp.</li>
         <li>[ail:AshLung] Coughed up gray all evening after the fire.</li>
+        <li>[ail:Insomnia] Lay awake till the birds started. Counted the roof beams twice.</li>
+        <li>[ail:Insomnia] Third night running I've heard the night watch change. My eyes feel like sand.</li>
+        <li>[ail:Migraine] A headache like a nail behind my left eye. Spent the afternoon in the dark with a wet cloth.</li>
+        <li>[ail:Migraine] Skipped lunch and paid for it. The light hurt so much I worked with my eyes half shut.</li>
+        <li>[ail:Heartburn] Ate too well tonight and my chest is burning for it. Worth it, mostly.</li>
+        <li>[ail:Nosebleed] My nose bled all down my scarf out in the cold. Looked like I'd lost a fight.</li>
+        <li>[ail:MotionSick] Sick by the side of the trail twice today. The pack animals didn't even slow down.</li>
+        <li>[ail:MotionSick,child] I was sick on the caravan. Twice.</li>
+        <li>[ail:Splinter] A splinter the size of a nail in my palm, from that last tree.</li>
+        <li>[ail:InsectBites] Counted forty bites on one arm before I stopped counting.</li>
+        <li>[ail:InsectBites] The bugs came out at dusk and found every bit of skin I'd left bare.</li>
+        <li>[ail:PlantRash] Pulled weeds bare-handed and now my arms are a blistered mess. Something in that row didn't like me.</li>
+        <li>[ail:Frostnip] Couldn't feel my fingertips by the time I came in. Now they sting, which I'm told is good.</li>
+        <li>[ail:HeatRash] Little red bumps all over my back from the heat. Slept on top of the blanket.</li>
+        <li>[ail:ColdSore] Woke up with a cold sore. My own cup for a week.</li>
+        <li>[ail:Lice] Scratched my head all through dinner until somebody said the word: lice.</li>
+        <li>[ail:Lice,child] I have lice, so they cut my hair really short.</li>
+        <li>[ail:AthletesFoot] Between my toes is raw and itchy. Too many days in wet boots.</li>
+        <li>[ail:Hiccups] One drink and I got the hiccups. Everyone had a cure. None of them worked.</li>
       </plain>
       <warm><li>Feeling rough, but someone left a cup of something hot by my bed.</li></warm>
       <blunt><li>Sick. Working anyway.</li></blunt>
@@ -65,6 +84,15 @@
         <li>[ail:Meningitis] The light hurts and my head is splitting. I can barely hold the pen.</li>
         <li>[ail:Scurvy] My gums bleed when I eat. They say it's the food, or what's missing from it.</li>
         <li>[ail:Glassblood] There's a glitter in my veins. I keep holding my wrists up to the light.</li>
+        <li>[ail:Cholera] I can't stop drinking and I can't keep any of it in. They say it was the water.</li>
+        <li>[ail:Cholera] Someone sits by the bed with a cup all night. Sip, wait, sip.</li>
+        <li>[ail:Appendicitis] The pain moved from my middle to low on my right side. The doctor pressed there and I nearly hit the ceiling.</li>
+        <li>[ail:Rabies] The animal that bit me was foaming at the mouth. They treat the bite every day now, and I watch the doctor's face each time.</li>
+        <li>[ail:Measles,child] I have spots everywhere and I'm not allowed to see anyone.</li>
+        <li>[ail:Measles] Hot and itchy, and my eyes hurt. They keep the curtains closed.</li>
+        <li>[ail:KidneyStone] Worst pain of my life, and they tell me it's a stone the size of a lentil.</li>
+        <li>[ail:Shingles] A band of blisters round my ribs. They say it's the chickenpox I had as a child, come back for me.</li>
+        <li>[ail:HiveFever] The sting has gone hard and hot, and there's a humming in my ears.</li>
       </plain>
       <warm><li>Whatever happens, they've been good to me here.</li></warm>
       <blunt><li>It's bad. I'm going to fight it.</li></blunt>
@@ -93,6 +121,15 @@
         <li>[ail:StrainedBack] Bent down to pick something up without thinking about it. The back's healed.</li>
         <li>[ail:SprainedAnkle] Walked without the stick today.</li>
         <li>[ail:Toothache] The tooth's dealt with and the ache is gone. Should have had it done a week ago.</li>
+        <li>[ail:Cholera] Kept down a whole bowl of broth. Then another.</li>
+        <li>[ail:Appendicitis] The pain in my side has finally gone. The doctor says it walled itself off and I was lucky.</li>
+        <li>[ail:Rabies] The doctor says the danger has passed. I've looked at that bite every morning for weeks; today I didn't.</li>
+        <li>[ail:Measles,child] My spots are gone and I'm allowed outside again!</li>
+        <li>[ail:KidneyStone] It passed. I've never been so glad to see something so small.</li>
+        <li>[ail:Shingles] The blisters have dried up. My shirt doesn't hurt anymore.</li>
+        <li>[ail:HiveFever] The humming stopped in the night. I lay awake listening to how quiet it was.</li>
+        <li>[ail:Insomnia] Slept right through the night, and woke up not knowing where I was.</li>
+        <li>[ail:Lice] The lice are gone. I still scratch out of habit.</li>
       </plain>
       <warm><li>Back on my feet. Thank you to everyone who brought me soup.</li></warm>
       <blunt><li>Better. Back to work.</li></blunt>
@@ -118,6 +155,16 @@
         <li>[ail:Toothache] Saw to a bad tooth for {OTHER_nameDef}. I wasn't thanked at the time.</li>
         <li>[ail:StrainedBack] Strapped up {OTHER_nameDef}'s back and said to stay in bed. We'll see if that happens.</li>
         <li>[ail:SprainedAnkle] Wrapped {OTHER_nameDef}'s ankle and found a stick to lean on.</li>
+        <li>[ail:Cholera] Sat with {OTHER_nameDef} through the night with a cup of salted water. Sip, wait, sip.</li>
+        <li>[ail:Appendicitis] Pressed on {OTHER_nameDef}'s belly, low on the right, and {OTHER_nameDef} nearly kicked me. That appendix has to come out.</li>
+        <li>[ail:Rabies] Washed out {OTHER_nameDef}'s bite again and started the course. Every day now, no exceptions.</li>
+        <li>[ail:Measles] Drew the curtains for {OTHER_nameDef} and sat until {OTHER_pronoun} fell asleep. The spots are spreading.</li>
+        <li>[ail:KidneyStone] Gave {OTHER_nameDef} something for the pain and a full jug of water. The stone will pass.</li>
+        <li>[ail:Shingles] Dressed the blisters round {OTHER_nameDef}'s ribs. {OTHER_nameDef} winced at every touch.</li>
+        <li>[ail:HiveFever] Opened the swelling on {OTHER_nameDef}'s sting and drained it. The fever's high.</li>
+        <li>[ail:Splinter] Picked a splinter out of {OTHER_nameDef}'s palm. It was longer than either of us expected.</li>
+        <li>[ail:Lice] Went through {OTHER_nameDef}'s hair with a fine comb for an hour. Then I boiled the comb.</li>
+        <li>[ail:Migraine] Drew the curtains for {OTHER_nameDef} and asked everyone to keep their voices down.</li>
       </plain>
       <warm><li>Looked after {OTHER_nameDef} today. I like being useful.</li></warm>
       <blunt><li>Tended {OTHER_nameDef}. Next.</li></blunt>
@@ -133,6 +180,8 @@
       <plain>
         <li>{OTHER_nameDef} is going to live. I sat down on the step outside and didn't get up for a while.</li>
         <li>{OTHER_nameDef} walked to the dining room today. Some nights I wasn't sure {OTHER_pronoun} would.</li>
+        <li>[ail:Rabies] {OTHER_nameDef}'s bite has healed and the danger has passed. Every day for weeks, and it worked.</li>
+        <li>[ail:Cholera] {OTHER_nameDef} asked for real food today. I had to go outside for a minute.</li>
       </plain>
       <warm><li>{OTHER_nameDef} thanked me today. I didn't know what to say, so I said to finish the soup.</li></warm>
       <blunt><li>{OTHER_nameDef} pulled through. Good.</li></blunt>
@@ -148,6 +197,7 @@
       <plain>
         <li>Lost {OTHER_nameDef} today. I keep going over what I could have done.</li>
         <li>I did everything I knew for {OTHER_nameDef}. It wasn't enough.</li>
+        <li>[ail:Rabies] We were too late with {OTHER_nameDef}. Once the fever came, all I could do was sit with {OTHER_objective}.</li>
       </plain>
       <warm><li>I held {OTHER_nameDef}'s hand at the end. I hope that counted for something.</li></warm>
       <blunt><li>{OTHER_nameDef} died. I couldn't stop it.</li></blunt>

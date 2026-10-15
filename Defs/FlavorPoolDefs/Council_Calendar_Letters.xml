@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    The colony calendar (Source/ColonyCouncil/Calendar): the opening of a day's letter, in the colony's voice, picked in
+    the tone of whoever stands for the day ({A_...}: the longest here, the best grower, the closest to the dead, one of
+    a wedding's couple). Every line may use {NAME} (the day's name), {YEARS} (years since it first happened; 0 the first
+    time a named day comes), {PLACE} (the biome), {ENEMY}, {COUNT} and {DEAD} (a battle's enemy, how many of them fell,
+    and ours who fell; for a death, the one who died).
+    Tags: [first] the first year it comes round, [years] after that, [tradition] a tradition already, [named] a day the
+    player named; battles [clean], [fallen] or [nemesis]; and the usual season, era and speaker tags.
+    Birthday and Arrival are short messages instead: {A_...} is the person, with no {B_...}.
+  -->
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Cal_Letter_Founding</defName>
+    <lines>
+      <plain>
+        <li>[first] A year ago today, the colony was a few people and their packs in the {PLACE}. {A_nameDef} has been here since that first night, and still talks about how cold it was.</li>
+        <li>[first] One year in the {PLACE}. The first shelter is still standing, more or less, and {A_nameDef} has been showing the newcomers where everyone slept that first night.</li>
+        <li>[years] It's {YEARS} years today since the colony was founded. {A_nameDef}, who has been here longest, was up early and walked the old boundary before breakfast.</li>
+        <li>[years] Founding day again: {YEARS} years in the {PLACE}. {A_nameDef} can still point to the spot where the first fire was lit, though a wall stands there now.</li>
+        <li>[tradition] Founding day, and the colony knows how it goes: the long table, the old stories, and {A_nameDef} telling the first night the same way as every year.</li>
+        <li>[winter] Founding day comes round in the snow. {A_nameDef} says the first winter here was worse, and nobody argues.</li>
+        <li>[lowtech,years] Founding day. {A_nameDef} has cut another notch in the post by the gate, one for each year. There are {YEARS} now.</li>
+      </plain>
+      <warm><li>Founding day. {A_nameDef} has been going round thanking people for staying, which has made several of them cry into their porridge.</li></warm>
+      <gloomy><li>Founding day. {A_nameDef} has been counting who is left from the first year, and keeps losing count on purpose.</li></gloomy>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Cal_Letter_Harvest</defName>
+    <lines>
+      <plain>
+        <li>[first] A year ago today the colony brought in its first good harvest. {A_nameDef}, who planted most of it, has been reminding everyone since breakfast.</li>
+        <li>[years] Harvest day again, {YEARS} years since the first good crop came in. {A_nameDef} wants the day marked the way it was then, with the whole colony at one table.</li>
+        <li>{A_nameDef} has hung a sheaf over the door, which is apparently how harvest day starts now.</li>
+        <li>It's harvest day. The fields are what they are this year, but {A_nameDef} says the day is about the first crop, not this one.</li>
+        <li>[tradition] Harvest day, and nobody needed reminding. {A_nameDef} has been baking since before dawn.</li>
+        <li>[winter] Harvest day falls in the cold this year, with the fields bare. {A_nameDef} brought up a sack of grain from the store to have something to show for it.</li>
+      </plain>
+      <blunt><li>Harvest day. {A_nameDef} would like it noted that the fields didn't plant themselves.</li></blunt>
+      <cheerful><li>Harvest day! {A_nameDef} has been walking round with a turnip in each hand, offering them to people.</li></cheerful>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Cal_Letter_FirstSnow</defName>
+    <lines>
+      <plain>
+        <li>[first] Snow again, the first of the winter, and a year since the colony saw its first. {A_nameDef} was outside before anyone else, catching flakes on {A_possessive} sleeve.</li>
+        <li>[years] The first snow of the winter came down overnight. The colony has made a day of it for {YEARS} years now, and {A_nameDef} is already out stamping a path to the woodpile.</li>
+        <li>The first snow is falling. The children want to go out in it, and so does {A_nameDef}.</li>
+        <li>The first snow of the winter settled on the roofs during the night, and the colony woke to a white, quiet morning.</li>
+        <li>[tradition] The first snow, and the colony knows what that means now: an afternoon of games while it settles.</li>
+        <li>[storm] The first snow of the winter came in hard, on a wind. {A_nameDef} says it counts all the same.</li>
+      </plain>
+      <cheerful><li>First snow! {A_nameDef} has declared work over for the afternoon, which is not {A_possessive} decision to make, but people are listening.</li></cheerful>
+      <gloomy><li>The first snow. {A_nameDef} watched it come down for a long time before saying anything about the firewood.</li></gloomy>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Cal_Letter_Battle</defName>
+    <lines>
+      <plain>
+        <li>[clean,first] A year ago today the colony saw off {ENEMY}: {COUNT} of them fell, and none of ours. {A_nameDef}, who was there, still talks about where the line held.</li>
+        <li>[clean,years] It's {YEARS} years since the colony beat back {ENEMY}. {A_nameDef} wants a feast to mark it, the way the victory was marked that night.</li>
+        <li>[clean] On this day the colony stood against {ENEMY} and held. {A_nameDef} walked the old defenses this morning, as if checking they were still there.</li>
+        <li>[clean,tradition] The day of the victory over {ENEMY} again. The story gets told at supper every year, a little bigger each time.</li>
+        <li>[nemesis,first] A year ago today {ENEMY} was finally brought down. {A_nameDef} says the colony slept better that night than it had in months.</li>
+        <li>[nemesis,years] It's {YEARS} years since {ENEMY} fell. Some of the newer people have only heard the story, and {A_nameDef} is happy to tell it again.</li>
+        <li>[fallen,first] A year ago today the colony fought {ENEMY}, and lost {DEAD}. {A_nameDef}, who was there that day, has been quiet since morning.</li>
+        <li>[fallen,years] It's {YEARS} years since the battle with {ENEMY}, when {DEAD} fell. The ones who were there don't talk about it much, but they remember the day.</li>
+        <li>[fallen] On this day {ENEMY} attacked, and {DEAD} did not come back from the fight. {A_nameDef} went out to the graves early.</li>
+        <li>[fallen,tradition] The colony keeps this day every year for {DEAD}, who fell fighting {ENEMY}.</li>
+      </plain>
+      <blunt><li>[clean] The day {ENEMY} came and lost. {A_nameDef} says that's worth a drink, and has started early.</li></blunt>
+      <gloomy><li>[fallen] The battle with {ENEMY}, again. {A_nameDef} hasn't said a word about it, which says enough.</li></gloomy>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Cal_Letter_Death</defName>
+    <lines>
+      <plain>
+        <li>[first] A year ago today, {DEAD} died. {A_nameDef} was up before dawn and spent the morning at the grave.</li>
+        <li>[years] It's {YEARS} years since {DEAD} died. {A_nameDef} still sets out a cup for {DEAD} at supper on this day, and nobody says anything about it.</li>
+        <li>[!winter] Today the colony remembers {DEAD}. {A_nameDef} has picked wildflowers for the grave.</li>
+        <li>[winter] Today the colony remembers {DEAD}. {A_nameDef} cleared the snow from the grave this morning.</li>
+        <li>It's the day {DEAD} died. Someone told the story of {DEAD}'s worst joke at breakfast, and for a moment it was as if {DEAD} were at the table.</li>
+        <li>[tradition] Every year on this day the colony stops to remember {DEAD}. {A_nameDef} will say a few words this evening.</li>
+        <li>[rain] It's the day {DEAD} died, and it's raining. {A_nameDef} went out to the grave anyway.</li>
+      </plain>
+      <warm><li>It's the day {DEAD} died. {A_nameDef} has been telling the newcomers who {DEAD} was, so that someone new remembers.</li></warm>
+      <blunt><li>The day {DEAD} died. {A_nameDef} went to the grave at first light and came back without a word.</li></blunt>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- A wedding day: {A_...} and {B_...} are the couple. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Cal_Letter_Wedding</defName>
+    <lines>
+      <plain>
+        <li>[first] A year ago today, {A_nameDef} and {B_nameDef} were married. {A_nameDef} has been pretending not to know what day it is, badly.</li>
+        <li>[first] One year married. {B_nameDef} remembered, and {A_nameDef} needed a hint, though not much of one.</li>
+        <li>[years] {A_nameDef} and {B_nameDef} have been married {YEARS} years today. Someone found the cup they drank from at the wedding and set it on the table.</li>
+        <li>It's {A_nameDef} and {B_nameDef}'s wedding day. The colony would like to mark it, whatever the two of them say.</li>
+        <li>[tradition] {A_nameDef} and {B_nameDef}'s wedding day, which the colony marks every year now, fuss or no fuss.</li>
+        <li>[spring] {A_nameDef} and {B_nameDef}'s wedding day, with the first flowers out. Somebody has already braided a few into {B_nameDef}'s hair.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- A day kept as a feast that isn't one of the kinds above (a day the player named, or a day changed to a feast). -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Cal_Letter_Feast</defName>
+    <lines>
+      <plain>
+        <li>[first,named] {NAME} has come round for the first time. Nobody is quite sure yet how it's done, which leaves plenty of room for ideas.</li>
+        <li>[years] {NAME} again. The colony has kept it {YEARS} years now, and the cooks have opinions about the menu.</li>
+        <li>It's {NAME}. {A_nameDef} has been asking since breakfast whether there'll be a feast.</li>
+        <li>{NAME} today. Someone has already pushed the tables together.</li>
+        <li>[tradition] {NAME}, and everyone knows what that means. {A_nameDef} has been setting food aside for days.</li>
+        <li>[winter] {NAME} falls in the middle of the cold this year, which only makes a hot meal and company sound better.</li>
+      </plain>
+      <cheerful><li>It's {NAME}! {A_nameDef} has hung something festive over the door. Opinions differ on what it is.</li></cheerful>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Cal_Letter_Remembrance</defName>
+    <lines>
+      <plain>
+        <li>[first,named] {NAME} has come for the first time: a day the council set aside to remember the colony's dead. Nobody is quite sure yet how to spend it.</li>
+        <li>{NAME} today, a day the colony sets aside to remember the ones it has lost.</li>
+        <li>[years] It's {NAME} again. {A_nameDef} has been out to the graves already, and left something at each.</li>
+        <li>It's {NAME}. Work goes on, but slower, and people talk about the ones who aren't here.</li>
+        <li>[tradition] {NAME}. The colony keeps it every year now, in the same quiet way.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Cal_Letter_Rest</defName>
+    <lines>
+      <plain>
+        <li>[first,named] {NAME} has come round for the first time, and the idea of a day off has gone down well.</li>
+        <li>It's {NAME}, and the council has been asked whether the tools can stay on their hooks today.</li>
+        <li>[years] {NAME} again. {YEARS} years of the colony taking this one day off, and the work has always waited.</li>
+        <li>{NAME} today. {A_nameDef} has already announced plans to do nothing at all.</li>
+        <li>[tradition] {NAME}: the colony's day of rest. Nobody expects to be asked to work.</li>
+        <li>[trait:Industrious] It's {NAME}. {A_nameDef} is the only one who has asked what needs doing today.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Cal_Letter_Games</defName>
+    <lines>
+      <plain>
+        <li>[first,named] {NAME} has come round for the first time. {A_nameDef} has marked out a course for races, and is taking bets.</li>
+        <li>It's {NAME}. Someone has set up a target behind the storehouse, and there's talk of a tug-of-war after lunch.</li>
+        <li>{NAME} today, and {A_nameDef} has been practicing for the footrace all week while pretending not to.</li>
+        <li>[years] {NAME} again. The colony has played the same games on this day for {YEARS} years, and the same people still cheat at them.</li>
+        <li>[tradition] {NAME}, the colony's games day. Last year's winners are already being reminded of it.</li>
+        <li>[winter] {NAME} in the snow. The races will be short this year and the snowball fight long.</li>
+        <li>[summer] {NAME} on a hot day. The races will be run early, before the heat sets in.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- A message on a long-serving colonist's birthday. {A_...} is the person. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Cal_Letter_Birthday</defName>
+    <lines>
+      <plain>
+        <li>It's {A_nameDef}'s birthday today.</li>
+        <li>{A_nameDef}'s birthday. Somebody saved {A_objective} the best seat at supper.</li>
+        <li>[old] {A_nameDef} has another birthday today, and has asked that nobody count the years out loud.</li>
+        <li>[child] It's {A_nameDef}'s birthday, and {A_nameDef} has made sure everyone knows.</li>
+        <li>[teen] {A_nameDef}'s birthday. {A_nameDef} says it's no big deal, and has mentioned it four times.</li>
+        <li>[lowtech] {A_nameDef}'s birthday. Someone has carved {A_objective} a small gift.</li>
+        <li>[winter] {A_nameDef}'s birthday, in the middle of the cold. The colony found a few sweet things to mark it.</li>
+      </plain>
+      <warm><li>It's {A_nameDef}'s birthday, and the colony owes {A_objective} a few kindnesses back.</li></warm>
+      <blunt><li>{A_nameDef}'s birthday. {A_nameDef} would like everyone to stop mentioning it.</li></blunt>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- A message on the day a founding member arrived (when anniversaries are off). {A_...} is the person. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Cal_Letter_Arrival</defName>
+    <lines>
+      <plain>
+        <li>[first] A year ago today, {A_nameDef} came to the colony, in its first year.</li>
+        <li>[years] It's {YEARS} years since {A_nameDef} arrived, back when the colony was new.</li>
+        <li>{A_nameDef} came to the colony on this day, when it had barely begun.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+</Defs>

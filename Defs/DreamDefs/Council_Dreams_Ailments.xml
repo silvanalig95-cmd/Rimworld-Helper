@@ -40,6 +40,11 @@
       <li>Council_Ail_Typhus</li>
       <li>Council_Ail_Meningitis</li>
       <li>Council_Ail_Glassblood</li>
+      <li>Council_Ail_Cholera</li>
+      <li>Council_Ail_Appendicitis</li>
+      <li>Council_Ail_Rabies</li>
+      <li>Council_Ail_Measles</li>
+      <li>Council_Ail_HiveFever</li>
     </hediffs>
     <lines>
       <plain>

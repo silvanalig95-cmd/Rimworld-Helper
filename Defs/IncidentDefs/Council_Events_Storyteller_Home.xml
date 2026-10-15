@@ -28,6 +28,8 @@
         <journal>Council_Journal_Evt_Recognized</journal>
         <titles>
           <li>Recognized</li>
+          <li>An old name</li>
+          <li>{X_nameDef} remembers {A_nameDef}</li>
         </titles>
         <!-- {TALE}: who the colonist used to be, from their backstory ("a smuggler"). -->
         <texts>
@@ -110,6 +112,8 @@
         <journal>Council_Journal_Evt_OldCommander</journal>
         <titles>
           <li>An old commander's call</li>
+          <li>A letter from {X_nameDef}</li>
+          <li>The old unit calls</li>
         </titles>
         <!-- {X}: the commander (never seen, only written about); {TALE}: what they ask for. -->
         <texts>
@@ -176,6 +180,8 @@
         <journal>Council_Journal_Evt_FormerPatient</journal>
         <titles>
           <li>A former patient</li>
+          <li>{X_nameDef} remembers</li>
+          <li>An old debt of thanks</li>
         </titles>
         <texts>
           <li>[healer] {X_nameDef} of {FACTION} walked a long way to find {A_nameDef}. Years ago, when {A_nameDef} was still a healer by trade, {A_pronoun} set {X_nameDef}'s broken leg and sat up three nights with the fever after. {X_nameDef} never forgot it, and has come with a gift.</li>
@@ -236,6 +242,8 @@
         <journal>Council_Journal_Evt_OldMap</journal>
         <titles>
           <li>An old map</li>
+          <li>Something in the lining</li>
+          <li>{A_nameDef}'s old map</li>
         </titles>
         <!-- {TALE}: who the colonist used to be ("a smuggler"). -->
         <texts>
@@ -288,6 +296,8 @@
         <journal>Council_Journal_Evt_ChildFind</journal>
         <titles>
           <li>A child's find</li>
+          <li>{A_nameDef}'s treasure</li>
+          <li>Look what {A_nameDef} found</li>
         </titles>
         <texts>
           <li>[fossil] {A_nameDef} came running in with a split stone held in both hands. Pressed into the inside is the shape of a shell, perfectly clear, from some sea that dried up long before anyone lived here.\n\n{A_nameDef} wants to know everything about it. {B_nameDef} knows more than most, if {B_pronoun} can spare the time.</li>
@@ -344,6 +354,8 @@
         <notable>false</notable>
         <titles>
           <li>A present from {PET_nameDef}</li>
+          <li>{PET_nameDef} brings something home</li>
+          <li>Good {PET_nameDef}</li>
         </titles>
         <texts>
           <li>[game] {PET_nameDef} trotted in from the fields with {BEAST} in {PET_possessive} jaws and laid it at {A_nameDef}'s feet. {A_nameDef} has been praising {PET_objective} all morning, and there's fresh meat for the pot.</li>

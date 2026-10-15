@@ -63,6 +63,8 @@ namespace ColonyCouncil
         public bool annals = true;
         public bool decreeRequests = true;
         public bool anniversaries = true;
+        /// <summary>The colony calendar's days come round with letters, gatherings and moods (Calendar/); off, they're only written down.</summary>
+        public bool colonyCalendar = true;
         public bool epithets = true;
         public bool journals = true;
         public bool offices = true;
@@ -210,6 +212,7 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref annals, "annals", true);
             Scribe_Values.Look(ref decreeRequests, "decreeRequests", true);
             Scribe_Values.Look(ref anniversaries, "anniversaries", true);
+            Scribe_Values.Look(ref colonyCalendar, "colonyCalendar", true);
             Scribe_Values.Look(ref epithets, "epithets", true);
             Scribe_Values.Look(ref journals, "journals", true);
             Scribe_Values.Look(ref offices, "offices", true);
@@ -565,6 +568,7 @@ namespace ColonyCouncil
             l.CheckboxLabeled("CC_Settings_Journals".Translate(), ref journals, "CC_Settings_Journals_Tip".Translate());
             l.CheckboxLabeled("CC_Settings_Epithets".Translate(), ref epithets, "CC_Settings_Epithets_Tip".Translate());
             l.CheckboxLabeled("CC_Settings_Anniversaries".Translate(), ref anniversaries, "CC_Settings_Anniversaries_Tip".Translate());
+            l.CheckboxLabeled("CC_Settings_Calendar".Translate(), ref colonyCalendar, "CC_Settings_Calendar_Tip".Translate());
             l.CheckboxLabeled("CC_Settings_Annals".Translate(), ref annals, "CC_Settings_Annals_Tip".Translate());
             l.CheckboxLabeled("CC_Settings_Eulogies".Translate(), ref eulogies, "CC_Settings_Eulogies_Tip".Translate());
         }
@@ -626,7 +630,7 @@ namespace ColonyCouncil
             ailments = on;
             enableDilemmas = decreeRequests = offices = colonyCharacter = councilOn;
             enableWishes = enableAmbitions = councilOn || on;
-            journals = epithets = anniversaries = annals = on || councilOn;
+            journals = epithets = anniversaries = annals = colonyCalendar = on || councilOn;
             if (councilOn && stakes == StakesMode.AdvisorOnly) stakes = StakesMode.Balanced;
         }
 
@@ -672,6 +676,7 @@ namespace ColonyCouncil
             annals = d.annals;
             decreeRequests = d.decreeRequests;
             anniversaries = d.anniversaries;
+            colonyCalendar = d.colonyCalendar;
             epithets = d.epithets;
             journals = d.journals;
             offices = d.offices;

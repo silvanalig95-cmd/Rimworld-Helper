@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!-- The colony calendar (Source/ColonyCouncil/Calendar). -->
+
+  <!-- Names of the days, as written down. Lowercase: they're used inside sentences and capitalized as titles. -->
+  <CC_Cal_Name_Founding>founding day</CC_Cal_Name_Founding>
+  <CC_Cal_Name_Harvest>harvest day</CC_Cal_Name_Harvest>
+  <CC_Cal_Name_FirstSnow>the first snow</CC_Cal_Name_FirstSnow>
+  <CC_Cal_Name_Battle>the victory over {0}</CC_Cal_Name_Battle>
+  <CC_Cal_Name_BattleCostly>the battle with {0}</CC_Cal_Name_BattleCostly>
+  <CC_Cal_Name_Nemesis>the day {0} fell</CC_Cal_Name_Nemesis>
+  <CC_Cal_Name_Death>the day {0} died</CC_Cal_Name_Death>
+  <CC_Cal_Name_Wedding>{0} and {1}'s wedding day</CC_Cal_Name_Wedding>
+  <CC_Cal_Name_Arrival>the day {0} came</CC_Cal_Name_Arrival>
+  <CC_Cal_Name_Birthday>{0}'s birthday</CC_Cal_Name_Birthday>
+  <CC_Cal_Name_Holiday>a day of the colony's own</CC_Cal_Name_Holiday>
+
+  <!-- How a day is kept. -->
+  <CC_Cal_Way_Feast>feast</CC_Cal_Way_Feast>
+  <CC_Cal_Way_Remembrance>remembrance</CC_Cal_Way_Remembrance>
+  <CC_Cal_Way_Rest>rest day</CC_Cal_Way_Rest>
+  <CC_Cal_Way_Games>games</CC_Cal_Way_Games>
+  <CC_Cal_Way_Personal>their own day</CC_Cal_Way_Personal>
+  <CC_Cal_Way_Feast_Desc>a party at the gathering spot for anyone free to come, or a better supper when no gathering is possible.</CC_Cal_Way_Feast_Desc>
+  <CC_Cal_Way_Remembrance_Desc>a quiet hour: a small, bittersweet mood for those who knew the one remembered (for a day you name, for everyone).</CC_Cal_Way_Remembrance_Desc>
+  <CC_Cal_Way_Rest_Desc>the rest of the day's work hours become recreation, and the schedule goes back the next day. The industrious work anyway.</CC_Cal_Way_Rest_Desc>
+  <CC_Cal_Way_Games_Desc>an afternoon of games: some recreation and a small lift for everyone at home.</CC_Cal_Way_Games_Desc>
+  <CC_Cal_Way_Personal_Desc>a message, a small lift for them, and good wishes from their friends.</CC_Cal_Way_Personal_Desc>
+  <CC_Cal_Way_Feast_Letter>If the council keeps it, the colony holds a feast: a party at the gathering spot for anyone free to come.</CC_Cal_Way_Feast_Letter>
+  <CC_Cal_Way_Games_Letter>If the council keeps it, the colony takes the afternoon for games. Everyone at home gets some recreation and a small lift.</CC_Cal_Way_Games_Letter>
+  <CC_Cal_Way_Rest_Letter>If the council keeps it, nobody works for the rest of the day: work hours turn to recreation until midnight, and the schedule goes back tomorrow. The industrious will work anyway.</CC_Cal_Way_Rest_Letter>
+  <CC_Cal_Way_Remembrance_Letter>{0} will keep a quiet hour for it today.</CC_Cal_Way_Remembrance_Letter>
+  <CC_Cal_Way_RemembranceAll_Letter>The colony keeps a quiet hour today.</CC_Cal_Way_RemembranceAll_Letter>
+  <CC_Cal_Way_Why>keeping {0}</CC_Cal_Way_Why>
+
+  <!-- The letter's choices and lines. -->
+  <CC_Cal_Keep_Feast>Hold the feast</CC_Cal_Keep_Feast>
+  <CC_Cal_Keep_Games>A day of games</CC_Cal_Keep_Games>
+  <CC_Cal_Keep_Rest>A day of rest</CC_Cal_Keep_Rest>
+  <CC_Cal_KeepRitual>Keep it with the {0}</CC_Cal_KeepRitual>
+  <CC_Cal_Pass>Not this year</CC_Cal_Pass>
+  <CC_Cal_Deadline>If the council hasn't answered within {0}, the day is kept: {1}.</CC_Cal_Deadline>
+  <CC_Cal_Status_New>Keep it {0} years running and it becomes one of the colony's traditions.</CC_Cal_Status_New>
+  <CC_Cal_Status_Count>Kept {0} years running so far. Years still to go before it becomes a tradition: {1}.</CC_Cal_Status_Count>
+  <CC_Cal_Status_Close>The colony has kept this day {0} years running. Keep it this year and it becomes a tradition.</CC_Cal_Status_Close>
+  <CC_Cal_Status_Tradition>One of the colony's traditions, kept {0} times. The colonists expect it, and letting it pass will disappoint them.</CC_Cal_Status_Tradition>
+  <CC_Cal_Ritual_Feast>The followers of {0} have a rite of their own for days like this: the {1}. Holding it instead of the colony's feast counts as keeping the day.</CC_Cal_Ritual_Feast>
+  <CC_Cal_Ritual_Remembrance>The followers of {0} keep their own rite for the dead, the {1}. A memorial held today would suit the day.</CC_Cal_Ritual_Remembrance>
+  <CC_Cal_Ritual_Chosen>The colony will keep {0} with the {1}. Start it from the ritual's spot when everyone is ready.</CC_Cal_Ritual_Chosen>
+
+  <!-- Messages. -->
+  <CC_Cal_Kept>{0} was kept ({1}).</CC_Cal_Kept>
+  <CC_Cal_LetPass>{0} passed this year without a celebration.</CC_Cal_LetPass>
+  <CC_Cal_Missed>{0} came and went this year without anyone able to mark it.</CC_Cal_Missed>
+  <CC_Cal_NewDay>On the colony calendar from now on: {0}, on the {1}.</CC_Cal_NewDay>
+  <CC_Cal_FirstSnowEver>The first snow the colony has seen. From now on, the first snow of each winter is a day on the colony calendar.</CC_Cal_FirstSnowEver>
+  <CC_Cal_FirstSnowNoted>Snow, the first of this winter. From now on, the first snow of each winter is a day on the colony calendar.</CC_Cal_FirstSnowNoted>
+  <CC_Cal_Chronicle_Kept>The colony kept {0}.</CC_Cal_Chronicle_Kept>
+  <CC_Cal_Chronicle_Named>The council named a day of the colony's own: {0}, on the {1}.</CC_Cal_Chronicle_Named>
+  <CC_Cal_World_Coming>On the colony calendar ({0}), on the {1}.</CC_Cal_World_Coming>
+
+  <!-- Why a mood is felt. -->
+  <CC_Cal_Cause_Day>{0}, on the colony calendar.</CC_Cal_Cause_Day>
+  <CC_Cal_Cause_Remembered>remembering {0}.</CC_Cal_Cause_Remembered>
+  <CC_Cal_Cause_Birthday>my birthday.</CC_Cal_Cause_Birthday>
+  <CC_Cal_Subject_Battle>the battle with {0}</CC_Cal_Subject_Battle>
+
+  <!-- The Calendar page. -->
+  <CC_Tab_Calendar>Calendar</CC_Tab_Calendar>
+  <CC_UI_Sub_Calendar>Days that matter to this colony, and how it keeps them.</CC_UI_Sub_Calendar>
+  <CC_Cal_Title>The colony calendar</CC_Cal_Title>
+  <CC_Cal_Today>Today: {0}</CC_Cal_Today>
+  <CC_Cal_Intro>The days that matter to this colony, written down as its history happens: its founding, its first good harvest, the first snow, battles it remembers, people it lost, weddings, the arrivals of its first members and the birthdays of its long-serving colonists. When a day comes round, the colony can keep it with a feast, games, a rest day or a quiet hour. Kept {0} years running, a day becomes a tradition, and the colony expects it from then on.</CC_Cal_Intro>
+  <CC_Cal_Off>The calendar's events are switched off in the settings. Days are still written down here, but nothing happens when they come round.</CC_Cal_Off>
+  <CC_Cal_Days>The colony's days</CC_Cal_Days>
+  <CC_Cal_DaysCount>{0} days</CC_Cal_DaysCount>
+  <CC_Cal_NoDays>Nothing on the calendar yet.</CC_Cal_NoDays>
+  <CC_Cal_Customs>Seasonal customs</CC_Cal_Customs>
+  <CC_Cal_NoCustoms>None yet. Answer a seasonal dilemma the same way two years running (a midsummer bonfire, a harvest home) and it becomes one of the colony's customs.</CC_Cal_NoCustoms>
+  <CC_Cal_Custom_Tip>A seasonal custom. It comes with the council's question about {0} each year, and the colony expects the answer it always gives.</CC_Cal_Custom_Tip>
+  <CC_Cal_WithSnow>with the first snow</CC_Cal_WithSnow>
+  <CC_Cal_Tomorrow>Tomorrow</CC_Cal_Tomorrow>
+  <CC_Cal_InDays>In {0} days</CC_Cal_InDays>
+  <CC_Cal_Pill_Tradition>tradition</CC_Cal_Pill_Tradition>
+  <CC_Cal_Pill_Kept>kept {0} in a row</CC_Cal_Pill_Kept>
+  <CC_Cal_Pill_Kept_Tip>Years still to keep it before it becomes a tradition: {0}.</CC_Cal_Pill_Kept_Tip>
+  <CC_Cal_Pill_Named>named</CC_Cal_Pill_Named>
+  <CC_Cal_NameDay>Name a day</CC_Cal_NameDay>
+  <CC_Cal_NameDay_Tip>Name a day of the colony's own, on a date you choose: a feast, a day of remembrance, a rest day or a day of games.</CC_Cal_NameDay_Tip>
+  <CC_Cal_NameDay_Full>The calendar already has {0} named days. Remove one to name another.</CC_Cal_NameDay_Full>
+  <CC_Cal_Menu_Tip>Rename this day, change how it's kept, or take it off the calendar.</CC_Cal_Menu_Tip>
+  <CC_Cal_Menu_Change>Rename, or change how it's kept</CC_Cal_Menu_Change>
+  <CC_Cal_Menu_Forget>Take it off the calendar</CC_Cal_Menu_Forget>
+  <CC_Cal_Menu_Remove>Remove this day</CC_Cal_Menu_Remove>
+  <CC_Cal_Menu_Confirm>Take {0} off the colony calendar? Whatever it has built up toward a tradition is lost.</CC_Cal_Menu_Confirm>
+  <CC_Cal_Origin_Founding>The colony was founded on this day in {0}.</CC_Cal_Origin_Founding>
+  <CC_Cal_Origin_Harvest>The colony's first good harvest came in on this day in {0}.</CC_Cal_Origin_Harvest>
+  <CC_Cal_Origin_FirstSnow>First fell on the {0}, {1}. The day comes with the first snow of each winter, whatever the date.</CC_Cal_Origin_FirstSnow>
+  <CC_Cal_Origin_Battle>{0} attacked on this day in {1}, and {2} of them fell.</CC_Cal_Origin_Battle>
+  <CC_Cal_Origin_BattleCostly>{0} attacked on this day in {1}. {2} of them fell, and so did {3}.</CC_Cal_Origin_BattleCostly>
+  <CC_Cal_Origin_Nemesis>{0} was brought down on this day in {1}.</CC_Cal_Origin_Nemesis>
+  <CC_Cal_Origin_Death>{0} died on this day in {1}.</CC_Cal_Origin_Death>
+  <CC_Cal_Origin_Wedding>{0} and {1} were married on this day in {2}.</CC_Cal_Origin_Wedding>
+  <CC_Cal_Origin_Arrival>{0} came to the colony on this day in {1}, in its first year.</CC_Cal_Origin_Arrival>
+  <CC_Cal_Origin_Birthday>{0} has been with the colony long enough that their birthday is the colony's too.</CC_Cal_Origin_Birthday>
+  <CC_Cal_Origin_Holiday>Named by the council in {0}.</CC_Cal_Origin_Holiday>
+
+  <!-- Naming or changing a day. -->
+  <CC_Cal_Dialog_New>Name a day</CC_Cal_Dialog_New>
+  <CC_Cal_Dialog_Change>Change {0}</CC_Cal_Dialog_Change>
+  <CC_Cal_Dialog_Name>Name</CC_Cal_Dialog_Name>
+  <CC_Cal_Dialog_Way>How the colony keeps it</CC_Cal_Dialog_Way>
+  <CC_Cal_Dialog_Personal>A birthday or an arrival is that person's own day: a message, a small lift for them, and good wishes from their friends.</CC_Cal_Dialog_Personal>
+  <CC_Cal_Dialog_Date>When</CC_Cal_Dialog_Date>
+  <CC_Cal_Dialog_DateFixed>{0}. The colony's own history set this date.</CC_Cal_Dialog_DateFixed>
+  <CC_Cal_Dialog_Add>Name it</CC_Cal_Dialog_Add>
+  <CC_Cal_Dialog_Save>Save</CC_Cal_Dialog_Save>
+  <CC_Cal_Dialog_NeedName>The day needs a name.</CC_Cal_Dialog_NeedName>
+  <CC_Cal_Dialog_Added>{0} is on the colony calendar now, on the {1}.</CC_Cal_Dialog_Added>
+
+  <!-- The setting. -->
+  <CC_Settings_Calendar>The colony calendar: its days come round each year</CC_Settings_Calendar>
+  <CC_Settings_Calendar_Tip>The days that matter to the colony (its founding, first harvest, first snow, battles, losses, weddings, the birthdays of its long-serving colonists, and days you name on the Calendar page) come round each year with a letter or a message, a feast, games, a rest day or a quiet hour. Kept three years running, a day becomes a tradition.\n\nOff: days are still written down on the Calendar page, but nothing happens when they come round.</CC_Settings_Calendar_Tip>
+
+</LanguageData>

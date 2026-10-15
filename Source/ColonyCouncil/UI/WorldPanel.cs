@@ -180,6 +180,8 @@ namespace ColonyCouncil
             }
             // Story chains with a stage on its way (Workers_Chains2.cs).
             foreach (var n in StoryChains.Coming(now)) timed.Add(FromNote(n, "CC_UI_TimeLeft".Translate()));
+            // The colony calendar's next days (Calendar/).
+            foreach (var n in CalendarTracker.Coming(now)) timed.Add(FromNote(n, "CC_UI_TimeLeft".Translate()));
             // A council meeting that has been called, with a countdown to when the chair calls everyone together.
             var meeting = CouncilGameComponent.Instance?.ambitions?.meeting;
             if (meeting?.map != null && ColonyCouncilMod.Settings.enableAmbitions && (meeting.Started || meeting.scheduledTick >= 0))

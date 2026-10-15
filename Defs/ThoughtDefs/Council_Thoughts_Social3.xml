@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Memories from the third set of social events (Defs/SocialEventDefs/Council_SocialEvents3.xml). Their names start
+    with Council_Soc_, so the heart's feelings take them in like the first set's.
+  -->
+
+  <ThoughtDef Name="Council_Soc3Base" Abstract="True">
+    <thoughtClass>ColonyCouncil.Thought_CouncilSocial</thoughtClass>
+    <durationDays>3</durationDays>
+    <stackLimit>3</stackLimit>
+    <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
+  </ThoughtDef>
+
+  <!-- ===================== Illness ===================== -->
+
+  <ThoughtDef ParentName="Council_Soc3Base">
+    <defName>Council_Soc_KeptVigil</defName>
+    <stages><li><label>kept a vigil</label><description>I sat up with them through the worst of it. I'm worn out, and I'd do it again.</description><baseMoodEffect>2</baseMoodEffect><baseOpinionOffset>6</baseOpinionOffset></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_Soc3Base">
+    <defName>Council_Soc_SomeoneStayed</defName>
+    <durationDays>6</durationDays>
+    <stages><li><label>someone stayed with me</label><description>Every time I woke in the night, they were still there in the chair.</description><baseMoodEffect>4</baseMoodEffect><baseOpinionOffset>12</baseOpinionOffset></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_Soc3Base">
+    <defName>Council_Soc_BuiltBackUp</defName>
+    <durationDays>4</durationDays>
+    <stages><li><label>looked after while I mend</label><description>They've been fussing over me since I got out of bed. I pretend to mind.</description><baseMoodEffect>3</baseMoodEffect><baseOpinionOffset>8</baseOpinionOffset></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_Soc3Base">
+    <defName>Council_Soc_BlamedForIt</defName>
+    <durationDays>2</durationDays>
+    <stages><li><label>blamed for the sickness</label><description>We're both ill, and they say it's my fault. It isn't. Probably.</description><baseMoodEffect>-1</baseMoodEffect><baseOpinionOffset>-5</baseOpinionOffset></li></stages>
+  </ThoughtDef>
+
+  <!-- ===================== The camp ===================== -->
+
+  <ThoughtDef ParentName="Council_Soc3Base">
+    <defName>Council_Soc_EveningAtTheCamp</defName>
+    <stages><li><label>an evening at the camp</label><description>We spent the evening with the camp people. Different food, different songs, same stars.</description><baseMoodEffect>3</baseMoodEffect><baseOpinionOffset>5</baseOpinionOffset></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_Soc3Base">
+    <defName>Council_Soc_Suspected</defName>
+    <stages><li><label>accused over the camp</label><description>They as good as called me a thief for being friendly with the camp.</description><baseMoodEffect>-3</baseMoodEffect><baseOpinionOffset>-8</baseOpinionOffset></li></stages>
+  </ThoughtDef>
+
+  <!-- ===================== The council ===================== -->
+
+  <ThoughtDef ParentName="Council_Soc3Base">
+    <defName>Council_Soc_MeetingQuarrel</defName>
+    <durationDays>2</durationDays>
+    <stages><li><label>quarreled over the council</label><description>We fell out over what the council decided. Neither of us even made the decision.</description><baseMoodEffect>-2</baseMoodEffect><baseOpinionOffset>-6</baseOpinionOffset></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_Soc3Base">
+    <defName>Council_Soc_BackedAtCouncil</defName>
+    <durationDays>5</durationDays>
+    <stages><li><label>backed at the council</label><description>They stood with me at the council when it counted.</description><baseMoodEffect>3</baseMoodEffect><baseOpinionOffset>8</baseOpinionOffset></li></stages>
+  </ThoughtDef>
+
+  <!-- ===================== What they feel ===================== -->
+
+  <ThoughtDef ParentName="Council_Soc3Base">
+    <defName>Council_Soc_NotAloneWithIt</defName>
+    <durationDays>4</durationDays>
+    <stages><li><label>not alone with my fears</label><description>I told them what scares me, and they stayed up with me. It's smaller now.</description><baseMoodEffect>4</baseMoodEffect><baseOpinionOffset>8</baseOpinionOffset></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_Soc3Base">
+    <defName>Council_Soc_CarriedMyGrief</defName>
+    <durationDays>5</durationDays>
+    <stages><li><label>helped with my grief</label><description>They let me talk about the one I lost, and didn't hurry me.</description><baseMoodEffect>3</baseMoodEffect><baseOpinionOffset>8</baseOpinionOffset></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_Soc3Base">
+    <defName>Council_Soc_HadItOut</defName>
+    <durationDays>4</durationDays>
+    <stages><li><label>had it out with them</label><description>We said everything we've been holding back, in front of everyone. It didn't help.</description><baseMoodEffect>-3</baseMoodEffect><baseOpinionOffset>-10</baseOpinionOffset></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_Soc3Base">
+    <defName>Council_Soc_PeaceOffering</defName>
+    <stages><li><label>a peace offering</label><description>They said sorry in their own way. I'll take it.</description><baseMoodEffect>2</baseMoodEffect><baseOpinionOffset>8</baseOpinionOffset></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_Soc3Base">
+    <defName>Council_Soc_HomeTogether</defName>
+    <stages><li><label>missed home together</label><description>Someone else here misses home the way I do. We talked about it for hours.</description><baseMoodEffect>3</baseMoodEffect><baseOpinionOffset>6</baseOpinionOffset></li></stages>
+  </ThoughtDef>
+
+  <!-- ===================== The region ===================== -->
+
+  <ThoughtDef ParentName="Council_Soc3Base">
+    <defName>Council_Soc_DidOurPart</defName>
+    <stages><li><label>did our part for the hungry</label><description>We put something by for the hungry towns. It's not much, but it's something.</description><baseMoodEffect>3</baseMoodEffect><baseOpinionOffset>5</baseOpinionOffset></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_Soc3Base">
+    <defName>Council_Soc_WorriedForTheTowns</defName>
+    <durationDays>2</durationDays>
+    <stages><li><label>worried about the towns together</label><description>We talked about the sickness out there half the night. Worrying is easier with company.</description><baseMoodEffect>1</baseMoodEffect><baseOpinionOffset>4</baseOpinionOffset></li></stages>
+  </ThoughtDef>
+
+</Defs>

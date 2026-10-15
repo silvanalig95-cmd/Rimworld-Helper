@@ -552,7 +552,8 @@ namespace ColonyCouncil
                     return false;
                 }
                 default:
-                    return false;
+                    // The newer kinds' good turns: healing, a show, a blessing, a survey (CampKinds.cs).
+                    return MoreHelp(h);
             }
         }
 
