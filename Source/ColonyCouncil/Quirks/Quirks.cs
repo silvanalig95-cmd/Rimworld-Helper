@@ -156,6 +156,25 @@ namespace ColonyCouncil
 
         public void Notify_Fought(Pawn p) => battleTick[p] = Find.TickManager.TicksGame;
 
+        private static int longestWindow = -1;
+
+        /// <summary>The longest any quirk looks back for a fight or a fall (ticks).</summary>
+        private static int LongestWindow
+        {
+            get
+            {
+                if (longestWindow < 0)
+                {
+                    int most = 0;
+                    foreach (var d in DefDatabase<QuirkDef>.AllDefsListForReading)
+                        if (d.afterBattle || d.afterDowned)
+                            most = Math.Max(most, (int)(d.withinDays * GenDate.TicksPerDay));
+                    longestWindow = most;
+                }
+                return longestWindow;
+            }
+        }
+
         private static bool Eligible(Pawn p) => People.HasInnerLife(p) && p.IsColonist && !p.IsQuestLodger() && p.RaceProps.Humanlike && !p.DevelopmentalStage.Baby();
 
         public void Hourly()
@@ -172,9 +191,12 @@ namespace ColonyCouncil
         public void Daily(CouncilGameComponent comp)
         {
             int now = Find.TickManager.TicksGame;
-            quirks.RemoveAll(q => q.Broken || q.pawn.Dead);
-            foreach (var k in downedTick.Keys.Where(k => k == null || k.Dead).ToList()) downedTick.Remove(k);
-            foreach (var k in battleTick.Keys.Where(k => k == null || k.Dead).ToList()) battleTick.Remove(k);
+            quirks.RemoveAll(q => q.Broken || q.pawn.Dead || q.pawn.Discarded);
+            foreach (var k in downedTick.Keys.Where(k => k == null || k.Dead || k.Discarded).ToList()) downedTick.Remove(k);
+            foreach (var k in battleTick.Keys.Where(k => k == null || k.Dead || k.Discarded).ToList()) battleTick.Remove(k);
+            // A fight or a fall only counts within a quirk's window: older ones are forgotten (someone who left keeps none).
+            Caps.DropOlderThan(downedTick, now, LongestWindow);
+            Caps.DropOlderThan(battleTick, now, LongestWindow);
             if (!S.quirks)
             {
                 SyncKnacks();
@@ -283,8 +305,8 @@ namespace ColonyCouncil
             Scribe_Collections.Look(ref quirks, "quirks", LookMode.Deep);
             if (Scribe.mode == LoadSaveMode.Saving)
             {
-                foreach (var k in downedTick.Keys.Where(k => k == null || k.Dead || k.Destroyed).ToList()) downedTick.Remove(k);
-                foreach (var k in battleTick.Keys.Where(k => k == null || k.Dead || k.Destroyed).ToList()) battleTick.Remove(k);
+                foreach (var k in downedTick.Keys.Where(k => k == null || k.Dead || k.Destroyed || k.Discarded).ToList()) downedTick.Remove(k);
+                foreach (var k in battleTick.Keys.Where(k => k == null || k.Dead || k.Destroyed || k.Discarded).ToList()) battleTick.Remove(k);
             }
             Scribe_Collections.Look(ref downedTick, "downedTick", LookMode.Reference, LookMode.Value, ref k1, ref v1, false);
             Scribe_Collections.Look(ref battleTick, "battleTick", LookMode.Reference, LookMode.Value, ref k2, ref v2, false);

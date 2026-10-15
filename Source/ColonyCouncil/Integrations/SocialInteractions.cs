@@ -366,6 +366,21 @@ namespace ColonyCouncil
             base.ExposeData();
             Scribe_Values.Look(ref lastLogId, "lastLogId", -1);
             Scribe_Values.Look(ref lastTaleId, "lastTaleId", -1);
+            // Pairs ("idA|idB") with someone the game has forgotten can never be seen together again; the rest are capped.
+            if (Scribe.mode == LoadSaveMode.Saving && bestFriends != null && bestFriends.Count > 0)
+            {
+                var known = CouncilGameComponent.KnownPawnNumbers();
+                bestFriends.RemoveAll(k =>
+                {
+                    var ids = k?.Split('|');
+                    if (ids == null || ids.Length != 2) return true;
+                    foreach (var id in ids)
+                        if (!int.TryParse(id, out int n) || !known.Contains(n))
+                            return true;
+                    return false;
+                });
+                Caps.TrimOldest(bestFriends, Caps.BestFriendPairs);
+            }
             Scribe_Collections.Look(ref bestFriends, "bestFriends", LookMode.Value);
             Scribe_Values.Look(ref bestFriendsSeeded, "bestFriendsSeeded");
             if (Scribe.mode == LoadSaveMode.PostLoadInit && bestFriends == null) bestFriends = new List<string>();

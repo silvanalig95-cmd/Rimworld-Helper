@@ -116,9 +116,27 @@ namespace ColonyCouncil
 
         private int lastThreatWritten;
 
+        /// <summary>When a journal's last line was written (0 for an empty one).</summary>
+        private static int LastTick(PawnJournal j) => j.entries.Count > 0 ? j.entries[j.entries.Count - 1].tick : 0;
+
+        /// <summary>
+        /// The journals of those no longer with the colony: at most <see cref="Caps.DepartedJournals"/>, the ones written in
+        /// most lately. Everyone still ours keeps theirs, however many.
+        /// </summary>
+        public void Prune()
+        {
+            var here = People.OursIds();
+            int ours = 0;
+            foreach (var j in journals)
+                if (here.Contains(j.pawnId))
+                    ours++;
+            Caps.TrimByAge(journals, ours + Caps.DepartedJournals, LastTick, j => !here.Contains(j.pawnId));
+        }
+
         /// <summary>Once a day: first entries, raids survived, and losses they haven't written about yet.</summary>
         public void Daily()
         {
+            Prune();
             if (!ColonyCouncilMod.Settings.journals) return;
             var colonists = PawnsFinder.AllMaps_FreeColonistsSpawned.Where(p => !p.IsQuestLodger() && !p.DevelopmentalStage.Baby()).ToList();
             foreach (var p in colonists)

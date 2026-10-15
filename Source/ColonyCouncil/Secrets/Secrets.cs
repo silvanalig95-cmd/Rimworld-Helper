@@ -301,6 +301,12 @@ namespace ColonyCouncil
         public void ExposeData()
         {
             Scribe_Collections.Look(ref secrets, "secrets", LookMode.Deep);
+            // Everyone who was ever rolled for a secret, by ThingID: those the game has forgotten can't be rolled again.
+            if (Scribe.mode == LoadSaveMode.Saving && rolled != null && rolled.Count > 0)
+            {
+                var known = CouncilGameComponent.KnownPawnIds();
+                rolled.RemoveWhere(id => !known.Contains(id));
+            }
             Scribe_Collections.Look(ref rolled, "rolled", LookMode.Value);
             if (Scribe.mode == LoadSaveMode.PostLoadInit)
             {

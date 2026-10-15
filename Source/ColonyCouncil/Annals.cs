@@ -250,6 +250,7 @@ namespace ColonyCouncil
 
             string text = sb.ToString();
             written.Add(new AnnalsEntry { year = year, author = author.LabelShort, text = text });
+            Caps.TrimOldest(written, Caps.AnnalsYears);
             Find.LetterStack.ReceiveLetter("CC_Annals_Title".Translate(year).Resolve(), text, LetterDefOf.NeutralEvent, new LookTargets(author));
             comp.AddChronicle(new ChronicleEntry(ChronicleKind.Note, "CC_Chronicle_Annals".Translate(year, author.LabelShort).Resolve(), author));
         }
@@ -295,6 +296,8 @@ namespace ColonyCouncil
                 if (decrees == null) decrees = new List<string>();
                 if (quit == null) quit = new List<string>();
                 if (written == null) written = new List<AnnalsEntry>();
+                written.RemoveAll(w => w == null);
+                Caps.TrimOldest(written, Caps.AnnalsYears);
                 if (traditionsKept == null) traditionsKept = new List<string>();
                 if (traditionsBroken == null) traditionsBroken = new List<string>();
                 if (traditionsBorn == null) traditionsBorn = new List<string>();

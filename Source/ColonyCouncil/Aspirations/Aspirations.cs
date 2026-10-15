@@ -474,7 +474,9 @@ namespace ColonyCouncil
                 all.Remove(a);
                 if (a.pawn != null && a.pawn.Dead && a.def != null && S.aspirations) Mourn(comp, a);
             }
-            all.RemoveAll(a => a.def == null || (a.done && (a.pawn == null || a.pawn.Dead) && Find.TickManager.TicksGame - a.doneTick > GenDate.TicksPerYear * 3));
+            all.RemoveAll(a => a.def == null || (a.done && (a.pawn == null || a.pawn.Discarded || (a.pawn.Dead && Find.TickManager.TicksGame - a.doneTick > GenDate.TicksPerYear * 3))));
+            // Someone the game has let go of for good won't have a eulogy any more.
+            if (lastMourned.Count > 0) lastMourned.RemoveAll(kv => kv.Key == null || kv.Key.Discarded);
             if (!S.aspirations) return;
 
             foreach (var p in PawnsFinder.AllMaps_FreeColonists.Where(Eligible).ToList())

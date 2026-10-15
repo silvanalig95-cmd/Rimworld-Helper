@@ -30,6 +30,24 @@ namespace ColonyCouncil
             return knownPawnIds;
         }
 
+        private static HashSet<int> knownPawnNumbers;
+        private static int knownPawnNumbersFrame = -1;
+
+        /// <summary>The same as <see cref="KnownPawnIds"/>, by thingIDNumber.</summary>
+        public static HashSet<int> KnownPawnNumbers()
+        {
+            if (knownPawnNumbers == null || knownPawnNumbersFrame != UnityEngine.Time.frameCount)
+            {
+                var set = new HashSet<int>();
+                foreach (var p in PawnsFinder.AllMapsWorldAndTemporary_AliveOrDead) if (p != null) set.Add(p.thingIDNumber);
+                foreach (var p in PawnsFinder.AllMapsCaravansAndTravellingTransporters_Alive) if (p != null) set.Add(p.thingIDNumber);
+                foreach (var p in People.OffMapColonists()) if (p != null) set.Add(p.thingIDNumber);
+                knownPawnNumbers = set;
+                knownPawnNumbersFrame = UnityEngine.Time.frameCount;
+            }
+            return knownPawnNumbers;
+        }
+
         /// <summary>Drops "pawnId|..." entries for pawns the game has forgotten.</summary>
         public static void PruneByPawn<V>(Dictionary<string, V> dict)
         {
@@ -83,7 +101,7 @@ namespace ColonyCouncil
         private List<string> tmpKeys;
         private List<int> tmpValues;
 
-        public const int MaxChronicle = 300;
+        public const int MaxChronicle = Caps.Chronicle;
         private const int HourTicks = 2500;
 
         private static CouncilGameComponent cachedInstance;
@@ -168,6 +186,8 @@ namespace ColonyCouncil
             {
                 if (wishes == null) wishes = new List<Wish>();
                 if (chronicle == null) chronicle = new List<ChronicleEntry>();
+                chronicle.RemoveAll(e => e == null);
+                if (chronicle.Count > MaxChronicle) Caps.TrimKeeping(chronicle, MaxChronicle, e => e.Milestone, Caps.ChronicleNewest);
                 if (cooldowns == null) cooldowns = new Dictionary<string, int>();
                 if (recentWishDefs == null || recentWishTicks == null || recentWishDefs.Count != recentWishTicks.Count)
                 {
@@ -374,7 +394,9 @@ namespace ColonyCouncil
         public void AddChronicle(ChronicleEntry entry)
         {
             chronicle.Add(entry);
-            if (chronicle.Count > MaxChronicle) chronicle.RemoveRange(0, chronicle.Count - MaxChronicle);
+            // Full: the newest always stay; of the older lines the everyday ones go first, so the colony's milestones
+            // (its losses, ambitions, life events) are still there years later.
+            if (chronicle.Count > MaxChronicle) Caps.TrimKeeping(chronicle, MaxChronicle, e => e.Milestone, Caps.ChronicleNewest);
         }
 
         // ================= Eligibility =================

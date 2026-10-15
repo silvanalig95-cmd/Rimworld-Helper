@@ -295,7 +295,7 @@ namespace ColonyCouncil
 
         public void Daily(CouncilGameComponent comp)
         {
-            vendettas.RemoveAll(v => v.avenger == null || v.avenger.Dead || v.faction == null);
+            vendettas.RemoveAll(v => v.avenger == null || v.avenger.Dead || v.avenger.Discarded || v.faction == null);
             foreach (var v in vendettas.Where(v => !v.settled).ToList())
             {
                 // Their faction is gone, or it's been years.
