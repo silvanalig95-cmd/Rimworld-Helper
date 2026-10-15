@@ -268,7 +268,9 @@ Overrule the vote only when the difference matters. The colonist who won the ele
       <li>
         <text>The letter says when a choice is a tradition, and when choosing it again will make one. Keeping a tradition gives everyone a good memory; breaking one gives a bad one and resets the count. New, kept and broken traditions are written into the chronicle and the year's annals, and someone usually writes about a new tradition in their journal.
 
-Traditions cost something every year, so only start the ones you can afford in a bad year too.</text>
+Traditions cost something every year, so only start the ones you can afford in a bad year too.
+
+Days on the colony calendar grow into traditions the same way: keep one three years running (founding day, harvest day, a day you named) and the colony expects it. See "the colony calendar".</text>
       </li>
     </sections>
     <keywords><li>tradition</li><li>festival</li><li>season</li><li>feast</li><li>custom</li></keywords>

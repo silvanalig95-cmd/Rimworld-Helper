@@ -143,6 +143,7 @@ namespace ColonyCouncil
                 if (p.Dead)
                 {
                     comp.nemeses.Notify_Death(p);
+                    CalendarTracker.Notify_Death(p);
                     var killers = Killers(p, now);
                     if (killers != null && S.vendettas) Swear(comp, p, killers, false);
                     comp.legacy.Notify_Death(comp, p);

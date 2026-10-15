@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- A day on the colony calendar has come: keep it, keep it with the faith's own rite, or let it pass this year. -->
+  <LetterDef>
+    <defName>Council_CalendarLetter</defName>
+    <letterClass>ColonyCouncil.ChoiceLetter_CalendarDay</letterClass>
+    <color>(205, 190, 125)</color>
+    <flashColor>(235, 220, 155)</flashColor>
+    <flashInterval>90</flashInterval>
+    <arriveSound>LetterArrive</arriveSound>
+    <bounce>true</bounce>
+  </LetterDef>
+
+</Defs>

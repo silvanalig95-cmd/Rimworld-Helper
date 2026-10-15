@@ -17,5 +17,6 @@
     <Compile Include="../../Source/ColonyCouncil/LineMemory.cs" Link="LineMemory.cs" />
     <Compile Include="../../Source/ColonyCouncil/Moods/GoodTimesMath.cs" Link="GoodTimesMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/UI/TabFitMath.cs" Link="TabFitMath.cs" />
+    <Compile Include="../../Source/ColonyCouncil/Calendar/CalendarMath.cs" Link="CalendarMath.cs" />
   </ItemGroup>
 </Project>
