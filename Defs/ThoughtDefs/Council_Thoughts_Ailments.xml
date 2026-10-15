@@ -202,6 +202,8 @@
 
   <ThoughtDef ParentName="Council_AilmentThoughtBase">
     <defName>Council_Ail_Convalescent_Mood</defName>
+    <!-- The impatient feel Council_Health_WeakFrustrated instead (Council_Thoughts_Health.xml). -->
+    <workerClass>ColonyCouncil.ThoughtWorker_Convalescent</workerClass>
     <hediff>Council_Ail_Convalescent</hediff>
     <stages>
       <li><label>getting my strength back</label><description>I'm over the worst. I just tire so quickly.</description><baseMoodEffect>-1</baseMoodEffect></li>

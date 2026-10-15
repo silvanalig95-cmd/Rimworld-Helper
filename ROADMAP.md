@@ -193,7 +193,9 @@ play deep. In order:
   Next: more kinds of day (a first child born, the day the walls went up, a caravan's return), and lines per biome.
 - The long view of the world: factions that remember the colony over years (debts, favors, grudges), envoys and
   missions that follow from it, more mission kinds (an apprentice, a dignitary, refugees to see through).
-- Health and recovery stories: ailments (started), convalescence, a doctor's reputation, a midwife's.
+- Health and recovery stories: ailments, convalescence (after illness, operations, long bed rest and lost limbs, with
+  sickbed visits and setbacks), a doctor's reputation and a midwife's (done, October 2026). Next: dreams for
+  convalescents and healers, a hospital's own reputation, more after-effects.
 - Done (October 2026): rooms with character. Six room themes beside the three styles (rustic, stately, spartan,
   cozy, tribal, spacer) that swap furniture, materials, floor and door while keeping the layout, using only what the
   colony can build and has in stock, with furniture sets from Vanilla Furniture Expanded (and its Spacer, Art and
@@ -211,10 +213,10 @@ the content itself, not only to systems, alongside whatever else it does. Where 
 | Content | Count | Grow toward |
 |---|---|---|
 | Rimfolk events, story stages and missions | 161 | more everyday events per group, more chains, more mission kinds |
-| Wishes | 106 | more seasonal and biome wishes, more for the always-on mods (Alpha mods, Vanilla Expanded furniture) |
+| Wishes | 107 | more seasonal and biome wishes, more for the always-on mods (Alpha mods, Vanilla Expanded furniture) |
 | Council projects (ambitions) | 54 (3 in stages) | more staged and season-long projects, more for tribal and spacer colonies |
-| Life goals | 61 | goals for teenagers, more for faith and the heart, goals that change with age |
-| Dilemmas | 122 | more for children, elders and the camps; dilemmas for each new system as it lands |
+| Life goals | 63 | goals for teenagers, more for faith and the heart, goals that change with age |
+| Dilemmas | 126 | more for children, elders and the camps; dilemmas for each new system as it lands |
 | Encounters | 156 | more lands (lakes, rivers), more mods' creatures, peoples and biomes, rarer night and weather moments |
 | Decrees | 19 | decrees tied to world situations, faith and mods (tithes, curfews, alms) |
 | Quirks | 32 | quirks that touch others (a hummer and a light sleeper), more from events and dreams |
@@ -222,7 +224,7 @@ the content itself, not only to systems, alongside whatever else it does. Where 
 | Dreams | 117 | dreams for more feelings, quirks, life goals and mod content |
 | World events | 32 | more regional situations, and their follow-ups |
 | Camp kinds | 11 | caravans of every kind, pilgrims of every faith |
-| Ailments | 32 everyday, 14 serious | ailments for every biome and DLC, more after-effects |
+| Ailments | 32 everyday, 14 serious; convalescence from 4 causes, 2 healers' names | ailments for every biome and DLC, more after-effects |
 | Room types | 28 (108 layouts, 6 themes) | odd shapes beyond partitions, more spacer and mod-furniture sizes, themes for more furniture mods |
 | Calendar days and ways to keep them | 9 kinds, 4 ways (about 300 lines) | more kinds of day, lines per biome and faith |
 | Social events, moments, frictions, nuisances | 67, 127 (40 frictions), 19 | every trait pairing and home condition |

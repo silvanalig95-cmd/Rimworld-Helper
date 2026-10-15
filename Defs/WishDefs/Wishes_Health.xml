@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Wishes of health and recovery (Source/ColonyCouncil/Health/HealthWorkers.cs). Only while convalescence is switched
+    on. {OTHER} is the friend they want to see; {FOR} the one laid up.
+  -->
+
+  <ColonyCouncil.WishDef>
+    <defName>Council_Wish_SickbedVisit</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>a visit from {OTHER_nameDef}</label>
+    <description>Someone laid up in bed or convalescing hasn't seen a good friend for days and would like them to come and sit for a while.</description>
+    <workerClass>ColonyCouncil.WishWorker_SickbedVisit</workerClass>
+    <category>Health</category>
+    <weight>1.2</weight>
+    <expiryDays>3</expiryDays>
+    <cooldownDays>12</cooldownDays>
+    <envy>0</envy>
+    <objectionChance>0</objectionChance>
+    <grantedThought>Council_Granted_SickbedVisit</grantedThought>
+    <fulfilledWhen>{OTHER_nameDef} sits with {FOR_nameDef} for a while. Promising it sends {OTHER_objective} over now, if {OTHER_pronoun} is free.</fulfilledWhen>
+    <request>
+      <plain>
+        <li>Could someone ask {OTHER_nameDef} to come by? I haven't seen {OTHER_objective} in days.</li>
+        <li>I keep hearing {OTHER_nameDef}'s voice outside. I'd like to see {OTHER_possessive} face for once.</li>
+        <li>If {OTHER_nameDef} has an hour, I'd be glad of the company.</li>
+        <li>Lying here all day, I've run out of things to think about. {OTHER_nameDef} always has something to say.</li>
+        <li>[winter] The nights are long in here. Ask {OTHER_nameDef} to sit with me one evening.</li>
+        <li>[child] Can {OTHER_nameDef} come and see me? Please?</li>
+        <li>[old] At my age a sickbed gets lonely. I'd like {OTHER_nameDef} to visit.</li>
+      </plain>
+      <warm>
+        <li>I miss {OTHER_nameDef}. Just an hour would do me more good than the medicine.</li>
+      </warm>
+      <blunt>
+        <li>Tell {OTHER_nameDef} to come and see me.</li>
+      </blunt>
+      <cheerful>
+        <li>I'm bored out of my mind! Send {OTHER_nameDef} over before I start talking to the wall.</li>
+      </cheerful>
+      <gloomy>
+        <li>Nobody comes in here. I'd hoped {OTHER_nameDef} might.</li>
+      </gloomy>
+      <cold>
+        <li>I'd like to speak with {OTHER_nameDef}. I have time, for once.</li>
+      </cold>
+    </request>
+    <thanks>
+      <plain>
+        <li>{OTHER_nameDef} came. We talked until I fell asleep.</li>
+        <li>That was the best hour I've had since I took to this bed.</li>
+      </plain>
+      <cheerful>
+        <li>{OTHER_nameDef} came by! I feel better already.</li>
+      </cheerful>
+      <gloomy>
+        <li>{OTHER_nameDef} came after all. It helped.</li>
+      </gloomy>
+    </thanks>
+    <expired>
+      <plain>
+        <li>{OTHER_nameDef} never came. I suppose everyone's busy.</li>
+      </plain>
+      <blunt>
+        <li>No visit. Fine.</li>
+      </blunt>
+    </expired>
+  </ColonyCouncil.WishDef>
+
+</Defs>

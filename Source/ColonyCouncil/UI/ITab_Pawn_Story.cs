@@ -146,6 +146,7 @@ namespace ColonyCouncil
             if (office != null) standing.lines.Add(("CC_Office_Holds".Translate(p.LabelShort, office.label).Resolve(), Color.white));
             string titles = comp.epithets.TitlesOf(p);
             if (!titles.NullOrEmpty()) standing.lines.Add(("CC_Epithet_Known".Translate(p.LabelShort, titles).Resolve(), Color.white));
+            foreach (var line in HealthTracker.StoryLines(p)) standing.lines.Add((line, Color.white));
             if (standing.lines.Count > 0) yield return standing;
 
             // Life goal.

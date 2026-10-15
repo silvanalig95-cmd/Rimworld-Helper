@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Life goals for healers (Source/ColonyCouncil/Health/), built on the records in Defs/Misc/Council_Health_Records.xml:
+    patients pulled through (dangerous illnesses and infections, major operations) and babies delivered (Biotech only).
+    Only while doctors' and midwives' reputations are switched on (AspirationWorker_HealerRecord).
+  -->
+
+  <ColonyCouncil.AspirationDef>
+    <defName>Council_AspH_TenLives</defName>
+    <label>ten lives</label>
+    <workerClass>ColonyCouncil.AspirationWorker_HealerRecord</workerClass>
+    <record>Council_PatientsPulledThrough</record>
+    <amount>10</amount>
+    <weight>0.8</weight>
+    <goal>pull ten patients through</goal>
+    <sparks><li>loss</li><li>downed</li><li>thought:Council_Health_LostPatient</li><li>thought:Council_Ail_PulledThrough</li></sparks>
+    <who><passion>Medicine</passion></who>
+    <chosen>
+      <plain>
+        <li>[spark:loss] We buried one of ours this week. I'm going to save the next ten, or know the reason why.</li>
+        <li>[spark:downed] Someone pulled me back from the edge once. I want to do that for ten people. Then I'll call it even.</li>
+        <li>[spark:Council_Ail_PulledThrough] I pulled one through this week, and I want that feeling again. Ten lives. That's the goal.</li>
+        <li>[spark:Council_Health_LostPatient] I lost a patient this week. The only answer I have is to get better, and save the next ones.</li>
+        <li>[inherited] {NAME} kept count of every life {NAME} saved. I've started a count of my own.</li>
+        <li>Ten people walking around who wouldn't be without me. That's what I want to be able to say.</li>
+        <li>[lowtech] The old healers said a healer earns the name with the tenth life. I mean to earn it.</li>
+      </plain>
+      <warm><li>Ten people. Ten families who don't have to bury anyone. I can do that.</li></warm>
+      <blunt><li>Ten saved. That's the number.</li></blunt>
+      <gloomy><li>People die out here all the time. I'd like ten of them not to.</li></gloomy>
+      <cold><li>Ten successful outcomes. A reasonable measure of competence.</li></cold>
+    </chosen>
+    <achieved>
+      <plain>
+        <li>Ten. Ten people I pulled back. I wrote their names on the infirmary wall, small, where only I'll notice.</li>
+        <li>That's ten lives. I didn't think I'd feel this proud of a number.</li>
+      </plain>
+      <warm><li>Ten people are still here who might not have been. I've thanked every one of them for letting me help.</li></warm>
+      <gloomy><li>Ten saved. I still count the ones I lost, too.</li></gloomy>
+    </achieved>
+  </ColonyCouncil.AspirationDef>
+
+  <ColonyCouncil.AspirationDef>
+    <defName>Council_AspH_Midwife</defName>
+    <label>a midwife's hands</label>
+    <workerClass>ColonyCouncil.AspirationWorker_HealerRecord</workerClass>
+    <record>Council_BirthsAttended</record>
+    <amount>5</amount>
+    <weight>0.7</weight>
+    <goal>deliver five babies</goal>
+    <sparks><li>birth</li><li>thought:Council_Health_DeliveredBaby</li></sparks>
+    <who><passion>Medicine</passion></who>
+    <chosen>
+      <plain>
+        <li>[spark:birth] A child was born here, and I want to be the one who catches the next ones. Five, to start.</li>
+        <li>[spark:Council_Health_DeliveredBaby] I delivered a baby, and it was the best thing my hands have ever done. I want to do it again.</li>
+        <li>Every colony needs someone who knows what to do when the baby comes. I want that to be me, five times over.</li>
+        <li>[lowtech] My grandmother brought half a village into the world. I'd like to bring five into this one.</li>
+      </plain>
+      <warm><li>To be the first to hold someone, five times. I can't think of anything better.</li></warm>
+      <cheerful><li>Five babies! I'm already practicing my calm voice.</li></cheerful>
+      <cold><li>Births will keep coming. Someone should become reliable at them. Five deliveries.</li></cold>
+    </chosen>
+    <achieved>
+      <plain>
+        <li>Five babies delivered. Five children running around here who came into the world through my hands.</li>
+      </plain>
+      <warm><li>Five little ones. I remember every first cry.</li></warm>
+      <blunt><li>Five delivered. All alive. Good work.</li></blunt>
+    </achieved>
+  </ColonyCouncil.AspirationDef>
+
+</Defs>

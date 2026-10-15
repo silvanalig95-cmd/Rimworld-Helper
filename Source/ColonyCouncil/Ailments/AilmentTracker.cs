@@ -889,6 +889,8 @@ namespace ColonyCouncil
                 {
                     CouncilGameComponent.GiveThought(doctor, AilmentDefOf.Council_Ail_PulledThrough, null, -1f, "CC_Cause_About".Translate(p.LabelShort).ToString());
                     Journal(doctor, "Council_Journal_Ail_DoctorSaved", e.def, info, p);
+                    // Counts toward the doctor's name (Health/HealthTracker.cs).
+                    HealthTracker.Instance?.PulledThrough(doctor, p, e.def.label, 1f, true);
                 }
             }
             else if (!info.lingering && Rand.Chance(0.15f)) Journal(p, "Council_Journal_Ail_Better", e.def, info);

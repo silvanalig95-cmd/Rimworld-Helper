@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- What to do about the moods of convalescence, doctors and midwives (Defs/ThoughtDefs/Council_Thoughts_Health.xml). -->
+
+  <ColonyCouncil.MoodHintDef>
+    <defName>Council_Mood_RF_HealthFrustrated</defName>
+    <thoughts><li>Council_Health_WeakFrustrated</li></thoughts>
+    <fix>It lasts as long as the convalescence. Rest in bed shortens it by a third, and working while still weak can set it back. A visit from a friend helps the mood in the meantime.</fix>
+    <article>Council_Alm_4_25_Ailments</article>
+  </ColonyCouncil.MoodHintDef>
+
+  <ColonyCouncil.MoodHintDef>
+    <defName>Council_Mood_RF_HealthLoss</defName>
+    <thoughts>
+      <li>Council_Health_LostPatient</li>
+      <li>Council_Health_LostRun</li>
+    </thoughts>
+    <fix>Time, and company: a friend's visit or a good talk helps. Good medicine and a clean hospital bed make the next loss less likely. A dilemma may let the doctor take a day away.</fix>
+    <article>Council_Alm_4_25_Ailments</article>
+  </ColonyCouncil.MoodHintDef>
+
+  <ColonyCouncil.MoodHintDef>
+    <defName>Council_Mood_RF_HealthGood</defName>
+    <thoughts>
+      <li>Council_Health_GladToBeAlive</li>
+      <li>Council_Health_InGoodHands</li>
+      <li>Council_Health_SatWithFriend</li>
+      <li>Council_Health_DeliveredBaby</li>
+    </thoughts>
+    <keep>A doctor the colony trusts puts patients at ease each time they tend them; friends who visit the sickbed lift both moods.</keep>
+    <article>Council_Alm_4_25_Ailments</article>
+  </ColonyCouncil.MoodHintDef>
+
+</Defs>

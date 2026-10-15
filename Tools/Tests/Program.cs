@@ -375,6 +375,7 @@ for (int r = 0; r < 4; r++)
         int memories = ThoughtClassTests.Run(root, Check);
         Console.WriteLine($"Checked {memories} memories share the budget of good moods.");
         Console.WriteLine($"Checked {ArcTests.Run(root, Check)} things about personal stories (their pace, stages and lines).");
+        Console.WriteLine($"Checked {HealthTests.Run(root, Check)} claims about convalescence and healers.");
     }
 }
 

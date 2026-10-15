@@ -1,0 +1,262 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Dilemmas of health and recovery (Source/ColonyCouncil/Health/): a doctor after a loss, someone back at work too soon,
+    family who want a say in an operation, and a midwife looking for an apprentice (Biotech). They come up only while
+    their half of health stories is switched on (convalescence, or doctors' reputations).
+    Workers: DilemmaWorker_DoctorLoss (A lost a patient in the last few days; X is who they lost),
+    DilemmaWorker_Convalescent (A still convalescing), DilemmaWorker_FamilySurgery (A has a major operation planned, B is
+    family or a partner), DilemmaWorker_MidwifeApprentice (A has delivered two babies or more, B could learn it).
+    Effects: Convalescence (days longer, or shorter when negative), PutOffSurgery (suspends A's planned major
+    operations). Moods in Council_Thoughts_Health.xml, the day away in Council_Hediffs_Health.xml.
+  -->
+
+  <!-- ===================== A day away ===================== -->
+  <ColonyCouncil.DilemmaDef>
+    <defName>Council_DlmH_DayAway</defName>
+    <label>a day away</label>
+    <workerClass>ColonyCouncil.DilemmaWorker_DoctorLoss</workerClass>
+    <weight>1.5</weight>
+    <cooldownDays>40</cooldownDays>
+    <answerDays>1</answerDays>
+    <roleA>
+      <thoughts><li>Council_Health_LostPatient</li><li>Council_Health_LostRun</li></thoughts>
+      <thoughtDays>3</thoughtDays>
+    </roleA>
+    <roleB>
+      <minOpinionOfA>20</minOpinionOfA>
+    </roleB>
+    <texts>
+      <li>Since {X_nameDef} died, {A_nameDef} has kept working: quiet, short with everyone, scrubbing the same table twice. This morning {A_nameDef} asked the council for a day away. No patients, no bandages, one day.\n\nThere is nobody else who can do what {A_nameDef} does if someone is hurt today. {B_nameDef} has offered to spend the day with {A_objective}, if the council agrees.</li>
+      <li>[lowtech] {A_nameDef} washed {X_nameDef}'s body and sat by the grave until the fire went out. Now {A_pronoun} wants a day to walk the land alone before taking up the healer's work again.\n\n{B_nameDef} says {A_nameDef} shouldn't be alone at all.</li>
+      <li>[trait:Kind|trait:Nervous] {A_nameDef} hasn't slept properly since {X_nameDef} died under {A_possessive} care. {A_nameDef} jumps at every knock on the infirmary door and has asked, very quietly, for a day off.\n\n{B_nameDef} has offered to keep {A_objective} company.</li>
+    </texts>
+    <defaultOption>1</defaultOption>
+    <options>
+      <li>
+        <label>Give {A_nameDef} the day</label>
+        <outcome>{A_nameDef} walked out past the fields after breakfast and came back at dusk with mud to the knees. Nobody asked where {A_pronoun} had been. The next morning {A_nameDef} was at the infirmary before anyone else.</outcome>
+        <outcomes>
+          <li>[winter] {A_nameDef} spent the day by the stove with a blanket and a book {A_pronoun} didn't read. By evening {A_nameDef} was eating again, and talking a little.</li>
+          <li>[lowtech] {A_nameDef} walked to the high ground and back, alone, as the old healers did after a death. {A_nameDef} came home quiet and lighter.</li>
+        </outcomes>
+        <ways><mercy>2</mercy><toil>-1</toil></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Hediff"><target>A</target><hediff>Council_DlmH_DayAway</hediff></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_DlmH_GivenTheDay</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Strain"><target>A</target><amount>-8</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>2</amount></li>
+        </effects>
+      </li>
+      <li>
+        <label>The colony needs its doctor</label>
+        <outcome>{A_nameDef} was told, kindly, that the colony can't spare a doctor. {A_nameDef} nodded and went back to the infirmary, and hasn't said much to anyone since.</outcome>
+        <outcomes>
+          <li>[colony:Hardworking] Nobody here takes days off for grief, and {A_nameDef} knew that before asking. {A_nameDef} is back at work, and doing it well, and not looking at anyone.</li>
+          <li>[trait:Industrious|trait:HardWorker] {A_nameDef} said it was probably better to keep busy anyway. Maybe it is.</li>
+        </outcomes>
+        <ways><toil>2</toil><mercy>-1</mercy></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_DlmH_NoTimeToGrieve</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Strain"><target>A</target><amount>5</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>-1</amount></li>
+        </effects>
+      </li>
+      <li>
+        <label>{B_nameDef} keeps {A_nameDef} company for the day</label>
+        <outcome>{B_nameDef} took {A_nameDef} fishing, or what they called fishing: two lines in the water and a long silence. Late in the afternoon {A_nameDef} started talking about {X_nameDef}, and {B_nameDef} listened.</outcome>
+        <outcomes>
+          <li>[land:desert|land:tundra] {B_nameDef} and {A_nameDef} walked the edge of the colony all day and said perhaps twenty words between them. It was enough.</li>
+          <li>[b:trait:Kind] {B_nameDef} cooked {A_nameDef}'s favorite meal and sat with {A_objective} on the step while {A_pronoun} ate it, and then they talked until dark.</li>
+        </outcomes>
+        <ways><mercy>3</mercy></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Hediff"><target>A</target><hediff>Council_DlmH_DayAway</hediff></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_DlmH_KeptCompany</thought><about>B</about></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_DlmH_LookedAfterDoctor</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Strain"><target>A</target><amount>-10</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Tie"><withB>true</withB><kind>Friends</kind><amount>10</amount></li>
+        </effects>
+      </li>
+    </options>
+  </ColonyCouncil.DilemmaDef>
+
+  <!-- ===================== Back too soon ===================== -->
+  <ColonyCouncil.DilemmaDef>
+    <defName>Council_DlmH_BackTooSoon</defName>
+    <label>back too soon</label>
+    <workerClass>ColonyCouncil.DilemmaWorker_Convalescent</workerClass>
+    <weight>1.4</weight>
+    <cooldownDays>30</cooldownDays>
+    <answerDays>1</answerDays>
+    <roleA>
+      <adult>false</adult>
+    </roleA>
+    <texts>
+      <li>{A_nameDef} is still convalescing and can't climb the stairs without stopping halfway, but has been seen carrying sacks to the storeroom twice today. Asked about it, {A_nameDef} said lying in bed was making {A_objective} worse.\n\nThe doctor wants {A_objective} in bed. {A_nameDef} wants the council to say otherwise.</li>
+      <li>[trait:Industrious|trait:HardWorker] {A_nameDef} has never sat still for long, and convalescing hasn't changed that. This morning {A_nameDef} was found at the workbench before dawn, gray in the face and pretending not to be. {A_nameDef} says {A_pronoun} is ready.</li>
+      <li>[child] {A_nameDef} is supposed to be resting while {A_pronoun} gets better, but keeps sneaking out to play with the others and coming back exhausted. The grown-ups want the council to say whether to keep {A_objective} in bed.</li>
+      <li>[afterraid] The raid left the colony short of hands, and {A_nameDef}, still weak, wants to help with the repairs. The doctor says it will cost more days than it saves.</li>
+    </texts>
+    <defaultOption>1</defaultOption>
+    <options>
+      <li>
+        <label>Let {A_nameDef} back to light work</label>
+        <outcome>{A_nameDef} is back at work, on the light jobs only, and sits down when the doctor walks past. It's slow, but {A_nameDef} looks happier than {A_pronoun} has in days.</outcome>
+        <outcomes>
+          <li>[child] {A_nameDef} is allowed to play again, as long as it's sitting-down games. Most of them have turned into standing-up games.</li>
+        </outcomes>
+        <ways><toil>2</toil></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_DlmH_UsefulAgain</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Convalescence"><target>A</target><days>1</days></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>2</amount></li>
+        </effects>
+        <riskChance>0.3</riskChance>
+        <riskReplaces>true</riskReplaces>
+        <riskOutcome>{A_nameDef} lasted until midday, then sat down in the yard and couldn't get up again. Two of the others helped {A_objective} back to bed. The doctor said nothing, which was worse than anything the doctor could have said.</riskOutcome>
+        <riskEffects>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_DlmH_Overdid</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Convalescence"><target>A</target><days>2</days></li>
+        </riskEffects>
+      </li>
+      <li>
+        <label>Bed until the strength comes back</label>
+        <outcome>The council sided with the doctor. {A_nameDef} is in bed with orders to stay there, and somebody brings {A_possessive} meals so there's no excuse to get up.</outcome>
+        <outcomes>
+          <li>[trait:Industrious|trait:HardWorker] {A_nameDef} took the decision badly and is now lying in bed, very still, radiating disapproval at the ceiling.</li>
+          <li>[trait:Lazy|trait:Slothful] {A_nameDef} accepted the council's decision with suspicious grace and asked for another pillow.</li>
+        </outcomes>
+        <ways><mercy>1</mercy><toil>-1</toil></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_DlmH_KeptInBed</thought><exceptTrait><li>Industriousness</li></exceptTrait></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_DlmH_KeptInBedFuming</thought><degreeTrait>Industriousness</degreeTrait><minDegree>1</minDegree></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Convalescence"><target>A</target><days>-1.5</days></li>
+        </effects>
+      </li>
+      <li>
+        <label>Give {A_nameDef} something to do from bed</label>
+        <outcome>{A_nameDef} has a basket of mending, a pile of tools to sharpen and a board across the bed to work on. It isn't what {A_nameDef} wanted, but {A_possessive} hands are busy and the rest of {A_objective} is lying down.</outcome>
+        <outcomes>
+          <li>[skill:Intellectual] {A_nameDef} has the colony's books and ledgers propped on {A_possessive} knees and is finding mistakes in all of them. Everyone is a little nervous.</li>
+          <li>[skill:Artistic] {A_nameDef} has a block of wood and a knife, and the shavings are piling up on the blanket. Nobody knows what it's going to be yet.</li>
+        </outcomes>
+        <ways><toil>1</toil><mercy>1</mercy></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_DlmH_WorkFromBed</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Convalescence"><target>A</target><days>-0.5</days></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Learn"><target>A</target><skill>Crafting</skill><xp>250</xp></li>
+        </effects>
+      </li>
+    </options>
+  </ColonyCouncil.DilemmaDef>
+
+  <!-- ===================== A say in the operation ===================== -->
+  <ColonyCouncil.DilemmaDef>
+    <defName>Council_DlmH_FamilySay</defName>
+    <label>a say in the operation</label>
+    <workerClass>ColonyCouncil.DilemmaWorker_FamilySurgery</workerClass>
+    <weight>1.6</weight>
+    <cooldownDays>40</cooldownDays>
+    <answerDays>1</answerDays>
+    <roleA>
+      <adult>false</adult>
+    </roleA>
+    <texts>
+      <li>{A_nameDef} is to go under the knife soon, and {B_nameDef}, who is closer to {A_objective} than anyone, has come to the council about it. {B_nameDef} doesn't say the operation is wrong. {B_nameDef} says nobody asked {B_objective}, and every operation is a risk, and wants a day or two to talk it through with {A_nameDef} first.</li>
+      <li>[child] {A_nameDef} is to have an operation, and {B_nameDef} wants to be asked first, as family should be. {B_nameDef} has questions for the doctor, a lot of them, and wants the answers before anyone picks up a knife.</li>
+      <li>[lowtech] The healer has set a day to cut {A_nameDef}. {B_nameDef}, who is family, says in the old way the family sits together and agrees before such a thing is done, and nobody sat with {B_objective}.</li>
+      <li>[trait:Nervous|trait:Wimp] {A_nameDef} is to have an operation and is frightened of it. {B_nameDef} has asked the council to wait until the two of them have talked, and {A_nameDef} seems relieved that someone said it out loud.</li>
+    </texts>
+    <defaultOption>0</defaultOption>
+    <options>
+      <li>
+        <label>Go ahead as planned</label>
+        <outcome>The council thanked {B_nameDef} for coming and said the operation goes ahead as planned. {A_nameDef} said it was better to get it over with. {B_nameDef} said nothing and left.</outcome>
+        <ways><toil>1</toil><openness>-1</openness></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_DlmH_GetItOver</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_DlmH_NotHeard</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>B</target><amount>-2</amount></li>
+        </effects>
+      </li>
+      <li>
+        <label>Put it off until they've talked it through</label>
+        <outcome>The operation is put off. {A_nameDef} and {B_nameDef} sat up late talking it over, and the doctor came by to answer questions. (The operation is suspended in {A_nameDef}'s health tab until you resume it.)</outcome>
+        <outcomes>
+          <li>[lowtech] The family sat together by the fire that night, as {B_nameDef} asked, and the healer came and told them plainly what the knife would do. (The operation is suspended in {A_nameDef}'s health tab until you resume it.)</li>
+        </outcomes>
+        <ways><mercy>1</mercy><openness>1</openness><tradition>1</tradition></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_PutOffSurgery"><target>A</target></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_DlmH_WaitingForTheKnife</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_DlmH_Heard</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>B</target><amount>2</amount></li>
+        </effects>
+      </li>
+      <li>
+        <label>{B_nameDef} stays at {A_nameDef}'s side through it</label>
+        <outcome>The operation goes ahead, and {B_nameDef} will sit with {A_nameDef} before it and be there when {A_pronoun} wakes. {B_nameDef} has already moved a chair into the infirmary.</outcome>
+        <outcomes>
+          <li>[child] {B_nameDef} will hold {A_nameDef}'s hand until {A_pronoun} falls asleep and be the first face {A_pronoun} sees after. {A_nameDef} has made {B_objective} promise twice.</li>
+        </outcomes>
+        <ways><mercy>2</mercy></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_DlmH_FamilyBeside</thought><about>B</about></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_DlmH_AllowedBeside</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Tie"><withB>true</withB><kind>Friends</kind><amount>6</amount></li>
+        </effects>
+      </li>
+    </options>
+  </ColonyCouncil.DilemmaDef>
+
+  <!-- ===================== The midwife's apprentice (Biotech) ===================== -->
+  <ColonyCouncil.DilemmaDef>
+    <defName>Council_DlmH_MidwifeApprentice</defName>
+    <label>the midwife's apprentice</label>
+    <workerClass>ColonyCouncil.DilemmaWorker_MidwifeApprentice</workerClass>
+    <weight>1.2</weight>
+    <cooldownDays>60</cooldownDays>
+    <answerDays>2</answerDays>
+    <texts>
+      <li>{A_nameDef} has delivered most of the colony's babies so far, and says it's time someone else learned, before the night a baby comes and {A_nameDef} is ill, or away, or asleep after a raid. {A_nameDef} has picked {B_nameDef}, who has been hanging about the infirmary asking questions.\n\nTeaching takes time that would otherwise go to work.</li>
+      <li>[lowtech] {A_nameDef} knows the old ways of bringing a child into the world: the herbs, the warm water, when to wait and when not to. {A_nameDef} wants to pass them on to {B_nameDef} before they're forgotten.</li>
+      <li>[old] {A_nameDef} has brought several of the colony's children into the world and says {A_possessive} hands won't be steady forever. {A_nameDef} wants {B_nameDef} to start learning now.</li>
+    </texts>
+    <defaultOption>1</defaultOption>
+    <options>
+      <li>
+        <label>{B_nameDef} learns from {A_nameDef}</label>
+        <outcome>{B_nameDef} is {A_nameDef}'s apprentice now: reading, watching, and practicing on a sack of flour that has been through a great deal.</outcome>
+        <outcomes>
+          <li>[lowtech] {A_nameDef} took {B_nameDef} out to gather the birthing herbs and taught {B_objective} the name of each on the way back.</li>
+        </outcomes>
+        <ways><tradition>2</tradition></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Teach"><skill>Medicine</skill><xp>300</xp></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_DlmH_PassingItOn</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_DlmH_Apprenticed</thought></li>
+        </effects>
+      </li>
+      <li>
+        <label>Not now</label>
+        <outcome>The council said there's too much work to spare two pairs of hands for lessons. {A_nameDef} shrugged. {B_nameDef} took it harder.</outcome>
+        <ways><toil>1</toil></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_DlmH_NotYet</thought></li>
+        </effects>
+      </li>
+      <li>
+        <label>{B_nameDef} watches the next birth</label>
+        <outcome>{B_nameDef} will be at the next birth to watch and fetch water. {A_nameDef} has already given {B_objective} a list of things not to touch.</outcome>
+        <ways><tradition>1</tradition></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_DlmH_WatchedBirth</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Learn"><target>B</target><skill>Medicine</skill><xp>200</xp></li>
+        </effects>
+      </li>
+    </options>
+  </ColonyCouncil.DilemmaDef>
+
+</Defs>

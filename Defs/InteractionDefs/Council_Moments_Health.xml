@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Moments with someone convalescing (Council_Ail_Convalescent, Source/ColonyCouncil/Health/): weak after an illness,
+    an operation, a long time in bed or a lost limb. Friends slow down for them, or take the load out of their hands.
+    Moods in Defs/ThoughtDefs/Council_Thoughts_Health.xml.
+  -->
+
+  <InteractionDef ParentName="Council_MomentBase">
+    <defName>Council_Moment_ConvalescentWalk</defName>
+    <label>walked slowly with a convalescent</label>
+    <symbol>ColonyCouncil/Symbols/Heart</symbol>
+    <recipientThought>Council_Moment_SlowWalk</recipientThought>
+    <logRulesInitiator>
+      <rulesStrings>
+        <li>r_logentry->[INITIATOR_nameDef] walked a slow circuit of the yard with [RECIPIENT_nameDef], who is still getting [RECIPIENT_possessive] strength back.</li>
+        <li>r_logentry->[INITIATOR_nameDef] gave [RECIPIENT_nameDef] an arm on the stairs and pretended it was for [INITIATOR_possessive] own sake.</li>
+        <li>r_logentry->[INITIATOR_nameDef] stopped to rest whenever [RECIPIENT_nameDef] did, and said it was the view.</li>
+        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] [RECIPIENT_pronoun] was walking better than yesterday, and meant it.</li>
+        <li>r_logentry->[INITIATOR_nameDef] found [RECIPIENT_nameDef] a stick to lean on and cut it to the right height.</li>
+      </rulesStrings>
+    </logRulesInitiator>
+    <modExtensions>
+      <li Class="ColonyCouncil.MomentExtension">
+        <weight>0.07</weight>
+        <cooldownDays>3</cooldownDays>
+        <initiatorWell>true</initiatorWell>
+        <recipientHediffs><li>Council_Ail_Convalescent</li></recipientHediffs>
+        <minOpinion>5</minOpinion>
+        <bumpTie>Friends</bumpTie>
+        <bumpAmount>2</bumpAmount>
+      </li>
+    </modExtensions>
+  </InteractionDef>
+
+  <InteractionDef ParentName="Council_MomentBase">
+    <defName>Council_Moment_ConvalescentRest</defName>
+    <label>told a convalescent to sit down</label>
+    <recipientThought>Council_Moment_ToldToRest</recipientThought>
+    <logRulesInitiator>
+      <rulesStrings>
+        <li>r_logentry->[INITIATOR_nameDef] took the load out of [RECIPIENT_nameDef]'s hands and sent [RECIPIENT_objective] to sit down.</li>
+        <li>r_logentry->[INITIATOR_nameDef] caught [RECIPIENT_nameDef] lifting something heavy and finished the job for [RECIPIENT_objective].</li>
+        <li>r_logentry->[INITIATOR_nameDef] reminded [RECIPIENT_nameDef] what the doctor had said about rest, twice.</li>
+        <li>r_logentry->[INITIATOR_nameDef] swapped jobs with [RECIPIENT_nameDef] for the afternoon, the heavy one for the easy one.</li>
+      </rulesStrings>
+    </logRulesInitiator>
+    <modExtensions>
+      <li Class="ColonyCouncil.MomentExtension">
+        <weight>0.06</weight>
+        <cooldownDays>3</cooldownDays>
+        <initiatorWell>true</initiatorWell>
+        <recipientHediffs><li>Council_Ail_Convalescent</li></recipientHediffs>
+        <minOpinion>0</minOpinion>
+      </li>
+    </modExtensions>
+  </InteractionDef>
+
+</Defs>
