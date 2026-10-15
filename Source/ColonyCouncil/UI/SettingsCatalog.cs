@@ -135,7 +135,8 @@ namespace ColonyCouncil
             ["savedRooms"] = "the rooms the player saved from a map, managed in the room planner",
             ["planMaterials"] = "the materials last picked in the room planner",
             ["lastCouncilPage"] = "the council window's page when it was last closed",
-            ["lastAlmanacPage"] = "the Almanac's page when it was last closed"
+            ["lastAlmanacPage"] = "the Almanac's page when it was last closed",
+            ["almanacFolded"] = "whether the Almanac's categories and page list are folded away, switched in the Almanac itself"
         };
 
         public static IReadOnlyList<SettingEntry> All => all;
@@ -353,6 +354,8 @@ namespace ColonyCouncil
             Dropdown("buttonPosition", "CC_Settings_ButtonPosition", "CC_SetTip_ButtonPosition", "CC_SetNote_ButtonPosition", "CC_ButtonPos_",
                 new[] { "BeforeMenu", "AfterResearch", "AfterHistory", "AfterWork" });
             Toggle("roomsButton", "CC_Settings_RoomsButton", "CC_SetNote_RoomsButton");
+            Choice("almanacTextSize", "CC_SetLabel_AlmanacTextSize", "CC_SetTip_AlmanacTextSize", "CC_TextSize_", "CC_SetNote_TextSize_",
+                new[] { "Small", "Normal", "Large", "Larger" });
             Section("CC_SetSec_Hooks");
             Toggle("deepHooks", "CC_Settings_DeepHooks", "CC_SetNote_DeepHooks");
             Toggle("letterNotes", "CC_Settings_LetterNotes", "CC_SetNote_LetterNotes", "deepHooks");
