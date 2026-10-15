@@ -17,6 +17,8 @@
       <li>Someone who finds every chair at the table taken eats without one, and loses mood for it.</li>
       <li>The dining room is the room everyone sees once or twice a day: the colony's best furniture and art pay off most there.</li>
       <li>The planner keeps the turn, the style and the materials when you switch to a larger size of the same room.</li>
+      <li>A long table with chairs down both sides seats more people in less space than several small tables.</li>
+      <li>Keep the dining room beside the kitchen and the freezer, but not as the way into them: foot traffic tracks in dirt, and a dirty kitchen makes food poisoning more likely.</li>
     </tips>
   </ColonyCouncil.AdvisorSignalDef>
 
@@ -32,6 +34,8 @@
       <li>Bedrooms built side by side share their walls, so a row of them takes less than the figure given here.</li>
       <li>Ascetics don't mind a barracks; leave them a bed there if they like it.</li>
       <li>The old barracks makes a fine guest room, workshop or rec room once everyone has moved out.</li>
+      <li>Sleeping in a barracks gives everyone there a mood penalty every night; a bedroom of their own takes it away, and an impressive one turns it into a bonus.</li>
+      <li>Partners share a bedroom with a double bed, so a couple needs one room, not two.</li>
     </tips>
   </ColonyCouncil.AdvisorSignalDef>
 
@@ -46,6 +50,8 @@
       <li>Hospital beds improve tend quality and immunity gain; a vitals monitor beside them raises surgery success further.</li>
       <li>A clean floor keeps a room cleaner, and a clean hospital means fewer infections.</li>
       <li>Upgrading a built room plans only the pieces that are missing; nothing already there is moved.</li>
+      <li>A vitals monitor helps only the beds it is linked to; the link lines show when you place it beside them.</li>
+      <li>Keep the hospital near the main rooms, so nobody is carried across the map, and off the paths everyone uses, so it stays clean.</li>
     </tips>
   </ColonyCouncil.AdvisorSignalDef>
 
@@ -60,6 +66,9 @@
       <li>A game keeps two or three people busy at most. A big colony needs several, and of different kinds.</li>
       <li>Recreation comes in kinds (social, gaming, cerebral, dexterity and more), and each tires of being used: variety keeps the need full.</li>
       <li>A rec room next to the dining room means colonists relax right after eating instead of walking across the map.</li>
+      <li>Having fun in an impressive rec room gives a mood bonus of its own, so art and good furniture there are not wasted.</li>
+      <li>Two of the same game add places to play but no variety; a different kind of game adds both.</li>
+      <li>Hovering over a colonist's recreation need shows which kinds of recreation they've tired of lately, which tells you what the room is missing.</li>
     </tips>
   </ColonyCouncil.AdvisorSignalDef>
 
