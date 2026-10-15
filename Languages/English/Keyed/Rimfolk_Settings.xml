@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!-- ===================== The mod settings window (Source/ColonyCouncil/UI/Settings*.cs) ===================== -->
+
+  <!-- Pages, and the line beside the search box that says what each is for -->
+  <CC_SetPage_Council>Council &amp; wishes</CC_SetPage_Council>
+  <CC_SetPage_Council_Desc>What the council does, what's at stake, and how wishes, dilemmas and meetings run.</CC_SetPage_Council_Desc>
+  <CC_SetPage_People>People &amp; moods</CC_SetPage_People>
+  <CC_SetPage_People_Desc>Everyday pressures and good times, bonds, life goals and stories, moments and memory.</CC_SetPage_People_Desc>
+  <CC_SetPage_HeartHealth>Heart &amp; health</CC_SetPage_HeartHealth>
+  <CC_SetPage_HeartHealth_Desc>Feelings and strain, everyday ailments and the rare serious illness, recovery and healers.</CC_SetPage_HeartHealth_Desc>
+  <CC_SetPage_Events>Events &amp; world</CC_SetPage_Events>
+  <CC_SetPage_Events_Desc>Strangers and creatures, Rimfolk's events and camps, the region's world events, the calendar.</CC_SetPage_Events_Desc>
+  <CC_SetPage_Building>Building</CC_SetPage_Building>
+  <CC_SetPage_Building_Desc>Personal touches, what the room planner does by default, and material counts in the build menu.</CC_SetPage_Building_Desc>
+  <CC_SetPage_Interface>Interface &amp; integrations</CC_SetPage_Interface>
+  <CC_SetPage_Interface_Desc>Messages and letters, alerts, Rimfolk's own tabs and buttons, and its hooks into the game.</CC_SetPage_Interface_Desc>
+  <CC_SetPage_Advanced>Advanced</CC_SetPage_Advanced>
+  <CC_SetPage_Advanced_Desc>This colony's era, a check of what's working, and a full reset.</CC_SetPage_Advanced_Desc>
+
+  <!-- Headings -->
+  <CC_SetSec_Moods>Moods and pressures</CC_SetSec_Moods>
+  <CC_SetSec_Moments>Moments</CC_SetSec_Moments>
+  <CC_SetSec_Recovery>Recovery and healers</CC_SetSec_Recovery>
+  <CC_SetSec_Calendar>The colony calendar</CC_SetSec_Calendar>
+  <CC_SetSec_Planner>Room planner</CC_SetSec_Planner>
+  <CC_SetSec_Planner_Note>What the planner does when you place a room. The planner shows the same switches and remembers what you pick there.</CC_SetSec_Planner_Note>
+  <CC_SetSec_BuildMenu>Build menu</CC_SetSec_BuildMenu>
+  <CC_SetSec_Hooks>Deeper game hooks</CC_SetSec_Hooks>
+  <CC_SetSec_Checks>Checks and resets</CC_SetSec_Checks>
+
+  <!-- Labels and tooltips the old window didn't have -->
+  <CC_SetLabel_PlanFurniture>Plan the furniture too</CC_SetLabel_PlanFurniture>
+  <CC_SetTip_PlanFurniture>On: a planned room comes with its furniture, as blueprints you can cancel one by one. Off: walls, door and floor only. In the planner, click a piece of furniture to swap it for another.</CC_SetTip_PlanFurniture>
+  <CC_SetLabel_MessageLevel>How many messages</CC_SetLabel_MessageLevel>
+  <CC_SetTip_MessageLevel>How chatty Rimfolk is. Letters that ask you to decide something always come; this sets how many of the smaller messages do.</CC_SetTip_MessageLevel>
+  <CC_SetTip_Stakes>How much the council's choices weigh on moods, from only upsides to downsides half again as strong. Hover each option for the details.</CC_SetTip_Stakes>
+  <CC_SetTip_ButtonPosition>Where the Council button sits in the game's bottom bar. It moves right away, even in a running game.</CC_SetTip_ButtonPosition>
+  <CC_SetLabel_Era>This colony's era</CC_SetLabel_Era>
+  <CC_SetTip_Era>What the colony can make, for what Rimfolk suggests and how its colonists talk. Each colony keeps its own. Hover each option for the details.</CC_SetTip_Era>
+  <CC_SetLabel_SelfCheck>Check what's on and working</CC_SetLabel_SelfCheck>
+  <CC_SetTip_SelfCheck>Opens a window with the game, Rimfolk and Harmony versions, which game hooks applied, which parts are switched off or changed, which of the mods Rimfolk works with it found, and its own errors this session. A screenshot of it says most of what a bug report needs.</CC_SetTip_SelfCheck>
+  <CC_SetTip_Reset>Every setting on every page goes back to how Rimfolk ships. Your saved rooms and the colony's era are kept. You see the list of what changes before anything does.</CC_SetTip_Reset>
+
+  <!-- What you'll notice: Council and wishes -->
+  <CC_SetNote_QuickSetup>Whole parts of Rimfolk on or off at once. You see what changes before anything does.</CC_SetNote_QuickSetup>
+  <CC_SetNote_EnableAdvisor>A Priorities page ranking what the colony needs next, and why.</CC_SetNote_EnableAdvisor>
+  <CC_SetNote_EnableWishes>Colonists ask for things now and then; granting or ignoring them moves mood and trust.</CC_SetNote_EnableWishes>
+  <CC_SetNote_EnableAmbitions>Every couple of weeks the council meets and picks a bigger goal for the colony.</CC_SetNote_EnableAmbitions>
+  <CC_SetNote_Penalty>How much an ignored wish, a broken promise or a slight costs in mood.</CC_SetNote_Penalty>
+  <CC_SetNote_Reward>How much a granted wish or a reached ambition lifts mood.</CC_SetNote_Reward>
+  <CC_SetNote_DaysBetweenWishes>Lower, and someone speaks up with a new wish more often.</CC_SetNote_DaysBetweenWishes>
+  <CC_SetNote_MaxOpenWishes>No new wishes while this many are waiting on the council.</CC_SetNote_MaxOpenWishes>
+  <CC_SetNote_WishDuration>How long a wish stays open before it lapses.</CC_SetNote_WishDuration>
+  <CC_SetNote_Jealousy>When a wish comes true, the jealous and those who waited longer may grumble or ask for the same.</CC_SetNote_Jealousy>
+  <CC_SetNote_EventWishes>Within hours of a raid, a death or a cold night, someone asks for what would have helped.</CC_SetNote_EventWishes>
+  <CC_SetNote_Reminders>A wish comes up again halfway through, and once more near the end.</CC_SetNote_Reminders>
+  <CC_SetNote_SelfHelp>A handy colonist who runs out of patience may sort out their own wish.</CC_SetNote_SelfHelp>
+  <CC_SetNote_Quitting>With Demanding stakes, a colonist bitter for days warns, then walks out unless trust recovers.</CC_SetNote_Quitting>
+  <CC_SetNote_ForOthers>A kind colonist sometimes asks on behalf of someone who's struggling.</CC_SetNote_ForOthers>
+  <CC_SetNote_Petitions>Colonists who want the same thing back one wish instead of each asking.</CC_SetNote_Petitions>
+  <CC_SetNote_Dilemmas>Now and then a letter with a hard choice: a thief, a feud, a confession.</CC_SetNote_Dilemmas>
+  <CC_SetNote_DaysBetweenDilemmas>On average; they come sooner while everyone is content.</CC_SetNote_DaysBetweenDilemmas>
+  <CC_SetNote_DecreeRequests>When the moment fits, a colonist asks the council for a decree.</CC_SetNote_DecreeRequests>
+  <CC_SetNote_Character>The council's choices add up to a name, merciful or harsh, open or guarded, and people react to it.</CC_SetNote_Character>
+  <CC_SetNote_Offices>Speaker, marshal, quartermaster, physician and steward, elected each year.</CC_SetNote_Offices>
+  <CC_SetNote_DaysBetweenMeetings>How often the council sits down to choose its next ambition.</CC_SetNote_DaysBetweenMeetings>
+  <CC_SetNote_AmbitionDeadline>How long the colony has to reach an ambition once it's chosen.</CC_SetNote_AmbitionDeadline>
+  <CC_SetNote_MeetingsCallFromWork>On: people put down ordinary work and sleepers are woken. Off: they come when they're free.</CC_SetNote_MeetingsCallFromWork>
+
+  <!-- People and moods -->
+  <CC_SetNote_Life_Gentle>Everyday pressures at half strength; half-built work isn't minded.</CC_SetNote_Life_Gentle>
+  <CC_SetNote_Life_Normal>The same meal, the same work or a packed room each costs 1 to 3 mood until it's dealt with.</CC_SetNote_Life_Normal>
+  <CC_SetNote_Life_Demanding>Every everyday pressure half again as strong.</CC_SetNote_Life_Demanding>
+  <CC_SetNote_Standards>Content colonists slowly expect more: rewards shrink and letdowns sting more.</CC_SetNote_Standards>
+  <CC_SetNote_StandardsComforts>Spoiled colonists also feel the game's own good moods a little less.</CC_SetNote_StandardsComforts>
+  <CC_SetNote_SmallJoys>Several of Rimfolk's good moods at once count for less than their sum.</CC_SetNote_SmallJoys>
+  <CC_SetNote_GoodTimes>When mood is already high, Rimfolk's new good memories fade sooner.</CC_SetNote_GoodTimes>
+  <CC_SetNote_Frictions>Dishes left in the basin, a snoring bunkmate, a leaking roof: a point or two of mood each.</CC_SetNote_Frictions>
+  <CC_SetNote_SocialWeb>Friends, rivals, comrades and mentors form, and show on the Bonds page.</CC_SetNote_SocialWeb>
+  <CC_SetNote_SocialEvents>About one small happening a day between people: a late talk, a prank, a squabble over chores.</CC_SetNote_SocialEvents>
+  <CC_SetNote_Secrets>Some colonists carry a secret that can come out, and everyone reacts in their own way.</CC_SetNote_Secrets>
+  <CC_SetNote_Vendettas>Those who lost someone to raiders swear vengeance on that faction.</CC_SetNote_Vendettas>
+  <CC_SetNote_Aspirations>Each colonist sets a life goal; reaching it is a big, lasting good mood.</CC_SetNote_Aspirations>
+  <CC_SetNote_Arcs_Off>No personal stories begin; any under way wait.</CC_SetNote_Arcs_Off>
+  <CC_SetNote_Arcs_Rare>About two personal stories a year in a colony of six.</CC_SetNote_Arcs_Rare>
+  <CC_SetNote_Arcs_Normal>About four personal stories a year in a colony of six.</CC_SetNote_Arcs_Normal>
+  <CC_SetNote_Arcs_Frequent>About seven personal stories a year in a colony of six.</CC_SetNote_Arcs_Frequent>
+  <CC_SetNote_Quirks>A lucky helmet, a dread of storms, a ritual before a fight, picked up from what they live through.</CC_SetNote_Quirks>
+  <CC_SetNote_Heirlooms>A dead colonist's weapon or hat passes to the one who loved them most.</CC_SetNote_Heirlooms>
+  <CC_SetNote_ComingOfAge>When a child grows up, the colony marks it and helps choose their path.</CC_SetNote_ComingOfAge>
+  <CC_SetNote_Autonomy>Now and then a colonist tidies their room or takes a break on their own, with a message.</CC_SetNote_Autonomy>
+  <CC_SetNote_AutonomyPlans>They may also plan a lamp, a plant pot or a cooler for their own room.</CC_SetNote_AutonomyPlans>
+  <CC_SetNote_Dreams>Some mornings a colonist wakes from a dream: a mood and a line in their journal.</CC_SetNote_Dreams>
+  <CC_SetNote_DreamOmens>Rarely, a dream foretells a visitor, a storm or a raid a few days ahead.</CC_SetNote_DreamOmens>
+  <CC_SetNote_Moments>Shared talks and friendly contests turn up in the social log.</CC_SetNote_Moments>
+  <CC_SetNote_WorldReactions>Weddings, births and homecomings leave journal lines and small moods.</CC_SetNote_WorldReactions>
+  <CC_SetNote_Journals>Each colonist writes a line in their own voice when something happens to them.</CC_SetNote_Journals>
+  <CC_SetNote_Epithets>Whoever does the most of something earns a name for it, like the Healer.</CC_SetNote_Epithets>
+  <CC_SetNote_Anniversaries>Each year since a colonist joined: a few words, and a good mood their friends share.</CC_SetNote_Anniversaries>
+  <CC_SetNote_Annals>Each new year, a colonist writes up the year that ended.</CC_SetNote_Annals>
+  <CC_SetNote_Eulogies>When someone dies, the person closest to them speaks at the grave.</CC_SetNote_Eulogies>
+  <CC_SetNote_FreqMoments>Talks, contests and small frictions between colonists.</CC_SetNote_FreqMoments>
+  <CC_SetNote_FreqSocial>Favors, quarrels and confidences; at 100%, about one a day for every five colonists.</CC_SetNote_FreqSocial>
+  <CC_SetNote_FreqDreams>At 100%, a colonist remembers a dream about one night in three.</CC_SetNote_FreqDreams>
+
+  <!-- Heart and health -->
+  <CC_SetNote_Heart>Strain builds on hard days and costs mood from 30; feelings shape wishes and dreams.</CC_SetNote_Heart>
+  <CC_SetNote_HeartEpisodes>Someone at the end of their rope may keep to their room for half a day.</CC_SetNote_HeartEpisodes>
+  <CC_SetNote_HeartInspector>A short line about strain in a colonist's details in the inspector.</CC_SetNote_HeartInspector>
+  <CC_SetNote_StrainSpeed>Lower for a gentler game; how fast strain drains stays the same.</CC_SetNote_StrainSpeed>
+  <CC_SetNote_Ailments>A cold, a strained back, sunburn: mild, a few days to two weeks, never deadly.</CC_SetNote_Ailments>
+  <CC_SetNote_SeriousIllnesses>Rarely, an illness that can kill, with a letter saying what helps.</CC_SetNote_SeriousIllnesses>
+  <CC_SetNote_AilmentFrequency>At 100%, the colony catches something about every 20 days.</CC_SetNote_AilmentFrequency>
+  <CC_SetNote_Convalescence>After a serious illness or an operation a colonist is weak for a while; friends sit by the bed.</CC_SetNote_Convalescence>
+  <CC_SetNote_HealerReputations>Doctors and midwives keep a record of lives saved and lost, on their Story tab.</CC_SetNote_HealerReputations>
+
+  <!-- Events and world -->
+  <CC_SetNote_Encounters>Small moments with visitors, traders, prisoners and wild animals.</CC_SetNote_Encounters>
+  <CC_SetNote_FreqEncounters>How often those moments with strangers and animals come.</CC_SetNote_FreqEncounters>
+  <CC_SetNote_Nemeses>An enemy who hurt a colonist and got away is remembered by name.</CC_SetNote_Nemeses>
+  <CC_SetNote_NemesisReturns>That nemesis may ride with their people's next raid.</CC_SetNote_NemesisReturns>
+  <CC_SetNote_PetMoments>A pet that fights beside its person is remembered; a named pet's death is mourned.</CC_SetNote_PetMoments>
+  <CC_SetNote_WorldEvents>Old comrades, creditors, challengers and visitors with a purpose, as letters.</CC_SetNote_WorldEvents>
+  <CC_SetNote_WorldEventBattles>Some of them may end in a fight: bounty hunters, revenge, a refused tribute.</CC_SetNote_WorldEventBattles>
+  <CC_SetNote_Camps>A group may camp on the map for a while, to trade with, hire or send away.</CC_SetNote_Camps>
+  <CC_SetNote_MissionsAsQuests>On: a neighbor's mission shows in the Quests tab. Off: it comes as a letter.</CC_SetNote_MissionsAsQuests>
+  <CC_SetNote_EventsFromStoryteller>On: they follow your storyteller's rhythm. Off: Rimfolk's own timer brings them.</CC_SetNote_EventsFromStoryteller>
+  <CC_SetNote_StorytellerEventWeight>At 100%, each is about as likely as one of the game's own events.</CC_SetNote_StorytellerEventWeight>
+  <CC_SetNote_DaysBetweenWorldEvents>On average; the same event won't come back soon.</CC_SetNote_DaysBetweenWorldEvents>
+  <CC_SetNote_ScenarioThreat>Only the attacks a Rimfolk scenario promises; your storyteller's difficulty applies too.</CC_SetNote_ScenarioThreat>
+  <CC_SetNote_WorldSituations>A plague, a warlord or a hard winter across the region, followed on the World page.</CC_SetNote_WorldSituations>
+  <CC_SetNote_DaysBetweenWorldSituations>On average; at most two run at the same time.</CC_SetNote_DaysBetweenWorldSituations>
+  <CC_SetNote_Calendar>The founding day, the first snow and the days you name come round with a letter and a gathering.</CC_SetNote_Calendar>
+
+  <!-- Building -->
+  <CC_SetNote_EnableTouches>A colonist may plan a small piece of furniture for their own bedroom.</CC_SetNote_EnableTouches>
+  <CC_SetNote_DaysBetweenTouches>Lower, and personal touches come more often.</CC_SetNote_DaysBetweenTouches>
+  <CC_SetNote_PlanFurniture>A placed room comes with its furniture, not only walls, door and floor.</CC_SetNote_PlanFurniture>
+  <CC_SetNote_PlanCutPlants>Plants and trees in the way are marked for cutting.</CC_SetNote_PlanCutPlants>
+  <CC_SetNote_PlanMineRock>Rock inside the room and at the door is marked for mining.</CC_SetNote_PlanMineRock>
+  <CC_SetNote_PlanReplaceOwn>Your own buildings in the way are marked for deconstruction.</CC_SetNote_PlanReplaceOwn>
+  <CC_SetNote_PlanSmooth>Rock walls and rough stone floors are marked for smoothing.</CC_SetNote_PlanSmooth>
+  <CC_SetNote_BuildMenuCounts>Each material in the build menu shows how much the colony has.</CC_SetNote_BuildMenuCounts>
+
+  <!-- Interface and integrations -->
+  <CC_SetNote_MsgLevel_Everything>A message for every dream, small moment and quirk.</CC_SetNote_MsgLevel_Everything>
+  <CC_SetNote_MsgLevel_Notable>Messages for what changes something; the small moments stay in the journals.</CC_SetNote_MsgLevel_Notable>
+  <CC_SetNote_MsgLevel_LettersOnly>Only letters and the biggest moments; the rest is in the council window.</CC_SetNote_MsgLevel_LettersOnly>
+  <CC_SetNote_AllDreamMessages>Every remembered dream gets a message, not only the ones that matter.</CC_SetNote_AllDreamMessages>
+  <CC_SetNote_WishLetters>On: new wishes come as letters. Off: as short messages.</CC_SetNote_WishLetters>
+  <CC_SetNote_GrantedLetters>On: a letter when a wish comes true. Off: a short message.</CC_SetNote_GrantedLetters>
+  <CC_SetNote_SpeechText>A short line floats over a colonist who makes, backs or gets a wish.</CC_SetNote_SpeechText>
+  <CC_SetNote_VisualTouches>Fireflies, smoke over a camp, a bell for a meeting, a cooler sky under a comet.</CC_SetNote_VisualTouches>
+  <CC_SetNote_AdvisorAlert>The council's most urgent concern shows in the alerts on the right.</CC_SetNote_AdvisorAlert>
+  <CC_SetNote_WishAlert>A reminder in the alerts while colonists wait on wishes.</CC_SetNote_WishAlert>
+  <CC_SetNote_MoodInsight>A Mood tab on each colonist and a Moods page: every mood, why it's there, and what helps.</CC_SetNote_MoodInsight>
+  <CC_SetNote_NeedsTabHints>Hovering a mood in the game's Needs tab also says why it's there and what helps.</CC_SetNote_NeedsTabHints>
+  <CC_SetNote_SlowButtons>Half and quarter speed buttons beside the time controls.</CC_SetNote_SlowButtons>
+  <CC_SetNote_SlowButtonsReset>Drag the buttons by their grip to move them; this puts them back.</CC_SetNote_SlowButtonsReset>
+  <CC_SetNote_ButtonPosition>Where the Council button sits in the bottom bar; it moves at once.</CC_SetNote_ButtonPosition>
+  <CC_SetNote_RoomsButton>A Rooms button in the bottom bar, a shortcut to all room plans.</CC_SetNote_RoomsButton>
+  <CC_SetNote_DeepHooks>Rimfolk's lines in the game's own tabs, letters and menus. Off undoes them at once.</CC_SetNote_DeepHooks>
+  <CC_SetNote_LetterNotes>Raid, mood break and death letters get a line of what Rimfolk knows.</CC_SetNote_LetterNotes>
+
+  <!-- Advanced -->
+  <CC_SetNote_Era_Auto>Rimfolk works out the era from finished research and buildings.</CC_SetNote_Era_Auto>
+  <CC_SetNote_Era_PreIndustrial>No power, turrets or freezers in advice, wishes, dreams and text.</CC_SetNote_Era_PreIndustrial>
+  <CC_SetNote_Era_Industrial>Industrial things in advice and text even when the research looks primitive.</CC_SetNote_Era_Industrial>
+  <CC_SetNote_SelfCheck>One window with versions, game hooks, what's switched off and Rimfolk's errors; handy for bug reports.</CC_SetNote_SelfCheck>
+  <CC_SetNote_Reset>Every page back to how Rimfolk ships; saved rooms are kept. You see what changes first.</CC_SetNote_Reset>
+
+  <!-- Why a row is grayed out -->
+  <CC_SetWhy_Downsides>Only with Balanced or Demanding stakes.</CC_SetWhy_Downsides>
+  <CC_SetWhy_MoodEffects>Not with Advisor only stakes: Rimfolk changes no moods then.</CC_SetWhy_MoodEffects>
+  <CC_SetWhy_OwnTimer>Only while the storyteller doesn't draw Rimfolk's events.</CC_SetWhy_OwnTimer>
+  <CC_SetWhy_NoGame>Load a game to run the check.</CC_SetWhy_NoGame>
+
+  <!-- The window -->
+  <CC_SetUI_On>on</CC_SetUI_On>
+  <CC_SetUI_Off>off</CC_SetUI_Off>
+  <CC_SetUI_Was>{0} (was {1})</CC_SetUI_Was>
+  <CC_SetUI_DefaultIs>Default: {0}</CC_SetUI_DefaultIs>
+  <CC_SetUI_Needs>Needs "{0}" switched on.</CC_SetUI_Needs>
+  <CC_SetUI_NotNow>Not in use with the settings above.</CC_SetUI_NotNow>
+  <CC_SetUI_Results>Settings that match, on every page: {0}</CC_SetUI_Results>
+  <CC_SetUI_NoResults>No setting matches "{0}".</CC_SetUI_NoResults>
+  <CC_SetUI_NoResults_Hint>Try a shorter word, or something you'd notice in play: dreams, letters, raids, illness, camps.</CC_SetUI_NoResults_Hint>
+  <CC_SetUI_GoToPage>open the page</CC_SetUI_GoToPage>
+  <CC_SetUI_GoToPage_Tip>Open this page at this heading.</CC_SetUI_GoToPage_Tip>
+  <CC_SetUI_Changed_Tip>Changed from the defaults on this page: {0}</CC_SetUI_Changed_Tip>
+  <CC_SetUI_SlowButtonsHome>They're already in their usual place.</CC_SetUI_SlowButtonsHome>
+
+  <!-- Presets -->
+  <CC_SetPreset_Header>Presets</CC_SetPreset_Header>
+  <CC_SetPreset_Header_Tip>One click sets a group of values and leaves the rest alone. You see the list of changes before anything changes.</CC_SetPreset_Header_Tip>
+  <CC_SetPreset_LightTouch>Light touch</CC_SetPreset_LightTouch>
+  <CC_SetPreset_LightTouch_Tip>Rimfolk in the background. Only upsides (Gentle stakes), gentle everyday pressures and strain that builds slower. Fewer wishes, dilemmas, meetings, personal stories, events, moments and dreams. Important messages only, and new wishes as messages rather than letters. No frictions, nobody walking out or taking a day off, no deadly illnesses (ailments half as often), and no fights from Rimfolk's events. The stories all stay on, only quieter.</CC_SetPreset_LightTouch_Tip>
+  <CC_SetPreset_StoryRich>Story-rich</CC_SetPreset_StoryRich>
+  <CC_SetPreset_StoryRich_Tip>Every part that tells a story switched on, and more of each: frequent personal stories, a dilemma about every five days, half again as many moments, social events, dreams and encounters, more of Rimfolk's events and world events, and a message for everything. Moods, pressures and stakes stay as they are.</CC_SetPreset_StoryRich_Tip>
+  <CC_SetPreset_Demanding>Demanding</CC_SetPreset_Demanding>
+  <CC_SetPreset_Demanding_Tip>Harder moods, more frictions and pressures, rarer rewards. Demanding stakes with downsides a quarter stronger again and rewards at 75%, less time to grant wishes and reach ambitions, demanding everyday pressures, more frictions, rising standards that also cover the game's comforts, strain that builds a quarter faster, and bitter colonists who may leave.</CC_SetPreset_Demanding_Tip>
+  <CC_SetPreset_Default>Default</CC_SetPreset_Default>
+  <CC_SetPreset_Default_Tip>Everything the other three presets change, back to how Rimfolk ships. Settings they don't touch stay as you set them; the full reset is on the Advanced page.</CC_SetPreset_Default_Tip>
+  <CC_Preset_Everything_Tip>Every part of Rimfolk on: the council, the people systems (bonds, stories, dreams, strangers, events, world events, feelings, ailments) and the colony's memory. Personal stories go to normal if they were off.</CC_Preset_Everything_Tip>
+  <CC_Preset_Core_Tip>The council without the people systems: wishes, meetings, dilemmas, decrees, offices, the colony's character and its memory stay on; bonds, stories, dreams, strangers, events, world events, feelings and ailments go off.</CC_Preset_Core_Tip>
+  <CC_Preset_AdvisorOnly_Tip>Only the advisor's ranked advice: wishes, meetings, the people systems and the colony's memory off, and no mood effects at all.</CC_Preset_AdvisorOnly_Tip>
+  <CC_SetPreset_Confirm>{0}\n\nThis changes {1}:\n\n{2}\n\nEverything else stays as it is.</CC_SetPreset_Confirm>
+  <CC_SetPreset_One>one setting</CC_SetPreset_One>
+  <CC_SetPreset_Many>{0} settings</CC_SetPreset_Many>
+  <CC_SetPreset_Nothing>Nothing to change: your settings already match {0}.</CC_SetPreset_Nothing>
+  <CC_SetReset_Confirm>Put every setting back to how Rimfolk ships? This changes {0}:\n\n{1}\n\nYour saved rooms and the colony's era are kept.</CC_SetReset_Confirm>
+  <CC_SetReset_Nothing>Every setting is already at its default.</CC_SetReset_Nothing>
+
+</LanguageData>
