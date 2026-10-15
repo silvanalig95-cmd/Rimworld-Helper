@@ -358,7 +358,8 @@ Others simply grow out of who someone is: a grower who talks to the plants, a ha
 who sings at the stove, an early riser, someone who hums at work, collects pretty stones, can't stand a mess, feeds
 the birds or remembers every birthday, and after a night in the cold or under the stars, someone who is always cold
 or goes out to watch the stars. Some bring a small knack while they last (slightly faster plant work, fewer food
-poisonings from that cook, animals tamed and trained more easily). 29 quirks in all.
+poisonings from that cook, animals tamed and trained more easily). 29 quirks in all. Picking one up and letting it
+fade are written in the journal in the colonist's own voice.
 
 ### Dreams
 Colonists who sleep (or lie unconscious) for a few hours sometimes wake from a dream (there are 117), and tell each
@@ -437,7 +438,8 @@ Every colonist keeps a journal in their own voice: wishes granted and ignored, p
 names earned, friendships made and lost, lessons learned. Ordinary days get written down too: now and then, something
 that's really on their mind that day (a meal eaten off their knees, a cold night, a long talk with a friend, a
 corpse nobody has buried yet) becomes the evening's entry. Read them on the Journals page under History, or from a
-colonist's page in the Roster. The journals of the dead and departed are kept.
+colonist's page in the Roster. The journals of the dead and departed are kept. Every kind of entry has lines in each
+voice (plain, warm, blunt, cheerful, gloomy and cold), and the ones written most often have many in each.
 
 ### Ambition: council meetings
 About once a quadrum the council actually **meets**, and it's **announced first**: who called it, where (around
@@ -1239,3 +1241,6 @@ clipboard" button) says most of what a bug report needs.
   it nudges. Another mod's thought can join a feeling with a `ColonyCouncil.HeartTags` mod extension.
 - Wishes, advice checks, ambitions, room templates, flavor pools and almanac pages are all data-driven XML.
   Lines can carry tags (`[winter,trigger:raid]`) so they're used when they fit. See [DESIGN.md](DESIGN.md).
+  `python3 Tools/variety_report.py` ranks the pools by how often a line comes round in a year of an eight-colonist
+  colony (`--top N`, `--filter REGEX`, `--all`); new lines do most good at the top of that list. A tagged line wins
+  most picks for whoever it fits, so give a common tag (a season, trust, the night) a few lines rather than one.
