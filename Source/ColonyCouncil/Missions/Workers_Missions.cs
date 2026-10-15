@@ -240,7 +240,8 @@ namespace ColonyCouncil
                 {
                     m.due = Mathf.Min(now + GenDate.TicksPerDay / 2, m.deadline);
                     string line = Line(More?.ready, m, map, null, TextUtil.DaysString(m.due - now));
-                    if (!line.NullOrEmpty()) News.Post(line, null, NewsKind.World, MessageTypeDefOf.PositiveEvent);
+                    // At once, not in the evening's news: it says when the carts come, and they may have come by then.
+                    if (!line.NullOrEmpty()) Messages.Message(line, MessageTypeDefOf.PositiveEvent, false);
                 }
             }
             else if (m.stage == 1 && !all) m.stage = 0;
@@ -630,7 +631,8 @@ namespace ColonyCouncil
                     m.stage = 1;
                     m.due = Mathf.Min(now + Mathf.RoundToInt(Rand.Range(0.8f, 1.5f) * GenDate.TicksPerDay), m.deadline);
                     string line = Line(More?.ready, m, map, shrine.LabelShortCap, TextUtil.DaysString(m.due - now));
-                    if (!line.NullOrEmpty()) News.Post(line, new LookTargets(shrine), NewsKind.World, MessageTypeDefOf.PositiveEvent);
+                    // At once, not in the evening's news: it says when the pilgrims come.
+                    if (!line.NullOrEmpty()) Messages.Message(line, new LookTargets(shrine), MessageTypeDefOf.PositiveEvent, false);
                 }
                 else if (now >= m.deadline)
                 {
