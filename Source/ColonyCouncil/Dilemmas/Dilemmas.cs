@@ -990,6 +990,7 @@ namespace ColonyCouncil
             {
                 traditionBreaks[key] = 0;
                 traditionCount[key] = (traditionCount.TryGetValue(key, out int n) ? n : 0) + 1;
+                comp.offices.Notify_CustomKept(colonists);
                 if (IsTradition(def))
                 {
                     foreach (var p in colonists) CouncilGameComponent.GiveThought(p, CouncilDefOf.Council_TraditionKept);

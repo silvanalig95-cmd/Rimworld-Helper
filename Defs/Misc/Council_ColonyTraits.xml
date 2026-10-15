@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    What the colony grows into by what its people do (Source/ColonyCouncil/Character/ColonyTraits.cs), beside the five
+    ways the council's choices shape. Each counts the colonists' records as a rolling daily amount per head (about
+    forty days of memory): known at knownAt, lost again below 60% of it. Colonists with a passion for the skill are
+    proud of it (a small mood). tag: a name dilemmas and encounters can ask for, like the ways' Merciful or Thrifty.
+  -->
+
+  <ColonyCouncil.ColonyTraitDef>
+    <defName>Council_Trait_GreenFingered</defName>
+    <label>green-fingered</label>
+    <description>The colony lives off its fields, and anyone passing can see it: rows sown straight, nothing left to rot, something always growing.</description>
+    <order>1</order>
+    <records>
+      <li><record>PlantsSown</record></li>
+      <li><record>PlantsHarvested</record></li>
+    </records>
+    <knownAt>12</knownAt>
+    <skill>Plants</skill>
+    <tag>GreenFingered</tag>
+    <earned>The fields have been full for a season now, and travelers have started to say it: the colony is green-fingered. The growers walk a little taller for it.</earned>
+    <lost>The fields have gone quiet, and people have stopped calling the colony green-fingered.</lost>
+  </ColonyCouncil.ColonyTraitDef>
+
+  <ColonyCouncil.ColonyTraitDef>
+    <defName>Council_Trait_Builders</defName>
+    <label>builders</label>
+    <description>Something is always going up here: a wall, a roof, a new room. The colony is known for building, and building well.</description>
+    <order>2</order>
+    <records>
+      <li><record>ThingsConstructed</record></li>
+    </records>
+    <knownAt>8</knownAt>
+    <skill>Construction</skill>
+    <tag>Builders</tag>
+    <earned>The colony has hardly stopped building since it began, and it shows. People have started calling it a colony of builders, and the ones who did the building are proud of it.</earned>
+    <lost>The hammers have gone quiet, and nobody calls the colony a colony of builders any more.</lost>
+  </ColonyCouncil.ColonyTraitDef>
+
+  <ColonyCouncil.ColonyTraitDef>
+    <defName>Council_Trait_Learned</defName>
+    <label>learned</label>
+    <description>There is always a lamp burning over a research bench. The colony is known as a place that wants to understand things.</description>
+    <order>3</order>
+    <records>
+      <li><record>ResearchPointsResearched</record></li>
+    </records>
+    <knownAt>40</knownAt>
+    <skill>Intellectual</skill>
+    <tag>Learned</tag>
+    <earned>The colony has studied more in the last season than most settlements do in years, and word of it has got around: people call it learned. Its thinkers are quietly delighted.</earned>
+    <lost>The research benches have gathered dust, and people have stopped calling the colony learned.</lost>
+  </ColonyCouncil.ColonyTraitDef>
+
+  <ColonyCouncil.ColonyTraitDef>
+    <defName>Council_Trait_Craftsfolk</defName>
+    <label>craftsfolk</label>
+    <description>The workbenches are never cold. The colony is known for the things it makes: clothes, tools, furniture and more besides.</description>
+    <order>4</order>
+    <records>
+      <li><record>ThingsCrafted</record></li>
+    </records>
+    <knownAt>1.6</knownAt>
+    <skill>Crafting</skill>
+    <tag>Craftsfolk</tag>
+    <earned>Things made here have started turning up in traders' packs, and the colony has a name for it now: craftsfolk. Its makers are proud to hear it.</earned>
+    <lost>The workbenches have gone cold, and people no longer speak of the colony's craftsfolk.</lost>
+  </ColonyCouncil.ColonyTraitDef>
+
+  <ColonyCouncil.ColonyTraitDef>
+    <defName>Council_Trait_Hunters</defName>
+    <label>hunters</label>
+    <description>The colony lives off the land around it, and its hunters bring home more game than most. It is known for it.</description>
+    <order>5</order>
+    <records>
+      <li><record>KillsAnimals</record></li>
+    </records>
+    <knownAt>0.25</knownAt>
+    <skill>Shooting</skill>
+    <tag>Hunters</tag>
+    <earned>Game has been hanging in the colony's cold store all season, and people have started to call it a colony of hunters. The best shots take it as a compliment.</earned>
+    <lost>The hunting has fallen off, and nobody calls the colony a colony of hunters any more.</lost>
+  </ColonyCouncil.ColonyTraitDef>
+
+  <ColonyCouncil.ColonyTraitDef>
+    <defName>Council_Trait_Delvers</defName>
+    <label>delvers</label>
+    <description>The colony digs: into the hills, down after ore, through rock other settlers go around. It is known for it.</description>
+    <order>6</order>
+    <records>
+      <li><record>CellsMined</record></li>
+    </records>
+    <knownAt>10</knownAt>
+    <skill>Mining</skill>
+    <tag>Delvers</tag>
+    <earned>The colony has dug through more rock this season than some settlements see in a lifetime, and people have started calling it a colony of delvers. Its miners are proud of every tunnel.</earned>
+    <lost>The digging has stopped, and people have stopped calling the colony a colony of delvers.</lost>
+  </ColonyCouncil.ColonyTraitDef>
+
+</Defs>

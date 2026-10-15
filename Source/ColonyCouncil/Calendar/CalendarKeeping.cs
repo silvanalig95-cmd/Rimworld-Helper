@@ -277,6 +277,7 @@ namespace ColonyCouncil
             d.timesKept++;
             d.lastKeptYear = occurrence;
             Tradition(d, result, home, comp);
+            if (!quiet) comp?.offices.Notify_CustomKept(home);
             if (!quiet) Journals(d, map, home, years);
             talkDayId = d.id;
             talkDate = DateKey(map);

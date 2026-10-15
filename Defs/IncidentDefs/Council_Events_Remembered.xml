@@ -1,0 +1,503 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Rimfolk events that follow from what the world's peoples remember of the colony (Source/ColonyCouncil/World/,
+    FactionMemory.cs and Workers_Remembered.cs): an envoy who comes to repay an old debt, or to call in a favor the
+    colony owes; relief from old friends in a hard time; an old enemy offering peace once the feud has gone quiet for
+    years; and a quarrel between two peoples that one of them asks the colony to settle. Only with "Peoples remember
+    the colony" on. None ends in a fight.
+
+    {TALE} is the deed the people remember, in a few words without who did it: the colony's good turns and wrongs read
+    after "the colony" ("the colony set Ana free"), the people's own after "they" or their name ("{FACTION} sent
+    fighters when the colony called"). In a quarrel, {TALE} is what it's about and {ENEMY} the other people. Lines can
+    ask for the deed ([deed:released], [deed:tended], [deed:hardship], [deed:gift], [deed:refugees], [deed:aid],
+    [deed:relief], [deed:taught], [deed:killedOurs], [deed:fell]...), its side ([grateful], [owed], [ourwrong],
+    [theirwrong]), [named] when it names someone, [longago] for a year or more, [killedours] when the people killed a
+    colonist ({DEAD}), and in relief what comes ([food], [medicine]) and why ([famine], [plague], [winter], [flood],
+    [hungry], [sick]). More texts and outcomes: Council_Events_Remembered_Variants.xml.
+  -->
+
+  <!-- ===================== An old debt repaid ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Council_Evt_OldDebt</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>an old debt repaid</label>
+    <workerClass>ColonyCouncil.HappeningWorker_Remembered</workerClass>
+    <baseChance>0.8</baseChance>
+    <minRefireDays>40</minRefireDays>
+    <earliestDay>20</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Visitors</group>
+        <ages>35~70</ages>
+        <stayHours>14~22</stayHours>
+        <answerDays>1</answerDays>
+        <titles>
+          <li>An old debt repaid</li>
+          <li>{FACTION} remember</li>
+          <li>An envoy from {PLACE}</li>
+        </titles>
+        <texts>
+          <li>[theirLowtech] {X_nameDef} has walked from {PLACE} beside a laden pack animal, with a speech {X_pronoun} rehearsed the whole way. {FACTION} have not forgotten that the colony {TALE}, and their elders sent {X_nameDef} to settle the debt.\n\nThe gift is worth about {COUNT} silver. {X_nameDef} has been told not to bring it home again.</li>
+          <li>[theirHightech] {X_nameDef}, an envoy of {FACTION}, has driven up from {PLACE} with a crate in the back. {FACTION} keep accounts, {X_nameDef} says, and one of them has stood open since the colony {TALE}.\n\nThe crate holds goods worth about {COUNT} silver, and {X_nameDef} would like to close the account today.</li>
+          <li>[deed:released,named] {X_nameDef} of {FACTION} has come from {PLACE} on behalf of a family there. The colony {TALE}, and that family has talked about little else since.\n\nThey have sent a gift worth about {COUNT} silver, with their thanks, and {X_nameDef} to see it delivered.</li>
+          <li>[deed:tended] {X_nameDef} of {FACTION} has come from {PLACE} with a gift and a message. The colony {TALE}, back when nobody else on the road would stop, and {FACTION} pay what they owe.\n\nThe gift is worth about {COUNT} silver.</li>
+          <li>[deed:hardship] When times were hard at {PLACE}, the colony {TALE}. {FACTION} have had a better year since, and {X_nameDef} has come to say so, with a gift worth about {COUNT} silver.</li>
+          <li>[longago] It has been a long time since the colony {TALE}, long enough that {A_nameDef} had to be reminded of it. {FACTION} had not forgotten. Their envoy, {X_nameDef}, has come from {PLACE} with a gift worth about {COUNT} silver to settle the matter.</li>
+          <li>{X_nameDef} of {FACTION} has come from {PLACE} to settle an old debt. The colony {TALE}, {X_nameDef} reminds {A_nameDef}, and {FACTION} don't like owing anyone.\n\nThe gift is worth about {COUNT} silver.</li>
+        </texts>
+        <defaultOption>0</defaultOption>
+        <options>
+          <li>
+            <label>Accept the gift</label>
+            <outcome>{X_nameDef} unloads the gift beside the gate and declares the debt settled. {FACTION} consider the matter closed, with some pride.</outcome>
+            <outcomes>
+              <li>[theirLowtech] {X_nameDef} lays the gift out on a blanket, names each thing in turn, and declares the debt paid.</li>
+              <li>[theirHightech] {X_nameDef} has {A_nameDef} sign for the crate, which {A_nameDef} finds very strange, and declares the account closed.</li>
+            </outcomes>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Gift" />
+              <li Class="ColonyCouncil.DilemmaEffect_Remember"><settle>true</settle></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_Mem_DebtRepaid</thought></li>
+            </effects>
+            <ways><tradition>1</tradition></ways>
+          </li>
+          <li>
+            <label>Accept it, and feast their envoy (20 raw food)</label>
+            <outcome>The colony takes the gift and seats {X_nameDef} at the head of the table. Stories go back and forth until late, and {X_nameDef} leaves in the morning full and pleased, with good things to say at {PLACE}.</outcome>
+            <outcomes>
+              <li>[winter] The gift goes into the stores and {X_nameDef} goes to the warmest seat by the fire. The talk runs late, and {X_nameDef} leaves in the morning with good things to say at {PLACE}.</li>
+              <li>[trait:Kind] {A_nameDef} sees to {X_nameDef}'s place at the table personally, and to {X_possessive} second helping. {X_nameDef} leaves in the morning with good things to say at {PLACE}.</li>
+            </outcomes>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>rawfood</what><count>20</count></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Gift" />
+              <li Class="ColonyCouncil.DilemmaEffect_EventGoodwill"><amount>8</amount></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Remember"><settle>true</settle><kind>welcomed</kind><about>x</about></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Joy"><target>Colony</target><amount>0.08</amount></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_Mem_DebtRepaid</thought></li>
+            </effects>
+            <ways><openness>1</openness><generosity>1</generosity></ways>
+          </li>
+          <li>
+            <label>Tell them they owe nothing</label>
+            <outcome>{A_nameDef} tells {X_nameDef} that the colony only did what anyone should have, and sends the gift home. {X_nameDef} looks at {A_objective} for a long moment, then promises that {FACTION} will hear exactly that.</outcome>
+            <outcomes>
+              <li>[colony:Generous] {A_nameDef} tells {X_nameDef} the colony doesn't keep accounts with its neighbors. {X_nameDef} takes the gift home, along with a story {FACTION} will tell for years.</li>
+            </outcomes>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_EventGoodwill"><amount>15</amount></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Remember"><settle>true</settle><kind>forgave</kind><about>none</about></li>
+            </effects>
+            <ways><generosity>3</generosity></ways>
+          </li>
+          <li>
+            <label>Ask for something the colony needs instead (a good talker)</label>
+            <outcome>{B_nameDef} sat down with {X_nameDef} over the gift and talked it into something better suited to the colony. {X_nameDef} took it in good part, and even seemed to enjoy the haggling.</outcome>
+            <riskChance>0.3</riskChance>
+            <riskSkill>Social</riskSkill>
+            <riskReplaces>true</riskReplaces>
+            <riskOutcome>{B_nameDef} pushed too hard. {X_nameDef} left the gift as it was, called the debt settled in a few cold words, and set off for {PLACE} early.</riskOutcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Needs"><target>Colony</target><skill>Social</skill><minLevel>6</minLevel><asB>true</asB></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Gift"><factor>1.4</factor><fancy>true</fancy></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Remember"><settle>true</settle></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Learn"><target>B</target><skill>Social</skill><xp>300</xp></li>
+            </effects>
+            <riskEffects>
+              <li Class="ColonyCouncil.DilemmaEffect_Gift" />
+              <li Class="ColonyCouncil.DilemmaEffect_Remember"><settle>true</settle></li>
+              <li Class="ColonyCouncil.DilemmaEffect_EventGoodwill"><amount>-4</amount></li>
+            </riskEffects>
+            <ways><generosity>-1</generosity></ways>
+          </li>
+        </options>
+      </li>
+      <li Class="ColonyCouncil.RememberedEvent">
+        <want>grateful</want>
+        <minStrength>8</minStrength>
+        <minAgeDays>15</minAgeDays>
+        <value>250~450</value>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== A favor called in ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Council_Evt_FavorCalled</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>a favor called in</label>
+    <workerClass>ColonyCouncil.HappeningWorker_Remembered</workerClass>
+    <baseChance>0.7</baseChance>
+    <minRefireDays>45</minRefireDays>
+    <earliestDay>20</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Challenge</group>
+        <ages>30~65</ages>
+        <stayHours>12~20</stayHours>
+        <answerDays>1</answerDays>
+        <titles>
+          <li>A favor called in</li>
+          <li>{FACTION} ask for help</li>
+          <li>A messenger from {PLACE}</li>
+        </titles>
+        <texts>
+          <li>{X_nameDef} has come from {PLACE} with a request, and is too polite to remind anyone why the colony should listen. {A_nameDef} remembers anyway: {FACTION} {TALE}.\n\nNow {PLACE} is short after a bad season, and {FACTION} ask for {COUNT} silver, or whatever help the colony can give.</li>
+          <li>[deed:aid] When the colony called for help, {FACTION} sent their fighters and asked nothing at the time. Now {X_nameDef} has come from {PLACE} to ask something back: {COUNT} silver toward the town's walls, or whatever help the colony can give.</li>
+          <li>[deed:relief] Not long ago {FACTION} {TALE}. Now it's {PLACE} that's struggling, after a fire in their granary, and {X_nameDef} has come to ask for {COUNT} silver, or whatever help the colony can give.</li>
+          <li>[deed:taught] {FACTION} {TALE}, and asked nothing for it. Now {X_nameDef} has come from {PLACE} with a favor to ask in return: {COUNT} silver toward a new well, or whatever help the colony can give.</li>
+          <li>[winter] {X_nameDef} came up the frozen road from {PLACE} with a list. {FACTION} {TALE}, and they've come to call in the favor: {COUNT} silver to see the town through the cold, or whatever help the colony can give.</li>
+          <li>[theirHightech] A courier from {PLACE}, {X_nameDef}, has brought a formal request from {FACTION}. Their records note that they {TALE}. They now ask the colony for {COUNT} silver toward repairs after a storm, or help of another kind.</li>
+        </texts>
+        <defaultOption>3</defaultOption>
+        <options>
+          <li>
+            <label>Send {COUNT} silver</label>
+            <outcome>{X_nameDef} counts the silver twice, thanks the colony on behalf of {FACTION}, and sets off for {PLACE} before dark. The favor is returned.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.WorldEffect_Pay" />
+              <li Class="ColonyCouncil.DilemmaEffect_EventGoodwill"><amount>6</amount></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Remember"><settle>true</settle><kind>favorDone</kind><about>none</about></li>
+            </effects>
+            <ways><generosity>1</generosity></ways>
+          </li>
+          <li>
+            <label>Send medicine instead (8)</label>
+            <outcome>The colony sends medicine instead of silver. {X_nameDef} says the healers at {PLACE} will be glad of it, and that the favor is returned.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.WorldEffect_Medicine"><count>8</count></li>
+              <li Class="ColonyCouncil.DilemmaEffect_EventGoodwill"><amount>6</amount></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Remember"><settle>true</settle><kind>favorDone</kind><about>none</about></li>
+            </effects>
+            <ways><generosity>1</generosity></ways>
+          </li>
+          <li>
+            <label>Draw up plans for their rebuilding (a builder)</label>
+            <outcome>{B_nameDef} spends the evening with {X_nameDef} over a lamp, drawing walls, roofs and a better granary for {PLACE}. {X_nameDef} rolls up the plans and says {FACTION} could not have asked for more.</outcome>
+            <outcomes>
+              <li>[b:trait:TooSmart] {B_nameDef} redraws {PLACE}'s granary three times, each one better than the last, and explains all three. {X_nameDef} takes the last one home, and the favor is returned.</li>
+            </outcomes>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Needs"><target>Colony</target><skill>Construction</skill><minLevel>8</minLevel><asB>true</asB><reason>Nobody here builds well enough to draw up plans for a town.</reason></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Learn"><target>B</target><skill>Construction</skill><xp>400</xp></li>
+              <li Class="ColonyCouncil.DilemmaEffect_EventGoodwill"><amount>8</amount></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Remember"><settle>true</settle><kind>favorDone</kind><about>none</about></li>
+            </effects>
+            <ways><toil>1</toil><generosity>1</generosity></ways>
+          </li>
+          <li>
+            <label>The colony can't help this time</label>
+            <outcome>{X_nameDef} nods, says {FACTION} understand, and leaves. They won't forget that they asked.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_EventGoodwill"><amount>-4</amount></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Remember"><kind>refused</kind><about>none</about></li>
+            </effects>
+            <ways><generosity>-1</generosity></ways>
+          </li>
+        </options>
+      </li>
+      <li Class="ColonyCouncil.RememberedEvent">
+        <want>owed</want>
+        <minStrength>6</minStrength>
+        <minAgeDays>10</minAgeDays>
+        <value>150~300</value>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== Help from old friends ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Council_Evt_Relief</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>help from old friends</label>
+    <workerClass>ColonyCouncil.HappeningWorker_Remembered</workerClass>
+    <baseChance>1.2</baseChance>
+    <minRefireDays>30</minRefireDays>
+    <earliestDay>15</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Visitors</group>
+        <ages>20~55</ages>
+        <count>2~3</count>
+        <stayHours>10~16</stayHours>
+        <answerDays>0.8</answerDays>
+        <titles>
+          <li>Help from {PLACE}</li>
+          <li>{FACTION} remember</li>
+          <li>[food] Food from {PLACE}</li>
+          <li>[medicine] Medicine from {PLACE}</li>
+        </titles>
+        <texts>
+          <li>[food] A cart from {PLACE} has come up the road with {X_nameDef} of {FACTION} walking beside it. Word reached them that times are hard here. {FACTION} remember that the colony {TALE}, and they've sent {COUNT} {THING} to help.\n\n{X_nameDef} says there's no price, and won't hear of one.</li>
+          <li>[medicine,sick] {X_nameDef} of {FACTION} has ridden from {PLACE} with saddlebags full of medicine. They heard people here were sick. {FACTION} remember that the colony {TALE}, and they've sent {COUNT} {THING}, no payment wanted.</li>
+          <li>[medicine,plague] With the plague moving through the region, every healer is counting doses. {FACTION} counted theirs and found {COUNT} {THING} to spare for the colony, which once {TALE}. {X_nameDef} has brought it from {PLACE}, and won't take silver for it.</li>
+          <li>[food,famine] With the famine on, every town is counting its sacks. {FACTION} counted theirs and found some to spare for the colony, which once {TALE}. {X_nameDef} has brought it up from {PLACE}: {COUNT} {THING}.\n\n{X_nameDef} won't take silver for it.</li>
+          <li>[food,winter] The road from {PLACE} is half snowed in, and {X_nameDef} of {FACTION} came up it anyway with a sled of {COUNT} {THING}. {FACTION} remember that the colony {TALE}. They thought it might be a hard winter here too.</li>
+          <li>[food,hungry] Someone at {PLACE} heard the colony's stores were running low. {FACTION} remember that the colony {TALE}, and {X_nameDef} has come with {COUNT} {THING} on a cart. It's a gift, {X_nameDef} says, and that's the end of it.</li>
+          <li>[deed:released,named] {X_nameDef} of {FACTION} has brought {COUNT} {THING} up from {PLACE}. The colony {TALE}, and that family has waited for a chance to repay it. Times are hard here now, so this is the chance.</li>
+          <li>[deed:hardship] When {PLACE} had its hard year, the colony stood by it. Now the colony's turn has come, and {FACTION} have sent {X_nameDef} with {COUNT} {THING}.</li>
+        </texts>
+        <defaultOption>0</defaultOption>
+        <options>
+          <li>
+            <label>Accept it with thanks</label>
+            <outcome>{X_nameDef} and the carters unload the {THING} by the gate, share a drink, and head home to {PLACE}. {FACTION} have repaid an old kindness, and now the colony owes them one.</outcome>
+            <outcomes>
+              <li>[winter] The {THING} is carried in out of the snow, and {X_nameDef}'s people warm their hands for an hour before turning back to {PLACE}. Now the colony owes {FACTION} one.</li>
+              <li>[trait:Greedy] {A_nameDef} counts the {THING} twice before saying thank you. {X_nameDef} pretends not to notice, and heads home to {PLACE}.</li>
+            </outcomes>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Goods" />
+              <li Class="ColonyCouncil.DilemmaEffect_Remember"><settle>true</settle><kind>relief</kind><about>thing</about></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_Mem_ReliefCame</thought></li>
+            </effects>
+            <ways><openness>1</openness></ways>
+          </li>
+          <li>
+            <label>Accept it, and send them home with silver (60)</label>
+            <outcome>The colony takes the {THING} and presses a purse into {X_nameDef}'s hands for the road. {X_nameDef} protests, then gives in.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>silver</what><count>60</count></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Goods" />
+              <li Class="ColonyCouncil.DilemmaEffect_EventGoodwill"><amount>4</amount></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Remember"><settle>true</settle><kind>relief</kind><about>thing</about><weight>6</weight></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_Mem_ReliefCame</thought></li>
+            </effects>
+            <ways><generosity>1</generosity></ways>
+          </li>
+          <li>
+            <label>Feed their carters before the road home (a cook, 15 raw food)</label>
+            <outcome>{B_nameDef} cooks for the carters from {PLACE}, and they eat like people who've been on the road since dawn. They leave the {THING}, and a good word for the colony.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Needs"><target>Colony</target><skill>Cooking</skill><minLevel>4</minLevel><asB>true</asB></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>rawfood</what><count>15</count></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Goods" />
+              <li Class="ColonyCouncil.DilemmaEffect_EventGoodwill"><amount>6</amount></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Remember"><settle>true</settle><kind>relief</kind><about>thing</about></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Learn"><target>B</target><skill>Cooking</skill><xp>200</xp></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_Mem_ReliefCame</thought></li>
+            </effects>
+            <ways><openness>1</openness><generosity>1</generosity></ways>
+          </li>
+          <li>
+            <label>Thank them, and ask them to give it to someone worse off</label>
+            <outcome>{X_nameDef} looks surprised, then pleased. The cart turns back down the road toward people who need it more, and {FACTION} will hear what the colony said.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_EventGoodwill"><amount>6</amount></li>
+            </effects>
+            <ways><generosity>2</generosity><tradition>1</tradition></ways>
+          </li>
+        </options>
+      </li>
+      <li Class="ColonyCouncil.RememberedEvent">
+        <want>relief</want>
+        <minStrength>8</minStrength>
+        <minAgeDays>5</minAgeDays>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== An old enemy offers peace ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Council_Evt_OldEnemyPeace</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>an old enemy offers peace</label>
+    <workerClass>ColonyCouncil.HappeningWorker_Remembered</workerClass>
+    <baseChance>0.7</baseChance>
+    <minRefireDays>90</minRefireDays>
+    <earliestDay>60</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Visitors</group>
+        <ages>45~75</ages>
+        <answerDays>1.5</answerDays>
+        <titles>
+          <li>{FACTION} want peace</li>
+          <li>An old enemy at the gate</li>
+          <li>[tribal] A pipe from {FACTION}</li>
+          <li>[medieval] A white flag from {FACTION}</li>
+        </titles>
+        <texts>
+          <li>{X_nameDef}, an old envoy of {FACTION}, waits outside the colony with empty hands held where the guards can see them. The feud between them has gone quiet a long while, {X_nameDef} says, and nobody at home can say any more what it was for.\n\n{FACTION} offer peace, and ask nothing for it.</li>
+          <li>[ourwrong] {X_nameDef} of {FACTION} has come alone to the edge of the colony's land. {FACTION} have not forgotten that the colony {TALE}, {X_nameDef} says, and they don't ask the colony to forget what they did either. But the young ones who swore the feud are graying now.\n\n{FACTION} offer peace, and ask nothing for it.</li>
+          <li>[theirwrong] {X_nameDef}, an envoy of {FACTION}, waits at the edge of the colony's land. {FACTION} know what they did: they {TALE}. They don't ask the colony to forget it. They are asking for an end to it.\n\n{FACTION} offer peace, freely.</li>
+          <li>[killedours] {X_nameDef} of {FACTION} waits outside the colony under a white cloth. {X_nameDef} knows the name {DEAD}; among {FACTION}, everyone does. It has been a long time, and {FACTION} want the feud to end with this generation.\n\n{FACTION} offer peace. {A_nameDef} thinks the colony could ask for more than words.</li>
+          <li>[tribal] A pipe-bearer of {FACTION}, {X_nameDef}, has sat down in the grass beyond the fields with a carved pipe across {X_possessive} knees. The pipe is unlit. There has been no blood between {FACTION} and the colony for a long time now, and {FACTION} would like to light it together.\n\nThey ask nothing for peace.</li>
+          <li>[theirHightech] A negotiator of {FACTION}, {X_nameDef}, has walked up to the colony's perimeter unarmed. {FACTION} have new leaders since the last fighting, and the new leaders want the old hostilities closed.\n\nThey offer peace, without conditions.</li>
+        </texts>
+        <defaultOption>3</defaultOption>
+        <options>
+          <li>
+            <label>Make peace</label>
+            <outcome>{X_nameDef} and {A_nameDef} clasp hands at the edge of the fields. By nightfall word has gone back to {FACTION}: the feud is over.</outcome>
+            <outcomes>
+              <li>[tribal] The pipe is lit and passed between {X_nameDef} and {A_nameDef} until it goes out. By nightfall word has gone back to {FACTION}: the feud is over.</li>
+              <li>[trait:Bloodlust] {A_nameDef} takes {X_nameDef}'s hand as if it might bite. The peace is made all the same, and word goes back to {FACTION} by nightfall.</li>
+            </outcomes>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_MakePeace"><goodwill>5</goodwill></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Remember"><settle>true</settle><kind>madePeace</kind><about>none</about></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_Mem_PeaceAfterYears</thought><exceptTrait><li>Bloodlust</li></exceptTrait></li>
+            </effects>
+            <ways><mercy>2</mercy><openness>1</openness></ways>
+          </li>
+          <li>
+            <label>Make peace, and ask weregild for the colony's dead (a good talker)</label>
+            <outcome>{B_nameDef} names {DEAD} and the price, and doesn't look away. After a long silence {X_nameDef} agrees. The silver comes with the peace: {COUNT}.</outcome>
+            <riskChance>0.35</riskChance>
+            <riskSkill>Social</riskSkill>
+            <riskReplaces>true</riskReplaces>
+            <riskOutcome>{X_nameDef} says {FACTION} will not pay a blood-price for a feud both sides fed. The envoy goes home, and the feud goes on.</riskOutcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Needs"><target>Colony</target><skill>Social</skill><minLevel>6</minLevel><asB>true</asB></li>
+              <li Class="ColonyCouncil.DilemmaEffect_MakePeace"><goodwill>5</goodwill></li>
+              <li Class="ColonyCouncil.WorldEffect_Silver" />
+              <li Class="ColonyCouncil.DilemmaEffect_Remember"><settle>true</settle><kind>madePeace</kind><about>none</about></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_Mem_PeaceAfterYears</thought><exceptTrait><li>Bloodlust</li></exceptTrait></li>
+            </effects>
+            <ways><tradition>1</tradition></ways>
+          </li>
+          <li>
+            <label>Make peace over a meal (25 raw food)</label>
+            <outcome>The colony carries a meal out to where {X_nameDef} waits, and {A_nameDef} sits down to eat with {X_objective}. Old enemies share bread, carefully at first. {X_nameDef} goes home with the peace and a full belly.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>rawfood</what><count>25</count></li>
+              <li Class="ColonyCouncil.DilemmaEffect_MakePeace"><goodwill>15</goodwill></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Remember"><settle>true</settle><kind>madePeace</kind><about>none</about><weight>12</weight></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_Mem_PeaceAfterYears</thought><exceptTrait><li>Bloodlust</li></exceptTrait></li>
+            </effects>
+            <ways><openness>2</openness><mercy>1</mercy></ways>
+          </li>
+          <li>
+            <label>Send the envoy away</label>
+            <outcome>{X_nameDef} waits until dusk for a different answer, then walks back the way {X_pronoun} came. The feud goes on.</outcome>
+            <ways><openness>-1</openness></ways>
+          </li>
+        </options>
+      </li>
+      <li Class="ColonyCouncil.RememberedEvent">
+        <want>oldEnemy</want>
+        <minStrength>3</minStrength>
+        <quietDays>90</quietDays>
+        <waits>true</waits>
+        <value>200~400</value>
+        <needsDead><li>1</li></needsDead>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== A quarrel between neighbors ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Council_Evt_Quarrel</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>a quarrel between neighbors</label>
+    <workerClass>ColonyCouncil.HappeningWorker_Remembered</workerClass>
+    <baseChance>0.7</baseChance>
+    <minRefireDays>60</minRefireDays>
+    <earliestDay>30</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Challenge</group>
+        <ages>40~75</ages>
+        <stayHours>14~20</stayHours>
+        <minColonists>2</minColonists>
+        <answerDays>1</answerDays>
+        <titles>
+          <li>A quarrel between neighbors</li>
+          <li>{FACTION} and {ENEMY}</li>
+          <li>Asked to judge</li>
+        </titles>
+        <texts>
+          <li>{X_nameDef}, an elder of {FACTION}, and an envoy of {ENEMY} have come to the colony together, which shows how far things have gone. The two peoples are quarreling over {TALE}, and neither will take the other's word for anything.\n\n{FACTION} trust the colony, {X_nameDef} says, and {ENEMY} have agreed to accept its judgment.</li>
+          <li>[grateful] {FACTION} haven't forgotten the colony's help, so it's the colony they've come to now. {X_nameDef} of {FACTION} and a sour-faced envoy of {ENEMY} stand at the gate. The quarrel is over {TALE}.\n\nThey ask the colony to judge between them.</li>
+          <li>[theirLowtech] Two elders, one of {FACTION} and one of {ENEMY}, have walked to the colony together without a word to each other the whole way. Their peoples have quarreled over {TALE} since the last moon.\n\nThey've agreed on one thing: the colony should judge.</li>
+          <li>[theirHightech] {X_nameDef}, an administrator of {FACTION}, has arrived with a counterpart from {ENEMY} and two folders of documents about {TALE}. Neither side accepts the other's papers. Both have agreed to accept the colony's word.\n\nThey ask the colony to arbitrate.</li>
+          <li>[colony:Merciful|colony:Open] Word of the colony's fair dealing has spread. {X_nameDef} of {FACTION} has come with an envoy of {ENEMY}, and a quarrel over {TALE} that has gone on long enough. They want the colony to settle it.</li>
+        </texts>
+        <defaultOption>3</defaultOption>
+        <options>
+          <li>
+            <label>Side with {FACTION}</label>
+            <outcome>The colony finds for {FACTION}. {X_nameDef} thanks {A_nameDef} warmly. The envoy of {ENEMY} leaves without a word, and {ENEMY} will remember it.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>8</amount></li>
+              <li Class="ColonyCouncil.WorldEffect_Goodwill"><who>Enemy</who><amount>-8</amount></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Remember"><kind>sidedWith</kind><about>other</about></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Remember"><kind>tookSides</kind><enemy>true</enemy><about>other</about></li>
+            </effects>
+            <ways><tradition>1</tradition></ways>
+          </li>
+          <li>
+            <label>Side with {ENEMY}</label>
+            <outcome>The colony finds for {ENEMY}. Their envoy can hardly believe it. {X_nameDef} goes home to {PLACE} stiff and silent, and {FACTION} will remember who they trusted.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.WorldEffect_Goodwill"><who>Enemy</who><amount>8</amount></li>
+              <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>-8</amount></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Remember"><kind>sidedWith</kind><enemy>true</enemy><about>other</about></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Remember"><kind>tookSides</kind><about>other</about></li>
+            </effects>
+            <ways><openness>1</openness></ways>
+          </li>
+          <li>
+            <label>Hear both sides and judge fairly (a good talker)</label>
+            <outcome>{B_nameDef} hears both sides out until the lamp burns low, asks the same questions twice, and splits it down the middle. Both envoys grumble, and both shake on it.</outcome>
+            <outcomes>
+              <li>[b:trait:Kind] {B_nameDef} lets each envoy talk until there's nothing left to say, then asks each of them what the other wants. By morning they've worked most of it out themselves, and both thank {B_nameDef} for it.</li>
+              <li>[b:office:Speaker] {B_nameDef}, the colony's speaker, runs it like a council meeting: each side in turn, no interrupting, a vote at the end. The envoys find this so strange that they agree to the judgment.</li>
+            </outcomes>
+            <riskChance>0.4</riskChance>
+            <riskSkill>Social</riskSkill>
+            <riskReplaces>true</riskReplaces>
+            <riskOutcome>{B_nameDef} hears them out and gives a judgment. Neither side likes it, and both go home saying the colony favored the other.</riskOutcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Needs"><target>Colony</target><skill>Social</skill><minLevel>6</minLevel><asB>true</asB></li>
+              <li Class="ColonyCouncil.WorldEffect_Goodwill"><who>Both</who><amount>6</amount></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Remember"><kind>mediated</kind><about>other</about></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Remember"><kind>mediated</kind><enemy>true</enemy><about>other</about></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Learn"><target>B</target><skill>Social</skill><xp>400</xp></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_Mem_JudgedFairly</thought></li>
+            </effects>
+            <riskEffects>
+              <li Class="ColonyCouncil.WorldEffect_Goodwill"><who>Both</who><amount>-3</amount></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Learn"><target>B</target><skill>Social</skill><xp>200</xp></li>
+            </riskEffects>
+            <ways><mercy>1</mercy><openness>1</openness></ways>
+          </li>
+          <li>
+            <label>It's not the colony's quarrel</label>
+            <outcome>The colony says it won't judge. The envoys walk home separately, and the quarrel goes on without it.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>-2</amount></li>
+            </effects>
+            <ways><openness>-1</openness></ways>
+          </li>
+        </options>
+      </li>
+      <li Class="ColonyCouncil.RememberedEvent">
+        <want>quarrel</want>
+        <minStrength>6</minStrength>
+        <matters>
+          <li>a spring both towns water their herds at</li>
+          <li>a boundary stone that moved in the night</li>
+          <li>who may cut timber in the old wood between them</li>
+          <li>a herd of goats that wandered across the line and never came back</li>
+          <li>a debt from a bad harvest, three years old</li>
+          <li>a promise of marriage between two families that one of them broke</li>
+          <li>a hunting ground both claim from their grandfathers' time</li>
+          <li>[river] fishing rights on the river</li>
+          <li>[winter] a stand of firewood both of them claim</li>
+          <li>[industrial|spacer] a road one of them wants to build through the other's fields</li>
+          <li>[hills] grazing on the hills between them</li>
+        </matters>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+</Defs>

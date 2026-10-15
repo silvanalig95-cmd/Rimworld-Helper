@@ -19,6 +19,20 @@ namespace ColonyCouncil
         /// <summary>Earning this one is a mixed blessing (the Kindling): no pride, just a name.</summary>
         public bool dubious;
         [MustTranslate] public string earned;
+        /// <summary>
+        /// Records that must still be at nothing (the Unshaken: never a mental break). Someone who gets one loses the
+        /// name, and can't earn it again.
+        /// </summary>
+        public List<RecordDef> requireNone;
+
+        /// <summary>Whether this colonist can hold the name at all (the record conditions aside from the count).</summary>
+        public bool Allows(Pawn p)
+        {
+            if (requireNone.NullOrEmpty()) return true;
+            foreach (var r in requireNone)
+                if (r != null && p.records.GetValue(r) > 0f) return false;
+            return true;
+        }
     }
 
     public class EpithetTracker : IExposable
@@ -54,7 +68,15 @@ namespace ColonyCouncil
                     holders.Remove(def.defName);
                     holder = null;
                 }
-                var best = pawns.OrderByDescending(p => p.records.GetValue(def.record)).FirstOrDefault();
+                // A name that depends on never doing something (never breaking) is lost the day they do.
+                if (holder != null && holder.records != null && !def.Allows(holder))
+                {
+                    holders.Remove(def.defName);
+                    if (!quiet) News.Post("CC_Epithet_NoLonger".Translate(holder.Named("PAWN"), def.label.Named("TITLE")).Resolve(), new LookTargets(holder),
+                        NewsKind.People, MessageTypeDefOf.NeutralEvent, Importance.Flavor);
+                    holder = null;
+                }
+                var best = pawns.Where(def.Allows).OrderByDescending(p => p.records.GetValue(def.record)).FirstOrDefault();
                 if (best == null || best == holder) continue;
                 float value = best.records.GetValue(def.record);
                 if (value < def.threshold) continue;

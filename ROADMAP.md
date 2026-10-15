@@ -206,8 +206,16 @@ play deep. In order:
   or message, a party, games, a rest day or a quiet hour, journal lines and talk, and grows into a tradition when kept
   three years running. Ideology's rites are suggested where they fit; older saves are filled in from the chronicle.
   Next: more kinds of day (a first child born, the day the walls went up, a caravan's return), and lines per biome.
-- The long view of the world: factions that remember the colony over years (debts, favors, grudges), envoys and
-  missions that follow from it, more mission kinds (an apprentice, a dignitary, refugees to see through).
+- Done (October 2026): the long view of the world. Every people remembers the colony over the years (prisoners set
+  free, wounded guests tended, gifts, fair trades, quests and missions, camps helped or driven off, help in a hard
+  year, traders robbed, towns attacked, their dead; and their own deeds: fighters sent, relief, raids, colonists
+  killed), mostly read from the game's own goodwill reasons; memories fade over years, the big ones slowest, a dozen
+  per people. Five events follow from it (an old debt repaid, a favor called in, relief from old friends in a hard
+  time, an old enemy's peace after years, a quarrel to settle), raid letters name the old wrong, the World page shows
+  what each people remembers, and four mission kinds come from the peoples that think best of the colony (an
+  invitation to their feast or a wedding, an apprenticeship at their town, a dignitary to host, refugees to see
+  through), bringing missions from 5 kinds to 9. Next: memory in more of the existing events' texts, a people's
+  memory of single colonists (the one who set them free), and Empire titles and Ideology rites in the invitations.
 - Health and recovery stories: ailments, convalescence (after illness, operations, long bed rest and lost limbs, with
   sickbed visits and setbacks), a doctor's reputation and a midwife's (done, October 2026). Next: dreams for
   convalescents and healers, a hospital's own reputation, more after-effects.
@@ -230,17 +238,17 @@ the content itself, not only to systems, alongside whatever else it does. Where 
 
 | Content | Count | Grow toward |
 |---|---|---|
-| Rimfolk events, story stages and missions | 161 | more everyday events per group, more chains, more mission kinds |
+| Rimfolk events, story stages and missions | 170 (9 mission kinds, 5 → 9) | more everyday events per group, more chains, more mission kinds |
 | Wishes | 107 | more seasonal and biome wishes, more for the always-on mods (Alpha mods, Vanilla Expanded furniture) |
 | Council projects (ambitions) | 54 (3 in stages) | more staged and season-long projects, more for tribal and spacer colonies |
 | Life goals | 63 | goals for teenagers, more for faith and the heart, goals that change with age |
-| Dilemmas | 126 | more for children, elders and the camps; dilemmas for each new system as it lands |
+| Dilemmas | 132 | more for children, elders and the camps; dilemmas for each new system as it lands |
 | Encounters | 156 | more lands (lakes, rivers), more mods' creatures, peoples and biomes, rarer night and weather moments |
 | Decrees | 19 | decrees tied to world situations, faith and mods (tithes, curfews, alms) |
 | Quirks | 32 | quirks that touch others (a hummer and a light sleeper), more from events and dreams |
 | Personal stories | 16 (61 stages) | stories from camps, offices and world events, more for children and elders, stories of three |
-| Dreams | 117 | dreams for more feelings, quirks, life goals and mod content |
-| World events | 32 | more regional situations, and their follow-ups |
+| Dreams | 123 | dreams for more feelings, quirks, life goals and mod content |
+| World events | 32 | more regional situations, and more follow-ups (relief from old friends and refugees to see through follow plagues, famines, floods and hard winters) |
 | Camp kinds | 11 | caravans of every kind, pilgrims of every faith |
 | Ailments | 32 everyday, 14 serious; convalescence from 4 causes, 2 healers' names | ailments for every biome and DLC, more after-effects |
 | Room types | 28 (108 layouts, 6 themes) | odd shapes beyond partitions, more spacer and mod-furniture sizes, themes for more furniture mods |
@@ -248,6 +256,17 @@ the content itself, not only to systems, alongside whatever else it does. Where 
 | Answers that play out on the map | 152 answers (61 dilemmas, 49 events and stories), 3 calendar ways, 3 decrees, 7 ambitions; 9 kinds of real effect | world events' beats, new dilemmas and events from the start, drinks at a toast |
 | Lines in the flavor pools (variety report) | about 25,200 in 3,640 pools | the pools at the top of the report |
 | Social events, moments, frictions, nuisances | 67, 127 (40 frictions), 19 | every trait pairing and home condition |
+| Secrets | 52 (2 for scenarios only), each with its own confide and graveside lines | secrets tied to world events and camps, more good ones, dilemmas for the newer ones |
+| Ways a vendetta is sworn and settled | 3 sworn (a death, a kidnapping, a bonded animal), 5 settled (blood, captives, a homecoming, laid down, laid down in peace) | a ransom paid, an apology from the faction, a vendetta passed to an heir |
+| Council offices | 9 (4 open as the colony grows) | offices for faith, the camps and the calendar's rites, a council of elders for a large colony |
+| Customs that can become traditions | 13 (6 new seasonal ones this round) | customs for each biome and faith, children's customs |
+| Rimfolk scenarios | 13 (7 gentle, 6 with stakes) | a tribe's start, a spacer crash with a secret, an orphanage |
+| Names (epithets) | 45 (4 from Rimfolk's own records) | names from the camps, the calendar and world events |
+| Advisor checks | 43 | checks for the newer systems (missions, the world page), more for tribal colonies |
+| Colony character | 5 ways (10 names), 6 things a colony grows into | traits from hospitality, faith and the calendar |
+| Pets and nemeses | 14 heroics, 32 farewells, 22 taunts and parting words, 4 endings told from pools (one new: let go from the cells) | pets in the calendar, nemeses in dreams and personal stories |
+| Feelings | 26 | feelings that touch the camps and world events, each with more dreams and moments |
+| Mood hints | 145 | hints for every new thought as it lands |
 
 ### 5. Wider (integrations)
 - Done: deeper with the always-on mods. Hospitality guests are visitors with stories (eight encounters with

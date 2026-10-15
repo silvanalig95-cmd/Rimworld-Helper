@@ -857,7 +857,7 @@ the 250-tick cycle or of the day.
 | 1311 | Colony calendar | the home map: snow, the day's first look (harvest, deaths, rest day), talk, a day coming round |
 | 1544 | Council: nemeses, pets, PokeWorld, autonomy, who is home, everyday pressures | per colony animal on home maps, per spawned colonist (a plan or a job now and then), per colonist (meals, work), per home map (crowded rooms, half-built frames) |
 | 1777 | Personal stories | per story under way; new stories in the first hour of the day |
-| 2089 | Story chains and missions | per running chain, per mission |
+| 2089 | Story chains and missions; the peoples' memory fades (first hour of the day only) | per running chain, per mission; per remembered deed |
 | 2280 | Council: encounters and nuisances, Rimfolk's own events | one roll each; event memory pruned in the first hour of the day |
 | 2471 | Ailments | the colony's serious illnesses counted (every colonist's hediffs), then per colonist: circumstances sampled, each ailment's counted causes rolled; diet and sweets on the first look of the day |
 
@@ -911,8 +911,8 @@ and pages rebuild their models every half second to second while open (UiCache, 
   moment's tie kind and need are read once.
 - *Per frame*: the inspector line (a string join), the Needs tab's extra tooltip lines (cached half a second), alert
   labels (rebuilt only when they change), the slow-time buttons (labels translated once, tooltips only on hover).
-- *Harmony patches on the game's own events* (a memory gained, a meal eaten, a death, a letter, a raid): run when the
-  event happens. None patches a tick method.
+- *Harmony patches on the game's own events* (a memory gained, a meal eaten, a death, a letter, a raid, a goodwill
+  change, a trade, a quest's end): run when the event happens. None patches a tick method.
 
 What was left alone: ailments and health stories still look at every colonist on one tick of the hour. Splitting them
 across the hour like the heart would change when a colony-wide count is taken (ailments count the colony's serious
@@ -954,6 +954,7 @@ on a map, in the world or in a caravan), so such a record is let go when the gam
 | Camps | one camp; its lists pruned of the gone at saving |
 | World situations | 2 running; 40 past |
 | Story chains, missions | chains 120 days after they end; missions 2 days |
+| Faction memory | 12 deeds per people (the settled and the faintest make way); a deed is dropped once it fades below 1, and with its people when they're gone |
 | Other mods' people | best-friend pairs of known pawns, 200 at most |
 | Advisor (per map) | 60 days of wealth samples |
 

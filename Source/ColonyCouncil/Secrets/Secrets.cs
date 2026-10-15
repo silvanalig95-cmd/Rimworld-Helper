@@ -39,6 +39,16 @@ namespace ColonyCouncil
         public ThoughtDef ownerThought;
         /// <summary>Only ever given by a scenario (the take someone skimmed, a mutiny someone joined), never at random.</summary>
         public bool scenario;
+        /// <summary>
+        /// The news when they confide it, hinting at it without telling it ({A_...} the owner, {B_...} the friend).
+        /// Optional: without it the news only says something was confided.
+        /// </summary>
+        [MustTranslate] public string confide;
+        /// <summary>
+        /// How the one who knew tells it after the owner's death, before the truth itself ({TELLER_...}, {PAWN_...} the dead).
+        /// Optional: without it the teller simply says they kept it while the owner lived.
+        /// </summary>
+        [MustTranslate] public string grave;
 
         public bool Fits(Pawn p, out bool backstoryMatch)
         {
@@ -228,12 +238,16 @@ namespace ColonyCouncil
             using var _cause = Causes.Push("CC_Cause_Confided".Translate(s.owner?.LabelShort ?? "?", friend?.LabelShort ?? "?").Resolve());
             var owner = s.owner;
             s.knowers.Add(friend);
+            CouncilRecords.Add(friend, CouncilRecords.SecretsKept);
             comp.social.Bump(owner, friend, TieKind.Friends, 6f, "CC_TieNote_Confided".Translate());
             CouncilGameComponent.GiveThought(owner, CouncilDefOf.Council_Secret_Unburdened);
             CouncilGameComponent.GiveThought(friend, CouncilDefOf.Council_Secret_Trusted, owner);
             comp.journals.Write(owner, "Council_Journal_Confided", null, friend.Named("OTHER"));
             comp.journals.Write(friend, "Council_Journal_Confidant", null, owner.Named("OTHER"));
-            News.Post("CC_Secret_Confided".Translate(owner.Named("A"), friend.Named("B")).Resolve(), new LookTargets(owner, friend), NewsKind.People, MessageTypeDefOf.SilentInput, Importance.Flavor);
+            string news = s.def.confide.NullOrEmpty()
+                ? "CC_Secret_Confided".Translate(owner.Named("A"), friend.Named("B")).Resolve()
+                : s.def.confide.Formatted(owner.Named("A"), friend.Named("B")).Resolve();
+            News.Post(news, new LookTargets(owner, friend), NewsKind.People, MessageTypeDefOf.SilentInput, Importance.Flavor);
         }
 
         /// <summary>It comes out. <paramref name="leaker"/> is the owner when they confess it themselves.</summary>
@@ -292,7 +306,10 @@ namespace ColonyCouncil
                 comp.AddChronicle(new ChronicleEntry(ChronicleKind.Secret, "CC_Secret_ToTheGrave".Translate(s.owner.Named("PAWN")).Resolve(), null));
                 return;
             }
-            string text = "CC_Secret_Posthumous".Translate(teller.Named("TELLER"), s.owner.Named("PAWN")).Resolve() + " " + s.Truth;
+            string intro = s.def.grave.NullOrEmpty()
+                ? "CC_Secret_Posthumous".Translate(teller.Named("TELLER"), s.owner.Named("PAWN")).Resolve()
+                : s.def.grave.Formatted(teller.Named("TELLER"), s.owner.Named("PAWN")).Resolve();
+            string text = intro + " " + s.Truth;
             Notify.Message(text, teller, MessageTypeDefOf.NeutralEvent, Importance.Notable);
             comp.AddChronicle(new ChronicleEntry(ChronicleKind.Secret, text, teller));
             comp.journals.Write(teller, "Council_Journal_SecretKept", null, s.owner.Named("OTHER"));

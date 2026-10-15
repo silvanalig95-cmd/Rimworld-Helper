@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- Pride in what the colony has become known for (Defs/Misc/Council_ColonyTraits.xml), for those who love that work. -->
+
+  <ThoughtDef>
+    <defName>Council_ColonyTraitPride</defName>
+    <workerClass>ColonyCouncil.ThoughtWorker_ColonyTrait</workerClass>
+    <thoughtClass>ColonyCouncil.Thought_ColonyTrait</thoughtClass>
+    <validWhileDespawned>true</validWhileDespawned>
+    <stages>
+      <li><label>known for what we do</label><description>The colony is known for the work I love best, and I had a hand in that.</description><baseMoodEffect>2</baseMoodEffect></li>
+    </stages>
+  </ThoughtDef>
+
+</Defs>

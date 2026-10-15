@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    More ways for the events that follow from what the peoples remember (Council_Events_Remembered.xml) to read,
+    merged in at startup (LetterVariantsDef). Lines keep the tags their worker sets: the deed ([deed:...]), its side
+    ([grateful], [owed], [ourwrong], [theirwrong]), [named], [longago], [killedours], and for relief [food] or
+    [medicine] and why ([famine], [plague], [winter], [flood], [hungry], [sick]).
+  -->
+
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Council_Var_Evt_OldDebt</defName>
+    <incident>Council_Evt_OldDebt</incident>
+    <titles>
+      <li>[deed:released] Thanks from {PLACE}</li>
+      <li>[deed:tended] A debt from the road</li>
+    </titles>
+    <texts>
+      <li>[deed:gift] {FACTION} still talk about the gift the colony sent them. {X_nameDef} has come from {PLACE} to answer it with one of their own, worth about {COUNT} silver, and says it would be rude to refuse.</li>
+      <li>[deed:campHelped] The people who once camped on the colony's land are home at {PLACE} again, and they remember the help they had here. {X_nameDef} of {FACTION} has brought their thanks: a gift worth about {COUNT} silver.</li>
+      <li>[deed:dignitary] {X_nameDef} of {FACTION} has come from {PLACE} with a gift worth about {COUNT} silver. The colony {TALE}, and that guest has spoken well of the colony ever since. This is their way of saying so.</li>
+      <li>[deed:refugees] Some of the homeless the colony fed and sheltered are home again, and {FACTION} have sent {X_nameDef} from {PLACE} with their thanks: a gift worth about {COUNT} silver.</li>
+      <li>[deed:quest|deed:mission] {X_nameDef} of {FACTION} has come from {PLACE} with a gift worth about {COUNT} silver. The colony {TALE}, and {FACTION} think the reward they paid at the time didn't cover it.</li>
+      <li>[winter] {X_nameDef} of {FACTION} came through the snow from {PLACE} to settle an old debt before the year turns. The colony {TALE}. The gift is worth about {COUNT} silver.</li>
+      <li>[colony:Generous] {FACTION} know the colony gives without counting. They count anyway. The colony {TALE}, and {X_nameDef} has come from {PLACE} with a gift worth about {COUNT} silver to even things up.</li>
+    </texts>
+    <outcomes>
+      <li>
+        <option>0</option>
+        <lines>
+          <li>[deed:released,named] {X_nameDef} leaves the gift at the gate, and a message from the family: they light a lamp for the colony on feast days now.</li>
+          <li>[colony:Thrifty] The gift goes into the stores within the hour, counted and shelved. {X_nameDef} declares the debt settled and heads home.</li>
+        </lines>
+      </li>
+      <li>
+        <option>2</option>
+        <lines>
+          <li>[trait:Greedy] {A_nameDef} sends the gift home, and grumbles about it all evening. {X_nameDef} carries the colony's words back to {PLACE} all the same.</li>
+          <li>[theirLowtech] {X_nameDef} touches {X_possessive} forehead to the gate post before leaving, which among {FACTION} is a thing done for kin.</li>
+        </lines>
+      </li>
+      <li>
+        <option>3</option>
+        <lines>
+          <li>[b:trait:Greedy] {B_nameDef} haggles like it's market day. {X_nameDef}, to everyone's surprise, enjoys it, and the colony ends up with better goods than it was offered.</li>
+        </lines>
+        <riskLines>
+          <li>[b:trait:Abrasive] {B_nameDef} tells {X_nameDef} exactly what the gift is worth, in front of everyone. {X_nameDef} leaves it at the gate and goes without a word of thanks.</li>
+        </riskLines>
+      </li>
+    </outcomes>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Council_Var_Evt_FavorCalled</defName>
+    <incident>Council_Evt_FavorCalled</incident>
+    <titles>
+      <li>[deed:aid] The fighters' due</li>
+    </titles>
+    <texts>
+      <li>[deed:aid,theirLowtech] {X_nameDef} of {FACTION} stood at the gate and listed the names of the warriors who answered the colony's call. Then {X_nameDef} asked for something back: {COUNT} silver for their families before winter, or whatever help the colony can give.</li>
+      <li>[deed:relief,food] {FACTION} {TALE}, and their own stores never quite recovered. {X_nameDef} has come from {PLACE} to ask for {COUNT} silver to buy seed, or whatever help the colony can give.</li>
+      <li>[colony:Generous] {FACTION} know the colony has an open hand, and they remember that they {TALE}. {X_nameDef} has come from {PLACE} to ask for {COUNT} silver, or whatever help the colony can give, toward a roof that came down in a storm.</li>
+      <li>[spring] The thaw flooded half the fields at {PLACE}. {FACTION} {TALE}, and {X_nameDef} has come to call in the favor: {COUNT} silver to replant, or whatever help the colony can give.</li>
+    </texts>
+    <outcomes>
+      <li>
+        <option>0</option>
+        <lines>
+          <li>[colony:Thrifty] The silver is counted out to the last coin, with a receipt. {X_nameDef} thanks the colony, and the favor is returned.</li>
+        </lines>
+      </li>
+      <li>
+        <option>3</option>
+        <lines>
+          <li>[trait:Kind] {A_nameDef} hates saying no, and says so. {X_nameDef} goes back to {PLACE} empty-handed, but kindly treated.</li>
+        </lines>
+      </li>
+    </outcomes>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Council_Var_Evt_Relief</defName>
+    <incident>Council_Evt_Relief</incident>
+    <titles>
+      <li>[winter] A sled from {PLACE}</li>
+    </titles>
+    <texts>
+      <li>[food,theirLowtech] {X_nameDef} of {FACTION} has led a string of pack animals up from {PLACE}, loaded with {THING}. {FACTION} heard times were hard here, and they remember that the colony {TALE}.\n\nThere are {COUNT} {THING} on the animals, and {X_nameDef} wants nothing for them.</li>
+      <li>[food,theirHightech] A small caravan from {PLACE} pulled up at the colony this morning with {COUNT} {THING} and {X_nameDef} of {FACTION} in charge of it. {FACTION} remember that the colony {TALE}, and heard things are hard here now.\n\n{X_nameDef} says it's a gift, not a sale.</li>
+      <li>[medicine,deed:tended] {X_nameDef} of {FACTION} has come from {PLACE} with {COUNT} {THING}. The colony {TALE}, and {FACTION} heard that people here are sick now. They'd like to return the kindness in the same coin.</li>
+      <li>[deed:dignitary] {FACTION} remember how well the colony hosted their own. Now that times are hard here, {X_nameDef} has come from {PLACE} with {COUNT} {THING}, as a host's gift in return.</li>
+      <li>[deed:refugees] The colony once fed {FACTION}'s homeless when they had nowhere else to go. {FACTION} heard that times are hard here now, and {X_nameDef} has come from {PLACE} with {COUNT} {THING}.</li>
+      <li>[flood] The flood downriver has made everything dear, and {FACTION} heard the colony is feeling it. They remember that the colony {TALE}. {X_nameDef} has come from {PLACE} with {COUNT} {THING}, and no bill.</li>
+    </texts>
+    <outcomes>
+      <li>
+        <option>0</option>
+        <lines>
+          <li>[medicine] The {THING} goes straight to the colony's sickbeds. {X_nameDef} looks in on the sick before leaving for {PLACE}, and says they'll pull through.</li>
+          <li>[colony:Guarded] The colony takes the {THING} at the gate and thanks {X_nameDef} there. {X_nameDef} doesn't seem to mind, and heads home to {PLACE}.</li>
+        </lines>
+      </li>
+      <li>
+        <option>3</option>
+        <lines>
+          <li>[colony:Merciful] {A_nameDef} tells {X_nameDef} that someone down the road needs it more, and names them. {X_nameDef} turns the cart around without arguing.</li>
+        </lines>
+      </li>
+    </outcomes>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Council_Var_Evt_OldEnemyPeace</defName>
+    <incident>Council_Evt_OldEnemyPeace</incident>
+    <titles>
+      <li>[killedours] The price of {DEAD}</li>
+    </titles>
+    <texts>
+      <li>[deed:fell] {X_nameDef} of {FACTION} waits at the edge of the colony's land. {FACTION} lost people on that land, years ago: the colony {TALE}. {X_nameDef} lost a brother among them, and is the one asking for peace.\n\n{FACTION} offer it freely.</li>
+      <li>[deed:raided] It's been a long time since {FACTION} last raided the colony. {X_nameDef}, an envoy of theirs, waits outside the fields with empty hands. {FACTION} have new worries now, and no wish to keep an old enemy.\n\nThey offer peace, and ask nothing for it.</li>
+      <li>[medieval] A herald of {FACTION}, {X_nameDef}, waits on the road below the colony under a white flag. The feud is old, {X_nameDef} says, older than the lord who started it, who is dead now. {FACTION} offer peace, and ask nothing for it.</li>
+      <li>[winter] {X_nameDef} of {FACTION} has come through the snow to the colony's edge to ask for peace. The feud has been quiet for years, {X_nameDef} says, and {FACTION} would rather not spend another winter watching the road for the colony.</li>
+    </texts>
+    <outcomes>
+      <li>
+        <option>0</option>
+        <lines>
+          <li>[killedours] {A_nameDef} takes {X_nameDef}'s hand and says {DEAD}'s name aloud. {X_nameDef} repeats it. Word goes back to {FACTION} by nightfall: the feud is over.</li>
+          <li>[colony:Merciful] {A_nameDef} meets {X_nameDef} halfway across the field, and they talk for an hour before shaking on it. By nightfall, word has gone back to {FACTION}: the feud is over.</li>
+        </lines>
+      </li>
+      <li>
+        <option>3</option>
+        <lines>
+          <li>[killedours] {A_nameDef} tells {X_nameDef} that {DEAD} isn't forgotten, and that's the end of the talk. {X_nameDef} walks home. The feud goes on.</li>
+          <li>[colony:Harsh] The colony's answer is shouted from behind the gate, and it isn't polite. {X_nameDef} goes home. The feud goes on.</li>
+        </lines>
+      </li>
+    </outcomes>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Council_Var_Evt_Quarrel</defName>
+    <incident>Council_Evt_Quarrel</incident>
+    <texts>
+      <li>[winter] Snowed in at the colony, two envoys, one of {FACTION} and one of {ENEMY}, have spent the morning not speaking across the same fire. Their peoples are quarreling over {TALE}. {X_nameDef} of {FACTION} finally asks the colony to settle it, so they can both go home.</li>
+      <li>[deed:mediated] The colony settled a quarrel for {FACTION} once before, and they've come back with another. {X_nameDef} and an envoy of {ENEMY} are at the gate; this time it's {TALE}.</li>
+      <li>[trait:Kind] {X_nameDef} of {FACTION} asked for {A_nameDef} by name: word has it {A_nameDef} is fair. An envoy of {ENEMY} came too. The two peoples are quarreling over {TALE}, and want the colony to judge.</li>
+    </texts>
+    <outcomes>
+      <li>
+        <option>0</option>
+        <lines>
+          <li>[colony:Traditional] The colony stands by its old friends. {X_nameDef} goes home pleased, and the envoy of {ENEMY} goes home knowing exactly where the colony stands.</li>
+        </lines>
+      </li>
+      <li>
+        <option>3</option>
+        <lines>
+          <li>[colony:Guarded] The colony keeps out of its neighbors' business, and says so. Both envoys leave before dark, by different roads.</li>
+        </lines>
+      </li>
+    </outcomes>
+  </ColonyCouncil.LetterVariantsDef>
+
+</Defs>

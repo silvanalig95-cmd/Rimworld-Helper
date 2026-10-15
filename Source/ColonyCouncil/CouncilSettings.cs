@@ -111,6 +111,8 @@ namespace ColonyCouncil
         /// <summary>World events: rare, region-wide situations that last a while (a plague, a warlord, a succession).</summary>
         public bool worldSituations = true;
         public float daysBetweenWorldSituations = 45f;
+        /// <summary>The world's peoples remember what the colony did for them and against them, and act on it (World/FactionMemory.cs).</summary>
+        public bool factionMemory = true;
         /// <summary>How hard the fights a Rimfolk scenario promises hit (share of their usual strength).</summary>
         public float scenarioThreat = 1f;
         /// <summary>How often the smaller things happen: 1 = as designed, 0.25 = rarely, 3 = often.</summary>
@@ -193,6 +195,9 @@ namespace ColonyCouncil
         /// <summary>The council window's page when it was last closed, and the Almanac page, to open there again next time.</summary>
         public string lastCouncilPage = "";
         public string lastAlmanacPage = "";
+        /// <summary>How large the Almanac's pages are written (its "Aa" buttons), and whether its lists are folded away.</summary>
+        public AlmanacTextSize almanacTextSize = AlmanacTextSize.Normal;
+        public bool almanacFolded = false;
 
         public override void ExposeData()
         {
@@ -253,6 +258,7 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref storytellerEventWeight, "storytellerEventWeight", 1f);
             Scribe_Values.Look(ref worldSituations, "worldSituations", true);
             Scribe_Values.Look(ref daysBetweenWorldSituations, "daysBetweenWorldSituations", 45f);
+            Scribe_Values.Look(ref factionMemory, "factionMemory", true);
             Scribe_Values.Look(ref scenarioThreat, "scenarioThreat", 1f);
             Scribe_Values.Look(ref encounterFrequency, "encounterFrequency", 1f);
             Scribe_Values.Look(ref momentFrequency, "momentFrequency", 1f);
@@ -313,6 +319,8 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref roomsButton, "roomsButton", true);
             Scribe_Values.Look(ref lastCouncilPage, "lastCouncilPage", "");
             Scribe_Values.Look(ref lastAlmanacPage, "lastAlmanacPage", "");
+            Scribe_Values.Look(ref almanacTextSize, "almanacTextSize", AlmanacTextSize.Normal);
+            Scribe_Values.Look(ref almanacFolded, "almanacFolded", false);
         }
 
         /// <summary>Saves the settings file right away (used by the planner's checkboxes).</summary>

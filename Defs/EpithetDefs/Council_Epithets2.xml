@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    More names the colony gives people (same rules as Council_Epithets.xml). Some count time rather than deeds
+    (records in ticks: a year is 3,600,000), and requireNone names records that must still be at nothing: the
+    Unshaken has never broken, and loses the name the day they do. Council_* records are Rimfolk's own
+    (Defs/Misc/Council_Records.xml).
+  -->
+
+  <ColonyCouncil.EpithetDef>
+    <defName>Council_Epithet_Sower</defName>
+    <label>the Sower</label>
+    <record>PlantsSown</record>
+    <threshold>400</threshold>
+    <earned>Every spring it's {PAWN_nameDef} out in the fields first, a seed bag on {PAWN_possessive} hip. More of what grows here went into the ground by {PAWN_possessive} hand than anyone's, and the colony calls {PAWN_objective} the Sower.</earned>
+  </ColonyCouncil.EpithetDef>
+
+  <ColonyCouncil.EpithetDef>
+    <defName>Council_Epithet_Tinker</defName>
+    <label>Tinker</label>
+    <record>ThingsRepaired</record>
+    <threshold>60</threshold>
+    <earned>Anything that breaks around here ends up in front of {PAWN_nameDef} sooner or later, and usually works again by supper. People have started calling {PAWN_objective} Tinker.</earned>
+  </ColonyCouncil.EpithetDef>
+
+  <ColonyCouncil.EpithetDef>
+    <defName>Council_Epithet_Wrecker</defName>
+    <label>the Wrecker</label>
+    <record>ThingsDeconstructed</record>
+    <threshold>150</threshold>
+    <dubious>true</dubious>
+    <earned>{PAWN_nameDef} has taken apart more of the colony than anyone else ever built. It was all on purpose, {PAWN_pronoun} insists. The colony calls {PAWN_objective} the Wrecker anyway.</earned>
+  </ColonyCouncil.EpithetDef>
+
+  <ColonyCouncil.EpithetDef>
+    <defName>Council_Epithet_Warden</defName>
+    <label>the Warden</label>
+    <record>PrisonersChatted</record>
+    <threshold>50</threshold>
+    <earned>{PAWN_nameDef} has spent more hours talking through cell doors than anyone, and knows every prisoner's name and story. The colony calls {PAWN_objective} the Warden.</earned>
+  </ColonyCouncil.EpithetDef>
+
+  <ColonyCouncil.EpithetDef>
+    <defName>Council_Epithet_Patchwork</defName>
+    <label>Patchwork</label>
+    <record>OperationsReceived</record>
+    <threshold>4</threshold>
+    <dubious>true</dubious>
+    <earned>{PAWN_nameDef} has been on the operating table more often than anyone here, and has the stitches to show for it. People call {PAWN_objective} Patchwork, fondly, mostly.</earned>
+  </ColonyCouncil.EpithetDef>
+
+  <ColonyCouncil.EpithetDef>
+    <defName>Council_Epithet_Bottomless</defName>
+    <label>the Bottomless</label>
+    <record>NutritionEaten</record>
+    <threshold>150</threshold>
+    <dubious>true</dubious>
+    <earned>The cooks have done the sums, and nobody in the colony has eaten more than {PAWN_nameDef}. {PAWN_nameDef} says it's a compliment to the kitchen. The colony calls {PAWN_objective} the Bottomless.</earned>
+  </ColonyCouncil.EpithetDef>
+
+  <ColonyCouncil.EpithetDef>
+    <defName>Council_Epithet_OldHand</defName>
+    <label>the Old Hand</label>
+    <record>TimeAsColonistOrColonyAnimal</record>
+    <threshold>7200000</threshold>
+    <earned>{PAWN_nameDef} has been here longer than anyone, and remembers when the walls were a line scratched in the dirt. The newcomers call {PAWN_objective} the Old Hand, and ask {PAWN_objective} where things are.</earned>
+  </ColonyCouncil.EpithetDef>
+
+  <ColonyCouncil.EpithetDef>
+    <defName>Council_Epithet_Unshaken</defName>
+    <label>the Unshaken</label>
+    <record>TimeAsColonistOrColonyAnimal</record>
+    <threshold>3600000</threshold>
+    <requireNone><li>TimesInMentalState</li></requireNone>
+    <earned>Raids, losses, hunger and long winters, and in all of it {PAWN_nameDef} has never once come apart. No one here has gone longer without breaking. The colony calls {PAWN_objective} the Unshaken.</earned>
+  </ColonyCouncil.EpithetDef>
+
+  <ColonyCouncil.EpithetDef>
+    <defName>Council_Epithet_Lucky</defName>
+    <label>Lucky</label>
+    <record>TimeAsColonistOrColonyAnimal</record>
+    <threshold>3600000</threshold>
+    <requireNone><li>DamageTaken</li></requireNone>
+    <earned>A whole year here and {PAWN_nameDef} hasn't taken so much as a scratch: not from raiders, not from animals, not from a falling plank. Nobody else can say that. People touch {PAWN_possessive} sleeve for luck now and call {PAWN_objective} Lucky.</earned>
+  </ColonyCouncil.EpithetDef>
+
+  <ColonyCouncil.EpithetDef>
+    <defName>Council_Epithet_Homegrown</defName>
+    <label>Homegrown</label>
+    <record>TimeAsChildInColony</record>
+    <threshold>3600000</threshold>
+    <earned>{PAWN_nameDef} has spent more of {PAWN_possessive} childhood here than anyone, and has never really known anywhere else. The colony calls {PAWN_objective} Homegrown, and means it warmly.</earned>
+  </ColonyCouncil.EpithetDef>
+
+  <ColonyCouncil.EpithetDef>
+    <defName>Council_Epithet_Jailbird</defName>
+    <label>Jailbird</label>
+    <record>TimeAsPrisoner</record>
+    <threshold>600000</threshold>
+    <dubious>true</dubious>
+    <earned>Of everyone who has ever slept in the colony's cells and stayed on, {PAWN_nameDef} slept there longest. People call {PAWN_objective} Jailbird, and {PAWN_nameDef} has decided to find it funny.</earned>
+  </ColonyCouncil.EpithetDef>
+
+  <ColonyCouncil.EpithetDef>
+    <defName>Council_Epithet_Mender</defName>
+    <label>the Mender</label>
+    <record>Council_QuarrelsMended</record>
+    <threshold>6</threshold>
+    <earned>Whenever a quarrel gets left to fester, it's {PAWN_nameDef} who ends up patching it, with a joke or a cup of something or a hand on a shoulder. The colony calls {PAWN_objective} the Mender.</earned>
+  </ColonyCouncil.EpithetDef>
+
+  <ColonyCouncil.EpithetDef>
+    <defName>Council_Epithet_Haggler</defName>
+    <label>the Haggler</label>
+    <record>Council_TradesMade</record>
+    <threshold>10</threshold>
+    <earned>No one here has struck more deals with the traders than {PAWN_nameDef}, and the traders have started to sigh when {PAWN_pronoun} walks up. The colony calls {PAWN_objective} the Haggler.</earned>
+  </ColonyCouncil.EpithetDef>
+
+  <ColonyCouncil.EpithetDef>
+    <defName>Council_Epithet_Vault</defName>
+    <label>the Vault</label>
+    <record>Council_SecretsKept</record>
+    <threshold>2</threshold>
+    <earned>Somehow everyone knows that {PAWN_nameDef} is the one to tell things to, and that nothing told to {PAWN_objective} ever gets out. The colony calls {PAWN_objective} the Vault.</earned>
+  </ColonyCouncil.EpithetDef>
+
+  <ColonyCouncil.EpithetDef>
+    <defName>Council_Epithet_Mourner</defName>
+    <label>the Mourner</label>
+    <record>Council_EulogiesGiven</record>
+    <threshold>3</threshold>
+    <earned>{PAWN_nameDef} has spoken at more of the colony's graves than anyone. When someone is lost, people look to {PAWN_objective} for the words now, and they call {PAWN_objective} the Mourner.</earned>
+  </ColonyCouncil.EpithetDef>
+
+</Defs>
