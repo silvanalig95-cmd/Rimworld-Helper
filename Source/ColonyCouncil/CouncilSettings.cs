@@ -128,6 +128,10 @@ namespace ColonyCouncil
         public bool seriousIllnesses = true;
         /// <summary>How often ailments come: 0.25 to 2.</summary>
         public float ailmentFrequency = 1f;
+        /// <summary>Convalescence after serious illness, operations, long bed rest and lost limbs; sickbed visits (Health/).</summary>
+        public bool convalescence = true;
+        /// <summary>Doctors' and midwives' reputations: names, the colony's trust, the weight of losses (Health/).</summary>
+        public bool healerReputations = true;
         /// <summary>On-screen buttons for half and quarter speed, and where they sit (fractions of the screen; -1 = default).</summary>
         public bool slowButtons = true;
         public bool moodInsight = true;
@@ -254,6 +258,8 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref ailments, "ailments", true);
             Scribe_Values.Look(ref seriousIllnesses, "seriousIllnesses", true);
             Scribe_Values.Look(ref ailmentFrequency, "ailmentFrequency", 1f);
+            Scribe_Values.Look(ref convalescence, "convalescence", true);
+            Scribe_Values.Look(ref healerReputations, "healerReputations", true);
             Scribe_Values.Look(ref slowButtons, "slowButtons", true);
             Scribe_Values.Look(ref moodInsight, "moodInsight", true);
             Scribe_Values.Look(ref deepHooks, "deepHooks", true);
@@ -507,6 +513,8 @@ namespace ColonyCouncil
                     "CC_Settings_AilmentFrequency_Tip".Translate());
                 ailmentFrequency = Mathf.Clamp(Mathf.Round(ailmentFrequency * 20f) / 20f, 0.25f, 2f);
             }
+            l.CheckboxLabeled("CC_Settings_Convalescence".Translate(), ref convalescence, "CC_Settings_Convalescence_Tip".Translate());
+            l.CheckboxLabeled("CC_Settings_HealerReputations".Translate(), ref healerReputations, "CC_Settings_HealerReputations_Tip".Translate());
 
             Header(l, "CC_Settings_Strangers".Translate());
             l.CheckboxLabeled("CC_Settings_Encounters".Translate(), ref strangers, "CC_Settings_Encounters_Tip".Translate());
@@ -623,7 +631,7 @@ namespace ColonyCouncil
         {
             socialWeb = socialEvents = secrets = vendettas = aspirations = quirks = heirlooms = comingOfAge = dreams = dreamOmens = eulogies = heart = on;
             strangers = nemeses = nemesisReturns = petMoments = colonistMoments = frictions = autonomy = worldReactions = worldEvents = worldSituations = on;
-            ailments = on;
+            ailments = convalescence = healerReputations = on;
             enableDilemmas = decreeRequests = offices = colonyCharacter = councilOn;
             enableWishes = enableAmbitions = councilOn || on;
             journals = epithets = anniversaries = annals = on || councilOn;
@@ -716,6 +724,8 @@ namespace ColonyCouncil
             ailments = d.ailments;
             seriousIllnesses = d.seriousIllnesses;
             ailmentFrequency = d.ailmentFrequency;
+            convalescence = d.convalescence;
+            healerReputations = d.healerReputations;
             moodInsight = d.moodInsight;
             deepHooks = d.deepHooks;
             needsTabHints = d.needsTabHints;

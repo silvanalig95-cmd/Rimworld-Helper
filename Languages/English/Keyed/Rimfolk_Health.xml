@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!-- Convalescence, sickbed visits, doctors and midwives (Source/ColonyCouncil/Health/). -->
+
+  <!-- Settings (the ailments header on the People page) -->
+  <CC_Settings_Convalescence>Convalescence and sickbed visits</CC_Settings_Convalescence>
+  <CC_Settings_Convalescence_Tip>After a dangerous illness, a major operation, four days or more laid up in bed, or losing a limb, a colonist is weak for a few days to two weeks: a little slower at work and on their feet, less in bed. They're glad to be alive, or, if they're industrious or a hard worker, weak and frustrated. Friends who sit by the bed lift both their moods. Working while still weak can set the recovery back a couple of days, never more than that. Turned off, none of this starts (the weakness some of Rimfolk's illnesses leave behind stays with the ailments).</CC_Settings_Convalescence_Tip>
+  <CC_Settings_HealerReputations>Doctors' and midwives' reputations</CC_Settings_HealerReputations>
+  <CC_Settings_HealerReputations_Tip>Each doctor's patients pulled through (dangerous illnesses and infections, major operations) and lost, and each midwife's births (Biotech), counted in their records and shown on their Story tab. A doctor trusted by the colony puts patients in bed at ease, and others write about them in their journals; a run of losses weighs on the doctor. Names (Goodhands, the Midwife), two life goals and a few dilemmas come from it. Turned off, nothing is counted.</CC_Settings_HealerReputations_Tip>
+
+  <!-- Convalescence -->
+  <CC_Health_Cause_Bed>days laid up in bed.</CC_Health_Cause_Bed>
+  <CC_Health_Cause_Limb>losing a limb and living.</CC_Health_Cause_Limb>
+  <CC_Health_Cause_Surgery>coming through an operation.</CC_Health_Cause_Surgery>
+  <CC_Health_Cause_Illness>pulling through a dangerous illness.</CC_Health_Cause_Illness>
+  <CC_Health_Convalescing_Bed>{PAWN_nameDef} is up after days in bed, and still weak.</CC_Health_Convalescing_Bed>
+  <CC_Health_Convalescing_Limb>{PAWN_nameDef} lost a limb and will be weak for a while.</CC_Health_Convalescing_Limb>
+  <CC_Health_Convalescing_Surgery>{PAWN_nameDef} came through the operation and is convalescing.</CC_Health_Convalescing_Surgery>
+  <CC_Health_Convalescing_Illness>{PAWN_nameDef} pulled through and is getting {PAWN_possessive} strength back.</CC_Health_Convalescing_Illness>
+  <CC_Health_Setback>{PAWN_nameDef} went back to {WORK} too soon and had to stop. The recovery will take a couple of days longer.</CC_Health_Setback>
+  <CC_TieNote_SickVisit>sat by the sickbed</CC_TieNote_SickVisit>
+
+  <!-- Doctors and midwives -->
+  <CC_Health_DoctorTrusted>{PAWN_nameDef} has pulled {COUNT} patients through. The colony has come to trust {PAWN_objective} as a doctor, and patients rest easier under {PAWN_possessive} care.</CC_Health_DoctorTrusted>
+  <CC_Health_DoctorRenowned>{PAWN_nameDef} has pulled {COUNT} patients through and lost few. Nobody here would choose another doctor.</CC_Health_DoctorRenowned>
+  <CC_Health_Chronicle_Renowned>{PAWN_nameDef} became the doctor the whole colony trusted, with {COUNT} patients pulled through.</CC_Health_Chronicle_Renowned>
+  <CC_Health_Midwife>{PAWN_nameDef} has delivered {COUNT} of the colony's babies. Expecting mothers ask for {PAWN_objective} now.</CC_Health_Midwife>
+
+  <!-- Story tab -->
+  <CC_Health_Story_Doctor>As a doctor: {SAVED} pulled through ({SURGERIES} of them by operation), {LOST} lost.</CC_Health_Story_Doctor>
+  <CC_Health_Story_Trusted>The colony trusts {PAWN_objective} as a doctor.</CC_Health_Story_Trusted>
+  <CC_Health_Story_Renowned>The doctor everyone here would choose.</CC_Health_Story_Renowned>
+  <CC_Health_Story_Midwife>Babies delivered: {COUNT}.</CC_Health_Story_Midwife>
+  <CC_Health_Story_Convalescing>Convalescing: about {DAYS} days to full strength, {BEDDAYS} with rest in bed.</CC_Health_Story_Convalescing>
+
+  <!-- The sickbed visit wish -->
+  <CC_Reason_SickbedVisit>{PAWN_nameDef} is laid up and hasn't seen {OTHER_nameDef} for days.</CC_Reason_SickbedVisit>
+  <CC_Promise_SickbedVisit>{OTHER_nameDef} puts down what {OTHER_pronoun} was doing and goes to sit with {FOR_nameDef}.</CC_Promise_SickbedVisit>
+
+</LanguageData>

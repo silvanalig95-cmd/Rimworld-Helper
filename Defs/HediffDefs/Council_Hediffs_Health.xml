@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Health stories (Source/ColonyCouncil/Health/). Convalescence itself is the ailments' Council_Ail_Convalescent
+    (Council_Hediffs_Ailments.xml), which every source shares. This one is a dilemma's answer: a doctor given a day away
+    after losing a patient (Defs/DilemmaDefs/Council_Dilemmas_Health.xml).
+  -->
+
+  <HediffDef>
+    <defName>Council_DlmH_DayAway</defName>
+    <label>a day away</label>
+    <description>The council gave them a day to themselves after losing a patient. They still come when they're needed, but the routine work can wait.</description>
+    <hediffClass>HediffWithComps</hediffClass>
+    <defaultLabelColor>(0.6, 0.8, 0.95)</defaultLabelColor>
+    <isBad>false</isBad>
+    <everCurableByItem>false</everCurableByItem>
+    <comps>
+      <li Class="HediffCompProperties_Disappears">
+        <disappearsAfterTicks>50000~70000</disappearsAfterTicks>
+        <showRemainingTime>true</showRemainingTime>
+      </li>
+    </comps>
+    <stages>
+      <li>
+        <statOffsets>
+          <WorkSpeedGlobal>-0.3</WorkSpeedGlobal>
+          <MentalBreakThreshold>-0.04</MentalBreakThreshold>
+        </statOffsets>
+      </li>
+    </stages>
+  </HediffDef>
+
+</Defs>

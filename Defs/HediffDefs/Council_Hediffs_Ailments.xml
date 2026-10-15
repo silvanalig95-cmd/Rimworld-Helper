@@ -1502,7 +1502,7 @@
   <HediffDef ParentName="Council_AilmentBase">
     <defName>Council_Ail_Convalescent</defName>
     <label>convalescing</label>
-    <description>Weak and tired after an illness, while the body rebuilds its strength. Work is slower for a while. Rest, good food and time are all it needs, and time in bed shortens it.</description>
+    <description>Weak and tired after an illness, an operation, a long time in bed or a lost limb, while the body rebuilds its strength. Work and walking are a little slower for a while. Rest, good food and time are all it needs, and time in bed shortens it. Back at work while still weak, it can set itself back a couple of days; a visit from a friend makes the bed easier to bear.</description>
     <comps>
       <li Class="ColonyCouncil.HediffCompProperties_Ailment">
         <key>Convalescent</key>

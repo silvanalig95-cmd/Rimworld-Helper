@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    A doctor's and a midwife's records (Source/ColonyCouncil/Health/HealthTracker.cs), counted only while doctors'
+    reputations are on. They show in the game's own Records tab, and names (Council_Epithets_Health.xml) and life goals
+    (Council_Aspirations_Health.xml) are built on them. Births only happen with Biotech.
+  -->
+
+  <RecordDef>
+    <defName>Council_PatientsPulledThrough</defName>
+    <label>patients pulled through</label>
+    <description>Patients this colonist pulled through a dangerous illness or infection, or a major operation done well.</description>
+    <type>Int</type>
+    <displayOrder>1610</displayOrder>
+  </RecordDef>
+
+  <RecordDef>
+    <defName>Council_BirthsAttended</defName>
+    <label>babies delivered</label>
+    <description>Births this colonist attended as the doctor, where the baby was born alive.</description>
+    <type>Int</type>
+    <displayOrder>1611</displayOrder>
+  </RecordDef>
+
+</Defs>

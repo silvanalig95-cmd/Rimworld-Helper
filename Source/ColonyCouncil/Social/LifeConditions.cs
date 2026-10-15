@@ -75,6 +75,12 @@ namespace ColonyCouncil
             return false;
         }
 
+        /// <summary>
+        /// Getting their strength back (Rimfolk's "convalescing", after an illness, an operation, a long time in bed or a
+        /// lost limb), and how far along: the severity, 0 when they're not.
+        /// </summary>
+        public static float Convalescing(Pawn p) => HealthTracker.ConvalescenceOf(p)?.Severity ?? 0f;
+
         /// <summary>A memory of one of these thoughts (names or "Prefix*"), at most <paramref name="days"/> old, or null.</summary>
         public static Thought_Memory Remembered(Pawn p, List<string> thoughts, float days)
         {

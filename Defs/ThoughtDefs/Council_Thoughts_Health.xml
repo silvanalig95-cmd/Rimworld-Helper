@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Moods of convalescence, sickbed visits, doctors and midwives (Source/ColonyCouncil/Health/). All small. The good
+    ones are Rimfolk memories, so they share the budget of good moods and fade sooner in good times; glad to be alive
+    also fades by itself over its days (lerpMoodToZero). Losses feed the heart's grief and shame, a run of them more so.
+    The dilemma moods are at the end (Defs/DilemmaDefs/Council_Dilemmas_Health.xml).
+  -->
+
+  <!-- ===================== Convalescence ===================== -->
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_Health_GladToBeAlive</defName>
+    <durationDays>6</durationDays>
+    <lerpMoodToZero>true</lerpMoodToZero>
+    <modExtensions>
+      <li Class="ColonyCouncil.HeartTags"><feelings><li>Hope</li></feelings><weight>0.5</weight></li>
+    </modExtensions>
+    <stages><li><label>glad to be alive</label><description>It could have gone the other way. Food tastes better, and the sky looks bigger than I remembered.</description><baseMoodEffect>4</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_AilmentThoughtBase">
+    <defName>Council_Health_WeakFrustrated</defName>
+    <workerClass>ColonyCouncil.ThoughtWorker_ConvalescentFrustrated</workerClass>
+    <hediff>Council_Ail_Convalescent</hediff>
+    <stages>
+      <li><label>weak and restless</label><description>I'm well enough to be bored and not well enough to do anything about it.</description><baseMoodEffect>-2</baseMoodEffect></li>
+      <li><label>weak and frustrated</label><description>My legs give out halfway across the yard. The work is piling up, and I'm sitting here watching it.</description><baseMoodEffect>-3</baseMoodEffect></li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Council_Health_SatWithFriend</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilSocial</thoughtClass>
+    <durationDays>1.5</durationDays>
+    <stackLimit>2</stackLimit>
+    <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
+    <stages><li><label>sat with a friend in bed</label><description>I sat with them while they were laid up. We talked about nothing much, and the time went quickly.</description><baseMoodEffect>2</baseMoodEffect><baseOpinionOffset>3</baseOpinionOffset></li></stages>
+  </ThoughtDef>
+
+  <!-- ===================== Doctors ===================== -->
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_Health_InGoodHands</defName>
+    <durationDays>1</durationDays>
+    <modExtensions>
+      <li Class="ColonyCouncil.HeartTags"><feelings><li>Gratitude</li></feelings><weight>0.4</weight></li>
+    </modExtensions>
+    <stages><li><label>in good hands</label><description>Of everyone here, that's the doctor I'd have picked. I can stop worrying and sleep.</description><baseMoodEffect>2</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_Health_LostPatient</defName>
+    <durationDays>5</durationDays>
+    <modExtensions>
+      <li Class="ColonyCouncil.HeartTags"><feelings><li>Grief</li><li>Shame</li></feelings><weight>0.6</weight></li>
+    </modExtensions>
+    <stages><li><label>lost a patient</label><description>Someone died in my care. I keep going over every step of it.</description><baseMoodEffect>-3</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_Health_LostRun</defName>
+    <durationDays>8</durationDays>
+    <modExtensions>
+      <li Class="ColonyCouncil.HeartTags"><feelings><li>Grief</li><li>Shame</li></feelings></li>
+    </modExtensions>
+    <stages><li><label>lost too many</label><description>Another one dead under my hands, and the last one barely buried. Maybe someone else should be doing this.</description><baseMoodEffect>-6</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <!-- ===================== Midwives ===================== -->
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_Health_DeliveredBaby</defName>
+    <durationDays>4</durationDays>
+    <modExtensions>
+      <li Class="ColonyCouncil.HeartTags"><feelings><li>Joy</li></feelings><weight>0.5</weight></li>
+    </modExtensions>
+    <stages><li><label>delivered a baby</label><description>I brought a child into the world today. Small, loud and perfectly fine.</description><baseMoodEffect>4</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Council_Health_MyMidwife</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilSocial</thoughtClass>
+    <durationDays>30</durationDays>
+    <stackLimit>3</stackLimit>
+    <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
+    <stages><li><label>delivered my child</label><description>They were there when my child was born, and they knew what to do when I didn't.</description><baseMoodEffect>0</baseMoodEffect><baseOpinionOffset>12</baseOpinionOffset></li></stages>
+  </ThoughtDef>
+
+  <!-- ===================== A wish and moments ===================== -->
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_Granted_SickbedVisit</defName>
+    <durationDays>3</durationDays>
+    <stages><li><label>my friend came</label><description>I asked to see them, and they came and sat by the bed. The day went faster after that.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_Moment2Base">
+    <defName>Council_Moment_SlowWalk</defName>
+    <stages><li><label>a slow walk</label><description>They walked with me at my pace while I'm still weak, and didn't once hurry me.</description><baseMoodEffect>2</baseMoodEffect><baseOpinionOffset>4</baseOpinionOffset></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_Moment2Base">
+    <defName>Council_Moment_ToldToRest</defName>
+    <stages><li><label>told to sit down</label><description>They took the load out of my hands and sent me to sit down. Annoying, and probably right.</description><baseMoodEffect>1</baseMoodEffect><baseOpinionOffset>2</baseOpinionOffset></li></stages>
+  </ThoughtDef>
+
+  <!-- ===================== Dilemmas: a day away ===================== -->
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_DlmH_GivenTheDay</defName>
+    <durationDays>3</durationDays>
+    <stages><li><label>a day away</label><description>They let me walk away from it for a day. I went out past the fields and sat until dark.</description><baseMoodEffect>4</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_DlmH_NoTimeToGrieve</defName>
+    <durationDays>4</durationDays>
+    <modExtensions>
+      <li Class="ColonyCouncil.HeartTags"><feelings><li>Grief</li></feelings><weight>0.5</weight></li>
+    </modExtensions>
+    <stages><li><label>no time to grieve</label><description>Someone died under my hands, and I was back at the bench the next morning because the colony needs a doctor.</description><baseMoodEffect>-3</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Council_DlmH_KeptCompany</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilSocial</thoughtClass>
+    <durationDays>6</durationDays>
+    <stackLimit>2</stackLimit>
+    <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
+    <stages><li><label>kept me company</label><description>They stayed with me the whole day after I lost my patient, and didn't make me talk about it.</description><baseMoodEffect>3</baseMoodEffect><baseOpinionOffset>8</baseOpinionOffset></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_DlmH_LookedAfterDoctor</defName>
+    <durationDays>2</durationDays>
+    <stages><li><label>looked after our doctor</label><description>Our doctor needed someone for a change. I spent the day with them, mostly not talking.</description><baseMoodEffect>2</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <!-- ===================== Dilemmas: back too soon ===================== -->
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_DlmH_UsefulAgain</defName>
+    <durationDays>3</durationDays>
+    <stages><li><label>useful again</label><description>I'm back at work, slowly. It's good to be useful.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_DlmH_Overdid</defName>
+    <durationDays>3</durationDays>
+    <modExtensions>
+      <li Class="ColonyCouncil.HeartTags"><feelings><li>Frustration</li></feelings><weight>0.5</weight></li>
+    </modExtensions>
+    <stages><li><label>overdid it</label><description>I went back too soon and paid for it. My legs gave out before noon.</description><baseMoodEffect>-2</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_DlmH_KeptInBed</defName>
+    <durationDays>3</durationDays>
+    <stages><li><label>kept in bed</label><description>The council says I stay in bed. I've counted the knots in the ceiling twice.</description><baseMoodEffect>-2</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_DlmH_KeptInBedFuming</defName>
+    <durationDays>3</durationDays>
+    <modExtensions>
+      <li Class="ColonyCouncil.HeartTags"><feelings><li>Frustration</li></feelings></li>
+    </modExtensions>
+    <stages><li><label>ordered to bed</label><description>I can walk. I can lift a bucket. And they've ordered me to lie here while the work goes undone.</description><baseMoodEffect>-4</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_DlmH_WorkFromBed</defName>
+    <durationDays>3</durationDays>
+    <stages><li><label>work from my bed</label><description>They brought me something to do in bed. It isn't much, but my hands are busy.</description><baseMoodEffect>2</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <!-- ===================== Dilemmas: a say in the operation ===================== -->
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_DlmH_GetItOver</defName>
+    <durationDays>2</durationDays>
+    <stages><li><label>getting it over with</label><description>The operation goes ahead as planned. Better that than lying here thinking about it.</description><baseMoodEffect>2</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_DlmH_NotHeard</defName>
+    <durationDays>4</durationDays>
+    <stages><li><label>they didn't listen</label><description>I asked them to wait with the operation until we'd talked it through. They went ahead anyway.</description><baseMoodEffect>-3</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_DlmH_Heard</defName>
+    <durationDays>3</durationDays>
+    <stages><li><label>the council listened</label><description>They put off the operation so we could talk it through first. I'm glad they listened.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_DlmH_WaitingForTheKnife</defName>
+    <durationDays>2</durationDays>
+    <stages><li><label>waiting for the knife</label><description>They've put off my operation. Now I get to think about it for a few more days.</description><baseMoodEffect>-1</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Council_DlmH_FamilyBeside</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilSocial</thoughtClass>
+    <durationDays>5</durationDays>
+    <stackLimit>2</stackLimit>
+    <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
+    <stages><li><label>family beside me</label><description>They'll be with me before the operation and when I wake up. That helps more than I expected.</description><baseMoodEffect>3</baseMoodEffect><baseOpinionOffset>6</baseOpinionOffset></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_DlmH_AllowedBeside</defName>
+    <durationDays>3</durationDays>
+    <stages><li><label>allowed to be there</label><description>I can be with them when they go under the knife. I'd rather be there than pacing outside.</description><baseMoodEffect>2</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <!-- ===================== Dilemmas: the midwife's apprentice ===================== -->
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_DlmH_PassingItOn</defName>
+    <durationDays>4</durationDays>
+    <stages><li><label>passing it on</label><description>Someone else will know how to bring a baby into the world when I can't. That matters to me.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_DlmH_Apprenticed</defName>
+    <durationDays>4</durationDays>
+    <stages><li><label>learning midwifery</label><description>I'm to learn how babies are brought into the world. I hope my hands are steady enough.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_DlmH_NotYet</defName>
+    <durationDays>2</durationDays>
+    <stages><li><label>not chosen</label><description>I asked to learn midwifery and was told not yet.</description><baseMoodEffect>-2</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_DlmH_WatchedBirth</defName>
+    <durationDays>2</durationDays>
+    <stages><li><label>allowed to watch</label><description>I'll be at the next birth, watching and fetching water. It's a start.</description><baseMoodEffect>2</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+</Defs>
