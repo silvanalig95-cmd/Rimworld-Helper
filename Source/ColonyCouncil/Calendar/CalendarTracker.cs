@@ -586,9 +586,11 @@ namespace ColonyCouncil
                 bool nemesis = id.StartsWith("nemesis|");
                 if (nemesis && !same.id.StartsWith("nemesis|"))
                 {
+                    // The day takes the nemesis's name, unless the player has named it themselves.
+                    bool ownName = same.byPlayer || (!same.label.NullOrEmpty() && same.label != DefaultLabel(same));
                     same.id = id;
                     same.enemy = enemy;
-                    if (!same.byPlayer) same.label = null;
+                    if (!ownName) same.label = null;
                 }
                 same.weight = Mathf.Max(same.weight, weight);
                 same.kills = Mathf.Max(same.kills, kills);

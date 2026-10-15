@@ -27,11 +27,18 @@ namespace ColonyCouncil
 
         private static readonly Dictionary<int, (int tick, HashSet<string> lands)> cache = new Dictionary<int, (int, HashSet<string>)>();
         private const int CacheTicks = GenDate.TicksPerDay;
+        /// <summary>The game the cache belongs to: map ids start over in every game.</summary>
+        private static Game cacheGame;
 
         /// <summary>The lands of a map, as bare words ("desert", "coast"). Never null.</summary>
         public static HashSet<string> Of(Map map)
         {
             if (map == null) return new HashSet<string>();
+            if (cacheGame != Current.Game)
+            {
+                cache.Clear();
+                cacheGame = Current.Game;
+            }
             int now = Find.TickManager?.TicksGame ?? 0;
             if (cache.TryGetValue(map.uniqueID, out var c) && now >= c.tick && now - c.tick < CacheTicks) return c.lands;
             if (cache.Count > 30) cache.Clear();
