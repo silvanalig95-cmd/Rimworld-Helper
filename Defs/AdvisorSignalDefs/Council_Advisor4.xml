@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- Gentle checks for the quieter parts of colony life (Source/ColonyCouncil/Advisor/AdvisorSignals4.cs). -->
+
+  <ColonyCouncil.AdvisorSignalDef>
+    <defName>Council_Adv_FreshFood</defName>
+    <label>fresh food</label>
+    <workerClass>ColonyCouncil.AdvisorWorker_FreshFood</workerClass>
+    <article>Council_Alm_4_25_Ailments</article>
+    <category>Food</category>
+    <importance>0.9</importance>
+    <tips>
+      <li>Fruit and vegetables count raw or cooked into meals. Survival meals, pemmican, kibble and meat alone don't.</li>
+      <li>A simple meal made with vegetables keeps scurvy away as well as a fine one does. Set the stove's ingredients to include them.</li>
+      <li>Berries from the wild count. A few days' foraging in summer can carry a colony through a stretch of preserved food.</li>
+      <li>[!lowtech] A hydroponics basin grows vegetables all winter, out of the cold and out of reach of blight.</li>
+    </tips>
+  </ColonyCouncil.AdvisorSignalDef>
+
+  <ColonyCouncil.AdvisorSignalDef>
+    <defName>Council_Adv_Lonely</defName>
+    <label>loneliness</label>
+    <workerClass>ColonyCouncil.AdvisorWorker_Lonely</workerClass>
+    <article>Council_Alm_C_Social</article>
+    <category>Comfort</category>
+    <importance>0.6</importance>
+    <tips>
+      <li>Friendships grow from shared work and shared meals. Put them on the same job as someone who likes them a little already.</li>
+      <li>A party or a calendar day brings everyone together, and the quiet ones talk more at a gathering than anywhere else.</li>
+      <li>Someone with no friend here is likelier to break, and feels left out when the others' circles close.</li>
+    </tips>
+  </ColonyCouncil.AdvisorSignalDef>
+
+  <ColonyCouncil.AdvisorSignalDef>
+    <defName>Council_Adv_Camp</defName>
+    <label>the camp</label>
+    <workerClass>ColonyCouncil.AdvisorWorker_Camp</workerClass>
+    <article>Council_Alm_C_Camps</article>
+    <category>Defense</category>
+    <importance>0.8</importance>
+    <tips>
+      <li>Tension with a camp grows as they hunt and cut wood on the colony's land, faster when they break the terms the council set.</li>
+      <li>A gift eases tension, and is remembered when they leave.</li>
+      <li>A camp that boils over turns on the colony. Settle a quarrel early, or ask them to move on before it comes to that.</li>
+    </tips>
+  </ColonyCouncil.AdvisorSignalDef>
+
+  <ColonyCouncil.AdvisorSignalDef>
+    <defName>Council_Adv_CalendarSoon</defName>
+    <label>the calendar</label>
+    <workerClass>ColonyCouncil.AdvisorWorker_CalendarSoon</workerClass>
+    <article>Council_Alm_C_Calendar</article>
+    <category>Idea</category>
+    <importance>0.5</importance>
+    <tips>
+      <li>A feast day goes best with food in store and a free evening. A day of games needs a quiet day with no raid on the map.</li>
+      <li>A day kept three years running becomes a tradition, and letting a tradition pass disappoints everyone.</li>
+      <li>Days the colony doesn't want to keep can be let pass, renamed or kept another way from the Calendar page.</li>
+    </tips>
+  </ColonyCouncil.AdvisorSignalDef>
+
+  <ColonyCouncil.AdvisorSignalDef>
+    <defName>Council_Adv_Graves</defName>
+    <label>graves</label>
+    <workerClass>ColonyCouncil.AdvisorWorker_Graves</workerClass>
+    <article>Council_Alm_2_20_CorpsesAndFilth</article>
+    <category>Comfort</category>
+    <importance>0.5</importance>
+    <tips>
+      <li>Graves inside the home area get cleaned with everything else. Outside it, nobody tends them.</li>
+      <li>A small fenced graveyard with a few flowers is somewhere to grieve, and the remembrance walk goes there each spring once it's a custom.</li>
+      <li>Graves somewhere tidy and close give the calendar's days of remembrance somewhere to go.</li>
+    </tips>
+  </ColonyCouncil.AdvisorSignalDef>
+
+  <ColonyCouncil.AdvisorSignalDef>
+    <defName>Council_Adv_Clothes</defName>
+    <label>clothes</label>
+    <workerClass>ColonyCouncil.AdvisorWorker_Clothes</workerClass>
+    <article>Council_Alm_2_15_MentalBreaks</article>
+    <category>Comfort</category>
+    <importance>0.6</importance>
+    <tips>
+      <li>Clothes under half their condition give a bad mood. A tailor's bench and some cloth or leather fixes it for good.</li>
+      <li>Clothes taken from the dead give most people a bad mood. Keep them for selling, not for wearing.</li>
+      <li>An outfit policy that only allows clothes above half condition makes colonists change out of rags by themselves.</li>
+    </tips>
+  </ColonyCouncil.AdvisorSignalDef>
+
+  <ColonyCouncil.AdvisorSignalDef>
+    <defName>Council_Adv_JoyTime</defName>
+    <label>recreation time</label>
+    <workerClass>ColonyCouncil.AdvisorWorker_NoJoyTime</workerClass>
+    <article>Council_Alm_5_02_Schedules</article>
+    <category>Comfort</category>
+    <importance>0.6</importance>
+    <tips>
+      <li>Two hours of recreation in the evening is usually enough. Colonists with no recreation hours only rest when they're desperate.</li>
+      <li>"Anything" hours count too: colonists fill them with recreation when they need it.</li>
+      <li>A hard-working colony can still keep an hour or two of recreation. It loses less to mental breaks than it gains from the extra work.</li>
+    </tips>
+  </ColonyCouncil.AdvisorSignalDef>
+
+  <ColonyCouncil.AdvisorSignalDef>
+    <defName>Council_Adv_Strain</defName>
+    <label>strain</label>
+    <workerClass>ColonyCouncil.AdvisorWorker_Strain</workerClass>
+    <article>Council_Alm_C_Heart</article>
+    <category>Health</category>
+    <importance>0.9</importance>
+    <tips>
+      <li>Strain drains with quiet days, good sleep, recreation, friends and gatherings. A rest day from the calendar or a decree helps everyone at once.</li>
+      <li>A strained colonist can still look cheerful. Their mood tab shows how close they are to breaking under the surface.</li>
+      <li>Grief, fear and dread add strain every hour they last. Ease the cause and the strain follows.</li>
+    </tips>
+  </ColonyCouncil.AdvisorSignalDef>
+
+  <ColonyCouncil.AdvisorSignalDef>
+    <defName>Council_Adv_Convalescing</defName>
+    <label>convalescence</label>
+    <workerClass>ColonyCouncil.AdvisorWorker_Convalescing</workerClass>
+    <article>Council_Alm_4_25_Ailments</article>
+    <category>Health</category>
+    <importance>0.6</importance>
+    <tips>
+      <li>Rest in bed shortens convalescence by about a third. Working while still weak can set it back.</li>
+      <li>A medical bed in a clean room keeps a convalescent resting; a visit from a friend makes it easier to bear.</li>
+      <li>Light work is better than heavy: hauling and cleaning tire them less than mining or building.</li>
+    </tips>
+  </ColonyCouncil.AdvisorSignalDef>
+
+  <ColonyCouncil.AdvisorSignalDef>
+    <defName>Council_Adv_WishLapsing</defName>
+    <label>wishes running out</label>
+    <workerClass>ColonyCouncil.AdvisorWorker_WishLapsing</workerClass>
+    <article>Council_Alm_C_Wishes</article>
+    <category>Comfort</category>
+    <importance>0.7</importance>
+    <tips>
+      <li>A promise buys a wish more time and keeps the trust it would lose, as long as the promise is kept.</li>
+      <li>Some wishes are cheap to grant and dear to ignore: a meal, a day off, a word from the council.</li>
+      <li>Letting a wish lapse on purpose is sometimes right. It costs less trust than a promise broken.</li>
+    </tips>
+  </ColonyCouncil.AdvisorSignalDef>
+
+</Defs>

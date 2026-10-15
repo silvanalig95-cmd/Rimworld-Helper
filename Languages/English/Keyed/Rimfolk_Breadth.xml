@@ -18,6 +18,33 @@
   <!-- Names: one that depends on never doing something, lost the day they do it. -->
   <CC_Epithet_NoLonger>{PAWN_nameDef} isn't {TITLE} any more.</CC_Epithet_NoLonger>
 
+  <!-- The advisor's gentler checks (Advisor/AdvisorSignals4.cs). -->
+  <CC_Adv_Fresh_Title>{0} colonist(s) without fresh food</CC_Adv_Fresh_Title>
+  <CC_Adv_Fresh_Detail>No fruit or vegetables in a week or more: {0}. Weeks of that bring scurvy. Raw vegetables, berries or meals cooked with them all count.</CC_Adv_Fresh_Detail>
+  <CC_Adv_Lonely_Title>{0} colonist(s) without a friend here</CC_Adv_Lonely_Title>
+  <CC_Adv_Lonely_Detail>Nobody here they would call a friend: {0}. Shared work, shared meals and a gathering now and then are the usual cure.</CC_Adv_Lonely_Detail>
+  <CC_Adv_CampTense_Title>Tension with the camp ({0})</CC_Adv_CampTense_Title>
+  <CC_Adv_CampTense_Detail>Feeling at the camp ({0}) is {1}. A gift, keeping to the terms or a word with their leader can ease it before it boils over.</CC_Adv_CampTense_Detail>
+  <CC_Adv_CampHungry_Title>A hungry camp ({0})</CC_Adv_CampHungry_Title>
+  <CC_Adv_CampHungry_Detail>Food is running out at the camp ({0}). A hungry camp hunts harder on the colony's land, and packs up and leaves if it runs out.</CC_Adv_CampHungry_Detail>
+  <CC_Adv_CalSoon_Title>{0} in {1} day(s)</CC_Adv_CalSoon_Title>
+  <CC_Adv_CalSoon_Detail>{0} comes round soon, kept as {1}. Plan the day around it, or let it pass from the Calendar page.</CC_Adv_CalSoon_Detail>
+  <CC_Adv_CalSoon_Tradition>It's a tradition now: letting it pass will disappoint everyone.</CC_Adv_CalSoon_Tradition>
+  <CC_Adv_Graves_Title>{0} untended grave(s)</CC_Adv_Graves_Title>
+  <CC_Adv_Graves_Detail>Some of the colony's dead lie in graves left dirty or outside the home area, where nobody cleans. Tidy them, or bring the graveyard into the home area.</CC_Adv_Graves_Detail>
+  <CC_Adv_Clothes_Title>{0} colonist(s) in rags or dead men's clothes</CC_Adv_Clothes_Title>
+  <CC_Adv_Clothes_Ragged>Worn to rags: {0}.</CC_Adv_Clothes_Ragged>
+  <CC_Adv_Clothes_Tainted>Wearing clothes taken from the dead: {0}.</CC_Adv_Clothes_Tainted>
+  <CC_Adv_JoyTime_Title>{0} colonist(s) with no time for recreation</CC_Adv_JoyTime_Title>
+  <CC_Adv_JoyTime_Detail>Not one hour of recreation in the schedule: {0}. Give them an hour or two in the evening, or some "anything" hours.</CC_Adv_JoyTime_Detail>
+  <CC_Adv_Strain_Title>{0} colonist(s) worn down by strain</CC_Adv_Strain_Title>
+  <CC_Adv_Strain_Detail>Close to breaking under the surface: {0}. Rest, recreation, a gathering or a quiet day will bring it down.</CC_Adv_Strain_Detail>
+  <CC_Adv_Conval_Title>{0} convalescent(s) back at work</CC_Adv_Conval_Title>
+  <CC_Adv_Conval_Detail>Still weak and working anyway: {0}. Rest in bed would get them well about a third sooner.</CC_Adv_Conval_Detail>
+  <CC_Adv_WishLapse_Title>{0} wish(es) about to lapse</CC_Adv_WishLapse_Title>
+  <CC_Adv_WishLapse_Detail>These run out within the day, and nothing has been promised. Grant them or make a promise from the Wishes page; a wish left to lapse costs trust.</CC_Adv_WishLapse_Detail>
+  <CC_Adv_WishLapse_Line>{0}: {1}</CC_Adv_WishLapse_Line>
+
   <!-- Scenarios: the married couple, and what the new starts promise. -->
   <CC_ScenPart_Bond_spouses>Rimfolk: two of the colonists are married (or close friends, if they couldn't be).</CC_ScenPart_Bond_spouses>
   <CC_Scen_Bond_spouses>{A_nameDef} and {B_nameDef} are married, and everything they own is in this place now.</CC_Scen_Bond_spouses>
