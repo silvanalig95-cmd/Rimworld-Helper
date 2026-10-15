@@ -612,7 +612,6 @@
   <CC_Planner_CostLine>{0}: {1} / {2}</CC_Planner_CostLine>
   <CC_Settings_Interface>Interface</CC_Settings_Interface>
   <CC_Settings_ButtonPosition>Council button in the bottom bar</CC_Settings_ButtonPosition>
-  <CC_Settings_ButtonPosition_Note>Takes effect right away, even in a running game.</CC_Settings_ButtonPosition_Note>
   <CC_ButtonPos_BeforeMenu>At the right end (before Menu)</CC_ButtonPos_BeforeMenu>
   <CC_ButtonPos_AfterResearch>After Research</CC_ButtonPos_AfterResearch>
   <CC_ButtonPos_AfterHistory>After History</CC_ButtonPos_AfterHistory>
@@ -1399,10 +1398,6 @@ Granting one of {PAWN_possessive} wishes, or keeping a promise, can win {PAWN_ob
   <CC_History_NoJournals>Nobody has written anything yet.</CC_History_NoJournals>
 
   <!-- Settings pages -->
-  <CC_SetTab_General>General</CC_SetTab_General>
-  <CC_SetTab_Council>Wishes and council</CC_SetTab_Council>
-  <CC_SetTab_People>People</CC_SetTab_People>
-  <CC_SetTab_Notify>Messages and interface</CC_SetTab_Notify>
   <CC_Settings_Presets>Quick setup</CC_Settings_Presets>
   <CC_Settings_Presets_Tip>Start from one of these, then fine-tune on the other pages.</CC_Settings_Presets_Tip>
   <CC_Preset_Everything>Everything on</CC_Preset_Everything>
@@ -1416,8 +1411,6 @@ Granting one of {PAWN_possessive} wishes, or keeping a promise, can win {PAWN_ob
   <CC_Era_PreIndustrial_Tip>Treat the colony as pre-industrial whatever the research says: no power, turrets, freezers or solar flares in advice, wishes, dreams and text. For medieval playthroughs.</CC_Era_PreIndustrial_Tip>
   <CC_Era_Industrial>Industrial or later</CC_Era_Industrial>
   <CC_Era_Industrial_Tip>Treat the colony as industrial or later even if the research looks primitive (useful with tech trees the mod can't read).</CC_Era_Industrial_Tip>
-  <CC_Settings_AllOn>Turn all on</CC_Settings_AllOn>
-  <CC_Settings_AllOff>Turn all off</CC_Settings_AllOff>
   <CC_Settings_Bonds>Bonds</CC_Settings_Bonds>
   <CC_Settings_Lives>Lives</CC_Settings_Lives>
   <CC_Settings_Memory>Memory</CC_Settings_Memory>

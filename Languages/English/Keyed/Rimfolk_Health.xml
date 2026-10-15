@@ -3,7 +3,7 @@
 
   <!-- Convalescence, sickbed visits, doctors and midwives (Source/ColonyCouncil/Health/). -->
 
-  <!-- Settings (the ailments header on the People page) -->
+  <!-- Settings (the Heart & health page of the mod settings) -->
   <CC_Settings_Convalescence>Convalescence and sickbed visits</CC_Settings_Convalescence>
   <CC_Settings_Convalescence_Tip>After a dangerous illness, a major operation, four days or more laid up in bed, or losing a limb, a colonist is weak for a few days to two weeks: a little slower at work and on their feet, less in bed. They're glad to be alive, or, if they're industrious or a hard worker, weak and frustrated. Friends who sit by the bed lift both their moods. Working while still weak can set the recovery back a couple of days, never more than that. Turned off, none of this starts (the weakness some of Rimfolk's illnesses leave behind stays with the ailments).</CC_Settings_Convalescence_Tip>
   <CC_Settings_HealerReputations>Doctors' and midwives' reputations</CC_Settings_HealerReputations>

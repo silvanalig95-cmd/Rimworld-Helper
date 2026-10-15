@@ -9,7 +9,7 @@ namespace ColonyCouncil
 {
     /// <summary>
     /// Personal stories in the interface: a few lines for the Story tab (the story under way and where it stands, the
-    /// stories they're part of, the ones that have ended), the setting, and the dev mode actions.
+    /// stories they're part of, the ones that have ended) and the dev mode actions. The setting is drawn by the settings window.
     /// </summary>
     public static class ArcView
     {
@@ -46,21 +46,6 @@ namespace ColonyCouncil
                 CouncilLog.ErrorOnce("personal story lines", e);
             }
             return lines;
-        }
-
-        /// <summary>The setting, as a row of choices (in the People page of the mod settings).</summary>
-        public static void SettingsRow(Listing_Standard l, CouncilSettings s)
-        {
-            if (l.ButtonTextLabeled("CC_Settings_Arcs".Translate(), ("CC_Arcs_" + s.arcFrequency).Translate(), TextAnchor.UpperLeft, null, "CC_Settings_Arcs_Tip".Translate()))
-            {
-                var options = new List<FloatMenuOption>();
-                foreach (ArcFrequency f in System.Enum.GetValues(typeof(ArcFrequency)))
-                {
-                    var local = f;
-                    options.Add(new FloatMenuOption(("CC_Arcs_" + f).Translate(), () => s.arcFrequency = local));
-                }
-                Find.WindowStack.Add(new FloatMenu(options));
-            }
         }
 
         // ---------------- Dev mode ----------------

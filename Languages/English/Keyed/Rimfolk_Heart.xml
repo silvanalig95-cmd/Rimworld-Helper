@@ -296,7 +296,7 @@
   <CC_Heart_DecreeStrain>Builds about {0} strain a day in those who resent it.</CC_Heart_DecreeStrain>
   <CC_Heart_TrustGrateful>grateful to the council</CC_Heart_TrustGrateful>
   <CC_Heart_AweInspired>Awe stirred something in {PAWN_nameDef}.</CC_Heart_AweInspired>
-  <CC_Decree_NeedsHeart>Needs feelings and strain switched on (Mod settings, People page).</CC_Decree_NeedsHeart>
+  <CC_Decree_NeedsHeart>Needs feelings and strain switched on (Mod settings, Heart &amp; health page).</CC_Decree_NeedsHeart>
 
   <!-- The episode -->
   <CC_Heart_Episode_Reason>worn out by strain</CC_Heart_Episode_Reason>
