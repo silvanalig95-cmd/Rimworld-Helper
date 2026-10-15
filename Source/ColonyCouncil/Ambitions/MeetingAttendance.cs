@@ -102,7 +102,7 @@ namespace ColonyCouncil
         public static List<Pawn> Members(Map map)
         {
             var found = new HashSet<Pawn>();
-            foreach (var p in PawnsFinder.AllMapsCaravansAndTravellingTransporters_Alive_FreeColonists_NoLodgers) found.Add(p);
+            foreach (var p in PawnsFinder.AllMapsCaravansAndTravellingTransporters_Alive_FreeColonists_NoLodgers.ToList()) found.Add(p);
             try
             {
                 foreach (var p in People.OffMapColonists()) found.Add(p);

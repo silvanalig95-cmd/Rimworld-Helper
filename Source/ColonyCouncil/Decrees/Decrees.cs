@@ -352,7 +352,7 @@ namespace ColonyCouncil
             {
                 if (a.def.fuelSaving > 0f) SaveFuel(a.def.fuelSaving);
                 if (a.def.practiceSkills == null || a.def.practiceXpPerHour <= 0f) continue;
-                foreach (var p in PawnsFinder.AllMaps_FreeColonistsSpawned)
+                foreach (var p in PawnsFinder.AllMaps_FreeColonistsSpawned.ToList())
                 {
                     if (p.skills == null || p.Downed || p.InBed() || p.InMentalState) continue;
                     if (a.def.practiceNeedsViolence && p.WorkTagIsDisabled(WorkTags.Violent)) continue;
@@ -496,7 +496,7 @@ namespace ColonyCouncil
             foreach (var a in active)
             {
                 if (a.def.griefFadePerDay <= 0f) continue;
-                foreach (var p in PawnsFinder.AllMaps_FreeColonists)
+                foreach (var p in PawnsFinder.AllMaps_FreeColonists.ToList())
                 {
                     var mem = p.needs?.mood?.thoughts?.memories;
                     if (mem == null) continue;
@@ -519,7 +519,7 @@ namespace ColonyCouncil
                 var h = def.hediff;
                 if (h == null) continue;
                 bool on = wanted.Contains(h);
-                foreach (var p in PawnsFinder.AllMapsCaravansAndTravellingTransporters_Alive_FreeColonists)
+                foreach (var p in PawnsFinder.AllMapsCaravansAndTravellingTransporters_Alive_FreeColonists.ToList())
                 {
                     var set = p.health?.hediffSet;
                     if (set == null) continue;

@@ -602,7 +602,7 @@ namespace ColonyCouncil
             if (now < GenDate.TicksPerDay * 2) return;
             if (OpenWishes.Count() >= s.maxOpenWishes + 1) return;
             var options = new List<(WishDef def, Pawn pawn, WishCandidate c, WishTrigger trig, float w)>();
-            foreach (var p in PawnsFinder.AllMaps_FreeColonistsSpawned)
+            foreach (var p in PawnsFinder.AllMaps_FreeColonistsSpawned.ToList())
             {
                 if (!CanVoiceWishes(p) || OpenWishBy(p) != null) continue;
                 var st = standings.For(p);
@@ -662,7 +662,7 @@ namespace ColonyCouncil
                 Safe("speaker", () =>
                 {
                     // A good speaker keeps people feeling heard.
-                    foreach (var p in PawnsFinder.AllMaps_FreeColonists) standings.Change(p, 0.3f, null);
+                    foreach (var p in PawnsFinder.AllMaps_FreeColonists.ToList()) standings.Change(p, 0.3f, null);
                 });
             Safe("trust effects", () =>
             {

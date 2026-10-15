@@ -180,7 +180,7 @@ namespace ColonyCouncil
         public void Hourly()
         {
             int now = Find.TickManager.TicksGame;
-            foreach (var p in PawnsFinder.AllMaps_FreeColonistsSpawned)
+            foreach (var p in PawnsFinder.AllMaps_FreeColonistsSpawned.ToList())
             {
                 if (!p.Downed || p.Dead) continue;
                 downedTick[p] = now;
@@ -211,7 +211,7 @@ namespace ColonyCouncil
             }
             SyncKnacks();
             // Picking up new ones.
-            foreach (var p in PawnsFinder.AllMaps_FreeColonists.Where(Eligible).ToList())
+            foreach (var p in PawnsFinder.AllMaps_FreeColonists.ToList().Where(Eligible).ToList())
             {
                 if (Of(p).Count() >= MaxPerPawn) continue;
                 var options = DefDatabase<QuirkDef>.AllDefsListForReading.Where(d => Get(p, d) == null && Triggered(comp, d, p) && DilemmaRole.Fits(d.who, p, d.children)).ToList();
@@ -268,7 +268,7 @@ namespace ColonyCouncil
             if (Knacks.Count == 0) return;
             try
             {
-                foreach (var p in PawnsFinder.AllMapsCaravansAndTravellingTransporters_Alive_FreeColonists)
+                foreach (var p in PawnsFinder.AllMapsCaravansAndTravellingTransporters_Alive_FreeColonists.ToList())
                 {
                     var set = p.health?.hediffSet;
                     if (set == null) continue;

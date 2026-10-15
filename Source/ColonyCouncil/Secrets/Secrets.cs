@@ -120,7 +120,7 @@ namespace ColonyCouncil
         public void Daily(CouncilGameComponent comp)
         {
             if (!S.secrets) return;
-            foreach (var p in PawnsFinder.AllMaps_FreeColonists.Where(Eligible).ToList())
+            foreach (var p in PawnsFinder.AllMaps_FreeColonists.ToList().Where(Eligible).ToList())
             {
                 if (rolled.Contains(p.ThingID)) continue;
                 if ((p.records?.GetAsInt(RecordDefOf.TimeAsColonistOrColonyAnimal) ?? 0) < GenDate.TicksPerDay * 2) continue;
