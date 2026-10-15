@@ -1,0 +1,293 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    The mods and DLCs Rimfolk works with, and what it does with each: the registry behind the Almanac's compatibility
+    table (Council_Alm_Mods_Compatibility, filled in when a game starts) and the self-check's "Mods Rimfolk works with"
+    (the ones marked code: Rimfolk reads them in code). label: the mod's name. packageIds: any of them counts.
+    live: a reading the self-check can test (expertise, vsie, pokeworld, hospitality). Keep "what" to a sentence or
+    two: it's a table cell. Almanac pages about a mod don't need an entry here; the table is for what Rimfolk does.
+  -->
+
+  <!-- ===================== DLCs ===================== -->
+
+  <ColonyCouncil.ModSupportDef>
+    <defName>Council_Support_Royalty</defName>
+    <label>Royalty</label>
+    <order>1</order>
+    <packageIds><li>ludeon.rimworld.royalty</li></packageIds>
+    <what>Royal standards in wishes, titled guests in encounters, the Empire's visitors talking court and manners, and the Empire's levy as a world event.</what>
+  </ColonyCouncil.ModSupportDef>
+
+  <ColonyCouncil.ModSupportDef>
+    <defName>Council_Support_Ideology</defName>
+    <label>Ideology</label>
+    <order>2</order>
+    <packageIds><li>ludeon.rimworld.ideology</li></packageIds>
+    <what>Memes shape decree reactions and the colony's ways; a leader whose creed puts a ruler above the vote names the council; a holy war among the world events.</what>
+  </ColonyCouncil.ModSupportDef>
+
+  <ColonyCouncil.ModSupportDef>
+    <defName>Council_Support_Biotech</defName>
+    <label>Biotech</label>
+    <order>3</order>
+    <packageIds><li>ludeon.rimworld.biotech</li></packageIds>
+    <what>Children, coming of age and family life goals; xenotypes that never sleep or never eat aren't asked about beds or meals.</what>
+  </ColonyCouncil.ModSupportDef>
+
+  <ColonyCouncil.ModSupportDef>
+    <defName>Council_Support_Anomaly</defName>
+    <label>Anomaly</label>
+    <order>4</order>
+    <packageIds><li>ludeon.rimworld.anomaly</li></packageIds>
+    <what>Ghouls aren't treated as people (no life goals, quirks, dreams or friendships), and the Almanac covers the entities.</what>
+  </ColonyCouncil.ModSupportDef>
+
+  <!-- ===================== Always-on mods ===================== -->
+
+  <ColonyCouncil.ModSupportDef>
+    <defName>Council_Support_Hospitality</defName>
+    <label>Hospitality</label>
+    <order>10</order>
+    <code>true</code>
+    <live>hospitality</live>
+    <packageIds><li>orion.hospitality</li></packageIds>
+    <what>Guests are visitors with stories: eight encounters with journals, a guest who wants to stay (taken in Hospitality's own way) and a guest's complaint, a guest room wish and room plan, and a guest of note among the events. Guest beds never count as free beds.</what>
+  </ColonyCouncil.ModSupportDef>
+
+  <ColonyCouncil.ModSupportDef>
+    <defName>Council_Support_DubsBadHygiene</defName>
+    <label>Dubs Bad Hygiene</label>
+    <order>11</order>
+    <code>true</code>
+    <packageIds><li>dubwise.dubsbadhygiene</li></packageIds>
+    <what>Bathroom, bathhouse, sauna and laundry room plans; wishes for a latrine, a wash, a bath and hot water; advisor checks; journal days and moments about washing.</what>
+  </ColonyCouncil.ModSupportDef>
+
+  <ColonyCouncil.ModSupportDef>
+    <defName>Council_Support_VSIE</defName>
+    <label>Vanilla Social Interactions Expanded</label>
+    <order>12</order>
+    <code>true</code>
+    <live>vsie</live>
+    <packageIds><li>vanillaexpanded.vanillasocialinteractionsexpanded</li></packageIds>
+    <what>Its lessons, venting, rescues and best friends feed Rimfolk's bonds and journals; Rimfolk's own versions step back so nothing doubles up.</what>
+  </ColonyCouncil.ModSupportDef>
+
+  <ColonyCouncil.ModSupportDef>
+    <defName>Council_Support_RWoM</defName>
+    <label>A RimWorld of Magic</label>
+    <order>13</order>
+    <code>true</code>
+    <packageIds><li>torann.arimworldofmagic</li></packageIds>
+    <what>Classes as tags in offices, decrees and wishes; magic moments between colonists (a mage and a fighter talk shop), journal days, six life goals, traveling mages, starfall and a season of wild magic.</what>
+  </ColonyCouncil.ModSupportDef>
+
+  <ColonyCouncil.ModSupportDef>
+    <defName>Council_Support_AlphaAnimals</defName>
+    <label>Alpha Animals</label>
+    <order>14</order>
+    <code>true</code>
+    <packageIds><li>sarg.alphaanimals</li></packageIds>
+    <what>Encounters that name its creatures (aves, mits, sky eels, a gallatross passing), a strange creature to win over, strange herds as a world event; its dangerous beasts are never offered as game.</what>
+  </ColonyCouncil.ModSupportDef>
+
+  <ColonyCouncil.ModSupportDef>
+    <defName>Council_Support_AlphaBiomes</defName>
+    <label>Alpha Biomes</label>
+    <order>15</order>
+    <packageIds><li>sarg.alphabiomes</li></packageIds>
+    <what>Encounters on its lands (the gallatross graveyard, idyllic meadows, the mycotic jungle, the ocular forest), and its biomes read as deserts, swamps and jungles for land lines.</what>
+  </ColonyCouncil.ModSupportDef>
+
+  <ColonyCouncil.ModSupportDef>
+    <defName>Council_Support_VSE</defName>
+    <label>Vanilla Skills Expanded</label>
+    <order>16</order>
+    <code>true</code>
+    <live>expertise</live>
+    <packageIds><li>vanillaexpanded.skills</li></packageIds>
+    <what>Its passions are read from their definitions, and earning an expertise is a life goal.</what>
+  </ColonyCouncil.ModSupportDef>
+
+  <ColonyCouncil.ModSupportDef>
+    <defName>Council_Support_AlphaSkills</defName>
+    <label>Alpha Skills</label>
+    <order>17</order>
+    <packageIds><li>sarg.alphaskills</li></packageIds>
+    <what>Its passions count by how fast they make someone learn, so apathy isn't a passion and critical passions count as burning.</what>
+  </ColonyCouncil.ModSupportDef>
+
+  <ColonyCouncil.ModSupportDef>
+    <defName>Council_Support_VTE</defName>
+    <label>Vanilla Traits Expanded</label>
+    <order>18</order>
+    <packageIds><li>vanillaexpanded.vanillatraitsexpanded</li></packageIds>
+    <what>Its traits react to decrees, sway elections, voice wishes and speak in their own tone.</what>
+  </ColonyCouncil.ModSupportDef>
+
+  <ColonyCouncil.ModSupportDef>
+    <defName>Council_Support_Memes</defName>
+    <label>Vanilla Ideology Expanded - Memes, Alpha Memes</label>
+    <order>19</order>
+    <packageIds><li>vanillaexpanded.vmemese</li><li>sarg.alphamemes</li></packageIds>
+    <what>Their memes react to decrees and the colony's ways; aristocratic, royal and god-emperor creeds let the leader name the council.</what>
+  </ColonyCouncil.ModSupportDef>
+
+  <ColonyCouncil.ModSupportDef>
+    <defName>Council_Support_VCE</defName>
+    <label>Vanilla Cooking Expanded</label>
+    <order>20</order>
+    <code>true</code>
+    <packageIds><li>vanillaexpanded.vcooke</li></packageIds>
+    <what>Grills and gourmet dishes count as fine or lavish meals for feasts, wishes and journals; grills ruined by the cold don't count.</what>
+  </ColonyCouncil.ModSupportDef>
+
+  <ColonyCouncil.ModSupportDef>
+    <defName>Council_Support_VBE</defName>
+    <label>Vanilla Brewing Expanded</label>
+    <order>21</order>
+    <packageIds><li>vanillaexpanded.vbrewe</li></packageIds>
+    <what>Its barrels count for brewing wishes; tea, coffee and soda aren't "something to drink" for the brewer; tea has a journal day.</what>
+  </ColonyCouncil.ModSupportDef>
+
+  <ColonyCouncil.ModSupportDef>
+    <defName>Council_Support_Outposts</defName>
+    <label>Vanilla Outposts Expanded</label>
+    <order>22</order>
+    <code>true</code>
+    <packageIds><li>vanillaexpanded.outposts</li></packageIds>
+    <what>Someone posted at an outpost is still one of the colony; their wishes wait, and they write home in their journals.</what>
+  </ColonyCouncil.ModSupportDef>
+
+  <ColonyCouncil.ModSupportDef>
+    <defName>Council_Support_RimHUD</defName>
+    <label>RimHUD</label>
+    <order>23</order>
+    <code>true</code>
+    <packageIds><li>jaxe.rimhud</li></packageIds>
+    <what>Seven lines and five bars for its pawn panel: trust, open wish, office, life goal, strain, feelings and the heart's needs.</what>
+  </ColonyCouncil.ModSupportDef>
+
+  <ColonyCouncil.ModSupportDef>
+    <defName>Council_Support_Bubbles</defName>
+    <label>Interaction Bubbles</label>
+    <order>24</order>
+    <packageIds><li>jaxe.bubbles</li></packageIds>
+    <what>Rimfolk's moments, encounters, social events and wish talk go into the social log, so they show as bubbles.</what>
+  </ColonyCouncil.ModSupportDef>
+
+  <!-- ===================== Peoples and the world ===================== -->
+
+  <ColonyCouncil.ModSupportDef>
+    <defName>Council_Support_VFEEmpire</defName>
+    <label>Vanilla Factions Expanded - Empire</label>
+    <order>30</order>
+    <packageIds><li>oskarpotocki.vfe.empire</li></packageIds>
+    <what>Deserters on the roads: a world event where a deserter from the Empire asks the colony for shelter.</what>
+  </ColonyCouncil.ModSupportDef>
+
+  <ColonyCouncil.ModSupportDef>
+    <defName>Council_Support_VFEClassical</defName>
+    <label>Vanilla Factions Expanded - Classical</label>
+    <order>31</order>
+    <packageIds><li>oskarpotocki.vfe.classical</li></packageIds>
+    <what>The republic votes: a world event about the consular election; visitors from the republics talk of the senate and of masonry.</what>
+  </ColonyCouncil.ModSupportDef>
+
+  <ColonyCouncil.ModSupportDef>
+    <defName>Council_Support_VFESettlers</defName>
+    <label>Vanilla Factions Expanded - Settlers</label>
+    <order>32</order>
+    <packageIds><li>oskarpotocki.vanillafactionsexpanded.settlersmodule</li></packageIds>
+    <what>Gold fever: a world event with prospectors on the roads; settler visitors tell tall tales and teach rope tricks.</what>
+  </ColonyCouncil.ModSupportDef>
+
+  <ColonyCouncil.ModSupportDef>
+    <defName>Council_Support_VEE</defName>
+    <label>Vanilla Events Expanded</label>
+    <order>33</order>
+    <packageIds><li>vanillaexpanded.vee</li></packageIds>
+    <what>The advisor explains its world conditions and what to do about them.</what>
+  </ColonyCouncil.ModSupportDef>
+
+  <ColonyCouncil.ModSupportDef>
+    <defName>Council_Support_Animals</defName>
+    <label>Megafauna, Dinosauria and other animal mods</label>
+    <order>34</order>
+    <packageIds><li>spino.megafauna</li><li>spincrus.dinosauria</li><li>vanillaexpanded.vanillaanimalsexpanded</li></packageIds>
+    <what>Danger is read from each creature, so the hunting wish picks ordinary game and nobody takes on a giant beast alone.</what>
+  </ColonyCouncil.ModSupportDef>
+
+  <!-- ===================== Medieval runs ===================== -->
+
+  <ColonyCouncil.ModSupportDef>
+    <defName>Council_Support_MedievalOverhaul</defName>
+    <label>Medieval Overhaul</label>
+    <order>40</order>
+    <code>true</code>
+    <packageIds><li>dankpyon.medieval.overhaul</li></packageIds>
+    <what>Its pies, stews, cheese, wine, ale and library have journal days; visitors meet the colony's cheese, wine, hearth, oven, hives and books; its watermill isn't electricity, its firewood, rings and hearth fulfil wishes.</what>
+  </ColonyCouncil.ModSupportDef>
+
+  <ColonyCouncil.ModSupportDef>
+    <defName>Council_Support_Rimedieval</defName>
+    <label>Rimedieval</label>
+    <order>41</order>
+    <packageIds><li>ogam.rimedieval</li></packageIds>
+    <what>Events it removes stay removed, hidden buildings are never suggested, and friendly mechanoids count as none.</what>
+  </ColonyCouncil.ModSupportDef>
+
+  <ColonyCouncil.ModSupportDef>
+    <defName>Council_Support_ProcessorFramework</defName>
+    <label>Processor Framework</label>
+    <order>42</order>
+    <packageIds><li>syrchalis.processor.framework</li></packageIds>
+    <what>Its fermenting barrels count for brewing wishes and room plans.</what>
+  </ColonyCouncil.ModSupportDef>
+
+  <!-- ===================== People and frameworks ===================== -->
+
+  <ColonyCouncil.ModSupportDef>
+    <defName>Council_Support_HAR</defName>
+    <label>Humanoid Alien Races</label>
+    <order>50</order>
+    <packageIds><li>erdelf.humanoidalienraces</li></packageIds>
+    <what>Every humanlike race gets the Story tab, and ages are read against the race's lifespan.</what>
+  </ColonyCouncil.ModSupportDef>
+
+  <ColonyCouncil.ModSupportDef>
+    <defName>Council_Support_AlphaGenes</defName>
+    <label>Alpha Genes</label>
+    <order>51</order>
+    <packageIds><li>sarg.alphagenes</li></packageIds>
+    <what>Its xenotypes' needs are respected (no meal wishes for those who don't eat); sunfed people have their own tag.</what>
+  </ColonyCouncil.ModSupportDef>
+
+  <ColonyCouncil.ModSupportDef>
+    <defName>Council_Support_Sidearms</defName>
+    <label>Simple Sidearms</label>
+    <order>52</order>
+    <packageIds><li>petetimessix.simplesidearms</li></packageIds>
+    <what>An heirloom weapon carried as a sidearm still counts as carried.</what>
+  </ColonyCouncil.ModSupportDef>
+
+  <ColonyCouncil.ModSupportDef>
+    <defName>Council_Support_Vehicles</defName>
+    <label>Vehicle Framework</label>
+    <order>53</order>
+    <packageIds><li>smashphil.vehicleframework</li></packageIds>
+    <what>Someone aboard a vehicle or in flight is still one of the colony: no grief, no "gone" in the annals.</what>
+  </ColonyCouncil.ModSupportDef>
+
+  <ColonyCouncil.ModSupportDef>
+    <defName>Council_Support_PokeWorld</defName>
+    <label>PokéWorld</label>
+    <order>60</order>
+    <code>true</code>
+    <live>pokeworld</live>
+    <packageIds><li>gargamiel.pokeworld</li><li>eth0net.pokeworld</li></packageIds>
+    <what>Animal events follow its wild Pokémon settings, a caught Pokémon counts as tamed, animal lovers ask to catch new species, and four Almanac pages explain it.</what>
+  </ColonyCouncil.ModSupportDef>
+
+</Defs>

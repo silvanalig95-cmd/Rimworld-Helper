@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    The compatibility table: which of the mods and DLCs Rimfolk works with are in this game, and what Rimfolk does with
+    each. The tables are filled in when a game starts or loads (ColonyCouncil.ModSupport.FillPage, from the
+    ModSupportDefs in Defs/IntegrationDefs/Council_Mods_Support.xml); the description below is the fixed part. Shown
+    in every game, with or without other mods.
+  -->
+
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Council_Alm_Mods_Compatibility</defName>
+    <label>What Rimfolk does with your mods</label>
+    <category>Mods</category>
+    <order>1</order>
+    <summary>Which of the mods Rimfolk works with are in this game, and what it does with each</summary>
+    <description>Rimfolk works on its own, and with any mod list. Some mods it knows by name: it reads them while the game runs, writes events, encounters, wishes and journal lines for them, and keeps out of their way where they already do something. Nothing here is a requirement. When a mod is missing, Rimfolk's content for it simply never comes up.
+
+The tables below are made from what Rimfolk finds when the game starts: the first lists the mods it found and how much of its own content is written for each, the second the ones it knows but didn't find. If a mod is found but Rimfolk couldn't read it (an update may have changed it), the table says so, and the self-check in the debug actions has the details. The other pages in this part of the Almanac explain the mods themselves.</description>
+    <keywords>
+      <li>compatibility</li>
+      <li>compatible</li>
+      <li>mods</li>
+      <li>integration</li>
+      <li>supported</li>
+    </keywords>
+  </ColonyCouncil.AlmanacArticleDef>
+
+</Defs>
