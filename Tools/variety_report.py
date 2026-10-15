@@ -688,6 +688,12 @@ def estimate(pools):
             p.extra = (("good|bad", 1.0),)
         if p.field in ("request", "requestForOther", "thanks", "expired", "reminder") or p.name.startswith("Council_Pool_"):
             p.extra = (("promised", 0.1), ("petition", 0.1), ("forother", 0.1), ("repeat", 0.15))
+        # The caller always adds the kind of thing: the item planned for a personal touch, the kind of outpost.
+        if p.name in ("Council_Pool_Touch", "Council_Pool_TouchDone"):
+            p.extra += (("touch:plantpot|touch:light|touch:endtable|touch:dresser", 1.0),)
+        if p.name == "Council_Journal_Outpost":
+            p.extra += (("outpost:Mining|outpost:Logging|outpost:Farming|outpost:Hunting|outpost:Defensive"
+                         "|outpost:Trading|outpost:Science|outpost:Town|outpost:Scavenging|outpost:Encampment", 1.0),)
     # A colonist starts at most one moment in six hours, and most of the day they're asleep or alone: about two and a
     # half a day at the very most, shared out among the moments in proportion.
     moments = [p for p in pools.values() if p.kind == "grammar" and p.basis.startswith("w ")]
