@@ -234,12 +234,12 @@ the content itself, not only to systems, alongside whatever else it does. Where 
 | Wishes | 107 | more seasonal and biome wishes, more for the always-on mods (Alpha mods, Vanilla Expanded furniture) |
 | Council projects (ambitions) | 54 (3 in stages) | more staged and season-long projects, more for tribal and spacer colonies |
 | Life goals | 63 | goals for teenagers, more for faith and the heart, goals that change with age |
-| Dilemmas | 126 | more for children, elders and the camps; dilemmas for each new system as it lands |
+| Dilemmas | 132 | more for children, elders and the camps; dilemmas for each new system as it lands |
 | Encounters | 156 | more lands (lakes, rivers), more mods' creatures, peoples and biomes, rarer night and weather moments |
 | Decrees | 19 | decrees tied to world situations, faith and mods (tithes, curfews, alms) |
 | Quirks | 32 | quirks that touch others (a hummer and a light sleeper), more from events and dreams |
 | Personal stories | 16 (61 stages) | stories from camps, offices and world events, more for children and elders, stories of three |
-| Dreams | 117 | dreams for more feelings, quirks, life goals and mod content |
+| Dreams | 123 | dreams for more feelings, quirks, life goals and mod content |
 | World events | 32 | more regional situations, and their follow-ups |
 | Camp kinds | 11 | caravans of every kind, pilgrims of every faith |
 | Ailments | 32 everyday, 14 serious; convalescence from 4 causes, 2 healers' names | ailments for every biome and DLC, more after-effects |
@@ -247,6 +247,17 @@ the content itself, not only to systems, alongside whatever else it does. Where 
 | Calendar days and ways to keep them | 9 kinds, 4 ways (about 440 lines) | more kinds of day, lines per biome and faith |
 | Lines in the flavor pools (variety report) | about 25,200 in 3,640 pools | the pools at the top of the report |
 | Social events, moments, frictions, nuisances | 67, 127 (40 frictions), 19 | every trait pairing and home condition |
+| Secrets | 52 (2 for scenarios only), each with its own confide and graveside lines | secrets tied to world events and camps, more good ones, dilemmas for the newer ones |
+| Ways a vendetta is sworn and settled | 3 sworn (a death, a kidnapping, a bonded animal), 5 settled (blood, captives, a homecoming, laid down, laid down in peace) | a ransom paid, an apology from the faction, a vendetta passed to an heir |
+| Council offices | 9 (4 open as the colony grows) | offices for faith, the camps and the calendar's rites, a council of elders for a large colony |
+| Customs that can become traditions | 13 (6 new seasonal ones this round) | customs for each biome and faith, children's customs |
+| Rimfolk scenarios | 13 (7 gentle, 6 with stakes) | a tribe's start, a spacer crash with a secret, an orphanage |
+| Names (epithets) | 45 (4 from Rimfolk's own records) | names from the camps, the calendar and world events |
+| Advisor checks | 43 | checks for the newer systems (missions, the world page), more for tribal colonies |
+| Colony character | 5 ways (10 names), 6 things a colony grows into | traits from hospitality, faith and the calendar |
+| Pets and nemeses | 14 heroics, 32 farewells, 22 taunts and parting words, 4 endings told from pools (one new: let go from the cells) | pets in the calendar, nemeses in dreams and personal stories |
+| Feelings | 26 | feelings that touch the camps and world events, each with more dreams and moments |
+| Mood hints | 145 | hints for every new thought as it lands |
 
 ### 5. Wider (integrations)
 - Done: deeper with the always-on mods. Hospitality guests are visitors with stories (eight encounters with
