@@ -259,6 +259,10 @@
       <blunt><li>Rest when the work's done.</li></blunt>
       <cheerful><li>Rest? I've been looking forward to finishing the north wall!</li></cheerful>
     </oppose>
+    <!-- With "Answers play out on the map": the rest of the first day's work hours are free time for everyone. -->
+    <onEnact>
+      <li Class="ColonyCouncil.DilemmaEffect_Rest"><target>Colony</target></li>
+    </onEnact>
   </ColonyCouncil.DecreeDef>
 
 </Defs>

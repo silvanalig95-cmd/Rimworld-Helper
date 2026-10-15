@@ -115,6 +115,10 @@
       <gloomy><li>Everyone fits. I'll enjoy it before someone else joins.</li></gloomy>
       <cold><li>Seating is sufficient for all. Good.</li></cold>
     </achieved>
+    <!-- With "Answers play out on the map": the first supper with a seat for everyone. -->
+    <achievedEffects>
+      <li Class="ColonyCouncil.DilemmaEffect_Feast"><label>the first supper at the long table</label><hours>16~22</hours><duration>1.5~2</duration></li>
+    </achievedEffects>
   </ColonyCouncil.AmbitionDef>
 
   <!-- ===================== A calm season (the heart: strain) ===================== -->
@@ -371,6 +375,10 @@
       <cheerful><li>They taught us a song and we taught them a worse one!</li></cheerful>
       <cold><li>Relations established. They'll speak well of us.</li></cold>
     </achieved>
+    <!-- With "Answers play out on the map": an evening at the camp's fire, with songs, if the camp is still here. -->
+    <achievedEffects>
+      <li Class="ColonyCouncil.DilemmaEffect_Gathering"><label>the evening with the camp</label><music>true</music><spots><li>Camp</li><li>Fire</li><li>Outdoors</li></spots><hours>16~22</hours></li>
+    </achievedEffects>
   </ColonyCouncil.AmbitionDef>
 
   <!-- ===================== Coats for winter (every era; cold maps) ===================== -->
@@ -472,6 +480,10 @@
       <cheerful><li>Best feast ever! I can't move.</li></cheerful>
       <cold><li>Feast prepared. Morale should benefit for some time.</li></cold>
     </achieved>
+    <!-- With "Answers play out on the map": the lavish meals are eaten, together, in the hall. -->
+    <achievedEffects>
+      <li Class="ColonyCouncil.DilemmaEffect_Feast"><label>the great feast</label><hours>16~22</hours><duration>3~4</duration></li>
+    </achievedEffects>
   </ColonyCouncil.AmbitionDef>
 
   <!-- ===================== Nobody is the only one (small colonies) ===================== -->

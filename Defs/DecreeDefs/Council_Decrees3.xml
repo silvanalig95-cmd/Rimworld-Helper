@@ -240,6 +240,10 @@
       <plain><li>That's a week's food gone in a day.</li></plain>
       <cold><li>We'll regret every bite of it in the spring.</li></cold>
     </oppose>
+    <!-- With "Answers play out on the map": at noon the colony sits down to the best of the stores, together. -->
+    <onEnact>
+      <li Class="ColonyCouncil.DilemmaEffect_Feast"><label>the feast day</label><hours>12~20</hours><duration>3~4</duration></li>
+    </onEnact>
   </ColonyCouncil.DecreeDef>
 
 </Defs>

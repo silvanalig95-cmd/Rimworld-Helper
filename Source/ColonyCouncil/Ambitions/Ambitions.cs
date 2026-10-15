@@ -23,6 +23,11 @@ namespace ColonyCouncil
         public ToneLines achieved = new ToneLines();
         public RoomTemplateDef template;
         /// <summary>
+        /// What reaching it sets going on the map (the great feast eaten, a toast with the first barrels), as an answer's
+        /// effects (see PlayOut/): only with "Answers play out on the map" on. A is whoever proposed it.
+        /// </summary>
+        public List<DilemmaEffect> achievedEffects;
+        /// <summary>
         /// The goals are stages, reached one after another: only the current one counts, and each one reached stays
         /// reached. A goal that counts new work starts counting when its stage begins.
         /// </summary>
@@ -971,6 +976,9 @@ namespace ColonyCouncil
             comp.AddChronicle(new ChronicleEntry(ChronicleKind.AmbitionAchieved,
                 "CC_Chronicle_AmbitionAchieved".Translate(a.def.label).Resolve(), a.proposer));
             nextMeetingTick = Mathf.Max(nextMeetingTick, Find.TickManager.TicksGame + GenDate.TicksPerDay * 3);
+            if (!a.def.achievedEffects.NullOrEmpty() && PlayOuts.On && map != null)
+                PlayOuts.Run(a.def.achievedEffects, new DilemmaContext { map = map, a = a.proposer != null && !a.proposer.Dead ? a.proposer : null, why = a.def.LabelCap },
+                    "ambition " + a.def.defName);
         }
 
         private void Fail(CouncilGameComponent comp)

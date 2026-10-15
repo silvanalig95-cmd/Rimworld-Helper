@@ -266,6 +266,10 @@
         <li>The first feast in here is on me! Well, on the cook, but I'll make the toast.</li>
       </cheerful>
     </achieved>
+    <!-- With "Answers play out on the map": the first feast in the new hall. -->
+    <achievedEffects>
+      <li Class="ColonyCouncil.DilemmaEffect_Feast"><label>the first feast in the great hall</label><hours>16~22</hours></li>
+    </achievedEffects>
   </ColonyCouncil.AmbitionDef>
 
   <ColonyCouncil.AmbitionDef>
@@ -316,6 +320,10 @@
         <li>I'm going to win at everything. Fair warning.</li>
       </blunt>
     </achieved>
+    <!-- With "Answers play out on the map": a games night in the new rec room. -->
+    <achievedEffects>
+      <li Class="ColonyCouncil.DilemmaEffect_Gathering"><label>the games night</label><spots><li>Rec</li><li>Dining</li><li>Gather</li></spots><hours>17~23</hours></li>
+    </achievedEffects>
   </ColonyCouncil.AmbitionDef>
 
   <ColonyCouncil.AmbitionDef>
@@ -986,6 +994,10 @@
         <li>Dinner is served. There's a sauce, and it has herbs in it.</li>
       </plain>
     </achieved>
+    <!-- With "Answers play out on the map": dinner is served. -->
+    <achievedEffects>
+      <li Class="ColonyCouncil.DilemmaEffect_Feast"><label>the first fine dinner</label><hours>16~22</hours><duration>1.5~2</duration></li>
+    </achievedEffects>
   </ColonyCouncil.AmbitionDef>
 
 </Defs>

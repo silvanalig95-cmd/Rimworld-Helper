@@ -127,6 +127,10 @@
       <plain><li>The first barrel's tapped. Cheers, all of you, we earned this.</li></plain>
       <cheerful><li>To us, to beer, and to not dying!</li></cheerful>
     </achieved>
+    <!-- With "Answers play out on the map": one each tonight. -->
+    <achievedEffects>
+      <li Class="ColonyCouncil.DilemmaEffect_Toast"><label>the first barrel</label><hours>17~22</hours></li>
+    </achievedEffects>
   </ColonyCouncil.AmbitionDef>
 
   <ColonyCouncil.AmbitionDef>

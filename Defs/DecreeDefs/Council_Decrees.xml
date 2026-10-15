@@ -231,6 +231,10 @@
       <plain><li>The fields don't take holidays.</li></plain>
       <cold><li>Three days of lost output. I hope the mood is worth it.</li></cold>
     </oppose>
+    <!-- With "Answers play out on the map": the first evening, music and dancing. -->
+    <onEnact>
+      <li Class="ColonyCouncil.DilemmaEffect_Gathering"><label>the festival</label><music>true</music><spots><li>Rec</li><li>Outdoors</li><li>Fire</li><li>Dining</li></spots><hours>17~23</hours><duration>3~4</duration></li>
+    </onEnact>
   </ColonyCouncil.DecreeDef>
 
 </Defs>
