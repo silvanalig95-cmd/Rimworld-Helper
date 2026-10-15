@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- What to do about the newer moods: the calendar, convalescence, personal stories, lasting bonds and legacies,
+       scenarios, the council's newer seats and customs, and the colony's ways. -->
+
+  <ColonyCouncil.MoodHintDef>
+    <defName>Council_Mood_RF_CalendarDays</defName>
+    <thoughts>
+      <li>Council_Cal_FeastDay</li>
+      <li>Council_Cal_GamesDay</li>
+      <li>Council_Cal_RestDay</li>
+      <li>Council_Cal_Birthday</li>
+    </thoughts>
+    <keep>Days on the colony calendar come round once a year. Keep them, and in three years they become traditions everyone looks forward to; a keeper of days on the council makes each one a little more of an occasion.</keep>
+    <article>Council_Alm_C_Calendar</article>
+    <councilTab>Calendar</councilTab>
+  </ColonyCouncil.MoodHintDef>
+
+  <ColonyCouncil.MoodHintDef>
+    <defName>Council_Mood_RF_CalendarRemembered</defName>
+    <thoughts>
+      <li>Council_Cal_Remembered</li>
+      <li>Council_Dlm_Trad_Walk</li>
+    </thoughts>
+    <keep>A day of remembrance is sad and good at once. Keep it each year, and keep the graves tidy and close, so there's somewhere for it to go.</keep>
+    <article>Council_Alm_C_Calendar</article>
+    <councilTab>Calendar</councilTab>
+  </ColonyCouncil.MoodHintDef>
+
+  <ColonyCouncil.MoodHintDef>
+    <defName>Council_Mood_RF_Anniversaries</defName>
+    <thoughts>
+      <li>Council_Anniversary</li>
+      <li>Council_FriendAnniversary</li>
+    </thoughts>
+    <keep>Every year a colonist stays is marked, and their friends are glad of it too. Nothing to do but keep them here.</keep>
+    <article>Council_Alm_C_Names</article>
+  </ColonyCouncil.MoodHintDef>
+
+  <ColonyCouncil.MoodHintDef>
+    <defName>Council_Mood_RF_Convalescing</defName>
+    <thoughts>
+      <li>Council_Moment_SlowWalk</li>
+      <li>Council_Moment_ToldToRest</li>
+      <li>Council_Health_MyMidwife</li>
+    </thoughts>
+    <keep>Friends who look after someone getting over an illness are remembered for it. Rest in bed gets them well a third sooner; the advisor warns when a convalescent is back at work.</keep>
+    <article>Council_Alm_4_25_Ailments</article>
+  </ColonyCouncil.MoodHintDef>
+
+  <ColonyCouncil.MoodHintDef>
+    <defName>Council_Mood_RF_StoriesGood</defName>
+    <thoughts>
+      <li>Council_Story_VaultLesson</li>
+      <li>Council_Story_SleeperStayed</li>
+      <li>Council_Story_DebtRepaid</li>
+      <li>Council_Story_Wedding</li>
+      <li>Council_Story_Sermons</li>
+      <li>Council_Story_WonDebate</li>
+      <li>Council_Story_Healed</li>
+      <li>Council_Story_Rescued</li>
+      <li>Council_Story_LettersHome</li>
+      <li>Council_Story_SeedsGarden</li>
+      <li>Council_Story_PlaySeen</li>
+      <li>Council_Story_PlayFamous</li>
+      <li>Council_Mission_Shrine</li>
+    </thoughts>
+    <keep>A story in stages that ended well. The World page shows the stories still unfolding; the answer the council gives at each stage decides how the next one goes.</keep>
+    <article>Council_Alm_C_WorldEvents</article>
+    <councilTab>World</councilTab>
+  </ColonyCouncil.MoodHintDef>
+
+  <ColonyCouncil.MoodHintDef>
+    <defName>Council_Mood_RF_StoriesBad</defName>
+    <thoughts>
+      <li>Council_Story_Betrayed</li>
+      <li>Council_Story_FailedPeace</li>
+      <li>Council_Story_LostDebate</li>
+      <li>Council_Story_KeptBack</li>
+      <li>Council_Story_Schism</li>
+      <li>Council_Story_SeedsChoked</li>
+    </thoughts>
+    <fix>A story that went badly. It fades in a few days; a friend's company or a good evening helps it pass. Next time, the World page shows what's still unfolding, and the colony's answers decide the next stage.</fix>
+    <article>Council_Alm_C_WorldEvents</article>
+    <councilTab>World</councilTab>
+  </ColonyCouncil.MoodHintDef>
+
+  <ColonyCouncil.MoodHintDef>
+    <defName>Council_Mood_RF_Legacy</defName>
+    <thoughts>
+      <li>Council_Heirloom</li>
+      <li>Council_ChildGrown</li>
+      <li>Council_SawThemGrow</li>
+    </thoughts>
+    <keep>An heirloom is a comfort as long as it's carried, more so to the heir: keep it out of the stockpile and on them. Watching a child grow up is its own reward.</keep>
+    <article>Council_Alm_C_Secrets</article>
+    <councilTab>Roster</councilTab>
+  </ColonyCouncil.MoodHintDef>
+
+  <ColonyCouncil.MoodHintDef>
+    <defName>Council_Mood_RF_Scenario</defName>
+    <thoughts>
+      <li>Council_Scen_Kin</li>
+      <li>Council_Scen_Feud</li>
+      <li>Council_Scen_Tyrant</li>
+      <li>Council_Scen_OldFriend</li>
+      <li>Council_Scen_HuntOver</li>
+      <li>Council_Scen_DebtPaid</li>
+    </thoughts>
+    <fix>A feeling the colony started the game with. It fades over a month or more; shared work, shared meals and a common enemy bring feuding families together sooner.</fix>
+    <keep>Something the colony started the game with. It lasts for a season or more, and the bonds it began can grow into lasting friendships on the Bonds page.</keep>
+    <article>Council_Alm_C_Scenarios</article>
+    <councilTab>Bonds</councilTab>
+  </ColonyCouncil.MoodHintDef>
+
+  <ColonyCouncil.MoodHintDef>
+    <defName>Council_Mood_RF_KeptProperly</defName>
+    <thoughts>
+      <li>Council_Office_WellKept</li>
+      <li>Council_Dlm_Trad_Blessing</li>
+      <li>Council_Dlm_Trad_Swim</li>
+      <li>Council_Dlm_Trad_Dance</li>
+      <li>Council_Dlm_Trad_FrostSoup</li>
+      <li>Council_Dlm_Trad_Lanterns</li>
+    </thoughts>
+    <keep>A seasonal custom kept, or a day marked properly. Choose the same answer two years running and it becomes a tradition that comes round every year; a keeper of days on the council makes each kept day a small occasion.</keep>
+    <article>Council_Alm_C_Traditions</article>
+    <councilTab>Decrees</councilTab>
+  </ColonyCouncil.MoodHintDef>
+
+  <ColonyCouncil.MoodHintDef>
+    <defName>Council_Mood_RF_ColonyTraitPride</defName>
+    <thoughts>
+      <li>Council_ColonyTraitPride</li>
+    </thoughts>
+    <keep>The colony is known for the work this colonist loves. It holds as long as the work goes on; the Our ways page shows how close the colony is to each name, and where it stands.</keep>
+    <article>Council_Alm_C_Ways</article>
+    <councilTab>Ways</councilTab>
+  </ColonyCouncil.MoodHintDef>
+
+  <ColonyCouncil.MoodHintDef>
+    <defName>Council_Mood_RF_VendettaEnded</defName>
+    <thoughts>
+      <li>Council_Vendetta_LetGo</li>
+      <li>Council_Vendetta_Home</li>
+    </thoughts>
+    <keep>A vendetta ended without more blood: laid down, or the one who was taken came home. The Bonds page keeps how it ended.</keep>
+    <article>Council_Alm_C_Secrets</article>
+    <councilTab>Bonds</councilTab>
+  </ColonyCouncil.MoodHintDef>
+
+</Defs>

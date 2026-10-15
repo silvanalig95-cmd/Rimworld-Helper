@@ -1144,7 +1144,7 @@ Granting one of {PAWN_possessive} wishes, or keeping a promise, can win {PAWN_ob
 
   <!-- Offices and elections -->
   <CC_Settings_Offices>Council offices and yearly elections</CC_Settings_Offices>
-  <CC_Settings_Offices_Tip>Speaker, marshal, quartermaster, physician and steward: each gives its holder an edge and does a job for the colony. Colonists elect them every year by who they like and who's good at it; the council can overrule the vote, at a price.</CC_Settings_Offices_Tip>
+  <CC_Settings_Offices_Tip>Speaker, marshal, quartermaster, physician and steward, and for a bigger colony reeve, peacemaker, keeper of days and herdmaster: each gives its holder an edge and does a job for the colony. Colonists elect them every year by who they like and who's good at it; the council can overrule the vote, at a price.</CC_Settings_Offices_Tip>
   <CC_Election_Title>Council elections, year {0}</CC_Election_Title>
   <CC_Election_ByTitle>A seat to fill</CC_Election_ByTitle>
   <CC_Election_Text>The colony has voted. Everyone picked who they wanted in each seat: some for skill, some for friendship, a few for themselves.</CC_Election_Text>

@@ -655,7 +655,11 @@ namespace ColonyCouncil
                 int until = now + Mathf.RoundToInt(soreHours * GenDate.TicksPerHour * (Temper(a) || Temper(b) ? 1.5f : 1f));
                 if (until > t.soreUntil) t.soreUntil = until;
             }
-            else if (tone == "mend") t.mend = now;
+            else if (tone == "mend")
+            {
+                t.mend = now;
+                CouncilRecords.Add(a, CouncilRecords.QuarrelsMended);
+            }
             else t.warm = now;
             cacheTick = -1;
         }
@@ -678,7 +682,11 @@ namespace ColonyCouncil
                 int until = now + Mathf.RoundToInt(x.soreHours * GenDate.TicksPerHour * (hot ? 1.5f : 1f));
                 if (until > t.soreUntil) t.soreUntil = until;
             }
-            else if (x.Mend) t.mend = now;
+            else if (x.Mend)
+            {
+                t.mend = now;
+                CouncilRecords.Add(a, CouncilRecords.QuarrelsMended);
+            }
             else
             {
                 if (x.contestSkill == null && s.mend >= 0 && s.mend >= s.friction && s.warm < s.mend && now - s.mend < GenDate.TicksPerDay)

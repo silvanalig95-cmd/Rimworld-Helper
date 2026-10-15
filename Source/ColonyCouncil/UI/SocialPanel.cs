@@ -405,7 +405,7 @@ namespace ColonyCouncil
             for (int i = 0; i < list.Count; i++)
             {
                 var v = list[i];
-                string line = (v.settled ? "CC_Social_VendettaSettled" : v.kidnapped ? "CC_Social_VendettaTaken" : "CC_Social_Vendetta")
+                string line = v.LineKey
                     .Translate(v.avenger.LabelShort, v.faction.Name, v.victim, v.kills, Vendetta.KillsToSettle).Resolve();
                 var r = new Rect(0f, y, width, RowH);
                 UiKit.Zebra(r, i);

@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- The newer council seats (Defs/OfficeDefs/Council_Offices2.xml): the holder's edge, and colony-wide effects while filled. -->
+
+  <HediffDef>
+    <defName>Council_Office_Reeve</defName>
+    <label>reeve of the fields</label>
+    <description>Holds the reeve's seat: decides what is sown and when.</description>
+    <hediffClass>HediffWithComps</hediffClass>
+    <defaultLabelColor>(0.85, 0.75, 0.5)</defaultLabelColor>
+    <isBad>false</isBad>
+    <everCurableByItem>false</everCurableByItem>
+    <stages>
+      <li><statOffsets><PlantWorkSpeed>0.1</PlantWorkSpeed><PlantHarvestYield>0.05</PlantHarvestYield></statOffsets></li>
+    </stages>
+  </HediffDef>
+
+  <HediffDef>
+    <defName>Council_Office_ReeveColony</defName>
+    <label>a careful reeve</label>
+    <description>The reeve keeps an eye on every field. Harvests come in a little fuller for it.</description>
+    <hediffClass>HediffWithComps</hediffClass>
+    <defaultLabelColor>(0.85, 0.75, 0.5)</defaultLabelColor>
+    <isBad>false</isBad>
+    <everCurableByItem>false</everCurableByItem>
+    <stages>
+      <li><statOffsets><PlantHarvestYield>0.02</PlantHarvestYield></statOffsets></li>
+    </stages>
+  </HediffDef>
+
+  <HediffDef>
+    <defName>Council_Office_Peacemaker</defName>
+    <label>peacemaker of the colony</label>
+    <description>Holds the peacemaker's seat: hears out quarrels before they become feuds.</description>
+    <hediffClass>HediffWithComps</hediffClass>
+    <defaultLabelColor>(0.85, 0.75, 0.5)</defaultLabelColor>
+    <isBad>false</isBad>
+    <everCurableByItem>false</everCurableByItem>
+    <stages>
+      <li><statOffsets><SocialImpact>0.1</SocialImpact><MentalBreakThreshold>-0.02</MentalBreakThreshold></statOffsets></li>
+    </stages>
+  </HediffDef>
+
+  <HediffDef>
+    <defName>Council_Office_Keeper</defName>
+    <label>keeper of days</label>
+    <description>Holds the keeper's seat: keeps the calendar and the colony's customs.</description>
+    <hediffClass>HediffWithComps</hediffClass>
+    <defaultLabelColor>(0.85, 0.75, 0.5)</defaultLabelColor>
+    <isBad>false</isBad>
+    <everCurableByItem>false</everCurableByItem>
+    <stages>
+      <li><statOffsets><SocialImpact>0.08</SocialImpact></statOffsets></li>
+    </stages>
+  </HediffDef>
+
+  <HediffDef>
+    <defName>Council_Office_Herdmaster</defName>
+    <label>herdmaster</label>
+    <description>Holds the herdmaster's seat: looks after the colony's animals.</description>
+    <hediffClass>HediffWithComps</hediffClass>
+    <defaultLabelColor>(0.85, 0.75, 0.5)</defaultLabelColor>
+    <isBad>false</isBad>
+    <everCurableByItem>false</everCurableByItem>
+    <stages>
+      <li><statOffsets><TameAnimalChance>0.05</TameAnimalChance><TrainAnimalChance>0.05</TrainAnimalChance><AnimalGatherYield>0.08</AnimalGatherYield></statOffsets></li>
+    </stages>
+  </HediffDef>
+
+  <HediffDef>
+    <defName>Council_Office_HerdmasterColony</defName>
+    <label>a good herdmaster</label>
+    <description>The herdmaster keeps the animals well. Milk, wool and eggs come a little more freely for everyone.</description>
+    <hediffClass>HediffWithComps</hediffClass>
+    <defaultLabelColor>(0.85, 0.75, 0.5)</defaultLabelColor>
+    <isBad>false</isBad>
+    <everCurableByItem>false</everCurableByItem>
+    <stages>
+      <li><statOffsets><AnimalGatherYield>0.03</AnimalGatherYield></statOffsets></li>
+    </stages>
+  </HediffDef>
+
+</Defs>

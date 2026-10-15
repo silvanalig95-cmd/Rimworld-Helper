@@ -1,0 +1,357 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Seasonal customs: dilemmas with an answer the colony can make its own, like the midsummer bonfire and harvest home
+    (Council_Dilemmas_Seasons.xml). Choose the custom two years running and it becomes a tradition, which then comes
+    round every year in its season. ColonyCouncil.DilemmaWorker_Custom reads a CustomConditions extension for anything
+    beyond the season: the weather outside (minTemp, maxTemp), open water on the map, the colony's own graves, enough
+    raw food (foodFactor times thingCount).
+  -->
+
+  <!-- ===================== The planting blessing (spring) ===================== -->
+  <ColonyCouncil.DilemmaDef>
+    <defName>Council_Dilemma_PlantingBlessing</defName>
+    <label>the planting blessing</label>
+    <weight>0.7</weight>
+    <cooldownDays>50</cooldownDays>
+    <seasons><li>Spring</li></seasons>
+    <roleA>
+      <passion>Plants</passion>
+    </roleA>
+    <texts>
+      <li>The ground has thawed, and {A_nameDef} wants the whole colony out in the fields at first light before the sowing starts, to walk the rows together and say a few words over the seed. "Where I'm from, nobody planted a thing until it was blessed," {A_nameDef} says.\n\nIt would cost the colony a morning's work.</li>
+      <li>{A_nameDef} has been sorting seed by the window all week, and has asked the council for one morning: everyone in the fields at dawn, a handful of grain scattered for luck, and then the planting can begin.</li>
+      <li>[lowtech] Back in {A_nameDef}'s village, the first furrow of spring was blessed by everyone together, with a little grain thrown to the birds so they'd leave the rest. {A_nameDef} would like to do the same here.</li>
+      <li>[colony:Traditional] The colony keeps its customs, and {A_nameDef} has asked for one more: a blessing on the fields before the first seed goes in, with everyone there to see it.</li>
+    </texts>
+    <traditionOption>0</traditionOption>
+    <traditionLabel>the planting blessing</traditionLabel>
+    <defaultOption>1</defaultOption>
+    <options>
+      <li>
+        <label>Bless the fields together</label>
+        <outcome>The whole colony walked the rows at dawn while {A_nameDef} said the words. The planting started late, and nobody minded.</outcome>
+        <outcomes>
+          <li>[rain] It rained on the blessing, which {A_nameDef} declared the best possible sign. Everyone came back soaked and smiling.</li>
+          <li>[lowtech] {A_nameDef} threw the first handful of grain to the birds, and the colony followed the furrow one by one, each with a word for the year.</li>
+        </outcomes>
+        <ways><tradition>4</tradition><toil>-3</toil></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>rawfood</what><count>5</count></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_Dlm_Trad_Blessing</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>4</amount></li>
+        </effects>
+      </li>
+      <li>
+        <label>A quiet word at the field's edge</label>
+        <outcome>{A_nameDef} said the words alone at the edge of the field before breakfast, then went to fetch the seed.</outcome>
+        <ways><tradition>1</tradition></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_Trad_Blessing</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>1</amount></li>
+        </effects>
+      </li>
+      <li>
+        <label>Just get the seed in the ground</label>
+        <outcome>The sowing started at dawn as usual. {A_nameDef} planted the first row a little more carefully than the rest, and didn't say why.</outcome>
+        <ways><tradition>-3</tradition><toil>4</toil></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_NoCelebration</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>-2</amount></li>
+        </effects>
+      </li>
+    </options>
+  </ColonyCouncil.DilemmaDef>
+
+  <!-- ===================== The remembrance walk (spring, with graves) ===================== -->
+  <ColonyCouncil.DilemmaDef>
+    <defName>Council_Dilemma_RemembranceWalk</defName>
+    <label>the remembrance walk</label>
+    <workerClass>ColonyCouncil.DilemmaWorker_Custom</workerClass>
+    <weight>0.6</weight>
+    <cooldownDays>50</cooldownDays>
+    <seasons><li>Spring</li><li>PermanentSummer</li></seasons>
+    <roleA>
+      <notTrait><li>Psychopath</li></notTrait>
+    </roleA>
+    <texts>
+      <li>The snow has gone from the graves, and {A_nameDef} has been out to clear the winter's leaves off them. {A_nameDef} asks whether the colony might walk out there together one evening, everyone, and say the names of the dead out loud.</li>
+      <li>{A_nameDef} found weeds growing over one of the graves this morning and pulled them by hand. Now {A_nameDef} wants a day each spring when the whole colony walks to the graves together, tidies them, and remembers.</li>
+      <li>[trait:Kind] {A_nameDef} has picked the first flowers of the year, one for every grave, and asks the council if everyone could come and lay them down together.</li>
+    </texts>
+    <traditionOption>0</traditionOption>
+    <traditionLabel>the remembrance walk</traditionLabel>
+    <defaultOption>1</defaultOption>
+    <options>
+      <li>
+        <label>Walk to the graves together</label>
+        <outcome>The colony walked to the graves at dusk, tidied them, and said every name out loud. A few stories came out that nobody had heard before.</outcome>
+        <outcomes>
+          <li>[trait:Kind] Everyone laid a flower on a grave, and {A_nameDef} said a few words for each of the dead. It took a long time, and nobody hurried it.</li>
+          <li>[rain] They walked out in the rain and stood at the graves anyway, saying the names over the noise of it. It felt right, somehow.</li>
+        </outcomes>
+        <ways><tradition>5</tradition><mercy>1</mercy></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_Dlm_Trad_Walk</thought><exceptTrait><li>Psychopath</li></exceptTrait></li>
+          <li Class="ColonyCouncil.DilemmaEffect_StrainRelief"><target>Colony</target><amount>6</amount><onlyStrained>true</onlyStrained></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>3</amount></li>
+        </effects>
+      </li>
+      <li>
+        <label>Those who want to can go</label>
+        <outcome>A handful of them went out with {A_nameDef} at dusk. The rest found something to do indoors.</outcome>
+        <ways><tradition>2</tradition></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_Dlm_Trad_Walk</thought><exceptTrait><li>Psychopath</li></exceptTrait><chance>0.5</chance></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>1</amount></li>
+        </effects>
+      </li>
+      <li>
+        <label>The living have work to do</label>
+        <outcome>No walk. {A_nameDef} went out alone after dark and came back with mud on {A_possessive} knees.</outcome>
+        <ways><tradition>-4</tradition><toil>2</toil></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_NoCelebration</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>-3</amount></li>
+        </effects>
+      </li>
+    </options>
+    <modExtensions>
+      <li Class="ColonyCouncil.CustomConditions">
+        <graves>true</graves>
+      </li>
+    </modExtensions>
+  </ColonyCouncil.DilemmaDef>
+
+  <!-- ===================== The midsummer swim (summer, warm, with water) ===================== -->
+  <ColonyCouncil.DilemmaDef>
+    <defName>Council_Dilemma_MidsummerSwim</defName>
+    <label>the midsummer swim</label>
+    <workerClass>ColonyCouncil.DilemmaWorker_Custom</workerClass>
+    <weight>0.7</weight>
+    <cooldownDays>50</cooldownDays>
+    <seasons><li>Summer</li><li>PermanentSummer</li></seasons>
+    <roleA>
+      <notTrait><li>Wimp</li></notTrait>
+    </roleA>
+    <texts>
+      <li>It's the hottest day yet, and {A_nameDef} wants the whole colony down at the water for the afternoon: tools down, boots off, and nobody back until they've been in up to the neck.</li>
+      <li>{A_nameDef} came back from the water this morning dripping and grinning, and has asked the council to let everyone have an afternoon of it. "One day a year," {A_nameDef} says. "That's all."</li>
+      <li>[trait:Ascetic] Even {A_nameDef}, who usually wants nothing, has asked for this: an afternoon in the water for everyone, on the hottest day of the year.</li>
+    </texts>
+    <traditionOption>0</traditionOption>
+    <traditionLabel>the midsummer swim</traditionLabel>
+    <defaultOption>1</defaultOption>
+    <options>
+      <li>
+        <label>Everyone to the water</label>
+        <outcome>The colony spent the afternoon in the water, splashing and floating and arguing about who went in first. They walked back sunburnt and sleepy.</outcome>
+        <outcomes>
+          <li>{A_nameDef} was first in and last out. By evening there was a rope tied to a branch over the deepest part, and a list of who had swung from it.</li>
+        </outcomes>
+        <ways><tradition>3</tradition><toil>-4</toil></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_Dlm_Trad_Swim</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Joy"><target>Colony</target><amount>0.25</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>4</amount></li>
+        </effects>
+      </li>
+      <li>
+        <label>A swim once the day's work is done</label>
+        <outcome>Work first, then the water. The light was going by the time they got there, but it was still warm, and nobody hurried back.</outcome>
+        <ways><tradition>1</tradition><toil>2</toil></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Joy"><target>Colony</target><amount>0.12</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>1</amount></li>
+        </effects>
+      </li>
+      <li>
+        <label>Keep everyone working</label>
+        <outcome>The afternoon passed in the heat at work. {A_nameDef} kept looking toward the water.</outcome>
+        <ways><tradition>-2</tradition><toil>4</toil></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_Dlm_NoCelebration</thought><exceptTrait><li>Ascetic</li></exceptTrait><chance>0.5</chance></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>-2</amount></li>
+        </effects>
+      </li>
+    </options>
+    <modExtensions>
+      <li Class="ColonyCouncil.CustomConditions">
+        <water>true</water>
+        <minTemp>22</minTemp>
+      </li>
+    </modExtensions>
+  </ColonyCouncil.DilemmaDef>
+
+  <!-- ===================== The harvest dance (fall) ===================== -->
+  <ColonyCouncil.DilemmaDef>
+    <defName>Council_Dilemma_HarvestDance</defName>
+    <label>the harvest dance</label>
+    <weight>0.7</weight>
+    <cooldownDays>50</cooldownDays>
+    <seasons><li>Fall</li></seasons>
+    <roleA>
+      <notTrait><li>Ascetic</li></notTrait>
+    </roleA>
+    <texts>
+      <li>The fields are bare and the stores are full, and {A_nameDef} wants a dance: the floor swept, the tables pushed back, someone on a drum, and everyone up on their feet until they can't stand.\n\nIt would cost nothing but a late night and a slow morning.</li>
+      <li>{A_nameDef} has been teaching a couple of the others an old harvest dance in the barn when they think nobody's watching, and has finally asked the council to make a night of it for everyone.</li>
+      <li>[lowtech] Where {A_nameDef} grew up, the last sheaf was carried in on someone's shoulders and the whole village danced around it. {A_nameDef} would like a dance here too, sheaf and all.</li>
+      <li>[trait:Kind] {A_nameDef} noticed how tired everyone looked bringing in the harvest, and asked the council for one night of music and dancing to make up for it.</li>
+    </texts>
+    <traditionOption>0</traditionOption>
+    <traditionLabel>the harvest dance</traditionLabel>
+    <defaultOption>1</defaultOption>
+    <options>
+      <li>
+        <label>Dance until the fire burns down</label>
+        <outcome>They danced until the fire was embers and the drummer's hands gave out. Even the ones who swore they couldn't dance were dragged up for at least one.</outcome>
+        <outcomes>
+          <li>[lowtech] The last sheaf went round the fire on {A_nameDef}'s shoulders, and the colony danced after it until the stars moved.</li>
+        </outcomes>
+        <ways><tradition>4</tradition><toil>-4</toil></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_Dlm_Trad_Dance</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Joy"><target>Colony</target><amount>0.2</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_StrainRelief"><target>Colony</target><amount>5</amount><onlyStrained>true</onlyStrained></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>4</amount></li>
+        </effects>
+      </li>
+      <li>
+        <label>One dance, then bed</label>
+        <outcome>They had one dance, a good one, and went to bed pleased with themselves.</outcome>
+        <ways><tradition>1</tradition></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Joy"><target>Colony</target><amount>0.1</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>1</amount></li>
+        </effects>
+      </li>
+      <li>
+        <label>There's work in the morning</label>
+        <outcome>No dance. {A_nameDef} hummed the tune under {A_possessive} breath all through supper.</outcome>
+        <ways><tradition>-2</tradition><toil>4</toil></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_Dlm_NoCelebration</thought><exceptTrait><li>Ascetic</li></exceptTrait></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>-2</amount></li>
+        </effects>
+      </li>
+    </options>
+  </ColonyCouncil.DilemmaDef>
+
+  <!-- ===================== First-frost soup (fall, on the first freezing day) ===================== -->
+  <ColonyCouncil.DilemmaDef>
+    <defName>Council_Dilemma_FirstFrostSoup</defName>
+    <label>first-frost soup</label>
+    <workerClass>ColonyCouncil.DilemmaWorker_Custom</workerClass>
+    <weight>0.8</weight>
+    <cooldownDays>50</cooldownDays>
+    <seasons><li>Fall</li><li>Winter</li></seasons>
+    <roleA>
+      <bestAt>Cooking</bestAt>
+    </roleA>
+    <thingCount>15</thingCount>
+    <texts>
+      <li>There was frost on the ground this morning, the first of the year. {A_nameDef} wants to mark it the old way: one big pot of soup, the last of the garden thrown in, and everyone eating it together out of the same pot. It would take about {COUNT} raw food.</li>
+      <li>The water trough had ice on it at dawn. {A_nameDef} says a first frost deserves a first soup, and has already put the big pot on the fire, waiting for the council to say yes. It would need about {COUNT} raw food.</li>
+      <li>[trait:Gourmand] {A_nameDef} has been waiting all autumn for the first frost, because that's when the soup is made, and the soup is very important. About {COUNT} raw food, {A_nameDef} says, and worth every bite.</li>
+    </texts>
+    <traditionOption>0</traditionOption>
+    <traditionLabel>first-frost soup</traditionLabel>
+    <defaultOption>1</defaultOption>
+    <options>
+      <li>
+        <label>One big pot for everyone</label>
+        <outcome>The soup bubbled all afternoon and the whole colony ate it standing round the pot, breath steaming. It was the best thing anyone had eaten in weeks.</outcome>
+        <outcomes>
+          <li>[snow] Snow started falling while they ate, and they stayed out in it anyway, bowls in their hands, until the pot was scraped clean.</li>
+        </outcomes>
+        <ways><generosity>3</generosity><tradition>4</tradition></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>rawfood</what></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_Dlm_Trad_FrostSoup</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>4</amount></li>
+        </effects>
+      </li>
+      <li>
+        <label>Soup for those working outside</label>
+        <outcome>A smaller pot went out to the ones working in the cold. The rest smelled it from indoors and were jealous.</outcome>
+        <ways><generosity>1</generosity><toil>1</toil></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>rawfood</what><factor>0.4</factor></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_Dlm_Trad_FrostSoup</thought><chance>0.4</chance></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>1</amount></li>
+        </effects>
+      </li>
+      <li>
+        <label>Everything goes to the winter stores</label>
+        <outcome>The big pot went back on its hook. {A_nameDef} made the usual meals and said nothing about it.</outcome>
+        <ways><generosity>-3</generosity><tradition>-2</tradition></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_NoCelebration</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>-2</amount></li>
+        </effects>
+      </li>
+    </options>
+    <modExtensions>
+      <li Class="ColonyCouncil.CustomConditions">
+        <maxTemp>0</maxTemp>
+        <foodFactor>2</foodFactor>
+      </li>
+    </modExtensions>
+  </ColonyCouncil.DilemmaDef>
+
+  <!-- ===================== Lantern night (winter) ===================== -->
+  <ColonyCouncil.DilemmaDef>
+    <defName>Council_Dilemma_LanternNight</defName>
+    <label>lantern night</label>
+    <weight>0.7</weight>
+    <cooldownDays>50</cooldownDays>
+    <seasons><li>Winter</li><li>PermanentWinter</li></seasons>
+    <texts>
+      <li>The nights are long and black, and {A_nameDef} wants one of them to be different: a lantern in every window and along every path, all lit at once at dusk, so the colony can be seen glowing from the hills.\n\nIt would burn a fair bit of wood.</li>
+      <li>{A_nameDef} has been making lanterns out of scraps in the evenings, dozens of them, and asks the council for one night to light them all.</li>
+      <li>[lowtech] Back home, on the darkest night of the year, every house set a candle in the window so the dead could find their way. {A_nameDef} asks if the colony could do the same.</li>
+      <li>[!lowtech] {A_nameDef} wants the lamps off for one winter night and lanterns lit instead, real flames, the way {A_pronoun} remembers it from childhood.</li>
+    </texts>
+    <traditionOption>0</traditionOption>
+    <traditionLabel>lantern night</traditionLabel>
+    <defaultOption>1</defaultOption>
+    <options>
+      <li>
+        <label>A lantern in every window</label>
+        <outcome>At dusk the lanterns were lit all at once, and the colony stood outside in the cold to look at itself glowing. Nobody wanted to go in.</outcome>
+        <outcomes>
+          <li>[snow] The lanterns lit up the falling snow, and for an hour the colony looked like something out of a story.</li>
+          <li>[lowtech] A candle burned in every window until dawn. {A_nameDef} sat up to keep them lit, and said a name at each one.</li>
+        </outcomes>
+        <ways><tradition>4</tradition><toil>-2</toil></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>WoodLog</what><count>30</count></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_Dlm_Trad_Lanterns</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>4</amount></li>
+        </effects>
+      </li>
+      <li>
+        <label>One lantern at the gate</label>
+        <outcome>One lantern burned at the gate all night. A few people went out to look at it before bed.</outcome>
+        <ways><tradition>2</tradition></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>WoodLog</what><count>5</count></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_Dlm_Trad_Lanterns</thought><chance>0.4</chance></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>1</amount></li>
+        </effects>
+      </li>
+      <li>
+        <label>Save the fuel for the cold</label>
+        <outcome>The lanterns stayed in their box. The night was as dark as all the others.</outcome>
+        <ways><generosity>-2</generosity><tradition>-3</tradition></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_Dlm_NoCelebration</thought><exceptTrait><li>Ascetic</li></exceptTrait><chance>0.5</chance></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>-2</amount></li>
+        </effects>
+      </li>
+    </options>
+  </ColonyCouncil.DilemmaDef>
+
+</Defs>

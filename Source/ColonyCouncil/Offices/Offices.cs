@@ -8,9 +8,10 @@ using Verse;
 namespace ColonyCouncil
 {
     /// <summary>
-    /// A seat on the council: Speaker, Marshal, Quartermaster, Physician, Steward. The holder gets a small edge
-    /// (<see cref="hediff"/>), the colony sometimes too (<see cref="colonyHediff"/>), and the office does its job
-    /// in code (see <see cref="OfficeTracker"/> helpers). Filled by a yearly election; the council can overrule it.
+    /// A seat on the council: Speaker, Marshal, Quartermaster, Physician, Steward, and for a bigger colony the Reeve,
+    /// Peacemaker, Keeper of Days and Herdmaster. The holder gets a small edge (<see cref="hediff"/>), the colony
+    /// sometimes too (<see cref="colonyHediff"/>), and the office does its job in code (see <see cref="OfficeTracker"/>
+    /// helpers). Filled by a yearly election; the council can overrule it.
     /// </summary>
     public class OfficeDef : Def
     {
@@ -23,6 +24,12 @@ namespace ColonyCouncil
         public HediffDef colonyHediff;
         [MustTranslate] public List<string> duties = new List<string>();
         public int order;
+        /// <summary>The seat only opens once the colony has this many people who can vote (small colonies need fewer offices).</summary>
+        public int minColonists;
+        /// <summary>A line for the election letter after the winner's name, one picked at random ({PAWN_...} the winner).</summary>
+        [MustTranslate] public List<string> elected;
+
+        public bool OpenFor(int voters) => voters >= minColonists;
 
         public float Competence(Pawn p)
         {
@@ -88,6 +95,12 @@ namespace ColonyCouncil
         /// <summary>A steward keeps expectations in check: standards rise slower.</summary>
         public float StandardsFactor => S.offices && Filled("Council_Office_Steward") ? 0.75f : 1f;
 
+        /// <summary>A peacemaker sits feuding colonists down now and then, and rivalries cool a little every day.</summary>
+        public Pawn Peacemaker => S.offices ? HolderOf("Council_Office_Peacemaker") : null;
+
+        /// <summary>A keeper of days makes every kept custom and calendar day a little more of an occasion.</summary>
+        public Pawn KeeperOfDays => S.offices ? HolderOf("Council_Office_Keeper") : null;
+
         // ---------------- Elections ----------------
 
         public void Daily(CouncilGameComponent comp)
@@ -111,9 +124,61 @@ namespace ColonyCouncil
             int year = GenLocalDate.Year(map);
             bool firstEver = lastElectionYear < 0;
             bool newYear = year > lastElectionYear;
-            bool vacancy = Offices.Any(o => HolderOf(o) == null) && Find.TickManager.TicksGame - lastElectionTick > GenDate.TicksPerDay * 3;
+            // An open seat with nobody in it, and someone free to fill it (a small colony doesn't vote every few days for seats it can't fill).
+            var eligible = Eligible();
+            bool vacancy = Offices.Any(o => o.OpenFor(eligible.Count) && HolderOf(o) == null) && eligible.Any(p => OfficeOf(p) == null)
+                           && Find.TickManager.TicksGame - lastElectionTick > GenDate.TicksPerDay * 3;
             if (firstEver || newYear) Hold(comp, year, false);
             else if (vacancy) Hold(comp, year, true);
+            try
+            {
+                Peacemaking(comp);
+            }
+            catch (System.Exception e)
+            {
+                CouncilLog.ErrorOnce("peacemaker", e);
+            }
+        }
+
+        // ---------------- What the newer offices do ----------------
+
+        /// <summary>
+        /// The peacemaker's day: every rivalry between colonists cools a little, and now and then the peacemaker sits the
+        /// worst-feuding pair down together (counted as a quarrel mended).
+        /// </summary>
+        private void Peacemaking(CouncilGameComponent comp)
+        {
+            var peacemaker = Peacemaker;
+            if (peacemaker == null || !ColonyCouncilMod.Settings.socialWeb || comp.social == null) return;
+            var rivalries = comp.social.ties.Where(t => t.kind == TieKind.Rivals && t.announced && t.a != null && t.b != null
+                                                        && t.a.IsColonist && t.b.IsColonist && !t.Involves(peacemaker)).ToList();
+            foreach (var t in rivalries) comp.social.Weaken(t.a, t.b, TieKind.Rivals, 0.5f, null);
+            if (!peacemaker.Spawned || peacemaker.Downed || !Rand.Chance(0.15f)) return;
+            var pair = rivalries.Where(t => comp.social.ties.Contains(t) && t.a.Spawned && t.b.Spawned && t.a.Map == peacemaker.Map && t.b.Map == peacemaker.Map)
+                .OrderByDescending(t => t.strength).FirstOrDefault();
+            if (pair == null) return;
+            using var _cause = Causes.Push("CC_Cause_Peacemaker".Translate(peacemaker.LabelShort).Resolve());
+            comp.social.Weaken(pair.a, pair.b, TieKind.Rivals, 6f, "CC_TieNote_Peacemaker".Translate(peacemaker.LabelShort));
+            CouncilRecords.Add(peacemaker, CouncilRecords.QuarrelsMended);
+            string line = Flavor.FromPool("Council_Pool_PeacemakerMediates", peacemaker);
+            if (line.NullOrEmpty()) return;
+            News.Post(line.Formatted(peacemaker.Named("PAWN"), pair.a.Named("A"), pair.b.Named("B")).Resolve(), new LookTargets(peacemaker, pair.a, pair.b),
+                NewsKind.People, MessageTypeDefOf.NeutralEvent, Importance.Flavor);
+        }
+
+        /// <summary>
+        /// A council tradition or a calendar day was kept: with a keeper of days in office, everyone there remembers it as
+        /// a day done properly (a small, short good mood).
+        /// </summary>
+        public void Notify_CustomKept(IEnumerable<Pawn> colonists)
+        {
+            var keeper = KeeperOfDays;
+            if (keeper == null || colonists == null) return;
+            var thought = DefDatabase<ThoughtDef>.GetNamedSilentFail("Council_Office_WellKept");
+            if (thought == null) return;
+            string cause = "CC_Cause_KeeperOfDays".Translate(keeper.LabelShort).Resolve();
+            foreach (var p in colonists)
+                if (p != null && p.IsColonist && !p.Dead) CouncilGameComponent.GiveThought(p, thought, null, -1f, cause);
         }
 
         /// <summary>Everyone votes, office by office; nobody holds two.</summary>
@@ -128,10 +193,13 @@ namespace ColonyCouncil
             lastElectionYear = year;
             lastElectionTick = Find.TickManager.TicksGame;
             var taken = new HashSet<Pawn>();
+            // A seat a colony this size doesn't need yet stays as it is.
+            foreach (var office in Offices.Where(o => !o.OpenFor(voters.Count)))
+                if (HolderOf(office) != null) taken.Add(HolderOf(office));
             var text = new StringBuilder();
             text.Append(ruler != null ? (byElection ? "CC_PM_Appoint_ByText" : "CC_PM_Appoint_Text").Translate(ruler.Named("PAWN")).Resolve()
                 : (byElection ? "CC_Election_ByText" : "CC_Election_Text").Translate(year).Resolve());
-            foreach (var office in Offices)
+            foreach (var office in Offices.Where(o => o.OpenFor(voters.Count)))
             {
                 if (byElection && HolderOf(office) != null)
                 {
@@ -156,6 +224,7 @@ namespace ColonyCouncil
                     : "CC_Election_Line".Translate(office.LabelCap, winner.Named("PAWN"), ranked[0].Value, voters.Count).Resolve());
                 var losers = ranked.Skip(1).Where(kv => kv.Value > 0).Select(kv => kv.Key.LabelShort + " (" + kv.Value + ")").ToList();
                 if (losers.Count > 0) text.Append(" ").Append("CC_Election_Others".Translate(string.Join(", ", losers)).Resolve());
+                if (!office.elected.NullOrEmpty()) text.Append(" ").Append(Flavor.PickText(office.elected).Formatted(winner.Named("PAWN")).Resolve());
                 CouncilGameComponent.GiveThought(winner, CouncilDefOf.Council_ElectedToOffice);
                 comp.journals.Write(winner, "Council_Journal_Elected", null, office.label.Named("OFFICE"));
                 if (previous != null && previous != winner && Valid(previous))

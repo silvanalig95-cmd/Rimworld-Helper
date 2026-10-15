@@ -37,6 +37,9 @@ namespace ColonyCouncil
             foreach (var way in CharacterTracker.All) y += DrawBar(ch, way, w, y, i++);
             y += 14f;
 
+            // What the work has made the colony.
+            y += DrawTraits(ch, w, y) + 14f;
+
             // Who's proud of it, who chafes.
             var rated = UiCache.Get(ch, 81, () => Rated(ch));
             float colW = (w - 12f) / 2f;
@@ -109,6 +112,36 @@ namespace ColonyCouncil
             TooltipHandler.TipRegion(row, ("CC_Ways_Meaning_" + way + "_Pos").Translate() + "\n\n" + ("CC_Ways_Meaning_" + way + "_Neg").Translate()
                                           + "\n\n" + "CC_Ways_Value".Translate(v.ToString("0")));
             return rowH + 2f;
+        }
+
+        /// <summary>The colony traits: each with how close the colony is to being known for it.</summary>
+        private static float DrawTraits(CharacterTracker ch, float w, float y)
+        {
+            var defs = ColonyTraits.All.ToList();
+            if (defs.Count == 0) return 0f;
+            float start = y;
+            y += UiKit.SectionTitle(0f, y, w, "CC_Ways_TraitsHeader".Translate(), Icons.Ways);
+            y += UiKit.Paragraph(0f, y, w, "CC_Ways_TraitsIntro".Translate(), UiKit.Faint) + 4f;
+            const float rowH = 26f;
+            int i = 0;
+            foreach (var d in defs)
+            {
+                bool known = ch.traits.IsKnown(d);
+                float progress = Mathf.Clamp01(ch.traits.Progress(d));
+                var row = new Rect(0f, y, w, rowH);
+                UiKit.Zebra(row, i++);
+                Widgets.DrawHighlightIfMouseover(row);
+                float labelW = Mathf.Min(160f, w * 0.3f);
+                UiKit.LabelFit(new Rect(6f, y, labelW, rowH), d.LabelCap, known ? Pos : Color.white);
+                var bar = new Rect(labelW + 12f, y + 9f, Mathf.Max(20f, w - labelW - 140f), 8f);
+                Widgets.DrawBoxSolidWithOutline(bar, new Color(0.15f, 0.15f, 0.15f, 0.8f), new Color(1f, 1f, 1f, 0.1f), 1);
+                Widgets.DrawBoxSolid(new Rect(bar.x, bar.y, bar.width * progress, bar.height), known ? Pos : UiKit.Faint);
+                string status = known ? "CC_Ways_TraitKnown".Translate().ToString() : "CC_Ways_TraitProgress".Translate(progress.ToStringPercent()).ToString();
+                UiKit.LabelFit(new Rect(bar.xMax + 8f, y, w - bar.xMax - 10f, rowH), status, known ? Pos : UiKit.Faint, GameFont.Tiny);
+                TooltipHandler.TipRegion(row, d.description + (d.skill != null ? "\n\n" + "CC_Ways_TraitPride".Translate(d.skill.label).Resolve() : ""));
+                y += rowH;
+            }
+            return y - start;
         }
 
         private static float DrawPeople(string header, List<Rating> list, float x, float y, float w, Color color, Texture2D icon)

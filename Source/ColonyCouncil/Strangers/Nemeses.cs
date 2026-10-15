@@ -243,7 +243,7 @@ namespace ColonyCouncil
             var x = n.pawn;
             if (x == null || x.Discarded || (x.Destroyed && !x.Dead))
             {
-                if (n.announced) End(n, "CC_Nemesis_End_Vanished".Translate().ToString());
+                if (n.announced) End(n, Line("Council_Pool_NemesisVanished", n, null, "CC_Nemesis_End_Vanished", n.captured ? "captive" : "loose"));
                 else all.Remove(n);
                 return;
             }
@@ -253,11 +253,17 @@ namespace ColonyCouncil
                 else all.Remove(n);
                 return;
             }
-            // Tamed, recruited, joined: not an enemy any more.
+            // Tamed, recruited, joined (or put to work in chains): not an enemy any more.
             if (x.Faction == Faction.OfPlayer && !x.IsPrisonerOfColony)
             {
-                if (n.announced) End(n, "CC_Nemesis_End_Joined".Translate(x.Named("X")).Resolve());
+                if (n.announced) End(n, Line("Council_Pool_NemesisJoined", n, x, "CC_Nemesis_End_Joined", n.IsBeast ? "beast" : x.IsSlave ? "slave" : "recruited"));
                 else all.Remove(n);
+                return;
+            }
+            // Let out of the cells on the colony's say-so: the story ends there, with whatever the one they hurt makes of it.
+            if (n.captured && n.announced && !x.IsPrisonerOfColony && !x.Dead && x.guest != null && x.guest.Released)
+            {
+                Released(comp, n);
                 return;
             }
             // Someone they only knocked down has since died of other causes, or left: the grudge goes with them.
@@ -320,7 +326,7 @@ namespace ColonyCouncil
                 // Long gone and never seen again: let it end, and let the world have them back.
                 if (now - n.lastSeen > GenDate.TicksPerDay * 120)
                 {
-                    End(n, "CC_Nemesis_End_Vanished".Translate().ToString());
+                    End(n, Line("Council_Pool_NemesisVanished", n, null, "CC_Nemesis_End_Vanished", "loose"));
                     return;
                 }
                 // Keep them in the world while they're still someone's nemesis (a return through a raid unpins them).
@@ -357,6 +363,9 @@ namespace ColonyCouncil
             if (!n.IsBeast) Find.WorldPawns.ForcefullyKeptPawns.Add(x);
             string key = n.IsBeast ? "CC_Nemesis_EscapedBeast" : "CC_Nemesis_Escaped";
             string text = key.Translate(x.Named("X"), (n.victimName ?? "?").Named("VICTIM"), n.DeedText.Named("DEED")).Resolve();
+            // A parting shot, or what the beast left behind.
+            string parting = Line("Council_Pool_NemesisTaunt", n, x, null, "escape", n.IsBeast ? "beast" : "person", n.deed ?? "downed");
+            if (!parting.NullOrEmpty()) text += "\n\n" + parting;
             bool first = all.Count(o => o.announced && !o.ended && o.victim == n.victim) <= 1;
             if (first && (x.Spawned || n.victim?.MapHeld != null))
                 Find.LetterStack.ReceiveLetter("CC_Nemesis_Label".Translate(x.LabelShort), text, LetterDefOf.NeutralEvent, x.Spawned ? new LookTargets(x) : new LookTargets(n.victim));
@@ -400,6 +409,9 @@ namespace ColonyCouncil
             using var _cause = Causes.Push("CC_Cause_Nemesis".Translate(n.Name, n.DeedText).Resolve());
             var x = n.pawn;
             string text = "CC_Nemesis_Returned".Translate(x.Named("X"), (n.victimName ?? "?").Named("VICTIM"), n.DeedText.Named("DEED")).Resolve();
+            // What they shout across the field (or the sign the beast is back).
+            string taunt = Line("Council_Pool_NemesisTaunt", n, x, null, "return", n.IsBeast ? "beast" : "person", n.deed ?? "downed", n.returns >= 2 ? "again" : "first");
+            if (!taunt.NullOrEmpty()) text += " " + taunt;
             if (tell)
             {
                 if (n.IsBeast) Notify.Message(text, x, MessageTypeDefOf.NeutralEvent, Importance.Notable);
@@ -434,7 +446,7 @@ namespace ColonyCouncil
                 ? "CC_Nemesis_Revenge".Translate(x.Named("X"), n.victim.Named("PAWN"), n.DeedText.Named("DEED")).Resolve()
                 : slayer != null
                     ? "CC_Nemesis_SlainBy".Translate(x.Named("X"), slayer.Named("SLAYER"), (n.victimName ?? "?").Named("VICTIM"), n.DeedText.Named("DEED")).Resolve()
-                    : "CC_Nemesis_Dead".Translate(x.Named("X"), (n.victimName ?? "?").Named("VICTIM"), n.DeedText.Named("DEED")).Resolve();
+                    : Line("Council_Pool_NemesisDied", n, x, "CC_Nemesis_Dead", n.IsBeast ? "beast" : "person", n.captured ? "captive" : "loose");
             Find.LetterStack.ReceiveLetter("CC_Nemesis_EndLabel".Translate(n.Name), text, LetterDefOf.PositiveEvent, new LookTargets(new[] { slayer, n.victim }.Where(p => p != null && p.Spawned)));
             comp.AddChronicle(new ChronicleEntry(ChronicleKind.Stranger, text, slayer ?? n.victim));
             if (VictimCanFeel(n))
@@ -448,6 +460,35 @@ namespace ColonyCouncil
                 CouncilGameComponent.GiveThought(slayer, CouncilDefOf.Council_Nemesis_Slayer);
                 comp.journals.Write(slayer, "Council_Journal_NemesisSlayer", null, x.Named("X"), (n.victimName ?? "?").Named("VICTIM"));
             }
+            End(n, text);
+        }
+
+        /// <summary>
+        /// A line from one of the nemesis pools, in the voice of the one they hurt: {X_...} the nemesis (or {NAME} when
+        /// they're gone), {VICTIM}, {DEED}. Falls back to <paramref name="fallbackKey"/> (null: nothing).
+        /// </summary>
+        private static string Line(string pool, Nemesis n, Pawn x, string fallbackKey, params string[] tags)
+        {
+            var voice = n.victim ?? x;
+            string line = voice != null ? Flavor.FromPool(pool, voice, null, null, tags) : null;
+            var args = new List<NamedArgument>
+            {
+                x != null && !x.Discarded ? x.Named("X") : n.Name.Named("X"),
+                (n.victimName ?? "?").Named("VICTIM"), n.DeedText.Named("DEED"), n.Name.Named("NAME")
+            };
+            if (!line.NullOrEmpty()) return line.Formatted(args.ToArray()).Resolve();
+            return fallbackKey == null ? null : fallbackKey.Translate(args.ToArray()).Resolve();
+        }
+
+        /// <summary>Let go from the cells: the end of it, and the one they hurt has feelings about that.</summary>
+        private void Released(CouncilGameComponent comp, Nemesis n)
+        {
+            using var _cause = Causes.Push("CC_Cause_Nemesis".Translate(n.Name, n.DeedText).Resolve());
+            var x = n.pawn;
+            string text = Line("Council_Pool_NemesisReleased", n, x, "CC_Nemesis_Released", n.IsBeast ? "beast" : "person");
+            Notify.Message(text, x.Spawned ? new LookTargets(x) : LookTargets.Invalid, MessageTypeDefOf.NeutralEvent, Importance.Notable);
+            comp.AddChronicle(new ChronicleEntry(ChronicleKind.Stranger, text, n.victim));
+            if (VictimCanFeel(n)) comp.journals.Write(n.victim, "Council_Journal_NemesisReleased", null, x.Named("X"));
             End(n, text);
         }
 

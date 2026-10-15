@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- More ways for a vendetta to end (Source/ColonyCouncil/Secrets/Vendettas.cs): laid down, or the one taken came home. -->
+
+  <ThoughtDef>
+    <defName>Council_Vendetta_LetGo</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
+    <durationDays>8</durationDays>
+    <stackLimit>1</stackLimit>
+    <stages><li><label>laid it down</label><description>I've stopped carrying the hatred around. I still miss them. It's lighter, that's all.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Council_Vendetta_Home</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
+    <durationDays>8</durationDays>
+    <stackLimit>1</stackLimit>
+    <stages><li><label>they came home</label><description>The one they took is back with us. Nothing else they did matters as much as that.</description><baseMoodEffect>6</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+</Defs>

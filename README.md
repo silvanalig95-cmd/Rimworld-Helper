@@ -50,7 +50,7 @@ window, organized in five sections:
 |---|---|---|
 | **Colony** | Overview · Priorities · Moods · World · Room plans | the colony at a glance (numbers, how they moved this week, graphs of mood, trust, wealth and people over the last weeks); the advisor's ranked list of what the colony needs; every mood added up; what's coming and who's out there; ready-made rooms |
 | **People** | Roster · Bonds · Wishes | every colonist at a glance with their full story; friendships, rivalries, circles, vendettas, secrets; open wishes and trust |
-| **Council** | Decrees · Ambition | decrees, petitions and the council's five offices; the current ambition and meetings |
+| **Council** | Decrees · Ambition | decrees, petitions and the council's offices (five, nine in a bigger colony); the current ambition and meetings |
 | **History** | Chronicle · Dreams · Journals | everything that happened (filter by wishes, council, people, strangers, world events, dreams, losses), recent dreams, every colonist's journal |
 | **Almanac** | | the knowledge base |
 
@@ -82,6 +82,10 @@ jump to the problem, plan a fitting room, or read more in the Almanac. It watche
   tile you've researched (with "Upgrade the room"), a rec room with too little to do for everyone
 - doctor, medicine and medical beds; prisoners without a warden, food or bed
 - power shortages, jobs nobody is assigned to, items rotting outside, an idle research bench, ideas for what's next
+- the quieter things, gently: a week without fruit or vegetables (before scurvy), someone with no friend here, a
+  camp going hungry or growing tense, a calendar day coming round, graves left dirty or outside the home area,
+  clothes worn to rags or taken from the dead, a schedule with no hour for recreation, strain near breaking,
+  convalescents back at work, wishes about to lapse with nothing promised
 
 Urgent ones also show up in the alerts on the right.
 
@@ -240,6 +244,11 @@ a generous or open colony and cool towards a thrifty or guarded one, and some en
 for a colony with a certain name. Old deeds fade (about half in a year), so a colony can change. The **Our ways**
 page in the council window shows where you stand, who is proud, who chafes, and what shaped it.
 
+A colony also grows into what its people keep doing. A season of steady work earns it a name of its own:
+**green-fingered**, **builders**, **learned**, **craftsfolk**, **hunters** or **delvers**, counted from the
+colonists' own records as a rolling average per head. Those with a passion for the work take a small, lasting pride
+in it (+2), and the name fades if the work stops for long (a winter alone won't undo a farming colony).
+
 ### Dilemmas: hard choices
 Every week or so (sooner while everyone is content) the council has to settle something, and every answer costs
 someone. A thief caught in the stores: forgive, make them work it off, or make an example of them? Two colonists
@@ -248,7 +257,7 @@ stash of beer, a cook who wants to spend the stores on one magnificent feast, a 
 can't cope. Kind, greedy, industrious and teetotal colonists all react differently. Leave a dilemma unanswered and
 the council's silence decides for you.
 
-There are 126 of them, and many grow out of everyday life: a sick colonist when the medicine is nearly gone,
+There are 132 of them, and many grow out of everyday life: a sick colonist when the medicine is nearly gone,
 whether to keep someone with a fever apart, a cook with a cold, an old family remedy, a visitor's strange cure, the
 camp on the colony's land asking for medicine, food or searchers for a lost child, a council meeting someone missed,
 a worn-out colonist asking for days off at the worst time, a doctor who just lost a patient, someone convalescing who
@@ -328,15 +337,19 @@ remembered by the one who shared it. At most one per colonist; how often is a se
 The Almanac page "personal stories" lists them all.
 
 ### Secrets, vendettas and eulogies
-Some colonists carry a **secret**, often from the life their backstory hints at: a raider's past, noble blood, a
-deserter's shame, a doctor's fatal mistake, a child left behind, a borrowed name, a pirate's debt, a hidden kindness.
-You don't get told. You only see when they confide in a close friend. A confidant who later falls out with them is
-likely to let it slip; at rock bottom some blurt it out themselves. When it comes out, everyone reacts according to
-their nature, betrayed confidences make enemies, and sometimes the council has to decide what to do about it.
+Some colonists carry a **secret** (52 of them), often from the life their backstory hints at: a raider's past, noble
+blood, a deserter's shame, a doctor's fatal mistake, a child left behind, a borrowed name, a pirate's debt, an old
+illness, a lost caravan, a childhood in the camps, a broken vow, a banishment by vote, a hidden kindness. You don't
+get told. You only see when they confide in a close friend, and the news of it hints without telling. A confidant who
+later falls out with them is likely to let it slip; at rock bottom some blurt it out themselves. When it comes out,
+everyone reacts according to their nature, betrayed confidences make enemies, and sometimes the council has to decide
+what to do about it. A secret someone knew comes out at the graveside, each in its own way.
 
-When raiders kill or carry off someone, the people who loved them swear a **vendetta** on that faction: a weight they
-carry, fury when those colours show up again, satisfaction when enough of them fall, outrage if the council makes
-peace with the killers.
+When raiders kill or carry off someone, or kill a bonded animal in a fight, the people who loved them swear a
+**vendetta** on that faction: a weight they carry, fury when those colours show up again, outrage if the council
+makes peace with the killers. It ends when enough of them fall or are taken alive in the fights that come anyway,
+when the one carried off comes home, or when the avenger lays it down in time (sooner if kind, likelier once there's
+peace, never if bloodthirsty).
 
 When someone dies, the person closest to them speaks a **eulogy** at the grave, about who the dead really were:
 the years they gave, the name they earned, the goal they never reached, who killed them.
@@ -362,7 +375,7 @@ poisonings from that cook, animals tamed and trained more easily). 29 quirks in 
 fade are written in the journal in the colonist's own voice.
 
 ### Dreams
-Colonists who sleep (or lie unconscious) for a few hours sometimes wake from a dream (there are 117), and tell each
+Colonists who sleep (or lie unconscious) for a few hours sometimes wake from a dream (there are 123), and tell each
 other about it. Dreams grow out of their lives: the raid two days ago, the friend they buried, the rival who insulted
 them, the wish the council ignored, the leg they lost, the skill they're learning, the dead they miss, their partner,
 their dog. They grow out of what they feel, too (an argument all night with the one they're angry at, a debt repaid
@@ -395,9 +408,12 @@ Colonists meet everyone else on the map, too:
 - **Nemeses.** An enemy who strikes down, maims or kills a colonist and gets away is remembered. A raider who
   fled may ride with the next raid from their people; a wild animal that mauled someone gets a name and keeps
   prowling. The victim dreads it or burns for it, may make settling the score their life goal, and feels it
-  when the nemesis is captured or finally brought down.
-- **Pets as companions:** an animal that fights beside its person is remembered for it, and a named animal that
-  dies gets a farewell.
+  when the nemesis is captured or finally brought down. One who gets away has a parting word and one who comes back
+  shouts something across the field (a beast leaves signs); the story can also end with them joining, collared,
+  tamed, let go from the cells, dying out in the world or vanishing.
+- **Pets as companions:** an animal that fights beside its person is remembered for it, the more so if it stood
+  over them when they fell, and a named animal that dies gets a farewell shaped by its years here, its size and how
+  it died.
 - **From your other mods:** Hospitality's guests, visitors of the Empire and the Vanilla Expanded peoples, traveling
   mages of A RimWorld of Magic and Alpha Animals' creatures each have moments of their own, and with Medieval
   Overhaul visitors notice the colony's cheese, wine and hearth (see "Playing with other mods").
@@ -405,14 +421,20 @@ Colonists meet everyone else on the map, too:
 ### Offices and elections
 Five council seats: **speaker** (chairs meetings, everyone's trust rises a little each day), **marshal** (drills
 count for more, better aim), **quartermaster** (dilemmas cost less, better trade), **physician** (faster healing)
-and **steward** (standards rise more slowly). Colonists elect them every year, voting for the skilled, the suited
-and the liked, friends and circles voting together. You can appoint and dismiss from the Decrees tab, but whoever
-the colony actually voted for will remember being overruled.
+and **steward** (standards rise more slowly). Four more open as the colony grows: the **reeve** (fuller harvests,
+from four voters), the **peacemaker** (rivalries cool, and now and then the worst-feuding pair is sat down
+together, from five), the **keeper of days** (every kept custom and calendar day a small occasion, from six) and
+the **herdmaster** (more from the animals, from six). Colonists elect them every year, voting for the skilled, the
+suited and the liked, friends and circles voting together, and the election letter has a word about each new
+holder. You can appoint and dismiss from the Decrees tab, but whoever the colony actually voted for will remember
+being overruled.
 
 ### Traditions
 Choose the same answer to a seasonal dilemma two years running (a midsummer feast, a harvest celebration, a vigil
 on the longest night) and it becomes a tradition. From then on it comes up first every year: keeping it pleases
-everyone, breaking it disappoints them.
+everyone, breaking it disappoints them. Thirteen customs can become traditions, among them the **planting blessing**
+and the **remembrance walk** to the colony's graves in spring, the **midsummer swim** on a hot day by the water,
+the **harvest dance**, **first-frost soup** on the first freezing day, and **lantern night** in winter.
 
 ### The colony calendar
 The days that matter to this colony, written down as its history happens: its **founding day**, its **first good
@@ -570,8 +592,12 @@ and never break a word; a table too wide for the page shows each row as a small 
 
 ### Names, anniversaries and petitions
 Whoever has done the most of something earns a name for it, until someone overtakes them: *the Healer*, *the
-Surgeon*, *Deadeye*, *the Builder*, *Beastfriend*, *Silver-Tongue*, and some less flattering ones (*the Broom*,
-*the Mule*, *the Kindling* for whoever keeps catching fire, *the Storm*). Each year since a colonist joined, they
+Surgeon*, *Deadeye*, *the Builder*, *Beastfriend*, *Silver-Tongue*, *the Sower*, *Tinker*, *the Warden*, and some
+less flattering ones (*the Broom*, *the Mule*, *the Kindling* for whoever keeps catching fire, *the Storm*,
+*Patchwork*, *the Bottomless*). Some come with time: *the Old Hand*, *Homegrown*, and *the Unshaken* and *Lucky*,
+lost the day they break or take a scratch. Four come from deeds Rimfolk counts in the Records tab: *the Mender*
+(quarrels mended), *the Haggler* (trade deals struck), *the Vault* (secrets kept) and *the Mourner* (eulogies
+given). 45 names in all. Each year since a colonist joined, they
 mark the anniversary in their own words, and their friends share it. And when the moment fits (food running low,
 right after a raid, while people grieve, when everyone has grown spoiled) a colonist may petition the council for
 the decree they'd like.
@@ -939,7 +965,7 @@ page shows what each people remembers, how it stands with the colony (grateful, 
 its biggest memories; hover for everything. Settings → **Peoples remember the colony** turns it off.
 
 ## Scenarios with stakes
-Ten scenarios, marked "(Rimfolk)" on the scenario page with how hard they are. Each starts the game with
+Thirteen scenarios, marked "(Rimfolk)" on the scenario page with how hard they are. Each starts the game with
 something already in motion, and a few seconds in, a letter says how things stand.
 
 **Small, gentle starts** (one or two colonists, no attacks of their own):
@@ -951,6 +977,16 @@ something already in motion, and a few seconds in, a letter says how things stan
   up asking to stay; later, family may come looking.
 - **The Lone Hunter.** One hunter, a rifle and a dog, on the trail of a legendary beast that passes through in a
   couple of weeks (hunt it, tame it, or let it go: it only fights if provoked). Someone may join them before that.
+
+**Gentle starts for a small company** (three or four colonists, no attacks of their own):
+- **The Players' Cart.** Four players, old friends, whose cart broke down for good, with a stubborn muffalo.
+  Performers come to find an audience within a couple of weeks, and later a talent scout or a fair. One of the
+  company travels under a borrowed name.
+- **The Quiet House.** Three of a quiet order founding a new house, a mentor and a novice among them, known from the
+  start as merciful, generous and traditional. Pilgrims and wandering holy folk come soon, then a scribe, a scholar or
+  mourners. One of the three once broke a vow.
+- **The Homestead.** A married couple and an old friend, with two cows, chickens and seed potatoes. Family visits or
+  writes within the month, and a buyer or a fair comes after the first harvest.
 
 **With stakes** (fights come later, smaller and a limited number of times; your storyteller's difficulty scales them):
 - **Hot Money** (moderate). Four thieves with 2,500 silver that belongs to a pirate boss, who asks for it back in
@@ -1016,7 +1052,8 @@ where they eat"). The mood bar shows where they are, where they're heading and t
 The council window's **Moods** page (Colony section) adds it up for the whole colony: what weighs on everyone,
 who feels it, who is closest to breaking, and how much comes from the base game, Rimfolk and each of your mods.
 Buttons lead straight to the advisor's matching warning, the council page that deals with it, or an Almanac page.
-Hints cover the base game, the DLCs and Rimfolk; moods from other mods get general advice and their mod's name.
+Hints cover the base game, the DLCs and Rimfolk (145 groups of them, down to the calendar's days, convalescence and
+personal stories); moods from other mods get general advice and their mod's name.
 The game's own **Needs** tab gets the same hints: hover a mood and its usual tooltip ends with which mod it comes
 from and what to do about it (a setting turns this off).
 
@@ -1054,9 +1091,10 @@ in 2 days in the colony and once in 10 days for each colonist. A threat ends it 
 too cold or too hot. Afterwards strain drops by about 40 and they feel lighter for a day and a half. To head it off,
 declare **days of rest**: everyone works 10% slower for three days, and strain drains about twice as fast.
 
-**Feelings.** Each colonist has one or two feelings that stand out, out of twenty: grief, fear, dread (worry about
-what's coming), anger, shame, envy, disgust, loneliness, homesickness, frustration and despair; joy, pride, love,
-gratitude, hope, awe, contentment, curiosity and restlessness. They come from the moods a colonist has right now (the
+**Feelings.** Each colonist has one or two feelings that stand out, out of twenty-six: grief, fear, dread (worry about
+what's coming), anger, shame, envy, disgust, loneliness, homesickness, frustration, despair and worry (for someone they
+love who is downed, ill, carried off or away); joy, pride, love, gratitude, hope, awe, contentment, curiosity,
+restlessness, nostalgia, relief, tenderness, fellowship and resolve. They come from the moods a colonist has right now (the
 game's, Rimfolk's and other mods') and from what they can see: enemies on the map, a fight the World page says is
 coming, a newcomer, quiet days. Feelings add no mood, since that would count the same thing twice. They nudge
 instead: a wish that fits becomes up to half again as likely (fear asks for defenses, grief for a grave,

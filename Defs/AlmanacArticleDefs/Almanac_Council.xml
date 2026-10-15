@@ -214,7 +214,13 @@ Health brings its own: a doctor who lost a patient asking for a day away, someon
     <sections>
       <li>
         <heading>Earning a name</heading>
-        <text>Names come from the colonist's records: wounds tended, operations, kills, headshots, things built, rock mined, harvests, meals, animals tamed, prisoners recruited, research, crafting, fires fought, patients pulled through, babies delivered, and less flattering ones like messes cleaned, times on fire or mental breaks. A name moves to someone else only when they're clearly ahead, by about 15%.</text>
+        <text>Names come from the colonist's records: wounds tended, operations, kills, headshots, things built, rock mined, harvests, sowing, repairs, meals, animals tamed, prisoners recruited and talked to, research, crafting, fires fought, patients pulled through, babies delivered, and less flattering ones like messes cleaned, things torn down, times on the operating table, times on fire or mental breaks. A name moves to someone else only when they're clearly ahead, by about 15%.
+
+Rimfolk also counts a few deeds the game doesn't, and shows them in the Records tab: quarrels mended (the Mender), trade deals struck as negotiator (the Haggler), secrets other colonists trusted them with (the Vault) and eulogies given (the Mourner).</text>
+      </li>
+      <li>
+        <heading>Names that come with time</heading>
+        <text>Some names count years rather than deeds. The Old Hand has been here longest, two years at least. Homegrown spent the most of their childhood here. Jailbird spent longest in the cells before joining. Two have a condition: the Unshaken has lived here a year without a single mental break, and Lucky a year without taking any damage at all. Either name is lost the day that changes, and can't be earned back.</text>
       </li>
       <li>
         <heading>The annals</heading>
@@ -230,12 +236,12 @@ Health brings its own: a doctor who lost a patient asking for a day away, someon
     <label>offices and elections</label>
     <category>Council</category>
     <order>7</order>
-    <summary>Speaker, marshal, quartermaster, physician, steward: who holds them and what they do.</summary>
+    <summary>Speaker, marshal, quartermaster, physician, steward, and for a bigger colony reeve, peacemaker, keeper of days and herdmaster.</summary>
     <tip>The colony votes for the people it likes, not always the ones who are best at the job.</tip>
-    <description>The council has five seats. Each gives its holder a bonus and helps the whole colony in some way. Colonists elect them once a year, voting for whoever is good at the job, has the right nature for it, and is liked. The council can appoint or dismiss anyone from the Decrees page, but overruling the vote has a cost.</description>
+    <description>The council has five seats from the start, and four more that open as the colony grows. Each gives its holder a bonus and helps the whole colony in some way. Colonists elect them once a year, voting for whoever is good at the job, has the right nature for it, and is liked. The council can appoint or dismiss anyone from the Decrees page, but overruling the vote has a cost.</description>
     <sections>
       <li>
-        <heading>The five seats</heading>
+        <heading>The seats</heading>
         <table>
           <li>Office | What it does</li>
           <li>Speaker | Chairs every council meeting. Everyone's trust rises a little each day, at no cost to you.</li>
@@ -243,18 +249,23 @@ Health brings its own: a doctor who lost a patient asking for a day away, someon
           <li>Quartermaster | Answers to dilemmas that cost food, wood or silver cost a quarter less, and trade prices are better.</li>
           <li>Physician | Everyone heals and fights off illness a little faster.</li>
           <li>Steward | Standards rise a quarter more slowly, and the steward gets more out of recreation.</li>
+          <li>Reeve (4 voters) | Every harvest yields a little more (2%), and the reeve sows, reaps and harvests better still.</li>
+          <li>Peacemaker (5 voters) | Rivalries between colonists cool a little every day, and now and then the peacemaker sits the worst-feuding pair down, which eases their rivalry a good deal.</li>
+          <li>Keeper of days (6 voters) | Every council custom or calendar day the colony keeps leaves everyone there a small good memory (+2 for two days).</li>
+          <li>Herdmaster (6 voters) | Everyone gets a little more from milking, shearing and eggs, and the herdmaster tames and trains more easily.</li>
         </table>
+        <after>A seat opens once the colony has that many people who can vote; until then it simply isn't contested. The election letter says a word about each new holder.</after>
       </li>
       <li>
         <heading>Elections</heading>
-        <text>The first election comes after about a week, then one every new year. An empty seat is refilled by a by-election a few days later. No one can hold two offices, and children, slaves and lodgers can't run.
+        <text>The first election comes after about a week, then one every new year. An empty seat is refilled by a by-election a few days later, as long as someone without a seat can take it. No one can hold two offices, and children, slaves and lodgers can't run.
 
 Votes follow skill, traits and friendship: friends and members of the same circle vote for each other, rivals against. Losing an election or a seat sours the loser on the winner, and can start a rivalry.
 
 Overrule the vote only when the difference matters. The colonist who won the election will remember it.</text>
       </li>
     </sections>
-    <keywords><li>office</li><li>election</li><li>vote</li><li>speaker</li><li>marshal</li><li>quartermaster</li><li>physician</li><li>steward</li></keywords>
+    <keywords><li>office</li><li>election</li><li>vote</li><li>speaker</li><li>marshal</li><li>quartermaster</li><li>physician</li><li>steward</li><li>reeve</li><li>peacemaker</li><li>keeper of days</li><li>herdmaster</li></keywords>
     <seeAlso><li>Council_Alm_C_Trust</li><li>Council_Alm_C_Social</li></seeAlso>
   </ColonyCouncil.AlmanacArticleDef>
 
@@ -265,8 +276,26 @@ Overrule the vote only when the difference matters. The colonist who won the ele
     <order>8</order>
     <summary>What the colony keeps doing becomes expected.</summary>
     <tip>Hold the midsummer feast two years running and they'll expect it every year after.</tip>
-    <description>Some seasonal dilemmas have an answer the colony can make its own: a midsummer feast, a harvest celebration, a vigil on the longest night. Choose the same answer two years running and it becomes a tradition. From then on it comes up first every year, keeping it pleases everyone, and breaking it disappoints them.</description>
+    <description>Some seasonal dilemmas have an answer the colony can make its own: a midsummer bonfire, a harvest celebration, a vigil on the longest night, a blessing on the fields. Choose the same answer two years running and it becomes a tradition. From then on it comes up first every year, keeping it pleases everyone, and breaking it disappoints them.</description>
     <sections>
+      <li>
+        <heading>The customs</heading>
+        <table>
+          <li>Season | Custom | What it needs</li>
+          <li>Spring | The planting blessing: everyone walks the fields at dawn before the sowing | a grower to ask for it</li>
+          <li>Spring | The remembrance walk: the colony visits its graves together and says the names | graves of the colony's own dead</li>
+          <li>Spring | Naming the year (the muffalo is a tradition too) | nothing</li>
+          <li>Summer | The midsummer bonfire | firewood</li>
+          <li>Summer | The midsummer swim: an afternoon in the water | a river, the coast or open water, and a hot day (22 °C or more)</li>
+          <li>Fall | Harvest home, a feast | raw food</li>
+          <li>Fall | The harvest dance: music and dancing, no feast | nothing but a late night</li>
+          <li>Fall or winter | First-frost soup: one big pot on the first freezing day | raw food, and the first frost</li>
+          <li>Winter | The midwinter supper on the longest night | raw food</li>
+          <li>Winter | Lantern night: a lantern in every window | firewood</li>
+          <li>After a raid | Burying the enemy dead, the victory feast | a raid</li>
+          <li>Any time | The remembrance night, for a fight two comrades want marked | comrades, raw food</li>
+        </table>
+      </li>
       <li>
         <text>The letter says when a choice is a tradition, and when choosing it again will make one. Keeping a tradition gives everyone a good memory; breaking one gives a bad one and resets the count. New, kept and broken traditions are written into the chronicle and the year's annals, and someone usually writes about a new tradition in their journal.
 
@@ -412,7 +441,7 @@ Check the Roster page now and then. A colonist one level short of mastery is wor
     <order>12</order>
     <summary>What colonists hide, who they can't forgive, and how they say goodbye.</summary>
     <tip>Not everyone talks about where they came from.</tip>
-    <description>Some colonists carry a secret, often from the life their backstory hints at: a raider's past, noble blood, a deserter's shame, a child left behind, a borrowed name, a hidden kindness. You won't know what it is; the Bonds page only shows when they confide in a close friend.</description>
+    <description>Some colonists carry a secret, often from the life their backstory hints at: a raider's past, noble blood, a deserter's shame, a child left behind, a borrowed name, an old illness, a debt to a trading house, a childhood in the camps, a broken vow, a hidden kindness. There are over fifty. You won't know what it is; the Bonds page only shows when they confide in a close friend, and the news of it gives a hint and no more.</description>
     <sections>
       <li>
         <heading>Confiding and coming out</heading>
@@ -420,13 +449,21 @@ Check the Roster page now and then. A colonist one level short of mastery is wor
 
 When a secret comes out, everyone reacts according to their nature: the kind forgive, the hard despise, the greedy envy, the abrasive mock. Betraying a confidence makes enemies. Some secrets put the council on the spot with a dilemma.
 
-A secret the colonist never told anyone dies with them. If they told someone, it comes out at the funeral.</text>
+A secret the colonist never told anyone dies with them. If they told someone, it comes out at the graveside, each secret in its own way: a lamp left burning, a card in the grave, a name said aloud.</text>
       </li>
       <li>
         <heading>Vendettas</heading>
-        <text>When raiders kill or carry off someone, the people who loved them swear vengeance on that faction. They carry it as a weight, fight harder when that faction shows up again, and are avenged once three of the enemy fall to them.
+        <text>When raiders kill or carry off someone, the people who loved them swear vengeance on that faction; when they kill a bonded animal in a fight, its person does. They carry it as a weight and fight harder when that faction shows up again.
 
-Those who swore vengeance take peace with the killers as a betrayal. It may still be worth it, but think twice before making peace with a faction that killed someone well loved.</text>
+A vendetta ends in one of several ways:</text>
+        <points>
+          <li>three of the enemy fall to the avenger, in the fights that come anyway;</li>
+          <li>some of them are taken alive in those fights instead: a captive counts as much as a death;</li>
+          <li>the one who was carried off comes home, by rescue, ransom or escape;</li>
+          <li>the avenger lays it down, after a month at least and not while the fighting is fresh. The kind do it sooner, the bloodthirsty and the cold never, and peace with the killers makes it much likelier;</li>
+          <li>it lapses after two years, or when the faction is gone.</li>
+        </points>
+        <after>Those who swore vengeance take peace with the killers as a betrayal at first, though peace is also what lets most of them lay it down. Think twice before making peace with a faction that killed someone well loved, and give it time.</after>
       </li>
       <li>
         <heading>Quirks</heading>
@@ -485,7 +522,9 @@ Council choices about strangers come with short deadlines when the stranger is o
         <heading>Nemeses</heading>
         <text>A nemesis is an enemy who struck down, maimed or killed a colonist and lived. A raider who flees is remembered, and may ride with the next raid from their people. A wild animal that mauls someone and slinks off gets a name and keeps prowling.
 
-Capturing a nemesis, or seeing them dead, lifts the mood of the one they hurt. Doing it by their own hand lifts them most, and completes the "settle the score" life goal.</text>
+Capturing a nemesis, or seeing them dead, lifts the mood of the one they hurt. Doing it by their own hand lifts them most, and completes the "settle the score" life goal.
+
+A raider who gets away often has a parting word, and one who comes back usually has something to shout across the field; a beast leaves signs instead. The story can also end with the nemesis joining the colony, wearing its collar, being tamed, dying out in the world, vanishing, or being let go from the cells, which the one they hurt will have feelings about.</text>
         <points>
           <li>When a nemesis returns, put the one they hurt somewhere safe, or somewhere they can finish it themselves. Either way, expect a big swing in their mood.</li>
           <li>Capture fallen raiders who downed your people: a nemesis in your cells can't come back with the next raid.</li>
@@ -494,7 +533,7 @@ Capturing a nemesis, or seeing them dead, lifts the mood of the one they hurt. D
       </li>
       <li>
         <heading>The colony's animals</heading>
-        <text>An animal that fights beside its person in a battle is remembered for it. A named animal that dies gets a farewell from the one who loved it.</text>
+        <text>An animal that fights beside its person in a battle is remembered for it, the more so if its person was hurt and it stood over them. A named animal that dies gets a farewell from the one who loved it, shaped by how long it was here, how big it was and whether it died fighting. A bonded animal killed by raiders is a reason for its person to swear a vendetta on them.</text>
       </li>
       <li>
         <heading>The land, the seasons and the weather</heading>
@@ -544,8 +583,22 @@ Old deeds slowly fade, so a colony can change its name: about half of a way is f
 
 Some encounters and dilemmas only come up for a colony with a certain name: refugees seeking a merciful colony, traders who heard you count every grain.</text>
       </li>
+      <li>
+        <heading>What the work makes a colony</heading>
+        <text>Beside the five ways, a colony grows into what its people keep doing, counted from their own records as a rolling daily average per head over about forty days. Steady work for a season earns the name, and a letter says so; it fades if the work stops for long, though one winter alone won't undo a farming colony.</text>
+        <table>
+          <li>Known as | Earned by | Proud of it</li>
+          <li>Green-fingered | sowing and harvesting | those with a passion for growing</li>
+          <li>Builders | building | those with a passion for construction</li>
+          <li>Learned | research | those with a passion for intellectual work</li>
+          <li>Craftsfolk | crafting | those with a passion for crafting</li>
+          <li>Hunters | game brought down | those with a passion for shooting</li>
+          <li>Delvers | rock mined | those with a passion for mining</li>
+        </table>
+        <after>The proud get a small lasting mood (+2) while the name holds. The "Our ways" page shows how close the colony is to each.</after>
+      </li>
     </sections>
-    <keywords><li>reputation</li><li>character</li><li>ways</li><li>merciful</li><li>harsh</li><li>generous</li><li>thrifty</li><li>traditional</li><li>restless</li><li>open</li><li>guarded</li><li>hard-working</li><li>easygoing</li></keywords>
+    <keywords><li>reputation</li><li>character</li><li>ways</li><li>merciful</li><li>harsh</li><li>generous</li><li>thrifty</li><li>traditional</li><li>restless</li><li>open</li><li>guarded</li><li>hard-working</li><li>easygoing</li><li>green-fingered</li><li>builders</li><li>learned</li><li>craftsfolk</li><li>hunters</li><li>delvers</li></keywords>
     <seeAlso><li>Council_Alm_C_Dilemmas</li><li>Council_Alm_C_Decrees</li><li>Council_Alm_C_Strangers</li></seeAlso>
   </ColonyCouncil.AlmanacArticleDef>
 
@@ -671,7 +724,7 @@ The peoples that think best of the colony ask for other things: guests at their 
     <order>17</order>
     <summary>Rimfolk's scenarios start the game with something already in motion: a friend on the way, a mentorship, an enemy, a debt, a feud, a prisoner.</summary>
     <tip>Not every colony starts with a clean slate.</tip>
-    <description>Rimfolk adds ten scenarios, marked "(Rimfolk)" on the scenario page along with how hard they are. Four are small, gentle starts with one or two colonists and no attacks of their own (The Inheritance, Master and Apprentice, Runaway Hearts, The Lone Hunter); six come with stakes (Hot Money, Marooned, Deserters, Bad Blood, Borrowed Time, The Fallen Tyrant). A few seconds into the game a letter says how things stand. Their pieces are scenario parts you can add to any scenario in the editor.</description>
+    <description>Rimfolk adds thirteen scenarios, marked "(Rimfolk)" on the scenario page along with how hard they are. Seven are gentle starts with no attacks of their own: four small ones with one or two colonists (The Inheritance, Master and Apprentice, Runaway Hearts, The Lone Hunter) and three for a small company (The Players' Cart, The Quiet House, The Homestead). Six come with stakes (Hot Money, Marooned, Deserters, Bad Blood, Borrowed Time, The Fallen Tyrant). A few seconds into the game a letter says how things stand. Their pieces are scenario parts you can add to any scenario in the editor.</description>
     <sections>
       <li>
         <heading>Scenario by scenario</heading>
@@ -682,6 +735,9 @@ The peoples that think best of the colony ask for other things: guests at their 
           <li>Bad Blood | Friendships across the two families matter most. Shared work, shared meals and a common enemy all help.</li>
           <li>Borrowed Time | Trade from day one. Half the debt paid on time buys three weeks.</li>
           <li>The Fallen Tyrant | The tyrant is out cold for the first few hours. Build a cell with a bed before the drug wears off.</li>
+          <li>The Players' Cart | Four players and a muffalo. Visiting performers come first, then a fair or a talent scout. One of the company isn't who they say they are.</li>
+          <li>The Quiet House | Three of a quiet order, a mentor and a novice among them, known from the start as merciful, generous and traditional. Pilgrims and holy folk come soon after; one of the three broke a vow once.</li>
+          <li>The Homestead | A married couple and an old friend, with cows, chickens and seed potatoes. Family visits or writes within the month, and a buyer or a fair comes after the first harvest.</li>
         </table>
       </li>
       <li>
@@ -707,7 +763,7 @@ The "Fights in Rimfolk's scenarios" setting makes those attacks weaker or strong
 Someone from the past, a visiting scholar or a great beast arriving "around a set day" waits for a quiet moment. If they can't come yet (the wrong season, nobody fits), they try again the next day.</text>
       </li>
     </sections>
-    <keywords><li>scenario</li><li>start</li><li>debt</li><li>loan</li><li>heist</li><li>mutiny</li><li>deserter</li><li>family</li><li>feud</li><li>tyrant</li><li>prisoner</li><li>hunt</li><li>gentle</li><li>mentor</li><li>lovers</li><li>small start</li></keywords>
+    <keywords><li>scenario</li><li>start</li><li>debt</li><li>loan</li><li>heist</li><li>mutiny</li><li>deserter</li><li>family</li><li>feud</li><li>tyrant</li><li>prisoner</li><li>hunt</li><li>gentle</li><li>mentor</li><li>lovers</li><li>small start</li><li>players</li><li>monastery</li><li>homestead</li><li>farm</li></keywords>
     <seeAlso><li>Council_Alm_C_WorldEvents</li><li>Council_Alm_C_Ways</li></seeAlso>
   </ColonyCouncil.AlmanacArticleDef>
 
@@ -785,6 +841,12 @@ To head it off, use days of rest: a decree that slows everyone's work by 10% for
           <li>Contentment | quiet days with needs met | faster recovery</li>
           <li>Curiosity | research, books, visitors, new land | books, lessons, journeys</li>
           <li>Restlessness | the same work every day, too little fun | time outside, travel, a hunt</li>
+          <li>Nostalgia | anniversaries, old stories, an heirloom, long years here, old age | a memorial, a hearth, dreams of the lost</li>
+          <li>Relief | a fight survived, a hunt or debt over, someone brought home | faster recovery, less fear, a day off</li>
+          <li>Tenderness | a baby, a patient, a little one learning, a bonded animal | warm moments, less anger, a crib or a pet bed</li>
+          <li>Worry | someone loved downed, ill, carried off or away | a sickbed visit, an infirmary, a trickle of strain</li>
+          <li>Fellowship | feasts and customs kept together, a circle, friends close by | warm moments, less loneliness, parties and music</li>
+          <li>Resolve | a score to settle, drills, a steady nerve, a goal half won | less despair, fewer episodes, training and weapons</li>
         </table>
       </li>
       <li>

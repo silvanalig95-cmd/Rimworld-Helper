@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Seats for a growing colony. minColonists: the seat only opens once that many colonists can vote, so a small colony
+    isn't asked to fill offices it has nobody for. elected: a line for the election letter after the winner's name
+    ({PAWN_...}). What the seats do is in Defs/HediffDefs/Council_Hediffs_Offices2.xml and Offices.cs.
+  -->
+
+  <ColonyCouncil.OfficeDef>
+    <defName>Council_Office_Reeve</defName>
+    <label>reeve</label>
+    <description>Walks the fields every morning, decides what goes in the ground and when, and is the first to see blight or a frost coming.</description>
+    <order>6</order>
+    <minColonists>4</minColonists>
+    <skills><li>Plants</li></skills>
+    <hediff>Council_Office_Reeve</hediff>
+    <colonyHediff>Council_Office_ReeveColony</colonyHediff>
+    <duties>
+      <li>Everyone brings in a little more from every harvest.</li>
+      <li>The reeve sows and harvests faster, and gets more from each plant.</li>
+      <li>Opens once the colony has four people who can vote.</li>
+    </duties>
+    <elected>
+      <li>{PAWN_nameDef} walked the fields the same afternoon, and came back with a list.</li>
+      <li>{PAWN_nameDef} says the soil here is better than it looks, and means to prove it.</li>
+      <li>{PAWN_nameDef} has already changed the planting order twice.</li>
+    </elected>
+  </ColonyCouncil.OfficeDef>
+
+  <ColonyCouncil.OfficeDef>
+    <defName>Council_Office_Peacemaker</defName>
+    <label>peacemaker</label>
+    <description>Hears out quarrels before they turn into feuds, and sits people down together until they can stand to look at each other.</description>
+    <order>7</order>
+    <minColonists>5</minColonists>
+    <skills><li>Social</li></skills>
+    <goodTraits><li>Kind</li></goodTraits>
+    <badTraits><li>Abrasive</li><li>Psychopath</li><li>Bloodlust</li></badTraits>
+    <hediff>Council_Office_Peacemaker</hediff>
+    <duties>
+      <li>Every rivalry between colonists cools a little each day.</li>
+      <li>Now and then the peacemaker sits the worst-feuding pair down together, and the rivalry eases a good deal.</li>
+      <li>The peacemaker is more persuasive, and keeps a cooler head.</li>
+      <li>Opens once the colony has five people who can vote.</li>
+    </duties>
+    <elected>
+      <li>{PAWN_nameDef} has already had two quiet words with two different people, and it isn't even dinner.</li>
+      <li>{PAWN_nameDef} says the door is always open, and has propped it open with a stone to prove it.</li>
+      <li>The first thing {PAWN_nameDef} did was ask who isn't speaking to whom.</li>
+    </elected>
+  </ColonyCouncil.OfficeDef>
+
+  <ColonyCouncil.OfficeDef>
+    <defName>Council_Office_Keeper</defName>
+    <label>keeper of days</label>
+    <description>Keeps the calendar and the customs: remembers what day it is and what it means, and sees that the colony's days are kept properly.</description>
+    <order>8</order>
+    <minColonists>6</minColonists>
+    <skills><li>Social</li><li>Intellectual</li></skills>
+    <hediff>Council_Office_Keeper</hediff>
+    <duties>
+      <li>Every council custom and calendar day the colony keeps leaves everyone a small good memory of a day done properly.</li>
+      <li>The keeper of days carries more weight in conversation.</li>
+      <li>Opens once the colony has six people who can vote.</li>
+    </duties>
+    <elected>
+      <li>{PAWN_nameDef} has started a new page in the calendar, and written the date at the top in very careful letters.</li>
+      <li>{PAWN_nameDef} already knows how many days it is until the next one worth keeping.</li>
+      <li>{PAWN_nameDef} asked everyone for their birthdays before the votes were even counted.</li>
+    </elected>
+  </ColonyCouncil.OfficeDef>
+
+  <ColonyCouncil.OfficeDef>
+    <defName>Council_Office_Herdmaster</defName>
+    <label>herdmaster</label>
+    <description>Looks after the colony's animals: the herd, the pens, the milking and the shearing, and the half-wild ones nobody else can get near.</description>
+    <order>9</order>
+    <minColonists>6</minColonists>
+    <skills><li>Animals</li></skills>
+    <goodTraits><li>Kind</li></goodTraits>
+    <badTraits><li>Psychopath</li></badTraits>
+    <hediff>Council_Office_Herdmaster</hediff>
+    <colonyHediff>Council_Office_HerdmasterColony</colonyHediff>
+    <duties>
+      <li>Everyone gets a little more milk, wool and eggs from the animals.</li>
+      <li>The herdmaster tames and trains animals more easily, and gets more from them.</li>
+      <li>Opens once the colony has six people who can vote.</li>
+    </duties>
+    <elected>
+      <li>{PAWN_nameDef} went straight to the pens to tell the animals.</li>
+      <li>{PAWN_nameDef} has named every animal in the colony by supper, including the ones that already had names.</li>
+      <li>{PAWN_nameDef} says the herd voted too, and it was unanimous.</li>
+    </elected>
+  </ColonyCouncil.OfficeDef>
+
+</Defs>
