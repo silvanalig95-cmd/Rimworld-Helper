@@ -166,8 +166,12 @@ play deep. In order:
   save.
 
 ### 3. Clear (UI/UX)
-- Settings presets (light touch, story-rich, demanding) with a search box and grouped pages; each feature's
-  switch shows a one-line "what you'll notice".
+- Done (October 2026): the settings window on seven pages (council and wishes, people and moods, heart and health,
+  events and world, building, interface and integrations, advanced) with a search box over all of them; a grey line
+  of what you'll notice under every switch, and settings that need another one grayed out with the reason; presets
+  (light touch, story-rich, demanding, default, beside the old quick setups) that list what they'd change before
+  they do; every page scrolls, and the window fits small screens at big interface scales. Drawn from one list that the
+  tests check against the settings class, so every setting is on exactly one page and keeps its saved name.
 - A news digest: minor happenings gathered into one "colony news" letter a day instead of many messages; letters
   kept for decisions.
 - Done (October 2026): a first-run welcome letter (once per colony; saves that already had Rimfolk skip it without a
