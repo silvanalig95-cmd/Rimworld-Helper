@@ -191,6 +191,9 @@ namespace ColonyCouncil
         /// <summary>The council window's page when it was last closed, and the Almanac page, to open there again next time.</summary>
         public string lastCouncilPage = "";
         public string lastAlmanacPage = "";
+        /// <summary>How large the Almanac's pages are written (its "Aa" buttons), and whether its lists are folded away.</summary>
+        public AlmanacTextSize almanacTextSize = AlmanacTextSize.Normal;
+        public bool almanacFolded = false;
 
         public override void ExposeData()
         {
@@ -310,6 +313,8 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref roomsButton, "roomsButton", true);
             Scribe_Values.Look(ref lastCouncilPage, "lastCouncilPage", "");
             Scribe_Values.Look(ref lastAlmanacPage, "lastAlmanacPage", "");
+            Scribe_Values.Look(ref almanacTextSize, "almanacTextSize", AlmanacTextSize.Normal);
+            Scribe_Values.Look(ref almanacFolded, "almanacFolded", false);
         }
 
         /// <summary>Saves the settings file right away (used by the planner's checkboxes).</summary>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!-- ===================== Reading the Almanac: text size, folding the lists away (Source/ColonyCouncil/Almanac/AlmanacPanel.cs) ===================== -->
+
+  <!-- The text size, at the top of the Almanac and in the mod settings (Interface page). -->
+  <CC_SetLabel_AlmanacTextSize>Almanac text size</CC_SetLabel_AlmanacTextSize>
+  <CC_SetTip_AlmanacTextSize>How large the Almanac's pages are written: their text, headings and tables. The same as the Aa buttons at the top of the Almanac. Small fits more on a page; Large and Larger are easier on the eyes. Wide tables turn into a card for each row when they no longer fit.</CC_SetTip_AlmanacTextSize>
+  <CC_TextSize_Small>Small</CC_TextSize_Small>
+  <CC_TextSize_Small_Tip>A little smaller than the game's own text, to fit more on a page.</CC_TextSize_Small_Tip>
+  <CC_TextSize_Normal>Normal</CC_TextSize_Normal>
+  <CC_TextSize_Normal_Tip>The same size as the game's own text.</CC_TextSize_Normal_Tip>
+  <CC_TextSize_Large>Large</CC_TextSize_Large>
+  <CC_TextSize_Large_Tip>A size larger than the game's own text.</CC_TextSize_Large_Tip>
+  <CC_TextSize_Larger>Larger</CC_TextSize_Larger>
+  <CC_TextSize_Larger_Tip>Two sizes larger than the game's own text. Fold the page list away to give wide tables room.</CC_TextSize_Larger_Tip>
+  <CC_SetNote_TextSize_Small>The Almanac's pages a little smaller than the game's text, to fit more on a page.</CC_SetNote_TextSize_Small>
+  <CC_SetNote_TextSize_Normal>The Almanac's pages at the game's usual text size.</CC_SetNote_TextSize_Normal>
+  <CC_SetNote_TextSize_Large>The Almanac's pages a size larger than the game's text.</CC_SetNote_TextSize_Large>
+  <CC_SetNote_TextSize_Larger>The Almanac's pages two sizes larger; wide tables turn into cards sooner.</CC_SetNote_TextSize_Larger>
+
+  <!-- The Almanac's own buttons. -->
+  <CC_Almanac_TextSize>Text size: {0}</CC_Almanac_TextSize>
+  <CC_Almanac_TextSizeNote>How large the pages are written. Also in the mod settings, on the Interface page.</CC_Almanac_TextSizeNote>
+  <CC_Almanac_Fold>Fold the categories and the page list away, so the page gets the whole width.</CC_Almanac_Fold>
+  <CC_Almanac_Unfold>Show the categories and the page list again.</CC_Almanac_Unfold>
+  <CC_Almanac_PrevPage>Previous page: {0}</CC_Almanac_PrevPage>
+  <CC_Almanac_NextPage>Next page: {0}</CC_Almanac_NextPage>
+
+</LanguageData>
