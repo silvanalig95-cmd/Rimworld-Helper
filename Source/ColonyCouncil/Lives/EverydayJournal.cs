@@ -20,6 +20,8 @@ namespace ColonyCouncil
             public float weight;
             /// <summary>Only when it weighs on them (hunger, not a full belly).</summary>
             public bool badOnly;
+            /// <summary>Its lines name {OTHER} (a <see cref="JournalDayDef"/> about someone).</summary>
+            public bool social;
         }
 
         private static Moment M(string key, float weight, params string[] thoughts) => new Moment { key = key, weight = weight, thoughts = thoughts };
@@ -107,6 +109,13 @@ namespace ColonyCouncil
                     byThought = new Dictionary<string, Moment>();
                     foreach (var m in Moments)
                         foreach (var t in m.thoughts) byThought[t] = m;
+                    // More kinds of day written in XML, mostly for other mods' memories (Integrations/ModJournal.cs).
+                    foreach (var d in DefDatabase<JournalDayDef>.AllDefsListForReading)
+                    {
+                        var m = new Moment { key = d.Key, weight = d.weight, thoughts = d.thoughts.ToArray(), badOnly = d.badOnly, social = d.social };
+                        foreach (var t in m.thoughts)
+                            if (!byThought.ContainsKey(t)) byThought[t] = m;
+                    }
                 }
                 return byThought;
             }
@@ -163,7 +172,7 @@ namespace ColonyCouncil
                 if (m.badOnly && mood >= 0f) return;
                 // A pool needs its other person to still be around to be named.
                 if (other != null && (other.Destroyed || other.Discarded)) other = null;
-                if (other == null && SocialMoments.Contains(m.key)) return;
+                if (other == null && (m.social || SocialMoments.Contains(m.key))) return;
                 if (DefDatabase<FlavorPoolDef>.GetNamedSilentFail("Council_Journal_Day_" + m.key) == null) return;
                 candidates.Add((m, other, mood >= 0f, m.weight * (1f + UnityEngine.Mathf.Min(System.Math.Abs(mood), 20f) / 8f)));
             }

@@ -74,6 +74,16 @@ namespace ColonyCouncil
         public bool sick;
         /// <summary>Ill with one of these: Rimfolk ailment keys or hediff defNames.</summary>
         public string illness;
+        // ---- Other mods (read by name, see Integrations/ModStrangers.cs: without the mod they never fit) ----
+        /// <summary>A Hospitality guest (<see cref="notGuest"/>: anyone but one).</summary>
+        public bool guest;
+        public bool notGuest;
+        /// <summary>Of one of these peoples (FactionDef names): "Empire", "VFEC_CentralRepublic".</summary>
+        public List<string> factions;
+        /// <summary>One of these creatures or kinds (race ThingDef or PawnKindDef names): "AA_MeadowAve".</summary>
+        public List<string> races;
+        /// <summary>Who they are, as tags (see PeopleTags): "mage", "fighter|healer", "trait:Psychopath".</summary>
+        public string tags;
     }
 
     public static class Strangers
@@ -145,6 +155,7 @@ namespace ColonyCouncil
         {
             if (r == null || x == null || x == a) return false;
             if (KindOf(x) != r.kind) return false;
+            if (!ModStrangers.Fits(r, x)) return false;
             var nemeses = CouncilGameComponent.Instance?.nemeses;
             if (r.nemesis && !(nemeses?.IsNemesis(x) ?? false)) return false;
             if (r.nemesisOfA && (nemeses?.For(x) is Nemesis n ? !n.announced || n.victim != a : true)) return false;

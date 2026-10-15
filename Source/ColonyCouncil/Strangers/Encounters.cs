@@ -42,6 +42,13 @@ namespace ColonyCouncil
         public List<string> colonyIsNot;
         /// <summary>How this moment shapes the colony's character (small: it's one colonist's doing).</summary>
         public WayShift ways;
+        // ---- Other mods (see Integrations/ModStrangers.cs) ----
+        /// <summary>Only when one of these mods or DLCs is active (package ids).</summary>
+        public List<string> mods;
+        /// <summary>Only when the colony has one of these (ThingDef names: a building it built, or goods in its stores).</summary>
+        public List<string> colonyHas;
+        /// <summary>Only on one of these biomes (BiomeDef names).</summary>
+        public List<string> biomes;
 
         public override IEnumerable<string> ConfigErrors()
         {
@@ -146,6 +153,7 @@ namespace ColonyCouncil
                 && (d.seasons.NullOrEmpty() || d.seasons.Contains(season))
                 && (!d.nightOnly || night) && (!d.dayOnly || !night)
                 && Lands.Fits(map, d.lands)
+                && ModContent.Fits(d, map)
                 && ((d.colonyIs.NullOrEmpty() && d.colonyIsNot.NullOrEmpty()) || comp.character.Fits(d.colonyIs, d.colonyIsNot))).ToList();
             foreach (var def in pool.InRandomOrder().OrderByDescending(d => d.weight * Rand.Value))
             {

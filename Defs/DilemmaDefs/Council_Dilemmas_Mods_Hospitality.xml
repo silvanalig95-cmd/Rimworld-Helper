@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Council questions about Hospitality's guests (only with Hospitality: the stranger role asks for a guest, which never
+    fits anyone without it). X is the guest ({X_...}, {FACTION} = their people); A (and B) are colonists.
+    DilemmaWorker_Guest: a guest whose visit is going well (Hospitality's own score, half or better), never a royal.
+    DilemmaWorker_UnhappyGuest: a guest whose visit is going badly.
+    DilemmaEffect_AdoptGuest takes the guest in the way Hospitality's own join request does. Thoughts are in
+    Defs/ThoughtDefs/Council_Thoughts_Mods_Wider.xml.
+  -->
+
+  <!-- ===================== A guest who wants to stay ===================== -->
+  <ColonyCouncil.DilemmaDef>
+    <defName>Council_DlmH_GuestWantsToStay</defName>
+    <label>a guest who wants to stay</label>
+    <workerClass>ColonyCouncil.DilemmaWorker_Guest</workerClass>
+    <weight>1.2</weight>
+    <cooldownDays>30</cooldownDays>
+    <minColonists>2</minColonists>
+    <answerDays>0.6</answerDays>
+    <stranger>
+      <kind>Visitor</kind>
+      <guest>true</guest>
+      <adult>true</adult>
+      <minOpinionOfA>25</minOpinionOfA>
+      <minOpinionFromA>15</minOpinionFromA>
+    </stranger>
+    <texts>
+      <li>{X_nameDef} came with the {FACTION} guests to rest a few days, and has spent most of them with {A_nameDef}: at the workbench, at supper, out on the wall at dusk. Now {X_nameDef} has asked the council whether a guest can stop being a guest.\n\n{FACTION} won't be glad to lose {X_objective}. {A_nameDef} is doing a poor job of pretending not to care how the council answers.</li>
+      <li>On the last night of the visit, {X_nameDef} came to the council with {X_possessive} pack still unpacked and asked to stay. The guest bed, the food, the people: {X_pronoun} says {X_pronoun} hasn't felt this much at home in years, and {A_nameDef} most of all has made it so.\n\n{A_nameDef} has offered to share {A_possessive} rations until {X_nameDef} finds {X_possessive} feet.</li>
+      <li>[x:roomgood] {X_nameDef} has stayed in the guest room three nights running and says it's the best bed {X_pronoun} has slept in since leaving home. Tonight {X_pronoun} asked {A_nameDef}, in front of the council, whether the room could be {X_possessive} for good.\n\n{FACTION} would rather have {X_objective} back. {A_nameDef} would rather {X_pronoun} stayed.</li>
+      <li>[winter] The {FACTION} guests leave tomorrow, into the snow. {X_nameDef} doesn't want to go. {X_pronoun} has been splitting wood for the colony every morning without being asked, and {A_nameDef} says that's the sort of person you keep.</li>
+    </texts>
+    <defaultOption>2</defaultOption>
+    <options>
+      <li>
+        <label>Take {X_nameDef} in</label>
+        <outcome>{X_nameDef} moved {X_possessive} things out of the guest room and into the colony that same night. The rest of the {FACTION} party went on without {X_objective}, and their goodbyes were short.</outcome>
+        <ways><openness>5</openness></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_AdoptGuest" />
+          <li Class="ColonyCouncil.DilemmaEffect_Goodwill"><amount>-8</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_DlmH_GuestStayed</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>3</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_LifeEvent"><target>A</target><counter>stranger</counter></li>
+        </effects>
+      </li>
+      <li>
+        <label>Take {X_objective} in, with a gift to {FACTION}</label>
+        <outcome>The council sent the {FACTION} party off with a hundred and fifty silver and its thanks, and {X_nameDef} stayed behind. The parting was warmer than anyone expected.</outcome>
+        <ways><openness>4</openness><generosity>3</generosity></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>silver</what><count>150</count></li>
+          <li Class="ColonyCouncil.DilemmaEffect_AdoptGuest" />
+          <li Class="ColonyCouncil.DilemmaEffect_Goodwill"><amount>-2</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_DlmH_GuestStayed</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>4</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_LifeEvent"><target>A</target><counter>stranger</counter></li>
+        </effects>
+      </li>
+      <li>
+        <label>Ask {X_objective} to come back another season</label>
+        <outcome>The council told {X_nameDef} the colony would be glad to see {X_objective} again, but not this time. {X_nameDef} took it well. {A_nameDef} walked {X_objective} to the edge of the fields and came back quiet.</outcome>
+        <ways><openness>-2</openness></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_DlmH_ComeBackLater</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>X</target><thought>Council_DlmH_ComeBackLater_Guest</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Goodwill"><amount>2</amount></li>
+        </effects>
+      </li>
+      <li>
+        <label>No</label>
+        <outcome>The council said no. {X_nameDef} nodded, went back to the guest room, and didn't come down for supper.</outcome>
+        <ways><openness>-4</openness></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_DlmS_LetThemGo</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>-2</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>X</target><thought>Council_DlmH_TurnedDown</thought></li>
+        </effects>
+      </li>
+    </options>
+  </ColonyCouncil.DilemmaDef>
+
+  <!-- ===================== A guest's complaint ===================== -->
+  <ColonyCouncil.DilemmaDef>
+    <defName>Council_DlmH_GuestComplaint</defName>
+    <label>a guest's complaint</label>
+    <workerClass>ColonyCouncil.DilemmaWorker_UnhappyGuest</workerClass>
+    <weight>1.0</weight>
+    <cooldownDays>30</cooldownDays>
+    <minColonists>2</minColonists>
+    <answerDays>0.5</answerDays>
+    <stranger>
+      <kind>Visitor</kind>
+      <guest>true</guest>
+      <adult>true</adult>
+    </stranger>
+    <texts>
+      <li>{X_nameDef} of {FACTION} has had enough of the visit and has said so to {A_nameDef}, at length: the food, the bed, the noise from the workshop at dawn. {X_pronoun} wants to know what the colony means to do about it, or {X_pronoun} will tell everyone on the road.</li>
+      <li>[x:roompoor|x:nobed] {X_nameDef} paid for a bed and got a cold corner, by {X_possessive} account. {X_pronoun} cornered {A_nameDef} this morning and asked for {X_possessive} silver back.\n\n{FACTION} are neighbors the colony would like to keep.</li>
+      <li>{X_nameDef} has been miserable since {X_pronoun} arrived, and has decided it's the colony's fault. This morning {X_pronoun} told {A_nameDef} that {FACTION} will hear what kind of welcome this place gives.</li>
+    </texts>
+    <defaultOption>2</defaultOption>
+    <options>
+      <li>
+        <label>Give back the fee, and a good meal</label>
+        <outcome>The council returned {X_nameDef}'s silver and sat {X_objective} down to the best meal the kitchen could manage. {X_nameDef} ate every bite and allowed that the place had its good points.</outcome>
+        <ways><generosity>3</generosity><openness>1</openness></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>silver</what><count>40</count></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>X</target><thought>Council_DlmH_ComplaintHeard</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Goodwill"><amount>3</amount></li>
+        </effects>
+      </li>
+      <li>
+        <label>Have our best talker smooth it over</label>
+        <outcome>{B_nameDef} spent an hour with {X_nameDef}, listening more than talking. By the end {X_nameDef} was laughing about the workshop at dawn.</outcome>
+        <riskChance>0.4</riskChance>
+        <riskSkill>Social</riskSkill>
+        <riskOutcome>{B_nameDef} tried, but {X_nameDef} heard every soothing word as another insult. {X_pronoun} is angrier than before.</riskOutcome>
+        <ways><openness>1</openness></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Needs"><target>Others</target><skill>Social</skill><minLevel>8</minLevel><asB>true</asB></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>X</target><thought>Council_DlmH_ComplaintHeard</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Learn"><target>B</target><skill>Social</skill><xp>400</xp></li>
+        </effects>
+        <riskEffects>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>X</target><thought>Council_DlmH_ComplaintIgnored</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Goodwill"><amount>-2</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_Choice_TalkFailed</thought></li>
+        </riskEffects>
+      </li>
+      <li>
+        <label>They can take it or leave it</label>
+        <outcome>The council told {X_nameDef} the colony isn't an inn on the high road. {X_nameDef} went off muttering, and {A_nameDef} was left to hear the rest of it.</outcome>
+        <ways><openness>-2</openness><generosity>-1</generosity></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>X</target><thought>Council_DlmH_ComplaintIgnored</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Goodwill"><amount>-3</amount></li>
+        </effects>
+      </li>
+    </options>
+  </ColonyCouncil.DilemmaDef>
+
+</Defs>

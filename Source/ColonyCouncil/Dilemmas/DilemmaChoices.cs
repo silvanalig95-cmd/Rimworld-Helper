@@ -162,6 +162,8 @@ namespace ColonyCouncil
                     if (x.RaceProps.Animal) tags.Add("x:animal");
                     else if (x.DevelopmentalStage.Juvenile()) tags.Add("x:child");
                     else if (Flavor.HumanAge(x) >= 60f) tags.Add("x:old");
+                    // Other mods: x:guest, x:faction:Empire, x:race:AA_MeadowAve, x:mage (Integrations/ModStrangers.cs).
+                    ModStrangers.AddTags(tags, x);
                 }
                 var f = faction ?? (x != null && x.RaceProps.Humanlike ? x.Faction : null);
                 if (f != null && !f.IsPlayer) tags.Add(f.def.techLevel <= TechLevel.Medieval ? "theirLowtech" : "theirHightech");

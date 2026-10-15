@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- Memories for the deeper mod integrations: Hospitality's guests, the Empire and Vanilla Expanded peoples, Medieval
+       Overhaul's era, A RimWorld of Magic, Alpha Animals. They always load (a saved memory must still find its def if
+       the mod is removed later); without the mod nobody gets them. -->
+
+  <!-- ===================== Hospitality ===================== -->
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_EncH_RoomPraised</defName>
+    <durationDays>3</durationDays>
+    <stages><li><label>a guest liked our room</label><description>A guest said our guest room was the best bed on the road. I helped make it.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_EncH_RoomFaulted</defName>
+    <durationDays>2</durationDays>
+    <stages><li><label>a guest found fault</label><description>A guest let me know what they thought of where we put them. It wasn't much.</description><baseMoodEffect>-1</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_EncH_ShowedAround</defName>
+    <durationDays>2</durationDays>
+    <stages><li><label>showed a guest around</label><description>I walked a guest round the colony. It looks better when you show it to someone.</description><baseMoodEffect>2</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_EncH_HomeStories</defName>
+    <durationDays>2</durationDays>
+    <stages><li><label>a guest's stories of home</label><description>A guest told me all about where they come from. I could picture it.</description><baseMoodEffect>2</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_EncH_NightTalk</defName>
+    <durationDays>2</durationDays>
+    <stages><li><label>sat up with a guest</label><description>A guest couldn't sleep, so we talked half the night.</description><baseMoodEffect>2</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_EncH_LentAHand</defName>
+    <durationDays>2</durationDays>
+    <stages><li><label>a guest lent a hand</label><description>A guest pitched in with my work without being asked.</description><baseMoodEffect>2</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_EncH_Haggled</defName>
+    <durationDays>1.5</durationDays>
+    <stages><li><label>a good haggle</label><description>I haggled with a guest over a price. We both enjoyed it.</description><baseMoodEffect>1</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_EncH_Thanks</defName>
+    <durationDays>4</durationDays>
+    <stages><li><label>a guest's thanks</label><description>A guest thanked me for their stay, and meant it.</description><baseMoodEffect>4</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_DlmH_GuestStayed</defName>
+    <durationDays>8</durationDays>
+    <stages><li><label>our guest is staying</label><description>The council let our guest stay on as one of us. I'm glad.</description><baseMoodEffect>6</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_DlmH_ComeBackLater</defName>
+    <durationDays>3</durationDays>
+    <stages><li><label>maybe another season</label><description>The council asked our guest to come back another time. Maybe they will.</description><baseMoodEffect>-2</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_DlmH_ComeBackLater_Guest</defName>
+    <durationDays>3</durationDays>
+    <stages><li><label>welcome another time</label><description>They couldn't take me in this time, but they said I'd be welcome back.</description><baseMoodEffect>1</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_DlmH_TurnedDown</defName>
+    <durationDays>3</durationDays>
+    <stages><li><label>they wouldn't have me</label><description>I asked to stay, and the colony said no.</description><baseMoodEffect>-4</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_DlmH_ComplaintHeard</defName>
+    <durationDays>3</durationDays>
+    <stages><li><label>my complaint was heard</label><description>I told them what was wrong with my stay, and they put it right.</description><baseMoodEffect>5</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_DlmH_ComplaintIgnored</defName>
+    <durationDays>3</durationDays>
+    <stages><li><label>brushed off</label><description>I complained about my stay and they told me to take it or leave it.</description><baseMoodEffect>-5</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_Granted_GuestRoom</defName>
+    <durationDays>5</durationDays>
+    <stages><li><label>a guest room worth the name</label><description>We have a guest room we can be proud of. The next travelers will sleep well.</description><baseMoodEffect>4</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+</Defs>
