@@ -1,0 +1,266 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- Missions told from data (HappeningWorker_MissionDelivery, Source/ColonyCouncil/Missions/Workers_MissionDelivery.cs):
+       a neighbor asks for goods by a date, and the MissionDelivery says what, in each variant, and on what terms. As
+       for the other missions, {A} is who dealt with the neighbor, {FACTION} and {PLACE} the neighbor and their town,
+       {COUNT} the full price, {TALE} the goods and {DEAD} the neighbor who asks; in terms, reminders and accepted
+       lines {ITEM} is the goods and {DAYS} the time, and in endings {ITEM} is the silver paid. Lines are tagged with
+       the mission's kind, its variant and, for endings, how it ended. -->
+
+  <!-- ===================== Rebuilding after a disaster ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Council_Mission_Rebuild</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>a neighbor rebuilds</label>
+    <workerClass>ColonyCouncil.HappeningWorker_MissionDelivery</workerClass>
+    <baseChance>0.6</baseChance>
+    <minRefireDays>50</minRefireDays>
+    <earliestDay>15</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Challenge</group>
+        <answerDays>3</answerDays>
+        <notable>false</notable>
+        <titles>
+          <li>[fire] {PLACE} burns</li>
+          <li>[storm] A storm at {PLACE}</li>
+          <li>[flood] Floodwater at {PLACE}</li>
+        </titles>
+        <texts>
+          <li>[fire,lowtech] A fire started in a bakehouse at {PLACE} and went through the thatch faster than the bucket lines could follow. A quarter of the town is ash, and {FACTION} are sleeping under carts and in the temple.\n\n{DEAD}, who speaks for the town now, has sent a rider to the colony with a list: what they need to rebuild before the weather turns, and what they'll pay for it.</li>
+          <li>[fire,!lowtech] A fire broke out in a fuel store at {PLACE} and took a whole street with it before {FACTION} got it under control. Families are sleeping in the school hall.\n\n{DEAD}, who's running the rebuilding, has sent a courier to the colony with a list of what they need, and a price for all of it.</li>
+          <li>[storm,lowtech] A storm came down the valley two nights ago and took the roofs off half of {PLACE}. {FACTION} have saved what they could, and the rest is in the river.\n\n{DEAD} has sent a rider to the colony to ask whether it can sell them what they need to put the roofs back, by a set day.</li>
+          <li>[storm,!lowtech] A windstorm tore through {PLACE} two nights ago: roofs gone, walls down, the power lines in the street. {FACTION} are patching what they can.\n\n{DEAD}, who's in charge of the rebuilding, has sent a list to the colony and asked for help, for a fair price.</li>
+          <li>[flood] The river came up over its banks at {PLACE} and stood in the streets for three days. The lower town is mud to the windowsills, and {FACTION} are digging out.\n\n{DEAD} has sent word to the colony: they need building materials and food for the work crews, by a set day, and they'll pay well for them.</li>
+        </texts>
+        <defaultOption>1</defaultOption>
+        <options>
+          <li>
+            <label>Accept the terms</label>
+            <outcome>The colony has agreed.</outcome>
+          </li>
+          <li>
+            <label>Decline</label>
+            <outcome>{FACTION} will look elsewhere.</outcome>
+          </li>
+        </options>
+      </li>
+      <li Class="ColonyCouncil.MissionDelivery">
+        <kind>rebuild</kind>
+        <restDays>50</restDays>
+        <rating>2</rating>
+        <days>9~13</days>
+        <rewardFactor>1.5</rewardFactor>
+        <goodwill>12</goodwill>
+        <penalty>8</penalty>
+        <person>35~70</person>
+        <variants>
+          <li>
+            <tag>fire</tag>
+            <goals>
+              <li><what>WoodLog</what><count>150~250</count></li>
+              <li><what>blocks</what><count>50~90</count><instead>WoodLog</instead><insteadCount>80~120</insteadCount></li>
+              <li><what>Steel</what><count>40~70</count><era>industrial|spacer</era></li>
+              <li><what>textiles</what><count>30~50</count></li>
+            </goals>
+          </li>
+          <li>
+            <tag>storm</tag>
+            <goals>
+              <li><what>WoodLog</what><count>120~200</count></li>
+              <li><what>textiles</what><count>40~70</count></li>
+              <li><what>ComponentIndustrial</what><count>3~6</count><era>industrial|spacer</era></li>
+            </goals>
+          </li>
+          <li>
+            <tag>flood</tag>
+            <weight>0.8</weight>
+            <seasons>
+              <li>Spring</li>
+              <li>Summer</li>
+              <li>PermanentSummer</li>
+            </seasons>
+            <goals>
+              <li><what>WoodLog</what><count>150~250</count></li>
+              <li><what>blocks</what><count>70~110</count><instead>WoodLog</instead><insteadCount>100~150</insteadCount></li>
+              <li><what>meals</what><count>15~25</count></li>
+            </goals>
+          </li>
+        </variants>
+      </li>
+      <li Class="ColonyCouncil.MissionText">
+        <terms>
+          <li>What {FACTION} need: {ITEM}. Everything has to be in the colony's stockpiles within {DAYS} of the colony agreeing.\n\nFor all of it, they'll pay {COUNT} silver, well over its worth. If at least half of everything is ready, they'll take that and pay its plain worth. With less, they'll go elsewhere, and remember it.</li>
+        </terms>
+        <accepted>
+          <li>[fire] The colony has agreed to help {PLACE} rebuild after the fire: {ITEM}, within {DAYS}. {FACTION}'s carts will come for it.</li>
+          <li>[storm] The colony has agreed to help {PLACE} put its roofs back: {ITEM}, within {DAYS}. {FACTION}'s carts will come for it.</li>
+          <li>[flood] The colony has agreed to help {PLACE} dig out after the flood: {ITEM}, within {DAYS}. {FACTION}'s carts will come for it.</li>
+        </accepted>
+        <ready>
+          <li>Everything {PLACE} needs to rebuild is ready. {FACTION}'s carts will come for it in {DAYS}.</li>
+          <li>[fire] Everything {PLACE} needs to build again after the fire is stacked and waiting. {FACTION}'s carts will come for it in {DAYS}.</li>
+          <li>[flood] Everything {PLACE} needs to dig out and build again is ready. {FACTION}'s carts will come for it in {DAYS}, if the roads have dried.</li>
+        </ready>
+        <reminder>
+          <li>{FACTION}'s carts come for the building materials within {DAYS}: {ITEM}.</li>
+          <li>[storm] {PLACE} still has holes where its roofs should be. {FACTION}'s carts come within {DAYS} for {ITEM}.</li>
+          <li>[fire] {PLACE} is still living in tents among the ashes. {FACTION}'s carts come within {DAYS} for {ITEM}.</li>
+        </reminder>
+        <doneTitles>
+          <li>[delivered] Timber for {PLACE}</li>
+          <li>[partial] Part of what {PLACE} needed</li>
+        </doneTitles>
+        <done>
+          <li>[delivered,fire] {FACTION}'s carts came at first light and loaded everything the colony had set aside, and {DEAD} counted out {ITEM} silver on the tailboard. The new houses at {PLACE} will have the colony's timber in their walls.\n\n{FACTION} won't forget who helped them back on their feet.</li>
+          <li>[delivered,storm] {FACTION}'s carts came for the materials and went home loaded to the rails. {DEAD} paid {ITEM} silver, and says the roofs at {PLACE} will be back on before the next storm.\n\n{FACTION} won't forget it.</li>
+          <li>[delivered,flood] {FACTION}'s carts came for everything the colony set aside, and {DEAD} paid {ITEM} silver. The work crews at {PLACE} are eating the colony's food while they shovel out the colony's neighbors.\n\n{FACTION} won't forget it.</li>
+          <li>[partial] {FACTION}'s carts came and found only part of what they'd asked for ready. They loaded what there was, paid its plain worth, {ITEM} silver, and went to find the rest somewhere else.</li>
+        </done>
+        <failTitles>
+          <li>[missed] Nothing for {PLACE}</li>
+          <li>[cancelled] The order is off</li>
+        </failTitles>
+        <fail>
+          <li>[missed] {FACTION}'s carts came for the materials and found far too little ready. They left empty, and {PLACE} will be rebuilding slower than it hoped.\n\n{FACTION} think less of the colony for the broken promise.</li>
+          <li>[missed,fire] {FACTION}'s carts came for the timber and left with almost nothing. The burned street at {PLACE} will stand empty a while longer, and {DEAD} has said so, in a letter the colony would rather not have received.</li>
+        </fail>
+        <cancelled>
+          <li>{FACTION} are no longer on terms with the colony, and the order for {PLACE} is off.</li>
+          <li>{FACTION} have broken with the colony. {PLACE} will have to rebuild with someone else's help.</li>
+        </cancelled>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== Provisions for a hard season ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Council_Mission_Provisions</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>provisions for a hard season</label>
+    <workerClass>ColonyCouncil.HappeningWorker_MissionDelivery</workerClass>
+    <baseChance>0.6</baseChance>
+    <minRefireDays>50</minRefireDays>
+    <earliestDay>15</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Challenge</group>
+        <answerDays>3</answerDays>
+        <notable>false</notable>
+        <titles>
+          <li>[winter] Stores for the winter</li>
+          <li>[drought] A dry year at {PLACE}</li>
+          <li>[sickness] The sickhouse at {PLACE}</li>
+        </titles>
+        <texts>
+          <li>[winter,lowtech] The harvest at {PLACE} came in thin, and {FACTION} won't have enough laid by to see the winter out. {DEAD}, who keeps the town's stores, has sent a rider to the colony with a list: food that keeps, firewood, and cloth or hides for winter coats, by a set day.</li>
+          <li>[winter,!lowtech] {FACTION}'s granary at {PLACE} took water in the autumn rains, and half of it spoiled. {DEAD}, their quartermaster, has sent a courier with a list of what they'll need to get through the winter, and a good price for all of it.</li>
+          <li>[drought] The rains failed at {PLACE} this year. The wells are low, the fields are dust, and {FACTION} are eating their seed grain. {DEAD} has sent a rider to the colony: they need food, and medicine for the fevers that come with bad water, and they'll pay what they can.</li>
+          <li>[sickness,lowtech] A sickness is going round {PLACE}, the kind that keeps people in bed for a week and leaves them weak. {DEAD}, their healer, has turned the meeting hall into a sickhouse, and has sent to the colony for medicine, food and clean cloth.</li>
+          <li>[sickness,!lowtech] {FACTION}'s clinic at {PLACE} is full: a bad flu, nothing worse, but enough to empty the shelves. {DEAD}, who runs the clinic, has sent a courier with an order: medicine, meals for the patients and cloth for bandages and bedding, by a set day.</li>
+        </texts>
+        <defaultOption>1</defaultOption>
+        <options>
+          <li>
+            <label>Accept the terms</label>
+            <outcome>The colony has agreed.</outcome>
+          </li>
+          <li>
+            <label>Decline</label>
+            <outcome>{FACTION} will look elsewhere.</outcome>
+          </li>
+        </options>
+      </li>
+      <li Class="ColonyCouncil.MissionDelivery">
+        <kind>stores</kind>
+        <restDays>50</restDays>
+        <rating>2</rating>
+        <days>8~12</days>
+        <rewardFactor>1.6</rewardFactor>
+        <goodwill>12</goodwill>
+        <penalty>8</penalty>
+        <person>30~70</person>
+        <variants>
+          <li>
+            <tag>winter</tag>
+            <seasons>
+              <li>Fall</li>
+            </seasons>
+            <goals>
+              <li><what>Pemmican</what><count>40~70</count><research>Pemmican</research><instead>rawfood</instead><insteadCount>80~140</insteadCount></li>
+              <li><what>WoodLog</what><count>120~200</count></li>
+              <li><what>textiles</what><count>40~70</count></li>
+            </goals>
+          </li>
+          <li>
+            <tag>drought</tag>
+            <seasons>
+              <li>Spring</li>
+              <li>Summer</li>
+              <li>PermanentSummer</li>
+            </seasons>
+            <goals>
+              <li><what>rawfood</what><count>100~180</count></li>
+              <li><what>medicine</what><count>3~6</count></li>
+            </goals>
+          </li>
+          <li>
+            <tag>sickness</tag>
+            <weight>0.8</weight>
+            <goals>
+              <li><what>medicine</what><count>5~9</count></li>
+              <li><what>meals</what><count>15~25</count></li>
+              <li><what>textiles</what><count>30~50</count></li>
+            </goals>
+          </li>
+        </variants>
+      </li>
+      <li Class="ColonyCouncil.MissionText">
+        <terms>
+          <li>What {FACTION} need: {ITEM}. Everything has to be in the colony's stockpiles, and the food still fresh, within {DAYS} of the colony agreeing.\n\nFor all of it, they'll pay {COUNT} silver, well over its worth. If at least half of everything is ready, they'll take that and pay its plain worth. With less, they'll go elsewhere, and remember it.</li>
+        </terms>
+        <accepted>
+          <li>[winter] The colony has agreed to help {PLACE} through the winter: {ITEM}, within {DAYS}. {FACTION}'s carts will come for it.</li>
+          <li>[drought] The colony has agreed to send {PLACE} food and medicine for the dry year: {ITEM}, within {DAYS}. {FACTION}'s carts will come for it.</li>
+          <li>[sickness] The colony has agreed to supply {DEAD}'s sickhouse at {PLACE}: {ITEM}, within {DAYS}. {FACTION}'s carts will come for it.</li>
+        </accepted>
+        <ready>
+          <li>Everything {PLACE} asked for is ready. {FACTION}'s carts will come for it in {DAYS}.</li>
+          <li>[winter] The winter stores for {PLACE} are packed and waiting. {FACTION}'s carts will come for them in {DAYS}.</li>
+          <li>[sickness] The supplies for {DEAD}'s sickhouse are packed and ready. {FACTION}'s carts will come for them in {DAYS}.</li>
+        </ready>
+        <reminder>
+          <li>{FACTION}'s carts come for the provisions within {DAYS}: {ITEM}.</li>
+          <li>[drought] {PLACE} is counting the days until the colony's food arrives. {FACTION}'s carts come within {DAYS} for {ITEM}.</li>
+          <li>[sickness] {DEAD}'s sickhouse at {PLACE} is waiting on the colony. {FACTION}'s carts come within {DAYS} for {ITEM}.</li>
+        </reminder>
+        <doneTitles>
+          <li>[delivered] Provisions for {PLACE}</li>
+          <li>[partial] Part of what {PLACE} needed</li>
+        </doneTitles>
+        <done>
+          <li>[delivered,winter] {FACTION}'s carts came for the winter stores and went home loaded, and {DEAD} paid {ITEM} silver without haggling. {PLACE} will see the winter out.\n\n{FACTION} won't forget who filled their storehouse.</li>
+          <li>[delivered,drought] {FACTION}'s carts came for the food and medicine and went home heavy. {DEAD} paid {ITEM} silver, and says the colony has kept {PLACE} alive until the rains come back.\n\n{FACTION} won't forget it.</li>
+          <li>[delivered,sickness] {FACTION}'s carts came for the supplies, and {DEAD} paid {ITEM} silver and sent word a week later: the sickhouse at {PLACE} is emptying, and everyone who went in has walked out.\n\n{FACTION} won't forget it.</li>
+          <li>[partial] {FACTION}'s carts came and found only part of what they'd asked for ready. They loaded what there was, paid its plain worth, {ITEM} silver, and went to find the rest somewhere else.</li>
+        </done>
+        <failTitles>
+          <li>[missed] Nothing for {PLACE}</li>
+          <li>[cancelled] The order is off</li>
+        </failTitles>
+        <fail>
+          <li>[missed] {FACTION}'s carts came and found far too little ready. They went home empty, and {PLACE} will have to find what it needs elsewhere, if it can.\n\n{FACTION} think less of the colony for the broken promise.</li>
+          <li>[missed,sickness] {FACTION}'s carts came for the sickhouse supplies and left nearly empty. {DEAD} wrote afterwards: they managed, barely, and won't be asking the colony again.</li>
+        </fail>
+        <cancelled>
+          <li>{FACTION} are no longer on terms with the colony, and the order for {PLACE} is off.</li>
+          <li>{FACTION} have broken with the colony, and {PLACE} will have to find its provisions elsewhere.</li>
+        </cancelled>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+</Defs>

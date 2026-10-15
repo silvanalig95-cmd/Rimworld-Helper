@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Journal lines for the Rimfolk events of the land, the year, callers and old lives (Council_Events_Land.xml,
+    Council_Events_Callers.xml, Council_Events_Roots.xml), in the voice of the colonist the event is about. {X_...} is
+    the stranger; {FACTION} and {TALE} as in the event. Lines are tagged with the answer: [opt0] the first, [opt1] the
+    second..., and [risk] / [safe] for how a gamble went.
+  -->
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Journal_Evt_Mushrooms</defName>
+    <lines>
+      <plain>
+        <li>[opt0,safe] Mushrooms came up after the rain. Two baskets of the good kind are drying in the storeroom.</li>
+        <li>[opt0,risk] Half the mushrooms we brought in were the bitter kind. The other half were good. I've learned which is which now, the hard way.</li>
+        <li>[opt1] Wild mushrooms for supper, fried in fat. I found them, so I got the first plate.</li>
+        <li>[opt2] Found a ring of mushrooms out past the fields. We left them be. Probably wise.</li>
+        <li>Mushrooms everywhere after the rain. The whole hollow smells of them.</li>
+      </plain>
+      <warm><li>[opt1] Everyone ate the mushrooms I found. Small thing, but I liked watching them eat.</li></warm>
+      <blunt><li>[opt2] Food growing out of the ground and we left it there.</li></blunt>
+      <cheerful><li>[opt1] Mushroom supper! I'd go out in the rain every day for that.</li></cheerful>
+      <gloomy><li>[opt2] The mushrooms will rot where they stand. So it goes.</li></gloomy>
+      <cold><li>[opt0] Forty-odd pounds of edible fungus, cataloged. A useful morning.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Journal_Evt_WhiteNights</defName>
+    <lines>
+      <plain>
+        <li>[opt0] Stayed up all night with everyone. The sun went down behind the hill and came straight back up.</li>
+        <li>[opt1] Blankets over the windows. It's still light behind them. I counted the threads until I slept.</li>
+        <li>[opt2] Slept until the sun was high. It was high all night too, but that's not the point.</li>
+        <li>Midnight, and I can read this page without a candle.</li>
+      </plain>
+      <warm><li>[opt0] Sat up with everyone through the bright night. The best night we've had here.</li></warm>
+      <blunt><li>[opt1] Can't sleep. Sun won't go down.</li></blunt>
+      <cheerful><li>[opt0] We danced at midnight in broad daylight. I'm still giddy.</li></cheerful>
+      <gloomy><li>Three nights without dark. I'm so tired I could weep.</li></gloomy>
+      <cold><li>[opt1] Kept the usual hours. The others stayed up. They're slower today.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Journal_Evt_FirstSnow</defName>
+    <lines>
+      <plain>
+        <li>[opt0] First snow, and the council called a snow day. I got hit in the ear by a snowball and don't know who threw it.</li>
+        <li>[opt1] First snow of the year. Shoveled paths until my arms ached.</li>
+        <li>I was the first one out in the snow this morning. My footprints were the only ones for an hour.</li>
+        <li>[opt0] Built a snow wall by the storeroom. It's leaning already.</li>
+      </plain>
+      <warm><li>[opt0] Everyone out in the snow together, red-faced and laughing. I'll keep this one.</li></warm>
+      <blunt><li>[opt1] Snow. Shoveled it.</li></blunt>
+      <cheerful><li>[opt0] Snow day! I haven't had one of those since I was small.</li></cheerful>
+      <gloomy><li>The first snow. That means the long cold is coming.</li></gloomy>
+      <cold><li>[opt0] The council stopped work for snow. A day of production lost to throwing it at each other.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Journal_Evt_LongestNight</defName>
+    <lines>
+      <plain>
+        <li>[opt0] We kept the fire going all through the longest night. Saw the sun come back with ash in my hair.</li>
+        <li>[opt1] Good supper for the longest night, then bed. I like a sensible holiday.</li>
+        <li>[opt2] Longest night of the year. The others didn't want to make anything of it. I sat up a while anyway.</li>
+        <li>[lowtech,opt0] Fed the fire till dawn the way my people do. The sun came back. It always does, but you have to help.</li>
+      </plain>
+      <warm><li>[opt0] Sat up all night with all of them round the fire. I'd do it every winter.</li></warm>
+      <blunt><li>[opt0] Burned forty logs to stay awake. Worth it, I suppose.</li></blunt>
+      <cheerful><li>[opt0] We cheered when the sky went gray! It felt like we'd done it ourselves.</li></cheerful>
+      <gloomy><li>The longest night. It felt longer than that.</li></gloomy>
+      <cold><li>[opt2] The longest night passed like any other. It is only a night.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Journal_Evt_Scribe</defName>
+    <lines>
+      <plain>
+        <li>[opt0] A scribe wrote my letter home today. I said more than I meant to, and {X_nameDef} wrote all of it down.</li>
+        <li>[opt1] Told the colony's story to a scribe, from the first day on. It sounded bigger told out loud.</li>
+        <li>[opt2] The scribe taught us our letters. I can write my name now. I wrote it four times on the table.</li>
+        <li>[opt3] A scribe came and went. I'd have liked to send a letter.</li>
+      </plain>
+      <warm><li>[opt0] My letter is on its way home. Someone there will cry over it, I hope in a good way.</li></warm>
+      <blunt><li>[opt0] Paid a stranger to write my business down. Strange times.</li></blunt>
+      <cheerful><li>[opt2] I can write now. Badly, but I can!</li></cheerful>
+      <gloomy><li>[opt0] Wrote home. I don't know who's left there to read it.</li></gloomy>
+      <cold><li>[opt1] Our story is on paper now. Paper outlasts people.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Journal_Evt_Tourist</defName>
+    <lines>
+      <plain>
+        <li>[opt0] {X_nameDef} from the glitterworld asked me where the water comes from. Then again at supper. Then again at breakfast.</li>
+        <li>[opt1,safe] Watched {X_nameDef} muck out the barn in a silk shirt. Paid us extra for the privilege.</li>
+        <li>[opt1,risk] The tourist lasted half a day of real work and asked for a refund. Got half. Still more than I make.</li>
+        <li>[opt2] A tourist came to see how we live. We said no. We're not a zoo.</li>
+      </plain>
+      <warm><li>[opt0] {X_nameDef} was hopeless at everything and very sweet about it. I'll miss the questions.</li></warm>
+      <blunt><li>[opt0] Rich fool paid good silver to sleep on our floor. Fine by me.</li></blunt>
+      <cheerful><li>[opt1] I taught a glitterworlder to use a shovel. Wrong end first, but we got there.</li></cheerful>
+      <gloomy><li>[opt0] {X_nameDef} will go home and tell everyone how hard we have it, and then forget us.</li></gloomy>
+      <cold><li>[opt0] A tourist paid for an experience. We sold one. A clean transaction.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Journal_Evt_Bonesetter</defName>
+    <lines>
+      <plain>
+        <li>[opt0] A traveling healer saw to my {TALE} today. Whatever was in that tea, it's working.</li>
+        <li>[opt1] {X_nameDef} fixed my {TALE} with our doctor watching every move. I felt like a lesson.</li>
+        <li>[opt2] A healer offered to see to my {TALE} and I said I'd manage. I'm managing. Mostly.</li>
+        <li>[opt0] Stranger's hands, stranger's medicine, and the {TALE} is better already. I won't ask what was in it.</li>
+      </plain>
+      <warm><li>[opt0] The council paid for a healer for me. I didn't think anyone noticed I was hurting.</li></warm>
+      <blunt><li>[opt2] Don't need a stranger poking at me. It'll pass.</li></blunt>
+      <cheerful><li>[opt0] Good as new, nearly. Better than yesterday!</li></cheerful>
+      <gloomy><li>[opt2] The {TALE} again. Turned the healer away. Regretting it.</li></gloomy>
+      <cold><li>[opt1] The healer's methods were crude but effective. Our doctor took notes.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Journal_Evt_Fiddler</defName>
+    <lines>
+      <plain>
+        <li>[opt0] A musician played just for me last night, out by the woodpile. I fell asleep sitting up. First real sleep in days.</li>
+        <li>[opt1] Music after supper for everyone. I sat near the front. It helped more than I expected.</li>
+        <li>[opt2] A musician offered to play for me. I said no. I don't want to be the one who needs it.</li>
+        <li>[opt0] {X_nameDef} didn't ask me anything, just played. That was exactly right.</li>
+      </plain>
+      <warm><li>[opt0] Someone I'd never met sat with me half the night and played. People can be very kind.</li></warm>
+      <blunt><li>[opt0] Didn't want a song. Got one anyway. Slept like the dead.</li></blunt>
+      <cheerful><li>[opt1] Music and dancing. I'd forgotten I could dance!</li></cheerful>
+      <gloomy><li>[opt0] The music helped tonight. Tomorrow it'll be the same old weight.</li></gloomy>
+      <cold><li>[opt0] A stranger played for me because I looked tired. I did not know it showed.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Journal_Evt_Peacemaker</defName>
+    <lines>
+      <plain>
+        <li>[opt0,safe] A peacemaker sat me down across from someone I can't stand. We talked until midnight. I can stand them a little now.</li>
+        <li>[opt0,risk] A peacemaker tried to patch things up between me and someone here. It didn't take. At least we both tried.</li>
+        <li>[opt1] The council has us rebuilding the woodpile together. We argued about every log.</li>
+        <li>[opt2] A peacemaker offered to sort out my quarrel. The council said no. Fine. It's mine to sort.</li>
+      </plain>
+      <warm><li>[opt0,safe] We shook hands at the end. I think we both meant it.</li></warm>
+      <blunt><li>[opt1] Made to work beside someone I don't like. We stacked wood. Badly.</li></blunt>
+      <cheerful><li>[opt0,safe] Who knew a pot of tea could do all that?</li></cheerful>
+      <gloomy><li>[opt0,risk] Some things don't mend. I knew that before the peacemaker came.</li></gloomy>
+      <cold><li>[opt0] A stranger arbitrated my grievances. It was efficient, I'll give {X_objective} that.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Journal_Evt_TasteOfHome</defName>
+    <lines>
+      <plain>
+        <li>[opt0] A peddler had food from home, and the council bought it for me. I had to sit down after the first bite.</li>
+        <li>[opt1] I cooked supper from home for everyone tonight. Half of them made faces. All of them had seconds.</li>
+        <li>[opt2] Saw food from home on a peddler's blanket today. Walked past it. Thought about it all afternoon.</li>
+        <li>[opt0] I'm rationing it. One a day. It has to last.</li>
+      </plain>
+      <warm><li>[opt1] Fed everyone the food I grew up on and told them where it came from. It felt like having them over.</li></warm>
+      <blunt><li>[opt2] Couldn't afford a taste of home. Fine. It wasn't that good anyway.</li></blunt>
+      <cheerful><li>[opt0] It tastes exactly the way I remember. I could cry.</li></cheerful>
+      <gloomy><li>[opt0] It tastes like home. That's the trouble with it.</li></gloomy>
+      <cold><li>[opt0] Purchased a nostalgic foodstuff. Effective on morale. Mine, at least.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Journal_Evt_Amends</defName>
+    <lines>
+      <plain>
+        <li>[opt0,safe] {X_nameDef} came all this way to say sorry. We talked for hours. I don't hate {X_objective} anymore, and I don't know what to do with the space.</li>
+        <li>[opt0,risk] Let {X_nameDef} in to apologize. Should have kept the door shut. It's all fresh again.</li>
+        <li>[opt1] {X_nameDef} stayed for supper. It was strange, laughing with {X_objective}. Strange and good.</li>
+        <li>[opt2] {X_nameDef} came to the gate. I didn't go out. Some things stay where you left them.</li>
+      </plain>
+      <warm><li>[opt0,safe] I forgave {X_nameDef}. I think I'd been waiting years for the chance.</li></warm>
+      <blunt><li>[opt2] {X_nameDef} wanted forgiveness. Didn't get it.</li></blunt>
+      <cheerful><li>[opt1] An old enemy at our table, and the soup was good. Life is odd!</li></cheerful>
+      <gloomy><li>[opt0,risk] Sorry doesn't give back the years.</li></gloomy>
+      <cold><li>[opt0,safe] {X_nameDef} paid what was owed, with interest. The account is closed.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Journal_Evt_CampQuarrel</defName>
+    <lines>
+      <plain>
+        <li>[opt0] Had it out with {X_nameDef} from the camp. The council backed me. The camp isn't speaking to me now.</li>
+        <li>[opt1] The council let the camp have it. To keep the peace, they said. My peace wasn't asked about.</li>
+        <li>[opt2,safe] Someone talked me and {X_nameDef} round to splitting it. We shook on it in front of the whole camp.</li>
+        <li>[opt2,risk] They tried to settle it between me and {X_nameDef}. Went round in circles until dark.</li>
+      </plain>
+      <warm><li>[opt1] Let the camp have it. They've less than we do, I suppose.</li></warm>
+      <blunt><li>[opt0] It was mine. The council agreed. Good.</li></blunt>
+      <cheerful><li>[opt2,safe] Half each and a handshake. {X_nameDef} isn't so bad, really.</li></cheerful>
+      <gloomy><li>[opt1] Strangers camp on our land and take what's ours, and we give them more.</li></gloomy>
+      <cold><li>[opt0] Precedent established. The camp will think twice.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+</Defs>

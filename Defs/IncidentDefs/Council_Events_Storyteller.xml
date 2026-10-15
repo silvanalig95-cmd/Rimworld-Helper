@@ -249,6 +249,8 @@
         <journal>Council_Journal_Evt_LimbMaker</journal>
         <titles>
           <li>The limb-maker</li>
+          <li>A cart of new limbs</li>
+          <li>{X_nameDef}'s offer</li>
         </titles>
         <!-- {TALE}: the limb on offer; {PLACE}: the same price in materials (wood before electricity, steel after). -->
         <texts>
@@ -412,6 +414,8 @@
         <value>100~220</value>
         <titles>
           <li>A prisoner wanted</li>
+          <li>{FACTION} want {X_nameDef}</li>
+          <li>An offer for a prisoner</li>
         </titles>
         <texts>
           <li>Riders of {FACTION} came to the gate with a question. They've heard the colony holds {X_nameDef} of {ENEMY}, who raided one of their villages last year, and they want {X_objective}. They'll pay {COUNT} silver to take {X_objective} back to stand trial.\n\nThey don't say what kind of trial.</li>
@@ -475,6 +479,8 @@
         <journal>Council_Journal_Evt_WoundedStranger</journal>
         <titles>
           <li>A wounded stranger</li>
+          <li>Someone in the brush</li>
+          <li>{X_nameDef} needs help</li>
         </titles>
         <texts>
           <li>{A_nameDef} found someone in the brush beyond the fields: {X_nameDef}, half-conscious, with a bad wound and a weapon {X_pronoun} wouldn't let go of. {X_nameDef} won't say who did it or why, only that {X_pronoun} needs somewhere to lie low.\n\nWhoever did it might come looking.</li>
@@ -613,6 +619,8 @@
         <journal>Council_Journal_Evt_Tithe</journal>
         <titles>
           <li>The lord's tithe</li>
+          <li>{X_nameDef}'s ledger</li>
+          <li>{FACTION} want their due</li>
         </titles>
         <texts>
           <li>{X_nameDef}, reeve to a lord of {FACTION}, rode in this morning with a ledger under {X_possessive} arm. By {X_nameDef}'s reckoning the colony's fields lie inside the lord's lands, and the lord's lands owe a tithe: {COUNT} silver, or {TALE} in kind, to be carried to {PLACE}.\n\n{A_nameDef} doubts the colony's land was ever in anyone's ledger, and would like to say so.</li>
@@ -700,6 +708,8 @@
         <riskSkillOption>1</riskSkillOption>
         <titles>
           <li>A crashed drone</li>
+          <li>Wreckage on the rocks</li>
+          <li>A drone down</li>
         </titles>
         <texts>
           <li>[!lowtech] A survey drone came down {PLACE} this morning, trailing smoke, and split its casing on the rocks. It carries {FACTION}'s markings.\n\n{A_nameDef} thinks there's still something in its memory: maps, scans, maybe more. It could also be stripped for parts, or sent back to {FACTION}, who would likely pay to have it back.</li>
@@ -759,6 +769,8 @@
         <journal>Council_Journal_Evt_Signal</journal>
         <titles>
           <li>A signal</li>
+          <li>[!lowtech] A call on the comms</li>
+          <li>Someone out there</li>
         </titles>
         <texts>
           <li>[!lowtech] The comms console has picked up the same short signal every hour since dawn: a call sign, a string of numbers, then silence. {A_nameDef} thinks it's coming from somewhere close.\n\nAnswering it would tell whoever is listening where the colony is. {A_nameDef} could also try to trace it without answering.</li>
@@ -843,6 +855,8 @@
         <answerDays>0.5</answerDays>
         <titles>
           <li>A book for sale</li>
+          <li>{X_nameDef}'s book</li>
+          <li>A scholar's offer</li>
         </titles>
         <texts>
           <li>[gifted] {X_nameDef}, a wandering scholar of {FACTION}, has a book wrapped in oilcloth at the bottom of {X_possessive} pack: {THING}. It's the real thing, {X_nameDef} swears, and it opens only to someone with the gift.\n\n{A_nameDef} has the gift, and hasn't been able to look away from it since it came out of the pack. {X_nameDef} asks {COUNT} silver.</li>

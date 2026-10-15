@@ -9,8 +9,10 @@ namespace ColonyCouncil
     /// <summary>
     /// One kind of group that makes camp on the colony's map: who they are, how many, how long they stay, what they
     /// build, what they do with the land around them, and what they say. Texts may use {FACTION}, {COUNT} (how many
-    /// came), {DAYS} (how long they mean to stay), {PLACE} (where they settle), {X_nameDef} (whoever speaks for them)
-    /// and {A_nameDef} (the colonist who met them); lines can carry era tags ([lowtech], [!lowtech]...).
+    /// came), {DAYS} (how long they mean to stay), {PLACE} (where they settle), {X_nameDef} (whoever speaks for them),
+    /// {A_nameDef} (the colonist who met them), {IDEO} (their faith, with Ideology) and {SITUATION} (the world event
+    /// that brought them); lines can carry era and season tags ([lowtech], [!lowtech], [winter]...), [ideology] and
+    /// [sameFaith], and [ws:kind] for a world event of that kind (see <see cref="CampWords"/>).
     /// </summary>
     public class CampKindDef : Def
     {
@@ -59,6 +61,18 @@ namespace ColonyCouncil
         public List<CampStructure> structures = new List<CampStructure>();
         /// <summary>When they leave in peace, the buildings they can't carry are left for the colony.</summary>
         public bool leaveBuildings;
+        /// <summary>
+        /// World events that put this kind of camp on the road (a famine, a plague, a war: their kinds): while one
+        /// runs, the camp comes <see cref="situationWeight"/> times as often, and its lines can ask for [ws:kind] and
+        /// name it ({SITUATION}).
+        /// </summary>
+        public List<string> situationKinds;
+        public float situationWeight = 3f;
+        /// <summary>The good turns they do, told their own way: lines tagged with the help ([heal], [show]...).</summary>
+        [MustTranslate] public List<string> helpTexts;
+
+        /// <summary>How likely this kind is to be the one that comes now.</summary>
+        public float WeightNow() => CampWords.Situation(this) != null ? weight * situationWeight : weight;
 
         [MustTranslate] public List<string> titles = new List<string>();
         [MustTranslate] public List<string> texts = new List<string>();

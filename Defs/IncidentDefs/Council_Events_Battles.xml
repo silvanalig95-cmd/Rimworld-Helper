@@ -22,6 +22,9 @@
         <points>0.75~0.95</points>
         <titles>
           <li>{X_nameDef} returns</li>
+          <li>{X_nameDef} is back</li>
+          <li>An old enemy comes</li>
+          <li>[victim] {A_nameDef}'s old enemy</li>
         </titles>
         <texts>
           <li>[victim] {A_nameDef} knows the face at the head of this war party. {X_nameDef} left {A_objective} bleeding in the dirt once, and has come back with {ENEMY} to finish the job.</li>
@@ -32,6 +35,13 @@
           <li>[robbed] {X_nameDef} hasn't forgotten the money. {ENEMY} are marching on the colony with {X_nameDef} at their head, asking for {DEAD} by name.</li>
           <li>[betrayed] {X_nameDef} turned the crew against {DEAD} and had {DEAD} put off the ship. Now {X_nameDef} has come with {ENEMY} to finish the job.</li>
           <li>[enslaved] {X_nameDef}, who once held {DEAD} in chains, is coming back with {ENEMY} to take back what {X_pronoun} still thinks is {X_possessive}.</li>
+          <li>[victim,lowtech] {A_nameDef} heard the war horns first and knew them. {X_nameDef}, who left {A_objective} in the dirt last time, is at the head of a war party of {ENEMY}, painted for a fight.</li>
+          <li>[victim,!lowtech] {A_nameDef} picked out the voice on the open channel before anyone else did. {X_nameDef}, who left {A_objective} on the ground last time, is leading {ENEMY} back to finish what {X_pronoun} started.</li>
+          <li>[downed] {X_nameDef}, who put {DEAD} on the ground in the last fight, is back at the head of a war party of {ENEMY}. {DEAD} hasn't forgotten, and neither has {X_nameDef}.</li>
+          <li>[killed,lowtech] Scouts saw the war party a long way off: {ENEMY}, with {X_nameDef} at the front. The colony buried {DEAD} because of {X_nameDef}. Nobody here needs to be told who that is.</li>
+          <li>[killed,!lowtech] The motion sensors caught them at the edge of the map: {ENEMY}, and walking in front, {X_nameDef}, who killed {DEAD}. The colony knows the name.</li>
+          <li>[maimed] {X_nameDef}, who left {DEAD} with wounds that never healed right, is back with {ENEMY}. {DEAD} still feels the old injury on cold mornings.</li>
+          <li>[fled] {X_nameDef} ran from the colony's guns last time, and has had a long while to brood on it. {ENEMY} are with {X_objective} now, and they're coming.</li>
         </texts>
       </li>
     </modExtensions>
@@ -54,11 +64,16 @@
         <points>0.55~0.8</points>
         <titles>
           <li>Revenge for {DEAD}</li>
+          <li>{ENEMY} remember {DEAD}</li>
+          <li>A debt of blood</li>
         </titles>
         <texts>
           <li>{ENEMY} have not forgotten {DEAD}, who died in the colony's hands. A war party has come to settle the matter.</li>
           <li>[lowtech] {DEAD} died a prisoner here. Among {ENEMY}, a death like that is paid for in blood, and {DEAD}'s kin have come with a war party to collect.</li>
           <li>[!lowtech] {ENEMY} are marching on the colony, broadcasting the same name over and over on an open channel. It belongs to {DEAD}, who died a prisoner here, and they've come to make someone pay for it.</li>
+          <li>{DEAD} died a prisoner here, and {ENEMY} have come to answer for it. Their war party is already on the colony's land.</li>
+          <li>[tribal] The drums started at dusk. {ENEMY} have come for {DEAD}, who died as the colony's prisoner, and they won't go home until someone has paid for it.</li>
+          <li>[winter] {ENEMY} have marched through the snow to settle the matter of {DEAD}, who died in the colony's hands. They mean to be paid in blood.</li>
         </texts>
       </li>
     </modExtensions>
@@ -81,17 +96,26 @@
         <journal>Council_Journal_Evt_Deserter</journal>
         <titles>
           <li>A deserter</li>
+          <li>A soldier with hands raised</li>
+          <li>{X_nameDef} asks for shelter</li>
         </titles>
         <texts>
           <li>[lowtech] A young soldier in the colors of {ENEMY} stumbles up to the colony with empty hands raised. {X_nameDef} has deserted, and {ENEMY} hang deserters. {X_nameDef} begs to be taken in. {A_nameDef} found {X_objective} first, and thinks the fear is real.</li>
           <li>[!lowtech] A figure in {ENEMY} gear walks up to the colony with hands raised and weapon slung. {X_nameDef} has had enough of {ENEMY}, and they are not the forgiving kind. {X_nameDef} asks for shelter. {A_nameDef} found {X_objective} first, and believes the story.</li>
           <li>{X_nameDef}, who fought for {ENEMY} until three days ago, is hiding in the scrub near the colony and has asked {A_nameDef} for help. Deserters don't live long among {ENEMY}. {X_nameDef} asks for shelter, and swears {X_pronoun} is done with fighting for anyone but friends.</li>
+          <li>[winter] {X_nameDef} came out of the snow in a torn {ENEMY} coat, hands raised and shaking with cold. {X_nameDef} says {X_pronoun} walked away from {ENEMY} in the night and has been sleeping in ditches since. {A_nameDef} found {X_objective} first, and thinks the story is true.</li>
+          <li>[tribal] A young warrior of {ENEMY} laid a spear at the colony's gate and sat down beside it. {X_nameDef} has left the war band, and {ENEMY} don't let anyone leave. {X_nameDef} asks to be taken in. {A_nameDef} found {X_objective} first, and believes {X_objective}.</li>
+          <li>[trait:Kind] {A_nameDef} found {X_nameDef} at the edge of the fields, a soldier of {ENEMY} barely older than a child, hiding from {X_possessive} own side. {X_nameDef} ran from {ENEMY} two nights ago and begs for shelter. {A_nameDef} has already given {X_objective} {A_possessive} coat.</li>
         </texts>
         <defaultOption>1</defaultOption>
         <options>
           <li>
             <label>Take {X_objective} in</label>
             <outcome>{X_nameDef} is one of us now. With any luck, {ENEMY} will never learn where {X_pronoun} went.</outcome>
+            <outcomes>
+              <li>[trait:Kind] {A_nameDef} finds {X_nameDef} a bed and a coat that doesn't carry {ENEMY}'s colors. {X_nameDef} is one of us now.</li>
+              <li>{X_nameDef} burns {X_possessive} old colors in the cookfire that night. {X_nameDef} is one of us now.</li>
+            </outcomes>
             <riskChance>0.45</riskChance>
             <riskOutcome>{X_nameDef} is one of us now, but {ENEMY} won't let it go. They'll come looking for {X_objective} within a few days.</riskOutcome>
             <effects>
@@ -111,6 +135,10 @@
           <li>
             <label>Send {X_objective} on</label>
             <outcome>{X_nameDef} goes back out into the wild, alone.</outcome>
+            <outcomes>
+              <li>{A_nameDef} gives {X_nameDef} a day's food and points out the road. {X_nameDef} goes without looking back.</li>
+              <li>[trait:Kind] {A_nameDef} slips {X_nameDef} a loaf and a blanket at the gate. {X_nameDef} goes back out into the wild, alone.</li>
+            </outcomes>
             <ways><mercy>-2</mercy></ways>
           </li>
           <li>
@@ -120,6 +148,28 @@
               <li Class="ColonyCouncil.DilemmaEffect_EventGoodwill"><amount>12</amount><enemy>true</enemy></li>
             </effects>
             <ways><mercy>-8</mercy></ways>
+          </li>
+          <li>
+            <label>Take {X_objective} in, and put it about that {X_pronoun} drowned</label>
+            <outcome>{B_nameDef} took {X_nameDef}'s old coat, torn and muddied, to the nearest market and told a sad story about the river. {X_nameDef} is one of us now, and as far as anyone knows, dead.</outcome>
+            <riskChance>0.2</riskChance>
+            <riskSkill>Social</riskSkill>
+            <riskOutcome>{B_nameDef} told the story of the drowning well, but {ENEMY} didn't believe a word of it. {X_nameDef} is one of us now, and {ENEMY} will come looking within a few days.</riskOutcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Needs"><skill>Social</skill><minLevel>8</minLevel><target>Colony</target><asB>true</asB><reason>Nobody here could tell that story and be believed.</reason></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Join" />
+              <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>X</target><thought>Council_Evt_Sheltered</thought></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Learn"><target>B</target><skill>Social</skill><xp>250</xp></li>
+            </effects>
+            <riskEffects>
+              <li Class="ColonyCouncil.DilemmaEffect_RaidLater">
+                <points>0.35~0.55</points>
+                <delayHours>24~72</delayHours>
+                <label>{ENEMY} want their deserter</label>
+                <text>{ENEMY} never believed {X_nameDef} drowned. They've come for {X_objective}.</text>
+              </li>
+            </riskEffects>
+            <ways><mercy>3</mercy><openness>2</openness></ways>
           </li>
         </options>
       </li>

@@ -38,6 +38,10 @@ namespace ColonyCouncil
 
         protected override bool Begin(HappeningContext ctx, HappeningExtension ext) => CampTracker.Instance?.Start(setup) != null;
 
+        /// <summary>The camp's own tags for its letter: faith, the world event behind it.</summary>
+        protected override void AddTags(HappeningContext ctx, HashSet<string> tags) =>
+            CampWords.AddTags(tags, setup?.kind ?? CampTracker.Instance?.camp?.kind, ctx.faction, ctx.map);
+
         protected override void Abort(HappeningContext ctx)
         {
             CampTracker.Discard(setup);
@@ -55,8 +59,8 @@ namespace ColonyCouncil
                 base.Send(ctx, ext);
                 return;
             }
-            string label = ctx.Format(Pick(kind.titles, ctx) ?? def.label).CapitalizeFirst();
-            ctx.text = ctx.Format(Pick(kind.texts, ctx));
+            string label = ctx.Format(CampWords.Fill(Pick(kind.titles, ctx), kind, camp.faction) ?? def.label).CapitalizeFirst();
+            ctx.text = ctx.Format(CampWords.Fill(Pick(kind.texts, ctx), kind, camp.faction));
             // The colonist who met them first.
             camp.Warm(ctx.a, 1);
             ctx.why = label;

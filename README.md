@@ -697,9 +697,24 @@ medieval things). Many ask the council what to do, with a day or so to answer.
   from a wanted poster, an **old commander**, a **former patient**, an **old map**), a **child's find**, a **pet's
   present**, a **sealed crate**, and an **arcane tome** for sale (A RimWorld of Magic). In many, who you send decides
   the odds: a skilled hand makes a gamble likelier to pay.
+- **The land, the season, the era (26 more).** Events that only come where and when they fit: a **mushroom flush**
+  after rain, **white nights** near the poles, a **desert in bloom**, the **long rains**, an **ice fair** on a frozen
+  river, **birds returning** in spring, the **rut** in the fall, the **first snow**, the **longest night** (a fire kept
+  all night, wood from the stores) and an **eclipse**. Callers fit the era: a **spirit singer** for a tribal colony, a
+  **scribe** for a medieval one, a **photographer** or a **tourist** for an industrial or spacer one, and a
+  **wandering cook** for anyone. Some come for the colony's own life: a **bonesetter** while someone nurses an everyday
+  ailment, a **fiddler** while someone is strained, **guests who want to watch a council meeting**, a **peacemaker**
+  for two colonists at odds, a peddler with a **taste of home**, an old acquaintance come to make **amends**,
+  **headstones** for the colony's graves, a neighbor's **bridge** to rebuild, a **sick herd**, and a **feast** or a
+  **quarrel** with a camp nearby. Many answers call on someone with the right skill or trait; when nobody fits, the
+  answer says why.
 - **Strangers who make camp.** Now and then a group that isn't hostile settles part of your map for days to a
   season: a **hunting party** following a herd, a **refugee family**, **prospectors**, **pilgrims** at rest,
-  **traders** with a stall, a **traveling smith**, a **hermit** who builds a hut. They build the camp themselves,
+  **traders** with a stall, a **traveling smith**, a **hermit** who builds a hut, **traveling healers** who ease an
+  ailment, a **procession of the faithful** who bless the colony (naming their creed with Ideology), **traveling
+  players** who put on a show, and **surveyors** who may show you a seam of ore. Refugees come more often while a
+  famine, plague, war, flood, drought or hard winter runs in the region, and say what they fled; pilgrims follow a
+  holy year, surveyors a new road or a rush. They build the camp themselves,
   cook at their fire, hunt and fell trees around it (never near your home area), trade, sometimes help, and may ask
   to join. Let them stay, set terms (a fee, a share of their meat, keeping to their side, a time limit), hire some of
   them, ask them to move on (a gift helps), or drive them off. Tension grows the longer they stay and the more they
@@ -714,22 +729,30 @@ send their thanks down the road. A neighbor whose **order** you filled comes bac
 **visited** writes home news, and can be invited to come and live here; the colonist the **fortune teller** saw bad
 things for has a fright that comes to nothing; and the neighbors whose **quarrel** you judged remember it.
 
-**Stories** are longer: five chains told in three to five stages over days and weeks, where your answer and some luck
+**Stories** are longer: eight chains told in three to five stages over days and weeks, where your answer and some luck
 decide what comes next and how it ends. **The door in the hill** (open it, study it first, or sell the way to it: an
 empty vault with writing on the walls, a sleeper in an old casket who may stay, go or flee, or a hoard whose owners
 come for it); **the fugitive's debt** (hide a stranger at night, then lie to their pursuers or give them up: the debt
 repaid, a gift with a past, or revenge); **bad blood** between two families of a neighbor town (mediate, back one,
-sell to both or stay out: a wedding at the colony, a blood feud, or hired blades on the road); **the preacher**
-(let them preach, argue, or send them on: a colonist who follows them, a divided colony, or a pilgrims' hill with the
-colony as its last stop); and **the lost expedition** (outfit a rescue, send word, or let the explorer go back
-alone: survivors and finds, a single survivor with a warning, or silence). Each ending gets its own letter and a line
-in the chronicle; a path brings at most one fight, and only with battles on.
+sell to both or stay out: a wedding at the colony, a blood feud, or hired blades on the road); **the preacher** (let
+them preach, argue, or send them on: a colonist who follows them, a divided colony, or a pilgrims' hill with the
+colony as its last stop); **the lost expedition** (outfit a rescue, send word, or let the explorer go back alone:
+survivors and finds, a single survivor with a warning, or silence); **the lost letters** (a satchel of letters gone
+astray: send them on, read them first, or burn them; a love letter, a buried cache or a note of credit may be among
+them, and a thank-you, a share or a new colonist may come back); **the stranger's seeds** (plant them with care, out
+of the way, or turn them down: a rare harvest, a weed that chokes the fields, cuttings to sell, and the stranger
+coming back to see what grew); and **the play** a traveling writer makes of the colony (tell them everything, only the
+best, or nothing: a hit along the road, an admirer who comes to visit, a flop or a scandal). Each ending gets its own
+letter and a line in the chronicle; a path brings at most one fight, and only with battles on.
 
 **Missions** are a neighbor's request with clear terms: goods for a **funeral or a wedding** by a set day (meals,
 sculptures, stone blocks, beer), a prize animal that **bolted** onto your land to tame and hand back (or buy, or
-keep), or a **shrine** for their pilgrims (a sculpture of good enough quality under the open sky). Each shows up in
-the game's **Quests** tab to accept or let expire (or as a letter, if you switch that off), runs against a deadline
-once accepted, and pays a reward, or costs goodwill if it fails. One mission at a time.
+keep), a **shrine** for their pilgrims (a sculpture of good enough quality under the open sky), materials to
+**rebuild** a town after a fire, a storm or a flood (wood, stone blocks, cloth, and steel or components for an
+industrial town), or **provisions** for a hard winter, a dry year or a sickhouse (raw food or pemmican, meals,
+medicine, cloth, firewood). Each shows up in the game's **Quests** tab to accept or let expire (or as a letter, if you
+switch that off), runs against a deadline once accepted, and pays a reward, or costs goodwill if it fails. One mission
+at a time.
 
 The council window's **World** page (Colony section) shows what's coming (fights the colony knows about and how
 soon, questions waiting for an answer, caravans, carts and relatives on their way, the next stage of a story),
@@ -777,18 +800,25 @@ the colony half.
 - **Hard times:** a **plague** (medicine asked for, refugees, your best doctor sought out by name), a **famine** (food
   asked for, hungry families at the gate, famine prices if you want them, a desperate raid now and then), a **hard
   winter** (firewood, snowbound travelers), **locusts** that may strip the open fields (smudge fires and an early
-  harvest help; a famine can follow), a **flood** downriver (only by a river).
-- **The powers:** a neighbor's **leader dies** and the next one takes over (kind, greedy, harsh or steady, and it shows),
-  **two claimants** fight over a seat and the colony may back one, a **war of words** between two creeds (Ideology),
-  **peace talks** the colony can host to end a war between two neighbors for good, a **mercenary company** for hire
-  (against a rising warlord's people, if there is one), **bandits** on the road to a neighbor's town.
+  harvest help; a famine can follow), a **flood** downriver (only by a river), a **long drought** upriver (water for
+  thirsty herds, a builder for a new well, food; a famine can follow if the rains fail), and **sickness in the herds**
+  (pen your animals or risk it spreading home, lend a handler).
+- **The powers:** a neighbor's **leader dies** and the next one takes over (kind, greedy, harsh or steady, and it
+  shows), **two claimants** fight over a seat and the colony may back one, a **war of words** between two creeds
+  (Ideology), **peace talks** the colony can host to end a war between two neighbors for good, a **mercenary company**
+  for hire (against a rising warlord's people, if there is one), **bandits** on the road to a neighbor's town, a
+  **bandit lord's fall** that scatters deserters, wounded stragglers and buried loot (a lieutenant may rise as a
+  warlord, or the band turn sellswords), and a **holy year** with pilgrims on every road and fewer fights.
 - **Places:** a **new town** founded nearby (a real settlement on the world map, with its first traders), a **town
   abandoned** (gone from the map when it ends, unless you have a caravan on its way or a quest there), a **trading
   season**, a **great fair** (send a cart of surplus, enter your best in a contest), a **pilgrimage**, a **silver
-  rush**.
+  rush**, a **new road** built past the colony (sell timber, lend a builder, have a say in its route; a trading season
+  may follow).
 - **The land:** a **famous healer** touring the region, who can mend a colonist's worst lasting condition (a lost
   limb, a chronic illness, an old scar) and teach your doctor; the **great herds**; and with your mods, **strange
-  herds** (Alpha Animals) and a **season of wild magic** (A RimWorld of Magic).
+  herds** (Alpha Animals) and a **season of wild magic** (A RimWorld of Magic). In an industrial or spacer world, a
+  **ship comes down** in the hills: salvage going cheap, survivors, scavengers, and pirates who may come for the
+  wreck.
 
 The **World** page shows what's going on at the top, under "In the world": each world event with the people it's
 about, what it means for the colony, what the colony has done so far, and how long it may last (hover for what it
