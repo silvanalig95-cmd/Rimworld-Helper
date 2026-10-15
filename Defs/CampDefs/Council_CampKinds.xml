@@ -51,15 +51,18 @@
       <li>The hunters from {FACTION} finished their camp {PLACE}: bedrolls around a fire, and a spot for dressing game.</li>
       <li>[lowtech] The hunters from {FACTION} have a fire going {PLACE}, a rack for drying meat beside it, and their spears stacked against a tree.</li>
       <li>[!lowtech] The hunters from {FACTION} have pitched their camp {PLACE}: bedrolls, a fire, and a gutting table they carried in on their backs.</li>
+      <li>The hunters from {FACTION} have made camp {PLACE}, with a fire low enough not to spook the game and a lookout in the nearest tree.</li>
     </settled>
     <joinTexts>
       <li>{X_nameDef} from the hunters' camp has spent more evenings at the colony than at the camp fire lately. The colony feeds people better than the trail does, {X_pronoun} says, and {X_nameDef} would like to stay.</li>
       <li>{X_nameDef}, the youngest of the hunters camped {PLACE}, has been helping the colony's cook with the butchering in the evenings, and asks whether {X_pronoun} might stay.</li>
+      <li>{X_nameDef}, who tracks for the hunters camped {PLACE}, says {X_pronoun} is tired of following the herds and would rather stay where the herds come to {X_objective}.</li>
     </joinTexts>
     <farewell>
       <li>The herd moved on, and the hunters from {FACTION} went with it. Their camp {PLACE} is packed up and gone, and the land is quieter.</li>
       <li>The hunters from {FACTION} packed up their camp {PLACE} and moved on after the game, as hunters do.</li>
       <li>The hunters from {FACTION} left before dawn, the way hunters do. All that's left {PLACE} is a ring of ash and a few bones.</li>
+      <li>The hunters from {FACTION} left a haunch of meat on the colony's gatepost by way of thanks, and went on after the herd.</li>
     </farewell>
     <lines>
       <li>Downwind, always downwind.</li>
@@ -68,6 +71,8 @@
       <li>Whose turn is it to skin?</li>
       <li>[lowtech] Check your bowstrings.</li>
       <li>[!lowtech] Keep your powder dry.</li>
+      <li>Quiet now, they're close.</li>
+      <li>Fresh sign, this morning's.</li>
     </lines>
   </ColonyCouncil.CampKindDef>
 
@@ -127,15 +132,18 @@
       <li>The family from {FACTION} put up a windbreak and laid out their beds around a fire {PLACE}. It almost looks like a home.</li>
       <li>[winter] The family from {FACTION} has dug their camp into the lee of a bank {PLACE}, with every blanket they own around the fire.</li>
       <li>The family from {FACTION} has their camp up {PLACE}. The children have already found the stream, and {X_nameDef} has hung the washing out on the windbreak.</li>
+      <li>The family from {FACTION} has their camp up {PLACE}, small and tidy, with a cookpot already on the fire and a line strung between two trees for the washing.</li>
     </settled>
     <joinTexts>
       <li>{X_nameDef}, from the family camped {PLACE}, came up to the colony this evening with a question {X_pronoun} has clearly been rehearsing. {X_nameDef} works hard, {X_pronoun} says, and would like to stay.</li>
       <li>[ws:hunger|ws:sickness|ws:war|ws:water|ws:drought|ws:weather] {X_nameDef}, from the family camped {PLACE}, says there's nothing left to go back to after {SITUATION}, and asks whether the colony would take {X_objective} in.</li>
+      <li>{X_nameDef}, from the family camped {PLACE}, has been mending the colony's fences in the evenings without being asked. Tonight {X_pronoun} asked whether there might be a place to stay for good.</li>
     </joinTexts>
     <farewell>
       <li>The family from {FACTION} packed up their camp {PLACE} and went on down the road. {X_nameDef} waved until the colony was out of sight.</li>
       <li>The family from {FACTION} found somewhere to go, or decided to look for it. Their camp {PLACE} is empty now.</li>
       <li>[ws:hunger|ws:sickness|ws:war|ws:water|ws:drought|ws:weather] The family from {FACTION} packed up their camp {PLACE} to go and see what {SITUATION} has left of their home.</li>
+      <li>The family from {FACTION} left their camp {PLACE} swept clean, with a little pile of firewood stacked for whoever comes next.</li>
     </farewell>
     <lines>
       <li>Stay where I can see you.</li>
@@ -143,6 +151,8 @@
       <li>We'll manage.</li>
       <li>Put another log on.</li>
       <li>Tomorrow we'll think about it.</li>
+      <li>Eat slowly, make it last.</li>
+      <li>Nobody wanders off.</li>
     </lines>
   </ColonyCouncil.CampKindDef>
 
@@ -195,14 +205,17 @@
     <settled>
       <li>The prospectors from {FACTION} finished their camp {PLACE}, with a windbreak against the weather and a torch to dig by.</li>
       <li>The prospectors' camp {PLACE} is up, and the first test holes are already dug in a neat line toward the hills.</li>
+      <li>The prospectors from {FACTION} have their camp up {PLACE}, with sieves stacked by the fire and a hand-drawn map pinned under a rock.</li>
     </settled>
     <joinTexts>
       <li>{X_nameDef} from the prospectors' camp is tired of digging holes for other people's fortunes, and asks whether the colony could use a steady pair of hands.</li>
       <li>{X_nameDef} from the prospectors {PLACE} says the only thing worth finding round here is the colony, and asks, only half joking, whether there's a place for {X_objective} in it.</li>
+      <li>{X_nameDef}, the prospectors' cook, says {X_pronoun} has dug enough empty holes for one lifetime and would rather cook for people who stay in one place.</li>
     </joinTexts>
     <farewell>
       <li>The prospectors from {FACTION} filled in their last holes, packed up their camp {PLACE} and moved on, still sure the big find is over the next hill.</li>
       <li>The prospectors from {FACTION} broke camp {PLACE} and left, arguing about where to dig next.</li>
+      <li>The prospectors from {FACTION} packed up {PLACE} and left, a little richer or a little poorer, depending on which of them you ask.</li>
     </farewell>
     <lines>
       <li>Nothing. Again.</li>
@@ -210,6 +223,8 @@
       <li>Who moved my pick?</li>
       <li>Color in the pan!</li>
       <li>Dig, sift, dig.</li>
+      <li>Bring the lamp over here.</li>
+      <li>Just one more hole.</li>
     </lines>
   </ColonyCouncil.CampKindDef>
 
@@ -260,20 +275,25 @@
     <settled>
       <li>The pilgrims from {FACTION} made a simple camp {PLACE}, with a place set aside for prayer.</li>
       <li>[ideology] The pilgrims of {IDEO} have made their camp {PLACE}, with a shrine of piled stones at the edge of camp for their evening prayers.</li>
+      <li>The pilgrims from {FACTION} have laid out their bedrolls {PLACE} in a careful ring, and they sing before they eat.</li>
     </settled>
     <joinTexts>
       <li>{X_nameDef}, one of the pilgrims camped {PLACE}, says the road has given {X_objective} what {X_pronoun} came for, and asks whether {X_pronoun} might stay with the colony instead of walking on.</li>
       <li>[sameFaith] {X_nameDef}, one of the pilgrims {PLACE}, has found people of {X_possessive} own faith at the colony, and asks to end the pilgrimage here.</li>
+      <li>{X_nameDef}, who has walked with the pilgrims camped {PLACE} since the start of their road, says {X_pronoun} feels {X_pronoun} has arrived somewhere, and would like to stay.</li>
     </joinTexts>
     <farewell>
       <li>The pilgrims from {FACTION} rested, prayed, and went on their way. {X_nameDef} said they'd remember the colony in their prayers.</li>
       <li>The pilgrims from {FACTION} broke camp {PLACE} at dawn and walked on toward their holy place.</li>
+      <li>The pilgrims from {FACTION} left at first light, singing quietly so as not to wake the colony. Most of the colony was already up.</li>
     </farewell>
     <lines>
       <li>Rest is a blessing too.</li>
       <li>Not far now.</li>
       <li>We'll pray for this place.</li>
       <li>Mind your feet, they're all you have.</li>
+      <li>One more day of walking.</li>
+      <li>Bless the ones who let us rest.</li>
     </lines>
   </ColonyCouncil.CampKindDef>
 
@@ -321,14 +341,17 @@
     <settled>
       <li>The traders from {FACTION} have their stall up {PLACE}, with a torch to see the goods by.</li>
       <li>The traders' stall {PLACE} is open for business, with the best of the goods at the front and a sign promising fair prices, which {A_nameDef} doubts.</li>
+      <li>The traders from {FACTION} have laid their goods out on blankets {PLACE}, and {X_nameDef} is already calling out prices to anyone in earshot.</li>
     </settled>
     <joinTexts>
       <li>{X_nameDef}, who carries the traders' packs, has had enough of the road, and asks whether the colony would take on someone who can count and lift.</li>
       <li>{X_nameDef} from the traders' stall {PLACE} says the colony is the best market on the road, and would like to stop moving and be part of it.</li>
+      <li>{X_nameDef}, who keeps the traders' accounts, has decided the colony needs someone who can tell a fair price from a bad one, and would like to be that someone.</li>
     </joinTexts>
     <farewell>
       <li>The traders from {FACTION} packed their stall and moved on to the next settlement.</li>
       <li>Business was what it was. The traders from {FACTION} folded up their stall {PLACE} and left.</li>
+      <li>The traders from {FACTION} packed up their stall {PLACE}, counted their silver twice and went on, promising to be back when the roads are good.</li>
     </farewell>
     <lines>
       <li>Fair prices, best on the road!</li>
@@ -336,6 +359,8 @@
       <li>For you, a special price.</li>
       <li>Tell your friends.</li>
       <li>Quiet day.</li>
+      <li>Everything must go.</li>
+      <li>I'll throw in the bag for free.</li>
     </lines>
   </ColonyCouncil.CampKindDef>
 
@@ -389,20 +414,25 @@
     <settled>
       <li>The smith from {FACTION} set up a work spot and a table of wares at the camp {PLACE}. The ringing of a hammer carries all the way to the colony.</li>
       <li>The smith's camp {PLACE} is up and the forge is lit. There's already a queue of colonists with bent tools pretending to just be passing.</li>
+      <li>The smith from {FACTION} has a fire going hot {PLACE} and a row of half-finished blades cooling on a flat stone.</li>
     </settled>
     <joinTexts>
       <li>{X_nameDef}, who has been working the smith's bellows, wants to stop moving, and asks whether the colony needs someone who knows metal.</li>
       <li>{X_nameDef} from the smith's camp {PLACE} has been eyeing the colony's workshop for days, and finally asked whether {X_pronoun} might work in it, for good.</li>
+      <li>{X_nameDef}, the smith's apprentice, has been watching the colony's crafters work and thinks {X_pronoun} could learn more here than on the road. {X_nameDef} asks to stay.</li>
     </joinTexts>
     <farewell>
       <li>The smith from {FACTION} loaded the cart and moved on, the anvil ringing faintly over every bump in the road.</li>
       <li>The smith's camp {PLACE} is gone, and the forge with it. The colony's tools have never been sharper.</li>
+      <li>The smith from {FACTION} put out the forge {PLACE}, packed the anvil and left a fixed hinge on the colony's gate without saying a word about it.</li>
     </farewell>
     <lines>
       <li>Hotter. Hotter!</li>
       <li>Hold it steady.</li>
       <li>Good iron, this.</li>
       <li>Mind the sparks.</li>
+      <li>Quench it now.</li>
+      <li>Bring me the tongs.</li>
     </lines>
   </ColonyCouncil.CampKindDef>
 
@@ -450,20 +480,25 @@
     <settled>
       <li>{X_nameDef} finished a small hut {PLACE}, with a door, a roof and a fire outside it.</li>
       <li>{X_nameDef}'s hut {PLACE} is finished: crooked, small and very solid. Smoke comes out of the roof in the mornings.</li>
+      <li>{X_nameDef} has a hut up {PLACE}, and a little garden fenced off beside it with sticks and twine.</li>
     </settled>
     <joinTexts>
       <li>{X_nameDef}, the hermit camped {PLACE}, came to the colony's door this evening. After a long silence, {X_pronoun} asked whether there might be room for one more.</li>
       <li>{X_nameDef}, the hermit {PLACE}, has been leaving firewood at the colony's gate every morning for a week. Today {X_nameDef} knocked, and asked to come in for good.</li>
+      <li>{X_nameDef}, the hermit {PLACE}, came to the colony's fire one cold night and didn't leave when it burned down. In the morning {X_pronoun} asked to stay.</li>
     </joinTexts>
     <farewell>
       <li>{X_nameDef} shut the door of the hut {PLACE} one last time and walked off without looking back. The hut is the colony's now, if it wants it.</li>
       <li>The hermit's hut {PLACE} is empty. {X_nameDef} left in the night without a word, which is how {X_nameDef} arrived.</li>
+      <li>{X_nameDef} is gone from the hut {PLACE}. A carved bird was left on the colony's gatepost, which may have been a goodbye.</li>
     </farewell>
     <lines>
       <li>Hm.</li>
       <li>Quiet out here.</li>
       <li>Rain tonight.</li>
       <li>Leave me be.</li>
+      <li>Mind the goat.</li>
+      <li>Go away. Please.</li>
     </lines>
   </ColonyCouncil.CampKindDef>
 
