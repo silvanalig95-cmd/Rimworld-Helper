@@ -86,8 +86,8 @@ namespace ColonyCouncil
         public const float WeddingWeight = 35f;
         public const float NemesisWeight = 45f;
 
-        /// <summary>A battle: more for a bigger fight, much more for each of ours who fell.</summary>
-        public static float BattleWeight(int kills, int fallen) => 28f + Math.Min(Math.Max(kills, 0), 20) + 12f * Math.Min(Math.Max(fallen, 0), 4);
+        /// <summary>A battle: a little more for a bigger fight, and more than any clean win for each of ours who fell.</summary>
+        public static float BattleWeight(int kills, int fallen) => 28f + 0.5f * Math.Min(Math.Max(kills, 0), 20) + 16f * Math.Min(Math.Max(fallen, 0), 4);
 
         /// <summary>A death: more for each who loved them, for their years with the colony, and for family left behind.</summary>
         public static float DeathWeight(int lovedBy, float years, bool family) =>

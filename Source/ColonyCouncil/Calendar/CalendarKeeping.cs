@@ -85,8 +85,9 @@ namespace ColonyCouncil
             if (d.byPlayer) t.Add("named");
             if (d.kind == CalendarKind.Battle)
             {
-                t.Add(d.fallen.Count > 0 ? "fallen" : "clean");
-                if (d.id.StartsWith("nemesis|")) t.Add("nemesis");
+                // A nemesis brought down has lines of its own; a battle won cleanly or at a cost, its own.
+                if (d.fallen.Count > 0) t.Add("fallen");
+                else t.Add(d.id.StartsWith("nemesis|") ? "nemesis" : "clean");
             }
             return t;
         }
