@@ -37,9 +37,10 @@ Guests also help with chores, but only where their skill is 7 or more (a setting
         <heading>With Rimfolk</heading>
         <points>
           <li>Hospitality guests count as visitors, so your colonists chat, swap stories, flirt and trade insults with them in Rimfolk's encounters. A warm moment makes the guest like that colonist more, which helps toward the friends Hospitality wants before a guest can join.</li>
-          <li>The council leaves recruiting and sending away to Hospitality. If a guest asks to stay in a council dilemma, the "welcome them in" answer is grayed out; invite them from their Guest tab instead.</li>
-          <li>The guest room plan builds a small room for one visitor; switch its bed to a guest bed once it's built. A colonist with no bed never counts a guest bed as free.</li>
+          <li>Guests have stories of their own: they praise a fine guest room or find fault with a poor one, get shown around, tell of home at supper, sit up at night with a colonist who can't sleep either, lend a hand, haggle at the stalls, and thank their host before they go. Most of these go in the colonist's journal.</li>
+          <li>A guest whose visit is going well and who has grown close to a colonist may ask the council to stay. Taking them in uses Hospitality's own way of adopting a guest, the same as its join request, and their people take it better with a parting gift. A guest whose visit is going badly may bring a complaint instead. The council never sends guests away: their visit ends when Hospitality says.</li>
           <li>With no guest bed in the colony, a kind or sociable colonist may wish for one, most often while visitors are here. Switching any bed to a guest bed grants it.</li>
+          <li>Once there is a guest bed, sociable and kind colonists, and the steward or speaker, may wish for a guest room worth the name: the best guest room should reach the next step of impressiveness. The guest room plan builds a small room for one visitor; switch its bed to a guest bed once it's built. A colonist with no bed never counts a guest bed as free.</li>
         </points>
       </li>
     </sections>

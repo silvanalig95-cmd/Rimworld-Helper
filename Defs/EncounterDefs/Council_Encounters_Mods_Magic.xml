@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Traveling mages and fighters of A RimWorld of Magic: visitors whose class traits put them in the mage or fighter tag
+    group (stranger tags; Council_People_TagGroups.xml). Without the mod nobody has those traits, so these never come
+    up. Lines can be tagged for the traveler's group (x:mage, x:fighter, x:healer) and the colonist's (mage, fighter).
+  -->
+
+  <ColonyCouncil.EncounterDef>
+    <defName>Council_EncMg_TravelingWorking</defName>
+    <label>a traveling mage's working</label>
+    <mods><li>torann.arimworldofmagic</li></mods>
+    <weight>1.2</weight>
+    <cooldownDays>6</cooldownDays>
+    <stranger><kind>Visitor</kind><adult>true</adult><tags>mage</tags></stranger>
+    <children>true</children>
+    <texts>
+      <li>[!child] {X_nameDef}, who travels with the gift, lit {A_nameDef}'s pipe with a snap of {X_possessive} fingers and then, seeing {A_possessive} face, did it again more slowly.</li>
+      <li>{A_nameDef} asked {X_nameDef} to show {A_objective} something, anything. {X_nameDef} made the dust on the floor rise and turn like a flock of starlings.</li>
+      <li>[x:healer] {X_nameDef} noticed {A_nameDef} favoring one hand and closed the old cut on it with a touch, as if it were nothing.</li>
+      <li>[child] {X_nameDef} made a little light hop from finger to finger for {A_nameDef}, then let {A_objective} hold it. It felt like a warm pebble.</li>
+      <li>[night] By the fire, {X_nameDef} drew pictures in the smoke for {A_nameDef}: a ship, a tower, a face {X_pronoun} didn't name.</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncMg_SawWorking</thought></li>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>X</target><thought>Council_EncP_GoodCompany</thought></li>
+    </effects>
+    <journal>Council_Journal_EncMg_Traveler</journal>
+  </ColonyCouncil.EncounterDef>
+
+  <ColonyCouncil.EncounterDef>
+    <defName>Council_EncMg_OtherSchool</defName>
+    <label>a mage of another school</label>
+    <mods><li>torann.arimworldofmagic</li></mods>
+    <weight>1.2</weight>
+    <cooldownDays>8</cooldownDays>
+    <stranger><kind>Visitor</kind><adult>true</adult><tags>mage</tags></stranger>
+    <colonist><tags>mage</tags></colonist>
+    <texts>
+      <li>{A_nameDef} and {X_nameDef} recognized the gift in each other across the yard, and spent the evening comparing workings like two cooks comparing knives.</li>
+      <li>{X_nameDef} showed {A_nameDef} how {X_possessive} school gathers power, which is backwards from how {A_nameDef} was taught and, annoyingly, works.</li>
+      <li>{A_nameDef} traded {X_nameDef} a minor working for one of {X_possessive}. Both of them think they got the better of it.</li>
+      <li>[x:healer] {X_nameDef} is a healer first and a mage second, and talked with {A_nameDef} until late about what a body will let you mend.</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncMg_OtherSchool</thought></li>
+      <li Class="ColonyCouncil.DilemmaEffect_Learn"><target>A</target><skill>Intellectual</skill><xp>400</xp></li>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>X</target><thought>Council_EncP_GoodCompany</thought></li>
+      <li Class="ColonyCouncil.DilemmaEffect_Inspiration"><target>A</target><inspiration>Inspired_Creativity</inspiration><chance>0.1</chance></li>
+    </effects>
+    <journal>Council_Journal_EncMg_Traveler</journal>
+  </ColonyCouncil.EncounterDef>
+
+  <ColonyCouncil.EncounterDef>
+    <defName>Council_EncMg_WanderingBlade</defName>
+    <label>a wandering fighter</label>
+    <mods><li>torann.arimworldofmagic</li></mods>
+    <weight>1.0</weight>
+    <cooldownDays>8</cooldownDays>
+    <dayOnly>true</dayOnly>
+    <stranger><kind>Visitor</kind><adult>true</adult><tags>fighter</tags></stranger>
+    <colonist><passion>Melee</passion></colonist>
+    <texts>
+      <li>{X_nameDef}, who fights for a living, watched {A_nameDef} train in the yard and then, without a word, moved {A_possessive} back foot a hand's width to the left. It helped.</li>
+      <li>{A_nameDef} asked {X_nameDef} how {X_pronoun} got so quick. {X_nameDef} said ten thousand mornings, and showed {A_objective} the first one.</li>
+      <li>{X_nameDef} walked {A_nameDef} through an old form with empty hands, slow as a dance, until {A_nameDef} could do it with {A_possessive} eyes shut.</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncMg_WanderingBlade</thought></li>
+      <li Class="ColonyCouncil.DilemmaEffect_Learn"><target>A</target><skill>Melee</skill><xp>400</xp></li>
+    </effects>
+    <journal>Council_Journal_EncMg_Traveler</journal>
+  </ColonyCouncil.EncounterDef>
+
+</Defs>

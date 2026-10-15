@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Journal entries after meeting Alpha Animals' creatures (Council_Encounters_Mods_Alpha.xml). {PAWN_...} is the
+    writer, {X_...} the creature ({X_definite}, {X_indefinite}); never open a sentence with an {X_...} placeholder.
+  -->
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Journal_EncA_Creature</defName>
+    <lines>
+      <plain>
+        <li>Saw {X_indefinite} up close today. I don't have a word for it, and I've tried a few.</li>
+        <li>Drew {X_definite} in the margin of this page. It doesn't look like that. Nothing looks like that.</li>
+        <li>[skill:Animals] Watched {X_definite} for an hour. I want to know what it eats, where it sleeps, and whether it could be tamed.</li>
+        <li>[child] I saw {X_indefinite}! Nobody believes me but it's true.</li>
+        <li>[old] All these years, and the world still has things in it I've never seen. Today it was {X_indefinite}.</li>
+        <li>[night] Can't sleep. Keep thinking about {X_definite}.</li>
+      </plain>
+      <warm><li>Saw {X_indefinite} today and wished everyone had been there to see it with me.</li></warm>
+      <blunt><li>Strange animal by the colony today. Big. Left it alone.</li></blunt>
+      <cheerful><li>The most beautiful thing I've ever seen walked right past the colony today!</li></cheerful>
+      <gloomy><li>This planet keeps making things like {X_indefinite}. I didn't ask for any of them.</li></gloomy>
+      <cold><li>Noted {X_indefinite} near the colony: its size, its habits, which way it went.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+</Defs>

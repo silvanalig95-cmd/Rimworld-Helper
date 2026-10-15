@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    A wish for Hospitality. It always loads (a saved wish must find its def if the mod is removed later), but its
+    worker (Integrations/HostingGuests.cs) needs Hospitality's guest beds, so without the mod nobody asks. It comes
+    once the colony has a guest bed indoors; before that, the guest bed wish (Wishes_Mods_Breadth.xml) asks for one.
+    {SUBJECT} is the impressiveness the best guest room should reach ("decent", "slightly impressive"...).
+  -->
+
+  <ColonyCouncil.WishDef>
+    <defName>Council_Wish_GuestRoom</defName>
+    <label>a guest room worth the name</label>
+    <description>Someone who cares how the colony treats its guests wants a guest bed in a room the colony can be proud of.</description>
+    <workerClass>ColonyCouncil.WishWorker_GuestRoom</workerClass>
+    <category>Social</category>
+    <weight>0.8</weight>
+    <expiryDays>12</expiryDays>
+    <cooldownDays>30</cooldownDays>
+    <grantedThought>Council_Granted_GuestRoom</grantedThought>
+    <allowPetition>true</allowPetition>
+    <envy>0</envy>
+    <template>Council_GuestRoom</template>
+    <fulfilledWhen>A room with a guest bed in it reaches {SUBJECT} (impressiveness {TARGET}).</fulfilledWhen>
+    <ways><openness>2</openness><generosity>1</generosity></ways>
+    <request>
+      <plain>
+        <li>When travelers stop here, they should get a bed in a room we'd be glad to sleep in ourselves. Something {SUBJECT}, at least.</li>
+        <li>Our guests talk about us on the road. I'd like them to talk about the room, and not the draught.</li>
+        <li>The last guests paid for a bed and got a corner. I was embarrassed for all of us.</li>
+        <li>[winter] Nobody should come in from the snow to a cold corner. Let's make the guest room {SUBJECT}.</li>
+        <li>[skill:Social] People remember how they were welcomed. I want the guest room to be {SUBJECT}.</li>
+        <li>[trait:Kind] A guest who has walked for weeks deserves a good bed. Could we fix up the guest room?</li>
+      </plain>
+      <warm><li>I'd like every guest to leave here feeling they were wanted. A {SUBJECT} room would go a long way.</li></warm>
+      <blunt><li>The guest room is an embarrassment. Fix it.</li></blunt>
+      <cheerful><li>A proper guest room! Flowers, a soft bed, a lamp. Guests will come just to sleep in it.</li></cheerful>
+      <gloomy><li>Guests leave here thinking we live like animals. Maybe they're right, but they don't have to see it.</li></gloomy>
+      <cold><li>A good guest room costs a few days' work and pays in goodwill and fees for years. Make it {SUBJECT}.</li></cold>
+    </request>
+    <thanks>
+      <plain>
+        <li>The guest room is ready. I made the bed up myself.</li>
+        <li>Now when travelers come, we have a room to be proud of.</li>
+      </plain>
+      <warm><li>Thank you. Whoever comes next will sleep well here.</li></warm>
+      <blunt><li>Good. Now we're hosts, not a barn.</li></blunt>
+      <cheerful><li>I put a flower by the bed! The next guest is going to love it.</li></cheerful>
+      <gloomy><li>A nice room. I hope the guests don't break anything.</li></gloomy>
+      <cold><li>Done. The fees will cover it within a season.</li></cold>
+    </thanks>
+    <expired>
+      <plain><li>Guests will just have to make do, then.</li></plain>
+      <blunt><li>Fine. They can sleep with the animals.</li></blunt>
+      <gloomy><li>Nobody here cares what strangers think of us. I suppose I'll stop caring too.</li></gloomy>
+    </expired>
+    <reminder>
+      <plain>
+        <li>About the guest room: still not something I'd want to show anyone.</li>
+        <li>[promised] You said the guest room would be seen to. Guests are still asking where they're meant to sleep.</li>
+      </plain>
+    </reminder>
+  </ColonyCouncil.WishDef>
+
+</Defs>

@@ -34,8 +34,9 @@ The most promising ways Rimfolk could work with the mods in the main medieval mo
   cultist hideouts for a "root out the cult" ambition and vendettas against the Cultists.
 
 ## Guests, factions and the world (Hospitality, Outposts, Factional War, Diplomatic Marriage, VEE)
-- Hospitality: a guest-wing room plan (done: a guest room plan), wishes for better guest rooms, a "renowned hosts"
-  ambition, a council dilemma when a happy guest asks to join.
+- Hospitality: a guest-wing room plan (done: a guest room plan), wishes for better guest rooms (done), a "renowned
+  hosts" ambition, a council dilemma when a happy guest asks to join (done, taken in Hospitality's own way); guests
+  in encounters with journals (done).
 - Outposts: posting a bitter or quarrelsome colonist away by decree or dilemma; "letter from the outpost" journals
   (done); wishes wait while their colonist is posted away (done); a fair rule for officers away at election time.
 - Diplomatic Marriage: "married into X" instead of "gone"; proposals put to a council vote.
@@ -60,7 +61,8 @@ The most promising ways Rimfolk could work with the mods in the main medieval mo
 
 ## Nature and beasts (Alpha Animals, Megafauna, Dinosauria, biomes, weather)
 - Alpha Animals' stalking arctic lion as a pre-announced beast nemesis with dread and a dream omen; the big
-  creature events as dilemmas or a "great hunt" ambition.
+  creature events as dilemmas or a "great hunt" ambition. (Done: its calm creatures met by name in encounters, and
+  Alpha Biomes' lands.)
 - Landform- and biome-aware flavor (Geological Landforms tile mutators, Biome Transitions): "down in the valley",
   "at the edge of the desert".
 - Honey wishes by category; ReGrowth hot springs for the bath wish; planter boxes need daylight in a medieval colony.

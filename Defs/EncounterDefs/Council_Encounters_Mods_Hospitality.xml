@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Small moments with Hospitality's guests (only with Hospitality: <mods>, and stranger guest = true, which never fits
+    anyone without it). X is a guest staying at the colony; {FACTION} is their people. Tags on X (see
+    Integrations/ModStrangers.cs): x:guest, x:roomgood / x:roompoor / x:nobed (the guest bed they were given),
+    x:happyguest / x:unhappyguest (how the visit is going, by Hospitality's own score), x:faction:DefName, x:royal.
+    A guest who thinks well of the colonists is likelier to want to stay (Hospitality recruits through friendship), so
+    most of these leave the guest a good memory of A.
+  -->
+
+  <!-- ===================== A guest liked the room ===================== -->
+
+  <ColonyCouncil.EncounterDef>
+    <defName>Council_EncH_RoomPraised</defName>
+    <label>a guest liked the room</label>
+    <mods><li>orion.hospitality</li></mods>
+    <weight>1.2</weight>
+    <cooldownDays>6</cooldownDays>
+    <stranger><kind>Visitor</kind><guest>true</guest><adult>true</adult></stranger>
+    <moment>x:roomgood</moment>
+    <texts>
+      <li>{X_nameDef} stopped {A_nameDef} on the way to breakfast to say {X_pronoun} hadn't slept that well since leaving home. {A_nameDef} said it was only a bed, and looked pleased all morning.</li>
+      <li>{X_nameDef} asked {A_nameDef} who had made the guest room, and wanted to know where the colony got the wood for the bed.</li>
+      <li>Over supper, {X_nameDef} told {A_nameDef} that most places {X_pronoun} stays put guests in a barn. {A_nameDef} passed it on to everyone who'd helped build the room.</li>
+      <li>[winter] {X_nameDef} said the guest room was the first warm night {X_pronoun} had had since the snow came, and thanked {A_nameDef} twice.</li>
+      <li>[x:royal] {X_nameDef} inspected the guest room with the air of someone used to better, then admitted to {A_nameDef} that it would do very nicely.</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncH_RoomPraised</thought></li>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>X</target><thought>Council_EncP_GoodCompany</thought></li>
+    </effects>
+    <ways><openness>1</openness></ways>
+    <journal>Council_Journal_EncH_RoomPraised</journal>
+  </ColonyCouncil.EncounterDef>
+
+  <!-- ===================== A guest found fault with the room ===================== -->
+
+  <ColonyCouncil.EncounterDef>
+    <defName>Council_EncH_RoomFaulted</defName>
+    <label>a guest found fault</label>
+    <mods><li>orion.hospitality</li></mods>
+    <weight>1.0</weight>
+    <cooldownDays>8</cooldownDays>
+    <stranger><kind>Visitor</kind><guest>true</guest><adult>true</adult></stranger>
+    <moment>x:roompoor|x:nobed</moment>
+    <texts>
+      <li>[x:nobed] {X_nameDef} asked {A_nameDef}, politely, where guests were meant to sleep. {A_nameDef} didn't have a good answer.</li>
+      <li>[x:nobed] {X_nameDef} spent the night curled up by the wall and told {A_nameDef} in the morning that {X_pronoun} had slept in worse ditches, but not many.</li>
+      <li>[x:roompoor] {X_nameDef} told {A_nameDef} the guest room was clean enough, then mentioned the draught, the bare floor and the smell from the pens.</li>
+      <li>[x:roompoor] {A_nameDef} heard {X_nameDef} tell another guest that the bed here was the price of a good one and the comfort of a sack.</li>
+      <li>[x:roompoor] {X_nameDef} asked {A_nameDef} whether the colony had ever had a guest before, in a voice that suggested {X_pronoun} doubted it.</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncH_RoomFaulted</thought><exceptTrait><li>Psychopath</li></exceptTrait></li>
+    </effects>
+  </ColonyCouncil.EncounterDef>
+
+  <!-- ===================== Showed a guest around ===================== -->
+
+  <ColonyCouncil.EncounterDef>
+    <defName>Council_EncH_ShowedAround</defName>
+    <label>showed a guest around</label>
+    <mods><li>orion.hospitality</li></mods>
+    <weight>1.3</weight>
+    <cooldownDays>5</cooldownDays>
+    <dayOnly>true</dayOnly>
+    <stranger><kind>Visitor</kind><guest>true</guest><adult>true</adult><minOpinionOfA>-10</minOpinionOfA></stranger>
+    <texts>
+      <li>{A_nameDef} walked {X_nameDef} around the colony: the fields, the storeroom, the spot by the wall where the first shelter stood. {X_nameDef} asked good questions.</li>
+      <li>{A_nameDef} showed {X_nameDef} the workshops and the pens, and {X_nameDef} told {A_objective} how {FACTION} does the same work back home.</li>
+      <li>{X_nameDef} wanted to see everything, so {A_nameDef} took {X_objective} round and answered questions until the light went.</li>
+      <li>[skill:Plants] {A_nameDef} showed {X_nameDef} the fields, and they argued happily about seed for most of an hour.</li>
+      <li>[skill:Animals] {A_nameDef} introduced {X_nameDef} to every animal in the pens by name. {X_nameDef} kept up for a while.</li>
+      <li>[rain] {A_nameDef} took {X_nameDef} round the colony under a shared cloak, ducking from one doorway to the next.</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncH_ShowedAround</thought></li>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>X</target><thought>Council_EncP_GoodCompany</thought></li>
+      <li Class="ColonyCouncil.DilemmaEffect_Learn"><target>A</target><skill>Social</skill><xp>200</xp></li>
+    </effects>
+    <journal>Council_Journal_EncH_ShowedAround</journal>
+  </ColonyCouncil.EncounterDef>
+
+  <!-- ===================== Stories of home ===================== -->
+
+  <ColonyCouncil.EncounterDef>
+    <defName>Council_EncH_HomeStories</defName>
+    <label>a guest's stories of home</label>
+    <mods><li>orion.hospitality</li></mods>
+    <weight>1.2</weight>
+    <cooldownDays>5</cooldownDays>
+    <stranger><kind>Visitor</kind><guest>true</guest><adult>true</adult></stranger>
+    <texts>
+      <li>Over supper, {X_nameDef} told {A_nameDef} about home: a river that floods every spring, a mother who keeps bees, a brother who owes {X_objective} money.</li>
+      <li>{X_nameDef} described the place {FACTION} calls home so well that {A_nameDef} could almost see the smoke over the roofs.</li>
+      <li>{A_nameDef} asked {X_nameDef} what {FACTION} eats at a wedding, and got the whole wedding, from the first quarrel to the last song.</li>
+      <li>[theirLowtech] {X_nameDef} told {A_nameDef} how the elders of {FACTION} choose the planting day, by the moon and the first frog.</li>
+      <li>[theirHightech] {X_nameDef} told {A_nameDef} about the town {X_pronoun} grew up in, with streets lit all night and a market that never closed.</li>
+      <li>[x:faction:Empire] {X_nameDef} explained to {A_nameDef} how the Empire's titles pass from one holder to the next, and which of them are worth having. It took most of the evening.</li>
+      <li>[x:old] {X_nameDef} told {A_nameDef} about the winter {X_pronoun} was a child, when the lake froze so hard they drove carts across it.</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncH_HomeStories</thought></li>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>X</target><thought>Council_EncP_GoodCompany</thought></li>
+    </effects>
+    <journal>Council_Journal_EncH_HomeStories</journal>
+  </ColonyCouncil.EncounterDef>
+
+  <!-- ===================== A guest who can't sleep ===================== -->
+
+  <ColonyCouncil.EncounterDef>
+    <defName>Council_EncH_NightTalk</defName>
+    <label>sat up with a guest</label>
+    <mods><li>orion.hospitality</li></mods>
+    <weight>1.0</weight>
+    <cooldownDays>6</cooldownDays>
+    <nightOnly>true</nightOnly>
+    <stranger><kind>Visitor</kind><guest>true</guest><adult>true</adult></stranger>
+    <texts>
+      <li>{X_nameDef} couldn't sleep in a strange bed, and found {A_nameDef} still up. They talked quietly until the fire was down to embers.</li>
+      <li>{A_nameDef} came across {X_nameDef} sitting outside in the dark, homesick. {A_nameDef} sat down too, and neither of them went in for a long while.</li>
+      <li>{X_nameDef} and {A_nameDef} shared the last of the tea and the rest of the night, talking about the people they'd left behind.</li>
+      <li>[clear] {A_nameDef} showed {X_nameDef} which stars the colony steers by. {X_nameDef} knew them by different names.</li>
+      <li>[storm] Neither {X_nameDef} nor {A_nameDef} could sleep through the thunder, so they sat in the kitchen and counted the seconds between the flashes and the bangs.</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncH_NightTalk</thought></li>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>X</target><thought>Council_EncP_GoodCompany</thought></li>
+    </effects>
+    <journal>Council_Journal_EncH_NightTalk</journal>
+  </ColonyCouncil.EncounterDef>
+
+  <!-- ===================== A guest lends a hand ===================== -->
+
+  <ColonyCouncil.EncounterDef>
+    <defName>Council_EncH_LentAHand</defName>
+    <label>a guest lent a hand</label>
+    <mods><li>orion.hospitality</li></mods>
+    <weight>1.0</weight>
+    <cooldownDays>6</cooldownDays>
+    <dayOnly>true</dayOnly>
+    <stranger><kind>Visitor</kind><guest>true</guest><adult>true</adult><minOpinionOfA>0</minOpinionOfA></stranger>
+    <texts>
+      <li>{X_nameDef} wouldn't hear of being waited on, and spent the afternoon helping {A_nameDef} with whatever needed doing.</li>
+      <li>[work:Cooking] {X_nameDef} wandered into the kitchen and started peeling. {A_nameDef} let {X_objective}; there were a lot of potatoes.</li>
+      <li>[work:Growing] {X_nameDef} took off {X_possessive} coat and worked a row beside {A_nameDef}, then refused to take any of the harvest for it.</li>
+      <li>[work:Hauling] {X_nameDef} saw {A_nameDef} struggling with a load and took the other end without being asked.</li>
+      <li>[work:Construction] {X_nameDef} held the boards while {A_nameDef} nailed them, and had opinions about the nails.</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncH_LentAHand</thought></li>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>X</target><thought>Council_EncP_GoodCompany</thought></li>
+    </effects>
+  </ColonyCouncil.EncounterDef>
+
+  <!-- ===================== Haggling with a guest ===================== -->
+
+  <ColonyCouncil.EncounterDef>
+    <defName>Council_EncH_Haggled</defName>
+    <label>haggled with a guest</label>
+    <mods><li>orion.hospitality</li></mods>
+    <weight>0.8</weight>
+    <cooldownDays>8</cooldownDays>
+    <dayOnly>true</dayOnly>
+    <stranger><kind>Visitor</kind><guest>true</guest><adult>true</adult></stranger>
+    <colonist><passion>Social</passion></colonist>
+    <texts>
+      <li>{X_nameDef} wanted a coat from the colony's stall at half the price on it. {A_nameDef} talked {X_objective} up to three-quarters, and they both went away pleased.</li>
+      <li>{A_nameDef} and {X_nameDef} haggled over a pair of boots for a quarter of an hour, entirely for the fun of it.</li>
+      <li>{X_nameDef} tried to pay {A_nameDef} with a story instead of silver. It was a good story; {A_nameDef} still took the silver.</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncH_Haggled</thought></li>
+      <li Class="ColonyCouncil.DilemmaEffect_Learn"><target>A</target><skill>Social</skill><xp>300</xp></li>
+    </effects>
+  </ColonyCouncil.EncounterDef>
+
+  <!-- ===================== A happy guest's thanks ===================== -->
+
+  <ColonyCouncil.EncounterDef>
+    <defName>Council_EncH_Thanks</defName>
+    <label>a guest's thanks</label>
+    <mods><li>orion.hospitality</li></mods>
+    <weight>1.0</weight>
+    <cooldownDays>10</cooldownDays>
+    <stranger><kind>Visitor</kind><guest>true</guest><adult>true</adult><minOpinionOfA>10</minOpinionOfA></stranger>
+    <moment>x:happyguest</moment>
+    <notable>true</notable>
+    <texts>
+      <li>{X_nameDef} pressed a small carved bird into {A_nameDef}'s hand, a thank-you for the stay. {A_nameDef} put it on the shelf above {A_possessive} bed.</li>
+      <li>{X_nameDef} told {A_nameDef} that this was the best stop on the whole road, and that {FACTION} would hear about it.</li>
+      <li>{X_nameDef} left {A_nameDef} a pouch of seeds from home and the advice to plant them somewhere sunny.</li>
+      <li>[x:royal] {X_nameDef} thanked {A_nameDef} formally for the colony's hospitality, then less formally, with a bottle {X_pronoun} had been saving.</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncH_Thanks</thought></li>
+      <li Class="ColonyCouncil.DilemmaEffect_Goodwill"><amount>2</amount><chance>0.5</chance></li>
+      <li Class="ColonyCouncil.DilemmaEffect_LifeEvent"><target>A</target><counter>stranger</counter></li>
+    </effects>
+    <ways><openness>1</openness><generosity>1</generosity></ways>
+    <journal>Council_Journal_EncH_Thanks</journal>
+  </ColonyCouncil.EncounterDef>
+
+</Defs>

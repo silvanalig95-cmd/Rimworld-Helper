@@ -42,23 +42,12 @@ namespace ColonyCouncil
         }
 
         /// <summary>
-        /// The mods Rimfolk reads or adapts to in code, by name and package id. Content written for other mods (Almanac
-        /// pages, events, people) is found from the defs themselves, under "Content for your other mods".
+        /// The mods Rimfolk reads or adapts to in code, by name and package id, from the registry the Almanac's
+        /// compatibility table uses (ModSupportDefs with code set; Integrations/ModSupport.cs). Content written for
+        /// other mods (Almanac pages, events, people) is found from the defs themselves, under "Content for your other mods".
         /// </summary>
-        private static readonly (string name, string[] ids)[] Integrations =
-        {
-            ("RimHUD", new[] { "jaxe.rimhud" }),
-            ("Dubs Bad Hygiene", new[] { "dubwise.dubsbadhygiene" }),
-            ("Hospitality", new[] { "orion.hospitality" }),
-            ("Vanilla Social Interactions Expanded", new[] { "vanillaexpanded.vanillasocialinteractionsexpanded" }),
-            ("Vanilla Skills Expanded", new[] { "vanillaexpanded.skills" }),
-            ("Vanilla Outposts Expanded", new[] { "vanillaexpanded.outposts" }),
-            ("Vanilla Cooking Expanded", new[] { "vanillaexpanded.vcooke" }),
-            ("A RimWorld of Magic", new[] { "torann.arimworldofmagic" }),
-            ("Alpha Animals", new[] { "sarg.alphaanimals" }),
-            ("PokeWorld", PokeWorldLink.KnownPackageIds),
-            ("Medieval Overhaul", new[] { "dankpyon.medieval.overhaul" }),
-        };
+        private static IEnumerable<(string name, string[] ids, string live)> Integrations =>
+            ModSupport.All.Where(d => d.code).Select(d => (d.LabelCap.ToString(), d.packageIds.ToArray(), d.live));
 
         public static List<Part> Report()
         {
@@ -210,7 +199,7 @@ namespace ColonyCouncil
         {
             var found = new List<string>();
             var missing = new List<string>();
-            foreach (var (name, ids) in Integrations)
+            foreach (var (name, ids, live) in Integrations)
             {
                 var mod = ids.Select(People.ActiveMod).FirstOrDefault(m => m != null);
                 if (mod == null)
@@ -218,7 +207,7 @@ namespace ColonyCouncil
                     missing.Add(name);
                     continue;
                 }
-                found.Add(name + Live(name) + " [" + (mod.PackageIdPlayerFacing ?? mod.PackageId) + "]");
+                found.Add(name + ModSupport.LiveNote(live) + " [" + (mod.PackageIdPlayerFacing ?? mod.PackageId) + "]");
             }
             part.Add(found.Count > 0 ? "Found: " + string.Join("; ", found) + "." : "None of them is active.", found.Count > 0 ? UiKit.Good : Color.white);
             if (missing.Count > 0) part.Add("Not active: " + string.Join(", ", missing) + ".", UiKit.Faint);
@@ -251,18 +240,6 @@ namespace ColonyCouncil
             part.Add(counts.Count == 0 ? "Content for your other mods: none of the mods Rimfolk writes for is active."
                 : "Content for your other mods (" + counts.Count + " mods): " + string.Join(", ", counts.OrderByDescending(kv => kv.Value).ThenBy(kv => kv.Key)
                     .Select(kv => kv.Key + " " + kv.Value)) + ".", UiKit.Faint);
-        }
-
-        /// <summary>For integrations Rimfolk reads by reflection, whether the reading worked.</summary>
-        private static string Live(string name)
-        {
-            switch (name)
-            {
-                case "Vanilla Skills Expanded": return Expertise.Available ? " (expertise read)" : " (expertise NOT readable)";
-                case "Vanilla Social Interactions Expanded": return SocialInteractions.Active ? " (its events read)" : " (its events NOT found)";
-                case "PokeWorld": return PokeWorldLink.Active ? " (linked)" : " (NOT linked)";
-                default: return "";
-            }
         }
 
         private static void LogLines(Part part)

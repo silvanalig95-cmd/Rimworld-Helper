@@ -16,7 +16,7 @@
     <order>1</order>
     <summary>Every kind of wish, who makes it, and when it can come up.</summary>
     <tip>A wish you can't grant never comes up: nobody in a tribe asks for a deep drill.</tip>
-    <description>There are 105 kinds of wish, many with variants (six kinds of work room, a dozen pieces of furniture, any skill to learn or teach). A colonist only voices a wish that fits who they are and what is happening to them, and only for something the colony can actually do now: a building it can place (the research is done, it's in the build menu, and anything that needs power waits for electricity), something it can make or grow, or something within reach on the map.
+    <description>There are 106 kinds of wish, many with variants (six kinds of work room, a dozen pieces of furniture, any skill to learn or teach). A colonist only voices a wish that fits who they are and what is happening to them, and only for something the colony can actually do now: a building it can place (the research is done, it's in the build menu, and anything that needs power waits for electricity), something it can make or grow, or something within reach on the map.
 
 Some wishes belong to an era (healroot for a tribe or a medieval village, a deep drill or a comms console once there's electricity), some to an age (children want lessons, pets and stories; the old want a soft chair, a resting place or an apprentice), some to a season or the weather, and some to a DLC or another mod. Without it, they simply never come up.</description>
     <sections>
@@ -143,6 +143,7 @@ Some wishes belong to an era (healroot for a tribe or a medieval village, a deep
           <li>A pot of tea | Vanilla Brewing Expanded, for anyone ill, once tea can be brewed.</li>
           <li>A grill for summer evenings | Vanilla Cooking Expanded (or Medieval Overhaul's grill), cooks in spring and summer.</li>
           <li>A bed kept for guests | Hospitality, the kind and the sociable, most often while visitors are here.</li>
+          <li>A guest room worth the name | Hospitality, the kind, the sociable, the steward and the speaker, once there is a guest bed indoors; likelier while guests are staying.</li>
           <li>A scarecrow for the fields | Vanilla Furniture Expanded - Farming, growers from spring to fall.</li>
           <li>A magic circle | A RimWorld of Magic, for mages.</li>
           <li>A new species | PokéWorld, animal lovers who spot a wild Pokémon the colony doesn't have.</li>
@@ -267,7 +268,7 @@ A few are done in stages, one after another: only the current stage counts, each
     <label>every life goal</label>
     <category>Council</category>
     <order>11</order>
-    <summary>All 57 life goals, who sets their heart on each, and what can spark it.</summary>
+    <summary>All 61 life goals, who sets their heart on each, and what can spark it.</summary>
     <tip>A child's goal can be to grow up. When they do, a grown-up's goal follows.</tip>
     <description>A colonist sets their heart on one life goal at a time, from what fits them: passions, traits, age, faith and what has happened to them lately. What sparks a goal (a battle, a brush with death, a loss, a birth, a dream that came true, a friend reaching the same goal, a recent memory) makes it far likelier, and can change their mind about a goal they've barely started. Children have goals of their own (Biotech), and a few goals are only for the old (ages in human years).</description>
     <sections>
@@ -338,6 +339,10 @@ A few are done in stages, one after another: only the current stage counts, each
           <li>take on a role in the faith | Believers with some certainty, when their faith has a role open (Ideology); an omen.</li>
           <li>see the whole colony share one faith | Devout believers in a colony of 3 or more (Ideology); a loss, an omen.</li>
           <li>reach a level as a mage or a fighter | A RimWorld of Magic's classes; a battle.</li>
+          <li>learn or deepen six workings | A RimWorld of Magic's mages; a battle, comparing workings with another mage.</li>
+          <li>learn or sharpen six techniques | A RimWorld of Magic's fighters; a battle, a brush with death, comparing forms.</li>
+          <li>understand the theory as well as the practice | A RimWorld of Magic's mages (Intellectual to 12); being asked what magic feels like.</li>
+          <li>tend sixty wounds and illnesses | A RimWorld of Magic's healers; a brush with death, a loss, a battle.</li>
           <li>become a true expert in a skill | Vanilla Skills Expanded.</li>
         </table>
       </li>

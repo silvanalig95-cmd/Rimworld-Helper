@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    More life goals for A RimWorld of Magic's classes (the mage, fighter and healer tag groups; nobody fits them without
+    the mod). AspirationWorker_MagicCraft / _MightCraft (Integrations/MagicPowers.cs): amount = steps deeper into one's
+    craft, where learning a new power or technique is one step and every level put into one is another. The scholar and
+    the healer use the ordinary skill and record workers.
+  -->
+
+  <ColonyCouncil.AspirationDef>
+    <defName>Council_Asp_PM_MagicCraft</defName>
+    <label>new workings</label>
+    <workerClass>ColonyCouncil.AspirationWorker_MagicCraft</workerClass>
+    <weight>1.3</weight>
+    <amount>6</amount>
+    <who><tags>mage</tags></who>
+    <goal>learn or deepen {COUNT} workings</goal>
+    <sparks><li>battle</li><li>fulfilled</li><li>thought:Council_Moment_ComparedWorkings</li></sparks>
+    <chosen>
+      <plain>
+        <li>I've been leaning on the same three workings for a year. Time to learn new ones, and do the old ones properly.</li>
+        <li>[spark:Council_Moment_ComparedWorkings] Another mage showed me what their school can do, and I knew half of it was within my reach. I'll reach for it.</li>
+        <li>[spark:battle] In the fight I wanted a working I didn't have. I won't be caught short like that again.</li>
+        <li>[trait:Necromancer|trait:Lich] There are deeper workings than the ones I use. I'll go down to them, carefully.</li>
+      </plain>
+      <cold><li>Every working I add is another option in a fight. I'll add {COUNT}.</li></cold>
+      <cheerful><li>New spells! I've a list, and I'm going to work through every one of them.</li></cheerful>
+      <gloomy><li>The gift doesn't stand still. If I don't grow, it'll grow wild.</li></gloomy>
+    </chosen>
+    <achieved>
+      <plain>
+        <li>I counted my workings tonight and there are more than there were. The new ones are starting to feel like mine.</li>
+        <li>What used to take a long breath now takes a short one. I've come a long way this season.</li>
+      </plain>
+      <warm><li>Everything I've learned is for the people here. I hope I never need half of it.</li></warm>
+      <cold><li>A wider repertoire. Useful.</li></cold>
+      <cheerful><li>I did it! Every working on the list, and two that weren't.</li></cheerful>
+    </achieved>
+  </ColonyCouncil.AspirationDef>
+
+  <ColonyCouncil.AspirationDef>
+    <defName>Council_Asp_PM_MightCraft</defName>
+    <label>new techniques</label>
+    <workerClass>ColonyCouncil.AspirationWorker_MightCraft</workerClass>
+    <weight>1.3</weight>
+    <amount>6</amount>
+    <who><tags>fighter</tags></who>
+    <goal>learn or sharpen {COUNT} techniques</goal>
+    <sparks><li>battle</li><li>downed</li><li>thought:Council_Moment_ComparedForms</li></sparks>
+    <chosen>
+      <plain>
+        <li>I know my forms. I don't know enough of them. I'm going to learn more, and sharpen what I have.</li>
+        <li>[spark:downed] I went down because I had one answer and the enemy had two. I need more answers.</li>
+        <li>[spark:Council_Moment_ComparedForms] Watching another fighter's forms showed me how much I've let slide.</li>
+      </plain>
+      <blunt><li>More techniques. Better ones. That's the goal.</li></blunt>
+      <cold><li>A fighter with one trick dies to the second enemy. I'll learn {COUNT} more.</li></cold>
+    </chosen>
+    <achieved>
+      <plain>
+        <li>I have answers now I didn't have before. My body knows them before I think of them.</li>
+        <li>Trained every morning this season, and it shows. I'm a different fighter.</li>
+      </plain>
+      <blunt><li>Done. Next.</li></blunt>
+      <warm><li>Whatever comes over the wall now, I can stand in front of the others.</li></warm>
+    </achieved>
+  </ColonyCouncil.AspirationDef>
+
+  <ColonyCouncil.AspirationDef>
+    <defName>Council_Asp_PM_MageScholar</defName>
+    <label>a scholar of the art</label>
+    <workerClass>ColonyCouncil.AspirationWorker_Skill</workerClass>
+    <weight>0.9</weight>
+    <skill>Intellectual</skill>
+    <level>12</level>
+    <gain>4</gain>
+    <who><tags>mage</tags></who>
+    <goal>understand the theory as well as the practice</goal>
+    <sparks><li>fulfilled</li><li>thought:Council_Moment_TalkedMagic</li></sparks>
+    <chosen>
+      <plain>
+        <li>I can do things I can't explain. That isn't good enough. I want to understand why the workings work.</li>
+        <li>[spark:Council_Moment_TalkedMagic] Someone asked me what magic is and I had no answer. I'm going to find one.</li>
+        <li>[skill:Intellectual] The old texts say more than I've let them. I'll read them properly this time.</li>
+      </plain>
+      <cold><li>Power without understanding is a gamble. I'll stop gambling.</li></cold>
+      <gloomy><li>Every mage who died young thought they understood enough.</li></gloomy>
+    </chosen>
+    <achieved>
+      <plain>
+        <li>I can explain my workings now, start to finish, and the explanation holds.</li>
+        <li>Wrote out the theory behind my strongest working tonight. Three pages. It's right.</li>
+      </plain>
+      <warm><li>I understand it well enough now to teach it. Anyone with the gift only has to ask.</li></warm>
+      <cold><li>Theory and practice agree. Good.</li></cold>
+    </achieved>
+  </ColonyCouncil.AspirationDef>
+
+  <ColonyCouncil.AspirationDef>
+    <defName>Council_Asp_PM_HealerTends</defName>
+    <label>a healer's calling</label>
+    <workerClass>ColonyCouncil.AspirationWorker_Record</workerClass>
+    <weight>1.1</weight>
+    <record>TimesTendedOther</record>
+    <amount>60</amount>
+    <who><tags>healer</tags></who>
+    <goal>tend sixty wounds and illnesses</goal>
+    <sparks><li>downed</li><li>loss</li><li>battle</li></sparks>
+    <chosen>
+      <plain>
+        <li>The gift I have is for mending. I'm going to use it on everyone who needs it, not only when it's easy.</li>
+        <li>[spark:loss] I couldn't save them. I'm going to make sure that happens as rarely as I can make it.</li>
+        <li>[spark:battle] Too many came back from that fight bleeding. I'll be ready for the next one.</li>
+      </plain>
+      <warm><li>Every hurt I can mend is one less someone has to carry. That's enough of a reason.</li></warm>
+      <cold><li>A healer is measured in patients. I'll count mine.</li></cold>
+    </chosen>
+    <achieved>
+      <plain>
+        <li>Sixty tended since I set my mind to it. I remember most of their faces.</li>
+        <li>My hands are steadier than they were a year ago, and the gift answers faster.</li>
+      </plain>
+      <warm><li>Everyone I tended is still here to complain about my bedside manner. Good.</li></warm>
+      <gloomy><li>Sixty tended. There will be sixty more.</li></gloomy>
+    </achieved>
+  </ColonyCouncil.AspirationDef>
+
+</Defs>

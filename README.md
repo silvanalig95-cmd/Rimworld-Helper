@@ -91,7 +91,7 @@ to them. A raid makes someone ask for defenses within hours; a cold night, a mea
 friend's death or food poisoning all set off matching wishes. Every wish arrives with a little scene and a line
 in the colonist's own voice, chosen to fit the season, weather, time of day and their situation.
 
-105 kinds of wish, most with variants (six kinds of work room, a dozen pieces of furniture, any
+106 kinds of wish, most with variants (six kinds of work room, a dozen pieces of furniture, any
 missing body part), so the same colony rarely hears the same request twice in a row: a wish the colony has
 heard several times lately becomes much less likely, and one nobody here has ever made a little more likely.
 Every wish asks only for what the colony can do now, in its era: a tribe hears about healroot and pemmican, an
@@ -248,7 +248,7 @@ stash of beer, a cook who wants to spend the stores on one magnificent feast, a 
 can't cope. Kind, greedy, industrious and teetotal colonists all react differently. Leave a dilemma unanswered and
 the council's silence decides for you.
 
-There are 119 of them, and many grow out of everyday life: a sick colonist when the medicine is nearly gone,
+There are 122 of them, and many grow out of everyday life: a sick colonist when the medicine is nearly gone,
 whether to keep someone with a fever apart, a cook with a cold, an old family remedy, a visitor's strange cure, the
 camp on the colony's land asking for medicine, food or searchers for a lost child, a council meeting someone missed,
 a worn-out colonist asking for days off at the worst time, a squabble that turned into a feud, an elder who wants to
@@ -298,7 +298,7 @@ three more years. Children have goals of their own (Biotech): a best friend, get
 for older children growing up, which comes true when they come of age, so a grown-up's goal follows. The old may
 want a grandchild, one more year or two students who can stand alone; believers a role in their faith or the whole
 colony sharing it (Ideology); some only want to feel at home or free again, the heart's need well met for ten days
-in a row. 57 in all, listed on the Almanac page "every life goal". Goals fit the
+in a row. 61 in all, listed on the Almanac page "every life goal". Goals fit the
 person (their passions, traits and situation) and grow out of what happens to them: a battle makes a warrior, a
 brush with death a healer, a wedding someone who wants to marry, a birth someone who wants a child, a lost election
 someone who wants a seat, loneliness someone who wants friends, and seeing a friend reach their goal can make them
@@ -386,7 +386,7 @@ Colonists meet everyone else on the map, too:
   snow, eyes in the jungle undergrowth, lights over the marsh, an animal on the mountain ridge, the tide line on the
   coast; a traveler's trick against the sand or the cold, the first green of spring, rain waited out with a pet, a
   shape in the fog, a pet frightened by thunder, other names for the stars on a clear night. Rimfolk reads the land
-  from the biome and the tile, so other mods' biomes count too. 122 kinds of encounter in all.
+  from the biome and the tile, so other mods' biomes count too. 156 kinds of encounter in all.
 - **The council decides** when it gets harder: a visitor who wants to stay, a rude guest, a trader who wants an
   heirloom, beggars at the gate, a wounded raider who's still breathing, a predator's den, a child who wants to
   keep a wild animal, an old acquaintance who knows a secret.
@@ -396,6 +396,9 @@ Colonists meet everyone else on the map, too:
   when the nemesis is captured or finally brought down.
 - **Pets as companions:** an animal that fights beside its person is remembered for it, and a named animal that
   dies gets a farewell.
+- **From your other mods:** Hospitality's guests, visitors of the Empire and the Vanilla Expanded peoples, traveling
+  mages of A RimWorld of Magic and Alpha Animals' creatures each have moments of their own, and with Medieval
+  Overhaul visitors notice the colony's cheese, wine and hearth (see "Playing with other mods").
 
 ### Offices and elections
 Five council seats: **speaker** (chairs meetings, everyone's trust rises a little each day), **marshal** (drills
@@ -631,8 +634,15 @@ Each of these switches itself on only when its mod is there, and only asks for w
   water. Colonists ask for a latrine, somewhere to wash, a real bath (a water tub or a sauna isn't one) or, once
   Heating is researched, hot water, and in fall and winter a sauna; their journals mention hot baths, cold water and
   the walk to the bushes. The burn pit and the sauna heater are never offered as a bedroom heater.
-- **Hospitality:** a guest room plan. A guest bed never counts as a free bed for a colonist. With none in the
-  colony, a kind or sociable colonist may wish for a bed kept for guests, most often while visitors are here.
+- **Hospitality:** guests are visitors with stories of their own: they praise a fine guest room or find fault with
+  a poor one, get shown around, tell of home at supper, sit up at night with someone who can't sleep either, lend a
+  hand, haggle and say thank you, and most of it goes in the colonist's journal. A guest whose visit goes well may ask
+  the council to stay (taken in Hospitality's own way, as its join request does), and an unhappy one may bring a
+  complaint. With no guest bed in the colony, a kind or sociable colonist may wish for one, most often while visitors
+  are here; once there is one, they may wish for a guest room worth the name, with a guest room plan to build it.
+  A guest bed never counts as a free bed for a colonist.
+- **Medieval Overhaul:** its pies, stews, slop, cheese, wine, ale, smoked meat and library leave memories that become
+  days in the journals, and visitors notice the colony's cheese, wine, hearth, oven, hives and books once it has them.
 - **Vanilla Cooking and Brewing Expanded:** grills and gourmet dishes count as fine or lavish meals for birthday
   feasts, better-meal wishes and journals; grills ruined by the cold don't count. Tea, coffee and soda aren't
   "something to drink" for a brewer or a colonist with a taste for chemicals. Cooks may wish for a grill in summer,
@@ -658,7 +668,10 @@ Rimfolk reads these mods by name while the game runs: with one missing, its part
 - **A RimWorld of Magic:** healers (priest, druid, paladin, shaman, apothecary) are favored for physician, fighters
   for marshal, the commander and entertainer for speaker, the entertainer and empath for steward. Mages like
   study hours, fighters like drills; a mage may ask for a magic circle once you can build one, and dream of
-  magic. Life goals: grow ten levels in one's class.
+  magic. A mage and a fighter talk shop, two mages compare schools, two fighters compare forms and a healer eases an
+  ache, and these become days in the journals. Life goals: grow ten levels in one's class, learn or deepen six
+  workings or techniques, become a scholar of the art, or tend sixty wounds as a healer. Traveling mages and fighters
+  visit and share a working or a form.
 - **Vanilla Traits Expanded:** its traits have opinions on decrees (workaholics love long hours, rebels hate
   being told, the neat love a clean sweep), sway elections (brave marshals, no squeamish physicians), shape how
   people feel about the colony's ways, and voice wishes (academians want books, snobs fine clothes, tycoons
@@ -671,7 +684,17 @@ Rimfolk reads these mods by name while the game runs: with one missing, its part
   don't ask for meals, and long-lived genes no longer make a grown adult read as a teenager.
 - **Vanilla Skills Expanded:** a life goal to earn an expertise in a skill they love.
 - **Alpha Animals and other animal mods:** the hunting wish only picks ordinary game, nobody goes after a giant
-  beast on their own, and the predator by the colony is a wolf or a bear, not a monster.
+  beast on their own, and the predator by the colony is a wolf or a bear, not a monster. Colonists meet Alpha
+  Animals' creatures by name when one is calm and wild on the map (angel moths, the aves, the thunderox before a
+  storm, bouldermits with their rocks, sky eels, the four-eyed dusk rat, a gallatross passing), and Alpha Biomes'
+  lands have encounters of their own (the gallatross graveyard, idyllic meadows, the mycotic jungle, the ocular
+  forest).
+- **The Empire and Vanilla Expanded peoples:** world events about a particular people: the Empire's levy (Royalty),
+  deserters on the roads (Vanilla Factions Expanded - Empire), the republic votes (Classical) and gold fever
+  (Settlers). Their visitors talk about court, the senate and the frontier.
+- **Which of these are in your game:** the Almanac's "What Rimfolk does with your mods" page is a table made when the
+  game starts, from what Rimfolk finds: each mod it works with, whether it's here, how much is written for it, and
+  what Rimfolk does with it. The self-check in the debug actions uses the same list.
 - **PokéWorld (any version):** Rimfolk's animal events follow its wild Pokémon slider and generation switches, a
   Pokémon caught with a ball (or kept in the PC) counts as tamed, animal lovers may ask to catch a new species, and
   the first catch of a species goes in the catcher's journal. Four Almanac pages explain the mod.
@@ -869,6 +892,11 @@ the colony half.
   herds** (Alpha Animals) and a **season of wild magic** (A RimWorld of Magic). In an industrial or spacer world, a
   **ship comes down** in the hills: salvage going cheap, survivors, scavengers, and pirates who may come for the
   wreck.
+- **Particular peoples** (with their DLC or mod): **the Empire's levy** (Royalty: pay in full and be named in the
+  dispatches, pay half, or decline), **deserters on the roads** (Vanilla Factions Expanded - Empire: shelter a
+  deserter, hand them over for the reward, or feed them and send them on), **the republic votes** (Classical: back
+  the old families or the reformers with silver) and **gold fever** (Settlers: prospectors on every road, one who
+  wants to work the colony's stream for a share).
 
 The **World** page shows what's going on at the top, under "In the world": each world event with the people it's
 about, what it means for the colony, what the colony has done so far, and how long it may last (hover for what it

@@ -211,29 +211,39 @@ the content itself, not only to systems, alongside whatever else it does. Where 
 | Content | Count | Grow toward |
 |---|---|---|
 | Rimfolk events, story stages and missions | 161 | more everyday events per group, more chains, more mission kinds |
-| Wishes | 105 | more seasonal and biome wishes, more for the always-on mods (Alpha mods, Vanilla Expanded furniture) |
+| Wishes | 106 | more seasonal and biome wishes, more for the always-on mods (Alpha mods, Vanilla Expanded furniture) |
 | Council projects (ambitions) | 54 (3 in stages) | more staged and season-long projects, more for tribal and spacer colonies |
-| Life goals | 57 | goals for teenagers, more for faith and the heart, goals that change with age |
-| Dilemmas | 119 | more for children, elders and the camps; dilemmas for each new system as it lands |
-| Encounters | 122 | more lands (lakes, rivers, other mods' biomes), mod animals, rarer night and weather moments |
+| Life goals | 61 | goals for teenagers, more for faith and the heart, goals that change with age |
+| Dilemmas | 122 | more for children, elders and the camps; dilemmas for each new system as it lands |
+| Encounters | 156 | more lands (lakes, rivers), more mods' creatures, peoples and biomes, rarer night and weather moments |
 | Decrees | 19 | decrees tied to world situations, faith and mods (tithes, curfews, alms) |
 | Quirks | 32 | quirks that touch others (a hummer and a light sleeper), more from events and dreams |
 | Personal stories | 16 (61 stages) | stories from camps, offices and world events, more for children and elders, stories of three |
 | Dreams | 117 | dreams for more feelings, quirks, life goals and mod content |
-| World events | 28 | more regional situations, and their follow-ups |
+| World events | 32 | more regional situations, and their follow-ups |
 | Camp kinds | 11 | caravans of every kind, pilgrims of every faith |
 | Ailments | 32 everyday, 14 serious | ailments for every biome and DLC, more after-effects |
 | Room types | 28 (108 layouts, 6 themes) | odd shapes beyond partitions, more spacer and mod-furniture sizes, themes for more furniture mods |
 | Calendar days and ways to keep them | 9 kinds, 4 ways (about 300 lines) | more kinds of day, lines per biome and faith |
-| Social events, moments, frictions, nuisances | 67, 123 (40 frictions), 19 | every trait pairing and home condition |
+| Social events, moments, frictions, nuisances | 67, 127 (40 frictions), 19 | every trait pairing and home condition |
 
 ### 5. Wider (integrations)
-- Deeper with the always-on mods: Hospitality guests as visitors with stories, Vanilla Expanded factions and
-  Empire storylines in world events, Medieval and Tribal expansions for era flavor, RimWorld of Magic schools in
-  moments and goals, Alpha mods' creatures in encounters.
+- Done: deeper with the always-on mods. Hospitality guests are visitors with stories (eight encounters with
+  journals, a guest who wants to stay and is taken in Hospitality's own way, a guest's complaint, a guest room wish).
+  The Empire and Vanilla Expanded peoples in world events (the Empire's levy, deserters on the roads, the republic
+  votes, gold fever) and encounters. Medieval Overhaul's era in journals and encounters (its dishes, drinks and
+  library, its cheese, wine, hearth, oven, hives and books). A RimWorld of Magic's schools in moments, journal days,
+  four more life goals and traveling mages. Alpha Animals' creatures named in encounters, and Alpha Biomes' lands.
+- Done: a compatibility table in the Almanac, made when the game starts from a registry of the mods Rimfolk works
+  with (the self-check uses the same list).
+- Done, as tools for more: encounters and dilemmas can ask for a Hospitality guest, a people, a creature or a class
+  by name, need a mod, something the colony has or a biome; world events can pick their people by name; everyday
+  journal days can come from other mods' memories in XML.
+- Still open: Vanilla Factions Expanded Medieval and Tribals (not in the current modlists), Outland and Medieval Total
+  Rim's peoples in world events, more Hospitality (a renowned-hosts council project), Alpha Genes and Alpha Memes in
+  moments.
 - New where it pays: PokéWorld (started), tent mods for camps, Big & Small, character editors that change people
   mid-game.
-- A compatibility table in the Almanac, generated from what Rimfolk detects.
 
 ### 6. Shared (release)
 - The Workshop page (private first), preview art from the game's own sprites, and a changelog written for players.

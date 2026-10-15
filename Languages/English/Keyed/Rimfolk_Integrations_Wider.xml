@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!-- Deeper integrations: Hospitality guests, faction mods, A RimWorld of Magic, the compatibility table. -->
+
+  <!-- Hospitality -->
+  <CC_PM_Guest_CantStay>{0} isn't a Hospitality guest any more, or Hospitality's own way of taking a guest in couldn't be found.</CC_PM_Guest_CantStay>
+  <CC_PM_Reason_Host>{PAWN_nameDef} likes company and wants the colony's guests to leave with good things to say.</CC_PM_Reason_Host>
+  <CC_PM_Reason_HostKind>{PAWN_nameDef} is kind, and thinks a guest deserves a proper bed.</CC_PM_Reason_HostKind>
+  <CC_PM_Reason_HostOffice>As {1}, {PAWN_nameDef} feels responsible for how the colony treats its guests.</CC_PM_Reason_HostOffice>
+  <CC_PM_Progress_GuestRoom>best guest room {0} / {1}</CC_PM_Progress_GuestRoom>
+  <CC_PM_Progress_NoGuestBed>no guest bed indoors yet</CC_PM_Progress_NoGuestBed>
+
+  <!-- A RimWorld of Magic -->
+  <CC_PM_Asp_CraftProgress>{0} of {1} steps</CC_PM_Asp_CraftProgress>
+
+  <!-- The Almanac's compatibility table -->
+  <CC_PM_Compat_Here>In this game ({0})</CC_PM_Compat_Here>
+  <CC_PM_Compat_Away>Not in this game ({0})</CC_PM_Compat_Away>
+  <CC_PM_Compat_HeaderHere>Mod|Found|What Rimfolk does with it</CC_PM_Compat_HeaderHere>
+  <CC_PM_Compat_HeaderAway>Mod|What Rimfolk would do with it</CC_PM_Compat_HeaderAway>
+  <CC_PM_Compat_Yes>yes</CC_PM_Compat_Yes>
+  <CC_PM_Compat_YesCount>yes, {0} things written for it</CC_PM_Compat_YesCount>
+  <CC_PM_Compat_NotRead>found, but Rimfolk couldn't read it (see the self-check)</CC_PM_Compat_NotRead>
+  <CC_PM_Compat_NoneHere>None of the mods Rimfolk works with is active in this game. Rimfolk plays the same without them.</CC_PM_Compat_NoneHere>
+
+</LanguageData>

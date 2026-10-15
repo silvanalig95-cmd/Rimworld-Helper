@@ -23,6 +23,8 @@
       <adult>true</adult>
       <minOpinionOfA>30</minOpinionOfA>
       <minOpinionFromA>20</minOpinionFromA>
+      <!-- Hospitality's guests have their own (Council_Dilemmas_Mods_Hospitality.xml). -->
+      <notGuest>true</notGuest>
     </stranger>
     <texts>
       <li>{X_nameDef} came in with the {FACTION} party three days ago and has spent most of that time at {A_nameDef}'s elbow, hauling with {A_objective}, eating with {A_objective}, laughing at {A_possessive} jokes. Tonight {X_nameDef} asked the council at supper whether there is room for one more.\n\n{FACTION} won't thank anyone for keeping a pair of its hands. {A_nameDef} is studying the floor and trying hard not to look as if the answer matters.</li>
