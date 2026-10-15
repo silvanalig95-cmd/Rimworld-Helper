@@ -8,17 +8,21 @@ using Verse;
 namespace ColonyCouncil
 {
     /// <summary>
-    /// A safety net for the map's wind. On a player's 1.7 game the map's wind speed turned into NaN (not a number) a
-    /// while after the weather moved on from Windy, on a map that is always windy and during an eclipse. Nothing of
-    /// Rimfolk's touches the wind; the cause lies with the game or another mod. But a NaN wind stops every wind
-    /// turbine ("NaN W"), breaks mods that divide by it, and wind-driven sounds pass it on to the audio, which then
-    /// goes silent until the game is reloaded from the main menu. When the wind isn't a number after the game works it
-    /// out, this does what changing the weather in dev mode did for the player: it settles the weather's change (the
-    /// last weather becomes the current one, so nothing is half-way between two weathers any more), and the game works
-    /// the wind out properly again from the next tick, at full strength on an always-windy map. For the one tick in
-    /// between it gives the strongest of the last good wind and what the map's conditions hold it at. It says once in
-    /// the log what the weather and conditions were, so the real cause can be found. A wind that is a number is never
-    /// touched.
+    /// A safety net for the map's wind. Seasonal Weather (Continued) gives its Windy weather a wind factor of 1e12 to
+    /// force strong wind. While the weather blends from Windy into another, the game mixes the two factors; at the very
+    /// end of the blend, float rounding turns "a trillion, minus a trillion, plus one" into exactly 0, and on 1.7 the
+    /// wind then works out to NaN (not a number) until the next change of weather. A NaN wind stops every wind turbine
+    /// ("NaN W"), breaks mods that divide by it, and a wind-driven sound passes it on to the audio, which goes silent
+    /// until the game is reloaded from the main menu.
+    /// <list type="bullet">
+    /// <item>Before the game works out the wind: once a change of weather has fully finished, the last weather is set
+    /// to the current one. In the game's own sums a finished blend already counts only the current weather, so this
+    /// changes nothing there; it only stops the rounding from turning the factor into 0.</item>
+    /// <item>After it: if the wind still isn't a number (some other cause), the weather is settled the same way, the
+    /// wind for that tick is the strongest of the last good wind and what the map's conditions hold it at, and the log
+    /// says once what the weather and conditions were.</item>
+    /// </list>
+    /// A wind that is a number is never touched.
     /// </summary>
     [HarmonyPatch(typeof(WindManager), nameof(WindManager.WindManagerTick))]
     public static class Patch_WindGuard
@@ -32,17 +36,37 @@ namespace ColonyCouncil
         /// <summary>How many times this session the wind had to be put right (for "Rimfolk: check myself").</summary>
         public static int Fixed;
 
+        private static void Look()
+        {
+            if (looked) return;
+            looked = true;
+            speed = AccessTools.FieldRefAccess<WindManager, float>("cachedWindSpeed");
+            mapOf = AccessTools.FieldRefAccess<WindManager, Map>("map");
+        }
+
+        /// <summary>A finished change of weather: the last weather becomes the current one before the wind is worked out.</summary>
+        public static void Prefix(WindManager __instance)
+        {
+            if (broken || !RimfolkPatches.On) return;
+            try
+            {
+                Look();
+                var w = mapOf(__instance)?.weatherManager;
+                if (w?.curWeather != null && w.lastWeather != w.curWeather && w.TransitionLerpFactor >= 1f) w.lastWeather = w.curWeather;
+            }
+            catch (Exception e)
+            {
+                broken = true;
+                CouncilLog.ErrorOnce("wind guard", e);
+            }
+        }
+
         public static void Postfix(WindManager __instance)
         {
             if (broken || !RimfolkPatches.On) return;
             try
             {
-                if (!looked)
-                {
-                    looked = true;
-                    speed = AccessTools.FieldRefAccess<WindManager, float>("cachedWindSpeed");
-                    mapOf = AccessTools.FieldRefAccess<WindManager, Map>("map");
-                }
+                Look();
                 if (Current.Game != game)
                 {
                     game = Current.Game;
@@ -99,7 +123,7 @@ namespace ColonyCouncil
         {
             var sb = new StringBuilder();
             sb.Append("[Rimfolk] The map's wind speed was ").Append(v)
-                .Append(" (not a number), which stops wind turbines and can silence the game's sound. This comes from the game or another mod, not Rimfolk; what the wind is worked out from:");
+                .Append(" (not a number), which stops wind turbines and can silence the game's sound. This comes from the game or another mod, not Rimfolk (Seasonal Weather's Windy, with its wind factor of 1e12, is one known cause); what the wind is worked out from:");
             try
             {
                 var w = map?.weatherManager;

@@ -1303,13 +1303,14 @@ new setting needs a row there.
 
 ## Status and feedback
 
-**A safety net for the wind.** On some 1.7 games the map's wind speed turns into NaN (not a number): every wind
-turbine then shows "NaN W", and wind-driven sounds pass it on to the audio, which goes silent until the game is
-reloaded from the main menu. It shows up while the weather is changing (Windy to Clear on an always-windy map), and
-changing the weather in dev mode clears it. Rimfolk doesn't cause this, but it now does the same the moment it
-happens: it settles the weather's change, so the game works the wind out properly again from the next tick (at full
-strength on an always-windy map), and writes one `[Rimfolk]` warning to the log listing the weather and map
-conditions at the time, so the mod or game change behind it can be found. A valid wind is never touched. If the
+**A safety net for the wind.** Seasonal Weather (Continued) gives its Windy weather a wind factor of a trillion to
+force strong wind. When the weather moves on from Windy, the game blends the two, and at the very end of the blend
+rounding turns that factor into 0; on 1.7 the wind then becomes NaN (not a number) until the weather changes again.
+Every wind turbine shows "NaN W", and a wind-driven sound silences the game's audio until it is reloaded from the main
+menu. Rimfolk now finishes each change of weather cleanly once it is over (the game already counts only the new
+weather by then, so nothing else changes), which stops this before it starts, and should the wind still come out as
+NaN for any other reason, it settles the weather, keeps the wind at the map's strength and writes one `[Rimfolk]`
+warning to the log listing the weather and conditions. A valid wind is never touched. If the
 sound already went before you updated, go to the main menu and load the save once.
 
 Version 0.4. It compiles against RimWorld 1.6 and is checked against 1.7 (the same DLL runs on both), and all XML
