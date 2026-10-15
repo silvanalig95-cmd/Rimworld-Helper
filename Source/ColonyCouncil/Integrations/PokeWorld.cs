@@ -534,7 +534,7 @@ namespace ColonyCouncil
                 string kind = a.kindDef?.label ?? a.def.label;
                 using (Causes.Push("CC_PW_Cause_NewSpecies".Translate(kind.Named("SPECIES")).Resolve()))
                 {
-                    Notify.Message("CC_PW_NewSpecies".Translate(who.Named("PAWN"), kind.Named("SPECIES")).Resolve(), new LookTargets(who), MessageTypeDefOf.PositiveEvent, Importance.Flavor);
+                    News.Post("CC_PW_NewSpecies".Translate(who.Named("PAWN"), kind.Named("SPECIES")).Resolve(), new LookTargets(who), NewsKind.Land, MessageTypeDefOf.PositiveEvent, Importance.Flavor);
                     // A trainer whose wish this answered has the wish's own thanks already; no second memory on top.
                     var memories = who.needs?.mood?.thoughts?.memories;
                     if (granted == null || memories?.GetFirstMemoryOfDef(granted) == null) CouncilGameComponent.GiveThought(who, thought);

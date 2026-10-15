@@ -44,7 +44,10 @@ namespace ColonyCouncil
     /// </summary>
     public class InteractionWorker_CouncilGossip : InteractionWorker
     {
-        private bool Bitter => interaction.defName.EndsWith("Bitter");
+        // Read from the def name once (the game asks for this conversation's weight every time two colonists talk).
+        private bool? bitter;
+
+        private bool Bitter => bitter ??= interaction.defName.EndsWith("Bitter", System.StringComparison.Ordinal);
 
         public override float RandomSelectionWeight(Pawn initiator, Pawn recipient)
         {
@@ -80,7 +83,9 @@ namespace ColonyCouncil
     /// </summary>
     public class InteractionWorker_DecreeTalk : InteractionWorker
     {
-        private bool Gripe => interaction.defName.EndsWith("Gripe");
+        private bool? gripe;
+
+        private bool Gripe => gripe ??= interaction.defName.EndsWith("Gripe", System.StringComparison.Ordinal);
 
         public override float RandomSelectionWeight(Pawn initiator, Pawn recipient)
         {
@@ -118,7 +123,19 @@ namespace ColonyCouncil
             defaultPriority = AlertPriority.Medium;
         }
 
-        public override string GetLabel() => top == null ? "CC_Alert_Advice".Translate() : "CC_Alert_AdviceLabel".Translate(top.title);
+        // The label is drawn every frame while the alert shows: built again only when the advice changes.
+        private AdvisorSignal labelFor;
+        private string label;
+
+        public override string GetLabel()
+        {
+            if (label == null || labelFor != top)
+            {
+                label = top == null ? "CC_Alert_Advice".Translate() : "CC_Alert_AdviceLabel".Translate(top.title);
+                labelFor = top;
+            }
+            return label;
+        }
 
         public override TaggedString GetExplanation()
         {
@@ -165,7 +182,18 @@ namespace ColonyCouncil
             defaultPriority = AlertPriority.Medium;
         }
 
-        public override string GetLabel() => "CC_Alert_Wishes".Translate(culprits.Count);
+        private int labelCount = -1;
+        private string label;
+
+        public override string GetLabel()
+        {
+            if (label == null || labelCount != culprits.Count)
+            {
+                label = "CC_Alert_Wishes".Translate(culprits.Count);
+                labelCount = culprits.Count;
+            }
+            return label;
+        }
 
         public override TaggedString GetExplanation()
         {

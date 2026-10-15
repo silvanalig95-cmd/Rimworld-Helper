@@ -168,7 +168,7 @@ namespace ColonyCouncil
         {
             if (ended.Count > 0) ProcessEnded();
             int now = Find.TickManager.TicksGame;
-            if (now % GenDate.TicksPerHour != 137) return;
+            if (!Sched.Hourly(now, Sched.Ailments)) return;
             if (!On) return;
             try
             {
@@ -463,7 +463,7 @@ namespace ColonyCouncil
                     text = null;
                 }
                 if (!text.NullOrEmpty())
-                    Notify.Message(text, new LookTargets(p), MessageTypeDefOf.NegativeHealthEvent, info.quiet ? Importance.Flavor : Importance.Notable);
+                    News.Post(text, new LookTargets(p), NewsKind.Health, MessageTypeDefOf.NegativeHealthEvent, info.quiet ? Importance.Flavor : Importance.Notable);
             }
             if (Rand.Chance(0.4f)) Journal(p, "Council_Journal_Ail_Start", h.def, info);
         }
@@ -880,8 +880,8 @@ namespace ColonyCouncil
             if (p.Faction != Faction.OfPlayer || !People.HasInnerLife(p)) return;
             if (info.serious)
             {
-                Notify.Message("CC_Ail_Recovered".Translate(p.Named("PAWN"), e.def.label.Named("ILLNESS")).Resolve(), new LookTargets(p),
-                    MessageTypeDefOf.PositiveEvent, Importance.Notable);
+                News.Post("CC_Ail_Recovered".Translate(p.Named("PAWN"), e.def.label.Named("ILLNESS")).Resolve(), new LookTargets(p),
+                    NewsKind.Health, MessageTypeDefOf.PositiveEvent, Importance.Notable);
                 CouncilGameComponent.GiveThought(p, AilmentDefOf.Council_Ail_Survived);
                 Journal(p, "Council_Journal_Ail_Better", e.def, info);
                 var doctor = ColonistById(doctorId);

@@ -164,6 +164,13 @@ play deep. In order:
   frame; a pass with Dubs Performance Analyzer in a long save to find the real hot spots.
 - Save size: caps and pruning for every history (chronicle, journals, pair tones, dreams), measured on a five-year
   save.
+- Done (October 2026): every periodic pass mapped (DESIGN.md, "Ticking") and given a tick of the hour of its own; the
+  council's hour, twenty-odd systems on one tick, now runs in four parts and its day in two, in their old order. Mood
+  workers, interaction weights, alerts and the slow-time buttons lost their LINQ, by-name lookups and per-frame string
+  building. Every saved list has a cap or pruning rule (DESIGN.md, "Save size"): the chronicle keeps its milestones
+  longest, departed journals and annals are capped, and records of pawns the game has discarded are let go while
+  playing. Still open: one shared clock and per-map snapshot, ailments and health spread across the hour, a profiler
+  pass and the five-year measurement.
 
 ### 3. Clear (UI/UX)
 - Done (October 2026): the settings window on seven pages (council and wishes, people and moods, heart and health,
@@ -172,8 +179,12 @@ play deep. In order:
   (light touch, story-rich, demanding, default, beside the old quick setups) that list what they'd change before
   they do; every page scrolls, and the window fits small screens at big interface scales. Drawn from one list that the
   tests check against the settings class, so every setting is on exactly one page and keeps its saved name.
-- A news digest: minor happenings gathered into one "colony news" letter a day instead of many messages; letters
-  kept for decisions.
+- Done (October 2026): a news digest. The smaller news of Rimfolk's systems (quirks, personal stories, birthdays,
+  health records, traditions, dreams, camps, encounters, names, bonds and the like) waits for the evening and comes
+  around six as one quiet "Colony news" letter, a line each under people, health, the colony, the world and the
+  land, with a button to go where each happened; a single piece of news comes as a message. Decisions and serious
+  news (deaths, raids, serious illness, a camp arriving) keep their own letters and messages, at once. A setting,
+  Colony news (as it happens, daily digest, off: the History tab's message log only), on the Interface page.
 - Done (October 2026): a first-run welcome letter (once per colony; saves that already had Rimfolk skip it without a
   setting) and a "Start here" Almanac page; the council window remembers its page, across sessions too.
 - Done (October 2026): Rimfolk's pawn tabs fit the space above RimHUD and other tall inspect panes (checked by tests for

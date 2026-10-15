@@ -147,6 +147,8 @@ namespace ColonyCouncil
         public float slowButtonsY = -1f;
         public bool allDreamMessages;
         public MessageLevel messageLevel = MessageLevel.Notable;
+        /// <summary>Where the smaller news goes: a message as it happens, one letter each evening (default), or only the History tab (UI/News.cs).</summary>
+        public NewsMode colonyNews = NewsMode.Digest;
         public EraMode era = EraMode.Auto;
         public float daysBetweenDilemmas = 8f;
         public bool eventWishes = true;
@@ -273,6 +275,7 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref dreamOmens, "dreamOmens", true);
             Scribe_Values.Look(ref allDreamMessages, "allDreamMessages", false);
             Scribe_Values.Look(ref messageLevel, "messageLevel", MessageLevel.Notable);
+            Scribe_Values.Look(ref colonyNews, "colonyNews", NewsMode.Digest);
             Scribe_Values.Look(ref era, "era", EraMode.Auto);
             Scribe_Values.Look(ref daysBetweenDilemmas, "daysBetweenDilemmas", 8f);
             Scribe_Values.Look(ref eventWishes, "eventWishes", true);

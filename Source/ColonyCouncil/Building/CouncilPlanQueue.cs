@@ -77,7 +77,7 @@ namespace ColonyCouncil
 
         public override void MapComponentTick()
         {
-            if (queue.Count == 0 || Find.TickManager.TicksGame % 250 != 41) return;
+            if (queue.Count == 0 || !Sched.Every(Find.TickManager.TicksGame, Sched.RareTicks, Sched.RarePlanQueue)) return;
             try
             {
                 int given = 0;

@@ -408,7 +408,17 @@ namespace ColonyCouncil
         /// <summary>Who inspired the latest "fulfilled" spark for each colonist and goal.</summary>
         private Dictionary<string, string> inspiredBy = new Dictionary<string, string>();
 
-        public Aspiration Active(Pawn p) => p == null ? null : all.FirstOrDefault(a => a.pawn == p && !a.done);
+        /// <summary>Their life goal under way, or null. Asked by the "within reach" mood for every colonist, so a plain loop.</summary>
+        public Aspiration Active(Pawn p)
+        {
+            if (p == null) return null;
+            for (int i = 0; i < all.Count; i++)
+            {
+                var a = all[i];
+                if (a.pawn == p && !a.done) return a;
+            }
+            return null;
+        }
 
         /// <summary>Something happened that might give them a goal (battle, downed, loss, birth, omen).</summary>
         public void Notify_Event(Pawn p, string key)
@@ -464,7 +474,9 @@ namespace ColonyCouncil
                 all.Remove(a);
                 if (a.pawn != null && a.pawn.Dead && a.def != null && S.aspirations) Mourn(comp, a);
             }
-            all.RemoveAll(a => a.def == null || (a.done && (a.pawn == null || a.pawn.Dead) && Find.TickManager.TicksGame - a.doneTick > GenDate.TicksPerYear * 3));
+            all.RemoveAll(a => a.def == null || (a.done && (a.pawn == null || a.pawn.Discarded || (a.pawn.Dead && Find.TickManager.TicksGame - a.doneTick > GenDate.TicksPerYear * 3))));
+            // Someone the game has let go of for good won't have a eulogy any more.
+            if (lastMourned.Count > 0) lastMourned.RemoveAll(kv => kv.Key == null || kv.Key.Discarded);
             if (!S.aspirations) return;
 
             foreach (var p in PawnsFinder.AllMaps_FreeColonists.Where(Eligible).ToList())
@@ -551,7 +563,7 @@ namespace ColonyCouncil
             if (!line.NullOrEmpty()) comp.journals.WriteText(p, line);
             string why = a.SparkText;
             string text = "CC_Asp_Chosen".Translate(p.Named("PAWN"), a.Goal.Named("GOAL")).Resolve() + (why.NullOrEmpty() ? "" : " (" + why + ")");
-            ColonyCouncil.Notify.Message(text + (line.NullOrEmpty() ? "" : " \"" + line + "\""), p, MessageTypeDefOf.SilentInput, spark != null || inheritedFrom != null ? Importance.Notable : Importance.Flavor);
+            ColonyCouncil.News.Post(text + (line.NullOrEmpty() ? "" : " \"" + line + "\""), p, NewsKind.People, MessageTypeDefOf.SilentInput, spark != null || inheritedFrom != null ? Importance.Notable : Importance.Flavor);
             comp.AddChronicle(new ChronicleEntry(ChronicleKind.Life, text, p));
             return a;
         }

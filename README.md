@@ -438,8 +438,9 @@ Every colonist keeps a journal in their own voice: wishes granted and ignored, p
 names earned, friendships made and lost, lessons learned. Ordinary days get written down too: now and then, something
 that's really on their mind that day (a meal eaten off their knees, a cold night, a long talk with a friend, a
 corpse nobody has buried yet) becomes the evening's entry. Read them on the Journals page under History, or from a
-colonist's page in the Roster. The journals of the dead and departed are kept. Every kind of entry has lines in each
-voice (plain, warm, blunt, cheerful, gloomy and cold), and the ones written most often have many in each.
+colonist's page in the Roster. The journals of the dead and departed are kept (the thirty written in most lately).
+Every kind of entry has lines in each voice (plain, warm, blunt, cheerful, gloomy and cold), and the ones written
+most often have many in each.
 
 ### Ambition: council meetings
 About once a quadrum the council actually **meets**, and it's **announced first**: who called it, where (around
@@ -577,7 +578,8 @@ council granted, declared and decided, the closest friends and the worst enemies
 least, and a last word in the author's own voice. Past years can be reread from the Chronicle tab.
 
 ### Chronicle
-A running history of wishes, promises, petitions, meetings and ambitions.
+A running history of wishes, promises, petitions, meetings and ambitions. It keeps 300 lines; once it is full, the older
+everyday ones make way first, so the colony's losses, ambitions and life events are still there years later.
 
 ## Fits your world (medieval runs too)
 
@@ -1122,6 +1124,18 @@ then a content colonist hums at work, someone outside says something about the c
 night an idle colonist in good spirits may lie down to watch the sky. All of it happens only on the map you're
 looking at and only on screen, a handful at a time, and one setting (**Visual and sound touches**) turns it off.
 
+## Colony news
+Rimfolk's many systems each have small news to tell: a quirk picked up, a personal story moving on, a birthday, a
+doctor's good name, a tradition broken, a dream, a day at the camp, an encounter, a name earned. Rather than a
+message in the corner for each, the day's smaller news waits for the evening: around six a quiet **Colony news**
+letter brings it all, a line each under **people**, **health**, **the colony**, **the world** and **the land**, with a
+**Go there** button on every line that has a place. A day with a single piece of news brings a message instead, and
+what's waiting is saved with the game. Letters and messages that ask you to decide something (dilemmas, wishes,
+petitions, decree requests, meetings) and serious news (a death and its remembrance, raids and battles, nemeses, a
+serious illness, a camp arriving) still come at once. The **Colony news** setting can bring back a message for each,
+**as it happens**, or turn it **off**, so the smaller news goes only to the message log in the History tab; how much
+of it there is at all is still set by **How many messages**.
+
 ## Slow speeds
 Two speeds slower than normal, **½×** and **¼×**, for planning without pausing: the colony keeps living, gently.
 Small buttons sit next to the time controls (drag them by their grip to put them wherever you like; on a
@@ -1188,8 +1202,9 @@ The pages:
   plants, mine rock, replace your own buildings, smooth stone; the planner shows the same switches); and **material
   counts in build menus** (the game's own material list shows what the colony has; one of the deeper game hooks).
 - **Interface & integrations**: how chatty Rimfolk is: **Everything**, **Notable only** (default: messages for what
-  changes something; small moments stay in the journals, the Story tab and History) or **Important only**; a message
-  for every dream, letters or messages for new and granted wishes, floating speech text, the visual and sound
+  changes something; small moments stay in the journals, the Story tab and History) or **Important only**; where the
+  smaller news goes (**Colony news**: one letter each evening by default, as it happens, or off, to the History tab
+  only); a message for every dream, letters or messages for new and granted wishes, floating speech text, the visual and sound
   touches; the two alerts; mood insight (and its hints in the Needs tab), the slow speed buttons (and putting them
   back), where the council button sits in the bottom bar, the rooms button; the deeper game hooks and the notes in
   the game's letters.
@@ -1233,6 +1248,9 @@ clipboard" button) says most of what a bug report needs.
   constant, Harmony target and by-name lookup it uses). `-p:RimRef=1.7` builds against the 1.7 references. See
   "Checking a new game version" in [DESIGN.md](DESIGN.md).
 - `Tools/Tests/`: tests for the room rotation and mirroring math (`dotnet run --project Tools/Tests`).
+- `Source/ColonyCouncil/Lean/`: on which tick of the hour each periodic pass runs (`Sched.cs`, so none share a tick)
+  and how much history each part keeps in the save (`Caps.cs`). DESIGN.md lists them all under "Ticking" and
+  "Save size"; a new hourly pass gets its own tick there.
 - `Source/ColonyCouncil/UI/UiKit.cs`: the small interface kit every council page is drawn with (colors, spacing,
   page headers, cards, tags, meters, portraits). New pages should use it so they look like the rest.
 - `Tools/make_icons.py`: draws the interface icons into `Textures/ColonyCouncil/Icons/` and a contact sheet of

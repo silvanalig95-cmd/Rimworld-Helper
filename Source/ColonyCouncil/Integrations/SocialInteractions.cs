@@ -304,7 +304,7 @@ namespace ColonyCouncil
                 if (first || !ColonyCouncilMod.Settings.socialWeb) continue;
                 comp.social.Bump(a, b, TieKind.Friends, 10f, "CC_PM_TieNote_BestFriends".Translate().Resolve(), true);
                 string text = "CC_PM_BestFriends".Translate(a.Named("A"), b.Named("B")).Resolve();
-                Notify.Message(text, new LookTargets(a, b), MessageTypeDefOf.PositiveEvent, Importance.Notable);
+                News.Post(text, new LookTargets(a, b), NewsKind.People, MessageTypeDefOf.PositiveEvent, Importance.Notable);
                 comp.AddChronicle(new ChronicleEntry(ChronicleKind.Bond, text, a));
                 comp.journals.Write(a, "Council_Journal_PM_BestFriend", null, b.Named("OTHER"));
                 comp.journals.Write(b, "Council_Journal_PM_BestFriend", null, a.Named("OTHER"));
@@ -341,12 +341,12 @@ namespace ColonyCouncil
         {
             int t = Find.TickManager.TicksGame;
             // Often enough that the play log (which keeps only the last 150 or so entries) never runs past us.
-            if (t % 1000 == 433) Safe("social interactions", () =>
+            if (Sched.Every(t, Sched.PeopleLogPeriod, Sched.PeopleLog)) Safe("social interactions", () =>
             {
                 SocialInteractions.ScanLog(this);
                 SocialInteractions.ScanTales(this);
             });
-            if (t % GenDate.TicksPerDay == 1789) Safe("best friends", () => SocialInteractions.BestFriends(this));
+            if (Sched.Every(t, Sched.DayTicks, Sched.DailyBestFriends)) Safe("best friends", () => SocialInteractions.BestFriends(this));
         }
 
         private static void Safe(string what, System.Action a)
@@ -366,6 +366,21 @@ namespace ColonyCouncil
             base.ExposeData();
             Scribe_Values.Look(ref lastLogId, "lastLogId", -1);
             Scribe_Values.Look(ref lastTaleId, "lastTaleId", -1);
+            // Pairs ("idA|idB") with someone the game has forgotten can never be seen together again; the rest are capped.
+            if (Scribe.mode == LoadSaveMode.Saving && bestFriends != null && bestFriends.Count > 0)
+            {
+                var known = CouncilGameComponent.KnownPawnNumbers();
+                bestFriends.RemoveAll(k =>
+                {
+                    var ids = k?.Split('|');
+                    if (ids == null || ids.Length != 2) return true;
+                    foreach (var id in ids)
+                        if (!int.TryParse(id, out int n) || !known.Contains(n))
+                            return true;
+                    return false;
+                });
+                Caps.TrimOldest(bestFriends, Caps.BestFriendPairs);
+            }
             Scribe_Collections.Look(ref bestFriends, "bestFriends", LookMode.Value);
             Scribe_Values.Look(ref bestFriendsSeeded, "bestFriendsSeeded");
             if (Scribe.mode == LoadSaveMode.PostLoadInit && bestFriends == null) bestFriends = new List<string>();

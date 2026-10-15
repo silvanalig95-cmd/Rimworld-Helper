@@ -91,7 +91,7 @@ namespace ColonyCouncil
         {
             foreach (var h in heirlooms.ToList())
             {
-                if (h.heir == null || h.heir.Dead)
+                if (h.heir == null || h.heir.Dead || h.heir.Discarded)
                 {
                     heirlooms.Remove(h);
                     continue;
@@ -171,6 +171,12 @@ namespace ColonyCouncil
         public void ExposeData()
         {
             Scribe_Collections.Look(ref heirlooms, "heirlooms", LookMode.Deep);
+            // The colony's children (by ThingID) waiting to come of age: those the game has forgotten never will.
+            if (Scribe.mode == LoadSaveMode.Saving && children != null && children.Count > 0)
+            {
+                var known = CouncilGameComponent.KnownPawnIds();
+                children.RemoveWhere(id => !known.Contains(id));
+            }
             Scribe_Collections.Look(ref children, "children", LookMode.Value);
             Scribe_Collections.Look(ref cameOfAge, "cameOfAge", LookMode.Reference);
             if (Scribe.mode == LoadSaveMode.Saving)

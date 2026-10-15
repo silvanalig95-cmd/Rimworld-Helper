@@ -192,7 +192,7 @@ namespace ColonyCouncil
                 else
                 {
                     string text = "CC_Ways_Fading".Translate(pole).Resolve();
-                    Notify.Message(text, LookTargets.Invalid, MessageTypeDefOf.NeutralEvent, Importance.Notable);
+                    News.Post(text, LookTargets.Invalid, NewsKind.Colony, MessageTypeDefOf.NeutralEvent, Importance.Notable);
                     comp.AddChronicle(new ChronicleEntry(ChronicleKind.Council, text, null));
                 }
             }
@@ -214,20 +214,33 @@ namespace ColonyCouncil
             faction.TryAffectGoodwillWith(Faction.OfPlayer, amount, false, false);
             string key = amount > 0 ? "CC_Ways_WordGood" : "CC_Ways_WordBad";
             string what = PoleLabel(Mathf.Abs(g) >= Mathf.Abs(o) ? Way.Generosity : Way.Openness, amount > 0);
-            Notify.Message(key.Translate(faction.Name, what, amount.ToStringWithSign()).Resolve(), LookTargets.Invalid,
-                amount > 0 ? MessageTypeDefOf.PositiveEvent : MessageTypeDefOf.NegativeEvent, Importance.Flavor);
+            News.Post(key.Translate(faction.Name, what, amount.ToStringWithSign()).Resolve(), LookTargets.Invalid,
+                NewsKind.World, amount > 0 ? MessageTypeDefOf.PositiveEvent : MessageTypeDefOf.NegativeEvent, Importance.Flavor);
         }
 
         // ---------------- Who approves ----------------
 
-        /// <summary>How much this colonist cares about each way, by nature (-1 = dislikes it, +1 = likes it).</summary>
+        /// <summary>Their trait of this name (by defName, so a mod's trait that isn't there is never matched), or null.</summary>
+        private static Trait TraitNamed(TraitSet t, string name)
+        {
+            var all = t.allTraits;
+            for (int i = 0; i < all.Count; i++)
+                if (all[i].def.defName == name)
+                    return all[i];
+            return null;
+        }
+
+        /// <summary>
+        /// How much this colonist cares about each way, by nature (-1 = dislikes it, +1 = likes it). The colony's-ways mood
+        /// asks this for every colonist and way, so it reads the traits with plain loops.
+        /// </summary>
         public static float Affinity(Pawn p, Way w)
         {
             var t = p?.story?.traits;
             if (t == null) return 0f;
             float a = 0f;
-            bool Has(string name) => t.allTraits.Any(x => x.def.defName == name);
-            int Degree(string name) => t.allTraits.FirstOrDefault(x => x.def.defName == name)?.Degree ?? 0;
+            bool Has(string name) => TraitNamed(t, name) != null;
+            int Degree(string name) => TraitNamed(t, name)?.Degree ?? 0;
             switch (w)
             {
                 case Way.Mercy:

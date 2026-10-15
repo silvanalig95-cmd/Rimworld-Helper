@@ -233,7 +233,7 @@ namespace ColonyCouncil
             CouncilGameComponent.GiveThought(friend, CouncilDefOf.Council_Secret_Trusted, owner);
             comp.journals.Write(owner, "Council_Journal_Confided", null, friend.Named("OTHER"));
             comp.journals.Write(friend, "Council_Journal_Confidant", null, owner.Named("OTHER"));
-            Notify.Message("CC_Secret_Confided".Translate(owner.Named("A"), friend.Named("B")).Resolve(), new LookTargets(owner, friend), MessageTypeDefOf.SilentInput, Importance.Flavor);
+            News.Post("CC_Secret_Confided".Translate(owner.Named("A"), friend.Named("B")).Resolve(), new LookTargets(owner, friend), NewsKind.People, MessageTypeDefOf.SilentInput, Importance.Flavor);
         }
 
         /// <summary>It comes out. <paramref name="leaker"/> is the owner when they confess it themselves.</summary>
@@ -251,7 +251,7 @@ namespace ColonyCouncil
             string text = s.Truth + "\n\n" + how;
             var look = confessed ? new LookTargets(owner) : new LookTargets(owner, leaker);
             if (s.def.major) Find.LetterStack.ReceiveLetter("CC_Secret_Label".Translate(owner.LabelShort), text, s.def.good ? LetterDefOf.PositiveEvent : LetterDefOf.NegativeEvent, look);
-            else Notify.Message("CC_Secret_Short".Translate(owner.Named("PAWN")).Resolve() + " " + s.Truth, look, s.def.good ? MessageTypeDefOf.PositiveEvent : MessageTypeDefOf.NegativeEvent, Importance.Notable);
+            else News.Post("CC_Secret_Short".Translate(owner.Named("PAWN")).Resolve() + " " + s.Truth, look, NewsKind.People, s.def.good ? MessageTypeDefOf.PositiveEvent : MessageTypeDefOf.NegativeEvent, Importance.Notable);
             comp.AddChronicle(new ChronicleEntry(ChronicleKind.Secret, s.Truth, owner));
             comp.annals.Notify_Secret(owner, s.def.label);
 
@@ -301,6 +301,12 @@ namespace ColonyCouncil
         public void ExposeData()
         {
             Scribe_Collections.Look(ref secrets, "secrets", LookMode.Deep);
+            // Everyone who was ever rolled for a secret, by ThingID: those the game has forgotten can't be rolled again.
+            if (Scribe.mode == LoadSaveMode.Saving && rolled != null && rolled.Count > 0)
+            {
+                var known = CouncilGameComponent.KnownPawnIds();
+                rolled.RemoveWhere(id => !known.Contains(id));
+            }
             Scribe_Collections.Look(ref rolled, "rolled", LookMode.Value);
             if (Scribe.mode == LoadSaveMode.PostLoadInit)
             {

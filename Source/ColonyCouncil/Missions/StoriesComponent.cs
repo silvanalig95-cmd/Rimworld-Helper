@@ -51,10 +51,10 @@ namespace ColonyCouncil
         public override void GameComponentTick()
         {
             int t = Find.TickManager.TicksGame;
-            if (t % 250 != 89 || Find.Maps.Count == 0) return;
+            if (!Sched.Every(t, Sched.RareTicks, Sched.RareMissions) || Find.Maps.Count == 0) return;
             // Every few seconds: a mission accepted in the Quests tab starts at once, a goal met is noticed soon.
             Safe("missions", () => Missions.Tick(this, t));
-            if (t % GenDate.TicksPerHour != 2089) return;
+            if (!Sched.Hourly(t, Sched.Stories)) return;
             Safe("story chains", () => StoryChains.Hourly(t));
             Safe("missions hourly", () => Missions.Hourly(this, t));
         }

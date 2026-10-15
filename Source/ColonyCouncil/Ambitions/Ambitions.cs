@@ -271,8 +271,8 @@ namespace ColonyCouncil
             }
             if (reached < 0 || a.def == null || a.stage >= a.def.goals.Count) return;
             string next = a.def.goals[a.stage].Describe(a.map, a.Baseline(a.stage));
-            Messages.Message("CC_Ambition_StageReached".Translate(a.def.LabelCap.ToString().Named("AMBITION"), (reached + 1).Named("STAGE"),
-                a.def.goals.Count.Named("COUNT"), next.Named("NEXT")).Resolve(), new LookTargets(a.proposer), MessageTypeDefOf.PositiveEvent, false);
+            News.Post("CC_Ambition_StageReached".Translate(a.def.LabelCap.ToString().Named("AMBITION"), (reached + 1).Named("STAGE"),
+                a.def.goals.Count.Named("COUNT"), next.Named("NEXT")).Resolve(), new LookTargets(a.proposer), NewsKind.Colony, MessageTypeDefOf.PositiveEvent);
         }
 
         /// <summary>The proposer cheers at halfway and frets when time is short and the work isn't.</summary>
@@ -297,8 +297,8 @@ namespace ColonyCouncil
             if (line.NullOrEmpty()) return;
             line = line.Formatted(p.Named("PAWN"), a.def.label.Named("AMBITION")).Resolve();
             CouncilGameComponent.Speak(p, line, new Color(0.7f, 0.85f, 1f));
-            Messages.Message("CC_Ambition_CheckIn".Translate(p.Named("PAWN"), a.def.label.Named("AMBITION"), progress.ToStringPercent().Named("PROGRESS")).Resolve() + " \"" + TextUtil.ShortSpeech(line, 120) + "\"",
-                new LookTargets(p), MessageTypeDefOf.SilentInput, false);
+            News.Post("CC_Ambition_CheckIn".Translate(p.Named("PAWN"), a.def.label.Named("AMBITION"), progress.ToStringPercent().Named("PROGRESS")).Resolve() + " \"" + TextUtil.ShortSpeech(line, 120) + "\"",
+                new LookTargets(p), NewsKind.Colony, MessageTypeDefOf.SilentInput);
         }
 
         public static Map MeetingMap()
@@ -983,7 +983,7 @@ namespace ColonyCouncil
                 comp.standings.Change(p, p == a.proposer ? -8f : -3f, "CC_Log_AmbitionFailed".Translate(a.def.label));
                 if (Settings.Negatives) CouncilGameComponent.GiveThought(p, CouncilDefOf.Council_AmbitionFailed, null, Settings.PenaltyScale);
             }
-            Messages.Message("CC_Ambition_Failed".Translate(a.def.LabelCap.ToString(), a.Progress.ToStringPercent()), new LookTargets(a.proposer), MessageTypeDefOf.NeutralEvent, false);
+            News.Post("CC_Ambition_Failed".Translate(a.def.LabelCap.ToString(), a.Progress.ToStringPercent()), new LookTargets(a.proposer), NewsKind.Colony, MessageTypeDefOf.NeutralEvent);
             comp.AddChronicle(new ChronicleEntry(ChronicleKind.AmbitionFailed,
                 "CC_Chronicle_AmbitionFailed".Translate(a.def.label, a.Progress.ToStringPercent()).Resolve(), a.proposer));
             nextMeetingTick = Mathf.Min(nextMeetingTick, Find.TickManager.TicksGame + GenDate.TicksPerDay * 2);

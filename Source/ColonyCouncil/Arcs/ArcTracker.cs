@@ -129,7 +129,7 @@ namespace ColonyCouncil
         public override void GameComponentTick()
         {
             int t = Find.TickManager.TicksGame;
-            if (t % HourTicks != 1777) return;
+            if (!Sched.Hourly(t, Sched.Arcs)) return;
             if (!On)
             {
                 // Switched off: stories wait where they are, clocks and all.
@@ -505,7 +505,7 @@ namespace ColonyCouncil
                 string head = start
                     ? "CC_Arc_Began".Translate(arc.pawn.Named("PAWN"), arc.def.label.Named("STORY")).Resolve()
                     : "CC_Arc_Moved".Translate(arc.pawn.Named("PAWN"), arc.def.label.Named("STORY"), st.label.Named("STAGE")).Resolve();
-                Notify.Message(head + (line.NullOrEmpty() ? "" : " \"" + line + "\""), Look(arc), MessageTypeDefOf.SilentInput, start ? Importance.Notable : Importance.Flavor);
+                News.Post(head + (line.NullOrEmpty() ? "" : " \"" + line + "\""), Look(arc), NewsKind.People, MessageTypeDefOf.SilentInput, start ? Importance.Notable : Importance.Flavor);
             }
         }
 
@@ -602,8 +602,8 @@ namespace ColonyCouncil
             string told = ArcText.Chronicle(arc.def.fizzleChronicle, arc, reason)
                           ?? "CC_Arc_FizzledChronicle".Translate(arc.pawn.Named("PAWN"), arc.def.label.Named("STORY")).Resolve();
             comp.AddChronicle(new ChronicleEntry(ChronicleKind.Life, told, arc.pawn));
-            Notify.Message("CC_Arc_Fizzled".Translate(arc.pawn.Named("PAWN"), arc.def.label.Named("STORY")).Resolve() + (line.NullOrEmpty() ? "" : " \"" + line + "\""),
-                Look(arc), MessageTypeDefOf.SilentInput, Importance.Notable);
+            News.Post("CC_Arc_Fizzled".Translate(arc.pawn.Named("PAWN"), arc.def.label.Named("STORY")).Resolve() + (line.NullOrEmpty() ? "" : " \"" + line + "\""),
+                Look(arc), NewsKind.People, MessageTypeDefOf.SilentInput, Importance.Notable);
         }
 
         /// <summary>They died before it ended: the chronicle says so, and a day later someone close writes about it.</summary>

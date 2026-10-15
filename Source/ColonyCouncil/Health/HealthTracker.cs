@@ -230,7 +230,7 @@ namespace ColonyCouncil
         {
             if (later.Count > 0) RunLater();
             int now = Find.TickManager.TicksGame;
-            if (now % GenDate.TicksPerHour != 211) return;
+            if (!Sched.Hourly(now, Sched.Health)) return;
             if (!ConvalescenceOn && !ReputationOn) return;
             try
             {
@@ -333,7 +333,7 @@ namespace ColonyCouncil
                 CouncilGameComponent.GiveThought(p, HealthDefOf.Council_Health_GladToBeAlive, null, -1f, ("CC_Health_Cause_" + source).Translate().Resolve());
             if (fresh)
             {
-                Notify.Message(("CC_Health_Convalescing_" + source).Translate(p.Named("PAWN")).Resolve(), new LookTargets(p), MessageTypeDefOf.NeutralEvent, Importance.Flavor);
+                News.Post(("CC_Health_Convalescing_" + source).Translate(p.Named("PAWN")).Resolve(), new LookTargets(p), NewsKind.Health, MessageTypeDefOf.NeutralEvent, Importance.Flavor);
                 if (Rand.Chance(0.6f))
                     JournalTagged(p, "Council_Journal_Health_Convalescing", new[] { source.ToLowerInvariant(), impatient ? "impatient" : "patient" }, source == "Surgery" ? other : null);
             }
@@ -413,8 +413,8 @@ namespace ColonyCouncil
             setbacks[h.loadID] = count + 1;
             lastSetback[id] = now;
             string work = p.CurJob.workGiverDef.workType?.gerundLabel ?? p.CurJob.workGiverDef.label ?? "";
-            Notify.Message("CC_Health_Setback".Translate(p.Named("PAWN"), work.Named("WORK")).Resolve(), new LookTargets(p),
-                MessageTypeDefOf.NeutralEvent, Importance.Notable);
+            News.Post("CC_Health_Setback".Translate(p.Named("PAWN"), work.Named("WORK")).Resolve(), new LookTargets(p),
+                NewsKind.Health, MessageTypeDefOf.NeutralEvent, Importance.Notable);
             if (People.HasInnerLife(p)) JournalTagged(p, "Council_Journal_Health_Setback", Impatient(p) ? new[] { "impatient" } : null);
         }
 
@@ -657,7 +657,7 @@ namespace ColonyCouncil
             }
             rec.level = level;
             string key = level >= 2 ? "CC_Health_DoctorRenowned" : "CC_Health_DoctorTrusted";
-            Notify.Message(key.Translate(doctor.Named("PAWN"), rec.Saved.Named("COUNT")).Resolve(), new LookTargets(doctor), MessageTypeDefOf.PositiveEvent, Importance.Notable);
+            News.Post(key.Translate(doctor.Named("PAWN"), rec.Saved.Named("COUNT")).Resolve(), new LookTargets(doctor), NewsKind.Health, MessageTypeDefOf.PositiveEvent, Importance.Notable);
             string tag = level >= 2 ? "renowned" : "trusted";
             JournalTagged(doctor, "Council_Journal_Health_Standing", new[] { tag });
             var others = (doctor.MapHeld?.mapPawns.FreeColonistsSpawned ?? new List<Pawn>())
@@ -697,8 +697,8 @@ namespace ColonyCouncil
             if (level > rec.midwifeLevel)
             {
                 rec.midwifeLevel = level;
-                Notify.Message("CC_Health_Midwife".Translate(doctor.Named("PAWN"), rec.births.Named("COUNT")).Resolve(), new LookTargets(doctor),
-                    MessageTypeDefOf.PositiveEvent, Importance.Notable);
+                News.Post("CC_Health_Midwife".Translate(doctor.Named("PAWN"), rec.births.Named("COUNT")).Resolve(), new LookTargets(doctor),
+                    NewsKind.Health, MessageTypeDefOf.PositiveEvent, Importance.Notable);
             }
         }
 

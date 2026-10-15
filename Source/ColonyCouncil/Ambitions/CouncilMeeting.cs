@@ -523,7 +523,7 @@ namespace ColonyCouncil
             organizer = next;
             var m = CouncilGameComponent.Instance?.ambitions.meeting;
             if (m != null) m.chair = next;
-            Messages.Message("CC_Meeting_NewChair".Translate(next.Named("PAWN")).Resolve(), new LookTargets(next), MessageTypeDefOf.SilentInput, false);
+            News.Post("CC_Meeting_NewChair".Translate(next.Named("PAWN")).Resolve(), new LookTargets(next), NewsKind.Colony, MessageTypeDefOf.SilentInput);
             return true;
         }
 

@@ -153,6 +153,26 @@ namespace ColonyCouncil
             return new Rect(x, y, w, ButH);
         }
 
+        // Drawn every frame: the button labels are translated once per language, and the tooltips only built when hovered.
+        private static string[] labels;
+        private static LoadedLanguage labelsLanguage;
+        private static readonly Func<string> GripTip = () => "CC_Slow_Grip".Translate();
+        private static readonly Func<string>[] LevelTips = { null, () => LevelTip(1), () => LevelTip(2) };
+
+        private static string LevelTip(int i) =>
+            ("CC_Slow_Level_" + i + "_Tip").Translate(KeyBindingDefOf.TimeSpeed_Slower.MainKeyLabel, KeyBindingDefOf.TimeSpeed_Faster.MainKeyLabel);
+
+        private static string Label(int i)
+        {
+            if (labels == null || labelsLanguage != LanguageDatabase.activeLanguage)
+            {
+                labels = new string[Factors.Length];
+                for (int k = 1; k < Factors.Length; k++) labels[k] = ("CC_Slow_Level_" + k).Translate();
+                labelsLanguage = LanguageDatabase.activeLanguage;
+            }
+            return labels[i];
+        }
+
         public override void GameComponentOnGUI()
         {
             var s = ColonyCouncilMod.Settings;
@@ -165,7 +185,7 @@ namespace ColonyCouncil
             GUI.color = new Color(1f, 1f, 1f, 0.35f);
             for (int i = 0; i < 3; i++) Widgets.DrawLineHorizontal(grip.x + 2f, grip.y + 7f + i * 5f, Grip - 4f);
             GUI.color = Color.white;
-            TooltipHandler.TipRegion(grip, "CC_Slow_Grip".Translate());
+            TooltipHandler.TipRegion(grip, GripTip, 0x5104_0000);
             var e = Event.current;
             if (e.type == EventType.MouseDown && e.button == 0 && Mouse.IsOver(grip))
             {
@@ -196,10 +216,10 @@ namespace ColonyCouncil
                 Text.Font = GameFont.Small;
                 Text.Anchor = TextAnchor.MiddleCenter;
                 GUI.color = on ? Color.white : new Color(0.85f, 0.85f, 0.85f);
-                Widgets.Label(b, ("CC_Slow_Level_" + i).Translate());
+                Widgets.Label(b, Label(i));
                 GUI.color = Color.white;
                 Text.Anchor = TextAnchor.UpperLeft;
-                TooltipHandler.TipRegion(b, ("CC_Slow_Level_" + i + "_Tip").Translate(KeyBindingDefOf.TimeSpeed_Slower.MainKeyLabel, KeyBindingDefOf.TimeSpeed_Faster.MainKeyLabel));
+                if (i < LevelTips.Length && LevelTips[i] != null) TooltipHandler.TipRegion(b, LevelTips[i], 0x5104_0000 + i);
                 if (Widgets.ButtonInvisible(b))
                 {
                     if (on) Set(0);

@@ -174,7 +174,7 @@ namespace ColonyCouncil
 
             if (done == null) return;
             MarkActed(p);
-            Notify.Message(done, look, MessageTypeDefOf.NeutralEvent, Importance.Notable);
+            News.Post(done, look, NewsKind.People, MessageTypeDefOf.NeutralEvent, Importance.Notable);
             comp.journals.Write(p, "Council_Journal_SelfHelp", null);
         }
 
@@ -339,9 +339,11 @@ namespace ColonyCouncil
         {
             if (Scribe.mode == LoadSaveMode.Saving)
             {
+                // When someone last acted only matters for a day (TryAct): older entries, and the dead, are forgotten.
+                int now = Find.TickManager.TicksGame;
                 for (int i = pawns.Count - 1; i >= 0; i--)
                 {
-                    if (pawns[i] == null || pawns[i].Discarded)
+                    if (pawns[i] == null || pawns[i].Discarded || pawns[i].Dead || lastActed[i] > now || now - lastActed[i] > GenDate.TicksPerDay * 2)
                     {
                         pawns.RemoveAt(i);
                         lastActed.RemoveAt(i);

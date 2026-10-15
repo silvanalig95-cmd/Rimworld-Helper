@@ -94,7 +94,7 @@ namespace ColonyCouncil
                     CouncilGameComponent.GiveThought(f, CouncilDefOf.Council_GladTheyreBack, p, -1f, "CC_Cause_GladBack".Translate(p.LabelShort).Resolve());
             string names = TextUtil.JoinAnd(back.Select(p => p.LabelShort).ToList());
             string text = "CC_World_Homecoming".Translate(names, days).Resolve();
-            Notify.Message(text, new LookTargets(back), MessageTypeDefOf.PositiveEvent, Importance.Flavor);
+            News.Post(text, new LookTargets(back), NewsKind.People, MessageTypeDefOf.PositiveEvent, Importance.Flavor);
             if (awayTicks >= GenDate.TicksPerDay * 8) comp.AddChronicle(new ChronicleEntry(ChronicleKind.Life, text, back[0]));
         }
 

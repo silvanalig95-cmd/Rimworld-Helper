@@ -132,9 +132,48 @@ namespace ColonyCouncil
 
         public IEnumerable<Quirk> Of(Pawn p) => quirks.Where(q => q.pawn == p);
 
-        public Quirk Get(Pawn p, QuirkDef def) => quirks.FirstOrDefault(q => q.pawn == p && q.def == def);
+        /// <summary>Their quirk of this kind, or null. Asked by the quirk moods for every colonist, so a plain loop.</summary>
+        public Quirk Get(Pawn p, QuirkDef def)
+        {
+            for (int i = 0; i < quirks.Count; i++)
+            {
+                var q = quirks[i];
+                if (q.pawn == p && q.def == def) return q;
+            }
+            return null;
+        }
+
+        /// <summary>The colonist's quirk whose mood this is, or null (the Needs tab asks for its label every frame).</summary>
+        public Quirk OfThought(Pawn p, ThoughtDef thought)
+        {
+            for (int i = 0; i < quirks.Count; i++)
+            {
+                var q = quirks[i];
+                if (q.pawn == p && q.def?.thought == thought) return q;
+            }
+            return null;
+        }
 
         public void Notify_Fought(Pawn p) => battleTick[p] = Find.TickManager.TicksGame;
+
+        private static int longestWindow = -1;
+
+        /// <summary>The longest any quirk looks back for a fight or a fall (ticks).</summary>
+        private static int LongestWindow
+        {
+            get
+            {
+                if (longestWindow < 0)
+                {
+                    int most = 0;
+                    foreach (var d in DefDatabase<QuirkDef>.AllDefsListForReading)
+                        if (d.afterBattle || d.afterDowned)
+                            most = Math.Max(most, (int)(d.withinDays * GenDate.TicksPerDay));
+                    longestWindow = most;
+                }
+                return longestWindow;
+            }
+        }
 
         private static bool Eligible(Pawn p) => People.HasInnerLife(p) && p.IsColonist && !p.IsQuestLodger() && p.RaceProps.Humanlike && !p.DevelopmentalStage.Baby();
 
@@ -152,9 +191,12 @@ namespace ColonyCouncil
         public void Daily(CouncilGameComponent comp)
         {
             int now = Find.TickManager.TicksGame;
-            quirks.RemoveAll(q => q.Broken || q.pawn.Dead);
-            foreach (var k in downedTick.Keys.Where(k => k == null || k.Dead).ToList()) downedTick.Remove(k);
-            foreach (var k in battleTick.Keys.Where(k => k == null || k.Dead).ToList()) battleTick.Remove(k);
+            quirks.RemoveAll(q => q.Broken || q.pawn.Dead || q.pawn.Discarded);
+            foreach (var k in downedTick.Keys.Where(k => k == null || k.Dead || k.Discarded).ToList()) downedTick.Remove(k);
+            foreach (var k in battleTick.Keys.Where(k => k == null || k.Dead || k.Discarded).ToList()) battleTick.Remove(k);
+            // A fight or a fall only counts within a quirk's window: older ones are forgotten (someone who left keeps none).
+            Caps.DropOlderThan(downedTick, now, LongestWindow);
+            Caps.DropOlderThan(battleTick, now, LongestWindow);
             if (!S.quirks)
             {
                 SyncKnacks();
@@ -212,7 +254,7 @@ namespace ColonyCouncil
             SyncKnacks();
             string line = Line(d.gained, q);
             if (!line.NullOrEmpty()) comp.journals.WriteText(p, line);
-            Notify.Message("CC_Quirk_Gained".Translate(p.Named("PAWN"), q.Label.Named("QUIRK")).Resolve() + (line.NullOrEmpty() ? "" : " \"" + line + "\""), p, MessageTypeDefOf.SilentInput, Importance.Flavor);
+            News.Post("CC_Quirk_Gained".Translate(p.Named("PAWN"), q.Label.Named("QUIRK")).Resolve() + (line.NullOrEmpty() ? "" : " \"" + line + "\""), p, NewsKind.People, MessageTypeDefOf.SilentInput, Importance.Flavor);
         }
 
         private static List<HediffDef> knacks;
@@ -263,8 +305,8 @@ namespace ColonyCouncil
             Scribe_Collections.Look(ref quirks, "quirks", LookMode.Deep);
             if (Scribe.mode == LoadSaveMode.Saving)
             {
-                foreach (var k in downedTick.Keys.Where(k => k == null || k.Dead || k.Destroyed).ToList()) downedTick.Remove(k);
-                foreach (var k in battleTick.Keys.Where(k => k == null || k.Dead || k.Destroyed).ToList()) battleTick.Remove(k);
+                foreach (var k in downedTick.Keys.Where(k => k == null || k.Dead || k.Destroyed || k.Discarded).ToList()) downedTick.Remove(k);
+                foreach (var k in battleTick.Keys.Where(k => k == null || k.Dead || k.Destroyed || k.Discarded).ToList()) battleTick.Remove(k);
             }
             Scribe_Collections.Look(ref downedTick, "downedTick", LookMode.Reference, LookMode.Value, ref k1, ref v1, false);
             Scribe_Collections.Look(ref battleTick, "battleTick", LookMode.Reference, LookMode.Value, ref k2, ref v2, false);
@@ -297,7 +339,7 @@ namespace ColonyCouncil
             if (quirk.condition == QuirkCondition.LuckyItem)
             {
                 if (q.item == null) return ThoughtState.Inactive;
-                bool has = (p.apparel?.WornApparel.Any(a => a.def == q.item) ?? false) || p.equipment?.Primary?.def == q.item;
+                bool has = Wears(p, q.item) || p.equipment?.Primary?.def == q.item;
                 stage = has ? 0 : 1;
             }
             else if (Holds(quirk.condition, quirk, p)) stage = 0;
@@ -306,6 +348,16 @@ namespace ColonyCouncil
             if (def.stages == null || stage >= def.stages.Count) return ThoughtState.Inactive;
             if (!s.Negatives && def.stages[stage] != null && def.stages[stage].baseMoodEffect < 0f) return ThoughtState.Inactive;
             return ThoughtState.ActiveAtStage(stage);
+        }
+
+        private static bool Wears(Pawn p, ThingDef item)
+        {
+            var worn = p.apparel?.WornApparel;
+            if (worn == null) return false;
+            for (int i = 0; i < worn.Count; i++)
+                if (worn[i].def == item)
+                    return true;
+            return false;
         }
 
         /// <summary>Whether the moment fits: the weather, the hour, where they are and what they're doing.</summary>
@@ -400,7 +452,7 @@ namespace ColonyCouncil
         {
             get
             {
-                var q = CouncilGameComponent.Instance?.quirks.quirks.FirstOrDefault(x => x.pawn == pawn && x.def.thought == def);
+                var q = CouncilGameComponent.Instance?.quirks.OfThought(pawn, def);
                 return Causes.Append(base.Description, q != null ? "CC_Cause_Quirk".Translate(q.Label).Resolve() : null);
             }
         }
@@ -418,7 +470,7 @@ namespace ColonyCouncil
                 // From the stage's own label: the game's label has already dropped {ITEM} by the time it gets here.
                 string raw = CurStage?.label;
                 if (raw.NullOrEmpty() || !raw.Contains("{ITEM}")) return base.LabelCap;
-                var q = CouncilGameComponent.Instance?.quirks.quirks.FirstOrDefault(x => x.pawn == pawn && x.def.thought == def);
+                var q = CouncilGameComponent.Instance?.quirks.OfThought(pawn, def);
                 string item = q?.item?.label ?? "CC_Quirk_ItemFallback".Translate().ToString();
                 return raw.Formatted(item.Named("ITEM")).Resolve().CapitalizeFirst();
             }
