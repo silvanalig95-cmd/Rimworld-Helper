@@ -43,6 +43,8 @@ namespace ColonyCouncil
         private int foundingWaitYear = -99999;
         /// <summary>A rest day: each colonist's work hours turned to recreation ("hour=TimeAssignmentDef;..."), and its date.</summary>
         private Dictionary<string, string> restHours = new Dictionary<string, string>();
+        /// <summary>Days the player took off the calendar: not written down again (a birthday, an arrival).</summary>
+        private HashSet<string> forgotten = new HashSet<string>();
         private int restDate = -1;
         /// <summary>Today's kept day, which people talk about, and how many more conversations it has in it.</summary>
         private string talkDayId;
@@ -110,6 +112,7 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref foundingWaitYear, "foundingWaitYear", -99999);
             Scribe_Collections.Look(ref restHours, "restHours", LookMode.Value, LookMode.Value, ref tmpKeys2, ref tmpStrings);
             Scribe_Values.Look(ref restDate, "restDate", -1);
+            Scribe_Collections.Look(ref forgotten, "forgotten", LookMode.Value);
             Scribe_Values.Look(ref talkDayId, "talkDayId");
             Scribe_Values.Look(ref talkDate, "talkDate", -1);
             Scribe_Values.Look(ref talksLeft, "talksLeft");
@@ -126,6 +129,7 @@ namespace ColonyCouncil
                 }
                 if (harvested == null) harvested = new Dictionary<string, int>();
                 if (restHours == null) restHours = new Dictionary<string, string>();
+                if (forgotten == null) forgotten = new HashSet<string>();
             }
         }
 
@@ -340,6 +344,7 @@ namespace ColonyCouncil
             if (d == null || d.id.NullOrEmpty()) return null;
             var existing = Get(d.id);
             if (existing != null) return existing;
+            if (forgotten.Contains(d.id)) return null;
             if (d.label.NullOrEmpty()) d.label = DefaultLabel(d);
             if (d.Auto)
             {
@@ -358,9 +363,12 @@ namespace ColonyCouncil
             return d;
         }
 
+        /// <summary>The player takes a day off the calendar; one the colony wrote down isn't written down again.</summary>
         public void Remove(CalendarDay d)
         {
-            if (d != null) days.Remove(d);
+            if (d == null) return;
+            days.Remove(d);
+            if (d.Auto) forgotten.Add(d.id);
         }
 
         /// <summary>The name a day gets when it's written down.</summary>

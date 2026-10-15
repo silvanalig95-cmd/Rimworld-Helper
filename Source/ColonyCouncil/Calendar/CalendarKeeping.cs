@@ -136,7 +136,8 @@ namespace ColonyCouncil
                 KeepDay(d, occurrence, map, null, false);
                 return;
             }
-            if (d.kind == CalendarKind.Founding && FoundingEventKeepsIt())
+            // (Kept another way than a feast, it's the calendar's own day again.)
+            if (d.kind == CalendarKind.Founding && d.way == DayWay.Feast && FoundingEventKeepsIt())
             {
                 // The founding event comes today with its own letter and choices; whatever the colony does with it keeps the day.
                 foundingWaitYear = occurrence;
@@ -212,7 +213,7 @@ namespace ColonyCouncil
             var keeper = Keeper(d, home);
             var who = Mourners(d, home);
             var parts = new List<string> { Opening(d, map, keeper, null, years) };
-            if (d.kind == CalendarKind.Holiday || who.Count == 0) parts.Add("CC_Cal_Way_RemembranceAll_Letter".Translate().Resolve());
+            if (d.kind == CalendarKind.Holiday || d.knew.Count == 0 || who.Count == 0) parts.Add("CC_Cal_Way_RemembranceAll_Letter".Translate().Resolve());
             else parts.Add("CC_Cal_Way_Remembrance_Letter".Translate(TextUtil.JoinAnd(who.Select(p => p.LabelShort).ToList())).Resolve());
             var ritual = RitualFor(DayWay.Remembrance);
             if (ritual != null) parts.Add("CC_Cal_Ritual_Remembrance".Translate(IdeoName(), ritual.LabelCap).Resolve());
@@ -220,10 +221,13 @@ namespace ColonyCouncil
                 new LookTargets(who.Count > 0 ? who : new List<Pawn> { keeper }));
         }
 
-        /// <summary>Those at home who keep a remembrance: the ones who knew the dead or fought that day; for a named day, everyone.</summary>
+        /// <summary>
+        /// Those at home who keep a remembrance: the ones who knew the dead or fought that day; for a named day, or a day
+        /// that isn't about anyone in particular, everyone.
+        /// </summary>
         private static List<Pawn> Mourners(CalendarDay d, List<Pawn> home)
         {
-            if (d.kind == CalendarKind.Holiday) return home.Where(p => !IsPsychopath(p)).ToList();
+            if (d.kind == CalendarKind.Holiday || d.knew.Count == 0) return home.Where(p => !IsPsychopath(p)).ToList();
             return home.Where(p => d.knew.Contains(p.ThingID) && !IsPsychopath(p)).ToList();
         }
 
