@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Knacks: the small lasting effects some habits bring (Defs/QuirkDefs/Council_Quirks_Habits.xml, the quirk's hediff).
+    Added when the habit is picked up and removed when it fades, kept in step once a day.
+  -->
+
+  <HediffDef Name="Council_QuirkKnackBase" Abstract="True">
+    <hediffClass>HediffWithComps</hediffClass>
+    <defaultLabelColor>(0.75, 0.8, 0.65)</defaultLabelColor>
+    <isBad>false</isBad>
+    <everCurableByItem>false</everCurableByItem>
+  </HediffDef>
+
+  <HediffDef ParentName="Council_QuirkKnackBase">
+    <defName>Council_Quirk_GreenThumb</defName>
+    <label>talks to the plants (habit)</label>
+    <description>Talks to the plants while tending them. Whatever the plants make of it, the work goes faster.</description>
+    <stages>
+      <li><statOffsets><PlantWorkSpeed>0.03</PlantWorkSpeed></statOffsets></li>
+    </stages>
+  </HediffDef>
+
+  <HediffDef ParentName="Council_QuirkKnackBase">
+    <defName>Council_Quirk_AnimalNames</defName>
+    <label>names every animal (habit)</label>
+    <description>Has a name for every animal in the colony and uses it. The animals seem to take to them sooner.</description>
+    <stages>
+      <li><statOffsets><TameAnimalChance>0.03</TameAnimalChance><TrainAnimalChance>0.03</TrainAnimalChance></statOffsets></li>
+    </stages>
+  </HediffDef>
+
+  <HediffDef ParentName="Council_QuirkKnackBase">
+    <defName>Council_Quirk_Tidy</defName>
+    <label>can't stand a mess (habit)</label>
+    <description>Can't leave a mess alone. Cleans faster than most, out of sheer irritation.</description>
+    <stages>
+      <li><statOffsets><CleaningSpeed>0.1</CleaningSpeed></statOffsets></li>
+    </stages>
+  </HediffDef>
+
+  <HediffDef ParentName="Council_QuirkKnackBase">
+    <defName>Council_Quirk_StoveSongs</defName>
+    <label>sings at the stove (habit)</label>
+    <description>Sings while cooking, and keeps time by scrubbing hands and pots between songs. Food poisoning is rarer from this cook.</description>
+    <stages>
+      <li><statFactors><FoodPoisonChance>0.85</FoodPoisonChance></statFactors></li>
+    </stages>
+  </HediffDef>
+
+  <HediffDef ParentName="Council_QuirkKnackBase">
+    <defName>Council_Quirk_Birthdays</defName>
+    <label>remembers every birthday (habit)</label>
+    <description>Knows everyone's birthday and never forgets one. People warm to that.</description>
+    <stages>
+      <li><statOffsets><SocialImpact>0.03</SocialImpact></statOffsets></li>
+    </stages>
+  </HediffDef>
+
+  <HediffDef ParentName="Council_QuirkKnackBase">
+    <defName>Council_Quirk_Whittling</defName>
+    <label>always whittling (habit)</label>
+    <description>Always has a knife and a bit of wood on the go in idle moments, so is seldom bored.</description>
+    <stages>
+      <li><statFactors><JoyFallRateFactor>0.95</JoyFallRateFactor></statFactors></li>
+    </stages>
+  </HediffDef>
+
+</Defs>

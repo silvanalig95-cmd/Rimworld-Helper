@@ -58,6 +58,14 @@ Section names show a count when something there wants your attention (urgent adv
 Each colonist also has a **Story** tab in their inspect panel, and clicking a colonist's name in the council window
 opens their page in the roster.
 
+The window opens on the page you last looked at, also after a restart (it's kept with the mod settings). A colony's
+first session with Rimfolk brings one quiet **welcome letter**: what Rimfolk does, where the council button is, and a
+button to the Almanac's **Start here** page. Saves that already had Rimfolk never get it, and it needs no setting.
+The **Mood** and **Story** tabs fit the room above the inspect pane: on a small screen, at a big interface scale or
+above RimHUD's taller pane they get shorter and scroll instead of running off the top of the screen. A click on a
+section's heading (the heart, what weighs on them, their bonds...) folds it away, and each tab remembers that for the
+session.
+
 ### Priorities: what the colony needs
 A ranked list of concerns, each with a short explanation, a rotating **"why it matters"** tip, and buttons to
 jump to the problem, plan a fitting room, or read more in the Almanac. It watches:
@@ -80,19 +88,23 @@ to them. A raid makes someone ask for defenses within hours; a cold night, a mea
 friend's death or food poisoning all set off matching wishes. Every wish arrives with a little scene and a line
 in the colonist's own voice, chosen to fit the season, weather, time of day and their situation.
 
-More than 70 kinds of wish, most with variants (six kinds of work room, a dozen pieces of furniture, any
+105 kinds of wish, most with variants (six kinds of work room, a dozen pieces of furniture, any
 missing body part), so the same colony rarely hears the same request twice in a row: a wish the colony has
 heard several times lately becomes much less likely, and one nobody here has ever made a little more likely.
+Every wish asks only for what the colony can do now, in its era: a tribe hears about healroot and pemmican, an
+industrial colony about a deep drill or a comms console. The Almanac page "what colonists wish for" lists them all.
 
 | Wish | Who asks |
 |---|---|
-| **Home:** a room of their own, a bigger, roomier or nicer bedroom, a piece of furniture, a light, a plant, art for the bedroom, a fire in their room for winter, a bed for their pet | barracks sleepers, the greedy and jealous, night owls, rising expectations, the cold |
+| **Home:** a room of their own, a bigger, roomier or nicer bedroom, a piece of furniture, a light, a plant, art for the bedroom, a fire in their room for winter, a real floor instead of bare earth, a bed for their pet | barracks sleepers, the greedy and jealous, night owls, rising expectations, the cold, the tidy |
 | **Love and family:** to share a bed with their partner, not to sleep next to someone, a wedding, a birthday treat, a crib for the little one, somewhere for children to learn and play | couples, feuding roommates, parents (Biotech) |
-| **Work:** a workshop, kitchen, laboratory, hospital, greenhouse or barn; to do the work they love; lessons from the colony's best; somewhere to train; a weapon rack; a smokehouse; a beehive | passionate colonists, fighters, cooks, keepers |
-| **Stores:** better food, a freezer, a brewery, a little something to drink, firewood for winter, fodder before winter, honey in the larder, more books, a stocked infirmary, a proper treasury | gourmands, cooks, the food-poisoned, keepers, readers, the greedy |
+| **Children and the old:** lessons from the colony's best, a pet to look after, new stories to read; a soft chair, a biosculpter pod, a resting place for when the time comes | children (Biotech); colonists of 50, 60 or 65 and over |
+| **Work:** a workshop, kitchen, laboratory, hospital, greenhouse or barn; to do the work they love; lessons from the colony's best, or an apprentice to teach; somewhere to train; a weapon rack; a smokehouse; a beehive; a tool cabinet; stone blocks put by; a deep drill; a pen for the animals; a fishing spot (Odyssey) | passionate colonists, the old, fighters, cooks, keepers |
+| **Stores:** better food, a freezer, a brewery, a little something to drink, firewood for winter, fodder before winter, food that keeps, something fresh to eat, honey in the larder, more books, a stocked infirmary, healroot put by, a proper treasury | gourmands, cooks, the food-poisoned, keepers, readers, healers, the greedy |
+| **Illness:** a bed for the sick, a pot of tea (Vanilla Brewing Expanded) | anyone down with a cold, flu or worse |
 | **Gear:** new clothes, something warm for winter, a hat, something fine, a piece of jewelry, proper armor, a decent weapon, something a visiting trader has | tattered clothes, the cold, the vain, fighters, anyone who saw the trader's wares |
-| **Colony:** stronger defenses, a clean colony, music, art where people gather, another sculpture, flowers, a bath, a fountain, a banner, a place to pray, a bench to sit on outside, a fire to gather around | anyone shaken by a raid, the tidy, artists, the devout, everyone in spring |
-| **People:** a proper burial for a friend, a party, a day off, time outside, help quitting a drug or a steady supply of it, a prisoner recruited, executed or set free, a kidnapped friend brought home | grieving friends, the bored and overworked, addicts, the kind, the vengeful |
+| **Colony:** stronger defenses, a clean colony, music, art where people gather, another sculpture, flowers, a bath, a fountain, a banner, a place to pray, a bench to sit on outside, a fire to gather around, a table where everyone fits, a telescope, a cooler for the hottest days | anyone shaken by a raid, the tidy, artists, the devout, everyone in spring, the lonely, curious minds, anyone in the heat |
+| **People:** a proper burial for a friend, a party, a day off, time outside, help quitting a drug or a steady supply of it, a prisoner recruited, executed or set free, a kidnapped friend brought home, an evening at the campers' fire, a council meeting (promising it calls one), a comms console, a bed kept for guests (Hospitality) | grieving friends, the bored and overworked, addicts, the kind, the vengeful, the sociable |
 | **Adventure:** to see something of the world (a caravan), a hunt, the beast that mauled someone hunted down | the restless, hunters, the beast's victims and their friends |
 | **Body and status:** a prosthetic, an animal companion, a hurt animal patched up, a room befitting their title | the maimed, animal lovers, Royalty nobles |
 
@@ -162,12 +174,15 @@ now, for example "Good times: Rimfolk's good moods +11 of +18, 2 fading sooner Â
 
 **Everyday frictions.** People who live close together get on each other's nerves. Colonists argue about the dishes,
 complain about a bunkmate's snoring, take the last good meal, keep a borrowed knife, correct each other at the table
-and give each other the cold shoulder after a spat. A messy or cramped home adds its own: a door that sticks, a
-leaking roof, smoke in a small room, a generator droning next to someone's bed. Each costs a point or two of mood for
-half a day to a day and a half. In an ordinary colony they come about as often as the warm moments; less in a happy,
-roomy one, more in barracks or between people who dislike each other. Abrasive, volatile and jealous colonists start
-more of them, kind ones none. After a spat the two share no warm moments until it wears off or they clear the air.
-A setting turns them off.
+and give each other the cold shoulder after a spat. Some natures grate: an annoying voice, creepy breathing, a
+pyromaniac near the tinder, a nudist at supper, an ascetic lecturing a greedy one. So do the times: someone keeps
+away from a sick colonist, two argue about a camp, a temper snaps. A messy or cramped home adds its own (19
+nuisances): a door that sticks, a leaking roof, smoke in a small room, a generator droning next to someone's bed, a
+filthy room, a cold or stifling one, the dog asleep on the bed, building work right outside, vermin in the stores, a
+bare earth floor. Each costs a point or two of mood for half a day to a day and a half. In an ordinary colony they
+come about as often as the warm moments; less in a happy, roomy one, more in barracks or between people who dislike
+each other. Abrasive, volatile and jealous colonists start more of them, kind ones none. After a spat the two share
+no warm moments until it wears off or they clear the air. A setting turns them off.
 
 **Everyday pressures.** A colony that has everything still has its everyday wear. Five small, fixable pressures show
 as moods while their cause lasts, each saying what caused it, with what helps in the Mood tab:
@@ -199,6 +214,13 @@ living under a decree you hate wears down your trust in the council. With feelin
 (long hours, drills, on guard...) also build a little strain in those who resent them, and **days of rest** lets the
 colony recover: 10% slower work for three days, while strain drains about twice as fast.
 
+Nineteen decrees in all. The everyday ones each trade a little work for something else: **quiet hours** (deeper
+sleep, far fewer quarrels; night owls hate it), **shared meals** (talk and goodwill at one table), **rest when ill**
+(wounds and illnesses mend faster while the well cover for the sick), **banked fires** (fires, torches and fueled
+heaters burn a quarter less fuel, in colder, darker rooms), **apprenticeships** (everyone practices building,
+crafting, cooking and growing every hour) and **a feast day** (one day of eating well and working half). Colonists
+petition for them when someone is ill, in winter, or when a newcomer joins.
+
 There's no hard limit on repeating a decree, but there is a price. Enact the same one again within a month, or
 **force it through** before its cooldown is over, and those against it lose more trust and resent it more each
 time. Someone may even snap: the hot-tempered throw a tantrum, others wander off in a daze. The tab warns you how
@@ -223,6 +245,13 @@ stash of beer, a cook who wants to spend the stores on one magnificent feast, a 
 can't cope. Kind, greedy, industrious and teetotal colonists all react differently. Leave a dilemma unanswered and
 the council's silence decides for you.
 
+There are 119 of them, and many grow out of everyday life: a sick colonist when the medicine is nearly gone,
+whether to keep someone with a fever apart, a cook with a cold, an old family remedy, a visitor's strange cure, the
+camp on the colony's land asking for medicine, food or searchers for a lost child, a council meeting someone missed,
+a worn-out colonist asking for days off at the worst time, a squabble that turned into a feud, an elder who wants to
+put down the tools, a child's question, a broken promise, the same meal every day. Many answers call on whoever is
+best placed (the doctor, a forager, a tracker, the best talker), and their skill decides how it goes.
+
 ### Social: friends, rivals, comrades and mentors
 Colonists form lasting bonds out of how they feel about each other and what they live through, and those bonds
 grow, sour and end over time:
@@ -232,10 +261,17 @@ grow, sour and end over time:
 - A skilled, passionate colonist may take a keen learner on as a **student**, teaching them every day until they
   graduate at level 11.
 
-Most days something small happens between two people: a late talk, a shared joke, a prank that lands badly, a
-snub at dinner, a squabble over chores, war stories, a lesson, a contest between rivals, a handmade gift, gossip
-that gets found out, an unexpected truce. Each one nudges their bond. Three to six people held together by strong
-friendships form a **circle**, and people outside every circle sometimes feel left out.
+Most days something small happens between two people (67 kinds of social event): a late talk, a shared joke, a prank
+that lands badly, a snub at dinner, a squabble over chores, war stories, a lesson, a contest between rivals, a
+handmade gift, gossip that gets found out, an unexpected truce. Life brings its own: a vigil at a friend's sickbed,
+an evening at a camp on the map, a quarrel over what the council decided, fears confided in the night, grief carried
+together, a peace offering after a quarrel. Each one nudges their bond. In conversation they share smaller moments
+too (about a hundred kinds, 40 of them frictions), shaped by who they are (night owls keeping each other company,
+brawlers comparing scars, an iron-willed colonist steadying a nervous one) and by what's going on (visiting the sick,
+talking over a council meeting, watching a camp's fires, confiding a worry). Moments, frictions and events keep to
+one story between the same two: no compliment right after an insult, no warm evening the day after a falling-out.
+Three to six people held together by strong friendships form a **circle**, and people outside every circle sometimes
+feel left out.
 
 Bonds change how people act. Friends and circle members back each other's wishes and petitions and vote for each
 other; rivals object to each other's wishes and vote against each other. The council's own decisions feed back
@@ -254,7 +290,12 @@ lines of their journal.
 A few days after settling in, each colonist sets their heart on something to do before they die: master a craft,
 marry for love, have a child, find three true friends, train a student until they can stand alone, make peace with
 a rival, earn a seat on the council or a name the colony remembers, a bedroom fit for a noble, bring down twenty-five
-enemies, raise a hundred and fifty structures, tend a hundred wounds, or simply live three more years. Goals fit the
+enemies, raise a hundred and fifty structures, tend a hundred wounds, bring in four hundred harvests, or simply live
+three more years. Children have goals of their own (Biotech): a best friend, getting good at a skill they love, and
+for older children growing up, which comes true when they come of age, so a grown-up's goal follows. The old may
+want a grandchild, one more year or two students who can stand alone; believers a role in their faith or the whole
+colony sharing it (Ideology); some only want to feel at home or free again, the heart's need well met for ten days
+in a row. 57 in all, listed on the Almanac page "every life goal". Goals fit the
 person (their passions, traits and situation) and grow out of what happens to them: a battle makes a warrior, a
 brush with death a healer, a wedding someone who wants to marry, a birth someone who wants a child, a lost election
 someone who wants a seat, loneliness someone who wants friends, and seeing a friend reach their goal can make them
@@ -290,15 +331,25 @@ after a dream came true, a fear of the dark after lying downed in the dirt, grie
 harmless habits like knocking on wood, counting steps or talking to the dead. Small moods at the right moments; most
 fade after a season or two.
 
+Others simply grow out of who someone is: a grower who talks to the plants, a handler who names every animal, a cook
+who sings at the stove, an early riser, someone who hums at work, collects pretty stones, can't stand a mess, feeds
+the birds or remembers every birthday, and after a night in the cold or under the stars, someone who is always cold
+or goes out to watch the stars. Some bring a small knack while they last (slightly faster plant work, fewer food
+poisonings from that cook, animals tamed and trained more easily). 29 quirks in all.
+
 ### Dreams
-Colonists who sleep (or lie unconscious) for a few hours sometimes wake from a dream, and tell each other about
-it. Dreams grow out of their lives: the raid two days ago, the friend they buried, the rival who insulted them, the
-wish the council ignored, the leg they lost, the skill they're learning, the dead they miss, their partner, their
-dog. Most are just a passing mood and a line in their journal (hover the mood to read the dream). Now and then one
-changes something: an inspiration, a lesson, a good night's rest, a nightmare that leaves them shaken, a dream of
-victory that steadies their aim, a softened rivalry, a sudden wish. And rarely a dream is an **omen**: a few days
-after someone wakes up talking about bells and pack animals on the hill, a caravan arrives; after torches in the
-dark, a raid. Recent dreams are listed in the Social tab.
+Colonists who sleep (or lie unconscious) for a few hours sometimes wake from a dream (there are 117), and tell each
+other about it. Dreams grow out of their lives: the raid two days ago, the friend they buried, the rival who insulted
+them, the wish the council ignored, the leg they lost, the skill they're learning, the dead they miss, their partner,
+their dog. They grow out of what they feel, too (an argument all night with the one they're angry at, a debt repaid
+to the one they're grateful to, dreams of fear, shame, loneliness, pride or hope), out of what ails them (loose teeth
+with a toothache, breathing underwater with a cold), and out of what's around them: a camp on the map, a council
+meeting, sickness, famine, fighting or a fair in the region, and the seasons. Most are just a passing mood and a line
+in their journal (hover the mood to read the dream). Now and then one changes something: an inspiration, a lesson, a
+good night's rest, a nightmare that leaves them shaken, a dream of victory that steadies their aim, a softened
+rivalry, a sudden wish. And rarely a dream is an **omen**: a few days after someone wakes up talking about bells and
+pack animals on the hill, a caravan arrives; after torches in the dark, a raid. Recent dreams are listed in the
+Social tab.
 
 ### Strangers, beasts and pets
 Colonists meet everyone else on the map, too:
@@ -309,6 +360,11 @@ Colonists meet everyone else on the map, too:
 - **Fallen enemies** lying downed after a fight beg, curse and pray; how your people react depends on who they are.
 - **Pets and wildlife:** a pet's welcome after a hard day, stolen dinners, a dead rat as a gift, a thrumbo at the
   tree line, wolves at night, a small creature that follows someone home.
+- **The land, the seasons and the weather:** shade shared with a wild animal at desert noon, tracks in the tundra
+  snow, eyes in the jungle undergrowth, lights over the marsh, an animal on the mountain ridge, the tide line on the
+  coast; a traveler's trick against the sand or the cold, the first green of spring, rain waited out with a pet, a
+  shape in the fog, a pet frightened by thunder, other names for the stars on a clear night. Rimfolk reads the land
+  from the biome and the tile, so other mods' biomes count too. 122 kinds of encounter in all.
 - **The council decides** when it gets harder: a visitor who wants to stay, a rude guest, a trader who wants an
   heirloom, beggars at the gate, a wounded raider who's still breathing, a predator's den, a child who wants to
   keep a wild animal, an old acquaintance who knows a secret.
@@ -366,9 +422,15 @@ why. Going with the room's favorite pleases its backers; overruling a clear majo
 - With only one colonist, the council "meets" in passing. The setting *Meetings call people from their work*
   (on by default) can be turned off; then colonists come only when they're free, and attendance is still kept.
 
-35 ambitions, from *a full larder* and *hold the line* to *clean hands*, *law and order*, *the brewmasters*,
+54 ambitions, from *a full larder* and *hold the line* to *clean hands*, *law and order*, *the brewmasters*,
 *stone and mortar*, *a master healer*, *a seat of power* and *school days*. Achieving one lifts everyone's mood
 and trust; one that was already more than half done when the colony chose it counts for less (down to 60%).
+Only those the colony can achieve now are pitched, and some fit a colony's size or era: *a home, not a camp* and
+*nobody is the only one* for a small band, *the great feast* for a crowd, *the healing garden* before electricity,
+*word from outside* after it. Some answer the newer systems (*a calm season*, *a healthy season*, *a proper
+infirmary*, *friends at the camp*, *a table for everyone*). A few come in stages (*a home, not a camp*, *a proper
+infirmary*, *ready for every season*): only the current stage counts, and a message says what comes next. Some take
+seasons (*ready for every season*, *a year of steady nerves*). The Almanac page "council projects" lists them all.
 
 ### Build: room plans
 108 ready-made rooms, grouped by purpose. 28 kinds of room come in several sizes and kinds, picked in the
@@ -440,7 +502,9 @@ bedroom.
 An in-game knowledge base: good practice and the numbers behind it, by topic, searchable, linked from the
 advisor's warnings and to room plans. The **Your mods** category explains the mods in your game (over 100 pages
 covering a 216-mod medieval list): what each adds, how to get the most out of it in a medieval run, pitfalls and
-conflicts, and how it works with Rimfolk. Each page only shows when its mod is active.
+conflicts, and how it works with Rimfolk. Each page only shows when its mod is active. **Start here** (the first
+page) gives Rimfolk in a few lines with links to the main systems' pages, and **Checking that it works** is a short
+checklist of where to look to see the newer features at work.
 
 ### Names, anniversaries and petitions
 Whoever has done the most of something earns a name for it, until someone overtakes them: *the Healer*, *the
@@ -515,12 +579,14 @@ Each of these switches itself on only when its mod is there, and only asks for w
   Modern Fixtures). The advisor
   counts toilets (about one for every six colonists) and notices when nobody can wash or people fall sick from dirty
   water. Colonists ask for a latrine, somewhere to wash, a real bath (a water tub or a sauna isn't one) or, once
-  Heating is researched, hot water; their journals mention hot baths, cold water and the walk to the bushes. The
-  burn pit and the sauna heater are never offered as a bedroom heater.
-- **Hospitality:** a guest room plan. A guest bed never counts as a free bed for a colonist.
+  Heating is researched, hot water, and in fall and winter a sauna; their journals mention hot baths, cold water and
+  the walk to the bushes. The burn pit and the sauna heater are never offered as a bedroom heater.
+- **Hospitality:** a guest room plan. A guest bed never counts as a free bed for a colonist. With none in the
+  colony, a kind or sociable colonist may wish for a bed kept for guests, most often while visitors are here.
 - **Vanilla Cooking and Brewing Expanded:** grills and gourmet dishes count as fine or lavish meals for birthday
   feasts, better-meal wishes and journals; grills ruined by the cold don't count. Tea, coffee and soda aren't
-  "something to drink" for a brewer or a colonist with a taste for chemicals.
+  "something to drink" for a brewer or a colonist with a taste for chemicals. Cooks may wish for a grill in summer,
+  canned goods count as food that keeps, and someone ill may wish for a pot of tea.
 - **Vanilla Outposts Expanded:** a wish waits while its colonist is posted at an outpost (up to five days, then it
   lapses and nobody is blamed), and people out there write home in their journals now and then.
 - **RimHUD:** seven lines for its pawn panel (trust, open wish, office, life goal, strain, feelings, the heart's
@@ -873,8 +939,9 @@ Rimfolk's own save data. The only trace in a save is a colonist in the middle of
 the game can't load that mental state, logs it once and lets them go back to work.
 
 ## Ailments and illnesses
-Colony life wears on the body too. **Everyday ailments** are small and temporary: they never kill, never leave a mark,
-last from a night to two weeks, and say in their description what helps. Doctors tend them like any illness.
+Colony life wears on the body too. **Everyday ailments** (32 of them) are small and temporary: they never kill, never
+leave a mark, last from a night to two weeks, and say in their description what helps. Doctors tend them like any
+illness.
 
 - **Going round** (the game's own disease events, so immunity, genes and the medical tab work as usual; never babies):
   a head cold, a stomach bug, a chest cold in cold weather, hay fever in spring and summer (back to the same people
@@ -885,23 +952,32 @@ last from a night to two weeks, and say in their description what helps. Doctors
   after cold outdoor work, sunburn working bareheaded in the heat, a smoke cough from a wood fire in a small room,
   toothache from sweets and the years, a stiff neck after a night on the ground, a sprained ankle on marsh, mud or
   snow, eye strain from bench work in the dark, a rimrot cough from sleeping in a damp room and ash lung after fighting
-  a fire. Never more than two at once, never the same one again within days, and never on guests, prisoners or babies.
+  a fire. Also a splinter from felling trees, a rash from a plant's sap, insect bites in swamps and jungles, heat rash
+  in sticky weather, frostnip and nosebleeds in bitter cold, athlete's foot from wading, motion sickness on a caravan,
+  lice in dirty crowded rooms (they go round, and make typhus likelier), insomnia from worry or late nights, migraines
+  after missed meals or worry, cold sores, and heartburn and hiccups after a rich meal or a drink. Never more than two
+  at once, never the same one again within days, and never on guests, prisoners or babies.
 
-**Serious illnesses** are rare, behind their own switch, and can kill: tetanus from a wound left untended, pneumonia
-after a cold in someone old, frail or starving, tuberculosis, typhus in dirty crowded quarters, meningitis, scurvy after
-weeks without fruit or vegetables, and glassblood, an invented fever from the dust of ancient ruins. One kind at a time
-in the colony, none within 30 days of the last, and each comes with a letter and a doctor's note saying what it is and
-what helps. They follow the real diseases: a quiet incubation where there is one, a course of days to weeks,
-after-effects like a lingering cough or some days of weakness, and treatment that counts the medicine the way the real
-illness would (industrial medicine matters far more than herbs against tetanus, pneumonia, typhus and meningitis;
-tuberculosis needs weeks of daily treatment and comes back if it stops early; only fresh food cures scurvy). Steady
-tending beats every one of them. The Almanac's **ailments and illnesses** page has the tables.
+**Serious illnesses** (14 of them) are rare, behind their own switch, and most can kill: tetanus from a wound left
+untended, pneumonia after a cold in someone old, frail or starving, tuberculosis, typhus in dirty crowded quarters,
+meningitis, scurvy after weeks without fruit or vegetables, cholera in hot weather, appendicitis, rabies from an
+animal's bite, and two invented ones: glassblood from the dust of ancient ruins and hive fever from insectoid stings.
+Measles in children, kidney stones, and shingles in people over fifty are hard going but never kill. One kind at a
+time in the colony, none within 30 days of the last, and each comes with a letter and a doctor's note saying what it
+is and what helps. They follow the real diseases: a quiet incubation where there is one, a course of days to weeks,
+after-effects like a lingering cough, nerve pain or some days of weakness, and treatment that counts the medicine the
+way the real illness would (industrial medicine matters far more than herbs against tetanus, pneumonia, typhus,
+meningitis and rabies; cholera needs someone to keep the patient drinking more than any medicine; tuberculosis needs
+weeks of daily treatment and comes back if it stops early; rabies can only be stopped before its symptoms show; only
+fresh food cures scurvy). Appendicitis can be cut out with a "remove appendix" operation. Steady tending beats every
+one of them. The Almanac's **ailments and illnesses** page has the tables.
 
 With Rimfolk: ailments feed the heart's frustration and serious illnesses its fear (and so a little strain); doctors
-and patients write about them in their journals; dreamfever and serious illnesses bring their own dreams; a doctor with
-a serious case is more likely to ask for a stocked infirmary when medicine is short, and pulling a patient through
-lifts both. Settings (People page): everyday ailments on or off, serious illnesses on or off, and how often (25% to
-200%). Off, nothing new starts; what's running finishes its course.
+and patients write about them in their journals; dreamfever, serious illnesses and many everyday ailments color their
+dreams; friends visit the sick; a doctor with a serious case is more likely to ask for a stocked infirmary when
+medicine is short, and pulling a patient through lifts both. Settings (People page): everyday ailments on or off,
+serious illnesses on or off, and how often (25% to 200%). Off, nothing new starts; what's running finishes its
+course.
 
 ## Seen and heard
 Rimfolk adds no art of its own, so it uses the game's own effects, sky and sounds to show what its events say is
@@ -970,7 +1046,11 @@ Version 0.4. It compiles against RimWorld 1.6 and is checked against 1.7 (the sa
 is checked against the real game types by the included validator. It runs in a live game with a 200+ mod medieval
 list. If something misbehaves, open the debug log (Options â†’ Development mode, then the log button): lines starting
 with `[Rimfolk]` are from this mod.
-Please share them so they can be fixed.
+Please share them so they can be fixed. Quicker still: with development mode on, open the debug actions and pick
+**Rimfolk: check myself** (under Rimfolk). One window shows the game, Rimfolk and Harmony versions, which game hooks
+applied and which didn't (and why), which parts are switched off or changed from their defaults, which of the mods
+Rimfolk works with it found, and its own errors and warnings this session; a screenshot of it (or the "Copy to
+clipboard" button) says most of what a bug report needs.
 
 ## For modders
 

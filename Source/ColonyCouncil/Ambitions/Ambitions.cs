@@ -22,8 +22,27 @@ namespace ColonyCouncil
         public ToneLines pitch = new ToneLines();
         public ToneLines achieved = new ToneLines();
         public RoomTemplateDef template;
+        /// <summary>
+        /// The goals are stages, reached one after another: only the current one counts, and each one reached stays
+        /// reached. A goal that counts new work starts counting when its stage begins.
+        /// </summary>
+        public bool staged;
+        /// <summary>Only for a colony of at least / at most this many people (a small band, a crowded town).</summary>
+        public int minColonists;
+        public int maxColonists = 9999;
+        /// <summary>Only in these eras, named as the line tags name them (tribal, medieval, industrial, spacer, lowtech, !lowtech).</summary>
+        public List<string> eras;
 
-        public bool Possible(Map map) => goals.Count > 0 && goals.All(g => g.Possible(map));
+        public bool Possible(Map map)
+        {
+            if (goals.Count == 0 || !WishParams.EraFits(eras)) return false;
+            if (minColonists > 0 || maxColonists < 9999)
+            {
+                int people = RoomUtil.ColonistCount(map);
+                if (people < minColonists || people > maxColonists) return false;
+            }
+            return goals.All(g => g.Possible(map));
+        }
 
         /// <summary>True when there's nothing left to do (goals counting new work never start out met).</summary>
         public bool AlreadyMet(Map map) => goals.All(g => g.Met(map, g.Baseline(map)));
@@ -49,8 +68,25 @@ namespace ColonyCouncil
         public float startProgress = -1f;
         public bool halfwaySaid;
         public bool deadlineSaid;
+        /// <summary>A staged ambition: the stage being worked on (the ones before it are done).</summary>
+        public int stage;
 
         public float Baseline(int i) => baselines != null && i < baselines.Count ? baselines[i] : 0f;
+
+        /// <summary>How far along one goal is: for a staged ambition, done stages are full and later ones empty.</summary>
+        public float GoalProgress(int i)
+        {
+            if (def == null || map == null || i < 0 || i >= def.goals.Count) return 0f;
+            if (def.staged)
+            {
+                if (i < stage) return 1f;
+                if (i > stage) return 0f;
+            }
+            return def.goals[i].Progress(map, Baseline(i));
+        }
+
+        /// <summary>A later stage of a staged ambition, not begun yet.</summary>
+        public bool Later(int i) => def != null && def.staged && i > stage;
 
         public float Progress
         {
@@ -58,7 +94,7 @@ namespace ColonyCouncil
             {
                 if (def == null || map == null) return 0f;
                 float sum = 0f;
-                for (int i = 0; i < def.goals.Count; i++) sum += def.goals[i].Progress(map, Baseline(i));
+                for (int i = 0; i < def.goals.Count; i++) sum += Mathf.Clamp01(GoalProgress(i));
                 return def.goals.Count == 0 ? 0f : sum / def.goals.Count;
             }
         }
@@ -68,10 +104,33 @@ namespace ColonyCouncil
             get
             {
                 if (def == null || map == null) return false;
+                if (def.staged) return stage >= def.goals.Count;
                 for (int i = 0; i < def.goals.Count; i++)
                     if (!def.goals[i].Met(map, Baseline(i))) return false;
                 return true;
             }
+        }
+
+        /// <summary>
+        /// Hourly: goals that keep their own count (a streak of calm days) update it, and a staged ambition moves on to its
+        /// next stage once the current one is reached. Returns the stage just reached, or -1.
+        /// </summary>
+        public int Hourly()
+        {
+            if (def == null || map == null) return -1;
+            if (baselines == null) baselines = new List<float>();
+            while (baselines.Count < def.goals.Count) baselines.Add(def.goals[baselines.Count].Baseline(map));
+            for (int i = 0; i < def.goals.Count; i++)
+            {
+                if (def.staged && i != stage) continue;
+                baselines[i] = def.goals[i].Update(map, baselines[i]);
+            }
+            if (!def.staged || stage >= def.goals.Count || !def.goals[stage].Met(map, Baseline(stage))) return -1;
+            int reached = stage;
+            stage++;
+            // The next stage counts new work from now.
+            if (stage < def.goals.Count) baselines[stage] = def.goals[stage].Baseline(map);
+            return reached;
         }
 
         public void ExposeData()
@@ -85,6 +144,7 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref startProgress, "startProgress", -1f);
             Scribe_Values.Look(ref halfwaySaid, "halfwaySaid");
             Scribe_Values.Look(ref deadlineSaid, "deadlineSaid");
+            Scribe_Values.Look(ref stage, "stage");
             if (Scribe.mode == LoadSaveMode.PostLoadInit && baselines == null) baselines = new List<float>();
         }
     }
@@ -162,6 +222,7 @@ namespace ColonyCouncil
 
             if (active != null)
             {
+                if (active.map != null && Find.Maps.Contains(active.map)) StageCheck(active);
                 if (active.map == null || !Find.Maps.Contains(active.map))
                 {
                     active = null;
@@ -193,6 +254,25 @@ namespace ColonyCouncil
             var home = MeetingMap();
             if (home != null && MeetingMath.IsNight(GenLocalDate.HourOfDay(home))) return;
             HoldMeeting(comp, false);
+        }
+
+        /// <summary>Streaks counted, and a staged ambition's stage reached: a message names the next one.</summary>
+        private static void StageCheck(AmbitionState a)
+        {
+            int reached;
+            try
+            {
+                reached = a.Hourly();
+            }
+            catch (System.Exception e)
+            {
+                CouncilLog.ErrorOnce("ambition hourly " + a.def?.defName, e);
+                return;
+            }
+            if (reached < 0 || a.def == null || a.stage >= a.def.goals.Count) return;
+            string next = a.def.goals[a.stage].Describe(a.map, a.Baseline(a.stage));
+            Messages.Message("CC_Ambition_StageReached".Translate(a.def.LabelCap.ToString().Named("AMBITION"), (reached + 1).Named("STAGE"),
+                a.def.goals.Count.Named("COUNT"), next.Named("NEXT")).Resolve(), new LookTargets(a.proposer), MessageTypeDefOf.PositiveEvent, false);
         }
 
         /// <summary>The proposer cheers at halfway and frets when time is short and the work isn't.</summary>
@@ -697,7 +777,9 @@ namespace ColonyCouncil
                 else by = "CC_Meeting_ProposedByMissing".Translate(p.proposer.LabelShort);
                 sb.AppendLine("<b>" + i + ". " + p.def.LabelCap + "</b> (" + by + ")");
                 sb.AppendLine("\"" + p.line + "\"");
-                foreach (var g in p.def.goals) sb.AppendLine("  - " + g.Describe(map, g.Baseline(map)));
+                if (p.def.staged) sb.AppendLine("  " + "CC_Ambition_InStages".Translate());
+                int n = 1;
+                foreach (var g in p.def.goals) sb.AppendLine("  " + (p.def.staged ? n++ + "." : "-") + " " + g.Describe(map, g.Baseline(map)));
                 sb.AppendLine("  " + "CC_Meeting_Deadline".Translate((p.def.days * Settings.ambitionDeadlineFactor).ToString("0")));
                 if (m.attendees.Count > 1)
                     sb.AppendLine("  " + "CC_Meeting_Votes".Translate(p.voters.Count, TextUtil.JoinAnd(p.voters.Select(v => v.LabelShort).ToList())));
@@ -797,6 +879,8 @@ namespace ColonyCouncil
                 DecidedWithoutThem(letter, proposer);
             }
             if (proposer != null) comp.standings.Change(proposer, 5f, "CC_Log_IdeaChosen".Translate(def.label));
+            // A life goal may count it: seeing the council take up their idea.
+            if (proposer != null) comp.aspirations.Notify(proposer, "pitched");
             int now = Find.TickManager.TicksGame;
             active = new AmbitionState
             {

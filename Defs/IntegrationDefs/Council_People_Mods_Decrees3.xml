@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    How other mods' people feel about the decrees of everyday life (DecreeDefs/Council_Decrees3.xml). Matched by name
+    while the game runs (see Council_People_Mods.xml): with the mod missing, an entry never fits anyone.
+  -->
+
+  <ColonyCouncil.ModPeopleDef>
+    <defName>Council_ModPeople_Decrees3</defName>
+    <label>everyday decrees (traits and memes from other mods)</label>
+    <decrees>
+      <!-- Quiet hours -->
+      <li><decree>Council_Decree_QuietHours</decree><who>trait:VTE_FunLoving|trait:VTE_Lush</who><reaction>Hate</reaction><first>true</first></li>
+      <li><decree>Council_Decree_QuietHours</decree><who>trait:VTE_Anxious</who><reaction>Like</reaction><first>true</first></li>
+      <li><decree>Council_Decree_QuietHours</decree><who>trait:VTE_HeavySleeper</who><reaction>Neutral</reaction><first>true</first></li>
+      <li><decree>Council_Decree_QuietHours</decree><who>meme:AM_Monastic</who><reaction>Like</reaction></li>
+      <li><decree>Council_Decree_QuietHours</decree><who>meme:VME_PartyLife</who><reaction>Dislike</reaction></li>
+      <!-- Shared meals -->
+      <li><decree>Council_Decree_SharedMeals</decree><who>trait:VTE_FunLoving</who><reaction>Like</reaction><first>true</first></li>
+      <li><decree>Council_Decree_SharedMeals</decree><who>trait:VTE_Snob</who><reaction>Dislike</reaction><first>true</first></li>
+      <li><decree>Council_Decree_SharedMeals</decree><who>meme:Collectivist</who><reaction>Like</reaction></li>
+      <li><decree>Council_Decree_SharedMeals</decree><who>meme:VME_PartyLife</who><reaction>Like</reaction></li>
+      <!-- Rest when ill -->
+      <li><decree>Council_Decree_SickBay</decree><who>trait:VTE_Workaholic</who><reaction>Hate</reaction><first>true</first></li>
+      <li><decree>Council_Decree_SickBay</decree><who>trait:VTE_Anxious</who><reaction>Like</reaction><first>true</first></li>
+      <li><decree>Council_Decree_SickBay</decree><who>healer</who><reaction>Like</reaction></li>
+      <li><decree>Council_Decree_SickBay</decree><who>meme:VME_Healthcare</who><reaction>Like</reaction></li>
+      <!-- Banked fires -->
+      <li><decree>Council_Decree_BankedFires</decree><who>trait:VTE_Snob|trait:VTE_Tycoon</who><reaction>Hate</reaction><first>true</first></li>
+      <li><decree>Council_Decree_BankedFires</decree><who>trait:VTE_ChildOfMountain</who><reaction>Neutral</reaction><first>true</first></li>
+      <li><decree>Council_Decree_BankedFires</decree><who>meme:AM_Monastic</who><reaction>Like</reaction></li>
+      <!-- Apprenticeships -->
+      <li><decree>Council_Decree_Apprentices</decree><who>trait:VTE_Academian</who><reaction>Love</reaction><first>true</first></li>
+      <li><decree>Council_Decree_Apprentices</decree><who>trait:VTE_Dunce|trait:VTE_Prodigy</who><reaction>Like</reaction><first>true</first></li>
+      <li><decree>Council_Decree_Apprentices</decree><who>trait:VTE_Rebel</who><reaction>Dislike</reaction><first>true</first></li>
+      <li><decree>Council_Decree_Apprentices</decree><who>meme:VME_CraftCulture|meme:Collectivist</who><reaction>Like</reaction></li>
+      <!-- Feast day -->
+      <li><decree>Council_Decree_FeastDay</decree><who>trait:VTE_FunLoving|trait:VTE_Lush</who><reaction>Love</reaction><first>true</first></li>
+      <li><decree>Council_Decree_FeastDay</decree><who>trait:VTE_RefinedPalate</who><reaction>Like</reaction><first>true</first></li>
+      <li><decree>Council_Decree_FeastDay</decree><who>trait:VTE_Workaholic</who><reaction>Dislike</reaction><first>true</first></li>
+      <li><decree>Council_Decree_FeastDay</decree><who>meme:VME_PartyLife</who><reaction>Love</reaction></li>
+      <li><decree>Council_Decree_FeastDay</decree><who>meme:AM_Monastic|meme:VME_HardcoreIndustrialism</who><reaction>Dislike</reaction></li>
+    </decrees>
+  </ColonyCouncil.ModPeopleDef>
+
+</Defs>

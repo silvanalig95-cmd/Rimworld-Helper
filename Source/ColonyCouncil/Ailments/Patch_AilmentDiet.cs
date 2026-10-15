@@ -29,14 +29,26 @@ namespace ColonyCouncil
     }
 
     /// <summary>
-    /// Once the defs are loaded: a doctor who has just taken on a serious case is likelier to ask the council for a
-    /// stocked infirmary (the wish's own conditions still apply: it only comes up when medicine is short).
+    /// Once the defs are loaded: the appendix operation gets the game's surgery outcomes, and a doctor who has just taken
+    /// on a serious case is likelier to ask the council for a stocked infirmary (the wish's own conditions still apply:
+    /// it only comes up when medicine is short).
     /// </summary>
     [StaticConstructorOnStartup]
     public static class AilmentStartup
     {
         static AilmentStartup()
         {
+            try
+            {
+                // The appendix operation fails the way the game's own operations do.
+                var appendix = DefDatabase<RecipeDef>.GetNamedSilentFail("Council_Surgery_RemoveAppendix");
+                if (appendix != null && appendix.surgeryOutcomeEffect == null)
+                    appendix.surgeryOutcomeEffect = DefDatabase<RecipeDef>.GetNamedSilentFail("RemoveBodyPart")?.surgeryOutcomeEffect;
+            }
+            catch (Exception e)
+            {
+                CouncilLog.ErrorOnce("ailments: appendix operation", e);
+            }
             try
             {
                 var wish = DefDatabase<WishDef>.GetNamedSilentFail("Council_Wish_Infirmary");

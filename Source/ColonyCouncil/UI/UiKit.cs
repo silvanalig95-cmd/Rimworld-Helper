@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using RimWorld;
 using UnityEngine;
 using Verse;
+using Verse.Sound;
 
 namespace ColonyCouncil
 {
@@ -384,6 +385,31 @@ namespace ColonyCouncil
             LabelFit(new Rect(tx, y, Mathf.Max(0f, width - (tx - x) - rw), 24f), text, c);
             Divider(x, y + 25f, width);
             Text.Font = GameFont.Small;
+            return SectionHeight;
+        }
+
+        /// <summary>
+        /// A <see cref="SectionTitle"/> that folds its section away when clicked, with a small arrow in front saying which
+        /// way it is. <paramref name="open"/> says whether to draw the section under it; the key names the section in
+        /// <paramref name="folds"/> (without folds it's a plain heading, always open). Returns <see cref="SectionHeight"/>.
+        /// </summary>
+        public static float FoldTitle(float x, float y, float width, string text, Folds folds, string key, out bool open, Texture2D icon = null,
+            Color? color = null, string right = null)
+        {
+            open = folds == null || folds.IsOpen(key);
+            if (folds == null) return SectionTitle(x, y, width, text, icon, color, right);
+            const float arrow = 15f;
+            var hit = new Rect(x, y, width, 26f);
+            if (Mouse.IsOver(hit)) Widgets.DrawHighlight(hit);
+            Icon(new Rect(x + 1f, y + 7f, 10f, 10f), open ? TexButton.Collapse : TexButton.Reveal, WithAlpha(color ?? HeaderColor, 0.8f));
+            SectionTitle(x + arrow, y, width - arrow, text, icon, color, right);
+            Divider(x, y + 25f, arrow);
+            TooltipHandler.TipRegion(hit, open ? "CC_UI_FoldTip".Translate() : "CC_UI_UnfoldTip".Translate());
+            if (Widgets.ButtonInvisible(hit, false))
+            {
+                folds.Toggle(key);
+                (open ? SoundDefOf.TabClose : SoundDefOf.TabOpen).PlayOneShotOnCamera();
+            }
             return SectionHeight;
         }
 

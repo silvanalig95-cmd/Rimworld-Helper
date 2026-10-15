@@ -1,0 +1,327 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    The third set of social events: what happens between two colonists because of what's going on in their lives.
+    Same format as Council_SocialEvents.xml, with the newer conditions (Source/ColonyCouncil/Social/SocialEvents.cs):
+    aAiling/bAiling/bSerious (one of Rimfolk's ailments, or a serious illness), sharedAilment (both have the same one of
+    these), aFeelings/bFeelings (the heart's feelings, never with the heart off) and aFeelingAboutB, aMemories/bMemories
+    (thoughts at most memoryDays old), camp (a camp on the map) and situations (a world event in the region).
+    tone: how it stands between the two, as for moments: warm events wait out a spat that is still sore, friction
+    events leave them sore for soreHours, mend events need a spat they haven't made up for.
+  -->
+
+  <!-- ===================== Illness ===================== -->
+
+  <ColonyCouncil.SocialEventDef>
+    <defName>Council_Soc3_SickbedVigil</defName>
+    <label>a vigil at the sickbed</label>
+    <tone>warm</tone>
+    <weight>1.5</weight>
+    <tie>Friends</tie>
+    <minStrength>10</minStrength>
+    <bSerious>true</bSerious>
+    <texts>
+      <li>{A_nameDef} sat up with {B_nameDef} through the worst night of the illness, changing the cloth on {B_possessive} forehead every hour.</li>
+      <li>{A_nameDef} slept in a chair by {B_nameDef}'s bed three nights running and wouldn't hear of anyone else taking a turn.</li>
+      <li>{A_nameDef} read aloud to {B_nameDef} through the long sick days, the same few stories over and over, because {B_nameDef} asked for them.</li>
+      <li>When {B_nameDef}'s fever was at its worst, {A_nameDef} held {B_possessive} hand and talked about nothing until morning.</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Soc_KeptVigil</thought></li>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_Soc_SomeoneStayed</thought></li>
+      <li Class="ColonyCouncil.DilemmaEffect_Hediff"><target>A</target><hediff>Council_Dlm_Sleepless</hediff><exceptTrait><li>NightOwl</li></exceptTrait><chance>0.4</chance></li>
+    </effects>
+    <changeTie>Friends</changeTie>
+    <change>6</change>
+    <note>{A_nameDef} kept a vigil at {B_nameDef}'s sickbed</note>
+    <notable>true</notable>
+  </ColonyCouncil.SocialEventDef>
+
+  <ColonyCouncil.SocialEventDef>
+    <defName>Council_Soc3_BackOnFeet</defName>
+    <label>back on their feet</label>
+    <tone>warm</tone>
+    <weight>1.2</weight>
+    <minOpinion>0</minOpinion>
+    <bMemories><li>Council_Ail_Survived</li></bMemories>
+    <memoryDays>6</memoryDays>
+    <texts>
+      <li>{A_nameDef} put together a small supper to mark {B_nameDef}'s first week back on {B_possessive} feet, with a candle stuck in the bread.</li>
+      <li>{A_nameDef} carved {B_nameDef} a walking stick for the weak days after the illness, with {B_nameDef}'s name cut into the handle.</li>
+      <li>{A_nameDef} took {B_nameDef} on a slow walk to the edge of the fields, the first since the illness, and they stood in the sun a while.</li>
+      <li>{A_nameDef} saved {B_nameDef} the best of every meal for a week to build {B_objective} back up, and wouldn't take no for an answer.</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_Soc_BuiltBackUp</thought></li>
+    </effects>
+    <changeTie>Friends</changeTie>
+    <change>5</change>
+    <note>{A_nameDef} looked after {B_nameDef} after the illness</note>
+  </ColonyCouncil.SocialEventDef>
+
+  <ColonyCouncil.SocialEventDef>
+    <defName>Council_Soc3_WhoGaveItToWhom</defName>
+    <label>who gave it to whom</label>
+    <tone>friction</tone>
+    <soreHours>12</soreHours>
+    <maxOpinion>40</maxOpinion>
+    <sharedAilment>
+      <li>Council_Ail_HeadCold</li>
+      <li>Council_Ail_StomachBug</li>
+      <li>Council_Ail_ChestCold</li>
+      <li>Council_Ail_Pinkeye</li>
+      <li>Council_Ail_Dreamfever</li>
+      <li>Council_Ail_Lice</li>
+      <li>Flu</li>
+    </sharedAilment>
+    <texts>
+      <li>{A_nameDef} and {B_nameDef} came down with the same thing and spent an evening arguing over who gave it to whom.</li>
+      <li>{A_nameDef} told everyone at supper that {B_nameDef} had sneezed on the bread. {B_nameDef} said {A_nameDef} had been sniffling first.</li>
+      <li>Sick in neighboring beds, {A_nameDef} and {B_nameDef} kept count of each other's coughs and complained about the totals.</li>
+      <li>{A_nameDef} blamed {B_nameDef}'s dirty cup for what was going round. {B_nameDef} blamed {A_nameDef}'s dirty everything.</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>AAndB</target><thought>Council_Soc_BlamedForIt</thought></li>
+    </effects>
+    <changeTie>Rivals</changeTie>
+    <change>3</change>
+    <note>argued about who made whom ill</note>
+  </ColonyCouncil.SocialEventDef>
+
+  <!-- ===================== The camp ===================== -->
+
+  <ColonyCouncil.SocialEventDef>
+    <defName>Council_Soc3_CampVisit</defName>
+    <label>an evening at the camp</label>
+    <tone>warm</tone>
+    <weight>1.2</weight>
+    <minOpinion>10</minOpinion>
+    <camp>true</camp>
+    <texts>
+      <li>{A_nameDef} and {B_nameDef} walked over to the strangers' camp in the evening and came back late, full of stories and someone else's stew.</li>
+      <li>{A_nameDef} and {B_nameDef} swapped a basket of bread at the camp for a song they'd never heard, and sang it badly all the way home.</li>
+      <li>{A_nameDef} took {B_nameDef} to meet a family at the camp, and they all sat by the fire until the stars came out.</li>
+      <li>{A_nameDef} and {B_nameDef} spent an afternoon at the camp learning a game played with stones on a board, and lost every round.</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>AAndB</target><thought>Council_Soc_EveningAtTheCamp</thought></li>
+    </effects>
+    <changeTie>Friends</changeTie>
+    <change>4</change>
+    <note>an evening at the camp together</note>
+  </ColonyCouncil.SocialEventDef>
+
+  <ColonyCouncil.SocialEventDef>
+    <defName>Council_Soc3_CampSuspicion</defName>
+    <label>suspicion over the camp</label>
+    <tone>friction</tone>
+    <maxOpinion>20</maxOpinion>
+    <camp>true</camp>
+    <texts>
+      <li>{A_nameDef} saw {B_nameDef} slip something to the strangers at the camp and wanted to know what, and why, in front of everyone.</li>
+      <li>{A_nameDef} accused {B_nameDef} of spending more time at the camp than at work. {B_nameDef} said at least the camp people were pleasant company.</li>
+      <li>{A_nameDef} counted the stores twice and looked hard at {B_nameDef}, who had been friendly with the camp all week.</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_Soc_Suspected</thought></li>
+    </effects>
+    <changeTie>Rivals</changeTie>
+    <change>3</change>
+    <note>suspicion over the camp</note>
+  </ColonyCouncil.SocialEventDef>
+
+  <!-- ===================== The council ===================== -->
+
+  <ColonyCouncil.SocialEventDef>
+    <defName>Council_Soc3_AfterTheVote</defName>
+    <label>a quarrel after the council</label>
+    <tone>friction</tone>
+    <maxOpinion>30</maxOpinion>
+    <aMemories><li>Council_DecidedWithoutMe</li><li>Council_MissedMeeting</li></aMemories>
+    <bMemories><li>Council_HeardAtMeeting</li><li>Council_HeardAtMeetingLate</li></bMemories>
+    <texts>
+      <li>{A_nameDef} missed the council meeting and blamed {B_nameDef}, who was there, for how it went.</li>
+      <li>{A_nameDef} cornered {B_nameDef} after the council had met and wanted to know why nobody had spoken up for {A_objective}.</li>
+      <li>{A_nameDef} heard from {B_nameDef} what the council had decided while {A_pronoun} was away, and took it out on the messenger.</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>AAndB</target><thought>Council_Soc_MeetingQuarrel</thought></li>
+    </effects>
+    <changeTie>Rivals</changeTie>
+    <change>3</change>
+    <note>quarreled about the council's decision</note>
+  </ColonyCouncil.SocialEventDef>
+
+  <ColonyCouncil.SocialEventDef>
+    <defName>Council_Soc3_CouncilAllies</defName>
+    <label>allies at the council</label>
+    <tone>warm</tone>
+    <minOpinion>0</minOpinion>
+    <aMemories><li>Council_HeardAtMeeting</li><li>Council_HeardAtMeetingLate</li></aMemories>
+    <bMemories><li>Council_HeardAtMeeting</li><li>Council_HeardAtMeetingLate</li></bMemories>
+    <texts>
+      <li>{A_nameDef} and {B_nameDef} found themselves on the same side at the council, and walked out together still making their case to each other.</li>
+      <li>{B_nameDef} backed {A_nameDef}'s idea at the council when nobody else would, and {A_nameDef} hasn't forgotten it.</li>
+      <li>{A_nameDef} and {B_nameDef} stayed behind after the council had gone, planning how to win the next vote.</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Soc_BackedAtCouncil</thought></li>
+    </effects>
+    <changeTie>Friends</changeTie>
+    <change>4</change>
+    <note>stood together at the council</note>
+  </ColonyCouncil.SocialEventDef>
+
+  <!-- ===================== What they feel ===================== -->
+
+  <ColonyCouncil.SocialEventDef>
+    <defName>Council_Soc3_NightFears</defName>
+    <label>fears in the night</label>
+    <tone>warm</tone>
+    <weight>1.2</weight>
+    <tie>Friends</tie>
+    <minStrength>10</minStrength>
+    <aFeelings><li>Fear</li><li>Dread</li></aFeelings>
+    <texts>
+      <li>{A_nameDef} woke {B_nameDef} in the night, shaking from something {A_pronoun} couldn't name. {B_nameDef} made tea and sat up with {A_objective} until dawn.</li>
+      <li>{A_nameDef} admitted to {B_nameDef} that {A_pronoun} had been checking the doors three times a night. {B_nameDef} started checking them with {A_objective}, once.</li>
+      <li>{B_nameDef} found {A_nameDef} awake in the dark, listening to every sound, and stayed until {A_nameDef} fell asleep.</li>
+      <li>{A_nameDef} told {B_nameDef} what frightened {A_objective} most. {B_nameDef} didn't laugh, and didn't tell anyone.</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Soc_NotAloneWithIt</thought></li>
+    </effects>
+    <changeTie>Friends</changeTie>
+    <change>5</change>
+    <note>{B_nameDef} sat up with {A_nameDef} through a frightened night</note>
+  </ColonyCouncil.SocialEventDef>
+
+  <ColonyCouncil.SocialEventDef>
+    <defName>Council_Soc3_GriefWalk</defName>
+    <label>grief carried together</label>
+    <tone>warm</tone>
+    <weight>1.2</weight>
+    <minOpinion>0</minOpinion>
+    <aFeelings><li>Grief</li></aFeelings>
+    <texts>
+      <li>{B_nameDef} took {A_nameDef} out walking on a gray morning, the long way round, and let {A_objective} talk about the one {A_pronoun} had lost.</li>
+      <li>{B_nameDef} sat with {A_nameDef} by the graves, saying nothing, until {A_nameDef} was ready to go back.</li>
+      <li>{B_nameDef} took over {A_nameDef}'s chores for a day so that {A_nameDef} could grieve in peace.</li>
+      <li>{B_nameDef} brought {A_nameDef} a bowl of something warm and an old story about the dead, the funny kind, and {A_nameDef} laughed despite everything.</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Soc_CarriedMyGrief</thought></li>
+    </effects>
+    <changeTie>Friends</changeTie>
+    <change>5</change>
+    <note>{B_nameDef} helped {A_nameDef} through grief</note>
+  </ColonyCouncil.SocialEventDef>
+
+  <ColonyCouncil.SocialEventDef>
+    <defName>Council_Soc3_HadItOut</defName>
+    <label>having it out</label>
+    <tone>friction</tone>
+    <soreHours>36</soreHours>
+    <weight>0.6</weight>
+    <aFeelings><li>Anger</li></aFeelings>
+    <aFeelingAboutB>true</aFeelingAboutB>
+    <minFeeling>0.5</minFeeling>
+    <texts>
+      <li>{A_nameDef} finally said what {A_pronoun} thinks of {B_nameDef}, at supper, with everyone listening. Supper ended early.</li>
+      <li>{A_nameDef} laid out every grievance {A_pronoun} had with {B_nameDef}, in order, from the first. It took a while.</li>
+      <li>{A_nameDef} told {B_nameDef} exactly what {B_pronoun} could do with {B_possessive} opinions. The room went quiet.</li>
+      <li>{A_nameDef} and {B_nameDef} had it out at last behind the storeroom. It was loud, it was only words, and it settled nothing.</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>AAndB</target><thought>Council_Soc_HadItOut</thought></li>
+    </effects>
+    <changeTie>Rivals</changeTie>
+    <change>6</change>
+    <note>had it out, loudly</note>
+    <notable>true</notable>
+  </ColonyCouncil.SocialEventDef>
+
+  <ColonyCouncil.SocialEventDef>
+    <defName>Council_Soc3_PeaceOffering</defName>
+    <label>a peace offering</label>
+    <tone>mend</tone>
+    <weight>1.5</weight>
+    <minOpinion>-40</minOpinion>
+    <roleA><notTrait><li>Abrasive</li></notTrait></roleA>
+    <texts>
+      <li>After their quarrel, {A_nameDef} left a little carved bird on {B_nameDef}'s bed, with no note. {B_nameDef} knew who it was from.</li>
+      <li>{A_nameDef} made {B_nameDef}'s favorite supper the day after their argument and set it down in front of {B_objective} without a word.</li>
+      <li>{A_nameDef} found {B_nameDef} after their spat and said sorry, plainly, which was harder than {A_pronoun} had expected.</li>
+      <li>{A_nameDef} mended the thing of {B_nameDef}'s that had started the argument, and left it where {B_nameDef} would find it.</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_Soc_PeaceOffering</thought></li>
+    </effects>
+    <changeTie>Friends</changeTie>
+    <change>3</change>
+    <note>a peace offering after a quarrel</note>
+  </ColonyCouncil.SocialEventDef>
+
+  <ColonyCouncil.SocialEventDef>
+    <defName>Council_Soc3_FarFromHome</defName>
+    <label>far from home together</label>
+    <tone>warm</tone>
+    <minOpinion>-10</minOpinion>
+    <aFeelings><li>Homesick</li></aFeelings>
+    <bFeelings><li>Homesick</li><li>Loneliness</li></bFeelings>
+    <texts>
+      <li>{A_nameDef} and {B_nameDef} found out they missed the same things about home: the bread, the bells, the sound of rain on a proper roof.</li>
+      <li>{A_nameDef} taught {B_nameDef} a song from home, {B_nameDef} taught {A_nameDef} one from {B_possessive}, and they sang both until someone asked them to stop.</li>
+      <li>{A_nameDef} and {B_nameDef} drew maps of where they came from in the dirt and showed each other the best places.</li>
+      <li>{A_nameDef} and {B_nameDef} cooked a dish from home together. It didn't taste right, and they ate every bite.</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>AAndB</target><thought>Council_Soc_HomeTogether</thought></li>
+    </effects>
+    <changeTie>Friends</changeTie>
+    <change>5</change>
+    <note>missed home together</note>
+  </ColonyCouncil.SocialEventDef>
+
+  <!-- ===================== The region ===================== -->
+
+  <ColonyCouncil.SocialEventDef>
+    <defName>Council_Soc3_FoodForTheTowns</defName>
+    <label>something for the hungry</label>
+    <tone>warm</tone>
+    <minOpinion>0</minOpinion>
+    <situations><li>hunger</li></situations>
+    <texts>
+      <li>{A_nameDef} and {B_nameDef} set aside part of their own rations for the hungry towns, to go with the next traveler heading that way.</li>
+      <li>{A_nameDef} talked {B_nameDef} into giving up a meal a week for the towns, then gave up two.</li>
+      <li>{A_nameDef} and {B_nameDef} dried and packed a sack of beans for the hungry, and argued the whole time about the right way to tie the sack.</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>AAndB</target><thought>Council_Soc_DidOurPart</thought></li>
+    </effects>
+    <changeTie>Friends</changeTie>
+    <change>3</change>
+    <note>put something by for the hungry</note>
+  </ColonyCouncil.SocialEventDef>
+
+  <ColonyCouncil.SocialEventDef>
+    <defName>Council_Soc3_SickInTheTowns</defName>
+    <label>news of the sick</label>
+    <tone>neutral</tone>
+    <minOpinion>-10</minOpinion>
+    <situations><li>sickness</li></situations>
+    <texts>
+      <li>{A_nameDef} and {B_nameDef} sat up late talking about the sickness in the towns, and who they knew there, and whether it would come here.</li>
+      <li>{A_nameDef} made {B_nameDef} promise to wash before every meal until the sickness out there had passed. {B_nameDef} made {A_nameDef} promise the same.</li>
+      <li>{A_nameDef} and {B_nameDef} sewed bandages for the sick in the towns all evening, and talked about everything except the sickness.</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>AAndB</target><thought>Council_Soc_WorriedForTheTowns</thought></li>
+    </effects>
+    <changeTie>Friends</changeTie>
+    <change>2</change>
+    <note>worried together about the sickness in the towns</note>
+  </ColonyCouncil.SocialEventDef>
+
+</Defs>

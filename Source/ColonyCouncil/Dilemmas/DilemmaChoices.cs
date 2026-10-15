@@ -114,8 +114,36 @@ namespace ColonyCouncil
         public static HashSet<string> For(DilemmaContext ctx)
         {
             var tags = Flavor.TagsFor(ctx?.a);
-            if (ctx != null) Add(tags, ctx.a, ctx.b, ctx.stranger, ctx.faction);
+            if (ctx != null)
+            {
+                Add(tags, ctx.a, ctx.b, ctx.stranger, ctx.faction);
+                Moment(tags, ctx.map ?? ctx.a?.MapHeld, ctx.a, ctx.stranger);
+            }
             return tags;
+        }
+
+        /// <summary>
+        /// The land (land:desert, land:coast...: see <see cref="Lands"/>) and who is ill: "ill" and "ail:Key" (a Rimfolk
+        /// ailment) or "ill:DefName" for A, "x:ill" for the stranger.
+        /// </summary>
+        private static void Moment(HashSet<string> tags, Map map, Pawn a, Pawn x)
+        {
+            try
+            {
+                Lands.AddTags(map, tags);
+                var h = LifeChecks.Illness(a);
+                if (h != null)
+                {
+                    tags.Add("ill");
+                    string key = AilmentTracker.InfoOf(h.def)?.key;
+                    tags.Add(key.NullOrEmpty() ? "ill:" + h.def.defName : "ail:" + key);
+                }
+                if (x != null && x.RaceProps.Humanlike && LifeChecks.Illness(x) != null) tags.Add("x:ill");
+            }
+            catch (System.Exception e)
+            {
+                CouncilLog.ErrorOnce("letter tags (moment)", e);
+            }
         }
 
         /// <summary>

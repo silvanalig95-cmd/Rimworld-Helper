@@ -173,6 +173,8 @@ namespace ColonyCouncil
         public float basic = 1f;
         public float industrial = 1f;
         public float ultra = 1f;
+        /// <summary>Treatment only turns it back below this severity (rabies, once the symptoms show: past saving).</summary>
+        public float worksBelow = 999f;
 
         public HediffCompProperties_AilmentMedicine()
         {
@@ -209,7 +211,7 @@ namespace ColonyCouncil
         public override float SeverityChangePerDay()
         {
             var t = Tend;
-            if (t == null || !t.IsTended) return 0f;
+            if (t == null || !t.IsTended || parent.Severity >= Props.worksBelow) return 0f;
             return Props.severityPerDayTended * t.tendQuality * Factor;
         }
 
@@ -242,6 +244,30 @@ namespace ColonyCouncil
             base.CompExposeData();
             Scribe_Values.Look(ref tier, "tier", -1);
         }
+    }
+
+    /// <summary>
+    /// A course with no immunity to build, only a turning point: rabies grows slowly and quietly from the bite while
+    /// treatment can still turn it back, then fast once the symptoms show. Below <see cref="fastAbove"/> it changes by
+    /// <see cref="severityPerDay"/>, from there by <see cref="fastPerDay"/>.
+    /// </summary>
+    public class HediffCompProperties_AilmentCourse : HediffCompProperties
+    {
+        public float severityPerDay = 0.03f;
+        public float fastAbove = 999f;
+        public float fastPerDay = 0.2f;
+
+        public HediffCompProperties_AilmentCourse()
+        {
+            compClass = typeof(HediffComp_AilmentCourse);
+        }
+    }
+
+    public class HediffComp_AilmentCourse : HediffComp_SeverityModifierBase
+    {
+        public HediffCompProperties_AilmentCourse Props => (HediffCompProperties_AilmentCourse)props;
+
+        public override float SeverityChangePerDay() => parent.Severity >= Props.fastAbove ? Props.fastPerDay : Props.severityPerDay;
     }
 
     /// <summary>

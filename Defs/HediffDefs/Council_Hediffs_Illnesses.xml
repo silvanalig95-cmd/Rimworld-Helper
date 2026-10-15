@@ -3,13 +3,15 @@
 
   <!--
     Serious illnesses (Source/ColonyCouncil/Ailments/): rare, behind their own setting, at most one kind running in the
-    colony at a time and none within 30 days of the last (AilmentTracker). Six are modeled on real diseases, one is
-    invented (glassblood). The lethal ones are the game's immunity race: fatal untreated, beaten by steady tending,
-    with the medicine counted as the real disease would (HediffCompProperties_AilmentMedicine: basic is herbal medicine
-    or none, industrial and ultra are industrial and glitterworld medicine). Tools/Tests checks each against those
-    claims. Where the real disease has an incubation period, a hidden first stage holds it (no symptoms, no immunity
-    yet), and the letter comes when it shows. Babies never get them; children get a milder course where that's true
-    of the real disease.
+    colony at a time and none within 30 days of the last (AilmentTracker). Twelve are modeled on real diseases, two are
+    invented (glassblood, hive fever). Most lethal ones are the game's immunity race: fatal untreated, beaten by steady
+    tending, with the medicine counted as the real disease would (HediffCompProperties_AilmentMedicine: basic is herbal
+    medicine or none, industrial and ultra are industrial and glitterworld medicine). Rabies has no immunity race but a
+    turning point (HediffCompProperties_AilmentCourse): treatable from the bite, fatal once the symptoms show.
+    Measles, kidney stones and shingles are serious but can't kill (lethalSeverity -1). Appendicitis can also be cured
+    by surgery (the RecipeDef at the end). Tools/Tests checks each against those claims. Where the real disease has an
+    incubation period, a hidden first stage holds it (no symptoms, no immunity yet), and the letter comes when it
+    shows. Babies never get them; children get a milder course where that's true of the real disease.
   -->
 
   <HediffDef Name="Council_IllnessBase" Abstract="True">
@@ -313,7 +315,7 @@
       <li Class="ColonyCouncil.HediffCompProperties_Ailment">
         <serious>true</serious>
         <key>Typhus</key>
-        <causes><li><trigger>CrowdedDirty</trigger><hours>4</hours><chance>0.015</chance></li></causes>
+        <causes><li><trigger>CrowdedDirty</trigger><hours>4</hours><chance>0.015</chance><boostHediff>Council_Ail_Lice</boostHediff><boost>3</boost></li></causes>
         <cooldownDays>60</cooldownDays>
         <spreadPerHour>0.003</spreadPerHour>
         <spreadNeedsDirt>true</spreadNeedsDirt>
@@ -655,5 +657,604 @@
       </li>
     </stages>
   </HediffDef>
+
+  <!-- ===================== Cholera ===================== -->
+
+  <HediffDef ParentName="Council_IllnessBase">
+    <defName>Council_Ail_Cholera</defName>
+    <label>cholera</label>
+    <description>A bacterial infection of the gut, spread through water and food fouled by the sick: in hot weather, in crowded and dirty quarters, or from a cook who didn't wash. Half a day to two days after catching it come watery diarrhea and vomiting so heavy that the body dries out within hours. Untreated it can kill in two or three days. The cure is rehydration: water with a little salt and sugar, sip by sip, as often as the patient can take it, so steady tending matters far more than the kind of medicine. Modern medicine (fluids and antibiotics) shortens it further. It passes to people who sleep in the same dirty room; clean water, clean hands and clean rooms stop it.</description>
+    <tendable>true</tendable>
+    <comps>
+      <li Class="ColonyCouncil.HediffCompProperties_Ailment">
+        <serious>true</serious>
+        <key>Cholera</key>
+        <cooldownDays>60</cooldownDays>
+        <spreadPerHour>0.004</spreadPerHour>
+        <spreadNeedsDirt>true</spreadNeedsDirt>
+        <spreadWhileTended>0.4</spreadWhileTended>
+        <maxCases>3</maxCases>
+        <afterEffects>
+          <li><hediff>Council_Ail_Convalescent</hediff><severity>0.5~0.7</severity></li>
+        </afterEffects>
+        <letterText>{PAWN_nameDef} has cholera: watery diarrhea and vomiting that won't stop, and {PAWN_pronoun} is drying out by the hour. It came from fouled water or food, or from someone else who has it.\n\nUntreated, cholera can kill in two or three days. Kept drinking and tended steadily, most people are over it within a week. Clean the room {PAWN_nameDef} sleeps in, or it will spread.</letterText>
+        <notes>
+          <li>Water, a little salt and a little sugar, a cup at a time, day and night. That's what saves them, more than any medicine. Then scrub everything.</li>
+          <li>[lowtech] Boil all the water, and keep the sick away from the kitchen and the well. Salted water with honey, sip by sip, and someone sitting with them all night.</li>
+          <li>[!lowtech] Oral rehydration salts, or a drip if they can't keep it down, and antibiotics. Boil the water and disinfect the latrine and that room.</li>
+        </notes>
+      </li>
+      <li Class="HediffCompProperties_TendDuration">
+        <baseTendDurationHours>8</baseTendDurationHours>
+        <severityPerDayTended>0</severityPerDayTended>
+      </li>
+      <li Class="ColonyCouncil.HediffCompProperties_AilmentMedicine">
+        <severityPerDayTended>-0.45</severityPerDayTended>
+        <basic>0.9</basic>
+        <industrial>1.2</industrial>
+        <ultra>1.5</ultra>
+      </li>
+      <li Class="ColonyCouncil.HediffCompProperties_AilmentImmunizable">
+        <severityPerDayNotImmune>0.45</severityPerDayNotImmune>
+        <severityPerDayNotImmuneRandomFactor>0.85~1.15</severityPerDayNotImmuneRandomFactor>
+        <immunityPerDaySick>0.3</immunityPerDaySick>
+        <severityPerDayImmune>-0.35</severityPerDayImmune>
+        <immunityPerDayNotSick>-0.01</immunityPerDayNotSick>
+        <incubationDays>0.5~2</incubationDays>
+      </li>
+    </comps>
+    <stages>
+      <li>
+        <label>incubating</label>
+        <becomeVisible>false</becomeVisible>
+      </li>
+      <li>
+        <minSeverity>0.05</minSeverity>
+        <label>watery diarrhea</label>
+        <vomitMtbDays>0.5</vomitMtbDays>
+        <restFallFactor>1.2</restFallFactor>
+        <capMods>
+          <li><capacity>Consciousness</capacity><offset>-0.05</offset></li>
+          <li><capacity>Moving</capacity><offset>-0.05</offset></li>
+        </capMods>
+      </li>
+      <li>
+        <minSeverity>0.3</minSeverity>
+        <label>dehydrated</label>
+        <vomitMtbDays>0.3</vomitMtbDays>
+        <restFallFactor>1.4</restFallFactor>
+        <painOffset>0.08</painOffset>
+        <capMods>
+          <li><capacity>Consciousness</capacity><offset>-0.15</offset></li>
+          <li><capacity>Moving</capacity><offset>-0.15</offset></li>
+          <li><capacity>Manipulation</capacity><offset>-0.05</offset></li>
+        </capMods>
+      </li>
+      <li>
+        <minSeverity>0.6</minSeverity>
+        <label>severely dehydrated</label>
+        <restFallFactor>1.5</restFallFactor>
+        <painOffset>0.12</painOffset>
+        <capMods>
+          <li><capacity>Consciousness</capacity><offset>-0.3</offset></li>
+          <li><capacity>Moving</capacity><offset>-0.3</offset></li>
+          <li><capacity>BloodPumping</capacity><offset>-0.1</offset></li>
+        </capMods>
+      </li>
+      <li>
+        <minSeverity>0.8</minSeverity>
+        <label>collapse</label>
+        <lifeThreatening>true</lifeThreatening>
+        <restFallFactor>1.6</restFallFactor>
+        <painOffset>0.12</painOffset>
+        <capMods>
+          <li><capacity>Consciousness</capacity><offset>-0.45</offset></li>
+          <li><capacity>Moving</capacity><offset>-0.4</offset></li>
+          <li><capacity>BloodPumping</capacity><offset>-0.2</offset></li>
+        </capMods>
+      </li>
+    </stages>
+  </HediffDef>
+
+  <!-- ===================== Appendicitis ===================== -->
+
+  <HediffDef ParentName="Council_IllnessBase">
+    <defName>Council_Ail_Appendicitis</defName>
+    <label>appendicitis</label>
+    <description>An inflamed appendix: a pain that starts around the navel and settles low on the right side of the belly, with fever, sickness and no appetite. Over a day or two it worsens, and if the appendix bursts, the infection spreads through the belly and can kill within days. The sure cure is surgery to take it out, which any doctor with medicine and a steady hand can do (the "remove appendix" operation). Without surgery, steady tending gives the body a chance to wall the infection off: modern antibiotics often calm it on their own, while with herbs alone it's a close thing. It never comes back once the appendix is out, or after the body has fought it off.</description>
+    <tendable>true</tendable>
+    <comps>
+      <li Class="ColonyCouncil.HediffCompProperties_Ailment">
+        <serious>true</serious>
+        <key>Appendicitis</key>
+        <once>true</once>
+        <cooldownDays>60</cooldownDays>
+        <afterEffects>
+          <li><hediff>Council_Ail_Convalescent</hediff><severity>0.5~0.7</severity></li>
+        </afterEffects>
+        <curedAfterEffects>
+          <li><hediff>Council_Ail_Convalescent</hediff><severity>0.3~0.5</severity></li>
+        </curedAfterEffects>
+        <letterText>{PAWN_nameDef} has a pain low on the right side of the belly that's getting worse by the hour, with a fever and no appetite. It's appendicitis.\n\nIf the appendix bursts, the infection spreads and can kill within days. The sure cure is to take it out: a doctor can do the "remove appendix" operation with two medicine. Until then, or with no surgeon to do it, tend {PAWN_nameDef} as often as possible.</letterText>
+        <notes>
+          <li>It has to come out, and the sooner the better. I'll need clean hands, good light and two doses of medicine.</li>
+          <li>[lowtech] Cut it out, quickly and cleanly, before it bursts. If no one can, cold packs on the belly, nothing to eat and willow bark, and hope it walls itself off.</li>
+          <li>[!lowtech] Antibiotics straight away, and surgery as soon as we can manage it. A burst appendix is a much harder operation.</li>
+        </notes>
+      </li>
+      <li Class="HediffCompProperties_TendDuration">
+        <baseTendDurationHours>12</baseTendDurationHours>
+        <severityPerDayTended>0</severityPerDayTended>
+      </li>
+      <li Class="ColonyCouncil.HediffCompProperties_AilmentMedicine">
+        <severityPerDayTended>-0.3</severityPerDayTended>
+        <basic>0.6</basic>
+        <industrial>1.3</industrial>
+        <ultra>1.6</ultra>
+      </li>
+      <li Class="ColonyCouncil.HediffCompProperties_AilmentImmunizable">
+        <severityPerDayNotImmune>0.3</severityPerDayNotImmune>
+        <severityPerDayNotImmuneRandomFactor>0.85~1.15</severityPerDayNotImmuneRandomFactor>
+        <immunityPerDaySick>0.2</immunityPerDaySick>
+        <severityPerDayImmune>-0.3</severityPerDayImmune>
+        <immunityPerDayNotSick>-0.5</immunityPerDayNotSick>
+      </li>
+    </comps>
+    <stages>
+      <li>
+        <label>grumbling</label>
+        <painOffset>0.08</painOffset>
+        <capMods><li><capacity>Eating</capacity><offset>-0.1</offset></li></capMods>
+      </li>
+      <li>
+        <minSeverity>0.25</minSeverity>
+        <label>inflamed</label>
+        <painOffset>0.2</painOffset>
+        <vomitMtbDays>1</vomitMtbDays>
+        <capMods>
+          <li><capacity>Consciousness</capacity><offset>-0.05</offset></li>
+          <li><capacity>Moving</capacity><offset>-0.1</offset></li>
+          <li><capacity>Eating</capacity><offset>-0.2</offset></li>
+        </capMods>
+      </li>
+      <li>
+        <minSeverity>0.55</minSeverity>
+        <label>burst</label>
+        <painOffset>0.3</painOffset>
+        <restFallFactor>1.3</restFallFactor>
+        <capMods>
+          <li><capacity>Consciousness</capacity><offset>-0.15</offset></li>
+          <li><capacity>Moving</capacity><offset>-0.25</offset></li>
+          <li><capacity>Eating</capacity><offset>-0.3</offset></li>
+        </capMods>
+      </li>
+      <li>
+        <minSeverity>0.8</minSeverity>
+        <label>peritonitis</label>
+        <lifeThreatening>true</lifeThreatening>
+        <painOffset>0.35</painOffset>
+        <restFallFactor>1.5</restFallFactor>
+        <capMods>
+          <li><capacity>Consciousness</capacity><offset>-0.3</offset></li>
+          <li><capacity>Moving</capacity><offset>-0.35</offset></li>
+          <li><capacity>BloodPumping</capacity><offset>-0.1</offset></li>
+        </capMods>
+      </li>
+    </stages>
+  </HediffDef>
+
+  <!-- ===================== Rabies ===================== -->
+
+  <HediffDef ParentName="Council_IllnessBase">
+    <defName>Council_Ail_Rabies</defName>
+    <label>rabies</label>
+    <description>A virus passed in the bite of a sick animal. For a week or two nothing shows but the bite itself. Then come fever and a tingling at the wound, then agitation, a terror of water and paralysis, and once those symptoms show it is fatal within days, whatever anyone does. Before then it can be stopped: the bite washed out, and treatment kept up every day until the danger has passed. Modern medicine (the vaccine and antibodies) does it in days; with herbs and wound care alone it takes weeks of tending without a break. A bite cleaned and dressed within a few hours is half as likely to pass it on.</description>
+    <initialSeverity>0.15</initialSeverity>
+    <tendable>true</tendable>
+    <comps>
+      <li Class="ColonyCouncil.HediffCompProperties_Ailment">
+        <serious>true</serious>
+        <key>Rabies</key>
+        <causes><li><trigger>AnimalBite</trigger><chance>0.03</chance></li></causes>
+        <cooldownDays>60</cooldownDays>
+        <startSeverity>0.13~0.17</startSeverity>
+        <letterText>The animal that bit {PAWN_nameDef} wasn't right: foam at the mouth, no fear, biting at anything. {PAWN_nameDef} may have rabies.\n\nNothing shows yet, and there is time. Treatment every day from now until the danger has passed will stop it; modern medicine works fastest. If the treatment lapses and the fever and the fear of water come, nothing will save {PAWN_objective}.</letterText>
+        <notes>
+          <li>Wash the bite out, long and hard, and treat it every single day. We don't stop until I say so.</li>
+          <li>[lowtech] Wash it with soap and running water until your arms ache, then burn it clean. Treat it every day for weeks. There's no second chance with this one.</li>
+          <li>[!lowtech] The vaccine course and antibodies into the wound, starting today. Industrial medicine or better. Done properly, this one is beaten.</li>
+        </notes>
+      </li>
+      <li Class="HediffCompProperties_TendDuration">
+        <baseTendDurationHours>24</baseTendDurationHours>
+        <severityPerDayTended>0</severityPerDayTended>
+      </li>
+      <li Class="ColonyCouncil.HediffCompProperties_AilmentMedicine">
+        <severityPerDayTended>-0.07</severityPerDayTended>
+        <basic>0.85</basic>
+        <industrial>1.3</industrial>
+        <ultra>1.8</ultra>
+        <worksBelow>0.5</worksBelow>
+      </li>
+      <li Class="ColonyCouncil.HediffCompProperties_AilmentCourse">
+        <severityPerDay>0.035</severityPerDay>
+        <fastAbove>0.5</fastAbove>
+        <fastPerDay>0.2</fastPerDay>
+      </li>
+    </comps>
+    <stages>
+      <li>
+        <label>bitten</label>
+      </li>
+      <li>
+        <minSeverity>0.5</minSeverity>
+        <label>fever and tingling</label>
+        <lifeThreatening>true</lifeThreatening>
+        <painOffset>0.1</painOffset>
+        <capMods><li><capacity>Consciousness</capacity><offset>-0.1</offset></li></capMods>
+      </li>
+      <li>
+        <minSeverity>0.7</minSeverity>
+        <label>fear of water</label>
+        <lifeThreatening>true</lifeThreatening>
+        <painOffset>0.15</painOffset>
+        <capMods>
+          <li><capacity>Consciousness</capacity><offset>-0.25</offset></li>
+          <li><capacity>Moving</capacity><offset>-0.1</offset></li>
+          <li><capacity>Eating</capacity><offset>-0.5</offset></li>
+        </capMods>
+      </li>
+      <li>
+        <minSeverity>0.85</minSeverity>
+        <label>paralysis</label>
+        <lifeThreatening>true</lifeThreatening>
+        <painOffset>0.15</painOffset>
+        <capMods>
+          <li><capacity>Consciousness</capacity><offset>-0.4</offset></li>
+          <li><capacity>Moving</capacity><offset>-0.5</offset></li>
+          <li><capacity>Breathing</capacity><offset>-0.3</offset></li>
+        </capMods>
+      </li>
+    </stages>
+  </HediffDef>
+
+  <!-- ===================== Measles ===================== -->
+
+  <HediffDef ParentName="Council_IllnessBase">
+    <defName>Council_Ail_Measles</defName>
+    <label>measles</label>
+    <description>A very catching childhood fever. About a week after catching it come a high fever, a cough, a runny nose and red eyes, then a blotchy rash that spreads from the face downward. The sickest days are around the rash; most children are over it in ten days or so, weak for a while after. Nothing cures it: rest, fluids, a dim room for sore eyes and someone keeping watch. It passes to any child who shares the room and hasn't had it. The grown-ups had it long ago, and a child who has had measles never gets it again.</description>
+    <lethalSeverity>-1</lethalSeverity>
+    <tendable>true</tendable>
+    <comps>
+      <li Class="ColonyCouncil.HediffCompProperties_Ailment">
+        <serious>true</serious>
+        <key>Measles</key>
+        <childrenOnly>true</childrenOnly>
+        <once>true</once>
+        <cooldownDays>60</cooldownDays>
+        <spreadPerHour>0.01</spreadPerHour>
+        <spreadWhileTended>0.6</spreadWhileTended>
+        <maxCases>4</maxCases>
+        <afterEffects>
+          <li><hediff>Council_Ail_Convalescent</hediff><severity>0.4~0.6</severity></li>
+        </afterEffects>
+        <letterText>{PAWN_nameDef} has measles: a high fever, a cough and red, sore eyes, and the rash will follow in a day or two. It's very catching.\n\nMost children are over it in ten days or so with rest, fluids and someone to keep watch. Any child who shares {PAWN_possessive} room and hasn't had it may catch it too.</letterText>
+        <notes>
+          <li>Bed, plenty to drink, the curtains drawn for the eyes, and someone to sit with them. Keep the other children out of that room.</li>
+          <li>[lowtech] Cool cloths for the fever and broth when they'll take it. Keep the room dim. The other children sleep elsewhere until the rash fades.</li>
+          <li>[!lowtech] Fever medicine, fluids and vitamin A. Watch for labored breathing. Children who haven't had it sleep apart.</li>
+        </notes>
+      </li>
+      <li Class="HediffCompProperties_TendDuration">
+        <baseTendDurationHours>24</baseTendDurationHours>
+        <severityPerDayTended>0</severityPerDayTended>
+      </li>
+      <li Class="ColonyCouncil.HediffCompProperties_AilmentMedicine">
+        <severityPerDayTended>-0.05</severityPerDayTended>
+        <industrial>1.1</industrial>
+        <ultra>1.3</ultra>
+      </li>
+      <li Class="ColonyCouncil.HediffCompProperties_AilmentImmunizable">
+        <severityPerDayNotImmune>0.12</severityPerDayNotImmune>
+        <severityPerDayNotImmuneRandomFactor>0.85~1.15</severityPerDayNotImmuneRandomFactor>
+        <immunityPerDaySick>0.14</immunityPerDaySick>
+        <severityPerDayImmune>-0.25</severityPerDayImmune>
+        <immunityPerDayNotSick>0</immunityPerDayNotSick>
+        <incubationDays>5~8</incubationDays>
+      </li>
+    </comps>
+    <stages>
+      <li>
+        <label>incubating</label>
+        <becomeVisible>false</becomeVisible>
+      </li>
+      <li>
+        <minSeverity>0.05</minSeverity>
+        <label>fever and cough</label>
+        <restFallFactor>1.2</restFallFactor>
+        <capMods>
+          <li><capacity>Consciousness</capacity><offset>-0.08</offset></li>
+          <li><capacity>Sight</capacity><offset>-0.05</offset></li>
+          <li><capacity>Breathing</capacity><offset>-0.05</offset></li>
+        </capMods>
+      </li>
+      <li>
+        <minSeverity>0.3</minSeverity>
+        <label>rash</label>
+        <restFallFactor>1.3</restFallFactor>
+        <painOffset>0.05</painOffset>
+        <capMods>
+          <li><capacity>Consciousness</capacity><offset>-0.12</offset></li>
+          <li><capacity>Sight</capacity><offset>-0.1</offset></li>
+          <li><capacity>Breathing</capacity><offset>-0.08</offset></li>
+        </capMods>
+      </li>
+      <li>
+        <minSeverity>0.6</minSeverity>
+        <label>very sick</label>
+        <restFallFactor>1.4</restFallFactor>
+        <painOffset>0.08</painOffset>
+        <capMods>
+          <li><capacity>Consciousness</capacity><offset>-0.2</offset></li>
+          <li><capacity>Moving</capacity><offset>-0.15</offset></li>
+          <li><capacity>Sight</capacity><offset>-0.15</offset></li>
+          <li><capacity>Breathing</capacity><offset>-0.12</offset></li>
+        </capMods>
+      </li>
+    </stages>
+  </HediffDef>
+
+  <!-- ===================== Kidney stones ===================== -->
+
+  <HediffDef ParentName="Council_IllnessBase">
+    <defName>Council_Ail_KidneyStone</defName>
+    <label>kidney stone</label>
+    <description>A small stone of salts formed in the kidney, now working its way out. It brings waves of terrible pain in the side and back, sickness, and blood in the urine. It's one of the worst pains there is, but it isn't dangerous: most stones pass on their own within a week. Plenty to drink, warmth and something for the pain help it along, and modern medicine eases the passage. Hot weather and too little to drink make stones likelier.</description>
+    <lethalSeverity>-1</lethalSeverity>
+    <tendable>true</tendable>
+    <comps>
+      <li Class="ColonyCouncil.HediffCompProperties_Ailment">
+        <serious>true</serious>
+        <key>KidneyStone</key>
+        <cooldownDays>60</cooldownDays>
+        <startSeverity>0.45~0.7</startSeverity>
+        <letterText>{PAWN_nameDef} is doubled up with pain in the side and back, coming in waves, and has been sick twice. It's a kidney stone.\n\nIt isn't dangerous, and most stones pass on their own within a week, but the pain is terrible. Plenty to drink and a doctor to ease the pain will help it along.</letterText>
+        <notes>
+          <li>Water, and more water. Something for the pain, a hot cloth on the back, and patience. It will pass.</li>
+          <li>[lowtech] Warm baths, a hot stone on the back and plenty of weak tea. Poppy for the worst of the pain, if we have any.</li>
+          <li>[!lowtech] Strong painkillers, fluids, and a muscle relaxant to help it through. Strain the urine so we know when it's out.</li>
+        </notes>
+      </li>
+      <li Class="HediffCompProperties_TendDuration">
+        <baseTendDurationHours>24</baseTendDurationHours>
+        <severityPerDayTended>0</severityPerDayTended>
+      </li>
+      <li Class="ColonyCouncil.HediffCompProperties_AilmentMedicine">
+        <severityPerDayTended>-0.1</severityPerDayTended>
+        <basic>0.7</basic>
+        <industrial>1.3</industrial>
+        <ultra>1.5</ultra>
+      </li>
+      <li Class="ColonyCouncil.HediffCompProperties_AilmentRecovery">
+        <severityPerDay>-0.1</severityPerDay>
+      </li>
+    </comps>
+    <stages>
+      <li>
+        <label>aching side</label>
+        <painOffset>0.08</painOffset>
+      </li>
+      <li>
+        <minSeverity>0.25</minSeverity>
+        <label>passing a stone</label>
+        <painOffset>0.2</painOffset>
+        <capMods><li><capacity>Moving</capacity><offset>-0.08</offset></li></capMods>
+      </li>
+      <li>
+        <minSeverity>0.45</minSeverity>
+        <label>renal colic</label>
+        <painOffset>0.35</painOffset>
+        <vomitMtbDays>1.5</vomitMtbDays>
+        <capMods>
+          <li><capacity>Moving</capacity><offset>-0.15</offset></li>
+          <li><capacity>Consciousness</capacity><offset>-0.05</offset></li>
+        </capMods>
+      </li>
+    </stages>
+  </HediffDef>
+
+  <!-- ===================== Shingles ===================== -->
+
+  <HediffDef ParentName="Council_IllnessBase">
+    <defName>Council_Ail_Shingles</defName>
+    <label>shingles</label>
+    <description>The chickenpox virus, asleep in the nerves since childhood, waking again in someone older: first a burning or tingling on one side of the body, then a band of painful blisters along it. It heals over two or three weeks and isn't dangerous, but the pain can be fierce, and in some it lingers as nerve pain after the rash is gone. Rest, cool cloths and something for the pain help; modern medicine (an antiviral, started early) shortens it a good deal. It comes to people of fifty and older.</description>
+    <lethalSeverity>-1</lethalSeverity>
+    <tendable>true</tendable>
+    <comps>
+      <li Class="ColonyCouncil.HediffCompProperties_Ailment">
+        <serious>true</serious>
+        <key>Shingles</key>
+        <cooldownDays>120</cooldownDays>
+        <startSeverity>0.5~0.7</startSeverity>
+        <afterEffects>
+          <li><hediff>Council_Ail_NervePain</hediff><chance>0.3</chance><severity>0.3~0.5</severity></li>
+        </afterEffects>
+        <letterText>{PAWN_nameDef} has a band of red blisters around one side of {PAWN_possessive} ribs, and says it burns like fire. It's shingles: the old chickenpox, back after all these years.\n\nIt isn't dangerous and heals in two or three weeks, but it's painful. Treatment eases it, and modern medicine shortens it.</letterText>
+        <notes>
+          <li>Loose clothes, cool cloths and rest. Something for the pain at night so they can sleep.</li>
+          <li>[lowtech] Cool compresses, a paste of oats, and willow bark for the pain. Keep it clean and covered, and don't let anyone burst the blisters.</li>
+          <li>[!lowtech] Antivirals, the sooner the better, and proper painkillers. Keep the blisters covered around the children.</li>
+        </notes>
+      </li>
+      <li Class="HediffCompProperties_TendDuration">
+        <baseTendDurationHours>48</baseTendDurationHours>
+        <severityPerDayTended>0</severityPerDayTended>
+      </li>
+      <li Class="ColonyCouncil.HediffCompProperties_AilmentMedicine">
+        <severityPerDayTended>-0.04</severityPerDayTended>
+        <basic>0.6</basic>
+        <industrial>1.5</industrial>
+        <ultra>1.8</ultra>
+      </li>
+      <li Class="ColonyCouncil.HediffCompProperties_AilmentRecovery">
+        <severityPerDay>-0.04</severityPerDay>
+      </li>
+    </comps>
+    <stages>
+      <li>
+        <label>fading rash</label>
+        <painOffset>0.06</painOffset>
+      </li>
+      <li>
+        <minSeverity>0.25</minSeverity>
+        <label>band of blisters</label>
+        <painOffset>0.15</painOffset>
+        <restFallFactor>1.1</restFallFactor>
+      </li>
+      <li>
+        <minSeverity>0.5</minSeverity>
+        <label>burning blisters</label>
+        <painOffset>0.25</painOffset>
+        <restFallFactor>1.2</restFallFactor>
+        <capMods><li><capacity>Consciousness</capacity><offset>-0.05</offset></li></capMods>
+      </li>
+    </stages>
+  </HediffDef>
+
+  <!-- ===================== Hive fever (invented) ===================== -->
+
+  <HediffDef ParentName="Council_IllnessBase">
+    <defName>Council_Ail_HiveFever</defName>
+    <label>hive fever</label>
+    <description>A fever from the bites and stings of insectoids, which carry something in their saliva the body has never met. A day after the wound it swells and goes hot; then comes the fever, in bad cases a low hum in the ears that won't stop and growing confusion, and at the end convulsions. Untreated it can kill within a week. Steady tending keeps the fever down while the body learns to fight it, and modern medicine helps more than herbs. Survivors are weak for a while.</description>
+    <tendable>true</tendable>
+    <comps>
+      <li Class="ColonyCouncil.HediffCompProperties_Ailment">
+        <serious>true</serious>
+        <key>HiveFever</key>
+        <causes><li><trigger>InsectBite</trigger><chance>0.04</chance></li></causes>
+        <cooldownDays>60</cooldownDays>
+        <afterEffects>
+          <li><hediff>Council_Ail_Convalescent</hediff><severity>0.5~0.7</severity></li>
+        </afterEffects>
+        <letterText>The insect wound on {PAWN_nameDef} has swollen up hot and hard, and now there's a fever. {PAWN_nameDef} says there's a humming in {PAWN_possessive} ears. It's hive fever, from the insectoids' saliva.\n\nUntreated, it can kill within a week. With steady tending most recover, and modern medicine works better than herbs.</letterText>
+        <notes>
+          <li>Keep the fever down and the wound clean, and tend the patient as often as we can. Talk to them when the humming gets bad.</li>
+          <li>[lowtech] Open the wound and draw the poison with a hot poultice, cool cloths for the fever, and willow bark. Someone stays with them at night.</li>
+          <li>[!lowtech] Antivenom isn't made for these things, so it's antibiotics, fever control and fluids. Clean the hive's leavings out of the tunnels.</li>
+        </notes>
+      </li>
+      <li Class="HediffCompProperties_TendDuration">
+        <baseTendDurationHours>12</baseTendDurationHours>
+        <severityPerDayTended>0</severityPerDayTended>
+      </li>
+      <li Class="ColonyCouncil.HediffCompProperties_AilmentMedicine">
+        <severityPerDayTended>-0.18</severityPerDayTended>
+        <basic>0.8</basic>
+        <industrial>1.3</industrial>
+        <ultra>1.5</ultra>
+      </li>
+      <li Class="ColonyCouncil.HediffCompProperties_AilmentImmunizable">
+        <severityPerDayNotImmune>0.18</severityPerDayNotImmune>
+        <severityPerDayNotImmuneRandomFactor>0.85~1.15</severityPerDayNotImmuneRandomFactor>
+        <immunityPerDaySick>0.15</immunityPerDaySick>
+        <severityPerDayImmune>-0.2</severityPerDayImmune>
+        <immunityPerDayNotSick>-0.05</immunityPerDayNotSick>
+        <incubationDays>0.5~1</incubationDays>
+        <childFactor>0.9</childFactor>
+      </li>
+    </comps>
+    <stages>
+      <li>
+        <label>incubating</label>
+        <becomeVisible>false</becomeVisible>
+      </li>
+      <li>
+        <minSeverity>0.05</minSeverity>
+        <label>swollen wound</label>
+        <painOffset>0.08</painOffset>
+        <capMods><li><capacity>Consciousness</capacity><offset>-0.03</offset></li></capMods>
+      </li>
+      <li>
+        <minSeverity>0.3</minSeverity>
+        <label>hive fever</label>
+        <painOffset>0.1</painOffset>
+        <restFallFactor>1.3</restFallFactor>
+        <capMods><li><capacity>Consciousness</capacity><offset>-0.12</offset></li></capMods>
+      </li>
+      <li>
+        <minSeverity>0.55</minSeverity>
+        <label>the hum</label>
+        <painOffset>0.12</painOffset>
+        <restFallFactor>1.4</restFallFactor>
+        <capMods>
+          <li><capacity>Consciousness</capacity><offset>-0.25</offset></li>
+          <li><capacity>Moving</capacity><offset>-0.15</offset></li>
+          <li><capacity>Hearing</capacity><offset>-0.2</offset></li>
+        </capMods>
+      </li>
+      <li>
+        <minSeverity>0.8</minSeverity>
+        <label>convulsions</label>
+        <lifeThreatening>true</lifeThreatening>
+        <painOffset>0.15</painOffset>
+        <capMods>
+          <li><capacity>Consciousness</capacity><offset>-0.4</offset></li>
+          <li><capacity>Moving</capacity><offset>-0.35</offset></li>
+          <li><capacity>Breathing</capacity><offset>-0.15</offset></li>
+        </capMods>
+      </li>
+    </stages>
+  </HediffDef>
+
+  <!--
+    The surgery for appendicitis: the game's own Recipe_RemoveHediff, like its other operations (anesthetic, a medicine
+    cost, the surgeon's skill and the room deciding success). The game's surgery outcomes (minor and catastrophic
+    failures) are copied from its own "remove body part" operation when the game starts (AilmentStartup).
+  -->
+
+  <RecipeDef>
+    <defName>Council_Surgery_RemoveAppendix</defName>
+    <label>remove appendix</label>
+    <description>Remove an inflamed appendix before it bursts. It cures appendicitis at once; the patient needs some days to get their strength back afterward.</description>
+    <workerClass>Recipe_RemoveHediff</workerClass>
+    <jobString>Removing an appendix.</jobString>
+    <effectWorking>Surgery</effectWorking>
+    <soundWorking>Recipe_Surgery</soundWorking>
+    <workSpeedStat>MedicalOperationSpeed</workSpeedStat>
+    <workSkill>Medicine</workSkill>
+    <workSkillLearnFactor>16</workSkillLearnFactor>
+    <workAmount>2500</workAmount>
+    <anesthetize>true</anesthetize>
+    <removesHediff>Council_Ail_Appendicitis</removesHediff>
+    <targetsBodyPart>false</targetsBodyPart>
+    <hideBodyPartNames>true</hideBodyPartNames>
+    <isViolation>false</isViolation>
+    <surgerySuccessChanceFactor>1.1</surgerySuccessChanceFactor>
+    <deathOnFailedSurgeryChance>0.05</deathOnFailedSurgeryChance>
+    <recipeUsers>
+      <li>Human</li>
+    </recipeUsers>
+    <skillRequirements>
+      <Medicine>4</Medicine>
+    </skillRequirements>
+    <ingredients>
+      <li>
+        <filter>
+          <categories>
+            <li>Medicine</li>
+          </categories>
+        </filter>
+        <count>2</count>
+      </li>
+    </ingredients>
+    <fixedIngredientFilter>
+      <categories>
+        <li>Medicine</li>
+      </categories>
+    </fixedIngredientFilter>
+  </RecipeDef>
 
 </Defs>

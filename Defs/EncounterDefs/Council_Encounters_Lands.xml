@@ -1,0 +1,586 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Encounters that belong to a place, a season, the weather or the night.
+    lands: only on these lands, any of them (desert, tundra, boreal, jungle, swamp, forest, grassland, mountains, hills,
+    coast, lake, river: see Source/ColonyCouncil/Strangers/Lands.cs). moment: only when the moment fits as A lives it, a
+    line's tags without the brackets ("rain|storm", "snow", "clear"). Everything else as in the other encounter files:
+    {A_...} the colonist, {X_...} the animal or stranger; never an {X_...} placeholder at the start of a sentence, and
+    animals are never named as a species. Nobody is hurt.
+  -->
+
+  <!-- ======================= The desert ======================= -->
+
+  <ColonyCouncil.EncounterDef>
+    <defName>Council_EncL_DesertShade</defName>
+    <label>sharing the shade</label>
+    <stranger>
+      <kind>Wild</kind>
+      <notPredator>true</notPredator>
+      <maxBodySize>1.5</maxBodySize>
+    </stranger>
+    <lands><li>desert</li></lands>
+    <dayOnly>true</dayOnly>
+    <children>true</children>
+    <weight>1.2</weight>
+    <cooldownDays>8</cooldownDays>
+    <texts>
+      <li>At midday {X_indefinite} crept into the strip of shade along the storehouse wall and lay there panting. {A_nameDef} set a dish of water down at arm's length and backed away.</li>
+      <li>{A_nameDef} came round the well into the only shade for a mile and found {X_indefinite} already in it. They shared it, one at each end, until the sun moved.</li>
+      <li>[hot] It was too hot for {A_nameDef} or {X_definite} under the lean-to to bother being afraid of each other. They lay in the shade a few paces apart and waited out the worst of the afternoon.</li>
+      <li>[child] {A_nameDef} found {X_indefinite} asleep in the shadow of the water trough and sat down beside it to watch it breathe, until a grown-up called {A_objective} in.</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncL_SharedShade</thought></li>
+    </effects>
+    <journal>Council_Journal_EncL_Desert</journal>
+  </ColonyCouncil.EncounterDef>
+
+  <ColonyCouncil.EncounterDef>
+    <defName>Council_EncL_DesertTraveler</defName>
+    <label>a trick for the sand</label>
+    <stranger><kind>Visitor</kind><adult>true</adult></stranger>
+    <lands><li>desert</li></lands>
+    <weight>1.2</weight>
+    <cooldownDays>8</cooldownDays>
+    <texts>
+      <li>{X_nameDef} watched {A_nameDef} spit grit for the third time in an hour and showed {A_objective} how {FACTION} people wrap a cloth over the mouth and nose, tucked so the wind can't pull it loose.</li>
+      <li>{X_nameDef} of {FACTION} showed {A_nameDef} how to find water in a dry riverbed: the outside of the bend, a hand's depth down, where the sand stays dark after sunrise.</li>
+      <li>[theirLowtech] {X_nameDef} gave {A_nameDef} a handful of dates and a pinch of salt and told {A_objective} to eat both at noon, every day, the way {FACTION} people do on the long dry walks.</li>
+      <li>[hot] Sitting out the heat of the day in the shade, {X_nameDef} told {A_nameDef} that in the deep sand country people sleep by day and travel by night, and laughed at the colony for working at noon.</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncL_SandTrick</thought></li>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>X</target><thought>Council_EncP_GoodCompany</thought></li>
+      <li Class="ColonyCouncil.DilemmaEffect_LifeEvent"><target>A</target><counter>stranger</counter></li>
+    </effects>
+    <journal>Council_Journal_EncL_Desert</journal>
+  </ColonyCouncil.EncounterDef>
+
+  <ColonyCouncil.EncounterDef>
+    <defName>Council_EncL_DesertNight</defName>
+    <label>a desert night</label>
+    <stranger><kind>Wild</kind></stranger>
+    <lands><li>desert</li></lands>
+    <nightOnly>true</nightOnly>
+    <weight>1.1</weight>
+    <cooldownDays>8</cooldownDays>
+    <texts>
+      <li>The desert goes cold fast after sundown. Wrapped in a blanket on the wall, {A_nameDef} watched {X_indefinite} come down to the trough to drink under more stars than {A_pronoun} could count.</li>
+      <li>On watch in the cold small hours, {A_nameDef} heard soft steps in the sand and saw {X_indefinite} cross the open ground in the starlight, unhurried, leaving tracks that would be gone by noon.</li>
+      <li>[clear] There was no moon, and the sky over the dunes was so thick with stars that {A_nameDef} could see {X_indefinite} by their light alone, nosing along the foot of the wall.</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncL_DesertStars</thought></li>
+    </effects>
+    <journal>Council_Journal_EncL_Desert</journal>
+  </ColonyCouncil.EncounterDef>
+
+  <!-- ======================= Tundra and the northern forest ======================= -->
+
+  <ColonyCouncil.EncounterDef>
+    <defName>Council_EncL_SnowTracks</defName>
+    <label>tracks in the snow</label>
+    <stranger>
+      <kind>Wild</kind>
+      <notPredator>true</notPredator>
+    </stranger>
+    <lands><li>tundra</li><li>boreal</li></lands>
+    <moment>snow|cold</moment>
+    <dayOnly>true</dayOnly>
+    <children>true</children>
+    <weight>1.2</weight>
+    <cooldownDays>8</cooldownDays>
+    <texts>
+      <li>{A_nameDef} found a line of fresh tracks across the snow and followed them over the rise, and there at the end of them was {X_indefinite}, digging for whatever grows under the crust.</li>
+      <li>[skill:Animals] {A_nameDef} read the tracks in the snow like a page: who made them, how heavy, how long ago. Half a mile on, {X_indefinite} looked up from the drift as if it had been expecting {A_objective}.</li>
+      <li>[child] {A_nameDef} followed the little holes in the snow all the way to the trees and found {X_indefinite} at the end of them, and came back to tell everyone with frost in {A_possessive} eyelashes.</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncL_FollowedTracks</thought></li>
+      <li Class="ColonyCouncil.DilemmaEffect_Learn"><target>A</target><skill>Animals</skill><xp>250</xp></li>
+    </effects>
+    <journal>Council_Journal_EncL_Cold</journal>
+  </ColonyCouncil.EncounterDef>
+
+  <ColonyCouncil.EncounterDef>
+    <defName>Council_EncL_FrostBreath</defName>
+    <label>a frozen morning</label>
+    <stranger>
+      <kind>Wild</kind>
+      <notPredator>true</notPredator>
+      <minBodySize>0.6</minBodySize>
+    </stranger>
+    <lands><li>tundra</li><li>boreal</li></lands>
+    <moment>cold,morning|day</moment>
+    <weight>1</weight>
+    <cooldownDays>10</cooldownDays>
+    <texts>
+      <li>Everything was white and silent this morning. {A_nameDef} stood at the door with a cup going cold in {A_possessive} hands and watched {X_indefinite} in the frozen field, its breath hanging in the air.</li>
+      <li>Frost had furred every branch overnight. Out on the white ground {X_indefinite} stood so still that {A_nameDef} took it for a stump until it lifted its head.</li>
+      <li>[snow] Snow was coming down in big slow flakes, and through it {A_nameDef} watched {X_indefinite} plod along the tree line, steam rising off its back.</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncL_StillMorning</thought></li>
+    </effects>
+    <journal>Council_Journal_EncL_Cold</journal>
+  </ColonyCouncil.EncounterDef>
+
+  <ColonyCouncil.EncounterDef>
+    <defName>Council_EncL_ColdTrick</defName>
+    <label>a trick against the cold</label>
+    <stranger><kind>Visitor</kind><adult>true</adult></stranger>
+    <lands><li>tundra</li><li>boreal</li></lands>
+    <moment>cold|snow|winter</moment>
+    <weight>1.2</weight>
+    <cooldownDays>8</cooldownDays>
+    <texts>
+      <li>{X_nameDef} of {FACTION} saw {A_nameDef} stamping {A_possessive} feet and showed {A_objective} the trick: dry grass packed in the boots, changed every evening, and tomorrow's socks slept on inside your shirt.</li>
+      <li>{X_nameDef} rubbed a smear of fat into {A_nameDef}'s cheeks and nose against the wind, the way {FACTION} mothers do for their children, and laughed at the face {A_nameDef} made.</li>
+      <li>[theirLowtech] {X_nameDef} showed {A_nameDef} how {FACTION} people line their mittens with rabbit fur turned inward, and how to tie them to a cord so they can't be lost in the snow.</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncL_ColdTrick</thought></li>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>X</target><thought>Council_EncP_GoodCompany</thought></li>
+      <li Class="ColonyCouncil.DilemmaEffect_LifeEvent"><target>A</target><counter>stranger</counter></li>
+    </effects>
+    <journal>Council_Journal_EncL_Cold</journal>
+  </ColonyCouncil.EncounterDef>
+
+  <!-- ======================= Jungle and swamp ======================= -->
+
+  <ColonyCouncil.EncounterDef>
+    <defName>Council_EncL_Undergrowth</defName>
+    <label>eyes in the undergrowth</label>
+    <stranger>
+      <kind>Wild</kind>
+      <maxBodySize>0.8</maxBodySize>
+    </stranger>
+    <lands><li>jungle</li></lands>
+    <dayOnly>true</dayOnly>
+    <weight>1.2</weight>
+    <cooldownDays>8</cooldownDays>
+    <texts>
+      <li>{A_nameDef} looked up from the path and found {X_indefinite} watching from the undergrowth, close enough to touch. Neither moved. Then a bird shrieked overhead, and the leaves were empty.</li>
+      <li>Something in the green kept pace with {A_nameDef} all the way back from the far plot. At the gate {A_nameDef} turned and saw {X_indefinite} sitting in the ferns, watching to see where {A_pronoun} went.</li>
+      <li>[rain] In the warm rain, with water running off every leaf, {A_nameDef} nearly stepped on {X_indefinite} curled under a fern. It looked up, unbothered, and went back to sleep.</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncL_WatchedByTheGreen</thought><degreeTrait>Nerves</degreeTrait><minDegree>0</minDegree></li>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncL_WatchedByTheGreen</thought><exceptTrait><li>Nerves</li></exceptTrait></li>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncL_UneasyInTheGreen</thought><degreeTrait>Nerves</degreeTrait><maxDegree>-1</maxDegree></li>
+    </effects>
+    <journal>Council_Journal_EncL_Wet</journal>
+  </ColonyCouncil.EncounterDef>
+
+  <ColonyCouncil.EncounterDef>
+    <defName>Council_EncL_LeafCape</defName>
+    <label>a cape of leaves</label>
+    <stranger><kind>Visitor</kind><adult>true</adult></stranger>
+    <lands><li>jungle</li><li>swamp</li></lands>
+    <moment>rain|storm</moment>
+    <weight>1.2</weight>
+    <cooldownDays>8</cooldownDays>
+    <texts>
+      <li>{X_nameDef} of {FACTION} cut four broad leaves from the edge of the clearing, pinned them together with thorns and showed {A_nameDef} how to wear them over the shoulders against the rain. It worked better than {A_nameDef}'s coat.</li>
+      <li>Caught out together in the downpour, {X_nameDef} folded a huge leaf into a hood for {A_nameDef} in a few quick movements, then made another for {X_possessive} own head, and they walked back to the colony dry from the neck up.</li>
+      <li>[theirLowtech] {X_nameDef} showed {A_nameDef} how {FACTION} people weave a rain cape from palm fronds, overlapping like roof thatch. {A_nameDef} made one before supper, a bit lopsided.</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncL_LeafCape</thought></li>
+      <li Class="ColonyCouncil.DilemmaEffect_Learn"><target>A</target><skill>Crafting</skill><xp>150</xp></li>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>X</target><thought>Council_EncP_GoodCompany</thought></li>
+    </effects>
+    <journal>Council_Journal_EncL_Wet</journal>
+  </ColonyCouncil.EncounterDef>
+
+  <ColonyCouncil.EncounterDef>
+    <defName>Council_EncL_Reeds</defName>
+    <label>through the reeds</label>
+    <stranger><kind>Wild</kind></stranger>
+    <lands><li>swamp</li></lands>
+    <dayOnly>true</dayOnly>
+    <weight>1.1</weight>
+    <cooldownDays>8</cooldownDays>
+    <texts>
+      <li>{A_nameDef} was up to the knees in black water, clearing a channel, when {X_indefinite} went past through the reeds without a sound. {A_nameDef} held {A_possessive} breath until it was gone.</li>
+      <li>The reeds parted a few paces from {A_nameDef} and {X_indefinite} looked out, dripping, with weed hanging off it. They regarded each other for a while, and then the reeds closed again.</li>
+      <li>[fog] Mist lay on the marsh like milk. {A_nameDef} heard the slow wading before {A_pronoun} saw anything, and then {X_indefinite} came out of the white and went back into it.</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncL_ReedWalker</thought></li>
+    </effects>
+    <journal>Council_Journal_EncL_Wet</journal>
+  </ColonyCouncil.EncounterDef>
+
+  <ColonyCouncil.EncounterDef>
+    <defName>Council_EncL_MarshLights</defName>
+    <label>lights over the marsh</label>
+    <stranger>
+      <kind>Pet</kind>
+      <ofA>true</ofA>
+    </stranger>
+    <lands><li>swamp</li></lands>
+    <nightOnly>true</nightOnly>
+    <weight>1</weight>
+    <cooldownDays>12</cooldownDays>
+    <texts>
+      <li>Late at night {A_nameDef} and {X_definite} watched pale lights drift low over the marsh, slow as breathing, where nobody could be standing, and {X_definite} growled at them until they faded.</li>
+      <li>{A_nameDef} went out to see why {X_definite} was whining at the gate and found the marsh full of small cold lights, moving among the reeds. They stood together and watched until the lights went out one by one.</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncL_MarshLights</thought><exceptTrait><li>Nerves</li></exceptTrait></li>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncL_MarshLights</thought><degreeTrait>Nerves</degreeTrait><minDegree>0</minDegree></li>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncL_MarshLightsUneasy</thought><degreeTrait>Nerves</degreeTrait><maxDegree>-1</maxDegree></li>
+    </effects>
+    <journal>Council_Journal_EncL_Wet</journal>
+  </ColonyCouncil.EncounterDef>
+
+  <!-- ======================= Mountains and hills ======================= -->
+
+  <ColonyCouncil.EncounterDef>
+    <defName>Council_EncL_Ridge</defName>
+    <label>on the ridge</label>
+    <stranger>
+      <kind>Wild</kind>
+      <notPredator>true</notPredator>
+    </stranger>
+    <lands><li>mountains</li><li>hills</li></lands>
+    <dayOnly>true</dayOnly>
+    <children>true</children>
+    <weight>1.1</weight>
+    <cooldownDays>8</cooldownDays>
+    <texts>
+      <li>{A_nameDef} straightened up from {A_possessive} work and saw {X_indefinite} standing on the ridge above the colony, black against the sky, perfectly still. Then it stepped over the top and was gone.</li>
+      <li>High on the scree slope, {X_indefinite} was picking its way across rock that {A_nameDef} wouldn't have crossed on a rope. {A_nameDef} watched it all the way to the top.</li>
+      <li>[morning] The sun came over the peaks and lit up the ridge, and on the ridge stood {X_indefinite}, catching the first of the warmth the way {A_nameDef} was.</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncL_OnTheRidge</thought></li>
+    </effects>
+    <journal>Council_Journal_EncL_Heights</journal>
+  </ColonyCouncil.EncounterDef>
+
+  <ColonyCouncil.EncounterDef>
+    <defName>Council_EncL_HighPass</defName>
+    <label>the high roads</label>
+    <stranger><kind>Visitor</kind><adult>true</adult></stranger>
+    <lands><li>mountains</li></lands>
+    <weight>1.1</weight>
+    <cooldownDays>8</cooldownDays>
+    <texts>
+      <li>{X_nameDef} of {FACTION} came over the pass to get here and told {A_nameDef} about it: the switchbacks, the cairns left by people who went before, and the cold at the top that gets into your teeth.</li>
+      <li>{X_nameDef} drew the mountains in the dirt for {A_nameDef} with a stick, every valley and saddle, and marked where the snow closes the road in winter and where the rockfalls come in spring.</li>
+      <li>[winter] {X_nameDef} said the high pass closed behind {FACTION}'s party the day after they came through it, and they'll be going the long way round. {A_nameDef} heard all about the long way round.</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncL_HighRoads</thought></li>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>X</target><thought>Council_EncP_GoodCompany</thought><chance>0.5</chance></li>
+    </effects>
+    <journal>Council_Journal_EncL_Heights</journal>
+  </ColonyCouncil.EncounterDef>
+
+  <ColonyCouncil.EncounterDef>
+    <defName>Council_EncL_CaveMouth</defName>
+    <label>a crack in the rock</label>
+    <stranger>
+      <kind>Pet</kind>
+      <ofA>true</ofA>
+    </stranger>
+    <lands><li>mountains</li><li>hills</li></lands>
+    <dayOnly>true</dayOnly>
+    <weight>0.9</weight>
+    <cooldownDays>12</cooldownDays>
+    <texts>
+      <li>All morning {X_definite} kept running off toward the rocks and coming back, until {A_nameDef} followed and found a crack in the hillside with cold air breathing out of it. They stood at the mouth together and listened to water dripping somewhere far inside.</li>
+      <li>{A_nameDef} lost sight of {X_definite} among the boulders and found {X_objective} at last half inside a narrow cave, covered in cobwebs and very pleased about it.</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncL_CaveFind</thought></li>
+    </effects>
+    <journal>Council_Journal_EncL_Heights</journal>
+  </ColonyCouncil.EncounterDef>
+
+  <!-- ======================= The coast ======================= -->
+
+  <ColonyCouncil.EncounterDef>
+    <defName>Council_EncL_TideLine</defName>
+    <label>the tide line</label>
+    <stranger>
+      <kind>Wild</kind>
+      <maxBodySize>1.2</maxBodySize>
+    </stranger>
+    <lands><li>coast</li></lands>
+    <dayOnly>true</dayOnly>
+    <children>true</children>
+    <weight>1.2</weight>
+    <cooldownDays>8</cooldownDays>
+    <texts>
+      <li>{A_nameDef} walked the shore at low tide and had company: {X_indefinite}, working along the wrack line ahead of {A_objective}, turning over weed and picking through what the sea left behind.</li>
+      <li>The tide had gone out a long way, and {A_nameDef} and {X_indefinite} were the only two things moving on the wet sand. They kept a careful distance and the same slow pace.</li>
+      <li>[fog] Sea fog lay over the beach, and the only sounds were the waves and {X_indefinite} somewhere ahead in the gray, crunching shells. {A_nameDef} followed the sound for a while.</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncL_TideLine</thought></li>
+    </effects>
+    <journal>Council_Journal_EncL_Coast</journal>
+  </ColonyCouncil.EncounterDef>
+
+  <ColonyCouncil.EncounterDef>
+    <defName>Council_EncL_ShellGift</defName>
+    <label>a shell from the trader</label>
+    <stranger><kind>Trader</kind></stranger>
+    <lands><li>coast</li></lands>
+    <weight>1.1</weight>
+    <cooldownDays>10</cooldownDays>
+    <texts>
+      <li>{X_nameDef} sells salt fish along this coast and has pockets full of shells for the children of every village. {A_nameDef} isn't a child, but {X_nameDef} gave {A_objective} one anyway: a spiral, pink inside.</li>
+      <li>Between haggling over the price of salt, {X_nameDef} pressed a smooth white shell into {A_nameDef}'s hand and said it would bring good weather. It hasn't yet. {A_nameDef} keeps it anyway.</li>
+      <li>[child] {X_nameDef} held a big shell to {A_nameDef}'s ear and told {A_objective} the sea was inside it. {A_nameDef} listened, eyes wide, and was allowed to keep it.</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncL_ShellGift</thought></li>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>X</target><thought>Council_EncP_GoodCompany</thought></li>
+    </effects>
+    <journal>Council_Journal_EncL_Coast</journal>
+  </ColonyCouncil.EncounterDef>
+
+  <ColonyCouncil.EncounterDef>
+    <defName>Council_EncL_SurfWatch</defName>
+    <label>watching the sea</label>
+    <stranger>
+      <kind>Pet</kind>
+      <ofA>true</ofA>
+    </stranger>
+    <lands><li>coast</li></lands>
+    <moment>storm|rain|fog</moment>
+    <dayOnly>true</dayOnly>
+    <weight>1.1</weight>
+    <cooldownDays>10</cooldownDays>
+    <texts>
+      <li>{A_nameDef} and {X_definite} sat on the rocks above the beach and watched the waves come in gray and enormous, throwing spray halfway up the cliff. Neither of them wanted to go in.</li>
+      <li>[storm] The sea was white to the horizon in the storm. {A_nameDef} stood at the cliff edge with a hand on {X_definite}'s back, feeling the ground shake under every wave.</li>
+      <li>[fog] {A_nameDef} took {X_definite} down to the shore in the fog, where the sea could be heard and not seen. They walked until the sound of it was all around them.</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncL_WatchedTheSea</thought></li>
+    </effects>
+    <journal>Council_Journal_EncL_Coast</journal>
+  </ColonyCouncil.EncounterDef>
+
+  <!-- ======================= The seasons ======================= -->
+
+  <ColonyCouncil.EncounterDef>
+    <defName>Council_EncS_FirstGreen</defName>
+    <label>the first green</label>
+    <stranger>
+      <kind>Wild</kind>
+      <notPredator>true</notPredator>
+    </stranger>
+    <seasons><li>Spring</li></seasons>
+    <dayOnly>true</dayOnly>
+    <children>true</children>
+    <weight>1.1</weight>
+    <cooldownDays>10</cooldownDays>
+    <texts>
+      <li>The first green of the year was coming through in the low field, and {X_indefinite} had found it before anyone else. {A_nameDef} stopped on the path to watch it graze.</li>
+      <li>{A_nameDef} saw {X_indefinite} nosing at the new shoots by the stream, thin from the winter, and thought that it had come through the cold the same as the colony had.</li>
+      <li>[rain] Spring rain, warm for once. Out in the soft field {X_indefinite} grazed with water running off its back, and {A_nameDef} stood under the eaves and watched it for a while.</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncS_FirstGreen</thought></li>
+    </effects>
+  </ColonyCouncil.EncounterDef>
+
+  <ColonyCouncil.EncounterDef>
+    <defName>Council_EncS_ReadyForWinter</defName>
+    <label>ready for winter</label>
+    <stranger>
+      <kind>Wild</kind>
+      <maxBodySize>0.8</maxBodySize>
+    </stranger>
+    <seasons><li>Fall</li></seasons>
+    <children>true</children>
+    <weight>1</weight>
+    <cooldownDays>10</cooldownDays>
+    <texts>
+      <li>{A_nameDef} watched {X_indefinite} carry mouthful after mouthful of something to a hole under the old stump, getting ready for winter. The colony had spent the same day doing the same thing.</li>
+      <li>All week {X_indefinite} has been raiding the dropped grain along the field's edge, fattening up for the cold. {A_nameDef} hasn't chased it off.</li>
+      <li>[work:Growing] Bringing in the last of the harvest, {A_nameDef} kept company with {X_indefinite}, which was bringing in its own from the stubble a few rows over.</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncS_ReadyForWinter</thought></li>
+    </effects>
+  </ColonyCouncil.EncounterDef>
+
+  <ColonyCouncil.EncounterDef>
+    <defName>Council_EncS_SummerWade</defName>
+    <label>cooling off</label>
+    <stranger>
+      <kind>Pet</kind>
+      <ofA>true</ofA>
+    </stranger>
+    <seasons><li>Summer</li><li>PermanentSummer</li></seasons>
+    <moment>!cold</moment>
+    <dayOnly>true</dayOnly>
+    <children>true</children>
+    <weight>1</weight>
+    <cooldownDays>10</cooldownDays>
+    <texts>
+      <li>It was so hot by midafternoon that {A_nameDef} and {X_definite} walked straight into the water without stopping and stood there up to the knees, both of them sighing.</li>
+      <li>{A_nameDef} sat on the bank with {A_possessive} feet in the water and watched {X_definite} splash about in the shallows, chasing things that weren't there.</li>
+      <li>[child] {A_nameDef} and {X_definite} spent the hottest part of the day in the shallows, and came back to the colony so wet and muddy they had to be scrubbed down at the well.</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncS_Waded</thought></li>
+    </effects>
+  </ColonyCouncil.EncounterDef>
+
+  <ColonyCouncil.EncounterDef>
+    <defName>Council_EncS_WinterGuest</defName>
+    <label>a hot cup for a cold traveler</label>
+    <stranger><kind>Visitor</kind><adult>true</adult></stranger>
+    <seasons><li>Winter</li><li>PermanentWinter</li></seasons>
+    <weight>1.1</weight>
+    <cooldownDays>8</cooldownDays>
+    <texts>
+      <li>{X_nameDef} came in from the cold blue to the lips, and {A_nameDef} put a hot cup in {X_possessive} hands before {X_pronoun} could say a word. They sat by the stove until the color came back.</li>
+      <li>{A_nameDef} found {X_nameDef} of {FACTION} trying to thaw {X_possessive} fingers on a lamp, and brought {X_objective} a bowl of something hot and a dry pair of socks.</li>
+      <li>[snow] {X_nameDef} came through the gate with snow piled on {X_possessive} hood and shoulders, and {A_nameDef} brushed it off, sat {X_objective} by the stove and fetched the kettle.</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncS_HotDrink</thought></li>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>X</target><thought>Council_EncP_GoodCompany</thought></li>
+      <li Class="ColonyCouncil.DilemmaEffect_Goodwill"><amount>1</amount><chance>0.4</chance></li>
+    </effects>
+    <ways><generosity>1</generosity></ways>
+  </ColonyCouncil.EncounterDef>
+
+  <!-- ======================= The weather ======================= -->
+
+  <ColonyCouncil.EncounterDef>
+    <defName>Council_EncW_RainEaves</defName>
+    <label>waiting out the rain</label>
+    <stranger>
+      <kind>Pet</kind>
+      <ofA>true</ofA>
+    </stranger>
+    <moment>rain|storm</moment>
+    <children>true</children>
+    <weight>1</weight>
+    <cooldownDays>8</cooldownDays>
+    <texts>
+      <li>[outside] Caught by the rain halfway across the yard, {A_nameDef} and {X_definite} ran for the eaves and stood pressed against the wall, watching it come down in sheets.</li>
+      <li>[indoors] Soaked from the rain, {X_definite} came in and lay down against {A_nameDef}'s legs, steaming gently. {A_nameDef} didn't move until the rain stopped.</li>
+      <li>{A_nameDef} sat in the doorway out of the rain with {X_definite} beside {A_objective}, and the two of them watched the puddles join up across the yard.</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncW_RainShelter</thought></li>
+    </effects>
+    <journal>Council_Journal_EncW_Weather</journal>
+  </ColonyCouncil.EncounterDef>
+
+  <ColonyCouncil.EncounterDef>
+    <defName>Council_EncW_FogShape</defName>
+    <label>a shape in the fog</label>
+    <stranger><kind>Wild</kind></stranger>
+    <moment>fog</moment>
+    <dayOnly>true</dayOnly>
+    <weight>1.1</weight>
+    <cooldownDays>8</cooldownDays>
+    <texts>
+      <li>A shape came out of the fog toward {A_nameDef}, big and dark and slow, and turned into {X_indefinite} a few paces away. Both of them stopped dead, and both of them backed away.</li>
+      <li>In the thick fog {A_nameDef} could hear {X_indefinite} breathing somewhere close and couldn't see it at all, until it walked right past {A_objective}, close enough to smell.</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncW_FogShape</thought><exceptTrait><li>Nerves</li><li>Wimp</li></exceptTrait></li>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncW_FogShape</thought><degreeTrait>Nerves</degreeTrait><minDegree>0</minDegree><exceptTrait><li>Wimp</li></exceptTrait></li>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncW_FogFright</thought><degreeTrait>Nerves</degreeTrait><maxDegree>-1</maxDegree></li>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncW_FogFright</thought><onlyTrait><li>Wimp</li></onlyTrait></li>
+    </effects>
+    <journal>Council_Journal_EncW_Weather</journal>
+  </ColonyCouncil.EncounterDef>
+
+  <ColonyCouncil.EncounterDef>
+    <defName>Council_EncW_FirstSnow</defName>
+    <label>an animal in the snow</label>
+    <stranger><kind>Pet</kind></stranger>
+    <moment>snow</moment>
+    <dayOnly>true</dayOnly>
+    <children>true</children>
+    <weight>1.1</weight>
+    <cooldownDays>10</cooldownDays>
+    <texts>
+      <li>This morning {X_definite} went mad in the snow, leaping and rolling and snapping at the flakes, and {A_nameDef} laughed until {A_pronoun} was too cold to stand there any longer.</li>
+      <li>{A_nameDef} threw a snowball for {X_definite}, who chased it, lost it, dug for it and came up with a face full of snow and no idea where it went.</li>
+      <li>[child] {A_nameDef} and {X_definite} made a long trench through the snow running back and forth across the yard, and the grown-ups had to walk around it for the rest of the day.</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncW_SnowPlay</thought></li>
+    </effects>
+    <journal>Council_Journal_EncW_Weather</journal>
+  </ColonyCouncil.EncounterDef>
+
+  <ColonyCouncil.EncounterDef>
+    <defName>Council_EncW_Thunder</defName>
+    <label>thunder and a frightened animal</label>
+    <stranger>
+      <kind>Pet</kind>
+      <ofA>true</ofA>
+    </stranger>
+    <moment>storm</moment>
+    <weight>1.1</weight>
+    <cooldownDays>8</cooldownDays>
+    <texts>
+      <li>Every clap of thunder sent {X_definite} deeper under the table. {A_nameDef} crawled under with {X_objective} and talked to {X_objective} until the storm moved off and the shaking stopped.</li>
+      <li>In the worst of the storm {X_definite} came to {A_nameDef} with {X_possessive} ears flat and pressed against {A_possessive} legs. {A_nameDef} sat on the floor and held on through the worst of it.</li>
+      <li>[trait:Nervous|trait:Volatile] {A_nameDef} hates thunder too, so {A_pronoun} sat with {X_definite} through the storm, and by the end it was hard to say which of them was comforting the other.</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncW_CalmedInStorm</thought></li>
+    </effects>
+    <journal>Council_Journal_EncW_Weather</journal>
+  </ColonyCouncil.EncounterDef>
+
+  <!-- ======================= The night ======================= -->
+
+  <ColonyCouncil.EncounterDef>
+    <defName>Council_EncN_StarNames</defName>
+    <label>other names for the stars</label>
+    <stranger><kind>Visitor</kind><adult>true</adult></stranger>
+    <moment>clear</moment>
+    <nightOnly>true</nightOnly>
+    <weight>1.1</weight>
+    <cooldownDays>8</cooldownDays>
+    <texts>
+      <li>{X_nameDef} of {FACTION} pointed out the stars to {A_nameDef} as {FACTION} people know them: a plow where the colony sees a hunter, a river where it sees nothing at all, and a story for each.</li>
+      <li>Lying on the roof on a clear night, {X_nameDef} told {A_nameDef} which star sailors steer by in {FACTION} country, and which one you must never point at, and why.</li>
+      <li>[theirHightech] {X_nameDef} showed {A_nameDef} which of the bright points overhead are worlds people live on, and which one {X_pronoun} came from. {A_nameDef} looked at it for a long time.</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncN_StarNames</thought></li>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>X</target><thought>Council_EncP_GoodCompany</thought></li>
+      <li Class="ColonyCouncil.DilemmaEffect_Learn"><target>A</target><skill>Intellectual</skill><xp>150</xp></li>
+    </effects>
+  </ColonyCouncil.EncounterDef>
+
+  <ColonyCouncil.EncounterDef>
+    <defName>Council_EncN_TraderLamp</defName>
+    <label>a late talk at the caravan</label>
+    <stranger><kind>Trader</kind></stranger>
+    <nightOnly>true</nightOnly>
+    <weight>1</weight>
+    <cooldownDays>8</cooldownDays>
+    <texts>
+      <li>The trading was done hours ago, but {A_nameDef} sat up at the caravan's lamp with {X_nameDef} anyway, drinking something hot and talking about nothing much until the lamp burned low.</li>
+      <li>{X_nameDef} couldn't sleep either. {A_nameDef} found {X_objective} sitting on a crate by the pack animals and sat down beside {X_objective}, and they talked about the road and the people they'd left behind.</li>
+      <li>[theirLowtech] By the light of a tallow candle, {X_nameDef} told {A_nameDef} the story behind every scar on {X_possessive} hands, and asked about each of {A_nameDef}'s in return.</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncN_LateTea</thought></li>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>X</target><thought>Council_EncP_GoodCompany</thought></li>
+    </effects>
+  </ColonyCouncil.EncounterDef>
+
+</Defs>

@@ -47,6 +47,11 @@ namespace ColonyCouncil
             /// <summary>Immunity lost per day while untended after treatment began (tuberculosis).</summary>
             public float untendedImmunityLossPerDay;
             public float startSeverity = 0.05f;
+            /// <summary>From this severity on, it worsens by <see cref="fastPerDay"/> instead (rabies once symptoms show).</summary>
+            public float fastAbove = 999f;
+            public float fastPerDay;
+            /// <summary>Tending only turns it back below this severity.</summary>
+            public float tendWorksBelow = 999f;
             /// <summary>0 or less: never lethal.</summary>
             public float lethalSeverity = 1f;
             public float maxSeverity = 1f;
@@ -83,8 +88,8 @@ namespace ColonyCouncil
                 if (tending) everTended = true;
                 bool immune = immunity >= 1f;
                 if (immune && immuneAt < 0f) immuneAt = day;
-                float ds = immune ? c.severityPerDayImmune : c.severityPerDayNotImmune * severityFactor;
-                if (tending) ds += c.severityPerDayTended * quality * medicine;
+                float ds = immune ? c.severityPerDayImmune : (severity >= c.fastAbove ? c.fastPerDay : c.severityPerDayNotImmune) * severityFactor;
+                if (tending && severity < c.tendWorksBelow) ds += c.severityPerDayTended * quality * medicine;
                 float di = immune ? 0f : c.immunityPerDaySick * immunityGain;
                 if (tending) di += c.treatedImmunityPerDay * quality * medicine;
                 else if (everTended) di -= c.untendedImmunityLossPerDay;

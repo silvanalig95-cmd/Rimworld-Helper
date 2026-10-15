@@ -96,8 +96,11 @@
       <li>Council_Ail_Typhus_Mood</li>
       <li>Council_Ail_Meningitis_Mood</li>
       <li>Council_Ail_Glassblood_Mood</li>
+      <li>Council_Ail_Cholera_Mood</li>
+      <li>Council_Ail_HiveFever_Mood</li>
+      <li>Council_Ail_Measles_Mood</li>
     </thoughts>
-    <fix>Keep the patient in bed and tended as often as possible, with the best medicine the colony has. The illness's description says what helps most; for tuberculosis, every day without gaps.</fix>
+    <fix>Keep the patient in bed and tended as often as possible, with the best medicine the colony has. The illness's description says what helps most; for tuberculosis, every day without gaps, and for cholera, someone to keep them drinking.</fix>
     <article>Council_Alm_4_25_Ailments</article>
   </ColonyCouncil.MoodHintDef>
 
@@ -117,6 +120,75 @@
     </thoughts>
     <fix>It passes in two days. Good medicine on the shelf and a second doctor make a hard case lighter to carry.</fix>
     <keep>It comes from seeing someone through a serious illness.</keep>
+    <article>Council_Alm_4_25_Ailments</article>
+  </ColonyCouncil.MoodHintDef>
+
+  <ColonyCouncil.MoodHintDef>
+    <defName>Council_Mood_RF_AilAppendicitis</defName>
+    <thoughts><li>Council_Ail_Appendicitis_Mood</li></thoughts>
+    <fix>Have a doctor do the "remove appendix" operation (two medicine). Until then, tend the patient as often as possible.</fix>
+    <article>Council_Alm_4_25_Ailments</article>
+  </ColonyCouncil.MoodHintDef>
+
+  <ColonyCouncil.MoodHintDef>
+    <defName>Council_Mood_RF_AilRabies</defName>
+    <thoughts><li>Council_Ail_Rabies_Mood</li></thoughts>
+    <fix>Treat the bite every day, without a gap, until it's gone: treatment only works before the fever comes. Industrial medicine or better works fastest.</fix>
+    <article>Council_Alm_4_25_Ailments</article>
+  </ColonyCouncil.MoodHintDef>
+
+  <ColonyCouncil.MoodHintDef>
+    <defName>Council_Mood_RF_AilPainful</defName>
+    <thoughts>
+      <li>Council_Ail_KidneyStone_Mood</li>
+      <li>Council_Ail_Shingles_Mood</li>
+      <li>Council_Ail_NervePain_Mood</li>
+    </thoughts>
+    <fix>Neither can kill. Tending eases the pain and speeds it along; industrial medicine works best. A kidney stone passes within a week, shingles in two or three.</fix>
+    <article>Council_Alm_4_25_Ailments</article>
+  </ColonyCouncil.MoodHintDef>
+
+  <ColonyCouncil.MoodHintDef>
+    <defName>Council_Mood_RF_AilSleepAndHead</defName>
+    <thoughts>
+      <li>Council_Ail_Insomnia_Mood</li>
+      <li>Council_Ail_Migraine_Mood</li>
+    </thoughts>
+    <fix>A dark, quiet room and a regular bedtime. Fewer late nights, regular meals and less to worry about keep them away; a doctor can help with either.</fix>
+    <article>Council_Alm_4_25_Ailments</article>
+  </ColonyCouncil.MoodHintDef>
+
+  <ColonyCouncil.MoodHintDef>
+    <defName>Council_Mood_RF_AilPassing</defName>
+    <thoughts>
+      <li>Council_Ail_Heartburn_Mood</li>
+      <li>Council_Ail_Hiccups_Mood</li>
+      <li>Council_Ail_MotionSick_Mood</li>
+      <li>Council_Ail_Nosebleed_Mood</li>
+      <li>Council_Ail_Splinter_Mood</li>
+    </thoughts>
+    <fix>They pass within hours. A doctor picks out a splinter in one go and eases travel sickness; smaller helpings stop heartburn.</fix>
+    <article>Council_Alm_4_25_Ailments</article>
+  </ColonyCouncil.MoodHintDef>
+
+  <ColonyCouncil.MoodHintDef>
+    <defName>Council_Mood_RF_AilSkin</defName>
+    <thoughts>
+      <li>Council_Ail_InsectBites_Mood</li>
+      <li>Council_Ail_PlantRash_Mood</li>
+      <li>Council_Ail_HeatRash_Mood</li>
+      <li>Council_Ail_ColdSore_Mood</li>
+      <li>Council_Ail_AthletesFoot_Mood</li>
+      <li>Council_Ail_Frostnip_Mood</li>
+    </thoughts>
+    <fix>They heal in days, and a doctor's salve eases most of them. Long sleeves and nets in swamps and jungles, gloves in the fields, cooler bedrooms in the heat, dry socks, and mittens in the bitter cold prevent them.</fix>
+    <article>Council_Alm_4_25_Ailments</article>
+  </ColonyCouncil.MoodHintDef>
+
+  <ColonyCouncil.MoodHintDef>
+    <defName>Council_Mood_RF_AilLice</defName>
+    <thoughts><li>Council_Ail_Lice_Mood</li></thoughts>
+    <fix>Have a doctor treat them, then clean the room they sleep in: lice spread in dirty rooms, and they carry typhus.</fix>
     <article>Council_Alm_4_25_Ailments</article>
   </ColonyCouncil.MoodHintDef>
 

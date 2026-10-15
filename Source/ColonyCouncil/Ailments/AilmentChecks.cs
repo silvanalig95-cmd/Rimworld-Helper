@@ -22,6 +22,7 @@ namespace ColonyCouncil
         private static readonly Dictionary<BiomeDef, bool> ashBiome = new Dictionary<BiomeDef, bool>();
 
         private static NeedDef hygiene;
+        private static TraitDef nightOwl;
         private static bool looked;
 
         private static void Look()
@@ -30,6 +31,7 @@ namespace ColonyCouncil
             looked = true;
             // Dubs Bad Hygiene's need, when it's there.
             hygiene = DefDatabase<NeedDef>.GetNamedSilentFail("Hygiene");
+            nightOwl = DefDatabase<TraitDef>.GetNamedSilentFail("NightOwl");
         }
 
         public static void Reset()
@@ -38,6 +40,7 @@ namespace ColonyCouncil
             ashBiome.Clear();
             looked = false;
             hygiene = null;
+            nightOwl = null;
         }
 
         private static bool BiomeIs(BiomeDef b, string[] words, Dictionary<BiomeDef, bool> cache)
@@ -71,9 +74,10 @@ namespace ColonyCouncil
             var caravan = p.GetCaravan();
             if (caravan != null)
             {
-                if (awake && caravan.pather != null && caravan.pather.MovingNow) mask |= Bit(AilmentTrigger.Walking);
+                if (awake && caravan.pather != null && caravan.pather.MovingNow) mask |= Bit(AilmentTrigger.Walking) | Bit(AilmentTrigger.CaravanTravel);
                 // A caravan camps rough.
                 if (!awake) mask |= Bit(AilmentTrigger.HardBed);
+                if (awake) mask |= Inner(p);
                 return mask;
             }
             if (!p.Spawned || p.Map == null) return 0;
@@ -83,6 +87,9 @@ namespace ColonyCouncil
             var room = p.GetRoom();
             bool outdoors = room == null || room.PsychologicallyOutdoors;
             if (Smoky(room)) mask |= Bit(AilmentTrigger.SmokyRoom);
+            float temp = p.AmbientTemperature;
+            if (temp >= 32f || (temp >= 27f && WetBiome(map))) mask |= Bit(AilmentTrigger.Sweltering);
+            if (outdoors && temp >= 18f && WetBiome(map)) mask |= Bit(AilmentTrigger.Insects);
             if (!awake)
             {
                 var bed = RestUtility.CurrentBed(p);
@@ -95,6 +102,8 @@ namespace ColonyCouncil
                 }
                 return mask;
             }
+            mask |= Inner(p);
+            if (SmallHours(p, map)) mask |= Bit(AilmentTrigger.NightWork);
             var job = p.CurJob;
             string work = job?.workGiverDef?.workType?.defName;
             bool working = work != null;
@@ -107,13 +116,16 @@ namespace ColonyCouncil
             bool moving = p.pather != null && p.pather.Moving;
             // Long walks: out on a map away from home, or out hunting. Errands around the home don't wear out feet.
             if (moving && (!map.IsPlayerHome || work == "Hunting")) mask |= Bit(AilmentTrigger.Walking);
-            float temp = p.AmbientTemperature;
+            if (job != null && Chopping(job)) mask |= Bit(AilmentTrigger.Chopping);
+            if (moving && WetGround(p.Position, map)) mask |= Bit(AilmentTrigger.WetFeet);
             if (outdoors)
             {
                 if (working && temp >= -10f && temp <= 6f) mask |= Bit(AilmentTrigger.ColdWork);
+                if (temp < -10f) mask |= Bit(AilmentTrigger.BitterCold);
                 if (InTheSun(p, map, temp)) mask |= Bit(AilmentTrigger.SunWork);
                 if (moving && RoughGround(p.Position, map)) mask |= Bit(AilmentTrigger.RoughGround);
                 if (AshBiome(map) || ConditionOn(map, GameConditionDefOf.VolcanicWinter)) mask |= Bit(AilmentTrigger.Ashfall);
+                if (temp >= 10f && (work == "Growing" || work == "PlantCutting")) mask |= Bit(AilmentTrigger.PlantWork);
             }
             if (job != null && (job.def == JobDefOf.BeatFire || job.def == JobDefOf.ExtinguishFiresNearby || work == "Firefighter"))
                 mask |= Bit(AilmentTrigger.Firefighting);
@@ -121,7 +133,44 @@ namespace ColonyCouncil
             return mask;
         }
 
-        public static bool Counted(AilmentTrigger t) => t >= AilmentTrigger.HeavyWork && t <= AilmentTrigger.AncientWork;
+        public static bool Counted(AilmentTrigger t) => t >= AilmentTrigger.HeavyWork && t <= AilmentTrigger.Worry;
+
+        /// <summary>What's going on inside them, wherever they are: hunger, and worry (low mood or strain).</summary>
+        private static int Inner(Pawn p)
+        {
+            int mask = 0;
+            var food = p.needs?.food;
+            if (food != null && food.CurCategory >= HungerCategory.Hungry) mask |= Bit(AilmentTrigger.Hungry);
+            var mood = p.needs?.mood;
+            if (mood != null && (mood.CurLevelPercentage < 0.3f || Heart.StrainOf(p) >= 30f)) mask |= Bit(AilmentTrigger.Worry);
+            return mask;
+        }
+
+        /// <summary>Up between midnight and five in the morning, when they're not made for it.</summary>
+        private static bool SmallHours(Pawn p, Map map)
+        {
+            int hour = GenLocalDate.HourOfDay(map);
+            if (hour >= 5) return false;
+            Look();
+            return nightOwl == null || p.story?.traits == null || !p.story.traits.HasTrait(nightOwl);
+        }
+
+        /// <summary>Felling or harvesting a tree.</summary>
+        private static bool Chopping(Verse.AI.Job job)
+        {
+            if (!(job.targetA.Thing is Plant plant) || plant.def.plant == null || !plant.def.plant.IsTree) return false;
+            return job.def == JobDefOf.CutPlant || job.def == JobDefOf.CutPlantDesignated || job.def == JobDefOf.Harvest || job.def == JobDefOf.HarvestDesignated;
+        }
+
+        /// <summary>Water, marsh or mud underfoot (not sand or snow, which are only hard going).</summary>
+        private static bool WetGround(IntVec3 c, Map map)
+        {
+            var terrain = c.GetTerrain(map);
+            if (terrain == null) return false;
+            if (terrain.IsWater) return true;
+            string n = terrain.defName;
+            return n.IndexOf("Marsh", StringComparison.OrdinalIgnoreCase) >= 0 || n.IndexOf("Mud", StringComparison.OrdinalIgnoreCase) >= 0;
+        }
 
         private static bool ConditionOn(Map map, GameConditionDef def) => def != null && (map.gameConditionManager?.ConditionIsActive(def) ?? false);
 

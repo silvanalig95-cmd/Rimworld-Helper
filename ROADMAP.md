@@ -134,9 +134,12 @@ play deep. In order:
   check the next version: DESIGN.md, "Checking a new game version". Still to see in game on 1.7: that the patches take
   effect on the new runtime, and that the Needs tab's mood hints join the game's own tooltip (else they show in a box
   of their own).
-- A dev action, "Rimfolk: check myself", listing which patches applied, which systems are on, and which mods it
-  found, so a log isn't needed to tell what's wrong.
-- A short in-game test checklist (Almanac page) for each new feature.
+- Done (October 2026): a dev action, "Rimfolk: check myself" (debug actions, Rimfolk), listing the game, Rimfolk and
+  Harmony versions, which patches applied and which didn't (with the reason, now kept by the per-patch bootstrap),
+  which switches are off or changed from their defaults, which of the mods Rimfolk works with it found, and its own
+  log errors this session, so a log isn't needed to tell what's wrong. It copies to the clipboard for bug reports.
+- Done (October 2026): a short in-game test checklist, the Almanac page "Checking that it works": the Good times line,
+  ailments, the visual touches, meetings with attendance, the heart in RimHUD and the material counts.
 
 ### 2. Lean (optimization)
 - One scheduler for everything hourly: today the heart, pressures, nuisances, ailments, camps, world events,
@@ -152,8 +155,10 @@ play deep. In order:
   switch shows a one-line "what you'll notice".
 - A news digest: minor happenings gathered into one "colony news" letter a day instead of many messages; letters
   kept for decisions.
-- A first-run welcome letter and a "Start here" Almanac page; the council window remembers its page.
-- Rimfolk's pawn tabs fit the space above RimHUD and other tall inspect panes; sections collapse.
+- Done (October 2026): a first-run welcome letter (once per colony; saves that already had Rimfolk skip it without a
+  setting) and a "Start here" Almanac page; the council window remembers its page, across sessions too.
+- Done (October 2026): Rimfolk's pawn tabs fit the space above RimHUD and other tall inspect panes (checked by tests for
+  768 to 2160 pixel screens and interface scales up to 2x), scroll when short, and their sections fold away.
 - A small visual pass with the game's own effects: the comet tints the sky, fireflies glow, camps smoke, a warlord's
   raid comes with banners of dust.
 - Translation-ready: every string keyed and a guide for translators.
@@ -176,19 +181,19 @@ the content itself, not only to systems, alongside whatever else it does. Where 
 | Content | Count | Grow toward |
 |---|---|---|
 | Rimfolk events, story stages and missions | 124 | more everyday events per group, more chains, more mission kinds |
-| Wishes | 77 | wishes for every era, skill and passion, mod-aware ones for the always-on mods |
-| Council projects (ambitions) | 40 | projects for every era and colony size, long ones that span seasons |
-| Life goals | 43 | goals for children, elders, every passion |
-| Dilemmas | 98 | dilemmas from the newer systems (camps, illness, meetings, the heart) |
-| Encounters | 96 | encounters by biome and season |
-| Decrees | 13 | decrees for every era and situation |
-| Quirks | 13 | many more small personal quirks |
-| Dreams | 86 | dreams from feelings, illness and the newer events |
+| Wishes | 105 | more seasonal and biome wishes, more for the always-on mods (Alpha mods, Vanilla Expanded furniture) |
+| Council projects (ambitions) | 54 (3 in stages) | more staged and season-long projects, more for tribal and spacer colonies |
+| Life goals | 57 | goals for teenagers, more for faith and the heart, goals that change with age |
+| Dilemmas | 119 | more for children, elders and the camps; dilemmas for each new system as it lands |
+| Encounters | 122 | more lands (lakes, rivers, other mods' biomes), mod animals, rarer night and weather moments |
+| Decrees | 19 | decrees tied to world situations, faith and mods (tithes, curfews, alms) |
+| Quirks | 29 | quirks that touch others (a hummer and a light sleeper), more from events and dreams |
+| Dreams | 117 | dreams for more feelings, quirks, life goals and mod content |
 | World events | 22 | more regional situations, and their follow-ups |
 | Camp kinds | 7 | caravans of every kind, pilgrims of every faith |
-| Ailments | (in progress) | a broad everyday tier, a rare serious tier |
+| Ailments | 32 everyday, 14 serious | ailments for every biome and DLC, more after-effects |
 | Room types | 28 (108 layouts) | odd shapes beyond partitions, more spacer and mod-furniture sizes |
-| Social events, moments, frictions, nuisances | 53, 93, 12 | every trait pairing and home condition |
+| Social events, moments, frictions, nuisances | 67, 123 (40 frictions), 19 | every trait pairing and home condition |
 
 ### 5. Wider (integrations)
 - Deeper with the always-on mods: Hospitality guests as visitors with stories, Vanilla Expanded factions and

@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- Stages: hate, dislike, like, love. Kept smaller than the old decrees' on the good side: these trade, they don't give. -->
+
+  <ThoughtDef>
+    <defName>Council_Decree_QuietHours</defName>
+    <workerClass>ColonyCouncil.ThoughtWorker_Decree</workerClass>
+    <thoughtClass>ColonyCouncil.Thought_Decree</thoughtClass>
+    <stages>
+      <li><label>sent to bed at sundown</label><description>The best hours of the day are after dark, and the council has banned them.</description><baseMoodEffect>-7</baseMoodEffect></li>
+      <li><label>quiet hours</label><description>Lamps out and no talking after dark. The evenings are long and dull.</description><baseMoodEffect>-3</baseMoodEffect></li>
+      <li><label>peaceful evenings</label><description>No banging, no shouting after dark. I sleep better.</description><baseMoodEffect>2</baseMoodEffect></li>
+      <li><label>blessed quiet</label><description>For once the colony is quiet at night, and I can hear myself think. I sleep through till morning.</description><baseMoodEffect>5</baseMoodEffect></li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Council_Decree_SharedMeals</defName>
+    <workerClass>ColonyCouncil.ThoughtWorker_Decree</workerClass>
+    <thoughtClass>ColonyCouncil.Thought_Decree</thoughtClass>
+    <stages>
+      <li><label>forced to eat with everyone</label><description>I have to sit at the same table as all of them, every meal, and listen to them chew.</description><baseMoodEffect>-6</baseMoodEffect></li>
+      <li><label>meals by the bell</label><description>We all eat at the same time now, whether we're hungry or not.</description><baseMoodEffect>-2</baseMoodEffect></li>
+      <li><label>meals together</label><description>The whole table full, every evening. I like the noise of it.</description><baseMoodEffect>2</baseMoodEffect></li>
+      <li><label>one table, one family</label><description>We eat together now, all of us, every meal. This is what I wanted this place to be.</description><baseMoodEffect>4</baseMoodEffect></li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Council_Decree_SickBay</defName>
+    <workerClass>ColonyCouncil.ThoughtWorker_Decree</workerClass>
+    <thoughtClass>ColonyCouncil.Thought_Decree</thoughtClass>
+    <stages>
+      <li><label>ordered to lie down</label><description>The council would put me to bed over a sniffle. There's work to do and I'm being made to watch it pile up.</description><baseMoodEffect>-6</baseMoodEffect></li>
+      <li><label>the sick-bay rule</label><description>Too many of us are in bed with something, and the rest are covering for them.</description><baseMoodEffect>-2</baseMoodEffect></li>
+      <li><label>looking after the sick</label><description>The sick rest and the well cover for them. That's how it should be.</description><baseMoodEffect>2</baseMoodEffect></li>
+      <li><label>allowed to get better</label><description>When I'm ill, I'm allowed to stay in bed until I'm well. Nobody looks at me sideways for it.</description><baseMoodEffect>4</baseMoodEffect></li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Council_Decree_BankedFires</defName>
+    <workerClass>ColonyCouncil.ThoughtWorker_Decree</workerClass>
+    <thoughtClass>ColonyCouncil.Thought_Decree</thoughtClass>
+    <stages>
+      <li><label>cold rooms, dark nights</label><description>The fires are down to embers and the lamps go out at dusk. I'm cold all the time, and it's dark by supper.</description><baseMoodEffect>-7</baseMoodEffect></li>
+      <li><label>banked fires</label><description>The fires are kept low to save fuel. I wear my coat indoors now.</description><baseMoodEffect>-3</baseMoodEffect></li>
+      <li><label>a careful hearth</label><description>We're not wasting fuel anymore. The woodpile will see us through.</description><baseMoodEffect>2</baseMoodEffect></li>
+      <li><label>not a stick wasted</label><description>Every log burns all the way down now. Good. We've wasted enough.</description><baseMoodEffect>4</baseMoodEffect></li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Council_Decree_Apprentices</defName>
+    <workerClass>ColonyCouncil.ThoughtWorker_Decree</workerClass>
+    <thoughtClass>ColonyCouncil.Thought_Decree</thoughtClass>
+    <stages>
+      <li><label>stuck teaching fools</label><description>Somebody is always at my elbow asking how, and doing it wrong. I can't get my own work done.</description><baseMoodEffect>-6</baseMoodEffect></li>
+      <li><label>lessons every day</label><description>Lessons in everything, every day, on top of my own work.</description><baseMoodEffect>-2</baseMoodEffect></li>
+      <li><label>learning from each other</label><description>Everyone is teaching everyone something. I've learned more this week than in the last season.</description><baseMoodEffect>2</baseMoodEffect></li>
+      <li><label>passing on the trades</label><description>I'm teaching what I know and learning what others know. This colony will be better for it.</description><baseMoodEffect>4</baseMoodEffect></li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Council_Decree_FeastDay</defName>
+    <workerClass>ColonyCouncil.ThoughtWorker_Decree</workerClass>
+    <thoughtClass>ColonyCouncil.Thought_Decree</thoughtClass>
+    <stages>
+      <li><label>a wasteful feast</label><description>They're eating a week's food in a day while the work sits there. I can't enjoy any of it.</description><baseMoodEffect>-5</baseMoodEffect></li>
+      <li><label>a feast I didn't ask for</label><description>Too much food and not enough work done. I'll eat it, but I don't like it.</description><baseMoodEffect>-2</baseMoodEffect></li>
+      <li><label>feast day</label><description>A day off and a full table. I ate too much.</description><baseMoodEffect>3</baseMoodEffect></li>
+      <li><label>a proper feast</label><description>The best of everything, as much as I could eat, and the whole afternoon to eat it. What a day.</description><baseMoodEffect>6</baseMoodEffect></li>
+    </stages>
+  </ThoughtDef>
+
+</Defs>
