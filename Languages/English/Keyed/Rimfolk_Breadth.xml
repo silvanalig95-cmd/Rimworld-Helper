@@ -28,6 +28,9 @@
   <CC_Ways_TraitKnown>known</CC_Ways_TraitKnown>
   <CC_Ways_TraitProgress>{0} of the way</CC_Ways_TraitProgress>
 
+  <!-- Nemeses: one let go from the cells ({X_...}, {VICTIM}, {DEED}). -->
+  <CC_Nemesis_Released>{X_nameDef}, who {DEED}, has been set free.</CC_Nemesis_Released>
+
   <!-- The advisor's gentler checks (Advisor/AdvisorSignals4.cs). -->
   <CC_Adv_Fresh_Title>{0} colonist(s) without fresh food</CC_Adv_Fresh_Title>
   <CC_Adv_Fresh_Detail>No fruit or vegetables in a week or more: {0}. Weeks of that bring scurvy. Raw vegetables, berries or meals cooked with them all count.</CC_Adv_Fresh_Detail>

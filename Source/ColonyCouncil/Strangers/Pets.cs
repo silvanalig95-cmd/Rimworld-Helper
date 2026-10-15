@@ -78,7 +78,10 @@ namespace ColonyCouncil
             bool hero = inBattle || Find.TickManager.TicksGame - battleStart < GenDate.TicksPerDay;
             // Killed by raiders: the one it was bonded to may swear on them.
             if (bonded && hero) comp.vendettas?.Notify_PetKilled(comp, pet, person);
-            string line = Flavor.FromPool("Council_Pool_PetFarewell", person, null, null, hero ? "hero" : "quiet");
+            float years = (pet.records?.GetValue(RecordDefOf.TimeAsColonistOrColonyAnimal) ?? 0f) / GenDate.TicksPerYear;
+            string line = Flavor.FromPool("Council_Pool_PetFarewell", person, null, null, hero ? "hero" : "quiet",
+                pet.RaceProps.baseBodySize >= 1.5f ? "big" : pet.RaceProps.baseBodySize <= 0.5f ? "small" : "midsize",
+                years >= 2f ? "longtime" : years < 0.25f ? "newpet" : null, bonded ? "bonded" : "master");
             if (line.NullOrEmpty()) return;
             string text = line.Formatted(person.Named("PAWN"), pet.Named("PET")).Resolve();
             Notify.Message(text, person.Spawned ? new LookTargets(person) : LookTargets.Invalid, MessageTypeDefOf.NeutralEvent, bonded || hero ? Importance.Notable : Importance.Flavor);
@@ -117,7 +120,11 @@ namespace ColonyCouncil
                 var person = PersonOf(pet);
                 if (person == null) continue;
                 bool defended = person.Downed || (person.mindState != null && person.mindState.lastHarmTick >= battleStart);
-                string text = (defended ? "CC_Pet_Defended" : "CC_Pet_Fought").Translate(pet.Named("PET"), person.Named("PAWN")).Resolve();
+                string line = Flavor.FromPool("Council_Pool_PetHeroics", person, null, null, defended ? "defended" : "fought",
+                    pet.RaceProps.baseBodySize >= 1.5f ? "big" : pet.RaceProps.baseBodySize <= 0.5f ? "small" : "midsize");
+                string text = !line.NullOrEmpty()
+                    ? line.Formatted(pet.Named("PET"), person.Named("PAWN")).Resolve()
+                    : (defended ? "CC_Pet_Defended" : "CC_Pet_Fought").Translate(pet.Named("PET"), person.Named("PAWN")).Resolve();
                 Notify.Message(text, new LookTargets(pet, person), MessageTypeDefOf.PositiveEvent, defended ? Importance.Notable : Importance.Flavor);
                 if (!defended) continue;
                 comp.AddChronicle(new ChronicleEntry(ChronicleKind.Stranger, text, person));
