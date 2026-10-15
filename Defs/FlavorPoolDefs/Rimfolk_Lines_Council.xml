@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    More lines for the council's busiest pools: reminders and last calls on wishes (Council_Scenes.xml), support in
+    meetings (Council_MeetingTalk.xml) and the journal entry for a granted wish (Council_Journal.xml). Same
+    placeholders and tags as the pools they extend: {WISH} is the wish's label, a noun phrase ("a fishing spot");
+    {OTHER_...} is the one who proposed {AMBITION}.
+    A tagged line wins most picks for whoever fits it, so a common tag (trust, a season, the night) gets a few lines
+    together here rather than one on its own.
+  -->
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Council_Lines_Pool_Reminder</defName>
+    <pool>Council_Pool_Reminder</pool>
+    <lines>
+      <plain>
+        <li>Days go by, and "{WISH}" still hasn't happened. Just saying.</li>
+        <li>I was thinking about "{WISH}" again today, so I'm saying it out loud.</li>
+        <li>I know there's a lot on. When things settle, "{WISH}" is still waiting.</li>
+        <li>I'll help with "{WISH}" myself if someone shows me where to start.</li>
+        <li>I don't want to push, but I did ask for "{WISH}" a while back.</li>
+        <li>I asked about "{WISH}" days ago. Did anyone actually write it down?</li>
+        <li>I saw the list of jobs this morning. "{WISH}" wasn't on it.</li>
+        <li>Half the time's gone and "{WISH}" hasn't moved, so I'm asking again.</li>
+        <li>[poor] I know things are tight. "{WISH}" doesn't need much, if anyone looks.</li>
+        <li>[trusting] The council's always been fair with me, so I'll just mention "{WISH}" again.</li>
+        <li>[trusting] I know "{WISH}" is on someone's list. I'm only nudging it up.</li>
+        <li>[trusting] No complaints, just a reminder about "{WISH}".</li>
+        <li>[winter] Long evenings indoors make me think about "{WISH}" more, not less.</li>
+        <li>[winter] Snow on the sill, and "{WISH}" still on my mind.</li>
+        <li>[night] Couldn't sleep, so I'm asking about "{WISH}" while I'm up.</li>
+        <li>[night] Sorry to bring it up this late. "{WISH}", though.</li>
+        <li>[doubtful] I'll ask about "{WISH}" again, though I'm not sure anyone's listening.</li>
+        <li>[doubtful] Every time I mention "{WISH}", people find something else to do.</li>
+      </plain>
+      <warm>
+        <li>I'm still hoping for "{WISH}". I'd help, if that makes it easier.</li>
+        <li>I don't mean to keep at it, but "{WISH}" is on my mind every evening.</li>
+        <li>I know you'll get to "{WISH}" when you can. I'm only reminding.</li>
+        <li>If there's anything I can do to make "{WISH}" easier, tell me.</li>
+      </warm>
+      <blunt>
+        <li>Days now. "{WISH}". Remember?</li>
+        <li>I didn't ask for "{WISH}" to hear myself talk.</li>
+        <li>Tell me when "{WISH}" is happening, or tell me it isn't.</li>
+        <li>"{WISH}". Half the time's gone.</li>
+      </blunt>
+      <cheerful>
+        <li>Hello again! "{WISH}" is still the thing I want most.</li>
+        <li>I've been very patient about "{WISH}", and I'd like that noted.</li>
+        <li>Still hoping for "{WISH}"! I've even picked out where it goes.</li>
+        <li>There's plenty of daylight left to work on "{WISH}" by!</li>
+      </cheerful>
+      <gloomy>
+        <li>I'll ask about "{WISH}" again, for all the good it'll do.</li>
+        <li>Another week, and still no "{WISH}". About what I expected.</li>
+        <li>"{WISH}" is still waiting, same as me.</li>
+        <li>I'd guess "{WISH}" is halfway to forgotten by now.</li>
+      </gloomy>
+      <cold>
+        <li>"{WISH}" was requested and has not been done. I'd like a date.</li>
+        <li>Half of the time I gave the council for "{WISH}" is gone.</li>
+        <li>I'd like "{WISH}" settled before the rest of my patience is spent.</li>
+        <li>"{WISH}" is still on my list, and I'm reviewing my list.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Council_Lines_Pool_LastCall</defName>
+    <pool>Council_Pool_LastCall</pool>
+    <lines>
+      <plain>
+        <li>Another week gone, and still no "{WISH}". I've nearly stopped expecting it.</li>
+        <li>I've tried to be understanding about "{WISH}". I'm running out of ways to be.</li>
+        <li>I've watched everyone else get theirs. This is my last word on "{WISH}".</li>
+        <li>I'd like to keep trusting the council. "{WISH}" would help with that.</li>
+        <li>I'm asking once more about "{WISH}", mostly to see what happens.</li>
+        <li>I'm not asking for much. "{WISH}", please, while there's still time.</li>
+        <li>Everyone keeps telling me to be patient. I've been patient. "{WISH}", please.</li>
+        <li>In a few days I'll stop asking about "{WISH}" and start remembering that nobody answered.</li>
+        <li>[old] I've waited on a lot of things in my life. "{WISH}" won't be one I wait on forever.</li>
+        <li>[bitter] I knew how this would go when I asked for "{WISH}". I'm asking anyway, one last time.</li>
+      </plain>
+      <warm>
+        <li>I'm asking about "{WISH}" one last time, as kindly as I can.</li>
+        <li>I'll understand if "{WISH}" can't happen, but I'd like someone to tell me.</li>
+        <li>I won't hold it against anyone, but I'd be lying if I said "{WISH}" didn't matter.</li>
+      </warm>
+      <blunt>
+        <li>Last time. "{WISH}". After this I'm done.</li>
+        <li>You've had plenty of warning about "{WISH}".</li>
+        <li>Do it or say no. I'm tired of waiting.</li>
+      </blunt>
+      <cheerful>
+        <li>I'm giving "{WISH}" one last cheerful nudge, and then I'm going to sulk.</li>
+        <li>Last call for "{WISH}"! After this my good mood goes on holiday.</li>
+        <li>One more ask about "{WISH}", with my very last smile.</li>
+      </cheerful>
+      <gloomy>
+        <li>I'll ask about "{WISH}" one last time, and then I'll stop expecting things.</li>
+        <li>Nearly out of time on "{WISH}", and nearly out of hope.</li>
+        <li>I've been expecting to give up on "{WISH}". Looks like it'll be this week.</li>
+      </gloomy>
+      <cold>
+        <li>Last request regarding "{WISH}". I'll remember how it was handled.</li>
+        <li>After this I stop asking about "{WISH}" and start keeping score.</li>
+        <li>I've given the council every chance on "{WISH}". There won't be another.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Council_Lines_Pool_MeetingSupport</defName>
+    <pool>Council_Pool_MeetingSupport</pool>
+    <lines>
+      <plain>
+        <li>I can make what "{AMBITION}" needs. Count me in.</li>
+        <li>There's material enough for "{AMBITION}", and I'll do my share of the hauling.</li>
+        <li>I've been hoping someone would bring up "{AMBITION}". Yes.</li>
+        <li>"{AMBITION}" is the one I'd have picked. I'm voting for it.</li>
+        <li>[newcomer] I'm new here, but "{AMBITION}" sounds right to me.</li>
+        <li>[rich] We can afford "{AMBITION}" now. Let's not sit on it.</li>
+        <li>[spring] Spring's the time to start "{AMBITION}". I'm for it.</li>
+        <li>[spring] The ground's soft and the days are getting longer. "{AMBITION}", yes.</li>
+        <li>[spring] Start "{AMBITION}" now and it'll be finished by summer.</li>
+        <li>[summer] Warm nights, long days. We'll never have a better season for "{AMBITION}".</li>
+        <li>[summer] Better we start "{AMBITION}" in the heat than in the snow.</li>
+        <li>[fall] If we start "{AMBITION}" now, it'll be done before the snow.</li>
+        <li>[fall] The harvest's mostly in. That frees hands for "{AMBITION}".</li>
+        <li>[fall] One push before the cold. "{AMBITION}" gets my vote.</li>
+        <li>[winter] There's not much else to do while the fields sleep. Let's do "{AMBITION}".</li>
+        <li>[trusting] {OTHER_nameDef} has thought this through. I'm happy to follow.</li>
+        <li>[trusting] When {OTHER_nameDef} says something's worth doing, it usually is.</li>
+      </plain>
+      <warm>
+        <li>{OTHER_nameDef} put a lot of thought into this. I'll help however I can.</li>
+        <li>I'd be proud of "{AMBITION}" when it's done. Yes from me.</li>
+        <li>It's a good plan, and it took nerve for {OTHER_nameDef} to stand up and say it.</li>
+      </warm>
+      <blunt>
+        <li>Yes. "{AMBITION}". Done talking.</li>
+        <li>It's needed, so yes.</li>
+        <li>Vote for "{AMBITION}". The rest are worse.</li>
+      </blunt>
+      <cheerful>
+        <li>"{AMBITION}"! I'm already rolling up my sleeves.</li>
+        <li>Oh, I love this one. Yes!</li>
+        <li>I've got ideas for "{AMBITION}" already, so many ideas.</li>
+      </cheerful>
+      <gloomy>
+        <li>Fine, "{AMBITION}". It beats doing nothing and waiting for the next bad thing.</li>
+        <li>I'll vote for it. Somebody has to want something.</li>
+        <li>"{AMBITION}", then. At least it'll keep us busy.</li>
+      </gloomy>
+      <cold>
+        <li>"{AMBITION}" pays for itself within a season. Yes.</li>
+        <li>I support "{AMBITION}". The alternatives cost more in the long run.</li>
+        <li>{OTHER_nameDef}'s proposal is the practical one. I vote for it.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Council_Lines_Journal_Granted</defName>
+    <pool>Council_Journal_Granted</pool>
+    <lines>
+      <plain>
+        <li>[promised] They promised me "{WISH}", and they kept it. I'll remember that.</li>
+        <li>[petition] Several of us asked for "{WISH}" together, and we got it. Supper was loud.</li>
+        <li>[afterraid] Still cleaning up after the raid, and they found time for "{WISH}" anyway.</li>
+        <li>They came through with "{WISH}". I want to do something for someone else now.</li>
+        <li>I've got "{WISH}". I'm not saying I'm satisfied, but it's a start.</li>
+        <li>I kept expecting them to change their minds about "{WISH}". They didn't.</li>
+        <li>Watched them build it and only said something twice. It's good work.</li>
+        <li>They saw to "{WISH}" today. I sat with it a while after supper.</li>
+        <li>Crossed "{WISH}" off the list I keep at the back of this book.</li>
+        <li>[doubtful] I'd half given up on the council. Then they said yes to "{WISH}". I'm reconsidering.</li>
+        <li>[doubtful] I didn't think they'd bother with "{WISH}". I was wrong, and I don't mind.</li>
+        <li>[doubtful] One yes doesn't make up for everything, but "{WISH}" is a start.</li>
+        <li>[trusting] I asked, and they came through, the way they usually do.</li>
+        <li>[trusting] They said yes to "{WISH}". I'm not surprised, but I'm glad.</li>
+        <li>[winter] Midwinter, and the council still found the time for "{WISH}".</li>
+        <li>[winter] Snow up to the knees today, and good news: "{WISH}" is done.</li>
+      </plain>
+      <warm>
+        <li>"{WISH}" is mine now. I went round and thanked everyone who had a hand in it.</li>
+        <li>I asked for one thing, and they gave it to me with no fuss. I'm grateful.</li>
+        <li>They made time for me when there's so much else to do. I won't forget it.</li>
+        <li>[trusting] They listened, as they always do. I'm lucky to have landed here.</li>
+        <li>[trusting] Another kindness from the council. I'll find a way to give some of it back.</li>
+        <li>[trusting] I never doubted they'd see to "{WISH}". It still means a great deal.</li>
+      </warm>
+      <blunt>
+        <li>"{WISH}". Done. Good.</li>
+        <li>They came through. Didn't think they would.</li>
+        <li>Got it. Said thanks once, which is enough.</li>
+        <li>[repeat] Asked twice. Got it the second time. Fine.</li>
+      </blunt>
+      <cheerful>
+        <li>They said yes to "{WISH}"! I keep going back to check it's real.</li>
+        <li>I got my wish! I told everyone at supper, some of them twice.</li>
+        <li>Sunshine or not, the council said yes. Can't ask for more!</li>
+        <li>Best news all season: "{WISH}" is mine!</li>
+        <li>[cold] My nose is frozen and I'm grinning anyway. They came through!</li>
+        <li>[cold] Cold enough to see my breath, and I've been humming all afternoon.</li>
+      </cheerful>
+      <gloomy>
+        <li>They came through with "{WISH}". I'll enjoy it while it lasts.</li>
+        <li>A yes, for once. I'll probably find something wrong with it tomorrow.</li>
+        <li>I've got "{WISH}". I didn't expect to feel this relieved.</li>
+        <li>Still a grim season, but at least "{WISH}" is done.</li>
+        <li>[lowmood] They said yes, and I wish I could feel it more than I do.</li>
+        <li>[lowmood] A good thing happened today. I'm writing it down so it counts.</li>
+        <li>[lowmood] It's done, and I know it should help. Maybe tomorrow it will.</li>
+      </gloomy>
+      <cold>
+        <li>"{WISH}" granted. I'll factor that into how I deal with the council.</li>
+        <li>They did what I asked. Reliability is worth noting.</li>
+        <li>The council kept its word on "{WISH}". I'll keep mine.</li>
+        <li>Granted in good time. I'd assumed they'd make me wait longer.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+</Defs>
