@@ -319,6 +319,9 @@ namespace ColonyCouncil
             float f = 1f;
             if (p.DevelopmentalStage.Juvenile()) f *= info.childFactor;
             else if (info.oldFactor != 1f && Flavor.HumanAge(p) >= 60f) f *= info.oldFactor;
+            if (info.risks != null)
+                for (int i = 0; i < info.risks.Count; i++)
+                    if (info.risks[i] != null && info.risks[i].Applies(p)) f *= info.risks[i].factor;
             return f;
         }
 
@@ -380,7 +383,7 @@ namespace ColonyCouncil
         {
             seriousNow.Clear();
             casesNow.Clear();
-            foreach (var p in PawnsFinder.AllMapsCaravansAndTravellingTransporters_Alive_Colonists)
+            foreach (var p in PawnsFinder.AllMapsCaravansAndTravellingTransporters_Alive_Colonists.ToList())
             {
                 var hs = p?.health?.hediffSet?.hediffs;
                 if (hs == null) continue;
@@ -830,7 +833,7 @@ namespace ColonyCouncil
         private static Pawn ColonistById(string id)
         {
             if (id.NullOrEmpty()) return null;
-            foreach (var p in PawnsFinder.AllMapsCaravansAndTravellingTransporters_Alive_Colonists)
+            foreach (var p in PawnsFinder.AllMapsCaravansAndTravellingTransporters_Alive_Colonists.ToList())
                 if (p.ThingID == id)
                     return p;
             return null;
@@ -985,7 +988,7 @@ namespace ColonyCouncil
             });
             // Hediffs that are gone: the colonists' current ones are all that matter.
             var live = new HashSet<int>();
-            foreach (var p in PawnsFinder.AllMapsCaravansAndTravellingTransporters_Alive_Colonists)
+            foreach (var p in PawnsFinder.AllMapsCaravansAndTravellingTransporters_Alive_Colonists.ToList())
             {
                 var hs = p?.health?.hediffSet?.hediffs;
                 if (hs == null) continue;

@@ -107,6 +107,10 @@
         <li>gripe->sleeping in the same damp blanket for a month</li>
         <li>gripe->eating in the dirt like animals</li>
         <li>gripe->the cold that gets in through the floor</li>
+        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] that [gripe] was the first thing [INITIATOR_pronoun] thought of every morning.</li>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] compared notes on [gripe] and found they had the same complaint.</li>
+        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] that [INITIATOR_pronoun] would stop going on about [gripe] once something was done about it.</li>
+        <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] whether [RECIPIENT_pronoun] thought the council even knew about [gripe].</li>
       </rulesStrings>
     </logRulesInitiator>
   </InteractionDef>

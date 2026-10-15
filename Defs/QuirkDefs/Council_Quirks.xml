@@ -26,9 +26,17 @@
       </plain>
       <blunt><li>The {ITEM} is lucky. Don't touch it.</li></blunt>
       <cold><li>Statistically meaningless. I'm wearing the {ITEM} to every fight from now on regardless.</li></cold>
+      <warm><li>I touch my {ITEM} before every fight now and think of the people I'm fighting for. It hasn't failed me yet.</li></warm>
+      <cheerful><li>My {ITEM} is lucky! I've decided, and the raiders agree, judging by how they keep missing.</li></cheerful>
+      <gloomy><li>I wore my {ITEM} and lived when others didn't. I don't know what to make of that, so I keep wearing it.</li></gloomy>
     </gained>
     <faded>
       <plain><li>I used to think my {ITEM} was lucky. I've stopped needing it, I think.</li></plain>
+      <warm><li>I lent my {ITEM} to someone who was scared before the last fight. I didn't miss it. Maybe it was never the {ITEM}.</li></warm>
+      <blunt><li>Forgot my {ITEM} last fight. Came back fine. So much for that.</li></blunt>
+      <cheerful><li>I went into a fight without my {ITEM} and came back without a scratch! Maybe I'm the lucky one.</li></cheerful>
+      <gloomy><li>My {ITEM} didn't stop the last one from hurting. It's only my {ITEM} again.</li></gloomy>
+      <cold><li>The {ITEM} has no bearing on outcomes. I stopped pretending otherwise.</li></cold>
     </faded>
   </ColonyCouncil.QuirkDef>
 
@@ -48,9 +56,19 @@
         <li>Thunder, then a death. Every time. I've started counting.</li>
       </plain>
       <gloomy><li>Every time there's a storm, I wait to hear who died.</li></gloomy>
+      <warm><li>When the thunder starts I go round and make sure everyone's inside. I know it's foolish. I do it anyway.</li></warm>
+      <blunt><li>Storm's coming. Stay in. Don't argue.</li></blunt>
+      <cheerful><li>I laugh about storms in the daytime. Then the thunder starts, and I go very quiet.</li></cheerful>
     </gained>
     <faded>
-      <plain><li>A storm came last night and nobody died. I think I can stop watching the sky.</li></plain>
+      <plain>
+        <li>A storm came last night and nobody died. I think I can stop watching the sky.</li>
+        <li>Slept through a thunderstorm last night. Didn't even wake.</li>
+      </plain>
+      <warm><li>There was a storm last night and I sat up with a friend who was scared, instead of being scared myself.</li></warm>
+      <blunt><li>Storm last night. Nobody died. Done watching the sky.</li></blunt>
+      <cheerful><li>Watched the lightning last night and thought it was beautiful. I'd forgotten it could be!</li></cheerful>
+      <gloomy><li>Storms are only storms again. I'm not sure that's better.</li></gloomy>
     </faded>
   </ColonyCouncil.QuirkDef>
 
@@ -69,6 +87,10 @@
         <li>My dream came true, so somebody out there must be listening. I talk to them every night now.</li>
       </plain>
       <cold><li>I've adopted a nightly ritual. Its efficacy is irrelevant. Its regularity is the point.</li></cold>
+      <warm><li>I pray each night for everyone here, by name. It takes a while now. I don't mind.</li></warm>
+      <blunt><li>I pray at night. Don't interrupt.</li></blunt>
+      <cheerful><li>I've started saying a little prayer every night! It's mostly thank-yous.</li></cheerful>
+      <gloomy><li>I pray every night now. I don't expect an answer. I'd just like someone to know.</li></gloomy>
     </gained>
   </ColonyCouncil.QuirkDef>
 
@@ -87,9 +109,17 @@
         <li>I lay there in the dirt, couldn't move, couldn't see. Now every dark room feels like that.</li>
         <li>[child] I don't like the dark anymore. I want a light by my bed. Please.</li>
       </plain>
+      <warm><li>I leave a light by my bed now. If anyone else needs one, they can share mine.</li></warm>
+      <blunt><li>Light stays on. Don't touch it.</li></blunt>
+      <cheerful><li>I sleep with a light on now, like a child! It's very cozy, actually.</li></cheerful>
+      <gloomy><li>The dark feels like lying in the dirt again. I don't go into it if I can help it.</li></gloomy>
     </gained>
     <faded>
       <plain><li>I walked through the storeroom with no light tonight and only noticed afterward.</li></plain>
+      <warm><li>I went to fetch something from the dark storeroom for someone today, and only realized after that I hadn't been afraid.</li></warm>
+      <blunt><li>Blew out my light last night. Slept fine.</li></blunt>
+      <cheerful><li>I walked through the dark yard tonight and looked up at the stars instead of over my shoulder!</li></cheerful>
+      <gloomy><li>The dark doesn't frighten me anymore. Other things do, but not the dark.</li></gloomy>
     </faded>
   </ColonyCouncil.QuirkDef>
 
@@ -107,6 +137,10 @@
         <li>I've got a routine before a fight now. Check, check, the name of someone I've lost, go.</li>
       </plain>
       <blunt><li>Don't talk to me before a fight. I'm busy.</li></blunt>
+      <warm><li>Before each fight I say the names of the people behind me. Then I go.</li></warm>
+      <cheerful><li>I've got a lucky routine now: two taps, one breath, one terrible joke. Works every time!</li></cheerful>
+      <gloomy><li>I do the same things before every fight, in the same order. If I change one, I'm sure that'll be the time.</li></gloomy>
+      <cold><li>A fixed routine before combat steadies the hands. I don't care whether it's superstition.</li></cold>
     </gained>
   </ColonyCouncil.QuirkDef>
 
@@ -121,6 +155,10 @@
       <plain>
         <li>If my dream could come true, so can the other ones. The one with the black sun.</li>
       </plain>
+      <warm><li>When the sun goes dark, I'll be the one bringing everyone inside. I've decided that much.</li></warm>
+      <blunt><li>If the sun goes out, I'm going in.</li></blunt>
+      <gloomy><li>My dream came true. Now I keep looking at the sun and waiting for it to go out.</li></gloomy>
+      <cold><li>Dreams don't predict anything. I keep a lamp by me in daylight now anyway.</li></cold>
     </gained>
   </ColonyCouncil.QuirkDef>
 
@@ -138,7 +176,17 @@
         <li>It rained, and I went out and stood in it until I was soaked through. I felt better than I have in days.</li>
       </plain>
       <cheerful><li>Rain is free and it falls on everyone! I'm going to go stand in it every time.</li></cheerful>
+      <warm><li>After we lost them, I stood out in the rain and let it wash the worst of it off. I'll do it again next time it rains.</li></warm>
+      <blunt><li>I stand in the rain now. It helps. Leave me be.</li></blunt>
+      <gloomy><li>The rain doesn't wash anything away. It feels like it does, for a while.</li></gloomy>
     </gained>
+    <faded>
+      <plain><li>It rained today and I went in like everyone else. I didn't need to stand in it.</li></plain>
+      <warm><li>Watched the rain from the doorway today with a friend. It was enough.</li></warm>
+      <blunt><li>Rain's just rain again. Staying dry.</li></blunt>
+      <cheerful><li>I stayed indoors when it rained today, and it felt like a good sign!</li></cheerful>
+      <gloomy><li>Didn't go out in the rain today. Whatever it was washing away, it's gone or it's stuck.</li></gloomy>
+    </faded>
   </ColonyCouncil.QuirkDef>
 
   <ColonyCouncil.QuirkDef>
@@ -154,7 +202,19 @@
       <plain>
         <li>When I was lying there I kept looking at the sky. I'd never really looked before. I look every day now.</li>
       </plain>
+      <warm><li>I eat outside when I can now. The sky makes the food taste better.</li></warm>
+      <blunt><li>Need the sky. Indoors too long and I start pacing.</li></blunt>
+      <cheerful><li>I've started taking my breaks outside! The sky is the best roof there is.</li></cheerful>
+      <gloomy><li>Lying in the dirt, all I could see was the sky. Now walls feel like a lid.</li></gloomy>
+      <cold><li>I work outside when I can. I think more clearly without a ceiling.</li></cold>
     </gained>
+    <faded>
+      <plain><li>Spent all day indoors and didn't feel the need to go out once.</li></plain>
+      <warm><li>I used to need the sky every day. Now I just like it.</li></warm>
+      <blunt><li>Indoors all day. Fine.</li></blunt>
+      <cheerful><li>Spent the whole day inside and didn't even miss the sky. I'll visit it tomorrow!</li></cheerful>
+      <gloomy><li>The walls don't press in like they did. I suppose I've got used to them.</li></gloomy>
+    </faded>
   </ColonyCouncil.QuirkDef>
 
   <ColonyCouncil.QuirkDef>
@@ -168,7 +228,18 @@
     <thought>Council_Quirk_WinterGrief</thought>
     <gained>
       <plain><li>The snow came the week we buried them. I think I'll always feel it now when the snow comes.</li></plain>
+      <warm><li>When winter comes I'll keep a light burning for them every night until the thaw.</li></warm>
+      <blunt><li>Winter's for remembering them. That's how it is now.</li></blunt>
+      <gloomy><li>Every snowfall is the week we lost them. I don't think that'll change.</li></gloomy>
+      <cold><li>I've noticed I'm worse in winter since the loss. I'll plan around it.</li></cold>
     </gained>
+    <faded>
+      <plain><li>The first snow came and I thought of them, and then I went and helped with the firewood. It's easier now.</li></plain>
+      <warm><li>Winter came, and I remembered them with a smile instead of tears. They'd like that.</li></warm>
+      <blunt><li>Snow's just snow this year.</li></blunt>
+      <cheerful><li>First snowball fight of the winter, and I didn't feel guilty for laughing!</li></cheerful>
+      <gloomy><li>Winter's still hard, but it's not their winter anymore. It's just winter.</li></gloomy>
+    </faded>
   </ColonyCouncil.QuirkDef>
 
   <!-- Flavour only -->
@@ -182,6 +253,11 @@
     <children>true</children>
     <gained>
       <plain><li>Every time someone says things are going well, I knock on the nearest wall. You can laugh. We're still alive.</li></plain>
+      <warm><li>I knock on wood when anyone says something hopeful. I want their hopes to last.</li></warm>
+      <blunt><li>Don't say it's quiet. I'll have to knock on something.</li></blunt>
+      <cheerful><li>Things are going great! Hang on, let me find some wood.</li></cheerful>
+      <gloomy><li>Every good thing that's ever been said here was followed by a raid. So I knock.</li></gloomy>
+      <cold><li>Knocking on wood costs nothing. I do it in case I'm wrong about it.</li></cold>
     </gained>
   </ColonyCouncil.QuirkDef>
 
@@ -196,6 +272,10 @@
         <li>I went to the grave and told them about my day. I'm going to keep doing that. Someone should keep them up to date.</li>
       </plain>
       <warm><li>I talk to the ones we lost, out by the graves. I tell them we're all right. Mostly true.</li></warm>
+      <blunt><li>I talk to the graves. They don't interrupt.</li></blunt>
+      <cheerful><li>I tell the graves the good news every evening. Someone should.</li></cheerful>
+      <gloomy><li>I sit by the graves and talk. Sometimes I think it's the only conversation I'm any good at.</li></gloomy>
+      <cold><li>I talk to the dead. It organizes my thoughts.</li></cold>
     </gained>
   </ColonyCouncil.QuirkDef>
 
@@ -207,6 +287,11 @@
     <chance>0.08</chance>
     <gained>
       <plain><li>Seven steps from my bed to the door. Twelve to the table. I don't know why I count now. It helps.</li></plain>
+      <warm><li>I count the people at supper every night. Everyone's there. I count again anyway.</li></warm>
+      <blunt><li>Nineteen boards in the floor. I counted. Don't ask.</li></blunt>
+      <cheerful><li>I counted every step from the kitchen to the fields today. Four hundred and twelve! I'll try for four hundred tomorrow.</li></cheerful>
+      <gloomy><li>I count everything now. Bowls, steps, heads. As if counting kept it all from going missing.</li></gloomy>
+      <cold><li>I keep counts of things. Stores, steps, people. Numbers don't lie to me.</li></cold>
     </gained>
   </ColonyCouncil.QuirkDef>
 
@@ -219,6 +304,10 @@
     <who><notTrait><li>TooSmart</li></notTrait></who>
     <gained>
       <plain><li>My grandmother salted the door to keep bad things out. I've started doing it. The raiders didn't get in last time, did they.</li></plain>
+      <warm><li>I salt the doors of the ones I care about too. They don't have to believe in it.</li></warm>
+      <blunt><li>Salt on the step. Don't sweep it.</li></blunt>
+      <cheerful><li>I put a line of salt across the doorway every night! It's my little job, and nobody's been eaten yet.</li></cheerful>
+      <gloomy><li>I salt the doorway each night. I know it won't help. I can't stop.</li></gloomy>
     </gained>
   </ColonyCouncil.QuirkDef>
 

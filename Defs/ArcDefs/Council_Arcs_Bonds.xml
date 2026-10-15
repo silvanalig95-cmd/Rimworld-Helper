@@ -136,6 +136,10 @@
         <li>[otherleft] {OTHER_nameDef} is gone. I won the argument by default. It doesn't feel like winning.</li>
         <li>Never mind {OTHER_nameDef}. Some people you just can't get along with.</li>
       </plain>
+      <warm><li>[timeout] I tried to meet {OTHER_nameDef} halfway. I don't think {OTHER_nameDef} saw me coming.</li></warm>
+      <blunt><li>[timeout] {OTHER_nameDef} and me. Still no.</li></blunt>
+      <cheerful><li>[timeout] {OTHER_nameDef} and I are back to scowling across the table. At least it's familiar!</li></cheerful>
+      <gloomy><li>[timeout] I thought {OTHER_nameDef} and I might get past it. We didn't.</li></gloomy>
     </fizzle>
     <fizzleChronicle>
       <li>[fight] The truce between {PAWN_nameDef} and {OTHER_nameDef} ended in a shouting match.</li>
@@ -295,6 +299,10 @@
         <li>[otherleft] {OTHER_nameDef} left before we sorted anything out. Maybe that's its own answer.</li>
         <li>Some things stay broken. {OTHER_nameDef} and I might be one of them.</li>
       </plain>
+      <warm><li>[timeout] I still hope {OTHER_nameDef} and I find our way back. Just not yet, it seems.</li></warm>
+      <blunt><li>[timeout] Tried with {OTHER_nameDef}. Didn't work. Done.</li></blunt>
+      <cheerful><li>[timeout] {OTHER_nameDef} and I aren't fixed yet, but we're not worse. That's something!</li></cheerful>
+      <gloomy><li>[timeout] The old hurt between {OTHER_nameDef} and me has dug in again.</li></gloomy>
     </fizzle>
     <fizzleChronicle>
       <li>[fight] {PAWN_nameDef} and {OTHER_nameDef} quarreled again, and the old wound reopened.</li>
@@ -454,6 +462,10 @@
         <li>[timeout] I keep picking up {OTHER_nameDef}'s gift and putting it down. Maybe I'll find another way to say thank you.</li>
         <li>I never did repay {OTHER_nameDef}. I think about it more than I'd admit.</li>
       </plain>
+      <warm><li>[timeout] I still want to thank {OTHER_nameDef} properly. I'll find the right way yet.</li></warm>
+      <blunt><li>[timeout] Gift's not finished. Debt's not paid. Still owe {OTHER_objective}.</li></blunt>
+      <cheerful><li>[timeout] My gift for {OTHER_nameDef} turned out lopsided! I'll try again when my hands are steadier.</li></cheerful>
+      <gloomy><li>[timeout] Some debts I'll carry to the grave. This might be one.</li></gloomy>
     </fizzle>
     <fizzleChronicle>
       <li>[otherdead] {OTHER_nameDef} died before {PAWN_nameDef} could repay {OTHER_objective}.</li>
@@ -545,6 +557,11 @@
         <li>[timeout] Still waiting on the council. I've stopped checking.</li>
         <li>Whatever goodwill I had left for the council, it's spent.</li>
       </plain>
+      <warm><li>[timeout] I wanted to believe in the council again. I'll keep the door open a crack.</li></warm>
+      <blunt><li>[timeout] Council's quiet. So am I.</li></blunt>
+      <cheerful><li>[timeout] The council's let me down again, but I'm still here, and so is the soup!</li></cheerful>
+      <gloomy><li>[timeout] I let myself hope the council was listening. I won't do that again soon.</li></gloomy>
+      <cold><li>[timeout] The council had its chance to win me back. It has spent it.</li></cold>
     </fizzle>
     <fizzleChronicle>
       <li>{PAWN_nameDef} has given up on the council.</li>

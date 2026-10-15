@@ -228,6 +228,9 @@ play deep. In order:
   researched. Next: themes for Medieval Overhaul and the Alpha furniture mods, and more upgrade advice (bedrooms
   for nobles, a kitchen that has outgrown its stove).
 - Variety checks: a dev report of the lines shown most often, so the pools that repeat get new lines first.
+  Done: a round of about 1,800 lines for the pools it ranked highest and the thin ones it doesn't rank (personal
+  touches, reminders and last calls, journals, quirks, wishes' own lines, the calendar, personal stories, health,
+  camps, the newest events and the room advice cards).
 
 ### Always: breadth grows with every round
 Variety means more than more lines: more things that can happen and be wished for. Every round of work adds to
@@ -249,7 +252,8 @@ the content itself, not only to systems, alongside whatever else it does. Where 
 | Camp kinds | 11 | caravans of every kind, pilgrims of every faith |
 | Ailments | 32 everyday, 14 serious; convalescence from 4 causes, 2 healers' names | ailments for every biome and DLC, more after-effects |
 | Room types | 28 (108 layouts, 6 themes) | odd shapes beyond partitions, more spacer and mod-furniture sizes, themes for more furniture mods |
-| Calendar days and ways to keep them | 9 kinds, 4 ways (about 300 lines) | more kinds of day, lines per biome and faith |
+| Calendar days and ways to keep them | 9 kinds, 4 ways (about 440 lines) | more kinds of day, lines per biome and faith |
+| Lines in the flavor pools (variety report) | about 25,200 in 3,640 pools | the pools at the top of the report |
 | Social events, moments, frictions, nuisances | 67, 127 (40 frictions), 19 | every trait pairing and home condition |
 
 ### 5. Wider (integrations)

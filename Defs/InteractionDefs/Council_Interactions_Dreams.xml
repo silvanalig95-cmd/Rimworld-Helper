@@ -37,6 +37,17 @@
         <li>r_logentry->[INITIATOR_nameDef] was in such a good mood after a dream of [sweet] that [RECIPIENT_nameDef] asked what [INITIATOR_pronoun] had been drinking.</li>
         <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] about a dream of [sweet], and they both went quiet for a moment.</li>
         <li>sweet->a river warm enough to swim in</li>
+        <li>r_logentry->[INITIATOR_nameDef] described a dream of [sweet], and [RECIPIENT_nameDef] asked to hear it again from the start.</li>
+        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] about a dream of [sweet] and said [INITIATOR_pronoun] had tried to go back to sleep to finish it.</li>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] compared the best dreams they could remember, and [INITIATOR_nameDef]'s was of [sweet].</li>
+        <li>r_logentry->[RECIPIENT_nameDef] noticed [INITIATOR_nameDef] smiling at nothing, and heard about a dream of [sweet].</li>
+        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] that [INITIATOR_pronoun] had dreamt of [sweet], and [RECIPIENT_nameDef] said [RECIPIENT_pronoun] hoped it came true.</li>
+        <li>r_logentry->[INITIATOR_nameDef] kept a dream of [sweet] to [INITIATOR_objective]self all morning, then told [RECIPIENT_nameDef] over lunch.</li>
+        <li>sweet->a feast where nobody had to wash up</li>
+        <li>sweet->snow falling past the window of a warm bed</li>
+        <li>sweet->a market full of things [INITIATOR_pronoun] could afford</li>
+        <li>sweet->rain on a roof that didn't leak</li>
+        <li>sweet->the people [INITIATOR_pronoun] had lost, all well and laughing</li>
       </rulesStrings>
     </logRulesInitiator>
   </InteractionDef>
@@ -67,6 +78,17 @@
         <li>r_logentry->[INITIATOR_nameDef] described a dream in which [strange], and [RECIPIENT_nameDef] offered three explanations, none of them likely.</li>
         <li>r_logentry->[INITIATOR_nameDef] couldn't stop talking about a dream in which [strange], and [RECIPIENT_nameDef] couldn't stop laughing.</li>
         <li>strange->[INITIATOR_pronoun] was a fish, and still got asked to the council</li>
+        <li>r_logentry->[INITIATOR_nameDef] scratched a drawing in the dirt to show [RECIPIENT_nameDef] a dream in which [strange].</li>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] agreed that a dream in which [strange] was probably about the council.</li>
+        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] about a dream in which [strange]. [RECIPIENT_nameDef] wanted to know how it ended, and it hadn't.</li>
+        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] that [INITIATOR_pronoun] had dreamt [strange], and [RECIPIENT_nameDef] said [RECIPIENT_pronoun] had once dreamt nearly the same.</li>
+        <li>r_logentry->[INITIATOR_nameDef] was still half in a dream in which [strange] when [INITIATOR_pronoun] started telling [RECIPIENT_nameDef] about it.</li>
+        <li>r_logentry->[INITIATOR_nameDef] described to [RECIPIENT_nameDef] a dream in which [strange], and they argued over whether it was a good sign.</li>
+        <li>strange->the trees walked down to the river every night to drink</li>
+        <li>strange->[INITIATOR_pronoun] had to cook supper for a hundred squirrels</li>
+        <li>strange->every pot in the kitchen had a name</li>
+        <li>strange->the sun set twice in one evening</li>
+        <li>strange->the colony's walls were knitted from wool</li>
       </rulesStrings>
     </logRulesInitiator>
   </InteractionDef>
@@ -96,6 +118,17 @@
         <li>r_logentry->[INITIATOR_nameDef] was jumpy all through breakfast, and finally told [RECIPIENT_nameDef] about a dream of [dread].</li>
         <li>r_logentry->[RECIPIENT_nameDef] asked [INITIATOR_nameDef] why [INITIATOR_pronoun] looked so pale, and heard about a nightmare of [dread].</li>
         <li>dread->drowning in the river</li>
+        <li>r_logentry->[INITIATOR_nameDef] sat next to [RECIPIENT_nameDef] at breakfast and told [RECIPIENT_objective] about a dream of [dread].</li>
+        <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] to check the doors with [INITIATOR_objective] after a nightmare about [dread].</li>
+        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] that [INITIATOR_pronoun] had dreamt of [dread] three nights running.</li>
+        <li>r_logentry->[RECIPIENT_nameDef] found [INITIATOR_nameDef] awake before dawn, and heard about a dream of [dread].</li>
+        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] about a nightmare of [dread], and [RECIPIENT_nameDef] stayed with [INITIATOR_objective] until it stopped feeling real.</li>
+        <li>r_logentry->[INITIATOR_nameDef] laughed off a dream of [dread] to [RECIPIENT_nameDef], but kept glancing at the door.</li>
+        <li>dread->the crops turning black overnight</li>
+        <li>dread->a winter that never ended</li>
+        <li>dread->a door that wouldn't close</li>
+        <li>dread->the roof caving in</li>
+        <li>dread->a stranger sleeping in [INITIATOR_possessive] bed</li>
       </rulesStrings>
     </logRulesInitiator>
   </InteractionDef>

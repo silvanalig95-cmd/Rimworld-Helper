@@ -741,7 +741,7 @@ namespace ColonyCouncil
         private static Pawn ColonistById(string id)
         {
             if (id.NullOrEmpty()) return null;
-            foreach (var p in PawnsFinder.AllMapsCaravansAndTravellingTransporters_Alive_Colonists)
+            foreach (var p in PawnsFinder.AllMapsCaravansAndTravellingTransporters_Alive_Colonists.ToList())
                 if (p.ThingID == id)
                     return p;
             return null;
@@ -775,7 +775,7 @@ namespace ColonyCouncil
                 visits.RemoveAll(kv => kv.Value > now || now - kv.Value > GenDate.TicksPerDay * 30);
                 CouncilGameComponent.PruneByPawn(visits);
                 var live = new HashSet<int>();
-                foreach (var p in PawnsFinder.AllMapsCaravansAndTravellingTransporters_Alive_Colonists)
+                foreach (var p in PawnsFinder.AllMapsCaravansAndTravellingTransporters_Alive_Colonists.ToList())
                 {
                     var hs = p?.health?.hediffSet?.hediffs;
                     if (hs == null) continue;

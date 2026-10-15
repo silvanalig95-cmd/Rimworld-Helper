@@ -39,8 +39,8 @@ namespace ColonyCouncil
             if (knownPawnNumbers == null || knownPawnNumbersFrame != UnityEngine.Time.frameCount)
             {
                 var set = new HashSet<int>();
-                foreach (var p in PawnsFinder.AllMapsWorldAndTemporary_AliveOrDead) if (p != null) set.Add(p.thingIDNumber);
-                foreach (var p in PawnsFinder.AllMapsCaravansAndTravellingTransporters_Alive) if (p != null) set.Add(p.thingIDNumber);
+                foreach (var p in PawnsFinder.AllMapsWorldAndTemporary_AliveOrDead.ToList()) if (p != null) set.Add(p.thingIDNumber);
+                foreach (var p in PawnsFinder.AllMapsCaravansAndTravellingTransporters_Alive.ToList()) if (p != null) set.Add(p.thingIDNumber);
                 foreach (var p in People.OffMapColonists()) if (p != null) set.Add(p.thingIDNumber);
                 knownPawnNumbers = set;
                 knownPawnNumbersFrame = UnityEngine.Time.frameCount;

@@ -1,3 +1,4 @@
+using System.Linq;
 using RimWorld;
 using UnityEngine;
 using Verse;
@@ -60,7 +61,7 @@ namespace ColonyCouncil
         public static void Daily(StandingTracker tracker, float decreeShift)
         {
             if (!S.risingStandards) return;
-            foreach (var p in PawnsFinder.AllMaps_FreeColonists)
+            foreach (var p in PawnsFinder.AllMaps_FreeColonists.ToList())
             {
                 if (p.IsQuestLodger() || p.needs?.mood == null || p.DevelopmentalStage.Baby()) continue;
                 var st = tracker.For(p);
