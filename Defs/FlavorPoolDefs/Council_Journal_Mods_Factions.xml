@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Journal entries after moments with visitors of the Empire and the Vanilla Expanded peoples
+    (Council_Encounters_Mods_Factions.xml). {PAWN_...} is the writer, {X_...} the visitor. No {FACTION} here.
+  -->
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Journal_EncF_Empire</defName>
+    <lines>
+      <plain>
+        <li>{X_nameDef} of the Empire taught me three different bows. I've already forgotten which one is for a baron.</li>
+        <li>Heard all about the imperial court from {X_nameDef}. Nine-day feasts. I'd settle for one good dinner.</li>
+        <li>The Empire has a title for everything. {X_nameDef} says even the titles have titles.</li>
+        <li>[lowtech] {X_nameDef} talks about ships between the stars as if they were carts. I nodded as if I understood.</li>
+      </plain>
+      <warm><li>{X_nameDef} was patient with all my questions about the Empire. I liked {X_objective} more than I expected to.</li></warm>
+      <blunt><li>Imperial visitor. Lots of manners. Ate well, though.</li></blunt>
+      <cheerful><li>I practiced my imperial bow on the chickens all afternoon. They were not impressed.</li></cheerful>
+      <gloomy><li>{X_nameDef} talks about the Empire as if it will last forever. Nothing does.</li></gloomy>
+      <cold><li>Learned a good deal about how the Empire's titles work from {X_nameDef}. That kind of thing is worth knowing.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Journal_EncF_Republic</defName>
+    <lines>
+      <plain>
+        <li>{X_nameDef} explained the republic's senate to me. As far as I can tell, everyone votes and the grain merchants win.</li>
+        <li>{X_nameDef} drew an arch in the dirt and showed me why it stands. I've been looking at our doorways differently all day.</li>
+        <li>[skill:Construction] Mortar with volcanic ash, according to {X_nameDef}. I need to find out where the nearest volcano is.</li>
+      </plain>
+      <warm><li>{X_nameDef} said our council reminded {X_objective} of the republic in its good days. I think it was meant kindly.</li></warm>
+      <blunt><li>The republic's visitor thinks too much of the republic. Good builders, though.</li></blunt>
+      <cheerful><li>The republic has a forum where anyone can make a speech! I've been practicing mine.</li></cheerful>
+      <gloomy><li>{X_nameDef} says the republic was free once, before the old families bought it. Everything gets bought, sooner or later.</li></gloomy>
+      <cold><li>{X_nameDef}'s people value order and good stonework. Easy neighbors to deal with, if we keep the paperwork straight.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Journal_EncF_Settlers</defName>
+    <lines>
+      <plain>
+        <li>{X_nameDef} says {X_pronoun} drove two hundred cattle across the salt flats on one canteen. I believe about half of that.</li>
+        <li>Tasted the settlers' chemshine. My throat is still warm.</li>
+        <li>[skill:Animals] Caught a goat with a rope today, the way {X_nameDef} showed me. Only took forty throws.</li>
+        <li>{X_nameDef} told me about a bandit who got hired to guard the stagecoach he kept robbing. Settlers are strange people.</li>
+      </plain>
+      <warm><li>{X_nameDef} was good company. Loud, a liar in every story, and good company.</li></warm>
+      <blunt><li>The settler talks too much. Knows horses, though.</li></blunt>
+      <cheerful><li>I'm going to learn to throw a rope like {X_nameDef}! The chickens should be worried.</li></cheerful>
+      <gloomy><li>{X_nameDef}'s stories all have the same ending: somebody ends up in the dirt. I suppose that's the frontier.</li></gloomy>
+      <cold><li>The settlers trade fairly and drink hard. Useful to know both.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+</Defs>

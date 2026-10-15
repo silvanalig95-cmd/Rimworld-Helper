@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Small moments with visitors of particular peoples: Royalty's Empire, and the peoples of Vanilla Factions Expanded
+    (Classical's republics, Settlers' townsfolk and ranchers). stranger factions: FactionDef names, matched by name, so
+    without the DLC or mod nobody fits. Each also lists its mod in <mods>. Visitors, traders' guards and Hospitality's
+    guests all count as visitors.
+  -->
+
+  <!-- ===================== The Empire (Royalty) ===================== -->
+
+  <ColonyCouncil.EncounterDef>
+    <defName>Council_EncF_ImperialManners</defName>
+    <label>imperial manners</label>
+    <mods><li>ludeon.rimworld.royalty</li></mods>
+    <weight>1.0</weight>
+    <cooldownDays>8</cooldownDays>
+    <stranger><kind>Visitor</kind><adult>true</adult><factions><li>Empire</li></factions></stranger>
+    <texts>
+      <li>{X_nameDef} of the Empire gently corrected the way {A_nameDef} bowed, then showed {A_objective} the right one, and the one for a knight, and the one you never use.</li>
+      <li>{A_nameDef} asked {X_nameDef} what all the Empire's titles mean. {X_nameDef} began with yeoman and had reached baron by the end of supper.</li>
+      <li>{X_nameDef} told {A_nameDef} that at court, a guest who finishes everything on the plate is saying the host was mean with the portions. {A_nameDef} finished everything anyway.</li>
+      <li>[x:royal] {X_nameDef} let {A_nameDef} address {X_objective} without the title, just this once, and seemed to enjoy it more than {X_pronoun} let on.</li>
+      <li>[lowtech] {X_nameDef} looked around the colony's hall and said, kindly, that the Empire's halls were much the same once, a very long time ago.</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncF_ImperialManners</thought></li>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>X</target><thought>Council_EncP_GoodCompany</thought></li>
+    </effects>
+    <journal>Council_Journal_EncF_Empire</journal>
+  </ColonyCouncil.EncounterDef>
+
+  <ColonyCouncil.EncounterDef>
+    <defName>Council_EncF_CourtNews</defName>
+    <label>news from court</label>
+    <mods><li>ludeon.rimworld.royalty</li></mods>
+    <weight>1.0</weight>
+    <cooldownDays>8</cooldownDays>
+    <stranger><kind>Visitor</kind><adult>true</adult><factions><li>Empire</li></factions></stranger>
+    <texts>
+      <li>{X_nameDef} told {A_nameDef} the news from court: a count has been made a duke, a duke has been sent to a moon, and nobody is saying why.</li>
+      <li>According to {X_nameDef}, the high stellarch has a new favorite, and half the Empire is pretending not to notice. {A_nameDef} wanted every detail.</li>
+      <li>{X_nameDef} told {A_nameDef} about a feast at court that lasted nine days, and about the man who tried to stay awake for all of it.</li>
+      <li>[x:royal] {X_nameDef}, who holds a title of {X_possessive} own, told {A_nameDef} which courtiers to trust, which to flatter, and which to avoid in corridors.</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncF_CourtNews</thought></li>
+    </effects>
+    <journal>Council_Journal_EncF_Empire</journal>
+  </ColonyCouncil.EncounterDef>
+
+  <!-- ===================== The republics (Vanilla Factions Expanded - Classical) ===================== -->
+
+  <ColonyCouncil.EncounterDef>
+    <defName>Council_EncF_SenateTalk</defName>
+    <label>talk of the senate</label>
+    <mods><li>oskarpotocki.vfe.classical</li></mods>
+    <weight>1.0</weight>
+    <cooldownDays>8</cooldownDays>
+    <stranger><kind>Visitor</kind><adult>true</adult><factions><li>VFEC_CentralRepublic</li><li>VFEC_WesternRepublic</li><li>VFEC_EasternRepublic</li></factions></stranger>
+    <texts>
+      <li>{X_nameDef} of {FACTION} explained to {A_nameDef} how the senate votes: by tribe, then by century, then by whoever is still awake. {A_nameDef} said the council was simpler. {X_nameDef} looked doubtful.</li>
+      <li>{X_nameDef} told {A_nameDef} that in {FACTION} every citizen can speak in the forum, and most of them do, at once.</li>
+      <li>{A_nameDef} asked {X_nameDef} who really runs {FACTION}. {X_nameDef} laughed and said the grain merchants, but not to tell the senators.</li>
+      <li>[colony:Open] {X_nameDef} said the colony's council reminded {X_objective} of the republic's early days, before the old families bought it.</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncF_SenateTalk</thought></li>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>X</target><thought>Council_EncP_GoodCompany</thought></li>
+    </effects>
+    <journal>Council_Journal_EncF_Republic</journal>
+  </ColonyCouncil.EncounterDef>
+
+  <ColonyCouncil.EncounterDef>
+    <defName>Council_EncF_RepublicMasonry</defName>
+    <label>a mason's eye</label>
+    <mods><li>oskarpotocki.vfe.classical</li></mods>
+    <weight>0.8</weight>
+    <cooldownDays>10</cooldownDays>
+    <dayOnly>true</dayOnly>
+    <stranger><kind>Visitor</kind><adult>true</adult><factions><li>VFEC_CentralRepublic</li><li>VFEC_WesternRepublic</li><li>VFEC_EasternRepublic</li></factions></stranger>
+    <colonist><passion>Construction</passion></colonist>
+    <texts>
+      <li>{X_nameDef} of {FACTION} looked at the colony's walls for a long time, then showed {A_nameDef} how the republic's builders set an arch so it holds itself up.</li>
+      <li>{X_nameDef} drew a column in the dust for {A_nameDef}: base, shaft and capital, and the little swell in the middle that makes it look straight.</li>
+      <li>{A_nameDef} and {X_nameDef} argued about mortar until dark. {X_nameDef}'s people put ash from a volcano in theirs; {A_nameDef} is now looking for a volcano.</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Learn"><target>A</target><skill>Construction</skill><xp>400</xp></li>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncF_Masonry</thought></li>
+    </effects>
+    <journal>Council_Journal_EncF_Republic</journal>
+  </ColonyCouncil.EncounterDef>
+
+  <!-- ===================== Settlers (Vanilla Factions Expanded - Settlers) ===================== -->
+
+  <ColonyCouncil.EncounterDef>
+    <defName>Council_EncF_SettlerTales</defName>
+    <label>a settler's tall tales</label>
+    <mods><li>oskarpotocki.vanillafactionsexpanded.settlersmodule</li></mods>
+    <weight>1.0</weight>
+    <cooldownDays>7</cooldownDays>
+    <stranger><kind>Visitor</kind><adult>true</adult><factions><li>SettlerCivil</li><li>SettlerRough</li></factions></stranger>
+    <texts>
+      <li>{X_nameDef} told {A_nameDef} about a cattle drive across the salt flats, two hundred head and one canteen. The canteen grew more heroic every time {X_pronoun} told it.</li>
+      <li>{X_nameDef} swore to {A_nameDef} that back home there's a mule that can count to five and only works for the mayor.</li>
+      <li>{X_nameDef} let {A_nameDef} taste the chemshine {FACTION} brews. {A_nameDef} is still coughing, and still talking about it.</li>
+      <li>[night] By the fire, {X_nameDef} told {A_nameDef} about the bandit who robbed the same stagecoach eleven times and was finally hired to guard it.</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncF_SettlerTales</thought></li>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>X</target><thought>Council_EncP_GoodCompany</thought></li>
+    </effects>
+    <journal>Council_Journal_EncF_Settlers</journal>
+  </ColonyCouncil.EncounterDef>
+
+  <ColonyCouncil.EncounterDef>
+    <defName>Council_EncF_RopeTrick</defName>
+    <label>a rope trick</label>
+    <mods><li>oskarpotocki.vanillafactionsexpanded.settlersmodule</li></mods>
+    <weight>0.8</weight>
+    <cooldownDays>10</cooldownDays>
+    <dayOnly>true</dayOnly>
+    <stranger><kind>Visitor</kind><adult>true</adult><factions><li>SettlerCivil</li><li>SettlerRough</li></factions></stranger>
+    <colonist><passion>Animals</passion></colonist>
+    <texts>
+      <li>{X_nameDef} showed {A_nameDef} how {FACTION}'s ranchers throw a loop over a running steer. {A_nameDef} caught a fence post, then a chicken, then, late in the afternoon, a goat.</li>
+      <li>{X_nameDef} taught {A_nameDef} the knot ranchers use for a halter that won't tighten on the animal. {A_nameDef} has retied every halter in the colony since.</li>
+      <li>{A_nameDef} watched {X_nameDef} talk a nervous horse into standing still with nothing but a low voice and a lot of patience, and asked how. {X_nameDef} said it was mostly the patience.</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Learn"><target>A</target><skill>Animals</skill><xp>400</xp></li>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncF_RopeTrick</thought></li>
+    </effects>
+    <journal>Council_Journal_EncF_Settlers</journal>
+  </ColonyCouncil.EncounterDef>
+
+</Defs>

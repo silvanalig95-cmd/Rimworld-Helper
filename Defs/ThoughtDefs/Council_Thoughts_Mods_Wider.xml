@@ -91,6 +91,56 @@
     <stages><li><label>brushed off</label><description>I complained about my stay and they told me to take it or leave it.</description><baseMoodEffect>-5</baseMoodEffect></li></stages>
   </ThoughtDef>
 
+  <!-- ===================== The Empire and the Vanilla Expanded peoples ===================== -->
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_EncF_ImperialManners</defName>
+    <durationDays>2</durationDays>
+    <stages><li><label>imperial manners</label><description>A visitor from the Empire showed me how things are done at court. I bowed wrong three times.</description><baseMoodEffect>1</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_EncF_CourtNews</defName>
+    <durationDays>2</durationDays>
+    <stages><li><label>news from court</label><description>A visitor told me all the gossip from the Empire's court. Dukes, moons, scandals.</description><baseMoodEffect>2</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_EncF_SenateTalk</defName>
+    <durationDays>2</durationDays>
+    <stages><li><label>talk of the senate</label><description>A visitor explained how their republic governs itself. Our council looks simple next to it.</description><baseMoodEffect>1</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_EncF_Masonry</defName>
+    <durationDays>3</durationDays>
+    <stages><li><label>a mason's tricks</label><description>A visitor from the republic showed me how their builders set an arch. I want to try it.</description><baseMoodEffect>2</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_EncF_SettlerTales</defName>
+    <durationDays>2</durationDays>
+    <stages><li><label>a settler's tall tales</label><description>A settler told me stories about cattle drives and bandits. Half of them were lies, and all of them were good.</description><baseMoodEffect>2</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_EncF_RopeTrick</defName>
+    <durationDays>3</durationDays>
+    <stages><li><label>learned a rope trick</label><description>A settler taught me how ranchers handle animals. I caught a goat.</description><baseMoodEffect>2</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_WS_LevyNamed</defName>
+    <durationDays>4</durationDays>
+    <stages><li><label>named in the dispatches</label><description>The Empire listed our colony among those who paid the levy in full. It's something, being named.</description><baseMoodEffect>2</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_WS_HandedOver</defName>
+    <durationDays>5</durationDays>
+    <stages><li><label>we handed over a deserter</label><description>That soldier came to us for help, and we sold them to the Empire. I keep thinking about the face.</description><baseMoodEffect>-4</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_Granted_GuestRoom</defName>
     <durationDays>5</durationDays>
