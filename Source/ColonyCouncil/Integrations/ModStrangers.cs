@@ -94,6 +94,7 @@ namespace ColonyCouncil
     public static class ModContent
     {
         private static readonly Dictionary<(int map, string def), (int tick, bool has)> hasCache = new Dictionary<(int, string), (int, bool)>();
+        private static Game hasCacheGame;
 
         public static bool Fits(EncounterDef d, Map map)
         {
@@ -108,6 +109,12 @@ namespace ColonyCouncil
         public static bool Has(Map map, string defName)
         {
             if (map == null || defName.NullOrEmpty()) return false;
+            // Map ids start over in every game: what another save's map had says nothing about this one.
+            if (hasCacheGame != Current.Game)
+            {
+                hasCache.Clear();
+                hasCacheGame = Current.Game;
+            }
             int now = Find.TickManager?.TicksGame ?? 0;
             var key = (map.uniqueID, defName);
             if (hasCache.TryGetValue(key, out var c) && now >= c.tick && now - c.tick < GenDate.TicksPerHour) return c.has;

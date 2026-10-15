@@ -179,7 +179,7 @@ namespace ColonyCouncil
                 if (current.Contains(p) || (Eligible(p) && People.StillOurs(p))) continue;
                 known.Remove(p);
                 // The ones who loved them: a loss that can change what they want from life.
-                foreach (var f in PawnsFinder.AllMaps_FreeColonists.Where(f => f != p && Eligible(f) && Close(comp, f, p)))
+                foreach (var f in PawnsFinder.AllMaps_FreeColonists.ToList().Where(f => f != p && Eligible(f) && Close(comp, f, p)))
                     comp.aspirations.Notify_Event(f, "loss");
                 if (p.Dead)
                 {
