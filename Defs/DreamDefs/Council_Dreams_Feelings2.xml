@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- Dreams for the six newer feelings (Defs/HeartDefs/Council_Feelings2.xml). Fields as in Council_Dreams3.xml. -->
+
+  <ColonyCouncil.DreamDef>
+    <defName>Council_DreamOf4_Nostalgia</defName>
+    <label>a dream of the old days</label>
+    <kind>Sweet</kind>
+    <children>true</children>
+    <feelings><li>Nostalgia</li></feelings>
+    <lines>
+      <plain>
+        <li>Dreamt I was back in the house I grew up in, and every room was exactly as I left it, down to the cup on the table.</li>
+        <li>In my dream the colony was new again: one wall, one fire, and all of us still strangers.</li>
+        <li>I dreamt of a street I haven't walked in years. I knew every crack in it.</li>
+        <li>[old] Dreamt I was young and fast and couldn't think why everyone kept calling me by my grandmother's name.</li>
+        <li>[child] I dreamt about when I was small. Smaller than now, I mean.</li>
+      </plain>
+      <warm><li>Dreamt of everyone I've ever shared a table with, all at one table, passing the bread.</li></warm>
+      <blunt><li>Dreamt about the old days. They weren't that good. Still miss them.</li></blunt>
+      <cheerful><li>In the dream I found my favorite coat from when I was twenty, and it still fit!</li></cheerful>
+      <gloomy><li>Dreamt of home. Woke up here. That's how it goes.</li></gloomy>
+      <cold><li>A dream about the past. Pleasant, and of no practical use.</li></cold>
+    </lines>
+  </ColonyCouncil.DreamDef>
+
+  <ColonyCouncil.DreamDef>
+    <defName>Council_DreamOf4_Relief</defName>
+    <label>a dream of putting something down</label>
+    <kind>Sweet</kind>
+    <children>true</children>
+    <feelings><li>Relief</li></feelings>
+    <lines>
+      <plain>
+        <li>Dreamt I'd been carrying a sack of stones up a hill for years, and someone told me I could just put it down. So I did.</li>
+        <li>In the dream all the doors in the colony were open, and nobody was afraid of that.</li>
+        <li>Dreamt the night was quiet, really quiet, and I slept inside the dream as well.</li>
+        <li>[child] I dreamt the scary thing went away and didn't come back, and then we had pudding.</li>
+      </plain>
+      <warm><li>Dreamt everyone I was worried about came walking in through the gate, one after the other, all fine.</li></warm>
+      <blunt><li>Dreamt it was over. It is over. Good.</li></blunt>
+      <cheerful><li>I dreamt I was a feather. Very light. Highly recommended.</li></cheerful>
+      <gloomy><li>Dreamt it was all over, and kept waiting for the next thing. It never came. Strange dream.</li></gloomy>
+      <cold><li>A dream of the threat resolved. Accurate, for once.</li></cold>
+    </lines>
+  </ColonyCouncil.DreamDef>
+
+  <ColonyCouncil.DreamDef>
+    <defName>Council_DreamOf4_Tenderness</defName>
+    <label>a dream of keeping someone safe</label>
+    <kind>Sweet</kind>
+    <children>true</children>
+    <feelings><li>Tenderness</li></feelings>
+    <lines>
+      <plain>
+        <li>Dreamt I was holding something small and warm in both hands, and if I kept very still it would be all right.</li>
+        <li>In my dream I tucked a blanket round someone who was sleeping, and they smiled without waking.</li>
+        <li>Dreamt I was sitting up by a sickbed, and the fever broke just before dawn.</li>
+        <li>[child] I dreamt I had a baby bird and I fed it and it grew up and it remembered me.</li>
+      </plain>
+      <warm><li>Dreamt I was looking after everyone at once, and somehow there was enough of me.</li></warm>
+      <blunt><li>Dreamt I kept someone safe. Nice change.</li></blunt>
+      <cheerful><li>Dreamt about a whole litter of something fluffy, and they all wanted me. Best dream this month.</li></cheerful>
+      <gloomy><li>Dreamt I was keeping someone safe, and couldn't see their face. I hope I do in the morning.</li></gloomy>
+      <cold><li>A dream of caretaking. I was competent at it, which is reassuring.</li></cold>
+    </lines>
+  </ColonyCouncil.DreamDef>
+
+  <ColonyCouncil.DreamDef>
+    <defName>Council_DreamOf4_Worry</defName>
+    <label>a dream of searching</label>
+    <kind>Nightmare</kind>
+    <feelings><li>Worry</li></feelings>
+    <feelingTarget>true</feelingTarget>
+    <lines>
+      <plain>
+        <li>I was looking for {OTHER_nameDef} all night in my dream, room after room, and every room was empty.</li>
+        <li>Dreamt {OTHER_nameDef} was calling for me from the other side of a river, and I couldn't find the bridge.</li>
+        <li>In the dream {OTHER_nameDef} kept walking away, and however fast I ran I stayed the same distance behind.</li>
+        <li>[again] The searching dream again. {OTHER_nameDef} was a little closer this time.</li>
+      </plain>
+      <warm><li>Dreamt I found {OTHER_nameDef} at last, sitting by a fire, perfectly fine and wondering what the fuss was about.</li></warm>
+      <blunt><li>Dreamt about {OTHER_nameDef}. Didn't sleep much after.</li></blunt>
+      <gloomy><li>Dreamt {OTHER_nameDef} didn't come back. I've told myself three times since that it was only a dream.</li></gloomy>
+      <cold><li>A dream about {OTHER_nameDef}'s safety. Worry, translated into images. Unproductive.</li></cold>
+    </lines>
+  </ColonyCouncil.DreamDef>
+
+  <ColonyCouncil.DreamDef>
+    <defName>Council_DreamOf4_Fellowship</defName>
+    <label>a dream of a long table</label>
+    <kind>Sweet</kind>
+    <children>true</children>
+    <feelings><li>Fellowship</li></feelings>
+    <lines>
+      <plain>
+        <li>Dreamt of a table so long it went out of the hall and across the fields, with everyone I know sitting at it.</li>
+        <li>In the dream we were all singing the same song, and nobody knew the words, and it didn't matter.</li>
+        <li>Dreamt the whole colony built a house in one night, everyone carrying something, and nobody was tired after.</li>
+        <li>[child] I dreamt everybody played with me at once and nobody had to go and work.</li>
+      </plain>
+      <warm><li>Dreamt I belonged somewhere. Woke up and found I still did.</li></warm>
+      <blunt><li>Good dream. Friends in it. That's all.</li></blunt>
+      <cheerful><li>Dreamt of the best party there ever was, and I was invited, and so was everyone!</li></cheerful>
+      <gloomy><li>Dreamt we were all together and happy. I'm writing it down so I remember we can be.</li></gloomy>
+      <cold><li>A dream of the colony working as one. Efficient, and oddly moving.</li></cold>
+    </lines>
+  </ColonyCouncil.DreamDef>
+
+  <ColonyCouncil.DreamDef>
+    <defName>Council_DreamOf4_Resolve</defName>
+    <label>a dream of standing firm</label>
+    <kind>Strange</kind>
+    <feelings><li>Resolve</li></feelings>
+    <lines>
+      <plain>
+        <li>Dreamt a storm was trying to push me off a hill, and I simply wouldn't go.</li>
+        <li>In the dream I was climbing a cliff with no top, and every handhold held.</li>
+        <li>Dreamt I stood in the gateway and something huge came at me out of the dark, and I didn't step back.</li>
+        <li>[again] The dream about the hill again. The wind is weaker every time.</li>
+      </plain>
+      <warm><li>Dreamt I was the wall, and everyone I love was on the other side of me, safe.</li></warm>
+      <blunt><li>Dreamt I didn't back down. I won't.</li></blunt>
+      <cheerful><li>I dreamt I wrestled a thrumbo and won. Woke up ready for anything.</li></cheerful>
+      <gloomy><li>Dreamt it all went wrong and I kept going anyway. Maybe that's the point.</li></gloomy>
+      <cold><li>A dream of endurance. Instructive. I've noted the parts that applied.</li></cold>
+    </lines>
+  </ColonyCouncil.DreamDef>
+
+</Defs>

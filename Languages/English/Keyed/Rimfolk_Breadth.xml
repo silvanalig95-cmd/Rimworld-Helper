@@ -31,6 +31,47 @@
   <!-- Nemeses: one let go from the cells ({X_...}, {VICTIM}, {DEED}). -->
   <CC_Nemesis_Released>{X_nameDef}, who {DEED}, has been set free.</CC_Nemesis_Released>
 
+  <!-- Six more feelings (Defs/HeartDefs/Council_Feelings2.xml, Heart/FeelingWorkers2.cs). -->
+  <CC_Heart_F_Nostalgia>nostalgia</CC_Heart_F_Nostalgia>
+  <CC_Heart_F_Nostalgia_Adj>nostalgic</CC_Heart_F_Nostalgia_Adj>
+  <CC_Heart_F_Nostalgia_Desc>Anniversaries and remembered days, old stories, letters home, an heirloom carried, long years here, old age.</CC_Heart_F_Nostalgia_Desc>
+  <CC_Heart_F_Nostalgia_Does>Makes wishes for a memorial, a hearth, tea or a birthday likelier, dreams of the lost and sweet dreams more common, and warm moments up to 10% likelier.</CC_Heart_F_Nostalgia_Does>
+  <CC_Heart_F_Relief>relief</CC_Heart_F_Relief>
+  <CC_Heart_F_Relief_Adj>relieved</CC_Heart_F_Relief_Adj>
+  <CC_Heart_F_Relief_Desc>A fight over and survived, a hunt or a debt ended, a nemesis caught, someone brought home, a secret off their chest, an illness got through.</CC_Heart_F_Relief_Desc>
+  <CC_Heart_F_Relief_Does>Strain drains up to 30% faster and fear eases. Makes wishes for a day off, a party or a bath likelier.</CC_Heart_F_Relief_Does>
+  <CC_Heart_F_Tenderness>tenderness</CC_Heart_F_Tenderness>
+  <CC_Heart_F_Tenderness_Adj>tender</CC_Heart_F_Tenderness_Adj>
+  <CC_Heart_F_Tenderness_Desc>Caring for someone: a baby, a patient, a little one learning, a sick friend, an animal bonded to them close by.</CC_Heart_F_Tenderness_Desc>
+  <CC_Heart_F_Tenderness_Does>Eases anger. Warm moments up to 30% likelier, most of all with the one they care for, and grief more easily shared. Makes wishes for a pet bed, a crib, a sickbed visit or a companion likelier.</CC_Heart_F_Tenderness_Does>
+  <CC_Heart_F_Worry>worry</CC_Heart_F_Worry>
+  <CC_Heart_F_Worry_Adj>worried</CC_Heart_F_Worry_Adj>
+  <CC_Heart_F_Worry_Desc>Someone they love is downed, ill, carried off or away with a caravan.</CC_Heart_F_Worry_Desc>
+  <CC_Heart_F_Worry_Does>Adds a little dread-strain every hour. Makes wishes for a sickbed visit, a rescue or a proper infirmary likelier, and warm moments with the one they worry about. Nightmares a little more common.</CC_Heart_F_Worry_Does>
+  <CC_Heart_F_Fellowship>fellowship</CC_Heart_F_Fellowship>
+  <CC_Heart_F_Fellowship_Adj>among friends</CC_Heart_F_Fellowship_Adj>
+  <CC_Heart_F_Fellowship_Desc>Parties, feasts and customs kept together, fighting side by side, shared meals and jokes, belonging to a circle, good friends close by.</CC_Heart_F_Fellowship_Desc>
+  <CC_Heart_F_Fellowship_Does>Eases loneliness and strain drains up to 15% faster. Warm moments up to 25% likelier. Makes wishes for a party, music, a meeting, enough seats or an evening at a camp likelier.</CC_Heart_F_Fellowship_Does>
+  <CC_Heart_F_Resolve>resolve</CC_Heart_F_Resolve>
+  <CC_Heart_F_Resolve_Adj>resolute</CC_Heart_F_Resolve_Adj>
+  <CC_Heart_F_Resolve_Desc>A score to settle, a nemesis faced down, drills, a steady nerve under fire, a life goal half won, an old habit beaten.</CC_Heart_F_Resolve_Desc>
+  <CC_Heart_F_Resolve_Does>Eases despair, strain drains up to 10% faster and episodes are less likely. Makes wishes to train, arm or defend likelier. Very rarely it turns into an inspiration.</CC_Heart_F_Resolve_Does>
+  <CC_Heart_Cause_LongYears>long years here</CC_Heart_Cause_LongYears>
+  <CC_Heart_Cause_OldMemories>a long life to remember</CC_Heart_Cause_OldMemories>
+  <CC_Heart_Cause_Heirloom>carrying {0}'s heirloom</CC_Heart_Cause_Heirloom>
+  <CC_Heart_Cause_ThreatOver>the danger is over</CC_Heart_Cause_ThreatOver>
+  <CC_Heart_Cause_Tending>tending {0}</CC_Heart_Cause_Tending>
+  <CC_Heart_Cause_BondedAnimal>{0} close by</CC_Heart_Cause_BondedAnimal>
+  <CC_Heart_Cause_WorryTaken>{0} was carried off</CC_Heart_Cause_WorryTaken>
+  <CC_Heart_Cause_WorryDowned>{0} is down</CC_Heart_Cause_WorryDowned>
+  <CC_Heart_Cause_WorryIll>{0} is ill</CC_Heart_Cause_WorryIll>
+  <CC_Heart_Cause_WorryAway>{0} is away on the road</CC_Heart_Cause_WorryAway>
+  <CC_Heart_Cause_Circle>one of a circle</CC_Heart_Cause_Circle>
+  <CC_Heart_Cause_ManyFriends>good friends close by</CC_Heart_Cause_ManyFriends>
+  <CC_Heart_Cause_Vendetta>a debt of blood to collect</CC_Heart_Cause_Vendetta>
+  <CC_Heart_Cause_GoalHalfway>a life goal half won</CC_Heart_Cause_GoalHalfway>
+  <CC_Heart_Cause_SteadyNerve>a steady nerve under fire</CC_Heart_Cause_SteadyNerve>
+
   <!-- The advisor's gentler checks (Advisor/AdvisorSignals4.cs). -->
   <CC_Adv_Fresh_Title>{0} colonist(s) without fresh food</CC_Adv_Fresh_Title>
   <CC_Adv_Fresh_Detail>No fruit or vegetables in a week or more: {0}. Weeks of that bring scurvy. Raw vegetables, berries or meals cooked with them all count.</CC_Adv_Fresh_Detail>
