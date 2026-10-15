@@ -161,6 +161,62 @@
     <stages><li><label>shared our books</label><description>A visitor who could read wanted to see our books. We traded pages.</description><baseMoodEffect>2</baseMoodEffect></li></stages>
   </ThoughtDef>
 
+  <!-- ===================== A RimWorld of Magic ===================== -->
+
+  <ThoughtDef>
+    <defName>Council_Moment_TalkedShop</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilSocial</thoughtClass>
+    <durationDays>1</durationDays>
+    <stackLimit>2</stackLimit>
+    <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
+    <stages><li><label>talked shop</label><description>We went over how a mage and a fighter work together. I know where to stand next time.</description><baseMoodEffect>2</baseMoodEffect><baseOpinionOffset>4</baseOpinionOffset></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Council_Moment_ComparedWorkings</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilSocial</thoughtClass>
+    <durationDays>1</durationDays>
+    <stackLimit>2</stackLimit>
+    <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
+    <stages><li><label>compared workings</label><description>Another mage and I compared how our schools do things. We disagreed about nearly everything, and I enjoyed it.</description><baseMoodEffect>2</baseMoodEffect><baseOpinionOffset>3</baseOpinionOffset></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Council_Moment_ComparedForms</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilSocial</thoughtClass>
+    <durationDays>1</durationDays>
+    <stackLimit>2</stackLimit>
+    <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
+    <stages><li><label>compared forms</label><description>Went through our fighting forms together, slowly. I picked something up.</description><baseMoodEffect>2</baseMoodEffect><baseOpinionOffset>3</baseOpinionOffset></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Council_Moment_HealerHands</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilSocial</thoughtClass>
+    <durationDays>1</durationDays>
+    <stackLimit>2</stackLimit>
+    <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
+    <stages><li><label>a healer's hands</label><description>A healer eased an old ache of mine with a touch. It's still gone.</description><baseMoodEffect>3</baseMoodEffect><baseOpinionOffset>5</baseOpinionOffset></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_EncMg_SawWorking</defName>
+    <durationDays>2</durationDays>
+    <stages><li><label>a traveling mage's working</label><description>A traveler with the gift showed me a little of what they can do.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_EncMg_OtherSchool</defName>
+    <durationDays>3</durationDays>
+    <stages><li><label>met a mage of another school</label><description>A traveling mage and I compared our workings. Theirs are strange, and I learned from them.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_EncMg_WanderingBlade</defName>
+    <durationDays>2</durationDays>
+    <stages><li><label>talked with a wandering fighter</label><description>A traveler who fights for a living showed me a few things about footwork.</description><baseMoodEffect>2</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_Granted_GuestRoom</defName>
     <durationDays>5</durationDays>

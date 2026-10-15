@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Moments between A RimWorld of Magic's classes: a mage and a fighter talking shop, two mages comparing workings, two
+    fighters comparing forms, a healer looking in on someone's aches. Only with the mod (<mods>), and only between people
+    of those classes (the tag groups mage, fighter and healer: Council_People_TagGroups.xml), so nobody without the
+    gift ever has them. Talk only; nobody casts anything at anyone. Their memories feed the everyday journal
+    (Council_Journal_Mods_Magic.xml).
+  -->
+
+  <!-- ===================== A mage and a fighter talk shop ===================== -->
+  <InteractionDef ParentName="Council_MomentBase">
+    <defName>Council_Moment_MageFighterShop</defName>
+    <label>talked shop</label>
+    <symbol>ColonyCouncil/Symbols/Star</symbol>
+    <initiatorThought>Council_Moment_TalkedShop</initiatorThought>
+    <recipientThought>Council_Moment_TalkedShop</recipientThought>
+    <logRulesInitiator>
+      <rulesStrings>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] argued over whether a ward or a good shield stops more arrows, and agreed to need both.</li>
+        <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] how a fighter knows when to step in, and explained in return how long a working takes to gather.</li>
+        <li>r_logentry->[RECIPIENT_nameDef] told [INITIATOR_nameDef] [fighterpoint], and [INITIATOR_nameDef] told [RECIPIENT_objective] [magepoint].</li>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] drew the last fight in the dirt with sticks: where the fighters stood, where the spells fell, and what they'd change.</li>
+        <li>r_logentry->[INITIATOR_nameDef] explained to [RECIPIENT_nameDef] why a mage needs someone standing in front. [RECIPIENT_nameDef] said [RECIPIENT_pronoun] had always assumed it was for the company.</li>
+        <li>fighterpoint->that a mage who flinches gets everyone hurt</li>
+        <li>fighterpoint->where to stand so the line never breaks</li>
+        <li>fighterpoint->how to tell a feint from a real charge</li>
+        <li>magepoint->that a working half-gathered is worse than none</li>
+        <li>magepoint->how far a spell carries before it goes wild</li>
+        <li>magepoint->why nobody should stand behind a fire mage</li>
+      </rulesStrings>
+    </logRulesInitiator>
+    <modExtensions>
+      <li Class="ColonyCouncil.MomentExtension">
+        <weight>0.05</weight>
+        <cooldownDays>4</cooldownDays>
+        <mods><li>torann.arimworldofmagic</li></mods>
+        <initiatorTags>mage</initiatorTags>
+        <recipientTags>fighter</recipientTags>
+        <minOpinion>-10</minOpinion>
+        <bumpTie>Comrades</bumpTie>
+        <bumpAmount>2</bumpAmount>
+      </li>
+    </modExtensions>
+  </InteractionDef>
+
+  <!-- ===================== Two mages compare workings ===================== -->
+  <InteractionDef ParentName="Council_MomentBase">
+    <defName>Council_Moment_MagesCompare</defName>
+    <label>compared workings</label>
+    <symbol>ColonyCouncil/Symbols/Star</symbol>
+    <initiatorThought>Council_Moment_ComparedWorkings</initiatorThought>
+    <recipientThought>Council_Moment_ComparedWorkings</recipientThought>
+    <logRulesInitiator>
+      <rulesStrings>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] compared how their schools gather power, and found they disagree about almost everything.</li>
+        <li>r_logentry->[INITIATOR_nameDef] showed [RECIPIENT_nameDef] the shape of a working in the air with two fingers, and [RECIPIENT_nameDef] showed [INITIATOR_objective] how [RECIPIENT_possessive] school would do it [differently].</li>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] spent an hour over a single word from an old spell, and settled nothing.</li>
+        <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] how [RECIPIENT_pronoun] rests after a hard working. [RECIPIENT_nameDef] said [rest].</li>
+        <li>differently->backwards, as far as [INITIATOR_nameDef] could tell</li>
+        <li>differently->in half the time and twice the mess</li>
+        <li>differently->with a great deal more shouting</li>
+        <li>rest->a long sleep and no questions</li>
+        <li>rest->bread, salt and an hour of silence</li>
+        <li>rest->a walk in the cold until the hum goes out of the fingers</li>
+      </rulesStrings>
+    </logRulesInitiator>
+    <modExtensions>
+      <li Class="ColonyCouncil.MomentExtension">
+        <weight>0.05</weight>
+        <cooldownDays>4</cooldownDays>
+        <mods><li>torann.arimworldofmagic</li></mods>
+        <initiatorTags>mage</initiatorTags>
+        <recipientTags>mage</recipientTags>
+        <minOpinion>-10</minOpinion>
+        <bumpTie>Comrades</bumpTie>
+        <bumpAmount>2</bumpAmount>
+      </li>
+    </modExtensions>
+  </InteractionDef>
+
+  <!-- ===================== Two fighters compare forms ===================== -->
+  <InteractionDef ParentName="Council_MomentBase">
+    <defName>Council_Moment_FightersForms</defName>
+    <label>compared forms</label>
+    <initiatorThought>Council_Moment_ComparedForms</initiatorThought>
+    <recipientThought>Council_Moment_ComparedForms</recipientThought>
+    <logRulesInitiator>
+      <rulesStrings>
+        <li>r_logentry->[INITIATOR_nameDef] walked [RECIPIENT_nameDef] through a form [INITIATOR_pronoun] learned years ago, slowly, step by step, with no blade in hand.</li>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] compared stances in the yard and argued about where the weight belongs.</li>
+        <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] who taught [RECIPIENT_objective]. The answer was a long story with [teacher] in it.</li>
+        <li>r_logentry->[INITIATOR_nameDef] showed [RECIPIENT_nameDef] how to breathe through a long fight. [RECIPIENT_nameDef] said it felt [breath].</li>
+        <li>teacher->an old soldier with one ear</li>
+        <li>teacher->a monk who never once raised [RECIPIENT_possessive] voice</li>
+        <li>teacher->an older sister and a great many bruises</li>
+        <li>breath->like cheating</li>
+        <li>breath->ridiculous, and then very useful</li>
+        <li>breath->like something [RECIPIENT_pronoun] should have learned years ago</li>
+      </rulesStrings>
+    </logRulesInitiator>
+    <modExtensions>
+      <li Class="ColonyCouncil.MomentExtension">
+        <weight>0.05</weight>
+        <cooldownDays>4</cooldownDays>
+        <mods><li>torann.arimworldofmagic</li></mods>
+        <initiatorTags>fighter</initiatorTags>
+        <recipientTags>fighter</recipientTags>
+        <minOpinion>-10</minOpinion>
+        <bumpTie>Comrades</bumpTie>
+        <bumpAmount>2</bumpAmount>
+      </li>
+    </modExtensions>
+  </InteractionDef>
+
+  <!-- ===================== A healer looks in on someone's aches ===================== -->
+  <InteractionDef ParentName="Council_MomentBase">
+    <defName>Council_Moment_HealerLooksIn</defName>
+    <label>a healer's hands</label>
+    <symbol>ColonyCouncil/Symbols/Heart</symbol>
+    <recipientThought>Council_Moment_HealerHands</recipientThought>
+    <logRulesInitiator>
+      <rulesStrings>
+        <li>r_logentry->[INITIATOR_nameDef] laid a warm hand on [RECIPIENT_nameDef]'s stiff shoulder, and the ache went out of it like water out of a sponge.</li>
+        <li>r_logentry->[INITIATOR_nameDef] noticed [RECIPIENT_nameDef] limping and eased the knee with a quiet word and a touch.</li>
+        <li>r_logentry->[INITIATOR_nameDef] sat [RECIPIENT_nameDef] down, looked at the old scar, and did something to it that made it stop itching for the first time in years.</li>
+        <li>r_logentry->[INITIATOR_nameDef] put two fingers to [RECIPIENT_nameDef]'s temple and the headache [headache].</li>
+        <li>headache->simply wasn't there any more</li>
+        <li>headache->faded to a dull hum, then to nothing</li>
+        <li>headache->went, and [RECIPIENT_nameDef] went quiet with relief</li>
+      </rulesStrings>
+    </logRulesInitiator>
+    <modExtensions>
+      <li Class="ColonyCouncil.MomentExtension">
+        <weight>0.04</weight>
+        <cooldownDays>5</cooldownDays>
+        <mods><li>torann.arimworldofmagic</li></mods>
+        <initiatorTags>healer</initiatorTags>
+        <recipientTags>hurt|old</recipientTags>
+        <minOpinion>0</minOpinion>
+        <bumpTie>Friends</bumpTie>
+        <bumpAmount>1</bumpAmount>
+      </li>
+    </modExtensions>
+  </InteractionDef>
+
+</Defs>

@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    A RimWorld of Magic in the journals: the everyday journal picks up the memories of the magic moments
+    (Council_Moments.xml, Council_Moments_Mods_Magic.xml) as days of their own ({OTHER_...} is the other one), and
+    the encounters with traveling mages and fighters (Council_Encounters_Mods_Magic.xml) write here too ({X_...} is
+    the traveler). Without the mod none of these memories happen.
+  -->
+
+  <ColonyCouncil.JournalDayDef>
+    <defName>Council_JDay_Magic_Shop</defName>
+    <key>Magic_Shop</key>
+    <weight>1.2</weight>
+    <social>true</social>
+    <thoughts>
+      <li>Council_Moment_TalkedShop</li>
+      <li>Council_Moment_ComparedWorkings</li>
+      <li>Council_Moment_ComparedForms</li>
+    </thoughts>
+  </ColonyCouncil.JournalDayDef>
+
+  <ColonyCouncil.JournalDayDef>
+    <defName>Council_JDay_Magic_Wonder</defName>
+    <key>Magic_Wonder</key>
+    <weight>1.2</weight>
+    <social>true</social>
+    <thoughts>
+      <li>Council_Moment_SawMagic</li>
+      <li>Council_Moment_TalkedMagic</li>
+    </thoughts>
+  </ColonyCouncil.JournalDayDef>
+
+  <ColonyCouncil.JournalDayDef>
+    <defName>Council_JDay_Magic_Healed</defName>
+    <key>Magic_Healed</key>
+    <weight>1.2</weight>
+    <social>true</social>
+    <thoughts>
+      <li>Council_Moment_HealerHands</li>
+    </thoughts>
+  </ColonyCouncil.JournalDayDef>
+
+  <!-- Talking shop: a mage and a fighter, two mages, two fighters. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Journal_Day_Magic_Shop</defName>
+    <lines>
+      <plain>
+        <li>[mage] {OTHER_nameDef} and I drew the last fight in the dirt. I gathered too slowly on the left flank. Next time I won't.</li>
+        <li>[fighter] {OTHER_nameDef} explained how long a working takes. I'll hold the line a breath longer next time.</li>
+        <li>[mage] Argued with {OTHER_nameDef} about how our schools gather power. Neither of us gave an inch, and it was the best hour of my week.</li>
+        <li>[fighter] {OTHER_nameDef} showed me a breathing trick for long fights. I feel foolish doing it, and less tired.</li>
+        <li>Talked shop with {OTHER_nameDef} until the candle went out.</li>
+        <li>[afterraid] Went over the raid with {OTHER_nameDef}, step by step, while it was still fresh.</li>
+      </plain>
+      <warm><li>{OTHER_nameDef} and I work well together. I want to keep it that way.</li></warm>
+      <blunt><li>{OTHER_nameDef} has it wrong about the flank. Told {OTHER_objective} so.</li></blunt>
+      <cheerful><li>[mage] {OTHER_nameDef} and I are going to make a terrible, wonderful team.</li></cheerful>
+      <gloomy><li>We planned the next fight with {OTHER_nameDef} as if there will always be a next one.</li></gloomy>
+      <cold><li>{OTHER_nameDef}'s method has two weaknesses. Mine has one. Useful conversation.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- Seeing a little magic, asking about it, a healer's touch. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Journal_Day_Magic_Wonder</defName>
+    <lines>
+      <plain>
+        <li>[!mage] {OTHER_nameDef} showed me a little light between {OTHER_possessive} hands. I keep looking at my own hands now.</li>
+        <li>[!mage] Asked {OTHER_nameDef} what magic feels like. I didn't understand the answer, and I liked it anyway.</li>
+        <li>[mage] {OTHER_nameDef} asked me what the gift feels like. I tried to explain and couldn't. I've never had to put it in words before.</li>
+        <li>[child] {OTHER_nameDef} made a tiny light dance on {OTHER_possessive} finger for me! I want to learn.</li>
+      </plain>
+      <warm><li>{OTHER_nameDef} uses the gift for small kind things. That says more than any battle.</li></warm>
+      <blunt><li>Magic. Still don't trust it. That was nice, though.</li></blunt>
+      <cheerful><li>Magic! Real magic! Just for me!</li></cheerful>
+      <gloomy><li>{OTHER_nameDef} can do wonders. I can mend fences. Good for {OTHER_objective}.</li></gloomy>
+      <cold><li>{OTHER_nameDef}'s gift is more useful than I thought. Worth knowing.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- A healer eased an ache. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Journal_Day_Magic_Healed</defName>
+    <lines>
+      <plain>
+        <li>{OTHER_nameDef} put a hand on my bad shoulder and the ache just went. I don't know how, and I don't need to.</li>
+        <li>[old] {OTHER_nameDef} eased my knees with a touch. First morning in a year I've come down the stairs without counting them.</li>
+        <li>The old scar stopped itching after {OTHER_nameDef} looked at it. It had itched since the year it happened.</li>
+        <li>[work:Mining] {OTHER_nameDef} took the ache out of my back after a day in the mine. I could have wept.</li>
+      </plain>
+      <warm><li>{OTHER_nameDef} noticed I was hurting before I'd said a word. That's the real gift.</li></warm>
+      <blunt><li>{OTHER_nameDef} fixed my knee. Didn't ask. Good.</li></blunt>
+      <cheerful><li>No more headache! {OTHER_nameDef} is a marvel.</li></cheerful>
+      <gloomy><li>{OTHER_nameDef} eased the pain. It'll be back, but I had a good day without it.</li></gloomy>
+      <cold><li>A healer who keeps the workers on their feet is worth two more workers.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- A traveling mage showed A a working. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Journal_EncMg_Traveler</defName>
+    <lines>
+      <plain>
+        <li>A traveling mage, {X_nameDef}, stopped with us today and showed me a working. I'm still thinking about it.</li>
+        <li>[mage] Met {X_nameDef}, a mage of another school. We swapped workings like recipes. {X_possessive} are strange.</li>
+        <li>[!mage] {X_nameDef} has the gift. I asked a hundred questions and {X_pronoun} answered most of them.</li>
+        <li>[fighter] {X_nameDef} fights for a living and moves like water. I copied {X_possessive} footwork until dark.</li>
+      </plain>
+      <warm><li>{X_nameDef} was generous with what {X_pronoun} knows. I hope the road is kind to {X_objective}.</li></warm>
+      <blunt><li>Traveling mage. Showed off a bit. Fine.</li></blunt>
+      <cheerful><li>A real traveling mage! I'm going to be telling this one for years.</li></cheerful>
+      <gloomy><li>{X_nameDef} walks the roads alone with all that power. I wonder what {X_pronoun}'s running from.</li></gloomy>
+      <cold><li>{X_nameDef}'s school does things we don't. Noted.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+</Defs>
