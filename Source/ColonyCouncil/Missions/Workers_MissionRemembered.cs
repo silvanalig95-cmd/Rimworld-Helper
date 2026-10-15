@@ -185,7 +185,8 @@ namespace ColonyCouncil
                     m.stage = 1;
                     m.due = now + FeastHours * GenDate.TicksPerHour;
                     string line = Line(More?.ready, m, map, null, TextUtil.DaysString(m.due - now));
-                    if (!line.NullOrEmpty()) News.Post(line, new LookTargets(here), NewsKind.World, MessageTypeDefOf.PositiveEvent);
+                    // At once, not in the evening's news: it says how long the caravan must stay.
+                    if (!line.NullOrEmpty()) Messages.Message(line, new LookTargets(here), MessageTypeDefOf.PositiveEvent, false);
                 }
                 else if (now >= m.deadline)
                 {
@@ -323,7 +324,8 @@ namespace ColonyCouncil
                     m.stage = 1;
                     m.lastLook = now;
                     string line = Line(More?.ready, m, map, null, TextUtil.DaysString(m.target * GenDate.TicksPerHour));
-                    if (!line.NullOrEmpty()) News.Post(line, new LookTargets(caravan), NewsKind.World, MessageTypeDefOf.PositiveEvent);
+                    // At once, not in the evening's news: it says how long the caravan must stay.
+                    if (!line.NullOrEmpty()) Messages.Message(line, new LookTargets(caravan), MessageTypeDefOf.PositiveEvent, false);
                 }
                 else m.tally += Mathf.Max(0, now - Mathf.Max(m.lastLook, m.started));
             }
@@ -568,7 +570,8 @@ namespace ColonyCouncil
                 m.stage = 1;
                 m.lastLook = now;
                 string line = Line(More?.ready, m, map, null, TextUtil.DaysString(Mathf.Max(0, m.deadline - now)));
-                if (!line.NullOrEmpty()) News.Post(line, new LookTargets(x), NewsKind.World, MessageTypeDefOf.PositiveEvent);
+                // At once, not in the evening's news: the room is checked from now on.
+                if (!line.NullOrEmpty()) Messages.Message(line, new LookTargets(x), MessageTypeDefOf.PositiveEvent, false);
                 return;
             }
             // Every hour of the stay, the room is looked at, and the guest eats at the colony's table.
@@ -763,7 +766,8 @@ namespace ColonyCouncil
                 m.stage = 1;
                 m.lastLook = now;
                 string line = Line(More?.ready, m, map, null, TextUtil.DaysString(Mathf.Max(0, m.deadline - now)));
-                if (!line.NullOrEmpty()) News.Post(line, Targets(m), NewsKind.World, MessageTypeDefOf.NeutralEvent);
+                // At once, not in the evening's news: their meals are counted from now on.
+                if (!line.NullOrEmpty()) Messages.Message(line, Targets(m), MessageTypeDefOf.NeutralEvent, false);
                 return;
             }
             var here = Here(m, map).ToList();
