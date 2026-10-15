@@ -45,7 +45,7 @@ namespace ColonyCouncil
         public override void GameComponentTick()
         {
             int now = Find.TickManager.TicksGame;
-            if (now % 250 != 71) return;
+            if (!Sched.Every(now, Sched.RareTicks, Sched.RareWelcome)) return;
             var comp = CouncilGameComponent.Instance;
             if (comp == null || comp.Welcomed) return;
             if (firstSeen < 0) firstSeen = now;

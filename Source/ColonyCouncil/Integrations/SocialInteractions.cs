@@ -341,12 +341,12 @@ namespace ColonyCouncil
         {
             int t = Find.TickManager.TicksGame;
             // Often enough that the play log (which keeps only the last 150 or so entries) never runs past us.
-            if (t % 1000 == 433) Safe("social interactions", () =>
+            if (Sched.Every(t, Sched.PeopleLogPeriod, Sched.PeopleLog)) Safe("social interactions", () =>
             {
                 SocialInteractions.ScanLog(this);
                 SocialInteractions.ScanTales(this);
             });
-            if (t % GenDate.TicksPerDay == 1789) Safe("best friends", () => SocialInteractions.BestFriends(this));
+            if (Sched.Every(t, Sched.DayTicks, Sched.DailyBestFriends)) Safe("best friends", () => SocialInteractions.BestFriends(this));
         }
 
         private static void Safe(string what, System.Action a)

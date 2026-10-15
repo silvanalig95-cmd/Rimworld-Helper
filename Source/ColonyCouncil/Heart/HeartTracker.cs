@@ -25,9 +25,8 @@ namespace ColonyCouncil
         private static HeartTracker cached;
         private static Game cachedGame;
 
-        /// <summary>Ten slices an hour: each colonist is in one of them (by ID), so the colony is spread over the hour.</summary>
+        /// <summary>Ten slices an hour, every 250 ticks (Sched.SliceTurn): each colonist is in one of them (by ID), so the colony is spread over the hour.</summary>
         private const int Slices = 10;
-        private const int SliceTicks = GenDate.TicksPerHour / Slices;
 
         public static HeartTracker Instance
         {
@@ -123,9 +122,9 @@ namespace ColonyCouncil
                     }
                 }
             }
-            if (now % SliceTicks != 71) return;
+            int slice = Sched.SliceTurn(now, GenDate.TicksPerHour, Slices, Sched.RareHeart);
+            if (slice < 0) return;
             if (!Heart.On) return;
-            int slice = now / SliceTicks % Slices;
             try
             {
                 Slice(slice, now);

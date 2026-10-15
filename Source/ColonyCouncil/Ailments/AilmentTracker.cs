@@ -168,7 +168,7 @@ namespace ColonyCouncil
         {
             if (ended.Count > 0) ProcessEnded();
             int now = Find.TickManager.TicksGame;
-            if (now % GenDate.TicksPerHour != 137) return;
+            if (!Sched.Hourly(now, Sched.Ailments)) return;
             if (!On) return;
             try
             {

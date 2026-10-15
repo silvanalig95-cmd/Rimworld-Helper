@@ -135,7 +135,7 @@ namespace ColonyCouncil
 
         public override void GameComponentTick()
         {
-            if (Find.TickManager.TicksGame % GenDate.TicksPerHour != 1311) return;
+            if (!Sched.Hourly(Find.TickManager.TicksGame, Sched.Calendar)) return;
             Safe("calendar", Hourly);
         }
 

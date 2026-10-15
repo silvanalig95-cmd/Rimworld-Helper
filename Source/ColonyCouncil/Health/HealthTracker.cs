@@ -230,7 +230,7 @@ namespace ColonyCouncil
         {
             if (later.Count > 0) RunLater();
             int now = Find.TickManager.TicksGame;
-            if (now % GenDate.TicksPerHour != 211) return;
+            if (!Sched.Hourly(now, Sched.Health)) return;
             if (!ConvalescenceOn && !ReputationOn) return;
             try
             {

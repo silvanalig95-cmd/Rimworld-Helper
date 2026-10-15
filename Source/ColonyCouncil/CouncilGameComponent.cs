@@ -220,8 +220,21 @@ namespace ColonyCouncil
             // under way is looked after even if ambitions were just turned off, so nobody is left in it against the player.
             if (t % 60 == 23 && ambitions.meeting != null && (Settings.enableAmbitions || ambitions.meeting.Started))
                 Safe("council meeting", () => ambitions.MeetingTick(this));
-            if (t % HourTicks != 157) return;
-            Hourly();
+            // The hour's work in four parts and the day's in two, each on its own tick of the hour (Sched), in the order
+            // they always ran, so no single tick carries all of it.
+            int hourTick = t % HourTicks;
+            if (hourTick == Sched.CouncilWishes) HourlyWishes();
+            else if (hourTick == Sched.CouncilDayFirst)
+            {
+                if (Sched.FirstHourOfDay(t)) Safe("daily", DailyFirst);
+            }
+            else if (hourTick == Sched.CouncilDaySecond)
+            {
+                if (Sched.FirstHourOfDay(t)) Safe("daily", DailySecond);
+            }
+            else if (hourTick == Sched.CouncilLife) HourlyLife();
+            else if (hourTick == Sched.CouncilPeople) HourlyPeople();
+            else if (hourTick == Sched.CouncilEvents) HourlyEvents();
         }
 
         [Unsaved] private bool builtSomething;
@@ -268,7 +281,10 @@ namespace ColonyCouncil
             }
         }
 
-        private void Hourly()
+        // The council's hour, in the order it has always run (the day's two halves come between the first part and the
+        // second, on the first hour of each day), spread over the hour (Sched).
+
+        private void HourlyWishes()
         {
             // Fights and deaths first, while the dead still have their bonds and goals on record.
             Safe("battles", () => social.Hourly(this));
@@ -278,19 +294,30 @@ namespace ColonyCouncil
             if (Settings.enableWishes) Safe("own room taken", () => RoomTaken.Hourly(this));
             if (Settings.enableWishes) Safe("event wishes", CheckTriggers);
             if (Settings.enableWishes) Safe("wish generation", () => TryGenerateWish(false));
-            if (Find.TickManager.TicksGame % GenDate.TicksPerDay < HourTicks) Safe("daily", Daily);
+        }
+
+        private void HourlyLife()
+        {
             if (Settings.enableAmbitions) Safe("ambitions", () => ambitions.HourlyTick(this));
             if (Settings.enablePersonalTouches) Safe("personal touches", () => touches.HourlyTick(this));
             Safe("dilemmas", dilemmas.Hourly);
             Safe("annals", () => annals.Hourly(this));
             Safe("dreams", () => dreams.Hourly(this));
             Safe("quirks", quirks.Hourly);
+        }
+
+        private void HourlyPeople()
+        {
             Safe("nemeses", () => nemeses.Hourly(this));
             Safe("pets", () => pets.Hourly(this));
             if (PokeWorldLink.Active) Safe("pokeworld", () => PokeWorldLink.Hourly(this));
             Safe("autonomy", () => autonomy.Hourly(this));
             Safe("who is home", NoteWhoIsHome);
             Safe("everyday pressures", () => pressures.Hourly(this));
+        }
+
+        private void HourlyEvents()
+        {
             Safe("encounters", () => encounters.Hourly(this));
             Safe("world events", () => happenings.Hourly(this));
         }
