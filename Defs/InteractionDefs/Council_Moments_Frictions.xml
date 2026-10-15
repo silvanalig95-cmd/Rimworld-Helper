@@ -87,6 +87,17 @@
         <li>choreanswer->that [RECIPIENT_pronoun] had been busy, which was true of all of them</li>
         <li>r_logentry->[INITIATOR_nameDef] pointed [RECIPIENT_nameDef] at [dirtything] and folded [INITIATOR_possessive] arms.</li>
         <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] each claimed to have been the last one to [chore].</li>
+        <li>r_logentry->[INITIATOR_nameDef] left [dirtything] on [RECIPIENT_nameDef]'s chair with a pointed look.</li>
+        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] that [INITIATOR_pronoun] was not going to [chore] again until somebody else did.</li>
+        <li>r_logentry->[INITIATOR_nameDef] caught [RECIPIENT_nameDef] walking past [dirtything] for the second time that day.</li>
+        <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] to [chore], and [RECIPIENT_nameDef] said [choreanswer].</li>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] stood over [dirtything] and argued about who had left it.</li>
+        <li>r_logentry->[INITIATOR_nameDef] made a show of having to [chore] while [RECIPIENT_nameDef] sat and watched.</li>
+        <li>chore->mop up the kitchen floor</li>
+        <li>chore->empty the ash pit</li>
+        <li>choredone->mopped up after supper</li>
+        <li>dirtything->a greasy pan left on the bench</li>
+        <li>choreanswer->that [RECIPIENT_pronoun] had done it last time, which nobody could remember</li>
       </rulesStrings>
     </logRulesInitiator>
     <modExtensions>
@@ -496,6 +507,10 @@
         <li>lentthing->best spoon</li>
         <li>lentanswer->[RECIPIENT_pronoun] had lent it to someone else</li>
         <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef], politely and then less politely, for [INITIATOR_possessive] [lentthing].</li>
+        <li>r_logentry->[INITIATOR_nameDef] had to borrow [INITIATOR_possessive] own [lentthing] back from [RECIPIENT_nameDef] to use it.</li>
+        <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] about [INITIATOR_possessive] [lentthing], and [RECIPIENT_nameDef] said [lentanswer].</li>
+        <li>r_logentry->[INITIATOR_nameDef] put a mark on [INITIATOR_possessive] [lentthing] after getting it back from [RECIPIENT_nameDef], so there would be no more confusion.</li>
+        <li>r_logentry->[INITIATOR_nameDef] went through [RECIPIENT_nameDef]'s things looking for [INITIATOR_possessive] [lentthing], and [RECIPIENT_nameDef] did not like it.</li>
       </rulesStrings>
     </logRulesInitiator>
     <modExtensions>
@@ -690,6 +705,14 @@
         <li>secretthing->about [INITIATOR_possessive] family</li>
         <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] to keep [INITIATOR_possessive] name out of [RECIPIENT_possessive] mouth.</li>
         <li>r_logentry->[INITIATOR_nameDef] stopped talking to [RECIPIENT_nameDef] mid-sentence, having heard what [RECIPIENT_pronoun] had been saying at supper.</li>
+        <li>r_logentry->[INITIATOR_nameDef] learned that [RECIPIENT_nameDef] had been telling the others [secretthing], and asked [RECIPIENT_objective] why.</li>
+        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] that the walls were thin, and that [INITIATOR_pronoun] had heard every word.</li>
+        <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef], in front of the cook, what exactly [RECIPIENT_pronoun] had been saying [secretthing].</li>
+        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] that [INITIATOR_pronoun] would remember who had been talking [secretthing].</li>
+        <li>r_logentry->[INITIATOR_nameDef] heard [INITIATOR_possessive] own words come back to [INITIATOR_objective] in someone else's mouth, and went looking for [RECIPIENT_nameDef].</li>
+        <li>secretthing->about [INITIATOR_possessive] snoring</li>
+        <li>secretthing->about the mistake [INITIATOR_pronoun] made in the last fight</li>
+        <li>secretthing->about who [INITIATOR_pronoun] was sweet on</li>
       </rulesStrings>
     </logRulesInitiator>
     <modExtensions>
@@ -1008,6 +1031,12 @@
         <li>r_logentry->[INITIATOR_nameDef] stopped humming the moment [RECIPIENT_nameDef] came within earshot.</li>
         <li>r_logentry->[INITIATOR_nameDef] answered [RECIPIENT_nameDef]'s question with a shrug and walked off.</li>
         <li>r_logentry->[INITIATOR_nameDef] moved to the other side of the room when [RECIPIENT_nameDef] sat down.</li>
+        <li>r_logentry->[INITIATOR_nameDef] let the door swing shut in [RECIPIENT_nameDef]'s face.</li>
+        <li>r_logentry->[INITIATOR_nameDef] asked someone else to pass the salt, though [RECIPIENT_nameDef] was sitting right next to it.</li>
+        <li>r_logentry->[INITIATOR_nameDef] laughed at everyone's jokes at supper except [RECIPIENT_nameDef]'s.</li>
+        <li>r_logentry->[INITIATOR_nameDef] picked up [INITIATOR_possessive] work and moved it rather than share a bench with [RECIPIENT_nameDef].</li>
+        <li>r_logentry->[INITIATOR_nameDef] said good night to everyone but [RECIPIENT_nameDef].</li>
+        <li>r_logentry->[INITIATOR_nameDef] answered [RECIPIENT_nameDef] by talking to the person next to [RECIPIENT_objective].</li>
       </rulesStrings>
     </logRulesInitiator>
     <modExtensions>
@@ -1139,6 +1168,14 @@
         <li>peaceoffering->a warm roll from the oven</li>
         <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] shook hands over the woodpile and went back to work side by side.</li>
         <li>r_logentry->[INITIATOR_nameDef] brought [RECIPIENT_nameDef] [peaceoffering] and sat with [RECIPIENT_objective] until the air was clear.</li>
+        <li>r_logentry->[INITIATOR_nameDef] went looking for [RECIPIENT_nameDef] to say sorry, and found [RECIPIENT_objective] already on the way to do the same.</li>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] split [peaceoffering] and agreed to start the day over.</li>
+        <li>r_logentry->[INITIATOR_nameDef] admitted to [RECIPIENT_nameDef] that [INITIATOR_pronoun] couldn't remember what the argument had been about, and [RECIPIENT_nameDef] [apologyreply].</li>
+        <li>r_logentry->[INITIATOR_nameDef] fixed something of [RECIPIENT_nameDef]'s that had been broken for weeks, and that was the apology.</li>
+        <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] to help with a two-person job, and by the end of it the quarrel was gone.</li>
+        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] [INITIATOR_pronoun] had been wrong, which took some doing, and [RECIPIENT_nameDef] [apologyreply].</li>
+        <li>apologyreply->said they had both been tired</li>
+        <li>peaceoffering->a handful of roasted nuts</li>
       </rulesStrings>
     </logRulesInitiator>
     <modExtensions>

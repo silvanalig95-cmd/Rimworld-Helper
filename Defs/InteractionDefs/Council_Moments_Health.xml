@@ -19,6 +19,11 @@
         <li>r_logentry->[INITIATOR_nameDef] stopped to rest whenever [RECIPIENT_nameDef] did, and said it was the view.</li>
         <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] [RECIPIENT_pronoun] was walking better than yesterday, and meant it.</li>
         <li>r_logentry->[INITIATOR_nameDef] found [RECIPIENT_nameDef] a stick to lean on and cut it to the right height.</li>
+        <li>r_logentry->[INITIATOR_nameDef] counted [RECIPIENT_nameDef]'s steps along the wall with [RECIPIENT_objective], a few more than the day before.</li>
+        <li>r_logentry->[INITIATOR_nameDef] took [RECIPIENT_nameDef] out to sit in the air for a while, and they talked about nothing much.</li>
+        <li>r_logentry->[INITIATOR_nameDef] walked [RECIPIENT_nameDef] as far as the fields and back, and called it a good day's work.</li>
+        <li>r_logentry->[INITIATOR_nameDef] let [RECIPIENT_nameDef] set the pace on their walk, and it was slow, and that was fine.</li>
+        <li>r_logentry->[INITIATOR_nameDef] walked beside [RECIPIENT_nameDef] to the dining room so [RECIPIENT_pronoun] could eat with the others again.</li>
       </rulesStrings>
     </logRulesInitiator>
     <modExtensions>
@@ -44,6 +49,11 @@
         <li>r_logentry->[INITIATOR_nameDef] caught [RECIPIENT_nameDef] lifting something heavy and finished the job for [RECIPIENT_objective].</li>
         <li>r_logentry->[INITIATOR_nameDef] reminded [RECIPIENT_nameDef] what the doctor had said about rest, twice.</li>
         <li>r_logentry->[INITIATOR_nameDef] swapped jobs with [RECIPIENT_nameDef] for the afternoon, the heavy one for the easy one.</li>
+        <li>r_logentry->[INITIATOR_nameDef] brought [RECIPIENT_nameDef] a stool and wouldn't take it back until [RECIPIENT_pronoun] sat on it.</li>
+        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] the work would still be there tomorrow, and [RECIPIENT_nameDef] would be stronger for it.</li>
+        <li>r_logentry->[INITIATOR_nameDef] found [RECIPIENT_nameDef] a lighter job to do sitting down, so [RECIPIENT_pronoun] could still feel useful.</li>
+        <li>r_logentry->[INITIATOR_nameDef] carried [RECIPIENT_nameDef]'s share of the hauling and didn't make anything of it.</li>
+        <li>r_logentry->[INITIATOR_nameDef] sent [RECIPIENT_nameDef] back to bed with a cup of something warm and a firm look.</li>
       </rulesStrings>
     </logRulesInitiator>
     <modExtensions>
