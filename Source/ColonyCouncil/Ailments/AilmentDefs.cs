@@ -92,6 +92,34 @@ namespace ColonyCouncil
         public float boost = 1f;
     }
 
+    /// <summary>
+    /// Someone likelier, or less likely, to come down with an ailment: a trait they have (tough), or a condition they
+    /// carry already (a bad back, frailty). Names, not references, so another mod's trait or condition simply doesn't
+    /// count when that mod is missing.
+    /// </summary>
+    public class AilmentRisk
+    {
+        public string trait;
+        public string hediff;
+        public float factor = 1f;
+
+        [Unsaved] private TraitDef traitDef;
+        [Unsaved] private HediffDef hediffDef;
+        [Unsaved] private bool resolved;
+
+        public bool Applies(Pawn p)
+        {
+            if (!resolved)
+            {
+                resolved = true;
+                if (!trait.NullOrEmpty()) traitDef = DefDatabase<TraitDef>.GetNamedSilentFail(trait);
+                if (!hediff.NullOrEmpty()) hediffDef = DefDatabase<HediffDef>.GetNamedSilentFail(hediff);
+            }
+            if (traitDef != null && p.story?.traits != null && p.story.traits.HasTrait(traitDef)) return true;
+            return hediffDef != null && p.health?.hediffSet != null && p.health.hediffSet.HasHediff(hediffDef);
+        }
+    }
+
     /// <summary>What getting over an illness can leave behind for a while: a cough, some weakness.</summary>
     public class AilmentAfterEffect
     {
@@ -120,6 +148,8 @@ namespace ColonyCouncil
         public float childFactor = 1f;
         /// <summary>Factor on the chance for the old (60 and up, in human years).</summary>
         public float oldFactor = 1f;
+        /// <summary>Traits and conditions that make it likelier or less likely (a bad back, a tough constitution).</summary>
+        public List<AilmentRisk> risks;
         /// <summary>Only children get it (measles: the grown-ups had it long ago).</summary>
         public bool childrenOnly;
         /// <summary>Never twice in one person (an appendix, measles).</summary>

@@ -319,6 +319,9 @@ namespace ColonyCouncil
             float f = 1f;
             if (p.DevelopmentalStage.Juvenile()) f *= info.childFactor;
             else if (info.oldFactor != 1f && Flavor.HumanAge(p) >= 60f) f *= info.oldFactor;
+            if (info.risks != null)
+                for (int i = 0; i < info.risks.Count; i++)
+                    if (info.risks[i] != null && info.risks[i].Applies(p)) f *= info.risks[i].factor;
             return f;
         }
 

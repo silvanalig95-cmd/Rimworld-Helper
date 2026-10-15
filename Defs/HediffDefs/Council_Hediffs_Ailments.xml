@@ -361,7 +361,12 @@
     <comps>
       <li Class="ColonyCouncil.HediffCompProperties_Ailment">
         <key>StrainedBack</key>
-        <causes><li><trigger>HeavyWork</trigger><hours>6</hours><chance>0.03</chance></li></causes>
+        <causes><li><trigger>HeavyWork</trigger><hours>6</hours><chance>0.012</chance></li></causes>
+        <risks>
+          <li><hediff>BadBack</hediff><factor>3</factor></li>
+          <li><hediff>Frail</hediff><factor>2</factor></li>
+          <li><trait>Tough</trait><factor>0.5</factor></li>
+        </risks>
         <childFactor>0</childFactor>
         <oldFactor>1.5</oldFactor>
         <startSeverity>0.3~0.65</startSeverity>
@@ -421,7 +426,10 @@
     <comps>
       <li Class="ColonyCouncil.HediffCompProperties_Ailment">
         <key>SoreHands</key>
-        <causes><li><trigger>HandWork</trigger><hours>7</hours><chance>0.025</chance></li></causes>
+        <causes><li><trigger>HandWork</trigger><hours>7</hours><chance>0.012</chance></li></causes>
+        <risks>
+          <li><trait>Tough</trait><factor>0.6</factor></li>
+        </risks>
         <childFactor>0.5</childFactor>
         <oldFactor>1.5</oldFactor>
         <startSeverity>0.25~0.5</startSeverity>
@@ -466,7 +474,10 @@
       <li Class="ColonyCouncil.HediffCompProperties_Ailment">
         <key>Blisters</key>
         <quiet>true</quiet>
-        <causes><li><trigger>Walking</trigger><hours>8</hours><chance>0.06</chance></li></causes>
+        <causes><li><trigger>Walking</trigger><hours>8</hours><chance>0.03</chance></li></causes>
+        <risks>
+          <li><trait>Tough</trait><factor>0.5</factor></li>
+        </risks>
         <cooldownDays>8</cooldownDays>
         <startSeverity>0.25~0.5</startSeverity>
         <gotText>{PAWN_nameDef} has blisters from all the walking.</gotText>
@@ -510,7 +521,11 @@
     <comps>
       <li Class="ColonyCouncil.HediffCompProperties_Ailment">
         <key>Chilblains</key>
-        <causes><li><trigger>ColdWork</trigger><hours>5</hours><chance>0.03</chance></li></causes>
+        <causes><li><trigger>ColdWork</trigger><hours>5</hours><chance>0.018</chance></li></causes>
+        <risks>
+          <li><trait>Tough</trait><factor>0.6</factor></li>
+          <li><hediff>Frail</hediff><factor>1.5</factor></li>
+        </risks>
         <oldFactor>1.5</oldFactor>
         <startSeverity>0.25~0.5</startSeverity>
         <gotText>{PAWN_nameDef} has chilblains from working out in the cold.</gotText>
@@ -557,7 +572,7 @@
       <li Class="ColonyCouncil.HediffCompProperties_Ailment">
         <key>Sunburn</key>
         <quiet>true</quiet>
-        <causes><li><trigger>SunWork</trigger><hours>4</hours><chance>0.05</chance></li></causes>
+        <causes><li><trigger>SunWork</trigger><hours>4</hours><chance>0.03</chance></li></causes>
         <cooldownDays>8</cooldownDays>
         <startSeverity>0.25~0.6</startSeverity>
         <gotText>{PAWN_nameDef} is sunburned from working bareheaded in the heat.</gotText>
@@ -764,7 +779,10 @@
       <li Class="ColonyCouncil.HediffCompProperties_Ailment">
         <key>EyeStrain</key>
         <quiet>true</quiet>
-        <causes><li><trigger>DarkWork</trigger><hours>4</hours><chance>0.04</chance></li></causes>
+        <causes><li><trigger>DarkWork</trigger><hours>4</hours><chance>0.025</chance></li></causes>
+        <risks>
+          <li><hediff>Cataract</hediff><factor>2</factor></li>
+        </risks>
         <childFactor>0.5</childFactor>
         <cooldownDays>6</cooldownDays>
         <startSeverity>0.25~0.45</startSeverity>
@@ -1116,7 +1134,7 @@
       <li Class="ColonyCouncil.HediffCompProperties_Ailment">
         <key>Splinter</key>
         <quiet>true</quiet>
-        <causes><li><trigger>Chopping</trigger><hours>4</hours><chance>0.03</chance></li></causes>
+        <causes><li><trigger>Chopping</trigger><hours>4</hours><chance>0.02</chance></li></causes>
         <cooldownDays>6</cooldownDays>
         <startSeverity>0.3~0.5</startSeverity>
         <gotText>{PAWN_nameDef} has a splinter deep in one hand.</gotText>
