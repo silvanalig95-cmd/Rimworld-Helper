@@ -37,21 +37,29 @@
     </structures>
     <titles>
       <li>Hunters make camp</li>
+      <li>[lowtech] A hunting camp</li>
+      <li>Hunters on the colony's land</li>
     </titles>
     <texts>
       <li>[lowtech] A hunting party of {FACTION} has followed a herd onto the colony's land. Their leader, {X_nameDef}, told {A_nameDef} they mean to camp {PLACE} until the herd moves on, and to take what game they need while it's here.</li>
       <li>[!lowtech] A hunting party of {FACTION} has tracked game onto the colony's land, rifles slung and packs heavy. {X_nameDef} told {A_nameDef} they'll set up camp {PLACE} and stay until the hunting thins out.</li>
       <li>Hunters of {FACTION} came through the trees this morning and stopped to look the land over. {X_nameDef} says the game here is too good to pass up. They are heading for a spot {PLACE} to make camp.</li>
+      <li>[winter] Hunters of {FACTION} have come down from the high country after the herds the snow pushed onto the colony's land. {X_nameDef} told {A_nameDef} they'll camp {PLACE} until the weather turns, and take only what they need.</li>
+      <li>[fall] It's the hunting season, and a party of {FACTION} has come onto the colony's land after the fall herds. {X_nameDef} asked {A_nameDef}, politely enough, where the colony would rather they didn't shoot, and then pointed {PLACE} as the spot for their camp.</li>
     </texts>
     <settled>
       <li>The hunters from {FACTION} finished their camp {PLACE}: bedrolls around a fire, and a spot for dressing game.</li>
+      <li>[lowtech] The hunters from {FACTION} have a fire going {PLACE}, a rack for drying meat beside it, and their spears stacked against a tree.</li>
+      <li>[!lowtech] The hunters from {FACTION} have pitched their camp {PLACE}: bedrolls, a fire, and a gutting table they carried in on their backs.</li>
     </settled>
     <joinTexts>
       <li>{X_nameDef} from the hunters' camp has spent more evenings at the colony than at the camp fire lately. The colony feeds people better than the trail does, {X_pronoun} says, and {X_nameDef} would like to stay.</li>
+      <li>{X_nameDef}, the youngest of the hunters camped {PLACE}, has been helping the colony's cook with the butchering in the evenings, and asks whether {X_pronoun} might stay.</li>
     </joinTexts>
     <farewell>
       <li>The herd moved on, and the hunters from {FACTION} went with it. Their camp {PLACE} is packed up and gone, and the land is quieter.</li>
       <li>The hunters from {FACTION} packed up their camp {PLACE} and moved on after the game, as hunters do.</li>
+      <li>The hunters from {FACTION} left before dawn, the way hunters do. All that's left {PLACE} is a ring of ash and a few bones.</li>
     </farewell>
     <lines>
       <li>Downwind, always downwind.</li>
@@ -86,6 +94,14 @@
     <tensionPerDay>0.8</tensionPerDay>
     <canPay>false</canPay>
     <extendChance>0.6</extendChance>
+    <situationKinds>
+      <li>hunger</li>
+      <li>sickness</li>
+      <li>war</li>
+      <li>water</li>
+      <li>drought</li>
+      <li>weather</li>
+    </situationKinds>
     <structures>
       <li><role>fire</role><defs><li>Campfire</li></defs></li>
       <li><role>bed</role><defs><li>SleepingSpot</li><li>Bedroll</li></defs><stuff><li>Cloth</li></stuff></li>
@@ -93,21 +109,33 @@
     </structures>
     <titles>
       <li>A family makes camp</li>
+      <li>Nowhere else to go</li>
+      <li>[ws:hunger|ws:drought] Hungry people on the road</li>
     </titles>
     <texts>
       <li>A family of {FACTION} has come down the road with everything they own on their backs. Their home is gone, burned or taken, and {X_nameDef} would rather not say which. They ask only for a patch of ground {PLACE} to rest on for a while.</li>
       <li>[lowtech] Refugees of {FACTION}, a family by the look of them, have stopped near the colony with a cart and a few bundles. {X_nameDef} asked {A_nameDef}, politely, whether anyone would mind if they camped {PLACE} for a time.</li>
       <li>[!lowtech] A family of {FACTION} has turned up on foot, carrying what they could save. {X_nameDef} told {A_nameDef} they need a few days, maybe longer, to work out where to go next, and they'll camp {PLACE} if the colony doesn't object.</li>
+      <li>[ws:hunger] {SITUATION} has emptied the farms of {FACTION}'s country, and a family of them has come as far as the colony on foot, thin as rails. {X_nameDef} asked {A_nameDef} for leave to camp {PLACE} until they know where they're going.</li>
+      <li>[ws:sickness] A family of {FACTION} has fled ahead of {SITUATION}, and every village on the road has turned them away for fear of it. {X_nameDef} swears none of them is sick, and asks only to camp {PLACE} a while, well apart from the colony.</li>
+      <li>[ws:war] A family of {FACTION}, driven out of their home by {SITUATION}, has come to the colony with a handcart and two goats. {X_nameDef} asked {A_nameDef} whether they might camp {PLACE} until it's safe to go back.</li>
+      <li>[ws:water] The water took their house in {SITUATION}, and a family of {FACTION} has walked up out of the valley with what they carried out of it. {X_nameDef} asked {A_nameDef} for a dry patch of ground {PLACE} to camp on.</li>
+      <li>[ws:drought] {SITUATION} dried up their well and then their fields, and a family of {FACTION} has given up and taken to the road. {X_nameDef} asked {A_nameDef} whether they might camp {PLACE} near the colony's water for a while.</li>
+      <li>[ws:weather] {SITUATION} drove a family of {FACTION} down out of the hills, half frozen. {X_nameDef} asked {A_nameDef} for a sheltered spot {PLACE} to camp until the worst of it passes.</li>
     </texts>
     <settled>
       <li>The family from {FACTION} put up a windbreak and laid out their beds around a fire {PLACE}. It almost looks like a home.</li>
+      <li>[winter] The family from {FACTION} has dug their camp into the lee of a bank {PLACE}, with every blanket they own around the fire.</li>
+      <li>The family from {FACTION} has their camp up {PLACE}. The children have already found the stream, and {X_nameDef} has hung the washing out on the windbreak.</li>
     </settled>
     <joinTexts>
       <li>{X_nameDef}, from the family camped {PLACE}, came up to the colony this evening with a question {X_pronoun} has clearly been rehearsing. {X_nameDef} works hard, {X_pronoun} says, and would like to stay.</li>
+      <li>[ws:hunger|ws:sickness|ws:war|ws:water|ws:drought|ws:weather] {X_nameDef}, from the family camped {PLACE}, says there's nothing left to go back to after {SITUATION}, and asks whether the colony would take {X_objective} in.</li>
     </joinTexts>
     <farewell>
       <li>The family from {FACTION} packed up their camp {PLACE} and went on down the road. {X_nameDef} waved until the colony was out of sight.</li>
       <li>The family from {FACTION} found somewhere to go, or decided to look for it. Their camp {PLACE} is empty now.</li>
+      <li>[ws:hunger|ws:sickness|ws:war|ws:water|ws:drought|ws:weather] The family from {FACTION} packed up their camp {PLACE} to go and see what {SITUATION} has left of their home.</li>
     </farewell>
     <lines>
       <li>Stay where I can see you.</li>
@@ -150,19 +178,27 @@
       <li><role>wall</role><defs><li>Wall</li></defs><stuff><li>WoodLog</li></stuff><count>5</count></li>
       <li><role>light</role><defs><li>TorchLamp</li></defs></li>
     </structures>
+    <situationKinds>
+      <li>rush</li>
+    </situationKinds>
     <titles>
       <li>Prospectors make camp</li>
+      <li>[lowtech] Diggers on the colony's land</li>
+      <li>[ws:rush] Prospectors for the rush</li>
     </titles>
     <texts>
       <li>A band of prospectors of {FACTION} has come onto the colony's land with picks, pans and a lot of confidence. {X_nameDef} told {A_nameDef} there's ore in this ground, and they mean to camp {PLACE} until they find it.</li>
       <li>[lowtech] Prospectors of {FACTION} have arrived with mules' worth of tools on their own backs. {X_nameDef} says an old map brought them here. They will camp {PLACE} and dig, and they'll sell whatever they find.</li>
       <li>[!lowtech] Prospectors of {FACTION} have turned up with sample bags and a battered ground scanner that {X_nameDef} swears still works. They plan to camp {PLACE} and dig test holes until they hit something.</li>
+      <li>[ws:rush] {SITUATION} has every prospector in the region out with a pan, and a band of {FACTION}'s has decided the colony's hills are worth a look. {X_nameDef} told {A_nameDef} they'll camp {PLACE} and dig, and sell whatever they find.</li>
     </texts>
     <settled>
       <li>The prospectors from {FACTION} finished their camp {PLACE}, with a windbreak against the weather and a torch to dig by.</li>
+      <li>The prospectors' camp {PLACE} is up, and the first test holes are already dug in a neat line toward the hills.</li>
     </settled>
     <joinTexts>
       <li>{X_nameDef} from the prospectors' camp is tired of digging holes for other people's fortunes, and asks whether the colony could use a steady pair of hands.</li>
+      <li>{X_nameDef} from the prospectors {PLACE} says the only thing worth finding round here is the colony, and asks, only half joking, whether there's a place for {X_objective} in it.</li>
     </joinTexts>
     <farewell>
       <li>The prospectors from {FACTION} filled in their last holes, packed up their camp {PLACE} and moved on, still sure the big find is over the next hill.</li>
@@ -205,18 +241,29 @@
       <li><role>bed</role><defs><li>SleepingSpot</li></defs></li>
       <li><role>spot</role><defs><li>MeditationSpot</li><li>PartySpot</li></defs></li>
     </structures>
+    <situationKinds>
+      <li>faith</li>
+    </situationKinds>
     <titles>
       <li>Pilgrims at rest</li>
+      <li>[ideology] Pilgrims of {IDEO}</li>
+      <li>Footsore pilgrims</li>
     </titles>
     <texts>
       <li>Pilgrims of {FACTION} have stopped on the colony's land to rest. {X_nameDef}, who leads them, told {A_nameDef} their road is long and their feet are sore, and they'd like to camp {PLACE} for a few days before they go on.</li>
       <li>A small band of pilgrims of {FACTION} is walking toward a holy place far from here. They've asked to rest {PLACE} for a few days, to pray and mend their sandals. {X_nameDef} promises they'll take very little.</li>
+      <li>[ideology] Pilgrims of {IDEO} from {FACTION} have stopped on the colony's land on their way to a shrine of their faith. {X_nameDef} asked {A_nameDef} for leave to rest {PLACE} a few days, and to keep their prayers there.</li>
+      <li>[ideology,sameFaith] Pilgrims of {FACTION} who keep {IDEO}, the colony's own faith, have stopped to rest among their own. {X_nameDef} asked {A_nameDef} whether they might camp {PLACE} a few days before going on to the shrine.</li>
+      <li>[ws:faith] {SITUATION} has put pilgrims on every road in the region, and a band of {FACTION}'s has stopped by the colony to rest. {X_nameDef} asked {A_nameDef} for a few days' camp {PLACE}.</li>
+      <li>[winter] Pilgrims of {FACTION} have come through the snow on their way to a holy place, and stopped at the colony because they could go no further today. {X_nameDef} asked {A_nameDef} whether they might camp {PLACE} until the road clears.</li>
     </texts>
     <settled>
       <li>The pilgrims from {FACTION} made a simple camp {PLACE}, with a place set aside for prayer.</li>
+      <li>[ideology] The pilgrims of {IDEO} have made their camp {PLACE}, with a shrine of piled stones at the edge of camp for their evening prayers.</li>
     </settled>
     <joinTexts>
       <li>{X_nameDef}, one of the pilgrims camped {PLACE}, says the road has given {X_objective} what {X_pronoun} came for, and asks whether {X_pronoun} might stay with the colony instead of walking on.</li>
+      <li>[sameFaith] {X_nameDef}, one of the pilgrims {PLACE}, has found people of {X_possessive} own faith at the colony, and asks to end the pilgrimage here.</li>
     </joinTexts>
     <farewell>
       <li>The pilgrims from {FACTION} rested, prayed, and went on their way. {X_nameDef} said they'd remember the colony in their prayers.</li>
@@ -256,19 +303,28 @@
       <li><role>stall</role><defs><li>Table1x2c</li></defs><stuff><li>WoodLog</li></stuff></li>
       <li><role>light</role><defs><li>TorchLamp</li></defs></li>
     </structures>
+    <situationKinds>
+      <li>trade</li>
+      <li>road</li>
+    </situationKinds>
     <titles>
       <li>Traders set up a stall</li>
+      <li>[lowtech] Peddlers make camp</li>
+      <li>A market at the gate</li>
     </titles>
     <texts>
       <li>Traders of {FACTION} have decided the colony is worth more than a day's visit. {X_nameDef} told {A_nameDef} they'll set up a stall {PLACE} and stay a few days, and anyone with silver is welcome.</li>
       <li>[lowtech] A small band of traders of {FACTION} has stopped on the colony's land with packs full of goods. They mean to put up a stall {PLACE} and sell to the colony for a few days, the way market folk do.</li>
       <li>[!lowtech] Traders of {FACTION} have arrived with packs, a folding table and a hand-painted sign. {X_nameDef} says they'll camp {PLACE} and keep the stall open for a few days.</li>
+      <li>[ws:trade|ws:road] With {SITUATION} bringing more traffic past the colony than ever, traders of {FACTION} have decided to stop and sell to it. {X_nameDef} told {A_nameDef} they'll put up a stall {PLACE} for a few days.</li>
     </texts>
     <settled>
       <li>The traders from {FACTION} have their stall up {PLACE}, with a torch to see the goods by.</li>
+      <li>The traders' stall {PLACE} is open for business, with the best of the goods at the front and a sign promising fair prices, which {A_nameDef} doubts.</li>
     </settled>
     <joinTexts>
       <li>{X_nameDef}, who carries the traders' packs, has had enough of the road, and asks whether the colony would take on someone who can count and lift.</li>
+      <li>{X_nameDef} from the traders' stall {PLACE} says the colony is the best market on the road, and would like to stop moving and be part of it.</li>
     </joinTexts>
     <farewell>
       <li>The traders from {FACTION} packed their stall and moved on to the next settlement.</li>
@@ -321,19 +377,26 @@
     </structures>
     <titles>
       <li>A traveling smith</li>
+      <li>[medieval] A smith at the gate</li>
+      <li>Hammer and anvil</li>
     </titles>
     <texts>
       <li>{X_nameDef}, a traveling smith of {FACTION}, has come onto the colony's land with helpers and a cart of tools. {X_nameDef} told {A_nameDef} they'll camp {PLACE} for a few days, sell what they've made, and mend what they can.</li>
       <li>[medieval] A smith of {FACTION} has stopped near the colony with an anvil on a cart and apprentices to push it. {X_nameDef} means to camp {PLACE}, burn some charcoal and sell blades and mail to anyone who can pay.</li>
+      <li>[industrial] {X_nameDef}, a smith of {FACTION}, travels with a portable forge on a handcart and a sack of coke. {X_nameDef} told {A_nameDef} they'll camp {PLACE} for a few days, fix whatever the colony brings them, and sell the rest.</li>
+      <li>[winter] A smith of {FACTION} has come in out of the cold, glad of an excuse to light a forge. {X_nameDef} told {A_nameDef} they'll camp {PLACE} until the weather turns, and mend whatever the winter has broken.</li>
     </texts>
     <settled>
       <li>The smith from {FACTION} set up a work spot and a table of wares at the camp {PLACE}. The ringing of a hammer carries all the way to the colony.</li>
+      <li>The smith's camp {PLACE} is up and the forge is lit. There's already a queue of colonists with bent tools pretending to just be passing.</li>
     </settled>
     <joinTexts>
       <li>{X_nameDef}, who has been working the smith's bellows, wants to stop moving, and asks whether the colony needs someone who knows metal.</li>
+      <li>{X_nameDef} from the smith's camp {PLACE} has been eyeing the colony's workshop for days, and finally asked whether {X_pronoun} might work in it, for good.</li>
     </joinTexts>
     <farewell>
       <li>The smith from {FACTION} loaded the cart and moved on, the anvil ringing faintly over every bump in the road.</li>
+      <li>The smith's camp {PLACE} is gone, and the forge with it. The colony's tools have never been sharper.</li>
     </farewell>
     <lines>
       <li>Hotter. Hotter!</li>
@@ -376,19 +439,25 @@
     </structures>
     <titles>
       <li>A hermit moves in</li>
+      <li>A new neighbor, of sorts</li>
     </titles>
     <texts>
       <li>A hermit called {X_nameDef}, once of {FACTION}, has walked onto the colony's land and started pacing out a spot {PLACE}. {X_nameDef} told {A_nameDef}, in very few words, that {X_pronoun} means to build a hut and stay the season.</li>
       <li>{X_nameDef}, a hermit who left {FACTION} years ago, has chosen a spot {PLACE} to build a hut for the season. {X_nameDef} asks nothing of the colony and seems to hope the colony will ask nothing back.</li>
+      <li>[winter] {X_nameDef}, a hermit of {FACTION}, has come down out of the snow line, where even hermits can't stay in this weather. {X_nameDef} means to build a hut {PLACE} and wait the winter out, and would rather not be visited.</li>
+      <li>{X_nameDef} turned up {PLACE} with an axe, a sack and a goat, and started cutting poles without asking anyone. When {A_nameDef} went over to see, {X_nameDef}, once of {FACTION}, said only that {X_pronoun} would be gone by the end of the season.</li>
     </texts>
     <settled>
       <li>{X_nameDef} finished a small hut {PLACE}, with a door, a roof and a fire outside it.</li>
+      <li>{X_nameDef}'s hut {PLACE} is finished: crooked, small and very solid. Smoke comes out of the roof in the mornings.</li>
     </settled>
     <joinTexts>
       <li>{X_nameDef}, the hermit camped {PLACE}, came to the colony's door this evening. After a long silence, {X_pronoun} asked whether there might be room for one more.</li>
+      <li>{X_nameDef}, the hermit {PLACE}, has been leaving firewood at the colony's gate every morning for a week. Today {X_nameDef} knocked, and asked to come in for good.</li>
     </joinTexts>
     <farewell>
       <li>{X_nameDef} shut the door of the hut {PLACE} one last time and walked off without looking back. The hut is the colony's now, if it wants it.</li>
+      <li>The hermit's hut {PLACE} is empty. {X_nameDef} left in the night without a word, which is how {X_nameDef} arrived.</li>
     </farewell>
     <lines>
       <li>Hm.</li>

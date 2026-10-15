@@ -48,6 +48,8 @@ namespace ColonyCouncil
 
         public static void Wedding(Pawn a, Pawn b)
         {
+            // The wedding day goes on the colony calendar (its own switch).
+            CalendarTracker.Notify_Wedding(a, b);
             if (!On || a == null || b == null || !(a.IsColonist || b.IsColonist)) return;
             var comp = CouncilGameComponent.Instance;
             string text = "CC_World_Wedding".Translate(a.Named("A"), b.Named("B")).Resolve();
@@ -113,6 +115,8 @@ namespace ColonyCouncil
         /// </summary>
         public static void Victory(CouncilGameComponent comp, List<Pawn> fighters, Faction foe, int kills, List<string> fallen, Dictionary<Pawn, int> killsBy)
         {
+            // A battle the colony will remember goes on its calendar (its own switch).
+            CalendarTracker.Notify_Victory(fighters, foe, kills, fallen);
             if (!On || comp == null || fighters.NullOrEmpty()) return;
             // A real fight: a raid seen off, or a pack brought down. One stray wolf isn't a victory.
             if (kills < 3 && !(foe != null && kills >= 1)) return;

@@ -22,6 +22,7 @@
         <answerDays>0.5</answerDays>
         <titles>
           <li>A challenger</li>
+          <li>A friendly contest</li>
         </titles>
         <texts>
           <li>[Shooting,lowtech] {X_nameDef} of {FACTION}, an archer who has won every contest from here to the coast, has heard that {A_nameDef} is a good shot. {X_nameDef} proposes a friendly match at straw targets, best of ten.</li>
@@ -93,6 +94,8 @@
         <days>4~6</days>
         <titles>
           <li>The great beast</li>
+          <li>{BEAST} on the colony's land</li>
+          <li>A beast out of the stories</li>
         </titles>
         <texts>
           <li>Travelers have talked about it for weeks, and now it's here. {BEAST}, an old {THING} out of the stories, huge and scarred, is roaming the colony's land. It doesn't go looking for trouble, but it fights back hard when hunted. Whoever brings it down will be talked about for years. It will move on in a few days.</li>
@@ -134,6 +137,8 @@
         <notable>false</notable>
         <titles>
           <li>A treasure map</li>
+          <li>A map for sale</li>
+          <li>{X_nameDef}'s secret</li>
         </titles>
         <texts>
           <li>{X_nameDef} of {FACTION}, one of the colony's guests, takes {A_nameDef} aside. {X_nameDef} has an old, creased map that shows a cache buried out on the colony's land, and will sell it for {COUNT} silver, not being in a position to dig it up. There's no telling if the map is genuine without digging.</li>
@@ -205,6 +210,8 @@
         <riskSkillOption>1</riskSkillOption>
         <titles>
           <li>Tribute demanded</li>
+          <li>{ENEMY} name a price</li>
+          <li>Pay, or else</li>
         </titles>
         <texts>
           <li>[tribal] A runner of {ENEMY}, painted for war, has planted a spear outside the colony and named the price of peace: {COUNT} silver, by tomorrow. If it isn't paid, {ENEMY} will come and take it, along with whatever else they like.</li>

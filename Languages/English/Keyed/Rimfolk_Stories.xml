@@ -10,7 +10,7 @@
 
   <!-- Settings. -->
   <CC_Settings_MissionsAsQuests>... with missions in the Quests tab</CC_Settings_MissionsAsQuests>
-  <CC_Settings_MissionsAsQuests_Tip>Now and then a neighbor asks the colony for help with a mission: goods for a funeral or a wedding by a set day, a runaway animal to tame and hand back, a shrine for their pilgrims. On: the offer shows up in the game's Quests tab, where you accept it or let it expire, and Rimfolk ends the quest when the mission succeeds or fails. Off: the offer comes as a letter instead. Either way, missions under way are shown on the World page with their progress.</CC_Settings_MissionsAsQuests_Tip>
+  <CC_Settings_MissionsAsQuests_Tip>Now and then a neighbor asks the colony for help with a mission: goods for a funeral or a wedding by a set day, timber and stone to rebuild after a fire, a storm or a flood, provisions for a hard season, a runaway animal to tame and hand back, a shrine for their pilgrims. On: the offer shows up in the game's Quests tab, where you accept it or let it expire, and Rimfolk ends the quest when the mission succeeds or fails. Off: the offer comes as a letter instead. Either way, missions under way are shown on the World page with their progress.</CC_Settings_MissionsAsQuests_Tip>
 
   <!-- What a mission asks for: in its terms ({0}: how many) and on its progress bars. -->
   <CC_Mission_Need_Meals>{0} meals (simple or better)</CC_Mission_Need_Meals>
@@ -18,11 +18,15 @@
   <CC_Mission_Need_Art1>a sculpture ready to carry</CC_Mission_Need_Art1>
   <CC_Mission_Need_Blocks>{0} stone blocks</CC_Mission_Need_Blocks>
   <CC_Mission_Need_Textiles>{0} cloth or leather</CC_Mission_Need_Textiles>
+  <CC_Mission_Need_RawFood>{0} raw food (fresh)</CC_Mission_Need_RawFood>
+  <CC_Mission_Need_Medicine>{0} medicine (any kind)</CC_Mission_Need_Medicine>
   <CC_Mission_Need_Thing>{0} {1}</CC_Mission_Need_Thing>
   <CC_Mission_Goal_meals>Meals (simple or better)</CC_Mission_Goal_meals>
   <CC_Mission_Goal_art>Sculptures</CC_Mission_Goal_art>
   <CC_Mission_Goal_blocks>Stone blocks</CC_Mission_Goal_blocks>
   <CC_Mission_Goal_textiles>Cloth or leather</CC_Mission_Goal_textiles>
+  <CC_Mission_Goal_rawfood>Raw food</CC_Mission_Goal_rawfood>
+  <CC_Mission_Goal_medicine>Medicine</CC_Mission_Goal_medicine>
 
   <!-- Where a mission stands (the World page, and under the quest's description). -->
   <CC_Mission_Feast_Ready>Everything is ready. {0}'s carts come for it in {1}.</CC_Mission_Feast_Ready>

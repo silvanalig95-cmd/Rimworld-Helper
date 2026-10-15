@@ -46,8 +46,14 @@ While it lasts, Rimfolk events that fit it come more or less often, and so do so
           <li>The great herds | Herds and rare beasts pass far more often | Let the neighbors' hunters across, or charge them</li>
           <li>Strange herds (Alpha Animals) | Strange creatures and herds pass far more often | A skilled handler may win one over</li>
           <li>A season of wild magic (A RimWorld of Magic) | Shards fall from the sky more often | Let a mage study the surge</li>
+          <li>A long drought upriver | Heat waves likelier, fewer caravans, thirsty herders and hungry travelers; a famine may follow | Water for their herds, a builder for a new well, food at a gift or a fair price</li>
+          <li>A new road | Travelers, visitors and stranded carts more often; traders come more often once it opens | Timber for the road, a builder for a day, a say in where it runs</li>
+          <li>A holy year | Many more pilgrims and travelers, fewer fights | Feed the pilgrims, forgive a neighbor's debt, let a colonist keep a vow</li>
+          <li>A bandit lord falls | Deserters, wounded strangers and buried loot from the broken band; a lieutenant may gather the rest | Shelter for stragglers, a treasure map, a cart for the victory feast</li>
+          <li>Sickness in the herds | Animal sickness likelier at home unless the colony pens its animals, fewer caravans | Pen the animals, lend a handler, food for the neighbors</li>
+          <li>A ship comes down (industrial and later) | Ship chunks, pods and survivors more often, cheap steel and components; scavengers may raid | Buy salvage, take in survivors, let a colonist look over the wreck</li>
         </table>
-        <after>Questions come with a deadline, like Rimfolk events, and an unanswered one falls to its default, which is usually doing nothing.</after>
+        <after>Questions come with a deadline, like Rimfolk events, and an unanswered one falls to its default, which is usually doing nothing. Some world events can lead to another when they end: a drought or sickness in the herds that nobody eased can turn into a famine, a new road into a trading season, a bandit lord's fall into a warlord's rise or a company of sellswords looking for work.</after>
       </li>
       <li>
         <heading>The warlord</heading>

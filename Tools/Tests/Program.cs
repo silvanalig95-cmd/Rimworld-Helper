@@ -380,6 +380,7 @@ for (int r = 0; r < 4; r++)
 
 // Rimfolk's inspect tabs fit above the inspect pane on small screens, big interface scales and RimHUD's taller pane.
 Console.WriteLine($"Checked {UiTests.Run(Check)} tab sizes.");
+Console.WriteLine($"Checked the calendar's dates over {CalendarTests.Run(Check)} days.");
 
-Console.WriteLine(failures == 0 ? "All tests passed (template math, layout, strain, meetings, pressures, ailments, line memory, good times, tab sizes, personal stories)." : failures + " failure(s).");
+Console.WriteLine(failures == 0 ? "All tests passed (template math, layout, strain, meetings, pressures, ailments, line memory, good times, tab sizes, calendar, personal stories)." : failures + " failure(s).");
 return failures == 0 ? 0 : 1;

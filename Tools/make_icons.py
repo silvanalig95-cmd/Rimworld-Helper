@@ -353,6 +353,24 @@ def g_dreams():
     return m
 
 
+def g_calendar():
+    """A wall calendar: two rings on top, a header band, a grid of days with one marked."""
+    m = new()
+    rect(m, 22, 46, 234, 234, r=24)
+    rect(m, 40, 98, 216, 108, fill=OFF)  # under the header band
+    cell, gap = 28, 12
+    for row in range(3):
+        for col in range(4):
+            x = 52 + col * (cell + gap)
+            y = 122 + row * (cell + gap)
+            if (row, col) != (1, 2):
+                rect(m, x, y, x + cell, y + cell, r=6, fill=OFF)
+    rings = new()
+    for cx in (82, 174):
+        rect(rings, cx - 13, 14, cx + 13, 76, r=13)
+    return over(rings, m, 10)
+
+
 def g_journals():
     m = new()
     rect(m, 52, 20, 214, 236, r=16)
@@ -722,7 +740,7 @@ GLYPHS = [
     # sub-tabs
     ("Overview", g_overview), ("Priorities", g_priorities), ("Moods", g_moods), ("World", g_world), ("Rooms", g_rooms),
     ("Roster", g_roster), ("Bonds", g_bonds), ("Wishes", g_wishes), ("Decrees", g_decrees), ("Ambition", g_ambition),
-    ("Ways", g_ways), ("Chronicle", g_chronicle), ("Dreams", g_dreams), ("Journals", g_journals),
+    ("Ways", g_ways), ("Chronicle", g_chronicle), ("Calendar", g_calendar), ("Dreams", g_dreams), ("Journals", g_journals),
     # markers
     ("Trust", g_trust), ("Office", g_office), ("LifeGoal", g_lifegoal), ("Secret", g_secret), ("Vendetta", g_vendetta),
     ("Nemesis", g_nemesis), ("Dream", g_dream), ("Journal", g_journal), ("WorldEvent", g_worldevent), ("Raid", g_raid),

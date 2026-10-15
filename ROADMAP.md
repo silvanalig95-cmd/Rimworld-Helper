@@ -68,6 +68,18 @@ every era. Called world events until the world situations below took that name.
   letters and the chronicle; pending stages on the World page. Three missions (goods for a neighbor's funeral or
   wedding, a runaway animal to tame, a shrine for pilgrims) offered as real quests in the Quests tab (or letters),
   tracked by Rimfolk with progress on the World page.
+- Done: a sixth batch of twenty-six written as data (one worker reads where, when and for whom each may come): the
+  land and the season (mushroom flush, white nights, desert bloom, long rains, ice fair, birds returning, the rut,
+  first snow, the longest night, an eclipse), callers for each era (scribe, photographer, tourist, spirit singer,
+  wandering cook) and for the newer systems (a bonesetter for an ailment, a fiddler for strain, guests for a council
+  meeting, a peacemaker for two at odds, a feast or a quarrel with a camp), and old lives (a taste of home, amends,
+  headstones, bridge work, a sick herd). Many answers call on someone with the right skill or trait.
+- Done: three more story chains as data (the lost letters, the stranger's seeds, the play), and two mission kinds as
+  data (rebuilding a town after a fire, storm or flood; provisions for a hard winter, a dry year or a sickhouse).
+- Done: four more camp kinds (traveling healers, a procession of the faithful, traveling players, surveyors), each
+  with its own good turn; camps follow world events (refugees from a famine or a war say so) and name their creed
+  with Ideology. Older events with one title, text or answer got more (a letter from home and the lost child grown
+  got new answers).
 - Next: more events per group; camps that use tent mods' tents when present; more chains (hooking the storyteller
   batch's memos: the peace bought, the survivor, the star-iron blade) and missions (an apprentice to train, a dignitary to host, refugees to see safely through).
 
@@ -91,6 +103,9 @@ rhythm (about one every 30 to 60 days), at most two at a time.
   claimants for a seat, a war of creeds (Ideology), peace talks, a mercenary company, a bandit road, a new town, a town
   abandoned, a trading season, a great fair, a pilgrimage, a silver rush, a famous healer, the great herds, strange
   herds (Alpha Animals) and a season of wild magic (A RimWorld of Magic).
+- Done: six more, with follow-ups: a long drought upriver (a famine can follow), a new road (a trading season can
+  follow), a holy year, a bandit lord's fall (a warlord or sellswords can follow), sickness in the herds (pen the
+  animals; a famine can follow), and a ship coming down (industrial and later).
 - Next: more of them, and Rimfolk events written to follow up on how one ended (the warlord's son, the town that
   grew from the settlers' camp).
 
@@ -170,8 +185,12 @@ play deep. In order:
   talk in the social log, a piece made, a fight come through, days with a condition held), told in journals, the
   chronicle and the Story tab, with a setting for how often. Next: stories for camps, offices and world events, stories
   between three people.
-- The colony calendar: player-named holidays, harvest and founding days, traditions that grow from what the colony
-  actually celebrates.
+- Done (October 2026): the colony calendar. Days written down from the colony's history (founding, first harvest,
+  first snow, battles, deaths of the loved, weddings, founding members' arrivals, long-serving colonists' birthdays)
+  and days the player names (feast, remembrance, rest day, games) on a Calendar page; each comes round with a letter
+  or message, a party, games, a rest day or a quiet hour, journal lines and talk, and grows into a tradition when kept
+  three years running. Ideology's rites are suggested where they fit; older saves are filled in from the chronicle.
+  Next: more kinds of day (a first child born, the day the walls went up, a caravan's return), and lines per biome.
 - The long view of the world: factions that remember the colony over years (debts, favors, grudges), envoys and
   missions that follow from it, more mission kinds (an apprentice, a dignitary, refugees to see through).
 - Health and recovery stories: ailments (started), convalescence, a doctor's reputation, a midwife's.
@@ -184,7 +203,7 @@ the content itself, not only to systems, alongside whatever else it does. Where 
 
 | Content | Count | Grow toward |
 |---|---|---|
-| Rimfolk events, story stages and missions | 124 | more everyday events per group, more chains, more mission kinds |
+| Rimfolk events, story stages and missions | 161 | more everyday events per group, more chains, more mission kinds |
 | Wishes | 105 | more seasonal and biome wishes, more for the always-on mods (Alpha mods, Vanilla Expanded furniture) |
 | Council projects (ambitions) | 54 (3 in stages) | more staged and season-long projects, more for tribal and spacer colonies |
 | Life goals | 57 | goals for teenagers, more for faith and the heart, goals that change with age |
@@ -194,10 +213,11 @@ the content itself, not only to systems, alongside whatever else it does. Where 
 | Quirks | 29 | quirks that touch others (a hummer and a light sleeper), more from events and dreams |
 | Personal stories | 16 (61 stages) | stories from camps, offices and world events, more for children and elders, stories of three |
 | Dreams | 117 | dreams for more feelings, quirks, life goals and mod content |
-| World events | 22 | more regional situations, and their follow-ups |
-| Camp kinds | 7 | caravans of every kind, pilgrims of every faith |
+| World events | 28 | more regional situations, and their follow-ups |
+| Camp kinds | 11 | caravans of every kind, pilgrims of every faith |
 | Ailments | 32 everyday, 14 serious | ailments for every biome and DLC, more after-effects |
 | Room types | 28 (108 layouts) | odd shapes beyond partitions, more spacer and mod-furniture sizes |
+| Calendar days and ways to keep them | 9 kinds, 4 ways (about 300 lines) | more kinds of day, lines per biome and faith |
 | Social events, moments, frictions, nuisances | 67, 123 (40 frictions), 19 | every trait pairing and home condition |
 
 ### 5. Wider (integrations)

@@ -71,6 +71,7 @@ All of it lives in the council window. Open it with the council button in the bo
           <li>Meetings: on the Ambition page, call a council meeting. At the set time colonists put down their work and walk over, and sleepers are woken and come late. The letter at the end says who came, who was late and who missed it, and why.</li>
           <li>The heart in RimHUD: in RimHUD's settings, Content tab, "Add third-party" lists Rimfolk's lines (strain, feelings, the heart's needs) and bars. Once added, they show in a colonist's RimHUD panel.</li>
           <li>Personal stories: once one begins (a message names it), the colonist's Story tab has a "Personal story" section with the stage it has reached and what it waits for next. Each stage adds a journal line and a chronicle line; a talk the story waits on shows in the social log. In development mode, "Personal story: begin one for..." starts one for a colonist it fits, and "Personal story: next stage" moves it on.</li>
+          <li>The colony calendar: open History, then Calendar. Founding day is there from the start, and long-serving colonists' birthdays after two years. Name a day for today with "Name a day": within the hour (in the daytime) its letter comes, and keeping it starts a party, games or a rest day.</li>
           <li>Material counts: open a room plan and look at its materials. Each shows green with some to spare and amber when it only just covers the room. In the game's build menu, a wall's material list reads like "Steel wall 420 (+85 lying around), enough for 84".</li>
         </points>
       </li>
@@ -78,7 +79,7 @@ All of it lives in the council window. Open it with the council button in the bo
         <heading>When something doesn't show</heading>
         <text>Check its setting first. Then turn on development mode (Options), open the debug actions and pick "Rimfolk: check myself" under Rimfolk. It lists which game hooks took, which parts are switched on and which of your mods Rimfolk found. A screenshot of it says a lot in a bug report.
 
-Development mode also has shortcuts for testing: "Heart: add 20 strain" moves a colonist's strain bar, and the comet and firefly nights can be started from the incident list.</text>
+Development mode also has shortcuts for testing: "Heart: add 20 strain" moves a colonist's strain bar, the comet and firefly nights can be started from the incident list, and "Calendar: a day comes round now" brings any day on the calendar round at once.</text>
       </li>
     </sections>
     <keywords><li>test</li><li>checklist</li><li>check</li><li>working</li><li>bug</li><li>debug</li><li>good times</li><li>ailments</li><li>visual</li><li>meeting</li><li>rimhud</li><li>materials</li></keywords>

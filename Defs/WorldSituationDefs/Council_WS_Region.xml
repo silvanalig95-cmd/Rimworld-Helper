@@ -1,0 +1,1279 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- World events across the region, told from data alone (the base WorldSituationWorker): a long drought upriver, a
+       new road, a holy year, a bandit lord's fall, a sickness in the herds and a ship come down in the hills. Each puts
+       a few questions to the colony, remembers what it gave, and can lead on to another world event when it ends (a
+       drought or a lean year to a famine, a bandit lord's fall to sellswords out of work or a new warlord, a road to a
+       trading season). Fights only come behind needsBattles, and goodwill lost stops short of war. -->
+
+  <!-- ===================== A long drought upriver ===================== -->
+
+  <ColonyCouncil.WorldSituationDef>
+    <defName>Council_WS_Drought</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>a long drought</label>
+    <weight>1</weight>
+    <earliestDay>25</earliestDay>
+    <cooldownDays>150</cooldownDays>
+    <durationDays>18~28</durationDays>
+    <seasons>
+      <li>Spring</li>
+      <li>Summer</li>
+      <li>PermanentSummer</li>
+    </seasons>
+    <kind>drought</kind>
+    <bad>true</bad>
+    <faction>
+      <friendly>true</friendly>
+    </faction>
+    <names>
+      <li>the long dry</li>
+      <li>the dry year</li>
+      <li>[lowtech] the year the river shrank</li>
+      <li>[!lowtech] the drought</li>
+    </names>
+    <titles>
+      <li>Drought upriver</li>
+      <li>No rain at {PLACE}</li>
+    </titles>
+    <texts>
+      <li>No rain has fallen on {FACTION}'s country for two months. The streams above {PLACE} have dried to strings of pools, the wheat is standing white in the fields, and the herders are driving their animals further every day to find water.\n\nThey're calling it {NAME}. If the rains don't come soon, it will be a hungry winter in {PLACE}.</li>
+      <li>[theirLowtech] Upriver, in {FACTION}'s country, the wells are failing one by one. At {PLACE} they are carrying water from a spring two hours' walk away, and the elders have started the old prayers for rain.\n\nThe herders are already on the move, looking for water. Some of them will come this way.</li>
+      <li>[theirHightech] {FACTION}'s reservoir at {PLACE} is down to a muddy bowl, and the pumps are pulling air. Water is rationed by the bucket, the crops are being let go field by field, and the herders are trucking their animals anywhere there's grass.\n\nThey're calling it {NAME}. It shows no sign of ending.</li>
+      <li>[summer] The summer came early to {FACTION}'s country and stayed. It hasn't rained at {PLACE} since the spring, and the fields are cracking open. {NAME}, they call it there, and everyone is watching the sky.</li>
+    </texts>
+    <summaries>
+      <li>{FACTION}'s country is drying out: their herders will come looking for water, their caravans come less often, and heat waves are likelier. Help now will be remembered. If the rains don't come, a famine may follow.</li>
+    </summaries>
+    <modifiers>
+      <li><incident>HeatWave</incident><factor>2</factor></li>
+      <li><incident>Flashstorm</incident><factor>1.5</factor></li>
+      <li><incident>ColdSnap</incident><factor>0.5</factor></li>
+      <li><incident>TraderCaravanArrival</incident><factor>0.8</factor></li>
+      <li><rimfolk>Council_Evt_Pilgrims</rimfolk><factor>1.5</factor></li>
+      <li><rimfolk>Council_Evt_NeighborsSick</rimfolk><factor>1.5</factor></li>
+      <li><rimfolk>Council_Mission_Provisions</rimfolk><factor>2.5</factor></li>
+      <li><rimfolk>Council_Evt_GrowingSpell</rimfolk><factor>0.3</factor></li>
+      <li><rimfolk>Council_Evt_HighWater</rimfolk><factor>0.1</factor></li>
+      <li><rimfolk>Council_Evt_MushroomFlush</rimfolk><factor>0.2</factor></li>
+      <li><rimfolk>Council_Evt_LongRains</rimfolk><factor>0.1</factor></li>
+      <li><rimfolk>Council_Evt_WildBounty</rimfolk><factor>0.5</factor></li>
+    </modifiers>
+    <beats>
+      <li>
+        <key>herders</key>
+        <day>2~5</day>
+        <count>80~160</count>
+        <wealthScaled>true</wealthScaled>
+        <titles>
+          <li>Thirsty herds</li>
+        </titles>
+        <texts>
+          <li>[river] Herders of {FACTION} have driven their animals down from the dry country, and they ask leave to water them at the colony's stretch of the river for a few days. The animals are thin and lowing, and the herders not much better.\n\nThey can pay {COUNT} silver, or owe the colony a favor.</li>
+          <li>[!river] Herders of {FACTION} have come down from the dry country with their animals, and ask leave to water them at the colony's wells for a few days and graze the land beyond the fields. The animals are thin, and so are the herders.\n\nThey can pay {COUNT} silver, or owe the colony a favor.</li>
+        </texts>
+        <defaultOption>2</defaultOption>
+        <options>
+          <li>
+            <label>Let them water the herds, as neighbors</label>
+            <outcome>The herders bring their animals down at dusk, and stay out of the fields as they promised. Their thanks will reach {PLACE} before they do.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>8</amount></li>
+            </effects>
+            <flags><li>herders</li></flags>
+            <help>1</help>
+            <deed>watered {FACTION}'s herds</deed>
+            <ways><generosity>2</generosity></ways>
+          </li>
+          <li>
+            <label>Let them, for {COUNT} silver</label>
+            <outcome>The herders pay, counting out the silver slowly, and bring the animals down to drink.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.WorldEffect_Silver" />
+              <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>-2</amount></li>
+            </effects>
+            <ways><generosity>-1</generosity></ways>
+          </li>
+          <li>
+            <label>Keep them away</label>
+            <outcome>The herders are turned back. They go on looking for water somewhere else, and the animals with them.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>-3</amount></li>
+            </effects>
+            <ways><generosity>-1</generosity><openness>-1</openness></ways>
+          </li>
+        </options>
+      </li>
+      <li>
+        <key>well</key>
+        <day>5~10</day>
+        <skill>Mining</skill>
+        <minLevel>4</minLevel>
+        <count>100~200</count>
+        <wealthScaled>true</wealthScaled>
+        <titles>
+          <li>A new well for {PLACE}</li>
+        </titles>
+        <texts>
+          <li>{FACTION} mean to dig a new well at {PLACE}, deeper than any they've dug before, and they don't have anyone who knows rock. They've heard {A_nameDef} does.\n\nThey ask whether {A_nameDef} would come and tell their diggers where and how. Or, if the colony would rather, {COUNT} silver would hire a well-digger from the coast.</li>
+          <li>[theirHightech] {FACTION} want to sink a new borehole at {PLACE}, and the drilling crew they hired has never worked this kind of rock. They've asked whether {A_nameDef}, who has, would look over the site and the logs for a day. Or the colony could put {COUNT} silver toward a better crew.</li>
+        </texts>
+        <defaultOption>2</defaultOption>
+        <options>
+          <li>
+            <label>Lend them {A_nameDef} for a day</label>
+            <outcome>{A_nameDef} went over the ground at {PLACE} with their diggers and showed them where the rock would give. They struck water two days later.</outcome>
+            <riskChance>0.3</riskChance>
+            <riskSkill>Mining</riskSkill>
+            <riskOutcome>{A_nameDef} found them the best spot there was, and they dug for a week. The well is deep, and damp at the bottom, and not much more. It's something.</riskOutcome>
+            <effects>
+              <li Class="ColonyCouncil.WorldEffect_Learn"><skill>Mining</skill><xp>1200</xp></li>
+              <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>8</amount></li>
+            </effects>
+            <flags><li>well</li></flags>
+            <help>2</help>
+            <deed>lent {A_nameDef} to dig a well at {PLACE}</deed>
+            <ways><generosity>1</generosity><toil>1</toil></ways>
+          </li>
+          <li>
+            <label>Pay for a well-digger ({COUNT} silver)</label>
+            <outcome>The colony's silver goes to {PLACE}, and a well-digger with it before the week is out.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.WorldEffect_Pay" />
+              <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>8</amount></li>
+            </effects>
+            <flags><li>well</li></flags>
+            <help>2</help>
+            <deed>paid for a well at {PLACE}</deed>
+            <ways><generosity>2</generosity></ways>
+          </li>
+          <li>
+            <label>It's their well</label>
+            <outcome>The rider goes home to {PLACE} with the colony's regrets.</outcome>
+          </li>
+        </options>
+      </li>
+      <li>
+        <key>food</key>
+        <day>9~15</day>
+        <count>40~80</count>
+        <titles>
+          <li>{FACTION} ask for food</li>
+        </titles>
+        <texts>
+          <li>The first fields at {PLACE} have been given up for lost, and {FACTION} are rationing what's left. A rider has come to ask for {COUNT} portions of food, any kind, to stretch the stores until the rains come.\n\nThey can pay something. They'd rather owe the colony than pay the grain dealers' prices.</li>
+        </texts>
+        <defaultOption>2</defaultOption>
+        <options>
+          <li>
+            <label>Send {COUNT} food</label>
+            <outcome>The rider goes home with the food on two mules. {PLACE} will hold out a while longer.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>rawfood</what></li>
+              <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>10</amount></li>
+            </effects>
+            <help>2</help>
+            <deed>sent food to {PLACE} in the drought</deed>
+            <ways><generosity>3</generosity></ways>
+          </li>
+          <li>
+            <label>Sell it at a fair price</label>
+            <outcome>{FACTION} pay the usual price and take the food home.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>rawfood</what></li>
+              <li Class="ColonyCouncil.WorldEffect_Silver"><factor>1.5</factor></li>
+              <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>3</amount></li>
+            </effects>
+            <help>1</help>
+            <deed>sold food to {PLACE} at a fair price</deed>
+          </li>
+          <li>
+            <label>Nothing to spare</label>
+            <outcome>The rider goes home empty. The colony may need its stores if the drought comes this way.</outcome>
+          </li>
+        </options>
+      </li>
+    </beats>
+    <endings>
+      <li>
+        <key>rains</key>
+        <minHelp>3</minHelp>
+        <helped>true</helped>
+        <titles>
+          <li>The rains come back</li>
+        </titles>
+        <texts>
+          <li>The rain came at last, three days of it, soaking and steady. At {PLACE} people stood out in it with their faces up. {NAME} is over.\n\n{FACTION} got through it, with help from the colony, and they know exactly how much.</li>
+          <li>[well] The rain has come back to {FACTION}'s country, and the new well at {PLACE} is still running sweet. They've named it after the colony.\n\n{NAME} is over, and {FACTION} won't forget who stood with them.</li>
+        </texts>
+        <chronicle>{NAME} broke at last; {FACTION} remember the colony's help.</chronicle>
+        <effects>
+          <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>10</amount></li>
+          <li Class="ColonyCouncil.WorldEffect_Thought"><thought>Council_WS_HelpedNeighbors</thought></li>
+        </effects>
+      </li>
+      <li>
+        <key>someHelp</key>
+        <minHelp>1</minHelp>
+        <helped>true</helped>
+        <titles>
+          <li>The rains come back</li>
+        </titles>
+        <texts>
+          <li>The rains came back to {FACTION}'s country, late but heavy. {NAME} cost them a harvest, but the colony did its part, and {FACTION} say so.</li>
+        </texts>
+        <chronicle>{NAME} broke; the colony did its part.</chronicle>
+        <effects>
+          <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>4</amount></li>
+        </effects>
+      </li>
+      <li>
+        <key>hunger</key>
+        <chance>0.4</chance>
+        <titles>
+          <li>The drought turns to hunger</li>
+        </titles>
+        <texts>
+          <li>The rains came too late for {FACTION}'s fields. {NAME} is over, but the harvest is gone with it, and the storehouses at {PLACE} are empty.\n\nHunger is coming to the region, and it won't stop at {FACTION}'s borders.</li>
+        </texts>
+        <chronicle>{NAME} broke too late, and hunger followed.</chronicle>
+        <effects>
+          <li Class="ColonyCouncil.WorldEffect_Follow"><situation>Council_WS_Famine</situation></li>
+        </effects>
+      </li>
+      <li>
+        <key>ignored</key>
+        <titles>
+          <li>The rains come back</li>
+        </titles>
+        <texts>
+          <li>The rain came back to {FACTION}'s country, and {NAME} is over. {PLACE} lost a harvest and a good many animals.\n\nThe colony kept to itself through all of it. {FACTION} noticed.</li>
+        </texts>
+        <chronicle>{NAME} ran its course; the colony kept to itself.</chronicle>
+      </li>
+    </endings>
+  </ColonyCouncil.WorldSituationDef>
+
+  <!-- ===================== A new road ===================== -->
+
+  <ColonyCouncil.WorldSituationDef>
+    <defName>Council_WS_NewRoad</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>a new road</label>
+    <weight>1</weight>
+    <earliestDay>30</earliestDay>
+    <cooldownDays>220</cooldownDays>
+    <durationDays>16~26</durationDays>
+    <kind>road</kind>
+    <faction>
+      <friendly>true</friendly>
+    </faction>
+    <second>
+      <friendly>true</friendly>
+      <friendlyToFirst>true</friendlyToFirst>
+      <optional>true</optional>
+    </second>
+    <names>
+      <li>the new road</li>
+      <li>the high road</li>
+      <li>[lowtech] the stone road</li>
+      <li>[!lowtech] the new highway</li>
+    </names>
+    <titles>
+      <li>A road is coming</li>
+      <li>{FACTION} build a road</li>
+    </titles>
+    <texts>
+      <li>[!noenemy] {FACTION} and {ENEMY} have agreed to build a road between their towns, and the surveyors' stakes run right past the colony. Work gangs from {PLACE} are already clearing the line, and they mean to be done before the season turns.\n\nA road brings traders, travelers, news and noise. Where it runs, and who helps build it, will be remembered.</li>
+      <li>[noenemy] {FACTION} are building a road out from {PLACE} toward the passes, and the line the surveyors staked out runs past the colony. The work gangs are already felling trees and laying the bed.\n\nA road brings traders, travelers, news and noise. Where it runs, and who helps build it, will be remembered.</li>
+      <li>[theirLowtech] {FACTION} are laying a stone road out of {PLACE}, the first in the region since the old empire's, and its line comes close by the colony. Oxen are hauling stone from the quarries, and the work gangs sing as they dig.\n\nWhen it's done, the traders will follow it.</li>
+      <li>[theirHightech] {FACTION}'s road crews are grading a new highway out of {PLACE}, and their machines can be heard from the colony on a still day. The survey line runs a few hundred paces from the gate.\n\nWhen it's done, the trucks will follow it.</li>
+    </texts>
+    <summaries>
+      <li>Road crews and travelers pass by, and stranded carts are likelier. The colony can sell them timber, lend them a builder, and have a say in where the road runs. When it opens, traders will come more often.</li>
+    </summaries>
+    <modifiers>
+      <li><incident>TravelerGroup</incident><factor>1.5</factor></li>
+      <li><incident>VisitorGroup</incident><factor>1.3</factor></li>
+      <li><incident>TraderCaravanArrival</incident><factor>1.2</factor></li>
+      <li><rimfolk>Council_Evt_Stranded</rimfolk><factor>1.8</factor></li>
+      <li><rimfolk>Council_Evt_BulkOrder</rimfolk><factor>1.5</factor></li>
+      <li><rimfolk>Council_Evt_Tinker</rimfolk><factor>1.5</factor></li>
+      <li><rimfolk>Council_Evt_Camp</rimfolk><factor>1.5</factor></li>
+      <li><rimfolk>Council_Evt_BridgeWork</rimfolk><factor>2.5</factor></li>
+      <li><rimfolk>Council_Mission_Rebuild</rimfolk><factor>0.5</factor></li>
+    </modifiers>
+    <beats>
+      <li>
+        <key>timber</key>
+        <day>2~5</day>
+        <count>60~120</count>
+        <titles>
+          <li>Timber for the road</li>
+        </titles>
+        <texts>
+          <li>The road gang's foreman has walked up to the colony with a tally stick and a question. They're short of timber for the bridges and the culverts, {COUNT} logs at least, and the colony has a woodpile.\n\n{FACTION} will pay a fair price for it, or remember it as the colony's share of the road.</li>
+        </texts>
+        <defaultOption>2</defaultOption>
+        <options>
+          <li>
+            <label>Sell them {COUNT} wood</label>
+            <outcome>The road gang's carts come for the timber that afternoon. {FACTION} pay a fair price for it.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.WorldEffect_Sell"><thing>WoodLog</thing><price>1.3</price></li>
+              <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>3</amount></li>
+            </effects>
+            <help>1</help>
+            <deed>sold timber for {NAME}</deed>
+          </li>
+          <li>
+            <label>Give it, as the colony's share</label>
+            <outcome>The timber goes down to the road with the colony's compliments. The foreman made a note of it on the tally stick.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>WoodLog</what></li>
+              <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>8</amount></li>
+            </effects>
+            <help>2</help>
+            <deed>gave timber for {NAME}</deed>
+            <ways><generosity>2</generosity></ways>
+          </li>
+          <li>
+            <label>We need our wood</label>
+            <outcome>The foreman nods and goes back down the hill to find timber elsewhere.</outcome>
+          </li>
+        </options>
+      </li>
+      <li>
+        <key>route</key>
+        <day>5~9</day>
+        <titles>
+          <li>Where the road runs</li>
+        </titles>
+        <texts>
+          <li>The surveyors have two lines for the road past the colony, and they've asked the council to choose. One runs right past the gate, with all the traffic that brings, good and bad. The other swings round behind the hill, a day's work longer and much quieter.\n\nThe surveyors will go with the colony's word.</li>
+        </texts>
+        <defaultOption>2</defaultOption>
+        <options>
+          <li>
+            <label>Past our gate</label>
+            <outcome>The stakes go in along the line past the gate. When the road opens, the colony will be on it.</outcome>
+            <flags><li>gate</li></flags>
+            <help>1</help>
+            <deed>brought {NAME} past its gate</deed>
+            <ways><openness>2</openness></ways>
+          </li>
+          <li>
+            <label>Round behind the hill</label>
+            <outcome>The surveyors move their stakes round behind the hill. The road will pass the colony by, near enough to walk to and far enough not to hear.</outcome>
+            <flags><li>around</li></flags>
+            <ways><openness>-2</openness></ways>
+          </li>
+          <li>
+            <label>Let them decide</label>
+            <outcome>The surveyors are told to do as they think best. They choose the shorter line, past the gate.</outcome>
+            <flags><li>gate</li></flags>
+          </li>
+        </options>
+      </li>
+      <li>
+        <key>builder</key>
+        <day>8~13</day>
+        <skill>Construction</skill>
+        <minLevel>6</minLevel>
+        <count>80~160</count>
+        <wealthScaled>true</wealthScaled>
+        <titles>
+          <li>The road needs a builder</li>
+        </titles>
+        <texts>
+          <li>The road has reached the river crossing below the colony, and {FACTION}'s gang can't agree how to bridge it. They've heard {A_nameDef} knows building, and ask whether {A_nameDef} would spend a day with them on it. They'll pay {COUNT} silver.</li>
+        </texts>
+        <defaultOption>1</defaultOption>
+        <options>
+          <li>
+            <label>Lend them {A_nameDef} for a day</label>
+            <outcome>{A_nameDef} spent the day at the crossing with the road gang, and the bridge they build will be {A_nameDef}'s design. {FACTION} paid as promised.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.WorldEffect_Learn"><skill>Construction</skill><xp>1200</xp></li>
+              <li Class="ColonyCouncil.WorldEffect_Silver" />
+              <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>5</amount></li>
+            </effects>
+            <flags><li>bridge</li></flags>
+            <help>2</help>
+            <deed>lent {A_nameDef} to bridge the river for {NAME}</deed>
+            <ways><toil>1</toil></ways>
+          </li>
+          <li>
+            <label>We can't spare {A_objective}</label>
+            <outcome>The road gang will manage the crossing without the colony.</outcome>
+          </li>
+        </options>
+      </li>
+      <li>
+        <key>travelers</key>
+        <day>10~16</day>
+        <chance>0.7</chance>
+        <effects>
+          <li Class="ColonyCouncil.WorldEffect_Incident"><incident>TravelerGroup</incident><withFaction>true</withFaction><anyFaction>true</anyFaction></li>
+        </effects>
+      </li>
+    </beats>
+    <endings>
+      <li>
+        <key>abandoned</key>
+        <chance>0.15</chance>
+        <forbids><li>bridge</li></forbids>
+        <titles>
+          <li>The road stops short</li>
+        </titles>
+        <texts>
+          <li>The money ran out before the road did. {FACTION}'s gangs have gone home, and {NAME} ends in a heap of stones a mile past the colony.\n\nSomeone may finish it one day. For now, it's a very good place to graze goats.</li>
+        </texts>
+        <chronicle>{NAME} was abandoned half built.</chronicle>
+      </li>
+      <li>
+        <key>gate</key>
+        <requires><li>gate</li></requires>
+        <helped>true</helped>
+        <titles>
+          <li>{NAME} opens</li>
+        </titles>
+        <texts>
+          <li>{NAME} is open, and it runs right past the colony's gate. The first carts came through yesterday, and stopped to water their animals and sell what they had.\n\nThere'll be more of them now, every season.</li>
+          <li>[bridge] {NAME} is open, over {A_nameDef}'s bridge and right past the colony's gate. The first carts came through yesterday, and the drivers stopped to look at the bridge.\n\nThere'll be more of them now, every season.</li>
+        </texts>
+        <chronicle>{NAME} opened, running past the colony's gate.</chronicle>
+        <effects>
+          <li Class="ColonyCouncil.WorldEffect_Goodwill"><who>Neighbors</who><amount>4</amount></li>
+          <li Class="ColonyCouncil.WorldEffect_Incident"><incident>TraderCaravanArrival</incident><withFaction>true</withFaction><anyFaction>true</anyFaction></li>
+          <li Class="ColonyCouncil.WorldEffect_Follow"><situation>Council_WS_TradeBoom</situation><chance>0.35</chance></li>
+        </effects>
+      </li>
+      <li>
+        <key>around</key>
+        <requires><li>around</li></requires>
+        <titles>
+          <li>{NAME} opens</li>
+        </titles>
+        <texts>
+          <li>{NAME} is open, swinging round behind the hill as the colony asked. On a still night the carts can just be heard. The colony has the best of both: a road close enough to use, and far enough to ignore.</li>
+        </texts>
+        <chronicle>{NAME} opened, passing behind the hill.</chronicle>
+        <effects>
+          <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>3</amount><requires>bridge</requires></li>
+        </effects>
+      </li>
+      <li>
+        <key>opened</key>
+        <titles>
+          <li>{NAME} opens</li>
+        </titles>
+        <texts>
+          <li>{NAME} is open, and {FACTION}'s carts are already on it. It isn't the colony's road, but the colony will use it.</li>
+        </texts>
+        <chronicle>{NAME} opened near the colony.</chronicle>
+        <effects>
+          <li Class="ColonyCouncil.WorldEffect_Follow"><situation>Council_WS_TradeBoom</situation><chance>0.2</chance></li>
+        </effects>
+      </li>
+    </endings>
+  </ColonyCouncil.WorldSituationDef>
+
+  <!-- ===================== A holy year ===================== -->
+
+  <ColonyCouncil.WorldSituationDef>
+    <defName>Council_WS_HolyYear</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>a holy year</label>
+    <weight>0.8</weight>
+    <earliestDay>30</earliestDay>
+    <cooldownDays>240</cooldownDays>
+    <durationDays>20~30</durationDays>
+    <kind>faith</kind>
+    <faction>
+      <friendly>true</friendly>
+    </faction>
+    <names>
+      <li>the holy year</li>
+      <li>the year of grace</li>
+      <li>[lowtech] the jubilee</li>
+      <li>[!lowtech] the jubilee year</li>
+    </names>
+    <titles>
+      <li>A holy year at {PLACE}</li>
+      <li>{FACTION} keep {NAME}</li>
+    </titles>
+    <texts>
+      <li>{FACTION}'s priests have declared {NAME} at {PLACE}: a season of grace, when debts are forgiven, feuds are set aside and every traveler is fed. Pilgrims are already on the roads, and {FACTION} hope their neighbors will keep it with them.</li>
+      <li>[ideology] The faithful of {FACTION} have proclaimed {NAME}, which comes once in a generation. At {PLACE} the shrines are open day and night, debts are being torn up in the square, and pilgrims are setting out from every corner of the region.\n\n{FACTION} have sent word to every neighbor: the year asks something of everyone.</li>
+      <li>[theirLowtech] Bells have been ringing at {PLACE} for three days. {FACTION}'s elders have declared {NAME}, as their grandparents did, and the old customs come with it: no hand raised in anger, no traveler turned away, and gifts for the poor at every door.</li>
+      <li>[theirHightech] {FACTION} have announced {NAME}: a season of public feasts, debts written off and pilgrimages to the shrine at {PLACE}. Their broadcasts are asking every settlement in range to take part.</li>
+    </texts>
+    <summaries>
+      <li>Pilgrims and travelers pass far more often, and fewer raids come while the year lasts. {FACTION} hope the colony will feed pilgrims and keep the peace; generosity now is remembered.</li>
+    </summaries>
+    <modifiers>
+      <li><rimfolk>Council_Evt_Pilgrims</rimfolk><factor>3</factor></li>
+      <li><rimfolk>Council_Evt_SpiritSinger</rimfolk><factor>2</factor></li>
+      <li><rimfolk>Council_Evt_Mourners</rimfolk><factor>1.5</factor></li>
+      <li><rimfolk>Council_Evt_Camp</rimfolk><factor>1.5</factor></li>
+      <li><rimfolk>Council_Evt_Peacemaker</rimfolk><factor>2</factor></li>
+      <li><incident>TravelerGroup</incident><factor>1.6</factor></li>
+      <li><incident>VisitorGroup</incident><factor>1.4</factor></li>
+      <li><group>Battle</group><factor>0.6</factor></li>
+    </modifiers>
+    <beats>
+      <li>
+        <key>alms</key>
+        <day>2~5</day>
+        <count>25~50</count>
+        <titles>
+          <li>Pilgrims at the gate</li>
+        </titles>
+        <texts>
+          <li>A long line of pilgrims bound for {PLACE} has stopped outside the colony's gate, as pilgrims in {NAME} do at every door on the road. They ask, as the custom is, for a bite of food and a blessing given.\n\nAbout {COUNT} portions would feed them all.</li>
+          <li>[winter] Pilgrims bound for {PLACE} have come to the gate out of the cold, singing. In {NAME}, every door on the road is opened to them, and they ask the colony for food, about {COUNT} portions, and somewhere warm to sit before they go on.</li>
+        </texts>
+        <defaultOption>1</defaultOption>
+        <options>
+          <li>
+            <label>Feed them ({COUNT} food)</label>
+            <outcome>The pilgrims eat at the gate, bless the colony in the old words, and go on toward {PLACE} singing.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>rawfood</what></li>
+              <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>6</amount></li>
+              <li Class="ColonyCouncil.WorldEffect_Thought"><thought>Council_WS_Blessed</thought></li>
+            </effects>
+            <help>1</help>
+            <deed>fed the pilgrims of {NAME}</deed>
+            <ways><generosity>2</generosity><tradition>1</tradition></ways>
+          </li>
+          <li>
+            <label>Send them on</label>
+            <outcome>The pilgrims are sent on. They bless the colony anyway on their way past the gate.</outcome>
+            <ways><generosity>-1</generosity></ways>
+          </li>
+        </options>
+      </li>
+      <li>
+        <key>debt</key>
+        <day>6~11</day>
+        <count>60~120</count>
+        <wealthScaled>true</wealthScaled>
+        <titles>
+          <li>A debt forgiven</li>
+        </titles>
+        <texts>
+          <li>In {NAME}, every household at {PLACE} is asked to forgive one debt. {FACTION}'s priests have sent to ask the colony to do the same: a family of {FACTION} owes the colony's traders {COUNT} silver from a bad year, and would be free of it.\n\nThe colony would never have seen that silver anyway, some say. Others aren't so sure.</li>
+        </texts>
+        <defaultOption>1</defaultOption>
+        <options>
+          <li>
+            <label>Forgive it</label>
+            <outcome>Word goes to {PLACE} that the colony has forgiven the debt. The family sends a loaf of bread and their thanks.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>8</amount></li>
+            </effects>
+            <help>2</help>
+            <deed>forgave a family's debt in {NAME}</deed>
+            <ways><mercy>2</mercy><generosity>2</generosity></ways>
+          </li>
+          <li>
+            <label>A debt is a debt</label>
+            <outcome>The family will pay when it can, holy year or no. {FACTION}'s priests aren't pleased.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.WorldEffect_Silver"><factor>0.5</factor></li>
+              <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>-3</amount></li>
+            </effects>
+            <ways><mercy>-1</mercy></ways>
+          </li>
+        </options>
+      </li>
+      <li>
+        <key>vow</key>
+        <day>8~14</day>
+        <colonist>
+          <minMood>0.3</minMood>
+        </colonist>
+        <titles>
+          <li>{A_nameDef} wants to keep the year</li>
+        </titles>
+        <texts>
+          <li>{A_nameDef} has been listening to the pilgrims on the road, and has asked the council for leave to keep {NAME} as they do: a day of silence and fasting, and the next given to whoever in the colony needs a hand.</li>
+          <li>[ideology] {A_nameDef} has been talking with the pilgrims of {FACTION}, and has asked to keep {NAME} with them in {A_possessive} own way: a day apart, in silence, and then a day of work done for others.</li>
+        </texts>
+        <defaultOption>1</defaultOption>
+        <options>
+          <li>
+            <label>Let {A_objective} keep it</label>
+            <outcome>{A_nameDef} spent a day in silence by the colony's gate and the next carrying water, splitting wood and mending for everyone else. {A_nameDef} came out of it calm.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.WorldEffect_ThoughtFor"><thought>Council_WS_KeptTheYear</thought></li>
+            </effects>
+            <help>1</help>
+            <deed>let {A_nameDef} keep {NAME}</deed>
+            <ways><tradition>2</tradition></ways>
+          </li>
+          <li>
+            <label>Not now, there's work</label>
+            <outcome>{A_nameDef} goes back to work, and keeps the year privately, in the evenings.</outcome>
+          </li>
+        </options>
+      </li>
+    </beats>
+    <endings>
+      <li>
+        <key>graced</key>
+        <minHelp>3</minHelp>
+        <helped>true</helped>
+        <titles>
+          <li>{NAME} ends</li>
+        </titles>
+        <texts>
+          <li>{NAME} has ended with a feast at {PLACE}, and the priests of {FACTION} read out the names of those who kept it well. The colony was one of them.\n\nPilgrims on their way home have been stopping at the gate to say so.</li>
+        </texts>
+        <chronicle>{NAME} ended; {FACTION} named the colony among those who kept it well.</chronicle>
+        <effects>
+          <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>8</amount></li>
+          <li Class="ColonyCouncil.WorldEffect_Goodwill"><who>Neighbors</who><amount>3</amount></li>
+          <li Class="ColonyCouncil.WorldEffect_Thought"><thought>Council_WS_Blessed</thought></li>
+        </effects>
+      </li>
+      <li>
+        <key>kept</key>
+        <minHelp>1</minHelp>
+        <helped>true</helped>
+        <titles>
+          <li>{NAME} ends</li>
+        </titles>
+        <texts>
+          <li>{NAME} is over, and the pilgrims have gone home. The colony did its part, and {FACTION} say so.</li>
+        </texts>
+        <chronicle>{NAME} ended; the colony did its part.</chronicle>
+        <effects>
+          <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>4</amount></li>
+        </effects>
+      </li>
+      <li>
+        <key>passed</key>
+        <titles>
+          <li>{NAME} ends</li>
+        </titles>
+        <texts>
+          <li>{NAME} is over. The pilgrims have gone home, the bells at {PLACE} have stopped, and the colony went on through it all as if nothing were happening.\n\n{FACTION} noticed.</li>
+        </texts>
+        <chronicle>{NAME} passed; the colony kept to itself.</chronicle>
+      </li>
+    </endings>
+  </ColonyCouncil.WorldSituationDef>
+
+  <!-- ===================== A bandit lord's fall ===================== -->
+
+  <ColonyCouncil.WorldSituationDef>
+    <defName>Council_WS_BanditLordFalls</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>a bandit lord falls</label>
+    <weight>0.8</weight>
+    <earliestDay>40</earliestDay>
+    <cooldownDays>200</cooldownDays>
+    <durationDays>14~22</durationDays>
+    <kind>war</kind>
+    <faction>
+      <friendly>true</friendly>
+    </faction>
+    <second>
+      <hostile>true</hostile>
+      <canRaid>true</canRaid>
+      <settlement>false</settlement>
+    </second>
+    <names>
+      <li>the Baron of the Pass</li>
+      <li>Old Iron-Hand</li>
+      <li>the Toll-Keeper</li>
+      <li>[lowtech] the Red Knight</li>
+      <li>[lowtech] the Wolf of the Fords</li>
+      <li>[!lowtech] the Boss of the Crossroads</li>
+      <li>[!lowtech] the Highwayman</li>
+    </names>
+    <titles>
+      <li>The fall of {NAME}</li>
+      <li>{NAME} is dead</li>
+    </titles>
+    <texts>
+      <li>{NAME}, who led {ENEMY}'s raiders on the roads around {PLACE} for as long as anyone remembers, is dead. Riders of {FACTION} caught the bandit lord at a ford and finished it.\n\nThe band is breaking up. Some of it will want revenge, some will want a new master, and some will want to come in from the cold.</li>
+      <li>[theirLowtech] The head of {NAME} is on a spear over the gate at {PLACE}. {FACTION}'s warriors ran the bandit lord down in the hills after twenty years of raids, and {ENEMY}'s band has scattered into the woods.\n\nThe roads are safer already. They aren't safe yet.</li>
+      <li>[theirHightech] {FACTION}'s militia raided the hideout of {NAME} three nights ago and broke {ENEMY}'s gang for good. The bandit boss died in the firefight. The survivors are scattered across the region, and no one can say what they'll do now.</li>
+    </texts>
+    <summaries>
+      <li>Stragglers from {ENEMY}'s broken band are on the roads: deserters asking for shelter, wounded strangers, buried loot coming to light. One of the band's lieutenants may try to gather the rest.</li>
+    </summaries>
+    <modifiers>
+      <li><rimfolk>Council_Evt_Deserter</rimfolk><factor>3</factor></li>
+      <li><rimfolk>Council_Evt_WoundedStranger</rimfolk><factor>2.5</factor></li>
+      <li><rimfolk>Council_Evt_BuriedCache</rimfolk><factor>2</factor></li>
+      <li><rimfolk>Council_Evt_TreasureMap</rimfolk><factor>2.5</factor></li>
+      <li><rimfolk>Council_Evt_Tribute</rimfolk><factor>0.3</factor></li>
+      <li><incident>TraderCaravanArrival</incident><factor>1.3</factor></li>
+    </modifiers>
+    <beats>
+      <li>
+        <key>captive</key>
+        <day>2~6</day>
+        <titles>
+          <li>Out of the band</li>
+        </titles>
+        <texts>
+          <li>Among the stragglers from the broken band is one who was never a bandit: taken from a farm of {FACTION} years ago, and kept to cook and carry. Free at last, with nowhere left to go home to, this one has come to the colony's gate to ask for a place.</li>
+          <li>[winter] Someone has walked out of the snow to the colony's gate, thin and ragged in a bandit's coat. They were {ENEMY}'s captive, not one of them, taken from {FACTION}'s country as a child. The band is gone, and they ask the colony for a place to stay.</li>
+        </texts>
+        <defaultOption>1</defaultOption>
+        <options>
+          <li>
+            <label>Take them in</label>
+            <outcome>The colony makes room. The newcomer eats like someone who has never been sure of the next meal, and sleeps for a day and a night.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.WorldEffect_Join"><count>1</count></li>
+            </effects>
+            <help>1</help>
+            <deed>took in a captive of the band</deed>
+            <ways><mercy>2</mercy><openness>2</openness></ways>
+          </li>
+          <li>
+            <label>Feed them and send them on to {PLACE}</label>
+            <outcome>The colony feeds them and points the way to {PLACE}, where someone may still remember them.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>rawfood</what><count>10</count></li>
+              <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>3</amount></li>
+            </effects>
+            <ways><mercy>1</mercy></ways>
+          </li>
+        </options>
+      </li>
+      <li>
+        <key>hoard</key>
+        <day>4~9</day>
+        <count>120~240</count>
+        <wealthScaled>true</wealthScaled>
+        <titles>
+          <li>The bandit lord's hoard</li>
+        </titles>
+        <texts>
+          <li>One of {NAME}'s men has turned up at the gate with a scrap of map and a story: the bandit lord's hoard is buried in the hills, and only a few of the band knew where. The map is the colony's for {COUNT} silver.\n\n{FACTION} would very much like to know where it is, too. Most of what's in it was theirs.</li>
+        </texts>
+        <defaultOption>2</defaultOption>
+        <options>
+          <li>
+            <label>Buy the map ({COUNT} silver)</label>
+            <outcome>The map was true. A shovel and an afternoon turned up an iron box under a dead pine, and its contents are the colony's now.</outcome>
+            <riskChance>0.35</riskChance>
+            <riskReplaces>true</riskReplaces>
+            <riskOutcome>The map was true, as far as it went. Somebody else got there first: the hole was already dug, and the box was empty.</riskOutcome>
+            <effects>
+              <li Class="ColonyCouncil.WorldEffect_Pay" />
+              <li Class="ColonyCouncil.WorldEffect_Loot"><value>500~900</value></li>
+            </effects>
+            <riskEffects>
+              <li Class="ColonyCouncil.WorldEffect_Pay" />
+            </riskEffects>
+            <flags><li>hoard</li></flags>
+            <ways><generosity>-1</generosity></ways>
+          </li>
+          <li>
+            <label>Send the map's owner to {FACTION}</label>
+            <outcome>The bandit is sent on to {PLACE} under guard, map and all. {FACTION} will dig up their own stolen goods, and they know who sent them the way.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>10</amount></li>
+            </effects>
+            <help>2</help>
+            <deed>sent {FACTION} the way to the bandit lord's hoard</deed>
+            <ways><mercy>-1</mercy></ways>
+          </li>
+          <li>
+            <label>Send the bandit away</label>
+            <outcome>The bandit is sent away, map and all.</outcome>
+          </li>
+        </options>
+      </li>
+      <li>
+        <key>riders</key>
+        <day>7~13</day>
+        <chance>0.5</chance>
+        <needsBattles>true</needsBattles>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_RaidLater">
+            <points>0.4~0.6</points>
+            <delayHours>2~6</delayHours>
+            <label>The last of {NAME}'s riders</label>
+            <text>One of {NAME}'s lieutenants has gathered what's left of {ENEMY}'s band, and wants a win to keep them together. The colony looks like one.</text>
+          </li>
+        </effects>
+      </li>
+      <li>
+        <key>feast</key>
+        <day>9~15</day>
+        <titles>
+          <li>A victory feast at {PLACE}</li>
+        </titles>
+        <texts>
+          <li>{FACTION} are holding a feast at {PLACE} to mark the end of {NAME}, and every neighbor who suffered from the band is invited to send something for the tables. It's mostly a gesture. Gestures matter, this year.</li>
+        </texts>
+        <defaultOption>1</defaultOption>
+        <options>
+          <li>
+            <label>Send a cart for the tables (20 food)</label>
+            <outcome>The colony's cart goes to {PLACE} loaded with food and comes back with a story about the feast that grows every time it's told.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>rawfood</what><count>20</count></li>
+              <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>6</amount></li>
+            </effects>
+            <help>1</help>
+            <deed>sent food to the feast at {PLACE}</deed>
+            <ways><generosity>1</generosity></ways>
+          </li>
+          <li>
+            <label>Send our good wishes</label>
+            <outcome>The colony's good wishes go to {PLACE} with a rider. They're received politely.</outcome>
+          </li>
+        </options>
+      </li>
+    </beats>
+    <endings>
+      <li>
+        <key>peace</key>
+        <minHelp>2</minHelp>
+        <helped>true</helped>
+        <titles>
+          <li>The roads are quiet</li>
+        </titles>
+        <texts>
+          <li>The last of {NAME}'s band has scattered or come in from the cold, and the roads around {PLACE} are quiet for the first season in years. {FACTION} remember who helped them finish it.\n\nSome of the band's old fighters are looking for work. They'll find it somewhere.</li>
+        </texts>
+        <chronicle>After the fall of {NAME}, the roads around {PLACE} went quiet; {FACTION} remember the colony's part.</chronicle>
+        <effects>
+          <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>8</amount></li>
+          <li Class="ColonyCouncil.WorldEffect_Follow"><situation>Council_WS_Mercenaries</situation><chance>0.3</chance></li>
+        </effects>
+      </li>
+      <li>
+        <key>successor</key>
+        <chance>0.25</chance>
+        <titles>
+          <li>A new master for the band</li>
+        </titles>
+        <texts>
+          <li>The band of {NAME} didn't stay broken. One of the lieutenants has pulled the pieces back together under {ENEMY}'s banner, and the stories from the roads have started again.\n\nIt's too early to say how bad it will get.</li>
+        </texts>
+        <chronicle>After the fall of {NAME}, a lieutenant pulled {ENEMY}'s band back together.</chronicle>
+        <effects>
+          <li Class="ColonyCouncil.WorldEffect_Follow"><situation>Council_WS_Warlord</situation><chance>0.5</chance></li>
+        </effects>
+      </li>
+      <li>
+        <key>scattered</key>
+        <titles>
+          <li>The band is gone</li>
+        </titles>
+        <texts>
+          <li>The band of {NAME} is gone: some of it dead, some in {FACTION}'s cells, most of it scattered to the four winds. The roads around {PLACE} are slowly filling with carts again.</li>
+        </texts>
+        <chronicle>The band of {NAME} scattered after the bandit lord's fall.</chronicle>
+        <effects>
+          <li Class="ColonyCouncil.WorldEffect_Follow"><situation>Council_WS_Mercenaries</situation><chance>0.2</chance></li>
+        </effects>
+      </li>
+    </endings>
+  </ColonyCouncil.WorldSituationDef>
+
+  <!-- ===================== A sickness in the herds ===================== -->
+
+  <ColonyCouncil.WorldSituationDef>
+    <defName>Council_WS_Murrain</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>a sickness in the herds</label>
+    <weight>0.9</weight>
+    <earliestDay>30</earliestDay>
+    <cooldownDays>180</cooldownDays>
+    <durationDays>14~24</durationDays>
+    <kind>sickness</kind>
+    <bad>true</bad>
+    <faction>
+      <friendly>true</friendly>
+    </faction>
+    <names>
+      <li>the murrain</li>
+      <li>the cattle cough</li>
+      <li>the staggers</li>
+      <li>[!lowtech] the herd fever</li>
+    </names>
+    <titles>
+      <li>Sickness in the herds</li>
+      <li>{NAME} at {PLACE}</li>
+    </titles>
+    <texts>
+      <li>A sickness has gone through the herds of {FACTION}. At {PLACE} they are burning carcasses outside the town walls, and the smoke can be seen for miles. They call it {NAME}, and no one knows where it started.\n\nIt doesn't touch people. It touches everything people eat.</li>
+      <li>[theirLowtech] {NAME} has come to {FACTION}'s pastures: the cattle cough, then stagger, then lie down and won't get up. At {PLACE} every family has lost animals, and the herders are fighting over whose fault it is.\n\nThere'll be no meat to trade this season, and not much milk.</li>
+      <li>[theirHightech] {FACTION}'s livestock inspectors have shut the markets at {PLACE}: a herd fever, spreading fast, with whole farms put down to stop it. They're calling it {NAME}, and asking every neighbor to keep their animals well away.</li>
+    </texts>
+    <summaries>
+      <li>{FACTION}'s herds are sick: their traders come less often, and the colony's own animals are likelier to fall ill unless they're kept close. {FACTION} will ask for help, and for food.</li>
+      <li>[penned] The colony's animals are kept close to home, away from the sickness.</li>
+    </summaries>
+    <modifiers>
+      <li><incident>Disease_AnimalFlu</incident><factor>2</factor><unlessFlag>penned</unlessFlag></li>
+      <li><incident>Disease_AnimalPlague</incident><factor>2</factor><unlessFlag>penned</unlessFlag></li>
+      <li><incident>FarmAnimalsWanderIn</incident><factor>0.3</factor></li>
+      <li><incident>TraderCaravanArrival</incident><factor>0.8</factor></li>
+      <li><rimfolk>Council_Evt_SickHerd</rimfolk><factor>3</factor></li>
+      <li><rimfolk>Council_Evt_Stray</rimfolk><factor>0.5</factor></li>
+      <li><rimfolk>Council_Mission_Provisions</rimfolk><factor>1.5</factor></li>
+    </modifiers>
+    <beats>
+      <li>
+        <key>pen</key>
+        <day>1~3</day>
+        <titles>
+          <li>{FACTION} ask the colony to pen its animals</li>
+        </titles>
+        <texts>
+          <li>{FACTION}'s herd-masters have sent word to every neighbor: keep your animals penned, off the common grazing and away from the roads, until {NAME} has burned itself out. It spreads by contact, they say, and on the wind for a short way.\n\nIt would mean a few weeks of carrying feed. It would also mean the colony's own animals are much less likely to catch it.</li>
+        </texts>
+        <defaultOption>1</defaultOption>
+        <options>
+          <li>
+            <label>Pen them, and keep them close</label>
+            <outcome>The colony's animals are brought in close and kept there. It's more work, and it's safer.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>4</amount></li>
+            </effects>
+            <flags><li>penned</li></flags>
+            <help>1</help>
+            <deed>kept its animals penned through {NAME}</deed>
+            <ways><toil>1</toil></ways>
+          </li>
+          <li>
+            <label>Our animals graze where they always do</label>
+            <outcome>The colony's animals go on grazing as before. {FACTION} have been told, and aren't happy about it.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>-3</amount></li>
+            </effects>
+          </li>
+        </options>
+      </li>
+      <li>
+        <key>herdsman</key>
+        <day>4~9</day>
+        <skill>Animals</skill>
+        <minLevel>6</minLevel>
+        <titles>
+          <li>{FACTION} ask for {A_nameDef}</li>
+        </titles>
+        <texts>
+          <li>Word has reached {PLACE} that {A_nameDef} knows animals as well as anyone in the region. {FACTION}'s herders are losing animals faster than they can bury them, and they ask whether {A_nameDef} would look at the sick ones and tell them what to do.\n\n{A_nameDef} would have to keep well apart from the colony's own animals for a few days afterwards.</li>
+        </texts>
+        <defaultOption>1</defaultOption>
+        <options>
+          <li>
+            <label>Send {A_nameDef} to help</label>
+            <outcome>{A_nameDef} spent two days among {FACTION}'s herds, sorting the sick from the well and showing the herders how to keep them apart. The losses at {PLACE} have slowed.</outcome>
+            <riskChance>0.3</riskChance>
+            <riskSkill>Animals</riskSkill>
+            <riskOutcome>{A_nameDef} did what could be done, and it wasn't much. The sickness had too much of a start. {FACTION} are grateful anyway.</riskOutcome>
+            <effects>
+              <li Class="ColonyCouncil.WorldEffect_Learn"><skill>Animals</skill><xp>1200</xp></li>
+              <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>8</amount></li>
+            </effects>
+            <help>2</help>
+            <deed>lent {A_nameDef} to {FACTION}'s herders</deed>
+            <ways><generosity>1</generosity><mercy>1</mercy></ways>
+          </li>
+          <li>
+            <label>Keep {A_objective} home</label>
+            <outcome>{A_nameDef} stays with the colony's own animals. The herders of {PLACE} will have to manage.</outcome>
+          </li>
+        </options>
+      </li>
+      <li>
+        <key>food</key>
+        <day>8~14</day>
+        <count>40~80</count>
+        <titles>
+          <li>Hungry at {PLACE}</li>
+        </titles>
+        <texts>
+          <li>With half their herds dead or burned, {FACTION} are short of meat and milk at {PLACE}, and the winter stores are going faster than they should. A rider asks whether the colony can spare {COUNT} portions of food.</li>
+        </texts>
+        <defaultOption>2</defaultOption>
+        <options>
+          <li>
+            <label>Send {COUNT} food</label>
+            <outcome>The rider goes home with the food. {PLACE} will eat this week.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>rawfood</what></li>
+              <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>10</amount></li>
+            </effects>
+            <help>2</help>
+            <deed>sent food to {PLACE}</deed>
+            <ways><generosity>3</generosity></ways>
+          </li>
+          <li>
+            <label>Sell it at a fair price</label>
+            <outcome>{FACTION} pay the usual price and take the food home.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>rawfood</what></li>
+              <li Class="ColonyCouncil.WorldEffect_Silver"><factor>1.5</factor></li>
+              <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>3</amount></li>
+            </effects>
+            <help>1</help>
+            <deed>sold food to {PLACE} at a fair price</deed>
+          </li>
+          <li>
+            <label>Nothing to spare</label>
+            <outcome>The rider goes home empty-handed.</outcome>
+          </li>
+        </options>
+      </li>
+    </beats>
+    <endings>
+      <li>
+        <key>recovered</key>
+        <minHelp>3</minHelp>
+        <helped>true</helped>
+        <titles>
+          <li>The end of {NAME}</li>
+        </titles>
+        <texts>
+          <li>{NAME} has burned itself out. {FACTION} lost a great many animals, but the herds at {PLACE} are calving again, and the markets are open.\n\nThey know who helped. They'll say so for a long time.</li>
+          <li>[penned] {NAME} is over. The colony's animals came through it untouched, penned close to home, and the herds of {FACTION} are recovering. {FACTION} know who helped them through it.</li>
+        </texts>
+        <chronicle>{NAME} ended, and {FACTION} remember the colony's help.</chronicle>
+        <effects>
+          <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>10</amount></li>
+          <li Class="ColonyCouncil.WorldEffect_Thought"><thought>Council_WS_HelpedNeighbors</thought></li>
+        </effects>
+      </li>
+      <li>
+        <key>someHelp</key>
+        <minHelp>1</minHelp>
+        <helped>true</helped>
+        <titles>
+          <li>The end of {NAME}</li>
+        </titles>
+        <texts>
+          <li>{NAME} is over. The herds of {FACTION} are thinner than they were, but they'll recover, and the colony did its part.</li>
+        </texts>
+        <chronicle>{NAME} ended; the colony did its part.</chronicle>
+        <effects>
+          <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>4</amount></li>
+        </effects>
+      </li>
+      <li>
+        <key>lean</key>
+        <titles>
+          <li>The end of {NAME}</li>
+        </titles>
+        <texts>
+          <li>{NAME} has run its course, and left {FACTION} with half the herds they had and a lean season ahead. The colony kept to itself through all of it.</li>
+        </texts>
+        <chronicle>{NAME} ran its course; the colony kept to itself.</chronicle>
+        <effects>
+          <li Class="ColonyCouncil.WorldEffect_Follow"><situation>Council_WS_Famine</situation><chance>0.15</chance></li>
+        </effects>
+      </li>
+    </endings>
+  </ColonyCouncil.WorldSituationDef>
+
+  <!-- ===================== A ship comes down (industrial and spacer) ===================== -->
+
+  <ColonyCouncil.WorldSituationDef>
+    <defName>Council_WS_ShipDown</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>a ship comes down</label>
+    <weight>0.8</weight>
+    <earliestDay>30</earliestDay>
+    <cooldownDays>240</cooldownDays>
+    <durationDays>12~20</durationDays>
+    <minTech>Industrial</minTech>
+    <kind>wreck</kind>
+    <faction>
+      <friendly>true</friendly>
+    </faction>
+    <second>
+      <hostile>true</hostile>
+      <canRaid>true</canRaid>
+      <settlement>false</settlement>
+      <optional>true</optional>
+    </second>
+    <names>
+      <li>the Long Patience</li>
+      <li>the Morning Lark</li>
+      <li>the Second Chance</li>
+      <li>the Iron Gull</li>
+      <li>the Tamsin Vey</li>
+      <li>the Quiet Reach</li>
+    </names>
+    <titles>
+      <li>A ship comes down</li>
+      <li>The wreck of {NAME}</li>
+    </titles>
+    <texts>
+      <li>Three nights ago a light crossed the whole sky and came down in the hills past {PLACE}. It was a ship, {NAME}, and most of it is still there, broken across a valley. Salvagers of {FACTION} are already on their way.\n\nSo is everyone else with a truck and a cutting torch for a hundred miles.</li>
+      <li>[spacer] {NAME}, a freighter nobody in the region knew was up there, lost its orbit and came down in the hills near {PLACE}. The wreck is spread over a mile of ground, and the salvage rights are already being fought over in {FACTION}'s courts.\n\nIn the meantime, the scavengers are moving in.</li>
+      <li>[industrial] The sky lit up over {PLACE} one night, and in the morning there was a ship in the hills, broken in three pieces and still smoking. Its name is painted on the largest: {NAME}.\n\n{FACTION} have claimed it. Half the region is going to try to take pieces of it home anyway.</li>
+    </texts>
+    <summaries>
+      <li>Salvagers and scavengers crowd the roads to the wreck of {NAME}. Ship chunks and pods fall more often, components and steel are going cheap, and a survivor may turn up. Pirates may come for the wreck.</li>
+    </summaries>
+    <modifiers>
+      <li><incident>ShipChunkDrop</incident><factor>2.5</factor></li>
+      <li><incident>RefugeePodCrash</incident><factor>2</factor></li>
+      <li><incident>ResourcePodCrash</incident><factor>1.5</factor></li>
+      <li><incident>TraderCaravanArrival</incident><factor>1.4</factor></li>
+      <li><rimfolk>Council_Evt_CrashedDrone</rimfolk><factor>2</factor></li>
+      <li><rimfolk>Council_Evt_Signal</rimfolk><factor>2</factor></li>
+      <li><rimfolk>Council_Evt_WoundedStranger</rimfolk><factor>1.5</factor></li>
+    </modifiers>
+    <beats>
+      <li>
+        <key>salvage</key>
+        <day>2~5</day>
+        <count>120~220</count>
+        <wealthScaled>true</wealthScaled>
+        <titles>
+          <li>Salvage for sale</li>
+        </titles>
+        <texts>
+          <li>A truck of {FACTION}'s salvagers has stopped at the gate on the way back from the wreck of {NAME}, loaded with steel plate and pulled components. They'd sell some of it to the colony, for {COUNT} silver, rather than haul it all the way home.</li>
+        </texts>
+        <defaultOption>1</defaultOption>
+        <options>
+          <li>
+            <label>Buy a load ({COUNT} silver)</label>
+            <outcome>The salvagers unload steel plate and a crate of components by the gate, count the silver twice, and drive off.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.WorldEffect_Pay" />
+              <li Class="ColonyCouncil.DilemmaEffect_Spawn"><thing>Steel</thing><count>60</count></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Spawn"><thing>ComponentIndustrial</thing><count>6</count></li>
+            </effects>
+          </li>
+          <li>
+            <label>Not today</label>
+            <outcome>The salvagers drive on toward {PLACE}.</outcome>
+          </li>
+        </options>
+      </li>
+      <li>
+        <key>survivor</key>
+        <day>4~9</day>
+        <titles>
+          <li>A survivor of {NAME}</li>
+        </titles>
+        <texts>
+          <li>Someone has walked out of the hills to the colony's gate in the rags of a ship's uniform: a survivor of {NAME}, who climbed out of the wreck before the salvagers came and has been walking ever since. They ask for help, and maybe more than help.</li>
+        </texts>
+        <defaultOption>1</defaultOption>
+        <options>
+          <li>
+            <label>Take them in</label>
+            <outcome>The survivor is given a bed and a meal, and sleeps for most of two days. When they wake, they ask what work there is.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.WorldEffect_Join"><count>1</count></li>
+            </effects>
+            <help>1</help>
+            <deed>took in a survivor of {NAME}</deed>
+            <ways><mercy>2</mercy><openness>2</openness></ways>
+          </li>
+          <li>
+            <label>See to their hurts and send them to {PLACE} (1 medicine)</label>
+            <outcome>The colony patches the survivor up and puts them on the road to {PLACE}, where {FACTION} can see them home.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>medicine</what><count>1</count></li>
+              <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>5</amount></li>
+            </effects>
+            <help>1</help>
+            <deed>sent a survivor of {NAME} home</deed>
+            <ways><mercy>1</mercy></ways>
+          </li>
+          <li>
+            <label>Send them on</label>
+            <outcome>The survivor is given directions to {PLACE} and walks on alone.</outcome>
+          </li>
+        </options>
+      </li>
+      <li>
+        <key>systems</key>
+        <day>6~11</day>
+        <skill>Intellectual</skill>
+        <minLevel>6</minLevel>
+        <count>80~160</count>
+        <wealthScaled>true</wealthScaled>
+        <titles>
+          <li>{NAME}'s systems</li>
+        </titles>
+        <texts>
+          <li>{FACTION}'s salvagers have found {NAME}'s computer core intact, and none of them can read it. They've heard {A_nameDef} might, and offer {COUNT} silver for a day of {A_possessive} time at the wreck's data logs, brought up to the colony on a cart.</li>
+        </texts>
+        <defaultOption>1</defaultOption>
+        <options>
+          <li>
+            <label>Let {A_nameDef} have a look</label>
+            <outcome>{A_nameDef} spent the day bent over {NAME}'s logs with a pot of tea and came out of it knowing more about orbital freight than anyone needs to. {FACTION} paid as promised.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.WorldEffect_Learn"><skill>Intellectual</skill><xp>1500</xp></li>
+              <li Class="ColonyCouncil.WorldEffect_Silver" />
+              <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>4</amount></li>
+            </effects>
+            <help>1</help>
+            <deed>read {NAME}'s logs for {FACTION}</deed>
+          </li>
+          <li>
+            <label>Not our business</label>
+            <outcome>The salvagers take the core away to someone else.</outcome>
+          </li>
+        </options>
+      </li>
+      <li>
+        <key>scavengers</key>
+        <day>7~12</day>
+        <chance>0.35</chance>
+        <needsBattles>true</needsBattles>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_RaidLater">
+            <points>0.35~0.55</points>
+            <delayHours>2~6</delayHours>
+            <label>Scavengers from the wreck</label>
+            <text>Scavengers of {ENEMY}, who came for the wreck of {NAME} and found {FACTION} there first, have decided the colony is easier pickings.</text>
+          </li>
+        </effects>
+      </li>
+    </beats>
+    <endings>
+      <li>
+        <key>helped</key>
+        <minHelp>2</minHelp>
+        <helped>true</helped>
+        <titles>
+          <li>{NAME} picked clean</li>
+        </titles>
+        <texts>
+          <li>The wreck of {NAME} has been picked clean, down to the deck plates. {FACTION} took the lion's share, and they remember the colony's part in it.\n\nThe valley where it fell will be full of bent metal for years.</li>
+        </texts>
+        <chronicle>The wreck of {NAME} was salvaged; {FACTION} remember the colony's part.</chronicle>
+        <effects>
+          <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>6</amount></li>
+        </effects>
+      </li>
+      <li>
+        <key>stripped</key>
+        <titles>
+          <li>{NAME} picked clean</li>
+        </titles>
+        <texts>
+          <li>The last of the salvagers have left the wreck of {NAME}. There's nothing left in the valley worth carrying, except stories, and those are getting bigger every week.</li>
+        </texts>
+        <chronicle>The wreck of {NAME} was picked clean.</chronicle>
+      </li>
+    </endings>
+  </ColonyCouncil.WorldSituationDef>
+
+</Defs>

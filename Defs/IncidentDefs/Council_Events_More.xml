@@ -19,6 +19,8 @@
         <answerDays>1</answerDays>
         <titles>
           <li>Lost cargo</li>
+          <li>{FACTION}'s lost goods</li>
+          <li>Finders, keepers?</li>
         </titles>
         <texts>
           <li>[!lowtech] A cargo pod streaked down and thumped into the ground beyond the colony's fields. The markings say it belongs to {FACTION}, and a message from them is already waiting: it went astray, and they'd like it back, please. The colony could, of course, simply not have seen it.</li>
@@ -82,6 +84,7 @@
         <journal>Council_Journal_Evt_Scout</journal>
         <titles>
           <li>An offer for {A_nameDef}</li>
+          <li>{FACTION} want {A_nameDef}</li>
         </titles>
         <texts>
           <li>[!lowtech] A recruiter from {FACTION}, with polished boots and a polished smile, has heard about {A_nameDef}'s {SKILL}. {FACTION} would pay the colony {COUNT} silver to take over {A_possessive} contract, and pay {A_objective} a fine wage besides. The recruiter is very sure {A_nameDef} will say yes.</li>
@@ -260,6 +263,8 @@
         <notable>false</notable>
         <titles>
           <li>Music in the air</li>
+          <li>A song on the wind</li>
+          <li>Old tunes</li>
         </titles>
         <texts>
           <li>[!lowtech] The comms console, left scanning overnight, picked up a far-off station that plays very old records, with one host and no ads. Colonists keep finding reasons to work within earshot.</li>
@@ -289,6 +294,8 @@
         <thought>Council_Evt_MetFamous</thought>
         <titles>
           <li>Someone famous</li>
+          <li>A famous face</li>
+          <li>{X_nameDef} stops by</li>
         </titles>
         <texts>
           <li>[!lowtech] {X_nameDef} of {FACTION}, whose face is on posters all over the region, is stopping at the colony for the night, wearing sunglasses and hoping for a quiet evening. The colonists recognized {X_objective} the moment {X_pronoun} walked in.</li>

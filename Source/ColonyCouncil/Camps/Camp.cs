@@ -207,6 +207,7 @@ namespace ColonyCouncil
         public string Format(string s, Pawn x = null, Pawn a = null, int count = 0, string thing = null)
         {
             if (s.NullOrEmpty()) return "";
+            s = CampWords.Fill(s, kind, faction);
             var speaker = x ?? (leader != null && !leader.Dead ? leader : Here.FirstOrDefault() ?? members.FirstOrDefault());
             var colonist = a ?? (map != null ? IncidentWorker_Happening.Colonists(map).FirstOrDefault() : null);
             var args = new List<NamedArgument>
@@ -230,6 +231,7 @@ namespace ColonyCouncil
             if (lines.NullOrEmpty()) return null;
             var tags = new HashSet<string>();
             Flavor.AddEraTags(tags);
+            CampWords.AddTags(tags, kind, faction, map);
             return Format(Flavor.Pick(lines, tags) ?? Flavor.PickText(lines), x, a);
         }
 
@@ -391,6 +393,7 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref tradeDays, "tradeDays");
             Scribe_Values.Look(ref gifts, "gifts");
             Scribe_Values.Look(ref helps, "helps");
+            Scribe_Values.Look(ref surveys, "surveys");
             Scribe_Values.Look(ref timesTaken, "timesTaken");
             Scribe_Values.Look(ref dayKey, "dayKey", -1);
             Scribe_Values.Look(ref dayHunts, "dayHunts");
