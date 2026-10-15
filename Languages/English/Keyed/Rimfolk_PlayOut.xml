@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!-- Answers that play out on the map (Source/ColonyCouncil/PlayOut). -->
+
+  <!-- The setting -->
+  <CC_SetSec_PlayOut>Answers on the map</CC_SetSec_PlayOut>
+  <CC_Settings_AnswersPlayOut>Answers play out on the map</CC_Settings_AnswersPlayOut>
+  <CC_Settings_AnswersPlayOut_Tip>When the council's answer to a dilemma or an event describes something people do, they do it. A victory feast is eaten at the dining table from the colony's own cooked meals, a bonfire is lit and gathered round, a toast is raised, someone goes to sit with a friend, by a grave or at the camp's fire, a student works at a teacher's side, a worn-out doctor is sent to bed. The moods the answer gives come to those who took part, once it's over.\n\nNobody is pulled away from danger, sleep or a sickbed, and nothing starts while enemies are about. If it can't happen within a few hours, the moods come anyway, as they always did.\n\nOff: answers give their moods and messages only.</CC_Settings_AnswersPlayOut_Tip>
+  <CC_SetNote_AnswersPlayOut>Feasts are eaten, fires lit and visits paid on the map; the moods follow for those who took part.</CC_SetNote_AnswersPlayOut>
+
+  <!-- What it's called when the answer doesn't name it -->
+  <CC_Play_Label_Gathering>the gathering</CC_Play_Label_Gathering>
+  <CC_Play_Label_Feast>the feast</CC_Play_Label_Feast>
+  <CC_Play_Label_Bonfire>the bonfire</CC_Play_Label_Bonfire>
+  <CC_Play_Label_Toast>the toast</CC_Play_Label_Toast>
+  <CC_Play_Label_Visit>the visit</CC_Play_Label_Visit>
+  <CC_Play_Label_Lesson>the lesson</CC_Play_Label_Lesson>
+
+  <!-- What they're doing, in the inspect pane -->
+  <CC_Play_Report_Gathering>at a gathering.</CC_Play_Report_Gathering>
+  <CC_Play_Report_Feast>at the feast.</CC_Play_Report_Feast>
+  <CC_Play_Report_Bonfire>round the fire.</CC_Play_Report_Bonfire>
+  <CC_Play_Report_Toast>raising a cup with the others.</CC_Play_Report_Toast>
+  <CC_Play_Report_Words>listening with the others.</CC_Play_Report_Words>
+  <CC_Play_Report_Visit>keeping {OTHER_nameDef} company.</CC_Play_Report_Visit>
+  <CC_Play_Report_Lesson>learning at {OTHER_nameDef}'s side.</CC_Play_Report_Lesson>
+  <CC_Play_Report_Grave>sitting by a grave.</CC_Play_Report_Grave>
+  <CC_Play_Report_Camp>visiting the camp.</CC_Play_Report_Camp>
+  <CC_Play_Report_Walk>out on a long walk.</CC_Play_Report_Walk>
+
+  <!-- Where -->
+  <CC_Play_Where_Camp>at the camp's fire</CC_Play_Where_Camp>
+  <CC_Play_Where_Stranger>around {OTHER_nameDef}</CC_Play_Where_Stranger>
+  <CC_Play_Where_GraveOf>by {DEAD_nameDef}'s grave</CC_Play_Where_GraveOf>
+  <CC_Play_Where_Graves>by the graves</CC_Play_Where_Graves>
+  <CC_Play_Where_Water>at the water's edge</CC_Play_Where_Water>
+  <CC_Play_Where_Fields>out in the fields</CC_Play_Where_Fields>
+
+  <!-- When it begins -->
+  <CC_Play_Begin_Gathering>{0}: the colony gathers {1}.</CC_Play_Begin_Gathering>
+  <CC_Play_Begin_Feast>{0}: everyone sits down to a cooked meal from the stores, and the evening goes on {1}.</CC_Play_Begin_Feast>
+  <CC_Play_Begin_Fire>{0}: the fire is lit, and the colony gathers {1}.</CC_Play_Begin_Fire>
+  <CC_Play_Begin_Toast>{0}: the colony gathers {1} to raise a cup.</CC_Play_Begin_Toast>
+  <CC_Play_Begin_Words>{0}: the colony gathers {1} to hear it.</CC_Play_Begin_Words>
+  <CC_Play_Begin_Song>{0}: the colony gathers {1}, and somebody starts a song.</CC_Play_Begin_Song>
+  <CC_Play_Feast_Partial>There are only {0} cooked meals in the stores, so not everyone will eat.</CC_Play_Feast_Partial>
+  <CC_Play_Feast_None>There are no cooked meals in the stores, so it will be talk and drink instead of a meal.</CC_Play_Feast_None>
+  <CC_Play_Fire_Laid>There was no fire to gather at, so one was laid in the open from {0} of the colony's wood.</CC_Play_Fire_Laid>
+  <CC_Play_Fire_LaidPaid>There was no fire to gather at, so one was laid in the open with the wood set aside for it.</CC_Play_Fire_LaidPaid>
+  <CC_Play_Begin_Visit>{PAWN_nameDef} goes to spend some time with {OTHER_nameDef}.</CC_Play_Begin_Visit>
+  <CC_Play_Begin_Lesson>{PAWN_nameDef} goes to work at {OTHER_nameDef}'s side for a while, and learn by watching.</CC_Play_Begin_Lesson>
+  <CC_Play_Begin_Grave>{PAWN_nameDef} goes to sit {WHERE} for a while.</CC_Play_Begin_Grave>
+  <CC_Play_Begin_Camp>{PAWN_nameDef} walks over to sit by the camp's fire for a while.</CC_Play_Begin_Camp>
+  <CC_Play_Begin_Walk>{PAWN_nameDef} goes out for a long walk.</CC_Play_Begin_Walk>
+
+  <!-- When it ends -->
+  <CC_Play_End>{0} is over.</CC_Play_End>
+  <CC_Play_End_Feast>{0} is over: {1} ate at the table.</CC_Play_End_Feast>
+  <CC_Play_End_Early>{0} broke up early.</CC_Play_End_Early>
+  <CC_Play_End_Fire>The fire has burned down to ash.</CC_Play_End_Fire>
+
+  <!-- When it never happens -->
+  <CC_Play_Fallback>{0} never quite happened ({1}). People took heart from it all the same.</CC_Play_Fallback>
+  <CC_Play_FallbackPlain>{0} never quite happened. People took heart from it all the same.</CC_Play_FallbackPlain>
+  <CC_Play_Why_Danger>it wasn't safe</CC_Play_Why_Danger>
+  <CC_Play_Why_Gathering>something else had everyone's attention</CC_Play_Why_Gathering>
+  <CC_Play_Why_Busy>nobody was free</CC_Play_Why_Busy>
+  <CC_Play_Why_Place>there was nowhere to hold it</CC_Play_Why_Place>
+  <CC_Play_Why_NotFree>{PAWN_nameDef} was never free</CC_Play_Why_NotFree>
+  <CC_Play_Why_NoGrave>there was no grave here to sit by</CC_Play_Why_NoGrave>
+  <CC_Play_Why_NoCamp>the camp had gone</CC_Play_Why_NoCamp>
+  <CC_Play_Why_Weather>the weather was against it</CC_Play_Why_Weather>
+  <CC_Play_Why_Away>{OTHER_nameDef} was away</CC_Play_Why_Away>
+  <CC_Play_Why_CutShort>it was cut short</CC_Play_Why_CutShort>
+
+  <!-- A day off, a hunt -->
+  <CC_Play_Everyone>everyone</CC_Play_Everyone>
+  <CC_Play_Rest>The rest of today's work hours are free time for {0}.</CC_Play_Rest>
+  <CC_Play_Sleep>Sent to bed for the rest of the day: {0}.</CC_Play_Sleep>
+  <CC_Play_Hunt>Marked for the hunters: {0}.</CC_Play_Hunt>
+
+</LanguageData>

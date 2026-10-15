@@ -152,6 +152,7 @@
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_Joy"><target>Colony</target><amount>0.25</amount></li>
               <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_Evt_WhiteNight</thought></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Bonfire"><label>the bright night</label><hours>20~3</hours><duration>4~5</duration></li>
             </effects>
             <ways><tradition>1</tradition><toil>-1</toil></ways>
           </li>
@@ -225,6 +226,7 @@
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_Joy"><target>Colony</target><amount>0.15</amount></li>
               <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_Evt_DesertBloom</thought></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Gathering"><label>the walk among the flowers</label><spots><li>Outdoors</li></spots><hours>16~21</hours><duration>1~1.5</duration></li>
             </effects>
             <ways><openness>1</openness></ways>
           </li>
@@ -317,6 +319,7 @@
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_Joy"><target>Colony</target><amount>0.2</amount></li>
               <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_Evt_RainyEvenings</thought></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Gathering"><label>the rainy evening</label><spots><li>Rec</li><li>Dining</li><li>Gather</li></spots><hours>16~22</hours></li>
             </effects>
             <ways><toil>-1</toil></ways>
           </li>
@@ -393,6 +396,7 @@
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_Joy"><target>Colony</target><amount>0.2</amount></li>
               <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_Evt_IceFair</thought></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Bonfire"><label>the ice fair</label><hours>10~17</hours><duration>2.5~3.5</duration></li>
             </effects>
             <ways><tradition>1</tradition></ways>
           </li>
@@ -466,6 +470,7 @@
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_Joy"><target>Colony</target><amount>0.1</amount></li>
               <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_Evt_BirdsBack</thought></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Gathering"><label>the hour for the birds</label><spots><li>Outdoors</li></spots><hours>11~15</hours><duration>1~1</duration></li>
             </effects>
             <ways><tradition>1</tradition></ways>
           </li>
@@ -524,6 +529,7 @@
               <li Class="ColonyCouncil.DilemmaEffect_Learn"><target>B</target><skill>Shooting</skill><xp>700</xp></li>
               <li Class="ColonyCouncil.DilemmaEffect_Learn"><target>B</target><skill>Animals</skill><xp>300</xp></li>
               <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_Evt_StalkedTheRut</thought></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Hunt"><kinds>Elk|Deer|Caribou</kinds></li>
             </effects>
             <ways><toil>1</toil></ways>
           </li>
@@ -536,6 +542,7 @@
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_Joy"><target>Colony</target><amount>0.15</amount></li>
               <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_Evt_StagsAtDusk</thought></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Gathering"><label>the evening on the ridge</label><spots><li>Outdoors</li></spots><hours>16~21</hours><duration>1.5~2</duration></li>
             </effects>
             <ways><openness>1</openness></ways>
           </li>
@@ -603,6 +610,7 @@
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_Joy"><target>Colony</target><amount>0.25</amount></li>
               <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_Evt_SnowDay</thought></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Rest"><target>Colony</target></li>
             </effects>
             <ways><toil>-2</toil></ways>
           </li>
@@ -670,6 +678,7 @@
               <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>WoodLog</what><count>40</count></li>
               <li Class="ColonyCouncil.DilemmaEffect_Joy"><target>Colony</target><amount>0.2</amount></li>
               <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_Evt_KeptLongestNight</thought></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Bonfire"><label>the longest night</label><woodPaid>true</woodPaid><hours>17~23</hours><duration>6~7</duration></li>
             </effects>
             <ways><tradition>3</tradition></ways>
           </li>
@@ -682,6 +691,7 @@
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>rawfood</what><count>15</count></li>
               <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_Evt_MidwinterSupper</thought></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Feast"><label>the longest night's supper</label><hours>16~21</hours><duration>1.5~2</duration></li>
             </effects>
             <ways><tradition>1</tradition></ways>
           </li>
@@ -743,6 +753,7 @@
             </outcomes>
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_Evt_SunCameBack</thought></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Gathering"><label>the drumming</label><music>true</music><spots><li>Outdoors</li></spots><hours>0~0</hours><waitHours>2</waitHours><duration>0.75~1</duration></li>
             </effects>
             <ways><tradition>2</tradition></ways>
           </li>
@@ -758,6 +769,7 @@
               <li Class="ColonyCouncil.DilemmaEffect_Learn"><target>Colony</target><skill>Intellectual</skill><xp>200</xp></li>
               <li Class="ColonyCouncil.DilemmaEffect_Learn"><target>B</target><skill>Intellectual</skill><xp>500</xp></li>
               <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_Evt_WatchedEclipse</thought></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Words"><label>the eclipse</label><organizer>B</organizer><spots><li>Outdoors</li></spots><hours>0~0</hours><waitHours>2</waitHours><duration>1~1</duration></li>
             </effects>
             <ways><openness>2</openness></ways>
           </li>

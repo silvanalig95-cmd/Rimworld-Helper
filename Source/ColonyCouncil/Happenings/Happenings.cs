@@ -616,12 +616,16 @@ namespace ColonyCouncil
                 // Whoever the answer calls on (a doctor, a talker) first, so their skill counts against the risk.
                 DilemmaChoices.PickHelpers(option, ctx);
                 bool risk = option.riskChance > 0f && Rand.Chance(worker.RiskChance(ctx, i, option.riskChance));
-                if (!risk || !option.riskReplaces)
-                    foreach (var e in option.effects)
-                        if (!byDefault || !e.onlyIfChosen) Safe(e, ctx);
-                if (risk && option.riskEffects != null)
-                    foreach (var e in option.riskEffects)
-                        if (!byDefault || !e.onlyIfChosen) Safe(e, ctx);
+                // What the answer sets going on the map comes first, so it can hold the moods of those taking part.
+                using (PlayOuts.Collect())
+                {
+                    if (!risk || !option.riskReplaces)
+                        foreach (var e in PlayOuts.Ordered(option.effects))
+                            if (!byDefault || !e.onlyIfChosen) Safe(e, ctx);
+                    if (risk && option.riskEffects != null)
+                        foreach (var e in PlayOuts.Ordered(option.riskEffects))
+                            if (!byDefault || !e.onlyIfChosen) Safe(e, ctx);
+                }
                 string outcome = DilemmaChoices.Outcome(option, risk, worker.TextTags(ctx));
                 outcome = worker.Resolved(ctx, i, risk, byDefault, outcome);
                 comp?.character.Shift(byDefault ? option.ways?.Scaled(0.5f) : option.ways, "CC_Ways_Why_Event".Translate(ctx.incident.label, ctx.Format(option.label)).Resolve());

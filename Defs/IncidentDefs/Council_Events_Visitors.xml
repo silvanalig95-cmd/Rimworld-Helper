@@ -182,6 +182,7 @@
               <li Class="ColonyCouncil.DilemmaEffect_Research"><share>0.3</share><max>1500</max></li>
               <li Class="ColonyCouncil.DilemmaEffect_Thought"><thought>Council_Evt_ScholarTalk</thought></li>
               <li Class="ColonyCouncil.DilemmaEffect_EventGoodwill"><amount>4</amount></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Visit"><to>Stranger</to><hours>18~23</hours><duration>2.5~3.5</duration></li>
             </effects>
             <ways><openness>3</openness></ways>
           </li>
@@ -205,6 +206,7 @@
               <li Class="ColonyCouncil.DilemmaEffect_Learn"><target>Colony</target><skill>Intellectual</skill><xp>350</xp></li>
               <li Class="ColonyCouncil.DilemmaEffect_Thought"><thought>Council_Evt_ScholarTalk</thought></li>
               <li Class="ColonyCouncil.DilemmaEffect_EventGoodwill"><amount>4</amount></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Words"><label>{X_nameDef}'s lesson</label><organizer>None</organizer><spots><li>Stranger</li><li>Dining</li><li>Rec</li></spots><hours>17~22</hours><duration>1.5~2</duration></li>
             </effects>
             <ways><openness>3</openness><tradition>1</tradition></ways>
           </li>
@@ -246,6 +248,7 @@
               <li Class="ColonyCouncil.DilemmaEffect_Mentor" />
               <li Class="ColonyCouncil.DilemmaEffect_Thought"><thought>Council_Evt_ApprenticeCame</thought></li>
               <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>X</target><thought>Council_Evt_FoundMaster</thought></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Lesson"><teacher>A</teacher><student>X</student></li>
             </effects>
             <ways><openness>3</openness><tradition>2</tradition></ways>
           </li>
@@ -310,6 +313,7 @@
               <li Class="ColonyCouncil.DilemmaEffect_Needs"><skill>Social</skill><minLevel>8</minLevel></li>
               <li Class="ColonyCouncil.DilemmaEffect_Join" />
               <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>X</target><thought>Council_Evt_Sheltered</thought></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Visit"><to>Stranger</to><duration>1~1.5</duration></li>
             </effects>
             <riskEffects>
               <li Class="ColonyCouncil.DilemmaEffect_Secret" />

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Answers that play out on the map (Source/ColonyCouncil/PlayOut). The gathering behind a feast, a bonfire, a toast
+    or a party an answer called: the game's own party duty, never picked at random. Only an answer starts one.
+  -->
+  <GatheringDef>
+    <defName>Council_PlayOutGathering</defName>
+    <label>gathering</label>
+    <randomSelectionWeight>0</randomSelectionWeight>
+    <letterTitle>Gathering</letterTitle>
+    <letterText>The colony is gathering.</letterText>
+    <calledOffMessage>The gathering broke up early.</calledOffMessage>
+    <finishedMessage>The gathering is over.</finishedMessage>
+    <duty>Party</duty>
+    <respectTimetable>false</respectTimetable>
+    <workerClass>ColonyCouncil.GatheringWorker_PlayOut</workerClass>
+  </GatheringDef>
+
+  <!--
+    A colonist an answer sent somewhere for a while: keeping someone company, sitting by a grave, at the camp's fire,
+    on a long walk, or learning at a teacher's side (JobDriver_PlayOutVisit).
+  -->
+  <JobDef>
+    <defName>Council_PlayOutVisit</defName>
+    <driverClass>ColonyCouncil.JobDriver_PlayOutVisit</driverClass>
+    <reportString>spending time with TargetA.</reportString>
+    <joyKind>Social</joyKind>
+    <joyGainRate>0.6</joyGainRate>
+    <casualInterruptible>false</casualInterruptible>
+    <checkOverrideOnDamage>Always</checkOverrideOnDamage>
+  </JobDef>
+
+</Defs>

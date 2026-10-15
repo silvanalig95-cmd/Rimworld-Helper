@@ -511,7 +511,8 @@ namespace ColonyCouncil
             {
                 Pawn other = about == DilemmaAbout.A ? ctx.a : about == DilemmaAbout.B ? ctx.b : about == DilemmaAbout.X ? ctx.stranger
                     : p == ctx.a ? ctx.b ?? ctx.stranger : ctx.a;
-                CouncilGameComponent.GiveThought(p, thought, other == p ? null : other);
+                // An answer that plays out on the map (a feast, a visit) keeps the good moods of those taking part until it has.
+                if (!PlayOuts.Hold(p, thought, other == p ? null : other)) CouncilGameComponent.GiveThought(p, thought, other == p ? null : other);
                 // Some memories are bonds being made or broken (once per pair, even when both get the memory).
                 var social = CouncilGameComponent.Instance?.social;
                 if (social != null && other != null && other != p && thought != null && p.IsColonist && other.IsColonist && pairs.Add(p.thingIDNumber < other.thingIDNumber ? (p, other) : (other, p)))
@@ -954,10 +955,14 @@ namespace ColonyCouncil
             // Whoever the answer calls on (a doctor, a talker) first, so their skill counts against the risk.
             DilemmaChoices.PickHelpers(option, ctx);
             bool risk = option.riskChance > 0f && Rand.Chance(DilemmaChoices.RiskChance(option, ctx, option.riskChance));
-            if (!risk || !option.riskReplaces)
-                foreach (var e in option.effects) Safe(e, ctx);
-            if (risk && option.riskEffects != null)
-                foreach (var e in option.riskEffects) Safe(e, ctx);
+            // What the answer sets going on the map comes first, so it can hold the moods of those taking part.
+            using (PlayOuts.Collect())
+            {
+                if (!risk || !option.riskReplaces)
+                    foreach (var e in PlayOuts.Ordered(option.effects)) Safe(e, ctx);
+                if (risk && option.riskEffects != null)
+                    foreach (var e in PlayOuts.Ordered(option.riskEffects)) Safe(e, ctx);
+            }
             // After the effects, so a helper they picked (B) is in the tags and the text.
             string outcome = DilemmaChoices.Outcome(option, risk, LetterTags.For(ctx));
             // An answer nobody gave says less about the colony than one the council chose.

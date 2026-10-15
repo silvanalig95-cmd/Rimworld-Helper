@@ -65,6 +65,8 @@ namespace ColonyCouncil
         public bool anniversaries = true;
         /// <summary>The colony calendar's days come round with letters, gatherings and moods (Calendar/); off, they're only written down.</summary>
         public bool colonyCalendar = true;
+        /// <summary>Answers that describe something people do (a feast, a bonfire, a visit, a day off) play out on the map (PlayOut/).</summary>
+        public bool answersPlayOut = true;
         public bool epithets = true;
         public bool journals = true;
         public bool offices = true;
@@ -223,6 +225,7 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref decreeRequests, "decreeRequests", true);
             Scribe_Values.Look(ref anniversaries, "anniversaries", true);
             Scribe_Values.Look(ref colonyCalendar, "colonyCalendar", true);
+            Scribe_Values.Look(ref answersPlayOut, "answersPlayOut", true);
             Scribe_Values.Look(ref epithets, "epithets", true);
             Scribe_Values.Look(ref journals, "journals", true);
             Scribe_Values.Look(ref offices, "offices", true);

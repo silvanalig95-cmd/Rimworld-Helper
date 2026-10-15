@@ -386,6 +386,7 @@ Console.WriteLine($"Checked {UiTests.Run(Check)} tab sizes.");
 Console.WriteLine($"Checked the calendar's dates over {CalendarTests.Run(Check)} days.");
 Console.WriteLine($"Checked {LeanTests.Run(Check)} things about the clock's spread and the save caps.");
 Console.WriteLine($"Checked {MemoryTests.Run(Check)} things about what the peoples remember (fading, adding up, making way, tone).");
+Console.WriteLine($"Checked {PlayOutTests.Run(Check)} things about answers playing out on the map.");
 
-Console.WriteLine(failures == 0 ? "All tests passed (template math, layout, strain, meetings, pressures, ailments, line memory, good times, tab sizes, calendar, personal stories, clock and caps, faction memory)." : failures + " failure(s).");
+Console.WriteLine(failures == 0 ? "All tests passed (template math, layout, strain, meetings, pressures, ailments, line memory, good times, tab sizes, calendar, personal stories, clock and caps, faction memory, answers on the map)." : failures + " failure(s).");
 return failures == 0 ? 0 : 1;

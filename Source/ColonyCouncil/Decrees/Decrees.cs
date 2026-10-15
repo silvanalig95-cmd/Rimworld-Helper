@@ -138,6 +138,11 @@ namespace ColonyCouncil
         /// each hour, never to generators, stoves that only burn while cooking, or anything switched off.
         /// </summary>
         public float fuelSaving;
+        /// <summary>
+        /// What declaring it sets going on the map (a feast at noon, a song on the first evening), as an answer's effects
+        /// (see PlayOut/): only with "Answers play out on the map" on. A is whoever asked for it, else someone at home.
+        /// </summary>
+        public List<DilemmaEffect> onEnact;
 
         public DecreeReaction ReactionOf(Pawn p)
         {
@@ -280,6 +285,7 @@ namespace ColonyCouncil
             comp.character?.Shift(def.ways, "CC_Ways_Why_Decree".Translate(def.label).Resolve());
             if (fatigue > 0) Backlash(def, fatigue, force, unrest, comp);
             var req = RequestFor(def);
+            var asker = req?.pawn != null && !req.pawn.Dead ? req.pawn : null;
             if (req != null)
             {
                 requests.Remove(req);
@@ -287,6 +293,15 @@ namespace ColonyCouncil
                 {
                     comp.standings.Change(req.pawn, 5f, "CC_Log_DecreeHeeded".Translate(def.label));
                     CouncilGameComponent.GiveThought(req.pawn, CouncilDefOf.Council_DecreeHeeded);
+                }
+            }
+            if (!def.onEnact.NullOrEmpty() && PlayOuts.On)
+            {
+                var map = HappeningTracker.HomeMap();
+                if (map != null)
+                {
+                    var a = asker != null && asker.Spawned && asker.Map == map ? asker : map.mapPawns.FreeColonistsSpawned.Where(PlayOuts.OurPerson).RandomElementWithFallback();
+                    PlayOuts.Run(def.onEnact, new DilemmaContext { map = map, a = a, why = def.LabelCap }, "decree " + def.defName);
                 }
             }
         }

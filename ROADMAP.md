@@ -253,6 +253,7 @@ the content itself, not only to systems, alongside whatever else it does. Where 
 | Ailments | 32 everyday, 14 serious; convalescence from 4 causes, 2 healers' names | ailments for every biome and DLC, more after-effects |
 | Room types | 28 (108 layouts, 6 themes) | odd shapes beyond partitions, more spacer and mod-furniture sizes, themes for more furniture mods |
 | Calendar days and ways to keep them | 9 kinds, 4 ways (about 440 lines) | more kinds of day, lines per biome and faith |
+| Answers that play out on the map | 168 answers (67 dilemmas, 53 events and stories), 3 calendar ways, 3 decrees, 7 ambitions; 9 kinds of real effect | world events' beats, new dilemmas and events from the start, drinks at a toast |
 | Lines in the flavor pools (variety report) | about 25,200 in 3,640 pools | the pools at the top of the report |
 | Social events, moments, frictions, nuisances | 67, 127 (40 frictions), 19 | every trait pairing and home condition |
 | Secrets | 52 (2 for scenarios only), each with its own confide and graveside lines | secrets tied to world events and camps, more good ones, dilemmas for the newer ones |

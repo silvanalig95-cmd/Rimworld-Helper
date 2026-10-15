@@ -1053,6 +1053,7 @@
             <outcome>The feast is cooked.</outcome>
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>rawfood</what><count>40</count></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Feast"><label>the wedding feast</label><spots><li>Dining</li><li>Outdoors</li><li>Rec</li></spots><hours>15~22</hours></li>
             </effects>
             <ways><generosity>3</generosity><openness>1</openness></ways>
           </li>
@@ -1113,10 +1114,16 @@
             <label>Let them stay and preach</label>
             <outcome>{X_nameDef} preaches by the road at sundown, and more of the colony go to listen than {A_nameDef} expected. The followers sing afterward, badly but with feeling.</outcome>
             <ways><openness>2</openness></ways>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Gathering"><label>{X_nameDef}'s preaching</label><music>true</music><spots><li>Stranger</li><li>Outdoors</li></spots><hours>16~22</hours><duration>1.5~2</duration></li>
+            </effects>
           </li>
           <li>
             <label>{A_nameDef} will argue with {X_objective}</label>
             <outcome>{A_nameDef} and {X_nameDef} argue until the lamps burn low.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Visit"><to>Stranger</to><hours>17~23</hours></li>
+            </effects>
           </li>
           <li>
             <label>Ask them to move on</label>
@@ -1264,6 +1271,9 @@
             <label>Call everyone together ({A_nameDef} speaks)</label>
             <outcome>Everyone gathers in the dining room.</outcome>
             <ways><openness>1</openness></ways>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Words"><label>the meeting in the dining room</label><spots><li>Dining</li><li>Rec</li></spots></li>
+            </effects>
           </li>
           <li>
             <label>Let it burn itself out</label>

@@ -28,6 +28,7 @@
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_Dlm_Pyre</thought><onlyTrait><li>Pyromaniac</li></onlyTrait></li>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>5</amount></li>
           <li Class="ColonyCouncil.DilemmaEffect_Standards"><target>Colony</target><amount>0.03</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Bonfire"><woodPaid>true</woodPaid><music>true</music><hours>18~23</hours><duration>5~6</duration></li>
         </effects>
       </li>
       <li>
@@ -46,6 +47,7 @@
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>WoodLog</what><count>12</count></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_Dlm_Stories</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Bonfire"><label>the small fire</label><woodPaid>true</woodPaid><hours>18~22</hours><duration>1.5~2</duration></li>
         </effects>
       </li>
     </options>
@@ -80,6 +82,7 @@
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_Dlm_HarvestHome</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>6</amount></li>
           <li Class="ColonyCouncil.DilemmaEffect_Standards"><target>Colony</target><amount>0.04</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Feast"><hours>16~22</hours><duration>3~4</duration></li>
         </effects>
       </li>
       <li>
@@ -100,6 +103,7 @@
           <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>rawfood</what><count>10</count></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_Dlm_SmallFeast</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>2</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Feast"><label>the harvest supper</label><hours>16~22</hours><duration>1.5~2</duration></li>
         </effects>
       </li>
     </options>
@@ -128,6 +132,7 @@
           <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>rawfood</what><count>20</count></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_Dlm_Midwinter</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>4</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Feast"><music>true</music><hours>16~22</hours><duration>3~4</duration></li>
         </effects>
       </li>
       <li>
@@ -137,6 +142,7 @@
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_Dlm_Stories</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>2</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Bonfire"><label>the stories by the fire</label><hours>17~23</hours></li>
         </effects>
       </li>
       <li>
@@ -355,6 +361,7 @@
           <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>rawfood</what></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_Dlm_VictoryFeast</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>Colony</target><amount>2</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Feast"><hours>15~23</hours><duration>3~4</duration></li>
         </effects>
       </li>
       <li>
@@ -377,6 +384,7 @@
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>rawfood</what><factor>0.5</factor></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_Dlm_SmallFeast</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Feast"><label>the hot meal after the battle</label><duration>0.75~1</duration></li>
         </effects>
       </li>
       <li>
@@ -396,10 +404,12 @@
           <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>rawfood</what><factor>0.5</factor></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_Dlm_VictoryFeast</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>B</target><amount>3</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Feast"><organizer>B</organizer><hours>15~23</hours><duration>3~4</duration></li>
         </effects>
         <riskEffects>
           <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>rawfood</what><factor>0.5</factor></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_Dlm_SmallFeast</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Feast"><organizer>B</organizer><hours>15~23</hours><duration>1.5~2</duration></li>
         </riskEffects>
       </li>
     </options>

@@ -32,6 +32,7 @@
           <li Class="ColonyCouncil.DilemmaEffect_Mentorship"><skill>Crafting</skill></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_Path_Teacher</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Path_Given</thought><chance>0.4</chance></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Lesson"><skill>Crafting</skill></li>
         </effects>
       </li>
       <li>
@@ -73,6 +74,7 @@
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Mentorship"><skill>Medicine</skill></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_Path_Teacher</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Lesson"><skill>Medicine</skill></li>
         </effects>
       </li>
       <li>
@@ -114,6 +116,7 @@
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Mentorship"><skill>Intellectual</skill></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_Path_Teacher</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Lesson"><skill>Intellectual</skill><hours>16~22</hours></li>
         </effects>
       </li>
       <li>
@@ -155,6 +158,7 @@
           <li Class="ColonyCouncil.DilemmaEffect_Mentorship"><skill>Shooting</skill></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_Path_Teacher</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Others</target><thought>Council_Dlm_Harsh</thought><onlyTrait><li>Kind</li></onlyTrait><chance>0.5</chance></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Lesson"><skill>Shooting</skill></li>
         </effects>
       </li>
       <li>

@@ -241,6 +241,7 @@
               <li Class="ColonyCouncil.DilemmaEffect_Learn"><skill>Medicine</skill><xp>1500</xp></li>
               <li Class="ColonyCouncil.DilemmaEffect_Thought"><thought>Council_DlmS_LearnedFromHealer</thought></li>
               <li Class="ColonyCouncil.DilemmaEffect_EventGoodwill"><amount>2</amount></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Lesson"><teacher>X</teacher><student>A</student><skill>Medicine</skill><duration>2~3</duration></li>
             </effects>
             <ways><openness>2</openness><tradition>-1</tradition></ways>
           </li>

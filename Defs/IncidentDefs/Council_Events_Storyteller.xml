@@ -72,6 +72,7 @@
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_Joy"><target>Colony</target><amount>0.12</amount></li>
               <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_Evt_AdventurerTales</thought></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Gathering"><label>{X_nameDef}'s stories</label><spots><li>Stranger</li><li>Fire</li><li>Rec</li><li>Dining</li></spots><hours>17~23</hours></li>
             </effects>
           </li>
           <li>
@@ -205,6 +206,7 @@
             <outcome>{X_nameDef} and {A_nameDef} sit side by side for most of a day without a word between them. That night {A_nameDef} sleeps straight through until morning.</outcome>
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_Thought"><thought>Council_Evt_SatWithMonk</thought></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Visit"><to>Stranger</to><duration>4~5</duration></li>
             </effects>
             <ways><mercy>1</mercy></ways>
           </li>
@@ -294,6 +296,7 @@
               <li Class="ColonyCouncil.DilemmaEffect_Learn"><target>B</target><skill>Crafting</skill><xp>1500</xp></li>
               <li Class="ColonyCouncil.DilemmaEffect_Learn"><target>B</target><skill>Medicine</skill><xp>300</xp></li>
               <li Class="ColonyCouncil.DilemmaEffect_EventGoodwill"><amount>2</amount></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Lesson"><teacher>X</teacher><student>B</student><skill>Crafting</skill><duration>3~4</duration></li>
             </effects>
             <ways><openness>1</openness><toil>1</toil></ways>
           </li>

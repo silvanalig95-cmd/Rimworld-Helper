@@ -71,6 +71,7 @@
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>AAndB</target><thought>Council_DlmSoc_TaughtByRival</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Learn"><target>AAndB</target><skill>Social</skill><xp>600</xp></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>AAndB</target><thought>Council_Dlm_MadeUp</thought><chance>0.4</chance></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Lesson"><teacher>A</teacher><student>B</student></li>
         </effects>
         <riskChance>0.35</riskChance>
         <riskReplaces>true</riskReplaces>
@@ -291,6 +292,7 @@
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>AAndB</target><thought>Council_Dlm_Bonded</thought><chance>0.5</chance></li>
           <li Class="ColonyCouncil.DilemmaEffect_Hediff"><target>Colony</target><hediff>Council_Dlm_Sleepless</hediff><chance>0.5</chance></li>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>AAndB</target><amount>5</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Gathering"><label>the remembrance night</label><hours>17~23</hours><duration>4~5</duration></li>
         </effects>
       </li>
       <li>
@@ -301,6 +303,7 @@
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>AAndB</target><thought>Council_DlmSoc_ShortRemembrance</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>AAndB</target><thought>Council_DlmSoc_ToldTheStory</thought><chance>0.5</chance></li>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>AAndB</target><amount>-1</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Words"><label>the speeches</label><hours>17~22</hours></li>
         </effects>
       </li>
       <li>
@@ -431,6 +434,7 @@
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_Vindicated</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>4</amount></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Others</target><thought>Council_Dlm_GoodLaugh</thought><exceptTrait><li>Kind</li></exceptTrait><chance>0.4</chance></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Words"><label>{B_nameDef}'s retraction</label><organizer>B</organizer><hours>17~22</hours></li>
         </effects>
         <riskChance>0.25</riskChance>
         <riskOutcome>{B_nameDef} began the public apology, got three words in, and turned it into a punch.</riskOutcome>
@@ -470,6 +474,7 @@
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_Dlm_Bonded</thought><about>A</about></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_Bonded</thought><about>B</about><chance>0.5</chance></li>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>B</target><amount>4</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Visit"><whom>B</whom><hours>16~22</hours></li>
         </effects>
         <riskChance>0.35</riskChance>
         <riskReplaces>true</riskReplaces>
@@ -596,6 +601,7 @@
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_DlmSoc_Host</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>3</amount></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Others</target><thought>Council_Dlm_SmallFeast</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Feast"><label>{A_nameDef}'s supper</label><hours>16~22</hours></li>
         </effects>
         <riskChance>0.35</riskChance>
         <riskReplaces>true</riskReplaces>

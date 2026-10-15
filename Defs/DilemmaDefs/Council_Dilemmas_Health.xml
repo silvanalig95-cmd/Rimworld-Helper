@@ -47,6 +47,8 @@
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_DlmH_GivenTheDay</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Strain"><target>A</target><amount>-8</amount></li>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>2</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Rest" />
+          <li Class="ColonyCouncil.DilemmaEffect_Visit"><to>Walk</to><duration>2.5~3.5</duration></li>
         </effects>
       </li>
       <li>
@@ -77,6 +79,8 @@
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_DlmH_LookedAfterDoctor</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Strain"><target>A</target><amount>-10</amount></li>
           <li Class="ColonyCouncil.DilemmaEffect_Tie"><withB>true</withB><kind>Friends</kind><amount>10</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Rest"><target>AAndB</target></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Visit"><who>B</who><whom>A</whom><duration>2.5~3.5</duration></li>
         </effects>
       </li>
     </options>
@@ -193,6 +197,7 @@
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_DlmH_WaitingForTheKnife</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_DlmH_Heard</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>B</target><amount>2</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Visit"><who>B</who><whom>A</whom><hours>16~23</hours></li>
         </effects>
       </li>
       <li>
@@ -206,6 +211,7 @@
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_DlmH_FamilyBeside</thought><about>B</about></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_DlmH_AllowedBeside</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Tie"><withB>true</withB><kind>Friends</kind><amount>6</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Visit"><who>B</who><whom>A</whom></li>
         </effects>
       </li>
     </options>
@@ -237,6 +243,7 @@
           <li Class="ColonyCouncil.DilemmaEffect_Teach"><skill>Medicine</skill><xp>300</xp></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_DlmH_PassingItOn</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_DlmH_Apprenticed</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Lesson"><teacher>A</teacher><student>B</student><skill>Medicine</skill></li>
         </effects>
       </li>
       <li>

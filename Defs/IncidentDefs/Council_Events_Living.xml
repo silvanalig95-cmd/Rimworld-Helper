@@ -98,6 +98,8 @@
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>AAndB</target><thought>Council_Evt_FamilyMadePeace</thought></li>
               <li Class="ColonyCouncil.DilemmaEffect_FairGoodwill"><amount>6</amount></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Visit"><to>Stranger</to><hours>9~18</hours></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Visit"><who>B</who><to>Stranger</to><hours>9~18</hours></li>
             </effects>
             <riskEffects>
               <li Class="ColonyCouncil.DilemmaEffect_Thought"><thought>Council_Evt_FamilyQuarrel</thought></li>
@@ -222,6 +224,7 @@
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_Evt_LetterReadOut</thought><exceptTrait><li>Psychopath</li></exceptTrait></li>
               <li Class="ColonyCouncil.DilemmaEffect_Learn"><skill>Social</skill><xp>120</xp></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Words"><label>the letter from home</label><hours>17~22</hours></li>
             </effects>
             <ways><openness>1</openness><tradition>1</tradition></ways>
           </li>
@@ -390,6 +393,7 @@
               <li Class="ColonyCouncil.DilemmaEffect_Thought"><thought>Council_Evt_SoughtOut</thought></li>
               <li Class="ColonyCouncil.DilemmaEffect_EventGoodwill"><amount>5</amount></li>
               <li Class="ColonyCouncil.DilemmaEffect_Loot"><target>X</target><value>100~250</value></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Visit"><to>Stranger</to><duration>3~4</duration></li>
             </effects>
             <ways><openness>1</openness><generosity>1</generosity></ways>
           </li>
@@ -498,6 +502,7 @@
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_Evt_FoundingFeast</thought><exceptTrait><li>Psychopath</li></exceptTrait></li>
               <li Class="ColonyCouncil.DilemmaEffect_Joy"><target>Colony</target><amount>0.2</amount></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Feast"><label>the founding feast</label><hours>16~22</hours><duration>3~4</duration></li>
             </effects>
             <ways><tradition>2</tradition></ways>
           </li>
@@ -506,6 +511,7 @@
             <outcome>Founding day passes with a quiet supper and a toast to the ones who aren't here to see it.</outcome>
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_Evt_FoundingDay</thought><exceptTrait><li>Psychopath</li></exceptTrait></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Toast"><label>the founding day toast</label><hours>17~22</hours><lines><li>To the ones who aren't here to see it.</li><li>To the first winter, and every one since.</li></lines></li>
             </effects>
             <ways><tradition>1</tradition></ways>
           </li>
@@ -521,6 +527,7 @@
               <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_Evt_FoundingDay</thought><exceptTrait><li>Psychopath</li></exceptTrait></li>
               <li Class="ColonyCouncil.DilemmaEffect_Joy"><target>Colony</target><amount>0.12</amount></li>
               <li Class="ColonyCouncil.DilemmaEffect_Trust"><amount>3</amount></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Words"><label>the story of the first days</label><hours>17~22</hours><duration>1.5~2</duration></li>
             </effects>
             <ways><tradition>3</tradition></ways>
           </li>
@@ -735,6 +742,7 @@
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_Evt_MidwinterGuest</thought><exceptTrait><li>Psychopath</li></exceptTrait></li>
               <li Class="ColonyCouncil.DilemmaEffect_Joy"><target>Colony</target><amount>0.1</amount></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Visit"><to>Stranger</to><hours>17~23</hours></li>
             </effects>
             <ways><openness>2</openness><mercy>1</mercy></ways>
           </li>
