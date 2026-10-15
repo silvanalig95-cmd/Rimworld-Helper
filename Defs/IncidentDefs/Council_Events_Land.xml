@@ -128,6 +128,7 @@
           <li>White nights</li>
           <li>[tribal] When the sun forgets to sleep</li>
           <li>The sun that won't set</li>
+          <li>The nightless weeks</li>
         </titles>
         <texts>
           <li>It's midsummer, and this far north the sun barely sets. It dips behind the hills for an hour or two and comes straight back up, and the sky never gets darker than a deep blue.\n\n{A_nameDef} gave up on sleep last night and mended a whole basket of clothes by the window. Others are lying awake in the barracks, staring at the ceiling.</li>
@@ -135,6 +136,8 @@
           <li>[medieval] It's the season of the white nights, when the sun hangs low over the hills at midnight and the sky stays pale until it's day again. Back in the old country, {A_nameDef} says, these were the nights for courting and for staying up too late.\n\nHardly anyone at the colony is sleeping well, and the council has been asked what to do about it.</li>
           <li>[industrial|spacer] The midnight sun has come. The solar panels are drinking it in at two in the morning, and the colonists are not: hardly anyone slept last night, and {A_nameDef} was seen out in the yard at three, wide awake, throwing a ball against a wall.</li>
           <li>[cold] Summer is short here, and these weeks are the whole of it: the sun up nearly all night, warm air for once, the ground soft under the boots.\n\n{A_nameDef} says it's a waste to spend nights like these asleep. The tired faces at breakfast say otherwise.</li>
+          <li>It's the time of year when night never quite comes. The sun skims along behind the hills until the small hours and rises again almost at once.\n\n{A_nameDef} hasn't slept properly in three days, and isn't the only one.</li>
+          <li>The nights have gone pale. At midnight the sky is the color of milk, and the birds don't know whether to sleep or sing. {A_nameDef} wants the colony to make something of these nights before they're gone.</li>
         </texts>
         <defaultOption>1</defaultOption>
         <options>
@@ -199,6 +202,7 @@
         <titles>
           <li>The desert in flower</li>
           <li>Flowers in the sand</li>
+          <li>The bloom</li>
         </titles>
         <texts>
           <li>Rain came to the desert last week, the first in a long while, and now the ground {PLACE} has bloomed. Flowers have come up out of bare sand: yellow, white, and a red so bright it hurts to look at. They'll be gone in a few days.\n\n{A_nameDef} saw them first and came running back to tell everyone.</li>
@@ -206,6 +210,8 @@
           <li>[medieval] After one night of hard rain, the dry country {PLACE} has done what {A_nameDef} swore it never could: it has flowered, mile after mile of it, as if a garden had been hidden under the sand all along.</li>
           <li>[industrial|spacer] The satellite images would call it a vegetation anomaly. Standing in it, {A_nameDef} calls it something else: the scrub {PLACE} has burst into flower overnight after the rain, and the air is thick with bees.\n\nThe bloom will last a few days at most.</li>
           <li>The rain was a day and a night, and the desert {PLACE} has answered it. Low green leaves first, then buds, and this morning flowers as far as {A_nameDef} could see, humming with insects that weren't there yesterday.</li>
+          <li>The desert has turned green and gold {PLACE} after the rain, the way it does once in a few years. {A_nameDef} came back with flowers in {A_possessive} hair and sand to the knees, saying everyone has to see it before it's gone.</li>
+          <li>It rained in the desert, and the desert answered. The sand {PLACE} is covered in small bright flowers, and bees have come from nowhere. {A_nameDef} says it will last a few days at most.</li>
         </texts>
         <defaultOption>2</defaultOption>
         <options>
@@ -351,12 +357,15 @@
         <titles>
           <li>The river freezes</li>
           <li>A fair on the ice</li>
+          <li>Frost fair</li>
         </titles>
         <texts>
           <li>The cold has held long enough that the river has frozen bank to bank. {A_nameDef} walked out on it this morning and jumped, and it didn't so much as creak.\n\nWord has come from {FACTION}: when the river freezes this hard, they hold a fair on the ice below {PLACE}, and the colony is welcome to come.</li>
           <li>[lowtech] The river is a road now, white and hard from bank to bank. In {FACTION}'s country, the first hard freeze means a frost fair: stalls on the ice, fires on iron sheets, races on bone skates. A rider has come to say the fair is on at {PLACE}, and the colony is invited.</li>
           <li>[!lowtech] The river froze solid overnight. {A_nameDef} measured the ice with a drill and a tape and announced, very seriously, that it would hold a truck.\n\nA courier from {FACTION} came across it an hour later: they're holding their winter fair on the ice near {PLACE}, and the colony is invited.</li>
           <li>[children] The children found out about the ice before the grown-ups did, and the council had to send someone to fetch them in for supper. Then word came from {FACTION}: there's a fair on the ice near {PLACE} this week, and everyone is welcome.</li>
+          <li>The cold has gone on so long that the river near {PLACE} has frozen thick enough to stand a horse on. {FACTION} keep an old custom for winters like this: a fair on the ice, with games, stalls and fires. They've sent word that the colony is welcome.</li>
+          <li>{A_nameDef} came back from the river grinning, with frost in {A_possessive} eyebrows: the ice is thick and smooth, and {FACTION} are already setting up stalls on it near {PLACE}. There'll be a fair on the ice while the freeze lasts, and the colony is invited.</li>
         </texts>
         <defaultOption>2</defaultOption>
         <options>
@@ -636,6 +645,7 @@
           <li>The longest night</li>
           <li>[medieval] Midwinter's eve</li>
           <li>[tribal] The night the sun is lost</li>
+          <li>Midwinter</li>
         </titles>
         <texts>
           <li>[tribal] Tonight is the longest night of the year. Among the tribes, the longest night is kept awake: the fire is kept high until dawn, so the sun can find its way back.\n\n{A_nameDef} has been stacking wood since noon.</li>
@@ -643,6 +653,8 @@
           <li>[industrial] It's the longest night of the year. {A_nameDef} says back home they hung lights in every window and kept a candle burning in the kitchen till morning, and the colony could do with something like that this winter.</li>
           <li>[spacer] By the colony's own calendar, tonight is midwinter, the longest night this world has. {A_nameDef} grew up on a ship with no seasons at all, and wants to mark it anyway: a fire, a meal, everyone awake to see the sun come back.</li>
           <li>[cold] The sun was up for barely five hours today, low and red, and tonight is the longest night of the year. {A_nameDef} thinks the colony should keep it together rather than each alone in the dark.</li>
+          <li>Tonight is the longest night of the year. The dark came down before supper and won't lift until long after breakfast.\n\n{A_nameDef} thinks it's a night to keep together: a big fire, food, and no one alone in the dark.</li>
+          <li>The sun set in the middle of the afternoon, and it won't be back for a long while. {A_nameDef} has been asking around what people did on the longest night where they grew up, and has a list of ideas.</li>
         </texts>
         <defaultOption>2</defaultOption>
         <options>
@@ -708,6 +720,7 @@
           <li>The sun goes dark</li>
           <li>[tribal] The sky-wolf eats the sun</li>
           <li>[!lowtech] An eclipse</li>
+          <li>Darkness at noon</li>
         </titles>
         <texts>
           <li>[tribal] In the middle of the day, a bite has been taken out of the sun, and the bite is growing. The birds have gone quiet and the light has turned thin and strange.\n\nThe old stories say a wolf in the sky eats the sun, and the people must drum and shout until it spits it out again. {A_nameDef} is already looking for the drum.</li>
@@ -715,6 +728,8 @@
           <li>[industrial] The sun is going out. An eclipse, {A_nameDef} says, and quite a long one: the moon is crossing in front of it, and for a while this afternoon it'll be nearly as dark as night.\n\n{A_nameDef} is smoking a piece of glass over a candle so everyone can look without going blind.</li>
           <li>[spacer] The colony's star is being eclipsed by one of this world's moons. The solar panels have dropped to a trickle, the birds have gone to roost in the middle of the afternoon, and {A_nameDef} has worked out to the minute when the sun will come back.\n\nIt's still eerie, knowing all that.</li>
           <li>The light is going wrong. In the middle of the afternoon, the sun has a black bite out of it, the shadows have gone sharp, and the air is cooling. {A_nameDef} has stopped work to stare.</li>
+          <li>The day went dim at noon. A dark disc slid across the sun, and the yard went quiet: the animals lay down, the birds stopped, and {A_nameDef} set down {A_possessive} tools and stood looking up.</li>
+          <li>{A_nameDef} noticed it first: the shadows under the trees had turned into little crescents. Above, the sun was being swallowed from one edge, and the afternoon was going cold.</li>
         </texts>
         <defaultOption>2</defaultOption>
         <options>

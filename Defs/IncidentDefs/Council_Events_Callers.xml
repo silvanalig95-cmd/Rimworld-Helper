@@ -506,6 +506,7 @@
         <titles>
           <li>A song for the weary</li>
           <li>A musician for {A_nameDef}</li>
+          <li>A traveling musician</li>
         </titles>
         <texts>
           <li>[medieval] {X_nameDef}, a wandering fiddler of {FACTION}, has stopped for the night. {X_nameDef} noticed {A_nameDef} across the yard, gray in the face and short with everyone, and has offered to play something for {A_objective} alone tonight. That, {X_nameDef} says, is what musicians are for.</li>
@@ -513,6 +514,8 @@
           <li>[industrial|spacer] {X_nameDef} of {FACTION} drifts from settlement to settlement with a battered guitar and plays for a meal. Tonight {X_nameDef} has noticed {A_nameDef}, worn thin and snapping at everyone, and has offered, without any fuss, to play just for {A_objective} after supper.</li>
           <li>[worn|breaking] {A_nameDef} has been holding together by a thread for days. A traveling musician of {FACTION}, {X_nameDef}, sat beside {A_objective} at supper and didn't say much, and afterwards asked the council if {X_nameDef} could play for {A_nameDef} tonight, somewhere quiet.</li>
           <li>A musician of {FACTION}, {X_nameDef}, has come in for the night and offered to play after supper. {X_nameDef} would play for everyone for {COUNT} silver, or, for nothing at all, for {A_nameDef}, who looks like {A_pronoun} needs it most.</li>
+          <li>{X_nameDef}, a traveling musician of {FACTION}, has asked for a bed for the night and offered to play for it. {X_nameDef} has already picked out the face that needs a song most: {A_nameDef}'s, tired and gray. {X_nameDef} would play for {A_objective} alone, for nothing, or for everyone, for {COUNT} silver.</li>
+          <li>A singer of {FACTION}, {X_nameDef}, came in with the evening and sat by the door to listen to the colony before playing a note. {X_nameDef} says {A_nameDef} sounds like someone who needs a quiet song, and offers one.</li>
         </texts>
         <defaultOption>2</defaultOption>
         <options>
@@ -658,12 +661,15 @@
         <titles>
           <li>A peacemaker</li>
           <li>{A_nameDef} and {B_nameDef}</li>
+          <li>A mediator's offer</li>
         </titles>
         <texts>
           <li>{X_nameDef}, a peacemaker of {FACTION}, settles quarrels for a living: between families, between villages, now and then between whole peoples. {X_nameDef} had been at the colony less than an hour before noticing {A_nameDef} and {B_nameDef} taking care not to look at each other across the yard.\n\n{X_nameDef} offers to sit the two of them down tonight and see what can be done.</li>
           <li>[lowtech] {X_nameDef} of {FACTION} carries a peace-staff, which among {X_possessive} people means anyone at odds may ask for a hearing. {X_nameDef} has heard about {A_nameDef} and {B_nameDef} already, from three different people, and offers to hear them both out.</li>
           <li>[!lowtech] {X_nameDef} of {FACTION} is a mediator, and has a mediator's way of noticing things. Within an hour of arriving, {X_nameDef} had asked {A_nameDef} what the trouble with {B_nameDef} was, and asked {B_nameDef} the same about {A_nameDef}.\n\nThe answers didn't match. {X_nameDef} would like to sit them down together.</li>
           <li>[colony:Easygoing] {X_nameDef}, a peacemaker of {FACTION}, says the colony is a pleasant place with one sore spot in it, and the sore spot is {A_nameDef} and {B_nameDef}. {X_nameDef} offers to do something about it before moving on.</li>
+          <li>{X_nameDef} of {FACTION} travels from place to place mending quarrels, and has a good eye for one. {X_nameDef} watched {A_nameDef} and {B_nameDef} pass each other at supper without a word, and has offered to sit them down together before moving on.</li>
+          <li>A quiet traveler of {FACTION}, {X_nameDef}, says {X_pronoun} has settled worse feuds than the one between {A_nameDef} and {B_nameDef}, and offers to try tonight, if the council agrees.</li>
         </texts>
         <defaultOption>2</defaultOption>
         <options>

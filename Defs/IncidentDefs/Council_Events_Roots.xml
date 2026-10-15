@@ -191,6 +191,7 @@
           <li>A stonecutter</li>
           <li>Markers for the dead</li>
           <li>[tribal] A cairn-builder</li>
+          <li>Names in stone</li>
         </titles>
         <texts>
           <li>A stonecutter of {FACTION}, {X_nameDef}, stopped at the colony's graves on the way in and stood there a while. The colony's dead are marked with sticks and rough stones, {X_nameDef} says. For {COUNT} silver, each could have a proper headstone, with the name cut deep enough to last.</li>
@@ -198,6 +199,8 @@
           <li>[medieval] {X_nameDef}, a stonemason of {FACTION}, has a cart of dressed stone and a mallet worn smooth by years of lettering. The colony's graves are marked with whatever came to hand, {X_nameDef} says, and the dead deserve better. For {COUNT} silver, {X_nameDef} will cut a proper stone for each, with the name on it.</li>
           <li>[industrial] {X_nameDef} of {FACTION} engraves headstones and memorial plaques, and travels with a cart of slate and a box of chisels. {X_nameDef} looked at the colony's graves with professional disapproval, and offers to mark every one properly for {COUNT} silver.</li>
           <li>[spacer] {X_nameDef}, a memorial-maker of {FACTION}, carries a laser etcher and a stack of polished stone blanks. For {COUNT} silver, every grave in the colony will have a proper marker by tomorrow: name, dates and a line about each, if someone will say what it should be.</li>
+          <li>{X_nameDef} of {FACTION} cuts stone for the dead, and has stopped at the colony on the way through. {X_nameDef} has looked over the graves, made a list in chalk, and named a price: {COUNT} silver for a proper marker on every one.</li>
+          <li>A traveler of {FACTION}, {X_nameDef}, asked who was buried in the colony's graveyard, and listened to every name. For {COUNT} silver, {X_nameDef} offers to cut each of those names in stone, so the next people to come this way will know them too.</li>
         </texts>
         <defaultOption>2</defaultOption>
         <options>
@@ -266,6 +269,7 @@
         <titles>
           <li>A neighbor's bridge</li>
           <li>{FACTION} need a builder</li>
+          <li>A builder wanted</li>
         </titles>
         <texts>
           <li>A rider from {FACTION} came in this morning with a request. High water took out the bridge below {PLACE}, and the timber to rebuild it is cut and waiting, but none of them knows how to make a span that won't fall into the river again.\n\nThey ask to borrow the colony's best builder for a day of advice and drawings, and will pay {COUNT} silver.</li>
@@ -274,6 +278,8 @@
           <li>[industrial] The water tower at {PLACE} has started to lean, and {FACTION} are afraid to go near it. They've sent the drawings over with a courier and ask whether the colony's best builder would look them over and tell their crew what to do, for {COUNT} silver.</li>
           <li>[spacer] A storm buckled the mast of the wind turbine at {PLACE}, and {FACTION} have been running on batteries since. Their crew have the parts and not the experience. They'll pay {COUNT} silver for a day of advice from the colony's best builder.</li>
           <li>[winter] The roof of the meeting hall at {PLACE} came down under the snow, and {FACTION} want it back up before the next fall of it. They've sent their plans and a request: a day of advice from the colony's best builder, for {COUNT} silver.</li>
+          <li>Word has come from {FACTION}: the crossing near {PLACE} has washed out, and their builders can't agree how to put it back. They ask whether the colony's best builder could spend a day with them and settle it, and they'll pay {COUNT} silver.</li>
+          <li>A messenger from {FACTION} is waiting at the gate with a roll of drawings under one arm. Something they built near {PLACE} has failed, and they want someone who knows building to tell them why. For a day of advice, they offer {COUNT} silver.</li>
         </texts>
         <defaultOption>2</defaultOption>
         <options>
