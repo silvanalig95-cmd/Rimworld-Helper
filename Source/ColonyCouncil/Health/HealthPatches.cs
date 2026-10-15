@@ -69,10 +69,12 @@ namespace ColonyCouncil
     [HarmonyPatch(typeof(Pawn), nameof(Pawn.Kill))]
     public static class Patch_HealthLost
     {
-        public static void Prefix(Pawn __instance, Hediff exactCulprit, out Pawn __state)
+        public static void Prefix(Pawn __instance, DamageInfo? dinfo, Hediff exactCulprit, out Pawn __state)
         {
             __state = null;
-            if (!RimfolkPatches.On || __instance == null || __instance.Dead || exactCulprit == null) return;
+            // Killed outright (a shot, a blow, a fire: the game passes the damage, and the wound as the culprit) is no
+            // doctor's loss; a death from a condition (an illness, blood loss, an infection) comes without damage.
+            if (!RimfolkPatches.On || __instance == null || __instance.Dead || exactCulprit == null || dinfo.HasValue) return;
             try
             {
                 __state = HealthTracker.Instance?.DoctorToBlame(__instance, exactCulprit);
