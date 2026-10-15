@@ -833,15 +833,20 @@ sculptures, stone blocks, beer), a prize animal that **bolted** onto your land t
 keep), a **shrine** for their pilgrims (a sculpture of good enough quality under the open sky), materials to
 **rebuild** a town after a fire, a storm or a flood (wood, stone blocks, cloth, and steel or components for an
 industrial town), or **provisions** for a hard winter, a dry year or a sickhouse (raw food or pemmican, meals,
-medicine, cloth, firewood). Each shows up in the game's **Quests** tab to accept or let expire (or as a letter, if you
-switch that off), runs against a deadline once accepted, and pays a reward, or costs goodwill if it fails. One mission
-at a time.
+medicine, cloth, firewood). The peoples that think best of the colony offer more: an **invitation** to their feast, a
+wedding or midwinter (send at least two of your people there by caravan, and come home with gifts), an
+**apprenticeship** with one of their masters (a colonist stays at their town for a day and a half and comes back about
+two levels better at the craft), a **dignitary** to host for a few days (a bedroom of a set impressiveness with one
+bed nobody else uses, checked every hour of the stay), and **refugees** to see through (two meals each a day and a
+roof for a few days; they come from a fire, or from whatever runs in the region). Each shows up in the game's
+**Quests** tab to accept or let expire (or as a letter, if you switch that off), runs against a deadline once
+accepted, and pays a reward, or costs goodwill if it fails. One mission at a time.
 
 The council window's **World** page (Colony section) shows what's coming (fights the colony knows about and how
 soon, questions waiting for an answer, caravans, carts and relatives on their way, the next stage of a story),
 missions under way with a bar for each thing to deliver and the time left, who's out there with the colony on their
 mind (nemeses at large, people who left and might come back, peoples with a grudge, rivals, a great beast and how
-long it'll stay), and the latest Rimfolk events.
+long it'll stay), what each people remembers of the colony, and the latest Rimfolk events.
 
 Answers shape the colony's character, and the events feed nemeses, secrets, mentorships, journals and the
 chronicle. Fights come only with **battles** switched on in the settings, when the storyteller sends threats at
@@ -914,6 +919,24 @@ makes likelier or rarer). The chronicle records how each began and ended, and th
 **World events** turns them off or changes how often they come; in dev mode, **Debug actions → Rimfolk** can start,
 hurry or end any of them. Modders can add more with a def and no code (see `WorldSituationDef` in
 `Source/ColonyCouncil/World/`).
+
+### What the world remembers
+Every people out in the world keeps a memory of the colony over the years: a prisoner set free, a wounded guest tended
+and sent home, gifts, fair trades, quests and missions done or failed, a camp helped or driven off, help in their hard
+year, and on the other side traders robbed, caravans and towns attacked, their raiders killed on your land, their
+people dead in your keeping. It remembers what it did in turn, too: fighters sent when you called, relief in a hard
+time, raids, colonists killed. Most of it comes from the game's own goodwill reasons, so it works with any modlist.
+Each memory fades over the years, the big ones slowest (a gift is mostly forgotten in a few years, a town burned in
+a generation), and a people keeps a dozen at most.
+
+What follows from it: an **envoy repays an old debt** (a gift; feast them, tell them they owe nothing, or let a good
+talker bargain), a people **calls in a favor** the colony owes (silver, medicine, or a builder's plans), **old
+friends send food or medicine** while times are hard (a plague, famine or hard winter in the region, or empty stores
+and the sick at home), an **old enemy offers peace** once the feud has gone quiet for a year and a half (a talker can
+ask weregild for a colonist they killed), and two peoples ask the colony to **settle their quarrel**. Raiders'
+letters say what they remember ("Some of these raiders lost kin on the colony's land, last year."). The **World**
+page shows what each people remembers, how it stands with the colony (grateful, owed, wary, holding a grudge), and
+its biggest memories; hover for everything. Settings → **Peoples remember the colony** turns it off.
 
 ## Scenarios with stakes
 Ten scenarios, marked "(Rimfolk)" on the scenario page with how hard they are. Each starts the game with
@@ -1202,7 +1225,7 @@ The pages:
   pets as companions; **Rimfolk events** on or off, whether they may bring fights, camps on the map, missions in the
   Quests tab, and whether the storyteller draws them (and how likely each is) or Rimfolk's own timer does (and how
   often); the strength of fights in Rimfolk's scenarios; **world events** on or off and how often (about one every
-  45 days by default); and the colony calendar's days.
+  45 days by default); whether the world's **peoples remember the colony**; and the colony calendar's days.
 - **Building**: personal touches and how often; what the room planner does by default (plan the furniture, cut
   plants, mine rock, replace your own buildings, smooth stone; the planner shows the same switches); and **material
   counts in build menus** (the game's own material list shows what the colony has; one of the deeper game hooks).

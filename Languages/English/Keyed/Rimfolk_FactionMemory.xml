@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+  <!-- What the world's peoples remember of the colony (Source/ColonyCouncil/World/FactionMemory.cs), the World page's
+       "What they remember" (FactionMemoryPanel.cs), the line in raid letters, and the missions that follow from it
+       (Source/ColonyCouncil/Missions/Workers_MissionRemembered.cs). The events' own texts are in their defs
+       (Defs/IncidentDefs/Council_Events_Remembered*.xml, Defs/MissionDefs/Council_Missions_Remembered.xml). -->
+
+  <!-- The setting -->
+  <CC_Settings_FactionMemory>Peoples remember the colony</CC_Settings_FactionMemory>
+  <CC_Settings_FactionMemory_Tip>Every people out in the world keeps a memory of the colony: a prisoner set free, a wounded guest tended, gifts, fair trades, quests and missions done or failed, help in a plague or a famine, a camp helped or driven off, traders robbed, raiders killed, towns attacked, and what they did in turn (fighters sent when the colony called, raids, colonists killed). Each memory fades over the years, the big ones slowest, and a people keeps a dozen at most. Envoys come to repay an old debt or to call in a favor, old friends send relief in a hard time, an old enemy may offer peace once the feud has gone quiet for years, and a people may ask the colony to settle a quarrel. Raid letters name the old wrong the raiders remember, and the World page shows what each people remembers. Missions (an invitation, an apprentice, a dignitary, refugees) come either way, from the peoples that think best of the colony. Off: nothing new is remembered, and the envoys, relief, peace offers and quarrels don't come.</CC_Settings_FactionMemory_Tip>
+  <CC_SetNote_FactionMemory>The neighbors remember debts, favors and grudges over the years, and act on them.</CC_SetNote_FactionMemory>
+
+  <!-- The World page -->
+  <CC_Memory_Header>What they remember</CC_Memory_Header>
+  <CC_Memory_Nothing>No people out there remembers the colony for anything yet.</CC_Memory_Nothing>
+  <CC_Memory_More>and {0} more (hover for everything they remember)</CC_Memory_More>
+  <CC_Memory_Line_Ours>the colony {DEED}.</CC_Memory_Line_Ours>
+  <CC_Memory_Line_Theirs>they {DEED}.</CC_Memory_Line_Theirs>
+  <CC_Memory_TipHead>What {0} remember of the colony:</CC_Memory_TipHead>
+  <CC_Memory_Side_Favor>What the colony did for them</CC_Memory_Side_Favor>
+  <CC_Memory_Side_TheirFavor>What they did for the colony</CC_Memory_Side_TheirFavor>
+  <CC_Memory_Side_Wrong>What they hold against the colony</CC_Memory_Side_Wrong>
+  <CC_Memory_Side_TheirWrong>What they did to the colony</CC_Memory_Side_TheirWrong>
+  <CC_Memory_Settled>settled</CC_Memory_Settled>
+  <CC_Memory_TipFoot>Memories fade over the years, the big ones slowest; a people keeps a dozen at most. Envoys, requests, invitations and raid letters follow from what a people remembers. Settled means repaid, called in or put right: still remembered, but it asks nothing more.</CC_Memory_TipFoot>
+  <CC_Memory_Tone_0>Little to remember</CC_Memory_Tone_0>
+  <CC_Memory_Tone_1>Well disposed</CC_Memory_Tone_1>
+  <CC_Memory_Tone_2>In the colony's debt</CC_Memory_Tone_2>
+  <CC_Memory_Tone_3>Wary of the colony</CC_Memory_Tone_3>
+  <CC_Memory_Tone_4>Hold a grudge</CC_Memory_Tone_4>
+  <CC_Memory_Tone_5>Grateful, and aggrieved</CC_Memory_Tone_5>
+  <CC_Memory_Tone_6>The colony owes them</CC_Memory_Tone_6>
+  <CC_Memory_Ago_Lately>lately</CC_Memory_Ago_Lately>
+  <CC_Memory_Ago_Days>{0} days ago</CC_Memory_Ago_Days>
+  <CC_Memory_Ago_LastYear>last year</CC_Memory_Ago_LastYear>
+  <CC_Memory_Ago_Years>{0} years ago</CC_Memory_Ago_Years>
+
+  <!-- Deeds: what was done, without who did it (the colony, for its good turns and wrongs; them, for theirs). _Name
+       when it names someone or something ({NAME}), _Many when it happened more than once in a short while ({COUNT}). -->
+  <CC_Memory_Deed_released>set one of their people free</CC_Memory_Deed_released>
+  <CC_Memory_Deed_released_Name>set {NAME} free</CC_Memory_Deed_released_Name>
+  <CC_Memory_Deed_released_Many>set {COUNT} of their people free</CC_Memory_Deed_released_Many>
+  <CC_Memory_Deed_tended>tended one of their wounded and sent them home</CC_Memory_Deed_tended>
+  <CC_Memory_Deed_tended_Name>tended {NAME}'s wounds and sent them home</CC_Memory_Deed_tended_Name>
+  <CC_Memory_Deed_tended_Many>tended {COUNT} of their wounded and sent them home</CC_Memory_Deed_tended_Many>
+  <CC_Memory_Deed_gift>sent them a gift</CC_Memory_Deed_gift>
+  <CC_Memory_Deed_gift_Many>sent them gifts, {COUNT} times</CC_Memory_Deed_gift_Many>
+  <CC_Memory_Deed_traded>traded fairly with them</CC_Memory_Deed_traded>
+  <CC_Memory_Deed_traded_Many>traded fairly with them, {COUNT} times</CC_Memory_Deed_traded_Many>
+  <CC_Memory_Deed_quest>did a job they asked for</CC_Memory_Deed_quest>
+  <CC_Memory_Deed_quest_Name>did what they asked ({NAME})</CC_Memory_Deed_quest_Name>
+  <CC_Memory_Deed_mission>kept a promise to them</CC_Memory_Deed_mission>
+  <CC_Memory_Deed_mission_Name>kept its promise to them ({NAME})</CC_Memory_Deed_mission_Name>
+  <CC_Memory_Deed_campHelped>helped their people while they camped on its land</CC_Memory_Deed_campHelped>
+  <CC_Memory_Deed_campHosted>let their people camp on its land</CC_Memory_Deed_campHosted>
+  <CC_Memory_Deed_hardship>stood by them in a hard year</CC_Memory_Deed_hardship>
+  <CC_Memory_Deed_hardship_Name>stood by them in a hard year ({NAME})</CC_Memory_Deed_hardship_Name>
+  <CC_Memory_Deed_peaceTalks>talked peace with them, and it went well</CC_Memory_Deed_peaceTalks>
+  <CC_Memory_Deed_feast>came as guests to their feast</CC_Memory_Deed_feast>
+  <CC_Memory_Deed_feast_Name>came as guests to their feast at {NAME}</CC_Memory_Deed_feast_Name>
+  <CC_Memory_Deed_dignitary>hosted one of their notables with honor</CC_Memory_Deed_dignitary>
+  <CC_Memory_Deed_dignitary_Name>hosted {NAME} with honor</CC_Memory_Deed_dignitary_Name>
+  <CC_Memory_Deed_refugees>fed and sheltered their homeless</CC_Memory_Deed_refugees>
+  <CC_Memory_Deed_refugees_Name>fed and sheltered their homeless from {NAME}</CC_Memory_Deed_refugees_Name>
+  <CC_Memory_Deed_sidedWith>took their side in a quarrel</CC_Memory_Deed_sidedWith>
+  <CC_Memory_Deed_sidedWith_Name>took their side against {NAME}</CC_Memory_Deed_sidedWith_Name>
+  <CC_Memory_Deed_mediated>settled a quarrel of theirs fairly</CC_Memory_Deed_mediated>
+  <CC_Memory_Deed_mediated_Name>settled their quarrel with {NAME} fairly</CC_Memory_Deed_mediated_Name>
+  <CC_Memory_Deed_madePeace>made peace with them after a long feud</CC_Memory_Deed_madePeace>
+  <CC_Memory_Deed_welcomed>welcomed their envoy at its table</CC_Memory_Deed_welcomed>
+  <CC_Memory_Deed_welcomed_Name>welcomed {NAME}, their envoy, at its table</CC_Memory_Deed_welcomed_Name>
+  <CC_Memory_Deed_favorDone>did them the favor they asked</CC_Memory_Deed_favorDone>
+  <CC_Memory_Deed_forgave>told them they owed it nothing</CC_Memory_Deed_forgave>
+  <CC_Memory_Deed_robbed>attacked their traders</CC_Memory_Deed_robbed>
+  <CC_Memory_Deed_attacked>attacked their people</CC_Memory_Deed_attacked>
+  <CC_Memory_Deed_caravanRaided>attacked one of their caravans on the road</CC_Memory_Deed_caravanRaided>
+  <CC_Memory_Deed_killed>killed one of their people</CC_Memory_Deed_killed>
+  <CC_Memory_Deed_killed_Name>killed {NAME}</CC_Memory_Deed_killed_Name>
+  <CC_Memory_Deed_killed_Many>killed {COUNT} of their people</CC_Memory_Deed_killed_Many>
+  <CC_Memory_Deed_captured>took one of their people prisoner</CC_Memory_Deed_captured>
+  <CC_Memory_Deed_captured_Name>took {NAME} prisoner</CC_Memory_Deed_captured_Name>
+  <CC_Memory_Deed_captured_Many>took {COUNT} of their people prisoner</CC_Memory_Deed_captured_Many>
+  <CC_Memory_Deed_sold>sold one of their people into slavery</CC_Memory_Deed_sold>
+  <CC_Memory_Deed_sold_Name>sold {NAME} into slavery</CC_Memory_Deed_sold_Name>
+  <CC_Memory_Deed_sold_Many>sold {COUNT} of their people into slavery</CC_Memory_Deed_sold_Many>
+  <CC_Memory_Deed_prisonerDied>had one of their people die in its keeping</CC_Memory_Deed_prisonerDied>
+  <CC_Memory_Deed_prisonerDied_Name>had {NAME} die in its keeping</CC_Memory_Deed_prisonerDied_Name>
+  <CC_Memory_Deed_prisonerDied_Many>had {COUNT} of their people die in its keeping</CC_Memory_Deed_prisonerDied_Many>
+  <CC_Memory_Deed_fell>killed one of their raiders</CC_Memory_Deed_fell>
+  <CC_Memory_Deed_fell_Name>killed {NAME} in a raid on it</CC_Memory_Deed_fell_Name>
+  <CC_Memory_Deed_fell_Many>killed {COUNT} of their raiders on its land</CC_Memory_Deed_fell_Many>
+  <CC_Memory_Deed_slain>killed one of their people on their own ground</CC_Memory_Deed_slain>
+  <CC_Memory_Deed_slain_Name>killed {NAME} on their own ground</CC_Memory_Deed_slain_Name>
+  <CC_Memory_Deed_slain_Many>killed {COUNT} of their people on their own ground</CC_Memory_Deed_slain_Many>
+  <CC_Memory_Deed_townAttacked>attacked one of their towns</CC_Memory_Deed_townAttacked>
+  <CC_Memory_Deed_townAttacked_Name>attacked {NAME}</CC_Memory_Deed_townAttacked_Name>
+  <CC_Memory_Deed_townDestroyed>destroyed one of their towns</CC_Memory_Deed_townDestroyed>
+  <CC_Memory_Deed_townDestroyed_Name>destroyed {NAME}</CC_Memory_Deed_townDestroyed_Name>
+  <CC_Memory_Deed_polluted>fouled their land with its waste</CC_Memory_Deed_polluted>
+  <CC_Memory_Deed_questFailed>let them down on a job</CC_Memory_Deed_questFailed>
+  <CC_Memory_Deed_questFailed_Name>let them down ({NAME})</CC_Memory_Deed_questFailed_Name>
+  <CC_Memory_Deed_missionFailed>broke a promise to them</CC_Memory_Deed_missionFailed>
+  <CC_Memory_Deed_missionFailed_Name>broke its promise to them ({NAME})</CC_Memory_Deed_missionFailed_Name>
+  <CC_Memory_Deed_campDriven>drove their camp off its land</CC_Memory_Deed_campDriven>
+  <CC_Memory_Deed_campHarmed>turned on their camp</CC_Memory_Deed_campHarmed>
+  <CC_Memory_Deed_campSour>parted with their camp on bad terms</CC_Memory_Deed_campSour>
+  <CC_Memory_Deed_peaceTalksBad>talked peace with them, and it went badly</CC_Memory_Deed_peaceTalksBad>
+  <CC_Memory_Deed_slighted>slighted one of their notables</CC_Memory_Deed_slighted>
+  <CC_Memory_Deed_slighted_Name>slighted {NAME}, who came as its guest</CC_Memory_Deed_slighted_Name>
+  <CC_Memory_Deed_letDown>let them down</CC_Memory_Deed_letDown>
+  <CC_Memory_Deed_absent>stayed away from their feast</CC_Memory_Deed_absent>
+  <CC_Memory_Deed_absent_Name>stayed away from their feast at {NAME}</CC_Memory_Deed_absent_Name>
+  <CC_Memory_Deed_unfed>let their homeless go hungry</CC_Memory_Deed_unfed>
+  <CC_Memory_Deed_unfed_Name>let their homeless from {NAME} go hungry</CC_Memory_Deed_unfed_Name>
+  <CC_Memory_Deed_tookSides>took sides against them in a quarrel</CC_Memory_Deed_tookSides>
+  <CC_Memory_Deed_tookSides_Name>took the side of {NAME} against them</CC_Memory_Deed_tookSides_Name>
+  <CC_Memory_Deed_refused>turned them away when they called in a favor</CC_Memory_Deed_refused>
+  <CC_Memory_Deed_aid>sent fighters when the colony called</CC_Memory_Deed_aid>
+  <CC_Memory_Deed_aid_Many>sent fighters when the colony called, {COUNT} times</CC_Memory_Deed_aid_Many>
+  <CC_Memory_Deed_relief>sent help in a hard time</CC_Memory_Deed_relief>
+  <CC_Memory_Deed_relief_Name>sent {NAME} in a hard time</CC_Memory_Deed_relief_Name>
+  <CC_Memory_Deed_taught>taught one of the colony's people their craft</CC_Memory_Deed_taught>
+  <CC_Memory_Deed_taught_Name>taught {NAME} their craft</CC_Memory_Deed_taught_Name>
+  <CC_Memory_Deed_raided>raided the colony</CC_Memory_Deed_raided>
+  <CC_Memory_Deed_raided_Many>raided the colony {COUNT} times in a day or two</CC_Memory_Deed_raided_Many>
+  <CC_Memory_Deed_killedOurs>killed one of the colony's people</CC_Memory_Deed_killedOurs>
+  <CC_Memory_Deed_killedOurs_Name>killed {NAME}</CC_Memory_Deed_killedOurs_Name>
+  <CC_Memory_Deed_killedOurs_Many>killed {COUNT} of the colony's people</CC_Memory_Deed_killedOurs_Many>
+
+  <!-- The raid letter: the old wrong the raiders remember ({DEED}, {WHEN}: "lately", "40 days ago", "last year"). -->
+  <CC_Memory_Raid>{FACTION} have not forgotten that the colony {DEED}, {WHEN}.</CC_Memory_Raid>
+  <CC_Memory_Raid_robbed>{FACTION} have not forgotten the traders the colony attacked, {WHEN}.</CC_Memory_Raid_robbed>
+  <CC_Memory_Raid_caravanRaided>{FACTION} have not forgotten the caravan the colony attacked on the road, {WHEN}.</CC_Memory_Raid_caravanRaided>
+  <CC_Memory_Raid_killed>Among {FACTION}, people still talk about how the colony {DEED}, {WHEN}.</CC_Memory_Raid_killed>
+  <CC_Memory_Raid_fell>Some of these raiders lost kin on the colony's land, {WHEN}.</CC_Memory_Raid_fell>
+  <CC_Memory_Raid_slain>{FACTION} remember the people the colony killed on their own ground, {WHEN}.</CC_Memory_Raid_slain>
+  <CC_Memory_Raid_campDriven>{FACTION} have not forgotten the camp the colony drove off its land, {WHEN}.</CC_Memory_Raid_campDriven>
+  <CC_Memory_Raid_campHarmed>{FACTION} have not forgotten how the colony turned on their camp, {WHEN}.</CC_Memory_Raid_campHarmed>
+  <CC_Memory_Raid_prisonerDied>{FACTION} say they have come about their people who died in the colony's keeping.</CC_Memory_Raid_prisonerDied>
+  <CC_Memory_Raid_Again>{FACTION} have raided the colony {COUNT} times now.</CC_Memory_Raid_Again>
+  <CC_Memory_Raid_TheyKilled>These are the people who killed {NAME}, {WHEN}.</CC_Memory_Raid_TheyKilled>
+
+  <!-- Events -->
+  <CC_Memory_NoDead>None of the colony's people died at their hands.</CC_Memory_NoDead>
+  <CC_Memory_NotAtWar>{0} are no longer at war with the colony.</CC_Memory_NotAtWar>
+
+  <!-- Missions -->
+  <CC_Mission_Invitation_Go>Send at least {0} of the colony's people by caravan to {1}, about {2} away, and have them stay for the feast.</CC_Mission_Invitation_Go>
+  <CC_Mission_Invitation_There>The colony's guests are at {0}. The feast ends in {1}.</CC_Mission_Invitation_There>
+  <CC_Mission_Apprentice_Go>{0} must go by caravan to {1}, and stay at the master's side there while the caravan waits.</CC_Mission_Apprentice_Go>
+  <CC_Mission_Apprentice_There>{0} is learning at {1}'s side: {2} of {3} hours.</CC_Mission_Apprentice_There>
+  <CC_Mission_Dignitary_Coming>{0} arrives in {1}.</CC_Mission_Dignitary_Coming>
+  <CC_Mission_Dignitary_Staying>{0} is staying at the colony. Hours the room wasn't ready: {1}.</CC_Mission_Dignitary_Staying>
+  <CC_Mission_Dignitary_RoomReady>A bedroom fit for them is ready ({0} or better, one bed nobody else uses).</CC_Mission_Dignitary_RoomReady>
+  <CC_Mission_Dignitary_RoomNot>No bedroom is ready: it must be {0} or better, with one bed nobody else uses.</CC_Mission_Dignitary_RoomNot>
+  <CC_Mission_Refugees_Coming>{0} refugees arrive in {1}.</CC_Mission_Refugees_Coming>
+  <CC_Mission_Refugees_Staying>Days fed and sheltered: {0}. Days short: {1}.</CC_Mission_Refugees_Staying>
+  <CC_Mission_Refugees_Beds>Free beds or sleeping spots under a roof: {0} (they need {1}).</CC_Mission_Refugees_Beds>
+  <CC_Mission_Refugees_Hungry>The refugees from {0} went short today: the stores didn't hold two meals each for them.</CC_Mission_Refugees_Hungry>
+  <CC_Mission_Refugees_NoRoof>The refugees from {0} had nowhere to sleep under a roof today: not enough free beds or sleeping spots.</CC_Mission_Refugees_NoRoof>
+  <CC_Mission_Refugees_Neither>The refugees from {0} went short of food today, and had nowhere to sleep under a roof.</CC_Mission_Refugees_Neither>
+</LanguageData>
