@@ -137,7 +137,7 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_Arc_Unburdened</defName>
     <durationDays>6</durationDays>
-    <stages><li><label>said it out loud</label><description>I carried it for years. I've said it in front of everyone, and I'm still standing.</description><baseMoodEffect>4</baseMoodEffect></li></stages>
+    <stages><li><label>said it out loud</label><description>I carried it for years. I've said it where everyone could hear, and I'm still standing.</description><baseMoodEffect>4</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef>

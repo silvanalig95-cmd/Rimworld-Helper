@@ -202,7 +202,7 @@
         <waiting>Next: a room of {PAWN_possessive} own, or at least some good days in a row.</waiting>
         <journal>
           <plain>
-            <li>{OTHER_nameDef} showed me the whole colony today: the good well, the door that sticks, where the dog sleeps. It helped more than I'd have guessed.</li>
+            <li>{OTHER_nameDef} showed me around today: the good well, the door that sticks, where the dog sleeps. It helped more than I'd have guessed.</li>
             <li>{OTHER_nameDef} asked where I came from and listened to the answer.</li>
             <li>Now that I know my way around, I'd like a corner of it that's mine. A door I can close.</li>
             <li>[child] {OTHER_nameDef} showed me the best hiding places. I'm not telling anyone where they are.</li>
@@ -216,7 +216,7 @@
         <otherJournal>
           <plain>
             <li>Showed {OTHER_nameDef} around today. {OTHER_nameDef} asks good questions.</li>
-            <li>{OTHER_nameDef} reminds me of how I was when I first came here. Lost, and pretending not to be.</li>
+            <li>{OTHER_nameDef} reminds me of how I was when I first came here. Lost, and hiding it.</li>
           </plain>
         </otherJournal>
         <chronicle>
@@ -327,7 +327,7 @@
   <ColonyCouncil.ArcDef>
     <defName>Council_Arc_Companion</defName>
     <label>a companion</label>
-    <summary>An animal starts following its master about. Hours together, a little training and a lot of patience later, the two of them may bond.</summary>
+    <summary>An animal starts following its master about. Hours together, some training and a lot of patience later, the two of them may bond.</summary>
     <workerClass>ColonyCouncil.ArcWorker_Companion</workerClass>
     <children>true</children>
     <maxDays>60</maxDays>
@@ -339,7 +339,7 @@
           <plain>
             <li>{PET_nameDef} has taken to following me everywhere. To the fields, to the woodpile, to bed if I let {PET_objective}.</li>
             <li>Every time I turn around, there's {PET_nameDef}, waiting to see what we're doing next.</li>
-            <li>[night] {PET_nameDef} slept outside my door last night. I pretended not to notice and left a blanket out.</li>
+            <li>[night] {PET_nameDef} slept outside my door last night. I said nothing and left a blanket out.</li>
           </plain>
           <warm><li>{PET_nameDef} brought me a stick this morning and waited. I threw it. That's how it starts, I suppose.</li></warm>
           <blunt><li>{PET_nameDef} won't leave me alone. Fine. Stay, then.</li></blunt>

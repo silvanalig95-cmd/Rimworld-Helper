@@ -81,6 +81,8 @@
           <plain>
             <li>{OTHER_nameDef} went over my work with me, every flaw of it, then said one thing that changed how I hold the tool. I'm making something now. Something good.</li>
             <li>I've started on a piece I've had in my head for weeks. I'm not letting anyone see it until it's done.</li>
+            <li>[arcskill:Construction] I've measured the spot three times. Whatever I build there is going to stand straight for a hundred years.</li>
+            <li>[arcskill:Artistic] Picked the stone today. Turned it in the light most of the morning, and I can already see what's inside it.</li>
           </plain>
           <warm><li>{OTHER_nameDef} told me I'm ready. I don't know if I believe {OTHER_objective}, but I'm going to try.</li></warm>
           <blunt><li>Starting the real thing. Leave me alone at the bench.</li></blunt>
@@ -211,7 +213,7 @@
         </journal>
         <otherJournal>
           <plain>
-            <li>{OTHER_nameDef} asked me about {SKILL} for an hour straight. I'd forgotten what that kind of hunger looks like.</li>
+            <li>{OTHER_nameDef} asked me about {SKILL} all through supper. I'd forgotten what that kind of hunger looks like.</li>
             <li>Let {OTHER_nameDef} try {SKILL} today. Hopeless and very determined. I liked {OTHER_objective} for it.</li>
           </plain>
         </otherJournal>

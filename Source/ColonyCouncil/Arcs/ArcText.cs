@@ -52,6 +52,8 @@ namespace ColonyCouncil
         {
             var tags = Flavor.TagsFor(speaker);
             if (arc != null && !arc.tag.NullOrEmpty()) tags.Add(arc.tag);
+            // The story's skill, so a gift can be a meal for a cook and a carving for an artist.
+            if (arc?.skill != null) tags.Add("arcskill:" + arc.skill.defName);
             if (about != null && about != speaker)
             {
                 if (about.RaceProps?.Animal == true) tags.Add("animal");

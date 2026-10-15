@@ -224,7 +224,7 @@
           </plain>
           <warm><li>{OTHER_nameDef} held my hand while I told it. I didn't know I needed that.</li></warm>
           <blunt><li>Told {OTHER_nameDef}. Didn't fall apart. Next, everyone.</li></blunt>
-          <cheerful><li>I told {OTHER_nameDef} and the sky didn't fall. Next, the whole colony. Maybe!</li></cheerful>
+          <cheerful><li>I told {OTHER_nameDef} and the sky didn't fall. Next, everyone else. Maybe!</li></cheerful>
           <gloomy><li>{OTHER_nameDef} took it well. The others won't all be {OTHER_nameDef}.</li></gloomy>
           <cold><li>The first disclosure went acceptably. The second will be harder to control.</li></cold>
         </journal>
@@ -490,7 +490,7 @@
         <journal>
           <plain>
             <li>It came again, clearer this time. I could draw it. I'll have to tell someone before it drives me mad.</li>
-            <li>I can't shake it. Even awake, I half see the dream at the edge of things.</li>
+            <li>I can't shake it. Even awake, I half see the dream from the corner of my eye.</li>
           </plain>
           <warm><li>I want to tell someone about the dream. Saying it out loud might loosen its grip.</li></warm>
           <blunt><li>Need to talk about this dream with someone. Feels stupid. Doing it anyway.</li></blunt>
@@ -518,6 +518,10 @@
           <plain>
             <li>Talked the dream over, and an idea came out of it: if I make it, really make it, with my own hands, maybe it will let me go.</li>
             <li>I'm going to make the dream into something real, through {SKILL}. Then it can stop.</li>
+            <li>[arcskill:Artistic] I'm going to carve the dream. The house, the water, all of it, in stone if I can get the stone.</li>
+            <li>[arcskill:Plants] I'm going to plant the garden from my dream, in the corner by the wall, with the rows the way they were.</li>
+            <li>[arcskill:Construction] I'm going to build the doorway from my dream. Just a doorway, standing by itself, opening onto the field.</li>
+            <li>[arcskill:Crafting] There's a box in the dream, plain wood with a brass catch. I'm going to make it, and see what it wants to hold.</li>
           </plain>
           <warm><li>Saying the dream out loud helped. Now I want to give it a shape the others can see.</li></warm>
           <blunt><li>Making the dream into a thing. Then sleeping.</li></blunt>

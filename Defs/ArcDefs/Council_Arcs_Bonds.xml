@@ -371,6 +371,11 @@
             <li>I'm making {OTHER_nameDef} something, on my own time. It's going slowly, because it has to be right.</li>
             <li>Put the evening into {OTHER_nameDef}'s gift. Whatever I've learned of {SKILL}, it's going into this.</li>
             <li>Hid the half-finished thing under my bed when {OTHER_nameDef} came by. I think {OTHER_pronoun} noticed.</li>
+            <li>[arcskill:Cooking] I'm going to cook {OTHER_nameDef} the dish {OTHER_pronoun} talked about once, from before the colony. I've been trying it out on myself in secret.</li>
+            <li>[arcskill:Crafting] I'm making {OTHER_nameDef} a proper pair of gloves. Got the size by comparing calluses with {OTHER_objective}.</li>
+            <li>[arcskill:Artistic] I'm carving {OTHER_nameDef} a likeness, small enough to keep on a shelf. The nose is giving me trouble.</li>
+            <li>[arcskill:Construction] I'm building {OTHER_nameDef} a shelf for {OTHER_possessive} things, the kind with a lip so nothing falls off.</li>
+            <li>[arcskill:Plants] I've been growing something for {OTHER_nameDef} in a corner of the field, watered morning and night.</li>
           </plain>
           <warm><li>Working on something for {OTHER_nameDef}. I picture {OTHER_possessive} face when I hand it over, and keep going.</li></warm>
           <blunt><li>Making {OTHER_nameDef} a thing. Don't tell {OTHER_objective}.</li></blunt>
@@ -415,6 +420,9 @@
           <plain>
             <li>Gave {OTHER_nameDef} the gift. {OTHER_nameDef} turned it over in {OTHER_possessive} hands for a long time and then said thank you twice.</li>
             <li>{OTHER_nameDef} said I didn't owe {OTHER_objective} anything. I said I know. {OTHER_nameDef} kept the gift anyway.</li>
+            <li>[arcskill:Cooking] Cooked {OTHER_nameDef} the dish from {OTHER_possessive} old home. {OTHER_nameDef} ate it slowly and didn't say a word until the bowl was empty.</li>
+            <li>[arcskill:Artistic] Gave {OTHER_nameDef} the carving. {OTHER_nameDef} said the nose was wrong, then put it beside {OTHER_possessive} bed.</li>
+            <li>[arcskill:Crafting] {OTHER_nameDef} put the gloves on straight away and wore them to supper, which was warm, and wouldn't take them off.</li>
           </plain>
           <warm><li>I told {OTHER_nameDef} why I made it. We both went a bit teary and blamed the smoke.</li></warm>
           <blunt><li>Gave it over. We're square. Good.</li></blunt>
@@ -493,7 +501,7 @@
       </li>
       <li>
         <label>maybe</label>
-        <waiting>Next: some days of trusting the council a little more.</waiting>
+        <waiting>Next: some days of trusting the council more than before.</waiting>
         <journal>
           <plain>
             <li>The council gave me what I asked for. I keep waiting for the catch.</li>

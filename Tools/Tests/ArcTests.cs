@@ -189,7 +189,7 @@ public static class ArcTests
                 var m = Regex.Match(text, @"^\[([^\]]*)\]");
                 if (m.Success)
                     foreach (var tag in m.Groups[1].Value.Split(',').SelectMany(t => t.Split('|')).Select(t => t.Trim().TrimStart('!')))
-                        check(StoryTags.Contains(tag), $"{name}: unknown tag [{tag}]");
+                        check(StoryTags.Contains(tag) || tag.StartsWith("arcskill:"), $"{name}: unknown tag [{tag}]");
             }
         }
         return arcs.Count + lines;
