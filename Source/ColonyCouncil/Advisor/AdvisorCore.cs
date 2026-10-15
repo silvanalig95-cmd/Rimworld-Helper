@@ -91,6 +91,8 @@ namespace ColonyCouncil
         public string detail;
         public LookTargets look;
         public RoomTemplateDef template;
+        /// <summary>The plan is for furnishing a room that's already built (the planner opens in upgrade mode).</summary>
+        public bool upgrade;
         public ThingDef suggestThing;
         /// <summary>A more specific almanac page than the def's (e.g. for the event actually happening).</summary>
         public AlmanacArticleDef article;

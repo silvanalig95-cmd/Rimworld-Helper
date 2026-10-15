@@ -983,6 +983,7 @@ namespace ColonyCouncil
         private static void CopyInto(RoomPlanConfig from, RoomPlanConfig to)
         {
             to.style = from.style;
+            to.theme = from.theme;
             to.mirror = from.mirror;
             to.doorX = from.doorX;
             to.wallStuff = from.wallStuff;

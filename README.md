@@ -77,6 +77,9 @@ jump to the problem, plan a fitting room, or read more in the Almanac. It watche
   overhead mountain
 - beds and barracks, a place to eat, recreation variety, rooms without light, bodies lying around, mood breaks,
   expectations about to rise with your wealth
+- rooms the colony has outgrown, gently: a dining room with fewer seats than people, a barracks that could become
+  bedrooms now there's enough wall material in store, a hospital without the vitals monitor, hospital beds or sterile
+  tile you've researched (with "Upgrade the room"), a rec room with too little to do for everyone
 - doctor, medicine and medical beds; prisoners without a warden, food or bed
 - power shortages, jobs nobody is assigned to, items rotting outside, an idle research bench, ideas for what's next
 
@@ -476,6 +479,15 @@ follows the mouse, and a planner panel lets you:
 - pick the **size**, and the **style**: *spartan* (the essentials, no floor), *comfortable* (the standard
   furnishing) or *lavish* (more plant pots, pedestals for sculptures and a rug where your mods have them, carpet
   or fine stone tiles; hospitals and kitchens keep their sterile floor)
+- build it in a **theme**: *rustic* (wood, benches and stools, straw matting or planks), *stately* (marble or
+  granite, polished stone or fine carpet, armchairs, candlelight), *spartan* (steel, simple beds, concrete), *cozy*
+  (carpet, standing lamps, soft seats, plant pots from the comfortable style on), *tribal* (fur beds or hide
+  bedrolls, cushions, torchlight, straw matting, wood and sandstone) or *spacer* (steel, sterile tiles, an autodoor,
+  the most advanced furniture you've researched). The style decides how much goes in, the theme what it looks
+  like; the layout stays the same, since a piece is only swapped for one of the same purpose, size and work spot.
+  A theme uses only what the colony can build and has enough of, and the furniture of Vanilla Furniture Expanded
+  (with its Spacer, Art and Architect modules), Vanilla Factions Expanded Medieval 2 and Empire, Dubs Bad Hygiene
+  and Alpha Prefabs when they're there
 - **turn** the room (Q / E or buttons), **mirror** it and **move the door**
 - choose **materials**, or let the planner do it: it picks from what you have, stored or lying around, something
   there's enough of with a little to spare. Stone blocks come first, then wood, bone (anything but walls) and
@@ -504,8 +516,8 @@ your own, with its furniture, wall material and floor. Saved rooms are kept with
 there in every game, and you can delete them from the same list.
 
 Every layout is checked in all four turns, mirrored and not: beds have their heads against a wall, chairs face
-their table, every bench has its work spot free, and nothing blocks the door. It's checked again without the DLC
-and mod furniture it doesn't need: a missing piece is left out, or the next one on the list is used, and a room
+their table, every bench has its work spot free, and nothing blocks the door. It's checked again in each of the six
+themes, and without the DLC and mod furniture it doesn't need: a missing piece is left out, or the next one on the list is used, and a room
 whose main piece is missing says what it waits for. If a modded bench is bigger or its work spot ends up in a
 wall, the planner turns that piece or leaves it out and says so.
 

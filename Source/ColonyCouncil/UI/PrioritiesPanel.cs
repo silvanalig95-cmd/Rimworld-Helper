@@ -147,7 +147,11 @@ namespace ColonyCouncil
             }
             if (s.template != null && map != null && s.template.UnavailableReason(map) == null)
             {
-                if (Widgets.ButtonText(new Rect(bx, by, bw, 26f), "CC_PlanIt".Translate())) MainTabWindow_Council.StartPlanning(s.template, true);
+                if (Widgets.ButtonText(new Rect(bx, by, bw, 26f), (s.upgrade ? "CC_UpgradeIt" : "CC_PlanIt").Translate()))
+                {
+                    if (s.upgrade) Designator_PlanRoom.Begin(s.template, false, true);
+                    else MainTabWindow_Council.StartPlanning(s.template, true);
+                }
                 by += 30f;
             }
             var article = s.article ?? s.def.article;

@@ -80,7 +80,7 @@ Every sleeper's mood thought comes from the room's single score. Blood on the fl
         <heading>Who should sleep there</heading>
         <text>When someone walks past a sleeping colonist, the sleeper gets disturbed sleep: -1 mood for a day. Keep the barracks off the main corridors so nobody walks past the beds at night.
 
-The exact mood penalty for sleeping in a shared room isn't confirmed, but community guides agree that private rooms are better. Use the barracks for the first weeks, for new arrivals and for soldiers, then move people into bedrooms. A soldiers' barracks belongs near the armory and the dining room.</text>
+The exact mood penalty for sleeping in a shared room isn't confirmed, but community guides agree that private rooms are better. Use the barracks for the first weeks, for new arrivals and for soldiers, then move people into bedrooms. A soldiers' barracks belongs near the armory and the dining room. Once there's enough wall material in store for a bedroom each, the council's priorities say so, with the material and how much the walls take.</text>
       </li>
     </sections>
     <keywords>
@@ -114,7 +114,7 @@ The exact mood penalty for sleeping in a shared room isn't confirmed, but commun
         <heading>What makes it a dining room</heading>
         <text>Each table counts toward the dining room role. Tables come as 1x2, 2x2, 2x4 and 3x3. Keep beds and stoves out: a bed turns the room into a bedroom or barracks, and one stove (28) outscores two tables (24).
 
-Build enough chairs for everyone who eats at the same time. Eating without a table costs -3 mood for a day.</text>
+Build enough chairs for everyone who eats at the same time. Eating without a table costs -3 mood for a day. When the colony grows past its seats, the council's priorities suggest the next size up.</text>
       </li>
       <li>
         <heading>The mood bonus</heading>
@@ -180,7 +180,7 @@ Many colonies combine dining and recreation in one big room, so one set of decor
       </li>
       <li>
         <heading>Laying it out</heading>
-        <text>Put the rec room between the dining room and the bedrooms. Leave walking room between buildings, because every blocked tile costs space and impressiveness. Each recreation building adds 7 to the rec room score, against 12 per table for a dining room.</text>
+        <text>Put the rec room between the dining room and the bedrooms. Leave walking room between buildings, because every blocked tile costs space and impressiveness. Each recreation building adds 7 to the rec room score, against 12 per table for a dining room. With less than one recreation building for every three colonists, the council's priorities suggest a larger room.</text>
       </li>
     </sections>
     <keywords>
@@ -520,7 +520,7 @@ With Ideology, slaves can't do research.</text>
       </li>
       <li>
         <heading>Beds and monitors</heading>
-        <text>One medical bed makes the room a hospital. A prisoner bed breaks it, and a hospital that is also someone's bedroom counts as neither. Hospital bed rest effectiveness runs from 100% (normal) to 160% (legendary), and a linked vitals monitor at each bed brings tend quality to +17% and immunity gain to 1.13x, so link one to every bed.
+        <text>One medical bed makes the room a hospital. A prisoner bed breaks it, and a hospital that is also someone's bedroom counts as neither. Hospital bed rest effectiveness runs from 100% (normal) to 160% (legendary), and a linked vitals monitor at each bed brings tend quality to +17% and immunity gain to 1.13x, so link one to every bed. Once the colony can build a vitals monitor, hospital beds or sterile tile and the hospital lacks them, the council's priorities offer to upgrade the room where it stands.
 
 Keep a medicine shelf inside, and add a sculpture and a TV the patients can see from their beds: bedridden patients can only watch TV for recreation.</text>
       </li>
