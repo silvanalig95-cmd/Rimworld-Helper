@@ -437,7 +437,7 @@ Every colonist keeps a journal in their own voice: wishes granted and ignored, p
 names earned, friendships made and lost, lessons learned. Ordinary days get written down too: now and then, something
 that's really on their mind that day (a meal eaten off their knees, a cold night, a long talk with a friend, a
 corpse nobody has buried yet) becomes the evening's entry. Read them on the Journals page under History, or from a
-colonist's page in the Roster. The journals of the dead and departed are kept.
+colonist's page in the Roster. The journals of the dead and departed are kept (the thirty written in most lately).
 
 ### Ambition: council meetings
 About once a quadrum the council actually **meets**, and it's **announced first**: who called it, where (around
@@ -575,7 +575,8 @@ council granted, declared and decided, the closest friends and the worst enemies
 least, and a last word in the author's own voice. Past years can be reread from the Chronicle tab.
 
 ### Chronicle
-A running history of wishes, promises, petitions, meetings and ambitions.
+A running history of wishes, promises, petitions, meetings and ambitions. It keeps its last 300 lines, and as it
+fills up the everyday ones make way first, so the colony's losses, ambitions and life events are still there years later.
 
 ## Fits your world (medieval runs too)
 
@@ -1194,6 +1195,9 @@ clipboard" button) says most of what a bug report needs.
   constant, Harmony target and by-name lookup it uses). `-p:RimRef=1.7` builds against the 1.7 references. See
   "Checking a new game version" in [DESIGN.md](DESIGN.md).
 - `Tools/Tests/`: tests for the room rotation and mirroring math (`dotnet run --project Tools/Tests`).
+- `Source/ColonyCouncil/Lean/`: on which tick of the hour each periodic pass runs (`Sched.cs`, so none share a tick)
+  and how much history each part keeps in the save (`Caps.cs`). DESIGN.md lists them all under "Ticking" and
+  "Save size"; a new hourly pass gets its own tick there.
 - `Source/ColonyCouncil/UI/UiKit.cs`: the small interface kit every council page is drawn with (colors, spacing,
   page headers, cards, tags, meters, portraits). New pages should use it so they look like the rest.
 - `Tools/make_icons.py`: draws the interface icons into `Textures/ColonyCouncil/Icons/` and a contact sheet of
