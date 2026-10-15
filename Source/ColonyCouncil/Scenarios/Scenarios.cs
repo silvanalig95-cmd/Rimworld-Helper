@@ -777,15 +777,15 @@ namespace ColonyCouncil
     // ===================== Bonds from the start =====================
 
     /// <summary>
-    /// Two of the colonists start close: a couple (if they could be), old friends, or a master teaching an
-    /// apprentice their best craft.
+    /// Two of the colonists start close: a couple (if they could be), a married couple, old friends, or a master
+    /// teaching an apprentice their best craft.
     /// </summary>
     public class ScenPart_CouncilBond : ScenPart_Council
     {
-        /// <summary>lovers, friends or mentor.</summary>
+        /// <summary>lovers, spouses, friends or mentor.</summary>
         public string kind = "friends";
 
-        private static readonly string[] Kinds = { "lovers", "friends", "mentor" };
+        private static readonly string[] Kinds = { "lovers", "spouses", "friends", "mentor" };
 
         public override void Setup(ScenarioSetupContext ctx)
         {
@@ -793,7 +793,7 @@ namespace ColonyCouncil
             if (adults.Count < 2) return;
             Pawn a = null, b = null;
             string how = kind;
-            if (kind == "lovers")
+            if (kind == "lovers" || kind == "spouses")
             {
                 foreach (var x in adults.InRandomOrder())
                 {
@@ -804,7 +804,7 @@ namespace ColonyCouncil
                     a = x;
                     break;
                 }
-                if (a != null) a.relations.AddDirectRelation(PawnRelationDefOf.Lover, b);
+                if (a != null) a.relations.AddDirectRelation(kind == "spouses" ? PawnRelationDefOf.Spouse : PawnRelationDefOf.Lover, b);
                 else how = "friends";
             }
             SkillDef skill = null;

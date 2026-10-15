@@ -1,0 +1,363 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- More of Rimfolk's gentle starts (see Council_Scenarios.xml): a company of players whose cart gave out, a small
+       religious house, and a family homestead. Each is seeded with Rimfolk's scenario parts: a bond from the start,
+       visitors who will come on their own, a reputation, and now and then a secret. -->
+
+  <!-- ===================== The Players' Cart ===================== -->
+
+  <ScenarioDef ParentName="ScenarioBase">
+    <defName>Council_Scenario_PlayersCart</defName>
+    <label>The Players' Cart</label>
+    <description>You were a company of players, four of you and a cart, taking the same three plays from town to town. The axle broke in the middle of nowhere, the muffalo sat down and refused to move, and somebody said, only half joking, that this would do.\n\nIn a week or two, other wandering folk will hear there's an audience out here: a player, a fiddler, music on the wind. Later a fair or a talent scout may come looking. No one here means you harm, and no one is coming to attack you. The only drama will be the kind you make yourselves.</description>
+    <scenario>
+      <summary>Four players, one broken cart and a stubborn muffalo, making a home where the road ran out. (Rimfolk · gentle)</summary>
+      <playerFaction>
+        <def>PlayerFaction</def>
+        <factionDef>PlayerColony</factionDef>
+      </playerFaction>
+      <parts>
+        <li Class="ScenPart_ConfigPage_ConfigureStartingPawns">
+          <def>ConfigPage_ConfigureStartingPawns</def>
+          <pawnCount>4</pawnCount>
+          <pawnChoiceCount>8</pawnChoiceCount>
+        </li>
+        <li Class="ScenPart_PlayerPawnsArriveMethod">
+          <def>PlayerPawnsArriveMethod</def>
+          <method>Standing</method>
+        </li>
+
+        <li Class="ColonyCouncil.ScenPart_CouncilBond">
+          <def>Council_ScenBond</def>
+          <kind>friends</kind>
+        </li>
+        <li Class="ColonyCouncil.ScenPart_CouncilEvent">
+          <def>Council_ScenEvent</def>
+          <events>
+            <li>Council_Evt_Players</li>
+            <li>Council_Evt_Fiddler</li>
+            <li>Council_Evt_Music</li>
+          </events>
+          <days>8~12</days>
+          <hint>CC_Scen_Hint_Troupe</hint>
+        </li>
+        <li Class="ColonyCouncil.ScenPart_CouncilEvent">
+          <def>Council_ScenEvent</def>
+          <events>
+            <li>Council_Evt_TalentScout</li>
+            <li>Council_Evt_Celebrity</li>
+            <li>Council_Evt_HarvestFair</li>
+          </events>
+          <days>22~32</days>
+        </li>
+        <li Class="ColonyCouncil.ScenPart_CouncilWays">
+          <def>Council_ScenWays</def>
+          <openness>15</openness>
+          <toil>-15</toil>
+        </li>
+        <li Class="ColonyCouncil.ScenPart_CouncilSecret">
+          <def>Council_ScenSecret</def>
+          <secret>Council_Secret_StolenName</secret>
+          <count>1</count>
+        </li>
+
+        <li Class="ScenPart_StartingThing_Defined">
+          <def>StartingThing_Defined</def>
+          <thingDef>Silver</thingDef>
+          <count>400</count>
+        </li>
+        <li Class="ScenPart_StartingThing_Defined">
+          <def>StartingThing_Defined</def>
+          <thingDef>MealSurvivalPack</thingDef>
+          <count>20</count>
+        </li>
+        <li Class="ScenPart_StartingThing_Defined">
+          <def>StartingThing_Defined</def>
+          <thingDef>MedicineIndustrial</thingDef>
+          <count>8</count>
+        </li>
+        <li Class="ScenPart_StartingThing_Defined">
+          <def>StartingThing_Defined</def>
+          <thingDef>Beer</thingDef>
+          <count>20</count>
+        </li>
+        <li Class="ScenPart_StartingThing_Defined">
+          <def>StartingThing_Defined</def>
+          <thingDef>Cloth</thingDef>
+          <count>150</count>
+        </li>
+        <li Class="ScenPart_StartingThing_Defined">
+          <def>StartingThing_Defined</def>
+          <thingDef>ComponentIndustrial</thingDef>
+          <count>8</count>
+        </li>
+        <li Class="ScenPart_StartingThing_Defined">
+          <def>StartingThing_Defined</def>
+          <thingDef>Gun_Revolver</thingDef>
+        </li>
+        <li Class="ScenPart_StartingThing_Defined">
+          <def>StartingThing_Defined</def>
+          <thingDef>Bow_Short</thingDef>
+        </li>
+        <li Class="ScenPart_StartingAnimal">
+          <def>StartingAnimal</def>
+          <animalKind>Muffalo</animalKind>
+          <count>1</count>
+          <bondToRandomPlayerPawnChance>0.5</bondToRandomPlayerPawnChance>
+        </li>
+        <li Class="ScenPart_ScatterThingsNearPlayerStart">
+          <def>ScatterThingsNearPlayerStart</def>
+          <thingDef>WoodLog</thingDef>
+          <count>350</count>
+        </li>
+        <li Class="ScenPart_ScatterThingsNearPlayerStart">
+          <def>ScatterThingsNearPlayerStart</def>
+          <thingDef>Steel</thingDef>
+          <count>150</count>
+        </li>
+
+        <li Class="ScenPart_GameStartDialog">
+          <def>GameStartDialog</def>
+          <text>The cart lies on its side with one wheel in the air, and the costumes are drying on a bush. The muffalo has started eating the scenery.\n\nIt's a long way to the next town, and nobody is in a hurry to walk it. Somebody suggests building a stage first, and a house second. Somebody else suggests the other way round. The first argument of the new colony has begun.</text>
+          <closeSound>GameStartSting</closeSound>
+        </li>
+      </parts>
+    </scenario>
+  </ScenarioDef>
+
+  <!-- ===================== The Quiet House ===================== -->
+
+  <ScenarioDef ParentName="ScenarioBase">
+    <defName>Council_Scenario_QuietHouse</defName>
+    <label>The Quiet House</label>
+    <description>Three members of a small contemplative order, sent out to found a new house far from the old one: a place of work, prayer and open doors, where anyone who comes hungry is fed.\n\nThe eldest has a lifetime of learning to pass on, and the youngest has a great deal to learn. Before long pilgrims and wandering holy folk will find their way here, and later a scribe or a scholar, or mourners looking for a place to grieve. No one is coming to attack you. Not everyone in the order is quite what they seem, though.</description>
+    <scenario>
+      <summary>Three members of a quiet order founding a new house, with open doors and a secret among them. (Rimfolk · gentle)</summary>
+      <playerFaction>
+        <def>PlayerFaction</def>
+        <factionDef>PlayerColony</factionDef>
+      </playerFaction>
+      <parts>
+        <li Class="ScenPart_ConfigPage_ConfigureStartingPawns">
+          <def>ConfigPage_ConfigureStartingPawns</def>
+          <pawnCount>3</pawnCount>
+          <pawnChoiceCount>8</pawnChoiceCount>
+        </li>
+        <li Class="ScenPart_PlayerPawnsArriveMethod">
+          <def>PlayerPawnsArriveMethod</def>
+          <method>Standing</method>
+        </li>
+
+        <li Class="ColonyCouncil.ScenPart_CouncilBond">
+          <def>Council_ScenBond</def>
+          <kind>mentor</kind>
+        </li>
+        <li Class="ColonyCouncil.ScenPart_CouncilEvent">
+          <def>Council_ScenEvent</def>
+          <events>
+            <li>Council_Evt_Pilgrims</li>
+            <li>Council_Evt_SilentMonk</li>
+            <li>Council_Evt_SpiritSinger</li>
+          </events>
+          <days>10~14</days>
+          <hint>CC_Scen_Hint_Monastery</hint>
+        </li>
+        <li Class="ColonyCouncil.ScenPart_CouncilEvent">
+          <def>Council_ScenEvent</def>
+          <events>
+            <li>Council_Evt_Scribe</li>
+            <li>Council_Evt_Scholar</li>
+            <li>Council_Evt_Mourners</li>
+          </events>
+          <days>24~34</days>
+        </li>
+        <li Class="ColonyCouncil.ScenPart_CouncilWays">
+          <def>Council_ScenWays</def>
+          <mercy>15</mercy>
+          <generosity>15</generosity>
+          <tradition>15</tradition>
+        </li>
+        <li Class="ColonyCouncil.ScenPart_CouncilSecret">
+          <def>Council_ScenSecret</def>
+          <secret>Council_Secret3_BrokenVow</secret>
+          <count>1</count>
+        </li>
+
+        <li Class="ScenPart_StartingResearch">
+          <def>StartingResearch</def>
+          <project>Brewing</project>
+        </li>
+        <li Class="ScenPart_StartingThing_Defined">
+          <def>StartingThing_Defined</def>
+          <thingDef>Silver</thingDef>
+          <count>200</count>
+        </li>
+        <li Class="ScenPart_StartingThing_Defined">
+          <def>StartingThing_Defined</def>
+          <thingDef>MealSurvivalPack</thingDef>
+          <count>20</count>
+        </li>
+        <li Class="ScenPart_StartingThing_Defined">
+          <def>StartingThing_Defined</def>
+          <thingDef>MedicineHerbal</thingDef>
+          <count>15</count>
+        </li>
+        <li Class="ScenPart_StartingThing_Defined">
+          <def>StartingThing_Defined</def>
+          <thingDef>MedicineIndustrial</thingDef>
+          <count>5</count>
+        </li>
+        <li Class="ScenPart_StartingThing_Defined">
+          <def>StartingThing_Defined</def>
+          <thingDef>Cloth</thingDef>
+          <count>100</count>
+        </li>
+        <li Class="ScenPart_StartingThing_Defined">
+          <def>StartingThing_Defined</def>
+          <thingDef>Bow_Short</thingDef>
+        </li>
+        <li Class="ScenPart_StartingAnimal">
+          <def>StartingAnimal</def>
+          <animalKind>Goat</animalKind>
+          <count>2</count>
+          <bondToRandomPlayerPawnChance>0</bondToRandomPlayerPawnChance>
+        </li>
+        <li Class="ScenPart_ScatterThingsNearPlayerStart">
+          <def>ScatterThingsNearPlayerStart</def>
+          <thingDef>WoodLog</thingDef>
+          <count>500</count>
+        </li>
+        <li Class="ScenPart_ScatterThingsNearPlayerStart">
+          <def>ScatterThingsNearPlayerStart</def>
+          <thingDef>Steel</thingDef>
+          <count>150</count>
+        </li>
+
+        <li Class="ScenPart_GameStartDialog">
+          <def>GameStartDialog</def>
+          <text>The eldest of you kneels, presses a palm flat against the earth, and stays there a long moment. Then the three of you get up and start marking out where the walls will go.\n\nThe old house said to build the kitchen first, because a house that feeds people is a house people come to. There is an old prayer for laying the first stone. Nobody can remember all of it.</text>
+          <closeSound>GameStartSting</closeSound>
+        </li>
+      </parts>
+    </scenario>
+  </ScenarioDef>
+
+  <!-- ===================== The Homestead ===================== -->
+
+  <ScenarioDef ParentName="ScenarioBase">
+    <defName>Council_Scenario_Homestead</defName>
+    <label>The Homestead</label>
+    <description>A married couple and the old friend who came with them, two cows, a few chickens and a wagonload of seed potatoes. The deed to this land cost everything you had, and it's yours now: every rock in it.\n\nWithin a few weeks someone from home will come to see how you're getting on, or a letter will. Once the first harvest is in, a fair or a regular buyer may turn up. No one is coming to attack you. The seasons will be hard enough.</description>
+    <scenario>
+      <summary>A married couple, an old friend, some livestock and a field to clear: a family homestead. (Rimfolk · gentle)</summary>
+      <playerFaction>
+        <def>PlayerFaction</def>
+        <factionDef>PlayerColony</factionDef>
+      </playerFaction>
+      <parts>
+        <li Class="ScenPart_ConfigPage_ConfigureStartingPawns">
+          <def>ConfigPage_ConfigureStartingPawns</def>
+          <pawnCount>3</pawnCount>
+          <pawnChoiceCount>8</pawnChoiceCount>
+        </li>
+        <li Class="ScenPart_PlayerPawnsArriveMethod">
+          <def>PlayerPawnsArriveMethod</def>
+          <method>Standing</method>
+        </li>
+
+        <li Class="ColonyCouncil.ScenPart_CouncilBond">
+          <def>Council_ScenBond</def>
+          <kind>spouses</kind>
+        </li>
+        <li Class="ColonyCouncil.ScenPart_CouncilEvent">
+          <def>Council_ScenEvent</def>
+          <events>
+            <li>Council_Evt_FamilyVisit</li>
+            <li>Council_Evt_KinLetter</li>
+          </events>
+          <days>12~18</days>
+          <hint>CC_Scen_Hint_Family</hint>
+        </li>
+        <li Class="ColonyCouncil.ScenPart_CouncilEvent">
+          <def>Council_ScenEvent</def>
+          <events>
+            <li>Council_Evt_HarvestFair</li>
+            <li>Council_Evt_RegularBuyer</li>
+            <li>Council_Evt_BirdsReturn</li>
+          </events>
+          <days>26~36</days>
+        </li>
+        <li Class="ColonyCouncil.ScenPart_CouncilWays">
+          <def>Council_ScenWays</def>
+          <toil>15</toil>
+          <tradition>15</tradition>
+        </li>
+
+        <li Class="ScenPart_StartingThing_Defined">
+          <def>StartingThing_Defined</def>
+          <thingDef>Silver</thingDef>
+          <count>300</count>
+        </li>
+        <li Class="ScenPart_StartingThing_Defined">
+          <def>StartingThing_Defined</def>
+          <thingDef>MealSurvivalPack</thingDef>
+          <count>20</count>
+        </li>
+        <li Class="ScenPart_StartingThing_Defined">
+          <def>StartingThing_Defined</def>
+          <thingDef>MedicineIndustrial</thingDef>
+          <count>8</count>
+        </li>
+        <li Class="ScenPart_StartingThing_Defined">
+          <def>StartingThing_Defined</def>
+          <thingDef>RawPotatoes</thingDef>
+          <count>120</count>
+        </li>
+        <li Class="ScenPart_StartingThing_Defined">
+          <def>StartingThing_Defined</def>
+          <thingDef>Hay</thingDef>
+          <count>150</count>
+        </li>
+        <li Class="ScenPart_StartingThing_Defined">
+          <def>StartingThing_Defined</def>
+          <thingDef>ComponentIndustrial</thingDef>
+          <count>10</count>
+        </li>
+        <li Class="ScenPart_StartingThing_Defined">
+          <def>StartingThing_Defined</def>
+          <thingDef>Gun_BoltActionRifle</thingDef>
+        </li>
+        <li Class="ScenPart_StartingAnimal">
+          <def>StartingAnimal</def>
+          <animalKind>Cow</animalKind>
+          <count>2</count>
+          <bondToRandomPlayerPawnChance>0</bondToRandomPlayerPawnChance>
+        </li>
+        <li Class="ScenPart_StartingAnimal">
+          <def>StartingAnimal</def>
+          <animalKind>Chicken</animalKind>
+          <count>4</count>
+          <bondToRandomPlayerPawnChance>0</bondToRandomPlayerPawnChance>
+        </li>
+        <li Class="ScenPart_ScatterThingsNearPlayerStart">
+          <def>ScatterThingsNearPlayerStart</def>
+          <thingDef>WoodLog</thingDef>
+          <count>600</count>
+        </li>
+        <li Class="ScenPart_ScatterThingsNearPlayerStart">
+          <def>ScatterThingsNearPlayerStart</def>
+          <thingDef>Steel</thingDef>
+          <count>250</count>
+        </li>
+
+        <li Class="ScenPart_GameStartDialog">
+          <def>GameStartDialog</def>
+          <text>The wagon creaks to a stop at the boundary stone. The cows look around, unimpressed. The chickens are already in the seed sacks.\n\nThere's a field to clear, a house to raise and a well to dig, and the potatoes have to be in the ground before they sprout in the sack. Somebody has to start somewhere.</text>
+          <closeSound>GameStartSting</closeSound>
+        </li>
+      </parts>
+    </scenario>
+  </ScenarioDef>
+
+</Defs>
