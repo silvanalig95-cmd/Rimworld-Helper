@@ -127,6 +127,7 @@
         </coming>
         <remembered>
           <li>[lost] The old letters went to {FACTION}'s country, and nobody has written back.</li>
+          <li>[lost] The colony sent the old letters off with a trader bound for {FACTION}. No word has come back yet.</li>
         </remembered>
         <endingTitles>
           <li>[thanked] An answer from {PLACE}</li>
@@ -441,6 +442,7 @@
         </coming>
         <remembered>
           <li>[lost] The plant from the stranger's seeds still grows at the colony. {X_nameDef} never came back for it.</li>
+          <li>[lost] Every spring the stranger's plant comes up again at the colony, and {X_nameDef} still hasn't come to see it.</li>
         </remembered>
         <endingTitles>
           <li>[harvest] The stranger's garden</li>

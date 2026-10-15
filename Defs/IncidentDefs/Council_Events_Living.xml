@@ -78,6 +78,8 @@
         <journal>Council_Journal_Evt_LoversKin</journal>
         <titles>
           <li>{A_nameDef}'s {RELATION} comes asking</li>
+          <li>Family at the gate</li>
+          <li>{X_nameDef} has found them</li>
         </titles>
         <texts>
           <li>{X_nameDef}, {A_nameDef}'s {RELATION}, has walked from {FACTION}'s lands and is waiting at the gate. The family worked out a while ago where {A_nameDef} and {B_nameDef} went when they ran. {X_nameDef} came alone, without a weapon, and asks only to talk.</li>
@@ -361,6 +363,8 @@
         <journal>Council_Journal_Evt_Renown</journal>
         <titles>
           <li>Looking for {TALE}</li>
+          <li>Someone asks for {A_nameDef}</li>
+          <li>Word has spread</li>
         </titles>
         <texts>
           <li>[heal,lowtech] {X_nameDef} of {FACTION} walked two days with an arm that was set badly last winter and never healed straight. On the road, {X_nameDef} heard about {A_nameDef}, the one people call {TALE}, and came to ask {A_objective} to look at it.</li>
@@ -421,6 +425,8 @@
         <journal>Council_Journal_Evt_VendettaBand</journal>
         <titles>
           <li>{ENEMY} nearby</li>
+          <li>{ENEMY} camped close by</li>
+          <li>Old scores</li>
         </titles>
         <texts>
           <li>[killed,lowtech] Hunters came back with news: a small band of {ENEMY} has made camp a few hours' walk from the colony, resting on the way somewhere else. {A_nameDef} swore to make {ENEMY} pay for {DEAD}, and hasn't said a word since hearing it.\n\nThe colony could draw them out to fight here, on its own ground, or let them pass.</li>
@@ -549,6 +555,8 @@
         <journal>Council_Journal_Evt_KindredSpirit</journal>
         <titles>
           <li>A kindred spirit</li>
+          <li>A long talk at supper</li>
+          <li>Someone who has done it</li>
         </titles>
         <texts>
           <li>{X_nameDef} of {FACTION} stopped at the colony for the night, and over supper {A_nameDef} mentioned wanting to {GOAL}. {X_nameDef} set out to do the same thing years ago, and did it.\n\nThe two of them talked until late. {A_nameDef} came away with a head full of advice and a clearer idea of how to go about it.</li>
@@ -579,6 +587,8 @@
         <answerDays>1</answerDays>
         <titles>
           <li>A caravan to {PLACE}</li>
+          <li>Room on the wagons</li>
+          <li>A long way to market</li>
         </titles>
         <texts>
           <li>[lowtech] A trading caravan of {FACTION} has stopped on its way to the market at {PLACE}, a long way off. The caravan master has room on the wagons and an offer: send {TALE} along, and they'll trade it at {PLACE} for {THING}, which the colony is running short of.\n\nThey'll be back this way in a week or so.</li>
@@ -639,6 +649,8 @@
         <answerDays>1</answerDays>
         <titles>
           <li>The harvest fair at {PLACE}</li>
+          <li>An invitation to the fair</li>
+          <li>Fair days at {PLACE}</li>
         </titles>
         <texts>
           <li>[lowtech] {FACTION} hold their harvest fair at {PLACE} this week: stalls, music, a judging for the best of the harvest, and buyers from three valleys. Their crier came by to invite the colony.\n\nThe colony could send a cart of {TALE}. {A_nameDef}, who grew most of it, thinks the best of it might take a prize.</li>
@@ -705,6 +717,8 @@
         <journal>Council_Journal_Evt_MidwinterGuest</journal>
         <titles>
           <li>A traveler at dusk</li>
+          <li>A knock in the cold</li>
+          <li>A guest for the night</li>
         </titles>
         <texts>
           <li>[lowtech] At dusk a lone traveler came in out of the {PLACE}, white with frost, and knocked at the gate. {X_nameDef} of {FACTION} is on the way home and won't make it before dark. It's {TALE} outside and getting colder.\n\n{X_nameDef} asks for a place near the fire for the night, nothing more.</li>
@@ -786,6 +800,8 @@
         <notable>false</notable>
         <titles>
           <li>The thaw</li>
+          <li>Mud and meltwater</li>
+          <li>The snow lets go</li>
         </titles>
         <texts>
           <li>[first] The snow is going at last. It's the colony's first spring here in the {PLACE}, and the ground under the drifts is turning soft and muddy. People keep finding reasons to work outside.\n\nIn the melt, {A_nameDef} found what someone lost on the road over the winter: {TALE}.</li>

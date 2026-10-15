@@ -25,6 +25,8 @@
         <journal>Council_Journal_Evt_GoodNews</journal>
         <titles>
           <li>A namesake</li>
+          <li>A child named for {A_nameDef}</li>
+          <li>News of a birth</li>
         </titles>
         <texts>
           <li>[lowtech] A traveler brought {A_nameDef} word from the people {A_pronoun} left behind: a baby was born there this spring, and they named the child after {A_objective}. {A_nameDef} made the traveler say it twice.</li>
@@ -58,6 +60,8 @@
         <journal>Council_Journal_Evt_GoodNews</journal>
         <titles>
           <li>A wedding back home</li>
+          <li>An invitation, much traveled</li>
+          <li>News of a wedding</li>
         </titles>
         <texts>
           <li>[lowtech] A peddler brought {A_nameDef} a wedding invitation, folded small and much traveled. The wedding was two seasons ago. Someone {A_nameDef} grew up with married, and wanted {A_objective} there.</li>
@@ -89,6 +93,8 @@
         <notable>false</notable>
         <titles>
           <li>Work remembered</li>
+          <li>{A_nameDef}'s old work</li>
+          <li>A maker's mark</li>
         </titles>
         <texts>
           <li>[Crafting] A trader passing through had a knife {A_nameDef} made years ago, before the colony, and recognized the maker's mark. The trader says people on the road still ask where to get another one like it.</li>
