@@ -29,14 +29,14 @@ namespace ColonyCouncil
 
         /// <summary>
         /// Stories under way at once: one (rare), two (normal) or three (frequent), one more from nine colonists, and
-        /// never more than one for every two people.
+        /// never more than one for every two people (rounded up).
         /// </summary>
         public static int MaxActive(int frequency, int colonists)
         {
             if (frequency <= Off || colonists <= 0) return 0;
             int cap = frequency == Rare ? 1 : frequency == Normal ? 2 : 3;
             if (colonists >= 9) cap++;
-            return Math.Max(1, Math.Min(cap, colonists / 2));
+            return Math.Max(1, Math.Min(cap, (colonists + 1) / 2));
         }
 
         /// <summary>The fewest days between two new stories: two fifths of the average wait.</summary>

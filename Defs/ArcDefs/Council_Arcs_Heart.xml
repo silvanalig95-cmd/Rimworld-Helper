@@ -1,0 +1,803 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- Personal stories of the heart: a long grief, a secret told, a fear faced, the recurring dream, a grudge laid down,
+       within reach. See Council_Arcs_Home.xml for how a story is written. -->
+
+  <!-- ===================================================================================================== -->
+  <!-- A long grief: someone close died lately; time; remembering; small things again; it eases.            -->
+  <!-- ===================================================================================================== -->
+
+  <ColonyCouncil.ArcDef>
+    <defName>Council_Arc_LongGrief</defName>
+    <label>a long grief</label>
+    <summary>After a death, someone who loved the dead grieves: days of the empty place, then remembering out loud or in a dream, then small good things again, until it eases.</summary>
+    <workerClass>ColonyCouncil.ArcWorker_Grief</workerClass>
+    <who><notTrait><li>Psychopath</li></notTrait></who>
+    <children>true</children>
+    <memories>
+      <li>KnowColonistDied</li>
+      <li>PawnWithGoodOpinionDied</li>
+      <li>WitnessedDeathFamily</li>
+      <li>MySonDied</li>
+      <li>MyDaughterDied</li>
+      <li>MyHusbandDied</li>
+      <li>MyWifeDied</li>
+      <li>MyFianceDied</li>
+      <li>MyFianceeDied</li>
+      <li>MyLoverDied</li>
+      <li>MyBrotherDied</li>
+      <li>MySisterDied</li>
+      <li>MyFatherDied</li>
+      <li>MyMotherDied</li>
+      <li>MyKinDied</li>
+    </memories>
+    <memoryDays>15</memoryDays>
+    <maxDays>70</maxDays>
+    <stages>
+      <li>
+        <label>the empty place</label>
+        <waiting>Next: time. Grief doesn't hurry.</waiting>
+        <journal>
+          <plain>
+            <li>{LOST}'s things are still where {LOST} left them. I can't bring myself to move them.</li>
+            <li>Set out a bowl for {LOST} at supper without thinking. Put it back before anyone saw.</li>
+            <li>Everything here is the same, except {LOST} isn't in it.</li>
+            <li>[night] Couldn't sleep. Kept listening for {LOST}'s voice in the next room.</li>
+            <li>[child] Everyone keeps being nice to me. I want {LOST} back.</li>
+          </plain>
+          <warm><li>I miss {LOST}. I'm writing it down because I can't say it out loud yet.</li></warm>
+          <blunt><li>{LOST} is dead. I'm still here. Getting up anyway.</li></blunt>
+          <cheerful><li>I keep remembering the jokes {LOST} used to make. They don't make me laugh yet. They will.</li></cheerful>
+          <gloomy><li>It doesn't feel real. {LOST} was here, and now there's a space the shape of {LOST}.</li></gloomy>
+          <cold><li>{LOST} is gone. I am functioning. I would prefer not to look at that more closely.</li></cold>
+        </journal>
+        <chronicle>
+          <li>{PAWN_nameDef} is grieving {LOST}.</li>
+          <li>{PAWN_nameDef} has taken the loss of {LOST} hard.</li>
+        </chronicle>
+        <gate><kind>Time</kind><days>4</days><minDays>4</minDays></gate>
+      </li>
+      <li>
+        <label>remembering</label>
+        <waiting>Next: {PAWN_nameDef} talks about {LOST} with someone, or dreams of {LOST}.</waiting>
+        <journal>
+          <plain>
+            <li>Started to tell a story about {LOST} today and got halfway before I had to stop.</li>
+            <li>I'd like to talk about {LOST} with someone who knew {LOST}. {OTHER_nameDef}, maybe.</li>
+            <li>Nearly dreamt of {LOST} last night. I woke before I could say anything.</li>
+          </plain>
+          <warm><li>{LOST} would hate all this moping. I can hear it. I'm trying.</li></warm>
+          <blunt><li>Need to talk about {LOST}. Not yet. Soon.</li></blunt>
+          <cheerful><li>Found something {LOST} carved into the doorframe and laughed out loud before I could stop myself.</li></cheerful>
+          <gloomy><li>Some hours now I forget, and then I remember all over again.</li></gloomy>
+          <cold><li>I have started to remember {LOST} on purpose, in order. It is better than being ambushed by it.</li></cold>
+        </journal>
+        <chronicle>
+          <li>{PAWN_nameDef} has started to speak of {LOST} again.</li>
+        </chronicle>
+        <gate>
+          <kind>Talk</kind>
+          <talk>Council_Arc_Talk_Remember</talk>
+          <anyone>true</anyone>
+          <minDays>1</minDays>
+          <quietAfterDays>7</quietAfterDays>
+          <timeoutDays>20</timeoutDays>
+          <timeoutPasses>true</timeoutPasses>
+          <or>
+            <li><kind>Dream</kind><minDays>1</minDays></li>
+          </or>
+        </gate>
+      </li>
+      <li>
+        <label>small things again</label>
+        <waiting>Next: a run of better days.</waiting>
+        <journal>
+          <plain>
+            <li>Ate something good today and noticed it was good. A small thing, but I hadn't noticed anything in a while.</li>
+            <li>Worked all morning without thinking of {LOST} once, felt bad about it, and then less bad.</li>
+            <li>Talked about {LOST} until late. We laughed more than we cried. I didn't expect that.</li>
+          </plain>
+          <warm><li>Someone remembered things about {LOST} that I'd forgotten. I wrote them down so I won't again.</li></warm>
+          <blunt><li>Better today. Not good. Better.</li></blunt>
+          <cheerful><li>The sun came out and I stood in it. {LOST} would have done the same.</li></cheerful>
+          <gloomy><li>Some days it's lighter. Today was one. Tomorrow might not be.</li></gloomy>
+          <cold><li>The loss of {LOST} intrudes less on the working day. Progress, of a kind.</li></cold>
+        </journal>
+        <otherJournal>
+          <plain><li>{OTHER_nameDef} and I talked about {LOST} today. I think it helped us both.</li></plain>
+        </otherJournal>
+        <chronicle>
+          <li>{PAWN_nameDef} has begun to notice small good things again.</li>
+        </chronicle>
+        <gate><kind>Hold</kind><hold>Mood</hold><value>0.45</value><hours>72</hours><minDays>4</minDays><timeoutDays>35</timeoutDays></gate>
+      </li>
+      <li>
+        <label>eased</label>
+        <journal>
+          <plain>
+            <li>I can say {LOST}'s name now without my throat closing. I said it at supper today, on purpose.</li>
+            <li>Went to sit where we used to sit, {LOST} and me. Told {LOST} about the colony. I'll go again, but not every day.</li>
+            <li>I still miss {LOST}. I can get through a day now, though, and most of the evening.</li>
+          </plain>
+          <warm><li>{LOST} would be glad I'm all right. I am all right. Mostly.</li></warm>
+          <blunt><li>It's easier now. That's all.</li></blunt>
+          <cheerful><li>Told one of {LOST}'s stories at supper and everyone laughed. {LOST} would have loved that.</li></cheerful>
+          <gloomy><li>The grief's eased. I'm not sure I wanted it to. It felt like the last of {LOST}.</li></gloomy>
+          <cold><li>The worst of it is over. I can work. I can sleep. I remember {LOST} accurately, and that will do.</li></cold>
+        </journal>
+        <chronicle>
+          <li>{PAWN_nameDef}'s grief for {LOST} has eased.</li>
+          <li>{PAWN_nameDef} can speak of {LOST} again without the words catching.</li>
+        </chronicle>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><thought>Council_Arc_GriefEased</thought></li>
+          <li Class="ColonyCouncil.ArcEffect_Strain"><amount>-12</amount></li>
+          <li Class="ColonyCouncil.ArcEffect_Quirk"><quirk>Council_Quirk_ExtraPlace</quirk><chance>0.35</chance></li>
+        </effects>
+      </li>
+    </stages>
+    <fizzle>
+      <plain>
+        <li>[timeout] It hasn't eased. I've just got used to carrying it.</li>
+        <li>[otherdead] Now {OTHER_nameDef} too. I don't know where to put this one.</li>
+        <li>[otherleft] {OTHER_nameDef} has gone, and {OTHER_nameDef} was the one I talked to about {LOST}.</li>
+        <li>Some griefs don't ease. This one hasn't, yet.</li>
+      </plain>
+    </fizzle>
+    <fizzleChronicle>
+      <li>[otherdead] {PAWN_nameDef}, still grieving {LOST}, has lost {OTHER_nameDef} too.</li>
+      <li>{PAWN_nameDef} still grieves {LOST}.</li>
+    </fizzleChronicle>
+    <eulogy>
+      <plain>
+        <li>{OTHER_nameDef} never stopped missing {LOST}. I'd like to think they're together now.</li>
+        <li>{OTHER_nameDef} grieved {LOST} right up to the end. Now I'm grieving both of them.</li>
+      </plain>
+    </eulogy>
+  </ColonyCouncil.ArcDef>
+
+  <!-- ===================================================================================================== -->
+  <!-- A secret told: the weight of it; telling a friend; the courage; said out loud to everyone.           -->
+  <!-- ===================================================================================================== -->
+
+  <ColonyCouncil.ArcDef>
+    <defName>Council_Arc_SecretTold</defName>
+    <label>a secret told</label>
+    <summary>Someone carrying a secret tells a close friend first, finds the nerve over a few steady days, and then tells everyone, with whatever follows when a secret comes out.</summary>
+    <workerClass>ColonyCouncil.ArcWorker_Secret</workerClass>
+    <maxDays>70</maxDays>
+    <stages>
+      <li>
+        <label>the weight of it</label>
+        <waiting>Next: {PAWN_nameDef} decides whom to tell first.</waiting>
+        <journal>
+          <plain>
+            <li>There's something I've never told anyone here. Some days it sits lighter than others. Not today.</li>
+            <li>Somebody asked about my life before the colony. I changed the subject. I'm good at changing the subject.</li>
+            <li>[goodsecret] I did something once that I've never told anyone about. Not because I'm ashamed. Because it wasn't about me.</li>
+          </plain>
+          <warm><li>I've been carrying something a long time. I'd like to set it down, if I could find the courage.</li></warm>
+          <blunt><li>Got a secret. Everyone does. Mine's heavier.</li></blunt>
+          <cheerful><li>Everyone here thinks they know me! They mostly do. Mostly.</li></cheerful>
+          <gloomy><li>If they knew what I've kept from them, they'd look at me differently. I'm sure of it.</li></gloomy>
+          <cold><li>I keep one matter private. It has served me. I am less sure it still does.</li></cold>
+        </journal>
+        <chronicle>
+          <li>{PAWN_nameDef} has something on {PAWN_possessive} mind and won't say what.</li>
+          <li>{PAWN_nameDef} has been quiet lately, as if weighing something.</li>
+        </chronicle>
+        <gate><kind>Time</kind><days>3</days><minDays>3</minDays></gate>
+      </li>
+      <li>
+        <label>telling a friend</label>
+        <waiting>Next: {PAWN_nameDef} confides in {OTHER_nameDef}.</waiting>
+        <journal>
+          <plain>
+            <li>I'm going to tell {OTHER_nameDef}. Just {OTHER_nameDef}, to start. If I can say it to one person, maybe I can say it to the rest.</li>
+            <li>Walked past {OTHER_nameDef} three times today, meaning to talk, and didn't.</li>
+          </plain>
+          <warm><li>{OTHER_nameDef} is the one person here I'd trust with it. I'll tell {OTHER_objective} soon.</li></warm>
+          <blunt><li>Telling {OTHER_nameDef}. Tonight. Probably.</li></blunt>
+          <cheerful><li>I've decided to tell {OTHER_nameDef} my big secret! Now I just have to do it.</li></cheerful>
+          <gloomy><li>If I tell {OTHER_nameDef} and {OTHER_nameDef} turns away, I'll know what the rest will do.</li></gloomy>
+          <cold><li>{OTHER_nameDef} is the safest first listener. I'll judge the reaction there.</li></cold>
+        </journal>
+        <chronicle>
+          <li>{PAWN_nameDef} has been trying to find a moment alone with {OTHER_nameDef}.</li>
+        </chronicle>
+        <gate>
+          <kind>Talk</kind>
+          <talk>Council_Arc_Talk_Confide</talk>
+          <minDays>1</minDays>
+          <quietAfterDays>8</quietAfterDays>
+          <timeoutDays>20</timeoutDays>
+        </gate>
+      </li>
+      <li>
+        <label>finding the courage</label>
+        <waiting>Next: a few steady days, and the nerve to tell everyone.</waiting>
+        <journal>
+          <plain>
+            <li>Told {OTHER_nameDef}. All of it. {OTHER_nameDef} listened to the end and then asked if that was all. I laughed until I nearly cried.</li>
+            <li>{OTHER_nameDef} knows now. {OTHER_nameDef} thinks I should tell the others. I think {OTHER_pronoun} might be right.</li>
+          </plain>
+          <warm><li>{OTHER_nameDef} held my hand while I told it. I didn't know I needed that.</li></warm>
+          <blunt><li>Told {OTHER_nameDef}. Didn't fall apart. Next, everyone.</li></blunt>
+          <cheerful><li>I told {OTHER_nameDef} and the sky didn't fall. Next, the whole colony. Maybe!</li></cheerful>
+          <gloomy><li>{OTHER_nameDef} took it well. The others won't all be {OTHER_nameDef}.</li></gloomy>
+          <cold><li>The first disclosure went acceptably. The second will be harder to control.</li></cold>
+        </journal>
+        <otherJournal>
+          <plain>
+            <li>{OTHER_nameDef} told me something tonight that I'll keep for as long as {OTHER_pronoun} needs me to.</li>
+            <li>I know {OTHER_nameDef}'s secret now. It doesn't change a thing about how I see {OTHER_objective}.</li>
+          </plain>
+        </otherJournal>
+        <chronicle>
+          <li>{PAWN_nameDef} confided in {OTHER_nameDef}.</li>
+        </chronicle>
+        <effects>
+          <li Class="ColonyCouncil.ArcEffect_Confide" />
+        </effects>
+        <gate><kind>Hold</kind><hold>Mood</hold><value>0.4</value><hours>48</hours><minDays>3</minDays><timeoutDays>25</timeoutDays></gate>
+      </li>
+      <li>
+        <label>said out loud</label>
+        <journal>
+          <plain>
+            <li>I told them. All of them, at supper. Then I sat down and finished my food, because what else do you do.</li>
+            <li>It's out, and I'm the one who said it. Whatever they think, at least they heard it from me.</li>
+          </plain>
+          <warm><li>{OTHER_nameDef} sat next to me while I told them. I'll never forget that.</li></warm>
+          <blunt><li>Said it. Done. They can think what they like.</li></blunt>
+          <cheerful><li>Well, that's out. I feel lighter than I have in years!</li></cheerful>
+          <gloomy><li>They know now. I don't know yet what it will cost me. I'm glad anyway.</li></gloomy>
+          <cold><li>I have made the disclosure. The consequences are no longer hypothetical, which I prefer.</li></cold>
+        </journal>
+        <otherJournal>
+          <plain><li>{OTHER_nameDef} told everyone today. I've never seen anyone so frightened or so brave.</li></plain>
+        </otherJournal>
+        <chronicle>
+          <li>{PAWN_nameDef} told the colony {PAWN_possessive} secret, in {PAWN_possessive} own words.</li>
+          <li>{PAWN_nameDef} stopped keeping {PAWN_possessive} secret, with {OTHER_nameDef} beside {PAWN_objective}.</li>
+        </chronicle>
+        <effects>
+          <li Class="ColonyCouncil.ArcEffect_Confess" />
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><thought>Council_Arc_Unburdened</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><thought>Council_Arc_StoodByMe</thought></li>
+          <li Class="ColonyCouncil.ArcEffect_Strain"><amount>-10</amount></li>
+        </effects>
+      </li>
+    </stages>
+    <fizzle>
+      <plain>
+        <li>[cameout] It came out before I could say it myself. That's the part I mind most.</li>
+        <li>[timeout] I've decided to keep it to myself after all. Some things stay buried.</li>
+        <li>[otherdead] {OTHER_nameDef} was the only one who knew. Now it's mine alone again.</li>
+        <li>[otherleft] {OTHER_nameDef} has gone. I'm not ready to tell anyone else.</li>
+        <li>Not yet. Maybe never. I'll carry it a while longer.</li>
+      </plain>
+    </fizzle>
+    <fizzleChronicle>
+      <li>[cameout] {PAWN_nameDef}'s secret came out before {PAWN_nameDef} was ready to tell it.</li>
+      <li>{PAWN_nameDef} has decided to keep {PAWN_possessive} secret a while longer.</li>
+    </fizzleChronicle>
+    <eulogy>
+      <plain>
+        <li>{OTHER_nameDef} was going to tell everyone, in {OTHER_possessive} own time. {OTHER_nameDef} ran out of time.</li>
+        <li>I'm the only one who knows what {OTHER_nameDef} was carrying. {OTHER_nameDef} was nearly ready to put it down.</li>
+      </plain>
+    </eulogy>
+  </ColonyCouncil.ArcDef>
+
+  <!-- ===================================================================================================== -->
+  <!-- A fear faced: an enemy who got away, a dread, or plain fear; getting ready; a fight come through.     -->
+  <!-- ===================================================================================================== -->
+
+  <ColonyCouncil.ArcDef>
+    <defName>Council_Arc_FearFaced</defName>
+    <label>a fear faced</label>
+    <summary>Someone hurt by an enemy who got away, or haunted by a dread, trains until they're ready and stands firm in the next fight at home (or sees the enemy brought down).</summary>
+    <workerClass>ColonyCouncil.ArcWorker_Fear</workerClass>
+    <who><notTrait><li>Psychopath</li></notTrait></who>
+    <needsOther>false</needsOther>
+    <quirks>
+      <li>Council_Quirk_DarkFear</li>
+      <li>Council_Quirk_StormDread</li>
+      <li>Council_Quirk_EclipseDread</li>
+    </quirks>
+    <maxDays>80</maxDays>
+    <stages>
+      <li>
+        <label>the fear</label>
+        <waiting>Next: a few days for {PAWN_nameDef} to steady.</waiting>
+        <journal>
+          <plain>
+            <li>[nemesis] I still see {NAME} when I close my eyes. The one who put me in the dirt and walked away.</li>
+            <li>[nemesis] Every raid, I look for {NAME}'s face first. I don't know what I'd do if I saw it.</li>
+            <li>[quirk] They're right that it makes no sense. It doesn't help.</li>
+            <li>[fear] My hands shake when I think about the next fight. I keep them in my pockets.</li>
+            <li>I'm tired of being afraid. I'm also afraid.</li>
+          </plain>
+          <warm><li>I don't want to be afraid any more. I want to be someone the others can lean on.</li></warm>
+          <blunt>
+            <li>[nemesis] {NAME}. If I see {NAME} again, I'm not running.</li>
+            <li>Scared. Sick of being scared.</li>
+          </blunt>
+          <cheerful><li>Being afraid is very boring. I'd like to stop now, please.</li></cheerful>
+          <gloomy><li>The fear has moved in. It sleeps where I sleep.</li></gloomy>
+          <cold>
+            <li>[nemesis] {NAME} took something from me in that fight. I intend to take it back.</li>
+            <li>Fear is a flaw. I am correcting it.</li>
+          </cold>
+        </journal>
+        <chronicle>
+          <li>[nemesis] {PAWN_nameDef} hasn't been the same since {NAME} left {PAWN_objective} in the dirt.</li>
+          <li>{PAWN_nameDef} is trying not to let fear rule {PAWN_objective}.</li>
+        </chronicle>
+        <gate><kind>Time</kind><days>3</days><minDays>3</minDays></gate>
+      </li>
+      <li>
+        <label>getting ready</label>
+        <waiting>Next: {PAWN_nameDef} trains ({SKILL}).</waiting>
+        <journal>
+          <plain>
+            <li>Practiced until my arms ached. If the fear comes, at least my hands will know what to do.</li>
+            <li>Went out to the edge of the fields at dusk and stood there until the fear passed. It took a while. It passed.</li>
+          </plain>
+          <warm><li>I'm getting ready, for the others as much as for me.</li></warm>
+          <blunt><li>Training. Every day.</li></blunt>
+          <cheerful><li>I've been practicing! The target is losing badly.</li></cheerful>
+          <gloomy><li>All the practice in the world won't help if I freeze.</li></gloomy>
+          <cold><li>Preparation is the cure for fear. I am preparing.</li></cold>
+        </journal>
+        <chronicle>
+          <li>{PAWN_nameDef} has been training hard.</li>
+        </chronicle>
+        <gate>
+          <kind>Practice</kind>
+          <amount>2000</amount>
+          <minDays>2</minDays>
+          <timeoutDays>20</timeoutDays>
+          <timeoutPasses>true</timeoutPasses>
+          <or>
+            <li><kind>Skill</kind><gain>1</gain><minDays>2</minDays></li>
+          </or>
+        </gate>
+      </li>
+      <li>
+        <label>standing firm</label>
+        <waiting>Next: a fight at home, and {PAWN_nameDef} standing firm in it.</waiting>
+        <journal>
+          <plain>
+            <li>I'm as ready as I'll be. Next time the alarm goes, I'll be on the wall, not under the bed.</li>
+            <li>[nemesis] Let {NAME} come back. I'll be waiting this time.</li>
+          </plain>
+          <warm><li>Whatever comes next, I'll face it with the others. That's the part that helps.</li></warm>
+          <blunt><li>Ready. Let them come.</li></blunt>
+          <cheerful><li>Ready for anything! Well, most things.</li></cheerful>
+          <gloomy><li>I'll stand my ground next time, or I'll know I can't. Either way I'll know.</li></gloomy>
+          <cold><li>The next engagement will settle the matter.</li></cold>
+        </journal>
+        <chronicle>
+          <li>{PAWN_nameDef} says {PAWN_pronoun} won't run the next time the enemy comes.</li>
+        </chronicle>
+        <gate>
+          <kind>Battle</kind>
+          <minDays>1</minDays>
+          <timeoutDays>45</timeoutDays>
+          <or>
+            <li><kind>Custom</kind><minDays>1</minDays></li>
+          </or>
+        </gate>
+      </li>
+      <li>
+        <label>unafraid</label>
+        <journal>
+          <plain>
+            <li>The fight came, and I stood. My hands shook the whole time. I stood anyway.</li>
+            <li>[nemesis] {NAME} doesn't own me any more. Somewhere in the fighting, that stopped.</li>
+            <li>[quirk] I've stopped being afraid of it. I can't explain it, and I'm not going to try.</li>
+          </plain>
+          <warm><li>I held my place. The others saw. I think it helped them too.</li></warm>
+          <blunt><li>Didn't run. Done being afraid.</li></blunt>
+          <cheerful><li>I was brave. Actually brave, not pretending!</li></cheerful>
+          <gloomy><li>I faced it. I'll be afraid again someday, but not of this.</li></gloomy>
+          <cold><li>The fear has been tested and found wanting.</li></cold>
+        </journal>
+        <chronicle>
+          <li>{PAWN_nameDef} faced what {PAWN_pronoun} feared, and came through it.</li>
+          <li>[nemesis] {PAWN_nameDef} has stopped being afraid of {NAME}.</li>
+        </chronicle>
+        <effects>
+          <li Class="ColonyCouncil.ArcEffect_RemoveQuirk">
+            <quirks>
+              <li>Council_Quirk_DarkFear</li>
+              <li>Council_Quirk_StormDread</li>
+              <li>Council_Quirk_EclipseDread</li>
+            </quirks>
+          </li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><thought>Council_Arc_FacedIt</thought></li>
+          <li Class="ColonyCouncil.ArcEffect_Strain"><amount>-8</amount></li>
+          <li Class="ColonyCouncil.ArcEffect_Epithet"><epithet>Council_Epithet_Unafraid</epithet><chance>0.5</chance></li>
+        </effects>
+      </li>
+    </stages>
+    <fizzle>
+      <plain>
+        <li>[timeout] The fight I was ready for never came. The fear's still here, waiting with me.</li>
+        <li>The fear won this time. Next time, maybe.</li>
+      </plain>
+    </fizzle>
+    <fizzleChronicle>
+      <li>[timeout] {PAWN_nameDef} was ready for a fight that never came.</li>
+      <li>{PAWN_nameDef} is still afraid.</li>
+    </fizzleChronicle>
+    <eulogy>
+      <plain>
+        <li>{OTHER_nameDef} was afraid, and went out anyway. I'll remember that before I remember anything else.</li>
+        <li>{OTHER_nameDef} was getting ready to face it. {OTHER_nameDef} never got the chance to find out {OTHER_pronoun} could.</li>
+      </plain>
+    </eulogy>
+  </ColonyCouncil.ArcDef>
+
+  <!-- ===================================================================================================== -->
+  <!-- The recurring dream: the same dream; telling someone; making something of it; it lets go.            -->
+  <!-- ===================================================================================================== -->
+
+  <ColonyCouncil.ArcDef>
+    <defName>Council_Arc_RecurringDream</defName>
+    <label>the recurring dream</label>
+    <summary>The same strange dream keeps coming back. Told to someone, it gives an idea: make it real with one's own hands, and see if it lets go.</summary>
+    <workerClass>ColonyCouncil.ArcWorker_Dreamer</workerClass>
+    <weight>0.8</weight>
+    <children>true</children>
+    <needsOther>false</needsOther>
+    <skills>
+      <li>Artistic</li>
+      <li>Crafting</li>
+      <li>Construction</li>
+      <li>Plants</li>
+    </skills>
+    <maxDays>60</maxDays>
+    <stages>
+      <li>
+        <label>the same dream</label>
+        <waiting>Next: the dream comes again.</waiting>
+        <journal>
+          <plain>
+            <li>[strange] Dreamt of the house with no doors again. I know every room of it now.</li>
+            <li>[nightmare] The same dream, again. The dark water, the voice under it. I woke with my heart going.</li>
+            <li>[lostdream] Dreamt again of the place I grew up, only everyone was missing. Same as last time. Same as the time before.</li>
+            <li>Same dream as the last two nights. I'm starting to think it wants something from me.</li>
+          </plain>
+          <warm><li>The dream came back. It isn't frightening, exactly. It feels like being called.</li></warm>
+          <blunt><li>Same dream. Again. Enough.</li></blunt>
+          <cheerful><li>Had my favorite strange dream again, the one with the tall birds. I'm getting fond of them!</li></cheerful>
+          <gloomy><li>I dread sleeping now. I know what's waiting.</li></gloomy>
+          <cold><li>The recurrence is odd. I am recording the details.</li></cold>
+        </journal>
+        <chronicle>
+          <li>{PAWN_nameDef} keeps having the same dream.</li>
+          <li>[nightmare] {PAWN_nameDef} has been waking from the same nightmare, night after night.</li>
+        </chronicle>
+        <gate><kind>Dream</kind><minDays>1</minDays><timeoutDays>20</timeoutDays><timeoutPasses>true</timeoutPasses></gate>
+      </li>
+      <li>
+        <label>telling someone</label>
+        <waiting>Next: {PAWN_nameDef} tells someone about the dream.</waiting>
+        <journal>
+          <plain>
+            <li>It came again, clearer this time. I could draw it. I'll have to tell someone before it drives me mad.</li>
+            <li>I can't shake it. Even awake, I half see the dream at the edge of things.</li>
+          </plain>
+          <warm><li>I want to tell someone about the dream. Saying it out loud might loosen its grip.</li></warm>
+          <blunt><li>Need to talk about this dream with someone. Feels stupid. Doing it anyway.</li></blunt>
+          <cheerful><li>The dream came back again! I'm going to tell everyone about it whether they like it or not.</li></cheerful>
+          <gloomy><li>The dream again. I'm tired. I'm so tired.</li></gloomy>
+          <cold><li>I will describe the dream to someone else. An outside view may be useful.</li></cold>
+        </journal>
+        <chronicle>
+          <li>{PAWN_nameDef} can't stop thinking about {PAWN_possessive} dream.</li>
+        </chronicle>
+        <gate>
+          <kind>Talk</kind>
+          <talk>Council_Arc_Talk_Dream</talk>
+          <anyone>true</anyone>
+          <minDays>0.5</minDays>
+          <quietAfterDays>5</quietAfterDays>
+          <timeoutDays>15</timeoutDays>
+          <timeoutPasses>true</timeoutPasses>
+        </gate>
+      </li>
+      <li>
+        <label>making something of it</label>
+        <waiting>Next: {PAWN_nameDef} makes something of the dream ({SKILL}).</waiting>
+        <journal>
+          <plain>
+            <li>Talked the dream over, and an idea came out of it: if I make it, really make it, with my own hands, maybe it will let me go.</li>
+            <li>I'm going to make the dream into something real, through {SKILL}. Then it can stop.</li>
+          </plain>
+          <warm><li>Saying the dream out loud helped. Now I want to give it a shape the others can see.</li></warm>
+          <blunt><li>Making the dream into a thing. Then sleeping.</li></blunt>
+          <cheerful><li>I'm going to make my dream real, with {SKILL}!</li></cheerful>
+          <gloomy><li>Maybe if I make it, it will leave me alone. It's worth a try.</li></gloomy>
+          <cold><li>Giving the image a physical form may end the recurrence. I'll test that.</li></cold>
+        </journal>
+        <chronicle>
+          <li>{PAWN_nameDef} is trying to make something of {PAWN_possessive} dream.</li>
+        </chronicle>
+        <gate>
+          <kind>Made</kind>
+          <quality>Normal</quality>
+          <amount>4000</amount>
+          <minDays>1</minDays>
+          <timeoutDays>30</timeoutDays>
+          <or>
+            <li><kind>Practice</kind><amount>4000</amount><minDays>1</minDays></li>
+          </or>
+        </gate>
+      </li>
+      <li>
+        <label>the dream let go</label>
+        <journal>
+          <plain>
+            <li>Haven't had the dream since I finished. Slept straight through, both nights. I'd forgotten what that was like.</li>
+            <li>I made it. It's not exactly the dream, but it's close enough that the dream seems satisfied.</li>
+          </plain>
+          <warm><li>The dream has gone quiet. I almost miss it, the way you miss a strange guest.</li></warm>
+          <blunt><li>Dream's gone. Good.</li></blunt>
+          <cheerful><li>No dream last night, and I slept like a stone!</li></cheerful>
+          <gloomy><li>The dream's stopped. I keep waiting for it to come back.</li></gloomy>
+          <cold><li>The recurrence has ceased. Hypothesis confirmed.</li></cold>
+        </journal>
+        <chronicle>
+          <li>{PAWN_nameDef}'s dream has stopped coming.</li>
+          <li>{PAWN_nameDef} made something of {PAWN_possessive} dream, and the dream let {PAWN_objective} be.</li>
+        </chronicle>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><thought>Council_Arc_DreamLetGo</thought></li>
+          <li Class="ColonyCouncil.ArcEffect_Strain"><amount>-4</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Inspiration"><chance>0.3</chance></li>
+        </effects>
+      </li>
+    </stages>
+    <fizzle>
+      <plain>
+        <li>[timeout] I tried to make the dream into something. It wouldn't come right, and the dream keeps coming.</li>
+        <li>The dream's still there. I've learned to live with it.</li>
+      </plain>
+    </fizzle>
+    <fizzleChronicle>
+      <li>{PAWN_nameDef} still has the same dream.</li>
+    </fizzleChronicle>
+    <eulogy>
+      <plain>
+        <li>{OTHER_nameDef} told me about a dream {OTHER_pronoun} kept having. I hope wherever {OTHER_pronoun} is, it's a good one.</li>
+        <li>{OTHER_nameDef} was making something from a dream. I'm going to keep it, finished or not.</li>
+      </plain>
+    </eulogy>
+  </ColonyCouncil.ArcDef>
+
+  <!-- ===================================================================================================== -->
+  <!-- A grudge laid down: a vendetta carried for weeks; a friend's word; the anger cools; let go.           -->
+  <!-- ===================================================================================================== -->
+
+  <ColonyCouncil.ArcDef>
+    <defName>Council_Arc_GrudgeLaidDown</defName>
+    <label>a grudge laid down</label>
+    <summary>Weeks into a vendetta, someone tired of carrying it talks it over and, over some calmer days, lays it down without the satisfaction of revenge. If the enemy's banners come back first, the anger does too.</summary>
+    <workerClass>ColonyCouncil.ArcWorker_Vendetta</workerClass>
+    <who><notTrait><li>Psychopath</li></notTrait></who>
+    <needsOther>false</needsOther>
+    <maxDays>70</maxDays>
+    <stages>
+      <li>
+        <label>the old anger</label>
+        <waiting>Next: a few days to think it over.</waiting>
+        <journal>
+          <plain>
+            <li>I still see {LOST} when I close my eyes, and I still hate {FACTION} for it. It's been weeks.</li>
+            <li>[taken] {FACTION} took {LOST} from us. I've been waiting for them to come back so I can make them pay.</li>
+            <li>Woke up angry again. I'm always angry now. It's tiring.</li>
+          </plain>
+          <warm><li>{LOST} wouldn't want me like this. I know that. Knowing doesn't stop it.</li></warm>
+          <blunt><li>{FACTION} still owes me for {LOST}.</li></blunt>
+          <cheerful><li>I used to laugh a lot, before {FACTION}. I'd like to again.</li></cheerful>
+          <gloomy><li>The anger is the last thing I have of {LOST}. I'm afraid to let go of it.</li></gloomy>
+          <cold><li>My account with {FACTION} remains open. It is, I admit, expensive to keep open.</li></cold>
+        </journal>
+        <chronicle>
+          <li>{PAWN_nameDef} still carries {PAWN_possessive} anger at {FACTION} for {LOST}.</li>
+        </chronicle>
+        <gate><kind>Time</kind><days>3</days><minDays>3</minDays></gate>
+      </li>
+      <li>
+        <label>a friend's word</label>
+        <waiting>Next: {PAWN_nameDef} talks it over with someone.</waiting>
+        <journal>
+          <plain>
+            <li>Thought about {LOST} all day, the living {LOST} and not the dying one. It's been a while since I did that.</li>
+            <li>I'd like to talk to someone about the grudge. Whether it's worth what it costs me.</li>
+          </plain>
+          <warm><li>I'm tired of hating. Maybe someone can help me put it down.</li></warm>
+          <blunt><li>Need to talk to someone. About {FACTION}. About {LOST}.</li></blunt>
+          <cheerful><li>I've decided to try being less angry. Starting tomorrow. Probably.</li></cheerful>
+          <gloomy><li>I'm not sure who I am without the grudge. I might find out.</li></gloomy>
+          <cold><li>I am weighing what the vendetta costs against what it gives. The figures are poor.</li></cold>
+        </journal>
+        <chronicle>
+          <li>{PAWN_nameDef} has begun to wonder whether {PAWN_possessive} grudge is worth carrying.</li>
+        </chronicle>
+        <gate>
+          <kind>Talk</kind>
+          <talk>Council_Arc_Talk_LetGo</talk>
+          <anyone>true</anyone>
+          <minDays>1</minDays>
+          <quietAfterDays>6</quietAfterDays>
+          <timeoutDays>20</timeoutDays>
+          <timeoutPasses>true</timeoutPasses>
+        </gate>
+      </li>
+      <li>
+        <label>cooling</label>
+        <waiting>Next: some calmer days.</waiting>
+        <journal>
+          <plain>
+            <li>We talked about {LOST} and the grudge. No one told me to forgive. I was only asked what I want my days to be for.</li>
+            <li>Let the anger out on the woodpile this morning. Split enough for a week. Felt better after.</li>
+          </plain>
+          <warm><li>I said {LOST}'s name today without wanting to break something. That's new.</li></warm>
+          <blunt><li>Less angry. Working on it.</li></blunt>
+          <cheerful><li>I caught myself whistling. I haven't whistled since we lost {LOST}.</li></cheerful>
+          <gloomy><li>The anger's cooling. I feel guilty about that, as if I'm forgetting.</li></gloomy>
+          <cold><li>I think of {FACTION} less often. Their claim on my attention was overstated.</li></cold>
+        </journal>
+        <chronicle>
+          <li>{PAWN_nameDef}'s anger at {FACTION} is cooling.</li>
+        </chronicle>
+        <gate><kind>Hold</kind><hold>Mood</hold><value>0.4</value><hours>72</hours><minDays>4</minDays><timeoutDays>30</timeoutDays></gate>
+      </li>
+      <li>
+        <label>laid down</label>
+        <journal>
+          <plain>
+            <li>I've let it go. Not for {FACTION}'s sake. For mine, and for {LOST}'s memory, which deserves better than hate.</li>
+            <li>If {FACTION} come again, I'll fight them because they're at our walls, not because of {LOST}. It matters to me that those are different.</li>
+          </plain>
+          <warm><li>I sat by {LOST}'s resting place today and didn't think about revenge once.</li></warm>
+          <blunt><li>Done with the grudge. {LOST} wouldn't want it.</li></blunt>
+          <cheerful><li>I feel like I've put down a sack of rocks I didn't know I was carrying!</li></cheerful>
+          <gloomy><li>The vendetta's over. {LOST} is still dead. But I can grieve now, instead of hating.</li></gloomy>
+          <cold><li>I have closed my account with {FACTION}. Unpaid, and closed.</li></cold>
+        </journal>
+        <chronicle>
+          <li>{PAWN_nameDef} has laid down {PAWN_possessive} vendetta against {FACTION}.</li>
+          <li>{PAWN_nameDef} has let go of {PAWN_possessive} grudge over {LOST}.</li>
+        </chronicle>
+        <effects>
+          <li Class="ColonyCouncil.ArcEffect_SettleVendetta" />
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><thought>Council_Arc_LetItGo</thought></li>
+          <li Class="ColonyCouncil.ArcEffect_Strain"><amount>-8</amount></li>
+        </effects>
+      </li>
+    </stages>
+    <fizzle>
+      <plain>
+        <li>[anger] They came back. {FACTION}, at our walls again. The anger came straight back with them.</li>
+        <li>[settled] It's done, the other way. {FACTION} paid for {LOST} in blood. I thought I'd feel better.</li>
+        <li>[timeout] I tried to let it go. It won't be let go.</li>
+        <li>The grudge stays. Maybe it always will.</li>
+      </plain>
+    </fizzle>
+    <fizzleChronicle>
+      <li>[anger] {FACTION} came back, and {PAWN_nameDef}'s anger came back with them.</li>
+      <li>[settled] {PAWN_nameDef} settled {PAWN_possessive} vendetta against {FACTION} the old way.</li>
+      <li>{PAWN_nameDef} still carries {PAWN_possessive} grudge against {FACTION}.</li>
+    </fizzleChronicle>
+    <eulogy>
+      <plain>
+        <li>{OTHER_nameDef} had nearly let go of the grudge over {LOST}. I hope {OTHER_pronoun} found some peace at the end.</li>
+      </plain>
+    </eulogy>
+  </ColonyCouncil.ArcDef>
+
+  <!-- ===================================================================================================== -->
+  <!-- Within reach: halfway to a life goal and doubting it; a push; there.                                 -->
+  <!-- ===================================================================================================== -->
+
+  <ColonyCouncil.ArcDef>
+    <defName>Council_Arc_WithinReach</defName>
+    <label>within reach</label>
+    <summary>Halfway to a life goal, someone starts to doubt they'll ever get there, until a friend tells them to keep going, and they do.</summary>
+    <workerClass>ColonyCouncil.ArcWorker_Goal</workerClass>
+    <children>true</children>
+    <needsOther>false</needsOther>
+    <maxDays>90</maxDays>
+    <stages>
+      <li>
+        <label>doubt</label>
+        <waiting>Next: someone tells {PAWN_nameDef} to keep going.</waiting>
+        <journal>
+          <plain>
+            <li>I've been trying to {GOAL} for so long. Some days I think I'll never get there.</li>
+            <li>Halfway there, and the second half looks longer than the first.</li>
+          </plain>
+          <warm><li>I want to {GOAL}. I'm starting to wonder if wanting is enough.</li></warm>
+          <blunt><li>Stuck halfway. Annoying.</li></blunt>
+          <cheerful><li>Halfway there! The other half can't be much harder. Can it?</li></cheerful>
+          <gloomy><li>Maybe I was a fool to think I could {GOAL}.</li></gloomy>
+          <cold><li>Progress toward my goal has slowed. I am reassessing.</li></cold>
+        </journal>
+        <chronicle>
+          <li>{PAWN_nameDef} has started to doubt {PAWN_pronoun}'ll ever {GOAL}.</li>
+        </chronicle>
+        <gate>
+          <kind>Talk</kind>
+          <talk>Council_Arc_Talk_Encourage</talk>
+          <anyone>true</anyone>
+          <minDays>1</minDays>
+          <quietAfterDays>6</quietAfterDays>
+          <timeoutDays>20</timeoutDays>
+          <timeoutPasses>true</timeoutPasses>
+        </gate>
+      </li>
+      <li>
+        <label>a push</label>
+        <waiting>Next: {PAWN_nameDef} reaches {PAWN_possessive} life goal.</waiting>
+        <journal>
+          <plain>
+            <li>Talked it over with {OTHER_nameDef}, and was told, flat out, not to give up. So I won't.</li>
+            <li>Counted up how far I've come. It's further than I thought.</li>
+          </plain>
+          <warm><li>{OTHER_nameDef} believes I'll get there. That carried me through today.</li></warm>
+          <blunt><li>Keep going. Fine. Going.</li></blunt>
+          <cheerful><li>Back at it! {OTHER_nameDef} says I'm nearly there.</li></cheerful>
+          <gloomy><li>Everyone says I'll get there. I'll believe it when I do.</li></gloomy>
+          <cold><li>Encouragement received. Resuming work.</li></cold>
+        </journal>
+        <chronicle>
+          <li>{PAWN_nameDef} has taken heart again, and is pressing on.</li>
+        </chronicle>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><thought>Council_Arc_BelievedInMe</thought></li>
+        </effects>
+        <gate><kind>Goal</kind><minDays>1</minDays><timeoutDays>60</timeoutDays></gate>
+      </li>
+      <li>
+        <label>there</label>
+        <journal>
+          <plain>
+            <li>I did it. {OTHER_nameDef} told me to keep going, and {OTHER_nameDef} was right, and I'm going to say so.</li>
+            <li>Done. All those days of doubting, and here I am.</li>
+          </plain>
+          <warm><li>I couldn't have done it without that push. I'm grateful.</li></warm>
+          <blunt><li>Got there. Told you.</li></blunt>
+          <cheerful><li>I did it, I really did it!</li></cheerful>
+          <gloomy><li>I made it. I keep waiting for the catch.</li></gloomy>
+          <cold><li>Objective achieved. The doubt was an inefficiency.</li></cold>
+        </journal>
+        <chronicle>
+          <li>{PAWN_nameDef} kept going when {PAWN_pronoun} wanted to stop, and got there.</li>
+        </chronicle>
+      </li>
+    </stages>
+    <fizzle>
+      <plain>
+        <li>[goalgone] I've given up on that goal. Something else matters more now.</li>
+        <li>[timeout] Still not there. Still trying, some days.</li>
+        <li>I've stopped counting how far there is to go.</li>
+      </plain>
+    </fizzle>
+    <fizzleChronicle>
+      <li>{PAWN_nameDef} has stopped pushing toward {PAWN_possessive} life goal.</li>
+    </fizzleChronicle>
+    <eulogy>
+      <plain>
+        <li>{OTHER_nameDef} was so close. {OTHER_nameDef} wanted to {GOAL}, and nearly did.</li>
+      </plain>
+    </eulogy>
+  </ColonyCouncil.ArcDef>
+
+</Defs>

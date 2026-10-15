@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!-- Personal stories (Source/ColonyCouncil/Arcs/). Their own words are in their defs (Defs/ArcDefs); these are the few
+       the code puts together. {STORY}: the story's name, lower case ("the long way home"). -->
+
+  <!-- Messages and letters. -->
+  <CC_Arc_Began>A personal story begins for {PAWN_nameDef}: {STORY}.</CC_Arc_Began>
+  <CC_Arc_Moved>{PAWN_nameDef}'s story ({STORY}) moves on: {STAGE}.</CC_Arc_Moved>
+  <CC_Arc_DoneLabel>{0}: {1}</CC_Arc_DoneLabel>
+  <CC_Arc_DoneQuote>{PAWN_nameDef} wrote: "{LINE}"</CC_Arc_DoneQuote>
+  <CC_Arc_Fizzled>{PAWN_nameDef}'s story ({STORY}) has come to nothing, for now.</CC_Arc_Fizzled>
+  <CC_Arc_FizzledChronicle>{PAWN_nameDef}'s story ({STORY}) came to nothing.</CC_Arc_FizzledChronicle>
+  <CC_Arc_DiedBefore>{PAWN_nameDef} died before {PAWN_possessive} story ({STORY}) was done.</CC_Arc_DiedBefore>
+  <CC_Arc_LeftBefore>{PAWN_nameDef} left the colony before {PAWN_possessive} story ({STORY}) was done.</CC_Arc_LeftBefore>
+  <CC_Arc_Remembered>{PAWN_nameDef} wrote about {OTHER_nameDef}, who died before {OTHER_possessive} story ({STORY}) was done: "{LINE}"</CC_Arc_Remembered>
+  <CC_Arc_Passion>{PAWN_nameDef} has found a real passion for {SKILL}.</CC_Arc_Passion>
+  <CC_Cause_Arc>{0}'s story: {1}.</CC_Cause_Arc>
+
+  <!-- The Story tab. -->
+  <CC_Story_Arc>Personal story</CC_Story_Arc>
+  <CC_Arc_Story_Now>{0}: {1} (stage {2} of {3})</CC_Arc_Story_Now>
+  <CC_Arc_Story_PartOf>Part of {0}'s story: {1}.</CC_Arc_Story_PartOf>
+  <CC_Arc_Story_Done>Lived through: {0} ({1}).</CC_Arc_Story_Done>
+  <CC_Arc_Story_Fizzled>Came to nothing: {0} ({1}).</CC_Arc_Story_Fizzled>
+  <CC_Arc_Progress_Hours>{0} of {1} hours</CC_Arc_Progress_Hours>
+  <CC_Arc_Progress_Level>level {0} of {1}</CC_Arc_Progress_Level>
+  <CC_Arc_Progress_Days>{0} days to go</CC_Arc_Progress_Days>
+
+  <!-- Settings. -->
+  <CC_Settings_Arcs>Personal stories</CC_Settings_Arcs>
+  <CC_Settings_Arcs_Tip>A few times a year, one colonist's own story begins: a homecoming, a reconciliation, an apprenticeship that ends in a masterwork, a long grief that eases, an old debt repaid, a secret finally told, a fear faced. Each grows out of what Rimfolk already knows about them (their losses, rivals, secrets, skills and feelings) and moves on through three or four stages as things happen in play: a skill reached, a talk, a piece made, days with a condition held. The stages show in their journal, the chronicle and the Story tab, with small earned moods at the end. At most one per colonist.
+
+Rare: about two a year in a colony of six. Normal: about four. Frequent: about seven. Off: none begin, and any under way wait.</CC_Settings_Arcs_Tip>
+  <CC_Arcs_Off>off</CC_Arcs_Off>
+  <CC_Arcs_Rare>rare</CC_Arcs_Rare>
+  <CC_Arcs_Normal>normal</CC_Arcs_Normal>
+  <CC_Arcs_Frequent>frequent</CC_Arcs_Frequent>
+
+</LanguageData>

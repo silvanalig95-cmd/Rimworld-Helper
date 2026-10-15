@@ -83,6 +83,12 @@ namespace ColonyCouncil
 
         public bool OtherIsAnimal => other != null && other.RaceProps != null && other.RaceProps.Animal;
 
+        /// <summary>
+        /// Whom the story's lines and effects are about: the other person, or, in a story that only leans on a friend,
+        /// whoever they last talked it over with.
+        /// </summary>
+        public Pawn Partner => def != null && !def.needsOther && talkedWith != null && !talkedWith.Dead ? talkedWith : other;
+
         public string Label => def?.LabelCap ?? "";
 
         public void ExposeData()
@@ -164,6 +170,13 @@ namespace ColonyCouncil
         public Pawn dead;
         public Pawn speaker;
         public int dueTick;
+        /// <summary>The story's values, for the lines: {LOST}, {NAME}, {GOAL}, {FACTION}, {SKILL} and its tag.</summary>
+        public string lostName;
+        public string name;
+        public string goalText;
+        public string factionName;
+        public SkillDef skill;
+        public string tag;
 
         public void ExposeData()
         {
@@ -171,6 +184,12 @@ namespace ColonyCouncil
             Scribe_References.Look(ref dead, "dead");
             Scribe_References.Look(ref speaker, "speaker");
             Scribe_Values.Look(ref dueTick, "dueTick");
+            Scribe_Values.Look(ref lostName, "lostName");
+            Scribe_Values.Look(ref name, "name");
+            Scribe_Values.Look(ref goalText, "goalText");
+            Scribe_Values.Look(ref factionName, "factionName");
+            CouncilScribe.LookDef(ref skill, "skill");
+            Scribe_Values.Look(ref tag, "tag");
         }
     }
 }

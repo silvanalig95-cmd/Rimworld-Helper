@@ -179,6 +179,11 @@ namespace ColonyCouncil
         public List<ArcStage> stages = new List<ArcStage>();
         /// <summary>The whole story may take at most this long; after that it fizzles.</summary>
         public float maxDays = 60f;
+        /// <summary>
+        /// The other person is what the story is about (a rival, a teacher): if they die or leave, it fizzles. Off for a
+        /// story that only leans on a friend to talk to, which goes on without them.
+        /// </summary>
+        public bool needsOther = true;
 
         // ---- What the workers look for (each worker reads the ones it needs) ----
 

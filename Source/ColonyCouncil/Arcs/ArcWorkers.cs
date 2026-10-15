@@ -523,7 +523,7 @@ namespace ColonyCouncil
                 .Where(a => a.RaceProps.Animal && !a.Dead && a.playerSettings?.Master == p && a.relations != null
                             && !a.relations.DirectRelations.Any(r => r.def == PawnRelationDefOf.Bond))
                 .OrderByDescending(a => (a.Name != null ? 2f : 0f) + Rand.Value).FirstOrDefault();
-            return pet == null ? null : new ArcCandidate { other = pet };
+            return pet == null ? null : new ArcCandidate { other = pet, skill = SkillDefOf.Animals };
         }
     }
 

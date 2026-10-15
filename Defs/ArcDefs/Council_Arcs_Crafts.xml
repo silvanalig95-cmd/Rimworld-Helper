@@ -1,0 +1,439 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- Personal stories of skills handed on: the apprentice's masterwork, a calling, passing it on. See
+       Council_Arcs_Home.xml for how a story is written. {SKILL} is the story's skill. -->
+
+  <!-- ===================================================================================================== -->
+  <!-- The apprentice's masterwork: keen on a making skill, with a master to learn from.                    -->
+  <!-- ===================================================================================================== -->
+
+  <ColonyCouncil.ArcDef>
+    <defName>Council_Arc_Masterwork</defName>
+    <label>the apprentice's masterwork</label>
+    <summary>A keen crafter, artist or builder learns at a master's elbow until the master's eye finds nothing more to say, then sets out to make something excellent.</summary>
+    <workerClass>ColonyCouncil.ArcWorker_Apprentice</workerClass>
+    <weight>1.2</weight>
+    <skills>
+      <li>Crafting</li>
+      <li>Artistic</li>
+      <li>Construction</li>
+    </skills>
+    <minLevel>4</minLevel>
+    <maxLevel>11</maxLevel>
+    <masterLevel>12</masterLevel>
+    <maxDays>90</maxDays>
+    <stages>
+      <li>
+        <label>the apprentice</label>
+        <waiting>Next: {PAWN_nameDef} gets better at {SKILL}.</waiting>
+        <journal>
+          <plain>
+            <li>Watched {OTHER_nameDef} at work all afternoon. {OTHER_nameDef} doesn't waste a single movement. I waste most of mine.</li>
+            <li>{OTHER_nameDef} let me hand over the tools today. I got two of them wrong.</li>
+            <li>I want to be as good at {SKILL} as {OTHER_nameDef}. I'm a long way off.</li>
+          </plain>
+          <warm><li>{OTHER_nameDef} is a patient teacher. More patient than I deserve, some days.</li></warm>
+          <blunt><li>Learning {SKILL} from {OTHER_nameDef}. Hard work. Good.</li></blunt>
+          <cheerful><li>{OTHER_nameDef} said my last piece was "not terrible"! That's high praise, from {OTHER_objective}.</li></cheerful>
+          <gloomy><li>Next to {OTHER_nameDef}'s work, mine looks like a child made it.</li></gloomy>
+          <cold><li>{OTHER_nameDef} knows things about {SKILL} that I want. I intend to take every one of them.</li></cold>
+        </journal>
+        <chronicle>
+          <li>{PAWN_nameDef} has started learning {SKILL} at {OTHER_nameDef}'s elbow.</li>
+          <li>{PAWN_nameDef} has taken {OTHER_nameDef} as {PAWN_possessive} teacher in {SKILL}.</li>
+        </chronicle>
+        <effects>
+          <li Class="ColonyCouncil.ArcEffect_Mentorship" />
+        </effects>
+        <gate><kind>Skill</kind><gain>2</gain><minDays>3</minDays><timeoutDays>40</timeoutDays></gate>
+      </li>
+      <li>
+        <label>the master's eye</label>
+        <waiting>Next: {OTHER_nameDef} looks over {PAWN_nameDef}'s work.</waiting>
+        <journal>
+          <plain>
+            <li>I'm getting better. My hands know things now that my head doesn't. Next I want {OTHER_nameDef} to look at my work properly.</li>
+            <li>Made three pieces this week and threw two of them out. The third I'm keeping to show {OTHER_nameDef}.</li>
+          </plain>
+          <warm><li>I'm not ashamed of my work any more. I'd like {OTHER_nameDef} to see it.</li></warm>
+          <blunt><li>Getting there. {OTHER_nameDef} can tell me what's wrong with it.</li></blunt>
+          <cheerful><li>My joints are tighter and my edges are straighter. {OTHER_nameDef} has to see this!</li></cheerful>
+          <gloomy><li>I'm better than I was. {OTHER_nameDef} will still find a hundred things wrong.</li></gloomy>
+          <cold><li>My work has improved measurably. {OTHER_nameDef}'s assessment is the next step.</li></cold>
+        </journal>
+        <chronicle>
+          <li>{PAWN_nameDef} has come on at {SKILL}, and {OTHER_nameDef} has noticed.</li>
+        </chronicle>
+        <gate>
+          <kind>Talk</kind>
+          <talk>Council_Arc_Talk_Craft</talk>
+          <minDays>1</minDays>
+          <quietAfterDays>6</quietAfterDays>
+          <timeoutDays>20</timeoutDays>
+          <timeoutPasses>true</timeoutPasses>
+        </gate>
+      </li>
+      <li>
+        <label>the piece</label>
+        <waiting>Next: {PAWN_nameDef} makes something excellent.</waiting>
+        <journal>
+          <plain>
+            <li>{OTHER_nameDef} went over my work with me, every flaw of it, then said one thing that changed how I hold the tool. I'm making something now. Something good.</li>
+            <li>I've started on a piece I've had in my head for weeks. I'm not letting anyone see it until it's done.</li>
+          </plain>
+          <warm><li>{OTHER_nameDef} told me I'm ready. I don't know if I believe {OTHER_objective}, but I'm going to try.</li></warm>
+          <blunt><li>Starting the real thing. Leave me alone at the bench.</li></blunt>
+          <cheerful><li>I have an idea and it's a good one. My hands can hardly keep up with it!</li></cheerful>
+          <gloomy><li>{OTHER_nameDef} thinks I can make something fine. If it comes out badly, I'll have let {OTHER_objective} down.</li></gloomy>
+          <cold><li>I am ready to produce something worth keeping. I will not accept less.</li></cold>
+        </journal>
+        <chronicle>
+          <li>{PAWN_nameDef} is working on something {PAWN_pronoun} won't let anyone see yet.</li>
+        </chronicle>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Inspiration"><inspiration>Inspired_Creativity</inspiration></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Learn"><xp>800</xp></li>
+        </effects>
+        <gate><kind>Made</kind><quality>Excellent</quality><amount>9000</amount><minDays>1</minDays><timeoutDays>35</timeoutDays></gate>
+      </li>
+      <li>
+        <label>the masterwork</label>
+        <journal>
+          <plain>
+            <li>Finished it. {OTHER_nameDef} looked at it for a long time, turned it over, and couldn't find anything to say. That's never happened.</li>
+            <li>It's the best thing I've ever made. I keep going back to look at it, in case it's changed.</li>
+          </plain>
+          <warm><li>I showed {OTHER_nameDef} the piece. {OTHER_nameDef} put a hand on my shoulder and said nothing at all, which was the right thing to say.</li></warm>
+          <blunt><li>Made something good. Really good. {OTHER_nameDef} says so too.</li></blunt>
+          <cheerful><li>I made a beautiful thing, me, with these two hands!</li></cheerful>
+          <gloomy><li>It's good. I don't know if I can ever do it again.</li></gloomy>
+          <cold><li>I have made something excellent. It is the standard I'll hold myself to now.</li></cold>
+        </journal>
+        <otherJournal>
+          <plain>
+            <li>{OTHER_nameDef} made a piece today I couldn't find fault with. I looked hard. I'm proud of {OTHER_objective}.</li>
+            <li>The piece {OTHER_nameDef} made is better than anything I made at that age. I told {OTHER_objective} so, eventually.</li>
+          </plain>
+        </otherJournal>
+        <chronicle>
+          <li>{PAWN_nameDef} made a piece {OTHER_nameDef} couldn't find fault with.</li>
+          <li>The apprentice {PAWN_nameDef} has made {PAWN_possessive} masterwork.</li>
+        </chronicle>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><thought>Council_Arc_MyBestWork</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><thought>Council_Arc_ProudOfStudent</thought><target>B</target></li>
+          <li Class="ColonyCouncil.ArcEffect_Epithet"><epithet>Council_Epithet_Steadyhand</epithet></li>
+          <li Class="ColonyCouncil.ArcEffect_Quirk"><quirk>Council_Quirk_MarksWork</quirk><chance>0.35</chance></li>
+          <li Class="ColonyCouncil.ArcEffect_Passion"><chance>0.05</chance></li>
+        </effects>
+      </li>
+    </stages>
+    <fizzle>
+      <plain>
+        <li>[timeout] The piece won't come right. I've stopped trying for now. Maybe I'm not ready.</li>
+        <li>[otherdead] {OTHER_nameDef} is dead. I'll never know what {OTHER_pronoun} would have thought of my best work.</li>
+        <li>[otherleft] {OTHER_nameDef} has gone. I'll have to find the rest of {SKILL} on my own.</li>
+        <li>I've gone as far as I can with {OTHER_nameDef} for now. Maybe later.</li>
+      </plain>
+    </fizzle>
+    <fizzleChronicle>
+      <li>[otherdead] {OTHER_nameDef} died before {PAWN_nameDef} could show {OTHER_objective} {PAWN_possessive} best work.</li>
+      <li>{PAWN_nameDef}'s masterwork will have to wait.</li>
+    </fizzleChronicle>
+    <eulogy>
+      <plain>
+        <li>{OTHER_nameDef} was going to be good. Really good. I'd seen the start of it.</li>
+        <li>The piece {OTHER_nameDef} was making is still on the bench, half done. I can't bring myself to move it.</li>
+      </plain>
+    </eulogy>
+  </ColonyCouncil.ArcDef>
+
+  <!-- ===================================================================================================== -->
+  <!-- A calling: a child or teenager taken with something an adult here is good at.                       -->
+  <!-- ===================================================================================================== -->
+
+  <ColonyCouncil.ArcDef>
+    <defName>Council_Arc_Calling</defName>
+    <label>a calling</label>
+    <summary>A child or a teenager keeps turning up wherever a grown-up is good at something, asks a hundred questions, practices, and finds the work they want to do with their life.</summary>
+    <workerClass>ColonyCouncil.ArcWorker_Calling</workerClass>
+    <weight>1.5</weight>
+    <children>true</children>
+    <maxDays>90</maxDays>
+    <stages>
+      <li>
+        <label>a spark</label>
+        <waiting>Next: {PAWN_nameDef} works up the nerve to ask {OTHER_nameDef} about it.</waiting>
+        <journal>
+          <plain>
+            <li>[child] I watched {OTHER_nameDef} doing {SKILL} today. I want to do that.</li>
+            <li>[child] {OTHER_nameDef} let me hold the tools. They're heavy. I didn't drop any.</li>
+            <li>I keep ending up wherever {OTHER_nameDef} is working. I like watching how {OTHER_pronoun} does it.</li>
+            <li>[teen] Everyone keeps asking what I want to do when I'm grown. I think I might know.</li>
+          </plain>
+          <warm><li>{OTHER_nameDef} didn't shoo me away. {OTHER_nameDef} showed me instead.</li></warm>
+          <blunt><li>I want to learn {SKILL}. From {OTHER_nameDef}.</li></blunt>
+          <cheerful><li>[child] I think {SKILL} is the best thing there is! {OTHER_nameDef} said I can watch again tomorrow.</li></cheerful>
+          <gloomy><li>I'm probably no good at {SKILL}. I'd still like to try.</li></gloomy>
+          <cold><li>{OTHER_nameDef} is the best at {SKILL} here. I'm going to learn from the best.</li></cold>
+        </journal>
+        <otherJournal>
+          <plain><li>{OTHER_nameDef} keeps following me around while I work. I don't mind. I was the same, once.</li></plain>
+        </otherJournal>
+        <chronicle>
+          <li>{PAWN_nameDef} has been hanging around {OTHER_nameDef} while {OTHER_pronoun} works.</li>
+          <li>Young {PAWN_nameDef} has taken an interest in {SKILL}.</li>
+        </chronicle>
+        <gate>
+          <kind>Talk</kind>
+          <talk>Council_Arc_Talk_Calling</talk>
+          <minDays>1</minDays>
+          <quietAfterDays>6</quietAfterDays>
+          <timeoutDays>20</timeoutDays>
+          <timeoutPasses>true</timeoutPasses>
+        </gate>
+      </li>
+      <li>
+        <label>tagging along</label>
+        <waiting>Next: {PAWN_nameDef} practices {SKILL}.</waiting>
+        <journal>
+          <plain>
+            <li>[child] I asked {OTHER_nameDef} a hundred questions. {OTHER_nameDef} answered ninety of them.</li>
+            <li>{OTHER_nameDef} said I can help, if I listen. I'm listening.</li>
+            <li>[teen] {OTHER_nameDef} showed me the basics today. It's harder than it looks. I like that it's hard.</li>
+          </plain>
+          <warm><li>{OTHER_nameDef} takes me seriously. Not many grown-ups do.</li></warm>
+          <blunt><li>{OTHER_nameDef}'s teaching me. Good.</li></blunt>
+          <cheerful><li>[child] I helped! {OTHER_nameDef} said I did a real job and not a pretend one.</li></cheerful>
+          <gloomy><li>I made a mess of it today. {OTHER_nameDef} said everyone does at first.</li></gloomy>
+          <cold><li>I am learning faster than {OTHER_nameDef} expected. I saw it on {OTHER_possessive} face.</li></cold>
+        </journal>
+        <otherJournal>
+          <plain>
+            <li>{OTHER_nameDef} asked me about {SKILL} for an hour straight. I'd forgotten what that kind of hunger looks like.</li>
+            <li>Let {OTHER_nameDef} try {SKILL} today. Hopeless and very determined. I liked {OTHER_objective} for it.</li>
+          </plain>
+        </otherJournal>
+        <chronicle>
+          <li>{OTHER_nameDef} has been showing {PAWN_nameDef} the beginnings of {SKILL}.</li>
+        </chronicle>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Learn"><xp>400</xp></li>
+        </effects>
+        <gate><kind>Practice</kind><amount>2500</amount><minDays>3</minDays><timeoutDays>40</timeoutDays></gate>
+      </li>
+      <li>
+        <label>practice</label>
+        <waiting>Next: {PAWN_nameDef} gets better at {SKILL}.</waiting>
+        <journal>
+          <plain>
+            <li>[child] I practiced every day this week. Even when I wanted to play.</li>
+            <li>My hands are getting the hang of it. {OTHER_nameDef} doesn't have to fix my mistakes as often.</li>
+          </plain>
+          <warm><li>I love this. I didn't know you could love a kind of work.</li></warm>
+          <blunt><li>Practicing. Getting better.</li></blunt>
+          <cheerful><li>I'm getting good at {SKILL}. Not as good as {OTHER_nameDef}, but good!</li></cheerful>
+          <gloomy><li>It's slow. Everything's slow when you're young.</li></gloomy>
+          <cold><li>Progress is steady. I expect to surpass my teacher eventually.</li></cold>
+        </journal>
+        <chronicle>
+          <li>{PAWN_nameDef} has been practicing {SKILL} every chance {PAWN_pronoun} gets.</li>
+        </chronicle>
+        <gate><kind>Skill</kind><gain>1</gain><minDays>2</minDays><timeoutDays>40</timeoutDays></gate>
+      </li>
+      <li>
+        <label>a calling</label>
+        <journal>
+          <plain>
+            <li>[child] When I grow up I'm going to do {SKILL}. I've decided. {OTHER_nameDef} says it's a good choice.</li>
+            <li>I know what I want to do with my life. It's {SKILL}. It's always going to be {SKILL}.</li>
+          </plain>
+          <warm><li>{OTHER_nameDef} gave me a calling. I'll make {OTHER_objective} proud of it.</li></warm>
+          <blunt><li>My trade is going to be {SKILL}. Decided.</li></blunt>
+          <cheerful><li>I found the thing I'm for. It's {SKILL}!</li></cheerful>
+          <gloomy><li>I've found what I want to do. I hope the world leaves me time to do it.</li></gloomy>
+          <cold><li>I have chosen my path: {SKILL}. The decision is final.</li></cold>
+        </journal>
+        <otherJournal>
+          <plain><li>{OTHER_nameDef} has the makings of a real hand at {SKILL}. I'll keep teaching as long as {OTHER_pronoun} keeps asking.</li></plain>
+        </otherJournal>
+        <chronicle>
+          <li>{PAWN_nameDef} has found {PAWN_possessive} calling in {SKILL}.</li>
+          <li>{PAWN_nameDef} knows what {PAWN_pronoun} wants to do with {PAWN_possessive} life, and it is {SKILL}.</li>
+        </chronicle>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><thought>Council_Arc_FoundCalling</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><thought>Council_Arc_ProudOfStudent</thought><target>B</target></li>
+          <li Class="ColonyCouncil.ArcEffect_Tie"><kind>Friends</kind><amount>8</amount></li>
+          <li Class="ColonyCouncil.ArcEffect_Passion"><chance>0.15</chance></li>
+        </effects>
+      </li>
+    </stages>
+    <fizzle>
+      <plain>
+        <li>[timeout,child] I don't really want to do {SKILL} any more. I want to do something else. I haven't decided what.</li>
+        <li>[timeout] I've lost the taste for {SKILL}. {OTHER_nameDef} was nice about it.</li>
+        <li>[otherdead] {OTHER_nameDef} was teaching me. Now I'll have to work it out without {OTHER_objective}.</li>
+        <li>[otherleft] {OTHER_nameDef} left. I keep going to the place where {OTHER_pronoun} used to work.</li>
+        <li>Maybe {SKILL} isn't for me after all.</li>
+      </plain>
+    </fizzle>
+    <fizzleChronicle>
+      <li>[otherdead] {PAWN_nameDef} lost {PAWN_possessive} teacher, {OTHER_nameDef}, too soon.</li>
+      <li>{PAWN_nameDef}'s interest in {SKILL} has faded, for now.</li>
+    </fizzleChronicle>
+    <eulogy>
+      <plain>
+        <li>{OTHER_nameDef} wanted to learn {SKILL} more than anything. I was teaching {OTHER_objective}. I was enjoying it.</li>
+        <li>{OTHER_nameDef} was so young, and had just found the thing {OTHER_pronoun} loved.</li>
+      </plain>
+    </eulogy>
+  </ColonyCouncil.ArcDef>
+
+  <!-- ===================================================================================================== -->
+  <!-- Passing it on: an elder or an old hand of the colony with a craft, and someone young to give it to.   -->
+  <!-- ===================================================================================================== -->
+
+  <ColonyCouncil.ArcDef>
+    <defName>Council_Arc_PassingItOn</defName>
+    <label>passing it on</label>
+    <summary>An elder, or one of the colony's old hands, picks out someone younger to inherit their craft, teaches them until they're nearly as good, and hands down the last lessons.</summary>
+    <workerClass>ColonyCouncil.ArcWorker_Elder</workerClass>
+    <weight>1.2</weight>
+    <masterLevel>12</masterLevel>
+    <maxDays>90</maxDays>
+    <stages>
+      <li>
+        <label>what I know</label>
+        <waiting>Next: {PAWN_nameDef} offers to teach {OTHER_nameDef}.</waiting>
+        <journal>
+          <plain>
+            <li>[elder] My hands aren't what they were. Everything I know about {SKILL} is in my head, and my head won't last forever.</li>
+            <li>[oldhand] I've been here longer than nearly anyone. If I go, everything I've learned about {SKILL} goes with me.</li>
+            <li>Watched {OTHER_nameDef} work today. Clumsy, keen, and the right sort of stubborn. {OTHER_nameDef} could learn this.</li>
+          </plain>
+          <warm><li>I'd like to pass on what I know to someone who'll care for it. {OTHER_nameDef}, maybe.</li></warm>
+          <blunt><li>Somebody should learn {SKILL} properly before I'm gone. {OTHER_nameDef} will do.</li></blunt>
+          <cheerful><li>I've picked out an apprentice! {OTHER_nameDef} doesn't know yet.</li></cheerful>
+          <gloomy><li>I won't live forever out here. {OTHER_nameDef} had better learn what I know while there's time.</li></gloomy>
+          <cold><li>My knowledge of {SKILL} is an asset to the colony. It should not be buried with me.</li></cold>
+        </journal>
+        <chronicle>
+          <li>{PAWN_nameDef} has been watching {OTHER_nameDef} work, with an eye to teaching {OTHER_objective} {SKILL}.</li>
+          <li>[elder] Old {PAWN_nameDef} is thinking about who will carry on {PAWN_possessive} craft.</li>
+        </chronicle>
+        <gate>
+          <kind>Talk</kind>
+          <talk>Council_Arc_Talk_Offer</talk>
+          <minDays>1</minDays>
+          <quietAfterDays>6</quietAfterDays>
+          <timeoutDays>20</timeoutDays>
+          <timeoutPasses>true</timeoutPasses>
+        </gate>
+      </li>
+      <li>
+        <label>lessons</label>
+        <waiting>Next: {OTHER_nameDef} gets better at {SKILL}.</waiting>
+        <journal>
+          <plain>
+            <li>Asked {OTHER_nameDef} if {OTHER_pronoun} wanted to learn. {OTHER_nameDef} said yes before I'd finished asking.</li>
+            <li>First lesson with {OTHER_nameDef} today. We started with how to stand. {OTHER_nameDef} wanted to start with everything else.</li>
+          </plain>
+          <warm><li>{OTHER_nameDef} is a good student. Reminds me of me, before I knew how much I didn't know.</li></warm>
+          <blunt><li>Teaching {OTHER_nameDef}. Mornings. No excuses.</li></blunt>
+          <cheerful><li>I have a student! I'd forgotten how much I like explaining things.</li></cheerful>
+          <gloomy><li>I'm teaching {OTHER_nameDef}. I hope there's time to teach all of it.</li></gloomy>
+          <cold><li>Instruction has begun. {OTHER_nameDef} is adequate material.</li></cold>
+        </journal>
+        <otherJournal>
+          <plain>
+            <li>{OTHER_nameDef} has offered to teach me {SKILL}. Everything {OTHER_pronoun} knows. I don't know what I did to deserve it.</li>
+            <li>Lessons with {OTHER_nameDef} every morning. {OTHER_nameDef} is strict, and right about nearly everything.</li>
+          </plain>
+        </otherJournal>
+        <chronicle>
+          <li>{PAWN_nameDef} has taken {OTHER_nameDef} on as {PAWN_possessive} student in {SKILL}.</li>
+        </chronicle>
+        <effects>
+          <li Class="ColonyCouncil.ArcEffect_Mentorship"><aTeaches>true</aTeaches></li>
+        </effects>
+        <gate><kind>Skill</kind><onOther>true</onOther><gain>2</gain><minDays>3</minDays><timeoutDays>45</timeoutDays></gate>
+      </li>
+      <li>
+        <label>the last lessons</label>
+        <waiting>Next: the last lessons, the ones that aren't written down anywhere.</waiting>
+        <journal>
+          <plain>
+            <li>{OTHER_nameDef} is good now. Not as good as me, but on the way. There are a few things left I haven't told {OTHER_objective}.</li>
+            <li>Caught {OTHER_nameDef} fixing a mistake before I could point it out. That's when you know.</li>
+          </plain>
+          <warm><li>Watching {OTHER_nameDef} work is like watching myself years ago, only with better habits.</li></warm>
+          <blunt><li>{OTHER_nameDef}'s nearly there. A few more things.</li></blunt>
+          <cheerful><li>{OTHER_nameDef} corrected me today, and was right!</li></cheerful>
+          <gloomy><li>{OTHER_nameDef} won't need me much longer. That's the point, I know.</li></gloomy>
+          <cold><li>{OTHER_nameDef} has taken in most of what I can give. The rest is the hard part.</li></cold>
+        </journal>
+        <chronicle>
+          <li>{OTHER_nameDef} has come a long way under {PAWN_nameDef}'s teaching.</li>
+        </chronicle>
+        <gate>
+          <kind>Talk</kind>
+          <talk>Council_Arc_Talk_Legacy</talk>
+          <minDays>1</minDays>
+          <quietAfterDays>6</quietAfterDays>
+          <timeoutDays>20</timeoutDays>
+          <timeoutPasses>true</timeoutPasses>
+        </gate>
+      </li>
+      <li>
+        <label>passed on</label>
+        <journal>
+          <plain>
+            <li>Gave {OTHER_nameDef} my old tools today. {OTHER_nameDef} held them as if they might break. They won't. They've been through worse.</li>
+            <li>{OTHER_nameDef} knows what I know now, more or less. The rest {OTHER_pronoun}'ll find out alone, the way I did.</li>
+          </plain>
+          <warm><li>Whatever happens to me, what I know is safe with {OTHER_nameDef}. I can rest easier.</li></warm>
+          <blunt><li>{OTHER_nameDef} has it. My job's done.</li></blunt>
+          <cheerful><li>My student is a master now! Well, nearly. Give it a year.</li></cheerful>
+          <gloomy><li>{OTHER_nameDef} doesn't need me any more. I'm glad, and sorry, both.</li></gloomy>
+          <cold><li>The transfer is complete. My knowledge will outlast me. That was the objective.</li></cold>
+        </journal>
+        <otherJournal>
+          <plain>
+            <li>{OTHER_nameDef} gave me {OTHER_possessive} old tools today. I don't think I've ever been given anything that mattered more.</li>
+            <li>Everything I know about {SKILL}, I learned from {OTHER_nameDef}. I'm going to say so to everyone who asks.</li>
+          </plain>
+        </otherJournal>
+        <chronicle>
+          <li>{PAWN_nameDef} has passed on what {PAWN_pronoun} knows of {SKILL} to {OTHER_nameDef}.</li>
+          <li>{OTHER_nameDef} carries {PAWN_nameDef}'s craft now.</li>
+        </chronicle>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><thought>Council_Arc_PassedOn</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><thought>Council_Arc_TaughtMe</thought><target>B</target></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Learn"><xp>1500</xp><target>B</target></li>
+        </effects>
+      </li>
+    </stages>
+    <fizzle>
+      <plain>
+        <li>[otherdead] I was teaching {OTHER_nameDef}. All of it is still in my head, with nowhere to go.</li>
+        <li>[otherleft] {OTHER_nameDef} has left, half taught. I hope {OTHER_pronoun} keeps at it, wherever {OTHER_pronoun} is.</li>
+        <li>[timeout] {OTHER_nameDef} has lost interest, or I've lost patience. Either way the lessons have stopped.</li>
+        <li>Maybe what I know isn't meant to be passed on. Maybe it stops with me.</li>
+      </plain>
+    </fizzle>
+    <fizzleChronicle>
+      <li>[otherdead] {PAWN_nameDef} lost {PAWN_possessive} student, {OTHER_nameDef}, before the lessons were done.</li>
+      <li>{PAWN_nameDef}'s lessons with {OTHER_nameDef} have come to an end, unfinished.</li>
+    </fizzleChronicle>
+    <eulogy>
+      <plain>
+        <li>{OTHER_nameDef} taught me nearly everything {OTHER_pronoun} knew. Nearly. I'll work out the rest myself, and hear {OTHER_objective} every step of the way.</li>
+        <li>I still have {OTHER_nameDef}'s voice in my head when I work. "Slower," it says. "Again."</li>
+      </plain>
+    </eulogy>
+  </ColonyCouncil.ArcDef>
+
+</Defs>

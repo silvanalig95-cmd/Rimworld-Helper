@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    The moods of personal stories (ArcDefs). Modest and earned: most come only at a story's end. They are Rimfolk
+    memories, so they share the budget of good moods with everything else Rimfolk gives (SmallJoys, GoodTimes): the
+    two biggest count in full, each after that half the one before.
+  -->
+
+  <!-- ===================== The long way home ===================== -->
+
+  <ThoughtDef>
+    <defName>Council_Arc_HomeTogether</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilSocial</thoughtClass>
+    <durationDays>8</durationDays>
+    <stackLimit>3</stackLimit>
+    <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
+    <stages><li><label>back together</label><description>We're under the same roof again, and we've talked through every mile of the road.</description><baseMoodEffect>3</baseMoodEffect><baseOpinionOffset>10</baseOpinionOffset></li></stages>
+  </ThoughtDef>
+
+  <!-- ===================== Somewhere to belong ===================== -->
+
+  <ThoughtDef>
+    <defName>Council_Arc_ShowedMeAround</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilSocial</thoughtClass>
+    <durationDays>10</durationDays>
+    <stackLimit>3</stackLimit>
+    <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
+    <stages><li><label>showed me around</label><description>They showed me where everything is kept and how things are done here. I felt less of a stranger afterwards.</description><baseMoodEffect>2</baseMoodEffect><baseOpinionOffset>8</baseOpinionOffset></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_Arc_HomeNow</defName>
+    <durationDays>10</durationDays>
+    <stages><li><label>home at last</label><description>It took a while, but this place is home now.</description><baseMoodEffect>4</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <!-- ===================== Grudging respect ===================== -->
+
+  <ThoughtDef>
+    <defName>Council_Arc_GaveMeMyDue</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilSocial</thoughtClass>
+    <durationDays>15</durationDays>
+    <stackLimit>3</stackLimit>
+    <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
+    <stages><li><label>gave me my due</label><description>We've been at odds for so long, and they still told me my work was good. They meant it.</description><baseMoodEffect>1</baseMoodEffect><baseOpinionOffset>12</baseOpinionOffset></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_Arc_RespectEarned</defName>
+    <durationDays>6</durationDays>
+    <stages><li><label>no longer rivals</label><description>We spent so long at each other's throats. That's over, and I feel lighter for it.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <!-- ===================== Old wounds ===================== -->
+
+  <ThoughtDef>
+    <defName>Council_Arc_HeardMeOut</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilSocial</thoughtClass>
+    <durationDays>15</durationDays>
+    <stackLimit>3</stackLimit>
+    <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
+    <stages><li><label>heard me out</label><description>We finally talked about what went wrong between us. It was hard, and it was worth it.</description><baseMoodEffect>2</baseMoodEffect><baseOpinionOffset>15</baseOpinionOffset></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_Arc_Mended</defName>
+    <durationDays>8</durationDays>
+    <stages><li><label>made it right</label><description>The old quarrel is behind us. I didn't know how much it weighed until I put it down.</description><baseMoodEffect>5</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <!-- ===================== The apprentice's masterwork, a calling, passing it on ===================== -->
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_Arc_MyBestWork</defName>
+    <durationDays>10</durationDays>
+    <stages><li><label>made my best work</label><description>I made something even my teacher couldn't fault. I keep going back to look at it.</description><baseMoodEffect>5</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Council_Arc_ProudOfStudent</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilSocial</thoughtClass>
+    <durationDays>15</durationDays>
+    <stackLimit>3</stackLimit>
+    <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
+    <stages><li><label>proud of my student</label><description>I showed them how, and look what they made of it. Better than I managed at their age.</description><baseMoodEffect>3</baseMoodEffect><baseOpinionOffset>12</baseOpinionOffset></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_Arc_FoundCalling</defName>
+    <durationDays>10</durationDays>
+    <stages><li><label>found my calling</label><description>I know what I want to be good at. I'm going to be good at it.</description><baseMoodEffect>4</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_Arc_PassedOn</defName>
+    <durationDays>12</durationDays>
+    <stages><li><label>passed on what I know</label><description>What I know won't be buried with me. Someone younger has it now.</description><baseMoodEffect>5</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Council_Arc_TaughtMe</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilSocial</thoughtClass>
+    <durationDays>30</durationDays>
+    <stackLimit>3</stackLimit>
+    <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
+    <stages><li><label>taught me all they knew</label><description>They took the time to teach me everything they know. I owe them more than I can say.</description><baseMoodEffect>2</baseMoodEffect><baseOpinionOffset>18</baseOpinionOffset></li></stages>
+  </ThoughtDef>
+
+  <!-- ===================== A long grief ===================== -->
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_Arc_GriefEased</defName>
+    <durationDays>10</durationDays>
+    <stages><li><label>the grief has eased</label><description>I still miss them. But I can think of them now without it taking the air out of me.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <!-- ===================== An old debt ===================== -->
+
+  <ThoughtDef>
+    <defName>Council_Arc_DebtRepaid</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilSocial</thoughtClass>
+    <durationDays>15</durationDays>
+    <stackLimit>3</stackLimit>
+    <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
+    <stages><li><label>repaid an old kindness</label><description>I'd half forgotten what I did for them. They hadn't, and they made me something to say so.</description><baseMoodEffect>3</baseMoodEffect><baseOpinionOffset>15</baseOpinionOffset></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_Arc_DebtSettled</defName>
+    <durationDays>6</durationDays>
+    <stages><li><label>paid back what I owed</label><description>Someone helped me when I needed it. I've finally done something in return.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <!-- ===================== A secret told ===================== -->
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_Arc_Unburdened</defName>
+    <durationDays>6</durationDays>
+    <stages><li><label>said it out loud</label><description>I carried it for years. I've said it in front of everyone, and I'm still standing.</description><baseMoodEffect>4</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Council_Arc_StoodByMe</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilSocial</thoughtClass>
+    <durationDays>15</durationDays>
+    <stackLimit>3</stackLimit>
+    <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
+    <stages><li><label>stood by me</label><description>They knew before anyone else did, and they stood by me when it all came out.</description><baseMoodEffect>1</baseMoodEffect><baseOpinionOffset>12</baseOpinionOffset></li></stages>
+  </ThoughtDef>
+
+  <!-- ===================== A fear faced ===================== -->
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_Arc_FacedIt</defName>
+    <durationDays>8</durationDays>
+    <stages><li><label>faced my fear</label><description>I was afraid, and I did it anyway. It doesn't own me any more.</description><baseMoodEffect>5</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <!-- ===================== A companion ===================== -->
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_Arc_MyCompanion</defName>
+    <durationDays>8</durationDays>
+    <stages><li><label>my companion</label><description>That animal and I understand each other now. Where I go, it goes.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <!-- ===================== Second chances ===================== -->
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_Arc_FaithRestored</defName>
+    <durationDays>8</durationDays>
+    <stages><li><label>the council listened after all</label><description>I'd given up on the council. They listened in the end. Maybe I was wrong about them.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <!-- ===================== The recurring dream ===================== -->
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_Arc_DreamLetGo</defName>
+    <durationDays>6</durationDays>
+    <stages><li><label>the dream let go</label><description>The dream has stopped coming. I made something of it, and that seems to have been enough.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <!-- ===================== A grudge laid down ===================== -->
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_Arc_LetItGo</defName>
+    <durationDays>8</durationDays>
+    <stages><li><label>let the grudge go</label><description>I've stopped waiting for revenge. Not because they earned it. Because I want my days back.</description><baseMoodEffect>4</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <!-- ===================== Within reach ===================== -->
+
+  <ThoughtDef>
+    <defName>Council_Arc_BelievedInMe</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilSocial</thoughtClass>
+    <durationDays>12</durationDays>
+    <stackLimit>3</stackLimit>
+    <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
+    <stages><li><label>believed in me</label><description>When I'd stopped believing I could do it, they hadn't.</description><baseMoodEffect>2</baseMoodEffect><baseOpinionOffset>10</baseOpinionOffset></li></stages>
+  </ThoughtDef>
+
+</Defs>

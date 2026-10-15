@@ -190,12 +190,16 @@ namespace ColonyCouncil
             }
             if (arc.other != null)
             {
-                if (arc.other.Dead)
+                bool dead = arc.other.Dead;
+                bool left = !dead && (arc.other.Discarded || arc.other.Faction != Faction.OfPlayer || arc.other.IsPrisoner || People.Kidnapped(arc.other));
+                // Someone the story only leans on (a friend to talk to) can be gone without ending it.
+                if ((dead || left) && !arc.def.needsOther) arc.other = null;
+                else if (dead)
                 {
                     Fizzle(arc, "otherdead");
                     return;
                 }
-                if (arc.other.Discarded || arc.other.Faction != Faction.OfPlayer || arc.other.IsPrisoner || People.Kidnapped(arc.other))
+                else if (left)
                 {
                     Fizzle(arc, "otherleft");
                     return;
@@ -217,6 +221,12 @@ namespace ColonyCouncil
                 return;
             }
 
+            // How long a traveler has been away, for the long way home ({DAYS}).
+            if (!ArcUtil.AtHome(p))
+            {
+                int away = CouncilGameComponent.Instance?.AwayTicks(p) ?? -1;
+                if (away / Day > arc.awayDays) arc.awayDays = away / Day;
+            }
             // Away from home (or the other person is): the story waits, and so do its clocks.
             if (Paused(arc))
             {
@@ -254,7 +264,7 @@ namespace ColonyCouncil
         {
             if (arc.def.Worker.PausesAway && !ArcUtil.AtHome(arc.pawn)) return true;
             // The other person is off on a journey. (The long way home's first stage waits on its traveler, not on them.)
-            return arc.other != null && !arc.OtherIsAnimal && !ArcUtil.AtHome(arc.other) && ArcUtil.AtHome(arc.pawn);
+            return arc.def.needsOther && arc.other != null && !arc.OtherIsAnimal && !ArcUtil.AtHome(arc.other) && ArcUtil.AtHome(arc.pawn);
         }
 
         /// <summary>A fight at home while they're there: what a Battle gate waits for the end of.</summary>
@@ -464,9 +474,9 @@ namespace ColonyCouncil
             if (comp == null || st == null) return;
             using var _cause = Causes.Push(CauseText(arc));
             Apply(arc, st.effects);
-            string line = ArcText.Line(st.journal, arc.pawn, arc, arc.other);
+            string line = ArcText.Line(st.journal, arc.pawn, arc, arc.Partner);
             if (!line.NullOrEmpty()) comp.journals.WriteText(arc.pawn, line);
-            if (st.otherJournal != null && arc.other != null && !arc.OtherIsAnimal && People.HasInnerLife(arc.other) && arc.other.IsColonist)
+            if (st.otherJournal != null && arc.other != null && !arc.OtherIsAnimal && !arc.other.Dead && People.HasInnerLife(arc.other) && arc.other.IsColonist)
             {
                 string theirs = ArcText.Line(st.otherJournal, arc.other, arc, arc.pawn);
                 if (!theirs.NullOrEmpty()) comp.journals.WriteText(arc.other, theirs);
@@ -520,7 +530,7 @@ namespace ColonyCouncil
             arc = arc,
             map = arc.pawn?.MapHeld ?? Find.AnyPlayerHomeMap,
             a = arc.pawn,
-            b = arc.OtherIsAnimal ? null : arc.other,
+            b = arc.OtherIsAnimal ? null : arc.Partner,
             pet = arc.OtherIsAnimal ? arc.other : null,
             skill = arc.skill,
             faction = arc.faction,
@@ -576,7 +586,7 @@ namespace ColonyCouncil
             using var _cause = Causes.Push(CauseText(arc));
             bool otherGone = reason == "otherdead" || reason == "otherleft";
             if (!otherGone) Apply(arc, arc.def.fizzleEffects);
-            string line = ArcText.Line(arc.def.fizzle, arc.pawn, arc, arc.other, reason);
+            string line = ArcText.Line(arc.def.fizzle, arc.pawn, arc, arc.Partner ?? arc.other, reason);
             if (!line.NullOrEmpty()) comp.journals.WriteText(arc.pawn, line);
             string told = ArcText.Chronicle(arc.def.fizzleChronicle, arc, reason)
                           ?? "CC_Arc_FizzledChronicle".Translate(arc.pawn.Named("PAWN"), arc.def.label.Named("STORY")).Resolve();
@@ -597,7 +607,19 @@ namespace ColonyCouncil
             var colonists = PawnsFinder.AllMaps_FreeColonists.Where(x => x != p && People.HasInnerLife(x) && !x.DevelopmentalStage.Baby()).ToList();
             var speaker = arc.other != null && !arc.OtherIsAnimal && colonists.Contains(arc.other) ? arc.other : ArcUtil.Closest(p, colonists, 20f);
             if (speaker == null) return;
-            eulogies.Add(new ArcEulogy { defName = arc.def.defName, dead = p, speaker = speaker, dueTick = Now + Day + Rand.Range(0, HourTicks * 6) });
+            eulogies.Add(new ArcEulogy
+            {
+                defName = arc.def.defName,
+                dead = p,
+                speaker = speaker,
+                dueTick = Now + Day + Rand.Range(0, HourTicks * 6),
+                lostName = arc.lostName,
+                name = arc.name,
+                goalText = arc.goalText,
+                factionName = arc.faction?.Name ?? arc.factionName,
+                skill = arc.skill,
+                tag = arc.tag
+            });
         }
 
         private void Eulogy(ArcEulogy e)
@@ -605,7 +627,18 @@ namespace ColonyCouncil
             var comp = CouncilGameComponent.Instance;
             var def = DefDatabase<ArcDef>.GetNamedSilentFail(e.defName);
             if (comp == null || def?.eulogy == null || e.speaker == null || e.speaker.Dead || !e.speaker.IsColonist || e.dead == null) return;
-            var fake = new Arc { def = def, pawn = e.dead, other = e.speaker };
+            var fake = new Arc
+            {
+                def = def,
+                pawn = e.dead,
+                other = e.speaker,
+                lostName = e.lostName,
+                name = e.name,
+                goalText = e.goalText,
+                factionName = e.factionName,
+                skill = e.skill,
+                tag = e.tag
+            };
             string line = ArcText.Line(def.eulogy, e.speaker, fake, e.dead);
             if (line.NullOrEmpty()) return;
             comp.journals.WriteText(e.speaker, line);

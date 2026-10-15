@@ -78,7 +78,7 @@ namespace ColonyCouncil
                 speaker.Named("PAWN"),
                 other.Named("OTHER"),
                 pet.Named("PET"),
-                (arc?.skill?.label ?? "").Named("SKILL"),
+                SkillNoun(arc?.skill).Named("SKILL"),
                 (arc?.lostName ?? "").Named("LOST"),
                 (arc?.name ?? "").Named("NAME"),
                 (arc?.faction?.Name ?? arc?.factionName ?? "").Named("FACTION"),
@@ -86,6 +86,14 @@ namespace ColonyCouncil
                 (quirk ?? "").Named("QUIRK"),
                 (arc?.awayDays ?? 0).Named("DAYS")
             };
+        }
+
+        /// <summary>A skill as the work it names ("building", "art", "healing"), as Rimfolk's events say it.</summary>
+        public static string SkillNoun(SkillDef skill)
+        {
+            if (skill == null) return "";
+            string key = "CC_SkillNoun_" + skill.defName;
+            return key.CanTranslate() ? key.Translate().Resolve() : skill.label;
         }
 
         /// <summary>What the story waits for now, with how far along it is, for the Story tab.</summary>
