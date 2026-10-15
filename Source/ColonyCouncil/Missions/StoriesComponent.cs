@@ -57,6 +57,8 @@ namespace ColonyCouncil
             if (!Sched.Hourly(t, Sched.Stories)) return;
             Safe("story chains", () => StoryChains.Hourly(t));
             Safe("missions hourly", () => Missions.Hourly(this, t));
+            // What the world's peoples remember fades a little each day (World/FactionMemory.cs).
+            if (Sched.FirstHourOfDay(t)) Safe("faction memory", () => FactionMemory.Daily(t));
         }
 
         private static void Safe(string context, Action a)

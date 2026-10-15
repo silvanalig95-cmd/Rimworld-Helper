@@ -23,6 +23,7 @@
     <Compile Include="../../Source/ColonyCouncil/Calendar/CalendarMath.cs" Link="CalendarMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Lean/Sched.cs" Link="Sched.cs" />
     <Compile Include="../../Source/ColonyCouncil/Lean/Caps.cs" Link="Caps.cs" />
+    <Compile Include="../../Source/ColonyCouncil/World/MemoryMath.cs" Link="MemoryMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/UI/SettingsCatalog.cs" Link="SettingsCatalog.cs" />
     <Compile Include="../../Source/ColonyCouncil/UI/SettingsLayoutMath.cs" Link="SettingsLayoutMath.cs" />
   </ItemGroup>
