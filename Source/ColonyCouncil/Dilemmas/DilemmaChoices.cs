@@ -212,7 +212,8 @@ namespace ColonyCouncil
         {
             if (o?.riskSkill == null || ctx == null) return chance;
             int level = BestLevel(o.riskSkill, ctx.a, ctx.b);
-            return level <= 0 ? chance : Mathf.Clamp(chance - level * 0.035f, 0.05f, 0.95f);
+            // A helper only ever lowers the risk (never below 5%, and never above what it was without them).
+            return level <= 0 ? chance : Mathf.Min(chance, Mathf.Clamp(chance - level * 0.035f, 0.05f, 0.95f));
         }
 
         /// <summary>Lets the answer's <see cref="DilemmaEffect_Needs"/> pick their helper (B) before the risk is weighed.</summary>
