@@ -286,7 +286,7 @@ namespace ColonyCouncil
             }
             string line = Flavor.FromPool("Council_Pool_VendettaSworn", first, null, null, tags.ToArray());
             string text = !line.NullOrEmpty()
-                ? line.Formatted(names.Named("NAMES"), lostOne.Named("LOST"), faction.Name.Named("FACTION")).Resolve()
+                ? line.Formatted(names.Named("NAME"), lostOne.Named("OTHER"), faction.Name.Named("FACTION")).Resolve()
                 : (kidnapped ? "CC_Vendetta_SwornTaken" : "CC_Vendetta_Sworn").Translate(names, lostOne.Named("LOST"), faction.Name.Named("FACTION")).Resolve();
             Notify.Message(text, new LookTargets(avengers), MessageTypeDefOf.NegativeEvent, Importance.Notable);
             comp.AddChronicle(new ChronicleEntry(ChronicleKind.Loss, text, first));
