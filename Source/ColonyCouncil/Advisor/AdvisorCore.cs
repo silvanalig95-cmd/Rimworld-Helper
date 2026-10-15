@@ -163,7 +163,7 @@ namespace ColonyCouncil
         {
             if (!map.IsPlayerHome) return;
             int t = Find.TickManager.TicksGame;
-            if (t % GenDate.TicksPerDay == 433)
+            if (Sched.Every(t, Sched.DayTicks, Sched.DailyWealth))
             {
                 wealthHistory.Add(map.wealthWatcher.WealthTotal);
                 if (wealthHistory.Count > 60) wealthHistory.RemoveAt(0);

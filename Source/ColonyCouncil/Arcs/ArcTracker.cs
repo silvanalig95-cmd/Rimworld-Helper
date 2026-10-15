@@ -129,7 +129,7 @@ namespace ColonyCouncil
         public override void GameComponentTick()
         {
             int t = Find.TickManager.TicksGame;
-            if (t % HourTicks != 1777) return;
+            if (!Sched.Hourly(t, Sched.Arcs)) return;
             if (!On)
             {
                 // Switched off: stories wait where they are, clocks and all.

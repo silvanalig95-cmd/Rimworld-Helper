@@ -265,6 +265,9 @@ namespace ColonyCouncil
                 sleptHours.Remove(gone);
                 wasOut.Remove(gone);
             }
+            // Not saved, so only held for this session: the dead and those the game let go of aren't held on to either.
+            if (lastDreamTick.Count > 0) lastDreamTick.RemoveAll(kv => kv.Key == null || kv.Key.Dead || kv.Key.Discarded || now - kv.Value >= GenDate.TicksPerHour * 18);
+            if (untold.Count > 0) untold.RemoveAll(kv => kv.Key == null || kv.Key.Dead || kv.Key.Discarded || kv.Value == null || now - kv.Value.tick >= GenDate.TicksPerHour * 12);
         }
 
         // ---------------- Choosing a dream ----------------
@@ -605,6 +608,11 @@ namespace ColonyCouncil
 
         public void ExposeData()
         {
+            // A dream remembers its dreamer's name: one the game has let go of is kept by name only (as a reload would).
+            if (Scribe.mode == LoadSaveMode.Saving)
+                foreach (var r in recent)
+                    if (r?.pawn != null && r.pawn.Discarded)
+                        r.pawn = null;
             Scribe_Collections.Look(ref recent, "recent", LookMode.Deep);
             Scribe_Collections.Look(ref omens, "omens", LookMode.Deep);
             if (Scribe.mode == LoadSaveMode.Saving) CouncilGameComponent.PruneByPawn(seen);
@@ -627,7 +635,9 @@ namespace ColonyCouncil
     /// </summary>
     public class InteractionWorker_DreamTalk : InteractionWorker
     {
-        private string Suffix => interaction.defName.Substring(interaction.defName.LastIndexOf('_') + 1);
+        private string suffix;
+
+        private string Suffix => suffix ??= interaction.defName.Substring(interaction.defName.LastIndexOf('_') + 1);
 
         private static DreamTracker.DreamMemo Memo(Pawn p)
         {

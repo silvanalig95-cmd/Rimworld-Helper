@@ -58,11 +58,11 @@ namespace ColonyCouncil
             var c = camp;
             if (c == null) return;
             int now = Now;
-            if (now % 250 != 77) return;
+            if (!Sched.Every(now, Sched.RareTicks, Sched.RareCamp)) return;
             try
             {
                 c.Tick250();
-                if (now % GenDate.TicksPerHour == 327 && camp == c) c.Hourly();
+                if (Sched.Hourly(now, Sched.Camp) && camp == c) c.Hourly();
             }
             catch (Exception e)
             {

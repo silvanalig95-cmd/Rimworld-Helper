@@ -45,6 +45,14 @@ namespace ColonyCouncil
         {
         }
 
+        /// <summary>
+        /// A milestone of the colony's history (a loss, an ambition won or lost, a life event, a world event, a secret out):
+        /// when the chronicle is full, older everyday lines make way before these do (Caps.TrimKeeping).
+        /// </summary>
+        public bool Milestone =>
+            kind == ChronicleKind.Loss || kind == ChronicleKind.AmbitionAchieved || kind == ChronicleKind.AmbitionFailed || kind == ChronicleKind.Life
+            || kind == ChronicleKind.World || kind == ChronicleKind.Secret;
+
         public ChronicleEntry(ChronicleKind kind, string text, Pawn pawn = null)
         {
             tick = Find.TickManager.TicksGame;

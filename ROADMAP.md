@@ -164,6 +164,13 @@ play deep. In order:
   frame; a pass with Dubs Performance Analyzer in a long save to find the real hot spots.
 - Save size: caps and pruning for every history (chronicle, journals, pair tones, dreams), measured on a five-year
   save.
+- Done (October 2026): every periodic pass mapped (DESIGN.md, "Ticking") and given a tick of the hour of its own; the
+  council's hour, twenty-odd systems on one tick, now runs in four parts and its day in two, in their old order. Mood
+  workers, interaction weights, alerts and the slow-time buttons lost their LINQ, by-name lookups and per-frame string
+  building. Every saved list has a cap or pruning rule (DESIGN.md, "Save size"): the chronicle keeps its milestones
+  longest, departed journals and annals are capped, and records of pawns the game has discarded are let go while
+  playing. Still open: one shared clock and per-map snapshot, ailments and health spread across the hour, a profiler
+  pass and the five-year measurement.
 
 ### 3. Clear (UI/UX)
 - Done (October 2026): the settings window on seven pages (council and wishes, people and moods, heart and health,

@@ -18,8 +18,11 @@ namespace ColonyCouncil
     {
         protected override ThoughtState CurrentStateInternal(Pawn p)
         {
+            // The hediff first: asked for every colonist, and only the convalescing need their traits read.
+            var state = base.CurrentStateInternal(p);
+            if (!state.Active) return state;
             if (HealthTracker.ConvalescenceOn && HealthTracker.Impatient(p)) return ThoughtState.Inactive;
-            return base.CurrentStateInternal(p);
+            return state;
         }
     }
 
@@ -28,8 +31,10 @@ namespace ColonyCouncil
     {
         protected override ThoughtState CurrentStateInternal(Pawn p)
         {
-            if (!HealthTracker.ConvalescenceOn || !HealthTracker.Impatient(p)) return ThoughtState.Inactive;
-            return base.CurrentStateInternal(p);
+            if (!HealthTracker.ConvalescenceOn) return ThoughtState.Inactive;
+            var state = base.CurrentStateInternal(p);
+            if (!state.Active || !HealthTracker.Impatient(p)) return ThoughtState.Inactive;
+            return state;
         }
     }
 

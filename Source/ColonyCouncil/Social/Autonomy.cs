@@ -339,9 +339,11 @@ namespace ColonyCouncil
         {
             if (Scribe.mode == LoadSaveMode.Saving)
             {
+                // When someone last acted only matters for a day (TryAct): older entries, and the dead, are forgotten.
+                int now = Find.TickManager.TicksGame;
                 for (int i = pawns.Count - 1; i >= 0; i--)
                 {
-                    if (pawns[i] == null || pawns[i].Discarded)
+                    if (pawns[i] == null || pawns[i].Discarded || pawns[i].Dead || lastActed[i] > now || now - lastActed[i] > GenDate.TicksPerDay * 2)
                     {
                         pawns.RemoveAt(i);
                         lastActed.RemoveAt(i);

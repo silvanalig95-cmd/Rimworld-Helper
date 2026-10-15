@@ -88,6 +88,18 @@ namespace ColonyCouncil
 
         public IEnumerable<Vendetta> Of(Pawn p) => vendettas.Where(v => v.avenger == p && v.Active);
 
+        /// <summary>An open vendetta of theirs against a people still hostile (the vendetta mood asks for every colonist).</summary>
+        public bool AnyHostile(Pawn p)
+        {
+            if (p == null) return false;
+            for (int i = 0; i < vendettas.Count; i++)
+            {
+                var v = vendettas[i];
+                if (v.avenger == p && v.Active && v.faction.HostileTo(Faction.OfPlayer)) return true;
+            }
+            return false;
+        }
+
         private static bool Eligible(Pawn p) => People.HasInnerLife(p) && p.IsColonist && !p.IsQuestLodger() && p.RaceProps.Humanlike && !p.DevelopmentalStage.Baby();
 
         public void Hourly(CouncilGameComponent comp)
@@ -283,7 +295,7 @@ namespace ColonyCouncil
 
         public void Daily(CouncilGameComponent comp)
         {
-            vendettas.RemoveAll(v => v.avenger == null || v.avenger.Dead || v.faction == null);
+            vendettas.RemoveAll(v => v.avenger == null || v.avenger.Dead || v.avenger.Discarded || v.faction == null);
             foreach (var v in vendettas.Where(v => !v.settled).ToList())
             {
                 // Their faction is gone, or it's been years.
@@ -378,7 +390,7 @@ namespace ColonyCouncil
             var comp = CouncilGameComponent.Instance;
             var s = ColonyCouncilMod.Settings;
             if (comp?.vendettas == null || !s.vendettas || !s.MoodEffects || s.PenaltyScale <= 0f) return ThoughtState.Inactive;
-            return comp.vendettas.Of(p).Any(v => v.faction.HostileTo(Faction.OfPlayer)) ? ThoughtState.ActiveAtStage(0) : ThoughtState.Inactive;
+            return comp.vendettas.AnyHostile(p) ? ThoughtState.ActiveAtStage(0) : ThoughtState.Inactive;
         }
     }
 }

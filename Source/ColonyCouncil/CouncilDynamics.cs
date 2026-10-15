@@ -629,7 +629,8 @@ namespace ColonyCouncil
 
         // ================= Daily =================
 
-        private void Daily()
+        /// <summary>The day's first half (Sched.CouncilDayFirst): trust and standards, decrees, rooms, anniversaries, names, journals, offices.</summary>
+        private void DailyFirst()
         {
             standings.Daily();
             var s = Settings;
@@ -642,6 +643,12 @@ namespace ColonyCouncil
             Safe("epithets", () => epithets.Daily(this));
             Safe("journals", journals.Daily);
             Safe("offices", () => offices.Daily(this));
+        }
+
+        /// <summary>The day's second half (Sched.CouncilDaySecond), a few minutes of game time later: the social web and the rest.</summary>
+        private void DailySecond()
+        {
+            var s = Settings;
             Safe("social web", () => social.Daily(this));
             Safe("social events", () => SocialEvents.Daily(this));
             Safe("life goals", () => aspirations.Daily(this));

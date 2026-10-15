@@ -49,7 +49,8 @@ namespace ColonyCouncil
             Text.Font = GameFont.Small;
             float bx = rect.xMax;
             float minLeft = rect.x + Mathf.Min(320f, rect.width * 0.45f);
-            var departed = comp.journals.Departed().ToList();
+            // The journals of the departed walk every journal: worked out twice a second, not every frame.
+            var departed = UiCache.Get(comp.journals, 92, () => comp.journals.Departed().ToList(), 0.5f);
             if (departed.Count > 0)
             {
                 string dl = "CC_Journal_Departed".Translate();

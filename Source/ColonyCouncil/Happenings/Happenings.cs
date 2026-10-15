@@ -909,6 +909,17 @@ namespace ColonyCouncil
             Scribe_Collections.Look(ref grudges, "grudges", LookMode.Deep);
             Scribe_Collections.Look(ref visits, "visits", LookMode.Deep);
             Scribe_Collections.Look(ref memos, "memos", LookMode.Deep);
+            // Quests already told of, by id: only those the game still keeps can come up again (Quests walks the same list).
+            if (Scribe.mode == LoadSaveMode.Saving && seenQuests != null && seenQuests.Count > 0)
+            {
+                var all = Find.QuestManager?.QuestsListForReading;
+                if (all != null)
+                {
+                    var ids = new HashSet<int>();
+                    foreach (var q in all) ids.Add(q.id);
+                    seenQuests.RemoveWhere(id => !ids.Contains(id));
+                }
+            }
             Scribe_Collections.Look(ref seenQuests, "seenQuests", LookMode.Value);
             Scribe_Values.Look(ref questsInitialized, "questsInitialized");
             Scribe_References.Look(ref beast, "beast");

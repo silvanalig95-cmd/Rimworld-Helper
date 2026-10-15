@@ -106,9 +106,42 @@ namespace ColonyCouncil
 
         [Unsaved] private bool? available;
         [Unsaved] private string initiatorExpr, recipientExpr;
+        [Unsaved] private bool namesLooked;
+        [Unsaved] private TieKind? tieKind;
+        [Unsaved] private NeedDef needDef;
 
         public string InitiatorExpr => initiatorExpr ??= "[" + initiatorTags + "]";
         public string RecipientExpr => recipientExpr ??= "[" + recipientTags + "]";
+
+        /// <summary>
+        /// The tie and need named in XML, read once (the game weighs every moment each time two colonists talk): the tie
+        /// kind, or null when none is named (or the name is unknown); the need's def, or null.
+        /// </summary>
+        private void LookNames()
+        {
+            if (namesLooked) return;
+            tieKind = !tie.NullOrEmpty() && System.Enum.TryParse(tie, out TieKind k) ? k : (TieKind?)null;
+            needDef = need.NullOrEmpty() ? null : DefDatabase<NeedDef>.GetNamedSilentFail(need);
+            namesLooked = true;
+        }
+
+        public TieKind? TieNamed
+        {
+            get
+            {
+                LookNames();
+                return tieKind;
+            }
+        }
+
+        public NeedDef NeedNamed
+        {
+            get
+            {
+                LookNames();
+                return needDef;
+            }
+        }
 
         /// <summary>Its mods and defs are in this game.</summary>
         public bool Available
@@ -227,7 +260,7 @@ namespace ColonyCouncil
         private static bool Fits(MomentExtension x, Pawn a, Pawn b)
         {
             var social = CouncilGameComponent.Instance?.social;
-            if (!x.tie.NullOrEmpty() && System.Enum.TryParse(x.tie, out TieKind kind) && social?.Get(a, b, kind) == null) return false;
+            if (x.TieNamed is TieKind kind && social?.Get(a, b, kind) == null) return false;
             if (x.bondedPet && !(a.relations?.DirectRelations.Any(r => r.def == PawnRelationDefOf.Bond && r.otherPawn != null && !r.otherPawn.Dead) ?? false)) return false;
             if (x.nemesisVictim && !(CouncilGameComponent.Instance?.nemeses?.Of(a).Any(n => !n.ended) ?? false)) return false;
             if (x.sameIdeo || x.otherIdeo)
@@ -238,7 +271,7 @@ namespace ColonyCouncil
             }
             if (!x.need.NullOrEmpty())
             {
-                var def = DefDatabase<NeedDef>.GetNamedSilentFail(x.need);
+                var def = x.NeedNamed;
                 var n = def != null ? a.needs?.TryGetNeed(def) : null;
                 if (n == null) return false;
                 if (x.needBelow >= 0f && n.CurLevelPercentage >= x.needBelow) return false;
