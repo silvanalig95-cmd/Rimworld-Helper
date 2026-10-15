@@ -21,25 +21,39 @@
         <answerDays>0.75</answerDays>
         <titles>
           <li>Strangers make camp</li>
+          <li>Campfires {PLACE}</li>
+          <li>Visitors set up camp</li>
         </titles>
         <texts>
           <li>Strangers of {FACTION} are making camp {PLACE}.</li>
+          <li>A party of {FACTION} has stopped {PLACE} and is pitching tents. They say they mean no harm and won't stay long.</li>
+          <li>Smoke is rising {PLACE}: travelers of {FACTION} have made camp there and are unloading their packs.</li>
         </texts>
         <defaultOption>0</defaultOption>
         <options>
           <li>
             <label>Let them stay</label>
             <outcome>The colony lets them be. They will camp {PLACE} for a while.</outcome>
+            <outcomes>
+              <li>[trait:Kind] {A_nameDef} walks out with a pot of something hot and tells them they're welcome. They will camp {PLACE} for a while.</li>
+              <li>[winter] The colony lets them be, and they look glad of it in this cold. They will camp {PLACE} for a while.</li>
+            </outcomes>
             <ways><openness>2</openness></ways>
           </li>
           <li>
             <label>Let them stay, on terms</label>
             <outcome>The colony will let them stay, on terms it sets.</outcome>
+            <outcomes>
+              <li>[skill:Social] {A_nameDef} will go out and talk terms with them. They seem ready to listen.</li>
+            </outcomes>
             <ways><openness>1</openness></ways>
           </li>
           <li>
             <label>Ask them to move on, with {COUNT} silver</label>
             <outcome>They take the silver with thanks and go.</outcome>
+            <outcomes>
+              <li>They count the silver, thank {A_nameDef} twice, and start packing.</li>
+            </outcomes>
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>silver</what><onlyIfChosen>true</onlyIfChosen></li>
             </effects>
@@ -48,11 +62,17 @@
           <li>
             <label>Ask them to move on</label>
             <outcome>They take it badly, but they go.</outcome>
+            <outcomes>
+              <li>They grumble about the colony's manners all through the packing, but they go.</li>
+            </outcomes>
             <ways><openness>-2</openness></ways>
           </li>
           <li>
             <label>Drive them off</label>
             <outcome>Armed colonists walk out to meet them, and the strangers hurry off the colony's land.</outcome>
+            <outcomes>
+              <li>The strangers see the colonists coming with weapons in hand and leave their fire burning in their hurry to go.</li>
+            </outcomes>
             <ways><mercy>-3</mercy><openness>-3</openness></ways>
           </li>
         </options>
