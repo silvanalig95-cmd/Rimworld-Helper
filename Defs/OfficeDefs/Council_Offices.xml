@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Defs>
 
-  <!-- Seats on the council, filled by a yearly election (the council can overrule it). -->
+  <!-- Seats on the council, filled by a yearly election (the council can overrule it). elected: a line for the
+       election letter after the winner's name ({PAWN_...}). More seats for a bigger colony: Council_Offices2.xml. -->
 
   <ColonyCouncil.OfficeDef>
     <defName>Council_Office_Speaker</defName>
@@ -17,6 +18,11 @@
       <li>Everyone's trust in the council rises a little each day.</li>
       <li>The speaker is more persuasive (social impact and negotiation).</li>
     </duties>
+    <elected>
+      <li>{PAWN_nameDef} cleared {PAWN_possessive} throat at supper and the room went quiet, which surprised everyone, {PAWN_nameDef} most of all.</li>
+      <li>{PAWN_nameDef} promises short meetings. Nobody believes it.</li>
+      <li>{PAWN_nameDef} has already been asked to settle three arguments, and settled two of them.</li>
+    </elected>
   </ColonyCouncil.OfficeDef>
 
   <ColonyCouncil.OfficeDef>
@@ -34,6 +40,11 @@
       <li>Colonists aim and strike a little better.</li>
       <li>The marshal fights better and holds steady under fire.</li>
     </duties>
+    <elected>
+      <li>{PAWN_nameDef} walked the wall before dark and moved two of the sandbags a hand's width to the left.</li>
+      <li>{PAWN_nameDef} has announced a drill for tomorrow at dawn, to general groaning.</li>
+      <li>{PAWN_nameDef} wants to know where everyone sleeps, in case.</li>
+    </elected>
   </ColonyCouncil.OfficeDef>
 
   <ColonyCouncil.OfficeDef>
@@ -48,6 +59,11 @@
       <li>Answers to dilemmas that cost food, wood or silver cost a quarter less.</li>
       <li>The quartermaster gets better prices from traders.</li>
     </duties>
+    <elected>
+      <li>{PAWN_nameDef} counted the stores that same evening, twice, and frowned both times.</li>
+      <li>{PAWN_nameDef} has started a ledger, and the cook is already in it.</li>
+      <li>{PAWN_nameDef} says the next trader is going to regret coming.</li>
+    </elected>
   </ColonyCouncil.OfficeDef>
 
   <ColonyCouncil.OfficeDef>
@@ -63,6 +79,11 @@
       <li>Everyone heals and fights off illness a little faster.</li>
       <li>The physician tends wounds and operates more skillfully.</li>
     </duties>
+    <elected>
+      <li>{PAWN_nameDef} washed {PAWN_possessive} hands, looked around the infirmary, and started making a list.</li>
+      <li>{PAWN_nameDef} asked everyone how they were sleeping, and wrote the answers down.</li>
+      <li>{PAWN_nameDef} says the first rule is clean hands, and the second rule is also clean hands.</li>
+    </elected>
   </ColonyCouncil.OfficeDef>
 
   <ColonyCouncil.OfficeDef>
@@ -77,6 +98,11 @@
       <li>Everyone's standards rise a quarter more slowly.</li>
       <li>The steward gets more out of recreation.</li>
     </duties>
+    <elected>
+      <li>{PAWN_nameDef} has already asked what everyone would like for the next feast.</li>
+      <li>{PAWN_nameDef} says a colony that never celebrates forgets why it bothers, and means to fix that.</li>
+      <li>{PAWN_nameDef} lit a lamp in the common room and left it burning, as a start.</li>
+    </elected>
   </ColonyCouncil.OfficeDef>
 
 </Defs>

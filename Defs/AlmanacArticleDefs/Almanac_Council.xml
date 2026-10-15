@@ -230,12 +230,12 @@ Health brings its own: a doctor who lost a patient asking for a day away, someon
     <label>offices and elections</label>
     <category>Council</category>
     <order>7</order>
-    <summary>Speaker, marshal, quartermaster, physician, steward: who holds them and what they do.</summary>
+    <summary>Speaker, marshal, quartermaster, physician, steward, and for a bigger colony reeve, peacemaker, keeper of days and herdmaster.</summary>
     <tip>The colony votes for the people it likes, not always the ones who are best at the job.</tip>
-    <description>The council has five seats. Each gives its holder a bonus and helps the whole colony in some way. Colonists elect them once a year, voting for whoever is good at the job, has the right nature for it, and is liked. The council can appoint or dismiss anyone from the Decrees page, but overruling the vote has a cost.</description>
+    <description>The council has five seats from the start, and four more that open as the colony grows. Each gives its holder a bonus and helps the whole colony in some way. Colonists elect them once a year, voting for whoever is good at the job, has the right nature for it, and is liked. The council can appoint or dismiss anyone from the Decrees page, but overruling the vote has a cost.</description>
     <sections>
       <li>
-        <heading>The five seats</heading>
+        <heading>The seats</heading>
         <table>
           <li>Office | What it does</li>
           <li>Speaker | Chairs every council meeting. Everyone's trust rises a little each day, at no cost to you.</li>
@@ -243,18 +243,23 @@ Health brings its own: a doctor who lost a patient asking for a day away, someon
           <li>Quartermaster | Answers to dilemmas that cost food, wood or silver cost a quarter less, and trade prices are better.</li>
           <li>Physician | Everyone heals and fights off illness a little faster.</li>
           <li>Steward | Standards rise a quarter more slowly, and the steward gets more out of recreation.</li>
+          <li>Reeve (4 voters) | Every harvest yields a little more (2%), and the reeve sows, reaps and harvests better still.</li>
+          <li>Peacemaker (5 voters) | Rivalries between colonists cool a little every day, and now and then the peacemaker sits the worst-feuding pair down, which eases their rivalry a good deal.</li>
+          <li>Keeper of days (6 voters) | Every council custom or calendar day the colony keeps leaves everyone there a small good memory (+2 for two days).</li>
+          <li>Herdmaster (6 voters) | Everyone gets a little more from milking, shearing and eggs, and the herdmaster tames and trains more easily.</li>
         </table>
+        <after>A seat opens once the colony has that many people who can vote; until then it simply isn't contested. The election letter says a word about each new holder.</after>
       </li>
       <li>
         <heading>Elections</heading>
-        <text>The first election comes after about a week, then one every new year. An empty seat is refilled by a by-election a few days later. No one can hold two offices, and children, slaves and lodgers can't run.
+        <text>The first election comes after about a week, then one every new year. An empty seat is refilled by a by-election a few days later, as long as someone without a seat can take it. No one can hold two offices, and children, slaves and lodgers can't run.
 
 Votes follow skill, traits and friendship: friends and members of the same circle vote for each other, rivals against. Losing an election or a seat sours the loser on the winner, and can start a rivalry.
 
 Overrule the vote only when the difference matters. The colonist who won the election will remember it.</text>
       </li>
     </sections>
-    <keywords><li>office</li><li>election</li><li>vote</li><li>speaker</li><li>marshal</li><li>quartermaster</li><li>physician</li><li>steward</li></keywords>
+    <keywords><li>office</li><li>election</li><li>vote</li><li>speaker</li><li>marshal</li><li>quartermaster</li><li>physician</li><li>steward</li><li>reeve</li><li>peacemaker</li><li>keeper of days</li><li>herdmaster</li></keywords>
     <seeAlso><li>Council_Alm_C_Trust</li><li>Council_Alm_C_Social</li></seeAlso>
   </ColonyCouncil.AlmanacArticleDef>
 

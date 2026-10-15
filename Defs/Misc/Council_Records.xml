@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Deeds Rimfolk counts that the game doesn't. They show in the game's own Records tab, and names
+    (Defs/EpithetDefs/Council_Epithets2.xml) are built on them.
+  -->
+
+  <RecordDef>
+    <defName>Council_QuarrelsMended</defName>
+    <label>quarrels mended</label>
+    <description>Times this colonist made up after a quarrel, or as the peacemaker sat two feuding colonists down together.</description>
+    <type>Int</type>
+    <displayOrder>1612</displayOrder>
+  </RecordDef>
+
+  <RecordDef>
+    <defName>Council_TradesMade</defName>
+    <label>trade deals struck</label>
+    <description>Trades this colonist struck as the colony's negotiator, with caravans, visitors and traders' ships.</description>
+    <type>Int</type>
+    <displayOrder>1613</displayOrder>
+  </RecordDef>
+
+  <RecordDef>
+    <defName>Council_SecretsKept</defName>
+    <label>secrets kept</label>
+    <description>Secrets other colonists trusted this colonist with.</description>
+    <type>Int</type>
+    <displayOrder>1614</displayOrder>
+  </RecordDef>
+
+  <RecordDef>
+    <defName>Council_EulogiesGiven</defName>
+    <label>eulogies given</label>
+    <description>Times this colonist spoke at a grave for someone the colony lost.</description>
+    <type>Int</type>
+    <displayOrder>1615</displayOrder>
+  </RecordDef>
+
+</Defs>

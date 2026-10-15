@@ -10,4 +10,9 @@
   <CC_Social_VendettaSettled_forgiven>{0} laid down the vendetta against {1} for {2}.</CC_Social_VendettaSettled_forgiven>
   <CC_Social_VendettaSettled_peace>{0} made peace with {1} over {2}, once the colony had.</CC_Social_VendettaSettled_peace>
 
+  <!-- The newer council seats. -->
+  <CC_Cause_Peacemaker>{0}, the peacemaker, sat them down together</CC_Cause_Peacemaker>
+  <CC_TieNote_Peacemaker>{0} sat them down together</CC_TieNote_Peacemaker>
+  <CC_Cause_KeeperOfDays>{0}, the keeper of days, saw it kept properly</CC_Cause_KeeperOfDays>
+
 </LanguageData>

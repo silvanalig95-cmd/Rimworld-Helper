@@ -64,7 +64,7 @@
   <CC_SetNote_DaysBetweenDilemmas>On average; they come sooner while everyone is content.</CC_SetNote_DaysBetweenDilemmas>
   <CC_SetNote_DecreeRequests>When the moment fits, a colonist asks the council for a decree.</CC_SetNote_DecreeRequests>
   <CC_SetNote_Character>The council's choices add up to a name, merciful or harsh, open or guarded, and people react to it.</CC_SetNote_Character>
-  <CC_SetNote_Offices>Speaker, marshal, quartermaster, physician and steward, elected each year.</CC_SetNote_Offices>
+  <CC_SetNote_Offices>Speaker, marshal, quartermaster, physician and steward, with four more seats as the colony grows, elected each year.</CC_SetNote_Offices>
   <CC_SetNote_DaysBetweenMeetings>How often the council sits down to choose its next ambition.</CC_SetNote_DaysBetweenMeetings>
   <CC_SetNote_AmbitionDeadline>How long the colony has to reach an ambition once it's chosen.</CC_SetNote_AmbitionDeadline>
   <CC_SetNote_MeetingsCallFromWork>On: people put down ordinary work and sleepers are woken. Off: they come when they're free.</CC_SetNote_MeetingsCallFromWork>
