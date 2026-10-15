@@ -137,6 +137,10 @@
         <li>Half of what I meant to tell {OTHER_nameDef} about the road, I've forgotten. It doesn't seem to matter now.</li>
       </plain>
       <gloomy><li>[otherdead] I saved up the road for {OTHER_nameDef}, every mile of it. Now there's no one I want to tell.</li></gloomy>
+      <warm><li>[timeout] I've so much to tell {OTHER_nameDef} when I'm back. I'm keeping it all safe.</li></warm>
+      <blunt><li>[timeout] Still on the road. Still missing home.</li></blunt>
+      <cheerful><li>[timeout] The road goes on and on! I'm collecting stories for when I'm home.</li></cheerful>
+      <cold><li>[timeout] The journey has run longer than planned. I'll report when I return.</li></cold>
     </fizzle>
     <fizzleChronicle>
       <li>[otherdead] {PAWN_nameDef} came home to find {OTHER_nameDef} gone for good.</li>
@@ -306,6 +310,11 @@
         <li>[otherleft] {OTHER_nameDef} has left. I'd only just started to feel at home, and {OTHER_nameDef} was half the reason.</li>
         <li>I live here. I don't belong here yet. Those are different things.</li>
       </plain>
+      <warm><li>[timeout] Everyone's been kind. I just don't feel like I belong yet.</li></warm>
+      <blunt><li>[timeout] Still a stranger here. Fine.</li></blunt>
+      <cheerful><li>[timeout] Not quite home yet, but I've learned where the good blankets are!</li></cheerful>
+      <gloomy><li>[timeout] I keep waiting to feel at home. It hasn't come.</li></gloomy>
+      <cold><li>[timeout] I live here. Belonging is a separate question, and the answer is not yet.</li></cold>
     </fizzle>
     <fizzleChronicle>
       <li>[otherdead] With {OTHER_nameDef} gone, {PAWN_nameDef} feels like a stranger here again.</li>
@@ -440,6 +449,11 @@
         <li>[timeout] {PET_nameDef} has lost interest in me and taken up with the cook. I can't blame {PET_objective}.</li>
         <li>{PET_nameDef} and I never quite got there. Some animals keep to themselves.</li>
       </plain>
+      <warm><li>[timeout] {PET_nameDef} and I aren't there yet. I'll keep a treat in my pocket, just in case.</li></warm>
+      <blunt><li>[timeout] {PET_nameDef} doesn't care for me. Fine.</li></blunt>
+      <cheerful><li>[timeout] {PET_nameDef} prefers someone else for now, but I'm not giving up!</li></cheerful>
+      <gloomy><li>[timeout] Even {PET_nameDef} would rather be somewhere else.</li></gloomy>
+      <cold><li>[timeout] {PET_nameDef} hasn't taken to me. Some animals don't.</li></cold>
     </fizzle>
     <fizzleChronicle>
       <li>[otherdead] {PET_nameDef} died before {PAWN_nameDef} and {PET_objective} had truly bonded.</li>

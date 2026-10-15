@@ -144,6 +144,10 @@
         <li>[otherleft] {OTHER_nameDef} has gone, and {OTHER_nameDef} was the one I talked to about {LOST}.</li>
         <li>Some griefs don't ease. This one hasn't, yet.</li>
       </plain>
+      <warm><li>[timeout] I still miss {LOST} every day. I'm learning to carry it more gently.</li></warm>
+      <blunt><li>[timeout] Still hurts. That's grief.</li></blunt>
+      <cheerful><li>[timeout] Some days are still hard, but I can say {LOST}'s name now and smile.</li></cheerful>
+      <gloomy><li>[timeout] The grief isn't going anywhere. Neither am I.</li></gloomy>
     </fizzle>
     <fizzleChronicle>
       <li>[otherdead] {PAWN_nameDef}, still grieving {LOST}, has lost {OTHER_nameDef} too.</li>
@@ -278,6 +282,11 @@
         <li>[otherleft] {OTHER_nameDef} has gone. I'm not ready to tell anyone else.</li>
         <li>Not yet. Maybe never. I'll carry it a while longer.</li>
       </plain>
+      <warm><li>[timeout] I'm not ready to tell everyone. {OTHER_nameDef} understands, I think.</li></warm>
+      <blunt><li>[timeout] Keeping it. My business.</li></blunt>
+      <cheerful><li>[timeout] The secret stays a secret for now! It's had a long rest; it can have another.</li></cheerful>
+      <gloomy><li>[timeout] I lost my nerve. The secret's heavier than ever.</li></gloomy>
+      <cold><li>[timeout] I've decided the secret serves me better kept.</li></cold>
     </fizzle>
     <fizzleChronicle>
       <li>[cameout] {PAWN_nameDef}'s secret came out before {PAWN_nameDef} was ready to tell it.</li>
@@ -429,6 +438,10 @@
         <li>[timeout] The fight I was ready for never came. The fear's still here, waiting with me.</li>
         <li>The fear won this time. Next time, maybe.</li>
       </plain>
+      <warm><li>[timeout] I'm still afraid. The others say that's all right, and I'm trying to believe them.</li></warm>
+      <blunt><li>[timeout] Still scared. Still training.</li></blunt>
+      <cheerful><li>[timeout] The fear's still here, but so am I, and I'm a lot better with a weapon now!</li></cheerful>
+      <gloomy><li>[timeout] I trained for nothing. The fear just waited me out.</li></gloomy>
     </fizzle>
     <fizzleChronicle>
       <li>[timeout] {PAWN_nameDef} was ready for a fight that never came.</li>
@@ -572,6 +585,11 @@
         <li>[timeout] I tried to make the dream into something. It wouldn't come right, and the dream keeps coming.</li>
         <li>The dream's still there. I've learned to live with it.</li>
       </plain>
+      <warm><li>[timeout] The dream still comes. I've started telling it to a friend in the mornings, and that helps.</li></warm>
+      <blunt><li>[timeout] Same dream. Couldn't make it real. Whatever.</li></blunt>
+      <cheerful><li>[timeout] The dream keeps coming back! At least it's never boring.</li></cheerful>
+      <gloomy><li>[timeout] I tried to give the dream what it wanted. It still won't leave.</li></gloomy>
+      <cold><li>[timeout] The dream persists. I've stopped trying to interpret it.</li></cold>
     </fizzle>
     <fizzleChronicle>
       <li>{PAWN_nameDef} still has the same dream.</li>
@@ -694,6 +712,10 @@
         <li>[timeout] I tried to let it go. It won't be let go.</li>
         <li>The grudge stays. Maybe it always will.</li>
       </plain>
+      <warm><li>[timeout] I wanted to put it down. I couldn't, not yet.</li></warm>
+      <blunt><li>[timeout] Still angry at {FACTION}. Fine.</li></blunt>
+      <cheerful><li>[timeout] I'm still cross with {FACTION}, but I'm less cross than I was!</li></cheerful>
+      <gloomy><li>[timeout] The grudge against {FACTION} has its claws in deep.</li></gloomy>
     </fizzle>
     <fizzleChronicle>
       <li>[anger] {FACTION} came back, and {PAWN_nameDef}'s anger came back with them.</li>
@@ -793,6 +815,11 @@
         <li>[timeout] Still not there. Still trying, some days.</li>
         <li>I've stopped counting how far there is to go.</li>
       </plain>
+      <warm><li>[timeout] I haven't given up. I've just slowed down.</li></warm>
+      <blunt><li>[timeout] Not there yet. Not quitting.</li></blunt>
+      <cheerful><li>[timeout] Still a long way to go, but I've got a long way in me!</li></cheerful>
+      <gloomy><li>[timeout] The goal keeps moving further off. Or I keep getting slower.</li></gloomy>
+      <cold><li>[timeout] Progress has stalled. I'll reassess what's worth the effort.</li></cold>
     </fizzle>
     <fizzleChronicle>
       <li>{PAWN_nameDef} has stopped pushing toward {PAWN_possessive} life goal.</li>

@@ -138,6 +138,11 @@
         <li>[otherleft] {OTHER_nameDef} has gone. I'll have to find the rest of {SKILL} on my own.</li>
         <li>I've gone as far as I can with {OTHER_nameDef} for now. Maybe later.</li>
       </plain>
+      <warm><li>[timeout] My best piece is still somewhere ahead of me. {OTHER_nameDef} says I'll get there.</li></warm>
+      <blunt><li>[timeout] Can't get it right. Putting it down.</li></blunt>
+      <cheerful><li>[timeout] The masterpiece will have to wait! I'm still learning, and that's fine.</li></cheerful>
+      <gloomy><li>[timeout] I've stared at the half-finished piece for days. It stares back.</li></gloomy>
+      <cold><li>[timeout] The work isn't ready, and neither am I. I'll return to it when the conditions improve.</li></cold>
     </fizzle>
     <fizzleChronicle>
       <li>[otherdead] {OTHER_nameDef} died before {PAWN_nameDef} could show {OTHER_objective} {PAWN_possessive} best work.</li>
@@ -280,6 +285,11 @@
         <li>[otherleft] {OTHER_nameDef} left. I keep going to the place where {OTHER_pronoun} used to work.</li>
         <li>Maybe {SKILL} isn't for me after all.</li>
       </plain>
+      <warm><li>[timeout] {OTHER_nameDef} was patient with me. I'm sorry it didn't stick.</li></warm>
+      <blunt><li>[timeout] Not for me, {SKILL}. Moving on.</li></blunt>
+      <cheerful><li>[timeout] I'm going to try something else next! Maybe everything else.</li></cheerful>
+      <gloomy><li>[timeout] I thought {SKILL} was my thing. Maybe I don't have a thing.</li></gloomy>
+      <cold><li>[timeout] The work doesn't suit me. Better to know now.</li></cold>
     </fizzle>
     <fizzleChronicle>
       <li>[otherdead] {PAWN_nameDef} lost {PAWN_possessive} teacher, {OTHER_nameDef}, too soon.</li>
@@ -425,6 +435,11 @@
         <li>[timeout] {OTHER_nameDef} has lost interest, or I've lost patience. Either way the lessons have stopped.</li>
         <li>Maybe what I know isn't meant to be passed on. Maybe it stops with me.</li>
       </plain>
+      <warm><li>[timeout] I'll keep teaching anyone who wants to learn. The door's open.</li></warm>
+      <blunt><li>[timeout] Lessons stopped. {OTHER_nameDef} wasn't ready.</li></blunt>
+      <cheerful><li>[timeout] The lessons have paused, but I've written down everything, just in case!</li></cheerful>
+      <gloomy><li>[timeout] Everything I know will go into the ground with me, the way it's going.</li></gloomy>
+      <cold><li>[timeout] {OTHER_nameDef} isn't the right student. I'll choose more carefully next time.</li></cold>
     </fizzle>
     <fizzleChronicle>
       <li>[otherdead] {PAWN_nameDef} lost {PAWN_possessive} student, {OTHER_nameDef}, before the lessons were done.</li>
