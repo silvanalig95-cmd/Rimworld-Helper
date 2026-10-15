@@ -39,6 +39,7 @@
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Others</target><thought>Council_Dlm_ChildArmed</thought><onlyTrait><li>Kind</li><li>Wimp</li></onlyTrait></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Others</target><thought>Council_Dlm_ChildArmed</thought><degreeTrait>Nerves</degreeTrait><maxDegree>-1</maxDegree></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Others</target><thought>Council_Dlm_FairsFair</thought><onlyTrait><li>Bloodlust</li><li>Tough</li></onlyTrait></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Lesson"><skill>Shooting</skill></li>
         </effects>
         <riskChance>0.2</riskChance>
         <riskOutcome>Lessons have begun. The second one ended with a shot through the storeroom door, a hand's width from {B_nameDef}'s ear. {B_nameDef} is still shaken, and some of the others think the lessons should stop.</riskOutcome>
@@ -85,6 +86,7 @@
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_SawSkinning</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>B</target><amount>2</amount></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Others</target><thought>Council_Dlm_Harsh</thought><onlyTrait><li>Kind</li></onlyTrait><chance>0.5</chance></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Lesson"><skill>Cooking</skill><duration>1~1.5</duration></li>
         </effects>
         <riskChance>0.4</riskChance>
         <riskReplaces>true</riskReplaces>
@@ -93,6 +95,7 @@
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_TaggedAlong</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_Dlm_Babysat</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Others</target><thought>Council_Dlm_GoodLaugh</thought><exceptTrait><li>Kind</li></exceptTrait><chance>0.4</chance></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Lesson"><skill>Cooking</skill><duration>1~1.5</duration></li>
         </riskEffects>
       </li>
     </options>
@@ -158,6 +161,7 @@
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Others</target><thought>Council_Dlm_AnimalFuneral</thought><exceptTrait><li>Psychopath</li><li>Abrasive</li></exceptTrait><chance>0.6</chance></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Others</target><thought>Council_Dlm_Nonsense</thought><onlyTrait><li>Psychopath</li><li>Abrasive</li></onlyTrait></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Others</target><thought>Council_Dlm_Nonsense</thought><degreeTrait>Industriousness</degreeTrait><minDegree>1</minDegree></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Words"><label>the animal's funeral</label><spots><li>Outdoors</li><li>Gather</li></spots><pool>Council_Pool_PlayRemembrance</pool><duration>1~1.5</duration></li>
         </effects>
       </li>
       <li>
@@ -395,6 +399,7 @@
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_Dlm_FairsFair</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Others</target><thought>Council_Dlm_FairsFair</thought><onlyTrait><li>TooSmart</li><li>Psychopath</li></onlyTrait></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Others</target><thought>Council_Dlm_Harsh</thought><onlyTrait><li>Kind</li></onlyTrait><chance>0.5</chance></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Visit"><to>Walk</to></li>
         </effects>
       </li>
       <li>
@@ -500,6 +505,7 @@
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_Vindicated</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>3</amount></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Others</target><thought>Council_Dlm_GoodLaugh</thought><exceptTrait><li>Kind</li></exceptTrait><chance>0.6</chance></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Words"><label>{B_nameDef}'s apology to {PET_nameDef}</label><organizer>B</organizer><hours>17~22</hours></li>
         </effects>
         <riskChance>0.25</riskChance>
         <riskOutcome>{B_nameDef} was made to apologize to {PET_nameDef} with the others watching, and blamed {A_nameDef} for it. The shouting ended in a fight.</riskOutcome>
@@ -539,6 +545,7 @@
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_LetterRead</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_FairsFair</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>3</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Words"><label>{B_nameDef}'s apology</label><organizer>B</organizer><hours>17~22</hours></li>
         </effects>
         <riskChance>0.25</riskChance>
         <riskReplaces>true</riskReplaces>
@@ -549,6 +556,7 @@
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_Grudge</thought><about>B</about></li>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>-3</amount></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Others</target><thought>Council_Dlm_GoodLaugh</thought><exceptTrait><li>Kind</li></exceptTrait><chance>0.5</chance></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Words"><label>{B_nameDef}'s apology</label><organizer>B</organizer><hours>17~22</hours></li>
         </riskEffects>
       </li>
       <li>
@@ -575,6 +583,7 @@
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>4</amount></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Others</target><thought>Council_Dlm_Swoon</thought><exceptTrait><li>Psychopath</li><li>Abrasive</li></exceptTrait><chance>0.6</chance></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Others</target><thought>Council_Dlm_GoodLaugh</thought><onlyTrait><li>Psychopath</li><li>Abrasive</li></onlyTrait></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Words"><label>the reading of the letter</label><hours>17~22</hours></li>
         </effects>
         <riskChance>0.4</riskChance>
         <riskReplaces>true</riskReplaces>
@@ -585,6 +594,7 @@
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>-4</amount></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Others</target><thought>Council_Dlm_GoodLaugh</thought><exceptTrait><li>Kind</li></exceptTrait><chance>0.5</chance></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Others</target><thought>Council_Dlm_Harsh</thought><onlyTrait><li>Kind</li></onlyTrait></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Words"><label>the reading of the letter</label><hours>17~22</hours></li>
         </riskEffects>
       </li>
       <li>
@@ -643,6 +653,7 @@
           <li Class="ColonyCouncil.DilemmaEffect_Inspiration"><target>A</target><chance>0.2</chance></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Others</target><thought>Council_Dlm_Helped</thought><exceptTrait><li>Psychopath</li><li>Abrasive</li></exceptTrait><chance>0.5</chance></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Others</target><thought>Council_Dlm_Nonsense</thought><onlyTrait><li>Psychopath</li></onlyTrait></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Words"><label>{A_nameDef}'s living funeral</label><duration>1.5~2</duration><lines><li>You've been good to all of us, {A_nameDef}.</li><li>Don't go anywhere yet.</li></lines></li>
         </effects>
         <riskChance>0.3</riskChance>
         <riskReplaces>true</riskReplaces>
@@ -652,6 +663,7 @@
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_HonestEulogy</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>-2</amount></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Others</target><thought>Council_Dlm_GoodLaugh</thought><exceptTrait><li>Kind</li></exceptTrait><chance>0.4</chance></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Words"><label>{A_nameDef}'s living funeral</label><duration>1.5~2</duration></li>
         </riskEffects>
       </li>
       <li>
@@ -662,6 +674,7 @@
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_PickedPlot</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>2</amount></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Others</target><thought>Council_Dlm_Morbid</thought><degreeTrait>Nerves</degreeTrait><maxDegree>-2</maxDegree></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Visit"><to>Walk</to><duration>1~1.5</duration></li>
         </effects>
       </li>
       <li>

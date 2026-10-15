@@ -208,6 +208,7 @@
           <li Class="ColonyCouncil.DilemmaEffect_Hediff"><target>Colony</target><hediff>Council_Dlm_Calm</hediff></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_Understood</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>6</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Bonfire"><label>{A_nameDef}'s fire</label><woodPaid>true</woodPaid><lines><li>Into the fire with it.</li><li>There. Let it burn.</li><li>I wrote mine small.</li></lines></li>
         </effects>
       </li>
       <li>
@@ -323,6 +324,7 @@
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_FairsFair</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>3</amount></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>AAndB</target><thought>Council_Dlm_MadeUp</thought><chance>0.5</chance></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Words"><label>{B_nameDef}'s apology</label><organizer>B</organizer><hours>17~22</hours></li>
         </effects>
         <riskChance>0.25</riskChance>
         <riskReplaces>true</riskReplaces>
@@ -331,6 +333,7 @@
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_Dlm_PublicApology</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_LostKeepsake</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>AAndB</target><thought>Council_Dlm_Grudge</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Words"><label>{B_nameDef}'s apology</label><organizer>B</organizer><hours>17~22</hours></li>
         </riskEffects>
       </li>
       <li>
@@ -668,6 +671,7 @@
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>AAndB</target><thought>Council_Dlm_ForcedTogether</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>AAndB</target><thought>Council_Dlm_MadeUp</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Words"><label>the handshake</label><hours>17~22</hours></li>
         </effects>
         <riskChance>0.45</riskChance>
         <riskReplaces>true</riskReplaces>

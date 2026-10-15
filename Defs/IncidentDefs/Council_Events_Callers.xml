@@ -60,6 +60,7 @@
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>silver</what><factor>0.5</factor></li>
               <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_Evt_StoryWritten</thought></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Words"><label>the telling of the colony's story</label><hours>17~23</hours><duration>2~3</duration></li>
             </effects>
             <ways><tradition>2</tradition></ways>
           </li>
@@ -69,6 +70,7 @@
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>silver</what><factor>0.5</factor></li>
               <li Class="ColonyCouncil.DilemmaEffect_Learn"><target>Colony</target><skill>Intellectual</skill><xp>300</xp></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Words"><label>{X_nameDef}'s reading lesson</label><organizer>None</organizer><spots><li>Dining</li><li>Rec</li><li>Stranger</li></spots><hours>16~22</hours><duration>1.5~2</duration></li>
             </effects>
             <ways><openness>1</openness></ways>
           </li>
@@ -130,6 +132,7 @@
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>silver</what></li>
               <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_Evt_OurPicture</thought></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Gathering"><label>the photograph</label><spots><li>Outdoors</li><li>Stranger</li><li>Gather</li></spots><duration>0.75~1</duration></li>
             </effects>
             <ways><tradition>1</tradition></ways>
           </li>
@@ -290,6 +293,7 @@
               <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>rawfood</what><count>10</count></li>
               <li Class="ColonyCouncil.DilemmaEffect_Joy"><target>Colony</target><amount>0.15</amount></li>
               <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_Evt_SpiritSong</thought></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Bonfire"><label>{X_nameDef}'s song</label><music>true</music><spots><li>Fire</li><li>Stranger</li><li>Outdoors</li></spots><hours>17~23</hours></li>
             </effects>
             <ways><tradition>2</tradition></ways>
           </li>
@@ -303,6 +307,7 @@
               <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>rawfood</what><count>10</count></li>
               <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_Evt_DeadSungFor</thought><exceptTrait><li>Psychopath</li></exceptTrait></li>
               <li Class="ColonyCouncil.DilemmaEffect_StrainRelief"><target>Colony</target><amount>5</amount><onlyStrained>true</onlyStrained></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Gathering"><label>{X_nameDef}'s songs for the dead</label><music>true</music><spots><li>Grave</li><li>Stranger</li><li>Outdoors</li></spots><pool>Council_Pool_PlayRemembrance</pool><hours>16~22</hours><duration>1~1.5</duration></li>
             </effects>
             <ways><tradition>2</tradition><mercy>1</mercy></ways>
           </li>
@@ -368,6 +373,7 @@
               <li Class="ColonyCouncil.DilemmaEffect_Learn"><target>B</target><skill>Cooking</skill><xp>600</xp></li>
               <li Class="ColonyCouncil.DilemmaEffect_Joy"><target>Colony</target><amount>0.1</amount></li>
               <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_Evt_StrangersFeast</thought><exceptTrait><li>Ascetic</li></exceptTrait></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Feast"><label>{X_nameDef}'s cooking</label><hours>16~22</hours></li>
             </effects>
             <ways><generosity>1</generosity><openness>1</openness></ways>
           </li>
@@ -382,6 +388,7 @@
               <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>silver</what></li>
               <li Class="ColonyCouncil.DilemmaEffect_Learn"><target>B</target><skill>Cooking</skill><xp>1800</xp></li>
               <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_Evt_CookLessons</thought></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Lesson"><teacher>X</teacher><student>B</student><skill>Cooking</skill><duration>3~4</duration></li>
             </effects>
             <ways><toil>1</toil></ways>
           </li>
@@ -462,6 +469,7 @@
               <li Class="ColonyCouncil.DilemmaEffect_EaseAilment"><factor>0.3</factor></li>
               <li Class="ColonyCouncil.DilemmaEffect_Learn"><target>B</target><skill>Medicine</skill><xp>800</xp></li>
               <li Class="ColonyCouncil.DilemmaEffect_Thought"><thought>Council_Evt_HealerSawMe</thought></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Lesson"><teacher>X</teacher><student>B</student><skill>Medicine</skill><duration>1.5~2</duration></li>
             </effects>
             <ways><openness>1</openness></ways>
           </li>
@@ -530,6 +538,7 @@
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_StrainRelief"><amount>15</amount></li>
               <li Class="ColonyCouncil.DilemmaEffect_Thought"><thought>Council_Evt_PlayedForMe</thought></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Visit"><to>Stranger</to><hours>18~23</hours></li>
             </effects>
             <ways><mercy>2</mercy></ways>
           </li>
@@ -541,6 +550,7 @@
               <li Class="ColonyCouncil.DilemmaEffect_Joy"><target>Colony</target><amount>0.2</amount></li>
               <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_Evt_Music</thought></li>
               <li Class="ColonyCouncil.DilemmaEffect_StrainRelief"><target>Colony</target><amount>5</amount><onlyStrained>true</onlyStrained></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Gathering"><label>{X_nameDef}'s playing</label><music>true</music><spots><li>Stranger</li><li>Rec</li><li>Dining</li><li>Fire</li></spots><hours>17~23</hours></li>
             </effects>
             <ways><generosity>1</generosity></ways>
           </li>
@@ -686,6 +696,7 @@
             <riskOutcome>{X_nameDef} tried, and kept trying until the fire went out. {A_nameDef} and {B_nameDef} left the table no friendlier than they sat down.</riskOutcome>
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>AAndB</target><thought>Council_Dlm_MadeUp</thought></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Visit"><whom>B</whom><hours>17~23</hours><duration>2~3</duration></li>
             </effects>
             <ways><mercy>1</mercy><openness>1</openness></ways>
           </li>

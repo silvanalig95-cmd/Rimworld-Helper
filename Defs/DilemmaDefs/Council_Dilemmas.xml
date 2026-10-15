@@ -88,6 +88,7 @@
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Spawn" />
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_Dlm_Stash</thought><degreeTrait>DrugDesire</degreeTrait><minDegree>1</minDegree></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Gathering"><label>the night the stash was shared</label><hours>17~23</hours><spots><li>Rec</li><li>Dining</li><li>Fire</li><li>Outdoors</li></spots></li>
         </effects>
       </li>
       <li>
@@ -221,6 +222,7 @@
           <li Class="ColonyCouncil.DilemmaEffect_Standards"><target>Colony</target><amount>0.05</amount></li>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>6</amount></li>
           <li Class="ColonyCouncil.DilemmaEffect_Inspiration"><target>A</target><chance>0.3</chance></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Feast"><label>{A_nameDef}'s feast</label><hours>16~22</hours></li>
         </effects>
       </li>
       <li>
@@ -240,6 +242,7 @@
           <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>rawfood</what><count>12</count></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_Dlm_SmallFeast</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>2</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Feast"><label>{A_nameDef}'s supper</label><hours>16~22</hours><duration>1.5~2</duration></li>
         </effects>
       </li>
     </options>
@@ -297,6 +300,7 @@
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_Dlm_Helped</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>5</amount></li>
           <li Class="ColonyCouncil.DilemmaEffect_Strain"><target>A</target><amount>-12</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Visit"><who>B</who><whom>A</whom><hours>16~22</hours></li>
         </effects>
       </li>
     </options>

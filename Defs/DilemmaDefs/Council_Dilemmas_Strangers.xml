@@ -220,6 +220,7 @@
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_DlmS_SoldTheHeirloom</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>-4</amount></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Others</target><thought>Council_DlmS_SilverInHand</thought><onlyTrait><li>Greedy</li></onlyTrait></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Visit"><to>Grave</to><duration>2~3</duration></li>
         </effects>
       </li>
       <li>
@@ -300,6 +301,7 @@
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_DlmS_GotAttached</thought><about>X</about><chance>0.5</chance></li>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>1</amount></li>
           <li Class="ColonyCouncil.DilemmaEffect_LifeEvent"><target>A</target><counter>stranger</counter></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Visit"><to>Stranger</to><hours>16~22</hours></li>
         </effects>
       </li>
       <li>
@@ -436,6 +438,7 @@
           <li Class="ColonyCouncil.DilemmaEffect_Goodwill"><amount>10</amount></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_Choice_TaughtNeighbors</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_DlmS_FedTheHungry</thought><onlyTrait><li>Kind</li></onlyTrait></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Visit"><who>B</who><to>Stranger</to></li>
         </effects>
       </li>
     </options>

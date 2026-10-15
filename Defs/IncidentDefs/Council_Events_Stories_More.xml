@@ -45,6 +45,9 @@
             <label>Read them first</label>
             <outcome>{A_nameDef} sits down at the table with a knife for the seals and a lamp, and the colony gathers round to listen.</outcome>
             <ways><openness>1</openness><mercy>-1</mercy></ways>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Words"><label>the reading of the letters</label><spots><li>Dining</li><li>Rec</li></spots></li>
+            </effects>
           </li>
           <li>
             <label>Burn them</label>
@@ -273,6 +276,7 @@
             </outcomes>
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_Joy"><amount>0.15</amount></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Visit"><to>Stranger</to><hours>17~23</hours></li>
             </effects>
             <ways><openness>1</openness></ways>
           </li>
@@ -592,6 +596,7 @@
             <outcome>{A_nameDef} walked {X_nameDef} round every plant, and they brought in the first of the harvest together.</outcome>
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_Joy"><amount>0.15</amount></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Visit"><to>Stranger</to></li>
             </effects>
             <ways><generosity>1</generosity></ways>
           </li>
@@ -663,6 +668,7 @@
             <outcome>{A_nameDef} sat with {X_nameDef} until late and told the colony's story without leaving anything out. {X_nameDef} filled a notebook and started another.</outcome>
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_Learn"><skill>Social</skill><xp>300</xp></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Visit"><to>Stranger</to><hours>16~23</hours></li>
             </effects>
             <ways><openness>2</openness></ways>
           </li>
@@ -670,6 +676,9 @@
             <label>Tell {X_objective} the best of it</label>
             <outcome>{A_nameDef} told {X_nameDef} the colony's story, with the best parts first and the worst parts left out. {X_nameDef} wrote it all down and looked as if {X_pronoun} knew.</outcome>
             <ways><openness>-1</openness></ways>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Visit"><to>Stranger</to><hours>16~23</hours></li>
+            </effects>
           </li>
           <li>
             <label>We'd rather not be in a play</label>
@@ -813,6 +822,7 @@
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_Joy"><target>Colony</target><amount>0.25</amount></li>
               <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_Story_PlaySeen</thought></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Gathering"><label>the play</label><spots><li>Stranger</li><li>Outdoors</li><li>Rec</li></spots><hours>15~22</hours><duration>2~3</duration></li>
             </effects>
             <ways><openness>1</openness></ways>
           </li>
@@ -886,6 +896,7 @@
             <outcome>{A_nameDef} showed {X_nameDef} the colony, the real one, mud and all. {X_nameDef} was delighted by every bit of it.</outcome>
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_Joy"><amount>0.15</amount></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Visit"><to>Stranger</to></li>
             </effects>
             <ways><openness>1</openness></ways>
           </li>

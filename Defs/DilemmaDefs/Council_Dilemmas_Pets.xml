@@ -25,6 +25,7 @@
           <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>rawfood</what><count>5</count></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_Dlm_FairsFair</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>-2</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Feast"><label>{A_nameDef}'s dinner for {B_nameDef}</label><target>B</target><duration>1~1.5</duration></li>
         </effects>
       </li>
       <li>

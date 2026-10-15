@@ -173,6 +173,7 @@
           <li Class="ColonyCouncil.DilemmaEffect_Hediff"><target>B</target><hediff>Council_DlmL_Nursing</hediff></li>
           <li Class="ColonyCouncil.DilemmaEffect_Learn"><target>B</target><skill>Medicine</skill><xp>400</xp></li>
           <li Class="ColonyCouncil.DilemmaEffect_Tie"><withB>true</withB><kind>Friends</kind><amount>10</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Visit"><who>B</who><whom>A</whom><duration>3~4</duration></li>
         </effects>
         <riskChance>0.2</riskChance>
         <riskOutcome>{B_nameDef} nursed {A_nameDef} apart from the rest, night and day. {A_nameDef} is mending. {B_nameDef} looks like the one who has been ill.</riskOutcome>
@@ -489,6 +490,7 @@
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_DlmL_HelpedTheCamp</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Others</target><thought>Council_DlmL_HelpedTheCamp</thought><onlyTrait><li>Kind</li></onlyTrait></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Others</target><thought>Council_DlmL_GaveAwayStores</thought><onlyTrait><li>Greedy</li></onlyTrait></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Visit"><to>Camp</to></li>
         </effects>
       </li>
       <li>
@@ -506,6 +508,7 @@
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_DlmL_TendedTheCamp</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_CampTension"><amount>-12</amount></li>
           <li Class="ColonyCouncil.DilemmaEffect_Goodwill"><amount>5</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Visit"><who>B</who><to>Camp</to><duration>3~4</duration></li>
         </effects>
         <riskChance>0.3</riskChance>
         <riskSkill>Medicine</riskSkill>
@@ -526,6 +529,7 @@
           <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>rawfood</what><count>15</count></li>
           <li Class="ColonyCouncil.DilemmaEffect_CampTension"><amount>-6</amount><gift>true</gift></li>
           <li Class="ColonyCouncil.DilemmaEffect_Goodwill"><amount>2</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Visit"><to>Camp</to><duration>0.75~1</duration></li>
         </effects>
       </li>
       <li>
@@ -587,6 +591,7 @@
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_DlmL_ShowedTheWay</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_CampTension"><amount>-8</amount></li>
           <li Class="ColonyCouncil.DilemmaEffect_Goodwill"><amount>3</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Visit"><who>B</who><to>Camp</to></li>
         </effects>
         <riskChance>0.3</riskChance>
         <riskSkill>Animals</riskSkill>
@@ -759,6 +764,7 @@
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_DlmL_HeardOut</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>2</amount></li>
           <li Class="ColonyCouncil.DilemmaEffect_Tie"><withB>true</withB><kind>Friends</kind><amount>6</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Visit"><who>B</who><whom>A</whom><hours>16~22</hours></li>
         </effects>
         <riskChance>0.3</riskChance>
         <riskSkill>Social</riskSkill>
@@ -803,6 +809,7 @@
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_DlmL_GotMyDays</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>3</amount></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Others</target><thought>Council_Dlm_Shirking</thought><degreeTrait>Industriousness</degreeTrait><minDegree>1</minDegree></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Rest" />
         </effects>
       </li>
       <li>
@@ -839,6 +846,7 @@
           <li Class="ColonyCouncil.DilemmaEffect_Strain"><target>Colony</target><amount>-6</amount></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_DlmL_TurnsResting</thought><exceptTrait><li>Psychopath</li></exceptTrait></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Others</target><thought>Council_Dlm_Shirking</thought><degreeTrait>Industriousness</degreeTrait><minDegree>2</minDegree></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Rest" />
         </effects>
       </li>
     </options>
@@ -873,6 +881,7 @@
           <li Class="ColonyCouncil.DilemmaEffect_Needs"><target>Others</target><skill>Social</skill><minLevel>6</minLevel><reason>Needs someone to keep the peace between them (Social 6 or more)</reason></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>AAndB</target><thought>Council_Dlm_MadeUp</thought><chance>0.7</chance></li>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>AAndB</target><amount>1</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Visit"><whom>B</whom><hours>16~23</hours><duration>2~3</duration></li>
         </effects>
         <riskChance>0.35</riskChance>
         <riskReplaces>true</riskReplaces>
@@ -952,6 +961,7 @@
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_DlmL_EarnedMyRest</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>4</amount></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Others</target><thought>Council_Dlm_FairsFair</thought><chance>0.4</chance><exceptTrait><li>Psychopath</li></exceptTrait></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Rest" />
         </effects>
       </li>
       <li>
@@ -966,6 +976,7 @@
           <li Class="ColonyCouncil.DilemmaEffect_Hediff"><target>A</target><hediff>Council_DlmL_LightDuty</hediff></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_DlmL_PassingItOn</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>2</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Lesson"><teacher>A</teacher><student>B</student></li>
         </effects>
       </li>
       <li>
@@ -1043,6 +1054,7 @@
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_DlmL_StraightAnswer</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_DlmL_AskedByAChild</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Tie"><withB>true</withB><kind>Friends</kind><amount>8</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Lesson"><skill>Intellectual</skill><hours>16~22</hours></li>
         </effects>
         <riskChance>0.25</riskChance>
         <riskReplaces>true</riskReplaces>
@@ -1096,6 +1108,7 @@
           <li Class="ColonyCouncil.DilemmaEffect_Joy"><target>Colony</target><amount>0.2</amount></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_DlmL_JournalByTheFire</thought><exceptTrait><li>Kind</li><li>Psychopath</li></exceptTrait><chance>0.6</chance></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_DlmL_NotOursToRead</thought><onlyTrait><li>Kind</li></onlyTrait><chance>0.5</chance></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Words"><label>the reading of the journal</label><hours>17~22</hours><spots><li>Dining</li><li>Fire</li><li>Rec</li></spots></li>
         </effects>
       </li>
       <li>
@@ -1153,6 +1166,7 @@
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_DlmL_PublicApology</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>3</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Words"><label>the council's apology to {A_nameDef}</label><organizer>None</organizer><hours>17~22</hours></li>
         </effects>
       </li>
       <li>
@@ -1166,6 +1180,7 @@
           <li Class="ColonyCouncil.DilemmaEffect_Needs"><target>Others</target><skill>Social</skill><minLevel>8</minLevel><asB>true</asB></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_DlmL_HeardOut</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>2</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Visit"><who>B</who><whom>A</whom></li>
         </effects>
         <riskChance>0.35</riskChance>
         <riskSkill>Social</riskSkill>
@@ -1299,6 +1314,7 @@
           <li Class="ColonyCouncil.DilemmaEffect_Needs"><target>Others</target><tags>skill:Crafting|skill:Construction|skill:Cooking|skill:Plants|skill:Animals|skill:Artistic|skill:Medicine|skill:Mining</tags><asB>true</asB><reason>Needs someone with a trade to teach</reason></li>
           <li Class="ColonyCouncil.DilemmaEffect_Teach"><reverse>true</reverse><xp>400</xp></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_DlmL_LearningATrade</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Lesson" />
         </effects>
       </li>
       <li>
@@ -1404,6 +1420,7 @@
           <li Class="ColonyCouncil.DilemmaEffect_Mentorship"><skill>Crafting</skill></li>
           <li Class="ColonyCouncil.DilemmaEffect_Learn"><target>A</target><skill>Crafting</skill><xp>300</xp></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_DlmL_RealWork</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Lesson"><skill>Crafting</skill></li>
         </effects>
       </li>
       <li>
@@ -1413,6 +1430,7 @@
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Learn"><target>A</target><skill>Crafting</skill><xp>400</xp></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_DlmL_RealWork</thought><chance>0.5</chance></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Lesson"><skill>Crafting</skill></li>
         </effects>
       </li>
       <li>
@@ -1422,6 +1440,7 @@
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Learn"><target>A</target><skill>Crafting</skill><xp>700</xp></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_DlmL_MadeItMyself</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Lesson"><skill>Crafting</skill><duration>2.5~3.5</duration></li>
         </effects>
         <riskChance>0.4</riskChance>
         <riskReplaces>true</riskReplaces>
@@ -1472,6 +1491,7 @@
           <li Class="ColonyCouncil.DilemmaEffect_Strain"><target>B</target><amount>-15</amount></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_DlmL_SleptAtLast</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Learn"><target>Others</target><skill>Medicine</skill><xp>250</xp><chance>0.5</chance></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Rest"><target>B</target><sleep>true</sleep></li>
         </effects>
       </li>
       <li>
@@ -1494,6 +1514,7 @@
           <li Class="ColonyCouncil.DilemmaEffect_Learn"><target>Others</target><skill>Medicine</skill><xp>300</xp><chance>0.6</chance></li>
           <li Class="ColonyCouncil.DilemmaEffect_Strain"><target>B</target><amount>-6</amount></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_DlmL_SharedTheLoad</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Words"><label>{B_nameDef}'s lesson in nursing</label><target>Others</target><organizer>B</organizer><hours>16~22</hours></li>
         </effects>
       </li>
     </options>

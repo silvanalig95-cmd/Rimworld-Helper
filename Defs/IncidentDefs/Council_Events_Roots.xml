@@ -67,6 +67,7 @@
               <li Class="ColonyCouncil.DilemmaEffect_Thought"><thought>Council_Evt_TasteOfHome</thought></li>
               <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Others</target><thought>Council_Evt_SomeonesHome</thought></li>
               <li Class="ColonyCouncil.DilemmaEffect_Learn"><skill>Cooking</skill><xp>300</xp></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Feast"><label>{A_nameDef}'s supper from home</label><hours>16~22</hours></li>
             </effects>
             <ways><generosity>2</generosity><openness>1</openness></ways>
           </li>
@@ -134,6 +135,7 @@
               <li Class="ColonyCouncil.DilemmaEffect_Thought"><thought>Council_Evt_MadePeacePast</thought></li>
               <li Class="ColonyCouncil.DilemmaEffect_Learn"><skill>Social</skill><xp>300</xp></li>
               <li Class="ColonyCouncil.DilemmaEffect_Loot"><value>100~250</value></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Visit"><to>Stranger</to><duration>2~3</duration></li>
             </effects>
             <riskEffects>
               <li Class="ColonyCouncil.DilemmaEffect_Thought"><thought>Council_Evt_OldWoundOpened</thought></li>
@@ -148,6 +150,7 @@
               <li Class="ColonyCouncil.DilemmaEffect_Thought"><thought>Council_Evt_MadePeacePast</thought></li>
               <li Class="ColonyCouncil.DilemmaEffect_Joy"><amount>0.15</amount></li>
               <li Class="ColonyCouncil.DilemmaEffect_EventGoodwill"><amount>5</amount></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Visit"><to>Stranger</to><hours>17~22</hours></li>
             </effects>
             <ways><mercy>1</mercy><openness>1</openness></ways>
           </li>
@@ -216,6 +219,7 @@
               <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>silver</what></li>
               <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_Evt_GravesMarked</thought><exceptTrait><li>Psychopath</li></exceptTrait></li>
               <li Class="ColonyCouncil.DilemmaEffect_StrainRelief"><target>Colony</target><amount>4</amount><onlyStrained>true</onlyStrained></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Visit"><to>Grave</to><duration>2~3</duration></li>
             </effects>
             <ways><tradition>2</tradition></ways>
           </li>
@@ -230,6 +234,7 @@
               <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>silver</what><factor>0.5</factor></li>
               <li Class="ColonyCouncil.DilemmaEffect_Learn"><target>B</target><skill>Artistic</skill><xp>1200</xp></li>
               <li Class="ColonyCouncil.DilemmaEffect_Learn"><target>B</target><skill>Construction</skill><xp>300</xp></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Lesson"><teacher>X</teacher><student>B</student><skill>Artistic</skill><duration>2~3</duration></li>
             </effects>
             <ways><toil>1</toil><tradition>1</tradition></ways>
           </li>
@@ -452,6 +457,7 @@
               <li Class="ColonyCouncil.DilemmaEffect_CampMood"><tension>-15</tension><warm>2</warm></li>
               <li Class="ColonyCouncil.DilemmaEffect_Joy"><target>Colony</target><amount>0.15</amount></li>
               <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_Evt_CampFeastGuests</thought></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Gathering"><label>the evening at the camp</label><spots><li>Camp</li></spots><hours>16~22</hours><duration>3~4</duration></li>
             </effects>
             <ways><generosity>1</generosity><openness>1</openness></ways>
           </li>
@@ -462,6 +468,7 @@
               <li Class="ColonyCouncil.DilemmaEffect_CampMood"><tension>-6</tension><warm>1</warm></li>
               <li Class="ColonyCouncil.DilemmaEffect_Joy"><target>Colony</target><amount>0.12</amount></li>
               <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_Evt_CampFeastGuests</thought></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Gathering"><label>the evening at the camp</label><spots><li>Camp</li></spots><hours>16~22</hours><duration>2.5~3.5</duration></li>
             </effects>
             <ways><openness>1</openness></ways>
           </li>

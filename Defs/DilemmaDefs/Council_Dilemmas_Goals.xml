@@ -189,6 +189,7 @@
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_DlmGoal_Volunteered</thought><exceptTrait><li>Kind</li></exceptTrait></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_Dlm_Helped</thought><onlyTrait><li>Kind</li></onlyTrait></li>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>B</target><amount>-1</amount><exceptTrait><li>Kind</li></exceptTrait></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Lesson"><hours>16~22</hours></li>
         </effects>
         <riskChance>0.3</riskChance>
         <riskReplaces>true</riskReplaces>
@@ -197,6 +198,7 @@
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>AAndB</target><thought>Council_Dlm_Grudge</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_DlmGoal_Volunteered</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>AAndB</target><amount>-2</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Lesson"><hours>16~22</hours></li>
         </riskEffects>
       </li>
       <li>
@@ -210,6 +212,7 @@
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>AAndB</target><amount>3</amount></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Others</target><thought>Council_DlmSoc_Reshuffled</thought><chance>0.6</chance></li>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>Others</target><amount>-1</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Lesson"><hours>16~22</hours></li>
         </effects>
       </li>
       <li>
@@ -474,6 +477,7 @@
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>5</amount></li>
           <li Class="ColonyCouncil.DilemmaEffect_Inspiration"><target>A</target><chance>0.5</chance></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Others</target><thought>Council_Dlm_Helped</thought><exceptTrait><li>Psychopath</li></exceptTrait><chance>0.3</chance></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Words"><label>the dinner for {A_nameDef}</label><hours>17~22</hours><lines><li>Don't give up on it, {A_nameDef}.</li><li>We need dreamers here.</li></lines></li>
         </effects>
         <riskChance>0.25</riskChance>
         <riskReplaces>true</riskReplaces>
@@ -481,6 +485,7 @@
         <riskEffects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_DlmGoal_Pitied</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>-1</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Words"><label>the dinner for {A_nameDef}</label><hours>17~22</hours></li>
         </riskEffects>
       </li>
       <li>
@@ -492,6 +497,7 @@
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_Understood</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>3</amount></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Others</target><thought>Council_Dlm_Shirking</thought><degreeTrait>Industriousness</degreeTrait><minDegree>1</minDegree></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Rest" />
         </effects>
       </li>
       <li>
@@ -555,6 +561,7 @@
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>5</amount></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Others</target><thought>Council_DlmGoal_Witnessed</thought><exceptTrait><li>Psychopath</li></exceptTrait><chance>0.6</chance></li>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>Others</target><amount>1</amount><chance>0.5</chance></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Words"><label>the reading of {A_nameDef}'s dream</label><hours>17~22</hours></li>
         </effects>
       </li>
       <li>

@@ -192,6 +192,7 @@
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>silver</what><factor>0.35</factor></li>
               <li Class="ColonyCouncil.DilemmaEffect_Learn"><skill>Crafting</skill><xp>1500</xp></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Lesson"><teacher>X</teacher><student>A</student><skill>Crafting</skill><hours>16~22</hours></li>
             </effects>
             <ways><toil>1</toil><openness>1</openness></ways>
           </li>
@@ -457,6 +458,7 @@
             <outcome>The bones go into fresh ground with their things beside them and a stone at the head. A few colonists stay by the grave for a while after.</outcome>
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_Evt_ReburiedStranger</thought><exceptTrait><li>Psychopath</li></exceptTrait></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Visit"><to>Grave</to><duration>1~1.5</duration></li>
             </effects>
             <ways><tradition>2</tradition><mercy>1</mercy></ways>
           </li>
@@ -510,6 +512,7 @@
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_Joy"><target>Colony</target><amount>0.15</amount></li>
               <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_Evt_OldLetters</thought></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Words"><label>the old letters</label><hours>17~22</hours><duration>1.5~2</duration></li>
             </effects>
             <ways><openness>1</openness></ways>
           </li>
@@ -629,6 +632,9 @@
           <li>
             <label>Enjoy the visit</label>
             <outcome>{X_nameDef} spends the day with {A_nameDef}, and will head home with a full pack and messages for the family.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Visit"><to>Stranger</to><duration>3~4</duration></li>
+            </effects>
           </li>
         </options>
       </li>
@@ -667,6 +673,7 @@
             <outcome>{X_nameDef} reads fortunes until late, and every one of them is good.</outcome>
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>silver</what></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Gathering"><label>the fortune-telling</label><spots><li>Stranger</li><li>Rec</li><li>Dining</li></spots><hours>17~23</hours></li>
             </effects>
           </li>
           <li>
@@ -689,6 +696,7 @@
               <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>silver</what><factor>0.25</factor></li>
               <li Class="ColonyCouncil.DilemmaEffect_Thought"><thought>Council_Evt_GoodFortune</thought></li>
               <li Class="ColonyCouncil.DilemmaEffect_Joy"><amount>0.12</amount></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Visit"><to>Stranger</to><hours>17~23</hours><duration>1~1</duration></li>
             </effects>
             <riskEffects>
               <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>silver</what><factor>0.25</factor></li>

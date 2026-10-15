@@ -127,6 +127,7 @@
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_Join" />
               <li Class="ColonyCouncil.DilemmaEffect_Tie"><kind>Friends</kind><amount>25</amount></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Visit"><to>Stranger</to><hours>16~22</hours></li>
             </effects>
             <ways><openness>3</openness><mercy>2</mercy></ways>
           </li>
