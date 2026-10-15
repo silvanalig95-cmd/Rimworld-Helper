@@ -9,8 +9,8 @@ namespace ColonyCouncil
 {
     /// <summary>
     /// Colony → World: what's coming (promised fights, questions waiting for an answer) as a timeline with countdowns,
-    /// who's out there with the colony on their mind (nemeses, people who left, grudges, rivals, a great beast), and
-    /// what the world brought lately.
+    /// who's out there with the colony on their mind (nemeses, people who left, grudges, rivals, a great beast), what the
+    /// world's peoples remember of the colony, and what the world brought lately.
     /// </summary>
     public static class WorldPanel
     {
@@ -82,6 +82,8 @@ namespace ColonyCouncil
                 if (m.outThere.Count == 0) y += UiKit.EmptyState(0f, y, w, Icons.Visitor, "CC_World_NobodyOut".Translate(), 70f);
                 else y = Grid(y + 2f, w, m.outThere);
                 y += 14f;
+                // What the world's peoples remember of the colony (World/FactionMemoryPanel.cs).
+                y = FactionMemoryPanel.Draw(y, w);
                 y += UiKit.SectionTitle(0f, y, w, "CC_World_Lately".Translate(), Icons.WorldEvent, Color.white);
                 if (m.lately.Count == 0) y += UiKit.EmptyState(0f, y, w, Icons.WorldEvent, "CC_World_NothingLately".Translate(), 60f);
                 else y = Rows(y, w, m.lately);

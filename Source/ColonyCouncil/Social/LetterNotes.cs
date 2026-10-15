@@ -7,8 +7,8 @@ namespace ColonyCouncil
 {
     /// <summary>
     /// A line of what Rimfolk knows, added to the game's own letters (Harmony hooks in Patches/Patch_Letters.cs): who
-    /// rides with a raid, what had been weighing on a colonist who breaks, and who someone was when they die. Each
-    /// says nothing unless there's something true to say.
+    /// rides with a raid (or the old wrong its people remember), what had been weighing on a colonist who breaks, and who
+    /// someone was when they die. Each says nothing unless there's something true to say.
     /// </summary>
     public static class LetterNotes
     {
@@ -36,7 +36,8 @@ namespace ColonyCouncil
                 if (v != null)
                     return (v.kidnapped ? "CC_Letter_RaidVendettaTaken" : "CC_Letter_RaidVendetta").Translate(v.avenger.Named("PAWN"), (v.victim ?? "?").Named("LOST")).Resolve();
             }
-            return null;
+            // The old wrong these raiders remember (World/FactionMemory.cs).
+            return FactionMemory.RaidNote(parms.faction);
         }
 
         /// <summary>For a mood break's letter: the council-shaped part of what pushed them there, if there is one.</summary>

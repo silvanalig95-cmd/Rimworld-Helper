@@ -31,6 +31,9 @@ namespace ColonyCouncil
         /// <summary>Stars in the Quests tab.</summary>
         protected virtual int Rating => 2;
 
+        /// <summary>The mission tells the people's memory itself how it went (World/FactionMemory.cs); else it's remembered as a promise kept or broken.</summary>
+        public virtual bool OwnMemory => false;
+
         protected override bool CanHappen(Map map, HappeningExtension ext) =>
             Missions.CanOffer(Kind, RestDays) && StorytellerEvents.Adults(map).Any() && Possible(map);
 

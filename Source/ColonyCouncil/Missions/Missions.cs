@@ -13,7 +13,9 @@ namespace ColonyCouncil
     // the game's Quests tab as a real quest to accept or let expire (Settings: "Missions in the Quests tab"; without it,
     // or if the quest can't be made, the offer comes as a letter). Rimfolk keeps the mission itself (here, saved in
     // StoriesComponent): it checks the goals, ends the quest with success or failure, and shows the mission and its
-    // progress on the World page. The three missions are in Workers_Missions.cs.
+    // progress on the World page. The first missions are in Workers_Missions.cs, the delivery missions told from data in
+    // Workers_MissionDelivery.cs, and those that follow from what a people remembers (an invitation, an apprentice, a
+    // dignitary, refugees) in Workers_MissionRemembered.cs.
 
     public enum MissionState
     {
@@ -78,6 +80,17 @@ namespace ColonyCouncil
         public List<MissionGoal> goals = new List<MissionGoal>();
         /// <summary>How it ended (a tag for the texts).</summary>
         public string outcome;
+        /// <summary>People of theirs the mission brings (refugees, a dignitary's company): kept in the world until they come.</summary>
+        public List<Pawn> group = new List<Pawn>();
+        /// <summary>A number the mission's terms set (the room's impressiveness, the people in a caravan).</summary>
+        public int target;
+        /// <summary>Counts the mission keeps: days gone well and badly, hours trained.</summary>
+        public int tally;
+        public int misses;
+        /// <summary>When the mission last looked (for counts kept by the hour).</summary>
+        public int lastLook = -1;
+        /// <summary>Days from taking it on until the people come (a dignitary, refugees).</summary>
+        public float wait;
 
         public bool Open => state == MissionState.Offered || state == MissionState.Active;
 
@@ -109,10 +122,18 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref reminded, "reminded");
             Scribe_Collections.Look(ref goals, "goals", LookMode.Deep);
             Scribe_Values.Look(ref outcome, "outcome");
+            Scribe_Collections.Look(ref group, "group", LookMode.Reference);
+            Scribe_Values.Look(ref target, "target");
+            Scribe_Values.Look(ref tally, "tally");
+            Scribe_Values.Look(ref misses, "misses");
+            Scribe_Values.Look(ref lastLook, "lastLook", -1);
+            Scribe_Values.Look(ref wait, "wait");
             if (Scribe.mode == LoadSaveMode.PostLoadInit)
             {
                 if (goals == null) goals = new List<MissionGoal>();
                 goals.RemoveAll(g => g == null || g.what == null);
+                if (group == null) group = new List<Pawn>();
+                group.RemoveAll(p => p == null);
             }
         }
     }
@@ -163,7 +184,7 @@ namespace ColonyCouncil
             return !All.Any(m => m.Open) && !All.Any(m => m.kind == kind && now - m.offered < restDays * GenDate.TicksPerDay);
         }
 
-        public static bool Holds(Pawn p) => p != null && All.Any(m => m.Open && m.x == p);
+        public static bool Holds(Pawn p) => p != null && All.Any(m => m.Open && (m.x == p || m.group.Contains(p)));
 
         public static void Register(Mission m)
         {
@@ -370,6 +391,15 @@ namespace ColonyCouncil
                 string title = StoryChains.Line(success ? text?.doneTitles : text?.failTitles, ctx, outcome, tags, item) ?? m.title;
                 if (!body.NullOrEmpty())
                     Find.LetterStack.ReceiveLetter(title, body, letter ?? (success ? LetterDefOf.PositiveEvent : LetterDefOf.NegativeEvent), look ?? LookTargets.Invalid);
+            }
+            // The people who asked remember how it went (World/FactionMemory.cs).
+            try
+            {
+                MemoryHooks.MissionEnded(m, state, wasActive);
+            }
+            catch (Exception e)
+            {
+                CouncilLog.ErrorOnce("mission memory " + m.kind, e);
             }
             if (m.questId >= 0)
             {
@@ -683,10 +713,17 @@ namespace ColonyCouncil
             {
                 var m = Mission;
                 if (m?.x != null && m.x.Spawned) yield return m.x;
+                if (m?.group != null)
+                    foreach (var p in m.group)
+                        if (p != null && p.Spawned && p != m.x) yield return p;
             }
         }
 
-        public override bool QuestPartReserves(Pawn p) => p != null && Mission?.x == p;
+        public override bool QuestPartReserves(Pawn p)
+        {
+            var m = Mission;
+            return p != null && m != null && (m.x == p || m.group.Contains(p));
+        }
 
         public override void ExposeData()
         {
