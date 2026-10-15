@@ -36,7 +36,8 @@ namespace ColonyCouncil
             Chronicle,
             Dreams,
             Journals,
-            Almanac
+            Almanac,
+            Calendar
         }
 
         private static Tab tab = Tab.Overview;
@@ -65,6 +66,7 @@ namespace ColonyCouncil
                 case Tab.Ambition:
                 case Tab.Ways: return Section.Council;
                 case Tab.Chronicle:
+                case Tab.Calendar:
                 case Tab.Dreams:
                 case Tab.Journals: return Section.History;
                 default: return Section.Almanac;
@@ -78,7 +80,7 @@ namespace ColonyCouncil
                 case Section.Colony: return new[] { Tab.Overview, Tab.Priorities, Tab.Moods, Tab.World, Tab.Build };
                 case Section.People: return new[] { Tab.Roster, Tab.Bonds, Tab.Wishes };
                 case Section.Council: return new[] { Tab.Decrees, Tab.Ambition, Tab.Ways };
-                case Section.History: return new[] { Tab.Chronicle, Tab.Dreams, Tab.Journals };
+                case Section.History: return new[] { Tab.Chronicle, Tab.Calendar, Tab.Dreams, Tab.Journals };
                 default: return new[] { Tab.Almanac };
             }
         }
@@ -236,6 +238,7 @@ namespace ColonyCouncil
                 case Tab.Chronicle: ChroniclePanel.Draw(content, comp); break;
                 case Tab.Dreams: HistoryPanels.DrawDreams(content, comp); break;
                 case Tab.Journals: HistoryPanels.DrawJournals(content, comp); break;
+                case Tab.Calendar: CalendarPanel.Draw(content); break;
                 case Tab.Almanac: AlmanacPanel.Draw(content); break;
             }
             Text.Font = GameFont.Small;
@@ -304,6 +307,7 @@ namespace ColonyCouncil
                 case Tab.Chronicle: return Icons.Chronicle;
                 case Tab.Dreams: return Icons.Dreams;
                 case Tab.Journals: return Icons.Journals;
+                case Tab.Calendar: return CalendarPanel.Icon ?? Icons.Chronicle;
                 default: return Icons.Almanac;
             }
         }
