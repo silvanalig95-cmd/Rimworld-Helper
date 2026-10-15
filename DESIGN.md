@@ -339,6 +339,288 @@ stat part contribute nothing and the hooks return 1.
   they show what a life is missing and point wishes and life goals toward it.
 - **Removal.** No hediffs and no stored thoughts. The only trace is a colonist in the middle of an episode.
 
+## Real effects: answers that play out on the map
+
+A dilemma's answer, an event's answer or a calendar day used to give moods and a message and nothing else: "a victory
+feast" was a mood, and nobody sat down to eat. With **Answers play out on the map** (a setting on the Events & world
+page, on by default), an answer that describes something people do sets it going on the map, and the good moods it
+gives those taking part come once it's over (PlayOut/).
+
+- **Data, not code per answer.** Real effects are `DilemmaEffect`s like any other, listed with an answer's effects in
+  XML; the order doesn't matter, because `PlayOuts.Ordered` applies them first. `DilemmaEffect_Gathering` (a party:
+  the rec room, the dining table, a gather spot, the open air), `_Feast` (the dining table, and a cooked meal from the
+  stores for everyone who comes, the finest first: `Ingest` jobs on real meals, so the food is eaten), `_Bonfire` (the
+  colony's campfire, or one laid for the evening in the open from 20 of its wood, or from wood the answer already took
+  with `woodPaid`; it burns down to ash afterwards), `_Toast` and `_Words` (an hour round the table: a toast, an
+  apology, a reading, a story told), `_Visit` (one colonist keeps another company, wherever they go and at their
+  bedside if they're in bed, or sits by a grave, walks over to the camp's fire, or goes for a long walk), `_Lesson`
+  (a student follows a teacher about their work and learns their skill by watching), `_Rest` (the rest of today's
+  work hours become recreation, or sleep, through the calendar's rest-day timetable, restored tomorrow) and `_Hunt`
+  (game marked for the hunters). Each takes a label ("the victory feast", with the answer's placeholders), the hours
+  it may start in (an evening, past midnight), how long it may wait and how long it lasts.
+- **The gathering** is the game's own party (`LordToil_Party` and the `Party` duty) under a lord job of Rimfolk's
+  (`LordJob_PlayOut`), started with its organizer and joined by those it was for as they come free, the way party
+  guests come; the council meeting's rules for when people can sit down together and what work can't be dropped are
+  reused. A feast serves a plate to each guest every few seconds of game time until everyone who came has had one; a
+  meal hook on `Thing.Ingested` (the deeper hooks) counts who ate. Notes over heads for a song and a few lines said (flavor pools
+  `Council_Pool_Play*`, and the answer's own) are only drawn on the map being looked at.
+- **The moods.** While an answer's effects run, a good memory (`DilemmaEffect_Thought`) given to someone taking part
+  in what the answer set going is held with the plan (`PlayOuts.Hold`) and given when it's over to those who were
+  there long enough (a quarter of a gathering, at most half an hour; half a visit) or ate at the feast. Bad memories,
+  trust, standards and the rest come at once, as before. Calendar feasts, games and remembrances hold their own moods
+  the same way.
+- **Safety.** Nobody is called from danger, sleep, a sickbed or the need of one, bleeding, starving or exhaustion,
+  arms, a mental state, a caravan, the care of someone else (tending, rescuing, feeding, carrying) or an order of the
+  player's; guests, prisoners and lodgers are never invited. Nothing starts while enemies are about, while another
+  gathering is on, while half the colony is drafted or while someone is bleeding, and any danger calls a gathering off
+  (as the council meeting is). A visit ends at any danger. A plan waits for its hours and up to its wait (six hours by
+  default, never more than thirty in all), then falls back to what answers always did: its moods for everyone it was
+  meant for, and for a gathering a line saying why. Every step is wrapped so a failure is logged once and the moods
+  still come. With the setting off, the effects do nothing and the moods come at once.
+- **Where it plugs in.** `DilemmaTracker.Resolve` and `HappeningTracker.Resolve` wrap an answer's effects in
+  `PlayOuts.Collect`; `DecreeDef.onEnact` (a feast day at noon, a festival's first evening, a rest day) and
+  `AmbitionDef.achievedEffects` (the great feast eaten, the first barrel, a games night) run through `PlayOuts.Run`;
+  the calendar's feast, games and remembrance days start theirs directly. `PlayOutTracker` (a game component of its
+  own) keeps the plans; `PlayOutMath` holds the pure numbers the tests check.
+
+### The audit
+
+Every answer of the dilemmas, Rimfolk events and story chains, the calendar days, the decrees and the ambitions was
+read for something people do. These now play out (A and B are the dilemma's or event's people, X its stranger):
+
+**Calendar, decrees, ambitions**
+
+- **Calendar days:** a feast day is a feast from the stores (the day's lift after it); a games day a gathering in the
+  rec room; a remembrance of one of the colony's dead an hour by their grave, for those who knew them, if the grave is
+  on the map. A rest day was already real (work hours turned to recreation) and is unchanged.
+- **Decrees:** a feast day (a feast at noon), festival days (music on the first evening), days of rest (the first
+  day's work hours are free time).
+- **Ambitions reached (the council meeting's outcomes):** the great feast, the great hall, fine dining and a table for
+  all (a feast), the brewery (a toast), fun and games (a games night), friends at the camp (an evening at the camp's
+  fire, with songs).
+
+**Dilemmas and events**, by file:
+
+**Council_Dilemmas**
+
+- **a forgotten stash** (`Council_Dilemma_Stash`): "Share it out tonight": gathering ("the night the stash was shared").
+- **the cook's feast** (`Council_Dilemma_Feast`): "Let A cook the feast": feast from the stores ("A's feast") · "A smaller feast": feast from the stores ("A's supper").
+- **a confession** (`Council_Dilemma_Confession`): "Ask B to look after A": B keeps A company.
+
+**Council_Dilemmas2**
+
+- **a bad omen** (`Council_Dilemma_Omen`): "Let A hold a ceremony": bonfire (its own wood) ("A's fire").
+- **a broken keepsake** (`Council_Dilemma_Keepsake`): "B apologizes publicly": gathering to hear it, B speaks ("B's apology"), also when it goes wrong.
+- **a duel of honor** (`Council_Dilemma_Duel`): "Make them shake hands in public": gathering to hear it, A speaks ("the handshake").
+
+**Council_Dilemmas3**
+
+- **the young hunter** (`Council_Dilemma_YoungHunter`): "Teach A to shoot": A learns at B's side (shooting) · "Let B show A the messy part": A learns at B's side (cooking), also when it goes wrong.
+- **where the dead go** (`Council_Dilemma_WhereTheDeadGo`): "Hold a funeral for the animal": gathering to hear it, A speaks ("the animal's funeral").
+- **an animal in decline** (`Council_Dilemma_PetFading`): "Take the pet on one last walk": A goes for a long walk.
+- **a hungry look** (`Council_Dilemma_PetPot`): "B apologizes to the pet": gathering to hear it, B speaks ("B's apology to the pet").
+- **a love letter** (`Council_Dilemma_LoveLetter`): "Make B apologize at dinner": gathering to hear it, B speaks ("B's apology"), also when it goes wrong · "Let A read the rest aloud": gathering to hear it, A speaks ("the reading of the letter"), also when it goes wrong.
+- **a funeral in advance** (`Council_Dilemma_OwnFuneral`): "Hold a living funeral": gathering to hear it, A speaks ("A's living funeral"), also when it goes wrong · "Let A pick a grave site": A goes for a long walk.
+
+**Council_Dilemmas_ComingOfAge**
+
+- **a path: the workshop** (`Council_Dilemma_Path_Craft`): "Apprentice A to B in crafting": A learns at B's side (crafting).
+- **a path: the healer** (`Council_Dilemma_Path_Medicine`): "Apprentice A to B in medicine": A learns at B's side (medicine).
+- **a path: the scholar** (`Council_Dilemma_Path_Scholar`): "Apprentice A to B in study": A learns at B's side (intellectual).
+- **a path: the wall** (`Council_Dilemma_Path_Warrior`): "Apprentice A to B at arms": A learns at B's side (shooting).
+
+**Council_Dilemmas_Goals**
+
+- **a teacher for a dream** (`Council_Dilemma_Goal_Mentor`): "Ask B to make the time": A learns at B's side, also when it goes wrong · "Free up B's evenings": A learns at B's side.
+- **a dream fading** (`Council_Dilemma_Goal_GivingUp`): "Rally the colony behind A": gathering to hear it, A speaks ("the dinner for A"), also when it goes wrong · "A few easy days to think it over": time off for A.
+- **if I don't make it** (`Council_Dilemma_Goal_Remember`): "Write it into the colony's records": gathering to hear it, A speaks ("the reading of A's dream").
+
+**Council_Dilemmas_Health**
+
+- **a day away** (`Council_DlmH_DayAway`): "Give A the day": time off for A; A goes for a long walk · "B keeps A company for the day": time off for A and B; B keeps A company.
+- **a say in the operation** (`Council_DlmH_FamilySay`): "Put it off until they've talked it through": B keeps A company · "B stays at A's side through it": B keeps A company.
+- **the midwife's apprentice** (`Council_DlmH_MidwifeApprentice`): "B learns from A": B learns at A's side (medicine).
+
+**Council_Dilemmas_Life**
+
+- **keeping apart** (`Council_DlmL_Quarantine`): "Have someone nurse A apart from the rest": B keeps A company.
+- **fever at the camp** (`Council_DlmL_CampSick`): "Send them medicine": A goes to the camp's fire · "Send our doctor to tend them": B goes to the camp's fire · "Food and blankets, not medicine": A goes to the camp's fire.
+- **an empty pot at the camp** (`Council_DlmL_CampHungry`): "Have our best tracker show their hunters the game": B goes to the camp's fire.
+- **the empty chair** (`Council_DlmL_EmptyChair`): "Have a good talker tell A the whole of it": B keeps A company.
+- **a day off, now** (`Council_DlmL_DayOffBadTime`): "Give A the days": time off for A · "Everyone takes a half day, in turn": time off for A.
+- **it's gone too far** (`Council_DlmL_FrictionGrown`): "Sit them down and make them talk it out": A keeps B company.
+- **putting down the tools** (`Council_DlmL_ElderRest`): "Let A rest; A has earned it": time off for A · "Ask A to teach B instead": B learns at A's side.
+- **a child's question** (`Council_DlmL_ChildQuestion`): "Ask our most learned to answer it": A learns at B's side (intellectual).
+- **a dead traveler's journal** (`Council_DlmL_FoundJournal`): "Read it aloud over supper": gathering to hear it, A speaks ("the reading of the journal").
+- **a promise not kept** (`Council_DlmL_BrokenPromise`): "Apologize at the table": gathering to hear it ("the council's apology to A") · "Have our best talker explain what happened": B keeps A company.
+- **the same work every day** (`Council_DlmL_SameWork`): "Have someone teach A a new trade": A learns at B's side.
+- **small hands at the workbench** (`Council_DlmL_ChildAtTheBench`): "B takes A on as an apprentice": A learns at B's side (crafting) · "Small jobs only, under B's eye": A learns at B's side (crafting) · "Let A make one thing, start to finish": A learns at B's side (crafting).
+- **the doctor needs sleep** (`Council_DlmL_TiredDoctor`): "B sleeps; someone else sits up": B sent to bed · "Teach the basics to everyone who's awake": gathering to hear it, B speaks ("B's lesson in nursing").
+
+**Council_Dilemmas_Pets**
+
+- **the eaten dinner** (`Council_Dilemma_PetDinner`): "A cooks B a new meal": feast from the stores ("A's dinner for B").
+
+**Council_Dilemmas_Reputation**
+
+- **a joke at our expense** (`Council_DlmR_StingyMockery`): "Send X off with a gift": A spends time with X.
+- **the way it's done here** (`Council_DlmR_SkipCustom`): "Have B tell A why it matters": B keeps A company.
+- **how it used to be** (`Council_DlmR_OldCustom`): "Bring it back, the way it was": feast from the stores with music ("the old custom") · "Bring it back, with a few changes": feast from the stores with music ("the old custom").
+- **a friend at the gate** (`Council_DlmR_FriendAtTheGate`): "A can go out to X": A spends time with X.
+- **one day off** (`Council_DlmR_DayOfRest`): "Give A the day": time off for A; A goes for a long walk · "A day of rest for everyone": time off for everyone.
+- **carrying everyone** (`Council_DlmR_CarryingEveryone`): "Thank A at supper": toast ("the thanks to A") · "Tell A to slow down too": time off for A.
+
+**Council_Dilemmas_Seasons**
+
+- **midsummer night** (`Council_Dilemma_Midsummer`): "Light the bonfire": bonfire (its own wood) with music · "A small fire, no drinking": bonfire (its own wood) ("the small fire").
+- **harvest home** (`Council_Dilemma_HarvestHome`): "A harvest feast for everyone": feast from the stores · "A modest supper": feast from the stores ("the harvest supper").
+- **the longest night** (`Council_Dilemma_Midwinter`): "Extra rations for the long night": feast from the stores with music · "Stories by the fire, no feast": bonfire ("the stories by the fire").
+- **after the battle** (`Council_Dilemma_VictoryFeast`): "A victory feast": feast from the stores · "A quick hot meal, then the walls": feast from the stores ("the hot meal after the battle") · "Have the best cook stretch half the food": feast from the stores, also when it goes wrong.
+
+**Council_Dilemmas_Secrets**
+
+- **blood on old hands** (`Council_Dilemma_Secret_BloodPast`): "Have A tell the whole story": gathering to hear it, A speaks ("A's story").
+- **the loose tongue** (`Council_Dilemma_Secret_LooseTongue`): "Make B apologize at supper": gathering to hear it, B speaks ("B's apology") · "Sit them down until they sort it out": A keeps B company.
+- **a kindness found out** (`Council_Dilemma_Secret_KindnessFound`): "Raise a cup to A at supper": feast from the stores ("the supper for A").
+- **one more bout** (`Council_Dilemma_Secret_OneMoreBout`): "Let A teach fighting instead": B learns at A's side (melee).
+- **using again** (`Council_Dilemma_Secret_UsingAgain`): "A week off, with B beside A": time off for A and B; B keeps A company.
+- **what came out** (`Council_Dilemma_Secret_WhatCameOut`): "Talk it through one evening": gathering to hear it, A speaks ("the evening of questions").
+
+**Council_Dilemmas_Social**
+
+- **a line down the middle** (`Council_Dilemma_Soc_SwornRivals`): "Make them teach each other their trades": B learns at A's side.
+- **the remembrance** (`Council_Dilemma_Soc_Remembrance`): "Hold the remembrance night": gathering ("the remembrance night") · "Allow speeches, but no feast": gathering to hear it, A speaks ("the speeches").
+- **a rival's word** (`Council_Dilemma_Soc_Accusation`): "Make B take it back in public": gathering to hear it, B speaks ("B's retraction").
+- **a friend left behind** (`Council_Dilemma_Soc_LeftBehind`): "Ask A to make time for B": A keeps B company.
+- **the closed circle** (`Council_Dilemma_Soc_ClosedCircle`): "Have A host a supper for everyone": feast from the stores ("A's supper").
+
+**Council_Dilemmas_Strangers**
+
+- **the trader's eye** (`Council_DlmS_HeirloomOffer`): "Sell it": A sits by a grave.
+- **a voice through the door** (`Council_DlmS_PrisonerPlea`): "Hear X out properly": A spends time with X.
+- **hungry at the gate** (`Council_DlmS_Beggars`): "Send them home with seed, and a grower's advice": B spends time with X.
+- **the traveling healer** (`Council_DlmS_Healer`): "Pay X to teach B": B learns at X's side (medicine).
+
+**Council_Events_Callers**
+
+- **a traveling scribe** (`Council_Evt_Scribe`): "A fair copy of the colony's story (half that)": gathering to hear it, A speaks ("the telling of the colony's story") · "Have X teach reading to anyone who'll sit still (half that)": gathering to hear it ("X's reading lesson").
+- **a photographer** (`Council_Evt_Photographer`): "Everyone out front (n silver)": gathering ("the photograph").
+- **a spirit-singer** (`Council_Evt_SpiritSinger`): "Let X sing to the land (10 food)": bonfire with music ("X's song") · "Ask X to sing for our dead (10 food)": gathering with music ("X's songs for the dead").
+- **a traveling cook** (`Council_Evt_WanderingCook`): "Give X the kitchen (40 food)": feast from the stores ("X's cooking") · "Have X teach our cook (n silver)": B learns at X's side (cooking).
+- **a hedge healer** (`Council_Evt_Bonesetter`): "Pay in medicine (2), and let our doctor watch": B learns at X's side (medicine).
+- **a song for the weary** (`Council_Evt_Fiddler`): "Let X play for A": A spends time with X · "A song for everyone after supper (n silver)": gathering with music ("X's playing").
+- **a peacemaker** (`Council_Evt_Peacemaker`): "Let X sit them down": A keeps B company.
+
+**Council_Events_Chains**
+
+- **the lost child returns** (`Council_Evt_ChildGrown`): "Ask X to stay": A spends time with X.
+
+**Council_Events_Land**
+
+- **white nights** (`Council_Evt_WhiteNights`): "Stay up through the bright night together": bonfire ("the bright night").
+- **the desert in flower** (`Council_Evt_DesertBloom`): "Walk out to see it": gathering ("the walk among the flowers").
+- **the long rains** (`Council_Evt_LongRains`): "Games and stories indoors": gathering ("the rainy evening").
+- **the river freezes** (`Council_Evt_IceFair`): "Hold our own on our stretch of river": bonfire ("the ice fair").
+- **the birds come back** (`Council_Evt_BirdsReturn`): "Take an hour to welcome them": gathering ("the hour for the birds").
+- **the rut** (`Council_Evt_Rut`): "Send the hunters out": game marked for the hunters · "Go up the ridge at dusk to watch": gathering ("the evening on the ridge").
+- **the first snow** (`Council_Evt_FirstSnow`): "Call it a snow day": time off for everyone.
+- **the longest night** (`Council_Evt_LongestNight`): "Keep the fire burning till dawn (40 wood)": bonfire (its own wood) ("the longest night") · "A good supper, then early to bed": feast from the stores ("the longest night's supper").
+- **the sun goes dark** (`Council_Evt_Eclipse`): "Drum and shout the sun back": gathering with music ("the drumming") · "Watch it through smoked glass": gathering to hear it, B speaks ("the eclipse").
+
+**Council_Events_Living**
+
+- **the lovers' family** (`Council_Evt_LoversKin`): "Let them talk": A spends time with X; B spends time with X.
+- **a letter from home** (`Council_Evt_KinLetter`): "Read it out at supper": gathering to hear it, A speaks ("the letter from home").
+- **known by name** (`Council_Evt_Renown`): "Let A help": A spends time with X.
+- **founding day** (`Council_Evt_Founding`): "Hold a feast": feast from the stores ("the founding feast") · "A quiet supper": toast ("the founding day toast") · "Ask A to tell the story of the first days": gathering to hear it, A speaks ("the story of the first days").
+- **a guest on a winter night** (`Council_Evt_MidwinterGuest`): "Bring X in": A spends time with X.
+
+**Council_Events_More**
+
+- **traveling doctor** (`Council_Evt_Inoculation`): "Pay half, and have X teach A": A learns at X's side (medicine).
+
+**Council_Events_Pasts**
+
+- **old comrade** (`Council_Evt_OldComrade`): "Welcome X": A spends time with X.
+- **lost family** (`Council_Evt_LostKin`): "Bring X in": A spends time with X.
+
+**Council_Events_Roots**
+
+- **a taste of home** (`Council_Evt_TasteOfHome`): "Buy it, and let A cook it for everyone (n silver, 10 food)": feast from the stores ("A's supper from home").
+- **an old enemy makes amends** (`Council_Evt_Amends`): "Let A hear X out": A spends time with X · "Ask X to stay for supper": A spends time with X.
+- **a stonecutter** (`Council_Evt_Headstones`): "A proper marker for every grave (n silver)": A sits by a grave · "Have X teach our best crafter how (half that)": B learns at X's side (artistic).
+- **a feast at the camp** (`Council_Evt_CampFeast`): "Go, and bring food (20 food)": gathering ("the evening at the camp") · "Go, and enjoy their hospitality": gathering ("the evening at the camp").
+
+**Council_Events_Stories**
+
+- **the wedding** (`Council_Story_FeudWedding`): "Hold the wedding here (40 raw food for the feast)": feast from the stores ("the wedding feast").
+- **the preacher** (`Council_Story_Prophet`): "Let them stay and preach": gathering with music ("X's preaching") · "A will argue with X": A spends time with X.
+- **a divided colony** (`Council_Story_ProphetSchism`): "Call everyone together (A speaks)": gathering to hear it, A speaks ("the meeting in the dining room").
+
+**Council_Events_Stories_More**
+
+- **the lost letters** (`Council_Story_Letters`): "Read them first": gathering to hear it, A speaks ("the reading of the letters").
+- **an answer to the letters** (`Council_Story_LettersReply`): "Welcome X, and listen": A spends time with X.
+- **the stranger comes back** (`Council_Story_SeedsReturn`): "Show X the garden, and share the harvest": A spends time with X.
+- **a play about the colony** (`Council_Story_Play`): "Tell X everything, good and bad": A spends time with X · "Tell X the best of it": A spends time with X.
+- **the premiere** (`Council_Story_PlayPremiere`): "Watch it with everyone": gathering ("the play").
+- **an admirer** (`Council_Story_PlayFans`): "Show X around": A spends time with X.
+
+**Council_Events_Storyteller**
+
+- **an old adventurer** (`Council_Evt_OldAdventurer`): "An evening of stories": gathering ("X's stories").
+- **a silent guest** (`Council_Evt_SilentMonk`): "Ask X to sit with A": A spends time with X.
+- **the limb-maker** (`Council_Evt_LimbMaker`): "Pay a little to have X teach our best crafter": B learns at X's side (crafting).
+
+**Council_Events_Variety**
+
+- **traveling tinker** (`Council_Evt_Tinker`): "Pay a little to have X teach A": A learns at X's side (crafting).
+- **old grave** (`Council_Evt_OldGrave`): "Rebury them properly": A sits by a grave.
+- **old letters** (`Council_Evt_OldLetters`): "Read them aloud at supper": gathering to hear it, A speaks ("the old letters").
+- **family visit** (`Council_Evt_FamilyVisit`): "Enjoy the visit": A spends time with X.
+- **fortune teller** (`Council_Evt_FortuneTeller`): "Pay n silver": gathering ("the fortune-telling") · "One reading, for A only": A spends time with X.
+
+**Council_Events_Visitors**
+
+- **traveling scholar** (`Council_Evt_Scholar`): "Host X for the night": A spends time with X · "Ask X to teach everyone instead": gathering to hear it ("X's lesson").
+- **would-be apprentice** (`Council_Evt_Apprentice`): "Take X on": X learns at A's side.
+- **quiet stranger** (`Council_Evt_QuietStranger`): "Let A talk to X first": A spends time with X.
+
+
+### What stays a mood, and why
+
+Outcomes that describe something people do but can't sensibly become one afternoon on the map stay as they were:
+
+- **It takes days or weeks.** "After a week of shared shifts", "every shift together", "the night watch, together",
+  "working off the punishment side by side", "hauling and digging from dawn to dusk", "one supper a week", "supper in
+  two sittings" (the feud, the slacker, the inseparable pair, the cover-up, the plea, the thief, the watch, the old
+  face, the blood past, the pirate's due, the same meal, the crowded table). One gathering can't stand for a habit; the
+  moods stand for the whole stretch, and work and priorities stay the player's to set.
+- **It happens off the map.** Missions (the neighbor's funeral, wedding, shrine, rebuilding: they take place in the
+  neighbor's town), the ice fair down the river, the far market and harvest fair, riding back with the feuding
+  families, a rider sent with a letter, two days in the hills with the cartographer (who leaves).
+- **It's a stranger's part, or a guest's.** Guests, prisoners and lodgers are never called to anything: the rude guest
+  apologizing at supper, the pilgrims and envoys fed, the friend at the gate given the colony's table, the sanctuary
+  seeker's bowl, the old acquaintance telling the dining room, the camp's people chopping wood, the healer treating
+  someone. Where a colonist goes to the stranger instead (to listen, to learn, to hand over a gift), that plays out.
+- **It's at night.** Sitting up with a sleepwalker, searching for the camp's lost child after dark, sleeping late
+  tomorrow after the white night: nobody is kept from sleep, and tomorrow's timetable isn't today's to change.
+- **It would hurt someone or take the player's place.** Duels, bouts and fights (where an answer has a fight it was
+  already real and stays as it is), executions, burning or burying the enemy dead, searching a room, burning a stash,
+  confiscating things, moving a patient to another bed, a quarantine: the colony's burials, bills, beds and care are
+  the player's and the game's to order.
+- **It isn't a meal from the stores.** Mushrooms fried in the pan, berries eaten from the hand, the forager's tea,
+  extra rations for one colonist, the tonic's long sleep (already its well-rested effect): a feast of the colony's
+  usual meals would say something else.
+- **It's an animal's part.** A last walk with a pet (the walk is real, the pet is let go as before), a pet penned
+  with its person at the fence, feeding a wild animal past the wall: animals aren't led about by answers.
+- **It was already real.** Contests and rematches (the match happens on the map), hunting or taming an animal, a
+  stranger joining, recruiting, sending away, gifts of silver, food or medicine (taken from the stores), mentorships,
+  the meeting itself.
+- **Other systems.** World situations (World/) were being worked on in parallel and keep their own beats; their
+  answers can take these effects later. Personal stories, social events, dreams and encounters are moments that have
+  already happened (interactions and moods), not answers to carry out.
+
 ## Building help: how far should the mod build things itself?
 
 Think of it as a ladder. Each rung is optional and builds on the one below:
