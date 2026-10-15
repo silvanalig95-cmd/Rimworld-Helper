@@ -236,8 +236,8 @@ namespace ColonyCouncil
             else if (Mouse.IsOver(r)) Widgets.DrawHighlight(r);
             if (active) Widgets.DrawBoxSolid(new Rect(r.x, r.y, 3f, r.height), UiKit.Gold);
             UiKit.Icon(new Rect(r.x + 6f, r.y + 5f, 16f, 16f), icon, active ? UiKit.Gold : Faint);
-            UiKit.LabelFit(new Rect(r.x + 28f, r.y, r.width - 62f, r.height), label, active ? Color.white : new Color(0.9f, 0.9f, 0.9f));
-            UiKit.LabelFit(new Rect(r.xMax - 34f, r.y, 30f, r.height), count.ToString(), Faint, GameFont.Tiny, TextAnchor.MiddleRight);
+            UiKit.LabelFit(new Rect(r.x + 28f, r.y, r.width - 56f, r.height), label, active ? Color.white : new Color(0.9f, 0.9f, 0.9f));
+            UiKit.LabelFit(new Rect(r.xMax - 28f, r.y, 25f, r.height), count.ToString(), Faint, GameFont.Tiny, TextAnchor.MiddleRight);
             return Widgets.ButtonInvisible(r);
         }
 

@@ -62,8 +62,8 @@ namespace ColonyCouncil
         /// <summary>The thin strip the categories and the page list fold into, with buttons to unfold and to turn pages.</summary>
         public const float Strip = 30f;
 
-        public const float CategoryMin = 130f, CategoryMax = 180f, CategoryShare = 0.18f;
-        public const float ListMin = 160f, ListMax = 240f, ListShare = 0.23f;
+        public const float CategoryMin = 130f, CategoryMax = 185f, CategoryShare = 0.19f;
+        public const float ListMin = 160f, ListMax = 230f, ListShare = 0.22f;
 
         /// <summary>
         /// The widths of the categories, the page list and the page in a tab <paramref name="width"/> wide. Folded, the
